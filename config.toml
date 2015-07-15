@@ -1,0 +1,9 @@
+baseurl = "http://pixel-druid.com/"
+languageCode = "en-us"
+title = "Pixel Druid"
+theme = "purehugo"
+canonifyurls = true
+
+[params]
+  githubName = "bollu"
+  description = "A weblog of sorts"
