@@ -24,7 +24,7 @@ code.has-jax {font: inherit;
 MathJax.Hub.Config({
   tex2jax: {
     inlineMath: [['$','$'], ['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\[','\]']],
+    displayMath: [['$$','$$']],
     scale: 10,
     minScaleAdjust: 10,
     processEscapes: true,
