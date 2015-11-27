@@ -16,7 +16,7 @@ code.has-jax {font: inherit;
 </style>
 
 <script type="text/javascript"
-  src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
   
 <script type="text/x-mathjax-config">
