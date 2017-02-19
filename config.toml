@@ -2,7 +2,13 @@ baseurl = "http://pixel-druid.com/"
 languageCode = "en-us"
 title = "Pixel Druid"
 theme = "purehugo"
+#theme = "cocoa"
+#theme = "hugo-zen"
+
 canonifyurls = true
+
+pygmentsuseclasses = true
+# pygmentsstyle = "github"
 
 [params]
   githubName = "bollu"

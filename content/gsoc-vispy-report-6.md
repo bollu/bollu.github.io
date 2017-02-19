@@ -1,5 +1,5 @@
 +++
-Categories = []
+Categories = ["vispy"]
 Description = ""
 Tags = ["gsoc"]
 date = "2015-08-24T23:17:24+05:30"
