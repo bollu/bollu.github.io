@@ -4,7 +4,8 @@ Description = ""
 Tags = []
 date = "2017-04-09"
 title = "JavaScript cannot Eta-Reduce"
-draft=true
+
+draft=false
 +++
 
 <p data-height="265" data-theme-id="light" data-slug-hash="JWgoLB" data-default-tab="js,result" data-user="bollu" data-embed-version="2" data-pen-title="JS cannot eta reduce" class="codepen">See the Pen <a href="http://codepen.io/bollu/pen/JWgoLB/">JS cannot eta reduce</a> by Siddharth (<a href="http://codepen.io/bollu">@bollu</a>) on <a href="http://codepen.io">CodePen</a>.</p>
