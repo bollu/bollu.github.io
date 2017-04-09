@@ -4,7 +4,6 @@ Description = ""
 Tags = ["math", "research"]
 date = "2015-09-17T12:44:32+05:30"
 title = "Getting into Sage - a practical guide"
-draft = true
 
 +++
 

@@ -4,7 +4,7 @@ Description = ""
 Tags = []
 date = "2017-03-02T02:01:00+05:30"
 title = "js cant eta reduce"
-
+draft=true
 +++
 
 
