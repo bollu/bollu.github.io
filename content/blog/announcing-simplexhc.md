@@ -105,7 +105,9 @@ Then, we assign `cont` to `cont_next` and repeat this process. Note that
 we don't blow up our stack doing this, because we only use a constant amount of
 stack space.
 
-However, this has a problem: namely, we cannot provide a type to the functions
+However, this has a problems:
+
+###### Problem #1: We cannot provide a type to the functions
 `function_one` and `function_two`! Their types are roughly
 
 ```haskell
@@ -125,6 +127,9 @@ struct Continuation {
 However, this adds a struct indirection as well. I'm not sure how much of an
 impact this would have on compilation, but it just seems hacky.
 
+###### Problem #2: returning function pointers wrecks inter-procedural optimisation
+
+Since we have functions that returns function, the chances for optimisation will mostly need inter-procedural optimisation. However, LLVM's inter-procedural optimisation story is not so great. It heavily relies on inlining, which is problematic if we generate code that looks like this. 
 
 On the other hand, if we reconsider the original solution with a couple of
 minor changes:
@@ -165,7 +170,7 @@ on inlining, we get code that looks like this:
 
 
 
-```lang=c
+```cpp
 void matcher(int i);
 int globalSideEffect;
 
