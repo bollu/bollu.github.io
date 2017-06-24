@@ -1,6 +1,7 @@
 +++
 date = "2017-06-15T19:57:26+02:00"
 title = "GHC newbie part 1: The goal of prettier error messages"
+draft = true
 
 +++
 
@@ -40,7 +41,18 @@ consumes `ghc:lib` will be locked on to the version of `text` that GHC uses. [Th
 
 I'm on a quest to add `prettyprinter` into GHC for better error messages.
 
+##### Things that caught my eye:
+
+- `llvmCodeGen` is the entry function to the `LLVM` subsytem. Since I eventually want to port ideas from [simplexhc](http://github.com/bollu/simplexhc),
+this is probably a good thing to keep in mind `;)`
+
+- There is place where we [set `ribbonsPerLine` to 1.5](https://github.com/ghc/ghc/blame/master/compiler/utils/Pretty.hs#L990). This doesn't make sense,
+because it's a normalized value. Also, it's from 15 years ago, which means I was 5 years old back then. Feels surreal that I'm editing code
+from back then, to be honest.
+
 
 ##### Random pages that helped a lot
 - [The section on `make` and the build system](https://ghc.haskell.org/trac/ghc/wiki/Building/Using)
   The single most helpful thing on that page is: to build `stage2`, run `make 2`.
+
+
