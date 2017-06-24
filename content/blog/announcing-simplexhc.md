@@ -27,6 +27,60 @@ say that the GHC team has done an awesome job keeping it up to date: they have! 
 
 [The current repo of `simplexhc`](https://github.com/bollu/simplexhc) currently contains the original `STG` implementation *as an interpreter*. However, I've started work on the `LLVM` backend, so I decided to start blogging about it.
 
+## Some backround knowledge
+Since I'll be discussing ideas related to compilation, I'd like to discuss some of the related ideas.
+
+##### 1. Tail call optimisiation
+
+Consider a function:
+
+###### Original function
+```cpp
+int factorial_(int n, int accum) {
+    if(n == 1) return 1;
+    return factorial_(n - 1, accum * n);
+}
+
+int factorial(int n) { return factorial_n(n, 1 };
+```
+
+Now, if we consider `factorial(4)`, the call stack will look something like this:
+
+###### Call stack
+```
+factorial_(1, 24)
+factorial_(2, 12)
+factorial_(3, 4)
+factorial_(4, 1)
+factorial(4)
+; bottom
+```
+
+However, we can do something interesting with the `factorial_` function: rather than _calling_ `factorial_` again, we can simply replace `n := n - 1`, and `accum := accum * n`, and restart evaluating `factorial_`. That is, in terms of code:
+
+###### Optimised Function
+```cpp
+int factorial_(int n, int accum) {
+begin: 
+    if(n == 1) return 1;
+    // value replacement.
+    accum = accum * n;
+    n = n - 1;
+    jump begin; // jump to beginning of function with new variable values.
+}
+
+// unchanged
+factorial(int n) { return factorial_(n, 1) };
+```
+
+Note that the reason this works is that the **last statement in the function** `factorial` is to call `factorial_`. Hence, such a call is called a *tail call*, and this optimisation is knows as *tail call optimisation* or *tail call elimination*.
+
+##### 2. `STG` - Push/Enter
+
+I will not be going into the details of STG, I refer interested readers to the paper `:)`. However, I do want to provide some information about how STG works, at least for certain cases. [Here is an excellent stackoverflow post covering intuitively what evaluation in a lazy language looks like](https://stackoverflow.com/questions/13782222/haskell-recursion-and-memory-usage). For a deeper dive, there are the slides called [A Haskell compiler](http://www.scs.stanford.edu/11au-cs240h/notes/ghc-slides.html#(1)).
+
+The point is that Haskell doesn't have a "call stack" per se. It doesn't have the notion of a stack of values left to be evaluated. Rather, Haskell (or rather, STG) uses tail calls as its primary method of "control flow", due to the laziness. Hence, we need to be able to compile these.
+
 
 ## Current work: Representing the main loop
 
@@ -36,7 +90,7 @@ this would like in C:
 
 ##### C-pseudocode
 
-```lang=c
+```cpp
 void matcher(int i);
 int globalSideEffect;
 
@@ -72,8 +126,7 @@ int main() {
     matcher(1);
 }
 ```
-
-The problem with this approach is obvious:
+The problem with this approach is that since none of `matcher`, `function_one`, `function_two` ever return, the call stack will eventually blow up. So, we need to implement this some other way. I discuss two approaches: what is described in the original `STG` paper, and the approach that I am considering for `simplexhc`.
 
 ##### STG paper approach:
 
@@ -108,7 +161,8 @@ stack space.
 However, this has a problems:
 
 ###### Problem #1: We cannot provide a type to the functions
-`function_one` and `function_two`! Their types are roughly
+
+Specifically, `function_one` and `function_two`. Their types are roughly:
 
 ```haskell
 type Cont = () -> Cont*
@@ -129,12 +183,14 @@ impact this would have on compilation, but it just seems hacky.
 
 ###### Problem #2: returning function pointers wrecks inter-procedural optimisation
 
-Since we have functions that returns function, the chances for optimisation will mostly need inter-procedural optimisation. However, LLVM's inter-procedural optimisation story is not so great. It heavily relies on inlining, which is problematic if we generate code that looks like this. 
+Since we have functions that returns function, the chances for optimisation will mostly need inter-procedural optimisation. However, LLVM's inter-procedural optimisation story is not so great. It heavily relies on inlining, which is problematic if we generate code that looks what's shown above with the function-pointer chasing. 
 
-On the other hand, if we reconsider the original solution with a couple of
+##### `Simplexhc` approach
+
+If we reconsider the original solution with a couple of
 minor changes:
 
-##### Pseudo-LLVM
+###### Annotated C code
 
 ```cpp
 void matcher(int i);
@@ -142,7 +198,7 @@ int globalSideEffect;
 
 void function_one() alwaysinline {
     globalSideEffect = 0;
-    tail call matcher(1);
+    tail call matcher(1); // "tail call" forces a call to be tail call optimised.
 }
 
 
@@ -169,6 +225,7 @@ In the current state (without inlining), they don't look like tail calls. Howeve
 on inlining, we get code that looks like this:
 
 
+###### Annotated C code (After inlining)
 
 ```cpp
 void matcher(int i);
@@ -195,8 +252,7 @@ void matcher(int i) {
         case 2:  {
             globalSideEffect = 42;
             tail call matcher(42);
-        };
-        break;
+        }; break;
     }
 }
 ```
@@ -213,9 +269,15 @@ cache hit.
 
 The reason this is absolutely wonderful is that now, the calls are explicit. There
 is no pointer-chasing that the compiler needs to perform, which should lead to
-better inter-procedural analysis.
+better inter-procedu
+ral analysis.
 
 Of course, it's all conjecture at this point. I'll come back with data :)
+## Future advantages because of `LLVM`
+
+- `LLVM` 5 introduced [support for coroutines](http://llvm.org/docs/Coroutines.html). This can possibly be used for CPS as well. In fact, [There was a discussion about adding explicit CPS support](https://groups.google.com/forum/#!topic/llvm-dev/6pigN9W5ttI). However, it seems like there is still work do be done in the area.
+
+-  `LLVM` constantly receives updates and performance benefits because there are a bunch of people who contribute to it. That should (theoretically) allow GHC to become faster with no effort of its own.
 
 I'd love to hear thoughts and comments about this. Please do leave a comment,
 or e-mail me at `siddharth.bhat at research dot iiit dot ac dot in`.
