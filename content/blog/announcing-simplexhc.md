@@ -6,6 +6,8 @@ title = "Announcing simplexhc"
 
 # Simplexhc - a STG to LLVM compiler
 
+###### [Link to Github repo](https://github.com/bollu/simplexhc).
+
 I'm trying to understand GHC's design choices when it comes to compilation. The way GHC currently compiles
 is to first reduce Haskell to a `Core` language, which is a minimal subset of Haskell, in some sense.
 
@@ -37,7 +39,7 @@ Consider a function:
 ###### Original function
 ```cpp
 int factorial_(int n, int accum) {
-    if(n == 1) return 1;
+    if(n == 1) return accum;
     return factorial_(n - 1, accum * n);
 }
 
@@ -62,7 +64,7 @@ However, we can do something interesting with the `factorial_` function: rather 
 ```cpp
 int factorial_(int n, int accum) {
 begin: 
-    if(n == 1) return 1;
+    if(n == 1) return accum;
     // value replacement.
     accum = accum * n;
     n = n - 1;
