@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
+set -o xtrace
+set -e
 
 
 rm -rf public/
 hugo
 
 ssh root@pixel-druid.com "rm -rf /var/www/"
-scp -r ./public/* root@www.pixel-druid.com:/var/www/
-# rsync -r --progress ./public/* ubuntu@www.pixel-druid.com:/www/
+rsync -r --progress ./public/* root@www.pixel-druid.com:/var/www

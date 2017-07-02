@@ -4,8 +4,6 @@ title = "This week in simplexhc: July 2 2017"
 
 +++
 
-## This week in simplexhc: July 2, 2017
-
 
 
 <iframe src="https://ghbtns.com/github-btn.html?user=bollu&repo=simplexhc&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
