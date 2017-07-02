@@ -1,6 +1,6 @@
 +++
 title = "STG, explained"
-date = "2017-06-22T17:27:22+02:00"
+date = "2017-06-22 17:27:22+02:00"
 draft = true
 +++
 
