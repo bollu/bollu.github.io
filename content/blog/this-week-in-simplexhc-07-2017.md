@@ -1,5 +1,5 @@
 +++
-date = "2017-06-25 20:09:46+02:00"
+date = "2017-07-02 20:09:46+02:00"
 title = "This week in simplexhc: July 2 2017"
 
 +++
@@ -8,10 +8,10 @@ title = "This week in simplexhc: July 2 2017"
 
 
 
-<iframe src="https://ghbtns.com/github-btn.html?user=bollu&repo=simplexhc&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
+<iframe src="https://ghbtns.com/github-btn.html?user=bollu&repo=simplexhc&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
 
 
-<iframe src="https://ghbtns.com/github-btn.html?user=bollu&repo=simplexhc&type=fork&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
+<iframe src="https://ghbtns.com/github-btn.html?user=bollu&repo=simplexhc&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
 
 
 This is going to be a weekly blog post about the status of
