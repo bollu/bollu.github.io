@@ -8,7 +8,8 @@ title = "This week in simplexhc: July 11 2017"
 - This makes the tail call directly exposed.
 - Matcher can still be inlined.
 
-```
+
+```cpp
 typedef void (*HaskellFunc)();
 int globalSideEffect;
 
