@@ -66,8 +66,8 @@ loopy = loopy
 -- main takes no arguments, and returns nothing
 main :: () -> Void
 main = case K(one, loopy) of -- force K to be evaluated with a `case`
-            x -> case x of  -- Call the return value of K as `x`, and force evaluation.
-                    primx -> printPrimInt(primx) -- Call the vreturn value of `x` as `primx` and then print it.
+            kret -> case kret of  -- Call the return value of K as `kret`, and force evaluation.
+                    i -> printPrimInt(i) -- Call the forced value of `kret` as `i` and then print it.
 ```
 
 ##### A quick explanation about `case`:
@@ -114,21 +114,21 @@ regardless of what value `loopy` held.
 So, at the case expression:
 ```hs
 main = case K(one, loopy) of -- force K to be evaluated with a `case`
->>>         x -> ...
+>>>         kret -> ...
 ```
 
-`x = one`, we can continue with the computation.
+`kret = one`, we can continue with the computation.
 
 ```hs
 main :: () -> Void
 main = case K(one, loopy) of -- force K to be evaluated with a `case`
-            x -> case x of  -- Call the return value of K as `x`, and force evaluation.
->>>                    primx -> printPrimInt(primx) -- Call the vreturn value of `x` as `primx` and then print it.
+            kret -> case kret of  -- Call the return value of K as `x`, and force evaluation.
+>>>                    i -> printPrimInt(i) -- Call the vreturn value of `x` as `primx` and then print it.
 ```
 
-Here, we force `x = one` to be evaluated with `case x of`.
-since `one = 1`, `primx = 1`.
-Once `primx` is returned, we print it out with `printPrimInt(primx)`.
+Here, we force `kret` (which has value `one`) to be evaluated with `case kret of...`.
+since `one = 1`, `i` is bound to the value `1`.
+Once `i` is returned, we print it out with `printPrimInt(primx)`.
  
 The output of the program under non-strict interpretation is for it to print out `1`.
 
@@ -194,13 +194,69 @@ Note that `K(bottom, y) = bottom`, so K is *strict in its first argument*, and
 This is a neat example showing how a function can be strict and lazy in different
 arguments of the function.
 
-### Compiling laziness
+### Compiling non-strictness
 
-Now, we need a *strategy* to compile the lazy version of our program.
+Now, we need a *strategy* to compile the non-strict version of our program.
 Clearly, `C` cannot express laziness directly, so we need some other
 mechanism to implement this. I will first code-dump, and then explain as we go along.
 
-###### [Code dump - Click for compiler explorer link (runnable program)](http://rextester.com/TCY24926)
+###### Executable `repl.it`:
+<iframe height="1000px" width="100%" src="https://repl.it/@bollu/GrayUntimelyElectriceel?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
+
+###### Source code
+```
+#include <assert.h>
+#include <stdio.h>
+
+/* a boxed value is a function that can be executed to compute something.
+* We make the return value `void` on purpose. This needs to be typecast to a concrete
+* Boxed type to get a value out of it: eg, typecast to BoxedInt.
+*/
+typedef void (*Boxed)();
+
+/* A boxed int, that on evaluation yields an int*/
+typedef int (*BoxedInt)();
+
+/* one = 1# */
+int one() {
+    return 1;
+}
+
+/* bottom = bottom */
+void bottom() {
+    printf("in function: %s\n", __FUNCTION__);
+    bottom();
+}
+
+/* K x y = x */
+Boxed K(Boxed x, Boxed y) {
+  return x;
+}
+
+/*
+main :: () -> Void
+main = case K(one, loopy) of -- force K to be evaluated with a `case`
+            kret -> case kret of  -- Call the return value of K as `x`, and force evaluation.
+                    i -> printPrimInt(i) -- Call the vreturn value of `x` as `primx` and then print it.
+*/
+int main() {
+    Boxed kret = K((Boxed)one, (Boxed)bottom);
+    int i = (*(BoxedInt)kret)();
+    printf("%d", i);
+    return 1;
+}
+
+```
+
+### Compiling currying
+
+### Compiling with a custom call stack
+
+### Putting it all together: Laziness, currying, and a custom call stack
+
+In the next blog post of the series, we will see two other things that haskell compiler needs to deak with: GC support and black holes.
+
+###### Compilng laziness with a custom call stack [Code dump - Click for compiler explorer link (runnable program)](http://rextester.com/TCY24926)
 ```c
 #include <assert.h>
 #include <stdio.h>
@@ -276,6 +332,23 @@ int main() {
     return 1;
 }
 ```
+
+we maintain our own "call stack" of continuations. These continuations are precisely the
+parts of the code that deal with the return value of a case. ever
+
+```hs
+case x of
+    xeval -> expr
+```
+
+compiles to:
+
+```c
+pushContinuation(XEvalContinuation);
+x()
+```
+
+That is, push a continuation, and then "enter" into `x`.
 
 ### Another example: Encoding factorial
 
