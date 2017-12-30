@@ -1,10 +1,9 @@
 +++
-title = "Nonstrictness for C programmers"
+title = "How to compile Haskell, a bird's eye view"
 date = "2017-12-25T11:57:38+05:30"
-draft = true
 +++
 
-The aim of this blog post is to explain haskell's evaluation model without
+The aim of this blog post is to explain haskell's (specifically, GHC) evaluation model without
 having to jump through too many hoops `:)`.
 
 `GHC` (the Glasgow haskell compiler) internally uses multiple intermediate
@@ -18,11 +17,11 @@ representations, in order of original, to what is finally produced:
 - Assembly
 
 
-Here, I will show how to lower simple non-strict programs from a `Core` like language
+Here, I will show how to lower simple non-strict programs from a **fictitous** `Core` like language
 down to `C` (which is arguably `C--`), while skipping `STG`, since it doesn't
 really add anything to the high-level discussion at this point.
 
-###### Side node: nonsrict versus lazy (This section can be skipped)
+# Side node: nonsrict versus lazy (This section can be skipped)
 
 I will use the word `non-strict` throughout, and not `lazy`.
 Roughly speaking, `lazy` is more of an implementation detail that guarantees
@@ -36,11 +35,15 @@ not evaluated until there are truly required. (denotational semantics).
 This is pure pedantry, but I'd like to keep it straight, since there seems to be
 a lot of confusion involving the two words in general.
 
-### Showing off non-strictness:
+# Showing off non-strictness:
 We first need a toy example to work with to explain the fundamentals of
 non-strict evaluation, so let's consider the example below. It should be
 relatively straightforward, except for the `case` construct which is explained
 below.
+
+We will interpret this example as both a strict program and a non-strict program.
+This will show us that we obtain different outputs on applying different
+interpretations.
 
 We distinguish between primitive values (integers such as `1`, `2`, `3`) and boxed values
 (functions, data structures). Boxed values can be evaluated non-stricly. Primitive values
@@ -50,6 +53,7 @@ do not need evaluation: they are primitive.
 -- Lines starting with a `--` are comments.
 -- K is a function that takes two arguments, `x` and `y`, that are both boxed values.
 -- K returns the first argument, `x`, ignoring the second argument, `y`.
+-- Fun fact: K comes for the K combinator in lambda calculus.
 K :: Boxed -> Boxed -> Boxed
 K x y = x
 
@@ -74,7 +78,7 @@ main = case K(one, loopy) of -- force K to be evaluated with a `case`
 `case` is a language construct that *forces* evaluation. In general, no value
 is evaluated unless it is *forced* by a case.
 
-### Analysing the example:
+# Analysing the example:
 
 ###### The strict interpretation:
 
@@ -132,7 +136,7 @@ Once `i` is returned, we print it out with `printPrimInt(primx)`.
  
 The output of the program under non-strict interpretation is for it to print out `1`.
 
-### Where does the difference come from?
+# Where does the difference come from?
 
 Clearly, there is a divide: strictness tells us that this program should
 never halt. Non-strictness tells us that this program will print an output!
@@ -157,7 +161,8 @@ Formally, a function `f` is non-strict iff (if and only if) `f(bottom) /= bottom
 
 As Paul Halmos says, " A good stack of examples, as large as possible, is indispensable for a thorough understanding of any concept, and when I want to learn something new, I make it my first job to build one.". Let us consider some examples.
 
-1. `id`
+##### `id`
+
 ```hs
 id x = x
 
@@ -168,7 +173,9 @@ id (bottom) = bottom
 `id` is strict, since `id(bottom) = bottom`.
 
 
-2. `const`
+##### `const`
+
+
 ```hs
 const_one x = 1
 
@@ -178,7 +185,7 @@ const_one(3) = 1
 
 `const_one` is not strict, as `const_one(bottom) /= bottom`.
 
-3. `K`
+##### `K`
 
 ```hs
 K x y = x
@@ -194,14 +201,14 @@ Note that `K(bottom, y) = bottom`, so K is *strict in its first argument*, and
 This is a neat example showing how a function can be strict and lazy in different
 arguments of the function.
 
-### Compiling non-strictness
+# Compiling non-strictness, v1:
 
 Now, we need a *strategy* to compile the non-strict version of our program.
 Clearly, `C` cannot express laziness directly, so we need some other
 mechanism to implement this. I will first code-dump, and then explain as we go along.
 
 ###### Executable `repl.it`:
-<iframe height="1000px" width="100%" src="https://repl.it/@bollu/GrayUntimelyElectriceel?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
+<iframe height="400px" width="100%" src="https://repl.it/@bollu/Compiling-non-strict-programs-on-the-call-stack?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
 
 ###### Source code
 ```
@@ -248,15 +255,29 @@ int main() {
 
 ```
 
-### Compiling currying
+We convert every possibly lazy value into a `Boxed` value, which is a function pointer that knows how to compute the
+underlying value. When the lazy value is forced by a `case`, we call the `Boxed` function to compute the output.
 
-### Compiling with a custom call stack
+This is a straightforward way to encode non-strictness in C. However, do note that this is not *lazy*, because a value could get
+recomputed many times. *Laziness* guarantees that a value is only computed once and is later memoized.
 
-### Putting it all together: Laziness, currying, and a custom call stack
 
-In the next blog post of the series, we will see two other things that haskell compiler needs to deak with: GC support and black holes.
+# Compiling with a custom call stack / continuations
 
-###### Compilng laziness with a custom call stack [Code dump - Click for compiler explorer link (runnable program)](http://rextester.com/TCY24926)
+As one may notice, we currenly use the native call stack every time we *force* a lazy value. However, in doing  so, we might actually run out of stack space, which is undesirable. Haskell programs like to have "deep" chains of values being forced, so we would quite likely run out of stack space.
+
+Therefore, GHC opts to manage its own call stack on the heap. The generated code looks as you would imagine: we maintain a stack of function pointers + auxiliary data ( stack saved values), and we push and pop over this "stack". When we run out of space, we `<find correct way to use mmap>` to increase our "stack" size. 
+
+I've played around with this value a little bit, and have found that the modern stack size is quite large: IIRC, It allowed me to allocate ~`26 GB`. I believe that the amount it lets you allocate is tied directly to the amount of physical memory + swap you have. I'm not too sure, however. So, [for my haskell compiler, `sxhc`](https://github.com/bollu/simplexhc-cpp.git), I am considering cheating and just using the stack directly.
+
+Code for the same example (with the K combinator) is provided here.
+
+###### Executable `repl.it`:
+<iframe height="1000px" width="100%" src="https://repl.it/@bollu/Compiling-programs-with-continuations?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
+
+
+###### Source code
+
 ```c
 #include <assert.h>
 #include <stdio.h>
@@ -329,7 +350,7 @@ int main() {
     printf("in function: %s\n", __FUNCTION__);
     pushContinuation((void *)KContinuation);
     K(one, bottom);
-    return 1;
+    return 0;
 }
 ```
 
@@ -350,12 +371,23 @@ x()
 
 That is, push a continuation, and then "enter" into `x`.
 
-### Another example: Encoding factorial
+One might have a question: does this still not use the call stack? There is a function call at the end of most functions
+in the source code, so in theory, we _are_ using the call stack, right? The answer is no. It's thanks to a neat optimisation technique called _tail call elimination_. The observation is that _after the call_, there is no more code to execute in the caller. So,
+by playing some stack tricks, one can convert a _call_ to a _jump_. 
 
-```hs
-fact :: Int -> Int
-fact x = case x of
-            0 -> 1
-            n -> case fact (n - 1) of
-                        factnm1 -> n * factnm1
-```
+Remember, a _`call`_ instruction uses the stack to setup a stack frame, under the assumption that we will _`ret`_ at some point.
+But, clearly, under our compilation model, we will never `ret`, simply call more functions. So, we don't *need* the state maintained by a `call`. We can simply `jmp`.
+
+# Wrapping up
+
+I hope I've managed to convey the _essence_ of how to compile Haskell. I skipped a couple of things:
+    - haskell data types: sum and product types. These are straightforward, they just compiled to tagged structs.
+    - `let` bindings: These too are straightforward, but come with certain retrictions in STG. It's nothing groundbreaking,and
+       is well written in the paper.
+    - Black holes: Currently, we are not truly _lazy_, in that we do not update values once they are computed.
+    - GC: how to weave the GC through the computation is somewhat non-trivial.
+
+All of this is documented in the excellent paper: [Implementing lazy languages on stock hardware](https://www.dcc.fc.up.pt/~pbv/aulas/linguagens/peytonjones92implementing.pdf).
+
+
+I am considering extending this blog post that expands on these ideas. If there is interest, please do leave a comment below `:)`.
