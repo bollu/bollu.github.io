@@ -202,83 +202,83 @@ was leading to the performance difference). I floundered around with this for a 
 
 ![C ackermann code VTune](/ghc-micro-optimisations-stack/c-cpu-time.png)
 
-```
-       │    0000000000400510 <ackerman>:                                                                    ▒
-       │    ackerman():                                                                                     ◆
-  9.11 │      push   %rbx                                                                                   ▒
-  7.21 │      test   %edi,%edi                                                                              ▒
-  0.00 │    ↓ je     35                                                                                     ▒
-  0.08 │      data16 nopw %cs:0x0(%rax,%rax,1)                                                              ▒
-  4.19 │10:   lea    -0x1(%rdi),%ebx                                                                        ▒
-  0.10 │      test   %edi,%edi                                                                              ▒
-  0.00 │    ↓ jle    20                                                                                     ▒
-  6.26 │      mov    $0x1,%eax                                                                              ▒
-  0.13 │      test   %esi,%esi                                                                              ▒
-  0.00 │    ↓ je     28                                                                                     ▒
-  4.15 │20:   add    $0xffffffff,%esi                                                                       ▒
-  0.86 │    → callq  ackerman                                                                               ▒
- 27.52 │28:   mov    %eax,%esi                                                                              ▒
-  3.97 │      mov    %ebx,%edi                                                                              ▒
-  1.99 │      test   %ebx,%ebx                                                                              ▒
-  0.00 │    ↑ jne    10                                                                                     ▒
- 10.26 │      add    $0x1,%eax                                                                              ▒
-  6.90 │      pop    %rbx                                                                                   ▒
- 17.26 │    ← retq                                                                                          ▒
-       │35:   mov    %esi,%eax                                                                              ▒
-       │      add    $0x1,%eax                                                                              ▒
-       │      pop    %rbx                                                                                   ▒
-       │    ← retq                                                                                          ▒
+```asm
+       │    0000000000400510 <ackerman>:      
+       │    ackerman():
+  9.11 │      push   %rbx                     
+  7.21 │      test   %edi,%edi                
+  0.00 │    ↓ je     35                       
+  0.08 │      data16 nopw %cs:0x0(%rax,%rax,1)
+  4.19 │10:   lea    -0x1(%rdi),%ebx          
+  0.10 │      test   %edi,%edi                
+  0.00 │    ↓ jle    20                       
+  6.26 │      mov    $0x1,%eax                
+  0.13 │      test   %esi,%esi                
+  0.00 │    ↓ je     28                       
+  4.15 │20:   add    $0xffffffff,%esi         
+  0.86 │    → callq  ackerman                 
+ 27.52 │28:   mov    %eax,%esi                
+  3.97 │      mov    %ebx,%edi                
+  1.99 │      test   %ebx,%ebx                
+  0.00 │    ↑ jne    10                       
+ 10.26 │      add    $0x1,%eax                
+  6.90 │      pop    %rbx                     
+ 17.26 │    ← retq                            
+       │35:   mov    %esi,%eax                
+       │      add    $0x1,%eax                
+       │      pop    %rbx                     
+       │    ← retq                            
 ```
 
 ###### Haskell-like C ackermann code VTune:
 
-```
-       │    00000000004005a0 <case_ackerman_aval_bdec>:                                                     ▒
-       │    case_ackerman_aval_bdec():                                                                      ▒
- 11.61 │      test   %esi,%esi                                                                              ▒
-  0.00 │    ↓ je     9b                                                                                     ▒
-  0.00 │      mov    %esi,%eax                                                                              ▒
-       │      nop                                                                                           ▒
-       │10:   lea    -0x1(%rax),%ecx                                                                        ▒
-  0.00 │      test   %edx,%edx                                                                              ▒
-       │    ↓ je     8a                                                                                     ▒
-       │      movslq g_ret_sp,%r9                                                                           ▒
-  0.00 │      mov    %r9,%r8                                                                                ▒
-       │      mov    %edx,%edi                                                                              ▒
-       │      test   $0x1,%dl                                                                               ▒
-       │    ↓ je     48                                                                                     ▒
-       │      lea    0x1(%r9),%r8                                                                           ▒
-       │      mov    %r9,%rsi                                                                               ▒
-       │      shl    $0x4,%rsi                                                                              ▒
-       │      movq   $0x4005a0,0x601050(%rsi)                                                               ▒
-  0.00 │      mov    %rcx,0x601058(%rsi)                                                                    ▒
-  0.00 │      lea    -0x1(%rdx),%edi                                                                        ▒
-       │48:   cmp    $0x1,%edx                                                                              ▒
-       │    ↓ je     80                                                                                     ▒
-       │      shl    $0x4,%r8                                                                               ▒
-       │      lea    0x601068(%r8),%rsi                                                                     ▒
-  0.00 │      nop                                                                                           ▒
-  0.33 │60:   movq   $0x4005a0,-0x18(%rsi)                                                                  ▒
- 12.98 │      mov    %rcx,-0x10(%rsi)                                                                       ▒
-  6.48 │      movq   $0x4005a0,-0x8(%rsi)                                                                   ▒
-  3.61 │      mov    %rcx,(%rsi)                                                                            ▒
-  5.17 │      add    $0x20,%rsi                                                                             ▒
-  0.08 │      add    $0xfffffffe,%edi                                                                       ▒
-       │    ↑ jne    60                                                                                     ▒
-       │80:   add    %edx,%r9d                                                                              ▒
-  0.00 │      mov    %r9d,g_ret_sp                                                                          ▒
-  0.00 │8a:   add    $0xffffffffffffffff,%rax                                                               ▒
-       │      mov    $0x1,%edx                                                                              ▒
-       │      test   %ecx,%ecx                                                                              ▒
-       │    ↑ jne    10                                                                                     ▒
- 11.57 │9b:   movslq g_ret_sp,%rax                                                                          ▒
-  0.01 │      add    $0xffffffffffffffff,%rax                                                               ▒
-  0.00 │      mov    %eax,g_ret_sp                                                                          ▒
-  0.17 │      shl    $0x4,%rax                                                                              ▒
- 11.46 │      mov    0x601050(%rax),%rdi                                                                    ▒
- 35.84 │      mov    0x601058(%rax),%rsi                                                                    ▒
-  0.68 │      add    $0x1,%edx                                                                              ▒
-  0.00 │    ↑ jmpq   *%rdi                                                                                  ▒
+```asm
+       │    00000000004005a0 <case_ackerman_aval_bdec>:
+       │    case_ackerman_aval_bdec():                 
+ 11.61 │      test   %esi,%esi                         
+  0.00 │    ↓ je     9b                                
+  0.00 │      mov    %esi,%eax                         
+       │      nop                                      
+       │10:   lea    -0x1(%rax),%ecx                   
+  0.00 │      test   %edx,%edx                         
+       │    ↓ je     8a                                
+       │      movslq g_ret_sp,%r9                      
+  0.00 │      mov    %r9,%r8                           
+       │      mov    %edx,%edi                         
+       │      test   $0x1,%dl                          
+       │    ↓ je     48                                
+       │      lea    0x1(%r9),%r8                      
+       │      mov    %r9,%rsi                          
+       │      shl    $0x4,%rsi                         
+       │      movq   $0x4005a0,0x601050(%rsi)
+  0.00 │      mov    %rcx,0x601058(%rsi)     
+  0.00 │      lea    -0x1(%rdx),%edi         
+       │48:   cmp    $0x1,%edx               
+       │    ↓ je     80                      
+       │      shl    $0x4,%r8                
+       │      lea    0x601068(%r8),%rsi      
+  0.00 │      nop                            
+  0.33 │60:   movq   $0x4005a0,-0x18(%rsi)   
+ 12.98 │      mov    %rcx,-0x10(%rsi)        
+  6.48 │      movq   $0x4005a0,-0x8(%rsi)    
+  3.61 │      mov    %rcx,(%rsi)             
+  5.17 │      add    $0x20,%rsi              
+  0.08 │      add    $0xfffffffe,%edi        
+       │    ↑ jne    60                      
+       │80:   add    %edx,%r9d               
+  0.00 │      mov    %r9d,g_ret_sp           
+  0.00 │8a:   add    $0xffffffffffffffff,%rax
+       │      mov    $0x1,%edx               
+       │      test   %ecx,%ecx               
+       │    ↑ jne    10                      
+ 11.57 │9b:   movslq g_ret_sp,%rax           
+  0.01 │      add    $0xffffffffffffffff,%rax
+  0.00 │      mov    %eax,g_ret_sp           
+  0.17 │      shl    $0x4,%rax               
+ 11.46 │      mov    0x601050(%rax),%rdi     
+ 35.84 │      mov    0x601058(%rax),%rsi     
+  0.68 │      add    $0x1,%edx               
+  0.00 │    ↑ jmpq   *%rdi                   
 ```
 
 ![Haskell ackermann code VTune](/ghc-micro-optimisations-stack/hs-like-c-cpu-time.png)
