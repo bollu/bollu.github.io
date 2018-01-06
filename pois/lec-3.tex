@@ -1,0 +1,29 @@
+\section{Information Theory}
+
+\subsection{shannon's perfect secrecy (1949)}
+Shannon framed a secrecy theory based on information theory. If no
+information is revealed to the other person, it is secure.
+
+Cipher = $<Gen, Enc, Dec, M>$.
+
+$M$ is the message space.
+
+$Gen :: KeyLength -> Key$. Set of all keys $Gen$ can output
+($Image(Gen)$) is called the key space. Key space ($K$)is asked to be finite.
+
+
+$Enc :: M -> K -> C$. $C = ciphertext$. $Image(Enc)$ is called the ciphertext space.
+$Enc$ takes a message and a key, and returns a ciphertext.
+
+$Dec :: C -> K -> M$. such that $\forall (m: M) (k: K) Dec(k, Enc (m, k)) = m$.
+
+ 
+A cipher scheme is secure iff: $\forall p = \text{probability distributions over the message space}$
+(we don't know the exact probability distribution over
+plaintext).
+$\forall m \in M, \forall c \in C, P(C = c > 0) => P[M=m] = P[M=m | C=c]$.
+
+What we know about the message before looking at the
+ciphertext is the same as what we know about the message \textbb{after} we know the ciphertext.
+We make sure that we do not take degenerate $c$ ($c$ that does not ever occur) to prevent nastiness in
+conditional probability.
