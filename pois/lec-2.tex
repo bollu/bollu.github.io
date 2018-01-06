@@ -1,0 +1,118 @@
+%% What is the document class I need?
+\documentclass{article} 
+%% Some recommended packages.
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+\usepackage{minted}
+\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+
+\begin{document}
+\section{Lecture 2 - More philosophy - Amazing Advantages of Additional Adversity}
+
+Textbook is
+\begin{itemize}
+    \item Introduction to Modern Cryptography
+\end{itemize}
+
+\subsection{Ceasar Cipher}
+
+rotate letters by a certain amount.
+
+%% $\{ letter -> number -> (number + delta) % 26 -> letter \}$.
+crypto goes to FUBSWR.
+
+\section{Kerckhoff's Principle}
+Security of system depends on secrecy of the key and not on the
+obscurity of the algorithm.
+
+\subsection{Password Shadows}
+Password is $\{x\}$, we store $\{ f(x) \}$.
+
+It is possible to reverse-engineer $f$ to discover $x$. So, we should not depend
+on $f$ being secure.
+
+\subsection{}
+
+\end{document}
+
+
+\subsection{Shift Cipher}
+
+We can brute force this, we can brute force keys.
+
+Principles learnt from shift ciphers
+\begin{itemize}
+    \item Key space needs to be large. for shift cipher, key space is 26.
+\end{itemize}
+
+$p_i$ probability of letter in plaintext.
+$q_i$ probability of letter in ciphertext.
+
+${ \exists delta, \forall x in Letter, p_i = q_{i+k} }$
+
+${ pi \cdot p_{i+ k} = p_i ^ 2 }$ if we wind the right $k$. So, we need to find
+the right $k$.
+
+So, large key space is not enough.  We need to ensure that frequency is also fudged.
+
+
+\subsection{Monoalphabetic Substitution Cipher}
+
+Create a bijection $\{ f : Letter \larrow Letter \}$.
+This has a large key space, $\{ 26! \}$.
+
+
+Attack is based on frequency. $\{ \forall x \in Letter, freq(x) = freq(f(x)) \}$.
+So, one can match $x$ with $f(x)$.
+
+Again, we need to fudge frequency.
+
+\subsection{Polyalphabetic sustitution cipher}
+
+This needs a passphrase, for example, Cat.
+
+Add passphrase to plaintext.
+
+${c r y p t o + c a t c a t = \cdots }$
+
+Frequencies are not maintained, because different text is added each time
+to the same plaintext.
+
+\begin{itemize}
+    \item Step 1 - Given length, we break the cipher.
+    \item Step 2 - Length is susceptible to brute force attack.
+\end{itemize}
+
+\subsubsection{Breaking given length}
+Assume the length of passphrase is known, say, $k$.
+
+Let ciphertext be $c_0 c_1 c_2 c_3 c_4 ..$.  Let us look at ciphertext at
+lengths of 3.
+
+This will give us a \textit{shift cipher}, since the text is all shifted by the
+\textit{same} letter in the passphrase. Now, we can perform the frequency
+attack.
+
+If we screw up the partition, then the frequency spectra will be gibberish.
+zsh:1: command not found: :w
+
+\subsubsection{What we learnt by breaking}
+This was also broken. So, they learnt that "security is hard, forget it!".
+Or, complication does not imply security.
+
+
+\subsection{What is an Unbreakable cipher? Or, shannon enters the scene}
+\subsubsection{A preamble, the thought process}
+\begin{itemize}
+    \item We need to specify what it means to have a good cipher. Where do
+        we stop? We need a formal spec. (Definition of security).
+    \item Precise assumptions involved must be known. (Hardness assumption).
+    \item The truth of security, and the trade-offs involved (Shannon's Proof)
+\end{itemize}

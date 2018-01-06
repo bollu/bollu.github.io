@@ -1,0 +1,95 @@
+\section{Introduction}
+
+\subsection{Impossiblity of Infosec problems}
+Common aspect across all infosec problems to date is that it is
+impossible to solve.
+\begin{itemize}
+    \item Password schemes - It is impossible to design a good password scheme.
+          The machine must know something about the password you need to give.
+          Call it the password file (TODO: how to do monospace?)
+    \item Password Length - everlasting is impossible. One can always brute
+        force passwords. Infinite length passwords do not work.
+    \item  Secure communication over insecure channels
+    \item Signing
+    \item  Digital cash
+\end{itemize}
+
+TODO: learn TIKZ
+
+
+\subsubsection{Secure communication over insecure channels}
+\begin{listing}
+sender ---> key ---> receiver
+            |
+            v
+            adversary
+\end{listing}
+
+At time t0, everything that receiver knows, adversary knows (assuming no
+one-time pad). After that, everything the receiver receives, the adversary
+also knows as well. So, the adversary has all information that the receiver
+does.
+
+It is impossible to do secure communication over insecure channels.
+
+\subsubsection{Signing}
+Digital signature is impossible - Unforgable digital signature should not exist.
+
+
+1. Signature should be a function of the message for it to be useful as a signature.
+   Otherwise, an attacker could intersect messages to find the signature.
+2. Signature must be publically verifiable.
+3. A trapdoor function can be reverse-engineered.
+
+\subsubsection{Digital cash}
+How do we detect counterfeit cash? Double spending is a problem. Cryptocurrencies
+used the exact same mathematical methods that are shared across crypto. 
+
+\subsection{A Tom and Jerry analogy}
+Tom & Spike are both Jerry's opponents. So, Jerry is able to play Tom and spike
+against each other, and have them beat each other. 
+
+That is, pair adversaries against each other to have them screw with each other.
+
+\subsubsection{Password schemes, take 2}
+We needed infinite length passwords because an adversary will win if we have finite
+length password. However, there are other adversaries. For example, the adversary
+for algorithms is the person who provides inputs. Example, think of sorting networks
+or uses of bubble sort: Sorting networks are useful on small numbers of elements
+to sort. Bubble sort does not screw with cache coherence. However, these are both
+bad solutions *in general*.
+ 
+When the worst case input giver is an adversary, and a person who is trying to
+crack our password is an adversary, we can have these two interfere.
+
+To find out `y = f(x)`, we wind up using the algorithmic adversary who
+provides hard problems for `f`.
+
+
+Structure of information matters. Example, linked list v/s balanced tree. The
+process of decryption can exploit structure of information.
+
+
+eg: Natural number can be represented as a product of primes, and in the
+decimal notation.
+
+
+\subsubsection{Active adversary / noise}
+\begin{listing}
+Sender ---*--> Bank
+          ^
+          |
+          v
+      Adversary (active)
+\end{listing}
+
+We cannot design error detection codes for any amount of error. Hence, if
+we think of adversary as error in the stream, we can think of secure communication
+on a channel with an active adversary as ECC.
+
+So now, this problem is now an information theory problem. 
+
+The adversary must make a modification such that the bank cannot detect it.
+Coding theory tells us that such a modification is always possible. Infosec
+tells us that we can design schemes where this takes a long time.
+

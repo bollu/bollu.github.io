@@ -1,0 +1,102 @@
+%% What is the document class I need?
+\documentclass{article} 
+%% Some recommended packages.
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+\usepackage{minted}
+\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+
+\begin{document}
+\section{Lecture 2 - Signals and Systems: Signals}
+Dennis Freeman, MIT lectures are supposedly very good.
+
+\subsection{Brief Overview}
+
+If $x(t)$ was our continuous time function, we wish to create
+$x[n]$. $x[n]$ is discrete.
+
+\subsection{Recovering back signals}
+\begin{itemize}
+    \item Zero order hold
+        Keep previous value we had till the next value
+    \item Nearest Neighbour (NN)
+        For each point, pick nearest neighbour and use that.
+    \item Linear interpolation
+    \item $\frac{sin(x)}{x}$
+\end{itemize}
+
+
+\subsection{Operations on signals}
+
+\begin{itemize}
+    \item Shifting: $y[n] = x[n - k]$. Delay by $k$ steps
+    \item Flipping: $y[n] = x[-n]$.
+    \item Scaling: $y[n] = \cdot x[k * n]$. This would lead to loss of information.
+\end{itemize}
+
+Order of operations: Shift, flip, scale. For counterexample, consider
+$y[n] = x[3n + 1]$. Proof by induction on $ax + b$?
+
+Eg: $x[-2n + 2]$. Perform as:
+
+$y[n] = x[n + 2]$.
+
+\subsection{Characteristics of signals}
+
+\subsubsection{Even, Odd}
+
+Even signal $x[n] = x[-n]$
+Odd signal $x[n] = -x[-n]$
+
+Every signal can be decomposed into sum of even and odd signals
+$x[n] = \frac{x[n] + x[-n]}{2} + \frac{x[n] -x[-n]}{2}$
+
+\subsubsection{Periodic}
+$\exists N \in Z, \forall n \in Z, x[n] = x[n + N]$.
+
+\subsubsection{Energy and power}
+
+$Energy = \sum_{k=-\infty}{\infty} |x[k]|^2$
+
+
+$Power = lim_{N \larrow \infty} \frac{1}{2N + 1} \sum_{k=-N}{N} |x[k]|^2$
+
+\subsubsubsection{Unit Step}
+
+u(n) = 1 if n >= 0, 0 otherwise.
+Energy is \infty, power is \frac{1}{2}.
+
+
+\subsection{Special Signals}
+
+\subsubsection{Dirac delta}
+$\delta[n] = 0 if n \neq 0, 1 if n = 0$.
+
+\subsubsection{Unit Step}
+u[n] = 1 if n >= 0, 0 otherwise.
+
+
+\subsubsection{Ramp function}
+r[n] = n if n >= 0, 0 otherwise.
+
+\subsubsection{Exponential function}
+e[n] = a^n u[n]
+
+a is a parameter.
+
+
+\subsection{Writing unit step in terms of delta}
+u[n] = \sum_{k=0}{\infty} delta[n - k]
+
+\subsection{Writing delta in terms of unit step}
+delta[n] = u[n + 1] - u[n]
+
+\subsection{Writing any signal $x[n]$ in term of $delta[n]$}
+$x[n] = \sum_{k=-\infty}{infty} delta[n - k] \cdot x[k]$
