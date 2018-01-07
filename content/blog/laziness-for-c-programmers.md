@@ -1,6 +1,7 @@
 +++
 title = "How to compile Haskell, a bird's eye view"
 date = "2017-12-25T11:57:38+05:30"
+draft = true
 +++
 
 The aim of this blog post is to explain haskell's (specifically, GHC) evaluation model without

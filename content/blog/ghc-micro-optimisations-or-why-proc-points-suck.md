@@ -189,108 +189,143 @@ I used Intel VTune to get instruction-level information about memory latency (as
 was leading to the performance difference). I floundered around with this for a while, I will only post the final results I discovered, with a lot of help from [Ben Gamari](http://bgamari.github.io/).
 
 ###### High level overview between C & Haskell-like-C:
-
+- Data is exported from VTune.
 ![Memory access delta 2](/ghc-micro-optimisations-stack/mem-usage-delta.png)
-
-
 (I don't really know how to export data from VTune, and googling did not help, so this is the best I can do right now).
+
 - Dark blue is `C`, light blue is `haskell-like-C`.
 - Notice that `haskell-like-C` performs more data transfer (bandwidth usage) and **takes longer** performing the transfers (latency).
-- Let's check instruction-level differences with Vtune.
 
-###### C ackermann code VTune:
+- Let's check instruction-level differences with `perf`.
+- Code compiled with `-O2` to have cleaner code. Code still exhibits similar characteristics.
+`O3` in clang is `O2` with much larger inlining and unrolling sizes.
 
-![C ackermann code VTune](/ghc-micro-optimisations-stack/c-cpu-time.png)
+### C ackermann code with perf:
+
+<!--![C ackermann code VTune](/ghc-micro-optimisations-stack/c-cpu-time.png)-->
 
 ```asm
-       │    0000000000400510 <ackerman>:      
+       │    0000000000400510 <ackerman>:
        │    ackerman():
-  9.11 │      push   %rbx                     
-  7.21 │      test   %edi,%edi                
-  0.00 │    ↓ je     35                       
-  0.08 │      data16 nopw %cs:0x0(%rax,%rax,1)
-  4.19 │10:   lea    -0x1(%rdi),%ebx          
-  0.10 │      test   %edi,%edi                
-  0.00 │    ↓ jle    20                       
-  6.26 │      mov    $0x1,%eax                
-  0.13 │      test   %esi,%esi                
-  0.00 │    ↓ je     28                       
-  4.15 │20:   add    $0xffffffff,%esi         
-  0.86 │    → callq  ackerman                 
- 27.52 │28:   mov    %eax,%esi                
-  3.97 │      mov    %ebx,%edi                
-  1.99 │      test   %ebx,%ebx                
-  0.00 │    ↑ jne    10                       
- 10.26 │      add    $0x1,%eax                
-  6.90 │      pop    %rbx                     
- 17.26 │    ← retq                            
-       │35:   mov    %esi,%eax                
-       │      add    $0x1,%eax                
-       │      pop    %rbx                     
-       │    ← retq                            
+ 12.34 │      push   %rbx
+ 10.83 │      test   %edi,%edi
+       │    ↓ je     32
+  0.03 │      data16 nopw %cs:0x0(%rax,%rax,1)
+  5.49 │10:   lea    -0x1(%rdi),%ebx
+  0.09 │      test   %edi,%edi
+       │    ↓ jle    20
+  8.29 │      mov    $0x1,%eax
+  0.09 │      test   %esi,%esi
+       │    ↓ je     28
+  5.52 │20:   add    $0xffffffff,%esi
+  1.18 │    → callq  ackerman
+ 13.99 │28:   mov    %eax,%esi
+  0.06 │      mov    %ebx,%edi
+  1.00 │      test   %ebx,%ebx
+       │    ↑ jne    10
+  0.41 │    ↓ jmp    34
+       │32:   mov    %esi,%eax
+ 12.90 │34:   add    $0x1,%eax
+  0.06 │      pop    %rbx
+ 27.72 │    ← retq   
 ```
 
-###### Haskell-like C ackermann code VTune:
+The two hottest centers are around context switches:
 
-```asm
-       │    00000000004005a0 <case_ackerman_aval_bdec>:
-       │    case_ackerman_aval_bdec():                 
- 11.61 │      test   %esi,%esi                         
-  0.00 │    ↓ je     9b                                
-  0.00 │      mov    %esi,%eax                         
-       │      nop                                      
-       │10:   lea    -0x1(%rax),%ecx                   
-  0.00 │      test   %edx,%edx                         
-       │    ↓ je     8a                                
-       │      movslq g_ret_sp,%r9                      
-  0.00 │      mov    %r9,%r8                           
-       │      mov    %edx,%edi                         
-       │      test   $0x1,%dl                          
-       │    ↓ je     48                                
-       │      lea    0x1(%r9),%r8                      
-       │      mov    %r9,%rsi                          
-       │      shl    $0x4,%rsi                         
-       │      movq   $0x4005a0,0x601050(%rsi)
-  0.00 │      mov    %rcx,0x601058(%rsi)     
-  0.00 │      lea    -0x1(%rdx),%edi         
-       │48:   cmp    $0x1,%edx               
-       │    ↓ je     80                      
-       │      shl    $0x4,%r8                
-       │      lea    0x601068(%r8),%rsi      
-  0.00 │      nop                            
-  0.33 │60:   movq   $0x4005a0,-0x18(%rsi)   
- 12.98 │      mov    %rcx,-0x10(%rsi)        
-  6.48 │      movq   $0x4005a0,-0x8(%rsi)    
-  3.61 │      mov    %rcx,(%rsi)             
-  5.17 │      add    $0x20,%rsi              
-  0.08 │      add    $0xfffffffe,%edi        
-       │    ↑ jne    60                      
-       │80:   add    %edx,%r9d               
-  0.00 │      mov    %r9d,g_ret_sp           
-  0.00 │8a:   add    $0xffffffffffffffff,%rax
-       │      mov    $0x1,%edx               
-       │      test   %ecx,%ecx               
-       │    ↑ jne    10                      
- 11.57 │9b:   movslq g_ret_sp,%rax           
-  0.01 │      add    $0xffffffffffffffff,%rax
-  0.00 │      mov    %eax,g_ret_sp           
-  0.17 │      shl    $0x4,%rax               
- 11.46 │      mov    0x601050(%rax),%rdi     
- 35.84 │      mov    0x601058(%rax),%rsi     
-  0.68 │      add    $0x1,%edx               
-  0.00 │    ↑ jmpq   *%rdi                   
+```
+...
+1.18  │    → callq  ackerman
+13.99 │28:   mov    %eax,%esi
+...
+27.72 │    ← retq   
+```
+### Haskell-like C ackermann code with perf:
+
+###### `case_ackerman_aval_bdec`:
+
+```
+       │    case_ackerman_aval_bdec():
+  4.95 │      test   %esi,%esi
+  5.40 │    ↓ je     9b
+       │      mov    %esi,%eax
+       │      nop
+ 27.78 │10:   lea    -0x1(%rax),%ecx
+  2.00 │      test   %edx,%edx
+  1.16 │    ↓ je     8a
+ 10.08 │      movslq g_ret_sp,%r9
+       │      mov    %r9,%r8
+       │      mov    %edx,%edi
+  0.03 │      test   $0x1,%dl
+       │    ↓ je     48
+       │      lea    0x1(%r9),%r8
+       │      mov    %r9,%rsi
+ 10.56 │      shl    $0x4,%rsi
+ 13.27 │      movq   $0x4005a0,0x601050(%rsi)
+       │      mov    %rcx,0x601058(%rsi)
+  0.34 │      lea    -0x1(%rdx),%edi
+       │48:   cmp    $0x1,%edx
+       │    ↓ je     80
+  0.79 │      shl    $0x4,%r8
+  5.53 │      lea    0x601068(%r8),%rsi
+  6.50 │      nop
+ 11.61 │60:   movq   $0x4005a0,-0x18(%rsi)
+       │      mov    %rcx,-0x10(%rsi)
+       │      movq   $0x4005a0,-0x8(%rsi)
+       │      mov    %rcx,(%rsi)
+       │      add    $0x20,%rsi
+       │      add    $0xfffffffe,%edi
+       │    ↑ jne    60
+       │80:   add    %edx,%r9d
+       │      mov    %r9d,g_ret_sp
+       │8a:   add    $0xffffffffffffffff,%rax
+       │      mov    $0x1,%edx
+       │      test   %ecx,%ecx
+       │    ↑ jne    10
+       │9b:   movslq g_ret_sp,%rax
+       │      add    $0xffffffffffffffff,%rax
+       │      mov    %eax,g_ret_sp
+       │      shl    $0x4,%rax
+       │      mov    0x601050(%rax),%rdi
+       │      mov    0x601058(%rax),%rsi
+       │      add    $0x1,%edx
+       │    ↑ jmpq   *%rdi                                                   
 ```
 
-![Haskell ackermann code VTune](/ghc-micro-optimisations-stack/hs-like-c-cpu-time.png)
+###### `pushReturn`
+```
+       │    pushReturn():
+ 15.26 │      movslq g_ret_sp,%rax
+  1.73 │      lea    0x1(%rax),%ecx
+  0.15 │      mov    %ecx,g_ret_sp
+  2.41 │      shl    $0x4,%rax
+ 13.35 │      mov    %rdi,0x601050(%rax)
+ 37.59 │      mov    %rsi,0x601058(%rax)
+ 29.51 │    ← retq
+```
+###### `popReturn`
+```
+       │    popReturn():
+ 40.01 │      movslq g_ret_sp,%rcx
+       │      add    $0xffffffffffffffff,%rcx
+       │      mov    %ecx,g_ret_sp
+ 12.44 │      shl    $0x4,%rcx
+ 16.88 │      mov    0x601050(%rcx),%rax
+ 29.90 │      mov    0x601058(%rcx),%rdx
+  0.77 │    ← retq
+
+```
+
+Clearly, memory stuff is expensive: `pushReturn` and `popReturn` spend most of their time in memory fetching.
 
 
 ###### Analysis
 
 We can see that it is the load and store from memory that is consuming a lot of the time. However, on taking a deeper look, it appears that there are *more* loads in the haskell case than in the C case. If we trace the register usage across the program, the real problem emerges: Clang is able to allocate registers across the functions (TODO: insert function names) such that *no data needs to be passed on the stack*. However, in the Haskell case, we clearly use the "global stack" to pass data. This is **one extra load** per function call!. This obviously leads to a *huge* overhead across runs of the program.
 
-### How do we teach LLVM about proc points?
+### How do we teach LLVM about proc point
 
 
+I'm not entirely sure how to generate better code than what I already have. If we wish to use continuations, we _will_ have that indirect branch. 
 
 ### Closing thoughts
 
@@ -299,5 +334,4 @@ Much thanks to Ben Gamari, who helped me debug this stuff, and taught me a lot a
 
 If anyone has any solutions to this thorny aproblem, please e-mail me (`siddu.druid@gmail.com`), or leave a message here.
 
-I suspect that [SPJ's and Kavon's work on proc-points](TODO: fill in link) will possibly alleviate this. I plan on pinging them after putting
-this up so I can get some feedback.
+I suspect that [SPJ's and Kavon's work on proc-points](https://icfp17.sigplan.org/event/hiw-2017-native-support-for-explicit-stacks-in-llvm) will possibly alleviate this. I plan on pinging them after putting this up so I can get some feedback.
