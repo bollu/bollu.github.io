@@ -1,0 +1,125 @@
+%% What is the document class I need?
+\documentclass{article} 
+%% Some recommended packages.
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+\usepackage{minted}
+\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+
+\begin{document}
+\section{Lecture 3 - Systems}
+
+x[n] --> H --> y[n]
+
+
+y[n] = \frac{1}{2p + 1}\sum_{k=-p}^{p} x[n - k].
+
+\subsection{Causal / Non Causal}
+
+\subsubsection{Causal system}
+
+y[n] = f(x[k1], .. x[kn]) where k_i <= n.
+
+System only has access to past and current state.
+
+\subsubsection{Non Causal}
+A system that is not causal is a non-causal system. Can access the future.
+
+
+\subsection{Static / Dynamic}
+\subsubsection{Static}
+
+y[n] = f(x[n])
+
+No access to past values.
+
+\subsubsection{Dynamic}
+
+Has access to past or future
+
+y[n] = f(..., x[n+1], x[n], x[n - 1], ...)
+
+
+
+\subsection{Linear / non-linear}
+\subsubsection{Linear}
+\subsubsubsection{Additivity}
+x1[n] + x2[n] --H--> y1[n] + y2[n]
+
+\subsubsubsection{Homogenity}
+A x1[n] ---H---> A y1[n]
+
+y[n] = x[n] + a
+
+
+\subsection{Time Invariance}
+
+Define H(x[n]) = y[n].
+If H(x[n - n0]) = y[n - n0], then this is time-invariant
+
+I need to formalize this in a much saner way, this is nuts. We're implicitly
+talking about function spaces here, and this notation is terrible.
+
+TODO: formalize this in Coq? this is neat.
+
+If this system is followed, the system is said to be \textbb{time invariant}.
+
+The right way to formalize is this, I think
+
+```
+H :: (Ix -> Value) -> (Ix -> Value)
+H(x) = y
+
+Time invariance:
+Shifting input is the same as shifting output.
+
+forall x0 \in Ix, H(\n -> x(n - n0)) = \n -> H(x)(n - n0)
+```
+
+\subsubsection{Example 1}
+H(x[n]) = x[n] + x[n - 1] = y[n]
+H(x[n - n0]) = x[n - n0] + x[n - 1 - n0] = y[n - n0]
+
+\subsubsection{Non-Example 1}
+y[n] = x[n^2]
+1. y[n - n0] = x[(n - n0)^2]
+
+2. Z[n] = x[n - n0]
+   output = Z[n^2] = x[n^2 - n0]
+
+\section{LTI systems - Linear Time invariant systems}
+\subsection{Impulse response}
+
+$H(\delta(n))$ is defined as impulse response.
+
+The impulse response of an LTI system completely characterizes the LTI system.
+
+Proof:
+
+Let H be an LTI system.
+
+$x[n] = \sum_{k=-\infty}^{\infty} x[k] \cdot \delta[n - k]$.
+$H(x[n]) = \sum_{k=-\infty}^{\infty} H(x[k] \cdot \delta[n - k])$.
+
+This is by linearity, use linearity of $H$ to push through $\Sigma$.
+
+
+$H(x[n]) = \sum_{k=-\infty}^{\infty} x[k] * H(\cdot \delta[n - k])$.
+
+This is by linearity, $x[k]$ is a scalar.
+
+
+$H(x[n]) = \sum_{k=-\infty}^{\infty} x[k] * h[n - k]$.
+where $h[n] = H(delta[n])$.  This is by time invariance, allowing us to "push" the
+$n - k$ factor through $H$.
+
+
+
+

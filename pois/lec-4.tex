@@ -1,0 +1,89 @@
+\section{Information Theory - Lecture 4}
+
+\begin{itemize}
+    \item Two famous relaxations
+    \item Modern approximations
+    \item Modern definition of Security
+\end{itemize}
+
+\subsection{Shannon's perfect secrecy}
+Perfect secrecy assumes secrecy required for infinite time. We can relax 
+this to be some large number.
+
+However, if we accept this, then the scheme \textit{will be breakable} by brute force
+since our key space is finite. This naturally forces another relaxation:
+
+We allow a small error term of probability in terms of failure of secrecy.
+
+
+
+\subsection{Representation Change}
+
+Pick two representations of the same information. Converting from one (say A)
+to the other (say B) is easy, but converting back from B to A is hard.
+
+\subsubsection{P \neq NP => existence of trapdoor function}
+
+Verifying an NP complete problem will be in $P$. Computing it will be $NP$.
+
+
+If we have a certificate, then a non-deterministic turing machine can solve in
+polynomial time by guessing the certificate.
+
+Other direction, if there is a non-deterministic turing machine that can solve
+in polynomial time implies a certificate, because the "path" in the
+non-deterministic TM will be the polynomial time certificate vertification.
+
+\subsubsection{Using the relaxed definition}
+
+We have a secure channel and an insecure channel, how do we improve 
+bandwidth?
+
+the field divided into two:
+- Assume we have a slow secure channel and a fast insecure channel, how do I create
+a fast secure channel? (Slow secure + fast insecure =? Fast Secure) / Private key crypto.
+
+- (No secure + Slow insecure =? Slow secure) / public key crypto.
+
+\subsection{Formalization}
+
+If the probability that any adversary can win the game is $\frac{1}{2}$.
+
+\forall adversary, P[b' = b] = \frac{1}{2}
+
+
+\forall probabilistic polynomial time turing machines A, if A interacts with a protocol in the game,
+the prob. that the output of the game will be b, is bounded by \frac{1}{2} + \mu, where \mu
+is negligible, then the game is secure.
+
+
+\subsubsection{negligible}
+A function $\mu$ is said to be negligible if:
+
+
+$\forall p \in polynomials, \exists n_0, \forall n \geq n_0, \mu(n) \leq \frac{1}{p(n)}$.
+
+This is equivalent to saying that $\mu \leq 2^k$ because $2^k$ will always
+outgrow any polynomial $p$.
+
+If the adversary has some non-negligible chance of doing better than
+\frac{1}{2}, then he can repeatedly reapply the strategy some polynomial number
+of times to "blow up" the advantage (see: randomized algorithms).
+
+How close to $1$ we can get by re-running is how away from $\frac{1}{2}$ we are.
+
+Roughly, by repeating $M$ times, we can push it to $\frac{1}{2} + M \mu(n)$.
+
+
+However, if a function is negligible, polynomial times multiplication with
+negligible will continue to be negligible. It's some weird ideal in $R[X]$? 
+
+
+\subsection{The game to be played}
+
+1. Fix message space with all messages of equal length.
+2. The adversary chooses two message of his choice, M0 and M1.
+3. We encrypt one of the messages, call it C
+4. The adversary has to find out which one (C = encrypt (M0) or C = encrypt(M1))
+
+The adversary wins if  the adversary does not satisfy the security criteria.

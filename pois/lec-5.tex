@@ -1,0 +1,110 @@
+\section{Information Theory - Lecture 5}
+
+
+Most theorems will read as: if X is true, then the protocol $\Pi$ is secure.
+
+\section{Our first example of circumventing an impossibility}
+
+\section{PRNGs - Pseudo random number generators}
+This allows us to break $|K| \geq |M|$.
+This is still a one-time pad, but it allows us to create $|K| << |M|$.
+
+
+Deterministic program $G$.  Takes as input $n$-bit string, returns $l(n)$ bit string. We have two
+assumptions.
+\begin{itemize}
+\item 1. $l(n) > n$. Expansion.
+\item 2. Pseudorandomess.
+\end{itemize}
+
+\subsubsection{Pseudorandomness}
+for all PPTM(probabilistic polynomial turing machine) $D$,
+$ |P[D(r)] - P[D(G(s))]| <= negligible(|s|).r = {0, 1}^{l(n)}. s = {0, 1}^n$
+
+
+1. Strings of length $l(n)$. pick one at random. probability of picking one of them is
+
+2. Strings of length $n$, and then we inject into $l(n)$ with $G$. Clearly, $|Im(G)| < 2^{l(n)}|$.
+So, we can sample all $|Im(G)|$. If we are in a pseudo-random world, it will repeat for sure (with $P = 1$).
+If we are in the non-PRNG world (true randomness), the chance that something repeats will be negligibly small.
+
+we cannot distinguish with polynomial samples, however.  So PPTM is a good choice for a distinguisher.
+
+
+Given that we have to assume PRNGs exist, there are different ways to proceed
+\begin{itemize}
+\item Heuristics - Assume that the PRNG we write is a true PRNG, and then get to work.
+\item Specific mathematical assumptions - Assume that certain problems are hard. Build PRNGs from this mathematical assumption.
+\item Provable Security - If there exists even one hard problem $P$, then we can use that to build a PRNG.
+\item Proven security - prove PRNGs exist.
+\end{itemize}
+
+
+\subsubsection{Assume PRNGs exist. We will build a secure encryption scheme}
+
+M = {0, 1}^{l(m)}. K = {0, 1}^m.
+
+Gen: k = {0, 1}^n. Enc_k(m). $|m| = l(n)$ 
+Ciphertext = m xor G(k).
+Dec_k(c) = c xor G(k).
+
+Note that this is just one time. If they attacker can see two ciphertexts, they can XOR the ciphertexts to get the XOR of the cleartexts.
+
+\subsubsubsection{Proof that this is sane}.
+
+If the adversary can differentiate between $M_0$ $M_1$, we will use it to break the PRNG (as in, distinguish between PRNG and RNG).
+, 
+Call the adversary A. It can generate 2 messages $M_0$ and $M_1$. When given $encryption(M_b) = G(k) xor M_b$, he can guess $b = 0 \/ b = 1$ with non-negligible probability.
+
+Call the distinguisher $D$. $D$ has to distinguish between truly random and pseudo random world for our proof.
+Given a string $w$ and ask if $w$ can be distinguished by $A$. We can pick $w$ from the PRNG world or the RNG world.
+
+If $A(w xor M0, w xor M1)$ gives us the  correct value(can distinguish), then we are using the PRNG. Otherwise, it is the RNG.
+
+
+\subsubsection{CPA secure}
+
+Adversary gets to pick $M_0$ and $M_1$, we choose a bit $b$ at random and give encryption of $M_b$. He has an oracle that has oracle access to the encryption algorithm. Even with this, he should not be able to guess $b$.
+
+\subsubsubsection{No determistic algorithm can be CPA secure}
+
+The adversary will ask for encryption of $M_0$ and encryption of $M_1$. He gets back $C_0$ and $C_1$. Then, we can compare that to our result, and find the random bit $b$.
+
+
+\subsubsubsection{How to create CPA secure}
+C = <R, c \xor enc(R)> where R is a random string.
+Decryption will never fail. if we know R, we can xor twice.
+Encryption will not fail because encryption of random data is still random.
+
+We have a problem of length doubling: For one length of data, we need R as well.
+
+\subsubsection{Indexable PRNGS}
+A PRNG that we can index at a point, and it will start generating from that index. They are called ``pseudorandom functions''.
+
+Consider $Z/pZ^x$. All numbers except $1$ in $Z/pZ$ are generators.
+
+Discrete log: Given g^x mod p, given g, given p, find x. (log in a group). We know that Discrete log is hard. Let us try and build a PRNG.
+
+
+Step 1. Given a PRNG that expands 1 bit, we can use it to create a PRNG that expands any number of bits $n$
+s = seed. G(s), G(G(s)), G(G(G(s))), G^n(s), take the extra bits from each G^i(s). This is a PRNG.
+
+This is a PRNG.
+
+Assume we can break this PRNG. $s_1 s_2 ... s_n$ = stuff from PRNG is distinguishable from $r_1 r_2 r_3 ... r_n$ = Random info.
+
+Construct $s_0 s_1 s_2 .. s_n$, $r_0 s_1 s_2.. s_n$, $r_0 r_1 s_2 s_3 ... s_n$. $r_0 r_1 r_2 r_3 .. r_n$. We know that we can
+distinguish first from last. Hence, there must be an adjacent set of strings that can be distinguished, since ``distinguishable'' is transitive (why?)
+so, if r_i `dist` r_{i+2}, we need to have either r_i `dist` r_{i + 1} or r_{i + 1} `dist r_{i + 2}. However, between these strings, we have only edited $s_i$.
+So, we are able to distinguish one bit extra. This means we can actually distinguish the output of $G$.
+
+
+Step 2. if we can find MSB(x), we can find x in polynomial time. So, all we need to do is to break MSB(x).
+
+
+Step 3. Create PRNG that produces one bit output using discrete log.
+
+Take seed s. output MSB(s_1 = g^s mod p). So we now have a PRNG that can create one bit. Second output: MSB(s_2 = g^{s_1} mod p )
+Third output: MSB(s_3 = g^{s_3} mod p).
+
+Hence, if discrete log is hard, we can get a PRNG. 

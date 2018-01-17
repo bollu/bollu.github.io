@@ -27,3 +27,158 @@ What we know about the message before looking at the
 ciphertext is the same as what we know about the message \textbb{after} we know the ciphertext.
 We make sure that we do not take degenerate $c$ ($c$ that does not ever occur) to prevent nastiness in
 conditional probability.
+
+\section{Shannon and secure channel capacity of systems}
+
+        Sender---------*
+        |              |
+        |              |
+ insercure channel secure channel(1Mbps)
+     (1 Gbps)          |
+        v              |
+        Receiver<------*
+
+If I have perfect security, what is the bandwidth of the \textbb{whole system}?
+
+It must be between 1Mbps and 1Gpbs + 1Mbps. (minimum is 1Mbps).
+
+If we have only an insecure channel, then set secure channel capacity to 0.
+
+Shannon \textbb{proved} that the secure channel capacity of the \textbb{whole system} is 1Mbps (that of the secure channel).
+
+also, if the secure channel has bandwidth 0, then it is impossible to have security.
+
+\section{Proof}
+
+\subsection{First equivalence}
+A cipher is perfectly secret iff $\forall m \in M, \forall c \in C, forall probability distributions over M, P[C=c| M=m] = P[C=c]$
+
+\subsubsection{Proof}
+TODO: how to get aligned text.
+
+ $P[C=c|M=m] = P[C=c]$
+$P[C=c|M=m] * P[M=m] /P[C=c] = P[C=c] * P[M=m]/P[C=c]$
+
+Reminder: $P[A|B] = \frac{P[B|A] * P[A]}{P[B]}$
+
+$P[M=m|C=c] = P[M=m]$
+
+$Qed.$ (TODO: how to get box)
+
+
+\subsection{Second equivalence}
+A cipher is perfectly secret iff $\forall m_0, m_1 \in M, P[C=c|M=m_0] = P[C=c|M=m_1]$.
+\subsubsection{Proof (=> directiion)}
+
+If the cipher is perfectly secure,
+$P[C=c|M=m] = P[C=c]$  (from first equivalence).
+
+$P[C=c|M=m_0] = P[C=c]$.
+$P[C=c|M=m_1] = P[C=c]$.
+
+Hence,
+$P[C=c|M=m_0] = P[C=c|M=m_1]$
+$Qed.$
+
+\subsubsection{Proof (<= directiion)}
+Given $\forall m_0, m_1 \in M, P[C=c|M=m_0] = P[C=c|M=m_1] = p$
+$P[C=c] = \sum_{m \in M} P[C=c|M=m] * P[M=m]$
+$P[C=c] = \sum_{m \in M} p * P[M=m]$
+$P[C=c] = p \sum_{m \in M} P[M=m]$
+Since we are summing over probability space,
+$P[C=c] = p * 1$
+$P[C=c] = P[C=c|M=m]$ for any $m$.
+Qed.
+
+The reason it's all p is because of transitivity. $M_0 = M_1$, $M_1 = M_2$, hence everything is equal.
+
+\section{Is there a scheme that exists that is perfectly secure?}
+
+\subsection{One time pad}
+$Gen = k <- {0, 1}^n. P[K=k] = \frac{1}{2^n}$.
+$Encrypt(m, k) = k XOR m. m \in {0, 1}^n$.
+$Decrypt(c, k) = k XOR c. c \in {0, 1}^n$.
+
+\subsubsection{Perfect security of one time pad: proof (Vernam cipher)}
+We will show this by using the phrasing:
+A cipher is perfectly secret iff $\forall m_0, m_1 \in M, P[C=c|M=m_0] = P[C=c|M=m_1]$.
+
+$P[C=c|M=m_0] = P[C=k XOR m_0] = P[K=c XOR m_0] = \frac{1}{2^k}$
+$P[C=c|M=m_1] = P[C=k XOR m_1] = P[K=c XOR m_1] = \frac{1}{2^k}$
+
+We pick the key independent of the message, so it doesn't matter what the message is.
+
+\subsubection{Limitations of one-time-pad}.
+
+Since we need to send the key securely, we will need to send the key over the slow secure channel. We can
+send the message over the insecure channel. However, to decrypt the $nth$ insecure bit, we need the $nth$
+secure bit. So, for this, we might as well send message over the secure channel.
+
+
+However, if both the secure channel and the message are available at different times, then one-time-pad is useful.
+We can send the key over the secure channel, and use it later to decrypt a message sent over the insecure channel.
+
+
+Next, if sender = receiver, then it makes sense to have one-time-pad. The channel of internal transfer should be
+very fast (eg. memory transfer is fast, versus network transfer is slow).
+
+\section{Every perfectly security scheme is isomorphic to one-time-pad.}
+\subsection{Theorem}
+$\forall \text{perfectly secret cipher}, |K| \geq |M|$.
+\subsubsection{Note on bit sizes}
+It is possible that $|K| \geq |M|$, but $nbits(K) \leq nbits(M)$. That is, the number of bits needed to store the space
+can be smaller than the space (low entropy).
+
+
+\subsection{Proof}
+
+Suppose for contradiction $|K| < |M|$.
+
+One ciphertext $c$ can be decrypted into at most $|K|$ messages.
+In the message space, there must be one message $M*$ that is not part of the decryption of $c$ (since $|K| < |M|$).
+
+$P[M=m*|C=c] = 0$ since if $c=c$, $m*$ cannot occur.
+However $P[M=m*]$ is non-zero.
+
+Hence,
+$P[M=m*|C=c] = P[M=m*]$.
+
+Shannon further proves that the entropy of the key space must be greater than the entropy of our message space.
+Hence, we will need to send as much data over the secure channel as long as the key, usually.
+
+
+\section{Tangent: Entropy, Expectation, random kannan}
+\subsection{Expectation}
+$E[x] = \Sum_x x \cdot p(X=x)$
+
+
+\subsection{Entropy}
+There can be many indexing schemes to store data.
+$M = {m_0, m_1, \cdots, m_n}$.
+We can use $log(n)$ bits to store the index.
+
+What is the expected number of bits to store a message space with $n$ messages?
+Say $m_i$ occurs with probability $p_i$.
+
+$E[#bits to store M] = \Sum p_i \cdot ixlength(m_i)$
+
+The ones where $p_i$ is high, we want $ixlnegth_i$ to be small for an efficient compression scheme.
+Index the thing that occurs most often with the least bits.
+
+We can represent the \textbb{element} $m_i$ in terms of $p_i$ (how often it occurs in the space).
+We can make messages that occur more frequently with strings of smaller length.
+
+Eg: for a message with $p = \frac{1}{2}$, use $1$ bit to represent ix.
+Eg: for a message with $p = \frac{1}{4}$, use $2$ bits to represent ix.
+Eg: for a message with $p = \frac{1}{n}$, use $n$ bits to represent ix.
+Eg: for a message with $p = k$, use $\frac{1}{k}$ bits to represent ix.
+
+$\E{#bits to store M} =  \sum_{i}p_i \log(\frac{1}{p_i})$.
+$\E{#bits to store M} = - \sum_{i}p_i \log(p_i)$.
+$\text{Entropy} = - \sum_{i}p_i \log(p_i)$.
+
+
+\section{Looking at the future (next lecture)}
+
+Can we actually fully utilise the insecure channel by relaxing our definitions of secure?
+

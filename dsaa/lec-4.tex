@@ -1,0 +1,52 @@
+%% What is the document class I need?
+\documentclass{article} 
+%% Some recommended packages.
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+\usepackage{minted}
+\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\begin{document}
+\section{Lecture 4 - Convolution}
+
+$x \star h = conv(x, h)(n) = \Sum_{k=-\infty}^\infty x(k) h(n - k)$.
+
+Smear $h$ according to $x$. $x[k]$ affects $h$ at $k$ timesteps in the past from $n$.
+This is obvious, because $x[k]$ is a coefficient of $h[n - k]$. so,
+$x[1]$ affects $h[n - 1]$. $x[0]$ affects $h[n]$. $x[2]$ affects $h[n - 2]$.
+
+\subsubsection{Question}
+If $x$ is of length $a$ and $h$ is of length $b$, what is length of $x \star h$?
+$(a + b - 1)$ is my hyopothesis.
+
+\subsection{Properties of convolution}
+
+1. Commutativity of $*$:  $x[n] \star h[n] = h[n] \star x[n]$
+
+\subsubsection{Proof}
+$x \star h = conv(x, h)(n) = \Sum_{k=-\infty}^\infty x(k) h(n - k)$.
+Replace $m = n - k$. $k = n - m$
+$x \star h = conv(x, h)(n) = \Sum_{k=-\infty}^\infty x(k) h(n - k)$.
+
+Replace $k$ with $m$. They're both formal sums to infinity, so this does not matter
+$x \star h = conv(x, h)(n) = \Sum_{m=-\infty}^\infty x(n - m) h(m)$.
+= $h \star x$.
+
+2. Distributivity:  $x[n] \star (h[n] + g[n]) = x[n] \star h[n] + x[n] \star g[n]$
+
+Proof.
+
+$x \star (h + g) = \Sum_{k=-\infty}^\infty x(k) (h(n - k) + g(n - k)) = \Sum_{k=-\infty}^\infty x(k) h(n - k) + \Sum_{k=-\infty}^\infty x(k) g(n - k) = x \star h + x \star g$.
+
+
+3. Associativity: $(h1 * h2) * h3 = h1 * (h2 * h3)$.
+
+Hypothesis: commutative ring $(Z -> R, +, *, 0, delta)$? what kind of ring is it? Do I get useful things?
+
+
+\section{Correlation}
