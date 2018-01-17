@@ -1,0 +1,32 @@
+\section{Graphics: Geometry}
+
+Notation: 
+
+$Pi_G$ fir global coordinates. $Pi_x$ for the coordinate system relative to $x$.
+$Pi_xy$ converts  from the $y$ coordinate system to the $x$ coordinate system.
+
+
+\subsection{Rotating by an angle about a vector}
+
+After rotation, $\alpha$ will align to X axis. Hence, it is the first row of the rotation matrix.
+
+Find direction orthogonal to $\alpha$ to be row $r_2$. To do this, find any vector $v$ not parallel to $\alpha$.
+$\alpha \times v = r_2$ will work.
+
+
+Lastly, take $r_3 = r_1 \times r_2$.
+
+This gives us the matrix:
+
+
+[ \alpha 0]
+[\alpha \times v 0]
+[\r_1 \times r_2 0]
+[0 1]
+= 
+[\alpha 0]
+[\alpha \times v 0]
+[\alpha \times (\alpha \times v) 0]
+[0 1]
+
+
