@@ -12,6 +12,7 @@ pygmentsuseclasses  = true
 disqusshortname     = "pixeldruid" # Comment out to disable Disqus.
 pluralizelisttitles = true
 googleAnalytics     = "UA-97068933-1"
+staticDir = ["static"]
 
 [permalinks]
 fixed = ":title/"

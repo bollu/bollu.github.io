@@ -5,22 +5,9 @@ draft = true
 +++
 
 The aim of this blog post is to explain haskell's (specifically, GHC) evaluation model without
-having to jump through too many hoops `:)`.
-
-`GHC` (the Glasgow haskell compiler) internally uses multiple intermediate
-representations, in order of original, to what is finally produced:
-
-- Haskell (the source language)
-- Core (a minimal set of constructs to represent the source language)
-- STG (Spineless tagless G-machine, a low-level intermediate representation that accurately captures non-strict evaluation)
-- C-- (A custom version of C meant for platform independence during code generation)
-- [Optional] LLVM (the intermediate representation of the [LLVM optimising compiler framework](http://todo))
-- Assembly
+having to jump through too many hoops. I'll explain how pervasive non-strictness is when it comes to Haskell, and why compiling non-strictness is an interesting problem.
 
 
-Here, I will show how to lower simple non-strict programs from a **fictitous** `Core` like language
-down to `C` (which is arguably `C--`), while skipping `STG`, since it doesn't
-really add anything to the high-level discussion at this point.
 
 # Side node: nonsrict versus lazy (This section can be skipped)
 
@@ -38,9 +25,7 @@ a lot of confusion involving the two words in general.
 
 # Showing off non-strictness:
 We first need a toy example to work with to explain the fundamentals of
-non-strict evaluation, so let's consider the example below. It should be
-relatively straightforward, except for the `case` construct which is explained
-below.
+non-strict evaluation, so let's consider the example below. I'll explain the `case` construct which is explained below. Don't worry if ato lazy evaluation "looks weird", it feels that way to everyone till one plays around with it for a while!
 
 We will interpret this example as both a strict program and a non-strict program.
 This will show us that we obtain different outputs on applying different
@@ -50,29 +35,31 @@ We distinguish between primitive values (integers such as `1`, `2`, `3`) and box
 (functions, data structures). Boxed values can be evaluated non-stricly. Primitive values
 do not need evaluation: they are primitive.
 
+##### Code
+
 ```hs
 -- Lines starting with a `--` are comments.
 -- K is a function that takes two arguments, `x` and `y`, that are both boxed values.
 -- K returns the first argument, `x`, ignoring the second argument, `y`.
 -- Fun fact: K comes for the K combinator in lambda calculus.
-K :: Boxed -> Boxed -> Boxed
-K x y = x
+kCombinator :: Boxed -> Boxed -> Boxed
+kCombinator x y = x
 
 -- one is a function that returns the value 1# (primitive 1)
-one :: () -> PrimInt
+one :: PrimInt
 one = 1
 
 -- Loopy is a function that takes zero arguments, and tries to return a boxed value.
 -- Loopy invokes itself, resulting in an infinite loop, so it does not actually return.
-loopy :: () -> Boxed
+loopy :: Boxed
 loopy = loopy
 
 -- main is our program entry point.
 -- main takes no arguments, and returns nothing
-main :: () -> Void
-main = case K(one, loopy) of -- force K to be evaluated with a `case`
-            kret -> case kret of  -- Call the return value of K as `kret`, and force evaluation.
-                    i -> printPrimInt(i) -- Call the forced value of `kret` as `i` and then print it.
+main :: Void
+main = case kCombinator one loopy of -- force K to be evaluated with a `case`
+            kret -> case kret of  -- Force evaluation
+                    i -> printPrimInt i -- Call the forced value of `kret` as `i` and then print it.
 ```
 
 ##### A quick explanation about `case`:
@@ -84,7 +71,7 @@ is evaluated unless it is *forced* by a case.
 ###### The strict interpretation:
 
 If we were coming from a strict world, we would have assumed that the expression
-`K(one, loopy)` would first try to evaluate the arguments, `one` and `loopy`.
+`K one loopy` would first try to evaluate the arguments, `one` and `loopy`.
 Evaluating `one` would return the primitive value `1`, so this has no problem.
 
 On trying to evaluate `loopy`, we would need to re-evaluate `loopy`, and so on
@@ -105,13 +92,13 @@ no one has asked what it's value is!
 Now, we know that
 
 ```hs
-K x y = x
+kCombinator x y = x
 ```
 
 Therefore, 
 
 ```hs
-K one loopy = one
+kCombinator one loopy = one
 ```
 
 regardless of what value `loopy` held.
@@ -126,9 +113,9 @@ main = case K(one, loopy) of -- force K to be evaluated with a `case`
 
 ```hs
 main :: () -> Void
-main = case K(one, loopy) of -- force K to be evaluated with a `case`
+main = case kCombinator one loopy of -- force K to be evaluated with a `case`
             kret -> case kret of  -- Call the return value of K as `x`, and force evaluation.
->>>                    i -> printPrimInt(i) -- Call the vreturn value of `x` as `primx` and then print it.
+>>>                    i -> printPrimInt i -- Call the vreturn value of `x` as `primx` and then print it.
 ```
 
 Here, we force `kret` (which has value `one`) to be evaluated with `case kret of...`.
@@ -139,8 +126,8 @@ The output of the program under non-strict interpretation is for it to print out
 
 # Where does the difference come from?
 
-Clearly, there is a divide: strictness tells us that this program should
-never halt. Non-strictness tells us that this program will print an output!
+Clearly, there is a divide: strict evaluation tells us that this program should
+never halt. Non-strict evaluation tells us that this program will print an output!
 
 To formalize a notion of strictness, we need a notion of `bottom` (`_|_`).
 
@@ -202,11 +189,32 @@ Note that `K(bottom, y) = bottom`, so K is *strict in its first argument*, and
 This is a neat example showing how a function can be strict and lazy in different
 arguments of the function.
 
+
+
 # Compiling non-strictness, v1:
+
+## How does GHC compile non-strictness?
+
+`GHC` (the Glasgow haskell compiler) internally uses multiple intermediate
+representations, in order of original, to what is finally produced:
+
+- Haskell (the source language)
+- Core (a minimal set of constructs to represent the source language)
+- STG (Spineless tagless G-machine, a low-level intermediate representation that accurately captures non-strict evaluation)
+- C-- (A C-like language with GHC-specific customization to support platform independent
+code generation).
+- Assembly
+
+
+Here, I will show how to lower simple non-strict programs from a **fictitous** `Core` like language down to `C` , while skipping `STG`, since it doesn't
+really add anything to the high-level discussion at this point.
+
+## Our example of compiling non-strictness
 
 Now, we need a *strategy* to compile the non-strict version of our program.
 Clearly, `C` cannot express laziness directly, so we need some other
 mechanism to implement this. I will first code-dump, and then explain as we go along.
+
 
 ###### Executable `repl.it`:
 <iframe height="400px" width="100%" src="https://repl.it/@bollu/Compiling-non-strict-programs-on-the-call-stack?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>

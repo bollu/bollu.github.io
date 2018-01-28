@@ -1,7 +1,6 @@
 +++
 title = "Papers I Read and Loved in 2017"
 date = "2018-01-05T18:20:53+05:30"
-draft = true
 +++
 
 I spent 2017 as a research intern working at the systems group, ETH Zurich. I worked on Polly, a loop

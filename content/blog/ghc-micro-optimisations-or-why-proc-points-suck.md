@@ -5,11 +5,18 @@ draft = true
 
 +++
 
+Note: I'm putting this up because college has started again, and I'm not finding enough time to polish this up.
+However, I do want to come back to this and work on this. I'm publishing this semi-unformatted because I think
+the finding is interesting.
+
+
+# Introduction
+
 
 On working on [`simplexhc`](http://github.com/bollu/simplexhc-cpp), a custom haskell-to-llvm compiler, I've noticed several strange
-performance behaviours of [`GHC (Glasgow haskell compiler)`](). Under certain benchmarks, GHC is slower than C by **2x to 3x**, and this GHC slowdown **grows non-linearly with problem size**. This is the story of identifying the source of the slowdown. I don't yet have a good solution, however.
+performance behaviours of [`GHC (Glasgow haskell compiler)`](https://wiki.haskell.org/GHC). Under certain benchmarks, GHC is slower than C by **2x to 3x**, and this GHC slowdown **grows non-linearly with problem size**. This is the story of identifying the source of the slowdown. I don't yet have a good solution, however.
 
-There were the compilers ompilers used where gathering data:
+There were the compilers used where gathering data:
 - GHC, `-O3` pass pipeline, native backend.
 - Clang, with `-O3` pass pipeline.
 
