@@ -1,0 +1,52 @@
+\section{Information Theory - Lecture 7: Probabilistic encryption}
+
+Determinisim fucks over security. Since now-a-days, servers encrypt pretty much everything you send them,
+you can try to mount a chosen plaintext attack.
+
+\section{Pseudorandom Function (PRF)}
+
+F: (k: {1, 0}^n) -> (r : {1, 0}^n) -> (x: {1, 0}^n)
+
+1st string is key, second string is what to encode, output is encoded.
+
+\section{Truly random function}
+Look at all functions from r to x. Pick one such function and use that. Number of such functions:
+
+Number of such functions: 2^n^{2^n}
+Number of bits to index this set: log (2^n^{2^n}) = 2^n log(2^n) = n \cdot 2^n.
+
+
+If we have key size as $n \cdot 2^n$, then F_k (the kth function in the set of all TRFS from r to x) will be truly random.
+
+
+\section{Oracles}
+
+A thing that can solve problems. Example: $P^NP$ is a machine in $P$ that has access to an $NP $ oracle. (some NP problem. so it's existential)
+
+
+\section{PRF continued}
+A PRF is a function that uses $n$ bits of key to index the TRF space. So, our of $2^n^{2^n}$, we can index only $2^n$.
+
+For a PRF:
+
+1. given $x$, computing $f_k(x)$ is easy.
+
+2. forall PPTM A, $|P[A^f_k = 1] - P[A^{TRF} = 1]|$ is neglibile. That is, A cannot differentiate where a key lies (from PRF or from TRF).
+
+\section{Cipher Block Chaining}
+
+Like the name says, chain blocks for messages. we perform c_k = F_k(m_k XOR c_{k - 1}). This creates a chain of dependences.
+
+\section{Output feedback mode}
+r_1 = public
+r_k = f_k(r_{k - 1})
+c_k = m_k XOR r_k
+
+
+G(x) = G_0(x) || G_1(x)
+
+
+
+
+
+
