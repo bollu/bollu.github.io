@@ -1,0 +1,164 @@
+\section{How to query a DB without revealing data / Oblivious Transfer}
+
+1. We shoul not reveal the query
+2. Database reveals nothing except for the query answer to the query
+
+
+\section{Simplification of the problem}
+Consider an array of $n$ bits, $Arr = b_0 b_1 \cdots b_n$. The query is an index query $i$.
+The task is that the querier $B$ should get to know $b_i$, should not get to know
+$b_j, j \neq i$. $A$ should not *know $i$*!
+
+Intuitively, it seems like ``information deadlock'' should take place. Since neither
+party knows what to do, there is some sort of deadlock. Hence, impossibility. (Kannan
+is happy here, since now we can information theory this, as he puts it).
+
+Supposedly, one-way-functions will work.
+
+$x \rightarrow f(x) is easy$.
+$f(x) \rightarrow x is hard$. If we know trapdoor information,
+$f(x) \rightarrow x$ is easy.
+
+\section{Construction of the scheme}
+
+$f: [1, n] -> [1, n]$ is a trapdoor one-way *permutation* (unique decryption).
+
+\begin{itemize}
+\item 1. $B$ chooses $n$ bits at random - $r_1 r_2 \cdots r_n$.
+\item 2. $B$ applies $f$ only at $r_i$ to obtain $Z = r_1 r_2 \cdots r_{i -1} f(r_i) r_{i + 1} \cdots r_n$.
+  $f$ may not be applicable to single bits. In this case, we can use the hadcore predicate and $XOR$ $r_i$ with the
+  hardcore predicate.
+\item 3. $B$ sends $Z$ to $A$.
+\item 4. $A$ decrypts (find inverse) of $Z$ and obtains $Y = f^{-1}(r_1), f^{-1}(r_2), \cdots r_i, f^{-1}(r_{i + 1}), f^{-1}(r_n)$
+\item 5. Let array be $Arr = b_0 b_1 \cdots b_n$.
+\item 6. Perform $Arr XOR Y = b_0 XOR f^{-1}r_1, \cdots , b_{i} XOR r_i, \cdots b_n XOR f^{-1}(r_n)$.
+\item 7. A sends $Arr XOR Y$ to $B$.
+\item 8. $B$ obtain $b_i = (Arr XOR Y)[i] XOR r_i = (b_{i} XOR r_i) XOR r_i = b_i$.
+\end{itemize}
+
+Note that $B$ cannot see $b_j$ where $j \neq i$, since in some sense, we have ``encoded'' the $b_j$ with  $f^{-1}$.
+
+$A$ cannot know which index is the correct index, since there is no ``marker'' for the correct index.
+
+
+
+
+
+\section{Solving the universal problem}
+
+$A$ has input $X$. $B$ has input $Y$. we wish to compute $Comp(X, Y)$. Either both of
+them want $Comp(x, y)$, or one of them want $Comp(x, y)$.
+
+$A$ and $B$ are unwilling to reveal their information to each other.
+
+So, how does one solve this? Generalize our specialized construction.
+
+Andrew Yao was awarded the Turing award in 2000 for posing the general problem and solving it.
+
+
+\section{Yao's millionaire problem}
+
+There are two millionares (Kannan quip: let me make them billionaires, because inflation). They wish to
+find out who is richer, without revealing their bank balance to each other. Can we solve this?
+
+
+\subsection{Weird kannan style generalization}
+
+Given two machines $A$ and $B$, can we construct a virtual machine $S$, such that $A, B$ do not know what
+$S$ is computing, but they virtually simulate $S$?
+
+That is, $Mem(s) = Mem(a) XOR Mem(b)$
+
+Can a cluster of insecure machines simulate a secure machine? (Neat!)
+
+Sid question: Can we not construct FHE by keeping some data on the client as well? It could be redundant data,
+but it would still be part of the algorithm? I guess this does not really give you FHE, because the full data is not
+owned by one party.
+
+
+
+
+
+\subsubsubsection{Kannan tangent - Teaching ethics instead of teaching crypto}
+It is better to teach ethics and forego the area of crypto, rather than teach crypto and allow people
+to forget ethics.
+
+I'm not keen on crypto solving dishonesty problems.
+
+\begin{itemize}
+\item 1. There will be dishonest people in the world
+\item 2. Software will have bugs for dishonest people to exploit.
+\end{itemize}
+
+Outside of Earth, it has already caught on.
+
+The first major implementation of our solution was performed by satellites (?) (what in the hell, TIL).
+They don't want to collide in mid-space, but they **do not want to reveal where they are**.
+
+As satellite traffic increased, there was a genuine chance that collision would take place.
+They ran this protocol between satellites so they can prevent collisions.
+
+
+\subsubsection{Finally, the solution}
+
+We wish to perform an instruction $z <- x + y$ on $S$, where $x, y$ are also stored in $S$.
+
+\subsubsubsection{Constructing XOR}
+$x$ is stored in $S$ means that $x_a$ is in $A$, $x_b$ is in $B$$, $x = x_A XOR x_b$.
+(note that in our scheme, $x_a$ and $x_b$ are stored *at the same memory loc at $A$ and $B$.
+That is $A_{ram}[i] = x_a, B_{ram}[i] = x_b$.
+
+
+Party $A$ performs:
+$z_a= x_a XOR y_a$
+
+Party $B$ performs:
+$z_b = x_b XOR y_b$
+
+
+
+\subsubsubsection{Construct AND}
+We know what the output should look like:
+$z_a XOR z_b = (x_a XOR x_b) /\ (y_a XOR y_b)$
+
+
+Code for A:
+$z_a <- random {0, 1}$. 
+A creates an array of length $4$, which stores values of $z_b$ corresponding to values of $x_b, y_b$.
+(Look at $z_A XOR z_b$, and see what the value should look like). So, consider all 4 cases, corresponding
+to the indeces of $A_i$.
+
+0. If x_b = 0, y_b = 0,
+z_b = (x_a /\ y_a) XOR z_a. = Arr_0
+
+
+1. If x_b = 0, y_b = 1,
+z_b = (x_a /\ (NOT y_a)) XOR z_a = Arr_1.
+
+
+2. If x_b = 1, y_b = 0,
+z_b = ((NOT x_a) /\ y_a)) XOR z_a = Arr_2.
+
+
+3. If x_b = 1, y_b = 1,
+z_b = ((NOT x_a) /\ (NOT y_a)) XOR z_A = Arr_3.
+
+
+Code for B:
+Run oblivious transfer with $n = 4$. $A$ has a linear database of size 4. $B$ has the index.
+Hence, $B$ gets $z_b$.
+
+
+\subsubsubsection{Note: why pick $z_a$ randomly?}
+$z_a$ acts as one-time-pad in the array table construction. This obscures
+what $B$ can see about $x_a$, $y_a$.
+
+\subsubsubsection{Exploiting multiple machines - Byzantine situations}
+
+With many machines, we can XOR the data between many machines. This gives us much higher security.
+However, we lose out on fault-tolerance. People have explored this fully, and we can ask for arbitrary fault tolerance and security,
+and we can then recieve a protol to be used for that setting.
+
+We can have at most $n/3$ parties that were colluding and disrupting among a cluster of $n$ machines, and still have
+fault tolerance and security.
+

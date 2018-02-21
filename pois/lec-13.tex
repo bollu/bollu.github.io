@@ -1,0 +1,240 @@
+\section{Secure multipart communication}
+
+\subsection{Synchrony}
+Existence of rounds. Send messages per round. Messages are
+recieved by all per round.
+
+Or, equivalently, there exists a global clock.
+
+\subsection{Problem statement}
+
+A, B, C have x_a, x_b, x_c inputs.
+
+We wish to compute f(x_a, x_b, x_c) without revealing x_a, x_b, x_c.
+
+For this, we **do not** need trapdoor one-way permutations!
+Somehow, the existence of 3 people allows us to sidestep the
+requirement of trapdoor one-way permutations.
+
+We can simulate a trusted virtual server that is not under the control of
+A, B, C, that can compute f(x_1, x_2, x_3) without revealing.
+
+Adversary can only eavesdrop on **one of three parties** at any given time.
+We do not know which party adversary is spying. Adversary has access to NP-oracle.
+
+\subsubsection{Kannan philosophy}
+The adversary is *omnipotent* (can solve NP complete problems in P). BUT, he
+is not *omnipresent* (can only eavesdrop on one of A, B, C at a time).
+
+
+\subsection{Machinery: Key management}
+
+Can the key be stored in a network of $n$ memory spaces (called n ``shares'' of the key)
+such that upto $t$ shares reveals nothing about the secret. all $t + 1$ or more shares
+reveals the secret.
+
+\subsubsection{Kannan philosophy: Rate of papers being published?}
+Supposedly, when he had last seen this area and surveyed it a couple decades back, there were ~10,000 papers.
+However, for some reason, we are unable to actually *see* this in our research life.
+
+That is, per year, the course does not change by so much. why is it that the rate of increase of knowledge is
+uncorrelated with the rate of papers being published?
+
+He argues that most papers are trash, indirectly. ``We have learnt something about the art of generating
+problems and solutions which is useful for training our mind, but not a contribution to the world.''
+
+Maybe by the end of today we can see why that happens? (what? Does the crypto scheme shed some light on this?)
+
+\subsubsection{Proof: Shamir's Secret Sharing scheme}
+Consider FF, finite field, characteristic p. He picks $Z/pZ$. (Note: I will continue to use FF for finite field).
+
+Pick a polynomial of degree $t$, with $t + 1$ coefficients.
+
+$P(x) = \Sum_{i=0}^t a_i x^i$. $a_0 = S$. $a_i, \text{where} i > 0 = random element from F (Z_p in our case) $ .
+
+The secret is $a_0 = S$.
+
+The $i$th share is the polynomial evaluated at $i$.
+$ Share_i = P(i), i = 1, 2, ... n$
+
+
+Clearly, $t + 1$ or more shares reveals the secret, since we will have $t + 1$ points of a $t$ degree polynomial.
+
+However, given only $t$ polynomials, we do not know anything about the constant term. We can look at this as a
+generalization of a one-time-pad for $n$ terms.
+
+
+
+\subsubsubsection{Consider an example for t = 2}
+
+\begin{align}
+P(0) &= S \\
+P(1) &= S + a1 + a2 \\
+P(2) &= S + 2a1 + 2a2
+\end{align}
+
+Having $P(1)$, $P(2)$ is not enough to reconstruct $P(0)$, the secret.
+
+
+\subsubsubsection{Vandermonde matrix}
+This construction can be seen as a vandermondle matrix:
+
+$Share = A \cdot v$, where:
+
+
+A = [1 1 1  1 1\\
+  1 2 2^2  2^3\\
+  1 3 3^2 3^3 3^3 \\
+  1 4 4^2..]
+
+$v = [S a_1 a_2 \cdots a_t]^T$.
+$A_{ij} = i^j $. A has full rank, A is invertible.
+
+\subsubsubsection{Hardness}
+We know that $P[S=s] = \frac{1}{|F|}$ (since we pick each $S$ randomly. We use finiteness of F here).
+
+Compute P{S=s | S_1=s_1, S_2=s_2} =? \frac{1}{|FF|}. If it is equal to \frac{1}{|FF|}, then it's a one-time-pad.
+
+We take this on faith, and say that this will work. Lookup proof.
+
+
+\section{Use machinery to solve secure multiparty communication}
+In this case, we use the key management scheme to share our memory data.
+We split our memory into $n$ shares, and give the $n$ shares to different parties.
+
+We need $|FF| > n$, so that we can have a large field.
+
+Now, we've built *secure memory*. We have yet to show that we can perform operations over this thing.
+
+\subsubsection{Suppose $n = 3, t = 1$ (that is, any one should not get the secret, out of 3 machines)}
+
+
+In this case, we have a 1-degree polynomial since $t = 1$. So, $P(x) = rx + s$.
+(r = random, s = secret).
+
+Hence, $S_a = r + s$, $S_b = 2r + s$, $S_c = 3r + s$.
+
+We will construct an instruction set consisting of $add$, $multiply$ *over our FF* (kannan will be doing it over $Z_p$).
+
+We will need $z <- x + y (in FF)$, $z <- x * y (in FF)$.
+
+
+\subsubsection{Constructing $+$}
+
+$x$ is shared according to $P_x(t) = r.t + x$,
+$y$ is shared according to $P_y(t) = r'.t + y$.
+
+A has x_a, y_a. B has x_b, y_b. C has x_c, y_c.
+A should have z_a, B has z_b, C has z_c.
+
+A computes: z_a <- x_a + y_a.
+B computes: z_b <- x_b + y_b.
+C computes: z_c <- x_c + y_c.
+
+Note that:
+
+P_x(1) = x_a.
+P_y(1) = y_a.
+
+P_x(2) = x_b.
+P_y(2) = y_b.
+
+
+P_x(3) = x_c.
+P_y(3) = y_c.
+
+
+We denote $P_{x + y} =(defined as)= P_x + P_y $.
+
+
+x_a + y_a = P_x(1) + P_y(1) = (P_x + P_y)(1) = P_{x + y}(1)
+x_b + y_b = P_x(2) + P_y(2) = (P_x + P_y)(2) = P_{x + y}(2)
+x_c + y_c = P_x(3) + P_y(3) = (P_x + P_y)(3) = P_{x + y}(3)
+
+Note that we have now computed a new secret sharing polynomial,
+$P_{x + y}$. $z = P_x(0) + P_y(0) = x + y$ So, $z$ is encrypted with $P_{x + y}$.
+
+\subsubsection{Constructing $*$ / Rabin Matching}
+We denote $P_{x * y} =(defined as)= P_x * P_y $.
+Note that we have now computed a new secret sharing polynomial,
+$P_{x * y}$. $z = P_x(0) * P_y(0) = x * y$
+
+
+$z <- x * y$
+z_a <- x_a * y_a.
+z_b <- x_b * y_b.
+z_c <- x_c * y_c.
+
+Polynomials are also homomorphic according to $*$
+Hence, $z_a <- P_x * P_y = P_{x * y}$
+
+
+However, this is a 2 degree polynomial! So, we now do not have P_{x * y}.
+
+There is another problem: Shannon secret sharing gives us secrecy if the polynomial is *random*.
+In this case, the polynomial is not random, since it is reducible (P_{x * y} = P_x * P_y). Reducible
+polynomials are a subset of all polynomials (Sid question: what's the size of the subset?).
+
+
+Now, can we somehow ``linearize'' P_{x * y} such that the  constant term remains the same,
+and it is uniformly chosen across polynomials of degree t? (chosen over: $FF[x] / x^{t+1}$).
+
+
+NOTE: I do not understand this final part properly!
+
+
+We construct $z_a' = x_a * y_a$, $z_b' = x_b * y_B$, $z_c' = x_c * y_c$.
+Then, we *share* z_a' as z_{aa}', z_{ab}', z_{ac}'. Repeat with z_{b}', z_{c}'.
+
+They lie on a polynomial whose constant term is $z$.So,
+\lambda_a z_a' + \lambda_b z_b' + \lambda_c z_c' = z.
+
+We know that $z_a'$ is a linear combination of $z_{aa}'$, $z_{ab}'$, $z_{ac'}$
+so, $z_a' = \lambda_a' z_{aa}' + \lambda_b' z_{ab}' + \lambda_c' z_{ac}'$.
+Similarly for $z_b'$, $z_c'$.
+
+
+So, $z$ will be a linear combination of all $z_{pq}'$ where $p, q \in {a, b, c}$
+
+We can write this linear combination as:
+z = $(\lambda_a \lambda_a' z_{aa}' +
+     \lambda_b \lambda_a' z_{ba}' +
+     \lambda_c \lambda_a' z_{ca}') +
+     (same for b) +
+     (same for c)$.
+
+z = \lambda_a znew_a + \lambda_b znew_b + \lambda_c znew_c.
+
+Note that znew_a, znew_b, znew_c are 1 degree.
+
+
+
+--------
+P_z(t) = r.t + z.
+
+z_a = r + z
+z_b = 2r + z
+z_c = 3r + z
+
+Find some linear combination of z_a, z_b, z_c such that we get z
+z = t_a z_a + t_b z_b + t_c z_c
+---------
+
+OK, I don't know WTF happened. Read this tonight (21 feb 2018)
+
+
+
+References for this:
+1. BGW 1988 (in SoTC)
+2. GRR 1998 (in ACM PoDC)
+
+\subsubsection{Kannan philosphy}
+Today is the first time we have brought in a different adversary. Usually, we computationally bound the machine.
+Today, we are bounding the ``omnipresence factor'' of the machine.
+
+
+\subsubsubsection{Suppose $n = 3, t = 2$ (that is, any two should not get the secret, out of 3 machines)}
+This is equivalent to 1 out of 2 (what we did last class), by clubbing two machines together.
+So, for this, we will require the existence of trapdoor one-way functions (since this reduces to 1-of-2).
+
+

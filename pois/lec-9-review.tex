@@ -1,0 +1,64 @@
+- Historical ciphers:  (breaking)
++ ceasar and shift
++ Monoalphabetic substitution cipher
++  Vigenere cipher
+
+- 17th century: Kerchoff's Principle: (don't use obscurity)
++ Shannon's pessimistic theorem 
++ One time pad is perfectly secure
++ |M| <= |K| (limitation of perfect security)
+
+
+- Two relaxations
++ PPTM adversary
++ Negligible p of error
++ $f(n)$ is negligible iff $\forall p \in R[x], \exists N_0, \forall n \geq N_0, f(n) < 1 / p(n)$.
+++ examples: $f(n) = \frac{1}{2^n}$. $f(n) = \frac{1}{eps^n}$ where $eps > 0$.
+
+
+- PRG
+- Secure encryption
+
+- CPA
+- CPA secure : Adversary has free access to encryption oracle
+- So, we need probabilistic encryption to offer CPA security.
+- PRF
+- CPA secure encryption
+
+- CBC
+- IFC
+- Random counter mode
+
+- Convert Pseudo random function to pseudo random permutation. If both
+  forward and backward are efficient, then it's a block cipher. We did this
+  using a "Feistel structure".
+
+f' :: Z x Z -> Z x Z
+f' = (x, y) -> (y, (F_k(y) `xor` x))
+
+This function is invertible.
+Each application is a "fiestel round".
+Apply this as many times as wanted, at least 4 is recommended.
+
+
+- 3 DES. 2 keys of 56 bits each.
+
+
+- CCA secure (chosen ciphertext attack)
+  Adversary does not know what the message is. He can actively modify the 
+  *ciphertext*.
+
+- Semantic security
+
+
+- MAC : message authentication code - solves problem of data integrity.
+
+CPA secure + MAC => CCA secure.
+
+c -> cpa secure(c) + mac (c)
+
+
+What is information?
+
+- Shannon,  Kolmogrov, Lenin
+- Randomness, Space, Time.
