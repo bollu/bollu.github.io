@@ -62,9 +62,78 @@ Protocol
   B compures $S * M = <a_B, b_B, c_B>$. Something should have happened in our ``virtual memory of the machine'', with the
   new bits $<a, b, c>$.
 
-  We will now prove that $c = a AND b$ $c = c_a XOR c_b$. $a = a_A XOR a_b$, $b = b_A XOR b_B$.
+  We will now prove that $c = a AND b$ $c = c_a XOR c_b$. $a = a_A XOR a_b$, $b = b_A XOR b_B$. (proof below in subsubsection).
 
   We got the AND of some *random* bit, but not of the original *z*. We will show how to convert solution of $c$ to solution of $z$
+
+
+\item NOTE: We now stop using the noisy channel. We simulate noiseless channel over noisy channel with ECC. so, from now on,
+  ``send'' is ``send noiseless''.
+
+\item A sends $(x_a XOR a_A), (y_a XOR b_a)$ to B.
+  B sends $(x_b XOR a_B), (y_b XOR b_B)$ to A. Remember, $a_A, a_B, b_A, b_B$ are effecitively one-time-pad since they
+  are random bits.
+
+\item With the data that A has, A is able to compute $(x_A XOR a_a) XOR (x_b XOR a_b) = X$, $(y_a XOR b_a) XOR (y_b XOR b_b) = Y$
+  B can compute $(x_b XOR a_b) XOR (x_a XOR a_a) = X$ (the *same* X). Similarly, B can compute
+  $(y_b XOR b_b) XOR (y_a XOR b_a)$. At the end of this step, $X$, $Y$ are known to both parties.
+
+  We want $x AND y = (x_a XOR x_b) AND (y_a XOR y_B)$ Expanding with our lemma in (Detour for AND with respect to XOR),
+
+  Note that $x = x_a + x_b = X + (x_b + a_B)$, $y = y_a + y_b = Y + (y_b + b_b)$.
+  
+  $x AND y = (X + (x_b + a_b)) * (Y + (y_b + b_b)) = (XY) + (x_a + x_b)Y + (y_a + y_b)X + c_a c_b$.
+
+
+\item A defines $z_a = XY + (x_a y) + (y_a x) + c_a$. B defines $z_b = XY + (x_b y) _ (y_b x) + c_b)$
+  $z = z_a XOR z_b = x AND y$ (argue by looking at $x AND y$, and terms in $z_a, z_b$).
+
+
+\item Generalizing this: We need to check if exactly 1 bit is toggled, because for pedagogy we had assumed that only
+  bit will be toggled. Now, we will assume that either 0 bits, 1 bits, 2 bits, or 4 bits are toggled. We will
+  handle the 3 bit toggle case separatey, in the next pedagogy section.
+  that 
+  So, if we XOR all the 8 bits, the answer should be 1. As long as a *minority* of bits are toggled (1 bit is toggled from 4 bits),
+  then the XOR of all the 8 bits is a correct check for whether only 1 bit is toggled.
+
+  That is, consider (sum r_i + sum s_i). This will be 1 if (1, 3) bits are toggled. However, we can only have 1 bit is
+  toggled because of our assumption that 3 bits are not toggled.
+
+  A publishes $sum r_i$, B publishes $sum s_i$. Publish $sum r_i, sum s_i$. find $sum r_i + sum s_i$.
+
+
+\item Case left: 3 bits are toggled. If 1 bit was toggled, answer will be correct. If 3 bits are toggled, answer is wrong.
+  If we had 0, 2, 4 bits toggled, then we would not have proceeded with the protocol.
+
+  Assume $A$ sent $4n$ bits to $B$. So, we are sending *several groups of 4* Of the $n$, some are right, some are wrong.
+
+  If there are four people, and one of them is disruptive and can give wrong answer, we can still simulate  secure computation.
+  Intuition: when we had three people, we used shannon's secret sharing on a straight line. For four people, we can send
+  four points on a shared line. If we have 3 points on a straight line and a point is incorrect, then we can detect the error
+  but we cannot correct it. Given 4 points however, we can find the correct line by majority voting of line equation.
+
+  Using our noisy channel, we can construct triplets, some of them will be right, some of them will be wrong.
+  As long as the number of wrong triplets is bounded by $n/3$, we can use error correction.
+  We simulate 4 computes by running the protocol. Then, we can correct the error by using the previous thing with 4 machines.
+
+  Run protocol $n$ times. We want number of wrong to be less than $n / 3$. So, number of right should be $>= n / 3$.
+  when $P(1-out-of-four-flipped | 1 or 3 are flipped) > 2 * P(three-out-of-four | 1 or 3 are flipped)$
+
+
+\item Alternate proof, distillation:
+  We will show that $P(1-out-of-four-flipped | 1 or 3 are flipped) P(three-out-of-four | 1 or 3 are flipped)$ is sufficient.
+  (Sid note: 1-out-of-4 implies the channel ``counts'' in some sense. This feels weirdly unphysical).
+
+  Idea: we have an oracle that tells us whether the number of bits flipped are equal or not. $f(1-of-4, 1-of-4) = 1, f(3-of-4, 3-of-4) = 1$,
+  $f(other, other) = 0$
+
+  Given this oracle, we construct a ``distillation'' process.
+
+
+
+  
+
+
 \end{itemize}
 
 \subsubsubsection{Show that $<a, b, c>$ is such that $c = a AND b$}
@@ -85,6 +154,14 @@ Now, how do we convert random secure AND to an AND of our choice?
 
 
 
+\subsubsubsection{Detour for AND with respect to XOR}
+$x * y =? ((x + a) * (y + b)) + (x(y + b)) + (y(x + a)) + ab$ over $GF_2$.
+Proof:
+$RHS = xy + ya + ab + xy + xb + yx + ya + ab = xy$
 
 
 
+\subsection{Conjecture: Buggy software is more secure than bug free software}
+
+Reasoning: we did this over noise. We do not actually need noise. Rather, we can
+use any source of nondeterminism, such as race conditions, to perform this protocol over.
