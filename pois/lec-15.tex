@@ -1,108 +1,132 @@
+\documentclass[11pt]{article}
+%\documentclass[10pt]{llncs}
+%\usepackage{llncsdoc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\evensidemargin=0.20in
+\oddsidemargin=0.20in
+\topmargin=0.2in
+%\headheight=0.0in
+%\headsep=0.0in
+%\setlength{\parskip}{0mm}     
+%\setlength{\parindent}{4mm}
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{8.5in}
+%\leftmargin -2in
+%\setlength{\rightmargin}{-2in}
+%\usepackage{epsf}
+%\usepackage{url}
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newtheorem{lemma}{Lemma}
+\newtheorem{observation}{Observation}
+\newtheorem{proof}{Proof}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+
+\def\qed{$\Box$}
+\def\proof{\textit{Proof. }}
+\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+
 \section{Cryptography from channel noise, without 1-way functions}
 
 \subsection{Introduction Kannan philosophy}
-If the insecure channel connecting $S$ and $R$ is noisy, we can have secure communication.
-This is possible because we have two adversaries - The actual adversary and the noise
-in the channel. Intuitively, these are eavesdroppers of each other.
+If the insecure channel connecting $A$ and $B$ is noisy, we can have secure communication.
+This is possible because we have two adversaries -- the actual adversary and the noise
+in the channel. Intuitively, these are adversaries of each other. \\
 
-The ``noise injector'' is disrupting information that the eavesdropper wishes to understand.
+The ``noise injector'' is disrupting information that the eavesdropper wishes to understand. Can we design a channel that disrupts the eaversdropper more than it disrupts $B$? This was not initially considered to be  possible because of the seeming impossibility of harnessing the noise. \\
 
-So, can we design a channel that disrupts the eaversdropper more than $R$?
+In previous lectures, we have shown how to simulate a secure machine on two insecure machines. The contents of this secure machine's memory were the bitwise \texttt{XOR} of the memories of the two insecure machines. This can be done by simulating secure \texttt{XOR} and secure \texttt{AND}. We have already shown how to simulate secure \texttt{XOR} without one-way functions. However, to simulate \texttt{AND} we used one-way functions. We now show a protocol to compute secure \texttt{AND} over a noisy channel without the use of one-way functions. 
 
-Initially, this was not considered possible, because how in the world would we harness noise?
+\subsection{Secure \texttt{AND} without one-way functions}
 
-Somehow, noisy channels are not ``weaker'' than noiseless channels. Noisy channels
-can be stronger than noiseless channels.
+Initially $A$'s memory consists of two bits, $X_a$ and $Y_a$. Similarly $B$'s memory consists of two bits, $X_b$ and  $Y_b$. The secure machine's memory consists of two bits $X$ and $Y$ where $X = X_a + X_b$ and $Y = Y_a + Y_b$. We want $A$ and $B$ to compute $Z_a$ and $Z_b$ respectively, such that $Z = Z_a + Z_b = X \cdot Y$. \\
 
+\subsubsection{First simplification -- constraints on the noise}
 
-We have already constructed secure XOR when we built a secure machine over an insecure machine.
+As a pedagogical simplification, we assume that out of every four consecutive bits sent over the channel, \textit{exactly one} of the four bits will be toggled. This restriction will be lifted later. 
 
-\subsection{Noise for secure `AND`}
+\subsubsection{Protocol}
 
+We define a matrix $T$, representing the truth table of the bitwise \texttt{AND} operation. Note that $T$ is public and part of the protocol.
 
-```
-A ---noisy channel--- B
-```
+\[T = 
+\begin{bmatrix}
+0 & 0 & 0 \\
+0 & 1 & 0 \\
+1 & 0 & 0 \\
+1 & 1 & 1
+\end{bmatrix}
+\]
 
-A's memory consists of two bits, X_a, Y_a. B's memory has X_b, Y_b.
+\begin{algorithm}
+% \caption{{\it }}
+\label{a-enc-h}
+\begin{algorithmic}[1]
+\State \textbf{Initial state:} $A$ has two bits, $x_A$ and $y_A$. $B$ has two bits, $x_B$ and $y_B$.
+\State $A$ generate four random bits $R = \langle r_0, r_1, r_2, r_3 \rangle$, and sends $R$ to $B$.
+\State $B$ receives four bits from $A$, $S = \langle  s_0, s_1, s_2, s_3 \rangle$.
+\State $A$ computes $R \times T = \langle a_A, b_A, c_A \rangle$, and $B$ computes $S \times T = \langle a_B, b_B, c_B \rangle$. Correspondingly, the secure machine has computed $(R + S) \times T = \langle a, b, c \rangle $.
+\State $A$ noiselessly sends (using an error-correcting code) $x_A + a_A$ and $y_A + b_A$ to $B$. $B$ noiselessly sends $x_B + a_B$ and $y_B + b_B$ to $A$.
+\State $A$ and $B$ both compute $X = (x_A + a_A) + (x_B + a_B)$ and $Y = (y_A + b_A) + (y_B + b_B)$.
+\State $A$ defines $z_A = (X \cdot Y) + (x_A \cdot y) + (y_A \cdot x) + c_A$.
+\State $B$ defines $z_B = (X \cdot Y) + (x_B \cdot y) + (y_B \cdot x) + c_b$. We have $z = z_A + z_B = x \cdot y$, as desired.
+\State \textbf{Final state:} $A$ and $B$ have computed $z_a$ and $z_b$ respectively such that $z = z_a + z_b = (x_A + x_B) \cdot (y_A + y_B) = x \cdot y$
+\end{algorithmic}
+\end{algorithm}
 
-X = X_a XOR X_b
-Y = Y_a XOR Y_b
+\pagebreak
 
-Z = Z_a XOR Z_b
+Note that by the assumption on the channel noise, $R$ differs from $S$ at exactly one position. Therefore, $R + S$ is $1$ at exactly one position and $0$ at the other positions. However, the position where $R$ and $S$ differ is unknown, and it is this uncertainty that we harness to implement the secure computation. \\
 
-We need $Z = X AND Y$.
+In step $4$, the secure machine computes $(R + S) \times T = \langle a, b, c \rangle $. Since $R + S$ has exactly $1$ bit with the remaining bits being $0$, $\langle a, b, c \rangle$ is in fact a row of $T$. Since $T$ is the truth table of the bitwise \texttt{AND} operation, it follows that $a \cdot b = c$. \\
 
-$(Z_a XOR Z_b) = (X_a XOR X_b) AND (Y_a XOR Y_b)$
-
-In the OT protocol, we used to pick $Z_a$ at random, we have to pick $Z_b$ correctly so that stuff works out.
-We enumerated possibilites for $Z_b$, and then made B pick the right index at $Z_b$ using OT.
-However, for this, we need one-way functions.
-
-
-\subsubsection{First simplification (that will be removed) - Special kind of noise}
-
-Noise characterization: If I send 4 bits, *exactly* one of them will be toggled.
-(This is for pedagogical simplification).
-
-Protocol
-
-\begin{itemize}
-\item A sends 4 random bits: $R = < r_0, r_1, r_2, r_3 >$ to B.
-\item B receives these four bits - $ S = < s_0, s_1, s_2, s_3 >$.
-\item The following invariant holds: Consider the bitvector:
-  $ M =  <r_0 XOR s_0, r_1 XOR s_1, r_2 XOR s_2, r_3 XOR s_3 > $. Exactly one of the bits in this new bitvector is 1.
-
-  Locally, we have memory in A $r_0 r_1 r_2 r_3$, in B $s_0 s_1 s_2 s_3$. However, in the ``virtual machine'', we have
-  the *new* memory $M$ with a which has a block of memory 4 bits long, with exactly one (unknown) bit as 1,
-  other bits are 0.
-
-\item Consider the matrix $M = 0 0 0 | 0 1 0 | 1 0 0 | 1 1 1$. M is public.
-  A computes $R * M = <a_A, b_A, c_A>$ (everything is happening in $GF_2$). This is also stored in memory.
-  B compures $S * M = <a_B, b_B, c_B>$. Something should have happened in our ``virtual memory of the machine'', with the
-  new bits $<a, b, c>$.
-
-  We will now prove that $c = a AND b$ $c = c_a XOR c_b$. $a = a_A XOR a_b$, $b = b_A XOR b_B$. (proof below in subsubsection).
-
-  We got the AND of some *random* bit, but not of the original *z*. We will show how to convert solution of $c$ to solution of $z$
+  We now have the  the \texttt{AND} of some *random* bit, but not of the original *z*. We will show how to convert solution of $c$ to solution of $z$
 
 
-\item NOTE: We now stop using the noisy channel. We simulate noiseless channel over noisy channel with ECC. so, from now on,
+NOTE: We now stop using the noisy channel. We simulate noiseless channel over noisy channel with ECC. so, from now on,
   ``send'' is ``send noiseless''.
 
-\item A sends $(x_a XOR a_A), (y_a XOR b_a)$ to B.
-  B sends $(x_b XOR a_B), (y_b XOR b_B)$ to A. Remember, $a_A, a_B, b_A, b_B$ are effecitively one-time-pad since they
+ A sends $(x_a + a_A), (y_a + b_a)$ to B.
+  B sends $(x_b + a_B), (y_b + b_B)$ to A. Remember, $a_A, a_B, b_A, b_B$ are effecitively one-time-pad since they
   are random bits.
 
-\item With the data that A has, A is able to compute $(x_A XOR a_a) XOR (x_b XOR a_b) = X$, $(y_a XOR b_a) XOR (y_b XOR b_b) = Y$
-  B can compute $(x_b XOR a_b) XOR (x_a XOR a_a) = X$ (the *same* X). Similarly, B can compute
-  $(y_b XOR b_b) XOR (y_a XOR b_a)$. At the end of this step, $X$, $Y$ are known to both parties.
+ With the data that A has, A is able to compute $(x_A + a_a) + (x_b + a_b) = X$, $(y_a + b_a) + (y_b + b_b) = Y$
+  B can compute $(x_b + a_b) + (x_a + a_a) = X$ (the *same* X). Similarly, B can compute
+  $(y_b + b_b) + (y_a + b_a)$. At the end of this step, $X$, $Y$ are known to both parties.
 
-  We want $x AND y = (x_a XOR x_b) AND (y_a XOR y_B)$ Expanding with our lemma in (Detour for AND with respect to XOR),
+  We want $x \cdot y = (x_a + x_b) \cdot (y_a + y_B)$ Expanding with our lemma in (Detour for \texttt{AND} with respect to \texttt{XOR}),
 
   Note that $x = x_a + x_b = X + (x_b + a_B)$, $y = y_a + y_b = Y + (y_b + b_b)$.
   
-  $x AND y = (X + (x_b + a_b)) * (Y + (y_b + b_b)) = (XY) + (x_a + x_b)Y + (y_a + y_b)X + c_a c_b$.
+  $x \cdot y = (X + (x_b + a_b)) * (Y + (y_b + b_b)) = (XY) + (x_a + x_b)Y + (y_a + y_b)X + c_a c_b$.
 
 
-\item A defines $z_a = XY + (x_a y) + (y_a x) + c_a$. B defines $z_b = XY + (x_b y) _ (y_b x) + c_b)$
-  $z = z_a XOR z_b = x AND y$ (argue by looking at $x AND y$, and terms in $z_a, z_b$).
+ A defines $z_a = XY + (x_a y) + (y_a x) + c_a$. B defines $z_b = XY + (x_b y) _ (y_b x) + c_b)$
+  $z = z_a + z_b = x \cdot y$ (argue by looking at $x \cdot y$, and terms in $z_a, z_b$).
 
 
-\item Generalizing this: We need to check if exactly 1 bit is toggled, because for pedagogy we had assumed that only
+ Generalizing this: We need to check if exactly 1 bit is toggled, because for pedagogy we had assumed that only
   bit will be toggled. Now, we will assume that either 0 bits, 1 bits, 2 bits, or 4 bits are toggled. We will
   handle the 3 bit toggle case separatey, in the next pedagogy section.
   that 
-  So, if we XOR all the 8 bits, the answer should be 1. As long as a *minority* of bits are toggled (1 bit is toggled from 4 bits),
-  then the XOR of all the 8 bits is a correct check for whether only 1 bit is toggled.
+  So, if we \texttt{XOR} all the 8 bits, the answer should be 1. As long as a *minority* of bits are toggled (1 bit is toggled from 4 bits),
+  then the \texttt{XOR} of all the 8 bits is a correct check for whether only 1 bit is toggled.
 
-  That is, consider (sum r_i + sum s_i). This will be 1 if (1, 3) bits are toggled. However, we can only have 1 bit is
+  That is, consider $(\sum r_i + \sum s_i)$. This will be 1 if (1, 3) bits are toggled. However, we can only have 1 bit is
   toggled because of our assumption that 3 bits are not toggled.
 
   A publishes $sum r_i$, B publishes $sum s_i$. Publish $sum r_i, sum s_i$. find $sum r_i + sum s_i$.
 
 
-\item Case left: 3 bits are toggled. If 1 bit was toggled, answer will be correct. If 3 bits are toggled, answer is wrong.
+ Case left: 3 bits are toggled. If 1 bit was toggled, answer will be correct. If 3 bits are toggled, answer is wrong.
   If we had 0, 2, 4 bits toggled, then we would not have proceeded with the protocol.
 
   Assume $A$ sent $4n$ bits to $B$. So, we are sending *several groups of 4* Of the $n$, some are right, some are wrong.
@@ -120,7 +144,7 @@ Protocol
   when $P(1-out-of-four-flipped | 1 or 3 are flipped) > 2 * P(three-out-of-four | 1 or 3 are flipped)$
 
 
-\item Alternate proof, distillation:
+ Alternate proof, distillation:
   We will show that $P(1-out-of-four-flipped | 1 or 3 are flipped) P(three-out-of-four | 1 or 3 are flipped)$ is sufficient.
   (Sid note: 1-out-of-4 implies the channel ``counts'' in some sense. This feels weirdly unphysical).
 
@@ -129,32 +153,25 @@ Protocol
 
   Given this oracle, we construct a ``distillation'' process.
 
+\subsubsection{Show that $\langle a, b, c \rangle$ is such that $c = a \cdot b$}
+
+$\langle a, b c> = <a_a + a_b, b_a + b_c, c_a + c_c \rangle$
+$\langle a, b, c> = <r_0 + s_0, r_1 + s_1, r_2 + s_2, r_3 + s_3 \rangle * M$
+
+However, we know that $RandVec = \langle r_0 + s_0, r_1 + s_1, r_2 + s_2, r_3 + s_3 \rangle$ have *only* one 1, all other bits 0.
+So, $\langle a, b, c \rangle = RandVec * M$ is a random row for M (think of what $RandVec$ does on $M$).
+
+Howver, $M$'s rows is a truth table for \texttt{AND}! So, $c = a \cdot b$.
+
+We have now constructed **secure random \texttt{AND}**
 
 
-  
-
-
-\end{itemize}
-
-\subsubsubsection{Show that $<a, b, c>$ is such that $c = a AND b$}
-
-$<a, b c> = <a_a XOR a_b, b_a XOR b_c, c_a XOR c_c>$
-$<a, b, c> = <r_0 + s_0, r_1 + s_1, r_2 + s_2, r_3 + s_3> * M$
-
-However, we know that $RandVec = <r_0 + s_0, r_1 + s_1, r_2 + s_2, r_3 + s_3>$ have *only* one 1, all other bits 0.
-So, $<a, b, c> = RandVec * M$ is a random row for M (think of what $RandVec$ does on $M$).
-
-Howver, $M$'s rows is a truth table for AND! So, $c = a AND b$.
-
-We have now constructed **secure random AND**
-
-
-Now, how do we convert random secure AND to an AND of our choice?
+Now, how do we convert random secure \texttt{AND} to an \texttt{AND} of our choice?
 
 
 
 
-\subsubsubsection{Detour for AND with respect to XOR}
+\subsubsection{Detour for \texttt{AND} with respect to \texttt{XOR}}
 $x * y =? ((x + a) * (y + b)) + (x(y + b)) + (y(x + a)) + ab$ over $GF_2$.
 Proof:
 $RHS = xy + ya + ab + xy + xb + yx + ya + ab = xy$
@@ -165,3 +182,5 @@ $RHS = xy + ya + ab + xy + xb + yx + ya + ab = xy$
 
 Reasoning: we did this over noise. We do not actually need noise. Rather, we can
 use any source of nondeterminism, such as race conditions, to perform this protocol over.
+
+\end{document}
