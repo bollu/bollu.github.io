@@ -1,0 +1,90 @@
+\section{Cryptography from channel noise, without 1-way functions}
+
+\subsection{Introduction Kannan philosophy}
+If the insecure channel connecting $S$ and $R$ is noisy, we can have secure communication.
+This is possible because we have two adversaries - The actual adversary and the noise
+in the channel. Intuitively, these are eavesdroppers of each other.
+
+The ``noise injector'' is disrupting information that the eavesdropper wishes to understand.
+
+So, can we design a channel that disrupts the eaversdropper more than $R$?
+
+Initially, this was not considered possible, because how in the world would we harness noise?
+
+Somehow, noisy channels are not ``weaker'' than noiseless channels. Noisy channels
+can be stronger than noiseless channels.
+
+
+We have already constructed secure XOR when we built a secure machine over an insecure machine.
+
+\subsection{Noise for secure `AND`}
+
+
+```
+A ---noisy channel--- B
+```
+
+A's memory consists of two bits, X_a, Y_a. B's memory has X_b, Y_b.
+
+X = X_a XOR X_b
+Y = Y_a XOR Y_b
+
+Z = Z_a XOR Z_b
+
+We need $Z = X AND Y$.
+
+$(Z_a XOR Z_b) = (X_a XOR X_b) AND (Y_a XOR Y_b)$
+
+In the OT protocol, we used to pick $Z_a$ at random, we have to pick $Z_b$ correctly so that stuff works out.
+We enumerated possibilites for $Z_b$, and then made B pick the right index at $Z_b$ using OT.
+However, for this, we need one-way functions.
+
+
+\subsubsection{First simplification (that will be removed) - Special kind of noise}
+
+Noise characterization: If I send 4 bits, *exactly* one of them will be toggled.
+(This is for pedagogical simplification).
+
+Protocol
+
+\begin{itemize}
+\item A sends 4 random bits: $R = < r_0, r_1, r_2, r_3 >$ to B.
+\item B receives these four bits - $ S = < s_0, s_1, s_2, s_3 >$.
+\item The following invariant holds: Consider the bitvector:
+  $ M =  <r_0 XOR s_0, r_1 XOR s_1, r_2 XOR s_2, r_3 XOR s_3 > $. Exactly one of the bits in this new bitvector is 1.
+
+  Locally, we have memory in A $r_0 r_1 r_2 r_3$, in B $s_0 s_1 s_2 s_3$. However, in the ``virtual machine'', we have
+  the *new* memory $M$ with a which has a block of memory 4 bits long, with exactly one (unknown) bit as 1,
+  other bits are 0.
+
+\item Consider the matrix $M = 0 0 0 | 0 1 0 | 1 0 0 | 1 1 1$. M is public.
+  A computes $R * M = <a_A, b_A, c_A>$ (everything is happening in $GF_2$). This is also stored in memory.
+  B compures $S * M = <a_B, b_B, c_B>$. Something should have happened in our ``virtual memory of the machine'', with the
+  new bits $<a, b, c>$.
+
+  We will now prove that $c = a AND b$ $c = c_a XOR c_b$. $a = a_A XOR a_b$, $b = b_A XOR b_B$.
+
+  We got the AND of some *random* bit, but not of the original *z*. We will show how to convert solution of $c$ to solution of $z$
+\end{itemize}
+
+\subsubsubsection{Show that $<a, b, c>$ is such that $c = a AND b$}
+
+$<a, b c> = <a_a XOR a_b, b_a XOR b_c, c_a XOR c_c>$
+$<a, b, c> = <r_0 + s_0, r_1 + s_1, r_2 + s_2, r_3 + s_3> * M$
+
+However, we know that $RandVec = <r_0 + s_0, r_1 + s_1, r_2 + s_2, r_3 + s_3>$ have *only* one 1, all other bits 0.
+So, $<a, b, c> = RandVec * M$ is a random row for M (think of what $RandVec$ does on $M$).
+
+Howver, $M$'s rows is a truth table for AND! So, $c = a AND b$.
+
+We have now constructed **secure random AND**
+
+
+Now, how do we convert random secure AND to an AND of our choice?
+
+
+
+
+
+
+
