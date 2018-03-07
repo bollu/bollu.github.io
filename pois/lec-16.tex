@@ -1,0 +1,304 @@
+\documentclass[11pt]{article}
+%\documentclass[10pt]{llncs}
+%\usepackage{llncsdoc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\evensidemargin=0.20in
+\oddsidemargin=0.20in
+\topmargin=0.2in
+%\headheight=0.0in
+%\headsep=0.0in
+%\setlength{\parskip}{0mm}     
+%\setlength{\parindent}{4mm}
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{8.5in}
+%\leftmargin -2in
+%\setlength{\rightmargin}{-2in}
+%\usepackage{epsf}
+%\usepackage{url}
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newtheorem{lemma}{Lemma}
+\newtheorem{observation}{Observation}
+\newtheorem{proof}{Proof}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+
+\def\qed{$\Box$}
+\def\proof{\textit{Proof. }}
+\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+\section{Agreement in a distributed system}
+
+\section{Introduction: Philosophy of today's class}
+This is the beginning of ``clash of philosophies''.
+Agreement in a distributed system can be impossible! (which is why it is part of this course).
+If one-way-functions exist, then much more is possible.
+
+Different adversaries:
+\begin{itemize}
+\item Computational Adversary - All modern crypto
+\item Practical Adversary - Noise based crypto (last class)
+\item Natura Adversary - Quantum crypto (after mid-2)
+\item Philosophical Adversary - ??? (So kannan, man)
+
+  Our problem is a fundamental problem in distributed systems. Problems of agreement abound.
+  There are instances where distrubuted systems textbooks give up, and give proofs of no-solutions.
+  However, this is POIS class, so impossibility proofs are where we start our trade.
+
+  
+  Djikstra's paper in 1980 where consensus is not possible: three nodes connected in a synchronous network.
+  We want to simulate a broadcast channel over P2P. That is, we wish to broadcast information over P2P.
+
+  The problem is called ``byzantine agreement problem''.
+
+  Each party has a single bit of input $x_i$. Each will give a single bit of output $b_i$ ($i \in \{ 1, 2, 3 \}$).
+  Agreement  requirement - All non-faulty nodes have the same output (all $b_i$ are equal).
+
+  If this was the \textit{only goal}, then this is trivial. We just have all of them output a constant.
+  Validity requirement - The output of all non-faulty nodes is equal to the input of \textit{some} non-faulty node.
+
+
+  We can simulate broadcast. Run the protocol that has agreement and valitiy. We want to simulate broadcast. We send $0$ to everybody,
+  and then simualate the protocol that we have crafted. Since everyone has started with the same input, everyone will end with the
+  same output.
+
+  Is this actually such a tough problem? Why can't we just say ``send your input to everybody''? Why is this not equivalent to simulating
+  a broadcast channel?
+
+
+  Let's see what happens. Let $A$ be a source. Say $A$ sends message $m$ to $B$ and $C$. this looks like $A$ has broadcasted message $m$.
+  If this were happening over a \textit{broadcast channel}, then $m$ would have been received by $B$ and $C$.
+
+  However, on a unicast channel, it is possible that $A$ fails between $B$ receiving the message and $C$ receiving the message.
+  Now, this is \textit{not broadcast}.
+
+  We need broadcast to be atomic - either everyone gets the message, or no one gets the message!
+
+  assume $A$ is adverserial: that is, $A$ is able to send $m_1$ to $B$, $m_2$ to $C$, $m_1 \neq m_2$. So, we need to make sure
+  that people can't fuck up broadcast over unicast. However, if we had a physical broadcat channel, this fuck up can't happen.
+
+
+  So, the problem \textit{is complicated}. We wish to simulate an atomic broadcast channel over a unicast channel, given
+  adverserial nodes.
+\end{itemize}
+
+\section{Three nodes, one of them is byzantine faulty, no way to have both agreement and validity}
+\subsection{Intutition}
+Say $A$, which is byzantine faulty sends $0$ to $B$ and $1$ to $C$. $B$ and $C$ now exchange values,
+they realise agreement has not actually happened.
+
+If they \textit{know} that $A$ was faulty, then they could agree that A was faulty.
+
+However, $B$ does not know whether $C$ is faulty or not. It could be that $A$ had sent
+$0$ to $C$, but $C$ was faulty and thus chose to broadcast $1$ to $B$.
+
+So, $B$ only knows that \textit{one of} $A$ and $C$ is faulty.
+Similarly, $C$ only knows that \textit{one of} $A$ and $B$ is faulty.
+
+\subsection{Proof}
+Let $\Pi$ be a byzantine agreement protocol for this case.
+
+Running with inputs $x_1, x_2, x_3$, we get outputs $b_1, b_2, b_3$, we have the guarantee that
+1. all b_i are equal
+2. b_i is equal to some x_i
+
+
+We now show that such a $\Pi$ cannot exist.
+
+The original proof is difficult. Then, at MIT, a new proof technique came out in distributed systems
+which proved this. (Proof is called "hexagon proof"). 
+
+Proof strategy:
+\begin{itemize}
+    \item Given that $\Pi$ is a byzantine agreement protocol.
+    \item We create some other problem with some other network, and show that if $\Pi$ is a byzantine
+        agreement protocol in this network, then that protocol should do *something* in the other network.
+    \item We show that the protocol does not do anything (is not consistent)
+\end{itemize}
+
+
+Consider a network of six nodes in a ring topology (hexagon) (Call this network $Hex$)
+Call the original network $Tri$.
+
+The code delegated to three parties in $Tri$ is $\Pi = < \Pi_1, \Pi_2, \Pi_3>$.
+
+$\Pi'$ is the program for $Hex$.  $\Pi' = <\Pi_1, \Pi_2, \Pi_3, \Pi_1, \Pi_2, \Pi_3>$
+(That is, node $i$ gets program $\Pi'_i$).
+
+
+In $Tri$, $\Pi_1$ got messages from $\Pi_2 , \Pi_3$. This is
+the same structure in $Hex$. So, structurally, the networks are the same.
+Syntactically, the code will work in $Hex$ - because the
+"local" network topology is the same. So, $\Pi_$ running at node $1$ cannot 
+distinguish if it is at $Tri$ or $Hex$.
+
+Proof by induction on rounds. At round $0$, we cannot distinguish since
+structurally, the locales are the same. Then, induction on rounds.
+
+We now show that $Hex$ is an inconsistent protocol.
+
+Input $0$ for nodes $1, 2, 3$, $1$ for nodes $4, 5, 6$.
+
+
+Consider $(2, 3)$ in $Tri, Hex$. $(2, 3)$ in $Tri$ will be talking to $1$.
+
+Say $1$ is faulty in $Tri$ (we can do this since Pi is a BA protocol).
+$1_tri$  will send what goes from $4_hex$ to $3_hex$ to $3_tri$.
+$1_tri$  will send what goes from $1hex$ to $2_hex$ to $2_tri$.
+
+So, $2, 3$ do not know if there are working in $Tri$ or in $Hex$, because
+the messages are the same!
+
+We know that in $Tri$, there is a BA protocol, so it should terminate.
+Moreover, it should terminate with $0$ since we assumed that the protocol
+is a BA protocol.
+
+Also, this means that output will be $0$ in $Hex$ for $2, 3$ as well, since
+they are structurally isomorphic.
+
+
+Now, let us look at $4, 5$ in $Hex$ (which has protocols $\Pi_1, \Pi_2$).
+Let us say that $3'$sends $\alpha$ to $2'$ and \beta to 1'.
+
+This is equivalent to a faulty 3 in Tri.
+
+We know that the output must be 1 for 1', 2' from our starting conditions.
+
+
+Now, looking at $(1, 3)$, once again, if 2 is faulty, make outputs the
+same way such that they can't distinguish if they are running in Tri or in Hex.
+
+In this case, 1' will have to output 0, since 3 outputs 0. However,
+in the last case, we had agreed that 1' would have to output 1.
+
+Conditions:
+- 3 outputs 0
+- 1' outputs 1
+- output(3) = output(1').
+
+Hence, such a $\Pi'$ cannot exist. Hence, $\Pi$ cannot exist.
+
+
+\section{Clash of philosophies}
+
+\subsection{Distributed systems spirit}
+We use the term "non faulty" when defining Agreement, Validity. Originally,
+the definition was, "if I gave a node \Pi, then it should execute \Pi,
+not something else (\Pi')".
+
+Kannan - anyone who contributes to the execution deserves the output
+
+\subsection{Clash}
+
+Assume there is a player who is participating in two programs, and
+is non-faulty.
+
+Suppose it is a byzantine agreement program (1 out of 3), which is impossible.
+
+We force everyone to digitally sign their messages. Now, impossibility becomes
+possible.
+
+Now, if I was supposed to run Pi (which says sign your messages), so I run it.
+
+
+In the background, my friend asks me to share my secret key with him, which I do.
+This person is also part of the BA network, which causes my key to be revealed,
+and thus the adversary can forge my signature, thus the protocol breaks.
+
+
+Should the node in question be called faulty or non-faulty?
+
+Assume we call this node faulty. This makes sense, because he is breaking our
+crypto assumptions of key-privateness.
+
+However, distributed systems is of the opinion that anyone who shares their
+resources must reap the rewards. So, from a distributed systems viewpoint,
+the node is non-faulty.
+
+Now, the notion of faulty and non faulty depends on the implementation detail!
+
+
+\subsection{Non modular attacks}
+Assume a byzantine agreement protocol between 3 people. It solves the problem
+using digital sinatures. Call this protocol $\Pi$.
+
+
+They're running two byzantine agreement protocols in parallel.
+
+Call the parties "1 = 1', 2 = 2', 3 = 3'", so we have $\Pi$ running
+between $1, 2, 3$, and another instance of $\Pi$ running between
+$1', 2', 3'$. (makes sense, two agreement protocols are running in parallel).
+
+
+Let the input be $0$ for (1, 2), and $3$ is corrupt in $\Pi$.
+
+Let the input be $1$ for (1', 3') and $2'$ is corrupt in $\Pi'$.
+
+
+Adversary can fail \textit{both} protocols (Why?)
+
+The adversary has access to the private key of 2' (which is the private key
+of 2 as well). Since all processes receive the same private key, the adversary
+in 2' has access to the private key of 2.
+
+For example, 2' creates (1, signed 1). The adversary in 2' will drop the packet
+that 2 tried to send to 1 (which was supposed to be (0, signed 0)),
+and sends the (1, signed 1).
+
+\subsection{Processes}
+
+We assume that 2 processes do not have the same PID.
+
+
+Consider three distributed processes $1, 2, 3$. We have no global PID
+assuming one of these are faulty, since we showed that it is impossible to agree
+on even a single bit.
+So now, we have three PIDs, $PID_1, PID_2, PID_3$.
+
+
+Let us say server, client are connected across two ports P, P'. In theory,
+an adversary can send messages from P to P', and P' to P (flip P and P').
+
+
+\subsection{Correctness versus Security}
+
+Correct HW on top of a correct OS on top of a correct compiler on top of a 
+correct program will give us a correct program.
+
+In seurity,
+Secure HW on top of a secure OS on top of a secure compiler on top a secure
+program will give us a secure program (?)
+
+This is indeed untrue.
+Consider the distributed process with same PIDs case. the attack is neither
+fully OS based nor network based. the router can arbitrarily swap PIDs 
+acting as an adversary. We cannot construct consensus due to the byzantine
+agreement theorem we have.
+
+We can have cross-model attacks.
+
+\section{Crypto, enter the stage}
+
+The idea is that the adversary needs to simulate the hexagon protocol to 
+construct a contradiction. However, if we can ensure that this process
+is computationally intensive, then life is chill, because we cannot
+have such an adversary.
+
+So, we force people to sign their messages, so that the adversary
+can't simulate.
+
+
+
+
+
+
+
+
+
+\end{document}
