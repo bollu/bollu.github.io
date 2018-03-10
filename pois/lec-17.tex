@@ -1,0 +1,246 @@
+\documentclass[11pt]{article}
+%\documentclass[10pt]{llncs}
+%\usepackage{llncsdoc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\evensidemargin=0.20in
+\oddsidemargin=0.20in
+\topmargin=0.2in
+%\headheight=0.0in
+%\headsep=0.0in
+%\setlength{\parskip}{0mm}     
+%\setlength{\parindent}{4mm}
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{8.5in}
+%\leftmargin -2in
+%\setlength{\rightmargin}{-2in}
+%\usepackage{epsf}
+%\usepackage{url}
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newtheorem{lemma}{Lemma}
+\newtheorem{observation}{Observation}
+\newtheorem{proof}{Proof}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+
+\def\qed{$\Box$}
+\def\proof{\textit{Proof. }}
+\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+\section{Mid 2 topics}
+
+\subsection{1. Hashing schemes}
+\begin{Itemize}
+\item Hashing schemes
+\item Collision Resistance
+\item Birthday attacks
+\item Merkle Damgard Transform
+\item DLP based design of collision resistant hash functions
+\end{itemize}
+
+\subsubsection{Questions that are possible}
+What is wrong on appending / prepending the length to merkle-damgard?
+
+\subsection{2. Public key crypto}
+\begin{Itemize}
+\item Key establishmend using diffie-hellman
+\item El-gamal
+\item RSA
+\item Attacks on ``textbook RSA''
+\item Padded RSA (a version of which is the current standard)
+\end{itemize}
+
+
+\subsection{Questions possible}
+Show that El-gamal is CPA secure.
+Attacks on textbook RSA - chinese remainder theorem based attack.
+
+
+\subsection{3. Oblivious Transfer}
+\begin{itemize}
+\item From any 1-way permutation.
+\item Applied it to perform general secure two-party computation.
+\item constructed secure XOR and secure AND.
+\end{itemize}
+
+
+\subsection{Questions possible}
+Solve Yao's millionaire problem.
+
+\subsection{4. Secret Sharing}
+\begin{itemize}
+\item Shamir's algorithm (points on a polynomial of degree $t$)
+\item General multiparty secure computation (Genero Rabin Rabin - 1998) (BGW (something gold waterson) - 1988).
+\end{itemize}
+
+\subsection{Questions possible}
+\begin{itemize}
+\item Given shares, reconstruct secret
+\item  In the shared domain, construct sharing schemes like what we have constructed.
+\end{itemize}
+
+\subsection{5. General access structures}
+\item Secret sharing schemes for monotone access structures
+\item Computational secret sharing
+\end{itemize}
+
+
+\subsection{Questions possible}
+\begin{itemize}
+\item Construct weighted shares in the access structure -
+      Some people can get more points than others. This is kind of like
+      solving for an access structure. Not all access structures can be construced using a
+      weighted shamir scheme (proof?)
+\item Computationally secret sharing scheme: computationally bounded adversary?
+\item 
+\end{itemize}
+
+\subsection{6. Secure communication over noisy channel}
+\begin{itemize}
+\item General 2-party communication without invoking 1way functions.
+\item noise based oblivious transfer (since we have 2-party communication).
+\end{itemize}
+
+\begin{itemize}
+  \item Once we have OT over the channel, solve stuff over the noise.
+  \item ``Byzantine agreement over noisy channel'' - If this is possible, then publish! (One-out-of-3 agreement).
+        We know that this is possible, from the fact that we can create OT from noise.
+\end{itemize}
+
+\subsection{7. Byzantine agreement}
+\begin{itemize}
+\item Impossibility of 1-out-of-3 case
+\end{itemize}
+
+
+\section{Digital Signatures}
+
+We have $(M, \sigma_k(m))$. $\sigma_k(m)$ is the digital signature.
+
+Appending our signature is *not* going to stop people from copying the signature. So, we need our signature to be
+message dependent. That way, a message $M$ relates to the signature of the message.
+
+The world currently uses tree based signatures, Kannan does not find this elegant. So, we will construct RSA
+based signatures since they are elegant.
+
+\subsection{Digital signatures are impossible}
+We show that byzantine agreement in 1-out-of-3 is impossible. Given digital signatures, this would have been possible.
+Hence, digitial signatures are not actually possible.
+
+
+
+\subsection{Defining digital signatures}
+Digital signature scheme = $<Gen, Sign, Vrfy>$
+$Gen(security param) -> <sk, pk>$ (sk = secret key, pk = public key)
+$Sign(M, sk) -> \sigma$
+$Verify(pk, M, \sigma) -> {yes, no}$
+
+Correctness: if message is signed by the secret key, verify should say yes.
+Security: Adversary has access to public key and the security parameter, and the signing algorithm.
+          Let Q be the set of all queries that the adversary makes to the signing oracle.
+Adversary is supposed to output $<M, \sigma>$ such that the probability such that
+$Verify(M, \sigma) = Yes$ is negligible if m \notin Q.
+
+That is, without directly asking for the message's signature, it is not possible to forge the signature.
+
+
+
+\subsection{Computationally secure Digital signatures - RSA based}
+
+$RSA_{Sign} = m^d (mod N)$
+$RSA_{Verify}(m, \sigma), \sigma ^e mod N =? m$
+
+Encrypt using secret key, decrypt using public key.
+This does not satisfy the actual definition, however, since there are some interesting attacks.
+
+
+\subsubsection{Forging signatures}
+Adversary chooses some random $\rho$. Computes $\rho^e (mod N)$.
+Now, set $m = \rho^e (mod N), \sigma = \rho$. This passes RSA.
+
+We got a (message, signature) that passes verification. This is a valid attack, but is sort of pointless,
+since we have no control over the message.
+
+\subsubsection{Attack on products of messages}
+
+IF we know that $m1, \sigma_1$, $m_2, \sigma_2$ are valid, then
+$m_1 m_2, \sigma_1 \sigma_1$ both pass.
+
+We know that:
+
+\begin{align}
+m_1^d (mod N) &= \sigma_1 \\
+m_2^d (mod N) &= \sigma_2 \\
+\text{Hence, } (m_1 m_2)^d (mod N) &= \sigma_1 \sigma_2
+\end{align}
+
+This also breaks our security model, since we can write $m = m_1 m_2$, and then construct $\sigma$
+from $\sigma_1 sigma_2$.
+
+\subsection{Securing textbook RSA - Hash-and-sign paradigm}
+
+If we have a determinisitic hashing algorithm that has homomorphism properties,
+then we simply hash the data and then sign it.
+
+There is a generic proof in the textbook.
+
+\subsubsection{Hashed RSA}
+
+$\sigma = Hash(m)^d (mod N)$
+$Verify(m, \sigma) Hash(m) =? \sigma^e (mod N)$
+
+The attacks we had before would not work, since the hash is effectively create a ``barrier'' for the homomorphism.
+
+\subsubsubsection{Attack on products of messages - fails on Hashed RSA}
+
+IF we know that $m1, \sigma_1$, $m_2, \sigma_2$ are valid, then
+$m_1 m_2, \sigma_1 \sigma_1$ both pass.
+
+We know that:
+
+\begin{align}
+H(m_1)^d (mod N) &= \sigma_1 \\
+H(m_2)^d (mod N) &= \sigma_2 \\
+\text{However notice that, } (H(m_1) H(m_2))^d (mod N) &= \sigma_1 \sigma_2
+\end{align}
+
+We cannot rewrite this as H(m_1 m_2), since H is not homomorphic.
+
+We have a proof that says that if H is indistinguishable from random, then hashed RSA works.
+
+\section{Certificates}
+The \textix{verification is public}. Therefore, it becomes ``publically transferable''.
+
+If we trust somebody, and we want to transfer his trust to someone else, how do we do this?
+
+
+I have some data with me, there is someone I trust, CA (certificate authority).
+
+
+There is a random person, local browser, who is talking to some bank Z.
+
+how do we know that we were routed to Z's web page?
+
+Z publishes their public key. Adversary(A) also claims they use Z's public key.
+
+How do we know whose public key is correct?
+
+The digital certificate of Z consists of: [Z's public is key is <something>, CA signature].
+
+
+The adversary will have a certificate of the form: [Z's public key is <something>, CA signature']
+
+So, the idea is that the adversary cannot have a signed digitial certificate.
+
+\subsection{PK infra}
+a public key infra is just a collection of CAs and their cooresponding PKs. That is, we need a group of people
+to trust initially, who will allow us to trust others.
+
+
+\end{document}
