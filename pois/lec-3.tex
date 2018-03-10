@@ -1,4 +1,4 @@
-\section{Information Theory}
+\chapter{Information Theory}
 
 \subsection{shannon's perfect secrecy (1949)}
 Shannon framed a secrecy theory based on information theory. If no
@@ -108,7 +108,7 @@ $P[C=c|M=m_1] = P[C=k XOR m_1] = P[K=c XOR m_1] = \frac{1}{2^k}$
 
 We pick the key independent of the message, so it doesn't matter what the message is.
 
-\subsubection{Limitations of one-time-pad}.
+\subsubsection{Limitations of one-time-pad}.
 
 Since we need to send the key securely, we will need to send the key over the slow secure channel. We can
 send the message over the insecure channel. However, to decrypt the $nth$ insecure bit, we need the $nth$
@@ -149,7 +149,7 @@ Hence, we will need to send as much data over the secure channel as long as the 
 
 \section{Tangent: Entropy, Expectation, random kannan}
 \subsection{Expectation}
-$E[x] = \Sum_x x \cdot p(X=x)$
+$E[x] = \sum_x x \cdot p(X=x)$
 
 
 \subsection{Entropy}
@@ -160,7 +160,7 @@ We can use $log(n)$ bits to store the index.
 What is the expected number of bits to store a message space with $n$ messages?
 Say $m_i$ occurs with probability $p_i$.
 
-$E[#bits to store M] = \Sum p_i \cdot ixlength(m_i)$
+$E[\#bits to store M] = \sum p_i \cdot ixlength(m_i)$
 
 The ones where $p_i$ is high, we want $ixlnegth_i$ to be small for an efficient compression scheme.
 Index the thing that occurs most often with the least bits.
@@ -173,8 +173,8 @@ Eg: for a message with $p = \frac{1}{4}$, use $2$ bits to represent ix.
 Eg: for a message with $p = \frac{1}{n}$, use $n$ bits to represent ix.
 Eg: for a message with $p = k$, use $\frac{1}{k}$ bits to represent ix.
 
-$\E{#bits to store M} =  \sum_{i}p_i \log(\frac{1}{p_i})$.
-$\E{#bits to store M} = - \sum_{i}p_i \log(p_i)$.
+$E{\#bits to store M} =  \sum_{i}p_i \log(\frac{1}{p_i})$.
+$E{\#bits to store M} = - \sum_{i}p_i \log(p_i)$.
 $\text{Entropy} = - \sum_{i}p_i \log(p_i)$.
 
 

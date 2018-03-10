@@ -1,20 +1,5 @@
-%% What is the document class I need?
-\documentclass{article} 
-%% Some recommended packages.
-\usepackage{booktabs}   %% For formal tables:
-                        %% http://ctan.org/pkg/booktabs
-\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
-                        %% http://ctan.org/pkg/subcaption
-\usepackage{enumitem}
-\usepackage{minted}
-\newminted{fortran}{fontsize=\footnotesize}
 
-\usepackage{xargs}
-\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
-
-
-\begin{document}
-\section{Lecture 2 - More philosophy - Amazing Advantages of Additional Adversity}
+\chapter{Lecture 2 - More philosophy - Amazing Advantages of Additional Adversity}
 
 Textbook is
 \begin{itemize}
@@ -40,9 +25,6 @@ on $f$ being secure.
 
 \subsection{}
 
-\end{document}
-
-
 \subsection{Shift Cipher}
 
 We can brute force this, we can brute force keys.
@@ -65,7 +47,7 @@ So, large key space is not enough.  We need to ensure that frequency is also fud
 
 \subsection{Monoalphabetic Substitution Cipher}
 
-Create a bijection $\{ f : Letter \larrow Letter \}$.
+Create a bijection $\{ f : Letter \leftarrow Letter \}$.
 This has a large key space, $\{ 26! \}$.
 
 
