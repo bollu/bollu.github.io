@@ -1,0 +1,1 @@
+- Link to `gluPerspective` (symmetric matrix) derivation [here](https://unspecified.wordpress.com/2012/06/21/calculating-the-gluperspective-matrix-and-other-opengl-matrix-maths/).
