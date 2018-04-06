@@ -98,9 +98,99 @@ Now, we need to know `L(nextpoint)`.
 Notice that `L(topright)` = `L(pcur + (1, 1))` = `L(pcur) + a + b`.
 Similarly, `L(right) = L(pcur + (1, 0)) = L(pcur) + a`. All of these computations are integral.
 
+##### Alternate way of thinking about computing `L(M)`
 
-## 
+Note that we only need a float division for `L(M) = L(pcur + (1, 1/2)) = L(pcur) + a + b/2`. However, notice that we only care about the *sign* of `L(M)`. Hence, we can compute `2L(M)` with no problem at all!. So, we can choose to use `2L(M) = 2a + b`, which gets rid of the pesky division by 2 without having to mess with the line equation. This will change our increments of `L(M)` into `2a` and `2(a + b)`.
 
+
+So, in general, rather than storing `L(p)`, we will store `2L(p)`, since we only care aobut the sign of `L(p`). Since `L(p)` is linear, `2L(p) + 2L(q) = 2L(p + q)`, which works out.
+
+##### pseudocode (write this up later)
+
+
+
+# Rasterisation 2
+## drawing patterened lines
+use a bitmask to determine if we wish to draw a line or not
+
+## Shared points and edges in a polygon
+We may have common points in edges in a polygon. We will wind up drawing them
+twice. So, we treat all lines as half-open: `[begin, end)`,
+
+## Clipping
+We need to perform clipping to reduce the amount of time we spend drawing.
+
+##### Scissoring ( TODO: fill this up)
+Doing clipping and scan-conversion at the same time.
+
+##### Point clipping
+
+Let the point be at `(x, y)`. Let the clip rect be `(xm, ym), (xM, yM)`. Check for point in AABB (`xm <= x <= xM)`, ditto for `y`.
+
+We can use point clipping to clip anything, to check this condition during scan conversion. However, this is expensive! So, we can come up with better strategies to clip lines.
+
+##### Line clipping
+
+- [Cohen sutherland](https://www.geeksforgeeks.org/line-clipping-set-1-cohen-sutherland-algorithm/)
+
+##### Clipping polygons
+
+- Sutherland Hodgman algorithm.
+
+## Draw polygons
+- Scan line algorithm.
+- [scan line corner cases with proper explanation](http://www.cse.iitm.ac.in/~vplab/courses/CG/PDF/SCANLINE.pdf)
+- Better source with algorithmic details: [link here](https://hackernoon.com/computer-graphics-scan-line-polygon-fill-algorithm-3cb47283df6)
+
+
+### Scan line algorithm 
+
+##### Edge bucket
+```cpp
+struct EdgeBucket {
+    int ymax;
+    int ymin;
+    int curx;
+    int slopesign;
+    int deltaX; // absolute difference between edge's vertex points
+    int deltaY; // absolute difference between edge's vertex points
+    int sum; 
+}
+```
+##### Edge table
+contains all edges that make up the polygon.
+
+- Vertices ordered left to right.
+- Edges maintained in *increasing `yMin` order*
+- edges are removed from ET once the `ActiveList` finishes processing them.
+- algorithm is done filling in polygon when all edges are removed.
+
+##### Active List
+- Edges pushed into `ActiveList` when the edge's yMin = y of current scan line
+- Edges will always be put into the `ActiveList` in pairs.
+- Edges are maintained in increasing `x` order.
+- resorted after every pass.
+
+
+##### Algorithm:
+
+1. Create ET
+    1. Process the vertices list in pairs, start with [numOfVertices-1] and [0].
+    2. For each vertex pair, create an edge bucket
+2. Sort ET by yMin
+3. Process the ET
+    1. Start on the scan line equal to theyMin of the first edge in the ET
+    2. While the ET contains edges
+        1. Check if any edges in the AL need to be removes (when yMax == current scan line)
+            1. If an edge is removed from the AL, remove the associated the Edge Bucket from the Edge Table.
+        2. If any edges have a yMin == current scan line, add them to the AL
+        3. Sort the edges in AL by X
+        4. Fill in the scan line between pairs of edges in AL
+        5. Increment current scan line
+        6. Increment all the X's in the AL edges based on their slope
+            1. If the edge's slope is vertical, the bucket's x member is NOT incremented.
+
+# Visibility
 
 
 # Lighting
@@ -110,3 +200,5 @@ Blinn phong equations:
 - diffuse: K_d * (light, normal)
 - specular: `cos(theta)^k = (eye . normal)^k, k = specular coefficient`
 - ambient: 
+
+# Raytracing
