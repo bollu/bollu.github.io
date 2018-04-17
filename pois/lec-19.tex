@@ -1,0 +1,93 @@
+\documentclass[11pt]{article}
+%\documentclass[10pt]{llncs}
+%\usepackage{llncsdoc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\evensidemargin=0.20in
+\oddsidemargin=0.20in
+\topmargin=0.2in
+%\headheight=0.0in
+%\headsep=0.0in
+%\setlength{\parskip}{0mm}     
+%\setlength{\parindent}{4mm}
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{8.5in}
+%\leftmargin -2in
+%\setlength{\rightmargin}{-2in}
+%\usepackage{epsf}
+%\usepackage{url}
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newtheorem{lemma}{Lemma}
+\newtheorem{observation}{Observation}
+\newtheorem{proof}{Proof}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+
+\def\qed{$\Box$}
+\def\proof{\textit{Proof. }}
+\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+\section{Bit commitment and zero knowledge proofs}
+
+Today's impossibility: blinding and yet binding: we need a binding decision to be made, but the
+value that is bound is hidden.
+
+
+\section{Bit commitment}
+
+Commit phase: 
+* Message is hidden.
+* Any change to the message is detectable.
+
+Reveal phase:
+* message is publicly revealed.
+* If we reveal something that is not what we committed, it is detectable.
+
+\section{Zero Knowledge proof}
+Assume we can solve bit-commitment.
+
+``I want to prove I know something, but I don't want to reveal what I know''.
+
+Example, Rand Co. We sell random numbers. Our client goes to court, saying that - how do I know that this
+company is actually selling random numbers? The client's ulterior motive is to expose the program used by Rand Co.
+
+Court would say: Can you prove that you perform random number generation, without revealing the source code?
+
+
+\subsection{Zero knowledge with bit commitment}
+We can prove that we differentiate taste from 1L bottle from that of 2L bottle, without revealing how.
+
+Proof: I enter a locked room. I cannot see outside. I'll ask you to fill a glass of bottle with either 1L
+or 2L. I tell what the water is by drinking it. If I get it correct $n$ times, the odds of that happening was $0.5^n$,
+which is astronomically low to happen by luck.
+
+
+\subsection{Zero knowledge proof for graph 3-coloring}
+
+We now provide a zero knowledge proof system for graph 3-coloring.
+since this is NP-complete, we have a ZKP protocol for all NP.
+
+There is a graph $G$. Prover $P$ tells us that there is a 3-coloring of this graph. We, the
+verifier $V$ wishes to be convinced of this, but $P$ does not wish to reveal the coloring.
+
+We use the following tools:
+
+1. Random permutation of vertices (Graph $H$ that is isomorphic to $G$).
+2. $P$ \textit{commits} the colors of all vertices on the permutation graph, $H$.
+3. $V$ asks to reveal the colour of end end points of any one random edge.
+With probability of \frac{1}{|E|}, $P$ gets caught.
+4. $V$ checks if the edge is properly colored (end vertices have different colors).
+5. If this works, then repeat.
+
+Lemma: IP = PSPACE =? ZKP.
+
+
+
+
+\end{document}

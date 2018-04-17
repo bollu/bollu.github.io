@@ -143,9 +143,25 @@ $\s_i = s_i'$, but $r_i \neq r_i'$. We can use classical error correction on
 the $r_i$'s to deal with this stuff. We do not go this analysis in the lecture.
 
 
+\section{Two qubit systems}
 
+four classical possible outcomes: $\ket{00}$, $\ket{01}$, $\ket{10}$, $\ket{11}$.
+Superposition of all four is allowed.
 
+$\ket{\psi} = a_{00} \ket{00} + a_{01} \ket{01} + a_{10} \ket{10} + a_{11} \ket{11}$.
 
+$\section{$n$ qubit system}
+$n$ qubit system will have $2^n$ classical outcomes - we will need $2^n$ complex amplitudes.
+On the other hand, for am $n$ bit system, we will need, well, $n$ bits.
+
+\section{Why quantum computer?}
+
+Note that a quantum computer runs $2^n$ computations in parallel, samples one of
+them (by nature's choice), and deletes all $2^n - 1$ values.
+
+the argument is that, for a classical computer, even \textit{deleting}
+$2^n - 1$ values will take exponential time. However, we can at least
+exploit this "deleting" property.
 
 
 \end{document}
