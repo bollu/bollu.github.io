@@ -95,7 +95,8 @@ The reason it's all p is because of transitivity. $M_0 = M_1$, $M_1 = M_2$, henc
 \section{Is there a scheme that exists that is perfectly secure?}
 
 \subsection{One time pad}
-$Gen = k <- {0, 1}^n. P[K=k] = \frac{1}{2^n}$.
+$Gen: k = {0, 1}^n$
+$P \lbrack K=k \rbrack = 1 / 2^n$.
 $Encrypt(m, k) = k XOR m. m \in {0, 1}^n$.
 $Decrypt(c, k) = k XOR c. c \in {0, 1}^n$.
 

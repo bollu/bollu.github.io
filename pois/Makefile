@@ -1,3 +1,4 @@
+.PHONY: main.pdf
 main.pdf: *.tex
 	latexmk -pdf main.tex && latexmk -c
 
