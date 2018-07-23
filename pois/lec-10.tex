@@ -21,8 +21,8 @@ communicate with us.
 \item Bob chooses $b$, sends $g^b$ to Alice.
 \item Eve sees $g^b$, cannot find $b$.
 \item Key is $g^{ab} = g^a \cdot g^b$
-\item key for Eve is $g^b^a$ ($g^b$ came from Bob).
-\item Key for Bob is $g^a^b$ ($g^a$ came from Alice).
+\item key for Eve is $g^{b^a}$ ($g^b$ came from Bob).
+\item Key for Bob is $g^{a^b}$ ($g^a$ came from Alice).
 \item Now, they both have the key, while an eavesdropper cannot find the key.
 \end{itemize}
 
@@ -44,8 +44,8 @@ This solves key exchange, but not the way we wanted to. We wanted to *publish* t
   Public key: $<N, e>$
   Private key: $<p, q, d>$
 
-\item Encryption(m) = m^e (mod N)
-\item Decryption(c) = c^d (mod N)
+\item $Encryption(m) = m^e (mod N)$
+\item $Decryption(c) = c^d (mod N)$
 \end{itemize}
 
 \subsubsection{Correctness of RSA}
@@ -57,10 +57,10 @@ This solves key exchange, but not the way we wanted to. We wanted to *publish* t
   = m \text(since ed = (p - 1)(q - 1) = \phi(n))
 \end{align}
 
-\subsubsubsection{$phi(N)$}
+\paragraph{$phi(N)$}
 $phi(N) = pq \text{(all numbers)} - q \text{(multiples of p)} - p \text{(multiples of q)} + 1 \text{(double subtraction of $N$)}$
 
-\subsubsubsection{$a^\phi(n) = 1 (mod n)$}
+\paragraph{$a^\phi(n) = 1 (mod n)$}
 consider the set $S' = {i_1 a , i_2 a, i_3 a, i_\phi(n) a}$, $S = {i_1, i_2, ..., i_\phi(n)}$.
 Show that $S$ and $S'$ are permutations.
 QED. (TODO: how to box?)
@@ -68,21 +68,21 @@ QED. (TODO: how to box?)
 
 However, here, we don't publish the key.
 
-\subsubsubsection{RSA assumption}
+\paragraph{RSA assumption}
 
 Given Encrypted message $m^e (mod N)$, and the public key $<N, e>$ we cannot get $m$.
 
 
-\subsubsubsection{Textbook RSA does not work}
+\paragraph{Textbook RSA does not work}
 \begin{itemize}
 \item RSA is deterministic. Hence, we do not have CPA security.
-\item Small key, small N: If Key is small, then, for example, let $m^3 = N$. Now, we can compute cube root $m < \cuberoot(N)$.
+\item Small key, small N: If Key is small, then, for example, let $m^3 = N$. Now, we can compute cube root $m < \sqrt[3](N)$.
 \item Small key:  $c_1 = m^3 mod (N_1)$. $c_2 = m^3 mod (N_2)$. $c_3 = m^3 mod (N_3)$ We are multi-casting
   this message to two people, both of whom have chosen $3$ as their exponent.
   Use chinese remainder theorem. Find $m^3$ in $0 \leq m^3 \leq N_1N_2N_3$.
 \end{itemize}
 
-\subsubsubsection{Chinese Remainder Theorem}
+\paragraph{Chinese Remainder Theorem}
 
 Given a family of congruence equations $x = a_i (mod N_i)$, all $N_i, N_j, i \neq j$ are pairwise coprime,
 Then we can find $x \in N_1N_2N_3...N_k$.
@@ -111,7 +111,7 @@ $a_1 [1, 0, 0, ...] + a_2 [0, 1, 0, ...] + a_3 [0, 0, 1, ...]$ (I am somewhat co
 We give a probabilistic version of RSA to give it CPA security. To encrypt a message $m$:
 
 \begin{itemize}
-\item Enc(m) = (0000 0000 || 0000 0010 || r (at least 8 bytes, $r \neq all-zeroes$) || 0000 0000 || m)^e (mod N) (|| = concatenation.)
+\item $Enc(m) = (0000~0000~||~0000 0010~||~r$ (at least 8 bytes, $r \neq all-zeroes$) $||~0000~0000 || m)^e (mod N)$ (|| = concatenation.)
 \item We lose *at least* 11 bytes of performance. ($1 + 1 + (\geq 8) + 1$). If we fix length of $r$ to be $8$ (or some other constant),
   then the scheme is insecure! (Homework assignment).
 \item for RSA, LSB is the hard core predicate. That is, it is hard to get LSB(x) given $x^e (mod N)$. The first 16 bits are very easy to get (apparently).
@@ -138,13 +138,13 @@ $g^x, g^y$.
 Group $G$ is published. Generator $g$ is published ($G = <g>$), $|G|$ is public.
 There is a *secret element $x$*. We publish $g^x$.
 
-PK = <G, g, |G|, h = g^x>
-SK = x
+$PK = <G, g, |G|, h = g^x>$
+$SK = x$
 
-Enc(m) = Choose y \in G. <g^y, h^y * m>
+$Enc(m) = Choose y \in G. <g^y, h^y * m>$
 
-Dec(g^y, h^y * m) = (g^x)^y * m = (g^y^x) * m
-m = h^y * m / (g^y)^x.
+$Dec(g^y, h^y * m) = (g^x)^y * m = (g^y^x) * m$
+$m = h^y * m / (g^y)^x.$
 
 So, we can get $m$.
 

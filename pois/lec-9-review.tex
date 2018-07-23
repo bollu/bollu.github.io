@@ -33,8 +33,8 @@
   forward and backward are efficient, then it's a block cipher. We did this
   using a "Feistel structure".
 
-f' :: Z x Z -> Z x Z
-f' = (x, y) -> (y, (F_k(y) `xor` x))
+$f' :: Z x Z \to Z x Z$
+$f' = (x, y) \to (y, (F_k(y)~\texttt{xor}~x))$
 
 This function is invertible.
 Each application is a "fiestel round".
