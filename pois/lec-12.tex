@@ -79,7 +79,7 @@ owned by one party.
 
 
 
-\subsubsubsection{Kannan tangent - Teaching ethics instead of teaching crypto}
+\paragraph{Kannan tangent - Teaching ethics instead of teaching crypto}
 It is better to teach ethics and forego the area of crypto, rather than teach crypto and allow people
 to forget ethics.
 
@@ -103,8 +103,8 @@ They ran this protocol between satellites so they can prevent collisions.
 
 We wish to perform an instruction $z <- x + y$ on $S$, where $x, y$ are also stored in $S$.
 
-\subsubsubsection{Constructing XOR}
-$x$ is stored in $S$ means that $x_a$ is in $A$, $x_b$ is in $B$$, $x = x_A XOR x_b$.
+\paragraph{Constructing XOR}
+$x$ is stored in $S$ means that $x_a$ is in $A$, $x_b$ is in $B$, $x = x_A \texttt{xor} x_b$.
 (note that in our scheme, $x_a$ and $x_b$ are stored *at the same memory loc at $A$ and $B$.
 That is $A_{ram}[i] = x_a, B_{ram}[i] = x_b$.
 
@@ -117,7 +117,7 @@ $z_b = x_b XOR y_b$
 
 
 
-\subsubsubsection{Construct AND}
+\paragraph{Construct AND}
 We know what the output should look like:
 $z_a XOR z_b = (x_a XOR x_b) /\ (y_a XOR y_b)$
 
@@ -128,20 +128,20 @@ A creates an array of length $4$, which stores values of $z_b$ corresponding to 
 (Look at $z_A XOR z_b$, and see what the value should look like). So, consider all 4 cases, corresponding
 to the indeces of $A_i$.
 
-0. If x_b = 0, y_b = 0,
-z_b = (x_a /\ y_a) XOR z_a. = Arr_0
+0. If $x_b = 0$, $y_b = 0$,
+$z_b = (x_a /\ y_a) XOR z_a. = Arr_0$
 
 
-1. If x_b = 0, y_b = 1,
-z_b = (x_a /\ (NOT y_a)) XOR z_a = Arr_1.
+1. If $x_b = 0, y_b = 1$,
+$z_b = (x_a /\ (NOT y_a)) XOR z_a = Arr_1.$
 
 
-2. If x_b = 1, y_b = 0,
-z_b = ((NOT x_a) /\ y_a)) XOR z_a = Arr_2.
+2. If $x_b = 1, y_b = 0$,
+$z_b = ((NOT x_a) /\ y_a)) XOR z_a = Arr_2$.
 
 
-3. If x_b = 1, y_b = 1,
-z_b = ((NOT x_a) /\ (NOT y_a)) XOR z_A = Arr_3.
+3. If $x_b = 1, y_b = 1$,
+$z_b = ((NOT x_a) /\ (NOT y_a)) XOR z_A = Arr_3$.
 
 
 Code for B:
@@ -149,11 +149,11 @@ Run oblivious transfer with $n = 4$. $A$ has a linear database of size 4. $B$ ha
 Hence, $B$ gets $z_b$.
 
 
-\subsubsubsection{Note: why pick $z_a$ randomly?}
+\paragraph{Note: why pick $z_a$ randomly?}
 $z_a$ acts as one-time-pad in the array table construction. This obscures
 what $B$ can see about $x_a$, $y_a$.
 
-\subsubsubsection{Exploiting multiple machines - Byzantine situations}
+\paragraph{Exploiting multiple machines - Byzantine situations}
 
 With many machines, we can XOR the data between many machines. This gives us much higher security.
 However, we lose out on fault-tolerance. People have explored this fully, and we can ask for arbitrary fault tolerance and security,

@@ -3,26 +3,26 @@
 Key superscript: index
 Key subscript: secret.
 
-Probability that we can find collision for H^s by a PPTM must be negligible.
+Probability that we can find collision for $H^s$ by a PPTM must be negligible.
 
 
 \section{Merkle Damgard Transform}
 
-Given a collision resistant, hash function of the form (h: {0, 1}^{2n} -> {0, 1}^n).
+Given a collision resistant, hash function of the form $(h: \{0, 1\}^{2n} \to {0, 1}^n)$.
 (Fixed length)
 
 Then we can construct a collision resistant
-hash function of the form (H: {0, 1})^{*} -> {0, 1}^n).
+hash function of the form $(H: \{0, 1\})^{*} \to \{0, 1\}^n)$.
 
-m = m1 || m2 || m3 || .. mt
+$m = m1 || m2 || m3 || .. m_n$
 
-m_i is n bits.
+$m_i$ is $n$ bits.
 
 
-z_1 = h(m_1, IV)
-z_2 = h(m_2, z_1)
-z_t = h(m_t, z_{t - 1})
+$z_1 = h(m_1, IV)$
+$z_2 = h(m_2, z_1)$
+$z_t = h(m_t, z_{t - 1})$
 
-Finally, H(m) = h(z_t, |m|) (?)
+Finally, $H(m) = h(z_t, |m|) (?)$
 
 If $h$ is collision resistant, then $H$ is collision resistant
