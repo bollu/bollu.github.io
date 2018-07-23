@@ -22,7 +22,7 @@ We allow a small error term of probability in terms of failure of secrecy.
 Pick two representations of the same information. Converting from one (say A)
 to the other (say B) is easy, but converting back from B to A is hard.
 
-\subsubsection{P \neq NP => existence of trapdoor function}
+\subsubsection{$P \neq NP \implies$ existence of trapdoor function}
 
 Verifying an NP complete problem will be in $P$. Computing it will be $NP$.
 
@@ -49,11 +49,11 @@ a fast secure channel? (Slow secure + fast insecure =? Fast Secure) / Private ke
 
 If the probability that any adversary can win the game is $\frac{1}{2}$.
 
-\forall adversary, P[b' = b] = \frac{1}{2}
+$$\forall adversary, P \lbrack b' = b \rbrack = \frac{1}{2}$$
 
 
-\forall probabilistic polynomial time turing machines A, if A interacts with a protocol in the game,
-the prob. that the output of the game will be b, is bounded by \frac{1}{2} + \mu, where \mu
+For all probabilistic polynomial time turing machines A, if A interacts with a protocol in the game,
+the prob. that the output of the game will be b, is bounded by $1 / 2 + \mu$, where $\mu$
 is negligible, then the game is secure.
 
 
@@ -67,7 +67,7 @@ This is equivalent to saying that $\mu \leq 2^k$ because $2^k$ will always
 outgrow any polynomial $p$.
 
 If the adversary has some non-negligible chance of doing better than
-\frac{1}{2}, then he can repeatedly reapply the strategy some polynomial number
+$1 / 2$, then he can repeatedly reapply the strategy some polynomial number
 of times to "blow up" the advantage (see: randomized algorithms).
 
 How close to $1$ we can get by re-running is how away from $\frac{1}{2}$ we are.
