@@ -1,0 +1,74 @@
+\documentclass[11pt]{book}
+%\documentclass[10pt]{llncs}
+%\usepackage{llncsdoc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{listing}
+\evensidemargin=0.20in
+\oddsidemargin=0.20in
+\topmargin=0.2in
+%\headheight=0.0in
+%\headsep=0.0in
+%\setlength{\parskip}{0mm}
+%\setlength{\parindent}{4mm}
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{8.5in}
+%\leftmargin -2in
+%\setlength{\rightmargin}{-2in}
+%\usepackage{epsf}
+%\usepackage{url}
+
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+%\usepackage{minted}
+%\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newtheorem{lemma}{Lemma}
+\newtheorem{observation}{Observation}
+\newtheorem{proof}{Proof}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+
+\def\qed{$\Box$}
+\def\proof{\textit{Proof. }}
+\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}
+
+
+\newcommand{\textbb}[1]{$\mathbb{#1}$}
+
+\title{Principle of Information \& Security}
+\author{Siddharth Bhat}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\include{lec-1}
+\include{lec-2}
+\include{lec-3}
+\include{lec-4}
+
+\end{document}

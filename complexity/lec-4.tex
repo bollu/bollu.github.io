@@ -1,0 +1,39 @@
+\section{Hierarchy theorems}
+$\exists L$, such that $\forall f: \mathbb{N} \to \mathbb{N}$, where $f$ is
+space/time constructible,
+\begin{align*}
+    Space(f) &\supsetneq Space(o(f)) \\
+    Time(f) &\supsetneq Time \bigg (\frac{o(f)}{log f} \bigg )
+\end{align*}
+
+So, there is a Hierarchy of complexity classes in time and space.
+
+\subsection{Proof sketch}
+We exhibit a languag $A$, such that $A \in Space(f(n))$, and $A \notin Space(o(f(n))$.
+
+Let $D$ decide $A$. D's definition:
+\begin{itemize}
+    \item compute $f(n)$ and mark the end of $f(n)$ cells. If the read-write head
+        ever crosses it, \texttt{REJECT}, \texttt{HALT}. We first need
+        $f(n)$ to use $f(n)$ cells or less to compute. This is called as 
+        \textbf{space-constructribility}. ($f: \mathbb{N} \to \mathbb{N}$ is
+        space-constructible iff given $n$, $\exists$ TM which computes $f(n)$ 
+        using at most $f(n)$ cells). Also, we want $f(n)$ to be at least
+        $log(n)$. Clearly, this process is in space $f(n)$.
+
+    \item We now need to "seaparate" A from the smaller classes. If A can be
+        solved in a smaller space (ie, we cannot separate $A$), then
+        there must be a TM (say, $D'$) which decides A in space less than $f(n)$.
+        So now, we need to choose some input such that $D'$ is different from $D$.
+        We can use diagonalization to construct such a function.
+\end{itemize}
+
+\textbf{Arjun Q:} Are there examples of non-space constructible functions, which are non-trivial?
+Other than ones that are too-small?
+
+
+
+
+
+
+
