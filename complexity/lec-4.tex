@@ -26,14 +26,22 @@ Let $D$ decide $A$. D's definition:
         there must be a TM (say, $D'$) which decides A in space less than $f(n)$.
         So now, we need to choose some input such that $D'$ is different from $D$.
         We can use diagonalization to construct such a function.
+
+    \item let the input be $x$. Let $x = M10*$ for some TM $M$. if not,
+        \texttt{REJECT}, \texttt{HALT}.
+
+    \item Let $D$ simulate $M$ on input $M$. If $M$ takes less that $f(n)$
+        time to run on $M$, then $M$ can decide A in time less than $f(n)$.
+        So now, $D$ knows how much space $M(M)$ requires. if $M(M)$
+        accepts, we reject.  If $M(M)$ rejects, we accept (diagonalization).
+
+    \item To find out whether $M(M)$ rejects, note that it is space-bounded, so
+        we can just check how many states of the configuration space it visits.
+        If it has not halted after visiting all states in the configuration
+        space, we can conclude that $M(M)$ does not halt. The configuration space
+        is $O(2^{f(n)})$. So we need to run $D$ for time $O(2^f(n))$, and then
+        \texttt{REJECT} if it continues running.
 \end{itemize}
 
 \textbf{Arjun Q:} Are there examples of non-space constructible functions, which are non-trivial?
 Other than ones that are too-small?
-
-
-
-
-
-
-
