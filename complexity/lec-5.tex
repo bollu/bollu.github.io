@@ -1,0 +1,70 @@
+\chapter{NP}
+\section{Cook Levin theorem}
+\texttt{SAT} is \texttt{NP-hard}. 
+\subsection{Proof}.
+Unfold theorem statement into:
+$\forall L \in \texttt{NP}, L \leq_p \texttt{SAT}$. 
+Since this should work for all things in NP, let's just write down the definition:
+
+there exists an \texttt{NDTM} $N$ such that $N$ accepts $w$, $\forall w
+\in L$, in $|w|^k$ steps.
+
+$N$ is an \texttt{NDTM}, so $N$ accepts $w$ means that there exists a branch
+of N that acceeps $w$ is $|w|^k$ steps.
+
+We should be able to construct a CNF such that $\phi(w)$ is \texttt{SAT} iff
+there exists an accepting branch for $N(w)$.
+
+\subsubsection{Caveats}
+
+1. the construction of $\phi$ from $N$ should make sure that
+$\phi$ has $poly(|w|)$ clauses --- otherwise, this is no longer a poly-time
+reduction.  We know that $\langle \texttt{AND}, \texttt{OR}, \texttt{NOT} \rangle$ is
+universal, so we can clearly construct any \texttt{TM} into a circuit. The problem
+is that the CNF we construct from the truth-table of the \texttt{TM} will be
+polynomial.
+
+\textbf{Sid Q:} Proof that boolean circuits are universal?
+
+\subsubsection{Proof sketch}
+Consider the NDTM $N(n)$, we will now argue about its configuration.
+
+We can cut off the turing tape after the first polynomial number of cells ---
+since the \texttt{NDTM} can only access those many cells.
+
+We should start will the initial state $q_{start}$.
+
+We should get the accept state $q_{accept}$ in $n^k$ steps.
+
+If we can pose this in terms of a CNF formula of poly-length, we are done.
+
+\subsubsection{Setting up \texttt{SAT}}
+
+\paragraph{\textbf{Variables - Cells of the tape}}
+The state of the turing tape on the $i$th step at the $j$th position of the
+turing tape for all $s \in alphabet(N)$ as $x_{i, j, s}$. $x_{i, j, s} = 1$
+is interpreted as "at step $i$, on cell $j$, value $s$ is written.
+
+For this to be valid, we need each cell to have exactly one symbol.
+
+
+\paragraph{\textbf{Formula - Validity of cells}}
+For every $(i, j)$ for at \textbf{least one} $s$ must be $1$:
+$\phi_{cell least} = \bigwedge\limits_{i, j} (\lor_s x_{i, j, s})$
+
+
+For every $(i, j)$ for at \textbf{most one} $s$ must be $1$. This is equivalent
+to saying that for every $(s, t)$, one of them must be absent.
+$\phi_{cell most} = \bigwedge\limits_{s, t, s \neq t} (\overline{x_{i, j, s}} \lor \overline{x_{i, j, t}})$.
+
+$\phi_{cell} = \phi_{cell least} \land \phi_{cell most}$
+
+
+\paragraph{\textbf{Formula - Initial state}}
+The initial cells contain the correct letters, corresponding to the initial
+input $w = \langle w_1 w_2 \dots w_n$, and the other cells must be blank.
+$\phi_{init} = (x_{1, 1, w_1} \land x{1, 2, w_2} \land \dots \land x_{1, n, w_n}) \land
+(x_{1, n + 1, blank} \land x_{1, n + 2, blank} \land \dots \land x_{1, n^k, blank}$
+
+
+
