@@ -115,4 +115,10 @@ the input length (since $a: \mathbb{N} \to \Sigma^*$). So, we have a
 sequence of machines $M_i: \mathbb{N} \to \{ \text{Turing machines} \}$, and we instantiate
 the machine $M_{|w|}$ to check if $|w| \in L$.
 
+\nptime is allowed to have a \textit{varying witness}, while \ppoly will have
+the \textit{same} advice.
 
+We don't even need to know if the advice string should be able to be found
+in polynomial time.
+
+\subsection{\ppoly contains non-recursive languages}
