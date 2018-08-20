@@ -1,0 +1,125 @@
+\chapter{\texttt{PSPACE}}
+\section{\texttt{PSPACE}-completeness}
+
+L is \texttt{PSPACE}-complete if:
+\begin{itemize}
+    \item $L \in \texttt{PSPACE}$
+    \item $\forall A \in \texttt{PSPACE}, A \leq_p L$ (polytime-reduction)
+\end{itemize}
+
+\subsection{TQBF - Totally quantified boolean formula}
+A boolean formula $\phi$. (For example: $\phi = (x_1 \lor x_2) \land (x_3 \lor \lnot x_2)$).
+TQBF will be of the form $\exists x_1,~\forall x_2,~\exists x_3 \dots,~\phi$.
+SAT was $\exists x_1, \exists x_2, \dots, \exists x_n, \phi$. TQBF allows
+"forall" quantification.
+
+\subsection{Winning strategies in games}
+Winning strategies are basically objects of the form:
+
+$WinningStrat \equiv \exists~\text{a move}~x_1, \text{such that}~\forall~\text{moves}~x_2, \exists~\text{a move}~x_3, \dots, \phi(x_1, x_2, \dots)$
+
+$WinningStrat$ looks like the specification of a winning path in a game tree!
+In the literature, this game is called the \texttt{FORMULA-GAME}.
+
+So, we choose to work on TQBF now.
+
+\subsection{Proof of \texttt{PSPACE}-completeness of \texttt{TQBF}}
+\subsubsection{Proof of $\texttt{TQBF} \in \texttt{PSPACE}$:}
+let $problem = Q_1~x_1,~~Q_2x_2,~~\dots~~\phi$. Let the solution procedure
+be called $S$.
+
+$S(Q_1~x_1~~Y)$. First check $x = 0, S(Y)$, next $x = 1, S(Y)$.
+When we recurse for $x = 1$ from doing $x = 0$, we try to reuse space.
+Once we get the answer, we need to \texttt{AND} (for $\forall$)
+or \texttt{OR} (for $\exists$) correctly.
+
+$Space(n) = Space(n - 1) + poly(n) \text{to store the answer bits}$.
+We get $Space(n) = Space(n - 1) + \dots$, because we can 
+\textbf{reuse the space in the two recursive invocations}.
+
+If we solve the recurrence, we find that this is in \texttt{PSPACE}.
+
+\subsubsection{Proof of $L \leq_p \texttt{TQBF}$:}
+We want to solve the problem $\Phi{c_{init}, c_{accept}, O(2^{f(n)})}$, where
+$\Phi_{x, y, t}$ is the predicate that links $x$ to $y$ in configuration space in
+$t$ steps, and $f(n)$ is the time used by the turing machine for $L$.
+
+We are trying to solve the reachability of the initial state to the final state
+of the turing machine for $L$ for any given input $w$ in TQBF. So, we 
+create the configuration graph $G_{\langle L, w \rangle}$, and we encode the
+path problem from $c_{init}$ to $c_{accept}$ using $\Phi$.
+
+$\Phi_{c_1, c_2, t} = \exists c_m, ~\Phi_{c_1, c_m t/2} \land \Phi_{c_m, c_2, t/2}$.
+
+But this is equivalent to:
+$\Phi_{c_1, c_2, t} = \exists c_m, ~\forall (c_3, c_4) \in \{ (c_1, c_m), (c_m, c_2) \},~\Phi_{c_3, c_4 t/2}$.
+
+This does not cause a blow up in formula length - at each step, formula
+length increases by a constant amount! Also, this reduction is
+quadratic time, so the reduction happens in $poly$.
+
+Hence, \texttt{TQBF} is \texttt{PSPACE}-complete.
+
+\section{Relativization -- P versus NP (Baker Gill Soloway '75)}
+
+there exists oracles A,  B such that --- $P^A = {NP}^A, P^B \neq {NP}^B$.
+If our proof for $P \neq NP$ tries to relativize, then
+our proof will not work, because we have choice of oracles $A$ and $B$ which
+allow for both $P^A = {NP}^A$ and $P^B \neq {NP}^B$.
+
+\subsection{Intuition: program diagonalization proofs relativize}
+Assume that we are applying diagonalization of programs. What we are actually
+doing is we are talking about the execution of programs on a universal turing
+machine $U(M, x)$ where $M$ is the programs we diagonalizing on.
+
+Now, if we have $M^A$, we can simply give the universal TM access to $A$,
+and then $U^A(M^A, x)$ can be diagonalized the exact same way. So, in some
+sense, program diagonalization commutes with relativization.
+
+\subsection{Proof of BGS}
+\subsubsection{$\texttt{P}^{\texttt{TQBF}} = \texttt{NP}^{\texttt{TQBF}}$}
+$NP^{TQBF} \subset  NPSPACE$, since $NPTIME \subset NPSPACE$. (replace
+oracle call to TQBF with actual code, everything will livein NPSPACE).
+
+This means that $NP^{TQBF} \subset NPSPACE = PSPACE$.
+
+Next $PSPACE \subset P^{TQBF}$, by the same argument that we had used for $NP$.
+
+Hence, 
+
+$NP^{TQBF} \subset  NPSPACE = PSPACE \subset P^{TQBF}$ (in fact, $PSPACE = P^{TQBF}$.
+
+\subsubsection{$\texttt{P}^{\texttt{B}} \neq \texttt{NP}^{\texttt{B}}$:}
+Let us assume we have our relativizing oracle $B$.
+
+$U_B = \{ n \in \mathbb{N}~\vert~\exists x \in \Sigma^*,  |x| = n, x \in B \}$.
+Informally, $U_B$ is the set of all possible string lengths in the language $B$.
+
+
+$U_B \in NP^B$, because for a given $n$, it will try to guess the string $x$
+which will be a ceritificate for $n$, and will verify it using the oracle-access
+to $B$.
+
+
+Next, we wish to show that $U_B \notin P^B$. We need to build $B$ in such a way
+that this happens. We build $B$ in stages.
+
+At stage $i$, some finite number of strings would be put in $B$. Take a TM
+$M_i$ which runs in $O(n^i)$. We want $M_i^B \notin P$. Conider
+$M_i^B(k)$. Some oracle calls from $M_i$ have been made before. 
+If the oracle call was made before, then be consistent with the answer 
+given before.
+
+However, if we get a \textbf{new} query, we want a setup such that $k \notin U_B~\text{iff}~M_i^B(k) = \texttt{YES}$,
+and similarly $n \in U_B~\text{iff}~M_i^B(k) = \texttt{NO}$. The way we do this 
+is by making $k$ so large that it is not possible to check efficiently whether
+$k \in_? U_B$.
+
+Make $k$ large enough that all of it cannot be seen in polytime. Now, in this case,
+extend $B$ such that checking if $k$ belongs to $U_B$ is outside the reac
+of $M_i^B(k)$.
+
+\textbf{TODO: read this proof, this makes no sense to me}
+
+
+

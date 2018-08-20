@@ -135,3 +135,21 @@ Similarly, if $C$ is false, $C'$ reduces to $C' = z \land \lnot{z}$. This
 is \texttt{UNSAT}, so this is not possible.
 
 Now, in general, we reduce \texttt{n-SAT} into \texttt{(n-1)-SAT}.
+
+\section{\texttt{CLIQUE} is NP-complete}
+Does the graph contain a $k$ clique?
+
+Proof.
+
+Reduce 3-SAT to \texttt{CLIQUE}
+
+$l$ clauses, $m$ variables.
+
+For every clause and its complement, create a collection of vertices. Within
+a triplet, there are no edges. All triplets are across. Connect everything
+to everything, unless they are contradictory. 
+
+The number of edges will be high.
+
+Now, ask for an $l$ clique. If this exists, then we have $l$ assignments
+which do not contradict each other.
