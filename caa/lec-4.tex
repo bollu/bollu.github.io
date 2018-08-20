@@ -1,2 +1,118 @@
+\newcommand{\ppoly}{$\texttt{P}^{\text{poly}}$}
+\newcommand{\pathbar}{$\overline{\texttt{PATH}}$}
+\newcommand{\problempath}{\texttt{PATH}}
 \chapter{\texttt{NLogSpace}-completeness}
+
+\section{\texttt{Co-NLogSpace}}
+$L \in \texttt{Co-NLogSpace} \equiv L^c \in \texttt{NLogSpace}$.
+That is, complement the language $L$. if $L^c$ is in \texttt{NLogSpace},
+then $L \in \texttt{Co-NLogSpace}$.
+
+We intuitively believe that $\texttt{NP} \neq \texttt{Co-NP}$. However, we can
+show that $\texttt{NLogSpace} = \texttt{Co-NLogSpace}$.
+
+\begin{align*}
+\texttt{PATH} &= \{ \langle G, u, v \rangle~\vert~\text{\textbf{exists} path between vertices $(u, v)$} \} \\
+\overline{\texttt{PATH}} &=  \{ \langle G, u, v \rangle~\vert~\text{\textbf{no} path between vertices $(u, v)$} \}
+\end{align*}
+
+We assume that \pathbar is \conlogspace-Complete.
+
+If we show that \pathbar is in \texttt{NLogSpace}, then every problem
+in \conlogspace will be in \nlogspace
+
+\subsection{Solving \pathbar in \nlogspace}
+\begin{align*}
+V_R &\equiv \{ \text{set of vertices reachable from $u$} \} \\
+V_{NR} &\equiv \{ \text{set of vertices \textbf{not} reachable from $u$} \} \\
+\end{align*}
+
+\textbf{Sid confusion, why can't we use PATH as a subroutine:}
+When we have an \texttt{NDTM}, we cannot \textit{observe that the NDTM returns a $0$}.
+We can \textit{observe if an NDTM succeeds}, but there are weird paths and exponential
+number of paths where the NDTM does not return a $0$? But if this is true,
+then how is \texttt{PATH} \nlogspace-complete? I am very confused.
+
+To represent $V_R$ and $V_{NR}$, we use $1$ bit per vertex 
+(since $V_R$ and $V_{NR}$ are disjoint), so total space is $V$.
+
+Assume we know $|V_R|$. In this case, we can check whether $v$ is unreachable
+from $u$ --- Enumerate all vertices. If they are reachable from $u$, bump up
+a counter.  If we don't hit $v$ till the counter gets to $|V_R|$, then what
+we know that is $v$ is unreachable.
+
+However, if $v$ were reachable from $u$, then as we enumerate, we would find
+$v$ as we were going through all vertices (we would not hit $V_R$ unless we
+visit $v$).
+
+This is important, because in an NDTM, if \textit{any} of the paths
+accept, then we accept.
+
+\begin{align*}
+V_R &= \cup_i V_R(i) \\
+V_R(0) &= \{ u \} \\
+\end{align*}
+
+to compute $cur \in_? V_R(i + 1)$, first \textbf{recompute} that $pred \in V_R(i)$,
+and then check that $(cur, pred) \in E(G)$. We cannot \textbf{store} $V_R(i)$, since
+we don't have enough space.
+
+eventually we will reach $V_R(|V|)$, where we stop.
+
+We can compute $|V_R| = \sum_i |V_R(i)|$.
+We compute $|V_R(i)|$ by checking over each vertex it's membership into $V_R(i)$.
+And if it does, we bump up our counter. 
+
+\textbf{Reference: Read \texttt{Sipser-Chapter 8}}
+
+\begin{minted}{python}
+def belongs(G, i, startv, endv, curv):
+    """Check if curv belongs to V_R(i)"""
+    if i == 1:
+        return startv == curv
+    else:
+        # log(V)
+        for pred in G.vertices:
+            # This can use a modified version of PATH that stores lengths?
+            if small_belongs(G, i - 1, startv, endv, pred):
+                if isneighbour(pred, curv):
+                    return True
+
+        return False
+
+def countcard(G, startv, endv):
+    """ Count the cardinality of V_R"""
+    card = 0
+    # log(V)
+    for i in len(G.vertices):
+        # this is also log(V)
+        for curv in G.vertices:
+            if small_belongs(G, i, startv, endv, curv):
+                card += 1
+    return 1
+\end{minted}
+
+\section{Oracles}
+
+For all inputs $w$ of length $|w| = n$, there exists a \textbf{single} advice
+($a_n$ is allowed to be a single string that is polynomial in $n$).
+So, $a: \mathbb{N} \to \Sigma^*$, and the advice of a given input $w$ is $a(|w|)$.
+
+
+\subsection{\ppoly}
+
+$L \in \text{\ppoly}$ if there is a polynomial time turing machine $M$ which
+takes two inputs --- a string $x \in \Sigma^*$, and an advice $a_n \in \Sigma^*$,
+such that for all inputs $w$ such that $|w| = n$, then there exists a polynomial
+$p(n)$ with $|a_n| \leq p(|w|)$.
+
+We force it to be polynomial in the word-length, because things like a lookup
+table take exponential space in the word-length (number of strings of length $n$
+is $2^n$).
+
+We can see that the advice is somewhat "hardwired" into the machine given
+the input length (since $a: \mathbb{N} \to \Sigma^*$). So, we have a 
+sequence of machines $M_i: \mathbb{N} \to \{ \text{Turing machines} \}$, and we instantiate
+the machine $M_{|w|}$ to check if $|w| \in L$.
+
 
