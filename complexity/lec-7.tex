@@ -1,12 +1,18 @@
 \newcommand{\ptime}{\texttt{P}}
+\newcommand{\coptime}{\texttt{co-P}}
+\newcommand{\nptime}{\texttt{NP}}
+\newcommand{\conptime}{\texttt{co-NP}}
 \newcommand{\logspace}{\texttt{L}}
 \newcommand{\nlogspace}{\texttt{NL}}
 \newcommand{\ph}{\texttt{PH}}
 \newcommand{\pathproblem}{\texttt{PATH}}
+\newcommand{\clique}{\texttt{CLIQUE}}
+\newcommand{\maxclique}{\texttt{MAXCLIQUE}}
+\newcommand{\sat}{\texttt{SAT}}
 \chapter{LogSpace}
 \section{The languages \logspace~\& \nlogspace}
 
-$\logspace = DPSACE(\log (n))$, $\nlogspace = NSPACE(\log(n))$
+$\logspace \equiv DPSACE(\log (n))$, $\nlogspace \equiv NSPACE(\log(n))$
 
 
 \textbf{Open problem: \logspace~versus \nlogspace}.
@@ -46,6 +52,7 @@ We perform the naive solution --- We try to explore all possible path possibilit
     Since $A \in \nlogspace$, there exists an NDTM $M$ which decides $A$ by
     using $O(\log(n))$ space.
 
+
     We try to walk through the configuration graph of $M$ (henceforth called $Config_M$, from which
     we can try to find the path from the initial configuration to the
     final configuration. We can then try to solve
@@ -53,3 +60,81 @@ We perform the naive solution --- We try to explore all possible path possibilit
     whether an accepting path exists.
 \end{proof}
 
+\section{Verifiers}
+A turing machine $T$ verifies language $L$ if $L = \{ w~\vert~ \exists c, V(w, c)~\text{accepts} \}$.
+Note that if $\forall w, |c| = 0$, then $L$ is decidable (that is, no advice is needed).
+
+\begin{theorem}
+    if $L \in nptime$, then $L$ has an efficient verifier.
+\end{theorem}
+\begin{proof}
+    Let $N$ be a NDTM that decides $L$. Notice that the accepting path of $L$
+    is poly.
+
+    We create a certificate $c$ for $V(w, c)$ to be the address of the
+    accepting path. 
+\end{proof}
+
+\begin{theorem}
+    if $L$ has an efficient verifier, then $L \in \nptime$
+\end{theorem}
+\begin{proof}
+    Let $V$ be the verifier.
+    Let $N$ be the NDTM we are constructing that decides $L$. 
+    $N$ guesses the certificate $\overline{c}$ and then runs $N(w) = V(w, \overline{c})$.
+\end{proof}
+
+
+\section{\conptime}
+
+$\conptime \equiv \{ L^c~\vert~L \in \nptime \}$
+Since $\sat \in \nptime$, $\sat^c \in \conptime$. How do we convince someone
+that something is \textbf{not} satisfiable?
+
+Let's look at this from the verifier perspective: The certificate of all
+outputs is pretty useless, since that is exponential. So, we need a
+short certificate which allows us to decide whether a given \sat~problem is
+unsolvable.
+
+Since $\ptime = \coptime$ (since there is no non-determinism, we can simply flip the answer),
+hence $\ptime = \coptime \subseteq \conptime$
+
+
+Let's take a closer look at the verifiers:
+\begin{itemize}
+    \item $L \in \nptime, w \in L \iff \exists c, V(w, c) = 1$
+    \item $L \in \conptime, w \in L \iff \forall c, V(w, c) = 0$
+\end{itemize}
+
+So, we get some sort of duality between $\forall$ and $\exists$.
+
+\section{\clique}
+\begin{align*}
+    \clique &= \{ \langle G, k \rangle~\vert~G~\text{has a clique of size}~K \} \\
+    \maxclique &= \{ \langle G, k \rangle~\vert~G~\text{has a clique of size}~K, \text{ does not have a clique of size } K+1 \}\\
+    \langle G, k \rangle &\in \maxclique \iff \exists c, V(G, k, c) = 1 \land \forall u, W(G, k+1, u) = 0\\
+    \langle G, k \rangle &\in \maxclique \iff \exists u_1, u_2, M(G, k, u_1, u_2) = 1
+\end{align*}
+
+This new class is called as $\Sigma_2^p$.
+
+
+\begin{align*}
+    L &\in \Sigma_i^p \iff \exists u_1 \forall u_2 \exists u_3 \forall u_4 \dots, Q_i u_i, M(w, u_i)  = 1 \\
+    L &\in \Pi^p \iff \forall u_1 \exists u_2 \forall u_3 \exists u_4 \dots, Q_i u_i, M(w, u_i)  = 1 \\
+\end{align*}
+
+$\nptime = \Sigma^p_1$, $\conptime = \Pi_1^p$
+
+We can now ask question between levels of the PH --
+
+$\Sigma_{i+1}^p \supseteq_? \Sigma_i^p$ -- Intuitively, the higher the $i$, the
+more restricted the question!
+
+If we can show that  $\Sigma_{i+1}^p= \Sigma_i^p$, then $\forall k \in \mathbb{N}, \Sigma_{i+k}^p= \Sigma_i^p$
+(ie, we can "collapse" the hierarchy)
+\textbf{Sid question: why does the hierarchy collapse?}
+$PH = \cup_i \Sigma_i^p$
+
+
+We know the existence of a $\Sigma_i^p$-complete problem for \textit{every $i$}.
