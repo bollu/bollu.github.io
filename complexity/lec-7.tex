@@ -1,0 +1,55 @@
+\newcommand{\ptime}{\texttt{P}}
+\newcommand{\logspace}{\texttt{L}}
+\newcommand{\nlogspace}{\texttt{NL}}
+\newcommand{\ph}{\texttt{PH}}
+\newcommand{\pathproblem}{\texttt{PATH}}
+\chapter{LogSpace}
+\section{The languages \logspace~\& \nlogspace}
+
+$\logspace = DPSACE(\log (n))$, $\nlogspace = NSPACE(\log(n))$
+
+
+\textbf{Open problem: \logspace~versus \nlogspace}.
+
+$\logspace \subset \ptime$ since configuration space is $2^{O(\log(n))} = O(n)$,
+hence we can brute force the configuration space.
+
+\subsection{\nlogspace-completeness}
+A language $A$ is \nlogspace-complete if:
+\begin{itemize}
+    \item $A \in \nlogspace$
+    \item $B \in \nlogspace, B \leq_L A$
+\end{itemize}
+
+Note that $B \leq_L A$ uses a mapping reduction: $\exists f: \Sigma^* \to \Sigma^*$,
+$f$ converts inputs of $B$ to inputs of $A$ in log-space.
+
+$f$ must be \textbf{implicitly computable}: That is, the problem of generating
+the $i$-th bit should be done in $\logspace$.
+
+
+\section{The \pathproblem~problem}
+$\pathproblem = \{ \langle G, s, t \rangle~\vert~\exists s \to t~\text{path in}~G \}$
+
+\begin{theorem}
+    $\pathproblem \in \nlogspace$
+\end{theorem}
+
+\begin{proof}
+We perform the naive solution --- We try to explore all possible path possibilities for $s \to t$.
+\end{proof}
+
+\begin{theorem}
+    $A \in \nlogspace \implies A \leq_{\logspace} \pathproblem$
+\end{theorem}
+\begin{proof}
+    Since $A \in \nlogspace$, there exists an NDTM $M$ which decides $A$ by
+    using $O(\log(n))$ space.
+
+    We try to walk through the configuration graph of $M$ (henceforth called $Config_M$, from which
+    we can try to find the path from the initial configuration to the
+    final configuration. We can then try to solve
+    $\pathproblem(Config_M, c_{init}, c_{final})$, which will tell us
+    whether an accepting path exists.
+\end{proof}
+
