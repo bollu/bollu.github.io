@@ -2,6 +2,7 @@
 \newcommand{\coptime}{\texttt{co-P}}
 \newcommand{\nptime}{\texttt{NP}}
 \newcommand{\conptime}{\texttt{co-NP}}
+\newcommand{\pspace}{\texttt{PSPACE}}
 \newcommand{\logspace}{\texttt{L}}
 \newcommand{\nlogspace}{\texttt{NL}}
 \newcommand{\ph}{\texttt{PH}}
@@ -9,6 +10,7 @@
 \newcommand{\clique}{\texttt{CLIQUE}}
 \newcommand{\maxclique}{\texttt{MAXCLIQUE}}
 \newcommand{\sat}{\texttt{SAT}}
+\newcommand{\phtime}{\texttt{PH}}
 \chapter{LogSpace}
 \section{The languages \logspace~\& \nlogspace}
 
@@ -138,3 +140,26 @@ $PH = \cup_i \Sigma_i^p$
 
 
 We know the existence of a $\Sigma_i^p$-complete problem for \textit{every $i$}.
+
+\subsection{\phtime-completness}
+
+If there exists a language $L$ which is \phtime-complete, then the hierarchy collapses,
+ie, $\exists i, \Sigma_{i+1}^p = \Sigma_i^p$.
+
+The current conjecture is that the polynomial hierarchy does not collapse -- Hence,
+there does not exist a \phtime-complete problem.
+
+\subsection{$\phtime \subset \pspace$}
+
+\subsubsection{Ramification}
+We know that $TQBF$ is \pspace-complete. If $TQBF \in \phtime$, then we
+have a $\phtime$-complete algorithm (which cannot exist, due to the conjecture).
+
+\begin{theorem}the existence of a \phtime-complete problem collapses \phtime
+\end{theorem}
+\begin{proof}
+    Let $L$ be the \phtime-complete problem. We know $\exists i$, 
+    $L \in \Sigma_i^p$. Now, for any $k \in \mathbb{N}$, we can reduce problem
+    $\Sigma_k^p$ to $L$. Hence, I can reduce all $k > i$ to $k = i$, and then
+    solve it at level $i$. Hence, the \phtime~will collapse at level $i$.
+\end{proof}
