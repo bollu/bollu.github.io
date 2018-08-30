@@ -68,6 +68,30 @@ $M_{contra} (\langle M_{contra} \rangle) = 0 \implies  \langle M_{contra} \rangl
 On the other hand, say that $\langle M_{contra} \rangle \notin L$, then $M_{contra} (\langle M_{contra} \rangle) = 1$.
 But since $M_{contra}$ \textbf{decides} $L$, $M_{contra} (\langle M_{contra} \rangle) = 1 \implies \langle M_{contra} \rangle \in L$. This is also a contradiction.
 
+
+We now move to show that $L$ \textbf{can be decided} in $O(f(n))$ space.
+Consider a machine \texttt{INTERPRET} that does this:
+
+\begin{minted}{python}
+def INTERPRET(w):
+    Mw = convert_to_TM(w)
+
+    # Naive solution: Try to run Mw, see what happens.
+    # flag = Mw.run(w)
+
+    # Problem 1: How do we know it runs in o(f(n)) space?
+    # flag = Mw.run_with_bounded_space(w, space_bound=f(n))
+
+    # Problem 2: How do we know that Mw halts?
+    # Count the size of the config. space, and reject if Mw
+    # takes more steps than the configuration space size.
+    flag = Mw.run_wth_bounded_space_and_steps(w, space_bound=f(n), 
+                                                 steps_bound=Mw.config_space_size())
+
+
+    return !flag
+\end{minted}
+
 \end{proof}
 
 
