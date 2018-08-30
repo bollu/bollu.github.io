@@ -1,0 +1,156 @@
+\chapter{Advice \& Time Hierarchies}
+
+\section{\ppoly}
+
+This class could possibly be bigger than \ptime.
+
+In \nptime, witnesses are different for each string. In \ppoly, witnesses
+are fixed for strings of a given length.
+
+The advice string need to even be found in polynomial time!
+
+Recursive language: Halts on all inputs with yes/no
+Recursively enumerable: Halts and returns yes on inputs which belong to the language.
+On inputs that do not halt, undefined behavior.
+
+\section{Unary language that is non-recursive}
+
+$L~\text{is a unary language}~\equiv L \subseteq 1^*$
+
+\begin{theorem}
+Every unary language is decidable by \ppoly 
+\end{theorem}
+\begin{proof}
+let $L$ be a unary language.
+
+Since the only characteristic of a string in a unary language is its length,
+for any given length, there is \textit{at most one string of that length}
+in $L$. So, we can index the set $L$ by the string lengths! Hence, the
+advice function allows us to build up a lookup table for \textit{any} unary
+language.
+
+
+ We construct the advice function $a_L: \mathbb{N} \to \{0, 1\}$ be such that
+$a_L(n) = \text{does}~1^n~\text{belong to L}$?. Now, let $M$ decide $L$
+as follows: $M(str) = a(|str|)$. Since we don't need to build $a$ (it's an
+oracle we take for granted, the proof is done).
+\end{proof}
+
+\begin{theorem}
+\ppoly contains non-recursive languages.
+\end{theorem}
+\begin{proof}
+Let $L_{nr} \subset \{0, 1\}^*$ be a nonrecursive language. 
+We define $L_w = \{ 1^{\#w}~\vert~w \in L_{nr} \}$,
+which is a unary language. A string $1^k \in L_w$ acts as a witness for the
+existence of some string $w \in L_{nr}$ as the lex-ordering-position of the string
+$w$.
+
+\begin{align*}
+&\text{Example of \# evaluated on some strings}\\
+&\#0 \to 0 \\
+&\#1 \to 1 \\
+&\#00 \to 3 \\
+&\#01 \to 4 \\
+&\#100 \to 5 \\
+&\dots
+\end{align*}
+
+$L_{nr}$ has now been reduced to $L_u$, since the mapping with $\#$ is a 
+\textit{bijection} . Also, $L_u$ can be decided by \ppoly. Hence,
+$L_u$ can decide nonrecursive languages.
+
+\textbf{Question: Is the set $\{0, 1\}^*$ countable? It doesn't feel like it is!}
+\end{proof}
+
+
+\subsection{Sparse language}
+A \textbf{sparse language} is one where the number of strings of length $n$
+is bounded by a polynomial. $|L \cap \{0, 1\}^n| \leq p(n)$.
+
+\textbf{Idle thought: Is there a classification theorem for sparse languages? "sparse-complete"}
+
+We study the relationship between \nptime and \ppoly, using sparse languages.
+
+\subsection{Cook reduction}
+A language $L_1$ cook reduces to a language $L_2$ if there is a 
+polynomial-time turing machine $M_{L_1}$ that recognizes $L_1$ given oracle
+access to $L_2$.
+
+The machine $M_{L_1}$ Can query membership to $L_2$ multiple times (polynomial)
+before deciding if a string $w \in_? L_1$.
+
+\begin{lemma}
+If $L_1$ Cook-reduces to $L_2$ and $L_2 \in P$, then $L_1 \in P$.
+\end{lemma}
+\begin{proof}
+$L_1$ is decided by a  polynomial-time turing machine $M_{L_1}$,
+so it can make at most polynomial queries to $L_2$. 
+Since $L_2 \in P$, There exists a polynomial-time turing machine $M_{L_2}$
+which solves the membership query.
+
+The total running time for $M_{L_1}$ is in \ptime, so it can make at
+most polynomial queries to $M_{L_2}$. Hence, $M_{L_1}$ can simulate
+$M_{L_2}$ and solve the membership problem.
+\end{proof}
+
+\begin{theorem}
+Every language $L \in \nptime$ is Cook-reducible to a sparse language
+iff $\nptime \subseteq \text{\ppoly}$.
+\end{theorem}
+
+This theorem is significant because we strongly believe that no \nptime-complete
+language is sparse! So, we believe that $\nptime \not\subset \text{\ppoly}$.
+
+Since SAT is \nptime-complete, we simply need to show that SAT is cook-reducible
+to a sparse language iff $\nptime \subseteq \text{\ppoly}$.
+
+We will exhibit polynomial-time advice string for all inputs of a
+given length, to use the power of \ppoly.
+
+\begin{proof}
+\textbf{(Forward)~SAT Cook-reducible to a sparse language $L \implies SAT \in \text{\ppoly}$}
+
+There is a polynomial-time machine $M$ which can solve SAT given oracle
+access to sparse language $L$.
+
+We want to show that SAT is in $P^poly$.
+
+Let $M$ run in time $p(n)$ on inputs of length $n$
+
+The advice string $a(n)$ we want to give is the oracle behaviour on sparse language $L$.
+Since the machine $M$ can ask for string of length at most $p(n)$.
+
+Since the language is sparse, the set of all strings of a given length in $L$ is polynomial.
+So, $a(n) = concat(\{ w \in L~\vert~|w| \leq p(n) \})$ where $concat$ concatenates
+all the strings.
+$a(n)$ will be polynomial in length since the length of each string $w$ is bounded by $p(n)$.
+Let $sparse(n)$ be the polynomial that controls the sparsity of $L$ for any string $n$.
+That is, for any length $i$, the language $L$ contains at most $sparse(i)$ strings.
+
+The total number of strings in $a(n)$ will be $N = \sum_{i=0}^{p(n)} sparse(i)$, which
+is a polynomial in $n$. Hence, $a(n)$ is a legal advice string.
+
+We're done here, we converted oracle access to a sparse language into a 
+polynomial advice string.
+
+\textbf{(Backward)~$SAT \in \text{\ppoly} \implies$ SAT Cook-reducible to a sparse language $L$}
+
+We are given a machine $M_{sat}$ which seeks advice $a(n): \mathbb{N} \to \{0, 1\}^*$.
+The machine $M_{sat}$ runs for polynomial time $p_sat(n)$.
+
+We need to construct a sparse language $L_{sparse}$, such that given oracle access
+to $L_{sparse}$, we can solve SAT using a new machine $M'$.
+
+Consider all strings that are queried by $M_{sat}$ to $M_{poly}$. 
+For an input of length $n$, the machine $M_sat$ can query $a$ 
+$p_{sat}(n)$ times at maximum. Hence, we the language consisting of the subset 
+of $a$ that is sampled by $M_{sat}$ is a sparse language. 
+Given access to this language, we can substitute the
+function $a$ with the sparse language which contains all advice accessed from $a$.
+
+
+
+\end{proof}
+
+

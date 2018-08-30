@@ -5,8 +5,10 @@
 \newcommand{\pspace}{\texttt{PSPACE}}
 \newcommand{\logspace}{\texttt{L}}
 \newcommand{\nlogspace}{\texttt{NL}}
+\newcommand{\conlogspace}{\texttt{co-NL}}
 \newcommand{\ph}{\texttt{PH}}
 \newcommand{\pathproblem}{\texttt{PATH}}
+\newcommand{\copathproblem}{\overline{\texttt{PATH}}}
 \newcommand{\clique}{\texttt{CLIQUE}}
 \newcommand{\maxclique}{\texttt{MAXCLIQUE}}
 \newcommand{\sat}{\texttt{SAT}}
@@ -163,3 +165,23 @@ have a $\phtime$-complete algorithm (which cannot exist, due to the conjecture).
     $\Sigma_k^p$ to $L$. Hence, I can reduce all $k > i$ to $k = i$, and then
     solve it at level $i$. Hence, the \phtime~will collapse at level $i$.
 \end{proof}
+
+\section{\conlogspace}
+$\copathproblem \in \conlogspace$.
+
+What about $\nlogspace~vs~\conlogspace$?
+
+\subsection{Verifiers for \nlogspace, \conlogspace}
+Let us look at it in terms of verifiers:
+
+Can we define \nlogspace~in terms of verifiers? Yes, we can, if we can ensure
+a \textit{read-once certificate}.
+
+\begin{align*}
+    w &\in \nlogspace \iff \exists u, V_{once}(w, u) = 1 \\
+    w &\in \conlogspace \iff \forall u, V_{once}(w, u) = 0 \\
+\end{align*}
+
+How do we give a cerificate for \textbf{no path?}
+
+However, we now know that $\nlogspace = \conlogspace$

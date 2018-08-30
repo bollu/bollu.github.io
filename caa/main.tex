@@ -21,6 +21,8 @@
 %\usepackage{epsf}
 %\usepackage{url}
 
+
+
 \usepackage{booktabs}   %% For formal tables:
                         %% http://ctan.org/pkg/booktabs
 \usepackage{subcaption} %% For complex figures with subfigures/subcaptions
@@ -54,10 +56,6 @@
 \newtheorem{corollary}{Corollary}
 \newtheorem{theorem}{Theorem}
 
-\newcommand{\ptime}{\texttt{P}}
-\newcommand{\nlogspace}{\texttt{NLogSpace}}
-\newcommand{\logspace}{\texttt{LogSpace}}
-\newcommand{\conlogspace}{\texttt{Co-NLogSpace}}
 %\newcommand{\NP}{\texttt{NP}}
 %\newcommand{\PSPACE}{\texttt{PSPACE}}
 %\newcommand{\NPSPACE}{\texttt{NPSPACE}}
@@ -65,6 +63,23 @@
 
 \newcommand{\textbb}[1]{$\mathbb{#1}$}
 \newcommand{\nptime}{\texttt{NP} }
+\newcommand{\ptime}{\texttt{P}}
+\newcommand{\coptime}{\texttt{co-P}}
+\newcommand{\conptime}{\texttt{co-NP}}
+\newcommand{\pspace}{\texttt{PSPACE}}
+\newcommand{\logspace}{\texttt{L}}
+\newcommand{\nlogspace}{\texttt{NL}}
+\newcommand{\conlogspace}{\texttt{co-NL}}
+\newcommand{\ph}{\texttt{PH}}
+\newcommand{\pathproblem}{\texttt{PATH}}
+\newcommand{\copathproblem}{\overline{\texttt{PATH}}}
+\newcommand{\clique}{\texttt{CLIQUE}}
+\newcommand{\maxclique}{\texttt{MAXCLIQUE}}
+\newcommand{\sat}{\texttt{SAT}}
+\newcommand{\phtime}{\texttt{PH}}
+\newcommand{\ppoly}{$\texttt{P}^{\texttt{poly}}$}
+\newcommand{\pathbar}{$\overline{\texttt{PATH}}$}
+\newcommand{\problempath}{\texttt{PATH}}
 
 \title{Complexity \& Advanced Algorithms}
 \author{Siddharth Bhat}
@@ -79,4 +94,6 @@
 \include{lec-2}
 \include{lec-3}
 \include{lec-4}
+\include{lec-5}
+\include{lec-6}
 \end{document}

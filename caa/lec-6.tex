@@ -1,0 +1,73 @@
+\chapter{Gaps in space and time}
+
+We wish to study what is not computable given some resource.
+If there resource is time, we want to understand what can be solved
+in $t(n)$ but not in smaller than $t(n)$ --- in the sense of $o(t(n))$.
+
+We can try to construct a hierarchy of problems that can be solved
+given increasing time. 
+
+\begin{align*}
+f(n) \in o(g(n)) &\equiv \lim_{n \to \infty} \frac{f(n)}{g(n)} = 0 \\
+f(n) \in O(g(n)) &\equiv \lim_{n \to \infty} \frac{f(n)}{g(n)} \in  O(1)
+\end{align*}
+
+\section{Space Hierarchy}
+
+A function $f: \mathbb{N} \to \mathbb{N}$ is said to be \textbf{space constructible}
+if there exists a turing machine that on input $1^n$, it computes $f(n)$
+using space $O(f(n))$. So the output can be $1^{f(n)}$ say, since that uses
+space $O(f(n))$.
+
+Most common functions such as polynomials, exponentials, and logarithms
+are all space constructible.
+
+\begin{theorem}
+Let $f$ be a space-constructible function. There exists a language $L$ which
+can be decided in $O(f(n))$ space, but not in $o(f(n))$ space.
+\end{theorem}
+\begin{proof}
+The proof is to \textbf{construct} a language which can be decided on $O(f(n))$
+space, but not in $o(f(n))$ space. Such a language tends to be artificial due
+to the construction having to work \textit{for all $f$}.
+
+We need two properties for this language $L$ we create:
+
+\begin{itemize}
+\item It is \textbf{not decidable} in $o(f(n))$ space.
+\item It \textbf{is} decidable in $O(f(n))$ space.
+\end{itemize}
+
+We will use diagonalization to show an construct an $L$ that 
+\textbf{cannot be decided} in $o(f(n))$ space. List each TM that runs in 
+$o(f(n))$ space. This collection of all TMs (viewed as strings) is written as:
+
+$$ALLTM = \cup_{i=0}^\infty \{0, 1\}^i$$
+
+
+We will define a language $L$ which cannot be decided by \textbf{any} TM
+on the above list.
+
+We will create a matrix of the form $DECIDE(i, j) = M_i(\langle M_j \rangle)$.
+That is, we feed $M_i$ the string of $M_j$.($\langle M_j \rangle$ interprets
+the machine $M_j$ as a string).
+
+Now, create a language $L$:
+
+\begin{align*}
+L \equiv \{ M \vert M ( \langle M \rangle ) = 0 \}
+\end{align*}
+
+Note that $L$ is \textbf{not decidable} in $o(f(n))$ space. Proof by contradtiction:
+Assume such a machine $M_{contra}$ exists. We now ask if $\langle M_{contra} \rangle \in L$?
+
+If $\langle M_{contra} \rangle \in L$, then $M_{contra} (\langle M_{contra} \rangle) = 0$.
+But since $M_{contra}$ \textbf{decides} $L$,
+$M_{contra} (\langle M_{contra} \rangle) = 0 \implies  \langle M_{contra} \rangle \notin L$.
+
+On the other hand, say that $\langle M_{contra} \rangle \notin L$, then $M_{contra} (\langle M_{contra} \rangle) = 1$.
+But since $M_{contra}$ \textbf{decides} $L$, $M_{contra} (\langle M_{contra} \rangle) = 1 \implies \langle M_{contra} \rangle \in L$. This is also a contradiction.
+
+\end{proof}
+
+
