@@ -64,11 +64,12 @@ Assume such a machine $M_c$ ($c$ for contradiction) exists. We now ask if $\lang
 \begin{itemize}
 \item If $\langle M_c \rangle \in L$, then $M_c (\langle M_c \rangle) = 0$ (by the definiton of $L$).
 But since $M_c$ \textbf{decides} $L$,
-$M_c (\langle M_c \rangle) = 0 \implies  \langle M_c \rangle \notin L$.
+$M_c (\langle M_c \rangle) = 0 \implies  \langle M_c \rangle \notin L$. \textbf{Contradiction}.
 
 \item On the other hand, say that $\langle M_c \rangle \notin L$, then $M_c (\langle M_c \rangle) = 1$
 (by the definition of $L$).
-But since $M_c$ \textbf{decides} $L$, $M_c (\langle M_c \rangle) = 1 \implies \langle M_c \rangle \in L$. This is also a contradiction.
+But since $M_c$ \textbf{decides} $L$, $M_c (\langle M_c \rangle) = 1 \implies \langle M_c \rangle \in L$. 
+\textbf{Contradiction}.
 \end{itemize}
 
 
@@ -97,4 +98,27 @@ def INTERPRET(w):
 \textbf{For more details, read Sipser chapter 9}
 \end{proof}
 
+
+
+\begin{corollary}
+For two functions $f1, f2 : \mathbb{N} \to \mathbb{N}$, if
+$f1 \in o(f2)$, then $\dspace~(f1) \subsetneq \dspace~(f2)$. 
+(\textbf{Sid note: we do not need the condition that $f1 \neq f2$ thanks to the fact
+that in $o(n)$, the limit tends to $0$})
+\end{corollary}
+
+\section{Time Hierarchy}
+
+\begin{theorem}
+Let $f$ be a time-constructible function. There exists a language $L$ which
+can be decided in $O(f(n))$ time, but not in $o \bigg(\frac{f(n)}{\log(f(n)} \bigg)$ time.
+\end{theorem}
+\begin{proof}
+Proof is the same as that of space hierarchy (roughly).
+
+We get the $\log$ factor for us to simulate a $f(n)$ time turing machine.
+We do not know how to perform the simulation with constant overhead.
+\end{proof}
+
+\begin{corollary} $\texttt{P} \subsetneq \texttt{EXPTIME}$ \end{corollary}
 
