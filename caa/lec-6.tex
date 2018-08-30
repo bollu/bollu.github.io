@@ -55,18 +55,21 @@ the machine $M_j$ as a string).
 Now, create a language $L$:
 
 \begin{align*}
-L \equiv \{ M \vert M ( \langle M \rangle ) = 0 \}
+L \equiv \{ M~\vert~M ( \langle M \rangle ) = 0 \}
 \end{align*}
 
 Note that $L$ is \textbf{not decidable} in $o(f(n))$ space. Proof by contradtiction:
-Assume such a machine $M_{contra}$ exists. We now ask if $\langle M_{contra} \rangle \in L$?
+Assume such a machine $M_c$ ($c$ for contradiction) exists. We now ask if $\langle M_c \rangle \in L$?
 
-If $\langle M_{contra} \rangle \in L$, then $M_{contra} (\langle M_{contra} \rangle) = 0$.
-But since $M_{contra}$ \textbf{decides} $L$,
-$M_{contra} (\langle M_{contra} \rangle) = 0 \implies  \langle M_{contra} \rangle \notin L$.
+\begin{itemize}
+\item If $\langle M_c \rangle \in L$, then $M_c (\langle M_c \rangle) = 0$ (by the definiton of $L$).
+But since $M_c$ \textbf{decides} $L$,
+$M_c (\langle M_c \rangle) = 0 \implies  \langle M_c \rangle \notin L$.
 
-On the other hand, say that $\langle M_{contra} \rangle \notin L$, then $M_{contra} (\langle M_{contra} \rangle) = 1$.
-But since $M_{contra}$ \textbf{decides} $L$, $M_{contra} (\langle M_{contra} \rangle) = 1 \implies \langle M_{contra} \rangle \in L$. This is also a contradiction.
+\item On the other hand, say that $\langle M_c \rangle \notin L$, then $M_c (\langle M_c \rangle) = 1$
+(by the definition of $L$).
+But since $M_c$ \textbf{decides} $L$, $M_c (\langle M_c \rangle) = 1 \implies \langle M_c \rangle \in L$. This is also a contradiction.
+\end{itemize}
 
 
 We now move to show that $L$ \textbf{can be decided} in $O(f(n))$ space.
@@ -91,7 +94,7 @@ def INTERPRET(w):
 
     return !flag
 \end{minted}
-
+\textbf{For more details, read Sipser chapter 9}
 \end{proof}
 
 
