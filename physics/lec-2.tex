@@ -12,14 +12,48 @@ analysis.
 Evaluation of a functional $F$ with respect to $f$ is denoted by $F[f]$.
 \end{notation}
 
+\section{Functional Derivative - take 1}
 
-We define the derivative of a function $F$ with respect to a function $f$
-at a point $p$ as:
+We can only use a functional under an integral sign. Consider a functional $F$.
+We define the derivative of this functional as:
 
 \begin{align*}
-\frac{\delta F}{\delta f}{\bigg \rvert_p} \equiv 
+\int \fdv{F}{f} (x) \phi(x) \dd x = 
+\lim_{\epsilon \to 0}
+\frac{F[f + \epsilon \phi] - F[f]}{\epsilon}
+\end{align*}
+
+So,
+\begin{align*}
+    \fdv{F}{f} &: (\reals \to \reals) \to \reals \\
+    \fdv{F}{f} (\phi) &=  \int \fdv{F}{f} (x) \phi(x) \dd x
+\end{align*}
+
+\section{Functional Derivative as taught in class}
+
+Substitute $\phi = \delta (x - p)$. Now, the quantity:
+
+\begin{align*}
+    \int \fdv{F}{f}(x) \phi(x) \dd x = 
+    \int \fdv{F}{f}(x) \delta (x - p) = 
+    \fdv{F}{f} (p)
+\end{align*}
+
+That is, we can start talking about "derivative of the functional $F$ with
+respect to a function $f$ at a point $p$" as long as we only test the functional $F$ against
+$\delta$-functions.
+
+So, we can alternatively define this quantity as:
+
+\begin{align*}
+\fdv{F}{f}{\bigg \rvert_p} \equiv 
 \lim_{\epsilon \to 0} \frac{F[f + \epsilon \delta (x - p)] - F[f]}{\epsilon}
 \end{align*}
 
+While this does not "look like a functional", it actually is, if we
+mentally replace:
 
+\begin{align*}
+    p \to  \int ~\rule{0.3cm}{0.1mm}~\delta (x - p) \dd x
+\end{align*}
 
