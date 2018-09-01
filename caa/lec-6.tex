@@ -122,3 +122,44 @@ We do not know how to perform the simulation with constant overhead.
 
 \begin{corollary} $\texttt{P} \subsetneq \texttt{EXPTIME}$ \end{corollary}
 
+
+\section{Polynomial Hierarchy}
+
+One interesting thing to study is the power of oracles (non-uniform computations).
+One can try to study the nature of languages, given oracle access.
+
+\begin{definition}
+Let $M$ be a turing machine, $A$ be a language. \textbf{The language $L(M^A)$} is the
+set of strings accepted by the machine $M$ with oracle access to $A$.
+\end{definition}
+
+We can deneralize this by giving access to a \textit{class of languages}!
+
+\begin{definition}
+Let $M$ be a turing machine, $C$ be a class of languages. 
+\textbf{The language $L(M^C)$} is the
+set of strings accepted by the machine $M$ with oracle access to any language
+in $C$.
+
+$$
+M^C = \{ L(M^A)~\vert~A \in C \}
+$$
+\end{definition}
+
+\begin{definition}
+Let $C_1, C_2$ be classes of languages.
+\textbf{The language $L(C_1^{C_2})$} is the
+set of strings accepted by some machine in $C_1$ given oracle access to 
+some machine in $C_2$.
+
+$$
+C_1^{C_2} = \{ L(M_1^{M_2})~\vert~M_1 \in C_1, M_2 \in C_2 \}
+$$
+\end{definition}
+
+We will use $M^\phi$ to denote oracle access to an "empty" oracle. Hence, $M^\phi \sim M$.
+
+An example would be $\conptime \subset \ptime^{\nptime}$, because the $\ptime$
+oracle can flip the answer of the $\nptime$ oracle.
+
+
