@@ -1,0 +1,25 @@
+\chapter{Functional calculus}
+
+this chapter develops a completely handwavy physics version of functional
+analysis.
+
+
+\begin{definition}
+    A \textbf{functional} $F$ is a function: $F : (\reals \to \reals) \to \reals$
+\end{definition}
+
+\begin{notation}
+Evaluation of a functional $F$ with respect to $f$ is denoted by $F[f]$.
+\end{notation}
+
+
+We define the derivative of a function $F$ with respect to a function $f$
+at a point $p$ as:
+
+\begin{align*}
+\frac{\delta F}{\delta f}{\bigg \rvert_p} \equiv 
+\lim_{\epsilon \to 0} \frac{F[f + \epsilon \delta (x - p)] - F[f]}{\epsilon}
+\end{align*}
+
+
+
