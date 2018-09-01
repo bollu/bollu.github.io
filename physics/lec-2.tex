@@ -14,8 +14,12 @@ Evaluation of a functional $F$ with respect to $f$ is denoted by $F[f]$.
 
 \section{Functional Derivative - take 1}
 
-We can only use a functional under an integral sign. Consider a functional $F$.
-We define the derivative of this functional as:
+Consider a functional $F: (\reals \to \reals) \to \reals$, 
+a function $f: \reals \to \reals$, 
+and a "test function" $\phi: \reals \to \reals$.
+
+Consider a functional $F$.  We only define the derivative of a functional $F$
+with respect to a function $f$ by what happens under an integral sign as follows:
 
 \begin{align*}
 \int \fdv{F}{f} (x) \phi(x) \dd x = 
@@ -23,20 +27,43 @@ We define the derivative of this functional as:
 \frac{F[f + \epsilon \phi] - F[f]}{\epsilon}
 \end{align*}
 
-So,
+Now, we can define a small variation in $F$ as:
+
+\begin{align*}
+    \delta F &: (\reals \to \reals) \times (\reals \to \reals) \to \reals \\
+    \delta F(f, \phi) &\equiv \int \fdv{F}{f} (x) \phi(x) \dd x
+\end{align*}
+
+Intuitively, $\delta F$ tells us the variation of the function $f$ along
+a test function $\phi$. So, it encapsulates some kind of "directional derivative".
+
+
+So, we can look at $\fdv{F}{f}$ as a functional as follows:
 \begin{align*}
     \fdv{F}{f} &: (\reals \to \reals) \to \reals \\
-    \fdv{F}{f} (\phi) &=  \int \fdv{F}{f} (x) \phi(x) \dd x
+    \fdv{F}{f} (\phi) &=  \delta F (f, \phi)
 \end{align*}
+
+Wehre $\fdv{F}{f}$ allows us to "test" the change of $F$ with respect to $f$
+along a given "direction" $\phi$.
 
 \section{Functional Derivative as taught in class}
 
 Substitute $\phi = \delta (x - p)$. Now, the quantity:
 
 \begin{align*}
-    \int \fdv{F}{f}(x) \phi(x) \dd x = 
-    \int \fdv{F}{f}(x) \delta (x - p) = 
-    \fdv{F}{f} (p)
+    &\fdv{F}{f}(x) \phi(x) =
+    \delta F (f, \delta (x - p))  \\
+    % 
+    &\text{Rewriting $\delta F$ by sticking it under an integral:} \\
+    %
+    &\int \fdv{F}{f} (x) \delta (x - p) \dd x =  
+    \lim_{\epsilon \to 0}
+    \frac{F[f + \epsilon \delta (x - p)] - F[f]}{\epsilon}  \\
+    %
+    & \fdv{F}{f}{\bigg \rvert_p} = 
+    \lim_{\epsilon \to 0}
+    \frac{F[f + \epsilon \delta (x - p)] - F[f]}{\epsilon}
 \end{align*}
 
 That is, we can start talking about "derivative of the functional $F$ with
@@ -56,4 +83,6 @@ mentally replace:
 \begin{align*}
     p \to  \int ~\rule{0.3cm}{0.1mm}~\delta (x - p) \dd x
 \end{align*}
+
+This is how mukku got that expression.
 
