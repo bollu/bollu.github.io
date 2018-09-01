@@ -1,4 +1,5 @@
 \chapter{Maxwell's equations in Minkowski space}
+% http://www.physics.ucc.ie/apeer/PY4112/Tensors.pdf
 
 Let us first review Maxwell's equations:
 
@@ -8,3 +9,10 @@ Let us first review Maxwell's equations:
 &\curl E = - \pdv{B}{t}~\text{(Lenz Law - time varying magnetic field induces current that opposes it)} \\
 &\curl B =  \mu_0 \bigg(J + \epsilon_0 \pdv{E}{t} \bigg)~\text{(Ampere's law + fudge factor)}
 \end{align*}
+
+Begin with the equation that $\div B = 0$. This tells that $B$ can be written
+as the curl of some other field --- $B = \curl A$. Hence
+
+\begin{equation}
+B^i = \levicevita^{ijk}  \partial_j A^k
+\end{equation}
