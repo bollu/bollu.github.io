@@ -13,8 +13,13 @@ Let us first review Maxwell's equations:
 \section{Constructing $F$, or Tensorifying Maxwell's equations}
 
 Begin with the equation that $\div B = 0$. This tells that $B$ can be written
-as the curl of some other field --- $B = \curl A$. Hence
+as the curl of some other field:
 
+\begin{equation}
+    \boxed{B \equiv \curl A}
+\end{equation}
+
+Expanding this equation of $B$ in tensorial form:
 \begin{equation}
     \boxed{ B^i = \levicevita^{ijk}  \partial_j A^k }
 \end{equation}
@@ -125,6 +130,11 @@ So, finally, the relation is:
 
 \textbf{TODO: Find out how $E^i = c F^{i0}$}
 
+
+\begin{equation}
+    \boxed{E^i = c F^{i0}}
+\end{equation}
+
 \section{Other ramifications of Maxwell's equations on $F$}
 
 \subsection{Ramification 1}
@@ -135,7 +145,7 @@ We next consider the 4th Maxwell equation:
 \begin{align*}
     \curl B &= \mu_0 J + \epsilon_0 \mu_0 \pdv{E}{t} \\
     \curl B &= \mu_0 J + \frac{1}{c^2} \pdv{E}{t} \\
-            &\text{Converting to indeces,}\\
+            &\text{Converting to indices,}\\
     (\curl B)^i &= \mu_0 J^i + \frac{1}{c} \pdv{E^i}{ct} \tag{From $\partial_{ct} = \frac{1}{c} \partial_t$} \\
                 &= \mu_0 J^i + \frac{1}{c} \pdv{E^i}{X^0} \\
                 &= \mu_0 J^i + \pdv{F^{i0}}{X^0} \tag{From $E^i = c F^{i0}$} \\
@@ -208,5 +218,51 @@ the rate of change of $F$.
 \subsubsection{Second part, using 1st equation}
 
 \begin{align*}
-    \grad E = \frac{\rho}{\epsilon_0}
+    &\grad E = \frac{\rho}{\epsilon_0} \\
+    &\partial_i E^i = \frac{\phi}{\epsilon_0} \\
+    &\text{Substituting $E^i = c F^{i0}$, } \\
+    &c \partial_i F^{i0} = \frac{\rho}{\epsilon_0}  = \frac{\rho \mu_0}{\mu_0 \epsilon_0} = \rho c^2 \\
+    &\partial_i F^{i0} = \mu_0 c \rho \\
+    \text{Since $F$ is anti-symmetric, $F^{00} = 0$, Hence:}
+    &\partial_0 F^{00} + \partial_i F^{i0} = \mu_0 c \rho \\
+    &\partial_\mu F^{\mu 0} = \mu_0 c \rho
 \end{align*}
+
+\begin{equation}
+    \boxed{ \partial_\mu F^{\mu0} = \mu_0 c \rho}
+\end{equation}
+
+\subsubsection{Combining part 1 and part 2:}
+
+
+\begin{align*}
+    \mu_0 J^i + \partial_\mu F^{i\mu} = 0 \tag{From $B$}  \\
+    \partial_\mu F^{i\mu} = -\mu_0 J^i 
+    \partial_\mu F^{\mu 0} = \mu_0 c \rho \\
+    \partial_\mu F^{0 \mu} = - \mu_0 c \rho \\
+\end{align*}
+
+To combine these equations, \textbf{we set:}
+\begin{equation}
+    \boxed{J^0 \equiv c \rho}
+\end{equation}
+We arrive at the unified equation:
+
+\begin{align*}
+    \partial_\mu F^{\nu \mu} = - \mu_0 J^{\nu}
+\end{align*}
+
+Choose units such that $c = \frac{h}{2 \pi} = G_n = 1$, which gives us:
+
+
+\begin{align*}
+    &\partial_\mu F^{\nu \mu} = -  J^{\nu} \\
+    &\textbf{$F$ is antisymmetric, so flipping indices} \\
+    &\partial_\mu F^{\mu \nu} =  J^{\nu} \\
+\end{align*}
+
+\begin{equation}
+    \boxed{ \partial_\mu F^{\mu \nu} =  J^{\nu} }
+\end{equation}
+
+Note that this is \textbf{Ampere's law!}
