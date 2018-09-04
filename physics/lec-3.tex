@@ -14,5 +14,83 @@ Begin with the equation that $\div B = 0$. This tells that $B$ can be written
 as the curl of some other field --- $B = \curl A$. Hence
 
 \begin{equation}
-B^i = \levicevita^{ijk}  \partial_j A^k
+    \boxed{ B^i = \levicevita^{ijk}  \partial_j A^k }
 \end{equation}
+
+Next, take $\curl E = - \pdv{B}{t}$.
+
+
+\begin{align*}
+&\curl E = - \pdv{B}{t} = \pdv{(\curl A)}{t} = \curl{\pdv{A}{t}} \\
+&\curl (E + \pdv{A}{t}) = 0 \\
+&\text{writing this as the divergence of some field $\phi$ scaled by $\alpha : \reals$} \\
+&E + \pdv{A}{t} = \alpha \big(\div \phi\big) \\
+&E = \alpha \div \phi - \pdv{A}{t}
+\end{align*}
+
+Since electrostatics is time-independent, we choose to think of $\alpha = -1$, 
+so we can interpret $\phi$ as the potential.
+
+\begin{equation}
+     E^i = - \pdv{\phi}{x^k}  g^{ik} - \pdv{A}{t}^i
+\end{equation}
+
+A slight reformulation (since we know that in Minkowski space, $\partial_t = \partial_0$)
+we get the equation:
+
+
+\begin{equation}
+    \boxed{ E^i = - g^{ik} \partial_k \phi - \partial_0 A^i}
+\end{equation}
+
+We get the metric $g^ik$ involved to raise the covariant $\pdv{\phi}{x^k}$
+into the contravariant $E^i$.
+
+(\textbf{Sid question:} how does one justify switching $\curl$ and $\partial$? It feels like some algebra)
+
+\textbf{Here be magic!} We define A new rank-$2$ tensor in Minkowski space-time,
+called $F$ (for Faraday),
+
+\begin{equation}
+    \boxed{F_{\mu \nu} = \partial_\mu A_\nu - \partial_\nu A_\mu}
+\end{equation}
+
+(\textbf{Sid question:} why is this object $F_{\mu \nu}$ covariant? What does this \textit{mean}?)
+
+\begin{lemma}
+$F_{\mu \nu}$ is antisymmetric.
+\end{lemma}
+
+\begin{lemma}
+$F_{\mu \nu}$ has 6 degrees of freedom
+\end{lemma}
+\begin{proof}
+Number of degrees of freedom of $F$: 
+\begin{align*}
+\frac{4^2~\text{(total)} - 4~\text{(diagonal)}}{2~\text{(anti-symmetry)}} = 6
+\end{align*}
+\end{proof}
+
+Notice that $F$ is a 1-form!
+
+We now wish to re-expresss $B^{ij}$ and $E^{ij}$ in terms of $F$, so that
+this $F$ captures all of maxwell's equations.
+
+\begin{align*}
+    B^i &= \levicevita^{ijk}  \partial_j A^k = \levicevita^{ikj} \partial_k A^j \tag*{by $k$, $j$ being free variables} \\
+    B^i &= \frac{1}{2} \bigg( \levicevita^{ijk} \partial_j A^k + \levicevita^{ikj} \partial_k A^j \bigg) \\
+        &\text{Substituting $\partial_j A_k - \partial_k A_j = F_{jk}$, } \\
+    B^i &= \frac{1}{2} \levicevita^{ijk} F_{jk}
+\end{align*}
+
+
+So, $B$ in terms of $F$ is:
+\begin{equation}
+    \boxed{B^i = \frac{1}{2} \levicevita^{ijk} F_{jk}}
+\end{equation}
+
+Similarly, we wish to write $E$ in terms of $F$. The algebra is as follows:
+\begin{align*}
+    E^i = -g^{ik} \partial_k \phi - \partial_0 A^i
+\end{align*}
+
