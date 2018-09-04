@@ -10,6 +10,8 @@ Let us first review Maxwell's equations:
 &\curl B =  \mu_0 \bigg(J + \epsilon_0 \pdv{E}{t} \bigg)~\text{(Ampere's law + fudge factor)}
 \end{align*}
 
+\section{Constructing $F$, or Tensorifying Maxwell's equations}
+
 Begin with the equation that $\div B = 0$. This tells that $B$ can be written
 as the curl of some other field --- $B = \curl A$. Hence
 
@@ -52,7 +54,7 @@ into the contravariant $E^i$.
 called $F$ (for Faraday),
 
 \begin{equation}
-    \boxed{F_{\mu \nu} = \partial_\mu A_\nu - \partial_\nu A_\mu}
+    \boxed{F_{\mu \nu} \equiv \partial_\mu A_\nu - \partial_\nu A_\mu}
 \end{equation}
 
 (\textbf{Sid question:} why is this object $F_{\mu \nu}$ covariant? What does this \textit{mean}?)
@@ -73,6 +75,7 @@ Number of degrees of freedom of $F$:
 
 Notice that $F$ is a 1-form!
 
+\section{Expressing $B$, $E$ in terms of $F$}
 We now wish to re-expresss $B^{ij}$ and $E^{ij}$ in terms of $F$, so that
 this $F$ captures all of maxwell's equations.
 
@@ -100,7 +103,7 @@ Since $k = \{1, 2, 3\}$ ($k$ is spacelike coordinates), and we would like to
 relate $\phi$ with $A$ (to unify $E$), we \textbf{set}:
 
 \begin{equation}
-    \boxed{A_0 = - \phi}
+    \boxed{A_0 \equiv - \phi}
 \end{equation}
 
 Continuing the derivation,
@@ -119,3 +122,56 @@ So, finally, the relation is:
 \begin{equation}
     \boxed{E^i = -g^{ik} F_{0k}}
 \end{equation}
+
+\textbf{TODO: Find out how $E^i = c F^{i0}$}
+
+\section{Other ramifications of Maxwell's equations on $F$}
+
+We next consider the 4th Maxwell equation:
+
+\begin{align*}
+    \curl B &= \mu_0 J + \epsilon_0 \mu_0 \pdv{E}{t} \\
+    \curl B &= \mu_0 J + \frac{1}{c^2} \pdv{E}{t} \\
+            &\text{Converting to indeces,}\\
+    (\curl B)^i &= \mu_0 J^i + \frac{1}{c} \pdv{E^i}{ct} \tag{From $\partial_{ct} = \frac{1}{c} \partial_t$} \\
+                &= \mu_0 J^i + \frac{1}{c} \pdv{E^i}{X^0} \\
+                &= \mu_0 J^i + \pdv{F^{i0}}{X^0} \tag{From $E^i = c F^{i0}$} \\
+                &= \mu_0 J^i + \partial_0 F^{i0}
+\end{align*}
+
+Now, we start to simplify the LHS, $\curl B$:
+
+\begin{align*}
+    &(\curl B)^i = \levicevita^{ijk} \partial_j B_k \\
+    %
+    &\text{Since $B^k = \frac{1}{2} \levicevita^{klm} F_{lm}$,} \\
+    %
+    &\text{$B_k = \frac{1}{2} \levicevita_{klm} F^{lm}$,} \tag{\textbf{TODO:} this is scam} \\
+    %
+    &(\curl B)^i = \levicevita^{ijk} \partial_j (\frac{1}{2} \levicevita_{klm} F^{lm}) =
+    \frac{1}{2} \levicevita^{ijk} \levicevita_{klm} \partial_j F^{lm}\\
+\end{align*}
+
+\textbf{Aside: We need to know how to evaluate $\levicevita^{ijk} \levicevita_{klm}:$}
+\begin{align*}
+    \levicevita_{i_1, i_2, \dots, i_n} \levicevita_{j_1, j_2, \dots j_n} =  
+    \det{
+    \begin{vmatrix}
+        \delta_{i_1 j_1} & \delta_{i_1 j_2} &\dots &\delta_{i_1 j_n} \\
+        \delta_{i_2 j_1} &\delta_{i_2 j_2} &\dots &\delta_{i_2 j_n} \\
+        \vdots           &\vdots  & \ddots & \vdots \\
+        \delta_{i_n j_1} & \delta_{i_n j_2} & \dots & \delta_{i_n j_n}
+\end{vmatrix}}
+\end{align*}
+
+
+Plugging both equations together,
+
+\begin{align*}
+    \frac{1}{2} \levicevita^{ijk} \levicevita_{klm} \partial_j F^{lm} =  \mu_0 J^i + \partial_0 F^{i0}  \\
+    \frac{1}{2} \big[ 
+   \frac{-1}{2} \big(\delta^i_j \delta^j_m - \delta^i_m \delta^j_l\big) \big]
+    \partial_j F^{lm} =  \mu_0 J^i + \partial_0 F^{i0}
+\end{align*}
+
+
