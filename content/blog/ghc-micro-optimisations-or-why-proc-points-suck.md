@@ -1,7 +1,6 @@
 +++
-title = "Ghc Micro-Optimisations, or, why proc points suck"
-date = "2017-12-28T12:33:21+05:30"
-draft = true
+title = "Making GHC an order of magnitude faster with one neat trick"
+date = "2018-01-28T12:33:21+05:30"
 
 +++
 
@@ -328,6 +327,23 @@ Clearly, memory stuff is expensive: `pushReturn` and `popReturn` spend most of t
 ###### Analysis
 
 We can see that it is the load and store from memory that is consuming a lot of the time. However, on taking a deeper look, it appears that there are *more* loads in the haskell case than in the C case. If we trace the register usage across the program, the real problem emerges: Clang is able to allocate registers across the functions (TODO: insert function names) such that *no data needs to be passed on the stack*. However, in the Haskell case, we clearly use the "global stack" to pass data. This is **one extra load** per function call!. This obviously leads to a *huge* overhead across runs of the program.
+
+It appears that LLVM is able to interprocedurally allocate registers when we
+compile C code.
+
+However, GHC compilation is unable to understand that this interprocedural
+allocation is possible.
+
+The way I look at this is that when we have `call/ret`, one can see 
+inter-procedural control flow.
+
+However, when we compile with continuations, we don't really understand
+inter-procedural control flow, since we don't know **from where a continuation
+can be entered**. This is my understand of this, and it could be flawed.
+
+The points where we split off a continuation are called "proc-points" and
+perhaps teaching LLVM about these would help.
+
 
 ### How do we teach LLVM about proc point
 
