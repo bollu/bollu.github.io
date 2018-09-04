@@ -91,6 +91,31 @@ So, $B$ in terms of $F$ is:
 
 Similarly, we wish to write $E$ in terms of $F$. The algebra is as follows:
 \begin{align*}
-    E^i = -g^{ik} \partial_k \phi - \partial_0 A^i
+    E^i &= -g^{ik} \partial_k \phi - \partial_0 A^i \\
+    E^i &= -g^{ik} \partial_k \phi - \partial_0 g^{ik} A_k  \tag*{Is this allowed? Am I always allowed to insert the $g_{ik}$?} \\
+    E^i &= -g^{ik} (\partial_k \phi + \partial_0 A_k) \\
 \end{align*}
 
+Since $k = \{1, 2, 3\}$ ($k$ is spacelike coordinates), and we would like to
+relate $\phi$ with $A$ (to unify $E$), we \textbf{set}:
+
+\begin{equation}
+    \boxed{A_0 = - \phi}
+\end{equation}
+
+Continuing the derivation,
+
+
+
+\begin{align*}
+    E^i &= -g^{ik} (\partial_k (- A_0) + \partial_0 A_k) \\
+    E^i &= -g^{ik} (\partial_0 A_k - \partial_k A_0 ) \\
+    E^i &= -g^{ik} F_{0k}
+\end{align*}
+
+
+So, finally, the relation is:
+
+\begin{equation}
+    \boxed{E^i = -g^{ik} F_{0k}}
+\end{equation}
