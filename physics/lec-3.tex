@@ -349,5 +349,69 @@ Using this, the equation becomes
 Hence, the above equation does encode $\grad B = 0$.
 
 \subsubsection{$\alpha = m$ case:}
+Let $\alpha$ be a spatial dimension $m = \{ 1, 2, 3 \}$.
+\begin{align*}
+    \levicevita^{\alpha \beta \mu \nu}  \partial_{\beta} F_{\mu \nu} = 0 \\
+    \levicevita^{m \beta \mu \nu}  \partial_{\beta} F_{\mu \nu} = 0
+\end{align*}
+
+Once again, we get two cases, one where $\beta = 0$, and one where $\beta = n$
+where $n$ is a spatial dimension.
+\begin{align*}
+    \levicevita^{m \beta \mu \nu}  \partial_{\beta} F_{\mu \nu} = 0 \\
+    \levicevita^{m 0 \mu \nu}  \partial_{0} F_{\mu \nu} + \levicevita^{m n \mu \nu}  \partial_{n} F_{\mu \nu}  = 0 \\
+\end{align*}
+
+Now note that $\levicevita^{m 0 \mu \nu} = - \levicevita{0 m \mu \nu} = - \levicevita{m \mu \nu}$.
+
+Using this, we can rewrite the above equation as:
+
+\begin{align*}
+    %%%
+    \levicevita^{m 0 \mu \nu}  \partial_{0} F_{\mu \nu} + \levicevita^{m n \mu \nu}  \partial_{n} F_{\mu \nu}  = 0 \\
+    %%%
+    - \levicevita^{m \mu \nu}  \partial_{0} F_{\mu \nu} + \levicevita^{m n \mu \nu}  \partial_{n} F_{\mu \nu}  = 0 \\
+\end{align*}
+
+We now consider cases for $\mu$ in the second term, where either $\mu = 0$ or $\mu = o \in \{1, 2, 3\}$
+
+If $\mu = 0$, then the other dimension $\nu$ must be a spatial dimension $p$.
+If $\mu = q$, then the other dimension $\nu$ must be a time dimension $0$
+(This is because we are not allowed to have 4 spatial dimensions, since the $\levicevita$
+evaluates to 0 on repeated dimensions).
 
 
+\begin{align*}
+    - \levicevita^{m \mu \nu}  \partial_{0} F_{\mu \nu} + \levicevita^{m n \mu \nu}  \partial_{n} F_{\mu \nu}  = 0 \\
+    \\
+    %%%
+    - \levicevita^{m \mu \nu}  \partial_{0} F_{\mu \nu} + \\
+    %%% mu = 0, nu = p
+    \levicevita^{m n 0 p}  \partial_{n} F_{0 p}  \tag{$\mu = 0$, $\nu = p$} \\
+    %%% mu = q, nu = 0
+    \levicevita^{m n q 0}  \partial_{n} F_{q 0} \tag{$\mu = q$, $\nu = 0$} \\
+    = 0 
+\end{align*}
+Rearranging, and using the fact that $F_{0 p} = - F {p 0}$,
+$\levicevita{m n 0 p} = \levicevita{0 m n p} = \levicevita{m n p}$,
+$\levicevita{m n q 0} = - \levicevita{0 m n q} = - \levicevita{m n q}$,
+
+\begin{align*}
+    - \levicevita^{m \mu \nu}  \partial_{0} F_{\mu \nu} + 
+    %%% mu = 0, nu = p
+    \levicevita^{m n p}  (- \partial_{n} F_{p 0}) +
+    %%% mu = q, nu = 0
+    (- \levicevita^{m n q})  \partial_{n} F_{q 0}
+    = 0 
+\end{align*}
+
+Multiplying throughout by $-1$, and noticing that since $p, q$ are dummy indeces,
+we can set $p = q$. This allows us to get:
+
+
+
+\begin{align*}
+    \levicevita^{m \mu \nu}  \partial_{0} F_{\mu \nu} + 
+    %%% mu = 0, nu = p
+    2 \levicevita^{m n p}   \partial_{n} F_{p 0} = 0
+\end{align*}
