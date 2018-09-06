@@ -88,6 +88,17 @@ This is how mukku got that expression.
 
 \section{Common functional derivatives}
 
+\subsection{$F[f] = \int_0^\infty f dx$}
+
+
+\begin{align*}
+    \frac{\delta F[f]}{\delta f (x_0)} &=
+        \lim_{\epsilon \to 0} 
+         \frac{\int_0^\infty (f + \epsilon \delta (x - x_0)) \dd x- \int_0^\infty f \dd x }{\epsilon} \\
+         %%%%
+         &= \int_0^\infty \delta(x - x_0) \dd x = 1
+\end{align*}
+
 \subsection{Derivative of $F[\phi] \equiv \int (\pdv{\phi}{y})^2$}
 
 $\fdv{F}{f}{\bigg \rvert_p} = \int (\pdv{\phi}{y})^2$
