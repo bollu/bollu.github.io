@@ -302,6 +302,52 @@ Note that this is \textbf{Ampere's law!}
 \subsection{Combining (2) $\curl E = - \pdv{B}{t}$, (3) $\grad B = 0$}
 
 \begin{align*}
-    (\curl E)^i = \levicevita^{ijk} \partial_j E_k
+    %%
+    &\curl E = - \pdv{B}{t} \\
+    %%
+    &(\curl E)^i = \levicevita^{ijk} \partial_j E_k = - \partial_0 B \\
+    %%
+    &\levicevita^{ijk} \partial_j E_k = - \partial_0 (\frac{1}{2} \levicevita^{ijk} F_{jk}) \\
+    %%
+    &\levicevita^{ijk} \partial_j E_k  + \partial_0 (\frac{1}{2} \levicevita^{ijk} F_{jk})  = 0 \\
+    %%
+    &2\levicevita^{ijk} \partial_j E_k  + \partial_0 (\levicevita^{ijk} F_{jk})  = 0 \\
 \end{align*}
+
+Now we begin from the other direction, and start the derivation.
+
+We know that the equation we want is:
+
+\begin{equation}
+    \boxed{\levicevita^{\alpha \beta \mu \nu}  \partial_{\beta} F_{\mu \nu} = 0}
+\end{equation}
+
+\subsubsection{$\alpha = 0$ case:}
+First, set $\alpha = 0$. So now, the other $\beta, \mu, \nu$ are forced to be
+become space components --- $(i, j, k)$.
+
+Therefore, the equation now becomes:
+\begin{align*}
+    \levicevita^{0 i j k}  \partial_{i} F_{j k} = 0
+\end{align*}
+
+However, note that $\levicevita{0 i j k} = \levicevita{i j k}$, because if
+$(i j k)$ is an even permutation, so will $(0 i j k)$, and vice versa for odd
+(since $0 < i, j, k$).
+
+Using this, the equation becomes
+
+\begin{align*}
+    \levicevita^{i j k}  \partial_{i} F_{j k} = 0 \\
+    \partial_{i} ( \levicevita^{i j k} F_{j k}) = 0 \\
+    \text{Since $B^i = \frac{1}{2} \levicevita^{ijk} F_{j k}$:} \\
+    \partial_{i} \bigg( \frac{B^i}{2} \bigg) = 0 \\
+    \partial_{i}  B^i = 0 \\
+    \grad B = 0
+\end{align*}
+
+Hence, the above equation does encode $\grad B = 0$.
+
+\subsubsection{$\alpha = m$ case:}
+
 
