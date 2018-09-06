@@ -356,10 +356,12 @@ Let $\alpha$ be a spatial dimension $m = \{ 1, 2, 3 \}$.
 \end{align*}
 
 Once again, we get two cases, one where $\beta = 0$, and one where $\beta = n$
-where $n$ is a spatial dimension.
+where $n$ is a spatial dimension. If $\beta = 0$, then the other dimensions
+are forced to be spatial dimensions, which we shall denote as $\mu \equiv x$,
+$\nu \equiv y$
 \begin{align*}
     \levicevita^{m \beta \mu \nu}  \partial_{\beta} F_{\mu \nu} = 0 \\
-    \levicevita^{m 0 \mu \nu}  \partial_{0} F_{\mu \nu} + \levicevita^{m n \mu \nu}  \partial_{n} F_{\mu \nu}  = 0 \\
+    \levicevita^{m 0 x y}  \partial_{0} F_{x y} + \levicevita^{m n \mu \nu}  \partial_{n} F_{\mu \nu}  = 0 \\
 \end{align*}
 
 Now note that $\levicevita^{m 0 \mu \nu} = - \levicevita{0 m \mu \nu} = - \levicevita{m \mu \nu}$.
@@ -368,9 +370,9 @@ Using this, we can rewrite the above equation as:
 
 \begin{align*}
     %%%
-    \levicevita^{m 0 \mu \nu}  \partial_{0} F_{\mu \nu} + \levicevita^{m n \mu \nu}  \partial_{n} F_{\mu \nu}  = 0 \\
+    \levicevita^{m 0 x y}  \partial_{0} F_{x y} + \levicevita^{m n \mu \nu}  \partial_{n} F_{\mu \nu}  = 0 \\
     %%%
-    - \levicevita^{m \mu \nu}  \partial_{0} F_{\mu \nu} + \levicevita^{m n \mu \nu}  \partial_{n} F_{\mu \nu}  = 0 \\
+    - \levicevita^{m x y}  \partial_{0} F_{x y} + \levicevita^{m n \mu \nu}  \partial_{n} F_{\mu \nu}  = 0 \\
 \end{align*}
 
 We now consider cases for $\mu$ in the second term, where either $\mu = 0$ or $\mu = o \in \{1, 2, 3\}$
@@ -382,10 +384,10 @@ evaluates to 0 on repeated dimensions).
 
 
 \begin{align*}
-    - \levicevita^{m \mu \nu}  \partial_{0} F_{\mu \nu} + \levicevita^{m n \mu \nu}  \partial_{n} F_{\mu \nu}  = 0 \\
+    - \levicevita^{m x y}  \partial_{0} F_{x y} + \levicevita^{m n \mu \nu}  \partial_{n} F_{\mu \nu}  = 0 \\
     \\
     %%%
-    - \levicevita^{m \mu \nu}  \partial_{0} F_{\mu \nu} + \\
+    - \levicevita^{m x y}  \partial_{0} F_{x y} + \\
     %%% mu = 0, nu = p
     \levicevita^{m n 0 p}  \partial_{n} F_{0 p}  \tag{$\mu = 0$, $\nu = p$} \\
     %%% mu = q, nu = 0
@@ -397,7 +399,7 @@ $\levicevita{m n 0 p} = \levicevita{0 m n p} = \levicevita{m n p}$,
 $\levicevita{m n q 0} = - \levicevita{0 m n q} = - \levicevita{m n q}$,
 
 \begin{align*}
-    - \levicevita^{m \mu \nu}  \partial_{0} F_{\mu \nu} + 
+    - \levicevita^{m x y}  \partial_{0} F_{x y} + 
     %%% mu = 0, nu = p
     \levicevita^{m n p}  (- \partial_{n} F_{p 0}) +
     %%% mu = q, nu = 0
@@ -411,7 +413,26 @@ we can set $p = q$. This allows us to get:
 
 
 \begin{align*}
-    \levicevita^{m \mu \nu}  \partial_{0} F_{\mu \nu} + 
+    \levicevita^{m x y}  \partial_{0} F_{x y} + 
     %%% mu = 0, nu = p
     2 \levicevita^{m n p}   \partial_{n} F_{p 0} = 0
 \end{align*}
+
+First, remember that $E_p = F_{p 0}$. So, we can replace the term $F_{p 0}$
+(upto fudging of constant factors that we have always done), with $E_p$.
+
+Now, compare
+
+\begin{align*}
+    \levicevita^{m x y}  \partial_{0} F_{x y} + 
+    2 \levicevita^{m n p}   \partial_{n} E_p = 0 \tag{Our equation} \\
+    \\
+    2\levicevita^{ijk} \partial_j E_k  + \partial_0 (\levicevita^{ijk} F_{jk})  = 0 \tag{Previous equation} \\
+\end{align*}
+
+Note that the two equations are identical upto variable naming, and are
+hence considered equal. So, we have encoded both of Maxwell's
+laws into this particular equation:
+\begin{equation}
+    \boxed{\levicevita^{\alpha \beta \mu \nu}  \partial_{\beta} F_{\mu \nu} = 0}
+\end{equation}
