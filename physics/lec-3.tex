@@ -6,7 +6,7 @@ Let us first review Maxwell's equations:
 \begin{align*}
 &\div E = \frac{\rho}{\epsilon_0}~\text{(Electric charges produce fields)}\\
 &\div B = 0~\text{(Only magnetic dipoles exist)}\\
-&\curl E = - \pdv{B}{t}~\text{(Lenz Law - time varying magnetic field induces current that opposes it)} \\
+&\curl E = - \pdv{B}{t}~\text{(Lenz Law / Faraday's law - time varying magnetic field induces current that opposes it)} \\
 &\curl B =  \mu_0 \bigg(J + \epsilon_0 \pdv{E}{t} \bigg)~\text{(Ampere's law + fudge factor)}
 \end{align*}
 
@@ -128,19 +128,37 @@ So, finally, the relation is:
     \boxed{E^i = -g^{ik} F_{0k}}
 \end{equation}
 
-\textbf{TODO: Find out how $E^i = c F^{i0}$}
 
+Let us reconsider what we believed $E$ to be. We had:
+\begin{align*}
+    E &= - \grad \phi - \pdv{A}{t}
+\end{align*}
+However, comparing dimensions, space derivative of $\phi$ = time
+derivative of $A$. This means that 
+$\frac{\delta \phi}{\delta x} = \frac{\delta A}{\delta y}$, and so
+$\frac{\delta \phi}{\frac{\delta x}{\delta t}} =  \delta A$. We arbitrarily
+pick $c$ as our measuring stick for $\frac{\delta x}{\delta t}$.
+Also, in minkowski space, our measuring stick is actually $(ct, x, y, z)$,
+so $\partial_0 = \partial_{ct}$ So, when we write the equation for $E$, we should actually write
 
+\begin{align*}
+    E &= c \bigg(- \frac{\grad \phi}{c}  - \pdv{A}{ct}\bigg)
+\end{align*}
+
+which becomes:
 \begin{equation}
     \boxed{E^i = c F^{i0}}
 \end{equation}
 
-\section{Other ramifications of Maxwell's equations on $F$}
+\section{Rewriting Maxwell's equations in terms of $F$}
+Now that we have constructed the Faraday tensor $F$, we wish to re-expresss
+Maxwell's equations in terms of this object. This will give us a compact
+form of the laws which are invariant under coordinate transforms.
 
-\subsection{Ramification 1}
-\subsubsection{First part, using 4th equation}
+\subsection{Combining (1) $\grad E = \frac{\rho}{\epsilon_0}$, (4) $\curl B = \mu_0 J + \pdv{E}{t}$}
+\subsubsection{1. Using (4) $\curl B = \mu_0 J + \pdv{E}{t}$}
 
-We next consider the 4th Maxwell equation:
+We consider the 4th Maxwell equation:
 
 \begin{align*}
     \curl B &= \mu_0 J + \epsilon_0 \mu_0 \pdv{E}{t} \\
@@ -157,15 +175,15 @@ Now, we start to simplify the LHS, $\curl B$:
 \begin{align*}
     &(\curl B)^i = \levicevita^{ijk} \partial_j B_k \\
     %
-    &\text{Since $B^k = \frac{1}{2} \levicevita^{klm} F_{lm}$,} \\
+    &\text{Since $B^k = \frac{1}{2} \levicevita^{kmn} F_{mn}$,} \\
     %
-    &\text{$B_k = \frac{1}{2} \levicevita_{klm} F^{lm}$,} \tag{\textbf{TODO:} this is scam} \\
+    &\text{$B_k = \frac{1}{2} \levicevita_{kmn} F^{mn}$,} \tag{\textbf{TODO:} this is scam} \\
     %
-    &(\curl B)^i = \levicevita^{ijk} \partial_j (\frac{1}{2} \levicevita_{klm} F^{lm}) =
-    \frac{1}{2} \levicevita^{ijk} \levicevita_{klm} \partial_j F^{lm}\\
+    &(\curl B)^i = \levicevita^{ijk} \partial_j \bigg( \frac{1}{2} \levicevita_{kmn} F^{mn} \bigg) =
+    \frac{1}{2} \levicevita^{ijk} \levicevita_{kmn} \partial_j F^{mn}\\
 \end{align*}
 
-\textbf{Aside: We need to know how to evaluate $\levicevita^{ijk} \levicevita_{klm}:$}
+\textbf{Aside: We need to know how to evaluate $\levicevita^{ijk} \levicevita_{kmn}:$}
 \begin{align*}
     \levicevita_{i_1, i_2, \dots, i_n} \levicevita_{j_1, j_2, \dots j_n} =  
     \det{
@@ -177,35 +195,42 @@ Now, we start to simplify the LHS, $\curl B$:
 \end{vmatrix}}
 \end{align*}
 
-Hence, \textbf{TODO: HOW?}
-$\levicevita^{ijk} \levicevita^{ilm} = \frac{-1}{2} (\delta^j_i \delta^k_m - \delta^j_m \delta^k_l)$
+$\levicevita^{ijk} \levicevita^{imn} = -1 (\delta_j^m \delta_k^n - \delta_j^n \delta_k^m)$
+
+
+He argued that we get a $-1$ factor here due to the presence of the
+metric. I'm not fully convinced, but I can handwave this using the
+magic words "tensor density".
 
 
 Plugging both equations together,
 
 \begin{align*}
-    \frac{1}{2} \levicevita^{ijk} \levicevita_{klm} \partial_j F^{lm} &=  \mu_0 J^i + \partial_0 F^{i0}  \\
+    &\frac{1}{2} \levicevita^{ijk} \levicevita_{kmn} \partial_j F^{mn} =  \mu_0 J^i + \partial_0 F^{i0}  \\
     %
-    \frac{1}{2} \big[ 
-   \frac{-1}{2} \big(\delta^i_l \delta^j_m - \delta^i_m \delta^j_l\big) \big]
-   \partial_j F^{lm} &=  \mu_0 J^i + \partial_0 F^{i0} \\
+    &\text{(Since $kij$ is an even permutation of $ijk$):} \\
     %
-    \textbf{Something is fucked here with respect to $\partial_m F^{mi}$} \\
+    &\frac{1}{2} \levicevita^{kij} \levicevita_{kmn} \partial_j F^{mn} =  \mu_0 J^i + \partial_0 F^{i0}  \\
     %
-    \frac{1}{2} \big[ \frac{-1}{2} \big(
-    \partial_m F^{im} - \partial_m F^{mi} \big) \big] &= \mu_0 J^i + \partial_0 F^{i0}   \\
-       %
-        \textbf{$F$ is anti-symmetric, so rewriting $-\partial_m F^{mi} = \partial_m F^{im}$} \\
-       %
-    -\frac{1}{2} \big[ \partial_m F^{im} \big] &= \mu_0 J^i + \partial_0 F^{i0}   \\
-       %
-       \textbf{In the notes, the $\frac{1}{2}$ does not exist} \\
-       %
-    - \big[ \partial_m F^{im} \big] &= \mu_0 J^i + \partial_0 F^{i0}   \\
-       % 
-    \mu_0 J^i + \partial_0 F^{i0}  + \partial_m F^{im}  &= 0 \\
-        % 
-    \mu_0 J^i + \partial_\mu F^{i\mu} &= 0 \tag{$\mu = \{0, 1, 2, 3 \}$}
+    &\text{(Using  $\levicevita^{kij} \levicevita^{kmn} = -1 (\delta_i^m \delta_j^n - \delta_i^n \delta_j^m)$):}\\
+    %
+    &\frac{1}{2} \big[ 
+   - \big(\delta^i_m \delta^j_n - \delta^i_n \delta^j_m\big) \big]
+   \partial_j F^{mn} =  \mu_0 J^i + \partial_0 F^{i0} \\
+    %
+   &- \frac{1}{2} \big[ \partial_n F^{in} - \partial_m F^{mi}  \big] = \mu_0 J^i + \partial_0 F^{i0}   \\
+   %
+   &\text{($F$ is anti-symmetric, so rewriting $\partial_m F^{mi} = -\partial_m F^{im}$):} \\
+   %
+   &-\frac{1}{2} \big[ \partial_n F^{in} + \partial_m F^{im} \big] = \mu_0 J^i + \partial_0 F^{i0}   \\
+   %
+   &\text{(Replacing $\partial_m F^{im} \equiv \partial_n F^{in}$ since $m$ is free):} \\
+   %
+   &-\big[ \partial_m F^{im} \big] = \mu_0 J^i + \partial_0 F^{i0}   \\
+   % 
+   &\mu_0 J^i + \partial_0 F^{i0}  + \partial_m F^{im}  = 0 \\
+   % 
+   &\mu_0 J^i + \partial_\mu F^{i\mu} = 0 \tag{$\mu = \{0, 1, 2, 3 \}$}
 \end{align*}
 
 This gives us a continuity-style equation, linking the current density $J$ to
@@ -219,12 +244,19 @@ the rate of change of $F$.
 
 \begin{align*}
     &\grad E = \frac{\rho}{\epsilon_0} \\
-    &\partial_i E^i = \frac{\phi}{\epsilon_0} \\
-    &\text{Substituting $E^i = c F^{i0}$, } \\
+    %%
+    &\partial_i E^i = \frac{\rho}{\epsilon_0} \\
+    %%
+    &\text{(Substituting $E^i = c F^{i0}$): } \\
+    %%
     &c \partial_i F^{i0} = \frac{\rho}{\epsilon_0}  = \frac{\rho \mu_0}{\mu_0 \epsilon_0} = \rho c^2 \\
+    %%
     &\partial_i F^{i0} = \mu_0 c \rho \\
-    \text{Since $F$ is anti-symmetric, $F^{00} = 0$, Hence:}
+    %%
+    &\text{(Since $F$ is anti-symmetric, $F^{00} = 0$, Hence):}\\
+    %%
     &\partial_0 F^{00} + \partial_i F^{i0} = \mu_0 c \rho \\
+    %%
     &\partial_\mu F^{\mu 0} = \mu_0 c \rho
 \end{align*}
 
@@ -257,7 +289,7 @@ Choose units such that $c = \frac{h}{2 \pi} = G_n = 1$, which gives us:
 
 \begin{align*}
     &\partial_\mu F^{\nu \mu} = -  J^{\nu} \\
-    &\textbf{$F$ is antisymmetric, so flipping indices} \\
+    &\text{$F$ is antisymmetric, so flipping indices} \\
     &\partial_\mu F^{\mu \nu} =  J^{\nu} \\
 \end{align*}
 
@@ -266,3 +298,6 @@ Choose units such that $c = \frac{h}{2 \pi} = G_n = 1$, which gives us:
 \end{equation}
 
 Note that this is \textbf{Ampere's law!}
+
+\subsection{Combining (2) $\curl E = - \pdv{B}{t}$, (3) $\grad B = 0$}
+
