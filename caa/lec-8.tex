@@ -1,5 +1,7 @@
+\newcommand{\gni}{\texttt{GNI }}
 \chapter{Probabilistic proofs}
-\section{Completeness and Soundness}
+
+\section{\ip --- interactive proofs}
 \begin{definition}
 Completeness: For every true assertion, there is a valid proof.
 \end{definition}
@@ -20,7 +22,7 @@ are the implications?
 We relax the assumptions this way --- Relaxed compleness states that
 for every true assertion, there is a
 proof strategy that will convince the verifier with probability 
-at least $> \frac{1}{2}$.  
+at least $> \frac{2}{3}$.  
 Similarly, relaxed soundness states that for every false assertion,
 every proof strategy fails to convinve the verifier with probability
 at least $> \frac{2}{3}$. 
@@ -44,7 +46,85 @@ is measured as a function of the length of the input.
 \item \textbf{Completeness}: $\forall x \in L$, there exists a prover strategy
 so that the verifier accepts with probability $> \frac{2}{3}$.
 
-\item \textbf{Soundness}: $\forall x \notin L$, any prover strategy will lad
+\item \textbf{Soundness}: $\forall x \notin L$, any prover strategy will lead
 the verifier to accept with probability  $< \frac{1}{3}$.
 \end{itemize}
 \end{definition}
+
+Note that the power of the prover in unspecified in this definition ---
+we are implicitly saying that finding a proof is generally much harder
+than verifying a proof. Hence, the prover has no real bounds on the power,
+while the verifier does.
+
+We also have the value $R \in \mathbb{N}$, which lets us setup the number
+of rounds. This is a knob we can twiddle, that allows us to change the hardness
+of the problem.
+
+
+
+\begin{definition}
+The \ip hieararchy: Let $r: \mathbb{N} \to \mathbb{N}$ be the "number of rounds" function.
+Define $IP(r)$ to be the set of languages such that there exists an interactive
+proof system using at most $r(|x|)$ rounds on input $x$.
+
+For a class of functions $R \subset \{ \mathbb{N} \to \mathbb{N} \}$, we can then define $\ip~(R) = \cup_{r \in R} ~\ip~(r)$.
+\end{definition}
+
+Note that $NP \subset IP$.  Also, the number of rounds cannot be more than 
+polynomial --- the verifier is poly bounded in time, so the verifier
+cannot work more than poly rounds.
+
+Both \textbf{randomness} and \textbf{interaction} are essential to the definition.
+
+
+When randomness is removed but only interaction is present, this will be
+like \nptime. The prover can arrive by itself the set of messages the
+verifier would send to the prover.
+
+
+When interaction is removed but randomness is remained, the verifier is
+similar to that of \nptime, but the verifier can now be \textbf{probabilistic}.
+This class of languages is likely beyond \nptime.
+
+\section{Graph non-isomorphism (GNI)}
+Two graphs $G$, $H$ are isomorphic (denoted $G \sim H$), iff there exists
+a bijection such that $\forall x, y \in V_1, (x, y) \in E_1 \implies (f(x), f(y)) \in E_2$.
+
+Using this, we define \gni, the problem of checking if two graphs
+are not isomorphic:
+\begin{align*}
+\gni \equiv \{ \langle G, G' \rangle ~\vert~ G \nsim G' \}
+\end{align*}
+
+Graph isomoprhism is in \nptime since the witness will just be the bijection.
+Hence, \gni is in \conptime, and it is not known whether \gni is in \nptime.
+
+In an interactive proof system for \gni, the verifier asks the prover to
+distinguish between isomorphic graphs.
+
+\begin{itemize}
+\item $G_1, G_2$ are given to both prover, verifier.
+
+\item The verifier chooses a random  $r \in \{1, 2\}$ uniformly at random.
+
+\item The verifier picks a random permutation $\pi$ of the set $\{1, 2,\dots, |V(G_1)|\}$
+
+\item the verifier constructs the graph $H$ as the permutation of $G_r$ under $\pi$.
+The graph $H$ is sent to the prover. That is, $H \equiv \pi(G_r)$.
+
+\item the prover P replies with $r' \in \{1 2\}$. The reply $r'$ is 1
+if $H$ is isomorphic to $G_1$, and $2$ otherwise.
+
+\item The verifier accepts if $r = r'$.
+\end{itemize}
+
+Note that $H \sim G_r$. Now if $G_r \sim G_{other}$, then $H \sim G_r \sim G_{other}$, and
+so the prover has to literally guess between $G_r$ and $G_{other}$, and at best
+it can simply guess.
+
+On the other hand if $G_r \nsim G_{other}$, then if the prover knows how to solve
+\gni , it can check between $H$, $G_r$, and $G_{other}$ to consistently
+report $G_r$.
+
+
+
