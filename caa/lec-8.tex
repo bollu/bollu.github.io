@@ -70,9 +70,10 @@ proof system using at most $r(|x|)$ rounds on input $x$.
 For a class of functions $R \subset \{ \mathbb{N} \to \mathbb{N} \}$, we can then define $\ip~(R) = \cup_{r \in R} ~\ip~(r)$.
 \end{definition}
 
-Note that $NP \subset IP$.  Also, the number of rounds cannot be more than 
+
+Note that $\nptime \subset \ip$.  Also, the number of rounds cannot be more than 
 polynomial --- the verifier is poly bounded in time, so the verifier
-cannot work more than poly rounds.
+cannot work more than poly rounds.  So, we denote $\ip \equiv \ip(O(poly(n))$.
 
 Both \textbf{randomness} and \textbf{interaction} are essential to the definition.
 
@@ -132,4 +133,16 @@ so this will pass compleness (since $1 > \frac{2}{3}$).
 
 This is very interesting, because the verifier \textbf{does not know} whether
 $G_1 \sim_? G_2$. The verifier tries to engage with the prover, to understand
-whether $G_1 \sim G_2$ or not.
+whether $G_1 \sim_? G_2$.
+
+\begin{theorem}
+$\gni \subset \ip (2)$
+\end{theorem}
+
+\begin{theorem}
+$\conptime \subset \ip$
+\end{theorem}
+
+\begin{theorem}
+$\ip = \pspace$
+\end{theorem}
