@@ -86,4 +86,21 @@ For this to happen, we need some assumptions such as $\ptime \neq \nptime$,
 (whose proof techniques we have been guaranteed by the end of the semester),
 so $\bpp = \ptime$ is something we should try to solve.
 
-\subsection{$\bpp \subset \ppoly$}
+\begin{theorem}
+$\bpp \subset \ppoly$: Randomization does not help us go beyond circuit complexity
+\end{theorem}
+\begin{proof}
+if $L \in \bpp$, with probability $\frac{2}{3}$ it will be correct. We can
+use Chernoff bounds to repeat the experiment and take majority, given
+polynomial number of rounds, we can take error down to \textbf{negligible (less
+than any polynomial function)}.
+
+$$
+\forall w, P[M(w)=L(w)] \geq 1 - \frac{1}{2^{n + 1}}
+$$
+
+But for a length $n$, there are only $2^n$ strings.
+
+We need to translate the definition of $\ppoly$ from circuit complexity, to
+turing machines with advise.
+\end{proof}
