@@ -1,0 +1,63 @@
+\newcommand{\ppoly}{\texttt{P/Poly}}
+\chapter{Circuit Complexity}
+
+\section{Introduction}
+\section{\ppoly}
+If $\nptime \subset \ppoly$, then $\ph = \Sigma_2^P$.
+
+\begin{theorem}
+    Let $L = \{ 1^n ~\vert~ n \in \nats \land ~P(n) \}$, where $P: \nats \to \{0, 1\}$
+    is a filtering predicate. All such languages $L \in \ppoly$.
+\end{theorem}
+\begin{proof}
+    Check if $1^n \in_? L$. If $1^n \notin L$, Define $C_n \equiv \text{reject all inputs}$.
+    If $1^n \in L$, define $C_n \equiv \text{accept all inputs}$.
+\end{proof}
+
+The problem is that unary languages of this kind can be \textit{uncomputable}.
+\begin{align*}
+    \texttt{UHALT} \equiv \{ 1^n~\vert~ \text{$n$ encodes $\langle M, w \rangle$, $M$ accepts} \}
+\end{align*}
+
+$\texttt{UHALT} \in \ppoly$ since it is a unary language, but unfortunately, this
+language is undecidable.
+
+The hardness is being pushed to the "construction of the circuit" --- this
+feels pathological, so we may change this definition to allow us to
+fix this.
+
+\subsection{Karp-Lipton theorem}
+\begin{theorem}
+If $\nptime \subseteq \ppoly$, then $\ph = \Sigma^p_2$
+\end{theorem}
+\begin{proof}
+    Recall that $\Sigma^p_2 = \Pi^p_2 \implies PH = \Sigma^p_2$. So, we
+    choose to show that $\Sigma^p_2 = \Pi^p_2$.
+
+    The $\Pi^p_2$-complete problem is this: $\forall u \exists v, \phi(u, v) =_? 1$,
+    where $\phi$ is a boolean formula.
+
+    We need to show that this problem is in $\Sigma_2^p$, if $\nptime \subseteq \ppoly$.
+
+    If $\nptime \subseteq \ppoly$, then $\sat \in \ppoly$. So, given
+    $\phi$, there exists a polynomial size Circuit family $\{ C_n \}$, 
+    such that $C_n (\phi, u, v) \equiv \forall \phi, \forall u, \exists v, \phi(u, v) = 1$.
+
+    assume we have a $\sat$ oracle. We can use it to find the satisfying assignment.
+    Assume we have $\phi(x_1, x_2, \dots x_n)$. If it says "no", then we say "no".
+    If it says "yes", then we need to find the satisfying assignment.
+    Betweem $\phi(0, x_2, \dots, x_n)$, $\phi(1, x_2, \dots, x_n)$, one of
+    these must be satisfiable (as $\phi$ is satisfiable). Do this $n$
+    times, at which point we find the satisfying assignment.
+
+    This entire process can be written as a family of boolean circuits,
+    $\{ C_n' \}$, $C_n' (\phi, u) = v$.
+
+    \begin{align*}
+        \forall u \exists v, \phi(u, v) = 1 \iff \\
+        \exists \{ C_n' \}, \forall u, \phi(u, C_n'(\phi, v)) = 1 \iff \\
+        \exists w, \forall u, \phi(u, \langle \text{$w$ interpreted as a circuit} \rangle(\phi, v)) = 1 
+\end{align*}
+
+But the final statement is in $\Sigma^p_2$!
+\end{proof}
