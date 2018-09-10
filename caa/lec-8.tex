@@ -1,0 +1,50 @@
+\chapter{Probabilistic proofs}
+\section{Completeness and Soundness}
+\begin{definition}
+Completeness: For every true assertion, there is a valid proof.
+\end{definition}
+
+\begin{definition}
+Soundness: For every false assertion, no valid proof exists.
+\end{definition}
+
+A good proof system must also be such that the verifier is efficient
+(that is, polynomial time).
+
+If we ask that a proof system must be sound and complete, there is no 
+scope for error! Further, it is not clear if the verifier and the
+prover can "talk" to each other. If we choose to allow interactions, what
+are the implications?
+
+
+We relax the assumptions this way --- Relaxed compleness states that
+for every true assertion, there is a
+proof strategy that will convince the verifier with probability 
+at least $> \frac{1}{2}$.  
+Similarly, relaxed soundness states that for every false assertion,
+every proof strategy fails to convinve the verifier with probability
+at least $> \frac{2}{3}$. 
+
+The formalization is as follows:
+\begin{definition}
+Interactive proof systems
+\begin{itemize}
+\item An interactive proof system for a language $L$ consists of two
+entities: a prover $P$ and a verifier $V$.
+$P$ and $V$ share common input, and work for $R \in \mathbb{N}$ rounds.
+
+\item In each round, the prover can send the verifier a message that 
+is polynomial in the length of the input.
+
+\item The verifier can send a polynomial length reply to the prover.
+
+\item The verifier is a randomized polynomial time turing machine. Time
+is measured as a function of the length of the input.
+
+\item \textbf{Completeness}: $\forall x \in L$, there exists a prover strategy
+so that the verifier accepts with probability $> \frac{2}{3}$.
+
+\item \textbf{Soundness}: $\forall x \notin L$, any prover strategy will lad
+the verifier to accept with probability  $< \frac{1}{3}$.
+\end{itemize}
+\end{definition}
