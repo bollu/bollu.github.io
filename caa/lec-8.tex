@@ -120,11 +120,16 @@ if $H$ is isomorphic to $G_1$, and $2$ otherwise.
 
 Note that $H \sim G_r$. Now if $G_r \sim G_{other}$, then $H \sim G_r \sim G_{other}$, and
 so the prover has to literally guess between $G_r$ and $G_{other}$, and at best
-it can simply guess.
+it can simply guess. (Even though the prover has \textit{unbounded computation},
+it is unable to distinguish between $G_r$ and $G_{other}$). In two rounds,
+the probability of the guesses of the prover being right is $\frac{1}{2}^2 = \frac{1}{4}$,
+which fulfils our soundness guarantee ($\frac{1}{4} < \frac{1}{3}$).
 
 On the other hand if $G_r \nsim G_{other}$, then if the prover knows how to solve
 \gni , it can check between $H$, $G_r$, and $G_{other}$ to consistently
-report $G_r$.
+report $G_r$. In this case, the prover will \textit{always} be correct,
+so this will pass compleness (since $1 > \frac{2}{3}$).
 
-
-
+This is very interesting, because the verifier \textbf{does not know} whether
+$G_1 \sim_? G_2$. The verifier tries to engage with the prover, to understand
+whether $G_1 \sim G_2$ or not.
