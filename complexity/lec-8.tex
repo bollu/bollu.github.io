@@ -1,5 +1,6 @@
 \newcommand{\ppoly}{\texttt{P/Poly}}
-\chapter{Circuit Complexity}
+\newcommand{\bpp}{\texttt{BPP}}
+\chapter{Other flavours of complexity classes:\bpp, \ppoly}
 
 \section{Introduction}
 \section{\ppoly}
@@ -61,3 +62,28 @@ If $\nptime \subseteq \ppoly$, then $\ph = \Sigma^p_2$
 
 But the final statement is in $\Sigma^p_2$!
 \end{proof}
+
+\section{\bpp}
+
+\subsection{\bpp = \ptime, the conjectured proof}
+If true randomness can make our algorithm run fast, then a pseudorandomness
+can also make our algorithm run fast, since \bpp is still polynomial,
+but by definition, polynomial time adversary can't differentiate between
+PRNG and a true RNG.
+
+So, a deterministic turing machine can try to brute force all the seeds
+of the PRNG.
+
+However, for this, we need to know which seeds to look at. Somehow,
+a coding theory idea called \textbf{list decoding} (ambiguity-allowed decoding)
+will give us a polynomial number of seeds to try / brute force on.
+
+We can brute force the list of seeds to try in poly-time, and we get poly
+number of seeds, so we can "de-randomize" BPP into P.
+
+Some of the steps in this sketch is conjectured (eg, existence of PRNG).  
+For this to happen, we need some assumptions such as $\ptime \neq \nptime$,
+(whose proof techniques we have been guaranteed by the end of the semester),
+so $\bpp = \ptime$ is something we should try to solve.
+
+\subsection{$\bpp \subset \ppoly$}
