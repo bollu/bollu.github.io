@@ -34,3 +34,99 @@
     \end{align*}
 \end{proof}
 
+\begin{align*}
+    S_x = \{ r~\vert~ r~\text{is good for input x} \}
+\end{align*}
+
+That is, given $r$ as the randomness for input $x$ on machine $M$, $M$ will
+accept with high probability (ie. $M(x, r)$ accepts with high probability).
+
+
+There are only two cases: Either $|S_x|$ is large, or $|S_x|$ is very small,
+since $x \in L \lor x \notin L$.  Let $|r| = m$. Now, we count the size
+of $|S_x|$ depending on the cases of $x \in_? L$.
+
+
+%% TODO: fix this
+\begin{align*}
+    x \in L &\implies |S_x| \geq (1 - \frac{1}{2^n}) \cdot 2^m \\
+    x \notin L &\implies |S_x| \leq \frac{1}{2^n} \cdot 2^m
+\end{align*}
+
+We can exploit this idea to show the theorem: "every string either has a large
+$|S_x|$ or a small $|S_x|$ can be written as a "good" $\Sigma_2^p$ statement.
+
+
+Let $S$ be any set, $|S|< 2^{m - n}$ ($|S|$ is small). Let $k = ceil(m / n) + 1$.
+Let us define:
+
+$$
+S + u_i \equiv \{ x + u_i~\vert~x \in S \}
+$$
+
+where $+$ is bitwise-XOR.
+
+First of all, note that $|S + u_i| = |S|$ ($\texttt{blank} + u_i$ = XOR = bijective, hence we don't change cardinality).
+
+
+\begin{align*}
+    \bigcup_{i=1}^k |(S + u_i)| \leq \sum_{i=1}^k |S + u_i| = \sum_{i=1}^k |S| = k |S| = k \cdot 2^{m - n}
+\end{align*}
+
+
+\begin{align*}
+    \forall u_1, u_2, \dots u_k \in \{0, 1\}^*, |u_i| = m, \bigcup_{i=1}^k (S + u_i) \neq \{0, 1\}^m
+\end{align*}
+Immediate, because $|\bigcup_{i=1}^k (S + u_i)| \leq k \cdot 2^{m - n}$,
+$|\{0, 1\}^m| = 2^m$.  ($m = poly(n)$, hence $k = poly(n)$, now argue inequalities).
+
+
+Next, we argue something similar for \textit{large} sets. 
+If $|S| \geq (1 - \frac{1}{2^n}) \cdot 2^m$,
+
+\begin{align*}
+    Stmt \equiv \exists u_1, u_2, \dots u_k \in \{0, 1\}^*, |u_i| = m, \bigcup_{i=1}^k (S + u_i) = \{0, 1\}^m
+\end{align*}
+
+We prove this using the \textbf{probabilistic method}.  $P[Stmt] > 0$ is what we want to show.
+Let us show this by considering the \textit{converse}: $P[\lnot Stmt] < 1$. 
+
+
+We first make some definitions to state formally: 
+$$B_r \equiv r \notin \bigcup (S + u_i)$$
+ $$B_r^i \equiv r \notin S + u_i$$
+
+The converse is now the probability that $B_r$ does not cover $\{0, 1\}^m$.  
+We know that $$|S + u_i| \geq (1 - \frac{1}{2^n}) \cdot 2^m$$.
+Note that in this probability, we range over all $u_i$.
+
+\begin{align*}
+    P[B_r^i] \leq \texttt{TODO: complete this} = 2^{-n} \\
+    P[B_r] \leq  k \cdot 2^{-n} \leq 1
+\end{align*}
+
+Hence, there must exist $\{ u_i \}$.
+
+
+So now, we can pose the membership query $x \in_? L$ as:
+
+\begin{align*}
+    \exists u_1, u_2, \dots u_k, \forall r \in \{0, 1\}^m, r \in \bigcup_{i = 1}^k (S_x + u_i)
+\end{align*}
+
+If the statement had been $r \in S_x$, then this means that $M(x, r) = \texttt{ACCEPT}$.
+However, here we know that $r \in \bigcup_{i = 1}^k (S_x + u_i)$. From this, 
+we infer that $\exists i, r \in S_x + u_i$.  This means
+that $r = r_0 + u_i$ where $M(x, r_0) = \texttt{ACCEPT}$. Hence, this means
+that $r + u_i$ will accept $M(x, r + u_i) = M(x, r_0 + u_i + u_i) = M(x, r_0) = \texttt{ACCEPT}$.
+
+So, we can create a new machine $M'(x, r) = \text{run}~M(x, r + u_i),  \forall i \in [1, k]$.
+Note that $M'$ is in poly, since $M$ is poly, and $k = ceil(m, n) = poly(n)$.
+
+\begin{align*}
+    \exists u_1, u_2, \dots u_k, \forall r \in \{0, 1\}^m, M'(x, r) = \texttt{ACCEPT}
+\end{align*}
+
+This statement is now in $\Sigma_2^p$, since $M' \in \ptime$, and we have the correct
+$\exists \forall$ structure.
+
