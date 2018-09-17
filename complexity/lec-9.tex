@@ -121,7 +121,10 @@ that $r = r_0 + u_i$ where $M(x, r_0) = \texttt{ACCEPT}$. Hence, this means
 that $r + u_i$ will accept $M(x, r + u_i) = M(x, r_0 + u_i + u_i) = M(x, r_0) = \texttt{ACCEPT}$.
 
 So, we can create a new machine $M'(x, r) = \text{run}~M(x, r + u_i),  \forall i \in [1, k]$.
-Note that $M'$ is in poly, since $M$ is poly, and $k = ceil(m, n) = poly(n)$.
+Note that $M'$ is in poly, since $M$ is poly, and $k = ceil(m, n) = poly(n)$, since
+$m$ is the amount of randomness the machine $M$ consumes.
+
+\textbf{Figure out where we need the $k = \dots + 1$ precisely (why the $+1$)}
 
 \begin{align*}
     \exists u_1, u_2, \dots u_k, \forall r \in \{0, 1\}^m, M'(x, r) = \texttt{ACCEPT}
@@ -130,3 +133,9 @@ Note that $M'$ is in poly, since $M$ is poly, and $k = ceil(m, n) = poly(n)$.
 This statement is now in $\Sigma_2^p$, since $M' \in \ptime$, and we have the correct
 $\exists \forall$ structure.
 
+
+\textbf{Intuitive picture: if $x \in L$, then the set $S_x$ is large enough that we
+only need a polynomial number of $\{u_i\}$ to "spread" $S_x$ around to cover all
+possible $r$, and the converse}.
+
+\section{$\bpp \subset \ppoly$ (Adleman's theorem)}
