@@ -1,0 +1,36 @@
+\newcommand{\cobpp}{\texttt{co-BPP}}
+\newcommand{\ip}{\texttt{IP}}
+\newcommand{\zkp}{\texttt{ZKP}}
+\chapter{Exploring probabilistic complexity classes}
+
+\begin{itemize}
+    \item $\bpp \subset \Sigma^p_2 \cap \Pi^p_2$ (Sipser-Gaes theorem)
+    \item $\bpp \subset \ppoly$ (Adleman's theorem)
+    \item Hierarchy theorem for circuit complexity --- $SIZE(f(n))$
+\end{itemize}
+
+
+\begin{theorem}
+    $\bpp \subseteq \Sigma^p_2 \cap \Pi^p_2$ (Sipser-Gaes theorem)
+\end{theorem}
+\begin{proof}
+    First, notice that $\bpp = \cobpp$ (flip the answer, similar to $\ptime = \coptime$).
+
+    Showing $\bpp \subseteq \Sigma_2^p$, it would automatically imply that $\bpp \subseteq \Pi_2^p$,
+    since $\bpp = \cobpp$.
+    So now, all we need to show is that $\bpp \subseteq \Sigma_2^p$.
+
+    \begin{align*}
+    &\text{Definition of \bpp~for a language $L$:} \\
+    &\exists \text{poly time}~M, \forall w \in L, P[M(w, r) = accept] \geq \frac{2}{3} \\
+    &\exists \text{poly time}~M, \forall w \notin L, P[M(w, r) = accept] \leq \frac{1}{3}
+    \end{align*}
+
+    By repeating, we can make the probabilities:
+    \begin{align*}
+    &\text{Definition of \bpp~for a language $L$:} \\
+    &\exists \text{poly time}~M, \forall w \in L, P[M(w, r) = accept] \geq \ 1 - \frac{1}{2^n} \\
+    &\exists \text{poly time}~M, \forall w \notin L, P[M(w, r) = accept] \leq \frac{1}{2^n}
+    \end{align*}
+\end{proof}
+
