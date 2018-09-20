@@ -139,3 +139,35 @@ only need a polynomial number of $\{u_i\}$ to "spread" $S_x$ around to cover all
 possible $r$, and the converse}.
 
 \section{$\bpp \subset \ppoly$ (Adleman's theorem)}
+
+\begin{align*}
+    P(M[x, r] = L(x)]) \geq  1 - \frac{1}{2^{n + 1}}
+\end{align*}
+
+Let the length of $r$ be $m$, and hence there are $2^m$  number of $r$.
+The number of bad $r$'s is $\leq \frac{2^m}{2^{n + 1}}$.
+
+There are only $2^n$ possible $x$ inputs to the machine $M$.
+
+Let us try to count the number of bad things for \textit{any} $x$. This will 
+be $\leq 2^n \cdot \frac{2^m}{2^{n + 1}} = \frac{2^m}{2} < 2^m$.
+
+So, there must exist a random string $r$ that is good for \textbf{all} $x$.
+Give this as the advice string to derandomize. So now, we got the advice
+sring for \ppoly~for every $n$.
+
+This does not allow us to reduce to \ptime, because we still need to know
+this special $r$ that allows us to derandomize every string of length $n$.
+
+Note that we do need polynomial time here, so we can get exponentially close
+to 1.
+
+What we are using is that for a string that belongs in the language, there
+are \textit{many} certificates, and similarly for strings that don't belong,
+there are \textit{very few} certificates (the "barren middle" exists for \bpp).
+
+\section{Computation is messy (Philosophy)}
+Computation is in itself a "messy" object. Small changes in input leads
+to huge changes in output. 
+
+In most of known mathematics, it is not as sensitive. 

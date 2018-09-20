@@ -1,0 +1,129 @@
+\newcommand{\pram}{\texttt{PRAM}}
+\chapter{Parallel Computing}
+
+Moore's law, blocking factors:
+\begin{itemize}
+    \item Memory wall: memory latency was higher than compute.
+    \item Power wall: Power leakage.
+    \item ILP wall: ILP via branch prediction, out-of-order-execution, and
+        speculative execution. Diminishing returns from instruction-level
+        parallelism.
+\end{itemize}
+
+Interesting questions one can ask:
+\begin{itemize}
+    \item How do we analyze parallel algorithms? 
+    \item Can every sequential algorithm be parallelized?
+    \item What are the complexity classes related to parllel computning?
+    \item Can sequential programs be automatically converted to parallel programs?
+\end{itemize}
+
+\textit{Concurrent data structures, course: Professor Govindarajulu.}
+
+\section{\pram~model}
+
+Global shared memory, shared by $n$ processors. Each processor has
+individual bidirectional buses into the memory.
+
+Also, note that we have \textit{random access} into the memory, which is
+different from a turing machine, which only offers sequential access.
+
+\textit{(Sid question: what is a problem that can be solved efficiently given
+random access and not with sequential access?)}
+
+Access to shared memory costs the same as one unit of computation.
+
+Different flavours provide different semantics to concurrent access
+of shared memory (EREW, CREW, CRCW).
+\begin{itemize}
+    \item EREW - Exclusive Read, Exclusive Write. No scope for memory contention,
+        so algorithm design is tough.
+    \item CREW - Concurrent Read, Exclusive Write. Allow processors to read
+        simeltaneously, writes are still exclusive. Is practically feasible.
+    \item CRCW - Concurrent Read, Concurrent Write
+        Processors can read/write simeltaneously. So here, we need to specify
+        semantics of concurrent writes!
+\end{itemize}
+
+Flavours of concurrent write semantics:
+\begin{itemize}
+    \item COMMON: Concurrent write is allowed as long as all the values being
+        attempted are equal. Eg: boolean OR of $n$ bits. Each processor $p_i$
+        will read $a[i]$. if $a[i] = 1$, then $p_i$ tries to write 1.
+        it doesn't matter how many processors try to write 1, if any bit is
+        1, then the output will be 1. We need to make sure the cell is
+        initialized to 0, so that if all bits are 0, the answer is 0.
+    \item ARBITRARY: In the case of a concurrent write, \textit{someone} wins
+        and its write takes effect.
+    \item PRIORITY: Assumes that processors have numbers that can be used
+        to decide which write succeeds.
+\end{itemize}
+
+\section{Matrix multiplication}
+
+\begin{itemize}
+    \item Recursively block the matrices.
+    \item Multiply strips (cannon's algorithm).
+\end{itemize}
+
+\subsection{Prefix computations}
+Given an array $A$ of n elements and an associative operator $\circ$, we want
+to compute $P(i) = \circ_{k \in [0\dots n]} A[k]$.
+$P(0) = A(0), P(1) = A(0) \circ A(1) \dots$.
+
+
+We can use the naive approach:
+\begin{minted}{python}
+def scan(A, op):
+    out[0] = A[0]
+    for i in range(1, length(A)):
+        out[i] = op(A[i], out[i - 1])
+\end{minted}
+
+We have  linear RAW dependences:  $out[i] \to out[i - 1]$.
+
+So, we crete a complete binary tree with processors at the internal nodes.
+Input is at the leaf node. Each node performs the $\circ$ of its left and
+right subtree.
+
+
+\begin{minted}{python}
+def sumfast(A, op, l, r):
+    if (l == r):
+        return A[l]
+    else:
+        mid = (l + r) / 2
+        return op(scanfast(A, op, l, mid), scanfast(A, op, mid, r));
+
+def sum(A, op):
+    return sum(A, op, 0, length(A))
+\end{minted}
+Note that this will not give us \textit{prefix sums}.
+We can finish in $\log(n)$ time given $2^n$ processors.
+
+For a \textit{prefix sum}, we need a combination of upward and downward traversal.
+First send data from bottom to top. Next, send down data from top to bottom
+of the prefix sums towards the leaves.
+
+\subsubsection{Analysis of prefix computation}
+\begin{itemize}
+    \item Step 1 can use $\frac{n}{2}$ processors in parallel, each using 1 unit
+        of time.
+
+    \item Step 2 is a recursive calls and takes $T(\frac{n}{2})$ time.
+
+    \item Step 3 uses $n$processors each of which take 1 unit of time.
+\end{itemize}
+
+Work done by the algorithm: $W(n) = W(n/2) + O(n)$ ($O(n)$ for the first
+and third step).
+$W(n) = O(n)$ is the solution.
+
+\subsubsection{Optimal parallel algorithm}
+A parallel algorithm that does the same amount of work
+as the best known sequential algorithm is called an \textit{optimal algorithm}.
+
+This makes sense, because if we set $\texttt{num processors} = 1$, we want the asymptotics
+to match the sequential algorithm.
+
+

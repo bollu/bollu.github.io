@@ -1,0 +1,99 @@
+\chapter{Design models of parallel algorithms}
+
+\section{Partitioning}
+This is similar to divide-and-conquer, but we don't need to \textit{combine}
+solutions! We can treat problems independently and solve it in parallel.
+Examples are parallel merging and searching.
+
+We generate subproblems that are independent of each other.
+Example is quicksort. Once we partition the array into two subarrays,
+we sort the subarrays recursively.
+
+\subsection{Merging in parallel by partitioning}
+Two sorted arrays $A$ and $B$ are to be merged into an array $C$.
+
+
+We define a function $Rank(x_0, X) = |\{ x < x_0~\vert~x \in X \}|$. Note
+that the position of $x_0$ in $sorted(X)$ is equal to $Rank(x_0, X)$.
+\textbf{Claim:} $Rank(x, C) = Rank(x, A) + Rank(x, B)$.
+
+
+For $x \in A$, $Rank(x, A)$ is immediately available (since $A$ is sorted).
+We need to find $Rank(x, B)$, but we can find this using binary search through $B$.
+
+
+Time for each binary search is $O(\log n)$. Total time for merging is
+$O(\log n)$, since we are doing each binary search in parallel --- we just need
+to read the array $B$, no need to update. The total work is $O(n \log n)$, since
+we are performing $O(\log n)$ work for $n$ elements.
+
+
+Note that this is \textbf{non optimal}. The sequential algorithm has
+a time complexity of $O(n)$.
+
+
+We are going to try and reduce the work to $O(n)$. 
+
+\subsubsection{Merging, take 2: optimal work}
+General technique is to solve a smaller problem in parallel, and then
+extend the solution to the entire problem!
+
+\begin{itemize}
+    \item The problem size to be solved is guided by the factor of non-optimality
+        in the current algorithm. We need to reduce the total work to $O(n)$.
+
+        For input size $n$, we do $O(n \log n)$ work. So, for input size $n / \log n$,
+        we do $O(n / \log n \times \log (n / \log n) \sim O(n) + O(\log(\log(n)) \sim O(n)$.
+
+    \item We pick every $\log n$th element of $A$. We merge the selected elements
+        of $A$ and $B$. However, we still perform binary search on the entireity of $B$.
+
+    \item Pick elements $A[\log n], A[2 \log n], \dots, A[ n - \log n], A[n]$, and
+        rank the, in $B$ (ie, find their corresponding positions in $B$.)
+
+    \item Define $[B_{r(i)}, \dots, B_{r(i + 1)}] \equiv \text{portion of $B$ between $A[r \log i]$, $A[(r + 1) \log i]$ in $B$}$.
+
+        \begin{minted}{py}
+        A = (5) 6 9 12 (15) 18 19 (21) 23 26
+        B = 1 4 (..5..) 7 8 10 11 12 (..15..) 16 17 20 (..21..) 22
+
+        In the output array, we can merge
+        the array of B between the (..) elements of A
+        \end{minted}
+
+        The problem is that the size of $\log n$ per chunk in $A$ does not mean
+        that the size is $\log n$ in $B$.
+
+
+        \begin{minted}{py}
+        A = (5) 6 9 12 (15) ... (...) ...
+        B = 6 6 6 6 6 6 6 ... 6
+
+        In this case, the entireity of B is between [5, 15]
+        \end{minted}
+
+        So, if we can somehow control the size of $B$, so, we can perform
+        binary search in $O(\log n)$, with $n / \log n$ processors.
+
+        We then need to perform the merge with $O(\log n)$, 
+        \textbf{under certain conditions}.  There are again $n / \log n$
+        such merges.
+
+
+        The work is $O(n)$.
+
+
+        So now, the only thing we need to control is the size of partitions
+        of $B$.
+
+
+    \item If $[B_{r(i)}, \dots, B_{r(i + 1)}]$ is too large, then we can
+        pick $\log n$ items of this section, and we can rank them in $A$!
+        Each piece in $A$ will be smaller than $\log n$, since the partition
+        of $A$ was already $\log n$.
+
+    \item we can merge two sorted arrays of size $n$ in time $O(\log n)$
+        with work $O(n)$.  This algorithm works in \texttt{CREW}.
+        We can improve this  further, we will see this later.
+\end{itemize}
+

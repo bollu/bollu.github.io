@@ -1,0 +1,170 @@
+\newcommand{\parity}{\texttt{PARITY}}
+\newcommand{\majority}{\texttt{MAJORITY}}
+\newcommand{\sorted}{\texttt{SORTED}}
+\chapter{Property testing}
+
+We have some language $L \subset \{0, 1\}^*$. We need to decide if $x \in_? L$
+by only querying a \textit{fixed number of query locations} in $x$.
+the query number $q$ is fixed and is \textit{independent} of $n$.
+
+
+\section{\parity}
+
+$$\parity \equiv \{ x \in \{0, 1\}^*~|~ \text{$\#1$'s in $x$ is even} \}$$
+
+parity cannot be done by querying an independent number of locations, since
+intuitively, an adversary can flip bits at locations that have not been read by
+us.
+
+\section{\majority}
+
+
+$$
+\majority \equiv \{x \in \{0, 1\}^*~|~ \text{$\#1$'s in $x$ is $\geq n/2$} \}
+$$
+
+This is also not possible to be solved, because the adversary can flip bits
+of a string where $\#1's = n / 2$.
+
+\section{Approximate decision problems}
+
+$x \in L$ versus $x$ which is $\epsilon$-far from $L$. ($x$ is $\epsilon$-far
+from $L$ if there exists no string in $L$ with hamming distance less than
+$\epsilon$ in L).
+
+x is $\epsilon$-far from y if $Ham(x, y) \geq \epsilon n$.
+x is $\epsilon$-far from $L$ if $\forall y \in L, Ham(x, y) \geq \epsilon n$.
+
+\subsection{$\epsilon-\majority$}
+$\#1's \geq n/2$, then accept. $\#1's \leq n/4$, then reject.
+The first part is strings in the language. The former part is strings
+that are $\epsilon = 1/4$ far away from $\majority$.
+
+
+\begin{itemize}
+    \item sample $i_1, \dots i_k \in [1 \dots n]$.
+    \item query $x_{i_1}, \dots x_{i_k}$.
+    \item If $x \in \majority$, $E[\frac{\#1}{k}] > \frac{1}{2}$
+    \item If $\#1's < n/4$ ($x \notin \majority$), $E[\frac{\#1}{k}] \leq \frac{1}{4}$
+    \item If majority among $x_{i_\alpha}$ is $1$, then output YES.
+\end{itemize}
+
+\subsubsection{Chernoff / Chebyshev bounds}
+Let $\mu \equiv \frac{\#1s}{n}$.
+$X_i \equiv \text{number of 1s in $x_i$ is at least $\frac{1}{2} - \epsilon$}$.
+$X_i$ is a binary random variable, which takes the value $0$ with probability $1 - \mu$,
+and $1$ with probability $\mu$.
+
+We are taking $k$ independent samples of the same random variable $X_i$, to
+give us $\sum_i X_i / k$.
+
+Chernoff bounds state that:
+
+$$Pr\bigg[ \bigg| \frac{ \sum_{i=1}^k X_i}{k} - \mu \bigg| \geq \frac{1}{8} \bigg] \leq \frac{1}{O(2^k)}$$
+
+\subsubsection{\majority structure}
+\majority~is invariant under permutations. What we are actually trying to find
+is statistical properties. Next, we will see a non-statistical example.
+
+
+\section{\sorted}
+$$\sorted \equiv \{ 0^n1^m~|~ n, m \in \nats \}$$
+
+\subsection{\sorted~test}
+\begin{itemize}
+    \item First query $F_1 \equiv \{ n/6, 2n/6, 3n/6, 4n/6, 5n/6, n \}$
+    \item query $F_2 \equiv \{ m~\text{random locations} \}$
+    \item accept iff  $x|F_1 \cup F_2 \in \sorted$. $x|S \equiv \text{$x$ restricted to $S$ indeces}$.
+\end{itemize}
+
+Suppose $x$ is $n/3$-far from being sorted. So now, for rejection, we have two
+cases:
+
+\subsubsection{Case 1: $x|F_1$ is not sorted}
+We reject directly.
+
+\subsubsection{Case 2: $x|F_1$ is sorted}
+Consider an example string,
+$$\texttt{STR $\equiv$ 0~(0~1)~1~1~1~}$$
+
+The gap between the consecutive locations highlighted $(\texttt(0~1)$ is $\frac{n}{6}$
+Recall that $x$ is different from a sorted string at more than $\frac{n}{3}$ points.
+At most $\frac{n}{6}$ can fit between two consecutive locations. So, there
+is an "error" of $\frac{n}{6}$ to be spread around before and after this
+consecutive location.Call the ones before as $\mu_1$, and then ones after
+as $\mu_2$. Note that $\mu_1 + \mu_2 \geq \frac{n}{6}$.
+
+$$Pr[rej] \geq 1 - \bigg(1 - \frac{1}{6} \bigg)^m$$
+
+\subsection{Property testing on languages that are invariant under subgroups of permutations}
+Goldreich, property testing.
+
+
+\section{Linearity testing}
+$f: G \to H$ is a function where $G, H$ are groups.  We're trying to check
+if it's a homomorphism.
+
+$$f~\text{is linear} \equiv f (x +_G y) = f(x) +_H f(y)$$
+
+We want to write an algorithm that tests if a function is linear, or is not
+linear.
+
+\begin{itemize}
+    \item choose $x$, $y$ ranomly from $G$.
+    \item query $f$ at $x$, $y$, $x +_G y$.
+    \item Accept if $f(x +_G y) =_? f(x) +_H f(y) = true$
+\end{itemize}
+
+\subsection{Local consistency}
+$$\epsilon(f) \equiv Pr_{x, y} \bigg [ f(x) + f(y) \neq f(x + y) \bigg]$$
+
+\subsection{Global consistency}
+$$\delta(f) = Ham(f, L)$$
+
+Completeness statement: $\delta(f) = 0 \implies \epsilon(f) = 0$
+
+Soundness statement: $\delta(f) \leq 2 \epsilon(f)$. (If your distance from $L$ is large,
+then we reject with high probability).
+
+\subsection{Proof of soundness: $\delta(f) \geq 2 \epsilon(f)$}
+$\phi(x) \equiv \text{plurality}_y [f(x + y) - f(y)]$
+
+plurality~$\equiv$~take value that occured maximum number of times.
+
+\begin{itemize}
+    \item $\delta(f, \phi) \leq 2 \epsilon(f)$
+    \item $\forall x, Pr_y \big [ \phi(x) = f(x + y) - f(y) \big] \geq 2/3$
+    \item  $\phi$ is linear.
+\end{itemize}
+
+We first prove that $\phi$ is linear using the other two facts. We then
+prove the other two facts.
+
+\subsection{$\phi$ is linear}
+\begin{align*}
+    &\phi(x) = f(y) - f(y - x)~\text{for all but}~\frac{1}{3} y's \\
+    &\phi(z) = f(y + z) - f(y)~\text{for all but}~\frac{1}{3} y's \\
+    &\phi(x + z) = f(y + z) - f(y - x)~\text{for all but}~\frac{1}{3} y's \\
+    &\phi(x) + \phi(z) = -f (y - x) + f(y + z) = \phi(x + z)
+\end{align*}
+
+\subsection{$\delta(f, \phi) \leq 2 \epsilon(f)$}
+
+Let us define 
+$$
+BAD = \bigg\{ x \in G ~\bigg\vert~ Pr_y \big [ f(x) \neq f(x + y) - f(y) \big ] \geq \frac{1}{2} \bigg\}
+$$
+
+
+Note that $x \notin BAD \implies f(x) = \phi(x)$.
+
+$BAD$ controls how bad $f$ can differ from $\phi$:
+$$\delta(f, \phi) \leq \frac{|BAD|}{|G|}$$
+
+
+\begin{align*}
+&\epsilon(f) \equiv Pr_{x, y} \bigg [ f(x) + f(y) \neq f(x + y) \bigg] \\
+&\geq Pr  [ x \in BAD] Pr \bigg [f(x) \neq f(x + y - f(y) ~ \bigg\vert ~ x \in BAD \bigg] \\
+&\geq \frac{|BAD|}{|G|} \frac{1}{2}  \\
+&\geq \frac{\delta(f, \phi)}{2} \\
+\end{align*}
