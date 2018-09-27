@@ -1,0 +1,136 @@
+\chapter{\ip}
+
+\section{The class \ip}
+TODO: copy notes from the algorithms class, they're identical. Unfortunately,
+I missed this because I was sick.
+
+We know that \dip~(deterministic IP) ~= \nptime. We also conjecture that
+\ptime~= \bpp. So, clearly, randomization and interactivity alone don't
+give much.
+
+It is surprising that $\nptime~\subseteq \ip$ (since GNI is in \ip), since we
+are combining two powers that are useless on their own. So, it's shocking
+that \ip~= \pspace!
+
+
+\section{Arithmetization}
+
+We define a new problem, $$\hashsat \equiv \{ (\phi, k)~\vert~ \phi~\text{is a 3-CNF boolean formula with exactly $k$ satisfying clauses} \}$$.
+
+Note that $\overline{\texttt{3-SAT}} = \hashsat(0)$. Hence, \hashsat~ is a
+generalization of a problem that is not known to be in NP ($\overline{\texttt{3-SAT}}$).  We will use \textit{arithmetization} to show that $\hashsat \in \ip$.
+
+We have a prover $P$, and a formula $\phi$, with $k$ satisfying clauses.
+$P$ knows $(\phi, k)$, and wants to convince the verifier $V$ of this fact.
+
+We have a boolean formula $\phi$ with boolean variables. If we choose to
+work in a larger field $F_p$, $\{0, 1\} \in F_p$. A boolean function
+can be viewed as a polynomial in a larger field, which agrees with the
+boolean formula on $\{0, 1\}$. For instance, if $\phi = x_1 \land x_2$,
+we can create a polynomial $q(x_1, x_2) = x_1 x_2$. Clearly, $q$ and $\phi$ agree
+on $x_1, x_2 \in \{0, 1\}$.
+
+\begin{itemize}
+\item $\phi(x) = \lnot x \leftrightarrow q_\phi(x) = (1 - x)$
+\item $\phi(x_1, x_2) = x_1 \land x_2 \leftrightarrow q_\phi(x_1, x_2) = x_1 x_2$
+\item $\phi(x_1, x_2) = x_1 \lor x_2 \leftrightarrow q_\phi(x_1, x_2) = 1 - (1 - x_1)(1 - x_2)$
+\end{itemize}
+Now, we can express every boolean formula as a polynomial.
+
+
+\subsection{Rewrite \hashsat in terms of arithmetization}
+$$
+(\phi, k) \in \hashsat \leftrightarrow k = 
+    \sum_{x_1 \in \{0, 1\}} \sum_{x_2 \in \{0, 1\}} \dots \sum_{x_n \in \{0, 1\}}
+    Q_\phi(x_1, x_2, \dots, x_n)
+$$
+
+
+
+\subsection{Interactive proof for $k$ in terms of $Q_\phi$}
+We provide a recursive solution to verify
+\begin{align*}
+k = 
+    \sum_{x_1 \in \{0, 1\}} \sum_{x_2 \in \{0, 1\}} \dots \sum_{x_n \in \{0, 1\}}
+    Q_\phi(x_1, x_2, \dots, x_n)
+\end{align*}
+
+Define $h(x_1) \equiv Q_\phi(x_1, b_2, b_3, \dots b_n)$, where $b_i \in \{0, 1\}$ are constant.
+Now, $h(x_1)$ is a univariate polynomial of degree $d$.
+
+If we consider all possibilities of $b_2 \dots b_n$, we get $2^{n - 1}$ variants
+of the $h(x_1)$ polynomial.  We consider all of them by summing over all possiblities,
+and collecting all of them in $H$.
+
+\begin{align*}
+H(x_1) = 
+     \sum_{b_2 \in \{0, 1\}} \dots \sum_{b_n \in \{0, 1\}} Q_\phi(x_1, b_2, b_3, \dots b_n)
+\end{align*}
+
+Note that $H(x_1)$ still has degree $d$, since it is the sum of many $h(x_1)$
+polynomials.  However, see that $H(x_1)$ is an exponential sum (it has exponential number of terms), and therefore
+the verifier can't simply construct $H(x_1)$ it \textbf{needs} the prover
+to proxy for $H(x_1)$ in some sense. This is where we need the unbounded prover.
+
+
+We can now see that the original statement is the same as saying
+\begin{align*}
+k = H(0) + H(1)
+\end{align*}
+
+\subsection{Using this property to verify}
+\subsubsection{$n = 1$}
+If $n = 1$, then $V$ checks that $k = Q_{phi}(x_1)$.
+
+\subsubsection{$n > 1$}
+\begin{itemize}
+\item If $n > 1$, $V$ asks $P$ to give $H(x_1)$. $P$ gives $S(x)$.
+
+\item $V$ checks if $k = S(0) + S(1)$. If not, reject. If success, then we need
+to verify that $S =_? H$.
+
+\item $V$ chooses $a \in_{random} F_p$, and computes $S(a)$.
+
+\item Recursively ask for a proof that $S(a) = \sum_{b_2} \sum_{b_3} \dots \sum_{b_n} Q_\phi(a, b_1, b_2, \dots b_n)$.
+This is a recursive step since I can write this as:
+
+\begin{align*}
+S(a) &= 
+     \sum_{x_2 \in \{0, 1\}} \dots \sum_{x_n \in \{0, 1\}}
+    Q_\phi(a, x_2, \dots, x_n) \\
+    &\text{Compare to} \\
+k &= 
+    \sum_{x_1 \in \{0, 1\}} \sum_{x_2 \in \{0, 1\}} \dots \sum_{x_n \in \{0, 1\}}
+    Q_\phi(x_1, x_2, \dots, x_n)
+\end{align*}
+
+and now $Q'_\phi(x_2, \dots x_n) \equiv Q_\phi(a, x_2, \dots, x_n)$ is a polynomial
+of degree $n - 1$.
+
+
+\subsection{Completeness}
+The prover $P$ that can actually construct the correct $H$ will cause the verifier
+to accept with probability $1$.
+
+\subsection{Soundness}
+We are currently checking of $(H - S)(a) = 0$. We had chosen $a \in_{random} F_p$.
+Only if $a$ is a root of $(H - S)$, will the prover escape undetected.
+
+There are only $d$ roots for the polynomial $(H - S)$, and $F_p$ has $p - 1$
+elements. So, the prover will be undetected with probability $P < \frac{d}{p - 1}$.
+
+Probability he is caught in the first round is $d/p$. 
+
+So, the probability a cheating prover will be detected will be $\big(1 - d/p\big)^{n}$.
+\end{itemize}
+
+\section{\ip~= \pspace}
+
+We show that $\tqbf \in \ip$, hence $\pspace \subseteq \ip$, since \tqbf~is
+a \pspace-complete problem.
+
+To show that $\ip \subseteq \pspace$, notice that 
+
+
+
+
