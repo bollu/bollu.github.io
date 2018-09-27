@@ -97,3 +97,53 @@ extend the solution to the entire problem!
         We can improve this  further, we will see this later.
 \end{itemize}
 
+\subsection{Searching faster}
+
+Each binary search takes $O(\log n)$ time, and we have $O(n / \log n)$ subproblems,
+each of size $O(\log n)$. 
+
+Can we make search faster?
+
+\begin{itemize}
+    \item Consider a sorted array $A$ with $n$ elements. We want to search
+        for an element $x$.
+        Given $p$ processors, we can search at the indeces $1, n / p, 2n/p, \dots, n$.
+
+    \item Record the result of each comparison as $1$ or $0$.
+        $cmp[i] = 1 \equiv A[i] < x$, $cmp[i] = 0 \equiv A[i] \geq x$.
+        More succinctly, \verb|cmp = map (\a -> a < x) A|.
+
+    \item $cmp$ will either have all 0s, all 1s, or a shift from 1s to 0s.
+
+    \item If we have a shift from 1s to 0s, we know that $x$ is likely
+        in the $n/p$ segment corresponding to the shift from 1 to 0.
+
+    \item So now, we can recursively search that small segment.
+
+    \item $T(n) = T(n / p) + O(p)$. ($O(p)$ since $cmp$ has length $p$).
+        Hence, $T(n) = T(n / p) + O(1)$. This gives us $O(\log n)$ when $p = 1$
+        (make sure this is correct, there is some \textbf{off by one here}.
+
+    \item When $p = O(\sqrt n)$, the time taken will be $O(\log n / \log (\sqrt n)) = O(1)$
+        This looks useless from a work point of view, but we want to see what this is
+        good for!
+\end{itemize}
+
+\subsection{From parallel search to merge}
+\begin{itemize}
+    \item We have two sorted arrays $A$ and $B$, which we want to merge.
+    \item We want to rank some elements of $A$ to create paritions of $B$.
+    \item Let us take $\sqrt n$ elements of $A$ in $B$.
+    \item We have $n$ processors, so each search can use $ n / \sqrt n = \sqrt n$ processors.
+    \item each search now finishes in $O(1)$  time.
+    \item the problem is that the partitions of $A$ are much larger now (they are $\sqrt n$ large).
+    \item we have a $\sqrt n$ sized piece of $A$, and we have a size of B that is of size $(?)$.
+        Note that for each piece of $A$, we now choose to allocate $\sqrt n$ processors.
+    \item So, we pick $n^\frac{1}{4}$ elements of $A$ in $B$, each of which
+        uses $n^\frac{1}{4}$ processors. Size of each piece is now $n^\frac{1}{4}$.
+    \item So, we pick $n^\frac{1}{8}$ elements of $A$ in $B$, each of which
+        uses $n^\frac{1}{8}$ processors. Size of each piece is now $n^\frac{1}{8}$.
+    \item We reduce the sequence $n \to \sqrt n \to n^{\frac{1}{4}} \to n^\frac{1}{8} \dots \to O(1)$.
+        This can be done in $\log \log n$ steps!
+\end{itemize}
+\end{document}

@@ -122,6 +122,8 @@ elements. So, the prover will be undetected with probability $P < \frac{d}{p - 1
 Probability he is caught in the first round is $d/p$. 
 
 So, the probability a cheating prover will be detected will be $\big(1 - d/p\big)^{n}$.
+
+\textbf{TODO: Fix this, my bounds here are broken as fuck}
 \end{itemize}
 
 \section{\ip~= \pspace}
@@ -129,8 +131,48 @@ So, the probability a cheating prover will be detected will be $\big(1 - d/p\big
 We show that $\tqbf \in \ip$, hence $\pspace \subseteq \ip$, since \tqbf~is
 a \pspace-complete problem.
 
+
+\begin{align*}
+Q = \forall x_1 \exists x_2 \forall x_3 \exists x_4 \dots \phi(x_1, x_2, \dots, x_n) =_? 1
+\end{align*}
+
+We will now show how to convert $\exists$ and $\forall$.
+
+\begin{itemize}
+\item $\forall x_1 Q(x_1, x_2, \dots x_n) \leftrightarrow Q(0, x_2, \dots, x_n) \times Q(1, x_2, \dots x_n)$
+\item $\exists x_1 Q(x_1, x_2, \dots x_n) \leftrightarrow Q(0, x_2, \dots, x_n) + Q(1, x_2, \dots x_n)$. This
+is slightly annoying, since it goes to 2 if it passes for both $x_1 = \{0, 1\}$. Rather, we can write
+$\exists x, p(x)$ in terms of $\lnot (\forall x, \lnot p(x))$.
+\end{itemize}
+
+
+Now, how do we check if this polynomial $Q_{\tqbf}(x_1, x_2, \dots x_n) = 1$?
+We can try to adapt our $\hashsat$ proof. However, here, the degree of the
+polynomial will not be polynomial in the input size, it will be exponential!
+
+\subsection{linearisation}
+To beat the curse of expoential polynomial size, we use a technique called
+\textbf{linearisation}. If $x \in \{0, 1\} \implies \forall k \in \nats, x^k = x$.
+
+\begin{align*}
+&L_1(Q(x_1, x_2, \dots, x_n)) = x_1 Q(1, x_2, \dots x_n) + (1 - x_1) L_1Q(0, x_2, \dots x_n)
+\end{align*}
+
+So now, the new $L_1 (L_2 (\dots (L_n (Q(x_1, x_2, \dots, x_n)))\dots))$ has degree at most $n$ (\textbf{TODO: really? check this}). \textbf{TODO: this is not what the linearized polynomial looks like, it should have
+$O(n^2) = 1 + 2 + \dots n$ $L$ terms}.
+
+We can now repeat the proof of \hashsat~here.
+
+\begin{itemize}
+\item If we are checking $\exists x_i, Q$, ask for $H(x_i)$, obtain $S$, check of $S(0) + S(1) =_? k$.
+If not, reject. Else, recursively check that $S(a) = (\dots)$
+
+
+\item If we are checking $\forall x_i, Q$, ask for $H(x_i)$, obtain $S$, check of $S(0) \times S(1) =_? k$.
+If not, reject. Else, recursively check that $S(a) = (\dots)$
+
+\item If we are checkin the linearization operator, $L_i(Q(~))$, check that $x_i S(1) + (1 - x_i) S(0) =_? k$.
+\end{itemize}
+
+
 To show that $\ip \subseteq \pspace$, notice that 
-
-
-
-
