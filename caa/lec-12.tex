@@ -1,0 +1,66 @@
+\chapter{Tree processing}
+\section{Traversal via an Euler tour}
+\begin{definition}
+an \textbf{Euler tour} is a cycle of a graph that includes every edge of the
+graph exactly once.
+\end{definition}
+
+\begin{lemma}
+A directed graph $G$ \textbf{has an Euler tour} iff for every vertex,its in-degree
+equals its out-degree.
+\end{lemma}
+
+For a tree $T = (V, E)$, to define an euler tour, we make it a directed graph.
+$T_e = (V_e, E_e)$, where $V_e = V$, and $E_e = \cup_{(u,v) \in V} \{ (u, v), (v, u) \}$
+That is, each $(u, v)$ in $E$ creates two edges $(u, v)$, and $(v, u)$ in $E_e$.
+$T_e$ will have an Euler tour.
+
+
+We have to define a successor function $s: E_e \to E_e$. Here, the successor for an edge.
+For a node $u$ in $T_e$, order its \textbf{neighbours (both incoming and outgoing)}
+$v_1, v_2, \dots v_d$. This can be done \textbf{independently at each node}. 
+For $e = (v_i, u)$, set $s(e) = (u, v_{i + 1~\text{mod $d$}})$. This choice of $s$ is valid
+since we always have both edges $(x, y)$ and $(y, x)$, and we are therefore
+assured that $(v_i, u)$ will be an incoming edge, and $(u, v_{i + 1}$ will be
+an outgoing edge. Also, compute $i + 1$ modulo $d$, so that we eventually
+cycle.
+
+\textbf{TODO: relabel vertices to $[0..(d - 1)]$ so that modulo works properly}
+\textbf{TODO: add example}
+
+\begin{theorem}
+$s$ actually constructs a tour.
+\end{theorem}
+\begin{proof}
+Induction on number of vertices. If $n = 1$, obviously true. 
+If $n = 2$, at most one edge present. We will go along the edge and come back,
+which is a valid tour.
+
+
+Let the tour be well defined for $n = k$. We will prove it for $n = k + 1$.
+Every tree has at least one leaf, call it $l$. Create a tree $T' = T/\{l\}$.
+
+Let $u$ be a neighbour of $l$ in $T$.
+Let $N(u) = \{ v_0, v_1, \dots v_i = l, v_{i + 1}, \dots v_d \}$.
+Set $s_{new}(u, v) \equiv (v, u)$. Set $s_{new}(v_{i - 1}, u) \equiv (u, v)$.
+For all other vertices, $s_{new}(e) = s(e)$.
+\end{proof}
+
+
+\section{Using euler tours for traversal}
+Operations on a tree such a rooting, preorder, and postorder traversal
+can be converted to routines on an Euler tour.
+
+\subsection{Rooting a tree}
+Designate a node in a tree as the root. All edges in the tree are
+directed towards (or away) from the root.
+
+\begin{itemize}
+\item let $\{v_1, v_2, \dots v_d\}$ be the neighbours of root node $r$. 
+\item we mark the final edge of the tour as \texttt{NIL}, so we get an
+Euler path, and not an Euler tour.
+\item the edge $(r, v_i)$ appears before $(v_i, r)$.
+\item so the edge $parent \to child$ appears before $child \to parent$
+\item So, if $uv$ precedes $vu$, then set $u = parent(v)$. Orient the
+edge $uv$ as $v \to u$ (that is, $child \to parent$), since we want all edges towards the root.
+\end{itemize}

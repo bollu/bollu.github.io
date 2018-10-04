@@ -12,6 +12,7 @@ we sort the subarrays recursively.
 \subsection{Merging in parallel by partitioning}
 Two sorted arrays $A$ and $B$ are to be merged into an array $C$.
 
+\subsubsection{suboptimal algorithm --- Time: $O(\log n)$, work: $O(n \log n)$}
 
 We define a function $Rank(x_0, X) = |\{ x < x_0~\vert~x \in X \}|$. Note
 that the position of $x_0$ in $sorted(X)$ is equal to $Rank(x_0, X)$.
@@ -34,7 +35,7 @@ a time complexity of $O(n)$.
 
 We are going to try and reduce the work to $O(n)$. 
 
-\subsubsection{Merging, take 2: optimal work}
+\subsubsection{Merging, take 2, optimal --- time: $O(\log n)$, work: $O(n)$}
 General technique is to solve a smaller problem in parallel, and then
 extend the solution to the entire problem!
 
@@ -97,7 +98,7 @@ extend the solution to the entire problem!
         We can improve this  further, we will see this later.
 \end{itemize}
 
-\subsection{Searching faster}
+\subsection{Searching faster --- time: $O(1)$, work: $O(\sqrt n)$}
 
 Each binary search takes $O(\log n)$ time, and we have $O(n / \log n)$ subproblems,
 each of size $O(\log n)$. 
@@ -129,7 +130,7 @@ Can we make search faster?
         good for!
 \end{itemize}
 
-\subsection{From parallel search to merge}
+\subsection{From parallel search to merge --- time: $O(\log \log n)$, work: $O(???)$ }
 \begin{itemize}
     \item We have two sorted arrays $A$ and $B$, which we want to merge.
     \item We want to rank some elements of $A$ to create paritions of $B$.
