@@ -5,6 +5,8 @@ draft = true
 
 +++
 
+Midnight discussions with Arjun P.
+
 Algorithm vs data structure
 A proof technique is like an algorith, while an algebraic object is like
 a data structure. The existence of an algebraic object allows us to
