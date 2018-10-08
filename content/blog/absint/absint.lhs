@@ -22,6 +22,8 @@ data BB = BB BBID [Phi] [Assign] Terminator
 
 -- first basic block in program is the entry block.
 data Program = Program [BB]
+
+
 \end{code}
 
 \begin{code}
