@@ -61,6 +61,7 @@ executable absint
                        , lattices
                        , containers
                        , mtl
+                       , list-t
 
   
   -- Directories containing source files.

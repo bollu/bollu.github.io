@@ -1,8 +1,11 @@
+-- Starts from small to large!
+http://web.cs.ucdavis.edu/~su/teaching/ecs240-w17/lectures/lecture08-09.pdf
 http://pages.cs.wisc.edu/~horwitz/CS704-NOTES/10.ABSTRACT-INTERPRETATION.html
 
 Let's study abstract interpretation on an SSA like language with no mutation.
 
 \begin{code}
+import ListT
 import Algebra.Lattice
 import qualified Data.Map.Strict as M
 import Control.Monad.State 
@@ -145,6 +148,18 @@ runinterp (p@(Program (entry:_))) = (ret, env s)
           init = mkInitInterpState (bbid entry)
 \end{code}
 
+absBB :: BB -> ListT (State InterpState) TermValue
+absBB = undefined
+
+
+
+sabsint :: Program -> BBID -> ListT (State AbsintState) Int]
+sabsint p bbid = undefined
+
+runabsint :: Program -> [Int, Env Int]
+runabsint (p@(Program (entry:_))) = (ret, env s)
+    where (ret, s) = runState (sinterp p (bbid entry)) init
+          init = mkInitInterpState (bbid entry)
 
 
 

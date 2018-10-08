@@ -667,7 +667,7 @@ we are trying to read from.
 
 #### `get`
 ```hs
-src/Data/Struct/Internal.hs
+src/Data/Struct/Internal.hs:113
 
 -- | Get the value from a 'Slot'
 get :: (PrimMonad m, Struct x, Struct y) => Slot x y -> x (PrimState m) -> m (y (PrimState m))
@@ -683,12 +683,9 @@ get (Slot go _ _) = \x -> primitive $ \s -> case go (destruct x) s of
 
 
 #### `set`
-```hs
-src/Data/Struct/Internal.hs
-
+```
 -- | Set the value of a 'Slot'
-set :: (PrimMonad m, Struct x, Struct y) => Slot x y 
-        -> x (PrimState m) -> y (PrimState m) -> m ()
+set :: (PrimMonad m, Struct x, Struct y) => Slot x y -> x (PrimState m) -> y (PrimState m) -> m ()
 set (Slot _ go _) = \x y -> primitive_ (go (destruct x) (destruct y))
 {-# INLINE set #-}
 ```
@@ -699,21 +696,15 @@ calls the setter field of the slot.
 
 #### `cas`
 
-```hs
--- src/Data/Struct/Internal.hs
-
-cas :: (PrimMonad m, Struct x, Struct y) => Slot x y 
-    -> x (PrimState m) -> y (PrimState m) -> y (PrimState m) 
-    -> m (Bool, y (PrimState m))
+```
+cas :: (PrimMonad m, Struct x, Struct y) => Slot x y -> x (PrimState m) -> y (PrimState m) -> y (PrimState m) -> m (Bool, y (PrimState m))
 cas (Slot _ _ go) = \m o n -> primitive $ \s -> case go (destruct m) (destruct o) (destruct n) s of
   (# s', i, r #) -> (# s', (tagToEnum# i :: Bool, construct r) #)
 ```
 ### `Field`
 
 #### Definition
-```hs
--- src/Data/Struct/Internal.hs
-
+```
 -- | A 'Field' is a reference from a struct to a normal Haskell data type.
 data Field x a = Field
   (forall s. SmallMutableArray# s Any -> State# s -> (# State# s, a #)) -- get
@@ -735,8 +726,6 @@ right now.
 Getters and setters are the same as that of `Slot`:
 
 ```hs
--- src/Data/Struct/Internal.hs
-
 -- | Get the value of a field in a struct
 getField :: (PrimMonad m, Struct x) => Field x a -> x (PrimState m) -> m a
 getField (Field go _) = \x -> primitive (go (destruct x))
@@ -867,7 +856,7 @@ So, `unboxedField` is used to read the unboxed fields. Looking
 at the implementation, this is:
 
 ```hs
--- src/Data/Struct/Internal.hs
+Data/Struct/Internal.hs
 
 -- | Store the reference in the nth slot in the nth argument, treated as a MutableByteArray
 unboxedField :: Prim a => Int {- ^ slot -} -> Int {- ^ argument -} -> Field s a
@@ -883,7 +872,7 @@ boxed reference to `mutableByteSmallArray`.
 
 Looking through `Internal.hs`, we discover:
 ```hs
--- src/Data/Struct/Internal.hs
+Data/Struct/Internal.hs
 
 -- | Initialized the mutable array used by 'unboxedField'. Returns the array
 -- after storing it in the struct to help with initialization.
@@ -908,7 +897,7 @@ array, which it then subdivides among members.
 
 ### Code
 
-```hs
+```
 Data/Struct/TH.hs
 
 -- | Generate allocators, slots, fields, unboxed fields, Eq instances,
@@ -943,7 +932,7 @@ generating code for everything that passed, and then returning the modified
 `ds's`, with the rest of the `passthrough`.
 
 ```hs
--- Data/Struct/TH.hs
+Data/Struct/TH.hs
 
 computeRep :: Dec -> Q (Either Dec StructRep)
 computeRep (DataD c n vs _ cs ds) =
@@ -969,7 +958,7 @@ or the original `Dec`.
 
 
 ```hs
--- Data/Struct/TH.hs
+Data/Struct/TH.hs
 
 data StructRep = StructRep
   { srState       :: Name
@@ -993,7 +982,7 @@ So, it looks straightforward, just containing all the fields we would expect.
 Let's look at `generateCode`, to see if anything more interesting happens.
 
 ```hs
--- Data/Struct/TH.hs
+Data/Struct/TH.hs
 
 generateCode :: [Dec] -> StructRep -> DecsQ
 generateCode ds rep = concat <$> sequence
