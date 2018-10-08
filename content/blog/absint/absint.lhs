@@ -6,6 +6,9 @@ Let's study abstract interpretation on an SSA like language with no mutation.
 import Algebra.Lattice
 import qualified Data.Map.Strict as M
 import Control.Monad.State 
+import Control.Applicative
+import Data.Foldable
+import Data.Traversable
 
 -- identifiers
 newtype Ident = Ident Int deriving(Eq, Ord, Show)
@@ -31,10 +34,10 @@ newtype Program = Program [BB]
 
 -- get the BB corresponding to BBID in Program p
 programGetBB :: Program -> BBID -> BB
-programGetBB (bb:bbs) needle =  
+programGetBB (Program (bb:bbs)) needle =  
     if bbid bb == needle
     then bb
-    else programGetBB bbs needle
+    else programGetBB (Program bbs) needle
 
 -- environments refer to the entire program due to the nature of
 -- our immutable language
@@ -52,7 +55,7 @@ mkInitInterpState :: BBID -> InterpState
 mkInitInterpState entryid =  InterpState {
     prevbbid  = Nothing,
     curbbid = entryid,
-    env = empty
+    env = M.empty
 }
 
 
@@ -61,15 +64,15 @@ mkInitInterpState entryid =  InterpState {
 interpexp :: Expr -> State InterpState Int
 interpexp (EConst i) = return i
 interpexp (EIdent ident) = do
-    e <- get env
-    return (e ! ident)
+    e <- gets env
+    return (e M.! ident)
 interpexp (EAdd e1 e2) = liftA2 (+) (interpexp e1) (interpexp e2)
 
 -- Interpret an assignment
 interpassign :: Assign -> State InterpState ()
 interpassign (Assign ident e) = do
     v <- interpexp e
-    modify (\env -> insert ident v env)
+    modify (\istate -> istate { env =  M.insert ident v (env istate) })
     
 
 
@@ -78,14 +81,14 @@ interpassign (Assign ident e) = do
 -- Values executing a terminator can take 
 data TermValue = TVExit Int | TVBranch BBID
 interpterm :: Terminator -> State InterpState TermValue
-interpterm (Branch bbid) = return bbid
+interpterm (Branch bbid) = return (TVBranch bbid)
 interpterm (BranchCond e idtrue idfalse) = do
     i <- interpexp e
     if i == 1 
     then return $ TVBranch idtrue
     else if i == 2
     then return $ TVBranch idfalse
-    else error $ "undefined branching on :" ++ i
+    else error $ "undefined branching on :" ++ show i
 
 interpbb :: BB -> State InterpState TermValue
 interpbb bb = do
@@ -96,18 +99,18 @@ interpbb bb = do
     
 
 -- Returns the exit code
-interpgo :: Program -> BBID -> State InterpState Int
-interpgo p bbid = do
+sinterp :: Program -> BBID -> State InterpState Int
+sinterp p bbid = do
         let bb = programGetBB p bbid
         termval <- interpbb bb
         case termval of
             TVExit exitval -> return exitval
-            TVBranch bbid' -> interpgo p bbid'
+            TVBranch bbid' -> sinterp p bbid'
 
 -- Interpreter
-interp :: Program -> (Int, Env Int)
-interp (Program p@(entry:_)) = (ret, env interpstate)
-    where (ret, interpstate) = runState init (interpgo p  (bbid entry))
+runinterp :: Program -> (Int, Env Int)
+runinterp (p@(Program (entry:_))) = (ret, env s)
+    where (ret, s) = runState (sinterp p (bbid entry)) init
           init = mkInitInterpState (bbid entry)
 \end{code}
 
