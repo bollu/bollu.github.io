@@ -26,8 +26,8 @@ data Assign = Assign Ident Expr
 data Terminator = Branch BBID | BranchCond Expr BBID BBID | Exit Expr
 
 -- phi node 
-data Phi = Phi [(Ident, Expr)]
-data BB = BB { bbid :: BBID, bbphi :: [Phi], bbassigns :: [Assign], bbterm :: Terminator }
+data Phi = Phi Ident [(BBID, Expr)]
+data BB = BB { bbid :: BBID, bbphis :: [Phi], bbassigns :: [Assign], bbterm :: Terminator }
 
 -- first basic block in program is the entry block.
 newtype Program = Program [BB]
@@ -66,13 +66,32 @@ interpexp (EConst i) = return i
 interpexp (EIdent ident) = do
     e <- gets env
     return (e M.! ident)
+
 interpexp (EAdd e1 e2) = liftA2 (+) (interpexp e1) (interpexp e2)
+
+setIdent :: Ident -> Int -> State InterpState ()
+setIdent ident v =  
+    modify (\istate -> istate { env =  M.insert ident v (env istate) })
+
+-- Phi nodes need to run with respect to an "old" interpreter state
+-- while updating the new state.
+interpphi :: InterpState -> Phi -> State InterpState ()
+interpphi s (Phi ident invals) = do
+    -- filter out all phi values that work 
+    prev <- gets prevbbid
+
+    let es = [e | (bbid, e) <- invals, Just bbid == prev]
+    case es of
+        [e] -> do
+                let v  = evalState (interpexp e) s
+                setIdent ident v
+        _ -> error "too many or too few matches for phi node"
 
 -- Interpret an assignment
 interpassign :: Assign -> State InterpState ()
 interpassign (Assign ident e) = do
     v <- interpexp e
-    modify (\istate -> istate { env =  M.insert ident v (env istate) })
+    setIdent ident v
     
 
 
@@ -92,8 +111,14 @@ interpterm (BranchCond e idtrue idfalse) = do
 
 interpbb :: BB -> State InterpState TermValue
 interpbb bb = do
-    -- todo: interpphi
+    -- get the current state for the phi nodes
+    s <- get
+    -- interpret the phi nodes with respect to the old state
+    forM_ (bbphis bb) (interpphi s)
+    -- interpret the body
     forM_ (bbassigns bb) interpassign
+
+    -- interpret terminator
     interpterm (bbterm bb) 
     
     
