@@ -19,8 +19,16 @@ newtype BBID = BBID Int deriving(Eq, Ord, Show)
 -- Expressions
 data Expr = EAdd Expr Expr | EIdent Ident | EConst Int
 
+-- Notation for our language
+(#+) :: Expr -> Expr -> Expr
+(#+) = EAdd
+
+
 -- assignment statements
 data Assign = Assign Ident Expr
+
+(#=) :: Ident -> Expr -> Assign
+(#=) = Assign
 
 -- terminator
 data Terminator = Branch BBID | BranchCond Expr BBID BBID | Exit Expr
@@ -51,7 +59,7 @@ data InterpState = InterpState {
 }
 
 -- create the initial interpreter state for a given basic block ID
-mkInitInterpState :: BBID -> InterpState
+mkInitInterpState :: BBID -> InterpState 
 mkInitInterpState entryid =  InterpState {
     prevbbid  = Nothing,
     curbbid = entryid,
@@ -93,8 +101,6 @@ interpassign (Assign ident e) = do
     v <- interpexp e
     setIdent ident v
     
-
-
 
 -- Interpret a teriminator instruction to return the next BBID.
 -- Values executing a terminator can take 
@@ -138,6 +144,8 @@ runinterp (p@(Program (entry:_))) = (ret, env s)
     where (ret, s) = runState (sinterp p (bbid entry)) init
           init = mkInitInterpState (bbid entry)
 \end{code}
+
+
 
 
 
