@@ -59,6 +59,8 @@ executable absint
   -- Other library packages from which modules are imported.
   build-depends:       base >=4.11 && <4.12
                        , lattices
+                       , containers
+                       , mtl
 
   
   -- Directories containing source files.
