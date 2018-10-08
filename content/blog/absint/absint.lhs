@@ -1,6 +1,8 @@
 Let's study abstract interpretation on an SSA like language with no mutation.
 
 \begin{code}
+import Algebra.Lattice
+
 -- identifiers
 newtype Ident = Ident Int
 
@@ -22,9 +24,9 @@ data BB = BB BBID [Phi] [Assign] Terminator
 
 -- first basic block in program is the entry block.
 data Program = Program [BB]
-
-
 \end{code}
+
+
 
 \begin{code}
 main :: IO ()
