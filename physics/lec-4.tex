@@ -82,13 +82,14 @@ analogue):
     &\Lag(\phi, \partial_\mu \phi) = \frac{1}{2}(\partial_\mu \phi)^2
 \end{align*}
 
-Solving EL equations,
+Calculating the terms in the EL equation:
 \begin{align*}
     &\pdv{L}{\phi} = 0 \\
     \\
     \\
-    &\pdv{L}{(\partial_\sigma \phi)}  \\
-    &=\pdv{(\partial_\sigma \phi)} \bigg( \frac{1}{2}(\partial_\mu \phi)^2  \bigg) \\
+    &\pdv{L}{(\partial_\sigma \phi)} 
+    = \pdv{(\partial_\sigma \phi)} \bigg( \frac{1}{2}(\partial_\mu \phi)^2  \bigg) \\
+    %
     &=\pdv{(\partial_\sigma \phi)}  \bigg( \frac{1}{2}\eta^{\mu \nu} (\partial_\mu \phi) (\partial_\nu \phi) \bigg) \\
     %
     &=\frac{1}{2}\eta^{\mu \nu} \pdv{(\partial_\mu \phi)}{(\partial_\sigma \phi)} (\partial_\nu \phi) + 
@@ -111,7 +112,31 @@ Solving EL equations,
     &\textbf{(TODO: understand how this happens, something about $\eta$'s signature)} \\
     %
     &=\partial^\sigma \phi
+    \\
 \end{align*}
+    Hence, the inner part of the second term in the EL equation is:
+\begin{equation}
+    \pdv{L}{(\partial_\sigma \phi)}  = \partial^\sigma \phi
+\end{equation}
+Now, the second term of the Lagrangian is:
+
+\begin{align*}
+    &\partial_\mu \pdv{L}{(\partial_\mu \phi)} = \partial_\mu (\partial^\mu \phi) 
+    =~\partial_0 \partial^0  \phi - \laplacian \phi = \Box \phi
+\end{align*}
+
+Hence, finally, our Euler-Lagrange equation is:
+\begin{align*}
+    &\pdv{L}{\phi} -  \partial_\mu \pdv{L}{(\partial_\mu \phi)} = 0 \\
+    &0 + \Box \phi  = 0
+\end{align*}
+
+So, finally, The Euler-Lagrange equations for a scalar field governed by
+$L = \frac{1}{2} (\partial_\mu \phi)^2$ is:
+\begin{equation}
+    \boxed{\Box \phi  = 0}
+ \end{equation}
+
 \section{Klein-gordon equations}
 \section{Lagrangian for a massive scalar field}
 \section{Symmetries of a scalar field Lagrangian}
