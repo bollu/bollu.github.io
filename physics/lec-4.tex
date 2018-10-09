@@ -67,6 +67,7 @@ Hence, we have the Euler-Lagrange equation for \textbf{scalar fields}:
     \boxed{\pdv{L}{\phi} -  \partial_\mu \pdv{L}{(\partial_\mu \phi)} = 0} 
 \end{equation}
 
+\section{Lagrangian for the massless scalar field}
 So next, let's consider a Lagrangian (which is supposedly the free particle
 analogue):
 (\textbf{TODO: find out why this is free particle KE})
@@ -131,14 +132,53 @@ Hence, finally, our Euler-Lagrange equation is:
     &0 + \Box \phi  = 0
 \end{align*}
 
-So, finally, The Euler-Lagrange equations for a scalar field governed by
-$L = \frac{1}{2} (\partial_\mu \phi)^2$ is:
+So, finally, The Euler-Lagrange equations for a scalar field governed by $L =
+\frac{1}{2} (\partial_\mu \phi)^2$ (which is massless since it has no $\phi^2$
+term) is:
 \begin{equation}
     \boxed{\Box \phi  = 0}
  \end{equation}
-
-\section{Klein-gordon equations}
 \section{Lagrangian for a massive scalar field}
+We now draw analogies to classical and relativistic mechanics to find
+the mass term in the scalar field equation. We know that
+$E^2 = p^2 c^2 + m^2 c^4$, which on performing the QM substitution
+(\textbf{TODO: understand precisely why this is the substitution}), provides
+us with the equation:  $\Box + m^2 = 0$.
+
+Acting on a scalar field, we get:
+\begin{align*}
+    &\text{The \textit{Klein-Gordon} equation:}\\
+    &(\Box + m^2) \phi = 0
+\end{align*}
+
+We try something in the Lagrangian to get something like the Klein-Gordon
+equations (\textbf{TODO: AFAICT, this is ad-hoc observation by physicists. Find deeper reason})
+
+\begin{align*}
+    &\Lag = \frac{1}{2} (\partial_\mu \phi)^2 + \alpha m^2 \phi^2~\text{($\alpha$ is a coefficient to be determined)} \\
+\end{align*}
+
+The Euler-Lagrange equations work out to:
+
+\begin{align*}
+    &\text{First term:} 
+    ~\pdv{L}{\phi} =  2 \alpha m^2 \phi\\
+    %
+    &\text{Second term:}
+    ~\partial_\mu \pdv{L}{(\partial_\mu \phi)} = \Box \phi \\
+    %
+    &\text{Full EL equations:} \\
+    &2 \alpha m^2 \phi - \Box \phi = 0 \\
+    &(2 \alpha m^2 - \Box) \phi = 0 \\
+    %
+    &\text{Comparing with Klein-Gordon equation, $(\Box + m^2) \phi = 0$, $\alpha = \frac{-1}{2}$}
+\end{align*}
+
+Hence, the Lagrangian for a scalar mass field works out to:
+\begin{equation}
+    \boxed{\Lag = \frac{1}{2} (\partial_\mu \phi)^2 - \frac{1}{2} m^2 \phi^2}
+\end{equation}
+
 \section{Symmetries of a scalar field Lagrangian}
 \section{Derving the force of the EM-field from the Lanrangian}
 
