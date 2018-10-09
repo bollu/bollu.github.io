@@ -65,24 +65,3 @@ Assuming that transformation law holds, we show that $D_\mu \phi$ is invariant:
 Now, we need to ensure that the law we took actually works. For this law to
 hold, we will derive conditions that govern $A$:
 
-\begin{align*}
-    &(D_\mu \bar \phi) = U D_\mu \phi \\
-    &\partial_\mu \bar \phi - i g \bar A_\mu \bar \phi = U (\partial_\mu \phi  - i g A_\mu \phi) \\
-    &\partial_\mu (U \phi) - i g \bar A_\mu \bar \phi = U (\partial_\mu \phi  - i g A_\mu \phi) \\
-    &(\partial_\mu U) \phi + \cancel{U (\partial_\mu \phi)} - i g \bar A_\mu \bar \phi = \cancel{U \partial_\mu \phi}  - i g U A_\mu \phi \\
-    &(\partial_\mu U) \phi  - i g \bar A_\mu \bar \phi =  - i g U A_\mu \phi \\
-    &- i g \bar A_\mu (U \phi) =  - i g U A_\mu \phi - (\partial_\mu U) \phi  \\
-    &(i g \bar A_\mu U) \phi =  (i g U A_\mu + (\partial_\mu U)) \phi  \\
-    &i g \bar A_\mu U  =  i g U A_\mu + (\partial_\mu U)   \\
-    &A_\mu  =   U A_\mu U^{-1} + \frac{(\partial_\mu U) U^{-1}}{i g}   \\
-\end{align*}
-
-
-So, we now know what the correction term is for the $D_\mu$ for the
-non-abelian gauge theory. Notice that $(\partial_\mu U) U^{-1}$ is a function
-of $\theta$, the parameter.
-
-\begin{equation}
-    \boxed{A_\mu  =   U A_\mu U^{-1} + \frac{(\partial_\mu U) U^{-1}}{i g}}
-\end{equation}
-
