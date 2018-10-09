@@ -36,3 +36,93 @@ ma &= e (\grad \phi - \pdv{A}{t}) + e (\div (v \vdot A) - (v \vdot \grad) A)
 
 \section{Local and global symmetries}
 
+\chapter{Charged particle interaction in fields, or, how maxwell's equations have $U(1)$ symmetry}
+(written in red ink pen)
+
+Consider a scalar field $\phi$, and the lagrangian:
+
+\begin{align*}
+    &\Lag(\phi, \partial_\mu \phi) = \frac{1}{2} (\partial_\mu \phi) (\partial_\mu \phi) - \frac{1}{2} m^2 \phi^2
+\end{align*}
+
+Next, we want to consider charged particle interactions, which comes from
+$H = \frac{(p - eA)^2}{2m}$, which creates the lorentz force $e \va v \times \va B = e \va v \vdot \va A$.
+
+We know that $\Lag$ is invariant under global rotation $e^{i \theta}$. Now we
+study local gauge invariance by making $\theta$ a function of space. That is,
+$\theta \to \theta(x)$.
+
+We use the complex form of the lagrangian:
+
+\begin{align*}
+    \Lag = (\partial_\mu \phi) (\partial^\mu \phi)^* - m^2|\phi|^2
+\end{align*}
+
+We now consider the transform:
+
+\begin{align*}
+    phi \to e^{i e \theta(x)} \phi
+\end{align*}
+
+This implies the transforms:
+\begin{align*}
+    &\partial_\mu \phi = 
+    \partial_\mu (e^{i e \theta(x)} \phi) = 
+    e^{i e \theta(x)} \partial_\mu \phi + i e e^{i e \theta(x)} \phi \partial_\mu \theta = \\
+    &e^{i e \theta(x)}(\partial_\mu \phi + i e \phi \partial_\mu \theta)
+\end{align*}
+
+Hence, for invariance, we get:
+
+\begin{align*}
+    &(\partial_\mu \phi ) (\partial^\mu \phi )^*  \\
+    =~&(e^{i e \theta(x)}(\partial_\mu \phi + i e \phi \partial_\mu \theta))
+    (e^{i e \theta(x)}(\partial^\mu \phi + i e \phi \partial^\mu \theta))^* \\
+     =~&(\partial_\mu \phi + i e \phi \partial_\mu \theta)(\partial^\mu \phi^* - i e \phi^* \partial^\mu \theta)
+\end{align*}
+
+We introduce:
+\begin{align*}
+    D_\mu \phi \equiv (\partial_\mu - i A_\mu) \phi (\partial^\mu + i A^\mu) \phi^*
+\end{align*}
+
+We shall check that this transforms in a lorentzian way. In the new coordinate
+system:
+\begin{align*}
+    \bar D_\mu \bar \phi \equiv &([\partial_\mu - i \bar A_\mu) \bar \phi] 
+        [(\partial^\mu + i \bar A^\mu) \bar \phi^*] \\
+    % 
+    =~&[(\partial_\mu - i \bar A_\mu) (e^{i e \theta(x)}) \phi] 
+    [(\partial^\mu + i \bar A^\mu) (e^{i e \theta(x)}\phi)^*]  \\
+    %
+    =~&[\partial_\mu (e^{i e \theta(x)} \phi) - i \bar A_\mu e^{i e \theta(x)} \phi]
+    [\partial_\mu (e^{-i e \theta(x)} \phi^*) + i \bar A_\mu e^{-i e \theta(x)} \phi^*] \\
+    % 
+    &\text{evaluate $\partial_\mu(UV)$} \\
+    =~&[e^{i e \theta(x)} (\partial_\mu \phi) + i e  e^{i e \theta(x)}\phi - i \bar A_\mu e^{i e \theta(x)} \phi]
+      [e^{- i e \theta(x)} (\partial_\mu \phi^*) - i e  e^{- i e \theta(x)}\phi^* + i \bar A_\mu e^{- i e \theta(x)} \phi^*] \\
+    % 
+    =~&[e^{i e \theta(x)} (\partial_\mu \phi + i e \phi - i \bar A_\mu  \phi)]
+    [e^{- i e \theta(x)} (\partial_\mu \phi^* - i e \phi^* + i \bar A_\mu  \phi^*)] \\
+    %
+    &\text{cancelling $e^{i e \theta(x)}$ with $e^{- i e \theta(x)}$} \\
+    =~&[\partial_\mu \phi + i e \phi - i \bar A_\mu  \phi]
+    [\partial_\mu \phi^* - i e \phi^* + i \bar A_\mu  \phi^*] \\
+    %
+    =~&[\partial_\mu + i e - i \bar A_\mu  ]\phi
+    [\partial_\mu  - i e  + i \bar A_\mu ] \phi^* \\
+\end{align*}
+
+Comparing:
+\begin{align*}
+    D_\mu \phi &\equiv (\partial_\mu - i A_\mu) \phi (\partial^\mu + i A^\mu) \phi^* \\
+    %
+    \bar D_\mu \bar \phi &\equiv [\partial_\mu + i e - i \bar A_\mu  ]\phi
+    [\partial_\mu  - i e  + i \bar A_\mu ] \phi^* \\
+    %
+    -i A_\mu &= + i e - i \bar A_\mu \\
+    -A_\mu &= e - \bar A_\mu \\
+    \bar A_\mu &= e + A_\mu \\
+       &\textbf{TODO: this is not what mukku got! mukku got $\bar A_\mu = A_\mu - e(\partial_\mu \theta)$. HOW?}
+\end{align*}
+
