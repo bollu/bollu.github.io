@@ -2,6 +2,66 @@
 We construct a 1-dimensional guage theory and study its symmetries.
 
 \section{Euler-Lagrange equations for a field}
+Consider a Lagrangian:
+$$\Lag(\phi, \phi', \dot \phi) = {\dot \phi}^2  - \phi'^2$$
+
+When written in terms of $M^4$ (minkowski space), we know that
+$$
+\partial_\mu \equiv (\partial_{t}, - \grad)
+$$
+
+Hence, in minkowski space, the lagrangian becomes a function of \textit{only}:
+$$
+\Lag(\phi, \partial_\mu \phi) \equiv \dots
+$$
+
+So we managed to unify the space derivative and the time derivative (yay).
+
+Now, we can consider the action of this Lagrangian:
+
+\begin{align*}
+    S[\phi] = \int L(\phi, \partial_\mu \phi)~\dd^4x
+\end{align*}
+
+Minimising the functional $S$,
+\begin{align*}
+    &\delta S[\phi] = 0 \\
+    & \delta \int L(\phi, \partial_\mu \phi)~\dd^4x = 0 \\
+    %
+    & \int \bigg[\fdv{L}{\phi} \var \phi + 
+    \fdv{L}{\partial_\mu \phi} \var (\partial_\mu \phi) \bigg] \dd^4 x \\
+    %
+    &\text{Using linearity of integration, and commuting of $\delta, \partial_\mu$} \\
+    %
+    & \int \fdv{L}{\phi} (\var \phi) \dd^4 x + 
+      \int \fdv{L}{\partial_\mu \phi}  (\partial_\mu \var \phi) \dd^4 x \\
+    %
+    &\text{Using $\int U \dd V = UV - \int V \dd U$, 
+        $V = \delta \phi$, 
+    $U = \fdv{L}{\partial_\mu \phi}$ } \\
+    \\
+    %
+    & \int \fdv{L}{\phi} (\var \phi) \dd^4 x + 
+       \eval{\fdv{L}{\partial_\mu \phi}  (\var \phi)}_{endpoints} 
+      -  \int \delta \phi \bigg(\partial_\mu \fdv{L}{\partial_\mu \phi} \bigg) \dd^4 x \\
+  %
+  &\text{Since fields decay at endpoints, forget the integral} \\
+  %
+  & \int \fdv{L}{\phi} (\var \phi) \dd^4 x  
+  -  \int \delta \phi \bigg(\partial_\mu \fdv{L}{\partial_\mu \phi} \bigg) \dd^4 x\\
+  &\text{Refactoring to pull the common $\delta \phi$,}\\
+  %
+  & \int \bigg(\fdv{L}{\phi} -  \partial_\mu \fdv{L}{\partial_\mu \phi} \bigg) (\var \phi) \dd^4 x  = 0 \\
+  %
+  & \text{Since this is true for all perturbations $\delta \phi$ implies that:} \\
+  %
+  &\fdv{L}{\phi} -  \partial_\mu \fdv{L}{\partial_\mu \phi} = 0
+\end{align*}
+
+Hence, we have the Euler-Lagrange equation for \textbf{scalar fields}:
+\begin{equation}
+    \boxed{\fdv{L}{\phi} -  \partial_\mu \fdv{L}{\partial_\mu \phi} = 0} 
+\end{equation}
 \section{Klein-gordon equations}
 \section{Lagrangian for a massive scalar field}
 \section{Symmetries of a scalar field Lagrangian}
