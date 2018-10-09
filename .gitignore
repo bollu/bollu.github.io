@@ -254,3 +254,4 @@ tags
 
 # End of https://www.gitignore.io/api/vim,latex,linux
 
+*.sublime_*
