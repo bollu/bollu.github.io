@@ -71,17 +71,46 @@ So next, let's consider a Lagrangian (which is supposedly the free particle
 analogue):
 (\textbf{TODO: find out why this is free particle KE})
 
-$$
-\Lag(\phi, \partial_\mu \phi) = \frac{1}{2}(\partial_\mu \phi)^2
-$$
+\begin{align*}
+    &(\partial_\mu \phi)^2 \equiv \partial_\mu \phi \partial^\mu \phi~\text{(This is notation)} \\
+    &\text{Note that:} \\
+    &\partial_\mu \phi \partial^\mu \phi = \partial_\mu \phi \eta^{\mu \nu} \partial_\nu \phi 
+    ~\text{(where $\eta^{\mu \nu}$ is the metric; lowering indeces)} \\
+    %
+    \\
+    &\text{We define the Lagrangian as:}\\
+    &\Lag(\phi, \partial_\mu \phi) = \frac{1}{2}(\partial_\mu \phi)^2
+\end{align*}
 
 Solving EL equations,
 \begin{align*}
     &\pdv{L}{\phi} = 0 \\
-    &\pdv{L}{(\partial_\sigma \phi)} =   \\
-    &\pdv{(\partial_\sigma \phi)} \bigg( \frac{1}{2}(\partial_\mu \phi)^2  \bigg)=  \\
-    &\pdv{(\partial_\sigma \phi)}  \bigg( \frac{1}{2}\eta^{\mu \nu} (\partial_\mu \phi) (\partial_\nu \phi) \bigg)=  \\
-    &\textbf{TODO: why does this look this way?}
+    \\
+    \\
+    &\pdv{L}{(\partial_\sigma \phi)}  \\
+    &=\pdv{(\partial_\sigma \phi)} \bigg( \frac{1}{2}(\partial_\mu \phi)^2  \bigg) \\
+    &=\pdv{(\partial_\sigma \phi)}  \bigg( \frac{1}{2}\eta^{\mu \nu} (\partial_\mu \phi) (\partial_\nu \phi) \bigg) \\
+    %
+    &=\frac{1}{2}\eta^{\mu \nu} \pdv{(\partial_\mu \phi)}{(\partial_\sigma \phi)} (\partial_\nu \phi) + 
+    \frac{1}{2}\eta^{\mu \nu} (\partial_\mu \phi) \pdv{(\partial_\nu \phi)}{(\partial_\sigma \phi)} \\
+    %
+    &\textbf{(TODO: understand why $\pdv{(\partial_\mu \phi)}{(\partial_\sigma \phi)}  = \delta_{\mu}^\sigma$)}
+    \\
+    &=\frac{1}{2}\eta^{\mu \nu} \delta_{\mu}^{\sigma} (\partial_\nu \phi) + 
+    \frac{1}{2}\eta^{\mu \nu} (\partial_\mu \phi) \delta_{\nu}^{\sigma} \\
+    %
+    &\text{(Contracting on $\mu$)}\\
+    %
+    &=\frac{1}{2}\eta^{\sigma \nu} (\partial_\nu \phi) + 
+    \frac{1}{2}\eta^{\mu \sigma} (\partial_\mu \phi) \\
+    %
+    &\text{(Replacing dummy index $\mu \equiv \nu$)} \\
+    %
+    &=\eta^{\nu \sigma} \partial_{mu} \phi \\
+    %
+    &\textbf{(TODO: understand how this happens, something about $\eta$'s signature)} \\
+    %
+    &=\partial^\sigma \phi
 \end{align*}
 \section{Klein-gordon equations}
 \section{Lagrangian for a massive scalar field}
