@@ -3,85 +3,12 @@ We construct a 1-dimensional guage theory and study its symmetries.
 
 \section{Euler-Lagrange equations for a field}
 Consider a Lagrangian:
-$$\Lag(\phi, \phi', \dot \phi) = {\dot \phi}^2  - \phi'^2$$
+$$\Lag(\phi, \phi' \dot \phi) = {\dot \phi}^2  - \phi'^2$$
 
 When written in terms of $M^4$ (minkowski space), we know that
 $$
-\partial_\mu \equiv (\partial_{t}, - \grad)
+\partial_\mu \equiv (\partial_{t}, - \del)
 $$
-
-Hence, in minkowski space, the lagrangian becomes a function of \textit{only}:
-$$
-\Lag(\phi, \partial_\mu \phi) \equiv \dots
-$$
-
-So we managed to unify the space derivative and the time derivative (yay).
-
-Now, we can consider the action of this Lagrangian:
-
-\begin{align*}
-    S[\phi] = \int L(\phi, \partial_\mu \phi)~\dd^4x
-\end{align*}
-
-Minimising the functional $S$,
-\begin{align*}
-    &\delta S[\phi] = 0 \\
-    & \delta \int L(\phi, \partial_\mu \phi)~\dd^4x = 0 \\
-    %
-    & \int \bigg[\fdv{L}{\phi} \var \phi + 
-    \fdv{L}{\partial_\mu \phi} \var (\partial_\mu \phi) \bigg] \dd^4 x \\
-    %
-    &\text{Using linearity of integration, and commuting of $\delta, \partial_\mu$} \\
-    %
-    & \int \fdv{L}{\phi} (\var \phi) \dd^4 x + 
-      \int \fdv{L}{\partial_\mu \phi}  (\partial_\mu \var \phi) \dd^4 x \\
-    %
-    &\text{Using $\int U \dd V = UV - \int V \dd U$, 
-        $V = \delta \phi$, 
-    $U = \fdv{L}{\partial_\mu \phi}$ } \\
-    \\
-    %
-    & \int \fdv{L}{\phi} (\var \phi) \dd^4 x + 
-       \eval{\fdv{L}{\partial_\mu \phi}  (\var \phi)}_{endpoints} 
-      -  \int \delta \phi \bigg(\partial_\mu \fdv{L}{\partial_\mu \phi} \bigg) \dd^4 x \\
-  %
-  &\text{Since fields decay at endpoints, forget the integral} \\
-  %
-  & \int \fdv{L}{\phi} (\var \phi) \dd^4 x  
-  -  \int \delta \phi \bigg(\partial_\mu \fdv{L}{\partial_\mu \phi} \bigg) \dd^4 x\\
-  &\text{Refactoring to pull the common $\delta \phi$,}\\
-  %
-  & \int \bigg(\fdv{L}{\phi} -  \partial_\mu \fdv{L}{\partial_\mu \phi} \bigg) (\var \phi) \dd^4 x  = 0 \\
-  %
-  & \text{Since this is true for all perturbations $\delta \phi$ implies that:} \\
-  %
-  &\fdv{L}{\phi} -  \partial_\mu \fdv{L}{\partial_\mu \phi} = 0
-\end{align*}
-
-\textbf{TODO: when we write the final equation, we write it in terms of
-$\partial$, and not $\delta$. How does this work?}
-
-Hence, we have the Euler-Lagrange equation for \textbf{scalar fields}:
-\begin{equation}
-    \boxed{\pdv{L}{\phi} -  \partial_\mu \pdv{L}{(\partial_\mu \phi)} = 0} 
-\end{equation}
-
-So next, let's consider a Lagrangian (which is supposedly the free particle
-analogue):
-(\textbf{TODO: find out why this is free particle KE})
-
-$$
-\Lag(\phi, \partial_\mu \phi) = \frac{1}{2}(\partial_\mu \phi)^2
-$$
-
-Solving EL equations,
-\begin{align*}
-    &\pdv{L}{\phi} = 0 \\
-    &\pdv{L}{(\partial_\sigma \phi)} =   \\
-    &\pdv{(\partial_\sigma \phi)} \bigg( \frac{1}{2}(\partial_\mu \phi)^2  \bigg)=  \\
-    &\pdv{(\partial_\sigma \phi)}  \bigg( \frac{1}{2}\eta^{\mu \nu} (\partial_\mu \phi) (\partial_\nu \phi) \bigg)=  \\
-    &\textbf{TODO: why does this look this way?}
-\end{align*}
 \section{Klein-gordon equations}
 \section{Lagrangian for a massive scalar field}
 \section{Symmetries of a scalar field Lagrangian}
