@@ -1,5 +1,5 @@
 \chapter{Gauge theories}
-We construct a 1-dimensional guage theory and study its symmetries.
+We construct a 1-dimensional gauge theory and study its symmetries.
 
 \section{Euler-Lagrange equations for a field}
 Consider a Lagrangian:
@@ -30,26 +30,26 @@ Minimising the functional $S$,
     %
     &\text{For an analogy, consider $dL = \pdv{L}{\phi} \dd \phi + \pdv{L}{\psi} \dd \psi + \dots$} \\
     %
-    & \int \bigg[\pdv{L}{\phi} \var \phi + 
+    & \int \bigg[\pdv{L}{\phi} \var \phi +
     \pdv{L}{\partial_\mu \phi} \var (\partial_\mu \phi) \bigg] \dd^4 x  = 0\\
     %
     &\text{Using linearity of integration, and commuting of $\delta, \partial_\mu$}\\
     %
-    & \int \pdv{L}{\phi} (\var \phi) \dd^4 x + 
+    & \int \pdv{L}{\phi} (\var \phi) \dd^4 x +
       \int \pdv{L}{\partial_\mu \phi}  (\partial_\mu \var \phi) \dd^4 x = 0 \\
     %
-    &\text{Using $\int U \dd V = UV - \int V \dd U$, 
-        $V = \delta \phi$, 
+    &\text{Using $\int U \dd V = UV - \int V \dd U$,
+        $V = \delta \phi$,
     $U = \pdv{L}{\partial_\mu \phi}$ } \\
     \\
     %
-    & \int \pdv{L}{\phi} (\var \phi) \dd^4 x + 
-       \eval{\pdv{L}{\partial_\mu \phi}  (\var \phi)}_{endpoints} 
+    & \int \pdv{L}{\phi} (\var \phi) \dd^4 x +
+       \eval{\pdv{L}{\partial_\mu \phi}  (\var \phi)}_{endpoints}
       -  \int \delta \phi \bigg(\partial_\mu \fdv{L}{\partial_\mu \phi} \bigg) \dd^4 x  = 0\\
   %
   &\text{Since fields decay at endpoints, forget the integral} \\
   %
-  & \int \pdv{L}{\phi} (\var \phi) \dd^4 x  
+  & \int \pdv{L}{\phi} (\var \phi) \dd^4 x
   -  \int \delta \phi \bigg(\partial_\mu \pdv{L}{\partial_\mu \phi} \bigg) \dd^4 x = 0\\
   %
   &\text{Refactoring to pull the common $\delta \phi$,}\\
@@ -64,7 +64,7 @@ Minimising the functional $S$,
 
 Hence, we have the Euler-Lagrange equation for \textbf{scalar fields}:
 \begin{equation}
-    \boxed{\pdv{L}{\phi} -  \partial_\mu \pdv{L}{(\partial_\mu \phi)} = 0} 
+    \boxed{\pdv{L}{\phi} -  \partial_\mu \pdv{L}{(\partial_\mu \phi)} = 0}
 \end{equation}
 
 \section{Lagrangian for the massless scalar field}
@@ -75,7 +75,7 @@ analogue):
 \begin{align*}
     &(\partial_\mu \phi)^2 \equiv \partial_\mu \phi \partial^\mu \phi~\text{(This is notation)} \\
     &\text{Note that:} \\
-    &\partial_\mu \phi \partial^\mu \phi = \partial_\mu \phi \eta^{\mu \nu} \partial_\nu \phi 
+    &\partial_\mu \phi \partial^\mu \phi = \partial_\mu \phi \eta^{\mu \nu} \partial_\nu \phi
     ~\text{(where $\eta^{\mu \nu}$ is the metric; lowering indeces)} \\
     %
     \\
@@ -88,22 +88,22 @@ Calculating the terms in the EL equation:
     &\pdv{L}{\phi} = 0 \\
     \\
     \\
-    &\pdv{L}{(\partial_\sigma \phi)} 
+    &\pdv{L}{(\partial_\sigma \phi)}
     = \pdv{(\partial_\sigma \phi)} \bigg( \frac{1}{2}(\partial_\mu \phi)^2  \bigg) \\
     %
     &=\pdv{(\partial_\sigma \phi)}  \bigg( \frac{1}{2}\eta^{\mu \nu} (\partial_\mu \phi) (\partial_\nu \phi) \bigg) \\
     %
-    &=\frac{1}{2}\eta^{\mu \nu} \pdv{(\partial_\mu \phi)}{(\partial_\sigma \phi)} (\partial_\nu \phi) + 
+    &=\frac{1}{2}\eta^{\mu \nu} \pdv{(\partial_\mu \phi)}{(\partial_\sigma \phi)} (\partial_\nu \phi) +
     \frac{1}{2}\eta^{\mu \nu} (\partial_\mu \phi) \pdv{(\partial_\nu \phi)}{(\partial_\sigma \phi)} \\
     %
     &\textbf{(TODO: understand why $\pdv{(\partial_\mu \phi)}{(\partial_\sigma \phi)}  = \delta_{\mu}^\sigma$)}
     \\
-    &=\frac{1}{2}\eta^{\mu \nu} \delta_{\mu}^{\sigma} (\partial_\nu \phi) + 
+    &=\frac{1}{2}\eta^{\mu \nu} \delta_{\mu}^{\sigma} (\partial_\nu \phi) +
     \frac{1}{2}\eta^{\mu \nu} (\partial_\mu \phi) \delta_{\nu}^{\sigma} \\
     %
     &\text{(Contracting on $\mu$)}\\
     %
-    &=\frac{1}{2}\eta^{\sigma \nu} (\partial_\nu \phi) + 
+    &=\frac{1}{2}\eta^{\sigma \nu} (\partial_\nu \phi) +
     \frac{1}{2}\eta^{\mu \sigma} (\partial_\mu \phi) \\
     %
     &\text{(Replacing dummy index $\mu \equiv \nu$)} \\
@@ -122,7 +122,7 @@ Calculating the terms in the EL equation:
 Now, the second term of the Lagrangian is:
 
 \begin{align*}
-    &\partial_\mu \pdv{L}{(\partial_\mu \phi)} = \partial_\mu (\partial^\mu \phi) 
+    &\partial_\mu \pdv{L}{(\partial_\mu \phi)} = \partial_\mu (\partial^\mu \phi)
     =~\partial_0 \partial^0  \phi - \laplacian \phi = \Box \phi
 \end{align*}
 
@@ -161,7 +161,7 @@ equations (\textbf{TODO: AFAICT, this is ad-hoc observation by physicists. Find 
 The Euler-Lagrange equations work out to:
 
 \begin{align*}
-    &\text{First term:} 
+    &\text{First term:}
     ~\pdv{L}{\phi} =  2 \alpha m^2 \phi\\
     %
     &\text{Second term:}
@@ -180,6 +180,57 @@ Hence, the Lagrangian for a scalar mass field works out to:
 \end{equation}
 
 \section{Symmetries of a scalar field Lagrangian}
+Now, we look at the scalar field with mass, and try to study the gauge
+theory (ie, the theory of symmetries) for this object.
+$$
+\Lag = \frac{1}{2} (\partial_\mu \phi)^2 - \frac{1}{2} m^2 \phi^2
+$$
+
+We replicate the Lagrangian, giving us $\Lag_1$ and $\Lag_2$, whose "interaction"
+we study to arrive at the gauge.
+
+\begin{align*}
+\Lag_1 &= \frac{1}{2} (\partial_\mu \phi_1)^2 - \frac{1}{2} m^2 \phi^2 \\
+&=\frac{1}{2} \eta^{\mu \nu} \partial_\mu \phi_1 \partial_\nu \phi_1 - \frac{1}{2} m^2 \phi_1^2 \\
+%
+\Lag_2 &= \frac{1}{2} \eta^{\mu \nu} \partial_\mu \phi_2 \partial_\nu \phi_2 - \frac{1}{2} m^2 \phi_2^2
+\end{align*}
+
+We make a new Lagrangian by adding the two previous Lagrangians:
+\begin{align*}
+&\Lag(\phi_1, \phi_2, \partial_\mu \phi_1, \partial_\mu \phi_2) = \Lag_1 + \Lag_2 \\
+%
+&=~\bigg(\frac{1}{2} \eta^{\mu \nu} \partial_\mu \phi_1 \partial_\nu \phi_1 - \frac{1}{2} m^2 \phi_1^2\bigg) +
+\bigg(\frac{1}{2} \eta^{\mu \nu} \partial_\mu \phi_2 \partial_\nu \phi_2 - \frac{1}{2} m^2 \phi_2^2\bigg) \\
+%
+&=~\frac{1}{2} \eta^{\mu \nu}(\partial_\mu \phi_1 \partial_\nu \phi_1 + \partial_\mu \phi_2 \partial_\nu \phi_2)
+- \frac{1}{2} m^2 (\phi_1^2 + \phi_2^2) \\
+%
+&\textbf{(TODO: how did it become $\partial_\mu (\phi_1 + \phi_2) \partial_\nu (\phi_1 + \phi_2)$?)} \\
+%
+&=\frac{1}{2} \eta^{\mu \nu} \partial_\mu (\phi_1 + \phi_2) \partial_\nu (\phi_1 + \phi_2)
+- \frac{1}{2} m^2 (\phi_1^2 + \phi_2^2)
+\end{align*}
+
+Now, we define a \textit{new} $\phi \equiv \phi_1 + i \phi_2$, since the existence of
+$\phi_1^2 + \phi_2^2$ hints at some kind of rotational symmetry. Now, this will allow
+us to explore the $U(1)$ rotational symmetry which possibly exists. Note that because of this definition:
+
+\begin{align*}
+&\phi \equiv \phi_1 + i \phi_2 \\
+&\phi^* \equiv \phi_1 - i \phi_2 \\
+&\phi_1 \equiv \frac{\phi + \phi^*}{2} \\
+&\phi_2 \equiv   \frac{\phi - \phi^*}{2i} \\
+\end{align*}
+
+Plugging these back into the Lagrangian \textbf{(TODO: work this out!)}
+\begin{align*}
+L = \frac{1}{2}(\partial_\mu \phi \partial^\mu \phi^*) - \frac{1}{2}m^2 \phi \phi^*
+\end{align*}
+
+Now, we see a symmetry of $\phi \to e^{i \theta}\phi$. This will leave the Lagrangian invariant, hence
+$U(1)$ symmetry (This is shown later, that the Lagrangian is invariant, but we're trying to give a taste here)
+
 \section{Derving the force of the EM-field from the Lanrangian}
 
 Recall that $B = \curl A$, $E = \grad \phi - \pdv{A}{t}$, and the force
@@ -241,8 +292,8 @@ We now consider the transform:
 
 This implies the transforms:
 \begin{align*}
-    &\partial_\mu \phi = 
-    \partial_\mu (e^{i e \theta(x)} \phi) = 
+    &\partial_\mu \phi =
+    \partial_\mu (e^{i e \theta(x)} \phi) =
     e^{i e \theta(x)} \partial_\mu \phi + i e e^{i e \theta(x)} \phi \partial_\mu \theta = \\
     &e^{i e \theta(x)}(\partial_\mu \phi + i e \phi \partial_\mu \theta)
 \end{align*}
@@ -264,19 +315,19 @@ We introduce:
 We shall check that this transforms in a lorentzian way. In the new coordinate
 system:
 \begin{align*}
-    \bar D_\mu \bar \phi \equiv &([\partial_\mu - i \bar A_\mu) \bar \phi] 
+    \bar D_\mu \bar \phi \equiv &([\partial_\mu - i \bar A_\mu) \bar \phi]
         [(\partial^\mu + i \bar A^\mu) \bar \phi^*] \\
-    % 
-    =~&[(\partial_\mu - i \bar A_\mu) (e^{i e \theta(x)}) \phi] 
+    %
+    =~&[(\partial_\mu - i \bar A_\mu) (e^{i e \theta(x)}) \phi]
     [(\partial^\mu + i \bar A^\mu) (e^{i e \theta(x)}\phi)^*]  \\
     %
     =~&[\partial_\mu (e^{i e \theta(x)} \phi) - i \bar A_\mu e^{i e \theta(x)} \phi]
     [\partial_\mu (e^{-i e \theta(x)} \phi^*) + i \bar A_\mu e^{-i e \theta(x)} \phi^*] \\
-    % 
+    %
     &\text{evaluate $\partial_\mu(UV)$} \\
     =~&[e^{i e \theta(x)} (\partial_\mu \phi) + i e  e^{i e \theta(x)} (\partial_\mu \theta)\phi - i \bar A_\mu e^{i e \theta(x)} \phi]
     [e^{- i e \theta(x)} (\partial_\mu \phi^*) - i e  e^{- i e \theta(x)} (\partial_\mu \theta) \phi^* + i \bar A_\mu e^{- i e \theta(x)} \phi^*] \\
-    % 
+    %
     =~&[e^{i e \theta(x)} (\partial_\mu \phi + i e (\partial_\mu \theta) \phi - i \bar A_\mu  \phi)]
     [e^{- i e \theta(x)} (\partial_\mu \phi^* - i e (\partial_\mu \theta) \phi^* + i \bar A_\mu  \phi^*)] \\
     %
@@ -309,7 +360,7 @@ So now, we know how $A_\mu$ transforms:
 So, now, our modified lagrangian is:
 
 \begin{align*}
-    \Lag (\phi, \phi^*, \partial_\mu \phi, \partial_\mu \phi^*, A_\mu) = 
+    \Lag (\phi, \phi^*, \partial_\mu \phi, \partial_\mu \phi^*, A_\mu) =
     [(\partial_\mu - i A_\mu) \phi][(\partial^\mu - i A^\mu) \phi]^* - \frac{1}{2} m |\phi|^2
 \end{align*}
 
@@ -317,7 +368,7 @@ So, now, our modified lagrangian is:
 
 We want to understand if we can add interaction terms for $A_\mu$. If not,
 what the obstacles are. We would like the interaction terms to be a Lorentz
-tensor, and we would like it to respect local symmetrics.
+tensor, and we would like it to respect local symmetries.
 
 \begin{align*}
     &\mu^2 A_\mu A^\mu \to \mu^2 \bar A_\mu \bar A^\mu = \mu^2 (A_\mu + e \partial_\mu \theta) (A^\mu + e \partial^\mu \theta)
@@ -357,7 +408,7 @@ for $F_{\mu \nu}$:
 So, extending the lagrangian with the $F_{\mu \nu}$ term gives us:
 
 \begin{align*}
-    &\Lag (\phi, \phi^*, \partial_\mu \phi, \partial_\mu \phi^*, A_\mu) = 
+    &\Lag (\phi, \phi^*, \partial_\mu \phi, \partial_\mu \phi^*, A_\mu) =
     \frac{1}{4} F^{\mu \nu} F_{\mu \nu} + [D_\mu \phi][D^\mu \phi]^* - \frac{1}{2} m |\phi|^2 \\
     %
     &\text{where:}\\
