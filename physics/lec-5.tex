@@ -86,3 +86,28 @@ of $\theta$, the parameter.
     \boxed{A_\mu  =   U A_\mu U^{-1} + \frac{(\partial_\mu U) U^{-1}}{i g}}
 \end{equation}
 
+Supposedly, $A_\mu$ is a \textit{connection}, and the field strength tensor
+$F$ is the \textit{curvature of the connection}:
+
+\begin{align*}
+    &[D_\mu, D_\nu] = [\partial_\mu - i e A_\mu, \partial_\nu - i e A_\nu] \\
+    =~&(\partial_\mu - i e A_\mu)(\partial_\nu - i e A_\nu) -  
+    (\partial_\nu - i e A_\nu) (\partial_\mu - i e A_\mu) \\
+    =~ %
+    &(\partial_\mu \partial_\nu - \partial_\mu (i e A_\nu) +
+    (- i e A_\mu) (\partial_\nu) + i^2 e^2 A_\mu A_\nu) - \\
+    %
+    &(\partial_\nu \partial_\mu - \partial_\nu (i e A_\mu) +
+    (- i e A_\nu)(\partial_\mu) + i^2 e^2 A_\mu A_\nu) \\
+    %
+    =~ %
+    &(\cancel{\partial_\mu \partial_\nu} - \partial_\mu (i e A_\nu) +
+    (- i e A_\mu) (\partial_\nu) + \cancel{i^2 e^2 A_\mu A_\nu}) - \\
+    %
+    &(\cancel{\partial_\nu \partial_\mu} - \partial_\nu (i e A_\mu) +
+    (- i e A_\nu)(\partial_\mu) + \cancel{i^2 e^2 A_\mu A_\nu}) \\
+    %
+    &\textbf{TODO: understand how $(- i e A_\mu) (\partial_\nu)$ terms get cancelled} \\
+    =~&- i e (\partial_\mu A_\nu - \partial_\nu A_\mu)
+\end{align*}
+which is indeed $F$.
