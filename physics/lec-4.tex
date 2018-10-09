@@ -99,30 +99,30 @@ system:
     [\partial_\mu (e^{-i e \theta(x)} \phi^*) + i \bar A_\mu e^{-i e \theta(x)} \phi^*] \\
     % 
     &\text{evaluate $\partial_\mu(UV)$} \\
-    =~&[e^{i e \theta(x)} (\partial_\mu \phi) + i e  e^{i e \theta(x)}\phi - i \bar A_\mu e^{i e \theta(x)} \phi]
-      [e^{- i e \theta(x)} (\partial_\mu \phi^*) - i e  e^{- i e \theta(x)}\phi^* + i \bar A_\mu e^{- i e \theta(x)} \phi^*] \\
+    =~&[e^{i e \theta(x)} (\partial_\mu \phi) + i e  e^{i e \theta(x)} (\partial_\mu \theta)\phi - i \bar A_\mu e^{i e \theta(x)} \phi]
+    [e^{- i e \theta(x)} (\partial_\mu \phi^*) - i e  e^{- i e \theta(x)} (\partial_\mu \theta) \phi^* + i \bar A_\mu e^{- i e \theta(x)} \phi^*] \\
     % 
-    =~&[e^{i e \theta(x)} (\partial_\mu \phi + i e \phi - i \bar A_\mu  \phi)]
-    [e^{- i e \theta(x)} (\partial_\mu \phi^* - i e \phi^* + i \bar A_\mu  \phi^*)] \\
+    =~&[e^{i e \theta(x)} (\partial_\mu \phi + i e (\partial_\mu \theta) \phi - i \bar A_\mu  \phi)]
+    [e^{- i e \theta(x)} (\partial_\mu \phi^* - i e (\partial_\mu \theta) \phi^* + i \bar A_\mu  \phi^*)] \\
     %
     &\text{cancelling $e^{i e \theta(x)}$ with $e^{- i e \theta(x)}$} \\
-    =~&[\partial_\mu \phi + i e \phi - i \bar A_\mu  \phi]
-    [\partial_\mu \phi^* - i e \phi^* + i \bar A_\mu  \phi^*] \\
+    =~&[\partial_\mu \phi + i e (\partial_\mu \theta) \phi - i \bar A_\mu  \phi]
+    [\partial_\mu \phi^* - i e (\partial_\mu \theta) \phi^* + i \bar A_\mu  \phi^*] \\
     %
-    =~&[\partial_\mu + i e - i \bar A_\mu  ]\phi
-    [\partial_\mu  - i e  + i \bar A_\mu ] \phi^* \\
+    =~&[\partial_\mu + i e (\partial_\mu \theta) - i \bar A_\mu  ]\phi
+    [\partial_\mu  - i e(\partial_\mu \theta) + i \bar A_\mu ] \phi^* \\
 \end{align*}
 
 Comparing:
 \begin{align*}
     D_\mu \phi &\equiv (\partial_\mu - i A_\mu) \phi (\partial^\mu + i A^\mu) \phi^* \\
     %
-    \bar D_\mu \bar \phi &\equiv [\partial_\mu + i e - i \bar A_\mu  ]\phi
-    [\partial_\mu  - i e  + i \bar A_\mu ] \phi^* \\
+    \bar D_\mu \bar \phi &\equiv [\partial_\mu + i e (\partial_\mu \theta) - i \bar A_\mu  ]\phi
+    [\partial_\mu  - i e (\partial_\mu \theta)  + i \bar A_\mu ] \phi^* \\
     %
-    -i A_\mu &= + i e - i \bar A_\mu \\
-    -A_\mu &= e - \bar A_\mu \\
-    \bar A_\mu &= e + A_\mu \\
-       &\textbf{TODO: this is not what mukku got! mukku got $\bar A_\mu = A_\mu - e(\partial_\mu \theta)$. HOW?}
+    -i A_\mu &= + i e (\partial_\mu \theta) - i \bar A_\mu \\
+    -A_\mu &= e (\partial_\mu \theta) - \bar A_\mu \\
+    \bar A_\mu &= e (\partial_\mu \theta) + A_\mu \\
+   &\textbf{TODO: This is not what mukku got! mukku got $\bar A_\mu = A_\mu - e(\partial_\mu \theta)$. HOW?}
 \end{align*}
 
