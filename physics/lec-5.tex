@@ -1,0 +1,22 @@
+% Lagrangian 
+\newcommand{\Lag}{\mathcal{L}}
+\chapter{Non abelian gauge theories}
+
+Let $\phi_i = (\phi_1, \phi_2, \phi_3)$ be a vector of scalar fields.
+
+Consider the "usual" lagrangian:
+$$\Lag = (\partial_\mu \phi)^\dagger (\partial^\mu \phi) - \frac{1}{2}m \phi^\dagger \phi$$
+
+This clearly has a global symmetry $\phi \to U(\theta) \phi$ where $U \in SU(n)$
+
+We enlarge the global symmetry to a local symmetry $\phi \to U(\theta(x)) \phi$.
+Note that $\phi^\dagger \phi$ is still invariant, but we need to check
+the first term of the Lagrangian.
+
+\begin{align*}
+    &\partial_\mu \bar \phi = \partial_\mu (U \phi) = (\partial_\mu U) \phi + (U \partial_\mu \phi) \\
+    &\partial_\mu {\bar \phi}^\dagger = \partial_\mu (U \phi)^\dagger =  \partial_\mu (\phi^\dagger U^\dagger) = 
+    (\partial_\mu \phi^\dagger) U^\dagger + \phi^\dagger (\partial_\mu U^\dagger)
+\end{align*}
+
+

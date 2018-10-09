@@ -1,0 +1,38 @@
+\chapter{Gauge theories}
+We construct a 1-dimensional guage theory and study its symmetries.
+
+\section{Euler-Lagrange equations for a field}
+\section{Klein-gordon equations}
+\section{Lagrangian for a massive scalar field}
+\section{Symmetries of a scalar field Lagrangian}
+\section{Derving the force of the EM-field from the Lanrangian}
+
+Recall that $B = \curl A$, $E = \grad \phi - \pdv{A}{t}$, and the force
+on a particle is $\va F = q (\va E + \va v \times \va B)$.
+
+\begin{align*}
+ma &= e (\grad \phi - \pdv{A}{t}) + e (v \times (\curl A)) \\
+ma &= e (\grad \phi - \pdv{A}{t}) + e (\div (v \vdot A) - (v \vdot \grad) A)
+\end{align*}
+
+Note that $(v \cdot \grad) A$ is:
+\begin{align*}
+v \vdot \grad = \dv{x}{t} \pdv{x} + \dv{y}{t} \pdv{y} + \dv{z}{t} \pdv{z} \\
+(v \vdot \grad) A = \dv{x}{t} \pdv{A}{x} + \dv{y}{t} \pdv{A}{y} + \dv{z}{t} \pdv{A}{z} \\
+\end{align*}
+
+However, now let us compare $\dv{A}{t}$ and $(v \cdot \grad) A$:
+
+\begin{align*}
+\dv{A}{t} = \pdv{A}{t} + \dv{x}{t}\pdv{A}{x} + \dv{y}{t}\pdv{A}{y} \dv{z}{t}\pdv{A}{z} \\
+\dv{A}{t} = \pdv{A}{t} + (v \cdot \grad) A
+\end{align*}
+
+Now, rewriting $ma$,
+\begin{align*}
+ma &= e (\grad \phi - \pdv{A}{t}) + e (\div (v \vdot A) - (v \vdot \grad) A) \\
+ma &= e (\grad \phi - \pdv{A}{t}) + e (\div (v \vdot A) - (v \vdot \grad) A)
+\end{align*}
+
+\section{Local and global symmetries}
+
