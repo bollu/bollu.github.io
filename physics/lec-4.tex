@@ -126,6 +126,10 @@ Comparing:
    &\textbf{TODO: This is not what mukku got! mukku got $\bar A_\mu = A_\mu - e(\partial_\mu \theta)$. HOW?}
 \end{align*}
 
+So now, we know how $A_\mu$ transforms:
+\begin{equation}
+    \boxed{\bar A_\mu = A_\mu - e(\partial_\mu \theta)}
+\end{equation}
 
 So, now, our modified lagrangian is:
 
@@ -133,3 +137,63 @@ So, now, our modified lagrangian is:
     \Lag (\phi, \phi^*, \partial_\mu \phi, \partial_\mu \phi^*, A_\mu) = 
     [(\partial_\mu - i A_\mu) \phi][(\partial^\mu - i A^\mu) \phi]^* - \frac{1}{2} m |\phi|^2
 \end{align*}
+
+
+
+We want to understand if we can add interaction terms for $A_\mu$. If not,
+what the obstacles are. We would like the interaction terms to be a Lorentz
+tensor, and we would like it to respect local symmetrics.
+
+\begin{align*}
+    &\mu^2 A_\mu A^\mu \to \mu^2 \bar A_\mu \bar A^\mu = \mu^2 (A_\mu + e \partial_\mu \theta) (A^\mu + e \partial^\mu \theta)
+\end{align*}
+So clearly, we cannot have mass terms of the form $\mu^2 A_\mu A^\mu$. We must
+try other things and check if they are interesting.
+
+We now try to inspect some invariants of $A_\mu$.  For example, we can
+construct:
+$$F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$$
+
+We already know that $F$ is a Lorentz tensor. Let's check if it's gauge
+invariant.
+
+\begin{align*}
+    \bar F_{\mu\nu} =~&\partial_\nu \bar A_\mu - \partial_\mu A_\nu \\
+    =~&\partial_\nu(A_\mu - e (\partial_\mu \theta)) - \partial_\mu (A_\nu - e \partial_\nu \theta)) \\
+    %
+      &\text{Since partial derivatives commute:} \\
+    %
+    =~&\partial_\nu A_\mu - \cancel{e \partial_\nu \partial_\mu \theta} - \partial_\mu A_\nu - \cancel{e \partial_\mu \partial_\nu \theta})) \\
+    =~&\partial_\nu A_\mu - \partial_\mu A_\nu = F_{\mu \nu}
+\end{align*}
+
+Hence, $F_{\mu \nu}$ is also gauge invariant.
+
+Here, there is some sentence of how "there are only two invariants possible
+for $F_{\mu \nu}$:
+
+\begin{itemize}
+    \item $F^{\mu \nu} F_{\mu \nu}$
+    \item $e^{\mu \nu \alpha \beta} F_{\mu \nu} F_{\alpha \beta}$ (what is $e$ in this context?)
+        Supposedly, we can ignore this since it relates to divergence (??)
+        \textbf{TODO: figure this out}
+\end{itemize}
+
+So, extending the lagrangian with the $F_{\mu \nu}$ term gives us:
+
+\begin{align*}
+    &\Lag (\phi, \phi^*, \partial_\mu \phi, \partial_\mu \phi^*, A_\mu) = 
+    \frac{1}{4} F^{\mu \nu} F_{\mu \nu} + [D_\mu \phi][D^\mu \phi]^* - \frac{1}{2} m |\phi|^2 \\
+    %
+    &\text{where:}\\
+    %
+    &D_\mu \equiv (\partial^\mu - i A^\mu) \\
+    &F_{\mu\nu} \equiv \partial_\mu A_\nu - partial_\nu A_\mu
+\end{align*}
+
+Now, performing variational calculus on this lagrangian, we should theoretically
+regain maxwell's equations:
+
+\textbf{TODO: follow the last part of the stuff written in red ink pen to
+understand what in the actual fuck happened}
+
