@@ -33,10 +33,10 @@ import Control.Monad
 size :: Int
 size = 100000000
 
-sieve :: PrimMonad m => m (Vec.MVector (PrimState m) Int8)
+sieve :: IO (Vec.MVector (RealWorld) Int8)
 sieve =  Vec.replicate (size .>>. 3) 0
 
-count :: PrimMonad m => m (Var.MutVar (PrimState m) Int)
+count :: IO (Var.MutVar (RealWorld) Int)
 count = Var.newMutVar 0
 
 intToBool :: Int -> Bool
@@ -73,7 +73,7 @@ type Count = Int
 type I = Int
 
 -- Version 2:MVar -> Int
-sievefn :: PrimMonad m => (Vec.MVector (PrimState m) Int8) -> Count -> I -> m Count
+sievefn :: (Vec.MVector RealWorld Int8) -> Count -> I -> IO Count
 sievefn s c i = 
   if i < size
      then do

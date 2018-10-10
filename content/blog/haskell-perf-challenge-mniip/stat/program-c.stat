@@ -2,14 +2,14 @@
 
  Performance counter stats for 'bin/program-c':
 
-        724.457171      task-clock (msec)         #    0.999 CPUs utilized          
+        724.896012      task-clock (msec)         #    0.999 CPUs utilized          
                  2      context-switches          #    0.003 K/sec                  
                  0      cpu-migrations            #    0.000 K/sec                  
-             3,097      page-faults               #    0.004 M/sec                  
-    1,57,81,31,159      cycles                    #    2.178 GHz                    
-    3,56,43,55,773      instructions              #    2.26  insn per cycle         
-      45,00,01,765      branches                  #  621.157 M/sec                  
-         60,42,720      branch-misses             #    1.34% of all branches        
+             3,099      page-faults               #    0.004 M/sec                  
+    1,57,90,88,416      cycles                    #    2.178 GHz                    
+    3,56,43,53,096      instructions              #    2.26  insn per cycle         
+      45,00,00,812      branches                  #  620.780 M/sec                  
+         60,49,264      branch-misses             #    1.34% of all branches        
 
-       0.724995176 seconds time elapsed
+       0.725422608 seconds time elapsed
 

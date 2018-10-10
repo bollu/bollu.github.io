@@ -2,14 +2,14 @@
 
  Performance counter stats for 'bin/program-hs':
 
-       1027.362584      task-clock (msec)         #    1.000 CPUs utilized          
+       1025.858452      task-clock (msec)         #    1.000 CPUs utilized          
                  2      context-switches          #    0.002 K/sec                  
                  0      cpu-migrations            #    0.000 K/sec                  
-             3,211      page-faults               #    0.003 M/sec                  
-    2,24,28,33,500      cycles                    #    2.183 GHz                    
-    5,96,02,25,709      instructions              #    2.66  insn per cycle         
-      49,06,98,944      branches                  #  477.630 M/sec                  
-         57,91,772      branch-misses             #    1.18% of all branches        
+             3,209      page-faults               #    0.003 M/sec                  
+    2,24,39,17,976      cycles                    #    2.187 GHz                    
+    5,96,02,22,568      instructions              #    2.66  insn per cycle         
+      49,06,97,880      branches                  #  478.329 M/sec                  
+         57,91,987      branch-misses             #    1.18% of all branches        
 
-       1.027870164 seconds time elapsed
+       1.026353338 seconds time elapsed
 

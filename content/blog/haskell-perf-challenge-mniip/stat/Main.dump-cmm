@@ -1,12 +1,12 @@
 
 ==================== Output Cmm ====================
-2018-10-10 15:29:52.361039106 UTC
+2018-10-10 15:36:00.22857587 UTC
 
 []
 
 
 ==================== Output Cmm ====================
-2018-10-10 15:29:52.361344483 UTC
+2018-10-10 15:36:00.228880491 UTC
 
 [section ""cstring" . Main.$trModule4_bytes" {
      Main.$trModule4_bytes:
@@ -15,7 +15,7 @@
 
 
 ==================== Output Cmm ====================
-2018-10-10 15:29:52.361808981 UTC
+2018-10-10 15:36:00.229730976 UTC
 
 [section ""data" . Main.$trModule3_closure" {
      Main.$trModule3_closure:
@@ -25,7 +25,7 @@
 
 
 ==================== Output Cmm ====================
-2018-10-10 15:29:52.36249462 UTC
+2018-10-10 15:36:00.230184121 UTC
 
 [section ""cstring" . Main.$trModule2_bytes" {
      Main.$trModule2_bytes:
@@ -34,7 +34,7 @@
 
 
 ==================== Output Cmm ====================
-2018-10-10 15:29:52.362901574 UTC
+2018-10-10 15:36:00.230582993 UTC
 
 [section ""data" . Main.$trModule1_closure" {
      Main.$trModule1_closure:
@@ -44,7 +44,7 @@
 
 
 ==================== Output Cmm ====================
-2018-10-10 15:29:52.363315988 UTC
+2018-10-10 15:36:00.231003234 UTC
 
 [section ""data" . Main.$trModule_closure" {
      Main.$trModule_closure:
@@ -56,18 +56,18 @@
 
 
 ==================== Output Cmm ====================
-2018-10-10 15:29:52.370653248 UTC
+2018-10-10 15:36:00.238142779 UTC
 
-[section ""data" . Main.main_$s$w$ssievefn_closure" {
-     Main.main_$s$w$ssievefn_closure:
-         const Main.main_$s$w$ssievefn_info;
+[section ""data" . Main.main_$s$wsievefn_closure" {
+     Main.main_$s$wsievefn_closure:
+         const Main.main_$s$wsievefn_info;
  },
- Main.main_$s$w$ssievefn_slow() //  [R1]
+ Main.main_$s$wsievefn_slow() //  [R1]
          { info_tbl: []
            stack_info: arg_space: 0 updfr_space: Nothing
          }
      {offset
-       c8ro: // global
+       c8lK: // global
            R6 = P64[Sp + 32];
            R5 = I64[Sp + 24];
            R4 = I64[Sp + 16];
@@ -75,577 +75,577 @@
            R2 = I64[Sp];
            R1 = R1;
            Sp = Sp + 40;
-           call Main.main_$s$w$ssievefn_info(R6,
-                                             R5,
-                                             R4,
-                                             R3,
-                                             R2,
-                                             R1) args: 8, res: 0, upd: 8;
+           call Main.main_$s$wsievefn_info(R6,
+                                           R5,
+                                           R4,
+                                           R3,
+                                           R2,
+                                           R1) args: 8, res: 0, upd: 8;
      }
  },
- go_dn_s8oh_entry() //  [R1, R2]
-         { info_tbl: [(c8sH,
-                       label: go_dn_s8oh_info
+ go_dn_s8iD_entry() //  [R1, R2]
+         { info_tbl: [(c8n3,
+                       label: go_dn_s8iD_info
                        rep:HeapRep 1 ptrs 3 nonptrs {
                              Fun {arity: 2 fun_type: ArgSpec 4} })]
            stack_info: arg_space: 0 updfr_space: Nothing
          }
      {offset
-       c8sH: // global
-           _s8oi::I64 = R2;
-           _s8oh::P64 = R1;
-           goto c8sz;
-       c8sz: // global
-           _s8nN::P64 = P64[_s8oh::P64 + 6];
-           _s8nL::I64 = I64[_s8oh::P64 + 14];
-           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Lt_W64(_s8oi::I64,
-                                                                              I64[_s8oh::P64 + 30])) {
-               case 1 : goto c8sG;
-               default: goto c8sF;
+       c8n3: // global
+           _s8iE::I64 = R2;
+           _s8iD::P64 = R1;
+           goto c8mV;
+       c8mV: // global
+           _s8i9::P64 = P64[_s8iD::P64 + 6];
+           _s8i7::I64 = I64[_s8iD::P64 + 14];
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Lt_W64(_s8iE::I64,
+                                                                              I64[_s8iD::P64 + 30])) {
+               case 1 : goto c8n2;
+               default: goto c8n1;
            }
-       c8sG: // global
-           _s8oE::I64 = %MO_S_Shr_W64(_s8oi::I64, 3);
-           _s8oI::I64 = %MO_SS_Conv_W8_W64(I8[(_s8nN::P64 + 16) + (_s8nL::I64 + _s8oE::I64)]);
-           _s8oJ::I64 = _s8oi::I64 & 7;
-           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8oJ::I64,
+       c8n2: // global
+           _s8j0::I64 = %MO_S_Shr_W64(_s8iE::I64, 3);
+           _s8j4::I64 = %MO_SS_Conv_W8_W64(I8[(_s8i9::P64 + 16) + (_s8i7::I64 + _s8j0::I64)]);
+           _s8j5::I64 = _s8iE::I64 & 7;
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8j5::I64,
                                                                               64)) {
-               case 1 : goto c8td;
-               default: goto c8tc;
+               case 1 : goto c8nz;
+               default: goto c8ny;
            }
-       c8td: // global
-           I8[(_s8nN::P64 + 16) + (_s8nL::I64 + _s8oE::I64)] = %MO_UU_Conv_W64_W8(_s8oI::I64);
+       c8nz: // global
+           I8[(_s8i9::P64 + 16) + (_s8i7::I64 + _s8j0::I64)] = %MO_UU_Conv_W64_W8(_s8j4::I64);
            R1 = GHC.Tuple.()_closure+1;
            call (P64[Sp])(R1) args: 8, res: 0, upd: 8;
-       c8tc: // global
-           I8[(_s8nN::P64 + 16) + (_s8nL::I64 + _s8oE::I64)] = %MO_UU_Conv_W64_W8(_s8oI::I64 | %MO_SS_Conv_W8_W64(%MO_SS_Conv_W64_W8(1 << _s8oJ::I64)));
+       c8ny: // global
+           I8[(_s8i9::P64 + 16) + (_s8i7::I64 + _s8j0::I64)] = %MO_UU_Conv_W64_W8(_s8j4::I64 | %MO_SS_Conv_W8_W64(%MO_SS_Conv_W64_W8(1 << _s8j5::I64)));
            R1 = GHC.Tuple.()_closure+1;
            call (P64[Sp])(R1) args: 8, res: 0, upd: 8;
-       c8sF: // global
-           _s8of::I64 = I64[_s8oh::P64 + 22];
-           _s8ol::I64 = %MO_S_Shr_W64(_s8oi::I64, 3);
-           _s8op::I64 = %MO_SS_Conv_W8_W64(I8[(_s8nN::P64 + 16) + (_s8nL::I64 + _s8ol::I64)]);
-           _s8oq::I64 = _s8oi::I64 & 7;
-           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8oq::I64,
+       c8n1: // global
+           _s8iB::I64 = I64[_s8iD::P64 + 22];
+           _s8iH::I64 = %MO_S_Shr_W64(_s8iE::I64, 3);
+           _s8iL::I64 = %MO_SS_Conv_W8_W64(I8[(_s8i9::P64 + 16) + (_s8i7::I64 + _s8iH::I64)]);
+           _s8iM::I64 = _s8iE::I64 & 7;
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8iM::I64,
                                                                               64)) {
-               case 1 : goto c8sY;
-               default: goto c8sX;
+               case 1 : goto c8nk;
+               default: goto c8nj;
            }
-       c8sY: // global
-           I8[(_s8nN::P64 + 16) + (_s8nL::I64 + _s8ol::I64)] = %MO_UU_Conv_W64_W8(_s8op::I64);
-           _s8oi::I64 = _s8oi::I64 + _s8of::I64;
-           goto c8sz;
-       c8sX: // global
-           I8[(_s8nN::P64 + 16) + (_s8nL::I64 + _s8ol::I64)] = %MO_UU_Conv_W64_W8(_s8op::I64 | %MO_SS_Conv_W8_W64(%MO_SS_Conv_W64_W8(1 << _s8oq::I64)));
-           _s8oi::I64 = _s8oi::I64 + _s8of::I64;
-           goto c8sz;
+       c8nk: // global
+           I8[(_s8i9::P64 + 16) + (_s8i7::I64 + _s8iH::I64)] = %MO_UU_Conv_W64_W8(_s8iL::I64);
+           _s8iE::I64 = _s8iE::I64 + _s8iB::I64;
+           goto c8mV;
+       c8nj: // global
+           I8[(_s8i9::P64 + 16) + (_s8i7::I64 + _s8iH::I64)] = %MO_UU_Conv_W64_W8(_s8iL::I64 | %MO_SS_Conv_W8_W64(%MO_SS_Conv_W64_W8(1 << _s8iM::I64)));
+           _s8iE::I64 = _s8iE::I64 + _s8iB::I64;
+           goto c8mV;
      }
  },
- go_up_s8pN_entry() //  [R1, R2]
-         { info_tbl: [(c8uv,
-                       label: go_up_s8pN_info
+ go_up_s8k9_entry() //  [R1, R2]
+         { info_tbl: [(c8oR,
+                       label: go_up_s8k9_info
                        rep:HeapRep 1 ptrs 3 nonptrs {
                              Fun {arity: 2 fun_type: ArgSpec 4} })]
            stack_info: arg_space: 0 updfr_space: Nothing
          }
      {offset
-       c8uv: // global
-           _s8pO::I64 = R2;
-           _s8pN::P64 = R1;
-           goto c8un;
-       c8un: // global
-           _s8nN::P64 = P64[_s8pN::P64 + 6];
-           _s8nL::I64 = I64[_s8pN::P64 + 14];
-           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Gt_W64(_s8pO::I64,
-                                                                              I64[_s8pN::P64 + 30])) {
-               case 1 : goto c8uu;
-               default: goto c8ut;
+       c8oR: // global
+           _s8ka::I64 = R2;
+           _s8k9::P64 = R1;
+           goto c8oJ;
+       c8oJ: // global
+           _s8i9::P64 = P64[_s8k9::P64 + 6];
+           _s8i7::I64 = I64[_s8k9::P64 + 14];
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Gt_W64(_s8ka::I64,
+                                                                              I64[_s8k9::P64 + 30])) {
+               case 1 : goto c8oQ;
+               default: goto c8oP;
            }
-       c8uu: // global
-           _s8qa::I64 = %MO_S_Shr_W64(_s8pO::I64, 3);
-           _s8qe::I64 = %MO_SS_Conv_W8_W64(I8[(_s8nN::P64 + 16) + (_s8nL::I64 + _s8qa::I64)]);
-           _s8qf::I64 = _s8pO::I64 & 7;
-           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8qf::I64,
+       c8oQ: // global
+           _s8kw::I64 = %MO_S_Shr_W64(_s8ka::I64, 3);
+           _s8kA::I64 = %MO_SS_Conv_W8_W64(I8[(_s8i9::P64 + 16) + (_s8i7::I64 + _s8kw::I64)]);
+           _s8kB::I64 = _s8ka::I64 & 7;
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8kB::I64,
                                                                               64)) {
-               case 1 : goto c8v1;
-               default: goto c8v0;
+               case 1 : goto c8pn;
+               default: goto c8pm;
            }
-       c8v1: // global
-           I8[(_s8nN::P64 + 16) + (_s8nL::I64 + _s8qa::I64)] = %MO_UU_Conv_W64_W8(_s8qe::I64);
+       c8pn: // global
+           I8[(_s8i9::P64 + 16) + (_s8i7::I64 + _s8kw::I64)] = %MO_UU_Conv_W64_W8(_s8kA::I64);
            R1 = GHC.Tuple.()_closure+1;
            call (P64[Sp])(R1) args: 8, res: 0, upd: 8;
-       c8v0: // global
-           I8[(_s8nN::P64 + 16) + (_s8nL::I64 + _s8qa::I64)] = %MO_UU_Conv_W64_W8(_s8qe::I64 | %MO_SS_Conv_W8_W64(%MO_SS_Conv_W64_W8(1 << _s8qf::I64)));
+       c8pm: // global
+           I8[(_s8i9::P64 + 16) + (_s8i7::I64 + _s8kw::I64)] = %MO_UU_Conv_W64_W8(_s8kA::I64 | %MO_SS_Conv_W8_W64(%MO_SS_Conv_W64_W8(1 << _s8kB::I64)));
            R1 = GHC.Tuple.()_closure+1;
            call (P64[Sp])(R1) args: 8, res: 0, upd: 8;
-       c8ut: // global
-           _s8pL::I64 = I64[_s8pN::P64 + 22];
-           _s8pR::I64 = %MO_S_Shr_W64(_s8pO::I64, 3);
-           _s8pV::I64 = %MO_SS_Conv_W8_W64(I8[(_s8nN::P64 + 16) + (_s8nL::I64 + _s8pR::I64)]);
-           _s8pW::I64 = _s8pO::I64 & 7;
-           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8pW::I64,
+       c8oP: // global
+           _s8k7::I64 = I64[_s8k9::P64 + 22];
+           _s8kd::I64 = %MO_S_Shr_W64(_s8ka::I64, 3);
+           _s8kh::I64 = %MO_SS_Conv_W8_W64(I8[(_s8i9::P64 + 16) + (_s8i7::I64 + _s8kd::I64)]);
+           _s8ki::I64 = _s8ka::I64 & 7;
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8ki::I64,
                                                                               64)) {
-               case 1 : goto c8uM;
-               default: goto c8uL;
+               case 1 : goto c8p8;
+               default: goto c8p7;
            }
-       c8uM: // global
-           I8[(_s8nN::P64 + 16) + (_s8nL::I64 + _s8pR::I64)] = %MO_UU_Conv_W64_W8(_s8pV::I64);
-           _s8pO::I64 = _s8pO::I64 + _s8pL::I64;
-           goto c8un;
-       c8uL: // global
-           I8[(_s8nN::P64 + 16) + (_s8nL::I64 + _s8pR::I64)] = %MO_UU_Conv_W64_W8(_s8pV::I64 | %MO_SS_Conv_W8_W64(%MO_SS_Conv_W64_W8(1 << _s8pW::I64)));
-           _s8pO::I64 = _s8pO::I64 + _s8pL::I64;
-           goto c8un;
+       c8p8: // global
+           I8[(_s8i9::P64 + 16) + (_s8i7::I64 + _s8kd::I64)] = %MO_UU_Conv_W64_W8(_s8kh::I64);
+           _s8ka::I64 = _s8ka::I64 + _s8k7::I64;
+           goto c8oJ;
+       c8p7: // global
+           I8[(_s8i9::P64 + 16) + (_s8i7::I64 + _s8kd::I64)] = %MO_UU_Conv_W64_W8(_s8kh::I64 | %MO_SS_Conv_W8_W64(%MO_SS_Conv_W64_W8(1 << _s8ki::I64)));
+           _s8ka::I64 = _s8ka::I64 + _s8k7::I64;
+           goto c8oJ;
      }
  },
- Main.main_$s$w$ssievefn_entry() //  [R2, R3, R4, R5, R6]
-         { info_tbl: [(c8vT,
-                       label: Main.main_$s$w$ssievefn_info
+ Main.main_$s$wsievefn_entry() //  [R2, R3, R4, R5, R6]
+         { info_tbl: [(c8qf,
+                       label: Main.main_$s$wsievefn_info
                        rep:HeapRep static {
                              Fun {arity: 7 fun_type: ArgGen [True, True, True, True, False]} })]
            stack_info: arg_space: 0 updfr_space: Nothing
          }
      {offset
-       c8vT: // global
-           if ((Sp + -48) < SpLim) (likely: False) goto u8zQ; else goto u8zP;
-       u8zQ: // global
+       c8qf: // global
+           if ((Sp + -48) < SpLim) (likely: False) goto u8uc; else goto u8ub;
+       u8uc: // global
            I64[Sp - 40] = R2;
            I64[Sp - 32] = R3;
            I64[Sp - 24] = R4;
            I64[Sp - 16] = R5;
            P64[Sp - 8] = R6;
            Sp = Sp - 40;
-           call _c8vU() args: 0, res: 0, upd: 0;
-       u8zP: // global
+           call _c8qg() args: 0, res: 0, upd: 0;
+       u8ub: // global
            I64[Sp - 40] = R2;
            I64[Sp - 32] = R3;
            I64[Sp - 24] = R4;
            I64[Sp - 16] = R5;
            P64[Sp - 8] = R6;
            Sp = Sp - 40;
-           call _c8rp() args: 0, res: 0, upd: 0;
+           call _c8lL() args: 0, res: 0, upd: 0;
      }
  },
- _c8rp() //  []
+ _c8lL() //  []
          { info_tbl: []
            stack_info: arg_space: 0 updfr_space: Nothing
          }
      {offset
-       c8rp: // global
+       c8lL: // global
            Hp = Hp + 16;
-           if (Hp > HpLim) (likely: False) goto c8vX; else goto c8vW;
-       c8vX: // global
+           if (Hp > HpLim) (likely: False) goto c8qj; else goto c8qi;
+       c8qj: // global
            HpAlloc = 16;
-           call _c8vU() args: 0, res: 0, upd: 0;
-       c8vW: // global
-           _s8nJ::I64 = I64[Sp];
-           _s8nK::I64 = I64[Sp + 8];
-           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Lt_W64(_s8nJ::I64,
+           call _c8qg() args: 0, res: 0, upd: 0;
+       c8qi: // global
+           _s8i5::I64 = I64[Sp];
+           _s8i6::I64 = I64[Sp + 8];
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Lt_W64(_s8i5::I64,
                                                                               100000000)) {
-               case 1 : goto c8vS;
-               default: goto c8vR;
+               case 1 : goto c8qe;
+               default: goto c8qd;
            }
-       c8vS: // global
-           _s8nL::I64 = I64[Sp + 16];
-           _s8nM::I64 = I64[Sp + 24];
-           _s8nN::P64 = P64[Sp + 32];
-           _s8nU::I64 = %MO_SS_Conv_W8_W64(I8[(_s8nN::P64 + 16) + (_s8nL::I64 + %MO_S_Shr_W64(_s8nJ::I64,
+       c8qe: // global
+           _s8i7::I64 = I64[Sp + 16];
+           _s8i8::I64 = I64[Sp + 24];
+           _s8i9::P64 = P64[Sp + 32];
+           _s8ig::I64 = %MO_SS_Conv_W8_W64(I8[(_s8i9::P64 + 16) + (_s8i7::I64 + %MO_S_Shr_W64(_s8i5::I64,
                                                                                               3))]);
-           _s8nV::I64 = _s8nJ::I64 & 7;
-           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8nV::I64,
+           _s8ih::I64 = _s8i5::I64 & 7;
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8ih::I64,
                                                                               64)) {
-               case 1 : goto c8yf;
-               default: goto c8ye;
+               case 1 : goto c8sB;
+               default: goto c8sA;
            }
-       c8yf: // global
+       c8sB: // global
            Hp = Hp - 16;
-           _s8nX::I64 = 0;
-           goto s8nW;
-       c8ye: // global
+           _s8ij::I64 = 0;
+           goto s8ii;
+       c8sA: // global
            Hp = Hp - 16;
-           _s8nX::I64 = 1 << _s8nV::I64;
-           goto s8nW;
-       s8nW: // global
-           _s8o2::I64 = _s8nU::I64 & %MO_SS_Conv_W8_W64(%MO_SS_Conv_W64_W8(_s8nX::I64));
-           switch [-9223372036854775808 .. 9223372036854775807] _s8o2::I64 {
-               case 0 : goto u8zR;
-               default: goto c8w2;
+           _s8ij::I64 = 1 << _s8ih::I64;
+           goto s8ii;
+       s8ii: // global
+           _s8io::I64 = _s8ig::I64 & %MO_SS_Conv_W8_W64(%MO_SS_Conv_W64_W8(_s8ij::I64));
+           switch [-9223372036854775808 .. 9223372036854775807] _s8io::I64 {
+               case 0 : goto u8ud;
+               default: goto c8qo;
            }
-       u8zR: // global
-           I64[Sp - 8] = _s8o2::I64;
+       u8ud: // global
+           I64[Sp - 8] = _s8io::I64;
            Sp = Sp - 8;
-           call _c8s1() args: 0, res: 0, upd: 0;
-       c8w2: // global
-           I64[Sp] = _s8nJ::I64 + 1;
-           I64[Sp + 8] = _s8nK::I64;
-           I64[Sp + 16] = _s8nL::I64;
-           I64[Sp + 24] = _s8nM::I64;
-           P64[Sp + 32] = _s8nN::P64;
-           call _c8rp() args: 0, res: 0, upd: 0;
-       c8vR: // global
+           call _c8mn() args: 0, res: 0, upd: 0;
+       c8qo: // global
+           I64[Sp] = _s8i5::I64 + 1;
+           I64[Sp + 8] = _s8i6::I64;
+           I64[Sp + 16] = _s8i7::I64;
+           I64[Sp + 24] = _s8i8::I64;
+           P64[Sp + 32] = _s8i9::P64;
+           call _c8lL() args: 0, res: 0, upd: 0;
+       c8qd: // global
            I64[Hp - 8] = GHC.Types.I#_con_info;
-           I64[Hp] = _s8nK::I64;
+           I64[Hp] = _s8i6::I64;
            R1 = Hp - 7;
            Sp = Sp + 40;
            call (P64[Sp])(R1) args: 8, res: 0, upd: 8;
      }
  },
- _c8vU() //  []
+ _c8qg() //  []
          { info_tbl: []
            stack_info: arg_space: 0 updfr_space: Nothing
          }
      {offset
-       c8vU: // global
-           R1 = Main.main_$s$w$ssievefn_closure;
+       c8qg: // global
+           R1 = Main.main_$s$wsievefn_closure;
            call (stg_gc_fun)(R1) args: 48, res: 0, upd: 8;
      }
  },
- _c8s1() //  []
+ _c8mn() //  []
          { info_tbl: []
            stack_info: arg_space: 0 updfr_space: Nothing
          }
      {offset
-       c8s1: // global
+       c8mn: // global
            Hp = Hp + 40;
-           if (Hp > HpLim) (likely: False) goto c8w9; else goto c8w8;
-       c8w9: // global
+           if (Hp > HpLim) (likely: False) goto c8qv; else goto c8qu;
+       c8qv: // global
            HpAlloc = 40;
-           _s8o2::I64 = I64[Sp];
-           I64[Sp] = block_c8s0_info;
-           R1 = _s8o2::I64;
+           _s8io::I64 = I64[Sp];
+           I64[Sp] = block_c8mm_info;
+           R1 = _s8io::I64;
            call stg_gc_unbx_r1(R1) args: 8, res: 8, upd: 8;
-       c8w8: // global
-           _s8nJ::I64 = I64[Sp + 8];
-           _s8nK::I64 = I64[Sp + 16];
-           _s8nL::I64 = I64[Sp + 24];
-           _s8nM::I64 = I64[Sp + 32];
-           _s8nN::P64 = P64[Sp + 40];
-           _s8o4::I64 = _s8nJ::I64 * _s8nJ::I64;
-           _s8o5::I64 = _s8nJ::I64 * _s8nJ::I64 + _s8nJ::I64;
-           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8o5::I64,
-                                                                              _s8o4::I64)) {
-               case 1 : goto c8ya;
-               default: goto c8xa;
+       c8qu: // global
+           _s8i5::I64 = I64[Sp + 8];
+           _s8i6::I64 = I64[Sp + 16];
+           _s8i7::I64 = I64[Sp + 24];
+           _s8i8::I64 = I64[Sp + 32];
+           _s8i9::P64 = P64[Sp + 40];
+           _s8iq::I64 = _s8i5::I64 * _s8i5::I64;
+           _s8ir::I64 = _s8i5::I64 * _s8i5::I64 + _s8i5::I64;
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8ir::I64,
+                                                                              _s8iq::I64)) {
+               case 1 : goto c8sw;
+               default: goto c8rw;
            }
-       c8ya: // global
+       c8sw: // global
            switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Lt_W64(99999999,
-                                                                              _s8o5::I64)) {
-               case 1 : goto c8y9;
-               default: goto c8xN;
+                                                                              _s8ir::I64)) {
+               case 1 : goto c8sv;
+               default: goto c8s9;
            }
-       c8y9: // global
+       c8sv: // global
            switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Lt_W64(99999999,
-                                                                              _s8o4::I64)) {
-               case 1 : goto c8y8;
-               default: goto c8y7;
+                                                                              _s8iq::I64)) {
+               case 1 : goto c8su;
+               default: goto c8st;
            }
-       c8y8: // global
+       c8su: // global
            Hp = Hp - 40;
-           I64[Sp + 8] = _s8nJ::I64 + 1;
-           I64[Sp + 16] = _s8nK::I64 + 1;
-           I64[Sp + 24] = _s8nL::I64;
-           I64[Sp + 32] = _s8nM::I64;
-           P64[Sp + 40] = _s8nN::P64;
+           I64[Sp + 8] = _s8i5::I64 + 1;
+           I64[Sp + 16] = _s8i6::I64 + 1;
+           I64[Sp + 24] = _s8i7::I64;
+           I64[Sp + 32] = _s8i8::I64;
+           P64[Sp + 40] = _s8i9::P64;
            Sp = Sp + 8;
-           goto u8Ad;
-       c8y7: // global
-           _s8qN::I64 = %MO_S_Shr_W64(_s8o4::I64, 3);
-           _s8qR::I64 = %MO_SS_Conv_W8_W64(I8[(_s8nN::P64 + 16) + (_s8nL::I64 + _s8qN::I64)]);
-           _s8qS::I64 = _s8o4::I64 & 7;
-           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8qS::I64,
+           goto u8uz;
+       c8st: // global
+           _s8l9::I64 = %MO_S_Shr_W64(_s8iq::I64, 3);
+           _s8ld::I64 = %MO_SS_Conv_W8_W64(I8[(_s8i9::P64 + 16) + (_s8i7::I64 + _s8l9::I64)]);
+           _s8le::I64 = _s8iq::I64 & 7;
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8le::I64,
                                                                               64)) {
-               case 1 : goto c8y5;
-               default: goto c8y4;
+               case 1 : goto c8sr;
+               default: goto c8sq;
            }
-       c8y5: // global
-           I8[(_s8nN::P64 + 16) + (_s8nL::I64 + _s8qN::I64)] = %MO_UU_Conv_W64_W8(_s8qR::I64);
+       c8sr: // global
+           I8[(_s8i9::P64 + 16) + (_s8i7::I64 + _s8l9::I64)] = %MO_UU_Conv_W64_W8(_s8ld::I64);
            Hp = Hp - 40;
-           I64[Sp + 8] = _s8nJ::I64 + 1;
-           I64[Sp + 16] = _s8nK::I64 + 1;
-           I64[Sp + 24] = _s8nL::I64;
-           I64[Sp + 32] = _s8nM::I64;
-           P64[Sp + 40] = _s8nN::P64;
+           I64[Sp + 8] = _s8i5::I64 + 1;
+           I64[Sp + 16] = _s8i6::I64 + 1;
+           I64[Sp + 24] = _s8i7::I64;
+           I64[Sp + 32] = _s8i8::I64;
+           P64[Sp + 40] = _s8i9::P64;
            Sp = Sp + 8;
-           goto u8Ad;
-       c8y4: // global
-           I8[(_s8nN::P64 + 16) + (_s8nL::I64 + _s8qN::I64)] = %MO_UU_Conv_W64_W8(_s8qR::I64 | %MO_SS_Conv_W8_W64(%MO_SS_Conv_W64_W8(1 << _s8qS::I64)));
+           goto u8uz;
+       c8sq: // global
+           I8[(_s8i9::P64 + 16) + (_s8i7::I64 + _s8l9::I64)] = %MO_UU_Conv_W64_W8(_s8ld::I64 | %MO_SS_Conv_W8_W64(%MO_SS_Conv_W64_W8(1 << _s8le::I64)));
            Hp = Hp - 40;
-           I64[Sp + 8] = _s8nJ::I64 + 1;
-           I64[Sp + 16] = _s8nK::I64 + 1;
-           I64[Sp + 24] = _s8nL::I64;
-           I64[Sp + 32] = _s8nM::I64;
-           P64[Sp + 40] = _s8nN::P64;
+           I64[Sp + 8] = _s8i5::I64 + 1;
+           I64[Sp + 16] = _s8i6::I64 + 1;
+           I64[Sp + 24] = _s8i7::I64;
+           I64[Sp + 32] = _s8i8::I64;
+           P64[Sp + 40] = _s8i9::P64;
            Sp = Sp + 8;
-           goto u8Ad;
-       c8xN: // global
-           _s8pF::I64 = %MO_S_Shr_W64(_s8o4::I64, 3);
-           _s8pJ::I64 = %MO_SS_Conv_W8_W64(I8[(_s8nN::P64 + 16) + (_s8nL::I64 + _s8pF::I64)]);
-           I64[Hp - 32] = go_up_s8pN_info;
-           P64[Hp - 24] = _s8nN::P64;
-           I64[Hp - 16] = _s8nL::I64;
-           _s8pL::I64 = _s8o5::I64 - _s8o4::I64;
-           I64[Hp - 8] = _s8pL::I64;
-           I64[Hp] = 99999999 - _s8pL::I64;
-           _s8pK::I64 = _s8o4::I64 & 7;
-           _c8ul::P64 = Hp - 30;
-           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8pK::I64,
+           goto u8uz;
+       c8s9: // global
+           _s8k1::I64 = %MO_S_Shr_W64(_s8iq::I64, 3);
+           _s8k5::I64 = %MO_SS_Conv_W8_W64(I8[(_s8i9::P64 + 16) + (_s8i7::I64 + _s8k1::I64)]);
+           I64[Hp - 32] = go_up_s8k9_info;
+           P64[Hp - 24] = _s8i9::P64;
+           I64[Hp - 16] = _s8i7::I64;
+           _s8k7::I64 = _s8ir::I64 - _s8iq::I64;
+           I64[Hp - 8] = _s8k7::I64;
+           I64[Hp] = 99999999 - _s8k7::I64;
+           _s8k6::I64 = _s8iq::I64 & 7;
+           _c8oH::P64 = Hp - 30;
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8k6::I64,
                                                                               64)) {
-               case 1 : goto c8xJ;
-               default: goto c8xB;
+               case 1 : goto c8s5;
+               default: goto c8rX;
            }
-       c8xJ: // global
-           I8[(_s8nN::P64 + 16) + (_s8nL::I64 + _s8pF::I64)] = %MO_UU_Conv_W64_W8(_s8pJ::I64);
-           I64[Sp] = block_c8xI_info;
-           R2 = _s8o5::I64;
-           R1 = _c8ul::P64;
-           call go_up_s8pN_info(R2, R1) args: 8, res: 8, upd: 8;
-       c8xB: // global
-           I8[(_s8nN::P64 + 16) + (_s8nL::I64 + _s8pF::I64)] = %MO_UU_Conv_W64_W8(_s8pJ::I64 | %MO_SS_Conv_W8_W64(%MO_SS_Conv_W64_W8(1 << _s8pK::I64)));
-           I64[Sp] = block_c8xz_info;
-           R2 = _s8o5::I64;
-           R1 = _c8ul::P64;
-           call go_up_s8pN_info(R2, R1) args: 8, res: 8, upd: 8;
-       c8xa: // global
+       c8s5: // global
+           I8[(_s8i9::P64 + 16) + (_s8i7::I64 + _s8k1::I64)] = %MO_UU_Conv_W64_W8(_s8k5::I64);
+           I64[Sp] = block_c8s4_info;
+           R2 = _s8ir::I64;
+           R1 = _c8oH::P64;
+           call go_up_s8k9_info(R2, R1) args: 8, res: 8, upd: 8;
+       c8rX: // global
+           I8[(_s8i9::P64 + 16) + (_s8i7::I64 + _s8k1::I64)] = %MO_UU_Conv_W64_W8(_s8k5::I64 | %MO_SS_Conv_W8_W64(%MO_SS_Conv_W64_W8(1 << _s8k6::I64)));
+           I64[Sp] = block_c8rV_info;
+           R2 = _s8ir::I64;
+           R1 = _c8oH::P64;
+           call go_up_s8k9_info(R2, R1) args: 8, res: 8, upd: 8;
+       c8rw: // global
            switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Gt_W64(99999999,
-                                                                              _s8o5::I64)) {
-               case 1 : goto c8x8;
-               default: goto c8wM;
+                                                                              _s8ir::I64)) {
+               case 1 : goto c8ru;
+               default: goto c8r8;
            }
-       c8x8: // global
+       c8ru: // global
            switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Gt_W64(99999999,
-                                                                              _s8o4::I64)) {
-               case 1 : goto c8x7;
-               default: goto c8x6;
+                                                                              _s8iq::I64)) {
+               case 1 : goto c8rt;
+               default: goto c8rs;
            }
-       c8x7: // global
+       c8rt: // global
            Hp = Hp - 40;
-           I64[Sp + 8] = _s8nJ::I64 + 1;
-           I64[Sp + 16] = _s8nK::I64 + 1;
-           I64[Sp + 24] = _s8nL::I64;
-           I64[Sp + 32] = _s8nM::I64;
-           P64[Sp + 40] = _s8nN::P64;
+           I64[Sp + 8] = _s8i5::I64 + 1;
+           I64[Sp + 16] = _s8i6::I64 + 1;
+           I64[Sp + 24] = _s8i7::I64;
+           I64[Sp + 32] = _s8i8::I64;
+           P64[Sp + 40] = _s8i9::P64;
            Sp = Sp + 8;
-           goto u8Ad;
-       c8x6: // global
-           _s8ph::I64 = %MO_S_Shr_W64(_s8o4::I64, 3);
-           _s8pl::I64 = %MO_SS_Conv_W8_W64(I8[(_s8nN::P64 + 16) + (_s8nL::I64 + _s8ph::I64)]);
-           _s8pm::I64 = _s8o4::I64 & 7;
-           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8pm::I64,
+           goto u8uz;
+       c8rs: // global
+           _s8jD::I64 = %MO_S_Shr_W64(_s8iq::I64, 3);
+           _s8jH::I64 = %MO_SS_Conv_W8_W64(I8[(_s8i9::P64 + 16) + (_s8i7::I64 + _s8jD::I64)]);
+           _s8jI::I64 = _s8iq::I64 & 7;
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8jI::I64,
                                                                               64)) {
-               case 1 : goto c8x4;
-               default: goto c8x3;
+               case 1 : goto c8rq;
+               default: goto c8rp;
            }
-       c8x4: // global
-           I8[(_s8nN::P64 + 16) + (_s8nL::I64 + _s8ph::I64)] = %MO_UU_Conv_W64_W8(_s8pl::I64);
+       c8rq: // global
+           I8[(_s8i9::P64 + 16) + (_s8i7::I64 + _s8jD::I64)] = %MO_UU_Conv_W64_W8(_s8jH::I64);
            Hp = Hp - 40;
-           I64[Sp + 8] = _s8nJ::I64 + 1;
-           I64[Sp + 16] = _s8nK::I64 + 1;
-           I64[Sp + 24] = _s8nL::I64;
-           I64[Sp + 32] = _s8nM::I64;
-           P64[Sp + 40] = _s8nN::P64;
+           I64[Sp + 8] = _s8i5::I64 + 1;
+           I64[Sp + 16] = _s8i6::I64 + 1;
+           I64[Sp + 24] = _s8i7::I64;
+           I64[Sp + 32] = _s8i8::I64;
+           P64[Sp + 40] = _s8i9::P64;
            Sp = Sp + 8;
-           goto u8Ad;
-       c8x3: // global
-           I8[(_s8nN::P64 + 16) + (_s8nL::I64 + _s8ph::I64)] = %MO_UU_Conv_W64_W8(_s8pl::I64 | %MO_SS_Conv_W8_W64(%MO_SS_Conv_W64_W8(1 << _s8pm::I64)));
+           goto u8uz;
+       c8rp: // global
+           I8[(_s8i9::P64 + 16) + (_s8i7::I64 + _s8jD::I64)] = %MO_UU_Conv_W64_W8(_s8jH::I64 | %MO_SS_Conv_W8_W64(%MO_SS_Conv_W64_W8(1 << _s8jI::I64)));
            Hp = Hp - 40;
-           I64[Sp + 8] = _s8nJ::I64 + 1;
-           I64[Sp + 16] = _s8nK::I64 + 1;
-           I64[Sp + 24] = _s8nL::I64;
-           I64[Sp + 32] = _s8nM::I64;
-           P64[Sp + 40] = _s8nN::P64;
+           I64[Sp + 8] = _s8i5::I64 + 1;
+           I64[Sp + 16] = _s8i6::I64 + 1;
+           I64[Sp + 24] = _s8i7::I64;
+           I64[Sp + 32] = _s8i8::I64;
+           P64[Sp + 40] = _s8i9::P64;
            Sp = Sp + 8;
-           goto u8Ad;
-       u8Ad: // global
-           call _c8rp() args: 0, res: 0, upd: 0;
-       c8wM: // global
-           _s8o9::I64 = %MO_S_Shr_W64(_s8o4::I64, 3);
-           _s8od::I64 = %MO_SS_Conv_W8_W64(I8[(_s8nN::P64 + 16) + (_s8nL::I64 + _s8o9::I64)]);
-           I64[Hp - 32] = go_dn_s8oh_info;
-           P64[Hp - 24] = _s8nN::P64;
-           I64[Hp - 16] = _s8nL::I64;
-           _s8of::I64 = _s8o5::I64 - _s8o4::I64;
-           I64[Hp - 8] = _s8of::I64;
-           I64[Hp] = 99999999 - _s8of::I64;
-           _s8oe::I64 = _s8o4::I64 & 7;
-           _c8sx::P64 = Hp - 30;
-           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8oe::I64,
+           goto u8uz;
+       u8uz: // global
+           call _c8lL() args: 0, res: 0, upd: 0;
+       c8r8: // global
+           _s8iv::I64 = %MO_S_Shr_W64(_s8iq::I64, 3);
+           _s8iz::I64 = %MO_SS_Conv_W8_W64(I8[(_s8i9::P64 + 16) + (_s8i7::I64 + _s8iv::I64)]);
+           I64[Hp - 32] = go_dn_s8iD_info;
+           P64[Hp - 24] = _s8i9::P64;
+           I64[Hp - 16] = _s8i7::I64;
+           _s8iB::I64 = _s8ir::I64 - _s8iq::I64;
+           I64[Hp - 8] = _s8iB::I64;
+           I64[Hp] = 99999999 - _s8iB::I64;
+           _s8iA::I64 = _s8iq::I64 & 7;
+           _c8mT::P64 = Hp - 30;
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8iA::I64,
                                                                               64)) {
-               case 1 : goto c8wI;
-               default: goto c8wA;
+               case 1 : goto c8r4;
+               default: goto c8qW;
            }
-       c8wI: // global
-           I8[(_s8nN::P64 + 16) + (_s8nL::I64 + _s8o9::I64)] = %MO_UU_Conv_W64_W8(_s8od::I64);
-           I64[Sp] = block_c8wH_info;
-           R2 = _s8o5::I64;
-           R1 = _c8sx::P64;
-           call go_dn_s8oh_info(R2, R1) args: 8, res: 8, upd: 8;
-       c8wA: // global
-           I8[(_s8nN::P64 + 16) + (_s8nL::I64 + _s8o9::I64)] = %MO_UU_Conv_W64_W8(_s8od::I64 | %MO_SS_Conv_W8_W64(%MO_SS_Conv_W64_W8(1 << _s8oe::I64)));
-           I64[Sp] = block_c8wy_info;
-           R2 = _s8o5::I64;
-           R1 = _c8sx::P64;
-           call go_dn_s8oh_info(R2, R1) args: 8, res: 8, upd: 8;
+       c8r4: // global
+           I8[(_s8i9::P64 + 16) + (_s8i7::I64 + _s8iv::I64)] = %MO_UU_Conv_W64_W8(_s8iz::I64);
+           I64[Sp] = block_c8r3_info;
+           R2 = _s8ir::I64;
+           R1 = _c8mT::P64;
+           call go_dn_s8iD_info(R2, R1) args: 8, res: 8, upd: 8;
+       c8qW: // global
+           I8[(_s8i9::P64 + 16) + (_s8i7::I64 + _s8iv::I64)] = %MO_UU_Conv_W64_W8(_s8iz::I64 | %MO_SS_Conv_W8_W64(%MO_SS_Conv_W64_W8(1 << _s8iA::I64)));
+           I64[Sp] = block_c8qU_info;
+           R2 = _s8ir::I64;
+           R1 = _c8mT::P64;
+           call go_dn_s8iD_info(R2, R1) args: 8, res: 8, upd: 8;
      }
  },
- _c8s0() //  [R1]
-         { info_tbl: [(c8s0,
-                       label: block_c8s0_info
+ _c8mm() //  [R1]
+         { info_tbl: [(c8mm,
+                       label: block_c8mm_info
                        rep:StackRep [True, True, True, True, False])]
            stack_info: arg_space: 0 updfr_space: Nothing
          }
      {offset
-       c8s0: // global
+       c8mm: // global
            I64[Sp] = R1;
-           call _c8s1() args: 0, res: 0, upd: 0;
+           call _c8mn() args: 0, res: 0, upd: 0;
      }
  },
- _c8xI() //  []
-         { info_tbl: [(c8xI,
-                       label: block_c8xI_info
+ _c8s4() //  []
+         { info_tbl: [(c8s4,
+                       label: block_c8s4_info
                        rep:StackRep [True, True, True, True, False])]
            stack_info: arg_space: 0 updfr_space: Nothing
          }
      {offset
-       c8xI: // global
+       c8s4: // global
            I64[Sp + 8] = I64[Sp + 8] + 1;
            I64[Sp + 16] = I64[Sp + 16] + 1;
            I64[Sp + 24] = I64[Sp + 24];
            I64[Sp + 32] = I64[Sp + 32];
            P64[Sp + 40] = P64[Sp + 40];
            Sp = Sp + 8;
-           call _c8rp() args: 0, res: 0, upd: 0;
+           call _c8lL() args: 0, res: 0, upd: 0;
      }
  },
- _c8xz() //  []
-         { info_tbl: [(c8xz,
-                       label: block_c8xz_info
+ _c8rV() //  []
+         { info_tbl: [(c8rV,
+                       label: block_c8rV_info
                        rep:StackRep [True, True, True, True, False])]
            stack_info: arg_space: 0 updfr_space: Nothing
          }
      {offset
-       c8xz: // global
+       c8rV: // global
            I64[Sp + 8] = I64[Sp + 8] + 1;
            I64[Sp + 16] = I64[Sp + 16] + 1;
            I64[Sp + 24] = I64[Sp + 24];
            I64[Sp + 32] = I64[Sp + 32];
            P64[Sp + 40] = P64[Sp + 40];
            Sp = Sp + 8;
-           call _c8rp() args: 0, res: 0, upd: 0;
+           call _c8lL() args: 0, res: 0, upd: 0;
      }
  },
- _c8wH() //  []
-         { info_tbl: [(c8wH,
-                       label: block_c8wH_info
+ _c8r3() //  []
+         { info_tbl: [(c8r3,
+                       label: block_c8r3_info
                        rep:StackRep [True, True, True, True, False])]
            stack_info: arg_space: 0 updfr_space: Nothing
          }
      {offset
-       c8wH: // global
+       c8r3: // global
            I64[Sp + 8] = I64[Sp + 8] + 1;
            I64[Sp + 16] = I64[Sp + 16] + 1;
            I64[Sp + 24] = I64[Sp + 24];
            I64[Sp + 32] = I64[Sp + 32];
            P64[Sp + 40] = P64[Sp + 40];
            Sp = Sp + 8;
-           call _c8rp() args: 0, res: 0, upd: 0;
+           call _c8lL() args: 0, res: 0, upd: 0;
      }
  },
- _c8wy() //  []
-         { info_tbl: [(c8wy,
-                       label: block_c8wy_info
+ _c8qU() //  []
+         { info_tbl: [(c8qU,
+                       label: block_c8qU_info
                        rep:StackRep [True, True, True, True, False])]
            stack_info: arg_space: 0 updfr_space: Nothing
          }
      {offset
-       c8wy: // global
+       c8qU: // global
            I64[Sp + 8] = I64[Sp + 8] + 1;
            I64[Sp + 16] = I64[Sp + 16] + 1;
            I64[Sp + 24] = I64[Sp + 24];
            I64[Sp + 32] = I64[Sp + 32];
            P64[Sp + 40] = P64[Sp + 40];
            Sp = Sp + 8;
-           call _c8rp() args: 0, res: 0, upd: 0;
+           call _c8lL() args: 0, res: 0, upd: 0;
      }
  }]
 
 
 ==================== Output Cmm ====================
-2018-10-10 15:29:52.469775586 UTC
+2018-10-10 15:36:00.337807032 UTC
 
 [section ""data" . Main.main1_closure" {
      Main.main1_closure:
          const Main.main1_info;
          const 0;
  },
- sat_s8rm_entry() //  [R1]
-         { info_tbl: [(c8RB,
-                       label: sat_s8rm_info
+ sat_s8lI_entry() //  [R1]
+         { info_tbl: [(c8LX,
+                       label: sat_s8lI_info
                        rep:HeapRep 1 ptrs { Thunk })]
            stack_info: arg_space: 0 updfr_space: Nothing
          }
      {offset
-       c8RB: // global
+       c8LX: // global
            R2 = P64[R1 + 16];
            call GHC.Show.$fShowInt_$cshow_info(R2) args: 8, res: 0, upd: 8;
      }
  },
  Main.main1_entry() //  []
-         { info_tbl: [(c8RE,
+         { info_tbl: [(c8M0,
                        label: Main.main1_info
                        rep:HeapRep static { Fun {arity: 1 fun_type: ArgSpec 3} })]
            stack_info: arg_space: 0 updfr_space: Nothing
          }
      {offset
-       c8RE: // global
-           if ((Sp + -8) < SpLim) (likely: False) goto c8RF; else goto c8RG;
-       c8RF: // global
+       c8M0: // global
+           if ((Sp + -8) < SpLim) (likely: False) goto c8M1; else goto c8M2;
+       c8M1: // global
            R1 = Main.main1_closure;
            call (stg_gc_fun)(R1) args: 8, res: 0, upd: 8;
-       c8RG: // global
-           I64[Sp - 8] = block_c8Ro_info;
+       c8M2: // global
+           I64[Sp - 8] = block_c8LK_info;
            R1 = 12500000;
            Sp = Sp - 8;
            call stg_newByteArray#(R1) args: 8, res: 8, upd: 8;
      }
  },
- _c8Ro() //  [R1]
-         { info_tbl: [(c8Ro,
-                       label: block_c8Ro_info
+ _c8LK() //  [R1]
+         { info_tbl: [(c8LK,
+                       label: block_c8LK_info
                        rep:StackRep [])]
            stack_info: arg_space: 0 updfr_space: Nothing
          }
      {offset
-       c8Ro: // global
+       c8LK: // global
            call "ccall" arg hints:  [PtrHint, ‘signed’, ,
                                      ‘signed’]  result hints:  [] hsprimitive_memset_Word8(R1 + 16, 0, 12500000, 0);
-           I64[Sp] = block_c8Rv_info;
+           I64[Sp] = block_c8LR_info;
            R6 = R1;
            R5 = 12500000;
            R4 = 0;
            R3 = 0;
            R2 = 2;
-           call Main.main_$s$w$ssievefn_info(R6,
-                                             R5,
-                                             R4,
-                                             R3,
-                                             R2) args: 8, res: 8, upd: 8;
+           call Main.main_$s$wsievefn_info(R6,
+                                           R5,
+                                           R4,
+                                           R3,
+                                           R2) args: 8, res: 8, upd: 8;
      }
  },
- _c8Rv() //  [R1]
-         { info_tbl: [(c8Rv,
-                       label: block_c8Rv_info
+ _c8LR() //  [R1]
+         { info_tbl: [(c8LR,
+                       label: block_c8LR_info
                        rep:StackRep [])]
            stack_info: arg_space: 0 updfr_space: Nothing
          }
      {offset
-       c8Rv: // global
+       c8LR: // global
            Hp = Hp + 24;
-           if (Hp > HpLim) (likely: False) goto c8RK; else goto c8RJ;
-       c8RK: // global
+           if (Hp > HpLim) (likely: False) goto c8M6; else goto c8M5;
+       c8M6: // global
            HpAlloc = 24;
            R1 = R1;
            call stg_gc_unpt_r1(R1) args: 8, res: 8, upd: 8;
-       c8RJ: // global
-           I64[Hp - 16] = sat_s8rm_info;
+       c8M5: // global
+           I64[Hp - 16] = sat_s8lI_info;
            P64[Hp] = R1;
            R4 = GHC.Types.True_closure+2;
            R3 = Hp - 16;
@@ -659,7 +659,7 @@
 
 
 ==================== Output Cmm ====================
-2018-10-10 15:29:52.47597944 UTC
+2018-10-10 15:36:00.343887164 UTC
 
 [section ""data" . Main.main_closure" {
      Main.main_closure:
@@ -667,20 +667,20 @@
          const 0;
  },
  Main.main_entry() //  []
-         { info_tbl: [(c8T6,
+         { info_tbl: [(c8Ns,
                        label: Main.main_info
                        rep:HeapRep static { Fun {arity: 1 fun_type: ArgSpec 3} })]
            stack_info: arg_space: 0 updfr_space: Nothing
          }
      {offset
-       c8T6: // global
+       c8Ns: // global
            call Main.main1_info() args: 8, res: 0, upd: 8;
      }
  }]
 
 
 ==================== Output Cmm ====================
-2018-10-10 15:29:52.477275396 UTC
+2018-10-10 15:36:00.345146355 UTC
 
 [section ""data" . Main.main2_closure" {
      Main.main2_closure:
@@ -688,13 +688,13 @@
          const 0;
  },
  Main.main2_entry() //  []
-         { info_tbl: [(c8Te,
+         { info_tbl: [(c8NA,
                        label: Main.main2_info
                        rep:HeapRep static { Fun {arity: 1 fun_type: ArgSpec 3} })]
            stack_info: arg_space: 0 updfr_space: Nothing
          }
      {offset
-       c8Te: // global
+       c8NA: // global
            R2 = Main.main1_closure+1;
            call GHC.TopHandler.runMainIO1_info(R2) args: 8, res: 0, upd: 8;
      }
@@ -702,7 +702,7 @@
 
 
 ==================== Output Cmm ====================
-2018-10-10 15:29:52.478760647 UTC
+2018-10-10 15:36:00.346544057 UTC
 
 [section ""data" . :Main.main_closure" {
      :Main.main_closure:
@@ -710,23 +710,23 @@
          const 0;
  },
  :Main.main_entry() //  []
-         { info_tbl: [(c8Tp,
+         { info_tbl: [(c8NL,
                        label: :Main.main_info
                        rep:HeapRep static { Fun {arity: 1 fun_type: ArgSpec 3} })]
            stack_info: arg_space: 0 updfr_space: Nothing
          }
      {offset
-       c8Tp: // global
+       c8NL: // global
            call Main.main2_info() args: 8, res: 0, upd: 8;
      }
  }]
 
 
 ==================== Output Cmm ====================
-2018-10-10 15:29:52.480046585 UTC
+2018-10-10 15:36:00.347788184 UTC
 
-[section ""relreadonly" . S8RL_srt" {
-     S8RL_srt:
+[section ""relreadonly" . S8M7_srt" {
+     S8M7_srt:
          const GHC.IO.Handle.FD.stdout_closure;
          const GHC.IO.Handle.Text.hPutStr2_closure;
          const Main.main1_closure;
