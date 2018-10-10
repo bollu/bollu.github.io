@@ -25,3 +25,5 @@ int main()
     printf("%ld\n", count);
 }
 ```
+
+A wise man once said, "to profile a haskell application, one must rebuild the universe."
