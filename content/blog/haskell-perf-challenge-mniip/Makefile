@@ -3,9 +3,9 @@ bin/program-c: program.c
 	clang -O3 program.c -o bin/program-c
 
 
-bin/program-hs: hs/program.hs
+bin/program-hs: hs/Main.hs
 	mkdir -p bin
-	ghc -O3 hs/program.hs -o bin/program-hs
+	ghc -O3 hs/Main.hs -o bin/program-hs
 
 stat/program-c.stat: bin/program-c
 	mkdir -p stat

@@ -5,22 +5,23 @@ import qualified Data.Vector.Unboxed.Mutable as Vec
 import Data.Bits
 import Control.Monad
 
--- char sieve[100000000 >> 3];
--- 
+
+-- char sieve[size >> 3];
+--
 -- int main()
 -- {
 --     int count = 0;
---     for(long int i = 2; i < 100000000; i++)
+--     for(long int i = 2; i < size; i++)
 --         if(!(sieve[i >> 3] & (1 << (i & 7))))
 --         {
 --             count++;
---             for(long int j = i * i; j < 100000000; j += i)
+--             for(long int j = i * i; j < size; j += i)
 --                 sieve[j >> 3] |= 1 << (j & 7);
 --         }
 --     printf("%ld\n", count);
 -- }
 --
--- 
+--
 --
 
 (.>>.) :: Int -> Int -> Int
@@ -32,8 +33,8 @@ import Control.Monad
 size :: Int
 size = 200
 
-sieve :: PrimMonad m => m (Vec.MVector (PrimState m) Bool)
-sieve =  Vec.replicate (size .>>. 3) False
+sieve :: PrimMonad m => m (Vec.MVector (PrimState m) Int8)
+sieve =  Vec.replicate (size .>>. 3) 0
 
 count :: PrimMonad m => m (Var.MutVar (PrimState m) Int)
 count = Var.newMutVar 0
@@ -45,18 +46,21 @@ sievefn :: PrimMonad m => m Int
 sievefn = do
     s <- sieve
     c <- count
-    
-    forM_  [2..size-1] (\i -> do
-        sv <- Vec.read s (i .>>. 3)
-        let cond =  sv && (intToBool (1 .<<. (i .&. 7)))
 
-        if (not cond)
+    -- for(long int i = 2; i < size; i++)
+    forM_  [2..size-1] (\i -> do
+      --
+        -- if(!(sieve[i >> 3] & (1 << (i & 7))))
+        sv <- Vec.read s (i .>>. 3)
+        let cond =  sv .&. (fromIntegral (1 .<<. (i .&. 7)))
+        if (cond == 0)
            then do
+                  -- count++;
                   Var.modifyMutVar c (+ 1)
+                  -- for(long int j = i * i; j < size; j += i)
                   forM_ [i*i, i*i+i..size-1] (\j -> do
-                      let mask = (1 .<<. (j .&. 7))
-                        
-                      Vec.modify s (|| intToBool mask) (j .>>. 3))
+                      -- sieve[j >> 3] |= 1 << (j & 7);
+                      Vec.modify s (.|. fromIntegral (1 .<<. (j .&. 7))) (j .>>. 3))
            else return ())
     Var.readMutVar c
 
@@ -64,6 +68,6 @@ sievefn = do
 
 
 main :: IO ()
-main = do 
+main = do
     out <- sievefn
     print out

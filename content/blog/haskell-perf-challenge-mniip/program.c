@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <stdio.h>
 
 static const int SIZE = 200;
@@ -5,6 +6,7 @@ char sieve[SIZE >> 3];
 
 int main()
 {
+
     int count = 0;
     for(long int i = 2; i < SIZE; i++)
         if(!(sieve[i >> 3] & (1 << (i & 7))))
