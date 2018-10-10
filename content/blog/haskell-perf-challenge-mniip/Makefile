@@ -1,4 +1,4 @@
-all: stat
+all: clean C_PERF HS_PERF HS_PROFILE
 
 clean: 
 	rm -rf stat bin
@@ -26,16 +26,20 @@ bin/program-hs-profile: hs/Main.hs
 		stack build --profile && cp `stack exec -- whereis program | cut -f 2 -d ' '`  ../bin/program-hs-profile
 
 
-stat/program-c.perf: bin/program-c
+.PHONY := C_PROFILE HS_PERF HS_PROFILE
+
+C_PERF: bin/program-c
 	mkdir -p stat
 	sudo perf stat bin/program-c 2>&1 | tee stat/program-c.stat
 
 
-stat/program-hs.perf: bin/program-hs
+HS_PERF: bin/program-hs
 	mkdir -p stat
 	sudo perf stat bin/program-hs 2>&1 | tee stat/program-hs.stat
 
 
-stat/program-hs.prof: bin/program-hs-profile
+HS_PROFILE: bin/program-hs-profile
 	mkdir -p stat
-	bin/program-hs-profile +RTS -p -hc
+	bin/program-hs-profile +RTS -p -hc 2>&1
+	cp program-hs-profile.hp stat/
+	cp program-hs-profile.prof stat/
