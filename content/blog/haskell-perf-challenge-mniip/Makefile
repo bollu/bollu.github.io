@@ -17,11 +17,9 @@ bin/program-hs: hs/Main.hs
 
 stat/program-c.stat: bin/program-c
 	mkdir -p stat
-	sudo perf stat bin/program-c > stat/program-c.stat
+	sudo perf stat bin/program-c 2>&1 | tee stat/program-c.stat
 
 
 stat/program-hs.stat: bin/program-hs
-	pwd
 	mkdir -p stat
-	pwd
-	sudo perf stat bin/program-hs > stat/program-hs.stat
+	sudo perf stat bin/program-hs 2>&1 | tee stat/program-hs.stat
