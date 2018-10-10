@@ -31,7 +31,7 @@ import Control.Monad
 (.<<.) = shiftL
 
 size :: Int
-size = 200
+size = 100000000
 
 sieve :: PrimMonad m => m (Vec.MVector (PrimState m) Int8)
 sieve =  Vec.replicate (size .>>. 3) 0

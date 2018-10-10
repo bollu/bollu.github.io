@@ -1,7 +1,8 @@
 #include <assert.h>
 #include <stdio.h>
 
-static const int SIZE = 200;
+
+static const int SIZE = 100000000;
 char sieve[SIZE >> 3];
 
 int main()
