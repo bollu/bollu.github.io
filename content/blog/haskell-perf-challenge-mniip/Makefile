@@ -11,14 +11,18 @@ bin/program-c: program.c
 
 
 bin/program-hs: hs/Main.hs
-	mkdir -p bin
+	mkdir -p bin stat
 	pwd
-	cd hs && stack build --ghc-options="-O3 -rtsopts=all --enable-executable-profiling" && cp `stack exec -- whereis program | cut -f 2 -d ' '`  ../bin/program-hs
+	cd hs && stack clean && \
+		stack build --ghc-options="-O2 -ddump-stg -ddump-cmm -ddump-to-file" && cp `stack exec -- whereis program | cut -f 2 -d ' '`  ../bin/program-hs
+	cp hs/.stack-work/dist/x86_64-linux/Cabal-2.2.0.1/build/program/program-tmp/Main.dump-cmm stat/
+	cp hs/.stack-work/dist/x86_64-linux/Cabal-2.2.0.1/build/program/program-tmp/Main.dump-stg stat/
 
 bin/program-hs-profile: hs/Main.hs
 	mkdir -p bin
 	pwd
-	cd hs && stack build --profile && cp `stack exec -- whereis program | cut -f 2 -d ' '`  ../bin/program-hs-profile
+	cd hs && stack clean && \
+		stack build --profile && cp `stack exec -- whereis program | cut -f 2 -d ' '`  ../bin/program-hs-profile
 
 
 stat/program-c.perf: bin/program-c

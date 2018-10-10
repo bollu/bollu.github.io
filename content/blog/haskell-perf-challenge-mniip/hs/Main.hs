@@ -51,7 +51,8 @@ sievefn = do
     forM_  [2..size-1] (\i -> do
       --
         -- if(!(sieve[i >> 3] & (1 << (i & 7))))
-        sv <- Vec.read s (i .>>. 3)
+        --sv <- Vec.read s (i .>>. 3)
+        sv <- Vec.unsafeRead s (i .>>. 3)
         let cond =  sv .&. (fromIntegral (1 .<<. (i .&. 7)))
         if (cond == 0)
            then do
@@ -60,7 +61,8 @@ sievefn = do
                   -- for(long int j = i * i; j < size; j += i)
                   forM_ [i*i, i*i+i..size-1] (\j -> do
                       -- sieve[j >> 3] |= 1 << (j & 7);
-                      Vec.modify s (.|. fromIntegral (1 .<<. (j .&. 7))) (j .>>. 3))
+                      --Vec.modify s (.|. fromIntegral (1 .<<. (j .&. 7))) (j .>>. 3))
+                      Vec.unsafeModify s (.|. fromIntegral (1 .<<. (j .&. 7))) (j .>>. 3))
            else return ())
     Var.readMutVar c
 
