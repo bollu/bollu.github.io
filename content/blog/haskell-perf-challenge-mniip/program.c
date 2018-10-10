@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-static const int SIZE = 100;
+static const int SIZE = 200;
 char sieve[SIZE >> 3];
 
 int main()

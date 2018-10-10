@@ -30,13 +30,10 @@ import Control.Monad
 (.<<.) = shiftL
 
 size :: Int
-size = 100000000
- 
-ixs :: [Int]
-ixs = [2..size-1]
+size = 200
 
 sieve :: PrimMonad m => m (Vec.MVector (PrimState m) Bool)
-sieve =  Vec.unsafeNew (size .>>. 3)
+sieve =  Vec.replicate (size .>>. 3) False
 
 count :: PrimMonad m => m (Var.MutVar (PrimState m) Int)
 count = Var.newMutVar 0
@@ -49,20 +46,18 @@ sievefn = do
     s <- sieve
     c <- count
     
-    forM_  ixs (\i -> do
-        sv <- Vec.unsafeRead s (i .>>. 3)
-        let cond = (fromEnum sv .&. (1 .<<. (i .&. 7))) == 0
+    forM_  [2..size-1] (\i -> do
+        sv <- Vec.read s (i .>>. 3)
+        let cond =  sv && (intToBool (1 .<<. (i .&. 7)))
 
-        if (cond)
+        if (not cond)
            then do
                   Var.modifyMutVar c (+ 1)
                   forM_ [i*i, i*i+i..size-1] (\j -> do
-                      let ix = j .>>. 3
                       let mask = (1 .<<. (j .&. 7))
                         
-                      Vec.unsafeModify s (\val -> val || intToBool mask) ix)
-           else return ()
-        return ())
+                      Vec.modify s (|| intToBool mask) (j .>>. 3))
+           else return ())
     Var.readMutVar c
 
 
