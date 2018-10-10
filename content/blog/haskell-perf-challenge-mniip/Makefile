@@ -14,9 +14,10 @@ bin/program-hs: hs/Main.hs
 	mkdir -p bin stat
 	pwd
 	cd hs && stack clean && \
-		stack build --ghc-options="-O2 -ddump-stg -ddump-cmm -ddump-to-file" && cp `stack exec -- whereis program | cut -f 2 -d ' '`  ../bin/program-hs
+		stack build --ghc-options="-O2 -ddump-stg -ddump-cmm -ddump-llvm -ddump-to-file -fllvm" && cp `stack exec -- whereis program | cut -f 2 -d ' '`  ../bin/program-hs
 	cp hs/.stack-work/dist/x86_64-linux/Cabal-2.2.0.1/build/program/program-tmp/Main.dump-cmm stat/
 	cp hs/.stack-work/dist/x86_64-linux/Cabal-2.2.0.1/build/program/program-tmp/Main.dump-stg stat/
+	cp hs/.stack-work/dist/x86_64-linux/Cabal-2.2.0.1/build/program/program-tmp/Main.dump-llvm stat/
 
 bin/program-hs-profile: hs/Main.hs
 	mkdir -p bin
