@@ -42,6 +42,8 @@ count = Var.newMutVar 0
 intToBool :: Int -> Bool
 intToBool i = testBit  i 0
 
+-- Version 1
+{-
 sievefn :: PrimMonad m => m Int
 sievefn = do
     s <- sieve
@@ -65,11 +67,32 @@ sievefn = do
                       Vec.unsafeModify s (.|. fromIntegral (1 .<<. (j .&. 7))) (j .>>. 3))
            else return ())
     Var.readMutVar c
+-}
 
+type Count = Int
+type I = Int
 
+-- Version 2:MVar -> Int
+sievefn :: PrimMonad m => (Vec.MVector (PrimState m) Int8) -> Count -> I -> m Count
+sievefn s c i = 
+  if i < size
+     then do
+        sv <- Vec.unsafeRead s (i .>>. 3)
+        let cond =  sv .&. (fromIntegral (1 .<<. (i .&. 7)))
+        if (cond == 0)
+           then do
+                  -- for(long int j = i * i; j < size; j += i)
+                  forM_ [i*i, i*i+i..size-1] (\j -> do
+                      -- sieve[j >> 3] |= 1 << (j & 7);
+                      --Vec.modify s (.|. fromIntegral (1 .<<. (j .&. 7))) (j .>>. 3))
+                      Vec.unsafeModify s (.|. fromIntegral (1 .<<. (j .&. 7))) (j .>>. 3))
+                  sievefn s (c + 1) (i + 1)
+           else sievefn s c (i + 1)
+  else return c
 
 
 main :: IO ()
 main = do
-    out <- sievefn
+    s <- sieve
+    out <- sievefn s 0 2
     print out
