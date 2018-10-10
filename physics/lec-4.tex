@@ -231,6 +231,54 @@ L = \frac{1}{2}(\partial_\mu \phi \partial^\mu \phi^*) - \frac{1}{2}m^2 \phi \ph
 Now, we see a symmetry of $\phi \to e^{i \theta}\phi$. This will leave the Lagrangian invariant, hence
 $U(1)$ symmetry (This is shown later, that the Lagrangian is invariant, but we're trying to give a taste here)
 
+
+\chapter{Hamiltonians, Creation and annhilation, etc (page 61 - 72)}
+$$H(p, q) = \frac{p^2}{2m} + V(q)$$
+
+\chapter{Noether's theorem}
+
+Consider $L(q_i, \dot q_i, t)$, where $i \in [1\dots N]$.
+If the $L$ is independent of a particular coordinate $i$, then the generalized momentum
+corresponding to this is conserved.
+
+Let $L(r, \dot r, t) \to L(r + \epsilon, \dot r, t)$. Now:
+
+\begin{align*}
+\delta L = L(r + \epsilon, \dot r, t) - L(r, \dot r, t) = \pdv{L}{r} \epsilon
+\end{align*}
+
+If this is a symmetry, then $\delta L = 0$. \textbf{TODO: why?}. Since this is
+true for \textit{arbitrary} $\epsilon$, Hence, $\pdv{L}{r} = 0$, which means
+we now have a symmetry!
+
+Let's consider the Euler-Lagrange equations for $\Lag$:
+
+\begin{align*}
+ &\pdv{L}{r} - \pdv{t} \bigg( \pdv{L}{\dot r} \bigg) = 0 \\
+&\text{We have already shown that $\pdv{L}{r} = 0$, so:} \\
+&\pdv{t} \bigg( \pdv{L}{\dot r} \bigg) = 0 \\
+&\pdv{L}{\dot r} \propto \dot r~\textbf{TODO: why?} \\
+&\pdv{t} \dot r = 0 \implies \pdv{p}{t} = 0~\text{(p is a constant!)}
+\end{align*}
+
+\subsection{Rotationally invariant Lagrangian}
+
+Consider a Lagrangian:
+$$\Lag = \sum_i \frac{1}{2} m \va{r_i}^2 - \sum_j V(|\va r_i - \va r_j|)$$
+
+This is rotationally invariant. Let's rotate the system
+through an angle $\epsilon$ about an axis $\hat n$.
+$$
+\va r_i \to r_i + \epsilon (\hat n \cross \va r_i),~
+\dot{r_i} \to \dot{r_i} + \epsilon (\hat n \cross \dot{  r_i})
+$$
+
+\begin{align*}
+&\delta \Lag = \Lag(r_i + \epsilon (\hat n \cross r_i), \dot{r_i} + \epsilon (\hat n \cross \dot{ r_i}, t)
+- \Lag(r_i, \dot r_i, t) \\
+&\pdv{L}{r_i} \delta r_i + \pdv{L}{\dot r_i} \delta {\dot r_i}
+\end{align*}
+
 \section{Derving the force of the EM-field from the Lanrangian}
 
 Recall that $B = \curl A$, $E = \grad \phi - \pdv{A}{t}$, and the force
@@ -260,7 +308,6 @@ ma &= e (\grad \phi - \pdv{A}{t}) + e (\div (v \vdot A) - (v \vdot \grad) A) \\
 ma &= e (\grad \phi - \pdv{A}{t}) + e (\div (v \vdot A) - (v \vdot \grad) A)
 \end{align*}
 
-\section{Local and global symmetries}
 
 \chapter{Charged particle interaction in fields, or, how maxwell's equations have $U(1)$ symmetry}
 (written in red ink pen)
