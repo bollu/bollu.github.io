@@ -1,0 +1,161 @@
+\chapter{Parallel Graph algorithms}
+
+We now move to parallel graph algorithms. We will view
+recent work on 1-connectivity and 2-connectivity.
+
+A graph is 1-connected if every pair of vertices has a path between them.
+
+
+In a sequential model, DFS/BFS can be used.
+In the parallel setting, we know that DFS cannot be parallelized.
+BFS can be, but it is inefficient to do so (We will see this later).
+So, we need new approaches to this problem.
+
+A connected component is a subset of vertices $V_i$ such that every
+pair of vertices in $V_i$ have a path between them.
+
+The algorithm we study has some resemblance with the union-find
+algorithm.
+
+
+\section{The algorithm for 1-connectivity}
+The algorithm is by \textbf{Chandra, Sarwate, Hirschberg}.
+
+\subsection{Intuition}
+\begin{itemize}
+\item Consider an initial set of rooted trees where each tree contains a single vertex.
+\item Eventually, each rooted tree will correspond to a connected component.
+
+\item Two trees can be combined into a bigger tree if these trees contain
+vertices $u$ and $v$ which belong to different trees, and the edge
+$(u, v) \in E(G)$. The next iteration proceeds with trees merged from the previous iterations.
+
+\item The parallelism is in merging the trees
+\end{itemize}
+
+Instead of calling it a tree, we call it a \textit{super-vertex}.
+
+We define the \textit{graph for an iteration} as the graph
+of super-vertices and edges between the super-vertices.
+
+\begin{itemize}
+	\item $G_0 = G$
+	\item $G_i$ is the graph with super-vertices at iteration $i$. We construct
+	$G_{i + 1}$ from $G_i$.
+\end{itemize}
+
+Important questions:
+
+
+\begin{itemize}
+	\item How to represent and arrange the super-vertices?
+	\item How do we build the graph for the next iteration?
+	\item How many iterations do we need?
+	\item What is the time and work complexity of the algorithm?
+\end{itemize}
+
+\subsection{How to represent the matrix?}
+We will use an adjaceny matrix to start with. Initially, the matrix is of size
+$n \times n$ where $n = |V(G)|$.
+
+If the graph at the start of the $k$th iteration has $n_k$ vertices, then
+the matrix is of size $n_k \times n_k$.
+
+We will refer to this matrix as $A_k$.
+
+$A_k[u, v] = 0$ means that the super-vertices do not share an edge. $A_k[u, v] = 1$ if $u$ and $v$ do share an edge.
+
+\subsection{How do we build the graph for the next iteration?}
+We will make use of \textit{concurrent writes} to create the
+matrix $A_{k + 1}$ from the graph $G_k$.
+
+In $G_k$, if there exist two distinct super-vertices $u_s$ and $v_s$ such that
+a vertex $u$ in $u_s$ and a vertex $v$ in $v_s$  and the edge $(u, v)$
+is in $E(G)$.
+
+\subsection{How do we arrange the super-vertices?}
+Each vertex of $G$ is given a label ($label: V(G) \to \mathbb{N}$, $label$ is injective) so that if $label(u) = label(v)$, then
+$u$ and $v$ are part of the same super-vertex.
+
+The common label used for all vertices in the super-vertex will be the label
+of the smallest numbered vertex in the super-vertex.
+
+\begin{itemize}
+\item We set this up such that \textbf{the root of every tree is the node with the smallest id}.
+\item As we combine two trees to make a bigger tree, we will make the tree
+with the lower root id as the parent.
+\item We use \textit{pointer jumping}f to adjust the labels.
+\end{itemize}
+
+
+\subsection{The merging algorithm}
+We define a function:
+\begin{align*}
+&C: V \to V \\
+&C(v) = min \{ label(w)~\vert~A[v, w] = 1\}
+\end{align*}
+
+In the first iteration, starting with an initial set of $n$ trees, we merge
+trees as follows:
+
+\begin{itemize}
+	\item C creates a forest of trees on $V$ and with $E = \{(v, C(v))~\vert~v \in V(G)\}$.
+	\item $C$ partitions $V$ such that all vertices in the same connected component are in the same partition.
+	\item Each cycle in the forest is either a self-loop or of length 2.
+	\item We now use pointer jumping to make everyone in a tree agree on a representative.
+\end{itemize}
+
+\subsection{The algorithm}
+
+\begin{minted}{python}
+	A_0 = A
+	n_0 = n
+	k = 0
+	while not done:
+		k = k + 1
+		for v in V pardo:
+			C(v) = min {w | A[k - 1][v][w] == 1}
+
+			Shrink each tree in the forest
+
+		pass
+\end{minted}
+
+\subsection{Analysis}
+\begin{itemize}
+\item Number of iterations: We can show that in each iteration till the ened,
+the number of super vertices decreases by a factor of two. So,
+the total number of iterations is $O(\log n)$.
+
+\item Time spent in each iteration: In each iteration, we need
+to do a pointer jumping across the forest, This takes $O(\log n)$time
+and $O(n)$ work.
+
+\item Total time: $O(\log^2 n)$.
+\item Work: $O(n + m)$ ($n = |V|$, $m = |E|$)
+\end{itemize}
+
+There are better algorithm that reduce the time to $O(\log n)$ by
+\textbf{Shiloach and Vishkin} --- Don't perform aggressive pointer jumping every round, but perform one step of the pointer jumping each round.
+
+
+\section{k-Connectivity}
+Famous result by \textbf{Cherian and Thirumella}:
+
+A graph is $k$-connected iff the subgraph $H$ is k-connected, where $H$ is:
+\begin{align*}
+&T_1 = BFS(G) \\
+&T_2 = BFS(G / T_1) \\
+&T_3 = BFS(G / (T_1 \cup T_2) ) \\
+&T_k = \dots  \\
+&H = T_1 \cup T_2 \dots T_k \\
+\end{align*}
+
+Note that each of the $T_i$ are disjoint, and each $T_i$
+may have $n$ edges, so $H$ has only $kn$ vertices. This is
+drastically better that $|E| = O(n^2)$.
+
+The bottleneck in practice for this is $BFS$.
+
+Current work tries to replace the $BFS$ with other structures, and then
+we repair the damage later on.
