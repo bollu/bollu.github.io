@@ -1,7 +1,7 @@
 +++
 title = "This Month in Simplexhc"
 date = "2017-12-27T17:44:09+05:30"
-draft = true
+draft = false
 
 +++
 

@@ -1,4 +1,4 @@
-theme = "cocoa"
+theme = "cocoa-eh"
 baseurl             = "https://pixel-druid.com/"
 builddrafts         = false
 canonifyurls        = true
@@ -48,6 +48,7 @@ email                  = "siddu.druid@gmail.com"
 extracssfiles          = []       # In your `static` directory, add/remove files as necessary.
 # faviconfile            = "img/leaf.ico"
 github                 = "//github.com/bollu"
+include_rss            = true
 highlightjs            = true
 lang                   = "en"
 linkedin               = "//linkedin.com/in/siddharth-bhat-388b60104/"
@@ -55,6 +56,9 @@ noshowreadtime         = false                         # if true, don't show "<x
 selfintro              = "A weblog of sorts"                            # appears in the site header when set to a non-empty string
 # twitter                = "//twitter.com/you"
 highlightjslanguages = ["haskell"]                        # additional languages not included in the "common" set
+logofile = ""
+progressively = true
+
 
 # avatar                 = "img/profile.png" # path to image in static dir e.g img/avatar.png (do not use in the same time as gravatar)
 # gravatar             = ""                # do not use in the same time as avatar
