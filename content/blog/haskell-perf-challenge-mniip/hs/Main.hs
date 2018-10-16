@@ -1,9 +1,12 @@
+{-# LANGUAGE BangPatterns #-}
+
 import Data.Int
 import qualified Data.Primitive.MutVar as Var
 import Control.Monad.Primitive
 import qualified Data.Vector.Unboxed.Mutable as Vec
 import Data.Bits
 import Control.Monad
+import Data.Word
 
 
 -- char sieve[size >> 3];
@@ -33,7 +36,7 @@ import Control.Monad
 size :: Int
 size = 100000000
 
-sieve :: IO (Vec.MVector (RealWorld) Int8)
+sieve :: IO (Vec.MVector (RealWorld) Word8)
 sieve =  Vec.replicate (size .>>. 3) 0
 
 count :: IO (Var.MutVar (RealWorld) Int)
@@ -73,12 +76,13 @@ type Count = Int
 type I = Int
 
 -- Version 2:MVar -> Int
-sievefn :: (Vec.MVector RealWorld Int8) -> Count -> I -> IO Count
-sievefn s c i = 
+
+sievefn :: (Vec.MVector RealWorld Word8) -> Count -> I -> IO Count
+sievefn s c i =
   if i < size
      then do
         sv <- Vec.unsafeRead s (i .>>. 3)
-        let cond =  sv .&. (fromIntegral (1 .<<. (i .&. 7)))
+        cond <- return $! sv .&. (fromIntegral (1 .<<. (i .&. 7)))
         if (cond == 0)
            then do
                   -- for(long int j = i * i; j < size; j += i)
