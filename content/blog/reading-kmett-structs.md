@@ -233,7 +233,7 @@ new :: PrimMonad m => a -> m (LinkCut a (PrimState m))
 new a = st (newLinkCut Nil Nil Nil Nil a a)
 ```
 
-I hadn't seem `PrimMonad` before. Hackage reveals it to abstract out any
+I hadn't seen `PrimMonad` before. Hackage reveals it to abstract out any
 kind of state monad which can execute primpos on array-like objects.
 So, think `PrimMonad ~ ST, IO` etc.
 
