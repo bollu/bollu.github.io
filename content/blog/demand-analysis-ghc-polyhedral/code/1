@@ -113,23 +113,12 @@ int main() {
     //
     // relation between outputs and inputs, through recursion hierarchy
     // head (tail* ())
-    // TODO: assume we know that lists are linear, and that trees can be 
-    // accessed as (2k, 2k+1).
-    // ----------------------
-    // Does this allow us to encode data?
     
     isl_map *m = isl_map_read_from_str(ctx, "{" 
-            // head (app (cons x xs (nil)) = head(Cons x xs') = x
-            // force head: 0
-            // force tail: 1
-            "R[t1, t2, forced=0, out] -> R[t1, t2, forced, t1] : t1 % 3 = 1 and t2 % 3 = 0"
-            // tail (app (cons x xs) (nil)) = tail(Cons x xs') = xs'
-            // xs' = app xs Nil
-            // force head: 0
-            // force tail: 1
-            "R[t1, t2, forced=1, out] -> R[t1, t2, forced, t1] : t1 % 3 = 1 and t2 % 3 = 0"
+            // head (app (cons ..) (nil)
+            "R[t1=1, s11, s12, t2=0, s21, s22, 0, sout1, sout2] -> R[]"
         "}");
-    std::cout << "built map: " << isl_map_to_str(m) << "\n\n";
+    std::cout << "built map\n";
     isl_map *pow_ = isl_map_power(isl_map_copy(m), NULL);
     isl_map *trans_ = isl_map_transitive_closure(m, NULL);
 
