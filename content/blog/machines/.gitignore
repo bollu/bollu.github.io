@@ -20,3 +20,5 @@ cabal.project.local
 cabal.project.local~
 .HTF/
 .ghc.environment.*
+# Don't allow machines to be present
+machines-0.6.4
