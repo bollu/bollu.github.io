@@ -111,7 +111,9 @@ newtype PlanT k o m a = PlanT
   }
 ```
 
-So, first of all, there's a `k` that's not referenced anywhere.
+So, first of all, there's a `k :: * -> *` (higher kinded) which is only
+referenced in `Await`.
+
 That aside, it [looks like a continuation](TODO) thanks to the `forall r. ...`.
 We need to understand what `Done`, `Yield`, `Await`, and `Fail` do, but
 intutively, reading off the types (We can see how of I was at the end!)
@@ -120,8 +122,14 @@ intutively, reading off the types (We can see how of I was at the end!)
 
 - `Yield o (Plan k o a)` I assume provides access to a value `o` (the `output`?)
 
-- `Await`, I'm not sure about, but it looks like a suspension that waits
-for some input to construct another plan. Seems like a `Cont`.
+- `Await` seems to contain both a suspension of a `Plan`, some auxiliary data,
+and a Plan. The fully thing is that I can't see a reason for `forall z. (z -> m r)`
+(what are its inhabitants, except for for `const (mr)`?) We also have a 
+`k z` value (where once again, we can assume nothing about `z`, so the only thing
+we can "learn" is the shape of `k`), and a `Plan k o a`.  I assume that the
+final `Plan k o a` is used by default, while the `k z` will be used for some
+magic trick I'm frankly
+excited to see.
 
 - `Fail` provides a way to fail, and continue to the continuation `m r`.
 
@@ -141,6 +149,8 @@ the `m`, thereby not having the ability to know anything about the `m`:
 type Plan k o a = forall m. PlanT k o m a
 ```
 
+**PLAN IS A MONAD SO WE CAN USE DO-NOTATION TO BUILD IT.**
+**MACHINES ARE REIFIED FROM PLAN**
 
 OK, let's now view an example of a simple `Plan`:
 
@@ -378,6 +388,137 @@ and `R :: T a b b`**.
 How in the world do you match on a **data constructor**? I guess we
 grep and look for the implementation of `awaits`.
 
+
+#### `awaits`
+
+Grepping (well, [silver searching](https://github.com/ggreer/the_silver_searcher))
+```
+$ ag "awaits ::"                                                                                                          148 
+src/Data/Machine/Plan.hs
+192:awaits :: k i -> Plan k o i
+```
+
+
+Let's run the `awaits L`, since I want to see what the types look like:
+```
+-- stack ghci
+*Examples Data.Machine> :info awaits T
+awaits :: k i -> Plan k o i
+type role T nominal nominal nominal
+data T a b c where
+  L :: T a b a
+  ...
+*Examples Data.Machine> :t (awaits L)
+(awaits L) :: PlanT (T i b) o m i
+```
+
+I was stumped by the type of `awaits L`, till `RyanGLScott` explained it
+to me on the IRC channel (`#haskell` on freenode):
+
+```
+-- working something out on paper
+awaits :: k i -> Plan k o i
+L :: T a b a ~ T i b i ~ (T i b) i
+
+k i ~ (T i b) i
+k ~ (T i b)
+i ~ i
+
+Plan k o i ~ Plan (T i b) o i ~ PlanT (T i b) o m i
+```
+
+I find the type utterly unenlightening, since I do not yet know what the `k`
+parameter of a `PlanT` does anyway. It looks like the `Done` value can be an
+`i`, and the continuation is a `T i b`? Let's understand the implementation:
+
+```hs
+-- src/Data/Machine/Plan.hs
+awaits :: k i -> Plan k o i
+awaits h = PlanT $ \kp _ kr -> kr kp h
+```
+
+Let's eta-expand and rename terse variable names to better understand the type:
+```hs
+-- temporary code
+awaits' :: k i -> Plan k o i
+awaits' h = PlanT $ f h where
+  f :: k i ->  (forall r. (i -> r) -> 
+                      (o -> r -> r) -> 
+                      (forall z. (z -> r) -> k z -> r -> r) -> 
+                       r -> r)
+  f h' done yield await fail = await done h' fail
+```
+
+Note the types here:
+```hs
+h' :: k i 
+done :: forall r. (i -> r)
+yield :: (o -> r -> r)
+await :: (forall z. (z -> r) -> k z -> r -> r) ~(setting z=i)~
+                     (i -> r) -> k i -> r -> r
+fail :: r
+```
+
+So, we specialize the `await` with `z ~ i`, allowing us to feed
+the `await` the `h :: k i`, which also takes the `done :: i -> r`
+and `fail :: r` continuations, to return the final value.
+
+I don't really understand it, but it seems to to be used to "plug a `k i`"
+temporary into the computation of `r`.
+
+Looking at the un-CPSd form,
+```h
+forall z. Await 
+            (z -> Plan k o a) -- done value
+            (k z) -- temporary that is plugged in by awaits
+            (Plan k o a) -- fail value
+```
+
+It's natural to wonder, "do we need the `forall z.` freedom in `Await`?
+Removing the `forall z.` gives us errors:
+
+```
+../machines-0.6.4/src/Data/Machine/Plan.hs:96:36: error:
+    • Couldn't match type ‘a’ with ‘b’
+      ‘a’ is a rigid type variable bound by
+        the type signature for:
+          fmap :: forall a b. (a -> b) -> PlanT k o m a -> PlanT k o m b
+        at ../machines-0.6.4/src/Data/Machine/Plan.hs:96:3-6
+      ‘b’ is a rigid type variable bound by
+        the type signature for:
+          fmap :: forall a b. (a -> b) -> PlanT k o m a -> PlanT k o m b
+        at ../machines-0.6.4/src/Data/Machine/Plan.hs:96:3-6
+      Expected type: (o -> m r -> m r)
+                     -> ((b -> m r) -> k b -> m r -> m r) -> m r -> m r
+        Actual type: (o -> m r -> m r)
+                     -> ((a -> m r) -> k a -> m r -> m r) -> m r -> m r
+    • In the expression: m (k . f)
+      In the second argument of ‘($)’, namely ‘\ k -> m (k . f)’
+      In the expression: PlanT $ \ k -> m (k . f)
+    • Relevant bindings include
+        k :: b -> m r
+          (bound at ../machines-0.6.4/src/Data/Machine/Plan.hs:96:31)
+        m :: forall r.
+             (a -> m r)
+             -> (o -> m r -> m r)
+             -> ((a -> m r) -> k a -> m r -> m r)
+             -> m r
+             -> m r
+          (bound at ../machines-0.6.4/src/Data/Machine/Plan.hs:96:17)
+        f :: a -> b
+          (bound at ../machines-0.6.4/src/Data/Machine/Plan.hs:96:8)
+        fmap :: (a -> b) -> PlanT k o m a -> PlanT k o m b
+          (bound at ../machines-0.6.4/src/Data/Machine/Plan.hs:96:3)
+   |
+96 |   fmap f (PlanT m) = PlanT $ \k -> m (k . f)
+   |                                    ^^^^^^^^^
+```
+
+Interesting, so it looks like we need the freedom in `Await` to be able to
+define a `Functor` for `PlanT`! OK, let's think about this now --- if we want a `Functor`
+instance for `PlanT`, why do we need this extra freedom?
+
+
 #### `repeatedly`
 Grepping for `repeatedly`:
 
@@ -484,47 +625,7 @@ So, `repeatedly` constructs a `MachineT m k o`, which needs a `m (Step k o (Mach
     So, given that `c` can be coerced into `b` at runtime, we can compose
     a ` a -p-> b` with a `b -q-> c` to construct a `a -q-> c`
 
-#### `awaits`
 
-Grepping (well, [silver searching](https://github.com/ggreer/the_silver_searcher))
-```
-╰─$ ag "awaits ::"                                                                                                          148 ↵
-src/Data/Machine/Plan.hs
-192:awaits :: k i -> Plan k o i
-```
-
-Let's now look at `awaits`:
-
-```
-awaits :: k i -> Plan k o i
-awaits h = PlanT $ \kp _ kr -> kr kp h
-```
-
-
-
-OK, so a `Tee` is some recipe that tells us 
-
-The first non-trivial use of `Await` in a series of `Await`s is this one:
-
-```hs
--- |
--- Connect different kinds of machines.
---
--- @'fit' 'id' = 'id'@
-fit :: Monad m => (forall a. k a -> k' a) -> MachineT m k o -> MachineT m k' o
-fit f (MachineT m) = MachineT (liftM f' m) where
-  f' (Yield o k)     = Yield o (fit f k)
-  f' Stop            = Stop
-  f' (Await g kir h) = Await (fit f . g) (f kir) (fit f h)
-```
-
-So, let's think about what `let mach' = fit f mach` would do:
-
-- We know that `f :: (foral a. k a -> k' a)` must be some kind of functorial
-  function, since it's not allowed to assume anything about the shape of `a`
-  when it converts `k a` to `k' a`.
-
-- We give `mach :: MachineT m k o`, and receive a `mach' :: MachineT m k' o`.
 
 
 ## `src/Data/Machine/Moore.hs`
