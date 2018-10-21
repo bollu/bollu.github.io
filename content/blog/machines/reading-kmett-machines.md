@@ -519,6 +519,34 @@ define a `Functor` for `PlanT`! OK, let's think about this now --- if we want a 
 instance for `PlanT`, why do we need this extra freedom?
 
 
+```hs
+-- **WRONG PlanT**, without (forall z.) freedom in Await:
+
+instance Functor (PlanT k o m) where
+  -- fmap :: (a -> b) -> PlanT k o m a -> PlanT k o m b
+  -- fmap :: (a -> b) -> 
+      (forall r. (a -> m r) ->                                     -- Done a
+      (o -> m r -> m r) ->                              -- Yield o (Plan k o a)
+      ((a -> m r) -> k a -> m r -> m r) ->    -- forall z. Await (z -> Plan k o a) (k z) (Plan k o a)
+      m r ->                                            -- Fail
+      m r)) -> 
+  fmap f (PlanT m) = PlanT $ \k -> m (k . f)
+
+f :: a -> b
+m :: (forall r. (a -> m r) ->                                     -- Done a
+      (o -> m r -> m r) ->                              -- Yield o (Plan k o a)
+      ((a -> m r) -> k a -> m r -> m r) ->    -- forall z. Await (z -> Plan k o a) (k z) (Plan k o a)
+      m r ->                                            -- Fail
+      m r))
+
+k :: forall s. (b -> m s)
+```
+
+Intuitively, we lack the freedom to "reach into `await`" and convert the `a -> m r`
+to a `b -> m r` (that would be `Contravariant`, not `Functor/Covariant`). So,
+we need the flexibility of a `forall z.` to be able to define a `Functor` for the
+`Await` part of `Plan`.
+
 #### `repeatedly`
 Grepping for `repeatedly`:
 
@@ -619,11 +647,6 @@ So, `repeatedly` constructs a `MachineT m k o`, which needs a `m (Step k o (Mach
 
 - for the `(forall z. (z -> m r) -> k z -> m r -> m r) ~ forall z. Await (z -> Plan k o a) (k z) (Plan k o a)`,
     it uses `(\f k g -> return (Await (MachineT #. f) k (MachineT g)))`.
-    We need to know what `#.` is. We can find an import declaration
-    ` import Data.Profunctor.Unsafe ((#.))`. 
-    `(#.) :: forall a b c q. Coercible c b => q b c -> p a b -> p a c`.
-    So, given that `c` can be coerced into `b` at runtime, we can compose
-    a ` a -p-> b` with a `b -q-> c` to construct a `a -q-> c`
 
 
 
