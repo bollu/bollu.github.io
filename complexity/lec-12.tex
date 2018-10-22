@@ -1,0 +1,46 @@
+\chapter{Cryptographic ideas}
+
+We will talk about:
+\begin{itemize}
+\item Computational Difficutlty 
+    \begin{itemize}
+    \item One way functions
+    \item Hard core preidicates
+    \end{itemize}
+
+\item Computational Indistinguishability - Pseudorandom number generators.
+\end{itemize}
+
+\section{One way functions}
+% \definition{$f: \{0, 1\}^* \to \{0, 1\}^*$ is said to be a \textbf{one way function} iff:}
+$f: \{0, 1\}^* \to \{0, 1\}^*$ is said to be a \textbf{one way function} iff:
+\begin{itemize}
+\item $\exists$ DTM M which efficiently computes $f(x)$ for any $x$
+\item $\forall~\pptm~A, \forall$ positive polynomials $p$, $P[A(f(x)) = y, f(y) = f(x)] < \frac{1}{p(|x|)}$
+\end{itemize}
+
+\section{PRNG (Pseudoranom number generator)}
+An \textbf{efficient, deterministic} program $D$ (a \dtm), such that:
+\begin{itemize}
+\item Expansion: $D: \{0, 1\}^s \to \{0, 1\}^l;~l > s$
+\item Pseudorandomness: No efficient distinguisher can distinguish between strings
+randomly chosen from $\{0, 1\}^l$ and ones expanded from $D$:
+$$\forall~\pptm~A, \bigg| P_{x \in \text{uniform}~\{0, 1\}^s}[A(D(x)=1] - P_{x\in \text{uniform}~\{0,1\}^l}[A(x)] \bigg| \leq negl(s)$$
+\end{itemize}
+
+
+\section{Three worlds}
+\begin{itemize}
+\item Algorithmica: $\ptime = \nptime$ (AI will flourish here)
+\item Heuristica: $\ptime \neq \nptime$, but average case complexity of $\sat$ is polytime.
+\item Pessiland: Average case hard problems exist, but there are no one-way functions \textit{(how?)}
+(No NP-complete is efficiently learanble)
+
+\item Minicrypt: One way functions exist, but Public-key-crypto isn't possible.
+    (Many problems have lower bounds that we cannot learn it efficiently).
+    (We can create hard problems, but not ones that are hard for everyone except us).
+
+\item Cryptomania: Public key cryptography exists / trapdoor one way functions exist.
+(We can easily create hard problems that is hard for everyone else but easy for us)
+\end{itemize}
+
