@@ -207,6 +207,33 @@ runPlan m kp ke kr kf = runIdentity $ runPlanT m
 This is quite simple, it allows one to construct a `Plan` from `PlanT`
 by filling in `Identity`. Nothing too great.
 
+### `Monad` instance of `PlanT`:
+
+The entire reason for `PlanT` to exist (as was clarified to me by `daevan`
+on `#haskell`) is to provide a monadic interface to build `Machine`s, which
+can then be _reified_ into a `Machine`.
+
+So, let's jump in to take a look at the `Monad` instance of `PlanT`:
+
+```hs
+--src/Data/Machine/Plan.hs
+instance Applicative (PlanT k o m) where
+  pure a = PlanT (\kp _ _ _ -> kp a)
+  ...
+...
+instance Monad (PlanT k o m) where
+  return = pure
+  PlanT m >>= f = PlanT (\kp ke kr kf -> m (\a -> runPlanT (f a) kp ke kr kf) ke kr kf)
+  fail = Fail.fail
+```
+
+So, the monad instance is such that it calls the original `PlanT`'s continuation
+`m`, with the `done` continuation being "run the new pipeline, modified with `f`,
+and keeps the other continuations the same.
+
+`return` / `pure` simply call `Done` immediately.
+
+
 
 ### Current thoughts
 
