@@ -1,3 +1,4 @@
+
 Require Import ZArith.
 Require Import Omega.
 Require Import List.
@@ -27,5 +28,32 @@ Fixpoint zip_positions {X: Type} (xs: list X): list (nat * X) :=
   
 (* position of nth needle in xs *)
 Fixpoint select {X: Type} (eq: X -> X-> bool) (needle: X) (xs: list X) (n: nat) : option nat :=
-  nth_error (filter (eq needle) xs) n
-  
+  option_map fst
+             (nth_error
+                (filter (fun posx => eq needle (snd posx))
+                              (zip_positions xs)) n).
+
+
+Theorem rank_select: forall {X: Type}
+                       (eq: X -> X -> bool)
+                       (needle: X)
+                       (xs: list X)
+                       (n sel: nat)
+                       (SEL: select eq needle xs n = Some sel),
+    rank eq needle xs sel = n.
+Proof.
+  intros until xs.
+  (** need reverse induction principle **)
+Abort.
+
+Theorem select_rank:
+  forall {X: Type}
+    (eq: X -> X -> bool)
+    (needle: X)
+    (xs: list X)
+    (n: nat),
+    select eq needle xs (rank eq needle xs n) = Some n.
+Proof.
+Abort.
+
+(* We have now established the adjunction between rank and select *)
