@@ -129,4 +129,56 @@ e^{-\mu \delta \ln \delta} & \text{if~$\delta > 1$}
 \section{Example of use of Chernoff bounds}
 
 Say we have $n$ balls and $n$ bins. We throw each ball to a bin chosen
-independently and uniformly at random.
+independently and uniformly at random. $X_i \equiv \text{number of balls in bin $i$}$
+We wish to compute $\E{X_i}$. For this, we define a new random variable
+$$
+Y_{i, j} = 
+\begin{cases}
+1 & \text{ball $j$ goes to bin $i$} \\
+0 & \text{otherwise}
+\end{cases}
+$$.
+
+Note that $X_i = \sum_j Y_{i,j}$
+
+\begin{align*}
+\E{X_i} = \E{\sum_j Y_{i, j}} = \sum_j \E{Y_{i, j}} = \sum_{j=1}^n \frac{1}{n} = 1
+\end{align*}
+
+
+Now, we want to ask $\Pr(X_i \geq 4)$?
+
+
+By \textbf{Markov inequality}, we can answer:
+\begin{align*}
+\Pr(X_i \geq 4) = \Pr(X \geq 4 \cdot \E{X_i}) \leq \frac{1}{4}
+\end{align*}
+
+
+By \textbf{Chebyshev inequality}, we first compute:
+\begin{align*}
+\E{Y_{i, j}} = \frac{1}{n} \\
+Var(Y_{i, j}) = \E{Y_{i, j}^2} - (E{Y_{i, j})^2 \\ 
+= (1^2 \cdot \frac{1}{n} + 0) - (\frac{1}{n})^2 \\
+= \frac{1}{n} - \frac{1}{n^2}
+\end{align*}
+
+
+$X_i = sum_j Y_{i, j}$, $Y_{ij}$ independent. Therefore,
+
+\begin{align*}
+Var(X_i) = \sum_j Var(Y_{ij}) = n (\frac{1}{n} - \frac{1}{n^2}) = 1 - \frac{1}{n}
+\end{align*}
+
+We now try to write the inequality we care about in the form of chebyshev:
+$$
+Pr(|X - EX| >= c . sigma_x) <=(chebyshev) 1/c^2
+$$
+
+$$
+Pr(X_i >= 4) <=(chebyshev) Pr(|X_i - 1| >= 3) \leq \frac{\sigma_{x_i}^2}{9}
+$$
+
+$$
+Pr (X_i >= 4) = Pr(X_i >= 1. (1 + 3)) <=(chernoff) e^{-1 3 ln 3} = 3^{-3} 
+$$
