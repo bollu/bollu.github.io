@@ -1,0 +1,26 @@
+\chapter{Applications of Tail Inequalities}
+
+
+\section{Set balancing problem}
+
+Consider trying to divide a data set into two parts: a test set and a training
+set. To make sure that both are roughly similar, we want to divide it so that
+both data sets have the same number of data items for any given feature.
+Similar requirelements also occur for drug trials.
+
+\begin{itemize}
+\item We will think of $n$ data items with $n$ features (we can generalize this to
+$m$ features), arranged in a matrix $A$. $A$ has entries from $\{0, 1\}$.
+Rows are features, columns are data items
+
+\item The goal is to find a vector $x$ of size $n$ with entries from $\{-1, 1\}$
+such that $Ax$ has the has the smallest possible maximum absolute entry.
+
+\item Rows with $+1$ in $x$ belong to one class, and those with $-1$ belong
+to another class.
+
+\item The maximum absolute value of each entry in $Ax$ tells us how many
+data items differ at feature $i$ according to the division by $x$.
+\end{itemize}
+
+\textbf{TODO: setup example}
