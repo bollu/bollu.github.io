@@ -2,7 +2,7 @@
 
 
 \section{Polynomial verification}
-check that $P1(x) P2(x) =_? P3(x)$
+check that $P_1(x) P_2(x) =_? P_3(x)$
 
 If both polynomials have degree $n$, we can make it work in $n \log n$ using
 FFT. We will design an algorithm faster than this.
@@ -10,17 +10,17 @@ FFT. We will design an algorithm faster than this.
 
 \begin{itemize}
     \item Let $S \subset F$ be a subset of size at least $2n + 1$.
-    \item We evaluate $P1(s) P2(s)$, and $P3(s)$ for $s \in S$, s chosen uniformly
+    \item We evaluate $P_1(s) P_2(s)$, and $P_3(s)$ for $s \in S$, s chosen uniformly
     at random (using Horner's method, this is $O(n)$ per point). The evaluations
     are the fingerprintts.
     
-    \item Clearly, if $P3(x) = P1(x) P2(x)$, this item will not make a
-    mistake. This algorithm \textit{makes a mistake} if $P3(x) \neq P1(x) P2(x)$, but the
+    \item Clearly, if $P_3(x) = P_1(x) P_2(x)$, this item will not make a
+    mistake. This algorithm \textit{makes a mistake} if $P_3(x) \neq P_1(x) P_2(x)$, but the
     points we have in $S$ fail to catch this.
     \item The probability that this makes a mistake: We create a new polynomial
-    $$Q(x) \equiv P3(x) - P1(x) P2(x)$$
+    $$Q(x) \equiv P_3(x) - P_1(x) P_2(x)$$
     
-    It's degree is at most $2n$. If $P3(x) \neq P1(x) P2(x)$, then $Q(x)$ is a
+    It's degree is at most $2n$. If $P_3(x) \neq P_1(x) P_2(x)$, then $Q(x)$ is a
     nonzero polynomial.
 
     \item The polynomial $Q(x)$ has at most $2n$ roots. So, The probability
