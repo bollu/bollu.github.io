@@ -31,3 +31,56 @@ FFT. We will design an algorithm faster than this.
     repeated trials, or by picking a larger $S$.
 \end{itemize}
 
+This technique is useful when we don't have the polynomial directly available.
+For example, maybe we are only given oracle access to evaluation. For example,
+\textbf{permenant of a matrix}, apparently.
+
+
+\section{Definitions to classify the kinds of error}
+
+For both the algorithms considered, when the inputs are identical, the
+algorithm does not make an error.
+
+In inputs that are not identical, we make an error that is bounded by a
+constant.
+
+\subsection{The class $\rp$}
+$\rp$ is the class of languages $L$ such that there exists a randomized
+algorithm $A$ running in \textbf{worst case polynomial time}, such that for any input
+$x$:
+
+\begin{align*}
+x \in L \implies \Pr(\text{$A$ accepts $x$}) \geq \frac{1}{2} \\
+x \notin L \implies \Pr(\text{$A$ accepts $x$}) = 0
+\end{align*}
+
+The example was the \ip proof for graph non-isomorphism.
+
+
+\subsection{The class $\corp$}
+$\corp$ is the class of languages $L$ such that there exists a randomized
+algorithm $A$ running in \textbf{worst case polynomial time}, such that for any input
+$x$:
+
+\begin{align*}
+x \in L \implies \Pr(\text{$A$ accepts $x$})  = 0 \\
+x \notin L \implies \Pr(\text{$A$ accepts $x$}) \leq \frac{1}{2}
+\end{align*}
+
+
+\subsection{Reflection on \rp and \corp}
+
+The algorithms that we studed are the complement. We make no error
+on strings in the language, but we can have an error on strings that are 
+not in the language. So, the algorithms we studied are \corp.
+
+These are considered Monte-Carlo algorithms.
+
+
+\subsection{\zp / Las Vegas algorithms}
+\zp contains languages $L$ such that there is a randomized algorithm $A$
+that always outputs the correct answer in \textbf{expected polynomial time}.  
+These are also called as Las Vegas algorithms.
+
+
+
