@@ -83,4 +83,69 @@ that always outputs the correct answer in \textbf{expected polynomial time}.
 These are also called as Las Vegas algorithms.
 
 
+\section{Proof by existence / Probabilistic method}
+\textit{(Refer to Chapter 5, Motwani and Raghavan)}
 
+
+Many a times, we want to show that a particular combinatorial object exists.
+It maybe very inefficient to build, because of a huge space and a small
+target of interest, like finding a needle in a haystack. Randomization
+can come to the rescue here:
+
+\begin{itemize}
+\item If a random variable $X$ has an expected value $\E{X} = a$, then there
+exists a realisation of $X$ with a value $\geq a$ and a realisation with
+value $\leq a$.
+
+\item If arandom objects from some universe of objects has some property $P$
+with nonzero probability, then there must exist an object with that property
+$P$ in this universe.
+\end{itemize}
+
+\subsection{Example 1}
+Consider a graph $G$. We want to find a subgraph $G'$ of $G$ such that it
+is bipartite, and has the largest number of edges of $G$ (largest bipartite
+subgraph of $G$).
+
+We will show the existence of a $G'$ with $|E(G')| \geq |E(G)|/2$.
+
+(We can use this technique to recursively break the graph into $\log n$
+bipartite subgraphs, and many algorithms work well on bipartite graphs)
+
+The randomized algorithm to produce this subgraph $G'$ is easy. We assign
+a bit $b(v)$ to each $v \in V(G)$.  Put all vertices in $G'$. 
+An edge $(u, v) \in G' \iff b(u) \neq b(v)$. The resulting graph 
+looks bipartite with the two bipartite regions consisting of all vertices
+$b(v) = 0, b(v) = 1$.
+
+
+Notice that 
+\begin{align*}
+&V_0 \equiv \{ v \in V ~\vert~b(v) = 0 \}\\ 
+&V_1 \equiv \{ v \in V ~\vert~b(v) = 1 \}\\ 
+&G' \equiv (V_0 \cup V_1, (V_0 \times V_1) \cap E(G)) \\
+\\
+&X_{uv} \equiv \text{$uv \in E'(G)$} \\
+&\E{X_{uv}} = \Pr(uv \in E'(G)) = \frac{1}{2} \\
+\\
+&X \equiv \sum_{u, v \in E(G)} X_{uv} \\
+&\E{X} = \E{\sum X_{uv}} = \sum \E{X_{uv}} = |E(G)|/2
+\end{align*}
+
+
+So, there must exist as assignment $b$ that constructs a bipartite graph
+with the required properties.
+
+\subsection{Expander graphs}
+We start defining an $(\alpha, \beta, n, d)$ expander.
+
+A bipartite graph $G = (V_1 \cup V_2, E)$ on $n$ nodes is an $(\alpha, \beta, n, d)$
+expander iff:
+\begin{itemize}
+\item Every vertex in $V_1$ has degree \textit{at most d}.
+\item For any subset $S$ of vertices from $V_1$, such that $|S| \leq \alpha n$, 
+then there are \textit{at least} $\beta |S|$ neighbours in $V_2$.
+\end{itemize}
+
+(Sid: Ideally, $d$ should be very small, and $\beta$ should be as large as possible.
+Max number of neighbours will be $d |S|$. That is $\beta \leq d$)
