@@ -1,7 +1,7 @@
 +++
 date = "2017-06-15T19:57:26+02:00"
 title = "GHC newbie part 1: The goal of prettier error messages"
-draft = true
+draft = false
 
 +++
 
