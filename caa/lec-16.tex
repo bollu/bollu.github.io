@@ -31,7 +31,7 @@ heads. $X$ counts the number of heads over the $n$ trials.
 \subsection{The bound}
 
 \begin{align*}
-\Pr(X \geq \mu (1 + \delta)) \leq 
+\Pr(X \geq \mu (1 + \delta)) \leq
 {\bigg[ \frac{e^\delta}{({1 + \delta)}^{1 + \delta}}} \bigg]^\mu
 \end{align*}
 
@@ -78,7 +78,7 @@ Also notice that $Y$ is a \textit{positive valued} random variable, so we can
 now use the Markov inequality.
 
 \begin{align*}
-&\Pr[Y \geq e^{t \mu (1 + \delta)}] \leq \frac{\E{Y}}{e^{t \mu (1 + \delta)}} = 
+&\Pr[Y \geq e^{t \mu (1 + \delta)}] \leq \frac{\E{Y}}{e^{t \mu (1 + \delta)}} =
 \frac{\prod (1 - p + pe^t)}{e^{t \mu (1 + \delta)}} \\
 %
 &\leq \frac{\prod_{i=1}^n (1 - p + pe^t)}{e^{t \mu (1 + \delta)}} \\
@@ -132,7 +132,7 @@ Say we have $n$ balls and $n$ bins. We throw each ball to a bin chosen
 independently and uniformly at random. $X_i \equiv \text{number of balls in bin $i$}$
 We wish to compute $\E{X_i}$. For this, we define a new random variable
 $$
-Y_{i, j} = 
+Y_{i, j} =
 \begin{cases}
 1 & \text{ball $j$ goes to bin $i$} \\
 0 & \text{otherwise}
@@ -155,10 +155,11 @@ By \textbf{Markov inequality}, we can answer:
 \end{align*}
 
 
+
 By \textbf{Chebyshev inequality}, we first compute:
 \begin{align*}
-\E{Y_{i, j}} = \frac{1}{n} \\
-Var(Y_{i, j}) = \E{Y_{i, j}^2} - (E{Y_{i, j})^2 \\ 
+\E{ Y_{i, j}} = \frac{1}{n} \\
+Var(Y_{i, j}) = \E{Y_{i, j}^2} - (E{Y_{i, j}})^2 \\
 = (1^2 \cdot \frac{1}{n} + 0) - (\frac{1}{n})^2 \\
 = \frac{1}{n} - \frac{1}{n^2}
 \end{align*}
@@ -180,5 +181,5 @@ Pr(X_i >= 4) <=(chebyshev) Pr(|X_i - 1| >= 3) \leq \frac{\sigma_{x_i}^2}{9}
 $$
 
 $$
-Pr (X_i >= 4) = Pr(X_i >= 1. (1 + 3)) <=(chernoff) e^{-1 3 ln 3} = 3^{-3} 
+Pr (X_i >= 4) = Pr(X_i >= 1. (1 + 3)) <=(chernoff) e^{-1 3 ln 3} = 3^{-3}
 $$
