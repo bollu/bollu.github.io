@@ -149,3 +149,53 @@ then there are \textit{at least} $\beta |S|$ neighbours in $V_2$.
 
 (Sid: Ideally, $d$ should be very small, and $\beta$ should be as large as possible.
 Max number of neighbours will be $d |S|$. That is $\beta \leq d$)
+
+To build such graphs in a deterministic manner is not easy. We can construct
+these randomized --- For example, consider $d = 18, \alpha = 1/3, \beta = 2$
+
+\subsubsection{Construction}
+Let each vertex in $V_1$ choose $d$ neighbours in $V_2$ by sampling
+independently and uniformly at random. We can \textbf{sample with replacement}
+(can pick the same thing repeatedly --- each vertex is independent). However,
+we will consider only one copy of any multiple choice.
+
+Consider any subset $S$ of $V_1$ with $|S| = s$. Let $T$ be 
+\textbf{some fixed subset} of $V_2$ of size $< \beta |S|$. 
+Consider the event that \textit{all neighbours of $S$} are in $T$. 
+
+This has probability:
+\begin{align*}
+&\text{probability of all neighbours lying in T} \\
+&\text{We simplify this by assuming that $|T| = \beta |S|$} \\
+&=(\text{Prob. of picking an element in T}^\text{number of neighbours})^\text{number of vertices} \\
+&=(\beta |S| / n)^{d |S|}
+\end{align*}
+
+\begin{align*}
+&E_{ij} \equiv \Pr(\text{There exists some $S_i$ and some $T_j$ such that all neighbours of $S_i$ are in $T_j$}) \\
+&\Pr (\cup E_{ij}) \leq \sum \Pr(E_{ij})
+\end{align*}
+
+There are $nCs$ ways to choose $S$ and $nC\beta s$ ways to chose $T$.
+
+The probability that for some S, all of its neighbours are in T is upper
+bounded by $$nCs~nC \beta s~ (\beta s/n)^{ds}$$
+
+\textbf{Stirling's approximation: $nCk \leq (en/k)^k$}
+
+
+
+Simplifying, what we get is:
+
+$$
+(en/s)^s \cdot (en/\beta s)^{\beta s} \cdot (\beta s / n)^{ds}
+$$
+
+Plug in and simplify. What we will eventually get is that it is
+upper bounded by $\frac{1}{2}^s$.
+
+Next, we should range over all sizes of $s=1\dots\alpha n$, which will
+give us $$Total = \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \dots \leq \frac{1}{2}$$
+
+\subsubsection{Proof of stirling's approximation}
+\textbf{TODO: sid, should fill up}

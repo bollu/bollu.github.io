@@ -1,0 +1,64 @@
+\chapter{Proofs by existence}
+
+We continue to observe proofs by existence. 
+
+\section{Example 2 of expanders}
+We have a bipartite graph $G \equiv (L, R, E)$ such that:
+\begin{itemize}
+\item $|L| = n$
+\item $|R| = 2^{\log^2 n} \equiv n^{\log n}$
+\item Every susbet of $\frac{n}{2}$ vertices of $L$ has at least $2^{\log^2 n} - n$
+\item no vertex of $R$ has more than $12 \log^2 n$ neighbours
+\end{itemize}
+
+We want to show the existence of such a bipartite graph by existence.
+
+Let every vertex of $L$ choose $d$ neighbours in $R$ independently,
+uniformly at random. Choices are made with replacement. Repeat edges are
+merged into a single edge.
+
+
+We want every vertex in $L$ to pick $d$ vertices of $R$. To aid this
+computation, let us imagine $L' = nd$, such that each vertex in $L'$ has
+$d$ copies of vertices of $L$. Now, each vertex in $L'$ picks one vertex in $R$.
+Expected number of edges for each vertex in $R$ will be $\frac{n d}{r}$
+
+\begin{align*}
+    \Pr(deg(v) \geq 12 \log^2 n) = \Pr(deg(v) \geq (1 + 5)12 \log^2 n) \leq e^{-2 \log^2 n}
+\end{align*}
+
+\textbf{Derivation in Motwani and raghavan}
+
+We want to compute size of neighbour set for a given subset of $L$:
+
+$S \subset L$, $|S| = \frac{n}{2}$, $T \subset R$
+\begin{align*}
+    \Pr(N(S) \subset T) \leq \frac{|T|}{r}^{|S| d} = (1 - \frac{n}{2^{\log^2 n}}^\frac{nd}{2}
+\end{align*}
+
+
+\begin{align*}
+    \Pr(\exists S \exists T N(S) \subset T) \leq {n \choose |S|} {r \choose |T|} (1 - \frac{n}{r})^\frac{nd}{2}
+\end{align*}
+
+..
+
+\section{CNF}
+
+In CNF, each clause is a disjunction of literals. The formula is a conjunction
+of clauses. $\texttt{CNF} \equiv \text{product of sums}$
+
+
+We show that for $m$ clauses, there is a truth assignment that satisfies
+at least $\frac{m}{2}$ clauses.
+
+\begin{itemize}
+    \item Consider a random assignment of truth values to variables
+    \item consider a clause $C_i$ of $k$ variables
+    \item $C_i$ is not satisfied with probability $2^{-k}$
+    \item Define the random variable $Z_i \equiv \text{$C_i$ is sat}$
+    \item $\E{Z_i} = \Pr{\text{$C_i$ is sat}} = 1 - 2^{-k}$
+    \item Let $Z \equiv \text{number of clauses satisfied}$, $Z = \sum_i Z_i$
+    \item $\E{Z} = \sum_i \E{Z_i} = m(1 - 2^{-k}) \geq m/2$ as $k \geq 1$
+\end{itemize}
+
