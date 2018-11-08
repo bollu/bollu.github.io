@@ -70,5 +70,57 @@ bounds to approximate the tail inequality:
     &\Pr \big[ (1 - \epsilon)|G| \leq Z \leq (1 + \epsilon)|G|) \big] \\
     &=\Pr \big[ (1 - \epsilon)|G| \leq \frac{|U|Y}{N} \leq (1 + \epsilon)|G| \big] \\
     &=\Pr \big[ (1 - \epsilon)Nr \leq  Y \leq (1 + \epsilon)Nr \big] \\
-    &\geq 1 - 2^{-\epsilon^2 Nr / 4}
+    &= 1 - \Pr \big[  Y \geq (1 + \epsilon)Nr \big] - \Pr \big[ Y \leq (1 - \epsilon)Nr \big]\\
+    &\geq 1 - 2e^{-\epsilon^2 Nr / 4}
 \end{align*}
+
+Let $\delta \equiv 2e^{-\epsilon^2 Nr / 4}$. We want $\delta$ to be small.
+So, we need $N$ and $r$ to be large for $\delta$ to be small. For this
+to work, since $r \equiv |G|/|U|$, we need $|G|$ to be large. This means
+that we need a large number of truth assignments for this to work.
+
+\subsection{Importance sampling}
+Do not rely on uniform sampling, so we use skewed sampling. Skew
+towards useful samples. We want to increase $r \equiv |G|/|U|$.
+
+Let $V$ be a finite universe. We are given $m$ subsets
+$H_1, H_2, \dots H_m$ such that:
+
+\begin{itemize}
+\item $\forall i,~|H_i|$ can be computed in polynomial time.
+\item It is possible to sample uniformly at random from any $H_i$.
+\item For all $v \in V$, we can determine if $v \in H_i$ in polynomial time.
+\end{itemize}
+
+The goal is to estimate $H \equiv \bigcup_i H_i$.
+
+In the equivalence to $DNF$, $V$ is all possible assignments,
+each $H_i$ is the assignments that satisfy $C_i$. $|H_i| = 2^{n - \text{number of clauses not in $C_i$}}$.
+
+\subsubsection{Set for sampling during importance sampling}
+
+Define a multiset $U$ of the union of $H_i$s where the multiset keeps
+multiple copies of each element. Alternatively, we can define it as:
+
+\begin{align*}
+  &U \equiv \{ (v, i)~\vert~v \in H_i \} \\
+  &|U| = \sum_i |H_i| \geq |H| \\
+\end{align*}
+
+We also define for every $v \in V$, the coerage set of $v$ as $cov(v, U) \equiv \{ (v, i)~\vert~(v, i) in U$.
+The size of $cov(v)$ is the number of $H_i$s that contain $v_i$.
+
+\subsubsection{Properties of $cov$}
+\begin{itemize}
+\item The number of coverage sets is exactly $|H|$
+\item The coverage sets partition $U$, ie, $U = \bigcup_{v \in H} cov(v)$
+\item $|U| = \sum_{v \in H} |cov(v)|$
+\item for all $v \in H$, $|cov(v) \leq m$ 
+\end{itemize}
+
+
+Deifne a function $f: U \mapsto \{0, 1\}$ as $f((v, i)) = 1~\text{if}~i = \min \{j~|~ v \in H_j \}$,
+and $0$ otherwise.
+
+Define $G \equiv \{ (v, j) \in U~\vert~f((v, j)) = 1 \}$. Notice that
+$|G| = |H|$.
