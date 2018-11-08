@@ -1,0 +1,74 @@
+\chapter{Approximate Counting}
+
+The idea is to see how many objects satisfy a given condition.
+
+
+\begin{itemize}
+    \item Count the number of spanning trees of a graph (matrix-tree theorem)
+    \item Count the number of matchings of a given graph (permenant of a graph)
+    \item Count the number of truth assignments that satisfy a formula in DNF
+        (sum of products)
+\end{itemize}
+
+\section{Counting truth assignments in DNF}
+
+DNF syntax is $DNF \equiv C_1 \lor C_2 \dots C_n$ where each $C_i \equiv L_1 \land L_2 \dots L_j$.
+$L \equiv \texttt{literal}$, each literal is either a variable $X_k$, or its
+negation $X_k'$.
+Problem has uses in network design and reliability.
+
+A truth assignment is said to satisfy a DNF boolean formula $F$, if some clause in $F$
+is true in the assignment. We are interested in $\#F$ -- the number of distinct
+satisfying assignments for $F$.
+
+\section{DNF counting --- Problem formalization}
+
+Let $U$ be a finite set of truth assignments, and a boolean function $f: U \mapsto \{0, 1\}$.
+Define $G \equiv \{ u~\vert~f(u) = 1\}$.
+We assume that given $u \in U$, $f(u)$ is easy to compute.
+We also assume that it is possible to sample uniformly at random from $U$.
+We want to estimate the size of $G$.
+
+Note that the requirement that we can uniformly sample from $U$ is
+quite important! We need an explicit encoding of the object to be able
+to sample efficiently and uniformly at random.
+
+\subsection{Solution --- Monte Carlo}
+
+\subsubsection{Sketch}
+Choose $N$ independent samples from $U$, say $u_1, u_2, \dots u_N$. Evaluate
+$f$ at each one of these samples, and count the number of satisfying instances.
+Use this count to estimate $G$.
+
+\subsubsection{Details}
+
+Let 
+\begin{align*}
+    &Y_i \equiv \text{random variable, indicates if $u_i \in G$} \\
+    &Y_i = \begin{cases}
+        1 & f(u_i) = 1 \\
+        0 & f(u_i) = 0
+    \end{cases} \\
+    &\E{Y_i} = \Pr{[Y_i = 1]} = \frac{|G|}{|U|} \\
+\end{align*}
+
+Define another random variable:
+
+\begin{align*}
+    &Z \equiv \text{Size that we guess based on $Y_i$} \\
+    &Z = |U| \cdot \frac{\sum_i Y_i}{N} \\
+    &\E{Z} = \frac{|U|}{N}\E{\sum_i Y_i} =  \frac{|U|}{N} \sum_i \frac{|G|}{|U|} = |G|
+\end{align*}
+
+We want the value of $Z$ to be close to $|G|$. Once again, we can use Chernoff
+bounds to approximate the tail inequality:
+
+\begin{align*}
+    &\epsilon \equiv \text{confidence of the estimate} \\
+    & Y \equiv \sum_i Y_i \\
+    & r \equiv \frac{|G|}{|U|},~ N \equiv |U|,~ Nr = |G| \\
+    &\Pr \big[ (1 - \epsilon)|G| \leq Z \leq (1 + \epsilon)|G|) \big] \\
+    &=\Pr \big[ (1 - \epsilon)|G| \leq \frac{|U|Y}{N} \leq (1 + \epsilon)|G| \big] \\
+    &=\Pr \big[ (1 - \epsilon)Nr \leq  Y \leq (1 + \epsilon)Nr \big] \\
+    &\geq 1 - 2^{-\epsilon^2 Nr / 4}
+\end{align*}
