@@ -124,3 +124,50 @@ and $0$ otherwise.
 
 Define $G \equiv \{ (v, j) \in U~\vert~f((v, j)) = 1 \}$. Notice that
 $|G| = |H|$.
+
+\subsubsection{Sid viewpoint}
+We create the set $U$ which is a set of $(value, pos)$. We then quotient
+by an equivalence relation $(v_1, p_1) ~ (v_2, p_2) \iff v_1 = v_2$. Then, we pick
+a distinguished/canonical element per equivalence class, called $(v_i, smallest)$, where
+$smallest$ is the smallest index among all the $v_i$.
+
+Also notice that $r = \frac{|G|}{|U} \geq \frac{1}{m}$, since:
+$$
+|U| = \sum_{v \in H} |cov(v)| \leq \sum{v \in H} m = m |H| \leq m |G|
+$$
+
+Now, we use monte-carlo to sample $U$. Same calculations hold now. Now, we need to
+sample uniformly at random from $U$.
+
+\begin{itemize}
+    \item Pick an index $j$ with probability
+        $\Pr [\text{$i$ is chosen}] \equiv |H_i| / U$.
+    \item Now, pick an element uniformly at random from $H_i$.
+    \item \textbf{(Is there some geometric intuition for this picking process?)}
+\end{itemize}
+Now, this pair $(v, i)$ is now uniformly at random over $U$ \textbf{(TODO: finish proof)}
+
+\subsection{Some definitions}
+
+\subsubsection{Polynomially randomized approximation scheme (PRAS)}
+Given a counting problem $\Pi$, $A$ is a randomized algorithm which runs
+in polytime such that on any instance $I$ of $P$, and a real number $\epsilon > 0$,
+it produces an output $A(I)$ such that 
+
+$$
+\Pr \big[ (1 - \epsilon) \#I \leq A(I) \leq (1 + \epsilon) \#I \big ] \geq \frac{3}{4}
+$$
+
+\subsubsection{Fully randomized approximation scheme (FPRAS)}
+Runtime s bounded by a polynomial in both $n$ and $\frac{1}{\epsilon}$
+
+\subsubsection{\# P}
+
+A problem is in $\# P$ if the corresponding decision problem is in \nptime.
+
+A problem is $\# P$ if there is an NDMP such that for any problem instance $I$,
+it has a number of accepting computations that is equal to the number of distinct solutions
+to instance $I$.
+
+$\# P$-complete problems are those which can be reduced in polytime. DNF
+counting is $\# P$ complete.
