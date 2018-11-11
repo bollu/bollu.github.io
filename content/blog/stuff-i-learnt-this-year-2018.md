@@ -62,7 +62,7 @@ the year knowing no Coq, and am now ending the year being comfortable with it,
 and having a couple minor bugfixes into coq, which feels great!
 
 
-## [Book: Software foundations](TODO)
+## [Book: Software foundations](https://softwarefoundations.cis.upenn.edu/)
 **link to my solutions: [software foundations solution](TODO)**
 
 Software foundations is a 3 volume collection which shows how to use `Coq`
@@ -70,10 +70,10 @@ to prove properties about programs. This is definitely **the** book to learn `Co
 it's well structured, and has lots of great exercises. Doing the exercises was what
 basically taught me the language, which is a style of learning I really enjoy.
 
-## [Book: Certified programming with dependent types]
+## [Book: Certified programming with dependent types](http://adam.chlipala.net/cpdt/)
 
 This is a kind of a "next steps" from software foundations,
-which focuses on [Adam Chlipala's]() style of proofs, which
+which focuses on Adam Chlipala's style of proofs, which
 relies heavily on "proof automation" --- that is, the ability to
 write small programs (called tactics) that automate the proof for you!
 
@@ -92,8 +92,6 @@ it does do some things that are actually complicated :)
 
 However, it's a great reference for the more advanced parts of Coq,
 and I think it's required reading to be able to use Coq effectively.
-
-## [Book: Programs and Proofs (currently reading)]
 
 
 ## [Project: Dependence analysis for a toy language](https://github.com/bollu/dependence-analysis-coq/)
@@ -117,7 +115,7 @@ for the machinery of polyhedral compilation to work.
 
 
 ## [Library: SCEV](https://github.com/bollu/scev-coq)
-**[Paper link: Expediting chains of recurrences](TODO)**
+**[Paper link: Expediting chains of recurrences](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.43.8188&rep=rep1&type=pdf)**
 
 `SCEV` is an implementation in `gcc` and `llvm`, about a theory that
 allows one to reason about recurrences. This Coq library is an
@@ -138,6 +136,53 @@ I really enjoyed helping around in the Coq community, the people are
 super friendly, and I learnt a *lot* by hanging around the gitter
 channel.
 
+## VE-LLVM
+**[Project page](https://github.com/vellvm/vellvm)**
+**[My PRs/issues](https://github.com/vellvm/vellvm/issues?utf8=%E2%9C%93&q=author%3Abollu)**
+
+`VE-LLVM` (verified LLVM, also a pun on "vellum") is a project that aims
+to provide a reference semantics of LLVM on Coq, to allow people to implement
+optimisation passes over LLVM, as well as verify these passes.
+
+Due to my interest in formalizing polyhedral compilation, I wound up reading
+the `vellvm` source code, since I wanted to see how they verify LLVM syntax. 
+After all, my grand plan is to have a fully verified `LLVM -> polyhedra -> LLVM` toolchain
+at hand.
+
+
+# The Barvinok algorithm:
+**[Book: integer points in polyhedra](https://bookstore.ams.org/emszlec-9)**
+**[My presentation slides](https://github.com/bollu/barvinok/blob/master/slides.pdf)**
+
+The barvinok algorithm is an extremely interesting algorithm, which can be
+used to "count integer points in polyhedra". That's a mouthful, so let's unpack
+that. The basic idea is this:
+
+Let's say I hand you the description of a rectangle as follows:
+```
+0 <= x
+x <= 10
+0 <= y
+y <= 10
+```
+
+I then ask you "how many `(x, y)` points exists in the given polyhedra, where
+`x, y ∈ Z`?  The answer in this case is `10 * 10 = 100`. However, this easily
+gets way more complicated in higher dimensions, with the general intuitition
+that "integer stuff === lattice stuff === hard".
+
+The barvinok algorithm was a breakthrough algorithm that showed how to perform
+such a point counting in a method that's polynomial in the number of
+constraints for a fixed dimension.
+
+I spent the first half of the year chugging through the book, and finally
+ended up in me giving a presentation on the material. It was really fun,
+and I got to learn a _lot_ of cool theorems about the structure of polyhedra,
+and convex geometry.
+
+I'd love to get the chance to explore this stuff in more detail at some point
+in time.
+
 
 # Physics: Gauge theory
 
@@ -149,7 +194,7 @@ Lagrangian, from which they derive _conservation laws_.  If you've
 done any physics, you'll know that conservation laws are the bread and
 butter of many deep ideas.
 
-There's a deep theorem in physics called [Noether's theorem](TODO),
+There's a deep theorem in physics called [Noether's theorem](https://en.wikipedia.org/wiki/Noether%27s_theorem),
 which precisely describes this correspondence between symmetry and
 conservation.
 
@@ -161,7 +206,7 @@ difficult the course was initially, and still am to be honest.
 Going from not knowing Maxwell's equations to knowing the version
 of Maxwell's equations written in tensorial form was quite an adventure
 to say the least, but the course paid off. I know believe I know what
-[symmetry breaking](TODO) means (handwavily), and that makes me happy.
+symmetry breaking means (handwavily), and that makes me happy.
 
 - [Link to my incomplete, poorly written lecture notes](https://github.com/bollu/subject-notes/blob/master/physics/main.pdf)
 
@@ -386,6 +431,8 @@ responses to the scientific method. (Drop me an email at `<siddu.druid@gmail.com
 if you have suggestions, please)
 
 
+
+The barvinok algorithm 
 
 # Linguistics
 
