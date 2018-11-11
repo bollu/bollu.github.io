@@ -403,7 +403,7 @@ Another way of looking at this is:
 This appeals to the [intuitionist]() in me, where `not(not (false)) != true`.
 
 
-## Paul ferdinand, against method
+## Paul Feyerabend, against method
 
 This is an amazing book with a really cool viewpoint: The book argues
 that "the scientific method" as is carried out in practise is an inherently
