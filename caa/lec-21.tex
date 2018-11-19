@@ -1,0 +1,135 @@
+\chapter{Approximation Algorithms}
+
+Assume we have a problem that is hard (\nptime-complete, \nptime-hard, etc). Many practical
+problems are such. No hope of solving them efficiently unless $\ptime = \nptime$
+
+Let $P$ be a problem, and $A$ be an approximation algorithm for the given problem.
+Let us say that the problem $P$ is a minimizing problem. The the performance of
+algorithm $A$ for $P$ is measured as an approximation ratio:
+
+for an instance $I \in P$, $OPT(I) \equiv \text{best possible solution}$.
+Let $A(I)$ denote the solution produced by algorithm $A$, and $| \cdot |: Solution \to \mathbb{R}$ be
+the function that maps solutions to a measure of how good the solution is.
+We are trying to minimize $|A(I)|$.
+
+The approximation ratio of algorithm $A$ is:
+
+$$
+\max_{I \in P} \frac{|A(I)|}{|OPT(I)|}
+$$
+
+Since we are minimizing, $|OPT(I)| \leq |A(I)|$, hence the approximation ratio
+will always be $\geq 1$. Hence, we take the maximum, to consider the worst
+possible penalty.
+
+In the case of maximization problem, the approximation ratio is flipped.
+
+\section{Load balancing}
+
+Consider machines $M_1, M_2, \dots M_m$ that are identical in all respects.
+We have $n$ jobs $J_1, J_2, \dots J_n$ to be processed and any job can 
+be processed by any machine.
+
+Our goal is to \textbf{minimize the time} spent by any machine.
+
+
+Let $A(i)$ be the jobs assigned to macine $M_i$. $$A: i \to 2^{jobs}$$
+
+Job $i$ has a time requirement $t_i: jobs \to \mathbb{R}$, $i \in [1\dots n]$
+
+The makespace of a machine $M_i$ is $$T_i \equiv \sum_{j \in A(i)} t_j$$
+
+We are trying to \textbf{minimize the largest makespan},
+$$
+T = \max_i T_i
+$$
+
+\subsection{Analyzing optimal makespan}
+
+Let $T^*$ be the best possible makespan.
+
+
+We start with two observations that help us prove the approximation ratio
+of the greedy algorithm.
+
+\begin{itemize}
+\item \textit{Observation 1:} $$T^* \geq \frac{1}{m} \sum_{j=1}^m t_j$$
+Since there is a total work of $\sum_{j=1}^m t_j$, any machine will have
+to work over $\frac{1}{m}$ fraction of the total.
+
+\item \textit{Observation 2:} $$T^* \geq \max_j T_j$$
+We will have to work for at least $\max_j T_j$ units of time.
+\end{itemize}
+
+\subsection{Greedy algorithm}
+Assignmen the next job to the machine thta is presently least loaded. Since
+all jobs are available at the begninning, we can plan an assignment.
+
+\begin{minted}{py}
+def greedy_assign(jobs, m):
+ A = [[] for _ in range(m)]
+ T = dict([(i, 0) for i in range(m))]
+\end{minted}
+
+\subsubsection{Analysis of greedy algorithm}
+
+Consider the machine with the largest makespace according to the assignment
+produced by the greedy algorithm. Let this machine be $M_i$, with makespan $T_i$.
+
+Let $t_j$ be the last job assigned to $M_i$.
+
+Why did we assign $t_j$ to $M_i$? We did because $M_i$ had the \textit{least load}
+\textbf{just before} assigning $t_j$ to $M_i$.
+
+The load of assigning $M_i$ before $t_j$ is $T_i - t_j$. Also, at this time,
+everybody else has a makespan $T_k \geq T_i - t_j$. So, the sum of the time
+for all jobs is lower bounded as follows:
+
+\begin{align*}
+\sum_{j=1}^m T_j \geq m(T_i - t_j) \\
+T_i - t_j \leq \frac{1}{m} \sum_{j=1}^m t_j \leq T^*
+\end{align*}
+
+Further, notice that $t_j \leq T^*$, so use Observation 2.
+
+\begin{align*}
+T_i = (T_i - t_j) + t_j \leq T^* + T^* = 2T^*
+\end{align*}
+
+Hence, $\forall i, T_i \leq 2 T^*$
+
+\subsection{Analyzing the sorting algorithm}
+
+Convince yourself that sorting does not produce the best possible solution.
+\textbf{TODO: try this!}
+\begin{minted}{py}
+7 3 | 10
+3 3 | 6
+3 3 | 6
+
+3 3 3 | 9
+7
+3 3 | 6
+
+7 3 3 3 3 3
+
+7
+3 3
+3 3 3
+\end{minted}
+
+Let us consider the case where we have more jobs than machines.
+
+In any assignment, the job $t_{m+1}$ in sorted order
+is given to some machine that already has one additional job
+that is at least as long as $t_{m+1}$.
+
+Note that for machine $M_i$ that has the largest makespan, if $t_j$
+is the last job assignment to $M_i$, $t_j \leq t_{m+1}$
+
+From the previous, $t_{m+1} \leq \frac{1}{2} T^*$
+
+Now, $$T_i = (T_i - t_j) + t_j  \leq T^* + \frac{1}{2} T^* = \frac{3}{2} T^*$$
+
+
+
