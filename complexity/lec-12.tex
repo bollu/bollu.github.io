@@ -44,3 +44,33 @@ $$\forall~\pptm~A, \bigg| P_{x \in \text{uniform}~\{0, 1\}^s}[A(D(x)=1] - P_{x\i
 (We can easily create hard problems that is hard for everyone else but easy for us)
 \end{itemize}
 
+
+\section{Constructing PRNG from ONF}
+
+
+\begin{align*}
+h(x, r) = \sum_{i=0}^{|x| - 1} x_i r_i ~\text{(mod $2$)} \\
+r_i \leftarrow_{random} \{ 0, 1\}^{|x|}
+\end{align*}
+
+We can show that $h$ is a hardcore predicate for any one-way function:
+\begin{align*}
+    P[A(f(x)) = h(x)] \leq \frac{1}{2} + negl(|x|)
+\end{align*}
+
+If you  give me a strategy to find $f(x)$ given $h(x)$ which is better than
+guessing, I can use this to guess $f(x)$.
+
+$$
+A(f(x, r)) = h(x, r)
+$$
+
+\begin{align*}
+    &A(f(x, \langle 1 0 0 \dots 0 \rangle)) = h(x, \langle 1 0 0 \dots 0 \rangle) = x_0 \\
+    &A(f(x, \langle 0 1 0 \dots 0 \rangle)) = h(x, \langle 0 1 0 \dots 0 \rangle) = x_1 \\
+    &\dots 
+\end{align*}
+
+So, we can extract all $x_i$ in $|x|$ time.
+
+

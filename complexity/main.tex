@@ -100,4 +100,22 @@
 \include{lec-11}
 \include{lec-12}
 
+\chapter{Review}
+\section{PH}
+\subsection{$\nptime = \conptime$ implies that PH collapses}
+\subsection{$\text{\ppoly} \subset \nptime$ implies PH collapses to level 2}
+intuitiion: ppoly's advice string lets us do something like quantifier
+exchange, since it gives us an outer there exists for the advice string,
+which can be guessed by and $NP^{NP}$ oracle. Also relies on the trick that
+$\exists = \lnot \forall$, and you can not in this case due to being oracle call.
+\section{BPP}
+\subsection{BPP subset P/poly}
+Intuition: can guess random seeds that are good for \emph{all} inputs.
+\subsection{$BPP \subset \Sigma_p^2 \cap \Pi_p^2$}
+Intutiion: can show we can find some $u_i$ to spread randomness around.
+If we are on the accept side, the good seeds are large enough that we
+can use randomness to cover the full set. If we are on the bad side, the
+spreading with $u_i$ will not let us cover enough ground. So, we can 
+convert it to $\exists u_i, \forall x_i, ...$ which is a PH style problem.
+
 \end{document}
