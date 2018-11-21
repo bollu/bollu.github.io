@@ -157,6 +157,10 @@ Assume PH collapses for level i. Level i+1,
 - but then prob'(x1) ∈ PI_i. Hence, by induction hypothesis, prob' ∈ NP.
 - That means that we can write it prob'(x1) = exists x', M'(x1)(x')
 
+
+- but then prob'(x1) ∈ PI_i. Hence, by induction hypothesis, prob' ∈ NP.
+- That means that we can write it prob'(x1) = exists x', M'(x1)(x')
+
 - prob = exists x1, prob'(x1)
 - prob = exists x1, exists x', M'(x1)(x')
 - prob = exists (x1, x'), M'(x1)(x')
@@ -194,11 +198,37 @@ cycle<--------------------------------*
 x1--> x2--> x3--> x --> x --> ... --> xn
 ```
 
-TODO
+
+```
+*-----*-----*-----*-------------------*
+|     ^     ^     ^                   ^ 
+v     |     |     |                   |
+x1--> x2--> x3--> x --> x --> ... --> xn
+```
+
+Expected time  of reaching nth node is `T(n)`
+
+```
+T(n) = T(n - 1) + 1/2 * T(n) + 1/2 * 1
+2T(n) = 2T(n-1) + T(n) + 1
+T(n) = 2T(n-1) + 1
+T(2) = 1
+
+
+T(n) = 2T(n-1) + 1 <= 2T(n-1)
+```
+
+On solving,
+
+```
+T(n) = 2^(n - 1)
+```
 
 [15] 8.10 (pg 150)
 Show that GI is downward self reducible. Given the ability to solve GI on (n - 1)
 graph, solve it on n vertex graph.
+
+TODO
 
 [16] 9.5 (pg 171)
 Q. Show that if P=NP, one way functions do not exist.
@@ -217,7 +247,18 @@ one way permutation.
 [18] 9.12 (pg 172)
 Q. assuming one way functions exist, so that f^k need not be a one way function.
 
-TODO
+
+Let g be a one way function, g: {0, 1}^n -> {0, 1}^n. Now, f : {0, 1}^2n -> {0, 1}^2n,
+f(x1 x2) = 0^n || g(x1).
+
+f is one way.  proof: assume f is not. That means an adversary can find a pre image
+of f using a PPTM in poly(2n) time. Hence, we can use this to invert g, by passing
+f^-1 (0^n || g(x1)) = x1 x2. We can recover x1 efficiently since f^-1 is efficient.
+CONTRADICTION since g is one way.
+
+Now notice that f(f(x1 x2)) = f(0^n || g(x1)) = f(0^n || f(0^n)) = constant. which
+is not a one way function.
+
 
 [19] 10.6 (pg 204)
 Q. Take a 2 qubit system in an arbitrary state. show that the following all yield
@@ -226,14 +267,27 @@ the same answer:
 2. first measure the 1st qubit and output it, then measure the 2nd qubit and output it
 3. first measure the 2st qubit and output it, then measure the 1st qubit and output it
 
-A. let arbitrary state S = a00 + b01 + c10 + d11.  Assume a+b+c+d=1 WLOG
+A. let arbitrary state S = a00 + b01 + c10 + d11.
 
-1. Probability of each state is {a, b, c, d}. 
-2. Measure first qubit. Probaility of 1st qubit being 0 is a+b. New state is
-    (a+b)0 + 1) + (c+d)(1
+- Probability of each state is {a, b, c, d}. 
+- Measure first qubit. Probaility of 1st qubit being 0 is:
+      P1 =  a^2+b^2/(a^2 + b^2 +c^2 + d^2)
+- New stat is: a/sqrt(a^2+b^2) 00 + b/sqrt(a^2+b^2) 01
+    probability of 1st qubit being 0:
+    P2 = a^2 /a^2 + b^2
+
+- Total prob: P1 P2 = a^2 /(a^2 + b^2 + c^2 + d^2) = prob of measure 00 in S.
+
+Same argument for everything else.
+    
+
+
 
 
 [20] 10.16 (pg 204)
 suppose `j, r <= N` are mutually coprime, and are unknown to us. Show that
-if the first `2 log N` bits are known of `j, r`, we can then regain it in 
+if the first `2 log N` bits are known of `j/ r`, we can then regain it in 
 poly time.
+
+TODO
+ 
