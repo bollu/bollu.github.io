@@ -10,7 +10,16 @@ Questions from aroara barak compexity theory, first edition.
 (g) f (n) = 3f (n/2).
 (h) f (n) = 2f (n/2) + O(n^2 ).
 
-TODO
+
+A.
+a) f(0) = 1; f(1) = 1 + 10; f(2) = 1 + 2*10; f(n) = 1 + 10*n
+b) f(0) = 1; f(1) = 1 + 1; f(2) = 1 + 1 + 2; f(n) = 1 + n (n+1)/2
+c) f(0) = 1; f(n) = 2^n;
+d) f(n) = 10[n] + 10[n/2] + 10[n/4] + .. + 10[i] = `10 log n`
+e)f(n) = n + n/2 + n/4 + ... =  n(1 + 1/2 + 1/4 + ... + 1/2^k)
+f) f(n) = 2f(n/2) + 3 = 4f(n/4) + 6 = 8f(n/8) + 9 = 16f(n/16) + 12 = 2^k f(n/(2^k)) + 3k = 2^(log n) + 3 (log n)
+g) f(n) = 3f(n/2) = 3 * 3* f(n/4) = 3^kf(n/2^k) = 3^log n
+h) f(n) = O(n^2) + 2(O(n/2)^2) + 4 (O(n/4)^2) + .. = O(n^2)
 
 [2] 1.15 (pg 33)
 Q. 1. Show that choosing a different base of representation will make no difference to the class P.
@@ -31,7 +40,6 @@ HALT = take `<a, x>`. Return 1 if `M_a, x` halts, 0 otherwise. `M_a` is the
 the string `a` interpreted as a machine.
 
 show that HALT is NP hard. is it NP complete?
-
 
 A. reduce 3SAT to HALT. Encode a machine that tries all possible assignments.
 Halts if it solves, does not halt if it does not. invoke HALT.
@@ -115,14 +123,27 @@ A. Create an undecidable function.
 [9] 4.4 (pg 83)
 Q. Show that following language is NL complete: G: G is a strongly connected digraph
 
-A. TODO
+A. 1. STRONGLYCONNECTED ∈ NL. Pick two vertices, check PATH on them. If PATH
+returns 0, return FALSE. retur TRUE if we exhaust all vertices. only need 2
+pointers into V.
+A. 2 reducing PATH to STRONGLYCONNECTED. On asked PATH(G, s, t), make a new graph
+G' = G, and for each i in V, add edges `i->s`, `t->i` into G'. 
+
+- Now, if `s` and `t` HAVE a path between them, there exists a path for any two vertices `i`
+`j` as `i->s->t->j` and `j->s->t->i`
+
+- if `s` to `t` does NOT have a path, then the graph `G'` will not be strongly
+conneced, since:
+    - G was not (if it was, there would be a path from `s` to `t`, contradiction)
+    - we only added paths from `i->s` and `t->i`, so there cannot be new ways
+    from `s -> t`, because we only added `*->s` and `t->*`, NOT `s->*->t`.
 
 
 [10] 4.5 (pg 83)
 Q. Show that 2SAT is in NL.
 
 A. Convert 2SAT to implication graph, now check for cycles. Use bar(PATH). If 
-there are no cycles, then output 1.
+there are no cycles, then output 1. (TODO: flesh out details)
 
 [11] 5.3 (pg 92)
 Q. Show that if 3SAT is a polynomial time reducible to 3SATbar, then PH = NP.
@@ -145,9 +166,14 @@ Assume PH collapses for level i. Level i+1,
 
 
 [12] 5.10 (pg 93)
-Let A be a language such that P^A = NP^A. Then show that PH \subset P^A
+Q. Let A be a language such that P^A = NP^A. Then show that PH \subset P^A
 
-TODO
+A. Induction of PH. assume it holds till level (i - 1). That is, SIGMA_i \subset P^A, PI_i \subset P^A.
+
+- PROB = E x1, FA x2, E x3, ... M(x1, x2, ... , xn), PROB ∈ SIGMA_{i+1}
+- PROB'(x1) = FA x2, E x3, ... M(x1, x2, ..., xn). PROB'(x1) ∈ PI_i = P^A
+- PROB' ∈ P^A => exists M'. M'(m1, x2, ... xn) solves the problem in P with queries to A.
+- PROB = E x1, M'(m1, m2, ... xn) = NP^A = P^A.
 
 
 [13] 6.3 (pg 107)
@@ -190,6 +216,8 @@ one way permutation.
 
 [18] 9.12 (pg 172)
 Q. assuming one way functions exist, so that f^k need not be a one way function.
+
+TODO
 
 [19] 10.6 (pg 204)
 Q. Take a 2 qubit system in an arbitrary state. show that the following all yield
