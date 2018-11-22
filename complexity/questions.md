@@ -1,4 +1,4 @@
-Questions from aroara barak compexity theory, first edition.
+Questions from Arora-Barak complexity theory, first edition.
 
 [1] 0.2 (pg 10)
 (a) f (n) = f (n − 1) + 10.
