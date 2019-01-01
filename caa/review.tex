@@ -1,0 +1,90 @@
+\chapter{Review}
+
+\section{Prefix computation}
+build prefix tree, compute elements using prefix tree.
+Takes $\log n$ time, since height is $\log n$.
+
+\section{Work and optimality}
+Work is the sum of the time taken by each processor. Represents the total
+time performing the same algorithm sequentially would have taken. Parallel
+algorithm is optimal if sequential time = work of parallel algorithm. (We
+motiviate this definition by noticing that if the number of processors is 1,
+we want the parallel algorithm to degrade to a good sequential algo. Which does
+happen in this case.
+
+\subsection{Merging in parallel: Take 1: Naive}
+Say we are merging \textit{two sorted} arrays $A$, $B$ into $O$. Notice that
+$$Rank(x, O) = Rank(a, O) + Rank(b, O)$$.
+($Rank(x, X) \equiv \text{position of element $x$ when $X$ is sorted}$).
+Hence, we can in parellel compute $Rank(a, O) \forall a \in A$. T.his take $\log$-time
+with binary search. Total time is log. Work is $n \log n$, which is non-optimal.
+
+\subsection{Merging in parallel: Take 2: Split problem into smaller chunks (\textbf{optimal})}
+
+Time:  binary search is $O(\log n)$, the merge is also $O(\log n)$ since each segment is that length.
+Work: $(n / \log n) \times \log n = n$, \textbf{optimal work}
+
+
+We have a solution that for an array of size $k$ takes $k \log k$ time. We want
+to solve it in total time $N$. So, we will need to split the total problem into
+size:
+
+\begin{align*}
+    &\text{suboptimal} * \text{factor} = \text{optimal} \\
+    &N \log N  \times \alpha = N
+    &\alpha = \frac{1}{\log N}
+\end{align*}
+
+So, we should cut down on the problem size by a factor of $\alpha = 1/\log n$.
+This means that we should be solving problems of size $O(n / \log n)$.
+
+
+We pick every $\log n$th element of $A$, call this array $\alpha$.  
+\begin{align*}
+&\alpha[i] = A[\log n \cdot i] \\
+&|\alpha| = n / \log n
+\end{align*}
+
+Each segment $[\alpha[i], \alpha[i+1]]$ has an associated segment in A and in B. 
+
+In A, it's the segment $[A[i \log n], \dots, A[(i + 1) \log n]$.
+
+In B, it's $[B[Rank(\alpha[i], B)], \dots B[rank(\alpha[i+1], B)]]$.
+
+We propose to find the segment corresponding to $\alpha[i], \alpha[i+1]$ in $B$,
+and then merging sequentially. Time taken is: $O(\log n + (rank(\alpha[i+1], B) - rank(\alpha[i], B))$
+
+The problem is that we are unable to control the size of the segment in $B$.
+
+If the size of the $B$ segment is larger than $n / \log n$, then let $B$
+take the place of $A$, and partition $A$ according to $B$.
+
+
+\begin{align*}
+\end{align*}
+
+\subsection{Tangent: finding minima of $n$ elements}
+CRCW, $O(1)$ time, $O(n^2)$ work.
+
+Compare each $A[i], A[j]$ for each $(i, j)$. From this, identify minima.
+Write $A[i]$ whenever $A[i] < A[j]$. Use \texttt{MAJORITY} voting scheme.
+Minima will win vote.
+
+
+\subsection{Tangent: finding minima of $n$ elements, faster}
+CRCW, $O(\log \log n)$ time, $O(n \log \log n)$ work.
+
+We use a doubly logarithmic tree. Number of leaf nodes: $l = 2^2^k$. The root node
+has \sqrt(l) = 2^{2^{k-1}} children. In general, node at level $i$ has $l / 2^{i - 1}$ nodes,
+for $0 \leq i \leq k - 1$. Node at level $k$ has two leaf nodes. Total depth: $k + 1$.
+
+
+
+\subsection{Better optimal algorithm for merging in parallel}
+time: $O(\log \log \log n) + O(\log \log n)$. Total work: $O(n)$, CRCW model.
+
+\subsection{List ranking}
+Rank elements in a linked list.
+Use pointer jumping.
+
+
