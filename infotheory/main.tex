@@ -9,6 +9,7 @@
 %\documentclass[10pt]{llncs}
 %\usepackage{llncsdoc}
 \usepackage{amsmath,amssymb}
+\usepackage{amsthm}
 \usepackage{graphicx}
 \usepackage{makeidx}
 \usepackage{algpseudocode}
@@ -89,7 +90,7 @@
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{observation}[theorem]{Observation}
-\newtheorem{proof}[theorem]{Proof}
+%\newtheorem{proof}[theorem]{Proof}
 
 \renewcommand{\H}{\ensuremath{H}}
 \newcommand{\E}{\ensuremath{\mathbb{E}}}
@@ -97,6 +98,7 @@
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
 \newcommand{\Z}{\ensuremath{\mathbb{Z}}}
 \newcommand{\KL}[2]{\ensuremath{D(#1 || #2)}}
+\newcommand{\I}{\ensuremath{I}}
 
 \title{Information theory}
 \author{Siddharth Bhat}
@@ -146,6 +148,63 @@ which is $\infty$. This is intuitively sensible, since $X'$ has no way to repres
 $x$, and hence $X'$ is \textit{infinitely far away from encoding $X$}. However,
 In this same case, one could have that $X$ is able to encode all of $X'$.
 
+\begin{definition}
+    Mutual information: \I(X;Y): This is the relative entropy between the
+    joint and product distributions.
+
+    \begin{align*}
+        \I(X;Y) &\equiv \KL{p(x, y)}{p(x)p(y)} \equiv H(X) - H(X|Y) \\
+                &= \sum_x \sum_y p(x, y) \log \frac{p(x, y)}{p(x)p(y)}
+    \end{align*}
+    
+\end{definition}
+
+\begin{theorem}
+    Proof of equivalence of two definitions of mutual information:
+\end{theorem}
+\begin{proof}
+    \begin{align*}
+        &\I(X;Y)  = \sum_x \sum_y p(x, y) \log \frac{p(x, y)}{p(x)p(y)} \\
+        &= \sum_x \sum_y p(x, y) \log \frac{p(x|y)}{p(x))} \\
+        &= - \sum_x \sum_y p(x, y) \log p(x) - \big[ - \sum_x \sum_y p(x, y) \log p(x|y) \big] \\
+        &= - \sum_x p(x) \log p(x) - \big[ - \sum_y \sum_x p(x, y) \log p(x|y) \big] \\
+        &= - \sum_x p(x) \log p(x) - \big[ - \sum_y p(y) \sum_x \log p(x|y) \big] \\
+        &= \H(X) - H(X|Y)
+    \end{align*}
+\end{proof}
 
 
+Some notes about mutual information:
+\begin{itemize}
+    \item $I(X; Y) = I(Y;X)$. That is, $I$ is symmetric.
+
+    \item Since $I(X;Y) = H(X) - H(X|Y)$, one can view it as the reduction
+        in \textit{uncertainity} of $X$, after knowing $Y$. Another way of
+        saying this is, what is the expected reduction in the number of
+        yes/no questions to be answered to isolate the value of $X$ on knowing
+        the value of $Y$.
+
+    \item $I(X;Y) = 0$ iff $X, Y$ are independent. That is, knowing $X$ reduces
+        no uncertainity about $Y$.
+
+    \item $I(X;X) = H(X)$. So, knowing $X$ allows us to reduce our uncertainity
+        of $X$ by $H(X)$. ie, we completely know $X$, since we have
+        \textit{reduced our uncertainity of X} which was initially $H(X)$, by $H(X)$.
+
+\end{itemize}
+
+\begin{theorem}
+    Chain rule for entropy: Let $X_1, X_2, \dots X_n \sim p(x_1, x_2, \dots, x_n)$
+    Then:
+    \begin{align*}
+        \H(X_1, X_2, \dots X_n) = \sum_i \H(X_i | X_{i-1}, X_{i-2}, \dots X_1)
+    \end{align*}
+\end{theorem}
+\begin{proof}
+    \begin{align*}
+    &\H(X_1, X_2) = \H(X_1) + \H(X_2 | X_1) \\
+    &\H(X_1, X_2, X_3) = \H(X_1) + \H(X_2, X_3 | X_1) = \H(X_1) + H(X_2 | X_1) + H(X_3 | X_2, X_1) \\
+    &\dots
+    \end{align*}
+\end{proof}
 \end{document}
