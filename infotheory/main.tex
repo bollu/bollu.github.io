@@ -1,0 +1,131 @@
+\documentclass[11pt]{book}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+
+%\documentclass[10pt]{llncs}
+%\usepackage{llncsdoc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{listing}
+\usepackage{comment}
+\evensidemargin=0.20in
+\oddsidemargin=0.20in
+\topmargin=0.2in
+%\headheight=0.0in
+%\headsep=0.0in
+%\setlength{\parskip}{0mm}
+%\setlength{\parindent}{4mm}
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{8.5in}
+%\leftmargin -2in
+%\setlength{\rightmargin}{-2in}
+%\usepackage{epsf}
+%\usepackage{url}
+
+
+
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+\usepackage{minted}
+%\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+}
+
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+
+\def\qed{$\Box$}
+
+%\newcommand{\NP}{\texttt{NP}}
+%\newcommand{\PSPACE}{\texttt{PSPACE}}
+%\newcommand{\NPSPACE}{\texttt{NPSPACE}}
+%\newcommand{\TQBF}{\texttt{TQBF}}
+
+\newcommand{\nptime}{\texttt{NP}}
+\newcommand{\ptime}{\texttt{P}}
+\newcommand{\coptime}{\texttt{co-P}}
+\newcommand{\conptime}{\texttt{co-NP}}
+\newcommand{\dspace}{\texttt{DPSACE}}
+\newcommand{\pspace}{\texttt{PSPACE}}
+\newcommand{\logspace}{\texttt{L}}
+\newcommand{\nlogspace}{\texttt{NL}}
+\newcommand{\conlogspace}{\texttt{co-NL}}
+\newcommand{\ph}{\texttt{PH}}
+\newcommand{\pathproblem}{\texttt{PATH}}
+\newcommand{\copathproblem}{\overline{\texttt{PATH}}}
+\newcommand{\clique}{\texttt{CLIQUE}}
+\newcommand{\maxclique}{\texttt{MAXCLIQUE}}
+\newcommand{\sat}{\texttt{SAT}}
+\newcommand{\phtime}{\texttt{PH}}
+\newcommand{\ppoly}{$\texttt{P}^{\texttt{poly}}$}
+\newcommand{\pathbar}{$\overline{\texttt{PATH}}$}
+\newcommand{\problempath}{\texttt{PATH}}
+\newcommand{\ip}{\texttt{IP} }
+\newcommand{\rp}{\texttt{RP} }
+\newcommand{\corp}{\texttt{co-RP} }
+\newcommand{\zp}{\texttt{ZP} }
+\newcommand{\maxsat}{\texttt{MAXSAT} }
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{proof}[theorem]{Proof}
+
+\renewcommand{\H}{\ensuremath{H}}
+\newcommand{\E}{\ensuremath{\mathbb{E}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+
+\title{Information theory}
+\author{Siddharth Bhat}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Preliminary definitions}
+
+\begin{definition}
+    Entropy(\H): The entropy of a random variable $X$ with probability
+    distribution $p: X \rightarrow \R $ is defined as:
+    \begin{align*}
+        \H(X) \equiv - \sum_{x \in X} p(x) \log p(x) = \E[- \log \circ p]
+    \end{align*}
+\end{definition}
+
+\begin{definition}
+    Condtional entropy($\H(X|Y)$): The conditional entropy of a random 
+    variable $X$ with respect to another variable $Y$ is defined as:
+    \begin{align*}
+        \H(X|Y) \equiv &- \sum_{y \in Y} p(y) \H(X|Y=y) \\
+                       &= \sum_{y \in Y} p(y) \sum_{x \in X} - p(x|y) \log p(x | y)\\
+                       &= \sum_{y \in Y} \sum_{x \in X} - p(y) p(x|y) \log p(x | y)\\
+                       &= \sum_{y \in Y} \sum_{x \in X} - p(y \land x) \log p(x | y)\\
+    \end{align*}
+\end{definition}
+
+
+
+\end{document}
