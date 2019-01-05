@@ -1,3 +1,4 @@
+% // https://tex.stackexchange.com/questions/59702/suggest-a-nice-font-family-for-my-basic-latex-template-text-and-math
 \documentclass[11pt]{book}
 \usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
 \linespread{1.025}              % Palatino leads a little more leading
@@ -95,6 +96,7 @@
 \newcommand{\R}{\ensuremath{\mathbb{R}}}
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
 \newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\KL}[2]{\ensuremath{D(#1 || #2)}}
 
 \title{Information theory}
 \author{Siddharth Bhat}
@@ -125,6 +127,24 @@
                        &= \sum_{y \in Y} \sum_{x \in X} - p(y \land x) \log p(x | y)\\
     \end{align*}
 \end{definition}
+
+\begin{definition}
+    Kullback-Leibler divergence \KL{X}{Y}: The Kullback-Leibler divergence
+    of $X \sim p $ with respect to $X' \sim q$ is:
+    \begin{align*}
+        \KL{X}{X'} \equiv \sum_{x \in X} p(x) \log \frac{p(x)}{q(x)}
+    \end{align*}
+\end{definition}
+
+Note that \KL{X}{X'} is \emph{not symmetric}.
+
+Intuition: extra cost of encoding $X$ if we thought the distribution were $X'$.
+
+Useful extremal case to remember: Assume $X'$ has $q(x) = 0$ for some
+letter $x \in X$. In this case, $\KL{X}{X'}$ would involve a term $\frac{p(x)}{0}$,
+which is $\infty$. This is intuitively sensible, since $X'$ has no way to represent
+$x$, and hence $X'$ is \textit{infinitely far away from encoding $X$}. However,
+In this same case, one could have that $X$ is able to encode all of $X'$.
 
 
 
