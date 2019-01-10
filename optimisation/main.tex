@@ -192,5 +192,58 @@ integer solution?
 
 So, we managed to start from an \lp~solution, and then \textit{unrelax} it to
 construct an \ip~solution from it!
+
+\section{Min vertex cover}
+$G\equiv (V, E)$. We want to pick the smallest $F \subseteq V$, such that one end
+of all edges is in this cover.
+\[ \forall (u, v) \in E, u \in F \lor v \in F \]
+Intuitively, these vertices $f \in F$ are watching over the edges, and each
+edge must be watched by at least one vertex.
+
+TODO: add tikz picture
+
+
+\begin{align*}
+    &\text{Integer program for the problem:} \\
+    &x_v \in \{0, 1\}~\forall v \in V \qquad
+    \min \sum x_v \qquad
+    \forall (u, v) \in E, x_u + x_v \geq 1
+\end{align*}
+
+\begin{align*}
+    &\text{LP relaxed program for the problem:} \\
+    &x_v \in [0, 1]~\forall v \in V \qquad
+    \min \sum x_v \qquad
+    \forall (u, v) \in E, x_u + x_v \geq 1
+\end{align*}
+
+From the LP, we construct:
+\begin{align*}
+    S_\lp \equiv \bigg\{ u ~\bigg|~ x_u^* \geq \frac{1}{2} \bigg\} \qquad
+    \text{Claim: $S_\lp$ is a vertex cover}
+\end{align*}
+
+For each edge $(u, v) \in E$, since $u + v \geq 1$, we \textit{cannot have that}
+$x_u < 0.5 \land x_v < 0.5$, since then $x_u + x_v < 1$. Hence, each
+edge will have one of its vertices with $x_{vertex} \geq 0.5$, and thus
+$S_\lp$ is \textbf{a} vertex cover.
+
+We now show \textbf{optimality} of $S_\lp$.
+
+\begin{align*}
+    &\lp \leq \ip \qquad \text{since the problem is a minimization problem} \\
+    &\sum_{u \in V} x_u \leq \sum_{u \in V} y_u \qquad \text{$x$ is \lp~solution, $y$ is \ip~solution} \\
+    &|S_\lp| = \sum_{x \in S_\lp} 1 \text{(counting})\leq 
+    \sum_{u\in S_\lp} 2 x_u  \text{(definition of $S_\lp$)} \leq
+    \sum_{u \in V} 2 x_u \text{(enlarging $S_\lp$ to $V$)} \leq
+        \sum_{u \in V} 2 y_u = 2|s_{opt}| \\
+    &|S_{opt}| \leq S_\lp \leq 2 |S_{opt}|
+\end{align*}
+
+So, we are at worst twice the size of the best vertex cover.
+
+\section{Maximum independent set}
+HOMEWORK: read how this can be phrased as \lp
+
 \end{document}
 
