@@ -1,14 +1,21 @@
+% // https://tex.stackexchange.com/questions/59702/suggest-a-nice-font-family-for-my-basic-latex-template-text-and-math
 \documentclass[11pt]{book}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+
 %\documentclass[10pt]{llncs}
 %\usepackage{llncsdoc}
 \usepackage{amsmath,amssymb}
+\usepackage{amsthm}
 \usepackage{graphicx}
 \usepackage{makeidx}
 \usepackage{algpseudocode}
 \usepackage{algorithm}
 \usepackage{listing}
 \usepackage{comment}
-\usepackage{physics}
 \evensidemargin=0.20in
 \oddsidemargin=0.20in
 \topmargin=0.2in
@@ -44,17 +51,52 @@
 \usepackage{epsfig}
 \usepackage{tabularx}
 \usepackage{latexsym}
-\newtheorem{lemma}{Lemma}
-\newtheorem{observation}{Observation}
-\newtheorem{proof}{Proof}
 \newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
 
 \def\qed{$\Box$}
-\def\proof{\textit{Proof. }}
-\newtheorem{corollary}{Corollary}
-\newtheorem{theorem}{Theorem}
 
-\title{Optimisation Methods - Jawahar}
+%\newcommand{\NP}{\texttt{NP}}
+%\newcommand{\PSPACE}{\texttt{PSPACE}}
+%\newcommand{\NPSPACE}{\texttt{NPSPACE}}
+%\newcommand{\TQBF}{\texttt{TQBF}}
+
+\newcommand{\nptime}{\texttt{NP}}
+\newcommand{\ptime}{\texttt{P}}
+\newcommand{\coptime}{\texttt{co-P}}
+\newcommand{\conptime}{\texttt{co-NP}}
+\newcommand{\dspace}{\texttt{DPSACE}}
+\newcommand{\pspace}{\texttt{PSPACE}}
+\newcommand{\logspace}{\texttt{L}}
+\newcommand{\nlogspace}{\texttt{NL}}
+\newcommand{\conlogspace}{\texttt{co-NL}}
+\newcommand{\ph}{\texttt{PH}}
+\newcommand{\pathproblem}{\texttt{PATH}}
+\newcommand{\copathproblem}{\overline{\texttt{PATH}}}
+\newcommand{\clique}{\texttt{CLIQUE}}
+\newcommand{\maxclique}{\texttt{MAXCLIQUE}}
+\newcommand{\sat}{\texttt{SAT}}
+\newcommand{\phtime}{\texttt{PH}}
+\newcommand{\ppoly}{$\texttt{P}^{\texttt{poly}}$}
+\newcommand{\pathbar}{$\overline{\texttt{PATH}}$}
+\newcommand{\problempath}{\texttt{PATH}}
+\newcommand{\ip}{\texttt{IP} }
+\newcommand{\rp}{\texttt{RP} }
+\newcommand{\corp}{\texttt{co-RP} }
+\newcommand{\zp}{\texttt{ZP} }
+\newcommand{\maxsat}{\texttt{MAXSAT} }
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{observation}[theorem]{Observation}
+%\newtheorem{proof}[theorem]{Proof}
+
+\renewcommand{\ip}{\texttt{IP}}
+\newcommand{\lp}{\texttt{LP}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+
+\title{Information theory}
 \author{Siddharth Bhat}
 \date{}
 
@@ -62,6 +104,30 @@
 
 \maketitle
 \tableofcontents
-\include{lec-1}
 
+\chapter{\lp-relaxation}
+
+We know that $z^*_\ip \leq z^*_\lp$. We can solve an \lp problem using
+a solver.
+
+\section{Bipartite Matching}
+Let $G \equiv (V \equiv X \cup Y, E \subseteq X \times Y, w: E \rightarrow \R)$. We wish 
+to find $M \subseteq E$ such that:
+
+\begin{align*}
+\max_{e \in M} w_e \\
+\end{align*}
+
+Can be transformed to:
+\begin{align*}
+    &\max_{e \in E} x_e w_e \qquad x_e \in \{0, 1\} \\
+    &\sum_{e \in E, e = (v, v')} x_e = 1 \qquad \forall v \in V
+\end{align*}
+Where the $x_e$ are variables to be discovered.  
+We can now LP relax this, where $x_e \ [0, 1]$:
+\begin{align*}
+    &\max_{e \in E} x_e w_e \qquad x_e \in [0, 1] \\
+    &\sum_{e \in E, e = (v, v')} x_e = 1 \qquad \forall v \in V
+\end{align*}
 \end{document}
+

@@ -204,7 +204,25 @@ Some notes about mutual information:
     \begin{align*}
     &\H(X_1, X_2) = \H(X_1) + \H(X_2 | X_1) \\
     &\H(X_1, X_2, X_3) = \H(X_1) + \H(X_2, X_3 | X_1) = \H(X_1) + H(X_2 | X_1) + H(X_3 | X_2, X_1) \\
-    &\dots
+    &\text{induction for the rest}
     \end{align*}
+\end{proof}
+
+\begin{definition}
+    Conditional mutual information: Conditional mutual information of random
+    variables $X$ and $Y$ given $Z$ is:
+    \begin{align*}
+        \I(X; Y | Z) \equiv \H(X|Z) - \H(X|Y, Z)
+    \end{align*}
+\end{definition}
+
+\begin{theorem}
+    Chain rule for information:
+    \begin{align*}
+        \I(X_1, X_2, \dots X_n ; Z) = sum_i I(X_i ; Z | X_1, X_2, \dots X_{i - 1}
+    \end{align*}
+\end{theorem}
+\begin{proof}
+    TODO: finish
 \end{proof}
 \end{document}
