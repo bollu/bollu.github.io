@@ -79,7 +79,6 @@
 \newcommand{\ppoly}{$\texttt{P}^{\texttt{poly}}$}
 \newcommand{\pathbar}{$\overline{\texttt{PATH}}$}
 \newcommand{\problempath}{\texttt{PATH}}
-\newcommand{\ip}{\texttt{IP} }
 \newcommand{\rp}{\texttt{RP} }
 \newcommand{\corp}{\texttt{co-RP} }
 \newcommand{\zp}{\texttt{ZP} }
@@ -92,9 +91,11 @@
 \newtheorem{observation}[theorem]{Observation}
 %\newtheorem{proof}[theorem]{Proof}
 
-\renewcommand{\ip}{\texttt{IP}}
+\newcommand{\ip}{\texttt{IP} }
 \newcommand{\lp}{\texttt{LP}}
 \newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
 
 \title{Information theory}
 \author{Siddharth Bhat}
@@ -124,10 +125,46 @@ Can be transformed to:
     &\sum_{e \in E, e = (v, v')} x_e = 1 \qquad \forall v \in V
 \end{align*}
 Where the $x_e$ are variables to be discovered.  
-We can now LP relax this, where $x_e \ [0, 1]$:
+We can now LP relax this, where $x_e \in [0, 1]$:
 \begin{align*}
     &\max_{e \in E} x_e w_e \qquad x_e \in [0, 1] \\
     &\sum_{e \in E, e = (v, v')} x_e = 1 \qquad \forall v \in V
 \end{align*}
+How do we go from the optimal solution to this problem, to an
+integer solution?
+\begin{itemize}
+    \item Assume the \lp~is infeasible. This means that we have a vertex $u$
+        such that $\sum_{e \in E, e = (u, v)} x_e = 1$ fails. that is,
+        there's a vertex in $u$ that is not connected to $v$. In this case,
+        the \ip~is also infeasible.
+    \item Now, we know that the \lp is feasible. $a_1 \rightarrow b_1$ is
+        not saturated means that $b_1 \rightarrow a_2$ is not saturated
+        which implies that $a_2 \rightarrow b_2$ is not saturated, hence
+        $b_2 \rightarrow a_1$ is not saturated. (TODO: add tikz picture).
+        We can get a full cycle of edges with 
+        $x_e < 1, x_e \in {a_1 \rightarrow b_1 \rightarrow a_2 \rightarrow b_2 \rightarrow \dots \rightarrow b_n \rightarrow a_1}$. The number of
+        edges here will be \textit{even}. We can now pick a value $\epsilon \in (0, 1)$
+        such that:
+        \begin{align*}
+        y_e \equiv 
+        \begin{cases}
+            x_e^* + \epsilon & \text{$i$ is even, $x_e$ is in the cycle} \\
+            x_e^* - \epsilon & \text{$i$ is odd, $x_e$ is in the cycle} \\
+            x_e^* & \text{otherwise}
+        \end{cases}
+        \end{align*}
+        Note that $y_e$ is a valid solution, since we can set $\epsilon$ to
+        be smaller than the slack we had in the smallest value of $x_i$.
+        We can show that the $cost(y) \equiv \sum_{e \in E} w_e y_e$ is equal to:
+        \begin{align*}
+            cost(y) = cost(x_e^*) + \epsilon \bigg(\Delta \equiv \sum_{i=1}^n (-1)^i w(e_i) \bigg)
+        \end{align*}
+
+        Remember that $x_e^*$ is the best solution, so we can have nothing
+        better than $cost(x_e^*)$. Hence, $cost(y_e^*) \leq cost(x_e^*)$,
+        and hence, we are forced that $\Delta = 0$ (If $\Delta > 0$, pick $\epsilon > 0$,
+        if $\Delta < 0$, pick $\epsilon < 0$). 
+
+\end{itemize}
 \end{document}
 
