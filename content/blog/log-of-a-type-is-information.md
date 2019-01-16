@@ -13,6 +13,38 @@ hacker_news_id = ""
 lobsters_id = ""
 +++
 
+# Introduction
+
+I've always felt that patches / patching should have an algebraic structure,
+and I'd initially dismissed it as "yeah, patches form a group action on files,
+that's trivial".
+
+I decided that I had to implement this "trivial" idea to be sure, and this led
+me down a rabbit hole. There's something really deep going on in the theory.
+
+The reason I want such a library is to be able to write compiler passes that I
+can cheaply "speculate" on and unroll. This would be really handy to have in
+LLVM, since we do a lot of things speculatively, but there's no nice way to
+roll back. This motivation was arrived at after long discussions with a friend,
+Philip Pfaffe.
+
+Storing snapshots of the compiler state is super expensive, so we need some way
+to make it cheap if it's used at all. It would be amazing if someone could
+devise a theory that tells us how to:
+
+- Automatically derive the correct choice of a "delta / diff / patch" for a given
+type.
+
+- Use the algebraic structure (ie, a group) to simplify / collapse rewrites.
+
+- Use / exploit laziness to make sure that we don't pay for what we don't need,
+in terms of applying patches.
+
+The [`bollu/deltas`](http://github.com/bollu/deltas) package is a way for me to explore solutions in this design space.
+
+This blog post chronicles something weird that I've found, as I've tried
+to define a way to automatically derive the deltas between types.
+
 
 # The `log` of a type is the information content in it.
 
@@ -178,4 +210,51 @@ Delta(Bool, Bool)
 So, this tells us that `Delta(2, 2)` is 4, while we had previously
 concluded that `Delta(2, 2) = 2`!
 
-Clearly, something is amiss, and I can't tell why. Can you?
+So, something really weird is going on!
+
+###### Generalizing the problem:
+
+```hs
+data Plus a b = Left a | Right b
+```
+
+let's consider the general case:
+
+```hs
+Delta (Plus l r, Plus l r) = 
+    LTOR (Deltl l r) | RTOL (Deltl r l) | LTOL (Deltl l l) | RTOR (Deltl r r)
+```
+
+This matches our intuition, in that there are 4 ways to transition, and
+each of these stores is associated delta. However, specializing this
+to our case yields us back our answer of `4` for `Delta Bool Bool`.
+
+##### A possible solution
+
+On thinking about what's happening, it seems that the real issue is that
+when we have a delta between two bools, there are two parts: 
+
+```hs
+-- holds either a or b
+data Plus a b = Left a | Right b
+data Bool' = Plus One One
+
+data Bool' = Left () | Right ()
+```
+
+Let's just write down all the deltas we get:
+
+```
+Delta(Bool', Bool') = LTOR (Delta () ()) + LTOL (Delta () ()) + RTOL (Delta () ())
+  + RTOR (Delta () ()) =
+  LTOR () + LTOTL () + RLTOL () + RTOR ()
+```
+
+Notice two things:
+
+- We don't care about the distinction between `LTOR` or `RTOL`, since we *know*
+  whether we are at an `L` or an `R` when we are being *applied to something*.
+  
+- Similarly, we don't care about knowing if we were `LTOL` or `RTOR`, since 
+  we *know* whether we are at an `L` or an `R` when we started out.
+
