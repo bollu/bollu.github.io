@@ -109,7 +109,7 @@
 \maketitle
 \tableofcontents
 
-\section{Preliminary definitions}
+\chapter{Preliminary definitions}
 
 \begin{definition}
     Entropy(\H): The entropy of a random variable $X$ with probability
@@ -178,11 +178,12 @@ Some notes about mutual information:
 \begin{itemize}
     \item $I(X; Y) = I(Y;X)$. That is, $I$ is symmetric.
 
-    \item Since $I(X;Y) = H(X) - H(X|Y)$, one can view it as the reduction
-        in \textit{uncertainity} of $X$, after knowing $Y$. Another way of
-        saying this is, what is the expected reduction in the number of
-        yes/no questions to be answered to isolate the value of $X$ on knowing
-        the value of $Y$.
+    \item Since $I(X;Y) = H(X) - H(X|Y)$, one can view it as the 
+         \textit{reduction in uncertainity} of $X$, after knowing $Y$. 
+         Alternatively, (to avoid double negatives), it's the \textit{gain in
+         certainty} of $X$ after knowing $Y$.  Another way of saying this is,
+         what is the expected reduction in the number of yes/no questions to be
+         answered to isolate the value of $X$ on knowing the value of $Y$.
 
     \item $I(X;Y) = 0$ iff $X, Y$ are independent. That is, knowing $X$ reduces
         no uncertainity about $Y$.
@@ -219,10 +220,12 @@ Some notes about mutual information:
 \begin{theorem}
     Chain rule for information:
     \begin{align*}
-        \I(X_1, X_2, \dots X_n ; Z) = sum_i I(X_i ; Z | X_1, X_2, \dots X_{i - 1}
+        \I(X_1, X_2, \dots X_n ; Z) = \sum_i I(X_i ; Z | X_1, X_2, \dots X_{i - 1}
     \end{align*}
 \end{theorem}
 \begin{proof}
     TODO: finish
 \end{proof}
+
+\chapter{Variational auto encoders}
 \end{document}
