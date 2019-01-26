@@ -1,4 +1,8 @@
 \documentclass[11pt]{book}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
 %\documentclass[10pt]{llncs}
 %\usepackage{llncsdoc}
 \usepackage{amsmath,amssymb}
@@ -48,7 +52,7 @@
 \newtheorem{lemma}{Lemma}
 \newtheorem{observation}{Observation}
 \newtheorem{proof}{Proof}
-\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+
 
 \def\qed{$\Box$}
 \def\proof{\textit{Proof. }}
@@ -61,8 +65,15 @@
 
 \begin{document}
 
+% qubit
+\newcommand{\qb}[1]{\ensuremath{|#1\rangle}}
+% \newcommand{\braket}[2]{\ensuremath{\langle#1~\vert~#2\rangle}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
 \maketitle
 \tableofcontents
 \include{lec-1}
+\include{lec-2}
 
 \end{document}

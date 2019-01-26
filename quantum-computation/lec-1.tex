@@ -42,4 +42,116 @@ Grading:
     \item Projects: 25\%
 \end{itemize}
 
+\section{Stern-Gerlach: A brief, morally correct construction of qubits}
+\[
+\footnotesize
+\verb|light rays ---> [z] ---> (z+, z-) --block (z-) --> [x] --- (x+, x-) -- block (x-) --> [z] ---> (z+, z-?!)|
+\]
 
+$[z]$ represents a polarizer along that axis. 
+
+\begin{itemize}
+    \item Since we first polarized along $z$, how did we manage to get out 
+        light rays in the $x$ direction? The polarization should have killed
+        everything.
+
+    \item Since we blocked $z-$, How did we get back $z-$ after passing stuff through
+        $[x]$? Something has changed drastically from our classical picture.
+\end{itemize}
+
+We can consider $\qb{z+}$ to be something like:
+\[
+    \qb{z+} \equiv_? \frac{1}{2}\qb{x+} + \frac{1}{2}\qb{x-}
+\]
+Where \qb{x+} and \qb{x-} are basis vectors for some vector space
+over \R.
+
+If we were to pass the $z+$ light rays through $[y]$, then we would get
+$\qb{y+}, \qb{y-}$. So, \qb{z+} is also:
+\[
+    \qb{z+} \equiv_? \frac{1}{2}\qb{y+} + \frac{1}{2}\qb{y-}
+\]
+
+\subsection{Analogy with polarization of light}
+Consider a monochromatic light wave in the $z$ direction. A linearly
+polarized light with polarization in the $x$ direction which we call
+$x$ polarized light is given by:
+\[
+    E_x = E_0 \hat x \cos (k z - \omega t)
+\]
+$\omega \equiv \text{frequency} \equiv ck$, $c \equiv \text{speed of
+light}$, $k \equiv \text{wave number}$.
+
+Similarly, $y$ polarized light is given by:
+\[
+    E_y = E_0 \hat y \cos (k z - \omega t)
+\]
+
+Consider the case where we have $x$ filters along direction \texttt{-}, $x'$
+filter along direction \texttt{/}, $y$ filters along direction \texttt{|}.
+In this case, we can have $x, x', y$ filters arranged sequentially 
+give us non-zero output (contrast with just having $x, y$).
+
+We can express the $x'$ polarization as:
+
+\[
+    E_0 \hat{x'} cos (k z - \omega t) 
+    = \frac{E_0}{\sqrt 2} \hat x \cos (k z - \omega t) + \frac{E_0}{\sqrt 2} \hat y \cos (k z - \omega t)
+\]
+
+By analogy, we write:
+\[
+    \qb{z_+} \equiv  \frac{1}{\sqrt 2} \qb{x_+} + \frac{1}{\sqrt 2} \qb{x_-}
+\]
+
+However, we now have probability $\frac{1}{\sqrt 2}$, but we want $\frac{1}{2}$.
+So, we define the probability as:
+\[
+    \bra{x+}\ket{x_-}^2 = \frac{1}{2}
+\]
+\begin{align*}
+    &z_+ \equiv \text{$x$ polarization} \\
+    &z_- \equiv \text{$y$ polarization} \\
+    &x_+ \equiv \text{$x'$ polarization} \\
+    &x_- \equiv \text{$y'$ polarization} \\
+\end{align*}
+
+This problem  can be solved again by polarization of light. This time,
+we consider circularly polarized light which can be obtained by letting
+linearl polarized light passing through a quarter wave plate (?)
+
+When we pass such circularly polarized light through an $x$ or $y$ filter,
+we again obtain either an $x$ polarized beam, or a $y$ polarized beam
+of equal intensity. Yet, everybody knows that circularly polarized light
+is totally different from $45^\circ$ linearly polarized light.
+
+A right circularly polarized light is a linear combination of $x$ polarized
+light and $y$ polarized light, where the oscillation of the electric field
+for the $y$ component is $90^\circ$ out of phase with the $x$ polarized component.
+
+\begin{align*}
+    &E = \frac{E_0}{\sqrt 2} \hat x \cos (k z - \omega t) + 
+    \frac{E_0}{\sqrt 2} \hat y \cos (k z - \omega t + \frac{n}{2}) \\
+    %
+    &\frac{E}{E_0} = \frac{1}{\sqrt 2} \hat x e^{i(kz - \omega t)} + 
+        \frac{i}{\sqrt 2}\hat y e^{i (k z - \omega t)}
+    \end{align*}
+
+Similarly, left circularly polarized light is:
+
+\[
+    E = \frac{E_0}{\sqrt 2} \hat x \cos (k z - \omega t) -
+    \frac{E_0}{\sqrt 2} \hat y \cos (k z - \omega t + \frac{n}{2})
+\]
+
+\section{Observable}
+An observable is something that we observe.
+
+$$
+Z \ket{z+} = \frac{hbar}{\sqrt 2} \ket{z+} \qquad
+Z \ket{z-} = \frac{hbar}{\sqrt 2} \ket{z-} 
+$$
+
+
+TODO: try to construct an operator that takes a vector \ket v to a
+vector that is orthogonal to it.
