@@ -97,6 +97,68 @@ subspace spanned by $\ket{ij}$.
 
 
 \section{Q7. Find $\log$ and square root of matrix}
+\begin{align*}
+A = \begin{bmatrix}
+    4 & 3 \\
+    3 & 4
+\end{bmatrix}
+\end{align*}
+
+Finding eigenvalues,
+\begin{align*}
+    |A - \lambda I| = 0 \quad (4 - \lambda)^2 - 9 = 0 \quad \lambda = 7, 1
+\end{align*}
+Finding eigenvectors,
+\begin{align*}
+    v = (1/\sqrt 2, -1/\sqrt 2) \quad w = (1/\sqrt 2, 1/\sqrt 2)
+\end{align*}
+
+hence, we can now write $A = U^{-1} D U$, where $U$ transforms
+from the original basis to the eigenbasis, as:
+\begin{align*}
+    D \equiv \begin{bmatrix} 7 & 0 \\ 0 & 1 \end{bmatrix} \qquad
+    U \equiv \begin{bmatrix} 
+        1/\sqrt 2 & 1/\sqrt 2 \\
+        -1/\sqrt 2 & 1/\sqrt 2
+    \end{bmatrix}
+    U^{-1} \equiv \begin{bmatrix} 1
+    \end{bmatrix}
+\end{align*}
+
+\subsection{Computing square root}
+ \begin{align*}
+     S = U^{-1} \sqrt D U 
+     \qquad \sqrt D = \begin{bmatrix} \sqrt 7 & 0 \\ 0 & 1 \end{bmatrix}
+     \qquad S = 
+     \begin{bmatrix}
+         1/2 + \sqrt7/2 & -1/2 + \sqrt7/2 \\
+         -1/2 + \sqrt 7/2 & 1/2 + \sqrt7 /2
+     \end{bmatrix}
+ \end{align*}
+ We prove that $S$ is the square root, since:
+ \begin{align*}
+     S^2 = (U^{-1} \sqrt D U) (U^{-1} \sqrt D U) = U^{-1} (\sqrt D)^2 U = U^{-1} D U = A
+ \end{align*}
+ 
+ \subsection{Computing $\log$}
+ We can now show that if $U$ is unitary and $D$ is diagonal, then:
+ \begin{align*}
+     &L \equiv \log(U^{-1} D U) = U^{-1} \log D U 
+     \qquad \log D = \begin{bmatrix} \log 7 & 0 \\ 0 & 0 \end{bmatrix} \\
+    &L  =\begin{bmatrix}
+         1/\sqrt 2 & -1 / \sqrt 2 \\ 1/\sqrt 2 & 1/\sqrt 2
+     \end{bmatrix}
+     \begin{bmatrix}\log 7 & 0 \\ 0 & 0 \end{bmatrix} 
+     \begin{bmatrix}
+         1/\sqrt 2 & 1/\sqrt 2 \\ -1/ \sqrt 2 & 1/\sqrt 2
+     \end{bmatrix} \\
+     &L = 1/2 \begin{bmatrix} 1 & -1 \\ 1 & 1 \end{bmatrix} 
+     \begin{bmatrix} \log 7 & 0 \\ 0 & 0 \end{bmatrix}
+     \begin{bmatrix} 1 & 1 \\ -1 & 1 \end{bmatrix} \\
+   &L = 1/2 \begin{bmatrix} 1 & -1 \\ 1 & 1 \end{bmatrix}  \begin{bmatrix} \log 7 & \log 7 \\ 0 & 0\end{bmatrix} \\
+   &L = 1/2 \begin{bmatrix} \log 7 & \log 7 \\ \log 7 & \log 7 \end{bmatrix}
+ \end{align*}
+
 \section{Q8. Trace properties}
 \subsection{$Tr(AB) = Tr(BA)$}
 \begin{align*}
