@@ -82,7 +82,20 @@ Let $U, V$ be unitary operators.
 Hence, $U \otimes V$ is unitary since it preserves inner products.
 
 \section{Q6. Tensor product of projectors is a projector}
-Let $P, Q$ be projectors. 
+Let $P, Q$ be projectors. $P \equiv \sum_{i=1}^l \ket{i}\bra{i}$.
+$Q \equiv \sum_{j=1}^k \ket{j}\bra{j}$.
+
+
+\begin{align*}
+    P \otimes Q &\equiv (\sum_{i=1}^l \ket{i}\bra{i}) \otimes (\sum_{j=1}^k \ket{j}\bra{j}) \\
+                &\equiv \sum_{i=1}^l \sum_{j=1}^k \ket{ij}\bra{ij} \\
+\end{align*}
+
+Which is in the form of a projector, in that it leaves $\ket{ij}$ unchanged,
+and sends every other vector to $0$. So, it projects vectors onto the
+subspace spanned by $\ket{ij}$.
+
+
 \section{Q7. Find $\log$ and square root of matrix}
 \section{Q8. Trace properties}
 \subsection{$Tr(AB) = Tr(BA)$}
