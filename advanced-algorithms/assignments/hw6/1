@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage{minted}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{comment}
+\usepackage{cancel}
+
+\newtheorem{lemma}{Lemma}
+
+\newcommand*{\Perm}[2]{{}^{#1}\!P_{#2}}%
+\newcommand*{\Comb}[2]{{}^{#1}C_{#2}}%
+\usepackage{amsfonts}
+\author{Siddharth Bhat (20161105)}
+\title{Complexity and Advanced Algorithms -- Assignment 6}
+\begin{document}
+\newcommand{\threesat}{\texttt{3-SAT}~}
+\newcommand{\pspace}{\texttt{PSPACE}~}
+\newcommand{\np}{\texttt{NP}~}
+\newcommand{\nat}{\mathbb{N}~}
+\newcommand{\pred}{\mathbb{P}~}
+\newcommand{\logspace}{\texttt{LOGSPACE}~}
+\newcommand{\nlogspace}{\texttt{NLOGSPACE}~}
+\newcommand{\ptime}{\texttt{P}~}
+\newcommand{\nptime}{\texttt{NP}~}
+\newcommand{\E}[1]{\mathbb{E}\big[ #1 \big]}
+\newcommand{\prob}[1]{\mathbb{P}\big [ #1 \big ]}
+\maketitle
+
+\section{Existence of expander graph}
+ \subsection{problem}
+\begin{itemize}
+\item $|L| = |R| = n$
+\item Every vertex in $L$ has degree $n^\frac{3}{4}$, every vertex in
+ $R$ has degree at most $3n^\frac{3}{4}$
+ \item Ever subset of $n^\frac{3}{4}$ vertices in $L$ has at least
+ $n - n^\frac{3}{4}$ vertices in $R$.
+\end{itemize}
+ \subsection{Solution}
+
+ \section{Concave functions problem}
+ \subsection{Problem}
+ Let $f$ be a concave function and $g$ be a linear function such that
+ $g(0) \leq f(0)$ and $g(1) \leq f(1)$. Show that in $[0, 1]$, $g(x) \leq f(x)$.
+ \subsection{Solution}
+
+ Recall that $f$ being concave implies that:
+ $$
+ f(\lambda x + (1 - \lambda) y) \geq \lambda f(x) + (1 - \lambda) f(y)
+ $$
+
+ Therefore,
+
+ \begin{align*}
+ &g(\lambda) 
+ \end{align*}
+
+\end{document}
