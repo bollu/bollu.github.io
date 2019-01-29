@@ -9,6 +9,7 @@
 \usepackage{makeidx}
 \usepackage{algpseudocode}
 \usepackage{algorithm}
+\usepackage{physics}
 \usepackage{listing}
 \usepackage{comment}
 \usepackage{booktabs}
@@ -19,11 +20,101 @@
 \usepackage{epsfig}
 \usepackage{tabularx}
 \usepackage{latexsym}
+
 \title{Quantum information and computation: Assignment 1}
 \author{Siddharth Bhat}
 \date{}
 \begin{document}
-\section{Q1}
-$$ \int_0^\infty f(x) $$
-\section{Q2}
+\section{Q1 -- matrix representation for $\ket{\phi_k}\bra{\phi_j}$, in the
+orthonormal $\ket{v_i}$ basis}
+
+Perform change of basis.
+
+\section{Q2 -- positive operator is Hermitian}
+We first show that a positive operator is normal, and this automatically
+implies that it is Hermitian.
+
+To show that a positive operator is normal, we consider $A^\dagger A$
+
+Now that we know that it is normal, by spectral decomposition, it
+posesses an eigenbasis. We now show that all of its eigenvalues are real.
+This is now a matrix with real entries on the diagonal, which is hermitian.
+
+To show that the eigenvalues are real, let $\ket \lambda$ be an eigenvector
+with magnitude $1$ and eigenvalue $\lambda$.
+\begin{align*}
+    \bra \lambda A \ket \lambda \geq 0 \qquad
+    \lambda \braket{\lambda} = \lambda \geq 0
+\end{align*}
+Hence, the eigenvalues are real and positive, and therefore it is Hermitian.
+
+\begin{align*}
+\end{align*}
+
+\section{Q3 -- $A^\dagger A$ is positive}
+\begin{align*}
+    \forall v \in V, ~\bra v A^\dagger A \ket v = \bra {A v} \ket {A v} = \norm{A v}^2 \geq 0
+\end{align*}
+Hence, $A^\dagger A$ is positive.
+
+\section{Q4. Eigenvalues of a projector $P$ are either $0$ or $1$}
+Let $\ket \lambda$ be an eigenvector of $P$ with associated eigenvalue
+$\lambda$.  
+
+\begin{align*}
+    P^2 (\ket \lambda) = \lambda (P \ket \lambda) = \lambda ^2 \ket \lambda \qquad
+    P (\ket \lambda) = \lambda \ket \lambda
+\end{align*}
+
+However, since $P$ is a projector, $P^2 = P$, and therefore, $\lambda^2 = \lambda$.
+The roots of this equation are $0, 1$. Hence, $\lambda \in \{0, 1\}$.
+
+\section{Q5. Tensor product of two unitary operators is unitary}
+Let $U, V$ be unitary operators.
+
+\begin{align*}
+    &\bra{U u \otimes V v} \ket{U u \otimes V v} = \\
+    &\bra{u \otimes v} (U^\dagger \otimes V^\dagger) (U \otimes V) \ket{u \otimes v} =  \\
+    &\bra{u \otimes v} (U^\dagger U \otimes V^\dagger V) \ket{u \otimes v} = \\
+    &\bra{u \otimes v} I \otimes I \ket{u \otimes v} = \\
+    &\bra{u \otimes v} \ket{u \otimes v} = \\
+\end{align*}
+Hence, $U \otimes V$ is unitary since it preserves inner products.
+
+\section{Q6. Tensor product of projectors is a projector}
+Let $P, Q$ be projectors. 
+\section{Q7. Find $\log$ and square root of matrix}
+\section{Q8. Trace properties}
+\subsection{$Tr(AB) = Tr(BA)$}
+\begin{align*}
+    Tr(AB) = \sum_z (AB)_{zz} = \sum_z \sum_k A_{zk} B_{kz} = \sum_z \sum_k B_{kz} A_{kz} = \sum_z (BA)_{zz} = Tr(BA)
+\end{align*}
+
+\subsection{$Tr(A + B) = Tr(A) + Tr(B)$}
+\begin{align*}
+    Tr(A + B) = \sum_z (A + B)_{zz} = \sum_z A_{zz} + B_{zz} = Tr(A) + Tr(B)
+\end{align*}
+
+
+\subsection{$Tr(2A) = 2Tr(A)$}
+\begin{align*}
+    Tr(2A) = \sum_z (2A)_{zz} = \sum_z 2 A_{zz} 2 \sum_z A_{zz} = 2 \Tr(A)
+\end{align*}
+
+\begin{align*}
+\end{align*}
+
+\section{Commutator properties}
+\subsection{$[A, B] = -[B, A]$}
+\begin{align*}
+    [A, B] = AB - BA = - (BA - AB) = - [B, A]
+\end{align*}
+
+\subsection{$\frac{[A, B] + \{A, B\}}{2} = AB$}
+\begin{align*}
+    \frac{[A, B] + \{A, B\}}{2} = \frac{(AB - BA) + (AB + BA)}{2} = AB
+\end{align*}
+
+\section{Express polar decomposition as outer product}
+\section{Find left and right polar decomposition}
 \end{document}
