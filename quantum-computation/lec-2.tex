@@ -12,3 +12,102 @@ is an orthonormal basis for $W$. Then the projector $P$ is defined as:
     P_W \equiv \sum_{i=1}^k \ketbra{i}
 \end{align*}
 
+\begin{itemize}
+\item $P^\dagger = P$ (Immediate from writing in $\ket{i}$ basis)
+\item $P^2 = P$ (Immediate from writing in $\ket{i}$ basis)
+\end{itemize}
+
+$Q = I - P$ is the projector onto orthogonal complement of the subspace that $P$.
+projects into. This projects onto the $\ket{k+1} \dots \ket{d}$ basis.
+
+\subsection{Normal operator}
+\begin{align*} A A^\dagger = A^\dagger A \end{align*}
+
+
+\begin{theorem}
+Spectral theorem for normal operators:
+Any normal operator $M$ on a vector space $V$ is diagonal with respect to some
+orthonormal basis for $V$.
+\end{theorem}
+\begin{proof}
+Let $\lambda$ be an eigenvalue of $M$. $P_\lambda$ is the projector onto
+$\lambda$'s eigenvector. $Q_\lambda = P_\lambda^\bot$ is the orthogonal complement projector
+of $P$.
+
+We first establish a fact about $P M Q$:
+\begin{align*}
+&M M^\dagger \ket \lambda = M^\dagger (M \ket \lambda) = \lambda M^\dagger \lambda \\
+&\text{Hence, $M^\dagger v \in P$.} \\
+&Q (M^\dagger P) = 0 \implies (P M Q)^\dagger = 0 \implies P M Q = 0
+\end{align*}
+
+Next, we prove some properties of $QM$ and $QM^\dagger$
+\begin{align*}
+QM = QM(P + Q) = QMP + QMQ = QMQ \\
+QM^\dagger = QM^\dagger(P + Q) = QM^\dagger P + QM^\dagger Q = (PMQ)^\dagger + QM^\dagger Q
+\end{align*}
+
+\begin{align*}
+&\text{QMQ is normal:} \\
+&(QMQ)^\dagger(QMQ) = Q^\dagger M^\dagger Q^\dagger Q M Q = Q M^\dagger Q M Q = Q M^\dagger M Q \\
+&(QMQ)(QMQ)^\dagger = (Q M Q) (Q^\dagger M^\dagger Q^\dagger) = Q M Q M^\dagger Q = 
+Q M M^\dagger Q = Q M^\dagger M Q = (QMQ)^\dagger QMQ
+\end{align*}
+
+\begin{align*}
+&M = (P + Q) M (P + Q) \\
+&M = P M P + P M Q + Q M P + Q M Q \\
+&M = P M P + Q M Q \\
+&M = \lambda_i \ketbra{i} + Q M Q \\
+&\text{Since $Q M Q$ is normal, and we are performing induction on dimension, and $P \bot Q$,} \\
+&M = \lambda_i \ketbra{i} + \sum_k \lambda_k \ketbra{k} \\
+&\text{Hence M is normal}
+\end{align*}
+\end{proof}
+
+\begin{theorem}
+Any diagonalizable operator is normal
+\end{theorem}
+\begin{proof}
+Let $M$ be diagonal with respect to basis $\ket{i}$.
+Then, $M \equiv \sum_i \lambda_i \ketbra{i}$.
+Now, $M^\dagger= \sum_i \lambda_i^* \ketbra{i}$. 
+\begin{align*}
+&M M^\dagger = \bigg(\sum_i \lambda_i \ketbra{i}\bigg)
+    \bigg(\sum_j \lambda_j^* \ketbra{j}\bigg) \\
+&M M^\dagger = \sum_i \lambda_i^* \lambda_i \ketbra{i} \\
+&\text{Similarly,}  \quad M^\dagger M = (\sum_i \lambda_i^* \lambda_i \ketbra{i}) 
+\end{align*}
+\end{proof}
+
+\subsection{Unitary operator}
+\[ U U^\dagger = U^\dagger U = I \]
+\begin{itemize}
+\item unitary operator is normal.
+\item unitary operator preserves inner products.
+\begin{align*}
+\bra{b'} \ket{a'} = \bra{b} U^\dagger U \ket{a} = \bra{b} I \ket{a}
+\end{align*}
+\end{itemize}
+
+\subsection{Positive operator}
+Special class of Hermitian operator.
+
+\begin{align*}
+ \forall v \in V, \bra v A \ket v \geq 0
+\end{align*}
+
+If the inner product is strictly greater than zero, then such an operator
+is called as \emph{positive definite}. If it is greater than or equal
+to zero, it is called \emph{positive semidefinite}.
+
+\begin{theorem}
+A positive operator is Hermitian
+\end{theorem}
+\begin{proof}
+\textbf{TODO}. Proof most likely follows real case, where we use
+cholesky to write it as $A^T A$ and then show that it is normal. We then
+use the fact that its eigenvalues are greater than or equal to zero
+to establish that it is Hermitian.
+\end{proof}
+
