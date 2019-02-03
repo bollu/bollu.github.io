@@ -1,39 +1,4 @@
-\documentclass[11pt]{article}
-%\documentclass[10pt]{llncs}
-%\usepackage{llncsdoc}
-\usepackage{amsmath}
-\usepackage{graphicx}
-\usepackage{makeidx}
-\usepackage{algpseudocode}
-\usepackage{algorithm}
-\evensidemargin=0.20in
-\oddsidemargin=0.20in
-\topmargin=0.2in
-%\headheight=0.0in
-%\headsep=0.0in
-%\setlength{\parskip}{0mm}     
-%\setlength{\parindent}{4mm}
-\setlength{\textwidth}{6.4in}
-\setlength{\textheight}{8.5in}
-%\leftmargin -2in
-%\setlength{\rightmargin}{-2in}
-%\usepackage{epsf}
-%\usepackage{url}
-\usepackage{epsfig}
-\usepackage{tabularx}
-\usepackage{latexsym}
-\newtheorem{lemma}{Lemma}
-\newtheorem{observation}{Observation}
-\newtheorem{proof}{Proof}
-\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
-
-\def\qed{$\Box$}
-\def\proof{\textit{Proof. }}
-\newtheorem{corollary}{Corollary}
-\newtheorem{theorem}{Theorem}
-
-\begin{document}
-\section{Quantum Secret Key Establishment}
+\chapter{Quantum Secret Key Establishment}
 
 \section{Three Polarizers Experiment}
 
@@ -59,8 +24,10 @@ $A$, $B$. Have two channels, classical and quantum.
 $E_{(ve)}$ is eavesdropping on both channels.
 
 
-$\ket{+} = \frac{\ket{0} + \ket{1}} {\sqrt(2)}
-$\ket{-} = \frac{\ket{0} - \ket{1}} {\sqrt(2)}
+\begin{align*}
+\ket{+} = \frac{\ket{0} + \ket{1}} {\sqrt(2)}
+\ket{-} = \frac{\ket{0} - \ket{1}} {\sqrt(2)}
+\end{align*}
 
 Step 1: $A$ chooses to encode $0$ as either $\ket{0}$ or as $\ket{+}$
 $A$ chooses to encode $1$ as either $\ket{0}$ or as $\ket{-}$
@@ -110,7 +77,7 @@ We can detect the presence of someone who is intercepting the channel
 with this principle.
 
 
-So, there will be ~25 percent chance that $s_i \neq s_i'$ when $r_i \eq r_i'$, if
+So, there will be ~25 percent chance that $s_i \neq s_i'$ when $r_i = r_i'$, if
 Eve is eavesdropping. If not, then $s_i \neq s_i' \implies r_i \neq r_i'$.
 
 Step 4: Randomly sample some subset of the $r_j$ for those indeces with $s_j = s_j'$.
@@ -133,13 +100,13 @@ once the $s_i$ have been published. However, no-cloning prevents this from happe
 \section{Dealing with noise}
 
 On a noisy quantum channel, we will need to deal with the case that possibly
-$\s_i = s_i'$, but $r_i \neq r_i'$
+$s_i = s_i'$, but $r_i \neq r_i'$.
 
 
 \section{Dealing with noise}
 
 On a noisy quantum channel, we will need to deal with the case that possibly
-$\s_i = s_i'$, but $r_i \neq r_i'$. We can use classical error correction on
+$s_i = s_i'$, but $r_i \neq r_i'$. We can use classical error correction on
 the $r_i$'s to deal with this stuff. We do not go this analysis in the lecture.
 
 
@@ -150,7 +117,7 @@ Superposition of all four is allowed.
 
 $\ket{\psi} = a_{00} \ket{00} + a_{01} \ket{01} + a_{10} \ket{10} + a_{11} \ket{11}$.
 
-$\section{$n$ qubit system}
+\section{$n$ qubit system}
 $n$ qubit system will have $2^n$ classical outcomes - we will need $2^n$ complex amplitudes.
 On the other hand, for am $n$ bit system, we will need, well, $n$ bits.
 

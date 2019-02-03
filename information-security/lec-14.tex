@@ -72,8 +72,8 @@ Number of subsets of powerset of set $n$ is $2^(2^n)$.
 The monotonicity does not reduce this by much (Sid: Proof?)
 
 For every access structure, we will have a secret sharing scheme. So, we will
-have $O(2^2^n)$ secret sharing scheme. So, the number of bits for some
-secret sharing scheme will be $O(log(2^2^n)) = O(2^n)$.
+have $O(2^{2^n})$ secret sharing scheme. So, the number of bits for some
+secret sharing scheme will be $O(log(2^{2^n})) = O(2^n)$.
 
 
 So, we will  have a secret sharing scheme that is exponential. Note that
@@ -221,7 +221,7 @@ and the size of communication (that is, the share length).
 
         For example, if our channel sent first n/2 bits correctly and next
         n/2 bits fully wrong, we have an ECC: only send data in the first n/2
-        bits. This is *not* the same as stating that "50% of data is corrupted"
+        bits. This is *not* the same as stating that "50\% of data is corrupted"
         In this case, there is no ECC that can solve this.
 
         So, having data regarding where the toggles happen is *useful information*
@@ -252,7 +252,7 @@ and the size of communication (that is, the share length).
         cannot solve NP problems in P time. So, we need
         $f$ which is in $P$.
 
-        Q) does there exist efficient ECC for all realistic channel f \in P?
+        Q) does there exist efficient ECC for all realistic channel $f \in P$?
 
         Cute Scott Aaronson quote: "If P != NP were a question in physics, then
         it would have been a law by now (since we have *never* observed nature

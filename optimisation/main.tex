@@ -83,6 +83,8 @@
 \newcommand{\corp}{\texttt{co-RP} }
 \newcommand{\zp}{\texttt{ZP} }
 \newcommand{\maxsat}{\texttt{MAXSAT} }
+\newcommand{\ilp}{\texttt{ILP} }
+\DeclareMathOperator{\shape}{dim}
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{corollary}[theorem]{Corollary}
@@ -245,12 +247,128 @@ So, we are at worst twice the size of the best vertex cover.
 \section{Maximum independent set}
 HOMEWORK: read how this can be phrased as \lp
 
-\section{Formulating common operations in terms of \ilp}
+\chapter{Formulating common operations in terms of \ilp}
 
-\section{Matrix decompositions}
+\section{TODO: MISSED CLASS! LOOKUP WHAT HAPPENED}
+
+\chapter{Matrix decompositions}
 \subsection{Cholesky}
+Let $A$ be positive definite, $L$  be lower triangular. We decompose it as follows:
+
+\paragraph{Computing the decomposition}
+\begin{align*}
+    &A = L L^T\\
+    &\begin{bmatrix} a_{11} & A_{12} \\ A_{12} & A_{22} \end{bmatrix} = 
+    \begin{bmatrix} l_{11} & 0 \\ L_{21} & L_{22} \end{bmatrix}
+    \begin{bmatrix} l_{11} & L_{21}^T \\ 0 & L_{22}^T \end{bmatrix}  = 
+%
+    \begin{bmatrix}
+        l_{11}^2 & l_{11} L_{21}^T \\ l_{11} L_{21}^T & L_{21} L_{21}^T + L_{22} L_{22}^T
+    \end{bmatrix}
+\end{align*}
+
+\paragraph{Solving $Ax = b$}
+\begin{itemize}
+    \item We want to solve $Ax = b$, which is equivalent to $LL^Tx = b$
+    \item let $L^Tx  = u$. Now, $LL^T x = b \equiv Lu = b$.
+    \item Solve $Lu = b$ to find value of $u$.
+    \item Solve $L^Tx = u$ to find value of $x$.
+\end{itemize}
+
+\paragraph{Solving $x = ((A^TA)^{-1}A^T)b$}
+\begin{itemize}
+    \item Let $B = A^TA$. Now, original equation is $Bx = A^T b$.
+    \item Compute $B$.
+    \item Compute $d = A^Tb$
+    \item Solve $Bx = d$. This is possible since $B$ is positive definite.
+\end{itemize}
+
+
+\paragraph{Finding inverse}
+\begin{itemize}
+\item First decompose $A = LL^T$
+\item Solve $A x_i = e_i$
+\end{itemize}
+
 \subsection{LU}
+\begin{align*}
+    &A = PLU
+\end{align*}
+
+\subsection{QR}
+$A = QR$ where $\shape(A) = (m, n)$ $\shape(Q) = (m, n)$, $\shape(R) =  (n, n)$.
+$Q$ is orthogonal, $R$ is triangular.
+
+We care about this decomposition in certain cases. For example, consider
+$x = (A^TA)^{-1}A^Tb$. Let $A = QR$. Now, the expression becomes
+\begin{align*}
+    &x = (A^TA)^{-1}A^Tb \\
+    &x = ((R^TQ^T)(QR))^{-1} (R^TQ^T)b = (R^TR)^{-1}) (R^TQ^T) b = (R^{-1} (R^T)^{-1} R^T Q^T) b = R^{-1} Q^T b \\
+    &Rx = Q^T b \qquad \text{Let $Q^Tb = d$} \quad Rx = d \\
+    &\text{Solve $Rx = d$}
+\end{align*}
+
+\paragraph{Comparison of Cholesky and QR for Least squares}
+For cholesky, we want to find $x = (A^TA)^{-1}A^Tb$. First, rewrite to
+$A^TA x = A^T b$. $Bx = d$ where $B = A^TA$.
+\begin{itemize}
+    \item Compute $B$
+    \item Compute $d$
+    \item Cholesky of $B = L L^T$
+    \item Solve $Lv = d$
+    \item Solve $Lx = v$
+\end{itemize}
+
+For QR:
+\begin{itemize}
+    \item Factorize $A = QR$
+    \item Compute $d = Q^Tb$
+    \item Solve $Rx = d$
+\end{itemize}
+
+
+As we move from Cholesky to SVD, factorization cost increases, solution
+time decreases.
+
+\paragraph{Computing $QR$}
+\begin{align*}
+    &\begin{bmatrix}
+        a_1 & A_2
+    \end{bmatrix} = 
+    \begin{bmatrix}
+        q_1 & Q_2
+    \end{bmatrix} 
+    \begin{bmatrix}
+        r_{11} & R_{12} \\ 0 & R_{22}
+    \end{bmatrix} =  
+    %
+    \begin{bmatrix}
+        q_1 r_{11}  & q_1 R_{12} + Q_2 R_{22}
+    \end{bmatrix} 
+    %
+    \\
+    %
+    &a_1 = q_1 r_{11} \quad A_2 = q_1 R_{12} + Q_2 R_{22}
+\end{align*}
+
+Since $Q^TQ = I$, $\begin{bmatrix}q_1 Q_2\end{bmatrix}^T \begin{bmatrix} q_1 Q_2\end{bmatrix} = I$,
+hence $q_1^T q_1 = 1$.
+
+So, \[a_1^Ta_1 = (q_1 r_{11})^T (q_1 r_{11}) = (r_{11} q_1^T) (q_1 r_{11}) = r_{11}^2\].
+Hence, \[r_{11} = \sqrt{a_1^T a_1} \qquad q_1 = a_1 / r_{11}\].
+
+To find $R_{12}$, \textbf{TODO}
+
+Next, Let $B = A_2 - q_1 R_{12} = Q_2 R_{22}$. Now perform QR on $B$.
+
 \subsection{SVD}
+$A = UDV^T$ where $\shape(A) = (m, n)$ $\shape(U) = (m, n)$, $\shape(D) =  (n, n)$.
+$\dim(V) = (n, n)$.  $U, V$ are orthogonal, $D$ is a diagonal matrix.
+
+\section{Bala's implicit enumeration algorithm}
+Used to solve $0, 1$ binary ILP problems.
+
+\href{https://www.sce.carleton.ca/faculty/chinneck/po/Chapter13.pdf}{good link for bala's algorithm}
 
 \end{document}
 

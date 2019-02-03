@@ -1,38 +1,3 @@
-\documentclass[11pt]{article}
-%\documentclass[10pt]{llncs}
-%\usepackage{llncsdoc}
-\usepackage{amsmath}
-\usepackage{graphicx}
-\usepackage{makeidx}
-\usepackage{algpseudocode}
-\usepackage{algorithm}
-\evensidemargin=0.20in
-\oddsidemargin=0.20in
-\topmargin=0.2in
-%\headheight=0.0in
-%\headsep=0.0in
-%\setlength{\parskip}{0mm}     
-%\setlength{\parindent}{4mm}
-\setlength{\textwidth}{6.4in}
-\setlength{\textheight}{8.5in}
-%\leftmargin -2in
-%\setlength{\rightmargin}{-2in}
-%\usepackage{epsf}
-%\usepackage{url}
-\usepackage{epsfig}
-\usepackage{tabularx}
-\usepackage{latexsym}
-\newtheorem{lemma}{Lemma}
-\newtheorem{observation}{Observation}
-\newtheorem{proof}{Proof}
-\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
-
-\def\qed{$\Box$}
-\def\proof{\textit{Proof. }}
-\newtheorem{corollary}{Corollary}
-\newtheorem{theorem}{Theorem}
-
-\begin{document}
 \section{Agreement in a distributed system}
 
 \section{Introduction: Philosophy of today's class}
@@ -71,9 +36,10 @@ Different adversaries:
   Is this actually such a tough problem? Why can't we just say ``send your input to everybody''? Why is this not equivalent to simulating
   a broadcast channel?
 
-
-  Let's see what happens. Let $A$ be a source. Say $A$ sends message $m$ to $B$ and $C$. this looks like $A$ has broadcasted message $m$.
-  If this were happening over a \textit{broadcast channel}, then $m$ would have been received by $B$ and $C$.
+  Let's see what happens. Let $A$ be a source. Say $A$ sends message $m$ to $B$
+  and $C$. this looks like $A$ has broadcasted message $m$.  If this were
+  happening over a \textit{broadcast channel}, then $m$ would have been
+  received by $B$ and $C$.
 
   However, on a unicast channel, it is possible that $A$ fails between $B$ receiving the message and $C$ receiving the message.
   Now, this is \textit{not broadcast}.
@@ -105,8 +71,8 @@ Similarly, $C$ only knows that \textit{one of} $A$ and $B$ is faulty.
 Let $\Pi$ be a byzantine agreement protocol for this case.
 
 Running with inputs $x_1, x_2, x_3$, we get outputs $b_1, b_2, b_3$, we have the guarantee that
-1. all b_i are equal
-2. b_i is equal to some x_i
+1. all $b_i$ are equal
+2. $b_i$ is equal to some $x_i$
 
 
 We now show that such a $\Pi$ cannot exist.
@@ -135,7 +101,7 @@ $\Pi'$ is the program for $Hex$.  $\Pi' = <\Pi_1, \Pi_2, \Pi_3, \Pi_1, \Pi_2, \P
 In $Tri$, $\Pi_1$ got messages from $\Pi_2 , \Pi_3$. This is
 the same structure in $Hex$. So, structurally, the networks are the same.
 Syntactically, the code will work in $Hex$ - because the
-"local" network topology is the same. So, $\Pi_$ running at node $1$ cannot 
+"local" network topology is the same. So, $\Pi_{what is this?}$ running at node $1$ cannot 
 distinguish if it is at $Tri$ or $Hex$.
 
 Proof by induction on rounds. At round $0$, we cannot distinguish since
@@ -164,7 +130,7 @@ they are structurally isomorphic.
 
 
 Now, let us look at $4, 5$ in $Hex$ (which has protocols $\Pi_1, \Pi_2$).
-Let us say that $3'$sends $\alpha$ to $2'$ and \beta to 1'.
+Let us say that $3'$sends $\alpha$ to $2'$ and $\beta$ to 1'.
 
 This is equivalent to a faulty 3 in Tri.
 
@@ -189,8 +155,8 @@ Hence, such a $\Pi'$ cannot exist. Hence, $\Pi$ cannot exist.
 
 \subsection{Distributed systems spirit}
 We use the term "non faulty" when defining Agreement, Validity. Originally,
-the definition was, "if I gave a node \Pi, then it should execute \Pi,
-not something else (\Pi')".
+the definition was, "if I gave a node $\Pi$, then it should execute $\Pi$,
+not something else ($\Pi'$)".
 
 Kannan - anyone who contributes to the execution deserves the output
 
@@ -292,8 +258,3 @@ have such an adversary.
 
 So, we force people to sign their messages, so that the adversary
 can't simulate.
-
-
-
-
-\end{document}

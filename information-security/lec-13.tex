@@ -142,7 +142,7 @@ P_y(2) &= y_b.\\
 \\
 P_x(3) &= x_c.\\
 P_y(3) &= y_c.\\
-\end{algin*}
+\end{align*}
 
 
 We denote $P_{x + y} =(defined as)= P_x + P_y $.
@@ -162,23 +162,25 @@ Note that we have now computed a new secret sharing polynomial,
 $P_{x * y}$. $z = P_x(0) * P_y(0) = x * y$
 
 
-$z <- x * y$
+\begin{minted}{py}
+z <- x * y
 z_a <- x_a * y_a.
 z_b <- x_b * y_b.
-z_c <- x_c * y_c.
+z_c <- x_c * y_c
+\end{minted}
 
 Polynomials are also homomorphic according to $*$
 Hence, $z_a <- P_x * P_y = P_{x * y}$
 
 
-However, this is a 2 degree polynomial! So, we now do not have P_{x * y}.
+However, this is a 2 degree polynomial! So, we now do not have $P_{x * y}$.
 
 There is another problem: Shannon secret sharing gives us secrecy if the polynomial is *random*.
-In this case, the polynomial is not random, since it is reducible (P_{x * y} = P_x * P_y). Reducible
+In this case, the polynomial is not random, since it is reducible ($P_{x * y} = P_x * P_y$). Reducible
 polynomials are a subset of all polynomials (Sid question: what's the size of the subset?).
 
 
-Now, can we somehow ``linearize'' P_{x * y} such that the  constant term remains the same,
+Now, can we somehow ``linearize'' $P_{x * y}$ such that the  constant term remains the same,
 and it is uniformly chosen across polynomials of degree t? (chosen over: $FF[x] / x^{t+1}$).
 
 
@@ -186,10 +188,10 @@ NOTE: I do not understand this final part properly!
 
 
 We construct $z_a' = x_a * y_a$, $z_b' = x_b * y_B$, $z_c' = x_c * y_c$.
-Then, we *share* z_a' as z_{aa}', z_{ab}', z_{ac}'. Repeat with z_{b}', z_{c}'.
+Then, we *share* $z_a'$ as $z_{aa}'$, $z_{ab}', z_{ac}'$. Repeat with $z_{b}', z_{c}'$.
 
 They lie on a polynomial whose constant term is $z$.So,
-\lambda_a z_a' + \lambda_b z_b' + \lambda_c z_c' = z.
+$\lambda_a z_a' + \lambda_b z_b' + \lambda_c z_c' = z$.
 
 We know that $z_a'$ is a linear combination of $z_{aa}'$, $z_{ab}'$, $z_{ac'}$
 so, $z_a' = \lambda_a' z_{aa}' + \lambda_b' z_{ab}' + \lambda_c' z_{ac}'$.
@@ -199,19 +201,19 @@ Similarly for $z_b'$, $z_c'$.
 So, $z$ will be a linear combination of all $z_{pq}'$ where $p, q \in {a, b, c}$
 
 We can write this linear combination as:
-z = $(\lambda_a \lambda_a' z_{aa}' +
+$$z = (\lambda_a \lambda_a' z_{aa}' +
      \lambda_b \lambda_a' z_{ba}' +
      \lambda_c \lambda_a' z_{ca}') +
      (same for b) +
-     (same for c)$.
+     (same for c)$$
 
-z = \lambda_a znew_a + \lambda_b znew_b + \lambda_c znew_c.
+$z = \lambda_a znew_a + \lambda_b znew_b + \lambda_c znew_c$
 
-Note that znew_a, znew_b, znew_c are 1 degree.
+Note that $znew_a, znew_b, znew_c$ are 1 degree.
 
 
 
---------
+\begin{minted}{py}
 P_z(t) = r.t + z.
 
 z_a = r + z
@@ -220,7 +222,7 @@ z_c = 3r + z
 
 Find some linear combination of z_a, z_b, z_c such that we get z
 z = t_a z_a + t_b z_b + t_c z_c
----------
+\end{minted}
 
 OK, I don't know WTF happened. Read this tonight (21 feb 2018)
 
