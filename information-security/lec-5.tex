@@ -1,4 +1,4 @@
-\section{Information Theory - Lecture 5}
+\section{Information Theory, CPA security - Lecture 5}
 
 
 Most theorems will read as: if X is true, then the protocol $\Pi$ is secure.
@@ -19,19 +19,21 @@ assumptions.
 
 \subsubsection{Pseudorandomness}
 for all PPTM(probabilistic polynomial turing machine) $D$,
-$ |P[D(r)] - P[D(G(s))]| <= negligible(|s|).r = {0, 1}^{l(n)}. s = {0, 1}^n$
+$$ |P[D(r) = 1] - P[D(G(s)) = 1]| \leq \negl(|s|) \quad  r \leftarrow \binary^{l(n)} \quad  s \leftarrow \binary^n$$
+$r, s$ are chosen uniformly at random. The probability distribution is over the
+random coins used by $D$, along with the uniform distributions of $r$ and $s$.
 
 
-1. Strings of length $l(n)$. pick one at random. probability of picking one of them is
-
-2. Strings of length $n$, and then we inject into $l(n)$ with $G$. Clearly, $|Im(G)| < 2^{l(n)}|$.
+\begin{itemize}
+\item Strings of length $l(n)$. pick one at random. probability of picking one of them is
+\item Strings of length $n$, and then we inject into $l(n)$ with $G$. Clearly, $|Im(G)| < 2^{l(n)}|$.
 So, we can sample all $|Im(G)|$. If we are in a pseudo-random world, it will repeat for sure (with $P = 1$).
 If we are in the non-PRNG world (true randomness), the chance that something repeats will be negligibly small.
+\item We cannot distinguish with polynomial samples, however. So, PPTM is a good choice for a distinguisher.
+\end{itemize}
 
-we cannot distinguish with polynomial samples, however.  So PPTM is a good choice for a distinguisher.
 
-
-Given that we have to assume PRNGs exist, there are different ways to proceed
+Given that we have to assume PRNGs exist, there are different ways to proceed:
 \begin{itemize}
 \item Heuristics - Assume that the PRNG we write is a true PRNG, and then get to work.
 \item Specific mathematical assumptions - Assume that certain problems are hard. Build PRNGs from this mathematical assumption.
@@ -42,20 +44,18 @@ Given that we have to assume PRNGs exist, there are different ways to proceed
 
 \subsubsection{Assume PRNGs exist. We will build a secure encryption scheme}
 
-$M = {0, 1}^{l(m)}. K = {0, 1}^m$.
-$Gen: k = {0, 1}^n$
-$Enc_k(m). |m| = l(n)$. 
-$Ciphertext = m xor G(k)$.
-$Dec_k(c) = c xor G(k)$.
+% \begin{align*}
+%     &M = \binary^{l(m)} \quad K = \binary^m \\
+%     &Gen: k = {0, 1}^n$ \\
+%     &Enc_k(m) = m \xor G(k) \quad Dec_k(c) = c \xor G(k)
+% \end{align*}
 
 
 Note that this is just one time. If they attacker can see two ciphertexts, they can XOR the ciphertexts to get the XOR of the cleartexts.
 
 \paragraph{Proof that this is sane}.
 If the adversary can differentiate between $M_0$ $M_1$, we will use it to break the PRNG (as in, distinguish between PRNG and RNG).
-, 
 Call the adversary A. It can generate 2 messages $M_0$ and $M_1$. When given $encryption(M_b) = G(k) xor M_b$, he can guess $b = 0 \/ b = 1$ with non-negligible probability.
-
 Call the distinguisher $D$. $D$ has to distinguish between truly random and pseudo random world for our proof.
 Given a string $w$ and ask if $w$ can be distinguished by $A$. We can pick $w$ from the PRNG world or the RNG world.
 
@@ -109,3 +109,33 @@ Take seed s. output $MSB(s_1 = g^s mod p)$. So we now have a PRNG that can creat
 Third output: $MSB(s_3 = g^{s_3} mod p)$.
 
 Hence, if discrete log is hard, we can get a PRNG. 
+
+\subsection{Multi message Indistinguishability experiment}
+
+This is defined for an encryption scheme $(\gen, \enc, \dec)$.
+\begin{itemize}
+\item Adversary outputs a pair of vector of messages $(\vec m_0, \vec m_1)$. Each
+    vector contains the same number of messages, and the $i$th messages have the
+    same length. That is, $|m_0[i]| = |m_1[i]|$.
+\item A random key is created: $ k \leftarrow \gen$, and a random bit
+    $b \leftarrow \binary$ is chosen. For all $i$, $c[i] \leftarrow \enc_k(m[i])$
+    is computed. $\vec c$ is given to the adversary $A$.
+\item The adversary $A$ outputs a bit $b'$. The output of the experiment is $1$
+    if $b = b'$, and $0$ otherwise.
+\end{itemize}
+
+Security definition of the cryptosystem remains unchanged.
+
+
+\paragraph{Weakness of one time pads under this threat model}
+Note that one time pads will fall to this threat model, since repeatedly
+ciphering data with a one-time pad will allow us to extract data from the
+one-time pad. Indeed, any deterministic scheme can be attacked under
+this threat model. So, we now need probabilistic encryption schemes.
+
+\paragraph{Attacking all deterministic cryptosystems under multi message threat model}
+Let $m_0 \equiv (0^n, 0^n), m_1 \equiv (0^n, 1^n)$. Run this through the experiment. We will
+be given $c \equiv (c_0, c_1)$. If $c_0 = c_1$, then  we know that the message
+was $(0^n, 0^n) = m_0$, and is $m_1$ otherwise. We know this since the encryption
+function is deterministic, and  hence $\enc_k(m_0) = \enc_k(m_1) \implies m_0 = m_1$.
+

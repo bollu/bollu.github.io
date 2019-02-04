@@ -79,11 +79,34 @@ However, if a function is negligible, polynomial times multiplication with
 negligible will continue to be negligible. It's some weird ideal in $R[X]$? 
 
 
-\subsection{The game to be played}
+\subsection{Formal definition of encryption scheme}
+An encryption scheme is a 3-tuple $(\gen, \enc, \dec)$, such that:
+\begin{itemize}
+\item $\gen: (n: \N) \rightarrow \rand \binary^n$
+\item $\enc_k: \binary^m \rightarrow \rand \binary^c$. Note that the encoding
+    can be randomized.
+\item $\dec_k: \binary^c \rightarrow \binary^m$. Note that we assume that
+    the decoding is deterministic. (NOTE: this is probably okay since we
+    can pad the cipher with random bits that the decoder can access).
+\item $\forall m \in \binary^m, \dec_k (\enc_k(m)) = m$.
+\end{itemize}
 
-1. Fix message space with all messages of equal length.
-2. The adversary chooses two message of his choice, M0 and M1.
-3. We encrypt one of the messages, call it C
-4. The adversary has to find out which one (C = encrypt (M0) or C = encrypt(M1))
+\subsection{Indistinguishability in the presence of an eavesdropper}
 
-The adversary wins if  the adversary does not satisfy the security criteria.
+\begin{itemize}
+    \item Fix message space with all messages of equal length.
+    \item The adversary chooses two message of his choice, $M_0, M_1$.
+    \item We geneate a key using $k \leftarrow \gen(n)$. A random bit $b \leftarrow \binary$
+        is chosen. The ciphertext $c \leftarrow m_b$ is computed and is given to $A$.
+    \item $A$ outputs a bit $b'$, which is $A$'s guess of whether the ciphetext $c$
+        corresponds to $m_0$ or $m_1$.
+    \item The output of the experiment is $(b = b' ~?~ 1 ~:~ -1)$.
+\end{itemize}
+
+We say that an encryption scheme $\Pi \equiv (\gen, \enc, \dec)$ has
+Indistinguishability in the presence of an eavesdropper if: 
+$$Pr(experiment(A, \Pi, n) = 1] \leq \frac{1}{2} + \negl(n)$$
+
+
+TODO: write down definition $3.10$ from textbook about the alternate
+definition.
