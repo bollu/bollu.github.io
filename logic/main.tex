@@ -1,5 +1,5 @@
 % // https://tex.stackexchange.com/questions/59702/suggest-a-nice-font-family-for-my-basic-latex-template-text-and-math
-\documentclass[11pt]{book}
+\documentclass[5pt]{book}
 \usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
 \linespread{1.025}              % Palatino leads a little more leading
 
@@ -10,12 +10,11 @@
 %\usepackage{llncsdoc}
 \usepackage{amsmath,amssymb}
 \usepackage{amsthm}
-\usepackage{graphicx}
+%\usepackage{graphicx}
 \usepackage{makeidx}
-\usepackage{algpseudocode}
-\usepackage{algorithm}
 \usepackage{listing}
 \usepackage{comment}
+\usepackage{dirtytalk}
 \evensidemargin=0.20in
 \oddsidemargin=0.20in
 \topmargin=0.2in
@@ -175,7 +174,8 @@ Both of these have the same \textit{extension} (since the sets are the
 same), but have different \textit{intentions}.
 
 \section{Extension and denotative definitions}
-\begin{defintion}Denotative definition: A definition that identifies
+Means of defining extensive terms:
+\begin{definition}Denotative definition: A definition that identifies
     the extention of a term, by (for eg.) listing the members
     of the definition. An extensive definition
 \end{definition}
@@ -186,6 +186,104 @@ same), but have different \textit{intentions}.
 
     For example, the word desk means \textit{this}.
 \end{definition}
+
+\begin{definition}Quasi Ostensive definition:
+    Example: the desk is means \textit{this} article of furniture. This
+    presupposes the meaning of \textit{article of furniture}.
+\end{definition}
+
+\section{Intention and Intensional Definitions}
+\subsection{Types of intentional definitions}
+\begin{definition}Subjective intension: Set of all attributes speaker
+    believes are posessed by objects denoted by that word
+\end{definition}
+
+\begin{definition}Objective intension: Total set of characteristics
+    shared by all objects in the word's extension
+\end{definition}
+
+\begin{definition}
+    Conventional intension: Commonly accepted intension of a term; 
+\end{definition}
+
+\subsection{Techniques for creating intensional definitions}
+\begin{definition}Synonymous definition: A word, phrase, etc. is defined
+    in terms of another
+\end{definition}
+
+\begin{definition}Operational definition: Defined by means of operations.
+    Example: length can be defined by the measuring procedure.
+\end{definition}
+
+\begin{definition}Definitions by genus and difference (Analytical definitions):
+    Class whose membership is divided: \textbf{genus}. Subclasses: \textbf{species}.
+\end{definition}
+
+\section{Fallacies}
+\subsection{Fallacies of relevance}
+\begin{itemize}
+    \item \textbf{Appeal to populace}: Appeal to people's emotions. Eg. speeches
+        by fascist leaders.
+    \item \textbf{Appeal to emotion}: Appeal to base emotions such as pity.
+    \item \textbf{Red herring}: Distract from the actual argument with a
+        \textit{deliberately misleading trail}. Etymology: People who used to
+        try and save foxes from being hunted by leaving a smoked herring, which
+        confuses dogs, and also turns red.
+    \item \textbf{Strawman}: Misconstrue argument to make it seem weaker
+        than it actually is, and then defeat the weakened argument.
+    \item \textbf{Ad homenim --- abusive type (Argument against the person)}: Attack moral character
+        of person. 
+    \item \textbf{Ad homenim --- circumstantial type}: Attacking someone's argument
+        based on their \textit{circumstance}. Eg. calling a non-vegeterian who
+        argues for reduced meat consumption a hypocrite. This does not reduce the
+        validity of the argument at all.
+    \item \textbf{Appeal to force}: Appeal to threats to coerce the other
+        person to accept your argument.
+    \item \textbf{Missing the point}: One attacks a different thesis than
+        the one the interlocutor was advancing.
+\end{itemize}
+\subsection{Fallacies of defective induction}
+\begin{itemize}
+    \item \textbf{Argument from ignorance}: Arguing that just because something
+        is not \emph{proven} true, it \textit{must be} false, or the converse.
+    \item \textbf{Appeal to inappropriate authority}: Appeal to the authority
+        of someone who is not an authority on the subject at hand. 
+
+        Example: Invoking Picasso on a discussion about economics.
+
+    \item \textbf{False cause}: Arguing for a cause-and-effect relationship
+        where none exists. Eg. you fell sick because of the bees this time
+        of year.
+
+    \item \textbf{Hasty Generalization}: Performing induction from a very
+        small sample size.
+\end{itemize}
+
+\subsection{Fallacies of presumption}
+These come from presuming unjustified assumptions.
+\begin{itemize}
+    \item \textbf{Accident}: Assuming a generalization applies to all concrete
+        cases. 
+
+        Example: It is wrong to steal. We can create corner cases such as 
+        \say{what if the person was hungry}? This falls under accident.
+
+    \item \textbf{Complex question}: Constructing a loaded question where
+        refuting a part of the question implicitly provides truth to another
+        part, which was unintended.
+
+        Example: \say{With all of the hysteria, all of the fear, all of the
+        phony science, could it be that man-made global warming is the greatest
+    hoax ever perpetrated on the American people?}
+
+    \item \textbf{Begging the question}: Assuming the conclusion in the 
+        supposition.
+
+        Example: \say{There is no such thing as knowledge which cannot be
+        carried into practice, for such knowledge is really no knowledge at
+        all.}
+\end{itemize}
+
 
 \end{document}
 
