@@ -1,4 +1,4 @@
-\section{Information Theory, CPA security - Lecture 5}
+\chapter{Information Theory, CPA security - Lecture 5}
 
 
 Most theorems will read as: if X is true, then the protocol $\Pi$ is secure.
@@ -62,21 +62,93 @@ Given a string $w$ and ask if $w$ can be distinguished by $A$. We can pick $w$ f
 If $A(w xor M0, w xor M1)$ gives us the  correct value(can distinguish), then we are using the PRNG. Otherwise, it is the RNG.
 
 
-\subsubsection{CPA secure}
+\subsection{Multi message Indistinguishability experiment}
 
-Adversary gets to pick $M_0$ and $M_1$, we choose a bit $b$ at random and give encryption of $M_b$. He has an oracle that has oracle access to the encryption algorithm. Even with this, he should not be able to guess $b$.
+This is defined for an encryption scheme $(\gen, \enc, \dec)$.
+\begin{itemize}
+\item Adversary outputs a pair of vector of messages $(\vec m_0, \vec m_1)$. Each
+    vector contains the same number of messages, and the $i$th messages have the
+    same length. That is, $|m_0[i]| = |m_1[i]|$.
+\item A random key is created: $ k \leftarrow \gen$, and a random bit
+    $b \leftarrow \binary$ is chosen. For all $i$, $c[i] \leftarrow \enc_k(m[i])$
+    is computed. $\vec c$ is given to the adversary $A$.
+\item The adversary $A$ outputs a bit $b'$. The output of the experiment is $1$
+    if $b = b'$, and $0$ otherwise.
+\end{itemize}
+
+Security definition of the cryptosystem remains unchanged.
+
+
+\paragraph{Weakness of one time pads under this threat model}
+Note that one time pads will fall to this threat model, since repeatedly
+ciphering data with a one-time pad will allow us to extract data from the
+one-time pad. Indeed, any deterministic scheme can be attacked under
+this threat model. So, we now need probabilistic encryption schemes.
+
+\paragraph{Attacking all deterministic cryptosystems under multi message threat model}
+Let $m_0 \equiv (0^n, 0^n), m_1 \equiv (0^n, 1^n)$. Run this through the experiment. We will
+be given $c \equiv (c_0, c_1)$. If $c_0 = c_1$, then  we know that the message
+was $(0^n, 0^n) = m_0$, and is $m_1$ otherwise. We know this since the encryption
+function is deterministic, and  hence $\enc_k(m_0) = \enc_k(m_1) \implies m_0 = m_1$.
+
+\subsection{Secure multiple encryptions using a stream cipher}
+TODO: add rigorous definition of stream ciphers.
+Two modes of operation.
+
+\paragraph{Synchronized mode} Communicating parties make sure they use
+different parts of the stream cipher. This way, no one reuses bits from the
+stream cipher. This can be viewed as one giant plaintext, by concatenating
+the messages exchanged between the two parties. Security immediately follows.
+
+This is difficult since we need to maintain state between encryptions, to make
+sure that we do not reuse randomness.
+
+\paragraph{Unsynchronize mode} We do not need to maintain state, but we
+need a more powerful definition of pseudorandom generator. We need a 
+seed $s$ and an initialization vector $IV$ of length $n$. The requirement
+we will need is that $G(S, IV=iv)$ is pseudo-random (That is, knowing $IV$
+while $s$ is secret keeps the output pseudorandom). Furthermore, for two
+randomly chosen initialization vectors $IV_1, IV_2$, $G(s, IV_1), G(s, IV_2)$
+is pseudo random when $IV_{\{1, 2\}}$ are known, but $s$ is secret. Note that
+$s$ is the same for both! We can create an encryption scheme as:
+
+\begin{align*}
+    \enc_k(m) \equiv (IV, G(k, IV) \xor m) \qquad
+    \dec_k((IV, c)) = m \xor G(k, IV)
+\end{align*}
+
+\subsubsection{CPA (Chosen plaintext attack) security: $\privkeysecurity{cpa}(n)$}
+This is defined for a cryptosystem $\Pi \equiv (\gen, \enc, \dec)$.
+\begin{itemize}
+    \item Random key is generated $k \leftarrow \gen(n)$.
+    \item The adversary $A$ is given oracle access to $\enc_k(\cdot)$. The
+        adversary generates two messages $m_0, m_1$.
+    \item Random bit $b \leftarrow \binary$ is chosen. A ciphertext
+        $c \leftarrow \enc_k(m_b)$ is computed, and is given to $A$.
+    \item $A$ continues to have oracle access to $\enc_k(\cdot)$. Adversary
+        outputs a bit $b'$.
+    \item Output of experiment is $1$ if $b = b'$, $0$ otherwise.
+\end{itemize}
+
+A private key encryption scheme $\Pi \equiv (\gen, \enc, \dec)$ has 
+Indistinguishable encryptions under CPA  security  if for all PPTM $A$, there
+exists a negligible function $\negl$ such that:
+
+\begin{align*}
+    Pr[\privkeysecurity{cpa}(n) = 1] \leq \frac{1}{2} + \negl(n)
+\end{align*}
+
 
 \paragraph{No determistic algorithm can be CPA secure}
-
-The adversary will ask for encryption of $M_0$ and encryption of $M_1$. He gets back $C_0$ and $C_1$. Then, we can compare that to our result, and find the random bit $b$.
+The adversary will ask for encryption of $M_0$ and encryption of $M_1$. He gets
+back $C_0$ and $C_1$. Then, we can compare that to our result, and find the
+random bit $b$.
 
 
 \paragraph{How to create CPA secure}
-$C = <R, c xor enc(R)>$ where R is a random string.
-Decryption will never fail. if we know R, we can xor twice.
-Encryption will not fail because encryption of random data is still random.
-
-We have a problem of length doubling: For one length of data, we need R as well.
+$c \equiv \langle r, m \xor \enc_k(r) \rangle$ where $r \leftarrow \binary$ is a random string.
+Decryption will never fail. if we know $r$, we can $\xor$ to find $m$. However,
+the problem is length doubling: For data of length $n$, we need $|r| = n$.
 
 \subsubsection{Indexable PRNGS}
 A PRNG that we can index at a point, and it will start generating from that index. They are called ``pseudorandom functions''.
@@ -109,33 +181,3 @@ Take seed s. output $MSB(s_1 = g^s mod p)$. So we now have a PRNG that can creat
 Third output: $MSB(s_3 = g^{s_3} mod p)$.
 
 Hence, if discrete log is hard, we can get a PRNG. 
-
-\subsection{Multi message Indistinguishability experiment}
-
-This is defined for an encryption scheme $(\gen, \enc, \dec)$.
-\begin{itemize}
-\item Adversary outputs a pair of vector of messages $(\vec m_0, \vec m_1)$. Each
-    vector contains the same number of messages, and the $i$th messages have the
-    same length. That is, $|m_0[i]| = |m_1[i]|$.
-\item A random key is created: $ k \leftarrow \gen$, and a random bit
-    $b \leftarrow \binary$ is chosen. For all $i$, $c[i] \leftarrow \enc_k(m[i])$
-    is computed. $\vec c$ is given to the adversary $A$.
-\item The adversary $A$ outputs a bit $b'$. The output of the experiment is $1$
-    if $b = b'$, and $0$ otherwise.
-\end{itemize}
-
-Security definition of the cryptosystem remains unchanged.
-
-
-\paragraph{Weakness of one time pads under this threat model}
-Note that one time pads will fall to this threat model, since repeatedly
-ciphering data with a one-time pad will allow us to extract data from the
-one-time pad. Indeed, any deterministic scheme can be attacked under
-this threat model. So, we now need probabilistic encryption schemes.
-
-\paragraph{Attacking all deterministic cryptosystems under multi message threat model}
-Let $m_0 \equiv (0^n, 0^n), m_1 \equiv (0^n, 1^n)$. Run this through the experiment. We will
-be given $c \equiv (c_0, c_1)$. If $c_0 = c_1$, then  we know that the message
-was $(0^n, 0^n) = m_0$, and is $m_1$ otherwise. We know this since the encryption
-function is deterministic, and  hence $\enc_k(m_0) = \enc_k(m_1) \implies m_0 = m_1$.
-

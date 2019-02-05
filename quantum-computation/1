@@ -93,61 +93,7 @@ a state  $\ket {\psi'}$ at a time $t_2$ by unitary operator $U$ which depends
 only on time $t_1$ and $t_2$. That is, $\ket {\psi'} = U(t_1, t_2) \ket \psi$.
 We usually suppress $t_1, t_2$ to write $\ket{\psi'} = U \ket{\psi}$.
 
-Schrodinger equation: $$i \hbar \pdv{\psi}{t} = H \ket{\psi}$$
+Schrodinger equantion: $$i \hbar \pdv{\psi}{t} = H \ket{\psi}$$
 \textit{Homework: Show that the Schrodinger equation implies unitary evolution}
 
-\section{Postulate 3 of QM: Measurement postulate}
-Quantum measurements are described by a collection $\{ M_i \}$ of measurement
-operators. These operators are acting on the state space of the system which is
-measured.  The index $i$ refers to the measurement outcomes 
-that may occur in the experiment. If the state of the quantum system is 
-$\ket \psi$ before the measurement, the probability that the result $i$ occurs 
-is given by: \[p(i) \equiv \bra{\psi} M^\dagger_i M_i \ket{\psi}\]
-
-The state if result $i$ occurs is: \[  \ket{\psi'} = \frac{M_i \ket{\psi}}{\sqrt{p(i)}} \]
-
-We normalize the state $\ket{\psi'}$ to ensure that we evolve Unitarily.
-
-Also, notice that since $\sum_m p(m) = 1$, since $p(m)$ represents probabilities,
-we can write:
-\begin{align*}
-    &\sum_m p(m) = 1 \qquad
-    \bra{\psi}\sum_m   M_m^\dagger M_m \ket{\psi} = 1 \qquad
-    \sum_m \bra{\psi} M_m^\dagger M_m \ket{\psi} = 1 \\
-    &\text{Since $\ket{\psi}$ is a normalized state, we must have:} \\
-    &\sum_m M_m^\dagger M_m = I
-\end{align*}
-
-\subsection{Projective measurements}
-A projective measurement is described by an observable $M$, a hermitian
-operator on the state space of the system being observed.
-
-Let the observable $M$ have spectral decomposition: $$M \equiv \sum_m m P_m$$
-
-\begin{align*}
-    p(m) = \bra{\psi} P_m^\dagger P_m \ket{\psi} = \bra{\psi} P_m \ket{\psi}
-\end{align*}
-
-\begin{align*}
-    &\E{M} = \sum_m m p(m) 
-    = \sum_m m \bra{\psi} P_m \ket{\psi} 
-    = \bra{\psi} \sum_m m P_m \ket{\psi} 
-    = \bra{\psi} M \ket{\psi}
-    \\
-    &\E{M^2} = \bra{\psi} M^2 \ket{\psi}
-    \\
-    &V(M) = \E{M^2} - \E{M}^2 
-    = \bra \psi M^2 \ket \psi - (\bra \psi M \ket \psi)^2
-\end{align*}
-
-\subsection{Quantum sharing experiment}
-\begin{align*}
-    \text{Alice:}~ 
-    \left\{ \ket{\psi_1}, \ket{\psi_2}, \dots \right\} 
-    \xrightarrow{\quad \ket{\psi_i} \quad} 
-    \text{Bob:}~ \ket{\psi_i}
-\end{align*}
-
-Bob has to correctly guess the $i$ that was sent to him. We have two cases:
-One where $\{ \ket{\psi_i} \}$ are orthonormal, the other where they are not.
-
+\section{Postulate 3 of QM: }
