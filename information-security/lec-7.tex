@@ -81,16 +81,29 @@ messages using a block cipher. We will see methods that have better
 \emph{ciphertext expansion}: The ratio between  the length of the message
 and the length of the ciphertext.
 
-\section{Cipher Block Chaining}
+\subsection{ECB --- Electronic Code Book} 
+Given plaintext $m = \langle m_1 m_2 \dots m_l \rangle$, cyphertext
+encrypts each block randomly, usin the PRF: $(c = \langle F_k(m_1), F_k(m_2) \dots F_k(m_l) \rangle)$
 
-Like the name says, chain blocks for messages. we perform $c_k = F_k(m_k XOR
-c_{k - 1})$. This creates a chain of dependences.
+This is deterministic, and so cannot be CPA-secure.  It doesn't even have
+indistinguishable encryption in the presence of an eavesdropper. This is
+because if the same block repeats in the plaintext, it repeats in the
+ciphertext.
 
-\section{Output feedback mode} $r_1 = public$ $r_k = f_k(r_{k - 1})$ $c_k = m_k
-XOR r_k$
 
+\subsection{CBC --- Cipher Block Chaining}
 
-$G(x) = G_0(x) || G_1(x)$
+Like the name says, chain blocks for messages. we perform $c_k = F_k(m_k \xor c_{k - 1})$. This creates a chain of dependences.
+
+\subsection{Output feedback mode} 
+Here, we set $r_n = f_k^n(r_0)$, where $r_0 \equiv IV$. This allows us to
+compute $r_n$ without having to have the entire history.
+
+\begin{align*}
+    &r_0 = \text{public} \\
+    &r_n = f_k(r_{n - 1}) \\
+    &c_k = m_k \xor r_k
+\end{align*}
 
 
 

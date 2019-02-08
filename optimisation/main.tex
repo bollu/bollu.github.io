@@ -108,6 +108,14 @@
 \maketitle
 \tableofcontents
 
+
+\chapter{Introductory examples}
+
+
+\section{Classification}
+Consider a classification problem where we have labeled data at
+$(x_i, y_i)$, with some labeled $+$ and other data points labeled $-$.
+
 \chapter{\lp-relaxation}
 
 We know that $z^*_\ip \leq z^*_\lp$. We can solve an \lp problem using
@@ -245,7 +253,16 @@ We now show \textbf{optimality} of $S_\lp$.
 So, we are at worst twice the size of the best vertex cover.
 
 \section{Maximum independent set}
-HOMEWORK: read how this can be phrased as \lp
+A set $I \subseteq V$ is independent if no two vertices in $I$ are connected
+by an edge. Once again, let $x_v \in \{0, 1\}$ be indicators for a vertex
+being picked. We have the constraints:
+
+\begin{align*}
+    \text{maximise}~\sum_v x_v \qquad \text{subject to:}~\forall (u, v) \in E,~ x_u + x_v \leq 1
+\end{align*}
+
+in the LP case, There is always a solution by setting all $x_v = 1/2$. Hence,
+the optimal LP is always $|V|/2$ or larger.
 
 \chapter{Formulating common operations in terms of \ilp}
 
@@ -369,6 +386,30 @@ $\dim(V) = (n, n)$.  $U, V$ are orthogonal, $D$ is a diagonal matrix.
 Used to solve $0, 1$ binary ILP problems.
 
 \href{https://www.sce.carleton.ca/faculty/chinneck/po/Chapter13.pdf}{good link for bala's algorithm}
+
+\chapter{Practice for mid-1}
+\begin{itemize}
+    \item Proof for unrelaxing bipartite matching from LP to best solution
+    \item Approximation ratio for vertex cover
+    \item Phrasing maximum independent set in terms of ILP
+    \item Different styles of constraints that can be encoded using ILP
+        \begin{itemize}
+            \item Functions of K discrete variables
+            \item Either-or constraints
+            \item K out of N constraints
+            \item Compound alternatives
+            \item Piecewise linear
+        \end{itemize}
+    \item Facility location problem
+    \item Bala's method to solve BIP
+    \item Scheduling and makespan
+    \item Costs of different factorizations, and different factorizations:
+        \begin{itemize}
+            \item Cholesky: $1/3n^3$
+            \item Solving system $L \vec x = b$ is $n^2$ by forward substitution.
+            \item computing LU: $2/3n^3$
+        \end{itemize}
+\end{itemize}
 
 \end{document}
 
