@@ -28,7 +28,19 @@
 \section{Q1 -- matrix representation for $\ket{\phi_k}\bra{\phi_j}$, in the
 orthonormal $\ket{v_i}$ basis}
 
-Perform change of basis.
+\begin{align*}
+    &O = \ket{\phi_k}\bra{\phi_j} = I \ket{\phi_k}\bra{\phi_j} I\\
+    &= \left(\sum_l \ket{v_l}\bra{v_l}\right) \ket{\phi_k}\bra{\phi_j} \left(\sum_m \ket{v_m}\bra{v_m}\right)
+\end{align*}
+
+Element at $\alpha$th row, $\beta$th column of an operator $O$ in the $\{v_i\}$ basis
+is $\bra{v_\alpha}O\ket{v_\beta}$. So, in this case, it is:
+\begin{align*}
+    &\bra{v_\alpha} \left(\sum_l \ket{v_l}\bra{v_l}\right) \ket{\phi_k}\bra{\phi_j} \left(\sum_m \ket{v_m}\bra{v_m}\right) \ket{v_\beta} \\
+    &= \left(\sum_l \bra{v_\alpha}\ket{v_l}\bra{v_l}\right) \ket{\phi_k}\bra{\phi_j} \left(\sum_m \ket{v_m}\bra{v_m}\ket{v_\beta} \right)  \\
+    &\text{$\bra{v_\alpha}\ket{v_l} = 1$ if $\alpha = l$, and $0$ otherwise since $\{v_i\}$ are orthonormal. Similarly for $\beta$. Hence:} \\
+    &= \bra{v_\alpha}\ket{\phi_k}\bra{\phi_j}\ket{v_\beta}
+\end{align*}
 
 \section{Q2 -- positive operator is Hermitian}
 We first show that a positive operator is normal, and this automatically
@@ -190,6 +202,39 @@ from the original basis to the eigenbasis, as:
     \frac{[A, B] + \{A, B\}}{2} = \frac{(AB - BA) + (AB + BA)}{2} = AB
 \end{align*}
 
-\section{Express polar decomposition as outer product}
+\section{Express polar decomposition of normal matrix as outer product}
+Since the matrix $A$ is normal, it will posess an eigenbasis $\ket{\lambda_i}$
+with eigenvalues $\lambda_i$. Hence,
+
+\begin{align*}
+    A = \sum_i \lambda_i \ket{\lambda_i} \bra{\lambda_i}
+\end{align*}
+
+Let $A = UP$ where $U$ is unitary and $P$ is positive definite. From the
+definition, we can clearly pick P:
+\begin{align*}
+    P = \sum_i |\lambda_i| \ket{\lambda_i} \bra{\lambda_i}
+\end{align*}
+such that $P$ has positive eigenvalues.
+
+We pick $U$ as:
+\begin{align*}
+    U = \sum_i \frac{\lambda_i}{|\lambda_i|} \ket{\lambda_i} \bra{\lambda_i}
+\end{align*}
+
+Clearly, $U$ has orthogonal columns $\frac{\lambda_i}{|\lambda_i|} \ket{\lambda_i}$,
+which have length $+- 1$, hence the columns of $U$ are orthonormal.
+
+We can verify that $UP = A$ as follows:
+
+\begin{align*}
+    UP &= \left( \sum_j \frac{\lambda_j}{|\lambda_j|} \ket{\lambda_j} \bra{\lambda_j} \right)
+        \left( \sum_i |\lambda_i| \ket{\lambda_i} \bra{\lambda_i} \right) \\
+        &= \sum_j \sum_i \frac{\lambda_j}{|\lambda_j|} |\lambda_i| \ket{\lambda_j} \bra{\lambda_j}  \ket{\lambda_i} \bra{\lambda_i} \\
+        &\text{Since $\bra{\lambda_j}\ket{\lambda_i} = \delta_{ij}$, $\frac{\lambda_j}{|\lambda_j|} |\lambda_i| = \lambda_i$ when $i=j$:} \\
+        &= \sum_i \lambda_i  \ket{\lambda_i} \bra{\lambda_i} \\
+        &= A
+\end{align*}
+
 \section{Find left and right polar decomposition}
 \end{document}
