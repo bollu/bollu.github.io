@@ -223,7 +223,7 @@ We pick $U$ as:
 \end{align*}
 
 Clearly, $U$ has orthogonal columns $\frac{\lambda_i}{|\lambda_i|} \ket{\lambda_i}$,
-which have length $+- 1$, hence the columns of $U$ are orthonormal.
+which have length $1$, hence the columns of $U$ are orthonormal.
 
 We can verify that $UP = A$ as follows:
 
@@ -236,5 +236,27 @@ We can verify that $UP = A$ as follows:
         &= A
 \end{align*}
 
+
 \section{Find left and right polar decomposition}
+matrix $A = \begin{bmatrix} 1 & 0 \\ 0 & 1\end{bmatrix}$
+
+
+First, compute SVD, which gives $A = WD^\frac{1}{2}V^\dagger = WD^\frac{1}{2}$
+
+So, the polar decompositions are
+\begin{align*}
+    &A = WD^\frac{1}{2}V^\dagger = (WD^\frac{1}{2}W^\dagger) (WV^\dagger) \\
+    &A = WD^\frac{1}{2}V^\dagger = (WV^\dagger)(VD^\frac{1}{2}V^\dagger)
+\end{align*}
+
+where $WV^\dagger$ is unitary since $W, V$ are unitary. $WD^\frac{1}{2}W^\dagger$
+and $VD^\frac{1}{2}D^\dagger$ are positive definite since they are just
+similarity transforms of a positive definite matrix $D$.
+
+Computing, this gives:
+
+\begin{align*}
+    A = DU = \begin{bmatrix} 0.89 & 0.45 \\0.45 & 1.34 \end{bmatrix} \begin{bmatrix} 0.89 & -0.45 \\ 0.45 & 0.89 \end{bmatrix} \\
+    A = VD' =  \begin{bmatrix} 0.89 & -0.45 \\ 0.45 & 0.89 \end{bmatrix} \begin{bmatrix} 1.34 & 0.45 \\ 0.45 & 0.89 \end{bmatrix} \\
+\end{align*}
 \end{document}
