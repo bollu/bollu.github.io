@@ -151,3 +151,22 @@ Let the observable $M$ have spectral decomposition: $$M \equiv \sum_m m P_m$$
 Bob has to correctly guess the $i$ that was sent to him. We have two cases:
 One where $\{ \ket{\psi_i} \}$ are orthonormal, the other where they are not.
 
+If the states $\{ \ket{\psi_i} \}$ are not orthogonal, then we can prove
+that there is no quantum measurement that is capable of distinguishing
+the states.
+
+The idea is that bob will make a measurement $M_j$ with outcome $j$.
+Depending on the outcomes of the measurement, bob tries to guess the index 
+$i$ by some rule.
+
+\begin{proof}
+Consider two non-orthogonal states $\ket \psi_1, \ket \psi_2$. Assume a measurement
+is possible by which we can distinguish these two. In other words, if the state
+$\ket \psi_1$ is prepared, then the probability of measuring $k$ such that 
+(????) $f(j) = 1$ ($f$ is our guessing function)
+
+Define some measurement operator $E_i \equiv \sum_{j,~f(j) = i} M_j^\dagger M_j$
+
+
+\end{proof}
+
