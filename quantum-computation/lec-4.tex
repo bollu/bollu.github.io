@@ -23,3 +23,43 @@ $\psi_2$
 
 Hence $\bra{\psi_1}\ket{\psi_2} = 0 \lor 1$
 
+
+\section{No flipping}
+One of the strongest impossible operations. Given a state $\ket{\psi}$, we cannot
+make a state that takes it to an orthogonal state $\ket{\overline{\psi}}$.
+
+(Take a state $a0 + b1$ to $-b0 + a1$?)
+
+
+\section{No partial erasure}
+$\ket{\psi(\theta, \phi)} \rightarrow \ket{\psi'(\theta)}\ket{\Sigma}$ is
+impossible, where $\psi(\theta, \phi)$ is the parametrisation of a 2
+qubit state on a bloch sphere.
+
+\section{No splitting}
+We cannot split quantum information.
+$\ket{\psi(\theta, \phi)} \rightarrow \ket{\psi'(\theta)}\ket{\Sigma'(\phi)}$ is
+impossible. That is, we cannot split the combined information in $(\theta, \phi)$
+into two separate pieces of data.
+
+\chapter{Clasical information theory}
+Book recommendation: Elements of Information theory --- JJ Thomas and Thomas Cover.
+
+\section{What is information}
+Blah blah blah, define surprisal of a probability 
+\begin{align*}
+    I: [0, 1] \rightarrow \R \quad
+    I(p) = - \log p
+\end{align*}
+Now, entropy of a random variable $X$ is:
+\begin{align*}
+    \H : \text{Random variable} \rightarrow \R \quad
+    \H(X) \equiv \sum_{x \in X} p(x) I\l(p(x)\r)
+\end{align*}
+
+Conditional entropy:
+\begin{align*}
+    &\H : \text{Random variable} \times \text{Random variable} \rightarrow \R \quad
+    \H(Y|X) \equiv \sum_{x \in X} p(x) H(Y|X=x) \\
+    &\H(X, Y) = \H(X) + \H(Y|X) 
+\end{align*}
