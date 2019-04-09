@@ -7,17 +7,58 @@ math / graphics / programming.
 The former has been semi-forced thanks to GSoC, as for the latter, it remains
 to be seen. I'm hopeful, though :)
 
-# Reading
+# Ideas I stumble onto
+## How Linear optimisation is the same as Linear feasibility checking
+Core building blog of effecively using the ellipsoid algorithm.
+
+- If we posess a way to check if a point `p ∈ P` where `P` is a polytope, we
+  can use this to solve optimisation problems.
+- Given the optimisation problem maximise `c^Tx` subject to `Ax = b`, we can
+  construct a new problem.
+- The new problem is `Ax = b, A^Ty = c, c^Tx = b^T y`. Note that by duality,
+  a _feasible_ solution to this program will form an _optimal_ solution. We
+  are forcing `c^Tx = b^Ty`, which will be the optimal solution, since the
+  solution where the primal and dual agree is the optimal solution by strong
+  duality.
+
+## Quantum computation without complex numbers
+I recently learnt that the Toeffili and Hadamard gates are universal for
+quantum computation. The description of these gates involve no complex numbers.
+So, we can write any quantum circuit in a "complex number free" form. The caveat
+is that we may very well have _input qubits_ that require complex numbers.
+
+Even so, a large number (all?) of the basic algorithms shown in Nielsen and
+Chaung can be encoded in an entirely complex-number free fashion.
+
+I don't really understand the ramifications of this, since I had the intuition
+that the power of quantum computation comes from the ability to express
+complex phases along with superposition (tensoring). However, I now have
+to remove the power from going from R to C in many cases. This is definitely
+something to ponder.
+
+
+## Linguistic fun fact: Comparative Illusion
+
+I steal from wikipedia:
+
+> Comparative Illusion, which is a grammatical illusion where certain
+> sentences seem grammatically correct when you read them, but upon further
+> reflection actually make no sense. 
+
+For example: "More people have been to Berlin than I have."
+
+# Long-form posts:
+## Reading
 - [2018 reading](content/blog/stuff-i-learnt-this-year-2018.md)
 - [2017 reading](content/blog/papers-I-read-and-loved-in-2017.md)
 
-# Haskell
+## Haskell
 - [Reading the `structs` library](content/blog/reading-kmett-structs.md)
 - [Reading the `machines` library (WIP)](content/blog/machines/reading-kmett-machines.md)
 - [Explaining laziness (WIP)](content/blog/laziness-for-c-programmers.md)
 - [Explaining STG(WIP)](stg-explained.md)
 
-# Simplexhc (STG -> LLVM compiler) progress
+## Simplexhc (STG -> LLVM compiler) progress
 - [proc points suck / making GHC an order of magnitude faster](content/blog/ghc-micro-optimisations-or-why-proc-points-suck.md)
     Note: this renders better on the website. I've put it up here,
     but I need to migrate the images and plots to be static.
@@ -28,7 +69,7 @@ to be seen. I'm hopeful, though :)
 - [july 6th 2017](this-week-in-simplexhc-2017-07-06.md)
 - [announcement](content/blog/announcing-simplexhc.md)
 
-# GSoC (2015)
+## GSoC (2015)
 - [proposal](content/blog/gsoc-vispy.md)
 - [week 1](content/blog/gsoc-vispy-week-1-and-2.md)
 - [week 3 and 4](content/blog/gsoc-vispy-week-3-and-4.md)
