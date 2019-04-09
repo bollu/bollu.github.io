@@ -1,0 +1,1262 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on A weblog of sorts</title>
+    <link>http://localhost:1313/blog/</link>
+    <description>Recent content in Blogs on A weblog of sorts</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sat, 17 Nov 2018 19:24:12 +0530</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Log of a Type Is Information</title>
+      <link>http://localhost:1313/blog/log-of-a-type-is-information/</link>
+      <pubDate>Sat, 17 Nov 2018 19:24:12 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/log-of-a-type-is-information/</guid>
+      <description>Introduction I&amp;rsquo;ve always felt that patches / patching should have an algebraic structure, and I&amp;rsquo;d initially dismissed it as &amp;ldquo;yeah, patches form a group action on files, that&amp;rsquo;s trivial&amp;rdquo;.
+I decided that I had to implement this &amp;ldquo;trivial&amp;rdquo; idea to be sure, and this led me down a rabbit hole. There&amp;rsquo;s something really deep going on in the theory.
+The reason I want such a library is to be able to write compiler passes that I can cheaply &amp;ldquo;speculate&amp;rdquo; on and unroll.</description>
+    </item>
+    
+    <item>
+      <title>Stuff I Learnt This Year: 2018</title>
+      <link>http://localhost:1313/blog/stuff-i-learnt-this-year-2018/</link>
+      <pubDate>Fri, 09 Nov 2018 12:08:42 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/stuff-i-learnt-this-year-2018/</guid>
+      <description>Introduction I chronicle the broad strokes of new things I&amp;rsquo;ve picked up this year. Some musing, some book reviews, and some ramblings contained within. I hope you enjoy the ride.
+Coq Coq is a language that can be used for proving theorems, both mathematical, and proofs of programs.
+A concrete example of doing something like this is implementing quicksort &amp;mdash; why would you trust your implementation? Maybe there&amp;rsquo;s a weird corner case you missed.</description>
+    </item>
+    
+    <item>
+      <title>Monoids as Groups and Rings</title>
+      <link>http://localhost:1313/blog/monoids-as-groups-and-rings/</link>
+      <pubDate>Sun, 04 Nov 2018 03:02:41 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/monoids-as-groups-and-rings/</guid>
+      <description>Monoids seem to have both a group-like structure &amp;ndash; the existence of Cayley&amp;rsquo;s theorem, and ring-like structure &amp;ndash; the existence of ideals. Does this let us do something interesting with them?</description>
+    </item>
+    
+    <item>
+      <title>Hyperfunctions</title>
+      <link>http://localhost:1313/blog/hyperfunctions/</link>
+      <pubDate>Thu, 01 Nov 2018 01:57:13 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/hyperfunctions/</guid>
+      <description>I ran into hyperfunctions when I was implementing arrows, so of course, I need to dive into this little rabbit hole. There were literally only three references I could find on the internet about these things, so let&amp;rsquo;s discuss all of them.</description>
+    </item>
+    
+    <item>
+      <title>Opaqueness in Coq: A Philosophy</title>
+      <link>http://localhost:1313/blog/opaqueness-in-coq-a-philosophy/</link>
+      <pubDate>Tue, 23 Oct 2018 17:31:38 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/opaqueness-in-coq-a-philosophy/</guid>
+      <description>After hacking a [bunch] [of] [code] in coq, I&amp;rsquo;ve come to conclusion that the first thing to do after writing a Definition is to make it Opaque.
+This seems to force to write way cleaner code, due to the need to actually think about what property I want to say about the new definition, instead of just blindly unfolding it (and losing the point of the abstraction in the first place).</description>
+    </item>
+    
+    <item>
+      <title>Reading Euphoria</title>
+      <link>http://localhost:1313/blog/reading-euphoria/</link>
+      <pubDate>Sun, 21 Oct 2018 01:57:28 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/reading-euphoria/</guid>
+      <description>the euphoria FRP library</description>
+    </item>
+    
+    <item>
+      <title>Simple category theory in Coq</title>
+      <link>http://localhost:1313/blog/simple-category-theory-in-coq/</link>
+      <pubDate>Sat, 20 Oct 2018 21:34:35 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/simple-category-theory-in-coq/</guid>
+      <description>Aim: implement a small Category, Functor, NaturalTransformation, Adjunction, Monad hierarchy.
+Possibly: implement a category of monad transformers!</description>
+    </item>
+    
+    <item>
+      <title>Reading Kmett Machines</title>
+      <link>http://localhost:1313/blog/reading-kmett-machines/</link>
+      <pubDate>Sat, 20 Oct 2018 17:51:12 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/reading-kmett-machines/</guid>
+      <description>I wish to read the machines library, since I&amp;rsquo;m trying to investigate ways of cheaply embedding FPGA code generation into Haskell &amp;mdash; So I&amp;rsquo;m reading about arrows, machines, and other ways of embedding computations within haskell.
+Reading Machines Inside-out First, as usual, we run a tree on the repo:
+. ├── benchmarks │ └── Benchmarks.hs ├── CHANGELOG.markdown ├── config ├── examples │ ├── Examples.hs │ ├── LICENSE │ └── machines-examples.</description>
+    </item>
+    
+    <item>
+      <title>Edsl Reficiation</title>
+      <link>http://localhost:1313/blog/edsl-reficiation/</link>
+      <pubDate>Sat, 20 Oct 2018 17:49:49 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/edsl-reficiation/</guid>
+      <description>We take a look at Simple and Compositional Reification of Monadic Embedded Languages</description>
+    </item>
+    
+    <item>
+      <title>Playing With Ispc</title>
+      <link>http://localhost:1313/blog/playing-with-ispc/</link>
+      <pubDate>Fri, 19 Oct 2018 02:49:04 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/playing-with-ispc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ssreflect for Coq Programmers</title>
+      <link>http://localhost:1313/blog/ssreflect-for-coq-programmers/</link>
+      <pubDate>Thu, 18 Oct 2018 19:18:43 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/ssreflect-for-coq-programmers/</guid>
+      <description>Here&amp;rsquo;s a handy guideline for people who are comfortable with Coq, but not with SSReflect. As someone who belonged to this category, I struggled to find resources that did not bore me (since I already knew Coq), but did not overwhelm me (since I didn&amp;rsquo;t know SSReflect). I&amp;rsquo;d like this blog post to be a stable reference as quick cheat-sheet for someone who&amp;rsquo;s transitioning from using Coq to using Coq+SSReflect.</description>
+    </item>
+    
+    <item>
+      <title>Rank Select</title>
+      <link>http://localhost:1313/blog/rank-select/</link>
+      <pubDate>Wed, 17 Oct 2018 22:04:59 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/rank-select/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Google mentor summit: Demand analysis for haskell using Polyhedra</title>
+      <link>http://localhost:1313/blog/google-mentor-summit-demand-analysis-for-haskell-using-polyhedra/</link>
+      <pubDate>Tue, 16 Oct 2018 16:24:13 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/google-mentor-summit-demand-analysis-for-haskell-using-polyhedra/</guid>
+      <description>Introduction Demand analysis is the process of constructing the information of what output depends on what input in a given Haskell function, which allows us to convert non-strict operations to strict operations.
+Demand analysis is a technique that is used when implementing a compiler for a lazy language, to ensure which operations can be performed immediately. This is a crucial optimisation to ensure that we can optimise programs well, since laziness inhibits crucial optimisations that are available in strict languages to be applied.</description>
+    </item>
+    
+    <item>
+      <title>Reading-Kmett-Trifecta</title>
+      <link>http://localhost:1313/blog/reading-kmett-trifecta/</link>
+      <pubDate>Sun, 14 Oct 2018 05:14:51 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/reading-kmett-trifecta/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Reading Guanxi</title>
+      <link>http://localhost:1313/blog/reading-guanxi/</link>
+      <pubDate>Tue, 09 Oct 2018 11:36:50 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/reading-guanxi/</guid>
+      <description>Motivation Guanxi is a library by Edward Kmett, which tries to throw ideas from constraint programming, SAT solving, and propogators into a blender to see what comes out. I&amp;rsquo;m quite excited by the project, and have certain ideas of my own I want to entertain with the framework, so I decided to perform a deep dive into the codebase.
+I recommend watching Edward&amp;rsquo;s twitch.tv streams for more a more in-depth view</description>
+    </item>
+    
+    <item>
+      <title>Haskell-Performance-Challenge-Mniip</title>
+      <link>http://localhost:1313/blog/haskell-performance-challenge-mniip/</link>
+      <pubDate>Mon, 08 Oct 2018 01:41:23 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/haskell-performance-challenge-mniip/</guid>
+      <description>mniip recently challenged me to get the same performance as this piece of code:
+#include &amp;lt;stdio.h&amp;gt; char sieve[100000000 &amp;gt;&amp;gt; 3]; int main() { int count = 0; for(long int i = 2; i &amp;lt; 100000000; i++) if(!(sieve[i &amp;gt;&amp;gt; 3] &amp;amp; (1 &amp;lt;&amp;lt; (i &amp;amp; 7)))) { count++; for(long int j = i * i; j &amp;lt; 100000000; j += i) sieve[j &amp;gt;&amp;gt; 3] |= 1 &amp;lt;&amp;lt; (j &amp;amp; 7); } printf(&amp;quot;%ld\n&amp;quot;, count); }  A wise man once said, &amp;ldquo;to profile a haskell application, one must rebuild the universe.</description>
+    </item>
+    
+    <item>
+      <title>Reading Kmett&#39;s `structs` library</title>
+      <link>http://localhost:1313/blog/reading-kmetts-structs-library/</link>
+      <pubDate>Thu, 04 Oct 2018 19:53:32 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/reading-kmetts-structs-library/</guid>
+      <description>I&amp;rsquo;m examining Edward Kmett&amp;rsquo;s structs package. I decided to write up fun bits of the code I found as I spelunked on the codebase, as well as motivate why this library exists (as far as I can tell, anyway).
+Pre-requisites: General haskell-familiarity upto monads. In this case, IO and ST familiarity is assumed since we&amp;rsquo;re doing mutable things.
+Introduction I&amp;rsquo;m going in blind, so let&amp;rsquo;s first read the README, and then jump directly intowhat&amp;rsquo;s exported by this library!</description>
+    </item>
+    
+    <item>
+      <title>A-Perspective-on-Optimising-Haskell</title>
+      <link>http://localhost:1313/blog/a-perspective-on-optimising-haskell/</link>
+      <pubDate>Wed, 03 Oct 2018 16:59:34 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/a-perspective-on-optimising-haskell/</guid>
+      <description> I&amp;rsquo;ve spent the last year and a half thinking about Haskell, GHC, and optimising compilers, so I think this is a good time
+What are our performance goals? How do we reach this? What are we willing to give up? What must we work on? </description>
+    </item>
+    
+    <item>
+      <title>Why I like algebra over analysis</title>
+      <link>http://localhost:1313/blog/why-i-like-algebra-over-analysis/</link>
+      <pubDate>Thu, 20 Sep 2018 02:41:47 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/why-i-like-algebra-over-analysis/</guid>
+      <description>Midnight discussions with my room-mate Arjun P.
+This tries to explore what it is about algebra that I find appealing.
+I think the fundamental difference to me comes down to flavour &amp;mdash; analysis and combinatorial objects feel very &amp;ldquo;algorithm&amp;rdquo;, while Algebra feels &amp;ldquo;data structure&amp;rdquo;.
+To expand on the analogy, a proof technique is like an algorithm, while an algebraic object is like a data structure. The existence of an algebraic object allows us to &amp;ldquo;meditate&amp;rdquo; on the proof technique as a separate object that does not move through time.</description>
+    </item>
+    
+    <item>
+      <title>Coq-Sources-Deep-Dive-Part-1</title>
+      <link>http://localhost:1313/blog/coq-sources-deep-dive-part-1/</link>
+      <pubDate>Tue, 04 Sep 2018 11:05:36 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/coq-sources-deep-dive-part-1/</guid>
+      <description>This is a series of articles that hopes to read through the Coq source code to gain some understanding of how Coq works.</description>
+    </item>
+    
+    <item>
+      <title>Making GHC an order of magnitude faster with one neat trick</title>
+      <link>http://localhost:1313/blog/making-ghc-an-order-of-magnitude-faster-with-one-neat-trick/</link>
+      <pubDate>Sun, 28 Jan 2018 12:33:21 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/making-ghc-an-order-of-magnitude-faster-with-one-neat-trick/</guid>
+      <description>Note: I&amp;rsquo;m putting this up because college has started again, and I&amp;rsquo;m not finding enough time to polish this up. However, I do want to come back to this and work on this. I&amp;rsquo;m publishing this semi-unformatted because I think the finding is interesting.
+Introduction On working on simplexhc, a custom haskell-to-llvm compiler, I&amp;rsquo;ve noticed several strange performance behaviours of GHC (Glasgow haskell compiler). Under certain benchmarks, GHC is slower than C by 2x to 3x, and this GHC slowdown grows non-linearly with problem size.</description>
+    </item>
+    
+    <item>
+      <title>Papers I Read and Loved in 2017</title>
+      <link>http://localhost:1313/blog/papers-i-read-and-loved-in-2017/</link>
+      <pubDate>Fri, 05 Jan 2018 18:20:53 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/papers-i-read-and-loved-in-2017/</guid>
+      <description>I spent 2017 as a research intern working at the systems group, ETH Zurich. I worked on Polly, a loop optimizer for LLVM, so this had me read a bunch of compiler related papers.
+I also started implementing simplexhc, a STG to LLVM compiler. STG is the Glasgow Haskell compiler&amp;rsquo;s internal representation for Haskell. This had me reading a bunch of lazy compiler papers!
+I decided to make a list of papers I read, what I loved about them, and which ones I totally did not get.</description>
+    </item>
+    
+    <item>
+      <title>This Month in Simplexhc</title>
+      <link>http://localhost:1313/blog/this-month-in-simplexhc/</link>
+      <pubDate>Wed, 27 Dec 2017 17:44:09 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/this-month-in-simplexhc/</guid>
+      <description>Performance Benchmarking I&amp;rsquo;ve been trying to get the performance of sxhc down to that of C. On benchmarks such as ackermann and fibonacci, there was a non-trivial slowdown of GHC in comparison to plain old C. Debugging this was a really fun experience, [and the full report is here](). The TL;DR is that the way we generate code today, it is hard to figure out the register allocation problem. In C, LLVM is able to pass arguments through registers, and so it eliminates the overhead of creating a stack frame almost entirely.</description>
+    </item>
+    
+    <item>
+      <title>How to compile Haskell, a bird&#39;s eye view</title>
+      <link>http://localhost:1313/blog/how-to-compile-haskell-a-birds-eye-view/</link>
+      <pubDate>Mon, 25 Dec 2017 11:57:38 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/how-to-compile-haskell-a-birds-eye-view/</guid>
+      <description>The aim of this blog post is to explain haskell&amp;rsquo;s (specifically, GHC) evaluation model without having to jump through too many hoops. I&amp;rsquo;ll explain how pervasive non-strictness is when it comes to Haskell, and why compiling non-strictness is an interesting problem.
+Side node: nonsrict versus lazy (This section can be skipped) I will use the word non-strict throughout, and not lazy. Roughly speaking, lazy is more of an implementation detail that guarantees that a value that is once computed is cached.</description>
+    </item>
+    
+    <item>
+      <title>This week in simplexhc: October 29th 2017</title>
+      <link>http://localhost:1313/blog/this-week-in-simplexhc-october-29th-2017/</link>
+      <pubDate>Sun, 29 Oct 2017 05:27:56 +0200</pubDate>
+      
+      <guid>http://localhost:1313/blog/this-week-in-simplexhc-october-29th-2017/</guid>
+      <description>This is going to be a weekly blog post about the status of simplexhc, an STG to LLVM compiler. Read more about this in the introduction blog post.
+This has been a long time coming. Unfortunately, &amp;ldquo;next week&amp;rdquo; turned out to be &amp;ldquo;after 3 months&amp;rdquo;. To quickly cover ground, I&amp;rsquo;ll first write about stuff I&amp;rsquo;ve achieved in the past couple months:
+ Moved from Haskell to C++. Implemented &amp;ldquo;fully functional&amp;rdquo; compiler for a subset of STG.</description>
+    </item>
+    
+    <item>
+      <title>This week in simplexhc: July 11 2017</title>
+      <link>http://localhost:1313/blog/this-week-in-simplexhc-july-11-2017/</link>
+      <pubDate>Tue, 11 Jul 2017 20:09:46 +0200</pubDate>
+      
+      <guid>http://localhost:1313/blog/this-week-in-simplexhc-july-11-2017/</guid>
+      <description> Alternate codegen style:  This makes the tail call directly exposed. Matcher can still be inlined.  typedef void (*HaskellFunc)(); int globalSideEffect; void function_one() alwaysinline { globalSideEffect = 0; HaskellFunc continuation = matcher(1); // &amp;quot;tail call&amp;quot; forces a call to be tail call optimised. tail call continuation(); } void function_two() alwaysinline { globalSideEffect = 42; HaskellFunc continuation = matcher(2); tail call continuation(); } HaskellFunc matcher(int i) { switch (i) { case 1: return function_one; case 2: return function_two(); } }  </description>
+    </item>
+    
+    <item>
+      <title>This week in simplexhc: July 2 2017</title>
+      <link>http://localhost:1313/blog/this-week-in-simplexhc-july-2-2017/</link>
+      <pubDate>Sun, 02 Jul 2017 20:09:46 +0200</pubDate>
+      
+      <guid>http://localhost:1313/blog/this-week-in-simplexhc-july-2-2017/</guid>
+      <description>This is going to be a weekly blog post about the status of simplexhc, an STG to LLVM compiler. Read more about this in the introduction blog post
+This week has been mostly about spring-cleaning, and getting things in shape.
+Integrating optparse-applicative I used to have a shabby parsing system for command line options. This got unweildy, so I&amp;rsquo;m now switching to optparse-applicative, a really neat library for encoding command line options.</description>
+    </item>
+    
+    <item>
+      <title>alperin groups and representations ex 1 1</title>
+      <link>http://localhost:1313/blog/alperin-groups-and-representations-ex-1-1/</link>
+      <pubDate>Sun, 25 Jun 2017 20:09:46 +0200</pubDate>
+      
+      <guid>http://localhost:1313/blog/alperin-groups-and-representations-ex-1-1/</guid>
+      <description>A Group $(G, *, e)$ such that $\forall g \in G, g^2 = e$. Prove that $G$ is abelian.  Consider $(xy)^2 = xyyx = e$, $x^2y^2 = e * e = e$. Hence, $xyyx = xxyy \implies xy = yx$. $G$ is abelian.
+ A group $(G, *, e)$ such that $|G| = mn$, $m, n$ coprime. Show that $\forall g \in G$, there exist $a, b \in G$ such that $ab = g = ba$, $a^m = e$, $b^n = e$.</description>
+    </item>
+    
+    <item>
+      <title>Announcing simplexhc</title>
+      <link>http://localhost:1313/blog/announcing-simplexhc/</link>
+      <pubDate>Sat, 24 Jun 2017 17:34:10 +0200</pubDate>
+      
+      <guid>http://localhost:1313/blog/announcing-simplexhc/</guid>
+      <description>Simplexhc - a STG to LLVM compiler Link to Github repo. I&amp;rsquo;m trying to understand GHC&amp;rsquo;s design choices when it comes to compilation. The way GHC currently compiles is to first reduce Haskell to a Core language, which is a minimal subset of Haskell, in some sense.
+Next, it compiles Core to STG, which is an &amp;ldquo;abstract machine&amp;rdquo; that is Haskell&amp;rsquo;s view of what the hardware should be like. STG stands for the &amp;ldquo;spineless, tagless, G-machine&amp;rdquo; (Yep, a totally badass name).</description>
+    </item>
+    
+    <item>
+      <title>STG, explained</title>
+      <link>http://localhost:1313/blog/stg-explained/</link>
+      <pubDate>Thu, 22 Jun 2017 17:27:22 +0200</pubDate>
+      
+      <guid>http://localhost:1313/blog/stg-explained/</guid>
+      <description>Introduction You may have heard that GHC compiles quite differently from most compilers, which is true. It takes &amp;ldquo;Haskell code&amp;rdquo;, which is then desugared down to a &amp;ldquo;mini-haskell&amp;rdquo; called Core. This is then compiled to an abstract machine called STG. STG stands for the &amp;ldquo;Spineless, tagless, G-machine&amp;rdquo;. If the name itself hasn&amp;rsquo;t sold you on how cool it is, then I don&amp;rsquo;t know what will :).
+It is this abstract machine that I&amp;rsquo;ll be focusing on.</description>
+    </item>
+    
+    <item>
+      <title>GHC newbie part 1: The goal of prettier error messages</title>
+      <link>http://localhost:1313/blog/ghc-newbie-part-1-the-goal-of-prettier-error-messages/</link>
+      <pubDate>Thu, 15 Jun 2017 19:57:26 +0200</pubDate>
+      
+      <guid>http://localhost:1313/blog/ghc-newbie-part-1-the-goal-of-prettier-error-messages/</guid>
+      <description>Sales pitch: Better error messages in GHC for all I know, I&amp;rsquo;m being driven by a goal that maybe lofty. I want colors and pointers in my error messages that tell me where things are going wrong. I want context for these messages. I&amp;rsquo;d like to engineer an exchange format for GHC consumers for errors.
+With this utopian vision of the future, I set about spelunking the GHC codebase.</description>
+    </item>
+    
+    <item>
+      <title>JavaScript cannot Eta-Reduce</title>
+      <link>http://localhost:1313/blog/javascript-cannot-eta-reduce/</link>
+      <pubDate>Sun, 09 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/javascript-cannot-eta-reduce/</guid>
+      <description>See the Pen JS cannot eta reduce by Siddharth (@bollu) on CodePen.
+
+The Example: Let&amp;rsquo;s create an object which has a value that we are interested in printing out. The object listener has a value that it writes out to the DOM.
+var listener = { click: function() { document.getElementById(&amp;quot;value&amp;quot;).innerHTML = this.value; }, value: 3.1415, };  Now, let&amp;rsquo;s attach the click method to the button, which wraps the listener.</description>
+    </item>
+    
+    <item>
+      <title>exploring the observer pattern in Haskell</title>
+      <link>http://localhost:1313/blog/exploring-the-observer-pattern-in-haskell/</link>
+      <pubDate>Mon, 20 Feb 2017 00:09:15 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/exploring-the-observer-pattern-in-haskell/</guid>
+      <description>{-# LANGUAGE ExplicitForAll #-} {-# LANGUAGE Rank2Types #-} {-# LANGUAGE TypeFamilies #-} {-# LANGUAGE GADTs #-} import Control.Applicative import Data.Traversable import Data.Foldable data Observer m e where MkObserver :: (e -&amp;gt; Maybe a) -&amp;gt; (s -&amp;gt; a -&amp;gt; m (Observer m e)) -&amp;gt; s -&amp;gt; Observer m e simpleObserver :: Applicative m =&amp;gt; (e -&amp;gt; Maybe a) -&amp;gt; (s -&amp;gt; a -&amp;gt; m s) -&amp;gt; s -&amp;gt; Observer m e simpleObserver event handler s = o where o = MkObserver event handler&#39; s handler&#39; s a = fmap (\s&#39; -&amp;gt; MkObserver event handler&#39; s&#39;) (handler s a) statelessObserver :: Applicative m =&amp;gt; (e -&amp;gt; Maybe a) -&amp;gt; (a -&amp;gt; m()) -&amp;gt; Observer m e statelessObserver event handler = o where o = simpleObserver event handler&#39; () handler&#39; _ a = handler a &amp;lt;* pure o data Dispatcher m e = Dispatcher { observers :: [Observer m e] } runEvent :: Applicative m =&amp;gt; Dispatcher m e -&amp;gt; e -&amp;gt; m (Dispatcher m e) runEvent d e = Dispatcher &amp;lt;$&amp;gt; (for (observers d) run) where run (observer @ (MkObserver handler action state)) = case handler e of Just (a) -&amp;gt; action state a Nothing -&amp;gt; pure observer q_observer :: Observer IO String q_observer = statelessObserver (\e -&amp;gt; if e == &amp;quot;q&amp;quot; then Just e else Nothing) (\_ -&amp;gt; print &amp;quot;q pressed&amp;quot;) w_observer :: Observer IO String w_observer = simpleObserver (\e -&amp;gt; if e == &amp;quot;w&amp;quot; then Just e else Nothing) (\c _ -&amp;gt; do print (&amp;quot;w pressed: &amp;quot; ++ (show c)) return $ (c + 1)) 0 mk_number_observer :: Int -&amp;gt; Observer IO String mk_number_observer i = MkObserver (\e -&amp;gt; if e == show i then Just i else Nothing) (\_ _ -&amp;gt; do print $ &amp;quot;number: &amp;quot; ++ show i return $ mk_number_observer ((i + 1) `mod` 10) ) () runner :: Dispatcher IO String -&amp;gt; IO () runner d = do s &amp;lt;- getLine d&#39; &amp;lt;- runEvent d s runner d&#39; main :: IO () main = do let dispatcher = Dispatcher [q_observer, q_observer, w_observer, mk_number_observer 0] runner dispatcher  </description>
+    </item>
+    
+    <item>
+      <title>from algebra to diagrams</title>
+      <link>http://localhost:1313/blog/from-algebra-to-diagrams/</link>
+      <pubDate>Thu, 14 Jan 2016 19:28:52 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/from-algebra-to-diagrams/</guid>
+      <description>Building a Cellular Automata History of Cellular Automata A mental model of a Cellular Automata Let&amp;rsquo;s first mockup what a Cellular Automata would look like as a Haskell datatype.
+Considering that we want to start with something simple, I&amp;rsquo;m constructing an automata with just three rules in 1D space
+ Every cell is either alive (white) or dead (black) If a cell has a live neighbor, it lives If a cell has two live neighbors, it dies Otherwise, it continues in its previous state  An example of the CA behavior is here:</description>
+    </item>
+    
+    <item>
+      <title>Continuation Monad - Part 1</title>
+      <link>http://localhost:1313/blog/continuation-monad---part-1/</link>
+      <pubDate>Fri, 27 Nov 2015 13:08:53 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/continuation-monad---part-1/</guid>
+      <description>I&amp;rsquo;ve been trying to understand how the Continuation monad in Haskell works for a while now, and I think I&amp;rsquo;ve finally grokked it. I&amp;rsquo;m putting this out there in the hopes that it&amp;rsquo;s going to help someone looking for the same path to enlightenment that I was.
+Preface - Function Application Let&amp;rsquo;s consider what function application looks like in Haskell. $ is the operator most commonly used to apply function, such that f $ x = f x.</description>
+    </item>
+    
+    <item>
+      <title>Getting into Sage - a practical guide</title>
+      <link>http://localhost:1313/blog/getting-into-sage---a-practical-guide/</link>
+      <pubDate>Thu, 17 Sep 2015 12:44:32 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/getting-into-sage---a-practical-guide/</guid>
+      <description>I&amp;rsquo;ve been playing around with group theory and graph theory for a while now, so I thought that it was high-time to install [SAGE](), a Python based environment for math computation.
+Unfortunately, the documentation for SAGE is very fragmented, so the experience of getting it up and running wasn&amp;rsquo;t particularly enjoyable. However, once you do get it up and running, it&amp;rsquo;s really slick to use.
+It&amp;rsquo;s for this reason that I&amp;rsquo;ve decided that this will be a living document consisting of all SAGE usage and information that I find out.</description>
+    </item>
+    
+    <item>
+      <title>Freelancing - What have I gotten myself into?</title>
+      <link>http://localhost:1313/blog/freelancing---what-have-i-gotten-myself-into/</link>
+      <pubDate>Wed, 09 Sep 2015 19:44:26 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/freelancing---what-have-i-gotten-myself-into/</guid>
+      <description>I&amp;rsquo;ve been studying for my exams pretty heavily over the past few days. So, I decided to take a break to do something completely different - I&amp;rsquo;ve wanted to freelance for a while, since it seemed like a really nice way to learn new things (and solve real-world problems), while sipping coffee at home in your pyjamas.
+With this sufficiently rose-tinted picture in mind, I began scouting for websites. After all, how hard can it be to create a profile and get started?</description>
+    </item>
+    
+    <item>
+      <title>GSoC VisPy report 6</title>
+      <link>http://localhost:1313/blog/gsoc-vispy-report-6/</link>
+      <pubDate>Mon, 24 Aug 2015 23:17:24 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/gsoc-vispy-report-6/</guid>
+      <description>This will be the final update for VisPy while I&amp;rsquo;m officially under GSoC. There&amp;rsquo;s still some work to be done, so there are still going to be updates.
+Vispy.Plot - merged The changes to plotting that I&amp;rsquo;d worked on have been merged successfully! That&amp;rsquo;s a huge chunk of my GSoC work that&amp;rsquo;s been integrated into master. Here&amp;rsquo;s the merged pull request
+There&amp;rsquo;s a few things left dangling out, (mostly code improvements that need to happen) which is all documented on this issue</description>
+    </item>
+    
+    <item>
+      <title>GSoC VisPy - Update #3</title>
+      <link>http://localhost:1313/blog/gsoc-vispy---update-#3/</link>
+      <pubDate>Mon, 24 Aug 2015 21:59:38 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/gsoc-vispy---update-#3/</guid>
+      <description>Here&amp;rsquo;s the next update, slightly delayed because of college.
+SceneGraph is merged The massive SceneGraph PR that was open all this while has been merged into vispy master, bringing closure to that beast. That&amp;rsquo;s part 1 of my GSoC project officially complete!
+All of the other changes by me reference a single pull request.
+Borders The colorbar had code to render pixel-width borders, that needed to be adapted for a generic case So, the ColorBarVisual was split again, yielding a BorderVisual that&amp;rsquo;s used to draw borders in other parts of VisPy.</description>
+    </item>
+    
+    <item>
+      <title>GSoC VisPy Week 6</title>
+      <link>http://localhost:1313/blog/gsoc-vispy-week-6/</link>
+      <pubDate>Fri, 24 Jul 2015 21:59:38 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/gsoc-vispy-week-6/</guid>
+      <description>As usual, here&amp;rsquo;s the update for week 6. Let&amp;rsquo;s get down to it!
+SceneGraph Overhaul The fabled PR is yet to be closed, but we have everything we need for it to be merged. There were 2 remaining (outstanding) bugs related to the Scenegraph - both stemming from the fact that not all uniforms that were being sent to the shader were being used correctly. One of these belonged to the MeshVisual, a Visual that I had ported, so tracking this down was relatively easy.</description>
+    </item>
+    
+    <item>
+      <title>Math Rambling - Dirac Delta derivative</title>
+      <link>http://localhost:1313/blog/math-rambling---dirac-delta-derivative/</link>
+      <pubDate>Fri, 17 Jul 2015 20:19:14 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/math-rambling---dirac-delta-derivative/</guid>
+      <description>code.has-jax {font: inherit; font-size: 0.9em; background: inherit; border: inherit; color: #   MathJax.Hub.Config({ tex2jax: { inlineMath: [[&#39;$&#39;,&#39;$&#39;], [&#39;\\(&#39;,&#39;\\)&#39;]], displayMath: [[&#39;$$&#39;,&#39;$$&#39;]], scale: 10, minScaleAdjust: 10, processEscapes: true, processEnvironments: true, skipTags: [&#39;script&#39;, &#39;noscript&#39;, &#39;style&#39;, &#39;textarea&#39;, &#39;pre&#39;], TeX: { equationNumbers: { autoNumber: &#34;AMS&#34; }, extensions: [&#34;AMSmath.js&#34;, &#34;AMSsymbols.js&#34;] } } });  MathJax.Hub.Queue(function() { // Fix  tags after MathJax finishes running. This is a // hack to overcome a shortcoming of Markdown.</description>
+    </item>
+    
+    <item>
+      <title>Websites, Editors, Religion</title>
+      <link>http://localhost:1313/blog/websites-editors-religion/</link>
+      <pubDate>Thu, 16 Jul 2015 04:37:42 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/websites-editors-religion/</guid>
+      <description>First thing&amp;rsquo;s first - I moved this from bollu.github.io to pixel-druid.com. I&amp;rsquo;ve had this domain for around a year now, but I never got around to do anything with it. The excuse that I was using was that &amp;ldquo;there is no space on my EC2 instance&amp;rdquo;, which makes no real sense when you think about it, since it was a fresh off-the-shelf Ubuntu install. It turns out that nginx wrote out an error log file into /etc/nginx/error.</description>
+    </item>
+    
+    <item>
+      <title>Gsoc Vispy Week 5</title>
+      <link>http://localhost:1313/blog/gsoc-vispy-week-5/</link>
+      <pubDate>Thu, 16 Jul 2015 02:37:07 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/gsoc-vispy-week-5/</guid>
+      <description>I&amp;rsquo;m writing this blogpost since we&amp;rsquo;ve come close to hitting a milestone in Vispy&amp;rsquo;s progress - the scenegraph changes are getting merged! So, now, I can move on to phase 2 - building the plotting infrastructure that Vispy needs.
+Also, I&amp;rsquo;ve moved the blog from using handrolled html/css/js to Hugo + a standard theme. While not as fun, this is definitely more maintainable, I&amp;rsquo;ve got to admit.
+Most of the work for the Scenegraph update is done now.</description>
+    </item>
+    
+    <item>
+      <title>Gsoc Update - Weeks 3 &amp; 4</title>
+      <link>http://localhost:1313/blog/gsoc-update---weeks-3--4/</link>
+      <pubDate>Wed, 08 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/gsoc-update---weeks-3--4/</guid>
+      <description>I&amp;rsquo;m sitting at home with the flu and a runny nose, so this is as good a time as any to write another blog post!
+I managed to get a decent amount of work done over the past two weeks. I think I can start working on plotting from next week, since most of the Scenegraph update I talked about last time is done. What&amp;rsquo;s left is a polish and performance improvements, which will be done iteratively, and (I&amp;rsquo;m hoping) in parallel with the plotting API.</description>
+    </item>
+    
+    <item>
+      <title>Gsoc Update - Weeks 1 &amp; 2</title>
+      <link>http://localhost:1313/blog/gsoc-update---weeks-1--2/</link>
+      <pubDate>Mon, 08 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/gsoc-update---weeks-1--2/</guid>
+      <description>The first two weeks of GSoC has gone by, and it&amp;rsquo;s time for another blog post! It&amp;rsquo;s been exciting so far, to work on VisPy and figure out what needs to be done, and how I need to approach it.
+A high level overview of these two weeks was basically figuring out where everything should fit in properly, and gently getting everything into shape.
+SceneGraph and Plotting We&amp;rsquo;re waiting on a huge pull request to pass through - this one rewrites the entire Scenegraph system in VisPy.</description>
+    </item>
+    
+    <item>
+      <title>Gsoc Proposal for Vispy</title>
+      <link>http://localhost:1313/blog/gsoc-proposal-for-vispy/</link>
+      <pubDate>Sun, 17 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/gsoc-proposal-for-vispy/</guid>
+      <description>Abstract The aim of the project is to improve VisPy, a rendering and plotting library for Python. This can be divided into three broad sub-task * Port interesting examples from other graphics libraries like Glumpy to VisPy * Bring high-level plotting constructs to VisPy. * Improve performance by implementing batching (called collections)
+Personal Details  Name: Siddharth Bhat Email: siddu.druid@gmail.com IRC nick: bollu Telephone: +91 9008765043 Other contact methods: Skype - druidofdclaw Country of residence: India Timezone: IST (GMT +5:30) Primary language: English  Project Proposal Port Examples The aim of porting examples is to be able to show a clear differential between the way VisPy handles OpenGL versus other libraries.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description> Revision history for absint 0.1.0.0 &amp;ndash; YYYY-mm-dd  First version. Released on an unsuspecting world.  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description> Building Please run build.sh, and have a clone of isl-0.20.
+ ISL is available here  $ wget http://isl.gforge.inria.fr/isl-0.20.tar.gz $ tar -xzf isl-0.20 $ ./build.sh  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description> v1  Straightforward haskell code, uses MVar, will switch to parameter passing the Int. Consider removing PrimMonad and specializing to IO.  v2  Parameter passing the Ints now.  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description> Revision history for hs 0.1.0.0 &amp;ndash; YYYY-mm-dd  First version. Released on an unsuspecting world.  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description> 0  Repository initialized  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>hyperfunctions  
+Links  Paper: Zip fusion with Hyperfunctions Paper: Categories of processes enriched in final coalgebras Seemingly Impossible functional programs  Contact Information Contributions and bug reports are welcome!
+Please feel free to contact me through github or on the #haskell IRC channel on irc.freenode.net.
+-Edward Kmett</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description> Revision history for reading-machines 0.1.0.0 &amp;ndash; YYYY-mm-dd  First version. Released on an unsuspecting world.  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>Data.Machine.Fanout//SourceContentsIndexmachines-0.6.4: Networked stream transducers
+Safe HaskellNoneLanguageHaskell2010Data.Machine.Fanout
+Description
+Provide a notion of fanout wherein a single input is passed to several consumers.
+Synopsis
+fanout :: forall m a r. (Monad m, Semigroup r) =&amp;gt; [ProcessT m a r] -&amp;gt; ProcessT m a rfanoutSteps :: forall m a r. (Monad m, Monoid r) =&amp;gt; [ProcessT m a r] -&amp;gt; ProcessT m a rDocumentationfanout :: forall m a r. (Monad m, Semigroup r) =&amp;gt; [ProcessT m a r] -&amp;gt; ProcessT m a r Source #</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>Data.Machine.Group//SourceContentsIndexmachines-0.6.4: Networked stream transducers
+Safe HaskellNoneLanguageHaskell2010Data.Machine.Group
+Synopsis
+groupingOn :: Monad m =&amp;gt; (a -&amp;gt; a -&amp;gt; Bool) -&amp;gt; ProcessT m a b -&amp;gt; ProcessT m a btaggedBy :: Monad m =&amp;gt; (a -&amp;gt; a -&amp;gt; Bool) -&amp;gt; ProcessT m a (Either () a)partitioning :: Monad m =&amp;gt; ProcessT m a b -&amp;gt; ProcessT m (Either () a) bstarve :: Monad m =&amp;gt; MachineT m k0 b -&amp;gt; MachineT m k b -&amp;gt; MachineT m k bawaitUntil :: Monad m =&amp;gt; (a -&amp;gt; Bool) -&amp;gt; (a -&amp;gt; ProcessT m a b) -&amp;gt; ProcessT m a bDocumentationgroupingOn :: Monad m =&amp;gt; (a -&amp;gt; a -&amp;gt; Bool) -&amp;gt; ProcessT m a b -&amp;gt; ProcessT m a b Source #</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>Data.Machine.Is//SourceContentsIndexmachines-0.6.4: Networked stream transducers
+Copyright(C) 2012 Edward KmettLicenseBSD-style (see the file LICENSE)MaintainerEdward Kmett &amp;lt;ekmett@gmail.com&amp;gt;StabilityprovisionalPortabilityGADTs, Type FamiliesSafe HaskellSafeLanguageHaskell2010Data.Machine.Is
+Description
+&amp;nbsp;Synopsis
+data Is a b whereRefl :: Is a aDocumentationdata Is a b where Source #
+Witnessed type equality
+Constructors
+Refl :: Is a a&amp;nbsp;Instances
+ Automaton Is Source #&amp;nbsp;Methods
+auto :: Is a b -&amp;gt; Process a b Source #
+ Category * Is Source #&amp;nbsp;Methods
+id :: cat a a #</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>Data.Machine.Lift//SourceContentsIndexmachines-0.6.4: Networked stream transducers
+Safe HaskellNoneLanguageHaskell2010Data.Machine.Lift
+Description
+Utilities for working with machines that run in transformed monads, inspired by Pipes.Lift.
+Synopsis
+execStateM :: Monad m =&amp;gt; s -&amp;gt; MachineT (StateT s m) k o -&amp;gt; MachineT m k ocatchExcept :: Monad m =&amp;gt; MachineT (ExceptT e m) k o -&amp;gt; (e -&amp;gt; MachineT (ExceptT e m) k o) -&amp;gt; MachineT (ExceptT e m) k orunReaderM :: Monad m =&amp;gt; e -&amp;gt; MachineT (ReaderT e m) k o -&amp;gt; MachineT m k oDocumentationexecStateM :: Monad m =&amp;gt; s -&amp;gt; MachineT (StateT s m) k o -&amp;gt; MachineT m k o Source #</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>Data.Machine.Mealy//SourceContentsIndexmachines-0.6.4: Networked stream transducers
+Copyright(C) 2012 Edward KmettLicenseBSD-style (see the file LICENSE)MaintainerEdward Kmett &amp;lt;ekmett@gmail.com&amp;gt;StabilityprovisionalPortabilityportableSafe HaskellNoneLanguageHaskell2010Data.Machine.Mealy
+Description
+http://en.wikipedia.org/wiki/Mealy_machine
+Synopsis
+newtype Mealy a b = Mealy {runMealy :: a -&amp;gt; (b, Mealy a b)}unfoldMealy :: (s -&amp;gt; a -&amp;gt; (b, s)) -&amp;gt; s -&amp;gt; Mealy a blogMealy :: Semigroup a =&amp;gt; Mealy a aDocumentationnewtype Mealy a b Source #
+Mealy machines
+ExamplesWe can enumerate inputs:
+&amp;gt;&amp;gt;&amp;gt; let countingMealy = unfoldMealy (\i x -&amp;gt; ((i, x), i + 1)) 0 &amp;gt;&amp;gt;&amp;gt; run (auto countingMealy &amp;lt;~ source &amp;quot;word&amp;quot;) [(0,&#39;w&#39;),(1,&#39;o&#39;),(2,&#39;r&#39;),(3,&#39;d&#39;)] Constructors</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>Data.Machine.MealyT//SourceContentsIndexmachines-0.6.4: Networked stream transducers
+LicenseBSD-style (see the file LICENSE)Safe HaskellNoneLanguageHaskell2010Data.Machine.MealyT
+Description
+http://en.wikipedia.org/wiki/Mealy_machine https://github.com/ivanperez-keera/dunai/blob/develop/src/Data/MonadicStreamFunction/Core.hs#L35 https://hackage.haskell.org/package/auto-0.4.3.0/docs/Control-Auto.html https://hackage.haskell.org/package/varying-0.6.0.0/docs/Control-Varying-Core.html
+Synopsis
+newtype MealyT m a b = MealyT {runMealyT :: a -&amp;gt; m (b, MealyT m a b)}arrPure :: (a -&amp;gt; b) -&amp;gt; MealyT Identity a barrM :: Functor m =&amp;gt; (a -&amp;gt; m b) -&amp;gt; MealyT m a bupgrade :: Monad m =&amp;gt; Mealy a b -&amp;gt; MealyT m a bscanMealyT :: Monad m =&amp;gt; (a -&amp;gt; b -&amp;gt; a) -&amp;gt; a -&amp;gt; MealyT m b ascanMealyTM :: Functor m =&amp;gt; (a -&amp;gt; b -&amp;gt; m a) -&amp;gt; a -&amp;gt; MealyT m b aembedMealyT :: Monad m =&amp;gt; MealyT m a b -&amp;gt; [a] -&amp;gt; m [b]Documentationnewtype MealyT m a b Source #</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>Data.Machine.Moore//SourceContentsIndexmachines-0.6.4: Networked stream transducers
+Copyright(C) 2012 Edward KmettLicenseBSD-style (see the file LICENSE)MaintainerEdward Kmett &amp;lt;ekmett@gmail.com&amp;gt;StabilityprovisionalPortabilityportableSafe HaskellNoneLanguageHaskell2010Data.Machine.Moore
+Description
+http://en.wikipedia.org/wiki/Moore_machine
+Synopsis
+data Moore a b = Moore b (a -&amp;gt; Moore a b)logMoore :: Monoid m =&amp;gt; Moore m munfoldMoore :: (s -&amp;gt; (b, a -&amp;gt; s)) -&amp;gt; s -&amp;gt; Moore a bDocumentationdata Moore a b Source #
+Moore machines
+Constructors
+Moore b (a -&amp;gt; Moore a b)&amp;nbsp;Instances
+ Profunctor Moore Source #&amp;nbsp;Methods</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>Data.Machine.Pipe//SourceContentsIndexmachines-0.6.4: Networked stream transducers
+Copyright(C) 2015 Yorick Laupa Gabriel GonzalezLicenseBSD-style (see the file LICENSE)MaintainerYorick Laupa &amp;lt;yo.eight@gmail.com&amp;gt;StabilityprovisionalPortabilityRank-2 Types, GADTsSafe HaskellNoneLanguageHaskell2010Data.Machine.Pipe
+Description
+Allows bidirectional communication between two MachineT. Exposed the same interface of Pipes library.
+Synopsis
+data Exchange a&#39; a b&#39; b c whereRequest :: a&#39; -&amp;gt; Exchange a&#39; a b&#39; b aRespond :: b -&amp;gt; Exchange a&#39; a b&#39; b b&#39;type Proxy a&#39; a b&#39; b m c = MachineT m (Exchange a&#39; a b&#39; b) ctype Effect m r = Proxy Void () () Void m rtype Client a&#39; a m r = Proxy a&#39; a () Void m rtype Server b&#39; b m r = Proxy Void () b&#39; b m rtype Effect&#39; m r = forall x&#39; x y&#39; y.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>Data.Machine.Plan//SourceContentsIndexmachines-0.6.4: Networked stream transducers
+Copyright(C) 2012 Edward Kmett R&amp;#250;nar BjarnasonLicenseBSD-style (see the file LICENSE)MaintainerEdward Kmett &amp;lt;ekmett@gmail.com&amp;gt;StabilityprovisionalPortabilityRank-N Types, MPTCsSafe HaskellSafeLanguageHaskell2010Data.Machine.Plan
+Contents
+PlansDescription
+&amp;nbsp;Synopsis
+type Plan k o a = forall m. PlanT k o m arunPlan :: PlanT k o Identity a -&amp;gt; (a -&amp;gt; r) -&amp;gt; (o -&amp;gt; r -&amp;gt; r) -&amp;gt; (forall z. (z -&amp;gt; r) -&amp;gt; k z -&amp;gt; r -&amp;gt; r) -&amp;gt; r -&amp;gt; rnewtype PlanT k o m a = PlanT {runPlanT :: forall r.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>Data.Machine.Process//SourceContentsIndexmachines-0.6.4: Networked stream transducers
+Copyright(C) 2012 Edward KmettLicenseBSD-style (see the file LICENSE)MaintainerEdward Kmett &amp;lt;ekmett@gmail.com&amp;gt;StabilityprovisionalPortabilityRank 2 Types, GADTsSafe HaskellNoneLanguageHaskell2010Data.Machine.Process
+Contents
+ProcessesCommon ProcessesDescription
+&amp;nbsp;Synopsis
+type Process a b = Machine (Is a) btype ProcessT m a b = MachineT m (Is a) bclass Automaton k whereclass AutomatonM x whereprocess :: Monad m =&amp;gt; (forall a. k a -&amp;gt; i -&amp;gt; a) -&amp;gt; MachineT m k o -&amp;gt; ProcessT m i o(&amp;lt;~) :: Monad m =&amp;gt; ProcessT m b c -&amp;gt; MachineT m k b -&amp;gt; MachineT m k c(~&amp;gt;) :: Monad m =&amp;gt; MachineT m k b -&amp;gt; ProcessT m b c -&amp;gt; MachineT m k cecho :: Process a asupply :: forall f m a b.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>Data.Machine.Runner//SourceContentsIndexmachines-0.6.4: Networked stream transducers
+Safe HaskellNoneLanguageHaskell2010Data.Machine.Runner
+Synopsis
+foldrT :: Monad m =&amp;gt; (o -&amp;gt; b -&amp;gt; b) -&amp;gt; b -&amp;gt; MachineT m k o -&amp;gt; m bfoldlT :: Monad m =&amp;gt; (b -&amp;gt; o -&amp;gt; b) -&amp;gt; b -&amp;gt; MachineT m k o -&amp;gt; m bfoldMapT :: (Monad m, Monoid r) =&amp;gt; (o -&amp;gt; r) -&amp;gt; MachineT m k o -&amp;gt; m rfoldT :: (Monad m, Monoid o) =&amp;gt; MachineT m k o -&amp;gt; m orunT1 :: Monad m =&amp;gt; MachineT m k o -&amp;gt; m (Maybe o)runT :: Monad m =&amp;gt; MachineT m k b -&amp;gt; m [b]runT_ :: Monad m =&amp;gt; MachineT m k b -&amp;gt; m ()DocumentationfoldrT :: Monad m =&amp;gt; (o -&amp;gt; b -&amp;gt; b) -&amp;gt; b -&amp;gt; MachineT m k o -&amp;gt; m b Source #</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>Data.Machine.Source//SourceContentsIndexmachines-0.6.4: Networked stream transducers
+Copyright(C) 2012 Edward KmettLicenseBSD-style (see the file LICENSE)MaintainerEdward Kmett &amp;lt;ekmett@gmail.com&amp;gt;StabilityprovisionalPortabilityRank-2 TypesSafe HaskellNoneLanguageHaskell2010Data.Machine.Source
+Contents
+SourcesDescription
+&amp;nbsp;Synopsis
+type Source b = forall k. Machine k btype SourceT m b = forall k. MachineT m k bsource :: Foldable f =&amp;gt; f b -&amp;gt; Source brepeated :: o -&amp;gt; Source ocycled :: Foldable f =&amp;gt; f b -&amp;gt; Source bcap :: Process a b -&amp;gt; Source a -&amp;gt; Source bplug :: Monad m =&amp;gt; MachineT m k o -&amp;gt; SourceT m oiterated :: (a -&amp;gt; a) -&amp;gt; a -&amp;gt; Source areplicated :: Int -&amp;gt; a -&amp;gt; Source aenumerateFromTo :: Enum a =&amp;gt; a -&amp;gt; a -&amp;gt; Source aunfold :: (r -&amp;gt; Maybe (a, r)) -&amp;gt; r -&amp;gt; Source aunfoldT :: Monad m =&amp;gt; (r -&amp;gt; m (Maybe (a, r))) -&amp;gt; r -&amp;gt; SourceT m aSourcestype Source b = forall k.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>Data.Machine.Stack//SourceContentsIndexmachines-0.6.4: Networked stream transducers
+Copyright(C) 2012 Edward KmettLicenseBSD-style (see the file LICENSE)MaintainerEdward Kmett &amp;lt;ekmett@gmail.com&amp;gt;StabilityprovisionalPortabilityGADTsSafe HaskellNoneLanguageHaskell2010Data.Machine.Stack
+Description
+&amp;nbsp;Synopsis
+data Stack a r wherePush :: a -&amp;gt; Stack a ()Pop :: Stack a astack :: Monad m =&amp;gt; MachineT m k a -&amp;gt; MachineT m (Stack a) o -&amp;gt; MachineT m k opeek :: Plan (Stack a) b apop :: Plan (Stack a) b apush :: a -&amp;gt; Plan (Stack a) b ()Documentationdata Stack a r where Source #</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>Data.Machine.Tee//SourceContentsIndexmachines-0.6.4: Networked stream transducers
+Copyright(C) 2012 Edward Kmett R&amp;#250;nar Bjarnason Paul ChiusanoLicenseBSD-style (see the file LICENSE)MaintainerEdward Kmett &amp;lt;ekmett@gmail.com&amp;gt;StabilityprovisionalPortabilityRank-2 Types, GADTsSafe HaskellNoneLanguageHaskell2010Data.Machine.Tee
+Contents
+TeesDescription
+&amp;nbsp;Synopsis
+type Tee a b c = Machine (T a b) ctype TeeT m a b c = MachineT m (T a b) cdata T a b c whereL :: T a b aR :: T a b btee :: Monad m =&amp;gt; ProcessT m a a&#39; -&amp;gt; ProcessT m b b&#39; -&amp;gt; TeeT m a&#39; b&#39; c -&amp;gt; TeeT m a b cteeT :: Monad m =&amp;gt; TeeT m a b c -&amp;gt; MachineT m k a -&amp;gt; MachineT m k b -&amp;gt; MachineT m k caddL :: Monad m =&amp;gt; ProcessT m a b -&amp;gt; TeeT m b c d -&amp;gt; TeeT m a c daddR :: Monad m =&amp;gt; ProcessT m b c -&amp;gt; TeeT m a c d -&amp;gt; TeeT m a b dcapL :: Monad m =&amp;gt; SourceT m a -&amp;gt; TeeT m a b c -&amp;gt; ProcessT m b ccapR :: Monad m =&amp;gt; SourceT m b -&amp;gt; TeeT m a b c -&amp;gt; ProcessT m a ccapT :: Monad m =&amp;gt; SourceT m a -&amp;gt; SourceT m b -&amp;gt; TeeT m a b c -&amp;gt; SourceT m czipWithT :: (a -&amp;gt; b -&amp;gt; c) -&amp;gt; PlanT (T a b) c m ()zipWith :: (a -&amp;gt; b -&amp;gt; c) -&amp;gt; Tee a b czipping :: Tee a b (a, b)Teestype Tee a b c = Machine (T a b) c Source #</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>Data.Machine.Type//SourceContentsIndexmachines-0.6.4: Networked stream transducers
+Copyright(C) 2012 Edward KmettLicenseBSD-style (see the file LICENSE)MaintainerEdward Kmett &amp;lt;ekmett@gmail.com&amp;gt;StabilityprovisionalPortabilityrank-2, GADTsSafe HaskellNoneLanguageHaskell2010Data.Machine.Type
+Contents
+MachinesBuilding machines from plansDeconstructing machines back into plansReshaping machinesApplicative MachinesDescription
+&amp;nbsp;Synopsis
+newtype MachineT m k o = MachineT {runMachineT :: m (Step k o (MachineT m k o))}data Step k o r= Stop| Yield o r| Await (t -&amp;gt; r) (k t) rtype Machine k o = forall m. Monad m =&amp;gt; MachineT m k orunT_ :: Monad m =&amp;gt; MachineT m k b -&amp;gt; m ()runT :: Monad m =&amp;gt; MachineT m k b -&amp;gt; m [b]run :: MachineT Identity k b -&amp;gt; [b]runMachine :: MachineT Identity k o -&amp;gt; Step k o (MachineT Identity k o)encased :: Monad m =&amp;gt; Step k o (MachineT m k o) -&amp;gt; MachineT m k oconstruct :: Monad m =&amp;gt; PlanT k o m a -&amp;gt; MachineT m k orepeatedly :: Monad m =&amp;gt; PlanT k o m a -&amp;gt; MachineT m k ounfoldPlan :: Monad m =&amp;gt; s -&amp;gt; (s -&amp;gt; PlanT k o m s) -&amp;gt; MachineT m k obefore :: Monad m =&amp;gt; MachineT m k o -&amp;gt; PlanT k o m a -&amp;gt; MachineT m k opreplan :: Monad m =&amp;gt; PlanT k o m (MachineT m k o) -&amp;gt; MachineT m k odeconstruct :: Monad m =&amp;gt; MachineT m k (Either a o) -&amp;gt; PlanT k o m atagDone :: Monad m =&amp;gt; (o -&amp;gt; Bool) -&amp;gt; MachineT m k o -&amp;gt; MachineT m k (Either o o)finishWith :: Monad m =&amp;gt; (o -&amp;gt; Maybe r) -&amp;gt; MachineT m k o -&amp;gt; MachineT m k (Either r o)fit :: Monad m =&amp;gt; (forall a.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>Data.Machine.Wye//SourceContentsIndexmachines-0.6.4: Networked stream transducers
+Copyright(C) 2012 Edward Kmett R&amp;#250;nar Bjarnason Paul ChiusanoLicenseBSD-style (see the file LICENSE)MaintainerEdward Kmett &amp;lt;ekmett@gmail.com&amp;gt;StabilityprovisionalPortabilityRank-2 Types, GADTsSafe HaskellNoneLanguageHaskell2010Data.Machine.Wye
+Contents
+WyesDescription
+&amp;nbsp;Synopsis
+type Wye a b c = Machine (Y a b) ctype WyeT m a b c = MachineT m (Y a b) cdata Y a b c whereX :: Y a b aY :: Y a b bZ :: Y a b (Either a b)wye :: Monad m =&amp;gt; ProcessT m a a&#39; -&amp;gt; ProcessT m b b&#39; -&amp;gt; WyeT m a&#39; b&#39; c -&amp;gt; WyeT m a b caddX :: Monad m =&amp;gt; ProcessT m a b -&amp;gt; WyeT m b c d -&amp;gt; WyeT m a c daddY :: Monad m =&amp;gt; ProcessT m b c -&amp;gt; WyeT m a c d -&amp;gt; WyeT m a b dcapX :: Monad m =&amp;gt; SourceT m a -&amp;gt; WyeT m a b c -&amp;gt; ProcessT m b ccapY :: Monad m =&amp;gt; SourceT m b -&amp;gt; WyeT m a b c -&amp;gt; ProcessT m a ccapWye :: Monad m =&amp;gt; SourceT m a -&amp;gt; SourceT m b -&amp;gt; WyeT m a b c -&amp;gt; SourceT m cWyestype Wye a b c = Machine (Y a b) c Source #</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>Data.Machine//SourceContentsIndexmachines-0.6.4: Networked stream transducers
+Copyright(C) 2012 Edward KmettLicenseBSD-style (see the file LICENSE)MaintainerEdward Kmett &amp;lt;ekmett@gmail.com&amp;gt;StabilityprovisionalPortabilitynon-portableSafe HaskellNoneLanguageHaskell2010Data.Machine
+Description
+&amp;nbsp;Documentationmodule Data.Machine.Is
+module Data.Machine.Moore
+module Data.Machine.Mealy
+module Data.Machine.Plan
+module Data.Machine.Process
+module Data.Machine.Source
+module Data.Machine.Tee
+module Data.Machine.Type
+module Data.Machine.Wye
+Produced by Haddock version 2.18.1</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>machines-0.6.4: Networked stream transducers (Index - ~)//ContentsIndexmachines-0.6.4: Networked stream transducers
+ABCDEFGILMPRSTUWXYZ+&amp;lt;&amp;gt;~AllIndex - ~
+~&amp;gt;Data.Machine.Process, Data.MachineProduced by Haddock version 2.18.1</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>machines-0.6.4: Networked stream transducers (Index - +)//ContentsIndexmachines-0.6.4: Networked stream transducers
+ABCDEFGILMPRSTUWXYZ+&amp;lt;&amp;gt;~AllIndex - +
++&amp;gt;&amp;gt;Data.Machine.PipeProduced by Haddock version 2.18.1</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>machines-0.6.4: Networked stream transducers (Index - &amp;lt;)//ContentsIndexmachines-0.6.4: Networked stream transducers
+ABCDEFGILMPRSTUWXYZ+&amp;lt;&amp;gt;~AllIndex - &amp;lt;
+&amp;lt;~Data.Machine.Process, Data.MachineProduced by Haddock version 2.18.1</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>machines-0.6.4: Networked stream transducers (Index - &amp;gt;)//ContentsIndexmachines-0.6.4: Networked stream transducers
+ABCDEFGILMPRSTUWXYZ+&amp;lt;&amp;gt;~AllIndex - &amp;gt;
+&amp;gt;+&amp;gt;Data.Machine.Pipe&amp;gt;&amp;gt;~Data.Machine.Pipe&amp;gt;~&amp;gt;Data.Machine.PipeProduced by Haddock version 2.18.1</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>machines-0.6.4: Networked stream transducers (Index - A)//ContentsIndexmachines-0.6.4: Networked stream transducers
+ABCDEFGILMPRSTUWXYZ+&amp;lt;&amp;gt;~AllIndex - A
+absurdExchangeData.Machine.PipeaddLData.Machine.Tee, Data.MachineaddRData.Machine.Tee, Data.MachineaddXData.Machine.Wye, Data.MachineaddYData.Machine.Wye, Data.MachineApplianceData.Machine.Type, Data.MachineappliedData.Machine.Type, Data.MachinearrMData.Machine.MealyTarrPureData.Machine.MealyTasPartsData.Machine.Process, Data.MachineautoData.Machine.Process, Data.MachineautoMData.Machine.Process, Data.MachineAutomatonData.Machine.Process, Data.MachineAutomatonMData.Machine.Process, Data.MachineautoTData.Machine.Process, Data.MachineAwaitData.Machine.Type, Data.MachineawaitData.Machine.Plan, Data.MachineawaitsData.Machine.Plan, Data.MachineawaitUntilData.Machine.GroupProduced by Haddock version 2.18.1</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>machines-0.6.4: Networked stream transducers (Index)//ContentsIndexmachines-0.6.4: Networked stream transducers
+Index
++&amp;gt;&amp;gt;Data.Machine.Pipe&amp;lt;~Data.Machine.Process, Data.Machine&amp;gt;+&amp;gt;Data.Machine.Pipe&amp;gt;&amp;gt;~Data.Machine.Pipe&amp;gt;~&amp;gt;Data.Machine.PipeabsurdExchangeData.Machine.PipeaddLData.Machine.Tee, Data.MachineaddRData.Machine.Tee, Data.MachineaddXData.Machine.Wye, Data.MachineaddYData.Machine.Wye, Data.MachineApplianceData.Machine.Type, Data.MachineappliedData.Machine.Type, Data.MachinearrMData.Machine.MealyTarrPureData.Machine.MealyTasPartsData.Machine.Process, Data.MachineautoData.Machine.Process, Data.MachineautoMData.Machine.Process, Data.MachineAutomatonData.Machine.Process, Data.MachineAutomatonMData.Machine.Process, Data.MachineautoTData.Machine.Process, Data.MachineAwaitData.Machine.Type, Data.MachineawaitData.Machine.Plan, Data.MachineawaitsData.Machine.Plan, Data.MachineawaitUntilData.Machine.GroupbeforeData.Machine.Type, Data.MachinebufferedData.Machine.Process, Data.MachinecapData.Machine.Source, Data.MachinecapLData.Machine.Tee, Data.MachinecapRData.Machine.Tee, Data.MachinecapTData.Machine.Tee, Data.MachinecapWyeData.Machine.Wye, Data.MachinecapXData.Machine.Wye, Data.MachinecapYData.Machine.Wye, Data.MachinecatchExceptData.Machine.LiftClientData.Machine.PipeClient&#39;Data.Machine.PipeconstructData.Machine.Type, Data.MachinecycledData.Machine.Source, Data.MachinedeconstructData.Machine.Type, Data.MachinedroppingData.Machine.Process, Data.MachinedroppingWhileData.Machine.Process, Data.MachineechoData.Machine.Process, Data.MachineEffectData.Machine.PipeEffect&#39;Data.Machine.PipeembedMealyTData.Machine.MealyTencasedData.Machine.Type, Data.MachineenumerateFromToData.Machine.Source, Data.MachineExchangeData.Machine.PipeexecStateMData.Machine.LiftexhaustData.Machine.Plan, Data.MachinefanoutData.Machine.FanoutfanoutStepsData.Machine.FanoutfilteredData.Machine.Process, Data.MachinefinalData.Machine.Process, Data.MachinefinalOrData.Machine.Process, Data.MachinefinishWithData.Machine.Type, Data.MachinefitData.Machine.Type, Data.MachinefitMData.Machine.Type, Data.MachineflattenedData.Machine.Process, Data.MachinefoldData.Machine.Process, Data.Machinefold1Data.Machine.Process, Data.MachinefoldlTData.Machine.RunnerfoldMapTData.Machine.RunnerfoldrTData.Machine.RunnerfoldTData.Machine.RunnergroupingOnData.Machine.GroupintersperseData.Machine.Process, Data.MachineIsData.Machine.Is, Data.MachineiteratedData.Machine.Source, Data.MachineLData.Machine.Tee, Data.MachinelargestData.Machine.Process, Data.MachinelogMealyData.Machine.Mealy, Data.MachinelogMooreData.Machine.Moore, Data.MachineMachineData.Machine.Type, Data.MachineMachineT&amp;nbsp;1 (Type/Class)Data.Machine.Type, Data.Machine2 (Data Constructor)Data.Machine.Type, Data.MachinemappingData.Machine.Process, Data.MachinemaybeYieldData.Machine.Plan, Data.MachineMealy&amp;nbsp;1 (Type/Class)Data.Machine.Mealy, Data.Machine2 (Data Constructor)Data.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>machines-0.6.4: Networked stream transducers (Index - B)//ContentsIndexmachines-0.6.4: Networked stream transducers
+ABCDEFGILMPRSTUWXYZ+&amp;lt;&amp;gt;~AllIndex - B
+beforeData.Machine.Type, Data.MachinebufferedData.Machine.Process, Data.MachineProduced by Haddock version 2.18.1</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>machines-0.6.4: Networked stream transducers (Index - C)//ContentsIndexmachines-0.6.4: Networked stream transducers
+ABCDEFGILMPRSTUWXYZ+&amp;lt;&amp;gt;~AllIndex - C
+capData.Machine.Source, Data.MachinecapLData.Machine.Tee, Data.MachinecapRData.Machine.Tee, Data.MachinecapTData.Machine.Tee, Data.MachinecapWyeData.Machine.Wye, Data.MachinecapXData.Machine.Wye, Data.MachinecapYData.Machine.Wye, Data.MachinecatchExceptData.Machine.LiftClientData.Machine.PipeClient&#39;Data.Machine.PipeconstructData.Machine.Type, Data.MachinecycledData.Machine.Source, Data.MachineProduced by Haddock version 2.18.1</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>machines-0.6.4: Networked stream transducers (Index - D)//ContentsIndexmachines-0.6.4: Networked stream transducers
+ABCDEFGILMPRSTUWXYZ+&amp;lt;&amp;gt;~AllIndex - D
+deconstructData.Machine.Type, Data.MachinedroppingData.Machine.Process, Data.MachinedroppingWhileData.Machine.Process, Data.MachineProduced by Haddock version 2.18.1</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>machines-0.6.4: Networked stream transducers (Index - E)//ContentsIndexmachines-0.6.4: Networked stream transducers
+ABCDEFGILMPRSTUWXYZ+&amp;lt;&amp;gt;~AllIndex - E
+echoData.Machine.Process, Data.MachineEffectData.Machine.PipeEffect&#39;Data.Machine.PipeembedMealyTData.Machine.MealyTencasedData.Machine.Type, Data.MachineenumerateFromToData.Machine.Source, Data.MachineExchangeData.Machine.PipeexecStateMData.Machine.LiftexhaustData.Machine.Plan, Data.MachineProduced by Haddock version 2.18.1</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>machines-0.6.4: Networked stream transducers (Index - F)//ContentsIndexmachines-0.6.4: Networked stream transducers
+ABCDEFGILMPRSTUWXYZ+&amp;lt;&amp;gt;~AllIndex - F
+fanoutData.Machine.FanoutfanoutStepsData.Machine.FanoutfilteredData.Machine.Process, Data.MachinefinalData.Machine.Process, Data.MachinefinalOrData.Machine.Process, Data.MachinefinishWithData.Machine.Type, Data.MachinefitData.Machine.Type, Data.MachinefitMData.Machine.Type, Data.MachineflattenedData.Machine.Process, Data.MachinefoldData.Machine.Process, Data.Machinefold1Data.Machine.Process, Data.MachinefoldlTData.Machine.RunnerfoldMapTData.Machine.RunnerfoldrTData.Machine.RunnerfoldTData.Machine.RunnerProduced by Haddock version 2.18.1</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>machines-0.6.4: Networked stream transducers (Index - G)//ContentsIndexmachines-0.6.4: Networked stream transducers
+ABCDEFGILMPRSTUWXYZ+&amp;lt;&amp;gt;~AllIndex - G
+groupingOnData.Machine.GroupProduced by Haddock version 2.18.1</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>machines-0.6.4: Networked stream transducers (Index - I)//ContentsIndexmachines-0.6.4: Networked stream transducers
+ABCDEFGILMPRSTUWXYZ+&amp;lt;&amp;gt;~AllIndex - I
+intersperseData.Machine.Process, Data.MachineIsData.Machine.Is, Data.MachineiteratedData.Machine.Source, Data.MachineProduced by Haddock version 2.18.1</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>machines-0.6.4: Networked stream transducers (Index - L)//ContentsIndexmachines-0.6.4: Networked stream transducers
+ABCDEFGILMPRSTUWXYZ+&amp;lt;&amp;gt;~AllIndex - L
+LData.Machine.Tee, Data.MachinelargestData.Machine.Process, Data.MachinelogMealyData.Machine.Mealy, Data.MachinelogMooreData.Machine.Moore, Data.MachineProduced by Haddock version 2.18.1</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>machines-0.6.4: Networked stream transducers (Index - M)//ContentsIndexmachines-0.6.4: Networked stream transducers
+ABCDEFGILMPRSTUWXYZ+&amp;lt;&amp;gt;~AllIndex - M
+MachineData.Machine.Type, Data.MachineMachineT&amp;nbsp;1 (Type/Class)Data.Machine.Type, Data.Machine2 (Data Constructor)Data.Machine.Type, Data.MachinemappingData.Machine.Process, Data.MachinemaybeYieldData.Machine.Plan, Data.MachineMealy&amp;nbsp;1 (Type/Class)Data.Machine.Mealy, Data.Machine2 (Data Constructor)Data.Machine.Mealy, Data.MachineMealyT&amp;nbsp;1 (Type/Class)Data.Machine.MealyT2 (Data Constructor)Data.Machine.MealyTMoore&amp;nbsp;1 (Type/Class)Data.Machine.Moore, Data.Machine2 (Data Constructor)Data.Machine.Moore, Data.MachineProduced by Haddock version 2.18.1</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>machines-0.6.4: Networked stream transducers (Index - P)//ContentsIndexmachines-0.6.4: Networked stream transducers
+ABCDEFGILMPRSTUWXYZ+&amp;lt;&amp;gt;~AllIndex - P
+partitioningData.Machine.GrouppassData.Machine.Type, Data.MachinepeekData.Machine.StackPlanData.Machine.Plan, Data.MachinePlanT&amp;nbsp;1 (Type/Class)Data.Machine.Plan, Data.Machine2 (Data Constructor)Data.Machine.Plan, Data.MachineplugData.Machine.Source, Data.MachinePopData.Machine.StackpopData.Machine.StackprependedData.Machine.Process, Data.MachinepreplanData.Machine.Type, Data.MachineProcessData.Machine.Process, Data.MachineprocessData.Machine.Process, Data.MachineProcessTData.Machine.Process, Data.MachineProxyData.Machine.PipepullData.Machine.PipePushData.Machine.Stackpush&amp;nbsp;1 (Function)Data.Machine.Stack2 (Function)Data.Machine.PipeProduced by Haddock version 2.18.1</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>machines-0.6.4: Networked stream transducers (Index - R)//ContentsIndexmachines-0.6.4: Networked stream transducers
+ABCDEFGILMPRSTUWXYZ+&amp;lt;&amp;gt;~AllIndex - R
+RData.Machine.Tee, Data.MachinereadingData.Machine.Process, Data.MachineReflData.Machine.Is, Data.MachinerepeatedData.Machine.Source, Data.MachinerepeatedlyData.Machine.Type, Data.MachinereplicatedData.Machine.Source, Data.MachineRequestData.Machine.PiperequestData.Machine.PipeRespondData.Machine.PiperespondData.Machine.PiperunData.Machine.Type, Data.MachinerunEffectData.Machine.PiperunEffect_Data.Machine.PiperunMachineData.Machine.Type, Data.MachinerunMachineTData.Machine.Type, Data.MachinerunMealyData.Machine.Mealy, Data.MachinerunMealyTData.Machine.MealyTrunPlanData.Machine.Plan, Data.MachinerunPlanTData.Machine.Plan, Data.MachinerunReaderMData.Machine.LiftrunTData.Machine.Type, Data.Machine.Runner, Data.MachinerunT1Data.Machine.RunnerrunT_Data.Machine.Type, Data.Machine.Runner, Data.MachineProduced by Haddock version 2.18.1</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>machines-0.6.4: Networked stream transducers (Index - S)//ContentsIndexmachines-0.6.4: Networked stream transducers
+ABCDEFGILMPRSTUWXYZ+&amp;lt;&amp;gt;~AllIndex - S
+scanData.Machine.Process, Data.Machinescan1Data.Machine.Process, Data.MachinescanMapData.Machine.Process, Data.MachinescanMealyTData.Machine.MealyTscanMealyTMData.Machine.MealyTsequencingData.Machine.Process, Data.MachineServerData.Machine.PipeServer&#39;Data.Machine.PipeshowingData.Machine.Process, Data.MachinesinkPart_Data.Machine.Process, Data.MachinesmallestData.Machine.Process, Data.MachineSourceData.Machine.Source, Data.MachinesourceData.Machine.Source, Data.MachineSourceTData.Machine.Source, Data.MachineStackData.Machine.StackstackData.Machine.StackstarveData.Machine.Type, Data.Machine, Data.Machine.GroupStepData.Machine.Type, Data.MachinestepMachineData.Machine.Type, Data.MachineStopData.Machine.Type, Data.MachinestopData.Machine.Plan, Data.MachinestoppedData.Machine.Type, Data.MachinestrippingPrefixData.Machine.Process, Data.MachinesupplyData.Machine.Process, Data.MachineProduced by Haddock version 2.18.1</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>machines-0.6.4: Networked stream transducers (Index - T)//ContentsIndexmachines-0.6.4: Networked stream transducers
+ABCDEFGILMPRSTUWXYZ+&amp;lt;&amp;gt;~AllIndex - T
+TData.Machine.Tee, Data.MachinetagDoneData.Machine.Type, Data.MachinetaggedByData.Machine.GrouptakingData.Machine.Process, Data.MachinetakingWhileData.Machine.Process, Data.MachineTeeData.Machine.Tee, Data.MachineteeData.Machine.Tee, Data.MachineTeeTData.Machine.Tee, Data.MachineteeTData.Machine.Tee, Data.MachinetraversingData.Machine.Process, Data.MachineProduced by Haddock version 2.18.1</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>machines-0.6.4: Networked stream transducers (Index - U)//ContentsIndexmachines-0.6.4: Networked stream transducers
+ABCDEFGILMPRSTUWXYZ+&amp;lt;&amp;gt;~AllIndex - U
+unfoldData.Machine.Source, Data.MachineunfoldMealyData.Machine.Mealy, Data.MachineunfoldMooreData.Machine.Moore, Data.MachineunfoldPlanData.Machine.Type, Data.MachineunfoldTData.Machine.Source, Data.MachineupgradeData.Machine.MealyTProduced by Haddock version 2.18.1</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>machines-0.6.4: Networked stream transducers (Index - W)//ContentsIndexmachines-0.6.4: Networked stream transducers
+ABCDEFGILMPRSTUWXYZ+&amp;lt;&amp;gt;~AllIndex - W
+WyeData.Machine.Wye, Data.MachinewyeData.Machine.Wye, Data.MachineWyeTData.Machine.Wye, Data.MachineProduced by Haddock version 2.18.1</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>machines-0.6.4: Networked stream transducers (Index - X)//ContentsIndexmachines-0.6.4: Networked stream transducers
+ABCDEFGILMPRSTUWXYZ+&amp;lt;&amp;gt;~AllIndex - X
+XData.Machine.Wye, Data.MachineProduced by Haddock version 2.18.1</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>machines-0.6.4: Networked stream transducers (Index - Y)//ContentsIndexmachines-0.6.4: Networked stream transducers
+ABCDEFGILMPRSTUWXYZ+&amp;lt;&amp;gt;~AllIndex - Y
+Y&amp;nbsp;1 (Type/Class)Data.Machine.Wye, Data.Machine2 (Data Constructor)Data.Machine.Wye, Data.MachineYieldData.Machine.Type, Data.MachineyieldData.Machine.Plan, Data.MachineProduced by Haddock version 2.18.1</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>machines-0.6.4: Networked stream transducers (Index - Z)//ContentsIndexmachines-0.6.4: Networked stream transducers
+ABCDEFGILMPRSTUWXYZ+&amp;lt;&amp;gt;~AllIndex - Z
+ZData.Machine.Wye, Data.MachinezippingData.Machine.Tee, Data.MachinezipWithData.Machine.Tee, Data.MachinezipWithTData.Machine.Tee, Data.MachineProduced by Haddock version 2.18.1</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>machines-0.6.4: Networked stream transducers (Index)//ContentsIndexmachines-0.6.4: Networked stream transducers
+ABCDEFGILMPRSTUWXYZ+&amp;lt;&amp;gt;~AllProduced by Haddock version 2.18.1</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog.html</guid>
+      <description>machines-0.6.4: Networked stream transducers//ContentsIndexmachines-0.6.4: Networked stream transducers
+machines-0.6.4: Networked stream transducersNetworked stream transducers
+R&amp;#250;nar Bjarnason&#39;s talk on machines can be downloaded from: https://dl.dropbox.com/u/4588997/Machines.pdf
+Signatures
+Modules
+Data&amp;nbsp;Data.MachineData.Machine.FanoutData.Machine.GroupData.Machine.IsData.Machine.LiftData.Machine.MealyData.Machine.MealyTData.Machine.MooreData.Machine.PipeData.Machine.PlanData.Machine.ProcessData.Machine.RunnerData.Machine.SourceData.Machine.StackData.Machine.TeeData.Machine.TypeData.Machine.WyeProduced by Haddock version 2.18.1</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>{-# LANGUAGE CPP #-} {-# LANGUAGE GADTs #-} {-# LANGUAGE ScopedTypeVariables #-}  -- | Provide a notion of fanout wherein a single input is passed to -- several consumers. module Data.Machine.Fanout (fanout, fanoutSteps) where  import Data.List.NonEmpty (NonEmpty (..)) import Data.Machine import Data.Semigroup (Semigroup (sconcat)) #if __GLASGOW_HASKELL__ &amp;lt; 710 import Data.Monoid (Monoid (..)) import Data.Traversable (traverse) #endif  continue :: ([b] -&amp;gt; r) -&amp;gt; [(a -&amp;gt; b, b)] -&amp;gt; Step (Is a) o r continue _ [] = Stop continue f ws = Await (f .</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>{-# LANGUAGE GADTs #-} module Data.Machine.Group  ( groupingOn  , taggedBy  , partitioning  , starve  , awaitUntil  )where import Data.Machine  isLeft :: Either a b -&amp;gt; Bool isLeft = either (const True) (const False)  -- | Using a function to signal group changes, apply a machine independently over each group. groupingOn :: Monad m =&amp;gt; (a -&amp;gt; a -&amp;gt; Bool) -&amp;gt; ProcessT m a b -&amp;gt; ProcessT m a b groupingOn f m = taggedBy f ~&amp;gt; partitioning m  -- | Mark a transition point between two groups as a function of adjacent elements.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>{-# LANGUAGE GADTs, TypeFamilies #-} ----------------------------------------------------------------------------- -- | -- Module : Data.Machine.Is -- Copyright : (C) 2012 Edward Kmett -- License : BSD-style (see the file LICENSE) -- -- Maintainer : Edward Kmett &amp;lt;ekmett@gmail.com&amp;gt; -- Stability : provisional -- Portability : GADTs, Type Families -- ---------------------------------------------------------------------------- module Data.Machine.Is  ( Is(..)  ) where  import Control.Category import Data.Semigroup import Prelude  -- | Witnessed type equality data Is a b where  Refl :: Is a a  instance Show (Is a b) where  showsPrec _ Refl = showString &amp;quot;Refl&amp;quot;  instance Eq (Is a b) where  Refl == Refl = True  {-# INLINE (==) #-}  instance Ord (Is a b) where  Refl `compare` Refl = EQ  {-# INLINE compare #-}  instance (a ~ b) =&amp;gt; Semigroup (Is a b) where  Refl &amp;lt;&amp;gt; Refl = Refl  {-# INLINE (&amp;lt;&amp;gt;) #-}  instance (a ~ b) =&amp;gt; Monoid (Is a b) where  mempty = Refl  {-# INLINE mempty #-}  mappend = (&amp;lt;&amp;gt;)  {-# INLINE mappend #-}  instance (a ~ b) =&amp;gt; Read (Is a b) where  readsPrec d = readParen (d &amp;gt; 10) (\r -&amp;gt; [(Refl,s) | (&amp;quot;Refl&amp;quot;,s) &amp;lt;- lex r ])  instance Category Is where  id = Refl  {-# INLINE id #-}  Refl .</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>-- | Utilities for working with machines that run in transformed monads, -- inspired by @Pipes.Lift@. module Data.Machine.Lift (execStateM, catchExcept, runReaderM) where  import Control.Monad.Trans.State.Strict import Control.Monad.Trans.Reader import Control.Monad.Trans.Except import Data.Machine.Type  -- | Given an initial state and a &#39;MachineT&#39; that runs in @&#39;StateT&#39; s m@, -- produce a &#39;MachineT&#39; that runs in @m@. execStateM :: Monad m =&amp;gt; s -&amp;gt; MachineT (StateT s m) k o -&amp;gt; MachineT m k o execStateM s m = MachineT $ do  (stp, s&#39;) &amp;lt;- runStateT (runMachineT m) s  case stp of  Stop -&amp;gt; return Stop  Yield o m&#39; -&amp;gt; return $ Yield o (execStateM s&#39; m&#39;)  Await f k q -&amp;gt; return $ Await (execStateM s&#39; .</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>{-# LANGUAGE CPP #-} {-# LANGUAGE TypeFamilies #-} {-# LANGUAGE MultiParamTypeClasses #-}  #ifndef MIN_VERSION_profunctors #define MIN_VERSION_profunctors(x,y,z) 0 #endif ----------------------------------------------------------------------------- -- | -- Module : Data.Machine.Mealy -- Copyright : (C) 2012 Edward Kmett -- License : BSD-style (see the file LICENSE) -- -- Maintainer : Edward Kmett &amp;lt;ekmett@gmail.com&amp;gt; -- Stability : provisional -- Portability : portable -- -- &amp;lt;http://en.wikipedia.org/wiki/Mealy_machine&amp;gt; ---------------------------------------------------------------------------- module Data.Machine.Mealy  ( Mealy(..)  , unfoldMealy  , logMealy  ) where  import Control.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>{-# LANGUAGE CPP #-} {-# LANGUAGE TupleSections #-}  ----------------------------------------------------------------------------- -- | -- Module : Data.Machine.Mealy -- License : BSD-style (see the file LICENSE) -- -- &amp;lt;http://en.wikipedia.org/wiki/Mealy_machine&amp;gt; -- &amp;lt;https://github.com/ivanperez-keera/dunai/blob/develop/src/Data/MonadicStreamFunction/Core.hs#L35&amp;gt; -- &amp;lt;https://hackage.haskell.org/package/auto-0.4.3.0/docs/Control-Auto.html&amp;gt; -- &amp;lt;https://hackage.haskell.org/package/varying-0.6.0.0/docs/Control-Varying-Core.html&amp;gt; ---------------------------------------------------------------------------- module Data.Machine.MealyT  ( MealyT(..)  , arrPure  , arrM  , upgrade  , scanMealyT  , scanMealyTM  , embedMealyT  ) where  import Data.Machine import Control.Arrow import Control.Applicative import Data.Pointed import Control.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>{-# LANGUAGE CPP #-} {-# LANGUAGE TypeFamilies #-} {-# LANGUAGE MultiParamTypeClasses #-}  #ifndef MIN_VERSION_profunctors #define MIN_VERSION_profunctors(x,y,z) 0 #endif ----------------------------------------------------------------------------- -- | -- Module : Data.Machine.Moore -- Copyright : (C) 2012 Edward Kmett -- License : BSD-style (see the file LICENSE) -- -- Maintainer : Edward Kmett &amp;lt;ekmett@gmail.com&amp;gt; -- Stability : provisional -- Portability : portable -- -- &amp;lt;http://en.wikipedia.org/wiki/Moore_machine&amp;gt; ---------------------------------------------------------------------------- module Data.Machine.Moore  ( Moore(..)  , logMoore  , unfoldMoore  ) where  import Control.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>{-# LANGUAGE GADTs #-} {-# LANGUAGE Rank2Types #-} ----------------------------------------------------------------------------- -- | -- Module : Data.Machine.Pipe -- Copyright : (C) 2015 Yorick Laupa, Gabriel Gonzalez -- License : BSD-style (see the file LICENSE) -- -- Maintainer : Yorick Laupa &amp;lt;yo.eight@gmail.com&amp;gt; -- Stability : provisional -- Portability : Rank-2 Types, GADTs -- -- Allows bidirectional communication between two MachineT. Exposed the -- same interface of Pipes library. ---------------------------------------------------------------------------- module Data.Machine.Pipe where  import Control.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>{-# LANGUAGE CPP #-} {-# LANGUAGE RankNTypes #-} {-# LANGUAGE MultiParamTypeClasses #-} {-# LANGUAGE FlexibleInstances #-} {-# LANGUAGE UndecidableInstances #-} #ifndef MIN_VERSION_mtl #define MIN_VERSION_mtl(x,y,z) 0 #endif ----------------------------------------------------------------------------- -- | -- Module : Data.Machine.Plan -- Copyright : (C) 2012 Edward Kmett, R&amp;#250;nar Bjarnason -- License : BSD-style (see the file LICENSE) -- -- Maintainer : Edward Kmett &amp;lt;ekmett@gmail.com&amp;gt; -- Stability : provisional -- Portability : Rank-N Types, MPTCs -- ---------------------------------------------------------------------------- module Data.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>{-# LANGUAGE CPP #-} {-# LANGUAGE GADTs #-} {-# LANGUAGE Rank2Types #-} {-# LANGUAGE FlexibleInstances #-} {-# LANGUAGE ScopedTypeVariables #-} #ifndef MIN_VERSION_base #define MIN_VERSION_base(x,y,z) 0 #endif ----------------------------------------------------------------------------- -- | -- Module : Data.Machine.Process -- Copyright : (C) 2012 Edward Kmett -- License : BSD-style (see the file LICENSE) -- -- Maintainer : Edward Kmett &amp;lt;ekmett@gmail.com&amp;gt; -- Stability : provisional -- Portability : Rank 2 Types, GADTs -- ---------------------------------------------------------------------------- module Data.Machine.Process  (  -- * Processes  Process  , ProcessT  , Automaton(.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>{-# LANGUAGE BangPatterns #-} {-# LANGUAGE CPP #-} #ifndef MIN_VERSION_base #define MIN_VERSION_base(x,y,z) 0 #endif module Data.Machine.Runner  ( foldrT  , foldlT  , foldMapT  , foldT  , runT1   -- Re-exports  , runT  , runT_ ) where  import Data.Machine.Type import Control.Monad (liftM) #if !MIN_VERSION_base (4,8,0) import Data.Monoid (Monoid (..)) #endif  -- | Right fold over a stream. This will be lazy if the underlying -- monad is.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>{-# LANGUAGE Rank2Types #-} {-# LANGUAGE FlexibleInstances #-} ----------------------------------------------------------------------------- -- | -- Module : Data.Machine.Source -- Copyright : (C) 2012 Edward Kmett -- License : BSD-style (see the file LICENSE) -- -- Maintainer : Edward Kmett &amp;lt;ekmett@gmail.com&amp;gt; -- Stability : provisional -- Portability : Rank-2 Types -- ---------------------------------------------------------------------------- module Data.Machine.Source  (  -- * Sources  Source, SourceT  , source  , repeated  , cycled  , cap  , plug  , iterated  , replicated  , enumerateFromTo  , unfold  , unfoldT  ) where  import Control.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>{-# LANGUAGE GADTs #-} {-# LANGUAGE Rank2Types #-} ----------------------------------------------------------------------------- -- | -- Module : Data.Machine.Stack -- Copyright : (C) 2012 Edward Kmett -- License : BSD-style (see the file LICENSE) -- -- Maintainer : Edward Kmett &amp;lt;ekmett@gmail.com&amp;gt; -- Stability : provisional -- Portability : GADTs -- ---------------------------------------------------------------------------- module Data.Machine.Stack  ( Stack(..)  , stack  , peek  , pop  , push  ) where  import Data.Machine.Plan import Data.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>{-# LANGUAGE GADTs #-} {-# LANGUAGE Rank2Types #-} ----------------------------------------------------------------------------- -- | -- Module : Data.Machine.Tee -- Copyright : (C) 2012 Edward Kmett, R&amp;#250;nar Bjarnason, Paul Chiusano -- License : BSD-style (see the file LICENSE) -- -- Maintainer : Edward Kmett &amp;lt;ekmett@gmail.com&amp;gt; -- Stability : provisional -- Portability : Rank-2 Types, GADTs -- ---------------------------------------------------------------------------- module Data.Machine.Tee  ( -- * Tees  Tee, TeeT  , T(..)  , tee, teeT  , addL, addR  , capL, capR, capT  , zipWithT  , zipWith  , zipping  ) where  import Data.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>{-# LANGUAGE GADTs #-} {-# LANGUAGE Rank2Types #-} {-# LANGUAGE FlexibleInstances #-} ----------------------------------------------------------------------------- -- | -- Module : Data.Machine.Type -- Copyright : (C) 2012 Edward Kmett -- License : BSD-style (see the file LICENSE) -- -- Maintainer : Edward Kmett &amp;lt;ekmett@gmail.com&amp;gt; -- Stability : provisional -- Portability : rank-2, GADTs -- ---------------------------------------------------------------------------- module Data.Machine.Type  (  -- * Machines  MachineT(..)  , Step(..)  , Machine  , runT_  , runT  , run  , runMachine  , encased   -- ** Building machines from plans  , construct  , repeatedly  , unfoldPlan  , before  , preplan -- , sink   -- ** Deconstructing machines back into plans  , deconstruct  , tagDone  , finishWith   -- * Reshaping machines  , fit  , fitM  , pass   , starve   , stopped   , stepMachine   -- * Applicative Machines  , Appliance(.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>{-# LANGUAGE GADTs #-} {-# LANGUAGE Rank2Types #-} ----------------------------------------------------------------------------- -- | -- Module : Data.Machine.Wye -- Copyright : (C) 2012 Edward Kmett, R&amp;#250;nar Bjarnason, Paul Chiusano -- License : BSD-style (see the file LICENSE) -- -- Maintainer : Edward Kmett &amp;lt;ekmett@gmail.com&amp;gt; -- Stability : provisional -- Portability : Rank-2 Types, GADTs -- ---------------------------------------------------------------------------- module Data.Machine.Wye  (  -- * Wyes  Wye, WyeT  , Y(..)  , wye  , addX, addY  , capX, capY, capWye  ) where  import Control.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>----------------------------------------------------------------------------- -- | -- Module : Data.Machine -- Copyright : (C) 2012 Edward Kmett -- License : BSD-style (see the file LICENSE) -- -- Maintainer : Edward Kmett &amp;lt;ekmett@gmail.com&amp;gt; -- Stability : provisional -- Portability : non-portable -- ---------------------------------------------------------------------------- module Data.Machine  ( module Data.Machine.Is  , module Data.Machine.Moore  , module Data.Machine.Mealy  , module Data.Machine.Plan  , module Data.Machine.Process  , module Data.Machine.Source  , module Data.Machine.Tee  , module Data.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>0.6.4 [2018.07.03]  Add Semigroup and Monoid instances for Mealy and MealyT. Mark runT and runT_ as INLINEABLE. Increase the scope of the benchmarks. Also include the streaming library among the things that are benchmarked. Allow building with containers-0.6.  0.6.3  Add Semigroup instance for Is Add MonadFail instance for PlanT Support doctest-0.12  0.6.2  Revamp Setup.hs to use cabal-doctest. This makes it build with Cabal-2.0, and makes the doctests work with cabal new-build and sandboxes.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/</guid>
+      <description>machines  
+Ceci n&amp;rsquo;est pas une pipe
+Machines are demand driven input sources like pipes or conduits, but can support multiple inputs.
+You design a Machine by writing a Plan. You then construct the machine.
+Simple machines that take one input are called a Process and processes form a Category. More generally you can attach a Process to the output of any type of Machine, yielding a new Machine.</description>
+    </item>
+    
+  </channel>
+</rss>

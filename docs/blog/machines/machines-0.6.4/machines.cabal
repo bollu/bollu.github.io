@@ -1,0 +1,129 @@
+name:          machines
+category:      Control, Enumerator
+version:       0.6.4
+license:       BSD3
+cabal-version: >= 1.10
+license-file:  LICENSE
+author:        Edward A. Kmett, Rúnar Bjarnason, Josh Cough
+maintainer:    Edward A. Kmett <ekmett@gmail.com>
+stability:     provisional
+homepage:      http://github.com/ekmett/machines/
+bug-reports:   http://github.com/ekmett/machines/issues
+copyright:     Copyright (C) 2012-2015 Edward A. Kmett
+synopsis:      Networked stream transducers
+description:
+  Networked stream transducers
+  .
+  Rúnar Bjarnason's talk on machines can be downloaded from:
+  <https://dl.dropbox.com/u/4588997/Machines.pdf>
+build-type:    Custom
+tested-with:   GHC == 7.4.2
+             , GHC == 7.6.3
+             , GHC == 7.8.4
+             , GHC == 7.10.3
+             , GHC == 8.0.2
+             , GHC == 8.2.2
+             , GHC == 8.4.3
+             , GHC == 8.6.1
+extra-source-files:
+  .travis.yml
+  .gitignore
+  .vim.custom
+  config
+  README.markdown
+  CHANGELOG.markdown
+  Warning.hs
+  examples/LICENSE
+  examples/machines-examples.cabal
+  examples/*.hs
+
+source-repository head
+  type: git
+  location: git://github.com/ekmett/machines.git
+
+custom-setup
+  setup-depends:
+    base          >= 4 && < 5,
+    Cabal,
+    cabal-doctest >= 1 && < 1.1
+
+library
+  build-depends:
+    adjunctions  >= 4.2   && < 5,
+    base         >= 4.5   && < 5,
+    comonad      >= 3     && < 6,
+    containers   >= 0.3   && < 0.7,
+    distributive             < 0.7,
+    pointed      >= 3     && < 6,
+    profunctors  >= 3     && < 6,
+    semigroupoids >= 5    && < 6,
+    semigroups   >= 0.8.3 && < 1,
+    transformers >= 0.3   && < 0.6,
+    transformers-compat >= 0.3,
+    mtl          >= 2     && < 2.3,
+    void         >= 0.6.1 && < 1
+
+  exposed-modules:
+    Data.Machine
+    Data.Machine.Is
+    Data.Machine.Fanout
+    Data.Machine.Lift
+    Data.Machine.Mealy
+    Data.Machine.MealyT
+    Data.Machine.Moore
+    Data.Machine.Process
+    Data.Machine.Plan
+    Data.Machine.Runner
+    Data.Machine.Source
+    Data.Machine.Stack
+    Data.Machine.Tee
+    Data.Machine.Type
+    Data.Machine.Wye
+    Data.Machine.Group
+    Data.Machine.Pipe
+
+  default-language: Haskell2010
+  other-extensions:
+    FlexibleInstances
+    GADTs
+    MultiParamTypeClasses
+    Rank2Types
+    UndecidableInstances
+
+  ghc-options: -Wall -fwarn-tabs -O2 -fdicts-cheap -funbox-strict-fields
+
+  -- See https://ghc.haskell.org/trac/ghc/wiki/Migration/8.0#base-4.9.0.0
+  if impl(ghc >= 8.0)
+    ghc-options: -Wcompat -Wnoncanonical-monad-instances -Wnoncanonical-monadfail-instances
+  else
+    build-depends: fail == 4.9.*
+
+  hs-source-dirs: src
+
+-- Verify the results of the examples
+test-suite doctests
+  type:    exitcode-stdio-1.0
+  main-is: doctests.hs
+  default-language: Haskell2010
+  build-depends:
+    base    == 4.*,
+    doctest >= 0.11.1 && < 0.17,
+    machines
+  ghc-options: -Wall -threaded
+  hs-source-dirs: tests
+
+benchmark benchmarks
+  default-language: Haskell2010
+  type:             exitcode-stdio-1.0
+  hs-source-dirs:   benchmarks
+  main-is:          Benchmarks.hs
+  ghc-options:      -O2 -rtsopts -threaded
+
+  build-depends:
+    base                >= 4.9   && < 5,
+    conduit             >= 1.3   && < 1.4,
+    criterion           >= 0.6   && < 1.6,
+    machines,
+    mtl                 >= 2     && < 2.3,
+    pipes               >= 4     && < 4.4,
+    streaming           >= 0.1.4 && < 0.3

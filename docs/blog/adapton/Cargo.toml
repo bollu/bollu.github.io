@@ -1,0 +1,10 @@
+[package]
+name = "adapton"
+version = "0.1.0"
+authors = ["Siddharth Bhat <siddu.druid@gmail.com>"]
+
+[dependencies]
+
+[lib]
+name = "adapton"
+path = "adapton.rs"

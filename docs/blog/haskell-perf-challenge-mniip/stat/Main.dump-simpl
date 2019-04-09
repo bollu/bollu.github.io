@@ -1,0 +1,527 @@
+
+==================== Tidy Core ====================
+2018-10-14 00:18:47.160684348 UTC
+
+Result size of Tidy Core
+  = {terms: 718, types: 495, coercions: 179, joins: 1/26}
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$trModule4
+$trModule4 = "main"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$trModule3
+$trModule3 = TrNameS $trModule4
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$trModule2
+$trModule2 = "Main"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$trModule1
+$trModule1 = TrNameS $trModule2
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$trModule
+$trModule = Module $trModule3 $trModule1
+
+Rec {
+-- RHS size: {terms: 666, types: 394, coercions: 152, joins: 1/26}
+main_$s$wsievefn
+main_$s$wsievefn
+  = \ sc_s8dP sc1_s8dO sc2_s8dN sc3_s8dJ sc4_s8dK sc5_s8dL sg_s8dM ->
+      case <# sc1_s8dO 100000000# of {
+        __DEFAULT -> (# sc_s8dP, I# sc2_s8dN #);
+        1# ->
+          case readWord8Array#
+                 sc5_s8dL
+                 (+# sc3_s8dJ (uncheckedIShiftRA# sc1_s8dO 3#))
+                 (sc_s8dP `cast` <Co:3>)
+          of
+          { (# ipv_a5Qd, ipv1_a5Qe #) ->
+          let {
+            i#_a5yG
+            i#_a5yG = andI# sc1_s8dO 7# } in
+          join {
+            $j_s7Oo
+            $j_s7Oo x#_a5R6
+              = case and# ipv1_a5Qe (narrow8Word# (int2Word# x#_a5R6)) of {
+                  __DEFAULT ->
+                    main_$s$wsievefn
+                      (ipv_a5Qd `cast` <Co:2>)
+                      (+# sc1_s8dO 1#)
+                      sc2_s8dN
+                      sc3_s8dJ
+                      sc4_s8dK
+                      sc5_s8dL
+                      @~ <Co:9>;
+                  0## ->
+                    let {
+                      x1_a62Q
+                      x1_a62Q = *# sc1_s8dO sc1_s8dO } in
+                    let {
+                      x2_a62R
+                      x2_a62R = +# (*# sc1_s8dO sc1_s8dO) sc1_s8dO } in
+                    case >=# x2_a62R x1_a62Q of {
+                      __DEFAULT ->
+                        case ># 99999999# x2_a62R of {
+                          __DEFAULT ->
+                            let {
+                              y_X5Kc
+                              y_X5Kc = uncheckedIShiftRA# x1_a62Q 3# } in
+                            case readWord8Array# sc5_s8dL (+# sc3_s8dJ y_X5Kc) ipv_a5Qd of
+                            { (# ipv2_X5SC, ipv3_X5SE #) ->
+                            let {
+                              i#1_X5Bl
+                              i#1_X5Bl = andI# x1_a62Q 7# } in
+                            let {
+                              delta_a7QQ
+                              delta_a7QQ = -# x2_a62R x1_a62Q } in
+                            let {
+                              y'_a7QR
+                              y'_a7QR = -# 99999999# delta_a7QQ } in
+                            letrec {
+                              go_dn_s7SI
+                              go_dn_s7SI
+                                = \ x_a7QT eta_X27 ->
+                                    case <# x_a7QT y'_a7QR of {
+                                      __DEFAULT ->
+                                        let {
+                                          y1_X5Lq
+                                          y1_X5Lq = uncheckedIShiftRA# x_a7QT 3# } in
+                                        case readWord8Array#
+                                               sc5_s8dL
+                                               (+# sc3_s8dJ y1_X5Lq)
+                                               (eta_X27 `cast` <Co:3>)
+                                        of
+                                        { (# ipv4_X5TU, ipv5_X5TX #) ->
+                                        let {
+                                          i#2_X5CG
+                                          i#2_X5CG = andI# x_a7QT 7# } in
+                                        case >=# i#2_X5CG 64# of {
+                                          __DEFAULT ->
+                                            case writeWord8Array#
+                                                   sc5_s8dL
+                                                   (+# sc3_s8dJ y1_X5Lq)
+                                                   (or#
+                                                      ipv5_X5TX
+                                                      (narrow8Word#
+                                                         (int2Word#
+                                                            (uncheckedIShiftL# 1# i#2_X5CG))))
+                                                   ipv4_X5TU
+                                            of s'#_a5Wf
+                                            { __DEFAULT ->
+                                            go_dn_s7SI
+                                              (+# x_a7QT delta_a7QQ) (s'#_a5Wf `cast` <Co:2>)
+                                            };
+                                          1# ->
+                                            case writeWord8Array#
+                                                   sc5_s8dL
+                                                   (+# sc3_s8dJ y1_X5Lq)
+                                                   ipv5_X5TX
+                                                   ipv4_X5TU
+                                            of s'#_a5Wf
+                                            { __DEFAULT ->
+                                            go_dn_s7SI
+                                              (+# x_a7QT delta_a7QQ) (s'#_a5Wf `cast` <Co:2>)
+                                            }
+                                        }
+                                        };
+                                      1# ->
+                                        let {
+                                          y1_X5Lq
+                                          y1_X5Lq = uncheckedIShiftRA# x_a7QT 3# } in
+                                        case readWord8Array#
+                                               sc5_s8dL
+                                               (+# sc3_s8dJ y1_X5Lq)
+                                               (eta_X27 `cast` <Co:3>)
+                                        of
+                                        { (# ipv4_X5TU, ipv5_X5TX #) ->
+                                        let {
+                                          i#2_X5CG
+                                          i#2_X5CG = andI# x_a7QT 7# } in
+                                        case >=# i#2_X5CG 64# of {
+                                          __DEFAULT ->
+                                            case writeWord8Array#
+                                                   sc5_s8dL
+                                                   (+# sc3_s8dJ y1_X5Lq)
+                                                   (or#
+                                                      ipv5_X5TX
+                                                      (narrow8Word#
+                                                         (int2Word#
+                                                            (uncheckedIShiftL# 1# i#2_X5CG))))
+                                                   ipv4_X5TU
+                                            of s'#_a5Wf
+                                            { __DEFAULT ->
+                                            (# s'#_a5Wf `cast` <Co:2>, () #)
+                                            };
+                                          1# ->
+                                            case writeWord8Array#
+                                                   sc5_s8dL
+                                                   (+# sc3_s8dJ y1_X5Lq)
+                                                   ipv5_X5TX
+                                                   ipv4_X5TU
+                                            of s'#_a5Wf
+                                            { __DEFAULT ->
+                                            (# s'#_a5Wf `cast` <Co:2>, () #)
+                                            }
+                                        }
+                                        }
+                                    }; } in
+                            case >=# i#1_X5Bl 64# of {
+                              __DEFAULT ->
+                                case writeWord8Array#
+                                       sc5_s8dL
+                                       (+# sc3_s8dJ y_X5Kc)
+                                       (or#
+                                          ipv3_X5SE
+                                          (narrow8Word#
+                                             (int2Word# (uncheckedIShiftL# 1# i#1_X5Bl))))
+                                       ipv2_X5SC
+                                of s'#_a5Wf
+                                { __DEFAULT ->
+                                case go_dn_s7SI x2_a62R (s'#_a5Wf `cast` <Co:2>) of
+                                { (# ipv4_a5Vd, ipv5_a5Ve #) ->
+                                main_$s$wsievefn
+                                  ipv4_a5Vd
+                                  (+# sc1_s8dO 1#)
+                                  (+# sc2_s8dN 1#)
+                                  sc3_s8dJ
+                                  sc4_s8dK
+                                  sc5_s8dL
+                                  @~ <Co:9>
+                                }
+                                };
+                              1# ->
+                                case writeWord8Array#
+                                       sc5_s8dL (+# sc3_s8dJ y_X5Kc) ipv3_X5SE ipv2_X5SC
+                                of s'#_a5Wf
+                                { __DEFAULT ->
+                                case go_dn_s7SI x2_a62R (s'#_a5Wf `cast` <Co:2>) of
+                                { (# ipv4_a5Vd, ipv5_a5Ve #) ->
+                                main_$s$wsievefn
+                                  ipv4_a5Vd
+                                  (+# sc1_s8dO 1#)
+                                  (+# sc2_s8dN 1#)
+                                  sc3_s8dJ
+                                  sc4_s8dK
+                                  sc5_s8dL
+                                  @~ <Co:9>
+                                }
+                                }
+                            }
+                            };
+                          1# ->
+                            case ># 99999999# x1_a62Q of {
+                              __DEFAULT ->
+                                let {
+                                  y_X5Kc
+                                  y_X5Kc = uncheckedIShiftRA# x1_a62Q 3# } in
+                                case readWord8Array# sc5_s8dL (+# sc3_s8dJ y_X5Kc) ipv_a5Qd of
+                                { (# ipv2_X5SC, ipv3_X5SE #) ->
+                                let {
+                                  i#1_X5Bl
+                                  i#1_X5Bl = andI# x1_a62Q 7# } in
+                                case >=# i#1_X5Bl 64# of {
+                                  __DEFAULT ->
+                                    case writeWord8Array#
+                                           sc5_s8dL
+                                           (+# sc3_s8dJ y_X5Kc)
+                                           (or#
+                                              ipv3_X5SE
+                                              (narrow8Word#
+                                                 (int2Word# (uncheckedIShiftL# 1# i#1_X5Bl))))
+                                           ipv2_X5SC
+                                    of s'#_a5Wf
+                                    { __DEFAULT ->
+                                    main_$s$wsievefn
+                                      (s'#_a5Wf `cast` <Co:2>)
+                                      (+# sc1_s8dO 1#)
+                                      (+# sc2_s8dN 1#)
+                                      sc3_s8dJ
+                                      sc4_s8dK
+                                      sc5_s8dL
+                                      @~ <Co:9>
+                                    };
+                                  1# ->
+                                    case writeWord8Array#
+                                           sc5_s8dL (+# sc3_s8dJ y_X5Kc) ipv3_X5SE ipv2_X5SC
+                                    of s'#_a5Wf
+                                    { __DEFAULT ->
+                                    main_$s$wsievefn
+                                      (s'#_a5Wf `cast` <Co:2>)
+                                      (+# sc1_s8dO 1#)
+                                      (+# sc2_s8dN 1#)
+                                      sc3_s8dJ
+                                      sc4_s8dK
+                                      sc5_s8dL
+                                      @~ <Co:9>
+                                    }
+                                }
+                                };
+                              1# ->
+                                main_$s$wsievefn
+                                  (ipv_a5Qd `cast` <Co:2>)
+                                  (+# sc1_s8dO 1#)
+                                  (+# sc2_s8dN 1#)
+                                  sc3_s8dJ
+                                  sc4_s8dK
+                                  sc5_s8dL
+                                  @~ <Co:9>
+                            }
+                        };
+                      1# ->
+                        case <# 99999999# x2_a62R of {
+                          __DEFAULT ->
+                            let {
+                              y_X5Kc
+                              y_X5Kc = uncheckedIShiftRA# x1_a62Q 3# } in
+                            case readWord8Array# sc5_s8dL (+# sc3_s8dJ y_X5Kc) ipv_a5Qd of
+                            { (# ipv2_X5SC, ipv3_X5SE #) ->
+                            let {
+                              i#1_X5Bl
+                              i#1_X5Bl = andI# x1_a62Q 7# } in
+                            let {
+                              delta_a7Ro
+                              delta_a7Ro = -# x2_a62R x1_a62Q } in
+                            let {
+                              y'_a7Rp
+                              y'_a7Rp = -# 99999999# delta_a7Ro } in
+                            letrec {
+                              go_up_s7T9
+                              go_up_s7T9
+                                = \ x_a7Rr eta_X27 ->
+                                    case ># x_a7Rr y'_a7Rp of {
+                                      __DEFAULT ->
+                                        let {
+                                          y1_X5Lq
+                                          y1_X5Lq = uncheckedIShiftRA# x_a7Rr 3# } in
+                                        case readWord8Array#
+                                               sc5_s8dL
+                                               (+# sc3_s8dJ y1_X5Lq)
+                                               (eta_X27 `cast` <Co:3>)
+                                        of
+                                        { (# ipv4_X5TU, ipv5_X5TX #) ->
+                                        let {
+                                          i#2_X5CG
+                                          i#2_X5CG = andI# x_a7Rr 7# } in
+                                        case >=# i#2_X5CG 64# of {
+                                          __DEFAULT ->
+                                            case writeWord8Array#
+                                                   sc5_s8dL
+                                                   (+# sc3_s8dJ y1_X5Lq)
+                                                   (or#
+                                                      ipv5_X5TX
+                                                      (narrow8Word#
+                                                         (int2Word#
+                                                            (uncheckedIShiftL# 1# i#2_X5CG))))
+                                                   ipv4_X5TU
+                                            of s'#_a5Wf
+                                            { __DEFAULT ->
+                                            go_up_s7T9
+                                              (+# x_a7Rr delta_a7Ro) (s'#_a5Wf `cast` <Co:2>)
+                                            };
+                                          1# ->
+                                            case writeWord8Array#
+                                                   sc5_s8dL
+                                                   (+# sc3_s8dJ y1_X5Lq)
+                                                   ipv5_X5TX
+                                                   ipv4_X5TU
+                                            of s'#_a5Wf
+                                            { __DEFAULT ->
+                                            go_up_s7T9
+                                              (+# x_a7Rr delta_a7Ro) (s'#_a5Wf `cast` <Co:2>)
+                                            }
+                                        }
+                                        };
+                                      1# ->
+                                        let {
+                                          y1_X5Lq
+                                          y1_X5Lq = uncheckedIShiftRA# x_a7Rr 3# } in
+                                        case readWord8Array#
+                                               sc5_s8dL
+                                               (+# sc3_s8dJ y1_X5Lq)
+                                               (eta_X27 `cast` <Co:3>)
+                                        of
+                                        { (# ipv4_X5TU, ipv5_X5TX #) ->
+                                        let {
+                                          i#2_X5CG
+                                          i#2_X5CG = andI# x_a7Rr 7# } in
+                                        case >=# i#2_X5CG 64# of {
+                                          __DEFAULT ->
+                                            case writeWord8Array#
+                                                   sc5_s8dL
+                                                   (+# sc3_s8dJ y1_X5Lq)
+                                                   (or#
+                                                      ipv5_X5TX
+                                                      (narrow8Word#
+                                                         (int2Word#
+                                                            (uncheckedIShiftL# 1# i#2_X5CG))))
+                                                   ipv4_X5TU
+                                            of s'#_a5Wf
+                                            { __DEFAULT ->
+                                            (# s'#_a5Wf `cast` <Co:2>, () #)
+                                            };
+                                          1# ->
+                                            case writeWord8Array#
+                                                   sc5_s8dL
+                                                   (+# sc3_s8dJ y1_X5Lq)
+                                                   ipv5_X5TX
+                                                   ipv4_X5TU
+                                            of s'#_a5Wf
+                                            { __DEFAULT ->
+                                            (# s'#_a5Wf `cast` <Co:2>, () #)
+                                            }
+                                        }
+                                        }
+                                    }; } in
+                            case >=# i#1_X5Bl 64# of {
+                              __DEFAULT ->
+                                case writeWord8Array#
+                                       sc5_s8dL
+                                       (+# sc3_s8dJ y_X5Kc)
+                                       (or#
+                                          ipv3_X5SE
+                                          (narrow8Word#
+                                             (int2Word# (uncheckedIShiftL# 1# i#1_X5Bl))))
+                                       ipv2_X5SC
+                                of s'#_a5Wf
+                                { __DEFAULT ->
+                                case go_up_s7T9 x2_a62R (s'#_a5Wf `cast` <Co:2>) of
+                                { (# ipv4_a5Vd, ipv5_a5Ve #) ->
+                                main_$s$wsievefn
+                                  ipv4_a5Vd
+                                  (+# sc1_s8dO 1#)
+                                  (+# sc2_s8dN 1#)
+                                  sc3_s8dJ
+                                  sc4_s8dK
+                                  sc5_s8dL
+                                  @~ <Co:9>
+                                }
+                                };
+                              1# ->
+                                case writeWord8Array#
+                                       sc5_s8dL (+# sc3_s8dJ y_X5Kc) ipv3_X5SE ipv2_X5SC
+                                of s'#_a5Wf
+                                { __DEFAULT ->
+                                case go_up_s7T9 x2_a62R (s'#_a5Wf `cast` <Co:2>) of
+                                { (# ipv4_a5Vd, ipv5_a5Ve #) ->
+                                main_$s$wsievefn
+                                  ipv4_a5Vd
+                                  (+# sc1_s8dO 1#)
+                                  (+# sc2_s8dN 1#)
+                                  sc3_s8dJ
+                                  sc4_s8dK
+                                  sc5_s8dL
+                                  @~ <Co:9>
+                                }
+                                }
+                            }
+                            };
+                          1# ->
+                            case <# 99999999# x1_a62Q of {
+                              __DEFAULT ->
+                                let {
+                                  y_X5Kc
+                                  y_X5Kc = uncheckedIShiftRA# x1_a62Q 3# } in
+                                case readWord8Array# sc5_s8dL (+# sc3_s8dJ y_X5Kc) ipv_a5Qd of
+                                { (# ipv2_X5SC, ipv3_X5SE #) ->
+                                let {
+                                  i#1_X5Bl
+                                  i#1_X5Bl = andI# x1_a62Q 7# } in
+                                case >=# i#1_X5Bl 64# of {
+                                  __DEFAULT ->
+                                    case writeWord8Array#
+                                           sc5_s8dL
+                                           (+# sc3_s8dJ y_X5Kc)
+                                           (or#
+                                              ipv3_X5SE
+                                              (narrow8Word#
+                                                 (int2Word# (uncheckedIShiftL# 1# i#1_X5Bl))))
+                                           ipv2_X5SC
+                                    of s'#_a5Wf
+                                    { __DEFAULT ->
+                                    main_$s$wsievefn
+                                      (s'#_a5Wf `cast` <Co:2>)
+                                      (+# sc1_s8dO 1#)
+                                      (+# sc2_s8dN 1#)
+                                      sc3_s8dJ
+                                      sc4_s8dK
+                                      sc5_s8dL
+                                      @~ <Co:9>
+                                    };
+                                  1# ->
+                                    case writeWord8Array#
+                                           sc5_s8dL (+# sc3_s8dJ y_X5Kc) ipv3_X5SE ipv2_X5SC
+                                    of s'#_a5Wf
+                                    { __DEFAULT ->
+                                    main_$s$wsievefn
+                                      (s'#_a5Wf `cast` <Co:2>)
+                                      (+# sc1_s8dO 1#)
+                                      (+# sc2_s8dN 1#)
+                                      sc3_s8dJ
+                                      sc4_s8dK
+                                      sc5_s8dL
+                                      @~ <Co:9>
+                                    }
+                                }
+                                };
+                              1# ->
+                                main_$s$wsievefn
+                                  (ipv_a5Qd `cast` <Co:2>)
+                                  (+# sc1_s8dO 1#)
+                                  (+# sc2_s8dN 1#)
+                                  sc3_s8dJ
+                                  sc4_s8dK
+                                  sc5_s8dL
+                                  @~ <Co:9>
+                            }
+                        }
+                    }
+                } } in
+          case >=# i#_a5yG 64# of {
+            __DEFAULT -> jump $j_s7Oo (uncheckedIShiftL# 1# i#_a5yG);
+            1# -> jump $j_s7Oo 0#
+          }
+          }
+      }
+end Rec }
+
+-- RHS size: {terms: 29, types: 42, coercions: 18, joins: 0/0}
+main1
+main1
+  = \ s_a5zB ->
+      case newByteArray# 12500000# (s_a5zB `cast` <Co:3>) of
+      { (# ipv_a65c, ipv1_a65d #) ->
+      case {__pkg_ccall primitive-0.6.3.0 forall s.
+                               MutableByteArray# s
+                               -> Int#
+                               -> Word#
+                               -> Word#
+                               -> State# RealWorld
+                               -> (# State# RealWorld #)}_a67Z
+             ipv1_a65d 0# 12500000## 0## (ipv_a65c `cast` <Co:6>)
+      of
+      { (# ds9_a684 #) ->
+      case main_$s$wsievefn
+             ds9_a684 2# 0# 0# 12500000# ipv1_a65d @~ <Co:9>
+      of
+      { (# ipv2_X5Ab, ipv3_X5Ad #) ->
+      hPutStr2 stdout ($fShowInt_$cshow ipv3_X5Ad) True ipv2_X5Ab
+      }
+      }
+      }
+
+-- RHS size: {terms: 1, types: 0, coercions: 3, joins: 0/0}
+main
+main = main1 `cast` <Co:3>
+
+-- RHS size: {terms: 2, types: 1, coercions: 3, joins: 0/0}
+main2
+main2 = runMainIO1 (main1 `cast` <Co:3>)
+
+-- RHS size: {terms: 1, types: 0, coercions: 3, joins: 0/0}
+main
+main = main2 `cast` <Co:3>
+
+

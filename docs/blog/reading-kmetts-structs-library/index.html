@@ -1,0 +1,2206 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A weblog of sorts">
+
+
+<meta property="og:site_name" content="A weblog of sorts" />
+<meta property="og:locale" content="en-US" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/blog/reading-kmetts-structs-library/" />
+<meta property="og:title" content="Reading Kmett&#39;s `structs` library" />
+<meta property="twitter:title" content="Reading Kmett&#39;s `structs` library">
+
+    <meta property="twitter:card" content="summary">
+
+<meta property="og:description" content="">
+<meta property="twitter:description" content="">
+
+<title>
+
+
+     A weblog of sorts - Reading Kmett&#39;s `structs` library 
+
+</title>
+<link rel="canonical" href="http://localhost:1313/blog/reading-kmetts-structs-library/">
+
+
+<style media="screen">
+  @font-face {
+  font-family: 'Nexa Bold';
+  src: url('http://localhost:1313/fonts/Nexa Bold.otf');
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, div.column {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+a,
+a:visited,
+a:focus,
+a:active {
+  text-decoration: none;
+}
+html {
+  height: 100%;
+  font-size: 16px;
+}
+body {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -ms-justify-content: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 100%;
+  font-weight: 400;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  color: #111111;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility !important;
+}
+.icon {
+  text-rendering: geometricPrecision !important;
+}
+section {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  width: 100%;
+}
+div.column {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  width: 100%;
+}
+.container {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  width: 100%;
+}
+div.header .container {
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+}
+div.header .content {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+div.header .container .logo {
+  
+  max-width: 100px;
+  
+  margin-left: -2em;
+}
+div.header .name {
+  padding-top: 20px;
+  font-size: 28px;
+  font-family: 'Nexa Bold', 'Helvetica Neue', 'Arial', sans-serif;
+  letter-spacing: -0.005rem;
+  
+  text-transform: uppercase;
+  
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  color: #333333;
+}
+div.header nav {
+  margin-bottom: 16px;
+}
+div.header nav ul {
+  list-style: none;
+  text-align: center;
+  display: -webkit-inline-flex;
+  display: -moz-inline-flex;
+  display: -ms-inline-flexbox;
+  display: -ms-inline-flex;
+  display: inline-flex;
+}
+div.header nav ul li {
+  margin-left: 6px;
+  margin-right: 6px;
+}
+div.header nav ul li:first-child {
+  margin-left: 0;
+}
+div.header nav ul li:last-child {
+  margin-right: 0;
+}
+div.header nav ul a {
+  color: #555555;
+  font-weight: 400;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  -webkit-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -moz-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -ms-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -o-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+}
+div.header nav ul a:hover {
+  color: #111111;
+}
+div.footer .container {
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  flex-direction: column-reverse;
+  width: 100%;
+  text-align: center;
+}
+div.footer .container a {
+  font-size: 14px;
+  margin-left: 6px;
+  margin-right: 6px;
+  opacity: 0.6;
+  -webkit-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -moz-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -ms-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -o-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+}
+div.footer .container a:first-child {
+  margin-left: 0;
+}
+div.footer .container a:last-child {
+  margin-right: 0;
+}
+div.footer .container a:hover {
+  opacity: 0.8;
+}
+div.footer .container a .icon {
+  width: 16px;
+  height: 16px;
+}
+div.footer .container .copyright {
+  flex-grow: 0.5;
+  text-align: start;
+}
+div.footer .container .icons {
+  flex-grow: 0.5;
+  text-align: end;
+}
+div.main .container {
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -ms-justify-content: flex-start;
+  justify-content: flex-start;
+}
+div.main .content {
+  color: #111111;
+  font-size: 16px;
+}
+div.main .content .title-container {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  justify-content: space-between;
+}
+div.main .content .posts {
+  
+  
+}
+div.main .content .page-heading {
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  letter-spacing: -0.005rem;
+  text-transform: uppercase;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  color: #333333;
+  margin-bottom: 16px;
+}
+div.main .content .front-matter .page-heading {
+  margin-bottom: 0;
+}
+div.main .content .front-matter .meta {
+  font-size: 14px;
+  color: #666666;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  margin-bottom: 32px;
+}
+div.main .content .front-matter .date,
+div.main .content .front-matter .author,
+div.main .content .front-matter .tags,
+div.main .content .front-matter .word-count,
+div.main .content .front-matter .middot:before {
+  display: none;
+}
+div.main .content .front-matter .middot:before {
+  font-size: 6px;
+  margin: 0 6px;
+  vertical-align: middle;
+  content: "•";
+}
+div.main .content .front-matter .tags ul {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+div.main .content .front-matter .tags ul li {
+  -webkit-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -moz-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -ms-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -o-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+}
+div.main .content .front-matter .tags ul li:hover {
+  opacity: 0.7;
+}
+div.main .content .front-matter .tags ul li a {
+  color: #666666;
+}
+div.main .container.f04 {
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+}
+div.main .container.f04 .content {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+div.main .container.f04 .content .num {
+  margin: 30px 0px 30px 0;
+  font-weight: 400;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 50px;
+}
+div.main .container.f04 .content .detail {
+  margin-bottom: 40px;
+}
+div.main .container .content .groupby {
+  margin-top: 1em;
+  padding-left: 0.5em;
+}
+div.main .container .content .post-item {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  display: list-item;
+  list-style: disc inside;
+}
+div.main .container .content .post-item .meta {
+  font-size: 14px;
+  color: #666666;
+  display: none;
+  min-width: 100px;
+}
+div.main .container .content .see-more {
+  font-style: italic;
+  float: right;
+  font-size: 0.9em;
+  margin-top: 2em;
+  color: #313537;
+}
+div.main .container .content .see-more:hover {
+  color: #666;
+}
+section {
+  padding: 0 16px;
+}
+div.column {
+  padding: 0 16px;
+}
+div.header {
+  padding-top: 10px;
+}
+div.header-home {
+  padding-top: 36px;
+}
+div.main {
+  padding-top: 32px;
+}
+div.main .container .content .post-item .meta {
+    display: block;
+}
+div.main .container .content .post-item {
+    display: flex;
+    list-style: none;
+}
+a {
+  color: #428bca;
+  -webkit-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -moz-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -ms-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -o-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+}
+a:hover {
+  color: #2a6496;
+}
+img {
+  max-width: 100%;
+}
+div.main .content {
+    width: 100%;
+}
+div.main .content .markdown {
+  font-size: 1.1em;
+  line-height: 1.75em;
+  color: #313537;
+  font-family: serif;
+  font-weight: 300;
+}
+div.main .content .markdown h1,
+div.main .content .markdown h2,
+div.main .content .markdown h3,
+div.main .content .markdown h4,
+div.main .content .markdown h5,
+div.main .content .markdown h6 {
+  font-size: 22px;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  letter-spacing: -0.005rem;
+  font-weight: 700;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  color: #333333;
+  text-transform: none;
+  margin-top: 1.75rem;
+}
+div.main .content .markdown h1 {
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+}
+div.main .content .markdown h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+div.main .content .markdown h3 {
+  font-size: 1em;
+  margin-bottom: 1rem;
+}
+div.main .content .markdown h4,
+div.main .content .markdown h5,
+div.main .content .markdown h6 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  letter-spacing: none;
+}
+div.main .content .markdown code,
+div.main .content .markdown pre {
+  font-family: 'Menlo', monospace;
+  font-size: 0.98rem;
+  background-color: #f7f7f7;
+}
+div.main .content .markdown code {
+  /* enclosed by single backtick (`) */
+  padding: .15em .5em;
+  border-radius: 2px;
+}
+div.main .content .markdown pre {
+  /* Hugo specific: consider using the 'highlight' shortcode */
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  line-height: 1.5em;
+  white-space: pre;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+div.main .content .markdown pre code {
+  /* enclosed by 4 backticks (````) */
+  padding: 0;
+  font-size: 0.9rem;
+}
+div.main .content .markdown a code {
+  color: #428bca !important;
+}
+div.main .content .markdown a code:hover {
+  text-decoration: underline;
+}
+div.main .content .markdown p {
+  
+  text-align: justify;
+  
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+div.main .content .markdown ul,
+div.main .content .markdown ol,
+div.main .content .markdown dl {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+div.main .content .markdown dt {
+  font-weight: bold;
+}
+div.main .content .markdown dd {
+  margin-bottom: .5rem;
+}
+div.main .content .markdown ul {
+  list-style-type: disc;
+  list-style-position: outside;
+  margin-bottom: 1.25rem;
+}
+div.main .content .markdown ol {
+  list-style-type: decimal;
+  margin-bottom: 1.25rem;
+}
+div.main .content .markdown li {
+  margin-left: 2em;
+}
+div.main .content .markdown em {
+  font-style: italic;
+}
+div.main .content .markdown strong {
+  font-weight: 700;
+}
+div.main .content .markdown hr {
+  position: relative;
+  margin: 1.75rem 0;
+  border: 0;
+  border-top: 1px solid #808080;
+  border-top: 1px solid #999999;
+}
+div.main .content .markdown abbr {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #666666;
+  text-transform: uppercase;
+}
+div.main .content .markdown abbr[title] {
+  cursor: help;
+  border-bottom: 1px dotted #808080;
+}
+div.main .content .markdown blockquote {
+  padding: .5rem 1rem;
+  margin: .8rem 0;
+  color: #7a7a7a;
+  border-left: .25rem solid #e5e5e5;
+}
+div.main .content .markdown blockquote p:last-child {
+  margin-bottom: 0;
+}
+div.main .content .markdown figure {
+  width: 100%;
+  background: #fff;
+  margin-bottom: 1em;
+}
+div.main .content .markdown figure img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  display: block;
+  position: static;
+  margin: auto;
+}
+div.main .content .markdown table {
+  margin-bottom: 1rem;
+  width: 100%;
+  border: 1px solid #e5e5e5;
+  border-collapse: collapse;
+}
+div.main .content .markdown td,
+div.main .content .markdown th {
+  padding: .25rem .5rem;
+  border: 1px solid #e5e5e5;
+}
+div.main .content .markdown tbody tr:nth-child(odd) td,
+div.main .content .markdown tbody tr:nth-child(odd) th {
+  background-color: #f7f7f7;
+}
+div.main .content .markdown .footnotes ol {
+  list-style-type: decimal;
+  margin-left: 16px;
+}
+div.main .content .markdown .footnotes li {
+  list-style-type: unset;
+}
+div.main .content .markdown .footnote-ref {
+  font-size: 0.7em;
+}
+div.main .content .navigation {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  padding: 2em;
+}
+div.main .content .navigation div {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  margin-top: 1em;
+}
+div.main .content .navigation .icon {
+  width: 16px;
+  height: 16px;
+}
+div.main .content .navigation a {
+  width: 250px;
+  margin: 0 1em;
+  text-align: center;
+  font-style: italic;
+  color: #313537;
+}
+div.main .content .share, div.main .content .share div {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  justify-content: center;
+}
+div.main .content .share {
+  background-color: rgba(152, 152, 152, 0.07);
+  padding: 1em 0;
+}
+div.main .content .share a {
+  margin: 0 6px;
+}
+kbd {
+  padding: 0.1em 0.6em;
+  border: 1px solid #ccc;
+  font-size: 11px;
+  font-family: Arial,Helvetica,sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  -moz-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0 0.1em;
+  text-shadow: 0 1px 0 #fff;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* Fonts */
+
+
+.wf-raleway-n4-active body, 
+.wf-raleway-n4-active div.header nav ul a,
+.wf-raleway-n7-active div.main .content .page-heading,
+.wf-raleway-n2-active div.main .container.f04 .content .num,
+.wf-raleway-n7-active div.main .content .markdown h1,
+.wf-raleway-n7-active div.main .content .markdown h2,
+.wf-raleway-n7-active div.main .content .markdown h3,
+.wf-raleway-n7-active div.main .content .markdown h4,
+.wf-raleway-n7-active div.main .content .markdown h5,
+.wf-raleway-n7-active div.main .content .markdown h6 {
+      font-family: 'Raleway';
+}
+
+.wf-merriweather-n3-active div.main .content .markdown {
+      font-family: 'Merriweather';
+}
+
+.wf-ubuntu-mono-n4-active div.main .content .markdown code,
+.wf-ubuntu-mono-n4-active div.main .content .markdown pre {
+      font-family: 'Ubuntu Mono';
+}
+
+
+</style>
+<style media="(min-width: 600px)">
+  body {
+-webkit-justify-content: center;
+-moz-justify-content: center;
+-ms-justify-content: center;
+justify-content: center;
+}
+.non-narrow.zero-top-spacing {
+padding-top: 0 !important;
+}
+section {
+padding: 0 16px;
+margin-left: 100px;
+margin-right: 100px;
+
+max-width: 750px;
+
+}
+div.column {
+padding: 0 16px;
+
+max-width: 750px;
+
+}
+div.header {
+background-color: transparent;
+}
+div.header .container {
+-webkit-justify-content: flex-start;
+-moz-justify-content: flex-start;
+-ms-justify-content: flex-start;
+justify-content: flex-start;
+}
+div.header .container .logo {
+margin: 0;
+}
+div.header-home .container .logo {
+max-width: 216px;
+margin-left: 24px;
+}
+div.header-home .name-home {
+padding-top: 30px;
+font-size: 40px;
+}
+div.header-home nav ul a {
+font-size: 18px;
+}
+div.header .content {
+-webkit-align-items: flex-start;
+-moz-align-items: flex-start;
+-ms-align-items: flex-start;
+align-items: flex-start;
+}
+div.header .name {
+color: #333333;
+}
+div.header nav {
+font-size: 14px;
+margin-bottom: 0;
+}
+div.header nav ul {
+text-align: left;
+}
+div.header nav ul a {
+color: #666666;
+}
+div.header nav ul a:hover {
+color: #333333;
+}
+div.footer {
+background-color: transparent;
+}
+div.footer .container {
+flex-direction: row;
+}
+div.footer .container a {
+margin-left: 3px;
+margin-right: 3px;
+color: #666666;
+}
+div.footer .container a:hover {
+color: #333333;
+}
+div.footer .container a .icon {
+font-size: 18px;
+}
+div.footer .container a .icon.larger {
+font-size: 20px;
+}
+div.main .content .front-matter .date,
+div.main .content .front-matter .author,
+div.main .content .front-matter .tags,
+div.main .content .front-matter .word-count,
+div.main .content .front-matter .middot:before {
+display: initial;
+}
+div.main .container.f04 {
+-webkit-justify-content: flex-start;
+-moz-justify-content: flex-start;
+-ms-justify-content: flex-start;
+justify-content: flex-start;
+}
+div.main .container.f04 .content {
+-webkit-align-items: flex-start;
+-moz-align-items: flex-start;
+-ms-align-items: flex-start;
+align-items: flex-start;
+}
+div.main .container.f04 .content .num {
+margin: 0 0 10px 0;
+font-size: 32px;
+}
+div.main .container.f04 .content .detail {
+margin-bottom: 30px;
+}
+.container {
+padding: 0 30px;
+}
+div.header {
+padding-top: 60px;
+padding-bottom: 60px;
+}
+div.footer {
+padding-top: 60px;
+padding-bottom: 60px;
+}
+div.main {
+padding-top: 0;
+}
+div.main .content {
+  
+  font-size: 16px;
+  
+}
+div.main .container .content .post-item {
+display: flex;
+list-style: none;
+padding-left: 1.5em;
+}
+div.main .container .content .post-item .meta {
+display: block;
+}
+div.main .content .markdown blockquote {
+padding-right: 5rem;
+padding-left: 1.25rem;
+}
+div.main .content .navigation {
+-webkit-flex-direction: row;
+-moz-flex-direction: row;
+-ms-flex-direction: row;
+flex-direction: row;
+}
+div.main .content .navigation div {
+margin-top: 0em;
+}
+
+</style>
+<style media="(min-width: 769px)">
+  div.main .content .markdown figure {
+width: 110%;
+margin-left: -4%;
+}
+div.main .content .markdown img {
+max-width: 110%;
+width: 110%;
+margin-left: -4%;
+}
+div.main .content .markdown pre {
+width: 110%;
+margin-left: -4%;
+}
+
+</style>
+
+<noscript>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet">
+</noscript>
+
+
+  <style type="text/css" media="screen">
+    .hljs{display:block;background:white;padding:0.5em;color:#333333;overflow-x:auto}.hljs-comment,.hljs-meta{color:#969896}.hljs-string,.hljs-variable,.hljs-template-variable,.hljs-strong,.hljs-emphasis,.hljs-quote{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-literal,.hljs-symbol,.hljs-bullet,.hljs-attribute{color:#0086b3}.hljs-section,.hljs-name{color:#63a35c}.hljs-tag{color:#333333}.hljs-title,.hljs-attr,.hljs-selector-id,.hljs-selector-class,.hljs-selector-attr,.hljs-selector-pseudo{color:#795da3}.hljs-addition{color:#55a532;background-color:#eaffea}.hljs-deletion{color:#bd2c00;background-color:#ffecec}.hljs-link{text-decoration:underline}
+  </style>
+
+
+
+  <style type="text/css" media="screen">
+    .progressive{overflow:hidden;position:relative;background:#efefef}.progressive__img{width:100%;height:100%;position:absolute;-webkit-transform:translateZ(0);transform:translateZ(0)}.progressive--not-loaded{filter:blur(30px);-webkit-filter:blur(30px)}.progressive--is-loaded{filter:blur(20px);-webkit-filter:blur(20px);-webkit-animation:sharpen .5s both;animation:sharpen .5s both}@-webkit-keyframes sharpen{from{filter:blur(20px);-webkit-filter:blur(20px)}to{filter:blur(0);-webkit-filter:blur(0)}}@keyframes sharpen{from{filter:blur(20px);-webkit-filter:blur(20px)}to{filter:blur(0);-webkit-filter:blur(0)}}
+  </style>
+
+
+
+
+
+
+
+
+
+<link rel="shortcut icon"
+
+    href="http://localhost:1313/img/favicon.ico"
+
+>
+
+
+
+
+</head>
+
+
+<body>
+
+
+<div class="header column">
+
+    <div class="container">
+        
+        <div class="content">
+            <a href="http://localhost:1313/"><div class="name"><h1>A weblog of sorts</h1></div></a>
+            <nav>
+                <ul>
+                    
+                            <li><a href="http://localhost:1313/blog/">Blog</a></li>
+                    
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                            <li><a href="http://localhost:1313/things-i-learnt-today">Things I learnt today</a></li>
+                            
+                        
+                    
+                    
+                        
+                            <li><a href="http://localhost:1313/me/">About Me</a></li>
+                        
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="main post non-narrow zero-top-spacing column">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    
+    Reading Kmett&#39;s `structs` library
+    
+
+</div>
+
+                </div>
+                <div class="meta">
+                    <div class="date" title="Thu Oct 4 2018 19:53:32 IST">Oct 4, 2018</div>
+                    
+                        
+                    
+                    
+                    <div class="reading-time middot">23 minute read</div>
+                    
+                    <div class="tags">
+                        <ul>
+                          
+                        </ul>
+                    </div>
+                    <div class="tags">
+                        <ul>
+                          
+                          
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="markdown">
+                
+    
+    
+
+<p>I&rsquo;m examining Edward Kmett&rsquo;s <a href="https://www.github/com/ekmett/structs">structs</a>
+package.  I decided to write up fun bits of the code I found as I spelunked on
+the codebase, as well as motivate why this library exists (as far as I can
+tell, anyway).</p>
+
+<p><strong>Pre-requisites:</strong>  General haskell-familiarity upto monads. In this
+case, <code>IO</code> and <code>ST</code> familiarity is assumed since we&rsquo;re doing mutable things.</p>
+
+<h1 id="introduction">Introduction</h1>
+
+<p>I&rsquo;m going in blind, so let&rsquo;s first read the README, and then
+jump directly intowhat&rsquo;s exported by this library!</p>
+
+<h2 id="readme">README</h2>
+
+<p>The <code>README</code> says:</p>
+
+<pre><code>This package explores strict mutable data structures in Haskell.
+In particular, pointer-based data structures are effectively 'half price' due
+to the encoding used.
+</code></pre>
+
+<p>I&rsquo;m not sure what <code>half price</code> is, but I assume I&rsquo;ll find a comment in
+the codebase that tells me what this is.</p>
+
+<p>I first want to find examples. Failing that, I want to <em>write</em> an example
+to understand what this library does.</p>
+
+<h2 id="tests"><code>tests/</code></h2>
+
+<p>I look in the <code>tests/</code> folder, with no luck &mdash; I see no examples of how
+to use it. Oh well, it&rsquo;s time to read the source.</p>
+
+<h2 id="source-code-structure">Source code structure</h2>
+
+<p>running a quick <code>tree</code> on the <code>src/</code> folder shows:</p>
+
+<pre><code>.
+└── Data
+    ├── Struct
+    │   ├── Internal
+    │   │   ├── Label.hs
+    │   │   ├── LinkCut.hs
+    │   │   └── Order.hs
+    │   ├── Internal.hs
+    │   ├── Label.hs
+    │   ├── LinkCut.hs
+    │   ├── Order.hs
+    │   └── TH.hs
+    └── Struct.hs
+</code></pre>
+
+<ul>
+<li><code>Data/Struct.hs</code> is the toplevel, most likely.</li>
+<li><code>Data/Struct/TH.hs</code> is probably template haskell and can be safely ignored</li>
+<li><code>Data/Struct/Label.hs</code> is probably some kind of labelling / phantom tagging system</li>
+<li><code>Data/Struct/Internal/LinkCut.hs</code> is a link-cut-tree most likely, which is
+interesting, since I&rsquo;ve never seen anyone use this data structure in the wild.
+The only reason I was aware of its existence was thanks to a frind who told me
+about &ldquo;the fucked up algorithms Tarjan came up with&rdquo;.</li>
+<li><code>Data/Struct/Order.hs</code> is an interesting file, is it a theory of orderings?</li>
+</ul>
+
+<h2 id="exports">Exports</h2>
+
+<pre><code class="language-hs">-- src/Data/Struct.hs
+module Data.Struct
+  ( Struct(..)
+  , Object
+  , destruct
+  , construct
+  , eqStruct
+  , alloc
+  -- * Nil
+#ifndef HLINT
+  , pattern Nil
+#endif
+  , isNil
+  , NullPointerException(..)
+  -- * Slots and Fields
+  , Slot, slot
+  , get, set
+  , Field, field
+  , unboxedField
+  , getField, setField, modifyField, modifyField'
+  , Precomposable(..)
+  ) where
+
+import Data.Struct.Internal
+</code></pre>
+
+<p>Interesting, it seems to provide us a way to construct structs, <code>get</code>, <code>set</code>
+into them, some way to create &ldquo;struct fields&rdquo;, and helpers such as
+<code>modifyField</code>.</p>
+
+<p>There&rsquo;s some slightly alarming names there, such as <code>NullPointerException</code>
+and <code>isNil</code>, but I assume we will find out what that is as we go along.</p>
+
+<p>since there&rsquo;s an <code>import Data.Struct.Internal</code>, we know that that&rsquo;s where
+the implementations are coming from.</p>
+
+<p>Let&rsquo;s see what <code>get</code> and <code>set</code> do first, since they seem to be
+the most useful.</p>
+
+<h1 id="spelunking-into-data-struct-internal-hs">Spelunking into <code>Data/Struct/Internal.hs</code></h1>
+
+<pre><code class="language-hs">-- Data/Struct/Internal.hs
+
+-- | Get the value from a 'Slot'
+get :: (PrimMonad m, Struct x, Struct y) =&gt; Slot x y -&gt; x (PrimState m) -&gt; m (y (PrimState m))
+get (Slot go _ _) = \x -&gt; primitive $ \s -&gt; case go (destruct x) s of
+                                            (# s', y #) -&gt; (# s', construct y #)
+
+-- | Set the value of a 'Slot'
+set :: (PrimMonad m, Struct x, Struct y) =&gt; Slot x y -&gt; x (PrimState m) -&gt; y (PrimState m) -&gt; m ()
+set (Slot _ go _) = \x y -&gt; primitive_ (go (destruct x) (destruct y))
+{-# INLINE set #-}
+</code></pre>
+
+<p>We first see a <code>Slot</code> type, and a typeclass <code>Struct</code>. So, if we want
+to use the <code>get</code> or <code>set</code> functions, we need to know how to construct
+a <code>Slot</code>, and how to create a type which has an instance of <code>Struct</code>.</p>
+
+<p>Let&rsquo;s look at each of them in turn:</p>
+
+<h3 id="struct"><code>Struct</code></h3>
+
+<pre><code class="language-hs">-- Data/Struct/Internal.hs
+
+-- | A 'Dict' reifies an instance of the constraint @p@ into a value.
+data Dict p where
+  Dict :: p =&gt; Dict p
+
+-- | Run an ST calculation inside of a PrimMonad. This lets us avoid
+-- | dispatching everything through the 'PrimMonad' dictionary.
+
+-- | An instance for 'Struct' @t@ is a witness to the machine-level
+--   equivalence of @t@ and @Object@.
+class Struct t where
+  struct :: Dict (Coercible (t s) (Object s))
+#ifndef HLINT
+  default struct :: Coercible (t s) (Object s) =&gt; Dict (Coercible (t s) (Object s))
+#endif
+  struct = Dict
+
+data Object s = Object { runObject :: SmallMutableArray# s Any }
+
+instance Struct Object
+</code></pre>
+
+<p>So, a <code>Struct</code> is anything that witnesses the ability to be coerced to
+<code>Object s</code>.</p>
+
+<p><code>Object s</code> appears to be an array of size <code>s</code>? We&rsquo;ll need to investigate
+what to do with this.</p>
+
+<p>However, first things first, I want to see an
+example of this thing in action! By looking around a little more,
+I find a use of some template haskell that generates a struct in
+<code>Data/Struct/Internal/LinkCut.hs</code>:</p>
+
+<pre><code class="language-hs">-- Data/Struct/Internal/LinkCut.hs:
+
+makeStruct [d|
+  data LinkCut a s = LinkCut
+    { path, parent, left, right :: !(LinkCut a s)
+    , value, summary :: a
+    }
+   |]
+</code></pre>
+
+<h2 id="start-of-experimentation-or-how-to-learn-a-library-from-the-inside-out">Start of experimentation, or how to learn a library from the inside-out</h2>
+
+<h3 id="hello-world-with-the-library"><code>Hello, World</code> with the library</h3>
+
+<p>Now that we have a file that uses the <code>Struct</code> library in the form
+of <code>Data/Struct/Internal/LinkCut.hs</code>, we can begin to experiment. I prefer
+to try small examples to get a feeling for the API of a library first.</p>
+
+<p>I add a new test file to the test bench where I can experiment, call
+it <code>test/unit.hs</code> (for unit tests), and start trying to instantiate
+a use of <code>makeStruct</code>.</p>
+
+<p>Looking for it, we find the definition:</p>
+
+<pre><code class="language-hs">-- Data/Struct/TH.hs
+--- 
+-- | Generate allocators, slots, fields, unboxed fields, Eq instances,
+-- and Struct instances for the given &quot;data types&quot;.
+--
+-- Inputs are expected to be &quot;data types&quot; parameterized by a state
+-- type. Strict fields are considered to be slots, Non-strict fields
+-- are considered to be boxed types, Unpacked fields are considered
+-- to be unboxed primitives.
+--
+-- The data type should use record syntax and have a single constructor.
+-- The field names will be used to generate slot, field, and unboxedField
+-- values of the same name.
+--
+-- An allocator for the struct is generated by prefixing &quot;alloc&quot; to the
+-- data type name.
+makeStruct :: DecsQ -&gt; DecsQ
+</code></pre>
+
+<p>With that description, I try the definition:</p>
+
+<pre><code class="language-hs">-- test/unit.hs
+
+makeStruct [d|
+  data TupleInts a s  = TupleInts
+    { tupleLeft, tupleRight :: a
+    } 
+    |]
+</code></pre>
+
+<p>which compiles successfully! Awesome, I now have a <code>Struct</code> on my hand&hellip;
+I assume. Now, how to I use this thing? Let&rsquo;s go back to <code>Internal/LinkCut.hs</code>.</p>
+
+<pre><code>Internal/LinkCut.hs
+
+-- | O(1). Allocate a new link-cut tree with a given monoidal summary.
+new :: PrimMonad m =&gt; a -&gt; m (LinkCut a (PrimState m))
+new a = st (newLinkCut Nil Nil Nil Nil a a)
+</code></pre>
+
+<p>I hadn&rsquo;t seen <code>PrimMonad</code> before. Hackage reveals it to abstract out any
+kind of state monad which can execute primpos on array-like objects.
+So, think <code>PrimMonad ~ ST, IO</code> etc.</p>
+
+<p>We can guess that a function <code>newTupleInts</code> has been generated for us
+by <code>makeStruct</code>, so let&rsquo;s try to use it:</p>
+
+<pre><code>-- ghci
+
+*Main&gt; :t newTupleInts 
+newTupleInts
+  :: primitive-0.6.3.0:Control.Monad.Primitive.PrimMonad m =&gt;
+     a
+     -&gt; a
+     -&gt; m (TupleInts
+             a (primitive-0.6.3.0:Control.Monad.Primitive.PrimState m))
+</code></pre>
+
+<p>Cool, it looks like we pass it <code>left</code> and <code>right</code>, and which
+point it create the <code>m (TupleInts ...)</code> for us.</p>
+
+<p>Let&rsquo;s try to <code>set</code> next. We had spied functions called <code>set</code> and <code>setField</code>
+being used in <code>LinkCut</code>, so let&rsquo;s check their types, along with the
+type of our field, <code>tupleLeft</code>:</p>
+
+<pre><code>-- ghci
+
+*Main&gt; :t tupleLeft 
+tupleLeft :: Field (TupleInts a) a
+*Main&gt; :t setField
+setField
+  :: (PrimMonad m, Struct x) =&gt;
+     Field x a -&gt; x (PrimState m) -&gt; a -&gt; m ()
+*Main&gt; :t getField
+getField
+  :: (PrimMonad m, Struct x) =&gt; Field x a -&gt; x (PrimState m) -&gt; m a
+*Main&gt; :t set
+set
+  :: (PrimMonad m, Struct x, Struct y) =&gt;
+     Slot x y -&gt; x (PrimState m) -&gt; y (PrimState m) -&gt; m ()
+*Main&gt; :t get
+get
+  :: (PrimMonad m, Struct x, Struct y) =&gt;
+     Slot x y -&gt; x (PrimState m) -&gt; m (y (PrimState m))
+</code></pre>
+
+<p>Cool, so it looks like there&rsquo;s a distinction between what is a <code>Slot</code>
+and what&rsquo;s a <code>Field</code>.</p>
+
+<p>By looking at how <code>set</code> and <code>setField</code> is used in <code>LinkCut</code>, it&rsquo;s easy to
+deduce that <code>{set, get}</code> is for recursive elements, which should intuitively be
+converted to poiners. In the <code>LinkCut</code> case, the pointers to <code>left</code> and
+<code>right</code>.</p>
+
+<p><code>{set, get}Field</code> is meant for raw values stored in the struct.</p>
+
+<p>So, we can write our first test case:</p>
+
+<pre><code class="language-hs">-- tests/unit.hs
+
+setTupleLeft :: PrimMonad m =&gt; TupleInts a (PrimState m) -&gt; a -&gt; m ()
+setTupleLeft tup val = setField tupleLeft tup val
+
+getTupleLeft :: PrimMonad m =&gt; TupleInts a (PrimState m) -&gt; m a
+getTupleLeft tup = getField tupleLeft tup
+
+...
+
+unitTests = testGroup &quot;Unit tests&quot;
+  [ testCase &quot;create and get value from tuple&quot; $ 
+      runST $ do
+        c &lt;- mkTupleInts 10 20
+        val &lt;- getTupleLeft  c
+        return (val @?= 10)
+
+  ]
+</code></pre>
+
+<p>A <code>stack build structs:test:unit</code> tells us that all the tests pass! Cool,
+we now understand basic usage (of at least <code>get</code> and <code>mk</code>, <code>set</code> should be
+just as straightforward).</p>
+
+<h3 id="creating-linked-lists">Creating linked lists</h3>
+
+<p>To get some experience with <code>{get, set}</code>, let&rsquo;s encode a linked list
+and check that it works.</p>
+
+<p>I first tried:</p>
+
+<pre><code class="language-hs">-- tests/unit.hs
+
+makeStruct [d|
+  data LinkedList a s  = LinkedList
+    { val :: a,
+      next :: LinkedList a s
+    } 
+    |]
+</code></pre>
+
+<p>which died with:</p>
+
+<pre><code>.../unit.hs:36:1: error:
+    state type may not occur in field `next`
+</code></pre>
+
+<p>Comparing to <code>LinkCut</code>, I realised that I needed my <code>next</code> field <strong>to be
+strict</strong>. So, the library by-construction forces us to not be able to
+create &ldquo;lazy&rdquo; data structures.</p>
+
+<p>A quick exposition of what I did:</p>
+
+<pre><code class="language-hs">-- tests/unit.hs
+
+makeStruct [d|
+  data LinkedList a s  = LinkedList
+    { val :: a,
+       next :: !(LinkedList a s) }
+    |]
+
+-- Make an empty linked list
+mkEmptyLinkedList ::  LinkedList a s
+mkEmptyLinkedList = Nil 
+
+-- Make a linked list node with a value
+mkLinkedListNode :: PrimMonad m =&gt; a -&gt; m (LinkedList a (PrimState m))
+mkLinkedListNode a = newLinkedList a Nil
+
+-- Append a node to a linked list.
+appendLinkedList :: PrimMonad m =&gt; 
+  LinkedList x (PrimState m) 
+  -&gt; x 
+  -&gt; m (LinkedList x (PrimState m))
+appendLinkedList xs x = do
+  isend &lt;- isNil &lt;$&gt; (get next xs)
+  if isend
+     then do
+       nodex &lt;- mkLinkedListNode x
+       set next xs nodex
+       return xs
+      else do
+        xs' &lt;- get next xs
+        appendLinkedList xs' x
+
+-- Retreive the nth value from the linked list.
+nthLinkedList :: PrimMonad m =&gt; Int -&gt; LinkedList a (PrimState m) -&gt; m a
+nthLinkedList 0 xs = getField val xs
+nthLinkedList i xs = get next xs &gt;&gt;= nthLinkedList (i - 1)
+
+-- Convert a haskell list to a linked list
+listToLinkedList :: PrimMonad m =&gt; [a] -&gt; m (LinkedList a (PrimState m))
+listToLinkedList [] = return mkEmptyLinkedList 
+listToLinkedList (x:xs) = do
+  head &lt;- mkLinkedListNode x
+  rest &lt;- listToLinkedList xs
+  set next head rest
+
+  return head
+
+
+-- TODO: setup ViewPatterns  to check when something is nil
+-- concat xs ys ==  xs := xs ++ ys
+concatLinkedList :: PrimMonad m =&gt; 
+      LinkedList a (PrimState m) 
+  -&gt; LinkedList a (PrimState m) 
+  -&gt; m ()
+concatLinkedList xs ys =
+  if isNil xs 
+     then error &quot;head of list is undefined&quot;
+     else do 
+       isend &lt;- isNil &lt;$&gt; (get next xs)
+       if isend 
+           then set next xs ys
+           else get next xs &gt;&gt;= \xs' -&gt; concatLinkedList xs' ys
+
+
+-- Return if a list equal to some linked list representation.
+listEqLinkedList :: PrimMonad m =&gt; Eq a =&gt; [a] -&gt; LinkedList a (PrimState m) -&gt; m Bool
+listEqLinkedList [] l = return $ isNil l
+listEqLinkedList (x:xs) l = do
+  xval &lt;- getField val l
+  if xval == x
+     then do
+       l' &lt;- get next l
+       listEqLinkedList xs l'
+    else return False
+
+
+... (test harness setup elided)
+
+-- QuickCheck sanity checks!
+qcProps = testGroup &quot;(checked by QuickCheck)&quot;
+  [ QC.testProperty @ ([Int] -&gt; Bool) &quot;list to linked list&quot; $ 
+    \xs -&gt; runST $ do
+      lxs &lt;- listToLinkedList xs
+      listEqLinkedList xs lxs
+
+  , QC.testProperty @ (NonEmptyList Int -&gt; Bool) &quot;Indexing linked lists&quot; $ 
+    \xs -&gt; runST $ do
+        lxs &lt;- listToLinkedList (getNonEmpty xs)
+
+        -- TODO: missing Foldable instance for NonEmptyList
+        xsAtIx &lt;- sequenceA [nthLinkedList ix lxs | ix &lt;- [0.. length (getNonEmpty xs) - 1]]
+        return $ xsAtIx  == getNonEmpty xs
+
+        -- return $ getNonEmpty lxs == xsAtIx
+
+  , QC.testProperty @ (NonEmptyList Int -&gt; [Int] -&gt; Bool) &quot;Appending linked lists&quot; $ 
+    \xs ys -&gt; runST $ do
+      lxs &lt;- listToLinkedList (getNonEmpty xs)
+      lys &lt;- listToLinkedList ys
+      
+      -- this mutates lxs
+      concatLinkedList lxs lys
+
+      listEqLinkedList ((getNonEmpty xs) ++ ys) lxs
+  ]
+</code></pre>
+
+<p>So, essentially, we setup a dirt simple linked list library, implement
+common functions like indexing and appending, and setup a QuickCheck
+test harness, in ~ 100 lines of code. I quite like being able to use
+haskell-isms when writing my imperative code, and this somehow feels
+easier than messing with <code>STRef</code>s.</p>
+
+<h2 id="field-accessor-nesting">Field accessor nesting</h2>
+
+<p>While going through the exports of <code>Struct</code>, we notice something called
+<code>Precomposable</code>:</p>
+
+<pre><code class="language-hs">-- ghci
+
+*Main&gt; :info Precomposable 
+class Precomposable (t :: k -&gt; k1 -&gt; *) where
+  (#) :: forall (x :: k) (y :: k) (z :: k1).
+         Slot x y -&gt; t y z -&gt; t x z
+  {-# MINIMAL (#) #-}
+</code></pre>
+
+<p>So, it looks like it lets us compose <code>Slot</code>s to get an inner accessor
+slot. Let&rsquo;s try this out:</p>
+
+<pre><code class="language-hs">-- tests/unit.hs
+
+-- Try out the `Precomposable` system
+nextnext :: Slot (LinkedList a) (LinkedList a)
+nextnext = next # next
+
+nextnextval :: Field (LinkedList a) a
+nextnextval = nextnext # val
+
+...
+
+testCase &quot;pull the values out of a linked list using nextnextval&quot; $ runST $ do
+  xs &lt;- listToLinkedList [1, 2, 3]
+  nnv &lt;- getField nextnextval xs
+  return (nnv @?= 3)
+</code></pre>
+
+<p>Yep, the unit test passes, so it simply lets us create new <code>Field</code>
+and <code>Slot</code>s that can drill deeper. Looks like an incantation of <code>Lens</code>.</p>
+
+<h2 id="wrapping-up-the-spelunking-and-going-deeper">Wrapping up the spelunking, and going deeper</h2>
+
+<p>At this point, we know how to use the library, so let&rsquo;s explore how this
+actually works under the hood.</p>
+
+<p>We would ideally like to understand <code>alloc</code>, <code>set/setField/get/getField</code>,
+and why this distinction between <code>Field</code> and <code>Slot</code> has been drawn.</p>
+
+<p>I also wanted to understand how this interacts with GC, and where the <code>free</code>
+call is, because AFAICT, I&rsquo;m just heammoraging memory right now.</p>
+
+<h3 id="struct-1"><code>Struct</code></h3>
+
+<pre><code class="language-hs">-- src/Data/Struct/Internal.hs
+
+-- | An instance for 'Struct' @t@ is a witness to the machine-level
+--   equivalence of @t@ and @Object@.
+class Struct t where
+  struct :: Dict (Coercible (t s) (Object s))
+#ifndef HLINT
+  default struct :: Coercible (t s) (Object s) =&gt; Dict (Coercible (t s) (Object s))
+#endif
+  struct = Dict
+  {-# MINIMAL #-}
+
+
+data Object s = Object { runObject :: SmallMutableArray# s Any }
+</code></pre>
+
+<p>Let&rsquo;s break this down, one-by-one.</p>
+
+<p>An <code>Object s</code> is a wrapper around <code>SmallMutableArray# s Any</code>, where the
+<code>s</code> is a state-carrier, and the <code>Any</code> is a type that comes from <code>GHC.Types</code>,
+and can be coerced into <em>any unlifted type</em>. So, the type of <code>Object</code>
+is a heap of bytes which is waiting to be coered into something.</p>
+
+<p><code>Dict</code> is a cool library that lets us reify constraints into data.
+For example, <code>Dict :: Dict (Eq Int)</code> allows us to witness that
+<code>Int</code> has an <code>Eq</code> instance, and lets us <strong>hold a <code>Dict</code> value that witnesses
+this</strong>.</p>
+
+<p><code>Coercible</code> comes from <code>GHC</code>, and the docs say: &ldquo;Coercible is a two-parameter
+class that has instances for types a and b if the compiler can infer that they
+have the same representation&rdquo;</p>
+
+<p>So now, <code>Struct</code> is clear: we use a <code>Dict</code> to witness that <code>Object s</code> is
+<code>Coercible</code> to <code>t s</code>. Intutively, we&rsquo;re trying to say that our heap of bytes
+can be safely reinterpreted at runtime to be <code>t s</code>, with nothing going awry in
+terms of representation.</p>
+
+<h3 id="alloc"><code>alloc</code></h3>
+
+<pre><code class="language-hs">-- src/Data/Struct/Internal.hs
+
+coerceB :: Dict (Coercible a b) -&gt; b -&gt; a
+coerceB Dict = coerce
+
+construct :: Struct t =&gt; SmallMutableArray# s Any -&gt; t s
+construct = \x -&gt; coerceB struct (Object x)
+
+-- | Allocate a structure made out of `n` slots. Initialize the structure before proceeding!
+alloc :: (PrimMonad m, Struct t) =&gt; Int -&gt; m (t (PrimState m))
+alloc (I# n#) = primitive $ \s -&gt; case newSmallArray# n# undefined s of (# s', b #) -&gt; (# s', construct b #)
+</code></pre>
+
+<p>Here, we make use</p>
+
+<pre><code class="language-hs">-- Control.Monad.Primitive
+primitive :: (State# (PrimState m) -&gt; (#State# (PrimState m), a#)) -&gt; m a
+</code></pre>
+
+<p>which execute a primitive operation of the form <code>state -&gt; (state, val)</code> to
+create <code>m val</code>.</p>
+
+<p>So, <code>alloc</code> creates a new arary of <code>n</code> <code>Any</code> values, and then coerces it to
+type <code>t</code> with a call to <code>construct</code>.</p>
+
+<p><code>construct</code> uses the <code>Dict</code> in <code>Struct t</code> to witness the ability to coerce
+from <code>SmallMutableArray# s Any</code> to <code>t</code>.</p>
+
+<h3 id="nil"><code>Nil</code></h3>
+
+<pre><code class="language-hs">-- src/Data/Struct/Internal.hs:113
+--------------------------------------------------------------------------------
+-- * Tony Hoare's billion dollar mistake
+--------------------------------------------------------------------------------
+
+-- | Box is designed to mirror object's single field but using the 'Null' type
+-- instead of a mutable array. This hack relies on GHC reusing the same 'Null'
+-- data constructor for all occurrences. Box's field must not be strict to
+-- prevent the compiler from making assumptions about its contents.
+data Box = Box Null
+data Null = Null
+
+
+-- | Predicate to check if a struct is 'Nil'.
+--
+-- &gt;&gt;&gt; isNil (Nil :: Object (PrimState IO))
+-- True
+-- &gt;&gt;&gt; o &lt;- alloc 1 :: IO (Object (PrimState IO))
+-- &gt;&gt;&gt; isNil o
+-- False
+isNil :: Struct t =&gt; t s -&gt; Bool
+isNil t = isTrue# (unsafeCoerce# reallyUnsafePtrEquality# (destruct t) Null)
+{-# INLINE isNil #-}
+</code></pre>
+
+<p><code>isNil</code> appears to take an object, and check if it&rsquo;s the same,
+<strong>as a pointer</strong>, to the object <code>Null</code>, since GHC reuses data constructors.</p>
+
+<pre><code class="language-hs">#ifndef HLINT
+-- | Truly imperative.
+pattern Nil :: Struct t =&gt; () =&gt; t s
+pattern Nil &lt;- (isNil -&gt; True) where
+  Nil = unsafeCoerce# Box Null
+#endif
+</code></pre>
+
+<p><code>Nil</code> is a pattern synonym, but it&rsquo;s definition escapes me.</p>
+
+<p>I don&rsquo;t understand what the</p>
+
+<pre><code>Nil = unsafeCoerce# Box Null
+</code></pre>
+
+<h3 id="slot"><code>Slot</code></h3>
+
+<h4 id="definition">Definition</h4>
+
+<pre><code class="language-hs">src/Data/Struct/Internal.hs:113
+
+-- | A 'Slot' is a reference to another unboxed mutable object.
+data Slot x y = Slot
+  (forall s. SmallMutableArray# s Any -&gt; State# s -&gt; (# State# s, SmallMutableArray# s Any #))
+  (forall s. SmallMutableArray# s Any -&gt; SmallMutableArray# s Any -&gt; State# s -&gt; State# s)
+  (forall s. SmallMutableArray# s Any -&gt; SmallMutableArray# s Any -&gt; SmallMutableArray# s Any -&gt; State# s -&gt; (# State# s, Int#, SmallMutableArray# s Any #))
+
+-- | The 'Slot' at the given position in a 'Struct'
+slot :: Int {- ^ slot -} -&gt; Slot s t
+slot (I# i) = Slot
+  (\m s -&gt; readSmallMutableArraySmallArray# m i s)
+  (\m a s -&gt; writeSmallMutableArraySmallArray# m i a s)
+  (\m o n s -&gt; casSmallMutableArraySmallArray# m i o n s)
+</code></pre>
+
+<p>A slot contains three functions, all with a <code>(forall s. ...)</code>,
+so we can&rsquo;t assume anything about the <code>s</code>.A slot consists of three components:</p>
+
+<ul>
+<li>a way to read from the struct.</li>
+<li>a way to write into the struct.</li>
+<li><code>cas</code> (compare and swap) for an element in the struct.</li>
+<li>a function <code>slot</code>, that on given the index of the slot, creates a reader,
+writer, compare-and-swapper into the object.</li>
+</ul>
+
+<p>The API design seems weird at first blush, since I would assume that
+the API would look more like <code>slot</code>, that is, to be indexed by the position
+we are trying to read from.</p>
+
+<h4 id="get"><code>get</code></h4>
+
+<pre><code class="language-hs">src/Data/Struct/Internal.hs
+
+-- | Get the value from a 'Slot'
+get :: (PrimMonad m, Struct x, Struct y) =&gt; Slot x y -&gt; x (PrimState m) -&gt; m (y (PrimState m))
+get (Slot go _ _) = \x -&gt; primitive $ \s -&gt; case go (destruct x) s of
+                                            (# s', y #) -&gt; (# s', construct y #)
+</code></pre>
+
+<p><code>get</code> performs:
+- <code>destruct x</code> to go to <code>Any</code>
+- calls <code>go</code>, which is the getter of the <code>Slot</code> to pull out the value
+- uses <code>construct</code> to conver from <code>Any</code> to <code>y</code>
+- calls <code>primitive</code> to package the <code>(#s, y#)</code> back into a <code>m (y (PrimState m))</code></p>
+
+<h4 id="set"><code>set</code></h4>
+
+<pre><code class="language-hs">src/Data/Struct/Internal.hs
+
+-- | Set the value of a 'Slot'
+set :: (PrimMonad m, Struct x, Struct y) =&gt; Slot x y 
+        -&gt; x (PrimState m) -&gt; y (PrimState m) -&gt; m ()
+set (Slot _ go _) = \x y -&gt; primitive_ (go (destruct x) (destruct y))
+{-# INLINE set #-}
+</code></pre>
+
+<p>Set calls <code>destruct</code> on both x and y to reduce them to <code>any</code>, and then
+calls the setter field of the slot.</p>
+
+<h4 id="cas"><code>cas</code></h4>
+
+<pre><code class="language-hs">-- src/Data/Struct/Internal.hs
+
+cas :: (PrimMonad m, Struct x, Struct y) =&gt; Slot x y 
+    -&gt; x (PrimState m) -&gt; y (PrimState m) -&gt; y (PrimState m) 
+    -&gt; m (Bool, y (PrimState m))
+cas (Slot _ _ go) = \m o n -&gt; primitive $ \s -&gt; case go (destruct m) (destruct o) (destruct n) s of
+  (# s', i, r #) -&gt; (# s', (tagToEnum# i :: Bool, construct r) #)
+</code></pre>
+
+<h3 id="field"><code>Field</code></h3>
+
+<h4 id="definition-1">Definition</h4>
+
+<pre><code class="language-hs">-- src/Data/Struct/Internal.hs
+
+-- | A 'Field' is a reference from a struct to a normal Haskell data type.
+data Field x a = Field
+  (forall s. SmallMutableArray# s Any -&gt; State# s -&gt; (# State# s, a #)) -- get
+  (forall s. SmallMutableArray# s Any -&gt; a -&gt; State# s -&gt; State# s) -- set
+
+
+-- | Store the reference to the Haskell data type in a normal field
+field :: Int {- ^ slot -} -&gt; Field s a
+field (I# i) = Field
+  (\m s -&gt; unsafeCoerce# readSmallArray# m i s)
+  (\m a s -&gt; unsafeCoerce# writeSmallArray# m i a s)
+</code></pre>
+
+<p>Predictably, a <code>Field</code> is pretty much the same as a <code>Slot</code>. I&rsquo;m not sure why it
+doesn&rsquo;t have compare-and-swap, perhaps because there was no need for it
+right now.</p>
+
+<h4 id="get-set"><code>get, set</code>:</h4>
+
+<p>Getters and setters are the same as that of <code>Slot</code>:</p>
+
+<pre><code class="language-hs">-- src/Data/Struct/Internal.hs
+
+-- | Get the value of a field in a struct
+getField :: (PrimMonad m, Struct x) =&gt; Field x a -&gt; x (PrimState m) -&gt; m a
+getField (Field go _) = \x -&gt; primitive (go (destruct x))
+{-# INLINE getField #-}
+
+-- | Set the value of a field in a struct
+setField :: (PrimMonad m, Struct x) =&gt; Field x a -&gt; x (PrimState m) -&gt; a -&gt; m ()
+setField (Field _ go) = \x y -&gt; primitive_ (go (destruct x) y)
+{-# INLINE setField #-}
+</code></pre>
+
+<h2 id="understanding-makestruct">Understanding <code>makeStruct</code></h2>
+
+<p>Now that we know the primitives this library is built on, we can read
+how the conversion takes place. In particular, we can first see the
+elaborated template haskell from our unit tests (with <code>-ddump-splice</code>), and then read the code
+that generates the template haskell.</p>
+
+<h3 id="elaboration">Elaboration</h3>
+
+<p>A run of</p>
+
+<pre><code>stack build structs:test:unit  --ghc-options &quot;-ddump-splices -ddump-to-file&quot;
+</code></pre>
+
+<p>gives me access to the elaborated code.</p>
+
+<h4 id="tupleints-elboration"><code>TupleInts</code> elboration</h4>
+
+<pre><code class="language-hs">unit.hs
+
+makeStruct [d|
+  data TupleInts a s  = TupleInts
+    { tupleLeft, tupleRight :: a
+    } 
+    |]
+</code></pre>
+
+<p>Elaborates to this (only interesting code retained):</p>
+
+<pre><code class="language-hs">unit.dump-splice
+
+    newtype TupleInts_aa1E a_aa1I s_aa1J
+      = TupleInts_aa1F (Object s_aa1J)
+
+    instance Struct (TupleInts_aa1E a_aa1I) where
+      struct = Dict
+
+    instance Eq (TupleInts_aa1E a_aa1I s_aa1J) where
+      (==) = eqStruct
+
+    tupleLeft_aa1G ::
+      forall a_aa1I. Field (TupleInts_aa1E a_aa1I) a_aa1I
+    tupleLeft_aa1G = field 0
+    {-# INLINE tupleLeft_aa1G #-}
+
+    tupleRight_aa1H ::
+      forall a_aa1I. Field (TupleInts_aa1E a_aa1I) a_aa1I
+    tupleRight_aa1H = field 1
+    ...
+    allocTupleInts ::
+      forall a_aa1I.
+      forall m_aa1O.
+      PrimMonad m_aa1O =&gt;
+      m_aa1O (TupleInts_aa1E a_aa1I (PrimState m_aa1O))
+    allocTupleInts = alloc 2
+</code></pre>
+
+<ul>
+<li><p><code>TupleInts</code> elaborates to a <code>newtype</code>, wrapping
+the previously seen <code>Object</code>.</p></li>
+
+<li><p>This naturally gives it a <code>Struct</code> instance.</p></li>
+
+<li><p>the <code>alloc</code> call allocates an <code>Object</code> that can hold <code>2</code> <code>Any</code>s,. This
+works since we have two fields which need to be coered into <code>Int</code>. (since an
+<code>Int</code> is a thunked object, it makes sense that it would fit with an <code>Any</code>. The
+interesting question is what happens when the object is unboxed).</p></li>
+
+<li><p>The rest of it is straightforward, with uses of <code>field</code> to
+create the nth field constructor.</p></li>
+</ul>
+
+<h4 id="elaboration-of-unpacked-fields">Elaboration of <code>UNPACKED</code> fields:</h4>
+
+<p>The API said:</p>
+
+<pre><code>Unpacked fields are considered to be unboxed primitives.
+</code></pre>
+
+<p>so let&rsquo;s try to elaborate some <code>UNPACK</code>ed fields:</p>
+
+<pre><code class="language-hs">unit.hs
+
+makeStruct [d| data Vec3 s  = Vec3 { x, y, z :: {-# UNPACK #-} !Int  } |]
+</code></pre>
+
+<p>elaborates to:</p>
+
+<pre><code class="language-hs">unit.dump-splice
+
+    newtype Vec3_acMM s_acMR = Vec3_acMN (Object s_acMR)
+
+    instance Struct Vec3_acMM where
+      struct = Dict
+
+    instance Eq (Vec3_acMM s_acMR) where
+      (==) = eqStruct
+
+    x_acMO :: Field Vec3_acMM Int
+    x_acMO = (unboxedField 0) 0
+    {-# INLINE x_acMO #-}
+
+    y_acMP :: Field Vec3_acMM Int
+    y_acMP = (unboxedField 0) 1
+
+    {-# INLINE y_acMP #-}
+    z_acMQ :: Field Vec3_acMM Int
+    z_acMQ = (unboxedField 0) 2
+
+    allocVec3 ::
+      forall m_acMY.
+      PrimMonad m_acMY =&gt; m_acMY (Vec3_acMM (PrimState m_acMY))
+    allocVec3 = alloc 1
+</code></pre>
+
+<p>So, <code>unboxedField</code> is used to read the unboxed fields. Looking
+at the implementation, this is:</p>
+
+<pre><code class="language-hs">-- src/Data/Struct/Internal.hs
+
+-- | Store the reference in the nth slot in the nth argument, treated as a MutableByteArray
+unboxedField :: Prim a =&gt; Int {- ^ slot -} -&gt; Int {- ^ argument -} -&gt; Field s a
+unboxedField (I# i) (I# j) = Field
+  (\m s -&gt; case readMutableByteArraySmallArray# m i s of
+     (# s', mba #) -&gt; readByteArray# mba j s')
+  (\m a s -&gt; case readMutableByteArraySmallArray# m i s of
+     (# s', mba #) -&gt; writeByteArray# mba j a s')
+</code></pre>
+
+<p>So, the elaboration elaborates all our unboxed fields into one
+boxed reference to <code>mutableByteSmallArray</code>.</p>
+
+<p>Looking through <code>Internal.hs</code>, we discover:</p>
+
+<pre><code class="language-hs">-- src/Data/Struct/Internal.hs
+
+-- | Initialized the mutable array used by 'unboxedField'. Returns the array
+-- after storing it in the struct to help with initialization.
+initializeUnboxedField ::
+  (PrimMonad m, Struct x) =&gt;
+  Int             {- ^ slot     -} -&gt;
+  Int             {- ^ elements -} -&gt;
+  Int             {- ^ element size -} -&gt;
+  x (PrimState m) {- ^ struct   -} -&gt;
+  m (MutableByteArray (PrimState m))
+initializeUnboxedField (I# i) (I# n) (I# z) m =
+  primitive $ \s -&gt;
+    case newByteArray# (n *# z) s of
+      (# s1, mba #) -&gt;
+        (# writeMutableByteArraySmallArray# (destruct m) i mba s1, MutableByteArray mba #)
+</code></pre>
+
+<p>So, the guess is that it collects elements of the same type into one
+array, which it then subdivides among members.</p>
+
+<h3 id="code">Code</h3>
+
+<pre><code class="language-hs">Data/Struct/TH.hs
+
+-- | Generate allocators, slots, fields, unboxed fields, Eq instances,
+-- and Struct instances for the given &quot;data types&quot;.
+--
+-- Inputs are expected to be &quot;data types&quot; parameterized by a state
+-- type. Strict fields are considered to be slots, Non-strict fields
+-- are considered to be boxed types, Unpacked fields are considered
+-- to be unboxed primitives.
+--
+-- The data type should use record syntax and have a single constructor.
+-- The field names will be used to generate slot, field, and unboxedField
+-- values of the same name.
+--
+-- An allocator for the struct is generated by prefixing &quot;alloc&quot; to the
+-- data type name.
+makeStruct :: DecsQ -&gt; DecsQ
+makeStruct dsq =
+  do ds   &lt;- dsq
+     (passthrough, reps) &lt;- partitionEithers &lt;$&gt; traverse computeRep ds
+     ds's &lt;- traverse (generateCode passthrough) reps
+     return (passthrough ++ concat ds's)
+</code></pre>
+
+<p><strong>question:</strong> The API is puzzling, why is there is seemingly arbitrary mapping
+between the different kinds of fields we have in haskell, to types of fields
+we would have in the <code>struct</code>-ified version? If it is arbitrary, then
+maybe writing a source plugin with custom annotations would be cleaner.</p>
+
+<p>anyway, the function <code>makeStuct</code> is splitting stuff up based on <code>computeRep</code>,
+generating code for everything that passed, and then returning the modified
+<code>ds's</code>, with the rest of the <code>passthrough</code>.</p>
+
+<pre><code class="language-hs">-- Data/Struct/TH.hs
+
+computeRep :: Dec -&gt; Q (Either Dec StructRep)
+computeRep (DataD c n vs _ cs ds) =
+  do state &lt;- validateStateType vs
+     (conname, confields) &lt;- validateContructor cs
+     members &lt;- traverse (validateMember state) confields
+
+     return $ Right StructRep
+       { srState = state
+       , srName  = n
+       , srTyVars = vs
+       , srConstructor = conname
+       , srMembers = members
+       , srDerived = ds
+       , srCxt = c
+       }
+computeRep d = return (Left d)
+</code></pre>
+
+<p>So, it&rsquo;s validating a bunch of stuff in the constructor, and then
+returning a <code>StructRep</code>, which represents the structure to be generated,
+or the original <code>Dec</code>.</p>
+
+<pre><code class="language-hs">-- Data/Struct/TH.hs
+
+data StructRep = StructRep
+  { srState       :: Name
+  , srName        :: Name
+  , srTyVars      :: [TyVarBndr]
+  , srDerived     :: [DerivClause]
+  , srCxt         :: Cxt
+  , srConstructor :: Name
+  , srMembers     :: [Member]
+  } deriving Show
+
+data Member = Member
+  { _memberRep :: Representation
+  , memberName :: Name
+  , _memberType :: Type
+  }
+  deriving Show
+</code></pre>
+
+<p>So, it looks straightforward, just containing all the fields we would expect.
+Let&rsquo;s look at <code>generateCode</code>, to see if anything more interesting happens.</p>
+
+<pre><code class="language-hs">-- Data/Struct/TH.hs
+
+generateCode :: [Dec] -&gt; StructRep -&gt; DecsQ
+generateCode ds rep = concat &lt;$&gt; sequence
+  [ generateDataType rep
+  , generateStructInstance rep
+  , generateMembers rep
+  , generateNew rep
+  , generateAlloc rep
+  , generateRoles ds rep
+  ]
+</code></pre>
+
+<p>It sequences all the <code>generate*</code> calls. This is sensible, and we now
+understand what the generated code looks like.</p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>This was a whirlwind tour of the <code>structs</code> library. I found it really
+interesting to learn a library from the inside-out, and I hope this managed to
+convey some of the flavour.</p>
+
+<p>The techniques used in this library are interesting, and I want to benchmark
+this and see if this can buy some something in terms of &ldquo;real&rdquo; performance.</p>
+
+<p><a href="https://github.com/ekmett/structs/pull/13">I&rsquo;ve opened a PR against
+<code>ekmett/structs</code></a> adding some tests
+and examples.  I think reviewing packages that are
+interesting, but have sparse information on them is a cool way to give back!</p>
+
+
+            </div>
+            
+            
+            
+            <br>
+            <div class="disqus">
+                <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "pixeldruid" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+            
+
+            
+
+            
+        </div>
+    </div>
+</div>
+
+
+
+<div class="footer column">
+    <div class="container">
+
+        
+
+        <div class="copyright">
+
+        
+
+        </div>
+        <div class="icons">
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="https://github.com///github.com/bollu" rel=me target="_blank">
+                <img class="icon" src="http://localhost:1313/img/github.svg" alt="github" />
+            </a>
+        
+
+        
+
+        
+            <a href="https://www.linkedin.com/in///linkedin.com/in/siddharth-bhat-388b60104/" rel=me target="_blank">
+                <img class="icon" src="http://localhost:1313/img/linkedin.svg" alt="linkedin" />
+            </a>
+        
+
+        
+
+        
+            <a href="mailto:siddu.druid@gmail.com">
+                <img class="icon" src="http://localhost:1313/img/email.svg" alt="email" />
+            </a>
+        
+
+        
+            <a href="http://localhost:1313/index.xml">
+                <img class="icon" src="http://localhost:1313/img/rss.svg" alt="rss" />
+            </a>
+        
+
+        </div>
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Raleway:400,600,700', 'Merriweather:300,300i,700,700i', 'Ubuntu+Mono:400,700']
+    }
+  });
+</script>
+
+
+
+  <script src="http://localhost:1313/js/highlight.min.js" defer></script>
+  
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/haskell.min.js" defer></script>
+  
+
+
+
+  <script src="http://localhost:1313/js/progressively.min.js" defer></script>
+
+
+
+
+
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-97068933-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+<script>
+  window.onload = function() {
+    
+      hljs.initHighlighting();
+    
+    
+      progressively.init({delay: 30, throttle: 50});
+    
+    
+  };
+</script>
+
+
+
+
+<script data-no-instant>document.write('<script src="/livereload.js?port=1313&mindelay=10"></' + 'script>')</script></body>
+</html>
+

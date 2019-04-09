@@ -1,0 +1,43 @@
+name:          hyperfunctions
+category:      Control, Categories
+version:       0
+license:       BSD3
+cabal-version: >= 1.8
+license-file:  LICENSE
+author:        Edward A. Kmett
+maintainer:    Edward A. Kmett <ekmett@gmail.com>
+stability:     provisional
+homepage:      http://github.com/ekmett/hyperfunctions
+bug-reports:   http://github.com/ekmett/hyperfunctions/issues
+copyright:     Copyright (C) 2015 Edward A. Kmett
+build-type:    Simple
+tested-with:   GHC == 7.8.4
+synopsis:      Hyperfunctions
+description:   Hyperfunctions
+extra-source-files:
+  .ghci
+  .travis.yml
+  .gitignore
+  README.markdown
+  CHANGELOG.markdown
+  examples/Cantor.hs
+
+source-repository head
+  type: git
+  location: git://github.com/ekmett/hyperfunctions.git
+
+library
+  build-depends:
+    adjunctions         >= 4.2.1 && < 5,
+    base                >= 4.7   && < 5,
+    distributive        >= 0.4.4 && < 1,
+    profunctors         >= 5     && < 6,
+    transformers        >= 0.3   && < 0.5
+
+  hs-source-dirs: src
+
+  exposed-modules:
+    Control.Monad.Hyper
+    Control.Monad.Hyper.Rep
+
+  ghc-options: -Wall

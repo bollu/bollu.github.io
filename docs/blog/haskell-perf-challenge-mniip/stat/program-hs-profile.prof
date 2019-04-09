@@ -1,0 +1,92 @@
+	Wed Oct 10 21:06 2018 Time and Allocation Profiling Report  (Final)
+
+	   program-hs-profile +RTS -p -hc -RTS
+
+	total time  =       80.39 secs   (80387 ticks @ 1000 us, 1 processor)
+	total alloc = 67,517,017,616 bytes  (excludes profiling overheads)
+
+COST CENTRE      MODULE                        SRC                                        %time %alloc
+
+sievefn.\        Main                          Main.hs:(85,53)-(88,89)                     26.1   25.9
+primitive        Control.Monad.Primitive       Control/Monad/Primitive.hs:94:3-16          17.9    0.0
+sievefn          Main                          Main.hs:(77,1)-(91,15)                      17.4   20.8
+basicUnsafeRead  Data.Vector.Primitive.Mutable Data/Vector/Primitive/Mutable.hs:112:3-63    8.1   12.2
+.>>.             Main                          Main.hs:28:1-15                              7.2    8.1
+.<<.             Main                          Main.hs:31:1-15                              6.1    8.1
+basicUnsafeWrite Data.Vector.Primitive.Mutable Data/Vector/Primitive/Mutable.hs:115:3-69    5.5   14.4
+readByteArray#   Data.Primitive.Types          Data/Primitive/Types.hs:178:302-435          4.6    8.1
+basicUnsafeRead  Data.Vector.Unboxed.Base      Data/Vector/Unboxed/Base.hs:216:1413-1466    3.1    0.0
+basicUnsafeWrite Data.Vector.Unboxed.Base      Data/Vector/Unboxed/Base.hs:216:1490-1549    2.2    0.0
+sievefn.cond     Main                          Main.hs:81:13-60                             1.8    2.4
+
+
+                                                                                                                                  individual      inherited
+COST CENTRE               MODULE                           SRC                                                no.      entries  %time %alloc   %time %alloc
+
+MAIN                      MAIN                             <built-in>                                          827          0    0.0    0.0   100.0  100.0
+ CAF                      GHC.Conc.Signal                  <entire-module>                                     933          0    0.0    0.0     0.0    0.0
+ CAF                      GHC.IO.Encoding                  <entire-module>                                     918          0    0.0    0.0     0.0    0.0
+ CAF                      GHC.IO.Encoding.Iconv            <entire-module>                                     916          0    0.0    0.0     0.0    0.0
+ CAF                      GHC.IO.Handle.FD                 <entire-module>                                     908          0    0.0    0.0     0.0    0.0
+ CAF                      GHC.IO.Handle.Text               <entire-module>                                     906          0    0.0    0.0     0.0    0.0
+ CAF:.<<._rYa             Main                             Main.hs:31:1-6                                     1636          0    0.0    0.0     0.0    0.0
+  .<<.                    Main                             Main.hs:31:1-15                                    1692          1    0.0    0.0     0.0    0.0
+ CAF:.>>.                 Main                             Main.hs:28:1-6                                     1637          0    0.0    0.0     0.0    0.0
+  .>>.                    Main                             Main.hs:28:1-15                                    1664          1    0.0    0.0     0.0    0.0
+ CAF:doUnsafeChecks       Data.Vector.Internal.Check       Data/Vector/Internal/Check.hs:64:1-14              1627          0    0.0    0.0     0.0    0.0
+  doUnsafeChecks          Data.Vector.Internal.Check       Data/Vector/Internal/Check.hs:64:1-22              1686          1    0.0    0.0     0.0    0.0
+ CAF:main1                Main                             <no location info>                                 1652          0    0.0    0.0     0.0    0.0
+  main                    Main                             Main.hs:(95,1)-(98,13)                             1654          1    0.0    0.0     0.0    0.0
+ CAF:main3                Main                             <no location info>                                 1648          0    0.0    0.0     0.0    0.0
+  sieve                   Main                             Main.hs:37:1-38                                    1656          1    0.0    0.0     0.0    0.0
+   basicUnsafeReplicate   Data.Vector.Unboxed.Base         Data/Vector/Unboxed/Base.hs:216:1336-1405          1657          1    0.0    0.0     0.0    0.0
+ CAF:main7                Main                             <no location info>                                 1638          0    0.0    0.0     0.0    0.0
+  sieve                   Main                             Main.hs:37:1-38                                    1663          0    0.0    0.0     0.0    0.0
+   .>>.                   Main                             Main.hs:28:1-15                                    1665          0    0.0    0.0     0.0    0.0
+ CAF:main_n               Main                             <no location info>                                 1639          0    0.0    0.0     0.0    0.0
+  sieve                   Main                             Main.hs:37:1-38                                    1662          0    0.0    0.0     0.0    0.0
+ CAF:main_size42          Main                             <no location info>                                 1644          0    0.0    0.0     0.0    0.0
+  sieve                   Main                             Main.hs:37:1-38                                    1668          0    0.0    0.0     0.0    0.0
+   basicUnsafeReplicate   Data.Vector.Unboxed.Base         Data/Vector/Unboxed/Base.hs:216:1336-1405          1669          0    0.0    0.0     0.0    0.0
+    basicUnsafeReplicate  Data.Vector.Generic.Mutable.Base Data/Vector/Generic/Mutable/Base.hs:(94,3)-(98,16) 1670          0    0.0    0.0     0.0    0.0
+     basicUnsafeNew       Data.Vector.Primitive.Mutable    Data/Vector/Primitive/Mutable.hs:(96,3)-(102,37)   1671          0    0.0    0.0     0.0    0.0
+      basicUnsafeNew.size Data.Vector.Primitive.Mutable    Data/Vector/Primitive/Mutable.hs:101:7-36          1672          1    0.0    0.0     0.0    0.0
+       sizeOf             Data.Primitive.Types             Data/Primitive/Types.hs:114:1-25                   1673          1    0.0    0.0     0.0    0.0
+        sizeOf#           Data.Primitive.Types             Data/Primitive/Types.hs:178:69-97                  1674          1    0.0    0.0     0.0    0.0
+         unI#             Data.Primitive.Types             Data/Primitive/Types.hs:158:1-17                   1675          1    0.0    0.0     0.0    0.0
+ CAF:sIZEOF_INT8          Data.Primitive.MachDeps          Data/Primitive/MachDeps.hs:92:1-11                 1018          0    0.0    0.0     0.0    0.0
+  sIZEOF_INT8             Data.Primitive.MachDeps          Data/Primitive/MachDeps.hs:92:1-15                 1676          1    0.0    0.0     0.0    0.0
+ CAF:size                 Main                             Main.hs:34:1-4                                     1635          0    0.0    0.0     0.0    0.0
+  size                    Main                             Main.hs:34:1-16                                    1666          1    0.0    0.0     0.0    0.0
+ main                     Main                             Main.hs:(95,1)-(98,13)                             1655          0    0.0    0.0   100.0  100.0
+  sievefn                 Main                             Main.hs:(77,1)-(91,15)                             1684   99999999   17.4   20.8   100.0  100.0
+   sievefn.\              Main                             Main.hs:(85,53)-(88,89)                            1694  242570202   26.1   25.9    71.2   66.1
+    basicUnsafeRead       Data.Vector.Unboxed.Base         Data/Vector/Unboxed/Base.hs:216:1413-1466          1696  242570202    2.2    0.0    19.5   14.4
+     basicUnsafeRead      Data.Vector.Primitive.Mutable    Data/Vector/Primitive/Mutable.hs:112:3-63          1697  242570202    6.1    8.6    17.3   14.4
+      primitive           Control.Monad.Primitive          Control/Monad/Primitive.hs:94:3-16                 1698  242570202    7.1    0.0    11.3    5.7
+       readByteArray#     Data.Primitive.Types             Data/Primitive/Types.hs:178:302-435                1699  242570202    4.2    5.7     4.2    5.7
+    basicUnsafeWrite      Data.Vector.Unboxed.Base         Data/Vector/Unboxed/Base.hs:216:1490-1549          1701  242570202    2.2    0.0    16.1   14.4
+     basicUnsafeWrite     Data.Vector.Primitive.Mutable    Data/Vector/Primitive/Mutable.hs:115:3-69          1702  242570202    5.5   14.4    13.9   14.4
+      primitive           Control.Monad.Primitive          Control/Monad/Primitive.hs:94:3-16                 1703  242570202    8.1    0.0     8.4    0.0
+       writeByteArray#    Data.Primitive.Types             Data/Primitive/Types.hs:178:440-508                1704  242570202    0.3    0.0     0.3    0.0
+    .<<.                  Main                             Main.hs:31:1-15                                    1700          0    4.3    5.7     4.3    5.7
+    .>>.                  Main                             Main.hs:28:1-15                                    1695          0    5.3    5.7     5.3    5.7
+   basicUnsafeRead        Data.Vector.Unboxed.Base         Data/Vector/Unboxed/Base.hs:216:1413-1466          1687   99999998    0.9    0.0     6.0    5.9
+    basicUnsafeRead       Data.Vector.Primitive.Mutable    Data/Vector/Primitive/Mutable.hs:112:3-63          1688   99999998    2.1    3.6     5.1    5.9
+     primitive            Control.Monad.Primitive          Control/Monad/Primitive.hs:94:3-16                 1689   99999998    2.7    0.0     3.0    2.4
+      readByteArray#      Data.Primitive.Types             Data/Primitive/Types.hs:178:302-435                1690   99999998    0.4    2.4     0.4    2.4
+   sievefn.cond           Main                             Main.hs:81:13-60                                   1691   99999998    1.8    2.4     3.5    4.7
+    .<<.                  Main                             Main.hs:31:1-15                                    1693          0    1.8    2.4     1.8    2.4
+   .>>.                   Main                             Main.hs:28:1-15                                    1685          0    1.9    2.4     1.9    2.4
+  sieve                   Main                             Main.hs:37:1-38                                    1658          0    0.0    0.0     0.0    0.0
+   basicUnsafeReplicate   Data.Vector.Unboxed.Base         Data/Vector/Unboxed/Base.hs:216:1336-1405          1659          0    0.0    0.0     0.0    0.0
+    basicUnsafeReplicate  Data.Vector.Generic.Mutable.Base Data/Vector/Generic/Mutable/Base.hs:(94,3)-(98,16) 1660          1    0.0    0.0     0.0    0.0
+     basicSet             Data.Vector.Primitive.Mutable    Data/Vector/Primitive/Mutable.hs:130:3-55          1678          1    0.0    0.0     0.0    0.0
+      primitive           Control.Monad.Primitive          Control/Monad/Primitive.hs:94:3-16                 1679          1    0.0    0.0     0.0    0.0
+       setByteArray#      Data.Primitive.Types             Data/Primitive/Types.hs:178:515-871                1680          1    0.0    0.0     0.0    0.0
+        internal          Control.Monad.Primitive          Control/Monad/Primitive.hs:97:3-21                 1681          1    0.0    0.0     0.0    0.0
+        setByteArray#.i   Data.Primitive.Types             Data/Primitive/Types.hs:178:590-613                1682          1    0.0    0.0     0.0    0.0
+        setByteArray#.n   Data.Primitive.Types             Data/Primitive/Types.hs:178:654-677                1683          1    0.0    0.0     0.0    0.0
+     basicUnsafeNew       Data.Vector.Primitive.Mutable    Data/Vector/Primitive/Mutable.hs:(96,3)-(102,37)   1661          1    0.0    0.0     0.0    0.0
+      basicUnsafeNew.mx   Data.Vector.Primitive.Mutable    Data/Vector/Primitive/Mutable.hs:102:7-37          1667          1    0.0    0.0     0.0    0.0
+      primitive           Control.Monad.Primitive          Control/Monad/Primitive.hs:94:3-16                 1677          1    0.0    0.0     0.0    0.0

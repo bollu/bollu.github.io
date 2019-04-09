@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A weblog of sorts">
+
+
+<meta property="og:site_name" content="A weblog of sorts" />
+<meta property="og:locale" content="en-US" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/blog/making-ghc-an-order-of-magnitude-faster-with-one-neat-trick/" />
+<meta property="og:title" content="Making GHC an order of magnitude faster with one neat trick" />
+<meta property="twitter:title" content="Making GHC an order of magnitude faster with one neat trick">
+
+    <meta property="twitter:card" content="summary">
+
+<meta property="og:description" content="">
+<meta property="twitter:description" content="">
+
+<title>
+
+
+     A weblog of sorts - Making GHC an order of magnitude faster with one neat trick 
+
+</title>
+<link rel="canonical" href="http://localhost:1313/blog/making-ghc-an-order-of-magnitude-faster-with-one-neat-trick/">
+
+
+<style media="screen">
+  @font-face {
+  font-family: 'Nexa Bold';
+  src: url('http://localhost:1313/fonts/Nexa Bold.otf');
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, div.column {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+a,
+a:visited,
+a:focus,
+a:active {
+  text-decoration: none;
+}
+html {
+  height: 100%;
+  font-size: 16px;
+}
+body {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -ms-justify-content: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 100%;
+  font-weight: 400;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  color: #111111;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility !important;
+}
+.icon {
+  text-rendering: geometricPrecision !important;
+}
+section {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  width: 100%;
+}
+div.column {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  width: 100%;
+}
+.container {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  width: 100%;
+}
+div.header .container {
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+}
+div.header .content {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+div.header .container .logo {
+  
+  max-width: 100px;
+  
+  margin-left: -2em;
+}
+div.header .name {
+  padding-top: 20px;
+  font-size: 28px;
+  font-family: 'Nexa Bold', 'Helvetica Neue', 'Arial', sans-serif;
+  letter-spacing: -0.005rem;
+  
+  text-transform: uppercase;
+  
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  color: #333333;
+}
+div.header nav {
+  margin-bottom: 16px;
+}
+div.header nav ul {
+  list-style: none;
+  text-align: center;
+  display: -webkit-inline-flex;
+  display: -moz-inline-flex;
+  display: -ms-inline-flexbox;
+  display: -ms-inline-flex;
+  display: inline-flex;
+}
+div.header nav ul li {
+  margin-left: 6px;
+  margin-right: 6px;
+}
+div.header nav ul li:first-child {
+  margin-left: 0;
+}
+div.header nav ul li:last-child {
+  margin-right: 0;
+}
+div.header nav ul a {
+  color: #555555;
+  font-weight: 400;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  -webkit-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -moz-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -ms-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -o-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+}
+div.header nav ul a:hover {
+  color: #111111;
+}
+div.footer .container {
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  flex-direction: column-reverse;
+  width: 100%;
+  text-align: center;
+}
+div.footer .container a {
+  font-size: 14px;
+  margin-left: 6px;
+  margin-right: 6px;
+  opacity: 0.6;
+  -webkit-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -moz-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -ms-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -o-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+}
+div.footer .container a:first-child {
+  margin-left: 0;
+}
+div.footer .container a:last-child {
+  margin-right: 0;
+}
+div.footer .container a:hover {
+  opacity: 0.8;
+}
+div.footer .container a .icon {
+  width: 16px;
+  height: 16px;
+}
+div.footer .container .copyright {
+  flex-grow: 0.5;
+  text-align: start;
+}
+div.footer .container .icons {
+  flex-grow: 0.5;
+  text-align: end;
+}
+div.main .container {
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -ms-justify-content: flex-start;
+  justify-content: flex-start;
+}
+div.main .content {
+  color: #111111;
+  font-size: 16px;
+}
+div.main .content .title-container {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  justify-content: space-between;
+}
+div.main .content .posts {
+  
+  
+}
+div.main .content .page-heading {
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  letter-spacing: -0.005rem;
+  text-transform: uppercase;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  color: #333333;
+  margin-bottom: 16px;
+}
+div.main .content .front-matter .page-heading {
+  margin-bottom: 0;
+}
+div.main .content .front-matter .meta {
+  font-size: 14px;
+  color: #666666;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  margin-bottom: 32px;
+}
+div.main .content .front-matter .date,
+div.main .content .front-matter .author,
+div.main .content .front-matter .tags,
+div.main .content .front-matter .word-count,
+div.main .content .front-matter .middot:before {
+  display: none;
+}
+div.main .content .front-matter .middot:before {
+  font-size: 6px;
+  margin: 0 6px;
+  vertical-align: middle;
+  content: "•";
+}
+div.main .content .front-matter .tags ul {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+div.main .content .front-matter .tags ul li {
+  -webkit-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -moz-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -ms-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -o-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+}
+div.main .content .front-matter .tags ul li:hover {
+  opacity: 0.7;
+}
+div.main .content .front-matter .tags ul li a {
+  color: #666666;
+}
+div.main .container.f04 {
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+}
+div.main .container.f04 .content {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+div.main .container.f04 .content .num {
+  margin: 30px 0px 30px 0;
+  font-weight: 400;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 50px;
+}
+div.main .container.f04 .content .detail {
+  margin-bottom: 40px;
+}
+div.main .container .content .groupby {
+  margin-top: 1em;
+  padding-left: 0.5em;
+}
+div.main .container .content .post-item {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  display: list-item;
+  list-style: disc inside;
+}
+div.main .container .content .post-item .meta {
+  font-size: 14px;
+  color: #666666;
+  display: none;
+  min-width: 100px;
+}
+div.main .container .content .see-more {
+  font-style: italic;
+  float: right;
+  font-size: 0.9em;
+  margin-top: 2em;
+  color: #313537;
+}
+div.main .container .content .see-more:hover {
+  color: #666;
+}
+section {
+  padding: 0 16px;
+}
+div.column {
+  padding: 0 16px;
+}
+div.header {
+  padding-top: 10px;
+}
+div.header-home {
+  padding-top: 36px;
+}
+div.main {
+  padding-top: 32px;
+}
+div.main .container .content .post-item .meta {
+    display: block;
+}
+div.main .container .content .post-item {
+    display: flex;
+    list-style: none;
+}
+a {
+  color: #428bca;
+  -webkit-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -moz-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -ms-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -o-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+}
+a:hover {
+  color: #2a6496;
+}
+img {
+  max-width: 100%;
+}
+div.main .content {
+    width: 100%;
+}
+div.main .content .markdown {
+  font-size: 1.1em;
+  line-height: 1.75em;
+  color: #313537;
+  font-family: serif;
+  font-weight: 300;
+}
+div.main .content .markdown h1,
+div.main .content .markdown h2,
+div.main .content .markdown h3,
+div.main .content .markdown h4,
+div.main .content .markdown h5,
+div.main .content .markdown h6 {
+  font-size: 22px;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  letter-spacing: -0.005rem;
+  font-weight: 700;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  color: #333333;
+  text-transform: none;
+  margin-top: 1.75rem;
+}
+div.main .content .markdown h1 {
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+}
+div.main .content .markdown h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+div.main .content .markdown h3 {
+  font-size: 1em;
+  margin-bottom: 1rem;
+}
+div.main .content .markdown h4,
+div.main .content .markdown h5,
+div.main .content .markdown h6 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  letter-spacing: none;
+}
+div.main .content .markdown code,
+div.main .content .markdown pre {
+  font-family: 'Menlo', monospace;
+  font-size: 0.98rem;
+  background-color: #f7f7f7;
+}
+div.main .content .markdown code {
+  /* enclosed by single backtick (`) */
+  padding: .15em .5em;
+  border-radius: 2px;
+}
+div.main .content .markdown pre {
+  /* Hugo specific: consider using the 'highlight' shortcode */
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  line-height: 1.5em;
+  white-space: pre;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+div.main .content .markdown pre code {
+  /* enclosed by 4 backticks (````) */
+  padding: 0;
+  font-size: 0.9rem;
+}
+div.main .content .markdown a code {
+  color: #428bca !important;
+}
+div.main .content .markdown a code:hover {
+  text-decoration: underline;
+}
+div.main .content .markdown p {
+  
+  text-align: justify;
+  
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+div.main .content .markdown ul,
+div.main .content .markdown ol,
+div.main .content .markdown dl {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+div.main .content .markdown dt {
+  font-weight: bold;
+}
+div.main .content .markdown dd {
+  margin-bottom: .5rem;
+}
+div.main .content .markdown ul {
+  list-style-type: disc;
+  list-style-position: outside;
+  margin-bottom: 1.25rem;
+}
+div.main .content .markdown ol {
+  list-style-type: decimal;
+  margin-bottom: 1.25rem;
+}
+div.main .content .markdown li {
+  margin-left: 2em;
+}
+div.main .content .markdown em {
+  font-style: italic;
+}
+div.main .content .markdown strong {
+  font-weight: 700;
+}
+div.main .content .markdown hr {
+  position: relative;
+  margin: 1.75rem 0;
+  border: 0;
+  border-top: 1px solid #808080;
+  border-top: 1px solid #999999;
+}
+div.main .content .markdown abbr {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #666666;
+  text-transform: uppercase;
+}
+div.main .content .markdown abbr[title] {
+  cursor: help;
+  border-bottom: 1px dotted #808080;
+}
+div.main .content .markdown blockquote {
+  padding: .5rem 1rem;
+  margin: .8rem 0;
+  color: #7a7a7a;
+  border-left: .25rem solid #e5e5e5;
+}
+div.main .content .markdown blockquote p:last-child {
+  margin-bottom: 0;
+}
+div.main .content .markdown figure {
+  width: 100%;
+  background: #fff;
+  margin-bottom: 1em;
+}
+div.main .content .markdown figure img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  display: block;
+  position: static;
+  margin: auto;
+}
+div.main .content .markdown table {
+  margin-bottom: 1rem;
+  width: 100%;
+  border: 1px solid #e5e5e5;
+  border-collapse: collapse;
+}
+div.main .content .markdown td,
+div.main .content .markdown th {
+  padding: .25rem .5rem;
+  border: 1px solid #e5e5e5;
+}
+div.main .content .markdown tbody tr:nth-child(odd) td,
+div.main .content .markdown tbody tr:nth-child(odd) th {
+  background-color: #f7f7f7;
+}
+div.main .content .markdown .footnotes ol {
+  list-style-type: decimal;
+  margin-left: 16px;
+}
+div.main .content .markdown .footnotes li {
+  list-style-type: unset;
+}
+div.main .content .markdown .footnote-ref {
+  font-size: 0.7em;
+}
+div.main .content .navigation {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  padding: 2em;
+}
+div.main .content .navigation div {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  margin-top: 1em;
+}
+div.main .content .navigation .icon {
+  width: 16px;
+  height: 16px;
+}
+div.main .content .navigation a {
+  width: 250px;
+  margin: 0 1em;
+  text-align: center;
+  font-style: italic;
+  color: #313537;
+}
+div.main .content .share, div.main .content .share div {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  justify-content: center;
+}
+div.main .content .share {
+  background-color: rgba(152, 152, 152, 0.07);
+  padding: 1em 0;
+}
+div.main .content .share a {
+  margin: 0 6px;
+}
+kbd {
+  padding: 0.1em 0.6em;
+  border: 1px solid #ccc;
+  font-size: 11px;
+  font-family: Arial,Helvetica,sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  -moz-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0 0.1em;
+  text-shadow: 0 1px 0 #fff;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* Fonts */
+
+
+.wf-raleway-n4-active body, 
+.wf-raleway-n4-active div.header nav ul a,
+.wf-raleway-n7-active div.main .content .page-heading,
+.wf-raleway-n2-active div.main .container.f04 .content .num,
+.wf-raleway-n7-active div.main .content .markdown h1,
+.wf-raleway-n7-active div.main .content .markdown h2,
+.wf-raleway-n7-active div.main .content .markdown h3,
+.wf-raleway-n7-active div.main .content .markdown h4,
+.wf-raleway-n7-active div.main .content .markdown h5,
+.wf-raleway-n7-active div.main .content .markdown h6 {
+      font-family: 'Raleway';
+}
+
+.wf-merriweather-n3-active div.main .content .markdown {
+      font-family: 'Merriweather';
+}
+
+.wf-ubuntu-mono-n4-active div.main .content .markdown code,
+.wf-ubuntu-mono-n4-active div.main .content .markdown pre {
+      font-family: 'Ubuntu Mono';
+}
+
+
+</style>
+<style media="(min-width: 600px)">
+  body {
+-webkit-justify-content: center;
+-moz-justify-content: center;
+-ms-justify-content: center;
+justify-content: center;
+}
+.non-narrow.zero-top-spacing {
+padding-top: 0 !important;
+}
+section {
+padding: 0 16px;
+margin-left: 100px;
+margin-right: 100px;
+
+max-width: 750px;
+
+}
+div.column {
+padding: 0 16px;
+
+max-width: 750px;
+
+}
+div.header {
+background-color: transparent;
+}
+div.header .container {
+-webkit-justify-content: flex-start;
+-moz-justify-content: flex-start;
+-ms-justify-content: flex-start;
+justify-content: flex-start;
+}
+div.header .container .logo {
+margin: 0;
+}
+div.header-home .container .logo {
+max-width: 216px;
+margin-left: 24px;
+}
+div.header-home .name-home {
+padding-top: 30px;
+font-size: 40px;
+}
+div.header-home nav ul a {
+font-size: 18px;
+}
+div.header .content {
+-webkit-align-items: flex-start;
+-moz-align-items: flex-start;
+-ms-align-items: flex-start;
+align-items: flex-start;
+}
+div.header .name {
+color: #333333;
+}
+div.header nav {
+font-size: 14px;
+margin-bottom: 0;
+}
+div.header nav ul {
+text-align: left;
+}
+div.header nav ul a {
+color: #666666;
+}
+div.header nav ul a:hover {
+color: #333333;
+}
+div.footer {
+background-color: transparent;
+}
+div.footer .container {
+flex-direction: row;
+}
+div.footer .container a {
+margin-left: 3px;
+margin-right: 3px;
+color: #666666;
+}
+div.footer .container a:hover {
+color: #333333;
+}
+div.footer .container a .icon {
+font-size: 18px;
+}
+div.footer .container a .icon.larger {
+font-size: 20px;
+}
+div.main .content .front-matter .date,
+div.main .content .front-matter .author,
+div.main .content .front-matter .tags,
+div.main .content .front-matter .word-count,
+div.main .content .front-matter .middot:before {
+display: initial;
+}
+div.main .container.f04 {
+-webkit-justify-content: flex-start;
+-moz-justify-content: flex-start;
+-ms-justify-content: flex-start;
+justify-content: flex-start;
+}
+div.main .container.f04 .content {
+-webkit-align-items: flex-start;
+-moz-align-items: flex-start;
+-ms-align-items: flex-start;
+align-items: flex-start;
+}
+div.main .container.f04 .content .num {
+margin: 0 0 10px 0;
+font-size: 32px;
+}
+div.main .container.f04 .content .detail {
+margin-bottom: 30px;
+}
+.container {
+padding: 0 30px;
+}
+div.header {
+padding-top: 60px;
+padding-bottom: 60px;
+}
+div.footer {
+padding-top: 60px;
+padding-bottom: 60px;
+}
+div.main {
+padding-top: 0;
+}
+div.main .content {
+  
+  font-size: 16px;
+  
+}
+div.main .container .content .post-item {
+display: flex;
+list-style: none;
+padding-left: 1.5em;
+}
+div.main .container .content .post-item .meta {
+display: block;
+}
+div.main .content .markdown blockquote {
+padding-right: 5rem;
+padding-left: 1.25rem;
+}
+div.main .content .navigation {
+-webkit-flex-direction: row;
+-moz-flex-direction: row;
+-ms-flex-direction: row;
+flex-direction: row;
+}
+div.main .content .navigation div {
+margin-top: 0em;
+}
+
+</style>
+<style media="(min-width: 769px)">
+  div.main .content .markdown figure {
+width: 110%;
+margin-left: -4%;
+}
+div.main .content .markdown img {
+max-width: 110%;
+width: 110%;
+margin-left: -4%;
+}
+div.main .content .markdown pre {
+width: 110%;
+margin-left: -4%;
+}
+
+</style>
+
+<noscript>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet">
+</noscript>
+
+
+  <style type="text/css" media="screen">
+    .hljs{display:block;background:white;padding:0.5em;color:#333333;overflow-x:auto}.hljs-comment,.hljs-meta{color:#969896}.hljs-string,.hljs-variable,.hljs-template-variable,.hljs-strong,.hljs-emphasis,.hljs-quote{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-literal,.hljs-symbol,.hljs-bullet,.hljs-attribute{color:#0086b3}.hljs-section,.hljs-name{color:#63a35c}.hljs-tag{color:#333333}.hljs-title,.hljs-attr,.hljs-selector-id,.hljs-selector-class,.hljs-selector-attr,.hljs-selector-pseudo{color:#795da3}.hljs-addition{color:#55a532;background-color:#eaffea}.hljs-deletion{color:#bd2c00;background-color:#ffecec}.hljs-link{text-decoration:underline}
+  </style>
+
+
+
+  <style type="text/css" media="screen">
+    .progressive{overflow:hidden;position:relative;background:#efefef}.progressive__img{width:100%;height:100%;position:absolute;-webkit-transform:translateZ(0);transform:translateZ(0)}.progressive--not-loaded{filter:blur(30px);-webkit-filter:blur(30px)}.progressive--is-loaded{filter:blur(20px);-webkit-filter:blur(20px);-webkit-animation:sharpen .5s both;animation:sharpen .5s both}@-webkit-keyframes sharpen{from{filter:blur(20px);-webkit-filter:blur(20px)}to{filter:blur(0);-webkit-filter:blur(0)}}@keyframes sharpen{from{filter:blur(20px);-webkit-filter:blur(20px)}to{filter:blur(0);-webkit-filter:blur(0)}}
+  </style>
+
+
+
+
+
+
+
+
+
+<link rel="shortcut icon"
+
+    href="http://localhost:1313/img/favicon.ico"
+
+>
+
+
+
+
+</head>
+
+
+<body>
+
+
+<div class="header column">
+
+    <div class="container">
+        
+        <div class="content">
+            <a href="http://localhost:1313/"><div class="name"><h1>A weblog of sorts</h1></div></a>
+            <nav>
+                <ul>
+                    
+                            <li><a href="http://localhost:1313/blog/">Blog</a></li>
+                    
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                            <li><a href="http://localhost:1313/things-i-learnt-today">Things I learnt today</a></li>
+                            
+                        
+                    
+                    
+                        
+                            <li><a href="http://localhost:1313/me/">About Me</a></li>
+                        
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="main post non-narrow zero-top-spacing column">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    
+    Making GHC an order of magnitude faster with one neat trick
+    
+
+</div>
+
+                </div>
+                <div class="meta">
+                    <div class="date" title="Sun Jan 28 2018 12:33:21 IST">Jan 28, 2018</div>
+                    
+                        
+                    
+                    
+                    <div class="reading-time middot">9 minute read</div>
+                    
+                    <div class="tags">
+                        <ul>
+                          
+                        </ul>
+                    </div>
+                    <div class="tags">
+                        <ul>
+                          
+                          
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="markdown">
+                
+    
+    
+
+<p>Note: I&rsquo;m putting this up because college has started again, and I&rsquo;m not finding enough time to polish this up.
+However, I do want to come back to this and work on this. I&rsquo;m publishing this semi-unformatted because I think
+the finding is interesting.</p>
+
+<h1 id="introduction">Introduction</h1>
+
+<p>On working on <a href="http://github.com/bollu/simplexhc-cpp"><code>simplexhc</code></a>, a custom haskell-to-llvm compiler, I&rsquo;ve noticed several strange
+performance behaviours of <a href="https://wiki.haskell.org/GHC"><code>GHC (Glasgow haskell compiler)</code></a>. Under certain benchmarks, GHC is slower than C by <strong>2x to 3x</strong>, and this GHC slowdown <strong>grows non-linearly with problem size</strong>. This is the story of identifying the source of the slowdown. I don&rsquo;t yet have a good solution, however.</p>
+
+<p>There were the compilers used where gathering data:
+- GHC, <code>-O3</code> pass pipeline, native backend.
+- Clang, with <code>-O3</code> pass pipeline.</p>
+
+<h1 id="a-motivating-problem-ackermann">A motivating problem: ackermann</h1>
+
+<p>Let us consider the ackermann function as a function that should have similar performance behaviour between <code>GHC</code> and <code>C</code>.</p>
+
+<h3 id="haskell">Haskell</h3>
+
+<pre><code class="language-hs">ackermann :: Int -&gt; Int -&gt; Int
+ackermann 0 n = n + 1
+ackermann m 0 = ackermann (m - 1) 1
+ackermann m n = ackermann (m - 1) (ackermann m (n - 1))
+
+main :: IO ()
+main = print $ ackermann 3 11
+
+</code></pre>
+
+<h3 id="canonical-c">Canonical C</h3>
+
+<pre><code>#include &lt;stdio.h&gt;
+
+int ackerman(int m, int n) {
+    if (m == 0) return n + 1;
+    if (m &gt; 0 &amp;&amp; n  == 0) return ackerman(m - 1, 1);
+    return ackerman(m - 1, ackerman(m, n - 1));
+}
+
+int main() {
+    printf(&quot;%d&quot;, ackerman(3, 11));
+    return 0;
+}
+</code></pre>
+
+<p>On executing the two executables with <code>perf</code>, here are the numbers:</p>
+
+<h3 id="perf-numbers-ackermann-3-13">Perf numbers - ackermann(3, 13)</h3>
+
+<h6 id="haskell-1">Haskell</h6>
+
+<p>I compile with `ghc -O3</p>
+
+<pre><code>╭─bollu@cantordust ~/work/sxhc/haskell-microbenchmarks/ackerman/hs  ‹master*› 
+╰─$ sudo perf stat -d ./a.out                             130 ↵
+65533
+
+ Performance counter stats for './a.out':
+
+      10842.395693      task-clock (msec)         #    1.000 CPUs utilized          
+                19      context-switches          #    0.002 K/sec                  
+                 0      cpu-migrations            #    0.000 K/sec                  
+             1,137      page-faults               #    0.105 K/sec                  
+   36,39,57,50,625      cycles                    #    3.357 GHz                      (49.97%)
+   75,81,29,97,093      instructions              #    2.08  insn per cycle           (62.48%)
+   23,15,94,07,810      branches                  # 2136.005 M/sec                    (62.48%)
+         46,61,682      branch-misses             #    0.02% of all branches          (62.51%)
+   10,23,55,71,823      L1-dcache-loads           #  944.032 M/sec                    (62.46%)
+      91,81,89,927      L1-dcache-load-misses     #    8.97% of all L1-dcache hits    (25.02%)
+       2,39,32,901      LLC-loads                 #    2.207 M/sec                    (25.00%)
+            27,686      LLC-load-misses           #    0.12% of all LL-cache hits     (37.47%)
+
+      10.841942305 seconds time elapsed
+</code></pre>
+
+<h6 id="c">C</h6>
+
+<pre><code>╭─bollu@cantordust ~/work/sxhc/haskell-microbenchmarks/ackerman/c  ‹master*› 
+╰─$ sudo perf stat -d ./a.out 
+65533
+ Performance counter stats for './a.out':
+
+       2639.699328      task-clock (msec)         #    1.000 CPUs utilized          
+                 4      context-switches          #    0.002 K/sec                  
+                 0      cpu-migrations            #    0.000 K/sec                  
+               305      page-faults               #    0.116 K/sec                  
+    8,72,38,76,574      cycles                    #    3.305 GHz                      (50.06%)
+   27,14,60,77,471      instructions              #    3.11  insn per cycle           (62.61%)
+    8,57,29,19,162      branches                  # 3247.688 M/sec                    (62.66%)
+         78,25,907      branch-misses             #    0.09% of all branches          (62.72%)
+    2,86,47,68,221      L1-dcache-loads           # 1085.263 M/sec                    (62.29%)
+      65,40,28,017      L1-dcache-load-misses     #   22.83% of all L1-dcache hits    (24.86%)
+         60,00,153      LLC-loads                 #    2.273 M/sec                    (24.85%)
+             3,237      LLC-load-misses           #    0.05% of all LL-cache hits     (37.51%)
+
+       2.639808518 seconds time elapsed
+</code></pre>
+
+<p>We have a <strong>5x</strong> slowdown between GHC and C. This is nuts, so let&rsquo;s try and look at problem scaling. That is,
+how performance degrades as problem size changes.</p>
+
+<h3 id="perf-scaling-as-problem-size-increases-all-numbers-in-seconds">Perf scaling as problem size increases (all numbers in seconds):</h3>
+
+<iframe width="900" height="800" frameborder="0" scrolling="no" src="//plot.ly/~bollu/74.embed"></iframe>
+
+<p>The scaling is non-linear, and GHC gets way worse with performance in comparison to C. This implies that
+we should probably look at the assembly and see what the hell is going on</p>
+
+<h1 id="how-does-haskell-compile">How does haskell compile?</h1>
+
+<p>I&rsquo;ve written about how haskell compiles in detail <a href="TODO: add link to blog post on compilation">here</a>.</p>
+
+<p>The long and short of it is that every <em>lazy value</em> becomes a <em>function</em> thaat needs to be evaluated.
+Every <em>case / patten match</em> becomes a <em>continuation</em>, that needs to be entered into once the lazy value is
+fully computed.</p>
+
+<p>so, rougly,</p>
+
+<pre><code class="language-hs">case x of
+    xval -&gt; rhs
+</code></pre>
+
+<p>compiles into:</p>
+
+<pre><code class="language-c">pushContinuation(xval_rhs);
+x();
+
+xval_rhs(xval) {
+    //rhs here.
+}
+
+x() {
+    xval = /*compute*/
+    cont = popContinuation();
+    cont(xval);
+}
+</code></pre>
+
+<p>Each such point where we need to create a continuation is called a <em>proc point</em>. These seem to be the bane of
+performance, but unfortuantely, this is how we need to compile because of laziness.</p>
+
+<h3 id="c-equivalent-of-haskell-ackermann-compilation">C equivalent of haskell ackermann compilation</h3>
+
+<p>Here is the source code listing of the C version of the haskell code. Note that the performance closely matches that of GHC.
+So, from now on, when I explain code in the blog post, I will always benchmark using the C version, since it&rsquo;s an easier to talk
+about C performance.</p>
+
+<iframe height="1000px" width="100%" src="https://repl.it/@bollu/Acermann-Haskell-compliation-C-equivalent?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
+
+<h3 id="performance-between-ghc-and-haskell-c-equivalent">Performance between GHC and haskell-C-equivalent:</h3>
+
+<ul>
+<li>C code was compiled with <code>clang -O3</code></li>
+<li>Haskell code was compiled what <code>GHC -O3</code></li>
+</ul>
+
+<iframe width="900" height="800" frameborder="0" scrolling="no" src="//plot.ly/~bollu/78.embed"></iframe>
+
+<p>Notice that the haskell-like-C code scales much better than the GHC version, probably due to GC effects, and because of better
+instruction selection with LLVM.</p>
+
+<p>There is still a <strong>1.4x</strong> slowdown between haskell-like-C and C.</p>
+
+<h3 id="explaining-this-performance-difference">Explaining this performance difference</h3>
+
+<p>In theory, picking the right instructions should lead to better performance, but it should be at maximum, around 10% of a performance difference. I suspected that there was something wrong with the way in which we access memory.</p>
+
+<p>The obvious culprit is the stack that we manage manually. Since we perform stack manipulations ourselves without using <code>push</code>, <code>pop</code>,
+<code>call</code>, and <code>ret</code>, I suspected this was screwing things up. However, it was quite possible that there was something subtler going on.</p>
+
+<h3 id="teasing-apart-the-solution-is-it-the-stack-or-is-it-something-else">Teasing apart the solution: Is it the stack, or is it something else?</h3>
+
+<p>To tell the difference, I created a program where we use our custom stack, but do no real compute. I chose to load from a volatile
+variable as &ldquo;compute&rdquo; to hinder all optimistaions. I wrote this program in the regular C style and the continuation style and benchmarked the results. I do not choose to embed the files because the code is straightforward. The links to the files are posted below.</p>
+
+<ul>
+<li><a href="https://github.com/bollu/haskell-microbenchmarks/blob/16bafdb6b0f664175d37256aac9f7cacd1e94596/nop-call-stack/c/test.c">Link to C code that was run</a></li>
+<li><a href="https://github.com/bollu/haskell-microbenchmarks/blob/16bafdb6b0f664175d37256aac9f7cacd1e94596/nop-call-stack/haskell-like-c/test.c">Link to haskell-like-C code that was run</a></li>
+</ul>
+
+<iframe width="900" height="800" frameborder="0" scrolling="no" src="//plot.ly/~bollu/80.embed"></iframe>
+
+<p>It is interesting that this is ~10% of overhead, at worst. However, this does not explan the <strong>1.4x</strong> and greater slowdown that we have seen between <code>C</code> and <code>haskell-like-C</code></p>
+
+<p>Something else is going wrong. It&rsquo;s time to read some assembly :)</p>
+
+<h3 id="reading-the-assembly">Reading the assembly</h3>
+
+<p>I used Intel VTune to get instruction-level information about memory latency (as I was now suspecting that it is memory usage patterns that
+was leading to the performance difference). I floundered around with this for a while, I will only post the final results I discovered, with a lot of help from <a href="http://bgamari.github.io/">Ben Gamari</a>.</p>
+
+<h6 id="high-level-overview-between-c-haskell-like-c">High level overview between C &amp; Haskell-like-C:</h6>
+
+<ul>
+<li><p>Data is exported from VTune.
+<figure class="progressive"><img class="progressive__img progressive--not-loaded" data-progressive="http://localhost:1313/ghc-micro-optimisations-stack/mem-usage-delta.png" src="http://localhost:1313/ghc-micro-optimisations-stack/low/mem-usage-delta.png" alt="Memory access delta 2" /></figure>
+(I don&rsquo;t really know how to export data from VTune, and googling did not help, so this is the best I can do right now).</p></li>
+
+<li><p>Dark blue is <code>C</code>, light blue is <code>haskell-like-C</code>.</p></li>
+
+<li><p>Notice that <code>haskell-like-C</code> performs more data transfer (bandwidth usage) and <strong>takes longer</strong> performing the transfers (latency).</p></li>
+
+<li><p>Let&rsquo;s check instruction-level differences with <code>perf</code>.</p></li>
+
+<li><p>Code compiled with <code>-O2</code> to have cleaner code. Code still exhibits similar characteristics.
+<code>O3</code> in clang is <code>O2</code> with much larger inlining and unrolling sizes.</p></li>
+</ul>
+
+<h3 id="c-ackermann-code-with-perf">C ackermann code with perf:</h3>
+
+<!--![C ackermann code VTune](/ghc-micro-optimisations-stack/c-cpu-time.png)-->
+
+<pre><code class="language-asm">       │    0000000000400510 &lt;ackerman&gt;:
+       │    ackerman():
+ 12.34 │      push   %rbx
+ 10.83 │      test   %edi,%edi
+       │    ↓ je     32
+  0.03 │      data16 nopw %cs:0x0(%rax,%rax,1)
+  5.49 │10:   lea    -0x1(%rdi),%ebx
+  0.09 │      test   %edi,%edi
+       │    ↓ jle    20
+  8.29 │      mov    $0x1,%eax
+  0.09 │      test   %esi,%esi
+       │    ↓ je     28
+  5.52 │20:   add    $0xffffffff,%esi
+  1.18 │    → callq  ackerman
+ 13.99 │28:   mov    %eax,%esi
+  0.06 │      mov    %ebx,%edi
+  1.00 │      test   %ebx,%ebx
+       │    ↑ jne    10
+  0.41 │    ↓ jmp    34
+       │32:   mov    %esi,%eax
+ 12.90 │34:   add    $0x1,%eax
+  0.06 │      pop    %rbx
+ 27.72 │    ← retq   
+</code></pre>
+
+<p>The two hottest centers are around context switches:</p>
+
+<pre><code>...
+1.18  │    → callq  ackerman
+13.99 │28:   mov    %eax,%esi
+...
+27.72 │    ← retq   
+</code></pre>
+
+<h3 id="haskell-like-c-ackermann-code-with-perf">Haskell-like C ackermann code with perf:</h3>
+
+<h6 id="case-ackerman-aval-bdec"><code>case_ackerman_aval_bdec</code>:</h6>
+
+<pre><code>       │    case_ackerman_aval_bdec():
+  4.95 │      test   %esi,%esi
+  5.40 │    ↓ je     9b
+       │      mov    %esi,%eax
+       │      nop
+ 27.78 │10:   lea    -0x1(%rax),%ecx
+  2.00 │      test   %edx,%edx
+  1.16 │    ↓ je     8a
+ 10.08 │      movslq g_ret_sp,%r9
+       │      mov    %r9,%r8
+       │      mov    %edx,%edi
+  0.03 │      test   $0x1,%dl
+       │    ↓ je     48
+       │      lea    0x1(%r9),%r8
+       │      mov    %r9,%rsi
+ 10.56 │      shl    $0x4,%rsi
+ 13.27 │      movq   $0x4005a0,0x601050(%rsi)
+       │      mov    %rcx,0x601058(%rsi)
+  0.34 │      lea    -0x1(%rdx),%edi
+       │48:   cmp    $0x1,%edx
+       │    ↓ je     80
+  0.79 │      shl    $0x4,%r8
+  5.53 │      lea    0x601068(%r8),%rsi
+  6.50 │      nop
+ 11.61 │60:   movq   $0x4005a0,-0x18(%rsi)
+       │      mov    %rcx,-0x10(%rsi)
+       │      movq   $0x4005a0,-0x8(%rsi)
+       │      mov    %rcx,(%rsi)
+       │      add    $0x20,%rsi
+       │      add    $0xfffffffe,%edi
+       │    ↑ jne    60
+       │80:   add    %edx,%r9d
+       │      mov    %r9d,g_ret_sp
+       │8a:   add    $0xffffffffffffffff,%rax
+       │      mov    $0x1,%edx
+       │      test   %ecx,%ecx
+       │    ↑ jne    10
+       │9b:   movslq g_ret_sp,%rax
+       │      add    $0xffffffffffffffff,%rax
+       │      mov    %eax,g_ret_sp
+       │      shl    $0x4,%rax
+       │      mov    0x601050(%rax),%rdi
+       │      mov    0x601058(%rax),%rsi
+       │      add    $0x1,%edx
+       │    ↑ jmpq   *%rdi                                                   
+</code></pre>
+
+<h6 id="pushreturn"><code>pushReturn</code></h6>
+
+<pre><code>       │    pushReturn():
+ 15.26 │      movslq g_ret_sp,%rax
+  1.73 │      lea    0x1(%rax),%ecx
+  0.15 │      mov    %ecx,g_ret_sp
+  2.41 │      shl    $0x4,%rax
+ 13.35 │      mov    %rdi,0x601050(%rax)
+ 37.59 │      mov    %rsi,0x601058(%rax)
+ 29.51 │    ← retq
+</code></pre>
+
+<h6 id="popreturn"><code>popReturn</code></h6>
+
+<pre><code>       │    popReturn():
+ 40.01 │      movslq g_ret_sp,%rcx
+       │      add    $0xffffffffffffffff,%rcx
+       │      mov    %ecx,g_ret_sp
+ 12.44 │      shl    $0x4,%rcx
+ 16.88 │      mov    0x601050(%rcx),%rax
+ 29.90 │      mov    0x601058(%rcx),%rdx
+  0.77 │    ← retq
+
+</code></pre>
+
+<p>Clearly, memory stuff is expensive: <code>pushReturn</code> and <code>popReturn</code> spend most of their time in memory fetching.</p>
+
+<h6 id="analysis">Analysis</h6>
+
+<p>We can see that it is the load and store from memory that is consuming a lot of the time. However, on taking a deeper look, it appears that there are <em>more</em> loads in the haskell case than in the C case. If we trace the register usage across the program, the real problem emerges: Clang is able to allocate registers across the functions (TODO: insert function names) such that <em>no data needs to be passed on the stack</em>. However, in the Haskell case, we clearly use the &ldquo;global stack&rdquo; to pass data. This is <strong>one extra load</strong> per function call!. This obviously leads to a <em>huge</em> overhead across runs of the program.</p>
+
+<p>It appears that LLVM is able to interprocedurally allocate registers when we
+compile C code.</p>
+
+<p>However, GHC compilation is unable to understand that this interprocedural
+allocation is possible.</p>
+
+<p>The way I look at this is that when we have <code>call/ret</code>, one can see
+inter-procedural control flow.</p>
+
+<p>However, when we compile with continuations, we don&rsquo;t really understand
+inter-procedural control flow, since we don&rsquo;t know <strong>from where a continuation
+can be entered</strong>. This is my understand of this, and it could be flawed.</p>
+
+<p>The points where we split off a continuation are called &ldquo;proc-points&rdquo; and
+perhaps teaching LLVM about these would help.</p>
+
+<h3 id="how-do-we-teach-llvm-about-proc-point">How do we teach LLVM about proc point</h3>
+
+<p>I&rsquo;m not entirely sure how to generate better code than what I already have. If we wish to use continuations, we <em>will</em> have that indirect branch.</p>
+
+<h3 id="closing-thoughts">Closing thoughts</h3>
+
+<p>Much thanks to Ben Gamari, who helped me debug this stuff, and taught me a lot about perf in the process.</p>
+
+<p>If anyone has any solutions to this thorny aproblem, please e-mail me (<code>siddu.druid@gmail.com</code>), or leave a message here.</p>
+
+<p>I suspect that <a href="https://icfp17.sigplan.org/event/hiw-2017-native-support-for-explicit-stacks-in-llvm">SPJ&rsquo;s and Kavon&rsquo;s work on proc-points</a> will possibly alleviate this. I plan on pinging them after putting this up so I can get some feedback.</p>
+
+
+            </div>
+            
+            
+            
+            <br>
+            <div class="disqus">
+                <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "pixeldruid" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+            
+
+            
+
+            
+        </div>
+    </div>
+</div>
+
+
+
+<div class="footer column">
+    <div class="container">
+
+        
+
+        <div class="copyright">
+
+        
+
+        </div>
+        <div class="icons">
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="https://github.com///github.com/bollu" rel=me target="_blank">
+                <img class="icon" src="http://localhost:1313/img/github.svg" alt="github" />
+            </a>
+        
+
+        
+
+        
+            <a href="https://www.linkedin.com/in///linkedin.com/in/siddharth-bhat-388b60104/" rel=me target="_blank">
+                <img class="icon" src="http://localhost:1313/img/linkedin.svg" alt="linkedin" />
+            </a>
+        
+
+        
+
+        
+            <a href="mailto:siddu.druid@gmail.com">
+                <img class="icon" src="http://localhost:1313/img/email.svg" alt="email" />
+            </a>
+        
+
+        
+            <a href="http://localhost:1313/index.xml">
+                <img class="icon" src="http://localhost:1313/img/rss.svg" alt="rss" />
+            </a>
+        
+
+        </div>
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Raleway:400,600,700', 'Merriweather:300,300i,700,700i', 'Ubuntu+Mono:400,700']
+    }
+  });
+</script>
+
+
+
+  <script src="http://localhost:1313/js/highlight.min.js" defer></script>
+  
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/haskell.min.js" defer></script>
+  
+
+
+
+  <script src="http://localhost:1313/js/progressively.min.js" defer></script>
+
+
+
+
+
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-97068933-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+<script>
+  window.onload = function() {
+    
+      hljs.initHighlighting();
+    
+    
+      progressively.init({delay: 30, throttle: 50});
+    
+    
+  };
+</script>
+
+
+
+
+<script data-no-instant>document.write('<script src="/livereload.js?port=1313&mindelay=10"></' + 'script>')</script></body>
+</html>
+

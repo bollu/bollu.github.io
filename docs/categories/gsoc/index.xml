@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gsoc on A weblog of sorts</title>
+    <link>http://localhost:1313/categories/gsoc/</link>
+    <description>Recent content in Gsoc on A weblog of sorts</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Mon, 24 Aug 2015 21:59:38 +0530</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/categories/gsoc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GSoC VisPy - Update #3</title>
+      <link>http://localhost:1313/blog/gsoc-vispy---update-#3/</link>
+      <pubDate>Mon, 24 Aug 2015 21:59:38 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/gsoc-vispy---update-#3/</guid>
+      <description>Here&amp;rsquo;s the next update, slightly delayed because of college.
+SceneGraph is merged The massive SceneGraph PR that was open all this while has been merged into vispy master, bringing closure to that beast. That&amp;rsquo;s part 1 of my GSoC project officially complete!
+All of the other changes by me reference a single pull request.
+Borders The colorbar had code to render pixel-width borders, that needed to be adapted for a generic case So, the ColorBarVisual was split again, yielding a BorderVisual that&amp;rsquo;s used to draw borders in other parts of VisPy.</description>
+    </item>
+    
+    <item>
+      <title>GSoC VisPy Week 6</title>
+      <link>http://localhost:1313/blog/gsoc-vispy-week-6/</link>
+      <pubDate>Fri, 24 Jul 2015 21:59:38 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/gsoc-vispy-week-6/</guid>
+      <description>As usual, here&amp;rsquo;s the update for week 6. Let&amp;rsquo;s get down to it!
+SceneGraph Overhaul The fabled PR is yet to be closed, but we have everything we need for it to be merged. There were 2 remaining (outstanding) bugs related to the Scenegraph - both stemming from the fact that not all uniforms that were being sent to the shader were being used correctly. One of these belonged to the MeshVisual, a Visual that I had ported, so tracking this down was relatively easy.</description>
+    </item>
+    
+    <item>
+      <title>Gsoc Vispy Week 5</title>
+      <link>http://localhost:1313/blog/gsoc-vispy-week-5/</link>
+      <pubDate>Thu, 16 Jul 2015 02:37:07 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/gsoc-vispy-week-5/</guid>
+      <description>I&amp;rsquo;m writing this blogpost since we&amp;rsquo;ve come close to hitting a milestone in Vispy&amp;rsquo;s progress - the scenegraph changes are getting merged! So, now, I can move on to phase 2 - building the plotting infrastructure that Vispy needs.
+Also, I&amp;rsquo;ve moved the blog from using handrolled html/css/js to Hugo + a standard theme. While not as fun, this is definitely more maintainable, I&amp;rsquo;ve got to admit.
+Most of the work for the Scenegraph update is done now.</description>
+    </item>
+    
+    <item>
+      <title>Gsoc Update - Weeks 3 &amp; 4</title>
+      <link>http://localhost:1313/blog/gsoc-update---weeks-3--4/</link>
+      <pubDate>Wed, 08 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/gsoc-update---weeks-3--4/</guid>
+      <description>I&amp;rsquo;m sitting at home with the flu and a runny nose, so this is as good a time as any to write another blog post!
+I managed to get a decent amount of work done over the past two weeks. I think I can start working on plotting from next week, since most of the Scenegraph update I talked about last time is done. What&amp;rsquo;s left is a polish and performance improvements, which will be done iteratively, and (I&amp;rsquo;m hoping) in parallel with the plotting API.</description>
+    </item>
+    
+    <item>
+      <title>Gsoc Update - Weeks 1 &amp; 2</title>
+      <link>http://localhost:1313/blog/gsoc-update---weeks-1--2/</link>
+      <pubDate>Mon, 08 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/gsoc-update---weeks-1--2/</guid>
+      <description>The first two weeks of GSoC has gone by, and it&amp;rsquo;s time for another blog post! It&amp;rsquo;s been exciting so far, to work on VisPy and figure out what needs to be done, and how I need to approach it.
+A high level overview of these two weeks was basically figuring out where everything should fit in properly, and gently getting everything into shape.
+SceneGraph and Plotting We&amp;rsquo;re waiting on a huge pull request to pass through - this one rewrites the entire Scenegraph system in VisPy.</description>
+    </item>
+    
+    <item>
+      <title>Gsoc Proposal for Vispy</title>
+      <link>http://localhost:1313/blog/gsoc-proposal-for-vispy/</link>
+      <pubDate>Sun, 17 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/gsoc-proposal-for-vispy/</guid>
+      <description>Abstract The aim of the project is to improve VisPy, a rendering and plotting library for Python. This can be divided into three broad sub-task * Port interesting examples from other graphics libraries like Glumpy to VisPy * Bring high-level plotting constructs to VisPy. * Improve performance by implementing batching (called collections)
+Personal Details  Name: Siddharth Bhat Email: siddu.druid@gmail.com IRC nick: bollu Telephone: +91 9008765043 Other contact methods: Skype - druidofdclaw Country of residence: India Timezone: IST (GMT +5:30) Primary language: English  Project Proposal Port Examples The aim of porting examples is to be able to show a clear differential between the way VisPy handles OpenGL versus other libraries.</description>
+    </item>
+    
+  </channel>
+</rss>

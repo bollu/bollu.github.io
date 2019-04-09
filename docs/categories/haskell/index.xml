@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Haskell on A weblog of sorts</title>
+    <link>http://localhost:1313/categories/haskell/</link>
+    <description>Recent content in Haskell on A weblog of sorts</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 14 Jan 2016 19:28:52 +0530</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/categories/haskell/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>from algebra to diagrams</title>
+      <link>http://localhost:1313/blog/from-algebra-to-diagrams/</link>
+      <pubDate>Thu, 14 Jan 2016 19:28:52 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/from-algebra-to-diagrams/</guid>
+      <description>Building a Cellular Automata History of Cellular Automata A mental model of a Cellular Automata Let&amp;rsquo;s first mockup what a Cellular Automata would look like as a Haskell datatype.
+Considering that we want to start with something simple, I&amp;rsquo;m constructing an automata with just three rules in 1D space
+ Every cell is either alive (white) or dead (black) If a cell has a live neighbor, it lives If a cell has two live neighbors, it dies Otherwise, it continues in its previous state  An example of the CA behavior is here:</description>
+    </item>
+    
+    <item>
+      <title>Continuation Monad - Part 1</title>
+      <link>http://localhost:1313/blog/continuation-monad---part-1/</link>
+      <pubDate>Fri, 27 Nov 2015 13:08:53 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/continuation-monad---part-1/</guid>
+      <description>I&amp;rsquo;ve been trying to understand how the Continuation monad in Haskell works for a while now, and I think I&amp;rsquo;ve finally grokked it. I&amp;rsquo;m putting this out there in the hopes that it&amp;rsquo;s going to help someone looking for the same path to enlightenment that I was.
+Preface - Function Application Let&amp;rsquo;s consider what function application looks like in Haskell. $ is the operator most commonly used to apply function, such that f $ x = f x.</description>
+    </item>
+    
+  </channel>
+</rss>

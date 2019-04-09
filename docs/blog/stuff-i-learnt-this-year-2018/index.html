@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A weblog of sorts">
+
+
+<meta property="og:site_name" content="A weblog of sorts" />
+<meta property="og:locale" content="en-US" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/blog/stuff-i-learnt-this-year-2018/" />
+<meta property="og:title" content="Stuff I Learnt This Year: 2018" />
+<meta property="twitter:title" content="Stuff I Learnt This Year: 2018">
+
+    <meta property="twitter:card" content="summary">
+
+<meta property="og:description" content="">
+<meta property="twitter:description" content="">
+
+<title>
+
+
+     A weblog of sorts - Stuff I Learnt This Year: 2018 
+
+</title>
+<link rel="canonical" href="http://localhost:1313/blog/stuff-i-learnt-this-year-2018/">
+
+
+<style media="screen">
+  @font-face {
+  font-family: 'Nexa Bold';
+  src: url('http://localhost:1313/fonts/Nexa Bold.otf');
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, div.column {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+a,
+a:visited,
+a:focus,
+a:active {
+  text-decoration: none;
+}
+html {
+  height: 100%;
+  font-size: 16px;
+}
+body {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -ms-justify-content: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 100%;
+  font-weight: 400;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  color: #111111;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility !important;
+}
+.icon {
+  text-rendering: geometricPrecision !important;
+}
+section {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  width: 100%;
+}
+div.column {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  width: 100%;
+}
+.container {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  width: 100%;
+}
+div.header .container {
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+}
+div.header .content {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+div.header .container .logo {
+  
+  max-width: 100px;
+  
+  margin-left: -2em;
+}
+div.header .name {
+  padding-top: 20px;
+  font-size: 28px;
+  font-family: 'Nexa Bold', 'Helvetica Neue', 'Arial', sans-serif;
+  letter-spacing: -0.005rem;
+  
+  text-transform: uppercase;
+  
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  color: #333333;
+}
+div.header nav {
+  margin-bottom: 16px;
+}
+div.header nav ul {
+  list-style: none;
+  text-align: center;
+  display: -webkit-inline-flex;
+  display: -moz-inline-flex;
+  display: -ms-inline-flexbox;
+  display: -ms-inline-flex;
+  display: inline-flex;
+}
+div.header nav ul li {
+  margin-left: 6px;
+  margin-right: 6px;
+}
+div.header nav ul li:first-child {
+  margin-left: 0;
+}
+div.header nav ul li:last-child {
+  margin-right: 0;
+}
+div.header nav ul a {
+  color: #555555;
+  font-weight: 400;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  -webkit-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -moz-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -ms-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -o-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+}
+div.header nav ul a:hover {
+  color: #111111;
+}
+div.footer .container {
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  flex-direction: column-reverse;
+  width: 100%;
+  text-align: center;
+}
+div.footer .container a {
+  font-size: 14px;
+  margin-left: 6px;
+  margin-right: 6px;
+  opacity: 0.6;
+  -webkit-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -moz-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -ms-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -o-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+}
+div.footer .container a:first-child {
+  margin-left: 0;
+}
+div.footer .container a:last-child {
+  margin-right: 0;
+}
+div.footer .container a:hover {
+  opacity: 0.8;
+}
+div.footer .container a .icon {
+  width: 16px;
+  height: 16px;
+}
+div.footer .container .copyright {
+  flex-grow: 0.5;
+  text-align: start;
+}
+div.footer .container .icons {
+  flex-grow: 0.5;
+  text-align: end;
+}
+div.main .container {
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -ms-justify-content: flex-start;
+  justify-content: flex-start;
+}
+div.main .content {
+  color: #111111;
+  font-size: 16px;
+}
+div.main .content .title-container {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  justify-content: space-between;
+}
+div.main .content .posts {
+  
+  
+}
+div.main .content .page-heading {
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  letter-spacing: -0.005rem;
+  text-transform: uppercase;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  color: #333333;
+  margin-bottom: 16px;
+}
+div.main .content .front-matter .page-heading {
+  margin-bottom: 0;
+}
+div.main .content .front-matter .meta {
+  font-size: 14px;
+  color: #666666;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  margin-bottom: 32px;
+}
+div.main .content .front-matter .date,
+div.main .content .front-matter .author,
+div.main .content .front-matter .tags,
+div.main .content .front-matter .word-count,
+div.main .content .front-matter .middot:before {
+  display: none;
+}
+div.main .content .front-matter .middot:before {
+  font-size: 6px;
+  margin: 0 6px;
+  vertical-align: middle;
+  content: "•";
+}
+div.main .content .front-matter .tags ul {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+div.main .content .front-matter .tags ul li {
+  -webkit-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -moz-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -ms-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -o-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+}
+div.main .content .front-matter .tags ul li:hover {
+  opacity: 0.7;
+}
+div.main .content .front-matter .tags ul li a {
+  color: #666666;
+}
+div.main .container.f04 {
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+}
+div.main .container.f04 .content {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+div.main .container.f04 .content .num {
+  margin: 30px 0px 30px 0;
+  font-weight: 400;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 50px;
+}
+div.main .container.f04 .content .detail {
+  margin-bottom: 40px;
+}
+div.main .container .content .groupby {
+  margin-top: 1em;
+  padding-left: 0.5em;
+}
+div.main .container .content .post-item {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  display: list-item;
+  list-style: disc inside;
+}
+div.main .container .content .post-item .meta {
+  font-size: 14px;
+  color: #666666;
+  display: none;
+  min-width: 100px;
+}
+div.main .container .content .see-more {
+  font-style: italic;
+  float: right;
+  font-size: 0.9em;
+  margin-top: 2em;
+  color: #313537;
+}
+div.main .container .content .see-more:hover {
+  color: #666;
+}
+section {
+  padding: 0 16px;
+}
+div.column {
+  padding: 0 16px;
+}
+div.header {
+  padding-top: 10px;
+}
+div.header-home {
+  padding-top: 36px;
+}
+div.main {
+  padding-top: 32px;
+}
+div.main .container .content .post-item .meta {
+    display: block;
+}
+div.main .container .content .post-item {
+    display: flex;
+    list-style: none;
+}
+a {
+  color: #428bca;
+  -webkit-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -moz-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -ms-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -o-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+}
+a:hover {
+  color: #2a6496;
+}
+img {
+  max-width: 100%;
+}
+div.main .content {
+    width: 100%;
+}
+div.main .content .markdown {
+  font-size: 1.1em;
+  line-height: 1.75em;
+  color: #313537;
+  font-family: serif;
+  font-weight: 300;
+}
+div.main .content .markdown h1,
+div.main .content .markdown h2,
+div.main .content .markdown h3,
+div.main .content .markdown h4,
+div.main .content .markdown h5,
+div.main .content .markdown h6 {
+  font-size: 22px;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  letter-spacing: -0.005rem;
+  font-weight: 700;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  color: #333333;
+  text-transform: none;
+  margin-top: 1.75rem;
+}
+div.main .content .markdown h1 {
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+}
+div.main .content .markdown h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+div.main .content .markdown h3 {
+  font-size: 1em;
+  margin-bottom: 1rem;
+}
+div.main .content .markdown h4,
+div.main .content .markdown h5,
+div.main .content .markdown h6 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  letter-spacing: none;
+}
+div.main .content .markdown code,
+div.main .content .markdown pre {
+  font-family: 'Menlo', monospace;
+  font-size: 0.98rem;
+  background-color: #f7f7f7;
+}
+div.main .content .markdown code {
+  /* enclosed by single backtick (`) */
+  padding: .15em .5em;
+  border-radius: 2px;
+}
+div.main .content .markdown pre {
+  /* Hugo specific: consider using the 'highlight' shortcode */
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  line-height: 1.5em;
+  white-space: pre;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+div.main .content .markdown pre code {
+  /* enclosed by 4 backticks (````) */
+  padding: 0;
+  font-size: 0.9rem;
+}
+div.main .content .markdown a code {
+  color: #428bca !important;
+}
+div.main .content .markdown a code:hover {
+  text-decoration: underline;
+}
+div.main .content .markdown p {
+  
+  text-align: justify;
+  
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+div.main .content .markdown ul,
+div.main .content .markdown ol,
+div.main .content .markdown dl {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+div.main .content .markdown dt {
+  font-weight: bold;
+}
+div.main .content .markdown dd {
+  margin-bottom: .5rem;
+}
+div.main .content .markdown ul {
+  list-style-type: disc;
+  list-style-position: outside;
+  margin-bottom: 1.25rem;
+}
+div.main .content .markdown ol {
+  list-style-type: decimal;
+  margin-bottom: 1.25rem;
+}
+div.main .content .markdown li {
+  margin-left: 2em;
+}
+div.main .content .markdown em {
+  font-style: italic;
+}
+div.main .content .markdown strong {
+  font-weight: 700;
+}
+div.main .content .markdown hr {
+  position: relative;
+  margin: 1.75rem 0;
+  border: 0;
+  border-top: 1px solid #808080;
+  border-top: 1px solid #999999;
+}
+div.main .content .markdown abbr {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #666666;
+  text-transform: uppercase;
+}
+div.main .content .markdown abbr[title] {
+  cursor: help;
+  border-bottom: 1px dotted #808080;
+}
+div.main .content .markdown blockquote {
+  padding: .5rem 1rem;
+  margin: .8rem 0;
+  color: #7a7a7a;
+  border-left: .25rem solid #e5e5e5;
+}
+div.main .content .markdown blockquote p:last-child {
+  margin-bottom: 0;
+}
+div.main .content .markdown figure {
+  width: 100%;
+  background: #fff;
+  margin-bottom: 1em;
+}
+div.main .content .markdown figure img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  display: block;
+  position: static;
+  margin: auto;
+}
+div.main .content .markdown table {
+  margin-bottom: 1rem;
+  width: 100%;
+  border: 1px solid #e5e5e5;
+  border-collapse: collapse;
+}
+div.main .content .markdown td,
+div.main .content .markdown th {
+  padding: .25rem .5rem;
+  border: 1px solid #e5e5e5;
+}
+div.main .content .markdown tbody tr:nth-child(odd) td,
+div.main .content .markdown tbody tr:nth-child(odd) th {
+  background-color: #f7f7f7;
+}
+div.main .content .markdown .footnotes ol {
+  list-style-type: decimal;
+  margin-left: 16px;
+}
+div.main .content .markdown .footnotes li {
+  list-style-type: unset;
+}
+div.main .content .markdown .footnote-ref {
+  font-size: 0.7em;
+}
+div.main .content .navigation {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  padding: 2em;
+}
+div.main .content .navigation div {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  margin-top: 1em;
+}
+div.main .content .navigation .icon {
+  width: 16px;
+  height: 16px;
+}
+div.main .content .navigation a {
+  width: 250px;
+  margin: 0 1em;
+  text-align: center;
+  font-style: italic;
+  color: #313537;
+}
+div.main .content .share, div.main .content .share div {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  justify-content: center;
+}
+div.main .content .share {
+  background-color: rgba(152, 152, 152, 0.07);
+  padding: 1em 0;
+}
+div.main .content .share a {
+  margin: 0 6px;
+}
+kbd {
+  padding: 0.1em 0.6em;
+  border: 1px solid #ccc;
+  font-size: 11px;
+  font-family: Arial,Helvetica,sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  -moz-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0 0.1em;
+  text-shadow: 0 1px 0 #fff;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* Fonts */
+
+
+.wf-raleway-n4-active body, 
+.wf-raleway-n4-active div.header nav ul a,
+.wf-raleway-n7-active div.main .content .page-heading,
+.wf-raleway-n2-active div.main .container.f04 .content .num,
+.wf-raleway-n7-active div.main .content .markdown h1,
+.wf-raleway-n7-active div.main .content .markdown h2,
+.wf-raleway-n7-active div.main .content .markdown h3,
+.wf-raleway-n7-active div.main .content .markdown h4,
+.wf-raleway-n7-active div.main .content .markdown h5,
+.wf-raleway-n7-active div.main .content .markdown h6 {
+      font-family: 'Raleway';
+}
+
+.wf-merriweather-n3-active div.main .content .markdown {
+      font-family: 'Merriweather';
+}
+
+.wf-ubuntu-mono-n4-active div.main .content .markdown code,
+.wf-ubuntu-mono-n4-active div.main .content .markdown pre {
+      font-family: 'Ubuntu Mono';
+}
+
+
+</style>
+<style media="(min-width: 600px)">
+  body {
+-webkit-justify-content: center;
+-moz-justify-content: center;
+-ms-justify-content: center;
+justify-content: center;
+}
+.non-narrow.zero-top-spacing {
+padding-top: 0 !important;
+}
+section {
+padding: 0 16px;
+margin-left: 100px;
+margin-right: 100px;
+
+max-width: 750px;
+
+}
+div.column {
+padding: 0 16px;
+
+max-width: 750px;
+
+}
+div.header {
+background-color: transparent;
+}
+div.header .container {
+-webkit-justify-content: flex-start;
+-moz-justify-content: flex-start;
+-ms-justify-content: flex-start;
+justify-content: flex-start;
+}
+div.header .container .logo {
+margin: 0;
+}
+div.header-home .container .logo {
+max-width: 216px;
+margin-left: 24px;
+}
+div.header-home .name-home {
+padding-top: 30px;
+font-size: 40px;
+}
+div.header-home nav ul a {
+font-size: 18px;
+}
+div.header .content {
+-webkit-align-items: flex-start;
+-moz-align-items: flex-start;
+-ms-align-items: flex-start;
+align-items: flex-start;
+}
+div.header .name {
+color: #333333;
+}
+div.header nav {
+font-size: 14px;
+margin-bottom: 0;
+}
+div.header nav ul {
+text-align: left;
+}
+div.header nav ul a {
+color: #666666;
+}
+div.header nav ul a:hover {
+color: #333333;
+}
+div.footer {
+background-color: transparent;
+}
+div.footer .container {
+flex-direction: row;
+}
+div.footer .container a {
+margin-left: 3px;
+margin-right: 3px;
+color: #666666;
+}
+div.footer .container a:hover {
+color: #333333;
+}
+div.footer .container a .icon {
+font-size: 18px;
+}
+div.footer .container a .icon.larger {
+font-size: 20px;
+}
+div.main .content .front-matter .date,
+div.main .content .front-matter .author,
+div.main .content .front-matter .tags,
+div.main .content .front-matter .word-count,
+div.main .content .front-matter .middot:before {
+display: initial;
+}
+div.main .container.f04 {
+-webkit-justify-content: flex-start;
+-moz-justify-content: flex-start;
+-ms-justify-content: flex-start;
+justify-content: flex-start;
+}
+div.main .container.f04 .content {
+-webkit-align-items: flex-start;
+-moz-align-items: flex-start;
+-ms-align-items: flex-start;
+align-items: flex-start;
+}
+div.main .container.f04 .content .num {
+margin: 0 0 10px 0;
+font-size: 32px;
+}
+div.main .container.f04 .content .detail {
+margin-bottom: 30px;
+}
+.container {
+padding: 0 30px;
+}
+div.header {
+padding-top: 60px;
+padding-bottom: 60px;
+}
+div.footer {
+padding-top: 60px;
+padding-bottom: 60px;
+}
+div.main {
+padding-top: 0;
+}
+div.main .content {
+  
+  font-size: 16px;
+  
+}
+div.main .container .content .post-item {
+display: flex;
+list-style: none;
+padding-left: 1.5em;
+}
+div.main .container .content .post-item .meta {
+display: block;
+}
+div.main .content .markdown blockquote {
+padding-right: 5rem;
+padding-left: 1.25rem;
+}
+div.main .content .navigation {
+-webkit-flex-direction: row;
+-moz-flex-direction: row;
+-ms-flex-direction: row;
+flex-direction: row;
+}
+div.main .content .navigation div {
+margin-top: 0em;
+}
+
+</style>
+<style media="(min-width: 769px)">
+  div.main .content .markdown figure {
+width: 110%;
+margin-left: -4%;
+}
+div.main .content .markdown img {
+max-width: 110%;
+width: 110%;
+margin-left: -4%;
+}
+div.main .content .markdown pre {
+width: 110%;
+margin-left: -4%;
+}
+
+</style>
+
+<noscript>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet">
+</noscript>
+
+
+  <style type="text/css" media="screen">
+    .hljs{display:block;background:white;padding:0.5em;color:#333333;overflow-x:auto}.hljs-comment,.hljs-meta{color:#969896}.hljs-string,.hljs-variable,.hljs-template-variable,.hljs-strong,.hljs-emphasis,.hljs-quote{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-literal,.hljs-symbol,.hljs-bullet,.hljs-attribute{color:#0086b3}.hljs-section,.hljs-name{color:#63a35c}.hljs-tag{color:#333333}.hljs-title,.hljs-attr,.hljs-selector-id,.hljs-selector-class,.hljs-selector-attr,.hljs-selector-pseudo{color:#795da3}.hljs-addition{color:#55a532;background-color:#eaffea}.hljs-deletion{color:#bd2c00;background-color:#ffecec}.hljs-link{text-decoration:underline}
+  </style>
+
+
+
+  <style type="text/css" media="screen">
+    .progressive{overflow:hidden;position:relative;background:#efefef}.progressive__img{width:100%;height:100%;position:absolute;-webkit-transform:translateZ(0);transform:translateZ(0)}.progressive--not-loaded{filter:blur(30px);-webkit-filter:blur(30px)}.progressive--is-loaded{filter:blur(20px);-webkit-filter:blur(20px);-webkit-animation:sharpen .5s both;animation:sharpen .5s both}@-webkit-keyframes sharpen{from{filter:blur(20px);-webkit-filter:blur(20px)}to{filter:blur(0);-webkit-filter:blur(0)}}@keyframes sharpen{from{filter:blur(20px);-webkit-filter:blur(20px)}to{filter:blur(0);-webkit-filter:blur(0)}}
+  </style>
+
+
+
+
+
+
+
+
+
+<link rel="shortcut icon"
+
+    href="http://localhost:1313/img/favicon.ico"
+
+>
+
+
+
+
+</head>
+
+
+<body>
+
+
+<div class="header column">
+
+    <div class="container">
+        
+        <div class="content">
+            <a href="http://localhost:1313/"><div class="name"><h1>A weblog of sorts</h1></div></a>
+            <nav>
+                <ul>
+                    
+                            <li><a href="http://localhost:1313/blog/">Blog</a></li>
+                    
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                            <li><a href="http://localhost:1313/things-i-learnt-today">Things I learnt today</a></li>
+                            
+                        
+                    
+                    
+                        
+                            <li><a href="http://localhost:1313/me/">About Me</a></li>
+                        
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="main post non-narrow zero-top-spacing column">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    
+    Stuff I Learnt This Year: 2018
+    
+
+</div>
+
+                </div>
+                <div class="meta">
+                    <div class="date" title="Fri Nov 9 2018 12:08:42 IST">Nov 9, 2018</div>
+                    
+                        
+                    
+                    
+                    <div class="reading-time middot">18 minute read</div>
+                    
+                    <div class="tags">
+                        <ul>
+                          
+                            <li class="middot"><a href="http://localhost:1313/tags/"></a> </li>
+                          
+                        </ul>
+                    </div>
+                    <div class="tags">
+                        <ul>
+                          
+                            
+                          
+                          
+                            
+                          
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="markdown">
+                
+    
+    
+
+<h1 id="introduction">Introduction</h1>
+
+<p>I chronicle the broad strokes of new things I&rsquo;ve picked up this
+year. Some musing, some book reviews, and some ramblings contained within.
+I hope you enjoy the ride.</p>
+
+<h1 id="coq">Coq</h1>
+
+<p>Coq is a language that can be used for proving theorems, both mathematical, and
+proofs of programs.</p>
+
+<p>A concrete example of doing something like this is implementing quicksort &mdash; why
+would you trust your implementation? Maybe there&rsquo;s a weird corner case you missed. In <code>Coq</code>,
+one can actually implement not just quicksort, but also a <strong>proof</strong> of quicksort, which
+is then checked by the Coq compiler. So, we can write <em>programs we trust</em>.</p>
+
+<p>Some of the triumphs of Coq include:
+- <a href="https://www.ams.org/notices/200811/tx081101382p.pdf">A mechanized proof of the four color theorem</a>,
+which was a hard graph theory proof that proceeded by tedious case analysis. We
+now trust the proof much more, since the Coq compiler has accepted that we have
+covered all cases exhaustively</p>
+
+<ul>
+<li><a href="http://compcert.inria.fr/">CompCert, a verified C compiler</a>, which is a C compiler written in Coq,
+which also comes with a proof of correctness &mdash; that is, the semantics of the high
+level program written in C is the same as the semantics of the low level assembly
+that is generated by <code>CompCert</code>.</li>
+</ul>
+
+<p>I&rsquo;ve wanted to learn Coq for a while now, since I think this is where math
+will eventually head &ndash; we will have all our proofs formally verified,
+so that we can actually trust what we&rsquo;re doing in really complex math
+proofs (the <a href="https://www.quantamagazine.org/titans-of-mathematics-clash-over-epic-proof-of-abc-conjecture-20180920/">abc conjecture</a> comes to mind, where the debate has been raging
+for the last couple of years about the supposed correctness of a complicated proof)</p>
+
+<p>My aim is to implement a formally verified <strong>optimising compiler</strong> &ndash;
+that is, a compiler that performs non-trivial transformations (such as
+those on loops), which are not performed by <code>CompCert</code> so far.</p>
+
+<p>These are difficult to prove, since a proof of correctness of a
+program transformation must be proven to be correct for <em>all</em> input
+programs.</p>
+
+<p>I&rsquo;ve been writing a <em>lot</em> of Coq this year. I essentially started
+the year knowing no Coq, and am now ending the year being comfortable with it,
+and having a couple minor bugfixes into coq, which feels great!</p>
+
+<h2 id="book-software-foundations-https-softwarefoundations-cis-upenn-edu"><a href="https://softwarefoundations.cis.upenn.edu/">Book: Software foundations</a></h2>
+
+<p><strong>link to my solutions: <a href="https://github.com/bollu/software-foundations-solutions">software foundations solution</a></strong></p>
+
+<p>Software foundations is a 3 volume collection which shows how to use <code>Coq</code>
+to prove properties about programs. This is definitely <strong>the</strong> book to learn <code>Coq</code> from -
+it&rsquo;s well structured, and has lots of great exercises. Doing the exercises was what
+basically taught me the language, which is a style of learning I really enjoy.</p>
+
+<h2 id="book-certified-programming-with-dependent-types-http-adam-chlipala-net-cpdt"><a href="http://adam.chlipala.net/cpdt/">Book: Certified programming with dependent types</a></h2>
+
+<p>This is a kind of a &ldquo;next steps&rdquo; from software foundations,
+which focuses on Adam Chlipala&rsquo;s style of proofs, which
+relies heavily on &ldquo;proof automation&rdquo; &mdash; that is, the ability to
+write small programs (called tactics) that automate the proof for you!</p>
+
+<p>An extreme example is called <code>omega</code>/<code>lia</code>, that uses some math to automatically
+solve linear equations for you. That is, given some equations such as:</p>
+
+<pre><code>forall (x: natural), x + 1 &gt; x
+</code></pre>
+
+<p>one simply needs to type <code>lia.</code>, which then proceeds to perform the
+correct proof for you.</p>
+
+<p>I found the book well written, but still rough to read, since
+it does do some things that are actually complicated :)</p>
+
+<p>However, it&rsquo;s a great reference for the more advanced parts of Coq,
+and I think it&rsquo;s required reading to be able to use Coq effectively.</p>
+
+<h2 id="project-dependence-analysis-for-a-toy-language-https-github-com-bollu-dependence-analysis-coq"><a href="https://github.com/bollu/dependence-analysis-coq/">Project: Dependence analysis for a toy language</a></h2>
+
+<p>This was my first <code>Coq</code> projet, and it really shows. I&rsquo;ve used Coq in
+the most naive way possible, but it was fun to get something out the
+door, and actually prove things with it!</p>
+
+<h2 id="long-term-project-polyir-https-github-com-bollu-polyir"><a href="https://github.com/bollu/polyir">Long term project: PolyIR</a></h2>
+
+<p>The <code>README</code> for the project explains it well in my opinion, but the
+TL;DR is that to perform loop optimisations, modern compilers are
+experimenting with a class of techniques called as polyhedral
+optimisation, where one represents loops using integer polyhedra.</p>
+
+<p>Some success stories are the [Polly project for LLVM](), and
+Facebook&rsquo;s [Tensor comprehension library]()</p>
+
+<p><code>PolyIR</code> is a Coq project that talks about the meaning of programs
+using polyhedra, and also hopes to prove theorems that are requireed
+for the machinery of polyhedral compilation to work.</p>
+
+<h2 id="library-scev-https-github-com-bollu-scev-coq"><a href="https://github.com/bollu/scev-coq">Library: SCEV</a></h2>
+
+<p><strong><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.43.8188&amp;rep=rep1&amp;type=pdf">Paper link: Expediting chains of recurrences</a></strong></p>
+
+<p><code>SCEV</code> is an implementation in <code>gcc</code> and <code>llvm</code>, about a theory that
+allows one to reason about recurrences. This Coq library is an
+implementation of the original paper, with most of the lemmas proven.</p>
+
+<p>Once I&rsquo;ve proven all of them, I want to upload the package on
+coq-extras, so there&rsquo;s a SCEV formalization in Coq. I think it&rsquo;s a
+good milestone to have in a new environment to publish a package,
+so you know the full toolchain.</p>
+
+<h2 id="pull-requests-issues-into-coq-https-github-com-coq-coq-issues-utf8-e2-9c-93-q-author-3abollu"><a href="https://github.com/coq/coq/issues?utf8=%E2%9C%93&amp;q=author%3Abollu+">Pull requests / issues into Coq</a></h2>
+
+<p>I began by submitting documentation style PRs. I&rsquo;ve gradually begun to
+read the source code in bits and pieces. I don&rsquo;t really understand the
+codebase, but it&rsquo;s been fun to spelunk.</p>
+
+<p>I really enjoyed helping around in the Coq community, the people are
+super friendly, and I learnt a <em>lot</em> by hanging around the gitter
+channel.</p>
+
+<h2 id="ve-llvm">VE-LLVM</h2>
+
+<p><strong><a href="https://github.com/vellvm/vellvm">Project page</a></strong>
+<strong><a href="https://github.com/vellvm/vellvm/issues?utf8=%E2%9C%93&amp;q=author%3Abollu">My PRs/issues</a></strong></p>
+
+<p><code>VE-LLVM</code> (verified LLVM, also a pun on &ldquo;vellum&rdquo;) is a project that aims
+to provide a reference semantics of LLVM on Coq, to allow people to implement
+optimisation passes over LLVM, as well as verify these passes.</p>
+
+<p>Due to my interest in formalizing polyhedral compilation, I wound up reading
+the <code>vellvm</code> source code, since I wanted to see how they verify LLVM syntax.
+After all, my grand plan is to have a fully verified <code>LLVM -&gt; polyhedra -&gt; LLVM</code> toolchain
+at hand.</p>
+
+<h1 id="the-barvinok-algorithm">The Barvinok algorithm:</h1>
+
+<p><strong><a href="https://bookstore.ams.org/emszlec-9">Book: integer points in polyhedra</a></strong>
+<strong><a href="https://github.com/bollu/barvinok/blob/master/slides.pdf">My presentation slides</a></strong></p>
+
+<p>The barvinok algorithm is an extremely interesting algorithm, which can be
+used to &ldquo;count integer points in polyhedra&rdquo;. That&rsquo;s a mouthful, so let&rsquo;s unpack
+that. The basic idea is this:</p>
+
+<p>Let&rsquo;s say I hand you the description of a rectangle as follows:</p>
+
+<pre><code>0 &lt;= x
+x &lt;= 10
+0 &lt;= y
+y &lt;= 10
+</code></pre>
+
+<p>I then ask you &ldquo;how many <code>(x, y)</code> points exists in the given polyhedra, where
+<code>x, y ∈ Z</code>?  The answer in this case is <code>10 * 10 = 100</code>. However, this easily
+gets way more complicated in higher dimensions, with the general intuitition
+that &ldquo;integer stuff === lattice stuff === hard&rdquo;.</p>
+
+<p>The barvinok algorithm was a breakthrough algorithm that showed how to perform
+such a point counting in a method that&rsquo;s polynomial in the number of
+constraints for a fixed dimension.</p>
+
+<p>I spent the first half of the year chugging through the book, and finally
+ended up in me giving a presentation on the material. It was really fun,
+and I got to learn a <em>lot</em> of cool theorems about the structure of polyhedra,
+and convex geometry.</p>
+
+<p>I&rsquo;d love to get the chance to explore this stuff in more detail at some point
+in time.</p>
+
+<h1 id="physics-gauge-theory">Physics: Gauge theory</h1>
+
+<p>Gauge theory is a language of physics, where one analyzes systems
+based on the symmetries these systems posess. As a birds eye view, one
+can write the physics of a system in terms of a particular function
+called as the <em>Lagrangian</em>.  Next, physicists study symmetries of this
+Lagrangian, from which they derive <em>conservation laws</em>.  If you&rsquo;ve
+done any physics, you&rsquo;ll know that conservation laws are the bread and
+butter of many deep ideas.</p>
+
+<p>There&rsquo;s a deep theorem in physics called <a href="https://en.wikipedia.org/wiki/Noether%27s_theorem">Noether&rsquo;s theorem</a>,
+which precisely describes this correspondence between symmetry and
+conservation.</p>
+
+<p>I took a course on gauge theory. While the course was too handwavy for
+my taste, I did get to appreciate a lot of the ideas, and I at least
+now know the vocabulary behind this stuff. I was reeling at how
+difficult the course was initially, and still am to be honest.</p>
+
+<p>Going from not knowing Maxwell&rsquo;s equations to knowing the version
+of Maxwell&rsquo;s equations written in tensorial form was quite an adventure
+to say the least, but the course paid off. I know believe I know what
+symmetry breaking means (handwavily), and that makes me happy.</p>
+
+<ul>
+<li><a href="https://github.com/bollu/subject-notes/blob/master/physics/main.pdf">Link to my incomplete, poorly written lecture notes</a></li>
+</ul>
+
+<h1 id="complexity-theory-algorithms-crypto">Complexity theory / Algorithms / Crypto</h1>
+
+<p>I learnt a good bit of theoretical computer science over the last two
+semesters, mostly thanks to good courses. I took courses on complexity theory,
+algorithms, and information security.</p>
+
+<p>The information security course was great, not only because I learnt a bunch
+of awesome things, but also becase it forced me to learn <code>LaTeX</code> properly!</p>
+
+<p>I now have a reasonable view of the basic complexity classes, such as the
+space and time hierarchy, interactive complexity classes (such as <code>IP</code>, and
+more vaguely <code>ZKP</code>), and circuit complexity.</p>
+
+<ul>
+<li><a href="https://github.com/bollu/subject-notes/blob/master/pois/main.pdf">Infosec lecture notes (does not render well)</a></li>
+<li><a href="https://github.com/bollu/subject-notes/blob/master/complexity/main.pdf">Complexity theory lecture notes</a></li>
+<li><a href="https://github.com/bollu/subject-notes/blob/master/caa/main.pdf&lt;Paste">Algorithms lecture notes</a></li>
+</ul>
+
+<h1 id="fpgas">FPGAs</h1>
+
+<p>FPGAs (Field programmable gate arrays) are essentially programmable hardware.
+That is, they comprise of hardware parts which can be &ldquo;programmed&rdquo; to perform
+any hardware operation one wants to. So, if you have a very specific operation
+in mind, it is potentially way faster to run on an FPGA with dedicated hardware
+than running the same thing on a general purpose processor.</p>
+
+<p>The difference between an FPGA and as ASIC is that FPGAs are <em>way</em> cheaper than
+manufacturing an ASIC, which is time and money intensive, and is also risky. If one
+messses up the hardware programming on an FPGA, we can always reprogram it. On
+the other hand, once an ASIC has been &ldquo;taped out&rdquo; (as they say), it&rsquo;s a block
+of silicon. If it&rsquo;s messed up, then good luck, you just wasted over
+a hundred thousand dollars.</p>
+
+<p>However, eventually, ASICs do get cheaper at humongous volumes, so
+it&rsquo;s not that <code>FPGA &gt; ASIC</code> in every situation.</p>
+
+<p>I&rsquo;ve been learning how FPGA&rsquo;s work, due to a course in college. I&rsquo;ve been
+interested in the inherent reconfigurability of FPGAs. The questions I&rsquo;ve had
+in this space were:</p>
+
+<ul>
+<li>How easy/hard is it to design hardware for an FPGA?</li>
+<li>Can we create hardware for pure functional languages (aka, STG on hardware)?</li>
+<li>What kind of languages exist for programming FPGAs? Would a haskell-like language
+do well?</li>
+</ul>
+
+<h5 id="answers-to-the-questions">Answers to the questions</h5>
+
+<ul>
+<li>TL;DR: It&rsquo;s hard.</li>
+<li>We probably can create STG on hardware, since people have done so before.</li>
+<li>None of the current languages meet my taste, so I build one.</li>
+</ul>
+
+<p>The current situation as far as I can see is like this:</p>
+
+<ul>
+<li><p>Use a language such as System Verilog, which is poorly designed (in the sense
+of C), and leaves way too many low level details / sharp corners for my taste</p></li>
+
+<li><p>Use a language such as BlueSpec verilog, which is proprietary (like most things in this space),
+and is <em>still</em> not nice enough for me to consider, because frankly the compiler
+produces really cryptic error messages, and debugging it is a real pain. I program
+in Haskell, I&rsquo;m not confused by the purity, or the type strictness of the language.
+However, it does take many questionable decisions &ndash; eg, not having an escape
+hatch for <code>IO</code> to debug, no real introspection possible during the elaboration
+portion, etc. But it&rsquo;s by far the nicest thing I&rsquo;ve found, which is sad in itself</p></li>
+
+<li><p>Use a DSL embedded into Scala such as Chisel. I haven&rsquo;t tried this one out yet,
+but I&rsquo;m somewhat reluctant, because my experiences with Scala have been unpleasant
+so far (<code>sbt</code> is slow, the language is&hellip; over designed)</p></li>
+
+<li><p>Use <code>Clash</code>, a Haskell to FPGA compiler. I dislike this approach, since I think
+hacking GHC to produce verilog is a fundamentally strange idea, since I hold
+the strong belief that we should <em>not</em> be using turing complete language to
+describe anything, much less circuits.</p></li>
+</ul>
+
+<p>So, I propose my solution: Write a DSL in haskell that leverages all the
+nice concepts discovered by haskellers: I&rsquo;m currently betting on some combination
+of applicatives, profunctors, and arrows to provide me with the right abstractions
+I need to describe computations on an FPGA in a &ldquo;natural&rdquo; style, while still
+being <em>nice to use</em>.</p>
+
+<p>I think Haskell&rsquo;s arrow syntax does remarkably well with this, and I have
+an experiment trying to get this up and running: <a href="https://github.com/bollu/dataflow"><code>bollu/dataflow</code></a></p>
+
+<h1 id="haskellisms">Haskellisms</h1>
+
+<p>Learning Coq was a huge boost to doing funky haskell things, such as
+playing weird type level games, and getting used to things such as
+<code>ConstraintKinds</code>, along with general type level programming goodness.</p>
+
+<p>I also read a lot of papers on my to-read pile, including arrows,
+update monads, and hyperfunctions. While doing so, I would up adding to the
+docs of related packages (such as <code>ekmett/hyperfunctions</code>), or writing
+expository blog posts of libraries.</p>
+
+<h2 id="arrows-https-github-com-bollu-haskell-koans-blob-master-arrow-hs"><a href="https://github.com/bollu/haskell-koans/blob/master/arrow.hs">Arrows</a></h2>
+
+<p>As mentioned in the FPGAs section, arrows were initially created to describe
+parsers as a thing that&rsquo;s in-between in terms of power of <code>Applicative</code> and
+<code>Monad</code>. The intuition is that <code>Arrow</code>s represent machines / chains of computation /
+dataflow.</p>
+
+<h2 id="hyperfunctions-https-github-com-ekmett-hyperfunctions"><a href="https://github.com/ekmett/hyperfunctions">Hyperfunctions</a></h2>
+
+<p>I don&rsquo;t really understand these, but they seem to allow one to construct a
+<code>Monad</code> which provides one the ability to perform diagonalization. I&rsquo;ve
+added links to the <code>hyperfunctions</code> repo that adds the link I wanted to read.</p>
+
+<h2 id="guanxi-propogators-https-github-com-ekmett-guanxi"><a href="https://github.com/ekmett/guanxi">Guanxi / Propogators</a></h2>
+
+<p>Edward Kmett introduced me to the idea of propogators
+(<a href="http://web.mit.edu/~axch/www/art.pdf">tech report: the art of the propogator</a>),
+which is an idea I find very appealing. The general framework appears to allow
+one to mix different kinds of &ldquo;solving strategies&rdquo; (think constraint solving + ILP
++ &hellip;), into a neat framework. Edward has a bunch of stuff on how to use this
+framework effectively, but I&rsquo;m in it as a nice theory of how to write solvers.</p>
+
+<h3 id="structs-https-github-com-bollu-blog-blob-master-content-blog-reading-kmett-structs-md"><a href="https://github.com/bollu/blog/blob/master/content/blog/reading-kmett-structs.md">Structs</a></h3>
+
+<p>The <code>Guanxi</code> repo contained references to <code>structs</code>, so I wound up writing a blog
+post about it. TL;DR - it allows one to create a universe of mutability within
+GHC, and provides a nice interface to do this with template haskell.</p>
+
+<p>Click on the title for the blog post where I explore the library.</p>
+
+<h2 id="deltas-an-algebraic-theory-of-patches-wip-http-github-com-bollu-deltas"><a href="http://github.com/bollu/deltas">Deltas: An algebraic theory of patches (WIP)</a></h2>
+
+<p>I&rsquo;ve always felt that patches / patching should have an algebraic structure,
+and I&rsquo;d initially dismissed it as &ldquo;yeah, patches form a group action on files,
+that&rsquo;s trivial&rdquo;.</p>
+
+<p>I decided that I had to implement this &ldquo;trivial&rdquo; idea to be sure, and this
+led me down a rabbit hole. There&rsquo;s something really deep going on in the theory
+is my feeling, which I&rsquo;ve documented on the <code>README</code> of the package.</p>
+
+<p>The reason I want such a library is to be able to write compiler passes that
+I can cheaply &ldquo;speculate&rdquo; on and unroll. This would be really handy to have
+in LLVM, since we do a lot of things speculatively, but there&rsquo;s no nice way
+to roll back. This motivation was arrived at after long discussions with a
+friend, <a href="https://github.com/pfaffe">Philip Pfaffe</a>.</p>
+
+<p>Storing snapshots of the compiler state is <em>super</em> expensive, so we <em>need</em> some
+way to make it cheap if it&rsquo;s used at all. It would be amazing if someone could
+devise a theory that tells us how to</p>
+
+<ul>
+<li><p>Automatically derive the correct choice of a &ldquo;delta / diff / patch&rdquo; for a
+given type.</p></li>
+
+<li><p>Use the algebraic structure (ie, a group) to simplify / collapse rewrites.</p></li>
+
+<li><p>Use / exploit laziness to make sure that we don&rsquo;t pay for what we don&rsquo;t need,
+in terms of applying patches.</p></li>
+</ul>
+
+<p>The <code>deltas</code> package is a way for me to explore solutions in this
+design space.</p>
+
+<h1 id="the-philosophy-of-science">The philosophy of science</h1>
+
+<p>I&rsquo;ve always been bothered by my belief in science with no real justification
+to back it up. I decided to patch this hole, and hence went about reading
+and studying the philosophy of science. The books I read were:</p>
+
+<h2 id="proofs-and-refutations-imre-lakatos">Proofs and refutations, Imre Lakatos</h2>
+
+<p>This book is excellent &mdash; it&rsquo;s structured as a student teacher dialogue,
+as they go through building a mathematical proof, and different viewpoints
+one can have as one goes through the process of performing mathematical thinking.
+It&rsquo;s a pleasure to read, though I suspect I haven&rsquo;t really digested a lot of the
+book, it&rsquo;s one I need to re read.</p>
+
+<h2 id="the-structure-of-scientific-revolutions-thomas-kuhn">The structure of scientific revolutions, Thomas Kuhn</h2>
+
+<p>This is the book that coined the phrase <em>paradigm shift</em>.</p>
+
+<h2 id="popper-on-falsifiability">Popper on falsifiability</h2>
+
+<p>Popper was the first one to actually construct the notion of what differentiates
+science from not-science as falsifiability. There are many fanciful ways of
+summarising what falsifability is, but the nicest is to say that:</p>
+
+<blockquote>
+<p>every theory must come with a reasonable method to disprove itself</p>
+</blockquote>
+
+<p>So, for example, relativity made particular predictions about orbits
+that deviated from newton&rsquo;s laws. So, if one wanted to prove that relativity were
+<strong>false</strong>, one simply had to check that the predictions were wrong!</p>
+
+<p>Another way of looking at this is:</p>
+
+<blockquote>
+<p>A scientific theory can never be proved, it can only ever be non-disproved.</p>
+</blockquote>
+
+<p>This appeals to the [intuitionist]() in me, where <code>not(not (false)) != true</code>.</p>
+
+<h2 id="paul-feyerabend-against-method">Paul Feyerabend, against method</h2>
+
+<p>This is an amazing book with a really cool viewpoint: The book argues
+that &ldquo;the scientific method&rdquo; as is carried out in practise is an inherently
+anarchic process, which &ldquo;the scientific method on paper&rdquo; refuses to capture.</p>
+
+<p>This viewpoint is supported by providing an example of Galileo. When
+he proposed the heliocentric model, telescopes were not accurate enough
+to determine whether his theory was correct or not. Hence, it&rsquo;s a little
+weird that people shifted to heliocentrism, despite not fulfilling the criteria
+of the scientific method!</p>
+
+<p>If one buys the argument, then this leads to really interesting places &mdash; for
+example, now that we have shown that science in the real world isn&rsquo;t some
+&ldquo;special process&rdquo; that actually adheres to the supposed scientific method,
+why should we trust it? We must perhaps take science as seriously as
+we take religion!</p>
+
+<p>I don&rsquo;t buy the argument, since I value science not because scientists follow
+the method, but because scientists care about <em>explaining</em> the natural world,
+and the ability to predict and explain should be taken seriously.
+Even so, it&rsquo;s a great book to see a serious attack on the method itself.</p>
+
+<p>I&rsquo;d love more suggestions along the lines of this book &mdash; well thought out
+responses to the scientific method. (Drop me an email at <code>&lt;siddu.druid@gmail.com&gt;</code>
+if you have suggestions, please)</p>
+
+<h1 id="linguistics">Linguistics</h1>
+
+<p>I have a bunch of friends who are computational linguists, so I&rsquo;ve always
+been interested in the field. The general list of things I&rsquo;ve wanted to read
+up was on:</p>
+
+<ul>
+<li><p>Word embeddings, since they somehow seem to capture the structure of language
+&mdash; perhaps conforming the distributional hypothesis.</p></li>
+
+<li><p>Conlangs, since I find them interesting to look at from an information theory
+perspective. I&rsquo;ve heard from the linguists (I have no idea how true this is)
+that natural languages look very different from languages that a coding theorist
+would come up with to transmit information. I&rsquo;ve always wanted to understand
+why this is, and where the fundamental difference comes from.</p></li>
+</ul>
+
+<p>For this year, I read some amount of word embeddings literature, particularly,
+<code>Word2Vec</code>, <code>GLoVe</code>, and the <code>Poincare embeddings</code> paper. I found them
+fascinating, and when I find the time, I plan on experimenting with
+different spaces for word embeddings to go into.</p>
+
+<h1 id="bedtime-reading">Bedtime reading</h1>
+
+<p>I often pick up textbooks which I can skim through right before I sleep. I find
+that this is a remarkably good way to pick up a lay of the land, which is
+helpful the next time one wants to learn ideas in detail. This year, I did
+so with:</p>
+
+<h2 id="rationality-from-ai-to-zombies-https-intelligence-org-rationality-ai-zombies"><a href="https://intelligence.org/rationality-ai-zombies/">Rationality, From AI to Zombies</a></h2>
+
+<p>I was vaguely aware of Elzier Yudowsky and the surrounding rationalism
+movement, but I&rsquo;d never seriously read it.</p>
+
+<p>So, I plonked down and read through all the writings on <a href="https://www.lesswrong.com/">Lesswrong</a>,
+a blog dedicated to being &ldquo;less wrong&rdquo; when we think about things.</p>
+
+<p>I found it <em>interesting</em>, but a lot of it was just rehashing ideas that I
+had heard of, or were always around in the environment I grew up with. I
+suppose it would make a fine book for converting someone who&rsquo;s undecided
+about their positions on topics such as atheism, rationality, science, and
+whatnot, but as someone who&rsquo;s already drunk the kool-aid, I didn&rsquo;t find
+a huge amount of insight.</p>
+
+<p>Even so, it&rsquo;s a well written and thoughtful collection of blog posts,
+so I&rsquo;d recommend it to everyone.</p>
+
+<h2 id="purely-functional-data-structures-chris-okasaki-https-www-cs-cmu-edu-rwh-theses-okasaki-pdf"><a href="https://www.cs.cmu.edu/~rwh/theses/okasaki.pdf">Purely functional data structures, Chris okasaki</a></h2>
+
+<p>This is a book that describes the implementation and analysis of data structures
+for immutable languages. The short version of the story is that before this
+book, we did not know how to analyze immutable data structures, since our arguments
+for amortized analysis depend on the &ldquo;old&rdquo; version of the data no longer existing.</p>
+
+<p>To combat this, okasaki shows how one can leverage <em>laziness</em> as a tactic to
+build data structures that have good <em>amortized</em> bounds on time complexity.</p>
+
+<p>Later in the book, ideas are shown on how to convert <em>amortized</em> bounds to
+worst-case bounds.</p>
+
+<p>It&rsquo;s an amazing book, that develops the theory compactly and yet rigorously.
+I got a lot out of the book, as well as some <em>really weird</em> facts such as:</p>
+
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Skew_binary_number_system">skew binary numbers</a>, which is a number
+system where there is at most one carry on each addition. This lets us define data structures
+with <code>O(1)</code> <code>cons</code> operations, since we learn in the book how to convert number systems
+into data structures!</li>
+</ul>
+
+<h2 id="tensor-geometry-the-geometric-viewpoint-and-its-uses-https-www-springer-com-in-book-9783540520184"><a href="https://www.springer.com/in/book/9783540520184">Tensor geometry, the geometric viewpoint and its uses</a></h2>
+
+<p>This is definitely the coolest book I&rsquo;ve read all year, purely for the quotes
+at the beginning of each chapter and on the cover of the book. It lifts quotes
+from ancient texts of gods, demons, and spirituality, and somehow makes
+them fit beautifully into the context of tensor geometry. What this says
+about tensor geometry I&rsquo;m unsure, but it does reflect a deep sense of aesthetics
+of the authors that I really appreciated.</p>
+
+<p>They have a penchant for clean notation and geometric thinking, which I absolutely
+loved as I read through the book. I&rsquo;m only on something like chapter 3, but it&rsquo;s
+been gorgeous so far and I have no reason to suspect this will change.</p>
+
+<p>For example, the chapter on &ldquo;Notation&rdquo; begins with:</p>
+
+<blockquote>
+<p>Therefore is the name of it called Babel;
+because the Lord did there confound the language
+of all the earth</p>
+</blockquote>
+
+<p>The chapter on &ldquo;Affine spaces&rdquo; (which are vector spaces where one forgets
+the origin) has:</p>
+
+<blockquote>
+<p>&ldquo;Let the thought of the dharmas as all one bring you
+to the So in Itself: thus their origin is forgotten
+and nothing is left to make us pit one against another.&rdquo;
+~Seng-ts&rsquo;an</p>
+</blockquote>
+
+<p>And for one last choice, the chapter on dual spaces has:</p>
+
+<blockquote>
+<p>&ldquo;A duality of what is discriminated takes place in
+spite of the fact that object and subject cannot be defined.&rdquo;
+~ Lankavatara Sutra</p>
+</blockquote>
+
+<p>Truly a treat.</p>
+
+<h1 id="wrapping-up">Wrapping up</h1>
+
+<p>So, that&rsquo;s been my 2018 in terms of things I&rsquo;ve learnt, broadly. I&rsquo;m sure I&rsquo;ve
+left out a bunch of stuff that are odds-and-ends, but this covers most
+of what I&rsquo;ve been hacking on and thinking about.</p>
+
+<p>If you have any suggestions for things you think would be up my alley,
+please ping me at <code>&lt;siddu.druid@gmail.com&gt;</code>.</p>
+
+<p>If you liked the blog, star it!</p>
+
+<iframe src="https://ghbtns.com/github-btn.html?user=bollu&repo=blog&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+
+<iframe src="https://ghbtns.com/github-btn.html?user=bollu&repo=simplexhc&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+
+
+            </div>
+            
+            
+            
+            <br>
+            <div class="disqus">
+                <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "pixeldruid" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+            
+
+            
+
+            
+        </div>
+    </div>
+</div>
+
+
+
+<div class="footer column">
+    <div class="container">
+
+        
+
+        <div class="copyright">
+
+        
+
+        </div>
+        <div class="icons">
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="https://github.com///github.com/bollu" rel=me target="_blank">
+                <img class="icon" src="http://localhost:1313/img/github.svg" alt="github" />
+            </a>
+        
+
+        
+
+        
+            <a href="https://www.linkedin.com/in///linkedin.com/in/siddharth-bhat-388b60104/" rel=me target="_blank">
+                <img class="icon" src="http://localhost:1313/img/linkedin.svg" alt="linkedin" />
+            </a>
+        
+
+        
+
+        
+            <a href="mailto:siddu.druid@gmail.com">
+                <img class="icon" src="http://localhost:1313/img/email.svg" alt="email" />
+            </a>
+        
+
+        
+            <a href="http://localhost:1313/index.xml">
+                <img class="icon" src="http://localhost:1313/img/rss.svg" alt="rss" />
+            </a>
+        
+
+        </div>
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Raleway:400,600,700', 'Merriweather:300,300i,700,700i', 'Ubuntu+Mono:400,700']
+    }
+  });
+</script>
+
+
+
+  <script src="http://localhost:1313/js/highlight.min.js" defer></script>
+  
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/haskell.min.js" defer></script>
+  
+
+
+
+  <script src="http://localhost:1313/js/progressively.min.js" defer></script>
+
+
+
+
+
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-97068933-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+<script>
+  window.onload = function() {
+    
+      hljs.initHighlighting();
+    
+    
+      progressively.init({delay: 30, throttle: 50});
+    
+    
+  };
+</script>
+
+
+
+
+<script data-no-instant>document.write('<script src="/livereload.js?port=1313&mindelay=10"></' + 'script>')</script></body>
+</html>
+

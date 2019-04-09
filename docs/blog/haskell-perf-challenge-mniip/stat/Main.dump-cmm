@@ -1,0 +1,734 @@
+
+==================== Output Cmm ====================
+2018-10-14 00:18:47.35791836 UTC
+
+[]
+
+
+==================== Output Cmm ====================
+2018-10-14 00:18:47.358714735 UTC
+
+[section ""cstring" . $trModule4_bytes" {
+     $trModule4_bytes:
+         I8[] [109,97,105,110]
+ }]
+
+
+==================== Output Cmm ====================
+2018-10-14 00:18:47.361942746 UTC
+
+[section ""data" . $trModule3_closure" {
+     $trModule3_closure:
+         const TrNameS_con_info;
+         const $trModule4_bytes;
+ }]
+
+
+==================== Output Cmm ====================
+2018-10-14 00:18:47.363046038 UTC
+
+[section ""cstring" . $trModule2_bytes" {
+     $trModule2_bytes:
+         I8[] [77,97,105,110]
+ }]
+
+
+==================== Output Cmm ====================
+2018-10-14 00:18:47.364130638 UTC
+
+[section ""data" . $trModule1_closure" {
+     $trModule1_closure:
+         const TrNameS_con_info;
+         const $trModule2_bytes;
+ }]
+
+
+==================== Output Cmm ====================
+2018-10-14 00:18:47.365197647 UTC
+
+[section ""data" . $trModule_closure" {
+     $trModule_closure:
+         const Module_con_info;
+         const $trModule3_closure+1;
+         const $trModule1_closure+1;
+         const 3;
+ }]
+
+
+==================== Output Cmm ====================
+2018-10-14 00:18:47.38173576 UTC
+
+[section ""data" . main_$s$wsievefn_closure" {
+     main_$s$wsievefn_closure:
+         const main_$s$wsievefn_info;
+ },
+ main_$s$wsievefn_slow() //  [R1]
+         { info_tbl: []
+           stack_info: arg_space: 0 updfr_space: Nothing
+         }
+     {offset
+       c8lJ:
+           R6 = P64[Sp + 32];
+           R5 = I64[Sp + 24];
+           R4 = I64[Sp + 16];
+           R3 = I64[Sp + 8];
+           R2 = I64[Sp];
+           R1 = R1;
+           Sp = Sp + 40;
+           call main_$s$wsievefn_info(R6,
+                                      R5,
+                                      R4,
+                                      R3,
+                                      R2,
+                                      R1) args: 8, res: 0, upd: 8;
+     }
+ },
+ go_dn_s8iS_entry() //  [R1, R2]
+         { info_tbl: [(c8mW,
+                       label: go_dn_s8iS_info
+                       rep:HeapRep 1 ptrs 3 nonptrs {
+                             Fun {arity: 2 fun_type: ArgSpec 4} })]
+           stack_info: arg_space: 0 updfr_space: Nothing
+         }
+     {offset
+       c8mW:
+           _s8iT::I64 = R2;
+           _s8iS::P64 = R1;
+           goto c8mO;
+       c8mO:
+           _s8iq::P64 = P64[_s8iS::P64 + 6];
+           _s8io::I64 = I64[_s8iS::P64 + 14];
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Lt_W64(_s8iT::I64,
+                                                                              I64[_s8iS::P64 + 30])) {
+               case 1 : goto c8mV;
+               default: goto c8mU;
+           }
+       c8mV:
+           _s8jd::I64 = %MO_S_Shr_W64(_s8iT::I64, 3);
+           _s8jh::I64 = %MO_UU_Conv_W8_W64(I8[(_s8iq::P64 + 16) + (_s8io::I64 + _s8jd::I64)]);
+           _s8ji::I64 = _s8iT::I64 & 7;
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8ji::I64,
+                                                                              64)) {
+               case 1 : goto c8ns;
+               default: goto c8nr;
+           }
+       c8ns:
+           I8[(_s8iq::P64 + 16) + (_s8io::I64 + _s8jd::I64)] = %MO_UU_Conv_W64_W8(_s8jh::I64);
+           R1 = ()_closure+1;
+           call (P64[Sp])(R1) args: 8, res: 0, upd: 8;
+       c8nr:
+           I8[(_s8iq::P64 + 16) + (_s8io::I64 + _s8jd::I64)] = %MO_UU_Conv_W64_W8(_s8jh::I64 | %MO_UU_Conv_W8_W64(%MO_UU_Conv_W64_W8(1 << _s8ji::I64)));
+           R1 = ()_closure+1;
+           call (P64[Sp])(R1) args: 8, res: 0, upd: 8;
+       c8mU:
+           _s8iQ::I64 = I64[_s8iS::P64 + 22];
+           _s8iW::I64 = %MO_S_Shr_W64(_s8iT::I64, 3);
+           _s8j0::I64 = %MO_UU_Conv_W8_W64(I8[(_s8iq::P64 + 16) + (_s8io::I64 + _s8iW::I64)]);
+           _s8j1::I64 = _s8iT::I64 & 7;
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8j1::I64,
+                                                                              64)) {
+               case 1 : goto c8nd;
+               default: goto c8nc;
+           }
+       c8nd:
+           I8[(_s8iq::P64 + 16) + (_s8io::I64 + _s8iW::I64)] = %MO_UU_Conv_W64_W8(_s8j0::I64);
+           _s8iT::I64 = _s8iT::I64 + _s8iQ::I64;
+           goto c8mO;
+       c8nc:
+           I8[(_s8iq::P64 + 16) + (_s8io::I64 + _s8iW::I64)] = %MO_UU_Conv_W64_W8(_s8j0::I64 | %MO_UU_Conv_W8_W64(%MO_UU_Conv_W64_W8(1 << _s8j1::I64)));
+           _s8iT::I64 = _s8iT::I64 + _s8iQ::I64;
+           goto c8mO;
+     }
+ },
+ go_up_s8kg_entry() //  [R1, R2]
+         { info_tbl: [(c8oy,
+                       label: go_up_s8kg_info
+                       rep:HeapRep 1 ptrs 3 nonptrs {
+                             Fun {arity: 2 fun_type: ArgSpec 4} })]
+           stack_info: arg_space: 0 updfr_space: Nothing
+         }
+     {offset
+       c8oy:
+           _s8kh::I64 = R2;
+           _s8kg::P64 = R1;
+           goto c8oq;
+       c8oq:
+           _s8iq::P64 = P64[_s8kg::P64 + 6];
+           _s8io::I64 = I64[_s8kg::P64 + 14];
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Gt_W64(_s8kh::I64,
+                                                                              I64[_s8kg::P64 + 30])) {
+               case 1 : goto c8ox;
+               default: goto c8ow;
+           }
+       c8ox:
+           _s8kB::I64 = %MO_S_Shr_W64(_s8kh::I64, 3);
+           _s8kF::I64 = %MO_UU_Conv_W8_W64(I8[(_s8iq::P64 + 16) + (_s8io::I64 + _s8kB::I64)]);
+           _s8kG::I64 = _s8kh::I64 & 7;
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8kG::I64,
+                                                                              64)) {
+               case 1 : goto c8p4;
+               default: goto c8p3;
+           }
+       c8p4:
+           I8[(_s8iq::P64 + 16) + (_s8io::I64 + _s8kB::I64)] = %MO_UU_Conv_W64_W8(_s8kF::I64);
+           R1 = ()_closure+1;
+           call (P64[Sp])(R1) args: 8, res: 0, upd: 8;
+       c8p3:
+           I8[(_s8iq::P64 + 16) + (_s8io::I64 + _s8kB::I64)] = %MO_UU_Conv_W64_W8(_s8kF::I64 | %MO_UU_Conv_W8_W64(%MO_UU_Conv_W64_W8(1 << _s8kG::I64)));
+           R1 = ()_closure+1;
+           call (P64[Sp])(R1) args: 8, res: 0, upd: 8;
+       c8ow:
+           _s8ke::I64 = I64[_s8kg::P64 + 22];
+           _s8kk::I64 = %MO_S_Shr_W64(_s8kh::I64, 3);
+           _s8ko::I64 = %MO_UU_Conv_W8_W64(I8[(_s8iq::P64 + 16) + (_s8io::I64 + _s8kk::I64)]);
+           _s8kp::I64 = _s8kh::I64 & 7;
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8kp::I64,
+                                                                              64)) {
+               case 1 : goto c8oP;
+               default: goto c8oO;
+           }
+       c8oP:
+           I8[(_s8iq::P64 + 16) + (_s8io::I64 + _s8kk::I64)] = %MO_UU_Conv_W64_W8(_s8ko::I64);
+           _s8kh::I64 = _s8kh::I64 + _s8ke::I64;
+           goto c8oq;
+       c8oO:
+           I8[(_s8iq::P64 + 16) + (_s8io::I64 + _s8kk::I64)] = %MO_UU_Conv_W64_W8(_s8ko::I64 | %MO_UU_Conv_W8_W64(%MO_UU_Conv_W64_W8(1 << _s8kp::I64)));
+           _s8kh::I64 = _s8kh::I64 + _s8ke::I64;
+           goto c8oq;
+     }
+ },
+ main_$s$wsievefn_entry() //  [R2, R3, R4, R5, R6]
+         { info_tbl: [(c8pK,
+                       label: main_$s$wsievefn_info
+                       rep:HeapRep static {
+                             Fun {arity: 7 fun_type: ArgGen [True, True, True, True, False]} })]
+           stack_info: arg_space: 0 updfr_space: Nothing
+         }
+     {offset
+       c8pK:
+           if ((Sp + -48) < SpLim) (likely: False) goto u8tj; else goto u8ti;
+       u8tj:
+           I64[Sp - 40] = R2;
+           I64[Sp - 32] = R3;
+           I64[Sp - 24] = R4;
+           I64[Sp - 16] = R5;
+           P64[Sp - 8] = R6;
+           Sp = Sp - 40;
+           call _c8pL() args: 0, res: 0, upd: 0;
+       u8ti:
+           I64[Sp - 40] = R2;
+           I64[Sp - 32] = R3;
+           I64[Sp - 24] = R4;
+           I64[Sp - 16] = R5;
+           P64[Sp - 8] = R6;
+           Sp = Sp - 40;
+           call _c8lK() args: 0, res: 0, upd: 0;
+     }
+ },
+ _c8lK() //  []
+         { info_tbl: []
+           stack_info: arg_space: 0 updfr_space: Nothing
+         }
+     {offset
+       c8lK:
+           Hp = Hp + 16;
+           if (Hp > HpLim) (likely: False) goto c8pO; else goto c8pN;
+       c8pO:
+           HpAlloc = 16;
+           call _c8pL() args: 0, res: 0, upd: 0;
+       c8pN:
+           _s8im::I64 = I64[Sp];
+           _s8in::I64 = I64[Sp + 8];
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Lt_W64(_s8im::I64,
+                                                                              100000000)) {
+               case 1 : goto c8pJ;
+               default: goto c8pI;
+           }
+       c8pJ:
+           _s8io::I64 = I64[Sp + 16];
+           _s8ip::I64 = I64[Sp + 24];
+           _s8iq::P64 = P64[Sp + 32];
+           _s8ix::I64 = %MO_UU_Conv_W8_W64(I8[(_s8iq::P64 + 16) + (_s8io::I64 + %MO_S_Shr_W64(_s8im::I64,
+                                                                                              3))]);
+           _s8iy::I64 = _s8im::I64 & 7;
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8iy::I64,
+                                                                              64)) {
+               case 1 : goto c8rU;
+               default: goto c8rT;
+           }
+       c8rU:
+           Hp = Hp - 16;
+           _s8iA::I64 = 0;
+           goto s8iz;
+       c8rT:
+           Hp = Hp - 16;
+           _s8iA::I64 = 1 << _s8iy::I64;
+           goto s8iz;
+       s8iz:
+           _s8iD::I64 = _s8ix::I64 & %MO_UU_Conv_W8_W64(%MO_UU_Conv_W64_W8(_s8iA::I64));
+           switch [0 .. 18446744073709551615] _s8iD::I64 {
+               case 0 : goto u8tk;
+               default: goto c8pT;
+           }
+       u8tk:
+           I64[Sp - 8] = _s8iD::I64;
+           Sp = Sp - 8;
+           call _c8mg() args: 0, res: 0, upd: 0;
+       c8pT:
+           I64[Sp] = _s8im::I64 + 1;
+           I64[Sp + 8] = _s8in::I64;
+           I64[Sp + 16] = _s8io::I64;
+           I64[Sp + 24] = _s8ip::I64;
+           P64[Sp + 32] = _s8iq::P64;
+           call _c8lK() args: 0, res: 0, upd: 0;
+       c8pI:
+           I64[Hp - 8] = I#_con_info;
+           I64[Hp] = _s8in::I64;
+           R1 = Hp - 7;
+           Sp = Sp + 40;
+           call (P64[Sp])(R1) args: 8, res: 0, upd: 8;
+     }
+ },
+ _c8pL() //  []
+         { info_tbl: []
+           stack_info: arg_space: 0 updfr_space: Nothing
+         }
+     {offset
+       c8pL:
+           R1 = main_$s$wsievefn_closure;
+           call (stg_gc_fun)(R1) args: 48, res: 0, upd: 8;
+     }
+ },
+ _c8mg() //  []
+         { info_tbl: []
+           stack_info: arg_space: 0 updfr_space: Nothing
+         }
+     {offset
+       c8mg:
+           Hp = Hp + 40;
+           if (Hp > HpLim) (likely: False) goto c8q0; else goto c8pZ;
+       c8q0:
+           HpAlloc = 40;
+           _s8iD::I64 = I64[Sp];
+           I64[Sp] = block_c8mf_info;
+           R1 = _s8iD::I64;
+           call stg_gc_unbx_r1(R1) args: 8, res: 8, upd: 8;
+       c8pZ:
+           _s8im::I64 = I64[Sp + 8];
+           _s8in::I64 = I64[Sp + 16];
+           _s8io::I64 = I64[Sp + 24];
+           _s8ip::I64 = I64[Sp + 32];
+           _s8iq::P64 = P64[Sp + 40];
+           _s8iF::I64 = _s8im::I64 * _s8im::I64;
+           _s8iG::I64 = _s8im::I64 * _s8im::I64 + _s8im::I64;
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8iG::I64,
+                                                                              _s8iF::I64)) {
+               case 1 : goto c8rP;
+               default: goto c8qV;
+           }
+       c8rP:
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Lt_W64(99999999,
+                                                                              _s8iG::I64)) {
+               case 1 : goto c8rO;
+               default: goto c8rs;
+           }
+       c8rO:
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Lt_W64(99999999,
+                                                                              _s8iF::I64)) {
+               case 1 : goto c8rN;
+               default: goto c8rM;
+           }
+       c8rN:
+           Hp = Hp - 40;
+           I64[Sp + 8] = _s8im::I64 + 1;
+           I64[Sp + 16] = _s8in::I64 + 1;
+           I64[Sp + 24] = _s8io::I64;
+           I64[Sp + 32] = _s8ip::I64;
+           P64[Sp + 40] = _s8iq::P64;
+           Sp = Sp + 8;
+           goto u8tG;
+       c8rM:
+           _s8la::I64 = %MO_S_Shr_W64(_s8iF::I64, 3);
+           _s8le::I64 = %MO_UU_Conv_W8_W64(I8[(_s8iq::P64 + 16) + (_s8io::I64 + _s8la::I64)]);
+           _s8lf::I64 = _s8iF::I64 & 7;
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8lf::I64,
+                                                                              64)) {
+               case 1 : goto c8rK;
+               default: goto c8rJ;
+           }
+       c8rK:
+           I8[(_s8iq::P64 + 16) + (_s8io::I64 + _s8la::I64)] = %MO_UU_Conv_W64_W8(_s8le::I64);
+           Hp = Hp - 40;
+           I64[Sp + 8] = _s8im::I64 + 1;
+           I64[Sp + 16] = _s8in::I64 + 1;
+           I64[Sp + 24] = _s8io::I64;
+           I64[Sp + 32] = _s8ip::I64;
+           P64[Sp + 40] = _s8iq::P64;
+           Sp = Sp + 8;
+           goto u8tG;
+       c8rJ:
+           I8[(_s8iq::P64 + 16) + (_s8io::I64 + _s8la::I64)] = %MO_UU_Conv_W64_W8(_s8le::I64 | %MO_UU_Conv_W8_W64(%MO_UU_Conv_W64_W8(1 << _s8lf::I64)));
+           Hp = Hp - 40;
+           I64[Sp + 8] = _s8im::I64 + 1;
+           I64[Sp + 16] = _s8in::I64 + 1;
+           I64[Sp + 24] = _s8io::I64;
+           I64[Sp + 32] = _s8ip::I64;
+           P64[Sp + 40] = _s8iq::P64;
+           Sp = Sp + 8;
+           goto u8tG;
+       c8rs:
+           _s8k8::I64 = %MO_S_Shr_W64(_s8iF::I64, 3);
+           _s8kc::I64 = %MO_UU_Conv_W8_W64(I8[(_s8iq::P64 + 16) + (_s8io::I64 + _s8k8::I64)]);
+           I64[Hp - 32] = go_up_s8kg_info;
+           P64[Hp - 24] = _s8iq::P64;
+           I64[Hp - 16] = _s8io::I64;
+           _s8ke::I64 = _s8iG::I64 - _s8iF::I64;
+           I64[Hp - 8] = _s8ke::I64;
+           I64[Hp] = 99999999 - _s8ke::I64;
+           _s8kd::I64 = _s8iF::I64 & 7;
+           _c8oo::P64 = Hp - 30;
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8kd::I64,
+                                                                              64)) {
+               case 1 : goto c8ro;
+               default: goto c8rg;
+           }
+       c8ro:
+           I8[(_s8iq::P64 + 16) + (_s8io::I64 + _s8k8::I64)] = %MO_UU_Conv_W64_W8(_s8kc::I64);
+           I64[Sp] = block_c8rn_info;
+           R2 = _s8iG::I64;
+           R1 = _c8oo::P64;
+           call go_up_s8kg_info(R2, R1) args: 8, res: 8, upd: 8;
+       c8rg:
+           I8[(_s8iq::P64 + 16) + (_s8io::I64 + _s8k8::I64)] = %MO_UU_Conv_W64_W8(_s8kc::I64 | %MO_UU_Conv_W8_W64(%MO_UU_Conv_W64_W8(1 << _s8kd::I64)));
+           I64[Sp] = block_c8re_info;
+           R2 = _s8iG::I64;
+           R1 = _c8oo::P64;
+           call go_up_s8kg_info(R2, R1) args: 8, res: 8, upd: 8;
+       c8qV:
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Gt_W64(99999999,
+                                                                              _s8iG::I64)) {
+               case 1 : goto c8qT;
+               default: goto c8qx;
+           }
+       c8qT:
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Gt_W64(99999999,
+                                                                              _s8iF::I64)) {
+               case 1 : goto c8qS;
+               default: goto c8qR;
+           }
+       c8qS:
+           Hp = Hp - 40;
+           I64[Sp + 8] = _s8im::I64 + 1;
+           I64[Sp + 16] = _s8in::I64 + 1;
+           I64[Sp + 24] = _s8io::I64;
+           I64[Sp + 32] = _s8ip::I64;
+           P64[Sp + 40] = _s8iq::P64;
+           Sp = Sp + 8;
+           goto u8tG;
+       c8qR:
+           _s8jM::I64 = %MO_S_Shr_W64(_s8iF::I64, 3);
+           _s8jQ::I64 = %MO_UU_Conv_W8_W64(I8[(_s8iq::P64 + 16) + (_s8io::I64 + _s8jM::I64)]);
+           _s8jR::I64 = _s8iF::I64 & 7;
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8jR::I64,
+                                                                              64)) {
+               case 1 : goto c8qP;
+               default: goto c8qO;
+           }
+       c8qP:
+           I8[(_s8iq::P64 + 16) + (_s8io::I64 + _s8jM::I64)] = %MO_UU_Conv_W64_W8(_s8jQ::I64);
+           Hp = Hp - 40;
+           I64[Sp + 8] = _s8im::I64 + 1;
+           I64[Sp + 16] = _s8in::I64 + 1;
+           I64[Sp + 24] = _s8io::I64;
+           I64[Sp + 32] = _s8ip::I64;
+           P64[Sp + 40] = _s8iq::P64;
+           Sp = Sp + 8;
+           goto u8tG;
+       c8qO:
+           I8[(_s8iq::P64 + 16) + (_s8io::I64 + _s8jM::I64)] = %MO_UU_Conv_W64_W8(_s8jQ::I64 | %MO_UU_Conv_W8_W64(%MO_UU_Conv_W64_W8(1 << _s8jR::I64)));
+           Hp = Hp - 40;
+           I64[Sp + 8] = _s8im::I64 + 1;
+           I64[Sp + 16] = _s8in::I64 + 1;
+           I64[Sp + 24] = _s8io::I64;
+           I64[Sp + 32] = _s8ip::I64;
+           P64[Sp + 40] = _s8iq::P64;
+           Sp = Sp + 8;
+           goto u8tG;
+       u8tG:
+           call _c8lK() args: 0, res: 0, upd: 0;
+       c8qx:
+           _s8iK::I64 = %MO_S_Shr_W64(_s8iF::I64, 3);
+           _s8iO::I64 = %MO_UU_Conv_W8_W64(I8[(_s8iq::P64 + 16) + (_s8io::I64 + _s8iK::I64)]);
+           I64[Hp - 32] = go_dn_s8iS_info;
+           P64[Hp - 24] = _s8iq::P64;
+           I64[Hp - 16] = _s8io::I64;
+           _s8iQ::I64 = _s8iG::I64 - _s8iF::I64;
+           I64[Hp - 8] = _s8iQ::I64;
+           I64[Hp] = 99999999 - _s8iQ::I64;
+           _s8iP::I64 = _s8iF::I64 & 7;
+           _c8mM::P64 = Hp - 30;
+           switch [-9223372036854775808 .. 9223372036854775807] (%MO_S_Ge_W64(_s8iP::I64,
+                                                                              64)) {
+               case 1 : goto c8qt;
+               default: goto c8ql;
+           }
+       c8qt:
+           I8[(_s8iq::P64 + 16) + (_s8io::I64 + _s8iK::I64)] = %MO_UU_Conv_W64_W8(_s8iO::I64);
+           I64[Sp] = block_c8qs_info;
+           R2 = _s8iG::I64;
+           R1 = _c8mM::P64;
+           call go_dn_s8iS_info(R2, R1) args: 8, res: 8, upd: 8;
+       c8ql:
+           I8[(_s8iq::P64 + 16) + (_s8io::I64 + _s8iK::I64)] = %MO_UU_Conv_W64_W8(_s8iO::I64 | %MO_UU_Conv_W8_W64(%MO_UU_Conv_W64_W8(1 << _s8iP::I64)));
+           I64[Sp] = block_c8qj_info;
+           R2 = _s8iG::I64;
+           R1 = _c8mM::P64;
+           call go_dn_s8iS_info(R2, R1) args: 8, res: 8, upd: 8;
+     }
+ },
+ _c8mf() //  [R1]
+         { info_tbl: [(c8mf,
+                       label: block_c8mf_info
+                       rep:StackRep [True, True, True, True, False])]
+           stack_info: arg_space: 0 updfr_space: Nothing
+         }
+     {offset
+       c8mf:
+           I64[Sp] = R1;
+           call _c8mg() args: 0, res: 0, upd: 0;
+     }
+ },
+ _c8rn() //  []
+         { info_tbl: [(c8rn,
+                       label: block_c8rn_info
+                       rep:StackRep [True, True, True, True, False])]
+           stack_info: arg_space: 0 updfr_space: Nothing
+         }
+     {offset
+       c8rn:
+           I64[Sp + 8] = I64[Sp + 8] + 1;
+           I64[Sp + 16] = I64[Sp + 16] + 1;
+           I64[Sp + 24] = I64[Sp + 24];
+           I64[Sp + 32] = I64[Sp + 32];
+           P64[Sp + 40] = P64[Sp + 40];
+           Sp = Sp + 8;
+           call _c8lK() args: 0, res: 0, upd: 0;
+     }
+ },
+ _c8re() //  []
+         { info_tbl: [(c8re,
+                       label: block_c8re_info
+                       rep:StackRep [True, True, True, True, False])]
+           stack_info: arg_space: 0 updfr_space: Nothing
+         }
+     {offset
+       c8re:
+           I64[Sp + 8] = I64[Sp + 8] + 1;
+           I64[Sp + 16] = I64[Sp + 16] + 1;
+           I64[Sp + 24] = I64[Sp + 24];
+           I64[Sp + 32] = I64[Sp + 32];
+           P64[Sp + 40] = P64[Sp + 40];
+           Sp = Sp + 8;
+           call _c8lK() args: 0, res: 0, upd: 0;
+     }
+ },
+ _c8qs() //  []
+         { info_tbl: [(c8qs,
+                       label: block_c8qs_info
+                       rep:StackRep [True, True, True, True, False])]
+           stack_info: arg_space: 0 updfr_space: Nothing
+         }
+     {offset
+       c8qs:
+           I64[Sp + 8] = I64[Sp + 8] + 1;
+           I64[Sp + 16] = I64[Sp + 16] + 1;
+           I64[Sp + 24] = I64[Sp + 24];
+           I64[Sp + 32] = I64[Sp + 32];
+           P64[Sp + 40] = P64[Sp + 40];
+           Sp = Sp + 8;
+           call _c8lK() args: 0, res: 0, upd: 0;
+     }
+ },
+ _c8qj() //  []
+         { info_tbl: [(c8qj,
+                       label: block_c8qj_info
+                       rep:StackRep [True, True, True, True, False])]
+           stack_info: arg_space: 0 updfr_space: Nothing
+         }
+     {offset
+       c8qj:
+           I64[Sp + 8] = I64[Sp + 8] + 1;
+           I64[Sp + 16] = I64[Sp + 16] + 1;
+           I64[Sp + 24] = I64[Sp + 24];
+           I64[Sp + 32] = I64[Sp + 32];
+           P64[Sp + 40] = P64[Sp + 40];
+           Sp = Sp + 8;
+           call _c8lK() args: 0, res: 0, upd: 0;
+     }
+ }]
+
+
+==================== Output Cmm ====================
+2018-10-14 00:18:47.497404572 UTC
+
+[section ""data" . main1_closure" {
+     main1_closure:
+         const main1_info;
+         const 0;
+ },
+ sat_s8lH_entry() //  [R1]
+         { info_tbl: [(c8L4,
+                       label: sat_s8lH_info
+                       rep:HeapRep 1 ptrs { Thunk })]
+           stack_info: arg_space: 0 updfr_space: Nothing
+         }
+     {offset
+       c8L4:
+           R2 = P64[R1 + 16];
+           call $fShowInt_$cshow_info(R2) args: 8, res: 0, upd: 8;
+     }
+ },
+ main1_entry() //  []
+         { info_tbl: [(c8L7,
+                       label: main1_info
+                       rep:HeapRep static { Fun {arity: 1 fun_type: ArgSpec 3} })]
+           stack_info: arg_space: 0 updfr_space: Nothing
+         }
+     {offset
+       c8L7:
+           if ((Sp + -8) < SpLim) (likely: False) goto c8L8; else goto c8L9;
+       c8L8:
+           R1 = main1_closure;
+           call (stg_gc_fun)(R1) args: 8, res: 0, upd: 8;
+       c8L9:
+           I64[Sp - 8] = block_c8KR_info;
+           R1 = 12500000;
+           Sp = Sp - 8;
+           call stg_newByteArray#(R1) args: 8, res: 8, upd: 8;
+     }
+ },
+ _c8KR() //  [R1]
+         { info_tbl: [(c8KR,
+                       label: block_c8KR_info
+                       rep:StackRep [])]
+           stack_info: arg_space: 0 updfr_space: Nothing
+         }
+     {offset
+       c8KR:
+           call "ccall" arg hints:  [PtrHint, ‘signed’,
+                                     ,]  result hints:  [] hsprimitive_memset_Word8(R1 + 16, 0, 12500000, 0);
+           I64[Sp] = block_c8KY_info;
+           R6 = R1;
+           R5 = 12500000;
+           R4 = 0;
+           R3 = 0;
+           R2 = 2;
+           call main_$s$wsievefn_info(R6,
+                                      R5,
+                                      R4,
+                                      R3,
+                                      R2) args: 8, res: 8, upd: 8;
+     }
+ },
+ _c8KY() //  [R1]
+         { info_tbl: [(c8KY,
+                       label: block_c8KY_info
+                       rep:StackRep [])]
+           stack_info: arg_space: 0 updfr_space: Nothing
+         }
+     {offset
+       c8KY:
+           Hp = Hp + 24;
+           if (Hp > HpLim) (likely: False) goto c8Ld; else goto c8Lc;
+       c8Ld:
+           HpAlloc = 24;
+           R1 = R1;
+           call stg_gc_unpt_r1(R1) args: 8, res: 8, upd: 8;
+       c8Lc:
+           I64[Hp - 16] = sat_s8lH_info;
+           P64[Hp] = R1;
+           R4 = True_closure+2;
+           R3 = Hp - 16;
+           R2 = stdout_closure;
+           Sp = Sp + 8;
+           call hPutStr2_info(R4, R3, R2) args: 8, res: 0, upd: 8;
+     }
+ }]
+
+
+==================== Output Cmm ====================
+2018-10-14 00:18:47.516986912 UTC
+
+[section ""data" . main_closure" {
+     main_closure:
+         const main_info;
+         const 0;
+ },
+ main_entry() //  []
+         { info_tbl: [(c8Mz,
+                       label: main_info
+                       rep:HeapRep static { Fun {arity: 1 fun_type: ArgSpec 3} })]
+           stack_info: arg_space: 0 updfr_space: Nothing
+         }
+     {offset
+       c8Mz:
+           call main1_info() args: 8, res: 0, upd: 8;
+     }
+ }]
+
+
+==================== Output Cmm ====================
+2018-10-14 00:18:47.521153957 UTC
+
+[section ""data" . main2_closure" {
+     main2_closure:
+         const main2_info;
+         const 0;
+ },
+ main2_entry() //  []
+         { info_tbl: [(c8MH,
+                       label: main2_info
+                       rep:HeapRep static { Fun {arity: 1 fun_type: ArgSpec 3} })]
+           stack_info: arg_space: 0 updfr_space: Nothing
+         }
+     {offset
+       c8MH:
+           R2 = main1_closure+1;
+           call runMainIO1_info(R2) args: 8, res: 0, upd: 8;
+     }
+ }]
+
+
+==================== Output Cmm ====================
+2018-10-14 00:18:47.524960086 UTC
+
+[section ""data" . main_closure" {
+     main_closure:
+         const main_info;
+         const 0;
+ },
+ main_entry() //  []
+         { info_tbl: [(c8MS,
+                       label: main_info
+                       rep:HeapRep static { Fun {arity: 1 fun_type: ArgSpec 3} })]
+           stack_info: arg_space: 0 updfr_space: Nothing
+         }
+     {offset
+       c8MS:
+           call main2_info() args: 8, res: 0, upd: 8;
+     }
+ }]
+
+
+==================== Output Cmm ====================
+2018-10-14 00:18:47.528696166 UTC
+
+[section ""relreadonly" . S8Le_srt" {
+     S8Le_srt:
+         const stdout_closure;
+         const hPutStr2_closure;
+         const main1_closure;
+         const runMainIO1_closure;
+         const main2_closure;
+ }]
+

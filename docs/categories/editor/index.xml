@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Editor on A weblog of sorts</title>
+    <link>http://localhost:1313/categories/editor/</link>
+    <description>Recent content in Editor on A weblog of sorts</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 16 Jul 2015 04:37:42 +0530</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/categories/editor/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Websites, Editors, Religion</title>
+      <link>http://localhost:1313/blog/websites-editors-religion/</link>
+      <pubDate>Thu, 16 Jul 2015 04:37:42 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/websites-editors-religion/</guid>
+      <description>First thing&amp;rsquo;s first - I moved this from bollu.github.io to pixel-druid.com. I&amp;rsquo;ve had this domain for around a year now, but I never got around to do anything with it. The excuse that I was using was that &amp;ldquo;there is no space on my EC2 instance&amp;rdquo;, which makes no real sense when you think about it, since it was a fresh off-the-shelf Ubuntu install. It turns out that nginx wrote out an error log file into /etc/nginx/error.</description>
+    </item>
+    
+  </channel>
+</rss>

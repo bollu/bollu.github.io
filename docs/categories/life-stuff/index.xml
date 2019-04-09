@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Life Stuff on A weblog of sorts</title>
+    <link>http://localhost:1313/categories/life-stuff/</link>
+    <description>Recent content in Life Stuff on A weblog of sorts</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 09 Sep 2015 19:44:26 +0530</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/categories/life-stuff/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Freelancing - What have I gotten myself into?</title>
+      <link>http://localhost:1313/blog/freelancing---what-have-i-gotten-myself-into/</link>
+      <pubDate>Wed, 09 Sep 2015 19:44:26 +0530</pubDate>
+      
+      <guid>http://localhost:1313/blog/freelancing---what-have-i-gotten-myself-into/</guid>
+      <description>I&amp;rsquo;ve been studying for my exams pretty heavily over the past few days. So, I decided to take a break to do something completely different - I&amp;rsquo;ve wanted to freelance for a while, since it seemed like a really nice way to learn new things (and solve real-world problems), while sipping coffee at home in your pyjamas.
+With this sufficiently rose-tinted picture in mind, I began scouting for websites. After all, how hard can it be to create a profile and get started?</description>
+    </item>
+    
+  </channel>
+</rss>
