@@ -1,5 +1,4 @@
-# pixeldruid
-Contents of [pixel-druid.com](http://pixel-druid.com/)
+Contents of [pixel-druid.com](http://pixel-druid.com/), mirrored at [bollu.github.io](http://bollu.github.io/)
 
 
 The idea is for the website to contain blog posts, along with visualizations of
