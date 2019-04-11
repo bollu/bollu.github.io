@@ -33,7 +33,7 @@ of the solution, since it takes `2^n` basis vectors for `n` qubits.
 
 However, the usual recursion based solution works:
 ```lang=csharp
-function switchEndian(xs: Qubit[]): Unit {
+function switchEndian(xs: Qubit[]): Qubit[] {
     if(Length(xs) == 1) {
         return xs;
     } else {
