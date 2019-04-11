@@ -56,12 +56,15 @@ Core building blog of effecively using the ellipsoid algorithm.
 - If we posess a way to check if a point `p ∈ P` where `P` is a polytope, we
   can use this to solve optimisation problems.
 - Given the optimisation problem maximise `c^Tx` subject to `Ax = b`, we can
-  construct a new problem.
+  construct a new _non-emptiness_ problem. This allows us to convert optimisation
+  into _feasibility_.
 - The new problem is `Ax = b, A^Ty = c, c^Tx = b^T y`. Note that by duality,
-  a _feasible_ solution to this program will form an _optimal_ solution. We
-  are forcing `c^Tx = b^Ty`, which will be the optimal solution, since the
+  a point in this new polyhedra will _be an optimal solution to the above linear program_.
+  We are forcing `c^Tx = b^Ty`, which will be the optimal solution, since the
   solution where the primal and dual agree is the optimal solution by strong
   duality.
+- This way, we have converted a _linear programming_ problem into a 
+  _check if this polytope is empty_ problem!
 
 ## Quantum computation without complex numbers
 I recently learnt that the Toeffili and Hadamard gates are universal for
