@@ -8,6 +8,48 @@ The former has been semi-forced thanks to GSoC, as for the latter, it remains
 to be seen. I'm hopeful, though :)
 
 # Ideas I stumble onto
+## How does one work with arrays in a linear language?
+
+Given an array of qubits `xs: Qubit[]`, I want to switch to little endian.
+Due to no-cloning, I can't copy them! I suppose I can use recursion to build
+up a new "list". But this is not the efficient array version we know and love
+and want. 
+
+The code that I want to work but does not:
+```lang=csharp
+function switchEndian(xs: Qubit[]): Unit {
+    for(i in 0..Length(xs) - 1) {
+        Qubit q = xs[i]; // boom, this does not work!
+        xs[i] = xs[Length(xs) - 1 - i]
+        xs[Length(xs) - 1 - i] = q;
+    }
+}
+```
+
+On the other hand, what _does work_ is to setup a quantum circuit that
+performs this flipping, since it's a permutation matrix at the end of
+the day. But this is very slow, since it needs to simulate the "quantumness"
+of the solution, since it takes `2^n` basis vectors for `n` qubits. 
+
+However, the usual recursion based solution works:
+```lang=csharp
+function switchEndian(xs: Qubit[]): Unit {
+    if(Length(xs) == 1) {
+        return xs;
+    } else {
+        switchEndian(xs[1..(Length(xs) - 1)] + xs[0]
+    }
+}
+```
+
+This is of course, suboptimal.
+
+I find it interesting that in the linear types world, often the "pure" solution
+is _forced_ since mutation very often involves temporaries / copying!
+
+(I'm solving assignments in [qsharp](https://docs.microsoft.com/en-us/quantum/)
+for my course in college)
+
 ## How Linear optimisation is the same as Linear feasibility checking
 Core building blog of effecively using the ellipsoid algorithm.
 
