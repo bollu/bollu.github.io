@@ -16,7 +16,7 @@ up a new "list". But this is not the efficient array version we know and love
 and want. 
 
 The code that I want to work but does not:
-```lang=csharp
+```csharp
 function switchEndian(xs: Qubit[]): Unit {
     for(i in 0..Length(xs) - 1) {
         Qubit q = xs[i]; // boom, this does not work!
@@ -32,7 +32,7 @@ the day. But this is very slow, since it needs to simulate the "quantumness"
 of the solution, since it takes `2^n` basis vectors for `n` qubits. 
 
 However, the usual recursion based solution works:
-```lang=csharp
+```csharp
 function switchEndian(xs: Qubit[]): Qubit[] {
     if(Length(xs) == 1) {
         return xs;
