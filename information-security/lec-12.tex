@@ -21,19 +21,19 @@ $f(x) \rightarrow x$ is easy.
 
 \section{Construction of the scheme}
 
-$f: [1, n] -> [1, n]$ is a trapdoor one-way *permutation* (unique decryption).
+$f: [1, n] \to [1, n]$ is a trapdoor one-way \emph{permutation} (unique decryption).
 
 \begin{itemize}
-\item 1. $B$ chooses $n$ bits at random - $r_1 r_2 \cdots r_n$.
-\item 2. $B$ applies $f$ only at $r_i$ to obtain $Z = r_1 r_2 \cdots r_{i -1} f(r_i) r_{i + 1} \cdots r_n$.
+\item 1. $B$ chooses $n$ bits at random - $\langle r_1 r_2 \cdots r_n \rangle$.
+\item 2. $B$ applies $f$ only at $r_i$ to obtain $Z = \langle r_1 r_2 \cdots r_{i -1} f(r_i) r_{i + 1} \cdots r_n \rangle$.
   $f$ may not be applicable to single bits. In this case, we can use the hadcore predicate and $XOR$ $r_i$ with the
   hardcore predicate.
 \item 3. $B$ sends $Z$ to $A$.
-\item 4. $A$ decrypts (find inverse) of $Z$ and obtains $Y = f^{-1}(r_1), f^{-1}(r_2), \cdots r_i, f^{-1}(r_{i + 1}), f^{-1}(r_n)$
-\item 5. Let array be $Arr = b_0 b_1 \cdots b_n$.
-\item 6. Perform $Arr XOR Y = b_0 XOR f^{-1}r_1, \cdots , b_{i} XOR r_i, \cdots b_n XOR f^{-1}(r_n)$.
-\item 7. A sends $Arr XOR Y$ to $B$.
-\item 8. $B$ obtain $b_i = (Arr XOR Y)[i] XOR r_i = (b_{i} XOR r_i) XOR r_i = b_i$.
+\item 4. $A$ decrypts (find inverse) of $Z$ and obtains $Y = \langle f^{-1}(r_1), f^{-1}(r_2), \cdots r_i, f^{-1}(r_{i + 1}), f^{-1}(r_n) \rangle$
+\item 5. Let array be $Arr = \langle b_0 b_1 \cdots b_n \rangle$.
+\item 6. Perform $Arr \oplus Y = b_0 \oplus f^{-1}r_1, \cdots , b_{i} \oplus r_i, \cdots b_n \oplus f^{-1}(r_n)$.
+\item 7. A sends $Arr \oplus Y$ to $B$.
+\item 8. $B$ obtains $b_i = (Arr \oplus Y)[i] \oplus r_i = (b_{i} \oplus r_i) \oplus r_i = b_i$.
 \end{itemize}
 
 Note that $B$ cannot see $b_j$ where $j \neq i$, since in some sense, we have ``encoded'' the $b_j$ with  $f^{-1}$.
