@@ -8,6 +8,13 @@ The former has been semi-forced thanks to GSoC, as for the latter, it remains
 to be seen. I'm hopeful, though :)
 
 # Ideas I stumble onto
+## Arthur Whitney: dense code
+- Guy who wrote a bunch of APL dialects, write code in an eclectic style
+  that has very little whitespace and single letter variable names.
+- Believes that this allows him to hold the entire program in his head.
+- Seems legit from my limited experience with APL, haskell one-liners.
+- [The b programming language](http://kparc.com/b/readme.txt). It's quite 
+  awesome to read the sources. For example, [`a.c`](http://kparc.com/b/a.c)
 ## How does one work with arrays in a linear language?
 
 Given an array of qubits `xs: Qubit[]`, I want to switch to little endian.
