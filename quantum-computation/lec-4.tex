@@ -46,6 +46,7 @@ into two separate pieces of data.
 Book recommendation: Elements of Information theory --- JJ Thomas and Thomas Cover.
 
 \section{What is information}
+\paragraph{Entropy}
 Blah blah blah, define surprisal of a probability 
 \begin{align*}
     I: [0, 1] \rightarrow \R \quad
@@ -57,9 +58,49 @@ Now, entropy of a random variable $X$ is:
     \H(X) \equiv \sum_{x \in X} p(x) I\l(p(x)\r)
 \end{align*}
 
-Conditional entropy:
+\paragraph{Conditional entropy}
 \begin{align*}
     &\H : \text{Random variable} \times \text{Random variable} \rightarrow \R \quad
     \H(Y|X) \equiv \sum_{x \in X} p(x) H(Y|X=x) \\
-    &\H(X, Y) = \H(X) + \H(Y|X) 
 \end{align*}
+
+It can be shown that
+    $\H(X, Y) = \H(X) + \H(Y|X)$
+\paragraph{Mutual information}
+\begin{align*}
+    I(X; Y) &\equiv H(X) - H(X|Y) \\
+            &= H(X) - [H(X, Y) - H(Y)] \\
+            &= H(X) + H(Y) - H(X, Y) 
+\end{align*}
+It is a measure of the reduction of uncertainty in $X$ upon knowing $Y$.
+
+\paragraph{Relative entropy / K-L divergence}
+Suppose there are two probability distributions $P(x)$ and $Q(x)$. The
+relative entropy is:
+
+\begin{align*}
+    H \l(p(x) || q(x) \r) \equiv \sum_{x \in X} p(x) \log \frac{p(x)}{q(x)}
+\end{align*}
+
+\begin{theorem}
+    K-L divergence is always positive. That is, $H(p(x) || q(x)) \geq 0$,
+    with $H(p(x) || q(x)) = 0 \iff p(x) = q(x)$
+\end{theorem}
+\begin{proof}
+    \begin{align*}
+        H(p(x) || q(x)) 
+        &= \sum_{x \in X} p(x) \log \l( \frac{p(x)}{q(x)} \r) \\
+        &= - \sum_{x \in X} p(x) \log \l( \frac{q(x)}{p(x)} \r) \\
+\end{align*}
+
+We know that $\log x \leq \frac{x - 1}{\ln 2}$.
+Hence, $-\log x \geq \frac{1 - x}{\ln 2}$.
+
+\begin{align*}
+        H(p(x) || q(x)) 
+        &= - \sum_{x \in X} p(x) \log \l( \frac{q(x)}{p(x)} \r) \\
+        &\geq \frac{1}{\ln 2} \sum_{x \in X} p(x) \l( 1 - \frac{q(x)}{p(x)} \r) \\
+        &\geq \frac{1}{\ln 2} \sum_{x \in X}\l(p(x) - q(x) \r) \\
+        &\geq \frac{1}{\ln 2} (1 - 1) = 0 \\
+\end{align*}
+\end{proof}
