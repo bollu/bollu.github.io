@@ -8,6 +8,20 @@ The former has been semi-forced thanks to GSoC, as for the latter, it remains
 to be seen. I'm hopeful, though :)
 
 # Ideas I stumble onto
+## Japanese Financial Counting system
+- [Wikipedia](https://en.wikipedia.org/wiki/Japanese_numerals#Formal_numbers)
+
+Japanese contains a seaparate kanji set called `daiji`, to prevent people
+from adding strokes to stuff previously written.
+
+```
+#  |Common |Formal
+1  |一     |壱
+2  |二     |弐
+3  |三     |参
+```
+
+
 ## Stephen wolfram's live stream
 - [Twitch.tv link](https://www.twitch.tv/videos/408653972)
 
