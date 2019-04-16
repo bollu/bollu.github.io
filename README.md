@@ -8,6 +8,12 @@ The former has been semi-forced thanks to GSoC, as for the latter, it remains
 to be seen. I'm hopeful, though :)
 
 # Ideas I stumble onto
+## McCune's single axiom for group theory
+[Single Axioms for Groups and Abelian Groups with Various
+Operations](http://ftp.mcs.anl.gov/pub/tech_reports/reports/P270.pdf)
+provides a single axiom for groups. This can be useful for some ideas I have
+for training groups, where we can use this axiom as the loss function!
+
 ## `Word2Vec` C code implements gradient descent really weirdly
 I'll be posting snippets of the original source code, along with a 
 link to the Github sources. We are interested in exploring the skip-gram
@@ -142,7 +148,6 @@ which was not mentioned in any tutorial I've read.
 The paper does not mentioned these implementation details, and neither
 does _any blog post that I've read_. I don't understand what's going on,
 and I plan on updating this section when I understand this better.
-
 
 
 ## Arthur Whitney: dense code
