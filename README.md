@@ -8,6 +8,23 @@ The former has been semi-forced thanks to GSoC, as for the latter, it remains
 to be seen. I'm hopeful, though :)
 
 # Ideas I stumble onto
+## Stephen wolfram's live stream
+- [Twitch.tv link](https://www.twitch.tv/videos/408653972)
+
+
+I've taken to watching the live stream when I have some downtime and want
+some interesting content. 
+
+The discussions of Wolfram with his group are great, and they bring up
+_really_ interesting ideas (like that of cleave being very irregular).
+
+## `Cleave` as a word has some of the most irregular inflections
+- cleave
+- clove
+- cleaved
+- clave
+- cleft
+
 ## McCune's single axiom for group theory
 [Single Axioms for Groups and Abelian Groups with Various
 Operations](http://ftp.mcs.anl.gov/pub/tech_reports/reports/P270.pdf)
