@@ -1,40 +1,5 @@
-\documentclass[11pt]{article}
-%\documentclass[10pt]{llncs}
-%\usepackage{llncsdoc}
-\usepackage{amsmath}
-\usepackage{graphicx}
-\usepackage{makeidx}
-\usepackage{algpseudocode}
-\usepackage{algorithm}
-\evensidemargin=0.20in
-\oddsidemargin=0.20in
-\topmargin=0.2in
-%\headheight=0.0in
-%\headsep=0.0in
-%\setlength{\parskip}{0mm}     
-%\setlength{\parindent}{4mm}
-\setlength{\textwidth}{6.4in}
-\setlength{\textheight}{8.5in}
-%\leftmargin -2in
-%\setlength{\rightmargin}{-2in}
-%\usepackage{epsf}
-%\usepackage{url}
-\usepackage{epsfig}
-\usepackage{tabularx}
-\usepackage{latexsym}
-\newtheorem{lemma}{Lemma}
-\newtheorem{observation}{Observation}
-\newtheorem{proof}{Proof}
-\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
 
-\def\qed{$\Box$}
-\def\proof{\textit{Proof. }}
-\newtheorem{corollary}{Corollary}
-\newtheorem{theorem}{Theorem}
-
-\begin{document}
-
-\section{Cryptography from channel noise, without 1-way functions}
+\chapter{Cryptography from channel noise, without 1-way functions}
 
 \subsection{Introduction Kannan philosophy}
 If the insecure channel connecting $A$ and $B$ is noisy, we can have secure communication.
@@ -153,4 +118,3 @@ Certain obvious directions of extension are to consider larger window sizes than
 We could also try to perform this over $GF_{p^n}$ rather than $GF_{2}$. In this case, each element of the field itself takes up $\log p^n$ space, and therefore local spikes in noise would need to be much stronger to disrupt the protocol. \\
 
 Lastly, we would like to axiomatise precisely what sources of unpredictability can be used with this algorithm.
-\end{document}

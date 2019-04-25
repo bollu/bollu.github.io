@@ -181,7 +181,29 @@ polynomials are a subset of all polynomials (Sid question: what's the size of th
 
 
 Now, can we somehow ``linearize'' $P_{x * y}$ such that the  constant term remains the same,
-and it is uniformly chosen across polynomials of degree t? (chosen over: $FF[x] / x^{t+1}$).
+and it is uniformly chosen across polynomials of degree t? (chosen over: $FF[x] / \langle x^{t+1} \rangle$).
+
+% \subsubsubsection{Rabin's magic}
+Suppose we have $p(x) \equiv \sum_{i=0}^t c_i x^i$. To evaluate at some point $a$,
+we can evaluate the dot product:
+
+\begin{align*}
+    [1 a a^2 \dots a^t] \cdot [c_0 c_1 c_2 \dots c_t]^T = c_0 + a c_1 + a^2 c_2 + \dots c_t a^t
+\end{align*}
+
+In general, to evaluate at points $a_0, a_1, \dots a_n$, we can perform a matrix vector product:
+\begin{align*}
+    \begin{bmatrix}
+        1 & a_0 & a_0^2 & \dots & a_0^t \\
+        1 & a_1 & a_1^2 & \dots & a_1^t \\
+        \vdots & \vdots & \vdots & \ddots \\
+        1 & a_n & a_n^2 & \dots & a_n^t \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        c_0 \\ c_1 \\ \vdots \\ c_t
+    \end{bmatrix}
+    = \begin{bmatrix} p(a_0) \\ p(a_1) \\ \vdots \\ p(a_n) \end{bmatrix}
+\end{align*}
 
 
 NOTE: I do not understand this final part properly!
