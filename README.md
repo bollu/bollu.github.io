@@ -8,6 +8,112 @@ The former has been semi-forced thanks to GSoC, as for the latter, it remains
 to be seen. I'm hopeful, though :)
 
 # Ideas I stumble onto
+
+## Presburger arithmetic can represent the Collatz Conjecture
+
+An observation I had: the function
+
+```
+f(x) = x/2      if (x % 2 == 0)
+f(x) = 3x + 1   otherwise
+```
+
+is a Presburger function, so by building better approximations to the
+transitive closure of a presburger function, one could get better answers
+to the Collatz conjecture. Unfortunately, ISL (the integer set library) of today
+is not great against the formidable foe.
+
+The code:
+
+```cpp
+#include <isl/set.h>
+#include <isl/version.h>
+#include <isl/map.h>
+#include <isl/aff.h>
+#include <isl/local_space.h>
+#include <isl/constraint.h>
+#include <isl/space.h>
+
+int main() {
+    isl_ctx *ctx = isl_ctx_alloc();
+    const char *s = "{ [x] -> [x / 2] : x % 2 = 0; [x] -> [3 * x + 1] : x % 2 = 1}";
+
+    isl_map *m = isl_map_read_from_str(ctx, s);
+
+    isl_map_dump(m);
+
+    isl_bool b;
+    isl_map *p = isl_map_transitive_closure(m, &b);
+    printf("exact: %d\n", b);
+    printf("map:\n");
+    isl_map_dump(p);
+
+}
+```
+
+Produces the somewhat disappointing, and yet expected output:
+
+```
+$ clang bug.c -lisl -Lisl-0.20/.libs -o bug -I/usr/local/include/
+$ ./bug
+{ [x] -> [o0] : 2o0 = x or (exists (e0 = floor((1 + x)/2): o0 = 1 + 3x and 2e0 = 1 + x)) }
+exact: 0
+map:
+{ [x] -> [o0] }
+```
+
+I find it odd that it is unable to prove _anything_ about the image, even that
+it is non-negative, for example. This is an interesting direction in which
+to improve the functions `isl_map_power` and `isl_map_transitive_closure`
+though.
+
+
+## Using compactness to argue about the cover in an argument
+
+I've always seen compactness be used by _starting_ with a possibly infinite
+coverm and then _filtering it_ into a finite subcover. This finite
+subcover is then used for finiteness properties (like summing, min, max, etc.).
+
+I recently ran across a use of compactness when one _starts_ with the set
+of _all possible subcovers_, and then argues about why a cover cannot be built
+from these subcovers if the set is compact. I found it to be a very cool
+use of compactness, which I'll record below:
+
+<TODO>
+
+
+##### Theorem: 
+
+If a family of compact, countably infinite sets `S_a` have all 
+_finite intersections_ non-empty, then the intersection of the family `S_a`
+is non-empty.
+
+##### Proof:
+
+Let `S = intersection of S_a`. We know that `S` must be compact since
+all the `S_a` are compact, and the intersection of a countably infinite
+number of compact sets is compact.
+
+Now, let `S` be empty. Therefore, this means there must be a point `p ∈ P`
+such that `p !∈ S_i` for some arbitrary `i`.
+
+##### Cool use of theorem:
+
+We can see that the cantor set is non-empty, since it contains a family
+of closed and bounded sets `S1, S2, S3, ...` such that  `S1 ⊇ S2 ⊇ S3 ...`
+where each `S_i` is one step of the cantor-ification. We can now see
+that the cantor set is non-empty, since:
+
+1. Each finite interesection is non-empty, and will be equal to the set that
+   has the highest index in the finite intersection.
+
+2. Each of the sets `Si` are compact since they are closed and bounded subsets of `R`
+
+3. Invoke theorem.
+
+
+
+
 ## Japanese Financial Counting system
 - [Wikipedia](https://en.wikipedia.org/wiki/Japanese_numerals#Formal_numbers)
 
