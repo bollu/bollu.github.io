@@ -9,6 +9,20 @@ to be seen. I'm hopeful, though :)
 
 # Ideas I stumble onto
 
+## Lazy programs have space leaks, Strict programs have time leaks
+Stumbled across this idea while reading some posts on a private discourse.
+- Continually adding new thunks without forcing them can lead to a space leak,
+  aka the dreaded monadic parsing backtracking problem.
+
+- Continually _running_ new thunks can lead to a "time leak", where we spend
+  far too much time running things that should not be run in the first place!
+
+This is an interesting perspective that I've never seen articulated before, and
+somehow helps make space leaks feel more... palatable? Before, I had no
+analogue to a space leak in the strict world, so I saw them as a pathology. But
+with this new perspective, I can see that the strict world's version of a space
+leak is a time leak.
+
 ## Presburger arithmetic can represent the Collatz Conjecture
 
 An observation I had: the function
