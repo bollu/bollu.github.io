@@ -9,6 +9,54 @@ to be seen. I'm hopeful, though :)
 
 # Ideas I stumble onto
 
+# Handy list of differential geometry definitions
+
+There are way too many objects in diffgeo, all of them subtly connected.
+Here I catalogue all of the ones I have run across:
+
+- Manifold: a manifold `M` of dimension `n` is a topological space. So, there
+   is a topological structure `T` on `M`. There is also an `Atlas`, which is a
+   family of `Chart`s that satisfy some properties.
+
+- Chart: A chart is a pair `(O ∈  T , cm: O -> R^n)`. The `O` is an open set
+  of the manifold, and `cm`("chart for "m")
+  is a continous mapping from `O` to `R^n` under
+  the subspace topology for `U` and the standard topology for `R^n`.
+
+- Atlas: an `Atlas` is a collection of `Charts` such that the charts cover
+  the manifold, and the charts are pairwise compatible. That is, 
+  `A = { (U_i, phi_i)}`, such that 
+  `union of U_i = M`, and `phi_j . inverse (phi_i)` is smooth.
+
+- Differentiable map: `f: M -> N` be a mapping from an `m` dimensional manifold
+  to an `n` dimensional manifold. Let `frep = cn . f . inverse (cm): R^m -> R^n` where
+  `cm: M -> R^m` is a chart for `M`, `cn: N -> R^n` is a chart for `N`.`frep`
+  is `f` represented in local coordinates. If `frep` is smooth for all choices
+  of `cm` and `cn`, then `f` is a differentiable map from `M` to `N`.
+
+- Curve: Let `I` be an open interval of `R` which includes the point `0`.
+  A Curve is a differentiable map `C: (a, b) -> M` where `a < 0 < b`.
+
+- Function: (I hate this term, I prefer something like Valuation): A
+  differentiable mapping from `M` to `R`.
+
+- Directional derivative of a function `f(m): M -> R` with respect to a 
+   curve `c(t): I -> M` at time `t0`:
+   Let `g(t) = (f . c)(t) :: I -c-> M -f-> R = I -> R`.
+   This this the value `dg/dt(t0) = (d (f . c) / dt) (t0)`.
+
+   This is usually evaluated at `0`
+
+- Tangent vector: On a `m` dimensional manifold `M`,
+  a tangent vector is an equivalence class of curves that
+  have the same derivative at their initial time. `c1(t) ~ c2(t)` iff :
+  1. `c1(0) = c2(0)`
+  2. For a (all) charts `(O, ch)` such that `c1(0) ∈  O`,
+     `d/dX^i (ch . c1: R -> R^m) = d/dX^i (ch . c2: R -> R^m)` for all `i=1,2, ...m`.
+
+
+
+
 ## Lazy programs have space leaks, Strict programs have time leaks
 Stumbled across this idea while reading some posts on a private discourse.
 - Continually adding new thunks without forcing them can lead to a space leak,
