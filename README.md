@@ -9,6 +9,11 @@ to be seen. I'm hopeful, though :)
 
 # Ideas I stumble onto
 
+# Concurrency in Haskell:
+
+Great link to the GHC wiki that describes the concurrency primitives
+"bottom up": https://gitlab.haskell.org/ghc/ghc/wikis/lightweight-concurrency
+
 # Handy list of differential geometry definitions
 
 There are way too many objects in diffgeo, all of them subtly connected.
