@@ -25,45 +25,108 @@ Great link to the GHC wiki that describes the concurrency primitives
 There are way too many objects in diffgeo, all of them subtly connected.
 Here I catalogue all of the ones I have run across:
 
-- Manifold: a manifold `M` of dimension `n` is a topological space. So, there
-   is a topological structure `T` on `M`. There is also an `Atlas`, which is a
-   family of `Chart`s that satisfy some properties.
+##### Manifold
 
-- Chart: A chart is a pair `(O ∈  T , cm: O -> R^n)`. The `O` is an open set
-  of the manifold, and `cm`("chart for "m")
-  is a continous mapping from `O` to `R^n` under
-  the subspace topology for `U` and the standard topology for `R^n`.
+A manifold `M` of dimension `n` is a topological space. So, there is a
+topological structure `T` on `M`. There is also an `Atlas`, which is a family
+of `Chart`s that satisfy some properties.
 
-- Atlas: an `Atlas` is a collection of `Charts` such that the charts cover
-  the manifold, and the charts are pairwise compatible. That is, 
-  `A = { (U_i, phi_i)}`, such that 
-  `union of U_i = M`, and `phi_j . inverse (phi_i)` is smooth.
+##### Chart
 
-- Differentiable map: `f: M -> N` be a mapping from an `m` dimensional manifold
-  to an `n` dimensional manifold. Let `frep = cn . f . inverse (cm): R^m -> R^n` where
-  `cm: M -> R^m` is a chart for `M`, `cn: N -> R^n` is a chart for `N`.`frep`
-  is `f` represented in local coordinates. If `frep` is smooth for all choices
-  of `cm` and `cn`, then `f` is a differentiable map from `M` to `N`.
+A chart is a pair `(O ∈  T , cm: O -> R^n)`. The `O` is an open set of the
+manifold, and `cm`("chart for "m") is a continous mapping from `O` to `R^n`
+under the subspace topology for `U` and the standard topology for `R^n`.
 
-- Curve: Let `I` be an open interval of `R` which includes the point `0`.
-  A Curve is a differentiable map `C: (a, b) -> M` where `a < 0 < b`.
+#####  Atlas
 
-- Function: (I hate this term, I prefer something like Valuation): A
-  differentiable mapping from `M` to `R`.
+An `Atlas` is a collection of `Charts` such that the charts cover the manifold,
+and the charts are pairwise compatible. That is, `A = { (U_i, phi_i)}`, such
+that `union of U_i = M`, and `phi_j . inverse (phi_i)` is smooth.
 
-- Directional derivative of a function `f(m): M -> R` with respect to a 
-   curve `c(t): I -> M` at time `t0`:
-   Let `g(t) = (f . c)(t) :: I -c-> M -f-> R = I -> R`.
-   This this the value `dg/dt(t0) = (d (f . c) / dt) (t0)`.
+##### Differentiable map
 
-   This is usually evaluated at `0`
+`f: M -> N` be a mapping from an `m` dimensional manifold to an `n` dimensional
+manifold. Let `frep = cn . f . inverse (cm): R^m -> R^n` where `cm: M -> R^m`
+is a chart for `M`, `cn: N -> R^n` is a chart for `N`.`frep` is `f` represented
+in local coordinates. If `frep` is smooth for all choices of `cm` and `cn`,
+then `f` is a differentiable map from `M` to `N`.
 
-- Tangent vector: On a `m` dimensional manifold `M`,
-  a tangent vector is an equivalence class of curves that
-  have the same derivative at their initial time. `c1(t) ~ c2(t)` iff :
-  1. `c1(0) = c2(0)`
-  2. For a (all) charts `(O, ch)` such that `c1(0) ∈  O`,
-     `d/dX^i (ch . c1: R -> R^m) = d/dX^i (ch . c2: R -> R^m)` for all `i=1,2, ...m`.
+##### Curve: 
+
+Let `I` be an open interval of `R` which includes the point `0`.  A Curve is a
+differentiable map `C: (a, b) -> M` where `a < 0 < b`.
+
+##### Function: (I hate this term, I prefer something like Valuation): 
+
+A differentiable mapping from `M` to `R`.
+
+
+##### Directional derivative of a function `f(m): M -> R` with respect to a curve `c(t): I -> M`, denoted as `c[f]`.
+
+Let `g(t) = (f . c)(t) :: I -c-> M -f-> R = I -> R`.
+This this is the value `dg/dt(t0) = (d (f . c) / dt) (0)`.
+
+##### Tangent vector at a point `p`:
+
+On a `m` dimensional manifold `M`, a tangent vector at a point `p` is an
+equivalence class of curves that have `c(0) = p`, such that `c1(t) ~ c2(t)` iff
+:
+
+2. For a (all) charts `(O, ch)` such that `c1(0) ∈  O`,
+ `d/dt (ch . c1: R -> R^m) = d/dt (ch . c2: R -> R^m)`.
+
+ That is, they have equal derivatives.
+
+##### Tangent space(`TpM`):
+
+The set of all tangent vectors at a point `p` forms a vector space `TpM`.
+We prove this by creating a bijection from every curve to a vector `R^n`.
+
+Let `(U, ch: U -> R)` be a chart around the point `p`, where `p ∈ U ⊆ M`. Now,
+the bijection is defined as:
+
+```
+forward: (I -> M) -> R^n
+forward(c) = d/dt (c . ch)
+
+reverse: R^n -> (I -> M)
+reverse(v)(t) = ch^-1 (tv)
+```
+
+##### Cotangent space(`TpM*`): dual space of the tangent space / Space of all linear functions from `TpM` to `R`.
+
+- Associated to every function `f`, there is a cotangent vector, colorfully
+  called `df`. The definition is `df: TpM -> R`, `df(c: I -> M) = c[f]`. That is,
+  given a curve `c`, we take the directional derivative of the function `f`
+  along the curve `c`. We need to prove that this is constant for all vectors
+  in the equivalence class and blah.
+
+######  Pushforward `push(f): TpM -> TpN`
+
+Given a curve `c: I -> M`, the pushforward
+is the curve `f . c : I -> N`. This extends to the equivalence classes
+and provides us a way to move curves in `M` to curves in `N`, and thus
+gives us a mapping from the tangent spaces.
+
+This satisfies the identity:
+
+```
+push(f)(v)[g] === v[g . f]
+```
+
+##### Pullback `pull(f): TpN* -> TpM*`
+
+Given a linear functional `wn : TpN -> R`, the pullback is defined as
+` wn . push(f) : TpM -> R`.
+
+
+This satisfies the identity:
+
+```
+(pull wn)(v) === wn (push v)
+(pull (wn : TpN->R): TpM->R) (v : TpM) : R  = (wn: TpN->R) (push (v: TpM): TpN) : R
+```
+
 
 
 
