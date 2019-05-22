@@ -9,6 +9,12 @@ to be seen. I'm hopeful, though :)
 
 # Ideas I stumble onto
 
+# GHC LLVM code generator: Switch to unreachable
+
+The [switch to out of range](https://github.com/ghc/ghc/blob/master/compiler/llvmGen/LlvmCodeGen/CodeGen.hs#L1102) 
+code generator switches to the first label. It should be more profitable
+to switch to a `unreachable` block. That way, LLVM can take advantage of UB.
+
 # Concurrency in Haskell:
 
 Great link to the GHC wiki that describes the concurrency primitives
