@@ -215,7 +215,6 @@ of _all possible subcovers_, and then argues about why a cover cannot be built
 from these subcovers if the set is compact. I found it to be a very cool
 use of compactness, which I'll record below:
 
-
 ##### Theorem: 
 
 If a family of compact, countably infinite sets `S_a` have all 
@@ -244,8 +243,6 @@ that the cantor set is non-empty, since:
 2. Each of the sets `Si` are compact since they are closed and bounded subsets of `R`
 
 3. Invoke theorem.
-
-
 
 
 ## Japanese Financial Counting system
