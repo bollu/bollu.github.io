@@ -161,7 +161,7 @@ is not great against the formidable foe.
 
 The code:
 
-```cpp
+```
 #include <isl/set.h>
 #include <isl/version.h>
 #include <isl/map.h>
@@ -214,8 +214,6 @@ I recently ran across a use of compactness when one _starts_ with the set
 of _all possible subcovers_, and then argues about why a cover cannot be built
 from these subcovers if the set is compact. I found it to be a very cool
 use of compactness, which I'll record below:
-
-<TODO>
 
 
 ##### Theorem: 
