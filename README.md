@@ -9,6 +9,14 @@ to be seen. I'm hopeful, though :)
 
 # Ideas I stumble onto
 
+# Timings of passes in GHC:
+
+- One can use `-v3` to get pass timings.
+- Apparently, GHC spends a lot of time in the simplifier, and time
+  spend in the backend is peanuts in comparison to this.
+- To quote `AndreasK`:
+> Register allocation, common block elimination, block layout and pretty printing are the "slow" things in the backend as far as I remember.
+
 # Varargs in GHC: `ghc/testsuite/tests/rts/T7160.hs`
 
 A comment from this test case tells us why the function `debugBelch2` exists:
