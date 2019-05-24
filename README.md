@@ -8,7 +8,25 @@ The former has been semi-forced thanks to GSoC, as for the latter, it remains
 to be seen. I'm hopeful, though :)
 
 # Ideas I stumble onto
+
+# Debugging debug info in GHC: [Link](https://github.com/ghc/ghc/blob/535a26c90f458801aeb1e941a3f541200d171e8f/compiler/cmm/Debug.hs#L458)
+
+I wanted to use debug info to help build a better deubgging experience
+within [`tweag/asterius`](http://github.com/tweag/asterius). So, I was 
+reading through the sources of `cmm/Debug.hs`.  
+I'd never considered how to debug debug-info, and I found the information
+tucked inside a cute note in GHC (`Note [Debugging DWARF unwinding info]`):
+
+> This makes GDB produce a trace of its internal workings. Having gone this far,
+> it's just a tiny step to run GDB in GDB. Make sure you install debugging
+> symbols for gdb if you obtain it through a package manager.
+
+
 # How does GHC `show` a `Float`?
+
+Turns out the implementation uses a cool paper:
+
+> Printing float point numbers fast and accurately
 
 ##### `class Show`:
 
