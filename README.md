@@ -13,6 +13,7 @@ to be seen. I'm hopeful, though :)
 ##### `class Show`:
 
 First, let's review the `Show` typeclass:
+
 ```hs
 class Show a where
     showsPrec :: Int    -- ^ the operator precedence of the enclosing
