@@ -1,4 +1,4 @@
-Contents of [pixel-druid.com](http://pixel-druid.com/), mirrored at [bollu.github.io](http://bollu.github.io/)
+jjContents of [pixel-druid.com](http://pixel-druid.com/), mirrored at [bollu.github.io](http://bollu.github.io/)
 
 
 The idea is for the website to contain blog posts, along with visualizations of
@@ -15,7 +15,9 @@ to be seen. I'm hopeful, though :)
 - Apparently, GHC spends a lot of time in the simplifier, and time
   spend in the backend is peanuts in comparison to this.
 - To quote `AndreasK`:
-> Register allocation, common block elimination, block layout and pretty printing are the "slow" things in the backend as far as I remember.
+> - Register allocation, common block elimination, block layout and pretty printing are the "slow" things in the backend as far as I remember.
+> - There are also a handful of TODO's in the x86 codegen which still apply. So you can try to grep for these.
+> - Strength reduction for division by a constant
 - [NCG generates slow loop code](https://gitlab.haskell.org/ghc/ghc/issues/9041)
 # Varargs in GHC: `ghc/testsuite/tests/rts/T7160.hs`
 
