@@ -9,6 +9,46 @@ to be seen. I'm hopeful, though :)
 
 # Ideas I stumble onto
 
+# Varargs in GHC: `ghc/testsuite/tests/rts/T7160.hs`
+
+A comment from this test case tells us why the function `debugBelch2` exists:
+
+```hs
+ghc/testsuite/tests/rts/T7160.hs
+-- Don't use debugBelch() directly, because we cannot call varargs functions
+-- using the FFI (doing so produces a segfault on 64-bit Linux, for example).
+-- See Debug.Trace.traceIO, which also uses debugBelch2.
+foreign import ccall "&debugBelch2" fun :: FunPtr (Ptr () -> Ptr () -> IO ())
+```
+
+The implementation is:
+
+```c
+ghc/libraries/base/cbits/PrelIOUtils.c
+
+void debugBelch2(const char*s, char *t)
+{
+    debugBelch(s,t);
+}
+```
+
+```
+ghc/rts/RtsMessages.c
+
+RtsMsgFunction *debugMsgFn  = rtsDebugMsgFn;
+...
+
+void
+debugBelch(const char*s, ...)
+{
+  va_list ap;
+  va_start(ap,s);
+  (*debugMsgFn)(s,ap);
+  va_end(ap);
+}
+```
+
+
 # Debugging debug info in GHC: [Link](https://github.com/ghc/ghc/blob/535a26c90f458801aeb1e941a3f541200d171e8f/compiler/cmm/Debug.hs#L458)
 
 I wanted to use debug info to help build a better deubgging experience
