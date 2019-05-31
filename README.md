@@ -869,6 +869,13 @@ This satisfies the identity:
 (pull (wn : TpN->R): TpM->R) (v : TpM) : R  = (wn: TpN->R) (push (v: TpM): TpN) : R
 ```
 
+##### Vector field as derivation
+
+TODO
+
+##### Lie derivation
+
+##### Lie derivation as lie bracket
 
 
 
