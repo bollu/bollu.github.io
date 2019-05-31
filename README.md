@@ -9,6 +9,35 @@ to be seen. I'm hopeful, though :)
 
 # Ideas I stumble onto
 
+# Hamiltonian monte carlo, leapfrog integrators, and sympletic geometry
+
+This is a section that I'll update as I learn more about the space, since I'm studying
+differential geometry over the summer, I hope to know enough about "sympletic manifolds".
+I'll make this an append-only log to add to the section as I understand more.
+
+##### 31st May
+
+- To perform hamiltonian monte carlo, we use the hamiltonian and its derivatives to provide
+a momentum to our proposal distribution --- That is, when we choose a new point from the
+current point, our probability distribution for the new point is influenced by our
+current momentum
+
+- For some integral necessary within this scheme, Euler integration doesn't cut it 
+since the error diverges to infinity
+
+- Hence, we need an integrator that guarantees that the energy of out system is conserved.
+Enter the leapfrog integrator. This integrator is also _time reversible_ -- We can run it
+forward for `n` steps, and then run it backward for `n` steps to arrive at the same state.
+Now I finally know how Braid was implemented, something that bugged the hell out of 9th grade me
+when I tried to implement Braid-like physics in my engine!
+
+- The actual derivation of the integrator uses Lie algebras, Sympletic geometry, and other
+diffgeo ideas, which is great, because it gives me motivation to study differential geometry `:)`
+
+- Original paper: [Construction of higher order sympletic integrators](https://www.sciencedirect.com/science/article/abs/pii/0375960190900923)
+
+- 
+
 # Small Haskell MCMC implementation:
 
 We create a simple monad called `PL` which allows for a single operation: sampling
