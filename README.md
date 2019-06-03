@@ -119,6 +119,25 @@ https://github.com/tmikolov/word2vec/blob/20c129af10659f7c50e86e3be406df663beff4
 for (c = 0; c < layer1_size; c++) syn0[c + l1] += neu1e[c];
 ```
 
+### Why random and zero initialization?
+
+Once again, since none of this actually explained in the original papers
+_or on the web_, I can only hypothesize.
+
+My hypothesis is that since the negative samples come from all over the text
+and are not really weighed by frequency, you can wind up picking _any word_,
+and more often than not, _a word whose vector has not been trained much at all_.
+If this vector actually had a value, then it could move the actually important
+focus word randomly. 
+
+The solution is to set all negative samples to zero, so that _only vectors
+that have occured somewhat frequently_ will affect the representation of
+another vector.
+
+It's quite ingenious, really, and until this, I'd never really thought of
+how important initialization strategies really are.
+
+
 ### Why I'm writing this
 
 I spent two months of my life trying to reproduce `word2vec`, following
