@@ -9,6 +9,144 @@ to be seen. I'm hopeful, though :)
 
 # Ideas I stumble onto
 
+# Everything you know about word2vec is wrong.
+
+The classic explanation of `word2vec`, in skip-gram, with negative sampping,
+in the paper and countless blog posts on the internet is as follows:
+
+```
+while(1) {
+   1. vf = vector of focus word
+   2. vc = vector of focus word
+   3. train such that (vc . vf = 1)
+   4. for(0 <= i <= negative samples):
+           vneg = vector of word *not* in context
+           train such that (vf . vneg = 0)
+}
+```
+
+Indeed, if I google "word2vec skipgram", the results I get are:
+- [The wikipedia page which describes the algorithm on a high level](https://en.wikipedia.org/wiki/Word2vec#Training_algorithm)
+- [The tensorflow page with the same explanation](https://www.tensorflow.org/tutorials/representation/word2vec)
+- [The towards data science blog which describes the same algorithm](https://towardsdatascience.com/word2vec-skip-gram-model-part-1-intuition-78614e4d6e0b)
+the list goes on. However, __every single one of these implementations is wrong__.
+
+The original word2vec `C` implementation does _not_ do what's explained above,
+and is _drastically different_. Most serious users of word embeddings, who use
+embeddings generated from `word2vec` do one of the following things:
+
+1. They invoke the original C implementation directly.
+2. They invoke the `gensim` implementation, which is _transliterated_ from the
+   C source to the extent that the variables names are the same.
+
+Indeed, the `gensim` implementation is the _only one that I know of which 
+is faithful to the C implementation_.
+
+### The C implementation
+
+The C implementation in fact maintains _two vectors for each word_, one where
+it appears as a focus word, and one where it appears as a context word. 
+(Is this sounding familiar? Indeed, it appears that GloVe actually took this
+idea from `word2vec`, which has never mentioned this fact!)
+
+The setup is incredibly well done in the C code:
+
+- An array called `syn0` holds the vector embedding of a word when it occurs
+as a _focus word_. This is __random initialized__. 
+
+```cpp
+https://github.com/tmikolov/word2vec/blob/20c129af10659f7c50e86e3be406df663beff438/word2vec.c#L369
+  for (a = 0; a < vocab_size; a++) for (b = 0; b < layer1_size; b++) {
+    next_random = next_random * (unsigned long long)25214903917 + 11;
+    syn0[a * layer1_size + b] = 
+       (((next_random & 0xFFFF) / (real)65536) - 0.5) / layer1_size;
+  }
+
+```
+
+- Another array called `syn1neg` holds the vector of a word when it occurs
+as a _context word_. This is __zero initialized__.
+
+```cpp
+https://github.com/tmikolov/word2vec/blob/20c129af10659f7c50e86e3be406df663beff438/word2vec.c#L365
+for (a = 0; a < vocab_size; a++) for (b = 0; b < layer1_size; b++)
+  syn1neg[a * layer1_size + b] = 0;
+```
+
+- During training (skip-gram, negative sampling, though other cases are 
+also similar), we first pick a focus word. This is held constant throughout
+the positive and negative sample training. The gradients of the focus vector
+are accumulated in a buffer, and are applied to the focus word 
+_after it has been affected by both positive and negative samples_.
+
+```cpp
+if (negative > 0) for (d = 0; d < negative + 1; d++) {
+  // if we are performing negative sampling, in the 1st iteration,
+  // pick a word from the context and set the dot product target to 1
+  if (d == 0) {
+    target = word;
+    label = 1;
+  } else {
+    // for all other iterations, pick a word randomly and set the dot
+    //product target to 0
+    next_random = next_random * (unsigned long long)25214903917 + 11;
+    target = table[(next_random >> 16) % table_size];
+    if (target == 0) target = next_random % (vocab_size - 1) + 1;
+    if (target == word) continue;
+    label = 0;
+  }
+  l2 = target * layer1_size;
+  f = 0;
+
+  // find dot product of original vector with negative sample vector
+  // store in f
+  for (c = 0; c < layer1_size; c++) f += syn0[c + l1] * syn1neg[c + l2];
+
+  // set g = sigmoid(f) (roughly, the actual formula is slightly more complex)
+  if (f > MAX_EXP) g = (label - 1) * alpha;
+  else if (f < -MAX_EXP) g = (label - 0) * alpha;
+  else g = (label - expTable[(int)((f + MAX_EXP) * (EXP_TABLE_SIZE / MAX_EXP / 2))]) * alpha;
+
+  // 1. update the vector syn1neg,
+  // 2. DO NOT UPDATE syn0
+  // 3. STORE THE syn0 gradient in a temporary buffer neu1e
+  for (c = 0; c < layer1_size; c++) neu1e[c] += g * syn1neg[c + l2];
+  for (c = 0; c < layer1_size; c++) syn1neg[c + l2] += g * syn0[c + l1];
+}
+// Finally, after all samples, update syn1 from neu1e
+https://github.com/tmikolov/word2vec/blob/20c129af10659f7c50e86e3be406df663beff438/word2vec.c#L541
+// Learn weights input -> hidden
+for (c = 0; c < layer1_size; c++) syn0[c + l1] += neu1e[c];
+```
+
+### Why I'm writing this
+
+I spent two months of my life trying to reproduce `word2vec`, following
+the paper exactly, reading countless articles, and simply not succeeding.
+I was unable to reach the same scores that `word2vec` did, and it was not
+for lack of trying.
+
+I could not have imagined that the paper would have literally fabricated an
+algorithm that doesn't work, while the implementation does something completely
+different.
+
+Eventually, I decided to read the sources, and spent three whole days convinced
+I was reading the code wrong since literally everything on the internet told me
+otherwise.
+
+I don't understand why the original paper and the internet contain zero
+explanations of the _actual_ mechanism behind `word2vec`, so I decided to put
+it up myself.
+
+This also explains GloVe's radical choice of having a separate vector
+for the negative context --- they were just doing what `word2vec` does, but
+they told people about it `:)`.
+
+Is this academic dishonesty? I don't know the answer, and that's a heavy
+question. But I'm frankly incredibly pissed, and this is probably the last
+time I take a machine learning paper's explanation of the algorithm
+seriously again --- from next time, I read the source _first_. 
+
 # Hamiltonian monte carlo, leapfrog integrators, and sympletic geometry
 
 This is a section that I'll update as I learn more about the space, since I'm studying
