@@ -11,7 +11,7 @@ to be seen. I'm hopeful, though :)
 
 # Everything you know about word2vec is wrong.
 
-The classic explanation of `word2vec`, in skip-gram, with negative sampping,
+The classic explanation of `word2vec`, in skip-gram, with negative sampling,
 in the paper and countless blog posts on the internet is as follows:
 
 ```
