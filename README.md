@@ -1154,7 +1154,7 @@ that the cantor set is non-empty, since:
 ## Japanese Financial Counting system
 - [Wikipedia](https://en.wikipedia.org/wiki/Japanese_numerals#Formal_numbers)
 
-Japanese contains a seaparate kanji set called `daiji`, to prevent people
+Japanese contains a separate kanji set called `daiji`, to prevent people
 from adding strokes to stuff previously written.
 
 ```
