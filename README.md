@@ -1191,7 +1191,7 @@ for training groups, where we can use this axiom as the loss function!
 ## `Word2Vec` C code implements gradient descent really weirdly
 I'll be posting snippets of the original source code, along with a 
 link to the Github sources. We are interested in exploring the skip-gram
-implementation of Word2Vec, with negative sampling, without hiearchical
+implementation of Word2Vec, with negative sampling, without hierarchical
 softmax. I assume basic familiarity with word embeddings and the skip-gram
 model.
 
