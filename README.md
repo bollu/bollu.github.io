@@ -627,7 +627,7 @@ debugBelch(const char*s, ...)
 ```
 # Debugging debug info in GHC: [Link](https://github.com/ghc/ghc/blob/535a26c90f458801aeb1e941a3f541200d171e8f/compiler/cmm/Debug.hs#L458)
 
-I wanted to use debug info to help build a better deubgging experience
+I wanted to use debug info to help build a better debugging experience
 within [`tweag/asterius`](http://github.com/tweag/asterius). So, I was 
 reading through the sources of `cmm/Debug.hs`.  
 I'd never considered how to debug debug-info, and I found the information
