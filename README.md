@@ -933,7 +933,7 @@ of `Chart`s that satisfy some properties.
 ##### Chart
 
 A chart is a pair `(O ∈  T , cm: O -> R^n)`. The `O` is an open set of the
-manifold, and `cm`("chart for "m") is a continous mapping from `O` to `R^n`
+manifold, and `cm`("chart for "m") is a continuous mapping from `O` to `R^n`
 under the subspace topology for `U` and the standard topology for `R^n`.
 
 #####  Atlas
