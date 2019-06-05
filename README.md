@@ -1374,7 +1374,7 @@ is _forced_ since mutation very often involves temporaries / copying!
 for my course in college)
 
 ## How Linear optimisation is the same as Linear feasibility checking
-Core building block of effecively using the ellipsoid algorithm.
+Core building block of effectively using the ellipsoid algorithm.
 
 - If we posess a way to check if a point `p ∈ P` where `P` is a polytope, we
   can use this to solve optimisation problems.
