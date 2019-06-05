@@ -1143,7 +1143,7 @@ of closed and bounded sets `S1, S2, S3, ...` such that  `S1 ⊇ S2 ⊇ S3 ...`
 where each `S_i` is one step of the cantor-ification. We can now see
 that the cantor set is non-empty, since:
 
-1. Each finite interesection is non-empty, and will be equal to the set that
+1. Each finite intersection is non-empty, and will be equal to the set that
    has the highest index in the finite intersection.
 
 2. Each of the sets `Si` are compact since they are closed and bounded subsets of `R`
