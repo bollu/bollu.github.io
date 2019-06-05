@@ -9,6 +9,18 @@ to be seen. I'm hopeful, though :)
 
 # Ideas I stumble onto
 
+# Bug in the LLVM code generator: Lowering of `MO_Add2` and `MO_AddWordC`
+
+[Both of these are lowered the same way](https://github.com/ghc/ghc/blob/bf73419518ca550e85188616f860961c7e2a336b/compiler/llvmGen/LlvmCodeGen/CodeGen.hs#L817),
+but they should be different. 
+
+In particular, `GHC.Prim` explains:
+- [`AddWordC#`](http://hackage.haskell.org/package/ghc-prim-0.5.3/docs/GHC-Prim.html#v:addWordC-35-) returns `(result, carry)`
+- [`PlusWordC#`](http://hackage.haskell.org/package/ghc-prim-0.5.3/docs/GHC-Prim.html#v:plusWord-35-) returns `(carry, result)`
+
+Honestly, this is confusing, but I guess there's some story to having two separate primops for this?
+
+
 # Everything you know about word2vec is wrong.
 
 The classic explanation of `word2vec`, in skip-gram, with negative sampling,
