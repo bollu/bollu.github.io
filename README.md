@@ -255,10 +255,10 @@ series2spark vs =
 seriesPrintSpark :: RealFrac a => [a] -> IO ()
 seriesPrintSpark = putStrLn . series2spark
 
--- Probabilites
+-- Probabilities
 -- ============
 type F = Float
--- | probablity density
+-- | probability density
 newtype P = P { unP :: Float } deriving(Num)
 
 -- | prob. distributions over space a
