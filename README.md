@@ -131,7 +131,7 @@ If this vector actually had a value, then it could move the actually important
 focus word randomly. 
 
 The solution is to set all negative samples to zero, so that _only vectors
-that have occured somewhat frequently_ will affect the representation of
+that have occurred somewhat frequently_ will affect the representation of
 another vector.
 
 It's quite ingenious, really, and until this, I'd never really thought of
