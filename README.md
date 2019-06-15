@@ -9,6 +9,14 @@ to be seen. I'm hopeful, though :)
 
 # Ideas I stumble onto
 
+# Representing CPS in LLVM using the `@coro.*` intrinsics
+
+This is part of a larger thread --- [Adding CPS call support to LLVM](http://lists.llvm.org/pipermail/llvm-dev/2017-April/112212.html) where there is a large discussion on the correct design of how to teach LLVM about CPS.
+
+Gor Nishanov proided the above example of encoding CPS using the llvm `coro` instructions.
+
+- https://gist.github.com/bollu/e0573dbc145028fb42f89e64c6dd6742
+
 # Bug in the LLVM code generator: Lowering of `MO_Add2` and `MO_AddWordC`
 
 [Both of these are lowered the same way](https://github.com/ghc/ghc/blob/bf73419518ca550e85188616f860961c7e2a336b/compiler/llvmGen/LlvmCodeGen/CodeGen.hs#L817),
