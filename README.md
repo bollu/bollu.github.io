@@ -9,6 +9,10 @@ to be seen. I'm hopeful, though :)
 
 # Ideas I stumble onto
 
+# Vector: Arthur Whitney and text editors
+
+http://archive.vector.org.uk/art10501320
+
 # The smallest implementation of reverse mode AD (autograd) ever:
 
 ```hs
