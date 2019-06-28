@@ -15,6 +15,17 @@ We have this hiearchy of `BlockId`, `Label`, and `Unique` that can be
 collapsed. 
 
 
+# Spatial partitioning data structures in molecular dynamics
+
+[Cell lists](https://en.wikipedia.org/wiki/Cell_lists) and
+[Verlet lists](https://en.wikipedia.org/wiki/Verlet_list)
+
+appear to be version of spatial hierarchical data structures for fast
+interaction computation. Apparently, multipole expansions are not useful
+in this case since multipole expansions are useful to take into account
+long range effects, but not short range effects.
+
+
 # Vector: Arthur Whitney and text editors
 
 - http://archive.vector.org.uk/art10501320
@@ -27,7 +38,6 @@ This is part of a larger thread --- [Adding CPS call support to LLVM](http://lis
 Gor Nishanov proided the above example of encoding CPS using the llvm `coro` instructions.
 
 - https://gist.github.com/bollu/e0573dbc145028fb42f89e64c6dd6742
->>>>>>> 3213c6dcbb6858d519e2eac242fcc1dd07af0da2
 
 # Bug in the LLVM code generator: Lowering of `MO_Add2` and `MO_AddWordC`
 
