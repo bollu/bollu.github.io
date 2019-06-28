@@ -9,6 +9,11 @@ to be seen. I'm hopeful, though :)
 
 # Ideas I stumble onto
 
+# Collapsing `BlockId`, `Label`, `Unique`: 
+
+We have this hiearchy of `BlockId`, `Label`, and `Unique` that can be
+collapsed. 
+
 # Bug in the LLVM code generator: Lowering of `MO_Add2` and `MO_AddWordC`
 
 [Both of these are lowered the same way](https://github.com/ghc/ghc/blob/bf73419518ca550e85188616f860961c7e2a336b/compiler/llvmGen/LlvmCodeGen/CodeGen.hs#L817),
@@ -20,6 +25,75 @@ In particular, `GHC.Prim` explains:
 
 Honestly, this is confusing, but I guess there's some story to having two separate primops for this?
 
+
+# Discrete random distributions with conditioning in 20 lines of haskell:
+
+```hs
+newtype D a = D { unD :: [(a, Double)] } deriving(Eq, Show, Ord)
+
+instance Functor D where
+    -- fmap :: (a -> b) -> D a -> D b
+    fmap f (D xs) = D $ fmap (\(a, d) -> (f a, d)) xs
+
+instance Monad D where
+    return x = D $ [(x, 1.0)]
+    -- f :: a -> (D b)
+    (D as) >>= f = D $ do -- list monad
+                      (a, p) <- as
+                      (b, p2) <- unD (f a)
+                      return $ (b, p * p2)
+
+-- [(a, 0.5), (b, 0.5)]
+-- [(a, 0.3), (a, 0.2), (b, 0.1), (b, 0.4)]
+--
+instance Applicative D where
+    pure = return
+    ff <*> fa = do
+        f <- ff
+        a <- fa
+        return $ f  a
+
+condition :: Bool -> D ()
+condition True = D [((), 1.0)]
+condition False = D [((), 0.0)]
+
+
+dice :: D Int
+dice = let p = 1.0 / 6 in D $ [(x, p) | x <- [1..6]]
+
+
+dice_hard :: D Int
+dice_hard = do
+    x <- dice
+    condition $ x > 3
+    return $ x
+
+
+main :: IO ()
+main = do
+    print dice
+    print dice_hard
+```
+
+This gives the output:
+
+```
+D {unD = [(1,0.16666666666666666),
+          (2,0.16666666666666666),
+          (3,0.16666666666666666),
+          (4,0.16666666666666666),
+          (5,0.16666666666666666),
+          (6,0.16666666666666666)]}
+          
+D {unD = [(1,0.0),
+          (2,0.0),
+          (3,0.0),
+          (4,0.16666666666666666),
+          (5,0.16666666666666666),
+          (6,0.16666666666666666)]}
+```
+
+Notice that `D a ~= WriterT (Product Float) []`!
 
 # Everything you know about word2vec is wrong.
 
