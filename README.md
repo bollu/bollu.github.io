@@ -14,6 +14,21 @@ to be seen. I'm hopeful, though :)
 We have this hiearchy of `BlockId`, `Label`, and `Unique` that can be
 collapsed. 
 
+
+# Vector: Arthur Whitney and text editors
+
+- http://archive.vector.org.uk/art10501320
+
+
+# Representing CPS in LLVM using the `@coro.*` intrinsics
+
+This is part of a larger thread --- [Adding CPS call support to LLVM](http://lists.llvm.org/pipermail/llvm-dev/2017-April/112212.html) where there is a large discussion on the correct design of how to teach LLVM about CPS.
+
+Gor Nishanov proided the above example of encoding CPS using the llvm `coro` instructions.
+
+- https://gist.github.com/bollu/e0573dbc145028fb42f89e64c6dd6742
+>>>>>>> 3213c6dcbb6858d519e2eac242fcc1dd07af0da2
+
 # Bug in the LLVM code generator: Lowering of `MO_Add2` and `MO_AddWordC`
 
 [Both of these are lowered the same way](https://github.com/ghc/ghc/blob/bf73419518ca550e85188616f860961c7e2a336b/compiler/llvmGen/LlvmCodeGen/CodeGen.hs#L817),
@@ -103,7 +118,7 @@ in the paper and countless blog posts on the internet is as follows:
 ```
 while(1) {
    1. vf = vector of focus word
-   2. vc = vector of focus word
+   2. vc = vector of context word
    3. train such that (vc . vf = 1)
    4. for(0 <= i <= negative samples):
            vneg = vector of word *not* in context
@@ -217,7 +232,7 @@ If this vector actually had a value, then it could move the actually important
 focus word randomly. 
 
 The solution is to set all negative samples to zero, so that _only vectors
-that have occured somewhat frequently_ will affect the representation of
+that have occurred somewhat frequently_ will affect the representation of
 another vector.
 
 It's quite ingenious, really, and until this, I'd never really thought of
@@ -341,10 +356,10 @@ series2spark vs =
 seriesPrintSpark :: RealFrac a => [a] -> IO ()
 seriesPrintSpark = putStrLn . series2spark
 
--- Probabilites
+-- Probabilities
 -- ============
 type F = Float
--- | probablity density
+-- | probability density
 newtype P = P { unP :: Float } deriving(Num)
 
 -- | prob. distributions over space a
@@ -565,6 +580,7 @@ __▁▄█▅▂▁___
 sampling from x^4 with finite support
 ▁▁▃▃▃▄▅▆▇█_
 ```
+>>>>>>> origin/master
 
 # The smallest implementation of reverse mode AD (autograd) ever:
 
@@ -713,7 +729,7 @@ debugBelch(const char*s, ...)
 ```
 # Debugging debug info in GHC: [Link](https://github.com/ghc/ghc/blob/535a26c90f458801aeb1e941a3f541200d171e8f/compiler/cmm/Debug.hs#L458)
 
-I wanted to use debug info to help build a better deubgging experience
+I wanted to use debug info to help build a better debugging experience
 within [`tweag/asterius`](http://github.com/tweag/asterius). So, I was 
 reading through the sources of `cmm/Debug.hs`.  
 I'd never considered how to debug debug-info, and I found the information
@@ -1019,7 +1035,7 @@ of `Chart`s that satisfy some properties.
 ##### Chart
 
 A chart is a pair `(O ∈  T , cm: O -> R^n)`. The `O` is an open set of the
-manifold, and `cm`("chart for "m") is a continous mapping from `O` to `R^n`
+manifold, and `cm`("chart for "m") is a continuous mapping from `O` to `R^n`
 under the subspace topology for `U` and the standard topology for `R^n`.
 
 #####  Atlas
@@ -1229,7 +1245,7 @@ of closed and bounded sets `S1, S2, S3, ...` such that  `S1 ⊇ S2 ⊇ S3 ...`
 where each `S_i` is one step of the cantor-ification. We can now see
 that the cantor set is non-empty, since:
 
-1. Each finite interesection is non-empty, and will be equal to the set that
+1. Each finite intersection is non-empty, and will be equal to the set that
    has the highest index in the finite intersection.
 
 2. Each of the sets `Si` are compact since they are closed and bounded subsets of `R`
@@ -1240,7 +1256,7 @@ that the cantor set is non-empty, since:
 ## Japanese Financial Counting system
 - [Wikipedia](https://en.wikipedia.org/wiki/Japanese_numerals#Formal_numbers)
 
-Japanese contains a seaparate kanji set called `daiji`, to prevent people
+Japanese contains a separate kanji set called `daiji`, to prevent people
 from adding strokes to stuff previously written.
 
 ```
@@ -1277,7 +1293,7 @@ for training groups, where we can use this axiom as the loss function!
 ## `Word2Vec` C code implements gradient descent really weirdly
 I'll be posting snippets of the original source code, along with a 
 link to the Github sources. We are interested in exploring the skip-gram
-implementation of Word2Vec, with negative sampling, without hiearchical
+implementation of Word2Vec, with negative sampling, without hierarchical
 softmax. I assume basic familiarity with word embeddings and the skip-gram
 model.
 
@@ -1460,7 +1476,7 @@ is _forced_ since mutation very often involves temporaries / copying!
 for my course in college)
 
 ## How Linear optimisation is the same as Linear feasibility checking
-Core building block of effecively using the ellipsoid algorithm.
+Core building block of effectively using the ellipsoid algorithm.
 
 - If we posess a way to check if a point `p ∈ P` where `P` is a polytope, we
   can use this to solve optimisation problems.
