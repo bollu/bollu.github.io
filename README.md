@@ -120,7 +120,7 @@ while(1) {
    1. vf = vector of focus word
    2. vc = vector of context word
    3. train such that (vc . vf = 1)
-   4. for(0 <= i <= negative samples):
+   4. for(0 <= i < negative samples):
            vneg = vector of word *not* in context
            train such that (vf . vneg = 0)
 }
