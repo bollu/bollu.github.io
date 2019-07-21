@@ -9,6 +9,11 @@ to be seen. I'm hopeful, though :)
 
 # Ideas I stumble onto
 
+# [Blog post: Weekend paper replication of STOKE, the stochastic superoptimizer](https://github.com/bollu/blaze/blob/master/notebooks/tutorial.ipynb)
+
+Click the title to go to the post. We replicate the `STOKE` paper in haskell,
+to implement a superoptimiser based on MCMC methods.
+
 # Collapsing `BlockId`, `Label`, `Unique`: 
 
 We have this hiearchy of `BlockId`, `Label`, and `Unique` that can be
