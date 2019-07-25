@@ -1,0 +1,95 @@
+#+latex_class_options: [10pt]
+
+* Implementing a modern C compiler: A tour of LLVM 
+
+**  History
+
+- GCC, a _non-modular_ C compiler (https://lists.gnu.org/archive/html/emacs-devel/2014-01/msg01837.html)
+
+#+BEGIN_QUOTE
+... If GCC were to change from a free compiler into a
+platform for nonfree compilers, it would no longer serve the goal of
+freedom very well.  Therefore, we had to take care to prevent that.
+#+END_QUOTE
+
+- started out as "[[https://llvm.org/pubs/2004-01-30-CGO-LLVM.pdf][A compilation framework for Lifelong program analysis and transformation]]"
+   
+- In 2005, Apple hired Lattner to begin work on implementing Clang, due to GCC
+  changing to GPLv3.
+
+- LLVM tried to integrate back into GCC: [[https://gcc.gnu.org/ml/gcc/2005-11/msg00888.html][LLVM/GCC Integration proposal]]
+- LLVM was _not technologically superior_ to GCC.
+
+- Was architected to be easy to _build, test, and extend_.
+
+
+*  SSA based intermediate representation (IR)
+
+#+NAME: C ite
+#+BEGIN_SRC c
+int foo(int p) {
+    int z;
+    int x = p + 1;
+    if (x < 10) {
+        z = 20;
+    } else {
+        z = 30;
+    }
+    return z + 10;
+}
+#+END_SRC
+
+#+NAME: LLVM ite-phi
+#+BEGIN_SRC llvm
+define dso_local i32 @foo(i32 %p) #0 {
+entry:
+  %add = add nsw i32 %p, 1
+  %cmp = icmp slt i32 %add, 10
+  br i1 %cmp, label %if.then, label %if.else
+
+if.then:                                          ; preds = %entry
+  br label %if.end
+
+if.else:                                          ; preds = %entry
+  br label %if.end
+
+if.end:                                           ; preds = %if.else, %if.then
+  %z.0 = phi i32 [ 20, %if.then ], [ 30, %if.else ]
+  %add1 = add nsw i32 %z.0, 10
+  ret i32 %add1
+}
+#+END_SRC
+
+#+NAME: LLVM ite
+#+BEGIN_SRC llvm
+define dso_local i32 @foo(i32 %p) #0 {
+entry:
+  %p.addr = alloca i32, align 4
+  %z = alloca i32, align 4
+  %x = alloca i32, align 4
+  store i32 %p, i32* %p.addr, align 4
+  %0 = load i32, i32* %p.addr, align 4
+  %add = add nsw i32 %0, 1
+  store i32 %add, i32* %x, align 4
+  %1 = load i32, i32* %x, align 4
+  %cmp = icmp slt i32 %1, 10
+  br i1 %cmp, label %if.then, label %if.else
+
+if.then:                                          ; preds = %entry
+  store i32 20, i32* %z, align 4
+  br label %if.end
+
+if.else:                                          ; preds = %entry
+  store i32 30, i32* %z, align 4
+  br label %if.end
+
+if.end:                                           ; preds = %if.else, %if.then
+  %2 = load i32, i32* %z, align 4
+  %add1 = add nsw i32 %2, 10
+  ret i32 %add1
+}
+#+END_SRC
+
+* Register allocation --- graph coloring
+
+http://web.cecs.pdx.edu/~mperkows/temp/register-allocation.pdf
