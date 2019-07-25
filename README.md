@@ -14,3 +14,4 @@ some slides of talks I've given.
 
 # Slides
 ##### [The barvinok algorithm](./barvinok/slides.pdf)
+##### [Introduction to LLVM: examples of passes](./talk-intro-llvm/talk-llvm-c-compiler.org)
