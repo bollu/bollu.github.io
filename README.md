@@ -9,6 +9,21 @@ to be seen. I'm hopeful, though :)
 
 # Ideas I stumble onto
 
+# Lie bracket versus torsion
+
+
+![torsion-vs-parallel-transport](lie-bracket-versus-torsion.png)
+
+This picture _finally_ made the difference between these two things clear.
+The lie bracket moves along the _flow_, while the torsion moves along
+_parallel transport_. 
+
+This is why the sides of the parallelogram that measure torsion form,
+well, a parallelogram: we set them up using parallel transport.
+
+On the other hand, the lie bracket measures the actual failure of the parallelogram
+from being formed.
+
 # [Blog post: Weekend paper replication of STOKE, the stochastic superoptimizer](https://github.com/bollu/blaze/blob/master/notebooks/tutorial.ipynb)
 
 Click the title to go to the post. We replicate the `STOKE` paper in haskell,
@@ -594,9 +609,8 @@ normal distribution using MCMC:
 __▁▄█▅▂▁___
 sampling from x^4 with finite support
 ▁▁▃▃▃▄▅▆▇█_
-```
->>>>>>> origin/master
 
+```
 # The smallest implementation of reverse mode AD (autograd) ever:
 
 ```hs
