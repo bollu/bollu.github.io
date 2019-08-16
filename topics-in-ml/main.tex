@@ -26,8 +26,11 @@
 \usepackage{subcaption} %% For complex figures with subfigures/subcaptions
                         %% http://ctan.org/pkg/subcaption
 \usepackage{enumitem}
-%\usepackage{minted}
+\usepackage[euler-digits,small]{eulervm}
+\usepackage{minted}
 %\newminted{fortran}{fontsize=\footnotesize}
+\newenvironment{code}{\VerbatimEnvironment \begin{minted}{haskell}}{\end{minted}}
+% \newenvironment{code}{\begin{minted}{haskell}}{\end{minted}}
 
 \usepackage{xargs}
 \usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
@@ -44,6 +47,8 @@
 \usepackage{epsfig}
 \usepackage{tabularx}
 \usepackage{latexsym}
+\newcommand{\St}{\ensuremath{\mathcal{S}} }
+\newcommand{\Act}{\ensuremath{\mathcal{A}} }
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Rn}{\mathbb{R}^n}
 \newcommand{\pik}{{\pi_{k}}}
@@ -58,7 +63,7 @@
 \newtheorem{observation}{Observation}
 \newtheorem{proof}{Proof}
 
-\title{Topics in machine learning}
+\title{Topics in machine learning: Naresh Manwani}
 \author{Siddharth Bhat}
 \date{Monsoon 2019}
 
@@ -89,6 +94,26 @@
         F^\piknext (V^\pik) &\leq {(F^\piknext)}^2 (V^\pik) \qquad \text{(Monotonicity of $F^\piknext$)} \\
         \forall t \geq 1, ~F^\piknext (V^\pik) &\leq {(F^\piknext)}^t (V^\pik) \qquad \text{(Monotonicity of $F^\piknext$)} \\
         F^\piknext (V^\pik) &\leq {(F^\piknext)}^t (V^\pik) \leq V^\piknext \qquad \text{(Contraction mapping, $V^\piknext$ is fixed point)}
+        \\
+        V^\pik &= F^\piknext (V^\pik) \leq V^{\piknext}
     \end{align*}
 \end{proof}
+
+For a set of actions \Act and a set of states \St, the total number of
+policies is ${|\Act^\St|}$. The number of computations per iteration is
+$O(|\St|^3)$. So the loose upper bound is be ${O(|\St|^3 \times |\Act^\St|)}$.
+
+\section{Value iteration algorithm}
+
+\begin{code}
+let v n s = max [r s a + gamma * sum [(p s' s a) * v (n-1) s' | s' <- ss] | a <- as]
+let vs = [v i | i <- [0..]]
+let norm v v' = max [(v s - v' s) | s <- ss]
+let out = head $ 
+  dropWhile (\v v' -> norm (v' - v) < eps * (1 - gamma) / (2 * gamma)) $ 
+  zip vs (tail vs)
+let policy s = argmax as $ \a -> 
+  r s a + gamma * sum [ (p s' s a) * out s' | s' <- ss]
+\end{code}
+
 \end{document}
