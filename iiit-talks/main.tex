@@ -46,6 +46,7 @@
 \usepackage{tabularx}
 \usepackage{latexsym}
 \newcommand{\I}{\ensuremath{\mathcal{I}} }
+\newcommand{\B}{\ensuremath{\mathcal{B}} }
 \newcommand{\powerset}{\mathcal{P}}
 \newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
 
@@ -95,9 +96,9 @@ such that ${I_1 \cup \{e \}}$ is a set of linearly independent columns of $A$.
 \begin{definition}
     Let $E$ be a finite set. Let $\I \subset \powerset(E)$ such that:
     \begin{itemize}
-        \item $\emptyset \in \I$
-        \item  $\forall I \in \I, ~ J \subset I \implies J \in \I$ (\I is closed under subsets)
-        \item Let $I_1, I_2 \in \I$ such that $|I_1| < |I_2|$. Then there
+        \item Axiom $I_1$: $\emptyset \in \I$
+        \item  Axiom $I_2$: $\forall I \in \I, ~ J \subset I \implies J \in \I$ (\I is closed under subsets)
+        \item Axiom $I_3$: Let $I_1, I_2 \in \I$ such that $|I_1| < |I_2|$. Then there
             exists an element $e \in I_2 \setminus I_1$ such that $I_1 \cup \{ e \} \in \I$
     \end{itemize}
     Then, $(E, \I)$ is called as a matroid. \I is called the collection of independent sets. An
@@ -107,8 +108,19 @@ such that ${I_1 \cup \{e \}}$ is a set of linearly independent columns of $A$.
 \begin{example}
     For a matrix $A_{m \times n}$ over an arbitrary field. Let $E$ be the set
     of column indeces. Let $\I$ be all the subset of $E$ such that the subset 
-    is linearly independent. Then $(E, \I)$ is a matroid.
+    is linearly independent. Then $(E, \I)$ is a matroid. This matroid is typically
+    denoted by $M[A]$, where $M$ is a mnemonic for "matroid".
 \end{example}
 
+\begin{definition}
+    The set of bases $\B$ is the set of maximal independent sets
+\end{definition}
 
+\begin{theorem}
+    If there are two bases $B_1, B_2 \in \B$, then $|B_1| = |B_2|$.
+\end{theorem}
+
+\begin{theorem}
+    Every indepenent set should lie within some basis.
+\end{theorem}
 \end{document}

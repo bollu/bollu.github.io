@@ -1,0 +1,170 @@
+\documentclass[11pt]{book}
+%\documentclass[10pt]{llncs}
+%\usepackage{llncsdoc}
+\usepackage{physics}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{listing}
+\evensidemargin=0.20in
+\oddsidemargin=0.20in
+\topmargin=0.2in
+%\headheight=0.0in
+%\headsep=0.0in
+%\setlength{\parskip}{0mm}
+%\setlength{\parindent}{4mm}
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{8.5in}
+%\leftmargin -2in
+%\setlength{\rightmargin}{-2in}
+%\usepackage{epsf}
+%\usepackage{url}
+
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+%\usepackage{minted}
+%\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+
+\def\qed{$\Box$}
+\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{observation}{Observation}
+\newtheorem{proof}{Proof}
+
+\title{General Relativity and Differential Geometry}
+\author{Siddharth Bhat}
+\date{Monsoon 2019}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\chapter{Introduction}
+
+I am following the following sources:
+
+\begin{itemize}
+    \item Susskind's General Relativity lectures as part of the Theoretical
+        minimum: (\href{https://theoreticalminimum.com/courses/general-relativity/}{The link is here}).
+        Note that the videos do not load. However, one can view the source to access the link
+        to the iframe.
+    \item Susskind's other General Relativity lectures, as part of his modern
+        physics course: (\href{https://www.youtube.com/watch?v=hbmf0bB38h0&list=PL6C8BDEEBA6BDC78D}{link to playlist here}).
+        These seem to be taught at a much gentler pace.
+    \item The book Gravitation by Misner, Thorne and wheeler.
+\end{itemize}
+
+The notes as scribed here are a mix from all of these sources, as well
+as tangential points I find interesting.
+
+\section{The equivalence principle}
+
+Gravity is in some sense the same thing as acceleration. First, an elementary
+derivation which formalizes the intuition of the equivalence principle.
+
+We consider an elevator moving upward. Let its distance from the bottom be $L(t)$.
+
+\begin{align*}
+    z' = z - L(t) \quad t' = t \quad x' = x
+\end{align*}
+
+\begin{align*}
+F = m\frac{d^2 z'}{dt^2} \\
+F = m\frac{d^2 (z - L(t))}{dt^2} \\
+F = m\frac{d^2 z}{dt^2} \text{(If \frac{d^2L(t)}{dt^2} - 0)}
+\end{align*}
+
+if $\frac{d^2 L(t)}{dt^2} = 0$, then the force is the same in the new coordinate
+system as that of the old coordinate system
+
+\section{Galileo's theory of flat space and gravitation}
+Newton's laws:
+\begin{align*}
+    &\vec F = m \vec a \\
+    &\vec F = m \frac{d^2 x}{dt^2} \\
+\end{align*}
+
+Galileo's gravitation, under the approximation that the earth is flat:
+If we pick downwards to be negative direction along the $2$ dimension, then his
+equation can be written as ${F_2 = - m g}$ where $g$ is a constant.
+
+This is special, because the force is proportional to the mass, which is not
+the case of things like electromagnetism.
+
+
+Combining the two equations, we get ${m \frac{d^2x}{dt^2} = - m g}$, or
+${\frac{d^2x}{dt^2} = - m g}$.
+
+
+That the acceleration induced by the graviational force is independent of the
+mass of the object is known as the \textit{equivalence principle}. At this
+stage, we can say that gravity is equivalent across all objects independent of
+their mass.
+
+Let's now consider a collection of point masses --- A diffuse cloud of
+particles, and have it fall. Different particles maybe heavy, light, large,
+small. However, since all of them have the same acceleration, the point cloud
+looks unchanged as it falls. That is, the object will have no stresses or
+strains as it falls. We can't tell by looking at our neighbours that there is a
+force being exterted on us, since all our neighbours are moving along with us!
+We cannot tell the difference between being in free space versus being in a
+graviational field.
+
+\section{Newton's theory of gravity}
+all bodies exert equal and opposite forces on each other. Given two bodies $a$
+and $b$ of masses $m$ and $M$ with distance $R$, the force on $a$ is
+${F_a \equiv \frac{GmM}{R^2}} \hat{r}$. where $\hat r$ is the direction from $a$
+to $b$.
+
+Again, we can prove that the acceleration of an object $a$ does not depend on
+its own mass.
+
+Now that gravitation depends on distance, we can actually feel something if we
+are in a gravitational field, since different parts of a given object will have
+a different force on it, due to the varying distance from (say) the earth.
+
+Gravitational field is defined as the force exerted on a test mass at every
+point in space.
+
+\subsubsection{Gauss' theorem}
+${\int  \grad \cdot A dx dy dz  = \int A_{\bot} d\sigma}$ where $\sigma$ is the
+differential unit of surface area of the surface. 
+
+Show that the divergence of a field in 3 dimensions will lead to an inverse
+square law.
+
+
+\section{Geometry and curvature}
+
+To describe a geometry, all we need is the distance between neighboring points
+on a blackboard. In general, given a parametrization, we can draw a possibly
+distorted grid of lines of constant corrdinate. The distance between two points
+${(x, y)}$ and ${(x + dx, y+ dy)}$ will be ${ds^2 = g_{11} dx^2 + 2 g_{12} d_x d_y + g_{22} d_y^2}$.
+
+
+
+\end{document}

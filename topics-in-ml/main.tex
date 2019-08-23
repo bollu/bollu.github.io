@@ -50,9 +50,14 @@
 \newcommand{\St}{\ensuremath{\mathcal{S}} }
 \newcommand{\Act}{\ensuremath{\mathcal{A}} }
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
 \newcommand{\Rn}{\mathbb{R}^n}
 \newcommand{\pik}{{\pi_{k}}}
 \newcommand{\piknext}{{\pi_{k+1}}}
+\newcommand{\pieps}{{\pi_{\epsilon}}}
+
+\newcommand{\Vn}{{V_{n}}}
+\newcommand{\Vnnext}{{V_{n+1}}}
 \newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
 
 \def\qed{$\Box$}
@@ -108,6 +113,7 @@ $O(|\St|^3)$. So the loose upper bound is be ${O(|\St|^3 \times |\Act^\St|)}$.
 \begin{code}
 let v n s = max [r s a + gamma * sum [(p s' s a) * v (n-1) s' | s' <- ss] | a <- as]
 let vs = [v i | i <- [0..]]
+-- | L infinity
 let norm v v' = max [(v s - v' s) | s <- ss]
 let out = head $ 
   dropWhile (\v v' -> norm (v' - v) < eps * (1 - gamma) / (2 * gamma)) $ 
@@ -116,4 +122,72 @@ let policy s = argmax as $ \a ->
   r s a + gamma * sum [ (p s' s a) * out s' | s' <- ss]
 \end{code}
 
+\begin{theorem}
+    For the series $V_n$ and the policy $\pi_\epsilon$ computed by the value
+    iteration algorithm, then:
+
+    $$ \forall \epsilon > 0, ~\exists n_0 \in \N, \forall n \geq n_0, \quad ||V_{n+1} - V_n||_{\infty} \leq \frac{\epsilon (1 - \gamma)}{2 \gamma} $$
+\end{theorem}
+\begin{proof}
+    We need to show that the sequence ${\{V_n\}_{n=0}^\infty}$ is a Cauchy sequence.
+    This has ben proven before by the use of contraction mapping. Thus, for a
+    given ${\epsilon' \geq 0, \exists n_0 \in \N, \forall n \geq n_0, ||V_{n+1} - V_n||_{\infty} \leq \epsilon'}$
+    by cauchy sequence. So, pick ${\epsilon' = \frac{\epsilon(1 - \gamma)}{2 \gamma}}$, and the proof
+    immediately follows.
+\end{proof}
+
+\begin{theorem}
+    If $ ||V_{n+1} - V_n||_{\infty} \leq \frac{\epsilon (1 - \gamma)}{2 \gamma} $, then $||V_{n+1} - V^\star||_{\infty} < \epsilon / 2$
+\end{theorem}
+\begin{proof}
+    \begin{align*}
+        &||V_{n+1} - V^\star|| = 
+        ||V_{n+1} -FV_{n+1} + F\Vnnext - V^\star|| \leq 
+        || \Vnnext - FV^\star || + ||F\Vn - \Vn|| \qquad \text{(triangle inequality)} \\
+        &\leq || \Vnnext - FV^\star ||  + \gamma || \Vnnext - V^\star || \\
+        &\leq \gamma || \Vnnext - \Vn || + \gamma || \Vnnext - V^\star || \\
+        &(1 - \gamma) || \Vnnext - V^\star || \leq \gamma || \Vn - \Vnnext || \qquad \text{(how?)} \\
+        &\implies \dots
+    \end{align*}
+\end{proof}
+
+It appears that $V^\pieps$ is just $V_{n+2}$??
+
+\begin{theorem}
+The policy $\pieps$ is $\epsilon$-optimal: $|| V^\star - V^\pieps|| \leq \epsilon$
+\end{theorem}
+% \begin{proof}
+%     \begin{align*}
+%         || V^\star - V^\pieps|| = || V^\star - \Vnnext + \Vnnext - V^\pieps|| \leq
+%         || V^\star - \Vnnext || + || \Vnnext - V^\pieps|| \leq
+%         \eps/2 + || \Vnnext - F \Vnnext + F \Vnnext - V^\pieps || 
+%         % how did we replace V^\pieps with F^{\pieps} V^{\pieps}?
+%         \leq \eps/2 + || \F \Vn - F \Vnnext + F \Vnnext - F^{\pieps} V^\pieps || 
+%         \text{TODO: finish}
+%     \end{align*}
+% \end{proof}
+
+
+\chapter{Monte carlo methods for MDP}
+
+For dynamic programming, we needed to know the transition probability 
+distribution $P(s, a, s')$, nor the reward function $r(s, a)$.
+
+In the monte carlo methods, we assume that we do not know the transition 
+probability distribution. We rely only on simulations.
+
+This samples over \emph{episodes} for a fixed policy: sequences of states,
+actions, and rewards.
+
+
+\section{Naive}
+\begin{itemize}
+    \item For each $s \in S$, run $\pi$ from $s$ for $m$ times, where the $i$th episode is $T_i$.
+    \item Let $r_i$ be the return of $T_i$
+    \item Estimate the value of $\pi$ starting from $s$ as 
+        ${\hat v_{\pi}(s) = \frac{1}{m} \sum_{i=1}^m r_i}$.
+    \item Show by chernoff bounds that this is an OK estimate. We can use 
+        Chernoff as ${ \{ r_i \} }$ are independent, 
+        since the ${ \{ T_i \} }$ are independent.
+\end{itemize}
 \end{document}
