@@ -181,13 +181,170 @@ actions, and rewards.
 
 
 \section{Naive}
+$$Episode_i (E_i) \equiv S_0^i \rightarrow A_0^i \rightarrow R_1^i \rightarrow S_1^i \rightarrow A_1^i \rightarrow  R_2^i \dots \rightarrow  S_{T_{i}} $$
+
+Episode $E_i$ terminates at $T_i$.
 \begin{itemize}
-    \item For each $s \in S$, run $\pi$ from $s$ for $m$ times, where the $i$th episode is $T_i$.
-    \item Let $r_i$ be the return of $T_i$
+    \item Let us define $G_i$ to be the reward of $E_i$. ${G_i \equiv \sum_{k=0}^{T_i} \gamma^k R^i_{k+1}}$
     \item Estimate the value of $\pi$ starting from $s$ as 
-        ${\hat v_{\pi}(s) = \frac{1}{m} \sum_{i=1}^m r_i}$.
+        ${\hat v_{\pi}(s) = \frac{1}{m} \sum_{i=1}^m G_i}$.
     \item Show by chernoff bounds that this is an OK estimate. We can use 
-        Chernoff as ${ \{ r_i \} }$ are independent, 
-        since the ${ \{ T_i \} }$ are independent.
+        Chernoff as ${ \{ G_i \} }$ are independent, 
+        since the episodes ${ \{ E_i \} }$ are independent.
 \end{itemize}
+
+\begin{itemize}
+    \item \emph{First-visit MC}: Average returns for the first time $s$ is visited in an episode
+    \item \emph{Every-visit MC}: Average returns for every time $s$ is visited in an episode.
+\end{itemize}
+Both of these asymptotally converge to the correct $v_{\pi}$.
+
+\subsection{First visit monte carlo policy evaluation}
+
+Run $\pi$ from a fixed state $s_0$ for $m$ times. This gives us $m$ episodes. The ith episode
+is $E_i$, which terminates at step $T_i$.
+
+$G(s, E_i)$ is defined as the return of $\pi$ in run $E_i$, starting from the time instant of the first
+appearance of $s$ in $E_i$ till the final state. If state $s$ occurs at time
+$t_s$, then ${G(s, E_i) \equiv \sum_{j=t_s}^{T_i} \gamma^{(j - t_s)} R^i_{j+1}}$.
+We start from $j+1$ since we want all rewards \emph{after} our state. Note that
+the reward $R_j$ is the reward granted \emph{before} transitioning to the state $S_j$.
+
+The value of a state $s$ under the policy $\pi$ is defined as:
+$$\hat v_\pi \equiv \frac{1}{m} \sum_{i=1}^m G(s, E_i)$$
+
+\subsection{Every visit monte carlo}
+Every time we visit a state, we are able to find the return starting from that state.
+\begin{code}
+-- | discount factor
+gamma = 0.9
+
+-- | an episode is a list of states, 
+-- with a possible (action,reward) pair 
+-- generating the next state
+type Episode = [(S, Maybe (A, R))]
+
+-- | Note the use of ParallelListComprehension!
+reward :: Episode -> R
+reward es = sum $ [gamma^i * r | i <- [1..] | (_, Just(_, r)) <- es]
+
+-- | Return all possible tails, in order of longest
+-- to shortest subsequence.
+-- > tails[1, 2, 3] = [[1, 2, 3], [2, 3], [3], []]
+tails :: Episode -> [Episode]
+tails [] = []
+tails xs = xs:tails (tail xs)
+
+-- | Find the longest subsequence with start state s0
+-- and calculate its reward. This assumes that
+-- tails returns the longer subsequences first
+firstVisit :: State -> Episode -> R
+firstVisit s0 episodes = 
+    case dropWhile (\e -> fst <$> headMaybe e /= Just s0) (tails episodes) of
+        (e:_) -> reward e
+        _ -> 0
+
+-- | Find all subsequences with start state s0, and calculate
+-- their rewards
+everyVisit :: State -> Episode -> R
+everyVisit s0 episodes = sum $ do 
+    e <- tails episodes
+    return $ if fst <$> headMaybe e /= Just s0 then 0 else reward e
+\end{code}
+For each run $E_i$ and state $s_0$, let $G(s_0, E_i, j)$ be the return of $\pi$ 
+in the run $E_i$ for the $j$th occurence of $s_0$ in $E_i$.
+Let $N_i(s)$ be the number of times state $s$ has occured in episode $E_i$.
+
+\begin{align*}
+    \hat v_\pi(s) = \frac{1}{\sum_{i=1}^m N_i(s)} \sum_{i=1}^m \sum_{j=1}^{N_i(s)} G(s, E_i, j)
+\end{align*}
+
+Note that $G(s, E_i, j)$ for a fixed state $s$ and $E_i$ is a dependent
+variable for different $j$. That is, $G(s, E_i, 1)$ is dependent on $G(s, E_i, 0)$.
+
+We also want $q_{pi}(s,a)$: The expected return starting from state $s$, taking
+an action $a$, and then following te policy $\pi$. (evaluation uses $v$, updates involve $q$).
+
+\section{Soft policy}
+
+Since our policy is deterministic, we cannot explore all state-action pairs. Therefore, we make
+our policy softly non-deterministic, by allowing transitions to all states with proabability
+$\epsilon$. This allows us to explore all state-action pairs.
+
+\begin{itemize}
+\item On-policy: Use same policy to generate the episode and update the policy.
+\item Off-policy: Use some policy to generate the episode, and update a different policy.
+\end{itemize}
+
+\begin{align*}
+&\pi: S \times A \rightarrow \R \\
+&\pi(s|a) = 
+  \begin{cases}
+    1 - \epsilon + \frac{\epsilon}{|A|} & \text{if $a = a^*$} \\
+    \frac{\epsilon}{|A|} & \text{otherwise}
+  \end{cases}
+\end{align*}
+
+\section{On policy first-visit MC control, for $\epsilon$-soft policy}
+\begin{code}
+Q :: State -> Action -> Prob
+Q s a = random
+
+Returns :: State -> Action -> Real
+Returns s a = 0
+
+
+pi :: State -> Action -> Prob
+pi = an arbitrary epsilon soft policy
+
+- generate a new episode using pi
+- for each (s, a) in the episode, 
+   G <- return following the first occurence of (s, a)
+   append G to Returns(s, a)
+   Q(s, a) <- average(Returns(s, a))
+
+- for each s in the episode: A* <- arg max a Q(s, a)
+- pi <- a new epsilon soft policy based on A*
+\end{code}
+
+Because the optimal policy for a finite MDP is deterministic, we choose to keep the
+policy slightly away from deterministic: This way, we get to explore the space, while still
+being optimal.
+
+We will prove that this actually does improve the policy. Let the new policy
+be $\piknext$, and the current policy be $\pik$.
+
+\begin{align*}
+q_\pi(s, \piknext(a)) &= \sum_{a \in A(s) } \piknext(a|s) q_{\pik}(s, a) \\
+  &= (1- \epsilon) \max_{q_{\pik}}(s, a) + \sum_{a \in A(s)} \frac{\epsilon}{|A(s)|} q_{\pik}(s, a) \\
+  &=  (1- \epsilon) q_{\pik}(s, a^*) + \sum_{a \in A(s)} \frac{\epsilon}{|A(s)|} q_{\pik}(s, a) \\
+  % &\left( \text{Note that $\left[ \frac{\sum_a \left( \pik(a|s) - \frac{\epsilon}{|A(s)|} \right) }{1 - \epsilon} \right] = 1$} \right) \\
+  % &= (1- \epsilon) \left[ \frac{\sum_a \pik(a|s) - \frac{\epsilon}{|A(s)|}}{1 - \epsilon} \right] q_{\pik}(s, a) + 
+  %   \sum_{a \in A(s)} \frac{\epsilon}{|A(s)|} q_{\pik}(s, a) 
+\end{align*}
+
+Note that $\pi'(a) = \frac{ \pik(a|s) - \frac{\epsilon}{|A(s)|} }{1 - \epsilon} \geq 0$.
+Also note that $\sum_a \pi'(a) = 1$. Now, since $avg \leq \max$, $\sum_a \pi'(a|s) q_\pik (s, a) \leq q_\pik(s, a^*)$.
+
+\begin{align*}
+  &=  (1- \epsilon) q_{\pik}(s, a^*) + \sum_{a \in A(s)} \frac{\epsilon}{|A(s)|} q_{\pik}(s, a) \\
+  &\geq  (1- \epsilon) \sum_a \pi'(a|s) q_{\pik}(s, a) + 
+         \sum_{a \in A(s)} \frac{\epsilon}{|A(s)|} q_{\pik}(s, a) \\
+  &= (1- \epsilon) \left[ \frac{\sum_a \left[ \pik(a|s) - \frac{\epsilon}{|A(s)|} \right] }{1 - \epsilon} \right] q_{\pik}(s, a) + 
+         \sum_{a \in A(s)} \frac{\epsilon}{|A(s)|} q_{\pik}(s, a) \\
+  &= \sum_a \pik(a|s) q_\pik(s, a) \qquad \left( \text{Cancellation of $\sum_{a \in A(s)} \frac{\epsilon}{|A(s)|} q_{\pik}(s, a)$} \right) \\
+  &= v_\pik(s)
+\end{align*}
+
+
+\section{Off policy}
+
+We can use another policy $\mu$ to generate data, and we estimate $q_{\pi}$ based on $\mu$.
+Here, $\pi$ is called the target policy, and $\mu$ is called the behaviour policy.
+
+We need $\mu$ to \emph{cover} $\pi: \pi(a|s) > 0 \implies \mu(a|s) > 0$. That is, every action
+taken by $\pi$ must have non-zero proability to be taken by $\mu$. That is, we can
+only choose to take actions that were taken by $\mu$, since we can only really learn from the
+things that $\mu$ has done.
+
 \end{document}
