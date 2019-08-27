@@ -1,0 +1,68 @@
+\documentclass[9pt]{article}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\author{Siddharth Bhat(20161105)}
+\title{Optimization assignment --- Basic descriptive 6}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Siddharth Bhat (20161105)}
+\rfoot{Page \thepage}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+Yes, linear programming is an example of convex programming, since 
+we are optimizing a linear function (which is convex), over a polyhedra
+(which is convex).
+\begin{theorem}
+    Let $f: \R^n \rightarrow \R$ be a linear function. We prove it is convex
+\end{theorem}
+\begin{proof}
+    \begin{align*}
+    &\forall \lambda \in [0, 1], \forall x, y \in \R^n, f(\lambda x + (1 - \lambda) y)) = \lambda f(x) + (1 - \lambda) f(y) \implies \\
+    &\forall \lambda \in [0, 1], \forall x, y \in \R^n, f(\lambda x + (1 - \lambda) y)) \leq \lambda f(x) + (1 - \lambda) f(y) \\
+    \end{align*}
+\end{proof}
+
+\begin{theorem}
+    Let $P = \{ \vec x \in \R^n ~|~ A \vec x \leq \vec b \}$.  We prove
+    that it is convex. That is:
+    \[ \forall \lambda \in [0, 1], \forall x, y \in P, \lambda x + (1 - \lambda y) \in P \]
+\end{theorem}
+\begin{proof}
+    Since $x, y \in P$, we know that $Ax \leq b$, $Ay \leq b$. Hence,
+    \begin{align*}
+        &\lambda (Ax) + (1 - \lambda) (Ay) \leq (\lambda b) + (1 - \lambda) b \implies \lambda (Ax) + (1 - \lambda) (Ay) \leq b \\
+        &\text{By linearity of $A$, } \quad A (\lambda x) + A ((1 - \lambda) y) \leq b \\
+        &A [\lambda x + (1 - \lambda) y)] \leq b \\
+    \end{align*}
+
+    Hence, $\lambda x + (1 - \lambda y) \in P$, since it satisfies $Ax \leq b$.
+    Therefore, polyhedra are convex, and our domain is a convex domain.
+\end{proof}
+
+However, in the case of ILP, the domain is some subset of $\Z^n$, which 
+is not convex. For example, $0, 1 \in \Z$ but $(0.5 \times 0 + (1 - 0.5) \times 1 = 0.5 \notin Z)$.
+Hence, ILP does not fall under the class of convex optimization.
+
+Another way to see that this is not possible is that there are efficient
+algorithms for convex optimization, but is not the case for ILP (which is
+NP-hard). Hence, we should suspect that ILP does not fall under
+convex optimization (unless \texttt{P = NP})
+\end{document}
+

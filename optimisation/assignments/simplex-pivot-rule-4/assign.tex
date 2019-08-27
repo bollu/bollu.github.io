@@ -1,0 +1,62 @@
+\documentclass[11pt]{article}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\author{Siddharth Bhat(20161105)}
+\title{Optimization assignment --- TODO}
+\date{\today}
+\renewcommand{\l}{\left}
+\renewcommand{\r}{\right}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Siddharth Bhat (20161105)}
+\rfoot{Page \thepage}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+Let us assume the linear program is of the form $\min A\vec{x} = \vec{b}$, 
+subject to $\vec x \geq 0$.
+
+Let the objective be $z = k_i x_i$ at some step, and the constraints be
+$A'x = b$. At this point, we need to find the index $e$ for the entering
+variable such that the \textit{total change} will be minimum. That is,
+$k_e \delta_e$ is minimum, where $\delta_e$ is the maximum value $x_e$ can take.
+We can read $k_e$ off from the objective function, and we can compute $\delta_e$
+by computing the maximum value the value $x_i$ can take under the given system
+of constraints.
+
+
+In terms of the canonical form, consider the canonical form:
+\begin{align*}
+    \begin{bmatrix}
+        -z & x_1 & x_2 & \dots & x_n & RHS \\
+        1 & c_1 & c_2 & \dots & c_n & 0 \\
+        0 & \alpha_{11} & \alpha_{12} & \dots & \alpha_{1n} & b_1 \\
+        0 & \alpha_{21} & \alpha_{22} & \dots & \alpha_{2n} & b_2 \\
+        0 & \vdots & \vdots & \ddots & \vdots & \vdots \\
+        0 & \alpha_{m1} & \alpha_{m2} & \dots & \alpha_{mn} & b_m \\
+    \end{bmatrix}
+\end{align*}
+
+
+For a fixed choice of column $l$, the rate of change is $-c_l$. The maximum
+value that $x_l$ can take, if we choose to exist $x_r$,
+is $b_r / c_{rl}$. Since we want the total negative change to be maximised, we need to
+pick $(l, r)$ such that $-c_l \dot b_r / c_{rl}$ is minimum, since that is 
+the quantity which is the rate of change in variable $x_l$ multiplied by the 
+total delta that is possible when $x_r$ exists while $x_l$ enters.
+
+\begin{align*}
+    (l, r) = \text{argmin}_{l, r} \l( -c_l b_r / c_{rl} \r)
+\end{align*}
+\end{document}
+
+

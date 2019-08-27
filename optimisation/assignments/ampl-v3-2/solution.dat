@@ -1,0 +1,15 @@
+set Obj := Caillebotte Diocletian Yuan Porsche Diamonds LouisXV Sculpture 
+        Boat HarleyDavidson RaceDogs Cavour;
+
+param price := Caillebotte 25000
+               Diocletian 5000
+               Yuan 20000 
+               Porsche 40000
+               Diamonds 12000
+               LouisXV 3000
+               Sculpture 10000 
+               Boat 15000
+               HarleyDavidson 10000
+               RaceDogs 3000
+               Cavour 13000
+

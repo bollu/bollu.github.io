@@ -1,0 +1,29 @@
+set A := A1 A2 A3;
+
+param maxdemand := 
+    A1 5300
+    A2 4500
+    A3 5400;
+
+
+param sellingprice := 
+    A1 124
+    A2 109
+    A3 115;
+
+param prodcost :=
+    A1 73.30
+    A2 52.90
+    A3 65.40;
+
+param prodquota :=
+    A1 500
+    A2 450
+    A3 550;
+
+param minbatch :=
+    A1 20
+    A2 20
+    A3 16
+
+

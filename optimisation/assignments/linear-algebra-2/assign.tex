@@ -1,0 +1,39 @@
+\documentclass[11pt]{article}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\author{Siddharth Bhat(20161105)}
+\title{Optimization assignment -- Linear algebra 2}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Siddharth Bhat (20161105)}
+\rfoot{Page \thepage}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+Prove that $(a+b)^T(a-b)^T = \norm{a}^2 + \norm{b}^2$. This question is
+wrong. Let us assume the dimension of $a, b$ is $1 \times n$. Hence, $a +b, a- b$
+have dimensions $n \times 1$, and can consequently not be matrix multiplied,
+let alone produce a scalar as output.
+
+The question should probably be: prove that $(a+b)(a-b)^T = \norm{a}^2 - \norm{b}^2$.
+\begin{align*}
+    (a+b)(a-b)^T = &
+    \begin{bmatrix} a_1 + b_1 & a_2 + b_2 & \dots & a_n + b_n \end{bmatrix}
+    \begin{bmatrix} a_1 - b_1 \\ a_2 - b_2 \\ \dots \\ a_n - b_n \end{bmatrix}   \\
+    &= (a_1 + b_1) (a_1 - b_1) +(a_2 + b_2) (a_2 - b_2) + \dots + (a_n + b_n) (a_n - b_n) \\
+    &= \sum_i a_i^2 - b_i^2 = \sum_i a_i^2 - \sum_i b_i^2 = \norm{a}^2 - \norm{b}^2
+\end{align*}
+\end{document}
+

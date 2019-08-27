@@ -1,0 +1,6 @@
+Couenne 0.5.6 -- an Open-Source solver for Mixed Integer Nonlinear Optimization
+Mailing list: couenne@list.coin-or.org
+Instructions: http://www.coin-or.org/Couenne
+couenne: 
+Ampl model contains a constraint without "=", ">=", or "<=".
+<BREAK>

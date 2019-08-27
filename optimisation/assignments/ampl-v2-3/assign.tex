@@ -1,0 +1,59 @@
+\documentclass[11pt]{article}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{minted}
+\author{Siddharth Bhat(20161105)}
+\title{Optimization assignment --- AMPL V3 2}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Siddharth Bhat (20161105)}
+\rfoot{Page \thepage}
+
+\begin{document}
+\maketitle
+\begin{figure}[!htb]
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \inputminted[fontsize=\tiny]{ampl}{q1/solution.dat}
+    \end{minipage}
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \inputminted[fontsize=\tiny]{ampl}{q1/solution.mod}
+    \end{minipage}
+    \caption{Q1}
+\end{figure}
+\begin{figure}[!htb]
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \inputminted[fontsize=\tiny]{ampl}{q2/solution.dat}
+    \end{minipage}
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \inputminted[fontsize=\tiny]{ampl}{q2/solution.mod}
+    \end{minipage}
+    \caption{Q2}
+\end{figure}
+\begin{figure}[!htb]
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \inputminted[fontsize=\tiny]{ampl}{q3/solution.dat}
+    \end{minipage}
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \inputminted[fontsize=\tiny]{ampl}{q3/solution.mod}
+    \end{minipage}
+    \caption{Q3}
+\end{figure}
+
+\thispagestyle{fancy}
+\end{document}
+

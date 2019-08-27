@@ -1,0 +1,18 @@
+Couenne 0.5.6 -- an Open-Source solver for Mixed Integer Nonlinear Optimization
+Mailing list: couenne@list.coin-or.org
+Instructions: http://www.coin-or.org/Couenne
+couenne: 
+ANALYSIS TEST: 
+ 	"Finished"
+Total solve time:                        0.002907s (0.002906s in branch-and-bound)
+Lower bound:                                    0
+Upper bound:                                    0  (gap: 0.00%)
+Branch-and-bound nodes:                         3
+delta = 0
+
+useitem [*] :=
+          Boat 0         Diamonds 1          LouisXV 1        Sculpture 1
+   Caillebotte 1       Diocletian 1          Porsche 0             Yuan 1
+        Cavour 0   HarleyDavidson 0         RaceDogs 1
+;
+

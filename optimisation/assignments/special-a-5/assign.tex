@@ -1,0 +1,33 @@
+\documentclass[11pt]{article}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\author{Siddharth Bhat(20161105)}
+\title{Optimization assignment --- Special $A$ 5}
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Siddharth Bhat (20161105)}
+\rfoot{Page \thepage}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+$A = I + BB^T$
+\begin{itemize}
+    \item Let $B$ be an $n \times m$ matrix.
+    \item Cost for computing $X = BB^T$ is $n^2m$.
+    \item Cost to compute $Y = BB^T + I = X + I$ is $n$.
+    \item Cost to find Cholesky is $\frac{n^3}{3}$.
+    \item Cost to solve eqns from Cholesky is $2n^2$.
+    \item Total cost is $n^2m + n + \frac{n^3}{3} + 2n^2$.
+\end{itemize}
+\end{document}
+

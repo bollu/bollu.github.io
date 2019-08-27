@@ -1,0 +1,43 @@
+\documentclass[11pt]{article}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\author{Siddharth Bhat(20161105)}
+\title{Optimization assignment --- LP solution problem parameter 3 }
+\date{\today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Siddharth Bhat (20161105)}
+\rfoot{Page \thepage}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+We are asked to mimise the dot product between the vector $\vec c$
+and the vector $\vec x$, subject to the constraints $0 \leq x_i \leq 1$. Since
+the objective is $c^t x = \sum_i c_i x_i$ under the constraints
+$0 \leq x_i \leq 1$, we can consider each $x_i$
+independently as there are no terms in the objective or in the constraints that
+have cross-dependencies.
+
+Note that if the $i$th component of the vector $c_i$ is positive, then the
+minimum value of $x_i c_i$ is possible if $x_i = 0$(since to $0 \leq x_i \leq
+1$). Similarly, if the $i$th component of the vector $c_i$ is negative, then
+the minimum value of $x_i c_i$ is achieved when $x_i = 1$. If $c_i$ is $0$,
+then the value of $x_i$ does not matter. Hence, the optimal value of the $x$
+vector is:
+\begin{align*}
+    x_i = \begin{cases}
+        1 & \text{if $c_i < 0$} \\
+        0 & \text{if $c_i \geq 0$}
+    \end{cases}
+\end{align*}
+\end{document}
+
