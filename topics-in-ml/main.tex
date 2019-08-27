@@ -50,6 +50,7 @@
 \newcommand{\St}{\ensuremath{\mathcal{S}} }
 \newcommand{\Act}{\ensuremath{\mathcal{A}} }
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Rn}{\mathbb{R}^n}
 \newcommand{\pik}{{\pi_{k}}}
@@ -346,5 +347,39 @@ We need $\mu$ to \emph{cover} $\pi: \pi(a|s) > 0 \implies \mu(a|s) > 0$. That is
 taken by $\pi$ must have non-zero proability to be taken by $\mu$. That is, we can
 only choose to take actions that were taken by $\mu$, since we can only really learn from the
 things that $\mu$ has done.
+
+\section{Importance sampling}
+We want to find $\E_q[x]$, for a distribution $q$ that is hard to sample. We can only sample a distribution $p$
+that is easy to sample. What we do is to define a new random variable $\hat x = x \frac{q(x)}{p(x)}$. We know
+how to draw samples from $p(x)$ efficiently, so we create the $\hat x$ such that $\hat x \sim p \implies x \sim q$.
+
+\begin{align*}
+\E_p[\hat x] = \E_p\left[x \frac{q(x)}{p(x)}\right] = \sum_x p(x) \cdot x \frac{q(x)}{p(x)} = \sum_x x q(x) = \E_q[x]
+\end{align*}
+
+\section{Off-policy monte-carlo control}
+
+We take an episode that was sampled according to policy $\mu$, and we use importance sampling to perturb it into
+a policy $\pi$.
+
+For a given policy $\pi$, we define the probability of a subsequence of an episode occuring under policy $\pi$ as
+$P_\pi(t, T) \equiv \prod_{k=t}^{T-1} \pi(A_k|S_k) p(S_{k+1}| A_k, S_k)$. Now, to importance sample, we will get:
+
+
+$$
+\rho(t, T) \equiv 
+\frac{ \prod_{k=t}^{T-1} \pi(A_k|S_k) p(S_{k+1}| A_k, S_k)}{ \prod_{k=t}^{T-1} \mu(A_k|S_k) p(S_{k+1}| A_k, S_k)}
+  = \prod_{k=t}^{T-1} \frac{\pi(A_k|S_k)}{\mu(A_k|S_k)} 
+$$
+
+\begin{align*}
+\E_{A_k \sim \mu(A_k | S_k)}\left[ f(A_k) \frac{\pi(A_k|S_k)}{\mu(A_k|S_k)} \right] = E_{A_k \sim \pi(A_k|S_k)}[f(A_k)]
+\end{align*}
+
+We want to use $f(A_k) = G_t$ That is, we want to importance sample the \textit{reward} of a trajectory under $\mu$
+and perturb it to reward under $\pi$.
+
+
+
 
 \end{document}
