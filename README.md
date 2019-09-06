@@ -34,15 +34,15 @@ to be seen. I'm hopeful, though :)
 # Grobner bases: why and how?
 
 The question a Grobner basis allows us to answer is this: can the polynomial
-`p(x, y) = xy^2 + y` be factorized in terms of `a(x, y) = xy + 1`, `b(x, y) = y^2 - 1`,
-such that `p(x, y) = f(x, y) a(x, y) + g(x, y) b(x, y)` for some _arbitrary_ polynomials
-`f(x, y), g(x, y)`.
+$p(x, y) = xy^2 + y$ be factorized in terms of $a(x, y) = xy + 1, b(x, y) = y^2 - 1$,
+such that $p(x, y) = f(x, y) a(x, y) + g(x, y) b(x, y)$ for some _arbitrary_ polynomials
+$f(x, y), g(x, y) \in R[x, y]$.
 
 One might imagine, "well, I'll divide and see what happens!" Now, there are two
 routes to go down:
 
-- `xy^2 + y = y(xy + 1) = y a(x, y) + 0 b(x, y)`. Well, problem solved?
-- `xy^2 + y = xy^2 - x + x + y = x (y^2 - 1) + x + y = x b(x, y) + (x + y)`. Now what? we're stuck, and we can't apply `a(x, y)`!
+- $xy^2 + y = y(xy + 1) = y a(x, y) + 0 b(x, y)$. Well, problem solved?
+- $xy^2 + y = xy^2 - x + x + y = x (y^2 - 1) + x + y = x b(x, y) + (x + y)$. Now what? we're stuck, and we can't apply `a(x, y)`!
 
 So, clearly, the _order_ in which we perform of factorization / division starts
 to matter! Ideally, we want an algorithm which is _not sensitive_ to the order
@@ -52,7 +52,9 @@ in which we choose to apply these changes. $x^2 + 1$.
 
 An alternative viewpoint of asking "can this be factorized", is to ask
 "can we look at the factorization as a rewrite rule"? For this perspective,
-notice that 
+notice that "factorizing" in terms of $xy + 1$ is the same as being
+able to set $xy = -1$, and then have the polynomial collapse to zero.
+(For the more algebraic minded, this relates to the fact that $R[x] / p(x) \sim R(\text{roots of p})$
 
 # Lie bracket versus torsion
 
