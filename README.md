@@ -31,7 +31,9 @@ to be seen. I'm hopeful, though :)
 
 # Ideas I stumble onto
 
-# Grobner bases: why and how?
+# What is a Grobner basis -  polynomial factorization as rewrite systems
+
+##### A motivating example
 
 The question a Grobner basis allows us to answer is this: can the polynomial
 $p(x, y) = xy^2 + y$ be factorized in terms of $a(x, y) = xy + 1, b(x, y) = y^2 - 1$,
@@ -49,12 +51,50 @@ to matter! Ideally, we want an algorithm which is _not sensitive_ to the order
 in which we choose to apply these changes. $x^2 + 1$.
 
 
+##### The rewrite rule perspective
+
 
 An alternative viewpoint of asking "can this be factorized", is to ask
 "can we look at the factorization as a rewrite rule"? For this perspective,
 notice that "factorizing" in terms of $xy + 1$ is the same as being
 able to set $xy = -1$, and then have the polynomial collapse to zero.
-(For the more algebraic minded, this relates to the fact that $R[x] / p(x) \sim R(\text{roots of p})$
+(For the more algebraic minded, this relates to the fact that $R[x] / p(x) \sim R(\text{roots of p})$).
+The intuition behind this is that when we "divide by $xy + 1$", really what
+we are doing is we are setting $xy + 1 = 0$, and then seeing what remains. But
+$xy + 1 = 0 \iff xy = -1$. Thus, we can look at the original question as:
+
+How can we apply the rewrite rules $xy \rightarrow -1$, $y^2 \righarrow 1$,
+along with the regular rewrite rules of polynomial arithmetic to the polynomial
+$p(x, y) = xy^2 + y$, such that we end with the value $0$?
+
+Our two derivations above correspond to the application of the rules:
+
+- $xy^2 + y \xrightarrow{xy = -1} -y + y = 0$
+- $xy^2 + y \xrightarrow{y^2 = 1} x + y \nrightarrow \text{stuck!}$
+
+That is, our [rewrite rules are not confluent](https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting))
+
+The grobner basis is a mathematical object, which is a  _a confluent set of rewrite rules_
+for the above problem. That is, it's a set of polynomials which manage to find
+the rewrite $p(x, y) \xrightarrow{\star} 0$, regardless of the order in which
+we apply them. It's also _correct_, in that it only rewrites to $0$ if the
+original system had _some way_ to rewrite to $0$.
+
+###### The buchberger's algorithm
+
+We need to identify 
+[critical pairs](https://en.wikipedia.org/wiki/Critical_pair_(logic)), 
+which in this setting are called as S-polynomials.
+
+Let $f_i = H(f_i) + R(f_i)$ and $f_j = H(f_j) + R(f_j)$. Let $m = lcm(H(f_i), H(f_j))$,
+and let $m_i, m_j$ be monomials such that $m_i \cdot H(f_i) = m = m_j \cdot H(f_j)$.
+The S-polynomial induced by $f_i, f_j$ is defined as $S(f_i, f_j) = m_i f_i - m_i f_j$.
+
+
+##### References
+- [The term rewriting perspective is from the book "term rewriting and all that"](https://www21.in.tum.de/~nipkow/TRaAT/)
+- [Sympy has excellent reading material on grobner basis](https://mattpap.github.io/masters-thesis/html/src/groebner.html)
+
 
 # Lie bracket versus torsion
 
@@ -1554,14 +1594,14 @@ for my course in college)
 ## How Linear optimisation is the same as Linear feasibility checking
 Core building block of effectively using the ellipsoid algorithm.
 
-- If we posess a way to check if a point `p ∈ P` where `P` is a polytope, we
+- If we posess a way to check if a point $p \in P$ where $P$ is a polytope, we
   can use this to solve optimisation problems.
-- Given the optimisation problem maximise `c^Tx` subject to `Ax = b`, we can
+- Given the optimisation problem maximise $c^Tx$ subject to $Ax = b$, we can
   construct a new _non-emptiness_ problem. This allows us to convert optimisation
   into _feasibility_.
-- The new problem is `Ax = b, A^Ty = c, c^Tx = b^T y`. Note that by duality,
+- The new problem is $Ax = b, A^Ty = c, c^Tx = b^T y$. Note that by duality,
   a point in this new polyhedra will _be an optimal solution to the above linear program_.
-  We are forcing `c^Tx = b^Ty`, which will be the optimal solution, since the
+  We are forcing $c^Tx = b^Ty$, which will be the optimal solution, since the
   solution where the primal and dual agree is the optimal solution by strong
   duality.
 - This way, we have converted a _linear programming_ problem into a 
