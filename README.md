@@ -1,3 +1,25 @@
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+>
+</script>
+
+
 Contents of [pixel-druid.com](http://pixel-druid.com/), mirrored at [bollu.github.io](http://bollu.github.io/)
 
 
@@ -9,10 +31,33 @@ to be seen. I'm hopeful, though :)
 
 # Ideas I stumble onto
 
+# Grobner bases: why and how?
+
+The question a Grobner basis allows us to answer is this: can the polynomial
+`p(x, y) = xy^2 + y` be factorized in terms of `a(x, y) = xy + 1`, `b(x, y) = y^2 - 1`,
+such that `p(x, y) = f(x, y) a(x, y) + g(x, y) b(x, y)` for some _arbitrary_ polynomials
+`f(x, y), g(x, y)`.
+
+One might imagine, "well, I'll divide and see what happens!" Now, there are two
+routes to go down:
+
+- `xy^2 + y = y(xy + 1) = y a(x, y) + 0 b(x, y)`. Well, problem solved?
+- `xy^2 + y = xy^2 - x + x + y = x (y^2 - 1) + x + y = x b(x, y) + (x + y)`. Now what? we're stuck, and we can't apply `a(x, y)`!
+
+So, clearly, the _order_ in which we perform of factorization / division starts
+to matter! Ideally, we want an algorithm which is _not sensitive_ to the order
+in which we choose to apply these changes. $x^2 + 1$.
+
+
+
+An alternative viewpoint of asking "can this be factorized", is to ask
+"can we look at the factorization as a rewrite rule"? For this perspective,
+notice that 
+
 # Lie bracket versus torsion
 
 
-![torsion-vs-parallel-transport](lie-bracket-versus-torsion.png)
+![torsion-vs-parallel-transport](static/lie-bracket-versus-torsion.png)
 
 This picture _finally_ made the difference between these two things clear.
 The lie bracket moves along the _flow_, while the torsion moves along
