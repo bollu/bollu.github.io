@@ -31,6 +31,123 @@ to be seen. I'm hopeful, though :)
 
 # Ideas I stumble onto
 
+# Vivado toolchain craziness 
+
+I found this file as I was cleaning up some old code, for a project to implement
+a [fast K/V store on an FPGA](https://github.com/AakashKT/CuckooHashingHLS),
+so I thought I should put this up for anyone else who stumbles on the
+same frustrations / errors. I'm not touching this particular toolchain again
+with a 10-foot pole till the tools stabilize by *a lot*.
+
+##### Vivado HLS issues
+
+
+- Unable to create BRAM for fields such as `bool`, `int16`. The data buses
+will be `8/16` bits long, with error:
+
+```
+[BD 41-241] Message from IP propagation TCL of /blk_mem_gen_7: set_property
+error: Validation failed for parameter 'Write Width A(Write_Width_A)' for BD
+Cell 'blk_mem_gen_7'. Value '8' is out of the range (32,1024) Customization
+errors found on 'blk_mem_gen_7'. Restoring to previous valid configuration.
+```
+
+- I had an array of structs:
+
+```cpp
+struct S {
+    bool b;
+    int16 x;
+    int16 y;
+}
+```
+
+This gets generated as 3 ports for memory, of widths `1`, `16`, `16`. Ideally,
+I wanted *one* port, of width `16+16+1=33`, for each struct value.
+However, what was generated were three ports of widths `1`, `16`, and `16`
+which I cannot connect to BRAM.
+
+- `data_pack` allows us to create one port of width `16+16+1=33`
+
+- Shared function names allocated on BRAM causes errors in synthesis:
+```cpp
+struct Foo {...};
+void f (Foo conflict) {
+    #pragma HLS interface bram port=conflict
+}
+
+void g (Foo conflict) {
+    #pragma HLS interface bram port=conflict
+}
+```
+
+
+- Enums causes compile failure in RTL generation  (commit `3c0d619039cff7a7abb61268e6c8bc6d250d8730`)
+- `ap_int` causes compile failurre in RTL generation (commit `3c0d619039cff7a7abb61268e6c8bc6d250d8730`)
+- `x % m` where `m != 2^k` is very expensive -- there must be faster encodings of modulus?
+- How to share code between HLS and vivado SDK? I often wanted to share constant values between
+  my HLS code and my Zynq code.
+- Can't understand why array of structs that were packed does not get deserialized correctly. I had to manually
+  pack a struct into a `uint32`. For whatever reason, having a `#pragma pack` did something to the representation of the struct
+  as far as I can tell, and I couldn't treat the memory as just a raw `struct *` on the other side:
+
+```cpp
+// HLS side
+struct Vec2  { int x; int y};
+void f(Vec2 points[NUM_POINTS]) {
+	#pragma HLS DATA_PACK variable=points
+    #pragma HLS INTERFACE bram port=points
+
+    points[0] = {2, 3};
+}
+
+// Host side
+Vec2 *points = (Vec2 *)(0xPOINTER_LOCATION_FROM_VIVADO);
+
+int main() {
+    // points[0] will *not* be {2, 3}!
+}
+```
+
+- If I change my IP, there is no way to preserve the current connections in the
+  GUI why just updating the "changed connections". I'm forced to remove the IP
+  and add it again (no, the Refresh IP button does not work).
+- On generating a new bitstream from Vivado, Vivado SDK tries to reload the config,
+fails at the reloading (thinks `xil_print.h` doesn't exist), and then fails to compile code.
+Options are to either restart Vivado SDK, or refresh `xil_print.h`.
+
+
+- It is entirely unclear what to version control in a vivado project, unless one
+has an omniscient view of the _entire toolchain_. I resorted to `git add` ing 
+everything, but this is a terrible strategy in so many ways.
+
+
+#### SDAccel bugs
+
+**[link to tutorial we were following](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2017_1/ug1028-sdsoc-intro-tutorial.pdf)**
+- The executable is named `.exe` while it's actually an ELF executable (The SDAccel tutorials say it is called as `.elf`)
+- the board is supposed to automatically boot into linux, which it does not. One is expected to call `bootd` manually (for "boot default") so it boots ito linux. (The SDAccel tutorials say it automatically boots into it)
+- At this point, the SD card is unreadable. It took a bunch of time to figure out that the SD card needs to be mounted by us, and has the mount name `/dev/mmcblk0p1`. (The SDAccel tutorials say that it should be automatically mounted)
+- At this point, we are unable to run `hashing.elf`. It dies with a truly bizarre error: `hashing.elf: command not found`. This is almost un-googleable, due to the fact that the same problem occurs when people don't have the correct file name.
+- I rewrote `ls` with `hashing.elf` to see what would happen, because I conjectured that the shell was able to run `coreutils`. 
+- This dies with a different error `ls: core not found`. I'd luckily seen this during my android days, and knew this was from busybox.
+- This led me to google "busybox unable to execute executable", which led me to this [StackOverflow link](https://stackoverflow.com/questions/1562071/how-can-i-find-which-elf-dependency-is-not-fulfilled) that clued me into the fact that the ELF interpreter is missing.
+- When I discovered this, I wound up trying to understand how to get the right ELF interpreter. `readelf -l <exe name>` dumps out `[Requesting program interpreter: /lib/ld-linux-armhf.so.3]`. So, I bravely copied: `cp /lib/ld-linux.so.3 /lib/ld-linux-armhf.so.3`.
+- Stuff is *still* broken, but I now get *useful* error messages:
+```
+zynq> /hashing.elf 
+/hashing.elf: error while loading shared libraries: libxilinxopencl.so: cannot open shared object file: No such file or directory
+```
+At this point, clearly we have some linker issues (why does `xocc` not correctly statically link? What's up with it? Why does it expect it to be able to load a shared library? **WTF is happening**). do note that this is _not_ the way the process
+is supposed to go according to the tutorial!  
+- Of course, there's no static library version of `libxilinxopencl.so`, so that's a dead end. I'm completely unsure if the tutorial even makes sense. 
+- This entire chain of debugging is full of luck.
+
+- [Link talking about generating `BOOT` file](https://www.xilinx.com/html_docs/xilinx2018_2/sdsoc_doc/compiling-and-running-applications-on-arm-processor-hjy1504034381720.html)
+
+
+At some point, I gave up on the entire enterprise.
+
 # What is a Grobner basis -  polynomial factorization as rewrite systems
 
 ##### A motivating example
