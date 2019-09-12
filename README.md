@@ -33,7 +33,7 @@ to be seen. I'm hopeful, though :)
 
 # Topology as an object telling us what zero-locus is closed:
 
-- [Idea from this amazing post on `math.se`](https://math.stackexchange.com/questions/299765/what-does-the-topology-on-operatornamespecr-tells-us-about-r)
+- [Idea from this amazing post on `math.se`](https://math.stackexchange.com/questions/53852/is-there-a-way-of-working-with-the-zariski-topology-in-terms-of-convergence-limi)
 
 # Vivado toolchain craziness 
 
