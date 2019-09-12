@@ -31,6 +31,10 @@ to be seen. I'm hopeful, though :)
 
 # Ideas I stumble onto
 
+# Topology as an object telling us what zero-locus is closed:
+
+- [Idea from this amazing post on `math.se`](https://math.stackexchange.com/questions/299765/what-does-the-topology-on-operatornamespecr-tells-us-about-r)
+
 # Vivado toolchain craziness 
 
 I found this file as I was cleaning up some old code, for a project to implement
