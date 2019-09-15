@@ -31,6 +31,31 @@ to be seen. I'm hopeful, though :)
 
 # Ideas I stumble onto
 
+# Bondi k-calculus
+
+- [Link here](https://en.wikipedia.org/wiki/Bondi_k-calculus)
+
+An alternative formalism to derive special relativity geometrically,
+resting purely on hypotehses about the way light travels.
+
+However, I've not been able to prove the correctness of the assumptions made,
+by using coordinate geometry. I suspect this is because I will need to use
+hyperbolic geometry for the "side lengths" to work out.
+
+
+Indeed, I found another source, called as [The k-calculus fiddle](http://bearsoft.co.uk/Kcalc.html)
+which attempts to discredit k-calculus. The author of the above blog writes at
+the end:
+
+> In asking Ray D'Inverno's permission to use his book as the example of
+> k-calculus, he was kind enough to point out that the arguments I have given
+> are invalid. Chapter 2 of his book should be read through to the end and then
+> reread in the light of the fact that the geometry of space and time is
+> Minkowskian. Euclidean geometry should not be used in interpreting the
+> diagrams because their geometry is Minkowskian.
+
+which seems to imply that we need to use hyperbolic geometry for this.
+
 # Topology as an object telling us what zero-locus is closed:
 
 - [Idea from this amazing post on `math.se`](https://math.stackexchange.com/questions/53852/is-there-a-way-of-working-with-the-zariski-topology-in-terms-of-convergence-limi)
