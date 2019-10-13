@@ -46,6 +46,9 @@
 \usepackage{tabularx}
 \usepackage{latexsym}
 \newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\R}{\ensuremath{\mathbb R}}
+\newcommand{\coT}{\ensuremath{T^*}}
 
 \def\qed{$\Box$}
 \newtheorem{corollary}{Corollary}
@@ -54,6 +57,7 @@
 \newtheorem{lemma}{Lemma}
 \newtheorem{observation}{Observation}
 \newtheorem{proof}{Proof}
+\newtheorem{remark}{Remark}
 
 \title{General Relativity and Differential Geometry}
 \author{Siddharth Bhat}
@@ -92,11 +96,12 @@ We consider an elevator moving upward. Let its distance from the bottom be $L(t)
     z' = z - L(t) \quad t' = t \quad x' = x
 \end{align*}
 
-\begin{align*}
-F = m\frac{d^2 z'}{dt^2} \\
-F = m\frac{d^2 (z - L(t))}{dt^2} \\
-F = m\frac{d^2 z}{dt^2} \text{(If \frac{d^2L(t)}{dt^2} - 0)}
-\end{align*}
+
+% \begin{align*}
+% F = m\frac{d^2 z'}{dt^2} \\
+% F = m\frac{d^2 (z - L(t))}{dt^2} \\
+% F = m\frac{d^2 z}{dt^2} \text{(If \frac{d^2L(t)}{dt^2} - 0)}
+% \end{align*}
 
 if $\frac{d^2 L(t)}{dt^2} = 0$, then the force is the same in the new coordinate
 system as that of the old coordinate system
@@ -166,5 +171,354 @@ distorted grid of lines of constant corrdinate. The distance between two points
 ${(x, y)}$ and ${(x + dx, y+ dy)}$ will be ${ds^2 = g_{11} dx^2 + 2 g_{12} d_x d_y + g_{22} d_y^2}$.
 
 
+\chapter{Opimisation on Steifel Manifolds}
+We have the space $O(n) = \{ X \in \R^{n \times n} | X^T X = I \}$. To find an
+element of the tangent space at the point $P \in O(n)$, we parametrize a curve
+$C(t) : \R \rightarrow O(n)$, such that $c(0) = P$.  Then, we differentiate the
+curve and evaluate it at $0$. That is, $\frac{dc}{dt}\vert_{t=0} \in T_P O(n)$.
+
+
+We consider $C(t) : \R \rightarrow O(n)$, such that $C(0) = P$.  Since $C(t) \in
+O(n)$, we can write $C(t)^T C(t) = I$.  This in index notation, is $c^{ik}(t)
+c^{jk}(t) = \delta^{ij}$. Differentiating with respect to $t$, we get:
+
+\begin{align*}
+&C^T(t) C(t) = I \\
+&c^{ik}(t) c^{jk}(t) = \delta^{ij} \\
+&\frac{d (c^{ik}(t) c^{jk}(t))}{dt}= \frac{d(\delta^{ij})}{dt} \\
+& \dot c^{ik}(t) c^{jk}(t) + c^{ik}(t) \dot c^{jk}(t) = 0 \qquad \text{(chain rule)}\\
+&\dot C^T(t) C(t) + C(t)^T \dot C(t) = 0
+\end{align*}
+
+Now, we know that $C(0) = P$, and hence $\dot C(0) \in T_P O(n)$. By evaluating
+the above equation at $t = 0$, we obtain the relation:
+
+\begin{align*}
+&\dot C^T(0) C(0) + C(0)^T \dot C(0) = 0 \\
+&\dot C^T(0) P + P^T \dot C(0) = 0
+\end{align*}
+
+Hence, we conclude that for all $Z \in T_P O(n)$, $Z^T P + P^T Z = 0$. Indeed,
+we can characterize $T_P O(n)$ this way and prove the reverse inclusion (how?),
+to show that:
+
+\begin{align*}
+     T_P O(n) \equiv \{ Z \mid Z^T P + P^T Z = 0 \}
+\end{align*}
+
+However, this equation for the $Z$ is "ineffective", in that it does not tell
+us how to \textit{compute} the set of $Z$s. We can only \textit{check} if a
+particular $Z_0 \in_? T_P O(n)$. 
+
+We will solve the characterization of $Z$ by first solving a slightly easier
+problem: $T_I O(n)$, where $I$ is the identity matrix. 
+
+\begin{align*}
+    T_I O(n) \equiv \{ Z \mid Z^T I + I^T Z = 0 \} = \{ Z \mid Z^T = -Z \}
+ \end{align*}
+
+ We now have a complete enumeration of the \textit{tangent space at the
+ identity}: We know that this consists of all skew-symmetric matrices! 
+
+ We now wish to transport this structure of $T_I O(n)$ to an arbitrary
+ $T_P O(n)$.  Here, I will let you in on a secret about the structure of
+ Lie groups, which we will later prove: The vector space at $T_P O(n)$ is obtained
+ by multiplying by $P$ to $T_I O(n)$. 
+
+ In this case, it tries to inform us that:
+
+\begin{align*}
+    T_P O(n) =  \{ PZ \mid Z^T = -Z \}
+\end{align*}
+
+We distrust this assertion at first, of course, so we can plug this equation back
+in the characterization of $T_P O(n)$ that we had developed and see what pops out:
+
+\begin{align*}
+     &T_P O(n) \equiv \{ X \mid X^T P + P^T X = 0 \} \\
+     &\text{Let $X = PZ$ where $Z^T = -Z$, and check that they satisfy the condition $X^T P + P^T X = 0$} \\
+     & (PZ)^TP + P^TPZ = Z^TP^TP + P^TPZ = Z^T I + I^T Z = -Z + Z = 0
+\end{align*}
+
+Hence, they do satisfy the condition, and we can assert that at least:
+$$\{ PZ \mid Z^T = -Z \} \subseteq  \{ X \mid X^T P + P^T X = 0 \}$$.
+
+\chapter{Symplectic vector spaces}
+
+% Symplectic geometry & classical mechanics, Tobias Osborne.
+% videos link: https://www.youtube.com/watch?v=GdXyNYUD4cE
+
+Let $V$ be a $m$-dimensional real vector space. Let $\Omega: V \times V \rightarrow V$
+be a bilinear form on $V$ that is skew-symmetric:
+$\forall a, b \in V, \Omega(a, b) = -\Omega(b, a)$.
+
+\begin{theorem}
+    Let $\Omega$ be a bilinear skew-symmetric map on $V$. Then there is a basis
+    $u_1, u_2, \dots u_k$, $e_1, e_2, \dots e_n$, $f_1, f_2 \dots f_n$ such that:
+    \begin{itemize}
+        \item $\Omega(u_i, v) = 0 \quad \forall v \in V$
+        \item $\Omega(e_i, e_j) =  \Omega(f_i, f_j) 0$
+        \item $\Omega(e_i, f_j) = \delta_{ij}$
+    \end{itemize}
+\end{theorem}
+\begin{proof}
+    Generalize Gram-Schmidt process.
+    Let $U = \{ u \in V | \Omega(u, v) = 0, ~\forall v \in V \}$
+    $U$ is a subspace of $V$. Let $u_1, u_2, \dots u_k$ be a basis of $U$.
+
+    Establish $e_j, f_j$ by induction. Let $V = U \oplus W$. Take $e_1 \in W$.
+    Then, there must exist an $f_1 \in W$ such that $\Omega(e_1, f_1) \neq 0$. 
+    Otherwise, we could expand the size of $U$ by adding $e_1$ to $U$. But
+    we assumed that $U$ contains all such vectors. $U$ and $W$ share no non-zero
+    vectors since $V = U \oplus W$.  Define $W_1 \equiv span(e_1, f_1)$.  
+    Now build $W_1^\Omega \equiv \{ w \in W | \Omega(w, W_1) = 0 \}$.
+
+    We need the folloing facts:
+    \begin{itemize}
+        \item $W_1^\Omega \cap W_1 = \{ 0 \}$
+        \item $W = W \oplus W_1^\Omega$
+    \end{itemize}
+
+    So, recurse on $W_1$.
+
+    Finally, $V = U \oplus W_1 \oplus W_1 \cdots \oplus W_n$.
+\end{proof}
+
+\begin{remark}
+    $dim(U) = k$ is invariant for $(V, \Omega)$ since $U$ was defined in a
+    coordinate free way. But, remember that $k + 2n = m$, and hence $n$
+    is an invariant of $(V, \Omega)$. $n$ is called as the \emph{rank} of
+    $\Omega$.
+\end{remark}
+
+$\Omega$ written in the basis of $\{ u_i, e_i, f_i\}$ gives 
+$\Omega = \begin{bmatrix} 0 & 0 & 0 \\ 0 & 0 & I \\ 0 & -I & 0 \end{bmatrix}$
+
+\subsection{Symplectic maps}
+
+Let $V$ be an $m$ dimensional real vector space over \R. Let $\Omega: V \times V \rightarrow \mathbb{R}$
+be a skew-symmetric bilinear map. We define 
+$\tilde \Omega: V \rightarrow V^*$, $\tilde \Omega(v)(u) \equiv \Omega(v, u)$. 
+The problem is that this map has a non-trivial kernel $U = \{ u_i \}$ in general,
+so we cannot use it like a metric to identify the two spaces.
+
+\begin{definition} A skew-symmetric bilinear map $\Omega: V \times V \rightarrow \R$ is Symplectic iff
+    $\tilde \Omega$ is bijective. ie, $U = \{ 0\}$. $(V, \Omega)$ is then
+    called a Symplectic vector space.
+\end{definition}
+
+\section{Properties of a Symplectic map}
+\begin{itemize}
+    \item $\tilde \Omega$ is an identification between $V$ and $V^*$.
+    \item Since each $(e_i, f_i)$ come in pairs, the dimension of the vector space $V$ is divisible by $2$. ie, $m = 2n$.
+    \item We have a basis $(e_i, f_i)$ called the Symplectic basis for $V$.
+    \item $\Omega$ in matrix form with respect to the Symplectic basis is $\Omega = \begin{bmatrix} 0 & I \\ -I & 0 \end{bmatrix}$
+\end{itemize}
+
+\subsection{Subspaces of a Symplectic vector space}
+
+\begin{definition}
+    A subspace $W$ of $V$ is a Symplectic subspace if $\Omega|_W$ is non-degenrate.
+    For example, take the subspace $span(e_1, f_1)$.
+\end{definition}
+
+
+\begin{definition}
+    A subspace $W$ of $V$ is an Isotropic subspace if $\Omega|_W = 0$.
+    For example, take the subspace $span(e_1, e_2)$.
+\end{definition}
+
+\subsection{Morphisms: Symplectomorphism}
+\begin{definition}
+    A map between $(V, \Omega)$ and $(V', \Omega')$ is a linear isomorphism
+    $\phi: V \rightarrow V'$ such that $\phi^* \Omega' = \Omega$. That is,
+    $\Omega'(\phi(v), \phi(w)) = \Omega(v, w)$. ($\phi^*$ is the pullback).
+    The map $\phi$ is called a Symplectomorphism and the spaces $(V, \Omega)$ and $(V', \Omega')$
+    are said to be Symplectomorphic
+\end{definition}
+
+(Question: why do we need to define this in terms of a pullback? Why not
+pushforward? ie, $\Omega(v, w) = \Omega'(\phi(v), \phi(w))$?
+
+\subsection{Prototypical example of Symplectic space}
+Let $V = \R^{2n}$. Let $e_j = (0_1, \dots, 1_j, \dots 0_n; 0_{n+1} \dots 0_{2n})$.
+Let $f_j = (0_1, \dots 0_n; 0_{n+1}, \dots 1_{n+j}, \dots 0_{2n})$.
+take $\{e_j, f_j\}$  as a basis for $V$.
+$\Omega_0 = \begin{bmatrix} 0 & I \\ -I & 0 \end{bmatrix}$
+
+Let $\phi: V \rightarrow V$ be a Symplectomorphism of $V$. Then, we can 
+show that $M_\phi^T \Omega_0 M_\phi = \Omega_0$. ($M_\phi$ is the matrix of $\phi$
+associated to the $\{e_j, f_k\}$ basis). 
+
+\subsection{Symplectic Manifolds}
+We are generalizing our symplectic vector space. We are postulating a space
+that locally looks like a symplectic vector space.
+
+Let $\omega: T_p M \times T_p M \rightarrow \mathbb R$ be a 2-form on a manifold.
+This is bilinear and skew-symmetric (by definition of begin a differential form).
+
+We say that $\omega$ is closed iff $d\omega = 0$.
+
+\begin{definition}
+    The two form $\omega$ is a symplectic form if it is closed and $\omega_p$
+    is symplectic for all $p \in M$. That is, we need $\omega_p$.
+\end{definition}
+
+\begin{definition}
+    A symplectic manifold is a pair $(M, \omega)$ where $\omega$ is a symplectic
+    form on $M$.
+\end{definition}
+
+\subsection{Prototypical example of Symplectic manifold}
+Let $M = \R^{2n}$ with coordinates $X_1, \dots X_n, Y_1, \dots Y_n$.
+$\omega = \sum_i dx_i  \wedge dy_i$.  $\omega$ is symplectic since it
+has constant coefficients for each $dx_i \wedge dy_i$.
+
+Symplectic basis for the tangent space 
+$T_p \R^{2n} \equiv \{ \partial_{X_i}, \partial_{Y_i} \}$.
+
+\subsection{2 sphere as a symplectic manifold}
+Let $M = S^2$ as an embedded manifold in $\R^3$.
+$S^2 \equiv \{ v \in \R^3, |v| = 1 \}$.
+$T_p S^2 \equiv \{ w \in R^3 | p \cdot w = 0 \}$.
+This works because $p$ is normal to the plane spanned by $T_p S^2$.
+We define $\omega_p(u, v) \equiv p \cdot (u \times v)$. Clearly, this is
+a 2-form since it is bilinear and anti-symmetric. $\omega$ is also closed,
+since there cannot be any degree 3 forms on a 2D manifold! Hence, $d\omega = 0$.
+
+We need to check that it is non-degenrate. For any point $p \in S^2$, 
+$v \in T_p S^2$, we can take $u = p \times v$. Now, $\omega_p(u, v) = p \cdot(u \times v)$ will be
+a non-degenrate area of a parallelopiped. The parallelopiped is non-degenrate 
+as $v, p$ are perpendicular by definition. $u$ is perpendicular to both $v$
+and $p$ by construction (cross-product). (TODO: draw picture).
+
+\subsection{Mapping between Symplectic Manifolds}
+Let $(M, \Omega)$ and $(M', \Omega')$ are Symplectomorphic if $\phi: M \rightarrow M'$
+is diffeomorphic, and such that $\phi^* \Omega' = \Omega$.
+
+
+\subsection{Symplectic manifolds are locally like $\R^{2n}$}
+\begin{theorem} (Darboux): Let $(M, \omega)$ be a $2n$ dimensional symplectic
+    manifold. Let $p \in M$. Then, there is a coordinate chart called 
+    as the Darboux chart $U$ with basis $X_1, \dots X_n, Y_1 \dots Y_n$ such that
+    the two-form $\omega = \sum_i dx_i \wedge dy_i$.
+\end{theorem}
+
+% Lecture 9: https://www.youtube.com/watch?v=hAX7ZCMM2kQ
+\section{The cotangent bundle and Symplectic forms}
+
+Let $X$ be an n-dimensional manifold. Let $M \equiv T^*X$ be its cotangent
+bundle.  $M$ is also a manifold.
+
+Define coordinate charts on $M$, $(T^*U: X_1, X_2, \dots X_n, \xi_1, \xi_2, \dots \xi_n)$,
+where $U$ is a chart on $X$, $X_1, \dots X_n$ are coordinate functions for $U$,
+and $\xi_1, \dots xi_n$ are coordinates for $T^*X_{x_0}$ where $x_0 \in X$, defined
+by $\xi_{x_0} = \sum_i \xi_i {dx_i}_{x_0}$.
+
+We need to show that the transition functions are smooth.
+
+Let $p \in U \cap U'$. We need to express coordinates in one chart
+as a smooth function of coordinates in another chart. $(U, X_1, \dots X_n)$
+, $(U', X_1', \dots, X_n')$ are coordinates, and let $\xi \in T_p^* M$.
+$(p, \xi) \in T^*X \equiv M$.
+
+
+\begin{align*}
+    \xi = \sum_i \xi_i dx_i = \sum_{i, k} \xi_i \frac{\partial x_i}{\partial x'_k} dx'_k = \sum_k \xi'_k dx'_k
+\end{align*}
+
+where the $\xi'_k = \xi_i \frac{\partial x_i}{\partial x'_k}$ are smooth since
+the $\xi_i$ are smooth, and that the transition maps derivaties are smooth
+since the charts are smooth.
+
+\subsection{Canonical Symplectic structure of contangent bundle}
+
+The physicist intuition for the following is that when we consider
+a particle moving on a manifold $X$. To fully specify the state of the
+particle, we need both position of the particle $x \in X$, and also
+momentum $p \in T^*X$ (why does it belong to contangent bundle? Intuition:
+given a velocity, it returns the momentum along it??? We can also supposedly
+look at how momentum transforms).
+This data is called "phase space" by physicists. Mathematically, this
+is the cotangent bundle.
+
+Now, we will see the canonical symplectic structure on the cotangent bundle.
+\subsection{Tautological and Canonical forms}
+Let $(U, x_1, \dots x_n)$ be a coordinate chart of $X$ and 
+$(T^*U, x_1, \dots x_n, \xi_1, \dots \xi_n)$ 
+be the corresponding chart of $M \equiv T^*X$. We will now define a 2-form
+on $M$ on the chart $T^*U$ via:
+\begin{align*}
+    w = \sum_j dx_j \wedge d\xi_j
+\end{align*}
+
+\begin{theorem}
+     This definition is coordinate independent
+ \end{theorem}
+ \begin{proof}
+     Consider a one-form on $T^*U \subset M$. Let $\alpha = \sum_j \xi_j dx_j$ 
+     This is called as the \emph{tautological form}.
+     $\alpha$ is a one-form on $M \equiv T^*X$, when $T^*X$ is treated as a manifold.
+     This is also a point on $T^* X$.
+     Note that $d \alpha = - \omega$. But $\alpha$ is intrinsically defined.
+     $\alpha =  \sum_j \xi_j dx_j = \sum_j \xi'_j dx'_j$.
+
+     TODO: I don't understand why this gives us coordinate independence.
+ \end{proof}
+
+\subsubsection{Coordinate-free definition}
+
+Let $M \equiv T^* X$. There is a canonical map $\pi: M \rightarrow X$, 
+$\pi(x, \xi) = x$. We are going to pullback $T^* X$ along $T^* M = T^* (T^* X)$
+$(d\pi)^*: T^*X \rightarrow T^*M$.
+Let $p \in M; p = (x, \xi)$. $\xi \in T_x^* X$.
+We define $\alpha$ pointwise. $\forall p \in M, \alpha_p \equiv  d\pi_p^* \xi_{\pi(p)}$.
+Equivalently, let $v_p \in T_p M \equiv T_p (T^*X)$. Now, $\alpha_p (v_p) \equiv \xi( d\pi_p (v_p))$.
+
+TODO: draw example (https://www.youtube.com/watch?v=hAX7ZCMM2kQ, 43:52)
+
+\subsubsection{Example 1}
+Let $X = \R$. Now, $M = \R \times \R$. $(x, y) \in M$ (position-momentum).
+$\pi: M \rightarrow X; \pi((x, y)) = x$.
+
+\begin{align*}
+&\alpha_{(x, y)} \equiv y dx 
+\qquad \omega = -d\alpha = - (\partial_y y \cdot dy \wedge dx) = dx \wedge dy \\
+&\alpha_{(x, y)}(v_x, v_y) = y dx (v_x \partial_x + v_y \partial_y) = y v_x
+\end{align*}
+
+
+\subsubsection{Example 1}
+Let $X = S^1$. Now, $M = S^1 \times \R$. $(x, y) \in M$ (position-momentum).
+$\pi: M \rightarrow X; \pi((\theta, v)) = \theta$.
+
+\begin{align*}
+&\alpha_{(x, y)} \equiv y d\theta \\
+&\omega_{(x, y)} \equiv d\theta \wedge dy
+\end{align*}
+
+\subsection{Naturality of Tautological form}
+Let $X_1, X_2$ be n-dimensional manifolds with $T^* X_1$ and $T^* X_2$ as cotangent
+bundles. Let $f: X_1 \rightarrow X_2$ is a diffeomorphism. We will show that
+the tautological manifolds also match.
+
+We show that there is a diffeomorphism $f_{\sharp}: T^*X_1 \rightarrow T^* X_2$
+which lifts $f$. ie, if $f_{\sharp}((x, \xi)) = (x', \xi')$, where $x' = f(x)$,
+$\xi = df^* \xi'$.
+
+\begin{theorem} The lift $f_\sharp$ of $f: X_1 \rightarrow X_2$ pulls the
+tautological form on $M_2 \equiv \coT X_2$ onto the tautological form on
+$M_1 \equiv \coT X_1$.
+\end{theorem}
+\begin{proof}
+Pointwise, we wish to show that $(df_\sharp^\star)_{p_1} (\alpha_2)_{p_2} = (\alpha_1)_{p_1}$
+where $p_2 = f^\sharp p_1$.
+
+$p_2 = f^\sharp p_1 \implies p2 = (x_2, \xi_2), x_2 = f(x_1) \land df^\star(\xi_1) = \xi_2$.
+
+TODO!
+\end{proof}
+
+\section{Vector fields and flows}
 
 \end{document}
