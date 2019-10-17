@@ -55,6 +55,9 @@
 \newtheorem{observation}{Observation}
 \newtheorem{proof}{Proof}
 
+\newcommand{\X}{\ensuremath{\mathfrak{X}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+
 \title{General Relativity and Differential Geometry}
 \author{Siddharth Bhat}
 \date{Monsoon 2019}
@@ -92,11 +95,11 @@ We consider an elevator moving upward. Let its distance from the bottom be $L(t)
     z' = z - L(t) \quad t' = t \quad x' = x
 \end{align*}
 
-\begin{align*}
-F = m\frac{d^2 z'}{dt^2} \\
-F = m\frac{d^2 (z - L(t))}{dt^2} \\
-F = m\frac{d^2 z}{dt^2} \text{(If \frac{d^2L(t)}{dt^2} - 0)}
-\end{align*}
+% \begin{align*}
+% F = m\frac{d^2 z'}{dt^2} \\
+% F = m\frac{d^2 (z - L(t))}{dt^2} \\
+% F = m\frac{d^2 z}{dt^2} \text{(If \frac{d^2L(t)}{dt^2} - 0)}
+% \end{align*}
 
 if $\frac{d^2 L(t)}{dt^2} = 0$, then the force is the same in the new coordinate
 system as that of the old coordinate system
@@ -166,5 +169,39 @@ distorted grid of lines of constant corrdinate. The distance between two points
 ${(x, y)}$ and ${(x + dx, y+ dy)}$ will be ${ds^2 = g_{11} dx^2 + 2 g_{12} d_x d_y + g_{22} d_y^2}$.
 
 
+\chapter{Vector fields and flows}
+A vector field $X$ on a manifold $M$ is a smooth assignment $X: (p: M) \rightarrow T_pM$.
+that is, to each point $p$ on the manifold, it assigns a vector in the tangent
+space of $p$.  The set of all vector fields on a manifold $M$ is denoted by $\X(M)$.
 
+\section{Integral curves of vector fields}
+A curve whose tangents at each point are equal to the value of the vector field
+at that point.
+
+\begin{definition}
+An integral curve $x(t): [0, 1] \rightarrow M$ of $X: \X(M)$ is a curve such
+that the tangent vector of $x$ at a point $p$ is $X(p)$. ie, $\partial_t(x)|_t = X(x(t))$
+\end{definition}
+
+\subsection{Solving for integral curves}
+Given a chart $(U, \phi)$, the condition above reduces to
+$$\frac{dx^\mu}{dt}|_t = X^\mu (x (t)) $$
+
+Can we always find a solution? We need to solve the above system of ODEs.
+We are guaranteed to have solutions (Picard Liendolf), at least for finite time.
+If the manifold is compact, then solutions exist for all time.
+
+
+\begin{definition} 
+$\sigma(t, x_0): \R \times M \rightarrow M$ is a flow of a vector field $X \in \X(M)$,
+if:
+\begin{align*}
+        &\sigma: \R \times M \rightarrow M\\
+        &\sigma(0, x_0) = x_0 \qquad
+        \frac{d\sigma^\mu(t, x_0)}{dt}|_t = X^\mu (\sigma (t, x_0)) \\
+\end{align*}
+\end{definition}
+
+We can prove that the flow forms a group, called as the one parameter
+group of diffeomorphisms.
 \end{document}
