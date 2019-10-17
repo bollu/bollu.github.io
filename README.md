@@ -31,6 +31,103 @@ to be seen. I'm hopeful, though :)
 
 # Ideas I stumble onto
 
+# Generating `k` bitsets of a given length `n`:
+
+The problem is to generate all bitvectors of length `n` that have `k` bits
+set. For example, generate all bitvectors of length `5` that have `3` bits
+set.
+
+I know that an algorithm exists in Hacker's delight, but I've been too sick
+to crack open a book, so I decided to discover the algorithm myself. The one
+I came up with relies on looking at the numbers moving at a certain velocity,
+and them colliding with each other. For example, let us try to generate all
+`5C3` combinations of bits.
+
+
+We start wih:
+```
+#1           count of position
+a b c d e    positions
+1 1 1 0 0    bitset 
+< - - - -    velocity
+```
+
+Where the `<` represents that the `1` at position `a` is moving leftwards.
+Our arena is _circular_, so the leftmost `1` can wrap around to the right.
+This leads to the next state
+
+```
+#2
+a b c d e
+0 1 1 0 1
+- - - - <
+```
+
+We continue moving left peacefully.
+
+```
+#3
+a b c d e
+0 1 1 1 0
+- - - < -
+```
+
+whoops, we have now collided with a block of `1`s. Not to worry, we simply
+transfer our velocity by way of collision, from the `1` at `d` to the `1` at `b`.
+
+I denote the transfer as follows:
+```
+#3
+a b c d e
+0 1 1 1 0  original state
+- - - < -
+- < < < -  transfer of velocity
+- < - - -  final state after transfer of velocity
+```    
+
+The `1` at `b` proceeds along its merry way with the given velocity
+
+```
+#4
+a b c d e
+1 0 1 1 0
+< - - - -
+```
+
+Once again, it wraps around, and suffers a collision
+
+```
+#5
+a b c d e
+0 0 1 1 1
+- - - - - < (collision, transfer)
+- - < < < transfer of velocity
+- - < - - final state after transfer of velocity
+```
+
+This continues:
+
+```
+0 1 0 1 1  #6
+- < - - -
+1 0 0 1 1  #7
+< - - - - (collision, transfer velocity)
+< - - < <
+- - - < -
+1 0 1 0 1 #8
+- - < - -
+1 1 0 0 1 #9
+- < - - - (colision, transfer velocity
+< < - - <
+- - - - <
+1 1 0 1 0 #10
+- - - < - 
+1 1 1 0 0 #11: wrap around to initial state
+```
+
+I don't have a proof of correctness, but I have an intuition that this
+should generate all states. Does anyone have a proof?
+
 # Bondi k-calculus
 
 - [Link here](https://en.wikipedia.org/wiki/Bondi_k-calculus)
