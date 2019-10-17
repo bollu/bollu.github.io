@@ -20,14 +20,9 @@
 </script>
 
 
-Contents of [pixel-druid.com](http://pixel-druid.com/), mirrored at [bollu.github.io](http://bollu.github.io/)
-
-
-The idea is for the website to contain blog posts, along with visualizations of
-math / graphics / programming.
-
-The former has been semi-forced thanks to GSoC, as for the latter, it remains
-to be seen. I'm hopeful, though :)
+- [My github](http://github.com/bollu)
+- [My math.se profile](https://math.stackexchange.com/users/261373/siddharth-bhat)
+- email ID: rot13(`fvqqh.qehvq@tznvy.pbz`)
 
 # Ideas I stumble onto
 
