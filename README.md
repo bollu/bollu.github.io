@@ -26,7 +26,7 @@
 
 # Ideas I stumble onto
 
-# Generating `k` bitsets of a given length `n`:
+# [Generating `k` bitsets of a given length `n`](#generating-k-bitsets-of-a-given-length-n):
 
 The problem is to generate all bitvectors of length `n` that have `k` bits
 set. For example, generate all bitvectors of length `5` that have `3` bits
