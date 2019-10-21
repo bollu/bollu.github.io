@@ -26,6 +26,19 @@
 
 # Ideas I stumble onto
 
+# A = B: A book about proofs of combinatorial closed forms
+
+
+The book explains algorithms on solving closed forms for combinatorial
+recurrences, by means of [Zeilberger's algorithm](http://mathworld.wolfram.com/ZeilbergersAlgorithm.html).
+
+The book is written by Zeilberger himself, and supposedy also teaches one Maple.
+I'd like to learn the algorithm, since it might be useful eventually for
+Groebner basis / loop analysis shenanigans I like to play as part of
+my work on compilers.
+
+- [Download link here](https://www.math.upenn.edu/~wilf/AeqB.pdf)
+
 # [Generating `k` bitsets of a given length `n`](#generating-k-bitsets-of-a-given-length-n):
 
 The problem is to generate all bitvectors of length `n` that have `k` bits
@@ -122,6 +135,20 @@ This continues:
 
 I don't have a proof of correctness, but I have an intuition that this
 should generate all states. Does anyone have a proof?
+
+_EDIT:_ [this algorithm does not work](https://math.stackexchange.com/questions/3398241/correctness-proof-for-algorithm-to-generate-k-bitsets-of-n-bits-nck),
+since it will keep clusters of $k-1$ bits next to each other, when a 
+bit hits a cluster of $k - 1$ bits.  For completeness, I'm going to draft out
+the usual algorithm in full:
+
+### Usual Algorithm
+
+Let's consider the same example of `5C3`:
+
+```
+000111
+```
+
 
 # Bondi k-calculus
 
