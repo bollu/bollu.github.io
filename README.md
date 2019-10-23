@@ -26,6 +26,11 @@
 
 # Ideas I stumble onto
 
+# The janus programming language: Time reversible computation
+
+- [Wiki link](https://en.wikipedia.org/wiki/Janus_(time-reversible_computing_programming_language)
+- [Original letter to Landlauer](http://tetsuo.jp/ref/janus.pdf)
+
 # A = B: A book about proofs of combinatorial closed forms
 
 
