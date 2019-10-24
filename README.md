@@ -40,9 +40,10 @@ V = 'a1' | 'a2' | ...
 ```
 
 
-where `+_mod8` is addition modulo 8, and `^` is XOR. We are guaranteed that
-our variables `a_i ∈ {0, 1}`.  This language is equipped with the obvious
-evaluation rules, corresponding to those of arithmetic.
+where `+_mod8` is addition modulo 8, and `^` is XOR. 
+This language is equipped with the obvious
+evaluation rules, corresponding to those of arithmetic. We are guaranteed 
+that during evaluation, the variables `a_i` will only have values `0` and `1`.
 
 
 We are then given the input expression `(a0 ^ a1 ^ a2 ^ a3)`. We wish
@@ -58,6 +59,20 @@ is precisely our setting here.
 In this blog post, I'm going to describe what a grobner basis is and why it's
 natural to reach for them to solve this problem, the code, and the eventual
 solution.
+
+As a spolier, the solution is:
+
+```
+a^b^c^d =
+-a - b + c + 3*d - 3*axorb - axorc
++ axord - bxorc + bxord + 3*cxord 
+- 3*axorbxorc - axorbxord 
++ axorcxord + bxorcxord
+```
+
+If there's some principled way to derive this (beyond throwing symbolic
+algebra machinery), I'd really love to know --- 
+[Please raise an issue with the explanation!](https://github.com/bollu/bollu.github.io/issues)
 
 ##### What the hell is Grobner Basis?
 
