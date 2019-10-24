@@ -26,9 +26,9 @@
 
 # Ideas I stumble onto
 
-# Unsuccessful sage attempt: computing equivalent gate sets using grobner bases and module theory
+# Computing equivalent gate sets using grobner bases
 
-We are given the grammar:
+We are given the grammar for a language `L`:
 
 ```
 E = T +_mod8 T | T
@@ -36,145 +36,313 @@ T = V | V ^ V | V ^ V ^ V
 V = 'a1' | 'a2' | ...
 ```
 
+
 where `+_mod8` is addition modulo 8, and `^` is XOR. We are guaranteed that
-our variables `a_i ∈ {0, 1}`. 
-
-We are then given the input expression `a0 ^ a1 ^ a2 ^ a3`, and we want to
-write it in terms of the expression language written above.
+our variables `a_i ∈ {0, 1}`.  This language is equipped with the obvious
+evaluation rules, corresponding to those of arithmetic.
 
 
-I tried reaching for some interesting mathematical tools I had picked up recently
-(grobner bases), as well as trying to use module theory, but the former was
-not the right setting, and the latter is cripped in Sage. This blog post explains
-the two attempted solution, and the current direction I'm going to try.
+We are then given the input expression `(a0 ^ a1 ^ a2 ^ a3)`. We wish
+to find an equivalent expression in terms of the above language `L`.
+
+
+Naturally, the first idea that I thought was that of employing a grobner basis,
+since they essentially embody rewrite rules modulo polynomial equalities, which
+is precisely our setting here.
+
+##### What the hell is Grobner Basis?
+
+The nutshell is that a grobner basis is a way to construct rewrite rules which
+also understand arithmetic (I learnt this viewpoint from the book "Term
+rewriting and all that". Fantastic book in general). Expanding on the
+nutshell, assume we have a term rewriting system:
+
+```
+A -> -1*B -- (1)
+C -> B^2  -- (2)
+```
+
+over an alphabet `{A, B, C}`.
+
+Now, given the string `C + AB`, we wish to find out if it can be rewritten to 
+`0` or not. Let's try to substitute and see what happens:
+
+```
+C + AB -2-> B^2 + AB -1-> B^2 + (-1*B)B
+```
+
+At this point, we're stuck! we don't have rewrite rules to allow us to
+rewrite `(-1*B)B` into `-B^2`. Indeed, creating such a list would be 
+infinitely long. But if we are willing to accept that we somehow have
+the rewrite rules that correspond to polynomial arithmetic, where we view
+`A, B, C` as variables, then we _can_ rewrite the above string to 0:
+
+```
+B^2 + (-1*B)B -> B^2 - B^2 -> 0
+```
+
+A Grobner basis is the algorithmic / mathematical machine that allows us
+to perform this kind of substitution.
+
+In this example, this might appear stupid: what is so special? We simply
+substituted variables and arrived at `0` by using arithmetic. What's
+so complicated about that? To understand why this is not always so easy,
+let's consider a pathological, specially constructed example
+
+
+##### A complicated example that shatters dreams
+
+Here's the pathological example:
+
+```
+A -> 1     -- (1)
+AB -> -B^2 -- (2)
+```
+
+And we consider the string `S = AB + B^2`.  If we blindly apply the
+first rule, we arrive at:
+
+```
+S = AB + B^2 -1> 1B + B^2 = B + B^2 (STUCK)
+```
+
+However, if we apply `(2)` and then `(1)`:
+
+```
+S = AB + B^2 -2> -B^2 + B^2 -> 0
+```
+
+This tells us that we _can't just apply the rewrite rules willy-nilly_. 
+It's sensitive to the _order_ of the rewrites! That is, the rewrite system
+is not [confluent](https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting).
+
+
+The grobner basis is a function from rewrite systems to rewrite systems.
+When given a rewrite system `R`, it produces a _new_ rewrite system `R'`
+that _is confluent_. So, we can apply the rewrite rules of `R'` in any order,
+and we guaranteed that _we will only get a 0 from `R'` if and only if
+we could have gotten a `0` from `R`_ for all strings.
+
+We can then go on to phrase this whole rewriting setup in the language of
+ideals from ring theory, and that is the language in which it is most 
+often described. [I've gone into more depth on that perspective here: "What is a grobner basis? polynomial
+factorization as rewrite systems"](What-is-a-Grobner basis-polynomial-factorization-as-rewrite-systems).
+
+Now that we have a handle on what a grobner basis is, let's go on to solve
+the original problem:
+
+
+##### An explanation through a slightly simpler problem
+
+I'll first demonstrate the idea of how to solve the original problem
+by solving a slightly simpler problem:
+
+> Rewrite `a^b^c` in terms of `a^b`, `b^c`, `c^a` and the same `+_mod8` instruction
+> set as the original problem. The only difference is that we do _not_ have `T -> V ^ V ^ V`.
+
+
+The idea is to construct the polynomial ring over `Z/8Z` (integers modulo 8) with 
+variables as `a, b, c, axorb, bxorc, axorc`. Now, we know that `a^b = a + b - 2ab`. So, 
+we setup rewrite rules such that `a + b - 2ab -> axorb`, `b + c - 2bc -> bxorb`, 
+`c + a - 2ca -> cxora`.
+
+
+We construct the _polynomial_ `f(a, b, c) = a^b^c`, which
+has been written in terms of addition and multiplication, defined
+as `f_orig(a, b, c) = 4*a*b*c - 2*a*b - 2*a*c - 2*b*c + a + b + c`. We then
+rewrite `f_orig` with respect to our rewrite rules. Hopefully, the rewrite
+rules should give us a clean expression in terms of one variable and 
+two-variable `xor`s. There is the danger that we may have some term
+such as `a * bxorc`, and we do get such a term (`2*b*axorc`) in this case,
+but it does not appear in the _original_ problem.
+
+
 
 ```py
-def xor2(x, y): return x + y - x*y
+# Create ring with variables a, b, c, axorb, bxorc, axorc
+R = IntegerModRing(8)['a, b, c, axorb, bxorc, axorc']
+(a, b, c, axorb, bxorc, axorc) = R.gens()
+
+
+# xor in terms of polynomials
+def xor2(x, y): return x + y - 2*x*y
+
+# define the ideal which allows us to rewrite xor2(a, b) -> axorb, and so on
+# we also add the relation a^2 - a = 0 => a = 0 or a = 1 in case this helps
+# the solver.
+I = ideal((axorb - xor2(a, b), bxorc - xor2(b, c), axorc - xor2(a, c), a*a-a, b*b-b, c*c-c))
+
+# the polynomial representing a^b^c we wish to reduce
+f_orig = xor3(a, b, c)
+
+# we take the groebner basis of the ring to reduce the polynomial f.
+IG = I.groebner_basis()
+
+# we reduce a^b^c with respect to the groebner basis.
+f_reduced = f_orig.reduce(IG)
+
+print("value of a^b^c:\n\t%s\n\treduced: %s" % (f_orig, f_reduced))
+
+def evalxor2(f):
+    for (i, j, k) in [(i, j, k) for i in [0, 1] for j in [0, 1] for k in [0, 1]]:
+      ref = i^^j^^k
+      eval = f.substitute(a=i, b=j, c=k, axorb=i^^j, bxorc=j^^k, axorc=i^^k)
+      print("%s^%s^%s: ref(%s) =?= f(%s): %s" % 
+        (i, j, k, ref, eval, ref == eval))
+
+  
+print("evaulating original f for sanity check:")
+evalxor2(f_orig)
+
+
+print("evaulating reduced f:")
+evalxor2(f_reduced)
+```
+
+Running the code gives us the reduced polynomial `-2*b*axorc + b + axorc`
+which unfortunately contains a term that is `b * axorc`. So, this approach
+does not work, and I was informed by my friend that she is unaware
+of a solution to this problem (writing `a^b^c` in terms of smaller xors and
+sums).
+
+
+The full code output is:
+
+```
+value of a^b^c:
+	4*a*b*c - 2*a*b - 2*a*c - 2*b*c + a + b + c
+	reduced: -2*b*axorc + b + axorc
+evaulating original f for sanity check:
+0^0^0: ref(0) =?= f(0): True
+0^0^1: ref(1) =?= f(1): True
+0^1^0: ref(1) =?= f(1): True
+0^1^1: ref(0) =?= f(0): True
+1^0^0: ref(1) =?= f(1): True
+1^0^1: ref(0) =?= f(0): True
+1^1^0: ref(0) =?= f(0): True
+1^1^1: ref(1) =?= f(1): True
+evaulating reduced f:
+0^0^0: ref(0) =?= f(0): True
+0^0^1: ref(1) =?= f(1): True
+0^1^0: ref(1) =?= f(1): True
+0^1^1: ref(0) =?= f(0): True
+1^0^0: ref(1) =?= f(1): True
+1^0^1: ref(0) =?= f(0): True
+1^1^0: ref(0) =?= f(0): True
+1^1^1: ref(1) =?= f(1): True
+```
+
+That is, both the original polynomial and the reduced polynomial match
+the expected results. But the reduced polynomial is not in our language `L`,
+since it has a term that is a _product_ of `b` with `axorc`. 
+
+
+##### Tacking the original problem.
+
+We try the exact same approach to the original problem of expressing
+`a ^ b ^ c ^ d`. We find that the reduced polynomial is 
+
+```
+-a - b + c + 3*d - 3*axorb - axorc
++ axord - bxorc + bxord + 3*cxord 
+- 3*axorbxorc - axorbxord 
++ axorcxord + bxorcxord
+```
+
+which happily has no products between terms! It also passes our sanity
+check, so we've now found the answer.
+
+The full output is:
+```
+value of a^b^c^d:
+	4*a*b*c + 4*a*b*d + 4*a*c*d + 4*b*c*d - 2*a*b - 2*a*c - 2*b*c - 2*a*d - 2*b*d - 2*c*d + a + b + c + d
+	reduced: -a - b + c + 3*d - 3*axorb - axorc + axord - bxorc + bxord + 3*cxord - 3*axorbxorc - axorbxord + axorcxord + bxorcxord
+evaluating original a^b^c^d
+0^0^0^0: ref(0) =?= f(0): True
+0^0^0^1: ref(1) =?= f(1): True
+0^0^1^0: ref(1) =?= f(1): True
+0^0^1^1: ref(0) =?= f(0): True
+0^1^0^0: ref(1) =?= f(1): True
+0^1^0^1: ref(0) =?= f(0): True
+0^1^1^0: ref(0) =?= f(0): True
+0^1^1^1: ref(1) =?= f(1): True
+1^0^0^0: ref(1) =?= f(1): True
+1^0^0^1: ref(0) =?= f(0): True
+1^0^1^0: ref(0) =?= f(0): True
+1^0^1^1: ref(1) =?= f(1): True
+1^1^0^0: ref(0) =?= f(0): True
+1^1^0^1: ref(1) =?= f(1): True
+1^1^1^0: ref(1) =?= f(1): True
+1^1^1^1: ref(0) =?= f(0): True
+evaluating reduced a^b^c^d
+0^0^0^0: ref(0) =?= f(0): True
+0^0^0^1: ref(1) =?= f(1): True
+0^0^1^0: ref(1) =?= f(1): True
+0^0^1^1: ref(0) =?= f(0): True
+0^1^0^0: ref(1) =?= f(1): True
+0^1^0^1: ref(0) =?= f(0): True
+0^1^1^0: ref(0) =?= f(0): True
+0^1^1^1: ref(1) =?= f(1): True
+1^0^0^0: ref(1) =?= f(1): True
+1^0^0^1: ref(0) =?= f(0): True
+1^0^1^0: ref(0) =?= f(0): True
+1^0^1^1: ref(1) =?= f(1): True
+1^1^0^0: ref(0) =?= f(0): True
+1^1^0^1: ref(1) =?= f(1): True
+1^1^1^0: ref(1) =?= f(1): True
+1^1^1^1: ref(0) =?= f(0): True
+```
+
+##### code for `a^b^c^d` reduction:
+
+
+```py
 def xor3(x, y, z): return xor2(x, xor2(y, z))
 
+R = IntegerModRing(8)['a, b, c, d, axorb, axorc, axord, bxorc, bxord, cxord, axorbxorc, axorbxord, axorcxord, bxorcxord']
 
-def popcount(x):
-  return bin(x).count('1')
+(a, b, c, d, axorb, axorc, axord, bxorc, bxord, cxord, axorbxorc, axorbxord, axorcxord, bxorcxord) = R.gens()
+I = ideal((axorb - xor2(a, b),
+           axorc - xor2(a, c),
+           axord - xor2(a, d),
+           bxorc - xor2(b, c),
+           bxord - xor2(b, d),
+           cxord - xor2(c, d),
+           axorbxorc - xor3(a, b, c),
+           axorbxord - xor3(a, b, d),
+           axorcxord - xor3(a, c, d),
+           bxorcxord - xor3(b, c, d),
+           a*a-a,
+           b*b-b,
+           c*c-c,
+           d*d-d
+           ))
+IG = I.groebner_basis()
+f_orig = (xor2(a, xor2(b, xor2(c, d))))
+f_reduced = f_orig.reduce(IG)
+print("value of a^b^c^d:\n\t%s\n\treduced: %s" % (f_orig, f_reduced))
 
-def setbitix(x, count):
-  curcount = 0
-  for (i, c) in enumerate(bin(x)[2:]):
-    if c == '1':
-        if curcount == count: 
-            return i
-        curcount += 1
+def evalxor3(f):
+    for (i, j, k, l) in [(i, j, k, l) for i in [0, 1] for j in [0, 1] for k in [0, 1] for l in [0, 1]]:
+      ref = i^^j^^k^^l
+      eval = f.substitute(a=i, b=j, c=k, d=l, axorb=i^^j, axorc=i^^k, axord=i^^l, bxorc=j^^k, bxord=j^^l, cxord=k^^l, axorbxorc=i^^j^^k, axorbxord=i^^j^^l,
+                          axorcxord=i^^k^^l, bxorcxord=j^^k^^l)
+      print("%s^%s^%s^%s: ref(%s) =?= f(%s): %s" % 
+        (i, j, k, l, ref, eval, ref == eval))
 
-# R = IntegerModRing(8)['a, b, c, axorb, bxorc, axorc']
-# (a, b, c, axorb, bxorc, axorc) = R.gens()
-# I = ideal((axorb - a - b + a*b, bxorc - b - c + b *c, axorc - a - c + a *c, a*a-a, b*b-b, c*c-c))
-# IG = I.groebner_basis()
-# S = R.quotient_ring(IG)
-
-
-
-# R = IntegerModRing(8)['a, b, c, d, axorb, axorc, axord, bxorc, bxord, cxord, axorbxorc, axorbxord, axorcxord, bxorcxord']
-# 
-# (a, b, c, d, axorb, axorc, axord, bxorc, bxord, cxord, axorbxorc, axorbxord, axorcxord, bxorcxord) = R.gens()
-# I = ideal((axorb - xor2(a, b),
-#            axorc - xor2(a, c),
-#            axord - xor2(a, d),
-#            bxorc - xor2(b, c),
-#            bxorc - xor2(b, c),
-#            cxord - xor2(c, d),
-#            axorbxorc - xor3(a, b, c),
-#            axorbxord - xor3(a, b, d),
-#            axorcxord - xor3(a, c, d),
-#            bxorcxord - xor3(b, c, d)
-#            ))
-# IG = I.groebner_basis()
-# S = R.quotient_ring(IG)
-
-# N = FiniteRankFreeModule(Zmod(8), 4)
-# N = CombinatorialFreeModule(Zmod(8), ("a", "b", "ab", "axorb"))
-
-elems = []
-letters = "abcd"
-for i in range(1, 1<<4):
-  name = ""
-  for j in range(4):
-    if (i) & (1<<j) > 0: name += letters[j]
-  elems.append(name)
-print(elems)
-
-# passable code.
-for i in range(1, 1<<4):
-  if popcount(i) != 2: continue
-  cs = [letters[setbitix(i, ix)] for ix in range(2)]
-  elems.append("xor(%s, %s)" % (cs[0], cs[1]))
-  elems.append("%s%s" % (cs[0], cs[1]))
-print(elems)
-
-for i in range(1, 1<<4):
-  if popcount(i) != 3: continue
-  # find location of first and second set bit
-  cs = [letters[setbitix(i, ix)] for ix in range(3)]
-  elems.append("xor(%s, %s, %s)" % (cs[0], cs[1], cs[2]))
-  elems.append("%s%s%s" % (cs[0], cs[1], cs[2]))
-print(elems)
-
-# create the relations for xor2
-def xor2_relations(B):
-  relations = []
-  for i in range(1, 1<<4):
-    if popcount(i) != 2: continue
-    # find location of first and second set bit
-    cs = [letters[setbitix(i, ix)] for ix in range(2)]
-    xor = "xor(%s, %s)" % (cs[0], cs[1])
-    mul = "%s%s" % (cs[0], cs[1])
-    relations.append(B[xor] - (B[cs[0]] + B[cs[1]] - B[mul]))
-  return relations
+print("evaluating original a^b^c^d")
+evalxor3(f_orig)
 
 
-# sage: (x, y, z) = QQ['x', 'y', 'z'].gens()
-# sage: def xor(x, y): x + y - x*y
-# sage: xor(x, xor(y, z))
-# x*y*z - x*y - x*z - y*z + x + y + z
-def xor3_relations(B):
-  relations = []
-  for i in range(1, 1<<4):
-    if popcount(i) != 3: continue
-    # find location of first and second set bit
-    cs = [letters[setbitix(i, ix)] for ix in range(3)]
-    xor = "xor(%s, %s, %s)" % (cs[0], cs[1], cs[2])
-
-    x = cs[0]
-    y = cs[1]
-    z = cs[2]
-    xyz = x + y + z
-    xy = x + y
-    yz = y + z
-    xz = x + z
-
-    x = B[x]
-    y = B[y]
-    z = B[z]
-    xy = B[xy]
-    yz = B[yz]
-    xz = B[xz]
-    xyz = B[xyz]
-
-    relations.append(B[xor] - (xyz - xy - xz - yz + x + y + z))
-  return relations
-
-# N = CombinatorialFreeModule(Zmod(8), elems)
-N = CombinatorialFreeModule(Zmod(5), elems)
-B = N.basis()
-
-N2 = N.quotient_module(xor2_relations(B) + xor3_relations(B))
-print("a + b - ab: %s" % N2.retract(B['a'] + B['b'] - B['ab']))
-
-# (a, b, ab, axorb) = N.basis(("a", "b", "ab", "axorb"), symbol_dual="^")
-
-# relation = N.span(axorb - (a + b - ab))
-
-# M = FiniteRankFreeModule(Zmod(8), 9)
-# (a, b, c, axorb, axorc, bxorc) = M.basis(("a", "b", "c", "ab", "ac", "bc", "axorb", "axorc", "bxorc"), dual_symbol="^")
+print("evaluating reduced a^b^c^d")
+evalxor3(f_reduced)
 ```
+
+##### Closing thoughts
+
+This was a really fun exercise: Around a hundred lines of code illuminates
+the use of machinery such as grobner basis for solving real-world problems!
+I really enjoyed hacking this up and getting nerd sniped.
 
 
 # The janus programming language: Time reversible computation
