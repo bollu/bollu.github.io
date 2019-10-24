@@ -26,7 +26,10 @@
 
 # Ideas I stumble onto
 
-# Computing equivalent gate sets using grobner bases
+# [Computing equivalent gate sets using grobner bases](#computing-equivalent-gate-sets-using-grobner-bases)
+
+Here's a fun little problem, whose only solution I know involves a fair
+bit of math and computer algebra:
 
 We are given the grammar for a language `L`:
 
@@ -45,10 +48,16 @@ evaluation rules, corresponding to those of arithmetic.
 We are then given the input expression `(a0 ^ a1 ^ a2 ^ a3)`. We wish
 to find an equivalent expression in terms of the above language `L`.
 
+We think of `E` as some set of logic gates we are allowed to use, and we are
+trying to express the operation `(a0 ^ a1 ^ a2 ^ a3)` in terms of these gates.
 
-Naturally, the first idea that I thought was that of employing a grobner basis,
+The first idea that I thought was that of employing a grobner basis,
 since they essentially embody rewrite rules modulo polynomial equalities, which
 is precisely our setting here.
+
+In this blog post, I'm going to describe what a grobner basis is and why it's
+natural to reach for them to solve this problem, the code, and the eventual
+solution.
 
 ##### What the hell is Grobner Basis?
 
@@ -126,7 +135,7 @@ we could have gotten a `0` from `R`_ for all strings.
 We can then go on to phrase this whole rewriting setup in the language of
 ideals from ring theory, and that is the language in which it is most 
 often described. [I've gone into more depth on that perspective here: "What is a grobner basis? polynomial
-factorization as rewrite systems"](#what-the-hell-is-a-grobner-basis-ideals-as-rewrite-systema).
+factorization as rewrite systems"](#what-the-hell-is-a-grobner-basis-ideals-as-rewrite-systems).
 
 Now that we have a handle on what a grobner basis is, let's go on to solve
 the original problem:
@@ -591,6 +600,8 @@ which I cannot connect to BRAM.
 - `data_pack` allows us to create one port of width `16+16+1=33`
 
 - Shared function names allocated on BRAM causes errors in synthesis:
+
+
 ```cpp
 struct Foo {...};
 void f (Foo conflict) {
@@ -602,7 +613,6 @@ void g (Foo conflict) {
 }
 ```
 
-
 - Enums causes compile failure in RTL generation  (commit `3c0d619039cff7a7abb61268e6c8bc6d250d8730`)
 - `ap_int` causes compile failurre in RTL generation (commit `3c0d619039cff7a7abb61268e6c8bc6d250d8730`)
 - `x % m` where `m != 2^k` is very expensive -- there must be faster encodings of modulus?
@@ -611,6 +621,7 @@ void g (Foo conflict) {
 - Can't understand why array of structs that were packed does not get deserialized correctly. I had to manually
   pack a struct into a `uint32`. For whatever reason, having a `#pragma pack` did something to the representation of the struct
   as far as I can tell, and I couldn't treat the memory as just a raw `struct *` on the other side:
+
 
 ```cpp
 // HLS side
@@ -657,7 +668,8 @@ everything, but this is a terrible strategy in so many ways.
 - Stuff is *still* broken, but I now get *useful* error messages:
 ```
 zynq> /hashing.elf 
-/hashing.elf: error while loading shared libraries: libxilinxopencl.so: cannot open shared object file: No such file or directory
+/hashing.elf: error while loading shared libraries:
+libxilinxopencl.so: cannot open shared object file: No such file or directory
 ```
 At this point, clearly we have some linker issues (why does `xocc` not correctly statically link? What's up with it? Why does it expect it to be able to load a shared library? **WTF is happening**). do note that this is _not_ the way the process
 is supposed to go according to the tutorial!  
@@ -669,7 +681,7 @@ is supposed to go according to the tutorial!
 
 At some point, I gave up on the entire enterprise.
 
-# [What the hell _is_ a Grobner basis? Ideals as rewrite systems](#what-the-hell-is-a-grobner-basis-ideals-as-rewrite-systema)
+# [What the hell _is_ a Grobner basis? Ideals as rewrite systems](#what-the-hell-is-a-grobner-basis-ideals-as-rewrite-systems)
 
 ##### A motivating example
 
