@@ -114,7 +114,7 @@ S = AB + B^2 -2> -B^2 + B^2 -> 0
 
 This tells us that we _can't just apply the rewrite rules willy-nilly_. 
 It's sensitive to the _order_ of the rewrites! That is, the rewrite system
-is not [confluent](https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting).
+is not [confluent](https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting)).
 
 
 The grobner basis is a function from rewrite systems to rewrite systems.
@@ -126,7 +126,7 @@ we could have gotten a `0` from `R`_ for all strings.
 We can then go on to phrase this whole rewriting setup in the language of
 ideals from ring theory, and that is the language in which it is most 
 often described. [I've gone into more depth on that perspective here: "What is a grobner basis? polynomial
-factorization as rewrite systems"](What-is-a-Grobner basis-polynomial-factorization-as-rewrite-systems).
+factorization as rewrite systems"](#what-the-hell-is-a-grobner-basis-ideals-as-rewrite-systema).
 
 Now that we have a handle on what a grobner basis is, let's go on to solve
 the original problem:
@@ -138,7 +138,8 @@ I'll first demonstrate the idea of how to solve the original problem
 by solving a slightly simpler problem:
 
 > Rewrite `a^b^c` in terms of `a^b`, `b^c`, `c^a` and the same `+_mod8` instruction
-> set as the original problem. The only difference is that we do _not_ have `T -> V ^ V ^ V`.
+> set as the original problem. The only difference this time
+> is that we do _not_ have `T -> V ^ V ^ V`.
 
 
 The idea is to construct the polynomial ring over `Z/8Z` (integers modulo 8) with 
@@ -183,6 +184,7 @@ f_reduced = f_orig.reduce(IG)
 
 print("value of a^b^c:\n\t%s\n\treduced: %s" % (f_orig, f_reduced))
 
+# Code to evaluate the function `f` on all inputs to check correctness
 def evalxor2(f):
     for (i, j, k) in [(i, j, k) for i in [0, 1] for j in [0, 1] for k in [0, 1]]:
       ref = i^^j^^k
@@ -190,11 +192,11 @@ def evalxor2(f):
       print("%s^%s^%s: ref(%s) =?= f(%s): %s" % 
         (i, j, k, ref, eval, ref == eval))
 
-  
+# check original formulation is correct
 print("evaulating original f for sanity check:")
 evalxor2(f_orig)
 
-
+# Check reduced formulation is correct
 print("evaulating reduced f:")
 evalxor2(f_reduced)
 ```
@@ -347,7 +349,7 @@ I really enjoyed hacking this up and getting nerd sniped.
 
 # The janus programming language: Time reversible computation
 
-- [Wiki link](https://en.wikipedia.org/wiki/Janus_(time-reversible_computing_programming_language)
+- [Wiki link](https://en.wikipedia.org/wiki/Janus_(time-reversible_computing_programming_language))
 - [Original letter to Landlauer](http://tetsuo.jp/ref/janus.pdf)
 
 # A = B: A book about proofs of combinatorial closed forms
@@ -620,7 +622,7 @@ is supposed to go according to the tutorial!
 
 At some point, I gave up on the entire enterprise.
 
-# What is a Grobner basis -  polynomial factorization as rewrite systems
+# [What the hell _is_ a Grobner basis? Ideals as rewrite systems](#what-the-hell-is-a-grobner-basis-ideals-as-rewrite-systema)
 
 ##### A motivating example
 
