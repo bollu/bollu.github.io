@@ -34,16 +34,20 @@ bit of math and computer algebra:
 We are given the grammar for a language `L`:
 
 ```
-E = T +_mod8 T | T
+E = T +_mod8 T | T -_mod8 T
 T = V | V ^ V | V ^ V ^ V
 V = 'a1' | 'a2' | ...
 ```
 
 
-where `+_mod8` is addition modulo 8, and `^` is XOR. 
+where `+_mod8` is addition modulo 8, `-_mod8` is subtraction modulo 8,
+and `^` is XOR. 
+
 This language is equipped with the obvious
 evaluation rules, corresponding to those of arithmetic. We are guaranteed 
 that during evaluation, the variables `a_i` will only have values `0` and `1`.
+Since we have addition, we can perform multiplication by a constant
+by repeated addition. So we can perform `3*a` as `a+a+a`.
 
 
 We are then given the input expression `(a0 ^ a1 ^ a2 ^ a3)`. We wish
@@ -69,6 +73,9 @@ a^b^c^d =
 - 3*axorbxorc - axorbxord 
 + axorcxord + bxorcxord
 ```
+
+Clearly, this contains only additions/subtractions and multiplications by
+a constant.
 
 If there's some principled way to derive this (beyond throwing symbolic
 algebra machinery), I'd really love to know --- 
