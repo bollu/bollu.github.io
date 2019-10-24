@@ -28,6 +28,26 @@
 
 # Unsuccessful sage attempt: computing equivalent gate sets using grobner bases and module theory
 
+We are given the grammar:
+
+```
+E = T +_mod8 T | T
+T = V | V ^ V | V ^ V ^ V
+V = 'a1' | 'a2' | ...
+```
+
+where `+_mod8` is addition modulo 8, and `^` is XOR. We are guaranteed that
+our variables `a_i ∈ {0, 1}`. 
+
+We are then given the input expression `a0 ^ a1 ^ a2 ^ a3`, and we want to
+write it in terms of the expression language written above.
+
+
+I tried reaching for some interesting mathematical tools I had picked up recently
+(grobner bases), as well as trying to use module theory, but the former was
+not the right setting, and the latter is cripped in Sage. This blog post explains
+the two attempted solution, and the current direction I'm going to try.
+
 ```py
 def xor2(x, y): return x + y - x*y
 def xor3(x, y, z): return xor2(x, xor2(y, z))
