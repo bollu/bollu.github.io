@@ -103,13 +103,13 @@ And we consider the string `S = AB + B^2`.  If we blindly apply the
 first rule, we arrive at:
 
 ```
-S = AB + B^2 -1> 1B + B^2 = B + B^2 (STUCK)
+S = AB + B^2 -1-> 1B + B^2 = B + B^2 (STUCK)
 ```
 
 However, if we apply `(2)` and then `(1)`:
 
 ```
-S = AB + B^2 -2> -B^2 + B^2 -> 0
+S = AB + B^2 -2-> -B^2 + B^2 -> 0
 ```
 
 This tells us that we _can't just apply the rewrite rules willy-nilly_. 
@@ -472,10 +472,57 @@ the usual algorithm in full:
 Let's consider the same example of `5C3`:
 
 ```
-000111
+   a b c d e
+1| 0 0 1 1 1 (LSB)
 ```
 
+We start with all bits at their lowest position. Now, we try to go to
+the next smallest number, which still has 3 bits toggled. Clearly, we need
+the bit at position `b` to be 1, since that's the next number. Then,
+we can keep the lower 2 bits `d, e` set to 1, so that it's still as small a
+number as possible.
 
+```
+   a b c d e
+2| 0 1 0 1 1 (LSB)
+```
+
+Once again, we now move the digit at `d` to the digit at `c`, while keeping
+the final digit at `e` to make sure it's still the smallest possible.
+
+```
+   a b c d e
+3| 0 1 1 0 1 (LSB)
+```
+
+Now, we can move the `1` at `e` to `d`, since that will lead to the smallest
+increase:
+
+```
+   a b c d e
+4| 0 1 1 1 0 (LSB)
+```
+
+At this point, we are forced to move to location `a`, since we have exhausted
+all smaller locations. so we move the `1` at `b` to `a`, and then reset all
+the other bits to be as close to the LSB as possible:
+
+```
+   a b c d e
+5| 1 0 0 1 1 (LSB)
+```
+
+Continuing this process gives us the rest of the sequence:
+
+```
+    a b c d e
+5 | 1 0 0 1 1
+6 | 1 0 1 0 1
+7 | 1 0 1 1 0
+8 | 1 1 0 0 1 (note the reset of d!)
+9 | 1 1 0 1 0
+10| 1 1 1 0 0
+```
 # Bondi k-calculus
 
 - [Link here](https://en.wikipedia.org/wiki/Bondi_k-calculus)
@@ -654,7 +701,7 @@ The intuition behind this is that when we "divide by $xy + 1$", really what
 we are doing is we are setting $xy + 1 = 0$, and then seeing what remains. But
 $xy + 1 = 0 \iff xy = -1$. Thus, we can look at the original question as:
 
-How can we apply the rewrite rules $xy \rightarrow -1$, $y^2 \righarrow 1$,
+How can we apply the rewrite rules $xy \rightarrow -1$, $y^2 \rightarrow 1$,
 along with the regular rewrite rules of polynomial arithmetic to the polynomial
 $p(x, y) = xy^2 + y$, such that we end with the value $0$?
 
