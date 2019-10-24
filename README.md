@@ -26,6 +26,137 @@
 
 # Ideas I stumble onto
 
+# Unsuccessful sage attempt: computing equivalent gate sets using grobner bases and module theory
+
+```py
+def xor2(x, y): return x + y - x*y
+def xor3(x, y, z): return xor2(x, xor2(y, z))
+
+
+def popcount(x):
+  return bin(x).count('1')
+
+def setbitix(x, count):
+  curcount = 0
+  for (i, c) in enumerate(bin(x)[2:]):
+    if c == '1':
+        if curcount == count: 
+            return i
+        curcount += 1
+
+# R = IntegerModRing(8)['a, b, c, axorb, bxorc, axorc']
+# (a, b, c, axorb, bxorc, axorc) = R.gens()
+# I = ideal((axorb - a - b + a*b, bxorc - b - c + b *c, axorc - a - c + a *c, a*a-a, b*b-b, c*c-c))
+# IG = I.groebner_basis()
+# S = R.quotient_ring(IG)
+
+
+
+# R = IntegerModRing(8)['a, b, c, d, axorb, axorc, axord, bxorc, bxord, cxord, axorbxorc, axorbxord, axorcxord, bxorcxord']
+# 
+# (a, b, c, d, axorb, axorc, axord, bxorc, bxord, cxord, axorbxorc, axorbxord, axorcxord, bxorcxord) = R.gens()
+# I = ideal((axorb - xor2(a, b),
+#            axorc - xor2(a, c),
+#            axord - xor2(a, d),
+#            bxorc - xor2(b, c),
+#            bxorc - xor2(b, c),
+#            cxord - xor2(c, d),
+#            axorbxorc - xor3(a, b, c),
+#            axorbxord - xor3(a, b, d),
+#            axorcxord - xor3(a, c, d),
+#            bxorcxord - xor3(b, c, d)
+#            ))
+# IG = I.groebner_basis()
+# S = R.quotient_ring(IG)
+
+# N = FiniteRankFreeModule(Zmod(8), 4)
+# N = CombinatorialFreeModule(Zmod(8), ("a", "b", "ab", "axorb"))
+
+elems = []
+letters = "abcd"
+for i in range(1, 1<<4):
+  name = ""
+  for j in range(4):
+    if (i) & (1<<j) > 0: name += letters[j]
+  elems.append(name)
+print(elems)
+
+# passable code.
+for i in range(1, 1<<4):
+  if popcount(i) != 2: continue
+  cs = [letters[setbitix(i, ix)] for ix in range(2)]
+  elems.append("xor(%s, %s)" % (cs[0], cs[1]))
+  elems.append("%s%s" % (cs[0], cs[1]))
+print(elems)
+
+for i in range(1, 1<<4):
+  if popcount(i) != 3: continue
+  # find location of first and second set bit
+  cs = [letters[setbitix(i, ix)] for ix in range(3)]
+  elems.append("xor(%s, %s, %s)" % (cs[0], cs[1], cs[2]))
+  elems.append("%s%s%s" % (cs[0], cs[1], cs[2]))
+print(elems)
+
+# create the relations for xor2
+def xor2_relations(B):
+  relations = []
+  for i in range(1, 1<<4):
+    if popcount(i) != 2: continue
+    # find location of first and second set bit
+    cs = [letters[setbitix(i, ix)] for ix in range(2)]
+    xor = "xor(%s, %s)" % (cs[0], cs[1])
+    mul = "%s%s" % (cs[0], cs[1])
+    relations.append(B[xor] - (B[cs[0]] + B[cs[1]] - B[mul]))
+  return relations
+
+
+# sage: (x, y, z) = QQ['x', 'y', 'z'].gens()
+# sage: def xor(x, y): x + y - x*y
+# sage: xor(x, xor(y, z))
+# x*y*z - x*y - x*z - y*z + x + y + z
+def xor3_relations(B):
+  relations = []
+  for i in range(1, 1<<4):
+    if popcount(i) != 3: continue
+    # find location of first and second set bit
+    cs = [letters[setbitix(i, ix)] for ix in range(3)]
+    xor = "xor(%s, %s, %s)" % (cs[0], cs[1], cs[2])
+
+    x = cs[0]
+    y = cs[1]
+    z = cs[2]
+    xyz = x + y + z
+    xy = x + y
+    yz = y + z
+    xz = x + z
+
+    x = B[x]
+    y = B[y]
+    z = B[z]
+    xy = B[xy]
+    yz = B[yz]
+    xz = B[xz]
+    xyz = B[xyz]
+
+    relations.append(B[xor] - (xyz - xy - xz - yz + x + y + z))
+  return relations
+
+# N = CombinatorialFreeModule(Zmod(8), elems)
+N = CombinatorialFreeModule(Zmod(5), elems)
+B = N.basis()
+
+N2 = N.quotient_module(xor2_relations(B) + xor3_relations(B))
+print("a + b - ab: %s" % N2.retract(B['a'] + B['b'] - B['ab']))
+
+# (a, b, ab, axorb) = N.basis(("a", "b", "ab", "axorb"), symbol_dual="^")
+
+# relation = N.span(axorb - (a + b - ab))
+
+# M = FiniteRankFreeModule(Zmod(8), 9)
+# (a, b, c, axorb, axorc, bxorc) = M.basis(("a", "b", "c", "ab", "ac", "bc", "axorb", "axorc", "bxorc"), dual_symbol="^")
+```
+
+
 # The janus programming language: Time reversible computation
 
 - [Wiki link](https://en.wikipedia.org/wiki/Janus_(time-reversible_computing_programming_language)
