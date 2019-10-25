@@ -615,28 +615,28 @@ Let $(U, \phi)$ be a chart with coordinates $X^\mu$. We define $e_\mu \equiv \pa
 all our objects in terms of this chart.
 
 \begin{itemize}
-    \item $\mathbf{X} \equiv \mathbf{X}^\mu e_\mu$
-    \item $\mathbf{Y} \equiv \mathbf{Y}^\mu e_\mu$
-    \item $\sigma_{\epsilon}^i(x) = x^i + \epsilon \mathbf{X}^i$
-    \item $\sigma_{-\epsilon}^i(x) = x^i - \epsilon \mathbf{X}^i$
-    \item $\mathbf Y^j(\sigma_\epsilon(x)) = 
-        \mathbf Y^j(x + \epsilon \mathbf X) = 
-        Y^j + \epsilon \mathbf X^j \partial_k \mathbf Y^k$
-    \item $\sigma_{-\epsilon~\star}^i(v) =
-            v^j \partial_j \sigma_{-\epsilon}^i = 
-            v^j \partial_j (x^i - \epsilon \mathbf X^i) =
-            v^j (\delta^i_j - \epsilon \partial_j\mathbf X^i)$
-    \item $\sigma_{-\epsilon~\star}^i(Y(\sigma_\epsilon(x)) = 
-        \mathbf Y(\sigma_{\epsilon}(x))^j (\delta^i_j - \epsilon \partial_j\mathbf X^i) =
-        (\mathbf Y^j + \epsilon \mathbf X^j \partial_k \mathbf Y^k) (\delta^i_j - \epsilon \partial_j\mathbf X^i)
-        = \mathbf Y^j \delta_j^i + \epsilon(\mathbf X^j \partial_k \mathbf Y^k \delta_j^i  - \mathbf Y^j \partial_j \mathbf X^i) + \epsilon^2(\dots)
-        = \mathbf Y^i + \epsilon(\mathbf X^i \partial_k \mathbf Y^k - \mathbf Y^k \partial_k \mathbf X^i)
-        $
+\item $\mathbf{X} \equiv \mathbf{X}^\mu e_\mu$
+\item $\mathbf{Y} \equiv \mathbf{Y}^\mu e_\mu$
+\item $\sigma_{\epsilon}^i(x) = x^i + \epsilon \mathbf{X}^i$
+\item $\sigma_{-\epsilon}^i(x) = x^i - \epsilon \mathbf{X}^i$
+\item $\mathbf Y^j(\sigma_\epsilon(x)) = 
+    \mathbf Y^j(x + \epsilon \mathbf X) = 
+    Y^j + \epsilon \mathbf X^k \partial_k \mathbf Y^j$
+\item $\sigma_{-\epsilon~\star}^i(v) =
+        v^j \partial_j \sigma_{-\epsilon}^i = 
+        v^j \partial_j (x^i - \epsilon \mathbf X^i) =
+        v^j (\delta^i_j - \epsilon \partial_j\mathbf X^i)$
+\item $\sigma_{-\epsilon~\star}^i(Y(\sigma_\epsilon(x)) = 
+    \mathbf Y(\sigma_{\epsilon}(x))^j (\delta^i_j - \epsilon \partial_j\mathbf X^i) =
+    (\mathbf Y^j + \epsilon \mathbf X^k \partial_k \mathbf Y^j) (\delta^i_j - \epsilon \partial_j\mathbf X^i)
+    = \mathbf Y^j \delta_j^i + \epsilon(\mathbf X^k \partial_k \mathbf Y^j \delta_j^i 
+    - \mathbf Y^j \partial_j \mathbf X^i) + \epsilon^2(\dots)
+    = \mathbf Y^i + \epsilon(\mathbf X^k \partial_k \mathbf Y^i - \mathbf Y^k \partial_k \mathbf X^i)
+    $
 
-    \item $(\lim_{\epsilon \to 0} \frac{1}{\epsilon} \pushforward{\sigma_{-\epsilon}}(Y(\sigma_\epsilon(x))) - Y(x))^i =
-        \frac{1}{\epsilon}(\mathbf Y^i + \epsilon(\mathbf X^i \partial_k \mathbf Y^k - \mathbf Y^k \partial_k \mathbf X^i) - Y^i)
-            = \mathbf X^i \partial_k \mathbf Y^k - \mathbf Y^k \partial_k \mathbf X^i$
-
+\item $(\lim_{\epsilon \to 0} \frac{1}{\epsilon} \pushforward{\sigma_{-\epsilon}}(Y(\sigma_\epsilon(x))) - Y(x))^i =
+    \frac{1}{\epsilon}(\mathbf Y^i + \epsilon(\mathbf X^k \partial_k \mathbf Y^i - \mathbf Y^k \partial_k \mathbf X^i) - Y^i)
+            = \mathbf X^k \partial_k \mathbf Y^i - \mathbf Y^k \partial_k \mathbf X^i$
 \end{itemize}
 
 \begin{example}
@@ -734,7 +734,10 @@ TODO
 
 \subsection{Lie derivatives for one forms}
 
-$\Lie_X \omega \equiv \lim_{\epsilon \to 0} \frac{1}{\epsilon} \left[\pullback{\sigma_{-\epsilon}} \omega|_{\sigma_\epsilon(x)} - \omega(x) \right]$
+$\Lie_X \omega \equiv \lim_{\epsilon \to 0} \frac{1}{\epsilon} 
+\left[
+\pullback{\sigma_{-\epsilon}} \omega|_{\sigma_\epsilon(x)} - \omega(x)
+\right]$
 
 \chapter{Optimisation on manifolds}
 
