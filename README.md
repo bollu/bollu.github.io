@@ -196,12 +196,16 @@ R = IntegerModRing(8)['a, b, c, axorb, bxorc, axorc']
 (a, b, c, axorb, bxorc, axorc) = R.gens()
 
 
-# xor in terms of polynomials
+# xor of 2 numbers as a polynomial
 def xor2(x, y): return x + y - 2*x*y
 
-# define the ideal which allows us to rewrite xor2(a, b) -> axorb, and so on
-# we also add the relation a^2 - a = 0 => a = 0 or a = 1 in case this helps
-# the solver.
+# xor of 3 numbers as a polynomial
+def xor3(x, y, z): return xor2(x, xor2(y, z))
+
+# define the ideal which contains relations:
+# xor2(a, b) -> axorb, xor2(b, c) -> bxorc, xor2(a, c) -> axorc
+# we also add the relation (a^2 - a = 0 => a = 0 or a = 1)
+# since we know that our variables are only {0, 1}
 I = ideal((axorb - xor2(a, b), bxorc - xor2(b, c), axorc - xor2(a, c), a*a-a, b*b-b, c*c-c))
 
 # the polynomial representing a^b^c we wish to reduce
