@@ -1,15 +1,207 @@
-\documentclass{article}
+\documentclass{article} 
 \usepackage[backend=biber,authordate]{biblatex-chicago}
-\addbibresource{term-paper-mid.bib}
-\title{Philosophy term paper: Critically evaluating Hume's skepticism of causality}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[version=0.96]{pgf}
+\usepackage{tikz}
+
+\addbibresource{term-paper-mid.bib} 
+\title{Philosophy term paper: Critically
+evaluating Hume's skepticism of causality} 
 \author{Siddharth Bhat}
-\date{Monsoon 2019}
-\begin{document}
+\date{Monsoon 2019} 
+
+
+\begin{document} 
 \maketitle
- 
-\cite{ottenstein1990program}
-Foo~\cite{companion} bar baz~\cite{knuth:ct:a}
- 
-\printbibliography
- 
+
+David Hume (1711-1776) was a contemporary of John Locke and George Berkely.
+While all of them advocated using empiricism to arrive at knowledge, Hume was
+the only consistent empiricist among the three, who applied his empirical
+standards rigorously and unflichingly. This allowed him to arrive at oftentimes
+counter-intuitive results, such as challenging the very existence of causation.
+
+Since Aristotle, there was thought to be a difference between \emph{belief}
+and \emph{scientific opinion}. Scientific knowledge consisted of providing
+explanations in terms of necessary causes for an effect to manifest. As an
+example, smoke is \emph{caused} by fire, since for smoke to exist, there must
+\emph{necessarily} exist fire that causes this smoke. 
+
+\subsubsection{Hume's Guillotine}
+
+\subsubsection{Convention and Causality}
+The crux of Hume's argument is that of convention. All that we suppose to be
+"causal", is in fact simply convention, that we as humans have gotten used to
+due our experience. He provides a famous example of billiard balls: When we see
+that the motion of one billiard ball follows another, we are only observing
+conjunction, not their connection. Indeed, his definition of "cause" is this:
+\begin{quote} A \textbf{cause} is an object, followed by another, where all the
+objects similar to the first are followed by objects similar to the second.
+\end{quote}
+
+
+
+
+\section{A resolution by Karl Popper} 
+
+These problems of causation and their
+relation to science were eventually resolved (in a sense) by Karl
+Popper(1902-1984), who gave an account of scientific knowledge in terms of a
+strictly empirical account driven by falsification, instead of one driven by
+induction. Roughly, his solution relates to the adage: \begin{quotation} All
+models are wrong, some models are useful.  \end{quotation}
+
+Where he views the entirety of science, and as an extension, our model of
+causality, as precisely that: a model. No knowledge that we possess, not even
+that of obvious causality, is certain. Knowledge is correct, insofar as it
+provides a useful model of the world. A model, or a notion of causation can be
+discarded as soon as it does not align with the reality. In this way, the
+notion of \emph{falsifiability} takes center stage.
+
+In short, Popper's theory can be summed up as:
+\begin{itemize}
+    \item There is no correct way to perform induction, given access to any amount
+        of experimental data. This agrees with Hume's guillotine.
+    \item Our theories (including our notion of causality, which is governed by our theory), is
+        just a conjecture. We must attempt to falsily these conjectures. If we
+        are unable to falsify a conjecture, then we have greater faith in the conjecture. However,
+        we can never truly establish a fact (such as causality). All we can do
+        is to attach a \emph{probability} to causality.
+\end{itemize}
+
+
+\subsection{The Bayesians: Formalizing Popper} 
+The bayesians were a school who took as fundamental Bayes' theorem, a general
+theorem about the structure of probabilities which describes how to \emph{incorporate}
+experimental knowledge (obervations) into our current knowledge of the world (the prior)
+to arrive at an updated knowledge of the world (the posterior). The famous formula is:
+
+\begin{align*}
+    P(B) = \frac{P(B|A) \times P(A) }{P(A|B)}
+\end{align*}
+
+Far too much ink has been spilled analyzing the above formula, so I wil not
+repeat that here. The basic point is that this theory provides us with the
+\textit{best possible way to update our beliefs}, if our beliefs about the
+nature of the universe are purely probabilistic.
+
+Thus, bringing this back to Humian terms, bayesian theory allows us to decide
+\textit{which conventions we should choose}, given raw experimental data.
+
+However, this again loses a notion of causation, since we are again making
+probabilistic statements about the world. In theory, a causation would be
+repressented as a \textit{perfect correlation}. However, this has its own can
+of worms. A simple problem with this model is that we lose the \textbf{directionality}
+of cause and effect.
+
+For example, we might have the readings on a thermometer, and the real temperature
+of that day. Using this data, we would create a formula $r = \alpha t + \beta$,
+where $r$ is the reading of the thermometer, $t$ is the real temperature, and
+$\alpha, \beta$ are constants. This gives us a model for the relationship between
+the thermometer reading and that of temperature, and indeed these two variables
+are perfectly correlated. However, crucially, there are \textit{two} possible
+interpretations of the formula: one saying that the temperature governs the
+reading of the thermometer ($r = \alpha t + \beta$), and the other saying that
+the reading of the thermometer governs the teperature ($t = (r - \beta) /
+\alpha$). The structure of mathematical equations is such that both of these
+are entirely valid views.
+
+What we really need is a new form of mathematics, that allows us to depict
+$(r \leftarrow \alpha t + \beta )$ where the $\leftarrow$ indicates that
+the $r$ is determined by $t$ and not the other way round.
+
+
+This was believed for roughly a century since the birth of statistics to be
+impossible, by (fundamentally), an appeal to Popper and Hume: how, indeed,
+can we establish such a directionality, if all we have is the data at hand?
+
+\section{A synthesis of causation: Judea Pearl and the do-calculus}
+
+Here enters the fascinating study intiated by Judea Pearl into what are now
+called \emph{Causal Models}. 
+
+The insight is that one can provide a definition of causality, provided
+\emph{counterfactuals} are available. One can \textit{define} causality 
+as follows. For the sentence:
+\begin{quote}
+    The billiard ball A colliding with billiard ball B \textbf{caused} billiard ball B to move.
+\end{quote}
+We assign the meaning of the word \textbf{caused} as the meaning of this
+equivalent sentence:
+\begin{quote}
+    \textbf{In all universes} where the billiard ball A \textbf{not} collided with
+    billiard ball B, the billiard ball B \textbf{would not move}.
+\end{quote}
+
+This sentence does not seem to improve our state of affairs by much. It has managed
+to provide a definition of causality. However, this definition relies on universal
+quantification of an all universes, which is a tad unrealistic to test.
+
+Note that this is a different notion of causality than that of hume, in that
+it is verifiable, provided access to an infinite number of universes, and the
+ability to perform experiments.
+
+Luckily for us, due to the structure of mathematics, \emph{once we fix some causal model}, 
+for example, (A collided with B~$\rightarrow$~B moved), we
+can test how well the \emph{data} agrees with the model.
+
+While as bayesians, we had:
+(\begin{tikzpicture}
+    \node (data) at (0, 0) {data};
+    \node (correlations) at (2, 0) {correlations};
+    \draw (data) edge[->] (correlations);
+\end{tikzpicture})
+
+Note that there is no human-in-the-loop. From the data, we compute, plug and chug
+to arrive at correlations. To a statistician, this is all that we can say, and 
+indeed, all that we need to say. Unfortunately, this is a disastrous position to
+hold. After all, as we all know, "correlation does not imply causation". We have
+yet been unable to escape the long shadow cast by Hume. "correlation" is simply
+a fancy mathematical encoding of "convention", is it not?
+
+Now as users of do-calculus, we have:
+\begin{align*}
+\begin{tikzpicture}
+    \node (data) at (1, 0) {data};
+    \node (model) at (5, 1) {causal model};
+    \node (agreement) at (1, 1) {agreement (do-calculus)};
+    \draw (data) edge[->] (agreement);
+    \draw (model) edge[->] (agreement);
+\end{tikzpicture}
+\end{align*}
+
+Notice that we \emph{explicitly} require a model to even begin applying do-calculus.
+However, the upshot is that we can now discuss how well our proposed model of
+reality agrees with the data that we have. Indeed, our process of "doing science"
+can be now viewed as:
+
+
+\begin{tikzpicture}
+    \node (data) at (1, 0) {data};
+    \node (agreement) at (1, 1) {agreement};
+    \node (model1) at (5, 0) {causal model 1 $(P = 0.2)$};
+    \node (model2) at (5, 1) {causal model 2 $(P = 0.5)$};
+    \node (model3) at (5, 2) {causal model $n$ $(P = 0.1)$};
+    \draw (data) edge[->] (agreement);
+    \draw (model1) edge[->] (agreement);
+    \draw (model2) edge[->] (agreement);
+    \draw (model3) edge[->] (agreement);
+\end{tikzpicture}
+
+The takeaway is that \textit{relative to a model $i$}, we can judge how well
+this model captures the causality of the data!
+
+This is \textit{both subjective}, or bound by convention (in terms of the choice
+of model), but also objective \textit{relative to a model}. Once we choose a
+model, we can check its "causal agreement" with the data.
+
+Hence, I argue that do-calculus and our 21st century understanding of 
+causality has settled Hume's arguments to a far greater degree than Hume
+believed was ever possible: under an intuitive definition of causality (counter-factuals),
+we can build an edifice of mathematical machinery which allows us to test models
+of reality against data. While this choice of model is non-canonical, and this
+is where the human enters the loop, beyond this choice, we have objectivity.
+
+\nocite{*} \printbibliography
+
 \end{document}
