@@ -66,6 +66,8 @@
 
 
 \newcommand{\G}{\ensuremath{\mathcal{G}}}
+% \newcommand{\braket}[2]{\ensuremath{\left\langle #1 \vert #2 \right\rangle}}
+
 
 \def\qed{$\Box$}
 \newtheorem{corollary}{Corollary}
@@ -1015,17 +1017,23 @@ is called as $\G(V)$. $\G(V)$ contains
 all \emph{formal linear combinations} of elements from
 $\left( \R, V, \Omega^2(V), \Omega^3(V), \dots \Omega^n(V) \right)$.
 For example, if we consider the space $\G(\R^2)$, an element of this space 
-is  $(2 -3 \vec x + 4 \vec y + 5 \vec x \wedge \vec y)$.
+is  $(2 -3 \vec x + 4 \vec y + 5 \vec x \wedge \vec y)$. 
 
 This is a unique space, because it allows us to combine objects such as 
 scalars, vectors, areas, volumes, etc. This is the power that we shall exploit
 to model a wide variety of situations.
 
+In general, if the vector space $V$ is of dimension $n$, then the geometric
+algebra $\G(V)$ will have dimension $2^n$, since it will contain as a basis
+all possible collections of subspaces.
+
 
 \section{The philosophy of geometric algebra}
 In general, within vector spaces, vectors are privileged. Subspaces on the
 other hand are defined with equations: for example, in $3D$, the subspace
-spanned by the $\vec x, \vec y$ axes would be $span(\vec x, \vec y) =  \{ \lambda_x \vec x  + \lambda_y \vec y \mid \lambda_x, \lambda_y \in \R \}$
+spanned by the $\vec x, \vec y$ axes would be
+$span(\vec x, \vec y) =
+\{ \lambda_x \vec x  + \lambda_y \vec y \mid \lambda_x, \lambda_y \in \R \}$
 This is a \emph{set of vectors}, and not an \emph{element of the vector space}.
 
 In a geometric algebra, we would represent the subspace (roughly) as $(\vec x \wedge \vec y)$.
@@ -1044,6 +1052,46 @@ We first define the geometric product for vectors:
 \end{align*}
 
 
-\subsection{}
+\subsection{Construction: A non-commutative, bilinear structure for geometric algebra}
 
+We define a non-commutative, bilinear structure
+$\left(\braket{\cdot}{\cdot}: \G(V) \times \G(V) \rightarrow \R\right)$. We
+define the effect on the basis elements, and then extend it to the
+full space. Let the basis of $V$ be $\{ b_1, b_2, \dots, b_k \}$.
+
+
+\begin{align*}
+\braket{b_{i_1} \wedge b_{i_2} \wedge \dots \wedge b_{i_n}}{c_{j_1} \wedge c_{j_2} \wedge \dots \wedge c_{j_m}}
+\equiv
+\begin{cases}
+1 & span(b_{i_1}, b_{i_2}, \dots, b_{i_n}) \subseteq span(c_{j_1}, c_{j_2}, \dots, c_{j_m}) \\
+0 & \text{otherwise}
+\end{cases}
+\end{align*}
+
+Then we extend this multi-linearly to the full space, since we have defined its
+action on the basis.
+
+\begin{example}
+\begin{align*}
+&\braket{2 + 3\vec x + 4 \vec x \wedge \vec y}{4\vec y} \\
+&= \braket{2}{4\vec y} +
+ \braket{3\vec x}{4\vec y} +
+ \braket{4 \vec x \wedge \vec y}{2 \vec x \wedge \vec y} \\
+&= (2 \cdot 4)\braket{1}{\vec y} + 
+   (3 \cdot 4) \braket{\vec x}{\vec y} + 
+   (4 \cdot 4) \braket{\vec x \wedge \vec y}{\vec y} \\
+&= 8 (1) + 12 (0) + 16 (0) = 8
+\end{align*}
+\end{example}
+Note that $(\braket{\vec x}{\vec y} = 0)$, since the space spanned by $\vec x$
+is not contained in the space spanned by $\vec y$. Similarly, 
+$(\braket{\vec x \wedge \vec y}{\vec y} = 0)$, since the subspace spanned by
+$(\vec x, \vec y)$ is strictly bigger than the subspace spanned by $(\vec y)$.
+
+
+This dot product structure captures the asymmetric notion of "containment":
+$\braket{b}{c} \neq 0$ iff the span of $b$ is contained in the span of $c$.
+This allows us to model situations where we wish to have a notion of containment
+\emph{across subspaces} of a given space.
 \end{document}
