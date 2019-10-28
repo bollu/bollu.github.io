@@ -61,6 +61,12 @@
 \newcommand{\pushfwd}[1]{\pushforward{#1}}
 \newcommand{\pf}[1]{\pushfwd{#1}}
 
+\newcommand{\boldX}{\ensuremath{\mathbf{X}}}
+\newcommand{\boldY}{\ensuremath{\mathbf{Y}}}
+
+
+\newcommand{\G}{\ensuremath{\mathcal{G}}}
+
 \def\qed{$\Box$}
 \newtheorem{corollary}{Corollary}
 \newtheorem{theorem}{Theorem}
@@ -736,8 +742,120 @@ TODO
 
 $\Lie_X \omega \equiv \lim_{\epsilon \to 0} \frac{1}{\epsilon} 
 \left[
-\pullback{\sigma_{-\epsilon}} \omega|_{\sigma_\epsilon(x)} - \omega(x)
+\pullback{\sigma_{-\epsilon}} (\omega(\sigma_\epsilon(x))) - \omega(x)
 \right]$
+
+That is, replace pushforward with pullbacks everywhere.
+
+In components, the formula will be:
+\begin{align*}
+    \pullback{\sigma_{-\epsilon}} (\omega(\sigma_\epsilon(x))) = \omega_i(x) dx^i + 
+    (\epsilon X^k \partial_k \omega_j + \omega_k \partial_j X^k) dx^j
+\end{align*}
+
+The derivation is: (TODO)
+
+\subsection{Lie derivative for $k$-forms}
+
+The formula is exactly the same as that of the one-form case:
+
+\begin{align*}
+\Lie_X \omega \equiv \frac{d}{dt}\pullback{\left(exp(t\mathbf X)\right)} \omega|_{t = 0}
+\end{align*}
+
+\subsection{An axiomatic characterization of the Lie derivative}
+
+The lie derivative satisfies:
+\begin{align*}
+    \Lie_X(t_1 + t_2) = \Lie_X t_1 + \Lie_X t_2
+\end{align*}
+
+where $t_1, t_2$ are objects of the same type.
+
+It also satisfies:
+\begin{align*}
+    \Lie_X(t_1 \otimes t_2) = (\Lie_X t_1) \otimes t_2 + t_1 \otimes (\Lie_X t_2) 
+\end{align*}
+for arbitrary $t_1, t_2$.
+
+Since we know the definition for a vector and a 1-form, we can use this to work
+out the value of the lie derivative for $k$-forms.
+
+
+\chapter{Interior products}
+The interior product is an operation that takes a $k$-form and a vector field,
+and produces a $(k-1)$-form.  For programmers, this is literally just partial
+application of the $k$-form.
+
+\begin{align*}
+\forall X \in \mathfrak X (M)\qquad
+i_X: \Omega^k(M) \rightarrow \Omega^{k-1}(M) \qquad
+(i_X \omega) (X_1, \dots, X_{k-1}) \equiv \omega(X, X_1, \dots X_{k-1})
+\end{align*}
+
+Let $\omega \in \Omega^k(M)$. In components relative to a chart $(U, \phi)$ with
+basis $x^i$, $\omega$ can be written as:
+$$\omega = \frac{1}{k!} \omega_{i_1, i_2, \dots, i_k} dx^{i_1} \wedge \dots \wedge dx^{i_k}$$
+where the coefficients $\omega_{i_1, \dots i_k}$ are anti-symmetric on
+exchanging indeces.
+
+\begin{align*}
+    (i_{\mathbf X} \omega) &= \frac{1}{(k-1)!}  \mathbf X^j \omega_{j, i_2 \dots i_k} dx^{i_2} \wedge \dots dx^{i+k} \\
+    (i_{\mathbf X} \omega) &= \frac{1}{(k-1)!}  (-1)^{j-1} \mathbf X^j \omega_{i_1, \dots, j, \dots i_k} dx^{i_1} \wedge \widehat{dx^j} \wedge \dots \dots dx^{i+k} \\
+    &\quad \text{where $\widehat{dx^j}$ means we do not include that $dx^j$ in the wedge}
+\end{align*}
+
+\subsection{Example of interior product computation}
+\begin{itemize}
+    \item Let $M = \mathbb R^3$. Let $\omega = dx^1 \wedge dx^2$. Let $\mathbf X = 1 \cdot \partial_{x^1}$.
+Then, $i_\mathbf X \omega = 1 \cdot dx^2$
+
+
+\item Let $M = \mathbb R^3$. Let $\omega = dx^1 \wedge dx^3$. Let $\mathbf X = 1 \cdot \partial_{x^3}$.
+Then, $i_{\mathbf X} \omega = i_{\mathbf X} (dx^1 \wedge dx^3) = i_{\mathbf X}(-dx^3 \wedge dx^1) = -dx^1$
+\end{itemize}
+
+\subsection{Cartan's Magic formula}
+Let $\omega \in \Omega^1(M)$, $\omega \equiv \omega_i dx^i$.
+Let $\mathbf X \in \mathfrak X(M)$, $\mathbf X = \mathbf X^i \partial_i$.
+
+\begin{align*}
+&i_{\mathbf X} \omega = \omega_i \mathbf X^i \\
+&d(i_{\mathbf X} \omega) = \partial_i (\omega_i \mathbf X^i) dx^i \\
+&i_{\mathbf X}(d \omega) = i_{\mathbf X}( \partial_j \omega_i dx^j \wedge dx^i)
+	= TODO %X^j \partial_j \omega_i dx^i
+\end{align*}
+
+So, we get the formula:
+\begin{align*}
+ (d i_{\mathbf X} + i_{\mathbf X} d) \omega = L_X \omega
+\end{align*}
+
+\subsection{Relationships between interor product and $k$-forms}
+\begin{lemma}
+$i_{[\mathbf X, \mathbf Y]}(\omega) = \boldX(i_\boldY (\omega)) - \boldY(i_\boldX (\omega))$
+\end{lemma}
+\begin{proof} TODO \end{proof}
+
+\begin{lemma}
+$i_{X}(\omega \wedge \zeta ) = \omega i_\boldX (\zeta) - 1^n$
+\end{lemma}
+\begin{proof} TODO \end{proof}
+
+
+\chapter{Tensor network diagrams}
+
+Elements in $v^j \partial_j \in TM$  is drawn as 
+\begin{verbatim} j---(v) \end{verbatim}. 
+A leg is an index,
+a ball is a tensor. 
+elements of $w_j dx^j \in TM^\star$ is drawn as \begin{verbatim} (w)---j \end{verbatim}.
+Tensor contraction is by joining legs. $v^j w_j$ is \begin{verbatim}(w)---(v)\end{verbatim}.
+
+A $k$ form is drawn as (TODO)
+
+
+
 
 \chapter{Optimisation on manifolds}
 
@@ -748,7 +866,7 @@ The metric at a point $g(p)$ provides an inner product structure on the point $T
 for a $p \in M$.
 
 where we are optimising a cost function $c: M \rightarrow \mathbb R$.
-We presume that we have a diffeomorphism $E: M \rightarrow \mathbb R^n$ which
+We presume that we have a diffeomorphism $E: M \rightarrow \mathbb R^n$ (Embedding) which
 preserves the metric structure. We will elucidate this notion of preserving
 the metric structure once we formally define the mapping between tangent spaces.
 This allows us to treat $M$ as a subspace of $\mathbb R^n$.
@@ -782,13 +900,150 @@ retraction must obey the property $R(p \in \overline M) = p$.
 Given all of this machinery, the algorithm is indeed quite simple. 
 
 \begin{itemize}
-    \item $x: \overline M$ is the current point on the manifold
-    \item $g = \grad c(x) \in T_x \mathbb R^n$ is the gradient with respect to $\mathbb R^n$ on the manifold
-    \item $\overline g = P_{T_x} g \in T_x M$ is the projection of the gradient onto the tangent
-            space
-    \item $x': \mathbb R \equiv x + \eta \overline g$
-    \item $\overline x': \overline M \equiv R(x')$
+    \item $x \in \overline M \subseteq \mathbb R^n$ is the current point on the manifold as an element of $\mathbb R^n$
+    \item Compute $g = \grad c(x) \in T_x \mathbb R^n$ is the gradient with respect to $\mathbb R^n$.
+    \item $\overline g = P_{T_x} g \in T_x M$ is the projection of the gradient with respect to $\mathbb R^n$ onto the 
+            tangent space of the manifold.
+    \item $x_{mid}\in \mathbb R^n \equiv x + \eta \overline g$, a motion along the tangent vector, giving a point in
+            $\mathbb R^n$.
+    \item $\overline x_{next}: \overline M \equiv R(x_{mid})$, the retraction of the motion along the tangent vector,
+        giving a point on the manifold $\overline M$.
 \end{itemize}
 
+\chapter{Exterior and Geometric algebras}
+
+While not strictly in the realm of differential geometry, geometric algberas
+are an interesting beast. Essentially, they answer the question:
+
+\begin{quote}
+    What if we could study vectors on equal footing with arbitrary subspaces?
+\end{quote}
+
+\section{Exterior Algebras}
+We first define the \emph{exterior algebra of degree $2$} of a vector space $V$.
+Intuitively, these represent \emph{oriented areas} of a space. Later,
+we generalize these to volumes and hypervolumes.
+
+Given a vector space $V$ of dimension $n$, we define a space $(\mathbf \Omega^2(V))$, called
+as the exterior algebra of $V$ of degree 2. We can construct 
+elements of $(\mathbf \Omega^2(V))$
+by using an operator $(\wedge)$, defined by the following axioms:
+
+\begin{align*}
+    &\wedge: V \times V \rightarrow \mathbf \Omega^2(V) \\
+    &\vec v \wedge \vec w  = -\vec w \wedge \vec v \qquad \text{(skew-symmetry)}\\
+    &\forall \alpha, \beta, \gamma, \delta \in \R \quad \vec u, \vec v,\vec w, \vec x \in V, \\
+    &\quad (\alpha \vec u + \beta \vec v) \wedge (\gamma \vec w + \delta \vec x) = 
+        \alpha \gamma (\vec u \wedge \vec w) + 
+        \alpha \delta (\vec u \wedge \vec x) + 
+        \beta \gamma  (\vec v \wedge \vec w) + 
+        \beta \delta  (\vec v \wedge \vec x) \qquad \text{(bilinearity)}
+\end{align*}
+
+\section{Intuition of the definition of wedge products on $\R^2$}
+
+From the above axioms, we can derive an intution for the wedge product in
+$\mathbb R^2$. let us consider $\vec x, \vec y$ as unit basis vectors of $\R^2$.
+
+We first show:
+$[\vec x \wedge \vec x = - (\vec x \wedge \vec x) \implies 2 (\vec x \wedge \vec x = 0) \implies (\vec x \wedge \vec x = 0)]$.
+Similarly, $(\vec y \wedge \vec y= 0)$. We also note that $\vec x \wedge \vec y = - \vec y \wedge \vec x$,
+by using the skew-symmetry rule.
+
+
+Now, we observe the value of $(v \wedge w)$ for a general $(v, w \in \R^2)$ and we
+provide a geometric interpretation. We first write $\vec v, \vec w$ in terms
+of the basis vectors $\vec x, \vec y$ as:
+$(\vec v = \alpha \vec x + \beta \vec y), (\vec w = \gamma \vec x + \delta \vec y)$.
+Next, we expand $(\vec v \wedge \vec w)$ as:
+
+\begin{align*}
+\vec v \wedge \vec w 
+&= (\alpha \vec x + \beta \vec y) \wedge (\gamma \vec x + \delta \vec y) \\
+&=       \alpha \gamma (\vec x \wedge \vec x) + 
+        \alpha \delta (\vec x \wedge \vec y) + 
+        \beta \gamma  (\vec y \wedge \vec x) + 
+        \beta \delta  (\vec y \wedge \vec y)  \\
+&= \alpha \gamma (0) + 
+  \alpha \delta (\vec x \wedge \vec y)  +
+  \beta \gamma (- \vec x \wedge \vec y) +
+  \beta \delta (0) \\
+&= (\alpha \delta - \beta \gamma)(\vec x \wedge \vec y)
+\end{align*}
+
+We know from 2D geometry that $(\alpha \delta - \beta \gamma)$ is the area
+of the parallogram spanned by vectors $(\vec v, \vec w)$. Now, $\vec x \wedge \vec x = 0$
+can be interpreted as "the parallelogram made up of two sides which are collinear has  0 area".
+The fact $(\vec x \wedge \vec y = - \vec y \wedge \vec x)$ can be interpreted
+as \emph{orientation}. We view $(\vec x \wedge \vec y)$ as an "anti-clockwise" 
+orientation going from the positive $x$-axis (3 o clock) to the positive $y$-axis (12 o clock).
+$(\vec y \wedge \vec x)$ is a clockwise orientation, going from the positive $y$-axis to
+the positive $x$-axis.
+
+\section{Generalizing exterior algebras to arbitrary dimensions}
+Given a vector space $V$ of dimension $k$, we define the $k$-dimensional
+exterior algebra space inductively as follows:
+
+\begin{align*}
+    &\Omega^k(n) \equiv \{ \vec x_1 \wedge \vec x_2 \wedge \dots \vec x_k \mid 
+            \vec x_1, \vec x_2, \dots \vec x_k \in V \} \\
+    & (\vec x_1 \wedge \dots \wedge x_k) = 
+    sign(P)
+    (\vec x_{P(1)} \wedge \vec x_{P(2)} \dots \wedge x_{P(k)})
+    \qquad \text{(skew-symmetry)} \\
+\end{align*}
+
+where $(P: \{1, 2, \dots, k\} \rightarrow \{1, 2, \dots, k \})$ is a
+permutation (bijection). $sign(P)$ is $+1$ if the permutation is an
+even permutation (contains an even number of swaps), and $-1$ if it
+is an odd permutation (contains an odd number of swaps) 
+
+\begin{align*}
+    &(\vec x_1 \wedge \dots (\alpha \vec y_1 + \beta \vec y_2) \wedge \vec x_k) = \\
+    &\qquad \alpha (\vec x_1 \wedge \dots \wedge \vec y_1 \wedge \dots \wedge \vec x_k) +
+    \beta (\vec x_1 \wedge \dots \wedge  \vec y_2 \wedge \dots \wedge \vec x_k)
+    \qquad \text{(multi-linearity)}
+\end{align*}
+
+Note that this clearly extends the situation as described in $2D$ to $nD$.
+
+
+\section{Geometric algebra}
+
+The geometric algebra of a vector space $V$ over the reals $\R$ of dimension $n$
+is called as $\G(V)$. $\G(V)$ contains
+all \emph{formal linear combinations} of elements from
+$\left( \R, V, \Omega^2(V), \Omega^3(V), \dots \Omega^n(V) \right)$.
+For example, if we consider the space $\G(\R^2)$, an element of this space 
+is  $(2 -3 \vec x + 4 \vec y + 5 \vec x \wedge \vec y)$.
+
+This is a unique space, because it allows us to combine objects such as 
+scalars, vectors, areas, volumes, etc. This is the power that we shall exploit
+to model a wide variety of situations.
+
+
+\section{The philosophy of geometric algebra}
+In general, within vector spaces, vectors are privileged. Subspaces on the
+other hand are defined with equations: for example, in $3D$, the subspace
+spanned by the $\vec x, \vec y$ axes would be $span(\vec x, \vec y) =  \{ \lambda_x \vec x  + \lambda_y \vec y \mid \lambda_x, \lambda_y \in \R \}$
+This is a \emph{set of vectors}, and not an \emph{element of the vector space}.
+
+In a geometric algebra, we would represent the subspace (roughly) as $(\vec x \wedge \vec y)$.
+This allows us to treat vectors, scalar, volumes, and hypervolumes on
+equal footing, and develop a theory that includes all of these objects.
+
+It also provides a \emph{geometric product}, that allows us to easily relate
+the regular \emph{inner product} to the \emph{exterior product}, thereby
+creating a unifying theory of vectors and all differential forms.
+
+\subsection{The geometric product}
+
+We first define the geometric product for vectors:
+\begin{align*}
+    ab \equiv (a \cdot b) + (a \wedge b)
+\end{align*}
+
+
+\subsection{}
 
 \end{document}
