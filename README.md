@@ -26,6 +26,124 @@
 
 # Ideas I stumble onto
 
+# Radical ideals, nilpotents, and reduced rings
+
+##### Radical Ideals
+A radical ideal of a ring $R$ is an ideal such that
+$\forall r \in R, r^n \in I \implies r \in I$.
+That is, if any power of $r$ is in $I$, then the element
+$r$ also gets "sucked into" $I$.
+
+##### Nilpotent elements
+A nilpotent element of a ring $R$ is any element $r$ such that there exists
+some power $n$ such that $r^n = 0$.
+
+Note that every ideal of the ring contains $0$. Hence, if an ideal $I$
+of a ring is known to be a radical ideal, then for any nilpotent $r$,
+since $\exists n, r^n = 0 \in I$, since $I$ is radical, $r \in I$.
+
+That is, _a radical ideal with always contain all nilpotents!_ It will
+contain other elements as well, but it will contain nilpotents for sure.
+
+##### Radicalization of an ideal
+Given a ideal $I$, it's radical idea $\sqrt I \equiv \{ r \in R, r^n \in I \}$.
+That is, we add all the elements $I$ needs to have for it to become a radical.
+
+Notice that the radicalization of the zero ideal $I$ will precisely contain
+all nilpotents. that is, $\sqrt{(0)} \equiv \{ r \in R, r^n = 0\}$.
+
+##### Reduced rings
+A ring $R$ is a reduced ring if the only nilpotent in the ring is $0$.
+
+##### creating reduced rings (removing nilpotents) by quotienting radical ideals
+Tto remove nilpotents of the ring $R$, we can create $R' \equiv R / \sqrt{(0}$. Since
+$\sqrt{(0)}$ is the ideal which contains all nilpotents, the quotient ring $R'$ will contain
+no nilpotents other than $0$.
+
+Similarly, quotienting by any larger radical ideal $I$ will remove all nilpotents
+(and then some), leaving a reduced ring.
+
+> A ring modulo a radical ideal is reduced
+
+##### Integral domains
+a Ring $R$ is an integral domain if $ab = 0 \implies a = 0 \lor b = 0$. That is,
+the ring $R$ has no zero divisors.
+
+##### Prime ideals
+
+An ideal $I$ of a ring $R$ is a prime ideal if
+$\forall xy \in R, xy \in I \implies x \in I \lor y \in I$. This generalizes
+the notion of a prime number diving a composite: $p | xy \implies p | x \lor p | y$.
+
+##### creating integral domains by quotenting prime ideals
+
+Recall that every ideal contains a $0$. Now, if an ideal $I$ is prime, and if
+$ab = 0 \in I$, then either $a \in I$ or $b \in I$ (by the definition of prime).
+
+We create $R' = R / I$. We denote $\overline{r} \in R'$ as the image of $r \in R$
+in the quotient ring $R'$.
+
+The intuition is that quotienting by a  $I$, since if $ab = 0 \implies a \in I \lor b \in I$,
+we are "forcing" that in the quotient ring $R'$, if $\overline{a} \overline{b} = 0$, then either 
+$\overline{a} = 0$ or $\overline{b} = 0$, since $(a \in I \implies \overline a = 0)$,
+and $b \in I \implies \overline b = 0)$. 
+
+> A ring modulo a prime ideal is an integral domain.
+
+
+I learnt of this explanation from this
+[excellent blog post by Stefano Ottolenghi](http://quickmathintuitions.org/relationship-between-reduced-rings-radical-ideals-and-nilpotent-elements/).
+
+# My disenchantment with abstract interpretation
+
+When I first ran across the theory of abstract interpretation, it seemed magical:
+Define two functions, check that they're monotone maps, and boom, we have
+on our hands an analysis.
+
+However, the problem appears to be that in reality, it's not as simple. Here is
+the list of issues I've run across when trying to use abstract interpretation
+for a "real world" use-case:
+
+
+First of all, all interesting lattices are infinte height, requiring some
+choice of widening.  Defining a good widening is a black art.  Secondly, while
+there is a lot of theory on combining abstract domains (reduced products and
+the like), it seems hard to deploy the theory in the real world.
+
+I read a fair bit into the theory of abstract acceleration, where the idea is
+that instead of widening indiscriminately, if our theory is powerful enough to
+compute an exact closed form, we choose to do so. However, the problem is that
+this regime does not "fit well" into abstract interpretation: We have the
+abstract interpreter on the one hand, and then the acceleration regime on the
+other, which is a separate algorithm. So the full analysis looks something
+like:
+
+```python
+def analyze(program):
+  analysis = {}
+  for loop in inner to outer:
+     loop_data = abstract_interpret(loop)
+     analaysis.append(accelerate(loop))
+  return analysis
+```
+
+That is, what used to be a nice theory of just "do things in any order and
+it will converge", now becomes a new algorithm, that uses abstract interpretation
+as a subroutine. This was not the hope I had! I wanted to _get away_ from having
+to do proofs by analyzing an algorithm, this was the entire promise: Define
+a lattice well enough and the proof is guaranteed. Rather, what I had 
+imagined was:
+
+```python
+def analyze(program):
+  return abstract_interpret_using_acceleration_domain(program)
+```
+
+Now this `acceleration_domain` maybe frightfully complicated, but I'm willing
+to pay that price, as long as it's an honest-to-god abstract interpretation.
+This was a huge bummer for me to find out that this is not the case.
+
+
 # [Computing equivalent gate sets using grobner bases](#computing-equivalent-gate-sets-using-grobner-bases)
 
 Here's a fun little problem, whose only solution I know involves a fair
