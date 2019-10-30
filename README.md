@@ -215,7 +215,7 @@ bit of math and computer algebra:
 We are given the grammar for a language `L`:
 
 ```
-E = T +_mod8 T | T -_mod8 T
+E = T +_mod8 E | T -_mod8 E | T
 T = V | V ^ V | V ^ V ^ V
 V = 'a1' | 'a2' | ...
 ```
