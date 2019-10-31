@@ -27,10 +27,10 @@
 # Ideas I stumble onto
 
 # Geometric characterization of normal subgroups
+> $Stab(Orb(x)) = Stab(x) \iff Stab(x) \text{ is normal}$
 
 > $\forall x' \in Orb(x), Stab(x') = Stab(x) \iff Stab(x) \text{ is normal}$
 
-> $Stab(Orb(x)) = Stab(x) \iff Stab(x) \text{is normal}$ to be more cute
 
 #### Forward: if the stabilizer is normal, then all elements in the orbit have the same stabilizer
 
@@ -45,13 +45,14 @@ is stabilized by $H$.
 #### Interaction of stablizer and the orbit:
 
 > $Stab(g \cdot x) = g Stab(x) g^{-1}$
+
 > $g^{-1} Stab(g \cdot x) g = Stab(x)$
 
--  $s \in Stab(x) \implies gsg^{-1} \in Stab(g \cdot x)$:
+-  Proof of $s \in Stab(x) \implies gsg^{-1} \in Stab(g \cdot x)$:
    The action of $gsg^{-1}$ on $g \cdot x$ is:
    $(g \cdot x \rightarrow_{g^-1} x \rightarrow_s x \rightarrow_g g \cdot x)$.
 
-- $s' \in Stab(g \cdot x) \implies g^{-1}s'g \in Stab(x)$:
+- Proof of $s' \in Stab(g \cdot x) \implies g^{-1}s'g \in Stab(x)$:
   The action of $g^{-1}s'g$ on $x$ is:
   $(x \rightarrow_{g} g \cdot x \rightarrow_{s'} g \cdot x \rightarrow_{g^{-1}} x)$.
 
