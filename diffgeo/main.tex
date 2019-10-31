@@ -263,6 +263,54 @@ in the characterization of $T_P O(n)$ that we had developed and see what pops ou
 Hence, they do satisfy the condition, and we can assert that at least:
 $$\{ PZ \mid Z^T = -Z \} \subseteq  \{ X \mid X^T P + P^T X = 0 \}$$.
 
+\chapter{Matrix Lie groups}
+
+We study the structure of Lie groups, and we prove theorems about the
+structure of the tangent spaces at the identity, and how this structure
+governs the behavior of the tangent spaces every else on the group.
+
+Consider a group of matrices $(G, *:G \times G \rightarrow G, I:G)$, which is equipped
+with a manifold structure, where $I$ is the identity matrix, and $*$ is 
+matrix multiplication.
+
+Now, we consider the tangent space at the identity element $T_e G$. What
+we want to do is to transport the structure of the tangent space at the identity
+to an arbitrary point $p \in G$. For this, we consider a manifold mapping
+$f: G \rightarrow G$, such that its pushforward $df: T_X G \rightarrow T_{f(X)} G$
+maps $I$ to $F(I)$. That is, we would need a map such that $f(I) = p$, such that
+the pushforward pushes forward $T_I G$ to $T_f(I) G = T_p G$.
+
+We consider the map $\left( f: G \rightarrow G; f(X) \equiv P * Xs \right)$. 
+$f(I) = P * I = P$, so $f$ maps $I$ to $P$.
+
+Next, let's consider a curve $c \in T_e G$. That is, $c: (-1, 1) \rightarrow G$, such that $c(0) = I$.
+Recall that all the information about the curve $c$ that defines its directional
+derivative is stored in $\frac{d~ch \circ c(t)}{dt}|_{t=0}$.
+
+Recall that the pushfoward is defined as 
+\begin{align*}
+&df: T_X G \rightarrow T_{f(X)} G \\
+&df: ((-1, 1) \rightarrow G) \rightarrow ((-1, 1) \rightarrow G)  \\
+&df(c)(t) = \frac{d~f(c(t))}{dt}|_{t=0} \quad \text{(where $c(0) = X$)} \\
+&\frac{d~f(c(t))}{dt}|_{t=0} = f'(c(t))c'(t)|_{t=0} = f'(c(0)) c'(0) = f'(X) c'(0)
+\end{align*}
+
+Hence, we would like to pick a $c$ such that $c(0) = e$,
+and $\frac{d~ch \circ c(t)}{dt}|_{t=0}$ is easy to compute, where $ch: G \rightarrow \R^n$
+is a chart for $G$ around the point $c(0)$.
+In our case, the $ch$ is just the identity function, since matrices can naturally
+be considered as elements of $\R^{m \times n}$ if the matrices of $G$ are $m \times n$
+matrices. So $(ch = id)$, and  the tangents reduce to $\frac{dc(t)}{dt}|_{t=0}$.
+to construct such a curve $c$, we first define the matrix exponential and use it to
+define the curve $c$:
+
+\begin{align*}
+&exp: G \to G \qquad exp(Y) \equiv I + Y + \frac{Y^2}{2!} + \frac{Y^3}{3!} + \cdots + \frac{Y^n}{n!} + \cdots \\
+&c: (-1, 1) \rightarrow G \qquad c(t) \equiv exp(tX) \\
+&c(0) = exp(0 \cdot X) = exp(0) = I 
+&\frac{dc}{dt}|_{t=0} = \frac{d exp(tX)}{dt}|_{t=0} = X exp(tX)|_{t=0} = X exp(0X)
+\end{align*}
+
 \chapter{Symplectic vector spaces}
 
 % LINK TO LECTURES:
