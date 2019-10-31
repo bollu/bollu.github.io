@@ -28,7 +28,9 @@
 
 # Geometric characterization of normal subgroups
 
-> $\forall x' \in Orb(x), Stab(x') = Stab(x)$ if $Stab(x)$ is normal.
+> $\forall x' \in Orb(x), Stab(x') = Stab(x) \iff Stab(x) \text{ is normal}$
+
+> $Stab(Orb(x)) = Stab(x) \iff Stab(x) \text{is normal}$ to be more cute
 
 #### Forward: if the stabilizer is normal, then all elements in the orbit have the same stabilizer
 
@@ -42,18 +44,18 @@ is stabilized by $H$.
 
 #### Interaction of stablizer and the orbit:
 
-> $Stab(g \cdot x) = g Stab(x) g^{-1} \qquad g^{-1} $Stab(g \cdot x) g = Stab(x)$
+> $Stab(g \cdot x) = g Stab(x) g^{-1}$
+> $g^{-1} Stab(g \cdot x) g = Stab(x)$
 
-##### $s \in Stab(x) \implies gsg^{-1} \in Stab(g \cdot x)$:
+-  $s \in Stab(x) \implies gsg^{-1} \in Stab(g \cdot x)$:
+   The action of $gsg^{-1}$ on $g \cdot x$ is:
+   $(g \cdot x \rightarrow_{g^-1} x \rightarrow_s x \rightarrow_g g \cdot x)$.
 
-$(g \cdot x \rightarrow_{g^-1} x \rightarrow_s x \rightarrow_g g \cdot x)$.
+- $s' \in Stab(g \cdot x) \implies g^{-1}s'g \in Stab(x)$:
+  The action of $g^{-1}s'g$ on $x$ is:
+  $(x \rightarrow_{g} g \cdot x \rightarrow_{s'} g \cdot x \rightarrow_{g^{-1}} x)$.
 
-On the other hand, any transformation $s'$ that fixes $gx$ can be made to fix $x$,
-by first moving $x$ to $gx$, applying the transformation and coming back:
-
-##### $s' Stab(g \cdot x) \implies g^{-1}s'g \in Stab(x)$:
-
-$(x \rightarrow_{g} g \cdot x \rightarrow_{s'} g \cdot x \rightarrow_{g^{-1}} x)$.
+Hence, both containments are proved.
 
 #### Backward: if all elements in the orbit have the same orbit, then the stabilizer is normal.
 
