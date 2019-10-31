@@ -32,9 +32,9 @@
 
 #### Forward: if the stabilizer is normal, then all elements in the orbit have the same stabilizer
 
-Let a group $G$ act on a set $X$ with action $\curvrightarrow : G \rightarrow \Aut(X)$.  
+Let a group $G$ act on a set $X$ with action $(~\dot~) : G \times X \rightarrow X$.  
 Let $H \subseteq G$ be the stabilizer of a point $x \in X$. Now, let 
-$K = kHk^{-1}$, a conjugacy class of $H$. Clearly, the element $(k \curverightarrow x)$
+$K = kHk^{-1}$, a conjugacy class of $H$. Clearly, the element $(k \cdot x)$
 in the orbit of $x$ is stabilized by $K$.
 
 If the group $H$ is normal, then $K = H$. So every element in the orbit of $x$
@@ -42,19 +42,18 @@ is stabilized by $H$.
 
 #### Interaction of stablizer and the orbit:
 
-> $Stab(g \cdot x) = g Stab(x) g^{-1}$
-> g^{-1} $Stab(g \cdot x) g = Stab(x)$
+> $Stab(g \cdot x) = g Stab(x) g^{-1} \qquad g^{-1} $Stab(g \cdot x) g = Stab(x)$
 
-Intuitively, any transform $s \in Stab(x)$ that fixes $x$ can be made to fix $gx$ by going 
-back to $x$, applying the transform, and then coming back:
+##### $s \in Stab(x) \implies gsg^{-1} \in Stab(g \cdot x)$:
 
-$(gx \rightarrow_{g^-1} x \rightarrow_s x \rightarrow_g gx)$.
+$(g \cdot x \rightarrow_{g^-1} x \rightarrow_s x \rightarrow_g g \cdot x)$.
 
 On the other hand, any transformation $s'$ that fixes $gx$ can be made to fix $x$,
 by first moving $x$ to $gx$, applying the transformation and coming back:
 
-$(x \rightarrow_{g} gx \rightarrow_{s'} gx \rightarrow_{g^{-1}} x)$.
+##### $s' Stab(g \cdot x) \implies g^{-1}s'g \in Stab(x)$:
 
+$(x \rightarrow_{g} g \cdot x \rightarrow_{s'} g \cdot x \rightarrow_{g^{-1}} x)$.
 
 #### Backward: if all elements in the orbit have the same orbit, then the stabilizer is normal.
 
