@@ -25,6 +25,13 @@
 - email ID: rot13(`fvqqh.qehvq@tznvy.pbz`)
 
 # Ideas I stumble onto
+# PSLQ algorithm: finding integer relations between reals
+
+An algorithm to find _integer_ relations between _real_ numbers. It was
+apparently named "algorithms of the century" by Computing in science and
+engineering.
+
+- [Wolfram link](http://mathworld.wolfram.com/PSLQAlgorithm.html)
 
 # Geometric characterization of normal subgroups
 > $Stab(Orb(x)) = Stab(x) \iff Stab(x) \text{ is normal}$
