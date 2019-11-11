@@ -25,6 +25,193 @@
 - email ID: rot13(`fvqqh.qehvq@tznvy.pbz`)
 
 # Ideas I stumble onto
+
+# [Topology is really about computation --- part 1](topology-is-really-about-computation-part-1)
+
+Most people believe that topology is about some notion of "nearness" or
+"closeness", which has been abstracted out from our usual notion of
+continuity that we have from a metric space. Here, I make the claim that
+topology is really about _computation_, and more specifically, _decidability_.
+These are not new ideas. I learnt of this from a monograph [The topology of
+computation](TODO: add link), but this does not seem very well known,
+so I decided to write about it.
+
+The idea is this: We have turing machines which can compute things. We then
+also have a set $S$. Now, a topology $\Tau \subset 2^S$ precisely encodes
+which of the subsets of $S$ can be separated from the rest of the space by a turing machine.
+Thus, a discrete space is a very nice space, where every point can be separated
+from every other point. An indescrete space is one where no point can be separated.
+
+Something like the reals is somewhere in between, where we can separate 
+stuff inside an open interval from stuff clearly outside, but there's some
+funny behaviour that goes on at the boundary due to things like `(0.999... = 1)`,
+which we'll see in detail in a moment.
+
+#### Semidecidability
+
+A subset $Q\subseteq S$ is _semidecidable_, if there exists a turing machine
+$\hat Q: Q \rightarrow \{ \bot, \top \}$, such that:
+
+\begin{align*}
+\hat Q(q) = \top \iff q \in Q \\
+\hat Q(q) = \bot \iff q \notin Q \\
+\end{align*}
+
+Where $\top$ signifies stopping at a state and returning \texttt{TRUE}, and
+$\bot$ signifies \texttt{never halting at all}!. So, the subset $Q$ is
+_semidedicable_, in that, we will halt and say \texttt{TRUE} if the element
+belongs in the set. But if an element does not belong in the set, we are
+supposed to never terminate.
+
+#### Deep dive: semidecidability of the interval $(1, 2)$
+
+Let's start with an example. We consider the interval $I = (1, 2)$, as a
+subset of $\mathbb{R}$.Let the turing machine recieve the real number
+as a function $f: \mathbb N \rightarrow \{0, 1, \dots 9\}$, such that
+given a real number ${(a_0 \cdot a_1 \cdot a_2 \dots)}$, this is encoded as a
+function ${f_a(i) = a_i}$. 
+
+We now build a turing machine $\hat I$ which when given the input the function $f_a$,
+semi-decides whether ${a \in I}$. 
+
+Let's consider the numbers in $I$:
+
+$$
+0 \rightarrow \texttt{NO} \\
+0.\overline{9} \rightarrow \texttt{NO} \\
+1 \rightarrow \texttt{NO}
+1.a_1 a_2 \dots \righarrow \texttt{YES} \\
+1.\overline{9} \rightarrow \texttt{NO} \\
+2.0 \rightarrow \texttt{NO}
+2.a_1 a_2 \rightarrow \texttt{NO}
+$$
+
+So, we can write a turing machine (ie, some code) that tries to decide whether
+a real number $a$'s encoding $f_a$ belongs to the interval $I = (1, 2)$
+as follows:
+
+```py
+def decide_number_in_open_1_2(f):
+  # if the number is (1.abcd)
+  if f(0) == 1:
+    # (1.99...99x) | look for the x.
+    # If the number is 1.999..., do not terminate.
+    # if the number is any other number of the form 1.99..x, terminate
+    i = 1
+    while f(i) != 9: i += 1
+    return
+  # if the number is not 1.abcd, do not terminate
+  while True: pass
+```
+
+Hence, we say that the interval $I = (1, 2)$ is _semi-decidable_, since we 
+have a function $\hat I \equiv \texttt{decide_number_in_open_1_2}$ such that
+${\hat I (f_a) \text{ terminates } \iff a \in I}$. We don't make _any claim_ about
+what happens if ${a \notin I}$. This is the essence of semidecidability: We
+can precisely state when elements in the set belong to the set, but not
+when they don't.
+
+### Semi decidability in general
+
+To put this on more solid ground, we define a topology on a set $S$ by considering
+programs which recieve as input elements of $S$, suitably encoded. For example,
+the way in which we encoded real numbers as functions from the index to the
+digit. Similarly, we encode other mathematical objects in some suitable way.
+
+Now, we define:
+
+- For every program $P$ which takes as inputs elements in $S$, the set 
+  ${halts(P) \equiv \{ s \in S \vert P(s) \text{halts} \}}$ is called as a
+  _semidecidable set_.
+
+- Alternatively, we can say for a subset ${T \subset S}$, if there
+  exists a program ${\hat T}$, such that
+  ${s \in T \iff \hat T(s) \text{ halts}}$, then $T$ is semi-dedecidable.
+
+These are just two viewpoints on the same object. In one, we define the
+set based on the program. In the other, we define the program based on the
+set.
+
+### Semi decidability of the empty set and the universe set.
+
+The empty set is semi-decidable, due to the existence of the program:
+```py
+def semidecide_empty(x):
+  while True: continue
+```
+
+
+The universe set is semi-decidable, due to the existence of the program:
+```py
+def semidecide_univ(x): return
+```
+
+### Semi decidability of the union of sets
+
+infinite unions of sets are semi decidable, since we can "diagonalize" on
+the steps of all programs. That way, if any program halts, we will reach
+the state where it halts in our diagonalized enumeration.
+
+
+
+Let `A00, A01... A0n` be the initial states of the machines. We are trying to
+semidecide whether any of them halt. We lay out the steps of the machines
+in an imaginary grid:
+
+```
+A00 A01 A02 ... A0n
+A10 A11 A12 ... A1n
+A20 A21 A22 ... A2n
+Am0 Am1 Am2 ... Amn
+```
+
+For example, machine `A0` has states:
+
+```
+A00 -> A10 -> .. -> Am0
+```
+We can walk through the combined state-space of the machines as:
+
+```
+A00
+A01 A10
+A02 A11 A20
+A03 A12 A21 A30
+...
+```
+
+Where on the `k`'th line, we collect all states $A_{ij}$ such that $(i + j = k)$.
+
+Now, if any of the machines have a state that is `HALT`, we will reach the
+state as we enumerate the diagonals, and the machine that explores the
+combined state space can also return `HALT`.
+
+### Semi decidability of the intersection of sets
+
+infinite intersections of sets are _not_ semi decidable, since by running
+these programs in parallel, we cannot know if an infinite number of programs
+halt in finite time. We _can_ tell if _one_ of them halts, but of if _all_
+of them halt.
+
+For example, consider the sequence of machines produced by `machine_creator`:
+
+```py
+# creates a machine that stops after n steps
+def machine_creator(n):
+    # f terminates after n steps
+    def f(x):
+      for _ in range(n):
+        continue
+    return
+
+    return f
+```
+
+We wish to check if the intersection of all `machine_creator(n)` halt, for all
+$n \geq 0, \n \in \mathbb N$. Clearly, the answer is an infinite number of steps,
+even though every single machine created by `machine_creator` halts in a
+finite number of steps.
+
 # PSLQ algorithm: finding integer relations between reals
 
 An algorithm to find _integer_ relations between _real_ numbers. It was
