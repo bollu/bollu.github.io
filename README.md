@@ -26,6 +26,40 @@
 
 # Ideas I stumble onto
 
+# Line of investigation to build physical intuition for semidirect products:
+
+To quote wikipedia:
+> In crystallography, the space group of a crystal splits as the semidirect
+> product of the point group and the translation group if and only if the space
+> group is symmorphic
+
+The if and only if is interesting: The geometry ofthe crystal lattice truly
+appears to capture the structure of the semidirect product. It's a discrete
+object as well, which makes it way easier to visualize. I'm going to hunt down
+the definitions involved so I can finally feel like I truly understand semidirect
+products from the "action" perspective.
+
+# [Topology is really about computation --- part 2](topology-is-really-about-computation-part-2)
+
+Here, we're going to describe whatever I've picked up of sheaves in the past
+couple of weeks. I'm trying to understand the relationship between sheaves,
+topoi, geometry, and logic. I currently see how topoi allows us to model logic,
+and how sheaves allow us to model geometry, but I see nothing about the
+relationship! I'm hoping that writing this down will allow me to gain some
+perspective on this.
+
+## What is a sheaf?
+
+Let's consider two sets $P, A$, $P \subseteq A$. Now, given a function
+$f: A \rightarrow X$, we can restrict this function to $A|_P: P \rightarrow X$.
+So, we get to _invert the direction_:
+
+$$(P \subseteq A) \iff (f: A \rightarrow X) \rightarrow (f|_P: P \rightarrow X)$$.
+
+We should now try to discover some sort of structure to this "reversal"
+business. Perhaps we will discover a contravariant functor! (Spoiler: we will).
+
+
 # [Topology is really about computation --- part 1](topology-is-really-about-computation-part-1)
 
 Most people believe that topology is about some notion of "nearness" or
