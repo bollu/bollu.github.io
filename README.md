@@ -309,8 +309,8 @@ defined as $A \equiv (I \cup \{ a\})$. We prove that $A = I + aR$.
 
 $$
 (I \cup \{a \})  \\
-= \quad \{ \alpha i + beta a | i \in I, \alpha, \beta \in R \} \\
-= \quad \{ i' + beta a | i' \in I, \alpha, \beta \in R \} \qquad \text{$I$ is closed under multiplication by $R$} 
+= \quad \{ \alpha i + \beta a | i \in I, \alpha, \beta \in R \} \\
+= \quad \{ i' + \beta a | i' \in I, \alpha, \beta \in R \} \qquad \text{($I$ is closed under multiplication by $R$)} 
 = I + aR
 $$
 
