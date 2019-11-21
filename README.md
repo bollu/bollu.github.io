@@ -144,7 +144,7 @@ def decide_number_in_open_1_2(f):
 
 Hence, we say that the interval $I = (1, 2)$ is _semi-decidable_, since we 
 have a function
-$\hat I \equiv \texttt{decide_number_in_open_1_2}$
+$\hat I \equiv \texttt{decide-number-in-open-1-2}$
 such that
 $\hat I (f_a) \text{ terminates } \iff a \in I$. 
 We don't make _any claim_ about
