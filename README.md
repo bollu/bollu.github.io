@@ -88,10 +88,12 @@ which we'll see in detail in a moment.
 A subset $Q\subseteq S$ is _semidecidable_, if there exists a turing machine
 $\hat Q: Q \rightarrow \{ \bot, \top \}$, such that:
 
+$$
 \begin{align*}
 \hat Q(q) = \top \iff q \in Q \\
 \hat Q(q) = \bot \iff q \notin Q \\
 \end{align*}
+$$
 
 Where $\top$ signifies stopping at a state and returning \texttt{TRUE}, and
 $\bot$ signifies \texttt{never halting at all}!. So, the subset $Q$ is
