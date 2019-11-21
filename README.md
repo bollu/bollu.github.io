@@ -830,6 +830,15 @@ I really enjoyed hacking this up and getting nerd sniped.
 - [Wiki link](https://en.wikipedia.org/wiki/Janus_(time-reversible_computing_programming_language))
 - [Original letter to Landlauer](http://tetsuo.jp/ref/janus.pdf)
 
+I found out it's called Janus, since Janus is the god of doorways in greek
+mythology. Hence, he is also the god of duality and transitions --- he
+_literally_ looks both into the future and into the past.
+
+> He is usually depicted as having two faces, since he looks to the future and
+> to the past.
+
+An apt name for the language!
+
 # A = B: A book about proofs of combinatorial closed forms
 
 
