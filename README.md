@@ -51,10 +51,12 @@ perspective on this.
 ## What is a sheaf?
 
 Let's consider two sets $P, A$, $P \subseteq A$. Now, given a function
-$f: A \rightarrow X$, we can restrict this function to $A|_P: P \rightarrow X$.
+$f: A \rightarrow X$, we can restrict this function to $ A_P: P \rightarrow X $.
 So, we get to _invert the direction_:
 
-$$(P \subseteq A) \iff (f: A \rightarrow X) \rightarrow (f|_P: P \rightarrow X)$$.
+$$
+(P \subseteq A) \iff (f: A \rightarrow X) \rightarrow (f_P: P \rightarrow X)
+$$.
 
 We should now try to discover some sort of structure to this "reversal"
 business. Perhaps we will discover a contravariant functor! (Spoiler: we will).
@@ -71,7 +73,7 @@ computation](TODO: add link), but this does not seem very well known,
 so I decided to write about it.
 
 The idea is this: We have turing machines which can compute things. We then
-also have a set $S$. Now, a topology $\Tau \subset 2^S$ precisely encodes
+also have a set $S$. Now, a topology $\tau \subset 2^S$ precisely encodes
 which of the subsets of $S$ can be separated from the rest of the space by a turing machine.
 Thus, a discrete space is a very nice space, where every point can be separated
 from every other point. An indescrete space is one where no point can be separated.
@@ -113,10 +115,10 @@ Let's consider the numbers in $I$:
 $$
 0 \rightarrow \texttt{NO} \\
 0.\overline{9} \rightarrow \texttt{NO} \\
-1 \rightarrow \texttt{NO}
-1.a_1 a_2 \dots \righarrow \texttt{YES} \\
+1 \rightarrow \texttt{NO} \\
+1.a_1 a_2 \dots \rightarrow \texttt{YES} \\
 1.\overline{9} \rightarrow \texttt{NO} \\
-2.0 \rightarrow \texttt{NO}
+2.0 \rightarrow \texttt{NO} \\
 2.a_1 a_2 \rightarrow \texttt{NO}
 $$
 
@@ -139,9 +141,12 @@ def decide_number_in_open_1_2(f):
 ```
 
 Hence, we say that the interval $I = (1, 2)$ is _semi-decidable_, since we 
-have a function $\hat I \equiv \texttt{decide_number_in_open_1_2}$ such that
-${\hat I (f_a) \text{ terminates } \iff a \in I}$. We don't make _any claim_ about
-what happens if ${a \notin I}$. This is the essence of semidecidability: We
+have a function
+$\hat I \equiv \texttt{decide_number_in_open_1_2}$
+such that
+$\hat I (f_a) \text{ terminates } \iff a \in I$. 
+We don't make _any claim_ about
+what happens if $a \notin I$. This is the essence of semidecidability: We
 can precisely state when elements in the set belong to the set, but not
 when they don't.
 
@@ -155,7 +160,7 @@ digit. Similarly, we encode other mathematical objects in some suitable way.
 Now, we define:
 
 - For every program $P$ which takes as inputs elements in $S$, the set 
-  ${halts(P) \equiv \{ s \in S \vert P(s) \text{halts} \}}$ is called as a
+  ${halts(P) \equiv \\{ s \in S \vert P(s) \text{halts} \\}}$ is called as a
   _semidecidable set_.
 
 - Alternatively, we can say for a subset ${T \subset S}$, if there
@@ -242,7 +247,7 @@ def machine_creator(n):
 ```
 
 We wish to check if the intersection of all `machine_creator(n)` halt, for all
-$n \geq 0, \n \in \mathbb N$. Clearly, the answer is an infinite number of steps,
+$n \geq 0, n \in \mathbb N$. Clearly, the answer is an infinite number of steps,
 even though every single machine created by `machine_creator` halts in a
 finite number of steps.
 
@@ -301,10 +306,10 @@ defined as $A \equiv (I \cup \{ a\})$. We prove that $A = I + aR$.
 
 
 $$
-&(I \cup \{a \})  \\
- &= \quad \{ \alpha i + beta a | i \in I, \alpha, \beta \in R \} \\
- &= \quad \{ i' + beta a | i' \in I, \alpha, \beta \in R \} \qquad \text{$I$ is closed under multiplication by $R$} 
- &= I + aR
+(I \cup \{a \})  \\
+= \quad \{ \alpha i + beta a | i \in I, \alpha, \beta \in R \} \\
+= \quad \{ i' + beta a | i' \in I, \alpha, \beta \in R \} \qquad \text{$I$ is closed under multiplication by $R$} 
+= I + aR
 $$
 
 ##### Quotient based proof that maximal ideal is prime 
