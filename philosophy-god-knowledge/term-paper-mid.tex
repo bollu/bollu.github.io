@@ -6,14 +6,37 @@
 \usepackage{tikz}
 
 \addbibresource{term-paper-mid.bib} 
-\title{Philosophy term paper: Critically
-evaluating Hume's skepticism of causality} 
+\title{Philosophy term paper: Critically evaluating Hume's skepticism of causality} 
 \author{Siddharth Bhat}
 \date{Monsoon 2019} 
 
 
 \begin{document} 
 \maketitle
+
+\section{Introduction}
+This short survey on  the skepticism of causality is divided into roughly three
+parts: We begin by srveying Hume and his arguments on why we must be skeptical
+of causality. We then move on to see certain arguments against this thesis.
+
+First, we consider Karl Popper's notion of falsification, and how the
+scientific method (as is broadly understood), truly allows us to gain access to
+scientific truths.
+
+Secondly, we consider the Bayesians and the statistical method, who take Hume
+to heart and encode the notion of "habit" in terms of "probability". We examine
+the ramifications of taking this perspective to the extreme, and how we lose
+sight of the distinction between correlation and causation --- precisely as
+anticipated by Hume. 
+
+Lastly, we rebutt the Bayesians by considering the bleeding edge science
+of causality, initiated by Judea Pearl, starting from the 1980's, which provides
+an alternative definition of causality in terms of \emph{counerfactuals}. While
+this definition appears useless, we provide a short introduction for how this
+allows us to regain a reasonable notion of causality which can be mathematially
+dissected, thereby triumphing over the anarchy of Hume's definition.
+
+\section{Hume and Causal skepticism}
 
 David Hume (1711-1776) was a contemporary of John Locke and George Berkely.
 While all of them advocated using empiricism to arrive at knowledge, Hume was
@@ -27,7 +50,6 @@ explanations in terms of necessary causes for an effect to manifest. As an
 example, smoke is \emph{caused} by fire, since for smoke to exist, there must
 \emph{necessarily} exist fire that causes this smoke. 
 
-\subsubsection{Hume's Guillotine}
 
 \subsubsection{Convention and Causality}
 The crux of Hume's argument is that of convention. All that we suppose to be
@@ -42,7 +64,7 @@ objects similar to the first are followed by objects similar to the second.
 
 
 
-\section{A resolution by Karl Popper} 
+\section{Karl Popper and falsification} 
 
 These problems of causation and their
 relation to science were eventually resolved (in a sense) by Karl
@@ -61,7 +83,7 @@ notion of \emph{falsifiability} takes center stage.
 In short, Popper's theory can be summed up as:
 \begin{itemize}
     \item There is no correct way to perform induction, given access to any amount
-        of experimental data. This agrees with Hume's guillotine.
+        of experimental data. This agrees with Hume's skepticism.
     \item Our theories (including our notion of causality, which is governed by our theory), is
         just a conjecture. We must attempt to falsily these conjectures. If we
         are unable to falsify a conjecture, then we have greater faith in the conjecture. However,
@@ -70,7 +92,7 @@ In short, Popper's theory can be summed up as:
 \end{itemize}
 
 
-\subsection{The Bayesians: Formalizing Popper} 
+\subsection{Bayesians and Hume}
 The bayesians were a school who took as fundamental Bayes' theorem, a general
 theorem about the structure of probabilities which describes how to \emph{incorporate}
 experimental knowledge (obervations) into our current knowledge of the world (the prior)
@@ -115,7 +137,7 @@ This was believed for roughly a century since the birth of statistics to be
 impossible, by (fundamentally), an appeal to Popper and Hume: how, indeed,
 can we establish such a directionality, if all we have is the data at hand?
 
-\section{A synthesis of causation: Judea Pearl and the do-calculus}
+\section{Judea Pearl, Causal models, and the do-calculus}
 
 Here enters the fascinating study intiated by Judea Pearl into what are now
 called \emph{Causal Models}. 
@@ -195,7 +217,8 @@ This is \textit{both subjective}, or bound by convention (in terms of the choice
 of model), but also objective \textit{relative to a model}. Once we choose a
 model, we can check its "causal agreement" with the data.
 
-Hence, I argue that do-calculus and our 21st century understanding of 
+\section{Conclusion}
+I argue that do-calculus and our 21st century understanding of 
 causality has settled Hume's arguments to a far greater degree than Hume
 believed was ever possible: under an intuitive definition of causality (counter-factuals),
 we can build an edifice of mathematical machinery which allows us to test models
