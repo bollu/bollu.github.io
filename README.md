@@ -294,7 +294,7 @@ $|\cdot |: K \rightarrow \mathbb R$. It obeys the axioms:
 We want the triangle inequality so it's metric-like, and the norm to be
 multiplicative so it measures the size of elements. 
 
-The usual absolute value $|x| = \{ x : x \geq 0; -x ~ \text{otherwise} \}$ satisfies
+The usual absolute value $|x| \equiv \\{ x : x \geq 0; -x : ~ \text{otherwise} \\}$ satisfies
 these axioms.
 
 Now, we create a new absolute value that measures primeness. We first introduce
@@ -305,7 +305,7 @@ This will allow infinite series in $p^i$ to converge.
 #### p-adic valuation: Definition
 
 First, we introduce
-a valuation $v_p: \mathbb Z - \{0\} \rightarrow \mathbb R$, where $v_p(n)$ is
+a valuation $v_p: \mathbb Z - \\{0\\} \rightarrow \mathbb R$, where $v_p(n)$ is
 the power of the prime $p^i$ in the prime factorization of $n$. More formally,
 $v_p(n)$ is the unique number such that:
 
@@ -315,7 +315,7 @@ $v_p(n)$ is the unique number such that:
   an infinite number of times.
 
 The valuation gets larger as we have larger powers of $p$ in the prime
-factorization of a number. However, we want this value to get _smaller_. Also,
+factorization of a number. However, we want the norm to get _smaller_. Also,
 we need the norm to be multiplicative, while $v_p(nm) = v_p(n) + v_p(m)$, which
 is additive. 
 
@@ -350,8 +350,8 @@ $$
 $$
 
 That is, the product of all $p$ norms and the usual norm 
-(denoted by $|x|_\infty$ )
-give us the number 1. The reason is that the $|x|_p$ give us multiples $p^{-v_p(x)}$,
+(denoted by $| x |_\infty $ )
+give us the number 1. The reason is that the $ |x|_p $ give us multiples $p^{-v_p(x)}$,
 while the usual norm $|x|_\infty$ contains a multiple $p^{v_p(x)}$, thereby
 cancelling each other out.
 
