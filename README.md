@@ -370,7 +370,7 @@ object as well, which makes it way easier to visualize. I'm going to hunt down
 the definitions involved so I can finally feel like I truly understand semidirect
 products from the "action" perspective.
 
-# [Topology is really about computation --- part 2](topology-is-really-about-computation--part-2)
+# [Topology is really about computation --- part 2](#topology-is-really-about-computation--part-2)
 
 Here, we're going to describe whatever I've picked up of sheaves in the past
 couple of weeks. I'm trying to understand the relationship between sheaves,
