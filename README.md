@@ -286,11 +286,9 @@ We define the absolute value for a field $K$ as a function
 $|\cdot |: K \rightarrow \mathbb R$. It obeys the axioms:
 
 
-- $|x| = 0 \iff x = 0$
-
-- $|xy| = |x| |y|$ for all $x, y \in K$
-
-- $|x + y| \leq |x| + |y|$, for all $x, y \in K$.
+1. $|x| = 0 \iff x = 0$
+2. $|xy| = |x| |y|$ for all $x, y \in K$
+3. $|x + y| \leq |x| + |y|$, for all $x, y \in K$.
 
 
 We want the triangle inequality so it's metric-like, and the norm to be
