@@ -54,9 +54,9 @@ For example, consider $m = 72, p = 3$. The expansion of 72 is
 $72 = 0\times 1 + 0 \times 3 + 2 \times 3^2 + 2 \times 3^3$.
 This shows us that 72 is divisible by $3^2$.
 
-This perspective to take is that this us the information location to prime $p$,
+This perspective to take is that this us the information local to prime $p$,
 about what order the number $m$ is divisible by $p$,
-just as the taylor expansion tells us around $(X - \alpha)$ of a polynomial $P(x)$ 
+just as the taylor expansion tells us around $(X - \alpha)$ of a polynomial $P(X)$ 
 tells us to what order $P(X)$ vanishes at a point $\alpha$.
 
 #### Perspective: rational numbers and rational functions as infinite series:
@@ -83,8 +83,8 @@ for every negative coefficient, we arrive at:
 
 
 $$
-1/4 = 1/(1+p) = 1 - p + p^2 - p^3 + p^4 + \cdots
-= 1 + (- p + 3p) + (- p^3 + 3p^3)  +  \cdots
+1/4 = 1/(1+p) = 1 - p + p^2 - p^3 + p^4 + \cdots \\
+= 1 + (- p + 3p) + (- p^3 + 3p^3)  +  \cdots \\
 = 1 + 2p + 2p^3 + \cdots
 $$
 
@@ -95,7 +95,7 @@ $$
 (1 + p)(1 + 2p + 2p^3 + \cdots) \\
 = (1 + p) + (2p + 2p^2) + (2p^3 + 2p^4) + \cdots \\
 = 1 + 3p + 2p^2 + 2p^3 + 2p^4 + \cdots \\
-\text{Rewrite $(3p = p \cdot p = p^2)$} \\
+\text{(Rewrite $3p = p \cdot p = p^2$)} \\
 = 1 + (p^2 + 2p^2) + 2p^3 + 2p^4 + \cdots \\
 = 1 + 3p^2 + 2p^3 + 2p^4 + \cdots \\
 \text{(Rewrite $3p^2 = p^3$ and collect $p^3$)} \\
@@ -119,15 +119,16 @@ $-1$. This eventually leads us to an infinite series expansion for $-1$. Written
 down formally, the calculation proceeds as:
 
 $$
--1 \\ 
-= -1 + p - p  \qquad \text{(borrow $p$, and subtract to keep equality)} \\
-= (p - 1) - p \qquad \text{(Now we have a problem of $-p$)} \\
-= (p - 1) - p + p^2 - p^2  \\
-= (p - 1) + p(p - 1) - p^2 \\
-= (p - 1) + p(p - 1) - p^2 + p^3 - p^3 \\
-= (p - 1) + p(p - 1) + p^2(p - 1) - p^3 \\
-\text{(Generalizing the above pattern)} \\
--1 = (p - 1) + p(p - 1) + p^2(p - 1) + p^3(p - 1) + p^4(p - 1) + \cdots \\
+\begin{align*}
+-1 &= -1 + p - p  \qquad \text{(borrow $p$, and subtract to keep equality)} \\
+&= (p - 1) - p \qquad \text{(Now we have a problem of $-p$)} \\
+&= (p - 1) - p + p^2 - p^2  \\
+&= (p - 1) + p(p - 1) - p^2 \\
+&= (p - 1) + p(p - 1) - p^2 + p^3 - p^3 \\
+&= (p - 1) + p(p - 1) + p^2(p - 1) - p^3 \\
+&\text{(Generalizing the above pattern)} \\
+-1 &= (p - 1) + p(p - 1) + p^2(p - 1) + p^3(p - 1) + p^4(p - 1) + \cdots \\
+\end{align*}
 $$
 
 This now gives us access to negative numbers, since we can formally multiply
@@ -158,7 +159,7 @@ Let's start by solving an equation we already know how to solve:
 $X^2 \equiv 25 \mod 3^n$. 
 
 We already know the solutions to $X^2 \equiv 25 \mod 3^n$ in $\mathbb Z$ are 
-$X \equiv \plusminus 5 \mod 3^n$.
+$X \equiv \pm 5 \mod 3^n$.
 
 Explicitly, the solutions are:
 - $X \equiv 3 \mod 3$
@@ -284,7 +285,7 @@ generalize the absolute value is:
 We want the triangle inequality so it's metric-like, and the norm to be
 multiplicative so it measures the size of elements. 
 
-The usual absolute value $|x| = x : x \geq 0; -x ~ \text{otherwise}$ satisfies
+The usual absolute value $|x| = \{ x : x \geq 0; -x ~ \text{otherwise} \}$ satisfies
 these axioms.
 
 Now, we create a new absolute value that measures primeness. We first introduce
@@ -292,14 +293,14 @@ a gadget known as a valuation, which measures the $p$-ness of a number. We use
 this to create a norm that makes number smaller as their $p$-ness increases.
 This will allow infinite series in $p^i$ to converge.
 
-##### p-adic valuation: Definition
+#### p-adic valuation: Definition
 
 First, we introduce
 a valuation $v_p: \mathbb Z - \{0\} \rightarrow \mathbb R$, where $v_p(n)$ is
 the power of the prime $p^i$ in the prime factorization of $n$. More formally,
 $v_p(n)$ is the unique number such that:
 
-- $n = p^v_p(n) m$, where $p \nmid m$.
+- $n = p^{v_p(n)} m$, where $p \nmid m$.
 - We extend the valuation to the rationals by defining $v_p(a/b) = v_p(a) - v_p(b)$.
 - We set $v_p(0) = +\infty$. The intuition is that $0$ can be divided by $p$
   an infinite number of times.
@@ -315,7 +316,7 @@ This converts the additive property into a multiplicative property. We
 exponentiate with a negative sign so that higher values of $v_p$ lead to 
 smaller values of the norm.
 
-##### p-adic abosolute value: Definition
+#### p-adic abosolute value: Definition
 
 Now, we define the **p-adic absolute value** of a number $n$ as
 $|n|_p \equiv p^{-v_p(n)}$.
@@ -326,11 +327,11 @@ $|n|_p \equiv p^{-v_p(n)}$.
 - Since $v_p(x + y) \geq \min (v_p(x), v_p(y)), |x + y|_p \leq max(|x|_p, |y|_p) \leq |x|_p + |y|_p$.
   Hence, the triangle inequality is also satisfied.
 
-So $|n|_p$ is indeed a norm, which measures $p$ness, and is smaller as $i$
+So $|n|_p$ is indeed a norm, which measures $p$-ness, and is smaller as $i$
 gets larger in the power $p^i$ of the factorization of $n$, causing our
 infinite series to converge.
 
-There is a question of why we chose a base $p$ for $|n|_p = p^{v_p(n)$. It would
+There is a question of why we chose a base $p$ for $|n|_p = p^{v_p(n)}$. It would
 appear that any choice of $|n|_p = c^{v_p(n)}, c > 1$ would be legal.
 [I asked this on `math.se`](https://math.stackexchange.com/questions/3482489/why-does-the-p-adic-norm-use-base-p),
 and the answer is that this choosing a base $p$ gives us the nice formula
@@ -339,7 +340,8 @@ $$
 \forall x \in \mathbb Z, \prod_{\{p : p~\text{is prime}\} \cup \{ \infty \}} |x|_p = 1
 $$
 
-That is, the product of all $p$ norms and the usual norm (denoted by $|x|_\infty$)
+That is, the product of all $p$ norms and the usual norm 
+(denoted by $|x|_\infty$ )
 give us the number 1. The reason is that the $|x|_p$ give us multiples $p^{-v_p(x)}$,
 while the usual norm $|x|_\infty$ contains a multiple $p^{v_p(x)}$, thereby
 cancelling each other out.
