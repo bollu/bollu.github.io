@@ -83,25 +83,29 @@ for every negative coefficient, we arrive at:
 
 
 $$
-1/4 = 1/(1+p) = 1 - p + p^2 - p^3 + p^4 + \cdots \\
-= 1 + (- p + 3p) + (- p^3 + 3p^3)  +  \cdots \\
-= 1 + 2p + 2p^3 + \cdots
+\begin{align*}
+1/4 &= 1/(1+p) = 1 - p + p^2 - p^3 + p^4 + \cdots \\
+&= 1 + (- p + 3p) + (- p^3 + 3p^3)  +  \cdots \\
+&= 1 + 2p + 2p^3 + \cdots
+\end{align*}
 $$
 
 We can verify that this is indeed correct, by multiplying with $4 = (1 + p)$
 and checking that the result is $1$:
 
 $$
-(1 + p)(1 + 2p + 2p^3 + \cdots) \\
-= (1 + p) + (2p + 2p^2) + (2p^3 + 2p^4) + \cdots \\
-= 1 + 3p + 2p^2 + 2p^3 + 2p^4 + \cdots \\
-\text{(Rewrite $3p = p \cdot p = p^2$)} \\
-= 1 + (p^2 + 2p^2) + 2p^3 + 2p^4 + \cdots \\
-= 1 + 3p^2 + 2p^3 + 2p^4 + \cdots \\
-\text{(Rewrite $3p^2 = p^3$ and collect $p^3$)} \\
-= 1 + 3p^3 + 2p^4 + \cdots \\
-= 1 + 3p^4 + \cdots \\
-= 1 + \cdots = 1
+\begin{align*}
+&(1 + p)(1 + 2p + 2p^3 + \cdots) \\
+&= (1 + p) + (2p + 2p^2) + (2p^3 + 2p^4) + \cdots \\
+&= 1 + 3p + 2p^2 + 2p^3 + 2p^4 + \cdots \\
+&\text{(Rewrite $3p = p \cdot p = p^2$)} \\
+&= 1 + (p^2 + 2p^2) + 2p^3 + 2p^4 + \cdots \\
+&= 1 + 3p^2 + 2p^3 + 2p^4 + \cdots \\
+&\text{(Rewrite $3p^2 = p^3$ and collect $p^3$)} \\
+&= 1 + 3p^3 + 2p^4 + \cdots \\
+&= 1 + 3p^4 + \cdots \\
+&= 1 + \cdots = 1
+\end{align*}
 $$
 
 What winds up happening is that all the numbers after $1$ end up being cleared
@@ -218,12 +222,14 @@ with those for $n = 1$. So, we solve for:
 Solving the first of these:
 
 $$
-(3 + 7k)^2 \equiv 2 \mod 49 \\
-9 + 42 k + 49k^2 \equiv 2 \mod 49 \\
-9 + 42 k + 0k^2 \equiv 2 \mod 49 \\
-7 + 42 k \equiv 0 \mod 49 \\
-1 + 6 k \equiv 0 \mod 49 \\
-k \equiv 1 \mod 7
+\begin{align*}
+(3 + 7k)^2 &\equiv 2 \mod 49 \\
+9 + 42 k + 49k^2 &\equiv 2 \mod 49 \\
+9 + 42 k + 0k^2 &\equiv 2 \mod 49 \\
+7 + 42 k &\equiv 0 \mod 49 \\
+1 + 6 k &\equiv 0 \mod 49 \\
+k &\equiv 1 \mod 7
+\end{align*}
 $$
 
 This gives the solution $X \equiv 10 \mod 49$. The other branch ($X = 4 + 7k$)
@@ -273,14 +279,19 @@ $p^i, i \geq 0$.
 Clearly, these sums are divergent as per the usual topology on $\mathbb Q$.
 However, we would enjoy assigning analytic meaning to these series. Hence, we
 wish to consider a new notion of the absolute value of a number, which makes it
-such that $p^i$ with large $i$ are considered small. The reasonable axioms
-generalize the absolute value is:
+such that $p^i$ with large $i$ are considered small. 
 
 
-- The absolute value for a field $K$ is a function $|~|: K \rightarrow \mathbb R$.
+We define the absolute value for a field $K$ as a function
+$|\cdot |: K \rightarrow \mathbb R$. It obeys the axioms:
+
+
 - $|x| = 0 \iff x = 0$
+
 - $|xy| = |x| |y|$ for all $x, y \in K$
+
 - $|x + y| \leq |x| + |y|$, for all $x, y \in K$.
+
 
 We want the triangle inequality so it's metric-like, and the norm to be
 multiplicative so it measures the size of elements. 
@@ -361,7 +372,7 @@ object as well, which makes it way easier to visualize. I'm going to hunt down
 the definitions involved so I can finally feel like I truly understand semidirect
 products from the "action" perspective.
 
-# [Topology is really about computation --- part 2](topology-is-really-about-computation-part-2)
+# [Topology is really about computation --- part 2](topology-is-really-about-computation--part-2)
 
 Here, we're going to describe whatever I've picked up of sheaves in the past
 couple of weeks. I'm trying to understand the relationship between sheaves,
@@ -384,7 +395,7 @@ We should now try to discover some sort of structure to this "reversal"
 business. Perhaps we will discover a contravariant functor! (Spoiler: we will).
 
 
-# [Topology is really about computation --- part 1](#topology-is-really-about-computation-part-1)
+# [Topology is really about computation --- part 1](#topology-is-really-about-computation--part-1)
 
 Most people believe that topology is about some notion of "nearness" or
 "closeness", which has been abstracted out from our usual notion of
@@ -575,7 +586,7 @@ $n \geq 0, n \in \mathbb N$. Clearly, the answer is an infinite number of steps,
 even though every single machine created by `machine_creator` halts in a
 finite number of steps.
 
-# PSLQ algorithm: finding integer relations between reals
+# [PSLQ algorithm: finding integer relations between reals](#pslq-algorithm-finding-integer-relations-between-reals)
 
 An algorithm to find _integer_ relations between _real_ numbers. It was
 apparently named "algorithms of the century" by Computing in science and
@@ -583,7 +594,7 @@ engineering.
 
 - [Wolfram link](http://mathworld.wolfram.com/PSLQAlgorithm.html)
 
-# Geometric characterization of normal subgroups
+# [Geometric characterization of normal subgroups](#geometric-characterization-of-normal-subgroups)
 > $Stab(Orb(x)) = Stab(x) \iff Stab(x) \text{ is normal}$
 
 > $\forall x' \in Orb(x), Stab(x') = Stab(x) \iff Stab(x) \text{ is normal}$
@@ -621,7 +632,7 @@ From the above equation $Stab(g \cdot x) = g Stab(x) g^{-1}$. If the
 entire orbit has the same stabilizer, $Stab (g \cdot x) = Stab(x)$. Hence,
 we get $Stab(x) = g Stab(x) g^{-1}$, proving that it's normal.
 
-# Handy characterization of adding an element into an ideal, proof that maximal ideal is prime
+# [Handy characterization of adding an element into an ideal, proof that maximal ideal is prime](#handy-characterization-of-adding-an-element-into-an-ideal-proof-that-maximal-ideal-is-prime)
 
 ##### The characterization
 
@@ -680,7 +691,7 @@ $b \in I$.
 
 
 
-# Radical ideals, nilpotents, and reduced rings
+# [Radical ideals, nilpotents, and reduced rings](#radical-ideals-nilpotents-and-reduced-rings)
 
 ##### Radical Ideals
 A radical ideal of a ring $R$ is an ideal such that
