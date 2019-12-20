@@ -26,6 +26,289 @@
 
 # Ideas I stumble onto
 
+# A motivation for p-adic analysis
+
+I've seen the definitions of p-adic numbers scattered around on the internet,
+but this analogy as motivated by the book 
+[p-adic numbers by Fernando Gouvea](https://www.springer.com/gp/book/9783540629115) 
+really made me understand why one would study the p-adics, and why the
+definitions are natural. So I'm going to recapitulate the material, with the
+aim of having somoene who reads this post be left with a sense of why it's
+profitable to study the p-adics, and what sorts of analogies are fruitful when
+thinking about them.
+
+We wish to draw an analogy between the ring $\mathbb C[X]$, where $(X - \alpha)$
+are the prime ideals, and $\mathbb Z$ where $(p)$ are the prime ideals. We wish
+to take all operations one can perform with polynomials, such as generating
+functions ($1/(X - \alpha) = 1 + X + X^2 + \dots$ ), 
+taylor expansions (expanding aronund $(X - \alpha)$),
+and see what their analogous objects will look like in $\mathbb Z$
+relative to a prime $p$.
+
+#### Perspective: Taylor series as writing in base $p$:
+
+Now, for example, given a prime $p$, we can write any positive integer $m$
+in base $p$, as $(m = \sum_{i=0}^n a_i p^i)$ where $(0 \leq a_i \leq p - 1)$.
+
+For example, consider $m = 72, p = 3$. The expansion of 72 is 
+$72 = 0\times 1 + 0 \times 3 + 2 \times 3^2 + 2 \times 3^3$.
+This shows us that 72 is divisible by $3^2$.
+
+This perspective to take is that this us the information location to prime $p$,
+about what order the number $m$ is divisible by $p$,
+just as the taylor expansion tells us around $(X - \alpha)$ of a polynomial $P(x)$ 
+tells us to what order $P(X)$ vanishes at a point $\alpha$.
+
+#### Perspective: rational numbers and rational functions as infinite series:
+
+Now, we investigate the behaviour of expressions such as 
+- $P(X) = 1/(1+X) = 1 - X + X^2 -X^3 + \dots$.
+
+We know that the above formula is correct formally from the theory of
+generating functions.  Hence, we take inspiration to define values for
+_rational numbers_.
+
+Let's take $p \equiv 3$, and we know that $4 = 1 + 3 = 1 + p$.
+
+We now calculate $1/4$ as:
+
+$$
+1/4 = 1/(1+p) = 1 - p + p^2 - p^3 + p^4 - p^5 + p^6 + \cdots
+$$
+
+However, we don't really know how to interpret $(-1 \cdot p)$, since we assumed
+the coefficients are always non-negative. What we can do is to rewrite $p^2 = 3p$,
+and then use this to make the coefficient positive. Performing this transformation
+for every negative coefficient, we arrive at:
+
+
+$$
+1/4 = 1/(1+p) = 1 - p + p^2 - p^3 + p^4 + \cdots
+= 1 + (- p + 3p) + (- p^3 + 3p^3)  +  \cdots
+= 1 + 2p + 2p^3 + \cdots
+$$
+
+We can verify that this is indeed correct, by multiplying with $4 = (1 + p)$
+and checking that the result is $1$:
+
+$$
+(1 + p)(1 + 2p + 2p^3 + \cdots) \\
+= (1 + p) + (2p + 2p^2) + (2p^3 + 2p^4) + \cdots \\
+= 1 + 3p + 2p^2 + 2p^3 + 2p^4 + \cdots \\
+\text{Rewrite $(3p = p \cdot p = p^2)$} \\
+= 1 + (p^2 + 2p^2) + 2p^3 + 2p^4 + \cdots \\
+= 1 + 3p^2 + 2p^3 + 2p^4 + \cdots \\
+\text{(Rewrite $3p^2 = p^3$ and collect $p^3$)} \\
+= 1 + 3p^3 + 2p^4 + \cdots \\
+= 1 + 3p^4 + \cdots \\
+= 1 + \cdots = 1
+$$
+
+What winds up happening is that all the numbers after $1$ end up being cleared
+due to the carrying of $(3p^i \mapsto p^{i+1})$.
+
+This little calculation indicates that we can also define take the $p$-adic
+expansion of _rational numbers_.
+
+#### Perspective: -1 as a p-adic number
+
+We next want to find a p-adic expansion of -1, since we can then expand
+out theory to work out "in general". The core idea is to "borrow" $p$, so
+that we can write -1 as $(p - 1) - p$, and then we fix $-p$, just like we fixed
+$-1$. This eventually leads us to an infinite series expansion for $-1$. Written
+down formally, the calculation proceeds as:
+
+$$
+-1 \\ 
+= -1 + p - p  \qquad \text{(borrow $p$, and subtract to keep equality)} \\
+= (p - 1) - p \qquad \text{(Now we have a problem of $-p$)} \\
+= (p - 1) - p + p^2 - p^2  \\
+= (p - 1) + p(p - 1) - p^2 \\
+= (p - 1) + p(p - 1) - p^2 + p^3 - p^3 \\
+= (p - 1) + p(p - 1) + p^2(p - 1) - p^3 \\
+\text{(Generalizing the above pattern)} \\
+-1 = (p - 1) + p(p - 1) + p^2(p - 1) + p^3(p - 1) + p^4(p - 1) + \cdots \\
+$$
+
+This now gives us access to negative numbers, since we can formally multiply
+the series of two numbers, to write $-a = -1 \cdot a$. 
+
+
+Notice that this definition of $-1$ also curiously matches the 2s complement 
+definition, where we have $-1 = 11\dots 1$. In this case, the expansion is
+_infinite_, while in the 2s complement case, it is finite. I would be very
+interested to explore this connection more fully.
+
+#### What have we achieved so far?
+
+We've now managed to completely reinterpret all the numbers we care about in 
+the rationals as power series in base $p$. This is pretty neat. We're next
+going to try to _complete_ this, just as we complete the rationals to get
+the reals. We're going to show that we get a _different_ number system on
+completion, called $\mathbb Q_p$. 
+
+To perform this, we first look at how the $p$-adic numbers help us solve
+congruences mod p, and how this gives rise to completions to equations such
+as $x^2 - 2 = 0$, which in the reals give us $x = \sqrt 2$, and in $\mathbb Q_p$
+give us a different answer!
+
+#### Solving $X^2 \equiv 25 \mod 3^n$
+
+Let's start by solving an equation we already know how to solve:
+$X^2 \equiv 25 \mod 3^n$. 
+
+We already know the solutions to $X^2 \equiv 25 \mod 3^n$ in $\mathbb Z$ are 
+$X \equiv \plusminus 5 \mod 3^n$.
+
+Explicitly, the solutions are:
+- $X \equiv 3 \mod 3$
+- $X \equiv 5 \mod 9$
+- $X \equiv 5 \mod 27$
+- At this point, the answer remains constant.
+
+This was somewhat predictable. We move to a slightly more interesting case.
+
+#### Solving $X = -5 \mod 3^n$
+
+The solution sets are:
+- $X \equiv -5 \equiv 1 \mod 3$
+- $X \equiv -5 \equiv 4 = 1 + 3 \mod 9$
+- $X \equiv -5 \equiv 22 = 1 + 3 + 2 \cdot 9 \mod 27$
+- $X \equiv -5 \equiv 76 = 1 + 3 + 2 \cdot 9 + 2 \cdot 27 \mod 81$
+
+
+
+This gives us the infinite 3-adic expansion:
+
+- $X = -5 = 1 + 1\cdot 3 + 2\cdot 3^2 + 2\cdot 3^3 + \dots$
+
+Note that we can't really _predict_ the digits in the 3-adic sequence of -5,
+but we can keep expanding and finding more digits. 
+
+Also see that the solutions are "coherent". In that, if we look at the
+solution mod 9, which is $4$, and then consider it mod 3, we get $1$. So,
+we can say that given a sequence of integers $0 \leq \alpha_n \leq p^n - 1$,
+**$\alpha_n$ is p-adically coherent sequence** iff:
+
+- $ \alpha_{n+1} = \alpha_n \mod p^n$.
+
+
+#### Viewpoint: Solution sets of $X^2 = 25 \mod 3^n$
+
+Since our solution sets are coherent, we can view the solutions as a tree,
+with the expansions of $X = 5, X = -5 \mod 3$ and then continuing onwards
+from there. That is, the sequences are
+
+- $2 \rightarrow 5 \rightarrow 5 \rightarrow 5 \rightarrow \dots$
+- $1 \rightarrow 4 \rightarrow 22 \rightarrow 76 \rightarrow \dots$
+
+#### Use case: Solving $X = 1 + 3X$ as a recurrence
+
+Let's use the tools we have built so far to solve the equation $X = 1 + 3X$.
+Instead of solving it using algebra, we look at it as a recurrence $X_{n+1} = 1 + 3X_n$.
+This gives us the terms:
+- $X_0 = 1$
+- $X_1 = 1 + 3$
+- $X_2 = 1 + 3 + 3^2$
+- $X_n = 1 + 3 + \dots + 3^n$
+
+In $\mathbb R$, this is a divergent sequence. However, we know that the
+solution so $1 + X + X^2 + \dots = 1/(1-X)$, at least as a generating function.
+Plugging this in, we get that the answer should be:
+
+- $1/(1 - 3) = -1/2$
+
+which is indeed the correct answer.
+
+Now this required some really shady stuff in $\mathbb R$. However, with a change
+of viewpoint, we can explain what's going on. We can look at the above series
+as being a series in $\mathbb Q_3$.  Now, this series does _really_ converge,
+and by the same argument as above, it converges to $-1/2$.
+
+The nice thing about this is that a dubious computation becomes a legal one
+by changing one's perspective on where the above series lives.
+
+#### Perspective: Forcing the formal sum to converge by imposing a new norm:
+
+So far, we have dealt with infinite series in base $p$, which have terms
+$p^i, i \geq 0$.
+Clearly, these sums are divergent as per the usual topology on $\mathbb Q$.
+However, we would enjoy assigning analytic meaning to these series. Hence, we
+wish to consider a new notion of the absolute value of a number, which makes it
+such that $p^i$ with large $i$ are considered small. The reasonable axioms
+generalize the absolute value is:
+
+
+- The absolute value for a field $K$ is a function $|~|: K \rightarrow \mathbb R$.
+- $|x| = 0 \iff x = 0$
+- $|xy| = |x| |y|$ for all $x, y \in K$
+- $|x + y| \leq |x| + |y|$, for all $x, y \in K$.
+
+We want the triangle inequality so it's metric-like, and the norm to be
+multiplicative so it measures the size of elements. 
+
+The usual absolute value $|x| = x : x \geq 0; -x ~ \text{otherwise}$ satisfies
+these axioms.
+
+Now, we create a new absolute value that measures primeness. We first introduce
+a gadget known as a valuation, which measures the $p$-ness of a number. We use
+this to create a norm that makes number smaller as their $p$-ness increases.
+This will allow infinite series in $p^i$ to converge.
+
+##### p-adic valuation: Definition
+
+First, we introduce
+a valuation $v_p: \mathbb Z - \{0\} \rightarrow \mathbb R$, where $v_p(n)$ is
+the power of the prime $p^i$ in the prime factorization of $n$. More formally,
+$v_p(n)$ is the unique number such that:
+
+- $n = p^v_p(n) m$, where $p \nmid m$.
+- We extend the valuation to the rationals by defining $v_p(a/b) = v_p(a) - v_p(b)$.
+- We set $v_p(0) = +\infty$. The intuition is that $0$ can be divided by $p$
+  an infinite number of times.
+
+The valuation gets larger as we have larger powers of $p$ in the prime
+factorization of a number. However, we want this value to get _smaller_. Also,
+we need the norm to be multiplicative, while $v_p(nm) = v_p(n) + v_p(m)$, which
+is additive. 
+
+
+To fix both of these, we create a norm by exponentiating $v_p$.
+This converts the additive property into a multiplicative property. We
+exponentiate with a negative sign so that higher values of $v_p$ lead to 
+smaller values of the norm.
+
+##### p-adic abosolute value: Definition
+
+Now, we define the **p-adic absolute value** of a number $n$ as
+$|n|_p \equiv p^{-v_p(n)}$.
+
+- the norm of $0$ is $p^{-v_p(0)} = p^{-\infty} = 0$.
+- If $p^{-v_p(n)} = 0$, then $-v_p(n) = \log_p 0 = -\infty$, and hence $n = 0$.
+- The norm is multiplicative since $v_p$ is additive.
+- Since $v_p(x + y) \geq \min (v_p(x), v_p(y)), |x + y|_p \leq max(|x|_p, |y|_p) \leq |x|_p + |y|_p$.
+  Hence, the triangle inequality is also satisfied.
+
+So $|n|_p$ is indeed a norm, which measures $p$ness, and is smaller as $i$
+gets larger in the power $p^i$ of the factorization of $n$, causing our
+infinite series to converge.
+
+There is a question of why we chose a base $p$ for $|n|_p = p^{v_p(n)$. It would
+appear that any choice of $|n|_p = c^{v_p(n)}, c > 1$ would be legal.
+[I asked this on `math.se`](https://math.stackexchange.com/questions/3482489/why-does-the-p-adic-norm-use-base-p),
+and the answer is that this choosing a base $p$ gives us the nice formula
+
+$$
+\forall x \in \mathbb Z, \prod_{\{p : p~\text{is prime}\} \cup \{ \infty \}} |x|_p = 1
+$$
+
+That is, the product of all $p$ norms and the usual norm (denoted by $|x|_\infty$)
+give us the number 1. The reason is that the $|x|_p$ give us multiples $p^{-v_p(x)}$,
+while the usual norm $|x|_\infty$ contains a multiple $p^{v_p(x)}$, thereby
+cancelling each other out.
+
+
+
 # Line of investigation to build physical intuition for semidirect products:
 
 To quote wikipedia:
