@@ -26,7 +26,7 @@
 
 # Ideas I stumble onto
 
-# A motivation for p-adic analysis
+# [A motivation for p-adic analysis](#a-motivation-for-p-adic-analysis)
 
 I've seen the definitions of p-adic numbers scattered around on the internet,
 but this analogy as motivated by the book 
@@ -382,7 +382,7 @@ We should now try to discover some sort of structure to this "reversal"
 business. Perhaps we will discover a contravariant functor! (Spoiler: we will).
 
 
-# [Topology is really about computation --- part 1](topology-is-really-about-computation-part-1)
+# [Topology is really about computation --- part 1](#topology-is-really-about-computation-part-1)
 
 Most people believe that topology is about some notion of "nearness" or
 "closeness", which has been abstracted out from our usual notion of
@@ -746,7 +746,7 @@ and $b \in I \implies \overline b = 0)$.
 I learnt of this explanation from this
 [excellent blog post by Stefano Ottolenghi](http://quickmathintuitions.org/relationship-between-reduced-rings-radical-ideals-and-nilpotent-elements/).
 
-# My disenchantment with abstract interpretation
+# [My disenchantment with abstract interpretation](#my-disenchantment-with-abstract-interpretation)
 
 When I first ran across the theory of abstract interpretation, it seemed magical:
 Define two functions, check that they're monotone maps, and boom, we have
