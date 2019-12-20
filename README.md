@@ -202,6 +202,43 @@ from there. That is, the sequences are
 - $2 \rightarrow 5 \rightarrow 5 \rightarrow 5 \rightarrow \dots$
 - $1 \rightarrow 4 \rightarrow 22 \rightarrow 76 \rightarrow \dots$
 
+#### Solving $X^2 \equiv 2 \mod 7^n$
+
+We now construct a solution to the equation $X^2 = 1$ in the 7-adic system,
+thereby showing that $\mathbb Q_p$ is indeed strictly _larger_ than $\mathbb Q$,
+since this equation does not have rational roots.
+
+For $n=1$, we have the solutions as $X \equiv 3 \mod 7$, $X \equiv 4 \equiv -3 \mod 7$.
+
+To find solutions for $n = 2$, we recall that we need our solutions to be consistent
+with those for $n = 1$. So, we solve for:
+- $(3 + 7k)^2 = 2 \mod 49$, $(4 + 7k)^2 = 2 \mod 49$.
+
+Solving the first of these:
+
+$$
+(3 + 7k)^2 \equiv 2 \mod 49 \\
+9 + 42 k + 49k^2 \equiv 2 \mod 49 \\
+9 + 42 k + 0k^2 \equiv 2 \mod 49 \\
+7 + 42 k \equiv 0 \mod 49 \\
+1 + 6 k \equiv 0 \mod 49 \\
+k \equiv 1 \mod 7
+$$
+
+This gives the solution $X \equiv 10 \mod 49$. The other branch ($X = 4 + 7k$)
+gives us $X \equiv 39 \equiv -10 \mod 49$.
+
+We can continue this process indefinitely (_exercise_), giving us the sequences:
+
+- $3 \rightarrow 10 \rightarrow 108 \rightarrow 2166 \rightarrow \dots$
+- $4 \rightarrow 39 \rightarrow 235 \rightarrow 235 \rightarrow \dots$
+
+We can show that the sequences of solutions we get satisfy the equation 
+$X^2 = 2 \mod 7$. This is so by construction. Hence, $\mathbb Q_7$ contains
+a solution that $\mathbb Q$ does not, and is therefore strictly bigger, since
+we can already represent every rational in $\mathbb Q$ in $\mathbb Q_7$.
+
+
 #### Use case: Solving $X = 1 + 3X$ as a recurrence
 
 Let's use the tools we have built so far to solve the equation $X = 1 + 3X$.
