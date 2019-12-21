@@ -377,10 +377,11 @@ $$
 $$
 
 That is, the product of all $p$ norms and the usual norm 
-(denoted by $| x |_\infty $ )
-give us the number 1. The reason is that the $ |x|_p $ give us multiples $p^{-v_p(x)}$,
-while the usual norm $|x|_\infty$ contains a multiple $p^{v_p(x)}$, thereby
-cancelling each other out.
+(denoted by $\lvert x \rvert_\infty $ )
+give us the number 1. The reason is that the $ \lvert x\rvert_p $ give us 
+multiples $p^{-v_p(x)}$,
+while the usual norm $\lvert x \rvert_\infty$ contains a multiple 
+$p^{v_p(x)}$, thereby cancelling each other out.
 
 
 #### Conclusion
