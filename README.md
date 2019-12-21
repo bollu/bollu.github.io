@@ -272,6 +272,33 @@ and by the same argument as above, it converges to $-1/2$.
 The nice thing about this is that a dubious computation becomes a legal one
 by changing one's perspective on where the above series lives.
 
+#### Viewpoint: 'Evaluation' for p-adics
+
+The last thing that we need to import from the theory of polynomials
+is the ability to _evaluate_ them: Given a rational function $F(X) = P(X)/Q(X)$, 
+where $P(X), Q(X)$ are polynomials, we can
+evaluate it at some arbitrary point $x_0$, as long as $x_0$ is not a zero 
+of the polynomial $Q(X)$.
+
+We would like a similar function, such that for a fixed prime $p$, we obtain
+a ring homomorphism from $\mathbb Q \rightarrow \mathbb F_p^x$, which we will
+denote as $p(x_0)$, where we are imagining that we are "evaluating" the prime
+$p$ against the rational $x_0$.
+
+We define the value of $x_0 = a/b$ at the prime $p$ to be equal to
+$ab^{-1} \mod p$, where $b b^{-1} \equiv 1 \mod p$. That is, we compute the
+usual $ab^{-1}$ to evaluate $a/b$, except we do this $(\mod p)$, to stay with
+the analogy.
+
+Note that if $b \equiv 0 \mod p$, then we cannot evaluate
+the rational $a/b$, and we say that $a/b$ has a pole at $p$. The order
+of the pole is the number of times $p$ occurs in the prime factorization of $b$.
+
+I'm not sure how profitable this viewpoint is, so I 
+[asked on math.se](https://math.stackexchange.com/questions/3483369/profit-of-definition-evaluation-of-a-rational-at-a-p-adic),
+and I'll update this post when I recieve a good answer.
+
+
 #### Perspective: Forcing the formal sum to converge by imposing a new norm:
 
 So far, we have dealt with infinite series in base $p$, which have terms
@@ -286,15 +313,15 @@ We define the absolute value for a field $K$ as a function
 $|\cdot |: K \rightarrow \mathbb R$. It obeys the axioms:
 
 
-1. $|x| = 0 \iff x = 0$
-2. $|xy| = |x| |y|$ for all $x, y \in K$
-3. $|x + y| \leq |x| + |y|$, for all $x, y \in K$.
+1. $\lvert x \rvert = 0 \iff x = 0$
+2. $\lvert xy \rvert =  \lvert x \rvert  \lvert y \rvert$ for all $x, y \in K$
+3. $\lvert x + y \rvert \leq \lvert x \rvert + \lvert y \rvert$, for all $x, y \in K$.
 
 
 We want the triangle inequality so it's metric-like, and the norm to be
 multiplicative so it measures the size of elements. 
 
-The usual absolute value $|x| \equiv \\{ x : x \geq 0; -x : ~ \text{otherwise} \\}$ satisfies
+The usual absolute value $\lvert x \rvert \equiv \\{ x : x \geq 0; -x : ~ \text{otherwise} \\}$ satisfies
 these axioms.
 
 Now, we create a new absolute value that measures primeness. We first introduce
@@ -354,6 +381,20 @@ That is, the product of all $p$ norms and the usual norm
 give us the number 1. The reason is that the $ |x|_p $ give us multiples $p^{-v_p(x)}$,
 while the usual norm $|x|_\infty$ contains a multiple $p^{v_p(x)}$, thereby
 cancelling each other out.
+
+
+#### Conclusion
+
+What we've done in this whirlwind tour is to try and draw analogies between
+the ring of polynomials $\mathbb C[X]$ and the ring $\mathbb Z$, by trying
+to draw analogies between their prime ideals: $(X - \alpha)$ and $(p)$. So,
+we imported the notions of generating functions, polynomial evaluation, and
+completions (of $\mathbb Q$) to gain a picture of what $\mathbb Q_p$ is like.
+
+We also tried out the theory we've built against some toy problems, that shows
+us that this point of view maybe profitable. If you found this interesting,
+I highly recommend the book 
+[p-adic numbers by Fernando Gouvea](https://www.springer.com/gp/book/9783540629115).
 
 
 
