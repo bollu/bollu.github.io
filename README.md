@@ -26,6 +26,783 @@
 
 # Ideas I stumble onto
 
+# [Stuff I learnt in 2019](#stuff-I-learnt-in-2019)
+
+I write these retrospective blog posts every year since 2017. I tend to post a
+collection of papers, books, and ideas I've stumbled across that year.
+Unfortunately, this year, the paper list will be sparser, since I lost some
+data along the way to the year, and hence I don't have links to everything I
+read. So this is going to be a sparser list, consisting of things that I found
+_memorable_.
+
+I also re-organised my website, letting the link die, since keeping it up was
+taking far too many cycles (In particular, CertBot was far too annoying to
+maintain, and the feedback of hugo was also very annoying). I now have a 
+_single_ file, the
+[`README.md`of the `bollu/bollu.github.io`](https://github.com/bollu/bollu.github.io)
+repo,
+to which I add notes on things I find interesting. I've bound the `i` alias 
+(for idea) on all my shells everywhere, to open the `README.md` file, wait
+for me to write to it, run a `git commit` so I can type out a commit, and 
+then push. This has been _massive_ for what I manage to write down: I feel
+like I've managed to write down a lot of one-liners / small facts that I've
+picked up which I would not otherwise. I'm attempting to similarly pare down
+other friction-inducing parts of my workflow. Suggestions here would be very 
+welcome!
+
+
+If there's a theme of the year (insofar as my scattered reading has a
+theme...), it's "lattices and geometry". Geometry in terms of differential
+geometry, topology, and topoi. Lattices in the sense of a bunch of abstract
+interpretation and semantics.
+
+#### Course work: optimisation theory, quantum computation, statistics
+
+My course work was less interesting to me this time, due to the fact that I had
+chosen to study some wild stuff earlier on, and now have to take reasonable stuff
+to graduate. However, there were courses that filled in a lot of gaps in my
+self-taught knowledge for me, and the ones I listed were the top ones in that
+regard.
+
+I wound up reading
+[Boyd on optimisation theory](https://web.stanford.edu/~boyd/cvxbook/), 
+[Nielsen and Chuang](http://mmrc.amss.cas.cn/tlb/201702/W020170224608149940643.pdf) for quantum computation,
+where I also
+[solved a bunch of exercises in Q#](https://github.com/bollu/quantum-course-exercises) 
+which was very fun and rewarding. I'm beginning to feel that learning quantum
+computation is the right route to grokking things like entanglement and
+superposition, unlike the physics which is first of all much harder due to
+infinite dimensionality, and less accessible since we can't _program_ it.
+
+#### Formal research work: Compilers, Formal verification, Programming languages
+
+My research work is on the above topics, so I try to stay abreast of what's
+going on in the field. What I've read over the past year on these topics is:
+
+
+- [`A^2I`: meta-abstract interpretation](https://popl19.sigplan.org/details/POPL-2019-Research-Papers/71/A-2-I-Abstract-2-Interpretation).
+  This paper extends the theory of abstract interpretation to perform abstract
+  interpretation on program analyses themselves. I'm not sure how _useful_ this
+  is going to be, as I still hold on to the belief that AI as a framework is
+  too general to allow one to prove complex results. But I am still interested
+  in trying to adapt this to some problems I have at hand. Perhaps it's going
+  to work.
+
+
+- [Cubicial Agda](https://dl.acm.org/citation.cfm?id=3341691). This paper introduces
+  cubical type theory and its implementation in Agda. It appears to solve many
+  problems that I had struggled with during my formalization of loop
+  optimisations: In particular, dealing with Coinductive types in Coq, and that
+  of defining quotient types / setoids. Supposedly, cubical Agda makes dealing
+  with Coinduction far easier. It allows allows the creation of "real" quotient
+  types that respect equality, without having to deal with `setoid` style
+  objects that make for large Gallina terms. I don't fully understand how the
+  _theory_ works: In particular, as far as I can tell, the synthetic interval
+  type `I` allows one to only access the start and end points (`0` and `1`),
+  but not anything in between, so I don't really see how it allows for
+  interpolation.  I also don't understand how this allows us to make Univalence
+  computable.  I feel I need to practice with this new technology before I'm
+  well versed, but it's definitely a paper I'm going to read many, many times
+  till I grok it.
+
+
+- [Naive Cubical type theory](https://arxiv.org/abs/1911.05844). This paper
+  promises a way to perform informal reasoning with cubical type theory, the
+  way we are able to do so with, say, a polymorphic type theory for lambda
+  calculus. The section names such as "how do we think of paths",
+  "what can we do with paths", inspire confidence
+
+- [Call by need is Clairvoyant call by value](https://icfp19.sigplan.org/details/icfp-2019-papers/26/Call-By-Need-is-Clairvoyant-Call-By-Value). This key insight is to notice that call by need
+  is "just" call by value, when we evaluate only those values that are
+  eventually forced, and throw away the rest. Thus, if we had an oracle that
+  tells us which values are eventually forced, we can convert call by need into
+  call by value, relative to this oracle. This cleans up many proofs in the
+  literature, and might make it far more intuitive to teach call by need to
+  people as well. Slick paper, I personally really enjoyed reading this.
+
+- [Shift/Reset the Penultimate Backpropagator](https://arxiv.org/abs/1803.10228)
+  This paper describes how to implement backprop using delimited continuations.
+  Also, supposedly, using staging / building a compiler out of this paradigm
+  allows one to write high performance compilers for backprop without having
+  to suffer, which is always nice.
+
+
+- [Closed forms for numerical loops](https://www.cs.princeton.edu/~zkincaid/pub/popl19a.pdf)
+  This paper introduces a new algebra of polynomials with exponentials. It then
+  studies the eigenvalues of the matrix that describes the loop, and tries to
+  find closed forms in terms of polynomials and exponentials. They choose
+  to only work with rationals, but not extensions of rational numbers
+  (in terms of field extensions of the rationals). Supposedly, this is easier
+  to implement and reason about. Once again, this is a paper I'd like to
+  reimplement to understand fully, but the paper is well-done!
+
+
+- [Composable, sound transformations of Nested recursion and loops](https://engineering.purdue.edu/Papers/Sundararajah.pdf). 
+  This paper attempts to bring ideas from polyhedral compilation
+  into working with nested recursion. They create a representation using
+  multitape finite automata, using which they provide a representation for
+  nested recursion. I was somewhat disappointed that it does not handle
+  mutual recursion, since my current understanding is that one can always
+  convert nested recursion into a "reasonable" straight line program by 
+  simply inlining calls and then re-using polyhedral techniques. 
+
+
+- [Reimplementation of `STOKE` at `bollu/blaze`.](https://github.com/bollu/blaze/blob/master/notebooks/tutorial.ipynb)
+  I reimplemented the [STOKE: stochastic superoptimisation](http://stoke.stanford.edu/)
+  paper, and much to my delight, it was super-effective at regenerating common
+  compiler transformations. I want to use this to generate loop optimisations
+  as well, by transforming a polyhedral model of the original program.
+  
+
+#### Internship at [Tweag.io](http://tweag.io/) over the summer: Hacking on Asterius (Haskell -> WebAssembly compiler)
+
+- [Blog post on the progress made by me hacking on Austerius over at Tweag](https://www.tweag.io/posts/2019-09-12-webassembly-internship.html)
+
+I really enjoyed my time at Tweag! It was fun, and
+[Shao Cheng](https://github.com/TerrorJack)
+was a great mentor. I must admit that I was somewhat distracted, by all the new
+and shiny things I was learning thanks to all the cool people there `:)` In
+particular, I wound up bugging 
+[Arnaud Spiwack](http://assert-false.net/arnaud/), 
+[Simeon Carstens](http://simeon-carstens.com/),
+and [Matthias Meschede](https://github.com/mmesch)
+quite a bit, about type theory, MCMC sampling, and signal processing of storm
+clouds.
+
+I wound up reading a decent chunk of GHC source code, and while I can't link
+to specifics here, I understood a lot of the RTS much better than I did before.
+It was an enlightening experience, to say the least, and being paid to hack on
+a GHC backend was a really fun way to spend the summer.
+
+It also led me to fun discoveries, such as
+[how does one debug debug info?](https://github.com/ghc/ghc/blob/535a26c90f458801aeb1e941a3f541200d171e8f/compiler/cmm/Debug.hs#L458)
+
+
+I also really loved Paris as a city. My AirBnb host was a charming artist who
+suggest spots for me around the city, which I really appreciated. Getting
+around was disorienting for the first week or so, due to the fact that I could
+not (and still do not) really understand how to decide in which direction to
+walk inside the subways to find a particular line _going in a particular
+direction_.
+
+The city has some great spots for quiet work, though! In particular, the
+[Louvre Anticafe](https://www.anticafe.eu/lieux/louvre-paris-75001/)
+was a really nice place to hang out and grab coffee. The model is great: you
+pay for hours spent at the Anticafe, with coffee and snacks free. They also
+had a discount for students which I gratefully used. 
+I bumped into interesting artists, programmers, and students who were open for
+conversation there. I highly recommend hanging out there. 
+
+#### Probabilistic programming & giving a talk at FunctionalConf
+
+This was the first talk I'd ever given, and it was on probabilistic programming
+in haskell. In particular, I explained the
+[`monad-bayes`](https://github.com/adscib/monad-bayes) approach of
+doing this, and why this was profitable. 
+[The slides are available here](https://github.com/bollu/functionalconf-2019-slides-probabilistic-programming/blob/master/slides.pdf).
+
+
+It was a fun experience giving a talk, and I'd like to do more of it, since I
+got a lot out of attempting to explain the ideas to people. I wish I had more
+time, and had a clearer idea of who the audience was. I got quite a bit of
+help from [Michael Snoyman](https://www.snoyman.com/) to whip the talk into
+shape, which I greatly appreciated.
+
+The major ideas of probabilistic programming as I described it are
+from Adam Scibior's thesis:
+
+- [Adam Scibior: Formally justified and modular Bayesian inference for probabilistic programs](https://www.cs.ubc.ca/~ascibior/assets/pdf/thesis.pdf)
+
+Along the way, I and others at tweag read the other major papers in the space,
+including:
+
+- [Church, a language for generative models](https://arxiv.org/pdf/1206.3255), 
+  which is nice since it describes it's semantics in terms of sampling. This is
+  unlike Adam's thesis, where they define the denotational semantics in terms
+  of measure theory, which is then approximated by sampling.
+
+
+- [Riemann Manifold Langevin and Hamiltonian Monte Carlo](https://pdfs.semanticscholar.org/16c5/06c5bb253f7528ddcc80c72673fabf584f32.pdf)
+  which describes how to perform Hamiltonian Monte Carlo on the _information
+  geometry_ manifold.  So, for example, if we are trying to sample from
+  gaussians, we sample from a 2D Riemannian manifold with parameters mean and
+  varince, and metric as the [Fisher information metric](https://en.wikipedia.org/wiki/Fisher_information_metric).
+  This is philosophically the "correct" manifold to sample from, since it
+  represents the intrinsic geometry of the space we want to sample from.
+
+- [An elementary introduction to Information geometry by Frank Nielsen](https://arxiv.org/pdf/1808.08271.pdf)
+  something I stumbled onto as I continued reading about sampling from
+  distributions. The above description about the "correct" manifold for
+  gaussians comes from this branch of math, but generalises it quite a bit
+  further. I've tried to reread it several times as I gradually gained maturity
+  in differential geometry. I can't say I understand it just yet, but I hope to
+  do so in a couple of months. I need more time for sure to meditate on the
+  objects.
+
+- [Reimplementation of `monad-bayes`](https://github.com/bollu/shakuni).
+  This repo holds the original implementation on which the talk is based on.
+  I read through the `monad-bayes` source code, and then re-implemented the
+  bits I found interesting. It was a nice exercise, and you can see
+  the git history tell a tale of my numerous mis-understandings of MCMC methods,
+  till I finally got what the hell was going on.
+
+#### Presburger Arithmetic
+
+Since we use a bunch of [presburger arithmetic](https://en.wikipedia.org/wiki/Presburger_arithmetic)
+for [polyhedral compilation](http://polyhedral.info/)
+which is a large research interest of mine, I've been trying to build a
+"complete" understanding of this space. So this time, I wanted to learn
+how to build good solvers:
+
+- [`bollu/gutenberger`](https://github.com/bollu/gutenberger) is a decision
+  procedure for Presburger arithmetic that exploits their encoding as finite
+  automata. One thing that I was experimenting with was that we only use
+  numbers of finite bit-width, so we can explore the entire state space
+  of the automata and then perform NFA reduction using
+  [DFA minimisation](https://en.wikipedia.org/wiki/DFA_minimization). The
+  reference I used for this was the excellent textbook
+  [Automata theory: An algorithmic approach, Chapter 10](https://www7.in.tum.de/~esparza/autoskript.pdf)
+
+
+- [The taming of the semi-linear set](http://www.lsv.fr/~haase/documents/ch16.pdf)
+  This uses a different encoding of presburger sets, which allows them to bound
+  a different quantity (the norm) rather than the bitwidth descriptions. This allows
+  them to compute _exponentially_ better bounds for some operations than
+  were known before, which is quite cool. This is a paper I keep trying to
+  read and failing due to density. I should really find a week away from civilization
+  to just plonk down and meditate upon this.
+  
+##### Open questions for which I want answers
+
+I want better references to being able to _regenerate_ the inequalities
+description from a given automata which accepts the presburger set automata.
+This will allow one to smoothly switch between the _geometric_ description
+and the _algebraic_ description. There are some operations that only work
+well on the geometry (such as optimisation), and others that only work well on
+the algebraic description (such as state-space minimisation). I have not found
+any good results for this, only scattered fragments of partial results.
+If nothing else, I would like some kind of intuition for _why this is hard_. 
+
+Having tried my stab at it, the general impression that I have is that the
+space of automata is much larger than the things that can be encoded as
+presburger sets. Indeed, it was shown that automata accept:
+
+-  first order logic + "arithmetic with +" + (_another operation I cannot recall_).
+   I'm going to fill this in once I re-find the reference.
+
+But yes, it's known that automata accept a language that's broader than just
+first order logic + "arithmetic with +", which means it's hard to dis-entangle
+the presburger gits from the non-presburger bits of the automata. 
+  
+  
+#### Prolog
+
+I wanted to get a better understading of how prolog works under the hood, so I began
+re-implementing the [WAM: warren abstract machine](http://wambook.sourceforge.net/).
+It's really weird, this is the _only stable reference_ I can find to implementing
+high-performance prolog interpreters. I don't really understand how to chase the
+paper-trail in this space, I'd greatly appreciate references. My implementation
+is at [`bollu/warren-cpp`](https://github.com/bollu/warren-cpp/). Unfortunately,
+I had to give up due to a really hard-to-debug bug.
+
+It's crazy to debug this abstract machine, since the internal representation gets
+_super convoluted_ and hard to track, due to the kind of optimised encoding it
+uses on the heap.
+
+If anyone has a better/cleaner design for implementing good prologs, I'd love
+to know.
+
+Another fun paper I found in this space thanks to Edward Kmett was
+[the Rete matching algorithm](http://www.drdobbs.com/architecture-and-design/the-rete-matching-algorithm/184405218),
+which allows one to declare many many pattern matches, which are then "fused"
+together into an optimal matcher that tries to reuse work across failed
+matchers.
+
+#### General Relativity
+
+This was on my "list of things I want to understand before I die", so I wound
+up taking up an Independent Study in university, which basically means that
+I study something on my own, and visit a professor once every couple weeks,
+and am graded at the end of the term. For GR, I wound up referencing a wide
+variety of sources, as well as a bunch of pure math diffgeo books. I've read
+everything referenced to various levels. I feel I did take away the core
+ideas of differential and Riemannian geometry. I'm much less sure I've grokked
+general relativity, but I can at least read the equations and I know all the
+terms, so that's something.
+
+- [The theoretical minimum by Leonard Susskind](https://theoreticalminimum.com/courses/general-relativity/2012/fall).
+  The lectures are breezy in style, building up the minimal theory (and no proofs)
+  for the math, and a bunch of lectures spent analysing the physics. While I wish
+  it were a little more proof heavy, it was a really great reference to learn the
+  basic theory! I definitely recommend following this and then reading other
+  books to fill in the gaps.
+
+- [Gravitation by Misner Thorne and Wheeler](https://en.wikipedia.org/wiki/Gravitation_(book))
+  This is an imposing book. I first read through the entire thing (Well, the parts I thought I needed),
+  to be able to get a vague sense of what they're going for. They're rigorous in
+  a very curious way: It has a bunch of great _physics_ perspectives of looking
+  at things, and that was invaluable to me. Their view of forms as "slot machines"
+  is also fun. In general, I found myself repeatedly consulting this book for
+  the "true physical" meaning of a thing, such as curvature, parallel transport,
+  the equation of a geodesic, and whatnot.
+
+- [Differential Geometry of Curves and Surfaces by do Carmo](http://www2.ing.unipi.it/griff/files/dC.pdf)
+  This is the best book to intro differential geometry I found. It throws away
+  all of the high powered definitions that "modern" treatments offer, and
+  starts from the ground up, building up the theory in 2D and 3D. This is amazing,
+  since it gives you small, computable examples for things like
+  "the Jacobian represents how tangents on a surface are transformed locally".
+
+- [Symplectic geometry & classical mechanics by Tobias Osborne](https://www.youtube.com/watch?v=pXGTevGJ01o&list=PLDfPUNusx1EoVnrQcCRishydtNBYU6A0c)
+  This lecture series was great, since it re-did a lot of the math I'd seen
+  in a more physicist style, especially around vector fields, flows, and
+  Lie brackets. Unfortunately for me, I never even _got_ to the classical
+  mechanics part by the time the semester ended. I began 
+  [taking down notes in my repo](https://github.com/bollu/notes/blob/master/diffgeo/main.pdf), 
+  which I plan to complete.
+
+- [Introduction to Smooth manifolds: John Lee](https://sites.math.washington.edu/~lee/Books/ISM/)
+  This was a very well written _mathematical_ introduction to differential geometry. 
+  So it gets to the physically important bits (metrics, covariant derivatives)
+  far later, so I mostly used it as a reference for problems and more rigour.
+
+
+- [Einstein's original paper introducing GR, translated](http://hermes.ffn.ub.es/luisnavarro/nuevo_maletin/Einstein_GRelativity_1916.pdf)
+  finally made it click as to _why_
+  he wanted to use tensor equations: tensor equations of the form `T = 0` are
+  invariant in _any coordinate system_, since on change of coordinates, `T`
+  changes by a multiplicative factor! It's a small thing in hindsight, but it
+  was nice to see it explicitly spelled out, since as I understand, no one
+  among the physicists knew tensor calculus at the time, so he had to introduce
+  all of it.
+
+#### Discrete differential geometry
+
+I can't recall how I ran across this: I think it was because I was trying to
+get a better understanding of Cohomology, which led me to Google for 
+"computational differential geometry", that finally led me to Discrete
+differential geometry.
+
+It's a really nice collection of theories that show us how to discretize
+differential geometry in low dimensions, leading to rich intuitions and
+a myriad of applications for computer graphics.
+
+- [The textbook by Kennan Crane on the topic](https://www.cs.cmu.edu/~kmcrane/Projects/DDG/paper.pdf) 
+  which I read over the summer when I was stuck (more often than I'd like) in
+  the Paris metro. The book is very accessible, and requires just some
+  imagination to grok. Discretizing differential geometry leads to most things
+  being linear algebra, which means one can calculate things on paper easily.
+  That's such a blessing.
+
+- [Geodesics in Heat](https://arxiv.org/pdf/1204.6216)
+  explores a really nice way to discover geodesics by simulating the heat
+  equation for a short time. The intuition is that we should think of the heat
+  equation as describing the evolution of particles that are performing random
+  walks. Now, if we simulate this system for a short while and then look at the
+  distribution, particles that reach a particular location on the graph _must
+  have taken the shortest path_, since any longer path would not have allowed
+  particles to reach there. Thus, the distribution of particles at time `dt`
+  does truly represent distances from a given point.  The paper explores this
+  analogy to find accurate geodesics on complex computational grids. This is
+  aided by the use of differential geometry, appropriately discretized.
+
+- [The vector heat method](https://arxiv.org/pdf/1805.09170.pdf)
+  explores computing the parallel transport of a vector across a discrete
+  manifold efficiently, borrowing techniques from the 'Geodesics in Heat'
+  paper.
+
+- [Another paper by Kennan Crane: Lie group integrators for animation and control of vehicles](https://www.cs.cmu.edu/~kmcrane/Projects/LieGroupIntegrators/paper.pdf)
+  This paper describes a general recipe to tailor-make integrators for a system
+  of constraints, by directly integrating over the lie group of the
+  configuration space.  This leads to much more stable integrators. I have some
+  misguided hope that we can perhaps adapt these techniques to build better FRP
+  (functional reactive programming) systems, but I need to meditate on this a
+  lot more to say anything definitively.
+
+  
+  
+
+#### Synthetic differential geometry
+
+It was [Arnaud Spiwack](http://assert-false.net/arnaud/)
+who pointed me to this. It's a nice axiomatic
+system of differential geometry, where we can use physicist style proofs of
+"taking stuff upto order `dx`", and having everything work upto mathematical
+rigor.
+
+The TL;DR is that we want to add a new number called `dx` into the reals,
+such that `dx^2 = 0`. But if such a number did exist, then clearly `dx = 0`.
+However, the punchline is that to prove that `dx^2 = 0 => dx = 0` requires
+the use of contradiction!
+
+So, if we banish the law of excluded middle (and therefore no longer use
+proof by contradiction), we are able to postulate the existence of a new
+element `dx`, which obeys `dx^2 = 0`. Using this, we can build up the
+whole theory of differential geometry in a pleasing way, without having to
+go through the horror that is real analysis. (I am being hyperbolic, but really,
+real analytic proofs are not pleasant).
+
+[I began formalizing this in Coq and got a formalism going: `bollu/diffgeo`](git@github.com:bollu/diffgeo.git).
+
+Once I was done with that, I realised I don't know how to exhibit _models_ of
+the damn thing! So, reading up on that made me realise that I need around 8
+chapters worth of a grad level textbook (the aptly named 
+[Models of Smooth Infinitesimal Analysis](https://link.springer.com/book/10.1007/978-1-4757-4143-8)).
+
+I was disheartened, so I [asked on `MathOverflow`](https://mathoverflow.net/questions/346385/constructing-computable-synthetic-differential-geometry)
+(also my first ever question there), where I learnt about tangent categories and
+differential lambda calculus. Unfortunately, I don't have the bandwidth to read
+another 150-page tome, so this has languished.
+
+
+### Optimisation on Manifolds
+
+I began reading
+[Absil: Optimisation on matrix manifolds](http://www.eeci-institute.eu/GSC2011/Photos-EECI/EECI-GSC-2011-M5/book_AMS.pdf)
+which describes how to perform optimisation / gradient descent on 
+_arbitrary Riemannian manifolds_, as well as closed forms for well-known
+manifolds. The exposition in this book is really good, since it picks a
+concrete manifold and churns out all the basic properties of it manually. The
+only problem I had with the books was that there were quite a few gaps (?) in
+the proofs -- perhaps I missed a bunch.
+
+This led me to learn Lie theory to some degree, since that was the natural
+setting for many of the proofs. I finally saw _why_ anyone gives a shit about
+the tangent space at the identity: because it's _easier to compute!_ For a
+flavour
+of this, [consider this question on `math.se` by me that asks about computing
+tangent spaces of $O(n)$](https://math.stackexchange.com/questions/3389983/explicit-description-of-tangent-spaces-of-on).
+
+#### AIRCS workshop
+
+I attended the
+[AI risk for computer scientists](https://intelligence.org/ai-risk-for-computer-scientists/)
+workshop hosted by
+[MIRI (Machine intelligence research institute)](https://intelligence.org/) in 
+December. Here, a bunch of people were housed at a bed & breakfast for a
+week, and we discussed AI risk, why it's potentially the most important thing
+to work on, and anything our hearts desired, really. I came away with new
+branches of math I wanted to read, a better appreciation of the AI risk
+community and a sense of what their "risk timelines" were, and some
+explanations about sheaves and number theory that I was sorely lacking. All in
+all, it was a great time, and I'd love to go back. 
+
+#### P-adic numbers
+
+While I was on a particularly rough flight back from the USA to India when
+coming back from the AIRCS workshop, I began to read the textbook
+[Introduction to p-adic numbers by Fernando Gouvea](https://www.springer.com/gp/book/9783540629115),
+which fascinated me, so I then
+[wrote up the cool parts introduced in the first two chapters as a blog post](http://bollu.github.io/#a-motivation-for-p-adic-analysis).
+I wish to learn more about the p-adics and p-adic analysis, since they
+seem to be deep objects in number theory.
+
+In particular, a question that I thought might have a somewhat trivial answer
+([why do the p-adics use base p in defining norm](https://math.stackexchange.com/questions/3482489/why-does-the-p-adic-norm-use-base-p))
+turned out to have answers that were quite deep, which was something
+unexpected and joyful!
+
+#### Topology of functional programs
+
+- [Slides by Martın Escardo](http://cs.ioc.ee/ewscs/2012/escardo/slides.pdf)
+- [Synthetic topology of data types and classical spaces](https://pdf.sciencedirectassets.com/272990/1-s2.0-S1571066104X00177/1-s2.0-S1571066104051357/main.pdf?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEJP%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJHMEUCIGQAb828p1io4csznEej60j0PwJteuXf7OoHLSCDhkUTAiEA9ITs1JrUEOE%2Ft%2Fl5TI9ZkNLUfBIx42IZ%2FoAqQpdX4twq2AII6%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARACGgwwNTkwMDM1NDY4NjUiDBQOxJ3s3HCbVxSheCqsAt65yorZMMtIhLF7ML5sJQ9S5wZxBayKDrRkUKOjSzXxtQWebXs70FXhhpToXKvJoDrLgsqDzdF%2FAshZY%2FkDUep6KILxKnYxCBrBINhjFqxDlRZH0s1Y991RgCyNNnwmFI%2BrH70lSrV0OxQ9Z5WdXXPDkTLXv8512Xz%2BJn5DqEqdqD49FLbOuHl6PRM0TnYyNJkLBXNVwt75kkGkaTfdgmgiqh7YpcXcHlbqI2oqNcaxFDewXwKDCC7qWD6ECclLgszoeOXOtRI91nvNac8%2BLV4bXkKLXpd99H94N2vXPUPz99p6oqfdY9ixtcfI9POFX8agUilYjXKVhAWk4FSzzzMqbtZLBfkCZT4ffDTxRgL52yD%2FmL5E0Pe4mczVlUoB5DKoB8Lkitrt0BumQzDr4ffvBTrQAjVRuzG5V0CC%2Fd1t%2BUMPkrywaYytbrXCZ%2BkDo0xDBqsljY8DaGIiFINr8BEEpT7UX42GRhcDzpnOnztdAOTea3qZ3SmXJwgEoh0aiz%2B87MmsC57s0Q%2F%2B%2FDDvHBY3zLCrz7rdewXOgk6VxI9d5mhG3Du1dwPRbgOe798S2waDCD8LQA3rw7w5wNGa9Uv3xtNVH%2BHw%2FXcQ6OiubO4GL9mK8U5g7TVPh1hLB26XBQooKJ564VGf4J9VqWxjlx3NicVhqnFlGevNJNKyVLiyRsRCyQGMV59%2BXqUwdEMQZYWLbfUwELNz1NKfWumvu9BXC5jjsJgNx%2FRERSb7hqT1svMJU91o%2FHtatGAnPvVjYaNthha9O9jm%2BG9nw1vMsdyJ0asI5w5SrlsEyb5C7Vk7aLBcHAEi3XPRhivY1Q4hZAN0xY9VfEZrF%2FoM9HCGxr5cYs%2BP9w%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20191221T113658Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAQ3PHCVTY6QRXTPOC%2F20191221%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=8a26656e8f8c8772afdc2ae6caa9b583fd59a8ee6303d9770d25b4a3d8a6291f&hash=42518d3e5cc1e77ed961c359d0ea8f59bd582d1e5f13d69c3eeb2563a6c82abd&host=68042c943591013ac2b2430a89b270f6af2c76d8dfd086a07176afe7c76c2c61&pii=S1571066104051357&tid=spdf-584e8188-4806-44bb-a118-9b63a53caaff&sid=f53691052392834d3e18a62484e2909639a9gxrqb&type=client)
+
+Both of these describe a general method to transfer all topological ideas as
+statements about _computability_ in a way that's far more natural (at least for
+me, as a computer scientist). The notion of what a continuous function "should
+be" (keeping inverse images of open sets open) arises naturally from this
+computational viewpoint, and many proofs of topology amount to finding
+functional programs that fit a certain type. It's a great read, and I feel gave
+me a much better sense of what topology is trying to do.
+
+- [I've written some exposition on this topic](http://bollu.github.io/#topology-is-really-about-computation--part-1),
+  which maybe a more accessible read than the links above, since it tries to
+  distill the fundamental idea into a blog post.
+
+#### Philosophy
+
+I've wanted to understand philosophy as a whole for a while now, at least
+enough to get a general sense of what happened in each century. The last year,
+I meandered through some philosophy of science, which led me to some really
+wild ideas (such as that of
+[Paul Feyerabend's 'science as an anarchic enterprise'](https://en.wikipedia.org/wiki/Epistemological_anarchism) 
+which I really enjoyed).
+
+I also seem to get a lot more out of audio and video than text in general, so
+I've been looking for podcasts and video lectures. I've been following:
+
+- [The history of philosophy without any gaps](https://historyofphilosophy.net/)
+  for a detailed exposition on, say, the greeks, or the arabic philosophers.
+  Unfortunately, this podcast focuses on far too much detail for me to have been
+  able to use it as a way to get a broad idea about _philosophy_ in itself.
+
+- [Philosophize This! by Stephen West](http://philosophizethis.org/)
+  Is a good philosophy podcast for a _broad_ overview of different areas
+  of Philosophy. I got a lot out of this, since I was able to get a sense
+  of the progression of ideas in (Western) Philosophy. So I now know what
+  [Phenomenology](https://plato.stanford.edu/entries/phenomenology/) is, 
+  or what Foucault was reacting against.
+
+
+I also attempted to read a bunch of philosophers, but the only ones I could
+make a good dent on were the ones listed below. I struggled in writing this
+section, since it's much harder to sanity check my understanding of philosophy,
+versus mathematics, since there seems to be a range of interpretations of the
+same philosophical work, and the general imprecise nature of language doesn't
+help here at all. So please take all the descriptions below with some salt 
+to taste.
+
+- [Discipline and Punish by Michel Foucault](https://en.wikipedia.org/wiki/Discipline_and_Punish)
+  Here, Foucault traces the history of the criminal justice system of society,
+  and how it began as something performed 'on the body' (punishment),
+  which was then expanded to a control 'of the mind' (reform). As usual,
+  the perspective is fun, and I'm still going through the book.
+
+- [Madness and Civilization by Michel Foucault](https://en.wikipedia.org/wiki/Madness_and_Civilization)
+  which attempts to chronicle how our view of madness evolved as society did.
+  It describes how madmen, who were on the edges of society, but still
+  "respected" (for exmaple, considered as 'being touched by the gods') were
+  pathologized by the Renaissance, and were seen as requiring treatment. I'm
+  still reading it, but it's enjoyable so far, as a new perspective for me.
+
+  
+- [The value of science by Henri Poincare](https://en.wikipedia.org/wiki/The_Value_of_Science).
+  Here, he defends the importance of experimentation, as well as the value of
+  intuition to mathematics, along with the importance of what we consider
+  formal logic. It's a tough read sometimes, but I think I got something out of
+  it, at least in terms of perspective about science and mathematics.
+
+#### Information theory
+
+I've been on a quest to understand information theory far better than I
+currently do. In general, I feel like this might be a much better way to
+internalize probability theory, since it feels like it states probabilistic
+objects in terms of "couting" / "optimisation of encodings", which is a 
+perspective I find far more natural.
+
+Towards this aim, I wound up reading:
+
+- [Information theory, Learning, and inference algorithms](http://www.inference.org.uk/mackay/itila/book.html)
+  This book attempts to provide the holistic view I was hoping for. It has
+  great illustrations of the basic objects of information theory. However,
+  I was hoping that the three topics would be more "unified" in the book,
+  rather than being presented as three separate sections with some amount
+  of back-and-forth-referencing among them. Even so, it was a really fun read.
+
+- [Elements of information theory](http://www.cs-114.org/wp-content/uploads/2015/01/Elements_of_Information_Theory_Elements.pdf)
+
+#### Building intuition for Sheaves, Topoi, Logic
+
+I don't understand the trifecta of sheaves, topoi, geometry, and logic, and
+I'm trying to attack this knot from multiple sides at once.
+
+- [Understanding networks and their behaviours using sheaf theory](https://arxiv.org/pdf/1308.4621)
+- [Sheaves, objects, and distributed systems](https://www.sciencedirect.com/science/article/pii/S1571066108005264)
+- [Sheaves are the canonical data strucure for sensor integration](https://arxiv.org/pdf/1603.01446.pdf)
+- [Elementary applied topology, Chapter 9: Sheaves](https://www.math.upenn.edu/~ghrist/EAT/EATchapter9.pdf)
+- [Sheaf theory: The mathematics of data fusion (video) (link to HackerNews)](https://news.ycombinator.com/item?id=13677308)
+
+All of these provide geometric viewpoints of what sheaves are, in low-dimensional
+examples of graphs which are easy to visualize. I'm also trudging through the
+tome:
+
+- [Sheaves in geometry and logic: A first introduction to Topos theory](https://www.springer.com/gp/book/9780387977102)
+
+which appears to follow the "correct path" of the algebraic geometers, but this
+requires a lot of bandwidth.
+
+- [The Rising Sea: foundations of algebraic geometry by Ravi Vakil](http://math.stanford.edu/~vakil/216blog/FOAGnov1817public.pdf)
+
+This is a hardcore algebraic geometry textbook, and is arguably 
+_great for studying sheaves_ because of it. Sheaves are Chapter 2, and allows
+one to see them be developed in their "true setting" as it were. In that
+Grothendeick first invented sheaves for algebraic geometry, so it's good to
+see them in the home they were born in. Once again, this is a book I lack
+bandwidth for except to breezily read it as I go to bed. I did get something
+out from doing this. I'm considering taking this book up as an independent
+study, say the first four chapters. I'll need someone who knows algebraic
+geometry to supervise me, though, which is hard to find in an institute geared
+purely for computer science. (If anyone on the internet is kind enough to
+volunteer some of their time to answer questions, I'll be very glad! Please
+email me at `rot13(fvqqh.qehvq@tznvy.pbz)`)
+
+#### The attic
+
+This section contains random assortments that I don't recall how I stumbled
+across, but too cool to not include on the list. I usually read these in bits
+and pieces, or as bedtime reading right before I go to bed to skim.  I find
+that skimming such things gives me access to knowing about tools I would not
+have known otherwise. I like knowing the existence of things, even if I don't
+recall the exact thing, since knowing that something like `X` exists has saved me
+from having to reinvent `X` from scratch.
+
+- [Group Theory: Birdtracks, Lie's and Exceptional Groups by Predrag Cvitanovic](http://www.cns.gatech.edu/GroupTheory/version9.0/GroupTheory.pdf)
+  is an exposition of Lie theory using some notation called as "Birdtrack notation",
+  which is supposedly a very clean way of computing invariants, inspired by
+  Feynmann notation. The writing style is informal and pleasant, and I decided
+  to save the book purely because the first chapter begins with
+  "Basic Concepts: A typical quantum theory is constructed from a few building blocks...".
+  If a book considers building quantum theories as its starting point, I really
+  want to see where it goes.
+
+- [Elementary Applied topology by Robert M Ghirst](https://www.math.upenn.edu/~ghrist/notes.html)
+  I wouldn't classify the book as elementary because it skims over too much to be
+  useful as a reference, but it's great to gain an intuition for what, say,
+  homology or cohomology is. I am currently reading the section on Sheaf theory,
+  and I'm getting a lot out of it, since it describes how to write down, say,
+  min-cut-max-flow or niquist-shannon in terms of sheaves. I don't grok it yet,
+  but even knowing this can be done is very nice. The book is a wonderful
+  walkthrough in general.
+
+
+- [On polysemous mathematical illustration by Robert M Ghirst](https://icerm.brown.edu/video_archive/?play=2034)
+  This is a talk on the wonderful illustrations by the above author, about
+  the different types of mathematical illustrations one can have, and different
+  "levels of abstraction".
+
+- [Mathematical Impressions: The illustrations of AT Femenko](http://chronologia.org/en/math_impressions/poster016.html)
+  These are _beautiful_ illustrated pictures of various concepts in math, which
+  tend to _evoke_ the feeling of the object, without being too direct about it.
+  For example, consider "gradient descent" below. I highly recommend going
+  through the full gallery.
+
+
+- [Gradient Descent](http://chronologia.org/art/math/123a176.jpg)
+  <img width=200 height=200 src="http://chronologia.org/art/math/123a176.jpg">
+
+- [Topological Zoo](http://chronologia.org/art/math/077a011.jpg)
+  <img width=200 height=200 src="http://chronologia.org/art/math/077a011.jpg">
+
+- [Persistent Homology in Multivariate Data Visualization](https://bastian.rieck.me/research/Dissertation_Rieck_2017.pdf)
+  This is the PhD dissertation of [Bastian Rieck](https://bastian.rieck.me/),
+  who's now a postdoc at ETH. I deeply enjoyed reading it, since it pays
+  a lot of attention to the _design_ of analyses, and how to interpret
+  topological data. I really enjoyed getting a good sense of how one can 
+  use persistent homology to understand data, and the trade-offs between
+  [Vietoris-Rips complex](https://en.wikipedia.org/wiki/Vietoris%E2%80%93Rips_complex)
+  and the [Cech complex](https://en.wikipedia.org/wiki/%C4%8Cech_complex).
+
+- [An introduction to Geometric algebra](https://arxiv.org/pdf/1205.5935.pdf)
+  I fell in love with geometric algebra, since it provides a really clean way
+  to talk about _all possible subspaces_ of a given vector space. This provides
+  super slick solutions to many geometry and linear algebra problems. The
+  way I tend to look at it is that when one does linear algebra, there's a strict
+  separation between "vectors" (which are elements of the vector space), and,
+  say, "hyperplanes" (which are _subspaces_ of the vector space), as well as
+  objects such as "rotations" (which are _operators_ on the vector space). 
+  Geometric algebra provides a rich enough _instruction set_ to throw all
+  these three distinct things into a blender. This gives a really concise
+  language to describe all phenomena that occurs in the vector space world --- 
+  which, let's be honest, is _most_ tractable phenomena! I had a blast
+  reading about GA and the kinds of operators it provides.
+
+- [Circuits via Topoi](https://arxiv.org/pdf/1807.07159). This paper attempts
+  to provide an introduction to topos theory by providing a semantics for
+  both combinational and sequential circuits under a unifying framework. I keep
+  coming back to this article as I read more topos theory. Unfortunately, I'm
+  not "there yet" in my understanding of topoi. I hope to be next year!
+
+
+- [Fearless Symmetry](https://press.princeton.edu/books/paperback/9780691138718/fearless-symmetry)
+  This is definitely my favourite non-fiction book that I've read in 2019, hands
+  down. The book gives a great account of the mathematical objects that went
+  into Wiles' book of Fermat's last theorem. It starts with things like
+  "what is a permutation" and ends at questions like "what's a reciprocity law"
+  or "what's the absolute galois group". While at points, I do believe the book
+  goes far too rapidly, all in all, it's a solid account of number theory
+  that's distilled, but not in any way diluted. I really recommend reading this
+  book if you have any interest in number theory (or, like me, a passing
+  distaste due to a course on elementary number theory I took, with proofs that
+  looked very unmotivated). This book made me decide that I should, indeed, 
+  definitely learn algebraic number theory, upto at least
+  [Artin Reciprocity](https://en.wikipedia.org/wiki/Artin_reciprocity_law).
+
+
+- [Rememberance of Earth's past trilogy by Liu Cixin](https://en.wikipedia.org/wiki/Remembrance_of_Earth%27s_Past)
+  While I would not classify this as "mind-blowing" (which I do classify Greg 
+  Egan books as), they were still a solidly fun read into how humanity would
+  evolve and interact with alien races. It also poses some standard solutions
+  to the Fermi Paradox, but it's done well. I felt that the fact that it was
+  translated was painfully obvious in certain parts of the translation, which
+  I found quite unfortunate. However, I think book 3 makes up in grandeur for
+  whatever was lost in translation.
+
+- [Walkaway by Cory Doctorow](https://en.wikipedia.org/wiki/Walkaway_(Doctorow_novel))
+  The book is set in a dystopian nightmare, where people are attempting to
+  "walk away" from society and set up communes, where they espouse having
+  a post-scarcity style economy based on gifting. It was a really great
+  description of what such a society could look like. I took issue with some
+  weird love-triangle-like-shenanigans in the second half of the book, but
+  the story arc more than makes up for it. Plus, the people throw a party
+  called as a "communist party" in the first page of the book, which grabbed
+  my attention immediately!
+
+- [PURRS: Parma University Recurrence Relation Solver](http://www.cs.unipr.it/purrs/)
+  I wanted better tactics for solving recurrences in Coq, which led me into
+  a rabbit hole of the technology of recurrence relation solving. This was the
+  newest _stable_ reference to a complete tool that I was able to find. Their
+  references section is invaluable, since it's been vetted by them
+  actually implementing this tool!
+
+- [Term rewriting and all that](https://www21.in.tum.de/~nipkow/TRaAT/).
+  I read this book purely for its description of Groebner bases and the Bucchberger
+  algorithm in a way that _made sense_ for the first time.
+  [I've written about this more extensively before](http://bollu.github.io/#what-the-hell-is-a-grobner-basis-ideals-as-rewrite-systems)
+  so I'm not going to repeat myself here. In general, I think it's a great book
+  that's worth reading, if nothing else, for at least the chapter on Groebner
+  bases.
+
+- [Lucid: The dataflow programming language](http://worrydream.com/refs/Wadge%20-%20Lucid,%20the%20Dataflow%20Programming%20Language.pdf)
+  This document is the user manual of Lucid. I didn't fully understand the
+  book, but what I understood as their main argument is that full access too
+  looping is un-necessary to perform most of the tasks that we do. Rather,
+  one can provide a "rich enough" set of combinators to manipulate streams
+  that allows one to write all programs worthy of our interest.
+
+- [Bundle Adjustment — A Modern Synthesis](https://hal.inria.fr/inria-00548290/document)
+  I learnt about Bundle Adjustment from a friend taking a course on robotics.
+  The general problem is to reconstruct the 3D coordinates of a point cloud
+  given 2D projections of the points and the camera parameters, as the camera
+  moves in time. I found the paper interesting since it winds up invoking a
+  decent amount of differential geometric and gauge theoretic language to
+  describe the problem at hand. I was unable to see why this vocabulary helped
+  in this use-case, but perhaps I missed the point of the paper. It was hard to
+  tell.
+
+#### Conclusions
+
+I always feel a little wrong posting this at the end of every year, since I
+feel that among the things I cover under "read", I've internalized some things
+far better than others: For example, I feel I understannd Riemannian geometry
+far better than I do General Relativity. I try to put up the caveats at the
+beginning of each section, but I'd really like a way to communicate my
+confidence without reducing readability.
+
+
+The final thing that I wish for is some kind of reading group? It's hard
+to maintain a group when my interests shift as rapidly as they do, which
+was one of the reason I really loved the AIRCS workshop: They were people
+who were working on formal methods, compilers, type theory, number theory,
+embedded systems, temporal logic... It was very cool to be in a group of
+people who had answers and intuitions to questions that had bugged me for
+some time now. I wonder if attending courses at a larger research university
+feels the same way. My uni is good, but we have quite small population, which
+almost by construction means reduced diversity.
+
+I also wish that I could openly add more references to repos I've been working
+on for a while now, but I can't due to the nature of academia and publishing.
+This one bums me out, since there's a long story of a huge number of commits
+and trial-by-fire that I think I'll be too exhausted to write about once the
+thing is done. 
+
+Sometimes, I also wish that I could spend the time I spend reading _disparate_
+topics on _focused reading on one topic_. Unfortunately, I feel like I'm not
+wired this way, and the joy I get from sampling many things at the same time
+and making connections is somehow much deeper than the joy I get by deeply
+reading one topic (in exclusion of all else). I don't know what this says
+about my chances as a grad student in the future `:)`.
+
+
 # [A motivation for p-adic analysis](#a-motivation-for-p-adic-analysis)
 
 I've seen the definitions of p-adic numbers scattered around on the internet,
