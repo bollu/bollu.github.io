@@ -26,7 +26,7 @@
 
 # Ideas I stumble onto
 
-# [Stuff I learnt in 2019](#stuff-I-learnt-in-2019)
+# [Stuff I learnt in 2019](#stuff-i-learnt-in-2019)
 
 I write these retrospective blog posts every year since 2017. I tend to post a
 collection of papers, books, and ideas I've stumbled across that year.
