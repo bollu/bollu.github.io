@@ -189,11 +189,11 @@ If we try to compute this, we will have to have:
 
 $$
 \begin{align*}
-H_1 &\equiv Kernel(\partial) \\
-&= \{ (s, t, u) | \partial(s, t, u) = (0, 0, 0) ~ s, t, u \in \mathbb Z \} \\
-&= \{ (s, t, u) | (s-t, u-s, t-u) = (0, 0, 0) ~ s, t, u \in \mathbb Z  \} \\
-&= \{ (s, t, u) | s = t = u ~ s, t, u \in \mathbb Z \} \\
-&= \{ (x, x, x) | x \in \mathbb Z \} \simeq \mathbb Z
+H_1 &\equiv Kernel(\partial_{EV}) \\
+&= \{ (s, t, u) ~\mid~ \partial_{EV}(s, t, u) = (0, 0, 0) ~ s, t, u \in \mathbb Z \} \\
+&= \{ (s, t, u) ~\mid~ (s-t, u-s, t-u) = (0, 0, 0) ~ s, t, u \in \mathbb Z  \} \\
+&= \{ (s, t, u) ~\mid~ s = t = u ~ s, t, u \in \mathbb Z \} \\
+&= \{ (x, x, x) ~\mid~ x \in \mathbb Z \} \simeq \mathbb Z
 \end{align*}
 $$
 
@@ -231,7 +231,7 @@ $$
 &\partial_{FE} : F \rightarrow E \\
 &\partial_{FE}(1) \equiv (1, 1, 1)  \\
 &\text{(Extend using linearity)} \\
-&\partial_{FE}(c) \equiv c \partial(1)
+&\partial_{FE}(c) \equiv c \partial(1) = (c, c, c)
 \end{align*}
 $$
 
@@ -239,10 +239,10 @@ Now, we should notice that the _image_ of $\partial_{FE}$ is a loop
 $(o + m + c)$, which lies ie the _kernel_ of $\partial_{EV}$. This is a
 general feature of homology, so it bears repeating:
 
-- $image(\partial_{FE}) \subset kernel(\partial_{EV})
+- $Image(\partial_{FE}) \subset Kernel(\partial_{EV})$
 - $\partial_{FE} \circ \partial_{EV} = 0$
 - The above equation is sometimes stylishly (somewhat misleadingly) written as
-  $d^2 = 0$ or $\partial^2 = 0$.
+  $\partial^2 = 0$. More faithfully, one can write $\partial \circ \partial = 0$.
 
 Now, since the image of $\partial_{FE}$ lies entirely in the kernel of $\partial_{EV}$,
 we can construct $H_1$ as:
@@ -257,13 +257,15 @@ we can construct $H_1$ as:
 ![cohomology-triangle-vertices](static/simplices/cohomology-triangle-vertices.svg)
 
 Once again, we have our humble triangle with vertices $V = \\{r, g, b\\}$,
-edges $E = \\{o, m, c \\}$, faces $F = \\{ f \\}$ with a boundary maps $\partial{EV}$,
+edges $E = \\{o, m, c \\}$, faces $F = \\{ f \\}$ with boundary maps $\partial_{EV}$,
 $\partial_{FE}$:
+
+- $\partial_{FE}(f)= o + m + c$
+
 
 - $\partial_{EV}(o) = r - g$
 - $\partial_{EV}(m) = b - r$
 - $\partial_{EV}(c)= g - b$
-- $\partial_{FE}(f)= o + m + c$
 
 We define a function $h_v: V \rightarrow \mathbb R$ on the vertices as:
 -  $h_v(r) = 3$, $h_v(g) = 4$, $h_v(b) = 10$.
@@ -284,9 +286,10 @@ Expanded out on the example, we evaluate $h_v$ as:
 
 More conceptually, we have created an _operator_ called $d$ which takes functions
 defined on vertices to functions defined on edges, which uses the boundary map
-on the edges to "lift" a function on the vertices to a function on the edges:
+on the edges to "lift" a function on the vertices to a function on the edges.
+It does so by assigning the "potential difference" of the vertices to the edges.
 
-- $d: (V \rightarrow \mathbb R) \rightarrow (E \rightarrow \mathbb R)
+- $d: (V \rightarrow \mathbb R) \rightarrow (E \rightarrow \mathbb R)$
 - $d(h_v) \equiv h_e$, $h_e(e) \equiv \sum_i \alpha_i f(v_i)$ where $\partial_{EV} e = \sum_i \alpha_i v_i$
 
 
