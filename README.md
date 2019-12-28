@@ -26,7 +26,7 @@
 
 #### Table of contents:
 
-- [An invitation to homology and cohomology](#an-invitation-to-homology-and-cohomology)
+- [An invitation to homology and cohomology](#an-invitation-to-homology-and-cohomology-part-1--homology)
 - [Stuff I learnt in 2019](#stuff-i-learnt-in-2019)
 - [A motivation for p-adic analysis](#a-motivation-for-p-adic-analysis)
 - [Line of investigation to build physical intuition for semidirect products](#line-of-investigation-to-build-physical-intuition-for-semidirect-products)
@@ -38,22 +38,23 @@
 - [My disenchantment with abstract interpretation](#my-disenchantment-with-abstract-interpretation)
 - [Computing equivalent gate sets using grobner bases](#computing-equivalent-gate-sets-using-grobner-bases)
 - [The janus programming language --- Time reversible computation](#the-janus-programming-language--time-reversible-computation)
-- [`A = B` --- A book about proofs of combinatorial closed forms (TODO link)](#TODO)
-- [Generating `k` bitsets of a given length `n`](#generating-k-bitsets-of-a-given-length-n):
-- [Bondi k-calculus](#bondi-k-calculus) (Check link!)
+- [`A = B` --- A book about proofs of combinatorial closed forms (TODO link)](#a--b--a-book-about-proofs-of-combinatorial-closed-forms)
+- [Generating `k` bitsets of a given length `n`](#generating-k-bitsets-of-a-given-length-n)
+- [Bondi k-calculus](#bondi-k-calculus)
 - [Vivado toolchain craziness ](#vivado-toolchain-craziness)
 - [What the hell _is_ a Grobner basis? Ideals as rewrite systems](#what-the-hell-is-a-grobner-basis-ideals-as-rewrite-systems)
 - [Lie bracket versus torsion](lie-bracket-versus-torsion)
 - [Spatial partitioning data structures in molecular dynamics](#spatial-partitioning-data-structures-in-molecular-dynamics)
-- Vector: Arthur Whitney and text editors (TODO link)
-- [Everything you know about word2vec is wrong (check link)](#everything-you-know-about-word2vec-is-wrong)
-- [Small Haskell MCMC implementation (check link)](#small-haskell-MCMC-implementation)
-- [Debugging debug info in GHC (check link)](#debugging-debug-info-in-GHC)
-- GHC LLVM code generator: Switch to unreachable (TODO link)
-- Concurrency in Haskell (TODO link)
+- [Vector: Arthur Whitney and text editors](#vector-arthur-whitney-and-text-editors)
+- [Discrete random distributions with conditioning in 20 lines of haskell](#discrete-random-distributions-with-conditioning-in-20-lines-of-haskell)
+- [Everything you know about word2vec is wrong](#everything-you-know-about-word2vec-is-wrong)
+- [Small Haskell MCMC implementation (check link)](#small-haskell-mcmc-implementation)
+- [Debugging debug info in GHC (check link)](#debugging-debug-info-in-ghc)
+- [GHC LLVM code generator: Switch to unreachable](#ghc-llvm-code-generator-switch-to-unreachable)
+- [Concurrency in Haskell](#concurrency-in-haskell)
 - [Handy list of differential geometry definitions](#handy-list-of-differential-geometry-definitions)
-- Lazy programs have space leaks, Strict programs have time leaks (TODO link)
-- [Presburger arithmetic can represent the Collatz Conjecture (check link)](#presburger-arithmetic-can-represent-the-collatz-conjecture)
+- [Lazy programs have space leaks, Strict programs have time leaks](#lazy-programs-have-space-leaks-strict-programs-have-time-leaks)
+- [Presburger arithmetic can represent the Collatz Conjecture](#presburger-arithmetic-can-represent-the-collatz-conjecture)
 
 
 
@@ -82,7 +83,7 @@ find algebraic objects that allow us to "detect" these holes.
 - A $k$-dimensional simplex is the convex hull of $k+1$
   linearly independent points $(u_i \in \mathbb R^{k+1})$
   in $k+1$ dimensional space.
-  $S_k \equiv \left\\{ \sum theta_i u_i \vert \theta_i \geq 0, ~ \sum_i \theta_i = 1 \\}$
+  $ S_k \equiv \left \\{ \sum theta_i u_i \vert \theta_i \geq 0, ~ \sum_i \theta_i = 1 \right\\} $
 
 ### Simplicial complexes
 
@@ -136,14 +137,16 @@ $(1, -1, 2) \in V$ represents $r - g + 2b$ --- that is, take a copy of the
 red vertex, subtract the green vertex, and add two copies of the blue vertex.
 
 
-The boundary operator $\partial_{EV}: E \righarrow V$ is depicted in the
+The boundary operator $\partial_{EV}: E \rightarrow V$ is depicted in the
 picture. This operator sends edges to their _boundary_, and is therefore called
 the _boundary operator_.  The _boundary_ of an edge describes the edge in terms
 of vertices, just like we would describe a direction vector (to borrow physics
 parlance) by subtracting points.
 
 The action of the operator on a linear combination of edges is:
+
 $$
+\begin{align*}
 &\partial_{EV}: E \rightarrow V \\
 &\partial_{EV}(1, 0, 0) \equiv (1, -1, 0) \qquad o \rightarrow r - g \\
 &\partial_{EV}(0, 1, 0) \equiv (-1, 0, 1) \qquad m \rightarrow b - r \\
@@ -153,6 +156,7 @@ $$
   s \partial_{EV}(1, 0, 0) + 
   t \partial_{EV}(0, 1, 0) + 
   u \partial_{EV}(0, 0, 1) = (s - t, u - s, t - u)
+\end{align*}
 $$
 
 Now, notice that to traverse the cycle, we should traverse the orange edge, 
@@ -174,12 +178,15 @@ So, we define (tentatively) the first homology group:
 - $H_1 \equiv Kernel(\partial_{EV}) \subset E$
 
 If we try to compute this, we will have to have:
+
 $$
+\begin{align*}
 H_1 &\equiv Kernel(\partial) \\
 &= \\{ (s, t, u) | \partial(s, t, u) = (0, 0, 0) ~ s, t, u \in \mathbb Z \\} \\
 &= \\{ (s, t, u) | (s-t, u-s, t-u) = (0, 0, 0) ~ s, t, u \in \mathbb Z  \\} \\
 &= \\{ (s, t, u) | s = t = u ~ s, t, u \in \mathbb Z \\} \\
 &= \\{ (x, x, x) | x \in \mathbb Z \\} \simeq \mathbb Z
+\end{align*}
 $$
 
 So, we know that we have a $\mathbb Z$ worth of cycles in our triangle, which
@@ -194,7 +201,7 @@ around the triangle, such as $o + m + c + o + m + c$.
 
 ### (No) Holes in a space: Homology of a _filled_ triangle
 
-![homology-triangle-faces](static/simplices/homology-triangle-vertices.svg)
+![homology-triangle-faces](static/simplices/homology-triangle-faces.svg)
 
 In this case, notice that the triangle is _filled_ with a face $f$.
 Therefore, the "hole" that we had previously is now filled up, and does not
@@ -212,10 +219,12 @@ counts copies of our face $f$, and we define another boundary operator, such
 that the boundary of the face $f$ is $o + m + c$.
 
 $$
+\begin{align*}
 &\partial_{FE} : F \rightarrow E \\
-&\partial_{FE}(1) \equiv (1, 1, 1) 
+&\partial_{FE}(1) \equiv (1, 1, 1)  \\
 &\text{(Extend using linearity)} \\
 &\partial_{FE}(c) \equiv c \partial(1)
+\end{align*}
 $$
 
 Now, we should notice that the _image_ of $\partial_{FE}$ is a loop
@@ -230,16 +239,14 @@ general feature of homology, so it bears repeating:
 Now, since the image of $\partial_{FE}$ lies entirely in the kernel of $\partial_{EV}$,
 we can construct $H_1$ as:
 
-$$
 - $H_1 \equiv Kernel(\partial_{EV}) / Image(\partial_{FE}) \subset E$
-$$
 
 
 ### A complicated space: Homology of a butterfly
 
 # Part 2 --- Cohomology: Extending functions on the triangle
 
-![cohomology-triangle-vertices](static/cohomology-triangle-vertices.svg)
+![cohomology-triangle-vertices](static/simplices/cohomology-triangle-vertices.svg)
 
 Once again, we have our humble triangle with vertices $V = \\{r, g, b\\}$,
 edges $E = \\{o, m, c \\}$, faces $F = \\{ f \\}$ with a boundary maps $\partial{EV}$,
@@ -296,7 +303,7 @@ for any choice of $h_v$.
 
 Here, we try to understand what functions defined on the edges can look like,
 and their relationship with the $d$ operator. We discover that there are 
-some functions $g_e: E \righarrow \mathbb R$ which can be realised as the differential
+some functions $g_e: E \rightarrow \mathbb R$ which can be realised as the differential
 of another function $g_v: V \rightarrow \mathbb R$. The differential 
 forms such as $g_e$ which can be generated a $g_v$ through the $d$ operator
 are called as **???? differential forms**. Intuitively, closed differential
@@ -338,7 +345,7 @@ the essence of cohomology.
 
 # Cohomology of half-filled butterfly
 
-![cohomology-half-filled-butterfly](static/cohomology-half-filled-butterfly.svg)
+![cohomology-half-filled-butterfly](static/simplices/cohomology-half-filled-butterfly.svg)
 
 Here, we have vertices $V \equiv \\{ r, g, b, b, p \\}$, edges
 $E \equiv \\{rb, gr, bg, m, o, c \\}$ and faces $F \equiv \\{ f \\}$.
@@ -361,8 +368,6 @@ is measured by the _existence of a function $h_e$ that is closed but not exact!_
 
 This reveals a deep connection between homology and cohomology, which is
 made explicit by the [Universal Coefficient Theorem](TODO)
-
-# Ideas I stumble onto
 
 # [Stuff I learnt in 2019](#stuff-i-learnt-in-2019)
 
@@ -2335,7 +2340,7 @@ _literally_ looks both into the future and into the past.
 
 An apt name for the language!
 
-# `A = B` --- A book about proofs of combinatorial closed forms
+# [`A = B` --- A book about proofs of combinatorial closed forms](#a--b--a-book-about-proofs-of-combinatorial-closed-forms)
 
 
 The book explains algorithms on solving closed forms for combinatorial
@@ -2757,7 +2762,7 @@ in this case since multipole expansions are useful to take into account
 long range effects, but not short range effects.
 
 
-# Vector: Arthur Whitney and text editors
+# [Vector: Arthur Whitney and text editors](#vector-arthur-whitney-and-text-editors)
 
 - http://archive.vector.org.uk/art10501320
 
@@ -2782,7 +2787,7 @@ In particular, `GHC.Prim` explains:
 Honestly, this is confusing, but I guess there's some story to having two separate primops for this?
 
 
-# Discrete random distributions with conditioning in 20 lines of haskell:
+# [Discrete random distributions with conditioning in 20 lines of haskell](#discrete-random-distributions-with-conditioning-in-20-lines-of-haskell)
 
 ```hs
 newtype D a = D { unD :: [(a, Double)] } deriving(Eq, Show, Ord)
@@ -3037,7 +3042,7 @@ diffgeo ideas, which is great, because it gives me motivation to study different
 
 - 
 
-# [Small Haskell MCMC implementation](#small-haskell-MCMC-implementation)
+# [Small Haskell MCMC implementation](#small-haskell-mcmc-implementation)
 
 We create a simple monad called `PL` which allows for a single operation: sampling
 from a uniform distribution. We then exploit this to implement MCMC using metropolis hastings,
@@ -3483,13 +3488,13 @@ tucked inside a cute note in GHC (`Note [Debugging DWARF unwinding info]`):
 - [Link to GHC sources](https://github.com/ghc/ghc/blob/535a26c90f458801aeb1e941a3f541200d171e8f/compiler/cmm/Debug.hs#L458)
 
 
-# GHC LLVM code generator: Switch to unreachable
+# [GHC LLVM code generator: Switch to unreachable](#ghc-llvm-code-generator-switch-to-unreachable)
 
 The [switch to out of range](https://github.com/ghc/ghc/blob/master/compiler/llvmGen/LlvmCodeGen/CodeGen.hs#L1102) 
 code generator switches to the first label. It should be more profitable
 to switch to a `unreachable` block. That way, LLVM can take advantage of UB.
 
-# Concurrency in Haskell:
+# [Concurrency in Haskell](#concurrency-in-haskell)
 
 Great link to the GHC wiki that describes the concurrency primitives
 "bottom up": https://gitlab.haskell.org/ghc/ghc/wikis/lightweight-concurrency
@@ -3611,9 +3616,7 @@ TODO
 ##### Lie derivation as lie bracket
 
 
-
-
-# [Lazy programs have space leaks, Strict programs have time leaks
+# [Lazy programs have space leaks, Strict programs have time leaks](#lazy-programs-have-space-leaks-strict-programs-have-time-leaks)
 
 Stumbled across this idea while reading some posts on a private discourse.
 - Continually adding new thunks without forcing them can lead to a space leak,
