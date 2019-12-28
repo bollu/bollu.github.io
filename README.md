@@ -369,8 +369,8 @@ there cannot exist a certain $h_v$ such that $d h_v = h_e$.
 
 So, while every ???? form is ????, _not every_ ???? form is ?????.
 
-Hence, this $g$ that we have found is a non-trivial element of $ker d_{FE} / Im d_{EV}$,
-since $dh_e = 0$, hence $h_e \in ker d_{FE}$, while there does not exist
+Hence, this $g$ that we have found is a non-trivial element of $Kernel(d_{FE}) / Image(d_{EV})$,
+since $dh_e = 0$, hence $h_e \in Kernel(d_{FE})$, while there does not exist
 a $h_v$ such that $d h_v = h_e$, hence it is _not quotiented_ by the image of
 $d_{EV}$.
 
