@@ -74,16 +74,24 @@ are collections of triangles and triangle-like objects in higher (and lower)
 dimensions. We define what holes are for these triangles, and we try to
 find algebraic objects that allow us to "detect" these holes.
 
-![homology-triangle-faces](static/simplices/simplices.svg)
-
 ### Simplices
 - A 0-simplex is a point
+![0-simplex](static/simplices/0-simplex.svg)
+
 - A 1-simplex is a line
-- A 2-simplex is a tetrahedron
+![1-simplex](static/simplices/1-simplex.svg)
+
+- A 2-simplex is a filled triangle
+![2-simplex](static/simplices/2-simplex.svg)
+
+
+- A 3-simplex is a solid tetrahedra
+![3-simplex](static/simplices/3-simplex.svg)
+
 - A $k$-dimensional simplex is the convex hull of $k+1$
   linearly independent points $(u_i \in \mathbb R^{k+1})$
   in $k+1$ dimensional space.
-  $ S_k \equiv \left \\{ \sum theta_i u_i \vert \theta_i \geq 0, ~ \sum_i \theta_i = 1 \right\\} $
+  $ S_k \equiv \left \\{ \sum \theta_i u_i ~\mid~ \theta_i \geq 0, ~ \sum_i \theta_i = 1 \right\\} $
 
 ### Simplicial complexes
 
@@ -310,7 +318,7 @@ are called as **???? differential forms**. Intuitively, closed differential
 forms are those that could have been defined using a "potential function"
 $g_v$.
 
-![cohomology-triangle-edges](static/cohomology-triangle-edges.svg)
+![cohomology-triangle-edges](static/simplices/cohomology-triangle-edges.svg)
 
 We take an example of a differential form that is not ???, which has been
 defined on the edges of the triangle above. Let's call it $h_e$.
