@@ -190,10 +190,10 @@ If we try to compute this, we will have to have:
 $$
 \begin{align*}
 H_1 &\equiv Kernel(\partial) \\
-&= \\{ (s, t, u) | \partial(s, t, u) = (0, 0, 0) ~ s, t, u \in \mathbb Z \\} \\
-&= \\{ (s, t, u) | (s-t, u-s, t-u) = (0, 0, 0) ~ s, t, u \in \mathbb Z  \\} \\
-&= \\{ (s, t, u) | s = t = u ~ s, t, u \in \mathbb Z \\} \\
-&= \\{ (x, x, x) | x \in \mathbb Z \\} \simeq \mathbb Z
+&= \{ (s, t, u) | \partial(s, t, u) = (0, 0, 0) ~ s, t, u \in \mathbb Z \} \\
+&= \{ (s, t, u) | (s-t, u-s, t-u) = (0, 0, 0) ~ s, t, u \in \mathbb Z  \} \\
+&= \{ (s, t, u) | s = t = u ~ s, t, u \in \mathbb Z \} \\
+&= \{ (x, x, x) | x \in \mathbb Z \} \simeq \mathbb Z
 \end{align*}
 $$
 
