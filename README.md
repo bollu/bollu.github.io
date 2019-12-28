@@ -24,6 +24,298 @@
 - [My math.se profile](https://math.stackexchange.com/users/261373/siddharth-bhat)
 - email ID: rot13(`fvqqh.qehvq@tznvy.pbz`)
 
+#### Table of contents:
+
+- [An invitation to homology and cohomology](#an-invitation-to-homology-and-cohomology)
+- [Stuff I learnt in 2019](#stuff-i-learnt-in-2019)
+- [A motivation for p-adic analysis](#a-motivation-for-p-adic-analysis)
+- [Line of investigation to build physical intuition for semidirect products](#line-of-investigation-to-build-physical-intuition-for-semidirect-products)
+- [Topology is really about computation --- part 2](#topology-is-really-about-computation--part-2)
+- [Topology is really about computation --- part 1](#topology-is-really-about-computation--part-1)
+- [PSLQ algorithm: finding integer relations between reals](#pslq-algorithm-finding-integer-relations-between-reals)
+- [Geometric characterization of normal subgroups](#geometric-characterization-of-normal-subgroups)
+- [Radical ideals, nilpotents, and reduced rings](#radical-ideals-nilpotents-and-reduced-rings)
+- [My disenchantment with abstract interpretation](#my-disenchantment-with-abstract-interpretation)
+- [Computing equivalent gate sets using grobner bases](#computing-equivalent-gate-sets-using-grobner-bases)
+- [The janus programming language --- Time reversible computation](#the-janus-programming-language--time-reversible-computation)
+- [`A = B` --- A book about proofs of combinatorial closed forms (TODO link)](#TODO)
+- [Generating `k` bitsets of a given length `n`](#generating-k-bitsets-of-a-given-length-n):
+- [Bondi k-calculus](#bondi-k-calculus) (Check link!)
+- [Vivado toolchain craziness ](#vivado-toolchain-craziness)
+- [What the hell _is_ a Grobner basis? Ideals as rewrite systems](#what-the-hell-is-a-grobner-basis-ideals-as-rewrite-systems)
+- [Lie bracket versus torsion](lie-bracket-versus-torsion)
+- [Spatial partitioning data structures in molecular dynamics](#spatial-partitioning-data-structures-in-molecular-dynamics)
+- Vector: Arthur Whitney and text editors (TODO link)
+- [Everything you know about word2vec is wrong (check link)](#everything-you-know-about-word2vec-is-wrong)
+- [Small Haskell MCMC implementation (check link)](#small-haskell-MCMC-implementation)
+- [Debugging debug info in GHC (check link)](#debugging-debug-info-in-GHC)
+- GHC LLVM code generator: Switch to unreachable (TODO link)
+- Concurrency in Haskell (TODO link)
+- [Handy list of differential geometry definitions](#handy-list-of-differential-geometry-definitions)
+- Lazy programs have space leaks, Strict programs have time leaks (TODO link)
+- [Presburger arithmetic can represent the Collatz Conjecture (check link)](#presburger-arithmetic-can-represent-the-collatz-conjecture)
+
+
+
+# [An invitation to homology and cohomology](#an-invitation-to-homology-and-cohomology)
+
+There are many introductions to homology on the internet, but none of them
+really met my criteria for being simple, picture filled, and getting the
+basic ideas across. I feel that Hatcher might come closest to what I want 
+(and where I originally learnt the material), but their description of homology
+is surrounded by the context of Algebraic Topology, while really, simplicial
+homology is accessible to anyone who has seen some linear algebra and group
+theory. This is my attempt to get the ideas across.
+
+Let's first try to understand what we're trying to do here. We want to detect
+holes in a space, broadly construed. We focus in _simplicial complexes_, which
+are collections of triangles and triangle-like objects in higher (and lower)
+dimensions. We define what holes are for these triangles, and we try to
+find algebraic objects that allow us to "detect" these holes.
+
+<img src="https://raw.github.com/bollu/bollu.github.io/master/static/simplices/simplices.svg?sanitize=true">
+
+### Simplices
+- A 0-simplex is a point
+- A 1-simplex is a line
+- A 2-simplex is a tetrahedron
+- A $k$-dimensional simplex is the convex hull of $k+1$
+  linearly independent points $(u_i \in \mathbb R^{k+1})$
+  in $k+1$ dimensional space.
+  $S_k \equiv \left\\{ \sum theta_i u_i \vert \theta_i \geq 0, ~ \sum_i \theta_i = 1 \\}$
+
+### Simplicial complexes
+
+A simplicial complex $K$ is a collection of simplices where:
+- every face of a simplex from $K$ is in $K$
+- The intersection of any two simplices in $K$ is also in $K$
+
+Non-examples of simplicial complexes are:
+<img src="https://raw.github.com/bollu/bollu.github.io/master/static/simplices/non-simplex-1.svg?sanitize=true">
+- This does not contain the point at the lower-left corner, which should exist
+  since it is a face of the straight line.
+
+<img src="https://raw.github.com/bollu/bollu.github.io/master/static/simplices/non-simplex-2.svg?sanitize=true">
+- This does not contain the points which are at the intersection of the
+  triangle and the line.
+
+### Holes in a space: Homology of a triangle
+
+Let's consider the simplest possible case of computing the homlogy, and we
+do so, we will expand on what homology _is_, and what we're trying to do.
+
+<img src="https://raw.github.com/bollu/bollu.github.io/master/static/simplices/homology-triangle-edges.svg?sanitize=true">
+
+Look at the triangle above. We have the red, green, and blue vertices, which
+I'll notate $r, g, b$. We also have the edges that are orange ($o$), cyan ($c$), and
+magenta ($m$).
+
+What we are interested in doing is to be able to detect the "hole" in the
+triangle in between the edges `o-m-c`. That is, we want some algorithm which
+when offered the representation of the triangle, can somehow detect the hole.
+Note that the hole doesn't really depend on the length of the edges. We can
+"bend and stretch" the triangle, and the hole will still exist. The only way
+to destroy the hole is to either _cut_ the triangle, or _fill in_ the triangle.
+
+
+To detect the hole, we first describe the shape of the triangle in terms
+of two groups, $E$ and $V$ representing the edges and the vertices, and
+a linear operator $\partial_{EV}: E \rightarrow V$, called as the 
+boundary operator, which tells us how edges
+are glued to vertices.
+
+We now define a group, $E \equiv \mathbb Z \times \mathbb Z \times \mathbb Z$
+that represents linear combinations of edges. For example, $(1, 2, 3) \in E$
+represents $o + 2m + 3c$ --- that is, take 1 copy of the orange edge, 2
+copies of the magenta edge, and 3 copies of the cyan edge.
+
+We define another group, $V \equiv \mathbb Z \times \mathbb Z \times \mathbb Z$
+which represents linear combinations of vertices. For example,
+$(1, -1, 2) \in V$ represents $r - g + 2b$ --- that is, take a copy of the
+red vertex, subtract the green vertex, and add two copies of the blue vertex.
+
+
+The boundary operator $\partial_{EV}: E \righarrow V$ is depicted in the
+picture. This operator sends edges to their _boundary_, and is therefore called
+the _boundary operator_.  The _boundary_ of an edge describes the edge in terms
+of vertices, just like we would describe a direction vector (to borrow physics
+parlance) by subtracting points.
+
+The action of the operator on a linear combination of edges is:
+$$
+&\partial_{EV}: E \rightarrow V \\
+&\partial_{EV}(1, 0, 0) \equiv (1, -1, 0) \qquad o \rightarrow r - g \\
+&\partial_{EV}(0, 1, 0) \equiv (-1, 0, 1) \qquad m \rightarrow b - r \\
+&\partial_{EV}(0, 0, 1) \equiv (0, 1, -1) \qquad c \rightarrow b - g \\
+&\text{(Extend using linearity)} \\
+&\partial_{EV}(s, t, u) \equiv 
+  s \partial_{EV}(1, 0, 0) + 
+  t \partial_{EV}(0, 1, 0) + 
+  u \partial_{EV}(0, 0, 1) = (s - t, u - s, t - u)
+$$
+
+Now, notice that to traverse the cycle, we should traverse the orange edge, 
+then the magenta edge, then the cyan edge, in that direction. That is,
+the cycle can be thought of as $o + m + c$. However, how do we _detect_ this
+cycle? The key idea is that if we look at the 
+_image of the cycle under the boundary operator_ $\partial_{EV}$,
+we will get $0$! For us to have completed a cycle, we must have both
+entered and exited each vertex, so the total sum must be 0.
+
+This is very nice, since we have converted the topological invariant
+of a _hole in the space_ into an algebraic invariant of "linear combination
+of edges that map to 0". That is, we want to consider all thoose loops
+that belong to the _kernel_ of $\partial_{EV}$. (Terminology: 
+the kernel of a linear transformation / group homomorphism
+is the set of all things which map to zero.)
+
+So, we define (tentatively) the first homology group:
+- $H_1 \equiv Kernel(\partial_{EV}) \subset E$
+
+If we try to compute this, we will have to have:
+$$
+H_1 &\equiv Kernel(\partial) \\
+&= \\{ (s, t, u) | \partial(s, t, u) = (0, 0, 0) ~ s, t, u \in \mathbb Z \\} \\
+&= \\{ (s, t, u) | (s-t, u-s, t-u) = (0, 0, 0) ~ s, t, u \in \mathbb Z  \\} \\
+&= \\{ (s, t, u) | s = t = u ~ s, t, u \in \mathbb Z \\} \\
+&= \\{ (x, x, x) | x \in \mathbb Z \\} \simeq \mathbb Z
+$$
+
+So, we know that we have a $\mathbb Z$ worth of cycles in our triangle, which
+makes sense: We can go clockwise (positive numbers)
+and counter-clockwise (negative numbers) around the triangle,
+and we can go as many times as we wish, so we have $\mathbb Z$ as the
+number of cycles.
+
+that is, it's the linear combination of edges that map to zero through the
+boundary map. Note that this also includes combinations such as _two_ loops
+around the triangle, such as $o + m + c + o + m + c$.
+
+### (No) Holes in a space: Homology of a _filled_ triangle
+
+<img src="https://raw.github.com/bollu/bollu.github.io/master/static/simplices/homology-triangle-faces.svg?sanitize=true">
+
+In this case, notice that the triangle is _filled_ with a face $f$.
+Therefore, the "hole" that we had previously is now filled up, and does not
+count anymore. So, we now need to amend our previous definition of $H_1$ to
+kill the hole we had detected. 
+
+The idea is that the hole we had previously is now the
+_boundary of the new face $f$_.
+Since it is the boundary of a "filled in" region, it does not count anymore,
+since we can "shrink the hole" across the face to make it a non-loop.
+Hence, we need to quotient our $H_1$ with the boundary of the face.
+
+Formally, what we do is we create another group $F \equiv \mathbb Z$, which
+counts copies of our face $f$, and we define another boundary operator, such
+that the boundary of the face $f$ is $o + m + c$.
+
+$$
+&\partial_{FE} : F \rightarrow E \\
+&\partial_{FE}(1) \equiv (1, 1, 1) 
+&\text{(Extend using linearity)} \\
+&\partial_{FE}(c) \equiv c \partial(1)
+$$
+
+Now, we should notice that the _image_ of $\partial_{FE}$ is a loop
+$(o + m + c)$, which lies ie the _kernel_ of $\partial_{EV}$. This is a
+general feature of homology, so it bears repeating:
+
+- $image(\partial_{FE}) \subset kernel(\partial_{EV})
+- $\partial_{FE} \circ \partial_{EV} = 0$
+- The above equation is sometimes stylishly (somewhat misleadingly) written as
+  $d^2 = 0$ or $\partial^2 = 0$.
+
+Now, since the image of $\partial_{FE}$ lies entirely in the kernel of $\partial_{EV}$,
+we can construct $H_1$ as:
+
+$$
+- $H_1 \equiv Kernel(\partial_{EV}) / Image(\partial_{FE}) \subset E$
+$$
+
+## Cohomology: Extending functions on the triangle
+
+![cohomology-triangle-vertices](static/cohomology-triangle-vertices.svg)
+
+Once again, we have our humble triangle with vertices $V = \\{r, g, b\\}$,
+edges $E = \\{o, m, c \\}$, faces $F = \\{ f \\}$ with a boundary maps $\partial{EV}$,
+$\partial_{FE}$:
+
+- $\partial_{EV}(o) = r - g$
+- $\partial_{EV}(m) = b - r$
+- $\partial_{EV}(c)= g - b$
+- $\partial_{FE}(f)= o + m + c$
+
+We define a function $g_v: V \rightarrow \mathbb R$ on the vertices as:
+-  $g_v(r) = 3$, $g_v(g) = 4$, $g_v(b) = 10$.
+
+We now learn how to _extend_ this function to the higher dimensional objects,
+the faces and the edges. To extend this function to the edges, we define
+a new function:
+
+- $g_e: E \rightarrow R$
+- $g_e(e) \equiv \sum_i \alpha_i f(v_i)$ where $\partial_{EV} e = \sum_i \alpha_i v_i$
+
+Expanded out on the example, we evaluate $df$ as:
+
+- $g_e(o) \equiv \int g_v o  = f(r) - f(g) = 3 - 4 = -1$
+- $g_e(m) \equiv \int g_v m  = f(b) - f(r) = 10 - 3 = +7$
+- $g_e(c) \equiv \int g_v c  = f(g) - f(b) = 4 - 10 = -6$
+
+More conceptually, we have created an _operator_ called $d$ which takes functions
+defined on vertices to functions defined on edges:
+
+- $d: (V \rightarrow \mathbb R) \rightarrow (E \rightarrow \mathbb R)
+- $d(f_v) \equiv g_e$, $g_e(e) \equiv \sum_i \alpha_i f(v_i)$ where $\partial_{EV} e = \sum_i \alpha_i v_i$
+
+
+We can repeat the construction we performed above, to construct another operator
+$d : (E \rightarrow \mathbb R) \rightarrow (F \rightarrow \mathbb R)$, defined
+in _exactly the same way_ as we did before.  For example, we can evaluate:
+
+- $g_f \equiv d(g_e)$
+- $g_f(f) \equiv  \int g_e f = g_e(o) + g_e(m) + g_e(c) = -1 + 7 -6 = 0$
+
+What we have is a chain:
+
+- $g_v \xrightarrow{d} g_e \xrightarrow{d} g_f$
+
+Where we notice that $d^2 = 0$, since the function $g_f$ that we have gotten
+evaluates to zero on the face $f$. We can prove this in general 
+(it's a good exercise in definition chasing).
+
+
+# Cohomology of an unfilled triangle
+
+Here, we explore some terminology (closed and exact differential forms),
+and we try to understand why this terminology is profitable.
+
+![cohomology-triangle-face](static/cohomology-triangle-edges.svg)
+
+#### Closed differential forms
+
+# Cohomology of half-filled butterfly
+
+![cohomology-half-filled-butterfly](static/cohomology-half-filled-butterfly)
+Here, we have vertices $V \equiv \\{ r, g, b, b, p \\}$, edges
+$E \equiv \\{rb, gr, bg, m, o, c \\}$ and faces $F \equiv \\{ f \\}$.
+
+Here, we see a differential form $g_e$ that is defined on the edges,
+and also obeys the equation $dg_e = 0$ (Hence is ???). However, it 
+_does not have an associated potential energy_ to derive it from. That is,
+there cannot exist a certain $g_v$ such that $d g_v = g_e$.
+
+Hence, this $g$ that we have found is a non-trivial element of $ker d_{FE} / Im d_{EV}$,
+since $dg_e = 0$, hence $g_e \in ker d_{FE}$, while there does not exist
+a $g_v$ such that $d g_v = g_e$, hence it is _not quotiented_ by the image of
+$d_{EV}$.
+
+So the failure of the space to be fully filled in (ie, the space has a hole),
+is measured by the _existence of a function $g_e$ that is closed but not exact!_
+
+This reveals a deep connection between homology and cohomology, which is
+made explicit by the [Universal Coefficient Theorem](TODO)
+
 # Ideas I stumble onto
 
 # [Stuff I learnt in 2019](#stuff-i-learnt-in-2019)
@@ -285,7 +577,8 @@ If nothing else, I would like some kind of intuition for _why this is hard_.
 
 Having tried my stab at it, the general impression that I have is that the
 space of automata is much larger than the things that can be encoded as
-presburger sets. Indeed, it was shown that automata accept:
+presburger sets. Indeed, it was shown that automata accept numbers which
+are ultimately periodic. 
 
 -  first order logic + "arithmetic with +" + (_another operation I cannot recall_).
    I'm going to fill this in once I re-find the reference.
@@ -442,7 +735,7 @@ whole theory of differential geometry in a pleasing way, without having to
 go through the horror that is real analysis. (I am being hyperbolic, but really,
 real analytic proofs are not pleasant).
 
-[I began formalizing this in Coq and got a formalism going: `bollu/diffgeo`](git@github.com:bollu/diffgeo.git).
+[I began formalizing this in Coq and got a formalism going: `bollu/diffgeo`](https://www.github.com/bollu/diffgeo).
 
 Once I was done with that, I realised I don't know how to exhibit _models_ of
 the damn thing! So, reading up on that made me realise that I need around 8
@@ -1176,7 +1469,7 @@ I highly recommend the book
 
 
 
-# Line of investigation to build physical intuition for semidirect products:
+# [Line of investigation to build physical intuition for semidirect products](#line-of-investigation-to-build-physical-intuition-for-semidirect-products)
 
 To quote wikipedia:
 > In crystallography, the space group of a crystal splits as the semidirect
@@ -1982,7 +2275,7 @@ the use of machinery such as grobner basis for solving real-world problems!
 I really enjoyed hacking this up and getting nerd sniped.
 
 
-# The janus programming language: Time reversible computation
+# [The janus programming language --- Time reversible computation](#the-janus-programming-language--time-reversible-computation)
 
 - [Wiki link](https://en.wikipedia.org/wiki/Janus_(time-reversible_computing_programming_language))
 - [Original letter to Landlauer](http://tetsuo.jp/ref/janus.pdf)
@@ -1996,7 +2289,7 @@ _literally_ looks both into the future and into the past.
 
 An apt name for the language!
 
-# A = B: A book about proofs of combinatorial closed forms
+# `A = B` --- A book about proofs of combinatorial closed forms
 
 
 The book explains algorithms on solving closed forms for combinatorial
@@ -2167,7 +2460,7 @@ Continuing this process gives us the rest of the sequence:
 9 | 1 1 0 1 0
 10| 1 1 1 0 0
 ```
-# Bondi k-calculus
+# [Bondi k-calculus](#bondi-k-calculus)
 
 - [Link here](https://en.wikipedia.org/wiki/Bondi_k-calculus)
 
@@ -2196,7 +2489,7 @@ which seems to imply that we need to use hyperbolic geometry for this.
 
 - [Idea from this amazing post on `math.se`](https://math.stackexchange.com/questions/53852/is-there-a-way-of-working-with-the-zariski-topology-in-terms-of-convergence-limi)
 
-# Vivado toolchain craziness 
+# [Vivado toolchain craziness ](#vivado-toolchain-craziness)
 
 I found this file as I was cleaning up some old code, for a project to implement
 a [fast K/V store on an FPGA](https://github.com/AakashKT/CuckooHashingHLS),
@@ -2381,7 +2674,7 @@ The S-polynomial induced by $f_i, f_j$ is defined as $S(f_i, f_j) = m_i f_i - m_
 - [Sympy has excellent reading material on grobner basis](https://mattpap.github.io/masters-thesis/html/src/groebner.html)
 
 
-# Lie bracket versus torsion
+# [Lie bracket versus torsion](lie-bracket-versus-torsion)
 
 
 ![torsion-vs-parallel-transport](static/lie-bracket-versus-torsion.png)
@@ -2407,10 +2700,10 @@ We have this hiearchy of `BlockId`, `Label`, and `Unique` that can be
 collapsed. 
 
 
-# Spatial partitioning data structures in molecular dynamics
+# [Spatial partitioning data structures in molecular dynamics](#spatial-partitioning-data-structures-in-molecular-dynamics)
 
-[Cell lists](https://en.wikipedia.org/wiki/Cell_lists) and
-[Verlet lists](https://en.wikipedia.org/wiki/Verlet_list)
+- [Cell lists](https://en.wikipedia.org/wiki/Cell_lists)
+- [Verlet lists](https://en.wikipedia.org/wiki/Verlet_list)
 
 appear to be version of spatial hierarchical data structures for fast
 interaction computation. Apparently, multipole expansions are not useful
@@ -2512,7 +2805,7 @@ D {unD = [(1,0.0),
 
 Notice that `D a ~= WriterT (Product Float) []`!
 
-# Everything you know about word2vec is wrong.
+# [Everything you know about word2vec is wrong](#everything-you-know-about-word2vec-is-wrong)
 
 The classic explanation of `word2vec`, in skip-gram, with negative sampling,
 in the paper and countless blog posts on the internet is as follows:
@@ -2698,7 +2991,7 @@ diffgeo ideas, which is great, because it gives me motivation to study different
 
 - 
 
-# Small Haskell MCMC implementation:
+# [Small Haskell MCMC implementation](#small-haskell-MCMC-implementation)
 
 We create a simple monad called `PL` which allows for a single operation: sampling
 from a uniform distribution. We then exploit this to implement MCMC using metropolis hastings,
@@ -3128,7 +3421,8 @@ debugBelch(const char*s, ...)
   va_end(ap);
 }
 ```
-# Debugging debug info in GHC: [Link](https://github.com/ghc/ghc/blob/535a26c90f458801aeb1e941a3f541200d171e8f/compiler/cmm/Debug.hs#L458)
+# [Debugging debug info in GHC](#debugging-debug-info-in-GHC)
+
 
 I wanted to use debug info to help build a better debugging experience
 within [`tweag/asterius`](http://github.com/tweag/asterius). So, I was 
@@ -3139,6 +3433,8 @@ tucked inside a cute note in GHC (`Note [Debugging DWARF unwinding info]`):
 > This makes GDB produce a trace of its internal workings. Having gone this far,
 > it's just a tiny step to run GDB in GDB. Make sure you install debugging
 > symbols for gdb if you obtain it through a package manager.
+
+- [Link to GHC sources](https://github.com/ghc/ghc/blob/535a26c90f458801aeb1e941a3f541200d171e8f/compiler/cmm/Debug.hs#L458)
 
 
 # GHC LLVM code generator: Switch to unreachable
@@ -3271,7 +3567,8 @@ TODO
 
 
 
-## Lazy programs have space leaks, Strict programs have time leaks
+# [Lazy programs have space leaks, Strict programs have time leaks
+
 Stumbled across this idea while reading some posts on a private discourse.
 - Continually adding new thunks without forcing them can lead to a space leak,
   aka the dreaded monadic parsing backtracking problem.
@@ -3285,7 +3582,7 @@ analogue to a space leak in the strict world, so I saw them as a pathology. But
 with this new perspective, I can see that the strict world's version of a space
 leak is a time leak.
 
-## Presburger arithmetic can represent the Collatz Conjecture
+# [Presburger arithmetic can represent the Collatz Conjecture](#presburger-arithmetic-can-represent-the-collatz-conjecture)
 
 An observation I had: the function
 
@@ -3370,6 +3667,7 @@ number of compact sets is compact.
 Now, let `S` be empty. Therefore, this means there must be a point `p ∈ P`
 such that `p !∈ S_i` for some arbitrary `i`.
 
+
 ##### Cool use of theorem:
 
 We can see that the cantor set is non-empty, since it contains a family
@@ -3385,7 +3683,8 @@ that the cantor set is non-empty, since:
 3. Invoke theorem.
 
 
-## Japanese Financial Counting system
+# Japanese Financial Counting system
+
 - [Wikipedia](https://en.wikipedia.org/wiki/Japanese_numerals#Formal_numbers)
 
 Japanese contains a separate kanji set called `daiji`, to prevent people
@@ -3399,7 +3698,8 @@ from adding strokes to stuff previously written.
 ```
 
 
-## Stephen wolfram's live stream
+# Stephen wolfram's live stream
+
 - [Twitch.tv link](https://www.twitch.tv/videos/408653972)
 
 
@@ -3409,20 +3709,21 @@ some interesting content.
 The discussions of Wolfram with his group are great, and they bring up
 _really_ interesting ideas (like that of cleave being very irregular).
 
-## `Cleave` as a word has some of the most irregular inflections
+# `Cleave` as a word has some of the most irregular inflections
 - cleave
 - clove
 - cleaved
 - clave
 - cleft
 
-## McCune's single axiom for group theory
+# McCune's single axiom for group theory
+
 [Single Axioms for Groups and Abelian Groups with Various
 Operations](http://ftp.mcs.anl.gov/pub/tech_reports/reports/P270.pdf)
 provides a single axiom for groups. This can be useful for some ideas I have
 for training groups, where we can use this axiom as the loss function!
 
-## `Word2Vec` C code implements gradient descent really weirdly
+# `Word2Vec` C code implements gradient descent really weirdly
 I'll be posting snippets of the original source code, along with a 
 link to the Github sources. We are interested in exploring the skip-gram
 implementation of Word2Vec, with negative sampling, without hierarchical
@@ -3430,6 +3731,7 @@ softmax. I assume basic familiarity with word embeddings and the skip-gram
 model.
 
 #### Construction of the sigmoid lookup table
+
 ```cpp
 // https://github.com/tmikolov/word2vec/blob/master/word2vec.c#L708
 
@@ -3558,14 +3860,15 @@ does _any blog post that I've read_. I don't understand what's going on,
 and I plan on updating this section when I understand this better.
 
 
-## Arthur Whitney: dense code
+# Arthur Whitney: dense code
 - Guy who wrote a bunch of APL dialects, write code in an eclectic style
   that has very little whitespace and single letter variable names.
 - Believes that this allows him to hold the entire program in his head.
 - Seems legit from my limited experience with APL, haskell one-liners.
 - [The b programming language](http://kparc.com/b/readme.txt). It's quite 
   awesome to read the sources. For example, [`a.c`](http://kparc.com/b/a.c)
-## How does one work with arrays in a linear language?
+
+# How does one work with arrays in a linear language?
 
 Given an array of qubits `xs: Qubit[]`, I want to switch to little endian.
 Due to no-cloning, I can't copy them! I suppose I can use recursion to build
@@ -3607,7 +3910,7 @@ is _forced_ since mutation very often involves temporaries / copying!
 (I'm solving assignments in [qsharp](https://docs.microsoft.com/en-us/quantum/)
 for my course in college)
 
-## How Linear optimisation is the same as Linear feasibility checking
+# How Linear optimisation is the same as Linear feasibility checking
 Core building block of effectively using the ellipsoid algorithm.
 
 - If we posess a way to check if a point $p \in P$ where $P$ is a polytope, we
@@ -3623,7 +3926,7 @@ Core building block of effectively using the ellipsoid algorithm.
 - This way, we have converted a _linear programming_ problem into a 
   _check if this polytope is empty_ problem!
 
-## Quantum computation without complex numbers
+# Quantum computation without complex numbers
 I recently learnt that the Toeffili and Hadamard gates are universal for
 quantum computation. The description of these gates involve no complex numbers.
 So, we can write any quantum circuit in a "complex number free" form. The caveat
@@ -3639,7 +3942,7 @@ to remove the power from going from R to C in many cases. This is definitely
 something to ponder.
 
 
-## Linguistic fun fact: Comparative Illusion
+# Linguistic fun fact: Comparative Illusion
 
 I steal from wikipedia:
 
@@ -3662,9 +3965,6 @@ For example: "More people have been to Berlin than I have."
 
 ## Simplexhc (STG -> LLVM compiler) progress
 - [proc points suck / making GHC an order of magnitude faster](content/blog/ghc-micro-optimisations-or-why-proc-points-suck.md)
-    Note: this renders better on the website. I've put it up here,
-    but I need to migrate the images and plots to be static.
-
 - [dec 2017](this-month-in-simplexhc-dec-2017.md)
 - [oct 29 2017](this-week-in-simpexhc-oct-29-2017.md)
 - [july 2017](this-week-in-simplexhc-07-2017.md)
