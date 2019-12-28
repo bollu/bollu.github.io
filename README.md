@@ -57,7 +57,7 @@
 
 
 
-# [An invitation to homology and cohomology](#an-invitation-to-homology-and-cohomology)
+# [An invitation to homology and cohomology, Part 1 --- Homology](#an-invitation-to-homology-and-cohomology-part-1--homology)
 
 There are many introductions to homology on the internet, but none of them
 really met my criteria for being simple, picture filled, and getting the
@@ -73,7 +73,7 @@ are collections of triangles and triangle-like objects in higher (and lower)
 dimensions. We define what holes are for these triangles, and we try to
 find algebraic objects that allow us to "detect" these holes.
 
-<img src="https://raw.github.com/bollu/bollu.github.io/master/static/simplices/simplices.svg?sanitize=true">
+![homology-triangle-faces](static/simplices/simplices.svg)
 
 ### Simplices
 - A 0-simplex is a point
@@ -91,11 +91,12 @@ A simplicial complex $K$ is a collection of simplices where:
 - The intersection of any two simplices in $K$ is also in $K$
 
 Non-examples of simplicial complexes are:
-<img src="https://raw.github.com/bollu/bollu.github.io/master/static/simplices/non-simplex-1.svg?sanitize=true">
+
+![non-simplex-1](static/simplices/non-simplex-1.svg)
 - This does not contain the point at the lower-left corner, which should exist
   since it is a face of the straight line.
 
-<img src="https://raw.github.com/bollu/bollu.github.io/master/static/simplices/non-simplex-2.svg?sanitize=true">
+![non-simplex-2](static/simplices/non-simplex-2.svg)
 - This does not contain the points which are at the intersection of the
   triangle and the line.
 
@@ -104,7 +105,7 @@ Non-examples of simplicial complexes are:
 Let's consider the simplest possible case of computing the homlogy, and we
 do so, we will expand on what homology _is_, and what we're trying to do.
 
-<img src="https://raw.github.com/bollu/bollu.github.io/master/static/simplices/homology-triangle-edges.svg?sanitize=true">
+![homology-triangle-edges](static/simplices/homology-triangle-edges.svg)
 
 Look at the triangle above. We have the red, green, and blue vertices, which
 I'll notate $r, g, b$. We also have the edges that are orange ($o$), cyan ($c$), and
@@ -193,7 +194,7 @@ around the triangle, such as $o + m + c + o + m + c$.
 
 ### (No) Holes in a space: Homology of a _filled_ triangle
 
-<img src="https://raw.github.com/bollu/bollu.github.io/master/static/simplices/homology-triangle-faces.svg?sanitize=true">
+![homology-triangle-faces](static/simplices/homology-triangle-vertices.svg)
 
 In this case, notice that the triangle is _filled_ with a face $f$.
 Therefore, the "hole" that we had previously is now filled up, and does not
@@ -233,7 +234,10 @@ $$
 - $H_1 \equiv Kernel(\partial_{EV}) / Image(\partial_{FE}) \subset E$
 $$
 
-## Cohomology: Extending functions on the triangle
+
+### A complicated space: Homology of a butterfly
+
+# Part 2 --- Cohomology: Extending functions on the triangle
 
 ![cohomology-triangle-vertices](static/cohomology-triangle-vertices.svg)
 
@@ -246,72 +250,114 @@ $\partial_{FE}$:
 - $\partial_{EV}(c)= g - b$
 - $\partial_{FE}(f)= o + m + c$
 
-We define a function $g_v: V \rightarrow \mathbb R$ on the vertices as:
--  $g_v(r) = 3$, $g_v(g) = 4$, $g_v(b) = 10$.
+We define a function $h_v: V \rightarrow \mathbb R$ on the vertices as:
+-  $h_v(r) = 3$, $h_v(g) = 4$, $h_v(b) = 10$.
 
 We now learn how to _extend_ this function to the higher dimensional objects,
-the faces and the edges. To extend this function to the edges, we define
-a new function:
+the edges and the faces of the triangle.
 
-- $g_e: E \rightarrow R$
-- $g_e(e) \equiv \sum_i \alpha_i f(v_i)$ where $\partial_{EV} e = \sum_i \alpha_i v_i$
+To extend this function to the edges, we define a new function:
 
-Expanded out on the example, we evaluate $df$ as:
+- $h_e: E \rightarrow R$
+- $h_e(e) \equiv \sum_i \alpha_i h_v(v_i)$ where $\partial_{EV} e = \sum_i \alpha_i v_i$
 
-- $g_e(o) \equiv \int g_v o  = f(r) - f(g) = 3 - 4 = -1$
-- $g_e(m) \equiv \int g_v m  = f(b) - f(r) = 10 - 3 = +7$
-- $g_e(c) \equiv \int g_v c  = f(g) - f(b) = 4 - 10 = -6$
+Expanded out on the example, we evaluate $h_v$ as:
+
+- $h_e(o) \equiv d h_v(o)  = h_v(r) - h_v(g) = 3 - 4 = -1$
+- $h_e(m) \equiv d h_v(m)  = h_v(b) - h_v(r) = 10 - 3 = +7$
+- $h_e(c) \equiv d h_v(c)  = h_v(g) - h_v(b) = 4 - 10 = -6$
 
 More conceptually, we have created an _operator_ called $d$ which takes functions
-defined on vertices to functions defined on edges:
+defined on vertices to functions defined on edges, which uses the boundary map
+on the edges to "lift" a function on the vertices to a function on the edges:
 
 - $d: (V \rightarrow \mathbb R) \rightarrow (E \rightarrow \mathbb R)
-- $d(f_v) \equiv g_e$, $g_e(e) \equiv \sum_i \alpha_i f(v_i)$ where $\partial_{EV} e = \sum_i \alpha_i v_i$
+- $d(h_v) \equiv h_e$, $h_e(e) \equiv \sum_i \alpha_i f(v_i)$ where $\partial_{EV} e = \sum_i \alpha_i v_i$
 
 
 We can repeat the construction we performed above, to construct another operator
 $d : (E \rightarrow \mathbb R) \rightarrow (F \rightarrow \mathbb R)$, defined
-in _exactly the same way_ as we did before.  For example, we can evaluate:
+in _exactly the same way_ as we did before. For example, we can evaluate:
 
-- $g_f \equiv d(g_e)$
-- $g_f(f) \equiv  \int g_e f = g_e(o) + g_e(m) + g_e(c) = -1 + 7 -6 = 0$
+- $h_f \equiv d(h_e)$
+- $h_f(f) \equiv d h_e(f) = h_e(o) + h_e(m) + h_e(c) = -1 + 7 -6 = 0$
 
 What we have is a chain:
 
-- $g_v \xrightarrow{d} g_e \xrightarrow{d} g_f$
+- $h_v \xrightarrow{d} h_e \xrightarrow{d} h_f$
 
-Where we notice that $d^2 = 0$, since the function $g_f$ that we have gotten
-evaluates to zero on the face $f$. We can prove this in general 
+Where we notice that $d^2 = d \circ d = 0$, since the function $h_f$ that we have gotten
+evaluates to zero on the face $f$. We can prove this will happen _in general_,
+for any choice of $h_v$. 
 (it's a good exercise in definition chasing).
 
 
-# Cohomology of an unfilled triangle
+## Exploring the structure of functions defined on the edges
 
-Here, we explore some terminology (closed and exact differential forms),
-and we try to understand why this terminology is profitable.
+Here, we try to understand what functions defined on the edges can look like,
+and their relationship with the $d$ operator. We discover that there are 
+some functions $g_e: E \righarrow \mathbb R$ which can be realised as the differential
+of another function $g_v: V \rightarrow \mathbb R$. The differential 
+forms such as $g_e$ which can be generated a $g_v$ through the $d$ operator
+are called as **???? differential forms**. Intuitively, closed differential
+forms are those that could have been defined using a "potential function"
+$g_v$.
 
-![cohomology-triangle-face](static/cohomology-triangle-edges.svg)
+![cohomology-triangle-edges](static/cohomology-triangle-edges.svg)
 
-#### Closed differential forms
+We take an example of a differential form that is not ???, which has been
+defined on the edges of the triangle above. Let's call it $h_e$.
+
+It is defined on the edges as:
+- $h_e(c) = 3$
+- $h_e(m) = 2$
+- $h_e(o) = 1$
+
+We can calcuate $h_f = d h_e$ the same way we had before:
+- $h_f(f) \equiv d h_e(f) = h_e(o) + h_e(m) + h_e(c) = 3 + 1 + 2 = 6$.
+
+Since $d h_e \neq 0$, this form is not ?????
+
+Let's also try to generate $h_e$ from a potential. We arbitrarily fix the
+potential of $b$ to $0$. That is, we fix $h_v(b) = 0$, and we then try to
+see what values we are forced to values of $h_v$ across the rest of the triangle.
+
+- $h_v b = 0$ 
+- $h_e(c) = h_v(g) - h_v(b)$. $h_v(g) =  h_v(b) + h_e(c) = 0 + 3 = 3$.
+- $h_e(o) = h_v(r) - h_v(g)$. $h_v(r) =  h_v(g) + h_e(o) = 3 + 1 = 4$.
+- $h_e(m) = h_v(b) - h_v(r)$ $2 = 0 - 4$. This is a contradiction!
+- Ideally, we need $h_v(b) = 6$ for the values to work out.
+
+
+Hence, there can exist no such $h_v$ such that $h_e \equiv d h_v$.
+The interesting thing is, when we started out by assigning $h_v(b) = 0$,
+we could make _local choices_ of potentials that seemed like they would fit
+together, but they failed to fit _globally_ throughout the triangle. This
+failure of _locally consistent choices_ to be _globally consistent_ is
+the essence of cohomology.
 
 # Cohomology of half-filled butterfly
 
-![cohomology-half-filled-butterfly](static/cohomology-half-filled-butterfly)
+![cohomology-half-filled-butterfly](static/cohomology-half-filled-butterfly.svg)
+
 Here, we have vertices $V \equiv \\{ r, g, b, b, p \\}$, edges
 $E \equiv \\{rb, gr, bg, m, o, c \\}$ and faces $F \equiv \\{ f \\}$.
 
-Here, we see a differential form $g_e$ that is defined on the edges,
-and also obeys the equation $dg_e = 0$ (Hence is ???). However, it 
+Here, we see a differential form $h_e$ that is defined on the edges,
+and also obeys the equation $dh_e = 0$ (Hence is ???). However, it 
 _does not have an associated potential energy_ to derive it from. That is,
-there cannot exist a certain $g_v$ such that $d g_v = g_e$.
+there cannot exist a certain $h_v$ such that $d h_v = h_e$.
+
+
+So, while every ???? form is ????, _not every_ ???? form is ?????.
 
 Hence, this $g$ that we have found is a non-trivial element of $ker d_{FE} / Im d_{EV}$,
-since $dg_e = 0$, hence $g_e \in ker d_{FE}$, while there does not exist
-a $g_v$ such that $d g_v = g_e$, hence it is _not quotiented_ by the image of
+since $dh_e = 0$, hence $h_e \in ker d_{FE}$, while there does not exist
+a $h_v$ such that $d h_v = h_e$, hence it is _not quotiented_ by the image of
 $d_{EV}$.
 
 So the failure of the space to be fully filled in (ie, the space has a hole),
-is measured by the _existence of a function $g_e$ that is closed but not exact!_
+is measured by the _existence of a function $h_e$ that is closed but not exact!_
 
 This reveals a deep connection between homology and cohomology, which is
 made explicit by the [Universal Coefficient Theorem](TODO)
