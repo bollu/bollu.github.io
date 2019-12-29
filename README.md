@@ -1600,9 +1600,9 @@ $$
 \end{align*}
 $$
 
-Where $\top$ signifies stopping at a state and returning \texttt{TRUE}, and
-$\bot$ signifies \texttt{never halting at all}!. So, the subset $Q$ is
-_semidedicable_, in that, we will halt and say \texttt{TRUE} if the element
+Where $\top$ signifies stopping at a state and returning `TRUE`, and
+$\bot$ signifies _never halting at all_!. So, the subset $Q$ is
+_semidedicable_, in that, we will halt and say `TRUE` if the element
 belongs in the set. But if an element does not belong in the set, we are
 supposed to never terminate.
 
@@ -2247,8 +2247,13 @@ check, so we've now found the answer.
 The full output is:
 ```
 value of a^b^c^d:
-	4*a*b*c + 4*a*b*d + 4*a*c*d + 4*b*c*d - 2*a*b - 2*a*c - 2*b*c - 2*a*d - 2*b*d - 2*c*d + a + b + c + d
-	reduced: -a - b + c + 3*d - 3*axorb - axorc + axord - bxorc + bxord + 3*cxord - 3*axorbxorc - axorbxord + axorcxord + bxorcxord
+	4*a*b*c + 4*a*b*d + 4*a*c*d + 4*b*c*d 
+      - 2*a*b - 2*a*c - 2*b*c - 2*a*d 
+      - 2*b*d - 2*c*d + a + b + c + d
+reduced: -a - b + c + 3*d - 3*axorb 
+      - axorc + axord - bxorc + bxord 
+      + 3*cxord - 3*axorbxorc 
+      - axorbxord + axorcxord + bxorcxord
 evaluating original a^b^c^d
 0^0^0^0: ref(0) =?= f(0): True
 0^0^0^1: ref(1) =?= f(1): True
@@ -2317,7 +2322,11 @@ print("value of a^b^c^d:\n\t%s\n\treduced: %s" % (f_orig, f_reduced))
 def evalxor3(f):
     for (i, j, k, l) in [(i, j, k, l) for i in [0, 1] for j in [0, 1] for k in [0, 1] for l in [0, 1]]:
       ref = i^^j^^k^^l
-      eval = f.substitute(a=i, b=j, c=k, d=l, axorb=i^^j, axorc=i^^k, axord=i^^l, bxorc=j^^k, bxord=j^^l, cxord=k^^l, axorbxorc=i^^j^^k, axorbxord=i^^j^^l,
+      eval = f.substitute(a=i, b=j, c=k, d=l,
+                          axorb=i^^j, axorc=i^^k,
+                          axord=i^^l, bxorc=j^^k,
+                          bxord=j^^l, cxord=k^^l,
+                          axorbxorc=i^^j^^k, axorbxord=i^^j^^l,
                           axorcxord=i^^k^^l, bxorcxord=j^^k^^l)
       print("%s^%s^%s^%s: ref(%s) =?= f(%s): %s" % 
         (i, j, k, l, ref, eval, ref == eval))
