@@ -71,8 +71,8 @@ theory. This is my attempt to get the ideas across.
 Let's first try to understand what we're trying to do here. We want to detect
 holes in a space, broadly construed. We focus in _simplicial complexes_, which
 are collections of triangles and triangle-like objects in higher (and lower)
-dimensions. We define what holes are for these triangles, and we try to
-find algebraic objects that allow us to "detect" these holes.
+dimensions. We define what holes are for these simplicial complexes, and we then
+try to find algebraic objects that allow us to "detect" these holes.
 
 ### Simplices
 - A 0-simplex is a point
@@ -96,18 +96,40 @@ find algebraic objects that allow us to "detect" these holes.
 ### Simplicial complexes
 
 A simplicial complex $K$ is a collection of simplices where:
-- every face of a simplex from $K$ is in $K$
-- The intersection of any two simplices in $K$ is also in $K$
+- (1) Every boundary of a simplex from $K$ is in $K$
+- (2) The intersection of any two simplices in $K$ is also in $K$
+
+Examples of simplicial complexes:
+
+- Every simplex is trivially a simplicial complex.
+
+![points](static/simplices/complex-0-simplices.svg)
+- A collection of points is a simplicial complex with all simplices of degree $0$.
+
+![unfilled-tri](static/simplices/complex-unfilled-triangle.svg)
+- An unfilled triangle is a simplicial complex with simplices of degree $0$, $1$.
+
+![complex-unfilled-butterfly](static/simplices/complex-unfilled-butterfly.svg)
+- Non-triangular shapes such  as this "butterfly" are also simplicial complexes,
+  this one of degree $0$, $1$.
+
+![complex-half-filled-butterfly](static/simplices/complex-half-filled-butterfly.svg)
+- This is the same shape as the unfilled butterly, except now containing a
+  simplex of degree 2: the filling in of the bottom of the butterfly.
+
 
 Non-examples of simplicial complexes are:
 
 ![non-simplex-1](static/simplices/non-simplex-1.svg)
 - This does not contain the point at the lower-left corner, which should exist
-  since it is a face of the straight line.
+  since it is a boundary of the straight line. This violates rule (1):
+  Every boundary of a simplex from $K$ is in $K$
+
 
 ![non-simplex-2](static/simplices/non-simplex-2.svg)
 - This does not contain the points which are at the intersection of the
-  triangle and the line.
+  triangle and the line. This violates rule (2):
+  The intersection of any two simplices in $K$ is also in $K$.
 
 ### Holes in a space: Homology of a triangle
 
@@ -127,23 +149,46 @@ Note that the hole doesn't really depend on the length of the edges. We can
 "bend and stretch" the triangle, and the hole will still exist. The only way
 to destroy the hole is to either _cut_ the triangle, or _fill in_ the triangle.
 
+We first need to agree on an abstract _representation_ of the triangle,
+which ideally does not change if we were to stretch out the edges,
+before we can discuss how we can detect the existence of the hole.
 
-To detect the hole, we first describe the shape of the triangle in terms
-of two groups, $E$ and $V$ representing the edges and the vertices, and
-a linear operator $\partial_{EV}: E \rightarrow V$, called as the 
+##### Representation of the triangle: boundary operators
+
+We first describe the shape of the triangle in terms
+of two sets, $E$ and $V$ representing the edges and the vertices, and
+a function $\partial_{EV}$, called as the 
 boundary operator, which tells us how edges
 are glued to vertices.
 
-We now define a group, $E \equiv \mathbb Z \times \mathbb Z \times \mathbb Z$
-that represents linear combinations of edges. For example, $(1, 2, 3) \in E$
+We first have a ground set of edges $E \equiv \\{o, m, c\\}$ and a set of
+vertices $V \equiv \\{r, g, b \\}$. 
+
+What we now need is to know how the edges are connected to the vertices,
+since that's what really makes a triangle. We would like to say something
+like "the boundary of the edge $o$ has points $r, g$". In fact, we have
+slightly more information than that: the _orientation_. So what we 
+really ought to be saying is "the edge $o$ points from $g$ to $r$".
+
+To do this, we create a map from $o$ to $r - g$, where we think of $o$
+as a "vector", pointing from $g$ to $r$. But hang on, what _is_ $r - g$?
+we don't have a mathematical structure on $V$ that lets us add and subtract
+vertices. So, we _create_ a new set $\mathfrak V$, which represents linear
+combinations of vertices in $V$. Similarly, anticipating some future
+development, we also _create_ a new set $\mathfrak E$ of linear combinations
+of edges $E$.
+
+##### Formal definition of the boundary operator
+
+We define $\mathfrak E \equiv \mathbb Z \times \mathbb Z \times \mathbb Z$
+that represents linear combinations of edges. For example, $(1, 2, 3) \in \mathfrak E$
 represents $o + 2m + 3c$ --- that is, take 1 copy of the orange edge, 2
 copies of the magenta edge, and 3 copies of the cyan edge.
 
-We define another group, $V \equiv \mathbb Z \times \mathbb Z \times \mathbb Z$
+We define $\mathfrak V \equiv \mathbb Z \times \mathbb Z \times \mathbb Z$
 which represents linear combinations of vertices. For example,
 $(1, -1, 2) \in V$ represents $r - g + 2b$ --- that is, take a copy of the
 red vertex, subtract the green vertex, and add two copies of the blue vertex.
-
 
 The boundary operator $\partial_{EV}: E \rightarrow V$ is depicted in the
 picture. This operator sends edges to their _boundary_, and is therefore called
@@ -174,6 +219,8 @@ cycle? The key idea is that if we look at the
 _image of the cycle under the boundary operator_ $\partial_{EV}$,
 we will get $0$! For us to have completed a cycle, we must have both
 entered and exited each vertex, so the total sum must be 0.
+
+##### Formal definition of cycles
 
 This is very nice, since we have converted the topological invariant
 of a _hole in the space_ into an algebraic invariant of "linear combination
@@ -242,7 +289,7 @@ general feature of homology, so it bears repeating:
 - $Image(\partial_{FE}) \subset Kernel(\partial_{EV})$
 - $\partial_{FE} \circ \partial_{EV} = 0$
 - The above equation is sometimes stylishly (somewhat misleadingly) written as
-  $\partial^2 = 0$. More faithfully, one can write $\partial \circ \partial = 0$.
+  $\partial^2 = 0$. More faithfully, one can write $\partial_{EV} \circ \partial_{FE} = 0$.
 
 Now, since the image of $\partial_{FE}$ lies entirely in the kernel of $\partial_{EV}$,
 we can construct $H_1$ as:
