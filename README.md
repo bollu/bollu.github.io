@@ -173,19 +173,19 @@ really ought to be saying is "the edge $o$ points from $g$ to $r$".
 To do this, we create a map from $o$ to $r - g$, where we think of $o$
 as a "vector", pointing from $g$ to $r$. But hang on, what _is_ $r - g$?
 we don't have a mathematical structure on $V$ that lets us add and subtract
-vertices. So, we _create_ a new set $\mathfrak V$, which represents linear
+vertices. So, we _create_ a new set $\mathcal V$, which represents linear
 combinations of vertices in $V$. Similarly, anticipating some future
-development, we also _create_ a new set $\mathfrak E$ of linear combinations
+development, we also _create_ a new set $\mathcal E$ of linear combinations
 of edges $E$.
 
 ##### Formal definition of the boundary operator
 
-We define $\mathfrak E \equiv \mathbb Z \times \mathbb Z \times \mathbb Z$
-that represents linear combinations of edges. For example, $(1, 2, 3) \in \mathfrak E$
+We define $\mathcal E \equiv \mathbb Z \times \mathbb Z \times \mathbb Z$
+that represents linear combinations of edges. For example, $(1, 2, 3) \in \mathcal E$
 represents $o + 2m + 3c$ --- that is, take 1 copy of the orange edge, 2
 copies of the magenta edge, and 3 copies of the cyan edge.
 
-We define $\mathfrak V \equiv \mathbb Z \times \mathbb Z \times \mathbb Z$
+We define $\mathcal V \equiv \mathbb Z \times \mathbb Z \times \mathbb Z$
 which represents linear combinations of vertices. For example,
 $(1, -1, 2) \in V$ represents $r - g + 2b$ --- that is, take a copy of the
 red vertex, subtract the green vertex, and add two copies of the blue vertex.
@@ -201,9 +201,9 @@ The action of the operator on a linear combination of edges is:
 $$
 \begin{align*}
 &\partial_{EV}: E \rightarrow V \\
-&\partial_{EV}(1, 0, 0) \equiv (1, -1, 0) \qquad o \rightarrow r - g \\
-&\partial_{EV}(0, 1, 0) \equiv (-1, 0, 1) \qquad m \rightarrow b - r \\
-&\partial_{EV}(0, 0, 1) \equiv (0, 1, -1) \qquad c \rightarrow b - g \\
+&\partial_{EV}(1, 0, 0) \equiv (1, -1, 0) \qquad o \mapsto r - g \\
+&\partial_{EV}(0, 1, 0) \equiv (-1, 0, 1) \qquad m \mapsto b - r \\
+&\partial_{EV}(0, 0, 1) \equiv (0, 1, -1) \qquad c \mapsto b - g \\
 &\text{(Extend using linearity)} \\
 &\partial_{EV}(s, t, u) \equiv 
   s \partial_{EV}(1, 0, 0) + 
