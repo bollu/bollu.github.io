@@ -43,7 +43,7 @@
 - [Bondi k-calculus](#bondi-k-calculus)
 - [Vivado toolchain craziness ](#vivado-toolchain-craziness)
 - [What the hell _is_ a Grobner basis? Ideals as rewrite systems](#what-the-hell-is-a-grobner-basis-ideals-as-rewrite-systems)
-- [Lie bracket versus torsion](lie-bracket-versus-torsion)
+- [Lie bracket versus torsion](#lie-bracket-versus-torsion)
 - [Spatial partitioning data structures in molecular dynamics](#spatial-partitioning-data-structures-in-molecular-dynamics)
 - [Vector: Arthur Whitney and text editors](#vector-arthur-whitney-and-text-editors)
 - [Discrete random distributions with conditioning in 20 lines of haskell](#discrete-random-distributions-with-conditioning-in-20-lines-of-haskell)
