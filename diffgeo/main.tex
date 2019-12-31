@@ -1,6 +1,10 @@
 \documentclass[11pt]{book}
 %\documentclass[10pt]{llncs}
 %\usepackage{llncsdoc}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
 \usepackage{physics}
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
@@ -8,6 +12,7 @@
 \usepackage{algpseudocode}
 \usepackage{algorithm}
 \usepackage{listing}
+\usepackage{minted}
 \evensidemargin=0.20in
 \oddsidemargin=0.20in
 \topmargin=0.2in
@@ -46,6 +51,23 @@
 \usepackage{tabularx}
 \usepackage{latexsym}
 \newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\R}{\ensuremath{\mathbb R}}
+\newcommand{\coT}{\ensuremath{T^*}}
+\newcommand{\Lie}{\ensuremath{\mathfrak{L}}}
+\newcommand{\pushforward}[1]{\ensuremath{{#1}_{\star}}}
+\newcommand{\pullback}[1]{\ensuremath{{#1}^{\star}}}
+
+\newcommand{\pushfwd}[1]{\pushforward{#1}}
+\newcommand{\pf}[1]{\pushfwd{#1}}
+
+\newcommand{\boldX}{\ensuremath{\mathbf{X}}}
+\newcommand{\boldY}{\ensuremath{\mathbf{Y}}}
+
+
+\newcommand{\G}{\ensuremath{\mathcal{G}}}
+% \newcommand{\braket}[2]{\ensuremath{\left\langle #1 \vert #2 \right\rangle}}
+
 
 \def\qed{$\Box$}
 \newtheorem{corollary}{Corollary}
@@ -54,9 +76,10 @@
 \newtheorem{lemma}{Lemma}
 \newtheorem{observation}{Observation}
 \newtheorem{proof}{Proof}
+\newtheorem{remark}{Remark}
+\newtheorem{example}{Example}
 
 \newcommand{\X}{\ensuremath{\mathfrak{X}}}
-\newcommand{\R}{\ensuremath{\mathbb{R}}}
 
 \title{General Relativity and Differential Geometry}
 \author{Siddharth Bhat}
@@ -94,6 +117,7 @@ We consider an elevator moving upward. Let its distance from the bottom be $L(t)
 \begin{align*}
     z' = z - L(t) \quad t' = t \quad x' = x
 \end{align*}
+
 
 % \begin{align*}
 % F = m\frac{d^2 z'}{dt^2} \\
@@ -169,39 +193,955 @@ distorted grid of lines of constant corrdinate. The distance between two points
 ${(x, y)}$ and ${(x + dx, y+ dy)}$ will be ${ds^2 = g_{11} dx^2 + 2 g_{12} d_x d_y + g_{22} d_y^2}$.
 
 
-\chapter{Vector fields and flows}
-A vector field $X$ on a manifold $M$ is a smooth assignment $X: (p: M) \rightarrow T_pM$.
-that is, to each point $p$ on the manifold, it assigns a vector in the tangent
-space of $p$.  The set of all vector fields on a manifold $M$ is denoted by $\X(M)$.
+\chapter{Opimisation on Steifel Manifolds}
+We have the space $O(n) = \{ X \in \R^{n \times n} | X^T X = I \}$. To find an
+element of the tangent space at the point $P \in O(n)$, we parametrize a curve
+$C(t) : \R \rightarrow O(n)$, such that $c(0) = P$.  Then, we differentiate the
+curve and evaluate it at $0$. That is, $\frac{dc}{dt}\vert_{t=0} \in T_P O(n)$.
 
-\section{Integral curves of vector fields}
-A curve whose tangents at each point are equal to the value of the vector field
-at that point.
+
+We consider $C(t) : \R \rightarrow O(n)$, such that $C(0) = P$.  Since $C(t) \in
+O(n)$, we can write $C(t)^T C(t) = I$.  This in index notation, is $c^{ik}(t)
+c^{jk}(t) = \delta^{ij}$. Differentiating with respect to $t$, we get:
+
+\begin{align*}
+&C^T(t) C(t) = I \\
+&c^{ik}(t) c^{jk}(t) = \delta^{ij} \\
+&\frac{d (c^{ik}(t) c^{jk}(t))}{dt}= \frac{d(\delta^{ij})}{dt} \\
+& \dot c^{ik}(t) c^{jk}(t) + c^{ik}(t) \dot c^{jk}(t) = 0 \qquad \text{(chain rule)}\\
+&\dot C^T(t) C(t) + C(t)^T \dot C(t) = 0
+\end{align*}
+
+Now, we know that $C(0) = P$, and hence $\dot C(0) \in T_P O(n)$. By evaluating
+the above equation at $t = 0$, we obtain the relation:
+
+\begin{align*}
+&\dot C^T(0) C(0) + C(0)^T \dot C(0) = 0 \\
+&\dot C^T(0) P + P^T \dot C(0) = 0
+\end{align*}
+
+Hence, we conclude that for all $Z \in T_P O(n)$, $Z^T P + P^T Z = 0$. Indeed,
+we can characterize $T_P O(n)$ this way and prove the reverse inclusion (how?),
+to show that:
+
+\begin{align*}
+     T_P O(n) \equiv \{ Z \mid Z^T P + P^T Z = 0 \}
+\end{align*}
+
+However, this equation for the $Z$ is "ineffective", in that it does not tell
+us how to \textit{compute} the set of $Z$s. We can only \textit{check} if a
+particular $Z_0 \in_? T_P O(n)$. 
+
+We will solve the characterization of $Z$ by first solving a slightly easier
+problem: $T_I O(n)$, where $I$ is the identity matrix. 
+
+\begin{align*}
+    T_I O(n) \equiv \{ Z \mid Z^T I + I^T Z = 0 \} = \{ Z \mid Z^T = -Z \}
+ \end{align*}
+
+ We now have a complete enumeration of the \textit{tangent space at the
+ identity}: We know that this consists of all skew-symmetric matrices! 
+
+ We now wish to transport this structure of $T_I O(n)$ to an arbitrary
+ $T_P O(n)$.  Here, I will let you in on a secret about the structure of
+ Lie groups, which we will later prove: The vector space at $T_P O(n)$ is obtained
+ by multiplying by $P$ to $T_I O(n)$. 
+
+ In this case, it tries to inform us that:
+
+\begin{align*}
+    T_P O(n) =  \{ PZ \mid Z^T = -Z \}
+\end{align*}
+
+We distrust this assertion at first, of course, so we can plug this equation back
+in the characterization of $T_P O(n)$ that we had developed and see what pops out:
+
+\begin{align*}
+     &T_P O(n) \equiv \{ X \mid X^T P + P^T X = 0 \} \\
+     &\text{Let $X = PZ$ where $Z^T = -Z$, and check that they satisfy the condition $X^T P + P^T X = 0$} \\
+     & (PZ)^TP + P^TPZ = Z^TP^TP + P^TPZ = Z^T I + I^T Z = -Z + Z = 0
+\end{align*}
+
+Hence, they do satisfy the condition, and we can assert that at least:
+$$\{ PZ \mid Z^T = -Z \} \subseteq  \{ X \mid X^T P + P^T X = 0 \}$$.
+
+\chapter{Matrix Lie groups}
+
+We study the structure of Lie groups, and we prove theorems about the
+structure of the tangent spaces at the identity, and how this structure
+governs the behavior of the tangent spaces every else on the group.
+
+Consider a group of matrices $(G, *:G \times G \rightarrow G, I:G)$, which is equipped
+with a manifold structure, where $I$ is the identity matrix, and $*$ is 
+matrix multiplication.
+
+Now, we consider the tangent space at the identity element $T_e G$. What
+we want to do is to transport the structure of the tangent space at the identity
+to an arbitrary point $p \in G$. For this, we consider a manifold mapping
+$f: G \rightarrow G$, such that its pushforward $df: T_X G \rightarrow T_{f(X)} G$
+maps $I$ to $F(I)$. That is, we would need a map such that $f(I) = p$, such that
+the pushforward pushes forward $T_I G$ to $T_f(I) G = T_p G$.
+
+We consider the map $\left( f: G \rightarrow G; f(X) \equiv P * Xs \right)$. 
+$f(I) = P * I = P$, so $f$ maps $I$ to $P$.
+
+Next, let's consider a curve $c \in T_e G$. That is, $c: (-1, 1) \rightarrow G$, such that $c(0) = I$.
+Recall that all the information about the curve $c$ that defines its directional
+derivative is stored in $\frac{d~ch \circ c(t)}{dt}|_{t=0}$.
+
+Recall that the pushfoward is defined as 
+\begin{align*}
+&df: T_X G \rightarrow T_{f(X)} G \\
+&df: ((-1, 1) \rightarrow G) \rightarrow ((-1, 1) \rightarrow G)  \\
+&df(c)(t) = \frac{d~f(c(t))}{dt}|_{t=0} \quad \text{(where $c(0) = X$)} \\
+&\frac{d~f(c(t))}{dt}|_{t=0} = f'(c(t))c'(t)|_{t=0} = f'(c(0)) c'(0) = f'(X) c'(0)
+\end{align*}
+
+Hence, we would like to pick a $c$ such that $c(0) = e$,
+and $\frac{d~ch \circ c(t)}{dt}|_{t=0}$ is easy to compute, where $ch: G \rightarrow \R^n$
+is a chart for $G$ around the point $c(0)$.
+In our case, the $ch$ is just the identity function, since matrices can naturally
+be considered as elements of $\R^{m \times n}$ if the matrices of $G$ are $m \times n$
+matrices. So $(ch = id)$, and  the tangents reduce to $\frac{dc(t)}{dt}|_{t=0}$.
+to construct such a curve $c$, we first define the matrix exponential and use it to
+define the curve $c$:
+
+\begin{align*}
+&exp: G \to G \qquad exp(Y) \equiv I + Y + \frac{Y^2}{2!} + \frac{Y^3}{3!} + \cdots + \frac{Y^n}{n!} + \cdots \\
+&c: (-1, 1) \rightarrow G \qquad c(t) \equiv exp(tX) \\
+&c(0) = exp(0 \cdot X) = exp(0) = I 
+&\frac{dc}{dt}|_{t=0} = \frac{d exp(tX)}{dt}|_{t=0} = X exp(tX)|_{t=0} = X exp(0X)
+\end{align*}
+
+\chapter{Symplectic vector spaces}
+
+% LINK TO LECTURES:
+% Symplectic geometry & classical mechanics, Tobias Osborne.
+% videos link: https://www.youtube.com/watch?v=GdXyNYUD4cE
+
+Let $V$ be a $m$-dimensional real vector space. Let $\Omega: V \times V \rightarrow V$
+be a bilinear form on $V$ that is skew-symmetric:
+$\forall a, b \in V, \Omega(a, b) = -\Omega(b, a)$.
+
+\begin{theorem}
+    Let $\Omega$ be a bilinear skew-symmetric map on $V$. Then there is a basis
+    $u_1, u_2, \dots u_k$, $e_1, e_2, \dots e_n$, $f_1, f_2 \dots f_n$ such that:
+    \begin{itemize}
+        \item $\Omega(u_i, v) = 0 \quad \forall v \in V$
+        \item $\Omega(e_i, e_j) =  \Omega(f_i, f_j) 0$
+        \item $\Omega(e_i, f_j) = \delta_{ij}$
+    \end{itemize}
+\end{theorem}
+\begin{proof}
+    Generalize Gram-Schmidt process.
+    Let $U = \{ u \in V | \Omega(u, v) = 0, ~\forall v \in V \}$
+    $U$ is a subspace of $V$. Let $u_1, u_2, \dots u_k$ be a basis of $U$.
+
+    Establish $e_j, f_j$ by induction. Let $V = U \oplus W$. Take $e_1 \in W$.
+    Then, there must exist an $f_1 \in W$ such that $\Omega(e_1, f_1) \neq 0$. 
+    Otherwise, we could expand the size of $U$ by adding $e_1$ to $U$. But
+    we assumed that $U$ contains all such vectors. $U$ and $W$ share no non-zero
+    vectors since $V = U \oplus W$.  Define $W_1 \equiv span(e_1, f_1)$.  
+    Now build $W_1^\Omega \equiv \{ w \in W | \Omega(w, W_1) = 0 \}$.
+
+    We need the folloing facts:
+    \begin{itemize}
+        \item $W_1^\Omega \cap W_1 = \{ 0 \}$
+        \item $W = W \oplus W_1^\Omega$
+    \end{itemize}
+
+    So, recurse on $W_1$.
+
+    Finally, $V = U \oplus W_1 \oplus W_1 \cdots \oplus W_n$.
+\end{proof}
+
+\begin{remark}
+    $dim(U) = k$ is invariant for $(V, \Omega)$ since $U$ was defined in a
+    coordinate free way. But, remember that $k + 2n = m$, and hence $n$
+    is an invariant of $(V, \Omega)$. $n$ is called as the \emph{rank} of
+    $\Omega$.
+\end{remark}
+
+$\Omega$ written in the basis of $\{ u_i, e_i, f_i\}$ gives 
+$\Omega = \begin{bmatrix} 0 & 0 & 0 \\ 0 & 0 & I \\ 0 & -I & 0 \end{bmatrix}$
+
+\subsection{Symplectic maps}
+
+Let $V$ be an $m$ dimensional real vector space over \R. Let $\Omega: V \times V \rightarrow \mathbb{R}$
+be a skew-symmetric bilinear map. We define 
+$\tilde \Omega: V \rightarrow V^*$, $\tilde \Omega(v)(u) \equiv \Omega(v, u)$. 
+The problem is that this map has a non-trivial kernel $U = \{ u_i \}$ in general,
+so we cannot use it like a metric to identify the two spaces.
+
+\begin{definition} A skew-symmetric bilinear map $\Omega: V \times V \rightarrow \R$ is Symplectic iff
+    $\tilde \Omega$ is bijective. ie, $U = \{ 0\}$. $(V, \Omega)$ is then
+    called a Symplectic vector space.
+\end{definition}
+
+\section{Properties of a Symplectic map}
+\begin{itemize}
+    \item $\tilde \Omega$ is an identification between $V$ and $V^*$.
+    \item Since each $(e_i, f_i)$ come in pairs, the dimension of the vector space $V$ is divisible by $2$. ie, $m = 2n$.
+    \item We have a basis $(e_i, f_i)$ called the Symplectic basis for $V$.
+    \item $\Omega$ in matrix form with respect to the Symplectic basis is $\Omega = \begin{bmatrix} 0 & I \\ -I & 0 \end{bmatrix}$
+\end{itemize}
+
+\subsection{Subspaces of a Symplectic vector space}
 
 \begin{definition}
-An integral curve $x(t): [0, 1] \rightarrow M$ of $X: \X(M)$ is a curve such
-that the tangent vector of $x$ at a point $p$ is $X(p)$. ie, $\partial_t(x)|_t = X(x(t))$
+    A subspace $W$ of $V$ is a Symplectic subspace if $\Omega|_W$ is non-degenrate.
+    For example, take the subspace $span(e_1, f_1)$.
 \end{definition}
 
-\subsection{Solving for integral curves}
-Given a chart $(U, \phi)$, the condition above reduces to
-$$\frac{dx^\mu}{dt}|_t = X^\mu (x (t)) $$
 
-Can we always find a solution? We need to solve the above system of ODEs.
-We are guaranteed to have solutions (Picard Liendolf), at least for finite time.
-If the manifold is compact, then solutions exist for all time.
+\begin{definition}
+    A subspace $W$ of $V$ is an Isotropic subspace if $\Omega|_W = 0$.
+    For example, take the subspace $span(e_1, e_2)$.
+\end{definition}
+
+\subsection{Morphisms: Symplectomorphism}
+\begin{definition}
+    A map between $(V, \Omega)$ and $(V', \Omega')$ is a linear isomorphism
+    $\phi: V \rightarrow V'$ such that $\phi^* \Omega' = \Omega$. That is,
+    $\Omega'(\phi(v), \phi(w)) = \Omega(v, w)$. ($\phi^*$ is the pullback).
+    The map $\phi$ is called a Symplectomorphism and the spaces $(V, \Omega)$ and $(V', \Omega')$
+    are said to be Symplectomorphic
+\end{definition}
+
+(Question: why do we need to define this in terms of a pullback? Why not
+pushforward? ie, $\Omega(v, w) = \Omega'(\phi(v), \phi(w))$?
+
+\subsection{Prototypical example of Symplectic space}
+Let $V = \R^{2n}$. Let $e_j = (0_1, \dots, 1_j, \dots 0_n; 0_{n+1} \dots 0_{2n})$.
+Let $f_j = (0_1, \dots 0_n; 0_{n+1}, \dots 1_{n+j}, \dots 0_{2n})$.
+take $\{e_j, f_j\}$  as a basis for $V$.
+$\Omega_0 = \begin{bmatrix} 0 & I \\ -I & 0 \end{bmatrix}$
+
+Let $\phi: V \rightarrow V$ be a Symplectomorphism of $V$. Then, we can 
+show that $M_\phi^T \Omega_0 M_\phi = \Omega_0$. ($M_\phi$ is the matrix of $\phi$
+associated to the $\{e_j, f_k\}$ basis). 
+
+\subsection{Symplectic Manifolds}
+We are generalizing our symplectic vector space. We are postulating a space
+that locally looks like a symplectic vector space.
+
+Let $\omega: T_p M \times T_p M \rightarrow \mathbb R$ be a 2-form on a manifold.
+This is bilinear and skew-symmetric (by definition of begin a differential form).
+
+We say that $\omega$ is closed iff $d\omega = 0$.
+
+\begin{definition}
+    The two form $\omega$ is a symplectic form if it is closed and $\omega_p$
+    is symplectic for all $p \in M$. That is, we need $\omega_p$.
+\end{definition}
+
+\begin{definition}
+    A symplectic manifold is a pair $(M, \omega)$ where $\omega$ is a symplectic
+    form on $M$.
+\end{definition}
+
+\subsection{Prototypical example of Symplectic manifold}
+Let $M = \R^{2n}$ with coordinates $X_1, \dots X_n, Y_1, \dots Y_n$.
+$\omega = \sum_i dx_i  \wedge dy_i$.  $\omega$ is symplectic since it
+has constant coefficients for each $dx_i \wedge dy_i$.
+
+Symplectic basis for the tangent space 
+$T_p \R^{2n} \equiv \{ \partial_{X_i}, \partial_{Y_i} \}$.
+
+\subsection{2 sphere as a symplectic manifold}
+Let $M = S^2$ as an embedded manifold in $\R^3$.
+$S^2 \equiv \{ v \in \R^3, |v| = 1 \}$.
+$T_p S^2 \equiv \{ w \in R^3 | p \cdot w = 0 \}$.
+This works because $p$ is normal to the plane spanned by $T_p S^2$.
+We define $\omega_p(u, v) \equiv p \cdot (u \times v)$. Clearly, this is
+a 2-form since it is bilinear and anti-symmetric. $\omega$ is also closed,
+since there cannot be any degree 3 forms on a 2D manifold! Hence, $d\omega = 0$.
+
+We need to check that it is non-degenrate. For any point $p \in S^2$, 
+$v \in T_p S^2$, we can take $u = p \times v$. Now, $\omega_p(u, v) = p \cdot(u \times v)$ will be
+a non-degenrate area of a parallelopiped. The parallelopiped is non-degenrate 
+as $v, p$ are perpendicular by definition. $u$ is perpendicular to both $v$
+and $p$ by construction (cross-product). (TODO: draw picture).
+
+\subsection{Mapping between Symplectic Manifolds}
+Let $(M, \Omega)$ and $(M', \Omega')$ are Symplectomorphic if $\phi: M \rightarrow M'$
+is diffeomorphic, and such that $\phi^* \Omega' = \Omega$.
 
 
-\begin{definition} 
-$\sigma(t, x_0): \R \times M \rightarrow M$ is a flow of a vector field $X \in \X(M)$,
-if:
+\subsection{Symplectic manifolds are locally like $\R^{2n}$}
+\begin{theorem} (Darboux): Let $(M, \omega)$ be a $2n$ dimensional symplectic
+    manifold. Let $p \in M$. Then, there is a coordinate chart called 
+    as the Darboux chart $U$ with basis $X_1, \dots X_n, Y_1 \dots Y_n$ such that
+    the two-form $\omega = \sum_i dx_i \wedge dy_i$.
+\end{theorem}
+
+% Lecture 9: https://www.youtube.com/watch?v=hAX7ZCMM2kQ
+\section{The cotangent bundle and Symplectic forms}
+
+Let $X$ be an n-dimensional manifold. Let $M \equiv T^*X$ be its cotangent
+bundle.  $M$ is also a manifold.
+
+Define coordinate charts on $M$, $(T^*U: X_1, X_2, \dots X_n, \xi_1, \xi_2, \dots \xi_n)$,
+where $U$ is a chart on $X$, $X_1, \dots X_n$ are coordinate functions for $U$,
+and $\xi_1, \dots xi_n$ are coordinates for $T^*X_{x_0}$ where $x_0 \in X$, defined
+by $\xi_{x_0} = \sum_i \xi_i {dx_i}_{x_0}$.
+
+We need to show that the transition functions are smooth.
+
+Let $p \in U \cap U'$. We need to express coordinates in one chart
+as a smooth function of coordinates in another chart. $(U, X_1, \dots X_n)$
+, $(U', X_1', \dots, X_n')$ are coordinates, and let $\xi \in T_p^* M$.
+$(p, \xi) \in T^*X \equiv M$.
+
+
 \begin{align*}
-        &\sigma: \R \times M \rightarrow M\\
-        &\sigma(0, x_0) = x_0 \qquad
-        \frac{d\sigma^\mu(t, x_0)}{dt}|_t = X^\mu (\sigma (t, x_0)) \\
+    \xi = \sum_i \xi_i dx_i = \sum_{i, k} \xi_i \frac{\partial x_i}{\partial x'_k} dx'_k = \sum_k \xi'_k dx'_k
 \end{align*}
+
+where the $\xi'_k = \xi_i \frac{\partial x_i}{\partial x'_k}$ are smooth since
+the $\xi_i$ are smooth, and that the transition maps derivaties are smooth
+since the charts are smooth.
+
+\subsection{Canonical Symplectic structure of contangent bundle}
+
+The physicist intuition for the following is that when we consider
+a particle moving on a manifold $X$. To fully specify the state of the
+particle, we need both position of the particle $x \in X$, and also
+momentum $p \in T^*X$ (why does it belong to contangent bundle? Intuition:
+given a velocity, it returns the momentum along it??? We can also supposedly
+look at how momentum transforms).
+This data is called "phase space" by physicists. Mathematically, this
+is the cotangent bundle.
+
+Now, we will see the canonical symplectic structure on the cotangent bundle.
+\subsection{Tautological and Canonical forms}
+Let $(U, x_1, \dots x_n)$ be a coordinate chart of $X$ and 
+$(T^*U, x_1, \dots x_n, \xi_1, \dots \xi_n)$ 
+be the corresponding chart of $M \equiv T^*X$. We will now define a 2-form
+on $M$ on the chart $T^*U$ via:
+\begin{align*}
+    w = \sum_j dx_j \wedge d\xi_j
+\end{align*}
+
+\begin{theorem}
+     This definition is coordinate independent
+ \end{theorem}
+ \begin{proof}
+     Consider a one-form on $T^*U \subset M$. Let $\alpha = \sum_j \xi_j dx_j$ 
+     This is called as the \emph{tautological form}.
+     $\alpha$ is a one-form on $M \equiv T^*X$, when $T^*X$ is treated as a manifold.
+     This is also a point on $T^* X$.
+     Note that $d \alpha = - \omega$. But $\alpha$ is intrinsically defined.
+     $\alpha =  \sum_j \xi_j dx_j = \sum_j \xi'_j dx'_j$.
+
+     TODO: I don't understand why this gives us coordinate independence.
+ \end{proof}
+
+\subsubsection{Coordinate-free definition}
+
+Let $M \equiv T^* X$. There is a canonical map $\pi: M \rightarrow X$, 
+$\pi(x, \xi) = x$. We are going to pullback $T^* X$ along $T^* M = T^* (T^* X)$
+$(d\pi)^*: T^*X \rightarrow T^*M$.
+Let $p \in M; p = (x, \xi)$. $\xi \in T_x^* X$.
+We define $\alpha$ pointwise. $\forall p \in M, \alpha_p \equiv  d\pi_p^* \xi_{\pi(p)}$.
+Equivalently, let $v_p \in T_p M \equiv T_p (T^*X)$. Now, $\alpha_p (v_p) \equiv \xi( d\pi_p (v_p))$.
+
+TODO: draw example (https://www.youtube.com/watch?v=hAX7ZCMM2kQ, 43:52)
+
+\subsubsection{Example 1}
+Let $X = \R$. Now, $M = \R \times \R$. $(x, y) \in M$ (position-momentum).
+$\pi: M \rightarrow X; \pi((x, y)) = x$.
+
+\begin{align*}
+&\alpha_{(x, y)} \equiv y dx 
+\qquad \omega = -d\alpha = - (\partial_y y \cdot dy \wedge dx) = dx \wedge dy \\
+&\alpha_{(x, y)}(v_x, v_y) = y dx (v_x \partial_x + v_y \partial_y) = y v_x
+\end{align*}
+
+
+\subsubsection{Example 1}
+Let $X = S^1$. Now, $M = S^1 \times \R$. $(x, y) \in M$ (position-momentum).
+$\pi: M \rightarrow X; \pi((\theta, v)) = \theta$.
+
+\begin{align*}
+&\alpha_{(x, y)} \equiv y d\theta \\
+&\omega_{(x, y)} \equiv d\theta \wedge dy
+\end{align*}
+
+\subsection{Naturality of Tautological form}
+Let $X_1, X_2$ be n-dimensional manifolds with $T^* X_1$ and $T^* X_2$ as cotangent
+bundles. Let $f: X_1 \rightarrow X_2$ is a diffeomorphism. We will show that
+the tautological manifolds also match.
+
+We show that there is a diffeomorphism $f_{\sharp}: T^*X_1 \rightarrow T^* X_2$
+which lifts $f$. ie, if $f_{\sharp}((x, \xi)) = (x', \xi')$, where $x' = f(x)$,
+$\xi = df^* \xi'$.
+
+\begin{theorem} The lift $f_\sharp$ of $f: X_1 \rightarrow X_2$ pulls the
+tautological form on $M_2 \equiv \coT X_2$ onto the tautological form on
+$M_1 \equiv \coT X_1$.
+\end{theorem}
+\begin{proof}
+Pointwise, we wish to show that $(df_\sharp^\star)_{p_1} (\alpha_2)_{p_2} = (\alpha_1)_{p_1}$
+where $p_2 = f^\sharp p_1$.
+
+$p_2 = f^\sharp p_1 \implies p2 = (x_2, \xi_2), x_2 = f(x_1) \land df^\star(\xi_1) = \xi_2$.
+
+TODO!
+\end{proof}
+
+\chapter{Vector fields and flows}
+% Lecture 10: https://www.youtube.com/watch?v=kGZQJALLFiE&list=PLDfPUNusx1EoVnrQcCRishydtNBYU6A0c&index=10
+
+TODO: integrate with notes on computer
+
+\begin{theorem}
+    For any point $x \in M$, there exists a differentiable function $\sigma: \R \times M \rightarrow M$
+    such that $\sigma(0, x) = x$, $\sigma(t, \sigma(s, x)) = \sigma(t + s, x)$,
+    and the map $t \mapsto \sigma(t, x)$ satisfies nice properties (which ones?)
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\begin{definition}
+    Let $\sigma: \R \times M \rightarrow M$ be a flow. Write $\sigma_t(p) \equiv \sigma(t, p)$.
+    The map $\sigma_t$ is an \textbf{isotopy} if each $\sigma_t: M \rightarrow M$
+    is a diffeomorphism and $\sigma_0 \equiv \text{identity}$.
+
+
+    Conversely,  on a \emph{compact} manifold $M$, there is a one-to-one correspondence
+    between isotopies and time-dependent vector fields, given by the equation:
+    \begin{align*}
+        (\partial_x \sigma_t)(x_0) = v_t(\sigma_t(x_0))
+    \end{align*}
 \end{definition}
 
-We can prove that the flow forms a group, called as the one parameter
-group of diffeomorphisms.
+Note that the situation can get complicated even on compact manifolds. Eg. a
+vector field on a torus with constant irrational slope --- The space foliates
+with 1D subspaces. (TODO: add picture)
+
+
+\begin{definition}
+    When $X = v_t$ is independent of $t$, the isotopy is said to be the
+    \textbf{exponential map of the flow of $X$}. It is denoted by
+    $\sigma^\mu(t, x) \equiv exp(tX) x^\mu$.
+    $\{ exp(tX): M \rightarrow M \mid t \in \R \}$ is a unique,
+    smooth family of diffeomorphisms, satisfying:
+    \begin{itemize}
+        \item $exp(0X) = id$
+        \item $\partial_t exp(tX) = X \circ exp(tX)$
+    \end{itemize}
+\end{definition}
+
+Let us justify naming this object $exp$:
+\begin{align*}
+    &\sigma^\mu(0 + t, x) = \text{taylor series around $t = 0$} \\
+    &\quad = x^\mu + t (\partial_t \sigma^\mu)(0, x) + \frac{t^2}{2!} (\partial_t \partial_t \sigma^\mu)(0, x) + \dots \\
+    &\quad = e^{t \partial_t} \sigma^\mu(t, x) |_{t=0} = e^{t X} \sigma^\mu(0, x)
+\end{align*}
+
+\begin{definition}
+    The flow $\sigma_t$ satisfies:
+    \begin{itemize}
+        \item $\sigma(0, x) = exp(0X)$
+        \item $\partial_t \sigma(t, x) = X(e^{tX}(x))$
+        \item $\sigma(t, \sigma(s, x)) = \sigma(t, e^{sX} x) = e^{tX} (e^{sX} x) = e^{(t+s)X} x = \sigma(t + s, x)$
+    \end{itemize}
+\end{definition}
+
+\chapter{Lie derivative: $\Lie_X Y$}
+\section{The definition of the lie derivative}
+The problem with manifolds is that to compare values at $x, y \in M$, it's
+unclear how to compare objects. We simply cannot, since there is no structure
+available to do this. So, we construct the lie derivative. Given two vector
+fields $X, Y$. Let $\sigma(s, x)$ and $\tau(t, x)$ be the flows generated
+by $X, Y$ respectively. Hence, $(\partial_s \sigma^\mu)|_{(s, p)} = X(\sigma(s, p))$,
+$(\partial_t \tau^\mu)|_{(t, p)} = X(\tau(t, p))$.
+
+The derivative of $Y$ along the integral curve $\sigma$ generated by $X$ is:
+\begin{itemize}
+    \item map $Y(\sigma_\epsilon(x)): T_{\sigma_\epsilon(x)}$ to $T_x M$,
+    by $\pf{\sigma_{-\epsilon}}: T_{\sigma_{\epsilon}(x)}M \rightarrow T_x M$.
+    \item Take the difference at $x$, between $(\pf{\sigma_{-\epsilon}}(Y(\sigma_\epsilon(x)))$ and $Y(x)$.
+    \item Let $\epsilon \to 0$: 
+        $\Lie_X Y \equiv \lim_{\epsilon \to 0} \frac{1}{\epsilon} \pushforward{\sigma_{-\epsilon}}(Y(\sigma_\epsilon(x))) - Y(x)$.
+\end{itemize}
+
+\section{Coordinate definition of Lie derivative}
+
+Let $(U, \phi)$ be a chart with coordinates $X^\mu$. We define $e_\mu \equiv \partial_{X_\mu}$ We write
+all our objects in terms of this chart.
+
+\begin{itemize}
+\item $\mathbf{X} \equiv \mathbf{X}^\mu e_\mu$
+\item $\mathbf{Y} \equiv \mathbf{Y}^\mu e_\mu$
+\item $\sigma_{\epsilon}^i(x) = x^i + \epsilon \mathbf{X}^i$
+\item $\sigma_{-\epsilon}^i(x) = x^i - \epsilon \mathbf{X}^i$
+\item $\mathbf Y^j(\sigma_\epsilon(x)) = 
+    \mathbf Y^j(x + \epsilon \mathbf X) = 
+    Y^j + \epsilon \mathbf X^k \partial_k \mathbf Y^j$
+\item $\sigma_{-\epsilon~\star}^i(v) =
+        v^j \partial_j \sigma_{-\epsilon}^i = 
+        v^j \partial_j (x^i - \epsilon \mathbf X^i) =
+        v^j (\delta^i_j - \epsilon \partial_j\mathbf X^i)$
+\item $\sigma_{-\epsilon~\star}^i(Y(\sigma_\epsilon(x)) = 
+    \mathbf Y(\sigma_{\epsilon}(x))^j (\delta^i_j - \epsilon \partial_j\mathbf X^i) =
+    (\mathbf Y^j + \epsilon \mathbf X^k \partial_k \mathbf Y^j) (\delta^i_j - \epsilon \partial_j\mathbf X^i)
+    = \mathbf Y^j \delta_j^i + \epsilon(\mathbf X^k \partial_k \mathbf Y^j \delta_j^i 
+    - \mathbf Y^j \partial_j \mathbf X^i) + \epsilon^2(\dots)
+    = \mathbf Y^i + \epsilon(\mathbf X^k \partial_k \mathbf Y^i - \mathbf Y^k \partial_k \mathbf X^i)
+    $
+
+\item $(\lim_{\epsilon \to 0} \frac{1}{\epsilon} \pushforward{\sigma_{-\epsilon}}(Y(\sigma_\epsilon(x))) - Y(x))^i =
+    \frac{1}{\epsilon}(\mathbf Y^i + \epsilon(\mathbf X^k \partial_k \mathbf Y^i - \mathbf Y^k \partial_k \mathbf X^i) - Y^i)
+            = \mathbf X^k \partial_k \mathbf Y^i - \mathbf Y^k \partial_k \mathbf X^i$
+\end{itemize}
+
+\begin{example}
+Manifold $M$, chart $\phi$, coordinates $X^1, X^2$.
+$P \equiv  -X^2 \partial_{X^1} + X^1 \partial_{X^2}, Q \equiv (X^1)^2 \partial_{X^1} + X^2 \partial_{X^2}$. The lie derivative
+is computed as:
+\begin{align*}
+\Lie_X Y &= \{ (-X^2 \partial_{X^1} + X^1 \partial_{X^2})(X^1)^2 - ((X^1)^2 \partial_{X^1} + X^2 \partial_{X^2})(-X^2) \} e_1 + (\dots)e_2 \\
+&\quad = \{ (-X^2 (2X^1) + 0) - (0 + X^2 (-1)) \} e_1 + (\dots e_2)
+\end{align*}
+\end{example}
+
+\subsection{The lie bracket}
+\begin{definition}
+Let $X^\mu \partial_\mu, Y^\mu \partial_\mu \in \mathfrak{X}(M)$. We define
+the lie derivative as $[X, Y] \equiv [X, Y](f) = X(Y(f)) - Y(X(f))$. 
+\end{definition}
+Now this
+might have second-order derivatives. However, for it to be a vector field,
+it is only allowed to have first order derivatives. 
+Let's prove that the lie bracket only contains first-order derivatives.
+
+\begin{align*}
+&[X, Y]f 
+    = \sum_{\mu, \nu} X^\mu \partial_\mu (Y^\nu \partial_\nu f) - Y^\mu \partial_\mu (X^\nu \partial_\nu f)
+\\ &\quad = \sum_{\mu, \nu} X^\mu (Y^\nu \partial_\mu \partial_\nu f + \partial_\nu f \partial_\mu Y^\nu)
+         - Y^\mu (X^\nu \partial_\mu \partial_\nu f + \partial_\nu f \partial_\mu X^\nu)
+%
+\\ &\quad = (X^\mu Y^\nu \partial_\mu \partial_\nu f - Y^\mu X^\nu \partial_\mu \partial_\nu f + 
+    \partial_\nu f (X^\mu \partial_\mu Y^\nu - Y^\mu  \partial_\mu X^\nu)
+% 
+= 0 + \Lie_X Y f             
+\end{align*}
+
+The terms are zero since $X^\mu Y^\nu \partial_\mu \partial_\nu f - Y^\mu X^\nu  \partial_\mu \partial_\nu f$
+vanishes: $ \partial_\mu \partial_\nu f =  \partial_\mu \partial_\nu f$ by smoothness. Then the sum 
+$X^\mu Y^\nu - Y^\mu X^\nu$ disappears due to the double summation.
+
+\subsection{Properties of the lie bracket}
+
+\begin{lemma}
+The lie bracket is bilinear: $[X, cY + dY'] = c[X, Y] + d[X, Y']$.
+\end{lemma}
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}
+The lie bracket is skew-symmetric: $[X, Y] = -[Y, X]$.
+\end{lemma}
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}
+The lie bracket satisfies the Jacobi identity: $[[X, Y], Z] + [[Y, Z], X] + [[X, Z], Y] = 0$.
+\end{lemma}
+\begin{proof}
+TODO
+\end{proof}
+
+Let us define $(fX)(p) \equiv f(p) X^\mu(p) e_\mu$.
+
+\begin{lemma}
+$\Lie_{fX}Y = f[X, Y] - Y[f]X$
+\end{lemma}
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}
+$\Lie_{Y} (fX) = f[X, Y] + X[f]Y$
+\end{lemma}
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}
+$\pushforward f[X, Y] = [\pushforward f X, \pushforward f Y]$
+\end{lemma}
+\begin{proof}
+TODO
+\end{proof}
+
+\subsection{Lie bracket as failure of flows to commute}
+
+(TODO: draw picture)
+
+\begin{lemma}
+ $\tau(\delta, \sigma(\epsilon, x)) - \sigma(\epsilon, \tau(\delta, x)) = \epsilon [X, Y] + O(\epsilon ^2)$.
+\end{lemma}
+\begin{proof}
+TODO
+\end{proof}
+
+\subsection{Lie derivatives for one forms}
+
+$\Lie_X \omega \equiv \lim_{\epsilon \to 0} \frac{1}{\epsilon} 
+\left[
+\pullback{\sigma_{-\epsilon}} (\omega(\sigma_\epsilon(x))) - \omega(x)
+\right]$
+
+That is, replace pushforward with pullbacks everywhere.
+
+In components, the formula will be:
+\begin{align*}
+    \pullback{\sigma_{-\epsilon}} (\omega(\sigma_\epsilon(x))) = \omega_i(x) dx^i + 
+    (\epsilon X^k \partial_k \omega_j + \omega_k \partial_j X^k) dx^j
+\end{align*}
+
+The derivation is: (TODO)
+
+\subsection{Lie derivative for $k$-forms}
+
+The formula is exactly the same as that of the one-form case:
+
+\begin{align*}
+\Lie_X \omega \equiv \frac{d}{dt}\pullback{\left(exp(t\mathbf X)\right)} \omega|_{t = 0}
+\end{align*}
+
+\subsection{An axiomatic characterization of the Lie derivative}
+
+The lie derivative satisfies:
+\begin{align*}
+    \Lie_X(t_1 + t_2) = \Lie_X t_1 + \Lie_X t_2
+\end{align*}
+
+where $t_1, t_2$ are objects of the same type.
+
+It also satisfies:
+\begin{align*}
+    \Lie_X(t_1 \otimes t_2) = (\Lie_X t_1) \otimes t_2 + t_1 \otimes (\Lie_X t_2) 
+\end{align*}
+for arbitrary $t_1, t_2$.
+
+Since we know the definition for a vector and a 1-form, we can use this to work
+out the value of the lie derivative for $k$-forms.
+
+
+\chapter{Interior products}
+The interior product is an operation that takes a $k$-form and a vector field,
+and produces a $(k-1)$-form.  For programmers, this is literally just partial
+application of the $k$-form.
+
+\begin{align*}
+\forall X \in \mathfrak X (M)\qquad
+i_X: \Omega^k(M) \rightarrow \Omega^{k-1}(M) \qquad
+(i_X \omega) (X_1, \dots, X_{k-1}) \equiv \omega(X, X_1, \dots X_{k-1})
+\end{align*}
+
+Let $\omega \in \Omega^k(M)$. In components relative to a chart $(U, \phi)$ with
+basis $x^i$, $\omega$ can be written as:
+$$\omega = \frac{1}{k!} \omega_{i_1, i_2, \dots, i_k} dx^{i_1} \wedge \dots \wedge dx^{i_k}$$
+where the coefficients $\omega_{i_1, \dots i_k}$ are anti-symmetric on
+exchanging indeces.
+
+\begin{align*}
+    (i_{\mathbf X} \omega) &= \frac{1}{(k-1)!}  \mathbf X^j \omega_{j, i_2 \dots i_k} dx^{i_2} \wedge \dots dx^{i+k} \\
+    (i_{\mathbf X} \omega) &= \frac{1}{(k-1)!}  (-1)^{j-1} \mathbf X^j \omega_{i_1, \dots, j, \dots i_k} dx^{i_1} \wedge \widehat{dx^j} \wedge \dots \dots dx^{i+k} \\
+    &\quad \text{where $\widehat{dx^j}$ means we do not include that $dx^j$ in the wedge}
+\end{align*}
+
+\subsection{Example of interior product computation}
+\begin{itemize}
+    \item Let $M = \mathbb R^3$. Let $\omega = dx^1 \wedge dx^2$. Let $\mathbf X = 1 \cdot \partial_{x^1}$.
+Then, $i_\mathbf X \omega = 1 \cdot dx^2$
+
+
+\item Let $M = \mathbb R^3$. Let $\omega = dx^1 \wedge dx^3$. Let $\mathbf X = 1 \cdot \partial_{x^3}$.
+Then, $i_{\mathbf X} \omega = i_{\mathbf X} (dx^1 \wedge dx^3) = i_{\mathbf X}(-dx^3 \wedge dx^1) = -dx^1$
+\end{itemize}
+
+\subsection{Cartan's Magic formula}
+Let $\omega \in \Omega^1(M)$, $\omega \equiv \omega_i dx^i$.
+Let $\mathbf X \in \mathfrak X(M)$, $\mathbf X = \mathbf X^i \partial_i$.
+
+\begin{align*}
+&i_{\mathbf X} \omega = \omega_i \mathbf X^i \\
+&d(i_{\mathbf X} \omega) = \partial_i (\omega_i \mathbf X^i) dx^i \\
+&i_{\mathbf X}(d \omega) = i_{\mathbf X}( \partial_j \omega_i dx^j \wedge dx^i)
+	= TODO %X^j \partial_j \omega_i dx^i
+\end{align*}
+
+So, we get the formula:
+\begin{align*}
+ (d i_{\mathbf X} + i_{\mathbf X} d) \omega = L_X \omega
+\end{align*}
+
+\subsection{Relationships between interor product and $k$-forms}
+\begin{lemma}
+$i_{[\mathbf X, \mathbf Y]}(\omega) = \boldX(i_\boldY (\omega)) - \boldY(i_\boldX (\omega))$
+\end{lemma}
+\begin{proof} TODO \end{proof}
+
+\begin{lemma}
+$i_{X}(\omega \wedge \zeta ) = \omega i_\boldX (\zeta) - 1^n$
+\end{lemma}
+\begin{proof} TODO \end{proof}
+
+
+\chapter{Tensor network diagrams}
+
+Elements in $v^j \partial_j \in TM$  is drawn as 
+\begin{verbatim} j---(v) \end{verbatim}. 
+A leg is an index,
+a ball is a tensor. 
+elements of $w_j dx^j \in TM^\star$ is drawn as \begin{verbatim} (w)---j \end{verbatim}.
+Tensor contraction is by joining legs. $v^j w_j$ is \begin{verbatim}(w)---(v)\end{verbatim}.
+
+A $k$ form is drawn as (TODO)
+
+
+
+
+\chapter{Optimisation on manifolds}
+
+\subsection{Sketch of optimisation on manifolds}
+We now consider manifold optimisation techniques on embedded riemannian manfiolds $M$,
+equipped with the metric $g: (p: M) \rightarrow T_p M  \times T_p M \rightarrow \mathbb R$.
+The metric at a point $g(p)$ provides an inner product structure on the point $T_pM$
+for a $p \in M$.
+
+where we are optimising a cost function $c: M \rightarrow \mathbb R$.
+We presume that we have a diffeomorphism $E: M \rightarrow \mathbb R^n$ (Embedding) which
+preserves the metric structure. We will elucidate this notion of preserving
+the metric structure once we formally define the mapping between tangent spaces.
+This allows us to treat $M$ as a subspace of $\mathbb R^n$.
+
+For any object $X$
+defined with respect to the manifold, we define a new object $\overline X$, which
+is the embedded version of $X$ in $\mathbb R^n$.
+
+We define $\overline M \subset \mathbb R^n; \overline M \equiv image(E)$.
+We define $\overline c: \overline M \subseteq \mathbb R^n \rightarrow \mathbb R; \overline c \equiv c \circ E^{-1}$
+
+We then needh two operators, that allows us to project onto the tangent space
+and the normal space. The tangent space at a point $x_0 \in M$, $\overline{T_{x_0} M} \equiv span(\partial_i E |_{E(x_0)})$. 
+We get an induced mapping of tangent spaces $dE: T_{x_0} M$ and $T_{x_0} \overline M$.
+
+we consider the gradient
+$\overline \grad c : (p: \overline M) \rightarrow \overline{T_p M}; \overline \grad c \equiv dE \overline dc$
+
+The normal space,
+$\overline{N_{x_0} M}$ is the orthogonal complement of the tangent space, defined
+as $\overline{N_{x_0} M} \equiv \left\{ v \in \mathbb R^n \mid \langle v | \overline{T_{x_0} M} \rangle = 0 \right\}$.
+It is often very easy to derive the projection onto the normal space, from
+whose orthogonal complement we derive the projection of the tangent space.
+
+The final piece that we require is a retraction $R: \mathbb R^n \rightarrow \overline M \subseteq \mathbb R^n$. This allows
+us to project elements of the ambient space that are not on the manifold. The
+retraction must obey the property $R(p \in \overline M) = p$.
+(TODO: is this correct? Do we need $R(\overline M) = \overline M$ or is this pointwise?)
+(what are the other conditions on the retraction? smoothness?)
+
+Given all of this machinery, the algorithm is indeed quite simple. 
+
+\begin{itemize}
+    \item $x \in \overline M \subseteq \mathbb R^n$ is the current point on the manifold as an element of $\mathbb R^n$
+    \item Compute $g = \grad c(x) \in T_x \mathbb R^n$ is the gradient with respect to $\mathbb R^n$.
+    \item $\overline g = P_{T_x} g \in T_x M$ is the projection of the gradient with respect to $\mathbb R^n$ onto the 
+            tangent space of the manifold.
+    \item $x_{mid}\in \mathbb R^n \equiv x + \eta \overline g$, a motion along the tangent vector, giving a point in
+            $\mathbb R^n$.
+    \item $\overline x_{next}: \overline M \equiv R(x_{mid})$, the retraction of the motion along the tangent vector,
+        giving a point on the manifold $\overline M$.
+\end{itemize}
+
+\chapter{Exterior and Geometric algebras}
+
+While not strictly in the realm of differential geometry, geometric algberas
+are an interesting beast. Essentially, they answer the question:
+
+\begin{quote}
+    What if we could study vectors on equal footing with arbitrary subspaces?
+\end{quote}
+
+\section{Exterior Algebras}
+We first define the \emph{exterior algebra of degree $2$} of a vector space $V$.
+Intuitively, these represent \emph{oriented areas} of a space. Later,
+we generalize these to volumes and hypervolumes.
+
+Given a vector space $V$ of dimension $n$, we define a space $(\mathbf \Omega^2(V))$, called
+as the exterior algebra of $V$ of degree 2. We can construct 
+elements of $(\mathbf \Omega^2(V))$
+by using an operator $(\wedge)$, defined by the following axioms:
+
+\begin{align*}
+    &\wedge: V \times V \rightarrow \mathbf \Omega^2(V) \\
+    &\vec v \wedge \vec w  = -\vec w \wedge \vec v \qquad \text{(skew-symmetry)}\\
+    &\forall \alpha, \beta, \gamma, \delta \in \R \quad \vec u, \vec v,\vec w, \vec x \in V, \\
+    &\quad (\alpha \vec u + \beta \vec v) \wedge (\gamma \vec w + \delta \vec x) = 
+        \alpha \gamma (\vec u \wedge \vec w) + 
+        \alpha \delta (\vec u \wedge \vec x) + 
+        \beta \gamma  (\vec v \wedge \vec w) + 
+        \beta \delta  (\vec v \wedge \vec x) \qquad \text{(bilinearity)}
+\end{align*}
+
+\section{Intuition of the definition of wedge products on $\R^2$}
+
+From the above axioms, we can derive an intution for the wedge product in
+$\mathbb R^2$. let us consider $\vec x, \vec y$ as unit basis vectors of $\R^2$.
+
+We first show:
+$[\vec x \wedge \vec x = - (\vec x \wedge \vec x) \implies 2 (\vec x \wedge \vec x = 0) \implies (\vec x \wedge \vec x = 0)]$.
+Similarly, $(\vec y \wedge \vec y= 0)$. We also note that $\vec x \wedge \vec y = - \vec y \wedge \vec x$,
+by using the skew-symmetry rule.
+
+
+Now, we observe the value of $(v \wedge w)$ for a general $(v, w \in \R^2)$ and we
+provide a geometric interpretation. We first write $\vec v, \vec w$ in terms
+of the basis vectors $\vec x, \vec y$ as:
+$(\vec v = \alpha \vec x + \beta \vec y), (\vec w = \gamma \vec x + \delta \vec y)$.
+Next, we expand $(\vec v \wedge \vec w)$ as:
+
+\begin{align*}
+\vec v \wedge \vec w 
+&= (\alpha \vec x + \beta \vec y) \wedge (\gamma \vec x + \delta \vec y) \\
+&=       \alpha \gamma (\vec x \wedge \vec x) + 
+        \alpha \delta (\vec x \wedge \vec y) + 
+        \beta \gamma  (\vec y \wedge \vec x) + 
+        \beta \delta  (\vec y \wedge \vec y)  \\
+&= \alpha \gamma (0) + 
+  \alpha \delta (\vec x \wedge \vec y)  +
+  \beta \gamma (- \vec x \wedge \vec y) +
+  \beta \delta (0) \\
+&= (\alpha \delta - \beta \gamma)(\vec x \wedge \vec y)
+\end{align*}
+
+We know from 2D geometry that $(\alpha \delta - \beta \gamma)$ is the area
+of the parallogram spanned by vectors $(\vec v, \vec w)$. Now, $\vec x \wedge \vec x = 0$
+can be interpreted as "the parallelogram made up of two sides which are collinear has  0 area".
+The fact $(\vec x \wedge \vec y = - \vec y \wedge \vec x)$ can be interpreted
+as \emph{orientation}. We view $(\vec x \wedge \vec y)$ as an "anti-clockwise" 
+orientation going from the positive $x$-axis (3 o clock) to the positive $y$-axis (12 o clock).
+$(\vec y \wedge \vec x)$ is a clockwise orientation, going from the positive $y$-axis to
+the positive $x$-axis.
+
+\section{Generalizing exterior algebras to arbitrary dimensions}
+Given a vector space $V$ of dimension $k$, we define the $k$-dimensional
+exterior algebra space inductively as follows:
+
+\begin{align*}
+    &\Omega^k(n) \equiv \{ \vec x_1 \wedge \vec x_2 \wedge \dots \vec x_k \mid 
+            \vec x_1, \vec x_2, \dots \vec x_k \in V \} \\
+    & (\vec x_1 \wedge \dots \wedge x_k) = 
+    sign(P)
+    (\vec x_{P(1)} \wedge \vec x_{P(2)} \dots \wedge x_{P(k)})
+    \qquad \text{(skew-symmetry)} \\
+\end{align*}
+
+where $(P: \{1, 2, \dots, k\} \rightarrow \{1, 2, \dots, k \})$ is a
+permutation (bijection). $sign(P)$ is $+1$ if the permutation is an
+even permutation (contains an even number of swaps), and $-1$ if it
+is an odd permutation (contains an odd number of swaps) 
+
+\begin{align*}
+    &(\vec x_1 \wedge \dots (\alpha \vec y_1 + \beta \vec y_2) \wedge \vec x_k) = \\
+    &\qquad \alpha (\vec x_1 \wedge \dots \wedge \vec y_1 \wedge \dots \wedge \vec x_k) +
+    \beta (\vec x_1 \wedge \dots \wedge  \vec y_2 \wedge \dots \wedge \vec x_k)
+    \qquad \text{(multi-linearity)}
+\end{align*}
+
+Note that this clearly extends the situation as described in $2D$ to $nD$.
+
+
+\section{Geometric algebra}
+
+The geometric algebra of a vector space $V$ over the reals $\R$ of dimension $n$
+is called as $\G(V)$. $\G(V)$ contains
+all \emph{formal linear combinations} of elements from
+$\left( \R, V, \Omega^2(V), \Omega^3(V), \dots \Omega^n(V) \right)$.
+For example, if we consider the space $\G(\R^2)$, an element of this space 
+is  $(2 -3 \vec x + 4 \vec y + 5 \vec x \wedge \vec y)$. 
+
+This is a unique space, because it allows us to combine objects such as 
+scalars, vectors, areas, volumes, etc. This is the power that we shall exploit
+to model a wide variety of situations.
+
+In general, if the vector space $V$ is of dimension $n$, then the geometric
+algebra $\G(V)$ will have dimension $2^n$, since it will contain as a basis
+all possible collections of subspaces.
+
+
+\section{The philosophy of geometric algebra}
+In general, within vector spaces, vectors are privileged. Subspaces on the
+other hand are defined with equations: for example, in $3D$, the subspace
+spanned by the $\vec x, \vec y$ axes would be
+$span(\vec x, \vec y) =
+\{ \lambda_x \vec x  + \lambda_y \vec y \mid \lambda_x, \lambda_y \in \R \}$
+This is a \emph{set of vectors}, and not an \emph{element of the vector space}.
+
+In a geometric algebra, we would represent the subspace (roughly) as $(\vec x \wedge \vec y)$.
+This allows us to treat vectors, scalar, volumes, and hypervolumes on
+equal footing, and develop a theory that includes all of these objects.
+
+It also provides a \emph{geometric product}, that allows us to easily relate
+the regular \emph{inner product} to the \emph{exterior product}, thereby
+creating a unifying theory of vectors and all differential forms.
+
+\subsection{The geometric product}
+
+We first define the geometric product for vectors:
+\begin{align*}
+    ab \equiv (a \cdot b) + (a \wedge b)
+\end{align*}
+
+
+\subsection{Construction: A non-commutative, bilinear structure for geometric algebra}
+
+We define a non-commutative, bilinear structure
+$\left(\braket{\cdot}{\cdot}: \G(V) \times \G(V) \rightarrow \R\right)$. We
+define the effect on the basis elements, and then extend it to the
+full space. Let the basis of $V$ be $\{ b_1, b_2, \dots, b_k \}$.
+
+
+\begin{align*}
+\braket{b_{i_1} \wedge b_{i_2} \wedge \dots \wedge b_{i_n}}{c_{j_1} \wedge c_{j_2} \wedge \dots \wedge c_{j_m}}
+\equiv
+\begin{cases}
+1 & span(b_{i_1}, b_{i_2}, \dots, b_{i_n}) \subseteq span(c_{j_1}, c_{j_2}, \dots, c_{j_m}) \\
+0 & \text{otherwise}
+\end{cases}
+\end{align*}
+
+Then we extend this multi-linearly to the full space, since we have defined its
+action on the basis.
+
+\begin{example}
+\begin{align*}
+&\braket{2 + 3\vec x + 4 \vec x \wedge \vec y}{4\vec y} \\
+&= \braket{2}{4\vec y} +
+ \braket{3\vec x}{4\vec y} +
+ \braket{4 \vec x \wedge \vec y}{2 \vec x \wedge \vec y} \\
+&= (2 \cdot 4)\braket{1}{\vec y} + 
+   (3 \cdot 4) \braket{\vec x}{\vec y} + 
+   (4 \cdot 4) \braket{\vec x \wedge \vec y}{\vec y} \\
+&= 8 (1) + 12 (0) + 16 (0) = 8
+\end{align*}
+\end{example}
+Note that $(\braket{\vec x}{\vec y} = 0)$, since the space spanned by $\vec x$
+is not contained in the space spanned by $\vec y$. Similarly, 
+$(\braket{\vec x \wedge \vec y}{\vec y} = 0)$, since the subspace spanned by
+$(\vec x, \vec y)$ is strictly bigger than the subspace spanned by $(\vec y)$.
+
+
+This dot product structure captures the asymmetric notion of "containment":
+$\braket{b}{c} \neq 0$ iff the span of $b$ is contained in the span of $c$.
+This allows us to model situations where we wish to have a notion of containment
+\emph{across subspaces} of a given space.
 \end{document}
