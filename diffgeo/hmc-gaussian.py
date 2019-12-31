@@ -34,10 +34,10 @@ def planet(integrator, n, dt):
     return np.asarray(qs)
 
 
-STARTQ = np.asarray([5.0, 5.0])
+STARTQ = np.asarray([0.0, 10.0])
 
-GAUSSIAN_CENTERS = np.asarray([[0.0, 0.0], [4.0, 0.0]])
-GAUSSIAN_WEIGHTS = np.asarray([1.0, 10.0])
+GAUSSIAN_CENTERS = np.asarray([[0.0, 0.0], [8.0, 0.0]])
+GAUSSIAN_WEIGHTS = np.asarray([1.0, 1e4])
 
 # H = -log P(qcur) + p^2/2 (kinetic)
 def prob(qcur): 
@@ -58,8 +58,8 @@ def dprob(qcur):
     return s
 
 # search for maxima of gaussian distribution
-def gaussian_hmc(startq, integrator, n, dt):
-    def H(qcur, pcur): return -np.log(prob(qcur))  + np.dot(pcur, pcur) / 2
+def gaussian_hmc(startq, integrator, n):
+    def H(qcur, pcur): return -np.log(prob(qcur)) + np.dot(pcur, pcur) / 2
     def dhdp(qcur, pcur): return pcur
     def dhdq(qcur, pcur): return -1.0 / prob(qcur) * dprob(qcur)
 
@@ -74,11 +74,12 @@ def gaussian_hmc(startq, integrator, n, dt):
 
         # redraw momentum
         qprop = qcur.copy()
-        pprop = np.array([np.random.normal(), np.random.normal()])
-        print ("initial proposal position: %s |  momentum:  %s" % (qprop, pprop))
-        N_PHYSICS_STEPS = 3
+        pprop = np.array([np.random.normal(0, 3), np.random.normal(0, 3)])
+        N_PHYSICS_STEPS = 80
+        # 0.1 * x = 8
+        DT = 1e-1
         for _ in range(N_PHYSICS_STEPS):
-            (qprop, pprop) = integrator(dhdp, dhdq, qprop, pprop, dt)
+            (qprop, pprop) = integrator(dhdp, dhdq, qprop, pprop, DT)
 
         # Negate momentum at end of trajectory to make the proposal symmetric
         # WHY? I don't understand this!
@@ -88,14 +89,15 @@ def gaussian_hmc(startq, integrator, n, dt):
         propH = H(qprop, pprop)
 
         # minimise energy: new < old
-        # [0-1] < old / new
-        # log [0-1] < log old - log new
-        print("MH new position: %s | momentum: %s" % (qprop, pprop))
-
-        if np.random.uniform() < np.exp(curH - propH):
-            qcur = qprop.copy()
-            pcur = pprop.copy()
-            naccept += 1
+        # e(cur - prop) > 1
+        # cur - prop > 0
+        # cur > prop (energy reduces!)
+        # if np.random.uniform() < np.exp(curH - propH):
+        print("NOTE: using MH acceptance criteria for HMC")
+        if np.log(np.random.uniform()) < np.log(prob(qprop)) -  np.log(prob(qcur)):
+             qcur = qprop.copy()
+             pcur = pprop.copy()
+             naccept += 1
         qs.append(qcur.copy())
 
     return (naccept, np.asarray(qs))
@@ -103,10 +105,6 @@ def gaussian_hmc(startq, integrator, n, dt):
 
 
 def gaussian_mh(startq, n):
-    # H = -log P(qcur) + p^2/2 (kinetic)
-    #e^{-(x^2)}
-    def logprob(qcur): return (-1 * np.dot(qcur, qcur))
-
     qcur = startq.copy()
     qs = []
     naccept = 0
@@ -114,17 +112,15 @@ def gaussian_mh(startq, n):
     for i in range(n):
         qprop = qcur + np.array([np.random.normal(), np.random.normal()])
         # we want prob to increase
-        if np.log(np.random.uniform()) < logprob(qprop) - logprob(qcur):
+        if np.log(np.random.uniform()) < np.log(prob(qprop)) - np.log(prob(qcur)):
             qcur = qprop
             naccept += 1
         qs.append(qcur.copy())
 
     return (naccept, np.asarray(qs))
 
-NITERS = 1000
-TIMESTEP = 0.1
-
-hmc_naccept, hmc_qs = gaussian_hmc(STARTQ, leapfroge, NITERS, TIMESTEP)
+NITERS = int(1e3)
+hmc_naccept, hmc_qs = gaussian_hmc(STARTQ, leapfroge, NITERS)
 
 print ("Ideal acceptance ratio: ~20%")
 
@@ -132,20 +128,31 @@ print("HMC acceptance ratio: %4.2f%%" % (hmc_naccept / NITERS * 100))
 
 plt.rcParams.update({'font.size': 12, 'font.family':'monospace'})
 fig, ax = plt.subplots()
-ax.scatter(hmc_qs[:, 0], hmc_qs[:, 1], c=np.arange(hmc_qs.shape[0]),
-        label='HMC', linewidth=3, cmap='copper')
+
+X, Y = np.meshgrid(np.linspace(-3, 10.0, 100), np.linspace(-3, 10.0, 100))
+Z = np.empty(X.shape)
+for i in range(X.shape[0]):
+    for j in range(X.shape[1]):
+        Z[i][j] = np.log(prob(np.asarray([X[i][j], Y[i][j]], dtype=np.float)))
+
+plt.contourf(X, Y, Z, cmap='gray')
+
+ax.scatter(hmc_qs[:, 0], hmc_qs[:, 1], label='HMC', c='#E91E6355')
 
 mh_naccept, mh_qs = gaussian_mh(STARTQ, NITERS)
 
 print("MH acceptance ratio: %4.2f%%" % (mh_naccept / NITERS * 100))
 
-ax.scatter(mh_qs[:, 0], mh_qs[:, 1], c=np.arange(mh_qs.shape[0]),
-        label='MH', linewidth=3, cmap='winter')
+ax.scatter(mh_qs[:, 0], mh_qs[:, 1], label='MH', c='#26C6DA55')
 
 
-legend = plt.legend(frameon=False)
-legend.legendHandles[0].set_color('orange') # HMC
-legend.legendHandles[1].set_color('blue') # MH
+box = ax.get_position(); ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
+
+
+legend = ax.legend(frameon=False, loc='center left', bbox_to_anchor=(1, 0.5))
+legend.legendHandles[0].set_color('#E91E63') # HMC
+legend.legendHandles[1].set_color('#26C6DA') # MH
+
 ax.set_title("HMC v/s MH")
 
 ax.spines['top'].set_visible(False)
