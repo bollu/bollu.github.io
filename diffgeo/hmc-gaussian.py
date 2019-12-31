@@ -34,10 +34,10 @@ def planet(integrator, n, dt):
     return np.asarray(qs)
 
 
-STARTQ = np.asarray([0.0, 10.0])
+STARTQ = np.asarray([0.0, 20.0])
 
-GAUSSIAN_CENTERS = np.asarray([[0.0, 0.0], [8.0, 0.0]])
-GAUSSIAN_WEIGHTS = np.asarray([1.0, 1e4])
+GAUSSIAN_CENTERS = np.asarray([[0.0, 0.0]])
+GAUSSIAN_WEIGHTS = np.asarray([1.0])
 
 # H = -log P(qcur) + p^2/2 (kinetic)
 def prob(qcur): 
@@ -65,19 +65,23 @@ def gaussian_hmc(startq, integrator, n):
 
     # starting positions
     qcur = startq.copy()
-    pcur = np.array([np.random.normal(), np.random.normal()])
     qs = []
     naccept = 0
 
     for i in range(n):
-        curH = H(qcur, pcur)
+        qs.append(qcur.copy())
 
         # redraw momentum
+        pcur = np.array([np.random.normal(), np.random.normal()])
+        curH = H(qcur, pcur)
+
+        # make proposal from physiccs
         qprop = qcur.copy()
-        pprop = np.array([np.random.normal(0, 3), np.random.normal(0, 3)])
-        N_PHYSICS_STEPS = 80
+        pprop = pcur.copy()
+
+        N_PHYSICS_STEPS = 3
         # 0.1 * x = 8
-        DT = 1e-1
+        DT = 0.2
         for _ in range(N_PHYSICS_STEPS):
             (qprop, pprop) = integrator(dhdp, dhdq, qprop, pprop, DT)
 
@@ -92,13 +96,12 @@ def gaussian_hmc(startq, integrator, n):
         # e(cur - prop) > 1
         # cur - prop > 0
         # cur > prop (energy reduces!)
-        # if np.random.uniform() < np.exp(curH - propH):
-        print("NOTE: using MH acceptance criteria for HMC")
-        if np.log(np.random.uniform()) < np.log(prob(qprop)) -  np.log(prob(qcur)):
+        if np.random.uniform() < np.exp(curH - propH):
+        # print("NOTE: using MH acceptance criteria for HMC")
+        # if np.log(np.random.uniform()) < np.log(prob(qprop)) -  np.log(prob(qcur)):
              qcur = qprop.copy()
              pcur = pprop.copy()
              naccept += 1
-        qs.append(qcur.copy())
 
     return (naccept, np.asarray(qs))
 
@@ -119,7 +122,7 @@ def gaussian_mh(startq, n):
 
     return (naccept, np.asarray(qs))
 
-NITERS = int(1e3)
+NITERS = int(10)
 hmc_naccept, hmc_qs = gaussian_hmc(STARTQ, leapfroge, NITERS)
 
 print ("Ideal acceptance ratio: ~20%")
