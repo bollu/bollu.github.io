@@ -92,7 +92,7 @@ $$
 z &= sin(x) \\
 \frac{\partial x}{\partial t} &= ? \\
 \frac{\partial z}{\partial t} 
-  &= \frac{\partial z}{\partial x} \frac{\partial x}{\partial t} + 
+  &= \frac{\partial z}{\partial x} \frac{\partial x}{\partial t} \\
   &= cos(x) \frac{\partial x}{\partial t}
 \end{align*}
 $$
@@ -106,6 +106,7 @@ z &= sin(x) \\
 \frac{\partial t}{\partial x}
   &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial x} \\
   &= \frac{\partial t}{\partial z} cos(x)
+\end{align*}
 $$
 
 #### addition: `z = x + y`:
@@ -133,11 +134,11 @@ z &= x + y \\
 \frac{\partial t}{\partial z} &= ? \\
 \frac{\partial t}{\partial x}
   &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial x} \\
-  &= \frac{\partial t}{\partial z} \cdot 1 = 
+  &= \frac{\partial t}{\partial z} \cdot 1 \\
   &= \frac{\partial t}{\partial z} \\
 \frac{\partial t}{\partial y}
   &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial y} \\
-  &= \frac{\partial t}{\partial z} \cdot 1 = 
+  &= \frac{\partial t}{\partial z} \cdot 1 \\
   &= \frac{\partial t}{\partial z}
 \end{align*}
 $$
@@ -162,7 +163,7 @@ $$
 
 $$
 \begin{align*}
-z &= x y \
+z &= x y \\
 \frac{\partial t}{\partial z} &= ? \\
 \frac{\partial t}{\partial x}
   &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial x} \\
@@ -199,12 +200,12 @@ z &= max(x, y) \\
 \frac{\partial t}{\partial z} &= ? \\
 \frac{\partial t}{\partial x}
   &= \begin{cases}
-    \frac{\partial t}{\partial z} & \text{$if x > y$}
+    \frac{\partial t}{\partial z} & \text{$if x > y$} \\
     0 \text{otherwise}
   \end{cases} \\
 \frac{\partial t}{\partial y}
   &= \begin{cases}
-    \frac{\partial t}{\partial z} & \text{$if y > x$}
+    \frac{\partial t}{\partial z} & \text{$if y > x$} \\
     0 \text{otherwise}
   \end{cases}
 \end{align*}
