@@ -140,11 +140,11 @@ z &= x + y \\
 $$
 
 We can compute $\frac{\partial z}{\partial x}$ by setting $t = x$.
-That is, $\frac{\partial x}{\partial t} = 1, \frac{\partial y}{\partial t = 0}$.
+That is, $\frac{\partial x}{\partial t} = 1, \frac{\partial y}{\partial t} = 0$.
 
 
 Similarly, can compute $\frac{\partial z}{\partial y}$ by setting $t = y$.
-That is, $\frac{\partial x}{\partial t} = 1, \frac{\partial y}{\partial t = 0}$.
+That is, $\frac{\partial x}{\partial t} = 1, \frac{\partial y}{\partial t} = 0$.
 
 If we want both gradients $\frac{\partial z}{\partial x}, \frac{\partial z}{\partial y}$,
 we will have to **rerun the above equations twice** with the two initializations.
@@ -166,7 +166,7 @@ $$
 
 
 We can compute $\frac{\partial z}{\partial x}, \frac{\partial z}{\partial y}$
-**in one shot** by setting $t = z$. That is, $\frac{\partial z}{\partial t} = 1.
+**in one shot** by setting $t = z$. That is, $\frac{\partial z}{\partial t} = 1$.
 
 #### multiplication: `z = xy`
 
