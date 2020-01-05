@@ -26,6 +26,7 @@
 
 #### Table of contents:
 
+- [Comparison of forward and reverse mode AD](#comparison-of-forward-and-reverse-mode-ad)
 - [An invitation to homology and cohomology](#an-invitation-to-homology-and-cohomology-part-1--homology)
 - [Stuff I learnt in 2019](#stuff-i-learnt-in-2019)
 - [A motivation for p-adic analysis](#a-motivation-for-p-adic-analysis)
@@ -57,7 +58,7 @@
 - [Presburger arithmetic can represent the Collatz Conjecture](#presburger-arithmetic-can-represent-the-collatz-conjecture)
 
 
-# [Comparison of forward and reverse mode AD](#comparison-of-forward-and-reverse-mode-AD)
+# [Comparison of forward and reverse mode AD](#comparison-of-forward-and-reverse-mode-ad)
 
 Quite a lot of ink has been spilt on this topic. My favourite reference
 is the one by [Rufflewind](https://rufflewind.com/2016-12-30/reverse-mode-automatic-differentiation).
@@ -169,6 +170,39 @@ z &= x y \\
 \frac{\partial t}{\partial y}
   &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial y}
   = \frac{\partial t}{\partial z} \cdot x
+\end{align*}
+$$
+
+
+#### subtraction: `z = x - y`:
+
+- Forward mode equations:
+
+$$
+\begin{align*}
+z &= x + y \\
+\frac{\partial x}{\partial t} &= ? \\
+\frac{\partial y}{\partial t} &= ? \\
+\frac{\partial z}{\partial t} 
+  &= \frac{\partial z}{\partial x} \frac{\partial x}{\partial t} -
+    \frac{\partial z}{\partial y} \frac{\partial y}{\partial t} \\
+  &= 1 \cdot \frac{\partial x}{\partial t} - 1 \cdot \frac{\partial y}{\partial t}
+  = \frac{\partial x}{\partial t} - \frac{\partial y}{\partial t}
+\end{align*}
+$$
+
+- Reverse mode equations:
+
+$$
+\begin{align*}
+z &= x - y \\
+\frac{\partial t}{\partial z} &= ? \\
+\frac{\partial t}{\partial x}
+  &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial x} \\
+  &= \frac{\partial t}{\partial z} \cdot 1 = \frac{\partial t}{\partial z} \\
+\frac{\partial t}{\partial y}
+  &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial y} \\
+  &= \frac{\partial t}{\partial z} \cdot -1 = -\frac{\partial t}{\partial z}
 \end{align*}
 $$
 
