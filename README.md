@@ -134,12 +134,10 @@ z &= x + y \\
 \frac{\partial t}{\partial z} &= ? \\
 \frac{\partial t}{\partial x}
   &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial x} \\
-  &= \frac{\partial t}{\partial z} \cdot 1 \\
-  &= \frac{\partial t}{\partial z} \\
+  &= \frac{\partial t}{\partial z} \cdot 1 = \frac{\partial t}{\partial z} \\
 \frac{\partial t}{\partial y}
   &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial y} \\
-  &= \frac{\partial t}{\partial z} \cdot 1 \\
-  &= \frac{\partial t}{\partial z}
+  &= \frac{\partial t}{\partial z} \cdot 1 = \frac{\partial t}{\partial z}
 \end{align*}
 $$
 
@@ -166,11 +164,11 @@ $$
 z &= x y \\
 \frac{\partial t}{\partial z} &= ? \\
 \frac{\partial t}{\partial x}
-  &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial x} \\
-  &= \frac{\partial t}{\partial z} \cdot y \\
+  &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial x} 
+  = \frac{\partial t}{\partial z} \cdot y \\
 \frac{\partial t}{\partial y}
-  &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial y} \\
-  &= \frac{\partial t}{\partial z} \cdot x
+  &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial y}
+  = \frac{\partial t}{\partial z} \cdot x
 \end{align*}
 $$
 
@@ -201,12 +199,12 @@ z &= max(x, y) \\
 \frac{\partial t}{\partial x}
   &= \begin{cases}
     \frac{\partial t}{\partial z} & \text{$if x > y$} \\
-    0 \text{otherwise}
+    0 & \text{otherwise}
   \end{cases} \\
 \frac{\partial t}{\partial y}
   &= \begin{cases}
     \frac{\partial t}{\partial z} & \text{$if y > x$} \\
-    0 \text{otherwise}
+    0 & \text{otherwise}
   \end{cases}
 \end{align*}
 $$
