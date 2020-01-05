@@ -57,6 +57,159 @@
 - [Presburger arithmetic can represent the Collatz Conjecture](#presburger-arithmetic-can-represent-the-collatz-conjecture)
 
 
+# [Comparison of forward and reverse mode AD](#comparison-of-forward-and-reverse-mode-AD)
+
+Quite a lot of ink has been spilt on this topic. My favourite reference
+is the one by [Rufflewind](https://rufflewind.com/2016-12-30/reverse-mode-automatic-differentiation).
+
+However, none of these examples have a good stock of examples for the diference.
+So here, I catalogue the explicit computations between computing forward
+mode AD and reverse mode AD.
+
+In general, in forward mode AD, we fix how much the inputs wiggle with
+respect to a parameter $dt$, and we then try to find out how much the
+output changes, by using the rule $output = f(input_1, input_2, \dots input_n)$.
+
+In reverse mode AD, we fix how much the outputs wiggle with respect
+to the paramter $dt$, and we figure out how much the input changes, by
+using the rules  $output_1 = f(input_{cur}, \dots), output_2 = f(input_{cur}, \dots), \dots$.
+This is more annoying since we need to know every $output_i$ where
+$input_{cur}$ is used. It really breaks my mind that we can do this
+(figure out the input wiggle from the output wiggles).
+
+The upshot is that if we have few "root outputs" (like a loss function),
+we need to run AD once with respect to this, and we will get the wiggles
+of _all inputs_ at the same time with respect to this output, since we 
+compute the wiggles output to input.
+
+
+#### sin: `z = sin(x)`
+
+- Forward mode equations:
+
+$$
+\begin{align*}
+z &= sin(x) \\
+\frac{\partial x}{\partial t} &= ? \\
+\frac{\partial z}{\partial t} 
+  &= \frac{\partial z}{\partial x} \frac{\partial x}{\partial t} + 
+  &= cos(x) \frac{\partial x}{\partial t}
+\end{align*}
+$$
+
+- Reverse mode equations:
+
+$$
+\begin{align*}
+z &= sin(x) \\
+\frac{\partial t}{\partial z} &= ? \\
+\frac{\partial t}{\partial x}
+  &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial x} \\
+  &= \frac{\partial t}{\partial z} cos(x)
+$$
+
+#### addition: `z = x + y`:
+
+- Forward mode equations:
+
+$$
+\begin{align*}
+z &= x + y \\
+\frac{\partial x}{\partial t} &= ? \\
+\frac{\partial y}{\partial t} &= ? \\
+\frac{\partial z}{\partial t} 
+  &= \frac{\partial z}{\partial x} \frac{\partial x}{\partial t} + 
+    \frac{\partial z}{\partial y} \frac{\partial y}{\partial t} \\
+  &= 1 \cdot \frac{\partial x}{\partial t} + 1 \cdot \frac{\partial y}{\partial t}
+  = \frac{\partial x}{\partial t} + \frac{\partial y}{\partial t}
+\end{align*}
+$$
+
+- Reverse mode equations:
+
+$$
+\begin{align*}
+z &= x + y \\
+\frac{\partial t}{\partial z} &= ? \\
+\frac{\partial t}{\partial x}
+  &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial x} \\
+  &= \frac{\partial t}{\partial z} \cdot 1 = 
+  &= \frac{\partial t}{\partial z} \\
+\frac{\partial t}{\partial y}
+  &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial y} \\
+  &= \frac{\partial t}{\partial z} \cdot 1 = 
+  &= \frac{\partial t}{\partial z}
+\end{align*}
+$$
+
+#### multiplication: `z = xy`
+
+- Forward mode equations:
+
+$$
+\begin{align*}
+z &= x y \\
+\frac{\partial x}{\partial t} &= ? \\
+\frac{\partial y}{\partial t} &= ? \\
+\frac{\partial z}{\partial t} 
+  &= \frac{\partial z}{\partial x} \frac{\partial x}{\partial t} + 
+    \frac{\partial z}{\partial y} \frac{\partial y}{\partial t} \\
+  &= y \frac{\partial x}{\partial t} + x \cdot \frac{\partial y}{\partial t}
+\end{align*}
+$$
+
+- Reverse mode equations:
+
+$$
+\begin{align*}
+z &= x y \
+\frac{\partial t}{\partial z} &= ? \\
+\frac{\partial t}{\partial x}
+  &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial x} \\
+  &= \frac{\partial t}{\partial z} \cdot y \\
+\frac{\partial t}{\partial y}
+  &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial y} \\
+  &= \frac{\partial t}{\partial z} \cdot x
+\end{align*}
+$$
+
+#### Maximum: `z = max(x, y)`
+
+
+- Forward mode equations:
+
+$$
+\begin{align*}
+z &= max(x, y) \\
+\frac{\partial x}{\partial t} &= ? \\
+\frac{\partial y}{\partial t} &= ? \\
+\frac{\partial z}{\partial t} 
+  &= \begin{cases}
+        \frac{\partial x}{\partial t} & \text{if $x > y$} \\
+        \frac{\partial y}{\partial t} & \text{otherwise} \\
+    \end{cases}
+\end{align*}
+$$
+
+- Reverse mode equations:
+
+$$
+\begin{align*}
+z &= max(x, y) \\
+\frac{\partial t}{\partial z} &= ? \\
+\frac{\partial t}{\partial x}
+  &= \begin{cases}
+    \frac{\partial t}{\partial z} & \text{$if x > y$}
+    0 \text{otherwise}
+  \end{cases} \\
+\frac{\partial t}{\partial y}
+  &= \begin{cases}
+    \frac{\partial t}{\partial z} & \text{$if y > x$}
+    0 \text{otherwise}
+  \end{cases}
+\end{align*}
+$$
+
 
 # [An invitation to homology and cohomology, Part 1 --- Homology](#an-invitation-to-homology-and-cohomology-part-1--homology)
 
@@ -190,17 +343,17 @@ which represents linear combinations of vertices. For example,
 $(1, -1, 2) \in V$ represents $r - g + 2b$ --- that is, take a copy of the
 red vertex, subtract the green vertex, and add two copies of the blue vertex.
 
-The boundary operator $\partial_{EV}: E \rightarrow V$ is depicted in the
-picture. This operator sends edges to their _boundary_, and is therefore called
-the _boundary operator_.  The _boundary_ of an edge describes the edge in terms
-of vertices, just like we would describe a direction vector (to borrow physics
-parlance) by subtracting points.
+The boundary operator $\partial_{EV}: \mathcal{E} \rightarrow \mathcal V$ is
+depicted in the picture. This operator sends edges to their _boundary_, and is
+therefore called the _boundary operator_.  The _boundary_ of an edge describes
+the edge in terms of vertices, just like we would describe a direction vector
+(to borrow physics parlance) by subtracting points.
 
 The action of the operator on a linear combination of edges is:
 
 $$
 \begin{align*}
-&\partial_{EV}: E \rightarrow V \\
+&\partial_{EV}: \mathcal E \rightarrow \mathcal V \\
 &\partial_{EV}(1, 0, 0) \equiv (1, -1, 0) \qquad o \mapsto r - g \\
 &\partial_{EV}(0, 1, 0) \equiv (-1, 0, 1) \qquad m \mapsto b - r \\
 &\partial_{EV}(0, 0, 1) \equiv (0, 1, -1) \qquad c \mapsto b - g \\
@@ -216,9 +369,19 @@ Now, notice that to traverse the cycle, we should traverse the orange edge,
 then the magenta edge, then the cyan edge, in that direction. That is,
 the cycle can be thought of as $o + m + c$. However, how do we _detect_ this
 cycle? The key idea is that if we look at the 
-_image of the cycle under the boundary operator_ $\partial_{EV}$,
+_image of the cycle $o + m + c$ under the boundary operator_ $\partial_{EV}$,
 we will get $0$! For us to have completed a cycle, we must have both
-entered and exited each vertex, so the total sum must be 0.
+entered and exited each vertex, so the total sum must be $0$.
+
+Formally:
+
+$$
+\begin{align*}
+  &\partial_{EV}(s, t, u) \equiv (s - t, u - s, t - u) \\
+  &o + m + c = (1, 1, 1) \in \mathcal E \quad
+  \partial_{EV}((1, 1, 1) = (1 - 1, 1 - 1, 1 - 1) = (0, 0, 0)
+\end{align*}
+$$
 
 ##### Formal definition of cycles
 
@@ -226,11 +389,17 @@ This is very nice, since we have converted the topological invariant
 of a _hole in the space_ into an algebraic invariant of "linear combination
 of edges that map to 0". That is, we want to consider all thoose loops
 that belong to the _kernel_ of $\partial_{EV}$. (Terminology: 
-the kernel of a linear transformation / group homomorphism
-is the set of all things which map to zero.)
+the kernel of a linear transformation is the set of all things in the domain
+which map to zero)
 
 So, we define (tentatively) the first homology group:
-- $H_1 \equiv Kernel(\partial_{EV}) \subset E$
+$$
+\begin{align*}
+H_1 \equiv Kernel(\partial_{EV}) \equiv
+\left \\{ (a, b, c) \in \mathcal E \mid \partial_EV((a, b, c)) = (0, 0, 0) \right\\}
+\subset \mathcal E$
+\end{align*}
+$$
 
 If we try to compute this, we will have to have:
 
@@ -269,13 +438,13 @@ Since it is the boundary of a "filled in" region, it does not count anymore,
 since we can "shrink the hole" across the face to make it a non-loop.
 Hence, we need to quotient our $H_1$ with the boundary of the face.
 
-Formally, what we do is we create another group $F \equiv \mathbb Z$, which
-counts copies of our face $f$, and we define another boundary operator, such
-that the boundary of the face $f$ is $o + m + c$.
+Formally, what we do is we create another group $\mathcal F \equiv \mathbb Z$,
+which counts copies of our face $f$, and we define another boundary operator,
+such that the boundary of the face $f$ is $o + m + c$.
 
 $$
 \begin{align*}
-&\partial_{FE} : F \rightarrow E \\
+&\partial_{FE} : \mathcal F \rightarrow \mathcal E \\
 &\partial_{FE}(1) \equiv (1, 1, 1)  \\
 &\text{(Extend using linearity)} \\
 &\partial_{FE}(c) \equiv c \partial(1) = (c, c, c)
@@ -3107,7 +3276,70 @@ diffgeo ideas, which is great, because it gives me motivation to study different
 
 - Original paper: [Construction of higher order sympletic integrators](https://www.sciencedirect.com/science/article/abs/pii/0375960190900923)
 
-- 
+##### Simulating orbits with large timesteps
+
+![euler-vs-leapfrog](static/leapfrog-vs-euler.png)
+
+Clearly, the leapfrog integrator preserves energy and continues to move
+in an orbit, while the euler integrator goes batshit and causes orbits
+to spiral outwards. Full code is available below. More of the code is 
+spent coaxing matplotlib to look nice, than doing the actual
+computation.
+
+```py
+import numpy as np
+import matplotlib.pyplot as plt
+import numpy.linalg
+
+# dq/dt = dH/dp | dp/dt = -dH/dq (a = -del V)
+def leapfroge(dhdp, dhdq, q, p, dt):
+    p += -dhdq(q, p) * 0.5 * dt # halfstep momentum
+    q += dhdp(q, p) * dt # fullstep position
+    p += -dhdq(q, p) * 0.5 * dt # halfstep momentum
+    return (q, p)
+
+def euler(dhdp, dhdq, q, p, dt):
+    pnew = p + -dhdq(q, p) * dt
+    qnew = q + dhdp(q, p) * dt
+
+def planet(integrator, n, dt):
+    STRENGTH = 0.5
+
+    q = np.array([0.0, 1.0]); p = np.array([-1.0, 0.0])
+    
+    # H = STRENGTH * |q| (potential) + p^2/2 (kinetic)
+    def H(qcur, pcur): return STRENGTH * np.linalg.norm(q) + np.dot(p, p) / 2
+    def dhdp(qcur, pcur): return p
+    def dhdq(qcur, pcur): return STRENGTH * 2 * q / np.linalg.norm(q)
+    
+    qs = []
+    for i in range(n):
+        (q, p) = integrator(dhdp, dhdq, q, p, dt)
+        qs.append(q.copy())
+    return np.asarray(qs)
+
+NITERS = 15
+TIMESTEP = 1
+
+plt.rcParams.update({'font.size': 22, 'font.family':'monospace'})
+fig, ax = plt.subplots()
+
+planet_leapfrog = planet(leapfroge, NITERS, TIMESTEP)
+ax.plot(planet_leapfrog[:, 0], planet_leapfrog[:, 1], label='leapfrog',
+        linewidth=3, color='#00ACC1')
+planet_euler = planet(euler, NITERS, TIMESTEP)
+ax.plot(planet_euler[:, 0], planet_euler[:, 1], label='euler',
+        linewidth=3, color='#D81B60')
+
+legend = plt.legend(frameon=False)
+ax.set_title("leapfrog v/s euler: NITERS=%s dt=%s" % (NITERS, TIMESTEP))
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+ax.spines['bottom'].set_visible(False)
+ax.spines['left'].set_visible(False)
+plt.show()
+plt.savefig("leapfrog-vs-euler.png")
+```
 
 # [Small Haskell MCMC implementation](#small-haskell-mcmc-implementation)
 
