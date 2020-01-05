@@ -68,15 +68,20 @@ So here, I catalogue the explicit computations between computing forward
 mode AD and reverse mode AD.
 
 In general, in forward mode AD, we fix how much the inputs wiggle with
-respect to a parameter $dt$, and we then try to find out how much the
-output changes, by using the rule $output = f(input_1, input_2, \dots input_n)$.
+respect to a parameter $t$. We figure out how much the output wiggles
+with respect to $t$. If $output = f(input_1, input_2, \dots input_n)$,
+then $\frac{\partial output}{\partial t} = \sum_i \frac{\partial f}{\partial input_i} \frac{\partial input_i}{\partial dt}$.
 
-In reverse mode AD, we fix how much the outputs wiggle with respect
-to the paramter $dt$, and we figure out how much the input changes, by
-using the rules  $output_1 = f(input_{cur}, \dots), output_2 = f(input_{cur}, \dots), \dots$.
-This is more annoying since we need to know every $output_i$ where
-$input_{cur}$ is used. It really breaks my mind that we can do this
-(figure out the input wiggle from the output wiggles).
+In reverse mode AD, we fix how much the parameter $t$ wiggles with
+respect to the output. We figure out how much the parameter $t$
+wiggles with respect to the inputs.
+If $output_i = f_i(input, \dots)$, then $\frac{\partial t}{\partial input} = \sum_i \frac{\partial t}{\partial output_i} \frac{\partial f_i}{input}$.
+This is a much messier expression, since we need to accumulate the data
+over all outputs. 
+
+Essentially, deriving output from input is easy, since how to compute an output
+from an input is documented in one place. deriving input from output is
+annoying, since many outputs can depent on a single output.
 
 The upshot is that if we have few "root outputs" (like a loss function),
 we need to run AD once with respect to this, and we will get the wiggles
@@ -98,6 +103,9 @@ z &= sin(x) \\
 \end{align*}
 $$
 
+We can compute $\frac{\partial z}{\partial x}$ by setting $t = x$.
+That is, setting $\frac{\partial x}{\partial t} = 1$.
+
 - Reverse mode equations:
 
 $$
@@ -109,6 +117,10 @@ z &= sin(x) \\
   &= \frac{\partial t}{\partial z} cos(x)
 \end{align*}
 $$
+
+
+We can compute $\frac{\partial z}{\partial x}$ by setting $t = z$.
+That is, setting $\frac{\partial z}{\partial t} = 1$.
 
 #### addition: `z = x + y`:
 
@@ -127,6 +139,16 @@ z &= x + y \\
 \end{align*}
 $$
 
+We can compute $\frac{\partial z}{\partial x}$ by setting $t = x$.
+That is, $\frac{\partial x}{\partial t} = 1, \frac{\partial y}{\partial t = 0}$.
+
+
+Similarly, can compute $\frac{\partial z}{\partial y}$ by setting $t = y$.
+That is, $\frac{\partial x}{\partial t} = 1, \frac{\partial y}{\partial t = 0}$.
+
+If we want both gradients $\frac{\partial z}{\partial x}, \frac{\partial z}{\partial y}$,
+we will have to **rerun the above equations twice** with the two initializations.
+
 - Reverse mode equations:
 
 $$
@@ -142,6 +164,10 @@ z &= x + y \\
 \end{align*}
 $$
 
+
+We can compute $\frac{\partial z}{\partial x}, \frac{\partial z}{\partial y}$
+**in one shot** by setting $t = z$. That is, $\frac{\partial z}{\partial t} = 1.
+
 #### multiplication: `z = xy`
 
 - Forward mode equations:
@@ -154,7 +180,7 @@ z &= x y \\
 \frac{\partial z}{\partial t} 
   &= \frac{\partial z}{\partial x} \frac{\partial x}{\partial t} + 
     \frac{\partial z}{\partial y} \frac{\partial y}{\partial t} \\
-  &= y \frac{\partial x}{\partial t} + x \cdot \frac{\partial y}{\partial t}
+  &= y \frac{\partial x}{\partial t} + x \frac{\partial y}{\partial t}
 \end{align*}
 $$
 
