@@ -86,7 +86,71 @@ annoying, since many outputs can depent on a single output.
 The upshot is that if we have few "root outputs" (like a loss function),
 we need to run AD once with respect to this, and we will get the wiggles
 of _all inputs_ at the same time with respect to this output, since we 
-compute the wiggles output to input.
+compute the wiggles output to input. 
+
+The first example of `z = max(x, y)` captures the essential difference
+between the two approached succinctly. Study this, and everything else will make
+sense.
+
+
+#### Maximum: `z = max(x, y)`
+
+
+- Forward mode equations:
+
+$$
+\begin{align*}
+z &= max(x, y) \\
+\frac{\partial x}{\partial t} &= ? \\
+\frac{\partial y}{\partial t} &= ? \\
+\frac{\partial z}{\partial t} 
+  &= \begin{cases}
+        \frac{\partial x}{\partial t} & \text{if $x > y$} \\
+        \frac{\partial y}{\partial t} & \text{otherwise} \\
+    \end{cases}
+\end{align*}
+$$
+
+We can compute $\frac{\partial z}{\partial x}$ by setting $t = x$.
+That is, $\frac{\partial x}{\partial t} = 1, \frac{\partial y}{\partial t} = 0$.
+Similarly, can compute $\frac{\partial z}{\partial y}$ by setting $t = y$.
+That is, $\frac{\partial x}{\partial t} = 1, \frac{\partial y}{\partial t} = 0$.
+If we want both gradients $\frac{\partial z}{\partial x}, \frac{\partial z}{\partial y}$,
+we will have to **rerun the above equations twice** with the two initializations.
+
+In our equations, we are saying that we know how sensitive
+the inputs $x, y$ are to a given parameter $t$. We are deriving how sensitive
+the output $z$ is to the parameter $t$ as a composition of $x, y$. If 
+$x > y$, then we know that $z$ is as sensitive to $t$ as $x$ is.
+
+
+- Reverse mode equations:
+
+$$
+\begin{align*}
+z &= max(x, y) \\
+\frac{\partial t}{\partial z} &= ? \\
+\frac{\partial t}{\partial x}
+  &= \begin{cases}
+    \frac{\partial t}{\partial z} & \text{$if x > y$} \\
+    0 & \text{otherwise}
+  \end{cases} \\
+\frac{\partial t}{\partial y}
+  &= \begin{cases}
+    \frac{\partial t}{\partial z} & \text{$if y > x$} \\
+    0 & \text{otherwise}
+  \end{cases}
+\end{align*}
+$$
+
+We can compute $\frac{\partial z}{\partial x}, \frac{\partial z}{\partial y}$
+**in one shot** by setting $t = z$. That is, $\frac{\partial z}{\partial t} = 1$.
+
+In our equations, we are saying that we know how sensitive
+the parameter $t$ is to a given output $z$. We are trying to see
+how sensitive $t$ is to the inputs $x, y$. If $x$ is active (ie, $x > y$),
+then $t$ is indeed sensitive to $x$ and $\frac{\partial t}{\partial x} = 1$.
+Otherwise, it is not sensitive, and $\frac{\partial t}{\partial x} = 0$.
 
 
 #### sin: `z = sin(x)`
@@ -139,15 +203,6 @@ z &= x + y \\
 \end{align*}
 $$
 
-We can compute $\frac{\partial z}{\partial x}$ by setting $t = x$.
-That is, $\frac{\partial x}{\partial t} = 1, \frac{\partial y}{\partial t} = 0$.
-
-
-Similarly, can compute $\frac{\partial z}{\partial y}$ by setting $t = y$.
-That is, $\frac{\partial x}{\partial t} = 1, \frac{\partial y}{\partial t} = 0$.
-
-If we want both gradients $\frac{\partial z}{\partial x}, \frac{\partial z}{\partial y}$,
-we will have to **rerun the above equations twice** with the two initializations.
 
 - Reverse mode equations:
 
@@ -164,9 +219,6 @@ z &= x + y \\
 \end{align*}
 $$
 
-
-We can compute $\frac{\partial z}{\partial x}, \frac{\partial z}{\partial y}$
-**in one shot** by setting $t = z$. That is, $\frac{\partial z}{\partial t} = 1$.
 
 #### multiplication: `z = xy`
 
@@ -229,43 +281,6 @@ z &= x - y \\
 \frac{\partial t}{\partial y}
   &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial y} \\
   &= \frac{\partial t}{\partial z} \cdot -1 = -\frac{\partial t}{\partial z}
-\end{align*}
-$$
-
-#### Maximum: `z = max(x, y)`
-
-
-- Forward mode equations:
-
-$$
-\begin{align*}
-z &= max(x, y) \\
-\frac{\partial x}{\partial t} &= ? \\
-\frac{\partial y}{\partial t} &= ? \\
-\frac{\partial z}{\partial t} 
-  &= \begin{cases}
-        \frac{\partial x}{\partial t} & \text{if $x > y$} \\
-        \frac{\partial y}{\partial t} & \text{otherwise} \\
-    \end{cases}
-\end{align*}
-$$
-
-- Reverse mode equations:
-
-$$
-\begin{align*}
-z &= max(x, y) \\
-\frac{\partial t}{\partial z} &= ? \\
-\frac{\partial t}{\partial x}
-  &= \begin{cases}
-    \frac{\partial t}{\partial z} & \text{$if x > y$} \\
-    0 & \text{otherwise}
-  \end{cases} \\
-\frac{\partial t}{\partial y}
-  &= \begin{cases}
-    \frac{\partial t}{\partial z} & \text{$if y > x$} \\
-    0 & \text{otherwise}
-  \end{cases}
 \end{align*}
 $$
 
