@@ -1,0 +1,176 @@
+\documentclass[11pt]{book}
+%\documentclass[10pt]{llncs}
+%\usepackage{llncsdoc}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+\usepackage{physics}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{listing}
+\usepackage{minted}
+\evensidemargin=0.20in
+\oddsidemargin=0.20in
+\topmargin=0.2in
+%\headheight=0.0in
+%\headsep=0.0in
+%\setlength{\parskip}{0mm}
+%\setlength{\parindent}{4mm}
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{8.5in}
+%\leftmargin -2in
+%\setlength{\rightmargin}{-2in}
+%\usepackage{epsf}
+%\usepackage{url}
+
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+%\usepackage{minted}
+%\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+\newcommand{\E}[1]{\ensuremath{\mathbb{E} \left[ #1 \right]}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\R}{\ensuremath{\mathbb R}}
+\newcommand{\coT}{\ensuremath{T^*}}
+\newcommand{\Lie}{\ensuremath{\mathfrak{L}}}
+\newcommand{\pushforward}[1]{\ensuremath{{#1}_{\star}}}
+\newcommand{\pullback}[1]{\ensuremath{{#1}^{\star}}}
+
+\newcommand{\pushfwd}[1]{\pushforward{#1}}
+\newcommand{\pf}[1]{\pushfwd{#1}}
+
+\newcommand{\boldX}{\ensuremath{\mathbf{X}}}
+\newcommand{\boldY}{\ensuremath{\mathbf{Y}}}
+
+
+\newcommand{\G}{\ensuremath{\mathcal{G}}}
+% \newcommand{\braket}[2]{\ensuremath{\left\langle #1 \vert #2 \right\rangle}}
+
+
+\def\qed{$\Box$}
+\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{observation}{Observation}
+\newtheorem{proof}{Proof}
+\newtheorem{remark}{Remark}
+\newtheorem{example}{Example}
+
+\title{Probabilistic graphical models}
+\author{Siddharth Bhat}
+\date{Spring 2020}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\chapter{Background and aims}
+Consider a distribution of binary random variables $x_1, x_2, \dots x_n, y$.
+Note that to define the value of $P(x_1)$, we need just one value:
+$P(x_1 = 0)$. We can derive $P(x_1 = 1) \equiv 1 - P(x_1 = 0)$.
+
+However, the full joint distribution
+$P(x_1, x_2, \dots, x_n, y)$ needs $2^{n+1} - 1$ values to fully define.
+
+
+However, let us assume that $P(x_i|y)$ are all independent. Hence, we can
+rewrite the above distribution as $P(y) \prod_{i=1}^n P(x_i|y)$. Now, we need
+to know $P(x_i|y=0), P(x_i|y=1)$. Both of these are binary random variables
+which need one value to define. So in toto, we need $2n + 1$ values for
+the above (factored) joint distribution.
+
+So, we will study how to represent, perform inference, and perfom bayesian
+updates (learning). Also, connections to boltzmann distributions and whatnot
+will be explored. Connections to graph theory as well. We are also going to
+study MCMC (Markov chain monte carlo) methods. I hope we study more than
+just metropolis hastings: I want to understand Hamiltonian and Lavengin Monte
+Carlo more deeply (NUTS sampling, slice sampling, their interactions with 
+HMC, etc). Later, we will see some connections to Learning theory (PAC
+learning - defined by Valiant).
+
+The textbook is "Kohler and Friedman".
+
+
+\subsection{A teaser problem}
+We start with an ordered deck. We propose a shuffling mechanism: take the
+top card and move it to somewhere in the deck. Eg. If we start form $(1, 2, 3)$,
+we can move this to $(2, 1, 3)$, or $(2, 3, 1)$. Now, when the card $3$ comes
+to the top, note that we had placed all other numbers in the deck with
+uniform probability. So, when the card $3$ comes to the top, all the other
+cards are uniformly distributed. We now need to place $3$ uniformly in the
+deck.
+
+Let $T_1$ be the random variable of the first
+round at which a single card is placed \emph{underneath} $n$.
+
+There are $n-1$ slots where can place any top card, so the likelihood of
+hitting the bottom slot is $1/(n-1)$.
+
+\begin{align*}
+&P(T_1=1) \equiv \frac{1}{n - 1} \\
+&P(T_1=2) \equiv \left(1 - \frac{1}{n-1}\right) \frac{1}{n-1} = \frac{n-2}{n-1} \\
+&P(T_1=i) \equiv \left(1 - P(T_1=i-1) \right) \frac{1}{n-1} = 
+    \left( 1 - \frac{1}{n-1} \right)^{i-1} \frac{1}{n-1} = \frac{(n-2)^{i-1}}{(n-1)^i}
+\end{align*}
+
+This is a geometric distribution with parameter $\frac{1}{n-1}$. The expectation
+is going to be $\E{T_1} \equiv n-1$.
+
+We now define $T_2$ to be the random variable which is the time from when the
+first card went underneath the $n$th card, to when the second card went
+underneath the $n$th card. We have two locations at the bottom. Eg. if we had
+$(1, 2, 3, 4)$ to start with, and after $T_1$, we are now at $(2, 3, 4, 1)$. We
+now have two positions $(2, 3, 4, \circ, 1, \circ)$ to be underneath the card
+$4$.
+
+\begin{align*}
+&P(T_2=1) \equiv \frac{2}{n - 1} \\
+&P(T_2=i) \equiv \left( 1 - \frac{2}{n-1} \right)^{i-1} \frac{2}{n-1}
+\end{align*}
+
+This is a geometric distribution with parameter $\frac{2}{n-1}$. The expectation
+is going to be $\E{T_1} \equiv n-2$.
+
+
+
+The total time for the $n$th card to reach the top is going to be 
+$T \equiv T_1 + T_2 + \dots + T_n$. So the expectation is going to be
+$\E{T} = \sum_i \E{T_i} = \sum_i \frac{1}{n-i}$
+
+\subsection{Another problem}
+There are three balls, numbered $1$, $2$, $3$, and there are three numbered
+bins. We throw the first ball into each of the three bins with equal probability.
+Independently, throw the second ball and the third ball to each of the three
+bins Independently.
+
+Let $X$ be the number of balls in the first balls in the first bin. Let $N$ be
+the number of non-empty bins.
+
+Write down $P(X), P(N), P(X, N)$ where $P(X, N)$ is the joint distribution. 
+Also find $P(X|N)$, $P(N|X)$.
+
+\end{document}
