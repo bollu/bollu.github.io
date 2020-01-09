@@ -26,6 +26,7 @@
 
 #### Table of contents:
 
+- [Good reference to the Rete pattern matching algorithm](#good-reference-to-the-rete-pattern-matching-algorithm)
 - [Comparison of forward and reverse mode AD](#comparison-of-forward-and-reverse-mode-ad)
 - [An invitation to homology and cohomology](#an-invitation-to-homology-and-cohomology-part-1--homology)
 - [Stuff I learnt in 2019](#stuff-i-learnt-in-2019)
@@ -56,6 +57,49 @@
 - [Handy list of differential geometry definitions](#handy-list-of-differential-geometry-definitions)
 - [Lazy programs have space leaks, Strict programs have time leaks](#lazy-programs-have-space-leaks-strict-programs-have-time-leaks)
 - [Presburger arithmetic can represent the Collatz Conjecture](#presburger-arithmetic-can-represent-the-collatz-conjecture)
+
+# [Good reference to the Rete pattern matching algorithm](#good-reference-to-the-rete-pattern-matching-algorithm)
+
+The [Rete pattern matching algorithm](https://en.wikipedia.org/wiki/Rete_algorithm)
+is an algorithm that allows matching a huge number of rules with a huge database
+of "facts".
+
+MLIR ("multi-language intermediate representation") is a new technology that
+hopes to centralize much of the research and development of various compilers
+into a single authoritative source. The major claim-to-fame is that it allows
+one to mix various "dialects" (much as Racket does). So, to a first order
+approximation, MLIR is "JSON for compiler intermediate representations".
+
+What MLIR gets right is _tooling_. They take the experience that the LLVM project
+has mined for the last decade and a half, and bake many of the good stuff that
+came with LLVM right in. For example, MLIR comes in-built with a pretty printer,
+a notion of types, a notion of "attributes", SSA, enforced provenance
+tracking of code (so one can _always_ know what the original source code was
+that led to some assembly). Sound engineering might see MLIR succeed where
+many others failed.
+
+I was reminded of Rete since the MLIR folks are trying to solve the pattern
+matching problem in general for their [Generic DAG Rewriter](https://mlir.llvm.org/docs/GenericDAGRewriter/).
+
+They currently just use a worklist based algorithm. I'm trying to understand
+if Rete can be used instead. Rete is famous for being hard to understand,
+so I began a quest to look for good sources to implement it. I found a great 
+[PhD thesis written by Robert B. Doorenboos](http://reports-archive.adm.cs.cmu.edu/anon/1995/CMU-CS-95-113.pdf),
+which quips:
+
+> Since the Rete match algorithm provides the starting point for much of the work in this thesis,
+> this chapter describes Rete. Unfortunately, most of the descriptions of Rete in the literature
+> are not particularly lucid,1 which is perhaps why Rete has acquired \a reputation for extreme
+> differentialculty."(Perlin, 1990b) To remedy this situation, this chapter describes Rete in a tutorial
+> style, rather than just briey reviewing it and referring the reader to the literature for a full
+> description. We will rst give an overview of Rete, and then discuss the principle data structures
+> and procedures commonly used to implement it. High-level pseudocode will be given for many
+> of the structures and procedures, so that this chapter may serve as a guide to readers who want
+> to implement Rete (or some variant) in their own systems.
+
+I now have a reference to an accessible description of this stuff. I might
+implement Rete to understand it, so that it's part of my toolkit if I ever
+need it.
 
 # [Leapfrog Integration](#leapfrog-integration)
 
