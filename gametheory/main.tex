@@ -1,0 +1,354 @@
+\documentclass[11pt]{book}
+%\documentclass[10pt]{llncs}
+%\usepackage{llncsdoc}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+\usepackage{physics}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{listing}
+\usepackage{minted}
+\evensidemargin=0.20in
+\oddsidemargin=0.20in
+\topmargin=0.2in
+%\headheight=0.0in
+%\headsep=0.0in
+%\setlength{\parskip}{0mm}
+%\setlength{\parindent}{4mm}
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{8.5in}
+%\leftmargin -2in
+%\setlength{\rightmargin}{-2in}
+%\usepackage{epsf}
+%\usepackage{url}
+
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+%\usepackage{minted}
+%\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\R}{\ensuremath{\mathbb R}}
+\newcommand{\coT}{\ensuremath{T^*}}
+\newcommand{\Lie}{\ensuremath{\mathfrak{L}}}
+\newcommand{\pushforward}[1]{\ensuremath{{#1}_{\star}}}
+\newcommand{\pullback}[1]{\ensuremath{{#1}^{\star}}}
+
+\newcommand{\pushfwd}[1]{\pushforward{#1}}
+\newcommand{\pf}[1]{\pushfwd{#1}}
+
+\newcommand{\boldX}{\ensuremath{\mathbf{X}}}
+\newcommand{\boldY}{\ensuremath{\mathbf{Y}}}
+
+
+\newcommand{\G}{\ensuremath{\mathcal{G}}}
+% \newcommand{\braket}[2]{\ensuremath{\left\langle #1 \vert #2 \right\rangle}}
+
+
+\def\qed{$\Box$}
+\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{observation}{Observation}
+\newtheorem{proof}{Proof}
+\newtheorem{remark}{Remark}
+\newtheorem{example}{Example}
+
+\title{Game theory}
+\author{Siddharth Bhat}
+\date{Spring 2020}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\chapter{Introduction}
+
+TODO: find out and write about: 
+Extrinsic form representation of a game
+$\Gamma \equiv \langle N, T, Z, o, A, s, u_i, \mathcal{H}\rangle$
+where $N$ is number of players, $T$ is game tree, $Z$ is leaves, $o$ is owner
+function, $A$ is actions, $s$ is transition, $u_i$ is player function, $\mathcal H$
+is information sets. An information set contains equivalence classes
+of states that the player cannot distinguish between. There can be ambiguity
+due to missing information. Perfect information game is one where all
+information sets are singleton. For example, chess is perfect information.
+Example of partial information is card games.
+
+Next, we look at strategies. A strategy is a computable function by which
+each player selects their actions.
+
+Game tree for matching coins with observation:
+$S_A: \{ 1 \} \rightarrow \{H, T\}$. $S_B: \{2, 3\} \rightarrow \{H, T \}$.
+
+
+Game tree for matching coins without observation:
+$S_A: \{ 1 \} \rightarrow \{H, T\}$. $S_B: \{\{2, 3\}\} \rightarrow \{H, T \}$.
+
+We let $S \equiv S_1 \times S_2 \times \dots \times S_n$. This a set containing
+all possible strategies, called as a "strategy profile", $s \in S$. We
+write $s$ as $s \equiv (s_i, s_{-i})$, where $s_{-i}$ is cute notation for
+"the rest of the players". For example, if $s \equiv (s_1, s_2, s_3)$ we can 
+notate $s = (s_2, s_{-2}) = (s_2, s_1, s_3)$.
+
+We will currently focus on pure strategies, where we have a deterministic
+function per strategy.
+
+
+\section{Normal form games}
+Another representation for games is called as strategic form / matrix form / 
+normal form games.  Here, a game $\Gamma = \langle N, (S_i)_{i \in N}, (u_i: S \rightarrow \R)_{i \in N} \rangle$.
+$N$ is the number of players, $S_i$ are strategies for each player, $u_i$ 
+are the utility functions / payoffs for each player. $u_i$ maps each
+strategy profile $s$ how worth it it is for player $i$ if
+the game proceeds with strategy profile $s$.
+
+\subsection{Normal form for matching coins with observation}
+\begin{align*}
+   &S_a \equiv \{ S_a^1 (H), S_a^2 (T)\} \\
+   &S_b \equiv \{ S_b^1 (HH), S_b^2 (HT), S_b^3 (TH), S_b^4 (TT) \} \\
+   &u_a: S \rightarrow \R \\
+   &u_a((s_a^1, s_b^1)) = +10 \qquad (H, HH) \\
+   &u_a((s_a^1, s_b^2)) = +10 \qquad (H, HT) \\
+   &u_a((s_a^1, s_b^3)) = -10 \qquad (H, TH) \\
+   &u_a((s_a^1, s_b^4)) = -10 \qquad (H, TT) \\ 
+   &u_a((s_a^2, s_b^1)) = -10 \qquad(T, HH) \\
+   &u_a((s_a^2, s_b^2)) = +10 \qquad(T, HT)\\
+   &u_a((s_a^2, s_b^3)) = -10 \qquad(T, TH) \\
+   &u_a((s_a^2, s_b^4)) = +10 \qquad(T, TT) \\
+\end{align*}
+
+Alternate representation of same game:
+$$
+\begin{tabular}{ccccc}
+    $s_b \rightarrow$ & HH & HT & TH & TT \\ 
+    H & (10, -10) & (10, -10)  & (-10, +10)    & (-10, +10)   \\
+    T &  (-10, 10)   &  (10, -10)  & (-10, 10)   &  (10, -10)  \\
+\end{tabular}
+$$
+
+
+\subsection{Normal form for matching coins without observation}
+
+$$
+\begin{tabular}{ccccc}
+    $s_a \rightarrow$  & H & T & \\
+    H & (10, -10) & (-10, 10) \\ 
+    T &  (-10, 10) & (10, -10)
+\end{tabular}
+$$
+
+
+\subsection{Normal form for prisoners dilemma}
+
+$C$ for confess, $NC$ for not confess.
+
+$$
+\begin{tabular}{ccccc}
+     & C & NC & \\
+    C & (-5, -5) & (-1, -10) \\ 
+    NC &  (-10, -1) & (-2, -2)
+\end{tabular}
+$$
+
+\chapter{Game analysis}
+Rationality implies that each player is motivated to maximise his own payoff.
+Intelligent implies that player can take into account all available
+information. An intelligent and rational player implies that every player will
+attempt to maximise their utility.
+
+\subsection{Common knowledge and puzzles about common knowledge}
+\begin{definition}
+    \emph{Common knowledge} --- Player knows it. Every player knows that every player
+    knows it. Every player knows that every player knows that
+    every player knows it.
+    $\forall k \in \N, (\text{Every player knows that})^k$ every player knows it.
+\end{definition}
+
+If we have an island with two water streams and all humans and intelligent,
+rational and cannot speak. They have a rule that says that if a person has a
+blue mark on their forehead, the drink water from a stream farther away. One
+day, a visitor, who knows the above fact, shouts "why is a person with a blue
+mark drinking water here?" The next day, no one comes to the stream. What changed?
+The only difference before and after is that it is now common knowledge that
+there is one person with a blue mark drinking water at the stream. This
+
+
+Some one imagined two positive whole numbers $1 \leq a, b \leq 20$. He tells the sum of these
+two numbers to mathematician $A$, the product of these numbers to mathematician $B$.
+$A$ tells $B$ that there is no way for $B$ to know the sum. Then $B$ exclaims
+"But I know the sum now!", to which $A$ exclaims "and now I know the product".
+
+\subsection{Strongly dominated strategy}
+
+Given a game $\Gamma \equiv \langle N, (S_i), (u_i) \rangle$, a strategy
+$s_i \in S_i$ is said to be strongly dominated by a strategy $s_i' \in S_i$
+if:
+
+$$
+u_i(s_i, s_{-1}) < u_i(s_i', s_{-i})~ \forall s_{-i} \in S_{-i}
+$$
+
+\subsection{Strongly dominant strategy}
+
+Given a game $\Gamma \equiv \langle N, (S_i), (u_i) \rangle$, a strategy
+$s_i^\star$ is said to be strongly dominant if it strongly dominates every
+other strategy $s_i \in S_i$.
+
+$$
+\forall s_i \in S_i, s_i \neq s_i^\star \implies ~ u_i(s_i, s_{-1}) < u_i(s_i^\star, s_{-i})~ \forall s_{-i} \in S_{-i}, 
+$$
+
+Note that to analyze strongly dominated and strongly dominant strategies,
+we only need $u_i$, the utility of the $i$th player. Hence, to analyze
+dominance of strategies, we can get away with writing the utility of
+just a single player.
+
+$$
+\begin{tabular}{ccc}
+    & L & R \\
+  A & 6, - & 7, - \\
+  B & 5, - & 6, - \\
+  C & 4, - & 6, - \\
+\end{tabular}
+$$
+
+$L, R$ are moves of the player.
+$A, B, C$ are stratgies with utilities filled
+in.
+
+$A$ strongly dominate $C$, $A$ strongly dominates $B$. $B$ does \emph{not}
+strongly dominate $C$, since on the $R$ action, we have $6$ for both $B$ and $C$.
+Hence, $A$ is the strongly dominant strategy. Note that there need not always
+exist a strongly dominant strategy:
+
+$$
+\begin{tabular}{ccc}
+    & L & R \\
+  A & 6, - & 7, - \\
+  B & 7, - & 6, - \\
+\end{tabular}
+$$
+
+Neither $A$ nor $B$ are strictly better than the other.
+
+\subsection{Weakly dominated strategy}
+
+Given a game $\Gamma \equiv \langle N, (S_i), (u_i) \rangle$, a strategy
+$s_i \in S_i$ is said to be weakly dominated by a strategy $s_i' \in S_i$
+if:
+
+$$
+u_i(s_i, s_{-1}) \leq u_i(s_i', s_{-i})~ \forall s_{-i} \in S_{-i}
+$$
+
+with strict inequality for at least one $s_{-i}$. 
+
+
+\subsection{Weakly dominant strategy}
+
+Given a game $\Gamma \equiv \langle N, (S_i), (u_i) \rangle$, a strategy
+$s_i^\star$ is said to be weakly dominant if it weakly dominates every
+other strategy $s_i \in S_i$.
+
+$$
+\forall s_i \in S_i, s_i \neq s_i^\star \implies ~ u_i(s_i, s_{-1}) \leq u_i(s_i^\star, s_{-i})~ \forall s_{-i} \in S_{-i}, 
+$$
+
+with strict inequality for at least one $s_{-i}$. 
+
+Once again, a weakly dominant strategy need not always exist:
+$$
+\begin{tabular}{ccc}
+    & L & R \\
+  A & 6, - & 7, - \\
+  B & 7, - & 6, - \\
+\end{tabular}
+$$
+
+\subsection{Very weakly dominated strategy}
+
+Given a game $\Gamma \equiv \langle N, (S_i), (u_i) \rangle$, a strategy
+$s_i \in S_i$ is said to be very weakly dominated by a strategy $s_i' \in S_i$
+if:
+
+$$
+u_i(s_i, s_{-1}) \leq u_i(s_i', s_{-i})~ \forall s_{-i} \in S_{-i}
+$$
+
+Note that we do not have the strict inequality requirement anymore. This
+is now a true partial order.
+
+\subsection{Example of strong dominance in prisoners dilemma}
+$$
+\begin{tabular}{ccccc}
+     & C & NC & \\
+    C & (-5, -5) & (-1, -10) \\ 
+    NC &  (-10, -1) & (-2, -2)
+\end{tabular}
+$$
+Here, $C$ is the strongly dominant strategy for both players.
+
+
+\subsection{Another game}
+$$
+\begin{tabular}{ccccc}
+      & a & b & c \\
+    A & 5 & 5 & 5 \\
+    B & 4 & 5 & 5\\
+    C & 4 & 4 & 4
+\end{tabular}
+$$
+
+There does not exist a strongly dominant strategy.
+$A$ is weakly dominant. $C$ is weakly dominated by both $A, B$.
+
+\subsection{Can there exist two weakly dominant strategies?}
+No there cannot. If $A$ is a weakly dominant strategies, then
+assume $A[i] > B[i]$.If $A[i] > B[i]$, then $B$ cannot weakly dominate 
+$A$, since for $B$ to dominate $A$ we need $B[j] \geq A[j]~ \forall j$,
+but $B[i] < A[i]$.
+
+
+\subsection{Strongly (Weakly) Dominant Strategy Equilibrium}
+A strategy profile $(s_1^\star, s_2^\star, \dots, s_n^\star)$ is called as a strongly
+dominant strategy equilibrium of the game $\Gamma \equiv \langle N, (S_i), (U_i) \rangle$ iff
+the strategy $s_i^\star$ is a strongly dominating strategy for player $i$.
+
+Recall the example of Prisoners dilemma ---
+
+$$
+\begin{tabular}{ccccc}
+     & C & NC & \\
+    C & (-5, -5) & (-1, -10) \\ 
+    NC &  (-10, -1) & (-2, -2)
+\end{tabular}
+$$
+
+
+\end{document}
