@@ -65,7 +65,6 @@
 
 Priority list:
 -----------------
-- Appaju script.
 - Coq PR
 -`polly_array_index` RFC.
 - Setup key logger.
@@ -79,7 +78,15 @@ Priority list:
 installed, use it to compute closed forms)
 - Reverse mode automatic differentiation
 - https://www.youtube.com/watch?v=PNlgMPzj-7Q
-College work
-------------
-
-- Quantum (11th March): https://www.springer.com/in/book/9783319096551
+- Andrej Bauer blog posts 
+- Toric ideals
+- Noncommutative rational series with applications
+- Normaliz: Can solve hilbert basis. https://github.com/Normaliz/Normaliz/
+- Free probability theory
+- https://en.wikipedia.org/wiki/Quote_notation
+- A data parallel compiler hosted on the GPU
+- "Could you go into some detail with your learning process?"
+- Definitional interpreters for higher-order programming languages (Defunctionalization, original paper)
+- Languages of the Underworld of West Bengal
+- Language identification in the limit: inductive inference of regular / context free langs
+- Blog post: An accessible example of classical gauge theory (wave from adding springs)
