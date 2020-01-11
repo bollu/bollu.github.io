@@ -768,7 +768,7 @@ So, we define (tentatively) the first homology group:
 $$
 \begin{align*}
 H_1 \equiv Kernel(\partial_{EV}) \equiv
-\left \\{ (a, b, c) \in \mathcal E \mid \partial_EV((a, b, c)) = (0, 0, 0) \right\\}
+\left \{ (a, b, c) \in \mathcal E \mid \partial_EV((a, b, c)) = (0, 0, 0) \right \}
 \subset \mathcal E
 \end{align*}
 $$
