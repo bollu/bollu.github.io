@@ -26,7 +26,7 @@
 
 #### Table of contents:
 
-- [An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)]()
+- [An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)](#an-example-of-a-sequence-whose-successive-terms-get-closer-together-but-isnt-cauchy-does-not-converge)
 - [Krylov subspace method](#krylov-subspace-method)
 - [Good reference to the Rete pattern matching algorithm](#good-reference-to-the-rete-pattern-matching-algorithm)
 - [Leapfrog Integration](#leapfrog-integration)
@@ -62,7 +62,7 @@
 - [Lazy programs have space leaks, Strict programs have time leaks](#lazy-programs-have-space-leaks-strict-programs-have-time-leaks)
 - [Presburger arithmetic can represent the Collatz Conjecture](#presburger-arithmetic-can-represent-the-collatz-conjecture)
 
-# [An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)]
+# [An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)](#an-example-of-a-sequence-whose-successive-terms-get-closer-together-but-isnt-cauchy-does-not-converge)
 
 #### The problem
 Provide an example of a sequence $a_n: \mathbb N \rightarrow \mathbb R$
@@ -79,15 +79,16 @@ $H_n \equiv \sum_{i=1}^n 1/i$. Then, we show that:
 
 $$
 \begin{align*}
-\lim_{n \rightarrow \infty} |H_{n+1} - H_n|
-&= |\frac{1}{n+1} - \frac{1}{n}| \\
+\lim_{n \rightarrow \infty} \left| H_{n+1} - H_n \right|
+&= \left| \frac{1}{n+1} - \frac{1}{n} \right| \\
 &= \frac{1}{(n+1)n} \rightarrow 0
 \end{align*}
 $$
 
+$$
 \begin{align*}
-\lim_{n \rightarrow \infty} |H_{2n} - H_n|
-&= |\frac{1}{2n} - \frac{1}{n}| \\
+\lim_{n \rightarrow \infty} \left|H_{2n} - H_n \right|
+&= \left|\frac{1}{2n} - \frac{1}{n} \right| \\
 &= \sum_{i=n+1}^{2n} \frac{1}{n+1} + \frac{1}{n+2} + \dots + \frac{1}{2n} \\
 &\geq \sum_{i=n+1}^{2n} \frac{1}{2n} + \frac{1}{2n} + \dots + \frac{1}{2n} \\
 &\geq frac{n}{2n} = \frac{1}{2} \not \rightarrow 0 \\
@@ -102,10 +103,9 @@ calculation:
 
 $$
 \begin{align*}
-\lim_{n \rightarrow \infty} a_{n+1} - a_n 
-= \log(n+1) - \log(n) 
-= \log(\frac{n+1}{n}) 
-= \log(1 + \frac{1}{n}) 
+\lim_{n \rightarrow \infty} a_{n+1} - a_n = \log(n+1) - \log(n) 
+= \log((n+1)/n))
+= \log(1 + 1+n)
 = \log(1) = 0
 \end{align*}
 $$
