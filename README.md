@@ -116,16 +116,16 @@ $$
 
 We want to simulate a system using these differential equations. We will begin
 with some initial position and momentum $(q_0, p_0)$, evaluate
-$\frac{\partial q}{\partial t} \vert_{(q_0, p_0)}$, $\frac{\partial p}{\partial t} \vert_{(q_0, p_0)}$, and use
+$\frac{\partial q}{\partial t} \rvert_{(q_0, p_0)}$, $\frac{\partial p}{\partial t} \rvert_{(q_0, p_0)}$, and use
 these to find $(q_{next}, p_{next})$. An integrator is a general algorithm
 that produces the next position and momentum using current information:
 
 $$
 (q_{next}, p_{next}) = 
-  I(q_0, 
+  I \left(q_0, 
     p_0,
-    \frac{\partial q}{\partial t}|_{(q_0, p_0)},
-    \frac{\partial p}{\partial t}|_{(q_0, p_0)})
+    \frac{\partial q}{\partial t}\rvert_{(q_0, p_0)},
+    \frac{\partial p}{\partial t}\rvert_{(q_0, p_0)} \right)
 $$
 
 The design of $I$ is crucial: different choices of $I$ will have different
