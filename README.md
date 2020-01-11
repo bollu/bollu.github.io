@@ -27,8 +27,10 @@
 #### Table of contents:
 
 - [Good reference to the Rete pattern matching algorithm](#good-reference-to-the-rete-pattern-matching-algorithm)
+- [Leapfrog Integration](#leapfrog-integration)
 - [Comparison of forward and reverse mode AD](#comparison-of-forward-and-reverse-mode-ad)
-- [An invitation to homology and cohomology](#an-invitation-to-homology-and-cohomology-part-1--homology)
+- [An invitation to homology and cohomology: Part 1 --- homology](#an-invitation-to-homology-and-cohomology-part-1--homology)
+- [An invitation to homology and cohomology: Part 2 --- Cohomology](#an-invitation-to-homology-and-cohomology-part-2--cohomology]
 - [Stuff I learnt in 2019](#stuff-i-learnt-in-2019)
 - [A motivation for p-adic analysis](#a-motivation-for-p-adic-analysis)
 - [Line of investigation to build physical intuition for semidirect products](#line-of-investigation-to-build-physical-intuition-for-semidirect-products)
@@ -114,7 +116,7 @@ $$
 
 We want to simulate a system using these differential equations. We will begin
 with some initial position and momentum $(q_0, p_0)$, evaluate
-$\frac{\partial q}{\partial t}|_{(q_0, p_0)}$, $\frac{\partial p}{\partial t}|_{(q_0, p_0)}$, and use
+$\frac{\partial q}{\partial t} \vert_{(q_0, p_0)}$, $\frac{\partial p}{\partial t} \vert_{(q_0, p_0)}$, and use
 these to find $(q_{next}, p_{next})$. An integrator is a general algorithm
 that produces the next position and momentum using current information:
 
@@ -725,7 +727,13 @@ we can construct $H_1$ as:
 
 ### A complicated space: Homology of a butterfly
 
-# Part 2 --- Cohomology: Extending functions on the triangle
+
+# [An invitation to homology and cohomology, Part 2 --- Cohomology](#an-invitation-to-homology-and-cohomology-part-2--cohomology]
+
+<comment>
+f is closed <=> df = 0
+f is exact <=> f = dg
+</comment>
 
 ![cohomology-triangle-vertices](static/simplices/cohomology-triangle-vertices.svg)
 
@@ -734,8 +742,6 @@ edges $E = \\{o, m, c \\}$, faces $F = \\{ f \\}$ with boundary maps $\partial_{
 $\partial_{FE}$:
 
 - $\partial_{FE}(f)= o + m + c$
-
-
 - $\partial_{EV}(o) = r - g$
 - $\partial_{EV}(m) = b - r$
 - $\partial_{EV}(c)= g - b$
@@ -757,10 +763,12 @@ Expanded out on the example, we evaluate $h_v$ as:
 - $h_e(m) \equiv d h_v(m)  = h_v(b) - h_v(r) = 10 - 3 = +7$
 - $h_e(c) \equiv d h_v(c)  = h_v(g) - h_v(b) = 4 - 10 = -6$
 
-More conceptually, we have created an _operator_ called $d$ which takes functions
-defined on vertices to functions defined on edges, which uses the boundary map
-on the edges to "lift" a function on the vertices to a function on the edges.
-It does so by assigning the "potential difference" of the vertices to the edges.
+More conceptually, we have created an _operator_ called $d$ (the **coboundary operator**)
+which takes functions defined on vertices to functions defined on edges. This
+uses the boundary map on the edges to "lift" a function on the vertices to a
+function on the edges.  It does so by assigning the "potential difference" of
+the vertices to the edges.
+
 
 - $d: (V \rightarrow \mathbb R) \rightarrow (E \rightarrow \mathbb R)$
 - $d(h_v) \equiv h_e$, $h_e(e) \equiv \sum_i \alpha_i f(v_i)$ where $\partial_{EV} e = \sum_i \alpha_i v_i$
@@ -783,6 +791,14 @@ for any choice of $h_v$.
 (it's a good exercise in definition chasing).
 
 
+Introducing some terminology, A differential form $f$ is said to be a **closed differential form**
+iff $df = 0$.
+
+In our case, $h_e$ **is closed**, since $d h_e = h_f = 0$. On the other hand
+$h_v$ is **not closed**, since $d h_v = h_e \neq 0$.
+
+The intuition for why this is called "closed" is that its coboundary vanishes.
+
 ## Exploring the structure of functions defined on the edges
 
 Here, we try to understand what functions defined on the edges can look like,
@@ -790,13 +806,12 @@ and their relationship with the $d$ operator. We discover that there are
 some functions $g_e: E \rightarrow \mathbb R$ which can be realised as the differential
 of another function $g_v: V \rightarrow \mathbb R$. The differential 
 forms such as $g_e$ which can be generated a $g_v$ through the $d$ operator
-are called as **???? differential forms**. Intuitively, closed differential
-forms are those that could have been defined using a "potential function"
-$g_v$.
+are called as **exact differential forms**. That is, $g_e = d g_v$ _exactly_,
+such that there is no "remainder term" on applying the $d$ operator.
 
 ![cohomology-triangle-edges](static/simplices/cohomology-triangle-edges.svg)
 
-We take an example of a differential form that is not ???, which has been
+We take an example of a differential form that is _not exact_, which has been
 defined on the edges of the triangle above. Let's call it $h_e$.
 
 It is defined on the edges as:
@@ -807,7 +822,7 @@ It is defined on the edges as:
 We can calcuate $h_f = d h_e$ the same way we had before:
 - $h_f(f) \equiv d h_e(f) = h_e(o) + h_e(m) + h_e(c) = 3 + 1 + 2 = 6$.
 
-Since $d h_e \neq 0$, this form is not ?????
+Since $d h_e \neq 0$, this form is not exact.
 
 Let's also try to generate $h_e$ from a potential. We arbitrarily fix the
 potential of $b$ to $0$. That is, we fix $h_v(b) = 0$, and we then try to
