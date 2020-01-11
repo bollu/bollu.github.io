@@ -91,7 +91,7 @@ $$
 &= \left|\frac{1}{2n} - \frac{1}{n} \right| \\
 &= \sum_{i=n+1}^{2n} \frac{1}{n+1} + \frac{1}{n+2} + \dots + \frac{1}{2n} \\
 &\geq \sum_{i=n+1}^{2n} \frac{1}{2n} + \frac{1}{2n} + \dots + \frac{1}{2n} \\
-&\geq frac{n}{2n} = \frac{1}{2} \not \rightarrow 0 \\
+&\geq \frac{n}{2n} = \frac{1}{2} \not \xrightarrow{x \rightarrow \infty} 0 \\
 \end{align*}
 $$
 
@@ -105,8 +105,7 @@ $$
 \begin{align*}
 \lim_{n \rightarrow \infty} a_{n+1} - a_n = \log(n+1) - \log(n) 
 = \log((n+1)/n))
-= \log(1 + 1+n)
-= \log(1) = 0
+= \log(1 + 1/n) \xrightarrow{n \rightarrow \infty} \log(1) = 0
 \end{align*}
 $$
 
