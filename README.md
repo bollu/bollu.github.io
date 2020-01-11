@@ -764,11 +764,12 @@ the kernel of a linear transformation is the set of all things in the domain
 which map to zero)
 
 So, we define (tentatively) the first homology group:
+
 $$
 \begin{align*}
 H_1 \equiv Kernel(\partial_{EV}) \equiv
 \left \\{ (a, b, c) \in \mathcal E \mid \partial_EV((a, b, c)) = (0, 0, 0) \right\\}
-\subset \mathcal E$
+\subset \mathcal E
 \end{align*}
 $$
 
@@ -779,7 +780,7 @@ $$
 H_1 &\equiv Kernel(\partial_{EV}) \\
 &= \{ (s, t, u) ~\mid~ \partial_{EV}(s, t, u) = (0, 0, 0) ~ s, t, u \in \mathbb Z \} \\
 &= \{ (s, t, u) ~\mid~ (s-t, u-s, t-u) = (0, 0, 0) ~ s, t, u \in \mathbb Z  \} \\
-&= \{ (s, t, u) ~\mid~ s = t = u ~ s, t, u \in \mathbb Z \} \\
+&= \{ (s, t, u) ~\mid~ s = t = u \quad s, t, u \in \mathbb Z \} \\
 &= \{ (x, x, x) ~\mid~ x \in \mathbb Z \} \simeq \mathbb Z
 \end{align*}
 $$
@@ -840,7 +841,7 @@ we can construct $H_1$ as:
 ### A complicated space: Homology of a butterfly
 
 
-# [An invitation to homology and cohomology, Part 2 --- Cohomology](#an-invitation-to-homology-and-cohomology-part-2--cohomology]
+# [An invitation to homology and cohomology, Part 2 --- Cohomology](#an-invitation-to-homology-and-cohomology-part-2--cohomology)
 
 <!--
 f is closed <=> df = 0
