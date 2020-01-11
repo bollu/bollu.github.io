@@ -13,6 +13,7 @@
 \usepackage{algorithm}
 \usepackage{listing}
 \usepackage{minted}
+\usepackage{cancel}
 \evensidemargin=0.20in
 \oddsidemargin=0.20in
 \topmargin=0.2in
@@ -57,6 +58,7 @@
 \newcommand{\Lie}{\ensuremath{\mathfrak{L}}}
 \newcommand{\pushforward}[1]{\ensuremath{{#1}_{\star}}}
 \newcommand{\pullback}[1]{\ensuremath{{#1}^{\star}}}
+\newcommand{\vectorfield}[1]{\mathfrak{X}}
 
 \newcommand{\pushfwd}[1]{\pushforward{#1}}
 \newcommand{\pf}[1]{\pushfwd{#1}}
@@ -70,14 +72,14 @@
 
 
 \def\qed{$\Box$}
-\newtheorem{corollary}{Corollary}
 \newtheorem{theorem}{Theorem}
-\newtheorem{definition}{Definition}
-\newtheorem{lemma}{Lemma}
-\newtheorem{observation}{Observation}
-\newtheorem{proof}{Proof}
-\newtheorem{remark}{Remark}
-\newtheorem{example}{Example}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{proof}[theorem]{Proof}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
 
 \newcommand{\X}{\ensuremath{\mathfrak{X}}}
 
@@ -906,6 +908,136 @@ Tensor contraction is by joining legs. $v^j w_j$ is \begin{verbatim}(w)---(v)\en
 
 A $k$ form is drawn as (TODO)
 
+
+
+\chapter{Symplectic Manifolds}
+Let $M, \omega$ be a symplectic manifold. A vector field $X \in \vectorfield(M)$
+that preserves $\omega$ --- that is, $\frac{d}{dt} \left(\sigma_t^\star (\omega) \right) = 0$
+is called a symplectic vector field.
+
+
+Notice that all hamilton vector fields are symplectic. 
+
+\section{Hamiltonian vector fields for free}
+Suppose $M$ is a manifold and let $X \in \vectorfield(M)$. Then there is
+a unique $X_\sharp \in \vectorfield(T^\star M)$ whose flow $\sigma^\sharp_t$
+is a lift of $\sigma_t$. Let $\alpha$ be the tautological 1-form on $t^\star M$.
+Let $\omega = -d \alpha$. Show that $X_\sharp$ is a Hamiltonian vector field,
+with $H = i_{X_\sharp} \alpha$.
+
+TODO: write down proof!
+
+\section{When is a Symplectic vector field Hamilton?}
+
+\subsection{Conditions for a vector field to be Symplectic}
+
+\begin{theorem}
+$X$ is symplectic if and only if $i_X \omega$ is \emph{closed}.
+\end{theorem}
+
+\begin{proof}
+        $X$ is symplectic $\implies$ $i_X \omega$ is \emph{closed}.
+\begin{align*}
+d (i_X \omega) \\
+        &= d (i_X \omega) + i_X (d \omega) \qquad \text{Since $d \omega = 0$, we can add $i_X (d \omega)$} \\
+        &= \Lie_X \omega \qquad \text{By the identity $\Lie_X = d i_X + i_X d$} \\
+        &= 0 \qquad \text{By the definition of being Symplectic}
+\end{align*}
+\end{proof}
+
+\begin{proof}
+        $\alpha_X = i_X \omega$ is \emph{closed} $\implies$ $X$ is symplectic.
+        TODO
+\end{proof}
+
+
+\subsection{Conditions for a vector field to be Hamilton}
+
+$X$ is Hamiltonian if $\exists H \in M \rightarrow \mathbb R, i_X \omega = dH$.
+That is, the vector field $i_X \omega$ is \emph{exact}. 
+
+The exactness is a \emph{global} structure, since it's asking for the existence
+of a "potential function" $H$. This is equivalent to asking for information about
+the De Rham cohomology, which in turn relates to the homology.
+
+Note that locally, on contractible open sets, closed and exact are the same
+thing, and therefore at least locally, all symplectic vector fields are
+hamilton.
+
+\subsection{Equivalent ways of stating that a vector field is Symplectic}
+
+In summary, the following are all equivalent:
+\begin{itemize}
+        \item $X \in \vectorfield(M)$ is symplectic
+        \item The flow $\sigma_X = exp(tX)$ preserves $\omega$
+        \item $\Lie_X \omega = 0$
+        \item $i_X \omega$ is \textbf{closed}
+\end{itemize}
+
+\section{Classical Mechanics: Redux}
+
+Consider Euclidian space $\R^{2n}$ with coordinates $(q_1, q_2, \dots, q_n, p_1, p_2, \dots p_n)$,
+and with a two-form $\omega \equiv \sum_i dq_i \wedge dp_i$. We have a hamilton function on phase space
+$H: \R^{2n} \rightarrow \R$. Let $X_H$ be the corresponding vector field, defined
+as
+$$
+X_H = \sum_{j=1}^n
+\frac{\partial H}{\partial p_j} \frac{\partial}{\partial q_j} - 
+\frac{\partial H}{\partial q_j}\frac{\partial}{\partial p_j}
+$$
+
+We assert (from a computation we will perform) that:
+$i_{X_H} \omega = dH$.
+
+
+To perform the above computation, we first need a lemma about computing
+interior product on two forms:
+\begin{lemma}\label{lbl:lemma-compute-interior-der-of-2-wedge}
+        $i_X(da \wedge db) = (i_X da) \wedge db - da \wedge (i_X db)$
+\end{lemma}
+\begin{proof}
+We let $X \equiv X_a \partial a + X_b \partial b$, 
+$Y \equiv Y_a \partial a + Y_b \partial b$.
+
+Next, we write down the definition of the interior product when
+applied to a vector field $Y$:
+
+\begin{align*}
+i_X(da \wedge db)(Y) &= (da \wedge db) (X, Y) \qquad \text{(by definition, $i_X$ is the partial application of $X$)} \\
+&= (da \wedge db) (X_a \partial_a + X_b \partial_b, Y_a \partial_a + Y_b \partial_b) \qquad \text{(Substituting $X, Y$)} \\
+&= (da \wedge db) (X_a \partial_a, Y_a \partial_a) +  
+   (da \wedge db) (X_a \partial_a, Y_b \partial_b) + \\
+&\qquad (da \wedge db) (X_b \partial_b, Y_a \partial_a) +  
+(da \wedge db) (X_b \partial_b, Y_b \partial_b) \qquad \text{(Multi-linearity of $da \wedge db$)} \\
+&=  (da \wedge db) (X_a \partial_a, Y_b \partial_b)
+   - (da \wedge db) (Y_a \partial_a, X_b \partial_b) +   \\
+& \qquad \cancel{(da \wedge db) (X_b \partial_b, Y_b \partial_b)} +
+        \cancel{(da \wedge db) (X_a \partial_a, Y_a \partial_a)} \qquad \text{(Anti-symmetry)} \\
+&=  1 \cdot (X_a Y_b) - 1 \cdot (X_b Y_a)
+TODO
+\end{align*}
+\end{proof}
+
+We now prove the main assertion, the structure of $X_H$:
+
+\begin{theorem}
+Given that $X_H$ is defined as:
+$$
+X_H \equiv \sum_{j=1}^n
+\frac{\partial H}{\partial p_j} \frac{\partial}{\partial q_j} - 
+\frac{\partial H}{\partial q_j}\frac{\partial}{\partial p_j}
+$$
+We assert that  $i_{X_H} \omega = dH$.
+\end{theorem}
+\begin{proof}
+\begin{align*}
+        i_{X_H} \omega &= i_{X_H} \left( \sum_{j=1}^n dq_j \wedge dp_j \right) \qquad \text{(Definition of $\omega$)} \\
+&= \sum_{j=1}^n i_{X_H} (dq_j \wedge dp_j) \qquad \text{(Linearity of $i$)} \\
+&= \sum_{j=1}^n (i_{X_H} dq_j) \wedge dp_j - dq_j \wedge (i_{X_H} dp_j) \qquad \text{(Lemma above \ref{lbl:lemma-compute-interior-der-of-2-wedge})} \\
+&= \sum_{j=1}^n \frac{\partial H}{\partial p_j} p_j - \left( - \frac{\partial H}{\partial q_j}dq_j \right) \qquad \text{(Defn of $X_H$)} \\
+&= dH \qquad \text{$\left(df = \frac{\partial f}{\partial x_i}x_i\right)$}
+\end{align*}
+\end{proof}
 
 
 
