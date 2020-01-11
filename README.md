@@ -26,11 +26,13 @@
 
 #### Table of contents:
 
+- [An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)]()
+- [Krylov subspace method](#krylov-subspace-method)
 - [Good reference to the Rete pattern matching algorithm](#good-reference-to-the-rete-pattern-matching-algorithm)
 - [Leapfrog Integration](#leapfrog-integration)
 - [Comparison of forward and reverse mode AD](#comparison-of-forward-and-reverse-mode-ad)
-- [An invitation to homology and cohomology: Part 1 --- homology](#an-invitation-to-homology-and-cohomology-part-1--homology)
-- [An invitation to homology and cohomology: Part 2 --- Cohomology](#an-invitation-to-homology-and-cohomology-part-2--cohomology]
+- [An invitation to homology and cohomology: Part 1 --- Homology](#an-invitation-to-homology-and-cohomology-part-1--homology)
+- [An invitation to homology and cohomology: Part 2 --- Cohomology](#an-invitation-to-homology-and-cohomology-part-2--cohomology)
 - [Stuff I learnt in 2019](#stuff-i-learnt-in-2019)
 - [A motivation for p-adic analysis](#a-motivation-for-p-adic-analysis)
 - [Line of investigation to build physical intuition for semidirect products](#line-of-investigation-to-build-physical-intuition-for-semidirect-products)
@@ -60,7 +62,80 @@
 - [Lazy programs have space leaks, Strict programs have time leaks](#lazy-programs-have-space-leaks-strict-programs-have-time-leaks)
 - [Presburger arithmetic can represent the Collatz Conjecture](#presburger-arithmetic-can-represent-the-collatz-conjecture)
 
-# Krylov subspace method
+# [An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)]
+
+#### The problem
+Provide an example of a sequence $a_n: \mathbb N \rightarrow \mathbb R$
+such that $\lim_{n \rightarrow \infty} \vert a_{n+1} - a_n \vert \rightarrow 0$,
+but $\lim_{n, m \rightarrow \infty, m > n} |a_n - a_m| \neq 0$. That is,
+proide a series where the distances between successive terms converges to zero,
+but where distances between terms that are "farther apart than 1" does
+not converge to 0. That is, the sequence is not _Cauchy_.
+
+#### Regular solution: Harmonic numbers
+
+The usual solution is to take the harmonic numbers,
+$H_n \equiv \sum_{i=1}^n 1/i$. Then, we show that:
+
+$$
+\begin{align*}
+\lim_{n \rightarrow \infty} |H_{n+1} - H_n|
+&= |\frac{1}{n+1} - \frac{1}{n}| \\
+&= \frac{1}{(n+1)n} \rightarrow 0
+\end{align*}
+$$
+
+\begin{align*}
+\lim_{n \rightarrow \infty} |H_{2n} - H_n|
+&= |\frac{1}{2n} - \frac{1}{n}| \\
+&= \sum_{i=n+1}^{2n} \frac{1}{n+1} + \frac{1}{n+2} + \dots + \frac{1}{2n} \\
+&\geq \sum_{i=n+1}^{2n} \frac{1}{2n} + \frac{1}{2n} + \dots + \frac{1}{2n} \\
+&\geq frac{n}{2n} = \frac{1}{2} \not \rightarrow 0 \\
+\end{align*}
+$$
+
+
+#### Memorable solution: logarithm
+
+We can much more simply choose $a_n = \log(n)$. This yields the simple
+calculation:
+
+$$
+\begin{align*}
+\lim_{n \rightarrow \infty} a_{n+1} - a_n 
+= \log(n+1) - \log(n) 
+= \log(\frac{n+1}{n}) 
+= \log(1 + \frac{1}{n}) 
+= \log(1) = 0
+\end{align*}
+$$
+
+while on the other hand,
+
+
+$$
+\begin{align*}
+\lim_{n \rightarrow \infty} a_{2n} - a_n 
+= \log(2n) - \log(n) 
+= \log(2) + \log(n) - \log(n)
+= \log 2 \neq 0
+\end{align*}
+$$
+
+I find this far cleaner conceptually, since it's "obvious" to everyone
+that $a_n = \log(n)$ diverges, while the corresponding fact for $H_n$
+is hardly convincing. We also get straightforward equalities everywhere,
+instead of inequalities. 
+
+I still feel that I don't grok what precisely fails here, in that, my intuition
+still feels that the local condition _ought_ to imply the Cauchy condition:
+if $a_n$ tells $a_{n+1}$ to not be too far, and $a_{n+1}$ tells $a_{n+2}$,
+surely this _must_ be transitive?
+
+I have taught my instincts to not trust my instincts on analysis, which is a
+shitty solution :) I hope to internalize this someday.
+
+# [Krylov subspace method](#krylov-subspace-method)
 
 <!-- https://www.youtube.com/watch?v=R9DHmkCE9oI -->
 
@@ -81,6 +156,7 @@ We notice that $K_M$ is invariant under the action of $A$.
 
 
 Now, let's consider:
+$$
 \begin{align*}
 K_m(A, x) &\equiv span \{x, Ax, A^2x, \dots A^m x \} \\
         &= span \{ A^{-1} b, b, Ab, \dots A^{m-1} x \} \qquad \text{(substitute $x = A^{-1}b$)} \\
@@ -88,11 +164,14 @@ K_m(A, x) &\equiv span \{x, Ax, A^2x, \dots A^m x \} \\
         &= span \{b, Ab, \dots A^m b\}  \\
         &= K_m(A, b)
 \end{align*}
+$$
 
 We learnt that $Ax = b$ has a solution in $K_m(A, b)$. Using this, we can build
 solvers that exploit the Krylov subspace. We will describe GMRES and CG.
 
 ## Generalized minimal residual --- GMRES
+
+## Conjugate gradient descent
 
 # [Good reference to the Rete pattern matching algorithm](#good-reference-to-the-rete-pattern-matching-algorithm)
 
