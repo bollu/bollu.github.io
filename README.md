@@ -60,6 +60,40 @@
 - [Lazy programs have space leaks, Strict programs have time leaks](#lazy-programs-have-space-leaks-strict-programs-have-time-leaks)
 - [Presburger arithmetic can represent the Collatz Conjecture](#presburger-arithmetic-can-represent-the-collatz-conjecture)
 
+# Krylov subspace method
+
+<!-- https://www.youtube.com/watch?v=R9DHmkCE9oI -->
+
+This is a class of methods used to solve $Ax = b$, where $A$ is sparse.
+Krylov subspace methods are a class of methods which use the idea of a
+Krylov subspace. There is conjugate gradient (CG), GMRES (Generalized minimal
+residual method).
+
+$$
+K_m(A, v) \equiv span \{ v, Av, A^2v, \dots, A^m v\}
+$$
+
+Clearly, $K_m \subseteq K_{m+1}$, and there is a maximum $K_N$ that we can span
+(the full vector space). We are interested in the smallest index $M$ 
+such that $K_M = K_{M+1}$.
+
+We notice that $K_M$ is invariant under the action of $A$.
+
+
+Now, let's consider:
+\begin{align*}
+K_m(A, x) &\equiv span \{x, Ax, A^2x, \dots A^m x \} \\
+        &= span \{ A^{-1} b, b, Ab, \dots A^{m-1} x \} \qquad \text{(substitute $x = A^{-1}b$)} \\
+        &= A span \{ A^{-1} b, b, Ab, \dots A^{m-1} b\} \qquad \text{(Invariance of Krylov subspace)} \\
+        &= span \{b, Ab, \dots A^m b\}  \\
+        &= K_m(A, b)
+\end{align*}
+
+We learnt that $Ax = b$ has a solution in $K_m(A, b)$. Using this, we can build
+solvers that exploit the Krylov subspace. We will describe GMRES and CG.
+
+## Generalized minimal residual --- GMRES
+
 # [Good reference to the Rete pattern matching algorithm](#good-reference-to-the-rete-pattern-matching-algorithm)
 
 The [Rete pattern matching algorithm](https://en.wikipedia.org/wiki/Rete_algorithm)
@@ -730,10 +764,10 @@ we can construct $H_1$ as:
 
 # [An invitation to homology and cohomology, Part 2 --- Cohomology](#an-invitation-to-homology-and-cohomology-part-2--cohomology]
 
-<comment>
+<!--
 f is closed <=> df = 0
 f is exact <=> f = dg
-</comment>
+-->
 
 ![cohomology-triangle-vertices](static/simplices/cohomology-triangle-vertices.svg)
 
