@@ -93,3 +93,5 @@ installed, use it to compute closed forms)
 - Forcing
 - Homology via everyday examples:
   https://mathoverflow.net/questions/153302/teaching-homology-via-everyday-examples 
+- Jeff E: Algorithms
+- The little book of OS development: https://littleosbook.github.io/book.pdf
