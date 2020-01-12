@@ -27,12 +27,14 @@
 
 #### Table of contents:
 
+- [Fenwick trees and orbits (WIP)](#Fenwick-trees-and-orbits)
+- [Dirichlet inversion (WIP)](#Dirichlet-inversion)
 - [Incunabulum for the 21st century: Making the J interpreter compile in 2020](#incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020)
 - [An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)](#an-example-of-a-sequence-whose-successive-terms-get-closer-together-but-isnt-cauchy-does-not-converge)
 - [Krylov subspace method](#krylov-subspace-method)
 - [Good reference to the Rete pattern matching algorithm](#good-reference-to-the-rete-pattern-matching-algorithm)
 - [Leapfrog Integration](#leapfrog-integration)
-- [Comparison of forward and reverse mode AD](#comparison-of-forward-and-reverse-mode-ad)
+- [Comparison of forward and reverse mode automatic differentiation](#comparison-of-forward-and-reverse-mode-ad)
 - [An invitation to homology and cohomology: Part 1 --- Homology](#an-invitation-to-homology-and-cohomology-part-1--homology)
 - [An invitation to homology and cohomology: Part 2 --- Cohomology](#an-invitation-to-homology-and-cohomology-part-2--cohomology)
 - [Stuff I learnt in 2019](#stuff-i-learnt-in-2019)
@@ -63,6 +65,248 @@
 - [Handy list of differential geometry definitions](#handy-list-of-differential-geometry-definitions)
 - [Lazy programs have space leaks, Strict programs have time leaks](#lazy-programs-have-space-leaks-strict-programs-have-time-leaks)
 - [Presburger arithmetic can represent the Collatz Conjecture](#presburger-arithmetic-can-represent-the-collatz-conjecture)
+- [Using compactness to argue about covers](#using-compactness-to-argue-about-covers)
+- [Stephen wolfram's live stream](#stephen-wolframs-live-stream)
+- [Japanese Financial Counting system](#japanese-financial-counting-system)
+- [`Cleave` as a word has some of the most irregular inflections](#cleave-as-a-word-has-some-of-the-most-irregular-inflections)
+- [McCune's single axiom for group theory](#mccunes-single-axiom-for-group-theory)
+- [Arthur Whitney: dense code](#arthur-whitney-dense-code)
+- [How does one work with arrays in a linear language?](#how-does-one-work-with-arrays-in-a-linear-language)
+- [Linear-optimisation-is-the-same-as-Linear-feasibility-checking](#linear-optimisation-is-the-same-as-linear-feasibility-checking)
+- [Quantum computation without complex numbers](#quantum-computation-without-complex-numbers)
+- [Linguistic fun fact: Comparative Illusion (check link)](#linguistic-fun-fact-comparative-illusion)
+- [Stuff I learnt in 2018](content/blog/stuff-i-learnt-this-year-2018.md)
+- [Stuff I learnt in 2017](content/blog/papers-I-read-and-loved-in-2017.md)
+- [Reading the `structs` library](content/blog/reading-kmett-structs.md)
+- [Reading the `machines` library (WIP)](content/blog/machines/reading-kmett-machines.md)
+- [Explaining laziness (WIP)](content/blog/laziness-for-c-programmers.md)
+- [Explaining STG(WIP)](stg-explained.md)
+- [Simplexhc: proc points suck / making GHC an order of magnitude faster](content/blog/ghc-micro-optimisations-or-why-proc-points-suck.md)
+- [Simplexhc: dec 2017](this-month-in-simplexhc-dec-2017.md)
+- [Simplexhc: oct 29 2017](this-week-in-simpexhc-oct-29-2017.md)
+- [Simplexhc: july 2017](this-week-in-simplexhc-07-2017.md)
+- [Simplexhc: july 6th 2017](this-week-in-simplexhc-2017-07-06.md)
+- [Simplexhc: announcement](content/blog/announcing-simplexhc.md)
+- [GSoC 2015 proposal](content/blog/gsoc-vispy.md)
+- [GSoC 2015 week 1](content/blog/gsoc-vispy-week-1-and-2.md)
+- [GSoC 2015 week 3 and 4](content/blog/gsoc-vispy-week-3-and-4.md)
+- [GSoC 2015 week 5](content/blog/gsoc-vispy-week-5.md)
+- [GSoC 2015 week 6](content/blog/gsoc-vispy-week-6.md)
+- [GSoC 2015 week 7](content/blog/gsoc-vispy-week-7.md)
+- [GSoC 2015 final report](content/blog/gsoc-vispy-report-6.md)
+
+# [Fenwick trees and orbits](#Fenwick-trees-and-orbits)
+
+I learnt of a nice, formal way to prove the correctness of Fenwick
+trees in terms of orbits that I wish to reproduce here.
+
+One can use a Fenwick tree to perform cumulative sums
+$Sum(n) \equiv \sum_i^n A[i]$, and updates $Upd(i, v) \equiv A[i] += v$. Naively,
+cumulative sums can take $O(n)$ time and updates take $O(1)$ time. 
+
+A Fenwick tree can perform _both_ in $\log(n)$. In general, we can perform
+any monoid-based catenation and update in $\log(n)$.
+
+#### organization
+
+We allow indexes $[1, 2, \dots n]$. The node with factorization $i \equiv 2^k \times l$,
+$2 \not \div l$ (that is, $k$ is the highest power of $2$ in $i$)
+is responsible for the interval $[i-2^k+1, i] = (i-2^k, i]$.
+
+
+I'm going to state all the manipulations in terms of prime factorizations,
+since I find it far more intuitive than bit-fiddling. In general, I want
+to find a new framework to discover and analyze bit-fiddling heavy algorithms.
+
+Some examples of the range of responsibility of an index are:
+
+- $1 = 2^0 \times 1 = (0, 1]$ (Subtract $2^0 = 1$)
+- $2 = 2\times 1 = (0, 2]$ (Subtract $2^1 = 2$)
+- $3 = 3 = (2, 3]$
+- $4 = 2^2 = (0, 4]$
+- $5 = 5 = (4, 5]$
+- $6 = 2\times 3 = (4, 6]$
+- $7 = 7 = (6,7]$
+- $8 = 2^3 = (0,8]$
+- $9 = 9 = (8, 9]$
+- $10 = 2\times 5 = (8, 10]$
+- $11 = 11 = (10, 11]$
+- $12 = 2^2\times 3 = (8, 12]$
+- $13 = 13 = (12, 13]$
+- $14 = 2\times 7 = (12, 14]$
+- $15 = 15 = (14, 15]$
+- $16 = 2^4 = (0, 16]$
+
+![fenwick-structure](static/fenwick-structure.gif)
+
+
+#### query
+
+To perform a cumulative sum, we need to read from the correct overlap regions
+that cover the full array. For example, to read from $15$, we would want
+to read:
+
+- $a[15] = (14, 15], a[14] = (12, 14], a[12] = (8, 12], a[8] = (0, 8]$.
+
+So we need to read the indices:
+- $15=2^0 \cdot 15 \xrightarrow{-2^0} 14=2^1 \cdot 7 \xrightarrow{-2^1} 12=2^2\cdot3 \xrightarrow{-2^2} 8=2^3\cdot1 \xrightarrow{-2^3} 0$
+
+At each  location, we strip off the value $2^r$. We can discover this value
+with bit-fiddling: We claim that $a \& (-a) = 2^r$.
+
+Let $a = \alpha 1 0^r$. Now, $-a = \lnot a + 1 = \overline{\alpha}01^r + 1 = \overline{\alpha}10^r$.
+Hence, $a \& (-a) = a \& (\lnot a + 1) = \alpha 10^r \& \overline{\alpha}10^r = 0^{|\alpha|}10^n = 2^r$
+
+So the full implementation of query is:
+
+```cpp
+#define LSB(x) x&(-x)
+int a[N];
+int q(int i) {
+    int s = 0;
+    while (i > 0) { s += a[i]; i -= LSB(i); }
+    return s;
+}
+
+```
+
+#### update
+
+To perform an update at $i$, we need to update all locations which on querying
+overlap with $i$. For example, to update the location $9$, we would want to
+update:
+
+- $a[9] = (8, 9], a[10] = (8, 10], a[12] = (8, 12], a[16] = (0, 16]$.
+
+So we need to update the indices:
+
+- $9=2^0 \cdot 9 \xrightarrow{+2^0} 10=2^1 \cdot 5 \xrightarrow{+2^1} 12=2^2\cdot3 \xrightarrow{+2^2} 16=2^4\cdot1 \xrightarrow{+2^4} \dots$
+
+We use the same bit-fiddling technique as above to strip off the value $2^r$
+
+
+```cpp
+#define LSB(x) x&(-x)
+int tree[N];
+int u(int i, int v) {
+    while (i < N) { tree[i] += v; i += LSB(i); }
+}
+```
+
+
+#### correctness
+
+We wish to analyze the operations $Query(q) \equiv \sum_{i=1}^q a[i]$, and
+$Update(i, val) equiv a[i] += val$. To do this, we are allowed to maintain
+an auxiliary array $d$ which we will manipuate. We will stipulate the
+conditions of operations on $d$ such that they will reflect the values of 
+$Query$ and $Update$, albeit much faster.
+
+We will analyze the algorithm in terms of orbits. We have two operators, one
+for update called $U$, and one for query called $Q$. Given an index $i$,
+repeatedly applying the query operator gives us the indeces we need to read and
+accumulate from the underlying array $a$ to get the total sum $a[0..i]$:
+
+- $Query(i) = \sum_i d[Q^i(q)]$ 
+
+Given an index $u$, repeatedly applying the update operator $U$ gives us all
+the indeces we need to add the change to update:
+- $Update(i, val) = \forall j~, d[U^j(i)] += val$
+
+For query and update to work, we need the condition that:
+- $q \geq u \iff |\{ Q^i(q)~:~ i \in \mathbb{N} \} \cap \{ U^i(u)~:~i \in \mathbb{N} \}| = 1$
+
+That is, if and only if the query index $q$ includes the update location $u$,
+will the orbits intersect. 
+
+The intuition is that we want updates at an index $u$ to only affect queries
+that occur at indeces $q \geq u$. Hence, we axiomatise that for an update
+to be legal, it must the orbits of queries that are at indeces greater than it.
+
+We will show that our operators:
+- $Q(i=2^r\cdot a) = i - 2^r = 2^r(a-1)$
+- $U(j=2^s\cdot b) = j + 2^{s} = 2^{s}(b+1)$
+
+do satisfy the conditions above.
+
+For a quick numerical check, we can use the code blow to ensure
+that the orbits are indeed disjoint:
+```py
+# calculate orbits of query and update in fenwick tree
+
+def lsb(i): return i & (-i)
+def U(i): return i + lsb(i)
+def Q(i): return i - lsb(i)
+def orbit(f, i):
+    s = set()
+    while i not in s and i > 0 and i < 64:
+        s.add(i); i = f(i)
+    return s
+
+if __name__ == "__main__":
+    for q in range(1, 16):
+        for u in range(1, 16):
+            qo = orbit(Q, q); uo = orbit(U, u)
+            c = qo.intersection(uo)
+            print("q:%4s | u:%4s | qo: %20s | uo: %20s | qu: %4s" % 
+                  (q, u, qo, uo, c))
+
+        print("--")
+```
+
+##### Case 1: $q = u$
+
+We note that $Q$ always decreases the value of $q$, and $u$ always increases
+it. Hence, if $q = u$, they meet at this point, and $Q^i q \neq U^j u \forall i, j \geq 1$.
+Hence, they meet exactly once as required.
+
+##### Case 2: $q < u$
+
+As noted above, $q$ always decreases and $u$ always increases, hence in this
+case they will never meet as required.
+
+
+##### Case 3: $q > u$
+
+Let the entire array have size $2^N$.  
+Let $q = \texttt{e1f_q}, u = \texttt{e0f_u}$, where $\texttt{e}, \texttt{f_q}, \texttt{f_u}$ may be empty
+strings. 
+
+Notice that $Q$ will always strip away rightmost ones in $f_q$,
+leading to $q = \texttt{e10...0}$ at some point. 
+
+Similarly, $U$ will keep on adding new rightmost ones, causing the
+state to be $u = \textttt{e01*00...} \rightarrow{U} \texttt{e100...}$.
+
+Hence, at some point $q = u$. 
+
+#### References
+
+- [Fenwick trees on PolyMath](http://michaelnielsen.org/polymath1/index.php?title=Updating_partial_sums_with_Fenwick_tree)
+- [Hacker's delight](https://doc.lagout.org/security/Hackers%20Delight.pdf)
+
+# [Dirichlet inversion](#Dirichlet-inversion)
+
+$$
+\begin{array}{|c|c|}
+\hline
+  \text{Set} & \text{Operation} & \text{Identity} \\ 
+\hline
+   \mathbb{Z} & + & 0 \\
+\hline
+   \mathbb{Q} & + & 0 \\
+\hline
+   \mathbb{R} & + & 0 \\ 
+\hline
+   \mathbb{Z} & \times & 1 \\
+\hline
+   \mathbb{Q} & \times & 1 \\
+\hline
+   \mathbb{R} & \times & 1 \\ 
+\hline
+\end{array}
+$$
+
 
 # [Incunabulum for the 21st century: Making the J interpreter compile in 2020](#incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020)
 
@@ -1141,12 +1385,12 @@ Here, we have vertices $V \equiv \\{ r, g, b, b, p \\}$, edges
 $E \equiv \\{rb, gr, bg, m, o, c \\}$ and faces $F \equiv \\{ f \\}$.
 
 Here, we see a differential form $h_e$ that is defined on the edges,
-and also obeys the equation $dh_e = 0$ (Hence is ???). However, it 
+and also obeys the equation $dh_e = 0$ (Hence is closed). However, it 
 _does not have an associated potential energy_ to derive it from. That is,
 there cannot exist a certain $h_v$ such that $d h_v = h_e$.
 
 
-So, while every ???? form is ????, _not every_ ???? form is ?????.
+So, while every exact form is closed, _not every_ closed form is exact.
 
 Hence, this $g$ that we have found is a non-trivial element of $Kernel(d_{FE}) / Image(d_{EV})$,
 since $dh_e = 0$, hence $h_e \in Kernel(d_{FE})$, while there does not exist
@@ -4552,7 +4796,7 @@ to improve the functions `isl_map_power` and `isl_map_transitive_closure`
 though.
 
 
-## Using compactness to argue about the cover in an argument
+# [Using compactness to argue about covers](#using-compactness-to-argue-about-covers)
 
 I've always seen compactness be used by _starting_ with a possibly infinite
 coverm and then _filtering it_ into a finite subcover. This finite
@@ -4563,13 +4807,13 @@ of _all possible subcovers_, and then argues about why a cover cannot be built
 from these subcovers if the set is compact. I found it to be a very cool
 use of compactness, which I'll record below:
 
-##### Theorem: 
+#### Theorem: 
 
 If a family of compact, countably infinite sets `S_a` have all 
 _finite intersections_ non-empty, then the intersection of the family `S_a`
 is non-empty.
 
-##### Proof:
+#### Proof:
 
 Let `S = intersection of S_a`. We know that `S` must be compact since
 all the `S_a` are compact, and the intersection of a countably infinite
@@ -4579,7 +4823,7 @@ Now, let `S` be empty. Therefore, this means there must be a point `p ∈ P`
 such that `p !∈ S_i` for some arbitrary `i`.
 
 
-##### Cool use of theorem:
+#### Cool use of theorem:
 
 We can see that the cantor set is non-empty, since it contains a family
 of closed and bounded sets `S1, S2, S3, ...` such that  `S1 ⊇ S2 ⊇ S3 ...`
@@ -4594,7 +4838,7 @@ that the cantor set is non-empty, since:
 3. Invoke theorem.
 
 
-# Japanese Financial Counting system
+# [Japanese Financial Counting system](#japanese-financial-counting-system)
 
 - [Wikipedia](https://en.wikipedia.org/wiki/Japanese_numerals#Formal_numbers)
 
@@ -4609,7 +4853,7 @@ from adding strokes to stuff previously written.
 ```
 
 
-# Stephen wolfram's live stream
+# [Stephen wolfram's live stream](#stephen-wolframs-live-stream)
 
 - [Twitch.tv link](https://www.twitch.tv/videos/408653972)
 
@@ -4620,14 +4864,14 @@ some interesting content.
 The discussions of Wolfram with his group are great, and they bring up
 _really_ interesting ideas (like that of cleave being very irregular).
 
-# `Cleave` as a word has some of the most irregular inflections
+# [`Cleave` as a word has some of the most irregular inflections](#cleave-as-a-word-has-some-of-the-most-irregular-inflections)
 - cleave
 - clove
 - cleaved
 - clave
 - cleft
 
-# McCune's single axiom for group theory
+# [McCune's single axiom for group theory](#mccunes-single-axiom-for-group-theory)
 
 [Single Axioms for Groups and Abelian Groups with Various
 Operations](http://ftp.mcs.anl.gov/pub/tech_reports/reports/P270.pdf)
@@ -4771,7 +5015,7 @@ does _any blog post that I've read_. I don't understand what's going on,
 and I plan on updating this section when I understand this better.
 
 
-# Arthur Whitney: dense code
+# [Arthur Whitney: dense code](#arthur-whitney-dense-code)
 
 
 - Guy who wrote a bunch of APL dialects, write code in an eclectic style
@@ -4784,7 +5028,7 @@ and I plan on updating this section when I understand this better.
 - [A history of APL in 50 functions](https://www.jsoftware.com/papers/50/) ---
   A great list of APL snippets that solve classical problems.
 
-# How does one work with arrays in a linear language?
+# [How does one work with arrays in a linear language?](#how-does-one-work-with-arrays-in-a-linear-language)
 
 Given an array of qubits `xs: Qubit[]`, I want to switch to little endian.
 Due to no-cloning, I can't copy them! I suppose I can use recursion to build
@@ -4826,7 +5070,7 @@ is _forced_ since mutation very often involves temporaries / copying!
 (I'm solving assignments in [qsharp](https://docs.microsoft.com/en-us/quantum/)
 for my course in college)
 
-# How Linear optimisation is the same as Linear feasibility checking
+#[Linear-optimisation-is-the-same-as-Linear-feasibility-checking](#linear-optimisation-is-the-same-as-linear-feasibility-checking)
 Core building block of effectively using the ellipsoid algorithm.
 
 - If we posess a way to check if a point $p \in P$ where $P$ is a polytope, we
@@ -4842,7 +5086,7 @@ Core building block of effectively using the ellipsoid algorithm.
 - This way, we have converted a _linear programming_ problem into a 
   _check if this polytope is empty_ problem!
 
-# Quantum computation without complex numbers
+# [Quantum computation without complex numbers](#quantum-computation-without-complex-numbers)
 I recently learnt that the Toeffili and Hadamard gates are universal for
 quantum computation. The description of these gates involve no complex numbers.
 So, we can write any quantum circuit in a "complex number free" form. The caveat
@@ -4858,7 +5102,7 @@ to remove the power from going from R to C in many cases. This is definitely
 something to ponder.
 
 
-# Linguistic fun fact: Comparative Illusion
+# [Linguistic fun fact: Comparative Illusion](#linguistic-fun-fact-comparative-illusion)
 
 I steal from wikipedia:
 
