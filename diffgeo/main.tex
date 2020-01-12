@@ -42,10 +42,10 @@
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=black,
-    urlcolor=black
+    citecolor=blue,
+    filecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue
 }
 
 \usepackage{epsfig}
@@ -56,6 +56,7 @@
 \newcommand{\R}{\ensuremath{\mathbb R}}
 \newcommand{\coT}{\ensuremath{T^*}}
 \newcommand{\Lie}{\ensuremath{\mathfrak{L}}}
+\newcommand{\Vectorfield}{\ensuremath{\mathfrak{X}}}
 \newcommand{\pushforward}[1]{\ensuremath{{#1}_{\star}}}
 \newcommand{\pullback}[1]{\ensuremath{{#1}^{\star}}}
 \newcommand{\vectorfield}[1]{\mathfrak{X}}
@@ -896,6 +897,37 @@ $i_{X}(\omega \wedge \zeta ) = \omega i_\boldX (\zeta) - 1^n$
 \end{lemma}
 \begin{proof} TODO \end{proof}
 
+\begin{lemma}
+$i_X \circ i_X = 0$
+\end{lemma}
+\begin{proof} 
+    $i_X \circ i_X \equiv \lambda i. \omega(X, X, i) = \lambda i . - \omega (X, X, i)$.
+
+    Hence, $i_X \circ i_X = \lambda i . 0 = 0$
+    \qed
+\end{proof}
+
+
+\begin{lemma}
+$i_{X} L_X = L_X i_X$
+\end{lemma}
+\begin{proof} 
+    \begin{align*}
+        i_X L_X
+        &= i_X (d i_X + i_X d) \qquad \text{(Cartan magic formula)} \\
+        &= i_X d i_X + \cancel{i_X i_X d} \qquad \text{($i_X \circ i_X = 0$)} \\
+        &= i_X d i_X
+    \end{align*}
+
+    \begin{align*}
+        L_X i_X
+        &= (d i_X + i_X d) i_X \qquad \text{(Cartan magic formula)} \\
+        &= \cancel{d i_X i_X} + i_X d i_X \qquad \text{($i_X \circ i_X = 0$)} \\
+        &= i_X d i_X
+        = i_X L_X
+    \end{align*} \qed
+\end{proof}
+
 
 \chapter{Tensor network diagrams}
 
@@ -908,6 +940,103 @@ Tensor contraction is by joining legs. $v^j w_j$ is \begin{verbatim}(w)---(v)\en
 
 A $k$ form is drawn as (TODO)
 
+
+\chapter{Hamiltonian and Symplectic vector fields}
+We have \textbf{finally} built up enough formalism to deal with hamiltonian
+dynamics. Awesome.
+
+\section{Hamiltonian vector fields}
+
+To get started, we need a symplectic manifold $(M, \omega)$, and a function
+$H: M \rightarrow \mathbb R$. $dH \in \Omega^1(M)$. Since $\omega$ is
+nondegenerate, there a new unique vector field $X_H \in \Vectorfield(M)$
+which obeys the identity $i_{X_H} \omega = dH$ That is,
+$\forall Y \in \Vectorfield(M), \omega(X_H, Y) = dH(Y)$.
+
+Vector fields are good since they can be integrated to give us flows.
+Integrate $X_H$ to receive flow $\sigma_t \equiv exp(tX_H)$, and suppose that either $M$ is
+compact or $X_H$ is complete: the flow ought to be defined for all time.
+
+Since it's the flow of the vector field $X_H$, we know that
+$\sigma_0 = id;~\frac{d}{dt} \sigma_t = X_H \circ \sigma_t$.
+
+We now prove that the flow preserves $\omega$.
+
+\begin{theorem}
+    $\sigma_t^\star \omega = \omega$
+\end{theorem}
+\begin{proof}
+    \begin{align*}
+        \frac{d}{dt} \sigma_t^\star \omega 
+        &= \frac{d}{dt} exp(tX_H)^\star \omega \\
+        &= \lim_{\epsilon \rightarrow 0} \frac{exp((t + \epsilon)X_H)^\star  - exp(tX_H)^\star}{\epsilon} \omega \\
+        &= exp(tX_H)^\star \lim_{\epsilon \rightarrow 0} \left (\frac{exp(\epsilon X_H)  - id}{\epsilon}\right)^\star \omega\\
+        &= exp(tX_H)^\star \Lie_{X_H} \omega \qquad \text{(By defn of Lie derivative)} \\
+        &= exp(tX_H)^\star (d i_{X_H} + i_{X_H} d) \omega \qquad \text{(Cartan's magic formula)} \\
+        &= exp(tX_H)^\star (d i_{X_H} \omega  + i_{X_H} d \omega) \\
+        &= exp(tX_H)^\star (d (dH) + i_{X_H} d \omega) \qquad \text{(Defn of $X_H: dH = i_{X_H} \omega$)}\\
+        &= exp(tX_H)^\star (0 + i_{X_H} d \omega) \qquad \text{($d \circ d = 0$ by (co)homology)}\\
+        &= exp(tX_H)^\star (0 + i_{X_H} (0)) \qquad \text{($\omega$ is closed, so $d \omega = 0$)}\\
+        &= 0
+    \end{align*}
+\end{proof}
+
+This allows us to conclude that for all functions $H$ on the symplectic
+manifold $M$, the flow $\sigma$ associated to the vector field $S_H$ of $H$ is
+a Symplectomorphism.  The function $H$ is called the Hamiltonian, and $X_H$ is
+called as the Hamiltonian vector field.
+
+\begin{example}
+    $M = \mathbb R^2 = (q, p)$ with the symplectic form is $\omega = dq \wedge dp$.
+    We define a hamiltonian $H(q, p) = \frac{1}{2}(q^2 + p^2)$. Compute $dH \equiv q dq + pdp$. 
+    $X_H \equiv p \frac{\partial}{\partial q} - q \frac{\partial}{\partial p}$.
+    $\sigma_t(q, p) \equiv \left( cos(-t) q, sin(-t)p \right)$.
+\end{example}
+
+\begin{example}
+    $M = S^2$. We will call the $z$ axis the "h-axis" (for height, and also hamiltonian).
+    This is equipped with the closed two form $\omega = d\theta \wedge dh$.
+    We need two coordinates on the sphere, an angle $\theta$ and a height $h$.
+    We are going to choose the hamiltonian $H(h, \theta) = h$.
+    This gives us the vector field $X_H = \frac{d}{d \theta}$.
+    $\sigma_t(\theta, h) = (\theta + t \mod 2 \pi, h)$
+\end{example}
+
+We have yet to show that energy is conserved. That is, the energy function is
+preserved under time-translational symmetry.
+
+\subsection{Energy conservation}
+If $H$ is the hamiltonian, and the flow is $X_H$, let us compute the lie
+derivative of the hamiltonian with respect to the flow. (TODO: why is this
+the correct object to study?)
+
+\begin{align*}
+    \Lie_{X_H} H &= i_{X_H} dH \qquad \text{(??)} \\
+        &= i_{X_H} (i_{X_H} \omega) \qquad \text{(By definition of $X_H$)} \\
+        &= 0 \qquad \text{($i_{X_H} \circ i_{X_H} = 0$)}
+\end{align*}
+
+Hence, the level sets of $H$ are left invariant by $X_H$. That is,
+$$
+H(x) = (\sigma_t^\star H)(x) = H(\sigma_t(x)) \forall t
+$$
+TODO: prove that the above implies energy conservation.
+
+
+
+% Lecture 13
+\section{Symplectic vector fields}
+Let $(M, \omega)$ be a symplectic manifold, and a vector field $X$ preserving
+$\omega$. That is, $\frac{d}{dt}(\sigma_t^\star(\omega)) = 0 \Lie_X \omega$
+is called a symplectic vector field.
+
+\begin{example}
+    Let $M$ be a manifold. Let $X \in \Vectorfield(M)$.  Then there is a unique
+    $X_\sharp \in \Vectorfield(T^\star M)$ whose flow $\sigma_t^\sharp$ is a 
+    lift of $\sigma_t$ Let $\alpha$ be the tautological one-form on $T^\star M$.
+    Let $\omega = - d\alpha$. Show that $X_\sharp$ is Hamiltonian with hamiltonian
+    $H \equiv i_{X_\sharp} \alpha$.
+\end{example}
 
 
 \chapter{Symplectic Manifolds}
@@ -1093,6 +1222,7 @@ Given all of this machinery, the algorithm is indeed quite simple.
     \item $\overline x_{next}: \overline M \equiv R(x_{mid})$, the retraction of the motion along the tangent vector,
         giving a point on the manifold $\overline M$.
 \end{itemize}
+
 
 \chapter{Exterior and Geometric algebras}
 

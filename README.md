@@ -14,6 +14,9 @@ some slides of talks I've given.
 ##### [Philosophy: God and Knowledge](./philosophy-god-knowledge/main.pdf)
 ##### [Topics in machine learning](./topics-in-ml/main.pdf)
 ##### [General relativity & Differental geometry](./diffgeo/main.pdf)
+##### [Game theory](./gametheory/main.pdf)
+##### [Probabilistic Graphical models](./probabilistic-graphical-models/main.pdf)
+##### [Distributed Systems](./distributedsystems/main.pdf)
 
 # Slides
 ##### [The barvinok algorithm](./barvinok/slides.pdf)

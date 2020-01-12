@@ -1,0 +1,116 @@
+\documentclass[11pt]{book}
+%\documentclass[10pt]{llncs}
+%\usepackage{llncsdoc}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+\usepackage{physics}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{listing}
+\usepackage{minted}
+\usepackage{cancel}
+\evensidemargin=0.20in
+\oddsidemargin=0.20in
+\topmargin=0.2in
+%\headheight=0.0in
+%\headsep=0.0in
+%\setlength{\parskip}{0mm}
+%\setlength{\parindent}{4mm}
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{8.5in}
+%\leftmargin -2in
+%\setlength{\rightmargin}{-2in}
+%\usepackage{epsf}
+%\usepackage{url}
+
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+%\usepackage{minted}
+%\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\R}{\ensuremath{\mathbb R}}
+\newcommand{\boldX}{\ensuremath{\mathbf{X}}}
+\newcommand{\boldY}{\ensuremath{\mathbf{Y}}}
+\newcommand{\B}{\ensuremath{\mathcal{B}}}
+\newcommand{\Bomega}{\ensuremath{\mathcal{B}^\omega}}
+
+% \newcommand{\braket}[2]{\ensuremath{\left\langle #1 \vert #2 \right\rangle}}
+
+
+\def\qed{$\Box$}
+\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{observation}{Observation}
+\newtheorem{proof}{Proof}
+\newtheorem{remark}{Remark}
+\newtheorem{example}{Example}
+
+\title{Software Foundations}
+\author{Siddharth Bhat}
+\date{Spring 2020}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\chapter{Introduction}
+
+Let $S = \langle X_s, X_s^0, U_s, \xrightarrow{s}, Y_s, h_s \rangle$ be
+a transition system.
+
+A \emph{finite run} originating from $x_0 \in X^0$  is a finite sequence
+$(x_0, u_0, x_1, u_1, \dots u_{n-1}, x_n)$ such that $\forall i \in \{0, \dots, n-1\},~ x_i \xrightarrow{s}_{u_i} x_{i+1}$.
+This is sometimes denoted as $x_0 \xrightarrow{s}_{u_0} x_1 \xrightarrow{s}_{u_1} \dots \xrightarrow{s}_{u_{n-1}} x_n$.
+In the notation of Tabuada, this is called as the \emph{finite internal behaviour}.
+A run has information about both states and transitions.
+
+$\langle x_0, x_1, \dots, x_n \rangle$ is a \emph{finite trajectory} iff
+$\exists u_0, \dots u_{n-1}$ such that $x_0 \xrightarrow{u_0} x_1 \xrightarrow{u_1} \dots \xrightarrow{u_{n-1}} x_n$
+is a finite run. The trajectory has information only about states.
+
+$\langle y_0, y_1, \dots, y_n \rangle$ is a \emph{finite trace} iff
+there exists a finite trajectory $\langle x_0 \dots x_n \rangle$ and
+$\forall i \in \{0, \dots, n \}, ~y_i = h_s(x_i)$. The finite trace has 
+information only about projections of a state.
+
+The \emph{finite behaviour} of a system $S$ is defined as the union of all
+finite traces of $S$. This is notated as $\B(S)$.
+
+The infinite behaviour of a system $S$ is the union of all infinite traces
+of $S$, notated as $\Bomega(S)$.
+
+The questions we are interested in answering are:
+\begin{itemize}
+    \item What is the algebra of systems? How do we compose systems?
+    \item Can we look at the definition of a system and predict its behaviour?
+        (Simulation and Bisimulation). This is different from extensionally
+        looking at traces of the system.
+\end{itemize}
+\end{document}

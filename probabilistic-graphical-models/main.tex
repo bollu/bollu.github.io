@@ -13,6 +13,7 @@
 \usepackage{algorithm}
 \usepackage{listing}
 \usepackage{minted}
+\usepackage{tikz}
 \evensidemargin=0.20in
 \oddsidemargin=0.20in
 \topmargin=0.2in
@@ -41,10 +42,10 @@
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=black,
-    urlcolor=black
+    citecolor=blue,
+    filecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue
 }
 
 \usepackage{epsfig}
@@ -52,15 +53,11 @@
 \usepackage{latexsym}
 \newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
 \newcommand{\E}[1]{\ensuremath{\mathbb{E} \left[ #1 \right]}}
+\renewcommand{\P}[1]{\ensuremath{\mathbb{P} \left[ #1 \right]}}
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
 \newcommand{\R}{\ensuremath{\mathbb R}}
-\newcommand{\coT}{\ensuremath{T^*}}
-\newcommand{\Lie}{\ensuremath{\mathfrak{L}}}
-\newcommand{\pushforward}[1]{\ensuremath{{#1}_{\star}}}
-\newcommand{\pullback}[1]{\ensuremath{{#1}^{\star}}}
-
-\newcommand{\pushfwd}[1]{\pushforward{#1}}
-\newcommand{\pf}[1]{\pushfwd{#1}}
+\newcommand{\Rgezero}{\ensuremath{\mathbb R_{\geq 0}}}
+\newcommand{\powerset}{\ensuremath{\mathcal{P}}}
 
 \newcommand{\boldX}{\ensuremath{\mathbf{X}}}
 \newcommand{\boldY}{\ensuremath{\mathbf{Y}}}
@@ -172,5 +169,298 @@ the number of non-empty bins.
 
 Write down $P(X), P(N), P(X, N)$ where $P(X, N)$ is the joint distribution. 
 Also find $P(X|N)$, $P(N|X)$.
+
+\chapter{Review of Probability}
+
+The first thing we should know is the sample space $\Omega$. Next, we care
+about events $E \subseteq \powerset(\Omega)$. The probability is 
+a function $P: \Omega \rightarrow \Rgezero$ such that:
+
+\begin{itemize}
+    \item $P(\Omega) = 1$
+    \item if $A \cap B = \emptyset$, then $P(A \cap B) = P(A) + P(B)$
+\end{itemize}
+
+
+A random variable is a function $X: \Omega \rightarrow \R$.
+
+The expectation of a random variable $\E X \equiv \sum_i i \cdot P(X=i)$.
+That is, it is the average.
+
+Markov's inequality says that $\P{X > a} \leq \E{X}/a$.
+
+
+Chebyshev's inequality says that $\P{|X - \mu| > a} \leq Var(X)/a^2$.
+
+\section{Conditional Probability}
+
+To control to sample space and smooth interpolate probabilities a we 
+restrict to a smaller sample space, we use \emph{conditioning}. Hence
+we define the conditional probability: $P(B|A) \equiv P(B \cap A) / P(A)$
+
+We can have a chain of conditioning:
+\begin{align*}
+    P(A \cap B \cap C) = P(A) P(B \cap C | A) = P(A) P(B|A) P(C|A \cap B)
+\end{align*}
+
+
+\begin{example}
+    We have 3 bins and 4 balls.
+    We throw the 4 balls into the 3 bins independently. Each ball will
+    land into some bin.
+
+    Let $X$ be the number of balls in bin 1. $N$ be the number of non-empty
+    bins.
+
+    The total number of possibilities is $3^4$, since each ball has $3$
+    possible bins, and there are $4$ independent balls.
+
+    $P(X = 2 \land N = 1) = 0$. We have have only two balls in bin $1$
+    which occupies one bucket. Hence,the other two balls need another bin.
+    $N$ can be at minimum $2$.
+
+
+    $$P(X = 2 \land N = 2) = 
+    \text{ways to send 2 balls to 1st bin}
+    \cdot
+    \text{leftover bin to send the leftover 2 balls} = 
+    \frac{ {4 \choose 2} \cdot 2 }{3^4}$$
+\end{example}
+
+\begin{example}
+    We have a drunken man who takes a step forward with $p = 1/2$, and
+    2 steps backward with probability $p = 1/2$. at time $t = 0$, $x = 0$.
+    Let $T$ be the time of passing out. Let $pos_T$ be the set of positions
+    man could have been in when he passes out at time $T$. 
+
+    For example, at $T = 0, pos_0 = \{ 0 \}$. At $T = 1, pos_1 = \{ -2, 1 \}$. 
+    At $T = 2, pos_2 = \{ -4, -1, 2 \}$. $pos_3 = \{ 0, \dots \}$. 
+
+
+    Let $Y$ be a random variable such that $Y$ is $1$ with probability $0.5$,
+    and $-2$ with probability $0.5$.  Let $X$ be the random variable that is
+    the position after $T$ steps.  For example, $\E{X | T = 1} = \E{Y}$,  
+    $\E{X | T = 2} = \E{Y + Y} = \E{Y} + \E{Y}$. Linearity of distribution saves
+    us here.
+\end{example}
+
+
+\begin{example}
+    We have two distributions on the same sample sample, $p, q: \Omega \rightarrow [0, 1]$.
+    We need to distinguish between $p$ and $q$. We have an oracle $O$ that
+    provides numbers distributed according to either $p$ or $q$. That is,
+    we are given access to $O_r$ which provides numbers distributed according 
+    to distribution $r$. Return whether $r = p$ or $r = q$.
+
+    We should probably look at the event $a \equiv \max_{A \subseteq \Omega} p(A) - q(A)$,
+    the element that exhibits maximum discrepancy. Then we should draw events
+    from the set which maximised $a$ and see what happens.
+
+    Now, this number $a$ happens to be equal to
+    $\frac{1}{2} \sum_{w \in \Omega}  |p(w) - q(w)|$
+\end{example}
+
+\chapter{Belief networks}
+
+There are two people, Alice and Bob. They are neighbours, and there's a wall
+between their houses. Alice's house has a sprinkler. One day, she wakes up
+and notices that her lawn is wet. So now, we have the random variables:
+
+\begin{itemize}
+    \item $A$: Alice's lawn is wet/not wet.
+    \item $B$: Bob's lawn is wet/not wet.
+    \item $S$: Alice's sprinkler was switched on/not switched on.
+    \item $R$: Rained or not.
+\end{itemize}
+
+We have a joint probability distribution $P(A~ B~ S~ R)$. 
+We're now going to factor this using Bayes rule:
+\begin{align*}
+    &\P{A|BSR} \P{BSR} = \P{A|BSR} \P{B |SR} \P{R|S} \P{S}
+\end{align*}
+
+For $\P{A|BSR}$ we need to provide $\P{A=0|B=b~ S=s~ R=r}$. We can calculate
+$$\P{A=1|B=b~S=s~R=r} = 1 - \P{A=0|B=b~ S=s~ R=r}$$ So we need to provide $8$ values
+for all possible choices of $(b, s, r)$.
+
+Similarly, for $\P{B|SR}$ we need 4 numbers, and $\P{R|S}$ we need 2 numbers,
+and $\P{S}$ we need 1 number. The total is $8 + 4 + 2 + 1 = 15$, which is how many
+we need to describe the \emph{full} joint distribution $P(A, B, S, R)$.
+
+Now, for example, if we know the status of rain, we don't \emph{need to know the status
+of Bob's lawn to comment on Alice's lawn}. So, we can rewrite $P(A|BSR) = P(A|SR)$.
+This now needs only $4$ variables, from $8$.
+Similarly, if we know the status of the rain, the sprinkler in Alice's yard
+cannot affect Bob's yard. So, we can rewrite $P(B|SR) = P(B|R)$. This dropped
+4 numbers to 2 numbers.
+Finally, the status of rain does not affect whether the sprinkler was on
+or not. Hence, $P(S|R) = P(S)$. This lowers 2 numbers to 1 numbers.
+Hence, we now have a total of $4 + 2 + 1 + 1 = 8$, which is \emph{half} of
+what we started with.
+
+We can draw our relationships as a graph:
+
+\begin{tikzpicture}
+    % picture of the graphical model
+    % R -> A
+    % R -> B
+    % S -> A
+\end{tikzpicture}
+
+
+Let's assume we have an instantiation of this model on some concrete numbers:
+
+\begin{tabular}{ll}
+    $\P{R=1} = 0.2$ &   $\P{S=1} = 0.1$ \\
+    $\P{B=1|R=1} = 1$ & $\P{B=1|R=0} = 0.2$ \\
+    $\P{A=1|R=0~S=0} = 0$ & $\P{A=1|R=1~S=1} = 1$  \\
+    $\P{A=1|R=1~S=0} = 1$ & $\P{A=1|R=0~S=1} = 0.9$ \\
+\end{tabular}
+
+
+We can now begin number-crunching and compute what $\P{S=1|A=1}$ is going
+to be:
+\begin{align*}
+\P{S=1|A=1} &= \frac{\P{S=1~A=1}}{\P{A=1}} \\
+&= \frac{\sum_{R~ B} \P{S=1~ A=1~ R~ B}}{\sum_{R~ B~ S} \P{A=1~ R~ B~ S}} \\
+&= \frac{\sum_{R~ B} \P{A=1 |R~ S=1}\P{B | R~ S=1} \P{R} \P{S}}{\sum_{R~ B~ S} \P{A=1|RSB} \P{B|RS} \P{R} \P{S}}
+\end{align*}
+
+Suppose we find that $\P{S=1|A=1} = 0.3382$. Now, what is $\P{S=1|A=1~B=1}$?
+
+\begin{align*}
+\P{S=1|A=1~B=1} &= \frac{\P{S=1~A=1~B=1}}{\P{A=1~B=1}} \\
+&= \frac{\sum_{R~} \dots} {\sum_{S, R} \P{A=1~B=1~S~R}}
+\end{align*}
+
+We find that $P(S=1|A=1~B=1) = 0.1604$. That is, if both alice and bob
+had wet lawns, then it's unlikely that the water was from the sprinkler.
+
+Now, how do we design automated algorithms such that the above calculations
+we performed can be done \emph{automatically} and \emph{quickly}?
+
+\section{Computing joint distributions from the graph of the belief net}
+
+\begin{tikzpicture}
+    % picture of the graphical model
+    % R -> A
+    % R -> B
+    % S -> A
+\end{tikzpicture}
+
+We first perform a topological sort of the DAG(directed acyclic graph), which
+is always guaranteed to exist.
+
+\begin{tikzpicture}
+    % picture of the toposort from left to right
+    % |--------v------v
+    % R -> S-> B -> A
+    %      |--------^
+    
+\end{tikzpicture}
+
+We now visit the topo sort and multiply the values corresponding to each
+of the factors.
+
+Notice that $R$ has no incoming edges, so we need a term of $\P{R}$, 
+Similarly, $S$ has no incoming edges, so we need a term of $\P{S}$.
+$B$ has an incoming edges from $R$, so we get a term $\P{B|R}$. Similarly, $A$
+has incoming edges from $R, S$ so we get a term $\P{A|S~ R}$. This
+gives us the final solution:
+
+$$\P{A~B~S~R} = \P{R}\P{S}\P{B|R}\P{A|S~R}$$
+
+\section{Conditional independence of random variables}
+
+We wish to study situations of the form:
+"Are random variables $X$ and $Y$ are independent conditioned on $C$"? 
+If they are, this is notated as:
+\begin{align*}
+    X \perp Y | C \iff \P{X~ Y|C} = \P{X|C} \P{Y|C}
+\end{align*}
+
+\begin{example}
+    Let us assume we have $x_1, x_2, x_3$, all of which are 
+    dependent on each other with a network of the form:
+
+\begin{tikzpicture}
+    % picture of the network from left to right
+    % X1 -> X2 -> X3
+    % |------------^
+\end{tikzpicture}
+
+There are 6 graphs that can represent the network ($3!=6$)
+\end{example}
+
+\begin{example}
+\begin{itemize}
+    \item 1. ${(x_1 \rightarrow x_3 \leftarrow x_2)}$. We get $\P{X_1~X_2~X_3} = \P{X_1}~\P{X_2}~\P{X_3|X_1~X_2}$
+    \item 2.  ${(x_1 \leftarrow x_3 \rightarrow x_2)}$. We get $\P{X_1~X_2~X_3} = \P{X_3}~\P{X_1|X_3}~\P{X_2|X_3}$
+    \item 3. ${x_1 \rightarrow x_3 \rightarrow x_2}$. We get $\P{X_1~X_2~X_3} = \P{X_1} \P{X_3 | X_1} \P{X_2|X_3}$.
+\end{itemize}
+
+Note that the first graph is not the same as the second graph, 
+since in the first graph, $(X_1, X_2)$ are independent, but in the second
+one, they are not.
+
+The second and third are equal, and we can prove it!
+\begin{align*}
+    1 \leftarrow 3 \rightarrow 2 &= (\P{X_3}~\P{X_1|X_3})~\P{X_2|X_3}  \\
+       &=   (\P{X_1}~\P{X_3|X_1})~\P{X_2|X_3} \text{(Bayes rule)} \\
+       &= 1 \rightarrow 3 \rightarrow 2
+\end{align*}
+
+Similarly, the third and fourth are equal:
+\begin{align*}
+    2 \rightarrow 3 \rightarrow 1 &= (\P{X_2}~\P{X_3|X_2})~\P{X_1|X_3}  \\
+       &=   (\P{X_3}~\P{X_3|X_2})~\P{X_1|X_3} \text{(Bayes rule)} \\
+       &= 2 \leftarrow 3 \rightarrow 1
+\end{align*}
+\end{example}
+
+subgraphs of the form ${(x_1 \rightarrow x_3 \leftarrow x_2)}$ are called as
+\textbf{collisions}. Here, $x_1, x_2$ are independent, but conditioned on $x_3$,
+they may become dependent!
+
+\begin{align*}
+ &\P{X_1~ X_2 | X_3} =_? \P{X_1 | X_3} \P{X_2 | X_3} \\
+ &\P{X_1|X_3}\P{X_2 | X_1 ~X_3} =_? \P{X_1 | X_3} \P{X_2 | X_3} \\
+ &\P{X_2 | X_1 ~X_3} =_? \P{X_2 | X_3} \\
+\end{align*}
+
+Let $X_1, X_2$ be binary random variables that take on values ${0, 1}$ with
+probability half. Let $X_3 = X_1 \oplus X_2$ ($\oplus$ represents XOR). Now,
+$X_3$ is also a random variable. Now, notice that if we know only \textit{one}
+random variable, the other two random variables are independent. However,
+as soon as we know \textit{two random variables}, the third one
+is completely determined!  So, $\P{X_1 | X_1 ~ X_3} \in \{0, 1\}$, while $\P{X_2 | X_3} = 0.5$ for this example.
+Hence, the above probabilities are not equal, and therefore $X_1, X_2$ are
+not independent when conditioned on $X_3$.
+
+\section{d connectivity}
+
+We say that $X, Y$ are d-connected wrt $Z$, where $Z$ is a set
+of random variables, if there exists an \emph{undirected path}
+such that:
+\begin{itemize}
+    \item For all colliders, either $C$ or a descendant of $C \in Z$.
+    \item No non-colliders should be in $Z$.
+\end{itemize}
+
+\begin{example}
+    $a \rightarrow b \rightarrow d \leftarrow c$.
+    Now let's consider whether $a, c$ are d-connected with respect to $d$.
+    There exists a path $a \rightarrow b \rightarrow d \leftarrow c$. In this
+    path, $d$ is a colliding vertex, which does belong to $Z$. $b$ is a
+    non-colliding vertex that does not belong to $Z$. Hence, this satisfies the
+    conditions for this to be a $d$-connected path.
+\end{example}
+
+\begin{theorem}
+    $\text{$X$ is not d-connected to $Y$ with respect to $Z$} \implies (X \perp Y | C)$ 
+    Note that this is not iff.
+\end{theorem}
+\begin{proof}
+\end{proof}
 
 \end{document}

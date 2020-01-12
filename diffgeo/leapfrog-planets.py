@@ -6,7 +6,7 @@ import numpy.linalg
 
 # dq/dt = dH/dp
 # dp/dt = -dH/dq (a = -del V)
-def leapfroge(dhdp, dhdq, q, p, dt):
+def leapfrog(dhdp, dhdq, q, p, dt):
     p += -dhdq(q, p) * 0.5 * dt 
 
     # full step position
@@ -63,7 +63,7 @@ NITERS = 15
 TIMESTEP = 1
 
 print("planet simulation with leapfrog")
-planet_leapfrog = planet(leapfroge, NITERS, TIMESTEP)
+planet_leapfrog = planet(leapfrog, NITERS, TIMESTEP)
 
 plt.rcParams.update({'font.size': 12, 'font.family':'monospace'})
 fig, ax = plt.subplots()

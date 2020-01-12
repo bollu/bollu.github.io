@@ -1,16 +1,19 @@
 \documentclass[11pt]{book}
-\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
-\linespread{1.025}              % Palatino leads a little more leading
-\usepackage[euler-digits,small]{eulervm}
 %\documentclass[10pt]{llncs}
 %\usepackage{llncsdoc}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+\usepackage{physics}
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
-\usepackage{physics}
 \usepackage{makeidx}
 \usepackage{algpseudocode}
 \usepackage{algorithm}
 \usepackage{listing}
+\usepackage{minted}
+\usepackage{cancel}
 \evensidemargin=0.20in
 \oddsidemargin=0.20in
 \topmargin=0.2in
@@ -30,8 +33,8 @@
 \usepackage{subcaption} %% For complex figures with subfigures/subcaptions
                         %% http://ctan.org/pkg/subcaption
 \usepackage{enumitem}
-\usepackage{minted}
-\newminted{fortran}{fontsize=\footnotesize}
+%\usepackage{minted}
+%\newminted{fortran}{fontsize=\footnotesize}
 
 \usepackage{xargs}
 \usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
@@ -48,64 +51,28 @@
 \usepackage{epsfig}
 \usepackage{tabularx}
 \usepackage{latexsym}
-\newtheorem{lemma}{Lemma}
-\newtheorem{observation}{Observation}
-\newtheorem{proof}{Proof}
 \newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\R}{\ensuremath{\mathbb R}}
 
 \def\qed{$\Box$}
-\def\proof{\textit{Proof. }}
 \newtheorem{corollary}{Corollary}
 \newtheorem{theorem}{Theorem}
 \newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{observation}{Observation}
+\newtheorem{proof}{Proof}
+\newtheorem{remark}{Remark}
+\newtheorem{example}{Example}
 
-
-\newcommand{\textbb}[1]{$\mathbb{#1}$}
-\DeclareMathOperator{\negl}{negl}
-\DeclareMathOperator{\rand}{rand}
-\newcommand{\binary}{\{0, 1\}}
-\newcommand{\zeroone}{\binary}
-\newcommand{\gen}{\texttt{Gen}}
-\newcommand{\enc}{\texttt{Enc}}
-\newcommand{\dec}{\texttt{Dec}}
-\newcommand{\N}{\ensuremath{\mathbb{N}}}
-\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
-\newcommand{\xor}{\oplus}
-
-
-\newcommand{\pr}[1]{Pr\left[ #1 \right]}
-
-\newcommand{\privkeysecurity}[1]{\ensuremath{PrivK_{A, \Pi}^{\texttt{#1}}}}
-
-\title{Principle of Information \& Security}
+\title{Database Systems}
 \author{Siddharth Bhat}
-\date{}
+\date{Monsoon 2019}
 
 \begin{document}
-
 \maketitle
 \tableofcontents
 
-\include{lec-1}
-\include{lec-2}
-\include{lec-3}
-\include{lec-4}
-\include{lec-5}
-\include{lec-6}
-\include{lec-7}
-\include{lec-8}
-\include{lec-9-review}
-\include{lec-10}
-\include{lec-11}
-\include{lec-12}
-\include{lec-13}
-\include{lec-14}
-% read separately
-\include{lec-15}
-\include{lec-16}
-\include{lec-17}
-\include{lec-18}
-\include{lec-19}
-
+\chapter{Data storage}
 
 \end{document}
