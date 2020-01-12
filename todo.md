@@ -95,3 +95,4 @@ installed, use it to compute closed forms)
   https://mathoverflow.net/questions/153302/teaching-homology-via-everyday-examples 
 - Jeff E: Algorithms
 - The little book of OS development: https://littleosbook.github.io/book.pdf
+- Computer architecture, a constructive approach (for processor design)
