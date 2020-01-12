@@ -90,3 +90,6 @@ installed, use it to compute closed forms)
 - Languages of the Underworld of West Bengal
 - Language identification in the limit: inductive inference of regular / context free langs
 - Blog post: An accessible example of classical gauge theory (wave from adding springs)
+- Forcing
+- Homology via everyday examples:
+  https://mathoverflow.net/questions/153302/teaching-homology-via-everyday-examples 
