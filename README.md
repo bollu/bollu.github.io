@@ -26,7 +26,7 @@
 
 #### Table of contents:
 
-- [Incunabulum for the 21st century: Making the J interpreter compile in 2020](incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020)
+- [Incunabulum for the 21st century: Making the J interpreter compile in 2020](#incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020)
 - [An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)](#an-example-of-a-sequence-whose-successive-terms-get-closer-together-but-isnt-cauchy-does-not-converge)
 - [Krylov subspace method](#krylov-subspace-method)
 - [Good reference to the Rete pattern matching algorithm](#good-reference-to-the-rete-pattern-matching-algorithm)
@@ -63,7 +63,7 @@
 - [Lazy programs have space leaks, Strict programs have time leaks](#lazy-programs-have-space-leaks-strict-programs-have-time-leaks)
 - [Presburger arithmetic can represent the Collatz Conjecture](#presburger-arithmetic-can-represent-the-collatz-conjecture)
 
-# [Incunabulum for the 21st century: Making the J interpreter compile in 2020](incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020)
+# [Incunabulum for the 21st century: Making the J interpreter compile in 2020](#incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020)
 
 This is me trying to understand the fabled interpreter of the `J` language
 working, so I could absorb Arthur Whitney's style of writing C: it's
