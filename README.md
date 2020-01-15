@@ -217,11 +217,20 @@ I liked it so much that I took a screenshot and made it my lock screen.
 I'm really fascinated by the code. I loved I could simply stare the screenshot
 to absorb the code. There was no scrolling involved.  The variables are
 well-named (to the extent I understand the code), and it's clearly extremely
-well thought out.
+well thought out. If there's someone who understands some of the thorny
+aspects of the code:
 
-I'm going write a dissection of the code, since I couldn't find anything like
-it. Until there, give the screenshot a shot: you might wind up enjoying the
-act of staring at this gorgeous beauty.
+- What is the `t` variable really tracking?
+- How does one create a multi-dimensional array easily?
+- What are some interesting programs one can run with this mini-interpreter?
+
+I'd be really glad to know the details. Please leave [an issue or a pull request
+against the repo](https://github.com/bollu/bollu.github.io/issues/new).
+
+I'm going write a dissection of the code once I fully understand it, since I
+couldn't find explanaing the code on the internet. 
+
+Until then, enjoy the monolith of code!
 
 
 # [An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)](#an-example-of-a-sequence-whose-successive-terms-get-closer-together-but-isnt-cauchy-does-not-converge)
