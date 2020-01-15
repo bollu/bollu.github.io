@@ -26,6 +26,7 @@
 
 #### Table of contents:
 
+- [Incunabulum for the 21st century: Making the J interpreter compile in 2020](incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020)
 - [An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)](#an-example-of-a-sequence-whose-successive-terms-get-closer-together-but-isnt-cauchy-does-not-converge)
 - [Krylov subspace method](#krylov-subspace-method)
 - [Good reference to the Rete pattern matching algorithm](#good-reference-to-the-rete-pattern-matching-algorithm)
@@ -61,6 +62,152 @@
 - [Handy list of differential geometry definitions](#handy-list-of-differential-geometry-definitions)
 - [Lazy programs have space leaks, Strict programs have time leaks](#lazy-programs-have-space-leaks-strict-programs-have-time-leaks)
 - [Presburger arithmetic can represent the Collatz Conjecture](#presburger-arithmetic-can-represent-the-collatz-conjecture)
+
+# [Incunabulum for the 21st century: Making the J interpreter compile in 2020](incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020)
+
+This is me trying to understand the fabled interpreter of the `J` language
+working, so I could absorb Arthur Whitney's style of writing C: it's
+cryptic, short, and fits in a page. [I learnt of this from the `J` language page](https://code.jsoftware.com/wiki/Essays/Incunabulum),
+which comes with the quote:
+
+> One summer weekend in 1989, Arthur Whitney visited Ken Iverson at Kiln Farm
+> and produced—on one page and in one afternoon—an interpreter fragment on the
+> AT&T 3B1 computer. I studied this interpreter for about a week for its
+> organization and programming style; and on Sunday, August 27, 1989, at about
+> four o'clock in the afternoon, wrote the first line of code that became the
+> implementation described in this document.
+> Arthur's one-page interpreter fragment is as follows:
+
+#### The original source
+
+```c
+typedef char C;typedef long I;
+typedef struct a{I t,r,d[3],p[2];}*A;
+#define P printf
+#define R return
+#define V1(f) A f(w)A w;
+#define V2(f) A f(a,w)A a,w;
+#define DO(n,x) {I i=0,_n=(n);for(;i<_n;++i){x;}}
+I *ma(n){R(I*)malloc(n*4);}mv(d,s,n)I *d,*s;{DO(n,d[i]=s[i]);}
+tr(r,d)I *d;{I z=1;DO(r,z=z*d[i]);R z;}
+A ga(t,r,d)I *d;{A z=(A)ma(5+tr(r,d));z->t=t,z->r=r,mv(z->d,d,r);
+ R z;}
+V1(iota){I n=*w->p;A z=ga(0,1,&n);DO(n,z->p[i]=i);R z;}
+V2(plus){I r=w->r,*d=w->d,n=tr(r,d);A z=ga(0,r,d);
+ DO(n,z->p[i]=a->p[i]+w->p[i]);R z;}
+V2(from){I r=w->r-1,*d=w->d+1,n=tr(r,d);
+ A z=ga(w->t,r,d);mv(z->p,w->p+(n**a->p),n);R z;}
+V1(box){A z=ga(1,0,0);*z->p=(I)w;R z;}
+V2(cat){I an=tr(a->r,a->d),wn=tr(w->r,w->d),n=an+wn;
+ A z=ga(w->t,1,&n);mv(z->p,a->p,an);mv(z->p+an,w->p,wn);R z;}
+V2(find){}
+V2(rsh){I r=a->r?*a->d:1,n=tr(r,a->p),wn=tr(w->r,w->d);
+ A z=ga(w->t,r,a->p);mv(z->p,w->p,wn=n>wn?wn:n);
+ if(n-=wn)mv(z->p+wn,z->p,n);R z;}
+V1(sha){A z=ga(0,1,&w->r);mv(z->p,w->d,w->r);R z;}
+V1(id){R w;}V1(size){A z=ga(0,0,0);*z->p=w->r?*w->d:1;R z;}
+pi(i){P("%d ",i);}nl(){P("\n");}
+pr(w)A w;{I r=w->r,*d=w->d,n=tr(r,d);DO(r,pi(d[i]));nl();
+ if(w->t)DO(n,P("< ");pr(w->p[i]))else DO(n,pi(w->p[i]));nl();}
+
+C vt[]="+{~<#,";
+A(*vd[])()={0,plus,from,find,0,rsh,cat},
+ (*vm[])()={0,id,size,iota,box,sha,0};
+I st[26]; qp(a){R  a>='a'&&a<='z';}qv(a){R a<'a';}
+A ex(e)I *e;{I a=*e;
+ if(qp(a)){if(e[1]=='=')R st[a-'a']=ex(e+2);a= st[ a-'a'];}
+ R qv(a)?(*vm[a])(ex(e+1)):e[1]?(*vd[e[1]])(a,ex(e+2)):(A)a;}
+noun(c){A z;if(c<'0'||c>'9')R 0;z=ga(0,0,0);*z->p=c-'0';R z;}
+verb(c){I i=0;for(;vt[i];)if(vt[i++]==c)R i;R 0;}
+I *wd(s)C *s;{I a,n=strlen(s),*e=ma(n+1);C c;
+ DO(n,e[i]=(a=noun(c=s[i]))?a:(a=verb(c))?a:c);e[n]=0;R e;}
+
+main(){C s[99];while(gets(s))pr(ex(wd(s)));}
+```
+
+It's a lot to take in --- it's quite breathtaking really, the way it all
+hangs together in one page.
+
+#### The attempt to get it run
+
+Unfortunately, this does not work if we try to get it to run in 2020. I decided
+to read the code and understand what would happen. I managed to read enough
+to understand that the code `a=~3` ought to create an array with values `[0 1 2]`.
+On attempting to _run_ this however, we get:
+
+```
+$ gcc -O0 -g -std=c89 -fsanitize=address -fsanitize=undefined incunabulum.c -o bin/incunabulum && ./bin/incunabulum
+a=~3
+=================================================================
+==23726==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60300000eff0 at pc 0x000000402be3 bp 0x7ffe6dde6b70 sp 0x7ffe6dde6b60
+WRITE of size 8 at 0x60300000eff0 thread T0
+    #0 0x402be2 in wd /home/bollu/work/w/incunabulum.c:40
+    #1 0x402d28 in main /home/bollu/work/w/incunabulum.c:42
+    #2 0x7f7ae901082f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2082f)
+    #3 0x400ca8 in _start (/home/bollu/w/bin/incunabulum+0x400ca8)
+...
+SUMMARY: AddressSanitizer: heap-buffer-overflow /home/bollu/work/w/incunabulum.c:40 wd
+...
+==23726==ABORTING
+```
+
+oops! The code uses a lot of punning between `int`
+and `int*`. These assumptions break now that we're in 64-bit. The patch to
+get this to work is:
+
+#### the patch
+
+```patch
+diff --git a/incunabulum.c b/incunabulum.c
+index 2cae744..778e35a 100644
+--- a/incunabulum.c
++++ b/incunabulum.c
+@@ -1,11 +1,11 @@
+-typedef char C;typedef long I;
++typedef char C;typedef long long I;
+ typedef struct a{I t,r,d[3],p[2];}*A;
+ #define P printf
+ #define R return
+ #define V1(f) A f(w)A w;
+ #define V2(f) A f(a,w)A a,w;
+ #define DO(n,x) {I i=0,_n=(n);for(;i<_n;++i){x;}}
+-I *ma(n){R(I*)malloc(n*4);}mv(d,s,n)I *d,*s;{DO(n,d[i]=s[i]);}
++I *ma(n){R(I*)malloc(n*8);}mv(d,s,n)I *d,*s;{DO(n,d[i]=s[i]);}
+ tr(r,d)I *d;{I z=1;DO(r,z=z*d[i]);R z;}
+ A ga(t,r,d)I *d;{A z=(A)ma(5+tr(r,d));z->t=t,z->r=r,mv(z->d,d,r);
+  R z;}
+@@ -34,9 +34,10 @@ I st[26]; qp(a){R  a>='a'&&a<='z';}qv(a){R a<'a';}
+ A ex(e)I *e;{I a=*e;
+  if(qp(a)){if(e[1]=='=')R st[a-'a']=ex(e+2);a= st[ a-'a'];}
+  R qv(a)?(*vm[a])(ex(e+1)):e[1]?(*vd[e[1]])(a,ex(e+2)):(A)a;}
+-noun(c){A z;if(c<'0'||c>'9')R 0;z=ga(0,0,0);*z->p=c-'0';R z;}
+-verb(c){I i=0;for(;vt[i];)if(vt[i++]==c)R i;R 0;}
++I noun(c){A z;if(c<'0'||c>'9')R 0;z=ga(0,0,0);*z->p=c-'0';R z;}
++I verb(c){I i=0;for(;vt[i];)if(vt[i++]==c)R i;R 0;}
+ I *wd(s)C *s;{I a,n=strlen(s),*e=ma(n+1);C c;
+  DO(n,e[i]=(a=noun(c=s[i]))?a:(a=verb(c))?a:c);e[n]=0;R e;}
+ 
+ main(){C s[99];while(gets(s))pr(ex(wd(s)));}
++
+```
+
+#### The lock screen
+
+I liked it so much that I took a screenshot and made it my lock screen.
+
+![screenshot-j-incunabulum](static/screenshot-j-incunabulum.png)
+
+#### Thoughts
+
+I'm really fascinated by the code. I loved how to "read" the code, I could
+simply stare the screenshot to absorb the code. There was no scrolling involved.
+The variables are well-named (to the extent I understand the code), and it's
+clearly extremely well thought out.
+
+I'm going write a dissection of the code, since I couldn't find anything like
+it. Until there, give the screenshot a shot: you might wind up enjoying the
+act of staring at this gorgeous beauty.
+
 
 # [An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)](#an-example-of-a-sequence-whose-successive-terms-get-closer-together-but-isnt-cauchy-does-not-converge)
 
@@ -169,6 +316,12 @@ We learnt that $Ax = b$ has a solution in $K_m(A, b)$. Using this, we can build
 solvers that exploit the Krylov subspace. We will describe GMRES and CG.
 
 ## Generalized minimal residual --- GMRES
+
+We wish to solve $Ax = b$ where $A$ is sparse and $b$ is normalized. The $n$th
+Krylov subspace is $K_n(A, b) \equiv span~\{b, Ab, A^2b, \dots, A^nb  \}$.
+
+We approximate the actual solution with a vector $x_n \in K_n(A, b)$. We
+define the _residual_ as $r_n \equiv A x_n - b$.
 
 ## Conjugate gradient descent
 
@@ -4594,12 +4747,17 @@ and I plan on updating this section when I understand this better.
 
 
 # Arthur Whitney: dense code
+
+
 - Guy who wrote a bunch of APL dialects, write code in an eclectic style
   that has very little whitespace and single letter variable names.
 - Believes that this allows him to hold the entire program in his head.
 - Seems legit from my limited experience with APL, haskell one-liners.
 - [The b programming language](http://kparc.com/b/readme.txt). It's quite 
   awesome to read the sources. For example, [`a.c`](http://kparc.com/b/a.c)
+
+- [A history of APL in 50 functions](https://www.jsoftware.com/papers/50/) ---
+  A great list of APL snippets that solve classical problems.
 
 # How does one work with arrays in a linear language?
 
