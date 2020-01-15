@@ -137,9 +137,13 @@ On attempting to _run_ this however, we get:
 
 ```
 $ gcc -O0 -g -std=c89 -fsanitize=address -fsanitize=undefined incunabulum.c -o bin/incunabulum && ./bin/incunabulum
+...
+(many many GCC warnings elided)
+...
 a=~3
 =================================================================
-==23726==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60300000eff0 at pc 0x000000402be3 bp 0x7ffe6dde6b70 sp 0x7ffe6dde6b60
+==23726==ERROR: AddressSanitizer: heap-buffer-overflow on address 
+  0x60300000eff0 at pc 0x000000402be3 bp 0x7ffe6dde6b70 sp 0x7ffe6dde6b60
 WRITE of size 8 at 0x60300000eff0 thread T0
     #0 0x402be2 in wd /home/bollu/work/w/incunabulum.c:40
     #1 0x402d28 in main /home/bollu/work/w/incunabulum.c:42
