@@ -195,6 +195,17 @@ index 2cae744..778e35a 100644
 +
 ```
 
+#### It runs!
+
+After applying the patch, we manage to get the interpreter to run!
+
+```
+./bin/incunabulum
+a=~3
+3 
+0 1 2 
+```
+
 #### The lock screen
 
 I liked it so much that I took a screenshot and made it my lock screen.
@@ -203,10 +214,10 @@ I liked it so much that I took a screenshot and made it my lock screen.
 
 #### Thoughts
 
-I'm really fascinated by the code. I loved how to "read" the code, I could
-simply stare the screenshot to absorb the code. There was no scrolling involved.
-The variables are well-named (to the extent I understand the code), and it's
-clearly extremely well thought out.
+I'm really fascinated by the code. I loved I could simply stare the screenshot
+to absorb the code. There was no scrolling involved.  The variables are
+well-named (to the extent I understand the code), and it's clearly extremely
+well thought out.
 
 I'm going write a dissection of the code, since I couldn't find anything like
 it. Until there, give the screenshot a shot: you might wind up enjoying the
