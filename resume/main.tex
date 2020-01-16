@@ -1,0 +1,147 @@
+%% start of file `template.tex'.
+%% Copyright 2006-2013 Xavier Danaux (xdanaux@gmail.com).
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+% \documentclass[11pt,a4paper,sans,colorlinks,linkcolor=true]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+\documentclass[11pt,a4paper,sans,colorlinks]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+
+
+
+% moderncv themes
+\moderncvstyle{casual}                             % style options are 'casual' (default), 'classic', 'oldstyle' and 'banking'
+\moderncvcolor{blue}                               % color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+
+%\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
+%\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
+
+% character encoding
+\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
+%\usepackage{CJKutf8}                              % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
+
+% adjust the page margins
+\usepackage[scale=0.8]{geometry}
+%\setlength{\hintscolumnwidth}{3cm}                % if you want to change the width of the column with the dates
+%\setlength{\makecvtitlenamewidth}{10cm}           % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
+
+% personal data
+\name{Siddharth}{Bhat}                              % optional, remove / comment the line if not wanted
+\address{D-325,OBH, IIIT Hyderbad, Gachibowli}{500032}{India}% optional, remove / comment the line if not wanted; the "postcode city" and and "country" arguments can be omitted or provided empty
+\phone[mobile]{+91 9008765043}                   % optional, remove / comment the line if not wanted
+\email{siddharth.bhat@research.iiit.ac.in}                               % optional, remove / comment the line if not wanted
+\homepage{https://bollu.github.io/}                         % optional, remove / comment the line if not wanted
+% to show numerical labels in the bibliography (default is to show no labels); only useful if you make citations in your resume
+%\makeatletter
+%\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
+%\makeatother
+%\renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}% CONSIDER REPLACING THE ABOVE BY THIS
+
+% bibliography with mutiple entries
+%\usepackage{multibib}
+%\newcites{book,misc}{{Books},{Others}}
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+%\begin{CJK*}{UTF8}{gbsn}                          % to typeset your resume in Chinese using CJK
+%-----       resume       ---------------------------------------------------------
+\makecvtitle
+
+\section{Education}
+\cventry{Undergraduate}{International Institute of Information Technology Hyderabad India}{}{}{}{(Present)}.
+
+
+\section{Publications}
+\cvitem{}{Optimizing Geometric Multigrid Computation using a DSL Approach: Vinay Vasista, Kumudha KN, Siddharth Bhat, Uday Bondhugula.
+Supercomputing (SC), Nov 2017}
+
+
+
+\section{Work Experience}
+\cventry{Summer 2019}{Intern at Tweag.io}{Paris, France}{}{}{Re-implemented portions of GHC(Glasgow Haskell Compiler) runtime for \href{https://github.com/tweag/asterius/commits?author=bollu}{\texttt{Asterius} (link)}, a Haskell to WebAssembly compiler. Involved Haskell, C, and WebAssembly.}
+\cventry{Winter 2018}{Teaching Assistant for Principles of Programming Languages}{IIIT-H}{}{}{Course covers the book "Essentials of Programming Languages" by Dan Friedman. Helped write lecture notes, set assignments, graded assignments and exams.}
+\cventry{Summer 2018}{ Visiting research intern at ETH Zurich}{Zurich, Switzerland}{}{}{Investigating formal verification of polyhedral compilation. \href{http://github.com/bollu/polyir}{\texttt{PolyIR (Link)}} is a formal specification of polyhedral programs.}
+\cventry{Summer 2018}{GSoC mentor, Polly Labs}{}{}{}{Mentoring a project to enable Polly's loop optimisations into Chapel.}
+\cventry{Mar-Dec '17}{ETH Zurich, Research Intern at SPCL}{Zurich, Switzerland}{}{}{Worked on Polly, a polyhedral loop optimizer for LLVM.}
+
+
+\cventry{Jan-Mar '17}{Course content contributor}{IIIT-H}{}{}{Wrote lecture notes for the \href{http://pascal.iiit.ac.in/itws2/docs/\#orgf49f2a9}{Intro to programming course (link)}}
+
+
+\cventry{Summer 2016}{Research Intern}{IISC Bangalore}{Bangalore}{}{Worked on PolyMage, DSL compiler for optimising loop transforms. Contributed to ISL and PLUTO.
+\newline{}
+Implemented tiling patterns, optimised PolyMage for stencils.}%
+
+\cventry{Summer 2016}{Selected for GSoC 2016}{Google}{}{}{Binding SymEngine, a symbolic math library to Haskell. Had to drop this to intern at IISc, Bangalore. Still maintain the library (symengine.hs)}
+
+\cventry{Summer 2015}{GSoC 2015}{Google}{}{}{Worked on VisPy, a pure Python graphics library which uses OpenGL internally for performace. Successfully completed.}
+
+\section{Open Source Contributions}
+
+\cvitem{\href{https://github.com/coq/coq/issues?&q=author\%3Abollu}{Coq}}{Submitted issues, helped improve developer documentation, currently fixing issues in the frontend. Coq organisation member.}
+\cvitem{\href{https://github.com/vellvm/vellvm/issues?&q=author\%3Abollu}{VE-LLVM}}{Collaboration with VE-LLVM, a formal semantics of the LLVM compiler toolchain in Coq} 
+\cvitem{\href{https://polly.llvm.org/}{Polly}}{Implementing support for Fortran, added unified memory abilities to the CUDA backend within Polly, a polyhedral loop optimiser for LLVM. \href{https://reviews.llvm.org/p/bollu/}{Link to commits.}}
+
+
+\cvitem{\href{https://github.com/symengine/symengine.hs}{Symengine.hs}}{GSoC 2016. Haskell bindings to SymEngine, a C++ symbolic manipulation library.}
+
+\cvitem{\href{https://github.com/vispy/vispy/commits?author=bollu}{VisPy}}{GSoC 2015. Rewrote scene graph for performance. Added visuals, high level API for easy use of plotting. Implemented auto-resizing with \textbf{Cassowary}, a linear optimisation library.}
+
+\cvitem{Rust}{Contributed to the Rust compiler and ecosystem. Found compiler errors, fixed libraries. Was part of \href{https://github.com/PistonDevelopers}{\emph{Piston}}, group of Rust programmers that experimented with writing game engines.}
+
+\cvitem{Haskell}{Contributed to the Haskell ecosystem. Reported and fixed bugs in \emph{stack}, \emph{stackage}, \emph{diagrams}, etc. Currently improving error messages in GHC. \href {https://phabricator.haskell.org/p/bollu/}{Link to GHC commits.}}
+
+\cvitem{PLUTO}{Source to Source C optimiser for loop nests. Improved the PLUTO API that had gone out of sync with master. Discovered bugs in PLUTO for diamond tiling transforms}
+
+\cvitem{\href{http://mcl.csa.iisc.ac.in/polymage.html}{PolyMage}}{DSL Compiler than generates C code. Uses \textbf{Polyhedral Compilation} Extended the compiler to add stencils, time iterated-stencils.}
+
+
+\cvitem{\href{https://github.com/hrydgard/ppsspp/commits?author=bollu}{PPSSPP}}{PPSSP is a C++ open source PSP emulator. Wrote most of the touch handling code. Implemented atomic locks for audio performance.}
+
+\subsection{My Projects}
+
+\cvitem{\href{http://github.com/bollu/tiny-optimising-compiler}{Tiny optimising compiler}}{An experiment in re-writing LLVM in Haskell. The goal is to have a minimal optimising compiler framework. Has \textbf{137} stars on github}
+\cvitem{\href{http://github.com/bollu/simplexhc}{Simplexhc}}{A custom compiler for a subset of Haskell. The goal is to try and apply \emph{polyhedral compilation} ideas to compile a lazy, pure, functional programming language. with LLVM as a backend.
+Has \textbf{64 stars} on github.}
+
+
+\cvitem{\href{https://github.com/bollu/sublimebookmark}{Sublime Bookmarks}}{A plugin for sublime text to quickly jump between pieces of your codebase. Has \textbf{26k downloads} and counting.}
+
+\cvitem{\href{https://www.github.com/bollu/cellularAutomata}{Cellular Automata}}{A collection of Cellular Automata written in Haskell. Unique because it uses the category-theoretic idea of a \textbf{Comonad} to implement Cellular Automata cleanly. Has \textbf{125 stars} on Github.}
+
+
+\cvitem{\href{http://bollu.github.io/teleport}{Teleport}}{A simple tool to switch between projects written in Haskell. Shows how to write “real world Haskell". Published as a \textbf{Literal Haskell tutorial}. Has \textbf{86 stars} on github}
+
+\cvitem{\href{http://github.com/bollu/timi}{TIMi}}{A visual interpreter of the \textbf{template instantiation machine} to understand evaluation of lazy functional languages.}
+
+\subsection{Miscellaneous}
+\cvitem{Barvinok}{\href{https://github.com/bollu/barvinok/blob/master/slides.pdf}{Talk at ETH Zurich: Slides describing the barvnok algorithm to count lattice points in polyhedra}}
+
+\cvitem{FunctionalConf '19}{\href{https://github.com/bollu/functionalconf-2019-slides-probabilistic-programming}{Talk at FunctionalConf '19 on implementing embedded probabilistic programming languages in Haskell}}
+
+\cvitem{\href{https://faculty.iiit.ac.in/~theory/seminar/talks/trisecting-ruler-compass/}{Theory seminar, winter '19}}{Talk on impossibility of compass-straightedge constructions using field theory.}
+\cvitem{math.se}{Answer on \href{http://math.stackexchange.com/users/261373/siddharth-bhat}{\textbf{math.stackexchange. 3708 reputation, \textbf{top 8\% overall}}}. General interest in things of a geometric, and somewhat algebraic flavour}.
+
+
+%\cventry{year--year}{Job title}{Employer}{City}{}{Description}
+
+%\section{Skills \& Interests}
+
+%\cvitem{Web Development}{I do webdev using \textbf{Haskell}. In particular, I use \texttt{Yesod} and \texttt{Servant} to write web servers.}
+
+%\cvitem{Programming Languages}{Haskell (Advanced), Rust (Advanced), C (Advanced), C++ (Advanced), Python (Advanced),  Javascript \& TypeScript (Intermediate)}
+
+%\cvitem{Graphics Programming}{OpenGL and graphics programming. GSoC 2015 project, hobby projects were graphics / gamedev relatede
+
+%\cvitem{Pure Mathematics}{Answer on \href{http://math.stackexchange.com/users/261373/siddharth-bhat}{\textbf{math.stackexchange. 2407 reputation, top 3\% this year}}. Abstract Algebra, Category Theory, Type theory. Currently studying "Integer points in Polyhedra"}
+
+%\cvitem{Functional Programming}{\textbf{Report GHC bugs, small-time contributions to GHC.} Maintain  \emph{symengine.hs}, answer questions on \#haskell at freenode irc. Reading \textbf{Software Foundations}, a book that builds up type theory through \textbf{Coq}, a theorem prover. \href{https://github.com/bollu/software-foundations-solutions}{Solutions upload.}}
+
+
+%\clearpage\end{CJK*}                              % if you are typesetting your resume in Chinese using CJK; the \clearpage is required for fancyhdr to work correctly with CJK, though it kills the page numbering by making \lastpage undefined
+\end{document}
+
+
+%% end of file `template.tex'.
