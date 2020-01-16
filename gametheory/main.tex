@@ -53,6 +53,7 @@
 \newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
 \newcommand{\R}{\ensuremath{\mathbb R}}
+\renewcommand{\P}[1]{\ensuremath{\mathbb{P} \left[ #1 \right] }}
 \newcommand{\coT}{\ensuremath{T^*}}
 \newcommand{\Lie}{\ensuremath{\mathfrak{L}}}
 \newcommand{\pushforward}[1]{\ensuremath{{#1}_{\star}}}
@@ -71,13 +72,13 @@
 
 \def\qed{$\Box$}
 \newtheorem{corollary}{Corollary}
-\newtheorem{theorem}{Theorem}
-\newtheorem{definition}{Definition}
-\newtheorem{lemma}{Lemma}
-\newtheorem{observation}{Observation}
-\newtheorem{proof}{Proof}
-\newtheorem{remark}{Remark}
-\newtheorem{example}{Example}
+\newtheorem{theorem}[corollary]{Theorem}
+\newtheorem{definition}[corollary]{Definition}
+\newtheorem{lemma}[corollary]{Lemma}
+\newtheorem{observation}[corollary]{Observation}
+\newtheorem{proof}[corollary]{Proof}
+\newtheorem{remark}[corollary]{Remark}
+\newtheorem{example}[corollary]{Example}
 
 \title{Game theory}
 \author{Siddharth Bhat}
@@ -350,5 +351,157 @@ $$
 \end{tabular}
 $$
 
+\chapter{Lecture 2}
+Missed! write this down. TODO!
+
+\section{Review of lecture 2}
+
+Two player zero sum games. $N = \{1, 2\}$. $u_1 = - u_2$. Also called
+matrix games since the game can be represented as a matrix. $a_{ij}$ is
+the utility for row player playing row $i$, column player is playing
+column $j$.
+
+We showed that we are not guaranteed a dominant strategy. Hence, we need
+to look at other types of equilibria.
+
+Here, we define saddle points. 
+
+\chapter{Equilibrium in two-player zero-sum games}
+\section{Saddle points}
+Given a matrix $A$, $(i^*, j^*)$ is a saddle point iff:
+\begin{align*}
+    &a_{i^\star j^\star } \leq a_{i^\star K} \qquad \forall K = 1, 2, \dots, n \\
+    &a_{i^\star j^\star } \geq a_{L j^\star } \qquad \forall L = 1, 2, \dots, m \\
+\end{align*}
+That is, $a_{i^\star j^\star }$ is the maximum in the column $j^\star$, minimum in the column
+$i^\star $.
+
+
+Let's now analyze the setting and try to deduce when a saddle point
+exists from the entries of the matrix. For this, we define:
+\begin{align*}
+&u_R \equiv \max_i \min_j a_{ij} \\
+&u_c \equiv \min_j \max_i a_{ij}
+\end{align*}
+
+\begin{lemma}
+    If there are multiple saddle points, $(i_1, j_1)$ and $(i_2, j_2)$, then
+    $a_{i_1 j_1} = a_{i_2 j_2}$
+\end{lemma}
+\begin{proof} TODO \end{proof}
+
+\begin{lemma}
+    $u_r \leq u_c$
+\end{lemma}
+\begin{proof} TODO \end{proof}
+
+\begin{lemma}
+    $u_r = u_c \implies $~saddle point exists for $A$.
+\end{lemma}
+\begin{proof} 
+TODO
+\end{proof}
+
+\begin{lemma}
+    $u_r = u_c \iff $~saddle point exists for $A$.
+\end{lemma}
+\begin{proof} TODO \end{proof}
+
+\subsection{Analysis of saddle points}
+If a saddle points exists, then the row player is maximising her minimum
+assured gain. The column player is minimising her worst loss. 
+
+If such a saddle point exists, it is called as an equilibrium. The strategy 
+that achieves this is the \textbf{mini-max} strategy.
+
+\subsubsection{Single saddle point}
+
+\begin{tabular}{cccc}
+    \footnotesize{A $\downarrow$ B $\rightarrow$} & L & M & R \\
+    T & 1 & 2 & 1 \\
+    M & 0 & -1 & 2 \\
+    B & -1 & 0 & -2 \\
+\end{tabular}
+$(u_r \equiv 2, u_c \equiv 2)$.
+
+\subsubsection{Multiple saddle points}
+
+\begin{tabular}{cccc}
+    & L & M & R \\
+    T & 0 & 2 & 0 \\
+    M & -1 & 5 & 2 \\
+    B & 0 & 5 & 0 \\
+\end{tabular}
+There are 4 saddle points: $(T, L), (T, R), (B, L), (B, R)$.
+
+
+\subsubsection{Matching coins --- no saddle point}
+
+\begin{tabular}{ccc}
+      & H & T \\
+    H & 10 & -10 \\
+    T & -10 & 10
+\end{tabular}
+$(u_R \equiv -10, u_c \equiv 10)$ --- no saddle point!
+
+Here, notice that no deterministic strategy can win. What we should do is to
+use a randomized strategy where we play $H$ or $T$ with equal probability.
+
+\section{Mixed strategies}
+
+As the matching coins example shows, we need to use a randomized strategy
+so we are not exploited. What we can do is to maximise expected utility:
+
+The expected utility of the row player is going to be $\P{H, H} - \P{H, T} - \P{T, H} + \P{T, T}$.
+
+The mixed strategy space consists of probability distributions over pure strategies.
+$$\Delta(S) \equiv \left\{ (p_1, p_2, \dots p_k) \mid |S| = k \quad p_i \geq 0 \quad \sum_i p_i = 1\right\}$$
+
+We denote mixed strategies with $\sigma_i \in \Delta(S_i)$, and mixed
+strategy profiles as $\sigma \equiv  (\sigma_1, \sigma_2, \dots \sigma_n) \in \prod_i \Delta(S_i)$
+
+
+We calculate the expected utility as:
+\begin{align*}
+    U_i(\sigma_i, \sigma_{-i}) \equiv
+    \sum_{s_{-1} \in S_{-i}} 
+p_{i_1} p(s_{-i}) u(a_{i_1}, s_{-i}) +
+p_{i_2} p(s_{-i}) u(a_{i_2}, s_{-i}) + \dots +
+    p_{i_k} p(s_{-i}) u(a_{i_k}, s_{-i})
+\end{align*}
+
+For two-player zero-sum games, we refer to mixed strategies as 
+$p \equiv (p_1, \dots, p_m)$,
+$q \equiv (q_1, \dots q_n)^T$. This leads us to \textbf{Utility theory}.
+
+
+\section{Axiomatic description of utility theory}
+Let $X$ be the set of outcomes. $\geq$ (TODO: curly, need to find this) be the
+preference of the player over the set of outcomes.
+We define $\left( x_1 \sim x_2 \equiv x_1 \geq x_2 \land x_2 \geq x_1 \right)$.
+
+TODO: find formal definition of a lottery.
+
+\begin{itemize}
+    \item Completeness: every pair of outcomes is ranked.
+    \item Transitivity: $x_1 \geq x_2 \land x_2 \geq x_3 \implies x_1 \geq x_3$.
+    \item Substitutability: if $x_1 \sim x_2$, then any lottery in which $x_1$
+        is substituted by $x_2$ is equally preferred.
+    \item Decomposability: If two lotteries assign the same probability to
+        each outcome, then the player is indifferent between these two lotteries.
+    \item Monotonicity: If $x_1 > x_2$ and $p > q$, then $[x_1: p, x_2 : 1- p] \geq [x_1 : q, x_2 : 1 - q ]$.
+    \item Continuity: If $x_1 > x_2 > x_3$, then there exists $p \in [0, 1]$
+        such that $x_2 \sim [x_1: p, x_3: 1 - p]$.
+\end{itemize}
+
+\begin{theorem}
+    Von Neumann and Morgenstern: Given a set of outcomes $X$ has a preference
+    relation on $X$ that satisfies the above axioms, there exists a utility function
+    $u: X \rightarrow [0, 1]$ such that:
+    \begin{itemize}
+        \item $u(x_1) \geq u(x_2) \iff x_1 \geq x_2$
+        \item $U([x_1: p_1, x_2:p_2, \dots x_m:p_m]) = \sum_{j=1}^m p_j u(x_j)$
+    \end{itemize}
+\end{theorem}
 
 \end{document}
