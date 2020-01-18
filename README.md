@@ -27,8 +27,8 @@
 
 #### Table of contents:
 
-- [Fenwick trees and orbits (WIP)](#Fenwick-trees-and-orbits)
-- [Dirichlet inversion (WIP)](#Dirichlet-inversion)
+- [Fenwick trees and orbits (WIP)](#fenwick-trees-and-orbits)
+- [Dirichlet inversion (WIP)](#dirichlet-inversion)
 - [Incunabulum for the 21st century: Making the J interpreter compile in 2020](#incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020)
 - [An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)](#an-example-of-a-sequence-whose-successive-terms-get-closer-together-but-isnt-cauchy-does-not-converge)
 - [Krylov subspace method](#krylov-subspace-method)
@@ -72,7 +72,7 @@
 - [McCune's single axiom for group theory](#mccunes-single-axiom-for-group-theory)
 - [Arthur Whitney: dense code](#arthur-whitney-dense-code)
 - [How does one work with arrays in a linear language?](#how-does-one-work-with-arrays-in-a-linear-language)
-- [Linear-optimisation-is-the-same-as-Linear-feasibility-checking](#linear-optimisation-is-the-same-as-linear-feasibility-checking)
+- [Linear optimisation is the same as linear feasibility checking](#linear-optimisation-is-the-same-as-linear-feasibility-checking)
 - [Quantum computation without complex numbers](#quantum-computation-without-complex-numbers)
 - [Linguistic fun fact: Comparative Illusion (check link)](#linguistic-fun-fact-comparative-illusion)
 - [Stuff I learnt in 2018](content/blog/stuff-i-learnt-this-year-2018.md)
@@ -5070,7 +5070,7 @@ is _forced_ since mutation very often involves temporaries / copying!
 (I'm solving assignments in [qsharp](https://docs.microsoft.com/en-us/quantum/)
 for my course in college)
 
-#[Linear-optimisation-is-the-same-as-Linear-feasibility-checking](#linear-optimisation-is-the-same-as-linear-feasibility-checking)
+#[Linear optimisation is the same as linear feasibility checking](#linear-optimisation-is-the-same-as-linear-feasibility-checking)
 Core building block of effectively using the ellipsoid algorithm.
 
 - If we posess a way to check if a point $p \in P$ where $P$ is a polytope, we
