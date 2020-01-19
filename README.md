@@ -110,7 +110,7 @@ any monoid-based catenation and update in $\log(n)$.
 #### organization
 
 We allow indexes $[1, 2, \dots n]$. The node with factorization $i \equiv 2^k \times l$,
-$2 \not \div l$ (that is, $k$ is the highest power of $2$ in $i$)
+$2 \not \vert l$ (that is, $k$ is the highest power of $2$ in $i$)
 is responsible for the interval $[i-2^k+1, i] = (i-2^k, i]$.
 
 
@@ -154,8 +154,8 @@ So we need to read the indices:
 At each  location, we strip off the value $2^r$. We can discover this value
 with bit-fiddling: We claim that $a \& (-a) = 2^r$.
 
-Let $a = \alpha 1 0^r$. Now, $-a = \lnot a + 1 = \overline{\alpha}01^r + 1 = \overline{\alpha}10^r$.
-Hence, $a \& (-a) = a \& (\lnot a + 1) = \alpha 10^r \& \overline{\alpha}10^r = 0^{|\alpha|}10^n = 2^r$
+Let $a = x 1 0^r$. Now, $-a = \lnot a + 1 = x01^r + 1 = \overline{x}10^r$.
+Hence, $a \& (-a) = a \& (\lnot a + 1) = (x 10^r) \& (\overline{\x}10^r) = 0^{|\alpha|}10^r = 2^r$
 
 So the full implementation of query is:
 
@@ -197,7 +197,7 @@ int u(int i, int v) {
 #### correctness
 
 We wish to analyze the operations $Query(q) \equiv \sum_{i=1}^q a[i]$, and
-$Update(i, val) equiv a[i] += val$. To do this, we are allowed to maintain
+$Update(i, val) \equiv a[i]~\texttt{+=}~val$. To do this, we are allowed to maintain
 an auxiliary array $d$ which we will manipuate. We will stipulate the
 conditions of operations on $d$ such that they will reflect the values of 
 $Query$ and $Update$, albeit much faster.
@@ -211,10 +211,10 @@ accumulate from the underlying array $a$ to get the total sum $a[0..i]$:
 
 Given an index $u$, repeatedly applying the update operator $U$ gives us all
 the indeces we need to add the change to update:
-- $Update(i, val) = \forall j~, d[U^j(i)] += val$
+- $Update(i, val) = \forall j~, d[U^j(i)]~\texttt{+=}~ val$
 
 For query and update to work, we need the condition that:
-- $q \geq u \iff |\{ Q^i(q)~:~ i \in \mathbb{N} \} \cap \{ U^i(u)~:~i \in \mathbb{N} \}| = 1$
+- $q \geq u \iff \left\vert \{ Q^i(q)~:~ i \in \mathbb{N} \} \cap \{ U^i(u)~:~i \in \mathbb{N} \} \right\vert = 1$
 
 That is, if and only if the query index $q$ includes the update location $u$,
 will the orbits intersect. 
@@ -257,7 +257,8 @@ if __name__ == "__main__":
 ##### Case 1: $q = u$
 
 We note that $Q$ always decreases the value of $q$, and $u$ always increases
-it. Hence, if $q = u$, they meet at this point, and $Q^i q \neq U^j u \forall i, j \geq 1$.
+it. Hence, if $q = u$, they meet at this point, and 
+$\forall i, j \geq 1, \quad Q^i (q) \neq U^j(u)$.
 Hence, they meet exactly once as required.
 
 ##### Case 2: $q < u$
@@ -269,14 +270,14 @@ case they will never meet as required.
 ##### Case 3: $q > u$
 
 Let the entire array have size $2^N$.  
-Let $q = \texttt{e1f_q}, u = \texttt{e0f_u}$, where $\texttt{e}, \texttt{f_q}, \texttt{f_u}$ may be empty
-strings. 
+Let $q = \texttt{e1$f_q$}, u = \texttt{e0$f_u$}$, where 
+$\texttt{e},f_q, f_u$ may be empty strings. 
 
 Notice that $Q$ will always strip away rightmost ones in $f_q$,
 leading to $q = \texttt{e10...0}$ at some point. 
 
 Similarly, $U$ will keep on adding new rightmost ones, causing the
-state to be $u = \textttt{e01*00...} \rightarrow{U} \texttt{e100...}$.
+state to be $u = \texttt{e01...10...0} \xrightarrow{U} \texttt{e100...}$.
 
 Hence, at some point $q = u$. 
 
