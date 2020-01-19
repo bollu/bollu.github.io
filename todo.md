@@ -77,7 +77,6 @@ Priority list:
 - Directly solve system of recurrences we get from loops. (Loat-purrs has been
 installed, use it to compute closed forms)
 - Reverse mode automatic differentiation
-- https://www.youtube.com/watch?v=PNlgMPzj-7Q
 - Andrej Bauer blog posts 
 - Toric ideals
 - Noncommutative rational series with applications
@@ -97,3 +96,15 @@ installed, use it to compute closed forms)
 - The little book of OS development: https://littleosbook.github.io/book.pdf
 - Computer architecture, a constructive approach (for processor design)
 - Algebraic geometry and statistical learning theory: Sumio watanabe
+- IRE: https://nlp.stanford.edu/IR-book/pdf/irbookonlinereading.pdf
+- P3G: https://wcipeg.com/wiki/Special:AllPages
+- Intro to programming contests: https://web.stanford.edu/class/cs97si/
+- awesome CP (big list): https://codeforces.com/blog/entry/23054
+- Fenwick tree in terms of orbits: http://michaelnielsen.org/polymath1/index.php?title=Updating_partial_sums_with_Fenwick_tree
+- Schorr-Waite algorithm for graph marking: https://www.cs.cornell.edu/courses/cs312/2007fa/lectures/lec21-schorr-waite.pdf
+- Hamiltonian mechanics in terms of $\omega^{-1}$
+- GraphQL apparently don't need you to use a graph DB on the backend?
+- Partial evaluation nd automatic program generation: http://www.itu.dk/people/sestoft/pebook/jonesgomardsestoft-letter.pdf
+- Geometry algorithms: http://geomalgorithms.com/
+- Computational Geometry in C:http://cs.smith.edu/~jorourke/books/compgeom.html
+- CP book (good broad overview of all CP techniques): https://cses.fi/book/book.pdf
