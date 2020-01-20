@@ -27,7 +27,8 @@
 
 #### Table of contents:
 
-- [Fenwick trees and orbits (WIP)](#fenwick-trees-and-orbits)
+- [Dataflow analysis using Grobner basis](#dataflow-analysis-using-grobner-basis)
+- [Fenwick trees and orbits](#fenwick-trees-and-orbits)
 - [Dirichlet inversion (WIP)](#dirichlet-inversion)
 - [Incunabulum for the 21st century: Making the J interpreter compile in 2020](#incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020)
 - [An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)](#an-example-of-a-sequence-whose-successive-terms-get-closer-together-but-isnt-cauchy-does-not-converge)
@@ -94,6 +95,51 @@
 - [GSoC 2015 week 6](content/blog/gsoc-vispy-week-6.md)
 - [GSoC 2015 week 7](content/blog/gsoc-vispy-week-7.md)
 - [GSoC 2015 final report](content/blog/gsoc-vispy-report-6.md)
+
+# [Dataflow analysis using Grobner basis (WIP)](#dataflow-analysis-using-grobner-basis)
+
+This was a quick experiment in using Grobner basis to model situations. We 
+can represent our dataflow analysis constraints in terms of polynomial
+rewrites over $F_2$. 
+
+Given the program:
+
+```py
+p = { 0: ["=", "x", 'y'], 
+      1: ['br', 2, 100], 
+      2: ['=', 'z', 'x'], 
+      3: ['br', 2],
+      100: ['ret', 'z'] }
+```
+
+whose semantics I hope are fairly straightforward --- the dictionary represents
+instruction locations. Instructions proceed sequentially. branch moves
+control flow around. Note that `br` can branch to multiple locations,
+since we are not control-flow sensitive.
+
+The idea is that since in a dataflow analysis, we need information at 
+each variable at each program point, we can create a ring of polynomials
+over $F_2$ for each variable at each program point. So in this case,
+we wold need:
+
+```
+R = F_2[x0, y0, z0, x1, y1, z1, x2, y2, z2, x3, y3, z3, x100, y100, z100]
+```
+
+We then add elements into the ideal that represents our constraints.
+For example, to perform dataflow analysis, we need to add constraints
+about how if a variable `z` is alive, all variables that are used
+to compute `z` at `100` are alive. This sets up equations that may
+have cycles (in the case of loops). 
+
+These are usually resolved using the
+[Kildall algorithm](https://en.wikipedia.org/wiki/Data-flow_analysis#An_iterative_algorithm).
+
+However, we can also ask SAGE to kindly solve the Grobner basis. I hypothesize
+that the "easy" dataflow problems out to be [toric ideals](https://hal.inria.fr/inria-00074446/document)
+which admit much faster solutions.
+
+
 
 # [Fenwick trees and orbits](#Fenwick-trees-and-orbits)
 
