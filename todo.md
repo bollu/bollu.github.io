@@ -108,3 +108,4 @@ installed, use it to compute closed forms)
 - Geometry algorithms: http://geomalgorithms.com/
 - Computational Geometry in C:http://cs.smith.edu/~jorourke/books/compgeom.html
 - CP book (good broad overview of all CP techniques): https://cses.fi/book/book.pdf
+- Algebraic Curves and Riemann Surfaces (Rick Miranda)

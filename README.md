@@ -103,6 +103,13 @@
 
 - All credit goes to `p0a` on `##math` on freenode for teaching me this proof!
 
+Here's one fun application of Cauchy-Schwarz. We can apply it to two vectors
+$x=(\sqrt a, \sqrt b)$ and $y=(\sqrt b, \sqrt a)$ to derive the AM-GM
+inequality:
+
+
+
+
 # [Dataflow analysis using Grobner basis](#dataflow-analysis-using-grobner-basis)
 
 This was a quick experiment in using Grobner basis to model situations. We 
@@ -603,6 +610,23 @@ surely this _must_ be transitive?
 
 I have taught my instincts to not trust my instincts on analysis, which is a
 shitty solution :) I hope to internalize this someday.
+
+__EDIT:__ I feel I now understand what's precisely happening
+after ruminating a bit.
+
+The Cauchy convergence criterion allows us to drop a finite number
+of terms, and then capture _everything after that point_ in a ball
+of radius $\epsilon$. As $\epsilon$ shrinks, _all_ the terms in the
+sequence are "squeezed togeher".
+
+In the $a_{n+1} - a_n$ case, only successive terms must maintain
+an $\epsilon$ distance. But as the $\log$ example shows, you can steadily
+plod along, keeping $\epsilon$ ball next to $\epsilon$ ball, to reach:
+
+$$
+\lim_{n \rightarrow \infty} \lim_{\epsilon \rightarrow 0} f(n) \cdot \epsilon
+$$
+whose behaviour can do unexpected things depending on the choice of $\n$.
 
 # [Krylov subspace method](#krylov-subspace-method)
 
