@@ -27,6 +27,7 @@
 
 #### Table of contents:
 
+- [Geometric proof of Cauchy Schwarz inequality](#geometric-proof-of-cauchy-schwarz-inequality)
 - [Dataflow analysis using Grobner basis](#dataflow-analysis-using-grobner-basis)
 - [Fenwick trees and orbits](#fenwick-trees-and-orbits)
 - [Dirichlet inversion (WIP)](#dirichlet-inversion)
@@ -96,7 +97,13 @@
 - [GSoC 2015 week 7](content/blog/gsoc-vispy-week-7.md)
 - [GSoC 2015 final report](content/blog/gsoc-vispy-report-6.md)
 
-# [Dataflow analysis using Grobner basis (WIP)](#dataflow-analysis-using-grobner-basis)
+# [Geometric proof of Cauchy Schwarz inequality](#geometric-proof-of-cauchy-schwarz-inequality)
+
+![geometric-proof-cauchy-schwarz](static/cauchy-schwarz.svg)
+
+- All credit goes to `p0a` on `##math` on freenode for teaching me this proof!
+
+# [Dataflow analysis using Grobner basis](#dataflow-analysis-using-grobner-basis)
 
 This was a quick experiment in using Grobner basis to model situations. We 
 can represent our dataflow analysis constraints in terms of polynomial
