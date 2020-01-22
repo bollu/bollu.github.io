@@ -27,6 +27,7 @@
 
 #### Table of contents:
 
+- [My preferred version of quicksort](#my-preferred-version-of-quicksort)
 - [Geometric proof of Cauchy Schwarz inequality](#geometric-proof-of-cauchy-schwarz-inequality)
 - [Dataflow analysis using Grobner basis](#dataflow-analysis-using-grobner-basis)
 - [Fenwick trees and orbits](#fenwick-trees-and-orbits)
@@ -96,6 +97,91 @@
 - [GSoC 2015 week 6](content/blog/gsoc-vispy-week-6.md)
 - [GSoC 2015 week 7](content/blog/gsoc-vispy-week-7.md)
 - [GSoC 2015 final report](content/blog/gsoc-vispy-report-6.md)
+
+
+# [My preferred version of quicksort](#my-preferred-version-of-quicksort)
+
+Wikipedia lists the implementation of quicksort as:
+
+```cpp
+algorithm quicksort(A, lo, hi) is
+    if lo < hi then
+        p := partition(A, lo, hi)
+        quicksort(A, lo, p - 1)
+        quicksort(A, p + 1, hi)
+
+algorithm partition(A, lo, hi) is
+    pivot := A[hi]
+    i := lo
+    for j := lo to hi do
+        if A[j] < pivot then
+            swap A[i] with A[j]
+            i := i + 1
+    swap A[i] with A[hi]
+    return i
+```
+
+Here, the indeces `[lo..i-1]` have values less than the pivot, while
+`[i..j]` are great or equal to the pivot.
+
+##### The version I prefer
+
+```cpp
+// #define SWAP(ix, ix2) { int t = a[ix]; a[ix] = a[ix2]; a[ix2] = t; }
+// sorts the interval [l, r]
+void qs(int l, int r) {
+    if (r - l < 0) return;
+    int part = a[r]; // the partition
+
+    // a[getill...n] >= part (getill = greater or equal till)
+    // starts at r since we know that a[r] >= (partition=a[r])
+    int getill = r; 
+    // a[l..lttill] < part (lttill = less or equal till.
+    // starts at (l-1) since we do not know about any value < partition
+    int lttill = l-1; 
+
+
+    // loop until they start probing into the other set
+    while(!(lttill+1 >=getill || getill-1 <=lttill)) {
+        // if the speculated element is < partition
+        if (a[getill-1] < part) { 
+            // swap the value at getill-1 will the slot at lttill+1
+            SWAP(getill-1, lttill+1);
+            // increment lttill, since we KNOW that the 
+            // value at lttill+1 = a[getill-1] is < part
+            lttill++;
+        } else {
+            // all we know is that a[getill-1] < part, so we can engulf
+            // the region into 
+            getill--;
+        }
+    }
+    // the partitions must be next to each other, since we have engulfed everything
+    assert(getill - lttill == 1);
+    // move the partition value to the center.
+    SWAP(getill, r);
+
+    // recurse:solve [l..littil] (leave getill=part alone) solve [getill+1..r] 
+    qs(l, lttill);
+    qs(getill+1, r);
+}
+```
+
+This implementation to me makes very clear to me what information is "known":
+- The segments that is strictly less than the partition.
+- The segment that is strictly great or equal the partition.
+
+It also makes clear what is being "probed"/"tentative":
+- anything we are accessing as `+-1` is not known yet, we are feeling out
+  the boundaries of our partitions.
+
+The termination condition is clear: when one partition starts reaching into
+the other partitions resources, its done.
+
+Due to using closed intervals everywhere, it's very easy to see precisely
+what data starts and ends where.
+
+What version of quicksort do you prefer? Drop me an email!
 
 # [Geometric proof of Cauchy Schwarz inequality](#geometric-proof-of-cauchy-schwarz-inequality)
 
