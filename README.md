@@ -27,7 +27,10 @@
 
 #### Table of contents:
 
-- [Fenwick trees and orbits (WIP)](#fenwick-trees-and-orbits)
+- [My preferred version of quicksort](#my-preferred-version-of-quicksort)
+- [Geometric proof of Cauchy Schwarz inequality](#geometric-proof-of-cauchy-schwarz-inequality)
+- [Dataflow analysis using Grobner basis](#dataflow-analysis-using-grobner-basis)
+- [Fenwick trees and orbits](#fenwick-trees-and-orbits)
 - [Dirichlet inversion (WIP)](#dirichlet-inversion)
 - [Incunabulum for the 21st century: Making the J interpreter compile in 2020](#incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020)
 - [An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)](#an-example-of-a-sequence-whose-successive-terms-get-closer-together-but-isnt-cauchy-does-not-converge)
@@ -95,6 +98,149 @@
 - [GSoC 2015 week 7](content/blog/gsoc-vispy-week-7.md)
 - [GSoC 2015 final report](content/blog/gsoc-vispy-report-6.md)
 
+
+# [My preferred version of quicksort](#my-preferred-version-of-quicksort)
+
+Wikipedia lists the implementation of quicksort as:
+
+```cpp
+algorithm quicksort(A, lo, hi) is
+    if lo < hi then
+        p := partition(A, lo, hi)
+        quicksort(A, lo, p - 1)
+        quicksort(A, p + 1, hi)
+
+algorithm partition(A, lo, hi) is
+    pivot := A[hi]
+    i := lo
+    for j := lo to hi do
+        if A[j] < pivot then
+            swap A[i] with A[j]
+            i := i + 1
+    swap A[i] with A[hi]
+    return i
+```
+
+Here, the indeces `[lo..i-1]` have values less than the pivot, while
+`[i..j]` are great or equal to the pivot.
+
+##### The version I prefer
+
+```cpp
+// #define SWAP(ix, ix2) { int t = a[ix]; a[ix] = a[ix2]; a[ix2] = t; }
+// sorts the interval [l, r]
+void qs(int l, int r) {
+    if (r - l < 0) return;
+    int part = a[r]; // the partition
+
+    // a[getill...n] >= part (getill = greater or equal till)
+    // starts at r since we know that a[r] >= (partition=a[r])
+    int getill = r; 
+    // a[l..lttill] < part (lttill = less or equal till.
+    // starts at (l-1) since we do not know about any value < partition
+    int lttill = l-1; 
+
+
+    // loop until they start probing into the other set
+    while(!(lttill+1 >=getill || getill-1 <=lttill)) {
+        // if the speculated element is < partition
+        if (a[getill-1] < part) { 
+            // swap the value at getill-1 will the slot at lttill+1
+            SWAP(getill-1, lttill+1);
+            // increment lttill, since we KNOW that the 
+            // value at lttill+1 = a[getill-1] is < part
+            lttill++;
+        } else {
+            // all we know is that a[getill-1] < part, so we can engulf
+            // the region into 
+            getill--;
+        }
+    }
+    // the partitions must be next to each other, since we have engulfed everything
+    assert(getill - lttill == 1);
+    // move the partition value to the center.
+    SWAP(getill, r);
+
+    // recurse:solve [l..littil] (leave getill=part alone) solve [getill+1..r] 
+    qs(l, lttill);
+    qs(getill+1, r);
+}
+```
+
+This implementation to me makes very clear to me what information is "known":
+- The segments that is strictly less than the partition.
+- The segment that is strictly great or equal the partition.
+
+It also makes clear what is being "probed"/"tentative":
+- anything we are accessing as `+-1` is not known yet, we are feeling out
+  the boundaries of our partitions.
+
+The termination condition is clear: when one partition starts reaching into
+the other partitions resources, its done.
+
+Due to using closed intervals everywhere, it's very easy to see precisely
+what data starts and ends where.
+
+What version of quicksort do you prefer? Drop me an email!
+
+# [Geometric proof of Cauchy Schwarz inequality](#geometric-proof-of-cauchy-schwarz-inequality)
+
+![geometric-proof-cauchy-schwarz](static/cauchy-schwarz.svg)
+
+- All credit goes to `p0a` on `##math` on freenode for teaching me this proof!
+
+Here's one fun application of Cauchy-Schwarz. We can apply it to two vectors
+$x=(\sqrt a, \sqrt b)$ and $y=(\sqrt b, \sqrt a)$ to derive the AM-GM
+inequality:
+
+
+
+
+# [Dataflow analysis using Grobner basis](#dataflow-analysis-using-grobner-basis)
+
+This was a quick experiment in using Grobner basis to model situations. We 
+can represent our dataflow analysis constraints in terms of polynomial
+rewrites over $F_2$. 
+
+Given the program:
+
+```py
+p = { 0: ["=", "x", 'y'], 
+      1: ['br', 2, 100], 
+      2: ['=', 'z', 'x'], 
+      3: ['br', 2],
+      100: ['ret', 'z'] }
+```
+
+whose semantics I hope are fairly straightforward --- the dictionary represents
+instruction locations. Instructions proceed sequentially. branch moves
+control flow around. Note that `br` can branch to multiple locations,
+since we are not control-flow sensitive.
+
+The idea is that since in a dataflow analysis, we need information at 
+each variable at each program point, we can create a ring of polynomials
+over $F_2$ for each variable at each program point. So in this case,
+we wold need:
+
+```
+R = F_2[x0, y0, z0, x1, y1, z1, x2, y2, z2, x3, y3, z3, x100, y100, z100]
+```
+
+We then add elements into the ideal that represents our constraints.
+For example, to perform dataflow analysis, we need to add constraints
+about how if a variable `z` is alive, all variables that are used
+to compute `z` at `100` are alive. This sets up equations that may
+have cycles (in the case of loops). 
+
+These are usually resolved using the
+[Kildall algorithm](https://en.wikipedia.org/wiki/Data-flow_analysis#An_iterative_algorithm).
+
+However, we can also ask SAGE to kindly solve the Grobner basis. I hypothesize
+that the "easy" dataflow problems out to be [toric ideals](https://hal.inria.fr/inria-00074446/document)
+which admit much faster solutions.
+
+
+
 # [Fenwick trees and orbits](#Fenwick-trees-and-orbits)
 
 I learnt of a nice, formal way to prove the correctness of Fenwick
@@ -110,7 +256,7 @@ any monoid-based catenation and update in $\log(n)$.
 #### organization
 
 We allow indexes $[1, 2, \dots n]$. The node with factorization $i \equiv 2^k \times l$,
-$2 \not \div l$ (that is, $k$ is the highest power of $2$ in $i$)
+$2 \not \vert l$ (that is, $k$ is the highest power of $2$ in $i$)
 is responsible for the interval $[i-2^k+1, i] = (i-2^k, i]$.
 
 
@@ -154,8 +300,8 @@ So we need to read the indices:
 At each  location, we strip off the value $2^r$. We can discover this value
 with bit-fiddling: We claim that $a \& (-a) = 2^r$.
 
-Let $a = \alpha 1 0^r$. Now, $-a = \lnot a + 1 = \overline{\alpha}01^r + 1 = \overline{\alpha}10^r$.
-Hence, $a \& (-a) = a \& (\lnot a + 1) = \alpha 10^r \& \overline{\alpha}10^r = 0^{|\alpha|}10^n = 2^r$
+Let $a = x 1 0^r$. Now, $-a = \lnot a + 1 = x01^r + 1 = \overline{x}10^r$.
+Hence, $a \& (-a) = a \& (\lnot a + 1) = (x 10^r) \& (\overline{\x}10^r) = 0^{|\alpha|}10^r = 2^r$
 
 So the full implementation of query is:
 
@@ -197,7 +343,7 @@ int u(int i, int v) {
 #### correctness
 
 We wish to analyze the operations $Query(q) \equiv \sum_{i=1}^q a[i]$, and
-$Update(i, val) equiv a[i] += val$. To do this, we are allowed to maintain
+$Update(i, val) \equiv a[i]~\texttt{+=}~val$. To do this, we are allowed to maintain
 an auxiliary array $d$ which we will manipuate. We will stipulate the
 conditions of operations on $d$ such that they will reflect the values of 
 $Query$ and $Update$, albeit much faster.
@@ -211,10 +357,10 @@ accumulate from the underlying array $a$ to get the total sum $a[0..i]$:
 
 Given an index $u$, repeatedly applying the update operator $U$ gives us all
 the indeces we need to add the change to update:
-- $Update(i, val) = \forall j~, d[U^j(i)] += val$
+- $Update(i, val) = \forall j~, d[U^j(i)]~\texttt{+=}~ val$
 
 For query and update to work, we need the condition that:
-- $q \geq u \iff |\{ Q^i(q)~:~ i \in \mathbb{N} \} \cap \{ U^i(u)~:~i \in \mathbb{N} \}| = 1$
+- $q \geq u \iff \left\vert \{ Q^i(q)~:~ i \in \mathbb{N} \} \cap \{ U^i(u)~:~i \in \mathbb{N} \} \right\vert = 1$
 
 That is, if and only if the query index $q$ includes the update location $u$,
 will the orbits intersect. 
@@ -257,7 +403,8 @@ if __name__ == "__main__":
 ##### Case 1: $q = u$
 
 We note that $Q$ always decreases the value of $q$, and $u$ always increases
-it. Hence, if $q = u$, they meet at this point, and $Q^i q \neq U^j u \forall i, j \geq 1$.
+it. Hence, if $q = u$, they meet at this point, and 
+$\forall i, j \geq 1, \quad Q^i (q) \neq U^j(u)$.
 Hence, they meet exactly once as required.
 
 ##### Case 2: $q < u$
@@ -269,14 +416,14 @@ case they will never meet as required.
 ##### Case 3: $q > u$
 
 Let the entire array have size $2^N$.  
-Let $q = \texttt{e1f_q}, u = \texttt{e0f_u}$, where $\texttt{e}, \texttt{f_q}, \texttt{f_u}$ may be empty
-strings. 
+Let $q = \texttt{e1$f_q$}, u = \texttt{e0$f_u$}$, where 
+$\texttt{e},f_q, f_u$ may be empty strings. 
 
 Notice that $Q$ will always strip away rightmost ones in $f_q$,
 leading to $q = \texttt{e10...0}$ at some point. 
 
 Similarly, $U$ will keep on adding new rightmost ones, causing the
-state to be $u = \textttt{e01*00...} \rightarrow{U} \texttt{e100...}$.
+state to be $u = \texttt{e01...10...0} \xrightarrow{U} \texttt{e100...}$.
 
 Hence, at some point $q = u$. 
 
@@ -589,6 +736,23 @@ surely this _must_ be transitive?
 
 I have taught my instincts to not trust my instincts on analysis, which is a
 shitty solution :) I hope to internalize this someday.
+
+__EDIT:__ I feel I now understand what's precisely happening
+after ruminating a bit.
+
+The Cauchy convergence criterion allows us to drop a finite number
+of terms, and then capture _everything after that point_ in a ball
+of radius $\epsilon$. As $\epsilon$ shrinks, _all_ the terms in the
+sequence are "squeezed togeher".
+
+In the $a_{n+1} - a_n$ case, only successive terms must maintain
+an $\epsilon$ distance. But as the $\log$ example shows, you can steadily
+plod along, keeping $\epsilon$ ball next to $\epsilon$ ball, to reach:
+
+$$
+\lim_{n \rightarrow \infty} \lim_{\epsilon \rightarrow 0} f(n) \cdot \epsilon
+$$
+whose behaviour can do unexpected things depending on the choice of $\n$.
 
 # [Krylov subspace method](#krylov-subspace-method)
 
