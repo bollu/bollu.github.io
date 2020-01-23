@@ -97,6 +97,7 @@
 - [GSoC 2015 week 6](content/blog/gsoc-vispy-week-6.md)
 - [GSoC 2015 week 7](content/blog/gsoc-vispy-week-7.md)
 - [GSoC 2015 final report](content/blog/gsoc-vispy-report-6.md)
+- [Link Dump](#link-dump)
 
 
 # [My preferred version of quicksort](#my-preferred-version-of-quicksort)
@@ -5343,3 +5344,8 @@ For example: "More people have been to Berlin than I have."
 - [week 6](content/blog/gsoc-vispy-week-6.md)
 - [week 7](content/blog/gsoc-vispy-week-7.md)
 - [final report](content/blog/gsoc-vispy-report-6.md)
+
+# Link dump
+
+- [ADHD: A lifelong struggle | Why organisation systems don't work](https://gekk.info/articles/adhd.html)
+
