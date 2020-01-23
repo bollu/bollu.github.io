@@ -97,3 +97,5 @@ installed, use it to compute closed forms)
 - The little book of OS development: https://littleosbook.github.io/book.pdf
 - Computer architecture, a constructive approach (for processor design)
 - Algebraic geometry and statistical learning theory: Sumio watanabe
+- Procrastination by Burka & Yuen.
+

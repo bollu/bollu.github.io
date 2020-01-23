@@ -287,6 +287,46 @@ Hence, at some point $q = u$.
 
 # [Dirichlet inversion](#Dirichlet-inversion)
 
+We call all functions $f: \mathbb Z \rightarrow \mathbb R$ as
+_arithmetic functions_, since they operate on the integers.
+
+We introduce an operator $f \star g: \mathbb Z \rightarrow \mathbb R$.
+It is defined by:
+
+$$
+(f \star g)(n) \equiv \sum_{d \vert n} f(d) g(n/d).
+$$
+
+We will show that the set of arithmetic functions forms a group
+under the operator $\star$, with identity:
+
+$$
+u(n) \equiv \floor{1/n} = \begin{cases} 1 & $n = 1$ \\ 0 & \text{otherwise} \end{cases}
+$$
+
+The reason all of this is interesting is that the inverse of the constant function $1(n) \equiv 1$
+is going to be this function called as the mobius function $\mu:
+$$
+\mu(n) \e= p_1^\alpha_1 p_2^\alpha_2 \dots p_r^\alpha_r) \equiv
+\begin{cases}\{
+  0 & \textt{if any $\alpha_i > 1$} \\
+  (-1)^{\alpha_1 + \alpha_2 + \dots + \alpha_r} & \text{if all $\alpha_i \in \{ 0, 1 \}$}
+\end{cases}
+$$
+
+The mobius function will allow us to perform _mobius inversion_:
+
+$$
+\begin{align*}
+  f(n) &\equiv \sum_{d|n} g(d) = \sum_{d|n} g(d) 1(n/d) = g \star 1 \\
+  f \star 1^{-1} &=  g \star 1 \star 1^{-1} \\
+  f \star \mu &= g
+\end{align*}
+
+That is, we originally had $f$ defined in terms of $g$. We can
+recover an expression for $g$ in terms of $f$.
+
+
 $$
 \begin{array}{|c|c|}
 \hline
