@@ -110,3 +110,5 @@ installed, use it to compute closed forms)
 - CP book (good broad overview of all CP techniques): https://cses.fi/book/book.pdf
 - Algebraic Curves and Riemann Surfaces (Rick Miranda)
 - Procrastination by Burka & Yuen.
+- Stone duality: https://www.irif.fr/~mgehrke/scriptie.pdf
+- Vehicles: Experiments in Synthetic Psychology

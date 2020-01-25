@@ -26,7 +26,7 @@
 - email ID: rot13(`fvqqh.qehvq@tznvy.pbz`)
 
 #### Table of contents:
-
+- [Matroids for greedy algorithms](#matroids-for-greedy-algorithms)
 - [My preferred version of quicksort](#my-preferred-version-of-quicksort)
 - [Geometric proof of Cauchy Schwarz inequality](#geometric-proof-of-cauchy-schwarz-inequality)
 - [Dataflow analysis using Grobner basis](#dataflow-analysis-using-grobner-basis)
@@ -98,6 +98,32 @@
 - [GSoC 2015 week 7](content/blog/gsoc-vispy-week-7.md)
 - [GSoC 2015 final report](content/blog/gsoc-vispy-report-6.md)
 - [Link Dump](#link-dump)
+
+
+
+# [Matroids for greedy algorithms](#matroids-for-greedy-algorithms)
+
+A matrioid $M$ is a set $X$ equipped with an independence set $I \subseteq 2^X$.
+- The empty set is independent: $\emptyset \in I$.
+- The independence set is downward-closed/closed under subsets:  $ \forall i \in I, \forall i' \subseteq i, i' \in I$.
+- For any independent sets $A, B \in I$, if $|A|$ is larger than $|B|$, then we must be able to add an element from
+  $a \in A$ into $B' \equiv B \cup {a}$ such that $B'$ is both independent and larger than $B$: $B' \in I \land |B'| > |B|$.
+
+The prototypical examples to keep in mind are (a) linearly independent sets of vectors (b) trees in a graph.
+
+- **Bases** are the maximal independent sets of $I$ (ordered by inclusion). On adding an element into a basis element, they
+  will become dependent. They are called bases by analogy with linear algebra.
+
+- **Circuits** are minimal dependent sets of $I$. This comes from analogy with trees: if we remove an element
+  from any circuit (loop) in a graph, what we are left with is a tree.
+
+A matroid can be completely categoried by knowing either the bases or the circuits of that matroid.
+
+A rank function of a matroid $M \equiv \langle X, I \rangle$ 
+is a function $r: 2^X \rightarrow \mathbb N^+$ such that:
+- For any two subsets $A, B \in X$, $r(A \cup B) \leq r(A) + r(B) - r(A \cap B)$. (Rank is submodular)
+- For any set $A$ and element $x$, $r(A) \leq r(A \cup \{ x \}) \leq r(A) + 1$. 
+
 
 
 # [My preferred version of quicksort](#my-preferred-version-of-quicksort)
