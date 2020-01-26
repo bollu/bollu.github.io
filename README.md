@@ -107,23 +107,33 @@
 
 A matrioid $M$ is a set $X$ equipped with an independence set $I \subseteq 2^X$.
 - The empty set is independent: $\emptyset \in I$.
-- The independence set is downward-closed/closed under subsets:  $ \forall i \in I, \forall i' \subseteq i, i' \in I$.
-- For any independent sets $A, B \in I$, if $|A|$ is larger than $|B|$, then we must be able to add an element from
-  $a \in A$ into $B' \equiv B \cup {a}$ such that $B'$ is both independent and larger than $B$: $B' \in I \land |B'| > |B|$.
+- The independence set is downward-closed/closed under subsets: 
+  $ \forall i \in I, \forall i' \subseteq i, i' \in I$.
+- For any independent sets $A, B \in I$, if $\vert A \vert$ is larger than 
+  $\vert B \vert$, then we must be able to add an element from
+  $a \in A$ into $B' \equiv B \cup {a}$ such that $B'$ is both 
+  independent and larger than 
+  $B$: $B' \in I \land \vert B'\vert > \vert B\vert$.
 
-The prototypical examples to keep in mind are (a) linearly independent sets of vectors (b) trees in a graph.
+The prototypical examples to keep in mind are 
+(a) linearly independent sets of vectors (b) trees in a graph.
 
-- **Bases** are the maximal independent sets of $I$ (ordered by inclusion). On adding an element into a basis element, they
+- **Bases** are the maximal independent sets of $I$ (ordered by inclusion). 
+  On adding an element into a basis element, they
   will become dependent. They are called bases by analogy with linear algebra.
 
-- **Circuits** are minimal dependent sets of $I$. This comes from analogy with trees: if we remove an element
-  from any circuit (loop) in a graph, what we are left with is a tree.
+- **Circuits** are minimal dependent sets of $I$. This comes from analogy with
+  trees: if we remove an element from any circuit (loop) in a graph, what we
+  are left with is a tree.
 
-A matroid can be completely categoried by knowing either the bases or the circuits of that matroid.
+A matroid can be completely categoried by knowing either the bases or the
+circuits of that matroid.
 
 A rank function of a matroid $M \equiv \langle X, I \rangle$ 
 is a function $r: 2^X \rightarrow \mathbb N^+$ such that:
-- For any two subsets $A, B \in X$, $r(A \cup B) \leq r(A) + r(B) - r(A \cap B)$. (Rank is submodular)
+
+- For any two subsets $A, B \in X$, 
+  $r(A \cup B) \leq r(A) + r(B) - r(A \cap B)$. (Rank is submodular)
 - For any set $A$ and element $x$, $r(A) \leq r(A \cup \{ x \}) \leq r(A) + 1$. 
 
 
@@ -143,8 +153,8 @@ which obeys the relation:
 
 $$
 \begin{align*}
-x &&\in \tau \O \text{$T_O$ halts on input $x$} \\
-x &&\not \in \O \iff \text{$T_O$ does not halts on input $o$}
+x &&\in O \iff \text{$T_O$ halts on input $x$} \\
+x &&\not \in O \iff \text{$T_O$ does not halts on input $o$}
 \end{align*}
 $$
 
