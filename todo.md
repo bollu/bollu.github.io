@@ -136,3 +136,4 @@ installed, use it to compute closed forms)
 - Procrastination by Burka & Yuen.
 - Stone duality: https://www.irif.fr/~mgehrke/scriptie.pdf
 - Vehicles: Experiments in Synthetic Psychology
+- Uniform space: https://en.wikipedia.org/wiki/Uniform_space
