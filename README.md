@@ -26,7 +26,9 @@
 - email ID: rot13(`fvqqh.qehvq@tznvy.pbz`)
 
 #### Table of contents:
+
 - [Matroids for greedy algorithms](#matroids-for-greedy-algorithms)
+- [Grokking Zariski](#grokking-zariski)
 - [My preferred version of quicksort](#my-preferred-version-of-quicksort)
 - [Geometric proof of Cauchy Schwarz inequality](#geometric-proof-of-cauchy-schwarz-inequality)
 - [Dataflow analysis using Grobner basis](#dataflow-analysis-using-grobner-basis)
@@ -125,6 +127,28 @@ is a function $r: 2^X \rightarrow \mathbb N^+$ such that:
 - For any set $A$ and element $x$, $r(A) \leq r(A \cup \{ x \}) \leq r(A) + 1$. 
 
 
+# [Grokking Zariski](#grokking-zariski)
+
+There's a lot written on the Zariski topology on the internet, but most
+of them lack explicit examples and pictures. This is my attempt to
+communicate what the Zariski topology looks like, from the perspectives
+that tickle my fancy (a wealth of concrete examples,
+topology-as-semi-decidability, and pictures).
+
+#### Semi-decidability
+
+Recall that in this view of topology, for a space $(X, \tau)$, for every
+open set $O \in \tau$, we associate a turing machine $T_O$.
+which obeys the relation:
+
+$$
+\begin{align*}
+x &&\in \tau \O \text{$T_O$ halts on input $x$} \\
+x &&\not \in \O \iff \text{$T_O$ does not halts on input $o$}
+\end{align*}
+$$
+
+In the case of the zariski topology
 
 # [My preferred version of quicksort](#my-preferred-version-of-quicksort)
 

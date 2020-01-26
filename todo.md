@@ -109,6 +109,30 @@ installed, use it to compute closed forms)
 - Computational Geometry in C:http://cs.smith.edu/~jorourke/books/compgeom.html
 - CP book (good broad overview of all CP techniques): https://cses.fi/book/book.pdf
 - Algebraic Curves and Riemann Surfaces (Rick Miranda)
+- https://www.cs.cornell.edu/courses/cs7491/2020sp/ (The great ISAs)
+- What you need to know about Yoneda: https://www.youtube.com/watch?v=TBtDZrPJnv8&feature=emb_logo
+- https://codeforces.com/problemset/problem/69/E
+- order statistics inside C++: https://codeforces.com/blog/entry/11080
+- trie using order statistics tree: https://ideone.com/6VFNZl
+- Matroid intersection: https://codeforces.com/blog/entry/69287
+- https://math.mit.edu/~goemans/18438F09/ advanced combinatorial optimisation
+- Collection of tricks: https://codeforces.com/blog/entry/57282
+- Wavelet trees: https://users.dcc.uchile.cl/~jperez/papers/ioiconf16.pdf
+- FFT, polynomials: https://drive.google.com/file/d/1B9BIfATnI_qL6rYiE5hY9bh20SMVmHZ7/view
+- https://en.wikipedia.org/wiki/Berlekamp%E2%80%93Massey_algorithm (find minimal polynomial for recurrence)
+- Catalan numbers: http://www.geometer.org/mathcircles/catalan.pdf
+- Polya counting: http://www.geometer.org/mathcircles/polya.pdf
+- http://www.geometer.org/mathcircles/Infinity.pdf (ordinals, with lines!)
+- Read everything by conway: The Book of Numbers
+- Discrete Morse theory
+- Topos of monoid actions (http://176.58.104.245/NOTES/categories/M-Set.pdf)
+- An introduction to mechanics and symmetry: https://www.fis.unam.mx/~max/mecanica/b_Marsden.pdf
+- The geometry of whales and ants: https://static01.nyt.com/images/blogs/wordplay/Universe_in_Zero_Words_Copyright.pdf
+- The Shape of Space
+- Hartree-Fock method for simulation
+- Fortune's algorithm for Delaunay triangulation
+- Li chao tree
+- Aliens
 - Procrastination by Burka & Yuen.
 - Stone duality: https://www.irif.fr/~mgehrke/scriptie.pdf
 - Vehicles: Experiments in Synthetic Psychology
