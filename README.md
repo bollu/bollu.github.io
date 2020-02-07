@@ -319,12 +319,12 @@ $$I \equiv \{ S \subseteq V ~:~ \text{vectors in $S$ are lineary independent} \}
 
 
 
-\\[ I \equiv \{ S \subseteq V ~:~ \text{vectors in $S$ are lineary independent} \} \\]
+\[ I \equiv \{ S \subseteq V ~:~ \text{vectors in $S$ are lineary independent} \} \]
 
 
 
 
-\\[I \equiv \{ S \subseteq V ~:~ \text{vectors in $S$ are lineary independent} \}\\]
+\[I \equiv \{ S \subseteq V ~:~ \text{vectors in $S$ are lineary independent} \}\]
 
 This is an independence system because the empty set is linearly independent,
 and subsets of a linearly independent collection of vectors will be linearly
