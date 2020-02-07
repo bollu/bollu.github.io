@@ -136,3 +136,8 @@ installed, use it to compute closed forms)
 - Procrastination by Burka & Yuen.
 - Stone duality: https://www.irif.fr/~mgehrke/scriptie.pdf
 - Vehicles: Experiments in Synthetic Psychology
+- https://www.youtube.com/channel/UCBLr7ISa_YDy5qeATupf26w/featured (algorithms live)
+- DFS bridges intuition: https://codeforces.com/blog/entry/68138
+- Discrete morse theory.
+- Legendre transform: https://www.aapt.org/docdirectory/meetingpresentations/sm14/mungan-poster.pdf
+- Essentials of Control Techniques and Theory by John Billingsley
