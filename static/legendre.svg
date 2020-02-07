@@ -11,9 +11,9 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 744.09448819 1052.3622047"
+   width="150.42348mm"
+   height="110.9214mm"
+   viewBox="0 0 532.99657 393.02858"
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
@@ -244,15 +244,6 @@
     <linearGradient
        inkscape:collect="always"
        xlink:href="#linearGradient5802"
-       id="linearGradient5820"
-       x1="271.66769"
-       y1="655.18408"
-       x2="282.22433"
-       y2="655.18408"
-       gradientUnits="userSpaceOnUse" />
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient5802"
        id="linearGradient5826"
        x1="126.26907"
        y1="644.76562"
@@ -279,15 +270,6 @@
        y1="543.80225"
        x2="412.63208"
        y2="543.80225"
-       gradientUnits="userSpaceOnUse" />
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#blue-6"
-       id="linearGradient5920"
-       x1="421.82895"
-       y1="495.44885"
-       x2="430.41293"
-       y2="495.44885"
        gradientUnits="userSpaceOnUse" />
     <linearGradient
        inkscape:collect="always"
@@ -319,16 +301,6 @@
     <linearGradient
        inkscape:collect="always"
        xlink:href="#graylight-1"
-       id="linearGradient5985"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="translate(4,0)"
-       x1="488.39557"
-       y1="539.00964"
-       x2="509.64557"
-       y2="539.00964" />
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#graylight-1"
        id="linearGradient5998"
        gradientUnits="userSpaceOnUse"
        gradientTransform="translate(4,0)"
@@ -346,16 +318,6 @@
        id="linearGradient6006"
        xlink:href="#graylight-1"
        inkscape:collect="always" />
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient5822"
-       id="linearGradient6165"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="translate(11.880593,-144.97576)"
-       x1="488.39557"
-       y1="539.00964"
-       x2="509.64557"
-       y2="539.00964" />
     <linearGradient
        inkscape:collect="always"
        xlink:href="#linearGradient5916"
@@ -376,20 +338,58 @@
        inkscape:collect="always" />
     <linearGradient
        inkscape:collect="always"
-       xlink:href="#linearGradient5916"
-       id="linearGradient6257"
+       xlink:href="#linearGradient5802"
+       id="linearGradient4227"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="translate(3.8301288,7.2672879)"
+       x1="271.66769"
+       y1="655.18408"
+       x2="282.22433"
+       y2="655.18408" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#graylight-1"
+       id="linearGradient4229"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(4,0)"
+       x1="488.39557"
+       y1="539.00964"
+       x2="509.64557"
+       y2="539.00964" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5746"
+       id="linearGradient4231"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-179.05842,111.64217)"
        x1="423.69342"
        y1="591.03076"
        x2="433.47858"
        y2="591.03076" />
     <linearGradient
        inkscape:collect="always"
-       xlink:href="#linearGradient5746"
-       id="linearGradient6325"
+       xlink:href="#blue-6"
+       id="linearGradient4233"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="translate(-179.05842,111.64217)"
+       x1="421.82895"
+       y1="495.44885"
+       x2="430.41293"
+       y2="495.44885" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5822"
+       id="linearGradient4235"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(11.880593,-144.97576)"
+       x1="488.39557"
+       y1="539.00964"
+       x2="509.64557"
+       y2="539.00964" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5916"
+       id="linearGradient4237"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(3.8301288,7.2672879)"
        x1="423.69342"
        y1="591.03076"
        x2="433.47858"
@@ -403,8 +403,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.979899"
-     inkscape:cx="495.73492"
-     inkscape:cy="461.21737"
+     inkscape:cx="289.13761"
+     inkscape:cy="124.98841"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -412,7 +412,11 @@
      inkscape:window-height="1694"
      inkscape:window-x="0"
      inkscape:window-y="36"
-     inkscape:window-maximized="0" />
+     inkscape:window-maximized="0"
+     fit-margin-top="1"
+     fit-margin-left="1"
+     fit-margin-right="1"
+     fit-margin-bottom="1" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -428,7 +432,8 @@
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(-87.146776,-323.10463)">
     <path
        style="fill:none;fill-rule:evenodd;stroke:url(#linearGradient5680);stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 125.66592,518.62332 490.93414,0"
@@ -445,18 +450,18 @@
        id="path5736"
        inkscape:connector-curvature="0" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:url(#linearGradient5732);stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
+       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:url(#linearGradient5732);stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 517.91842,366.28706 91.84699,668.42992"
        id="path5726"
        inkscape:connector-curvature="0" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:url(#linearGradient5696);stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:none;fill-rule:evenodd;stroke:url(#linearGradient5696);stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 259.28571,397.3622 c 0,0 98.57143,164.64286 213.57143,-34.28571"
        id="path5690"
        inkscape:connector-curvature="0" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient5820);fill-opacity:1.0;stroke:none;stroke-width:3.006;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient4227);fill-opacity:1;stroke:none;stroke-width:3.00600004;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        x="270.92551"
        y="660.65283"
        id="text5756"
@@ -464,11 +469,11 @@
          sodipodi:role="line"
          x="270.92551"
          y="660.65283"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:3.006;stroke-miterlimit:4;stroke-dasharray:none;fill-opacity:1.0;fill:url(#linearGradient5820)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;font-family:monospace;-inkscape-font-specification:monospace;fill:url(#linearGradient4227);fill-opacity:1;stroke-width:3.00600004;stroke-miterlimit:4;stroke-dasharray:none"
          id="tspan5760">x</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient5985);fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient4229);fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="490.31549"
        y="544.46863"
        id="text5756-8"
@@ -476,11 +481,11 @@
          sodipodi:role="line"
          x="490.31549"
          y="544.46863"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;font-family:monospace;-inkscape-font-specification:monospace;fill:url(#linearGradient5985);fill-opacity:1"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;font-family:monospace;-inkscape-font-specification:monospace;fill:url(#linearGradient4229);fill-opacity:1"
          id="tspan5760-7">sx</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient6325);fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient4231);fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="243.63889"
        y="709.95319"
        id="text5756-9"
@@ -488,7 +493,7 @@
          sodipodi:role="line"
          x="243.63889"
          y="709.95319"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;font-family:monospace;-inkscape-font-specification:monospace;fill:url(#linearGradient6325);fill-opacity:1;stroke:none"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;font-family:monospace;-inkscape-font-specification:monospace;fill:url(#linearGradient4231);fill-opacity:1;stroke:none"
          id="tspan5890">G(s) + F(x) = sx</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:url(#linearGradient5744-0);stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -496,13 +501,13 @@
        id="path5738-3"
        inkscape:connector-curvature="0" />
     <path
-       style="fill:url(#linearGradient5926);fill-rule:evenodd;stroke:url(#linearGradient5932);stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
+       style="fill:url(#linearGradient5926);fill-opacity:1;fill-rule:evenodd;stroke:url(#linearGradient5932);stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 411.50455,519.29798 0,127.10245"
        id="path5738-3-9"
        inkscape:connector-curvature="0" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient5920);fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient4233);fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="419.55356"
        y="502.73889"
        id="text5756-9-2"
@@ -510,7 +515,7 @@
          sodipodi:role="line"
          x="419.55356"
          y="502.73889"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;font-family:monospace;-inkscape-font-specification:monospace;fill:url(#linearGradient5920);fill-opacity:1"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;font-family:monospace;-inkscape-font-specification:monospace;fill:url(#linearGradient4233);fill-opacity:1"
          id="tspan5760-2-2">F(x)</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:url(#linearGradient5744-0-8);stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -526,7 +531,7 @@
        ry="7.4741583" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient6165);fill-opacity:1.0;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient4235);fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="498.19608"
        y="399.49286"
        id="text5756-8-6"
@@ -534,11 +539,11 @@
          sodipodi:role="line"
          x="498.19608"
          y="399.49286"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;font-family:monospace;-inkscape-font-specification:monospace;fill:url(#linearGradient6165);fill-opacity:1.0"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;font-family:monospace;-inkscape-font-specification:monospace;fill:url(#linearGradient4235);fill-opacity:1"
          id="tspan5760-7-1">slope = s</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient6257);fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient4237);fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="426.52747"
        y="605.57831"
        id="text5756-9-9"
@@ -546,7 +551,7 @@
          sodipodi:role="line"
          x="426.52747"
          y="605.57831"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;font-family:monospace;-inkscape-font-specification:monospace;fill:url(#linearGradient6257);fill-opacity:1;stroke:none"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;font-family:monospace;-inkscape-font-specification:monospace;fill:url(#linearGradient4237);fill-opacity:1;stroke:none"
          id="tspan5890-4">G(s)</tspan></text>
   </g>
 </svg>
