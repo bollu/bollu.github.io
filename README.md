@@ -1,3 +1,14 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+
+<!-- comment out mathjax
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
@@ -19,6 +30,8 @@
 >
 </script>
 
+-->
+
 
 - [My github](http://github.com/bollu)
 - [My math.se profile](https://math.stackexchange.com/users/261373/siddharth-bhat)
@@ -27,8 +40,12 @@
 
 #### Table of contents:
 
-- [Matroids for greedy algorithms](#matroids-for-greedy-algorithms)
-- [Grokking Zariski](#grokking-zariski)
+- [Legendre transform](#legendre-transform)
+- [DFS numbers as a monotone map](#dfs-numbers-as-a-monotone-map)
+- [Self attention? not really](#self-attention-not-really)
+- [Coarse structures](#coarse-structures)
+- [Matroids for greedy algorithms (WIP)](#matroids-for-greedy-algorithms)
+- [Grokking Zariski (WIP)](#grokking-zariski)
 - [My preferred version of quicksort](#my-preferred-version-of-quicksort)
 - [Geometric proof of Cauchy Schwarz inequality](#geometric-proof-of-cauchy-schwarz-inequality)
 - [Dataflow analysis using Grobner basis](#dataflow-analysis-using-grobner-basis)
@@ -102,16 +119,232 @@
 - [Link Dump](#link-dump)
 
 
+# [Legendre transform](#legendre-transform)
+
+![legendre-transform](./static/legendre-transform.png)
+
+
+# [DFS numbers as a monotone map](#dfs-numbers-as-a-monotone-map)
+
+Really, we want a partial order that is defined with the tree as the
+Hasse diagram. However, performing operations on this is hard. Hence,
+the DFS numbering is a good monotone map from this partial order
+to the naturals, which creates a total order.
+
+I want to think about this deeper, I feel that this might be a good way
+to think about the `low` numbers that show up in 
+[tarjan's algorithm for strongly connected components](https://en.wikipedia.org/wiki/Tarjan%27s_strongly_connected_components_algorithm)
+
+This also begs the question: can we use other partial orders, that chunk
+some information, but don't lose _all_ the information as going to a total
+order (the naturals) does?
+
+# [Self attention? not really](#self-attention-not-really)
+
+The code is taken from [The annotated transformer](https://nlp.seas.harvard.edu/2018/04/03/attention.html)
+which explains the "attention is all you need paper".
+
+On skimming the code, one sees the delightful line of code:
+
+```py
+class EncoderLayer(nn.Module):
+  "Encoder is made up of self-attn and feed forward (defined below)"
+  def __init__(self, size, self_attn, feed_forward, dropout):
+     super(EncoderLayer, self).__init__()
+     self.self_attn = self_attn
+     self.feed_forward = feed_forward
+     self.sublayer = clones(SublayerConnection(size, dropout), 2)
+     self.size = size
+  def forward(self, x, mask):
+    "Follow Figure 1 (left) for connections."
+    x = self.sublayer[0](x, lambda x: self.self_attn(x, x, x, mask))
+    return self.sublayer[1](x, self.feed_forward)
+```
+
+where the line:
+
+```py
+x = self.sublayer[0](x, lambda x: self.self_attn(x, x, x, mask))
+```
+
+seems to imply that we are, indeed, performing a self attention with the same
+value `x` as the query, key, and value. 
+
+However, reading the code of the self-attention (or the paper) leads
+one to realise:
+
+```py
+class MultiHeadedAttention(nn.Module):
+  def __init__(self, h, d_model, dropout=0.1):
+    "Take in model size and number of heads."
+    super(MultiHeadedAttention, self).__init__()
+    assert d_model % h == 0
+    # We assume d_v always equals d_k
+    self.d_k = d_model // h
+    self.h = h
+    self.linears = clones(nn.Linear(d_model, d_model), 4)
+    self.attn = None
+    self.dropout = nn.Dropout(p=dropout)
+      
+  def forward(self, query, key, value, mask=None):
+    "Implements Figure 2"
+    if mask is not None:
+        # Same mask applied to all h heads.
+        mask = mask.unsqueeze(1)
+    nbatches = query.size(0)
+    
+    # 1) Do all the linear projections in batch from d_model => h x d_k 
+    query, key, value = \
+        [l(x).view(nbatches, -1, self.h, self.d_k).transpose(1, 2)
+         for l, x in zip(self.linears, (query, key, value))]
+    
+    # 2) Apply attention on all the projected vectors in batch. 
+    x, self.attn = attention(query, key, value, mask=mask, 
+                             dropout=self.dropout)
+    
+    # 3) "Concat" using a view and apply a final linear. 
+    x = x.transpose(1, 2).contiguous() \
+         .view(nbatches, -1, self.h * self.d_k)
+    return self.linears[-1](x)
+```
+
+where we notice:
+
+```py
+# 1) Do all the linear projections in batch from d_model => h x d_k 
+query, key, value = \
+  [l(x).view(nbatches, -1, self.h, self.d_k).transpose(1, 2)
+   for l, x in zip(self.linears, (query, key, value))]
+
+# 2) Apply attention on all the projected vectors in batch. 
+x, self.attn = attention(query, key, value, mask=mask, 
+                         dropout=self.dropout)
+```
+
+where we see that `query, key, value` are being linearly transformed
+before being used. Hence, an input of $(x, x, x)$ is transformed
+to $(q', k', v') = (Qx, Kx, Vx)$ where $Q, K, V$ are arbitrary matrices.
+
+Next, when we pass these into attention, the output we get is:
+
+$$
+\text{softmax(q', k'^T) v = (Q x) (K x)^T (V x) = Q x x^T K^T V x
+$$
+
+the code below is the same thing, spelled out:
+
+
+```
+def attention(query, key, value, mask=None, dropout=None):
+    "Compute 'Scaled Dot Product Attention'"
+    d_k = query.size(-1)
+    scores = torch.matmul(query, key.transpose(-2, -1)) \
+             / math.sqrt(d_k)
+    if mask is not None:
+        scores = scores.masked_fill(mask == 0, -1e9)
+    p_attn = F.softmax(scores, dim = -1)
+    if dropout is not None:
+        p_attn = dropout(p_attn)
+    return torch.matmul(p_attn, value), p_attn
+```
+
+So It's not _really_ self attention: it's more like: modulated attention
+to self `:)`
+
+
+# [Coarse structures](#coarse-structures)
+
+A coarse structure on the set $X$ is a collection of relations on $X$: 
+$E \subseteq 2^{X \times X}$ (called as _controlled sets_ / _entourages_)
+such that:
+
+- $(\delta \equiv \{ (x, x) : x \in X \}) \in  E$.
+- Closed under subsets: $\forall e \in E, f \subset e \implies f \in E$.
+- Closed under transpose: if $e \in E$ then $(e^T \equiv \{ (y, x) : (x, y) \in e \}) \in E$.
+- Closed under finite unions.
+- Closed under composition: $\forall e, f \in E, e \circ f \in E$, where $\circ$
+  is composition of relations.
+
+The sets that are controlled are "small" sets. 
+
+The bounded coarse structure on a metric space $(X, d)$ is the set of all relations
+such that there exists a uniform bound such that all related elements are within
+that bounded distance.
+$$
+(e \subset X \times X) \in E \iff \exists \delta \in \mathbb R, \forall (x, y) \in E, d(x, y) < \delta
+$$
+
+
+We can check that the functions:
+- $f: \mathbb Z \rightarrow \mathbb R, f(x) \equiv x$ and
+- $g: \mathbb R \rightarrow \mathbb Z, g(x) \equiv \lfloor x \rfloor$
+
+are coarse inverses to each other.
+
+I am interested in this because if topology is related to semidecidability,
+then coarse structures (which are their dual) are related to..?
+
+#### References
+- [What is a.. coarse structure by AMS](http://www.ams.org/notices/200606/whatis-roe.pdf)
 
 # [Matroids for greedy algorithms](#matroids-for-greedy-algorithms)
+
+#### Definitions of matroids
 
 A matrioid $M$ is a set $X$ equipped with an independence set $I \subseteq 2^X$.
 - The empty set is independent: $\emptyset \in I$.
 - The independence set is downward-closed/closed under subsets:  $ \forall i \in I, \forall i' \subseteq i, i' \in I$.
-- For any independent sets $A, B \in I$, if $|A|$ is larger than $|B|$, then we must be able to add an element from
-  $a \in A$ into $B' \equiv B \cup {a}$ such that $B'$ is both independent and larger than $B$: $B' \in I \land |B'| > |B|$.
+- For any independent sets $A, B \in I$, if $\vert A \vert$ is larger than 
+  $\vert B \vert$, then we must be able to add an element from
+  $a \in A$ into $B' \equiv B \cup {a}$ such that $B'$ is both independent and larger than $B$:
+  $B' \in I \land \vert B' \vert > \vert B \vert$. (**The exchange property**)
 
-The prototypical examples to keep in mind are (a) linearly independent sets of vectors (b) trees in a graph.
+#### Example 1: Linearly independent sets
+Let $V$ be a vector space. The independent sets $I$ are of the form:
+
+$$
+I \equiv \{ S \subseteq V ~:~ \text{vectors in $S$ are lineary independent} \}
+$$
+
+This is an independence system because the empty set is linearly independent,
+and subsets of a linearly independent collection of vectors will be linearly
+independent.
+
+The exchange property is satisfied because TODO
+
+#### Example 2: The graphic/cyclic Matroid: Matroid of Forests
+
+Let $G = (V, E)$ be a graph. Then collections of edges of the form:
+
+$$
+I \equiv \{ F \subseteq E : \text{$F$ contains no cycles} \}
+$$
+
+is an independence system because the empty forest is a forest, and
+a subset of edges of a forest continues to be a forest.
+
+To check the exchange property, TODO
+
+#### Example 3: The partition matroid
+
+Consider the partition matroid $M \equiv (E, I)$, where we have a
+partitioning of $E$ known as $E_i$, and numbers $k_i$ the
+independence set consists of subsets $F$ which have at most $k_i$
+elements in common with each $E_i$.
+$$
+I \equiv \{ F \subseteq E  : \forall i = 1, \dots N, \vert F \cap E_i \vert \leq k_i \}
+$$
+
+The independence axioms are intuitively satisfied, since our constraints on picking
+edges are of the form $\vert F \cap E_i \vert \leq k_i$, which will continue to
+hold as $F$ becomes smaller.
+
+For the exchange axiom, let $\vert Y \vert > \vert X \vert$. Then, we can assert that for some index
+$i$, it must be the case that $\vert Y \cap E_i \vert > \vert X \cap E_i \vert$. Hence,
+we can add an element in $E_i \cap (Y / X)$ into $X$ whilst still maintaining independence.
+
+
+#### Bases and Circuits
 
 - **Bases** are the maximal independent sets of $I$ (ordered by inclusion). On adding an element into a basis element, they
   will become dependent. They are called bases by analogy with linear algebra.
@@ -119,12 +352,110 @@ The prototypical examples to keep in mind are (a) linearly independent sets of v
 - **Circuits** are minimal dependent sets of $I$. This comes from analogy with trees: if we remove an element
   from any circuit (loop) in a graph, what we are left with is a tree.
 
-A matroid can be completely categoried by knowing either the bases or the circuits of that matroid.
+A matroid can be completely categorized by knowing either the bases or the circuits of that matroid.
+
+#### Unique Circuit property
+- **Theorem**: Let $M \equiv (E, I)$ be a matroid, and let $S \in I, e \in E$ such that $S \cup \{e \} \not \in I$.
+Then, there exists a **unique circuit** $C \subseteq $S \cup \{ e \}$.
+
+That is, when we go from independent to dependent by adding an element, we will have a **single, unique
+circuit**. For example, when we add an edge into a forest to create a cycle, this cycle will
+be unique!
+
+##### Proof
+
+Let $C_1, C_2$ be circuits
+created when $e$ was added into $S$, where $C_1$ is the **largest** circuit of $S$,
+and $C_2$ is the **smallest** circuit of $S$.
+
+Notice that $C_1, C_2$ __must__ contain $e$ --- 
+if they did not, then $C_1, C_2$ would be circuits in
+$S$, contradicting the assumption that $S$ is independent.
+
+Recall that $C_1, C_2$ are both circuits, which means that removing even a
+single element from them will cause them to become independent sets. 
+
+Let us contemplate $C \equiv C_1 \cup C_2$. Either $C = C_1$ in which
+case we are done. 
+
+Otherwise, \vert C \vert > \vert C_1 \vert$, $\vert C \vert > \vert C_2 \vert$.
+
+Otherwise, consider $C' \equiv C \ \{ e \} = (C_1 \cup C_2) \ \{e\} = (C_1 \ \{e\}) \cup (C_2 \ \{ e \})$.
+- $C' \subseteq S$, since $\C_1 \ \{e\}, C_2 \ \{e\} \subseteq S$. 
+- $S$ is an independent set, all of whose subsets are independent by
+  definition.  So $C'$ is an independent set.
+- $\vert C' \vert \geq \vert C_1 \vert$, $\vert C' \vert \geq \vert C_2 \vert$.
+
+Now, we consider $C$. Clearly, this is a dependent set,
+since $C_1 \subsetneq C$, and $C_1S is a dependent set.
+
+Since, $C = C' \cup \{e \}$, this means that $C'$ is a maximally independent set.
+Since $C'$ does not contain $e$, $C' = S$.
+
+
+#### Rank functions 
 
 A rank function of a matroid $M \equiv \langle X, I \rangle$ 
-is a function $r: 2^X \rightarrow \mathbb N^+$ such that:
-- For any two subsets $A, B \in X$, $r(A \cup B) \leq r(A) + r(B) - r(A \cap B)$. (Rank is submodular)
-- For any set $A$ and element $x$, $r(A) \leq r(A \cup \{ x \}) \leq r(A) + 1$. 
+is a function:
+
+$$
+r: 2^X \rightarrow \mathbb N : r(S) = \max \{ \vert T \vert : T \subseteq S \land T \in I \}
+$$
+
+That is, for any subset $S \subseteq X$, $r(S)$ is the cardinality of the
+largest independent subset of $S$.
+
+- In the matroid of linearly independent sets of vectors, the rank of
+  a set of vectors is the dimension of their spanning set.
+
+
+In this matroid, the 
+
+TODO: picture
+
+
+
+#### Bipartite matching as matroid intersection
+
+Matchings in a bipartite graph $G = (V, E)$ with partition $(A, B)$ arise
+as the intersection of the independent sets of two matroids.
+We will denote by $\delta: V \rightarrow 2^E$ the function which takes
+a vertex to the set of edges incident on that vertex.
+
+Let $M_A$ be a _partition matroid_: $M_A \equiv (E, I_A)$ where $I_A$ is:
+$$
+I_A \equiv \{ F \subseteq E : \vert F \cap \delta(a) \vert \leq 1 \forall a \in A \}
+$$
+That is, in $I_A$, every independent set has for each vertex of $A$, at most
+one edge incident. We need to check that this is an independent set.
+The empty set of no edges is independent. If some collection of edges are 
+such that they have at most one edge incident, then removing edges can
+only _decrease_ incidence. Hence, it's also downward closed.
+
+
+TODO: add picture
+
+Similarly, we define $M_B \equiv (E, I_B)$:
+$$
+I_B \equiv \{ F \subseteq E : \vert F \cap \delta(b) \vert \leq 1 \forall b \in B \}
+$$
+
+Now, notice that any collection of edges $F \in I_A \cap I_B$ is a legal
+matching, since the edges cover all vertices of $A$ and $B$ at most once.
+The largest element of $I_A \cap I_B$ is the _maximum matching_ that we
+are looking for.
+
+#### Largest common independent set
+
+Given two matroids $M_1 \equiv (E, I_1)$, $M_2 \equiv (E, I_2)$, with rank
+functions $r_1$ and $r_2$. Let $S \in I_1 cap I_2$ and let $F \subseteq E$. 
+-  $\vert S \vert = \vert S \cap F \vert$ + \vert S \cap (E / F) \vert$.
+
+
+#### References:
+- [Michel Goeman's standalone notes on matroids](http://math.mit.edu/~goemans/18433S11/matroid-notes.pdf)
+- [Michel Goeman's standalone notes on matroid intersection](http://math.mit.edu/~goemans/18433S11/matroid-intersect-notes.pdf)
+- [Lecture 11 of Michel Goeman's lecture on Advanced Combinatorial Optimisation](https://math.mit.edu/~goemans/18438F09/lec11.pdf)
 
 
 # [Grokking Zariski](#grokking-zariski)
@@ -134,6 +465,27 @@ of them lack explicit examples and pictures. This is my attempt to
 communicate what the Zariski topology looks like, from the perspectives
 that tickle my fancy (a wealth of concrete examples,
 topology-as-semi-decidability, and pictures).
+
+#### The Zariski topology
+
+Recall that the Zariski topology is defined by talking about what its
+closed sets are. The common zero sets of a family of polynomials are
+the closed sets of the Zariski topology. Formally, the topology $(\mathbb R^n, \tau)$
+has as closed sets:
+
+$$
+\{ x \in \mathbb R^n : \forall f_i \in \mathbb R[X_1, X_2, \dots X_n],  f_i(x) = 0  \}
+$$
+
+Open sets (the complement of closed sets) are of them form:
+
+$$
+\{ x \in \mathbb R^n : \exists f_i \in \mathbb R[X_1, X_2, \dots X_n],  f_i(x) \neq 0  \} \in \tau
+$$
+
+The empty set is generated as $\{ x \in \mathbb R^n : 0 \neq 0 \}$ and the
+full set is generated as $\{ x \in \mathbb R^n : 1 \neq 0 \}$.
+
 
 #### Semi-decidability
 
@@ -148,7 +500,19 @@ x &&\not \in \O \iff \text{$T_O$ does not halts on input $o$}
 \end{align*}
 $$
 
-In the case of the zariski topology
+#### Geometry --- 1D
+
+Let's consider functions of the form $(\mathbb R^2, Z) \xrightarrow{f} (\mathbb R^2, Z)$
+where $Z$ is the Zariski topology. We are interested in discovering what
+sort of functions $f$ are continuous.
+
+
+#### Geometry --- 2D
+
+Let's repeat the exercise for 2D. Here, we will manage to see much richer
+behaviour. Let's consider functions of the form $(\mathbb R^2, Z) \xrightarrow{f} (\mathbb
+R^2, Z)$ where $Z$ is the Zariski topology.
+
 
 # [My preferred version of quicksort](#my-preferred-version-of-quicksort)
 
@@ -516,7 +880,7 @@ The mobius function will allow us to perform _mobius inversion_:
 
 $$
 \begin{align*}
-  f(n) &\equiv \sum_{d|n} g(d) = \sum_{d|n} g(d) 1(n/d) = g \star 1 \\
+  f(n) &\equiv \sum_{d \vert n} g(d) = \sum_{d \vert n} g(d) 1(n/d) = g \star 1 \\
   f \star 1^{-1} &=  g \star 1 \star 1^{-1} \\
   f \star \mu &= g
 \end{align*}
@@ -524,26 +888,60 @@ $$
 That is, we originally had $f$ defined in terms of $g$. We can
 recover an expression for $g$ in terms of $f$.
 
+### The algebra of multiplicative functions
+
+We claim that the set of functions $\{ \mathbb Z \rightarrow \mathbb C \}$
+is a commutative group, with the group operation $\star$ such that:
+
+$$
+(f \star g)(n) \equiv \sum_{d \vert n} f(d) g(n/d).
+$$
+
+with the identity element being $istar(n) \equiv \lfloor 1 / n \rfloor$. The idea
+is that if $(n = 1)$, then $\lfloor 1/1 \rfloor = 1$, and for any other
+number $n > 0$, $1/n < 1$, hence $\lfloor 1/n \rfloor = 0$.
+
+### verification of $istar$ being the identity
+### associativity of $\star$
+### commutativity of $\star$
+### inverse operator
+### $\mu$ as the inverse of the $one$ function
+### Mobius inversion
+### $n = \sum_{d \vert n} \phi(d)$ 
 
 $$
 \begin{array}{|c|c|}
 \hline
-  \text{Set} & \text{Operation} & \text{Identity} \\ 
+   d & \{ 1 \leq x \leq 12 : (x, 12) = d \} & \{ 1 \leq x \leq 12: (x/d, 12/d) = 1\} & \text{size of set} \\
 \hline
-   \mathbb{Z} & + & 0 \\
+  1 & \{ 1, 5, 7, 11 \} & (x, 12) = 1 & 4 \\
 \hline
-   \mathbb{Q} & + & 0 \\
+ 2 & \{2, 10 \} & (x/2, 6) = 1& 2 \\
 \hline
-   \mathbb{R} & + & 0 \\ 
+ 3 & \{3, 9 \} & (x/3, 4) = 1 & 2 \\
 \hline
-   \mathbb{Z} & \times & 1 \\
+ 4 & \{4, 8 \} & (x/4, 3) = 1 & 2 \\
 \hline
-   \mathbb{Q} & \times & 1 \\
+  6 & \{ 6 \} & (x/6, 2) = 1 & 1
 \hline
-   \mathbb{R} & \times & 1 \\ 
-\hline
+ 12 & \{ 12 \} (x/12, 1) = 1 & 1
 \end{array}
 $$
+
+Notice that the sizes of sets that we are calculating, for example, 
+$|\{ 1 \leq x \leq 12 : (x/2, 6) = 1 \}| =  \phi(6)$. Summing over all of
+what we have, we've counted the numbers in $[1, 2, \dots, 12]$ in two ways ---
+one directly, and the other by partitioning into equivalence classes:
+
+$$ 12 = \phi(1) + \phi(2) + \phi(3) + \phi(4) + \phi(6) + \phi(12) = \sum_{d \vert 12) \phi(12/d) $$
+
+In general, the same argument allows us to prove that:
+
+$$ n = \sum_{d \vert n} n/d $$
+
+### Using mobius inversion on the euler totient function
+
+### Other arithmetical functions and their relations
 
 
 # [Incunabulum for the 21st century: Making the J interpreter compile in 2020](#incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020)
