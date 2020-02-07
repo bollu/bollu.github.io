@@ -6,8 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
   console.log("invoked katex...");
   renderMathInElement(document.body, { delimiters : [
   {left: "$$", right: "$$", display: true},
-  {left: "\\(", right: "\\)", display: false},
-  {left: "\\[", right: "\\]", display: true}
+  {left: "$", right: "$", display: false},
   ] });
   console.log("finished running katex");
 });
