@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
   renderMathInElement(document.body, { delimiters : [
   {left: "$$", right: "$$", display: true},
   {left: "$", right: "$", display: false},
-  {left: "\\[", right: "\\]", display: false},
+  {left: "\\[", right: "\\]", display: true},
   ] });
   console.log("finished running katex");
 });
@@ -307,8 +307,24 @@ A matrioid $M$ is a set $X$ equipped with an independence set $I \subseteq 2^X$.
 #### Example 1: Linearly independent sets
 Let $V$ be a vector space. The independent sets $I$ are of the form:
 
-$$ I \equiv \{ S \subseteq V ~:~ \text{vectors in $S$ are lineary independent} \} $$
+
+
+$$
+I \equiv \{ S \subseteq V ~:~ \text{vectors in $S$ are lineary independent} \}
+$$
+
+
+
+$$I \equiv \{ S \subseteq V ~:~ \text{vectors in $S$ are lineary independent} \}$$
+
+
+
 \\[ I \equiv \{ S \subseteq V ~:~ \text{vectors in $S$ are lineary independent} \} \\]
+
+
+
+
+\\[I \equiv \{ S \subseteq V ~:~ \text{vectors in $S$ are lineary independent} \}\\]
 
 This is an independence system because the empty set is linearly independent,
 and subsets of a linearly independent collection of vectors will be linearly
