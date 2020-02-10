@@ -27,6 +27,7 @@
 
 #### Table of contents:
 
+- [Cartesian Trees](#cartesian-trees)
 - [Matroids for greedy algorithms](#matroids-for-greedy-algorithms)
 - [Grokking Zariski](#grokking-zariski)
 - [My preferred version of quicksort](#my-preferred-version-of-quicksort)
@@ -103,6 +104,53 @@
 
 
 
+# [Cartesian Trees](#cartesian-trees)
+
+Cartesian trees construct a tree $T = C(A)$ given an array $A$, such that
+range minimum query (RMQ) on the array $A$ is equivalent to the lowest common ancestor (LCA)
+of the nodes of the tree $T$.
+
+[!cartesian-tree](./static/cartesian-tree.svg)
+
+Note that the tree looks like a _min-heap_.
+
+To see the connection to LCA, if we want to find the range minimum in the range containing the
+elements `[12, 10, 20, 15, 18]` of the array, the minimum is `10`, which is
+indeed the lowest common ancestor of the nodes of `12` and `18` in the tree.
+
+#### Building a Cartesian tree in linear time:
+
+#### Converting LCA to RMQ
+
+We can go the other way, and convert an LCA problem into a RMQ problem. We
+perform an inorder traversal of the nodes, scribbling down the
+depth of the node ([Link to lecture at 15:30](https://youtu.be/0rCFkuQS968?t=934)).
+We ask for the _argmin_ version of RMQ, that gives us the _index_ of
+the node with the lowest depth. This gives us the index of where the node lives.
+
+#### Universe reduction in RMQ
+
+We can have an arbitrary ordered universe, on which we want to perform RMQ. 
+We can convert this to LCA by using a cartesian tree, and then convert to
+a "clean" RMQ (by using the LCA -> RMQ using depth conversion). This now
+will give us way faster operations (since we now have integers).
+
+#### `+-1` RMQ:
+
+We want the differences between nodes to have a difference of only `+-1`. We
+had a much wider gap. Here, we perform an Euler tour (walk the tree DFS search order),
+and sribble down every vertex we visit.
+
+To find the LCA, we perform the RMQ on the locations of the _first_ occurence
+of the node. (I think we don't actually need the first occurence, any
+occurence will do).
+
+#### References
+
+- Material shamelessly written down from
+  [Eric Demaine's excellent (MIT 6.851 Advanced Data Structures): Lecture 15](https://www.youtube.com/watch?v=0rCFkuQS968)
+- Image of the tree [taken from WikiMedia](https://upload.wikimedia.org/wikipedia/commons/d/d5/Cartesian_tree.svg)
+
 # [Matroids for greedy algorithms](#matroids-for-greedy-algorithms)
 
 A matrioid $M$ is a set $X$ equipped with an independence set $I \subseteq 2^X$.
@@ -126,7 +174,7 @@ The prototypical examples to keep in mind are
   trees: if we remove an element from any circuit (loop) in a graph, what we
   are left with is a tree.
 
-A matroid can be completely categoried by knowing either the bases or the
+A matroid can be completely categorized by knowing either the bases or the
 circuits of that matroid.
 
 A rank function of a matroid $M \equiv \langle X, I \rangle$ 
@@ -5408,4 +5456,6 @@ For example: "More people have been to Berlin than I have."
 # Link dump
 
 - [ADHD: A lifelong struggle | Why organisation systems don't work](https://gekk.info/articles/adhd.html)
+- [Slides for intuition on converting number systems to data structures by Ralf Hinze](http://www.cs.nott.ac.uk/~pszgmh/bctcs-slides/hinze.pdf)
+- [James mickens: hilarious articles --- this one on security](https://www.usenix.org/system/files/1401_08-12_mickens.pdf)
 
