@@ -138,7 +138,7 @@ Cartesian trees construct a tree $T = C(A)$ given an array $A$, such that
 range minimum query (RMQ) on the array $A$ is equivalent to the lowest common ancestor (LCA)
 of the nodes of the tree $T$.
 
-[!cartesian-tree](./static/cartesian-tree.svg)
+![cartesian-tree](./static/cartesian-tree.svg)
 
 Note that the tree looks like a _min-heap_.
 
@@ -5873,7 +5873,7 @@ For example: "More people have been to Berlin than I have."
 
 # Link dump
 
-- [ADHD: A lifelong struggle | Why organisation systems don't work](https://gekk.info/articles/adhd.html)
+- [ADHD: A lifelong struggle: Why organisation systems don't work](https://gekk.info/articles/adhd.html)
 - [Slides for intuition on converting number systems to data structures by Ralf Hinze](http://www.cs.nott.ac.uk/~pszgmh/bctcs-slides/hinze.pdf)
 - [James mickens: hilarious articles --- this one on security](https://www.usenix.org/system/files/1401_08-12_mickens.pdf)
 
