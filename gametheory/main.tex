@@ -64,6 +64,9 @@
 \newcommand{\boldX}{\ensuremath{\mathbf{X}}}
 \newcommand{\boldY}{\ensuremath{\mathbf{Y}}}
 
+\DeclareMathOperator*{\argmin}{argmin} % no space, limits underneath in displays
+\DeclareMathOperator*{\argmax}{argmax} % no space, limits underneath in displays
+
 
 \newcommand{\G}{\ensuremath{\mathcal{G}}}
 % \newcommand{\braket}[2]{\ensuremath{\left\langle #1 \vert #2 \right\rangle}}
@@ -83,11 +86,15 @@
 \author{Siddharth Bhat}
 \date{Spring 2020}
 
+% References: 
+% https://www.sv.uio.no/econ/personer/vit/bardh/dokumenter/econ5200-notes-harstad.pdf
+
 \begin{document}
 \maketitle
 \tableofcontents
 
 \chapter{Introduction}
+
 
 TODO: find out and write about: 
 Extrinsic form representation of a game
@@ -122,7 +129,7 @@ function per strategy.
 
 \section{Normal form games}
 Another representation for games is called as strategic form / matrix form / 
-normal form games.  Here, a game $\Gamma = \langle N, (S_i)_{i \in N}, (u_i: S \rightarrow \R)_{i \in N} \rangle$.
+normal form games.  Here, a game $\Gamma \equiv \langle N, (S_i)_{i \in N}, (u_i: S \rightarrow \R)_{i \in N} \rangle$.
 $N$ is the number of players, $S_i$ are strategies for each player, $u_i$ 
 are the utility functions / payoffs for each player. $u_i$ maps each
 strategy profile $s$ how worth it it is for player $i$ if
@@ -350,5 +357,102 @@ $$
 \end{tabular}
 $$
 
+\section{Minimax equilibrium}
+
+
+
+\section{Best response function}
+Let $\Gamma \equiv (N, S_{i \in N}, u: \prod_i S_i \rightarrow R)$ be a normal
+for game. We define the best response function for player $i$ as:
+\begin{align*}
+   r_i: S_{-i} \rightarrow S_i
+    \qquad r_i(s_{-i}) \equiv \argmax_{s_i \in S_i}  u(s_i, s_{-i})
+\end{align*}
+
+That is, under a fixed strategy for all of $i$'s opponents, the best response
+function $r_i(s_{-i})$ tells us the best move we can make.
+
+
+\section{Nash equilibrium}
+
+A strategy profile $s \equiv (s_1, s_2, \dots s_n)$ is a Nash equilibrium
+if $s_i$ is the best response to $s_{-i}$ for all $i$.
+
+
+\section{Writing down the Nash Equilibirum in terms of an LP}
+Let $K_i$ be the set of actions that player $i$ will take (the support).
+Let $p_i[s]$ be the probability for player $i$ to take action $s \in S_i$.
+
+We need the conditions:
+\begin{itemize}
+    \item $\forall s \not \in K_i, p_i[s] = 0$
+    \item $\sum p_i s = w_i$
+\end{itemize}
+
+
+\section{Kakutani fixed point theorem}
+consider a relation $R: \Sigma \rightrightarrows \Sigma$ such that:
+\begin{itemize}
+    \item $\Sigma$ is compact, convex, and nonempty.
+    \item $R(\sigma)$ is nonempty.
+    \item $R(\sigma)$ is convex.
+    \item $R$ has a closed graph.
+\end{itemize}
+
+under these conditions, $R$ is guaranteed to have a fixed point.
+
+\section{Existence of Nash equilibrium}
+We prove this using the Kakutani fixed point theorem.
+
+consider the correspondence
+\begin{align*}
+    R: Sigma \rightarrow 2^{Sigma} \qquad R(\sigma) \equiv [r_i(\sigma_{-i})]_{i \in N}
+\end{align*}
+
+That is, for each strategy profile $\sigma$, we relate it to the set
+of strategy profiles that are best responses against this profile.
+
+Now note that a nash equilibrium is a fixed point of this relation.
+We will show that the above relation $R$ satisfies the assumptions
+of the Kakatuni fixed point theorem, and is hence a fixed point.
+
+
+\section{LP formulation for 2 player zero sum game}
+\section{Lemke Howson theorem for computing mixed-strategy nash eqm}
+\section{Mechanism design}
+We consider a setting:
+
+\begin{align*}
+    &N \equiv \text{Set of players} \\
+    &X  \equiv \text{Alternatives} \\
+    &\Theta_{i \in N} \equiv \text{private information of player $i$} \\
+    &\phi: \prod_i \Theta_i \rightarrow \mathbb R \equiv \text{prior probability over private information} \\
+    &u_{i \in N}: \prod_i \Theta_i \times X \rightarrow \mathbb R \equiv \text{utility of player $i$} \\
+\end{align*}
+
+A mechanism is a tuple:
+\begin{align*}
+    &\Gamma \equiv (S_{i \in N}, g) \\
+    &S_{i \in N} \equiv \text{strategies of each player $i$} \\
+    &g: \prod_i S_i \rightarrow X \equiv \text{an outcomes function}
+\end{align*}
+A mechanism tells us what actions a player can take, and what the outcome
+of each action is.
+
+We often want the mechanism to be designed to optimised a particular social good:
+\begin{align*}
+    f: \prod_i \Theta_i \rightarrow X \equiv \text{Social choice function} \\
+\end{align*}
+
+That is, given knowledge of what players \emph{truly want}, we know what
+outcome we are interested in. In this setting, we are then to design 
+a mechanism $(S_i, g)$ which will encourage a situation where rational players
+will take action dictated by $f$.
+
+Sometimes, we will denote $S_i$ by $\hat \Theta_i$, since any action the
+player can take can be mathematically modeled as a deterministic function
+of their state. Hence, if we allow players to lie and publish 
+a $\hat \Theta_i$, which is their reporting of their private $\Theta_i$, it's
+equivalent to a setting where players have arbitrary $S_i$.
 
 \end{document}
