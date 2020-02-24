@@ -4,7 +4,7 @@
 \usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
 \linespread{1.025}              % Palatino leads a little more leading
 % Euler for math and numbers
-\usepackage[euler-digits,small]{eulervm}
+%\usepackage[euler-digits,small]{eulervm}
 \usepackage{physics}
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
@@ -113,4 +113,88 @@ The questions we are interested in answering are:
         (Simulation and Bisimulation). This is different from extensionally
         looking at traces of the system.
 \end{itemize}
+
+\chapter{System composition}
+
+\begin{itemize}
+    \item Run: sequences of internal states 
+    \item Trace: sequences of external states 
+\end{itemize}
+
+\begin{definition}
+    Let $A$ and $B$ be two transition systems. The interconnect
+    $\mathcal{I}$ between $A$ and $B$ is any relation between
+    $x_a, u_a, x_b, u_b$
+    ($u_a, u_b$ are the action spaces of $A$ and $B$):
+    $$
+    \mathcal I \subseteq X_A \times U_A \times X_B \times U_B
+    $$
+\end{definition}
+
+
+If we want to feed both systems the same input, we can have 
+$\mathcal I \equiv U_a = U_b$.
+
+If we want to have both systems produce the same output, then we should have
+$\mathcal I \equiv h_a(x_a) = h_b(x_b)$
+
+Intuitively, the relation $\mathcal I$ provides constraints on the direct product
+of the two systems that we want to enforce.
+
+
+If we want to have feedback,
+$\mathcal I \equiv u_b = h_a(x_a) \land u_a = h_b(x_b)$
+
+\begin{definition}
+    If $A, B$ are systems and $\mathcal{I}$ is the interconnect, then
+    we have $A \times_{\mathcal I} B \equiv \langle X_c, X_c^0, U_c, \xrightarrow{c}, Y_c, h_c \rangle$:
+
+    \begin{align*}
+        X_c &\equiv \{ (x_a, x_b) : 
+          x_a \in X_a, x_b \in X_b \land  (\exists u_a \in U_A, u_b \in U_B, 
+          (x_a, u_a, x_b, u_b) \in \mathcal{I}) \} \\
+        %
+        X_c^0 &\equiv \{ (x_a, x_b) \in X_c  : 
+          x_a \in X_a^0, x_b \in X_b^0 \} \\
+        %
+    U_c &\equiv U_a \times U_b \\
+    (x_a, x_b) \xrightarrow{(u_a, u_b)} (x_a', x_b') &\equiv 
+    x_a \xrightarrow{u_a} x_a', 
+    x_b \xrightarrow{u_b} x_b', 
+    (x_a, u_a, x_b, u_b) \in \mathcal{I} \\
+    %
+    h_c((x_a, x_b)) &\equiv (h_a(x_a), h_b(x_b))
+    \end{align*}
+\end{definition}
+Question: why not define 
+$U_c \equiv \{ (u_a, u_b) : 
+\exists x_a \in X_a, x_b \in X_b, (x_a, u_a, x_b, u_b) \in \mathcal I$
+
+\chapter{Control}
+
+We have a classical plant-controller system, as in control theory. We can
+model this as:
+$$ x_c = f_c(x_p) \qquad x_p' = f_p(x_p, x_c) $$
+
+That is, we have $x_p^0$. We find $x_c^0 = f_c(x_p^0)$. Then, 
+$x_p^1 = f_p(x_p^0, x_c^0),x_c^1 = f_c(x_p^1)$ and the whole process continues.
+
+\section{Modelling loops} 
+Note that we can model a \texttt{while} loop as a pure controller (the predicate)
+controlling the body of the function.  
+\begin{verbatim}
+while (C(x)) { x = F(x) }
+\end{verbatim}
+This becomes, as a feedback system:
+$$
+F'(c, x) = \begin{cases} F(x) & \text{if $c = 1$} \\ x & \text{otherwise} \end{cases}
+\qquad
+C(x) = \dots
+$$
+
+\section{Modelling loops with external feedback} 
+\begin{verbatim}
+while (C(x, e)) { x = F(x) }
+\end{verbatim}
+$$ x_c = f_c(x_p, e) \qquad x_p' = f_p(x_p, x_c) $$
 \end{document}
