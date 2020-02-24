@@ -395,7 +395,22 @@ exists from the entries of the matrix. For this, we define:
     If there are multiple saddle points, $(i_1, j_1)$ and $(i_2, j_2)$, then
     $a_{i_1 j_1} = a_{i_2 j_2}$
 \end{lemma}
-\begin{proof} TODO \end{proof}
+\begin{proof} 
+    Let $a[c][d], a[p][q]$ be two saddle points. By definition, a saddle
+    point is greater than everything else on the same row, and less than
+    everything else on the same column.
+
+    \begin{align*}
+        \begin{bmatrix}
+        (c, d)   & > & (c, q) \\
+        \wedge & & \vee \\
+        (p, d) & < & (p, q)
+        \end{bmatrix}
+    \end{align*}
+
+    We see that $(c, d) > (c, q) > (p, q)$, and $(c, d) < (p, d) < (p, q)$,
+    which implies $(c, d) = (p, q)$.
+\end{proof}
 
 \begin{lemma}
     $u_r \leq u_c$
@@ -406,7 +421,29 @@ exists from the entries of the matrix. For this, we define:
     $u_r = u_c \implies $~saddle point exists for $A$.
 \end{lemma}
 \begin{proof} 
-TODO
+Consider $u_R \equiv \max_i \min_j a[i][j]$. Let us introduce a symbol
+$minR(i) \equiv min_j a[i][j]$ Hence, $u_R = max_i minR(i)$. This shows us
+that $u_R$ is the minimum value in its row.
+
+Similarly, we consider $u_C \equiv \max_i \min_j a[i][j]$. As before, introduce
+$maxC(j) \equiv max_i a[i][j]$ Hence, $u_C = min_j maxC(j)$.Hence, $u_C$ is 
+the maximum value in its column (Notice the duality). 
+
+Let $(c, d)$ be the index of $u_R$, and $(p, q)$ be the index of $u_C$.
+
+Now consider the matrix:
+
+\begin{align*}
+    \begin{bmatrix}
+    (c, d)   & < & (c, q) \\
+     & & \wedge \\
+     & & (p, q)
+    \end{bmatrix}
+\end{align*}
+
+Hence, $(c, d) \leq (c, q)$ (Since $u_R = a[c][d]$ is minimum in its row).
+$(c, q) \leq(p, q)$ (Since $u_C = a[p][q]$ is maximum in its column).  
+Therefore, $u_R = (c, d) \leq (c, q) \leq (p, q) = u_C$.
 \end{proof}
 
 \begin{lemma}
@@ -555,6 +592,12 @@ under these conditions, $R$ is guaranteed to have a fixed point.
 
 \section{Existence of Nash equilibrium}
 We prove this using the Kakutani fixed point theorem.
+
+
+\section{Existence of Nash equilibrium (Insightful version)}
+We prove this using the Brouwer fixed-point theorem. While this requires
+us to roll up our sleeves a little bit, the fixpoint is far more constructive,
+in the sense that it tells us what the fixpoint is actually, well, fixing.
 
 consider the correspondence
 \begin{align*}
