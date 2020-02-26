@@ -463,4 +463,52 @@ such that:
 \begin{proof}
 \end{proof}
 
+\chapter{Belief / Bayesian nets}
+Missed class
+\chapter{Markov Networks}
+Not all distributions which have conditional independences. Not all of
+them can be modeled by a Bayes net.
+
+If we have an undirected graph $G$ where every person chooses the color of
+their hair based on their neighbour, and we have a 4-cycle $A \rightarrow B \rightarrow C \rightarrow D \rightarrow A$,
+then we can build a bayes net:
+
+\begin{align*}
+&x_a \rightarrow x_c \\
+&x_a \rightarrow x_b \\
+&x_b \rightarrow x_d \\
+&x_c \rightarrow x_d \\
+\end{align*}
+
+However, note that our bayes net is directed, while the underlying process
+was undirected. I can build the same bayes net by starting with $x_c$:
+\begin{align*}
+&x_c \rightarrow x_a \\
+&x_c \rightarrow x_d \\
+&x_a \rightarrow x_b \\
+&x_d \rightarrow x_b \\
+\end{align*}
+
+According to this, $X_C \texttt{independent} X_B | X_A, X_D$, but this is not
+true in the first bayes net!
+
+To fix this, we just draw the \emph{undirected graph}. For this, we need a tool 
+called as a \emph{potential}: potentials are non-negative functions that are
+associated with cliques in the graph, denoted by $\phi$.
+
+A clique of a graph is a complete sub-graph of a graph.
+
+\begin{align*}
+&a, b \in \{ r, b, g \} \\
+&\phi_{A, B}(a, b) \equiv \begin{cases} 10 & a \neq b \\ 1 & a = b\end{cases}
+\end{align*}
+
+\begin{align*}
+    P_{X_A X_B X_C X_D} \equiv \prod_{c \in C} \phi_c (x_c) = 
+    \frac{1}{Z} \phi_{AB}(a, b) \phi_{AC}(a, c) \phi_{CD}(c, d) \phi_{BD}(b, d)
+\end{align*}
+Here, $Z$ is called as the partition function. It is the normalizing
+constant: $Z \equiv \sum_{a, b, c, d} \phi_{AB}(a, b) \phi_{AC}(a, b) \phi_{CD}(c, d) \phi_{BD}(b, d)$.
+
+
 \end{document}
