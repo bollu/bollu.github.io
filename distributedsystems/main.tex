@@ -240,6 +240,93 @@ process $p_j$ has not received upto event $e^y_j$.
 
 Models of process communication: Synchronous and asynchronous.
 In Synchronous models, the sender process blocks until the message has been received.
-In the Asynchronous model, the sender process has no 
+In the Asynchronous model, the sender process has no.
+
+\chapter{Lecture 4}
+
+\subsection{Global snapshots}
+
+We want to understand how to capture global snapshots, based on the kind of
+message passing that is allowed. This is useful if we want to, say, perform a
+rollback. The lack of a global clock, and the lack of common memory makes this
+difficult. Can get out-of-thin-air style situations, if we simply take a
+snapshot at any point in time.
+
+If there is any message passing, then we cannot do this.  
+
+If we have a message that we sent, which has neither been received nor in
+transit, then we cannot take a valid global snapshot. 
+
+\begin{align*}
+LS_i^t &\equiv \text{local state of process $i$} \equiv \text{All events executed by process $i$ till time $t$} \\
+SC_{ij} &\equiv \text{state of channel $i \rightarrow j$} \equiv 
+  \{ m_{ij}~:~ send(m_{ij}) \in LS_i \land rec(m_{ij}) \not \in LS_j \}
+\end{align*}
+
+To formalize, let $LS_i^x$ denote the local state of process $P_i$ after
+the occurrence of all events until the event $e_i^x$. For example,
+$LS_i^0$ is the initial state of $P_i$.
+
+% We refine $SC_{ij}$ relative to a timestamps $x, y$ to arrive at the defitions:
+% $SC_{ij}^{xy}
+
+The global state of a distributed system is a collection of the local states of the
+processes and the channels. This is defined as $GS \equiv \{ \cup_i LS_i \} \cup \{ \cup_{i,j} SC_{i, j} \}$.
+
+A global state $GS$ is a consistent global state iff:
+\begin{align*}
+    &send(m_{ij}) \in LS_i \implies m_{ij} \in SC_{ij} \oplus rec (m_{ij}) \in LS_i  \qquad \text{($\oplus$ is XOR)} \\
+    &send(m_{ij}) \notin LS_i TODO
+\end{align*}
+
+
+We can interpret these in terms of cuts. A cut slices the space-time diagram
+into past and future. A consistent global state is a cut where every message
+that was received in the \emph{PAST} of the cut was sent in the \emph{PAST} of
+the cut.
+
+\subsection{Chandy-Lamport algorithm for global snapshots}
+
+We assume FIFO queues.
+
+We use special marker messages. One process acts as an initiator, starting
+the state collection by following the marker sending rule below.
+
+One process acts as the initiator, which starts the state collection by 
+following the marker rule below. The initiator $P$ records its own state.
+For every outgoing channel $C$, if a marker has not already been dispatched,
+$P$ dispatches a marker. (Then, $P$ continues regular communication. Check this, seems dodgy)
+
+If $Q$ has not received a marker, then we record the state, and we note
+the channel $C_{marker}$ along which the marker came as \emph{empty}. Then,
+$Q$ follows the marker sending rule.
+
+If $Q$ has already received a marker, it records the state of $C_{marker}$ as
+the sequence of messages received along $C_{marker}$ after $Q's$ state was
+recorded, before $Q$ received the marker along $C$.
+
+Once process $P_i$ has received a message from every other process $P_{-i}$,
+$P_i$ can write down its local state and its channel state to the initiator.
+
+Clearly, we create a global snapshot: we will discuss its consistency next.
+Every process $P_i$ wrote down its own state and all outgoing channel states.
+
+\subsection{Marker analysis}
+
+Once a process $P$ receives a marker for the first time, $P$ records its
+state. Now look at the kinds of messages $P$ can recieve:
+
+\subsubsection{from the initiator $I$: a message $I \xrightarrow{msg} P$ that was sent by $I$ before the marker $I \xrightarrow{m} P$}
+I dislike this way of viewing things. We should only state stuff from
+the perspective of $P$ --- but since we have FIFO order, since $msg$ was
+sent before $m$, $msg$ will be \emph{received} after $m$.
+
+The initiator sent this before marking its global state. The message reached
+$P$ after $P$ marked its state. Hence, this message is a transit message.
+
+
+\subsubsection{from the initiator: the marker}
+The initiator sent this before marking its global state. The message reached
+$P$ after $P$ marked its state. Hence, this message is a transit message.
 
 \end{document}
