@@ -1,6 +1,4 @@
 \documentclass[11pt]{book}
-%\documentclass[10pt]{llncs}
-%\usepackage{llncsdoc}
 \usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
 \linespread{1.025}              % Palatino leads a little more leading
 % Euler for math and numbers
@@ -54,6 +52,7 @@
 \newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
 \newcommand{\R}{\ensuremath{\mathbb R}}
+\newcommand{\bool}{\ensuremath{\texttt{bool}}}
 \newcommand{\boldX}{\ensuremath{\mathbf{X}}}
 \newcommand{\boldY}{\ensuremath{\mathbf{Y}}}
 \newcommand{\B}{\ensuremath{\mathcal{B}}}
@@ -197,4 +196,28 @@ $$
 while (C(x, e)) { x = F(x) }
 \end{verbatim}
 $$ x_c = f_c(x_p, e) \qquad x_p' = f_p(x_p, x_c) $$
+
+\chapter{Modelling feedback: modularizing feedback}
+
+Clock: $\langle X_T, X^0_T, U_T, \xrightarrow{T}, Y_T, h_T \rangle$
+
+\begin{align*}
+    &X_T \equiv \bool \times \bool \qquad &X^0_T \equiv \{ (1, 0), (0, 1) \} \\
+    &U_T \equiv \{ \texttt{next} \} \qquad &(x_1, x_2) \xrightarrow{T} (\lnot x_1, \lnot x_2) \\
+    &Y_T \equiv X_T \qquad &h_T \equiv id
+\end{align*}
+
+Now we look at a \texttt{while} loop: \begin{verbatim} while(g(x)) { x = f(x) } \end{verbatim}
+\begin{align*}
+    &x' \equiv F(x, cond, clk) \\
+    &F(x, cond, 0) \equiv x \\
+    &F(x, 0, 1) \equiv x \\
+    &F(x, 1, 1) \equiv f(x) \\
+    %
+    &cond' \equiv G(x, cond, clk) \\
+    &G(x, cond, 0) \equiv cond \\
+    &F(x, cond, 1) \equiv g(x)
+\end{align*}
+
+
 \end{document}
