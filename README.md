@@ -47,6 +47,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 
+- [Efficient tree transformations on GPUs(WIP)](#efficient-tree-transformations-on-gpus)
+- [Things I wish I knew when I was learning APL](#things-i-wish-i-knew-when-i-was-learning-apl)
+- [Every ideal that is maximal wrt. being disjoint from a multiplicative subset is prime](#every-ideal-that-is-maximal-wrt-being-disjoint-from-a-multiplicative-subset-is-prime)
 - [Legendre transform](#legendre-transform)
 - [Cartesian Trees](#cartesian-trees)
 - [DFS numbers as a monotone map](#dfs-numbers-as-a-monotone-map)
@@ -125,6 +128,393 @@ document.addEventListener("DOMContentLoaded", function() {
 - [GSoC 2015 week 7](content/blog/gsoc-vispy-week-7.md)
 - [GSoC 2015 final report](content/blog/gsoc-vispy-report-6.md)
 - [Link Dump](#link-dump)
+
+
+# [Efficient tree transformations on GPUs(WIP)](#efficient-tree-transformations-on-gpus)
+
+All material lifted straight from [Aaron Hsu's PhD thesis](TODO). I'll be converting
+APL notation to C++-like notation.
+[Source code link to my implementation is here](TODO)
+
+
+#### Tree repsentation as multi-dimensional ragged nested arrays
+
+We're interested in this tree:
+```
+      ∘
+┌──┬──┴────┐
+a  b       c
+│ ┌┴┐  ┌───┼───┐
+p q r  s   t   u
+  │    │   |  
+  │   ┌┴┐ ┌┴┐
+  v   w x y z
+```
+
+I'll be writing APL commands in front of a `$` to mimic bash, and I'll
+write some arrays as multi-line. To run them, collapse them into a single
+line. The `ast` object is represented in memory as:
+```
+$ ast ← ('∘'
+           ('a' ('p'))
+           ('b' 
+             ('q' ('v'))
+             ('r'))
+           ('c' 
+             ('s' ('w' 'x'))
+             ('t' ('y' 'z'))
+             ('u')))
+$ ]disp ast
+┌→┬──┬────────┬───────────────────┐
+│∘│ap│┌→┬──┬─┐│┌→┬──────┬──────┬─┐│
+│ │  ││b│qv│r│││c│┌→┬──┐│┌→┬──┐│u││
+│ │  │└─┴─→┴─┘││ ││s│wx│││t│yz││ ││
+│ │  │        ││ │└─┴─→┘│└─┴─→┘│ ││
+│ │  │        │└─┴─────→┴─────→┴─┘│
+└─┴─→┴───────→┴──────────────────→┘
+```
+
+Here's how read the array representation. Look at the top level of the tree.
+we have a root node with three children:
+
+```
+      ∘
+┌──┬──┴────┐
+a  b       c
+
+┌→┬──┬────────┬─────────────┐
+│∘│  │        │             │
+│ │ a│   b    │     c       │
+│ │  │        │             │
+└─┴─→┴───────→┴────────────→┘
+```
+
+With the first `∘` being the root node, and the three adjacent cells
+being the children.
+
+Next, we look at how `x` is represented. This is predictably recursive. Let's
+see the subtree under `x`:
+
+```
+      ∘
+┌──┬──┴────┐
+a  b       c
+│ 
+p 
+
+┌→┬──┬────────┬─────────────┐
+│∘│ap│        │             │
+│ │  │  b     │   c         │
+│ │  │        │             │
+└─┴─→┴───────→┴────────────→┘
+
+```
+
+Similarly for `y`:
+
+```
+      ∘
+┌──┬──┴────┐
+a  b       c
+│ ┌┴┐ 
+p q r  
+
+┌→┬──┬────────┬─────────────┐
+│∘│ap│┌→┬──┬─┐│             │
+│ │  ││b│q │r││   c         │
+│ │  │└─┴─→┴─┘│             │
+└─┴─→┴───────→┴────────────→┘
+```
+
+And so on, leading to the final representation:
+
+```
+      ∘
+┌──┬──┴────┐
+a  b       c
+│ ┌┴┐  ┌───┼───┐
+p q r  s   t   u
+  │    │   |  
+  │   ┌┴┐ ┌┴┐
+  v   w x y z
+┌→┬──┬────────┬───────────────────┐
+│∘│ap│┌→┬──┬─┐│┌→┬──────┬──────┬─┐│
+│ │  ││b│qv│r│││c│┌→┬──┐│┌→┬──┐│u││
+│ │  │└─┴─→┴─┘││ ││s│wx│││t│yz││ ││
+│ │  │        ││ │└─┴─→┘│└─┴─→┘│ ││
+│ │  │        │└─┴─────→┴─────→┴─┘│
+└─┴─→┴───────→┴──────────────────→┘
+```
+
+
+Note that for this representation to work, we need to be able to:
+
+- nest arrays inside arrays.
+- have subarrays of different sizes (ragged arrays)
+- of different _nesting depths_ --- so it's really not even an array?
+
+I don't understand the memory layout of this, to be honest. I feel like to
+represent this in memory would still rely on pointer-chasing, since we need
+to box all the arrays. This is possibly optimised by APL to not be too bad.
+
+#### The depth vector representation
+
+```
+      ∘             0
+┌──┬──┴────┐
+a  b       c        1
+│ ┌┴┐  ┌───┼───┐
+p q r  s   t   u    2
+  │    │   |  
+  │   ┌┴┐ ┌┴┐
+  v   w x y z       3
+```
+
+If we visit this tree and record depths in pre-order `(node left right)`, we
+arrive at the list:
+
+```
+(∘:0 
+  (a:1 (p:2)) (b:1 (q:2 (v:3)) (r:2))
+  (c:1 (s:2 (w:3 x:3)) (t:2 (y:3 z:3)) (u:2)))
+```
+
+formatted as:
+
+```
+(∘:0
+  (a:1 
+    (p:2))
+  (b:1 
+    (q:2 (v:3))
+    (r:2)
+  )
+  (c:1 (s:2 (w:3 x:3))
+       (t:2 (y:3 z:3))
+       (u:2))
+)
+```
+
+This linearlized is the list:
+
+```
+    (∘ a p b q v r c s w x t y z u)
+d ← (0 1 2 1 2 3 2 1 2 3 3 2 3 3 2)
+
+      ∘             0
+┌──┬──┴────┐
+a  b       c        1
+│ ┌┴┐  ┌───┼───┐
+p q r  s   t   u    2
+  │    │   |  
+  │   ┌┴┐ ┌┴┐
+  v   w x y z       3
+```
+
+
+To convert the `ast` object into a depth vector representation, we can
+use the following call:
+
+```
+$ ast ← ('∘' ('a' ('p')) ('b' ('q' ('v')) ('r')) ('c' ('s' ('w' 'x')) ('t' ('y' 'z')) ('u')))
+$ d ← ∊0{(⊢,(⍺+1)∇⊣)/⌽⍺,1↓⍵}ast
+0 1 2 1 2 3 2 1 2 3 3 2 3 3 2
+```
+
+Let's break this down:
+
+TODO
+
+#### Inverted tables
+
+We represent data associated with our nodes as follows:
+
+```
+$ data ← ⍪ ¨d(15⍴'T')(↑15⍴⊂'n.')
+$ ]disp data
+┌→┬─┬──┐
+│0│T│n.│
+│1│T│n.│
+│2│T│n.│
+│1│T│n.│
+│2│T│n.│
+│3│T│n.│
+│2│T│n.│
+│1│T│n.│
+│2│T│n.│
+│3│T│n.│
+│4│T│n.│
+│2│T│n.│
+│3│T│n.│
+│4│T│n.│
+│2↓T↓n.↓
+└→┴→┴─→┘
+```
+
+This is the same thing as a 
+[structure of arrays (SOA) representation](https://en.wikipedia.org/wiki/AoS_and_SoA#Structure_of_Arrays),
+where each array of information (eg, the depth at `data[1]`, the `T`
+information at `data[2]`) are each _arrays_ which can be accessed well on SIMD
+instructions.
+
+#### AST representation
+
+TODO
+
+#### Path matrices
+
+We want information of how to go up and down the tree in ideally constant time.
+We store this information in what is known as a _path matrix_.
+
+For our recurring example, the path matrix is:
+
+```
+∘ a p b q v r c s w x t y z u | preorder traversal
+──────────────────────────────────────────────────
+∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ | depth=0
+- a a b b b b c c c c c c c c | depth=1 
+- - p - q q r - s s s t t t u | depth=2
+- - - - - v - - - w x - y z - | depth=3
+
+      ∘             0
+┌──┬──┴────┐
+a  b       c        1
+│ ┌┴┐  ┌───┼───┐
+p q r  s   t   u    2
+  │    │   |  
+  │   ┌┴┐ ┌┴┐
+  v   w x y z       3
+```
+
+To efficiently compute this, we first replace every value in
+our tree with its preorder traversal visit time. This changes
+the tree to:
+
+```
+      0               0
+┌──┬──┴───────┐
+1  3          7       1
+│ ┌┴┐  ┌──────┼───┐
+2 4 6  8     11   14  2
+  │    │      |
+  │   ┌┴─┐   ┌┴──┐
+  5   9  10  12  13   3
+```
+
+The path matrix for this tree is:
+
+```
+0  1  2  3  4  5  6  7  8  9 10 11 12 13 14  | preorder traversal
+────────────────────────────────────────────────────────────
+0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  | depth=0
+-  1  1  3  3  3  3  7  7  7  7  7  7  7  7  | depth=1
+-  -  2  -  4  4  6  -  8  8  8 11 11 11 14  | depth=2
+-  -  -  -  -  5  -  -  -  9 10  - 12 13  -  | depth=3
+
+      0               0
+┌──┬──┴───────┐
+1  3          7       1
+│ ┌┴┐  ┌──────┼───┐
+2 4 6  8     11   14  2
+  │    │      |
+  │   ┌┴─┐   ┌┴──┐
+  5   9  10  12  13   3
+```
+
+#### Creating an array `1..len(x)` for an array `x`
+```
+$ ⍳ 3  ⍝ iota: ⍳. make a list of n elements
+1 2 3
+
+$ d ⍝ a 1D vector
+0 1 2 1 2 3 2 1 2 3 4 2 3 4 2
+
+$ ≢d ⍝  tally: ≢. count no. of elements in d
+15
+
+$ ⍳≢d ⍝ list of elements of len no. of elements in d
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+```
+
+#### Making a nested tree `x` 2D with `⍉↑x`
+
+```
+$ ]display ((1 2)(3 4))
+┌→────────────┐
+│ ┌→──┐ ┌→──┐ │
+│ │1 2│ │3 4│ │
+│ └~──┘ └~──┘ │
+└∊────────────┘
+$ ]display ↑((1 2)(3 4)) ⍝ ↑: mix. send subarrays to columns
+┌→──┐
+↓1 2│
+│3 4│
+└~──┘
+$ ]display ⍉↑((1 2)(3 4)) ⍝ ⍉: transpose
+┌→──┐
+↓1 3│
+│2 4│
+└~──┘
+```
+
+
+# [Things I wish I knew when I was learning APL](#things-i-wish-i-knew-when-i-was-learning-apl)
+
+- For pasting multi-line code, 
+  [there is a bug in the bug tracker for RIDE](https://github.com/Dyalog/ride/issues/323).
+  For multi-line dfns, one can use `∇`. For multi-line values, I don't know yet.
+
+- The map operator behaves like either a `map` or a `zipWith` depending
+  on whether it occurs monadically or dyadically. Monadically, it 
+  behaves as map, dyadically, it behaves as `zipWith`.
+
+# [Every ideal that is maximal wrt. being disjoint from a multiplicative subset is prime](#every-ideal-that-is-maximal-wrt-being-disjoint-from-a-multiplicative-subset-is-prime)
+
+I ran across this when reading another question on math.se, so I
+[posted this proof for verification](https://math.stackexchange.com/questions/3570129/proof-verification-request-complement-of-multiplicative-set-is-ideal-iff-the-id) just to be sure I wasn't missing
+something.
+
+We wish to characterise prime ideals as precisely those that are disjoint from
+a multiplicative subset $S \subseteq R$. That is:
+
+- An ideal $P$ is prime iff $P = R \setminus S$, where $S$ is a multiplicative subset
+  that cannot be made larger (ie, is maximal wrt to the $\subseteq$ ordering).
+
+I'll be using the definition of prime as:
+
+- An ideal $P$ is prime if for all $x, y \in R$, 
+  $xy \in P \implies x \in P \lor y \in P$.
+
+
+#### Prime ideal implies complement is maximal multiplicative subset:
+
+Let $S = \equiv R \setminus P$ be the complement of the prime ideal $P \subsetneq R$
+in question.
+
+- Since $P \neq R$, $1 \not \in $P. (if $1 \in P$, then every element $x . 1 \in P$
+  since $P$ is an ideal, and must be closed under multiplication with the
+  entire ring). Hence, $1 \in S$.
+
+- For any $x, y \in S$, we need $xy \in S$ for $S$ to be mulitplicative.
+
+
+- For contradiction, let us say that $x, y \in S$ such that $xy \not \in S$.
+  Translating to $P$, this means that $x, y \not \in P$ such that $xy \in P$.
+  This contradictions the definition of $P$ being prime.
+
+#### Ideal whose complement is maximal multiplicative subset implies ideal is prime.
+
+- Let $I$ be an ideal of the ring $R$ such that its complement $S \equiv R / I$
+  is a maximal multiplicative subset.
+
+- Let $i_1 i_2 \in I$. For $I$ to be prime, 
+  we need to show that $i_1 \in I$ or $i_2 \in I$. 
+
+- For contradiction, let $i_1, i_2 \not \in I$.
+  Thus, $i_1, i_2 \in S$. Since $S$ is multiplicative, $i_1 i_2 \in S$. That is,
+  $i_1 i_2 \not \in I$ (since $I$ is disjoint from $S$). 
+  
+- But this violates our assumption that $i_1 i_2 \in I$. Hence, contradiction.
 
 
 # [Legendre transform](#legendre-transform)

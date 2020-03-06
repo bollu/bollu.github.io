@@ -142,3 +142,6 @@ installed, use it to compute closed forms)
 - Discrete morse theory.
 - Legendre transform: https://www.aapt.org/docdirectory/meetingpresentations/sm14/mungan-poster.pdf
 - Essentials of Control Techniques and Theory by John Billingsley
+- Halton sequence / low-discrepancy sequence
+- Three lectures on free probability: why cumulants are the correct way to think about distributions: https://arxiv.org/pdf/1205.2097.pdf
+- mlock / locking memory: https://linux.die.net/man/2/mlock
