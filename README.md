@@ -521,6 +521,8 @@ in question.
 - But this violates our assumption that $i_1 i_2 \in I$. Hence, contradiction.
 
 
+# [Getting started with APL](#getting-started-with-apl)
+
 - Install [Dyalog APL](https://www.dyalog.com/download-zone.htm).
 
 - Setup [RIDE](https://github.com/Dyalog/ride), the IDE for dyalog APL. 
