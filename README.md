@@ -50,6 +50,9 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Efficient tree transformations on GPUs(WIP)](#efficient-tree-transformations-on-gpus)
 - [Things I wish I knew when I was learning APL](#things-i-wish-i-knew-when-i-was-learning-apl)
 - [Every ideal that is maximal wrt. being disjoint from a multiplicative subset is prime](#every-ideal-that-is-maximal-wrt-being-disjoint-from-a-multiplicative-subset-is-prime)
+- [Getting started with APL](#getting-started-with-apl)
+- [SpaceChem was the best compiler I ever used](#spacechem-was-the-best-compiler-i-ever-used)
+- [Mnemonic for Kruskal and Prim](#mnemonic-for-kruskal-and-prim)
 - [Legendre transform](#legendre-transform)
 - [Cartesian Trees](#cartesian-trees)
 - [DFS numbers as a monotone map](#dfs-numbers-as-a-monotone-map)
@@ -128,6 +131,7 @@ document.addEventListener("DOMContentLoaded", function() {
 - [GSoC 2015 week 7](content/blog/gsoc-vispy-week-7.md)
 - [GSoC 2015 final report](content/blog/gsoc-vispy-report-6.md)
 - [Link Dump](#link-dump)
+
 
 
 # [Efficient tree transformations on GPUs(WIP)](#efficient-tree-transformations-on-gpus)
@@ -517,6 +521,34 @@ in question.
 - But this violates our assumption that $i_1 i_2 \in I$. Hence, contradiction.
 
 
+- Install [Dyalog APL](https://www.dyalog.com/download-zone.htm).
+
+- Setup [RIDE](https://github.com/Dyalog/ride), the IDE for dyalog APL. 
+  This IDE comes with auto complete, good key bindings, a top bar chock-full of
+  information of all the APL symbols. It's really well designed and a pleasure
+  to use.
+
+- Follow the [Dyalog tutorial](https://tutorial.dyalog.com/), solving it
+  chapter by chapter.
+
+- Bookmark [APLCart](https://aplcart.info/), a collection of APL idioms, and
+  refer to it when in need.
+
+# [SpaceChem was the best compiler I ever used](#spacechem-was-the-best-compiler-i-ever-used)
+
+It's kind of sad that this is the case, but on thinking about this, I realised
+that the SpaceChem game was essentially a compiler, and it was such a pleasure
+to learn how to use and debug --- the visual nature of it made it amazing to
+find out.
+
+# [Mnemonic for Kruskal and Prim](#mnemonic-for-kruskal-and-prim)
+
+I often forget which is which, so I came up with this:
+
+- Prim is very prim and proper, and therefore doesn't spread herself out. She
+  picks out the minimum spanning tree one vertex at a time.
+
+
 # [Legendre transform](#legendre-transform)
 
 ![legendre-transform](./static/legendre.png)
@@ -568,6 +600,8 @@ occurence will do).
 - Material shamelessly written down from
   [Eric Demaine's excellent (MIT 6.851 Advanced Data Structures): Lecture 15](https://www.youtube.com/watch?v=0rCFkuQS968)
 - Image of the tree [taken from WikiMedia](https://upload.wikimedia.org/wikipedia/commons/d/d5/Cartesian_tree.svg)
+
+
 
 
 # [DFS numbers as a monotone map](#dfs-numbers-as-a-monotone-map)
@@ -779,7 +813,7 @@ This is an independence system because the empty set is linearly independent,
 and subsets of a linearly independent collection of vectors will be linearly
 independent.
 
-The exchange property is satisfied because TODO
+The exchange property is satisfied because of linear algebraic reasons.
 
 #### Example 2: The graphic/cyclic Matroid: Matroid of Forests
 
@@ -816,9 +850,8 @@ we can add an element in $E_i \cap (Y / X)$ into $X$ whilst still maintaining in
 - **Bases** are the maximal independent sets of $I$ (ordered by inclusion). On adding an element into a basis element, they
   will become dependent. They are called bases by analogy with linear algebra.
 
-- **Circuits** are minimal dependent sets of $I$. This comes from analogy with
-  trees: if we remove an element from any circuit (loop) in a graph, what we
-  are left with is a tree.
+- **Circuits** are minimal dependent sets of $I$. This comes from analogy with trees: if we remove an element
+  from any circuit (loop) in a graph, what we are left with is a tree.
 
 A matroid can be completely categorized by knowing either the bases or the circuits of that matroid.
 
@@ -6266,4 +6299,5 @@ For example: "More people have been to Berlin than I have."
 - [ADHD: A lifelong struggle: Why organisation systems don't work](https://gekk.info/articles/adhd.html)
 - [Slides for intuition on converting number systems to data structures by Ralf Hinze](http://www.cs.nott.ac.uk/~pszgmh/bctcs-slides/hinze.pdf)
 - [James mickens: hilarious articles --- this one on security](https://www.usenix.org/system/files/1401_08-12_mickens.pdf)
+- [ADHD: A lifelong struggle | Why organisation systems don't work](https://gekk.info/articles/adhd.html)
 
