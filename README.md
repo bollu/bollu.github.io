@@ -395,15 +395,18 @@ our tree with its preorder traversal visit time. This changes
 the tree to:
 
 ```
-      0               0
-┌──┬──┴───────┐
-1  3          7       1
-│ ┌┴┐  ┌──────┼───┐
-2 4 6  8     11   14  2
-  │    │      |
-  │   ┌┴─┐   ┌┴──┐
-  5   9  10  12  13   3
+              ∘:0                               0
+┌──────────┬──┴─────────────────┐
+a:1        b:3                 c:7              1
+│      ┌───┴───┐     ┌──────────┼───────┐
+p:2    q:4     r:6   s:8        t:11    u:14    2
+       │             │          │
+       │          ┌──┴──┐     ┌─┴───┐
+       v:5        w:9   x:10  y:12  z:13        3
 ```
+
+The values we store in the tree are the integers. The old labels
+are represented for clarity.
 
 The path matrix for this tree is:
 
@@ -415,14 +418,14 @@ The path matrix for this tree is:
 -  -  2  -  4  4  6  -  8  8  8 11 11 11 14  | depth=2
 -  -  -  -  -  5  -  -  -  9 10  - 12 13  -  | depth=3
 
-      0               0
-┌──┬──┴───────┐
-1  3          7       1
-│ ┌┴┐  ┌──────┼───┐
-2 4 6  8     11   14  2
-  │    │      |
-  │   ┌┴─┐   ┌┴──┐
-  5   9  10  12  13   3
+              ∘:0                               0
+┌──────────┬──┴─────────────────┐
+a:1        b:3                 c:7              1
+│      ┌───┴───┐     ┌──────────┼───────┐
+p:2    q:4     r:6   s:8        t:11    u:14    2
+       │             │          │
+       │          ┌──┴──┐     ┌─┴───┐
+       v:5        w:9   x:10  y:12  z:13        3
 ```
 
 #### Rendering the depth information in 2D
@@ -529,6 +532,95 @@ $ PM ← ⌈\((⍳≢d)@(d,¨⍳≢d))(((⌈/d+1)(≢d))⍴0)
   Thus, an operator allows one to modify known functions.
 
 - Use `]disp` and `]display` to understand the structure of APL arrays.
+
+This is a nice representation, since each element in the tree is uniquely
+identified by its columns in the path matrix. 
+
+- Each column of the path matrix literally encodes the path from the root to
+  that element in the tree. 
+  
+- Given two path columns from the path matrix, we can efficiently find the
+  lowest common ancestor as the longest common prefix of the two columns.
+
+The longest common prefix can be computed as `TODO`.
+
+#### Parent vector representation
+
+A parent vector is a vector of length `n` where `Parent[i]` denotes an 
+index into `Parent`. Hence, the following condition will return 1
+if V is a parent vector.
+
+```
+∧/V ∊(⍳≢V) ⍝ [All elements of V belong in the list [1..len(V)] ]
+```
+
+- `V ∊ (⍳≢V)` will be a list of whether each element in v belongs (`∊`) to the list
+  `(⍳≢V) = [1..len(V)]`
+
+- Recall that `/` is for reduction, and `∧/` is a boolean `AND` reduction.
+  Hence, we compute whether each element of the vector `V` is in the range `[1..len(V)]`.
+
+- We add the constraint that root notes that don't have a parent simply
+  point to themselves. This allows us to free ourselves from requiring
+  some kind of `nullptr` check.
+  
+
+The parent of all elements can be found using the fixpoint operator (`⍨`):
+
+```
+I←{(⊂⍵)⌷⍺} ⍝ index into the left hand side param using right hand side param
+I⍣≡⍨p ⍝ compute the fixpoint of the I operator using ⍨ and apply it to p
+```
+
+#### Converting from depth vector to parent vector:
+
+As usual, let's consider our example:
+
+```
+d ← (0  1  2  1  2  3  2  1  2  3  3  2  3  3  2) │ depths
+    (∘  a  p  b  q  v  r  c  s  w  x  t  y  z  u) │ values
+p ← (∘  ∘  a  ∘  b  q  b  ∘  c  s  s  c  t  t  c) │ parents
+    (0  1  2  3  4  5  6  7  8  9 10 11 12 13 14) | indexes     
+P ← (0  0  1  0  3  4  3  0  7  8  8  7 11 11  7) │ parent indices
+
+
+
+              ∘:0                               0
+┌──────────┬──┴─────────────────┐
+a:1        b:3                 c:7              1
+│      ┌───┴───┐     ┌──────────┼───────┐
+p:2    q:4     r:6   s:8        t:11    u:14    2
+       │             │          │
+       │          ┌──┴──┐     ┌─┴───┐
+       v:5        w:9   x:10  y:12  z:13        3
+```
+
+Note that the depth vector already encodes parent-child information.
+- The parent of node `i` is a node `j` such that `d[j] = d[i] - 1` and
+  `j` is the closest index to the left of `i` such that this happens.
+
+We can compute:
+```
+]display d ∘.< d ⍝ find `d[i] < d[j]` for all i, j. 
+┌→────────────────────────────┐
+↓0 1 1 1 1 1 1 1 1 1 1 1 1 1 1│
+│0 0 1 0 1 1 1 0 1 1 1 1 1 1 1│
+│0 0 0 0 0 1 0 0 0 1 1 0 1 1 0│
+│0 0 1 0 1 1 1 0 1 1 1 1 1 1 1│
+│0 0 0 0 0 1 0 0 0 1 1 0 1 1 0│
+│0 0 0 0 0 0 0 0 0 0 1 0 0 1 0│
+│0 0 0 0 0 1 0 0 0 1 1 0 1 1 0│
+│0 0 1 0 1 1 1 0 1 1 1 1 1 1 1│
+│0 0 0 0 0 1 0 0 0 1 1 0 1 1 0│
+│0 0 0 0 0 0 0 0 0 0 1 0 0 1 0│
+│0 0 0 0 0 0 0 0 0 0 0 0 0 0 0│
+│0 0 0 0 0 1 0 0 0 1 1 0 1 1 0│
+│0 0 0 0 0 0 0 0 0 0 1 0 0 1 0│
+│0 0 0 0 0 0 0 0 0 0 0 0 0 0 0│
+│0 0 0 0 0 1 0 0 0 1 1 0 1 1 0│
+└~────────────────────────────┘
+``` 
+
 
 # [Every ideal that is maximal wrt. being disjoint from a multiplicative subset is prime](#every-ideal-that-is-maximal-wrt-being-disjoint-from-a-multiplicative-subset-is-prime)
 
