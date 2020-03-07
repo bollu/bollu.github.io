@@ -425,42 +425,99 @@ The path matrix for this tree is:
   5   9  10  12  13   3
 ```
 
-#### Creating an array `1..len(x)` for an array `x`
-```
-$ ⍳ 3  ⍝ iota: ⍳. make a list of n elements
-1 2 3
+#### Rendering the depth information in 2D
 
-$ d ⍝ a 1D vector
+We use the incantation:
+
+```
+$ ((⍳≢d)@(d,¨⍳≢d)) ((⌈/d) (≢d))⍴'-'
+0 - - - - - - - - -  -  -  -  -  -
+- 1 - 3 - - - 7 - -  -  -  -  -  -
+- - 2 - 4 - 6 - 8 -  - 11  -  - 14
+- - - - - 5 - - - 9  -  - 12  -  -
+- - - - - - - - - - 10  -  - 13  -
+```
+
+Let's break this down (the symbol ` ` means a lamp, for commenting/illumination)
+
+
+```
+$ ⍳ 3 ⍝ iota: make a list of n elements:.
+1 2 3
+```
+
+```
+$ d
 0 1 2 1 2 3 2 1 2 3 4 2 3 4 2
 
-$ ≢d ⍝  tally: ≢. count no. of elements in d
+$ ≢d ⍝ tally: ≢`. count no. of elements in d: 
 15
+```
 
-$ ⍳≢d ⍝ list of elements of len no. of elements in d
+```
+⍳≢d  ⍝ list of elements of len (no. of elements in d).
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
 ```
 
-#### Making a nested tree `x` 2D with `⍉↑x`
-
 ```
-$ ]display ((1 2)(3 4))
-┌→────────────┐
-│ ┌→──┐ ┌→──┐ │
-│ │1 2│ │3 4│ │
-│ └~──┘ └~──┘ │
-└∊────────────┘
-$ ]display ↑((1 2)(3 4)) ⍝ ↑: mix. send subarrays to columns
-┌→──┐
-↓1 2│
-│3 4│
-└~──┘
-$ ]display ⍉↑((1 2)(3 4)) ⍝ ⍉: transpose
-┌→──┐
-↓1 3│
-│2 4│
-└~──┘
+$ ]disp (1 2 3),(4 5 6) ⍝ ,:concatenate
+┌→────┬─────┐
+│1 2 3│4 5 6│
+└~───→┴~───→┘
 ```
 
+```
+]disp (1 2 3) ,¨ (4 5 6)
+┌→──┬───┬───┐
+│1 4│2 5│3 6│
+└~─→┴~─→┴~─→┘
+```
+
+The use of `¨` needs some explanation. `¨` is a higher order function which
+takes a function and makes it a mapped version of the original function.
+So, `,¨` is a function which attemps to map the concatenation operator.
+Now, given two arrays `(1 2 3)`
+and `(4 5 6)`, `(1 2 3) ,¨ 4 5 6` attemps to run `,` on each pair 
+`1 and 4`, `2 and 5`, `3 and 6`. This gives us tuples `((1 4) (2 5) (3 6))`.
+So, for our purposes, `zip ← ,¨`.
+
+```
+]disp (d,¨⍳≢d) ⍝ zip d with [1..len d].
+┌→──┬───┬───┬───┬───┬───┬───┬───┬───┬───┬────┬────┬────┬────┬────┐
+│0 0│1 1│2 2│1 3│2 4│3 5│2 6│1 7│2 8│3 9│4 10│2 11│3 12│4 13│2 14│
+└~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~──→┴~──→┴~──→┴~──→┴~──→┘
+```
+
+```
+$ ((⌈/d) (≢d))⍴'-' ⍝ array of dim (max val in d) x (no. of elem in d)
+---------------
+---------------
+---------------
+---------------
+```
+
+- `⌈` is the maximum operator and `/` is the fold operator, so 
+  `⌈/d` finds the maximum in `d`. Recall that `(≢d)` find the no. of
+   elements in `d`. `⍴` reshapes an array to the desired size. We pass it
+   a `1x1` array containing only `-`, which gets reshaped into a
+   `(⌈/d) x (≢d)` sizes array of `-` symbols.
+
+
+TODO: explain @ and its use
+
+#### Creating the path matrix
+
+```
+$ PM ← ⌈\((⍳≢d)@(d,¨⍳≢d))(((⌈/d+1)(≢d))⍴0)
+
+0 0 0 0 0 0 0 0 0 0  0  0  0  0  0
+0 1 1 3 3 3 3 7 7 7  7  7  7  7  7
+0 0 2 2 4 4 6 6 8 8  8 11 11 11 14
+0 0 0 0 0 5 5 5 5 9  9  9 12 12 12
+0 0 0 0 0 0 0 0 0 0 10 10 10 13 13
+```
+
+- `⌈\` is to prefix scan with maximum, so this sets `a[i] = max(a[0], a[1], ... a[i])`.
 
 # [Things I wish I knew when I was learning APL](#things-i-wish-i-knew-when-i-was-learning-apl)
 
@@ -468,9 +525,10 @@ $ ]display ⍉↑((1 2)(3 4)) ⍝ ⍉: transpose
   [there is a bug in the bug tracker for RIDE](https://github.com/Dyalog/ride/issues/323).
   For multi-line dfns, one can use `∇`. For multi-line values, I don't know yet.
 
-- The map operator behaves like either a `map` or a `zipWith` depending
-  on whether it occurs monadically or dyadically. Monadically, it 
-  behaves as map, dyadically, it behaves as `zipWith`.
+- Operators in APL terminology (such as `¨`) are higher order functions.
+  Thus, an operator allows one to modify known functions.
+
+- Use `]disp` and `]display` to understand the structure of APL arrays.
 
 # [Every ideal that is maximal wrt. being disjoint from a multiplicative subset is prime](#every-ideal-that-is-maximal-wrt-being-disjoint-from-a-multiplicative-subset-is-prime)
 
