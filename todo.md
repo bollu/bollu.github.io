@@ -145,3 +145,5 @@ installed, use it to compute closed forms)
 - Halton sequence / low-discrepancy sequence
 - Three lectures on free probability: why cumulants are the correct way to think about distributions: https://arxiv.org/pdf/1205.2097.pdf
 - mlock / locking memory: https://linux.die.net/man/2/mlock
+- RETYPED NOTES OF MILNOR!!! https://oldbookstonew.blogspot.com/
+- Vector displays (https://en.wikipedia.org/wiki/Vectrex)(https://en.wikipedia.org/wiki/Vector_monitor)
