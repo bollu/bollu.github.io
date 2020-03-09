@@ -433,6 +433,7 @@ p:2    q:4     r:6   s:8        t:11    u:14    2
 We use the incantation:
 
 ```
+$ d ← (0 1 2 1 2 3 2 1 2 3 3 2 3 3 2)
 $ ((⍳≢d)@(d,¨⍳≢d)) ((⌈/d) (≢d))⍴'-'
 0 - - - - - - - - -  -  -  -  -  -
 - 1 - 3 - - - 7 - -  -  -  -  -  -
@@ -511,38 +512,75 @@ TODO: explain @ and its use
 #### Creating the path matrix
 
 ```
+$ ⎕IO ← 0 ⍝ (inform APL that we wish to use 0-indexing.) 
+$ d ← (0 1 2 1 2 3 2 1 2 3 3 2 3 3 2)
 $ PM ← ⌈\((⍳≢d)@(d,¨⍳≢d))(((⌈/d+1)(≢d))⍴0)
 
 0 0 0 0 0 0 0 0 0 0  0  0  0  0  0
 0 1 1 3 3 3 3 7 7 7  7  7  7  7  7
 0 0 2 2 4 4 6 6 8 8  8 11 11 11 14
-0 0 0 0 0 5 5 5 5 9  9  9 12 12 12
-0 0 0 0 0 0 0 0 0 0 10 10 10 13 13
+0 0 0 0 0 5 5 5 5 9 10 10 12 13 13
+
+      0               0
+┌──┬──┴───────┐
+1  3          7       1
+│ ┌┴┐  ┌──────┼───┐
+2 4 6  8     11   14  2
+  │    │      |
+  │   ┌┴─┐   ┌┴──┐
+  5   9  10  12  13   3
 ```
 
-- `⌈\` is to prefix scan with maximum, so this sets `a[i] = max(a[0], a[1], ... a[i])`.
+The incantation can be broken down into:
 
-# [Things I wish I knew when I was learning APL](#things-i-wish-i-knew-when-i-was-learning-apl)
 
-- For pasting multi-line code, 
-  [there is a bug in the bug tracker for RIDE](https://github.com/Dyalog/ride/issues/323).
-  For multi-line dfns, one can use `∇`. For multi-line values, I don't know yet.
+- `(((⌈/d+1)(≢d))⍴0)` is used to create a `max(d+1)x|d|` dimension array of zeros.
+   Here, the rows define depths, and the columns correspond to tree nodes
+   which for us are their preorder indexes.
 
-- Operators in APL terminology (such as `¨`) are higher order functions.
-  Thus, an operator allows one to modify known functions.
+```
+$ grid←(⌈/d+1) (≢d) ⍴ 0
+$ grid
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+```
 
-- Use `]disp` and `]display` to understand the structure of APL arrays.
+- `((d ,¨ ⍳≢d))` creates an array of pairs `(depth, preindex)`. We will use
+  this to fill index `(d, pi)` with the value `pi`. 
 
-This is a nice representation, since each element in the tree is uniquely
-identified by its columns in the path matrix. 
+```
+$ writeixs ← (d,¨⍳≢d)
+$ ]disp writeixs
+┌→──┬───┬───┬───┬───┬───┬───┬───┬───┬───┬────┬────┬────┬────┬────┐
+│0 0│1 1│2 2│1 3│2 4│3 5│2 6│1 7│2 8│3 9│3 10│2 11│3 12│3 13│2 14│
+└~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~──→┴~──→┴~──→┴~──→┴~──→┘
+```
 
-- Each column of the path matrix literally encodes the path from the root to
-  that element in the tree. 
+- `ixgrid ← ((⍳≢d)@writeixs) grid` rewrites at index `writeixs[i]` the value (`(i≢d)[i]`).
   
-- Given two path columns from the path matrix, we can efficiently find the
-  lowest common ancestor as the longest common prefix of the two columns.
+```
+$ ixgrid ← ((⍳≢d)@writeixs) grid
+$ ixgrid
+0 0 0 0 0 0 0 0 0 0  0  0  0  0  0
+0 1 0 3 0 0 0 7 0 0  0  0  0  0  0
+0 0 2 0 4 0 6 0 8 0  0 11  0  0 14
+0 0 0 0 0 5 0 0 0 9 10  0 12 13  0
+```
 
-The longest common prefix can be computed as `TODO`.
+- Finally, `⌈` is the maximum operator, and `\` is the [prefix scan]() operator,
+  so `⌈\ixgrid` creates a prefix scan of the above grid to give us our
+  final path matrix:
+  
+```
+$ PM ← ⌈\ixgrid
+$ PM
+0 0 0 0 0 0 0 0 0 0  0  0  0  0  0
+0 1 1 3 3 3 3 7 7 7  7  7  7  7  7
+0 0 2 2 4 4 6 6 8 8  8 11 11 11 14
+0 0 0 0 0 5 5 5 5 9 10 10 12 13 13
+```
 
 #### Parent vector representation
 
@@ -621,6 +659,17 @@ We can compute:
 └~────────────────────────────┘
 ``` 
 
+
+# [Things I wish I knew when I was learning APL](#things-i-wish-i-knew-when-i-was-learning-apl)
+
+- For pasting multi-line code, 
+  [there is a bug in the bug tracker for RIDE](https://github.com/Dyalog/ride/issues/323).
+  For multi-line dfns, one can use `∇`. For multi-line values, I don't know yet.
+
+- Operators in APL terminology (such as `¨`) are higher order functions.
+  Thus, an operator allows one to modify known functions.
+
+- Use `]disp` and `]display` to understand the structure of APL arrays.
 
 # [Every ideal that is maximal wrt. being disjoint from a multiplicative subset is prime](#every-ideal-that-is-maximal-wrt-being-disjoint-from-a-multiplicative-subset-is-prime)
 
