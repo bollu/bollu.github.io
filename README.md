@@ -572,7 +572,7 @@ $ ixgrid
 - Finally, `⌈` is the maximum operator, and `\` is the [prefix scan]() operator,
   so `⌈\ixgrid` creates a prefix scan of the above grid to give us our
   final path matrix:
-  
+
 ```
 $ PM ← ⌈\ixgrid
 $ PM
@@ -582,6 +582,39 @@ $ PM
 0 0 0 0 0 5 5 5 5 9 10 10 12 13 13
 ```
 
+#### Using the path matrix:  distance of a node from every other node.
+
+Note that the maximum distance between two nodes is to climb
+all the way to the top node, and then climb down:
+
+```
+dmax ← depth(a) + depth(b)
+```
+
+If we know the lowest common ancestor of two nodes,
+then the distance of one node to another is:
+
+```
+dcorrect ← dist(a, lca(a, b)) + dist(b, lca(a, b))
+```
+
+So, we can compute the depth as:
+
+```
+dcorrect ← dist(a, lca(a, b)) + dist(lca(a, b), b)
+ = dist(a, lca(a, b)) + depth(lca(a, b)) + 
+   dist(b, lca(a, b)) + depth(lca(a, b)) +
+   -2 * depth(lca(a, b))
+ = depth(a) +
+   depth(b) +
+   -2 * depth (lca(a, b))
+```
+
+[TODO: picture]
+[TODO: finish writing this]
+
+
+<<<<<<< 00e0f5bce5b83a803dc2ec3b9ab34e3ef6448d99
 #### Parent vector representation
 
 A parent vector is a vector of length `n` where `Parent[i]` denotes an 
