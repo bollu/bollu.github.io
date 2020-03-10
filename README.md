@@ -130,6 +130,7 @@ document.addEventListener("DOMContentLoaded", function() {
 - [GSoC 2015 week 6](content/blog/gsoc-vispy-week-6.md)
 - [GSoC 2015 week 7](content/blog/gsoc-vispy-week-7.md)
 - [GSoC 2015 final report](content/blog/gsoc-vispy-report-6.md)
+- [Distributed Systems](#distributed-systems)
 - [Link Dump](#link-dump)
 
 
@@ -6553,6 +6554,114 @@ For example: "More people have been to Berlin than I have."
 - [week 6](content/blog/gsoc-vispy-week-6.md)
 - [week 7](content/blog/gsoc-vispy-week-7.md)
 - [final report](content/blog/gsoc-vispy-report-6.md)
+
+# [Distributed Systems](#distributed-systems)
+
+## Match 10th
+### 5 minute talk: P2P
+#### Napster
+Napster connected to a central server than was an index of all users. Users are
+connected to each other to download MP3 files off of each other.
+
+#### BitTorrent
+
+Each data segment is encrypted. Data segment is downloaded individually by
+peers. 
+
+#### Chord protocol
+
+Finger table: nodes are keys, contain values. A node's chord table is:
+with ids `i :-> (n + 2^i)`.
+
+#### Ho Ramamoorthy:
+
+Each site maintains a local wait-for graph. Central site begins a check.
+All of the data is pushed to central node which begins the check.
+
+### All Pairs Shortest Path Algorthms
+
+- Content from distributed algorithms by gerard tel: Chapter 4
+
+When a packet is sent in a network, it should be forwarded using routing tables.
+The routing table must be computed when the network is initialized, and must
+be updated every time the topology of the network changes.
+
+We assume that the network is undirected, and we have no negative weight
+cycles.  Our weights are typically congestion.
+
+- *Correctness*: Algorithm must deliver every packet to its ultimate destination.
+- *Robustness*: If the topology changes, the algorithm should update its
+  routing table accordingly.
+
+#### Floyd Warshall for routing table:
+
+Perform matrix multiplication on the `(min, +)` semiring.
+
+```py
+def floyd_warshall(V, E):
+    UnseenV = set(V)
+
+    W = np.fill("infty", shape=[len(V), len(V)]) -- distances
+    B = [[None for _ in len(V)] for _ in len(V)] -- intermediate paths.
+    for (u, weight, v) in E: W[u][v] = weight; B[u][v] = v;
+
+    while UnseenV:
+        w = UnseenV.randitem(); UnseenV.delete(w);
+        if W[a][w] + W[w][b] < W[a][b]:
+            B[a][b] = B[a][w] -- if a m
+            W[a][b] = W[a][w] + W[w][b]
+```
+
+#### The simple distributed Floyd Warshall Algorithm:
+
+```py
+# nth processor  is running the code floyd_warshall(n, V, E)
+def floyd_warshall(n, V, E):
+    UnseenV = set(V)
+
+    W = np.fill("infty", shape=[len(V), len(V)]) -- distances
+    B = [[None for _ in len(V)] for _ in len(V)] -- intermediate paths.
+    for (u, weight, v) in E: W[u][v] = weight; B[u][v] = v;
+
+    while UnseenV:
+        # the ordering by which w's will be selected is _deterministic_,
+        # and is _shared across all nodes_
+        w = UnseenV.smallestitem(); UnseenV.delete(w);
+        assert(w is the same across all nodes)
+
+        if w == n: # if we are the current node
+            broadcast(W[w, :]) # broadcast the weights of w
+        else:
+            W[w, :] = receive() # receive the updated weights of w
+
+        if W[a][w] + W[w][b] < W[a][b]:
+            B[a][b] = B[a][w] -- if a m
+            W[a][b] = W[a][w] + W[w][b]
+```
+
+- If `NB[][w] = u`, then is `NB[u][w] = a`? 
+
+
+#### The simple distributed Floyd Warshall Algorithm, Toueg's version
+
+Here, we are trying to define how to broadcast the table `W[w, :]`. It is
+now `W`'s turn to broadcast.
+
+Define a graph $G_w \equiv (V_w, E_w)$.
+
+- $u \in V_w \iff D[u][w] < \infty$: if a path from $u \xrightarrow{*} w$ exists.
+- $(u, x) \in E_w \iff u \neq d \land B[u][w] = x$: If a path from $u \xrightarrow{*} w$ 
+  must begin with x: $u \rightarrow x \xrightarrow{*} w$.
+
+We claim that is $G_w$ is in fact a tree. This is because every edge $(u, x)$
+in fact signals a path from $u \rightarrow x \xrightarrow{*} w$. Hence,
+
+This graph is connected since we only add vertices that are at distance
+less than infinity.
+
+Hence, $G_w$ is a connected directed acyclic graph, so a tree.
+
+#### Chandy-Misra Algorithm: Similar to Bellman Ford
 
 # Link dump
 

@@ -148,3 +148,6 @@ installed, use it to compute closed forms)
 - RETYPED NOTES OF MILNOR!!! https://oldbookstonew.blogspot.com/
 - Vector displays (https://en.wikipedia.org/wiki/Vectrex)(https://en.wikipedia.org/wiki/Vector_monitor)
 - APL idioms: http://www.softwarepreservation.org/projects/apl/Papers/MYFAVORITEIDIOM
+- No stinking loops! http://nsl.com/
+- Can spaced repetition train LSTMs?
+- Anatoli fomenko artist topology spaces math art: http://chronologia.org/en/math_impressions/images.html
