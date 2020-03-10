@@ -147,3 +147,4 @@ installed, use it to compute closed forms)
 - mlock / locking memory: https://linux.die.net/man/2/mlock
 - RETYPED NOTES OF MILNOR!!! https://oldbookstonew.blogspot.com/
 - Vector displays (https://en.wikipedia.org/wiki/Vectrex)(https://en.wikipedia.org/wiki/Vector_monitor)
+- APL idioms: http://www.softwarepreservation.org/projects/apl/Papers/MYFAVORITEIDIOM
