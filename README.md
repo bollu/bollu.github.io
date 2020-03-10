@@ -614,12 +614,35 @@ dcorrect ← dist(a, lca(a, b)) + dist(lca(a, b), b)
 [TODO: finish writing this]
 
 
-<<<<<<< 00e0f5bce5b83a803dc2ec3b9ab34e3ef6448d99
 #### Parent vector representation
 
 A parent vector is a vector of length `n` where `Parent[i]` denotes an 
 index into `Parent`. Hence, the following condition will return 1
 if V is a parent vector.
+
+For example, for our given example, here is the parent vector:
+
+```
+d ← (0  1  2  1  2  3  2  1  2  3  3  2  3  3  2) │ depths
+    (∘  a  p  b  q  v  r  c  s  w  x  t  y  z  u) │ values
+p ← (∘  ∘  a  ∘  b  q  b  ∘  c  s  s  c  t  t  c) │ parents
+    (0  1  2  3  4  5  6  7  8  9 10 11 12 13 14) | indexes     
+P ← (0  0  1  0  3  4  3  0  7  8  8  7 11 11  7) │ parent indices
+
+
+
+              ∘:0                               0
+┌──────────┬──┴─────────────────┐
+a:1        b:3                 c:7              1
+│      ┌───┴───┐     ┌──────────┼───────┐
+p:2    q:4     r:6   s:8        t:11    u:14    2
+       │             │          │
+       │          ┌──┴──┐     ┌─┴───┐
+       v:5        w:9   x:10  y:12  z:13        3
+```
+
+
+The condition a parent vector must satisfy is:
 
 ```
 ∧/V ∊(⍳≢V) ⍝ [All elements of V belong in the list [1..len(V)] ]
@@ -636,12 +659,14 @@ if V is a parent vector.
   some kind of `nullptr` check.
   
 
-The parent of all elements can be found using the fixpoint operator (`⍨`):
+The root node (parent of all elements) can be found using the fixpoint operator (`⍨`):
 
 ```
 I←{(⊂⍵)⌷⍺} ⍝ index into the left hand side param using right hand side param
 I⍣≡⍨p ⍝ compute the fixpoint of the I operator using ⍨ and apply it to p
 ```
+
+
 
 #### Converting from depth vector to parent vector:
 
@@ -672,7 +697,8 @@ Note that the depth vector already encodes parent-child information.
 
 We can compute:
 ```
-]display d ∘.< d ⍝ find `d[i] < d[j]` for all i, j. 
+$ d ← (0  1  2  1  2  3  2  1  2  3  3  2  3  3  2) ⍝ depths
+$ ]display d ∘.< d ⍝ find `d[i] < d[j]` for all i, j. 
 ┌→────────────────────────────┐
 ↓0 1 1 1 1 1 1 1 1 1 1 1 1 1 1│
 │0 0 1 0 1 1 1 0 1 1 1 1 1 1 1│
