@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 
-- [Efficient tree transformations on GPUs(WIP)](#efficient-tree-transformations-on-gpus)
+- [Efficient tree transformations on GPUs](#efficient-tree-transformations-on-gpus)
 - [Things I wish I knew when I was learning APL](#things-i-wish-i-knew-when-i-was-learning-apl)
 - [Every ideal that is maximal wrt. being disjoint from a multiplicative subset is prime](#every-ideal-that-is-maximal-wrt-being-disjoint-from-a-multiplicative-subset-is-prime)
 - [Getting started with APL](#getting-started-with-apl)
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-# [Efficient tree transformations on GPUs(WIP)](#efficient-tree-transformations-on-gpus)
+# [Efficient tree transformations on GPUs](#efficient-tree-transformations-on-gpus)
 
 All material lifted straight from [Aaron Hsu's PhD thesis](TODO). I'll be converting
 APL notation to C++-like notation.
@@ -669,7 +669,7 @@ I⍣≡⍨p ⍝ compute the fixpoint of the I operator using ⍨ and apply it to
 
 
 
-#### Converting from depth vector to parent vector:
+#### Converting from depth vector to parent vector, Take 1
 
 As usual, let's consider our example:
 
@@ -696,28 +696,248 @@ Note that the depth vector already encodes parent-child information.
 - The parent of node `i` is a node `j` such that `d[j] = d[i] - 1` and
   `j` is the closest index to the left of `i` such that this happens.
 
-We can compute:
+For example, to compute the parent of `t:11`, notice that it's at depth `2`.
+So we should find all the nodes from `d[0..11]` which have depths equal to
+`2`, and then pick the rightmost one. This translates to the expression:
+
 ```
-$ d ← (0  1  2  1  2  3  2  1  2  3  3  2  3  3  2) ⍝ depths
-$ ]display d ∘.< d ⍝ find `d[i] < d[j]` for all i, j. 
+$ d ← (0  1  2  1  2  3  2  1  2  3  3  2  3  3  2)
+$ t ← 11   ⍝ target node
+$ ixs ← ⍳t   ⍝ array indexes upto this node
+  0 1 2 3 4 5 6 7 8 9 10
+$ d[ixs]   ⍝ depths of nodes to the left of the given node t
+  0 1 2 1 2 3 2 1 2 3 3
+$ d[ixs]  = d[t]-1  ⍝ boolean vector of nodes whose depth is that of t's parent
+  0 1 0 1 0 0 0 1 0 0 0
+$ eqds ← ⍸ (d[ixs] = d[t]-1)  ⍝ array indexes of nodes whose depth is that of t's parent
+  1 3 7
+$ ⌽ eqds ⍝ reverse of array indexes to extract `7`
+  7 3 1
+$ ⊃ ⌽ eqds ⍝ first of the reverse of the array indexes to extract `7`
+  7
+$ (⌽⍸(d[⍳t] = d[t]-1))[0]  ⍝ APL style one-liner of the above
+```
+
+While this is intuitive, this does not scale: It does not permit us to find
+the parent of all the nodes _at once_ --- ie, it is not parallelisable
+over choices of `t`.
+
+#### Converting from depth vector to parent vector, Take 2 (Or scan idiom)
+
+Imagine we have a list of `0`s and `1`s, and we want to find the _index_ of
+the rightmost `1` value. For example, given:
+
+```
+       0 1 2 3 4 5 6 7 8 9 10 11 12
+$ a ← (0 0 1 0 0 0 1 0 1 0  0  0  0)
+```
+
+we want the answer to be `f a = 8`. We saw an implementation in terms of
+`f←{(⌽⍸⍵)[0]}` in Take 1.
+(recall that `⍵` is the symbol for the right-hand-side argument of a function).
+
+We're going to perform the same operation slightly differently. Let's consider
+the series of transformations:
+
+```
+$ ⌽a  ⍝ reverse of a
+  0 0 0 0 1 0 1 0 0 0 1 0 0
+$ ∨\ ⌽a ⍝ prefix scan(\) using the OR(∨) operator. Turn all 
+        ⍝ entries after the first 1 into a 1
+  0 0 0 0 1 1 1 1 1 1 1 1 1
+$ +/ (∨\ ⌽a)  ⍝ sum over the previous list, counting number of 1s
+  9
+$ ¯1 +  (+/ (∨\ ⌽a))  ⍝ subtract 1 from the previous number
+  8    
+```
+
+Why the hell does this work? Well, here's the proof:
+
+- On running `⌽a`, we reverse the `a`. The last 1 of `a` at index $i$
+  becomes the first $1$ of `⌽a` at index $i' \equiv n-i$. 
+- On running  `∨\ ⌽a`, numbers including and after the first 1  
+  become `1`. That is, all indexes $j \geq i'$ have 1 in them.
+- On running `+/ (∨\ ⌽a)`, we sum up all 1s. This will give us $n-i'+1$ 1s.
+  That is, $n-i'+1 = n-(n-i)+1 =i+1$.
+- We subtract a $1$ to correctly find the $i$ from $i+1$.
+
+This technique will work for __every row of a matrix__. This is paramount,
+since we can now repeat this for the depth vector we were previously
+interested in for each row, and thereby compute the parent index!
+
+
+#### Converting from depth vector to parent vector, Take 3 (full matrix)
+
+We want to extend the previous method we hit upon to compute the parents
+of all nodes in parallel. To perform this, we need to run the moral
+equivalent of the following:
+
+```
+$ ⎕IO ← 0 ⍝ 0 indexing 
+$ d ← (0  1  2  1  2  3  2  1  2  3  3  2  3  3  2) ⍝ depth vector
+$ t ← 11 ⍝ node we are interested in
+$ a←d[⍳t]=d[t]-1  ⍝ boolean vector of nodes whose depth is that of t's parent
+  0 1 0 1 0 0 0 1 0 0 0
+$ ¯1 +  (+/ (∨\ ⌽a)) ⍝ index of last 0 of boolean vector
+7 
+```
+
+for _every single choice of t_. To perform this, we can build a 2D matrix
+of `d[⍳t]=d[t]-1` where `t` ranges over `[0..len(d)-1]` (ie, it ranges
+over all the nodes in the graph).
+
+We begin by using:
+
+```
+$ ⎕IO ← 0 ⋄ d ← (0  1  2  1  2  3  2  1  2  3  3  2  3  3  2) ⍝ depths
+$ ]display ltdepth ← d ∘.> d ⍝ find `d[i] > d[j]` for all i, j.
 ┌→────────────────────────────┐
-↓0 1 1 1 1 1 1 1 1 1 1 1 1 1 1│
-│0 0 1 0 1 1 1 0 1 1 1 1 1 1 1│
-│0 0 0 0 0 1 0 0 0 1 1 0 1 1 0│
-│0 0 1 0 1 1 1 0 1 1 1 1 1 1 1│
-│0 0 0 0 0 1 0 0 0 1 1 0 1 1 0│
-│0 0 0 0 0 0 0 0 0 0 1 0 0 1 0│
-│0 0 0 0 0 1 0 0 0 1 1 0 1 1 0│
-│0 0 1 0 1 1 1 0 1 1 1 1 1 1 1│
-│0 0 0 0 0 1 0 0 0 1 1 0 1 1 0│
-│0 0 0 0 0 0 0 0 0 0 1 0 0 1 0│
-│0 0 0 0 0 0 0 0 0 0 0 0 0 0 0│
-│0 0 0 0 0 1 0 0 0 1 1 0 1 1 0│
-│0 0 0 0 0 0 0 0 0 0 1 0 0 1 0│
-│0 0 0 0 0 0 0 0 0 0 0 0 0 0 0│
-│0 0 0 0 0 1 0 0 0 1 1 0 1 1 0│
+↓0 0 0 0 0 0 0 0 0 0 0 0 0 0 0│
+│1 0 0 0 0 0 0 0 0 0 0 0 0 0 0│
+│1 1 0 1 0 0 0 1 0 0 0 0 0 0 0│
+│1 0 0 0 0 0 0 0 0 0 0 0 0 0 0│
+│1 1 0 1 0 0 0 1 0 0 0 0 0 0 0│
+│1 1 1 1 1 0 1 1 1 0 0 1 0 0 1│
+│1 1 0 1 0 0 0 1 0 0 0 0 0 0 0│
+│1 0 0 0 0 0 0 0 0 0 0 0 0 0 0│
+│1 1 0 1 0 0 0 1 0 0 0 0 0 0 0│
+│1 1 1 1 1 0 1 1 1 0 0 1 0 0 1│
+│1 1 1 1 1 0 1 1 1 0 0 1 0 0 1│
+│1 1 0 1 0 0 0 1 0 0 0 0 0 0 0│
+│1 1 1 1 1 0 1 1 1 0 0 1 0 0 1│
+│1 1 1 1 1 0 1 1 1 0 0 1 0 0 1│
+│1 1 0 1 0 0 0 1 0 0 0 0 0 0 0│
 └~────────────────────────────┘
-``` 
+```
+
+- Note that `gt[i][j] = 1` iff `d[j] < d[i]`. So, for a given row (`i = fixed`), the `1s`
+  nodes that are at lower depth (ie, potential parents).
+  
+- If we mask this to only have those indeces where `j <= i`, then the
+  last one in each row will be such that `d[last 1] = d[i] - 1`. Why? Because
+  the node that is closest to us with a depth less than us _must_ be our parent,
+  in the preorder traversal.
+```
+$ ⎕IO ← 0 ⋄ d ← (0  1  2  1  2  3  2  1  2  3  3  2  3  3  2) ⍝ depths
+$ ]display left ←  (⍳3) ∘.> (⍳3) ⍝ find `i > j` for all i, j.
+┌→────┐
+↓0 0 0│
+│1 0 0│
+│1 1 0│
+└~────┘
+```
+
+Combining the three techniques, we can arrive at:
+
+```
+$ ⎕IO ← 0 ⋄ d ← (0  1  2  1  2  3  2  1  2  3  3  2  3  3  2) ⍝ depths
+$ ltdepth ← d ∘.> d ⍝ find `d[i] > d[j]` for all i, j.
+$ preds ←  (⍳≢d) ∘.> (⍳≢d) ⍝ predecessors: find `i > j` for all i, j.
+$ pred_higher ←  ltdepth ∧ left   ⍝ predecessors tht are higher in the tree
+$  parents_take_3 ← ¯1 +  +/∨\⌽pred_higher  ⍝ previous idiom for finding last 1.
+¯1 0 1 0 3 4 3 0 7 8 8 7 11 11 7
+```
+
+For comparison, the actual value is:
+
+```
+    (0   1  2  3  4  5  6  7  8  9 10 11 12 13 14)  | indexes     
+d ← (0   1  2  1  2  3  2  1  2  3  3  2  3  3  2)  │ depths
+P ← (0   0  1  0  3  4  3  0  7  8  8  7 11 11  7)  │ parent indices
+    (¯1  0  1  0  3  4  3  0  7  8  8  7 11 11  7) | parents, take 3
+
+              ∘:0                               0
+┌──────────┬──┴─────────────────┐
+a:1        b:3                 c:7              1
+│      ┌───┴───┐     ┌──────────┼───────┐
+p:2    q:4     r:6   s:8        t:11    u:14    2
+       │             │          │
+       │          ┌──┴──┐     ┌─┴───┐
+       v:5        w:9   x:10  y:12  z:13        3
+```
+We have an off-by-one error for the `0` node! That's easily fixed, we simply
+perform a maximum with `0` to move `¯1 -> 0`:
+
+```
+$  parents_take_3 ← 0⌈  ¯1 +  +/∨\⌽pred_higher
+0 0 1 0 3 4 3 0 7 8 8 7 11 11 7
+```
+
+So, that's our function:
+
+```
+parents_take_3 ← 0⌈  ¯1 +  +/∨\⌽ ((d∘.>d) ∧ (⍳≢d)∘.>(⍳≢d))
+0 0 1 0 3 4 3 0 7 8 8 7 11 11 7
+```
+
+Note that the time complexity for this is dominated by having to calculate
+the outer products, which even given infinite parallelism, take $O(n)$ time.
+We will slowly chip away at this, to be far better.
+
+#### Converting from depth vector to parent vector, Take 4 (log critial depth)
+We will use the Key(`⌸`) operator which allows us to create key value pairs.
+
+```
+$ d ← 0 1 2 1 2 3 2 1 2 3 3 2 3 3 2
+$ ]disp (⍳≢d) ,¨ d ⍝ zip d with indexes
+┌→──┬───┬───┬───┬───┬───┬───┬───┬───┬───┬────┬────┬────┬────┬────┐
+│0 0│1 1│2 2│3 1│4 2│5 3│6 2│7 1│8 2│9 3│10 3│11 2│12 3│13 3│14 2│
+└~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~──→┴~──→┴~──→┴~──→┴~──→┘
+
+$ ]display b ← {⍺ ⍵}⌸d  ⍝ each row i has tuple (i, js): d[js] = i 
+┌→──────────────────┐
+↓   ┌→┐             │
+│ 0 │0│             │
+│   └~┘             │
+│   ┌→────┐         │
+│ 1 │1 3 7│         │
+│   └~────┘         │
+│   ┌→────────────┐ │
+│ 2 │2 4 6 8 11 14│ │
+│   └~────────────┘ │
+│   ┌→───────────┐  │
+│ 3 │5 9 10 12 13│  │
+│   └~───────────┘  │
+└∊──────────────────┘
+```
+
+In fact, it allows us to apply an arbitrary function to combine keys and values.
+We will use a function that simply returns all the values for each key.
+
+```
+$ ]display b ← {⍵}⌸d ⍝ each row i contains values j such that d[j] = i.
+┌→──────────────┐
+↓0 0  0  0  0  0│
+│1 3  7  0  0  0│
+│2 4  6  8 11 14│
+│5 9 10 12 13  0│
+└~──────────────┘
+```
+
+Our first try doesn't quite work: it winds up trying to create a numeric matrix,
+which means that we can't have different rows of different sizes. So, the
+information that _only_ index `0` is such that `d[0] = 0` is lost. What we
+can to is to wrap the keys to arrive at:
+
+```
+$ ]display b ← {⊂⍵}⌸d ⍝ d[b[i]] = i
+┌→───────────────────────────────────────────┐
+│ ┌→┐ ┌→────┐ ┌→────────────┐ ┌→───────────┐ │
+│ │0│ │1 3 7│ │2 4 6 8 11 14│ │5 9 10 12 13│ │
+│ └~┘ └~────┘ └~────────────┘ └~───────────┘ │
+└∊───────────────────────────────────────────┘
+```
+
+Next, we use the Interval Index(`⍸`) operator, which solves the predecessor problem:
+
+
+```
+⍝ left[a[i]] is closest number < right[i]
+⍝ left[a[i]] is the predecessor of right[i] in left[i].
+$ a ← (1 10 100 1000) ⍸ (1 2000 300 50 2 )
+0 3 2 1 0
+$ 
+```
 
 
 # [Things I wish I knew when I was learning APL](#things-i-wish-i-knew-when-i-was-learning-apl)
