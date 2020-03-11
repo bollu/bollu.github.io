@@ -151,3 +151,4 @@ installed, use it to compute closed forms)
 - No stinking loops! http://nsl.com/
 - Can spaced repetition train LSTMs?
 - Anatoli fomenko artist topology spaces math art: http://chronologia.org/en/math_impressions/images.html
+- Histomorphisms and dynamorphisms: http://www.cs.ox.ac.uk/people/nicolas.wu/publications/Histomorphisms.pdf
