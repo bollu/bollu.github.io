@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 
+- [The geometry of Lagrange multipliers](#the-geometry-of-lagrange-multipliers)
 - [Efficient tree transformations on GPUs](#efficient-tree-transformations-on-gpus)
 - [Things I wish I knew when I was learning APL](#things-i-wish-i-knew-when-i-was-learning-apl)
 - [Every ideal that is maximal wrt. being disjoint from a multiplicative subset is prime](#every-ideal-that-is-maximal-wrt-being-disjoint-from-a-multiplicative-subset-is-prime)
@@ -133,6 +134,49 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Distributed Systems](#distributed-systems)
 - [Link Dump](#link-dump)
 
+
+
+# [The geometry of Lagrange multipliers](#the-geometry-of-lagrange-multipliers)
+If we want to minise a function $f(x)$ subject to the constraints $g(x) = c$,
+one uses the method of lagrange multipliers. The idea is to consider a new
+function $L(x, \lambda) = f(x) + \lambda (c - g(x))$. Now, if one has a local maxima
+$(x^\star, y^\star)$, then the conditions:
+
+- 1. $\frac{\partial L}{\partial x} = 0$: $f'(x^star) - lambda g'(x^\star) = 0$.
+- 2. $\frac{\partial L}{\partial \lambda} = 0$: $g(x^\star) = c$.
+
+Equation (2) is sensible: we want our optima to satisfy the constraint that
+we had originally imposed. What is Equation (1) trying to say?
+
+Let us say that we are at an $(x_0)$ which
+is a feasible point ($g(x_0) = c$).
+
+We are interested in wiggling 
+$(x_0) \xrightarrow{wiggle} (x_0 + \epsilon) \equiv x_1$.
+such that:
+
+-  $x_1$ is still feasible: $g(x_1) = c$
+- $x_1$ is an improvement: $f(x_1) > f(x_0)$.
+
+- We need $f$ to increase in the direction of $\epsilon$. So, 
+  __we need $\epsilon$ to have positive component along $f'(x)__. That is,
+  $f'(x) \cdot \epsilon > 0$.
+
+- We need $g(x_1) = c$. But notice that $g(x_0) = c$. So, we need $g(x)$
+  to __remain constant along $\epsilon$__. That means that $\epsilon$ should
+  be __perpendicular to the gradient of $g$__: $g'(x) \cdot \epsilon = 0$.
+
+
+Now, if $f'(x_0) || g'(x_0)$, then we have $f'(x_0) \lbot levelset(g(x_0))$.
+
+- We want to move along $f'(x_0)$ to improve $f(x_0)$.
+- We want to move _perpendicular_ $g'(x_0)$ to keep $g(x_0) = c$.
+
+Clearly if $f'(x_0) || g'(x_0)$ these two conditions contradict each other, and so
+we are at a local maxmia.
+
+On the other hand, if it is not true that $f'(x_0) || g'(x_0)$, then there will
+be _some_ component of $f'$ to be had by moving along $levelset(g(x_0))$.
 
 
 # [Efficient tree transformations on GPUs](#efficient-tree-transformations-on-gpus)
