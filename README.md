@@ -883,7 +883,10 @@ $ ]disp (⍳≢d) ,¨ d ⍝ zip d with indexes
 ┌→──┬───┬───┬───┬───┬───┬───┬───┬───┬───┬────┬────┬────┬────┬────┐
 │0 0│1 1│2 2│3 1│4 2│5 3│6 2│7 1│8 2│9 3│10 3│11 2│12 3│13 3│14 2│
 └~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~──→┴~──→┴~──→┴~──→┴~──→┘
+```
 
+```
+$ d ← 0 1 2 1 2 3 2 1 2 3 3 2 3 3 2
 $ ]display b ← {⍺ ⍵}⌸d  ⍝ each row i has tuple (i, js): d[js] = i 
 ┌→──────────────────┐
 ↓   ┌→┐             │
@@ -905,6 +908,7 @@ In fact, it allows us to apply an arbitrary function to combine keys and values.
 We will use a function that simply returns all the values for each key.
 
 ```
+$ d ← 0 1 2 1 2 3 2 1 2 3 3 2 3 3 2
 $ ]display b ← {⍵}⌸d ⍝ each row i contains values j such that d[j] = i.
 ┌→──────────────┐
 ↓0 0  0  0  0  0│
@@ -920,6 +924,7 @@ information that _only_ index `0` is such that `d[0] = 0` is lost. What we
 can to is to wrap the keys to arrive at:
 
 ```
+$ d ← 0 1 2 1 2 3 2 1 2 3 3 2 3 3 2
 $ ]display b ← {⊂⍵}⌸d ⍝ d[b[i]] = i
 ┌→───────────────────────────────────────────┐
 │ ┌→┐ ┌→────┐ ┌→────────────┐ ┌→───────────┐ │
@@ -927,8 +932,27 @@ $ ]display b ← {⊂⍵}⌸d ⍝ d[b[i]] = i
 │ └~┘ └~────┘ └~────────────┘ └~───────────┘ │
 └∊───────────────────────────────────────────┘
 ```
+Consider the groups `b[2] = (2 4 6 8 11 14)` and `b[3] = (5 9 10 12 13)`. All of `3`'s parents
+are present in `2`. Every element in `3` fits at some location in `2`. Here is what
+the fit would look like:
 
-Next, we use the Interval Index(`⍸`) operator, which solves the predecessor problem:
+```
+b[2]  2 4 _ 6 8 _  _ 11 __ __ 14   (nodes of depth 2)
+b[3]      5     9  10   12 13      (leaf nodes)
+          4     8   8   11 11      (parents: predecessor of b[3] in b[2])
+
+              ∘:0                               0
+┌──────────┬──┴─────────────────┐
+a:1        b:3                 c:7              1
+│      ┌───┴───┐     ┌──────────┼───────┐
+p:2    q:4     r:6   s:8        t:11    u:14    2
+       │             │          │
+       │          ┌──┴──┐     ┌─┴───┐
+       v:5        w:9   x:10  y:12  z:13        3
+```
+
+We use the Interval Index(`⍸`) operator to solve the problem of finding the
+parent / where we should sqeeze a node from `b[3]` into `b[2]`:
 
 
 ```
@@ -936,9 +960,13 @@ Next, we use the Interval Index(`⍸`) operator, which solves the predecessor pr
 ⍝ left[a[i]] is the predecessor of right[i] in left[i].
 $ a ← (1 10 100 1000) ⍸ (1 2000 300 50 2 )
 0 3 2 1 0
-$ 
 ```
 
+We begin by assuming the parent of `i` is `i` by using `p←⍳≢d`.
+```
+p←⍳≢d ⋄ 2{p[⍵]←⍺[⍺⍸⍵]}⌿{⊂⍵}⌸d ⋄ p
+0 0 1 0 3 4 3 0 7 8 8 7 11 11 7
+```
 
 # [Things I wish I knew when I was learning APL](#things-i-wish-i-knew-when-i-was-learning-apl)
 
