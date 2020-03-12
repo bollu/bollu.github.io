@@ -1058,7 +1058,19 @@ $ p⊣2{p[⍵]←⍺[⍺⍸⍵]}⌿⊢∘⊂⌸d⊣p←⍳≢d
 ```
 
 The total time complexity of this method assuming infinite parallelism is as follows:
-
+```
+$ p←⍳≢d ⋄ d2nodes←{⊂⍵}⌸d ⋄ findp←{pix ← ⍺⍸⍵ ⋄ p[⍵]←⍺[pix]} ⋄ 2findp/d2nodes ⋄ p
+```
+- `(p←⍳≢d)` can be filled in `O(1)` time.
+- `(d2nodes←{⊂⍵}⌸d)` is searching for keys in a small integer domain, so this is `O(#nodes)` using
+  radix sort as far as I know. However, the thesis mentions that this can be done in 
+  `O(log(|#nodes|))`. I'm not sure how, I need to learn this.
+- For each call of `findp`, the call `(pix ← ⍺⍸⍵)` can be implemented using binary search
+  leading to a logarthmic complexity in the size of `⍺` (since we are looking up
+  for predecessors of `⍵` in `⍺`).
+- The time complexity of the fold `2findp/d2nodes` can be done entirely in parallel
+  since all the writes into the `p` vector are independent: we only write the
+  parent of the current node we are looking at.
 
 # [Things I wish I knew when I was learning APL](#things-i-wish-i-knew-when-i-was-learning-apl)
 
