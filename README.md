@@ -142,7 +142,7 @@ one uses the method of lagrange multipliers. The idea is to consider a new
 function $L(x, \lambda) = f(x) + \lambda (c - g(x))$. Now, if one has a local maxima
 $(x^\star, y^\star)$, then the conditions:
 
-1. $\frac{\partial L}{\partial x} = 0$: $f'(x^star) - \lambda g'(x^\star) = 0$.
+1. $\frac{\partial L}{\partial x} = 0$: $f'(x^\star) - \lambda g'(x^\star) = 0$.
 2. $\frac{\partial L}{\partial \lambda} = 0$: $g(x^\star) = c$.
 
 Equation (2) is sensible: we want our optima to satisfy the constraint that
