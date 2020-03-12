@@ -952,8 +952,9 @@ p:2    q:4     r:6   s:8        t:11    u:14    2
 ```
 
 We use the Interval Index(`⍸`) operator to solve the problem of finding the
-parent / where we should sqeeze a node from `b[3]` into `b[2]`:
-
+parent / where we should sqeeze a node from `b[3]` into `b[2]`
+(This is formally known as the
+[predecessor problem](https://en.wikipedia.org/wiki/Predecessor_problem))
 
 ```
 ⍝ left[a[i]] is closest number < right[i]
@@ -962,11 +963,102 @@ $ a ← (1 10 100 1000) ⍸ (1 2000 300 50 2 )
 0 3 2 1 0
 ```
 
-We begin by assuming the parent of `i` is `i` by using `p←⍳≢d`.
+Now, we can use the technology of predecessor to find parents
+of depth 3 nodes among the depth 2 nodes:
+
 ```
-p←⍳≢d ⋄ 2{p[⍵]←⍺[⍺⍸⍵]}⌿{⊂⍵}⌸d ⋄ p
+$ depth2 ← 2 4 6 8 11 14
+$ depth3 ← 5 9 10 12 13 ⍝ parents (from chart): 4 8 8 11 11
+$ depth3parentixs ← depth2 ⍸ depth3
+$ depth3parents  ← depth2[depth3parentixs]
+4 8 8 11 11
+
+              ∘:0                               0
+┌──────────┬──┴─────────────────┐
+a:1        b:3                 c:7              1
+│      ┌───┴───┐     ┌──────────┼───────┐
+p:2    q:4     r:6   s:8        t:11    u:14    2
+       │             │          │
+       │          ┌──┴──┐     ┌─┴───┐
+       v:5        w:9   x:10  y:12  z:13        3
+```
+
+We need to know one-more APL-ism: the `2-scan`. When we write
+a usual scan operation, we have:
+
+```
+$ ⍳5
+1 2 3 4 5
+```
+```
+$ +/⍳5 ⍝ reduce
+15
+```
+
+```
+$ 2+/⍳5 ⍝ apply + to _pairs_ (2 = pairs)
+3 5 7 9 ⍝ (1+2) (2+3) (3+4) (4+5)
+```
+
+```
+$ 3+/⍳5 ⍝  apply + to 3-tuples 
+6 9 12 ⍝ (1+2+3) (2+3+4) (3+4+5)
+```
+
+We begin by assuming the parent of `i` is `i` by using `p←⍳≢d`.
+
+```
+$ d ← (0 1 2 1 2 3 2 1 2 3 3 2 3 3 2)
+$ d2nodes ← {⊂⍵}⌸d 
+┌→┬─────┬─────────────┬─────────────┐
+│1│2 4 8│3 5 7 9 12 15│6 10 11 13 14│
+└→┴~───→┴~───────────→┴~───────────→┘
+$ p←⍳≢d
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+```
+
+Now comes the biggie:
+```
+$ findparent ← {parentixs ← ⍺⍸⍵ ⋄ p[⍵]←⍺[parentixs]} 
+```
+- `⍺` is the list of parent nodes. 
+- `⍵` is the list of current child nodes.
+- We first find the indexes of our parent nodes by using 
+  the `pix ← parent ⍸ child` idiom.
+- Then, we find the actual parents by indexing into
+  the parent list: `pix[parentixs]`.
+- We write these into the parents of the child using:
+  `p[children] ← parent[parent ⍸ child]`
+
+
+This finally culminates in:
+```
+$ d←0 1 2 1 2 3 2 1 2 3 3 2 3 3 2
+$ p←⍳≢d ⋄ d2nodes←{⊂⍵}⌸d ⋄ findp←{pix ← ⍺⍸⍵ ⋄ p[⍵]←⍺[pix]} ⋄ 2findp/d2nodes ⋄ p
+0 0 1 0 3 4 3 0 7 8 8 7 11 11 7
+
+
+    (0   1  2  3  4  5  6  7  8  9 10 11 12 13 14)  | indexes     
+d ← (0   1  2  1  2  3  2  1  2  3  3  2  3  3  2)  │ depths
+P ← (0   0  1  0  3  4  3  0  7  8  8  7 11 11  7)  │ parent indices
+              ∘:0                               0
+┌──────────┬──┴─────────────────┐
+a:1        b:3                 c:7              1
+│      ┌───┴───┐     ┌──────────┼───────┐
+p:2    q:4     r:6   s:8        t:11    u:14    2
+       │             │          │
+       │          ┌──┴──┐     ┌─┴───┐
+       v:5        w:9   x:10  y:12  z:13        3
+```
+
+Which can be further golfed to:
+```
+$ p⊣2{p[⍵]←⍺[⍺⍸⍵]}⌿⊢∘⊂⌸d⊣p←⍳≢d
 0 0 1 0 3 4 3 0 7 8 8 7 11 11 7
 ```
+
+The total time complexity of this method assuming infinite parallelism is as follows:
+
 
 # [Things I wish I knew when I was learning APL](#things-i-wish-i-knew-when-i-was-learning-apl)
 
