@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 
+- [My Favourite APLisms](#my-favourite-aplisms)
 - [Efficient tree transformations on GPUs](#efficient-tree-transformations-on-gpus)
 - [Things I wish I knew when I was learning APL](#things-i-wish-i-knew-when-i-was-learning-apl)
 - [Every ideal that is maximal wrt. being disjoint from a multiplicative subset is prime](#every-ideal-that-is-maximal-wrt-being-disjoint-from-a-multiplicative-subset-is-prime)
@@ -134,6 +135,23 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Link Dump](#link-dump)
 
 
+# [My Favourite APLisms](#my-favourite-aplisms)
+
+#### identity matrix
+```
+n←3 ⋄ id ← n n ⍴(1,n⍴0) ⋄ id
+```
+
+This relies heavily on `⍴` replicating its arguments.
+
+
+#### histogram
+``` 
+xs←(1 1 3 3 3 6) ⋄ n←(⌈/xs)⍴0 ⋄ n[xs]+←1 ⋄ n
+```
+
+The use of `n[x] +←1` will stably write `+1` as many times as there are repeated
+indexes in `xs`.
 
 # [Efficient tree transformations on GPUs](#efficient-tree-transformations-on-gpus)
 
