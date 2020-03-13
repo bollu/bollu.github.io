@@ -1,0 +1,30 @@
+# Disks
+
+- bits are stored -> tracks.
+- organised into tracks, which occupy most of surface.
+- tracks -> sectors: segments of the circle separated by gaps.
+- sector is indivisible for read/write.
+- gaps are ~10% of track, identify beginning of sector.
+- sector is physical, block is LOGICAL
+- tracks under the head at the same time form a cylinder.
+
+- latency: time taken b/w read is issued versus contents appear in memory.
+- seek time: time to position head of cylinder at right position
+- time to rotate so that first of sector containing block reaches the head:
+  rotational latency
+- disk rotates at 3840 RPM
+- take 1ms to start and stop, plus 1 ms for every 500 cylinders travelled.
+  on avg, 1.002. Goes from innermost -> outermost track (8192 sectors)
+  in 17.4 ms
+
+# multi way merge
+
+1. The block size is B bytes.
+2. The main memory available for buffering blocks is M bytes.
+3. Records take R bytes.
+
+- number of blocks storable in memory: M / B
+- in second phase, all but one of M/B is devoted to blocks. 1 is devoted to output sublist.
+- so number of sorted sublists that will be created is M/B - 1
+- Each till we fill up main memory, we sort M/R records (wat?)
+- total number of records we can sort is M/R(M/B - 1) = M^2/RB
