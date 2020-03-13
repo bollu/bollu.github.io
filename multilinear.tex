@@ -1,0 +1,135 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\begin{document}
+% \newtheorem{example}
+
+\section{What is a tenser?}
+Let us define a tenser of rank $r \in \mathbb N$
+to be the data:
+
+\begin{itemize}
+    \item A set of numbers $s_1, s_2, \dots s_r \in \mathbb N$, where
+         $s_i$ is said to be the size of the tensor along dimension $i$.
+    \item A function $F: [s_1] \times [s_2] \times \dots \times [s_r] \rightarrow
+        (\mathbb R \rightarrow \mathbb R)$, where $[u] \equiv \{ 1, 2, \dots u\}$.
+\end{itemize}
+
+Given a tenser $T \equiv (r, S \equiv (s_1, s_2, \dots, s_r), F)$, we
+denote by:
+
+\begin{align*}
+&T[ix_1, ix_2, \dots ix_r] : ([s_1] \times [s_2] \times \dots \times [s_r]) \rightarrow
+    (\mathbb R \rightarrow \mathbb R) \\
+&T[ix_1, ix_2, \dots ix_r] \equiv F(ix_1, ix_2, ix_3, \dots, ix_r)
+\end{align*}
+
+Let us now instantiate an honest to god tenser. We shall create what
+plebes know as a "vector field" to be a tenser.
+
+%\begin{example}
+\subsection{Example: Vector field as a tenser}
+Consider the vector field on $\mathbb R^2$ to be $V \equiv (sin(x), cos(y))$.
+
+For us, this will correspond to a tenser of rank 1 $T \equiv (r \equiv 1, S \equiv (2), F)$ where:
+$$
+F(1) \equiv \lambda x. \sin x \quad F(2) \equiv \lambda x. \cos x
+$$
+
+\subsection{Example: Function as a tenser}
+A function $f: \mathbb R \rightarrow \mathbb R$ is a tenser of rank 1
+$T_f \equiv (r \equiv 1, S \equiv (1), F(1) \equiv f)$.
+% \end{example}
+
+\subsection{Example: Scalar as a tenser}
+A scalar $r \in \mathbb R$ is a tenser of rank 1 $T \equiv (r\equiv 0, S\equiv(), F() \equiv \lambda \_. r)$
+
+\subsection{Matrix field as a tenser}
+The matrix field which maps each point $(x, y)$ to the matrix 
+$
+\begin{bmatrix}
+x & 0 \\ 0 & y
+\end{bmatrix}
+$
+is a rank 2 tenser:
+
+\begin{align*}
+&T \equiv (r\equiv 2, S \equiv (2, 2), F) \\
+&F(1, 1) \equiv \lambda x. x \quad F(1, 2) \equiv \lambda \_. 0 \\
+&F(2, 1) \equiv \lambda \_. 0 \quad F(2, 2) \equiv \lambda y. y \\
+\end{align*}
+
+\section{Tenser derivatives}
+
+We are often interested in understanding how one tenser varies with respect
+to another. But what does this question even mean? Well, I claim there is
+only one sensible explanation. A tenser after all is just a collection of 
+functions. So the derivative of one tenser with respect to another, say 
+$\frac{\partial A[i_1, i_2, \dots i_n]}{\partial B[j_1, j_2, \dots j_m]}$ can
+only be a new tenser  whose entries are the derivatives of \textit{each} function in $A$ with \textit{each}
+function in $B$.
+
+This instantly leads to the definition:
+
+\begin{align*}
+&A \equiv (n, S_A, F_a) \quad B \equiv (m, S_B, F_b) \\
+&C \equiv (n+m, (S_A, S_B), F) \\
+&F(i_1, i_2, \dots i_n, j_1, j_2, \dots j_m) \equiv 
+    \frac{\partial A[i_1, i_2, \dots i_n]}{\partial B[j_1, j_2, \dots j_m]}
+\end{align*}
+
+Note that this is perfectly well defined, since
+$A[i_1, i_2, \dots i_n]: \mathbb R \rightarrow \mathbb R$. Similarly,
+$B[j_1, j_2, \dots j_m]: \mathbb R \rightarrow \mathbb R$, and we hopefully
+know how to differentiate single variable functions.
+
+The $C$ as written above is often colourfully written as:
+\begin{align*}
+&\frac{\partial A}{\partial B} \\
+&\frac{\partial A[i_1, i_2, \dots i_n]}{\partial B[j_1, j_2, \dots j_m]}
+\end{align*}
+
+and many other abuses of notation. But never forget what it is doing: It is
+simply creating a convenient way to consider the change of every component of $A$
+relative to every component of $B$.
+
+
+\section{The derivative $\frac{\partial x^T x}{\partial x}$}
+
+Notice that if $x$ is an honest to god vector, the above expression makes no
+sense. For example, let $x = (5, 5) \in \mathbb R^2$. Now, $x^T x = 50$,
+leading to the absurd expression $\frac{\partial 50}{\partial (5, 5)}$,
+which is quite senseless since differentiation is only defined for \emph{functions}.
+
+Hence, whenever people write such expressions, they really mean a rank 1, shape (n) tenser.
+that is, an $n$-tuple of scalar functions, each function describing the value
+of the $n$th component of the vector, relative to some parametrization.
+
+
+Let $x \equiv (r \equiv 1, S \equiv (2), F_x)$. Now, 
+$x^T x \equiv (r\equiv 0, S\equiv(()), F_{xtx}\equiv F_x(1) F_x(1) + F_x(2)F_x(2) = F_x(1)^2 + F_x(2)^2)$
+
+Let us now calculate $\frac{\partial x^Tx}{\partial x}$ as we have agreed upon above:
+
+\begin{align*}
+ &\frac{\partial x^Tx}{\partial x} (r \equiv 0+1, S \equiv 2, F_{der}) \\
+ &F_{der}[][1] = \frac{\partial F_{xtx}}{\partial F_x(1)}  = \frac{\partial F_x(1)^2 + F_x(2)^2}{\partial F_x(1)}
+    = 2 F_x(1) \\
+ &F_{der}[][2] = \frac{\partial F_{xtx}}{\partial F_x(2)}  = \frac{\partial F_x(1)^2 + F_x(2)^2}{\partial F_x(2)}
+    = 2 F_x(2) \\
+\end{align*}
+
+Hence, $\frac{\partial x^Tx}{\partial x} = 2 \cdot x$.
+
+
+We can show that the collection of tensers form a vector space over $\mathbb R$,
+since functions $\mathbb R \rightarrow \mathbb R$ form a vector space over $\mathbb R$,
+and a tenser is a clever collection of such scalar functions. Hence, the
+notation $2 \cdot x$ is interpreted in terms of this vector space structure.
+
+\end{document}
+
+# x^Tx := x_i x^i
+# dx^Tx/dx := d{x_i x^i}{d x_j} = d{x_i x^i}{d x_i} . d{x_i}{x_j}
+# dx^Tx/dx := d{x_i x^i}{d x_j} = \sum_i 2 x_i . δ(i,j)
+                                = 2 x_j
