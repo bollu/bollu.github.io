@@ -1090,6 +1090,136 @@ $ p←⍳≢d ⋄ d2nodes←{⊂⍵}⌸d ⋄ findp←{pix ← ⍺⍸⍵ ⋄ p[�
   since all the writes into the `p` vector are independent: we only write the
   parent of the current node we are looking at.
 
+
+### 3.4: Computing nearest Parent by predicate
+
+I'm going to simplify the original presentation by quite a bit.
+
+
+```
+     a b c d e f g h i  | names
+     0 1 2 3 4 5 6 7 8  | indexes
+P ← (0 0 1 2 0 4 5 6 7) | parents
+X ← (0 1 0 0 1 1 0 0 0) | marked nodes
+      
+     a:0    
+┌────┴───┐
+b:1(X)   e:4(X)        
+|        |
+c:2      f:5(X)                 
+|        |
+d:3      g:6
+         │
+         h:7
+         |
+         i:8
+```
+
+We want to find nodes marked as `X` that are the closest parents to a
+given node. The `X` vector is a boolean vector that has a `1` at
+the index of each `X` node: `(b, e, f)`. So, the indexes `(1, 4, 5)` 
+are `1` in the `X` vector.
+
+The output we want is the vector:
+
+```
+      0 1 2 3 4 5 6 7 8  | indexes
+      a b c d e f g h i  | names
+PX ← (0 0 1 1 0 4 5 5 5) | closest X parent index
+      a a b b a e f f f  | closest X parent name
+
+    a:0    
+┌────┴───┐
+b:1(X)   e:4(X)        
+|        |
+c:2      f:5(X)                 
+|        |
+d:3      g:6
+         │
+         h:7
+         |
+         i:8
+```
+
+The incantation is:
+
+```
+$ I←{(⊂⍵)⌷⍺} ⍝ index LHS by RHS | (100 101 102 103)[(3 1 2)] := 103 101 102
+$ PX ← P I@{X[⍵]≠1} ⍣ ≡ P
+0 0 1 1 0 4 5 5 5
+```
+
+TODO. At any rate, since this does not require any writes and purely reads,
+and nor does it need any synchronization, this is fairly straightforward
+to implement on the GPU.
+
+### 3.5: Lifting subtrees to the root
+
+Once we have marked our `X` nodes, we now wish to lift entire subtrees of `X`
+up to the root.
+-  This pass displays how to lift subtrees and add new nodes to replace the subtree's original nodes.
+- Luckily, there are no _sibling_ relationships that need to be maintained since
+  we are uprooting an entire subtree.
+- There are no _ordering constraints_ on how the subtrees should be arranged at
+  the top.
+- Hence, we can simply add new nodes to the _end_ of the tree (in terms of the preorder traversal).
+  Adding to the middle of the tree will be discussed later.
+
+There is some good advice in the thesis:
+> When using APL primitives this way, it may be good to map
+> their names and definitions to the domain of trees. For example,
+> the primitive `⍸Predicate` is read as "the nodes where `Predicate` holds"
+> and not as "the indexes where `Predicate` is 1".
+
+For example, given the tree:
+
+```
+      0 1 2 3 4 5 6 7 8  | indexes
+      a b c d e f g h i  | names
+PX ← (0 0 1 1 0 4 5 5 5) | closest X parent index
+      a a b b a e f f f  | closest X parent name
+
+    a:0    
+┌────┴───┐
+b:1(X)   e:4(X)        
+|        |
+c:2      f:5(X)                 
+         |
+         g:6
+```
+
+we want the transformed tree to be:
+
+```
+    a:0               
+┌────┴───┐           
+bp:1(X)   ep:4(X)        
+---------
+b:1(X)
+|
+c:2
+---------
+e:4
+|
+fp:5
+---------
+f:5(X)              
+|
+g:6
+```
+### 3.6: Wrapping Expressions
+### 3.7: Lifting Guard Test Exprsessions
+### 3.8: Couting rank of index operators
+### 3.9: Flattening Expressions
+### 3.10: Associating Frame slots and variables
+### 3.11: Placing frames into a lexical stack
+### 3.12: Recording Exported names
+### 3.13: Lexical Resolution
+
+### 5.2.1 Traversal Idioms
+### 5.2.2 Edge Mutation Idioms
+### 5.2.3 Node Mutation Idioms
+
 # [Things I wish I knew when I was learning APL](#things-i-wish-i-knew-when-i-was-learning-apl)
 
 - For pasting multi-line code, 
