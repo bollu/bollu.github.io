@@ -48,6 +48,8 @@ document.addEventListener("DOMContentLoaded", function() {
 #### Table of contents:
 
 - [My Favourite APLisms](#my-favourite-aplisms)
+- [Proof of chinese remainder theorem on rings](#proof-of-chinese-remainder-theorem-on-rings)
+- [monic and epic arrows](#monic-and-epic-arrows)
 - [The geometry of Lagrange multipliers](#the-geometry-of-lagrange-multipliers)
 - [Efficient tree transformations on GPUs](#efficient-tree-transformations-on-gpus)
 - [Things I wish I knew when I was learning APL](#things-i-wish-i-knew-when-i-was-learning-apl)
@@ -153,6 +155,27 @@ xs←(1 1 3 3 3 6) ⋄ n←(⌈/xs)⍴0 ⋄ n[xs]+←1 ⋄ n
 
 The use of `n[x] +←1` will stably write `+1` as many times as there are repeated
 indexes in `xs`.
+
+# [Proof of chinese remainder theorem on rings](#proof-of-chinese-remainder-theorem-on-rings)
+
+https://www.youtube.com/watch?v=YxyxP894MLk
+
+
+# [monic and epic arrows](#monic-and-epic-arrows)
+
+This is trivial, I'm surprised it took me _this long_ to internalize this fact.
+
+When we convert a poset $(X, \leq)$ into a category, we stipulate that
+$x \rightarrow y \iff x \leq y$.
+
+If we now consider the category $Set$ of sets and functions between sets,
+and arrow $A \xrightarrow{f} B$ is a function from $A$ to $B$. If $f$ is 
+monic, then we know that $|A| = |Im(f)| \leq |B|$. That is, a monic arrow
+behaves a lot like a poset arrow!
+
+Similarly, an epic arrow behaves a lot like the arrow in the inverse poset.
+I wonder if quite a lot of category theoretic diagrams are clarified by thinking
+of monic and epic directly in terms of controlling sizes.
 
 # [The geometry of Lagrange multipliers](#the-geometry-of-lagrange-multipliers)
 If we want to minise a function $f(x)$ subject to the constraints $g(x) = c$,
@@ -7206,7 +7229,47 @@ less than infinity.
 
 Hence, $G_w$ is a connected directed acyclic graph, so a tree.
 
+## March 13th
+
+#### Bellman Ford  (Single source shortest path algorithm)
+
+- We have a root node $i_0$ whose shortest path we are trying to discover.
+- Each vertex $k$ decides $d(k, i_0) = \min_{n \rightarrow k} d(k, n) + d(n, i_0)$.
+- This is a dataflow algorithm!
+- Once we actually know the single-source shortest paths, we can form a tree
+  of shortest-path edges.
+- At timestep $i$, all nodes at distance $i$ in the shortest path tree will
+  indeed have learnt the shortest path.
+- Since it's a tree, at most $|V| - 1$ non-trivial levels (level 0 is trivial).
+  Hence, time complexity is $|V| - 1$.
+
+
 #### Chandy-Misra Algorithm: Similar to Bellman Ford
+
+
+
+#### Netchange algorithm for computing min-hop routing tables
+
+Same as chandy-misra, but we allow edges to fail.
+- We assume that nodes are notified failures and repairs of their
+  adjacent channels.
+
+- If we get a packet that is addressed to someone else, and our distance to
+  that node is not infinity, then we send it to our first hop.
+
+- If we get a packet that is addressed to someone else, and our distance to
+  that node is infinity, discard.
+
+
+- Let shortest path from $z \rightarrow w$ be through $u$ as $z \rightarrow u \rightarrow w$.
+  Suppose chanell $uw$ fails. $u$ recomputes distance to $w$ as $d(w) = 1 + d(z, w) = 1 + 2 = 3$.
+  Then it sets $nb(w) = z$. Is this incorrect? 
+
+- __ANSWER:__ No, it's not incorrect. Now $z$ will be invalidated and it'll attempt
+  to recompute its distance, causing its dinstance to go higher (say 5).
+  This invalidates $u$, leading to an increasing sequence of distances $3 \rightarrow 5 \rightarrow 7 \dots$.
+  If we have an uppoer bound on the distance (`DIAMETER`) then we know that
+  this is wrong.
 
 # Link dump
 
