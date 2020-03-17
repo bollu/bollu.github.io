@@ -227,17 +227,17 @@ The resulting monoid $M \ltimes_{\phi} N$ has identity $(0_M, 1_N)$.
 > group of symmetries to the triangularization, and then precisely write it out
 > in all pedantic detail.
 
-Let an experiment $E \equiv (X, A, \curverightarrow)$. Then we define $\Pi$
+Let an experiment be $ E \equiv (X, A, \curverightarrow) $. Then we define $\Pi$
 is a _symmetry_ of $E$ iff:
 
 1. $\Pi: X \rightarrow X$ is a permutation of $X$.
 
 2. $\Pi$ commutes with the action of each $a$: 
-   $\Pi(a \curverightarrow x) = a \curverightarrow \Pi(x)$.
+       $ \Pi(a \curverightarrow x) = a \curverightarrow \Pi(x) $.
 
 We say that the theory $E$ is _transitive_ (in the action sense) if for
 all $x_1, x_2 \in X, x_1 \neq x_2$, there exists $a_1, a_2, \dots a_n$ 
-such that $x_2 = a_n \curverightarrow \dots (a_1 \curverightarrow x_1)$.
+such that $ x_2 = a_n \curverightarrow \dots (a_1 \curverightarrow x_1) $.
 
 Facts of the symmetries of a system:
 
@@ -262,7 +262,7 @@ express the symmetry group in terms of:
 
 !! (X, S) \leq (G, G)  \wr (\{ O_1, O_2, \dots O_k\}, T) !!
 
-#[The cutest way to write semidirect products](#the-cutest-way-to-write-semidirect-products)
+# [The cutest way to write semidirect products](#the-cutest-way-to-write-semidirect-products)
 
 Given two monoids $(M, +, 0_M)$ and $(N, \times, 1_N)$, and a 
 homomorphism $\phi: N \rightarrow End(M)$, where $End(M)$
@@ -275,9 +275,14 @@ with the multiplication rule:
 This can also be written down as:
 
 !!
-\begin{bmatrix} 1 & 0 \\ m & n \end{bmatrix}
-\begin{bmatrix} 1 & 0 \\ m' & n' \end{bmatrix} = 
-\begin{bmatrix} 1 & 0 \\ m + n \cdot m' & n \times n' \end{bmatrix}
+\begin{bmatrix}
+1 & 0 \\
+m & n \end{bmatrix}
+\begin{bmatrix} 1 & 0
+\\ m' & n'
+\end{bmatrix} = 
+\begin{bmatrix} 1 & 0 \\
+m + n \cdot m' & n \times n' \end{bmatrix}
 !!
 
 This way of writing down semidirect products as matrices makes many things
@@ -2016,10 +2021,10 @@ open set $O \in \tau$, we associate a turing machine $T_O$.
 which obeys the relation:
 
 $$
-\begin{align*}
+\begin{aligned}
 x &&\in O \iff \text{$T_O$ halts on input $x$} \\
 x &&\not \in O \iff \text{$T_O$ does not halts on input $o$}
-\end{align*}
+\end{aligned}
 $$
 
 #### Geometry --- 1D
@@ -2398,11 +2403,11 @@ $
 The mobius function will allow us to perform _mobius inversion_:
 
 $$
-\begin{align*}
+\begin{aligned}
   f(n) &\equiv \sum_{d \vert n} g(d) = \sum_{d \vert n} g(d) 1(n/d) = g \star 1 \\
   f \star 1^{-1} &=  g \star 1 \star 1^{-1} \\
   f \star \mu &= g
-\end{align*}
+\end{aligned}
 
 That is, we originally had $f$ defined in terms of $g$. We can
 recover an expression for $g$ in terms of $f$.
@@ -2652,21 +2657,21 @@ The usual solution is to take the harmonic numbers,
 $H_n \equiv \sum_{i=1}^n 1/i$. Then, we show that:
 
 $$
-\begin{align*}
+\begin{aligned}
 \lim_{n \rightarrow \infty} \left| H_{n+1} - H_n \right|
 &= \left| \frac{1}{n+1} - \frac{1}{n} \right| \\
 &= \frac{1}{(n+1)n} \rightarrow 0
-\end{align*}
+\end{aligned}
 $$
 
 $$
-\begin{align*}
+\begin{aligned}
 \lim_{n \rightarrow \infty} \left|H_{2n} - H_n \right|
 &= \left|\frac{1}{2n} - \frac{1}{n} \right| \\
 &= \sum_{i=n+1}^{2n} \frac{1}{n+1} + \frac{1}{n+2} + \dots + \frac{1}{2n} \\
 &\geq \sum_{i=n+1}^{2n} \frac{1}{2n} + \frac{1}{2n} + \dots + \frac{1}{2n} \\
 &\geq \frac{n}{2n} = \frac{1}{2} \not \xrightarrow{x \rightarrow \infty} 0 \\
-\end{align*}
+\end{aligned}
 $$
 
 
@@ -2676,23 +2681,23 @@ We can much more simply choose $a_n = \log(n)$. This yields the simple
 calculation:
 
 $$
-\begin{align*}
+\begin{aligned}
 \lim_{n \rightarrow \infty} a_{n+1} - a_n = \log(n+1) - \log(n) 
 = \log((n+1)/n))
 = \log(1 + 1/n) \xrightarrow{n \rightarrow \infty} \log(1) = 0
-\end{align*}
+\end{aligned}
 $$
 
 while on the other hand,
 
 
 $$
-\begin{align*}
+\begin{aligned}
 \lim_{n \rightarrow \infty} a_{2n} - a_n 
 = \log(2n) - \log(n) 
 = \log(2) + \log(n) - \log(n)
 = \log 2 \neq 0
-\end{align*}
+\end{aligned}
 $$
 
 I find this far cleaner conceptually, since it's "obvious" to everyone
@@ -2747,13 +2752,13 @@ We notice that $K_M$ is invariant under the action of $A$.
 
 Now, let's consider:
 $$
-\begin{align*}
+\begin{aligned}
 K_m(A, x) &\equiv span \{x, Ax, A^2x, \dots A^m x \} \\
         &= span \{ A^{-1} b, b, Ab, \dots A^{m-1} x \} \qquad \text{(substitute $x = A^{-1}b$)} \\
         &= A span \{ A^{-1} b, b, Ab, \dots A^{m-1} b\} \qquad \text{(Invariance of Krylov subspace)} \\
         &= span \{b, Ab, \dots A^m b\}  \\
         &= K_m(A, b)
-\end{align*}
+\end{aligned}
 $$
 
 We learnt that $Ax = b$ has a solution in $K_m(A, b)$. Using this, we can build
@@ -2817,10 +2822,10 @@ need it.
 We have a system we wish to simulate using hamilton's equations:
 
 $$
-\begin{align*}
+\begin{aligned}
 \frac{\partial q}{\partial t} = \frac{\partial H}{\partial p}|_{(p_0, q_0)} \\
 \frac{\partial p}{\partial t} = -\frac{\partial H}{\partial q}|_{(p_0, q_0)} \\
-\end{align*}
+\end{aligned}
 $$
 
 We want to simulate a system using these differential equations. We will begin
@@ -2993,7 +2998,7 @@ sense.
 - Forward mode equations:
 
 $$
-\begin{align*}
+\begin{aligned}
 z &= max(x, y) \\
 \frac{\partial x}{\partial t} &= ? \\
 \frac{\partial y}{\partial t} &= ? \\
@@ -3002,7 +3007,7 @@ z &= max(x, y) \\
         \frac{\partial x}{\partial t} & \text{if $x > y$} \\
         \frac{\partial y}{\partial t} & \text{otherwise} \\
     \end{cases}
-\end{align*}
+\end{aligned}
 $$
 
 We can compute $\frac{\partial z}{\partial x}$ by setting $t = x$.
@@ -3021,7 +3026,7 @@ $x > y$, then we know that $z$ is as sensitive to $t$ as $x$ is.
 - Reverse mode equations:
 
 $$
-\begin{align*}
+\begin{aligned}
 z &= max(x, y) \\
 \frac{\partial t}{\partial z} &= ? \\
 \frac{\partial t}{\partial x}
@@ -3034,7 +3039,7 @@ z &= max(x, y) \\
     \frac{\partial t}{\partial z} & \text{$if y > x$} \\
     0 & \text{otherwise}
   \end{cases}
-\end{align*}
+\end{aligned}
 $$
 
 We can compute $\frac{\partial z}{\partial x}, \frac{\partial z}{\partial y}$
@@ -3052,13 +3057,13 @@ Otherwise, it is not sensitive, and $\frac{\partial t}{\partial x} = 0$.
 - Forward mode equations:
 
 $$
-\begin{align*}
+\begin{aligned}
 z &= sin(x) \\
 \frac{\partial x}{\partial t} &= ? \\
 \frac{\partial z}{\partial t} 
   &= \frac{\partial z}{\partial x} \frac{\partial x}{\partial t} \\
   &= cos(x) \frac{\partial x}{\partial t}
-\end{align*}
+\end{aligned}
 $$
 
 We can compute $\frac{\partial z}{\partial x}$ by setting $t = x$.
@@ -3067,13 +3072,13 @@ That is, setting $\frac{\partial x}{\partial t} = 1$.
 - Reverse mode equations:
 
 $$
-\begin{align*}
+\begin{aligned}
 z &= sin(x) \\
 \frac{\partial t}{\partial z} &= ? \\
 \frac{\partial t}{\partial x}
   &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial x} \\
   &= \frac{\partial t}{\partial z} cos(x)
-\end{align*}
+\end{aligned}
 $$
 
 
@@ -3085,7 +3090,7 @@ That is, setting $\frac{\partial z}{\partial t} = 1$.
 - Forward mode equations:
 
 $$
-\begin{align*}
+\begin{aligned}
 z &= x + y \\
 \frac{\partial x}{\partial t} &= ? \\
 \frac{\partial y}{\partial t} &= ? \\
@@ -3094,14 +3099,14 @@ z &= x + y \\
     \frac{\partial z}{\partial y} \frac{\partial y}{\partial t} \\
   &= 1 \cdot \frac{\partial x}{\partial t} + 1 \cdot \frac{\partial y}{\partial t}
   = \frac{\partial x}{\partial t} + \frac{\partial y}{\partial t}
-\end{align*}
+\end{aligned}
 $$
 
 
 - Reverse mode equations:
 
 $$
-\begin{align*}
+\begin{aligned}
 z &= x + y \\
 \frac{\partial t}{\partial z} &= ? \\
 \frac{\partial t}{\partial x}
@@ -3110,7 +3115,7 @@ z &= x + y \\
 \frac{\partial t}{\partial y}
   &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial y} \\
   &= \frac{\partial t}{\partial z} \cdot 1 = \frac{\partial t}{\partial z}
-\end{align*}
+\end{aligned}
 $$
 
 
@@ -3119,7 +3124,7 @@ $$
 - Forward mode equations:
 
 $$
-\begin{align*}
+\begin{aligned}
 z &= x y \\
 \frac{\partial x}{\partial t} &= ? \\
 \frac{\partial y}{\partial t} &= ? \\
@@ -3127,13 +3132,13 @@ z &= x y \\
   &= \frac{\partial z}{\partial x} \frac{\partial x}{\partial t} + 
     \frac{\partial z}{\partial y} \frac{\partial y}{\partial t} \\
   &= y \frac{\partial x}{\partial t} + x \frac{\partial y}{\partial t}
-\end{align*}
+\end{aligned}
 $$
 
 - Reverse mode equations:
 
 $$
-\begin{align*}
+\begin{aligned}
 z &= x y \\
 \frac{\partial t}{\partial z} &= ? \\
 \frac{\partial t}{\partial x}
@@ -3142,7 +3147,7 @@ z &= x y \\
 \frac{\partial t}{\partial y}
   &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial y}
   = \frac{\partial t}{\partial z} \cdot x
-\end{align*}
+\end{aligned}
 $$
 
 
@@ -3151,7 +3156,7 @@ $$
 - Forward mode equations:
 
 $$
-\begin{align*}
+\begin{aligned}
 z &= x + y \\
 \frac{\partial x}{\partial t} &= ? \\
 \frac{\partial y}{\partial t} &= ? \\
@@ -3160,13 +3165,13 @@ z &= x + y \\
     \frac{\partial z}{\partial y} \frac{\partial y}{\partial t} \\
   &= 1 \cdot \frac{\partial x}{\partial t} - 1 \cdot \frac{\partial y}{\partial t}
   = \frac{\partial x}{\partial t} - \frac{\partial y}{\partial t}
-\end{align*}
+\end{aligned}
 $$
 
 - Reverse mode equations:
 
 $$
-\begin{align*}
+\begin{aligned}
 z &= x - y \\
 \frac{\partial t}{\partial z} &= ? \\
 \frac{\partial t}{\partial x}
@@ -3175,7 +3180,7 @@ z &= x - y \\
 \frac{\partial t}{\partial y}
   &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial y} \\
   &= \frac{\partial t}{\partial z} \cdot -1 = -\frac{\partial t}{\partial z}
-\end{align*}
+\end{aligned}
 $$
 
 
@@ -3320,7 +3325,7 @@ the edge in terms of vertices, just like we would describe a direction vector
 The action of the operator on a linear combination of edges is:
 
 $$
-\begin{align*}
+\begin{aligned}
 &\partial_{EV}: \mathcal E \rightarrow \mathcal V \\
 &\partial_{EV}(1, 0, 0) \equiv (1, -1, 0) \qquad o \mapsto r - g \\
 &\partial_{EV}(0, 1, 0) \equiv (-1, 0, 1) \qquad m \mapsto b - r \\
@@ -3330,7 +3335,7 @@ $$
   s \partial_{EV}(1, 0, 0) + 
   t \partial_{EV}(0, 1, 0) + 
   u \partial_{EV}(0, 0, 1) = (s - t, u - s, t - u)
-\end{align*}
+\end{aligned}
 $$
 
 Now, notice that to traverse the cycle, we should traverse the orange edge, 
@@ -3344,11 +3349,11 @@ entered and exited each vertex, so the total sum must be $0$.
 Formally:
 
 $$
-\begin{align*}
+\begin{aligned}
   &\partial_{EV}(s, t, u) \equiv (s - t, u - s, t - u) \\
   &o + m + c = (1, 1, 1) \in \mathcal E \quad
   \partial_{EV}((1, 1, 1) = (1 - 1, 1 - 1, 1 - 1) = (0, 0, 0)
-\end{align*}
+\end{aligned}
 $$
 
 ##### Formal definition of cycles
@@ -3363,23 +3368,23 @@ which map to zero)
 So, we define (tentatively) the first homology group:
 
 $$
-\begin{align*}
+\begin{aligned}
 H_1 \equiv Kernel(\partial_{EV}) \equiv
 \left \{ (a, b, c) \in \mathcal E \mid \partial_EV((a, b, c)) = (0, 0, 0) \right \}
 \subset \mathcal E
-\end{align*}
+\end{aligned}
 $$
 
 If we try to compute this, we will have to have:
 
 $$
-\begin{align*}
+\begin{aligned}
 H_1 &\equiv Kernel(\partial_{EV}) \\
 &= \{ (s, t, u) ~\mid~ \partial_{EV}(s, t, u) = (0, 0, 0) ~ s, t, u \in \mathbb Z \} \\
 &= \{ (s, t, u) ~\mid~ (s-t, u-s, t-u) = (0, 0, 0) ~ s, t, u \in \mathbb Z  \} \\
 &= \{ (s, t, u) ~\mid~ s = t = u \quad s, t, u \in \mathbb Z \} \\
 &= \{ (x, x, x) ~\mid~ x \in \mathbb Z \} \simeq \mathbb Z
-\end{align*}
+\end{aligned}
 $$
 
 So, we know that we have a $\mathbb Z$ worth of cycles in our triangle, which
@@ -3412,12 +3417,12 @@ which counts copies of our face $f$, and we define another boundary operator,
 such that the boundary of the face $f$ is $o + m + c$.
 
 $$
-\begin{align*}
+\begin{aligned}
 &\partial_{FE} : \mathcal F \rightarrow \mathcal E \\
 &\partial_{FE}(1) \equiv (1, 1, 1)  \\
 &\text{(Extend using linearity)} \\
 &\partial_{FE}(c) \equiv c \partial(1) = (c, c, c)
-\end{align*}
+\end{aligned}
 $$
 
 Now, we should notice that the _image_ of $\partial_{FE}$ is a loop
@@ -4413,18 +4418,18 @@ for every negative coefficient, we arrive at:
 
 
 $$
-\begin{align*}
+\begin{aligned}
 1/4 &= 1/(1+p) = 1 - p + p^2 - p^3 + p^4 + \cdots \\
 &= 1 + (- p + 3p) + (- p^3 + 3p^3)  +  \cdots \\
 &= 1 + 2p + 2p^3 + \cdots
-\end{align*}
+\end{aligned}
 $$
 
 We can verify that this is indeed correct, by multiplying with $4 = (1 + p)$
 and checking that the result is $1$:
 
 $$
-\begin{align*}
+\begin{aligned}
 &(1 + p)(1 + 2p + 2p^3 + \cdots) \\
 &= (1 + p) + (2p + 2p^2) + (2p^3 + 2p^4) + \cdots \\
 &= 1 + 3p + 2p^2 + 2p^3 + 2p^4 + \cdots \\
@@ -4435,7 +4440,7 @@ $$
 &= 1 + 3p^3 + 2p^4 + \cdots \\
 &= 1 + 3p^4 + \cdots \\
 &= 1 + \cdots = 1
-\end{align*}
+\end{aligned}
 $$
 
 What winds up happening is that all the numbers after $1$ end up being cleared
@@ -4453,7 +4458,7 @@ $-1$. This eventually leads us to an infinite series expansion for $-1$. Written
 down formally, the calculation proceeds as:
 
 $$
-\begin{align*}
+\begin{aligned}
 -1 &= -1 + p - p  \qquad \text{(borrow $p$, and subtract to keep equality)} \\
 &= (p - 1) - p \qquad \text{(Now we have a problem of $-p$)} \\
 &= (p - 1) - p + p^2 - p^2  \\
@@ -4462,7 +4467,7 @@ $$
 &= (p - 1) + p(p - 1) + p^2(p - 1) - p^3 \\
 &\text{(Generalizing the above pattern)} \\
 -1 &= (p - 1) + p(p - 1) + p^2(p - 1) + p^3(p - 1) + p^4(p - 1) + \cdots \\
-\end{align*}
+\end{aligned}
 $$
 
 This now gives us access to negative numbers, since we can formally multiply
@@ -4552,14 +4557,14 @@ with those for $n = 1$. So, we solve for:
 Solving the first of these:
 
 $$
-\begin{align*}
+\begin{aligned}
 (3 + 7k)^2 &\equiv 2 \mod 49 \\
 9 + 42 k + 49k^2 &\equiv 2 \mod 49 \\
 9 + 42 k + 0k^2 &\equiv 2 \mod 49 \\
 7 + 42 k &\equiv 0 \mod 49 \\
 1 + 6 k &\equiv 0 \mod 49 \\
 k &\equiv 1 \mod 7
-\end{align*}
+\end{aligned}
 $$
 
 This gives the solution $X \equiv 10 \mod 49$. The other branch ($X = 4 + 7k$)
@@ -4792,10 +4797,10 @@ A subset $Q\subseteq S$ is _semidecidable_, if there exists a turing machine
 $\hat Q: Q \rightarrow \{ \bot, \top \}$, such that:
 
 $$
-\begin{align*}
+\begin{aligned}
 \hat Q(q) = \top \iff q \in Q \\
 \hat Q(q) = \bot \iff q \notin Q \\
-\end{align*}
+\end{aligned}
 $$
 
 Where $\top$ signifies stopping at a state and returning `TRUE`, and
