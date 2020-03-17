@@ -47,6 +47,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 
+- [Energy as triangulaizing state space](#energy-as-triangulaizing-state-space)
+- [The cutest way to write semidirect products](#the-cutest-way-to-write-semidirect-products)
 - [My Favourite APLisms](#my-favourite-aplisms)
 - [Proof of chinese remainder theorem on rings](#proof-of-chinese-remainder-theorem-on-rings)
 - [monic and epic arrows](#monic-and-epic-arrows)
@@ -68,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Geometric proof of Cauchy Schwarz inequality](#geometric-proof-of-cauchy-schwarz-inequality)
 - [Dataflow analysis using Grobner basis](#dataflow-analysis-using-grobner-basis)
 - [Fenwick trees and orbits](#fenwick-trees-and-orbits)
-- [Dirichlet inversion (WIP)](#dirichlet-inversion)
+- [Dirichlet inversion](#dirichlet-inversion)
 - [Incunabulum for the 21st century: Making the J interpreter compile in 2020](#incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020)
 - [An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)](#an-example-of-a-sequence-whose-successive-terms-get-closer-together-but-isnt-cauchy-does-not-converge)
 - [Krylov subspace method](#krylov-subspace-method)
@@ -138,6 +140,170 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Link Dump](#link-dump)
 
 
+# [Energy as triangulaizing state space](#energy-as-triangulaizing-state-space)
+This comes from
+[The wild book](https://en.wikipedia.org/wiki/John_Rhodes_(mathematician)#Books_and_Monographs)
+which I anticipate I'll be posting more of in the coming weeks.
+
+#### Experiments
+
+Let an experiment be a tuple of the phase space $X$, action space $A$,
+and an action of the actions onto the phase space
+$\curverightarrow: A \times X \rightarrow X$. We will write
+$x' = a \curverightarrow x$ to denote the new state of the system
+$x$. So the experiment $E$ is the data
+$E \equiv (X, A, \curverightarrow : A \times X \rightarrow X)$.
+
+#### Coordinate systems.
+
+The existence of the action $\curverightarrow$ allows us to
+write the evolution of the system recursively:
+
+$x_{t+1} = a \rightarrow x_t$.
+
+However, to understand the final state $x_{t+1}$, we need to essentially
+"run the recursion", which does not permit us to _understand the
+experiment_. 
+
+What we really need is the ability to "unroll" the loop. To quote:
+
+> Informally, understanding an experiment $E$ means 
+> introducing coordinates into phase space of $E$ which are in triangular form
+> under the action of the inputs of $E$.
+
+#### Conservation laws as triangular form
+
+We identify certain interesting invariants of a system by two criteria:
+
+1. The parameter $Q(t)$ determines some obviously important aspects of
+   the system. That is, there is a deterministic function $M(Q(t))$ which
+   maps $Q(t)$ to "measure" some internal state of the system.
+
+2. If the values of such a  parameter $Q$ is known at time $t_0$ (denoted $Q(t_0)$)
+    and it is also known what inputs are presented to the
+    system from time $t$ to time $t + \epsilon$
+    (denoted $I[t_0, t_0 + \epsilon]$), then the new value of $Q$ is a
+    deterministic function of $Q(t_0)$ and $I[t_0, t_0+ \epsilon]$.
+
+
+Such parameters allow us to understand a system, since they are deterministic
+parameters of the evolution of the system, while also provding a way to 
+measure some internal state of the system using $M$.
+
+For example, consider a system $x$ with an energy function $e(x)$. If we
+perform an action $a$ on the system $x$, then we can predict the action
+$e(x' = a \curvearrowright x)$ given just $e(x)$ and $a$ --- here,
+$(x' = a \curverightarrow x)$ is the action of the system $a$ on $x$.
+
+> In general, conservation principles give a first coordinate
+> of a triangularization. In the main a large part of physics can be viewed as
+> discovering and introducing functions $e$ of the states $q$ of the
+> system such that under action $a$, $e(a \curverightarrow q)$ depends 
+> only on $e(q)$ and $a$, and **not** on $q$.
+
+
+#### Theory: semidirect and wreath products
+
+Given two monoids $(M, +, 0_M)$ and $(N, \times, 1_N)$, and a homomorphism $\phi: N \rightarrow End(M)$, where $End(M)$
+is the endomorphism group of $M$. We will notate $\phi(n)(m)$ as $n \cdot m \in M$.
+
+Now the semidirect product $M \ltimes_\phi N$ is the set $M \times N$ equipped
+with the multiplication rule:
+- $(m, n) (m', n') = (m + n \cdot m', nn')$
+
+This can also be written down as:
+
+!!
+\begin{bmatrix} 1 & 0 \\ m & n \end{bmatrix}
+\begin{bmatrix} 1 & 0 \\ m' & n' \end{bmatrix} = 
+\begin{bmatrix} 1 & 0 \\ m + n \cdot m' & n \times n' \end{bmatrix}
+!!
+
+The resulting monoid $M \ltimes_{\phi} N$ has identity $(0_M, 1_N)$.
+
+#### Symmetries as triangular form
+
+> We first heuristically indicate the construction involved in going from the
+> group of symmetries to the triangularization, and then precisely write it out
+> in all pedantic detail.
+
+Let an experiment $E \equiv (X, A, \curverightarrow)$. Then we define $\Pi$
+is a _symmetry_ of $E$ iff:
+
+1. $\Pi: X \rightarrow X$ is a permutation of $X$.
+
+2. $\Pi$ commutes with the action of each $a$: 
+   $\Pi(a \curverightarrow x) = a \curverightarrow \Pi(x)$.
+
+We say that the theory $E$ is _transitive_ (in the action sense) if for
+all $x_1, x_2 \in X, x_1 \neq x_2$, there exists $a_1, a_2, \dots a_n$ 
+such that $x_2 = a_n \curverightarrow \dots (a_1 \curverightarrow x_1)$.
+
+Facts of the symmetries of a system:
+
+1. We know that the symmetries of a theory $E$ form a group.
+
+2. If $E$ is transitive, then each symmetry $\Pi$ is a regular permutation
+   --- If there exists an $x$ such that $\Pi(x_f) = x_f$ (a fixed point), then
+   this implies that $\Pi(x) = x$ for _all_ $x$.
+
+3. Let the action split $X$ into disjoint orbits $O_1, O_2, \dots O_k$ from whom
+   we choose representatives $x_1 \in O_1, x_2 \in O_2, \dots x_k \in O_k$.
+   Then, if $E$ is transitive, there is _exactly one_ action that sends a
+   particular $x_i$ to a particular $x_j$. So, on fixing _one component_
+   of an action, we fix _all components_.
+
+To show that this gives rise to a triangulation, we first construct
+a semigroup of the actions of the experiment:
+$S(E) \equiv \{ a_1 \dots a_n : n \geq 1 \text{~and~} a_i \in A \}$.
+
+Now, let $G = Sym(E)$, the full symmetry group of $E$. One can apparently
+express the symmetry group in terms of:
+
+!! (X, S) \leq (G, G)  \wr (\{ O_1, O_2, \dots O_k\}, T) !!
+
+#[The cutest way to write semidirect products](#the-cutest-way-to-write-semidirect-products)
+
+Given two monoids $(M, +, 0_M)$ and $(N, \times, 1_N)$, and a 
+homomorphism $\phi: N \rightarrow End(M)$, where $End(M)$
+is the endomorphism group of $M$. We will notate $\phi(n)(m)$ as $n \cdot m \in M$.
+
+Now the semidirect product $M \ltimes_\phi N$ is the set $M \times N$ equipped
+with the multiplication rule:
+- $(m, n) (m', n') = (m + n \cdot m', nn')$
+
+This can also be written down as:
+
+!!
+\begin{bmatrix} 1 & 0 \\ m & n \end{bmatrix}
+\begin{bmatrix} 1 & 0 \\ m' & n' \end{bmatrix} = 
+\begin{bmatrix} 1 & 0 \\ m + n \cdot m' & n \times n' \end{bmatrix}
+!!
+
+This way of writing down semidirect products as matrices makes many things
+immediately clear:
+
+- The semidirect product is some kind of "shear" transform, since that's 
+  what a shear transformation looks like, matrix-wise.
+
+- The resulting monoid $M \ltimes_{\phi} N$ has identity $(0_M, 1_N)$, 
+  since for the matrix to be identity, we need the 2nd row to be $(0, 1)$.
+
+- The inverse operation if $(M, N)$ were groups would have to be such that
+
+!!
+\begin{bmatrix} 1 & 0 \\ m + n \cdot m' & n \times n' \end{bmatrix} = 
+\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}
+!!
+
+Hence:
+- $nn' = 1$ implies that $n' = 1/n$.
+- $m + n m' = 0$ implies that $m' = -m/n$.
+
+which is indeed the right expression for the inverse.
+
+
+
 # [My Favourite APLisms](#my-favourite-aplisms)
 
 #### identity matrix
@@ -158,7 +324,48 @@ indexes in `xs`.
 
 # [Proof of chinese remainder theorem on rings](#proof-of-chinese-remainder-theorem-on-rings)
 
-https://www.youtube.com/watch?v=YxyxP894MLk
+#### General operations on ideals
+We have at our hands a commutative ring $R$, and we wish to study the ideal
+structure on the ring. In particular, we can combine ideals in the following
+ways:
+
+1. $I + J \equiv \{ i + j : \forall i \in I, j \in J \}$
+2. $I \cap J \equiv \{ x : \forall x \in I \land x \in J \}$
+3. $IJ \equiv \{ ij : \forall i \in I \land j \in J \}$ (**wrong!**)
+
+Is the third one really right? How do we prove that:
+$\forall i_1, i_2 \in I, j_1, j_2 \in J, \exists i_3 \in I, j_3 \in J$ such that
+$i_1 j_2 + i_2 j_2 = i_3 j_3$? 
+
+Indeed, we can't do so in general! For
+a quick counter-example, consider the ring $\mathbb Z[X, Y]$ and the ideals
+$I \equiv \langle X \rangle$, $J \equiv \langle Y \rangle$. Now, note
+that $XY  + X^2Y^2$ cannot be written as the product of a power of $X$
+and a power of $Y$. 
+
+So, the _correct definition_ is to in fact _generate an ideal_ from all
+elements of the form $ij$. So #3 should be:
+
+3.  $IJ \equiv \{ \sum_k i_k j_k : \forall i_k \in I \land j_k \in J \}$ (**right!**)
+
+
+#### Specializing ideal operations to $\mathbb Z$
+
+Let $I \equiv \langle 12 \rangle, J \equiv \langle 20 \rangle$.
+
+- $I + J \equiv \{ 12k + 20l : k, l \in \mathbb Z\} = \langle gcd(12, 20) \rangle = \langle 4 \rangle
+- $IJ \equiv \langle\{ (12 k)(20 l) : k, l \in \mathbb Z \}\rangle = $
+- $I \cap J \equiv ??$
+
+Great. Now, one can conjecture the relation:
+- $(I + J)(I \cap J) = IJ$
+
+by the following chain of inference:
+- $(I + J)(I \cap J) = I(I \cap J) + J(I \cap J) \subseteq IJ + JI = IJ$.
+
+#### References
+
+- [I learnt the material from this course on commutative algebra from IIT bombay](https://www.youtube.com/watch?v=YxyxP894MLk).
 
 
 # [monic and epic arrows](#monic-and-epic-arrows)
@@ -1242,18 +1449,19 @@ There is some good advice in the thesis:
 For example, given the tree:
 
 ```
-      0 1 2 3 4 5 6 7 8  | indexes
-      a b c d e f g h i  | names
-PX ← (0 0 1 1 0 4 5 5 5) | closest X parent index
-      a a b b a e f f f  | closest X parent name
+      0 1 2 3 4 5  | indexes
+      a b c d e f  | names
+P  ← (0 0 1 0 3 4) | parents
+X  ← (0 1 0 1 1 0) | X nodes
+PX ← (0 0 1 0 3 4) | closest X parent index
 
     a:0    
 ┌────┴───┐
-b:1(X)   e:4(X)        
+b:1(X)   d:3(X)        
 |        |
-c:2      f:5(X)                 
+c:2      e:4(X)                 
          |
-         g:6
+         f:5
 ```
 
 we want the transformed tree to be:
@@ -1275,6 +1483,14 @@ f:5(X)
 |
 g:6
 ```
+
+We first look for nodes that need to be lifted.  There are:
+- Non-root nodes (ie, nodes whose parents are not themselves: `p≠(⍳≢p)`) 
+- Which have the property `X`.
+```
+nodes←⍸(X ∧ p≠(⍳≢p))  ⍝ ⍸:pick indexes.
+```
+
 ### 3.6: Wrapping Expressions
 ### 3.7: Lifting Guard Test Exprsessions
 ### 3.8: Couting rank of index operators
@@ -1612,31 +1828,7 @@ A matrioid $M$ is a set $X$ equipped with an independence set $I \subseteq 2^X$.
 Let $V$ be a vector space. The independent sets $I$ are of the form:
 
 
-
-$$
-I \equiv \{ S \subseteq V ~:~ \text{vectors in $S$ are lineary independent} \}
-$$
-
-
-
-$$I \equiv \{ S \subseteq V ~:~ \text{vectors in $S$ are lineary independent} \}$$
-
-
-
 !! I \equiv \{ S \subseteq V ~:~ \text{vectors in $S$ are lineary independent} \} !!
-
-\\[
-I \equiv \{ S \subseteq V ~:~ \text{vectors in $S$ are lineary independent} \}
-\\]
-
-
-
-\[
-I \equiv \{ S \subseteq V ~:~ \text{vectors in $S$ are lineary independent} \}
-\]
-
-
-%[ I \equiv { S \subseteq V ~:~ \text{vectors in $S$ are lineary independent} } %]
 
 This is an independence system because the empty set is linearly independent,
 and subsets of a linearly independent collection of vectors will be linearly
@@ -2184,27 +2376,24 @@ _arithmetic functions_, since they operate on the integers.
 
 We introduce an operator $f \star g: \mathbb Z \rightarrow \mathbb R$.
 It is defined by:
-
-$$
-(f \star g)(n) \equiv \sum_{d \vert n} f(d) g(n/d).
-$$
+- $(f \star g)(n) \equiv \sum_{d \vert n} f(d) g(n/d)$
 
 We will show that the set of arithmetic functions forms a group
 under the operator $\star$, with identity:
 
-$$
-u(n) \equiv \floor{1/n} = \begin{cases} 1 & $n = 1$ \\ 0 & \text{otherwise} \end{cases}
-$$
+-  $id_\star(n) \equiv \floor{1/n} = \begin{cases} 1 & $n = 1$ \\ 0 & \text{otherwise} \end{cases}$
+
 
 The reason all of this is interesting is that the inverse of the constant function $1(n) \equiv 1$
-is going to be this function called as the mobius function $\mu:
-$$
-\mu(n) \e= p_1^\alpha_1 p_2^\alpha_2 \dots p_r^\alpha_r) \equiv
+is going to be this function called as the mobius function $\mu$:
+
+$
+\mu(n=p_1^\alpha_1 p_2^\alpha_2 \dots p_r^\alpha_r) \equiv
 \begin{cases}\{
   0 & \textt{if any $\alpha_i > 1$} \\
   (-1)^{\alpha_1 + \alpha_2 + \dots + \alpha_r} & \text{if all $\alpha_i \in \{ 0, 1 \}$}
 \end{cases}
-$$
+$
 
 The mobius function will allow us to perform _mobius inversion_:
 
@@ -2223,15 +2412,18 @@ recover an expression for $g$ in terms of $f$.
 We claim that the set of functions $\{ \mathbb Z \rightarrow \mathbb C \}$
 is a commutative group, with the group operation $\star$ such that:
 
-$$
-(f \star g)(n) \equiv \sum_{d \vert n} f(d) g(n/d).
-$$
+- $(f \star g)(n) \equiv \sum_{d \vert n} f(d) g(n/d)$.
 
-with the identity element being $istar(n) \equiv \lfloor 1 / n \rfloor$. The idea
+with the identity element being $id_\star(n) \equiv \lfloor 1 / n \rfloor$. The idea
 is that if $(n = 1)$, then $\lfloor 1/1 \rfloor = 1$, and for any other
 number $n > 0$, $1/n < 1$, hence $\lfloor 1/n \rfloor = 0$.
 
 ### verification of $istar$ being the identity
+- $(f \star id_\star)(n) \equiv \sum_{d \vert n} f(d) id_\star(n/d) 
+  = f(n) id_\star(1) + \sum_{d \vert n, d > 1} f(n) id_\star(d)
+  = f(n) \cdot 1 + \sum_{d \vert n, d > 1} f(n) \cdot 0
+  = f(n)$
+  
 ### associativity of $\star$
 ### commutativity of $\star$
 ### inverse operator
