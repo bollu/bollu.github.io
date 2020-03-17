@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 
+- [How to link against MLIR with CMake](#how-to-link-against-mlir-with-cmake)
 - [Energy as triangulaizing state space](#energy-as-triangulaizing-state-space)
 - [The cutest way to write semidirect products](#the-cutest-way-to-write-semidirect-products)
 - [My Favourite APLisms](#my-favourite-aplisms)
@@ -138,6 +139,70 @@ document.addEventListener("DOMContentLoaded", function() {
 - [GSoC 2015 final report](content/blog/gsoc-vispy-report-6.md)
 - [Distributed Systems](#distributed-systems)
 - [Link Dump](#link-dump)
+
+
+# [How to link against MLIR with CMake](#how-to-link-against-mlir-with-cmake)
+
+Since `MLIR` hasn't setup the nice tooling that LLVM has around `CMake`
+as far as I can tell, one needs to actually _know_ `CMake` to link against
+`MLIR`. However, as is well known, `CMake` incantations are handed down
+by preists who spend the better part of their lives studying the tome
+that is the CMake manual. I, an unlucky soul had to go on this adventure,
+and I hope to spare you the trouble.
+
+I wished to link against a static library build of MLIR. The secret
+lies in the `find_library` call:
+
+```
+Resolve for:
+- a library target called `MLIRAnalysis`
+- asking to link against `libMLIAnalysis.a`
+- with path1 being a hardcoded path
+- with path2 being an environment variable
+find_library(MLIRanalysis libMLIRAnalysis.a /home/bollu/work/leanmlir/llvm-project/build/lib ${MLIR_LIBRARY_PATH})
+```
+
+I cribbed the actual things to link against from the path 
+`mlir/examples/Toy/Ch2/CMakeLists.txt` which helpfully lists MLIR things
+it needs to link against.
+
+
+The full `CMakeLists` is here:
+
+```
+cmake_minimum_required(VERSION 3.9)
+project(languagemodels)
+
+set(CMAKE_CXX_STANDARD 14)
+
+add_executable(languagemodels
+        rnn.cpp codegenc.h lang.h)
+
+
+target_include_directories(languagemodels PRIVATE $MLIR_INCLUDE_PATH)
+
+set(LLVM_LINK_COMPONENTS Support)
+
+# add:
+- a library target called `MLIRAnalysis`
+- asking to link against `libMLIAnalysis.a`
+- with path1 being a hardcoded path
+- with path2 being an environment variable
+find_library(MLIRanalysis libMLIRAnalysis.a /home/bollu/work/leanmlir/llvm-project/build/lib ${MLIR_LIBRARY_PATH})
+find_library(MLIRIR libMLIRIR.a /home/bollu/work/leanmlir/llvm-project/build/lib ${MLIR_LIBRARY_PATH})
+find_library(MLIRParser libMLIRParser.a /home/bollu/work/leanmlir/llvm-project/build/lib ${MLIR_LIBRARY_PATH})
+find_library(MLIRSideEffects libMLIRSideEffects.a /home/bollu/work/leanmlir/llvm-project/build/lib ${MLIR_LIBRARY_PATH})
+find_library(MLIRTransforms libMLIRTransforms.a /home/bollu/work/leanmlir/llvm-project/build/lib ${MLIR_LIBRARY_PATH})
+
+# add all library targets previously discovered by `find_library`
+target_link_libraries(languagemodels
+        ${MLIRANALYSIS}
+        ${MLIRIR}
+        ${MLIRParser}
+        ${MLIRSideEffects}
+        ${MLIRTransforms})
+```
+
 
 
 # [Energy as triangulaizing state space](#energy-as-triangulaizing-state-space)
