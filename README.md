@@ -269,22 +269,11 @@ $(x' = a \curverightarrow x)$ is the action of the system $a$ on $x$.
 
 #### Theory: semidirect and wreath products
 
-Given two monoids $(M, +, 0_M)$ and $(N, \times, 1_N)$, and a homomorphism $\phi: N \rightarrow End(M)$, where $End(M)$
-is the endomorphism group of $M$. We will notate $\phi(n)(m)$ as $n \cdot m \in M$.
+- For semidirect products, I refer you to 
+    [the cutest way to write semidirect products](#the-cutest-way-to-write-semidirect-products)
+    [Line of investigation to build physical intuition for semidirect products](#line-of-investigation-to-build-physical-intuition-for-semidirect-products).
 
-Now the semidirect product $M \ltimes_\phi N$ is the set $M \times N$ equipped
-with the multiplication rule:
-- $(m, n) (m', n') = (m + n \cdot m', nn')$
-
-This can also be written down as:
-
-!!
-\begin{bmatrix} 1 & 0 \\ m & n \end{bmatrix}
-\begin{bmatrix} 1 & 0 \\ m' & n' \end{bmatrix} = 
-\begin{bmatrix} 1 & 0 \\ m + n \cdot m' & n \times n' \end{bmatrix}
-!!
-
-The resulting monoid $M \ltimes_{\phi} N$ has identity $(0_M, 1_N)$.
+A wreath product
 
 #### Symmetries as triangular form
 
