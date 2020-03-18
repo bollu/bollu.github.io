@@ -154,53 +154,71 @@ I wished to link against a static library build of MLIR. The secret
 lies in the `find_library` call:
 
 ```
-Resolve for:
-- a library target called `MLIRAnalysis`
-- asking to link against `libMLIAnalysis.a`
-- with path1 being a hardcoded path
-- with path2 being an environment variable
-find_library(MLIRanalysis libMLIRAnalysis.a /home/bollu/work/leanmlir/llvm-project/build/lib ${MLIR_LIBRARY_PATH})
+#If the variable has been set by -DMLIR_INCLUDE_PATH, then keep it. 
+#Otherwise fallback to the environment variable $MLIR_INCLUDE_PATH.
+#if neither, then *shrug*.
+IF(NOT MLIR_INCLUDE_PATH)
+    set (MLIR_INCLUDE_PATH $ENV{MLIR_INCLUDE_PATH})
+endif()
+
+#Resolve for:
+#- a library target called `MLIRAnalysis`
+#- asking to link against `libMLIAnalysis.a`
+#- using the variable MLIR_INCLUDE_PATH which as we saw before
+#  is either an environment variable or a cmake option
+target_include_directories(languagemodels PRIVATE ${MLIR_INCLUDE_PATH})
 ```
 
 I cribbed the actual things to link against from the path 
-`mlir/examples/Toy/Ch2/CMakeLists.txt` which helpfully lists MLIR things
-it needs to link against.
-
+[`mlir/examples/Toy/Ch2/CMakeLists.txt`](https://github.com/llvm/llvm-project/blob/master/mlir/examples/toy/Ch2/CMakeLists.txt)
+which helpfully lists MLIR things it needs to link against.
 
 The full `CMakeLists` is here:
 
 ```
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.5)
 project(languagemodels)
 
 set(CMAKE_CXX_STANDARD 14)
 
+# I don't want to use find_package since I want proper control over where my LLVM comes from.
+# find_package(LLVM REQUIRED)
+
 add_executable(languagemodels
-        rnn.cpp codegenc.h lang.h)
+        rnn.cpp codegenc.h lang.h codegenmlir.h)
 
+# Attempt to take these as command line arguments. IF that fails,
+# lookup environment.
+IF(NOT MLIR_INCLUDE_PATH)
+    set (MLIR_INCLUDE_PATH $ENV{MLIR_INCLUDE_PATH})
+endif()
 
-target_include_directories(languagemodels PRIVATE $MLIR_INCLUDE_PATH)
+IF(NOT MLIR_LIBRARY_PATH)
+    set (MLIR_LIBRARY_PATH $ENV{MLIR_LIBRARY_PATH})
+endif()
 
-set(LLVM_LINK_COMPONENTS Support)
+target_include_directories(languagemodels PRIVATE ${MLIR_INCLUDE_PATH})
+find_library(MLIRAnalysis MLIRAnalysis ${MLIR_LIBRARY_PATH})
+find_library(MLIRIR MLIRIR ${MLIR_LIBRARY_PATH})
+find_library(MLIRParser MLIRParser ${MLIR_LIBRARY_PATH})
+find_library(MLIRSideEffects MLIRSideEffects ${MLIR_LIBRARY_PATH})
+find_library(MLIRTransforms MLIRTransforms ${MLIR_LIBRARY_PATH})
+find_library(LLVMCore LLVMCore ${MLIR_LIBRARY_PATH})
+find_library(LLVMSupport LLVMSupport ${MLIR_LIBRARY_PATH})
 
-# add:
-- a library target called `MLIRAnalysis`
-- asking to link against `libMLIAnalysis.a`
-- with path1 being a hardcoded path
-- with path2 being an environment variable
-find_library(MLIRanalysis libMLIRAnalysis.a /home/bollu/work/leanmlir/llvm-project/build/lib ${MLIR_LIBRARY_PATH})
-find_library(MLIRIR libMLIRIR.a /home/bollu/work/leanmlir/llvm-project/build/lib ${MLIR_LIBRARY_PATH})
-find_library(MLIRParser libMLIRParser.a /home/bollu/work/leanmlir/llvm-project/build/lib ${MLIR_LIBRARY_PATH})
-find_library(MLIRSideEffects libMLIRSideEffects.a /home/bollu/work/leanmlir/llvm-project/build/lib ${MLIR_LIBRARY_PATH})
-find_library(MLIRTransforms libMLIRTransforms.a /home/bollu/work/leanmlir/llvm-project/build/lib ${MLIR_LIBRARY_PATH})
+# debugging to check if it's been set properly
+message(MLIR_INCLUDE_PATH ${MLIR_INCLUDE_PATH})
+message(MLIR_LIBRARY_PATH ${MLIR_LIBRARY_PATH})
+message(MLIRAnalysis ${MLIRAnalysis})
 
-# add all library targets previously discovered by `find_library`
 target_link_libraries(languagemodels
-        ${MLIRANALYSIS}
+        ${MLIRAnalysis}
         ${MLIRIR}
         ${MLIRParser}
         ${MLIRSideEffects}
-        ${MLIRTransforms})
+        ${MLIRTransforms}
+        ${LLVMCore}
+        ${LLVMSupport})
 ```
 
 
