@@ -152,3 +152,5 @@ installed, use it to compute closed forms)
 - Can spaced repetition train LSTMs?
 - Anatoli fomenko artist topology spaces math art: http://chronologia.org/en/math_impressions/images.html
 - Histomorphisms and dynamorphisms: http://www.cs.ox.ac.uk/people/nicolas.wu/publications/Histomorphisms.pdf
+- Primes of the form x2+ny2 (Good intro to algebraic number theory!)
+- An exposition of the Krohn-Rhodes decomposition theorem: http://www-verimag.imag.fr/~maler/Papers/kr-new.pdf
