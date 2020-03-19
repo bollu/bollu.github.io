@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 
+- [OCaml git hilarious comments](#ocaml-git-hilarious-comments)
 - [How to link against MLIR with CMake](#how-to-link-against-mlir-with-cmake)
 - [Energy as triangulaizing state space](#energy-as-triangulaizing-state-space)
 - [The cutest way to write semidirect products](#the-cutest-way-to-write-semidirect-products)
@@ -140,6 +141,74 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Distributed Systems](#distributed-systems)
 - [Link Dump](#link-dump)
 
+# [OCaml git hilarious comments](#ocaml-git-hilarious-comments)
+
+the [Ocaml-git](https://github.com/mirage/ocaml-git/) project is a
+re-implementation of `git` in `OCaml`. It's well-written, and I was
+walking through the codebase, when I found absolutely amazing, hilarious,
+and deep comments from `dinosaure`.
+
+##### The one that takes a stab at Haskell
+
+```
+(* XXX(dinosaure): ...we can fix this detail but
+I'm lazy like haskell. TODO! *)
+```
+ 
+##### The academic one that broken-links to a paper
+
+```
+(* XXX(dinosaure): see this paper
+https://github.com/ocamllabs/papers/blob/master/irmin/2014.08.matthieu/rapport.pdf *)
+```
+
+##### The one about the frustration of bug-hunting
+
+```
+(* XXX(dinosaure): [~chunked:false] is mandatory, I don't want to explain
+why (I lost one day to find this bug) but believe me. *)
+```
+
+##### The one about a possible bug
+
+```
+(* XXX(dinosaure): if, one day, we find a bug about the serialization of the
+IDX file, may be it's about this function (stable/unstable sort). *)
+``` 
+
+##### The requisite comment in french for an OCaml project
+
+```
+(* XXX(dinosaure): bon ici, c'est une note compliqué, j'ai mis 2 jours
+à fixer le bug. Donc je l'explique en français, c'est plus simple.
+En gros, [Helper.MakeDecoder] utilise ce buffer comme buffer interne
+pour gérer les alterations. Ce qui ce passe, c'est que dans la
+fonction [refill], il s'agit de compléter à partir d'un [input]
+(typiquement [zl]) le buffer interne. C'est finalement un
+__mauvais__ jeu entre un [Cstruct.t] et un [Bigarray].
+Il s'agit de connaître la véritable taille du [Bigarray] et de
+rajouter avec [blit] le contenu de l'[input] si la taille du
+[Bigarray] (et pas du [Cstruct]) est suffisante.
+Avant, cette modification, [zl], [de] et [io] partagaient le même
+[Bigarray] découpé (avec [Cstruct]) en 3. Donc, dans le
+[MakeDecoder], [refill] considérait (pour des gros fichiers faisant
+plus de 0x8000 bytes) que après [de], nous avions encore de la
+place - et dans ce cas, nous avions [io].
+Ainsi, on [blit]ait [zl] dans [de+sizeof(de) == io], et finalement,
+on se retrouvait à essayer de décompresser ce que nous avions
+décompressé. (YOLO).
+Donc, on considère maintenant [de] comme un [Cstruct.t] et un
+[Bigarray] physiquement différent pour éviter ce problème.
+Cependant, il faudrait continuer à introspecter car j'ai
+l'intuition que pour un fichier plus gros que [2 * 0x8000], on
+devrait avoir un problème. Donc TODO. *)
+```
+
+###### The deep one
+
+```
+(* XXX(dinosaure): at the end, we don't care if we lost something. *)
+```
 
 # [How to link against MLIR with CMake](#how-to-link-against-mlir-with-cmake)
 
