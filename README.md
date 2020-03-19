@@ -1592,6 +1592,9 @@ nodes←⍸(X ∧ p≠(⍳≢p))  ⍝ ⍸:pick indexes.
 
 - Use `]disp` and `]display` to understand the structure of APL arrays.
 
+- Set `]box on -style=max` to _always enable_ drawing arrays with `]display`.
+  This is supremely useful as a newbie to understand array structure.
+
 # [Every ideal that is maximal wrt. being disjoint from a multiplicative subset is prime](#every-ideal-that-is-maximal-wrt-being-disjoint-from-a-multiplicative-subset-is-prime)
 
 I ran across this when reading another question on math.se, so I
