@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
 - [My github](http://github.com/bollu)
 - [My math.se profile](https://math.stackexchange.com/users/261373/siddharth-bhat)
 - [My resume](resume/main.pdf)
+- [My reading list](todo.md)
 - email ID: rot13(`fvqqh.qehvq@tznvy.pbz`)
 
 #### Table of contents:
