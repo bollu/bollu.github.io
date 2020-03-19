@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 
-- [OCaml git hilarious comments](#ocaml-git-hilarious-comments)
+- [The hilarious commentary by dinosaure in OCaml git](#the-hilarious-commentary-by-dinosaure-in-ocaml-git)
 - [How to link against MLIR with CMake](#how-to-link-against-mlir-with-cmake)
 - [Energy as triangulaizing state space](#energy-as-triangulaizing-state-space)
 - [The cutest way to write semidirect products](#the-cutest-way-to-write-semidirect-products)
@@ -141,14 +141,17 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Distributed Systems](#distributed-systems)
 - [Link Dump](#link-dump)
 
-# [OCaml git hilarious comments](#ocaml-git-hilarious-comments)
+# [The hilarious commentary by dinosaure in OCaml git](#the-hilarious-commentary-by-dinosaure-in-ocaml-git)
 
 the [Ocaml-git](https://github.com/mirage/ocaml-git/) project is a
 re-implementation of `git` in `OCaml`. It's well-written, and I was
 walking through the codebase, when I found absolutely amazing, hilarious,
-and deep comments from `dinosaure`.
+and deep comments from `dinosaure`. I really enjoyed reading through the
+codebase, and the existence of these comments made it more humane to read.
+I don't know who `dinosaure` is, but I'm really glad they wrote the comments
+they did, it really made my day.
 
-##### The one that takes a stab at Haskell
+##### The one that takes a stab at Haskell for fun
 
 ```
 (* XXX(dinosaure): ...we can fix this detail but
@@ -162,14 +165,14 @@ I'm lazy like haskell. TODO! *)
 https://github.com/ocamllabs/papers/blob/master/irmin/2014.08.matthieu/rapport.pdf *)
 ```
 
-##### The one about the frustration of bug-hunting
+##### The one about the frustrations of bug-hunting
 
 ```
 (* XXX(dinosaure): [~chunked:false] is mandatory, I don't want to explain
 why (I lost one day to find this bug) but believe me. *)
 ```
 
-##### The one about a possible bug
+##### The one about a potential heisenbug 
 
 ```
 (* XXX(dinosaure): if, one day, we find a bug about the serialization of the
