@@ -154,6 +154,43 @@ increses. \qed.
 
 \subsection*{Solution, fixed $\epsilon$}
 
+Once again, recall what it means to be PAC-learnable:
+
+\begin{quote}
+For every $\epsilon, \delta \in (0, 1)$, for every distribution $\D$ over $\X$,
+for every labelling function $f: \X \rightarrow \{0, 1\}$, if the realisability
+assumption holds with respect to $(\H, \D, f)$, then for all constants
+$m \geq m_\H(\epsilon, \delta)$ , on running the learning algorithm on
+a random i.i.d sample $S \in X^m \sim \D^m$, the algorithm produces a hypothesis
+$h_S$, such that with probability $(1 - \delta)$, the learning error 
+$L_{(\D, f)}(h) \leq \epsilon$.
+\end{quote}
+
+$\delta_1$ and $\delta_2$ are the rejection rates that we wish to achieve.
+Intuitively, the smaller the number of samples we wish to reject, the more
+general a solution we would need to construct, thus more samples need to
+be seen.
+Hence $\delta_1 \leq \delta_2 \implies m_\H(\epsilon, \delta_1) \geq m_\H(\epsilon, \delta_2)$.
+
+Formally, we once again proceed with contradiction. We assume:
+
+$$
+\delta_1 \leq \delta_2 \implies m_\H(\epsilon, \delta_1) \leq m_\H(\epsilon, \delta_2) \qquad 
+\text{(assumption for contradiction)}
+$$
+
+Unwrapping the definition, this means that:
+\begin{itemize}
+    \item[1] Giving the learning algorihm $m_1 = m_\H(\epsilon, \delta_1)$
+        samples,  $(1 - \delta)$ of the time, the learning error will be
+        less than $\epsilon$.
+
+    \item[2] Similarly, on giving the learning algorithm learning algorithm
+        $m_2 = m_\H(\epsilon_1, \delta)$ samples, $(1 - \delta_2)$ of the
+        time, the learning error will be less that $\epsilon$.
+\end{itemize}
+
+
 \rule{\textwidth}{1pt}
 \section*{3.5, Q2:} 
 Let $\X$ be a discrete domain, and let 
@@ -235,15 +272,79 @@ algorithm $A$, any probability distribution $\D$, and any loss function
 whose loss is in the range $[0, 1]$:
 
 \begin{align*}
-    &\forall \epsilon, \delta > 0, \exists M \equiv m(\epsilon, \delta), \forall m \geq M :
+    &(1): \quad \forall \epsilon, \delta > 0, \exists M \equiv m(\epsilon, \delta), \forall m \geq M :
     \underset{S \sim D^m }{\mathbb P}[L_\D(A(S)) > \epsilon] < \delta. \\
-    & \qquad \Updownarrow \\
-    &\lim_{m \rightarrow \infty} \underset{S \sim D^m }{\mathbb E}[L_\D(A(S)) > \epsilon] = 0. \\
+    & \qquad \qquad \Updownarrow \\
+    &(2): \quad \lim_{m \rightarrow \infty} \underset{S \sim \D^m }{\mathbb E}[L_\D(A(S)) > \epsilon] = 0. \\
 \end{align*}
 
-\subsection*{Solution}
 
-\textbf{TODO}
+\subsection*{Solution: $(2) \implies (1)$ }
+We start with $(2)$:
+
+\begin{align*}
+    (2): ~ &\lim_{m \rightarrow \infty} \underset{S \sim \D^m }{\mathbb E}[L_\D(A(S)) > \epsilon] = 0. \\
+\end{align*}
+
+We then look at the definition of the limit abstractly, for a function $f: \mathbb N \rightarrow \mathbb R$
+(In our case, the function takes $m\in \mathbb N$ as input and produces $\mathbb E[\dots]$ as output):
+
+\begin{align*}
+&\lim_{m \rightarrow \infty} f(m) = y^\star \equiv \\
+    &\qquad 
+    \forall p > 0, ~ \exists M \in \mathbb N,
+    \forall m \in \mathbb N, m \geq M \implies 
+    |f(m) - y^\star| < p
+\end{align*}
+
+Plugging in to our case, we recieve:
+
+\begin{align*}
+    \forall p > 0, ~ \exists M \in \mathbb N, 
+    \forall m \in \mathbb N, m \geq M \implies 
+    \left|\underset{S \sim \D^m }{\mathbb E}[L_\D(A(S)) > \epsilon]  - 0\right| < p
+\end{align*}
+
+Recall that our loss function $L_\D$ is non-negative, hence we can remove
+the $|\cdot|$ and $-0$ completely, giving:
+
+
+\begin{align*}
+    \forall p > 0, ~ \exists M \in \mathbb N, 
+    \forall m \in \mathbb N, m \geq M \implies 
+    \underset{S \sim \D^m }{\mathbb E}[L_\D(A(S)) > \epsilon] < p
+\end{align*}
+
+However, note that $L_\D(A(S)) > \epsilon$ is a binary random variable, and
+hence:
+
+{\footnotesize
+$$
+\underset{S \sim \D^m }{\mathbb E}[L_\D(A(S)) > \epsilon] = 
+1 \cdot \underset{S \sim \D^m }{\mathbb P}[L_\D(A(S)) > \epsilon] +
+0 \cdot \underset{S \sim \D^m }{\mathbb P}[L_\D(A(S)) \not> \epsilon]  = 
+\underset{S \sim \D^m }{\mathbb P}[L_\D(A(S)) > \epsilon] 
+$$
+}
+
+Plugging this in, we get:
+
+\begin{align*}
+    \forall p > 0, ~ \exists M \in \mathbb N, 
+    \forall m \in \mathbb N, m \geq M \implies 
+    \underset{S \sim \D^m }{\mathbb P}[L_\D(A(S)) > \epsilon]  < p
+\end{align*}
+
+If we replace $p$ with $\delta$ in the above, we recover $(1)$.
+
+Hence, we show that $(2) \implies (1)$. \qed
+
+
+
+\subsection*{Solution: $(1) \implies (2)$ }
+
+Since to show that $(2) \implies (1)$ we only ever argued with equalities,
+we can simply run the proof backwards. \qed
 
 \rule{\textwidth}{1pt}
 
@@ -272,7 +373,7 @@ Hence, any set that can be shattered by $H'$ can be shattered by $H$ if
 $H' \subseteq H \implies \vcdim(H') \leq \vcdim(H)$.
 
 On the other hand, clearly if $H$ is larger than $H'$, then $H$ can shatter more.
-For example, let $H' = \phi \subsetneq H$. Then $H'$ can only shatter the empty
+For example, let $H' = \emptyset \subsetneq H$. Then $H'$ can only shatter the empty
 set, while $H$ can in general shatter sets larger than the empty set. Hence,
 we have have strict inequality: $\vcdim(\emptyset) < \vcdim(H)$ for example.
 
