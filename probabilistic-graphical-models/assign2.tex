@@ -1,0 +1,196 @@
+% Section 3.5 (Q1 and Q2)
+% Section 4.5 (Q1)
+% Section 6.8 (Q1)
+
+
+\documentclass[11pt]{article}
+%\documentclass[10pt]{llncs}
+%\usepackage{llncsdoc}
+\linespread{1.025}              % Palatino leads a little more leading
+\usepackage{physics}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{listing}
+\usepackage{minted}
+\usepackage{tikz}
+\evensidemargin=0.20in
+\oddsidemargin=0.20in
+\topmargin=0.2in
+%\headheight=0.0in
+%\headsep=0.0in
+%\setlength{\parskip}{0mm}
+%\setlength{\parindent}{4mm}
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{8.5in}
+%\leftmargin -2in
+%\setlength{\rightmargin}{-2in}
+%\usepackage{epsf}
+%\usepackage{url}
+
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+%\usepackage{minted}
+%\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+\newcommand{\E}[1]{\ensuremath{\mathbb{E} \left[ #1 \right]}}
+\renewcommand{\P}[1]{\ensuremath{\mathbb{P} \left[ #1 \right]}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\R}{\ensuremath{\mathbb R}}
+\newcommand{\Rgezero}{\ensuremath{\mathbb R_{\geq 0}}}
+\newcommand{\powerset}{\ensuremath{\mathcal{P}}}
+
+\newcommand{\boldX}{\ensuremath{\mathbf{X}}}
+\newcommand{\boldY}{\ensuremath{\mathbf{Y}}}
+
+
+\newcommand{\G}{\ensuremath{\mathcal{G}}}
+\newcommand{\D}{\ensuremath{\mathcal{D}}}
+\renewcommand{\H}{\ensuremath{\mathcal{H}}}
+\newcommand{\X}{\ensuremath{\mathcal{X}}}
+\DeclareMathOperator{\vcdim}{VCdim}
+\newcommand{\Vcdim}{\ensuremath{\vcdim}}
+\newcommand{\VCdim}{\ensuremath{\vcdim}}
+\newcommand{\VCDim}{\ensuremath{\vcdim}}
+
+\def\qed{$\Box$}
+\newtheorem{question}{Question}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{observation}{Observation}
+\newtheorem{proof}{Proof}
+\newtheorem{remark}{Remark}
+\newtheorem{example}{Example}
+
+\title{Probabilistic graphical models, Assignment 2}
+\author{Siddharth Bhat (20161105)}
+\date{March 21st, 2020}
+
+\begin{document}
+\section*{3.5, Q1:}
+Monotonicity of Sample Complexity: Let $\H$ be a hypothesis class for a
+binary classification task. Suppose that $\H$ is PAC learnable and its sample
+complexity is given by $m_\H (\cdot, \cdot)$. Show that $m_\H$ is monotonically
+increasing in both parameters.
+\subsection*{Solution}
+
+\section*{3.5, Q2:} 
+Let $\X$ be a discrete domain, and let 
+$\H_{singleton} \equiv \{ [z] : z \in \X \} \cup \{h^− \}$, where
+\begin{align*}
+&[z]: \X \rightarrow \{0,1\};  \quad [z](x) \equiv \begin{cases} 1 & x = z \\ 0 & \text{otherwise} \end{cases}\\
+&h^−: \X \rightarrow \{0, 1\}; \quad h^-(\_) \equiv 0
+\end{align*}
+
+The realizability assumption here implies that the true hypothesis $f$ labels
+negatively all examples in the domain, perhaps except one.
+
+\begin{enumerate}
+    \item Describe an algorithm that implements the ERM rule for learning
+        $\H_{singleton}$ in the realizable setup.
+    \item Show that $\H_{singleton}$ is PAC learnable. Prove an upper
+        bound on the sample complexity.
+\end{enumerate}
+
+\subsection*{Solution, part (a)}
+Let $\X$ be the domain, let $f: \X \rightarrow \{0, 1\}$ be the underlying
+target function $f$ that we are trying to approximate using $\H$.
+
+We define the sample loss $L_S(h)$ as the number of elements in $S$
+that are mis-classified by $h$. More formally,
+$L_S(h) \equiv |\{ (x, y) \in \S : h(x) \neq  y \}|$.
+
+The ERM algorithm must, given a particular sample set $S \in \X^n \sim \D^n$,
+provides a function $h_0 \in \H = ERM(S)$ which has minimum sample loss
+$L_S(h_0)$ across all functions in $\H$.
+
+We can check over the classification of all the samples $s \in S$.
+\begin{itemize}
+    \item[-] If all samples $s \in S $ are classified as $0$:
+        we return $h^-$ --- this will always return $0$.
+    \item[-] If some sample $s_1 \in S$ is classified as $1$: notice that
+        our hypothesis space $\H$ can only allow us to set
+        \emph{at most one sample to 1}. So, we can pick \emph{any} sample
+        $s_1$ to create our hypothesis function $h = [s_1]$, since that
+        is the best we can do.
+\end{itemize}
+
+\begin{minted}{py}
+def hminus(_): return 0 # h-: sends all samples to 0
+def indicator(z): return lambda x: 1 if x == z else 0 #indicator of z
+def erm_sample(S):
+   # all samples which have label 1
+   one_samples = [y for (x, y) in S if y == 1]
+   if len(one_samples) == 0: return hminus # send all samples to 0!
+   else: # we will have at least on element in one_samples
+       return indicator(ones_samples[0])
+\end{minted}
+
+
+\subsection*{Solution, part (b)}
+
+\section*{4.5, Q1:}
+Prove that the following two statements are equivalent for any learning
+algorithm $A$, any probability distribution $\D$, and any loss function
+whose loss is in the range $[0, 1]$:
+
+\begin{align*}
+    &\forall \epsilon, \delta > 0, \exists M \equiv m(\epsilon, \delta), \forall m \geq M :
+    \underset{S \sim D^m }{\mathbb P}[L_\D(A(S)) > \epsilon] < \delta. \\
+    & \qquad \Updownarrow \\
+    &\lim_{m \rightarrow \infty} \underset{S \sim D^m }{\mathbb E}[L_\D(A(S)) > \epsilon] = 0. \\
+\end{align*}
+
+\subsection*{Solution}
+
+\section*{6.8, Q1:} For two hypothesis classes $\H, \H'$, if $\H' \subseteq \H$
+then $\vcdim(H') \leq \vcdim(H)$.
+\subsection*{Solution}
+Recall that the VC dimension of a given set family $\H$ is the size of
+the largest set $C$ such that $H$ shatters $C$. That is, the intersection of $C$
+with every element is $H$ is equal to the powerset of $C$:
+
+\begin{align*}
+\Vcdim(\H) \equiv \max_{C} \{ h \cap C : h \in \H \} = 2^C \qquad \text{We denote powerset of $C$ by $2^C$ }
+\end{align*}
+
+Now, if a set family $\H'$ is a subset of another set family $\H$, and if $\H'$
+shatters $C$, then:
+
+\begin{align*}
+    &\H' \text{ shatters C} \equiv  \{ h \cap C : h \in \H'\} = 2^C \qquad \text{Given, (1)}\\
+    &\{ h \cap C : h \in \H' \} \subseteq \{ h \cap C : h \in \H \} \qquad \text{Since $H' \subseteq H$} \\
+    &2^C \subseteq \{ h \cap C : h \in \H \}  \qquad \text{From (1)} \\
+\end{align*}
+
+Hence, any set that can be shattered by $H'$ can be shattered by $H$ if
+$H' \subseteq H \implies \vcdim(H') \leq \vcdim(H)$.
+
+On the other hand, clearly if $H$ is larger than $H'$, then $H$ can shatter more.
+For example, let $H' = \phi \subsetneq H$. Then $H'$ can only shatter the empty
+set, while $H$ can in general shatter sets larger than the empty set. Hence,
+we have have strict inequality: $\vcdim(\emptyset) < \vcdim(H)$ for example.
+
+\end{document}
