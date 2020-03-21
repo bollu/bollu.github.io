@@ -93,9 +93,68 @@
 Monotonicity of Sample Complexity: Let $\H$ be a hypothesis class for a
 binary classification task. Suppose that $\H$ is PAC learnable and its sample
 complexity is given by $m_\H (\cdot, \cdot)$. Show that $m_\H$ is monotonically
-increasing in both parameters.
-\subsection*{Solution}
+increasing in both parameters. That is, show that:
+\begin{enumerate}
+    \item for $\delta \in (0, 1)$ for $0 \leq \epsilon_1 \leq \epsilon_2 \leq 1$,
+        show that $m_\H(\epsilon_1, \delta) \geq m_\H(\epsilon_2, \delta)$.
+    \item  for $\epsilon \in (0, 1)$ for $0 \leq \delta_1 \leq \delta_2 \leq 1$,
+        show that $m_\H(\epsilon, \delta_1) \geq m_\H(\epsilon, \delta_2)$.
+\end{enumerate}
+\subsection*{Solution, fixed $\delta$}
+First recall what it means to be PAC-learnable:
 
+\begin{quote}
+For every $\epsilon, \delta \in (0, 1)$, for every distribution $\D$ over $\X$,
+for every labelling function $f: \X \rightarrow \{0, 1\}$, if the realisability
+assumption holds with respect to $(\H, \D, f)$, then for all constants
+$m \geq m_\H(\epsilon, \delta)$ , on running the learning algorithm on
+a random i.i.d sample $S \in X^m \sim \D^m$, the algorithm produces a hypothesis
+$h_S$, such that with probability $(1 - \delta)$, the learning error 
+$L_{(\D, f)}(h) \leq \epsilon$.
+\end{quote}
+
+$\epsilon_1$ and $\epsilon_2$ are the error rates that we wish to achieve.
+Intuitively, the smaller the error we want, the more samples we need. 
+Hence $\epsilon_1 \leq \epsilon_2 \implies m_\H(\epsilon_1, \delta) \geq m_\H(\epsilon_2, \delta)$.
+
+Formally, we shall provide a \textbf{proof by contradiction}. Let us
+assume that:
+$$
+\epsilon_1 \leq \epsilon_2 \implies m_\H(\epsilon_1, \delta) \leq m_\H(\epsilon_2, \delta) \qquad 
+\text{(assumption for contradiction)}
+$$
+
+Unwrapping the definition, this means that:
+
+\begin{itemize}
+    \item[1] Giving the learning algorihm $m_1 = m_\H(\epsilon_1, \delta)$
+        samples, the best error rate we are able to achieve is $\epsilon_1$,
+        $(1- \delta)$ of the time.
+    \item[2] Similarly, on giving the learning algorithm learning algorithm
+        $m_2 = m_\H(\epsilon_1, \delta)$ samples, the best error rate we are able to
+        achieve is $\epsilon_2$, $(1- \delta)$ of the time.
+\end{itemize}
+
+Since the fraction $(1 - \delta)$ is the same in both cases, we can focus
+purely on the error rate.
+
+Recall that $\epsilon_1 < \epsilon_2$ and $(m_2 > m_1)$ from our assumption
+of contradiction.
+
+Hence, in the $m_2$ case, we can simply \textbf{discard samples} and provide
+the learning algorithm with $m_1$ samples, thereby reducing our error
+rate to $\epsilon_1$. However, we had assumed that for $m_2$, $\epsilon_2$
+was \textbf{the best error rate we could have achieved}.
+
+this contradiction arose from our contradictory assumption. Hence, it
+must be the case that as $\epsilon$ decreases, the quantity $m_\H(\epsilon, \cdot)$
+increses. \qed.
+
+\rule{\textwidth}{0.1pt}
+
+\subsection*{Solution, fixed $\epsilon$}
+
+\rule{\textwidth}{1pt}
 \section*{3.5, Q2:} 
 Let $\X$ be a discrete domain, and let 
 $\H_{singleton} \equiv \{ [z] : z \in \X \} \cup \{h^− \}$, where
@@ -151,6 +210,25 @@ def erm_sample(S):
 
 \subsection*{Solution, part (b)}
 
+The definition of a hypothesis class $\H$ to be PAC-learnable is that there exists
+a function $m_\H: (0, 1)^2 \rightarrow \mathbb N$ and a learning algorithm
+such that:
+
+\begin{quote}
+For every $\epsilon, \delta \in (0, 1)$, for every distribution $\D$ over $\X$,
+for every labelling function $f: \X \rightarrow \{0, 1\}$, if the realisability
+assumption holds with respect to $(\H, \D, f)$, then for all constants
+$m \geq m_\H(\epsilon, \delta)$ , on running the learning algorithm on
+a random i.i.d sample $S \in X^m \sim \D^m$, the algorithm produces a hypothesis
+$h_S$, such that with probability $(1 - \delta)$, the learning error 
+$L_{(\D, f)}(h) \leq \epsilon$.
+\end{quote}
+
+\textbf{TODO}
+
+
+\rule{\textwidth}{1pt}
+
 \section*{4.5, Q1:}
 Prove that the following two statements are equivalent for any learning
 algorithm $A$, any probability distribution $\D$, and any loss function
@@ -164,6 +242,11 @@ whose loss is in the range $[0, 1]$:
 \end{align*}
 
 \subsection*{Solution}
+
+\textbf{TODO}
+
+\rule{\textwidth}{1pt}
+
 
 \section*{6.8, Q1:} For two hypothesis classes $\H, \H'$, if $\H' \subseteq \H$
 then $\vcdim(H') \leq \vcdim(H)$.
