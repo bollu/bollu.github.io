@@ -7415,10 +7415,12 @@ Core building block of effectively using the ellipsoid algorithm.
   _check if this polytope is empty_ problem!
 
 # [Quantum computation without complex numbers](#quantum-computation-without-complex-numbers)
+
 I recently learnt that the Toeffili and Hadamard gates are universal for
 quantum computation. The description of these gates involve no complex numbers.
 So, we can write any quantum circuit in a "complex number free" form. The caveat
 is that we may very well have _input qubits_ that require complex numbers.
+
 
 Even so, a large number (all?) of the basic algorithms shown in Nielsen and
 Chaung can be encoded in an entirely complex-number free fashion.
@@ -7428,6 +7430,8 @@ that the power of quantum computation comes from the ability to express
 complex phases along with superposition (tensoring). However, I now have
 to remove the power from going from R to C in many cases. This is definitely
 something to ponder.
+
+- [Dorit Aharonov: A Simple Proof that Toffoli and Hadamard are Quantum Universal](https://arxiv.org/pdf/quant-ph/0301040)
 
 
 # [Linguistic fun fact: Comparative Illusion](#linguistic-fun-fact-comparative-illusion)
