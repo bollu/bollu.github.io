@@ -1668,6 +1668,11 @@ nodes←⍸(X ∧ p≠(⍳≢p))  ⍝ ⍸:pick indexes.
 - Set `]box on -style=max` to _always enable_ drawing arrays with `]display`.
   This is supremely useful as a newbie to understand array structure.
 
+- Set `]box on -trains=parens` to render trains as trees. Super
+  helpful when attempting to grok `train` code.
+
+- Set `]boxing on` to enable boxing for trains, arguments, everything.
+
 # [Every ideal that is maximal wrt. being disjoint from a multiplicative subset is prime](#every-ideal-that-is-maximal-wrt-being-disjoint-from-a-multiplicative-subset-is-prime)
 
 I ran across this when reading another question on math.se, so I
