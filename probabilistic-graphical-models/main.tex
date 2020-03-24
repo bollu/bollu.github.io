@@ -58,6 +58,11 @@
 \newcommand{\R}{\ensuremath{\mathbb R}}
 \newcommand{\Rgezero}{\ensuremath{\mathbb R_{\geq 0}}}
 \newcommand{\powerset}{\ensuremath{\mathcal{P}}}
+\renewcommand{\H}{\ensuremath{H}}
+%\renewcommand{\E}{\ensuremath{\mathbb{E}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\KL}[2]{\ensuremath{D(#1 || #2)}}
+\newcommand{\I}{\ensuremath{I}}
 
 \newcommand{\boldX}{\ensuremath{\mathbf{X}}}
 \newcommand{\boldY}{\ensuremath{\mathbf{Y}}}
@@ -76,6 +81,8 @@
 \newtheorem{proof}{Proof}
 \newtheorem{remark}{Remark}
 \newtheorem{example}{Example}
+
+
 
 \title{Probabilistic graphical models}
 \author{Siddharth Bhat}
@@ -509,6 +516,126 @@ A clique of a graph is a complete sub-graph of a graph.
 \end{align*}
 Here, $Z$ is called as the partition function. It is the normalizing
 constant: $Z \equiv \sum_{a, b, c, d} \phi_{AB}(a, b) \phi_{AC}(a, b) \phi_{CD}(c, d) \phi_{BD}(b, d)$.
+
+\chapter{Preliminary definitions of Information}
+
+\begin{definition}
+    Entropy(\H): The entropy of a random variable $X$ with probability
+    distribution $p: X \rightarrow \R $ is defined as:
+    \begin{align*}
+        \H(X) \equiv - \sum_{x \in X} p(x) \log p(x) = \E[- \log \circ p]
+    \end{align*}
+\end{definition}
+
+\begin{definition}
+    Condtional entropy($\H(X|Y)$): The conditional entropy of a random 
+    variable $X$ with respect to another variable $Y$ is defined as:
+    \begin{align*}
+        \H(X|Y) \equiv &- \sum_{y \in Y} p(y) \H(X|Y=y) \\
+                       &= \sum_{y \in Y} p(y) \sum_{x \in X} - p(x|y) \log p(x | y)\\
+                       &= \sum_{y \in Y} \sum_{x \in X} - p(y) p(x|y) \log p(x | y)\\
+                       &= \sum_{y \in Y} \sum_{x \in X} - p(y \land x) \log p(x | y)\\
+    \end{align*}
+\end{definition}
+
+\begin{definition}
+    Kullback-Leibler divergence \KL{X}{Y}: The Kullback-Leibler divergence
+    of $X \sim p $ with respect to $X' \sim q$ is:
+    \begin{align*}
+        \KL{X}{X'} \equiv \sum_{x \in X} p(x) \log \frac{p(x)}{q(x)}
+    \end{align*}
+\end{definition}
+
+Note that \KL{X}{X'} is \emph{not symmetric}.
+
+Intuition: extra cost of encoding $X$ if we thought the distribution were $X'$.
+
+Useful extremal case to remember: Assume $X'$ has $q(x) = 0$ for some
+letter $x \in X$. In this case, $\KL{X}{X'}$ would involve a term $\frac{p(x)}{0}$,
+which is $\infty$. This is intuitively sensible, since $X'$ has no way to represent
+$x$, and hence $X'$ is \textit{infinitely far away from encoding $X$}. However,
+In this same case, one could have that $X$ is able to encode all of $X'$.
+
+\begin{definition}
+    Mutual information: \I(X;Y): This is the relative entropy between the
+    joint and product distributions.
+
+    \begin{align*}
+        \I(X;Y) &\equiv \KL{p(x, y)}{p(x)p(y)} \equiv H(X) - H(X|Y) \\
+                &= \sum_x \sum_y p(x, y) \log \frac{p(x, y)}{p(x)p(y)}
+    \end{align*}
+    
+\end{definition}
+
+\begin{theorem}
+    Proof of equivalence of two definitions of mutual information:
+\end{theorem}
+\begin{proof}
+    \begin{align*}
+        &\I(X;Y)  = \sum_x \sum_y p(x, y) \log \frac{p(x, y)}{p(x)p(y)} \\
+        &= \sum_x \sum_y p(x, y) \log \frac{p(x|y)}{p(x))} \\
+        &= - \sum_x \sum_y p(x, y) \log p(x) - \big[ - \sum_x \sum_y p(x, y) \log p(x|y) \big] \\
+        &= - \sum_x p(x) \log p(x) - \big[ - \sum_y \sum_x p(x, y) \log p(x|y) \big] \\
+        &= - \sum_x p(x) \log p(x) - \big[ - \sum_y p(y) \sum_x \log p(x|y) \big] \\
+        &= \H(X) - H(X|Y)
+    \end{align*}
+\end{proof}
+
+
+Some notes about mutual information:
+\begin{itemize}
+    \item $I(X; Y) = I(Y;X)$. That is, $I$ is symmetric.
+
+    \item Since $I(X;Y) = H(X) - H(X|Y)$, one can view it as the 
+         \textit{reduction in uncertainity} of $X$, after knowing $Y$. 
+         Alternatively, (to avoid double negatives), it's the \textit{gain in
+         certainty} of $X$ after knowing $Y$.  Another way of saying this is,
+         what is the expected reduction in the number of yes/no questions to be
+         answered to isolate the value of $X$ on knowing the value of $Y$.
+
+    \item $I(X;Y) = 0$ iff $X, Y$ are independent. That is, knowing $X$ reduces
+        no uncertainity about $Y$.
+
+    \item $I(X;X) = H(X)$. So, knowing $X$ allows us to reduce our uncertainity
+        of $X$ by $H(X)$. ie, we completely know $X$, since we have
+        \textit{reduced our uncertainity of X} which was initially $H(X)$, by $H(X)$.
+
+\end{itemize}
+
+\begin{theorem}
+    Chain rule for entropy: Let $X_1, X_2, \dots X_n \sim p(x_1, x_2, \dots, x_n)$
+    Then:
+    \begin{align*}
+        \H(X_1, X_2, \dots X_n) = \sum_i \H(X_i | X_{i-1}, X_{i-2}, \dots X_1)
+    \end{align*}
+\end{theorem}
+\begin{proof}
+    \begin{align*}
+    &\H(X_1, X_2) = \H(X_1) + \H(X_2 | X_1) \\
+    &\H(X_1, X_2, X_3) = \H(X_1) + \H(X_2, X_3 | X_1) = \H(X_1) + H(X_2 | X_1) + H(X_3 | X_2, X_1) \\
+    &\text{induction for the rest}
+    \end{align*}
+\end{proof}
+
+\begin{definition}
+    Conditional mutual information: Conditional mutual information of random
+    variables $X$ and $Y$ given $Z$ is:
+    \begin{align*}
+        \I(X; Y | Z) \equiv \H(X|Z) - \H(X|Y, Z)
+    \end{align*}
+\end{definition}
+
+\begin{theorem}
+    Chain rule for information:
+    \begin{align*}
+        \I(X_1, X_2, \dots X_n ; Z) = \sum_i I(X_i ; Z | X_1, X_2, \dots X_{i - 1}
+    \end{align*}
+\end{theorem}
+\begin{proof}
+    TODO: finish
+\end{proof}
+
+\chapter{Variational auto encoders}
 
 
 \end{document}
