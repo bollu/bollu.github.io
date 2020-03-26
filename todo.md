@@ -1,16 +1,8 @@
-# Games
-------
-- Pyre
-- Firewatch
-- Hades
-- Exapunks
-- Hyper light drifter
-- The witness
-- Gris
-- Into the breach
+- Stone duality: https://www.irif.fr/~mgehrke/scriptie.pdf
 
-# Backlog
--------
+
+
+
 - Create a viewer for tensor the way fortran displays arrays.
 - DebugIR.
 - CRAB for llvm.
@@ -23,28 +15,18 @@
 - Upstream change to `gensim-data` changing the order of downloading 
   and then trying to pull data locally.
 - Structure theorem for PID
-
 - Propogators (Renissance of the propogator paper - ekmett).
 - Word2Blank paper.
 - ApplicativeDo.
 - Get the using segmented stack hack on simplexhc into GHC, run with nofib
   for delta.
 - Cleanup POIS notes
-
-# Kmett stuff
--------------
 - BDD optimisation.
 - Hyperfunctions.
-
-# my stuff
-----------
 - Freejit
 - Tagged data flow architecture
 - Geometric algebra
 - Information geometry
-
-# Next sem reading
--------------------
 - Elements of set theory.
 - http://www.tcs.tifr.res.in/~ramprasad/assets/courses/2017-algComp/algComp_2017.pdf
 - http://people.csail.mit.edu/madhu/FT98/course.html
@@ -61,10 +43,6 @@
 - http://math.uga.edu/~pete/Tychonoff.pdf
 - Elementary applied topology
 - http://kparc.com/b/readme.txt - Arthur Whitney guy who writes dense code.
-
-
-Priority list:
------------------
 - Coq PR
 -`polly_array_index` RFC.
 - Setup key logger.
@@ -134,7 +112,6 @@ installed, use it to compute closed forms)
 - Li chao tree
 - Aliens
 - Procrastination by Burka & Yuen.
-- Stone duality: https://www.irif.fr/~mgehrke/scriptie.pdf
 - Vehicles: Experiments in Synthetic Psychology
 - Uniform space: https://en.wikipedia.org/wiki/Uniform_space
 - https://www.youtube.com/channel/UCBLr7ISa_YDy5qeATupf26w/featured (algorithms live)
@@ -154,3 +131,10 @@ installed, use it to compute closed forms)
 - Histomorphisms and dynamorphisms: http://www.cs.ox.ac.uk/people/nicolas.wu/publications/Histomorphisms.pdf
 - Primes of the form x2+ny2 (Good intro to algebraic number theory!)
 - An exposition of the Krohn-Rhodes decomposition theorem: http://www-verimag.imag.fr/~maler/Papers/kr-new.pdf
+- Biohazard: The Chilling True Story of the Largest Covert Biological Weapons Program in the World - Told from Inside by the Man Who Ran It
+- Mathematical methods for engineers: https://ocw.mit.edu/courses/mathematics/18-086-mathematical-methods-for-engineers-ii-spring-2006/video-lectures/
+- Unified Media Programming: An Algebraic Approach (uses semigroups)
+- Check if decomposition gives something useful for presburger automata??
+- Discrete Algebraic Methods: contains presburger AND krohn-rhodes!
+- http://beyondloom.com/blog/: list of K/APL articles.
+- https://webusers.imj-prg.fr/~leila.schneps/corr.pdf: A description of the collaboration between Serre and Grothendieck.
