@@ -48,15 +48,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 
+- [`using` for cleaner function type typedefs](#using-for-cleaner-function-type-typedefs)
+- [A walkway of lanterns (WIP)](#a-walkway-of-laterns)
+- [Natural transformations](#natural-transformations)
 - [The hilarious commentary by dinosaure in OCaml git](#the-hilarious-commentary-by-dinosaure-in-ocaml-git)
 - [How to link against MLIR with CMake](#how-to-link-against-mlir-with-cmake)
-- [Energy as triangulaizing state space](#energy-as-triangulaizing-state-space)
+- [Energy as triangulaizing state space (WIP)](#energy-as-triangulaizing-state-space)
 - [The cutest way to write semidirect products](#the-cutest-way-to-write-semidirect-products)
 - [My Favourite APLisms](#my-favourite-aplisms)
-- [Proof of chinese remainder theorem on rings](#proof-of-chinese-remainder-theorem-on-rings)
+- [Proof of chinese remainder theorem on rings (WIP)](#proof-of-chinese-remainder-theorem-on-rings)
 - [monic and epic arrows](#monic-and-epic-arrows)
 - [The geometry of Lagrange multipliers](#the-geometry-of-lagrange-multipliers)
-- [Efficient tree transformations on GPUs](#efficient-tree-transformations-on-gpus)
+- [Efficient tree transformations on GPUs (WIP)](#efficient-tree-transformations-on-gpus)
 - [Things I wish I knew when I was learning APL](#things-i-wish-i-knew-when-i-was-learning-apl)
 - [Every ideal that is maximal wrt. being disjoint from a multiplicative subset is prime](#every-ideal-that-is-maximal-wrt-being-disjoint-from-a-multiplicative-subset-is-prime)
 - [Getting started with APL](#getting-started-with-apl)
@@ -73,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Geometric proof of Cauchy Schwarz inequality](#geometric-proof-of-cauchy-schwarz-inequality)
 - [Dataflow analysis using Grobner basis](#dataflow-analysis-using-grobner-basis)
 - [Fenwick trees and orbits](#fenwick-trees-and-orbits)
-- [Dirichlet inversion](#dirichlet-inversion)
+- [Dirichlet inversion (WIP)](#dirichlet-inversion)
 - [Incunabulum for the 21st century: Making the J interpreter compile in 2020](#incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020)
 - [An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)](#an-example-of-a-sequence-whose-successive-terms-get-closer-together-but-isnt-cauchy-does-not-converge)
 - [Krylov subspace method](#krylov-subspace-method)
@@ -141,6 +144,104 @@ document.addEventListener("DOMContentLoaded", function() {
 - [GSoC 2015 final report](content/blog/gsoc-vispy-report-6.md)
 - [Distributed Systems](#distributed-systems)
 - [Link Dump](#link-dump)
+
+
+# [`using` for cleaner function type typedefs](#using-for-cleaner-function-type-typedefs)
+
+I've always struggled with remembering the syntax for function type typedefs:
+
+```cpp
+typedef RETTY (*FNTYNAME)(ARGTY1, ARGTY2, ..., ARGTYn);
+```
+
+we can now use `using` for a far more pleasant syntax:
+
+```cpp
+using FNTYNAME = RETTY(ARGTY1, ARGTY2, ..., ARGTYn);
+```
+
+which is also intuitive. You write down the "type"
+on the right hand side, and give it a name on the left.
+
+This is not strictly the same, since the `typedef` 
+`typedefs` `FNTYNAME` to a _function pointer type_, while
+the C++ version typedefs the _function type_. I prefer
+the latter at any rate, since I dislike the fact
+that the usual typedef tends to hide the fact that a
+function pointer is some pointer-like-thing.
+
+
+# [A walkway of lanterns](#a-walkway-of-lanterns)
+
+### Semidirect products
+
+- $(\alpha \equiv \{ a, b, \dots\}, +, 0)$
+- $(\omega \equiv \{ X, Y, \dots\}, \times, 1)$
+- $\cdot ~: ~\omega \rightarrow Automorphisms(\alpha)$
+ 
+--- 
+- [How to twist pointers without breaking them](https://www.cse.iitk.ac.in/users/ppk/research/publication/Conference/2016-09-22-How-to-twist-pointers.pdf)
+
+- rotations: $\mathbb Z 5$
+- reflection: $\mathbb Z 2$
+
+- $D_5 = \mathbb Z5 \rtimes \mathbb Z2$
+--- 
+
+\begin{align*}
+\begin{bmatrix}
+1 & 0 \\
+a & X
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 \\
+b & Y
+\end{bmatrix}
+=  \begin{bmatrix}
+1 & 0 \\
+a + X \cdot b & XY
+\end{bmatrix}
+\end{align*}
+
+- $(Y \mapsto b) \xrightarrow{act} (X \mapsto a)$
+
+- $XY \mapsto a + X \cdot b$
+
+
+### A walkway of lanterns
+
+- Imagine $\mathbb Z$ as a long walkway. you start at 0. You are but a poor lamp lighter.
+- Where are the lamps? At each $i \in \mathbb Z$, you have a lamp that is either on, or off. So you have $\mathbb Z2$.
+
+- $L \equiv \mathbb Z \rightarrow \mathbb Z2$ is our space of lanterns. You can act on this space by either moving using $\mathbb Z$, or toggling a lamp using $\mathbb Z2$. $\mathbb Z2^{\mathbb Z} \rtimes \mathbb Z$
+
+- $g = (lights:\langle-1, 0, 1\rangle,  loc:10)$
+- $move_3: (lights: \langle \rangle, loc: 3)$
+- $move_3 \cdot g =  (lights:\langle-1, 0, 1\rangle,  loc:13)$
+- $togglex = (lights:\langle 0, 2 \rangle, loc: 0)$
+- $togglex \cdot g = (lights: \langle -1, 0, 1, 13, 15 \rangle, loc:13)$
+- $toggley = (lights: \langle -13, -12 \rangle, loc:0)$
+- $toggley\cdot g= (lights:\langle -1 \rangle, loc:13)$
+
+### Wreath products
+
+
+### This is automata theoretic? :O
+- cascade finite automata.
+
+### Krohn-rhodes, AKA how to model Freudian psychoanalysis using Lagrangians over semigroups.
+
+
+
+
+# [Natural transformations](#natural-transformations)
+
+![natural-transformations](static/natural-transformation.png)
+
+I don't find people who draw "all three parts" of the natural transformation:
+the catories $C$, $FC$, and $GC$, and then show the relationship between
+them, so I made this for my own reference.
+
 
 # [The hilarious commentary by dinosaure in OCaml git](#the-hilarious-commentary-by-dinosaure-in-ocaml-git)
 
