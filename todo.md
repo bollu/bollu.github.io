@@ -138,3 +138,4 @@ installed, use it to compute closed forms)
 - Discrete Algebraic Methods: contains presburger AND krohn-rhodes!
 - http://beyondloom.com/blog/: list of K/APL articles.
 - https://webusers.imj-prg.fr/~leila.schneps/corr.pdf: A description of the collaboration between Serre and Grothendieck.
+- Cascade Decompositions are Bit-Vector Algorithms!

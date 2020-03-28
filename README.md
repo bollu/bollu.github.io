@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 
+- [Proving block matmul using program analysis](#proving-block-matmul-using-program-analysis)
 - [Why I like algebra over analysis](#why-i-like-algebra-over-analysis)
 - [`using` for cleaner function type typedefs](#using-for-cleaner-function-type-typedefs)
 - [A walkway of lanterns (WIP)](#a-walkway-of-laterns)
@@ -146,6 +147,238 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Distributed Systems](#distributed-systems)
 - [Link Dump](#link-dump)
 
+
+# Krohn-Rhodes decomposition
+
+We denote partial functions with $X \rightharpoonup Y$ and total functions
+with $X \rightarrow Y$.
+
+A set $X$ equipped with a binary operator
+$\star: X \times X \rightarrow X$ which is closed and associative
+is a semigroup. 
+
+#### Partial function semigroup
+
+For a ground set $X$, the set of partial functions $Pf(X) \equiv \{ f: X \rightharpoonup X \}$
+along with function composition forms a semigroup. This is in fact stronger
+than a semigroup. There exists:
+
+- An identify function $e_x: X \rightarrow X; e_X(x) = x$
+- A zero function $\theta_x: X \rightharpoonup X; \theta_x(x) = \_$, where by
+  $\_$ we mean that it is _undefined_. 
+
+#### Transformation semigroup(TS)
+
+Let $Q$ be a set. Let $S \subseteq Pf(Q)$ be a sub-semigroup of $Pf(Q).
+Then the semigroup $X \equiv (Q, S)$ is called as the
+ _transformation semigroup_(X) of states $Q$.
+
+- The elements of $Q$ are called states of $X$
+- while  the elements of $S$ are called  _actions_ of $X$.
+- The set $Q$ itself is called as the _underlying set_ of $X$.
+- For a fixed transformation semigroup $X$, we will write $Q_X$ and $S_X$
+  to refer to its states and actions.
+
+
+We call $X \equiv (Q, S)$ as a _transformation monoid_ if $S$ contains $1_Q(q) = q$.
+
+##### Subtlety of being at transformation monoid.
+
+There is some subttlety here. Just because $S$ is a monoid does not mean that
+it that is a _transformation monoid_. It must have the identity element of 
+$Pf(Q)$ to be called a transformation monoid. For example, consider the
+set $Q \equiv \{ a, b\}$ and the transformation semigroup $S \equiv \{ f:(\_ \mapsto ) b\}$.
+Now the set $S$ is indeed a monoid with identity element as $f: Q \rightarrow Q$.
+however, $f \neq 1_Q$, hence, $S$ is a not a _transformation monoid_. 
+
+
+
+##### Examples of transformation semigroups
+
+1. $(X, \{ \theta(x) = \_ \})$. The semigroup with the empty transformation.
+
+2. $(X, \emptyset)$, the semigroup with _no_ transformations.
+
+
+#### Semigroup action
+
+We sometimes wish to represent a semigroup using an action/transformation semigroup
+on a ground set $X$. So, given some semigroup $(T, \times)$ that needs to be represented,
+if we can find a morphism $r: T \rightarrow Pf(X)$ ($r$ for representation)
+such that:
+
+- $ r(t_1 + t_2) = r(t_1) \circ r(t_2)$. [$r$ is a semigroup morphism].
+- $t_1 \neq t_2 \implies \exists x \in X$ such that $r(t_1)(x) \neq r(t_2)(x)$.
+  [Faithfulness].
+  
+Put more simply, $t_1 \neq t_2 \implies r(t_1) \neq r(t_2)$ where we define
+function equality extensionally: $f = g \equiv \forall x, f(x) = g(x)$.
+
+
+#### Embedding actions into the transformation semigroup
+We often wish to represent some semigroup $S$ as the transformation semigroup
+of some set of states $Q$. We can achieve this by proving a morphism:
+
+- $r: S \rightarrow Pf(Q)$ that is faithful.
+
+Then, we can treat elements of $S$ as elements of $Pf(Q)$.
+
+
+#### Completion of a transformation semigroup
+
+Given a transformation semigroup $X \equiv (Q, S)$ we can _complete_ it
+by adding a new sink state $\lbot$, and then converting all partial
+functions in $S$ to total functions that transition to $\lbot$. We have that
+$\lbot \cdot s = s \cdot \lbot ~ \forall s \in S$.
+
+We denote the completion as $X^c \equiv (Q^c, S^c)$.
+
+
+
+#### Coverings
+
+Let $X \equiv (Q_X, S_X)$ and $Y \equiv (Q_Y, S_Y)$ be transformation
+semigroups. Let $\phi: Q_Y \rightarrow Q_X$ be a relation. Let $s_x \in S_X$
+and $s_y \in S_Y$. Then, if the following diagram commutes:
+
+$$
+\begin{array}{ccc}
+a & \rightarrow & b
+\downarrow & & \downarrow 
+x & \rightarrow & y
+\end{array}
+$$
+
+#### References
+
+- Automata, Languages and Computation by Elinberg.
+- [On the Krohn-Rhodes decomposition theorem by Oded Maler](http://www-verimag.imag.fr/~maler/Papers/kr-new.pdf)
+
+# [Proving block matmul using program analysis](#proving-block-matmul-using-program-analysis)
+
+It's a somewhat well-known fact that given matrix multiplication: $O = AB$
+where $O$ \in \mathbb R^{2n \times 2m}$ ($O$ for output), 
+$A \in \mathbb R^{2n \times r}, B \in \mathbb R^{r \times 2m}$ are matrices.
+
+We can also write this as follows:
+
+$$
+\begin{bmatrix} o_{11} & o_{12} \\ o_{21} & o_{22} \end{bmatrix} = 
+\begin{bmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{bmatrix}  
+\begin{bmatrix} b_{11} & b_{12} \\ b_{21} & b_{22} \end{bmatrix} 
+= 
+\begin{bmatrix}
+a_{11} b_{11} + a_{12} b_{21} & a_{11} b_{12} + a_{12} b_{22} \\
+a_{21} b_{11}+ a_{22} b_{21} & a_{21} b_{12} + a_{22} b_{22}
+\end{bmatrix}  
+$$
+
+When written as code, the original matrix multiplication is:
+
+```cpp
+// a:[2N][2Z] b:[2Z][2M] -> out:[2N][2M]
+int matmul(int N, int Z, int M, int a[N][Z], int b[Z][M], int out[N][M]) {
+  for(int i = 0; i < 2*N; ++i) {
+    for(int j = 0; j < 2*M; ++j) {
+      for(int k = 0; k < 2Z; ++k) out[i][j] += a[i][k] * b[k][j]
+    }
+  }
+}
+```
+
+and the block-based matrix multiplication is:
+
+```cpp
+// a:[2N][2Z] b:[2Z][2M] -> out:[2N][2M]
+int matmulBlock(int N, int Z, int M, int a[N][Z], int b[Z][M], int out[N][M]) {
+  for (int BI = 0; BI < 2; ++BI) {
+    for (int BJ = 0; BJ < 2; ++BJ) {
+      for(int i = BI*N; i < BI*N+N; ++i) {
+        for(int j = BJ*M; j < BJ*M+M; ++j) {
+          for(int k = 0; k < 2Z; ++k) { out[i][j] += a[i][k] * b[k][j] }
+        }
+      }
+    }
+  }
+}
+```
+
+we wish to show that both of these programs have the _same semantics_. 
+We will do this by appealing to ideas from program analysis. 
+
+#### The key idea
+
+We will consider the statement:
+```cpp
+out[i][j] += a[i][k] * b[k][j] 
+```
+as occuring at an abstract "point in time" $(i, j, k)$ in the `matmul` function.
+I also occurs at an abstract "point in time" $(BI, BJ, i', j', k')$ in
+the `matmulBlock` function. 
+
+We will then show that the loops `for(i...) for(j...) for(k...)` are fully
+parallel, and hence we can reorder the loops any way we want.
+
+Then, we will show that the ordering imposed by $(BI, BJ, i', j', k')$
+is a reordering of the original $(i, j, k)$ ordering. We do this by
+showing that there is a bijection:
+
+$$
+(i=i_0, j=j_0, k=k_0) \rightarrow (BI=i_0/N, BJ=j_0/N, i=i_0\%N, j=j_0\%N, k=k_0)
+$$
+
+Thus, this bijection executes all loops, and does so without affecting the
+program semantics.
+
+#### Schedules
+
+We'll zoom out a little, to consider some simple programs and understan
+how to represent parallelism. 
+
+```cpp
+void eg1(int N, int M, int out[N][M]) {
+for(int i = 0; i < N; ++i) {
+  for(int j = 1; j < M; ++j) {
+    out[i][j] = out[i][j-1];
+  }
+}
+```
+
+Notice that this program is equivalent to the program with the $i$ loop
+reversed:
+
+```cpp
+void eg1rev(int N, int M, int out[N][M]) {
+for(int i = N-1; i >=0; --i) {
+  for(int j = 1; j < M; ++j) {
+    out[i][j] = out[i][j-1];
+  }
+}
+```
+
+What's actually _stopping_ us from reversing the loop `for(j...)`? it's
+the fact that the value of, say, `out[i=0][j=1]` _depends_ on
+`out[i=0][j=0]`. We can see that in general, `out[i=i_0][j=j_0]` _depends_
+on `out[i=i_0][j=j_0-1]`. We can represent this by considering a
+_dependence set_:
+
+$$
+\{ \texttt{write}:(i_0, j_0-1) \rightarrow \texttt{write}:(i_0, j_0) \}
+$$
+
+in general, we can reorder statements as long as we do not change
+the _directions_ of the arrows in the dependence set.
+
+
+#### Dependence structure of `matmul`.
+
+#### Fully parallel, reordering
+
+
+#### References
+
+- Optimizing Compilers for Modern Architectures: A Dependence-based Approach
+- [Polyhedral compilation](http://polyhedral.info/)
 
 
 # [Why I like algebra over analysis](#why-i-like-algebra-over-analysis)
