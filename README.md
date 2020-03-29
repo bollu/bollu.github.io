@@ -48,7 +48,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 
-- [Proving block matmul using program analysis](#proving-block-matmul-using-program-analysis)
+- [A natural vector space without an explicit basis](#a-natural-vector-space-without-an-explicit-basis)
+- [Cache oblivious B trees](#cache-oblivious-b-trees)
+- [Krohn-Rhodes decomposition (WIP)](#krohn-rhodes-decomposition)
+- [Proving block matmul using program analysis (WIP)](#proving-block-matmul-using-program-analysis)
 - [Why I like algebra over analysis](#why-i-like-algebra-over-analysis)
 - [`using` for cleaner function type typedefs](#using-for-cleaner-function-type-typedefs)
 - [A walkway of lanterns (WIP)](#a-walkway-of-laterns)
@@ -147,8 +150,174 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Distributed Systems](#distributed-systems)
 - [Link Dump](#link-dump)
 
+# [A natural vector space without an explicit basis](#a-natural-vector-space-without-an-explicit-basis)
 
-# Krohn-Rhodes decomposition
+On learning about infinite dimensional vector spaces, one learns that 
+we need to use the axiom of choice to assert that every such vector space
+has a basis; indeed, it's equivalent to the AoC to assert this. However,
+I had not known any "natural" examples of such a vector space till I studied
+the proof of the barvinok algorithm. I produce the example here.
+
+Consider a space such as $S \equiv \mathbb R^3$. Now, consider the vector
+space spanned by the indicator functions of polyhedra in $S$. that's a mouthful,
+so let's break it down.
+
+A polyhedra is defined as a set of points that is defined by linear
+inequalities: $P \equiv \{ x \in S : a_i \cdot x \leq b_i, i \in [1\dots n] \}$,
+for all $a_i \in S$, $b \in \mathbb R$.
+
+The indicator functions are of the form:
+
+$$
+[poly]: S \rightarrow \mathbb R; 
+[poly](x) \equiv 
+\begin{cases} 1 & \text{x \in poly} \\
+0 & \text{otherwise} \end{cases}
+$$
+
+we can define a vector space of these functions over $\mathbb R$, using
+the "scaling" action as the action of $\mathbb R$ on these functions:
+
+\begin{align*}
+ &(f + g)(x) \equiv f(x) + g(x) \\
+ &(r \cdot f)(x) \equiv r \times f(x)
+\end{align*}
+
+The vector space $V$ is __defined__ as the span of the indicator functions
+of all polyhedra. It's clearly a vector space, and a hopefully intuitive
+one. However, note that the set we generated this from (indicators of polyhedra)
+don't form a basis since they have many linear dependencies between them.
+For example, one can write the equation:
+
+![indicator-polyhedra-relations](static/indicator-polyhedra-relations.png)
+
+
+# [Cache oblivious B trees](#cache-oblivious-b-trees)
+
+Central idea: assume a memory model where computation is free, only cost
+is pulling data from cache into memory. Cache has total size $M$, can hold
+blocks of size $B$. So it can hold $M/B$ blocks of main memory. Memory memory
+has infinite size. Cost is number of transfers.
+
+We assume that the algorithm _does not know M or B_. We assume that the cache
+replacement strategy is optimal (kick out block that is going to be used
+farthest in the future). This is an OK assumption to make since an LRU cache
+using _twice_ the memory of a "oracular" cache performs equally well (citation?)
+
+
+These data structures are cool since they essentially "Adapt" to varying cache
+hierarchies and even multiple level cache hierarchies.
+
+We study how to build cache-oblivious B-trees.
+
+#### Building optimal cache-oblivious B trees to solve search
+
+- We use a balanced BST. We want to find an order to store nodes in memory
+  such that when we search for an element, we minimize number of blocks
+  we need to pull in.
+
+- All standard orders such as level order, pre-order, post-order fail.
+
+- Corrrect order is "VEB (Van Em De Boas) order": carve a tree at the middle
+  level of its edges. Layout a "triangle" or smaller collection
+  of nodes linearly. Then Recursively layout the trees, linearly in memory.
+
+- Supposedly if the number of nodes is $N$, we wil have roughly $\sqrt(N)$
+  nodes on the top, and then $\sqrt(N) _triangles_ at the bottom/
+
+#### Analysis Claim: we need to pull $O(\log_B N)$ blocks for any $B$ for any search query
+
+$N$ is the number of nodes in the BST. Note that in the analysis, _we know what B is_,
+even though the _algorithm does not_.
+
+- We look at a particuar level of recursion. We will call it a "level of detail"
+  straddling B.
+
+- We will have large triangles of size $\geq B$, inside which there are smaller
+  triangles of size $\leq B$ (reminds me of sierpinski).
+
+- We know that the algorithm recursively lays it out, and triangle stores
+  everything "inside" it _in a contiguous region_. So we stop at the
+  requisite size where we know that the tree's triangles themselves
+  contain triangles which fit into the block size.
+
+- A little triangle of size less than B can live in at most two memory blocks
+  by straddling a block boundary: by eg. having $(B-1)$ bits in one block
+  and a single bit in another block.
+  ```
+  1 2 3 4 5 6 7 8 <- index
+  |     |       | <- boundary
+  |-xxxxxxx-----| <-  data
+  ```
+
+- The question is that on a root-to-leaf bpath, how many such triangles do
+  we need to visit. Since we repeatedly divide the nodes in half _with
+  respect to height_ until the little triangle has number of nodes less
+  than $B$, the height is going to be $O(\log B)$ since it's still a binary tree.
+
+- total height in $O(\log N)$.
+
+- so height of "chunked tree" where we view each triangle as a single node
+  is $\log N / \log B = \log_B n$.
+
+- **insight**: ou data structure construction in some sense permits us to
+  "binary search on $B$" since we divide the data structure into levels
+  based on $B$. if $B = N$, then the full data structure fits into memory
+  and we're good. 
+
+#### Black box: ordered file maintainince
+
+We need a black box: ordered file maintainance (linked list for arrays)
+
+- Store $n$ elements in specified order in an array of linear size $O(N)$.
+  Array permits gaps.
+- updates: delete element, insert elements between 2 elements.
+- cannot do this in linear time, but we can move elements in an interval of
+  size $\log^2(N)$ amortized.
+- We need $O(1)$ scans for the data structure.
+
+#### Next: _dynamic_ BST (inserts and deletes): layout
+
+we take a VEB static tree on top of an ordered file. Tree is a segtree
+that has max of nodes. Leaves are the members of the ordered file.
+
+#### Updates
+
+- search for node.
+- update ordered file.
+- propogate updates into the tree. This will have to be done in post-order
+  because we need the leaves to be fixed before we can update the parent
+  `max`.
+
+#### Updates: analysis.
+
+- look at level of detail that straddles $B$.
+
+- Let us look at the bottom 2 levels.
+
+- Note that when we perform post-order inside a triangle that has 3 triangles 
+  of size $\leq B$, we need to alternate between parent triangle and child triangle.
+  Since the parent triangle is of size $\leq B$ and can therefore take
+  at most $2B$ blocks of memory, similarly the child can take at most $2B$
+  blocks of memory. 
+
+- So if our cache can hold $4$ blocks of memory, we're done.
+  We won't need to kick anything out when performing the post-order
+  traversal.
+
+- For levels that are above the bottom 2 levels, we're still OK. there
+  are not many triangles! / not many nodes! (`1:16:00` in the video)
+
+
+
+
+
+#### References
+
+- [Erik demaine, advanced data structures, lecture 7: Memory hiearchy: models, cache
+  oblivious B trees](https://courses.csail.mit.edu/6.851/fall17/lectures/L07.html?notes=5)
+
+# [Krohn-Rhodes decomposition](#krohn-rhodes-decomposition)
 
 We denote partial functions with $X \rightharpoonup Y$ and total functions
 with $X \rightarrow Y$.
@@ -249,10 +418,223 @@ x & \rightarrow & y
 \end{array}
 $$
 
+If $s_x(\phi(q_y)) = \phi(t_y(q_y))$, then we say that $t_y$ covers $s_x$ relative to $\phi$.
+We imagine the $t_y$ lying above $s_x$, being projected down by $\phi$.
+
+If a fixed $\phi$, for all $s_x \in S_X$ there exists a $t_y \in S_Y$ such that
+$t$ covers $s$ relative to $\phi$, then we say that $\phi:$ is a _relation of
+automata_.
+
+- If $\phi: Q_Y \rightarrow Q_X$ is surjective,
+  then we say that $\phi$ is a __relational covering__ and write:
+
+$$
+X \triangleleft_{\phi} Y
+$$
+
+- If $\phi: Q_Y \rightarrow Q_X $ is _both_ surjective and a partial function,
+then we say that $\phi$ is a __covering__ and write:
+
+$$
+X \prec_\phi Y
+$$
+
+If $X \prec_\phi Y$, we say that $Y$ dominates $X$, or $Y$ covers $X$, or
+$X$ divides $Y$.
+
+#### Checking coverings and generating subsets
+
+We note that for a given covering $\phi$, if $s_x$ is covered by $t_y$
+and $p_x$ is covered by $q_y$, then $s_x \circ t_x$ is covered by $t_y \circ q_y$.
+
+Thus, to check if $X$ is covered by $Y$, we simply need to check if __some
+generating subset of $X$ is covered by $Y$__.
+
+#### Checking coverings of representations
+
+Let us assume we have a representation of a transformation semigroup
+given with a semigroup $\Sigma$, a transformation semigroup
+$X \equiv (Q_X, S_X)$, and a representation $r: \Sigma \rightarrow S_X$ that is
+faithful.
+
+Now, to check that $X$ is covered by another $Y$, it suffices to check that
+there exists a $t_y \in Y$ for each $\sigma \in X$ such that $r(\sigma)$ is
+covered by this $t_y$.
+
+#### Companion relation
+Given a relation $\phi: Y \rightarrow X$, then we define:
+
+$$
+\Sigma \equiv \{ (s, t) : \text{$t \in T_Y$ covers $s \in S_X$ \}
+$$
+
+Recall compositions of elements are covered by a composition
+of their coverings. Hence, if $(s, t), (s', t') \in \Sigma$, then
+$(ss', tt') \in \Sigma$. thus, $\Sigma$ is a subsemigroup of $S_X \times S_Y$.
+
+We can regard $\Sigma$ as the graph of a relation $\phi' \subseteq Q_Y \times Q_X$.
+This will be called as __companion relation__ of $\phi$.
+
+#### Wreath products
+
+Let $X \equiv (Q_X, S_X)$ and $Y \equiv (Q_Y, S_Y)$. We're going to define a large
+product $X \wr Y$.
+
+We begn with the set $W \equiv S_X^Q_Y \times S_Y$, where
+$S_X^Q_Y \equiv \{ f : Q_Y \rightarrow S_X \}$.
+The wreath product then becomes:
+
+$$
+X \wr Y \equiv (Q_X \times Q_Y, W)
+$$
+
+with the action of $W$ on an element of $Q_X \times Q_Y$ being defined as:
+
+$$
+(f : Q_Y \rightarrow S_X, s_y : S_Y) (q_x : Q_X, q_Y : Q_Y) \equiv ( f(q_y)(q_x) , s_y (q_y))
+$$
+
+it's a "follow the types" sort of definition, where we edit the right component
+as $r_y \mapsto t_y(r_y)$ since that's all we can do. In the case of
+the left component, we have a $q_x$, and we need to produce another element
+in $Q_X$, so we "must use $f$". The only way to use $f$ is to feed it
+a $t_y$. This forces us into the above definition.
+
+
+##### Composition of wreath products
+
+To show that its closed under composition, let's consider $(f, s_y), (g, t_y) \in W$ 
+with $f, g: Q_Yg \rightarrow S_X$, and $s_y, t_y \in S_Y$. The result is
+going to be: 
+
+$$
+(f, s_y)  (g, t_y) =  (\lambda q_y. f(q_y) \circ g(q_y), t_y \circ u_y)
+$$
+
+#### Equivalences of subsets of states
+
+Let $X = (Q, S)$ be a transition system. Given subsets $(a, b, \subseteq Q)$,
+we shall write $b \leq a$ if either $b \subseteq a$ or there exists some $s \in S$
+such that $b \subseteq sa$, where $s(a) \equiv \{ s(a_i) : a_i \in a\}$. We can
+define an equivalence relation $a \sim b \iff a \leq b \land b \leq a$.
+
+Note that: $ b \leq a \implies |b| \leq |a|$, since:
+- $b \leq a$ means that $b \subseteq s(a)$. Note that $s$ is actually a
+function $s: Q \rightarrow Q$, and a function mapped over a set can only
+ever decrease the number of elements in a set, since a function can only
+glomp elements together; it can never break an element apart into two.
+Hence, $b \subseteq sa \subseteq a$, and thus $|b| \leq |a|$.
+
+
+Similiarly, $a \leq b \implies |a| \leq |b|$. Therefore, $b \sim a$ means
+that $|b| = |a|$. 
+
+**Theorem**: for all $a, b \in Q_X$ such that 
+$a ~ b$ such that $b \subseteq s(a)$, we show that $b = s(a)$, and there exists
+a $t \in S_X$ such that $a = t(b)$.
+
+**Proof**: Since $b \subseteq s(a) \subseteq a$ and $|b| = |a|$, $b = s(a)$.
+Therefore $s$ is a permutation. Hence, $s$ is invertible and there exists
+an inverse permutation $t$ such that $a = t(b)$. We now need to show that
+$t \in S_X$. To do this, first note that if the order of the permutation
+$s$ is $n$, then $t = s^{n-1}$, since $t \circ s = s^{n-1} \circ s = 1_S$.
+Since the semigroup $S$ is closed under composition $t = s^{n-1}$ is in $S$,
+since it is $s$ composed with itself  $(n-1)$ times.
+
+#### Subset families of interest
+
+We will be interest in a family of subsets of $Q_X$ called $A$, of the form:
+- all sets of the form $s(Q)$ for all $s \in S_X$
+- the set $Q$
+- the empty set $\emptyset$
+- all the singleton sets $\{ q \}$ for all $q \in Q$.
+
+In the above set, we have $\leq$ and $\sim$ as defined above.
+
+We note that the set $A$ is **closed under the action of all $s \in S_X$**.
+For example, the empty set is taken to the empty set. All singleton
+sets are taken to other singleton sets. For the full set $Q$, we add
+the sets $s(Q)$ for all $s \in S_X$. 
+
+#### Height function
+
+A height function for a transition system $X \equiv (Q_X, S_X)$ is a function
+$h: A \rightarrow \mathbb Z$ such that:
+
+
+1. $h(\emptyset) = -1$. 
+2. $h(\{ q \}) = 0 \forall q \in Q$.
+3. $a \sim b \implies h(a) = h(b)$ for all $a, b \in A$.
+4. $b < a \implies h(b) < h(a)$ for all $a, b \in A$.
+
+The notation $b < a \equiv (b \leq a) \land \lnot (a \leq b)$.
+
+(3) + (4) imply that two elements of the same height are either equivalent
+or incomparable. 
+
+#### Pavings and bricks
+
+for $a \in A$ such that $|a| > 1$, we denote by $B_a$ the set of all $b \in A$
+what are maximal subsets of $a$. That is, if $b \in B_a$ then $b \subsetneq a$,
+and $\not \exists c, $b \subsetneq c \subsetneq a$. Equivalently, if there
+exists a $c$ such that $b \subseteq c \subseteq a$, then $b = c$ or $b = a$.
+
+Note that we can assert that $a = \cup_{b \in B_a} b$. This is because $B_a$
+contains all the singletons of $Q_X$. so we can begin by writing $a$ as
+a union of singletons, and then merging elements of $B_a$ into larger elements
+of $B$, terminating when we cannot merge any more elements of $B_a$.
+
+- The set $B_a$ is called as the **paving of $a$**.
+- The elements of $B_a$ are called as the **bricks of $a$**.
+
+#### Group of permutations for $a \in A$
+
+Let us assume that there exists a $s \in S$ such that $s(a) = a$. Let $A_a$
+be the set of all elements in $A$ contained in $a$:
+$A_a = \{ A_i : A_i \in A, A_i \subseteq a \}$.
+
+Recall that the set $A$ was closed under the action of all $s$, and hence,
+since $s$ is a permutation of $a$, this naturally extends into a
+permutation of $A_a$: $s A_a = A_a$. Now note that this induces a permutation
+of the set $B_a$. This creates a transition system:
+
+\begin{align*}
+&G_a \equiv \{ s \in S : s a = a} \\
+&H_a \equiv (B_a, G_a) \\
+\end{align*}
+
+We have already shown how if $s \in S$ defines a permutation of some set $X$
+by its action, then its inverse also exists in $S$. So, this means that
+$G_a$ is in fact a transition _group_ that acts on $B_a$. 
+
+It might turn out that $G_a = \emptyset$. However, if $G_a \neq \emptyset$,
+then as stated above, $G_a$ is a group.
+
+We will call such a transition group a **generalized_ transition group**, since
+either $G_a = \emptyset$ or $G_a$ is a group.
+
+
+Now, the generalized transition group $H_a$ is called as the
+**holonomy transition system** of $a$, and the group $G_a$ is called as
+the **holonomy group** of $a$.
+
+
+We have that $G_a \prec S$ since $G_a$ is a quotient of the sub-semigroup
+$\{ s | s \in S, as = a \}$. (TODO: so what? why does this mean that it's $\prec$?)
+
+**Theorem:** if $a \sim b$, then $H_a \simeq H_b$
+  (similar subsets have isomorphic holonomy transition systems).
+**Proof:** TODO.
+
+
+
 #### References
 
 - Automata, Languages and Computation by Elinberg.
 - [On the Krohn-Rhodes decomposition theorem by Oded Maler](http://www-verimag.imag.fr/~maler/Papers/kr-new.pdf)
+- [Ideas of the Holonomy Decomposition of Finite Transformation Semigroups](http://www.egri-nagy.hu/pdf/holonomy_general.pdf)
+- [Nine chapters on the semigroup art](http://www-groups.mcs.st-andrews.ac.uk/~alanc/pub/c_semigroups/c_semigroups_a4.pdf)
+- [Computational holonomy decompositions of transformation semigroups](http://www.biomicsproject.eu/file-repository/category/CompHolonomy.pdf)
 
 # [Proving block matmul using program analysis](#proving-block-matmul-using-program-analysis)
 
