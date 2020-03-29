@@ -171,17 +171,19 @@ The indicator functions are of the form:
 $$
 [poly]: S \rightarrow \mathbb R; 
 [poly](x) \equiv 
-\begin{cases} 1 & \text{x \in poly} \\
+\begin{cases} 1 & x \in poly \\
 0 & \text{otherwise} \end{cases}
 $$
 
 we can define a vector space of these functions over $\mathbb R$, using
 the "scaling" action as the action of $\mathbb R$ on these functions:
 
+$$
 \begin{align*}
  &(f + g)(x) \equiv f(x) + g(x) \\
  &(r \cdot f)(x) \equiv r \times f(x)
 \end{align*}
+$$
 
 The vector space $V$ is __defined__ as the span of the indicator functions
 of all polyhedra. It's clearly a vector space, and a hopefully intuitive
@@ -189,7 +191,7 @@ one. However, note that the set we generated this from (indicators of polyhedra)
 don't form a basis since they have many linear dependencies between them.
 For example, one can write the equation:
 
-![indicator-polyhedra-relations](static/indicator-polyhedra-relations.png)
+![indicator-polyhedra-relations](./static/indicator-polyhedra-relations.png)
 
 
 # [Cache oblivious B trees](#cache-oblivious-b-trees)
@@ -333,12 +335,12 @@ along with function composition forms a semigroup. This is in fact stronger
 than a semigroup. There exists:
 
 - An identify function $e_x: X \rightarrow X; e_X(x) = x$
-- A zero function $\theta_x: X \rightharpoonup X; \theta_x(x) = \_$, where by
-  $\_$ we mean that it is _undefined_. 
+- A zero function $\theta_x: X \rightharpoonup X; \theta_x(x) = undef$, where by
+  $undef$ we mean that it is _undefined_. 
 
 #### Transformation semigroup(TS)
 
-Let $Q$ be a set. Let $S \subseteq Pf(Q)$ be a sub-semigroup of $Pf(Q).
+Let $Q$ be a set. Let $S \subseteq Pf(Q)$ be a sub-semigroup of $Pf(Q)$.
 Then the semigroup $X \equiv (Q, S)$ is called as the
  _transformation semigroup_(X) of states $Q$.
 
@@ -356,15 +358,15 @@ We call $X \equiv (Q, S)$ as a _transformation monoid_ if $S$ contains $1_Q(q) =
 There is some subttlety here. Just because $S$ is a monoid does not mean that
 it that is a _transformation monoid_. It must have the identity element of 
 $Pf(Q)$ to be called a transformation monoid. For example, consider the
-set $Q \equiv \{ a, b\}$ and the transformation semigroup $S \equiv \{ f:(\_ \mapsto ) b\}$.
+set $Q \equiv \\{ a, b \\}$ and the transformation semigroup $S \equiv \\{ f \equiv \alpha \mapsto b \\}$.
 Now the set $S$ is indeed a monoid with identity element as $f: Q \rightarrow Q$.
-however, $f \neq 1_Q$, hence, $S$ is a not a _transformation monoid_. 
+however, $f \neq 1_Q$ , andh ence, $S$ is a not a _transformation monoid_. 
 
 
 
 ##### Examples of transformation semigroups
 
-1. $(X, \{ \theta(x) = \_ \})$. The semigroup with the empty transformation.
+1. $(X, \{ \theta(x) = undef \})$. The semigroup with the empty transformation.
 
 2. $(X, \emptyset)$, the semigroup with _no_ transformations.
 
@@ -396,9 +398,9 @@ Then, we can treat elements of $S$ as elements of $Pf(Q)$.
 #### Completion of a transformation semigroup
 
 Given a transformation semigroup $X \equiv (Q, S)$ we can _complete_ it
-by adding a new sink state $\lbot$, and then converting all partial
-functions in $S$ to total functions that transition to $\lbot$. We have that
-$\lbot \cdot s = s \cdot \lbot ~ \forall s \in S$.
+by adding a new sink state $\bot$, and then converting all partial
+functions in $S$ to total functions that transition to $\bot$. We have that
+$\bot \cdot s = s \cdot \bot ~ \forall s \in S$.
 
 We denote the completion as $X^c \equiv (Q^c, S^c)$.
 
