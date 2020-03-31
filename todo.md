@@ -1,8 +1,6 @@
+SSC: slate star codex
+
 - Stone duality: https://www.irif.fr/~mgehrke/scriptie.pdf
-
-
-
-
 - Create a viewer for tensor the way fortran displays arrays.
 - DebugIR.
 - CRAB for llvm.
@@ -139,3 +137,27 @@ installed, use it to compute closed forms)
 - http://beyondloom.com/blog/: list of K/APL articles.
 - https://webusers.imj-prg.fr/~leila.schneps/corr.pdf: A description of the collaboration between Serre and Grothendieck.
 - Cascade Decompositions are Bit-Vector Algorithms!
+- "You just pick the speed of light squared in Minkowski space to be an
+  appropriate algebraic number, and magic happens! Suddenly solutions of
+  natural PDE's on hyperbolic manifolds are linked with cohomology of
+  arithmetic groups." I picked it up from a variety of sources, but I'd
+  recommend reading anything by Alan Reid. He has some course notes floating
+  around which cover arbitrary hyperbolic n-manifolds, though I can't seem to
+  track them down at the moment.  People often focus on hyperbolic 3-manifolds
+  because there are some very strong links to number theory (e.g. Spec(Z)
+  behaves like a 3-manifold in certain ways), but the machinery works for
+  higher dimensional hyperbolic manifolds as well. "Arithmetic hyperbolic
+  manifolds" is a good keyword to look for if you want to dig deeper.
+- http://math.stanford.edu/~akshay/research/takagi.pdf (a link for the above)
+- hull: filesystem to maintain state of program: http://250bpm.com/blog:153
+- Dilworth's theorem: |largest antichains (pairwise incomparable elem)| = # of chains
+- Intro to condensed matter: https://podcasts.ox.ac.uk/01-introduction-condensed-matter-einstein-model-vibrations-solids
+- Andreson, more is different, anti-reductionism: http://robotics.cs.tamu.edu/dshell/cs689/papers/anderson72more_is_different.pdf
+- blog on solid state physics/Condensed matter: http://nanoscale.blogspot.com/
+- Solid state physics: https://podcasts.ox.ac.uk/series/oxford-solid-state-basics
+- Lattice differential geometry: https://arxiv.org/pdf/1802.02887.pdf
+- Gerard t'hooft list of physics lecture notes: http://www.goodtheorist.science
+- Red plenty: book about how people thought communism would be better economically than capitalism (SSC)
+- The machinery of freedom: 1975 book on libterterianism, feels "fresh". (SSC)
+- https://en.wikipedia.org/wiki/Bregman_divergence
+- http://mark.reid.name/blog/meet-the-bregman-divergences.html
