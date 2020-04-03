@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 
+- [Christoffel symbols, geometrically](#christoffel-symbols-geometrically)
 - [A natural vector space without an explicit basis](#a-natural-vector-space-without-an-explicit-basis)
 - [Cache oblivious B trees](#cache-oblivious-b-trees)
 - [Krohn-Rhodes decomposition (WIP)](#krohn-rhodes-decomposition)
@@ -149,6 +150,84 @@ document.addEventListener("DOMContentLoaded", function() {
 - [GSoC 2015 final report](content/blog/gsoc-vispy-report-6.md)
 - [Distributed Systems](#distributed-systems)
 - [Link Dump](#link-dump)
+
+# [Christoffel symbols, geometrically](#christoffel-symbols-geometrically)
+
+Suppose we have a manifold $M$. of dimension $d$ that has been embedded isometrically
+into $\mathbb R^n$. So we have a function $e: \mathbb R^d \rightarrow \mathbb R^n$
+which is the embedding. We will identify $M$ to be the subspace $Im(e)$.
+
+Recall that $\partial_{x_i} e : \mathbb R^d \rightarrow \mathbb R^n$
+is defined as:
+
+$$
+\begin{align*}
+&\partial_{x_i}e : \mathbb R^d \rightarrow \mathbb R^n \\
+&[\partial {x_i}e](p) \equiv 
+ \lim_{\delta x \rightarrow 0} \frac{e(p + (0:0, 1:0\dots, i:\delta_x, \dots, n:0)) - e(p)}{\delta x}
+\end{align*}
+
+Note that it is a function of type $\mathbb R^d \rightarrow \mathbb R^n$.
+
+
+- The tangent space at point $p \in Image(e)$ is going to be spanned by
+  the basis $\{ \partial_{x_i}e \vert_p : \mathbb R^n \}$.
+
+
+- The metric tensor of $M$, 
+ $g_{ij} \equiv \langle \frac{\partial e}{\partial x_i} \vert \frac{\partial e}{\partial x_j} \rangle$.
+ That is, the metric tensor "agrees" with the dot product of the 
+ ambient space $\mathbb R^n$.
+
+- A vector field $V$ on the manifold $M$ is by definition a combination of
+  the tangent vector fields. $V(p_0) \equiv v^j(p_0) \partial_{x_j} e(p_0)$
+
+
+We can calculate the derivaive of this vector field as follows:
+
+$$
+\begin{align*}
+&\frac{V(p)}{\partial x^i} \\
+&= \partial_{x_i} \left[ v_j(p) \partial_{x_j} e \right]
+&= v^j \cdot \partial_{x_i} \partial_{x_j} e + \partial_{x_j}e \cdot \partial_{x_i} v^j
+\end{align*}
+$$
+
+We choose to rewrite the second degree term in terms of the tangent
+space, and some component that is normal to us that we have no
+control over.
+
+$$
+(\partial_{x_i} \partial_{x_j} e )(p) \equiv \Gamma^k_{ij} \partial_{x_k} e + \vec{n}
+$$
+
+This gives us the Christoffel symbols as "variation of second derivative _along_
+the manifold.
+
+
+#### Relationship to the Levi-Cevita connection
+
+The covariant derivative defined by the Levi-Cevita connection is the derivative
+that contains the projection of the full derivative in $\mathbb R^n$ onto 
+the tangent space $T_p M$. This is defined by the equations:
+
+$$
+\begin{align*}
+\nabla_{e_i} V &\equiv \partial_{x_i} V - \vec{n}  \\
+ &= \Pi_{\vec{n}^\bot} \left [v^j \cdot \partial_{x_i} \partial_{x_j} e + \partial_{x_j}e \cdot \partial_{x_i} v^j \right]
+ &= \Pi_{\vec{n}^\bot} \left[ v^j \cdot (\Gamma^k_{ij} \partial_{x_k} e + \vec{n})+ \partial_{x_j}e \cdot \partial_{x_i} v^j \right]
+ &= v^j \cdot (\Gamma^k_{ij} \partial_{x_k} e + \vec 0) + \partial_{x_j}e \cdot \partial_{x_i} v^j
+ &= v^j \cdot (\Gamma^k_{ij} \partial_{x_k} e + \vec 0) + \partial_{x_k}e \cdot \partial_{x_i} v^k
+ &= v^j \cdot \Gamma^k_{ij} \partial_{x_k} e  + \partial_{x_k}e \cdot \partial_{x_i} v^k
+ &= \partial_{x_k} e \left( v^j \cdot \Gamma^k_{ij}  + \partial_{x_i} v^k \right)
+\end{align*}
+$$
+
+
+
+#### References
+
+- [The wikipedia page on Covariant derivative](https://en.wikipedia.org/wiki/Covariant_derivative#Informal_definition_using_an_embedding_into_Euclidean_space)
 
 # [A natural vector space without an explicit basis](#a-natural-vector-space-without-an-explicit-basis)
 
