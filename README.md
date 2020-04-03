@@ -409,7 +409,7 @@ We denote the completion as $X^c \equiv (Q^c, S^c)$.
 #### Coverings
 
 Let $X \equiv (Q_X, S_X)$ and $Y \equiv (Q_Y, S_Y)$ be transformation
-semigroups. Let $\phi: Q_Y \rightarrow Q_X$ be a relation. Let $s_x \in S_X$
+semigroups. Let $\phi \subseteq Q_Y \times Q_X$ be a relation. Let $s_x \in S_X$
 and $s_y \in S_Y$. Then, if the following diagram commutes:
 
 $$
@@ -434,7 +434,7 @@ $$
 X \triangleleft_{\phi} Y
 $$
 
-- If $\phi: Q_Y \rightarrow Q_X $ is _both_ surjective and a partial function,
+- If $\phi \subeteq Q_Y \times Q_X $ is _both_ surjective and partial,
 then we say that $\phi$ is a __covering__ and write:
 
 $$
@@ -626,9 +626,64 @@ $\{ s | s \in S, as = a \}$. (TODO: so what? why does this mean that it's $\prec
 
 **Theorem:** if $a \sim b$, then $H_a \simeq H_b$
   (similar subsets have isomorphic holonomy transition systems).
-**Proof:** TODO.
+**Proof:** Let us assume that $a \neq b$. since $a \sim b$, we have elements
+of the form $s, s^{-1} \in S$ such that $b = s(a)$, $a = s^{-1}(b)$.
+
+Recall that for $b_a \in B_a$ is such that for a member $g \in G_a$,
+$g(b_a) = b_a$. $B_b$ must have the element $s(b_a)$. [TODO!]
+
+#### Holonomy decomposition
+
+Let $X \equiv (Q, S)$ be a transition system and let $h$ be a height
+function for $X$, such that $h(Q) > 0$. For a fixed $i$, let $a_1, a_2,
+\dots a_k$ be the representatives of equivalence classes of elements
+of $A$ of height equal to $i$. We define:
+
+$$
+H_i^\lor \equiv H_{a_1} \lor H_{a_2} \dots \lor H_{a_n}  
+$$
 
 
+#### Inductive hypothesis for coverings
+
+We will say a relational covering $X \triangleleft_{\phi} Y$ is **of rank $i$**
+with respect to a given height function $h$ if $\phi$ relates states in $Y$
+to subsets of states in $x$ that are members of $A$ and have rank at most i.
+Formally, for each $p \in Q_Y$, we have that $\phi(p) \in A$ and$h(\phi(p)) \leq i$.
+
+
+We prove that if $X \triangleleft_{\phi} Y$ is a relational covering of rank $i$,
+then $X \triangleleft_{\phi} \overbar{H_i^\lor} \wr Y$ is a relational covering
+of rank $i - 1$.
+
+The proof is a proof by induction. 
+
+##### Base case:
+
+Start with the relational covering with $Q_Y = \{ 0 \}, S_Y = \{ id \}$, 
+and the cover $\phi(0) = Q_X$. Clearly, this has rank $n$ since the height
+of $Q_X$ is $n$, and $\phi$ is inded a covering, since the only transition
+that $Y$ can make (stay at the same state) is simulated by any transition
+in $S_X$ [TODO: is this really the argument?]
+
+For induction, assume $X \triangleleft_{\phi} Y$ is a relational covering of rank $i$
+with respect to some height function $h$. $X\equiv (Q_X, S_X)$ and
+$Y \equiv (Q_Y, S_Y)$. We define
+- $QY_i \equiv \{ q_y : q_y \in Q_Y, h(\phi(q_y)) = i \}$
+- $QY_< \equiv \{ q_y : q_y \in Q_Y, h(\phi(q_y)) < i \}$
+
+
+We know that $A$ contains elements of height exactly $i$. Let $a_1, a_2, \dots a_k$
+be representatives of sets of of height $i$ in $A$. Thus, for each $qy_i \in QY_i$,
+we have that:
+
+- $\phi(qy_i) = a_j$ for a **unique** $1 \leq j \leq k$.
+- We select elements $u, \overline{u} \in S$ such that $u(\phi(qy_i)) = a_j$
+  and $\overline{u}(a_j) = \phi(qy_i)$.
+
+We will show how to establish a relational covering:
+- $X \triangleleft_{\phi} \wr \overbar{H_i^\lor} Y$ using a relation:
+- $\phi \subseteq   [(B_{a_1} \cup B_{a_2} \cup \dots B_{a_k})\times Q_Y ] \times Q_X
 
 #### References
 
@@ -854,14 +909,12 @@ function pointer is some pointer-like-thing.
 - $(\omega \equiv \{ X, Y, \dots\}, \times, 1)$
 - $\cdot ~: ~\omega \rightarrow Automorphisms(\alpha)$
  
---- 
 - [How to twist pointers without breaking them](https://www.cse.iitk.ac.in/users/ppk/research/publication/Conference/2016-09-22-How-to-twist-pointers.pdf)
 
 - rotations: $\mathbb Z 5$
 - reflection: $\mathbb Z 2$
 
 - $D_5 = \mathbb Z5 \rtimes \mathbb Z2$
---- 
 
 \begin{align*}
 \begin{bmatrix}
@@ -8400,6 +8453,24 @@ Same as chandy-misra, but we allow edges to fail.
   This invalidates $u$, leading to an increasing sequence of distances $3 \rightarrow 5 \rightarrow 7 \dots$.
   If we have an uppoer bound on the distance (`DIAMETER`) then we know that
   this is wrong.
+
+#### Byazntine algorithm
+
+A process is _byzantine_ if it deviates from the specification.
+
+# Consensus:
+
+- Agreement: All non faulty processes must agree on the same value
+- Validity: A decided value must be the proposed value if the initiator was not byzantine
+- Termination: Every correct process returns a value
+
+# Interactive consensus:
+
+Each process outputs its own value $v_k$. 
+- All non-faulty processes agree on a vector $(v_1, v_2, \dots, v_n)$
+- If the kth process is non-faulty and its initial value is $v_k$, then the
+  kth value in the vector agreed upon up **all of the non-faulty processes**
+  must have $v_k$ as the $k$th process.
 
 # Link dump
 
