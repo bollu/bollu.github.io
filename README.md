@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Natural transformations](#natural-transformations)
 - [The hilarious commentary by dinosaure in OCaml git](#the-hilarious-commentary-by-dinosaure-in-ocaml-git)
 - [How to link against MLIR with CMake](#how-to-link-against-mlir-with-cmake)
-- [Energy as triangulaizing state space (WIP)](#energy-as-triangulaizing-state-space)
+- [Energy as triangulaizing state space](#energy-as-triangulaizing-state-space)
 - [The cutest way to write semidirect products](#the-cutest-way-to-write-semidirect-products)
 - [My Favourite APLisms](#my-favourite-aplisms)
 - [Proof of chinese remainder theorem on rings (WIP)](#proof-of-chinese-remainder-theorem-on-rings)
@@ -1030,11 +1030,6 @@ a + X \cdot b & XY
 - $toggley = (lights: \langle -13, -12 \rangle, loc:0)$
 - $toggley\cdot g= (lights:\langle -1 \rangle, loc:13)$
 
-### Wreath products
-
-
-### This is automata theoretic? :O
-- cascade finite automata.
 
 ### Krohn-rhodes, AKA how to model Freudian psychoanalysis using Lagrangians over semigroups.
 
@@ -1272,15 +1267,13 @@ $(x' = a \curverightarrow x)$ is the action of the system $a$ on $x$.
     [the cutest way to write semidirect products](#the-cutest-way-to-write-semidirect-products)
     [Line of investigation to build physical intuition for semidirect products](#line-of-investigation-to-build-physical-intuition-for-semidirect-products).
 
-A wreath product
-
 #### Symmetries as triangular form
 
 > We first heuristically indicate the construction involved in going from the
 > group of symmetries to the triangularization, and then precisely write it out
 > in all pedantic detail.
 
-Let an experiment be $ E \equiv (X, A, \curverightarrow) $. Then we define $\Pi$
+Let an experiment be $E \equiv (X, A, \curverightarrow)$. Then we define $\Pi$
 is a _symmetry_ of $E$ iff:
 
 1. $\Pi: X \rightarrow X$ is a permutation of $X$.
@@ -1313,7 +1306,8 @@ $S(E) \equiv \{ a_1 \dots a_n : n \geq 1 \text{~and~} a_i \in A \}$.
 Now, let $G = Sym(E)$, the full symmetry group of $E$. One can apparently
 express the symmetry group in terms of:
 
-!! (X, S) \leq (G, G)  \wr (\{ O_1, O_2, \dots O_k\}, T) !!
+$$(X, S) \leq (G, G)  \wr (\{ O_1, O_2, \dots O_k\}, T)$$
+
 
 # [The cutest way to write semidirect products](#the-cutest-way-to-write-semidirect-products)
 
@@ -1474,7 +1468,7 @@ such that:
 
 
 Now, if $f'(x_0) \lvert \lvert g'(x_0)$ (parallel to),
-then we have $f'(x_0) \lbot levelset(g(x_0))$ (perpendicular to).
+then we have $f'(x_0) \bot levelset(g(x_0))$ (perpendicular to).
 
 - We want to move along $f'(x_0)$ to improve $f(x_0)$.
 - We want to move _perpendicular_ $g'(x_0)$ to keep $g(x_0) = c$.
