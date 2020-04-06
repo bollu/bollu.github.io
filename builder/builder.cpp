@@ -66,19 +66,25 @@ enum class TT {
     Hash = '#',
     ListHyphen = '-',
     DoubleQuote = '"',
-    ThreeBacktick = 'B',
     Backtick = '`',
     Star = '*',
     Underscore = '_',
-    TwoUnderscore = 'U',
     OpenAngleBracket = '<',
     CloseAngleBracket = '>',
-    Comment = 'C',
-    RawText = 'T',
     Newline = '\n',
     Space = ' ',
-    HTML = 'H',
-    Undefined = 42,
+    Dollar = '$',
+    ThreeBacktick = 300,
+    TwoUnderscore,
+    DoubleDollar,
+    Comment,
+    RawText,
+    HTML,
+    LatexBlock,
+    LatexInline,
+    CodeInline,
+    CodeBlock,
+    Undefined,
 };
 
 // L for line
@@ -86,7 +92,7 @@ struct L {
     ll si, line, col;
     L(ll si, ll line, ll col) : si(si), line(line), col(col){};
     L nextcol() const { return L(si + 1, line, col + 1); }
-    L nextline() const { return L(si + 1, line + 1, 0); }
+    L nextline() const { return L(si + 1, line + 1, 1); }
     L next(char c) const {
         if (c == '\n') {
             return nextline();
@@ -94,10 +100,16 @@ struct L {
             return nextcol();
         }
     }
+    L next(const char *s) const {
+        L l = *this;
+        for(int i = 0; s[i] != 0; ++i) { l = l.next(s[i]); }
+        return l;
+    }
 };
+const L firstline = L(0, 1, 1);
 
 std::ostream &operator<<(std::ostream &o, const L &l) {
-    return cout << l.line << ":" << l.col;
+    return cout << ":" << l.line << ":" << l.col;
 }
 
 struct Span {
@@ -106,35 +118,30 @@ struct Span {
 };
 
 std::ostream &operator<<(std::ostream &o, const Span &s) {
-    return cout << s.begin << "-" << s.end;
+    return cout << s.begin << " - " << s.end;
 }
 
-void vprintferr(L line, const char *s, const char *fmt, va_list args) {
+void vprintferr(L line, const char *filestr, const char *fmt, va_list args) {
     char *outstr = nullptr;
     vasprintf(&outstr, fmt, args);
     assert(outstr);
 
-    fprintf(stderr, "%lld:%lld --- %s", line.line, line.col, outstr);
-    fprintf(stderr, "\n");
-
+    cerr << line << " --- " << outstr << "\n";
     // find the previous newline character.
-    int i = line.si; for(; i >= 1 && s[i-1] != '\n'; i--) {}
-    for(; s[i] != '\0' && s[i] != '\n'; ++i) { 
-        if (i == line.si) { fprintf(stderr, "⌷"); }
-        fprintf(stderr, "%c", s[i]);
+    int i = line.si; for(; i >= 1 && filestr[i-1] != '\n'; i--) {}
+    for(; filestr[i] != '\0' && filestr[i] != '\n'; ++i) { 
+        if (i == line.si) { cerr <<  "⌷"; } cerr << filestr[i];
     }
-    fprintf(stderr, "\n");
-
+    cerr << "\n";
     free(outstr);
 }
 
-void printferr(L line, const char *s, const char *fmt, ...) {
+void printferr(L line, const char *filestr, const char *fmt, ...) {
     va_list args;
     va_start(args, fmt);
-    vprintferr(line, s, fmt, args);
+    vprintferr(line, filestr, fmt, args);
     va_end(args);
 }
-
 
 // T type, optional string data.
 struct T {
@@ -149,12 +156,17 @@ std::ostream &operator<<(std::ostream &o, const TT &ty) {
     switch (ty) {
         case TT::ThreeBacktick: return o << "```";
         case TT::TwoUnderscore: return o << "__";
+        case TT::DoubleDollar: return o << "$$";
         case TT::Comment: return o << "COMMENT";
         case TT::HTML: return o << "HTML";
+        case TT::LatexBlock: return o << "LatexBlock";
+        case TT::LatexInline: return o << "LatexInline";
+        case TT::CodeBlock: return o << "CodeBlock";
+        case TT::CodeInline: return o << "CodeInline";
         case TT::RawText: return o << "RAW";
         case TT::Newline: return o << "NEWLINE";
         case TT::Undefined: return o << "UNDEFINED";
-        default: return o << "TY(" << (char)ty << ")";
+        default: assert((int) ty <= 128); return o << "TY(" << (char)ty << ")";
     }
 };
 
@@ -174,8 +186,12 @@ bool issinglechartoken(char c) {
 // do these need a newline before them to be parsed as token? eg. 
 // - is treated as a list item
 // # is treated as a heading.
-bool isprelinerequired(char c) {
+bool is_char_post_newline(char c) {
     return c == (char)TT::ListHyphen || c == (char)TT::Hash;
+}
+
+bool is_char_special_token(char c) {
+        return  c == '*' || c == '[' || c == '<' || c == '>' || c == '$' || c == '`';
 }
 
 
@@ -186,87 +202,110 @@ bool strpeek(const char* haystack, const char* needle) {
     return needle[i] == '\0';
 }
 
-L strconsume(L l, const char *haystack, const char *needle,
+// consume till we file delim in filestr
+L strconsume(L l, const char *filestr, const char *delim,
         const char *errfmt, ...)  {
     const L lbegin = l;
-    while (haystack[l.si] != '\0' && 
-           !strpeek(haystack + l.si, needle)) {
-        l = l.next(haystack[l.si]);
+    while (filestr[l.si] != '\0' && 
+           !strpeek(filestr + l.si, delim)) {
+        l = l.next(filestr[l.si]);
     }
 
-    if (haystack[l.si] == '\0') {
+    if (filestr[l.si] == '\0') {
         va_list args;
         va_start(args, errfmt);
-        vprintferr(lbegin, haystack, errfmt, args);
+        vprintferr(lbegin, filestr, errfmt, args);
         va_end(args);
         assert(false && "unable to consume string.");
     } else {
-        for(ll i = 0; i < (ll)strlen(needle)-1; ++i) { l = l.next(haystack[l.si]); }
+        for(ll i = 0; i < (ll)strlen(delim)-1; ++i) { l = l.next(filestr[l.si]); }
     }
     return l;
 }
 
+// TODO: convert \vert into |
+// TODO: preprocess and check that we don't have \t tokens anywhere.
 T tokenize(const char *s, const ll len, const L lbegin) {
     assert(lbegin.si < len);
     L lcur = lbegin;
 
-    if (s[lcur.si] == '\t') {
-        assert(false && "tabs are not allowed");
-    }
-
-    if (s[lcur.si] == ' ') {
-        while (s[lcur.si] == ' ') {
-            lcur = lcur.nextcol();
-        }
-        return T(TT::Space, Span(lbegin, lcur));
-    }
-    else if (strpeek(s + lcur.si, "\n-")) {
-        lcur = strconsume(lcur, s, "\n-", "unable to consume NEWLINE-");
-        return T(TT::ListHyphen, Span(lbegin, lcur));
-    }
-    // this kills off newlines.
-    else if (s[lcur.si] == '\n') {
-        return T(TT::Newline, Span(lbegin, lcur.nextline()));
-    }
-    // raw text.
-    else if (s[lcur.si] == '[') {
-        return T(TT::OpenSquare, Span(lbegin, lcur.nextcol()));
-    }
-    else if (s[lcur.si] == ']') {
-        return T(TT::CloseSquare, Span(lbegin, lcur.nextcol()));
-    }
-    else if (s[lcur.si] == '(') {
-        return T(TT::OpenRound, Span(lbegin, lcur.nextcol()));
-    }
-    else if (s[lcur.si] == ')') {
-        return T(TT::CloseRound, Span(lbegin, lcur.nextcol()));
-    
-    }
-    else if (strpeek(s + lcur.si, "<script")) {
+    if (strpeek(s + lcur.si, "$$")) {
+        lcur = lcur.next("$$");
+        // TODO: fix error message here, that will get generated from strconsume.
+        // I had never thought about the problem that occurs when the opening
+        // and closing braces are the same...
+        lcur = strconsume(lcur, s, "$$", "unclosed $$ tag.");
+        return T(TT::LatexBlock, Span(lbegin, lcur.nextcol()));
+    } else if (strpeek(s + lcur.si, "<script")) {
         lcur = strconsume(lcur, s, "</script>", "unclosed <script> tag.");
         return T(TT::HTML, Span(lbegin, lcur.nextcol()));
-    }
-    else if (strpeek(s + lcur.si, "<!--")) {
+    } else if (strpeek(s + lcur.si, "<!--")) {
         lcur = strconsume(lcur, s, "-->", "unclosed comment till end of file.");
         return T(TT::Comment, Span(lbegin, lcur.nextcol()));
-    }
-    else {
-        // consume till a newline, or till a special char.
-        while (s[lcur.si] != '*' && 
-                s[lcur.si] != '[' && 
-                s[lcur.si] != '<' && 
-                s[lcur.si] != '<') { 
+    } else if (strpeek(s + lcur.si, "$$")) {
+        // consume everything till end as latex.
+        lcur = strconsume(lcur, s, "-->", "unclosed comment till end of file.");
+        return T(TT::Comment, Span(lbegin, lcur.nextcol()));
+    } else if (strpeek(s + lcur.si, "```")) {
+        lcur = lcur.next("```");
+        lcur = strconsume(lcur, s, "```", "unclosed code block tag.");
+        return T(TT::CodeBlock, Span(lbegin, lcur.nextcol()));
+    } else if (s[lcur.si] == '\n') { // this kills off newlines.
+        return T(TT::Newline, Span(lbegin, lcur.nextline()));
+    } else if (s[lcur.si] == '-') {
+        return T(TT::ListHyphen, Span(lbegin, lcur.nextcol()));
+    } else if (s[lcur.si] == '[') {
+        return T(TT::OpenSquare, Span(lbegin, lcur.nextcol()));
+    } else if (s[lcur.si] == ']') {
+        return T(TT::CloseSquare, Span(lbegin, lcur.nextcol()));
+    } else if (s[lcur.si] == '(') {
+        return T(TT::OpenRound, Span(lbegin, lcur.nextcol()));
+    } else if (s[lcur.si] == ')') {
+        return T(TT::CloseSquare, Span(lbegin, lcur.nextcol()));
+    } else if (s[lcur.si] == '`') {
+        lcur = lcur.nextcol();
+        // TODO: fix error message here. 
+        lcur = strconsume(lcur, s, "`", "unclosed inline code block `...`");
 
+        if (lbegin.line != lcur.line) {
+            printferr(lbegin, s, "inline code block `...` not allowed to be on two different lines."); 
+            assert(false && "inline code block `...` on two different lines.");
+        }
+
+        return T(TT::CodeInline, Span(lbegin, lcur.nextcol()));
+
+    } else if (s[lcur.si] == '$') { // order is important; this should come here, after $$ has been tried.
+        lcur = lcur.nextcol();
+        // TODO: fix error message here. 
+        lcur = strconsume(lcur, s, "$", "unclosed inline latex block $");
+
+        if (lbegin.line != lcur.line) {
+            printferr(lbegin, s, "inline latex block not allowed to be on two different lines."); 
+            assert(false && "inline latex block on two different lines.");
+        }
+
+        return T(TT::LatexInline, Span(lbegin, lcur.nextcol()));
+    }
+    else if (s[lcur.si] == ' ') { 
+        while (s[lcur.si] == ' ') { lcur = lcur.nextcol(); }
+        return T(TT::Space, Span(lbegin, lcur));
+    } else {
+        // consume till a newline, or till a special char. If it _were_
+        // part of a special form as the _first_ character, it would
+        // have been consumed already. Hence, a do-while loop.
+        do { 
             // if we have a newline and then a "newline based" token, quit.
             if (s[lcur.si] == '\n' && 
-                isprelinerequired(s[lcur.si+1])) {
+                is_char_post_newline(s[lcur.si+1])) {
                 return T(TT::RawText, Span(lbegin, lcur));
+            } else {
+                lcur = lcur.next(s[lcur.si]);
             }
+        } while(!is_char_special_token(s[lcur.si]) && s[lcur.si] != '\0');
+        return T(TT::RawText, Span(lbegin, lcur));
 
-            lcur = lcur.next(s[lcur.si]);
-        }
     }
-    
+
     printferr(lcur, s, "unknown begin character: |%c|", s[lcur.si]);
     assert(false && "unreachable");
 }
@@ -285,11 +324,14 @@ void expect(const char *s, const int len, int &si, TT ty) {
 */
 
 E *parse(const char *s, const ll len, ll &si) {
-    Span span(L(0, 1, 0), L(0, 0, 0));
+    Span span(firstline, firstline);
     while (span.end.si < len) {
+        const L prevl = span.begin;
         const T t = tokenize(s, len, span.begin);
         cout << "token: " << t << "\n";
         span = Span(t.span.end, t.span.end);
+        // we always have to make progress.
+        assert(prevl.si != t.span.end.si);
     }
     return nullptr;
 }
