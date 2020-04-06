@@ -161,3 +161,11 @@ installed, use it to compute closed forms)
 - The machinery of freedom: 1975 book on libterterianism, feels "fresh". (SSC)
 - https://en.wikipedia.org/wiki/Bregman_divergence
 - http://mark.reid.name/blog/meet-the-bregman-divergences.html
+- MAthematical methods of classical mechanics: mathematical physics book for classical mechanics.
+- Felix Klein: Development of mathematics in the 19th century: strognly encouraged by V I Arnold
+- Physics travel guide: https://physicstravelguide.com/
+- Axioms and Hulls: Book by knuth on geometry algorithms, starting axiomatically!
+- rework fuzzy to also make use of negative vectors.
+- Theorizing Contemporary Anarchism
+- Visualizing curved spacetime: Rickard M. Jonsson
+- Lycurgus of Sparta

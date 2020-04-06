@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function() {
   console.log("finished running katex");
 });
 </script>
-
 -->
 
 
@@ -48,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 
+- [how does one build a fusion bomb?](#how-does-build-a-fusion-bomb)
 - [Christoffel symbols, geometrically](#christoffel-symbols-geometrically)
 - [A natural vector space without an explicit basis](#a-natural-vector-space-without-an-explicit-basis)
 - [Cache oblivious B trees](#cache-oblivious-b-trees)
@@ -151,6 +151,9 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Distributed Systems](#distributed-systems)
 - [Link Dump](#link-dump)
 
+
+# [how does one build a fusion bomb?](#how-does-build-a-fusion-bomb)
+
 # [Christoffel symbols, geometrically](#christoffel-symbols-geometrically)
 
 Suppose we have a manifold $M$. of dimension $d$ that has been embedded isometrically
@@ -166,6 +169,7 @@ $$
 &[\partial {x_i}e](p) \equiv 
  \lim_{\delta x \rightarrow 0} \frac{e(p + (0:0, 1:0\dots, i:\delta_x, \dots, n:0)) - e(p)}{\delta x}
 \end{align*}
+$$
 
 Note that it is a function of type $\mathbb R^d \rightarrow \mathbb R^n$.
 
@@ -304,7 +308,7 @@ We study how to build cache-oblivious B-trees.
   of nodes linearly. Then Recursively layout the trees, linearly in memory.
 
 - Supposedly if the number of nodes is $N$, we wil have roughly $\sqrt(N)$
-  nodes on the top, and then $\sqrt(N) _triangles_ at the bottom/
+  nodes on the top, and then $\sqrt(N)$ _triangles_ at the bottom.
 
 #### Analysis Claim: we need to pull $O(\log_B N)$ blocks for any $B$ for any search query
 
@@ -657,7 +661,7 @@ or incomparable.
 
 for $a \in A$ such that $|a| > 1$, we denote by $B_a$ the set of all $b \in A$
 what are maximal subsets of $a$. That is, if $b \in B_a$ then $b \subsetneq a$,
-and $\not \exists c, $b \subsetneq c \subsetneq a$. Equivalently, if there
+and $\not \exists c, b \subsetneq c \subsetneq a$. Equivalently, if there
 exists a $c$ such that $b \subseteq c \subseteq a$, then $b = c$ or $b = a$.
 
 Note that we can assert that $a = \cup_{b \in B_a} b$. This is because $B_a$
@@ -714,9 +718,9 @@ $g(b_a) = b_a$. $B_b$ must have the element $s(b_a)$. [TODO!]
 #### Holonomy decomposition
 
 Let $X \equiv (Q, S)$ be a transition system and let $h$ be a height
-function for $X$, such that $h(Q) > 0$. For a fixed $i$, let $a_1, a_2,
-\dots a_k$ be the representatives of equivalence classes of elements
-of $A$ of height equal to $i$. We define:
+function for $X$, such that $h(Q) > 0$. For a fixed $i$,
+let $a_1, a_2, \dots a_k$ be the representatives of equivalence classes of
+elements of $A$ of height equal to $i$. We define:
 
 $$
 H_i^\lor \equiv H_{a_1} \lor H_{a_2} \dots \lor H_{a_n}  
@@ -762,7 +766,7 @@ we have that:
 
 We will show how to establish a relational covering:
 - $X \triangleleft_{\phi} \wr \overbar{H_i^\lor} Y$ using a relation:
-- $\phi \subseteq   [(B_{a_1} \cup B_{a_2} \cup \dots B_{a_k})\times Q_Y ] \times Q_X
+- $\phi \subseteq [(B_{a_1} \cup B_{a_2} \cup \dots B_{a_k})\times Q_Y ] \times Q_X$
 
 #### References
 
@@ -775,7 +779,7 @@ We will show how to establish a relational covering:
 # [Proving block matmul using program analysis](#proving-block-matmul-using-program-analysis)
 
 It's a somewhat well-known fact that given matrix multiplication: $O = AB$
-where $O$ \in \mathbb R^{2n \times 2m}$ ($O$ for output), 
+where $O \in \mathbb R^{2n \times 2m}$ ($O$ for output), 
 $A \in \mathbb R^{2n \times r}, B \in \mathbb R^{r \times 2m}$ are matrices.
 
 We can also write this as follows:
@@ -1405,7 +1409,7 @@ elements of the form $ij$. So #3 should be:
 
 Let $I \equiv \langle 12 \rangle, J \equiv \langle 20 \rangle$.
 
-- $I + J \equiv \{ 12k + 20l : k, l \in \mathbb Z\} = \langle gcd(12, 20) \rangle = \langle 4 \rangle
+- $I + J \equiv \{ 12k + 20l : k, l \in \mathbb Z\} = \langle gcd(12, 20) \rangle = \langle 4 \rangle$
 - $IJ \equiv \langle\{ (12 k)(20 l) : k, l \in \mathbb Z \}\rangle = $
 - $I \cap J \equiv ??$
 
@@ -1460,11 +1464,11 @@ such that:
 
 - We need $f$ to increase in the direction of $\epsilon$. So, 
   __we need $\epsilon$ to have positive component along $f'(x)$__. That is,
-  $f'(x) \cdot \epsilon > 0$.
+  $f'(x_1) \cdot \epsilon > 0$.
 
 - We need $g(x_1) = c$. But notice that $g(x_0) = c$. So, we need $g(x)$
   to __remain constant along $\epsilon$__. That means that $\epsilon$ should
-  be __perpendicular to the gradient of $g$__: $g'(x) \cdot \epsilon = 0$.
+  be __perpendicular to the gradient of $g$__: $g'(x_1) \cdot \epsilon = 0$.
 
 
 Now, if $f'(x_0) \lvert \lvert g'(x_0)$ (parallel to),
@@ -1473,11 +1477,14 @@ then we have $f'(x_0) \bot levelset(g(x_0))$ (perpendicular to).
 - We want to move along $f'(x_0)$ to improve $f(x_0)$.
 - We want to move _perpendicular_ $g'(x_0)$ to keep $g(x_0) = c$.
 
-Clearly if $f'(x_0) || g'(x_0)$ these two conditions contradict each other, and so
-we are at a local maxmia.
+If $f'(x_0) || g'(x_0)$ these two conditions contradict each other. Moving
+along $f'$ (improving the objective) will change
+$g'$ (which will ruin the constraint). So, we are at a local maxima.
 
-On the other hand, if it is not true that $f'(x_0) || g'(x_0)$, then there will
-be _some_ component of $f'$ to be had by moving along $levelset(g(x_0))$.
+On the other hand, if it is not true that $f'(x_0) || g'(x_0)$, Then it
+means that we can decompose $f'(x_0) =  \alpha g'(x_0) + \beta levelset(g(x_0))$.
+So, we can choose to move along the `levelset(g(x_0))` component, thereby
+keeping `g(x_0) = 0` [preserving the constraint] while still improving $f'(x_0)$.
 
 
 # [Efficient tree transformations on GPUs](#efficient-tree-transformations-on-gpus)
@@ -2938,7 +2945,7 @@ A matroid can be completely categorized by knowing either the bases or the circu
 
 #### Unique Circuit property
 - **Theorem**: Let $M \equiv (E, I)$ be a matroid, and let $S \in I, e \in E$ such that $S \cup \{e \} \not \in I$.
-Then, there exists a **unique circuit** $C \subseteq $S \cup \{ e \}$.
+Then, there exists a **unique circuit** $C \subseteq S \cup \{ e \}$.
 
 That is, when we go from independent to dependent by adding an element, we will have a **single, unique
 circuit**. For example, when we add an edge into a forest to create a cycle, this cycle will
@@ -2960,7 +2967,7 @@ single element from them will cause them to become independent sets.
 Let us contemplate $C \equiv C_1 \cup C_2$. Either $C = C_1$ in which
 case we are done. 
 
-Otherwise, \vert C \vert > \vert C_1 \vert$, $\vert C \vert > \vert C_2 \vert$.
+Otherwise, $\vert C \vert > \vert C_1 \vert$, $\vert C \vert > \vert C_2 \vert$.
 
 Otherwise, consider $C' \equiv C \ \{ e \} = (C_1 \cup C_2) \ \{e\} = (C_1 \ \{e\}) \cup (C_2 \ \{ e \})$.
 - $C' \subseteq S$, since $\C_1 \ \{e\}, C_2 \ \{e\} \subseteq S$. 
@@ -2969,7 +2976,7 @@ Otherwise, consider $C' \equiv C \ \{ e \} = (C_1 \cup C_2) \ \{e\} = (C_1 \ \{e
 - $\vert C' \vert \geq \vert C_1 \vert$, $\vert C' \vert \geq \vert C_2 \vert$.
 
 Now, we consider $C$. Clearly, this is a dependent set,
-since $C_1 \subsetneq C$, and $C_1S is a dependent set.
+since $C_1 \subsetneq C$, and $C_1$ is a dependent set.
 
 Since, $C = C' \cup \{e \}$, this means that $C'$ is a maximally independent set.
 Since $C'$ does not contain $e$, $C' = S$.
@@ -3031,7 +3038,7 @@ are looking for.
 
 Given two matroids $M_1 \equiv (E, I_1)$, $M_2 \equiv (E, I_2)$, with rank
 functions $r_1$ and $r_2$. Let $S \in I_1 cap I_2$ and let $F \subseteq E$. 
--  $\vert S \vert = \vert S \cap F \vert$ + \vert S \cap (E / F) \vert$.
+-  $\vert S \vert = \vert S \cap F \vert + \vert S \cap (E / F) \vert$.
 
 
 #### References:
@@ -3092,8 +3099,9 @@ sort of functions $f$ are continuous.
 #### Geometry --- 2D
 
 Let's repeat the exercise for 2D. Here, we will manage to see much richer
-behaviour. Let's consider functions of the form $(\mathbb R^2, Z) \xrightarrow{f} (\mathbb
-R^2, Z)$ where $Z$ is the Zariski topology.
+behaviour. Let's consider functions of the form
+$(\mathbb R^2, Z) \xrightarrow{f} (\mathbb R^2, Z)$ where
+$Z$ is the Zariski topology.
 
 
 # [My preferred version of quicksort](#my-preferred-version-of-quicksort)
@@ -3447,13 +3455,13 @@ under the operator $\star$, with identity:
 The reason all of this is interesting is that the inverse of the constant function $1(n) \equiv 1$
 is going to be this function called as the mobius function $\mu$:
 
-$
+$$
 \mu(n=p_1^\alpha_1 p_2^\alpha_2 \dots p_r^\alpha_r) \equiv
 \begin{cases}\{
   0 & \textt{if any $\alpha_i > 1$} \\
   (-1)^{\alpha_1 + \alpha_2 + \dots + \alpha_r} & \text{if all $\alpha_i \in \{ 0, 1 \}$}
 \end{cases}
-$
+$$
 
 The mobius function will allow us to perform _mobius inversion_:
 
@@ -3463,6 +3471,7 @@ $$
   f \star 1^{-1} &=  g \star 1 \star 1^{-1} \\
   f \star \mu &= g
 \end{aligned}
+$$
 
 That is, we originally had $f$ defined in terms of $g$. We can
 recover an expression for $g$ in terms of $f$.
@@ -3479,10 +3488,13 @@ is that if $(n = 1)$, then $\lfloor 1/1 \rfloor = 1$, and for any other
 number $n > 0$, $1/n < 1$, hence $\lfloor 1/n \rfloor = 0$.
 
 ### verification of $istar$ being the identity
-- $(f \star id_\star)(n) \equiv \sum_{d \vert n} f(d) id_\star(n/d) 
-  = f(n) id_\star(1) + \sum_{d \vert n, d > 1} f(n) id_\star(d)
-  = f(n) \cdot 1 + \sum_{d \vert n, d > 1} f(n) \cdot 0
-  = f(n)$
+
+$$
+(f \star id_\star)(n) \equiv \sum_{d \vert n} f(d) id_\star(n/d) 
+= f(n) id_\star(1) + \sum_{d \vert n, d > 1} f(n) id_\star(d)
+= f(n) \cdot 1 + \sum_{d \vert n, d > 1} f(n) \cdot 0
+= f(n)
+$$
   
 ### associativity of $\star$
 ### commutativity of $\star$
