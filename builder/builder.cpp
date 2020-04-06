@@ -8,6 +8,7 @@
 #include <iostream>
 #include <string>
 #include <stdarg.h>
+#include <vector>
 #include "utf8.h"
 using ll = long long;
 static const ll PADDING = 10;
@@ -33,30 +34,8 @@ enum class ErrT {};
 struct Err {};
 
 // Expressinon
-enum class ET {};
+enum class ET { Link, List, Text, Heading, Block };
 
-// Xpression.
-struct E {
-    ET type;
-    virtual ostream &print(ostream &o) const = 0;
-};
-
-struct ERawText : public E {};
-struct EBlockCode {};
-struct EList {};
-struct EInlineMath {};
-struct EInlineCode {};
-struct EBlockMath {};
-struct EHeading {};
-struct EHref : public E {
-    E *text, *link;
-
-   public:
-    EHref(E *text, E *link) : text(text), link(link){};
-};
-struct EImage {};
-struct EBold {};
-struct EItalic {};
 
 enum class TT {
     OpenSquare = '[',
@@ -85,6 +64,24 @@ enum class TT {
     CodeInline,
     CodeBlock,
     Undefined,
+};
+
+std::ostream &operator<<(std::ostream &o, const TT &ty) {
+    switch (ty) {
+        case TT::ThreeBacktick: return o << "```";
+        case TT::TwoUnderscore: return o << "__";
+        case TT::DoubleDollar: return o << "$$";
+        case TT::Comment: return o << "COMMENT";
+        case TT::HTML: return o << "HTML";
+        case TT::LatexBlock: return o << "LatexBlock";
+        case TT::LatexInline: return o << "LatexInline";
+        case TT::CodeBlock: return o << "CodeBlock";
+        case TT::CodeInline: return o << "CodeInline";
+        case TT::RawText: return o << "RAW";
+        case TT::Newline: return o << "NEWLINE";
+        case TT::Undefined: return o << "UNDEFINED";
+        default: assert((int) ty <= 128); return o << "TY(" << (char)ty << ")";
+    }
 };
 
 // L for line
@@ -152,46 +149,53 @@ struct T {
     T(){};
 };
 
-std::ostream &operator<<(std::ostream &o, const TT &ty) {
-    switch (ty) {
-        case TT::ThreeBacktick: return o << "```";
-        case TT::TwoUnderscore: return o << "__";
-        case TT::DoubleDollar: return o << "$$";
-        case TT::Comment: return o << "COMMENT";
-        case TT::HTML: return o << "HTML";
-        case TT::LatexBlock: return o << "LatexBlock";
-        case TT::LatexInline: return o << "LatexInline";
-        case TT::CodeBlock: return o << "CodeBlock";
-        case TT::CodeInline: return o << "CodeInline";
-        case TT::RawText: return o << "RAW";
-        case TT::Newline: return o << "NEWLINE";
-        case TT::Undefined: return o << "UNDEFINED";
-        default: assert((int) ty <= 128); return o << "TY(" << (char)ty << ")";
-    }
-};
 
 std::ostream &operator<<(std::ostream &o, const T &t) {
     return cout << t.ty << "[" << t.span << "]";
 }
 
-bool issinglechartoken(char c) {
-    return c == (char)TT::OpenSquare || c == (char)TT::CloseSquare ||
-           c == (char)TT::OpenRound || c == (char)TT::CloseRound ||
-           c == (char)TT::Hash || c == (char)TT::ListHyphen ||
-           c == (char)TT::DoubleQuote || c == (char)TT::Backtick ||
-           c == (char)TT::Star || c == (char)TT::Underscore;
+
+struct E {
+    public: ET type; virtual void print(std::ostream &o, int depth) = 0;
+    protected: E (ET type) : type(type) {};
+};
+
+void printspaces(ostream &o, int n) { for(int i=0;i<n;++i) o<<" "; }
+struct EList : public E {
+    std::vector<E*> es;
+    EList(std::vector<E*> es) : E(ET::List), es(es)  {}
+    virtual void print(std::ostream &o, int depth=0) {
+        o << "EList(\n";
+        for(E *e: es) { e->print(o, depth+1); o << "\n"; }
+        o << "\n"; printspaces(o, depth); o << ")";
+    }
+};
+
+struct ELink : public E {
+    E *text, *link;
+};
+struct EText : public E {
+    T text; // raw text or equivalent
+    EText(T text) : E(ET::Text), text(text) {}
+    virtual void print(std::ostream &o, int depth)  {
+        o << text;
+    }
+};
+
+struct EHeading : public E {
+    E*inner;
+};
+
+struct EBlock : public E {
+    vector<E*> es;
+    EBlock(vector<E*> es) : E(ET::List) {}; 
 };
 
 
-// do these need a newline before them to be parsed as token? eg. 
-// - is treated as a list item
-// # is treated as a heading.
-bool is_char_post_newline(char c) {
-    return c == (char)TT::ListHyphen || c == (char)TT::Hash;
-}
 
 bool is_char_special_token(char c) {
-        return  c == '*' || c == '[' || c == '<' || c == '>' || c == '$' || c == '`';
+        return  c == '*' || c == '[' || c == '<' || c == '>' || c == '$' ||
+        c == '`' || c == '\n';
 }
 
 
@@ -252,8 +256,6 @@ T tokenize(const char *s, const ll len, const L lbegin) {
         return T(TT::CodeBlock, Span(lbegin, lcur.nextcol()));
     } else if (s[lcur.si] == '\n') { // this kills off newlines.
         return T(TT::Newline, Span(lbegin, lcur.nextline()));
-    } else if (s[lcur.si] == '-') {
-        return T(TT::ListHyphen, Span(lbegin, lcur.nextcol()));
     } else if (s[lcur.si] == '[') {
         return T(TT::OpenSquare, Span(lbegin, lcur.nextcol()));
     } else if (s[lcur.si] == ']') {
@@ -262,6 +264,8 @@ T tokenize(const char *s, const ll len, const L lbegin) {
         return T(TT::OpenRound, Span(lbegin, lcur.nextcol()));
     } else if (s[lcur.si] == ')') {
         return T(TT::CloseSquare, Span(lbegin, lcur.nextcol()));
+    } else if (s[lcur.si] == '-') {
+        return T(TT::ListHyphen, Span(lbegin, lcur.nextcol()));
     } else if (s[lcur.si] == '`') {
         lcur = lcur.nextcol();
         // TODO: fix error message here. 
@@ -294,13 +298,7 @@ T tokenize(const char *s, const ll len, const L lbegin) {
         // part of a special form as the _first_ character, it would
         // have been consumed already. Hence, a do-while loop.
         do { 
-            // if we have a newline and then a "newline based" token, quit.
-            if (s[lcur.si] == '\n' && 
-                is_char_post_newline(s[lcur.si+1])) {
-                return T(TT::RawText, Span(lbegin, lcur));
-            } else {
-                lcur = lcur.next(s[lcur.si]);
-            }
+            lcur = lcur.next(s[lcur.si]);
         } while(!is_char_special_token(s[lcur.si]) && s[lcur.si] != '\0');
         return T(TT::RawText, Span(lbegin, lcur));
 
@@ -323,15 +321,73 @@ void expect(const char *s, const int len, int &si, TT ty) {
 }
 */
 
-E *parse(const char *s, const ll len, ll &si) {
+void tokenize(const char *s, const ll len, vector<T> &ts) {
     Span span(firstline, firstline);
     while (span.end.si < len) {
         const L prevl = span.begin;
         const T t = tokenize(s, len, span.begin);
+        ts.push_back(t);
         cout << "token: " << t << "\n";
         span = Span(t.span.end, t.span.end);
         // we always have to make progress.
         assert(prevl.si != t.span.end.si);
+    }
+}
+
+// BLOCK = LISTS BLOCK | RAW BLOCK
+// LISTS = HYPHEN SPACE 
+
+E *parse(const vector<T> &ts, ll &tix, const ll tend) {
+    while(tix < tend) {
+        const T tbegin = ts[tix];
+        cerr << "@tix:" << tix << " line: " << __LINE__ << "\n";
+        getchar();
+                
+        if (tbegin.ty == TT::HTML || 
+            tbegin.ty == TT::RawText || 
+            tbegin.ty == TT::LatexBlock || 
+            tbegin.ty == TT::CodeBlock ||
+            tbegin.ty == TT::Comment) {
+            cerr << "@tix:" << tix << " line: " << __LINE__ << "\n";
+            return new EText(ts[tix++]);
+        } else if (ts[tix].ty == TT::ListHyphen) {
+                cerr << "@tix:" << tix << " line: " << __LINE__ << "\n";
+                // start parsing lists.
+                vector<E*> es;
+                tix += 1; // consume newline and hyphen
+
+                do {
+                    ll listend = tix;
+                    // to end a hyphen, find 
+                    // |- abc
+                    // |  def (not ended: NEWLINE SPACE TOK)
+                    // |g (ended: NEWLINE [NO SPACE] TOK)
+                    while(listend < tend) {
+                        if (listend < tend - 2 &&
+                            ts[listend+1].ty == TT::Newline && 
+                            ts[listend+2].ty != TT::Space) { break; } 
+                        listend++;
+                    }
+
+                    // parse till the end of the list.
+                    es.push_back(parse(ts, tix, listend));
+                    tix = listend;
+                } while(tix < tend && ts[tix+1].ty == TT::Newline && ts[tix+2].ty == TT::ListHyphen);
+
+                assert(es.size() > 0 && "should have parsed at least one list.");
+                return new EList(es);
+
+        }
+        // ignored tokens 
+        else if (tbegin.ty == TT::Newline || tbegin.ty == TT::Space) { 
+            cerr <<  "@" << __LINE__ << "\n";
+            tix++;
+            continue;
+        }
+        else {
+            cerr << "token: " << ts[tix] << "\n";
+            assert(false && "unknown token");
+        }
     }
     return nullptr;
 }
@@ -359,9 +415,17 @@ int main(int argc, char **argv) {
     const ll nread = fread(str, 1, len, f);
     assert(nread == len);
 
-    ll si = 0;
-    E *e = parse(str, nread, si);
-    e->print(cerr);
+    vector<T> ts; tokenize(str, nread, ts);
 
+    cerr << "done tokenizing; now parsing...\n";
+    ll tix = 0;
+    vector<E*> es;
+    while(tix < (ll)ts.size()) {
+        E *e = parse(ts, tix, ts.size());
+        if (!e) { break; }
+         e->print(cerr, 0);
+         es.push_back(e);
+    }
+    
     return 0;
 }
