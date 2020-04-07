@@ -11,6 +11,9 @@
 #include <vector>
 #include <utility>
 #include <tuple>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 #include "utf8.h"
 using ll = long long;
 static const ll PADDING = 10;
@@ -66,7 +69,9 @@ enum class TT {
     CodeInline,
     CodeBlock,
     Undefined,
-    Link
+    Link,
+    ListItem,
+    List
 };
 
 std::ostream &operator<<(std::ostream &o, const TT &ty) {
@@ -84,6 +89,8 @@ std::ostream &operator<<(std::ostream &o, const TT &ty) {
         case TT::Newline: return o << "NEWLINE";
         case TT::Undefined: return o << "UNDEFINED";
         case TT::Link: return o << "LINK";
+        case TT::ListItem: return o << "LISTITEM";
+
         default: assert((int) ty <= 128); return o << "TY(" << (char)ty << ")";
     }
 };
@@ -91,23 +98,38 @@ std::ostream &operator<<(std::ostream &o, const TT &ty) {
 // L for line
 struct L {
     ll si, line, col;
-    L(ll si, ll line, ll col) : si(si), line(line), col(col){};
+    L(ll si, ll line, ll col) : si(si), line(line), col(col){ };
     L nextcol() const { return L(si + 1, line, col + 1); }
+    L prevcol() const { assert(col-1 >= 1); return L(si - 1, line, col - 1); }
     L nextline() const { return L(si + 1, line + 1, 1); }
     L next(char c) const {
-        if (c == '\n') {
-            return nextline();
-        } else {
-            return nextcol();
-        }
+        if (c == '\n') { return nextline(); } else { return nextcol(); }
     }
+
     L next(const char *s) const {
         L l = *this;
-        for(int i = 0; s[i] != 0; ++i) { l = l.next(s[i]); }
-        return l;
+        for(int i = 0; s[i] != 0; ++i) { l = l.next(s[i]); } return l;
     }
+
+    L prev(char c) {
+        if (c == '\n') { assert(false && "don't know how to walk back newline");
+        } else { return prevcol(); }
+    }
+
+    L prev(const char *s) const {
+        L l = *this;
+        for(int i = strlen(s)-1; i >= 0; --i) { l = l.prev(s[i]); } return l;
+    }
+
+
+    bool operator == (const L &other) const {
+        return si == other.si && line == other.line && col == other.col;
+    } 
+
+    bool operator != (const L &other) const {   return !(*this == other); }
 };
-const L firstline = L(0, 1, 1);
+const L lfirstline = L(0, 1, 1);
+const L lundefined = L(-1, -1, -1);
 
 std::ostream &operator<<(std::ostream &o, const L &l) {
     return cout << ":" << l.line << ":" << l.col;
@@ -117,8 +139,13 @@ std::ostream &operator<<(std::ostream &o, const L &l) {
 // substr := str[span.begin...span.end-1];
 struct Span {
     L begin, end;
-    Span(L begin, L end) : begin(begin), end(end){};
+    Span(L begin, L end) : begin(begin), end(end){ assert(end.si >= begin.si); };
     ll nchars() const { return end.si - begin.si; }
+
+    Span extend(const Span next) {
+        assert(next.begin.si >= end.si);
+        return Span(begin, next.end);
+    }
 };
 
 std::ostream &operator<<(std::ostream &o, const Span &s) {
@@ -133,6 +160,8 @@ void vprintferr(L line, const char *filestr, const char *fmt, va_list args) {
     cerr << line << " --- " << outstr << "\n";
     // find the previous newline character.
     int i = line.si; for(; i >= 1 && filestr[i-1] != '\n'; i--) {}
+
+    cerr << "> ";
     for(; filestr[i] != '\0' && filestr[i] != '\n'; ++i) { 
         if (i == line.si) { cerr <<  "⌷"; } cerr << filestr[i];
     }
@@ -156,19 +185,35 @@ struct T {
     T(){};
 };
 
-
-// TLink for link information.
-struct TLink : public T {
-    TLink(Span span, T text, T link) : T(TT::Link, span), text(text), link(link) {};
-    T text;
-    T link;
-};
-
-
 std::ostream &operator<<(std::ostream &o, const T &t) {
     return cout << t.ty << "[" << t.span << "]";
 }
 
+// TLink for link information.
+struct TLink : public T {
+    // link is taken ownership of.
+    TLink(Span span, T *text, const char *link) : T(TT::Link, span), text(text), link(link) {};
+    T *text;
+    const char *link;
+};
+
+struct TList : public T {
+    vector<T*> items;
+    TList(vector<T*> items) : T(TT::List, makeListSpan(items)) { };
+
+    static Span makeListSpan(vector<T*>items) {
+        assert(items.size() > 0);
+        Span s = items[0]->span;
+        for(int i = 1; i < items.size(); ++i) { s = s.extend(items[i]->span); }
+        return s;
+    }
+};
+
+struct TCode : public T {
+    TCode(Span span, const char *langname) : 
+        T(TT::CodeBlock, span), langname(strdup(langname)) {}
+    char *langname;
+};
 
 struct E {
     public: ET type; virtual void print(std::ostream &o, int depth) = 0;
@@ -244,16 +289,18 @@ L strconsume(L l, const char *filestr, const char *delim,
     return l;
 }
 
+pair<bool, T*> tokenize(const char *s, const ll len, const L lbegin, const bool prevnewline);
+
 // tokenize those strings that can only occur "inside" an inline context,
 // so only:
 // - raw text
 // - inline math
 // - bold/italic/underline
-T *tokenizeLink(const char *s, const ll len, const L lbegin) {
-    assert(lbegin.si < len);
-    assert(s[lbegin.si] == '[');
+T *tokenizeLink(const char *s, const ll len, const L opensq) {
+    assert(opensq.si < len);
+    assert(s[opensq.si] == '[');
     
-    L closesq = lbegin;
+    L closesq = opensq;
     while(s[closesq.si] != ']' && s[closesq.si] != '\0')  { 
         closesq = closesq.next(s[closesq.si]);
     }
@@ -261,15 +308,75 @@ T *tokenizeLink(const char *s, const ll len, const L lbegin) {
     if (s[closesq.si] != ']') { return nullptr; }
     if (!(closesq.si + 1 < len && s[closesq.si + 1] == '(')) { return nullptr; }
     const L openround = closesq.next(s[closesq.si]);
-    assert(s[openround.si] == '(');
+    if(s[openround.si] != '(') { return nullptr; };
 
     L closeround = openround;
     while(s[closeround.si] != ')' && s[closeround.si] != '\0')  { 
         closeround = closeround.next(s[closeround.si]);
     }
     if (s[closeround.si] != ')') { return nullptr; }
-    assert(false && "unimpl");
+
+    char *link = (char *)malloc(sizeof(char) * (closeround.si - openround.si));
+    for(int i = 0, j = openround.si+1; s[j] != ')'; ++i, ++j) {
+        link[i] = s[j];
+    }
+    
+    T* text;
+    // TODO: change `tokenize` to `tokenizeInline` when the time is right.
+    // std::tie(newline, text) = tokenize(s, closesq.si - opensq.si, opensq, false);
+    text = new T(TT::RawText, Span(opensq, closesq));
+    return new TLink(Span(opensq, closeround), text, link);
 }
+
+// we are assuming that this is called on the *first* list item that
+// has been seen.
+T* tokenizeListItem (const char *s, const ll len, const L lhyphen) {
+    
+    assert(s[lhyphen.si] == '-');
+
+    const L ltextbegin = lhyphen.nextcol();
+    L lend = lhyphen.nextcol();
+
+    bool foundNextItem = false; L lnexthypen = lundefined;
+    while(lend.si < len) {
+    
+        // two spaces indicates the end of a list.
+        if (lend.si < len - 1 &&
+            s[lend.si] == '\n' &&
+            s[lend.si+1] == '\n') { 
+            cerr << __LINE__ << "|" << lend << "\n";
+            break;
+        }
+
+        // newline and hyphen indicates another list item.
+        // TODO: write validation to rule out things like:
+        // <NEWLINE><SP>-
+        if (lend.si < len - 1 && 
+            s[lend.si] == '\n' && s[lend.si+1] == '-') {
+            foundNextItem = true;
+            lnexthypen = lend.next("\n");
+            break;
+        }
+
+        // newline and space indicates continuation of same
+        // list item text.
+        if (lend.si < len - 1 && 
+            s[lend.si] == '\n' &&
+            s[lend.si+1] != ' ') {
+            printferr(lend.nextline(), s,
+                "unknown character in hanging list item: |%c| (are you missing alignment with the `-` ?)",
+                s[lend.si+1]);
+            assert(false && "unknown character in hanging list item.");
+        }
+
+        // consume;
+        lend = lend.next(s[lend.si]);
+    }
+    
+    assert(s[lend.si] == '\n');
+    return new T(TT::RawText, Span(ltextbegin, lend));
+}
+
 
 
 // TODO: convert \vert into |
@@ -304,16 +411,37 @@ pair<bool, T*> tokenize(const char *s, const ll len, const L lbegin, const bool 
             printferr(lcur, s, "``` can only be opened on newline.");
             assert(false);
         }
-        
+
         lcur = lcur.next("```");
+
+        const int LANG_NAME_SIZE = 20;
+        char langname[LANG_NAME_SIZE];
+        ll langlen = 0;
+        while(s[lcur.si] != '\n' && langlen < LANG_NAME_SIZE-1) {
+            langname[langlen++] = s[lcur.si];
+            lcur = lcur.next(s[lcur.si]);
+        }
+        assert(langlen <= LANG_NAME_SIZE-1);
+        langname[langlen] = 0;
+
+        // error out if the language name is too long.
+        if(langlen == LANG_NAME_SIZE-1) {
+            printferr(lbegin, s, "``` has too long a language name: |%s|", langname);
+        }
+
+
+        // default language is text.
+        if (langlen == 0) { strcpy(langname, "text"); }
+
+
+        assert(s[lcur.si] == '\n');
         lcur = strconsume(lcur, s, "```", "unclosed code block tag.");
-        return make_pair(false, new T(TT::CodeBlock, Span(lbegin, lcur)));
+        return make_pair(false, new TCode(Span(lbegin, lcur), langname));
     }
     else if (s[lcur.si] == '\n') { // this kills off newlines.
         return make_pair(true, new T(TT::Newline, Span(lbegin, lcur.nextline())));
     }
     else if (s[lcur.si] == '[') {
-        L lseek = lcur;
         return make_pair(false, new T(TT::OpenSquare, Span(lbegin, lcur.nextcol())));
     }
     else if (s[lcur.si] == ']') {
@@ -326,7 +454,9 @@ pair<bool, T*> tokenize(const char *s, const ll len, const L lbegin, const bool 
         return make_pair(false, new T(TT::CloseSquare, Span(lbegin, lcur.nextcol())));
     }
     else if (prevnewline && s[lcur.si] == '-') {
-        return make_pair(false, new T(TT::ListHyphen, Span(lbegin, lcur.nextcol())));
+        T *TListItem =  tokenizeListItem(s, len, lcur);
+        return make_pair(false, TListItem);
+        // return make_pair(false, new T(TT::ListHyphen, Span(lbegin, lcur.nextcol())));
     }
     else if (s[lcur.si] == '`') {
         lcur = lcur.nextcol();
@@ -379,10 +509,11 @@ void expect(const char *s, const int len, int &si, TT ty) {
 */
 
 void tokenize(const char *s, const ll len, vector<T*> &ts) {
-    Span span(firstline, firstline);
+    Span span(lfirstline, lfirstline);
     bool prevnewline = true;
     while (span.end.si < len) {
         T *t = nullptr;
+        // start tokenizing from the end of the prev span.
         std::tie(prevnewline, t) = tokenize(s, len, span.end, prevnewline);
         assert(t != nullptr);
         ts.push_back(t);
@@ -452,6 +583,59 @@ E *parse(const vector<T> &ts, ll &tix, const ll tend) {
     return nullptr;
 }
 
+char* pygmentize(const char *code, int codelen, const char *lang) {
+    char input_file_name[100];
+    strcpy(input_file_name, "builder_read_XXXXXXX");
+    int fd =  mkstemp(input_file_name);
+
+    FILE *f;
+    f = fdopen(fd, "w");
+    assert(f && "unable to open temp file");
+    ll nwritten = fwrite(code, 1, codelen, f);
+    assert(nwritten == codelen);
+    fflush(f);
+    fclose(f);
+
+    cerr << "wrote pygmentize input to: |" << input_file_name << "|\n";
+
+    char output_file_name[100];
+    strcpy(output_file_name, "builder_write_XXXXXXX");
+    fd =  mkstemp(output_file_name);
+    f = fdopen(fd, "w"); fclose(f);
+
+    int pid;
+    // pygmentize -f html -l python -o /tmp/foo.html /tmp/foo.py; cat /tmp/foo.html
+    if ((pid = fork()) == 0) {
+        execl("pygmentize", 
+                "-f", "html", 
+                "-o", output_file_name, 
+                input_file_name,
+                NULL);
+        cerr << "wrote pygmentize output to: |" << output_file_name << "|\n";
+        exit(0);
+    } else {
+        // parent, wait for child.
+        int status;
+        wait(&status);
+        if(WIFEXITED(status)) {
+            assert(false && "child ended non-gracefully");
+        };
+    }
+
+    f = fopen(output_file_name, "r");
+    assert(f && "unable to open output file of pygmentize");
+
+
+    char *outbuf = nullptr;
+    fseek(f, 0, SEEK_END); const ll len = ftell(f); fseek(f, 0, SEEK_SET);
+    outbuf = (char *)malloc(sizeof(char) * (len+1));
+    assert(outbuf != nullptr && "unable to allocate buffer");
+
+    const ll nread = fread(outbuf, 1, len, f);
+    assert(nread == len);
+    return outbuf;
+};
+
 void toHTML(const T *t, const char *filestr, ll &outlen, char *outs) {
     assert(t != nullptr);
     switch(t->ty) {
@@ -464,12 +648,37 @@ void toHTML(const T *t, const char *filestr, ll &outlen, char *outs) {
         outlen += t->span.nchars();
         return;
 
+        case TT::CodeBlock: {
+          TCode *tcode = (TCode *)t;
+          // TODO: escape HTML content.
+          const char *code_block_open = "<code><pre>\n";
+          const char *code_block_close = "</code></pre>\n";
+
+          strcpy(outs + outlen, code_block_open);
+          outlen += strlen(code_block_open);
+
+          // we want to ignore the first 3 ``` and the last 3 ```
+          cerr << __LINE__ << "\n";
+          const Span span =
+              Span(t->span.begin.next("```").next(tcode->langname),
+                      t->span.end.prev("```"));
+          char *code_html = pygmentize(filestr + span.begin.si,
+                  span.nchars(), tcode->langname);
+
+          strcpy(outs + outlen, code_html);
+          outlen += strlen(code_html);
+
+          strcpy(outs + outlen, code_block_close);
+          outlen += strlen(code_block_close);
+          return;
+        }
 
         default:
-            cerr << "token: " << *t << " | that is unknown.\n"; 
             cerr << "outbuf:\n=========\n";
             cerr << outs;
             cerr << "\n";
+            cerr << "========\n";
+            cerr << "token: " << *t << " | is unknown for toHTML.\n"; 
             assert(false && "unknown token");
     };
     assert(false && "unreachabe");
@@ -508,6 +717,11 @@ int main(int argc, char **argv) {
     for(T * t : ts) {
         toHTML(t, filestr,  outlen, outbuf);
     }
+
+    cerr << "output:\n=======\n";
+    cerr << outbuf;
+    cerr << "====\n";
+
     
     // ll tix = 0;
     // vector<E*> es;
