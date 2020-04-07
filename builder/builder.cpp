@@ -9,6 +9,8 @@
 #include <string>
 #include <stdarg.h>
 #include <vector>
+#include <utility>
+#include <tuple>
 #include "utf8.h"
 using ll = long long;
 static const ll PADDING = 10;
@@ -64,6 +66,7 @@ enum class TT {
     CodeInline,
     CodeBlock,
     Undefined,
+    Link
 };
 
 std::ostream &operator<<(std::ostream &o, const TT &ty) {
@@ -80,6 +83,7 @@ std::ostream &operator<<(std::ostream &o, const TT &ty) {
         case TT::RawText: return o << "RAW";
         case TT::Newline: return o << "NEWLINE";
         case TT::Undefined: return o << "UNDEFINED";
+        case TT::Link: return o << "LINK";
         default: assert((int) ty <= 128); return o << "TY(" << (char)ty << ")";
     }
 };
@@ -109,9 +113,12 @@ std::ostream &operator<<(std::ostream &o, const L &l) {
     return cout << ":" << l.line << ":" << l.col;
 }
 
+// half open [...)
+// substr := str[span.begin...span.end-1];
 struct Span {
     L begin, end;
     Span(L begin, L end) : begin(begin), end(end){};
+    ll nchars() const { return end.si - begin.si; }
 };
 
 std::ostream &operator<<(std::ostream &o, const Span &s) {
@@ -147,6 +154,14 @@ struct T {
 
     T(TT ty, Span span) : ty(ty), span(span){};
     T(){};
+};
+
+
+// TLink for link information.
+struct TLink : public T {
+    TLink(Span span, T text, T link) : T(TT::Link, span), text(text), link(link) {};
+    T text;
+    T link;
 };
 
 
@@ -206,6 +221,7 @@ bool strpeek(const char* haystack, const char* needle) {
     return needle[i] == '\0';
 }
 
+
 // consume till we file delim in filestr
 L strconsume(L l, const char *filestr, const char *delim,
         const char *errfmt, ...)  {
@@ -222,51 +238,97 @@ L strconsume(L l, const char *filestr, const char *delim,
         va_end(args);
         assert(false && "unable to consume string.");
     } else {
-        for(ll i = 0; i < (ll)strlen(delim)-1; ++i) { l = l.next(filestr[l.si]); }
+        assert(strpeek(filestr + l.si, delim));
+        l = l.next(delim);
     }
     return l;
 }
 
+// tokenize those strings that can only occur "inside" an inline context,
+// so only:
+// - raw text
+// - inline math
+// - bold/italic/underline
+T *tokenizeLink(const char *s, const ll len, const L lbegin) {
+    assert(lbegin.si < len);
+    assert(s[lbegin.si] == '[');
+    
+    L closesq = lbegin;
+    while(s[closesq.si] != ']' && s[closesq.si] != '\0')  { 
+        closesq = closesq.next(s[closesq.si]);
+    }
+    
+    if (s[closesq.si] != ']') { return nullptr; }
+    if (!(closesq.si + 1 < len && s[closesq.si + 1] == '(')) { return nullptr; }
+    const L openround = closesq.next(s[closesq.si]);
+    assert(s[openround.si] == '(');
+
+    L closeround = openround;
+    while(s[closeround.si] != ')' && s[closeround.si] != '\0')  { 
+        closeround = closeround.next(s[closeround.si]);
+    }
+    if (s[closeround.si] != ')') { return nullptr; }
+    assert(false && "unimpl");
+}
+
+
 // TODO: convert \vert into |
 // TODO: preprocess and check that we don't have \t tokens anywhere.
-T tokenize(const char *s, const ll len, const L lbegin) {
+pair<bool, T*> tokenize(const char *s, const ll len, const L lbegin, const bool prevnewline) {
     assert(lbegin.si < len);
     L lcur = lbegin;
 
     if (strpeek(s + lcur.si, "$$")) {
         lcur = lcur.next("$$");
+        if (!prevnewline) {
+            printferr(lcur, s, "$$ can only be opened on newline.");
+            assert(false);
+        }
+
         // TODO: fix error message here, that will get generated from strconsume.
         // I had never thought about the problem that occurs when the opening
         // and closing braces are the same...
         lcur = strconsume(lcur, s, "$$", "unclosed $$ tag.");
-        return T(TT::LatexBlock, Span(lbegin, lcur.nextcol()));
-    } else if (strpeek(s + lcur.si, "<script")) {
+        return make_pair(false, new T(TT::LatexBlock, Span(lbegin, lcur)));
+    }
+    else if (strpeek(s + lcur.si, "<script")) {
         lcur = strconsume(lcur, s, "</script>", "unclosed <script> tag.");
-        return T(TT::HTML, Span(lbegin, lcur.nextcol()));
-    } else if (strpeek(s + lcur.si, "<!--")) {
+        return make_pair(false, new T(TT::HTML, Span(lbegin, lcur)));
+    }
+    else if (strpeek(s + lcur.si, "<!--")) {
         lcur = strconsume(lcur, s, "-->", "unclosed comment till end of file.");
-        return T(TT::Comment, Span(lbegin, lcur.nextcol()));
-    } else if (strpeek(s + lcur.si, "$$")) {
-        // consume everything till end as latex.
-        lcur = strconsume(lcur, s, "-->", "unclosed comment till end of file.");
-        return T(TT::Comment, Span(lbegin, lcur.nextcol()));
-    } else if (strpeek(s + lcur.si, "```")) {
+        return make_pair(false, new T(TT::Comment, Span(lbegin, lcur)));
+    }
+    else if (strpeek(s + lcur.si, "```")) {
+        if (!prevnewline) {
+            printferr(lcur, s, "``` can only be opened on newline.");
+            assert(false);
+        }
+        
         lcur = lcur.next("```");
         lcur = strconsume(lcur, s, "```", "unclosed code block tag.");
-        return T(TT::CodeBlock, Span(lbegin, lcur.nextcol()));
-    } else if (s[lcur.si] == '\n') { // this kills off newlines.
-        return T(TT::Newline, Span(lbegin, lcur.nextline()));
-    } else if (s[lcur.si] == '[') {
-        return T(TT::OpenSquare, Span(lbegin, lcur.nextcol()));
-    } else if (s[lcur.si] == ']') {
-        return T(TT::CloseSquare, Span(lbegin, lcur.nextcol()));
-    } else if (s[lcur.si] == '(') {
-        return T(TT::OpenRound, Span(lbegin, lcur.nextcol()));
-    } else if (s[lcur.si] == ')') {
-        return T(TT::CloseSquare, Span(lbegin, lcur.nextcol()));
-    } else if (s[lcur.si] == '-') {
-        return T(TT::ListHyphen, Span(lbegin, lcur.nextcol()));
-    } else if (s[lcur.si] == '`') {
+        return make_pair(false, new T(TT::CodeBlock, Span(lbegin, lcur)));
+    }
+    else if (s[lcur.si] == '\n') { // this kills off newlines.
+        return make_pair(true, new T(TT::Newline, Span(lbegin, lcur.nextline())));
+    }
+    else if (s[lcur.si] == '[') {
+        L lseek = lcur;
+        return make_pair(false, new T(TT::OpenSquare, Span(lbegin, lcur.nextcol())));
+    }
+    else if (s[lcur.si] == ']') {
+        return make_pair(false, new T(TT::CloseSquare, Span(lbegin, lcur.nextcol())));
+    }
+    else if (s[lcur.si] == '(') {
+        return make_pair(false, new T(TT::OpenRound, Span(lbegin, lcur.nextcol())));
+    }
+    else if (s[lcur.si] == ')') {
+        return make_pair(false, new T(TT::CloseSquare, Span(lbegin, lcur.nextcol())));
+    }
+    else if (prevnewline && s[lcur.si] == '-') {
+        return make_pair(false, new T(TT::ListHyphen, Span(lbegin, lcur.nextcol())));
+    }
+    else if (s[lcur.si] == '`') {
         lcur = lcur.nextcol();
         // TODO: fix error message here. 
         lcur = strconsume(lcur, s, "`", "unclosed inline code block `...`");
@@ -276,9 +338,9 @@ T tokenize(const char *s, const ll len, const L lbegin) {
             assert(false && "inline code block `...` on two different lines.");
         }
 
-        return T(TT::CodeInline, Span(lbegin, lcur.nextcol()));
-
-    } else if (s[lcur.si] == '$') { // order is important; this should come here, after $$ has been tried.
+        return make_pair(false, new T(TT::CodeInline, Span(lbegin, lcur)));
+    }
+    else if (s[lcur.si] == '$') { // order is important; this should come here, after $$ has been tried.
         lcur = lcur.nextcol();
         // TODO: fix error message here. 
         lcur = strconsume(lcur, s, "$", "unclosed inline latex block $");
@@ -288,11 +350,7 @@ T tokenize(const char *s, const ll len, const L lbegin) {
             assert(false && "inline latex block on two different lines.");
         }
 
-        return T(TT::LatexInline, Span(lbegin, lcur.nextcol()));
-    }
-    else if (s[lcur.si] == ' ') { 
-        while (s[lcur.si] == ' ') { lcur = lcur.nextcol(); }
-        return T(TT::Space, Span(lbegin, lcur));
+        return make_pair(false, new T(TT::LatexInline, Span(lbegin, lcur)));
     } else {
         // consume till a newline, or till a special char. If it _were_
         // part of a special form as the _first_ character, it would
@@ -300,8 +358,7 @@ T tokenize(const char *s, const ll len, const L lbegin) {
         do { 
             lcur = lcur.next(s[lcur.si]);
         } while(!is_char_special_token(s[lcur.si]) && s[lcur.si] != '\0');
-        return T(TT::RawText, Span(lbegin, lcur));
-
+        return make_pair(false, new T(TT::RawText, Span(lbegin, lcur)));
     }
 
     printferr(lcur, s, "unknown begin character: |%c|", s[lcur.si]);
@@ -321,16 +378,19 @@ void expect(const char *s, const int len, int &si, TT ty) {
 }
 */
 
-void tokenize(const char *s, const ll len, vector<T> &ts) {
+void tokenize(const char *s, const ll len, vector<T*> &ts) {
     Span span(firstline, firstline);
+    bool prevnewline = true;
     while (span.end.si < len) {
-        const L prevl = span.begin;
-        const T t = tokenize(s, len, span.begin);
+        T *t = nullptr;
+        std::tie(prevnewline, t) = tokenize(s, len, span.end, prevnewline);
+        assert(t != nullptr);
         ts.push_back(t);
-        cout << "token: " << t << "\n";
-        span = Span(t.span.end, t.span.end);
+        cerr << *t << "\n";
+
         // we always have to make progress.
-        assert(prevl.si != t.span.end.si);
+        assert(span.end.si != t->span.end.si);
+        span = t->span;
     }
 }
 
@@ -392,8 +452,31 @@ E *parse(const vector<T> &ts, ll &tix, const ll tend) {
     return nullptr;
 }
 
+void toHTML(const T *t, const char *filestr, ll &outlen, char *outs) {
+    assert(t != nullptr);
+    switch(t->ty) {
+        case TT::HTML:
+        case TT::RawText:
+        case TT::Newline:
+        case TT::Space:   
+        case TT::Comment:
+        strncpy(outs + outlen, filestr + t->span.begin.si, t->span.nchars());
+        outlen += t->span.nchars();
+        return;
+
+
+        default:
+            cerr << "token: " << *t << " | that is unknown.\n"; 
+            cerr << "outbuf:\n=========\n";
+            cerr << outs;
+            cerr << "\n";
+            assert(false && "unknown token");
+    };
+    assert(false && "unreachabe");
+}
+
 T ts[MAX_TOKENS];
-char str[MAX_CHARS];
+char filestr[MAX_CHARS];
 int main(int argc, char **argv) {
     if (argc != 2) {
         printf("expected usage: %s <path>", argv[0]);
@@ -412,20 +495,28 @@ int main(int argc, char **argv) {
 
     cout << "len: " << len << "\n";
 
-    const ll nread = fread(str, 1, len, f);
+    const ll nread = fread(filestr, 1, len, f);
     assert(nread == len);
 
-    vector<T> ts; tokenize(str, nread, ts);
+    vector<T*> ts; tokenize(filestr, nread, ts);
 
     cerr << "done tokenizing; now parsing...\n";
-    ll tix = 0;
-    vector<E*> es;
-    while(tix < (ll)ts.size()) {
-        E *e = parse(ts, tix, ts.size());
-        if (!e) { break; }
-         e->print(cerr, 0);
-         es.push_back(e);
+
+    ll MAX_OUTBUF_LEN = (ll)1e8L;
+    char *outbuf = (char *)calloc(MAX_OUTBUF_LEN, sizeof(char));
+    ll outlen = 0;
+    for(T * t : ts) {
+        toHTML(t, filestr,  outlen, outbuf);
     }
+    
+    // ll tix = 0;
+    // vector<E*> es;
+    // while(tix < (ll)ts.size()) {
+    //     E *e = parse(ts, tix, ts.size());
+    //     if (!e) { break; }
+    //      e->print(cerr, 0);
+    //      es.push_back(e);
+    // }
     
     return 0;
 }
