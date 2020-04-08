@@ -341,21 +341,21 @@ T *tokenizeNext(const char *s, const ll len, const L lbegin) {
 
         return new TBold(Span(lbegin, lcur), item);
     }
+    //This ordering is important; bold MUST be checked first.
+    else if (s[lcur.si] == '*' || s[lcur.si] == '_') {
+        const char c = s[lcur.si];
+        T *item = tokenizeInlineTill(s, len, lcur.nextcol(), [c](const char *s, L lcur) {
+                return s[lcur.si] == c;
+        });
 
-    // else if (s[lcur.si] == '*' || s[lcur.si] == '_') {
-    //     const char c = s[lcur.si];
-    //     T *item = tokenizeInlineTill(s, len, lcur.nextcol(), [c](const char *s, L lcur) {
-    //             return s[lcur.si] == c;
-    //     });
+        lcur = item->span.end;
+        if (lcur.si == len) {
+            printferr(lbegin, s, "unmatched italic demiliter: |%c|.", c);
+        }
+        assert(lcur.si < len); assert(s[lcur.si] == c);
+        return new TItalic(Span(lbegin, lcur.nextcol()), item);
 
-    //     lcur = item->span.end;
-    //     if (lcur.si == len) {
-    //         printferr(lbegin, s, "unmatched italic demiliter: |%c|.", c);
-    //     }
-    //     assert(lcur.si < len); assert(s[lcur.si] == c);
-    //     return new TItalic(Span(lbegin, lcur.nextcol()), item);
-
-    // }
+    }
     else {
         do { 
             lcur = lcur.next(s[lcur.si]);
@@ -740,7 +740,7 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    FILE *fin = fopen(argv[1], "r");
+    FILE *fin = fopen(argv[1], "rb");
     if (fin == nullptr) {
         printf("unable to open file: |%s|\n", argv[1]);
         return -1;
@@ -774,7 +774,7 @@ int main(int argc, char **argv) {
     };
 
     sprintf(outfilepath, "%s/index.html", argv[2]);
-    FILE *fout = fopen(outfilepath, "w");
+    FILE *fout = fopen(outfilepath, "wb");
     fwrite(outbuf, 1, strlen(outbuf), fout);
     fclose(fout);
     
