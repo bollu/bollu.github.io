@@ -584,40 +584,41 @@ E *parse(const vector<T> &ts, ll &tix, const ll tend) {
 }
 
 char* pygmentize(const char *code, int codelen, const char *lang) {
-    char input_file_name[100];
-    strcpy(input_file_name, "builder_read_XXXXXXX");
-    int fd =  mkstemp(input_file_name);
 
-    FILE *f;
-    f = fdopen(fd, "w");
+    char dirname[100] = "temp_XXXXXX";
+    const char *temp_dirname = mkdtemp(dirname);
+    assert(temp_dirname != nullptr &&
+        "unable to create temporary directory");
+
+    char input_file_path[512];
+    sprintf(input_file_path, "%s/input.txt", dirname);
+    FILE *f = fopen(input_file_path, "w");
     assert(f && "unable to open temp file");
     ll nwritten = fwrite(code, 1, codelen, f);
     assert(nwritten == codelen);
-    fflush(f);
     fclose(f);
 
-    cerr << "wrote pygmentize input to: |" << input_file_name << "|\n";
+    cerr << "wrote pygmentize input to: |" << input_file_path << "|\n";
 
-    char output_file_name[100];
-    strcpy(output_file_name, "builder_write_XXXXXXX");
-    fd =  mkstemp(output_file_name);
-    f = fdopen(fd, "w"); fclose(f);
+
+
+    char output_file_name[512];
+    sprintf(output_file_name, "%s/input.txt.html", dirname);
 
     int pid;
-    // pygmentize -f html -l python -o /tmp/foo.html /tmp/foo.py; cat /tmp/foo.html
+    // source-highlight -s cpp  /tmp/foo.py && cat /tmp/foo.py.html
     if ((pid = fork()) == 0) {
-        execl("pygmentize", 
-                "-f", "html", 
-                "-o", output_file_name, 
-                input_file_name,
+        int err = execlp("source-highlight",
+                "source-highlight",
+                "-s", lang, 
+                input_file_path,
                 NULL);
-        cerr << "wrote pygmentize output to: |" << output_file_name << "|\n";
-        exit(0);
+        assert(err != -1 && "unable to write pygments file.");
     } else {
         // parent, wait for child.
         int status;
         wait(&status);
-        if(WIFEXITED(status)) {
+        if(WIFEXITED(status) && (WEXITSTATUS(status) != 0)) {
             assert(false && "child ended non-gracefully");
         };
     }
@@ -628,7 +629,7 @@ char* pygmentize(const char *code, int codelen, const char *lang) {
 
     char *outbuf = nullptr;
     fseek(f, 0, SEEK_END); const ll len = ftell(f); fseek(f, 0, SEEK_SET);
-    outbuf = (char *)malloc(sizeof(char) * (len+1));
+    outbuf = (char *)calloc(len+1, sizeof(char));
     assert(outbuf != nullptr && "unable to allocate buffer");
 
     const ll nread = fread(outbuf, 1, len, f);
