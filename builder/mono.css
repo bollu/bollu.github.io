@@ -1,0 +1,29 @@
+BODY {
+  font-weight: normal;
+  background-color: white;
+}
+
+.keyword {
+  color: black;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.type {
+  color: black;
+  font-weight: bold;
+}
+
+.string {
+  color: gray;
+}
+
+.comment {
+  color: silver;
+  font-style: italic;
+}
+
+.number {
+  color: black;
+}
+

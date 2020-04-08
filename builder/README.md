@@ -14,3 +14,4 @@
 
 # TODO
 - [ ] add warnings for multi-line bold and italic.
+/usr/share/source-highlight/

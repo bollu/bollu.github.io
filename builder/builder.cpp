@@ -597,8 +597,9 @@ char* pygmentize(const char *tempdirpath,
     if ((pid = fork()) == 0) {
         int err = execlp("source-highlight",
                 "source-highlight",
-                "-n",
-                "-s", lang, 
+                "--style-css=mono.css", // style provided as css file.
+                "-n", // line numbers
+                "-s", lang,  // source lang
                 input_file_path,
                 NULL);
         assert(err != -1 && "unable to write pygments file.");
@@ -786,7 +787,7 @@ const char htmlbegin[] =
  "<title> A Universe of Sorts </title>"
  "<style>"
  "body {"
- " background-color: #FFFFF3; color: #000000; " // tufte
+ " background-color: #FFFFF5; color: #000000; " // tufte
  " font-family: monospace; font-size: 14px; line-height: 2em;"
  " width: 100ch; padding-left: 20%; padding-right: 20%;}"
  " @media screen and (max-width: 800px) { width: 100%; padding: 0"
@@ -795,6 +796,7 @@ const char htmlbegin[] =
  "a { color: #AA0000; }" // unvisited; default
  "a:visited { color: #660000; }" // vlink
  "a:active { color: #660000; }" // alink
+ // end style
  "</style>"
  "</head>"
  "<body>";
