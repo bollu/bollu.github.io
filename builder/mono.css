@@ -1,7 +1,9 @@
-BODY {
+body {
   font-weight: normal;
   background-color: white;
 }
+
+.linenum { color: #770000; }
 
 .keyword {
   color: black;
@@ -19,7 +21,7 @@ BODY {
 }
 
 .comment {
-  color: silver;
+  color: #808080;
   font-style: italic;
 }
 
