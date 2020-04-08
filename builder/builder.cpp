@@ -660,8 +660,8 @@ void toHTML(const T *t, const char *filestr, ll &outlen, char *outs) {
         case TT::CodeBlock: {
           TCode *tcode = (TCode *)t;
           // TODO: escape HTML content.
-          const char *code_block_open = "<code><pre>\n";
-          const char *code_block_close = "</code></pre>\n";
+          const char *code_block_open = "<code>\n";
+          const char *code_block_close = "</code>\n";
 
           strcpy(outs + outlen, code_block_open);
           outlen += strlen(code_block_open);
@@ -683,11 +683,11 @@ void toHTML(const T *t, const char *filestr, ll &outlen, char *outs) {
         }
 
         case TT::List: {
-          const char *list_block_open = "<ul>";
-          const char *list_block_close = "</ul>";
+          const char *list_block_open = "<ul>\n";
+          const char *list_block_close = "</ul>\n";
 
-          const char *list_item_open = "<li>";
-          const char *list_item_close = "</li>";
+          const char *list_item_open = "<li>\n";
+          const char *list_item_close = "</li>\n";
 
           TList *tlist = (TList *)t;
           strcpy(outs + outlen, list_block_open);
