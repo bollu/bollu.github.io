@@ -630,14 +630,12 @@ E *parse(const vector<T> &ts, ll &tix, const ll tend) {
     return nullptr;
 }
 
-char* pygmentize(const char *code, int codelen, const char *lang) {
+char* pygmentize(const char *tempdirpath, 
+        const char *code, int codelen, const char *lang) {
 
-    char dirname[100] = "temp_XXXXXX";
-    const char *success = mkdtemp(dirname);
-    assert(success != nullptr && "unable to create temporary directory");
 
     char input_file_path[512];
-    sprintf(input_file_path, "%s/input.txt", dirname);
+    sprintf(input_file_path, "%s/input.txt", tempdirpath);
     FILE *f = fopen(input_file_path, "w");
     assert(f && "unable to open temp file");
     ll nwritten = fwrite(code, 1, codelen, f);
@@ -649,7 +647,7 @@ char* pygmentize(const char *code, int codelen, const char *lang) {
 
 
     char output_file_name[512];
-    sprintf(output_file_name, "%s/input.txt.html", dirname);
+    sprintf(output_file_name, "%s/input.txt.html", tempdirpath);
 
     int pid;
     // source-highlight -s cpp  /tmp/foo.py && cat /tmp/foo.py.html
@@ -672,7 +670,7 @@ char* pygmentize(const char *code, int codelen, const char *lang) {
     f = fopen(output_file_name, "r");
 
     // cleanup.
-    if (f == nullptr) { rmdir(dirname); }
+    if (f == nullptr) { rmdir(tempdirpath); }
 
     assert(f && "unable to open output file of pygmentize");
 
@@ -685,14 +683,15 @@ char* pygmentize(const char *code, int codelen, const char *lang) {
     const ll nread = fread(outbuf, 1, len, f);
 
     // remove directory, only then assert.
-    rmdir(dirname);
+    rmdir(tempdirpath);
 
     assert(nread == len);
 
     return outbuf;
 };
 
-void toHTML(const T *t, const char *filestr, ll &outlen, char *outs) {
+void toHTML(const char *tempdirpath, 
+        const T *t, const char *filestr, ll &outlen, char *outs) {
     assert(t != nullptr);
     switch(t->ty) {
         case TT::Comment: return;
@@ -721,7 +720,8 @@ void toHTML(const T *t, const char *filestr, ll &outlen, char *outs) {
           const Span span =
               Span(t->span.begin.next("```").next(tcode->langname),
                       t->span.end.prev("```"));
-          char *code_html = pygmentize(filestr + span.begin.si,
+          char *code_html = pygmentize(tempdirpath,
+                  filestr + span.begin.si,
                   span.nchars(), tcode->langname);
 
           strcpy(outs + outlen, code_html);
@@ -758,7 +758,7 @@ void toHTML(const T *t, const char *filestr, ll &outlen, char *outs) {
           strcpy(outs + outlen, openul); outlen += strlen(openul);
           for(auto it: tlist->items) {
               strcpy(outs + outlen, openli); outlen += strlen(openli);
-              toHTML(it, filestr, outlen, outs);
+              toHTML(tempdirpath, it, filestr, outlen, outs);
               strcpy(outs + outlen, closeli); outlen += strlen(closeli);
           }
           strcpy(outs + outlen, closeul); outlen += strlen(closeul);
@@ -768,14 +768,16 @@ void toHTML(const T *t, const char *filestr, ll &outlen, char *outs) {
         case TT::Link: {
           TLink *link = (TLink *)t;
           outlen += sprintf(outs + outlen, "<a href=%s>\n", link->link);
-          toHTML(link->text, filestr, outlen, outs);
+          toHTML(tempdirpath, link->text, filestr, outlen, outs);
           outlen += sprintf(outs + outlen, "</a>\n");
           return;
         }
 
         case TT::InlineGroup: {
             TInlineGroup *group = (TInlineGroup *)t;
-            for (T *t : group->items) { toHTML(t, filestr, outlen, outs); }
+            for (T *t : group->items) { 
+                toHTML(tempdirpath, t, filestr, outlen, outs);
+            }
             return;
         }
 
@@ -829,10 +831,16 @@ int main(int argc, char **argv) {
     vector<T*> ts; tokenize(filestr, nread, ts);
     cerr << "Done tokenizing; now parsing...\n";
 
+
+    char tempdirpath[100] = "temp_XXXXXX";
+    const char *success = mkdtemp(tempdirpath);
+    assert(success != nullptr && "unable to create temporary directory");
+
     ll MAX_OUTBUF_LEN = (ll)1e8L;
-    char *outbuf = (char *)calloc(MAX_OUTBUF_LEN, sizeof(char));
-    ll outlen = 0;
-    for(T * t : ts) { toHTML(t, filestr,  outlen, outbuf); }
+    char *outbuf = (char *)calloc(MAX_OUTBUF_LEN, sizeof(char)); ll outlen = 0;
+    for(T * t : ts) { toHTML(tempdirpath, t, filestr,  outlen, outbuf); }
+
+    rmdir(tempdirpath);
 
 
     char outfilepath[512];
