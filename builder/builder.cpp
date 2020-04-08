@@ -71,10 +71,10 @@ enum class TT {
     CodeBlock,
     Undefined,
     Link,
-    ListItem,
     List,
     Group,
-    InlineGroup
+    InlineGroup,
+    ListItemGroup
 };
 
 std::ostream &operator<<(std::ostream &o, const TT &ty) {
@@ -92,10 +92,10 @@ std::ostream &operator<<(std::ostream &o, const TT &ty) {
         case TT::Newline: return o << "NEWLINE";
         case TT::Undefined: return o << "UNDEFINED";
         case TT::Link: return o << "LINK";
-        case TT::ListItem: return o << "LISTITEM";
         case TT::List: return o << "LIST";
-        case TT::Group: return o << "Group";
-        case TT::InlineGroup: return o << "InlineGroup";
+        case TT::Group: return o << "GROUP";
+        case TT::InlineGroup: return o << "INLINEGROUP";
+        case TT::ListItemGroup: return o << "LISTTEMGROUP";
 
         default: assert((int) ty <= 128); return o << "TY(" << (char)ty << ")";
     }
@@ -230,6 +230,16 @@ struct TInlineGroup : public T {
     vector<T*> items;
 };
 
+struct TListItemGroup : public T {
+    TListItemGroup(Span span, vector<T*> items) : 
+        T(TT::ListItemGroup, span), items(items) {
+            Span itemspan = mkTokensSpan(items);
+            assert(span.begin.si <= itemspan.begin.si);
+            assert(itemspan.end.si <= span.end.si);
+        } 
+    vector<T*> items;
+};
+
 
 struct E {
     public: ET type; virtual void print(std::ostream &o, int depth) = 0;
@@ -325,7 +335,9 @@ T *tokenizeInline(const char *s, const ll len, L lbegin) {
 
         T *linkt = nullptr;
         // this kills off newlines.  
-        if (s[lcur.si] == '\n') { break;
+        if (s[lcur.si] == '\n') {
+            ts.push_back(new T(TT::Newline, Span(lcur, lcur.nextline())));
+            break;
         }
         else if (s[lcur.si] == '[' && 
             (linkt = tokenizeLink(s, len, lcur)) != nullptr) {
@@ -447,7 +459,17 @@ T* tokenizeListItem (const char *s, const ll len, const L lhyphen) {
     }
     
     assert(s[lend.si] == '\n');
-    return new T(TT::RawText, Span(ltextbegin, lend));
+    assert(lend.si > ltextbegin.si);
+
+    vector<T *>ts;
+    L lcurinline = ltextbegin;
+    while (lcurinline.si < lend.si) {
+        T *t = tokenizeInline(s, lend.si, lcurinline);
+        ts.push_back(t);
+        lcurinline = t->span.end;
+    }
+
+    return new TListItemGroup(Span(ltextbegin, lend), ts);
 }
 
 
@@ -533,7 +555,7 @@ T* tokenizeBlock(const char *s, const ll len, const L lbegin, const bool prevnew
 
         // as long as we have items..
         while(s[lcur.si] == '\n' && s[lcur.si+1] == '-') {
-            lcur = lcur.nextline();
+            lcur = lcur.next("\n");
             toks.push_back(tokenizeListItem(s, len, lcur));
             lcur = (*toks.rbegin())->span.end;
         }
@@ -654,6 +676,7 @@ char* pygmentize(const char *tempdirpath,
     if ((pid = fork()) == 0) {
         int err = execlp("source-highlight",
                 "source-highlight",
+                "-n",
                 "-s", lang, 
                 input_file_path,
                 NULL);
@@ -775,6 +798,14 @@ void toHTML(const char *tempdirpath,
 
         case TT::InlineGroup: {
             TInlineGroup *group = (TInlineGroup *)t;
+            for (T *t : group->items) { 
+                toHTML(tempdirpath, t, filestr, outlen, outs);
+            }
+            return;
+        }
+
+        case TT::ListItemGroup: {
+            TListItemGroup *group = (TListItemGroup *)t;
             for (T *t : group->items) { 
                 toHTML(tempdirpath, t, filestr, outlen, outs);
             }
