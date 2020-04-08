@@ -318,7 +318,7 @@ T *tokenizeLink(const char *s, const ll len, const L opensq) {
     }
     if (s[closeround.si] != ')') { return nullptr; }
 
-    char *link = (char *)malloc(sizeof(char) * (closeround.si - openround.si));
+    char *link = (char *)calloc((closeround.si - openround.si), sizeof(char));
     for(int i = 0, j = openround.si+1; s[j] != ')'; ++i, ++j) {
         link[i] = s[j];
     }
@@ -326,8 +326,8 @@ T *tokenizeLink(const char *s, const ll len, const L opensq) {
     T* text;
     // TODO: change `tokenize` to `tokenizeInline` when the time is right.
     // std::tie(newline, text) = tokenize(s, closesq.si - opensq.si, opensq, false);
-    text = new T(TT::RawText, Span(opensq, closesq));
-    return new TLink(Span(opensq, closeround), text, link);
+    text = new T(TT::RawText, Span(opensq.nextcol(), closesq));
+    return new TLink(Span(opensq, closeround.nextcol()), text, link);
 }
 
 // we are assuming that this is called on the *first* list item that
@@ -440,16 +440,8 @@ pair<bool, T*> tokenize(const char *s, const ll len, const L lbegin, const bool 
         return make_pair(true, new T(TT::Newline, Span(lbegin, lcur.nextline())));
     }
     else if (s[lcur.si] == '[') {
-        return make_pair(false, new T(TT::OpenSquare, Span(lbegin, lcur.nextcol())));
-    }
-    else if (s[lcur.si] == ']') {
-        return make_pair(false, new T(TT::CloseSquare, Span(lbegin, lcur.nextcol())));
-    }
-    else if (s[lcur.si] == '(') {
-        return make_pair(false, new T(TT::OpenRound, Span(lbegin, lcur.nextcol())));
-    }
-    else if (s[lcur.si] == ')') {
-        return make_pair(false, new T(TT::CloseSquare, Span(lbegin, lcur.nextcol())));
+        T *t = tokenizeLink(s, len, lcur);
+        if (t) { return make_pair(false, t); }
     }
     else if (prevnewline && s[lcur.si] == '-') {
         vector<T*>toks;
@@ -489,18 +481,17 @@ pair<bool, T*> tokenize(const char *s, const ll len, const L lbegin, const bool 
         }
 
         return make_pair(false, new T(TT::LatexInline, Span(lbegin, lcur)));
-    } else {
-        // consume till a newline, or till a special char. If it _were_
-        // part of a special form as the _first_ character, it would
-        // have been consumed already. Hence, a do-while loop.
-        do { 
-            lcur = lcur.next(s[lcur.si]);
-        } while(!is_char_special_token(s[lcur.si]) && s[lcur.si] != '\0');
-        return make_pair(false, new T(TT::RawText, Span(lbegin, lcur)));
-    }
+    } 
 
-    printferr(lcur, s, "unknown begin character: |%c|", s[lcur.si]);
-    assert(false && "unreachable");
+    // Note that this is not an else clause since someone can drop
+    // into this [eg. tokenizeLink]
+    // consume till a newline, or till a special char. If it _were_
+    // part of a special form as the _first_ character, it would
+    // have been consumed already. Hence, a do-while loop.
+    do { 
+        lcur = lcur.next(s[lcur.si]);
+    } while(!is_char_special_token(s[lcur.si]) && s[lcur.si] != '\0');
+    return make_pair(false, new T(TT::RawText, Span(lbegin, lcur)));
 }
 
 // peek into the token stream without consuming.
@@ -594,9 +585,8 @@ E *parse(const vector<T> &ts, ll &tix, const ll tend) {
 char* pygmentize(const char *code, int codelen, const char *lang) {
 
     char dirname[100] = "temp_XXXXXX";
-    const char *temp_dirname = mkdtemp(dirname);
-    assert(temp_dirname != nullptr &&
-        "unable to create temporary directory");
+    const char *success = mkdtemp(dirname);
+    assert(success != nullptr && "unable to create temporary directory");
 
     char input_file_path[512];
     sprintf(input_file_path, "%s/input.txt", dirname);
@@ -632,6 +622,10 @@ char* pygmentize(const char *code, int codelen, const char *lang) {
     }
 
     f = fopen(output_file_name, "r");
+
+    // cleanup.
+    if (f == nullptr) { rmdir(dirname); }
+
     assert(f && "unable to open output file of pygmentize");
 
 
@@ -641,7 +635,12 @@ char* pygmentize(const char *code, int codelen, const char *lang) {
     assert(outbuf != nullptr && "unable to allocate buffer");
 
     const ll nread = fread(outbuf, 1, len, f);
+
+    // remove directory, only then assert.
+    rmdir(dirname);
+
     assert(nread == len);
+
     return outbuf;
 };
 
@@ -706,6 +705,14 @@ void toHTML(const T *t, const char *filestr, ll &outlen, char *outs) {
 
           strcpy(outs + outlen, list_block_close);
           outlen += strlen(list_block_close);
+          return;
+        }
+
+        case TT::Link: {
+          TLink *link = (TLink *)t;
+          outlen += sprintf(outs + outlen, "<a href=%s>\n", link->link);
+          toHTML(link->text, filestr, outlen, outs);
+          outlen += sprintf(outs + outlen, "</a>\n");
           return;
         }
 
