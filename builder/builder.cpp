@@ -24,7 +24,6 @@ static const ll MAX_CHARS = 1e7;
 using namespace std;
 
 enum class TT {
-    Newline,
     Comment,
     RawText,
     HTML,
@@ -38,6 +37,7 @@ enum class TT {
     InlineGroup,
     ListItemGroup,
     Heading,
+    Italic,
     Undefined,
 };
 
@@ -50,7 +50,6 @@ std::ostream &operator<<(std::ostream &o, const TT &ty) {
         case TT::CodeBlock: return o << "CodeBlock";
         case TT::CodeInline: return o << "CodeInline";
         case TT::RawText: return o << "RAW";
-        case TT::Newline: return o << "NEWLINE";
         case TT::Undefined: return o << "UNDEFINED";
         case TT::Link: return o << "LINK";
         case TT::List: return o << "LIST";
@@ -58,6 +57,7 @@ std::ostream &operator<<(std::ostream &o, const TT &ty) {
         case TT::InlineGroup: return o << "INLINEGROUP";
         case TT::ListItemGroup: return o << "LISTTEMGROUP";
         case TT::Heading: return o << "HEADING";
+        case TT::Italic: return o << "ITALIC";
     }
     assert(false && "unreachable");
 };
@@ -208,9 +208,14 @@ struct THeading : public T {
     T *item;
 };
 
+struct TItalic : public T {
+    TItalic(Span span, T *item) : T(TT::Italic, span), item(item) {};
+    T *item;
+};
+
 
 bool is_char_special_inline_token(char c) {
-        return  c == '*' || c == '[' || c == '<' || c == '>' || c == '$' ||
+        return  c == '*' || c == '[' || c == ']' || c == '<' || c == '>' || c == '$' ||
         c == '`' || c == '\n';
 }
 
@@ -246,7 +251,21 @@ L strconsume(L l, const char *filestr, const char *delim,
 }
 
 T *tokenizeLink(const char *s, const ll len, const L opensq);
-T *tokenizeInline(const char *s, const ll len, const L lbegin);
+T *tokenizeNext(const char *s, const ll len, const L lbegin);
+
+template<typename Fn>
+T *tokenizeInlineTill(const char *s, const ll len, const L lbegin, Fn should_break) {
+    vector<T *> ts;
+    L lcur = lbegin;
+    while(lcur.si < len) {
+        T *t = tokenizeNext(s, len, lcur);
+        ts.push_back(t);
+        lcur = t->span.end;
+        if (should_break(s, lcur)) { break; }
+    }
+
+    return new TInlineGroup(ts);
+}
 
 // tokenize that data that can come in an inline region. So this is:
 // - raw text
@@ -254,78 +273,80 @@ T *tokenizeInline(const char *s, const ll len, const L lbegin);
 // - inline code block
 // - links (if allowed)
 // TODO: add error checking for ``` for $$.
-T *tokenizeInline(const char *s, const ll len, L lbegin) {
+T *tokenizeNext(const char *s, const ll len, const L lbegin) {
     assert(lbegin.si < len);
-
-    vector<T*> ts;
-
     L lcur = lbegin;
-    while(lcur.si < len) {
-        lbegin = lcur;
 
-        T *linkt = nullptr;
-        // this kills off newlines.  
-        if (s[lcur.si] == '\n') {
-            ts.push_back(new T(TT::Newline, Span(lcur, lcur.nextline())));
-            break;
-        }
-        else if (s[lcur.si] == '[' && 
+    T *linkt = nullptr;
+    if (s[lcur.si] == '[' && 
             (linkt = tokenizeLink(s, len, lcur)) != nullptr) {
-            lcur = linkt->span.end;
-            ts.push_back(linkt);
-        }
-        else if (s[lcur.si] == '`') {
-            lcur = lcur.nextcol();
-            // TODO: fix error message here. 
-            lcur = strconsume(lcur, s, "`", "unclosed inline code block `...`");
-
-            if (lbegin.line != lcur.line) {
-                printferr(lbegin, s, "inline code block `...` not allowed to"
-                        "be on two different lines."); 
-                assert(false && "inline code block `...` on two different lines.");
-            }
-
-            ts.push_back(new T(TT::CodeInline, Span(lbegin, lcur)));
-        }
-        else if (s[lcur.si] == '$') {
-            lcur = lcur.nextcol();
-            // TODO: fix error message here. 
-            lcur = strconsume(lcur, s, "$", "unclosed inline latex block $");
-
-            if (lbegin.line != lcur.line) {
-                printferr(lbegin, s, "inline latex block not allowed to be on two different lines."); 
-                assert(false && "inline latex block on two different lines.");
-            }
-
-            ts.push_back(new T(TT::LatexInline, Span(lbegin, lcur)));
-        }
-        else {
-            do { 
-                lcur = lcur.next(s[lcur.si]);
-            } while(!is_char_special_inline_token(s[lcur.si]) && s[lcur.si] != '\0' && lcur.si < len);
-            ts.push_back(new T(TT::RawText, Span(lbegin, lcur)));
-        }
+        lcur = linkt->span.end;
+        return linkt;
     }
+    else if (s[lcur.si] == '`') {
+        lcur = lcur.nextcol();
+        // TODO: fix error message here. 
+        lcur = strconsume(lcur, s, "`", "unclosed inline code block `...`");
 
-    return new TInlineGroup(ts);
+        if (lbegin.line != lcur.line) {
+            printferr(lbegin, s, "inline code block `...` not allowed to"
+                    "be on two different lines."); 
+            assert(false && "inline code block `...` on two different lines.");
+        }
+
+        return new T(TT::CodeInline, Span(lbegin, lcur));
+    }
+    else if (s[lcur.si] == '$') {
+        lcur = lcur.nextcol();
+        // TODO: fix error message here. 
+        lcur = strconsume(lcur, s, "$", "unclosed inline latex block $");
+
+        if (lbegin.line != lcur.line) {
+            printferr(lbegin, s, "inline latex block not allowed to be on two different lines."); 
+            assert(false && "inline latex block on two different lines.");
+        }
+
+        return new T(TT::LatexInline, Span(lbegin, lcur));
+    }
+    else if (s[lcur.si] == '*') {
+        T *item = tokenizeInlineTill(s, len, lcur.nextcol(), [](const char *s, L lcur) {
+                return s[lcur.si] == '*';
+        });
+
+        lcur = item->span.end;
+        if (lcur.si == len) {
+            printferr(lbegin, s, "unmatched italic demiliter: |*|.");
+        }
+        assert(lcur.si < len); assert(s[lcur.si] == '*');
+        return new TItalic(Span(lbegin, lcur.nextcol()), item);
+
+    }
+    else {
+        do { 
+            lcur = lcur.next(s[lcur.si]);
+        } while(!is_char_special_inline_token(s[lcur.si]) && s[lcur.si] != '\0' && lcur.si < len);
+        return new T(TT::RawText, Span(lbegin, lcur));
+    }
 };
+
 
 // tokenize those strings that can only occur "inside" an inline context,
 // so only:
 // - raw text
 // - inline math
 // - bold/italic/underline
+// This is _wrong_, because we may have a ']' till sth else.
 T *tokenizeLink(const char *s, const ll len, const L opensq) {
     assert(opensq.si < len);
     assert(s[opensq.si] == '[');
+
+    T *text = tokenizeInlineTill(s, len, opensq.nextcol(), 
+            [](const char *s, L lcur) { return s[lcur.si] == ']'; });
+
+    const L closesq = text->span.end;
+    if (closesq.si >= len) { return nullptr; }
+    assert(s[closesq.si] == ']');
     
-    L closesq = opensq;
-    while(s[closesq.si] != ']' && s[closesq.si] != '\0')  { 
-        closesq = closesq.next(s[closesq.si]);
-    }
-    
-    if (s[closesq.si] != ']') { return nullptr; }
-    if (!(closesq.si + 1 < len && s[closesq.si + 1] == '(')) { return nullptr; }
     const L openround = closesq.next(s[closesq.si]);
     if(s[openround.si] != '(') { return nullptr; };
 
@@ -340,16 +361,6 @@ T *tokenizeLink(const char *s, const ll len, const L opensq) {
         link[i] = s[j];
     }
     
-    T* text = nullptr;
-    for(L l = opensq; l.si <= closesq.si; l = l.next(s[l.si])) {
-        if (s[l.si] == '\n') {
-            printferr(l, s, "link text cannot have newline.");
-        }
-        assert(s[l.si] != '\n');
-    }
-    text = tokenizeInline(s, closesq.si, opensq.next('['));
-    assert(text != nullptr);
-
     // TODO: change `tokenize` to `tokenizeInline` when the time is right.
     // std::tie(newline, text) = tokenize(s, closesq.si - opensq.si, opensq, false);
     // text = 
@@ -359,72 +370,38 @@ T *tokenizeLink(const char *s, const ll len, const L opensq) {
 // we are assuming that this is called on the *first* list item that
 // has been seen.
 T* tokenizeListItem (const char *s, const ll len, const L lhyphen) {
-    
     assert(s[lhyphen.si] == '-');
-
     const L ltextbegin = lhyphen.nextcol();
-    L lend = lhyphen.nextcol();
-
-    while(lend.si < len) {
-        // two spaces indicates the end of a list.
-        if (lend.si < len - 1 &&
-            s[lend.si] == '\n' &&
-            s[lend.si+1] == '\n') { 
-            break;
-        } 
-        else if (lend.si < len - 1 && 
-            s[lend.si] == '\n' && s[lend.si+1] == '-') {
-
-            // newline and hyphen indicates another list item.
-            // TODO: write validation to rule out things like:
-            // <NEWLINE><SP>-
-            break;
-        }
-        else if (lend.si < len - 1 && 
-            s[lend.si] == '\n' &&
-            s[lend.si+1] != ' ') {
-
-            // newline and space indicates continuation of same
-            // list item text.
-            printferr(lend.nextline(), s,
-                "unknown character in hanging list item: |%c|"
-                "(are you missing alignment with the `-` ?)",
-                s[lend.si+1]);
-            assert(false && "unknown character in hanging list item.");
-        } else {
-            // consume the newline if not used.
-            lend = lend.next(s[lend.si]);
-        }
-    }
-    
-    assert(s[lend.si] == '\n');
-    assert(lend.si > ltextbegin.si);
-
-    vector<T *>ts;
-    L lcurinline = ltextbegin;
-    while (lcurinline.si < lend.si) {
-        T *t = tokenizeInline(s, lend.si, lcurinline);
-        ts.push_back(t);
-        lcurinline = t->span.end;
-    }
-
-    return new TListItemGroup(Span(ltextbegin, lend), ts);
+    return tokenizeInlineTill(s, len, ltextbegin, [lhyphen, len](const char *s, L lcur) {
+            if (s[lcur.si] != '\n') { return false; }
+            assert(s[lcur.si] == '\n');
+            if (lcur.si + 1 >= len) { return true; }
+            // file is still left. Check that what's going on next is legit..
+            // TODO: consider moving this logic to be _ouside_ here.
+            // should probably be in the caller of tokenizeListItem.
+            if (s[lcur.si + 1] == '-') { return true; }
+            if (s[lcur.si + 1] == '\n') { return true; }
+            // do NOT quit, since we are trying to *continue* this item;
+            if (s[lcur.si + 1] == ' ') { return false; }
+            printferr(lhyphen, s, 
+                    "list item must have either newline gap, next list, or text with ' '");
+            assert(false && "list item ended improperly");
+    });
 }
 
 
 
 // TODO: convert \vert into |
 // TODO: preprocess and check that we don't have \t tokens anywhere.
-T* tokenizeBlock(const char *s, const ll len, const L lbegin, const bool prevnewline) {
+T* tokenizeBlock(const char *s, const ll len, const L lbegin) {
     assert(lbegin.si < len);
     L lcur = lbegin;
 
+    if (s[lcur.si] == '\n') {
+        return new T(TT::RawText, Span(lcur, lcur.nextline()));
+    }
     if (strpeek(s + lcur.si, "$$")) {
         lcur = lcur.next("$$");
-        if (!prevnewline) {
-            printferr(lcur, s, "$$ can only be opened on newline.");
-            assert(false);
-        }
 
         // TODO: fix error message here, that will get generated from strconsume.
         // I had never thought about the problem that occurs when the opening
@@ -447,11 +424,6 @@ T* tokenizeBlock(const char *s, const ll len, const L lbegin, const bool prevnew
         return new T(TT::Comment, Span(lbegin, lcur));
     }
     else if (strpeek(s + lcur.si, "```")) {
-        if (!prevnewline) {
-            printferr(lcur, s, "``` can only be opened on newline.");
-            assert(false);
-        }
-
         lcur = lcur.next("```");
 
         const int LANG_NAME_SIZE = 20;
@@ -485,14 +457,16 @@ T* tokenizeBlock(const char *s, const ll len, const L lbegin, const bool prevnew
         return new TCode(Span(lbegin, lcur), langname);
     } 
     else if (strpeek(s + lcur.si, "#")) {
+        cerr << "HEADING" << lcur << "\n";
         int i = 0;
         for(;lcur.si < len && s[lcur.si] == '#'; lcur = lcur.next('#')){ i++;};
-         T *t = tokenizeInline(s, len, lcur);
+         T *t = tokenizeInlineTill(s, len, lcur, [](const char *s, L lcur) {
+                 cerr << "HEDING-CHECK" << lcur << " " << s[lcur.si] << "\n";
+                 return s[lcur.si] == '\n';
+         });
+        cerr << "HEADING" << lcur << "\n";
          return new THeading(i, Span(lcur, t->span.end), t);
-    }
-    else if (s[lcur.si] == '\n') {
-        return new T(TT::Newline, Span(lbegin, lcur.nextline()));
-    } else if (prevnewline && s[lcur.si] == '-') {
+    } else if (s[lcur.si] == '-' && (lcur.si == 0 || s[lcur.si - 1] == '\n')) {
         vector<T*> toks;
         toks.push_back(tokenizeListItem(s, len, lcur));
         lcur = toks[0]->span.end;
@@ -506,16 +480,15 @@ T* tokenizeBlock(const char *s, const ll len, const L lbegin, const bool prevnew
 
         return new TList(toks);
     } else {
-        return tokenizeInline(s, len, lbegin);
+        return tokenizeNext(s, len, lbegin);
     }
 }
 
 
 void tokenize(const char *s, const ll len, vector<T*> &ts) {
     Span span(lfirstline, lfirstline);
-    bool prevnewline = true;
     while (span.end.si < len) {
-        T *t = tokenizeBlock(s, len, span.end, prevnewline);
+        T *t = tokenizeBlock(s, len, span.end);
         assert(t != nullptr);
         ts.push_back(t);
         cerr << *t << "\n";
@@ -591,7 +564,6 @@ void toHTML(const char *tempdirpath,
 
         case TT::HTML:
         case TT::RawText:
-        case TT::Newline:
         strncpy(outs + outlen, ins + t->span.begin.si, t->span.nchars());
         outlen += t->span.nchars();
         return;
@@ -691,6 +663,14 @@ void toHTML(const char *tempdirpath,
             outlen += sprintf(outs + outlen, "<h%d>", theading->hnum);
             toHTML(tempdirpath, theading->item, ins, outlen, outs);
             outlen += sprintf(outs + outlen, "</h%d>", theading->hnum);
+            return;
+        }
+
+        case TT::Italic: {
+            TItalic *tcur = (TItalic *)t;
+            outlen += sprintf(outs + outlen, "<i>");
+            toHTML(tempdirpath, tcur->item, ins, outlen, outs);
+            outlen += sprintf(outs + outlen, "</i>");
             return;
         }
 
