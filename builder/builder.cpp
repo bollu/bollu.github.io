@@ -579,15 +579,15 @@ char* pygmentize(const char *tempdirpath,
         const char *code, int codelen, const char *lang) {
 
 
-    char input_file_path[512];
-    sprintf(input_file_path, "%s/input.txt", tempdirpath);
-    FILE *f = fopen(input_file_path, "w");
+    char latex_file_path[512];
+    sprintf(latex_file_path, "%s/input.txt", tempdirpath);
+    FILE *f = fopen(latex_file_path, "w");
     assert(f && "unable to open temp file");
     ll nwritten = fwrite(code, 1, codelen, f);
     assert(nwritten == codelen);
     fclose(f);
 
-    cerr << "wrote pygmentize input to: |" << input_file_path << "|\n";
+    cerr << "wrote pygmentize input to: |" << latex_file_path << "|\n";
 
     char output_file_name[512];
     sprintf(output_file_name, "%s/input.txt.html", tempdirpath);
@@ -600,7 +600,7 @@ char* pygmentize(const char *tempdirpath,
                 "--style-css=./mono.css", // style provided as css file.
                 "-n", // line numbers
                 "-s", lang,  // source lang
-                input_file_path,
+                latex_file_path,
                 NULL);
         assert(err != -1 && "unable to write pygments file.");
     } else {
@@ -613,26 +613,86 @@ char* pygmentize(const char *tempdirpath,
     }
 
     f = fopen(output_file_name, "r");
-
     // cleanup.
     if (f == nullptr) { rmdir(tempdirpath); }
     assert(f && "unable to open output file of pygmentize");
 
-    char *outbuf = nullptr;
     fseek(f, 0, SEEK_END); const ll len = ftell(f); fseek(f, 0, SEEK_SET);
-    outbuf = (char *)calloc(len+1, sizeof(char));
+    char *outbuf = (char *)calloc(len+1, sizeof(char));
     assert(outbuf != nullptr && "unable to allocate buffer");
 
     const ll nread = fread(outbuf, 1, len, f);
-
-    // remove directory, only then assert.
-    rmdir(tempdirpath);
-
     assert(nread == len);
     return outbuf;
 };
 
 
+char* compileLatex(const char *tempdirpath, const char *ins, 
+    const ll inwritelen) {
+
+    FILE *flatex = nullptr, *fhtml = nullptr;
+    char latex_file_path[512]; char html_file_path[512];
+    sprintf(latex_file_path, "%s/latex-in.txt", tempdirpath);
+    sprintf(html_file_path, "%s/latex-out.txt", tempdirpath);
+
+    flatex = fopen(latex_file_path, "wb");
+    assert(flatex && "unable to open file for writing");
+    const ll nwritten = fwrite(ins, 1, inwritelen, flatex);
+    assert(nwritten == (ll)inwritelen);
+
+    fclose(flatex);
+    cerr << "wrote latex input |";
+    for(int i = 0; i < inwritelen; ++i) { cerr << ins[i]; }
+    cerr << "| to: |" << latex_file_path << "|\n";
+
+    int pid;
+    // hevea STDIN
+    if ((pid = fork()) == 0) {
+
+        flatex = fopen(latex_file_path, "rb");
+        assert(flatex && "unable to open input file for reading");
+
+        fhtml = fopen(html_file_path, "wb");
+        assert(fhtml && "unable to open input file for reading");
+
+        // replace stdin with latex.
+        dup2(fileno(flatex), 0);
+        // replace stdout with outfile
+        dup2(fileno(fhtml), 1);
+
+        int err = execlp("hevea", "hevea", NULL);
+        assert(err != -1 && "unable to launch 'hevea'");
+    } else {
+        // parent, wait for child.
+        cerr << "waiting for child to terminate...";
+        int status;
+        wait(&status);
+        if(WIFEXITED(status) && (WEXITSTATUS(status) != 0)) {
+            cerr <<  "child running hevea ended non-gracefully. Returning input string...";
+            char *outs = (char *)malloc((inwritelen+2) *sizeof(char));
+            int i  = 0;
+            for(;i < inwritelen; ++i) outs[i] = ins[i];
+            outs[i] = 0; return outs;
+        } else {
+            cerr << "\rchild exited gracefully.\n";
+        }
+    }
+
+    fhtml = fopen(html_file_path, "rb");
+    if (fhtml == nullptr) { rmdir(tempdirpath); }
+    assert(fhtml && "unable to open output file of pygmentize");
+
+
+    fseek(fhtml, 0, SEEK_END);
+    const ll len = ftell(fhtml); fseek(fhtml, 0, SEEK_SET);
+    char *outs = (char *)calloc(len+1, sizeof(char));
+    assert(outs != nullptr && "unable to allocate buffer");
+    const ll nread = fread(outs, 1, len, fhtml);
+    assert(nread == len);
+
+    fprintf(stderr, "HTML output: %s\n", outs);
+    return outs;
+}
 
 void toHTML(const char *tempdirpath, 
         const T *t, const char *ins, ll &outlen, char *outs) {
@@ -672,12 +732,28 @@ void toHTML(const char *tempdirpath,
           return;
         }
 
-        case TT::LatexInline:
+        case TT::LatexInline: 
         case TT::LatexBlock: {
-          strncpy(outs + outlen, ins + t->span.begin.si, t->span.nchars());
-          outlen += t->span.nchars();
+          // const Span span = Span(t->span.begin.next("$"), t->span.end.prev("$"));
+          const Span span = t->span; 
+          if (t->ty == TT::LatexBlock) { 
+              outlen += sprintf(outs + outlen, "<div class='latex'>");
+          }
+          const char *outcompile = compileLatex(tempdirpath,
+                  ins + span.begin.si, span.nchars());
+          strcpy(outs + outlen, outcompile);
+          outlen += strlen(outcompile);
+          if (t->ty == TT::LatexBlock) { 
+              outlen += sprintf(outs + outlen, "</div>");
+          }
           return;
         }
+
+        // case TT::LatexBlock: {
+        //   strncpy(outs + outlen, ins + t->span.begin.si, t->span.nchars());
+        //   outlen += t->span.nchars();
+        //   return;
+        // }
 
         case TT::List: {
           const char *openul = "<ul>\n";
@@ -796,13 +872,16 @@ const char htmlbegin[] =
  "a { color: #AA0000; }" // unvisited; default
  "a:visited { color: #660000; }" // vlink
  "a:active { color: #660000; }" // alink
-// code blocks
- "pre { border-left-color:#660000;  border-left-style: solid;"
+// code blocks, latex blocks
+ "pre .latex { border-left-color:#660000;  border-left-style: solid;"
  "      border-left-width: 4px; padding-left: 5px; }" 
+ // latex, we need line height to be correct
+ ".latex { line-height: 1em; }"
  // end style
  "</style>"
  "</head>"
  "<body>";
+ 
 
 const char htmlend[] =
  "</body>"
