@@ -72,7 +72,9 @@ enum class TT {
     Undefined,
     Link,
     ListItem,
-    List
+    List,
+    Group,
+    InlineGroup
 };
 
 std::ostream &operator<<(std::ostream &o, const TT &ty) {
@@ -92,6 +94,8 @@ std::ostream &operator<<(std::ostream &o, const TT &ty) {
         case TT::Link: return o << "LINK";
         case TT::ListItem: return o << "LISTITEM";
         case TT::List: return o << "LIST";
+        case TT::Group: return o << "Group";
+        case TT::InlineGroup: return o << "InlineGroup";
 
         default: assert((int) ty <= 128); return o << "TY(" << (char)ty << ")";
     }
@@ -143,11 +147,6 @@ struct Span {
     L begin, end;
     Span(L begin, L end) : begin(begin), end(end){ assert(end.si >= begin.si); };
     ll nchars() const { return end.si - begin.si; }
-
-    Span extend(const Span next) {
-        assert(next.begin.si >= end.si);
-        return Span(begin, next.end);
-    }
 };
 
 std::ostream &operator<<(std::ostream &o, const Span &s) {
@@ -199,16 +198,24 @@ struct TLink : public T {
     const char *link;
 };
 
+Span mkTokensSpan(const vector<T*> &items) {
+    assert(items.size() > 0);
+    Span s = items[0]->span;
+    for(int i = 1; i < (int)items.size(); ++i) { 
+        Span next = items[i]->span;
+
+        if (next.begin.si < s.end.si) {
+            cerr << "merging: " << *items[i-1] << " | " << *items[i] << "\n";
+        }
+        assert(next.begin.si >= s.end.si);
+        s = Span(s.begin, next.end);
+    }
+    return s;
+}
+
 struct TList : public T {
     vector<T*> items;
-    TList(vector<T*> items) : T(TT::List, makeListSpan(items)), items(items) { };
-
-    static Span makeListSpan(vector<T*>items) {
-        assert(items.size() > 0);
-        Span s = items[0]->span;
-        for(int i = 1; i < (int)items.size(); ++i) { s = s.extend(items[i]->span); }
-        return s;
-    }
+    TList(vector<T*> items) : T(TT::List, mkTokensSpan(items)), items(items) { };
 };
 
 struct TCode : public T {
@@ -216,6 +223,13 @@ struct TCode : public T {
         T(TT::CodeBlock, span), langname(strdup(langname)) {}
     char *langname;
 };
+
+struct TInlineGroup : public T {
+    TInlineGroup(vector<T*> items) : 
+        T(TT::InlineGroup, mkTokensSpan(items)), items(items) {} 
+    vector<T*> items;
+};
+
 
 struct E {
     public: ET type; virtual void print(std::ostream &o, int depth) = 0;
@@ -291,7 +305,64 @@ L strconsume(L l, const char *filestr, const char *delim,
     return l;
 }
 
-pair<bool, T*> nextToken(const char *s, const ll len, const L lbegin, const bool prevnewline);
+T *tokenizeLink(const char *s, const ll len, const L opensq);
+
+// tokenize that data that can come in an inline region. So this is:
+// - raw text
+// - inline math
+// - inline code block
+// - links (if allowed)
+T *tokenizeInline(const char *s, const ll len, const L lbegin) {
+    assert(lbegin.si < len);
+    L lcur = lbegin;
+
+    vector<T*> ts;
+
+    while(lcur.si < len) {
+        T *linkt = nullptr;
+        // this kills off newlines.  
+        if (s[lcur.si] == '\n') { break;
+        }
+        else if (s[lcur.si] == '[' && 
+            (linkt = tokenizeLink(s, len, lcur)) != nullptr) {
+            lcur = linkt->span.end;
+            ts.push_back(linkt);
+        }
+        else if (s[lcur.si] == '`') {
+            lcur = lcur.nextcol();
+            // TODO: fix error message here. 
+            lcur = strconsume(lcur, s, "`", "unclosed inline code block `...`");
+
+            if (lbegin.line != lcur.line) {
+                printferr(lbegin, s, "inline code block `...` not allowed to"
+                        "be on two different lines."); 
+                assert(false && "inline code block `...` on two different lines.");
+            }
+
+            ts.push_back(new T(TT::CodeInline, Span(lbegin, lcur)));
+        }
+        else if (s[lcur.si] == '$') {
+            lcur = lcur.nextcol();
+            // TODO: fix error message here. 
+            lcur = strconsume(lcur, s, "$", "unclosed inline latex block $");
+
+            if (lbegin.line != lcur.line) {
+                printferr(lbegin, s, "inline latex block not allowed to be on two different lines."); 
+                assert(false && "inline latex block on two different lines.");
+            }
+
+            ts.push_back(new T(TT::LatexInline, Span(lbegin, lcur)));
+        }
+        else {
+            do { 
+                lcur = lcur.next(s[lcur.si]);
+            } while(!is_char_special_token(s[lcur.si]) && s[lcur.si] != '\0');
+            ts.push_back(new T(TT::RawText, Span(lbegin, lcur)));
+        }
+    }
+
+    return new TInlineGroup(ts);
+};
 
 // tokenize those strings that can only occur "inside" an inline context,
 // so only:
@@ -340,7 +411,6 @@ T* tokenizeListItem (const char *s, const ll len, const L lhyphen) {
     L lend = lhyphen.nextcol();
 
     while(lend.si < len) {
-    
         // two spaces indicates the end of a list.
         if (lend.si < len - 1 &&
             s[lend.si] == '\n' &&
@@ -362,7 +432,8 @@ T* tokenizeListItem (const char *s, const ll len, const L lhyphen) {
             // newline and space indicates continuation of same
             // list item text.
             printferr(lend.nextline(), s,
-                "unknown character in hanging list item: |%c| (are you missing alignment with the `-` ?)",
+                "unknown character in hanging list item: |%c|"
+                "(are you missing alignment with the `-` ?)",
                 s[lend.si+1]);
             assert(false && "unknown character in hanging list item.");
         } else {
@@ -379,7 +450,7 @@ T* tokenizeListItem (const char *s, const ll len, const L lhyphen) {
 
 // TODO: convert \vert into |
 // TODO: preprocess and check that we don't have \t tokens anywhere.
-pair<bool, T*> nextToken(const char *s, const ll len, const L lbegin, const bool prevnewline) {
+T* nextBlock(const char *s, const ll len, const L lbegin, const bool prevnewline) {
     assert(lbegin.si < len);
     L lcur = lbegin;
 
@@ -394,15 +465,21 @@ pair<bool, T*> nextToken(const char *s, const ll len, const L lbegin, const bool
         // I had never thought about the problem that occurs when the opening
         // and closing braces are the same...
         lcur = strconsume(lcur, s, "$$", "unclosed $$ tag.");
-        return make_pair(false, new T(TT::LatexBlock, Span(lbegin, lcur)));
+
+        // we need to have $$\n
+        if (lcur.si < len && s[lcur.si] != '\n') {
+            printferr(lcur, s, "incorrectly terminated $$."
+                        "must have newline following.");
+        }
+        return new T(TT::LatexBlock, Span(lbegin, lcur));
     }
     else if (strpeek(s + lcur.si, "<script")) {
         lcur = strconsume(lcur, s, "</script>", "unclosed <script> tag.");
-        return make_pair(false, new T(TT::HTML, Span(lbegin, lcur)));
+        return new T(TT::HTML, Span(lbegin, lcur));
     }
     else if (strpeek(s + lcur.si, "<!--")) {
         lcur = strconsume(lcur, s, "-->", "unclosed comment till end of file.");
-        return make_pair(false, new T(TT::Comment, Span(lbegin, lcur)));
+        return new T(TT::Comment, Span(lbegin, lcur));
     }
     else if (strpeek(s + lcur.si, "```")) {
         if (!prevnewline) {
@@ -434,64 +511,18 @@ pair<bool, T*> nextToken(const char *s, const ll len, const L lbegin, const bool
 
         assert(s[lcur.si] == '\n');
         lcur = strconsume(lcur, s, "```", "unclosed code block tag.");
-        return make_pair(false, new TCode(Span(lbegin, lcur), langname));
-    }
-    else if (s[lcur.si] == '\n') { // this kills off newlines.
-        return make_pair(true, new T(TT::Newline, Span(lbegin, lcur.nextline())));
-    }
-    else if (s[lcur.si] == '[') {
-        T *t = tokenizeLink(s, len, lcur);
-        if (t) { return make_pair(false, t); }
-    }
-    else if (prevnewline && s[lcur.si] == '-') {
-        vector<T*>toks;
-        toks.push_back(tokenizeListItem(s, len, lcur));
-        lcur = toks[0]->span.end;
 
-        // as long as we have items..
-        while(s[lcur.si] == '\n' && s[lcur.si+1] == '-') {
-            lcur = lcur.nextline();
-            toks.push_back(tokenizeListItem(s, len, lcur));
-            lcur = (*toks.rbegin())->span.end;
+        // we need to have ```\n
+        if (lcur.si < len && s[lcur.si] != '\n') {
+            printferr(lcur, s, "incorrectly terminated ```."
+                        "must have newline following.");
         }
 
-        return make_pair(false, new TList(toks));
-        // return make_pair(false, new T(TT::ListHyphen, Span(lbegin, lcur.nextcol())));
+        return new TCode(Span(lbegin, lcur), langname);
+    } else if (s[lcur.si] == '\n') {
+        return new T(TT::Newline, Span(lbegin, lcur.nextline()));
     }
-    else if (s[lcur.si] == '`') {
-        lcur = lcur.nextcol();
-        // TODO: fix error message here. 
-        lcur = strconsume(lcur, s, "`", "unclosed inline code block `...`");
-
-        if (lbegin.line != lcur.line) {
-            printferr(lbegin, s, "inline code block `...` not allowed to be on two different lines."); 
-            assert(false && "inline code block `...` on two different lines.");
-        }
-
-        return make_pair(false, new T(TT::CodeInline, Span(lbegin, lcur)));
-    }
-    else if (s[lcur.si] == '$') { // order is important; this should come here, after $$ has been tried.
-        lcur = lcur.nextcol();
-        // TODO: fix error message here. 
-        lcur = strconsume(lcur, s, "$", "unclosed inline latex block $");
-
-        if (lbegin.line != lcur.line) {
-            printferr(lbegin, s, "inline latex block not allowed to be on two different lines."); 
-            assert(false && "inline latex block on two different lines.");
-        }
-
-        return make_pair(false, new T(TT::LatexInline, Span(lbegin, lcur)));
-    } 
-
-    // Note that this is not an else clause since someone can drop
-    // into this [eg. tokenizeLink]
-    // consume till a newline, or till a special char. If it _were_
-    // part of a special form as the _first_ character, it would
-    // have been consumed already. Hence, a do-while loop.
-    do { 
-        lcur = lcur.next(s[lcur.si]);
-    } while(!is_char_special_token(s[lcur.si]) && s[lcur.si] != '\0');
-    return make_pair(false, new T(TT::RawText, Span(lbegin, lcur)));
+    return tokenizeInline(s, len, lbegin);
 }
 
 // peek into the token stream without consuming.
@@ -511,9 +542,7 @@ void tokenize(const char *s, const ll len, vector<T*> &ts) {
     Span span(lfirstline, lfirstline);
     bool prevnewline = true;
     while (span.end.si < len) {
-        T *t = nullptr;
-        // start tokenizing from the end of the prev span.
-        std::tie(prevnewline, t) = nextToken(s, len, span.end, prevnewline);
+        T *t = nextBlock(s, len, span.end, prevnewline);
         assert(t != nullptr);
         ts.push_back(t);
         cerr << *t << "\n";
@@ -716,13 +745,20 @@ void toHTML(const T *t, const char *filestr, ll &outlen, char *outs) {
           return;
         }
 
-        default:
+        case TT::InlineGroup: {
+            TInlineGroup *group = (TInlineGroup *)t;
+            for (T *t : group->items) { toHTML(t, filestr, outlen, outs); }
+            return;
+        }
+
+        default: {
             cerr << "outbuf:\n=========\n";
             cerr << outs;
             cerr << "\n";
             cerr << "========\n";
             cerr << "token: " << *t << " | is unknown for toHTML.\n"; 
             assert(false && "unknown token");
+        }
     };
     assert(false && "unreachabe");
 }
