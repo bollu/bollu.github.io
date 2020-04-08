@@ -21,47 +21,10 @@ static const ll PADDING = 10;
 static const ll MAX_TOKENS = 1e7;
 static const ll MAX_CHARS = 1e7;
 
-// Markdown grammar:
-//
-
-void asserterr(bool b, const char *str, ...) {
-    if (b) return;
-    // va_list ap;
-    // printf(str, ap);
-    assert(false && "assertion failed");
-};
-
 using namespace std;
 
-// Error types
-enum class ErrT {};
-
-// Error
-struct Err {};
-
-// Expressinon
-enum class ET { Link, List, Text, Heading, Block };
-
-
 enum class TT {
-    OpenSquare = '[',
-    CloseSquare = ']',
-    OpenRound = '(',
-    CloseRound = ')',
-    Hash = '#',
-    ListHyphen = '-',
-    DoubleQuote = '"',
-    Backtick = '`',
-    Star = '*',
-    Underscore = '_',
-    OpenAngleBracket = '<',
-    CloseAngleBracket = '>',
-    Newline = '\n',
-    Space = ' ',
-    Dollar = '$',
-    ThreeBacktick = 300,
-    TwoUnderscore,
-    DoubleDollar,
+    Newline,
     Comment,
     RawText,
     HTML,
@@ -69,19 +32,17 @@ enum class TT {
     LatexInline,
     CodeInline,
     CodeBlock,
-    Undefined,
     Link,
     List,
     Group,
     InlineGroup,
-    ListItemGroup
+    ListItemGroup,
+    Heading,
+    Undefined,
 };
 
 std::ostream &operator<<(std::ostream &o, const TT &ty) {
     switch (ty) {
-        case TT::ThreeBacktick: return o << "```";
-        case TT::TwoUnderscore: return o << "__";
-        case TT::DoubleDollar: return o << "$$";
         case TT::Comment: return o << "COMMENT";
         case TT::HTML: return o << "HTML";
         case TT::LatexBlock: return o << "LatexBlock";
@@ -96,9 +57,9 @@ std::ostream &operator<<(std::ostream &o, const TT &ty) {
         case TT::Group: return o << "GROUP";
         case TT::InlineGroup: return o << "INLINEGROUP";
         case TT::ListItemGroup: return o << "LISTTEMGROUP";
-
-        default: assert((int) ty <= 128); return o << "TY(" << (char)ty << ")";
+        case TT::Heading: return o << "HEADING";
     }
+    assert(false && "unreachable");
 };
 
 // L for line
@@ -240,46 +201,15 @@ struct TListItemGroup : public T {
     vector<T*> items;
 };
 
-
-struct E {
-    public: ET type; virtual void print(std::ostream &o, int depth) = 0;
-    protected: E (ET type) : type(type) {};
-};
-
-void printspaces(ostream &o, int n) { for(int i=0;i<n;++i) o<<" "; }
-struct EList : public E {
-    std::vector<E*> es;
-    EList(std::vector<E*> es) : E(ET::List), es(es)  {}
-    virtual void print(std::ostream &o, int depth=0) {
-        o << "EList(\n";
-        for(E *e: es) { e->print(o, depth+1); o << "\n"; }
-        o << "\n"; printspaces(o, depth); o << ")";
-    }
-};
-
-struct ELink : public E {
-    E *text, *link;
-};
-struct EText : public E {
-    T text; // raw text or equivalent
-    EText(T text) : E(ET::Text), text(text) {}
-    virtual void print(std::ostream &o, int depth)  {
-        o << text;
-    }
-};
-
-struct EHeading : public E {
-    E*inner;
-};
-
-struct EBlock : public E {
-    vector<E*> es;
-    EBlock(vector<E*> es) : E(ET::List) {}; 
+struct THeading : public T {
+    THeading(int hnum, Span span, T*item) : T(TT::Heading, span),
+        hnum(hnum), item(item) {};
+    int hnum;
+    T *item;
 };
 
 
-
-bool is_char_special_token(char c) {
+bool is_char_special_inline_token(char c) {
         return  c == '*' || c == '[' || c == '<' || c == '>' || c == '$' ||
         c == '`' || c == '\n';
 }
@@ -372,7 +302,7 @@ T *tokenizeInline(const char *s, const ll len, L lbegin) {
         else {
             do { 
                 lcur = lcur.next(s[lcur.si]);
-            } while(!is_char_special_token(s[lcur.si]) && s[lcur.si] != '\0');
+            } while(!is_char_special_inline_token(s[lcur.si]) && s[lcur.si] != '\0' && lcur.si < len);
             ts.push_back(new T(TT::RawText, Span(lbegin, lcur)));
         }
     }
@@ -410,10 +340,19 @@ T *tokenizeLink(const char *s, const ll len, const L opensq) {
         link[i] = s[j];
     }
     
-    T* text;
+    T* text = nullptr;
+    for(L l = opensq; l.si <= closesq.si; l = l.next(s[l.si])) {
+        if (s[l.si] == '\n') {
+            printferr(l, s, "link text cannot have newline.");
+        }
+        assert(s[l.si] != '\n');
+    }
+    text = tokenizeInline(s, closesq.si, opensq.next('['));
+    assert(text != nullptr);
+
     // TODO: change `tokenize` to `tokenizeInline` when the time is right.
     // std::tie(newline, text) = tokenize(s, closesq.si - opensq.si, opensq, false);
-    text = new T(TT::RawText, Span(opensq.nextcol(), closesq));
+    // text = 
     return new TLink(Span(opensq, closeround.nextcol()), text, link);
 }
 
@@ -507,7 +446,6 @@ T* tokenizeBlock(const char *s, const ll len, const L lbegin, const bool prevnew
         lcur = strconsume(lcur, s, "-->", "unclosed comment till end of file.");
         return new T(TT::Comment, Span(lbegin, lcur));
     }
-
     else if (strpeek(s + lcur.si, "```")) {
         if (!prevnewline) {
             printferr(lcur, s, "``` can only be opened on newline.");
@@ -531,7 +469,6 @@ T* tokenizeBlock(const char *s, const ll len, const L lbegin, const bool prevnew
             printferr(lbegin, s, "``` has too long a language name: |%s|", langname);
         }
 
-
         // default language is text.
         if (langlen == 0) { strcpy(langname, "text"); }
 
@@ -546,7 +483,14 @@ T* tokenizeBlock(const char *s, const ll len, const L lbegin, const bool prevnew
         }
 
         return new TCode(Span(lbegin, lcur), langname);
-    } else if (s[lcur.si] == '\n') {
+    } 
+    else if (strpeek(s + lcur.si, "#")) {
+        int i = 0;
+        for(;lcur.si < len && s[lcur.si] == '#'; lcur = lcur.next('#')){ i++;};
+         T *t = tokenizeInline(s, len, lcur);
+         return new THeading(i, Span(lcur, t->span.end), t);
+    }
+    else if (s[lcur.si] == '\n') {
         return new T(TT::Newline, Span(lbegin, lcur.nextline()));
     } else if (prevnewline && s[lcur.si] == '-') {
         vector<T*> toks;
@@ -566,18 +510,6 @@ T* tokenizeBlock(const char *s, const ll len, const L lbegin, const bool prevnew
     }
 }
 
-// peek into the token stream without consuming.
-/*
-TT peek(const char *s, const int len, int si) {
-    return tokenize(s, len, si).ty;
-};
-
-
-void expect(const char *s, const int len, int &si, TT ty) {
-    T tok = tokenize(s, len, si);
-    assert(tok.ty == ty);
-}
-*/
 
 void tokenize(const char *s, const ll len, vector<T*> &ts) {
     Span span(lfirstline, lfirstline);
@@ -594,63 +526,6 @@ void tokenize(const char *s, const ll len, vector<T*> &ts) {
     }
 }
 
-// BLOCK = LISTS BLOCK | RAW BLOCK
-// LISTS = HYPHEN SPACE 
-
-E *parse(const vector<T> &ts, ll &tix, const ll tend) {
-    while(tix < tend) {
-        const T tbegin = ts[tix];
-        cerr << "@tix:" << tix << " line: " << __LINE__ << "\n";
-        getchar();
-                
-        if (tbegin.ty == TT::HTML || 
-            tbegin.ty == TT::RawText || 
-            tbegin.ty == TT::LatexBlock || 
-            tbegin.ty == TT::CodeBlock ||
-            tbegin.ty == TT::Comment) {
-            cerr << "@tix:" << tix << " line: " << __LINE__ << "\n";
-            return new EText(ts[tix++]);
-        } else if (ts[tix].ty == TT::ListHyphen) {
-                cerr << "@tix:" << tix << " line: " << __LINE__ << "\n";
-                // start parsing lists.
-                vector<E*> es;
-                tix += 1; // consume newline and hyphen
-
-                do {
-                    ll listend = tix;
-                    // to end a hyphen, find 
-                    // |- abc
-                    // |  def (not ended: NEWLINE SPACE TOK)
-                    // |g (ended: NEWLINE [NO SPACE] TOK)
-                    while(listend < tend) {
-                        if (listend < tend - 2 &&
-                            ts[listend+1].ty == TT::Newline && 
-                            ts[listend+2].ty != TT::Space) { break; } 
-                        listend++;
-                    }
-
-                    // parse till the end of the list.
-                    es.push_back(parse(ts, tix, listend));
-                    tix = listend;
-                } while(tix < tend && ts[tix+1].ty == TT::Newline && ts[tix+2].ty == TT::ListHyphen);
-
-                assert(es.size() > 0 && "should have parsed at least one list.");
-                return new EList(es);
-
-        }
-        // ignored tokens 
-        else if (tbegin.ty == TT::Newline || tbegin.ty == TT::Space) { 
-            cerr <<  "@" << __LINE__ << "\n";
-            tix++;
-            continue;
-        }
-        else {
-            cerr << "token: " << ts[tix] << "\n";
-            assert(false && "unknown token");
-        }
-    }
-    return nullptr;
-}
 
 char* pygmentize(const char *tempdirpath, 
         const char *code, int codelen, const char *lang) {
@@ -665,8 +540,6 @@ char* pygmentize(const char *tempdirpath,
     fclose(f);
 
     cerr << "wrote pygmentize input to: |" << input_file_path << "|\n";
-
-
 
     char output_file_name[512];
     sprintf(output_file_name, "%s/input.txt.html", tempdirpath);
@@ -694,9 +567,7 @@ char* pygmentize(const char *tempdirpath,
 
     // cleanup.
     if (f == nullptr) { rmdir(tempdirpath); }
-
     assert(f && "unable to open output file of pygmentize");
-
 
     char *outbuf = nullptr;
     fseek(f, 0, SEEK_END); const ll len = ftell(f); fseek(f, 0, SEEK_SET);
@@ -709,12 +580,11 @@ char* pygmentize(const char *tempdirpath,
     rmdir(tempdirpath);
 
     assert(nread == len);
-
     return outbuf;
 };
 
 void toHTML(const char *tempdirpath, 
-        const T *t, const char *filestr, ll &outlen, char *outs) {
+        const T *t, const char *ins, ll &outlen, char *outs) {
     assert(t != nullptr);
     switch(t->ty) {
         case TT::Comment: return;
@@ -722,12 +592,9 @@ void toHTML(const char *tempdirpath,
         case TT::HTML:
         case TT::RawText:
         case TT::Newline:
-        case TT::Space:   
-        strncpy(outs + outlen, filestr + t->span.begin.si, t->span.nchars());
+        strncpy(outs + outlen, ins + t->span.begin.si, t->span.nchars());
         outlen += t->span.nchars();
         return;
-
-
 
         case TT::CodeBlock: {
           TCode *tcode = (TCode *)t;
@@ -744,7 +611,7 @@ void toHTML(const char *tempdirpath,
               Span(t->span.begin.next("```").next(tcode->langname),
                       t->span.end.prev("```"));
           char *code_html = pygmentize(tempdirpath,
-                  filestr + span.begin.si,
+                  ins + span.begin.si,
                   span.nchars(), tcode->langname);
 
           strcpy(outs + outlen, code_html);
@@ -755,17 +622,9 @@ void toHTML(const char *tempdirpath,
           return;
         }
 
-        // case TT::LatexInline: {
-        //   const Span span =
-        //       Span(t->span.begin.next("$"), t->span.end.prev("$"));
-        //   strncpy(outs, filestr + span.begin.si, span.nchars());
-        //   outlen += span.nchars();
-        //   return;
-        // }
-
         case TT::LatexInline:
         case TT::LatexBlock: {
-          strncpy(outs + outlen, filestr + t->span.begin.si, t->span.nchars());
+          strncpy(outs + outlen, ins + t->span.begin.si, t->span.nchars());
           outlen += t->span.nchars();
           return;
         }
@@ -781,7 +640,7 @@ void toHTML(const char *tempdirpath,
           strcpy(outs + outlen, openul); outlen += strlen(openul);
           for(auto it: tlist->items) {
               strcpy(outs + outlen, openli); outlen += strlen(openli);
-              toHTML(tempdirpath, it, filestr, outlen, outs);
+              toHTML(tempdirpath, it, ins, outlen, outs);
               strcpy(outs + outlen, closeli); outlen += strlen(closeli);
           }
           strcpy(outs + outlen, closeul); outlen += strlen(closeul);
@@ -791,7 +650,7 @@ void toHTML(const char *tempdirpath,
         case TT::Link: {
           TLink *link = (TLink *)t;
           outlen += sprintf(outs + outlen, "<a href=%s>\n", link->link);
-          toHTML(tempdirpath, link->text, filestr, outlen, outs);
+          toHTML(tempdirpath, link->text, ins, outlen, outs);
           outlen += sprintf(outs + outlen, "</a>\n");
           return;
         }
@@ -799,7 +658,7 @@ void toHTML(const char *tempdirpath,
         case TT::InlineGroup: {
             TInlineGroup *group = (TInlineGroup *)t;
             for (T *t : group->items) { 
-                toHTML(tempdirpath, t, filestr, outlen, outs);
+                toHTML(tempdirpath, t, ins, outlen, outs);
             }
             return;
         }
@@ -807,7 +666,7 @@ void toHTML(const char *tempdirpath,
         case TT::ListItemGroup: {
             TListItemGroup *group = (TListItemGroup *)t;
             for (T *t : group->items) { 
-                toHTML(tempdirpath, t, filestr, outlen, outs);
+                toHTML(tempdirpath, t, ins, outlen, outs);
             }
             return;
         }
@@ -820,10 +679,18 @@ void toHTML(const char *tempdirpath,
             const Span span =
                 Span(t->span.begin.next("`"), t->span.end.prev("`"));
 
-            strncpy(outs + outlen, filestr + span.begin.si, span.nchars());
+            strncpy(outs + outlen, ins + span.begin.si, span.nchars());
             outlen += span.nchars();
 
             strcpy(outs + outlen, close); outlen += strlen(close);
+            return;
+        }
+
+        case TT::Heading: {
+            THeading *theading = (THeading *)t;
+            outlen += sprintf(outs + outlen, "<h%d>", theading->hnum);
+            toHTML(tempdirpath, theading->item, ins, outlen, outs);
+            outlen += sprintf(outs + outlen, "</h%d>", theading->hnum);
             return;
         }
 
@@ -884,20 +751,6 @@ int main(int argc, char **argv) {
     FILE *fout = fopen(outfilepath, "w");
     fwrite(outbuf, 1, strlen(outbuf), fout);
     fclose(fout);
-
-    // cerr << "output:\n=======\n";
-    // cerr << outbuf;
-    // cerr << "====\n";
-
-    
-    // ll tix = 0;
-    // vector<E*> es;
-    // while(tix < (ll)ts.size()) {
-    //     E *e = parse(ts, tix, ts.size());
-    //     if (!e) { break; }
-    //      e->print(cerr, 0);
-    //      es.push_back(e);
-    // }
     
     return 0;
 }
