@@ -306,19 +306,23 @@ L strconsume(L l, const char *filestr, const char *delim,
 }
 
 T *tokenizeLink(const char *s, const ll len, const L opensq);
+T *tokenizeInline(const char *s, const ll len, const L lbegin);
 
 // tokenize that data that can come in an inline region. So this is:
 // - raw text
 // - inline math
 // - inline code block
 // - links (if allowed)
-T *tokenizeInline(const char *s, const ll len, const L lbegin) {
+// TODO: add error checking for ``` for $$.
+T *tokenizeInline(const char *s, const ll len, L lbegin) {
     assert(lbegin.si < len);
-    L lcur = lbegin;
 
     vector<T*> ts;
 
+    L lcur = lbegin;
     while(lcur.si < len) {
+        lbegin = lcur;
+
         T *linkt = nullptr;
         // this kills off newlines.  
         if (s[lcur.si] == '\n') { break;
@@ -450,7 +454,7 @@ T* tokenizeListItem (const char *s, const ll len, const L lhyphen) {
 
 // TODO: convert \vert into |
 // TODO: preprocess and check that we don't have \t tokens anywhere.
-T* nextBlock(const char *s, const ll len, const L lbegin, const bool prevnewline) {
+T* tokenizeBlock(const char *s, const ll len, const L lbegin, const bool prevnewline) {
     assert(lbegin.si < len);
     L lcur = lbegin;
 
@@ -481,6 +485,7 @@ T* nextBlock(const char *s, const ll len, const L lbegin, const bool prevnewline
         lcur = strconsume(lcur, s, "-->", "unclosed comment till end of file.");
         return new T(TT::Comment, Span(lbegin, lcur));
     }
+
     else if (strpeek(s + lcur.si, "```")) {
         if (!prevnewline) {
             printferr(lcur, s, "``` can only be opened on newline.");
@@ -521,8 +526,22 @@ T* nextBlock(const char *s, const ll len, const L lbegin, const bool prevnewline
         return new TCode(Span(lbegin, lcur), langname);
     } else if (s[lcur.si] == '\n') {
         return new T(TT::Newline, Span(lbegin, lcur.nextline()));
+    } else if (prevnewline && s[lcur.si] == '-') {
+        vector<T*> toks;
+        toks.push_back(tokenizeListItem(s, len, lcur));
+        lcur = toks[0]->span.end;
+
+        // as long as we have items..
+        while(s[lcur.si] == '\n' && s[lcur.si+1] == '-') {
+            lcur = lcur.nextline();
+            toks.push_back(tokenizeListItem(s, len, lcur));
+            lcur = (*toks.rbegin())->span.end;
+        }
+
+        return new TList(toks);
+    } else {
+        return tokenizeInline(s, len, lbegin);
     }
-    return tokenizeInline(s, len, lbegin);
 }
 
 // peek into the token stream without consuming.
@@ -542,7 +561,7 @@ void tokenize(const char *s, const ll len, vector<T*> &ts) {
     Span span(lfirstline, lfirstline);
     bool prevnewline = true;
     while (span.end.si < len) {
-        T *t = nextBlock(s, len, span.end, prevnewline);
+        T *t = tokenizeBlock(s, len, span.end, prevnewline);
         assert(t != nullptr);
         ts.push_back(t);
         cerr << *t << "\n";
@@ -676,23 +695,26 @@ char* pygmentize(const char *code, int codelen, const char *lang) {
 void toHTML(const T *t, const char *filestr, ll &outlen, char *outs) {
     assert(t != nullptr);
     switch(t->ty) {
+        case TT::Comment: return;
+
         case TT::HTML:
         case TT::RawText:
         case TT::Newline:
         case TT::Space:   
-        case TT::Comment:
         strncpy(outs + outlen, filestr + t->span.begin.si, t->span.nchars());
         outlen += t->span.nchars();
         return;
 
+
+
         case TT::CodeBlock: {
           TCode *tcode = (TCode *)t;
           // TODO: escape HTML content.
-          const char *code_block_open = "<code>\n";
-          const char *code_block_close = "</code>\n";
+          const char *open = "<code>\n";
+          const char *close = "</code>\n";
 
-          strcpy(outs + outlen, code_block_open);
-          outlen += strlen(code_block_open);
+          strcpy(outs + outlen, open);
+          outlen += strlen(open);
 
           // we want to ignore the first 3 ``` and the last 3 ```
           cerr << __LINE__ << "\n";
@@ -705,35 +727,41 @@ void toHTML(const T *t, const char *filestr, ll &outlen, char *outs) {
           strcpy(outs + outlen, code_html);
           outlen += strlen(code_html);
 
-          strcpy(outs + outlen, code_block_close);
-          outlen += strlen(code_block_close);
+          strcpy(outs + outlen, close);
+          outlen += strlen(close);
+          return;
+        }
+
+        // case TT::LatexInline: {
+        //   const Span span =
+        //       Span(t->span.begin.next("$"), t->span.end.prev("$"));
+        //   strncpy(outs, filestr + span.begin.si, span.nchars());
+        //   outlen += span.nchars();
+        //   return;
+        // }
+
+        case TT::LatexInline:
+        case TT::LatexBlock: {
+          strncpy(outs + outlen, filestr + t->span.begin.si, t->span.nchars());
+          outlen += t->span.nchars();
           return;
         }
 
         case TT::List: {
-          const char *list_block_open = "<ul>\n";
-          const char *list_block_close = "</ul>\n";
+          const char *openul = "<ul>\n";
+          const char *closeul = "\n</ul>\n";
 
-          const char *list_item_open = "<li>\n";
-          const char *list_item_close = "</li>\n";
+          const char *openli = "<li>\n";
+          const char *closeli = "\n</li>\n";
 
           TList *tlist = (TList *)t;
-          strcpy(outs + outlen, list_block_open);
-          outlen += strlen(list_block_open);
-
+          strcpy(outs + outlen, openul); outlen += strlen(openul);
           for(auto it: tlist->items) {
-              strcpy(outs + outlen, list_item_open);
-              outlen += strlen(list_item_open);
-
+              strcpy(outs + outlen, openli); outlen += strlen(openli);
               toHTML(it, filestr, outlen, outs);
-
-              strcpy(outs + outlen, list_item_close);
-              outlen += strlen(list_item_close);
+              strcpy(outs + outlen, closeli); outlen += strlen(closeli);
           }
-
-
-          strcpy(outs + outlen, list_block_close);
-          outlen += strlen(list_block_close);
+          strcpy(outs + outlen, closeul); outlen += strlen(closeul);
           return;
         }
 
@@ -748,6 +776,21 @@ void toHTML(const T *t, const char *filestr, ll &outlen, char *outs) {
         case TT::InlineGroup: {
             TInlineGroup *group = (TInlineGroup *)t;
             for (T *t : group->items) { toHTML(t, filestr, outlen, outs); }
+            return;
+        }
+
+        case TT::CodeInline: {
+            const char *open =  "<code>";
+            const char *close = "</code>";
+            strcpy(outs + outlen, open); outlen += strlen(open);
+
+            const Span span =
+                Span(t->span.begin.next("`"), t->span.end.prev("`"));
+
+            strncpy(outs + outlen, filestr + span.begin.si, span.nchars());
+            outlen += span.nchars();
+
+            strcpy(outs + outlen, close); outlen += strlen(close);
             return;
         }
 
