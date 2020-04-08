@@ -39,6 +39,7 @@ enum class TT {
     Heading,
     Italic,
     Bold,
+    Quote,
     Undefined,
 };
 
@@ -60,6 +61,7 @@ std::ostream &operator<<(std::ostream &o, const TT &ty) {
         case TT::Heading: return o << "HEADING";
         case TT::Italic: return o << "ITALIC";
         case TT::Bold: return o << "BOLD";
+        case TT::Quote: return o << "Quote";
     }
     assert(false && "unreachable");
 };
@@ -193,16 +195,6 @@ struct TInlineGroup : public T {
     vector<T*> items;
 };
 
-struct TListItemGroup : public T {
-    TListItemGroup(Span span, vector<T*> items) : 
-        T(TT::ListItemGroup, span), items(items) {
-            Span itemspan = mkTokensSpan(items);
-            assert(span.begin.si <= itemspan.begin.si);
-            assert(itemspan.end.si <= span.end.si);
-        } 
-    vector<T*> items;
-};
-
 struct THeading : public T {
     THeading(int hnum, Span span, T*item) : T(TT::Heading, span),
         hnum(hnum), item(item) {};
@@ -218,6 +210,11 @@ struct TItalic : public T {
 struct TBold : public T {
     TBold(Span span, T *item) : T(TT::Bold, span), item(item) {};
     T *item;
+};
+
+struct TQuote : public T {
+    TQuote(Span span, vector<T*> items) : T(TT::Quote, span), items(items) {};
+    vector<T*> items;
 };
 
 
@@ -419,7 +416,30 @@ T* tokenizeListItem (const char *s, const ll len, const L lhyphen) {
             // do NOT quit, since we are trying to *continue* this item;
             if (s[lcur.si + 1] == ' ') { return false; }
             printferr(lhyphen, s, 
-                    "list item must have either newline gap, next list, or text with ' '");
+                    "list item must have:"
+                    "\n - two newline separation"
+                    "\n - a new list item"
+                    "\n - continuation, hanging under the previous text");
+            assert(false && "list item ended improperly");
+    });
+}
+
+T* tokenizeQuoteItem (const char *s, const ll len, const L lquote) {
+    assert(s[lquote.si] == '>');
+    const L ltextbegin = lquote.nextcol();
+    return tokenizeInlineTill(s, len, ltextbegin, [len, lquote](const char *s, L lcur) {
+            if (s[lcur.si] != '\n') { return false; }
+            assert(s[lcur.si] == '\n');
+            if (lcur.si + 1 >= len) { return true; }
+            // file is still left. Check that what's going on next is legit..
+            // TODO: consider moving this logic to be _ouside_ here.
+            // should probably be in the caller of tokenizeListItem.
+            if (s[lcur.si + 1] == '>') { return true; }
+            if (s[lcur.si + 1] == '\n') { return true; }
+            printferr(lquote, s, 
+                    "quote item must have:"
+                    "\n- two newline separation"
+                    "\n- quote continuation: '> ...'");
             assert(false && "list item ended improperly");
     });
 }
@@ -517,7 +537,23 @@ T* tokenizeBlock(const char *s, const ll len, const L lbegin) {
         }
 
         return new TList(toks);
-    } else {
+    } 
+    else if (s[lcur.si] == '>' && (lcur.si == 0 || s[lcur.si - 1] == '\n')) {
+        // quotes
+        vector<T*>toks;
+        toks.push_back(tokenizeQuoteItem(s, len, lcur));
+        lcur = toks[0]->span.end;
+
+        // as long as we have items..
+        while(s[lcur.si] == '\n' && s[lcur.si+1] == '>') {
+            lcur = lcur.next("\n");
+            toks.push_back(tokenizeQuoteItem(s, len, lcur));
+            lcur = (*toks.rbegin())->span.end;
+        }
+
+        return new TQuote(Span(lbegin, lcur), toks);
+    }
+    else {
         return tokenizeNext(s, len, lbegin);
     }
 }
@@ -673,13 +709,6 @@ void toHTML(const char *tempdirpath,
             return;
         }
 
-        case TT::ListItemGroup: {
-            TListItemGroup *group = (TListItemGroup *)t;
-            for (T *t : group->items) { 
-                toHTML(tempdirpath, t, ins, outlen, outs);
-            }
-            return;
-        }
 
         case TT::CodeInline: {
             const char *open =  "<code>";
@@ -718,6 +747,17 @@ void toHTML(const char *tempdirpath,
             toHTML(tempdirpath, tcur->item, ins, outlen, outs);
             outlen += sprintf(outs + outlen, "</b>");
             return;
+        }
+
+        case TT::Quote: {
+          TQuote *tq = (TQuote *)t;
+
+          outlen += sprintf(outs + outlen, "<blockquote>");
+          for(auto it: tq->items) {
+              toHTML(tempdirpath, it, ins, outlen, outs);
+          }
+          outlen += sprintf(outs + outlen, "</blockquote>");
+          return;
         }
 
         default: {
