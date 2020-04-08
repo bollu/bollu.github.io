@@ -91,6 +91,7 @@ std::ostream &operator<<(std::ostream &o, const TT &ty) {
         case TT::Undefined: return o << "UNDEFINED";
         case TT::Link: return o << "LINK";
         case TT::ListItem: return o << "LISTITEM";
+        case TT::List: return o << "LIST";
 
         default: assert((int) ty <= 128); return o << "TY(" << (char)ty << ")";
     }
@@ -200,12 +201,12 @@ struct TLink : public T {
 
 struct TList : public T {
     vector<T*> items;
-    TList(vector<T*> items) : T(TT::List, makeListSpan(items)) { };
+    TList(vector<T*> items) : T(TT::List, makeListSpan(items)), items(items) { };
 
     static Span makeListSpan(vector<T*>items) {
         assert(items.size() > 0);
         Span s = items[0]->span;
-        for(int i = 1; i < items.size(); ++i) { s = s.extend(items[i]->span); }
+        for(int i = 1; i < (int)items.size(); ++i) { s = s.extend(items[i]->span); }
         return s;
     }
 };
@@ -338,40 +339,36 @@ T* tokenizeListItem (const char *s, const ll len, const L lhyphen) {
     const L ltextbegin = lhyphen.nextcol();
     L lend = lhyphen.nextcol();
 
-    bool foundNextItem = false; L lnexthypen = lundefined;
     while(lend.si < len) {
     
         // two spaces indicates the end of a list.
         if (lend.si < len - 1 &&
             s[lend.si] == '\n' &&
             s[lend.si+1] == '\n') { 
-            cerr << __LINE__ << "|" << lend << "\n";
             break;
-        }
-
-        // newline and hyphen indicates another list item.
-        // TODO: write validation to rule out things like:
-        // <NEWLINE><SP>-
-        if (lend.si < len - 1 && 
+        } 
+        else if (lend.si < len - 1 && 
             s[lend.si] == '\n' && s[lend.si+1] == '-') {
-            foundNextItem = true;
-            lnexthypen = lend.next("\n");
+
+            // newline and hyphen indicates another list item.
+            // TODO: write validation to rule out things like:
+            // <NEWLINE><SP>-
             break;
         }
-
-        // newline and space indicates continuation of same
-        // list item text.
-        if (lend.si < len - 1 && 
+        else if (lend.si < len - 1 && 
             s[lend.si] == '\n' &&
             s[lend.si+1] != ' ') {
+
+            // newline and space indicates continuation of same
+            // list item text.
             printferr(lend.nextline(), s,
                 "unknown character in hanging list item: |%c| (are you missing alignment with the `-` ?)",
                 s[lend.si+1]);
             assert(false && "unknown character in hanging list item.");
+        } else {
+            // consume the newline if not used.
+            lend = lend.next(s[lend.si]);
         }
-
-        // consume;
-        lend = lend.next(s[lend.si]);
     }
     
     assert(s[lend.si] == '\n');
@@ -455,8 +452,18 @@ pair<bool, T*> tokenize(const char *s, const ll len, const L lbegin, const bool 
         return make_pair(false, new T(TT::CloseSquare, Span(lbegin, lcur.nextcol())));
     }
     else if (prevnewline && s[lcur.si] == '-') {
-        T *TListItem =  tokenizeListItem(s, len, lcur);
-        return make_pair(false, TListItem);
+        vector<T*>toks;
+        toks.push_back(tokenizeListItem(s, len, lcur));
+        lcur = toks[0]->span.end;
+
+        // as long as we have items..
+        while(s[lcur.si] == '\n' && s[lcur.si+1] == '-') {
+            lcur = lcur.nextline();
+            toks.push_back(tokenizeListItem(s, len, lcur));
+            lcur = (*toks.rbegin())->span.end;
+        }
+
+        return make_pair(false, new TList(toks));
         // return make_pair(false, new T(TT::ListHyphen, Span(lbegin, lcur.nextcol())));
     }
     else if (s[lcur.si] == '`') {
@@ -672,6 +679,33 @@ void toHTML(const T *t, const char *filestr, ll &outlen, char *outs) {
 
           strcpy(outs + outlen, code_block_close);
           outlen += strlen(code_block_close);
+          return;
+        }
+
+        case TT::List: {
+          const char *list_block_open = "<ul>";
+          const char *list_block_close = "</ul>";
+
+          const char *list_item_open = "<li>";
+          const char *list_item_close = "</li>";
+
+          TList *tlist = (TList *)t;
+          strcpy(outs + outlen, list_block_open);
+          outlen += strlen(list_block_open);
+
+          for(auto it: tlist->items) {
+              strcpy(outs + outlen, list_item_open);
+              outlen += strlen(list_item_open);
+
+              toHTML(it, filestr, outlen, outs);
+
+              strcpy(outs + outlen, list_item_close);
+              outlen += strlen(list_item_close);
+          }
+
+
+          strcpy(outs + outlen, list_block_close);
+          outlen += strlen(list_block_close);
           return;
         }
 
