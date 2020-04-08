@@ -21,6 +21,7 @@ static const ll PADDING = 10;
 static const ll MAX_TOKENS = 1e7;
 static const ll MAX_CHARS = 1e7;
 
+
 using namespace std;
 
 enum class TT {
@@ -630,6 +631,8 @@ char* pygmentize(const char *tempdirpath,
     return outbuf;
 };
 
+
+
 void toHTML(const char *tempdirpath, 
         const T *t, const char *ins, ll &outlen, char *outs) {
     assert(t != nullptr);
@@ -772,6 +775,36 @@ void toHTML(const char *tempdirpath,
     assert(false && "unreachabe");
 }
 
+// TUFTE
+// <body vlink="#660000" text="#000000" link="#CC0000"
+//  bgcolor="#FFFFF3" alink="#660000">
+const char htmlbegin[] =
+ "<!DOCTYPE html>"
+ "<meta charset='UTF-8'>"
+ "<html>"
+ "<head>"
+ "<title> A Universe of Sorts </title>"
+ "<style>"
+ "body {"
+ " background-color: #FFFFF3; color: #000000; " // tufte
+ " font-family: monospace; font-size: 14px; line-height: 2em;"
+ " width: 100ch; padding-left: 20%; padding-right: 20%;}"
+ " @media screen and (max-width: 800px) { width: 100%; padding: 0"
+ "}" // end body
+ "a:hover { color: #CC0000; }" // hover
+ "a { color: #AA0000; }" // unvisited; default
+ "a:visited { color: #660000; }" // vlink
+ "a:active { color: #660000; }" // alink
+ "</style>"
+ "</head>"
+ "<body>";
+
+const char htmlend[] =
+ "</body>"
+ "</html>";
+
+
+
 T ts[MAX_TOKENS];
 char filestr[MAX_CHARS];
 int main(int argc, char **argv) {
@@ -801,8 +834,11 @@ int main(int argc, char **argv) {
     assert(success != nullptr && "unable to create temporary directory");
 
     ll MAX_OUTBUF_LEN = (ll)1e8L;
-    char *outbuf = (char *)calloc(MAX_OUTBUF_LEN, sizeof(char)); ll outlen = 0;
+    char *outbuf = (char *)calloc(MAX_OUTBUF_LEN, sizeof(char));
+    ll outlen = 0;
+    outlen += sprintf(outbuf + outlen, "%s", htmlbegin);
     for(T * t : ts) { toHTML(tempdirpath, t, filestr,  outlen, outbuf); }
+    outlen += sprintf(outbuf + outlen, "%s", htmlend);
 
     rmdir(tempdirpath);
 
