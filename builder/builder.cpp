@@ -38,6 +38,7 @@ enum class TT {
     ListItemGroup,
     Heading,
     Italic,
+    Bold,
     Undefined,
 };
 
@@ -58,6 +59,7 @@ std::ostream &operator<<(std::ostream &o, const TT &ty) {
         case TT::ListItemGroup: return o << "LISTTEMGROUP";
         case TT::Heading: return o << "HEADING";
         case TT::Italic: return o << "ITALIC";
+        case TT::Bold: return o << "BOLD";
     }
     assert(false && "unreachable");
 };
@@ -213,10 +215,15 @@ struct TItalic : public T {
     T *item;
 };
 
+struct TBold : public T {
+    TBold(Span span, T *item) : T(TT::Bold, span), item(item) {};
+    T *item;
+};
+
 
 bool is_char_special_inline_token(char c) {
         return  c == '*' || c == '[' || c == ']' || c == '<' || c == '>' || c == '$' ||
-        c == '`' || c == '\n';
+        c == '`' || c == '\n' || c == '_';
 }
 
 
@@ -308,19 +315,47 @@ T *tokenizeNext(const char *s, const ll len, const L lbegin) {
 
         return new T(TT::LatexInline, Span(lbegin, lcur));
     }
-    else if (s[lcur.si] == '*') {
-        T *item = tokenizeInlineTill(s, len, lcur.nextcol(), [](const char *s, L lcur) {
-                return s[lcur.si] == '*';
-        });
+    else if (lcur.si < len - 1 &&
+             (s[lcur.si] == '*' || s[lcur.si] == '_') &&
+             s[lcur.si+1] == s[lcur.si]) {
+        const char c = s[lcur.si];
+        const char delim[3] = { c, c, 0 };
+
+        cerr << "BOLD " << lcur << "\n";
+        T *item = tokenizeInlineTill(s, len, lcur.next(delim), [delim](const char *s, L lcur) {
+                return strpeek(s + lcur.si, delim);
+            });
 
         lcur = item->span.end;
         if (lcur.si == len) {
-            printferr(lbegin, s, "unmatched italic demiliter: |*|.");
+            printferr(lbegin, s, "unmatched bold demiliter: |%s|.", delim);
+            assert(false && "unmatched bold delimiter");
         }
-        assert(lcur.si < len); assert(s[lcur.si] == '*');
-        return new TItalic(Span(lbegin, lcur.nextcol()), item);
+        assert(lcur.si < len); 
+        assert(strpeek(s + lcur.si, delim)); lcur = lcur.next(delim);
 
+        if (lbegin.line != lcur.line) {
+            printferr(lbegin, s, "bold delimiter |%s| spanning across lines.", delim);
+            assert(false && "bold delimiter spans across lines");
+        }
+
+        return new TBold(Span(lbegin, lcur), item);
     }
+
+    // else if (s[lcur.si] == '*' || s[lcur.si] == '_') {
+    //     const char c = s[lcur.si];
+    //     T *item = tokenizeInlineTill(s, len, lcur.nextcol(), [c](const char *s, L lcur) {
+    //             return s[lcur.si] == c;
+    //     });
+
+    //     lcur = item->span.end;
+    //     if (lcur.si == len) {
+    //         printferr(lbegin, s, "unmatched italic demiliter: |%c|.", c);
+    //     }
+    //     assert(lcur.si < len); assert(s[lcur.si] == c);
+    //     return new TItalic(Span(lbegin, lcur.nextcol()), item);
+
+    // }
     else {
         do { 
             lcur = lcur.next(s[lcur.si]);
@@ -412,6 +447,7 @@ T* tokenizeBlock(const char *s, const ll len, const L lbegin) {
         if (lcur.si < len && s[lcur.si] != '\n') {
             printferr(lcur, s, "incorrectly terminated $$."
                         "must have newline following.");
+            assert(false && "incorrectly terminated $$");
         }
         return new T(TT::LatexBlock, Span(lbegin, lcur));
     }
@@ -439,6 +475,7 @@ T* tokenizeBlock(const char *s, const ll len, const L lbegin) {
         // error out if the language name is too long.
         if(langlen == LANG_NAME_SIZE-1) {
             printferr(lbegin, s, "``` has too long a language name: |%s|", langname);
+            assert(false && "too long a language name");
         }
 
         // default language is text.
@@ -452,6 +489,7 @@ T* tokenizeBlock(const char *s, const ll len, const L lbegin) {
         if (lcur.si < len && s[lcur.si] != '\n') {
             printferr(lcur, s, "incorrectly terminated ```."
                         "must have newline following.");
+            assert(false && "incorrectly terminated code block.");
         }
 
         return new TCode(Span(lbegin, lcur), langname);
@@ -671,6 +709,14 @@ void toHTML(const char *tempdirpath,
             outlen += sprintf(outs + outlen, "<i>");
             toHTML(tempdirpath, tcur->item, ins, outlen, outs);
             outlen += sprintf(outs + outlen, "</i>");
+            return;
+        }
+
+        case TT::Bold: {
+            TBold *tcur = (TBold *)t;
+            outlen += sprintf(outs + outlen, "<b>");
+            toHTML(tempdirpath, tcur->item, ins, outlen, outs);
+            outlen += sprintf(outs + outlen, "</b>");
             return;
         }
 
