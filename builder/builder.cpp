@@ -12,6 +12,7 @@
 #include <utility>
 #include <tuple>
 #include <unistd.h>
+#include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include "utf8.h"
@@ -688,40 +689,46 @@ void toHTML(const T *t, const char *filestr, ll &outlen, char *outs) {
 T ts[MAX_TOKENS];
 char filestr[MAX_CHARS];
 int main(int argc, char **argv) {
-    if (argc != 2) {
-        printf("expected usage: %s <path>", argv[0]);
+    if (argc != 3) {
+        printf("expected usage: %s <input md path> <output folder path>", argv[0]);
         return 1;
     }
-    FILE *f = fopen(argv[1], "r");
-    if (f == nullptr) {
+
+    FILE *fin = fopen(argv[1], "r");
+    if (fin == nullptr) {
         printf("unable to open file: |%s|\n", argv[1]);
         return -1;
     }
 
-    fseek(f, 0, SEEK_END);
-    const ll len = ftell(f);
-    fseek(f, 0, SEEK_SET);
+    fseek(fin, 0, SEEK_END); const ll len = ftell(fin); fseek(fin, 0, SEEK_SET);
     assert(len < MAX_CHARS);
+    cout << "Input length: |" << len << "|\n";
 
-    cout << "len: " << len << "\n";
-
-    const ll nread = fread(filestr, 1, len, f);
-    assert(nread == len);
+    const ll nread = fread(filestr, 1, len, fin); assert(nread == len);
 
     vector<T*> ts; tokenize(filestr, nread, ts);
-
-    cerr << "done tokenizing; now parsing...\n";
+    cerr << "Done tokenizing; now parsing...\n";
 
     ll MAX_OUTBUF_LEN = (ll)1e8L;
     char *outbuf = (char *)calloc(MAX_OUTBUF_LEN, sizeof(char));
     ll outlen = 0;
-    for(T * t : ts) {
-        toHTML(t, filestr,  outlen, outbuf);
-    }
+    for(T * t : ts) { toHTML(t, filestr,  outlen, outbuf); }
 
-    cerr << "output:\n=======\n";
-    cerr << outbuf;
-    cerr << "====\n";
+
+    char outfilepath[512];
+    if (mkdir(argv[2], 0777) && errno != EEXIST) {
+        cerr << "unable to create output directory.\n"; perror("");
+        assert(false && "unable to create output directory.");
+    };
+
+    sprintf(outfilepath, "%s/index.html", argv[2]);
+    FILE *fout = fopen(outfilepath, "w");
+    fwrite(outbuf, 1, strlen(outbuf), fout);
+    fclose(fout);
+
+    // cerr << "output:\n=======\n";
+    // cerr << outbuf;
+    // cerr << "====\n";
 
     
     // ll tix = 0;
