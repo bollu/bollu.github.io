@@ -32,6 +32,7 @@ enum class TT {
     LatexInline,
     CodeInline,
     CodeBlock,
+    LineBreak,
     Link,
     List,
     Group,
@@ -48,6 +49,7 @@ std::ostream &operator<<(std::ostream &o, const TT &ty) {
     switch (ty) {
         case TT::Comment: return o << "COMMENT";
         case TT::HTML: return o << "HTML";
+        case TT::LineBreak: return o << "LineBreak";
         case TT::LatexBlock: return o << "LatexBlock";
         case TT::LatexInline: return o << "LatexInline";
         case TT::CodeBlock: return o << "CodeBlock";
@@ -453,6 +455,9 @@ T* tokenizeBlock(const char *s, const ll len, const L lbegin) {
     assert(lbegin.si < len);
     L lcur = lbegin;
 
+    if (lcur.si < len - 1 && s[lcur.si] == '\n' && s[lcur.si+1] == '\n') {
+        return new T(TT::LineBreak, Span(lcur, lcur.nextline().nextline()));
+    }
     if (s[lcur.si] == '\n') {
         return new T(TT::RawText, Span(lcur, lcur.nextline()));
     }
@@ -705,6 +710,13 @@ void toHTML(const char *tempdirpath,
         strncpy(outs + outlen, ins + t->span.begin.si, t->span.nchars());
         outlen += t->span.nchars();
         return;
+
+        case TT::LineBreak: {
+          const char *br = "<br/>"; 
+          strcpy(outs + outlen, br);
+          outlen += strlen(br);
+          return;
+        }
 
         case TT::CodeBlock: {
           TCode *tcode = (TCode *)t;

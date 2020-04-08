@@ -13,5 +13,5 @@
 - https://www.cprogramming.com/tutorial/unicode.html
 
 # TODO
-- [ ] add warnings for multi-line bold and italic.
-/usr/share/source-highlight/
+- [x] add warnings for multi-line bold and italic.
+- [ ] newlines
