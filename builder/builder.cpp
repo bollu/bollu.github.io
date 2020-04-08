@@ -291,7 +291,7 @@ L strconsume(L l, const char *filestr, const char *delim,
     return l;
 }
 
-pair<bool, T*> tokenize(const char *s, const ll len, const L lbegin, const bool prevnewline);
+pair<bool, T*> nextToken(const char *s, const ll len, const L lbegin, const bool prevnewline);
 
 // tokenize those strings that can only occur "inside" an inline context,
 // so only:
@@ -379,7 +379,7 @@ T* tokenizeListItem (const char *s, const ll len, const L lhyphen) {
 
 // TODO: convert \vert into |
 // TODO: preprocess and check that we don't have \t tokens anywhere.
-pair<bool, T*> tokenize(const char *s, const ll len, const L lbegin, const bool prevnewline) {
+pair<bool, T*> nextToken(const char *s, const ll len, const L lbegin, const bool prevnewline) {
     assert(lbegin.si < len);
     L lcur = lbegin;
 
@@ -513,7 +513,7 @@ void tokenize(const char *s, const ll len, vector<T*> &ts) {
     while (span.end.si < len) {
         T *t = nullptr;
         // start tokenizing from the end of the prev span.
-        std::tie(prevnewline, t) = tokenize(s, len, span.end, prevnewline);
+        std::tie(prevnewline, t) = nextToken(s, len, span.end, prevnewline);
         assert(t != nullptr);
         ts.push_back(t);
         cerr << *t << "\n";
