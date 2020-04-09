@@ -220,7 +220,7 @@ Now, if the set $C$ shatters $\H$, then:
 \item[7] $|C|=n$ is the largest possible, since $C_{act}$ is a function, and
          the size of its image is at most the size of the domain. Since the domain $\H$
          has $2^n$ elements, the image too can have at most $2^n$ elements, which
-         it does when $|C| = n$, since $|{0, 1}^{|C|}| = 2^{|C|}$.
+         it does when $|C| = n$, since $|\{0, 1\}^{|C|}| = 2^{|C|}$.
 \item[7.5] $|C|=n$ is the largest possible, since $C_{act}$ is linear.
             For a linear function to be surjective, we need $Dim(domain)  Dim(range)$.
             Hence, $Dim(Domain) = Dim(\H) = n \geq Dim(range) = Dim(\{0, 1\}^{|C|}) = c$.
@@ -267,5 +267,98 @@ in $T$ lie in a $(d-1)$ subspace of
 
 
 To show that a set of size $2d+1$ cannot be shatt
+
+\section*{6.8, Q9:}
+Let $\H_{si}$ ($si$ for signed interval) be the class of signed intervals.
+That is: $\H \equiv \{ h_{a, b, s} : a \leq b, s = \pm 1 \}$
+where 
+$$
+h_{a, b, s}(x) \equiv
+\begin{cases}
+    s & a \leq x \leq b \\
+    -s & \text{otherwise}
+\end{cases}
+$$
+
+\subsubsection*{Solution}
+
+We will first show that $\vc(\H_{si})$ is 3 by exhaustive enumeration. We will
+then show a slicker method, by proving that if a hypothesis space $\H$
+has $\vcdim(\H) = n$, then the VC dimension of the space that is $\H' \equiv \H \times {0, 1}$
+where the $\{0, 1\}$ controls whether we should negate the output of $h \in \H$
+will have $\vcdim(\H') = \H+1$. Now, clearly the above hypothesis class $H_{si}$
+is $\H_{interval} \times{0, 1}$. We know that $\vc(H_{interval}) = 2$, and
+hence $\vc(H_{si}) = 3$. \\
+
+\textbf{Exhaustive enumeration}
+
+Let us consider all possibilities for three points $\{ 1, 3, 5 \}$. We will 
+write down for each subset the classifier to be used, thereby showing that
+this set is shattered. For a subset, we will need to pick a classifier that
+has value $+1$ on elements $s \in S$, and has value $-1$ on elements $s' \not \in S$.
+
+\begin{align*}
+    &\emptyset \mapsto h_{0, 0, 1} \\
+    &\{ 1 \} \mapsto h_{0, 2, 1} \quad
+    \{ 3 \} \mapsto h_{2, 4, 1} \quad
+    \{ 5 \} \mapsto h_{4, 6, 1} \\
+    &\{ 1, 3 \} \mapsto h_{0, 4, 1} \quad
+    \{ 3, 5 \} \mapsto h_{2, 6, 1} \quad
+    \{ 1, 5 \} \mapsto h_{2, 3, -1} \\
+    &\{1, 3, 5\} \mapsto h_{0, 6, 1}
+\end{align*}
+Hence, the set is shattered.
+
+Consider any set of size 4. For concreteness, we pick the set $\{1, 3, 5, 7\}$.
+Since we will only make use of the \emph{ordering} of the elements, hence our argument
+will work for any set of size 4 (and higher).
+We claim that the subset $\{3, 7\} \subseteq \{1, 3, 5, 7\}$ cannot be classified
+by any hypothesis $h \in H$ correctly. That is,  no hypothesis $h \in \H$ can
+be such that  $h(1) = 1, h(3) = -1, h(5) = 1, h(7) = -1$.
+
+This is because every function $h_{a, b, s} \in H$ can change its value twice, when
+hopping from the boundary of being to the left of $(a, b)$ to entering $(a, b)$,
+and then again exiting $(a, b)$ from the right:
+\begin{align*}
+h_{a, b, s}(x < a) = -s  &\mapsto h_{a, b, s}(a \leq x \leq b) = s \quad \text{change 1} \\
+h_{a, b, s}(a \leq x \leq b) = s &\mapsto h_{a, b, s}(x \geq b) = -s \quad \text{change 2}
+\end{align*}
+
+However, in the case outlined above, to detect $\{3, 7\}$,
+we would need to change sign three times:
+once from $1 \mapsto 3$, once again from $3 \mapsto 5$, and finally from $5 \mapsto 7$.
+
+So, sets of size 4 cannot be shattered by $\H$. For even larger sets, we can concentrate
+what happens on any 4 elements and replicate the same argument.
+
+Hence, $\vc(\H) = 3$.
+\\
+\textbf{Augmentation}
+
+Let us consider a set $\X$, and a hypothesis class $\H \equiv \{ f : \X \rightarrow \pm 1 \}$. Let $\vc(\H) = n$, and
+$|\X| > 2^{n}$ (if not, then $X$ is already fully classified by $\H$, and there
+is no point studying how to make $\H$ stronger).
+
+We will now consider an augmented classifier space $\H' \equiv \H \times \{+1, -1\}$,
+with the action of elements of $(h, sgn) \in \H'$ being defined as:
+$$
+act: \H' \rightarrow (\X \rightarrow \pm 1) \quad
+act(h, sgn)(x) \equiv h(x) \times sgn
+$$
+
+we will often abbreviate $(h, s)(x)$ instead of writing $act(h, s)(x)$. We will
+now show that $\vc(\H') = \vc(\H) + 1$. this is the best we can hope for,
+since \vc~ increases logarithmically for sizes in $\H$:
+$$
+\vc(\H') \leq \log_2(|\H'|) = \log_2(2 \times |\H|) \leq 1 + \log_2(|\H|) \overset{\text{at best}}{=} 1 + \vc(\H)
+$$
+
+To show that we can shatter subsets $S \subseteq \X$ such that $|S| = n + 1$, 
+pick any subset $S \subseteq X$ of size $n + 1$.
+
+For each value $v \in \{+1, -1\}^{|S|} = \{+1, -1\}^{n + 1}$, we will need
+to produce a hypothesis $(h, sgn) = h' \in \H'$ such that $(h, sgn)(S) = v$.
+
+\textbf{TODO}
 
 \end{document}
