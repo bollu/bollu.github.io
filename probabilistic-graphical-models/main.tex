@@ -635,7 +635,117 @@ Some notes about mutual information:
     TODO: finish
 \end{proof}
 
+
 \chapter{Variational auto encoders}
 
+\chapter{Learning a graphical model}
+
+The graph of the model is fixed, we are interested in learning the parameters.
+This is unsupervised learning. We want to learn the distribution from which
+the samples were generated.
+
+We will use \emph{maximum likelihood}. There is a dataset $D$ which
+is sampled IID from a distribution $p^\star$.
+
+We need a notion of closeness for probability distributions. It is 
+usually measured using $K-L$ divergence.
+
+$$
+D_{KL}(p^\star || p) \equiv \sum_x p^\star(x) [\log(p^\star(x)) - \log(p(x))] \\
+&= -H(p^\star)  - \mathbb{E}_{x \sim p^\star} \log(p(x))
+$$
+
+Minimimsing $D_{KL}$ is the same as maximising $\mathbb{E}_{x \sim p^\star} \log(p(x))$.
+This quantity is typically called "log-likelihood". Ie, we want
+to find a distribution $p$ that maximises the probability of the dataset ($x$ is the dataset).
+We maximise $\log(\cdot)$ since it tends to be a better function.
+
+We cannot compute this either since we have expected value over $p^\star$.
+
+So we approxmiate this by taking average over samples.
+
+$$
+p^\star_D = \max_{p \in M} \frac{1}{|D|} \sum_{x \in D} \log p(x)
+$$
+
+Let $p~(x) = 1/D \sum_{y \in D} \delta(x, y)$. where
+$\delta(x, y) = 
+\begin{cases} 1 & \text{x = y} \\ 0 & \text{otherwise} \end{cases}$.
+
+\begin{theorem}
+    \arg \max 1/N \sum_{i=1}^N \log p(x_i | w) = \arg \min D_{KL} ( p~(x) || p(x, w))
+\end{theorem}
+\begin{proof}
+\begin{align*}
+    RHS &= \sum_x p~(x) \log{p~(x)} - \sum_x p~(x) \log{p(x|w)} \\
+        &=  H(p~) [ignore] - \sum_x p~(x) \log{p(x|w)} \\
+        &= \max w \sum_x 1/|D|  \sum_{y \in D} \delta(x, y) \log{p(x|w)} \\
+        &= \max w \sum_x 1/|D|  \sum_{y \in D} \log{p(y|w)} \\
+\end{align*}
+\end{proof}
+
+\section{CRFs}
+
+This also works for a general loss function:
+$\mathbb{E}_{x \sim p^\star}[L(x, p)]$. Supervised learning in generative models
+is called as conditioned random fields (CRFs).
+
+We want to find $P(y|x)$. We don't really care about $P(x, y)$. We really
+only care about the lablels. The loss function could be something like:
+$L(x, y, p) = -\log p(y|x)$.
+
+\section{Maxmimum likelihood for bayes nets}
+$p_\theta(x) = \prod_{i=1}^n \theta_{x_i| parent(x_i)}$
+
+$$
+L(\theta, D) =  -\sum_{i=1}^m \log P_\theta(x^(i))
+= -\sum_{i=1}^m \sum_{j=1}^m \log \theta_{x^(i)_j|x^(i)_{par(j)} \\
+= -\sum_{j=1}^n [\sum_{x \in par(j)} \sum_{x_i} \texttt{count}((x_j, x_{par(j)})] \log ...
+$$
+
+The value is minimised at the following [exercise]:
+
+$$
+\theta^{\star}_{ x_i | par(x_i)} = \frac{\texttt{count}((x_i, x_{par(j)})}{\texttt(count)(x_{par(j)})}
+$$
+
+\section{Markov Models}
+
+$$p_{\theta}(x_1, \dots x_n) = \frac{1}{Z(\theta)} \prod_{c \in clique} \phi_c(x_c, \theta)$$
+
+which we rewrite as:
+
+
+$$p_{\theta}(x_1, \dots x_n) = \frac{1}{Z(\theta)} e^{\sum_{c \in clique} \log(\phi_c(x_c, \theta))$$}
+
+
+
+We will define a function $f(x)$ such that:
+$$p_{\theta}(x_1, \dots x_n) = \frac{1}{Z(\theta)} e^{\theta\tilde^T . f(x)}$$
+
+$f(x)$ is called sufficient statistics. 
+
+If we have $m$ edges in our graph, there are $4m$ parameters: $ \{ 0, 1 \} \times \{ 0, 1 \} \times E$,
+for each edge, for each possible $x_i$ value. 
+
+Now the log likelihood is going to be:
+$$
+LL = 1/|D| \sum_{x \in D} \theta^T \cdot f(x) - \log(Z(\theta))
+$$
+
+Can we learn this using gradient descent?
+
+$$
+\grad{\theta} LL = 1/|D| \sum_{x \in D} f(x) - \grad_{\theta} \log(Z(\theta))
+$$
+
+$$
+\grad_{\theta} \log(Z(\theta)) 
+  =  1/Z(\theta) \grad_\theta Z(\theta) 
+  = 1/Z(\theta) \grad_{\theta} [\sum_{x \in X} \prod_{c \in clique} \phi_c(x)] \\
+$$
+
+moment matching of sufficient statistics.
 
 \end{document}
+
