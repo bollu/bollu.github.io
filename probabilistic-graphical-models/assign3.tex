@@ -16,6 +16,7 @@
 \usepackage{listing}
 \usepackage{minted}
 \usepackage{tikz}
+\usepackage{bbold}
 \evensidemargin=0.20in
 \oddsidemargin=0.20in
 \topmargin=0.2in
@@ -76,6 +77,7 @@
 \newcommand{\VCDim}{\ensuremath{\vcdim}}
 \newcommand{\vc}{\ensuremath{\vcdim}}
 \newcommand{\VC}{\ensuremath{\vcdim}}
+\newcommand{\zoset}{\ensuremath{\{0, 1\}}} % set \{0, 1\}
 
 \def\qed{$\Box$}
 \newtheorem{question}{Question}
@@ -103,13 +105,14 @@
 \section*{6.8, Q1:}
 Monotonicity of VC dimension
 
-Let $\H' \subseteq \H$.  We wish to show that $\vc(\H') \leq \vc(\H)$.
+Let $\H' \subseteq \H$.  Show that $\vc(\H') \leq \vc(\H)$.
 
+\subsubsection*{Answer}
 Recall that the definition of \vc is is that \vc(\H) is the maximal size of
 a set $C \subseteq \X$ which can be \emph{shattered} by \H.
 
 Expanding the definition of shattering, we get that the \vc(\H) is the maximal size
-of a set $C \subseteq X$ such that \H~restricted to $C$ is the set of all
+of \emph{any} set $C \subseteq X$ such that \H~restricted to $C$ is the set of all
 functions from $C$ to \{0, 1\}.
 
 Now, If $C \subseteq \X$ is shattered by $\H' \subseteq \H$, then this means
@@ -132,5 +135,137 @@ by $\H$. This lets us get the strict equality $\vc(\H) < \vc(\H)$ in certain cas
 --- that is, we \emph{cannot} assert that $\vc(H) \leq \vc(H')$.
 For example, if we choose $\H' = \emptyset$ where $\H$ is a hypothesis class with
 $\vcdim(\H) = 1$. Then $\vcdim(\emptyset) = 0 < 1 = \vcdim(\H)$. 
+
+
+\section*{6.8, Q2:}
+Given a finite domain $\X$, and a finite number $k \leq |\X|$s, find and prove
+the VC dimension of:
+
+\subsection*{A. Functions that assign 1 to exactly $k$ elements of \X}
+$\H \equiv \bigg\{ h \in \zoset^{X} : ~|\{x : h(x) = 1\}| = k \bigg\}$.
+
+\subsubsection*{Solution}
+VC dimension is $k/2$. 
+
+\subsection*{B. Functions that assign 1 to at most $k$ elements of \X}
+
+
+\subsubsection*{Solution}
+VC dimension is $k$.
+
+
+\section*{6.8, Q3:}
+Let $\X$ be the boolean hypercube $\{0, 1\}^n$. We define parity to be:
+$$h_I: \X \rightarrow \{0, 1\}; h_I((x_1, x_2, \dots, x_n)) \equiv \sum_{i \in I} (x_i) ~ \mod 2.$$
+
+What is the VC dimensions of the set of all parity functions? That is,
+$$\H_p \equiv \{ h_I : I \subseteq \{1, 2, \dots n\} \}$$
+
+\subsubsection*{Solution}
+
+Once again, unwrapping the definition, our hypothesis class can compute the
+sum modulo 2 of \emph{all of the subsets of $\vec x \in \X$}. We need to
+use this to find the \emph{largest} set $C \subseteq \X \equiv \{0, 1\}^n$ such
+that $|\H_C| = 2^{|C|}$. 
+
+We can interpret elements $(h \in H)$ as a vector 
+$h_I \in \{0, 1\}^n$, where $h_I$ is a vector with $1$'s at each index $i \in I$,
+and $0$ at other indexes. That is:
+
+$$
+h_I \in \{0, 1\}^n \qquad
+h_I[i] \equiv \mathbb{1}[i \in I] = 
+\begin{cases} 1 & i \in I \\ 0 & \text{otherwise} \end{cases}
+$$
+
+
+We can reinterpret the function $h_I(x)$ as $h^T x$ where we have
+a vector space over the galois field $GF_2$, where $\oplus$ denotes XOR (recall
+that addition mod 2 is XOR).
+
+\begin{align*}
+h_I(x) = \bigoplus_{i \in I} x_i = \bigoplus_{i=1}^n \mathbb{1}[i \in I] x_i = \bigoplus_{i=1}^n h_I[i] x[i] =  h_I^T x
+\end{align*}
+
+
+Now, we can reinterpret the question of finding the VC dimension as finding
+the largest collection of vectors $C \subseteq \X = \{0, 1\}^n$ such that
+the function $C_{act}$ has full image, where the function $C_{act}$ is:
+
+\begin{align*}
+&C_{act}: \H \rightarrow \{0, 1\}^{|C|} \\
+&C_{act}: \{0, 1\}^n \rightarrow \{0, 1\}^n \\
+&C_{act}(h) \equiv (h(c_0), h(c_1), h(c_2), \dots h(c_n)) \\
+&\quad = (h^T c_0, h^T c_1, \dots, h^T c_n) \\
+& \quad = h^T (c_0, c_1, \dots c_n)
+\end{align*}
+
+If we regard $(c_0, c_1, c_2, \dots c_n) \subseteq \mathbb R^{n \times |C|}$
+as a matrixm then we can see that  $C_{act}$ is a \emph{linear function}.
+
+
+Now, if the set $C$ shatters $\H$, then:
+\begin{itemize}
+\item[1] The function $C_{act}$ will produce every element in $\{0, 1\}^{|C|}$
+\item[2] the function $C_{act}$ will have full image. 
+\item[3] This is  only possible when the dimension of the domain is less than or equal to the dimension of the range.
+\item[4] the largest set that can be shattered is the largest matrix  $C \subseteq R^{n \times |C|}$  
+         such that the function $C_{act}$ has full range.
+\item[5] Thus, $|C| \leq n$ for $C_{act}$ to have full range.
+\item[6] We can achieve $|C| = n$ by picking $C = I_{n \times n}$. In other words,
+          the element $c_i$ will be the $i$th row of the identity matrix. That
+          is $c_i[j] = \mathbb{1}[i = j] = \begin{cases} 1 & \text{i = j} \\ 0 & \text{otherwise} \end{cases}$.
+         Clearly, this $C$ is shattered since the function $C_{act}$ is the identity function which
+         will produce every single output in $\{0, 1\}^{|C|} = \{0, 1\}^n = \{0, 1\}^{|\H|}$.         
+\item[7] $|C|=n$ is the largest possible, since $C_{act}$ is a function, and
+         the size of its image is at most the size of the domain. Since the domain $\H$
+         has $2^n$ elements, the image too can have at most $2^n$ elements, which
+         it does when $|C| = n$, since $|{0, 1}^{|C|}| = 2^{|C|}$.
+\item[7.5] $|C|=n$ is the largest possible, since $C_{act}$ is linear.
+            For a linear function to be surjective, we need $Dim(domain)  Dim(range)$.
+            Hence, $Dim(Domain) = Dim(\H) = n \geq Dim(range) = Dim(\{0, 1\}^{|C|}) = c$.
+            That is, $n \geq |C|$.
+\end{itemize}
+
+Hence, we conclude that $\vc(\H) = n$.
+
+\section*{6.8, Q5:}
+Let $\H^d$ be the class of axis-aligned bounding boxes in $\R^d$. Show that
+the VC dimensions of $\H^d$ is $2d$.
+
+
+\subsubsection*{Solution}
+Formally, we have 
+$$
+h_{\vec l, \vec r}(\vec p) \equiv
+\begin{cases}
+1 &  l[i] \leq p[i] \leq r[i]~\text{for all $i \in \{1, 2, \dots, n \}$ } \\
+0 & \text{otherwise}
+\end{cases} \qquad
+\H^d \equiv \left\{ h_{\vec l, \vec r}: \R^d \rightarrow \{0, 1\} \mid \forall \vec l, \vec r \in \mathbb R^d \right\}
+$$
+
+We claim that the set of points:
+
+\begin{align*}
+S &\equiv S^+ \cup S^- \\
+S^+ &\equiv \{ p[i] \equiv 1, p[j \neq i] \equiv 0 : i \in [d], p \in \R^d \} \\
+S^- &\equiv \{ p[i] \equiv -1, p[j \neq i] \equiv 0 : i \in [d], p \in \R^d  \} \\
+\end{align*}
+
+shatters the hypothesis class $\H^d$.
+
+We first show that $|H^d|$ restricted to $S$ expresses all functions $S \rightarrow \{0, 1\}$.
+
+We will proceed by induction on the dimension $n$.
+In the case of $(n = 2)$, we have already shown
+this as part of the course (shattering of 4 points by rectangles). We assume that this
+possible for $n=d-1$. We need to show that this possible for $n = d$.
+
+Let us say that we are currently trying to shatter a set $T$. If the points
+in $T$ lie in a $(d-1)$ subspace of 
+
+
+To show that a set of size $2d+1$ cannot be shatt
 
 \end{document}
