@@ -159,7 +159,7 @@ Let $\X$ be the boolean hypercube $\{0, 1\}^n$. We define parity to be:
 $$h_I: \X \rightarrow \{0, 1\}; h_I((x_1, x_2, \dots, x_n)) \equiv \sum_{i \in I} (x_i) ~ \mod 2.$$
 
 What is the VC dimensions of the set of all parity functions? That is,
-$$\H_p \equiv \{ h_I : I \subseteq \{1, 2, \dots n\} \}$$
+$$\H_{parity, n} \equiv \{ h_I : I \subseteq \{1, 2, \dots n\} \}$$
 
 \subsubsection*{Solution}
 
@@ -194,14 +194,14 @@ the function $C_{act}$ has full image, where the function $C_{act}$ is:
 
 \begin{align*}
 &C_{act}: \H \rightarrow \{0, 1\}^{|C|} \\
-&C_{act}: \{0, 1\}^n \rightarrow \{0, 1\}^n \\
+&C_{act}: \{0, 1\}^n \rightarrow \{0, 1\}^|C| \\
 &C_{act}(h) \equiv (h(c_0), h(c_1), h(c_2), \dots h(c_n)) \\
 &\quad = (h^T c_0, h^T c_1, \dots, h^T c_n) \\
 & \quad = h^T (c_0, c_1, \dots c_n)
 \end{align*}
 
 If we regard $(c_0, c_1, c_2, \dots c_n) \subseteq \mathbb R^{n \times |C|}$
-as a matrixm then we can see that  $C_{act}$ is a \emph{linear function}.
+as a matrix, then we can see that  $C_{act}$ is a \emph{linear function}.
 
 
 Now, if the set $C$ shatters $\H$, then:
