@@ -1,0 +1,17 @@
+License for TtH, a TeX to HTML translator
+_________________________________________
+
+tth is copyright Ian Hutchinson, 1997-2007 (hutch@psfc.mit.edu).
+
+You may freely use this software.
+
+If you distribute any copies, you must include this file and these
+conditions must apply to the recipient. 
+
+No warranty of fitness for any purpose whatever is given, intended, or
+implied.
+
+You use this software entirely at your own risk.  If you choose to use
+tth, by your actions you acknowledge that any consequential damage
+whatever is your responsibility, not mine.
+

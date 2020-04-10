@@ -1,0 +1,7 @@
+Compile the C code by doing, for example:
+
+gcc -o tth tth.c
+
+Copy the executable, tth, to somewhere on your path, e.g. /usr/local/bin/
+
+If you find symbols are missing in your browser, run Xfonts.fix as root.

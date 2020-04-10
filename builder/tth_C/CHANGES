@@ -1,0 +1,1319 @@
+Version 4.12
+____________
+Give Mathml eqalign equations the <table displaystyle="true"> attribute.
+
+Version 4.11
+____________
+Make ttm (MathML) apparent multi-character indentifiers default italic.
+
+Version 4.10
+____________
+Remove extra TTH_TEXTBOX1 that was causing xml errors with \mbox{$ $}.
+
+Version 4.09
+____________
+Improve natbib code to handle RevTex bibstyles. 
+
+Version 4.08
+____________
+Fix the tthverbatim command so it can be used as planned to end environments.
+
+Version 4.07
+____________
+Add Polish characters (from package fontenc} to those recognized by default.
+
+Version 4.06
+____________
+Implement \tthverbatim{} command.
+
+Version 4.05
+____________
+Reimplement mathml bold as mathvariant. Implement \bm as bold-italic.
+Make environment abstract redefinable. 
+Add class to citation, citeref.
+
+Version 4.04
+____________
+Fix bug in \not= when inside \edef.
+Fix bug in refs.xml reference while splitting.
+
+Version 4.03
+____________
+Make former -w4 html style of font size changes the default. 
+Now -w4 turns it off. 
+Replace <font> with (mostly) <span> and appropriate styles.
+Fix bug with big /.
+Fix bug with \index entries in footnotes.
+Change <a name=...> to <a id=...> to satisfy xhtml 1.1.
+
+Version 4.02
+____________
+Fix order of <a><h1> in chapter/section headers to work around kindlegen bug.
+Fix index links not to include a new line, which breaks spacing.
+Fix xhtml DTD reference.
+Various fixes to improve XHTML conformity.
+Remove unallowed characters from automatically generated name attributes.
+Prevent \item[] from causing a standard violation in xhtml.
+Fix ampersands in URLs. Need to appear as $amp; even in the href.
+Make <blockquote> into <blockquote><div> ...
+Make <body> one giant <div> (because strict does not allow text outside
+ of containers).
+Prevent multiple citations from generating multiple anchors with same name.
+Differentiate anchors from multiple identical index entries. 
+Remove compact attributes from <dl> no longer honored or valid.
+Remove width attributes from index <td> and use <col> instead.
+
+Version 4.01 Release of Full Public Version of Lex Source
+_________________________________________________________
+Release under the GPL2. Adjust some readme and other files accordingly. 
+
+Version 4.00 Release of Full Public Version of Lex Source
+_________________________________________________________
+ 5 Dec 2010
+
+Changes between versions 3.88 and 3.89
+______________________________________
+Fix bug in unoptimized version handling newcommand definitions.
+
+Changes between versions 3.87 and 3.88
+______________________________________
+Fix bug in $$A_\textrm{blah}$$ parsing.
+
+Changes between versions 3.86 and 3.87
+______________________________________
+Change unicode coding of varphi and varepsilon to accommodate the
+inconsistent unicode glyphs. 
+Make -u2 the default tth coding. 
+Make -y3 the default compression. I.e. use inline over accents.
+
+Changes between versions 3.85 and 3.86
+______________________________________
+Fix ifcase to support \else and nesting.
+Implement \value. 12 Sep 09
+
+Changes between versions 3.84 and 3.85
+______________________________________
+Make unicode hbar the default.
+Add align="left" to tabular td even when it is formally unnecessary
+ to work around IE6.0 bug. 
+
+Changes between versions 3.83 and 3.84
+______________________________________
+Add support for newcommand*, renewcommand* providecommand*
+
+Changes between versions 3.82 and 3.83
+______________________________________
+Fix segfault risks in macarg and related states.
+Fix \url to allow % characters in url.  6 Sep 08.
+
+Changes between versions 3.81 and 3.82
+______________________________________
+Fix utf-8 bugs in bracket encoding.
+Fix ifx bug.
+
+Changes between versions 3.80 and 3.81
+______________________________________
+Adjust flex source to accommodate bugs in new versions of flex (>2.5.4a)
+Should be no changes to behaviour.  3 Jun 08.
+
+Changes between versions 3.79 and 3.80
+______________________________________
+Define an null AtEndDocument in latex to silence hyperref error messages.
+
+Changes between versions 3.78 and 3.79
+______________________________________
+Fix escaping of # before a digit when in parameter substitution.
+
+Changes between versions 3.77 and 3.78
+______________________________________
+Fix \hyperref incorrectly escaping #.
+
+Changes between versions 3.76 and 3.77
+______________________________________
+TtH license changed to allow free use, even commercial.
+
+Changes between versions 3.75 and 3.76
+______________________________________
+Fix ignoring of %%tth: before LaTeX \item. 31 Aug 06
+
+Changes between versions 3.74 and 3.75
+______________________________________
+Make fatal error exits more systematic.
+Implement orderly termination at return value in tthfunc.
+
+Changes between versions 3.73 and 3.74
+______________________________________
+Fix unembraced $^\the\counter$ bug. 1 Apr 06.
+
+Changes between versions 3.72 and 3.73
+______________________________________
+Fix omitted embracing of complex expressions in in-line fractions when using
+unicode, arising from TTH_COMPLEX inadequate definition. 23 Mar 06.
+
+Changes between versions 3.71 and 3.72
+______________________________________
+Implement -i switch for ttm to force even multicharacter sequences to be
+italic in mathml. 27 Dec 05.
+
+Changes between versions 3.70 and 3.71
+______________________________________
+19 Nov 05 Accept (ghastly style) space between accent and character.
+
+Changes between versions 3.69 and 3.70
+______________________________________
+Revert to HTML4.0 DOCTYPE by default because gecko is reported then to 
+give proper symbols on windows platforms.
+Fix charset meta declaration between XML and HTML again: fell out.
+
+Changes between versions 3.68 and 3.69
+______________________________________
+23 Aug 2005 Fix noalign when it occurs in array in equation.
+Fix problem with charset meta declaration between XML and HTML.
+
+Changes between versions 3.67 and 3.68
+______________________________________
+30 May 2005. Add a meta declaration of charset for -u0 (HTML) versions.
+This is necessitated by increasing assumption that documents are utf-8
+(by default) by modern browsers and file systems.
+
+Changes between versions 3.66 and 3.67
+______________________________________
+Make /,|, vertical arrows, langl and rangl non-stretchy by default. (MathML)
+
+Changes between versions 3.65 and 3.66
+______________________________________
+Make .xml the default file extension for MathML (ttm).
+Improve accuracy of ttm_manual.
+
+Changes between versions 3.64 and 3.65
+______________________________________
+Make verb[atim] translate spaces as &nbsp;.
+
+Changes between versions 3.63 and 3.64
+______________________________________
+Fix bug with @ used as an identifier in equations with subscripts.
+Fix infinite loop with null or improper alignment arguments.
+
+Changes between versions 3.62 and 3.63
+______________________________________
+Fix bug in \prod. (MathML)
+Fix \nolimits bugs in MathML.
+Fix \iff bug in MathML.
+
+Changes between versions 3.61 and 3.62
+______________________________________
+Fix bug in MathML with nested sub&supscripts.
+
+Changes between versions 3.60 and 3.61
+______________________________________
+Fix bug in e.g. \}^n_{i=1} handling of subdefer in \} \{ etc. Mathml only.
+Fix bug in \left(^U_D by adding subdefer. Mathml.
+
+Changes between versions 3.59 and 3.60
+______________________________________
+Fix problem with dimensions mm and ex.
+
+Changes between versions 3.58 and 3.59
+______________________________________
+The changes in 3.58 probably caused more problems than they fixed,
+especially with \multicolumn cases. Take out most of the changes till
+they can be considered more carefully.
+
+Changes between versions 3.57 and 3.58
+______________________________________
+Implement implied grouping for each cell of a matrix or tabular.
+This should fix an number of problems with e.g. \vbox in \halign
+and setting of fonts within cells giving xml parse errors.
+
+Changes between versions 3.56 and 3.57
+______________________________________
+Discard \noindent silently in equations (can occur in \noaligns).
+Recognize \crcr and \multispan in \matrix.
+Allow silencing unknown command warnings via -v32768
+
+Changes between versions 3.55 and 3.56
+______________________________________
+Fix \noalign. Avoids some situations with negative closure count.
+Fix internal command recognition tth_ errors in \edefs and \setboxes.
+
+Changes between versions 3.54 and 3.55
+______________________________________
+Fix obscure bug involving \vbox{} in \halign. (remove <parclose>\\cr).
+
+Changes between versions 3.53 and 3.54
+______________________________________
+Fix further scanner push-back problems, hopefully for good.
+Prevent the appearance of extra space in e.g. $^1$ in HTML (not MathML).
+
+Changes between versions 3.52 and 3.53
+______________________________________
+Improve comment handling between \items to prevent extra space.
+spacing independent of -w switch.
+Fix syntax of \buildrel.
+
+Changes between versions 3.51 and 3.52
+______________________________________
+Fix scanner push-back error arising from "Special Inline" equation code.
+
+Changes between versions 3.50 and 3.51
+______________________________________
+Fix broken footnotes inside equations in MathML.
+Fix optional arguments in itemize/enumerate that do [{[blah]}].
+Define tabularnewline=\\
+Fix improper grouping arising in paragraph and subparagraph.
+Fix noalign in tth to avoid improper grouping.
+Improve title checking state to avoid many improper tags in the head.
+Most of these are for using strict XHTML.
+
+Changes between versions 3.49 and 3.50
+______________________________________
+Fix \delta non-recognition due to typing.
+Improve boldmath handling in mathml.
+
+Changes between versions 3.48 and 3.49
+______________________________________
+Fix \textsf and similar constructs in mathml.
+
+Changes between versions 3.47 and 3.48
+______________________________________
+Fix some title generation problems for xml compatibility.
+
+Changes between versions 3.45 and 3.47
+______________________________________
+Version 3.45 had serious bugs in matrix and eqalign code. Don't use it.
+Fix those bugs (I hope!)
+Infrastructure changes affecting the code for \choose, \sqrt, \textboxes,
+matrices, and other active concepts.
+
+
+Changes between versions 3.44 and 3.45
+______________________________________
+Fix <mtext> Mathml syntax problem with textboxes.
+Fix plain tex footnote in equations to obey xml syntax.
+Fix double subscripting of operators MathML syntax problem.
+
+Changes between versions 3.43 and 3.44
+______________________________________
+Try again on the matrix/eqalign code to fix both simultaneously.
+
+Changes between versions 3.42 and 3.43
+______________________________________
+Fix line-end error when \overline starts a line.
+
+Changes between versions 3.41 and 3.42
+______________________________________
+Recognize \displaylines and \leqalignno as synonyms for \eqalign(no).
+Make | in text mode give -
+Implement \acute \i.
+Fix a corruption of \matrix code that arose before version 3.37.
+
+Changes between versions 3.40 and 3.41
+______________________________________
+Restore some cellpadding to space out major equation terms better.
+Remove additional space at start of numerators arising from alignment fix.
+
+Changes between versions 3.39 and 3.40
+______________________________________
+Change file extension for makeindex style to .tms to avoid overwriting.
+Ensure paragraph style sheet is included in split files.
+
+Changes between versions 3.38 and 3.39
+______________________________________
+Fix XHTML incompatibility/standard violation in equalign and eqnarray.
+
+Changes between versions 3.37 and 3.38
+______________________________________
+Fix \index{...} to grab its whole argument even if it contains (e.g.) %.
+
+Changes between versions 3.36 and 3.37
+______________________________________
+Fix a bug in \hsize during edefs, setboxes etc.
+
+Changes between versions 3.35 and 3.36
+______________________________________
+Recognize a number of additional operators and symbols in MathML.
+
+Changes between versions 3.34 and 3.35
+______________________________________
+Fix ttm not to use mrow when using horizontally stretchy constructs.
+Fix some other mrow enclosure logic.
+Change DOCTYPE of mathml output to refer to mathml, hence enabling entites.
+
+Changes between versions 3.33 and 3.34
+______________________________________
+Use some alternate MathML entities for ones that Mozilla fails to recognize
+Change DOCTYPE to refer to 4.01 by default to switch off quirks mode in Mozilla
+Introduce writing style -w4 to use CSS to change sizes.
+ This improves the formal standard-compliance, but not rendering much.
+Use <small> for sub/supscripts on large symbols for compatibility.
+Add cellpadding and cellspacing=0 in several places: improves layout.
+Adjust height of stretched delimiters.
+Fix \lefteq bug in html and mathml.
+
+Changes between versions 3.32 and 3.33
+______________________________________
+Support \valign with a single row.
+Fix bug in hsize of a vbox.
+
+Changes between versions 3.31 and 3.32
+______________________________________
+Fix input filenames or comments at end of file with no new line.
+Report unknown commands or dimensions only the first time.
+Define floatingfigure environment.
+Reduced verbosity of figure conversion/inclusion messages.
+
+Changes between versions 3.30 and 3.31
+______________________________________
+Accommodate graphics when a pdf file or even no source ps/pdf exists.
+
+Changes between versions 3.22 and 3.30
+______________________________________
+Make the removal of <p> permanent.
+Implement \newdimen
+Implement advancing of dimensions.
+Cope with expansion of macros when searching for counters/numbers/dimensions.
+Update the built-in help texts.
+Output http type message rationally with -c switch.
+Explicitly discard footlines.
+Add hrules to index for visual improvement.
+Improve layout of \eqnarray etc.
+Make citet etc work in footnotes.
+
+Changes between versions 3.21 and 3.22
+______________________________________
+Fix tag nesting error in index from \indexspace
+Change -w2 handling of paragraphs to improve font handling.
+Remove commenting of -w2 stylesheet to prevent XML browsers ignoring it.
+
+Changes between versions 3.20 and 3.21
+______________________________________
+Fix bug in verbatiminput.
+Fix bug in \itemsep.
+
+Changes between versions 3.13 and 3.20
+______________________________________
+Include tth-gui with TtHgold Windows version.
+Change Windows version compilation to mingw cross-compiler.
+Move split page links NEXT and PREVIOUS to right hand side of page.
+
+
+Changes between versions 3.12 and 3.13
+______________________________________
+Add displaystyle to MathML for rendering improvements.
+TtM fixes of unmatched underover tags.
+
+Changes between versions 3.11 and 3.12
+______________________________________
+Add mathml mstyle displaystyle="true" to equations.
+Fix mathml munderover termination bug.
+
+Changes between versions 3.11 and 3.12
+______________________________________
+Fix problem with multiple-level mbox inside textstyle equation.
+Fix erroneous columnalign=0 in ttm.
+
+Changes between versions 3.10 and 3.11
+______________________________________
+Fix obscure bug with conditionals in math arrays.
+Fix hbox bug introduced at 3.09.
+
+Changes between versions 3.09 and 3.10
+______________________________________
+Fix mathml bug in limited operators introduced by null fix in 3.07
+
+Changes between versions 3.08 and 3.09
+______________________________________
+Improve standard validity of lists.
+Improve the box behaviour of \includegraphics.
+Fix bugs in extension handling of figure names.
+Improve handling of \hsize changes in \hbox and \vbox.
+
+Changes between versions 3.07 and 3.08
+______________________________________
+Implement improved HTML title interpretation and -n switch.
+
+Changes between versions 3.06 and 3.07
+______________________________________
+Reimplement file \input name acquisition to allow macro expansion in the name.
+Explicitly recognize \jobname.
+Correct colspan reference in TtM.
+Enable \cite{} to contain spaces (LaTeX permits it, but it's daft).
+Fix null mrow for constructs like {}_i in MathML.
+
+Changes between versions 3.05 and 3.06
+______________________________________
+Remove the <font face="symbol"> from -u1 and -u2 char encoding cases.
+Implement -pNULL as a switch preventing \input or \include.
+
+Changes between versions 3.04 and 3.05
+______________________________________
+Inprove compatibility of \href and \url with URLs containing %.
+Change tthnatbib.sty name to tthntbib.sty to avoid 8.3 length truncation.
+Prevent buffer overflow in -p switch argument handling.
+Fix \& bug in equations.
+Improve title behaviour when LaTeX has e.g. \date before \title.
+
+Changes between versions 3.03 and 3.04
+______________________________________
+Improve makeindex operation, avoiding file overlap with latex.
+Define \glossary to be equivalent to \index.
+
+Changes between versions 3.02 and 3.03
+______________________________________
+Implement renewenvironment as newenvironment with a warning.
+
+Changes between versions 3.01 and 3.02
+______________________________________
+Fix \\end {...} bad style.
+Fix MathML problem with embraced single characters and sub/super scripts.
+Implement automatic .aux and .bbl file creation with -a switch.
+Implement work around for DOS file handles limitations.
+Fix bug in ifnum.
+
+Changes between versions 3.00 and 3.01
+______________________________________
+Fix mangled HTML for \root 3 \of ...
+Fix TtM \sqrt.
+Improve vertical layout of \underbrace etc.
+Improve TtM equation numbering layout.
+Correct \bar to be a non-stretch overline.
+
+Changes between versions 2.92 and 3.0
+______________________________________
+Implement unicode support in the -u switch
+Implement Two-column index.
+Improve line counting for diagnostics.
+Make height compression (-y1) the default.
+
+Correct colspan=0.
+Fix missing </dl>s
+Work around Konqueror alignment bug. 
+
+
+Changes between versions 2.91 and 2.92
+______________________________________
+Oops. Footnotes were broken in 2.91. Don't use it. Use 2.92.
+
+Changes between versions 2.90 and 2.91
+______________________________________
+Fix optional argument detection that broke \root \of and \sqrt[]
+
+Changes between versions 2.89 and 2.90
+______________________________________
+Fix that directory is fopened successfully even though it can't be read. 
+Implement \day \month \year, so dates can be redefined.
+Remove extra <p> before equations in HTML mode (arose from XHTML compat).
+Improve error handling of tthsplit.
+
+Changes between versions 2.88 and 2.89
+______________________________________
+Really fix the space after \item.
+Fix \verb< < use of & < > as delimiters with verb.
+Fix incorrect file references to floats in split files.
+Fix latex_builtins3.
+
+Changes between versions 2.87 and 2.88
+______________________________________
+Allow space between \item and its optional argument in description env.
+Force a new paragraph at the \end{abstract}.
+Improve natbib compatibility in TtH and in tthnatbib.sty
+Change \verbatiminput to allow "\end{verbatim}" in the input file.
+
+Changes between versions 2.86 and 2.87
+______________________________________
+
+Fix newline not escaped in latex_builtins3.
+Allow Part to be added to toc.
+Fix handling of toc contentsline with more arguments (e.g. with hyperref).
+
+Changes between versions 2.85 and 2.86
+______________________________________
+Fix excessive space compression in delimited arguments.
+Remove compress variable (housekeeping).
+Enable index entry in table of contents in TtH.
+
+Changes between versions 2.84 and 2.85
+______________________________________
+Work around apparent HTML validator bug in <meta> parsing.
+Count multiple bibliographies and make separate split files (refs not correct).
+Implement tthrfcat for concatenating multiple refs files when splitting (gold).
+
+Changes between versions 2.83 and 2.84
+______________________________________
+Fix diacriticals broken at 2.83.
+Implement \H as if it were a plain umlaut.
+Implement \b underbar.
+
+Changes between versions 2.82 and 2.83
+______________________________________
+Fix edef expansion of builtins etc to include spaces if necessary.
+Improve whitespace ignoring in \cite(s)
+Remove spurious whitespace from builtins to clean up top of html files.
+Fix \expandafter in some bare token situations (e.g. \ifx).
+Detect accents etc as the first thing in the title. (Can't handle them).
+Prevent incorrect expansion of \H, \c etc inside \xdefs such as footnotes.
+Document some Mozilla symbol font problems.
+
+Changes between versions 2.81 and 2.82
+______________________________________
+Fix unquoted alignments in \author and \date.
+Disable -i switch in TtM.
+
+Changes between versions 2.80 and 2.81
+______________________________________
+Fix generator meta syntax in XHTML version.
+Make -w2 the default for TtM, so that Amaya 4.0 can parse.
+Add xmlns to TtM math element. Again, Amaya 4.0 changed to be really picky.
+
+Changes between versions 2.79 and 2.80
+______________________________________
+Improve \vspace handling to prevent it improperly absorbing following numbers.
+Include xmlns declaration in -w2 style.
+Implement redefinable macros for split files' top and tail navigators (gold).
+Add reference to index in navigators.
+Allow non-letter characters in equations to have their fonts changed.
+Implement \tthtensor.
+
+Changes between versions 2.78 and 2.79
+______________________________________
+Improve epsfbox layout to be more TeX-like.
+Fix space ignoring after e.g. \ss and \i.
+Correct upper case /TD /TR to lower case (for XHTML).
+
+Changes between versions 2.77 and 2.78
+______________________________________
+Fix placement of title when triggered by raw output.
+Fix recognition of file names in capitals from Wind@ws drop on executable.
+Put back the <p> before <li> when the writing style is 0. Gives better layout.
+
+Changes between versions 2.76 and 2.77
+______________________________________
+Implement command-line specification of input and implied output files.
+Reorganize output file descriptors for the above.
+Adjust startup messages to reflect knowledge of input file.
+Prevent null index generation when base latex filename is unknown.
+Adjust the usage and help output to report new behavior.
+
+Changes between versions 2.75 and 2.76
+______________________________________
+Move static function definitions to global to satisfy Compaq CC.
+Implement \setbox recognition and edefinition as if box is a macro.
+Implement \savebox, \sbox, \usebox.
+Fix incorrect absorption of space after \cite{thecite}.
+
+Changes between versions 2.73 and 2.75
+______________________________________
+Consolidate document headers into macros in mathstrings. 
+Implement -w switch 0: no title insertion, 1 head and body tags.
+Rework paragraphing to enable XML-style completion (when -w2 is used).
+Rework \item and some other list elements for XML-style.
+Change colorbox interpretation to <span style="  "> for better standardization.
+Add \marginpar to builtins.
+Add XHTML style terminators to zero-content tags <hr /> <br /> <img />.
+Fix obscure bug in \hang inside \vbox.
+Fix detection of horizontal mode in delimited parameter searching.
+
+Changes between versions 2.72 and 2.73
+______________________________________
+Make all tags lower case, all attributes quoted and explicit.
+Add some </tr> tags even though not compulsory. 
+All this to move (slowly) towards XHTML compatibility, although what to do
+about <p> and nesting is not at all obvious at this stage.
+Make implementation of \uppercase and \scshape more robust.
+
+Changes between versions 2.71 and 2.72
+______________________________________
+Fix bug with counters in LaTeX files translated without the -L switch
+  (introduced at version 2.67).
+
+Changes between versions 2.70 and 2.71
+______________________________________
+Remove the default <br> after the image in includegraphics to make the image
+  alignment more flexible.
+Complete the namespace separation of tthfunc and ttmfunc.
+Change tthhalcode to be a macro, and make various strings macros.
+Fix TtM to use the full tabular argument for alignment etc.
+Add handling of optional argument to \cite.
+Fix bug with conditional clauses during macro argument searching.
+Generalize cite and bibitem to handle the natbib extensions.
+Create tthnatbib.sty file for TtHgold implementing variable citep, citet,
+ and other useful aspects of natbib.
+Handle automatic conversion of \section argument into title if it comes first.
+
+Changes between versions 2.69 and 2.70
+______________________________________
+Fix bug introduced in revised initial scan of tabular argument (at 2.68).
+Improve alignment of eqnarray equations to make more centered.
+
+Changes between versions 2.68 and 2.69
+______________________________________
+Fix broken .ind file removal broken at version 2.68.
+Improve handling of vboxes to behave more like TeX.
+Make \tthfootnotes the name of the footnotes section, default Footnotes.
+
+Changes between versions 2.67 and 2.68
+______________________________________
+Improve handling of minipage to behave more like LaTeX.
+Modify some rescanning, esp in wrap-up, to fix memory leaks.
+Fix error in initial scan of tabular argument.
+Prevent spurious paragraphs caused by \else or \fi alone on a line.
+Fix bugs with \% percent in conditional text.
+Implement a facility for scanning TeX strings at closures. [Infrastructure].
+Define \columnwidth to be a synonym for \hsize.
+Improve the table of contents handling of paragraph and subparagraph.
+
+Changes between versions 2.66 and 2.67
+______________________________________
+Implement \% as equivalent to % within rawhtml for macro purposes.
+Make all <br clear> into <br clear="all"> to satisfy validators.
+
+Changes between versions 2.65 and 2.66
+______________________________________
+Further improve handling of \eqno with \eqalign not to hide wide equations.
+Fix bug with single line eqnarray.
+Make \caption a command string so it can be redefined.
+Implement column counting in tabular.
+Fix obscure bug in conditionals with argument finding \else.
+Fix bug in delimited parameter matching of blank line as \par.
+Ensure \cr in LaTeX is equivalent to \nonumber\\.
+Fix incorrect group nesting when using a newenvironment.
+Add some </tr> tags in tables, even though optional.
+Change counter order to prevent spurious title "Footnotes" in plain TeX.
+Change tth.gif logo: more realistic document flight.
+Implement longtables.
+
+Changes between versions 2.64 and 2.65
+______________________________________
+Correct misinterpretations of glue removal from (e.g.) \offinterlineskip.
+Ensure \hfil is recognized in \halign template.
+Improve scanning of template to remove rule dimensions of \vrules.
+Fix HTML width error when \eqno is used with \eqalign.
+
+Changes between versions 2.63 and 2.64
+______________________________________
+Prevent spurious <p> at start of environments such as lists, figures etc.
+Discard spurious whitespace inside tabular alignment argument.
+
+Changes between versions 2.62 and 2.63
+______________________________________
+Fix improper termination of \item by display equations.
+Improve alignment of equation numbers inside list, items, indented sections. 
+
+Changes between versions 2.61 and 2.62
+______________________________________
+Fix TTHINPUTS and -p to accept consecutive path separators.
+
+Changes between versions 2.60 and 2.61
+______________________________________
+Fix the accident that -c implies -d.
+Implement \colorbox, \fcolorbox, and \pagecolor (deprecated). [Not in eqs].
+Replace printf with a macro for easier editing and subroutines.
+Remove unnecessary static declaration from some global variables.
+Define \setlength to prevent it putting spurious lengths into text.
+Implement corrected array/tabular inside in-line (textstyle) equations.
+  [But only if the array is the only thing in the equation].
+Prevent erroneous freeing of internal definitions of cross-references.
+Fix bug in \hsize setting when accidentally invoked in an error situation.
+Improve consistency of setting of TeX and TtH in manual.
+
+Changes between versions 2.58 and 2.60
+______________________________________
+Improve the layout of equation numbering. Now it is properly right aligned.
+Fix bug in VMS compile introduced at 2.56.
+Improve alignment of big symbols with limits using -y switch.
+Force display equations to clear inline equations using -t switch.
+
+Changes between versions 2.57 and 2.58
+______________________________________
+Enable \part redefinition to remove possible Plain incompatibility.
+Enable garbaging of locally defined macros if they aren't trapped by global.
+Fix obscure bug in \indexspace.
+Fix spurious \par sometimes arising from \advance and other counter ops.
+
+Changes between versions 2.56 and 2.57
+______________________________________
+Add diagnostic message when *.bbl bibliography file not found.
+Fix obscure problems with null inline equation inside a tabular.
+Make e.g. \textrm in equations recognize that this is a text box.
+Add switch -k to prescribe filename without forcing LaTeX state.
+Fix space problem in attribution string.
+Add install file and l2h.exe to tthgold DOS/Windows distribution.
+
+Changes between versions 2.55 and 2.56
+______________________________________
+Implement pre-expansion of bare command sequence arguments of \sqrt.
+ (That's pretty bizarre. \sqrt is not really a macro with arguments in TeX!)
+Implement multiple directories in -p switch.
+Implement recognition of TTHINPUTS as a path for input files.
+
+Changes between versions 2.54 and 2.55
+______________________________________
+Fix omission of 8 standard colors in lower case in LaTeX.
+
+Changes between versions 2.53 and 2.54
+______________________________________
+Implement comprehensive color support, \color \textcolor and \definecolor.
+
+Changes between versions 2.52 and 2.53
+______________________________________
+Reimplement a few constructs: stackrel, pmatrix, cases ... as TeX functions.
+Remove the cnvting states which are now obsolete. (Housekeeping).
+Make NEXT and PREVIOUS into macros in TtHgold so they can easily be changed.
+Obey \textstyle in display equations provided explicitly embraced.
+
+Changes between versions 2.51 and 2.52
+______________________________________
+Adjust version reporting in startup code.
+Improve hbox handling in vertical mode.
+Fix centerheader invisible formal HTML bug.
+Change \centerline to enclose output in an HTML table for better compatibility.
+Improve alignment of first \item.
+Recognize \land \gets \mid \lbrack \rbrack \not\in \not\subset
+Make - symbol font in equations because some non-adobe times fonts have
+  a very short hyphen sign. This might cause other problems. We'll see...
+Trap \centerline in titlecheck state.
+Rework buildrel as a delimited parameter.
+Fix small alignment bugs in atop.
+Remove spurious space after the 2 in e.g. \hat{v}^2.
+
+Changes between versions 2.50 and 2.51
+______________________________________
+Work around DOS executable system call non-detection of failure of ps2png etc.
+Improve hbox and vbox code to accommodate NS table peculiarities.
+Trap explicit \par in titlecheck state.
+
+
+Changes between versions 2.34 and 2.50
+______________________________________
+Implement dimension interpretation.
+	\hskip \hspace implemented as scaled number of nonbreak spaces.
+	\vskip \vspace implemented as scaled number of <br>s.
+	p{dimension} in tabular argument as scaled width="pixels"
+	Float times a dimension implemented. E.g X.YZ\hsize.
+	\hsize = ... supported inside a brace group (e.g. a \vbox)
+Some box handling. But browsers currently won't put text before and after
+the table into which these are translated.
+	\hbox to ... implemented as table of scaled % width. [Not in equations]
+	\hfil and \hss implemented inside \hbox to.. But spacing is imperfect.
+	\makebox, \framebox with specified size and alignment.
+	No \newdimen's.
+	Prevent \hbox constructs from containing the <title> accidentally.
+
+Implement *{num} interpretation in tabular alignment argument.
+Fix minor inconsistency in definition of \proclaim.
+Improve recognition of known but inappropriate parameters e.g. \tolerance.
+Improve consistency of parameter discarding of unknown commands.
+Improve consistency of paragraph detection near }.
+Rewrite the graphics file conversion code to call ps2png, then ps2gif.
+Compile DOS executable unoptimized because we are out of memory (again).
+
+Changes between versions 2.33 and 2.34
+______________________________________
+Implement \subitem for itemize and enumerate environments.
+Implement \proclaim.
+Correct grouping in definition of \frac.
+Correct the missing semicolon from 233.
+Fix bug with refs and bibitems whose key has spaces.
+
+Changes between versions 2.32 and 2.33
+______________________________________
+Accommodate \item[...] in enumerate with a kludged item label.
+Implement \url, \hypertarget, \hyperlink, for better compatibility.
+Fix tthsplit for tthgold.
+
+Changes between versions 2.31 and 2.32
+______________________________________
+Fix handling of \rm outside groups in TtHgold (not TtH).
+Fix expansion of \if clauses in situations that need it, e.g. limitops.
+
+Changes between versions 2.30 and 2.31
+______________________________________
+Fix handling of \{ and \} in situations like footnotes.
+
+Changes between versions 2.27 and 2.3
+______________________________________
+Put the name= reference into quotes for cite and a few other places.
+Fix bug with unembraced arguments like \phantom\{ . 
+Improve vertical placement of overaccents in denominators too.
+Improve vertical placement of lone sqrts in fractions.
+Fix bug with \right. in in-line equations.
+Remove spurious extra space after \over in in-line equations.
+
+Changes between versions 2.26 and 2.27
+______________________________________
+Improve vertical placement of simple expressions with over accents in 
+	fraction numerators.
+
+Changes between versions 2.25 and 2.26
+______________________________________
+Reinstitute -O optimization of DOS executable with more compile memory
+Fix warnings about ambiguous else on egcs compiler.
+Improve compatibility of grabbing unused embraced arguments to 
+  begin{thebibliography},\\begin\{tabular(\*|x)\},\\begin\{minipage\}
+
+Changes between versions 2.24 and 2.25
+______________________________________
+Fix the title generation code for Mac line-end compatibility.
+
+Changes between versions 2.23 and 2.24
+______________________________________
+Rework all line-end code to implement work-around for Mac files.
+
+Changes between versions 2.22 and 2.23
+______________________________________
+Implement work-around for flex line-end bug on Macintosh files.
+Fix bug in \color inside equations.
+
+Changes between versions 2.21 and 2.22
+______________________________________
+Reimplement the redundant brace group delimiter fix to avoid bugs in 2.21.
+Fix problem with \iftth following &.
+
+Changes between versions 2.20 and 2.21
+______________________________________
+Make \.*size check first if it is a user-defined macro before discarding.
+Enable proper sub/superscript positioning on large delimiters even when in 
+	(redundant) brace groups. [Fix associated # problems]
+Fix problem with \else in nested false conditionals.
+
+Changes between versions 2.10 and 2.20
+______________________________________
+Implement epsf file handling to accept a filename without extension and search
+	for .ps or .eps files.
+Make equation, figure, and table numbered within chapter by default.
+Fix \thanks in title in preamble.
+Implement correct (I hope) tabular handling _inside equations_.
+Use tabular code for \begin{array} so cell alignment is now honored.
+Improve height tracking of matrices.
+Remove optimization from DOS executable because of compile memory limitations.
+
+Changes between versions 2.01 and 2.10
+______________________________________
+Remove some spurious additional cells from equations for better layout.
+Reimplement sqrt to work more compatibly.
+Implement some extensibility in large sqrt signs.
+Reimplement \root \of as a delimited-parameter command.
+Implement interpretation of TeX code in index of sqrt[] and \root..\of.
+Changed name of top file in tthgold split output to "index.html".
+Implement an optional style-sheet approach for equation height compression in
+	tthgold.
+Fix order of closing of improperly nested font changes etc.
+Prevent various known unsupported commands from inserting unwanted <p>.
+Fix bug with \cite inside footnotes.
+Improve \newtheorem to recognize optional arguments (but still not quite
+  numbering in "within" correctly).
+Add handling of \charNNN and \symbol{}.
+
+Changes between versions 2.00 and 2.01
+______________________________________
+Improve layout of \root \of.
+Fix inline sqrt without embedded groups.
+Added unsupported alpha diacritical accent commands as null macros to prevent 
+  discarding their arguments.
+Implement recognition of "`, "', "<, and "> from the german style.
+Fix uninitialized labelchar that occasionally gave \label problems.
+
+Changes between versions 1.98 and 2.00
+______________________________________
+Recognize \begin with spurious following space. Warn and fix with unput.
+Improve recognition of multicolumn hidden in macros, in arrays in equations.
+Make first cell of first line of eqalign/eqnarray right aligned.
+
+Changes between versions 1.96 and 1.98
+______________________________________
+Finally fixed the \halign and \tabular code (I hope).
+
+Found a serious problem with version 1.97 when tabular environment is
+renamed. Withdrew 1.97 from release.
+
+Changes between versions 1.96 and 1.97
+______________________________________
+Rewrite \halign code to use the template line for alignment and insert strings.
+Change tabular alignment coding. Fix @-strings at premature row ends.
+Fix insertion of & during verbatim output.
+
+Changes between versions 1.95 and 1.96
+______________________________________
+Fix \halign, broken by the improvements to \tabular.
+Fix \uppercase bug in equations.
+
+Changes between versions 1.94 and 1.95
+______________________________________
+Implement tabular alignment argument interpretation. (Not *{num} style).
+Prevent spurious \par caused by newlines in equations.
+Fix bug with LaTeX \input{filename} that regarded the input as within a group
+ and thus discarded the newcommands that were defined within it, since the
+ implementation of commands being local in TtH if defined locally (v 1.90).
+Correct the anchor at the subsubsection in book class when secnumdepth is >2.
+Make \textsc and \uppercase work in equations provided no math or other 
+ complicated constructs are used inside their arguments.
+
+Changes between versions 1.93 and 1.94
+______________________________________
+Fix bug with auxiliary files and \include{}.
+
+Changes between versions 1.92 and 1.93
+______________________________________
+Fix obscure bug with \\ at end of argument of macros.
+Recognize \+ does not mean a settabs tabbing start in LaTeX (just omit).
+If \amslatex is a defined command, recognize | as a synonym for \verb|.
+Fix \choose when its second argument has subscripts.
+Rework equation start and end always to start and end an implied group.
+  This is rationalizes treatment of such things as $$n \choose k$$.
+Improve brace matching in ignored groups that contain \{ or \}.
+Improve dimension and parameter command removal with macros.
+Improve counter setting with macros.
+Improve eqalign (eqnarray) alignment of first cell (align right).
+Make book class equation numbering consistent with LaTeX default.
+Split a long string constant to work around brain-dead VisualC++ limitations.
+Improve string overflow detection and message.
+Reorganize verbose messages.
+
+Changes between versions 1.90 and 1.92
+______________________________________
+Fix bug with zero length \phantom.
+
+Changes between versions 1.90 and 1.91
+______________________________________
+Improve \phantom to cope with braces within its argument.
+
+Changes between versions 1.68 and 1.90
+______________________________________
+Implement command definitions as local within groups for TeX compatibility.
+	Counters are (incompatibly) still all global.
+Implement plain TeX conditionals.
+	All are working with some limitations except 
+	\loop, \ifdimen, \ifvoid, \ifinner, \ifcat.
+Add timestamp to the translation credits.
+Rework delimited parameter macros to be compatible with TeX space compression.
+Add implied \par to several commands, e.g. \hrule, \bigskip, ...
+Implement \[h]phantom as a horizontal space of the approximate length.
+Rework bibitem to allow it to function correctly when renamed.
+Fix \bye.
+Improve error message for string overflow.
+
+Changes between versions 1.67 and 1.68
+______________________________________
+Fix fatal bug caused by ungrouped \over construct in inline equation.
+Use the compiler -O optimization on executables to decrease their size.
+
+Changes between versions 1.66 and 1.67
+______________________________________
+Permit \headline= syntax.
+Permit omission of braces from plain footnote first argument.
+Obey optional argument to footnote in LaTeX.
+Fix bug in improper \\ handling at lowest closure depth.
+
+Changes between versions 1.65 and 1.66
+______________________________________
+Correct the behaviour of a command alone on a line. Treat as a non-null line.
+Handle improper use of \\ or \cr outside of array environment in an equation.
+ LaTeX simply ignores it, though it should not be used.
+
+Changes between versions 1.60 and 1.65
+______________________________________
+Implement HTML title construction or warning for files without title.
+Implement \paragraph and \subparagraph.
+Implement \secnumdepth handling.
+Accept optional arguments on \author etc.
+Kludge \dag and \ddag, since they are not available as single glyphs.
+Rework \item in description environment to handle optional arguments better.
+Improve \noalign rendering.
+Improve font handling for inline equations in boxes in displaystyle equations.
+Group multiple-letter entities in equations inside font codes (for mathitalic).
+Prevent ^\prime from being a superscript in-line. HTML is unlike TeX.
+Standardize warning and error syntax.
+Correct handling of braces inside of optional arguments.
+Fix (rare) bug in glue removal state that defeats paragraphing.
+Fix bugs for absent optional argument with no other arguments.
+Fix (invisible) bug in \item followed immediately by \end.
+Fix incorrect pushdepth induced by display table state.
+
+Changes between versions 1.59 and 1.60
+______________________________________
+Implement verbatiminput
+Fix various entities not to introduce spurious par if on line by themselves.
+
+Changes between versions 1.58 and 1.59
+______________________________________
+Implement optional parameter handling internal macro call.
+Fix recognition of unknown* environments.
+Work around strange amslatex use of \newlabel in aux file.
+Fix \varphi.
+
+Changes between versions 1.57 and 1.58
+______________________________________
+Recognize file extensions .ps* .eps* (e.g. .epsi) as valid postscript.
+Recode \headline and \title to avoid putting markup in <title>.
+Rework epsfbox etc to improve compatibility with non-standard usage.
+Add alt="..." to the img tags to conform to HTML4.0.
+
+Changes between versions 1.56 and 1.57
+______________________________________
+Reduce additional horizontal space with large delimiters in some cases.
+Change tabular handling to allow \multicolumn to be inside a macro.
+Fix bug with single non-alpha commands as subscripts, (e.g. x_\|).
+Fix disabling of \par by \href and \special{html:...}.
+Make color codes quoted for syntax validation.
+
+Changes between versions 1.55 and 1.56
+______________________________________
+Implement \{, \} in macro arguments so that e.g. \subsection{\{} works.
+Fix (invisible) incorrect state at close of LaTeX files.
+Fix \choose to remove fraction bar.
+
+Changes between versions 1.54 and 1.55
+______________________________________
+Fix bug in appendix chapter or section title: grouping not honored.
+
+Changes between versions 1.53 and 1.54
+______________________________________
+Fix large square-root display for Macs.
+
+Changes between versions 1.52 and 1.53
+______________________________________
+Use <br clear=all> at start of table layout of inline equations with -t switch
+Ensure \begin{html} and related code does not cause spurious \par.
+Ensure \tthdump is not expanded in (e.g.) edefs or footnotes.
+
+Changes between versions 1.50 and 1.52
+______________________________________
+Rework \begin{array} for improved compatibility.
+Implement \Roman, \roman.
+Make \# output # in raw HTML output.
+Implement \char`\. as a literal character quoting mechanism.
+Make \\cal into italic helvetica.
+Various TtHgold improvements to label, etc.
+
+Changes between versions 1.46 and 1.50
+______________________________________
+Rework \textit ... \mathrm ... to use rescanning of a braced switch. This 
+ resolves ambiguities in equations (the swaparg state), and allows 
+ macros to rename these even using bad (non-argument) style.
+Rework \underline and colordvi commands similarly.
+Improve picture conversion code by including graphics packages in the
+ latex file that is output, and fix comment bug.
+Rework mbox and raisebox code for greater compatibility.
+Remove the eqtokarg state, mostly used in subpscripts.
+Implement the exptokarg state, for expanding command sequences immediately
+ following ^ _ and overaccent-style builtin TeX commands in equations.
+ This new approach correctly mimics TeX's handling of unembraced command-
+ sequence arguments in math mode, and removes ambiguities.
+Correct internal bug associated with dupstore in tthref.
+Rework macro calling to allow internal use of code.
+Implement \expandafter.
+Improve pattern matching in delimited argument interpretation.
+Fix bug in \let interpretation (rare).
+Fix footnote wrapup bug that broke \end[{document}}]
+Rework \href using special, so it works in equations.
+Edit manual to reflect changes.
+
+Summary: 
+1) Substantially improved [La]TeX compatibility in
+	Expansion of macros and boxes in equations; \expandafter support.
+2) Improved picture handling code.
+3) Various small bug fixes.
+
+Changes between versions 1.45 and 1.46
+______________________________________
+Simplified some dimension and glue removal code.
+Internal output statement rationalization.
+Fixed bugs in some accents. e.g. \~ \`O and \'{\i }.
+
+Changes between versions 1.41 and 1.45
+______________________________________
+Implement optional argument support for newcommand and newenvironment.
+Implement "within" capability of newcounter.
+Implement \@addtoreset command.
+Rework equation labeling to use \theequation command.
+Rework sectioning commands to use more latex-like approach involving
+ \thesection.\arabic{subsection} etc, for greater compatibility with
+ different sectioning and numbering styles.
+Fix bug in \Alph and \alph
+Fix bug in \chapter*
+Fix bibitem interpretation with parens in optional argument.
+Ensure a newtheorem starts a new paragraph.
+Rework figure and table numbering in caption to use \thefigure etc,
+  and observe numbering with chapters of book style, for compatibility.
+Make sectioning commands able to be redefined, in case a TeX file does so.
+Rework \newlabel code to allow more general label formats (e.g. from a
+  redefined \theequation or \thefigure command in aux file).
+
+
+Changes between versions 1.40 and 1.41
+______________________________________
+Fix bug in eqnarrays with \\ after e.g. \frac{}{}, \right) etc.
+
+Changes between versions 1.32 and 1.40
+______________________________________
+Reimplement \bibcite as \def, for greater compatibility with different
+ bibliography styles such as natbib.
+Reworked some equation recognition code to remove tth_eqn.
+Rationalized the equation state earlier in the flex code.
+Defined many strings as macros for easier editting.
+Defined macros TTH_MATHC and TTH_SCAN_STRING.
+Reworked some number removal for brevity.
+Reworked halign/tabular end of line multicolumn code for clarity and brevity.
+Resultant C code is nearly 100k shorter.
+Separate -? and -h help text.
+
+Changes between versions 1.31 and 1.32
+______________________________________
+Implement workaround for browser table font bug in upright math mode.
+Fix spurious <p> arising in toc if whole section title is a macro.
+
+Changes between versions 1.30 and 1.31
+______________________________________
+Implement \multicolumn in array environment.
+Improve \eqalign recognition.
+Make \bordermatrix a synonym for \matrix to prevent parse errors.
+Prevent additional spurious </td> in equations.
+Increase buffer size to TTH_DLEN 6000.
+Change literal and non-literal treatment in tags for formal HTML conformance.
+Add doctype 4.0 statement in standard header.
+Fix omission of </a> from indexing tags.
+Fix subsubsection labeling in appendix.
+Fix \ref and \pageref in footnotes.
+
+Changes between versions 1.24 and 1.3
+_____________________________________
+Improve placement of subscripts etc on over-accented characters.
+Fix bug arising from commands terminated by % in macro arguments.
+Change default fraction level to 5.
+Improve rendering of single-character fractions in inline equations 
+  and exponents using slash.
+Remove unnecessary braces in \frac definition.
+Trap most common token ambiguities: \frac \mathrm and \mbox.
+Fix scanner error at ambiguous token error.
+Fix erroneous \big\ bug.
+Adjust bracket height for very large items, e.g. matrices.
+
+Changes between versions 1.23 and 1.24
+_____________________________________
+Fix bug with \emph inside textbox inside equation.
+Fix bug in \cite recognition with [].
+Fix footnote bug introduced in equation-compatibility code.
+Improve recognition of \begin{list}{}{}.
+Fix bug in \(over|under)brace causing buffer overrun and possible crash.
+
+Changes between versions 1.22 and 1.23
+_____________________________________
+Fix \root n \of bug.
+
+Changes between versions 1.21 and 1.22
+_____________________________________
+Implement \sqrt[n]{ } and \root n \of.
+Fix appendix index reference.
+
+Changes between versions 1.2 and 1.21
+_____________________________________
+Fix bug misinterpreting \} \{  in macro arguments.
+
+Changes between versions 1.15 and 1.2
+_____________________________________
+Document the -t switch for built-up textstyle equations.
+Document the -a switch for automatic picture conversion.
+Include latex2gif in distribution.
+
+Changes between versions 1.14 and 1.15
+______________________________________
+Omit \null from equations too.
+Fix \ at end of line to be nbsp.
+Make widehat a synonym for hat, like widetilde.
+Add a newline end after </html>.
+Add \alph,\Alph,(\roman,\Roman = \arabic).
+Fix footnotes to work inside equations.
+Add parentheses around \hbar.
+
+Changes between versions 1.13 and 1.14
+______________________________________
+Add recognition of \bigg/ and \bigg\ etc.
+Fix bug in unrecognized \bigg etc.
+
+Changes between versions 1.12 and 1.13
+______________________________________
+Fix \\ bug arising from optional arg to \\ causing arrays to break.
+Fix accent bug in \uppercase.
+Add "s German ss usage.
+Implement experimental -t switch.
+
+Changes between versions 1.11 and 1.12
+______________________________________
+Fix appendix subsection alphanumeric label bug.
+Fix subsubsection bug that put in spurious name tags.
+
+Changes between versions 1.1 and 1.11
+_____________________________________
+
+Fix the footnote "head.html" bug.
+Correct to \dots in paragraph mode.
+Add FAQ to manual.
+
+Changes between versions 1.03 and 1.1
+_____________________________________
+
+Implement Indexing.
+Improve space removal after numerator of fractions for alignment.
+Tidy up some pattern recognition to remove trailing contexts.
+Improve documentclass tracking.
+Change ps2gif to use -ppmraw to save time and space.
+Fix \verb+<font>+ to translate <> correctly to &ls; etc.
+Make figure and table section-numbering 2-digit.
+Fix space after Chapter names etc.
+Fix spurious \\par insertion in \label (etc) on a line by itself.
+Fix equations with _{\rm p} climbing up a hill.
+Fix eqnarray* bug.
+Fix lefteq bug.
+Fix bug in interaction between TeX and Latex equation numbering.
+Check for existence of .ps file before attempting conversion.
+Add l2h script to packages.
+
+Changes between versions 1.02 and 1.03
+______________________________________
+
+Fix space omitted after e.g. Figure.
+Recognize .jpg or as a valid graphic file extension; if file.jpg exists,
+don't do conversion from file.ps.
+Add double hline recognition internal to tables.
+Fix obscure bug in sub/superscripts as initial part of a definition.
+Rework subscript code for more compact internals.
+Remove space before \over, \atop (etc.) commands to improve alignment.
+
+Changes between versions 1.00 and 1.02
+______________________________________
+
+Change glue removal code to save substantial size and improve compatibility.
+Change paragraph recognition algorithm to do a better job when the
+two line ends are in e.g. different macros.
+Improve length overflow checking consistency.
+Improve h|vrule handling. 
+Recognize "fil" as a dimension unit for removal.
+Correct \bigg and \left\right delimiter algorithm to correspond to TeX.
+Add meta tag to header.
+
+Changes between version 0.99 and 1.00
+_____________________________________
+
+Redefined default states for the -g switch:
+Defaults to guessing meaning of font commands; -g means discard construct.
+
+Changed default eqnarray numbering to be more LaTeX like. Each line is
+numbered by default. Switch -n reverts to older style: one number per
+environment. Implemented \nonumber.
+
+Documented -p switch to provide an additional directory for input files.
+
+Implemented \thanks as a synonym for \footnote in author or title.
+
+Updates to documentation. 
+
+Added web link to home site in credit line.
+
+Various small bug fixes:
+ Allow spaces after \\
+ Removed [] from possible macro names to avoid misinterpretation.
+ Changed handling of \textstyle to avoid consequent errors.
+ Fixed bug in fractional superscripts to large delimiters.
+ Improved removal of \penalty and similar commands.
+ Allow decimal point sizes in font commands.
+ Trap negative closure counts to prevent crash.

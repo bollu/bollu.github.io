@@ -1,0 +1,3123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+           "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<meta name="GENERATOR" content="TtH 4.04">
+ <style type="text/css"> div.p { margin-top: 7pt;}</style>
+ <style type="text/css"><!--
+ td div.comp { margin-top: -0.6ex; margin-bottom: -1ex;}
+ td div.comb { margin-top: -0.6ex; margin-bottom: -.6ex;}
+ td div.hrcomp { line-height: 0.9; margin-top: -0.8ex; margin-bottom: -1ex;}
+ td div.norm {line-height:normal;}
+ span.roman {font-family: serif; font-style: normal; font-weight: normal;} 
+ span.overacc2 {position: relative;  left: .8em; top: -1.2ex;}
+ span.overacc1 {position: relative;  left: .6em; top: -1.2ex;} --></style>
+ <style type="text/css"><!--
+ .tiny {font-size:30%;}
+ .scriptsize {font-size:xx-small;}
+ .footnotesize {font-size:x-small;}
+ .smaller {font-size:smaller;}
+ .small {font-size:small;}
+ .normalsize {font-size:medium;}
+ .large {font-size:large;}
+ .larger {font-size:x-large;}
+ .largerstill {font-size:xx-large;}
+ .huge {font-size:300%;}
+ --></style>
+
+    
+<title> \TtH: a ``\TeX to HTML'' translator.</title>
+ 
+<h1 align="center"><span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>: a "<span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;to HTML" translator. </h1>
+<center><img src="tth.gif" alt="TtH icon" /></center>
+
+<table align="center" border="0"><tr><td>
+Version 4.04</td></tr></table><!--hboxt-->
+
+<h3 align="center"> </h3>
+<h3 align="center"> </h3>
+
+
+<div class="p"><!----></div>
+
+<h2> Abstract</h2>
+<span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;translates <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;documents that use the Plain macro package or
+<span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>, into HTML.
+ It is extremely fast and completely portable. It
+produces web documents that are more compact and managable, and
+faster-viewing, than those from other converters, because it really
+translates the equations, instead of converting them into images.
+
+<div class="p"><!----></div>
+
+<h1>Contents </h1><a href="#tth_sEc1"
+>1&nbsp; Capabilities</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc1.1"
+>1.1&nbsp; Plain <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span></a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc1.1.1"
+>1.1.1&nbsp; Mathematics</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc1.1.2"
+>1.1.2&nbsp; Formatting and Macro Support</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc1.2"
+>1.2&nbsp; <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span></a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc1.2.1"
+>1.2.1&nbsp; Environments:</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc1.2.2"
+>1.2.2&nbsp; <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;Commands:</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc1.3"
+>1.3&nbsp; Special <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;usage for <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span></a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc1.4"
+>1.4&nbsp; Unsupported Commands</a><br />
+<a href="#tth_sEc2"
+>2&nbsp; Installation</a><br />
+<a href="#tth_sEc3"
+>3&nbsp; Usage</a><br />
+<a href="#tth_sEc4"
+>4&nbsp; Messages</a><br />
+<a href="#tth_sEc5"
+>5&nbsp; Mathematics</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc5.1"
+>5.1&nbsp; Equations</a><br />
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc5.2"
+>5.2&nbsp; In-line Equation Limitations</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc5.3"
+>5.3&nbsp; Mathematics Layout Style Improvement using CSS</a><br />
+
+
+<a href="#tth_sEc6"
+>6&nbsp; Features dependent on external programs.</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc6.1"
+>6.1&nbsp; Independence of [La]<span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;installation and the -L switch.</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc6.2"
+>6.2&nbsp; BibTeX bibliographies</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc6.3"
+>6.3&nbsp; Indexing</a><br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc6.3.1"
+>6.3.1&nbsp; Glossaries.</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc6.4"
+>6.4&nbsp; Graphics Inclusion: epsfbox/includegraphics</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc6.5"
+>6.5&nbsp; Picture Environments</a><br />
+<a href="#tth_sEc7"
+>7&nbsp; Tabular Environment or Halign for Tables</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc7.1"
+>7.1&nbsp; Tabular</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc7.2"
+>7.2&nbsp; Halign</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc7.3"
+>7.3&nbsp; Longtables</a><br />
+<a href="#tth_sEc8"
+>8&nbsp; Boxes, Dimensions, and fills</a><br />
+<a href="#tth_sEc9"
+>9&nbsp; <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;command definitions and other extensions</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc9.1"
+>9.1&nbsp; Delimited-parameter macros and Conditionals</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc9.2"
+>9.2&nbsp; Macro- and Style-file inclusion </a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc9.3"
+>9.3&nbsp; Layout to include arguments of unknown commands </a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc9.4"
+>9.4&nbsp; Restrictions on redefinition of internal commands </a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc9.4.1"
+>9.4.1&nbsp; Footnotes</a><br />
+<a href="#tth_sEc10"
+>10&nbsp; Color</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc10.1"
+>10.1&nbsp; <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;Color</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc10.2"
+>10.2&nbsp; Plain Color</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc10.3"
+>10.3&nbsp; Limitations</a><br />
+<a href="#tth_sEc11"
+>11&nbsp; Producing output split into different files.</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc11.1"
+>11.1&nbsp; Overview</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc11.2"
+>11.2&nbsp; Navigation Controls at File Top and Tail</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc11.3"
+>11.3&nbsp; Special Precautions when Splitting Output</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc11.3.1"
+>11.3.1&nbsp; Floats such as figures or tables</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc11.3.2"
+>11.3.2&nbsp; Multiple Bibliographies</a><br />
+<a href="#tth_sEc12"
+>12&nbsp; HTML and output</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc12.1"
+>12.1&nbsp; Formal HTML validation</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc12.2"
+>12.2&nbsp; HTML Styles</a><br />
+<a href="#tth_sEc13"
+>13&nbsp; Browser and Server Problems</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc13.1"
+>13.1&nbsp; Accessing Symbol Fonts: Overview</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc13.2"
+>13.2&nbsp; Accessing Symbol Fonts: Details</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc13.3"
+>13.3&nbsp; Printing</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc13.4"
+>13.4&nbsp; Netscape/Mozilla Composer</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc13.5"
+>13.5&nbsp; Other Browser Bugs</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc13.6"
+>13.6&nbsp; Web server problems</a><br />
+<a href="#tth_sEc14"
+>14&nbsp; Code Critique</a><br />
+<a href="#tth_sEc15"
+>15&nbsp; License</a><br />
+<a href="#tth_sEc16"
+>16&nbsp; Acknowledgements</a><br />
+<a href="#tth_sEcA"
+>A&nbsp; Appendix: Non-Standard <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;Macros</a><br />
+<a href="#tth_sEcB"
+>B&nbsp; Appendix: Frequently Asked Questions</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEcB.1"
+>B.1&nbsp; Building and Running <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span></a><br />
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEcB.2"
+>B.2&nbsp; [La]TeX constructs <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;does not seem to recognize</a><br />
+
+
+
+
+
+
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEcB.3"
+>B.3&nbsp; HTML output that does not satisfy</a><br />
+
+
+
+
+
+
+
+
+
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEcB.4"
+>B.4&nbsp; How to write <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;designed for Web publishing</a><br />
+
+
+
+
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEcB.5"
+>B.5&nbsp; Formerly Frequently Asked Now Rarely Asked</a><br />
+
+
+
+<a href="#tth_sEcindex">Index</a><br />
+
+<div class="p"><!----></div>
+ <a id="tth_sEc1"></a><h2>
+1&nbsp;&nbsp;Capabilities</h2>
+
+<div class="p"><!----></div>
+     <a id="tth_sEc1.1"></a><h3>
+1.1&nbsp;&nbsp;Plain <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span></h3>
+
+<div class="p"><!----></div>
+      <a id="tth_sEc1.1.1"></a><h4>
+1.1.1&nbsp;&nbsp;Mathematics<a 
+id="mathematics11"></a></h4>
+
+<div class="p"><!----></div>
+Almost all of <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>'s mathematics is supported with the exception of a
+few obscure symbols that are absent from the fonts normally available
+to browsers. Support includes, for example, in-line equations with
+subscripts and superscripts, display equations with built-up
+fractions, over accents, large delimiters, operators with limits;
+matrix, pmatrix, cases, [but not bordermatrix]; over/underbrace [but
+using a rule, not a brace].
+
+<div class="p"><!----></div>
+      <a id="tth_sEc1.1.2"></a><h4>
+1.1.2&nbsp;&nbsp;Formatting and Macro Support</h4>
+
+<div class="p"><!----></div>
+
+<ul>
+<li><a 
+id="fonts11"></a><a 
+id="roman11"></a>Font styles: <tt>\it,&nbsp;\bf,&nbsp;\sl,&nbsp;\uppercase</tt>, everywhere,
+<tt>\rm</tt> in most situations
+<a href="#tthFtNtAAB" id="tthFrefAAB"><sup>1</sup></a>.
+<div class="p"><!----></div>
+</li>
+
+<li> Accented characters written like <tt>\"o</tt> or <tt>\'{e}</tt>.
+<div class="p"><!----></div>
+</li>
+
+<li> Guess the intent of font definitions, i.e. <tt>\font</tt> commands
+[optionally, remove contruct].
+<div class="p"><!----></div>
+</li>
+
+<li> Macro definitions that are global: <tt>\gdef</tt>, <tt>\xdef</tt>,
+<tt>\global\def</tt>, <tt>\global\edef</tt>; or local to the
+current group: <tt>\def</tt>, <tt>\edef</tt>.
+<div class="p"><!----></div>
+</li>
+
+<li> Definitions with delimited arguments.
+<div class="p"><!----></div>
+</li>
+
+<li> Input of files [see <a href="#texins">9.2</a>].
+<div class="p"><!----></div>
+</li>
+
+<li> Newcount, number, advance and counter setting [global counter setting
+only].
+<a 
+id="if11"></a>
+<a id="ifs">
+</a>
+<div class="p"><!----></div>
+</li>
+
+<li> Conditionals: iftrue,
+iffalse,
+ifnum,
+ifodd,
+ifcase,
+if   [for defined commands and plain characters, not some internals]
+<a href="#tthFtNtAAC" id="tthFrefAAC"><sup>2</sup></a>, ifx [only for
+defined commands and counters; internals appear undefined], ifvmode,
+ifmmode, newif.
+<div class="p"><!----></div>
+</li>
+
+<li> Centerline, beginsection, item, itemitem, obeylines; hang, hangindent,
+narrower [for entire paragraphs, hangafter ignored].
+<a 
+id="headline11"></a> Headline is made
+into a title, footnote{}{}. Comments: removed.
+<div class="p"><!----></div>
+</li>
+
+<li> Tables: halign [uses border style if the template contains
+vrule.]. Settabs, <tt>\+</tt>.
+<div class="p"><!----></div>
+</li>
+
+<li> Simple uses of <tt>\hbox,\vbox</tt> and <tt>\hsize</tt> to align text and
+make boxes with restricted widths, but these are discouraged. In
+setting the width of a vbox, the value of hsize should be once only,
+immediately at the beginning of the vbox.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+     <a id="tth_sEc1.2"></a><h3>
+1.2&nbsp;&nbsp;<span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span></h3>
+<span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;support includes essentially all mathematics plus the following 
+
+<div class="p"><!----></div>
+      <a id="tth_sEc1.2.1"></a><h4>
+1.2.1&nbsp;&nbsp;Environments:</h4><a 
+id="environments12"></a>
+ em, verbatim, center, flushright, verse, quotation, quote, itemize,
+enumerate, description, list [treated as if description], figure,
+table, tabular[*,x], equation, displaymath, eqnarray, math, array [not
+generally in in-line equations], thebibliography, [raw]html,
+index [as description], minipage [ignoring optional argument],
+longtable [but see <a href="#longtab">7.3</a>].
+
+<div class="p"><!----></div>
+      <a id="tth_sEc1.2.2"></a><h4>
+1.2.2&nbsp;&nbsp;<span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;Commands:<a 
+id="commands__LaTeX__supported12"></a></h4>
+ [re]newcommand, newenvironment, chapter, section, subsection,
+subsubsection, caption, label, ref, pageref [no number], emph, textit,
+texttt, textbf, centering, raggedleft, includegraphics, [e]psfig,
+title, author, date [maketitle ignored: title etc inserted when
+defined], lefteqn, frac, tableofcontents, input, include [as input,
+includeonly ignored], textcolor, color, footnote
+[ignoring optional arg], cite, bibitem, bibliography, tiny
+... normalsize ... Huge, newcounter, setcounter, addtocounter, value
+[inside set or addto counter], arabic, the, stepcounter, newline,
+verb[*] [can't use @ as separator], bfseries, itshape, ttfamily,
+textsc, ensuremath, listoftables, listoffigures, newtheorem [no
+optional arguments permitted], today, printindex, boldmath,
+unboldmath, newfont, thanks, makeindex, index, @addtoreset,
+verbatiminput, paragraph, subparagraph, url, makebox, framebox, mbox,
+fbox, parbox [ignoring optional argument], definecolor, colorbox,
+fcolorbox [not in equations], pagecolor [discouraged], savebox, sbox,
+usebox.
+
+<div class="p"><!----></div>
+ These cover most of the vital <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;constructs.  Internal hypertext
+cross-references are automatically generated (e.g. by ref and
+tableofcontents) provided <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;has previously been run on the
+document and the appropriate command-line switch is used.
+
+<div class="p"><!----></div>
+     <a id="tth_sEc1.3"></a><h3>
+1.3&nbsp;&nbsp;Special <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;usage for <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span></h3>
+ A few non-standard <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;commands are supported as follows
+<a href="#tthFtNtAAD" id="tthFrefAAD"><sup>3</sup></a>. See
+also <a href="#epsf">6.4</a>.<a 
+id="HTML_insertion13"></a>
+ 
+<pre>
+\epsfbox{file.[e]ps}&nbsp;Puts&nbsp;in&nbsp;an&nbsp;anchor&nbsp;called&nbsp;"Figure"&nbsp;linked&nbsp;to&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;file.[e]ps&nbsp;(default),&nbsp;or&nbsp;alternatively&nbsp;calls&nbsp;user-supplied&nbsp;script&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;convert&nbsp;the&nbsp;[e]ps&nbsp;file&nbsp;to&nbsp;a&nbsp;gif&nbsp;image&nbsp;and&nbsp;optionally&nbsp;inline&nbsp;it.&nbsp;&nbsp;
+\special{html:"tags"}&nbsp;inserts&nbsp;``tags''&nbsp;into&nbsp;the&nbsp;HTML&nbsp;e.g.&nbsp;for&nbsp;images&nbsp;etc.&nbsp;&nbsp;
+\href{reference}{anchor}&nbsp;highlights&nbsp;``anchor''&nbsp;with&nbsp;href=``reference''.
+\url{URL}&nbsp;like&nbsp;\href&nbsp;but&nbsp;with&nbsp;URL&nbsp;providing&nbsp;both&nbsp;reference&nbsp;and&nbsp;anchor.
+\begin{[raw]html}&nbsp;...&nbsp;\end{[raw]html}&nbsp;environment&nbsp;passed&nbsp;direct&nbsp;to&nbsp;output.
+\tthtensor&nbsp;Subscripts&nbsp;and&nbsp;superscripts&nbsp;immediately&nbsp;following,&nbsp;on&nbsp;simple
+&nbsp;&nbsp;&nbsp;&nbsp;characters,&nbsp;are&nbsp;stacked&nbsp;up&nbsp;in&nbsp;displaystyle&nbsp;equations,&nbsp;not&nbsp;staggered.&nbsp;
+\tthdump{...}&nbsp;The&nbsp;group&nbsp;is&nbsp;omitted&nbsp;by&nbsp;tth.&nbsp;Define&nbsp;\tthdump&nbsp;as&nbsp;a&nbsp;nop&nbsp;for&nbsp;TeX.
+%%tth:...&nbsp;The&nbsp;rest&nbsp;of&nbsp;the&nbsp;comment&nbsp;line&nbsp;is&nbsp;passed&nbsp;to&nbsp;tth&nbsp;(not&nbsp;TeX)&nbsp;for&nbsp;parsing.
+
+</pre> 
+
+<div class="p"><!----></div>
+     <a id="tth_sEc1.4"></a><h3>
+1.4&nbsp;&nbsp;Unsupported Commands<a 
+id="commands_handling_unsupported14"></a></h3>
+
+<div class="p"><!----></div>
+ When <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;encounters <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;constructs that it cannot handle either
+because there is no HTML equivalent, or because it is not clever
+enough, it tries to remove the mess they would otherwise cause in the
+HTML code, generally giving a warning of the action if it is not sure
+what it is doing. <a 
+id="commands_unsupported14"></a>The following are
+not translated.
+
+<div class="p"><!----></div>
+
+<pre>
+&nbsp;\magnification&nbsp;\magstep&nbsp;etc&nbsp;:&nbsp;Removes&nbsp;the&nbsp;whole&nbsp;construct.
+&nbsp;Some&nbsp;boxes&nbsp;in&nbsp;equations.
+&nbsp;\raisebox,&nbsp;\lowerbox&nbsp;and&nbsp;similar&nbsp;usages.
+&nbsp;\accent,&nbsp;\mathaccent.&nbsp;
+
+</pre> 
+
+<div class="p"><!----></div>
+ <a id="tth_sEc2"></a><h2>
+2&nbsp;&nbsp;Installation</h2>
+
+<div class="p"><!----></div>
+<a 
+id="flex20"></a><a 
+id="compile20"></a>The source for <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;is flex code which is processed to produce a C program
+tth.c which comprises the distribution. This file is compiled by
+
+<pre>
+	gcc&nbsp;-o&nbsp;tth&nbsp;tth.c
+
+</pre> 
+ or whatever C compiler you are using. Compilation takes
+typically less than a minute on a modern PC. 
+
+<div class="p"><!----></div>
+The executable should then be copied to whatever directory you want
+(preferably on your path of course). That's all! 
+
+<div class="p"><!----></div>
+Alternatively you may be able to obtain a precompiled executable from
+wherever you accessed this file. The Wind@ws executable comes with a
+batch file for installation. Just run it by the command "install".
+
+<div class="p"><!----></div>
+ <a id="tth_sEc3"></a><h2>
+3&nbsp;&nbsp;Usage</h2>
+
+<div class="p"><!----></div>
+<a 
+id="switches__TtH30"></a><a 
+id="switches_-L30"></a> Command line is as
+follows. The order of the parts is irrelevant. Switches (preceded by a
+minus sign -) can appear anywhere on the line. Square brackets should
+not be entered, they simply indicate optional parts of the command
+line.<a id="n-switch">
+</a>
+  
+
+
+<pre>
+Either&nbsp;filter&nbsp;style&nbsp;(the&nbsp;&lt;&nbsp;and&nbsp;&#62;&nbsp;are&nbsp;file&nbsp;redirection&nbsp;operators):
+&nbsp;&nbsp;tth&nbsp;[-a&nbsp;-c&nbsp;-d&nbsp;...&nbsp;]&nbsp;&lt;file.tex&nbsp;[&#62;file.html]&nbsp;[2&#62;err]
+
+Or,&nbsp;specifying&nbsp;the&nbsp;input&nbsp;file&nbsp;as&nbsp;an&nbsp;argument&nbsp;(output&nbsp;is&nbsp;then&nbsp;implied):
+&nbsp;&nbsp;tth&nbsp;[-a&nbsp;-c&nbsp;-d&nbsp;...&nbsp;]&nbsp;file[.tex]&nbsp;[2&#62;err]
+
+Switches:
+&nbsp;&nbsp;&nbsp;-a&nbsp;automatic&nbsp;picture&nbsp;environment&nbsp;conversion&nbsp;using&nbsp;latex2gif&nbsp;(default&nbsp;omit).&nbsp;
+&nbsp;&nbsp;&nbsp;-c&nbsp;prefix&nbsp;header&nbsp;"Content-type:&nbsp;text/HTML"&nbsp;(for&nbsp;direct&nbsp;web&nbsp;serving).
+&nbsp;&nbsp;&nbsp;-d&nbsp;disable&nbsp;delimited&nbsp;definitions.
+&nbsp;&nbsp;&nbsp;-e?&nbsp;epsfbox&nbsp;handling:&nbsp;-e1&nbsp;convert&nbsp;figure&nbsp;to&nbsp;gif&nbsp;using&nbsp;user-supplied&nbsp;ps2gif.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-e2&nbsp;convert&nbsp;and&nbsp;include&nbsp;inline.&nbsp;-e0&nbsp;(default)&nbsp;no&nbsp;conversion,&nbsp;just&nbsp;ref.&nbsp;
+&nbsp;&nbsp;&nbsp;-f?&nbsp;sets&nbsp;the&nbsp;depth&nbsp;of&nbsp;grouping&nbsp;to&nbsp;which&nbsp;fractions&nbsp;are&nbsp;constructed&nbsp;built-up
+&nbsp;&nbsp;&nbsp;&nbsp;f5&nbsp;(default)&nbsp;allows&nbsp;five&nbsp;levels&nbsp;built-up,&nbsp;f0&nbsp;none,&nbsp;f9&nbsp;lots.&nbsp;
+&nbsp;&nbsp;&nbsp;-g&nbsp;don't&nbsp;guess&nbsp;an&nbsp;HTML&nbsp;equivalent&nbsp;for&nbsp;font&nbsp;definitions,&nbsp;just&nbsp;remove.
+&nbsp;&nbsp;&nbsp;-h&nbsp;print&nbsp;help.&nbsp;-?&nbsp;print&nbsp;usage.
+&nbsp;&nbsp;&nbsp;-i&nbsp;use&nbsp;italic&nbsp;as&nbsp;default&nbsp;math&nbsp;font.
+&nbsp;&nbsp;&nbsp;-Lfile&nbsp;&nbsp;tells&nbsp;tth&nbsp;the&nbsp;base&nbsp;file&nbsp;(no&nbsp;extension)&nbsp;for&nbsp;LaTeX&nbsp;auxiliary&nbsp;input,&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;enables&nbsp;LaTeX&nbsp;commands&nbsp;(e.g.&nbsp;\frac)&nbsp;without&nbsp;a&nbsp;\documentclass&nbsp;line.
+&nbsp;&nbsp;&nbsp;-n?&nbsp;HTML&nbsp;title&nbsp;format&nbsp;control.&nbsp;0&nbsp;raw.&nbsp;1&nbsp;expand&nbsp;macros.&nbsp;2&nbsp;expand&nbsp;equations.
+&nbsp;&nbsp;&nbsp;-ppath&nbsp;specify&nbsp;additional&nbsp;directories&nbsp;(path)&nbsp;to&nbsp;search&nbsp;for&nbsp;input&nbsp;files.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-pNULL&nbsp;is&nbsp;a&nbsp;special&nbsp;switch&nbsp;that&nbsp;disables&nbsp;all&nbsp;\input&nbsp;or&nbsp;\includes.
+&nbsp;&nbsp;&nbsp;-r&nbsp;output&nbsp;raw&nbsp;HTML&nbsp;(no&nbsp;preamble&nbsp;or&nbsp;postlude)&nbsp;for&nbsp;inclusion&nbsp;in&nbsp;other&nbsp;HTML.
+	-r2&nbsp;omit&nbsp;just&nbsp;the&nbsp;time&nbsp;stamp.&nbsp;-r1&nbsp;is&nbsp;equivalent&nbsp;to&nbsp;-r.
+&nbsp;&nbsp;&nbsp;-t&nbsp;display&nbsp;built-up&nbsp;items&nbsp;in&nbsp;textstyle&nbsp;equations&nbsp;(default&nbsp;in-line).
+&nbsp;&nbsp;&nbsp;-u?&nbsp;unicode&nbsp;character&nbsp;encoding.&nbsp;Default&nbsp;2&nbsp;(unicode&nbsp;3.2).&nbsp;0&nbsp;(iso8859-1)
+&nbsp;&nbsp;&nbsp;-v&nbsp;give&nbsp;verbose&nbsp;commentary.&nbsp;
+&nbsp;&nbsp;&nbsp;-w?&nbsp;html&nbsp;writing&nbsp;style:&nbsp;0&nbsp;no&nbsp;title&nbsp;construction.&nbsp;1&nbsp;use&nbsp;head/body.&nbsp;2&nbsp;XHTML.
+&nbsp;&nbsp;&nbsp;-y?&nbsp;equation&nbsp;style:&nbsp;bit&nbsp;1&nbsp;compress&nbsp;vertically;&nbsp;bit&nbsp;2&nbsp;inline&nbsp;overaccents.
+&nbsp;&nbsp;&nbsp;-xmakeindx&nbsp;&nbsp;specify&nbsp;a&nbsp;non-standard&nbsp;makeindex&nbsp;command&nbsp;line.
+
+</pre>
+
+ 
+<a 
+id="stdin30"></a><a 
+id="stdout30"></a><a 
+id="stderr30"></a>
+With no arguments other than switches starting with a "-", 
+the program is a filter, i.e. it reads from stdin and writes to stdout.
+In addition, diagnostic messages concerning its detection of unknown
+or untranslated constructs are sent to stderr. If these standard
+channels are not redirected using <tt>&lt;</tt> and <tt>&gt;</tt>, then the
+input is read from the command line, and both output and error
+messages are printed on the screen.
+
+<div class="p"><!----></div>
+If a non-switch argument is present, it is assumed to be the name of
+the input file. The file must have extension ".tex" but the extension
+may be omitted. The output file is then constructed from the argument
+by removing the extension ".tex" if specified, and adding ".html".
+
+<div class="p"><!----></div>
+<span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;is extremely fast in default mode on any reasonable hardware.
+Conversion of even large <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;files should be a matter of a second or
+two.<a 
+id="CGI_script30"></a>
+This makes it possible to use <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;in a CGI script to output HTML
+directly from <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;source if desired; (stderr may then need to be redirected.)
+
+<div class="p"><!----></div>
+ <a id="tth_sEc4"></a><h2>
+4&nbsp;&nbsp;Messages<a 
+id="messages40"></a><a 
+id="Error40"></a><a 
+id="warning40"></a></h2>
+
+<div class="p"><!----></div>
+Messages about <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>'s state and its assessment of the <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;it is
+translating are output always to the <tt>stderr</tt> stream, which
+normally displays on the console, but under Un*x type systems can be
+redirected to a file if necessary. Normally these messages are one of
+three types:
+
+<div class="p"><!----></div>
+
+<h4>Error Messages</h4> 
+These start <tt>****&nbsp;Error:</tt> and indicate some improper condition or
+error either in <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;or in the <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;of the file being
+translated. Some errors are fatal and cause <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;to stop. On others
+it will continue, but the <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;file probably should be corrected in
+order to get correct output.
+
+<div class="p"><!----></div>
+
+<h4>Warnings</h4>
+These start <tt>****</tt> but without reporting <tt>Error</tt>. They are
+messages by which <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;indicates aspects of the translation process
+that may not be fully satisfactory, usually because of known limitations,
+but which quite likely will not prevent the translated file from
+displaying correctly, and so do not <em>necessarily</em> require
+intervention. Examples include the use of some dimensions, glue, or similar
+<span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;commands that have no HTML equivalent. 
+
+<div class="p"><!----></div>
+
+<h4>Informational and external</h4>
+Lines with no <tt>****</tt> are either informational, meaning the state
+of the translation is not considered abnormal, or else they may come
+from external programs (e.g. makeindex), over which <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;has no
+control.
+
+<div class="p"><!----></div>
+The switch <tt>-v</tt> causes more verbose messages to be output, which
+may be helpful for understanding why errors are reported. A higher
+level of verbosity <tt>-V</tt> can be invoked, but is intended primarily
+for internal debugging of <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;and will rarely be comprehensible!
+
+<div class="p"><!----></div>
+The presumption that lies behind <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;message design is that the file
+being translated has been debugged using <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;or <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;to remove
+syntax errors. <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;is not good at understanding or reporting <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;syntax errors and counts only the lines in the main <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;file, not
+those in files read by <tt>\input</tt>. Therefore error reporting by
+<span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;does not reach even the low standard of clarity set by <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;and
+<span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;error messages. Although <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;files <em>can</em> be debugged using
+<span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;alone, since it is very fast, the process is not recommended for
+inexpert <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;users. Moreover, since <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;understands both <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;and
+<span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;simultaneously, it can parse some files that <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;or <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;
+separately cannot.
+
+<div class="p"><!----></div>
+ <a id="tth_sEc5"></a><h2>
+5&nbsp;&nbsp;Mathematics</h2>
+
+<div class="p"><!----></div>
+     <a id="tth_sEc5.1"></a><h3>
+5.1&nbsp;&nbsp;Equations</h3>
+
+<div class="p"><!----></div>
+<a 
+id="HTML_3.251"></a><a 
+id="HTML_4.051"></a><a 
+id="font_face51"></a> Equations are translated internally into HTML. <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;uses HTML tables
+ for layout of built-up fractions in display equations. It also uses
+ the HTML tag  &lt; font face="symbol" &gt;  to render Greek and large
+ delimiters etc. Untranslatable <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;math tokens are inserted
+ verbatim.
+
+<div class="p"><!----></div>
+<a 
+id="LaTeX2HTML_differences51"></a>The internal approach to equation translation is a major area where
+<span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;departs from the philosophy of <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>2html and its
+derivatives. <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;
+does not use any images to try to represent hard-to-translate
+constructs like equations.  Instead it uses the native ability of HTML
+to the fullest in providing a semantically correct rendering of the
+equation. The aesthetic qualities obtained are in practice no worse on
+average than <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>2html's inlined images, which are generally slightly
+misaligned and of uncertain scaling relative to the text. Some
+limitations in the HTML code are inevitable, of course, but one ends
+up with a compact representation that can be rendered directly by the
+browser without the visitor having to download any additional helper
+code (e.g. Java equation renderer).
+
+<div class="p"><!----></div>
+<a 
+id="italic_equation_style51"></a>
+<b>The option [-i]&nbsp;&nbsp;</b> to <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;<b>makes italic the default</b>
+font within equations, and thus the style more <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>-like. The italic
+font appearance in browsers is not as satisfactory as <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>'s math
+italic, so for many documents roman looks better.
+
+<div class="p"><!----></div>
+<a 
+id="spacing51"></a>
+<b>Spacing&nbsp;&nbsp;</b> in equations is handled slightly differently by <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;than
+by <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>. The reason is that most browsers use fonts that will crowd the
+characters horizontally too close for comfort in many cases (for
+example: M<sub>&#124;&#124;</sub>/2). Also, built-up HTML equations are more
+spread out vertically than in <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>. Therefore <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;equations look better
+if spaces are added between some characters. So <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;<em>
+does not</em> remove spaces in the original <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;file between characters in
+equations. The author is thus able to control this detail of layout in
+the HTML without messing up their <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;file - since <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;will ignore
+any spaces inserted. Legacy <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;code that contains a lot of spurious
+whitespace (ignored by <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>) may, as a result, occasionally become too
+spread-out when translated.
+
+<div class="p"><!----></div>
+     <a id="tth_sEc5.2"></a><h3>
+5.2&nbsp;&nbsp;In-line Equation Limitations<a 
+id="limitations52"></a></h3>
+
+<div class="p"><!----></div>
+<a 
+id="in-line_equations_arrays52"></a> <a 
+id="in-line_equations_fractions52"></a><a 
+id="in-line_equations_overaccents52"></a> Some <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;capabilities are
+extremely difficult or impossible to translate into HTML, because of
+browser limitations, and are best avoided if possible. Arrays or
+matrices or built-up fractions in <b>in-line equations</b> cannot be
+properly supported because tables cannot be placed in-line in HTML.
+<span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;output often will be strangely disjointed.
+<a id="inline">
+</a>
+<a 
+id="in-line_equations_built-up_display52"></a>
+
+ As an option, <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;provides switch <tt>-t</tt> to convert inline
+equations that use built-up constructs into a sort of half display,
+half in-line equation. Each time a new in-line equation is encountered
+[<tt>$&nbsp;...&nbsp;$</tt> or <tt>\(&nbsp;...&nbsp;\)</tt>] that needs to be built up, an
+HTML table that starts a new line is begun, and the text then flows on
+afterwards. For example
+<br /><table border="0" align="left"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">1<hr noshade="noshade" />2 + n<br /></td><td nowrap="nowrap" align="center"></td></tr></table><br />
+This option gives a slightly strange layout for simple equations
+but is a big improvement for some situations, e.g. in-line matrices.
+
+
+<div class="p"><!----></div>
+Likewise most over- and under-accents, and indeed anything that
+requires specific placement on the page other than simple subscript or
+superscript and underline, cannot be rendered <em>in-line</em> in plain
+HTML, although <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;will render them well in
+<em>displaystyle</em>. These latter constructs are nevertheless commonly
+used in in-line <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>. By default <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;renders these constructs in a
+relatively intuitive way. For example <tt>$\hat{a}$</tt> is rendered
+<span class="overacc1">&#8743;</span>a. The result is rarely elegant but it is
+unambiguous. 
+
+<div class="p"><!----></div>
+     <a id="tth_sEc5.3"></a><h3>
+5.3&nbsp;&nbsp;Mathematics Layout Style Improvement using CSS</h3><a id="yswitch">
+</a>
+<a 
+id="mathematics_layout_style53"></a>
+<a 
+id="Style_Sheets53"></a><a 
+id="CSS53"></a>
+
+<div class="p"><!----></div>
+Some of the mathematics rendering limitations just mentioned can be
+ overcome using Cascading Style Sheets. These are an extension of HTML
+ that allows finer control over the layout. Most modern browsers
+ support some fraction of the CSS specification, but historically its
+ implementation has been slow and buggy. So it used to be awkward and
+ dangerous to adopt CSS for authoring because of never knowing whether
+ one was producing HTML that would simply be broken on a particular
+ browser. Moreover using style sheets slows down the browser's
+ rendering.
+
+<div class="p"><!----></div>
+ <a 
+id="switches_-y153"></a><a 
+id="compression_vertical53"></a>
+<b>Vertical Compression&nbsp;&nbsp;</b> of the otherwise sometimes rather
+spread-out mathematics is implemented on <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;using a simple built-in
+style sheet to reduce unwanted vertical space. The implementation
+works around the different idiosyncrasies of the browsers'
+implementations as well as it can, and is designed to degrade
+gracefully in browsers without CSS support or with the support
+switched off. This compression can be controlled by the switch <tt>-y</tt>,
+which permits a numeric argument, e.g. <tt>-y1</tt>.  Compression is on
+by default, which corresponds to the first bit of the -y switch value
+being 1 (in other words the value is odd).  It may be switched off by
+using the switch <tt>-y</tt> with an even numeric argument (or none at
+all), e.g. <tt>-y2</tt> or <tt>-y</tt>.
+
+<div class="p"><!----></div>
+<a 
+id="switches_-y253"></a>
+<b>In-line over-accents&nbsp;&nbsp;</b> can be rendered explicitly using the
+relative positioning available in CSS2. The result is visually
+ preferable to the the indicative base rendering. However, it does not
+ fall-back gracefully, and the application of over accents to
+ multiple-character groups produces a poorly aligned result.
+  Nevertheless, since <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;version 3.87 it is used as default. It can
+ be turned off using the <tt>-y</tt>  switch with the second bit (2) zeroed
+ in the numeric argument. For example <tt>-y1</tt> or <tt>-y0</tt> turns
+ it off.
+
+<div class="p"><!----></div>
+ <a id="tth_sEc6"></a><h2>
+6&nbsp;&nbsp;Features dependent on external programs.</h2>
+
+<div class="p"><!----></div>
+     <a id="tth_sEc6.1"></a><h3>
+6.1&nbsp;&nbsp;Independence of [La]<span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;installation and the -L switch.</h3>
+<a id="LaTeXfiles">
+</a>
+<a 
+id="LaTeX2HTML_differences61"></a><a 
+id="portability61"></a> A major difference
+between <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;and LaTeX2HTML is that <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;does not call the <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;or tex programs at all by default, and is not specifically dependent
+upon these, or indeed any other (e.g. PERL), programs being installed
+on the translating system. Its portability is therefore virtually
+universal.
+
+<div class="p"><!----></div>
+<a 
+id="auxiliary_files61"></a><a 
+id="switches_-L61"></a>Forward references in <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;are handled by multiple passes that write
+auxiliary files. <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;does only a single pass through the source.  If
+you want <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;to use <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;constructs (e.g. tableofcontents,
+bibliographic commands, etc.) that depend on auxiliary files, then
+you <em>do</em> need to run <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;on the code so that these files are
+generated. Alternatively, the <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;switch
+<tt>-a</tt><a 
+id="a61"></a><a 
+id="switches_-a61"></a>  
+causes <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;automatically to attempt to run latex on the file,
+if no auxiliary file .aux exists.
+
+<div class="p"><!----></div>
+When run specifying a filename on the command line as a non-switch
+argument, <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;constructs the name of the expected auxiliary <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;files in the usual way and looks for them in the same directory as the
+file. 
+If you are using <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;as a filter, you must tell <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>, using the
+switch <tt>-Lfilename</tt>, the base file name of these auxiliary files
+(which is the name of the original file omitting the extension). If
+<span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;cannot find the relevant auxiliary file because you didn't run
+<span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;and generate the files or didn't include the switch, then it
+will omit the construct and warn you.<a 
+id="references_forward61"></a>
+Forward references via ref will not work if the .aux file is
+unavailable, but backward references will. The -L switch with no
+filename may be used to tell <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;that the document being translated
+is to be interpreted as a <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;file even though it lacks the usual
+<span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>header commands. This may be useful for translating single
+equations that (unwisely) use the <tt>\frac</tt> command.
+
+<div class="p"><!----></div>
+     <a id="tth_sEc6.2"></a><h3>
+6.2&nbsp;&nbsp;BibTeX bibliographies<a 
+id="Bib_TeX_62"></a><a id="bibtex">
+</a></h3>
+
+<div class="p"><!----></div>
+<span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;supports bibliographies that are created by hand using
+<tt>\begin{thebibliography}</tt> etc. Such bibliographies do not require
+anything beyond the .aux file. <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;<em>also</em> supports
+bibliographies created using Bib<span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;from a biblography database. The
+<tt>filename.bbl</tt> file is input at the correct place in the
+document. However, this <tt>filename.bbl</tt>  is <em>not</em> created
+automatically by <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>. In addition to running <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;on the source
+file to create the auxiliary file, you must also execute
+<tt>bibtex&nbsp;filename</tt> in the same directory, to create the
+<tt>filename.bbl</tt> file, and then run <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;again to get the
+references right. (This is, of course, no more than the standard
+procedure for using Bib<span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;with <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;but it must be done if you
+want <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;to get your bibliography right). If you don't create the
+.bbl file, or if you create it somewhere else that <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;does not
+search, then naturally <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;won't find it. Since the Bib<span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;process
+is relatively tortuous, <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;offers an alternative. Using the -a
+switch<a 
+id="a62"></a><a 
+id="switches62"></a> with <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;will cause it
+to attempt to generate the required .bbl file automatically using
+Bib<span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;and <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>.
+
+<div class="p"><!----></div>
+There are many different styles for bibliographies and a large number
+of different <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;extension packages has grown up to implement
+them, which <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;does not support. More recently, a significant
+rationalization of the situation has been achieved by the package
+<tt>natbib</tt>.  <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;has rudimentary support built in for its
+commands <tt>\citep</tt> and <tt>citet</tt> in the default author-date
+form without a second optional argument.  A style file for
+<tt>natbib</tt> is distributed with <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>gold&nbsp;which makes it possible to
+accommodate most of its more useful styles and commands and easily switch from
+author-date citation to numeric citation.
+
+<div class="p"><!----></div>
+     <a id="tth_sEc6.3"></a><h3>
+6.3&nbsp;&nbsp;Indexing<a 
+id="indexing63"></a></h3>
+
+<div class="p"><!----></div>
+<span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;can make an extremely useful hyperlinked index using <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;automatic indexing entries.  But indexing an HTML document is different
+from indexing a printed document, because a printed index refers to
+page numbers, which have no meaning in HTML because there are no page
+breaks. <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;indexes <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>documents <em>by section number</em> rather
+than by page; assuming, of course, that they have been prepared with
+index entries in the standard <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;fashion.
+
+<div class="p"><!----></div>
+<a 
+id="makeindex63"></a> When processing a <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;file that contains the
+<tt>\makeindex</tt> command in its preamble, <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;will construct an
+appropriately cross-hyperlinked index that will be input when the
+command <tt>\printindex</tt> is encountered, which <em>must be after</em>
+all the index references <tt>\index{&nbsp;...&nbsp;}</tt> in the document. <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;does this independently of <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>, but not of the subsidiary program
+<tt>makeindex</tt> that is normally used with <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;to produce the
+final index. <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;creates its index entries in a file with extension
+.tid (Tth InDex). Unfortunately the standard form that
+<tt>makeindex</tt> expects for compound numbering of its sections or
+pages is "1-2", separated by a dash. TtH changes that to "1.2"
+using a point, and has to output a style file <tt>filename.mst</tt> ,
+where <tt>filename</tt> is the base filename of the latex file being
+processed, to enable makeindex to handle this form.  When the
+<tt>\printindex</tt> command is encountered, <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;closes the .tid file and
+runs the command
+
+<pre>
+makeindex&nbsp;-o&nbsp;filename.tin&nbsp;filename.tid
+
+</pre>
+on it.  This creates an output file <tt>filename.tin</tt>, and
+then <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;reads that file in as its index.  If, instead of creating
+an index file during <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;processing, one wants to use with <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;an
+index file already created, all that is needed is to <em>remove</em> the
+<tt>\makeindex</tt> command from the top of the <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;source and copy
+the existing .ind file to a .tin file that will be input by
+<tt>\printindex</tt>. No indexing files will be written or deleted
+without a <tt>\makeindex</tt> command in the document.
+
+<div class="p"><!----></div>
+The <tt>\makeindex</tt> command, if present, will also cause <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;to add
+<a 
+id="Table_of_Contents_Index_entry63"></a>
+a linked entry called "Index" 
+to the end of any table of contents. This entry is a highly desirable
+feature for an HTML file, but if there is no <tt>\printindex</tt>
+command at the end of the document, the index will not exist, so the
+reference will be non-existent.
+
+<div class="p"><!----></div>
+On some operating systems with file name length restrictions, the
+makeindex program is called makeindx. Therefore a <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;switch is
+provided: <tt>-xcommandline</tt>, which substitutes <tt>commandline</tt>
+for the default call <tt>makeindex</tt>. Therefore, <tt>-xmakeindx</tt>
+will switch to the correct program name on one of these limited
+operating systems. This switch also allows additional parameters or
+switches to be passed to makeindex. If the <tt>-xcommandline</tt>
+contains any spaces, then it is interpreted as the complete
+command-line (not just the first word of the command-line), in which
+the base filename may be referenced up to 3 times as "%s". For
+example
+<tt>-x"makeindex&nbsp;-s&nbsp;style.sty&nbsp;-o&nbsp;%s.tin&nbsp;%s.tid"</tt> will handle the
+index using a different style file "style.sty".
+If you don't have the makeindex program, you can't create indexes with
+<span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;or <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>, except by hand.
+
+<div class="p"><!----></div>
+All of the index file processing naturally requires that <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;have
+write permission for the directory in which the original <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;file
+(specified by the -L switch) resides.
+
+<div class="p"><!----></div>
+<a 
+id="switches_-j63"></a><a 
+id="index_layout_in_one_or_two_columns_and_the_equivalent_page_length63"></a>
+<b>Layout of the index&nbsp;&nbsp;</b> can be controlled with the switch
+<tt>-j</tt> with an immediately following argument that specifies the
+minimum number of lines in a column before the column will be
+terminated. Because index entries are usually short, books almost
+always adopt a two-column format for the index. <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;will also do so
+by default, but since an HTML document has no page breaks, the question
+arises how long the individual columns are allowed to be. The default
+(no switch) is equivalent to <tt>-j20</tt>. A switch <tt>-j</tt> with no
+argument is equivalent to specifying a very large number of lines,
+with the result that only one column is used.  A switch <tt>-j1</tt>
+will cause the columns to break at every indexspace, that is generally
+at every new letter, so letter lists will alternate between columns.
+
+<div class="p"><!----></div>
+<a 
+id="glossary63"></a>       <a id="tth_sEc6.3.1"></a><h4>
+6.3.1&nbsp;&nbsp;Glossaries.</h4> <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;has a parallel set of commands for
+glossary construction, replacing "index" with "glossary".
+However, there is no <tt>\printglossary</tt> command and the .glo file
+that <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;produces cannot be handled by the makeindex program
+without a specific style file being defined. Therefore glossary
+entries are highly specialized and rarely used. <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;does not support
+a glossary separate from the index. Instead it simply defines the
+command as <tt>\def\glossary{\index}</tt> with the result that glossary
+entries are placed in the index. It may be necessary to add
+<tt>\makeindex</tt> and <tt>\printindex</tt> commands to make <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;handle
+the glossary entries for a file that has only a <tt>\makeglossary</tt>
+command.
+
+<div class="p"><!----></div>
+     <a id="tth_sEc6.4"></a><h3>
+6.4&nbsp;&nbsp;Graphics Inclusion: epsfbox/includegraphics<a 
+id="graphics_files64"></a></h3>
+<a id="epsf">
+</a>
+The standard way in plain <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;to include a graphic is using the epsf
+macros. The work is done by \epsfbox{file.[e]ps} which
+<span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;can parse. By default <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;produces a simple link to such a
+postscript file, or indeed any format file.
+
+<div class="p"><!----></div>
+<a 
+id="ps2gif64"></a><a 
+id="ps2png64"></a> Optionally <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;can use a more appropriate
+graphics format, possibly using a user-supplied (script or) program
+called <tt>ps2png</tt> or <tt>ps2gif</tt> to convert the postscript file
+to a png<a href="#tthFtNtAAE" id="tthFrefAAE"><sup>4</sup></a>  or gif
+file, "file.png" or "file.gif". ["file" is the name of the
+original postscript file without the extension and png or gif are
+interchangeable as far as matters for this
+description]. When the switch -e1 or -e2 is specified, if
+"file.png", "file.gif" or "file.jpg" already exists in the same
+directory as implied by the reference to "file.ps" then no
+conversion is done and the file found is used instead.  That graphics
+file is then automatically either linked (-e1) or inlined (-e2) in the
+document. If no such file is found, <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;tries to find a postscript
+file with extension that starts either .ps or .eps and convert it,
+first using <tt>ps2png</tt> then, if unsuccessful, <tt>ps2gif</tt>.  Linux
+(un*x) <tt>ps2png</tt> and <tt>ps2gif</tt> scripts using Ghostscript and
+the netpbm utilities for this purpose are included with the
+distribution.  A comparable batch program can be constructed to work
+under other operating systems
+<a href="#tthFtNtAAF" id="tthFrefAAF"><sup>5</sup></a><a id="ps2gifprob">
+</a>  or else the conversion can be done by
+hand. Naturally you need these utility programs or their equivalent on
+your system to do the conversion.  The calling command-line for
+whatever <tt>ps2png</tt> (or gif) is supplied must be of the form:
+
+<pre>ps2png&nbsp;inputfile.ext&nbsp;outputfile.ext
+</pre>
+ The program must
+have permission to write the outputfile (file.png) in the directory in
+which the file.ps resides. 
+
+<div class="p"><!----></div>
+<a 
+id="icons64"></a>By popular request, a third graphics option -e3 for generating icons is
+now available. If no previously translated graphics file,
+e.g.&nbsp;"file.png"  exists, <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;passes to <tt>ps2gif</tt> (or png) a third
+argument consisting of the name, "file_icon.gif", of an icon file.
+<tt>ps2gif</tt> is expected to create it from the same postscript file. In
+other words the call becomes
+
+<pre>ps2gif&nbsp;file.eps&nbsp;file.gif&nbsp;file_icon.gif
+</pre>
+ This third argument is then the file that is
+inlined, while the larger gif file named "file.gif" is linked such
+that clicking on the icon displays the full-size gif file. The icon
+will not be created if "file.gif" already exists, because
+<tt>ps2gif</tt> will not then be called.
+
+<div class="p"><!----></div>
+<a 
+id="includegraphics64"></a>The <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>2e command \includegraphics{...} and the older
+\[e]psfig{file=...} are treated the same as \epsfbox.
+Their optional arguments are ignored.
+
+<div class="p"><!----></div>
+<a 
+id="postscript64"></a><a 
+id="jpeg64"></a><a 
+id="gif64"></a>If the extension is omitted for the graphics file specification, then
+.ps or .eps is tried.  If the extension of the file specified is
+non-null and not .ps or .eps, no conversion is done but the file
+is referenced or in-lined as an image. In effect, then, <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;supports
+postscript, encapsulated postscript, gif, and jpeg, plus any future
+formats that become supported by common browsers. However, <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;does
+not support these other formats, so it will give an error message if
+it can't find a postscript file, unless you specify the bounding box,
+thus preventing <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;interrogating the file.
+
+<div class="p"><!----></div>
+     <a id="tth_sEc6.5"></a><h3>
+6.5&nbsp;&nbsp;Picture Environments<a 
+id="picture_environment65"></a></h3>
+<a id="pict">
+</a>
+The picture environment cannot be translated to HTML. Pictures using
+the built-in <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;commands must be converted to a graphics file such
+as a gif, and then included using <tt>\includegraphics</tt>, see
+<a href="#epsf">6.4</a>. The switch <tt>-a</tt><a 
+id="a65"></a><a 
+id="switches_-a65"></a>,
+ causes <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;to attempt automatic 
+picture conversion using a user-supplied routine <tt>latex2gif</tt>.
+When this switch is used, <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;outputs the picture to a file pic<i>n</i>.tex,
+where <i>n</i> is the number of the picture (if there does not already exist
+a file pic<i>n</i>.gif). It then calls the command <tt>latex2gif&nbsp;picn</tt>
+which must be a command (e.g. a script using <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>, dvips, etc.) on
+the system, which converts the file pic<i>n</i>.tex to a file pic<i>n</i>.gif. An
+example linux script is included in the distribution but this
+conversion script is dependent on the system and so is entirely the
+user's responsibility. For viewing the results, the files pic<i>n</i>.gif
+must be accessible to the browser in the same directory as the HTML
+files, then they will be included in-line. It is impossible for a
+picture environment to be converted in this automatic fashion if it
+contains macros defined somewhere else in the original <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;file,
+because the macros will then be undefined in the picture file that is
+extracted, and <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;will be stumped. In that case, manual
+intervention is necessary.
+
+<div class="p"><!----></div>
+ <a id="tth_sEc7"></a><h2>
+7&nbsp;&nbsp;Tabular Environment or Halign for Tables</h2> 
+<a id="tabhal">
+</a>
+The tabular environment is the recommended way to construct tables in
+<span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>. In plain <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>, although <tt>\settabs</tt> etc.&nbsp;is supported, the
+<tt>\halign{&nbsp;...&nbsp;}</tt> command is recommended.  (The <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;tabbing
+environment is <em>not supported</em> by <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;because it is antithetical
+to the spirit of HTML document description, and because it is an
+extremely complicated construct. If you are lucky, <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;will not mess
+up your tabbing environment too much, but it makes no attempt to
+interpret it properly.) Considerable effort has been expended to
+translate the tabular environment, including interpreting the
+alignment argument of the environment, into as near an equivalent in
+HTML as reasonably achievable<a href="#tthFtNtAAG" id="tthFrefAAG"><sup>6</sup></a>. However, the limitations of HTML tables impose
+the following limitations on the translation.
+
+<div class="p"><!----></div>
+     <a id="tth_sEc7.1"></a><h3>
+7.1&nbsp;&nbsp;Tabular</h3>
+
+<ul>
+<li> HTML tables have either all cells bordered with rules or
+none. <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;therefore decides whether to use a bordered table by
+examining the first character of the alignment argument. If is it
+<tt>|</tt>, then the table is bordered, otherwise not.
+<div class="p"><!----></div>
+</li>
+
+<li> HTML tables are not capable of simultaneously aligning part of a
+cell's contents to the right and part to the left, which is
+automatically done by <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;on some occasions when @-strings are used.
+For example if the alignment argument is <tt>|l@{~units}|r|</tt>, <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>
+will align "units" to the right of the first cell. <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;can't. In
+some unbordered cases <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;will try for the same effect by putting the
+closing @-string in the following cell. This won't always give a good
+result.
+<div class="p"><!----></div>
+</li>
+
+<li> @-strings and <tt>*{num}</tt> code repetition are not permitted in the
+alignment argument to <tt>\multicolumn</tt>, but they are in the main
+tabular alignment argument.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+     <a id="tth_sEc7.2"></a><h3>
+7.2&nbsp;&nbsp;Halign</h3>
+
+<div class="p"><!----></div>
+<a 
+id="halign72"></a>
+<ul>
+<li> <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;decides whether to use a bordered table in Plain <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>
+by examining the entire halign template (i.e.&nbsp;the material up to the
+first <tt>\cr</tt> of the halign). If it contains the command
+<tt>\vrule</tt> <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;makes the table bordered, otherwise not.
+<div class="p"><!----></div>
+</li>
+
+<li> <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;decides on the alignment of the cell contents by looking for
+<tt>\hfill</tt> or <tt>\hss</tt> commands in the cell template. The
+default is to left-align the cell. If one of these spacing commands is present
+in the template prior to the <tt>#</tt> for this cell, then the cell
+will be right-aligned unless such a command also appears after the
+<tt>#</tt>, in which case the cell is centered. Again HTML is not capable of
+applying different alignments to different parts of a cell. So results may
+sometimes be different from <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>. However, if most of this paragraph
+sounds totally obscure to you, don't worry; <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;will probably do the
+right thing.
+<div class="p"><!----></div>
+</li>
+
+<li> The <tt>\multispan</tt> command is supported, giving a centered
+multicolumn cell, and <tt>\omit</tt> is treated as <tt>\multispan1</tt>.
+However, <tt>\span</tt> is currently not supported.
+<div class="p"><!----></div>
+</li>
+
+<li> In <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;each cell of an halign table resides within its own
+  implied brace group. Because <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;does not implement this implied
+  group, errors can arise. Even HTML table errors that lead to parse
+  errors with XML parsers can arise when the cells have boxes in them.
+  If this happens, the fix is to put an explicit brace group round the
+  offending cell in the template line like this example:
+
+<pre>
+&nbsp;&nbsp;\halign{#\quad\hfil&nbsp;&amp;{\vbox{\hsize\0.5\hsize&nbsp;#}}\cr
+&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&amp;&nbsp;V-box&nbsp;material\cr
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+</pre>
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+     <a id="tth_sEc7.3"></a><h3>
+7.3&nbsp;&nbsp;Longtables</h3>
+<a 
+id="longtable73"></a><a id="longtab">
+</a>
+
+<div class="p"><!----></div>
+
+<ul>
+<li>The longtable environment is supported, but it is always centered. It
+is converted into a standard tabular inside a table environment
+because there is no need to accommodate page breaks (the main point of
+longtable) in HTML.
+<div class="p"><!----></div>
+</li>
+
+<li> The caption (including caption*) command is
+translated correctly but set as part of the HTML table; so, if the
+caption is longer than the longest row of the table, it will cause the
+whole table width to expand, possibly up to 100% of the
+line-width.
+<div class="p"><!----></div>
+</li>
+
+<li> The commands endhead, endfirsthead, endfoot, endlastfoot,
+are ignored, but their immediately preceding commands are therefore
+inserted into the table. That is probably not desirable for the foot
+commands.  Longtable footers are not translated into footers.
+<div class="p"><!----></div>
+</li>
+
+<li> The <tt>\kill</tt>  command is ignored. Its text is spuriously inserted.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+ <a id="tth_sEc8"></a><h2>
+8&nbsp;&nbsp;Boxes, Dimensions, and fills</h2>
+
+<div class="p"><!----></div>
+Boxes, dimensions, and fills are rarely appropriate for web documents
+because they imply an attempt to control the fine details of
+layout. Browsers make their own choices about layout of a document in
+HTML. For example they make the lines fit whatever size of window
+happens to be present. This dynamic formatting makes mincemeat of most
+detailed <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;layout. In fact, if you want your readers to see
+exactly what you see, that is impossible with HTML, and you should use
+some other representation of your document.
+
+<div class="p"><!----></div>
+There are nevertheless many cases when a <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;document containing
+boxes, dimensions, and fills needs to be translated.  Limited
+translation of these constructs is supported. They are translated,
+where appropriate and possible, into HTML tables with widths and
+vertical skips estimated to give a reasonable result on a browser. It
+must be stressed that accurate translation is inherently impossible
+because browsers deal in pixel sizes and default font sizes that vary
+and are out of the control of the publisher.
+
+<div class="p"><!----></div>
+The types of box usage that translate quite well are when things like
+
+<pre>
+\hbox&nbsp;to&nbsp;\hsize{The&nbsp;left&nbsp;\hfil&nbsp;the&nbsp;Right}
+\vbox{\hsize=2in&nbsp;Matter&nbsp;to&nbsp;be&nbsp;set&nbsp;in&nbsp;horizontal&nbsp;mode&nbsp;to&nbsp;a&nbsp;
+&nbsp;&nbsp;limited&nbsp;hsize}
+\makebox[0.6\hsize][r]{Stuff&nbsp;to&nbsp;the&nbsp;right&nbsp;of&nbsp;the&nbsp;makebox.}
+\framebox{check}
+
+</pre>
+are on a line by themselves.
+You get:
+
+<div class="p"><!----></div>
+<table align ="left" border="0" width="100%"><tr><td>
+The left </td><td align="right"> the Right</td></tr></table><!--hbox-->
+<br clear="all" /><table border="0"><tr><td></td><td><table border="0"><tr><td></td><td width="200">
+ Matter to be set in horizontal mode to a limited hsize
+</td></tr></table><!--vbox-->
+</td><td>
+</td></tr></table><!--hboxt-->
+<div class="p"><!----></div>
+<table align ="left" border="0" width="60%"><tr><td align="right">
+Stuff to the right of the makebox.</td></tr></table><!--hbox-->
+<br clear="all" /><table align="left" border="1"><tr><td width="0" align="center">
+check</td></tr></table><!--hbox-->
+Usages that translate poorly tend to be boxes within a line of
+text. That is because current HTML table implementations have to start
+a new line unless they happen to be adjacent to a table already. Thus
+an hbox in a line will give a line break that you might not have
+wanted. This behaviour is really a bug in the browsers, but we are
+currently stuck with it. The behaviour of HTML tables is buggy
+[see <a href="#tablebug">13.5</a>] when their alignment is specified, which means that
+strange results are likely if more than one box on a line is being
+set. Boxes in equations are troublesome. The only type that is
+reasonably supported is <tt>\mbox</tt> which is often used in <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;for
+introducing text inside equations.
+
+<div class="p"><!----></div>
+Negative skips are <em>not supported at all</em>.
+
+<div class="p"><!----></div>
+The only important dimension parameter that is currently interpreted
+is <tt>\hsize</tt>. It is what controls the width of a vbox.  It can be
+reset using the plain <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;format e.g.&nbsp;<tt>\hsize&nbsp;=&nbsp;3in</tt> or scaled
+or advanced e.g.&nbsp;<tt>\hsize=0.6\hsize</tt>  but only within a group. It
+makes no sense for the HTML file to try to specify the width of the
+line at the outermost level. That is the browser's business.
+
+<div class="p"><!----></div>
+New dimensions can be defined, set, advanced, scaled and used to set
+other dimensions including <tt>\hsize</tt>. 
+
+<div class="p"><!----></div>
+<span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;trys valiantly to mimic the sort of text alignment that is
+obtained using glue such as <tt>\hfil</tt> and <tt>\hss</tt>, provided it
+is inside a box. However, the alignment algorithm of HTML tables makes
+it impossible to obtain fills with exactly equal sizes. So don't be
+surprised if some results looks disagreeable. Moreover, <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;will
+completely ignore the glue outside an hbox, and it doesn't know
+the difference between <tt>\hfil</tt> and <tt>\hfill</tt>, etc.
+
+<div class="p"><!----></div>
+ <a id="tth_sEc9"></a><h2>
+9&nbsp;&nbsp;<span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;command definitions and other extensions</h2>
+
+<div class="p"><!----></div>
+     <a id="tth_sEc9.1"></a><h3>
+9.1&nbsp;&nbsp;Delimited-parameter macros and
+Conditionals<a 
+id="definitions_delimited91"></a></h3>
+
+<div class="p"><!----></div>
+Delimited parameter definitions are fully supported. However, macros
+in some style files are written in such a way that the recognition of
+the delimited parameter depends on other <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;behaviour
+(e.g. dimensions) that are not supported or handled differently by
+<span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>. In such cases it is all too possible for the delimited parameter
+<em>not</em> to be matched, resulting in a runaway argument situation.
+Thus, delimited parameter macros are especially dangerous when using
+<span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>, or indeed any process other than <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;itself. (And they are
+never exactly "safe <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>"). The recognition of these definitions can
+be disabled using the -d switch, in which case the definitions are
+simply discarded.
+
+<div class="p"><!----></div>
+<a 
+id="if91"></a>Conditionals such as <tt>\if</tt>, <tt>\ifnum</tt> and so on are
+supported, as listed above (<a href="#ifs">1.1.2</a>). In <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;they have one
+syntax limitation. Further `if' commands are not permitted in, or as part of
+a command expanded in, the tokens, characters, or numbers being
+tested. Thus, an example of truly perverse usage such as<br />
+<tt>\ifnum&nbsp;1=\if&nbsp;ab&nbsp;1\else&nbsp;2\fi&nbsp;&nbsp;True&nbsp;\else&nbsp;False&nbsp;\fi</tt><br />will likely
+break. Nested `if' constructs <em>are</em> permitted in the conditional
+text, however, so<br />
+<tt>\ifnum&nbsp;1=1&nbsp;True\if&nbsp;ab&nbsp;-true\else&nbsp;-false\fi&nbsp;\else&nbsp;False&nbsp;\fi</tt><br />is fine.
+Because <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;does not internally resemble <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>, whereas the result of
+conditionals such as <tt>\if</tt> and <tt>\ifx</tt> may depend on internal
+representations, there cannot be 100% compatibility of such tests at
+the lowest level. Still, tests on externally defined commands ought
+generally to give correct results. When authoring documents in <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;one
+is generally well advised to avoid conditionals.
+
+<div class="p"><!----></div>
+Although <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;supports a remarkably complete subset of <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>, it does
+not support all of the complicated primitive details of
+<span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>, partly because that would be unnecessary.<a 
+id="catcodes91"></a> 
+For example, practically any <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;that redefines <b>category codes</b>
+(other than @ which <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;treats universally as a letter) will break because
+<span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;knows nothing about the concept of category codes. (If you don't
+know much either, about this unfortunate aspect of <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>, join the vast
+majority of <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;users!)  A related example is that <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;expects <b>
+only letters or @ in user-defined command names</b>, not punctuation
+characters etc.
+
+<div class="p"><!----></div>
+     <a id="tth_sEc9.2"></a><h3>
+9.2&nbsp;&nbsp;Macro- and Style-file 
+inclusion<a 
+id="macro_files92"></a><a 
+id="texinputs_path92"></a> </h3>
+<a 
+id="input92"></a>				     <a id="texins">
+</a>
+Macro definitions are fully supported by <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>. However, special macro
+packages designed for a specific layout of journal or conference, for
+example, often use unsupported constructs such as catcode changes. It
+may then be inadvisable to use the macro package.  <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;does not
+recognize the <tt>\usepackage</tt> command by default because the
+<span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;macros that are input by this command almost always contain
+catcode changes or other usages incompatible with <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>. That is
+another reason why <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;does not normally have directory paths
+defined the same as <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>. If a macro package is on the TEXINPUTS path
+it will be found by <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;but not by <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>.  Thus, the macro
+definitions are included when "<span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>"ing the file, but not when
+"<span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>"ing it.  It should be clear from this discussion, however,
+that <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;generally does not support any of the enormous number of
+extensions to <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;unless they are mentioned in this manual,
+because most extension packages are incompatible with <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>.
+
+<div class="p"><!----></div>
+<a 
+id="input92"></a><span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;<em>will</em> find an input file if 
+
+<ol type="1">
+<li> the full path is
+ specified relative to the directory from which <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;is run, e.g.  <br />
+ <tt>\input&nbsp;/home/myhome/mytexdir/mymacro.tex</tt> <br />
+<div class="p"><!----></div>
+</li>
+
+<li> the <tt>-p</tt> switch specifies a path on which the file is
+found, or
+<div class="p"><!----></div>
+</li>
+
+<li> the TTHINPUTS environment variable is defined to be a path on
+which the file is found.
+<div class="p"><!----></div>
+</li>
+</ol>
+Paths are searched in this order until an appropriate file is
+found or all directory options are exhausted
+
+<div class="p"><!----></div>
+<a 
+id="commands_alternative_files92"></a> This policy provides a mechanism
+for making available the alternative package for <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>,
+without alteration of the original <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;files, by placing the
+(simplified) version of the macro package on the path <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;searches.
+ An example using the <tt>-p</tt> switch might be
+
+<pre>
+tth&nbsp;&#62;file.html&nbsp;&lt;file.tex&nbsp;-p/usr/local/tthinputs:~/mytthinputs
+
+</pre>
+
+<div class="p"><!----></div>
+<a 
+id="macros_alternate92"></a>Since it is impossible to anticipate all style file incompatibilities,
+it must be the responsibility of the user (or the journal) to decide
+how to translate the concepts implemented in the original complicated
+macro package into simpler, <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>-compatible, <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;macros.
+
+<div class="p"><!----></div>
+<a 
+id="input92"></a>When <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;is used within a CGI script accepting arbitrary <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;for
+translation, its ability to input any file on the system is a serious
+security hole. It can be used to view all sorts of files on the system
+by <tt>\input</tt>ing them. Therefore a special switch <tt>-pNULL</tt> is
+provided that disables all <tt>\input</tt> or <tt>\include</tt> files.
+
+<div class="p"><!----></div>
+     <a id="tth_sEc9.3"></a><h3>
+9.3&nbsp;&nbsp;Layout to include arguments of unknown
+commands<a 
+id="commands_unknown93"></a>
+</h3>
+
+<div class="p"><!----></div>
+Unrecognized or undefined commands of the form
+\dothis{one}{two}{three}, are treated by discarding
+all the following <i>adjacent</i> brace groups. A space between the close and
+open braces will terminate the discarded arguments and cause the
+following brace group(s) to be scanned as if just the text. This
+makes it possible to use formatting to make <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;code come out right in
+both <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;and HTML. For example if <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;encounters a command written
+"\boxthis{width} {boxed material}" which might be
+designed in <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;to provide a width to a defined command, written with
+a space after the first argument, it will ignore the width and scan
+the boxed material into the text.
+
+<div class="p"><!----></div>
+     <a id="tth_sEc9.4"></a><h3>
+9.4&nbsp;&nbsp;Restrictions on redefinition of internal
+commands<a 
+id="commands_renaming94"></a><a 
+id="commands_redefining94"></a>
+</h3>
+
+<div class="p"><!----></div>
+In <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;(unlike <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>) most internal commands can <i>not</i> normally be
+redefined; any redefinition will simply be ignored (except inside edef
+and a few other places). This prevents <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;from safely allowing use of
+major packages that redefine standard <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;commands. For example ams<span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;redefines footnote to have just one argument, which will cause
+problems. This particular example is potentially a problem with <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;too, which also redefines footnote. <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;handles this by keeping track
+of whether the file is <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;or <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>; therefore you should not mix the
+two dialects in a single file even though there is no need to tell <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>
+explicitly which type the file is. (Besides, a mixed file will play
+havoc with <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;itself.)
+
+<div class="p"><!----></div>
+      <a id="tth_sEc9.4.1"></a><h4>
+9.4.1&nbsp;&nbsp;Footnotes</h4><a 
+id="footnotes94"></a>
+Footnotes are placed together at the end of the document, or, in the
+case of <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>gold splitting files, in a separate file called
+footnote.html. The title of this end section is determined by the
+macro <tt>\tthfootnotes</tt>. By default this is "Footnotes", but can
+be redefined by the user at will, e.g. by
+<tt>\def\tthfootnotes{Tailnotes}</tt>.
+
+<div class="p"><!----></div>
+ <a id="tth_sEc10"></a><h2>
+10&nbsp;&nbsp;Color<a 
+id="color100"></a></h2>
+<a 
+id="colordvi100"></a>
+<span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;supports the coloring of text using the color package macros for
+<span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>, supported by dvips (but not xdvi).  <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;also supports the Plain
+<span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;colordvi macros contained in the package colordvi.tex that do the
+same thing. 
+
+<div class="p"><!----></div>
+     <a id="tth_sEc10.1"></a><h3>
+10.1&nbsp;&nbsp;<span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;Color</h3>
+
+<div class="p"><!----></div>
+The <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;syntax is recommended because the 68 standard
+named colors<a href="#tthFtNtAAH" id="tthFrefAAH"><sup>7</sup></a> are directly supported internally by <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;using the named
+model. Any numerical CMYK, RGB and Gray color can also be prescribed. For
+example the following commands are enclosed in themselves:
+<span style="color:#B70000">\textcolor[named]{BrickRed}{...}</span>,
+<span style="color:#007F00">\textcolor[rgb]{0.,.5,0.}{...}</span>,
+<span style="color:#B232B2">\textcolor[cmyk]{0.,.5,0.,0.3}{...}</span>.
+You can define custom colors in the usual way using, for example
+
+<pre>
+{\definecolor{Puce}{rgb}{1.,.5,.8}
+\color{Puce}&nbsp;This&nbsp;is&nbsp;my&nbsp;own&nbsp;Puce.}
+
+</pre>
+Which gives "
+<span style="color:#FF7FCC">This is my own Puce.</span>"
+
+<div class="p"><!----></div>
+The command <tt>\pagecolor</tt> is supported but discouraged. It
+is highly likely to give rise to an HTML file that will fail
+validation because it inserts an HTML tag <tt>&lt;body&nbsp;bgcolor=...&gt;</tt>
+which will not be in its correct position (immediately following the
+title). The only way to be certain to produce an HTML file that passes
+validation is to put the title and body commands in by hand, using
+e.g.  <tt>\special{html:&lt;title&gt;...&lt;/title&gt;&lt;body&nbsp;...&gt;}</tt>  Netscape
+seems not to mind a body tag out of order, but only the first one is
+able to set the page background color.
+
+<div class="p"><!----></div>
+The commands <tt>\colorbox</tt> and <tt>\fcolorbox</tt> are supported via
+CSS style sheet commands. They will only work to set the background
+color of included text if the browser is set to use style sheets. 
+
+<span style="background: #00FF00;">"This sentence"</span> is the result of the command
+<tt>\colorbox{green}{``This&nbsp;sentence''}</tt>. If it is colored, then
+your browser supports style sheets to this extent. If not, check your
+preferences settings.
+
+<div class="p"><!----></div>
+     <a id="tth_sEc10.2"></a><h3>
+10.2&nbsp;&nbsp;Plain Color</h3>
+
+<div class="p"><!----></div>
+The Plain <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;syntax using commands such as <tt>\Red{red&nbsp;text}</tt> requires
+the file <tt>colordvi.tex</tt> to be input prior to their use. But
+because <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;does not search the standard <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;paths, that file will
+<em>not</em> usually be found unless the full path is explicitly
+specified. If the file is not found, only the 8 standard colors
+
+<pre>
+\Red,&nbsp;\Green,&nbsp;\Blue,&nbsp;\Cyan,&nbsp;\Magenta,&nbsp;\Yellow,&nbsp;\Black,&nbsp;and&nbsp;\White
+
+</pre>
+ are
+recognized internally by <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>. You can use the user-defined CMYK numeric
+style 
+
+<pre>
+\Color{0.&nbsp;.5&nbsp;.5&nbsp;0.}{pale&nbsp;red}
+
+</pre>
+without the colordvi
+file. It gives the result "<span style="color:#FF7F7F">pale red</span>" but the
+notation becomes cumbersome unless you define your color
+e.g. like
+
+<pre>
+\def\redcolor{0.&nbsp;.5&nbsp;.5&nbsp;0.}
+\Color{\redcolor}{The&nbsp;stuff&nbsp;that&nbsp;is&nbsp;red.}
+
+</pre>
+
+<div class="p"><!----></div>
+Another difficulty with the colordvi
+command <tt>\textColor</tt> (which is the color <em>switch</em> - <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>
+syntax reversed that usage and changed to comma-delimited arguments
+just to confuse us) is that it is a global setting. It then
+becomes almost impossible to maintain proper nesting of the closure of
+the font commands used for colors in HTML. As a result, use of
+<tt>\textColor</tt> often gives HTML files that won't pass HTML validation.
+
+<div class="p"><!----></div>
+     <a id="tth_sEc10.3"></a><h3>
+10.3&nbsp;&nbsp;Limitations</h3>
+Color commands do not propagate into different cells of HTML tables
+because of what may be regarded as a browser bug
+[<a href="#cellbug">13.5</a>]. For that reason, tables and equations will not color
+correctly if the color commands enclose more than one cell (for
+tables) or equation element. Remember also that some computers may be
+limited in their color display capability, so the subtleties of colors
+will be lost in some circumstances. 
+
+<div class="p"><!----></div>
+
+<div class="p"><!----></div>
+ <a id="tth_sEc11"></a><h2>
+11&nbsp;&nbsp;Producing output split into different files.</h2>
+
+<div class="p"><!----></div>
+     <a id="tth_sEc11.1"></a><h3>
+11.1&nbsp;&nbsp;Overview</h3>
+
+<div class="p"><!----></div>
+Because the <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;program itself always produces just one output file,
+the division of the output into different files takes place in two
+steps. First, <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;is run on the <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;file with the switch
+<tt>-s</tt> (for "split"). This switch tells <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;to produce output
+that is in <b>multipart MIME</b> format. Incidentally, this format is
+used for sending multipart mail messages with attachments over the
+internet. For present purposes it is simply a convenient standard for
+<span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;to use to show how to split the output and what the names of the
+final files should be. If we wanted to keep this MIME file, then for
+example the command
+
+<pre>
+tth&nbsp;-s&nbsp;-Ltexdocument&nbsp;&lt;texdocument.tex&nbsp;&#62;mimedocument.html
+
+</pre>
+
+<div class="p"><!----></div>
+ would produce such a file called <tt>mimedocument.html</tt> from a
+<span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;file called <tt>texdocument.tex</tt>. The switch <tt>-L</tt>
+tells <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;to use auxiliary files that were produced when <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;
+was previously run on it. Alternatively if you want the output file to
+have the same name as the texdocument but with the extension
+<tt>html</tt>, you can use just
+
+<pre>
+tth&nbsp;-s&nbsp;texdocument
+
+</pre>
+
+<div class="p"><!----></div>
+There are available standard tools for unpacking multipart mime files
+into their individual files, notably the <tt>mpack</tt> tools available from
+the "Andrew" distribution, which may be available on some
+systems. However the executable <tt>tthsplit</tt>  (whose source is in
+the tthgold directory) is a more specific 
+program that will unpack MIME files produced by <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>. (<tt>tthsplit</tt>
+will <em>not</em> handle general MIME files.) To unpack the multipart
+file into its individual files requires the simple command:
+
+<div class="p"><!----></div>
+
+<pre>
+tthsplit&nbsp;&lt;mimedocument.html
+
+</pre>
+
+<div class="p"><!----></div>
+ This will inform the user of the files produced, for
+example
+
+<div class="p"><!----></div>
+
+<pre>
+index.html
+chap1.html
+chap2.html
+refs.html
+footnote.html
+
+</pre>
+
+<div class="p"><!----></div>
+ the file <tt>index.html</tt> is always the topmost file with
+links to succeeding files, and cross-links from any table of contents
+or list of figures, etc. 
+
+<div class="p"><!----></div>
+It is unnecessary to save the intermediate file. Instead, the output
+of <tt>tth</tt> can be piped to <tt>tthsplit</tt> to produce the split
+files directly by the command line:
+
+<div class="p"><!----></div>
+
+<pre>
+tth&nbsp;-s&nbsp;-Ltexdocument&nbsp;&lt;texdocument.tex&nbsp;|&nbsp;tthsplit
+
+</pre>
+
+<div class="p"><!----></div>
+Since the names of the split parts of the document are predetermined,
+it is strongly advisable to make a separate directory for each
+different <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;document to keep the parts of the document in. The
+conversion and splitting must then be performed in that directory to
+ensure the files end up there. This task is left to the user.
+
+<div class="p"><!----></div>
+The Windows graphical user interface tth-gui offers an option for
+the translated file to "split it here". If this button is checked,
+the file will be split in the same folder as the tex file, producing
+the HTML files as above.
+
+<div class="p"><!----></div>
+     <a id="tth_sEc11.2"></a><h3>
+11.2&nbsp;&nbsp;Navigation Controls at File Top and Tail</h3>
+
+<div class="p"><!----></div>
+By default <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;places navigation links labelled "PREVIOUS" and
+"NEXT" at the top and tail of the split pages, and a link "HEAD"
+to the first section of the file at both places. These do not use cute
+little images because images have to be in separate files, which would
+defeat the principle of <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;always outputing just one file. However,
+authors might want their own images or indeed far more elaborate
+navigation links. The links can be customized straightforwardly by
+redefining two special macros that are used for the navigation
+section. By default these macros are defined as
+
+<pre>
+\def\tthsplittail{
+&nbsp;\special{html:\n&lt;hr&#62;&lt;table&nbsp;width=\"100\%\"&#62;&lt;tr&#62;&lt;td&#62;
+&nbsp;&lt;a&nbsp;href=\"}\tthfilenext\special{html:\"&#62;}NEXT
+&nbsp;\special{html:&lt;/a&#62;&lt;/td&#62;&lt;td&nbsp;align=\"right\"&#62;
+&nbsp;&lt;a&nbsp;href=\"index.html\"&#62;HEAD&lt;/a&#62;&lt;/td&#62;&lt;/tr&#62;&lt;/table&#62;\n&lt;/html&#62;}}
+\def\tthsplittop{
+&nbsp;\special{html:&lt;table&nbsp;width=\"100\%\"&#62;&lt;tr&#62;&lt;td&#62;
+&nbsp;&lt;a&nbsp;href=\"}\tthfilechar\special{html:\"&#62;}PREVIOUS
+&nbsp;\special{html:&lt;/a&#62;&lt;/td&#62;&lt;td&nbsp;align=\"right\"&#62;
+&nbsp;&lt;a&nbsp;href=\"index.html\"&#62;HEAD&lt;/a&#62;&lt;/td&#62;&lt;/tr&#62;&lt;/table&#62;}}
+
+</pre>
+
+<div class="p"><!----></div>
+The macro <tt>\tthsplittail</tt> is called when splitting, as soon as a
+chapter or section command is detected. Then after the split is
+completed and the HTML header has been inserted for the next file,
+<tt>\tthsplittop</tt> is called. Note that these macros use the
+builtins <tt>\tthfilenext</tt> and <tt>\tthfilechar</tt> to access the
+names of the next and the previous HTML files respectively.
+
+<div class="p"><!----></div>
+These splitting macros can be redefined to whatever style of
+navigation the author prefers. But careful attention should be paid to
+the use of raw HTML output, for example using the HTML special.
+
+<div class="p"><!----></div>
+     <a id="tth_sEc11.3"></a><h3>
+11.3&nbsp;&nbsp;Special Precautions when Splitting Output</h3>
+
+<div class="p"><!----></div>
+      <a id="tth_sEc11.3.1"></a><h4>
+11.3.1&nbsp;&nbsp;Floats such as figures or tables</h4>
+If you are splitting an article-style file that has a lot of
+floating bodies (i.e. figures or tables) in it, these may be moved by
+<span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;beyond the end of their corresponding section. This is a
+familiar problem with <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>. The result of this float misplacement
+is that <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;may become confused and generate incorrect
+cross-references to these floats in the list of figures and or list of
+tables, because the only way that <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;can tell the section of float
+placement is by the order of lines in the auxiliary files. If this
+happens, some special precautions will prevent it. 
+
+<div class="p"><!----></div>
+All that is required is to add to the <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;source file, in the
+preamble between the documentclass and the begin{document} commands,
+the extra command:
+
+<div class="p"><!----></div>
+
+<pre>
+\input&nbsp;/usr/local/tth/tthprep.sty
+
+</pre>
+
+<div class="p"><!----></div>
+ where the path should be to wherever you unpacked or are
+keeping the tth distribution file <tt>tthprep.sty</tt>. Then <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;should
+be run twice on the file to create the auxiliary files that tth will
+use in its translation. Because of the extra definitions in
+<tt>tthprep.sty</tt>, the auxiliary files so produced can be interpreted by
+tth to give correctly linked split files. If you want to produce
+<tt>dvi</tt> output from your <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;then you should remove this extra
+input command.  None of this is needed unless splitting by <em>
+sections </em> (not chapters) is to be performed or floats are
+problematic.
+
+<div class="p"><!----></div>
+To make it easier for the user, a script is provided called
+<tt>tthprep</tt> which automates the process of producing satisfactory
+auxiliary files through the single command
+
+<div class="p"><!----></div>
+
+<pre>
+tthprep&nbsp;texdocument.tex
+
+</pre>
+
+<div class="p"><!----></div>
+ The script will leave the <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;file in its original condition,
+but the auxiliary files in appropriate form for <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>.
+
+<div class="p"><!----></div>
+      <a id="tth_sEc11.3.2"></a><h4>
+11.3.2&nbsp;&nbsp;Multiple Bibliographies</h4>
+Multiple bibliographies in split files are a problem. All the
+citations in the rest of the text link to a single file
+<tt>refs.html</tt> because there is no way for TtHgold know the name of other
+files to refer to. However, each time a bibliography is started,
+when splitting, TtHgold starts a new file. TtHgold numbers reference
+files after the first as <tt>refs1.html</tt> <tt>refs2.html</tt>
+etc. 
+
+<div class="p"><!----></div>
+After splitting the output using tthsplit, the user has then to
+concatenate the reference files into a single html file if the
+cross-references are all to be correct. The utility program
+<tt>tthrfcat</tt> will do this if run in the directory where the split
+files reside. It destroys all the <tt>refsx.html</tt> files. But since those
+were generated by TtHgold, they can always be generated again. Some
+spurious file navigation buttons will remain in the resulting
+<tt>refs.html</tt> file. They can be removed by hand if desired.
+
+<div class="p"><!----></div>
+Things go much more smoothly if there is only one bibliography per TeX
+document and it is at the end of the TeX file.
+
+<div class="p"><!----></div>
+ <a id="tth_sEc12"></a><h2>
+12&nbsp;&nbsp;HTML and output</h2>
+
+     <a id="tth_sEc12.1"></a><h3>
+12.1&nbsp;&nbsp;Formal HTML validation</h3>
+<a 
+id="title_HTML_construction121"></a> <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;takes as its standard HTML that
+can be rendered by Netscape and IE browsers versions 4 and higher
+(with the caveats above).  The formal standard that <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>-translated
+documents follow is strictly HTML4.0[1]<a href="#tthFtNtAAI" id="tthFrefAAI"><sup>8</sup></a>
+Transitional. However, <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;does
+not formally validate its documents, and can be made to violate the
+standard by some <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;usage.
+
+<div class="p"><!----></div>
+One reason for violation
+arises because HTML4.0 <i>requires</i> a
+<tt>&lt;title&gt;...&lt;/title&gt;</tt> for every document.
+A title is constructed from <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;files that contain the <tt>\title{...}</tt>
+command, in which case HTML conformance is ensured by putting the
+<tt>\title</tt> command before any text (i.e.&nbsp;in the preamble, where it
+belongs).  If the <tt>\title</tt> command is not desired in the <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>
+file, for example because it is a plain <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;document,
+a title can be provided by the author for the HTML document by putting
+a line like this at the top of the <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;file.
+
+<pre>
+%%tth:\begin{html}&lt;title&#62;Put&nbsp;the&nbsp;title&nbsp;here&lt;/title&#62;\end{html}
+
+</pre>
+This line will be ignored by <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>. Actually, any raw HTML output at the
+start of the file is assumed by <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;to indicate that the author has
+explicitly output a title. If no title indication of any of the above
+types is present, <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;attempts to construct a title from the first few
+plain words in the document, in much the way that the first line can
+become the title of a hymn.  
+
+<div class="p"><!----></div>
+If commands like
+<tt>\item</tt>, that output material to the HTML file occur
+before the title has been constructed, the HTML title command will be
+out of order and the formal standard will be violated. 
+
+<div class="p"><!----></div>
+In the case where the title construction fails, or if some other <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>
+usage causes a violation of the formal standard, browsers will
+still render the output correctly if this manual is followed.
+
+<div class="p"><!----></div>
+     <a id="tth_sEc12.2"></a><h3>
+12.2&nbsp;&nbsp;HTML Styles</h3>
+<a id="htmlstyle">
+</a>
+There are good reasons why the <tt>&lt;head&gt;</tt> and <tt>&lt;body&gt;</tt> tags
+are by default omitted by <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>.  See the FAQ [<a href="#headbody">B.3</a>] for a
+brief discussion. However, the evolution of HTML standards (not yet
+browsers) is towards imposing more restrictions on the freedom to omit
+tags. For example XHTML <em>requires</em> that containers have both
+opening and closing tags. Therefore <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;has a switch <tt>-w?</tt>
+(where the question mark denotes an optional integer) that controls
+its writing style as follows.
+
+<dl>
+ <dt><b>Default</b></dt>
+	<dd> Construct title. Do not enter head and body tags.</dd>
+ <dt><b>-w -w0</b></dt>
+	<dd> Do not construct title or enter head/body tags.</dd>
+ <dt><b>-w1</b></dt>
+	<dd> Enter head and body tags assuming that the title is the
+dividing point.</dd>
+ <dt><b>-w2</b></dt>
+	<dd> Use XHTML syntax.</dd>
+ <dt><b>-w4</b></dt>
+	<dd> Don't use block level font size commands between paragraphs.</dd>
+</dl>
+At present, in addition to the default style that
+attempts to construct a title but does not enter head and body tags,
+-w or equivalently -w0 prevents <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;from attempting to construct a
+title or anything else in the way of head/body divisions. This style
+is best used for documents where the author has explicitly entered the
+required HTML tags. The switch -w1 invokes pedantic HTML style which
+enters head and body tags under the assumption that the title
+(possibly constructed automatically) is the last thing in the head
+section. A style -w2 produces XHTML documents but <em>requires</em>
+cascading style sheet (CSS) support in the browser otherwise the
+rendering will not be as satisfactory as the default. 
+
+<div class="p"><!----></div>
+Addition of four to the writing style index (e.g. -w4) prevents
+ <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;employing block-level font size commands if the size is changed
+ immediately after a <tt>\par</tt> or implied paragraph. The additional
+ CSS style sheet is not inserted and, of course, the browser need not
+ support CSS. The (now) default writing style is to accommodate tables
+ and equations inside sections of larger or smaller text in a manner
+ that will pass standards validation. According to the standard, HTML
+ font changing commands like most others, are either of
+ inline<a 
+id="inline_elements122"></a> type, in which case they are forbidden
+ to contain block<a 
+id="block_level_elements122"></a> level constructs like
+ tables, or block type, in which case they force a new line and so
+ can't be used within a paragraph. The default can't universally fix
+ this unnecessarily restrictive requirement of the standard (which
+ most browsers wisely do not honor). There are situations where
+ <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;usage is simply impossible to express in HTML. However, it does
+ fix the vast majority of sensible usages. The switch -w4 turns off
+ this approach, reverting to less standards-compatible style.
+
+<div class="p"><!----></div>
+ <a id="tth_sEc13"></a><h2>
+13&nbsp;&nbsp;Browser and Server Problems</h2>
+
+<div class="p"><!----></div>
+<span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;translates <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;into standard HTML and takes account as far as
+possible of the idiosyncrasies of the major browsers. Nevertheless,
+there are several problems that are associated with the browsers, and
+a few that are associated with web servers. Authors and publishers
+should recognize that these are <em>not</em> <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;bugs. Font-related
+problems are complicated. If you don't need all the gory details, you
+might want to read section <a href="#fontoverview">13.1</a> and then skip to
+<a href="#exploder">13.3</a>.
+
+<div class="p"><!----></div>
+<a 
+id="fonts_accessing130"></a><a 
+id="symbol_font_accessing130"></a>     <a id="tth_sEc13.1"></a><h3>
+13.1&nbsp;&nbsp;Accessing Symbol Fonts: Overview</h3><a id="fontoverview">
+</a>
+
+<div class="p"><!----></div>
+Many of the most serious difficulties of Mathematics rendering in HTML
+are associated with the need for extra symbols. In addition to various
+Greek letters and mathematical operators, one needs access to the
+glyphs used to build up from parts the large brackets matching the
+height of built-up fractions. These symbols are almost universally
+present on systems with graphical browsers, which all have a
+"Symbol" font, generally based on that made freely available by
+Adobe. The problem lies in <em>accessing</em> the font because of
+shortcomings in the browsers and the HTML standards that relate to
+font use.
+
+<div class="p"><!----></div>
+<a 
+id="switches_-y1131"></a><a 
+id="switches_-y2131"></a><a 
+id="switches_-u131"></a>In brief, there are three ways to access the symbol fonts; these will
+be described in more detail below. The following table indicates which of
+these approaches to accessing the symbol fonts works with which
+browser. It also outlines which of the mathematics rendering
+improvements via CSS positioning are satisfactory.
+
+<div style="text-align:center">
+
+<table border="1">
+<tr><td align="left"></td><td colspan="3" align="center">  Symbol Encoding  </td><td colspan="2" align="center">CSS Positioning </td></tr>
+<tr><td align="left"></td><td align="center">8-bit numeric </td><td align="center">Adobe Private </td><td align="center">Unicode 3.2 </td><td align="center">relative </td><td align="center">height
+compress </td></tr>
+<tr><td align="left"><span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;switch </td><td align="center">-u0</td><td align="center">-u1</td><td align="center">-u2 </td><td align="center">-y2</td><td align="center">-y1</td></tr>
+<tr><td align="left">Browser:</td><td align="center"></td><td align="center"></td><td align="center"></td><td align="center"></td><td align="center"></td></tr>
+<tr><td align="left">MSIE 5.0    </td><td align="center">Yes </td><td align="center">No </td><td align="center">No </td><td align="center">Yes </td><td align="center">Buggy</td></tr>
+<tr><td align="left">Mozilla 1.x X </td><td align="center">Alias/Font </td><td align="center">Buggy </td><td align="center">Buggy </td><td align="center">Yes </td><td align="center">Yes</td></tr>
+<tr><td align="left">Firefox 1.x X </td><td align="center">Alias/Font </td><td align="center">Buggy </td><td align="center">Buggy </td><td align="center">Yes </td><td align="center">Yes</td></tr>
+<tr><td align="left">Firefox 1.x Win </td><td align="center">Yes  </td><td align="center">Buggy </td><td align="center">Buggy </td><td align="center">Yes </td><td align="center">Yes</td></tr>
+<tr><td align="left">Konqueror 1.9.8</td><td align="center">Alias </td><td align="center">No </td><td align="center">No </td><td align="center">Yes </td><td align="center">Yes </td></tr>
+<tr><td align="left">Firefox 3.5 X </td><td align="center">No </td><td align="center">Buggy </td><td align="center">Ugly </td><td align="center">Yes </td><td align="center">Yes </td></tr>
+<tr><td align="left">Chrome 4.0 X </td><td align="center">No </td><td align="center">Buggy </td><td align="center">Ugly </td><td align="center">Yes </td><td align="center">Yes </td></tr>
+<tr><td align="left">Firefox 3.5 Win </td><td align="center">Yes </td><td align="center">No </td><td align="center">Buggy </td><td align="center">Yes </td><td align="center">Yes </td></tr>
+<tr><td align="left">MSIE 8.0 Win </td><td align="center">Yes </td><td align="center">No </td><td align="center">Ugly </td><td align="center">Yes </td><td align="center">Yes </td></tr></table>
+
+</div>
+
+<div class="p"><!----></div>
+This situation is painful. The 8-bit numeric style symbol access
+ method, which was the approach originally pioneered by <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>, used to
+ work with a significant number of browsers but needed additional font
+ settings for X-window systems.  This is the approach that <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;used
+to use
+ by default. However Mozilla and Firefox have systematically moved
+ towards disabling this method under linux and OSX, presumably because
+ they consider it not standards-compliant. They have not properly
+ implemented the unicode 3.2 alternative, because the glyphs they use
+ for built-up delimiters are incorrectly sized and leave ugly gaps. In
+ some cases the spacing is completely erroneous. One is left with the
+ choice between the traditional 8-bit approach, which works well with all
+ MSWindows systems up to Vista, but does not work with most recent
+ X-based operating systems; or Unicode 3.2 which works with most
+ browsers, but is badly buggy in Windows Firefox and ugly everywhere.
+
+<div class="p"><!----></div>
+In the interests of an eventual rationalization of this situation, TtH
+ has changed to make the Unicode 3.2 coding its default from the 2010
+ version 3.87 on, but this by no means universally satisfactory.
+
+<div class="p"><!----></div>
+     <a id="tth_sEc13.2"></a><h3>
+13.2&nbsp;&nbsp;Accessing Symbol Fonts: Details<a 
+id="fonts_details132"></a></h3>
+
+<div class="p"><!----></div>
+<a 
+id="character_set132"></a><a 
+id="encoding132"></a>Prior to HTML4.0, that is, during the major phase of the evolution of
+HTML, the default encoding for HTML documents was ISO-8859-1
+(sometimes called ISO Latin-1). The document encoding defines a
+mapping between the bytes of the file itself and characters. The
+HTML4.0 standard draws a strict (but often confused) distinction
+between the document "character set", sometimes referred to more
+recently as the character "repertoire"(which refers to all the
+characters that might be used in it) and the "document encoding"
+(which encodes a subset of the character set by mapping them to
+bytes). The confusion is compounded by the entrenched usage of the term
+"charset" to refer to the "document encoding" (not the character
+set). This usage is presumably a reflection of the prior lack of any
+significant distinction between the two. 
+
+<div class="p"><!----></div>
+Purists since the adoption of HMTL4.0 regard the selection of a glyph
+as governed by the process: (byte) code &#8594;glyph-name &#8594; font-glyph. In this view, even
+though the font contains the glyphs in a well defined order, the
+glyph is accessed not by its position in the font but by its name. For
+example, in a document with ISO-8859-1 encoding, the byte with decimal
+value 97 maps to the "latin small letter a" which is accessed from
+the font on that basis.  On this view, it is not possible, or rather
+ought not to be possible, to access the Greek letter alpha by
+specifying that the font is Symbol and the byte coding decimal value
+is 97, despite the fact that the Greek alpha is indeed in the same
+position in the Symbol font as the lower case a in its font. This is
+because (the story goes) 97 means "latin small letter a" and the
+Symbol font simply does not contain the latin small letter a.
+
+<div class="p"><!----></div>
+In practice, of course, most browsers, including Internet Explorer (to
+8.x), have not taken so pedantic an approach. In a document that is
+encoded in the same order as the fonts on the system, as is the case
+for ISO-8859 on systems other than the (old) MacIntosh, the browser maps
+code to glyph directly on the basis of numeric position in the
+font. Therefore it is perfectly sensible to specify eight-bit code 97
+and Symbol font to obtain alpha. In other words, the browsers treat
+the Symbol font as if it were an ISO-8859 font even though, as far as
+the glyph names are concerned, it is not. It can be argued, even
+within the world-view of standards lawyers, that a document that does
+not explicitly specify its encoding (and <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;documents do not) could
+be considered to obey its own font encoding or some unspecified
+encoding, in which case, bytes ought to be permitted to refer directly
+to numeric font positions, in just this fashion, regardless of whether
+the font is identified as ISO 8859. But such arguments are usually a
+waste of breath. In any case, recent versions of Mozilla and its
+derivatives on the Windows operating system will properly render
+symbols provided they are told that the DOCTYPE is HTML 4.0, not HTML
+4.01. This is the reason why <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;has reverted to giving its
+documents this rather out of date DOCTYPE.
+
+<div class="p"><!----></div>
+On the X-windows system, a distinction between fonts is provided
+directly in the system via the font naming conventions. Mozilla takes
+notice of this font allocation by permitting access only to fonts
+whose names end 8859-1, for default encoded documents. The symbol font
+is not one of those fonts unless additional steps are taken. The
+enabling of the symbol font requires specification of some system font
+aliases, or installation of a specially encoded Symbol font, which
+then ensures that the Symbol font is treated as if it were ISO-8859-1
+encoded. Notice that this type of problem arises for any document that
+wants to access more than one language of font. Thus, any document
+desiring a mixture of, for example, western and cyrilic characters
+would face the same problem.
+
+<div class="p"><!----></div>
+To summarise, the symbol font is present on practically every computer
+on the planet that runs a graphical browser. Under the MSWindows
+operating system, IE to version 8.x, and Mozilla (gecko)-based
+browsers treat the symbol font as if it were a numerically encoded
+font and compatible with ISO 8859-1 encoding, provided the DOCTYPE is
+HTML 4.0 Transitional.  Treating the font as such enables the glyphs to be
+accessed using either eight-bit codes in just the same way as standard
+ASCII characters. This is the way that documents have accessed these
+glyphs for years.
+
+<div class="p"><!----></div>
+The HTML4.01 standard says that unicode (ISO 10646, also called UCS) is
+the character set of HTML, and that the way characters outside the
+current document encoding should be accessed is through unicode
+points. Unicode is backwardly compatible with ISO 8859-1 in a way that
+we need not dwell on. Unicode is supposed to fix all the font problems
+that are described here, and with luck eventually it will indeed
+help. The problem is that (1) Unicode is enormous, so only a tiny
+fraction of it is so far supported, and (2) in its original incarnation
+unicode does not even assign points to the parts of large delimiters
+that are needed for mathematics. They <em>are</em> present in the new
+version of unicode, 3.2, becoming current. However, as the
+table above shows, no browser cleanly supports the new unicode
+assignments. Mozilla used to support some assignments of points in
+unicode's designated "private usage area" to the glyphs we
+need. Apparently these assignments have become de-facto standards for
+the Adobe Symbol font in typographic circles. No other browser
+supports them. They are not and, according to unicode principles,
+never will be part of the unicode standard, and appear to be on the
+way out.
+
+<div class="p"><!----></div>
+The option that mathematics web publishing currently has, then, is
+ either an approach that works with Windows browsers but which purists
+ say is not consistent with latest standards, or a representation that
+ is consistent with the standard but useless with some browsers. It
+would be really nice if the browsers would get their act together on
+mathematical symbols.
+
+<div class="p"><!----></div>
+     <a id="tth_sEc13.3"></a><h3>
+13.3&nbsp;&nbsp;Printing<a 
+id="printing133"></a></h3>
+<a id="exploder">
+</a>
+
+<div class="p"><!----></div>
+In many browsers, the printing fonts are hard coded into the browser
+and the font-changing commands are ignored when printing. For that
+reason, visitors viewing <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;documents will often not be able to
+print readable versions of documents with lots of mathematics. This
+problem could, and should, be fixed in the browsers. However, if you
+want your readers to be able to print a high-quality paper copy of the
+file, then you probably want to make available to them either the
+<span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;source or a common page-description format such as Postscript or
+PDF. Since HTML documents download and display so much faster and
+better than these other formats on the screen, <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>'s translation
+provides the natural medium for people to <i>browse</i>, but not
+necessarily the best medium for paper production.
+
+<div class="p"><!----></div>
+     <a id="tth_sEc13.4"></a><h3>
+13.4&nbsp;&nbsp;Netscape/Mozilla Composer<a 
+id="Netscape_Mozilla_Composer134"></a></h3>
+<a id="nscomp">
+</a>
+Netscape Composer and Mozilla Composer is
+too clever for its own good. If you run an HTML document produced by <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>
+through Netscape Composer, all sorts of internal translations are
+performed that are detrimental to its eventual display. For example,
+if you subsequently save the document with the usual encoding set
+(Western), the eightbit codes that work with Macs are replaced with
+HTML4.0 entities such as [&amp;]ograve; or [&amp;]pound;. This effectively
+breaks the document for viewing on Macs because it undoes everything
+just explained. Even if you use User-Defined encoding, which prevents
+this particular substitution, Composer will rearrange the document in
+various ways that it thinks are better, but that make the display of
+the document worse. The moral is, don't run <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;documents through
+Netscape Composer.<a 
+id="publish_through_composer_disallowed134"></a>
+  You therefore cannot use the "publish" facility
+of Composer. Transfering the document to the server with plain old ftp
+will keep it away from Composer's clutches.
+
+<div class="p"><!----></div>
+     <a id="tth_sEc13.5"></a><h3>
+13.5&nbsp;&nbsp;Other Browser Bugs</h3>
+
+<div class="p"><!----></div>
+<a id="cellbug">
+</a>Font changing commands do not propagate from cell to cell of HTML
+tables. In rendering equations (using tables) <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;circumvents this
+bug (excuse me, <em>feature</em>) at the cost of significant extra effort and
+slightly verbose HTML.  However, for tables generated by
+<tt>\halign</tt> or <tt>\begin{tabular}</tt> <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;takes no special steps
+to avoid this problem. A change of font face in a cell, for example by
+<tt>\it</tt> will not carry over to the next cell.  A document
+containing this problem will not pass some HTML validations.  It is
+prevented if every cell of a <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;table is enclosed in braces and the
+required style applied separately to every cell - a serious
+annoyance.
+
+<div class="p"><!----></div>
+<a id="tablebug">
+</a>Tables are incapable of being properly embedded within a line of text.
+They generally force a new line. This is quite a significant handicap
+when translating in-line material that could use a table. It can be
+argued that this behaviour is required by the HTML
+standard. Specifically, the <tt>&lt;p&gt;</tt> element is defined as having
+in-line attributes which prevent it from containing any elements
+defined as being <tt>block</tt> type, of which <tt>&lt;table&gt;</tt> or
+actually strictly <tt>&lt;td&gt;</tt> is one. However, even if you ensure that
+text is not inside a <tt>&lt;p&gt;</tt>, most browsers force a new line.
+
+<div class="p"><!----></div>
+     <a id="tth_sEc13.6"></a><h3>
+13.6&nbsp;&nbsp;Web server problems</h3>
+<a 
+id="UTF-8136"></a><a 
+id="web-server136"></a>
+
+<div class="p"><!----></div>
+The HTML files that <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;produces are encoded using the charset
+ISO-8859-1, like most web files. In newer linux systems the default
+file encoding on the computer is in many cases now UTF-8. For the
+characters with codes above 128, this can cause problems with the web
+server. The web server may wrongly assume that the HTML file is a
+UTF-8-encoded file, and declare this assumption in the http content-type
+header that it sends to browsers when they access the file. For
+gecko-based browsers, the http content-type declaration overrides any
+internal file declaration of the encoding of the file. Consequently,
+the browser treats this file as if it is UTF-8 encoded, with the
+result that codes higher than 128 are misinterpreted. This is an
+inadequacy in the web server (apache is known to behave this way in
+some situations).
+
+<div class="p"><!----></div>
+There are several options to work around this problem.
+
+<div class="p"><!----></div>
+It is possible to convert all files from ISO-8859-1 to UTF-8 encoding,
+using a utility called <tt>iconv</tt>, present on most modern linux
+installations. This is not an attractive solution because then when
+the files are browsed locally (via file://...) they will display
+incorrectly. Locally, the browser does not have the http content-type
+declaration to guide (or misguide) it, and it thinks the files are
+ISO-8859-1 encoded. But if they've been converted, they are not.
+
+<div class="p"><!----></div>
+The better approach seems to be to fix the web server so that it gets
+the file content-type right. This can be done on a per-directory basis
+by creating a file called <tt>.htaccess</tt> in the directory. This file
+should contain the line:
+
+<pre>
+&nbsp;&nbsp;AddType&nbsp;text/html;charset=ISO-8859-1&nbsp;html
+
+</pre>
+This tells the server that all files in this directory and its
+subdirectories that have extension <tt>html</tt> are to be considered of
+type HTML and encoded with the ISO-8859-1 charset.
+
+<div class="p"><!----></div>
+Unfortunately some web servers are configured not to pay attention to
+the <tt>.htaccess</tt> file. If yours is one, you have to get the web
+master to edit the server configuration file
+(<tt>/etc/httpd/conf/httpd.conf</tt>). The lines that read
+<tt>AllowOverride&nbsp;None</tt> must read instead
+<tt>AllowOverride&nbsp;FileInfo</tt>. Alternatively, get the webmaster to
+change the line in that configuration file that reads
+<tt>AddDefaultCharset&nbsp;UTF-8</tt> to read instead
+
+<pre>
+AddDefaultCharset&nbsp;ISO-8859-1
+
+</pre>
+ and once the server is restarted all your troubles will be over
+without any of those pesky <tt>.htaccess</tt> files.
+
+<div class="p"><!----></div>
+There are other ways of accomplishing the same thing in the web
+server, if you are a guru. Information is available at 
+<a href="http://www.w3.org/International/questions/qa-htaccess-charset">the
+  W3C FAQ</a>.
+
+<div class="p"><!----></div>
+ <a id="tth_sEc14"></a><h2>
+14&nbsp;&nbsp;Code Critique<a 
+id="bugs140"></a></h2>
+
+<div class="p"><!----></div>
+If you think you have found a bug, you can report it to
+<tt>tth(at)hutchinson.belmont.ma.us</tt> (with the usual character
+substituted in the email address).  You are most likely to get help if
+your report is accompanied by the brief section of <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;code that
+causes the problem. Let me repeat, in addition to a brief description
+of the problem, send the <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;code, preferably a short
+section isolating the problem, in a document that can be processed
+by <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>. It is the only way for me to establish
+what the problem is. But please don't send <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>2.09 files or files
+that do not conform to the (1994) <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;users' guide. And
+please check this <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;manual and especially the FAQ (<a href="#FAQ">B</a>) first.
+
+<div class="p"><!----></div>
+The code has been compiled and run on Linux, MSDOS, Wind*ws, Open VMS,
+and sundry other operating systems. See 
+<a href="http://hutchinson.belmont.ma.us/tth/platform.html">http://hutchinson.belmont.ma.us/tth/platform.html</a>.
+
+<div class="p"><!----></div>
+ <a id="tth_sEc15"></a><h2>
+15&nbsp;&nbsp;License</h2>
+
+<div class="p"><!----></div>
+<a 
+id="license150"></a><span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;is copyright &#169;&nbsp;Ian Hutchinson, 1997-2011.
+
+<div class="p"><!----></div>
+You are hereby freely licensed to use this software under the terms of
+the GNU General Public License, version 2, published by the Free
+Software Foundation, a copy of which is enclosed in the file
+license.txt.
+
+<div class="p"><!----></div>
+The software comes WITHOUT ANY WARRANTY; without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+<div class="p"><!----></div>
+
+ <a id="tth_sEc16"></a><h2>
+16&nbsp;&nbsp;Acknowledgements</h2>
+
+<div class="p"><!----></div>
+Many thanks for useful discussions and input to Robert Curtis, Ken
+Yap, Paul Gomme, Michael Sanders, Michael Patra, Bryan Anderson,
+Wolfram Gloger, Ray Mines, John Murdie, David Johnson, Jonathan
+Barron, Michael Hirsch, Jon Nimmo, Alan Flavell, Ron Kumon, Magne
+Rudshaug, Rick Mabry, Andrew Trevorrow, Guy Albertelli II, Steve
+Schaefer and for bug
+reports from others too numerous to mention.
+
+<div class="p"><!----></div>
+ <a id="tth_sEcA"></a><h2>
+A&nbsp;&nbsp;Appendix: Non-Standard <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;Macros</h2>
+
+<div class="p"><!----></div>
+<a 
+id="macros_special_useA0"></a>The following macro definitions, although not needed for <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>, will
+enable a <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;file that uses the non-standard <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;commands to be
+correctly parsed by Plain <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>.
+
+<div class="p"><!----></div>
+
+<pre>
+\def\hyperlink#1#2{\special{html:&lt;a&nbsp;href="\##1"&#62;}#2\special{html:&lt;/a&#62;}}
+&nbsp;&nbsp;%&nbsp;Incorrect&nbsp;link&nbsp;name&nbsp;in&nbsp;\TeX\&nbsp;because&nbsp;#&nbsp;can't&nbsp;be&nbsp;passed&nbsp;properly&nbsp;to&nbsp;a&nbsp;special.
+\def\hypertarget#1#2{\special{html:&lt;a&nbsp;name="#1"&#62;}#2\special{html:&lt;/a&#62;}}
+\long\def\tthdump#1{#1}&nbsp;%&nbsp;Do&nbsp;nothing.&nbsp;The&nbsp;following&nbsp;are&nbsp;not&nbsp;done&nbsp;for&nbsp;TtH.
+\tthdump{%
+\def\title#1{\bgroup\leftskip&nbsp;0&nbsp;pt&nbsp;plus1fill&nbsp;\rightskip&nbsp;0&nbsp;pt&nbsp;plus1fill
+\pretolerance=100000&nbsp;\lefthyphenmin=20&nbsp;\righthyphenmin=20
+\noindent&nbsp;#1&nbsp;\par\egroup}%&nbsp;Centers&nbsp;a&nbsp;possibly&nbsp;multi-line&nbsp;title.
+&nbsp;\let\author=\title&nbsp;%&nbsp;Actually&nbsp;smaller&nbsp;font&nbsp;than&nbsp;title&nbsp;in&nbsp;\LaTeX.
+&nbsp;\input&nbsp;epsf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%&nbsp;PD&nbsp;package&nbsp;defines&nbsp;\epsfbox&nbsp;for&nbsp;figure&nbsp;inclusion
+&nbsp;&nbsp;%&nbsp;Macro&nbsp;for&nbsp;http&nbsp;reference&nbsp;inclusion,&nbsp;per&nbsp;hypertex.
+&nbsp;\def\href#1#2{\special{html:&lt;a&nbsp;href="#1"&#62;}#2\special{html:&lt;/a&#62;}}
+&nbsp;\def\urlend#1{#1\endgroup}
+&nbsp;\def\url{\begingroup&nbsp;\tt&nbsp;
+&nbsp;&nbsp;\catcode`\_=13&nbsp;%&nbsp;Don't&nbsp;know&nbsp;why&nbsp;this&nbsp;works.
+&nbsp;&nbsp;\catcode`\~=11&nbsp;\catcode`\#=11&nbsp;\catcode`\^=11&nbsp;
+&nbsp;&nbsp;\catcode`\$=11&nbsp;\catcode`\&amp;=11&nbsp;\catcode`\%=11
+\urlend}%&nbsp;\url&nbsp;for&nbsp;plain&nbsp;\TeX.
+}
+
+</pre> 
+
+<div class="p"><!----></div>
+ <a id="tth_sEcB"></a><h2>
+B&nbsp;&nbsp;Appendix: Frequently Asked Questions</h2>
+<a id="FAQ">
+</a>
+
+<div class="p"><!----></div>
+     <a id="tth_sEcB.1"></a><h3>
+B.1&nbsp;&nbsp;Building and Running <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span></h3>
+
+<div class="p"><!----></div>
+
+<b>Why does my compiler crash when compiling <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>?&nbsp;&nbsp;</b>
+<br /><span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;comes in the form of a single C source file
+because it is mostly one very large function which is produced by
+flex. It is completely standard C code but the size challenges
+compilers' capabilities, especially if you try to optimize using the
+-O switch. With gcc under linux it is possible to compile an optimized
+version, but optimization hardly affects the speed and reduces the
+disk size of the already modest executable only by about
+20%. Therefore it is no significant loss to compile without
+optimization. Under DOS, even unoptimized compilation can cause DJGPP
+to crash if its stack size is less than about 1024k. The fix (using
+stubedit on cc1.exe) for this DJGPP bug is described in its FAQ.
+
+<div class="p"><!----></div>
+
+<b>Why does my <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;executable, which I compiled myself, crash?&nbsp;&nbsp;</b>
+<br />Assuming that this is not a problem caused by invalid
+<span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>, or by you poking around inside the C code, it is probably a
+compiler shortcoming.  Some default settings of some compilers give
+<span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;too little stack space and cause it to crash. Most
+self-respecting compilers have switches or settings to increase that
+space. Try increasing it, or get one of the binary distributions.
+
+<div class="p"><!----></div>
+
+<b>Why won't <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;run from Program Manager in Wind*ws?&nbsp;&nbsp;</b><br />
+You need a command line. Call up the DOS prompt. If you feel the need
+for a drag and drop facility, get <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>gold.
+
+<div class="p"><!----></div>
+     <a id="tth_sEcB.2"></a><h3>
+B.2&nbsp;&nbsp;[La]TeX constructs <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;does not seem to recognize</h3>
+
+<div class="p"><!----></div>
+
+<b><span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;does not recognize tableofcontents, backward
+references, listoffigures, ...&nbsp;&nbsp;</b><br />
+Yes it does, see section <a href="#LaTeXfiles">6.1</a>, and use the <tt>-L</tt> switch.
+
+<div class="p"><!----></div>
+
+<b><span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;does not insert my picture environments.&nbsp;&nbsp;</b><br />
+If picture environment pictures are to be included, conversion to a gif file
+is needed. See <a href="#pict">6.5</a>.
+
+<div class="p"><!----></div>
+
+<b><span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;messes up my tabbing environment.&nbsp;&nbsp;</b><br />
+Tabbing is not currently supported. It is alien to the HTML document
+mark-up approach. See section <a href="#tabhal">7</a>.
+
+<div class="p"><!----></div>
+<a 
+id="switches_-LB2"></a><a 
+id="frac_command_see_switch_-LB2"></a>
+<b>Why doesn't \frac work in equations?&nbsp;&nbsp;</b><br />
+It does, but only in <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;documents because <tt>\frac</tt> is not a
+plain <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;command. The document you are presenting to <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;doubtless
+has no <tt>\documentclass</tt> command and other <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;blurb at the top.
+If you insist on having <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;commands available in such a document,
+you can use the <tt>-L</tt> switch. But note that other changes in
+interpretation (e.g. in footnotes) are implied by using this switch to
+tell <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;that this is a <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;file.
+
+<div class="p"><!----></div>
+<a 
+id="extensions_to__LaTeXB2"></a><a 
+id="LatexB2"></a><a 
+id="usepackageB2"></a>
+<b>Why does <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;not recognize ... command from ... style
+package?&nbsp;&nbsp;</b><br />
+Let's be perfectly clear here. <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;does not currently recognize 
+<tt>\usepackage</tt> and, with the exception of commands explicitly
+mentioned in this manual, does not support <em>any</em> of the zillions
+of extensions to <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;that exist, even if they are part of the
+"standard distribution". <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;does support macro definitions, see
+section <a href="#texins">9.2</a>, and
+you might find that if you explicitly <tt>\input</tt> the style file
+that you need it will recognize the macro. However, many <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;extension packages are written in a complicated manner such that they
+depend on changes in catcodes, which <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;does not
+support. Therefore no guarantee can be given. This is one reason why
+<span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;deliberately does not recognize <tt>\usepackage</tt>.
+
+<div class="p"><!----></div>
+<a 
+id="line-endsB2"></a>
+<b>Why does <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;not recognize my ends of lines properly?&nbsp;&nbsp;</b><br />
+If you transfer a file from one operating system to another as a
+binary file, the line-end codes are likely to be messed up. They use
+different codes on Un*x, DOS, and Mac. Usually <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;is not bothered by
+this. <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;is somewhat more sensitive. Use ASCII transfer.
+
+<div class="p"><!----></div>
+<a 
+id="skip_space_and_dimension_commandsB2"></a>
+<b>Why does <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;complain about my skip, space, ... command?&nbsp;&nbsp;</b><br />
+Dimensions are often inappropriate for HTML. <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>
+tries do something sensible with dimension, space, and glue
+commands. Usually it is successful. If so, you need do nothing. In
+some rare cases, you might see some irrelevant left-over characters
+from the dimension command that have to be removed by hand.
+
+<div class="p"><!----></div>
+<a 
+id="bibtexB2"></a>
+<b>Can <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;be made to support Bib<span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;bibliographies?&nbsp;&nbsp;</b><br />
+It already does; see <a href="#bibtex">6.2</a>. If <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;is not finding the .bbl file
+even though you used the -L switch, then you probably forgot to
+generate it using <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;<em>and</em> Bib<span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>, or perhaps it is in the
+wrong place. Try using the <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;switch -a.<a 
+id="aB2"></a><a 
+id="switchesB2"></a>  
+
+<div class="p"><!----></div>
+<a 
+id="supportB2"></a>
+<b>Does <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;support ...?&nbsp;&nbsp;</b><br />Probably yes if it is part
+of <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>. But if you want a specific additional capability, and find
+that it is not supported, why not write a TeX macro to support it and
+translate it into suitable HTML using the functions described in this
+manual. Then you will have your support and if you send it to
+<tt>tth(at)hutchinson.belmont.ma.us</tt> (with the usual character
+substituted in the email address), it may be possible to include it
+into the standard <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;executable and you'll have helped all the
+other users of <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>.
+
+<div class="p"><!----></div>
+     <a id="tth_sEcB.3"></a><h3>
+B.3&nbsp;&nbsp;HTML output that does not satisfy</h3>
+
+<div class="p"><!----></div>
+<a id="headbody">
+</a><a 
+id="headB3"></a><a 
+id="bodyB3"></a>
+<b>Why doesn't <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;automatically generate&nbsp;&nbsp;</b> <tt>&lt;head&gt;</tt>
+and <tt>&lt;body&gt;</tt> <b>HTML tags?</b><br />
+ First, the <tt>&lt;head&gt;</tt> and
+<tt>&lt;body&gt;</tt> tags are <em>optional</em> in the HTML specification. There is
+no need for <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;to generate them to statisfy the standard. Second, <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>
+and <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;files do not have a corresponding structural division into
+separate head and body sections. It might seem as if <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;does, with
+<tt>\begin{document}</tt>  being the divider, but there are many cases
+where this mapping is incorrect. For example title may not be defined
+until after <tt>\begin{document}</tt>, corresponding to the HTML body
+section, whereas it must be in the head section. Finally, if <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>
+automatically entered <tt>&lt;head&gt;</tt> and <tt>&lt;body&gt;</tt> tags, then the
+thoughtful author would not be able to enter them where they ought to
+be by using, for example:<br />
+<tt>%%tth:&nbsp;\begin{html}&nbsp;&lt;head&gt;&nbsp;\end{html}</tt><br />
+Therefore, the choice <em>not</em> to produce these tags automatically
+is a deliberate one based on a careful consideration of the advantages
+and disadvantages. An author can always adjust their <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;code to
+include them, if they wish to be pedantic about the division. See also
+the section on HTML style [<a href="#htmlstyle">12.2</a>].
+
+<div class="p"><!----></div>
+<a 
+id="title_TeX_commands_not_expanded_inB3"></a>
+<b>Why don't <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;commands get expanded in the HTML title?&nbsp;&nbsp;</b><br />
+In HTML, the stuff that goes in the <tt>&lt;title&gt;...&lt;/title&gt;</tt> of a
+page is not permitted by the specification to contain HTML tags -
+things in angle brackets - and tags are not interpreted. If an
+equation or some other command that <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;translates into HTML
+formatting is in the title, then the title will break when
+expanded. Therefore <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;deals with commands differently in the
+title.  By default it leaves them in the <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;form that they started
+as, since that is about as easy to read as any unformatted
+mathematics. Using the -n? switch enables control of the precise
+behaviour. See <a href="#n-switch">3</a>.
+
+<div class="p"><!----></div>
+
+<b>How do I make <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;border my tabular table?&nbsp;&nbsp;</b><br />
+<span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;looks in the format string argument of the begin{tabular}
+environment and if it begins with a <tt>|</tt> (vertical bar) then the HTML
+table is bordered.
+
+<div class="p"><!----></div>
+
+<b><span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;inserts the title and author even without the
+maketitle command&nbsp;&nbsp;</b><br />
+True, <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;inserts them when you define them. This gives you a chance
+to fine-tune the presentation if you wish.
+
+<div class="p"><!----></div>
+
+<b>What is this strange result using \dot
+\hat \tilde \frac
+\vec ... in in-line equations?&nbsp;&nbsp;</b><br />
+Neither over and under accents nor built-up constructs such as
+fractions can be rendered in-line (i.e. in a textstyle equation
+produced by $ ... $) in HTML. Therefore, <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;outputs something that is
+not elegant but reasonably indicates the original
+intention. Additional brackets are inserted to ensure that fractions
+are unambiguous. <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;<em>will</em> render all these built-up constructs
+correctly in a <em>display</em> equation. See also <a href="#inline">5.2</a> and
+<a href="#yswitch">5.3</a> for alternatives.
+
+
+<div class="p"><!----></div>
+<a 
+id="square_rootB3"></a>
+<b>Why does the large square root sign look so ugly?&nbsp;&nbsp;</b><br />
+There are some things that browser symbol fonts can't do well.
+
+<div class="p"><!----></div>
+<a 
+id="daggerB3"></a>
+<b>Why does a dagger sign come out strange?&nbsp;&nbsp;</b><br />
+Browsers don't generally have a dagger sign in their fonts. <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;uses a
+kludge.
+
+<div class="p"><!----></div>
+<a 
+id="ComposerB3"></a>
+<b>The file I "published" using Netscape Composer looks
+messed up when viewed on a Mac.&nbsp;&nbsp;</b><br />
+Don't use Composer on <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;documents. See section <a href="#nscomp">13.4</a>.
+
+<div class="p"><!----></div>
+<a 
+id="fboxB3"></a>
+<b>Why does <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;mess up my \fbox,
+minipage, etc?&nbsp;&nbsp;</b><br />The whole concept of a "box" is not really
+translatable into HTML. <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;tries to mimic the box using tables. But
+in some cases, especially in equations, it can't cope.
+
+<div class="p"><!----></div>
+<a 
+id="calligraphicB3"></a>
+<b>How do I get caligraphic fonts, {\cal E}, AMS
+fonts,  etc?&nbsp;&nbsp;</b><br />
+You can't because browsers don't have access to them. <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;can only
+support fonts that are available on the browsers that eventually visit
+the page. By default <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;tells the browser to render caligraphic as
+italic helvetica font. You may, if you wish, define <tt>\cal</tt> to be
+something different, such as <tt>%%tth:\def\cal{\it\color{red}}</tt>.
+
+<div class="p"><!----></div>
+<a 
+id="double-quotesB3"></a>
+<b>Why does <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;turn double-quotes into an accent
+instead of quotes?&nbsp;&nbsp;</b><br />In basic <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;the double quotes character
+<tt>"</tt> is not defined, and hence may do anything that the local
+installation feels like. Double quotes must be inserted by using two
+quote " or back-quote " characters.  In German <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;implementations,
+the double-quotes character is used to provide the umlaut over accent
+and for some other special needs. <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;supports these German uses in
+some appropriate contexts. English speakers should adopt proper <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>
+quote usage.  There is essentially never a situation in <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;where
+it is advisable to use a double quote to represent itself outside of a
+verbatim section (where it will naturally be treated literally). In
+Plain <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;you might need it. If so, <tt>\char`"</tt> is an
+absolutely fool-proof way to insert it. Here it is:". 
+You can also just enclose it in braces thus:{"}. 
+
+<div class="p"><!----></div>
+<a 
+id="pB3"></a>
+<b>Why doesn't TtH output use  &lt; <span class="roman">p</span> &gt;  for paragraphs?&nbsp;&nbsp;</b><br />
+ For the first years of its existence it
+did. However, standards of HTML interpretation have grown tighter to
+the point where <tt>&lt;p&gt;</tt> is a great liability. In XHTML (the latest
+HTML standard) <tt>&lt;p&gt;</tt> is a container element. It must have a
+closing <tt>&lt;/p&gt;</tt>; so that every paragraph must be its own
+group. This compulsion is contrary to <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;usage. Therefore TtH
+changed to dispense completely with any use of <tt>&lt;p&gt;</tt>, using an
+empty <tt>&lt;div&gt;</tt> with an associated CSS style instead. This has the
+significant benefit of ensuring that for standards-compliant browsers,
+font changes propagate even into the cells of tables. (NS4 is not
+compliant, Mozilla, NS7 etc are, in this respect.)
+
+<div class="p"><!----></div>
+     <a id="tth_sEcB.4"></a><h3>
+B.4&nbsp;&nbsp;How to write <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;designed for Web publishing</h3>
+
+<div class="p"><!----></div>
+<a 
+id="TthB4"></a><a 
+id="iftthB4"></a>
+<b>How do I insert code that is used only by <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>, not <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>?&nbsp;&nbsp;</b><br />
+Use <tt>%%tth:</tt> followed by the material you wish to pass to <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>.
+<span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;omits this line as a comment. Alternatively, insert <tt>\newif\iftth</tt>
+at the top of your document, then use a conditional:
+<tt>\iftth&nbsp;\TtH\&nbsp;material&nbsp;\fi</tt>. TtH recognizes <tt>\iftth</tt> as a
+special `if' that is always true, whereas to <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;it is simply a
+new `if', which by default is false when defined.
+
+<div class="p"><!----></div>
+<a 
+id="HTML_tagsB4"></a>
+<b>How do I insert HTML tags into my file without <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;knowing?&nbsp;&nbsp;</b><br />
+Use <tt>%%tth:</tt> then on this line put 
+<tt>\begin{html}&nbsp;tags&nbsp;\end{html}</tt>. Do not try to continue this
+html onto a second line with a second <tt>%%tth:</tt> before the
+<tt>\end{html}</tt> because the html environment will output the
+<tt>%%tth:</tt>, which it probably not what you want. Another way to
+pass codes directly to the output is the <tt>\special{html:&nbsp;...&nbsp;}</tt>
+command. Do
+<em>not</em> use <tt>\begin{verbatim}</tt> to pass HTML tags. It will
+convert the greater than and less than signs to make them appear in
+the display and not be interpreted as tags.
+
+<div class="p"><!----></div>
+<a 
+id="TexB4"></a>
+<b>How do I insert code that is used only by <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>, not <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>?&nbsp;&nbsp;</b><br />
+Insert <tt>\newif\iftth</tt> at the top of the file and then use
+the conditional constr
+uction:
+
+<pre>\iftth\beginsection{The&nbsp;\TtH\&nbsp;Header}\par\else\beginsection{The&nbsp;\TeX\&nbsp;Header}\fi
+
+</pre>
+The `else' clause may also be used with a blank first clause, of
+course: <tt>\iftth\else&nbsp;...&nbsp;\fi</tt>.
+Alternatively, insert the definition <tt>\def\tthdump#1{#1}</tt> at the
+top of the file and then use <tt>\tthdump{\TeX\&nbsp;material}</tt> to pass
+stuff only to <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>. The command <tt>\tthdump</tt> is an internal command
+for <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;(which cannot be redefined) that simply discards its argument.
+Thus, for example, the following will output
+alternate versions from <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;and <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>.
+<pre>
+\def\tthdump#1{#1}
+%%tth:\begin{html}&lt;H1&#62;The&nbsp;HTML&nbsp;Header&lt;/H1&#62;\end{html}
+\tthdump{\beginsection{The&nbsp;\TeX\&nbsp;Header}\par}
+
+</pre>
+
+<div class="p"><!----></div>
+<a 
+id="stylesB4"></a>
+<b>How do I include the style file ...sty for the <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;paper I prepared for... journal?&nbsp;&nbsp;</b><br />
+ If you must, put it in the same directory as your .tex file and see
+ if it works. If it crashes, you may have to write a simpler one.
+ Remove the old style file. Look at your <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;file, or the
+ <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;messages telling you which commands are unknown. Decide which of
+ the journal's specific commands or environments you used or
+ need. Write a little style file that defines them to do something
+ simple and sensible, or translates them into standard <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>
+commands. Or ask the journal to provide such a style file! If you are
+ a journal publisher, distribute your simplified style file to your
+ authors.
+
+<div class="p"><!----></div>
+<a 
+id="tables_bordered_cells_filled_inB4"></a>
+<b>In bordered tables I want an empty cell to look
+empty. How do I make <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;do that?&nbsp;&nbsp;</b><br />
+HTML tables by default "fill in" an empty cell, so that it gives the
+visual impression of being absent. This is sometimes useful, so <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>
+does not prevent it. If you want it to look like an empty cell, put a
+non-break space in it by <tt>&amp;~&amp;</tt> in the <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>.
+
+<div class="p"><!----></div>
+<a 
+id="hash_signB4"></a>
+<b>How do I include into a macro I am defining a # sign
+for an HTML reference?&nbsp;&nbsp;</b><br />
+When you do <tt>\special{html:&lt;a&nbsp;href="#reference"&gt;}</tt> 
+<span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;just puts the html tag in the output verbatim. <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;does essentially the
+same for its dvi file and the dvi processor later may or may not complain
+about not understanding it; but generally it is ignored. However if you try
+to define a macro like
+<tt>\def\localhref{\special{html:&lt;a&nbsp;href="#reference"&gt;}}</tt> then <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>
+will complain as follows:
+<pre>
+!&nbsp;Illegal&nbsp;parameter&nbsp;number&nbsp;in&nbsp;definition&nbsp;of&nbsp;\localref.
+&lt;to&nbsp;be&nbsp;read&nbsp;again&#62;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r
+l.3&nbsp;\def\localref{\special{html:&lt;a&nbsp;href="#r
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eference"&#62;}}
+?
+</pre> This problem is caused by <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>'s syntax analysis of
+the contents of the definition. One solution is to <i>hide</i> the
+definition from <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;using <tt>%%tth:</tt>. An alternative definition
+that avoids this problem must also be included for <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>'s benefit, for
+example thus:
+<pre>
+\def\tthdump#1{#1}
+\tthdump{\edef\localref{[a&nbsp;hyperreference]}}
+%%tth:\def\localhref{\special{html:&lt;a&nbsp;href="#reference"&#62;}}
+
+</pre>
+Alternatively, use <tt>\#</tt> in place of <tt>#</tt> in the hypertex
+reference. <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;specifically recognizes this as a literal and does
+appropriate translation. For example
+
+<pre>
+\def\localhref#1#2{\special{html:&lt;a&nbsp;href="\##1"&#62;}#2\special{html:&lt;/a&#62;}}
+
+</pre>
+will use its first parameter as a local anchor reference, preceded by <tt>#</tt>,
+and its second as the text of the anchor. The sequences <tt>\%</tt> and
+<tt>\\</tt> are also treated as escaped literals, inserting their second
+character, inside a raw html section.
+
+<div class="p"><!----></div>
+<a 
+id="URLB4"></a>
+<b>How do I construct a macro to take as a single
+argument a URL, which may contain special <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;characters like&nbsp;&nbsp;</b> 
+<tt>_&nbsp;~&nbsp;@&nbsp;&amp;</tt> 
+<b>etc, that makes <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;construct a hyperreference but <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;just enter it in the
+text?</b><br />Use the built-in command <tt>\url{...}</tt>. This behaves in
+essentially the same way as the command defined in <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>'s
+url.sty. The reference will appear verbatim in the text (in teletype
+font).
+
+<div class="p"><!----></div>
+     <a id="tth_sEcB.5"></a><h3>
+B.5&nbsp;&nbsp;Formerly Frequently Asked Now Rarely Asked</h3>
+
+<div class="p"><!----></div>
+<a 
+id="FILESB5"></a><a 
+id="file_not_foundB5"></a><a 
+id="inputB5"></a>
+<b>Why does <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;only manage to input a limited number
+of files, perhaps 15 or so, then report "file not found" after
+that?&nbsp;&nbsp;</b><br />
+This is a limitation of the operating system. It has only a limited
+number of file handles available. In MSDOS this number is set by a command 
+<tt>FILES=...</tt> in the operating system configuration file
+<tt>config.sys</tt>. It needs to be set to a number large enough to
+accommodate all the input or include files that your <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;document
+uses, plus whatever other file overhead the operating system is
+using. Under OS/2 a similar limitation exists and is avoided by 
+increasing the number of allowable file handles in the emx run-time
+system (e.g.&nbsp;SET EMXOPT=-c -h400 in config.sys). 
+
+<div class="p"><!----></div>
+<a 
+id="WinNTB5"></a>
+<b><span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;seems not to work on WinNT when converting
+included PostScript&nbsp;&nbsp;</b> files, even though my ps2gif program works fine
+from the command line. What is the problem?<br />
+The problem is not <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>. It appears to be an operating system
+problem. The batch program ps2gif is breaking for some strange reason
+when called from <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>. See footnote <a href="#ps2gifprob">5</a>.
+
+<div class="p"><!----></div>
+<a 
+id="environment_not_recognizedB5"></a>
+<b><span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;does not recognize evironment ... even though it
+claims to.&nbsp;&nbsp;</b><br />
+Probably you left a spurious space, e.g. <tt>\begin&nbsp;{enumerate}</tt>
+between the <tt>\begin</tt> and the following brace. <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;occasionally won't
+accept that, even though <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;does. It is bad style.
+
+<div class="p"><!----></div>
+<a id="tth_sEcindex"></a>
+
+<h2> Index (showing section)</h2>
+
+<table width="100%"><col span="2" width="48%" /><tr><td valign="top"><hr />
+<dl>
+ <dt><b></b></dt>
+	<dd>-a switch, <a href="#a6145">6.1</a>, <a href="#a6249">6.2</a>, 
+		<a href="#a6566">6.5</a>, <a href="#aB2114">B.2</a></dd>
+ <dt><b></b></dt>
+	<dd>auxiliary files, <a href="#auxiliary_files6143">6.1</a><br /><br /></dd>
+ <dt><b></b></dt>
+	<dd>Bib<span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>, <a href="#Bib_TeX_6248">6.2</a></dd>
+ <dt><b></b></dt>
+	<dd>bibtex, <a href="#bibtexB2113">B.2</a></dd>
+ <dt><b></b></dt>
+	<dd>block level elements, <a href="#block_level_elements12289">12.2</a></dd>
+ <dt><b></b></dt>
+	<dd><tt>&lt;body&gt;</tt>, <a href="#bodyB3118">B.3</a></dd>
+ <dt><b></b></dt>
+	<dd>bugs, <a href="#bugs140103">14.0</a><br /><br /></dd>
+ <dt><b></b></dt>
+	<dd>calligraphic, <a href="#calligraphicB3124">B.3</a></dd>
+ <dt><b></b></dt>
+	<dd>catcodes, <a href="#catcodes9172">9.1</a></dd>
+ <dt><b></b></dt>
+	<dd>CGI script, <a href="#CGI_script3019">3.0</a></dd>
+ <dt><b></b></dt>
+	<dd>character set, <a href="#character_set13296">13.2</a></dd>
+ <dt><b></b></dt>
+	<dd>color, <a href="#color10085">10.0</a></dd>
+ <dt><b></b></dt>
+	<dd>colordvi, <a href="#colordvi10086">10.0</a></dd>
+ <dt><b></b></dt>
+	<dd>commands</dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;supported, 
+		<a href="#commands__LaTeX__supported128">1.2</a></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; alternative files, 
+		<a href="#commands_alternative_files9277">9.2</a></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; handling unsupported, 
+		<a href="#commands_handling_unsupported1410">1.4</a></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; redefining, <a href="#commands_redefining9483">9.4</a></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; renaming, <a href="#commands_renaming9482">9.4</a></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; unknown, <a href="#commands_unknown9380">9.3</a></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; unsupported, <a href="#commands_unsupported1411">1.4</a></dd>
+ <dt><b></b></dt>
+	<dd>compile, <a href="#compile2013">2.0</a></dd>
+ <dt><b></b></dt>
+	<dd>Composer, <a href="#ComposerB3122">B.3</a></dd>
+ <dt><b></b></dt>
+	<dd>compression</dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; vertical, <a href="#compression_vertical5339">5.3</a></dd>
+ <dt><b></b></dt>
+	<dd>conditionals, <i>see</i> \<tt>if</tt></dd>
+ <dt><b></b></dt>
+	<dd>CSS, <a href="#CSS5337">5.3</a></dd>
+</dl></td><td valign="top"><hr />
+<dl>
+ <dt><b></b></dt>
+	<dd>dagger, <a href="#daggerB3121">B.3</a></dd>
+ <dt><b></b></dt>
+	<dd>definitions</dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; delimited, <a href="#definitions_delimited9170">9.1</a></dd>
+ <dt><b></b></dt>
+	<dd>double-quotes, <a href="#double-quotesB3125">B.3</a><br /><br /></dd>
+ <dt><b></b></dt>
+	<dd>encoding, <a href="#encoding13297">13.2</a></dd>
+ <dt><b></b></dt>
+	<dd>environment</dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; not recognized, 
+		<a href="#environment_not_recognizedB5139">B.5</a></dd>
+ <dt><b></b></dt>
+	<dd>environments, <a href="#environments127">1.2</a></dd>
+ <dt><b></b></dt>
+	<dd>equations</dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; textstyle, <i>see</i> in-line equations, overaccents</dd>
+ <dt><b></b></dt>
+	<dd>Error, <a href="#Error4021">4.0</a></dd>
+ <dt><b></b></dt>
+	<dd>extensions to <span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>, <a href="#extensions_to__LaTeXB2108">B.2</a><br /><br /></dd>
+ <dt><b></b></dt>
+	<dd>fbox, <a href="#fboxB3123">B.3</a></dd>
+ <dt><b></b></dt>
+	<dd>file not found, <a href="#file_not_foundB5136">B.5</a></dd>
+ <dt><b></b></dt>
+	<dd>FILES, <a href="#FILESB5135">B.5</a></dd>
+ <dt><b></b></dt>
+	<dd>flex, <a href="#flex2012">2.0</a></dd>
+ <dt><b></b></dt>
+	<dd>font</dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; <tt>face="symbol"</tt>, <a href="#font_face5125">5.1</a></dd>
+ <dt><b></b></dt>
+	<dd>fonts, <a href="#fonts112">1.1</a></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; accessing, <a href="#fonts_accessing13090">13.0</a></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; details, <a href="#fonts_details13295">13.2</a></dd>
+ <dt><b></b></dt>
+	<dd>footnotes, <a href="#footnotes9484">9.4</a></dd>
+ <dt><b></b></dt>
+	<dd>frac command</dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; see switch -L, 
+		<a href="#frac_command_see_switch_-LB2107">B.2</a></dd>
+</dl></td></tr><tr><td valign="top"><hr />
+<dl>
+ <dt><b></b></dt>
+	<dd>gif, <a href="#gif6464">6.4</a></dd>
+ <dt><b></b></dt>
+	<dd>glossary, <a href="#glossary6356">6.3</a></dd>
+ <dt><b></b></dt>
+	<dd>graphics files, <a href="#graphics_files6457">6.4</a><br /><br /></dd>
+ <dt><b></b></dt>
+	<dd><tt>\halign</tt>, <a href="#halign7268">7.2</a></dd>
+ <dt><b></b></dt>
+	<dd>hash sign, <a href="#hash_signB4133">B.4</a></dd>
+ <dt><b></b></dt>
+	<dd><tt>&lt;head&gt;</tt>, <a href="#headB3117">B.3</a></dd>
+ <dt><b></b></dt>
+	<dd><tt>\headline</tt>, <a href="#headline116">1.1</a></dd>
+ <dt><b></b></dt>
+	<dd>HTML</dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; 3.2, <a href="#HTML_3.25123">5.1</a></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; 4.0, <a href="#HTML_4.05124">5.1</a></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; insertion, <a href="#HTML_insertion139">1.3</a></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; tags, <a href="#HTML_tagsB4129">B.4</a><br /><br /></dd>
+ <dt><b></b></dt>
+	<dd>icons, <a href="#icons6460">6.4</a></dd>
+ <dt><b></b></dt>
+	<dd><tt>\if</tt>, <a href="#if114">1.1</a>, <a href="#if9171">9.1</a></dd>
+ <dt><b></b></dt>
+	<dd>iftth, <a href="#iftthB4128">B.4</a></dd>
+ <dt><b></b></dt>
+	<dd>in-line equations</dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; arrays, <a href="#in-line_equations_arrays5230">5.2</a></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; built-up display, 
+		<a href="#in-line_equations_built-up_display5233">5.2</a></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; fractions, <a href="#in-line_equations_fractions5231">5.2</a></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; overaccents, 
+		<a href="#in-line_equations_overaccents5232">5.2</a></dd>
+ <dt><b></b></dt>
+	<dd><tt>\includegraphics</tt>, <a href="#includegraphics6461">6.4</a></dd>
+ <dt><b></b></dt>
+	<dd>index</dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; layout in one or two columns and the equivalent page length, 
+		<a href="#index_layout_in_one_or_two_columns_and_the_equivalent_page_length6355">6.3</a></dd>
+ <dt><b></b></dt>
+	<dd>indexing, <a href="#indexing6351">6.3</a></dd>
+ <dt><b></b></dt>
+	<dd>inline elements, <a href="#inline_elements12288">12.2</a></dd>
+ <dt><b></b></dt>
+	<dd><tt>\input</tt></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; "file not found" error, <a href="#inputB5137">B.5</a></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; disabling, <a href="#input9279">9.2</a></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; TEXINPUTS, <a href="#input9275">9.2</a></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; TTHINPUTS, <a href="#input9276">9.2</a></dd>
+ <dt><b></b></dt>
+	<dd>italic</dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; equation style, <a href="#italic_equation_style5127">5.1</a></dd>
+</dl></td><td valign="top"><hr />
+<dl>
+ <dt><b></b></dt>
+	<dd>jpeg, <a href="#jpeg6463">6.4</a><br /><br /></dd>
+ <dt><b></b></dt>
+	<dd><span class="roman">L</span><sup><span class="roman">A</span></sup><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;extension packages, <a href="#LatexB2109">B.2</a></dd>
+ <dt><b></b></dt>
+	<dd>LaTeX2HTML</dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; differences, <a href="#LaTeX2HTML_differences5126">5.1</a>, 
+		<a href="#LaTeX2HTML_differences6141">6.1</a></dd>
+ <dt><b></b></dt>
+	<dd>license, <a href="#license150104">15.0</a></dd>
+ <dt><b></b></dt>
+	<dd>limitations, <a href="#limitations5229">5.2</a></dd>
+ <dt><b></b></dt>
+	<dd>line-ends, <a href="#line-endsB2111">B.2</a></dd>
+ <dt><b></b></dt>
+	<dd>longtable, <a href="#longtable7369">7.3</a><br /><br /></dd>
+ <dt><b></b></dt>
+	<dd>macro files, <a href="#macro_files9273">9.2</a></dd>
+ <dt><b></b></dt>
+	<dd>macros</dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; alternate, <a href="#macros_alternate9278">9.2</a></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; special use, <a href="#macros_special_useA0105">A.0</a></dd>
+ <dt><b></b></dt>
+	<dd>makeindex, <a href="#makeindex6352">6.3</a></dd>
+ <dt><b></b></dt>
+	<dd>mathematics, <a href="#mathematics111">1.1</a></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; layout style, <a href="#mathematics_layout_style5335">5.3</a></dd>
+ <dt><b></b></dt>
+	<dd>messages, <a href="#messages4020">4.0</a><br /><br /></dd>
+ <dt><b></b></dt>
+	<dd>Netscape/Mozilla Composer, 
+		<a href="#Netscape_Mozilla_Composer13499">13.4</a><br /><br /></dd>
+ <dt><b></b></dt>
+	<dd><tt>&lt;p&gt;</tt>, <a href="#pB3126">B.3</a></dd>
+ <dt><b></b></dt>
+	<dd>picture environment, <a href="#picture_environment6565">6.5</a></dd>
+ <dt><b></b></dt>
+	<dd>portability, <a href="#portability6142">6.1</a></dd>
+ <dt><b></b></dt>
+	<dd>postscript, <a href="#postscript6462">6.4</a></dd>
+ <dt><b></b></dt>
+	<dd>printing, <a href="#printing13398">13.3</a></dd>
+ <dt><b></b></dt>
+	<dd>ps2gif, <a href="#ps2gif6458">6.4</a></dd>
+ <dt><b></b></dt>
+	<dd>ps2png, <a href="#ps2png6459">6.4</a></dd>
+ <dt><b></b></dt>
+	<dd>publish</dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; through composer disallowed, 
+		<a href="#publish_through_composer_disallowed134100">13.4</a></dd>
+</dl></td></tr><tr><td valign="top"><hr />
+<dl>
+ <dt><b></b></dt>
+	<dd>references</dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; forward, <a href="#references_forward6147">6.1</a></dd>
+ <dt><b></b></dt>
+	<dd><tt>\rm</tt>, <a href="#roman113">1.1</a><br /><br /></dd>
+ <dt><b></b></dt>
+	<dd>skip space and dimension commands, 
+		<a href="#skip_space_and_dimension_commandsB2112">B.2</a></dd>
+ <dt><b></b></dt>
+	<dd>spacing, <a href="#spacing5128">5.1</a></dd>
+ <dt><b></b></dt>
+	<dd>square root, <a href="#square_rootB3120">B.3</a></dd>
+ <dt><b></b></dt>
+	<dd>stderr, <a href="#stderr3018">3.0</a></dd>
+ <dt><b></b></dt>
+	<dd>stdin, <a href="#stdin3016">3.0</a></dd>
+ <dt><b></b></dt>
+	<dd>stdout, <a href="#stdout3017">3.0</a></dd>
+ <dt><b></b></dt>
+	<dd>Style Sheets, <a href="#Style_Sheets5336">5.3</a></dd>
+ <dt><b></b></dt>
+	<dd>styles, <a href="#stylesB4131">B.4</a></dd>
+ <dt><b></b></dt>
+	<dd>support, <a href="#supportB2116">B.2</a></dd>
+ <dt><b></b></dt>
+	<dd>switches, <a href="#switches6250">6.2</a>, <a href="#switchesB2115">B.2</a></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; -L, <a href="#switches_-L3015">3.0</a>, 
+		<a href="#switches_-L6144">6.1</a>, 
+		<a href="#switches_-LB2106">B.2</a></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; -a, <a href="#switches_-a6146">6.1</a>, 
+		<a href="#switches_-a6567">6.5</a></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; -j, <a href="#switches_-j6354">6.3</a></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; -u, <a href="#switches_-u13194">13.1</a></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; -y1, <a href="#switches_-y15338">5.3</a>, 
+		<a href="#switches_-y113192">13.1</a></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; -y2, <a href="#switches_-y25340">5.3</a>, 
+		<a href="#switches_-y213193">13.1</a></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>, <a href="#switches__TtH3014">3.0</a></dd>
+ <dt><b></b></dt>
+	<dd>symbol font</dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; accessing, <a href="#symbol_font_accessing13091">13.0</a></dd>
+</dl></td><td valign="top"><hr />
+<dl>
+ <dt><b></b></dt>
+	<dd>Table of Contents</dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; Index entry, 
+		<a href="#Table_of_Contents_Index_entry6353">6.3</a></dd>
+ <dt><b></b></dt>
+	<dd>tables</dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; bordered cells filled in, 
+		<a href="#tables_bordered_cells_filled_inB4132">B.4</a></dd>
+ <dt><b></b></dt>
+	<dd><span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>-only code, <a href="#TexB4130">B.4</a></dd>
+ <dt><b></b></dt>
+	<dd>texinputs path, <a href="#texinputs_path9274">9.2</a></dd>
+ <dt><b></b></dt>
+	<dd>title</dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; HTML construction, 
+		<a href="#title_HTML_construction12187">12.1</a></dd>
+<dd>&nbsp;&nbsp;&nbsp;&nbsp; TeX commands not expanded in, 
+		<a href="#title_TeX_commands_not_expanded_inB3119">B.3</a></dd>
+ <dt><b></b></dt>
+	<dd><span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>-only code, <a href="#TthB4127">B.4</a><br /><br /></dd>
+ <dt><b></b></dt>
+	<dd>unknown commands, <i>see</i> commands, unknown</dd>
+ <dt><b></b></dt>
+	<dd>URL, <a href="#URLB4134">B.4</a></dd>
+ <dt><b></b></dt>
+	<dd><tt>\usepackage</tt>, <a href="#usepackageB2110">B.2</a></dd>
+ <dt><b></b></dt>
+	<dd>UTF-8, <a href="#UTF-8136101">13.6</a><br /><br /></dd>
+ <dt><b></b></dt>
+	<dd>warning, <a href="#warning4022">4.0</a></dd>
+ <dt><b></b></dt>
+	<dd>web-server, <a href="#web-server136102">13.6</a></dd>
+ <dt><b></b></dt>
+	<dd>WinNT, <a href="#WinNTB5138">B.5</a></dd>
+</dl></td></tr></table>
+
+
+<div class="p"><!----></div>
+<hr /><h3>Footnotes:</h3>
+
+<div class="p"><!----></div>
+<a id="tthFtNtAAB"></a><a href="#tthFrefAAB"><sup>1</sup></a>The problem with <tt>\rm</tt> in text is that HTML
+has no  &lt; <tt>rm</tt> &gt;  tag, and relies on cancelling all previous (e.g.)
+ &lt; <tt>i</tt> &gt;  or  &lt; <tt>b</tt> &gt;  tags. By default (using style -y1)
+<span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;uses Cascading Style Sheets to solve this problem. However not
+all older browsers support CSS and even in those that do, the user can
+turn off the CSS support. The best solution is to avoid
+<tt>\rm</tt> by using proper grouping of non-roman text. (In
+equations <tt>\rm</tt> is essential, but <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;has a
+work-around in equations.)
+<div class="p"><!----></div>
+<a id="tthFtNtAAC"></a><a href="#tthFrefAAC"><sup>2</sup></a>Conditionals \<tt>if</tt>
+ and \<tt>ifx</tt> are not 100% <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;compatible for cases
+where they refer to internal <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;commands because <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;internals are
+not identical. Catcodes are also unknown to <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>.
+<div class="p"><!----></div>
+<a id="tthFtNtAAD"></a><a href="#tthFrefAAD"><sup>3</sup></a>See appendix for <span class="roman">T</span><sub><span class="roman">E</span></sub><span class="roman">X</span>&nbsp;macros supporting these commands
+<div class="p"><!----></div>
+<a id="tthFtNtAAE"></a><a href="#tthFrefAAE"><sup>4</sup></a>The PNG graphics file format is an improved
+replacement for the GIF standard. Netscape has built in rendering for
+PNG. The GIF standard is plagued with legal problems related to a
+ridiculous patent on the type of file compression it uses.
+<div class="p"><!----></div>
+<a id="tthFtNtAAF"></a><a href="#tthFrefAAF"><sup>5</sup></a>May 1999 reports indicated that there is a
+batch program in circulation bearing the comment ":#batchified by
+cschenk@snafu.de" that tries to implement the functionality of ps2gif
+and gives errors on WinNT when called by <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;but not when called from
+the command line. I have not had recent reports of problems, so I
+think this problem has been fixed.
+<div class="p"><!----></div>
+<a id="tthFtNtAAG"></a><a href="#tthFrefAAG"><sup>6</sup></a>The alignment argument of the
+math array environment was ignored in <span class="roman">T</span><sub><span class="roman">T</span></sub><span class="roman">H</span>&nbsp;versions earlier than 2.20
+but is now honored.
+<div class="p"><!----></div>
+<a id="tthFtNtAAH"></a><a href="#tthFrefAAH"><sup>7</sup></a>See the file colordvi.tex for a list of
+the named colors.
+<div class="p"><!----></div>
+<a id="tthFtNtAAI"></a><a href="#tthFrefAAI"><sup>8</sup></a>It proves to be
+  better to specify 4.0 as the HTML Doctype because on some operating
+  systems symbol font rendering is not honored for 4.01 documents.
+<br /><br /><hr /><small>File translated from
+T<sub><span class="small">E</span></sub>X
+by <a href="http://hutchinson.belmont.ma.us/tth/">
+T<sub><span class="small">T</span></sub>H</a>,
+version 4.04.<br />On 22 Jun 2014, 18:00.</small>
+</html>
