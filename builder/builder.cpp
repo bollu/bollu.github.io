@@ -121,27 +121,27 @@ std::ostream &operator<<(std::ostream &o, const Span &s) {
     return cout << s.begin << " - " << s.end;
 }
 
-void vprintferr(L line, const char *filestr, const char *fmt, va_list args) {
+void vprintferr(L line, const char *instr, const char *fmt, va_list args) {
     char *outstr = nullptr;
     vasprintf(&outstr, fmt, args);
     assert(outstr);
 
     cerr << line << " --- " << outstr << "\n";
     // find the previous newline character.
-    int i = line.si; for(; i >= 1 && filestr[i-1] != '\n'; i--) {}
+    int i = line.si; for(; i >= 1 && instr[i-1] != '\n'; i--) {}
 
     cerr << "> ";
-    for(; filestr[i] != '\0' && filestr[i] != '\n'; ++i) { 
-        if (i == line.si) { cerr <<  "⌷"; } cerr << filestr[i];
+    for(; instr[i] != '\0' && instr[i] != '\n'; ++i) { 
+        if (i == line.si) { cerr <<  "⌷"; } cerr << instr[i];
     }
     cerr << "\n";
     free(outstr);
 }
 
-void printferr(L line, const char *filestr, const char *fmt, ...) {
+void printferr(L line, const char *instr, const char *fmt, ...) {
     va_list args;
     va_start(args, fmt);
-    vprintferr(line, filestr, fmt, args);
+    vprintferr(line, instr, fmt, args);
     va_end(args);
 }
 
@@ -235,23 +235,23 @@ bool strpeek(const char* haystack, const char* needle) {
 }
 
 
-// consume till we file delim in filestr
-L strconsume(L l, const char *filestr, const char *delim,
+// consume till we file delim in instr
+L strconsume(L l, const char *instr, const char *delim,
         const char *errfmt, ...)  {
     const L lbegin = l;
-    while (filestr[l.si] != '\0' && 
-           !strpeek(filestr + l.si, delim)) {
-        l = l.next(filestr[l.si]);
+    while (instr[l.si] != '\0' && 
+           !strpeek(instr + l.si, delim)) {
+        l = l.next(instr[l.si]);
     }
 
-    if (filestr[l.si] == '\0') {
+    if (instr[l.si] == '\0') {
         va_list args;
         va_start(args, errfmt);
-        vprintferr(lbegin, filestr, errfmt, args);
+        vprintferr(lbegin, instr, errfmt, args);
         va_end(args);
         assert(false && "unable to consume string.");
     } else {
-        assert(strpeek(filestr + l.si, delim));
+        assert(strpeek(instr + l.si, delim));
         l = l.next(delim);
     }
     return l;
@@ -581,7 +581,7 @@ void tokenize(const char *s, const ll len, vector<T*> &ts) {
 
 
 char* pygmentize(const char *tempdirpath, 
-        const char *code, int codelen, const char *lang) {
+        const char *code, int codelen, const char *lang, const char *instr, const L loc) {
 
 
     char latex_file_path[512];
@@ -592,7 +592,7 @@ char* pygmentize(const char *tempdirpath,
     assert(nwritten == codelen);
     fclose(f);
 
-    cerr << "wrote pygmentize input to: |" << latex_file_path << "|\n";
+    // cerr << "wrote pygmentize input to: |" << latex_file_path << "|\n";
 
     char output_file_name[512];
     sprintf(output_file_name, "%s/input.txt.html", tempdirpath);
@@ -613,6 +613,7 @@ char* pygmentize(const char *tempdirpath,
         int status;
         wait(&status);
         if(WIFEXITED(status) && (WEXITSTATUS(status) != 0)) {
+            printferr(loc, instr, "unable to pygmentize code");
             assert(false && "child ended non-gracefully");
         };
     }
@@ -634,7 +635,7 @@ char* pygmentize(const char *tempdirpath,
 
 
 char* compileLatex(const char *tempdirpath, const char *ins, 
-    const ll inwritelen) {
+    const ll inwritelen, const char *instr, const L loc) {
 
     FILE *flatex = nullptr, *fhtml = nullptr;
     char latex_file_path[512]; char html_file_path[512];
@@ -643,13 +644,15 @@ char* compileLatex(const char *tempdirpath, const char *ins,
 
     flatex = fopen(latex_file_path, "wb");
     assert(flatex && "unable to open file for writing");
+    fprintf(flatex, "\\usepackage{amsmath}\n");
+    fprintf(flatex, "\\usepackage{amssymb}\n");
     const ll nwritten = fwrite(ins, 1, inwritelen, flatex);
     assert(nwritten == (ll)inwritelen);
 
     fclose(flatex);
-    cerr << "wrote latex input |";
-    for(int i = 0; i < inwritelen; ++i) { cerr << ins[i]; }
-    cerr << "| to: |" << latex_file_path << "|\n";
+    // cerr << "wrote latex input |";
+    // for(int i = 0; i < inwritelen; ++i) { cerr << ins[i]; }
+    // cerr << "| to: |" << latex_file_path << "|\n";
 
     int pid;
     // hevea STDIN
@@ -670,18 +673,21 @@ char* compileLatex(const char *tempdirpath, const char *ins,
         assert(err != -1 && "unable to launch 'hevea'");
     } else {
         // parent, wait for child.
-        cerr << "waiting for child to terminate...";
+        // cerr << "waiting for child to terminate...";
         int status;
         wait(&status);
         if(WIFEXITED(status) && (WEXITSTATUS(status) != 0)) {
-            cerr <<  "child running hevea ended non-gracefully. Returning input string...";
-            char *outs = (char *)malloc((inwritelen+2) *sizeof(char));
-            int i  = 0;
-            for(;i < inwritelen; ++i) outs[i] = ins[i];
-            outs[i] = 0; return outs;
-        } else {
-            cerr << "\rchild exited gracefully.\n";
-        }
+            printferr(loc, instr, "unable to hevea (latexif render) code");
+            assert(false && "child ended non-gracefully.");
+            // cerr <<  "child running hevea ended non-gracefully. Returning input string...";
+            // char *outs = (char *)malloc((inwritelen+2) *sizeof(char));
+            // int i  = 0;
+            // for(;i < inwritelen; ++i) outs[i] = ins[i];
+            // outs[i] = 0; return outs;
+        } 
+        // else {
+        //     cerr << "\rchild exited gracefully.\n";
+        // }
     }
 
     fhtml = fopen(html_file_path, "rb");
@@ -696,20 +702,21 @@ char* compileLatex(const char *tempdirpath, const char *ins,
     const ll nread = fread(outs, 1, len, fhtml);
     assert(nread == len);
 
-    fprintf(stderr, "HTML output: %s\n", outs);
+    // fprintf(stderr, "HTML output: %s\n", outs);
     fclose(fhtml);
     return outs;
 }
 
-void toHTML(const char *tempdirpath, 
-        const T *t, const char *ins, ll &outlen, char *outs) {
+void toHTML(const char *instr,
+        const char *tempdirpath, 
+        const T *t, ll &outlen, char *outs) {
     assert(t != nullptr);
     switch(t->ty) {
         case TT::Comment: return;
 
         case TT::HTML:
         case TT::RawText:
-        strncpy(outs + outlen, ins + t->span.begin.si, t->span.nchars());
+        strncpy(outs + outlen, instr + t->span.begin.si, t->span.nchars());
         outlen += t->span.nchars();
         return;
 
@@ -730,13 +737,13 @@ void toHTML(const char *tempdirpath,
           outlen += strlen(open);
 
           // we want to ignore the first 3 ``` and the last 3 ```
-          cerr << __LINE__ << "\n";
           const Span span =
               Span(t->span.begin.next("```").next(tcode->langname),
                       t->span.end.prev("```"));
           char *code_html = pygmentize(tempdirpath,
-                  ins + span.begin.si,
-                  span.nchars(), tcode->langname);
+                  instr + span.begin.si,
+                  span.nchars(), tcode->langname,
+                  instr, t->span.begin);
 
           strcpy(outs + outlen, code_html);
           outlen += strlen(code_html);
@@ -755,7 +762,8 @@ void toHTML(const char *tempdirpath,
               outlen += sprintf(outs + outlen, "<div class='latex'>");
           }
           char *outcompile = compileLatex(tempdirpath,
-                  ins + span.begin.si, span.nchars());
+                  instr + span.begin.si, span.nchars(),
+                  instr, t->span.begin);
           strcpy(outs + outlen, outcompile);
           outlen += strlen(outcompile);
           if (t->ty == TT::LatexBlock) { 
@@ -782,7 +790,7 @@ void toHTML(const char *tempdirpath,
           strcpy(outs + outlen, openul); outlen += strlen(openul);
           for(auto it: tlist->items) {
               strcpy(outs + outlen, openli); outlen += strlen(openli);
-              toHTML(tempdirpath, it, ins, outlen, outs);
+              toHTML(instr, tempdirpath, it, outlen, outs);
               strcpy(outs + outlen, closeli); outlen += strlen(closeli);
           }
           strcpy(outs + outlen, closeul); outlen += strlen(closeul);
@@ -792,7 +800,7 @@ void toHTML(const char *tempdirpath,
         case TT::Link: {
           TLink *link = (TLink *)t;
           outlen += sprintf(outs + outlen, "<a href=%s>\n", link->link);
-          toHTML(tempdirpath, link->text, ins, outlen, outs);
+          toHTML(instr, tempdirpath, link->text,  outlen, outs);
           outlen += sprintf(outs + outlen, "</a>\n");
           return;
         }
@@ -800,7 +808,7 @@ void toHTML(const char *tempdirpath,
         case TT::InlineGroup: {
             TInlineGroup *group = (TInlineGroup *)t;
             for (T *t : group->items) { 
-                toHTML(tempdirpath, t, ins, outlen, outs);
+                toHTML(instr, tempdirpath, t, outlen, outs);
             }
             return;
         }
@@ -814,7 +822,7 @@ void toHTML(const char *tempdirpath,
             const Span span =
                 Span(t->span.begin.next("`"), t->span.end.prev("`"));
 
-            strncpy(outs + outlen, ins + span.begin.si, span.nchars());
+            strncpy(outs + outlen, instr + span.begin.si, span.nchars());
             outlen += span.nchars();
 
             strcpy(outs + outlen, close); outlen += strlen(close);
@@ -824,7 +832,7 @@ void toHTML(const char *tempdirpath,
         case TT::Heading: {
             THeading *theading = (THeading *)t;
             outlen += sprintf(outs + outlen, "<h%d>", theading->hnum);
-            toHTML(tempdirpath, theading->item, ins, outlen, outs);
+            toHTML(instr, tempdirpath, theading->item, outlen, outs);
             outlen += sprintf(outs + outlen, "</h%d>", theading->hnum);
             return;
         }
@@ -832,7 +840,7 @@ void toHTML(const char *tempdirpath,
         case TT::Italic: {
             TItalic *tcur = (TItalic *)t;
             outlen += sprintf(outs + outlen, "<i>");
-            toHTML(tempdirpath, tcur->item, ins, outlen, outs);
+            toHTML(instr, tempdirpath, tcur->item, outlen, outs);
             outlen += sprintf(outs + outlen, "</i>");
             return;
         }
@@ -840,7 +848,7 @@ void toHTML(const char *tempdirpath,
         case TT::Bold: {
             TBold *tcur = (TBold *)t;
             outlen += sprintf(outs + outlen, "<b>");
-            toHTML(tempdirpath, tcur->item, ins, outlen, outs);
+            toHTML(instr, tempdirpath, tcur->item, outlen, outs);
             outlen += sprintf(outs + outlen, "</b>");
             return;
         }
@@ -850,7 +858,7 @@ void toHTML(const char *tempdirpath,
 
           outlen += sprintf(outs + outlen, "<blockquote>");
           for(auto it: tq->items) {
-              toHTML(tempdirpath, it, ins, outlen, outs);
+              toHTML(instr, tempdirpath, it, outlen, outs);
           }
           outlen += sprintf(outs + outlen, "</blockquote>");
           return;
@@ -872,31 +880,62 @@ void toHTML(const char *tempdirpath,
 // <body vlink="#660000" text="#000000" link="#CC0000"
 //  bgcolor="#FFFFF3" alink="#660000">
 const char htmlbegin[] =
- "<!DOCTYPE html>"
- "<meta charset='UTF-8'>"
- "<html>"
- "<head>"
- "<title> A Universe of Sorts </title>"
- "<style>"
- "body {"
- " background-color: #FFFFFA; color: #000000; " // tufte
- " font-family: monospace; font-size: 14px; line-height: 2em;"
- " width: 100ch; padding-left: 20%; padding-right: 20%;}"
- " @media screen and (max-width: 800px) { width: 100%; padding: 0"
- "}" // end body
- "a:hover { color: #CC0000; }" // hover
- "a { color: #AA0000; }" // unvisited; default
- "a:visited { color: #660000; }" // vlink
- "a:active { color: #660000; }" // alink
+"<!DOCTYPE html>"
+"<meta charset='UTF-8'>"
+"<html>"
+"<head>"
+"<title> A Universe of Sorts </title>"
+"<style>"
+"body {"
+" background-color: #FFFFFA; color: #000000; " // tufte
+" font-family: monospace; font-size: 14px; line-height: 2em;"
+" width: 100ch; padding-left: 20%; padding-right: 20%;}"
+" @media screen and (max-width: 800px) { width: 100%; padding: 0"
+"}" // end body
+"a:hover { color: #CC0000; }" // hover
+"a { color: #AA0000; }" // unvisited; default
+"a:visited { color: #660000; }" // vlink
+"a:active { color: #660000; }" // alink
 // code blocks, latex blocks
- "pre .latex { border-left-color:#660000;  border-left-style: solid;"
- "      border-left-width: 4px; padding-left: 5px; }" 
- // latex, we need line height to be correct
+"pre .latex { border-left-color:#660000;  border-left-style: solid;"
+"      border-left-width: 4px; padding-left: 5px; }" 
+// latex, we need line height to be correct
  ".latex { line-height: 1em; }"
- // end style
- "</style>"
- "</head>"
- "<body>";
+// HEVEA
+".li-itemize{margin:1ex 0ex;}"
+".li-enumerate{margin:1ex 0ex;}"
+".footnotetext{margin:0ex; padding:0ex;}"
+"div.footnotetext P{margin:0px; text-indent:1em;}"
+".thefootnotes{text-align:left;margin:0ex;}"
+".dt-thefootnotes{margin:0em;}"
+".dd-thefootnotes{margin:0em 0em 0em 2em;}"
+".footnoterule{margin:1em auto 1em 0px;width:50%;}"
+".caption{padding-left:2ex; padding-right:2ex; margin-left:auto; margin-right:auto}"
+".title{margin:2ex auto;text-align:center}"
+".titlemain{margin:1ex 2ex 2ex 1ex;}"
+".center{text-align:center;margin-left:auto;margin-right:auto;}"
+".flushleft{text-align:left;margin-left:0ex;margin-right:auto;}"
+".flushright{text-align:right;margin-left:auto;margin-right:0ex;}"
+"div table{margin-left:inherit;margin-right:inherit;margin-bottom:2px;margin-top:2px}"
+"td table{margin:auto;}"
+"table{border-collapse:collapse;}"
+"td{padding:0;}"
+".cellpadding0 tr td{padding:0;}"
+".cellpadding1 tr td{padding:1px;}"
+"pre{text-align:left;margin-left:0ex;margin-right:auto;}"
+"blockquote{margin-left:4ex;margin-right:4ex;text-align:left;}"
+"td p{margin:0px;}"
+".hbar{border:none;height:2px;width:100%;background-color:black;}"
+".display{border-collapse:separate;border-spacing:2px;width:auto; border:none;}"
+".dcell{white-space:nowrap;padding:0px; border:none;}"
+".dcenter{margin:0ex auto;}"
+".theorem{text-align:left;margin:1ex auto 1ex 0ex;}"
+".tst{font-family:sans;font-style:oblique;color:maroon}"
+".highlight{color:lime}"
+// end style
+"</style>"
+"</head>"
+"<body>";
  
 
 const char htmlend[] =
@@ -906,7 +945,7 @@ const char htmlend[] =
 
 
 T ts[MAX_TOKENS];
-char filestr[MAX_CHARS];
+char instr[MAX_CHARS];
 int main(int argc, char **argv) {
     if (argc != 3) {
         printf("expected usage: %s <input md path> <output folder path>", argv[0]);
@@ -923,9 +962,9 @@ int main(int argc, char **argv) {
     assert(len < MAX_CHARS);
     cout << "Input length: |" << len << "|\n";
 
-    const ll nread = fread(filestr, 1, len, fin); assert(nread == len);
+    const ll nread = fread(instr, 1, len, fin); assert(nread == len);
 
-    vector<T*> ts; tokenize(filestr, nread, ts);
+    vector<T*> ts; tokenize(instr, nread, ts);
     cerr << "Done tokenizing; now parsing...\n";
 
 
@@ -937,7 +976,7 @@ int main(int argc, char **argv) {
     char *outbuf = (char *)calloc(MAX_OUTBUF_LEN, sizeof(char));
     ll outlen = 0;
     outlen += sprintf(outbuf + outlen, "%s", htmlbegin);
-    for(T * t : ts) { toHTML(tempdirpath, t, filestr,  outlen, outbuf); }
+    for(T * t : ts) { toHTML(instr, tempdirpath, t, outlen, outbuf); }
     outlen += sprintf(outbuf + outlen, "%s", htmlend);
 
     rmdir(tempdirpath);
