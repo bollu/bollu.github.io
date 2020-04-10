@@ -628,6 +628,7 @@ char* pygmentize(const char *tempdirpath,
 
     const ll nread = fread(outbuf, 1, len, f);
     assert(nread == len);
+    fclose(f);
     return outbuf;
 };
 
@@ -696,6 +697,7 @@ char* compileLatex(const char *tempdirpath, const char *ins,
     assert(nread == len);
 
     fprintf(stderr, "HTML output: %s\n", outs);
+    fclose(fhtml);
     return outs;
 }
 
@@ -738,6 +740,7 @@ void toHTML(const char *tempdirpath,
 
           strcpy(outs + outlen, code_html);
           outlen += strlen(code_html);
+          free(code_html);
 
           strcpy(outs + outlen, close);
           outlen += strlen(close);
@@ -751,13 +754,14 @@ void toHTML(const char *tempdirpath,
           if (t->ty == TT::LatexBlock) { 
               outlen += sprintf(outs + outlen, "<div class='latex'>");
           }
-          const char *outcompile = compileLatex(tempdirpath,
+          char *outcompile = compileLatex(tempdirpath,
                   ins + span.begin.si, span.nchars());
           strcpy(outs + outlen, outcompile);
           outlen += strlen(outcompile);
           if (t->ty == TT::LatexBlock) { 
               outlen += sprintf(outs + outlen, "</div>");
           }
+          free(outcompile);
           return;
         }
 
