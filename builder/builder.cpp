@@ -21,6 +21,10 @@ static const ll PADDING = 10;
 static const ll MAX_TOKENS = 1e7;
 static const ll MAX_CHARS = 1e7;
 
+struct Options {
+    bool latex2ascii = false; // convert latex to ascii
+} G_OPTIONS;
+
 
 using namespace std;
 
@@ -633,9 +637,34 @@ char* pygmentize(const char *tempdirpath,
     return outbuf;
 };
 
+// convert:
+// $$\begin{align*} .. \end{align*}$$
+//   TO
+// \begin{align*} .. \end{align*}
+pair<ll, L> removeAlignDollarsHack(const char *instr, const ll inwritelen,
+        const L loc) {
+    assert(instr[loc.si] == '$');
 
-char* compileLatex(const char *tempdirpath, const char *ins, 
-    const ll inwritelen, const char *instr, const L loc) {
+    // we may have inline latex that does not have $$.
+    if(!strpeek(instr + loc.si, "$$")) { return make_pair(inwritelen, loc); }
+    int ix = loc.si + 2;
+    while(instr[ix] == ' ' || instr[ix] == '\n' || instr[ix] == '\t') { ++ix; }
+    const char *BEGINALIGN = "\\begin{align*}";
+    if (strpeek(instr + ix, BEGINALIGN)) {
+        fprintf(stderr, "|||");
+        for(int i = 0; i < inwritelen-4; ++i) {
+            fprintf(stderr, "%c", instr[loc.next("$$").si + i]);
+        }
+        fprintf(stderr, "|||");
+        return make_pair(inwritelen - 4, loc.next("$$"));
+    }
+    return make_pair(inwritelen, loc);
+};
+
+
+char* compileLatex(const char *tempdirpath, ll inwritelen, const char *instr, L loc) {
+
+    tie(inwritelen, loc) = removeAlignDollarsHack(instr, inwritelen, loc);
 
     FILE *flatex = nullptr, *fhtml = nullptr;
     char latex_file_path[512]; char html_file_path[512];
@@ -645,8 +674,12 @@ char* compileLatex(const char *tempdirpath, const char *ins,
     flatex = fopen(latex_file_path, "wb");
     assert(flatex && "unable to open file for writing");
     fprintf(flatex, "\\usepackage{amsmath}\n");
-    fprintf(flatex, "\\usepackage{amssymb}\n");
-    const ll nwritten = fwrite(ins, 1, inwritelen, flatex);
+    
+    // SUPER HACK: Process the string to remove the $$
+    // if we have a \begin{align*} right after.
+
+    // fprintf(flatex, "\\usepackage{amssymb}\n");
+    const ll nwritten = fwrite(instr + loc.si, 1, inwritelen, flatex);
     assert(nwritten == (ll)inwritelen);
 
     fclose(flatex);
@@ -669,7 +702,7 @@ char* compileLatex(const char *tempdirpath, const char *ins,
         // replace stdout with outfile
         dup2(fileno(fhtml), 1);
 
-        int err = execlp("hevea", "hevea", NULL);
+        int err = execlp("hevea", "hevea", "-w", "100", NULL);
         assert(err != -1 && "unable to launch 'hevea'");
     } else {
         // parent, wait for child.
@@ -677,13 +710,14 @@ char* compileLatex(const char *tempdirpath, const char *ins,
         int status;
         wait(&status);
         if(WIFEXITED(status) && (WEXITSTATUS(status) != 0)) {
+            fprintf(stderr, "===LATEX ERROR===\n");
             printferr(loc, instr, "unable to hevea (latexif render) code");
-            assert(false && "child ended non-gracefully.");
-            // cerr <<  "child running hevea ended non-gracefully. Returning input string...";
-            // char *outs = (char *)malloc((inwritelen+2) *sizeof(char));
-            // int i  = 0;
-            // for(;i < inwritelen; ++i) outs[i] = ins[i];
-            // outs[i] = 0; return outs;
+            // assert(false && "child ended non-gracefully.");
+            cerr <<  "====child running hevea ended non-gracefully. Returning input string===\n";
+            char *outs = (char *)malloc((inwritelen+2) *sizeof(char));
+            int i  = 0;
+            for(; i < inwritelen; ++i) { outs[i] = instr[loc.si + i]; }
+            outs[i] = 0; return outs;
         } 
         // else {
         //     cerr << "\rchild exited gracefully.\n";
@@ -759,17 +793,29 @@ void toHTML(const char *instr,
           // const Span span = Span(t->span.begin.next("$"), t->span.end.prev("$"));
           const Span span = t->span; 
           if (t->ty == TT::LatexBlock) { 
-              outlen += sprintf(outs + outlen, "<div class='latex'>");
+              outlen += sprintf(outs + outlen, "<div class='latexblock'>");
+          } else if (t->ty == TT::LatexInline) {
+              outlen += sprintf(outs + outlen, "<span class='latexinline'>");
           }
-          char *outcompile = compileLatex(tempdirpath,
-                  instr + span.begin.si, span.nchars(),
-                  instr, t->span.begin);
-          strcpy(outs + outlen, outcompile);
-          outlen += strlen(outcompile);
+
+          if (G_OPTIONS.latex2ascii) {
+              char *outcompile = compileLatex(tempdirpath,
+                      span.nchars(),
+                      instr, t->span.begin);
+              cerr << "outcompile: |||" << outcompile << "|||\n";
+              strcpy(outs + outlen, outcompile);
+              outlen += strlen(outcompile);
+              free(outcompile);
+          } else {
+              strncpy(outs + outlen, instr + t->span.begin.si, t->span.nchars());
+              outlen += t->span.nchars();
+          }
+
           if (t->ty == TT::LatexBlock) { 
               outlen += sprintf(outs + outlen, "</div>");
+          } else if (t->ty == TT::LatexInline) { 
+              outlen += sprintf(outs + outlen, "</span>");
           }
-          free(outcompile);
           return;
         }
 
@@ -897,10 +943,12 @@ const char htmlbegin[] =
 "a:visited { color: #660000; }" // vlink
 "a:active { color: #660000; }" // alink
 // code blocks, latex blocks
-"pre .latex { border-left-color:#660000;  border-left-style: solid;"
+"pre, .latexblock { border-left-color:#660000;  border-left-style: solid;"
 "      border-left-width: 4px; padding-left: 5px; }" 
 // latex, we need line height to be correct
- ".latex { line-height: 1em; }"
+ ".latexblock { line-height: 1em; margin-top: 5px; margin-bottom: 5px; }"
+ ".latexinline { border-bottom-color: #ddcece; border-bottom-style: solid;"
+"                border-bottom-width: 2px; padding-bottom: 2px; }"
 // HEVEA
 ".li-itemize{margin:1ex 0ex;}"
 ".li-enumerate{margin:1ex 0ex;}"
@@ -943,6 +991,12 @@ const char htmlend[] =
  "</html>";
 
 
+int option_index(const int argc, char **argv, const char *opt) {
+    for(int i = 1; i < argc; ++i) {
+        if (!strcmp(argv[i], opt)) return i;
+    }
+    return 0;
+}
 
 T ts[MAX_TOKENS];
 char instr[MAX_CHARS];
@@ -951,6 +1005,8 @@ int main(int argc, char **argv) {
         printf("expected usage: %s <input md path> <output folder path>", argv[0]);
         return 1;
     }
+
+    G_OPTIONS.latex2ascii = option_index(argc, argv, "-latex2ascii") > 0;
 
     FILE *fin = fopen(argv[1], "rb");
     if (fin == nullptr) {

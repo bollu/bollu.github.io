@@ -12,6 +12,14 @@
 
 - https://www.cprogramming.com/tutorial/unicode.html
 
+
+How to check if horizontal scrollbar exists:
+```
+if ((window.innerHeight - document.documentElement.clientHeight) >0) {
+    console.log('H-scrollbar active')
+}
+```
+
 # TODO
 - [x] add warnings for multi-line bold and italic.
 - [ ] newlines
