@@ -278,8 +278,8 @@ rules:
    and is defined as: `(a,x)[AxX RxS BxY](b,y)` iff:
    - `∀ abxy, a[A R B]b ∧ x[X S Y]y`.
 
-4. The list space of a `[A R B]` is called `[A* R B*]`, 
-   and is defined as: `la[A* R B*]lb` iff:
+4. The list space of a `[A R B]` is called `[A* [A R B] B*]`, 
+   and is defined as: `la[A* [A R B] B*]lb` iff:
    - `∀ la lb, |la| = |lb| ∧ (∀ i, la[i][A R B]lb[i])`
 
 4. The function space of two relations`[A R B]`, `[X S Y]` is called `[A->X R->S B->Y]`,
@@ -302,15 +302,34 @@ The parametricity thm states that for all terms `(r: R)`, we can deduce
 `r[R rel(R) R]r` where `rel(R)` is the relation that fits the type, and is
 derived from the above rules.
 
+# Parametricity for lists when the relation is a function:
+
+The list space of a `[A R B]` is called `[A* [A R B] B*]`, 
+and is defined as: `la[A* [A R B] B*]lb` iff:
+- `∀ la lb, |la| = |lb| ∧ (∀ i, la[i][A R B]lb[i])`
+
+Now, let us take a special case where `[A R B]` is a function `δ: A -> B`. That is:
+- `a[A R B]b` iff `δ(a) = b`.
+If this is the case, then we can simplify the math to be:
+
+- `la[A* [A R B] B*]lb <=> ∀ la lb, |la| = |lb| ∧ (∀ i, la[i][A R B]lb[i])`
+- `la[A* [A R B] B*]lb <=> ∀ la lb, |la| = |lb| ∧ (∀ i, δ(la[i]) = lb[i]`
+- `la[A* [A R B] B*]lb <=> ∀ la lb, map δ la = lb`
+
 # Parametricity to prove rearrangements
 
 1. `r[∀ X. X* -> X*]r`
 2. `(r A)[A*->A*  | [A*->A* [A R B] B*->B*] |  B*->B*](r B)`
 2. `as[A* [A R B]  B*]bs => (r A as)[A* [A R B] B*](r B bs)`
-3. `as[i][A [A R B]  B]bs[i] => (r A as[i])[A [A R B] B](r B bs[i])`
-4. Pick `[A R B]` to be a _function_ `δ: A -> B`. *function*
+4. Pick `[A R B]` to be a _function_ `δ: A -> B`. Ie, `a[A R B]b` iff `δ(a) = b`.
    - This lets us convert all occrences of `α[A R B]ω` into `ω = δ(α)`.
-   - This gives us: `δ(as[i]) = bs[i] => δ(r A as[i]) = (r B bs[i])`
+   - Hence, `as[A* [A R B]  B*]bs` becomes `map δ as = bs`.
+   - Hence, `(r A as)[A* [A R B] B*](r B bs)` becomes `map δ (r A as) = (r B bs)`
+5. In toto, this let us replace `bs` with `map δ as`. We derive:
+   - `map δ (r A as) = (r B bs)`
+   - `map δ (r A as) = (r B (map δ as)`
+   - `map δ . (r A) = (r B) . map δ`
+
 
 5. Replace `bs[i]` with `δ(as[i])`to get result:
    `δ(r A as[i]) = r B δ(as[i])`, which was indeed what we were looking for.
