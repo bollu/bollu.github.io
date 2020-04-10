@@ -943,6 +943,7 @@ const char htmlbegin[] =
 "a:visited { color: #660000; }" // vlink
 "a:active { color: #660000; }" // alink
 // code blocks, latex blocks
+"code { line-height: 1.2em; }"
 "pre, .latexblock { border-left-color:#660000;  border-left-style: solid;"
 "      border-left-width: 4px; padding-left: 5px; }" 
 // latex, we need line height to be correct
