@@ -133,7 +133,7 @@ installed, use it to compute closed forms)
 - Mathematical methods for engineers: https://ocw.mit.edu/courses/mathematics/18-086-mathematical-methods-for-engineers-ii-spring-2006/video-lectures/
 - Unified Media Programming: An Algebraic Approach (uses semigroups)
 - Check if decomposition gives something useful for presburger automata??
-- Discrete Algebraic Methods: contains presburger AND krohn-rhodes!
+- Discrete Algebraic Methods: book that contains presburger AND krohn-rhodes!
 - http://beyondloom.com/blog/: list of K/APL articles.
 - https://webusers.imj-prg.fr/~leila.schneps/corr.pdf: A description of the collaboration between Serre and Grothendieck.
 - Cascade Decompositions are Bit-Vector Algorithms!
@@ -169,3 +169,8 @@ installed, use it to compute closed forms)
 - Theorizing Contemporary Anarchism
 - Visualizing curved spacetime: Rickard M. Jonsson
 - Lycurgus of Sparta
+- Quasirandom sequences reading: http://extremelearning.com.au/unreasonable-effectiveness-of-quasirandom-sequences/
+- Prob. theory in terms of co-intuionistic variant of minimal logic: https://www.lesswrong.com/posts/QGkYCwyC7wTDyt3yT/0-and-1-are-not-probabilities?commentId=qXjDuWnzQuc9zfoJD
+- Is the a relationship between kernels, level sets (kernel is a level set), lagrange multipliers,
+  discrete morse theory? [which talks about critical points].
+- The power of prolog: proper prolog tutorials! https://www.metalevel.at/prolog
