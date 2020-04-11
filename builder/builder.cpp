@@ -762,7 +762,6 @@ void headingToLinkText(const char *instr,
         const T *t, 
         char *outs,
         ll &outlen) {
-    cerr << "* headingToLinkText: " << *t << "|" << outs << "| \n";
 
     if (t->ty == TT::InlineGroup) {
         for(T *item : ((TInlineGroup *)t)->items) {
@@ -971,11 +970,6 @@ void toHTML(const char *instr,
 
             // need the _raw text_. Hmm.
             const char *link = mkHeadingLink(instr, theading);
-            cerr << "heading: |"; 
-            for(ll i = theading->span.begin.si;  i < theading->span.end.si; ++i) {
-                cerr << instr[i];
-            }
-            cerr << "link: |" << link << "|\n";
             outlen += sprintf(outs + outlen, "<h%d id=%s>", theading->hnum, link);
             toHTML(instr, tempdirpath, theading->item, outlen, outs);
             outlen += sprintf(outs + outlen, "</h%d>", theading->hnum);
