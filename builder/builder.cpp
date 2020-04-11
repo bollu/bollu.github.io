@@ -16,6 +16,11 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include "utf8.h"
+
+#define GIVE
+#define TAKE
+#define KEEP
+
 using ll = long long;
 static const ll PADDING = 10;
 static const ll MAX_TOKENS = 1e7;
@@ -375,6 +380,8 @@ T *tokenizeNext(const char *s, const ll len, const L lbegin) {
 // - inline math
 // - bold/italic/underline
 // This is _wrong_, because we may have a ']' till sth else.
+// TODO: add an assert to check that a link does not contain a 
+// link inside it. eg: [foo is[bar](barlink) xxx](foolink)
 T *tokenizeLink(const char *s, const ll len, const L opensq) {
     assert(opensq.si < len);
     assert(s[opensq.si] == '[');
@@ -741,6 +748,91 @@ char* compileLatex(const char *tempdirpath, ll inwritelen, const char *instr, L 
     return outs;
 }
 
+
+// given the inline object, convert it to text a link can see.
+// Ie, for example, on seeing
+// - [$A = B$](...) or **what I need**
+//
+// this will return:
+// A = B or what I need
+// So this strips off all "decoration" leaving only the text in place.
+// TODO: Refactor LatexInline, CodeInline, Bold, Italic
+// to be same struct.
+void headingToLinkText(const char *instr, 
+        const T *t, 
+        char *outs,
+        ll &outlen) {
+    cerr << "* headingToLinkText: " << *t << "|" << outs << "| \n";
+
+    if (t->ty == TT::InlineGroup) {
+        for(T *item : ((TInlineGroup *)t)->items) {
+            headingToLinkText(instr, item, outs, outlen);
+        }
+    } else if (t->ty == TT::CodeInline) {
+        Span span = Span(t->span.begin.next("`"),
+                        t->span.end.prev("`"));
+        strncpy(outs, instr + span.begin.si, span.nchars());
+        outlen += span.nchars();
+    } else if (t->ty == TT::LatexInline) {
+        Span span = Span(t->span.begin.next("$"),
+                        t->span.end.prev("$"));
+        strncpy(outs, instr + span.begin.si, span.nchars());
+        outlen += span.nchars();
+    } else if (t->ty == TT::RawText) {
+        strncpy(outs, instr + t->span.begin.si, t->span.nchars());
+        outlen += t->span.nchars();
+    } else if (t->ty == TT::Comment) {
+        return;
+    } else if (t->ty == TT::Bold) {
+        TBold *bold = (TBold *)t;
+        headingToLinkText(instr, bold->item, outs, outlen);
+    } else if (t->ty == TT::Italic) {
+        TItalic *italic = (TItalic *)t;
+        headingToLinkText(instr, italic->item, outs, outlen);
+    } else if (t->ty == TT::Link) {
+        TLink *link = (TLink *)t;
+        headingToLinkText(instr, link->text, outs, outlen);
+    } else {
+        cerr << "unexpected token in heading at: " << t->span;
+        assert(false && "unexpected token in heading.");
+    }
+}
+
+// make a link according to github flavoured markdown convention for 
+// a heading.
+// https://gist.github.com/asabaylus/3071099
+// The code that creates the anchors is here:
+// https://github.com/jch/html-pipeline/blob/master/lib/html/pipeline/toc_filter.rb
+// 
+// It downcases the string
+// remove anything that is not a letter, number, space or hyphen (see the source for how Unicode is handled)
+// changes any space to a hyphen.
+// If that is not unique, add "-1", "-2", "-3",... to make it unique
+GIVE const char *mkHeadingLink(KEEP const char *instr, KEEP THeading *heading) {
+    const int BUFSIZE = 2048;
+    char rawtext[BUFSIZE]; 
+    for(int i = 0; i < BUFSIZE; ++i) rawtext[i] = 0;
+    ll rawtextlen = 0;
+    headingToLinkText(instr, heading->item, rawtext, rawtextlen);
+    rawtext[rawtextlen] = 0;
+    assert(rawtextlen + 1 < BUFSIZE && "heading exceeded buffer size limits");
+
+    char *link = (char *)calloc(rawtextlen +2, sizeof(char));
+    ll li = 0;
+    bool seenalnum = false;
+    for(ll hi = 0; rawtext[hi] != '\0'; ++hi) {
+        // convert uppercase -> lowercase
+        // keep digits
+        // convert space to hyphen
+        // remove everything else.
+        const char c = rawtext[hi];
+        if (isalpha(c)) { link[li++] = tolower(c); seenalnum = true; }
+        if (isdigit(c)) { link[li++] = c; seenalnum = true; }
+        if (isspace(c) && seenalnum) { link[li++] = '-'; }
+    }
+    return link;
+}
+
 void toHTML(const char *instr,
         const char *tempdirpath, 
         const T *t, ll &outlen, char *outs) {
@@ -802,7 +894,6 @@ void toHTML(const char *instr,
               char *outcompile = compileLatex(tempdirpath,
                       span.nchars(),
                       instr, t->span.begin);
-              cerr << "outcompile: |||" << outcompile << "|||\n";
               strcpy(outs + outlen, outcompile);
               outlen += strlen(outcompile);
               free(outcompile);
@@ -877,9 +968,18 @@ void toHTML(const char *instr,
 
         case TT::Heading: {
             THeading *theading = (THeading *)t;
-            outlen += sprintf(outs + outlen, "<h%d>", theading->hnum);
+
+            // need the _raw text_. Hmm.
+            const char *link = mkHeadingLink(instr, theading);
+            cerr << "heading: |"; 
+            for(ll i = theading->span.begin.si;  i < theading->span.end.si; ++i) {
+                cerr << instr[i];
+            }
+            cerr << "link: |" << link << "|\n";
+            outlen += sprintf(outs + outlen, "<h%d id=%s>", theading->hnum, link);
             toHTML(instr, tempdirpath, theading->item, outlen, outs);
             outlen += sprintf(outs + outlen, "</h%d>", theading->hnum);
+            free((char *)link);
             return;
         }
 
