@@ -24,3 +24,4 @@ if ((window.innerHeight - document.documentElement.clientHeight) >0) {
 # TODO
 - [x] add warnings for multi-line bold and italic.
 - [x] newlines
+- [ ] figure out which DOM element causes window to overflow horizontally.

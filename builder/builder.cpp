@@ -1184,8 +1184,8 @@ const char htmlbegin[] =
 "@font-face {font-family: 'Fira Mono'; src: url('static/FiraMono-Regular.ttf');}"
 "body {"
 " background-color: #FFFFFA; color: #000000; " // tufte
-" font-family: 'Fira Mono', monospace; font-size: 14px; line-height: 2em;"
-" width: 100ch; padding-left: 20%; padding-right: 20%;}"
+" font-family: 'Fira Mono', monospace; font-size: 15px; line-height: 2em;"
+" width: 100ch; padding-left: 20%; padding-right: 10%;}"
 " @media screen and (max-width: 800px) { width: 100%; padding: 0"
 "}" // end body
 "a:hover { color: #CC0000; }" // hover
@@ -1197,7 +1197,7 @@ const char htmlbegin[] =
 "pre, .latexblock, blockquote { border-left-color:#660000;  border-left-style: solid;"
 "      border-left-width: 4px; padding-left: 5px; }" 
 " blockquote { border-left-color:#AA0000;  border-left-style: solid;"
-"      border-left-width: 4px; padding-left: 5px; color: #555555; }"
+"      border-left-width: 4px; padding-left: 5px; color: #555555;}"
 // latex, we need line height to be correct
  ".latexblock { line-height: 1em; margin-top: 5px; margin-bottom: 5px; }"
  ".latexinline { border-bottom-color: #ddcece; border-bottom-style: solid;"

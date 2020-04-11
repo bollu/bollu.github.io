@@ -3903,10 +3903,12 @@ number $n > 0$, $1/n < 1$, hence $\lfloor 1/n \rfloor = 0$.
 
 ### verification of $istar$ being the identity
 $$
-(f \star id_\star)(n) \equiv \sum_{d \vert n} f(d) id_\star(n/d)
-= f(n) id_\star(1) + \sum_{d \vert n, d > 1} f(n) id_\star(d)
-= f(n) \cdot 1 + \sum_{d \vert n, d > 1} f(n) \cdot 0
-= f(n)
+\begin{align*}
+(f \star id_\star)(n) \equiv \sum_{d \vert n} f(d) id_\star(n/d) \\
+&= f(n) id_\star(1) + \sum_{d \vert n, d > 1} f(n) id_\star(d) \\
+&= f(n) \cdot 1 + \sum_{d \vert n, d > 1} f(n) \cdot 0 \\
+&= f(n) \\
+\end{align*}
 $$
 
 ### associativity of $\star$
@@ -6495,10 +6497,10 @@ defined as $A \equiv (I \cup \{ a\})$. We prove that $A = I + aR$.
 
 $$
 \begin{align*}
-(I \cup \{a \})  \\
-= \quad \{ \alpha i + \beta a | i \in I, \alpha, \beta \in R \} \\
-= \quad \{ i' + \beta a | i' \in I, \alpha, \beta \in R \} \qquad \text{($I$ is closed under multiplication by $R$)}
-= I + aR
+&(I \cup \{a \})  \\
+&= \quad \{ \alpha i + \beta a | i \in I, \alpha, \beta \in R \} \\
+&= \quad \{ i' + \beta a | i' \in I, \alpha, \beta \in R \} \qquad \text{($I$ is closed under multiplication by $R$)} \\
+&= I + aR
 \end{align*}
 $$
 
@@ -6979,9 +6981,11 @@ evaluating reduced a^b^c^d
 ```py
 def xor3(x, y, z): return xor2(x, xor2(y, z))
 
-R = IntegerModRing(8)['a, b, c, d, axorb, axorc, axord, bxorc, bxord, cxord, axorbxorc, axorbxord, axorcxord, bxorcxord']
+R = IntegerModRing(8)['a, b, c, d, axorb, axorc, axord, bxorc, \
+        bxord, cxord, axorbxorc, axorbxord, axorcxord, bxorcxord']
 
-(a, b, c, d, axorb, axorc, axord, bxorc, bxord, cxord, axorbxorc, axorbxord, axorcxord, bxorcxord) = R.gens()
+(a, b, c, d, axorb, axorc, axord, bxorc, bxord, cxord, axorbxorc, \
+        axorbxord, axorcxord, bxorcxord) = R.gens()
 I = ideal((axorb - xor2(a, b),
            axorc - xor2(a, c),
            axord - xor2(a, d),
@@ -7003,7 +7007,10 @@ f_reduced = f_orig.reduce(IG)
 print("value of a^b^c^d:\n\t%s\n\treduced: %s" % (f_orig, f_reduced))
 
 def evalxor3(f):
-    for (i, j, k, l) in [(i, j, k, l) for i in [0, 1] for j in [0, 1] for k in [0, 1] for l in [0, 1]]:
+    for (i, j, k, l) in [(i, j, k, l) for i in [0, 1] \
+                           for j in [0, 1] \
+                           for k in [0, 1] \
+                           for l in [0, 1]]:
       ref = i^^j^^k^^l
       eval = f.substitute(a=i, b=j, c=k, d=l,
                           axorb=i^^j, axorc=i^^k,
@@ -8083,13 +8090,13 @@ main = do
 
 ```
 ***bias: 1.0e-2
-   samples: ________________________________________█_█_________________________________________________________
+   samples: ________________________________________█_█________
 ***bias: 0.99
-   samples: ████████████████████████████████████████████████████████████████████████████████████████████████████
+   samples: ███████████████████████████████████████████████████
 ***bias: 0.5
-   samples: __█____█__███_███_█__█_█___█_█_██___████████__█_████_████_████____██_█_██_____█__██__██_██____█__█__
+   samples: __█____█__███_███_█__█_█___█_█_██___████████__█_███
 ***bias: 0.7
-   samples: __█__█_█__███_█████__███_█_█_█_██_█_████████__███████████_████_█_███_████_██__█_███__██_███_█_█__█_█
+   samples: __█__█_█__███_█████__███_█_█_█_██_█_████████__█████
 normal distribution using central limit theorem:
 _▄▇█▄_
 normal distribution using MCMC:
