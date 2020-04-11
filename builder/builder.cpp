@@ -438,6 +438,31 @@ T* tokenizeListItem (const char *s, const ll len, const L lhyphen) {
     });
 }
 
+// we are assuming that this is called on the *first* list item that
+// has been seen.
+T* tokenizeNumberedListItem (const char *s, const ll len, const L lhyphen,
+        const ll curnum) {
+
+    char curitem[7]; sprintf(curitem, "%lld.", curnum);
+    if(!strpeek(s + lhyphen.si, curitem)) {
+        printferr(lhyphen, s,
+                "Expected list item to start with number: |%lld|", curnum);
+        assert(false && "list item not respecting numbering.");
+    }
+
+    const L ltextbegin = lhyphen.next(curitem);
+    return tokenizeInlineTill(s, len, ltextbegin, [len](const char *s, L lcur) {
+            if (s[lcur.si] != '\n') { return false; }
+            assert(s[lcur.si] == '\n');
+            if (lcur.si + 1 >= len) { return true; }
+            // do not quit, since we are trying to contine this item.
+            if (s[lcur.si + 1] == ' ') { return false; }
+            // otherwise, quit list item.
+            return true;
+    });
+}
+
+
 // We parse quotes here.
 T* tokenizeQuoteItem (const char *s, const ll len, const L lquote) {
     assert(s[lquote.si] == '>');
@@ -457,6 +482,19 @@ T* tokenizeQuoteItem (const char *s, const ll len, const L lquote) {
                     "\n- quote continuation: '> ...'");
             assert(false && "list item ended improperly");
     });
+}
+
+// return if s[lbegin...] = <number>"."
+// eg. 
+// 1.
+// 2.
+// ... 10.
+// NOTE: this does NOT check that it is at the beginning of a new line.
+bool isNumberedListHyphen(const char *s, const ll len, const L lbegin) {
+    L l = lbegin;
+    while(l.si < len && isdigit(s[l.si])) { l = l.next(s[l.si]); }
+    // we made progress, didn't hit EOF, and have a "."
+    return l.si > lbegin.si && l.si < len && s[l.si] == '.';
 }
 
 
@@ -551,6 +589,23 @@ T* tokenizeBlock(const char *s, const ll len, const L lbegin) {
         while(s[lcur.si] == '\n' && s[lcur.si+1] == '-') {
             lcur = lcur.next("\n");
             toks.push_back(tokenizeListItem(s, len, lcur));
+            lcur = (*toks.rbegin())->span.end;
+        }
+
+        return new TList(toks);
+    } 
+    else if ((lcur.si == 0 || s[lcur.si - 1] == '\n') && 
+            isNumberedListHyphen(s, len, lcur)) {
+        vector<T*> toks;
+        int curnum = 1;
+        toks.push_back(tokenizeNumberedListItem(s, len, lcur, curnum++));
+        lcur = toks[0]->span.end;
+
+        // as long as we have items..
+        while(s[lcur.si] == '\n' && 
+                isNumberedListHyphen(s, len, lcur.nextline())) {
+            lcur = lcur.next("\n");
+            toks.push_back(tokenizeNumberedListItem(s, len, lcur, curnum++));
             lcur = (*toks.rbegin())->span.end;
         }
 
