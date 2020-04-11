@@ -51,9 +51,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 
+- [Blazing fast math rendering on the web](#blazing-fast-math-rendering-on-the-web)
 - [VC dimension](#vc-dimension)
 - [Symplectic version of classical mechanics (WIP)](#symplectic-version-of-classical-mechanics)
-- [The new blog](#the-new-blog)
 - [Theorems for free](#theorems-for-free)
 - [How to reason with half-open intervals](#how-to-reason-with-half-open-intervals)
 - [how does one build a fusion bomb?](#how-does-build-a-fusion-bomb)
@@ -160,6 +160,194 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Distributed Systems](#distributed-systems)
 - [Link Dump](#link-dump)
 
+# [Blazing fast math rendering on the web](#blazing-fast-math-rendering-on-the-web)
+
+So, I've shifted the blog to be static-site-generated using a
+static-site-generator written by yours truly. The code clocks in at around a
+thousand lines of C++:
+
+- [bollu/bollu.github.io/builder/builder.cpp](https://github.com/bollu/bollu.github.io/tree/master/builder/builder.cpp)
+
+What did I gain?
+
+1. My generator is a real compiler, so I get errors on math and markdown
+  malformation.
+2. I can write math that loads instantly on your browser, using no MathJax
+   or KaTeX or any client side processing, which looks like this:
+
+$$
+h(x) \equiv 
+\begin{cases} 
+\int_{i=0}^\infty f(x) g(x) dx & x > 0 \\
+\sum_{i=0}^\infty f(x) + g(x) & \text{otherwise}
+\end{cases}
+$$
+
+#### Why?
+
+My blog is a [single 9000 line markdown file](https://github.com/bollu/bollu.github.io/blob/master/README.md),
+so I _need it to compile fast, render fast, render beautiful_. Existing tools
+compromise on one or the other.
+
+#### No seriously, why a single markdown file?
+
+I need a single file to edit, so I can rapidly jot down new ideas. This is 
+the essence of why I'm able to log most of what I study: _because it's
+seamless_.
+
+Far more importantly, it provides **spatio-temporal locality**. I add things
+in chronological order to tbe blog, as I learn thing. If I need to recall
+something I had studied, go to that location in the blog _based on a sense
+of when_. 
+
+When I do get to a location I want, the scrollbar gives me a sense of _where I
+am_ in the file.  this is important to me, since it hepls me reason
+spatially about what i know and what I've learnt. It's someting I love about
+books, and deeply miss when navigtaing the web.I'm determined to keep this
+spatio-temporal locality on my little slice of the internet.
+
+#### Why is this awful?
+
+As elegant as this model is to _edit_, it's awful for browsers to render. The
+file used to take on the order of minutes for all the math to finish
+rendering. MathJax (and KaTeX) painfully attempt to render each
+math block. As they do, the page jumps around until everything has settled.
+As this is happening, your CPU throttles, your lap or hand gets warm,
+and the page is stuck. Clearly not great UX.
+
+I still want math. What do I do?  The solution is easy: Approximate the math
+rendering using ASCII/UTF-8 characters!  There are tools that do this ---
+[`hevea`](http://hevea.inria.fr/) is one of them. Unfortunately, there is no
+markdown-based-blogging-platform that uses this, so I _had_ to write my own.
+
+#### The cure
+
+The solution is easy. I wrote the tool. The page you're reading it
+is rendered using the tool. All the math renders in under a second because
+it's nothing crazy, it's just text and tables which browsers know how to
+render. No JavaScript necessary. snappy performance. Whoo!
+
+#### The details: Writing my own Markdown to HTML transpiler.
+
+the final transpiler clocks in at `1300Loc` of C++,
+which is very small for a feature-complete markdown-to-HTML piece of code
+that's blazing fast, renders math correctly, and provides error messages.
+
+#### Quirks fixed, features gained.
+
+I got quite a bit "for free" as I wrote this, fixing mild annoyances
+and larger pain points around using github + markdown for publishing on
+the web:
+
+- I really don't want tables, but I do want the ability to write vertical bars 
+  `|` freely in my text. Unfortunately, github _insists_ that those are tables,
+   and completely wrecks rendering.
+
+- I get line numbers in code blocks now, which Github Flavoured Markdown
+  did not have.
+
+- I get error messages on incorrectly closed bold/italic/code blocks, using
+  heuristics that prevent them from spanning across too many lines.
+
+- I get error messages on broken latex, since all my latex passes through
+  `hevea`. This is awesome, since I no longer need to refresh my browser,
+  wait for mathjax to load, go make myself tea (remember that mathjax was slow?),
+  and then come back to see the errors.
+
+- I can get error messages if my internal document links are broken. To be
+  fair, my tool doesn't currently give me these errors, but it can (and soon
+  will).
+
+- In general, I get _control_, which was something I did not have with
+  rendering directly using Github, or using someone else's tool.
+
+#### Choice of language
+
+I choose to write this in C-style-C++, primarily because I wanted the tool
+to be fast, and I'd missed writing C++ for a while. I really enjoy how
+stupid-simple C style C++ turns out to be: the C++ papers over some of C's
+annoyances (like formatted output for custom types), while still preserving the
+KISS feeling of writing C++.
+
+**Why not Rust?** I freely admit that rust might have been a sane choice as
+well.  unfortunately, asking rust to treat UTF-8 string as a "ball of bytes" is
+hard, when it's stupidly easy with C. Plus, I wanted to use arena-style-allocation
+where I make _huge_ allocations in one go and then don't think about memory,
+something that I don't have control over in Rust. I don't have any segfaults
+(yet, perhaps), thanks to UBSAN and ASAN. I find Rust to have more impedance
+than C on small applications, and this was indeed small.
+
+
+#### Performance
+
+Everything _except_ the latex to HTML is blazing fast. Unfortunately,
+calling `hevea` is slow, so I implemented a caching mechanism to make using
+`hevea` not-slow. `hevea` does not have an API, so I need to `fork` and
+talk to its process which is understandably flow. I built a "key-value-store"
+(read: serialize data into a file) with the stupidly-simple approach of writing
+an append-only log into a file. `hevea` is a pure function conceptally,
+since on providing the same latex input it's going to produce the same HTML
+output, so it's perfectly safe to cache it:
+
+```cpp
+const char DB_PATH[]="./blogcache.txt";
+unordered_map<ll, const char *> G_DB;
+void loadDB() {
+    G_DB = {};
+    FILE *f = fopen(DB_PATH, "rb");
+    ...
+    while (!feof(f)) {
+        ll k, len;
+        fread(&k, sizeof(ll), 1, f); if (feof(f)) break;
+        fread(&len, sizeof(ll), 1, f);
+        ...
+        char *buf = (char *)calloc(sizeof(char), len + 2);
+        fread(buf, sizeof(char), len, f);
+        ...
+    }
+    fclose(f);
+};
+
+const char *lookup_key(ll k) {
+    unordered_map<ll, const char *>::iterator it = G_DB.find(k);
+    if (it == G_DB.end()) { return nullptr; } return it->second;
+};
+
+void store_key_value(const ll k, KEEP const char *v, const ll len) {
+    assert(G_DB.count(k) == 0);
+    G_DB.insert(make_pair(k, strdup(v)));
+
+    FILE *f = fopen(DB_PATH, "ab");
+    assert(f != nullptr && "unable to open DB file");
+    fwrite(&k, sizeof(ll), 1, f);
+    fwrite(&len, sizeof(ll), 1, f);
+    fwrite(v, sizeof(char), len, f);
+    fclose(f);
+}
+```
+
+#### For the future
+
+I plan to rip out `hevea` and write my own `latex -> HTML` converter for
+the _subset of LaTeX I actually use_. `hevea`'s strength is its downfall:
+It can handle all of LaTeX, which means it's really slow. If I can concentrate
+on a small subset, I don't need to play caching tricks, and I can likely
+optimise the layout further for my use-cases.
+
+I also want colored error messages, because who doesn't?
+
+I'll probably gradually improve my static site generator over time. Once it's
+at a level of polish where I'm happy with it, I'll spin it out as a separate
+project.
+
+#### Conclusions
+
+Am I glad I did it? Yes, purely because my chunk of the internet aligns with
+how I want it to be, and that makes me $\epsilon$ more happy.
+
+I think of it as an investment into future me, since I can extend the
+markdown and the transpiler in the way _I_ want it to be.
+
 # [VC dimension](#vc-dimension)
 
 Consider a ground set $X$. Let the space of all possible binary classifications
@@ -232,7 +420,7 @@ Now, the idea is this:
 We can show that this exponential/polynomial behaviour happens in general
 for $S \subseteq X$. 
 
-#[Symplectic version of classical mechanics (WIP)](#symplectic-version-of-classical-mechanics)
+#[Symplectic version of classical mechanics](#symplectic-version-of-classical-mechanics)
 
 If we have a two-form $\omega: T_p M \times T_p M \rightarrow \mathbb R$,
 we can use this to setup an isomorphism between $X: T_p M$ and
@@ -248,17 +436,6 @@ $dH: M \rightarrow T_p^* M$. We can then use $\omega(dH): M \rightarrow T_p M$,
 to give us a vector field. This is the vector field generated by the
 __physics__  $\omega$ and the hamiltonian $H$.
 
-# [The new blog](#the-new-blog)
-
-#### Hevea
-
-```
-╭─bollu@cantordust 
-╰─$ hevea --help         hevea 2.23
-...
--francais French mode (deprecated)
-...
-```
 
 # [Theorems for free](#theorems-for-free)
 

@@ -851,8 +851,8 @@ GIVE char* compileLatex(KEEP const char *tempdirpath, ll inwritelen,
         if(WIFEXITED(status) && (WEXITSTATUS(status) != 0)) {
             fprintf(stderr, "===LATEX ERROR===\n");
             printferr(loc, instr, "unable to hevea (latexif render) code");
-            // assert(false && "child ended non-gracefully.");
             cerr <<  "====child running hevea ended non-gracefully. Returning input string===\n";
+            assert(false && "child ended non-gracefully.");
             char *outs = (char *)malloc((inwritelen+2) *sizeof(char));
             int i  = 0;
             for(; i < inwritelen; ++i) { outs[i] = instr[loc.si + i]; }
@@ -1181,9 +1181,10 @@ const char htmlbegin[] =
 "<head>"
 "<title> A Universe of Sorts </title>"
 "<style>"
+"@font-face {font-family: 'Fira Mono'; src: url('static/FiraMono-Regular.ttf');}"
 "body {"
 " background-color: #FFFFFA; color: #000000; " // tufte
-" font-family: monospace; font-size: 14px; line-height: 2em;"
+" font-family: 'Fira Mono', monospace; font-size: 14px; line-height: 2em;"
 " width: 100ch; padding-left: 20%; padding-right: 20%;}"
 " @media screen and (max-width: 800px) { width: 100%; padding: 0"
 "}" // end body
