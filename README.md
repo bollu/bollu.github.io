@@ -172,8 +172,8 @@ What did I gain?
 
 1. My generator is a real compiler, so I get errors on math and markdown
   malformation.
-2. I can write math that loads instantly on your browser, using no MathJax
-   or KaTeX or any client side processing, which looks like this:
+2. I can write math that _loads_ instantly on your browser, using no MathJax,
+   KaTeX or any client side processing, _nor_ the need to fetch images, which looks like this:
 
 $$
 h(x) \equiv 
@@ -186,8 +186,8 @@ $$
 #### Why?
 
 My blog is a [single 9000 line markdown file](https://github.com/bollu/bollu.github.io/blob/master/README.md),
-so I _need it to compile fast, render fast, render beautiful_. Existing tools
-compromise on one or the other.
+rendered as a _single HTML page_, so I _need it to compile fast, render fast,
+render beautiful_. Existing tools compromise on one or the other.
 
 #### No seriously, why a single markdown file?
 
