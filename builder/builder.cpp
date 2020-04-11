@@ -44,9 +44,8 @@ enum class TT {
     LineBreak,
     Link,
     List,
-    Group,
+    TListNumbered,
     InlineGroup,
-    ListItemGroup,
     Heading,
     Italic,
     Bold,
@@ -67,9 +66,8 @@ std::ostream &operator<<(std::ostream &o, const TT &ty) {
         case TT::Undefined: return o << "UNDEFINED";
         case TT::Link: return o << "LINK";
         case TT::List: return o << "LIST";
-        case TT::Group: return o << "GROUP";
+        case TT::TListNumbered: return o << "LISTNUMBERED";
         case TT::InlineGroup: return o << "INLINEGROUP";
-        case TT::ListItemGroup: return o << "LISTTEMGROUP";
         case TT::Heading: return o << "HEADING";
         case TT::Italic: return o << "ITALIC";
         case TT::Bold: return o << "BOLD";
@@ -193,6 +191,11 @@ Span mkTokensSpan(const vector<T*> &items) {
 struct TList : public T {
     vector<T*> items;
     TList(vector<T*> items) : T(TT::List, mkTokensSpan(items)), items(items) { };
+};
+
+struct TListNumbered : public T {
+    vector<T*> items;
+    TListNumbered(vector<T*> items) : T(TT::TListNumbered, mkTokensSpan(items)), items(items) { };
 };
 
 struct TCode : public T {
@@ -415,7 +418,7 @@ T *tokenizeLink(const char *s, const ll len, const L opensq) {
 
 // we are assuming that this is called on the *first* list item that
 // has been seen.
-T* tokenizeListItem (const char *s, const ll len, const L lhyphen) {
+T* tokenizeHyphenListItem (const char *s, const ll len, const L lhyphen) {
     assert(s[lhyphen.si] == '-');
     const L ltextbegin = lhyphen.nextcol();
     return tokenizeInlineTill(s, len, ltextbegin, [lhyphen, len](const char *s, L lcur) {
@@ -424,7 +427,7 @@ T* tokenizeListItem (const char *s, const ll len, const L lhyphen) {
             if (lcur.si + 1 >= len) { return true; }
             // file is still left. Check that what's going on next is legit..
             // TODO: consider moving this logic to be _ouside_ here.
-            // should probably be in the caller of tokenizeListItem.
+            // should probably be in the caller of tokenizeHyphenListItem.
             if (s[lcur.si + 1] == '-') { return true; }
             if (s[lcur.si + 1] == '\n') { return true; }
             // do NOT quit, since we are trying to *continue* this item;
@@ -473,7 +476,7 @@ T* tokenizeQuoteItem (const char *s, const ll len, const L lquote) {
             if (lcur.si + 1 >= len) { return true; }
             // file is still left. Check that what's going on next is legit..
             // TODO: consider moving this logic to be _ouside_ here.
-            // should probably be in the caller of tokenizeListItem.
+            // should probably be in the caller of tokenizeHyphenListItem.
             if (s[lcur.si + 1] == '>') { return true; }
             if (s[lcur.si + 1] == '\n') { return true; }
             printferr(lquote, s, 
@@ -490,7 +493,7 @@ T* tokenizeQuoteItem (const char *s, const ll len, const L lquote) {
 // 2.
 // ... 10.
 // NOTE: this does NOT check that it is at the beginning of a new line.
-bool isNumberedListHyphen(const char *s, const ll len, const L lbegin) {
+bool isNumberedListBegin(const char *s, const ll len, const L lbegin) {
     L l = lbegin;
     while(l.si < len && isdigit(s[l.si])) { l = l.next(s[l.si]); }
     // we made progress, didn't hit EOF, and have a "."
@@ -582,20 +585,20 @@ T* tokenizeBlock(const char *s, const ll len, const L lbegin) {
          return new THeading(i, Span(lcur, t->span.end), t);
     } else if (s[lcur.si] == '-' && (lcur.si == 0 || s[lcur.si - 1] == '\n')) {
         vector<T*> toks;
-        toks.push_back(tokenizeListItem(s, len, lcur));
+        toks.push_back(tokenizeHyphenListItem(s, len, lcur));
         lcur = toks[0]->span.end;
 
         // as long as we have items..
         while(s[lcur.si] == '\n' && s[lcur.si+1] == '-') {
             lcur = lcur.next("\n");
-            toks.push_back(tokenizeListItem(s, len, lcur));
+            toks.push_back(tokenizeHyphenListItem(s, len, lcur));
             lcur = (*toks.rbegin())->span.end;
         }
 
         return new TList(toks);
     } 
     else if ((lcur.si == 0 || s[lcur.si - 1] == '\n') && 
-            isNumberedListHyphen(s, len, lcur)) {
+            isNumberedListBegin(s, len, lcur)) {
         vector<T*> toks;
         int curnum = 1;
         toks.push_back(tokenizeNumberedListItem(s, len, lcur, curnum++));
@@ -603,13 +606,13 @@ T* tokenizeBlock(const char *s, const ll len, const L lbegin) {
 
         // as long as we have items..
         while(s[lcur.si] == '\n' && 
-                isNumberedListHyphen(s, len, lcur.nextline())) {
+                isNumberedListBegin(s, len, lcur.nextline())) {
             lcur = lcur.next("\n");
             toks.push_back(tokenizeNumberedListItem(s, len, lcur, curnum++));
             lcur = (*toks.rbegin())->span.end;
         }
 
-        return new TList(toks);
+        return new TListNumbered(toks);
     } 
     else if (s[lcur.si] == '>' && (lcur.si == 0 || s[lcur.si - 1] == '\n')) {
         // quotes
@@ -893,6 +896,7 @@ void toHTML(const char *instr,
         const T *t, ll &outlen, char *outs) {
     assert(t != nullptr);
     switch(t->ty) {
+        case TT::Undefined: { assert(false && "Should not have received undefined"); return ; }
         case TT::Comment: return;
 
         case TT::HTML:
@@ -989,6 +993,24 @@ void toHTML(const char *instr,
           return;
         }
 
+        case TT::TListNumbered: {
+          const char *openul = "<ol>\n";
+          const char *closeul = "\n</ol>\n";
+
+          const char *openli = "<li>\n";
+          const char *closeli = "\n</li>\n";
+
+          TList *tlist = (TList *)t;
+          strcpy(outs + outlen, openul); outlen += strlen(openul);
+          for(auto it: tlist->items) {
+              strcpy(outs + outlen, openli); outlen += strlen(openli);
+              toHTML(instr, tempdirpath, it, outlen, outs);
+              strcpy(outs + outlen, closeli); outlen += strlen(closeli);
+          }
+          strcpy(outs + outlen, closeul); outlen += strlen(closeul);
+          return;
+        }
+
         case TT::Link: {
           TLink *link = (TLink *)t;
           outlen += sprintf(outs + outlen, "<a href=%s>\n", link->link);
@@ -1060,14 +1082,14 @@ void toHTML(const char *instr,
           return;
         }
 
-        default: {
-            cerr << "outbuf:\n=========\n";
-            cerr << outs;
-            cerr << "\n";
-            cerr << "========\n";
-            cerr << "token: " << *t << " | is unknown for toHTML.\n"; 
-            assert(false && "unknown token");
-        }
+        // default: {
+        //     cerr << "outbuf:\n=========\n";
+        //     cerr << outs;
+        //     cerr << "\n";
+        //     cerr << "========\n";
+        //     cerr << "token: " << *t << " | is unknown for toHTML.\n"; 
+        //     assert(false && "unknown token");
+        // }
     };
     assert(false && "unreachabe");
 }
