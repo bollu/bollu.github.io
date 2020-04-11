@@ -956,11 +956,14 @@ GIVE const char *mkHeadingLink(KEEP const char *instr, KEEP THeading *heading) {
         // convert uppercase -> lowercase
         // keep digits
         // convert space to hyphen
+        // convert groups of hyphens into single hyphen
         // remove everything else.
         const char c = rawtext[hi];
         if (isalpha(c)) { link[li++] = tolower(c); seenalnum = true; }
-        if (isdigit(c)) { link[li++] = c; seenalnum = true; }
-        if (isspace(c) && seenalnum) { link[li++] = '-'; }
+        else if (isdigit(c)) { link[li++] = c; seenalnum = true; }
+        else if (c == '-') { 
+            while (rawtext[hi+1] == '-') { hi++; } link[li++] = '-'; seenalnum = false; 
+        } else if (isspace(c) && seenalnum) { link[li++] = '-'; seenalnum = false; }
     }
     return link;
 }
