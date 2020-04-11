@@ -99,12 +99,12 @@ the manifold.
 $$
 \begin{align*}
 \nabla_{e_i} V &\equiv \partial_{x_i} V - \vec{n}  \\
- &= \Pi_{\vec{n}^\bot} \left [v^j \cdot \partial_{x_i} \partial_{x_j} e + \partial_{x_j}e \cdot \partial_{x_i} v^j \right]
- &= \Pi_{\vec{n}^\bot} \left[ v^j \cdot (\Gamma^k_{ij} \partial_{x_k} e + \vec{n})+ \partial_{x_j}e \cdot \partial_{x_i} v^j \right]
- &= v^j \cdot (\Gamma^k_{ij} \partial_{x_k} e + \vec 0) + \partial_{x_j}e \cdot \partial_{x_i} v^j
- &= v^j \cdot (\Gamma^k_{ij} \partial_{x_k} e + \vec 0) + \partial_{x_k}e \cdot \partial_{x_i} v^k
- &= v^j \cdot \Gamma^k_{ij} \partial_{x_k} e  + \partial_{x_k}e \cdot \partial_{x_i} v^k
- &= \partial_{x_k} e \left( v^j \cdot \Gamma^k_{ij}  + \partial_{x_i} v^k \right)
+ &= \Pi_{\vec{n}^\bot} \left [v^j \cdot \partial_{x_i} \partial_{x_j} e + \partial_{x_j}e \cdot \partial_{x_i} v^j \right] \\
+ &= \Pi_{\vec{n}^\bot} \left[ v^j \cdot (\Gamma^k_{ij} \partial_{x_k} e + \vec{n})+ \partial_{x_j}e \cdot \partial_{x_i} v^j \right] \\
+ &= v^j \cdot (\Gamma^k_{ij} \partial_{x_k} e + \vec 0) + \partial_{x_j}e \cdot \partial_{x_i} v^j \\
+ &= v^j \cdot (\Gamma^k_{ij} \partial_{x_k} e + \vec 0) + \partial_{x_k}e \cdot \partial_{x_i} v^k \\
+ &= v^j \cdot \Gamma^k_{ij} \partial_{x_k} e  + \partial_{x_k}e \cdot \partial_{x_i} v^k \\
+ &= \partial_{x_k} e \left( v^j \cdot \Gamma^k_{ij}  + \partial_{x_i} v^k \right) \\
 \end{align*}
 $$
 
@@ -201,7 +201,6 @@ however, $f \neq 1_Q$ , andh ence, $S$ is a not a _transformation monoid_.
 ##### Examples of transformation semigroups
 
 1. $(X, \{ \theta(x) = undef \})$. The semigroup with the empty transformation.
-
 2. $(X, \emptyset)$, the semigroup with _no_ transformations.
 
 
@@ -532,4 +531,46 @@ We will show how to establish a relational covering:
 It's a somewhat well-known fact that given matrix multiplication: $O = AB$
 where $O \in \mathbb R^{2n \times 2m}$ ($O$ for output),
 $A \in \mathbb R^{2n \times r}, B \in \mathbb R^{r \times 2m}$ are matrices.
+
+
+# [How to reason with half-open intervals](#how-to-reason-with-half-open-intervals)
+
+I've always found code that uses half-open intervals far harder to write
+than using closed intervals. For example, when performing string processing,
+I prefer to write `closed` over `halfopen` since I find it easier
+to think about:
+
+```cpp
+void closed(int begin, int end, char *c) { //easier
+  for(int i = begin; i <= end; ++i) {... }
+}
+
+void open(int begin, int len, char *c) { //harder
+  for(int i = begin; i < begin + len; ++i) { ... }
+}
+```
+
+However, I realised that by changing how I think about this to:
+
+```cpp
+void open(int begin, int len, char *c) { //harder
+  for(int i = begin; i != begin + len; ++i)
+}
+```
+
+It somehow made it way easier to grok.
+
+- I had problems with `<` since I would
+  mentally shift from `i < begin + len` to `i <= begin + len - 1`. Making
+  this move would then make _all other reasoning_ harder, since I had
+  keep switching between the `<` and `<=` point of view.
+
+- On the other hand, when using `i != begin + len`, there was a single location
+  to focus on: the point `begin + len`, and what happens when `i` reaches it.
+
+Of course, this is old had to anyone who performs loop optimisatison: LLVM
+internally converts most comparisons into the `a != b` form, because it's
+easier to analyse. It took me this long it's easier for me to _think_
+in this viewpoint as well.
+
 

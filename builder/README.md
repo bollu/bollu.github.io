@@ -11,6 +11,7 @@
 - [Hevea](http://hevea.inria.fr/) is used to deal with latex.
 
 - https://www.cprogramming.com/tutorial/unicode.html
+- key-value database: [`kissdb`](https://github.com/adamierymenko/kissdb)
 
 
 How to check if horizontal scrollbar exists:
@@ -22,4 +23,4 @@ if ((window.innerHeight - document.documentElement.clientHeight) >0) {
 
 # TODO
 - [x] add warnings for multi-line bold and italic.
-- [ ] newlines
+- [x] newlines
