@@ -174,3 +174,6 @@ installed, use it to compute closed forms)
 - Is the a relationship between kernels, level sets (kernel is a level set), lagrange multipliers,
   discrete morse theory? [which talks about critical points].
 - The power of prolog: proper prolog tutorials! https://www.metalevel.at/prolog
+- The Elements of Style: writing advice.
+- Gordon Plotkin pisa notes on domain theory: http://homepages.inf.ed.ac.uk/gdp/publications/Domains_a4.ps
+- Algorithm to decompose number into sum of 4 primes: https://www.alpertron.com.ar/4SQUARES.HTM

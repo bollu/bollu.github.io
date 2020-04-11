@@ -175,7 +175,7 @@ A subset $S \subseteq X$ of the ground set shatters a hypothesis class $H$
 if the function $act_S$ has full range, where $act_S$ is defined as:
 
 $$
-act_S: H \rightarrow |S|^{0, 1} 
+act_S: H \rightarrow |S|^\{0, 1\} 
 act_S(h) = (h(s_0), h(s_1), h(s_2), \dots, h(s_n))
 $$
 
@@ -271,38 +271,29 @@ we will denote this as `a[A -R- A']a'`. We will now write down some inference
 rules:
 
 1. We define `ReflB` as `a[Bool ReflB Bool]a`
-
 2. We define `ReflI` as `i[Int ReflI Int]i`
-
 3. The product of two relations `[A R B]`, `[X S Y]` is called as `RxS`,
-   and is defined as: `(a,x)[AxX RxS BxY](b,y)` iff:
-   - `∀ abxy, a[A R B]b ∧ x[X S Y]y`.
-
+   and is defined as: `(a,x)[AxX RxS BxY](b,y)` iff: `∀ abxy, a[A R B]b ∧ x[X S Y]y`.
 4. The list space of a `[A R B]` is called `[A* [A R B] B*]`, 
    and is defined as: `la[A* [A R B] B*]lb` iff:
-   - `∀ la lb, |la| = |lb| ∧ (∀ i, la[i][A R B]lb[i])`
-
-4. The function space of two relations`[A R B]`, `[X S Y]` is called `[A->X R->S B->Y]`,
-   and is defined as: `f[A->X R->S B->Y]g` iff:
-   - `∀ a b, a[A R B]b => f(a)[X S Y]g(b)`.
-
-
-5. The type family space of two relations is a function that takes
+   `∀ la lb, |la| = |lb| ∧ (∀ i, la[i][A R B]lb[i])`
+5. The function space of two relations`[A R B]`, `[X S Y]` is called `[A->X R->S B->Y]`,
+   and is defined as: `f[A->X R->S B->Y]g` iff: `∀ a b, a[A R B]b => f(a)[X S Y]g(b)`.
+6. The type family space of two relations is a function that takes
    a relation `[A R B]` and produces a new relation: 
    `g[FA | [A R B] | FB]h`. The relation takes as parameter a relation `[A R B]`
     for each choice.
-
-6. The space of relations of `∀X.F(X)` is a relation defined by:
+7. The space of relations of `∀X.F(X)` is a relation defined by:
    `g[A->FA | ∀X.F(X) [FA [A R B] FB]| B->FB]h`
     `∀ A B R, (g A)[FA | [A R B] |  FB](h B)`.
 
-# Parametricity thm
+#### Parametricity theorem
 
 The parametricity thm states that for all terms `(r: R)`, we can deduce
 `r[R rel(R) R]r` where `rel(R)` is the relation that fits the type, and is
 derived from the above rules.
 
-# Parametricity for lists when the relation is a function:
+#### Parametricity for lists when the relation is a function:
 
 The list space of a `[A R B]` is called `[A* [A R B] B*]`, 
 and is defined as: `la[A* [A R B] B*]lb` iff:
@@ -310,28 +301,27 @@ and is defined as: `la[A* [A R B] B*]lb` iff:
 
 Now, let us take a special case where `[A R B]` is a function `δ: A -> B`. That is:
 - `a[A R B]b` iff `δ(a) = b`.
+
 If this is the case, then we can simplify the math to be:
 
 - `la[A* [A R B] B*]lb <=> ∀ la lb, |la| = |lb| ∧ (∀ i, la[i][A R B]lb[i])`
 - `la[A* [A R B] B*]lb <=> ∀ la lb, |la| = |lb| ∧ (∀ i, δ(la[i]) = lb[i]`
 - `la[A* [A R B] B*]lb <=> ∀ la lb, map δ la = lb`
 
-# Parametricity to prove rearrangements
+#### Parametricity to prove rearrangements
 
-1. `r[∀ X. X* -> X*]r`
-2. `(r A)[A*->A*  | [A*->A* [A R B] B*->B*] |  B*->B*](r B)`
-2. `as[A* [A R B]  B*]bs => (r A as)[A* [A R B] B*](r B bs)`
-4. Pick `[A R B]` to be a _function_ `δ: A -> B`. Ie, `a[A R B]b` iff `δ(a) = b`.
-   - This lets us convert all occrences of `α[A R B]ω` into `ω = δ(α)`.
-   - Hence, `as[A* [A R B]  B*]bs` becomes `map δ as = bs`.
-   - Hence, `(r A as)[A* [A R B] B*](r B bs)` becomes `map δ (r A as) = (r B bs)`
-5. In toto, this let us replace `bs` with `map δ as`. We derive:
-   - `map δ (r A as) = (r B bs)`
-   - `map δ (r A as) = (r B (map δ as)`
-   - `map δ . (r A) = (r B) . map δ`
-
-
-5. Replace `bs[i]` with `δ(as[i])`to get result:
+- `r[∀ X. X* -> X*]r`
+- `(r A)[A*->A*  | [A*->A* [A R B] B*->B*] |  B*->B*](r B)`
+- `as[A* [A R B]  B*]bs => (r A as)[A* [A R B] B*](r B bs)`
+- Pick `[A R B]` to be a _function_ `δ: A -> B`. Ie, `a[A R B]b` iff `δ(a) = b`.
+- This lets us convert all occrences of `α[A R B]ω` into `ω = δ(α)`.
+- Hence, `as[A* [A R B]  B*]bs` becomes `map δ as = bs`.
+- Hence, `(r A as)[A* [A R B] B*](r B bs)` becomes `map δ (r A as) = (r B bs)`
+- In toto, this let us replace `bs` with `map δ as`. We derive:
+- `map δ (r A as) = (r B bs)`
+- `map δ (r A as) = (r B (map δ as)`
+- `map δ . (r A) = (r B) . map δ`
+- Replace `bs[i]` with `δ(as[i])`to get result:
    `δ(r A as[i]) = r B δ(as[i])`, which was indeed what we were looking for.
 
 
@@ -459,13 +449,13 @@ the tangent space $T_p M$. This is defined by the equations:
 
 $$
 \begin{align*}
-\nabla_{e_i} V &\equiv \partial_{x_i} V - \vec{n}  \\
- &= \Pi_{\vec{n}^\bot} \left [v^j \cdot \partial_{x_i} \partial_{x_j} e + \partial_{x_j}e \cdot \partial_{x_i} v^j \right]
- &= \Pi_{\vec{n}^\bot} \left[ v^j \cdot (\Gamma^k_{ij} \partial_{x_k} e + \vec{n})+ \partial_{x_j}e \cdot \partial_{x_i} v^j \right]
- &= v^j \cdot (\Gamma^k_{ij} \partial_{x_k} e + \vec 0) + \partial_{x_j}e \cdot \partial_{x_i} v^j
- &= v^j \cdot (\Gamma^k_{ij} \partial_{x_k} e + \vec 0) + \partial_{x_k}e \cdot \partial_{x_i} v^k
- &= v^j \cdot \Gamma^k_{ij} \partial_{x_k} e  + \partial_{x_k}e \cdot \partial_{x_i} v^k
- &= \partial_{x_k} e \left( v^j \cdot \Gamma^k_{ij}  + \partial_{x_i} v^k \right)
+ &\nabla_{e_i} V \equiv \partial_{x_i} V - \vec{n}  \\
+ &= \Pi_{\vec{n}^\bot} \left [v^j \cdot \partial_{x_i} \partial_{x_j} e + \partial_{x_j}e \cdot \partial_{x_i} v^j \right] \\
+ &= \Pi_{\vec{n}^\bot} \left[ v^j \cdot (\Gamma^k_{ij} \partial_{x_k} e + \vec{n})+ \partial_{x_j}e \cdot \partial_{x_i} v^j \right] \\
+ &= v^j \cdot (\Gamma^k_{ij} \partial_{x_k} e + \vec 0) + \partial_{x_j}e \cdot \partial_{x_i} v^j \\
+ &= v^j \cdot (\Gamma^k_{ij} \partial_{x_k} e + \vec 0) + \partial_{x_k}e \cdot \partial_{x_i} v^k \\
+ &= v^j \cdot \Gamma^k_{ij} \partial_{x_k} e  + \partial_{x_k}e \cdot \partial_{x_i} v^k \\
+ &= \partial_{x_k} e \left( v^j \cdot \Gamma^k_{ij}  + \partial_{x_i} v^k \right) \\
 \end{align*}
 $$
 
@@ -503,12 +493,6 @@ $$
 we can define a vector space of these functions over $\mathbb R$, using
 the "scaling" action as the action of $\mathbb R$ on these functions:
 
-$$
-\begin{align*}
- &(f + g)(x) \equiv f(x) + g(x) \\
- &(r \cdot f)(x) \equiv r \times f(x)
-\end{align*}
-$$
 
 The vector space $V$ is __defined__ as the span of the indicator functions
 of all polyhedra. It's clearly a vector space, and a hopefully intuitive
@@ -516,7 +500,14 @@ one. However, note that the set we generated this from (indicators of polyhedra)
 don't form a basis since they have many linear dependencies between them.
 For example, one can write the equation:
 
-![indicator-polyhedra-relations](./static/indicator-polyhedra-relations.png)
+```
+
+*---*   *-*   *-*   *
+|###|   |#|   |#|   |
+|###| = |#| + |#| - |
+|###|   |#|   |#|   |
+*---*   *-*   *-*   *
+```
 
 
 # [Cache oblivious B trees](#cache-oblivious-b-trees)
@@ -692,7 +683,6 @@ however, $f \neq 1_Q$ , andh ence, $S$ is a not a _transformation monoid_.
 ##### Examples of transformation semigroups
 
 1. $(X, \{ \theta(x) = undef \})$. The semigroup with the empty transformation.
-
 2. $(X, \emptyset)$, the semigroup with _no_ transformations.
 
 
@@ -739,9 +729,9 @@ and $s_y \in S_Y$. Then, if the following diagram commutes:
 
 $$
 \begin{array}{ccc}
-a & \rightarrow & b
-\downarrow & & \downarrow
-x & \rightarrow & y
+a & \rightarrow & b \\
+\downarrow & & \downarrow \\
+x & \rightarrow & y \\
 \end{array}
 $$
 
@@ -792,7 +782,7 @@ covered by this $t_y$.
 Given a relation $\phi: Y \rightarrow X$, then we define:
 
 $$
-\Sigma \equiv \{ (s, t) : \text{$t \in T_Y$ covers $s \in S_X$ \}
+\Sigma \equiv \{ (s, t) : t \in T_Y \text{ covers } s \in S_X \}
 $$
 
 Recall compositions of elements are covered by a composition
@@ -1286,7 +1276,8 @@ a + X \cdot b & XY
 
 # [Natural transformations](#natural-transformations)
 
-![natural-transformations](static/natural-transformation.png)
+<img width=400  src="./static/natural-transformation.png">
+
 
 I don't find people who draw "all three parts" of the natural transformation:
 the catories $C$, $FC$, and $GC$, and then show the relationship between
@@ -1485,7 +1476,6 @@ We identify certain interesting invariants of a system by two criteria:
 1. The parameter $Q(t)$ determines some obviously important aspects of
    the system. That is, there is a deterministic function $M(Q(t))$ which
    maps $Q(t)$ to "measure" some internal state of the system.
-
 2. If the values of such a  parameter $Q$ is known at time $t_0$ (denoted $Q(t_0)$)
     and it is also known what inputs are presented to the
     system from time $t$ to time $t + \epsilon$
@@ -1525,7 +1515,6 @@ Let an experiment be $E \equiv (X, A, \curverightarrow)$. Then we define $\Pi$
 is a _symmetry_ of $E$ iff:
 
 1. $\Pi: X \rightarrow X$ is a permutation of $X$.
-
 2. $\Pi$ commutes with the action of each $a$:
        $ \Pi(a \curverightarrow x) = a \curverightarrow \Pi(x) $.
 
@@ -1536,11 +1525,9 @@ such that $ x_2 = a_n \curverightarrow \dots (a_1 \curverightarrow x_1) $.
 Facts of the symmetries of a system:
 
 1. We know that the symmetries of a theory $E$ form a group.
-
 2. If $E$ is transitive, then each symmetry $\Pi$ is a regular permutation
    --- If there exists an $x$ such that $\Pi(x_f) = x_f$ (a fixed point), then
    this implies that $\Pi(x) = x$ for _all_ $x$.
-
 3. Let the action split $X$ into disjoint orbits $O_1, O_2, \dots O_k$ from whom
    we choose representatives $x_1 \in O_1, x_2 \in O_2, \dots x_k \in O_k$.
    Then, if $E$ is transitive, there is _exactly one_ action that sends a
@@ -1660,7 +1647,7 @@ and a power of $Y$.
 So, the _correct definition_ is to in fact _generate an ideal_ from all
 elements of the form $ij$. So #3 should be:
 
-3.  $IJ \equiv \{ \sum_k i_k j_k : \forall i_k \in I \land j_k \in J \}$ (**right!**)
+- $IJ \equiv \{ \sum_k i_k j_k : \forall i_k \in I \land j_k \in J \}$ (**right!**)
 
 
 #### Specializing ideal operations to $\mathbb Z$
@@ -2911,7 +2898,7 @@ I often forget which is which, so I came up with this:
 
 # [Legendre transform](#legendre-transform)
 
-![legendre-transform](./static/legendre.png)
+<img  src="./static/legendre.png">
 
 
 # [Cartesian Trees](#cartesian-trees)
@@ -2920,7 +2907,8 @@ Cartesian trees construct a tree $T = C(A)$ given an array $A$, such that
 range minimum query (RMQ) on the array $A$ is equivalent to the lowest common ancestor (LCA)
 of the nodes of the tree $T$.
 
-![cartesian-tree](./static/cartesian-tree.svg)
+
+<img width=200 height=200 src="./static/cartesian-tree.svg">
 
 Note that the tree looks like a _min-heap_.
 
@@ -3068,7 +3056,7 @@ to $(q', k', v') = (Qx, Kx, Vx)$ where $Q, K, V$ are arbitrary matrices.
 Next, when we pass these into attention, the output we get is:
 
 $$
-\text{softmax(q', k'^T) v = (Q x) (K x)^T (V x) = Q x x^T K^T V x
+\text{softmax}(q', k'^T) v = (Q x) (K x)^T (V x) = Q x x^T K^T V x
 $$
 
 the code below is the same thing, spelled out:
@@ -3332,10 +3320,10 @@ open set $O \in \tau$, we associate a turing machine $T_O$.
 which obeys the relation:
 
 $$
-\begin{aligned}
+\begin{align*}
 x &&\in O \iff \text{$T_O$ halts on input $x$} \\
 x &&\not \in O \iff \text{$T_O$ does not halts on input $o$}
-\end{aligned}
+\end{align*}
 $$
 
 #### Geometry --- 1D
@@ -3439,7 +3427,7 @@ What version of quicksort do you prefer? Drop me an email!
 
 # [Geometric proof of Cauchy Schwarz inequality](#geometric-proof-of-cauchy-schwarz-inequality)
 
-![geometric-proof-cauchy-schwarz](static/cauchy-schwarz.svg)
+<img src="./static/cauchy-schwarz.svg">
 
 - All credit goes to `p0a` on `##math` on freenode for teaching me this proof!
 
@@ -3537,7 +3525,7 @@ Some examples of the range of responsibility of an index are:
 - $15 = 15 = (14, 15]$
 - $16 = 2^4 = (0, 16]$
 
-![fenwick-structure](static/fenwick-structure.gif)
+<img width=300 src="./static/fenwick-structure.gif">
 
 
 #### query
@@ -3670,8 +3658,8 @@ case they will never meet as required.
 ##### Case 3: $q > u$
 
 Let the entire array have size $2^N$.
-Let $q = \texttt{e1$f_q$}, u = \texttt{e0$f_u$}$, where
-$\texttt{e},f_q, f_u$ may be empty strings.
+Let $q = \texttt{e1 f_q}, u = \texttt{e0 f_u}$, where
+$\texttt{e, f_q, f_u}$ may be empty strings.
 
 Notice that $Q$ will always strip away rightmost ones in $f_q$,
 leading to $q = \texttt{e10...0}$ at some point.
@@ -3698,7 +3686,7 @@ It is defined by:
 We will show that the set of arithmetic functions forms a group
 under the operator $\star$, with identity:
 
--  $id_\star(n) \equiv \floor{1/n} = \begin{cases} 1 & $n = 1$ \\ 0 & \text{otherwise} \end{cases}$
+-  $id_\star(n) \equiv \floor{1/n} = \begin{cases} 1 & n = 1 \\ 0 & \text{otherwise} \end{cases}$
 
 
 The reason all of this is interesting is that the inverse of the constant function $1(n) \equiv 1$
@@ -3706,8 +3694,8 @@ is going to be this function called as the mobius function $\mu$:
 
 $$
 \mu(n=p_1^\alpha_1 p_2^\alpha_2 \dots p_r^\alpha_r) \equiv
-\begin{cases}\{
-  0 & \textt{if any $\alpha_i > 1$} \\
+\begin{cases}
+  0 & \text{if any $\alpha_i > 1$} \\
   (-1)^{\alpha_1 + \alpha_2 + \dots + \alpha_r} & \text{if all $\alpha_i \in \{ 0, 1 \}$}
 \end{cases}
 $$
@@ -3715,11 +3703,11 @@ $$
 The mobius function will allow us to perform _mobius inversion_:
 
 $$
-\begin{aligned}
+\begin{align*}
   f(n) &\equiv \sum_{d \vert n} g(d) = \sum_{d \vert n} g(d) 1(n/d) = g \star 1 \\
   f \star 1^{-1} &=  g \star 1 \star 1^{-1} \\
   f \star \mu &= g
-\end{aligned}
+\end{align*}
 $$
 
 That is, we originally had $f$ defined in terms of $g$. We can
@@ -3752,21 +3740,14 @@ $$
 ### $n = \sum_{d \vert n} \phi(d)$
 
 $$
-\begin{array}{|c|c|}
-\hline
-   d & \{ 1 \leq x \leq 12 : (x, 12) = d \} & \{ 1 \leq x \leq 12: (x/d, 12/d) = 1\} & \text{size of set} \\
-\hline
-  1 & \{ 1, 5, 7, 11 \} & (x, 12) = 1 & 4 \\
-\hline
- 2 & \{2, 10 \} & (x/2, 6) = 1& 2 \\
-\hline
- 3 & \{3, 9 \} & (x/3, 4) = 1 & 2 \\
-\hline
- 4 & \{4, 8 \} & (x/4, 3) = 1 & 2 \\
-\hline
-  6 & \{ 6 \} & (x/6, 2) = 1 & 1
-\hline
- 12 & \{ 12 \} (x/12, 1) = 1 & 1
+\begin{array}{|c|c|c|c|}
+d & \{ 1 \leq x \leq 12 : (x, 12) = d \} & \{ 1 \leq x \leq 12: (x/d, 12/d) = 1\} & \text{size of set} \\
+1 & \{ 1, 5, 7, 11 \} & (x, 12) = 1 & 4 \\
+2 & \{2, 10 \} & (x/2, 6) = 1& 2 \\
+3 & \{3, 9 \} & (x/3, 4) = 1 & 2 \\
+4 & \{4, 8 \} & (x/4, 3) = 1 & 2 \\
+6 & \{ 6 \} & (x/6, 2) = 1 & 1 \\
+12 & \{ 12 \} (x/12, 1) = 1 & 1
 \end{array}
 $$
 
@@ -3775,7 +3756,7 @@ $|\{ 1 \leq x \leq 12 : (x/2, 6) = 1 \}| =  \phi(6)$. Summing over all of
 what we have, we've counted the numbers in $[1, 2, \dots, 12]$ in two ways ---
 one directly, and the other by partitioning into equivalence classes:
 
-$$ 12 = \phi(1) + \phi(2) + \phi(3) + \phi(4) + \phi(6) + \phi(12) = \sum_{d \vert 12) \phi(12/d) $$
+$$ 12 = \phi(1) + \phi(2) + \phi(3) + \phi(4) + \phi(6) + \phi(12) = \sum_{d \vert 12} \phi(12/d) $$
 
 In general, the same argument allows us to prove that:
 
@@ -3933,7 +3914,7 @@ a=~3
 
 I liked it so much that I took a screenshot and made it my lock screen.
 
-![screenshot-j-incunabulum](static/screenshot-j-incunabulum.png)
+<img width=500 src="./static/screenshot-j-incunabulum.png">
 
 #### Thoughts
 
@@ -3972,21 +3953,21 @@ The usual solution is to take the harmonic numbers,
 $H_n \equiv \sum_{i=1}^n 1/i$. Then, we show that:
 
 $$
-\begin{aligned}
+\begin{align*}
 \lim_{n \rightarrow \infty} \left| H_{n+1} - H_n \right|
 &= \left| \frac{1}{n+1} - \frac{1}{n} \right| \\
 &= \frac{1}{(n+1)n} \rightarrow 0
-\end{aligned}
+\end{align*}
 $$
 
 $$
-\begin{aligned}
-\lim_{n \rightarrow \infty} \left|H_{2n} - H_n \right|
+\begin{align*}
+\lim_{n \rightarrow \infty} \left| H_{2n} - H_n \right| \\
 &= \left|\frac{1}{2n} - \frac{1}{n} \right| \\
 &= \sum_{i=n+1}^{2n} \frac{1}{n+1} + \frac{1}{n+2} + \dots + \frac{1}{2n} \\
 &\geq \sum_{i=n+1}^{2n} \frac{1}{2n} + \frac{1}{2n} + \dots + \frac{1}{2n} \\
-&\geq \frac{n}{2n} = \frac{1}{2} \not \xrightarrow{x \rightarrow \infty} 0 \\
-\end{aligned}
+&\geq \frac{n}{2n} = \frac{1}{2} \neq 0 \text{on} x \rightarrow \infty
+\end{align*}
 $$
 
 
@@ -3996,23 +3977,23 @@ We can much more simply choose $a_n = \log(n)$. This yields the simple
 calculation:
 
 $$
-\begin{aligned}
+\begin{align*}
 \lim_{n \rightarrow \infty} a_{n+1} - a_n = \log(n+1) - \log(n)
 = \log((n+1)/n))
 = \log(1 + 1/n) \xrightarrow{n \rightarrow \infty} \log(1) = 0
-\end{aligned}
+\end{align*}
 $$
 
 while on the other hand,
 
 
 $$
-\begin{aligned}
+\begin{align*}
 \lim_{n \rightarrow \infty} a_{2n} - a_n
 = \log(2n) - \log(n)
 = \log(2) + \log(n) - \log(n)
 = \log 2 \neq 0
-\end{aligned}
+\end{align*}
 $$
 
 I find this far cleaner conceptually, since it's "obvious" to everyone
@@ -4067,13 +4048,13 @@ We notice that $K_M$ is invariant under the action of $A$.
 
 Now, let's consider:
 $$
-\begin{aligned}
+\begin{align*}
 K_m(A, x) &\equiv span \{x, Ax, A^2x, \dots A^m x \} \\
         &= span \{ A^{-1} b, b, Ab, \dots A^{m-1} x \} \qquad \text{(substitute $x = A^{-1}b$)} \\
         &= A span \{ A^{-1} b, b, Ab, \dots A^{m-1} b\} \qquad \text{(Invariance of Krylov subspace)} \\
         &= span \{b, Ab, \dots A^m b\}  \\
         &= K_m(A, b)
-\end{aligned}
+\end{align*}
 $$
 
 We learnt that $Ax = b$ has a solution in $K_m(A, b)$. Using this, we can build
@@ -4137,10 +4118,10 @@ need it.
 We have a system we wish to simulate using hamilton's equations:
 
 $$
-\begin{aligned}
+\begin{align*}
 \frac{\partial q}{\partial t} = \frac{\partial H}{\partial p}|_{(p_0, q_0)} \\
 \frac{\partial p}{\partial t} = -\frac{\partial H}{\partial q}|_{(p_0, q_0)} \\
-\end{aligned}
+\end{align*}
 $$
 
 We want to simulate a system using these differential equations. We will begin
@@ -4164,7 +4145,8 @@ it preserves the total energy of the system. For example, here's a plot
 of the orbits of planets using two integrators, one that's symplectic (leapfrog)
 and one that isn't (Euler)
 
-![leapfrog-integration](static/leapfrog-vs-euler.png)
+
+<img width=400  src="./static/leapfrog-vs-euler.png">
 
 Notice that since leapfrog attempts to keep energy conserved, the orbits stay
 as orbits! On the other hand, the euler integrator quickly spirals out, since
@@ -4313,7 +4295,7 @@ sense.
 - Forward mode equations:
 
 $$
-\begin{aligned}
+\begin{align*}
 z &= max(x, y) \\
 \frac{\partial x}{\partial t} &= ? \\
 \frac{\partial y}{\partial t} &= ? \\
@@ -4322,7 +4304,7 @@ z &= max(x, y) \\
         \frac{\partial x}{\partial t} & \text{if $x > y$} \\
         \frac{\partial y}{\partial t} & \text{otherwise} \\
     \end{cases}
-\end{aligned}
+\end{align*}
 $$
 
 We can compute $\frac{\partial z}{\partial x}$ by setting $t = x$.
@@ -4341,7 +4323,7 @@ $x > y$, then we know that $z$ is as sensitive to $t$ as $x$ is.
 - Reverse mode equations:
 
 $$
-\begin{aligned}
+\begin{align*}
 z &= max(x, y) \\
 \frac{\partial t}{\partial z} &= ? \\
 \frac{\partial t}{\partial x}
@@ -4354,7 +4336,7 @@ z &= max(x, y) \\
     \frac{\partial t}{\partial z} & \text{$if y > x$} \\
     0 & \text{otherwise}
   \end{cases}
-\end{aligned}
+\end{align*}
 $$
 
 We can compute $\frac{\partial z}{\partial x}, \frac{\partial z}{\partial y}$
@@ -4372,13 +4354,13 @@ Otherwise, it is not sensitive, and $\frac{\partial t}{\partial x} = 0$.
 - Forward mode equations:
 
 $$
-\begin{aligned}
+\begin{align*}
 z &= sin(x) \\
 \frac{\partial x}{\partial t} &= ? \\
 \frac{\partial z}{\partial t}
   &= \frac{\partial z}{\partial x} \frac{\partial x}{\partial t} \\
   &= cos(x) \frac{\partial x}{\partial t}
-\end{aligned}
+\end{align*}
 $$
 
 We can compute $\frac{\partial z}{\partial x}$ by setting $t = x$.
@@ -4387,13 +4369,13 @@ That is, setting $\frac{\partial x}{\partial t} = 1$.
 - Reverse mode equations:
 
 $$
-\begin{aligned}
+\begin{align*}
 z &= sin(x) \\
 \frac{\partial t}{\partial z} &= ? \\
 \frac{\partial t}{\partial x}
   &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial x} \\
   &= \frac{\partial t}{\partial z} cos(x)
-\end{aligned}
+\end{align*}
 $$
 
 
@@ -4405,7 +4387,7 @@ That is, setting $\frac{\partial z}{\partial t} = 1$.
 - Forward mode equations:
 
 $$
-\begin{aligned}
+\begin{align*}
 z &= x + y \\
 \frac{\partial x}{\partial t} &= ? \\
 \frac{\partial y}{\partial t} &= ? \\
@@ -4414,14 +4396,14 @@ z &= x + y \\
     \frac{\partial z}{\partial y} \frac{\partial y}{\partial t} \\
   &= 1 \cdot \frac{\partial x}{\partial t} + 1 \cdot \frac{\partial y}{\partial t}
   = \frac{\partial x}{\partial t} + \frac{\partial y}{\partial t}
-\end{aligned}
+\end{align*}
 $$
 
 
 - Reverse mode equations:
 
 $$
-\begin{aligned}
+\begin{align*}
 z &= x + y \\
 \frac{\partial t}{\partial z} &= ? \\
 \frac{\partial t}{\partial x}
@@ -4430,7 +4412,7 @@ z &= x + y \\
 \frac{\partial t}{\partial y}
   &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial y} \\
   &= \frac{\partial t}{\partial z} \cdot 1 = \frac{\partial t}{\partial z}
-\end{aligned}
+\end{align*}
 $$
 
 
@@ -4439,7 +4421,7 @@ $$
 - Forward mode equations:
 
 $$
-\begin{aligned}
+\begin{align*}
 z &= x y \\
 \frac{\partial x}{\partial t} &= ? \\
 \frac{\partial y}{\partial t} &= ? \\
@@ -4447,13 +4429,13 @@ z &= x y \\
   &= \frac{\partial z}{\partial x} \frac{\partial x}{\partial t} +
     \frac{\partial z}{\partial y} \frac{\partial y}{\partial t} \\
   &= y \frac{\partial x}{\partial t} + x \frac{\partial y}{\partial t}
-\end{aligned}
+\end{align*}
 $$
 
 - Reverse mode equations:
 
 $$
-\begin{aligned}
+\begin{align*}
 z &= x y \\
 \frac{\partial t}{\partial z} &= ? \\
 \frac{\partial t}{\partial x}
@@ -4462,7 +4444,7 @@ z &= x y \\
 \frac{\partial t}{\partial y}
   &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial y}
   = \frac{\partial t}{\partial z} \cdot x
-\end{aligned}
+\end{align*}
 $$
 
 
@@ -4471,7 +4453,7 @@ $$
 - Forward mode equations:
 
 $$
-\begin{aligned}
+\begin{align*}
 z &= x + y \\
 \frac{\partial x}{\partial t} &= ? \\
 \frac{\partial y}{\partial t} &= ? \\
@@ -4480,13 +4462,13 @@ z &= x + y \\
     \frac{\partial z}{\partial y} \frac{\partial y}{\partial t} \\
   &= 1 \cdot \frac{\partial x}{\partial t} - 1 \cdot \frac{\partial y}{\partial t}
   = \frac{\partial x}{\partial t} - \frac{\partial y}{\partial t}
-\end{aligned}
+\end{align*}
 $$
 
 - Reverse mode equations:
 
 $$
-\begin{aligned}
+\begin{align*}
 z &= x - y \\
 \frac{\partial t}{\partial z} &= ? \\
 \frac{\partial t}{\partial x}
@@ -4495,7 +4477,7 @@ z &= x - y \\
 \frac{\partial t}{\partial y}
   &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial y} \\
   &= \frac{\partial t}{\partial z} \cdot -1 = -\frac{\partial t}{\partial z}
-\end{aligned}
+\end{align*}
 $$
 
 
@@ -4516,22 +4498,23 @@ dimensions. We define what holes are for these simplicial complexes, and we then
 try to find algebraic objects that allow us to "detect" these holes.
 
 ### Simplices
+
 - A 0-simplex is a point
- 
- ![0-simplex](static/simplices/0-simplex.svg)
+
+<img src="static/simplices/0-simplex.svg">
 
 - A 1-simplex is a line
 
-![1-simplex](static/simplices/1-simplex.svg)
+<img src="static/simplices/1-simplex.svg">
 
 - A 2-simplex is a filled triangle
 
-![2-simplex](static/simplices/2-simplex.svg)
+<img src="static/simplices/2-simplex.svg">
 
 
 - A 3-simplex is a solid tetrahedra
 
-![3-simplex](static/simplices/3-simplex.svg)
+<img src="static/simplices/3-simplex.svg">
 
 - A $k$-dimensional simplex is the convex hull of $k+1$
   linearly independent points $(u_i \in \mathbb R^{k+1})$
@@ -4548,30 +4531,30 @@ Examples of simplicial complexes:
 
 - Every simplex is trivially a simplicial complex.
 
-![points](static/simplices/complex-0-simplices.svg)
+<img width=200 height=200 src="static/simplices/complex-0-simplices.svg">
 - A collection of points is a simplicial complex with all simplices of degree $0$.
 
-![unfilled-tri](static/simplices/complex-unfilled-triangle.svg)
+<img width=200 height=200 src="static/simplices/complex-unfilled-triangle.svg">
 - An unfilled triangle is a simplicial complex with simplices of degree $0$, $1$.
 
-![complex-unfilled-butterfly](static/simplices/complex-unfilled-butterfly.svg)
+<img width=200 height=200 src="static/simplices/complex-unfilled-butterfly.svg">
 - Non-triangular shapes such  as this "butterfly" are also simplicial complexes,
   this one of degree $0$, $1$.
 
-![complex-half-filled-butterfly](static/simplices/complex-half-filled-butterfly.svg)
+<img width=200 height=200 src="static/simplices/complex-half-filled-butterfly.svg">
 - This is the same shape as the unfilled butterly, except now containing a
   simplex of degree 2: the filling in of the bottom of the butterfly.
 
 
 Non-examples of simplicial complexes are:
 
-![non-simplex-1](static/simplices/non-simplex-1.svg)
+<img width=200 height=200 src="static/simplices/non-simplex-1.svg">
 - This does not contain the point at the lower-left corner, which should exist
   since it is a boundary of the straight line. This violates rule (1):
   Every boundary of a simplex from $K$ is in $K$
 
 
-![non-simplex-2](static/simplices/non-simplex-2.svg)
+<img width=200 height=200 src="static/simplices/non-simplex-2.svg">
 - This does not contain the points which are at the intersection of the
   triangle and the line. This violates rule (2):
   The intersection of any two simplices in $K$ is also in $K$.
@@ -4581,7 +4564,7 @@ Non-examples of simplicial complexes are:
 Let's consider the simplest possible case of computing the homlogy, and we
 do so, we will expand on what homology _is_, and what we're trying to do.
 
-![homology-triangle-edges](static/simplices/homology-triangle-edges.svg)
+<img width=200 height=200 src="static/simplices/homology-triangle-edges.svg">
 
 Look at the triangle above. We have the red, green, and blue vertices, which
 I'll notate $r, g, b$. We also have the edges that are orange ($o$), cyan ($c$), and
@@ -4644,7 +4627,7 @@ the edge in terms of vertices, just like we would describe a direction vector
 The action of the operator on a linear combination of edges is:
 
 $$
-\begin{aligned}
+\begin{align*}
 &\partial_{EV}: \mathcal E \rightarrow \mathcal V \\
 &\partial_{EV}(1, 0, 0) \equiv (1, -1, 0) \qquad o \mapsto r - g \\
 &\partial_{EV}(0, 1, 0) \equiv (-1, 0, 1) \qquad m \mapsto b - r \\
@@ -4654,7 +4637,7 @@ $$
   s \partial_{EV}(1, 0, 0) +
   t \partial_{EV}(0, 1, 0) +
   u \partial_{EV}(0, 0, 1) = (s - t, u - s, t - u)
-\end{aligned}
+\end{align*}
 $$
 
 Now, notice that to traverse the cycle, we should traverse the orange edge,
@@ -4668,11 +4651,11 @@ entered and exited each vertex, so the total sum must be $0$.
 Formally:
 
 $$
-\begin{aligned}
+\begin{align*}
   &\partial_{EV}(s, t, u) \equiv (s - t, u - s, t - u) \\
   &o + m + c = (1, 1, 1) \in \mathcal E \quad
   \partial_{EV}((1, 1, 1) = (1 - 1, 1 - 1, 1 - 1) = (0, 0, 0)
-\end{aligned}
+\end{align*}
 $$
 
 ##### Formal definition of cycles
@@ -4687,23 +4670,23 @@ which map to zero)
 So, we define (tentatively) the first homology group:
 
 $$
-\begin{aligned}
+\begin{align*}
 H_1 \equiv Kernel(\partial_{EV}) \equiv
 \left \{ (a, b, c) \in \mathcal E \mid \partial_EV((a, b, c)) = (0, 0, 0) \right \}
 \subset \mathcal E
-\end{aligned}
+\end{align*}
 $$
 
 If we try to compute this, we will have to have:
 
 $$
-\begin{aligned}
+\begin{align*}
 H_1 &\equiv Kernel(\partial_{EV}) \\
 &= \{ (s, t, u) ~\mid~ \partial_{EV}(s, t, u) = (0, 0, 0) ~ s, t, u \in \mathbb Z \} \\
 &= \{ (s, t, u) ~\mid~ (s-t, u-s, t-u) = (0, 0, 0) ~ s, t, u \in \mathbb Z  \} \\
 &= \{ (s, t, u) ~\mid~ s = t = u \quad s, t, u \in \mathbb Z \} \\
 &= \{ (x, x, x) ~\mid~ x \in \mathbb Z \} \simeq \mathbb Z
-\end{aligned}
+\end{align*}
 $$
 
 So, we know that we have a $\mathbb Z$ worth of cycles in our triangle, which
@@ -4718,7 +4701,7 @@ around the triangle, such as $o + m + c + o + m + c$.
 
 ### (No) Holes in a space: Homology of a _filled_ triangle
 
-![homology-triangle-faces](static/simplices/homology-triangle-faces.svg)
+<img width=200 height=200 src="static/simplices/homology-triangle-faces.svg">
 
 In this case, notice that the triangle is _filled_ with a face $f$.
 Therefore, the "hole" that we had previously is now filled up, and does not
@@ -4736,12 +4719,12 @@ which counts copies of our face $f$, and we define another boundary operator,
 such that the boundary of the face $f$ is $o + m + c$.
 
 $$
-\begin{aligned}
+\begin{align*}
 &\partial_{FE} : \mathcal F \rightarrow \mathcal E \\
 &\partial_{FE}(1) \equiv (1, 1, 1)  \\
 &\text{(Extend using linearity)} \\
 &\partial_{FE}(c) \equiv c \partial(1) = (c, c, c)
-\end{aligned}
+\end{align*}
 $$
 
 Now, we should notice that the _image_ of $\partial_{FE}$ is a loop
@@ -4769,10 +4752,10 @@ f is closed <=> df = 0
 f is exact <=> f = dg
 -->
 
-![cohomology-triangle-vertices](static/simplices/cohomology-triangle-vertices.svg)
+<img width=200 height=200 src="static/simplices/cohomology-triangle-vertices.svg">
 
-Once again, we have our humble triangle with vertices $V = \\{r, g, b\\}$,
-edges $E = \\{o, m, c \\}$, faces $F = \\{ f \\}$ with boundary maps $\partial_{EV}$,
+Once again, we have our humble triangle with vertices $V = \{r, g, b\}$,
+edges $E = \{o, m, c \}$, faces $F = \{ f \}$ with boundary maps $\partial_{EV}$,
 $\partial_{FE}$:
 
 - $\partial_{FE}(f)= o + m + c$
@@ -4843,7 +4826,7 @@ forms such as $g_e$ which can be generated a $g_v$ through the $d$ operator
 are called as **exact differential forms**. That is, $g_e = d g_v$ _exactly_,
 such that there is no "remainder term" on applying the $d$ operator.
 
-![cohomology-triangle-edges](static/simplices/cohomology-triangle-edges.svg)
+<img width=200 height=200 src="static/simplices/cohomology-triangle-edges.svg">
 
 We take an example of a differential form that is _not exact_, which has been
 defined on the edges of the triangle above. Let's call it $h_e$.
@@ -4878,7 +4861,7 @@ the essence of cohomology.
 
 # Cohomology of half-filled butterfly
 
-![cohomology-half-filled-butterfly](static/simplices/cohomology-half-filled-butterfly.svg)
+<img width=400 src="static/simplices/cohomology-half-filled-butterfly.svg">
 
 Here, we have vertices $V \equiv \\{ r, g, b, b, p \\}$, edges
 $E \equiv \\{rb, gr, bg, m, o, c \\}$ and faces $F \equiv \\{ f \\}$.
@@ -5736,18 +5719,18 @@ for every negative coefficient, we arrive at:
 
 
 $$
-\begin{aligned}
+\begin{align*}
 1/4 &= 1/(1+p) = 1 - p + p^2 - p^3 + p^4 + \cdots \\
 &= 1 + (- p + 3p) + (- p^3 + 3p^3)  +  \cdots \\
 &= 1 + 2p + 2p^3 + \cdots
-\end{aligned}
+\end{align*}
 $$
 
 We can verify that this is indeed correct, by multiplying with $4 = (1 + p)$
 and checking that the result is $1$:
 
 $$
-\begin{aligned}
+\begin{align*}
 &(1 + p)(1 + 2p + 2p^3 + \cdots) \\
 &= (1 + p) + (2p + 2p^2) + (2p^3 + 2p^4) + \cdots \\
 &= 1 + 3p + 2p^2 + 2p^3 + 2p^4 + \cdots \\
@@ -5758,7 +5741,7 @@ $$
 &= 1 + 3p^3 + 2p^4 + \cdots \\
 &= 1 + 3p^4 + \cdots \\
 &= 1 + \cdots = 1
-\end{aligned}
+\end{align*}
 $$
 
 What winds up happening is that all the numbers after $1$ end up being cleared
@@ -5776,7 +5759,7 @@ $-1$. This eventually leads us to an infinite series expansion for $-1$. Written
 down formally, the calculation proceeds as:
 
 $$
-\begin{aligned}
+\begin{align*}
 -1 &= -1 + p - p  \qquad \text{(borrow $p$, and subtract to keep equality)} \\
 &= (p - 1) - p \qquad \text{(Now we have a problem of $-p$)} \\
 &= (p - 1) - p + p^2 - p^2  \\
@@ -5785,7 +5768,7 @@ $$
 &= (p - 1) + p(p - 1) + p^2(p - 1) - p^3 \\
 &\text{(Generalizing the above pattern)} \\
 -1 &= (p - 1) + p(p - 1) + p^2(p - 1) + p^3(p - 1) + p^4(p - 1) + \cdots \\
-\end{aligned}
+\end{align*}
 $$
 
 This now gives us access to negative numbers, since we can formally multiply
@@ -5875,14 +5858,14 @@ with those for $n = 1$. So, we solve for:
 Solving the first of these:
 
 $$
-\begin{aligned}
+\begin{align*}
 (3 + 7k)^2 &\equiv 2 \mod 49 \\
 9 + 42 k + 49k^2 &\equiv 2 \mod 49 \\
 9 + 42 k + 0k^2 &\equiv 2 \mod 49 \\
 7 + 42 k &\equiv 0 \mod 49 \\
 1 + 6 k &\equiv 0 \mod 49 \\
 k &\equiv 1 \mod 7
-\end{aligned}
+\end{align*}
 $$
 
 This gives the solution $X \equiv 10 \mod 49$. The other branch ($X = 4 + 7k$)
@@ -6115,10 +6098,10 @@ A subset $Q\subseteq S$ is _semidecidable_, if there exists a turing machine
 $\hat Q: Q \rightarrow \{ \bot, \top \}$, such that:
 
 $$
-\begin{aligned}
+\begin{align*}
 \hat Q(q) = \top \iff q \in Q \\
 \hat Q(q) = \bot \iff q \notin Q \\
-\end{aligned}
+\end{align*}
 $$
 
 Where $\top$ signifies stopping at a state and returning `TRUE`, and
@@ -6334,10 +6317,12 @@ defined as $A \equiv (I \cup \{ a\})$. We prove that $A = I + aR$.
 
 
 $$
+\begin{align*}
 (I \cup \{a \})  \\
 = \quad \{ \alpha i + \beta a | i \in I, \alpha, \beta \in R \} \\
 = \quad \{ i' + \beta a | i' \in I, \alpha, \beta \in R \} \qquad \text{($I$ is closed under multiplication by $R$)}
 = I + aR
+\end{align*}
 $$
 
 ##### Quotient based proof that maximal ideal is prime
@@ -7271,7 +7256,7 @@ The S-polynomial induced by $f_i, f_j$ is defined as $S(f_i, f_j) = m_i f_i - m_
 # [Lie bracket versus torsion](lie-bracket-versus-torsion)
 
 
-![torsion-vs-parallel-transport](static/lie-bracket-versus-torsion.png)
+<img width=200 height=200 src="static/lie-bracket-versus-torsion.png">
 
 This picture _finally_ made the difference between these two things clear.
 The lie bracket moves along the _flow_, while the torsion moves along
@@ -7588,7 +7573,7 @@ I'll make this an append-only log to add to the section as I understand more.
 
 ##### Simulating orbits with large timesteps
 
-![euler-vs-leapfrog](static/leapfrog-vs-euler.png)
+<img width=200 height=200 src="./static/leapfrog-vs-euler.png">
 
 Clearly, the leapfrog integrator preserves energy and continues to move
 in an orbit, while the euler integrator goes batshit and causes orbits
@@ -8165,8 +8150,7 @@ On a `m` dimensional manifold `M`, a tangent vector at a point `p` is an
 equivalence class of curves that have `c(0) = p`, such that `c1(t) ~ c2(t)` iff
 :
 
-2. For a (all) charts `(O, ch)` such that `c1(0) ∈  O`,
- `d/dt (ch . c1: R -> R^m) = d/dt (ch . c2: R -> R^m)`.
+- For a (all) charts `(O, ch)` such that `c1(0) ∈  O`, `d/dt (ch . c1: R -> R^m) = d/dt (ch . c2: R -> R^m)`.
 
  That is, they have equal derivatives.
 
@@ -8339,9 +8323,7 @@ that the cantor set is non-empty, since:
 
 1. Each finite intersection is non-empty, and will be equal to the set that
    has the highest index in the finite intersection.
-
 2. Each of the sets `Si` are compact since they are closed and bounded subsets of `R`
-
 3. Invoke theorem.
 
 
