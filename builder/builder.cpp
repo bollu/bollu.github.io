@@ -10,6 +10,7 @@
 #include <stdarg.h>
 #include <vector>
 #include <utility>
+#include <unordered_map>
 #include <tuple>
 #include <unistd.h>
 #include <sys/stat.h>
@@ -21,6 +22,9 @@
 #define TAKE
 #define KEEP
 
+
+using namespace std;
+
 using ll = long long;
 static const ll PADDING = 10;
 static const ll MAX_TOKENS = 1e7;
@@ -31,7 +35,67 @@ struct Options {
 } G_OPTIONS;
 
 
-using namespace std;
+const char DB_PATH[]="./blogcache.txt";
+unordered_map<ll, const char *> G_DB;
+void loadDB() {
+    G_DB = {};
+    FILE *f = fopen(DB_PATH, "rb");
+    if (f == nullptr) { 
+        cerr << __FUNCTION__ << ": WARNING: no DB file found at |" << DB_PATH << "|\n";
+        return;
+    }
+    while (!feof(f)) {
+        ll k, len;
+        fread(&k, sizeof(ll), 1, f);
+        if (feof(f)) break;
+        fread(&len, sizeof(ll), 1, f);
+        cerr << __FUNCTION__ << ": loading DB[" << k << "] (size: " << len << ")\n";
+        char *buf = (char *)calloc(sizeof(char), len + 2); //(char *)calloc(len + 2);
+        fread(buf, sizeof(char), len, f);
+
+        assert(!G_DB.count(k) && "key already in DB");
+        G_DB.insert(make_pair(k, buf));
+        cerr << __FUNCTION__ << ": DB[" << k << "] := " << buf << "\n";
+    }
+    cerr << __FUNCTION__ << ": done reading file.\n";
+    fclose(f);
+};
+
+// TODO: make a combined error reporting and assertion function.
+const char *lookup_key(ll k) {
+    unordered_map<ll, const char *>::iterator it = G_DB.find(k);
+    if (it == G_DB.end()) { return nullptr; }
+    return it->second;
+};
+
+void store_key_value(const ll k, KEEP const char *v, const ll len) {
+    assert(G_DB.count(k) == 0);
+    G_DB.insert(make_pair(k, strdup(v)));
+
+    // TODO: cache this;
+    FILE *f = fopen(DB_PATH, "ab");
+    assert(f != nullptr && "unable to open DB file");
+    fwrite(&k, sizeof(ll), 1, f);
+    fwrite(&len, sizeof(ll), 1, f);
+    fwrite(v, sizeof(char), len, f);
+    fclose(f);
+}
+
+ll hashstr(const char *s, const ll len) {
+    const ll p = 53;
+    // closest prime below 2^62. found using b(2^62) on 
+    // https://www.alpertron.com.ar/ECM.HTM
+    const ll mod = 1e9 + 9;
+    ll h = 0;
+    ll ppow = 1;
+    for (int i = 0; i < len; ++i) {
+        assert(s[i] != '\0');
+        h +=  ((s[i] + 1) * ppow) % mod;
+        ppow = (ppow * p) % mod;
+    }
+    return h;
+
+}
 
 enum class TT {
     Comment,
@@ -703,6 +767,8 @@ char* pygmentize(const char *tempdirpath,
     return outbuf;
 };
 
+// TODO: fix representation to hold the full span, and the span
+// of the inner data separately.
 // convert:
 // $$\begin{align*} .. \end{align*}$$
 //   TO
@@ -728,9 +794,16 @@ pair<ll, L> removeAlignDollarsHack(const char *instr, const ll inwritelen,
 };
 
 
-char* compileLatex(const char *tempdirpath, ll inwritelen, const char *instr, L loc) {
+GIVE char* compileLatex(KEEP const char *tempdirpath, ll inwritelen, 
+        KEEP const char *instr, L loc) {
 
     tie(inwritelen, loc) = removeAlignDollarsHack(instr, inwritelen, loc);
+
+    const ll hash = hashstr(instr + loc.si, inwritelen);
+    if (const char *val = lookup_key(hash)) {
+        return strdup(val);
+    }
+
 
     FILE *flatex = nullptr, *fhtml = nullptr;
     char latex_file_path[512]; char html_file_path[512];
@@ -801,9 +874,10 @@ char* compileLatex(const char *tempdirpath, ll inwritelen, const char *instr, L 
     assert(outs != nullptr && "unable to allocate buffer");
     const ll nread = fread(outs, 1, len, fhtml);
     assert(nread == len);
-
     // fprintf(stderr, "HTML output: %s\n", outs);
     fclose(fhtml);
+
+    store_key_value(hash, outs, len);
     return outs;
 }
 
@@ -949,7 +1023,7 @@ void toHTML(const char *instr,
               outlen += sprintf(outs + outlen, "<span class='latexinline'>");
           }
 
-          if (G_OPTIONS.latex2ascii) {
+          if (G_OPTIONS.latex2ascii || true) {
               char *outcompile = compileLatex(tempdirpath,
                       span.nchars(),
                       instr, t->span.begin);
@@ -1168,21 +1242,29 @@ const char htmlend[] =
 
 int option_index(const int argc, char **argv, const char *opt) {
     for(int i = 1; i < argc; ++i) {
-        if (!strcmp(argv[i], opt)) return i;
+        if (!strcmp(argv[i], opt)) { return i; }
     }
     return 0;
 }
 
+
 T ts[MAX_TOKENS];
 char instr[MAX_CHARS];
 int main(int argc, char **argv) {
-    if (argc != 3) {
-        printf("expected usage: %s <input md path> <output folder path>", argv[0]);
+    // 1. Load options
+    // ---------------
+    if (argc < 3) {
+        printf("expected usage: %s <input md path> <output folder path> [--latex2ascii]", argv[0]);
         return 1;
     }
+    G_OPTIONS.latex2ascii = option_index(argc, argv, "--latex2ascii") > 0;
 
-    G_OPTIONS.latex2ascii = option_index(argc, argv, "-latex2ascii") > 0;
+    // 1. Load database and test it.
+    // ---------------
+    loadDB();
 
+    // 2. Open markdown file
+    // ---------------------
     FILE *fin = fopen(argv[1], "rb");
     if (fin == nullptr) {
         printf("unable to open file: |%s|\n", argv[1]);
