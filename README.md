@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Symplectic version of classical mechanics (WIP)](#symplectic-version-of-classical-mechanics)
 - [Theorems for free](#theorems-for-free)
 - [How to reason with half-open intervals](#how-to-reason-with-half-open-intervals)
-- [how does one build a fusion bomb?](#how-does-build-a-fusion-bomb)
+- [how does one build a fusion bomb?](#how-does-one-build-a-fusion-bomb)
 - [Christoffel symbols, geometrically](#christoffel-symbols-geometrically)
 - [A natural vector space without an explicit basis](#a-natural-vector-space-without-an-explicit-basis)
 - [Cache oblivious B trees](#cache-oblivious-b-trees)
@@ -363,7 +363,7 @@ A subset $S \subseteq X$ of the ground set shatters a hypothesis class $H$
 if the function $act_S$ has full range, where $act_S$ is defined as:
 
 $$
-act_S: H \rightarrow |S|^\{0, 1\} 
+act_S: H \rightarrow |S|^{\{0, 1\}}
 act_S(h) = (h(s_0), h(s_1), h(s_2), \dots, h(s_n))
 $$
 
@@ -546,7 +546,7 @@ easier to analyse. It took me this long it's easier for me to _think_
 in this viewpoint as well.
 
 
-# [How does one build a fusion bomb?](#how-does-build-a-fusion-bomb)
+# [How does one build a fusion bomb?](#how-does-one-build-a-fusion-bomb)
 
 I haven't found anything on the internet that describes how to build
 a fusion bomb; it's almost as if this information has been supressed
