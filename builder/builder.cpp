@@ -438,6 +438,7 @@ T* tokenizeListItem (const char *s, const ll len, const L lhyphen) {
     });
 }
 
+// We parse quotes here.
 T* tokenizeQuoteItem (const char *s, const ll len, const L lquote) {
     assert(s[lquote.si] == '>');
     const L ltextbegin = lquote.nextcol();
@@ -1036,10 +1037,12 @@ const char htmlbegin[] =
 "a { color: #AA0000; }" // unvisited; default
 "a:visited { color: #660000; }" // vlink
 "a:active { color: #660000; }" // alink
-// code blocks, latex blocks
+// code blocks, latex blocks, quote blocks
 "code { line-height: 1.2em; }"
-"pre, .latexblock { border-left-color:#660000;  border-left-style: solid;"
+"pre, .latexblock, blockquote { border-left-color:#660000;  border-left-style: solid;"
 "      border-left-width: 4px; padding-left: 5px; }" 
+" blockquote { border-left-color:#AA0000;  border-left-style: solid;"
+"      border-left-width: 4px; padding-left: 5px; color: #555555; }"
 // latex, we need line height to be correct
  ".latexblock { line-height: 1em; margin-top: 5px; margin-bottom: 5px; }"
  ".latexinline { border-bottom-color: #ddcece; border-bottom-style: solid;"
