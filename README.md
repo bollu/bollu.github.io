@@ -678,7 +678,6 @@ don't form a basis since they have many linear dependencies between them.
 For example, one can write the equation:
 
 ```
-
 *---*   *-*   *-*   *
 |###|   |#|   |#|   |
 |###| = |#| + |#| - |

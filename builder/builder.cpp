@@ -262,8 +262,8 @@ struct TListNumbered : public T {
     TListNumbered(vector<T*> items) : T(TT::TListNumbered, mkTokensSpan(items)), items(items) { };
 };
 
-struct TCode : public T {
-    TCode(Span span, const char *langname) : 
+struct TCodeBlock : public T {
+    TCodeBlock(Span span, KEEP const char *langname) : 
         T(TT::CodeBlock, span), langname(strdup(langname)) {}
     char *langname;
 };
@@ -622,7 +622,7 @@ T* tokenizeBlock(const char *s, const ll len, const L lbegin) {
         }
 
         // default language is text.
-        if (langlen == 0) { strcpy(langname, "text"); }
+        if (langlen == 0) { strcpy(langname, ""); }
 
 
         assert(s[lcur.si] == '\n');
@@ -635,7 +635,7 @@ T* tokenizeBlock(const char *s, const ll len, const L lbegin) {
             assert(false && "incorrectly terminated code block.");
         }
 
-        return new TCode(Span(lbegin, lcur), langname);
+        return new TCodeBlock(Span(lbegin, lcur), langname);
     } 
     else if (strpeek(s + lcur.si, "#")) {
         cerr << "HEADING" << lcur << "\n";
@@ -990,7 +990,7 @@ void toHTML(const char *instr,
         }
 
         case TT::CodeBlock: {
-          TCode *tcode = (TCode *)t;
+          TCodeBlock *block = (TCodeBlock *)t;
           // TODO: escape HTML content.
           const char *open = "<code>\n";
           const char *close = "</code>\n";
@@ -1000,11 +1000,11 @@ void toHTML(const char *instr,
 
           // we want to ignore the first 3 ``` and the last 3 ```
           const Span span =
-              Span(t->span.begin.next("```").next(tcode->langname),
+              Span(t->span.begin.next("```").next(block->langname),
                       t->span.end.prev("```"));
           char *code_html = pygmentize(tempdirpath,
                   instr + span.begin.si,
-                  span.nchars(), tcode->langname,
+                  span.nchars(), block->langname,
                   instr, t->span.begin);
 
           strcpy(outs + outlen, code_html);
@@ -1182,25 +1182,37 @@ const char htmlbegin[] =
 "<title> A Universe of Sorts </title>"
 "<style>"
 "@font-face {font-family: 'Fira Mono'; src: url('static/FiraMono-Regular.ttf');}"
+// body
 "body {"
 " background-color: #FFFFFA; color: #000000; " // tufte
-" font-family: 'Fira Mono', monospace; font-size: 15px; line-height: 2em;"
-" width: 100ch; padding-left: 20%; padding-right: 10%;}"
-" @media screen and (max-width: 800px) { width: 100%; padding: 0"
-"}" // end body
+" font-family: 'Fira Mono', monospace; font-size: 15px; line-height: 2em; }"
+"\n"
+// container
+".container { max-width: 70%; margin-left: 10%; margin-right: auto;"
+"   padding-left: 5%; padding-right: 5%; border-left: 1px solid #BBBBBB; border-right: 1px solid #BBBBBB; }"
+" @media screen and (max-width: 800px) { width: 100%; padding: 0; margin-left: 10px; margin-right: 10px; }"
+"\n"
 "a:hover { color: #CC0000; }" // hover
+"\n"
 "a { color: #AA0000; }" // unvisited; default
+"\n"
 "a:visited { color: #660000; }" // vlink
+"\n"
 "a:active { color: #660000; }" // alink
+"\n"
 // code blocks, latex blocks, quote blocks
 "code { line-height: 1.2em; }"
+"\n"
 "pre, .latexblock, blockquote { border-left-color:#660000;  border-left-style: solid;"
 "      border-left-width: 4px; padding-left: 5px; }" 
+"\n"
 " blockquote { border-left-color:#AA0000;  border-left-style: solid;"
 "      border-left-width: 4px; padding-left: 5px; color: #555555;}"
-// latex, we need line height to be correct
- ".latexblock { line-height: 1em; margin-top: 5px; margin-bottom: 5px; }"
- ".latexinline { border-bottom-color: #ddcece; border-bottom-style: solid;"
+// latex 
+".latexblock .latexinline { font-family: 'Fira Mono', monospace; }"
+".latexblock { line-height: 1em; margin-top: 5px; margin-bottom: 5px; }"
+"\n"
+".latexinline { border-bottom-color: #ddcece; border-bottom-style: solid;"
 "                border-bottom-width: 2px; padding-bottom: 2px; }"
 // HEVEA
 ".li-itemize{margin:1ex 0ex;}"
@@ -1236,10 +1248,12 @@ const char htmlbegin[] =
 // end style
 "</style>"
 "</head>"
-"<body>";
+"<body>"
+"<div class='container'>";
  
 
 const char htmlend[] =
+ "</container>"
  "</body>"
  "</html>";
 

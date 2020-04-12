@@ -177,3 +177,14 @@ installed, use it to compute closed forms)
 - The Elements of Style: writing advice.
 - Gordon Plotkin pisa notes on domain theory: http://homepages.inf.ed.ac.uk/gdp/publications/Domains_a4.ps
 - Algorithm to decompose number into sum of 4 primes: https://www.alpertron.com.ar/4SQUARES.HTM
+- Jack Cremshaw's article on building compilers mixing parsing with codegen: https://compilers.iecc.com/crenshaw/.
+  Can we write fast C compilers this way? probably not, due to preprocessor :(
+  Can we get fast Pascal commpilers thigs way? Maybe...
+- The Zen of Code Optimization ---  The Ultimate Guide to Writing Software That Pushes PCs to the Limit: Low level programming tricks.
+- Hacker's Delight.
+- Agner fog: dude who maintains info about X86 optimiation: https://www.agner.org/optimize/
+- F -G- K -H- L. What is Gal(F/L) where Gal(F/K) = G, Gal(K/L) = H? 
+  I think G semi H
+- moment map reading: https://www.math.columbia.edu/~woit/wordpress/?p=7146
+- Thinking of `H_X = i_X ω` as some kind of "inverting" ω?
+- http://www.math.columbia.edu/~woit/QM/qmbook.pdf: Ch 13 and 14 cover moment maps.
