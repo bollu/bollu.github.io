@@ -1,5 +1,8 @@
 .PHONY: main.pdf
 
+report.pdf: report.tex
+	latexmk -pdf -shell-escape report.tex && latexmk -c
+
 assign3.pdf: assign3.tex
 	latexmk -pdf -shell-escape assign3.tex && latexmk -c
 
