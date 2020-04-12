@@ -145,21 +145,59 @@ the VC dimension of:
 $\H \equiv \bigg\{ h \in \zoset^{X} : ~|\{x : h(x) = 1\}| = k \bigg\}$.
 
 \subsubsection*{Solution}
-VC dimension is $0$. For size $|\X| = n$,
+There are three cases which we will prove:
 
-if $k = 0$, then we will be able to classify \textbf{only} the empty set, and no non-empty set.
-In this case, the VC dimension is $0$. \qed.
+\begin{align*}
+    \Vcdim(\H) = 
+    \begin{cases}
+        0 & k = 0 \\
+        0 & k > 0, |\X| < 2k \\
+        k & k > 0, |\X| \geq 2k
+    \end{cases}
+\end{align*}
 
+
+\textbf{Case 1. $k = 0$} 
+When $k=0$, we can express only a single function:
+$zero: \X \rightarrow \{0, 1\}; zero(\_) = 0$. Hence, we can only represent
+the empty set. So, we can shatter no set that is larger than the empty set.
+Therefore, $\vc(\H) = 0$ \qed.
+
+\textbf{Case 2. $k > 0 \land |\X| < 2k$} 
 If $k \neq 0$, Then let $S \subseteq \X$ such that $S$ is shattered by $\H$.
 However, note that we must be able to express the function $f: S \rightarrow \{0, 1\}; f(\_) = 0$
 using the hypothesis $h_S \in \H$. However, $h_S$ must have $k \neq 0$ entries of $1$,
 which $f$ does not have. Therefore, $h_S$ could not have shattered $S$. \qed.
 
 
+\textbf{Case 3. $k > 0 \land |\X| \geq 2k$} 
+Let us say we are trying to shatter $S \subseteq X, |S| = k$. In this case,
+for any given subset $T \subseteq S$, $T$ will have at most $k$ elements. We will
+create a numbering called $count: X / S \rightarrow \N$, which enumerates elements
+of $X/S$ in some arbitrary order. Note that the \emph{image} of $count$ is
+guaranteed to have \emph{at least $k$ elements} --- this will be important for
+our correctness proof. We will now build a hypothesis $h_T: \X \rightarrow \{0, 1\}$
+which classifies this subset $T$ correctly:
+
+\begin{align*}
+    h_T(x) \equiv 
+    \begin{cases}
+        1 & x \in T \\
+        1 & x \in X / S \land count(x) \leq k - |T|  \\
+        0 & \text{otherwise}
+    \end{cases}
+\end{align*}
+
+This function $h_T$ clearly assigns values correctly to elemets $x \in S$.
+For elements outside of $S$, it arbitrarily marks $k - |T|$ of them $1$, to
+comply with the requirement that $h \in \H$ must have $k$ 1s. For this
+to work out, we need to have enough elements in $X / S$. In the worst case
+when $T = \emptyset$, we will need $k - |\emptyset| = k$ elements in $X / S$.
+
 \subsection*{B. Functions that assign 1 to at most $k$ elements of \X}
-
-
 \subsubsection*{Solution}
+In this case, the VC dimension is $\max(|X|, k)$ since we can 
+only represent subsets of size upto $k$.
 VC dimension is $k$.
 
 
@@ -407,43 +445,5 @@ So, sets of size 4 cannot be shattered by $\H$. For even larger sets, we can con
 what happens on any 4 elements and replicate the same argument.
 
 Hence, $\vc(\H) = 3$.
-\\
-\textbf{Augmentation}
-
-Let us consider a set $\X$, and a hypothesis class $\H \equiv \{ f : \X \rightarrow \pm 1 \}$. Let $\vc(\H) = n$, and
-$|\X| > 2^{n}$ (if not, then $X$ is already fully classified by $\H$, and there
-is no point studying how to make $\H$ stronger).
-
-We will now consider an augmented classifier space $\H' \equiv \H \times \{+1, -1\}$,
-with the action of elements of $(h, sgn) \in \H'$ being defined as:
-$$
-act: \H' \rightarrow (\X \rightarrow \pm 1) \quad
-act(h, sgn)(x) \equiv h(x) \times sgn
-$$
-
-we will often abbreviate $(h, s)(x)$ instead of writing $act(h, s)(x)$. We will
-now show that $\vc(\H') = \vc(\H) + 1$. this is the best we can hope for,
-since \vc~ increases logarithmically for sizes in $\H$:
-$$
-\vc(\H') \leq \log_2(|\H'|) = \log_2(2 \times |\H|) \leq 1 + \log_2(|\H|) \overset{\text{at best}}{=} 1 + \vc(\H)
-$$
-
-To show that we can shatter subsets $S' \subseteq \X$ such that $|S'| = n + 1$, 
-We start with a subset $S \subseteq \X$ which can be shattered by $H$.
-
-Next, we add some element $x \in X, x \not in S$ to get a new set
-$S' \equiv \{x \} \cup S$, $|S'| = (n +1)$.
-
-For all the subsets of $S'$ that do not contain $x$, since $S$
-was shattered, these subsets of $S'$ that do not contain $x$
-are subsets of $S$, and hence will be shattered.
-
-For the subsets $T' \subseteq S'$ that do contain $x$, we decompose
-them into the $S$ part and the extra $x$ part. Now, we 
-
-h_s_xpos:
-h_scomp_xpos: 
-
-\textbf{TODO}
 
 \end{document}
