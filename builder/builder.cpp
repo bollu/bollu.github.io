@@ -1181,11 +1181,12 @@ const char htmlbegin[] =
 "<head>"
 "<title> A Universe of Sorts </title>"
 "<style>"
-"@font-face {font-family: 'Fira Mono'; src: url('static/FiraMono-Regular.ttf');}"
+"@font-face {font-family: 'Fira Mono'; src: url('static/FiraMono-Medium.ttf');}"
+"@font-face {font-family: 'Fira Sans'; src: url('static/FiraSans-Regular.ttf');}"
 // body
 "body {"
-" background-color: #FFFFFA; color: #000000; " // tufte
-" font-family: 'Fira Mono', monospace; font-size: 15px; line-height: 2em; }"
+" background-color: #FFFFFF; color: #222222; " // tufte
+" font-family: 'Fira Sans', sans-serif; font-size: 1.2em; line-height: 2em; }"
 "\n"
 // container
 ".container { max-width: 70%; margin-left: 10%; margin-right: auto;"
@@ -1204,16 +1205,18 @@ const char htmlbegin[] =
 "code { line-height: 1.2em; }"
 "\n"
 "pre, .latexblock, blockquote { border-left-color:#660000;  border-left-style: solid;"
-"      border-left-width: 4px; padding-left: 5px; }" 
+"      border-left-width: 4px; padding-left: 5px; }"
 "\n"
 " blockquote { border-left-color:#AA0000;  border-left-style: solid;"
 "      border-left-width: 4px; padding-left: 5px; color: #555555;}"
+// monospace font
+".latexblock, .latexinline, blockquote, code { font-family: 'Fira Mono', monospace; }"
 // latex 
-".latexblock .latexinline { font-family: 'Fira Mono', monospace; }"
 ".latexblock { line-height: 1em; margin-top: 5px; margin-bottom: 5px; }"
 "\n"
 ".latexinline { border-bottom-color: #ddcece; border-bottom-style: solid;"
-"                border-bottom-width: 2px; padding-bottom: 2px; }"
+"                border-bottom-width: 2px; padding-bottom: 2px;"
+"                padding-left: 2px; padding-right: 2px; }"
 // HEVEA
 ".li-itemize{margin:1ex 0ex;}"
 ".li-enumerate{margin:1ex 0ex;}"
