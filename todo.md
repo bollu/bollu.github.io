@@ -188,3 +188,5 @@ installed, use it to compute closed forms)
 - moment map reading: https://www.math.columbia.edu/~woit/wordpress/?p=7146
 - Thinking of `H_X = i_X ω` as some kind of "inverting" ω?
 - http://www.math.columbia.edu/~woit/QM/qmbook.pdf: Ch 13 and 14 cover moment maps.
+- https://polyscope.run/: geometry processing library.
+- List of contradictory truisms with an enjoyable flavour; https://www.cs.utexas.edu/~field/holzer/truisms.txt
