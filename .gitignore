@@ -4,3 +4,5 @@ sublime-*
 tags
 temp_*
 blogcache.txt
+static/favicon-*.png
+static/favicon.ico

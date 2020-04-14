@@ -1223,7 +1223,7 @@ const char htmlbegin[] =
 " blockquote { border-left-color:#000000;  border-left-style: solid;"
 "      border-left-width: 4px; padding-left: 5px; color: #000055;}"
 // monospace font
-".latexblock, .latexinline, blockquote, .code { font-family: 'Blog Mono', monospace; }"
+".latexblock, .latexinline, blockquote, .code { font-family: 'Blog Mono', monospace; line-height: 1em; }"
 // latex 
 ".latexblock { margin-top: 5px; margin-bottom: 5px; padding-bottom: 5px; padding-top: 5px; background-color: #eeeeff; }"
 ".code, code { background-color: #eeeeff; }"
