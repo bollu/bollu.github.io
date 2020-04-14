@@ -48,6 +48,7 @@ void loadDB() {
         ll k, len;
         fread(&k, sizeof(ll), 1, f);
         if (feof(f)) break;
+
         fread(&len, sizeof(ll), 1, f);
         cerr << __FUNCTION__ << ": loading DB[" << k << "] (size: " << len << ")\n";
         char *buf = (char *)calloc(sizeof(char), len + 2); //(char *)calloc(len + 2);
@@ -573,7 +574,10 @@ T* tokenizeBlock(const char *s, const ll len, const L lbegin) {
     L lcur = lbegin;
 
     if (lcur.si < len - 1 && s[lcur.si] == '\n' && s[lcur.si+1] == '\n') {
-        return new T(TT::LineBreak, Span(lcur, lcur.nextline().nextline()));
+        while(lcur.si < len - 1 && (s[lcur.si+1] == '\n' || s[lcur.si+1] == ' ' || s[lcur.si+1] == '\t')) {
+            lcur = lcur.next(s[lcur.si]);
+        }
+        return new T(TT::LineBreak, Span(lbegin, lcur));
     }
     if (s[lcur.si] == '\n') {
         return new T(TT::RawText, Span(lcur, lcur.nextline()));
@@ -652,6 +656,12 @@ T* tokenizeBlock(const char *s, const ll len, const L lbegin) {
         toks.push_back(tokenizeHyphenListItem(s, len, lcur));
         lcur = toks[0]->span.end;
 
+        // TODO: allow lists of the form
+        // - item
+        // <newline>
+        // <newline>
+        // - item
+        // to be counted as *the same list*.
         // as long as we have items..
         while(s[lcur.si] == '\n' && s[lcur.si+1] == '-') {
             lcur = lcur.next("\n");
@@ -983,6 +993,8 @@ void toHTML(const char *instr,
         return;
 
         case TT::LineBreak: {
+        // HACK!
+        return;
           const char *br = "<br/>"; 
           strcpy(outs + outlen, br);
           outlen += strlen(br);
@@ -1184,9 +1196,12 @@ const char htmlbegin[] =
 "@font-face {font-family: 'Blog Mono'; src: url('static/UbuntuMono-Regular.ttf');}"
 "@font-face {font-family: 'Blog Text'; src: url('static/NotoSerif-Regular.ttf');}"
 // body
+"html { font-size: 100%; }"
+"html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } "
 "body {"
 " background-color: #FFFFFF; color: #222222; " // tufte
-" font-family: 'Blog Text', serif; line-height: 2em; width: min(1024px, 100%);}"
+" font-family: 'Blog Text', serif;  "
+" width: min(1024px, 100%); }"
 "\n"
 // container
 ".container { margin-left: 15%; }"
@@ -1200,21 +1215,23 @@ const char htmlbegin[] =
 "a:active { color: #000066; }" // alink
 "\n"
 // code blocks, latex blocks, quote blocks
-".code { line-height: 2em; font-size: 1em; }"
 "\n"
 "pre, .latexblock, blockquote { border-left-color:#000066;  border-left-style: solid;"
-"      border-left-width: 4px; padding-left: 5px; font-size: 1em; }"
+"      border-left-width: 4px; padding-left: 5px; "
+" text-size-adjust: none; width: 100%; height: auto; min-height: 1px; max-height: 999999px}"
 "\n"
 " blockquote { border-left-color:#000000;  border-left-style: solid;"
 "      border-left-width: 4px; padding-left: 5px; color: #000055;}"
 // monospace font
 ".latexblock, .latexinline, blockquote, .code { font-family: 'Blog Mono', monospace; }"
 // latex 
-".latexblock { line-height: 1em; margin-top: 5px; margin-bottom: 5px; }"
+".latexblock { margin-top: 5px; margin-bottom: 5px; }"
 "\n"
 ".latexinline { border-bottom-color: #ddddff; border-bottom-style: solid;"
 "                border-bottom-width: 2px; padding-bottom: 2px;"
 "                padding-left: 2px; padding-right: 2px; }"
+// fix font handling
+"pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }"
 // RESPONSIVE
 // " @media (max-width: 1000px) {"
 // "    .container { max-width: 100%; padding: 0; margin-left: 10%; margin-right: 0px;"

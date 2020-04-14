@@ -190,3 +190,4 @@ installed, use it to compute closed forms)
 - http://www.math.columbia.edu/~woit/QM/qmbook.pdf: Ch 13 and 14 cover moment maps.
 - https://polyscope.run/: geometry processing library.
 - List of contradictory truisms with an enjoyable flavour; https://www.cs.utexas.edu/~field/holzer/truisms.txt
+- C-w for "wipe out" in emacs. List of similar mnemonics: https://caiorss.github.io/Emacs-Elisp-Programming/Keybindings.html

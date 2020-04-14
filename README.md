@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 # [Reversible computation as groups on programs](#reversible-computation-as-groups-on-programs)
 
-If we consider a language like [`Janus`](https://en.wikipedia.org/wiki/Janus_(time-reversible_computing_programming_language))
+If we consider a language like [`Janus`](https://en.wikipedia.org/wiki/Janus_(time-reversible_computing_programming_language)
 where every program is reversible, we can then get a group structure on
 programs with the identity program not computing anything at all, the inverse
 performing the reverse operation. 
@@ -681,13 +681,10 @@ Note that it is a function of type $\mathbb R^d \rightarrow \mathbb R^n$.
 
 - The tangent space at point $p \in Image(e)$ is going to be spanned by
   the basis $\{ \partial_{x_i}e \vert_p : \mathbb R^n \}$.
-
-
 - The metric tensor of $M$,
  $g_{ij} \equiv \langle \frac{\partial e}{\partial x_i} \vert \frac{\partial e}{\partial x_j} \rangle$.
  That is, the metric tensor "agrees" with the dot product of the
  ambient space $\mathbb R^n$.
-
 - A vector field $V$ on the manifold $M$ is by definition a combination of
   the tangent vector fields. $V(p_0) \equiv v^j(p_0) \partial_{x_j} e(p_0)$
 
@@ -805,13 +802,10 @@ We study how to build cache-oblivious B-trees.
 - We use a balanced BST. We want to find an order to store nodes in memory
   such that when we search for an element, we minimize number of blocks
   we need to pull in.
-
 - All standard orders such as level order, pre-order, post-order fail.
-
 - Corrrect order is "VEB (Van Em De Boas) order": carve a tree at the middle
   level of its edges. Layout a "triangle" or smaller collection
   of nodes linearly. Then Recursively layout the trees, linearly in memory.
-
 - Supposedly if the number of nodes is $N$, we wil have roughly $\sqrt(N)$
   nodes on the top, and then $\sqrt(N)$ _triangles_ at the bottom.
 
@@ -822,15 +816,12 @@ even though the _algorithm does not_.
 
 - We look at a particuar level of recursion. We will call it a "level of detail"
   straddling B.
-
 - We will have large triangles of size $\geq B$, inside which there are smaller
   triangles of size $\leq B$ (reminds me of sierpinski).
-
 - We know that the algorithm recursively lays it out, and triangle stores
   everything "inside" it _in a contiguous region_. So we stop at the
   requisite size where we know that the tree's triangles themselves
   contain triangles which fit into the block size.
-
 - A little triangle of size less than B can live in at most two memory blocks
   by straddling a block boundary: by eg. having $(B-1)$ bits in one block
   and a single bit in another block.
@@ -845,12 +836,9 @@ even though the _algorithm does not_.
   we need to visit. Since we repeatedly divide the nodes in half _with
   respect to height_ until the little triangle has number of nodes less
   than $B$, the height is going to be $O(\log B)$ since it's still a binary tree.
-
 - total height in $O(\log N)$.
-
 - so height of "chunked tree" where we view each triangle as a single node
   is $\log N / \log B = \log_B n$.
-
 - **insight**: ou data structure construction in some sense permits us to
   "binary search on $B$" since we divide the data structure into levels
   based on $B$. if $B = N$, then the full data structure fits into memory
@@ -883,19 +871,15 @@ that has max of nodes. Leaves are the members of the ordered file.
 #### Updates: analysis.
 
 - look at level of detail that straddles $B$.
-
 - Let us look at the bottom 2 levels.
-
 - Note that when we perform post-order inside a triangle that has 3 triangles
   of size $\leq B$, we need to alternate between parent triangle and child triangle.
   Since the parent triangle is of size $\leq B$ and can therefore take
   at most $2B$ blocks of memory, similarly the child can take at most $2B$
   blocks of memory.
-
 - So if our cache can hold $4$ blocks of memory, we're done.
   We won't need to kick anything out when performing the post-order
   traversal.
-
 - For levels that are above the bottom 2 levels, we're still OK. there
   are not many triangles! / not many nodes! (`1:16:00` in the video)
 
@@ -1846,10 +1830,8 @@ immediately clear:
 
 - The semidirect product is some kind of "shear" transform, since that's
   what a shear transformation looks like, matrix-wise.
-
 - The resulting monoid $M \ltimes_{\phi} N$ has identity $(0_M, 1_N)$,
   since for the matrix to be identity, we need the 2nd row to be $(0, 1)$.
-
 - The inverse operation if $(M, N)$ were groups would have to be such that
 
 $$
@@ -2502,10 +2484,8 @@ The condition a parent vector must satisfy is:
 
 - `V ∊ (⍳≢V)` will be a list of whether each element in v belongs (`∊`) to the list
   `(⍳≢V) = [1..len(V)]`
-
 - Recall that `/` is for reduction, and `∧/` is a boolean `AND` reduction.
   Hence, we compute whether each element of the vector `V` is in the range `[1..len(V)]`.
-
 - We add the constraint that root notes that don't have a parent simply
   point to themselves. This allows us to free ourselves from requiring
   some kind of `nullptr` check.
@@ -3111,14 +3091,10 @@ I'll be using the definition of prime as:
 
 Let $S = \equiv R \setminus P$ be the complement of the prime ideal $P \subsetneq R$
 in question.
-
 - Since $P \neq R$, $1 \not \in $P. (if $1 \in P$, then every element $x . 1 \in P$
   since $P$ is an ideal, and must be closed under multiplication with the
   entire ring). Hence, $1 \in S$.
-
 - For any $x, y \in S$, we need $xy \in S$ for $S$ to be mulitplicative.
-
-
 - For contradiction, let us say that $x, y \in S$ such that $xy \not \in S$.
   Translating to $P$, this means that $x, y \not \in P$ such that $xy \in P$.
   This contradictions the definition of $P$ being prime.
@@ -3127,29 +3103,23 @@ in question.
 
 - Let $I$ be an ideal of the ring $R$ such that its complement $S \equiv R / I$
   is a maximal multiplicative subset.
-
 - Let $i_1 i_2 \in I$. For $I$ to be prime,
   we need to show that $i_1 \in I$ or $i_2 \in I$.
-
 - For contradiction, let $i_1, i_2 \not \in I$.
   Thus, $i_1, i_2 \in S$. Since $S$ is multiplicative, $i_1 i_2 \in S$. That is,
   $i_1 i_2 \not \in I$ (since $I$ is disjoint from $S$).
-
 - But this violates our assumption that $i_1 i_2 \in I$. Hence, contradiction.
 
 
 # [Getting started with APL](#getting-started-with-apl)
 
 - Install [Dyalog APL](https://www.dyalog.com/download-zone.htm).
-
 - Setup [RIDE](https://github.com/Dyalog/ride), the IDE for dyalog APL.
   This IDE comes with auto complete, good key bindings, a top bar chock-full of
   information of all the APL symbols. It's really well designed and a pleasure
   to use.
-
 - Follow the [Dyalog tutorial](https://tutorial.dyalog.com/), solving it
   chapter by chapter.
-
 - Bookmark [APLCart](https://aplcart.info/), a collection of APL idioms, and
   refer to it when in need.
 
@@ -5353,8 +5323,6 @@ including:
   which is nice since it describes it's semantics in terms of sampling. This is
   unlike Adam's thesis, where they define the denotational semantics in terms
   of measure theory, which is then approximated by sampling.
-
-
 - [Riemann Manifold Langevin and Hamiltonian Monte Carlo](https://pdfs.semanticscholar.org/16c5/06c5bb253f7528ddcc80c72673fabf584f32.pdf)
   which describes how to perform Hamiltonian Monte Carlo on the _information
   geometry_ manifold.  So, for example, if we are trying to sample from
@@ -5362,7 +5330,6 @@ including:
   varince, and metric as the [Fisher information metric](https://en.wikipedia.org/wiki/Fisher_information_metric).
   This is philosophically the "correct" manifold to sample from, since it
   represents the intrinsic geometry of the space we want to sample from.
-
 - [An elementary introduction to Information geometry by Frank Nielsen](https://arxiv.org/pdf/1808.08271.pdf)
   something I stumbled onto as I continued reading about sampling from
   distributions. The above description about the "correct" manifold for
@@ -5371,7 +5338,6 @@ including:
   in differential geometry. I can't say I understand it just yet, but I hope to
   do so in a couple of months. I need more time for sure to meditate on the
   objects.
-
 - [Reimplementation of `monad-bayes`](https://github.com/bollu/shakuni).
   This repo holds the original implementation on which the talk is based on.
   I read through the `monad-bayes` source code, and then re-implemented the
@@ -5395,8 +5361,6 @@ how to build good solvers:
   [DFA minimisation](https://en.wikipedia.org/wiki/DFA_minimization). The
   reference I used for this was the excellent textbook
   [Automata theory: An algorithmic approach, Chapter 10](https://www7.in.tum.de/~esparza/autoskript.pdf)
-
-
 - [The taming of the semi-linear set](http://www.lsv.fr/~haase/documents/ch16.pdf)
   This uses a different encoding of presburger sets, which allows them to bound
   a different quantity (the norm) rather than the bitwidth descriptions. This allows
@@ -5470,7 +5434,6 @@ terms, so that's something.
   it were a little more proof heavy, it was a really great reference to learn the
   basic theory! I definitely recommend following this and then reading other
   books to fill in the gaps.
-
 - [Gravitation by Misner Thorne and Wheeler](https://en.wikipedia.org/wiki/Gravitation_(book))
   This is an imposing book. I first read through the entire thing (Well, the parts I thought I needed),
   to be able to get a vague sense of what they're going for. They're rigorous in
@@ -5479,14 +5442,12 @@ terms, so that's something.
   is also fun. In general, I found myself repeatedly consulting this book for
   the "true physical" meaning of a thing, such as curvature, parallel transport,
   the equation of a geodesic, and whatnot.
-
 - [Differential Geometry of Curves and Surfaces by do Carmo](http://www2.ing.unipi.it/griff/files/dC.pdf)
   This is the best book to intro differential geometry I found. It throws away
   all of the high powered definitions that "modern" treatments offer, and
   starts from the ground up, building up the theory in 2D and 3D. This is amazing,
   since it gives you small, computable examples for things like
   "the Jacobian represents how tangents on a surface are transformed locally".
-
 - [Symplectic geometry & classical mechanics by Tobias Osborne](https://www.youtube.com/watch?v=pXGTevGJ01o&list=PLDfPUNusx1EoVnrQcCRishydtNBYU6A0c)
   This lecture series was great, since it re-did a lot of the math I'd seen
   in a more physicist style, especially around vector fields, flows, and
@@ -5494,13 +5455,10 @@ terms, so that's something.
   mechanics part by the time the semester ended. I began
   [taking down notes in my repo](https://github.com/bollu/notes/blob/master/diffgeo/main.pdf),
   which I plan to complete.
-
 - [Introduction to Smooth manifolds: John Lee](https://sites.math.washington.edu/~lee/Books/ISM/)
   This was a very well written _mathematical_ introduction to differential geometry.
   So it gets to the physically important bits (metrics, covariant derivatives)
   far later, so I mostly used it as a reference for problems and more rigour.
-
-
 - [Einstein's original paper introducing GR, translated](http://hermes.ffn.ub.es/luisnavarro/nuevo_maletin/Einstein_GRelativity_1916.pdf)
   finally made it click as to _why_
   he wanted to use tensor equations: tensor equations of the form `T = 0` are
@@ -5527,7 +5485,6 @@ a myriad of applications for computer graphics.
   imagination to grok. Discretizing differential geometry leads to most things
   being linear algebra, which means one can calculate things on paper easily.
   That's such a blessing.
-
 - [Geodesics in Heat](https://arxiv.org/pdf/1204.6216)
   explores a really nice way to discover geodesics by simulating the heat
   equation for a short time. The intuition is that we should think of the heat
@@ -5539,12 +5496,10 @@ a myriad of applications for computer graphics.
   does truly represent distances from a given point.  The paper explores this
   analogy to find accurate geodesics on complex computational grids. This is
   aided by the use of differential geometry, appropriately discretized.
-
 - [The vector heat method](https://arxiv.org/pdf/1805.09170.pdf)
   explores computing the parallel transport of a vector across a discrete
   manifold efficiently, borrowing techniques from the 'Geodesics in Heat'
   paper.
-
 - [Another paper by Kennan Crane: Lie group integrators for animation and control of vehicles](https://www.cs.cmu.edu/~kmcrane/Projects/LieGroupIntegrators/paper.pdf)
   This paper describes a general recipe to tailor-make integrators for a system
   of constraints, by directly integrating over the lie group of the
