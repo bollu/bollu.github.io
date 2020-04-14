@@ -1199,7 +1199,7 @@ const char htmlbegin[] =
 "html { font-size: 100%; }"
 "html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } "
 "body {"
-" background-color: #FFFFFF; color: #222222; " // tufte
+" background-color: #FFFFFF; color: #000000; " // tufte
 " font-family: 'Blog Text', serif;  "
 " width: min(1024px, 100%); }"
 "\n"
@@ -1225,7 +1225,8 @@ const char htmlbegin[] =
 // monospace font
 ".latexblock, .latexinline, blockquote, .code { font-family: 'Blog Mono', monospace; }"
 // latex 
-".latexblock { margin-top: 5px; margin-bottom: 5px; }"
+".latexblock { margin-top: 5px; margin-bottom: 5px; padding-bottom: 5px; padding-top: 5px; background-color: #eeeeff; }"
+".code, code { background-color: #eeeeff; }"
 "\n"
 ".latexinline { border-bottom-color: #ddddff; border-bottom-style: solid;"
 "                border-bottom-width: 2px; padding-bottom: 2px;"
