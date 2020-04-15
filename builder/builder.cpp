@@ -1102,8 +1102,9 @@ void toHTML(const char *instr,
 
         case TT::Link: {
           TLink *link = (TLink *)t;
+          // toHTML(instr, tempdirpath, link->text,  outlen, outs);
           outlen += sprintf(outs + outlen, "<a href=%s>\n", link->link);
-          toHTML(instr, tempdirpath, link->text,  outlen, outs);
+          toHTML(instr, tempdirpath, link->text, outlen, outs);
           outlen += sprintf(outs + outlen, "</a>\n");
           return;
         }
@@ -1137,9 +1138,12 @@ void toHTML(const char *instr,
 
             // need the _raw text_. Hmm.
             const char *link = mkHeadingLink(instr, theading);
-            outlen += sprintf(outs + outlen, "<h%d id=%s>", theading->hnum, link);
+            // outlen += sprintf(outs + outlen, "<h%d id=%s>", theading->hnum, link);
+            outlen += sprintf(outs + outlen, "<h%d>", theading->hnum);
+            outlen += sprintf(outs + outlen, "<a id=%s href='#%s'> %s </a>", link, link, "§");
             toHTML(instr, tempdirpath, theading->item, outlen, outs);
             outlen += sprintf(outs + outlen, "</h%d>", theading->hnum);
+
             free((char *)link);
             return;
         }
