@@ -30,7 +30,8 @@ leading to the ability to freely mix inputs, computation, and outputs. For examp
 balls that had been used to form gates would fly apart on receiving input,
 spiral around the hypertorus, and then reconvene at precisely the right
 moment to create _new gates_. This way, self-organising computation could be
-arranged on compact manifolds [The compactness is a technical condition
+arranged on compact manifolds, with far greater performance (sometimes asymptotically)
+than the best-known classical algorithms. [The compactness is a technical condition
 required for conservation of billiard balls in a finite volume of spacetime].
 
 
