@@ -82,8 +82,9 @@ that could place and route symplectic computations. Someone found a cute hack
 to redo classical place-and-route in terms of symplectic optimisation. Just like
 that, a billion dollar industry came crashing down.
 
-I suppose the lesson is that floating point operations can cause the stock
-market to crash, just not in the way you expect it to.
+In the end, I suppose the complexity theorists are the saddest of the lot:
+they're saddled with many new conjectures, but haven't
+resolved any of the old ones.
 
 #### Exercises 
 
