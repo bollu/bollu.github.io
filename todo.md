@@ -191,3 +191,11 @@ installed, use it to compute closed forms)
 - https://polyscope.run/: geometry processing library.
 - List of contradictory truisms with an enjoyable flavour; https://www.cs.utexas.edu/~field/holzer/truisms.txt
 - C-w for "wipe out" in emacs. List of similar mnemonics: https://caiorss.github.io/Emacs-Elisp-Programming/Keybindings.html
+- https://www.amazon.com/Build-your-own-working-robot/dp/0830668411: Build your own working robot.
+- Take birkhoff polytope; is a polytope, can build discrete diff geo
+  around it. consider tangent spaces. now perform DHMC on this space?
+  Problem is that the "interesting" points are vertices, so we may
+  not gain much. However, what happens if we tesselate the space 
+  with birkhoff polytopes? Perhaps likely we get something? it's
+  unclear, but very interesting for sure.
+- VC dimension as matroid?

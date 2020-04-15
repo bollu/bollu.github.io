@@ -1194,17 +1194,17 @@ const char htmlbegin[] =
 "<title> A Universe of Sorts </title>"
 "<style>"
 "@font-face {font-family: 'Blog Mono'; src: url('static/UbuntuMono-Regular.ttf');}"
-"@font-face {font-family: 'Blog Text'; src: url('static/NotoSerif-Regular.ttf');}"
+"@font-face {font-family: 'Blog Text'; src: url('static/SourceSerifPro-Regular.ttf');}"
 // body
 "html { font-size: 100%; }"
 "html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } "
 "body {"
 " background-color: #FFFFFF; color: #000000; " // tufte
 " font-family: 'Blog Text', serif;  "
-" width: min(1024px, 100%); }"
+" width: min(2048px, 100%); }"
 "\n"
 // container
-".container { margin-left: 15%; }"
+".container { margin-left: 15%; margin-right: 15%; }"
 "\n"
 "a:hover { color: #0000CC; }" // hover
 "\n"
@@ -1226,7 +1226,11 @@ const char htmlbegin[] =
 ".latexblock, .latexinline, blockquote, .code { font-family: 'Blog Mono', monospace; line-height: 1em; }"
 // latex 
 ".latexblock { margin-top: 5px; margin-bottom: 5px; padding-bottom: 5px; padding-top: 5px; background-color: #eeeeff; }"
-".code, code { background-color: #eeeeff; }"
+".code, code { background-color: #eeeeff; width: 100%; }"
+// overflow: latex and code block
+" .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; }"
+" .code { width: 100%; overflow-x: hidden; white-space: nowrap; }"
+" .code pre { width: 100%; overflow-x: auto; margin: 0px; }"
 "\n"
 ".latexinline { border-bottom-color: #ddddff; border-bottom-style: solid;"
 "                border-bottom-width: 2px; padding-bottom: 2px;"
@@ -1323,7 +1327,7 @@ int main(int argc, char **argv) {
     cerr << "Done tokenizing; now parsing...\n";
 
 
-    char tempdirpath[100] = "temp_XXXXXX";
+    char tempdirpath[100] = "/tmp/blog-build-XXXXXX";
     const char *success = mkdtemp(tempdirpath);
     assert(success != nullptr && "unable to create temporary directory");
 
