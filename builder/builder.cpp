@@ -1345,14 +1345,11 @@ int main(int argc, char **argv) {
     rmdir(tempdirpath);
 
 
-    char outfilepath[512];
-    if (mkdir(argv[2], 0777) && errno != EEXIST) {
-        cerr << "unable to create output directory.\n"; perror("");
-        assert(false && "unable to create output directory.");
-    };
-
-    sprintf(outfilepath, "%s/index.html", argv[2]);
-    FILE *fout = fopen(outfilepath, "wb");
+    FILE *fout = fopen(argv[2], "wb");
+    if (fout == nullptr) {
+        fprintf(stderr, "unable to open output file: |%s|", argv[2]);
+    }
+    assert(fout != nullptr);
     fwrite(outbuf, 1, strlen(outbuf), fout);
     fclose(fout);
     
