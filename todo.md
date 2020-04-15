@@ -199,3 +199,6 @@ installed, use it to compute closed forms)
   with birkhoff polytopes? Perhaps likely we get something? it's
   unclear, but very interesting for sure.
 - VC dimension as matroid?
+- How to Write a Sentence: how to get better at writing.
+- Bugs in writing: a guide to debugging you prose.
+- The chicago manual of style.
