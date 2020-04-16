@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
 #### Table of contents:
 
 
+- [Adjunctions as advice](#adjunctions-as-advice)
 - [Reversible computation as groups on programs](#reversible-computation-as-groups-on-programs)
 - [Blazing fast math rendering on the web](#blazing-fast-math-rendering-on-the-web)
 - [VC dimension](#vc-dimension)
@@ -160,6 +161,29 @@ document.addEventListener("DOMContentLoaded", function() {
 - [GSoC 2015 week 7](content/blog/gsoc-vispy-week-7.md)
 - [GSoC 2015 final report](content/blog/gsoc-vispy-report-6.md)
 - [Link Dump](#link-dump)
+
+# [Adjunctions as advice](#adjunctions-as-advice)
+
+An adjunction `F |- U` allows us to go from `F a -> x` to `a -> U x`. We 
+can look at this as shifting the "before-advice" from the _input_ to an 
+"after advice" of the _output, where I'm using
+[advice in the CLOS/LISP sense](https://en.wikipedia.org/wiki/Advice_(programming))
+
+Also, to remember this, we can write it as:
+
+```
+F a <--F--- a
+|           |
+v           v
+x ----U--> U x
+```
+
+I assume it is `F` for **F**ree and `U` for forgetf**U**l, but I have not
+checked this yet!
+
+
+#### References
+- [Profunctor optics: the categorical approach, `33:00` onwards](https://www.youtube.com/watch?v=l1FCXUi6Vlw)
 
 
 # [Reversible computation as groups on programs](#reversible-computation-as-groups-on-programs)
