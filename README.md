@@ -466,7 +466,7 @@ $$
 This way, given a hamiltonian $H: M \rightarrow \mathbb R$, we can construct
 an associated vector field $X_H$, in a pretty natural way.
 
-We can also go the emph{other way. Given the $X$, we can build the $dH$
+We can also go the other way. Given the $X$, we can build the $dH$
 under the equivalence:
 
 $$
