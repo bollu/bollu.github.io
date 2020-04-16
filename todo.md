@@ -206,3 +206,6 @@ installed, use it to compute closed forms)
 - Scott Aaronson review of A new kind of science: 'https://arxiv.org/abs/quant-ph/0206089'
 - Conversation with arjit about iheritance versus composition. Ie, `SourcePanel : public Panel` versus
   `Panel a = ...; type SourcePanel = Panel Source`.
+- Flat assembler (https://flatassembler.net/docs.php): assembler with very strong macro support.
+- HLA (high-level-assembler): assembler with a huge STDLIB, C-like-syntax and pattern matching.
+- Lens over tea: https://artyom.me/lens-over-tea-1

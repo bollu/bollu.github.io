@@ -1204,8 +1204,8 @@ const char htmlbegin[] =
 "html { font-size: 100%; }"
 "html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } "
 "body {"
-" background-color: #FFFFFF; color: rgb(30, 0, 0, 0.8); " // tufte
-" font-family: 'Blog Text', serif;  "
+" background-color: #FFFFFF; color: rgb(20, 0, 0, 0.8); " // tufte
+" font-family: 'Blog Text', serif; font-size: 21px; "
 " max-width: 100%; }"
 "\n"
 // img as a block
@@ -1239,7 +1239,7 @@ const char htmlbegin[] =
 // overflow: latex and code block
 " .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; }"
 " .code { width: 100%; overflow-x: hidden; white-space: nowrap; }"
-" .code pre { width: 100%; overflow-x: auto; margin: 0px; }"
+" .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; }"
 "\n"
 ".latexinline { border-bottom-color: #DDDDDD; border-bottom-style: solid;"
 "                border-bottom-width: 1px; padding-bottom: 2px;"
