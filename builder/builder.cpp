@@ -1,4 +1,5 @@
 // https://spec.commonmark.org/0.29/#preliminaries
+// TODO: RSS feed.
 #include <string.h>
 #include <assert.h>
 #include <stdarg.h>
@@ -1203,41 +1204,45 @@ const char htmlbegin[] =
 "html { font-size: 100%; }"
 "html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } "
 "body {"
-" background-color: #FFFFFF; color: #000000; " // tufte
+" background-color: #FFFFFF; color: rgb(30, 0, 0, 0.8); " // tufte
 " font-family: 'Blog Text', serif;  "
-" width: min(2048px, 100%); }"
+" max-width: 100%; }"
 "\n"
+// img as a block
+"img { display:block; }"
 // container
-".container { margin-left: 15%; margin-right: 15%; }"
+".container { margin-left: 20%; margin-right: 20%; }"
+// class for image <div>
+".image { }"
 "\n"
-"a:hover { color: #0000CC; }" // hover
+"a:hover { color: #1a73e8; text-decoration: underline;  }" // hover
 "\n"
-"a { color: #0000AA; }" // unvisited; default
+"a { color: #1a73e8; text-decoration: none; }" // unvisited; default
 "\n"
-"a:visited { color: #000066; }" // vlink
+"a:visited { color: #1a73e8; text-decoration: none; }" // vlink
 "\n"
-"a:active { color: #000066; }" // alink
+"a:active { color: #1a73e8; text-decoration: none; }" // alink
 "\n"
 // code blocks, latex blocks, quote blocks
 "\n"
-"pre, .latexblock, blockquote { border-left-color:#000066;  border-left-style: solid;"
+"pre, .latexblock, blockquote { border-left-color:#DDDDDD;  border-left-style: solid;"
 "      border-left-width: 4px; padding-left: 5px; "
 " text-size-adjust: none; width: 100%; height: auto; min-height: 1px; max-height: 999999px}"
 "\n"
-" blockquote { border-left-color:#000000;  border-left-style: solid;"
-"      border-left-width: 4px; padding-left: 5px; color: #000055;}"
+" blockquote { border-left-color:#DDDDDD;  border-left-style: solid;"
+"      border-left-width: 4px; padding-left: 5px; color: #666666;}"
 // monospace font
 ".latexblock, .latexinline, blockquote, .code { font-family: 'Blog Mono', monospace; line-height: 1em; }"
 // latex 
-".latexblock { margin-top: 5px; margin-bottom: 5px; padding-bottom: 5px; padding-top: 5px; background-color: #eeeeff; }"
-".code, code { background-color: #eeeeff; width: 100%; }"
+".latexblock { margin-top: 5px; margin-bottom: 5px; padding-bottom: 5px; padding-top: 5px; background-color: #EEEEEE; }"
+".code, code { background-color: #EEEEEE; width: 100%; }"
 // overflow: latex and code block
 " .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; }"
 " .code { width: 100%; overflow-x: hidden; white-space: nowrap; }"
 " .code pre { width: 100%; overflow-x: auto; margin: 0px; }"
 "\n"
-".latexinline { border-bottom-color: #ddddff; border-bottom-style: solid;"
-"                border-bottom-width: 2px; padding-bottom: 2px;"
+".latexinline { border-bottom-color: #DDDDDD; border-bottom-style: solid;"
+"                border-bottom-width: 1px; padding-bottom: 2px;"
 "                padding-left: 2px; padding-right: 2px; }"
 // fix font handling
 "pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }"

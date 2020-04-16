@@ -1696,9 +1696,8 @@ target_link_libraries(languagemodels
 
 
 # [Energy as triangulaizing state space](#energy-as-triangulaizing-state-space)
-This comes from
-[The wild book](https://en.wikipedia.org/wiki/John_Rhodes_(mathematician)#Books_and_Monographs)
-which I anticipate I'll be posting more of in the coming weeks.
+
+This comes from The wild book by John Rhodes, which I anticipate I'll be posting more of in the coming weeks.
 
 #### Experiments
 
@@ -8156,6 +8155,7 @@ sampling from x^4 with finite support
 ▁▁▃▃▃▄▅▆▇█_
 
 ```
+
 # The smallest implementation of reverse mode AD (autograd) ever:
 
 ```hs

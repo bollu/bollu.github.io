@@ -202,3 +202,7 @@ installed, use it to compute closed forms)
 - How to Write a Sentence: how to get better at writing.
 - Bugs in writing: a guide to debugging you prose.
 - The chicago manual of style.
+- http://bactra.org/reviews/badii-and-politi/: Hierarchical Structures and Scaling in Physics
+- Scott Aaronson review of A new kind of science: 'https://arxiv.org/abs/quant-ph/0206089'
+- Conversation with arjit about iheritance versus composition. Ie, `SourcePanel : public Panel` versus
+  `Panel a = ...; type SourcePanel = Panel Source`.
