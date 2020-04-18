@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 
-- [Self modifying code for function calls](#self-modifying-code-for-function-calls)
+- [Self modifying code for function calls](#self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack)
 - [Adjunctions as advice](#adjunctions-as-advice)
 - [Reversible computation as groups on programs](#reversible-computation-as-groups-on-programs)
 - [Blazing fast math rendering on the web](#blazing-fast-math-rendering-on-the-web)
