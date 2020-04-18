@@ -178,9 +178,9 @@ return control to `f`. This is usually solved in some way like this:
 f's body
 START_F:
       ...
-      push $CURLOC+2 ; location of next instr after call
+L0    push addr(L0); location of instr to be run after call.
       jmp START_G
-      <code after call>
+L1:   <code after call>
 ```
 
 ```
@@ -201,21 +201,32 @@ to `g`. In made-up-pseudocode, here's what that would look like:
 * f's body
 START_F:
       ...
-      rew $RETG assemble("jmp %d", $CURLOC+2)
+L0    store loc(RETG) assemble(jmp addr(L1))
       jmp START_G
-      <code after call>
+L1:   <code after call>
 ```
 
 ```
 * g's body
 START_G:
       ...
-      retloc = pop ; pop location to jump to
 RETG: <###-to-be-filled-dummy-###>
 ```
 
-instead of having a call stack, before `f` calls g, `f` modify `g`'s code at location `RETLOC`
-into a `jmp` instruction. This way, we have obviated the need for a call stack entirely.
+instead of having a call stack, before `f` calls g, `f` modify `g`'s code at location `RETG`
+into a `jmp` instruction by `store` ing the instruction `jmp addr(L1)`.
+This effectively creates a 'custom' `g` that knows how  to return
+control flow into `f`.
+
+```
+* g's body (after execution of L0)
+START_G:
+      ...
+RETG: jump addr(L1)
+```
+
+This way, we have obviated the need for a `push/pop` sequence, by directly
+modifying `g`'s code
 
 #### Why this is neat, caveats.
 
