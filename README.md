@@ -266,8 +266,21 @@ v           v
 x ----U--> U x
 ```
 
-I assume it is `F` for **F** ree and `U` for forgetf **U** l, but I have not
-checked this yet!
+Where `F` is for `F`ree and `U` is for forgetf`U`l.
+Recall that if `F` is free and `U` is forgetful, then `U(F(x)) = x`, since
+adding more structure through the free functor and then stripping it away gives
+us the object back. We can prove that if `U(F(x)) = x` and `U, F` are functors,
+then we have a function `fwd: (f a -> x) -> (a -> u x)` as:
+
+```
+f      :: (f a -> x) 
+fmap   :: (p   -> q) -> (u p     -> u q)
+fmap   :: (p   -> q) -> (u ( p ) -> u q)
+fmap f :: (f a -> x) -> (u (f a) -> u x) 
+fmap f :: (f a -> x) -> (a       -> u x) [using u (f a) = a]
+```
+
+
 
 
 #### References
