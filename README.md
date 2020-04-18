@@ -163,9 +163,9 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Link Dump](#link-dump)
 
 
-## [Self modifying code for function calls: Look ma, I don't need a stack!](#self-modifying-code-for-function-calls)
+## [Self modifying code for function calls: Look ma, I don't need a stack!](#self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack)
 
-If one does not have recursive calls, one can eliminate the need  to push
+If one does not have recursive calls, one can eliminate the need to push
 return addresses on a call stack by writing self-modifying code ---
 I leant of this from TAOCP, volume 1. 
 Knuth shows this off once he introduces `MIXAL`, his fantasy

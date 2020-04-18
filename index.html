@@ -40,7 +40,7 @@ My reading list</a>
 <h4><a id=table-of-contents href='#table-of-contents'> § </a> Table of contents:</h4>
 <ul>
 <li>
- <a href=#self-modifying-code-for-function-calls>
+ <a href=#self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack>
 Self modifying code for function calls</a>
 
 </li>
@@ -592,15 +592,21 @@ Link Dump</a>
 
 </ul>
 
-<h2><a id=self-modifying-code-for-function-calls href='#self-modifying-code-for-function-calls'> § </a> <a href=#self-modifying-code-for-function-calls>
-Self modifying code for function calls</a>
+<h2><a id=self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack href='#self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack'> § </a> <a href=#self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack>
+Self modifying code for function calls: Look ma, I don't need a stack!</a>
 </h2>
-I leant of this from TAOCP, volume 1, when Knuth introduces <code>MIX</code>, his fantasy
-aseembly language. . If one does not
-have recursive calls, one can completely eliminate the need for a call stack.
-We wish to have function <code>f</code> call function <code>g</code>. <code>g</code> ought to be able to
-return control to <code>f</code>. This is usually solved in some way like this:
-<h4><a id=the-traditional-solution href='#the-traditional-solution'> § </a> The traditional solution</h4>
+If one does not have recursive calls, one can eliminate the need to push
+return addresses on a call stack by writing self-modifying code ---
+I leant of this from TAOCP, volume 1. 
+Knuth shows this off once he introduces <code>MIXAL</code>, his fantasy
+aseembly language in which TAOCP programs are written.
+I'll explain the usual way one performs call-return, then explain the nifty
+self-modifying-code way. I think this is the cleanest, most accessible
+example of self-modifying-code that I know. 
+<h4><a id=callretditional-solution-for- href='#callretditional-solution-for-'> § </a> The traditional solution for <code>call/ret</code></h4>
+We wish to have function <code>f</code> call function <code>g</code>. For <code>g</code> to be able to
+return control to <code>f</code>, <code>f</code> pushes a return address into the call stack,
+that <code>g</code> pops and <code>jmp</code>s to
 <div class='code'>
 <!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
@@ -610,9 +616,9 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#666666">2:</font> f's body
 <font color="#666666">3:</font> START_F:
 <font color="#666666">4:</font>       ...
-<font color="#666666">5:</font>       push $CURLOC+2 ; location of next instr after call
+<font color="#666666">5:</font> L0    push addr(L0); location of instr to be run after call.
 <font color="#666666">6:</font>       jmp START_G
-<font color="#666666">7:</font>       &lt;code after call&gt;
+<font color="#666666">7:</font> L1:   &lt;code after call&gt;
 <font color="#666666">8:</font> </tt></pre>
 </div>
 
@@ -642,9 +648,9 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#666666">2:</font> * f's body
 <font color="#666666">3:</font> START_F:
 <font color="#666666">4:</font>       ...
-<font color="#666666">5:</font>       rew $RETG assemble("jmp %d", $CURLOC+2)
+<font color="#666666">5:</font> L0    store loc(RETG) assemble(jmp addr(L1))
 <font color="#666666">6:</font>       jmp START_G
-<font color="#666666">7:</font>       &lt;code after call&gt;
+<font color="#666666">7:</font> L1:   &lt;code after call&gt;
 <font color="#666666">8:</font> </tt></pre>
 </div>
 
@@ -657,14 +663,31 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#666666">2:</font> * g's body
 <font color="#666666">3:</font> START_G:
 <font color="#666666">4:</font>       ...
-<font color="#666666">5:</font>       retloc = pop ; pop location to jump to
-<font color="#666666">6:</font> RETG: &lt;###-to-be-filled-dummy-###&gt;
-<font color="#666666">7:</font> </tt></pre>
+<font color="#666666">5:</font> RETG: &lt;###-to-be-filled-dummy-###&gt;
+<font color="#666666">6:</font> </tt></pre>
 </div>
 
-instead of having a call stack, before <code>f</code> calls g, <code>f</code> modify <code>g</code>'s code at location <code>RETLOC</code>
-into a <code>jmp</code> instruction. This way, we have obviated the need for a call stack entirely.
-<h4><a id=why-this-is-neat-caveats href='#why-this-is-neat-caveats'> § </a> Why this is neat, caveats.</h4>
+instead of having a call stack, before <code>f</code> calls g, <code>f</code> modify <code>g</code>'s code at location <code>RETG</code>
+into a <code>jmp</code> instruction by <code>store</code> ing the instruction <code>jmp addr(L1)</code>.
+This effectively creates a 'custom' <code>g</code> that knows how  to return
+control flow into <code>f</code>.
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> * g's body (after execution of L0)
+<font color="#666666">3:</font> START_G:
+<font color="#666666">4:</font>       ...
+<font color="#666666">5:</font> RETG: jump addr(L1)
+<font color="#666666">6:</font> </tt></pre>
+</div>
+
+This way, we have obviated the need for a <code>push/pop</code> sequence, by directly
+modifying <code>g</code>'s code. This is really neat --- we replace the overhead of
+a <code>push/pop</code> with a single <code>store</code>.
+<h4><a id=why-recursion-breaks href='#why-recursion-breaks'> § </a> Why recursion breaks.</h4>
 We don't actually need a call stack, as long as we don't want to write recursive functions.
 We can't have recursion, or more generally "re-entrance": consider a call chain of the form:
 <ul>
