@@ -1206,14 +1206,14 @@ const char htmlbegin[] =
 "<head>"
 "<title> A Universe of Sorts </title>"
 "<style>"
-"@font-face {font-family: 'Blog Mono'; src: url('static/iosevka-fixed-extended.ttf');}"
+"@font-face {font-family: 'Blog Mono'; src: url('static/iosevka-fixed-extendedmedium.ttf');}"
 "@font-face {font-family: 'Blog Text'; src: url('static/iosevka-etoile-regular.ttf');}"
 // body
 "html { font-size: 100%; }"
 "html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } "
 "body {"
 " background-color: #FFFFFF; color: rgb(20, 0, 0, 0.8); " // tufte
-" font-family: 'Blog Text', serif; font-size: 21px; line-height: 1.8em; "
+" font-family: 'Blog Text', serif; font-size: 21px; line-height: 1.5em; "
 " max-width: 100%; }"
 "\n"
 // img as a block
@@ -1234,13 +1234,12 @@ const char htmlbegin[] =
 // code blocks, latex blocks, quote blocks
 "\n"
 "pre, .latexblock, blockquote { border-left-color:#DDDDDD;  border-left-style: solid;"
-"      border-left-width: 4px; padding-left: 5px; "
-" text-size-adjust: none; width: 100%; height: auto; min-height: 1px; max-height: 999999px}"
+"      border-left-width: 4px; padding-left: 5px; }"
 "\n"
 " blockquote { border-left-color:#DDDDDD;  border-left-style: solid;"
 "      border-left-width: 4px; padding-left: 5px; color: #666666;}"
 // monospace font
-".latexblock, .latexinline, blockquote, .code { font-family: 'Blog Mono', monospace; line-height: 1em; font-size: 80%;  }"
+".latexblock, .latexinline, .code { font-family: 'Blog Mono', monospace; line-height: 1em; font-size: 80%;  }"
 // latex 
 ".latexblock { margin-top: 5px; margin-bottom: 5px; padding-bottom: 5px; padding-top: 5px; background-color: #EEEEEE; }"
 ".code, code { background-color: #EEEEEE; width: 100%; }"

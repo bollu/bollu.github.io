@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
 > </script>
 -->
 
-# A Universe of Sorts
+## A Universe of Sorts
 
 
 - [My github](http://github.com/bollu)
@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Link Dump](#link-dump)
 
 
-# [Self modifying code for function calls](#self-modifying-code-for-function-calls)
+## [Self modifying code for function calls](#self-modifying-code-for-function-calls)
 
 I leant of this from TAOCP, volume 1, when Knuth introduces `MIX`, his fantasy
 aseembly language. . If one does not
@@ -231,7 +231,7 @@ We can't have recursion, or more generally "re-entrance": consider a call chain 
   and vice versa.
 
 
-# [Adjunctions as advice](#adjunctions-as-advice)
+## [Adjunctions as advice](#adjunctions-as-advice)
 
 An adjunction `F |- U` allows us to go from `F a -> x` to `a -> U x`. We 
 can look at this as shifting the "before-advice" from the _input_ to an 
@@ -257,7 +257,7 @@ checked this yet!
 
 
 
-# [Reversible computation as groups on programs](#reversible-computation-as-groups-on-programs)
+## [Reversible computation as groups on programs](#reversible-computation-as-groups-on-programs)
 
 If we consider a language like [`Janus`](https://en.wikipedia.org/wiki/Janus_(time-reversible_computing_programming_language)
 where every program is reversible, we can then get a group structure on
@@ -272,7 +272,7 @@ exploration of the program space? Ie, can we somehow exploit the
 discrete group structure (in the case of Janus) or the Lie group structure
 of the unitary group (as in the QM case) to find programs in far quicker ways?
 
-# [Blazing fast math rendering on the web](#blazing-fast-math-rendering-on-the-web)
+## [Blazing fast math rendering on the web](#blazing-fast-math-rendering-on-the-web)
 
 So, I've shifted the blog to be static-site-generated using a
 static-site-generator written by yours truly. The code clocks in at around a
@@ -461,7 +461,7 @@ how I want it to be, and that makes me $\epsilon$ more happy.
 I think of it as an investment into future me, since I can extend the
 markdown and the transpiler in the way _I_ want it to be.
 
-# [VC dimension](#vc-dimension)
+## [VC dimension](#vc-dimension)
 
 Consider a ground set $X$. Let the space of all possible binary classifications
 be the function space $C \equiv \{ f \mid f : X \rightarrow \pm 1 \}$.
@@ -630,7 +630,7 @@ $X_{\mathfrak g}$. If we get a hamiltonian from this process, then it
 will have the right symmetries.
 
 
-# [Theorems for free](#theorems-for-free)
+## [Theorems for free](#theorems-for-free)
 
 These are personal notes I made of a custom notation for denoting the relations
 from the theorems for free paper. I developed the notation since I wanted
@@ -698,7 +698,7 @@ If this is the case, then we can simplify the math to be:
 #### References
 - [Theorems for free by Phil Wadler](https://ecee.colorado.edu/ecen5533/fall11/reading/free.pdf)
 
-# [How to reason with half-open intervals](#how-to-reason-with-half-open-intervals)
+## [How to reason with half-open intervals](#how-to-reason-with-half-open-intervals)
 
 I've always found code that uses half-open intervals far harder to write
 than using closed intervals. For example, when performing string processing,
@@ -739,7 +739,7 @@ easier to analyse. It took me this long it's easier for me to _think_
 in this viewpoint as well.
 
 
-# [How does one build a fusion bomb?](#how-does-one-build-a-fusion-bomb)
+## [How does one build a fusion bomb?](#how-does-one-build-a-fusion-bomb)
 
 I haven't found anything on the internet that describes how to build
 a fusion bomb; it's almost as if this information has been supressed
@@ -756,7 +756,7 @@ I read on wikipedia that most countries classify the details:
 > even if it is created by persons who are not government employees or
 > associated with weapons programs, in a legal doctrine known as "born secret".
 
-# [Christoffel symbols, geometrically](#christoffel-symbols-geometrically)
+## [Christoffel symbols, geometrically](#christoffel-symbols-geometrically)
 
 Suppose we have a manifold $M$. of dimension $d$ that has been embedded isometrically
 into $\mathbb R^n$. So we have a function $e: \mathbb R^d \rightarrow \mathbb R^n$
@@ -832,7 +832,7 @@ $$
 
 - [The wikipedia page on Covariant derivative](https://en.wikipedia.org/wiki/Covariant_derivative#Informal_definition_using_an_embedding_into_Euclidean_space)
 
-# [A natural vector space without an explicit basis](#a-natural-vector-space-without-an-explicit-basis)
+## [A natural vector space without an explicit basis](#a-natural-vector-space-without-an-explicit-basis)
 
 On learning about infinite dimensional vector spaces, one learns that
 we need to use the axiom of choice to assert that every such vector space
@@ -876,7 +876,7 @@ For example, one can write the equation:
 ```
 
 
-# [Cache oblivious B trees](#cache-oblivious-b-trees)
+## [Cache oblivious B trees](#cache-oblivious-b-trees)
 
 Central idea: assume a memory model where computation is free, only cost
 is pulling data from cache into memory. Cache has total size $M$, can hold
@@ -988,7 +988,7 @@ that has max of nodes. Leaves are the members of the ordered file.
 
 - [Erik demaine, advanced data structures, lecture 7: Memory hiearchy: models, cache oblivious B trees](https://courses.csail.mit.edu/6.851/fall17/lectures/L07.html?notes=5)
 
-# [Krohn-Rhodes decomposition](#krohn-rhodes-decomposition)
+## [Krohn-Rhodes decomposition](#krohn-rhodes-decomposition)
 
 We denote partial functions with $X \rightharpoonup Y$ and total functions
 with $X \rightarrow Y$.
@@ -1363,7 +1363,7 @@ We will show how to establish a relational covering:
 - [Nine chapters on the semigroup art](http://www-groups.mcs.st-andrews.ac.uk/~alanc/pub/c_semigroups/c_semigroups_a4.pdf)
 - [Computational holonomy decompositions of transformation semigroups](http://www.biomicsproject.eu/file-repository/category/CompHolonomy.pdf)
 
-# [Proving block matmul using program analysis](#proving-block-matmul-using-program-analysis)
+## [Proving block matmul using program analysis](#proving-block-matmul-using-program-analysis)
 
 It's a somewhat well-known fact that given matrix multiplication: $O = AB$
 where $O \in \mathbb R^{2n \times 2m}$ ($O$ for output),
@@ -1492,7 +1492,7 @@ the _directions_ of the arrows in the dependence set.
 - [Polyhedral compilation](http://polyhedral.info/)
 
 
-# [Why I like algebra over analysis](#why-i-like-algebra-over-analysis)
+## [Why I like algebra over analysis](#why-i-like-algebra-over-analysis)
 
 Midnight discussions with my room-mate
 [Arjun P](https://researchweb.iiit.ac.in/~arjun.p/).
@@ -1548,7 +1548,7 @@ is nothing left to take away".
 I'm really glad that this 2 AM discussion allowed me to finally pin down
 why I like algebra.
 
-# [`using` for cleaner function type typedefs](#using-for-cleaner-function-type-typedefs)
+## [`using` for cleaner function type typedefs](#using-for-cleaner-function-type-typedefs)
 
 I've always struggled with remembering the syntax for function type typedefs:
 
@@ -1573,7 +1573,7 @@ that the usual typedef tends to hide the fact that a
 function pointer is some pointer-like-thing.
 
 
-# [A walkway of lanterns](#a-walkway-of-lanterns)
+## [A walkway of lanterns](#a-walkway-of-lanterns)
 
 ### Semidirect products
 
@@ -1631,7 +1631,7 @@ $$
 
 
 
-# [Natural transformations](#natural-transformations)
+## [Natural transformations](#natural-transformations)
 
 <img width=400  src="./static/natural-transformation.png">
 
@@ -1641,7 +1641,7 @@ the catories $C$, $FC$, and $GC$, and then show the relationship between
 them, so I made this for my own reference.
 
 
-# [The hilarious commentary by dinosaure in OCaml git](#the-hilarious-commentary-by-dinosaure-in-ocaml-git)
+## [The hilarious commentary by dinosaure in OCaml git](#the-hilarious-commentary-by-dinosaure-in-ocaml-git)
 
 the [Ocaml-git](https://github.com/mirage/ocaml-git/) project is a
 re-implementation of `git` in `OCaml`. It's well-written, and I was
@@ -1713,7 +1713,7 @@ devrait avoir un problème. Donc TODO. *)
 (* XXX(dinosaure): at the end, we don't care if we lost something. *)
 ```
 
-# [How to link against MLIR with CMake](#how-to-link-against-mlir-with-cmake)
+## [How to link against MLIR with CMake](#how-to-link-against-mlir-with-cmake)
 
 Since `MLIR` hasn't setup the nice tooling that LLVM has around `CMake`
 as far as I can tell, one needs to actually _know_ `CMake` to link against
@@ -1737,7 +1737,7 @@ endif()
 #- a library target called `MLIRAnalysis`
 #- asking to link against `libMLIAnalysis.a`
 #- using the variable MLIR_INCLUDE_PATH which as we saw before
-#  is either an environment variable or a cmake option
+##  is either an environment variable or a cmake option
 target_include_directories(languagemodels PRIVATE ${MLIR_INCLUDE_PATH})
 ```
 
@@ -1753,14 +1753,14 @@ project(languagemodels)
 
 set(CMAKE_CXX_STANDARD 14)
 
-# I don't want to use find_package since I want proper control over where my LLVM comes from.
-# find_package(LLVM REQUIRED)
+## I don't want to use find_package since I want proper control over where my LLVM comes from.
+## find_package(LLVM REQUIRED)
 
 add_executable(languagemodels
         rnn.cpp codegenc.h lang.h codegenmlir.h)
 
-# Attempt to take these as command line arguments. IF that fails,
-# lookup environment.
+## Attempt to take these as command line arguments. IF that fails,
+## lookup environment.
 IF(NOT MLIR_INCLUDE_PATH)
     set (MLIR_INCLUDE_PATH $ENV{MLIR_INCLUDE_PATH})
 endif()
@@ -1778,7 +1778,7 @@ find_library(MLIRTransforms MLIRTransforms ${MLIR_LIBRARY_PATH})
 find_library(LLVMCore LLVMCore ${MLIR_LIBRARY_PATH})
 find_library(LLVMSupport LLVMSupport ${MLIR_LIBRARY_PATH})
 
-# debugging to check if it's been set properly
+## debugging to check if it's been set properly
 message(MLIR_INCLUDE_PATH ${MLIR_INCLUDE_PATH})
 message(MLIR_LIBRARY_PATH ${MLIR_LIBRARY_PATH})
 message(MLIRAnalysis ${MLIRAnalysis})
@@ -1795,7 +1795,7 @@ target_link_libraries(languagemodels
 
 
 
-# [Energy as triangulaizing state space](#energy-as-triangulaizing-state-space)
+## [Energy as triangulaizing state space](#energy-as-triangulaizing-state-space)
 
 This comes from The wild book by John Rhodes, which I anticipate I'll be posting more of in the coming weeks.
 
@@ -1900,7 +1900,7 @@ express the symmetry group in terms of:
 $$(X, S) \leq (G, G)  \wr (\{ O_1, O_2, \dots O_k\}, T)$$
 
 
-# [The cutest way to write semidirect products](#the-cutest-way-to-write-semidirect-products)
+## [The cutest way to write semidirect products](#the-cutest-way-to-write-semidirect-products)
 
 Given two monoids $(M, +, 0_M)$ and $(N, \times, 1_N)$, and a
 homomorphism $\phi: N \rightarrow End(M)$, where $End(M)$
@@ -1947,7 +1947,7 @@ which is indeed the right expression for the inverse.
 
 
 
-# [My Favourite APLisms](#my-favourite-aplisms)
+## [My Favourite APLisms](#my-favourite-aplisms)
 
 #### identity matrix
 ```
@@ -1977,7 +1977,7 @@ indexes in `xs`.
 └~─────────────────────────→┘
 ```
 
-# [Proof of chinese remainder theorem on rings](#proof-of-chinese-remainder-theorem-on-rings)
+## [Proof of chinese remainder theorem on rings](#proof-of-chinese-remainder-theorem-on-rings)
 
 #### General operations on ideals
 We have at our hands a commutative ring $R$, and we wish to study the ideal
@@ -2023,7 +2023,7 @@ by the following chain of inference:
 - [I learnt the material from this course on commutative algebra from IIT bombay](https://www.youtube.com/watch?v=YxyxP894MLk).
 
 
-# [monic and epic arrows](#monic-and-epic-arrows)
+## [monic and epic arrows](#monic-and-epic-arrows)
 
 This is trivial, I'm surprised it took me _this long_ to internalize this fact.
 
@@ -2039,7 +2039,7 @@ Similarly, an epic arrow behaves a lot like the arrow in the inverse poset.
 I wonder if quite a lot of category theoretic diagrams are clarified by thinking
 of monic and epic directly in terms of controlling sizes.
 
-# [The geometry of Lagrange multipliers](#the-geometry-of-lagrange-multipliers)
+## [The geometry of Lagrange multipliers](#the-geometry-of-lagrange-multipliers)
 If we want to minise a function $f(x)$ subject to the constraints $g(x) = c$,
 one uses the method of lagrange multipliers. The idea is to consider a new
 function $L(x, \lambda) = f(x) + \lambda (c - g(x))$. Now, if one has a local maxima
@@ -2068,7 +2068,7 @@ If $f'(x_0)$ and $g'(x_0)$ are parallel, then attempting to improve $f(x_0 + \ve
 by change $g(x_0 + \vec \epsilon)$, and thereby violate the constraint
 $g(x_0 + \episilon) = c$.
 
-# [Efficient tree transformations on GPUs](#efficient-tree-transformations-on-gpus)
+## [Efficient tree transformations on GPUs](#efficient-tree-transformations-on-gpus)
 
 All material lifted straight from [Aaron Hsu's PhD thesis](TODO). I'll be converting
 APL notation to C++-like notation.
@@ -3150,7 +3150,7 @@ nodes←⍸(X ∧ p≠(⍳≢p))  ⍝ ⍸:pick indexes.
 ### 5.2.2 Edge Mutation Idioms
 ### 5.2.3 Node Mutation Idioms
 
-# [Things I wish I knew when I was learning APL](#things-i-wish-i-knew-when-i-was-learning-apl)
+## [Things I wish I knew when I was learning APL](#things-i-wish-i-knew-when-i-was-learning-apl)
 
 - For pasting multi-line code,
   [there is a bug in the bug tracker for RIDE](https://github.com/Dyalog/ride/issues/323).
@@ -3169,7 +3169,7 @@ nodes←⍸(X ∧ p≠(⍳≢p))  ⍝ ⍸:pick indexes.
 
 - Set `]boxing on` to enable boxing for trains, arguments, everything.
 
-# [Every ideal that is maximal wrt. being disjoint from a multiplicative subset is prime](#every-ideal-that-is-maximal-wrt-being-disjoint-from-a-multiplicative-subset-is-prime)
+## [Every ideal that is maximal wrt. being disjoint from a multiplicative subset is prime](#every-ideal-that-is-maximal-wrt-being-disjoint-from-a-multiplicative-subset-is-prime)
 
 I ran across this when reading another question on math.se, so I
 [posted this proof for verification](https://math.stackexchange.com/questions/3570129/proof-verification-request-complement-of-multiplicative-set-is-ideal-iff-the-id) just to be sure I wasn't missing
@@ -3211,7 +3211,7 @@ in question.
 - But this violates our assumption that $i_1 i_2 \in I$. Hence, contradiction.
 
 
-# [Getting started with APL](#getting-started-with-apl)
+## [Getting started with APL](#getting-started-with-apl)
 
 - Install [Dyalog APL](https://www.dyalog.com/download-zone.htm).
 - Setup [RIDE](https://github.com/Dyalog/ride), the IDE for dyalog APL.
@@ -3223,14 +3223,14 @@ in question.
 - Bookmark [APLCart](https://aplcart.info/), a collection of APL idioms, and
   refer to it when in need.
 
-# [SpaceChem was the best compiler I ever used](#spacechem-was-the-best-compiler-i-ever-used)
+## [SpaceChem was the best compiler I ever used](#spacechem-was-the-best-compiler-i-ever-used)
 
 It's kind of sad that this is the case, but on thinking about this, I realised
 that the SpaceChem game was essentially a compiler, and it was such a pleasure
 to learn how to use and debug --- the visual nature of it made it amazing to
 find out.
 
-# [Mnemonic for Kruskal and Prim](#mnemonic-for-kruskal-and-prim)
+## [Mnemonic for Kruskal and Prim](#mnemonic-for-kruskal-and-prim)
 
 I often forget which is which, so I came up with this:
 
@@ -3238,12 +3238,12 @@ I often forget which is which, so I came up with this:
   picks out the minimum spanning tree one vertex at a time.
 
 
-# [Legendre transform](#legendre-transform)
+## [Legendre transform](#legendre-transform)
 
 <img  src="./static/legendre.png">
 
 
-# [Cartesian Trees](#cartesian-trees)
+## [Cartesian Trees](#cartesian-trees)
 
 Cartesian trees construct a tree $T = C(A)$ given an array $A$, such that
 range minimum query (RMQ) on the array $A$ is equivalent to the lowest common ancestor (LCA)
@@ -3294,7 +3294,7 @@ occurence will do).
 
 
 
-# [DFS numbers as a monotone map](#dfs-numbers-as-a-monotone-map)
+## [DFS numbers as a monotone map](#dfs-numbers-as-a-monotone-map)
 
 Really, we want a partial order that is defined with the tree as the
 Hasse diagram. However, performing operations on this is hard. Hence,
@@ -3309,7 +3309,7 @@ This also begs the question: can we use other partial orders, that chunk
 some information, but don't lose _all_ the information as going to a total
 order (the naturals) does?
 
-# [Self attention? not really](#self-attention-not-really)
+## [Self attention? not really](#self-attention-not-really)
 
 The code is taken from [The annotated transformer](https://nlp.seas.harvard.edu/2018/04/03/attention.html)
 which explains the "attention is all you need paper".
@@ -3381,12 +3381,12 @@ class MultiHeadedAttention(nn.Module):
 where we notice:
 
 ```py
-# 1) Do all the linear projections in batch from d_model => h x d_k
+## 1) Do all the linear projections in batch from d_model => h x d_k
 query, key, value = \
   [l(x).view(nbatches, -1, self.h, self.d_k).transpose(1, 2)
    for l, x in zip(self.linears, (query, key, value))]
 
-# 2) Apply attention on all the projected vectors in batch.
+## 2) Apply attention on all the projected vectors in batch.
 x, self.attn = attention(query, key, value, mask=mask,
                          dropout=self.dropout)
 ```
@@ -3422,7 +3422,7 @@ So It's not _really_ self attention: it's more like: modulated attention
 to self `:)`
 
 
-# [Coarse structures](#coarse-structures)
+## [Coarse structures](#coarse-structures)
 
 A coarse structure on the set $X$ is a collection of relations on $X$:
 $E \subseteq 2^{X \times X}$ (called as _controlled sets_ / _entourages_)
@@ -3457,7 +3457,7 @@ then coarse structures (which are their dual) are related to..?
 #### References
 - [What is a.. coarse structure by AMS](http://www.ams.org/notices/200606/whatis-roe.pdf)
 
-# [Matroids for greedy algorithms](#matroids-for-greedy-algorithms)
+## [Matroids for greedy algorithms](#matroids-for-greedy-algorithms)
 
 #### Definitions of matroids
 
@@ -3626,7 +3626,7 @@ functions $r_1$ and $r_2$. Let $S \in I_1 cap I_2$ and let $F \subseteq E$.
 - [Lecture 11 of Michel Goeman's lecture on Advanced Combinatorial Optimisation](https://math.mit.edu/~goemans/18438F09/lec11.pdf)
 
 
-# [Grokking Zariski](#grokking-zariski)
+## [Grokking Zariski](#grokking-zariski)
 
 There's a lot written on the Zariski topology on the internet, but most
 of them lack explicit examples and pictures. This is my attempt to
@@ -3683,7 +3683,7 @@ $(\mathbb R^2, Z) \xrightarrow{f} (\mathbb R^2, Z)$ where
 $Z$ is the Zariski topology.
 
 
-# [My preferred version of quicksort](#my-preferred-version-of-quicksort)
+## [My preferred version of quicksort](#my-preferred-version-of-quicksort)
 
 Wikipedia lists the implementation of quicksort as:
 
@@ -3767,7 +3767,7 @@ what data starts and ends where.
 
 What version of quicksort do you prefer? Drop me an email!
 
-# [Geometric proof of Cauchy Schwarz inequality](#geometric-proof-of-cauchy-schwarz-inequality)
+## [Geometric proof of Cauchy Schwarz inequality](#geometric-proof-of-cauchy-schwarz-inequality)
 
 <img src="./static/cauchy-schwarz.svg">
 
@@ -3780,7 +3780,7 @@ inequality:
 
 
 
-# [Dataflow analysis using Grobner basis](#dataflow-analysis-using-grobner-basis)
+## [Dataflow analysis using Grobner basis](#dataflow-analysis-using-grobner-basis)
 
 This was a quick experiment in using Grobner basis to model situations. We
 can represent our dataflow analysis constraints in terms of polynomial
@@ -3825,7 +3825,7 @@ which admit much faster solutions.
 
 
 
-# [Fenwick trees and orbits](#Fenwick-trees-and-orbits)
+## [Fenwick trees and orbits](#Fenwick-trees-and-orbits)
 
 I learnt of a nice, formal way to prove the correctness of Fenwick
 trees in terms of orbits that I wish to reproduce here.
@@ -3962,7 +3962,7 @@ do satisfy the conditions above.
 For a quick numerical check, we can use the code blow to ensure
 that the orbits are indeed disjoint:
 ```py
-# calculate orbits of query and update in fenwick tree
+## calculate orbits of query and update in fenwick tree
 
 def lsb(i): return i & (-i)
 def U(i): return i + lsb(i)
@@ -4016,7 +4016,7 @@ Hence, at some point $q = u$.
 - [Fenwick trees on PolyMath](http://michaelnielsen.org/polymath1/index.php?title=Updating_partial_sums_with_Fenwick_tree)
 - [Hacker's delight](https://doc.lagout.org/security/Hackers%20Delight.pdf)
 
-# [Dirichlet inversion](#Dirichlet-inversion)
+## [Dirichlet inversion](#Dirichlet-inversion)
 
 We call all functions $f: \mathbb Z \rightarrow \mathbb R$ as
 _arithmetic functions_, since they operate on the integers.
@@ -4111,7 +4111,7 @@ $$ n = \sum_{d \vert n} n/d $$
 ### Other arithmetical functions and their relations
 
 
-# [Incunabulum for the 21st century: Making the J interpreter compile in 2020](#incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020)
+## [Incunabulum for the 21st century: Making the J interpreter compile in 2020](#incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020)
 
 This is me trying to understand the fabled interpreter of the `J` language
 working, so I could absorb Arthur Whitney's style of writing C: it's
@@ -4281,7 +4281,7 @@ couldn't find explanaing the code on the internet.
 Until then, enjoy the monolith of code!
 
 
-# [An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)](#an-example-of-a-sequence-whose-successive-terms-get-closer-together-but-isnt-cauchy-does-not-converge)
+## [An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)](#an-example-of-a-sequence-whose-successive-terms-get-closer-together-but-isnt-cauchy-does-not-converge)
 
 #### The problem
 Provide an example of a sequence $a_n: \mathbb N \rightarrow \mathbb R$
@@ -4370,7 +4370,7 @@ $$
 $$
 whose behaviour can do unexpected things depending on the choice of $\n$.
 
-# [Krylov subspace method](#krylov-subspace-method)
+## [Krylov subspace method](#krylov-subspace-method)
 
 <!-- https://www.youtube.com/watch?v=R9DHmkCE9oI -->
 
@@ -4414,7 +4414,7 @@ define the _residual_ as $r_n \equiv A x_n - b$.
 
 ## Conjugate gradient descent
 
-# [Good reference to the Rete pattern matching algorithm](#good-reference-to-the-rete-pattern-matching-algorithm)
+## [Good reference to the Rete pattern matching algorithm](#good-reference-to-the-rete-pattern-matching-algorithm)
 
 The [Rete pattern matching algorithm](https://en.wikipedia.org/wiki/Rete_algorithm)
 is an algorithm that allows matching a huge number of rules with a huge database
@@ -4457,7 +4457,7 @@ I now have a reference to an accessible description of this stuff. I might
 implement Rete to understand it, so that it's part of my toolkit if I ever
 need it.
 
-# [Leapfrog Integration](#leapfrog-integration)
+## [Leapfrog Integration](#leapfrog-integration)
 
 We have a system we wish to simulate using hamilton's equations:
 
@@ -4511,7 +4511,7 @@ Often, code makes most ideas very clear!
 
 ##### Incantations
 ```py
-# Run HMC with a particular choice of potential
+## Run HMC with a particular choice of potential
 import numpy as np
 from matplotlib.animation import FuncAnimation
 import matplotlib.pyplot as plt
@@ -4519,8 +4519,8 @@ import numpy.linalg
 ```
 
 ```py
-# dq/dt = dH/dp|_{p0, q0}
-# dp/dt = -dH/dq|_{p0, q0}
+## dq/dt = dH/dp|_{p0, q0}
+## dp/dt = -dH/dq|_{p0, q0}
 def leapfrog(dhdp, dhdq, q0, p0, dt):
     p0 += -dhdq(q0, p0) * 0.5 * dt
 
@@ -4598,7 +4598,7 @@ plt.savefig("leapfrog-vs-euler.png")
 plt.show()
 ```
 
-# [Comparison of forward and reverse mode AD](#comparison-of-forward-and-reverse-mode-ad)
+## [Comparison of forward and reverse mode AD](#comparison-of-forward-and-reverse-mode-ad)
 
 Quite a lot of ink has been spilt on this topic. My favourite reference
 is the one by [Rufflewind](https://rufflewind.com/2016-12-30/reverse-mode-automatic-differentiation).
@@ -4825,7 +4825,7 @@ z &= x - y \\
 $$
 
 
-# [An invitation to homology and cohomology, Part 1 --- Homology](#an-invitation-to-homology-and-cohomology-part-1--homology)
+## [An invitation to homology and cohomology, Part 1 --- Homology](#an-invitation-to-homology-and-cohomology-part-1--homology)
 
 There are many introductions to homology on the internet, but none of them
 really met my criteria for being simple, picture filled, and getting the
@@ -5089,7 +5089,7 @@ we can construct $H_1$ as:
 ### A complicated space: Homology of a butterfly
 
 
-# [An invitation to homology and cohomology, Part 2 --- Cohomology](#an-invitation-to-homology-and-cohomology-part-2--cohomology)
+## [An invitation to homology and cohomology, Part 2 --- Cohomology](#an-invitation-to-homology-and-cohomology-part-2--cohomology)
 
 <!--
 f is closed <=> df = 0
@@ -5203,7 +5203,7 @@ together, but they failed to fit _globally_ throughout the triangle. This
 failure of _locally consistent choices_ to be _globally consistent_ is
 the essence of cohomology.
 
-# Cohomology of half-filled butterfly
+## Cohomology of half-filled butterfly
 
 <img width=400 src="static/simplices/cohomology-half-filled-butterfly.svg">
 
@@ -5229,7 +5229,7 @@ is measured by the _existence of a function $h_e$ that is closed but not exact!_
 This reveals a deep connection between homology and cohomology, which is
 made explicit by the [Universal Coefficient Theorem](TODO)
 
-# [Stuff I learnt in 2019](#stuff-i-learnt-in-2019)
+## [Stuff I learnt in 2019](#stuff-i-learnt-in-2019)
 
 I write these retrospective blog posts every year since 2017. I tend to post a
 collection of papers, books, and ideas I've stumbled across that year.
@@ -5992,7 +5992,7 @@ reading one topic (in exclusion of all else). I don't know what this says
 about my chances as a grad student in the future `:)`.
 
 
-# [A motivation for p-adic analysis](#a-motivation-for-p-adic-analysis)
+## [A motivation for p-adic analysis](#a-motivation-for-p-adic-analysis)
 
 I've seen the definitions of p-adic numbers scattered around on the internet,
 but this analogy as motivated by the book
@@ -6365,7 +6365,7 @@ I highly recommend the book
 
 
 
-# [Line of investigation to build physical intuition for semidirect products](#line-of-investigation-to-build-physical-intuition-for-semidirect-products)
+## [Line of investigation to build physical intuition for semidirect products](#line-of-investigation-to-build-physical-intuition-for-semidirect-products)
 
 To quote wikipedia:
 > In crystallography, the space group of a crystal splits as the semidirect
@@ -6378,7 +6378,7 @@ object as well, which makes it way easier to visualize. I'm going to hunt down
 the definitions involved so I can finally feel like I truly understand semidirect
 products from the "action" perspective.
 
-# [Topology is really about computation --- part 2](#topology-is-really-about-computation--part-2)
+## [Topology is really about computation --- part 2](#topology-is-really-about-computation--part-2)
 
 Here, we're going to describe whatever I've picked up of sheaves in the past
 couple of weeks. I'm trying to understand the relationship between sheaves,
@@ -6401,7 +6401,7 @@ We should now try to discover some sort of structure to this "reversal"
 business. Perhaps we will discover a contravariant functor! (Spoiler: we will).
 
 
-# [Topology is really about computation --- part 1](#topology-is-really-about-computation--part-1)
+## [Topology is really about computation --- part 1](#topology-is-really-about-computation--part-1)
 
 Most people believe that topology is about some notion of "nearness" or
 "closeness", which has been abstracted out from our usual notion of
@@ -6576,7 +6576,7 @@ of them halt.
 For example, consider the sequence of machines produced by `machine_creator`:
 
 ```py
-# creates a machine that stops after n steps
+## creates a machine that stops after n steps
 def machine_creator(n):
     # f terminates after n steps
     def f(x):
@@ -6592,7 +6592,7 @@ $n \geq 0, n \in \mathbb N$. Clearly, the answer is an infinite number of steps,
 even though every single machine created by `machine_creator` halts in a
 finite number of steps.
 
-# [PSLQ algorithm: finding integer relations between reals](#pslq-algorithm-finding-integer-relations-between-reals)
+## [PSLQ algorithm: finding integer relations between reals](#pslq-algorithm-finding-integer-relations-between-reals)
 
 An algorithm to find _integer_ relations between _real_ numbers. It was
 apparently named "algorithms of the century" by Computing in science and
@@ -6600,7 +6600,7 @@ engineering.
 
 - [Wolfram link](http://mathworld.wolfram.com/PSLQAlgorithm.html)
 
-# [Geometric characterization of normal subgroups](#geometric-characterization-of-normal-subgroups)
+## [Geometric characterization of normal subgroups](#geometric-characterization-of-normal-subgroups)
 > $Stab(Orb(x)) = Stab(x) \iff Stab(x) \text{ is normal}$
 
 > $\forall x' \in Orb(x), Stab(x') = Stab(x) \iff Stab(x) \text{ is normal}$
@@ -6638,7 +6638,7 @@ From the above equation $Stab(g \cdot x) = g Stab(x) g^{-1}$. If the
 entire orbit has the same stabilizer, $Stab (g \cdot x) = Stab(x)$. Hence,
 we get $Stab(x) = g Stab(x) g^{-1}$, proving that it's normal.
 
-# [Handy characterization of adding an element into an ideal, proof that maximal ideal is prime](#handy-characterization-of-adding-an-element-into-an-ideal-proof-that-maximal-ideal-is-prime)
+## [Handy characterization of adding an element into an ideal, proof that maximal ideal is prime](#handy-characterization-of-adding-an-element-into-an-ideal-proof-that-maximal-ideal-is-prime)
 
 ##### The characterization
 
@@ -6699,7 +6699,7 @@ $b \in I$.
 
 
 
-# [Radical ideals, nilpotents, and reduced rings](#radical-ideals-nilpotents-and-reduced-rings)
+## [Radical ideals, nilpotents, and reduced rings](#radical-ideals-nilpotents-and-reduced-rings)
 
 ##### Radical Ideals
 A radical ideal of a ring $R$ is an ideal such that
@@ -6767,7 +6767,7 @@ and $b \in I \implies \overline b = 0)$.
 I learnt of this explanation from this
 [excellent blog post by Stefano Ottolenghi](http://quickmathintuitions.org/relationship-between-reduced-rings-radical-ideals-and-nilpotent-elements/).
 
-# [My disenchantment with abstract interpretation](#my-disenchantment-with-abstract-interpretation)
+## [My disenchantment with abstract interpretation](#my-disenchantment-with-abstract-interpretation)
 
 When I first ran across the theory of abstract interpretation, it seemed magical:
 Define two functions, check that they're monotone maps, and boom, we have
@@ -6817,7 +6817,7 @@ to pay that price, as long as it's an honest-to-god abstract interpretation.
 This was a huge bummer for me to find out that this is not the case.
 
 
-# [Computing equivalent gate sets using grobner bases](#computing-equivalent-gate-sets-using-grobner-bases)
+## [Computing equivalent gate sets using grobner bases](#computing-equivalent-gate-sets-using-grobner-bases)
 
 Here's a fun little problem, whose only solution I know involves a fair
 bit of math and computer algebra:
@@ -6982,35 +6982,35 @@ but it does not appear in the _original_ problem.
 
 
 ```py
-# Create ring with variables a, b, c, axorb, bxorc, axorc
+## Create ring with variables a, b, c, axorb, bxorc, axorc
 R = IntegerModRing(8)['a, b, c, axorb, bxorc, axorc']
 (a, b, c, axorb, bxorc, axorc) = R.gens()
 
 
-# xor of 2 numbers as a polynomial
+## xor of 2 numbers as a polynomial
 def xor2(x, y): return x + y - 2*x*y
 
-# xor of 3 numbers as a polynomial
+## xor of 3 numbers as a polynomial
 def xor3(x, y, z): return xor2(x, xor2(y, z))
 
-# define the ideal which contains relations:
-# xor2(a, b) -> axorb, xor2(b, c) -> bxorc, xor2(a, c) -> axorc
-# we also add the relation (a^2 - a = 0 => a = 0 or a = 1)
-# since we know that our variables are only {0, 1}
+## define the ideal which contains relations:
+## xor2(a, b) -> axorb, xor2(b, c) -> bxorc, xor2(a, c) -> axorc
+## we also add the relation (a^2 - a = 0 => a = 0 or a = 1)
+## since we know that our variables are only {0, 1}
 I = ideal((axorb - xor2(a, b), bxorc - xor2(b, c), axorc - xor2(a, c), a*a-a, b*b-b, c*c-c))
 
-# the polynomial representing a^b^c we wish to reduce
+## the polynomial representing a^b^c we wish to reduce
 f_orig = xor3(a, b, c)
 
-# we take the groebner basis of the ring to reduce the polynomial f.
+## we take the groebner basis of the ring to reduce the polynomial f.
 IG = I.groebner_basis()
 
-# we reduce a^b^c with respect to the groebner basis.
+## we reduce a^b^c with respect to the groebner basis.
 f_reduced = f_orig.reduce(IG)
 
 print("value of a^b^c:\n\t%s\n\treduced: %s" % (f_orig, f_reduced))
 
-# Code to evaluate the function `f` on all inputs to check correctness
+## Code to evaluate the function `f` on all inputs to check correctness
 def evalxor2(f):
     for (i, j, k) in [(i, j, k) for i in [0, 1] for j in [0, 1] for k in [0, 1]]:
       ref = i^^j^^k
@@ -7018,11 +7018,11 @@ def evalxor2(f):
       print("%s^%s^%s: ref(%s) =?= f(%s): %s" %
         (i, j, k, ref, eval, ref == eval))
 
-# check original formulation is correct
+## check original formulation is correct
 print("evaulating original f for sanity check:")
 evalxor2(f_orig)
 
-# Check reduced formulation is correct
+## Check reduced formulation is correct
 print("evaulating reduced f:")
 evalxor2(f_reduced)
 ```
@@ -7187,7 +7187,7 @@ the use of machinery such as grobner basis for solving real-world problems!
 I really enjoyed hacking this up and getting nerd sniped.
 
 
-# [The janus programming language --- Time reversible computation](#the-janus-programming-language--time-reversible-computation)
+## [The janus programming language --- Time reversible computation](#the-janus-programming-language--time-reversible-computation)
 
 - [Wiki link](https://en.wikipedia.org/wiki/Janus_(time-reversible_computing_programming_language))
 - [Original letter to Landlauer](http://tetsuo.jp/ref/janus.pdf)
@@ -7201,7 +7201,7 @@ _literally_ looks both into the future and into the past.
 
 An apt name for the language!
 
-# [`A = B` --- A book about proofs of combinatorial closed forms](#a--b--a-book-about-proofs-of-combinatorial-closed-forms)
+## [`A = B` --- A book about proofs of combinatorial closed forms](#a--b--a-book-about-proofs-of-combinatorial-closed-forms)
 
 
 The book explains algorithms on solving closed forms for combinatorial
@@ -7214,7 +7214,7 @@ my work on compilers.
 
 - [Download link here](https://www.math.upenn.edu/~wilf/AeqB.pdf)
 
-# [Generating `k` bitsets of a given length `n`](#generating-k-bitsets-of-a-given-length-n):
+## [Generating `k` bitsets of a given length `n`](#generating-k-bitsets-of-a-given-length-n):
 
 The problem is to generate all bitvectors of length `n` that have `k` bits
 set. For example, generate all bitvectors of length `5` that have `3` bits
@@ -7372,7 +7372,7 @@ Continuing this process gives us the rest of the sequence:
 9 | 1 1 0 1 0
 10| 1 1 1 0 0
 ```
-# [Bondi k-calculus](#bondi-k-calculus)
+## [Bondi k-calculus](#bondi-k-calculus)
 
 - [Link here](https://en.wikipedia.org/wiki/Bondi_k-calculus)
 
@@ -7397,11 +7397,11 @@ the end:
 
 which seems to imply that we need to use hyperbolic geometry for this.
 
-# Topology as an object telling us what zero-locus is closed:
+## Topology as an object telling us what zero-locus is closed:
 
 - [Idea from this amazing post on `math.se`](https://math.stackexchange.com/questions/53852/is-there-a-way-of-working-with-the-zariski-topology-in-terms-of-convergence-limi)
 
-# [Vivado toolchain craziness ](#vivado-toolchain-craziness)
+## [Vivado toolchain craziness ](#vivado-toolchain-craziness)
 
 I found this file as I was cleaning up some old code, for a project to implement
 a [fast K/V store on an FPGA](https://github.com/AakashKT/CuckooHashingHLS),
@@ -7523,7 +7523,7 @@ is supposed to go according to the tutorial!
 
 At some point, I gave up on the entire enterprise.
 
-# [What the hell _is_ a Grobner basis? Ideals as rewrite systems](#what-the-hell-is-a-grobner-basis-ideals-as-rewrite-systems)
+## [What the hell _is_ a Grobner basis? Ideals as rewrite systems](#what-the-hell-is-a-grobner-basis-ideals-as-rewrite-systems)
 
 ##### A motivating example
 
@@ -7588,7 +7588,7 @@ The S-polynomial induced by $f_i, f_j$ is defined as $S(f_i, f_j) = m_i f_i - m_
 - [Sympy has excellent reading material on grobner basis](https://mattpap.github.io/masters-thesis/html/src/groebner.html)
 
 
-# [Lie bracket versus torsion](lie-bracket-versus-torsion)
+## [Lie bracket versus torsion](lie-bracket-versus-torsion)
 
 
 <img width=200 height=200 src="static/lie-bracket-versus-torsion.png">
@@ -7603,18 +7603,18 @@ well, a parallelogram: we set them up using parallel transport.
 On the other hand, the lie bracket measures the actual failure of the parallelogram
 from being formed.
 
-# [Blog post: Weekend paper replication of STOKE, the stochastic superoptimizer](https://github.com/bollu/blaze/blob/master/notebooks/tutorial.ipynb)
+## [Blog post: Weekend paper replication of STOKE, the stochastic superoptimizer](https://github.com/bollu/blaze/blob/master/notebooks/tutorial.ipynb)
 
 Click the title to go to the post. We replicate the `STOKE` paper in haskell,
 to implement a superoptimiser based on MCMC methods.
 
-# Collapsing `BlockId`, `Label`, `Unique`:
+## Collapsing `BlockId`, `Label`, `Unique`:
 
 We have this hiearchy of `BlockId`, `Label`, and `Unique` that can be
 collapsed.
 
 
-# [Spatial partitioning data structures in molecular dynamics](#spatial-partitioning-data-structures-in-molecular-dynamics)
+## [Spatial partitioning data structures in molecular dynamics](#spatial-partitioning-data-structures-in-molecular-dynamics)
 
 - [Cell lists](https://en.wikipedia.org/wiki/Cell_lists)
 - [Verlet lists](https://en.wikipedia.org/wiki/Verlet_list)
@@ -7625,12 +7625,12 @@ in this case since multipole expansions are useful to take into account
 long range effects, but not short range effects.
 
 
-# [Vector: Arthur Whitney and text editors](#vector-arthur-whitney-and-text-editors)
+## [Vector: Arthur Whitney and text editors](#vector-arthur-whitney-and-text-editors)
 
 - http://archive.vector.org.uk/art10501320
 
 
-# Representing CPS in LLVM using the `@coro.*` intrinsics
+## Representing CPS in LLVM using the `@coro.*` intrinsics
 
 This is part of a larger thread --- [Adding CPS call support to LLVM](http://lists.llvm.org/pipermail/llvm-dev/2017-April/112212.html) where there is a large discussion on the correct design of how to teach LLVM about CPS.
 
@@ -7638,7 +7638,7 @@ Gor Nishanov proided the above example of encoding CPS using the llvm `coro` ins
 
 - https://gist.github.com/bollu/e0573dbc145028fb42f89e64c6dd6742
 
-# Bug in the LLVM code generator: Lowering of `MO_Add2` and `MO_AddWordC`
+## Bug in the LLVM code generator: Lowering of `MO_Add2` and `MO_AddWordC`
 
 [Both of these are lowered the same way](https://github.com/ghc/ghc/blob/bf73419518ca550e85188616f860961c7e2a336b/compiler/llvmGen/LlvmCodeGen/CodeGen.hs#L817),
 but they should be different.
@@ -7650,7 +7650,7 @@ In particular, `GHC.Prim` explains:
 Honestly, this is confusing, but I guess there's some story to having two separate primops for this?
 
 
-# [Discrete random distributions with conditioning in 20 lines of haskell](#discrete-random-distributions-with-conditioning-in-20-lines-of-haskell)
+## [Discrete random distributions with conditioning in 20 lines of haskell](#discrete-random-distributions-with-conditioning-in-20-lines-of-haskell)
 
 ```hs
 newtype D a = D { unD :: [(a, Double)] } deriving(Eq, Show, Ord)
@@ -7719,7 +7719,7 @@ D {unD = [(1,0.0),
 
 Notice that `D a ~= WriterT (Product Float) []`!
 
-# [Everything you know about word2vec is wrong](#everything-you-know-about-word2vec-is-wrong)
+## [Everything you know about word2vec is wrong](#everything-you-know-about-word2vec-is-wrong)
 
 The classic explanation of `word2vec`, in skip-gram, with negative sampling,
 in the paper and countless blog posts on the internet is as follows:
@@ -7877,7 +7877,7 @@ question. But I'm frankly incredibly pissed, and this is probably the last
 time I take a machine learning paper's explanation of the algorithm
 seriously again --- from next time, I read the source _first_.
 
-# Hamiltonian monte carlo, leapfrog integrators, and sympletic geometry
+## Hamiltonian monte carlo, leapfrog integrators, and sympletic geometry
 
 This is a section that I'll update as I learn more about the space, since I'm studying
 differential geometry over the summer, I hope to know enough about "sympletic manifolds".
@@ -7921,7 +7921,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import numpy.linalg
 
-# dq/dt = dH/dp | dp/dt = -dH/dq (a = -del V)
+## dq/dt = dH/dp | dp/dt = -dH/dq (a = -del V)
 def leapfroge(dhdp, dhdq, q, p, dt):
     p += -dhdq(q, p) * 0.5 * dt # halfstep momentum
     q += dhdp(q, p) * dt # fullstep position
@@ -7971,7 +7971,7 @@ plt.show()
 plt.savefig("leapfrog-vs-euler.png")
 ```
 
-# [Small Haskell MCMC implementation](#small-haskell-mcmc-implementation)
+## [Small Haskell MCMC implementation](#small-haskell-mcmc-implementation)
 
 We create a simple monad called `PL` which allows for a single operation: sampling
 from a uniform distribution. We then exploit this to implement MCMC using metropolis hastings,
@@ -8257,7 +8257,7 @@ sampling from x^4 with finite support
 
 ```
 
-# The smallest implementation of reverse mode AD (autograd) ever:
+## The smallest implementation of reverse mode AD (autograd) ever:
 
 ```hs
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
@@ -8354,7 +8354,7 @@ Yeah, in ~80 lines of code, you can basically build an autograd engine. Isn't
 haskell so rad?
 
 
-# Timings of passes in GHC, and low hanging fruit in the backend:
+## Timings of passes in GHC, and low hanging fruit in the backend:
 
 - One can use `-v3` to get pass timings.
 - Apparently, GHC spends a lot of time in the simplifier, and time
@@ -8368,7 +8368,7 @@ To quote `AndreasK`:
 
 - [NCG generates slow loop code](https://gitlab.haskell.org/ghc/ghc/issues/9041)
 
-# Varargs in GHC: `ghc/testsuite/tests/rts/T7160.hs`
+## Varargs in GHC: `ghc/testsuite/tests/rts/T7160.hs`
 
 A comment from this test case tells us why the function `debugBelch2` exists:
 
@@ -8406,7 +8406,7 @@ debugBelch(const char*s, ...)
   va_end(ap);
 }
 ```
-# [Debugging debug info in GHC](#debugging-debug-info-in-GHC)
+## [Debugging debug info in GHC](#debugging-debug-info-in-GHC)
 
 
 I wanted to use debug info to help build a better debugging experience
@@ -8422,18 +8422,18 @@ tucked inside a cute note in GHC (`Note [Debugging DWARF unwinding info]`):
 - [Link to GHC sources](https://github.com/ghc/ghc/blob/535a26c90f458801aeb1e941a3f541200d171e8f/compiler/cmm/Debug.hs#L458)
 
 
-# [GHC LLVM code generator: Switch to unreachable](#ghc-llvm-code-generator-switch-to-unreachable)
+## [GHC LLVM code generator: Switch to unreachable](#ghc-llvm-code-generator-switch-to-unreachable)
 
 The [switch to out of range](https://github.com/ghc/ghc/blob/master/compiler/llvmGen/LlvmCodeGen/CodeGen.hs#L1102)
 code generator switches to the first label. It should be more profitable
 to switch to a `unreachable` block. That way, LLVM can take advantage of UB.
 
-# [Concurrency in Haskell](#concurrency-in-haskell)
+## [Concurrency in Haskell](#concurrency-in-haskell)
 
 Great link to the GHC wiki that describes the concurrency primitives
 "bottom up": https://gitlab.haskell.org/ghc/ghc/wikis/lightweight-concurrency
 
-# [Handy list of differential geometry definitions](#handy-list-of-differential-geometry-definitions)
+## [Handy list of differential geometry definitions](#handy-list-of-differential-geometry-definitions)
 
 There are way too many objects in diffgeo, all of them subtly connected.
 Here I catalogue all of the ones I have run across:
@@ -8549,7 +8549,7 @@ TODO
 ##### Lie derivation as lie bracket
 
 
-# [Lazy programs have space leaks, Strict programs have time leaks](#lazy-programs-have-space-leaks-strict-programs-have-time-leaks)
+## [Lazy programs have space leaks, Strict programs have time leaks](#lazy-programs-have-space-leaks-strict-programs-have-time-leaks)
 
 Stumbled across this idea while reading some posts on a private discourse.
 - Continually adding new thunks without forcing them can lead to a space leak,
@@ -8564,7 +8564,7 @@ analogue to a space leak in the strict world, so I saw them as a pathology. But
 with this new perspective, I can see that the strict world's version of a space
 leak is a time leak.
 
-# [Presburger arithmetic can represent the Collatz Conjecture](#presburger-arithmetic-can-represent-the-collatz-conjecture)
+## [Presburger arithmetic can represent the Collatz Conjecture](#presburger-arithmetic-can-represent-the-collatz-conjecture)
 
 An observation I had: the function
 
@@ -8623,7 +8623,7 @@ to improve the functions `isl_map_power` and `isl_map_transitive_closure`
 though.
 
 
-# [Using compactness to argue about covers](#using-compactness-to-argue-about-covers)
+## [Using compactness to argue about covers](#using-compactness-to-argue-about-covers)
 
 I've always seen compactness be used by _starting_ with a possibly infinite
 coverm and then _filtering it_ into a finite subcover. This finite
@@ -8663,7 +8663,7 @@ that the cantor set is non-empty, since:
 3. Invoke theorem.
 
 
-# [Japanese Financial Counting system](#japanese-financial-counting-system)
+## [Japanese Financial Counting system](#japanese-financial-counting-system)
 
 - [Wikipedia](https://en.wikipedia.org/wiki/Japanese_numerals#Formal_numbers)
 
@@ -8671,14 +8671,14 @@ Japanese contains a separate kanji set called `daiji`, to prevent people
 from adding strokes to stuff previously written.
 
 ```
-#  |Common |Formal
+##  |Common |Formal
 1  |一     |壱
 2  |二     |弐
 3  |三     |参
 ```
 
 
-# [Stephen wolfram's live stream](#stephen-wolframs-live-stream)
+## [Stephen wolfram's live stream](#stephen-wolframs-live-stream)
 
 - [Twitch.tv link](https://www.twitch.tv/videos/408653972)
 
@@ -8689,20 +8689,20 @@ some interesting content.
 The discussions of Wolfram with his group are great, and they bring up
 _really_ interesting ideas (like that of cleave being very irregular).
 
-# [`Cleave` as a word has some of the most irregular inflections](#cleave-as-a-word-has-some-of-the-most-irregular-inflections)
+## [`Cleave` as a word has some of the most irregular inflections](#cleave-as-a-word-has-some-of-the-most-irregular-inflections)
 - cleave
 - clove
 - cleaved
 - clave
 - cleft
 
-# [McCune's single axiom for group theory](#mccunes-single-axiom-for-group-theory)
+## [McCune's single axiom for group theory](#mccunes-single-axiom-for-group-theory)
 
 [Single Axioms for Groups and Abelian Groups with Various Operations](http://ftp.mcs.anl.gov/pub/tech_reports/reports/P270.pdf)
 provides a single axiom for groups. This can be useful for some ideas I have
 for training groups, where we can use this axiom as the loss function!
 
-# `Word2Vec` C code implements gradient descent really weirdly
+## `Word2Vec` C code implements gradient descent really weirdly
 I'll be posting snippets of the original source code, along with a
 link to the Github sources. We are interested in exploring the skip-gram
 implementation of Word2Vec, with negative sampling, without hierarchical
@@ -8839,7 +8839,7 @@ does _any blog post that I've read_. I don't understand what's going on,
 and I plan on updating this section when I understand this better.
 
 
-# [Arthur Whitney: dense code](#arthur-whitney-dense-code)
+## [Arthur Whitney: dense code](#arthur-whitney-dense-code)
 
 
 - Guy who wrote a bunch of APL dialects, write code in an eclectic style
@@ -8852,7 +8852,7 @@ and I plan on updating this section when I understand this better.
 - [A history of APL in 50 functions](https://www.jsoftware.com/papers/50/) ---
   A great list of APL snippets that solve classical problems.
 
-# [How does one work with arrays in a linear language?](#how-does-one-work-with-arrays-in-a-linear-language)
+## [How does one work with arrays in a linear language?](#how-does-one-work-with-arrays-in-a-linear-language)
 
 Given an array of qubits `xs: Qubit[]`, I want to switch to little endian.
 Due to no-cloning, I can't copy them! I suppose I can use recursion to build
@@ -8894,7 +8894,7 @@ is _forced_ since mutation very often involves temporaries / copying!
 (I'm solving assignments in [qsharp](https://docs.microsoft.com/en-us/quantum/)
 for my course in college)
 
-# [Linear optimisation is the same as linear feasibility checking](#linear-optimisation-is-the-same-as-linear-feasibility-checking)
+## [Linear optimisation is the same as linear feasibility checking](#linear-optimisation-is-the-same-as-linear-feasibility-checking)
 Core building block of effectively using the ellipsoid algorithm.
 
 - If we posess a way to check if a point $p \in P$ where $P$ is a polytope, we
@@ -8910,7 +8910,7 @@ Core building block of effectively using the ellipsoid algorithm.
 - This way, we have converted a _linear programming_ problem into a
   _check if this polytope is empty_ problem!
 
-# [Quantum computation without complex numbers](#quantum-computation-without-complex-numbers)
+## [Quantum computation without complex numbers](#quantum-computation-without-complex-numbers)
 
 I recently learnt that the Toeffili and Hadamard gates are universal for
 quantum computation. The description of these gates involve no complex numbers.
@@ -8930,7 +8930,7 @@ something to ponder.
 - [Dorit Aharonov: A Simple Proof that Toffoli and Hadamard are Quantum Universal](https://arxiv.org/pdf/quant-ph/0301040)
 
 
-# [Linguistic fun fact: Comparative Illusion](#linguistic-fun-fact-comparative-illusion)
+## [Linguistic fun fact: Comparative Illusion](#linguistic-fun-fact-comparative-illusion)
 
 I steal from wikipedia:
 
@@ -8940,7 +8940,7 @@ I steal from wikipedia:
 
 For example: "More people have been to Berlin than I have."
 
-# Long-form posts:
+## Long-form posts:
 ## Reading
 - [2018 reading](content/blog/stuff-i-learnt-this-year-2018.md)
 - [2017 reading](content/blog/papers-I-read-and-loved-in-2017.md)
@@ -8969,7 +8969,7 @@ For example: "More people have been to Berlin than I have."
 - [final report](content/blog/gsoc-vispy-report-6.md)
 
 
-# Link dump
+## Link dump
 
 - [ADHD: A lifelong struggle: Why organisation systems don't work](https://gekk.info/articles/adhd.html)
 - [Slides for intuition on converting number systems to data structures by Ralf Hinze](http://www.cs.nott.ac.uk/~pszgmh/bctcs-slides/hinze.pdf)
