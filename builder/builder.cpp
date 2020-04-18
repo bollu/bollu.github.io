@@ -1,5 +1,6 @@
 // https://spec.commonmark.org/0.29/#preliminaries
 // TODO: RSS feed.
+// Font to try: Iosevka
 #include <string.h>
 #include <assert.h>
 #include <stdarg.h>
@@ -401,7 +402,7 @@ T *tokenizeNext(const char *s, const ll len, const L lbegin) {
 
         cerr << "BOLD " << lcur << "\n";
         T *item = tokenizeInlineTill(s, len, lcur.next(delim), [delim](const char *s, L lcur) {
-                return strpeek(s + lcur.si, delim);
+                return strpeek(s + lcur.si, delim) || s[lcur.si] == '\n';
             });
 
         lcur = item->span.end;
@@ -409,28 +410,35 @@ T *tokenizeNext(const char *s, const ll len, const L lbegin) {
             printferr(lbegin, s, "unmatched bold demiliter: |%s|.", delim);
             assert(false && "unmatched bold delimiter");
         }
-        assert(lcur.si < len); 
-        assert(strpeek(s + lcur.si, delim)); lcur = lcur.next(delim);
 
-        if (lbegin.line != lcur.line) {
-            printferr(lbegin, s, "bold delimiter |%s| spanning across lines.", delim);
-            assert(false && "bold delimiter spans across lines");
+        assert(lcur.si < len); 
+
+        if (s[lcur.si] == '\n') {
+            printferr(lbegin, s, "bold emphasis spread across multiple lines!");
+            assert(false && "bold spread across multiple lines");
         }
 
+        assert(strpeek(s + lcur.si, delim)); lcur = lcur.next(delim);
         return new TBold(Span(lbegin, lcur), item);
     }
     //This ordering is important; bold MUST be checked first.
     else if (s[lcur.si] == '*' || s[lcur.si] == '_') {
         const char c = s[lcur.si];
         T *item = tokenizeInlineTill(s, len, lcur.nextcol(), [c](const char *s, L lcur) {
-                return s[lcur.si] == c;
+                return s[lcur.si] == c || s[lcur.si] == '\n';
         });
 
         lcur = item->span.end;
         if (lcur.si == len) {
             printferr(lbegin, s, "unmatched italic demiliter: |%c|.", c);
         }
-        assert(lcur.si < len); assert(s[lcur.si] == c);
+        assert(lcur.si < len); 
+
+        if (s[lcur.si] == '\n') {
+            printferr(lbegin, s, "italic emphasis spread across multiple lines!");
+            assert(false && "italic spread across multiple lines");
+        }
+        assert(s[lcur.si] == c);
         return new TItalic(Span(lbegin, lcur.nextcol()), item);
 
     }
@@ -1198,14 +1206,14 @@ const char htmlbegin[] =
 "<head>"
 "<title> A Universe of Sorts </title>"
 "<style>"
-"@font-face {font-family: 'Blog Mono'; src: url('static/UbuntuMono-Regular.ttf');}"
-"@font-face {font-family: 'Blog Text'; src: url('static/SourceSerifPro-Regular.ttf');}"
+"@font-face {font-family: 'Blog Mono'; src: url('static/iosevka-fixed-extended.ttf');}"
+"@font-face {font-family: 'Blog Text'; src: url('static/iosevka-etoile-regular.ttf');}"
 // body
 "html { font-size: 100%; }"
 "html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } "
 "body {"
 " background-color: #FFFFFF; color: rgb(20, 0, 0, 0.8); " // tufte
-" font-family: 'Blog Text', serif; font-size: 21px; "
+" font-family: 'Blog Text', serif; font-size: 21px; line-height: 1.8em; "
 " max-width: 100%; }"
 "\n"
 // img as a block
@@ -1232,7 +1240,7 @@ const char htmlbegin[] =
 " blockquote { border-left-color:#DDDDDD;  border-left-style: solid;"
 "      border-left-width: 4px; padding-left: 5px; color: #666666;}"
 // monospace font
-".latexblock, .latexinline, blockquote, .code { font-family: 'Blog Mono', monospace; line-height: 1em; }"
+".latexblock, .latexinline, blockquote, .code { font-family: 'Blog Mono', monospace; line-height: 1em; font-size: 80%;  }"
 // latex 
 ".latexblock { margin-top: 5px; margin-bottom: 5px; padding-bottom: 5px; padding-top: 5px; background-color: #EEEEEE; }"
 ".code, code { background-color: #EEEEEE; width: 100%; }"
