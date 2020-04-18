@@ -178,12 +178,14 @@ v           v
 x ----U--> U x
 ```
 
-I assume it is `F` for **F**ree and `U` for forgetf**U**l, but I have not
+I assume it is `F` for **F** ree and `U` for forgetf **U** l, but I have not
 checked this yet!
 
 
 #### References
+
 - [Profunctor optics: the categorical approach, `33:00` onwards](https://www.youtube.com/watch?v=l1FCXUi6Vlw)
+
 
 
 # [Reversible computation as groups on programs](#reversible-computation-as-groups-on-programs)
@@ -227,22 +229,23 @@ $$
 #### Why?
 
 My blog is a [single 9000 line markdown file](https://github.com/bollu/bollu.github.io/blob/master/README.md),
-rendered as a _single HTML page_, so I _need it to compile fast, render fast,
-render beautiful_. Existing tools compromise on one or the other.
+rendered as a _single HTML page_, so I 
+_need it to compile fast, render fast, render beautiful_. 
+Existing tools compromise on one or the other.
 
 #### No seriously, why a single markdown file?
 
 I need a single file to edit, so I can rapidly jot down new ideas. This is 
-the essence of why I'm able to log most of what I study: _because it's
-seamless_.
+the essence of why I'm able to log most of what I study: 
+_because it's seamless_.
 
 Far more importantly, it provides **spatio-temporal locality**. I add things
 in chronological order to tbe blog, as I learn thing. If I need to recall
-something I had studied, go to that location in the blog _based on a sense
-of when_. 
+something I had studied, go to that location in the blog 
+_based on a sense of when_. 
 
-When I do get to a location I want, the scrollbar gives me a sense of _where I
-am_ in the file.  this is important to me, since it hepls me reason
+When I do get to a location I want, the scrollbar gives me a sense of 
+_where I am_ in the file.  this is important to me, since it hepls me reason
 spatially about what i know and what I've learnt. It's someting I love about
 books, and deeply miss when navigtaing the web.I'm determined to keep this
 spatio-temporal locality on my little slice of the internet.
@@ -858,8 +861,8 @@ even though the _algorithm does not_.
 ```
 
 - The question is that on a root-to-leaf bpath, how many such triangles do
-  we need to visit. Since we repeatedly divide the nodes in half _with
-  respect to height_ until the little triangle has number of nodes less
+  we need to visit. Since we repeatedly divide the nodes in half 
+  _with respect to height_ until the little triangle has number of nodes less
   than $B$, the height is going to be $O(\log B)$ since it's still a binary tree.
 - total height in $O(\log N)$.
 - so height of "chunked tree" where we view each triangle as a single node
@@ -1020,8 +1023,8 @@ If $s_x(\phi(q_y)) = \phi(t_y(q_y))$, then we say that $t_y$ covers $s_x$ relati
 We imagine the $t_y$ lying above $s_x$, being projected down by $\phi$.
 
 If a fixed $\phi$, for all $s_x \in S_X$ there exists a $t_y \in S_Y$ such that
-$t$ covers $s$ relative to $\phi$, then we say that $\phi:$ is a _relation of
-automata_.
+$t$ covers $s$ relative to $\phi$, then we say that $\phi:$ is a 
+_relation of automata_.
 
 - If $\phi: Q_Y \rightarrow Q_X$ is surjective,
   then we say that $\phi$ is a __relational covering__ and write:
@@ -1196,10 +1199,12 @@ since $s$ is a permutation of $a$, this naturally extends into a
 permutation of $A_a$: $s A_a = A_a$. Now note that this induces a permutation
 of the set $B_a$. This creates a transition system:
 
+$$
 \begin{align*}
-&G_a \equiv \{ s \in S : s a = a} \\
+&G_a \equiv \{ s \in S : s a = a \} \\
 &H_a \equiv (B_a, G_a) \\
 \end{align*}
+$$
 
 We have already shown how if $s \in S$ defines a permutation of some set $X$
 by its action, then its inverse also exists in $S$. So, this means that
@@ -1514,6 +1519,7 @@ function pointer is some pointer-like-thing.
 
 - $D_5 = \mathbb Z5 \rtimes \mathbb Z2$
 
+$$
 \begin{align*}
 \begin{bmatrix}
 1 & 0 \\
@@ -1528,6 +1534,7 @@ b & Y
 a + X \cdot b & XY
 \end{bmatrix}
 \end{align*}
+$$
 
 - $(Y \mapsto b) \xrightarrow{act} (X \mapsto a)$
 
@@ -1740,8 +1747,8 @@ write the evolution of the system recursively:
 $x_{t+1} = a \rightarrow x_t$.
 
 However, to understand the final state $x_{t+1}$, we need to essentially
-"run the recursion", which does not permit us to _understand the
-experiment_.
+"run the recursion", which does not permit us to 
+_understand the experiment_.
 
 What we really need is the ability to "unroll" the loop. To quote:
 
@@ -4418,10 +4425,10 @@ and one that isn't (Euler)
 
 Notice that since leapfrog attempts to keep energy conserved, the orbits stay
 as orbits! On the other hand, the euler integrator quickly spirals out, since
-we lose energy during the integration. Note that this is _not an
-issue of numerical precision_: The euler integrator is ineherently such that
-over long timescales, it will lose energy. On the other hand, the leapfrog
-integrator will _always remain stable_, even with very large timesteps
+we lose energy during the integration. Note that this is 
+_not an issue of numerical precision_: The euler integrator is ineherently 
+such that over long timescales, it will lose energy. On the other hand, the
+leapfrog integrator will _always remain stable_, even with very large timesteps
 and low precision.
 
 I present the equations of the leapfrog integrator, a proof sketch that it
@@ -5309,8 +5316,8 @@ I also really loved Paris as a city. My AirBnb host was a charming artist who
 suggest spots for me around the city, which I really appreciated. Getting
 around was disorienting for the first week or so, due to the fact that I could
 not (and still do not) really understand how to decide in which direction to
-walk inside the subways to find a particular line _going in a particular
-direction_.
+walk inside the subways to find a particular line 
+_going in a particular direction_.
 
 The city has some great spots for quiet work, though! In particular, the
 [Louvre Anticafe](https://www.anticafe.eu/lieux/louvre-paris-75001/)
@@ -5348,10 +5355,10 @@ including:
   unlike Adam's thesis, where they define the denotational semantics in terms
   of measure theory, which is then approximated by sampling.
 - [Riemann Manifold Langevin and Hamiltonian Monte Carlo](https://pdfs.semanticscholar.org/16c5/06c5bb253f7528ddcc80c72673fabf584f32.pdf)
-  which describes how to perform Hamiltonian Monte Carlo on the _information
-  geometry_ manifold.  So, for example, if we are trying to sample from
-  gaussians, we sample from a 2D Riemannian manifold with parameters mean and
-  varince, and metric as the [Fisher information metric](https://en.wikipedia.org/wiki/Fisher_information_metric).
+  which describes how to perform Hamiltonian Monte Carlo on the 
+  _information geometry_ manifold.  So, for example, if we are trying to sample 
+  from gaussians, we sample from a 2D Riemannian manifold with parameters mean 
+  and varince, and metric as the [Fisher information metric](https://en.wikipedia.org/wiki/Fisher_information_metric).
   This is philosophically the "correct" manifold to sample from, since it
   represents the intrinsic geometry of the space we want to sample from.
 - [An elementary introduction to Information geometry by Frank Nielsen](https://arxiv.org/pdf/1808.08271.pdf)
@@ -5514,12 +5521,13 @@ a myriad of applications for computer graphics.
   equation for a short time. The intuition is that we should think of the heat
   equation as describing the evolution of particles that are performing random
   walks. Now, if we simulate this system for a short while and then look at the
-  distribution, particles that reach a particular location on the graph _must
-  have taken the shortest path_, since any longer path would not have allowed
-  particles to reach there. Thus, the distribution of particles at time `dt`
-  does truly represent distances from a given point.  The paper explores this
-  analogy to find accurate geodesics on complex computational grids. This is
-  aided by the use of differential geometry, appropriately discretized.
+  distribution, particles that reach a particular location on the graph 
+  _must have taken the shortest path_, since any longer path would not have 
+  allowed particles to reach there. Thus, the distribution of particles at 
+  time `dt` does truly represent distances from a given point.  The paper
+  explores this analogy to find accurate geodesics on complex computational
+  grids. This is aided by the use of differential geometry, appropriately
+  discretized.
 - [The vector heat method](https://arxiv.org/pdf/1805.09170.pdf)
   explores computing the parallel transport of a vector across a discrete
   manifold efficiently, borrowing techniques from the 'Geodesics in Heat'
@@ -6865,8 +6873,8 @@ is not [confluent](https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting)
 The grobner basis is a function from rewrite systems to rewrite systems.
 When given a rewrite system `R`, it produces a _new_ rewrite system `R'`
 that _is confluent_. So, we can apply the rewrite rules of `R'` in any order,
-and we guaranteed that _we will only get a 0 from `R'` if and only if
-we could have gotten a `0` from `R`_ for all strings.
+and we guaranteed that we will only get a 0 from `R'` if and only if
+we could have gotten a `0` from `R` for all strings.
 
 We can then go on to phrase this whole rewriting setup in the language of
 ideals from ring theory, and that is the language in which it is most
@@ -7673,8 +7681,8 @@ embeddings generated from `word2vec` do one of the following things:
 2. They invoke the `gensim` implementation, which is _transliterated_ from the
    C source to the extent that the variables names are the same.
 
-Indeed, the `gensim` implementation is the _only one that I know of which
-is faithful to the C implementation_.
+Indeed, the `gensim` implementation is the 
+__only one that I know of which is faithful to the C implementation__.
 
 ### The C implementation
 
@@ -7764,9 +7772,9 @@ and more often than not, _a word whose vector has not been trained much at all_.
 If this vector actually had a value, then it could move the actually important
 focus word randomly.
 
-The solution is to set all negative samples to zero, so that _only vectors
-that have occurred somewhat frequently_ will affect the representation of
-another vector.
+The solution is to set all negative samples to zero, so that 
+_only vectors that have occurred somewhat frequently_ will affect the representation 
+of another vector.
 
 It's quite ingenious, really, and until this, I'd never really thought of
 how important initialization strategies really are.
@@ -7817,11 +7825,11 @@ I'll make this an append-only log to add to the section as I understand more.
   since the error diverges to infinity
 
 - Hence, we need an integrator that guarantees that the energy of out system is
-  conserved.  Enter the leapfrog integrator. This integrator is also _time
-  reversible_ -- We can run it forward for `n` steps, and then run it backward
-  for `n` steps to arrive at the same state.  Now I finally know how Braid was
-  implemented, something that bugged the hell out of 9th grade me when I tried
-  to implement Braid-like physics in my engine!
+  conserved.  Enter the leapfrog integrator. This integrator is also 
+  _time reversible_ -- We can run it forward for `n` steps, and then run it
+  backward for `n` steps to arrive at the same state.  Now I finally know how
+  Braid was implemented, something that bugged the hell out of 9th grade me
+  when I tried to implement Braid-like physics in my engine!
 
 - The actual derivation of the integrator uses Lie algebras, Sympletic
   geometry, and other diffgeo ideas, which is great, because it gives me
