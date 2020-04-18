@@ -163,16 +163,23 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Link Dump](#link-dump)
 
 
-## [Self modifying code for function calls](#self-modifying-code-for-function-calls)
+## [Self modifying code for function calls: Look ma, I don't need a stack!](#self-modifying-code-for-function-calls)
 
-I leant of this from TAOCP, volume 1, when Knuth introduces `MIX`, his fantasy
-aseembly language. . If one does not
-have recursive calls, one can completely eliminate the need for a call stack.
+If one does not have recursive calls, one can eliminate the need  to push
+return addresses on a call stack by writing self-modifying code ---
+I leant of this from TAOCP, volume 1. 
+Knuth shows this off once he introduces `MIXAL`, his fantasy
+aseembly language in which TAOCP programs are written.
 
-We wish to have function `f` call function `g`. `g` ought to be able to
-return control to `f`. This is usually solved in some way like this:
+I'll explain the usual way one performs call-return, then explain the nifty
+self-modifying-code way. I think this is the cleanest, most accessible
+example of self-modifying-code that I know. 
 
-#### The traditional solution
+#### The traditional solution for `call/ret`
+
+We wish to have function `f` call function `g`. For `g` to be able to
+return control to `f`, `f` pushes a return address into the call stack,
+that `g` pops and `jmp`s to
 
 ```
 f's body
@@ -226,9 +233,10 @@ RETG: jump addr(L1)
 ```
 
 This way, we have obviated the need for a `push/pop` sequence, by directly
-modifying `g`'s code
+modifying `g`'s code. This is really neat --- we replace the overhead of
+a `push/pop` with a single `store`.
 
-#### Why this is neat, caveats.
+#### Why recursion breaks.
 
 We don't actually need a call stack, as long as we don't want to write recursive functions.
 We can't have recursion, or more generally "re-entrance": consider a call chain of the form:
