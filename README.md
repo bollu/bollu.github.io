@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 
-
+- [Self modifying code for function calls](#self-modifying-code-for-function-calls)
 - [Adjunctions as advice](#adjunctions-as-advice)
 - [Reversible computation as groups on programs](#reversible-computation-as-groups-on-programs)
 - [Blazing fast math rendering on the web](#blazing-fast-math-rendering-on-the-web)
@@ -162,12 +162,81 @@ document.addEventListener("DOMContentLoaded", function() {
 - [GSoC 2015 final report](content/blog/gsoc-vispy-report-6.md)
 - [Link Dump](#link-dump)
 
+
+# [Self modifying code for function calls](#self-modifying-code-for-function-calls)
+
+I leant of this from TAOCP, volume 1, when Knuth introduces `MIX`, his fantasy
+aseembly language. . If one does not
+have recursive calls, one can completely eliminate the need for a call stack.
+
+We wish to have function `f` call function `g`. `g` ought to be able to
+return control to `f`. This is usually solved in some way like this:
+
+#### The traditional solution
+
+```
+f's body
+START_F:
+      ...
+      push $CURLOC+2 ; location of next instr after call
+      jmp START_G
+      <code after call>
+```
+
+```
+g's body
+START_G:
+      ...
+      retloc = pop ; pop location to jump to
+RETG: jmp retloc
+```
+
+Rather than `push`ing and `pop`ing, we can _rewrite_ the code of `g`, to _change_ `retloc` before a call
+to `g`. In made-up-pseudocode, here's what that would look like:
+
+
+#### The jump based solution
+
+```
+* f's body
+START_F:
+      ...
+      rew $RETG assemble("jmp %d", $CURLOC+2)
+      jmp START_G
+      <code after call>
+```
+
+```
+* g's body
+START_G:
+      ...
+      retloc = pop ; pop location to jump to
+RETG: <###-to-be-filled-dummy-###>
+```
+
+instead of having a call stack, before `f` calls g, `f` modify `g`'s code at location `RETLOC`
+into a `jmp` instruction. This way, we have obviated the need for a call stack entirely.
+
+#### Why this is neat, caveats.
+
+We don't actually need a call stack, as long as we don't want to write recursive functions.
+We can't have recursion, or more generally "re-entrance": consider a call chain of the form:
+
+- `A -> B -> C -> B`.
+- during `A -> B`, `A` will scribble a `<return to A>` into `B`.
+- during  `B -> C`, `B` will scribble a `<return to  B>` into `C`.
+- during `C -> B`, `C` will scribble `<return to C>` into `B`,
+  **destroying the previous `<return to A>` **.
+- This creates a cycle, where `C` will attempt to return to `B`
+  and vice versa.
+
+
 # [Adjunctions as advice](#adjunctions-as-advice)
 
 An adjunction `F |- U` allows us to go from `F a -> x` to `a -> U x`. We 
 can look at this as shifting the "before-advice" from the _input_ to an 
-"after advice" of the _output, where I'm using
-[advice in the CLOS/LISP sense](https://en.wikipedia.org/wiki/Advice_(programming))
+"after advice" of the _output_, where I'm using
+<!-- [advice in the CLOS/LISP sense](https://en.wikipedia.org/wiki/Advice_(programming)) -->
 
 Also, to remember this, we can write it as:
 
