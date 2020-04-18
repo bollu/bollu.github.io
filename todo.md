@@ -209,3 +209,10 @@ installed, use it to compute closed forms)
 - Flat assembler (https://flatassembler.net/docs.php): assembler with very strong macro support.
 - HLA (high-level-assembler): assembler with a huge STDLIB, C-like-syntax and pattern matching.
 - Lens over tea: https://artyom.me/lens-over-tea-1
+- Galculator: proof assistant using galois connections.
+- Topos theory: https://www.youtube.com/watch?v=o-yBDYgUqZQ
+- Tropical fourier transform is a legendre transform?! https://mathoverflow.net/a/80719/123769: https://arxiv.org/pdf/1005.1247.pdf, https://github.com/dpiponi/Legendre/blob/master/legendre.pdf
+- Jet bundles: https://math.stackexchange.com/questions/3626040/introductory-material-for-jets-and-jet-bundles
+- Lagrangian submanifolds: https://mathoverflow.net/questions/60201/what-is-a-lagrangian-submanifold-intuitively
+- Intro to Scheme theory: https://www.math.toronto.edu/dburbani/work/schemes.pdf
+- Church encoding / BÖHM-BERARDUCCI:  http://oleg.fi/gists/posts/2019-06-26-linear-church-encodings.html#short-review-of-b%C3%B6hm-berarducci-encoding
