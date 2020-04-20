@@ -51,6 +51,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 
+- [Learning code by hearing it](#learning-code-by-hearing-it)
+- [My long list of emacs gripes](#my-long-list-of-emacs-gripes)
+- [Your arm can be a spinor](#your-arm-can-be-a-spinor)
 - [Self modifying code for function calls](#self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack)
 - [Adjunctions as advice](#adjunctions-as-advice)
 - [Reversible computation as groups on programs](#reversible-computation-as-groups-on-programs)
@@ -161,6 +164,163 @@ document.addEventListener("DOMContentLoaded", function() {
 - [GSoC 2015 week 7](content/blog/gsoc-vispy-week-7.md)
 - [GSoC 2015 final report](content/blog/gsoc-vispy-report-6.md)
 - [Link Dump](#link-dump)
+
+# [Learning code by hearing it](#learning-code-by-hearing-it)
+
+I learnt of this from an amazing discussion on HackerNews, where a sighted
+programmed, who is going blind, asked the community if he could remain
+a software engineer. An answer by `kolanos` read:
+
+> You can definitely continue as a software engineer. I'm living proof. ...
+> For example, as you get better with a
+> screen reader, you'll be bumping the speech rate up to 1.75-2X normal speech.
+> ... Typos will be easily spotted as they just won't "sound right". It will be
+> like listening to a familiar song and then hitting an off note in the melody.
+> **And this includes code**. Also, because code is no longer represented
+> visually as blocks, 
+> you'll find you're **building an increasingly detailed memory model of your code**.  
+> Sighted people do this, too, but they tend to visualize in their mind. When
+> you abandon this two dimensional representation,
+> **your non-visual mental map suffers no spatial limits**. You'll be amazed
+> how good your memory will get without the crutch of sight.
+
+I find this incredibly fascinating. I think I'm going to try this: I'll listen
+to lectures on `1.5-2x` anyway, so this may work just as well. I'm planning
+on trying this with the MLIR codebase, which I want to get to know intimately.
+I'll write updates on how this goes.
+
+[Drew DeVault](https://drewdevault.com/) also posted links to tools/scripts
+for programming without needing visual feedback:
+- [vimspeak.vim](https://git.sr.ht/~sircmpwn/dotfiles/tree/master/lib/vim/vimspeak.vim)
+  for, if I understand correctly, speaking out loud the current state
+  [which buffer, which mode, what line], as well as reading out text from
+  the buffer.
+- [An extension to the Sway tiling window manager](https://git.sr.ht/~sircmpwn/dotfiles/tree/master/bin/swaytalk)
+  for providing audio cues.
+
+I also learnt about [emacspeak](http://emacspeak.sourceforge.net/), which
+supposedly works well for an audio-based-workflow.
+
+
+- [https://news.ycombinator.com/item?id=22919455]
+
+
+
+# [My long list of emacs gripes](#my-long-list-of-emacs-gripes)
+
+#### `markdown-mode` lags when I open a paren `[for a link`.
+
+I suppose this is because
+it's attempting to match it, and is unable to figure out
+what to match to. I now edit markdown in `text-mode`.
+
+#### `ctrl-backspace`/`backward-kill-word` kills far too much.
+
+- [reference `emacs.se`](https://emacs.stackexchange.com/questions/30401/backward-kill-word-kills-too-much-how-to-make-it-more-intelligent)
+
+The answer seems to be:
+yes, it kills a word. You can redefine what a word is,
+and break lots of other stuff in the process, or redefine
+what `ctrl-backspace` does. However, as a non-expert, it's hard
+to say what redefining this will mean. Will it still interact
+with history the same way?
+
+
+#### there is no centralized notion of `C-o` (go back to where I came from).
+
+- [reference `emacs.se`](https://emacs.stackexchange.com/questions/9908/can-cursor-jump-back-to-the-previous-position)
+- [reference `stackoverflow`](https://stackoverflow.com/questions/4918707/in-emacs-how-to-go-back-to-previous-line-position-after-using-semantic-jump-to)
+
+Instead, it differentiates between "go back in buffer" versus
+"go back across buffers".
+
+This is extremely confusing when one is attempting to read
+code and understand control-flow: I want a _unified_ way
+to say "go forward in my history; OK go back" when I am
+exploring code. I don't *want* to keep track of whether
+I came to this buffer from the same buffer or another buffer.
+The fact that emacs needs this is moronic.
+
+#### Scrolling half a page is broken
+
+- [reference `emacs.se`](https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half-page-on-c-v-and-m-v)
+- [reference `emacswiki`](https://www.emacswiki.org/emacs/HalfScrolling)
+
+There is no inbuilt functionality to scroll half a page. The canonical 
+reference points to this:
+
+```lisp
+(autoload 'View-scroll-half-page-forward "view")
+(autoload 'View-scroll-half-page-backward "view")
+(global-set-key (kbd "C-d") 'View-scroll-half-page-forward)
+(global-set-key (kbd "C-u") 'View-scroll-half-page-backward)
+```
+
+However, this does not work well. On press `C-u` to go to
+the top of the file, it does not move the cursor to the
+top completely; once  _the first line is in view_
+(with my cursor still on line 30),
+emacs obstinately refuses to scroll up with a 'beginning of buffer'
+message. I'm sure there's more `elisp` I can write to fix this,
+but the fact that something like moving-half-a-page
+is rocket science just rubs me the wrong way.
+
+This code that is given in `emacswiki` also
+has the exact same issue, I don't understand
+how the poster says they come from vim and
+did not notice this inconsistency.
+
+```lisp
+(defun zz-scroll-half-page (direction)
+  "Scrolls half page up if `direction' is non-nil, otherwise will scroll half page down."
+  (let ((opos (cdr (nth 6 (posn-at-point)))))
+    ;; opos = original position line relative to window
+    (move-to-window-line nil)  ;; Move cursor to middle line
+    (if direction
+	(recenter-top-bottom -1)  ;; Current line becomes last
+      (recenter-top-bottom 0))  ;; Current line becomes first
+    (move-to-window-line opos)))  ;; Restore cursor/point position
+
+(defun zz-scroll-half-page-down ()
+  "Scrolls exactly half page down keeping cursor/point position."
+  (interactive)
+  (zz-scroll-half-page nil))
+
+(defun zz-scroll-half-page-up ()
+  "Scrolls exactly half page up keeping cursor/point position."
+  (interactive)
+  (zz-scroll-half-page t))
+
+
+(global-set-key (kbd "C-d") 'zz-scroll-half-page-down)
+(global-set-key (kbd "C-u") 'zz-scroll-half-page-up)
+```
+
+#### Default encoding is weird: `chinese-iso-8bit`
+
+- [`emacs.se reference`](https://emacs.stackexchange.com/questions/34322/set-default-coding-system-utf-8)
+
+Why in the world is this the option that shows up by default?
+There are so many better options, with `utf-8` being the
+sanest of them all; this is a nice spherical cow of
+the problems with emacs: too much stuff, too like sanity.
+
+The spell is:
+
+```
+(set-language-environment "UTF-8")
+```
+
+
+## [Your arm can be a spinor](#your-arm-can-be-a-spinor)
+
+I tend to forget the name of this trick. It exhibits spinors in real life:
+a system that needs to rotate by 720 degrees to return back to its
+original state, versus the usual 360 tha we are generally used to. We need
+to consider our entire arm + cup we are holding as a system for this to work.
+
+- ['Plate trick'](https://en.wikipedia.org/wiki/Plate_trick)
+- [Baliense cup trick](https://www.youtube.com/watch?v=Rzt_byhgujg)
 
 
 ## [Self modifying code for function calls: Look ma, I don't need a stack!](#self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack)

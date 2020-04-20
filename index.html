@@ -40,6 +40,21 @@ My reading list</a>
 <h4><a id=table-of-contents href='#table-of-contents'> § </a> Table of contents:</h4>
 <ul>
 <li>
+ <a href=#learning-code-by-hearing-it>
+Learning code by hearing it</a>
+
+</li>
+<li>
+ <a href=#my-long-list-of-emacs-gripes>
+My long list of emacs gripes</a>
+
+</li>
+<li>
+ <a href=#your-arm-can-be-a-spinor>
+Your arm can be a spinor</a>
+
+</li>
+<li>
  <a href=#self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack>
 Self modifying code for function calls</a>
 
@@ -592,6 +607,216 @@ Link Dump</a>
 
 </ul>
 
+<h1><a id=learning-code-by-hearing-it href='#learning-code-by-hearing-it'> § </a> <a href=#learning-code-by-hearing-it>
+Learning code by hearing it</a>
+</h1>
+I learnt of this from an amazing discussion on HackerNews, where a sighted
+programmed, who is going blind, asked the community if he could remain
+a software engineer. An answer by <code>kolanos</code> read:
+<blockquote> You can definitely continue as a software engineer. I'm living proof. ... For example, as you get better with a screen reader, you'll be bumping the speech rate up to 1.75-2X normal speech. ... Typos will be easily spotted as they just won't "sound right". It will be like listening to a familiar song and then hitting an off note in the melody. <b>And this includes code</b>. Also, because code is no longer represented visually as blocks,  you'll find you're <b>building an increasingly detailed memory model of your code</b>.   Sighted people do this, too, but they tend to visualize in their mind. When you abandon this two dimensional representation, <b>your non-visual mental map suffers no spatial limits</b>. You'll be amazed how good your memory will get without the crutch of sight.</blockquote>
+I find this incredibly fascinating. I think I'm going to try this: I'll listen
+to lectures on <code>1.5-2x</code> anyway, so this may work just as well. I'm planning
+on trying this with the MLIR codebase, which I want to get to know intimately.
+I'll write updates on how this goes.
+<a href=https://drewdevault.com/>
+Drew DeVault</a>
+ also posted links to tools/scripts
+for programming without needing visual feedback:
+<ul>
+<li>
+ <a href=https://git.sr.ht/~sircmpwn/dotfiles/tree/master/lib/vim/vimspeak.vim>
+vimspeak.vim</a>
+
+  for, if I understand correctly, speaking out loud the current state
+  [which buffer, which mode, what line], as well as reading out text from
+  the buffer.
+</li>
+<li>
+ <a href=https://git.sr.ht/~sircmpwn/dotfiles/tree/master/bin/swaytalk>
+An extension to the Sway tiling window manager</a>
+
+  for providing audio cues.
+</li>
+
+</ul>
+
+I also learnt about <a href=http://emacspeak.sourceforge.net/>
+emacspeak</a>
+, which
+supposedly works well for an audio-based-workflow.
+<ul>
+<li>
+ [https://news.ycombinator.com/item?id=22919455]
+</li>
+
+</ul>
+
+<h1><a id=my-long-list-of-emacs-gripes href='#my-long-list-of-emacs-gripes'> § </a> <a href=#my-long-list-of-emacs-gripes>
+My long list of emacs gripes</a>
+</h1>
+<h4><a id=for-a-linki-open-a-paren- href='#for-a-linki-open-a-paren-'> § </a> <code>markdown-mode</code> lags when I open a paren <code>[for a link</code>.</h4>
+I suppose this is because
+it's attempting to match it, and is unable to figure out
+what to match to. I now edit markdown in <code>text-mode</code>.
+<h4><a id=kills-far-too-much href='#kills-far-too-much'> § </a> <code>ctrl-backspace</code>/<code>backward-kill-word</code> kills far too much.</h4>
+<ul>
+<li>
+ <a href=https://emacs.stackexchange.com/questions/30401/backward-kill-word-kills-too-much-how-to-make-it-more-intelligent>
+reference <code>emacs.se</code></a>
+
+</li>
+
+</ul>
+
+The answer seems to be:
+yes, it kills a word. You can redefine what a word is,
+and break lots of other stuff in the process, or redefine
+what <code>ctrl-backspace</code> does. However, as a non-expert, it's hard
+to say what redefining this will mean. Will it still interact
+with history the same way?
+<h4><a id=go-back-to-where-i-came-fromof- href='#go-back-to-where-i-came-fromof-'> § </a> there is no centralized notion of <code>C-o</code> (go back to where I came from).</h4>
+<ul>
+<li>
+ <a href=https://emacs.stackexchange.com/questions/9908/can-cursor-jump-back-to-the-previous-position>
+reference <code>emacs.se</code></a>
+
+</li>
+<li>
+ <a href=https://stackoverflow.com/questions/4918707/in-emacs-how-to-go-back-to-previous-line-position-after-using-semantic-jump-to>
+reference <code>stackoverflow</code></a>
+
+</li>
+
+</ul>
+
+Instead, it differentiates between "go back in buffer" versus
+"go back across buffers".
+This is extremely confusing when one is attempting to read
+code and understand control-flow: I want a <i>unified</i> way
+to say "go forward in my history; OK go back" when I am
+exploring code. I don't <i>want</i> to keep track of whether
+I came to this buffer from the same buffer or another buffer.
+The fact that emacs needs this is moronic.
+<h4><a id=scrolling-half-a-page-is-broken href='#scrolling-half-a-page-is-broken'> § </a> Scrolling half a page is broken</h4>
+<ul>
+<li>
+ <a href=https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half-page-on-c-v-and-m-v>
+reference <code>emacs.se</code></a>
+
+</li>
+<li>
+ <a href=https://www.emacswiki.org/emacs/HalfScrolling>
+reference <code>emacswiki</code></a>
+
+</li>
+
+</ul>
+
+There is no inbuilt functionality to scroll half a page. The canonical 
+reference points to this:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> (autoload <b><font color="#000000">'View-scroll-half-page-forward</font></b> <font color="#808080">"view"</font>)
+<font color="#666666">3:</font> (autoload <b><font color="#000000">'View-scroll-half-page-backward</font></b> <font color="#808080">"view"</font>)
+<font color="#666666">4:</font> (global-set-key (kbd <font color="#808080">"C-d"</font>) <b><font color="#000000">'View-scroll-half-page-forward</font></b>)
+<font color="#666666">5:</font> (global-set-key (kbd <font color="#808080">"C-u"</font>) <b><font color="#000000">'View-scroll-half-page-backward</font></b>)
+<font color="#666666">6:</font> </tt></pre>
+</div>
+
+However, this does not work well. On press <code>C-u</code> to go to
+the top of the file, it does not move the cursor to the
+top completely; once  <i>the first line is in view</i>
+(with my cursor still on line 30),
+emacs obstinately refuses to scroll up with a 'beginning of buffer'
+message. I'm sure there's more <code>elisp</code> I can write to fix this,
+but the fact that something like moving-half-a-page
+is rocket science just rubs me the wrong way.
+This code that is given in <code>emacswiki</code> also
+has the exact same issue, I don't understand
+how the poster says they come from vim and
+did not notice this inconsistency.
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">01:</font> 
+<font color="#666666">02:</font> (<b><u><font color="#000000">defun</font></u></b> zz-scroll-half-page (direction)
+<font color="#666666">03:</font>   <font color="#808080">"Scrolls half page up if `direction' is non-nil, otherwise will scroll half page down."</font>
+<font color="#666666">04:</font>   (<b><u><font color="#000000">let</font></u></b> ((opos (<b><u><font color="#000000">cdr</font></u></b> (nth <font color="#000000">6</font> (posn-at-point)))))
+<font color="#666666">05:</font>     <i><font color="#808080">;; opos = original position line relative to window</font></i>
+<font color="#666666">06:</font>     (move-to-window-line nil)  <i><font color="#808080">;; Move cursor to middle line</font></i>
+<font color="#666666">07:</font>     (<b><u><font color="#000000">if</font></u></b> direction
+<font color="#666666">08:</font>         (recenter-top-bottom <font color="#000000">-1</font>)  <i><font color="#808080">;; Current line becomes last</font></i>
+<font color="#666666">09:</font>       (recenter-top-bottom <font color="#000000">0</font>))  <i><font color="#808080">;; Current line becomes first</font></i>
+<font color="#666666">10:</font>     (move-to-window-line opos)))  <i><font color="#808080">;; Restore cursor/point position</font></i>
+<font color="#666666">11:</font> 
+<font color="#666666">12:</font> (<b><u><font color="#000000">defun</font></u></b> zz-scroll-half-page-down ()
+<font color="#666666">13:</font>   <font color="#808080">"Scrolls exactly half page down keeping cursor/point position."</font>
+<font color="#666666">14:</font>   (interactive)
+<font color="#666666">15:</font>   (zz-scroll-half-page nil))
+<font color="#666666">16:</font> 
+<font color="#666666">17:</font> (<b><u><font color="#000000">defun</font></u></b> zz-scroll-half-page-up ()
+<font color="#666666">18:</font>   <font color="#808080">"Scrolls exactly half page up keeping cursor/point position."</font>
+<font color="#666666">19:</font>   (interactive)
+<font color="#666666">20:</font>   (zz-scroll-half-page t))
+<font color="#666666">21:</font> 
+<font color="#666666">22:</font> 
+<font color="#666666">23:</font> (global-set-key (kbd <font color="#808080">"C-d"</font>) <b><font color="#000000">'zz-scroll-half-page-down</font></b>)
+<font color="#666666">24:</font> (global-set-key (kbd <font color="#808080">"C-u"</font>) <b><font color="#000000">'zz-scroll-half-page-up</font></b>)
+<font color="#666666">25:</font> </tt></pre>
+</div>
+
+<h4><a id=chinese-iso-8bitg-is-weird- href='#chinese-iso-8bitg-is-weird-'> § </a> Default encoding is weird: <code>chinese-iso-8bit</code></h4>
+<ul>
+<li>
+ <a href=https://emacs.stackexchange.com/questions/34322/set-default-coding-system-utf-8>
+<code>emacs.se reference</code></a>
+
+</li>
+
+</ul>
+
+Why in the world is this the option that shows up by default?
+There are so many better options, with <code>utf-8</code> being the
+sanest of them all; this is a nice spherical cow of
+the problems with emacs: too much stuff, too like sanity.
+The spell is:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> (set-language-environment "UTF-8")
+<font color="#666666">3:</font> </tt></pre>
+</div>
+
+<h2><a id=your-arm-can-be-a-spinor href='#your-arm-can-be-a-spinor'> § </a> <a href=#your-arm-can-be-a-spinor>
+Your arm can be a spinor</a>
+</h2>
+I tend to forget the name of this trick. It exhibits spinors in real life:
+a system that needs to rotate by 720 degrees to return back to its
+original state, versus the usual 360 tha we are generally used to. We need
+to consider our entire arm + cup we are holding as a system for this to work.
+<ul>
+<li>
+ <a href=https://en.wikipedia.org/wiki/Plate_trick>
+'Plate trick'</a>
+
+</li>
+<li>
+ <a href=https://www.youtube.com/watch?v=Rzt_byhgujg>
+Baliense cup trick</a>
+
+</li>
+
+</ul>
+
 <h2><a id=self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack href='#self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack'> § </a> <a href=#self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack>
 Self modifying code for function calls: Look ma, I don't need a stack!</a>
 </h2>
@@ -732,8 +957,25 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#666666">6:</font> </tt></pre>
 </div>
 
-I assume it is <code>F</code> for <b>F</b> ree and <code>U</code> for forgetf <b>U</b> l, but I have not
-checked this yet!
+Where <code>F</code> is for <code>F</code>ree and <code>U</code> is for forgetf<code>U</code>l.
+Recall that if <code>F</code> is free and <code>U</code> is forgetful, then <code>U(F(x)) = x</code>, since
+adding more structure through the free functor and then stripping it away gives
+us the object back. We can prove that if <code>U(F(x)) = x</code> and <code>U, F</code> are functors,
+then we have a function <code>fwd: (f a -> x) -> (a -> u x)</code> as:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> f      :: (f a -&gt; x) 
+<font color="#666666">3:</font> fmap   :: (p   -&gt; q) -&gt; (u p     -&gt; u q)
+<font color="#666666">4:</font> fmap   :: (p   -&gt; q) -&gt; (u ( p ) -&gt; u q)
+<font color="#666666">5:</font> fmap f :: (f a -&gt; x) -&gt; (u (f a) -&gt; u x) 
+<font color="#666666">6:</font> fmap f :: (f a -&gt; x) -&gt; (a       -&gt; u x) [using u (f a) = a]
+<font color="#666666">7:</font> </tt></pre>
+</div>
+
 <h4><a id=references href='#references'> § </a> References</h4>
 <ul>
 <li>
