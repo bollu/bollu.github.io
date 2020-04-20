@@ -216,3 +216,18 @@ installed, use it to compute closed forms)
 - Lagrangian submanifolds: https://mathoverflow.net/questions/60201/what-is-a-lagrangian-submanifold-intuitively
 - Intro to Scheme theory: https://www.math.toronto.edu/dburbani/work/schemes.pdf
 - Church encoding / BÖHM-BERARDUCCI:  http://oleg.fi/gists/posts/2019-06-26-linear-church-encodings.html#short-review-of-b%C3%B6hm-berarducci-encoding
+- Synthesis: self-modifying kernel: http://www.scs.stanford.edu/nyu/04fa/sched/readings/synthesis.pdf
+- Strong towns, we've built cities we cannot afford: https://www.strongtowns.org/journal/2020/4/8/weve-built-cities-we-cant-afford
+- Why Nation Fails, How democracies die
+- Chronicles of Wasted Time
+- https://en.wikipedia.org/wiki/Hysterical_realism: a genre of writing that includes Infinite Jest.
+  I might really enjoy it, from the sound of things.
+- sizecoding.org: how to build demos, wealth of demoscene knowledge! shows basic MSdos getting started.
+   http://www.sizecoding.org/wiki/Memories#Introduction
+- pouet.net: demoscene group: https://www.pouet.net/prod.php?which=85227
+- subreddit for tiny code: https://www.reddit.com/r/tinycode/
+- lock picking!
+- https://www.chessprogramming.org: they usually have the best knowledge of obscure ASM
+  instructions.
+- PROCEDURAL GENERATION TODO: video of alabama shakes future people.
+- Learn how to free associate when writing/rhyming. Gold standard: Can't stop, RHCP.
