@@ -1,3 +1,9 @@
+% References: 
+% -----------
+% https://www.sv.uio.no/econ/personer/vit/bardh/dokumenter/econ5200-notes-harstad.pdf
+%http://lcm.csa.iisc.ernet.in/gametheory/md1-dec07.pdf
+%http://lcm.csa.iisc.ernet.in/ecomm/Part_D_GameTheory_and_Mechanism_Design_Lecture_Notes/ch1-intro.pdf
+
 \documentclass[11pt]{book}
 %\documentclass[10pt]{llncs}
 %\usepackage{llncsdoc}
@@ -87,8 +93,6 @@
 \author{Siddharth Bhat}
 \date{Spring 2020}
 
-% References: 
-% https://www.sv.uio.no/econ/personer/vit/bardh/dokumenter/econ5200-notes-harstad.pdf
 
 \begin{document}
 \maketitle
@@ -649,5 +653,246 @@ player can take can be mathematically modeled as a deterministic function
 of their state. Hence, if we allow players to lie and publish 
 a $\hat \Theta_i$, which is their reporting of their private $\Theta_i$, it's
 equivalent to a setting where players have arbitrary $S_i$.
+
+\chapter{March 23rd}
+
+We can either relax DSIC or relax rich preference structure. We decided
+to look at quasi-linear environments where we relax preferences. A popular
+example of this is auctions.
+
+$X = \{ (k, t_1, \dots, t_n) : k \in K, t_i \in \R, \sum_i t_i \leq 0 \}$
+
+$t_i$ is monetary transfer receives by agent $i$.
+
+$u_i(x, \theta_i) = v_i(k, \theta_i) + t_i$. Linear in $t_i$, hence
+the setting is quasi-linear. Often it is even $k_i \cdot \theta_i + t_i$ --- these
+settings are known as linear settings.
+
+\section{Examples of SCF in quasi-linear settings}
+\begin{itemize}
+    \item[Players] Seller and two buyers
+    \item [Types / Private information / valuations] Seller $\Theta_0 = \{ 0 \}$. Byers = $\theta_1 =\theta_2 = [0, 1]$.
+\end{itemize}
+
+\section{Allocative efficiency}
+an SCF $f()$ is allocative efficient if it maximises sum of valuations
+of agents. We assume such a maxima does exist.
+$k^{\star}(\theta) \in \arg \max_{k \in K} \sum_{i=1}^n v_i(k, \theta_i)$
+
+We also want budget balance:
+
+$\sum_{i=1}^n t_i(\theta) = 0$.
+
+\section{Properties of SCF(Social choice function) in quasi-linear settings}
+
+\begin{lemma}
+All SCFs in quasi-linear settings are non dictatorial.
+\end{lemma}
+
+because $\sum_i t_i < 0$, we can increase payment for the dictator by using
+$t_i + \frac{e}{n - 1}$ and decrease everyone else to $t_i - \frac{e}{n-1}$.
+So, there is always an outcome that is better for a dictator. Hence,
+the best outcome cannot have a dictator.
+
+\section{Ex-post efficiency}
+in quasi linear, scf is exp-post efficient iff if is allocatively efficient
+and strictly budget balanced. We have to prove that $EPE \implies AE + SBB$,
+and also $AE + SBB \implies EPE$.
+
+Suppose $f = (k, t)$ is EPE but not SBB. So there exists a $\theta$ such that 
+$\sum_i t_i(\theta) < 0$. Hence, there exists at least
+one agent $j$ such that $t_j < 0$. (If everyone is positive, sum cannot be less than 0).
+
+Now consider a new allocation $X' = (k, t')$ where 
+
+$t'_j(\theta) = 
+\begin{cases}
+    t_j(\theta) -  \sum_i t_i(\theta)/n & \text{if $t_j(\theta) < 0$} \\
+    t_j(\theta) & \text{otherwise}
+\end{cases}
+$ 
+
+Hence, $u'_j(k, t') > u_j(k, t)$ for such $j$ where $t_j(\theta) < 0$.
+For other agents, $u'_j(k, t') = u'_j(k, t)$.
+
+This means that $(k. t')$ pareto dominates $(k. t)$. This is a contradiction
+to the assumption that $f$ was EPE, since we constructed an outcome where
+one agent does better, and others don't do worse.
+
+We now argue that f must be allocatively efficient, if  f is EPE. For contradiction,
+let us assume that $f$ is not AE.
+That means that there is a $k^\star$ such that
+$\sum_i v_i(k^\star, \theta) > v_i (k, \theta)$.
+
+Define $t_i'(\theta)  = v_i(k, \theta) - t_i (\theta) - \sum_j \theta_j(k^\star, \theta) + \epsilon$
+where $\epsilon < \sum_j v_j(k^star, \theta) - theta_j (k, \theta)$.
+
+Note that $v_i(k, \theta) - t_i (\theta)  = u_i(k, t)$. 
+Now note that
+$u_i(k^\star, t') = u_i(k, t) + \epsilon/n$, where $\epsilon$ is positive.
+Hence, $u_i(k^\star, t') > u_i(k, t)$. 
+
+We need to check that $t'$ is feasible: ie, $\sum_i t_i' < 0$.
+
+$$
+\sum_i t_i' = \sum_i v_i(k, theta) - \sum v_j(k^\star, \theta) + \sum_i t_i(\theta) \leq 0??
+$$
+
+Also note that for all $i$, $u_i(k^\star, t') > u_i(k, t)$. This is contradiction
+to the fact that $f$ is APE. Hence, $f$ must be AE.
+
+\section{Other way round: if $f$ is AE + SBB, then it is EPE}
+
+For this, we will need to prove a lemma:
+
+\begin{lemma}
+If $f: \Theta \rightarrow X$ st $\forall \theta \in \Theta$,
+$$
+\sum_i u_i(f(\theta), \theta_i) \geq \sum_i u_i(x, \theta_i) \forall x \in X
+$$
+then $f$ is EPE.
+
+The key idea is to write $u_i = v_i + t_i$, an we can get rid of $t_i$ since
+$f$ is SBB.
+\end{lemma}
+
+\section{First price versus second price auction}
+First price: reporting valuation truthfully is not an equilibrium. Second
+price: truthful reporting is equilibrium.
+
+How do we generalize this to more situations? The key idea is that in a second
+price auction, our payment is independent of what we report. The allocation
+might depend on our payment, but payment does not. How can we have more
+DSIC mechanisms?
+
+\section{Groves theorem}
+TODO: fill up groves theorem
+
+
+
+Three families A B C, can go to Munnar or Simla. 
+
+
+\begin{tabular}{l r r l}
+  &  Manali &  Shimoga & \\
+Alice & -1 &  10 & \\
+Bob & 5  & -2  & \\
+Claire & 5  & 4  & (Claire is a kid, loves vacations) \\
+\end{tabular}
+
+We want to get this information truthfully, by using VCG/Groves mechanism.
+
+there are two outcoomes, M or S . If we go to M, the tuility is 5+5-1=9. If
+we choose S, it is 10-2+4=12. so S is allocatively efficient.
+
+
+
+\begin{tabular}{l r r r r r r r}
+    & $\{ A \}$  & $\{ B \}$   & $\{ C \}$  &  $\{ A, B \}$ & $\{ A, C \}$ & $\{ B, C  \}$ & $\{  A, B, C \}$ \\
+$P_1$  & 10 & 0   & 5  &  10  &  20 &   5  &  20 \\
+$P_2$  & 0  & 9   & 15  &  9  &  15 &  20  &  20 \\
+$P_3$  & 10 &  2   & 2  &  10  &  12 &  2  &   28 \\
+$P_4$  & 8  &  3   & 3  &  8  &   8 &   3  &    8
+\end{tabular}
+
+
+Giving $A$ to $P_1$ and $BC$ to $P_2$ gives $10 + 20 = 30$.
+
+
+A direct revelation mechanism in which $f$ satisfies allocative efficiency
+and the groves payment scheme is knows as the groves mechanism.
+
+before this, there is another mechanism called as Clarke's mechanism
+
+\section{Clarke's mechanism}
+
+$h_i(\theta_i) = \sum_{j \neq i} v_j(k_{-i}^\star(\theta_{-i}, \theta_j)) \forall \theta_{-i} \in \Theta_{-i}$
+
+That is, each agent $i$ receives
+$$
+t_i(\theta) = \sum_{j \neq i}(v_j(k^\star(\theta), \theta_j)) - \sum_{j \neq i} v_j(k^\star_{-i}(\theta_{-i}), \theta_j))
+$$
+
+This works for combinatorial auctions as well. It's a generalization
+of second-price auction.
+
+\begin{tabular}{l r r l}
+  & M & S & \\
+A &-1  &10 &  \\
+B & 5  &-2 & \\
+C & 5 & 4 &  (C is a kid, loves vacations) \\
+\end{tabular}
+
+For player A, first consider:
+
+\begin{tabular}{l r r l}
+   & M  & S & \\
+A  & -  & -  & \\
+B  & 5  & -2 & \\
+C  & 5  & 4  & (C is a kid, loves vacations) \\
+\end{tabular}
+
+AE is M. 
+
+Following clarke mechanism:
+
+$$
+t_A = [valuation of remaining agents at allocatively efficient outcome without A](-2+4) - [valuation of remaining agents at allocatively efficient outcome with A][5+5] = 8
+$$
+
+
+for player B, first consider:
+
+\begin{minted}{text}
+A -1  10
+B  -  -
+C  5  4  (C is a kid, loves vacations)
+   M  S
+\end{minted}
+
+AE is S.
+
+So, $t_B = 0$
+
+Similarly, $t_C = 0$.
+
+\chapter{March 26th}
+
+$AE + SBB \implies EPE$
+
+Free disposal.
+
+Groves mechanism is DSIC.
+
+Proof by contradiction. Assume $f$ is not DSIC. Hence there exists an $i, \theta, \theta', \theta_{-i}$
+such that:
+
+$$
+u_i(f(\theta^{i'}, \theta_{-i}), \theta_i) > u_i(f(\theta^{i}, \theta_{-i}), \theta_i)
+$$
+
+Clarke's pivotal mechanism. This mechanism aplied to combinatorial setting
+is called as generalized vickery auction when.
+
+Is a DSIC also a BIC? Yes.
+
+$$
+Vickery (single item auction) \subseteq GVN (combinatorial auction ) \subseteq Clarke \subseteq Groves \subseteq DSIC \subseteq BIC
+$$
+
+Groves theorem says $Groves \subseteq AC \cap DSIC$
+Green-laffont proved that $AE \subseteq DSIC \subseteq Groves$ 
+ 
+
+Green-laffont also proved the Green-Laffont impossibility theorem:
+that $AE \cap DSIC \cap SBB = \emptyset$.
+
+EPE = ex-post efficient.
+
+\chapter{March 30th}
+
+$N$ players, $\Theta_i$ iid. $k_i(\theta) = 1$ if agent gets the objects, $0$
+otherwise. $t_i(\theta) = $ payment received by agent $i$. 
+$u_i(\theta) = k_i(\theta) - t_i(\theta)$
 
 \end{document}
