@@ -59,7 +59,7 @@
 \newcommand{\Vectorfield}{\ensuremath{\mathfrak{X}}}
 \newcommand{\pushforward}[1]{\ensuremath{{#1}_{\star}}}
 \newcommand{\pullback}[1]{\ensuremath{{#1}^{\star}}}
-\newcommand{\vectorfield}[1]{\mathfrak{X}}
+\newcommand{\vectorfield}{\ensuremath{\mathfrak{X}}}
 
 \newcommand{\pushfwd}[1]{\pushforward{#1}}
 \newcommand{\pf}[1]{\pushfwd{#1}}
@@ -92,7 +92,78 @@
 \maketitle
 \tableofcontents
 
-\chapter{Introduction}
+\chapter{SR: Introduction: Lecture 1}
+
+I am following the lecture series of the theoretical minimum by Susskind.
+
+A reference frame is a set of spatial co-ordinates. To specify, we will need
+to specify the origin and the orientation of th co-ordinates.
+[TODO: add the arnold stuff here].
+
+If a frame is inertial, then any frame moving with constant velocity to it
+is inertial. A first inertial frame is one where newton's laws are correct.
+Hence, particles with no forces on them move with uniform velocity.
+`F = ma` together with coloumb's law of attraction is the same in every
+reference frame.
+
+We cannot tell if we are in a moving reference frame or not.
+
+Einstein added a law of physics: the speed of light is $c$. The principle of
+relativity said that physics is the same in all reference frames. This
+together gives us the fact that the speed of light is $c$ is \emph{all}
+reference frames.
+
+We start with a reference frame along the $x$ axis. we have a $t$ axis. Call
+this my reference frame. Light moves at the speed of light. If a light
+ray is sent out from the origin, it will move with a trajectory given
+by $x = ct$. Now we will add a second reference frame with an $x'$ axis,
+whose center moves relatively to the $x-t$ coordinate system. This
+moves at speed $vt$. $x' = x - vt$.
+
+Newton made the assumption that all clocks are synchronized --- that is,
+$t' = t$. Let's now ask how the light ray moves in the $x'-t'$ frame.
+We will get $x' = ct - vt = (c - v)t = (c - v)t'$. So for me, the
+speed of light is $(c - v)$. Something is \emph{wrong!} --- the light ray
+ought to move at speed $c$. We need to figure out how to change for the
+speed of light to remain the same.
+
+Experimentally, how would we synchronize clocks? observers $A, B$ can
+find someone in the middle [which we can measure with our meter sticks],
+call them $C$. We will check our clocks by having $A, B$ send a flash of light
+to $C$ when their clocks read $12:00_{A, B}$. If the light reaches at the same
+time from $A, B$ to $C$, then the clocks are synchronized.
+
+Now, if I'm moving, I'm $D$, who is at moving from $A$ to $B$. The light
+reaches $D$ at two different times for $D$. so it's unclear how to define
+synchronous.
+
+
+We have (Fred) $x = vt$, and $x' = 0$ on the same line. We want to figure out
+where the $t'$ axis is. We have (Mary) $x = vt + 1$ . The
+third person, (Seymour) is $x = vt + 2$. [all of these are relative to the stationary coords].
+The moving and stationary observer agree on what $t = 0$ means. Fred will
+send out a light signal to Mary. Seymour will also send out a light signal
+to Mary. They send it in such a way that they arrive to mary at the same
+time. The point will occur _above_ $t = 0$ for Seymour. Let $a$ be the
+time mary gets fred's light ray. Let $b$ be the "backtraced" point from
+mary to fred along -45 degrees.
+
+Point $a$ is the intersection of $x = t$ [c = 1] (Light from Fred) 
+with $x = vt + 1$ (Mary). We get $t = vt + 1$, or $t = 1/(1-v)$. since
+the light ray line is $x = t$, we get $x = t = 1/(1-v)$.
+
+Next, for line $ab$: the equation is going to be $x + t = const$, since it
+has slope -45 degrees. We can plug in the value of point $a$ into $x +t = const$
+to discover $const$. we get $1/(1-v) + 1/(1-v) = const$, which means
+$const = 2/(1-v)$. Next, we find the intersection of $ab$ ($x+t = const$)
+with $x - vt = 2$.
+
+If we subtract the two equations, we get
+$t(1+v) = 2(1/(1-v) - 1) = 2[1 - (1-v)]/(1-v) = 2v/(1-v)$.
+Hence, $t = 2v/(1+v)(1-v) = 2v/(1-v^2)$.
+
+We know that $x_b = 2/(1-v) - t_b = 2/(1-v) - 2v/(1-v^2) = $
+\chapter{GR: Introduction}
 
 I am following the following sources:
 
@@ -1169,6 +1240,373 @@ We assert that  $i_{X_H} \omega = dH$.
 \end{proof}
 
 
+% Lecture 15: 
+\chapter{Lecture 15}
+We begin by reviewing some ideas.Let $M$ be a manifold and let $X$ be a
+complete vector field on $M$. Call $\sigma_t: \R \rightarrow M$ as the flow generated
+by the vector field $X$. Recall that $\{ \sigma_t : t \in \mathbb R \}$ has a group structure
+given by function composition.
+
+We can also re-interpret this by considering the map $t \mapsto \sigma_t$ as
+a \emph{group homomorphism} from $\R$ to $Diff(M)$.
+
+\section{Lie group}
+
+A Lie group is a manifold that is a group, such that the group structure
+is smooth with respect to the manifold structure. $\star: G \times G \rightarrow G$,
+$(\cdot)^{-1}: G \rightarrow G$ must be smooth.
+
+\subsection{Examles of Lie groups}
+
+\begin{itemize}
+    \item $(\R, +, 0)$
+    \item $(S^1 = \{ e^{i \theta} \}, \times, 1)$.
+    \item $(U(n), \times, I)$ (Complex $n \times n$ matrices with determiniant $\pm 1$).
+    \item $(GL(n, \mathbb C), \times, I)$ (General invertible $n \times n$ matrices).
+\end{itemize}
+
+\section{Representations of groups}
+
+A representation of a Lie group $G$ is a group homomorphism
+from $G$ to $GL(V)$ where $V$ is a vector space.
+
+We are going to care about the representation theory of Lie Groups.
+
+\section{Group Actions on Manifolds}
+
+The action of a lie group $G$ on a manifold $M$ is a group
+homomorphism $\psi : G \rightarrow Diff(M)$. We may notate
+$\psi(g)$ as $\psi_g$ for convenience.
+
+\section{The evaluation map}
+$ev_\psi: M \times G \rightarrow M; ev_\psi(p, g) = \psi(g)(p)$.
+The action is said to be smooth of $ev_\psi$ is smooth.
+
+\subsection{Example}
+If $X \in \vectorfield(M)$ is complete, then the flow associated to $X$,
+$\sigma: \R \rightarrow Diff(M)$ is a smooth action.
+
+On the other hand, let us assume we have a smooth $\R$ action: $\psi: \R \rightarrow Diff(M)$.
+We can now \emph{recover a vector field} from this by differentiating it. 
+$X_\psi : (p : M) \rightarrow T_p M; X_\psi(p) = \frac{d\psi}{dt}$
+
+\section{Symplectic and Hamiltonian actions}
+
+Let $(M, \omega)$ be a symplectic manifold and let $G$ be a Lie group.
+Let $\psi: G \rightarrow Diff(M)$ be a smooth action. We need to enforce
+the condition that we need the $Diff(M)$ to preserve $\omega$, so we need
+to add that condition as well. The action $\psi$ is a symplectic action
+if it maps $\psi: G \rightarrow Symp(M) \subset Diff(M)$.
+
+We have a one-to-one correspondence between symplectic $\R$ actions and symplectic
+vector fields. This is nice, because a vector field can be checked as symplectic
+_locally_ (TODO: I don't think I've written this down? Check lecture 14). What
+happens when we don't just have $\R$ actions, but a general $G$ action? Tobias
+says "we need to work harder in this case".
+
+\subsection{Examples}
+
+
+\begin{itemize}
+	\item Let $M = \R^{2n}$. $\omega = \sum_j dx_j \wedge dy_j$.
+	$X = - \frac{\partial}{\partial y_1}$.
+	The orbits / integral curves with respect to the flow of $X$ are straight lines:
+	$O_t \equiv \{ (x_1, y_1 - t, x_2, y_2, \dots) \}$. The hamiltonian is $H = X_1$.
+
+	\item let $M = \mathbb R^2$. $H = 1/2(x^2 + y^2)$. $i_{X_H} \omega = dH = x dx + y dy$
+	Hence $X_H = y \frac{\partial}{\partial X} - X \frac{\partial}{\partial Y}$.
+
+	The orbits are circles: $O_r \equiv \{ (x, y) : x^y = y^2 = r^2 \}$.
+
+	Note that this action is like a $U(1)$ action (while also being an $\mathbb R$ action),
+	since the orbits are circles. Thus, $U(1)$ is a more faithful representation
+	of this action.
+
+    \item let $M = S^2$.  Coordinates $(\theta, h)$. $\omega = d\theta \wedge dh$.
+        Let $H = h$. We get $X_H = \frac{\partial}{\partial \theta}$.
+        We get an action $\{ (\theta + t, h) : t \in \mathbb R\}$.
+\end{itemize}
+
+\begin{definition}
+    A symplectic action of $S^1$ or $\mathbb R$ on $(M, \omega)$ is called
+    as hamiltonian if the vector field generated by $\psi$ is
+    hamiltonian. 
+
+    Equivalently, $\psi$ is hamiltonian if there is a $H: M \rightarrow \mathbb R$
+    with $dH = i_X \omega$, where $X$ is generated by $\psi$.
+\end{definition}
+
+\section{Adjoint and Coadjoint representation}
+
+Let $G$ be a Lie group. Let $g \in G$. Define $L_g: G \rightarrow G; L_g(h) \equiv g h$.
+(Left multiplication by $G$).
+
+A vector field $X \in \Vectorfield(G)$ is \emph{left invariant} if $(L_g)_\star(X) = X$.
+
+Similarly, there is right invariant vector fields.
+
+Let $\mathfrak{g}$ be the vector space of all left invariant vector fields on
+$G$. With Lie bracket $[ \cdot, \cdot]$, it turns out the lie bracket of
+two left-invariant vector fields continues to be left-invariant! So, our
+vector space $\mathfrak{g}$ has the structure of a Lie algebra.
+
+Recall that $f_\star([X, Y]) = [f_\star X, f_\star Y]$. Hence, if $X, Y$
+are left invariant and we act on it with $L_g$, then we get:
+
+$$
+(L_g)_\star [X, Y] = [(L_g)_\star X, (L_g)_\star Y] = [X, Y] \quad \text{$X$ and $Y$ are left invariant.}
+$$
+
+We can show that there is an isomorphism between $\mathfrak g$ and $T_e G$. 
+We have globally defined left-invariant vector fields $X$, which are isomorphic
+to a single vector in $T_e G$.
+
+This ought to be intuitive. If we know the value of the left invariant vector
+field at the identity, we can use the left invariance to "push forward" the
+action by any $g$, which lets us reconstruct the full vector field. 
+
+
+Really the identity is also a misnomer; if we know the value _anywhere_,
+we can reconstruct it if we know where we are.
+
+Given some $x_e \in T_e G$, we can define the vector field on the whole group
+via left-multiplication: $(L_h)_\star(x_e) \in T_h G$.
+
+
+\chapter{Lecture 16}
+\section{Moment map}
+
+In classical mechanics, there is the equation:
+
+$$
+\frac{df}{dt} = \{ H, f \}
+$$
+
+where $f: M \rightarrow \mathbb R$ is an observable, and $H$ is the Hamiltonian.
+So, $H$ is the _generator of time translations_. That's a symmetry. The
+symmetry group is $\mathbb R$. We can think of $H$ as the conserved charge
+of this symmetry group.
+
+
+What happens if we have a larger symmetry group than just $\mathbb R$? For example,
+in SR, we can have Lorentz transformations as our symmetry group. We can
+have $G \simeq O(3, 1) \rtimes \mathbb R^4$, and we get conserved charges 
+$Q_j$ that generate the symmetries.
+
+This thing called as the moment map is the vector of these generators. He says
+"In physics terms, I'm done here."
+
+Summary:
+\begin{itemize}
+\item The generators $Q_j$ act on observables $f: M \rightarrow \mathbb R$ under
+  the regime $\frac{df}{dt} = \{f, Q_j\}$.
+\item The moment map is a list of these generators $(Q_1, Q_2, \dots, Q_n)$.
+     He compares it to the energy-momentum tensor.
+\end{itemize}
+
+\section{Adjoint and Coadjoint representations}
+
+Any lie group acts on itself by left multiplication, right multiplication, and
+also conjugation. $G \rightarrow Diff(G); \psi(g) = \lambda h. ghg^{-1}$.
+
+
+Derivative at $e \in G$ of $\psi_g: G \rightarrow G$, we get a map
+$Ad_g: \mathfrak g \rightarrow \mathfrak g$. This is an invertible map
+from left invariant vector fields to left invariant vector fields. Note that
+this a \mathbf{representation of the Lie group}, since $\mathfrak g$ is
+a vector space!
+
+
+Ie, we can call this a map $Ad: G \rightarrow GL(\mathfrak g)$.
+
+
+\begin{example}
+For matrix groups, show that $\frac{d}{dt} A d_{exp(tX)} Y |_{t = 0} = [X, Y]$.
+\end{example}
+
+\begin{example}
+Let $G = SO(3)$. Let $O \in G$. $O^T O = I$, and $det(O) = 1$. The lie algebra
+is going to be $\mathfrak{g} \equiv \{ A \in M_3(\mathbb R) : A^T = -A \}$
+which can be identified with $\mathbb R^3$.
+
+\subsection{Coadjoint}
+
+Let $\langle, \rangle$ be the natural pairing between $\mathfrak g$ and
+$\mathfrak g^\star$. This all works because everything is finite dim.
+$\langle, \rangle: \mathfrak g^\star \times \mathfrak g \rightarrow \mathbb R$,
+$\langle x, g \rangle \equiv x(g)$.
+
+Given $\xi \in \mathfrak g^\star$, define:
+
+$$\langle Ad_g^\star \xi, x \rangle \equiv \langle \xi, Ad_{g^{-1}} x\rangle$$
+
+The collection of maps $Ad_g^\star$ forms the _co-adjoint_ representation of $G$
+on $\mathfrak g^\star$. $Ad^\star: G \rightarrow GL(\mathfrak g^\star); g \mapsto Ad_g^\star$.
+
+
+Let $(M, \omega)$ be a symplectic manifold and let $G$ be a connected lie group
+acting on $M$ via symplectomorphisms.
+
+
+For every $X \in \mathfrak g$, let $\xi_X$ be the corresponding vector field
+on $M$. I am confused because $X$ is _already_ a left-invariant vector field!
+Ah, no, $X$ is a left invariant vector field on $G$. We want a vector
+field on $M$!
+
+He says to create a new vector field by means of:
+$$
+X \in \mathfrak g \rightarrow{exponentiate} [h = exp(tX) \in G] 
+\rightarrow{use action} [\psi_h: M \rightarrow M]
+\rightarrow{differential of action} [ \xi_x = \psi_h (p: M) \rightarrow T_p M]
+$$
+
+
+
+Since $G$ acts via symplectomorphisms, $\xi_X$ is a symplectic vector field.
+Hence, $L_{xi_X \omega = 0 = d(i_{\xi_X} \omega) = 0$.
+
+Hence, $i_{\xi_X} \omega$ is \emph{closed}. What we want is for this to be
+exact. Ie, we would like to write:
+$$
+\xi_X = dH
+$$
+
+for some $H: M \rightarrow \R$. Unfortunately, if we have non-trivial
+De Rham cohomology, we know that can't always happen. So we now attempt to pin
+down when it can.
+
+So, we get a group homomorphism from the lie algebra of $G$ ($\mathfrak g$)
+to the Lie algebra of symplectic vector fields of $M$ [Recall that this might
+be infinite-dimensional? Maybe.].
+
+
+Let our smooth action be $\psi: G \rightarrow Symp(M)$. We want to generalize
+what a "hamiltonian action" or a "hamiltonian" is.
+
+\begin{definition}
+The action $\psi: G \rightarrow Symp(M)$ is hamiltonian when the one
+forms given by $i_{\xi_X} \omega$ are exact.
+\end{definition}
+
+Suppose they are exact. Then this means that:
+
+$$
+i_{\xi_X} \omega = d H_X \quad \text{H: M \rightarrow \mathbb R, \forall X \in \mathfrak g}
+$$
+
+we can hope that $H$ is _linear_. that is, $H_{X + Y} = H_X + H_Y, \forall X, Y \in \mathfrak g$.
+So, $H: \mathfrak g \times M \rightarrow \mathbb R$, which by curring gives us
+$H: M \rightarrow \mathfrak g \xrightarrow{linear} \mathbb R$. That is,
+$H: M \rightarrow \mathfrak g^\star$. We rename $H$ to $\mu: M \rightarrow \mathfrak g^\star$.
+
+
+We now revise the definition of hamiltonian action:
+
+\begin{definition}
+The action $\psi: G \rightarrow Symp(M)$ is hamiltonian when there is a function
+$\mu:  M \rightarrow g^\star$. We define $\mu^X: M \rightarrow \R; \mu^X (p) \equiv \langle \mu(p), X \rangle$.
+
+Let $X^# = \xi_X$ be the vector field on $M$ generated by $\{ exp(tX) : t \in \mathbb R} \subseteq G$.
+
+1. Then, $d \mu^X = i_{X^\hash} \omega$ [Condition 1]
+2. $\mu$ is equivariant with respect to the $\psi$ action on $M$ and 
+   coadjoint action $Ad^\star$ of $G$ on \mathfrak g^\star$:
+   $$\mu \circ \psi_g = Ad_g^\star \circ \mu$$.
+
+The tuple $(M, \omega, G, \mu)$ is called a Hamiltonian $G$-space and $\mu$
+is the moment map.
+\end{definition}
+
+For connected Lie groups, we can equivalently define via \emph{comoment map}
+$\mu^\star: g \rightarrow C^\infty(M)$.
+
+The conditions become:
+
+1. $\mu^\star(X) = \mu^X$ is hamiltonian for $X$
+2. $\mu^\star([X, Y]) =\{ \mu^\star(X), \mu^\star(Y) \}$
+
+This means that $\mu^\star$ is a lie algebra hom. where $\{,\}$ is the lie
+bracket on $C^\infty(M)$.
+
+
+Let $G = SO(3)$. The lie bracket on the lie algebra of $SO(3)$ can be
+identified with the cross product of $a \in \R^3$. Given an element
+in the lie algebra of $A \in \mathfrak g$:
+
+$$
+\begin{bmatrix}
+0 & -a_3 & -a_2
+a_3 & 0 & -a_1
+a_2 & a_1 & 0
+\end{bmatrix}
+\rightarrow (a_1, a_2, a_3)
+$$
+
+When we compute $[AB - BA] \in \mathfrak g$,
+we will get the final entries to be the same as $\vec a \times \vec b \in \R^3$.
+
+We can also show that the adjoint and coadjoint action of $G$ on $\mathfrak g$
+is the _usual_ $SO(3)$ action!
+
+The coadjoint orbits are spheres centered at origin of $\mathbb R^3$.
+
+
+\section{Example: Translations}
+
+Let $(M, \omega) = (\R^3 \times R^3, \omega \equiv \sum_j dx_j \wedge dp_j)$
+
+Let $G = R^3$ acts on $M$ via $a (x, p) \mapsto (x+a, p)$. The vector
+field corresponding to $a \sim X \in \mathfrak g$ [I need to work out the lie algebra for myself]
+is $X^\hash \equiv \xi_x \equiv a_1 \partial_{x_1} + a_2 \partial_{x_2} + a_3 \partial_{x_3}$.
+
+We can ask if vector field is hamiltonian. We can show that there exists a $\mu_X$
+such that:
+
+$$
+i_{X^hash}(\omega) = d \mu^X
+$$   
+
+where
+$$
+\mu: M \rightarrow \mathfrak g^\star; \mu(x, y) = y \in \mathfrak g^\star \\
+\mu^X: M \rightarrow \R; \mu^X((x, y)) = \langle \mu(x, y), a \rangle = y \cdot a 
+$$
+
+This vector $y$ is the momentum vector. Ie, momentum is conserved by translation.
+We were able to recover what is conserved by the action.
+
+\section{Example: Rotations}
+$G \equiv SO(3)$ action on $M \equiv \R^3 \times \R^3$. Given a $g \in G$,
+we need to figure out the action of $SO(3)$. Recall that $M$ is equivalent
+to $T^\star \R^3$ (the cotangent bundle). $\psi_g$ acts on $\R^3$ by rotations by
+diffeomorphisms. We know that this can be lifted to act as a symplectomorphism
+on the cotangent bundle [ what is the intuition? how?]. Hence, we get
+the symplectomorphism $\psi_#: \coT M \rightarrow \coT M$. We have the 
+symplectomorphism $\psi_#^g \in Symp(\coT \R^3, \omega)$ where $g \in \mathfrak g$.
+We ave the formula: $\psi_#^g (x, y) = (g \times x, g \times y)$ where we are
+thinking of $g \in \mathfrak{so}(3)$ as a vector in $\mathbb R^3$.
+
+We can show that it is hamiltonian, with $\mu: \coT \R^3 \rightarrow \mathfrak g^\star$.
+That is, $\mu: \R^6 \rightarrow \R^3; \mu(x, p) = x \times p$.
+
+
+The moment map is:
+
+$$
+\mu^g(x, p) = (x \times p) \cdot g
+$$
+
+This is the angular momentum? I don't get it.
+
+
+\chapter{Lecyure 17: The Darboux Weinstein Theorem}
+
+\chapter{Lecture 18}
+\begin{definition}
+Noether principle: Let $(M, \omega, G, \mu, \psi)$ be a hamiltonian G-space.
+Then, a function $f: M \rightarrow R$ is G-invariant iff $\mu$ is constant
+of the trajectories of the hamiltonian vector field of $f$.
+\end{definition}
 
 \chapter{Optimisation on manifolds}
 
@@ -1250,8 +1688,8 @@ by using an operator $(\wedge)$, defined by the following axioms:
     &\quad (\alpha \vec u + \beta \vec v) \wedge (\gamma \vec w + \delta \vec x) = 
         \alpha \gamma (\vec u \wedge \vec w) + 
         \alpha \delta (\vec u \wedge \vec x) + 
-        \beta \gamma  (\vec v \wedge \vec w) + 
-        \beta \delta  (\vec v \wedge \vec x) \qquad \text{(bilinearity)}
+        \beta \gamma  (\vec v \wedge \vec w) +
+         \beta \delta  (\vec v \wedge \vec x) \qquad \text{(bilinearity)}
 \end{align*}
 
 \section{Intuition of the definition of wedge products on $\R^2$}
