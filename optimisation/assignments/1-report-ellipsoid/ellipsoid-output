@@ -1,0 +1,49 @@
+Running ellipsoid on feasible polytope
+* 0 
+trying point: (-128.66, 234.03)
+polyhedra does not contain point. Shrinking.
+  old radii: (500.00, 500.00)
+  new radii: (128.66, 234.03)
+* 1 
+trying point: (-0.52, 2.01)
+polyhedra contains point: (-0.52, 2.01)
+ 
+
+
+Running ellipsoid on empty polytope
+* 0 
+trying point: (99.26, 105.70)
+polyhedra does not contain point. Shrinking.
+  old radii: (500.00, 500.00)
+  new radii: (99.26, 105.70)
+* 1 
+trying point: (-11.34, -47.03)
+polyhedra does not contain point. Shrinking.
+  old radii: (99.26, 105.70)
+  new radii: (11.34, 47.03)
+* 2 
+trying point: (1.27, 9.62)
+polyhedra does not contain point. Shrinking.
+  old radii: (11.34, 47.03)
+  new radii: (1.27, 9.62)
+* 3 
+trying point: (-0.82, -5.12)
+polyhedra does not contain point. Shrinking.
+  old radii: (1.27, 9.62)
+  new radii: (0.82, 5.12)
+* 4 
+trying point: (-0.44, -1.72)
+polyhedra does not contain point. Shrinking.
+  old radii: (0.82, 5.12)
+  new radii: (0.44, 1.72)
+* 5 
+trying point: (0.33, -0.42)
+polyhedra does not contain point. Shrinking.
+  old radii: (0.44, 1.72)
+  new radii: (0.33, 0.42)
+* 6 
+trying point: (-0.02, 0.39)
+polyhedra does not contain point. Shrinking.
+  old radii: (0.33, 0.42)
+  new radii: (0.02, 0.39)
+V bounding box(0.01) < min V (0.10)
