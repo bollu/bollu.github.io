@@ -11,7 +11,7 @@ some slides of talks I've given.
 ##### [Optimisation methods: Linear, Convex & Integer](./optimisation/main.pdf)
 ##### [Physics: Gauge theory (terrible notes, but interesting material)](./physics/main.pdf)
 ##### [Nonlinear dynamics](./nonlineardynamics/main.pdf)
-##### [Philosophy: God and Knowledge](./philosophy-god-knowledge/main.pdf)
+##### [Philosophy: God and Knowledge](./philosophy/main.pdf)
 ##### [Topics in machine learning](./topics-in-ml/main.pdf)
 ##### [General relativity & Differental geometry](./diffgeo/main.pdf)
 ##### [Game theory](./gametheory/main.pdf)
