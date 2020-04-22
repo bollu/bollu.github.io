@@ -314,10 +314,74 @@ we must have that $send(m(i, j)) \rightarrow send(TOKEN(init, j))$.
 # Deadlock detection
 
 ## Wait-For-Graph(WFG)
+
+Nodes are processes. Edge from $P_1$ to $P_2$ if $P_1$ is blocked and is
+waiting for $P_2$ to release some resource. A system is deadlocked iff there
+is a cycle in the WFG.
+
 ## Deadlock Handling strategies and issues
+
+We can perform deadlock prevention, deadlock aviodance, and deadlock detection.
+
+- **deadlock prevention:** a process must gain all resources before it enters CS.
+- **deadlock avoidance:** a resource is granted to a process if the global
+  state is safe. This cannot be done sanely because the global state is far too
+  expensive to compute.
+- **deadlock detection:**
+
 ## Deadlock detection - issues, correctness criteria and resolution
+
+
 ## Models of deadlock - Single Resource Model, AND model, OR model, AND-OR model, (qp) model, Unrestricted model
+#### Single resource
+Can only request a single resource
+#### AND model
+
+Can request AND of multiple resource. Multiple resources can be asked for at
+once. Request is satisfied after all the resources are given.
+
+A cycle in the WFG imlpies a deadlock.
+
+A deadlock need not always create a cycle. You can have processes that are
+waiting on a deadlock be deadlocked, though they are outside the cycle --- ie,
+they are part of the knot.
+
+#### OR model
+
+Can request OR of multiple resources. Request is satisfied if any resource
+is given.
+
+#### AND-OR model
+
+Can ask for any boolean combination made by `AND` and `OR`.
+
+#### $\comb{p}{q}$ model
+
+allows us to request to get $p$ resources from a pool of $q$ candidate resources.
+For example, in the AND model, we have $p$ resources and we want to get all $p$
+of them, so this is $\comb{p}{p}$. Similarly, in the OR model, we want to get
+_one_ of some $p$ requests. So this is $\comb{p}{1}$.
+
 ## Knapp’s Classification - Path-pushing algorithms, Edge-chasing algorithms, Diffusing Computations Based Algorithms, Global State Detection Based Algorithms
+
+#### Path pushing
+
+Maintain explicit global WFG. we send local WFG to other sites. eventually
+someone will have large enough picture to see the deadlock.
+
+#### Edge chasing
+
+A cycle is detected by spreading around probe messages in the graph. If a site
+receives a matching probe that it has sent, then it has detected an edge.
+
+Probes are fixed sized, hence short.
+
+#### Diffusing computation
+
+echo algorithms are used to detect deadlocks. If the computation terminates,
+initiator declares deadlock.
+
+
 ## Chandy-Misra-Haas Algorithm for the AND Model
 ## Chandy-Misra-Haas Algorithm for the OR Model
 ## Ho-Ramamoorthy Algorithm
@@ -665,6 +729,13 @@ Same as chandy-misra, but we allow edges to fail.
 
 # Byazntine algorithms
 
+
+#### Byzantine agreement:
+
+Good reference for Pi protocol prooof:
+[Easy impossibility proofs for distributed consensus problems](https://groups.csail.mit.edu/tds/papers/Lynch/FischerLynchMerritt-dc.pdf)
+
+
 A process is _byzantine_ if it deviates from the specification.
 
 # Consensus:
@@ -681,6 +752,39 @@ Each process outputs its own value $v_k$.
   kth value in the vector agreed upon up **all of the non-faulty processes**
   must have $v_k$ as the $k$th process.
 
+## Core problems faced in distributed systems
+## Overview of Consensus Results with crash failures/Byzantine Failures
+## Consensus Algorithm for Crash Failures
+## Byzantine Agreement and variants - Consensus, Interactive Consistency
+-  http://www.cs.fsu.edu/~xyuan/cop5611/lecture11.html
+## Proof of no t-Byzantine-robust broadcast protocol for $t \geq N/3$
+## Lamport‐Shostak‐Pease Algorithm
+
+$OM(#traitors, S)$ is the notation for the algorithms with those
+many traitors with $S$ being the full set of processes.
+
+#### Base case: $OM(0, S)$
+This is easy. Commander sends commands, Lieutenants agree to command.
+
+#### $OM(m, S)$ for $m > 0$
+
+$S$ is the set of generals for which we want agreement.
+
+- Commander $i$ sends value $v$ to every lieutenant $j$ in $S_{-i}$.
+- For each lieutenant $j \in S_{-i}$, let $v(j)$ be the value received
+  by the commander $i$, or else `RETREAT` if he receives no value.
+  Lieutenant $j$ runs the algorithm $OM(m-1, S_{-i}$ recursively, acting
+  as the commander, initiating with value $v(j)$.
+- At the end of these recursive executions, all loyal lieutenants $j \in S_{-i}$
+  have agreed on a set of pairs $Answer_j \equiv \{ (k, v_k) : k \in S_{-i} \}$.
+- The result of Lieutenant $j$ for $OM(m, S)$ is the majority of $Answer_j$.
+
+
+AKA 
+
+## Asynchronous renaming - wait free renaming
+
+
 # Snippets
 
 ### 5 minute talk: P2P
@@ -696,4 +800,4 @@ peers.
 #### Chord protocol
 
 Finger table: nodes are keys, contain values. A node's chord table is:
-with ids `i :-> (n + 2^i)`.
+with ids `i :-> (n + 1^i)`.
