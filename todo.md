@@ -225,9 +225,44 @@ installed, use it to compute closed forms)
 - sizecoding.org: how to build demos, wealth of demoscene knowledge! shows basic MSdos getting started.
    http://www.sizecoding.org/wiki/Memories#Introduction
 - pouet.net: demoscene group: https://www.pouet.net/prod.php?which=85227
-- subreddit for tiny code: https://www.reddit.com/r/tinycode/
+- subreddit for tiny code/demoscene: https://www.reddit.com/r/tinycode/
 - lock picking!
 - https://www.chessprogramming.org: they usually have the best knowledge of obscure ASM
   instructions.
 - PROCEDURAL GENERATION TODO: video of alabama shakes future people.
 - Learn how to free associate when writing/rhyming. Gold standard: Can't stop, RHCP.
+- My mental model for array indexes (indexes point b/w elements) https://blog.nelhage.com/2015/08/indices-point-between-elements/
+  Think of a good _algebra_ for this duality between "slots" and "indexes"
+- ponder an algebra that gives us _segments_: ie, given a list, gives us [left..right],
+  given a tree, gives us subtree representation (eg. recover euler tour?)
+- build language to convert between 'flat' memory representations and
+  data manipulation. eg. `list a = cons a (list a) | nil`. this in sparse form
+  is linked list, in dense form is array. `tree a = nil | branch a (tree a) (tree a)` in
+  sparse form is tree, in dense form is some dense repr. `complete a = leaf a | branch (complete a) (complete a)`
+  is tree in sparse form, heap in dense form.
+- https://www.flipcode.com/archives/The_Coverage_Buffer_C-Buffer.shtml: demoscene, rasterization, etc.
+- Extend discussion of topology of computation with Sierpinski space.
+- https://mirtitles.org/: Collection of Russian books on math.
+- Kinematic method for geometry: https://mirtitles.org/2018/05/04/the-kinematic-method-in-geometrical-problems-lyubich-shor/
+- Operational methods: https://mirtitles.org/2018/10/13/operational-methods-maslov/ [theory of distributions]
+- Big list of cybernetics books: https://mirtitles.org/category/computers/
+- The world is built on proabbility (thermodynamics <-> entropy): https://mirtitles.org/2013/09/13/the-world-is-built-on-probability-tarasov/
+- Computational mathematics: https://mirtitles.org/2012/12/26/computational-mathematics-demidovich-maron/
+- Percolation theory: https://mirtitles.org/2011/11/28/science-for-everyone-physics-and-geometry-of-disorder-percolation-theory/
+- A simple non euclidian geometry and its physical basis: https://mirtitles.org/2018/04/24/a-simple-non-euclidean-geometry-and-its-physical-basis-yaglom/
+- Theory of elasiticity: https://mirtitles.org/2017/01/20/theory-of-elasticity-filonenko-borodich/
+- Plasma physics: https://mirtitles.org/2018/04/22/plasma-physics-kadomtsev-ed/
+- Semiconductors: seems to contain explanations of how to use semiconductors. https://mirtitles.org/2018/04/21/semiconductors-testing-and-adjusting-green-shokalsky/
+- Laser physics: https://mirtitles.org/2013/09/17/laser-physics-tarasov/
+- Problems in differential geometry and topology: https://mirtitles.org/2016/06/05/problems-in-differential-geometry-and-topology-mishchenko-solovyev-fomenko/
+- Linear algebra and multidimensional geometry: https://mirtitles.org/2020/02/13/4129/
+  contains use of reciprocal basis!
+- Style: lessons in clarity and grace.
+- Multivariate Calculus and Geometry: has intro to gaussian curvature, theory of surfaces in 3D.
+- Word problems in russia and america: scathing critique of how 
+  ameriacn math education is screwed: http://toomandre.com/travel/sweden05/WP-SWEDEN-NEW.pdf
+  also, interesting anecdote about how looking for 'reality' in mathematical problems
+  may in fact break student's ability to think in the abstract! This is
+  a deep insight.
+- Imaginary numbers are not real: the geometric algebra of spacetime.
+- Topological games: http://www.telgarsky.com/1987-RMJM-Telgarsky-Topological-Games.pdf | games that reflect some topological property.
