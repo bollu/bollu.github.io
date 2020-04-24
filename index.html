@@ -806,7 +806,7 @@ Abstracting slightly, we state:
 </ol>
 
 (1) and (2) have the same probability distribution.
-<h5><a id=proof href='#proof'> § </a> Proof:</h5>
+<h5><a id=proof-by-induction href='#proof-by-induction'> § </a> Proof by induction:</h5>
 Process (2) in code is the following:
 <div class='code'>
 <!-- Generator: GNU source-highlight 3.1.8
@@ -899,6 +899,66 @@ http://www.gnu.org/software/src-highlite -->
 Which is indeed the same probability as (1):
 <blockquote> 1. Choosing an element uniformly from a subset <span class='latexinline'>
 <span style="font-style:italic">T</span></span> = <code>1/|T|</code>.</blockquote>
+<h5><a id=proof-by-program-analysis href='#proof-by-program-analysis'> § </a> Proof by program analysis</h5>
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> <b><u><font color="#000000">def</font></u></b> process(S, T):
+<font color="#666666">3:</font>   s = np.random.choice(S)
+<font color="#666666">4:</font>   <b><u><font color="#000000">if</font></u></b> s <b><u><font color="#000000">in</font></u></b> T: <b><u><font color="#000000">return</font></u></b> s
+<font color="#666666">5:</font>   <b><u><font color="#000000">else</font></u></b> <b><u><font color="#000000">return</font></u></b> process(S.remove(s), T)
+<font color="#666666">6:</font> </tt></pre>
+</div>
+
+Notice that the last return is tail-call. This program can be rewritten as:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> <b><u><font color="#000000">def</font></u></b> process(S, T):
+<font color="#666666">3:</font>   <b><u><font color="#000000">while</font></u></b> True:
+<font color="#666666">4:</font>     s = np.random.choice(S)
+<font color="#666666">5:</font>     <b><u><font color="#000000">if</font></u></b> s <b><u><font color="#000000">in</font></u></b> T: <b><u><font color="#000000">return</font></u></b> s
+<font color="#666666">6:</font>     S = S.remove(s)
+<font color="#666666">7:</font> </tt></pre>
+</div>
+
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> <b><u><font color="#000000">def</font></u></b> indocator(t0, S, T):
+<font color="#666666">3:</font>   <b><u><font color="#000000">assert</font></u></b>(t0 <b><u><font color="#000000">in</font></u></b> T) <i><font color="#808080"># precondition</font></i>
+<font color="#666666">4:</font>   <b><u><font color="#000000">assert</font></u></b>(issubset(T, S)) <i><font color="#808080"># precondition</font></i>
+<font color="#666666">5:</font> 
+<font color="#666666">6:</font>   <b><u><font color="#000000">while</font></u></b> True:
+<font color="#666666">7:</font>     s = np.random.choice(S)
+<font color="#666666">8:</font>     <b><u><font color="#000000">if</font></u></b> s <b><u><font color="#000000">in</font></u></b> T: <b><u><font color="#000000">return</font></u></b> t0 == s
+<font color="#666666">9:</font>     S = S.remove(s)
+<font color="#666666">10:</font> </tt></pre>
+</div>
+
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> P(indicator(t0, S, T) = 1)
+<font color="#666666">3:</font>  = P(s in T /\ t0 == s)
+<font color="#666666">4:</font>  = P(s in T) * (t0 == s | s in T)
+<font color="#666666">5:</font>  = P(np.random.choice(S) in T) * (t0 == s | s in T)
+<font color="#666666">6:</font>  = |T|/|S| * 1/|T| = 1/|S|
+<font color="#666666">7:</font> </tt></pre>
+</div>
+
 <h4><a id=sampling-using-the-above-definition href='#sampling-using-the-above-definition'> § </a> Sampling using the above definition</h4>
 Recall that <span class='latexinline'>
 <span style="font-style:italic">State</span>(<span style="font-style:italic">X</span>) &#X2261; <span style="font-style:italic">V</span> &#X2192; <span style="font-style:italic">C</span></span>, <span class='latexinline'>

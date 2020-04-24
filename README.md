@@ -253,7 +253,7 @@ Abstracting slightly, we state:
 
 (1) and (2) have the same probability distribution.
 
-##### Proof:
+##### Proof by induction:
 
 Process (2) in code is the following:
 
@@ -322,6 +322,44 @@ P(t0, S, T)
 Which is indeed the same probability as (1):
 
 > 1. Choosing an element uniformly from a subset $T$ = `1/|T|`.
+
+##### Proof by program analysis
+
+```py
+def process(S, T):
+  s = np.random.choice(S)
+  if s in T: return s
+  else return process(S.remove(s), T)
+```
+
+Notice that the last return is tail-call. This program can be rewritten as:
+
+```py
+def process(S, T):
+  while True:
+    s = np.random.choice(S)
+    if s in T: return s
+    S = S.remove(s)
+```
+
+```py
+def indocator(t0, S, T):
+  assert(t0 in T) # precondition
+  assert(issubset(T, S)) # precondition
+
+  while True:
+    s = np.random.choice(S)
+    if s in T: return t0 == s
+    S = S.remove(s)
+```
+
+```
+P(indicator(t0, S, T) = 1)
+ = P(s in T /\ t0 == s)
+ = P(s in T) * (t0 == s | s in T)
+ = P(np.random.choice(S) in T) * (t0 == s | s in T)
+ = |T|/|S| * 1/|T| = 1/|S|
+```
 
 #### Sampling using the above definition
 
