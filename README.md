@@ -52,11 +52,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 
+- [Rank-select as adjunction](#rank-select-as-adjunction)
 - [Bounding chains: uniformly sample colorings](#bounding-chains-uniformly-sample-colorings)
 - [Coupling from the past (WIP)](#coupling-from-the-past)
 - [My quest to get better at writing](#my-quest-to-get-better-at-writing)
 - [Word problems in Russia and America](#word-problems-in-russia-and-america)
-- [Encoding mathematical hieararchies](#encoding-mathematical-hieararhices)
+- [Encoding mathematical hieararchies](#encoding-mathematical-hieararchies)
 - [Big list of English syntax (WIP)](#big-list-of-english-syntax)
 - [Learning code by hearing it](#learning-code-by-hearing-it)
 - [My long list of emacs gripes (WIP)](#my-long-list-of-emacs-gripes)
@@ -173,6 +174,20 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Link Dump](#link-dump)
 
 
+
+# [Rank-select as adjunction](#rank-select-as-adjunction)
+
+```
+select_1: count -> ix; select_1(count) = index of the 'count'th `1` bit
+rank_1: ix -> count; rank_1(ix) = number of `1` bits till index `ix`.
+
+rank_1(select_1(count)) = count
+select_1(rank_1(ix)) < ix
+
+rank :: a -> [a]
+rank x = scanl (+) . (== x)
+```
+
 # [Bounding chains: uniformly sample colorings](bounding-chains-uniformly-sample-colorings)
 
 We wish to _uniformly sample_ `k` colorings of a graph $G$ with maximum degree
@@ -222,7 +237,7 @@ lens on the transitions of $X$ that is amenable to massaging.
 
 #### Equivalent description of the transitions of $X$:
 
-1. Choosing an color uniformly at random from the set of valid colors
+1. Choosing a color uniformly at random from the set of valid colors
    for a vertex.
 2. Choosing colors from $C$ without replacement until we get a color 
    that is a valid color. 
@@ -231,57 +246,82 @@ We claim that (1) and (2) have the same probability distribution.
 
 Abstracting slightly, we state:
 
-1. Choosing an element uniformly from a subset $T$ of a space $S$.
-2.  Choosing elements from $S$ without replacement until we get an element in $T$.
+1. Probability of choosing an element $t \in T$ uniformly from  $T \subseteq S$.
+   This has probability $1/|T|$.
+2. Probability of choosing a particular element $t \in T$, by picking elements
+   from $S$ without replacement until we get some element in $T$.
 
 (1) and (2) have the same probability distribution.
 
 ##### Proof:
 
-the probability $P_1: S \rightarrow [0, 1]$ of choosing an element uniformly from $T$  is:
+Process (2) in code is the following:
 
-$$
-P_1(s) \equiv
-\begin{cases} 1/|T| & \text{s \in T} \\ 0 & \text{s \not \in T} \end{cases}
-$$
-
-Let us pick elements $s_1, s_2, \dots s_n$ from $S$ such that:
-- $s_1, s_2 \dots \in S-T$, $s_n \in S$. 
-- $s_i \neq s_{< i}$. That is, $\forall j < i, s_i \neq s_j$.
-
-Hence, we are choosing $s_i$ without replacement; $s_n$ is the first element
-that is in $T$.
+```py
+def process(S, T):
+  assert(issubset(T, S)) # precondition
+  s = np.random.choice(S) # uniform choice over S.
+  if s in T: return s # |T|/|S| prob. to enter `if`.
+  else:
+    # (1 - |T|/|S|) to enter `else`
+    Snext = S.remove(s); return process(Snext, T) 
+```
 
 
+We claim that the probability that `process(S, T) = t0` for a fixed `t0` in `T`
+is $1/|T|$. We create a new function `indicator` to express this:
 
-Our chains can be at most of length $|S|$, since we are picking without
-replacement. So, the space of all chains is $S^|S|$, which I will denote
-$Ch \equiv S^|S|$.
 
-We now define $P_2(x, set)$ to be the probability that
-$x$ is _first_ of the chain to belong to $set$.
 
-$$
-\begin{align*}
-&P_2(x, set): S \times \{S, T\} \rightarrow [0, 1] \\
-&P_2(x, set) = |\{ c : c \in Ch, x \in set, c[i] = x, c[<i] \not \in set \}| / |Ch|
-\end{align*}
-$$
+```py
+def indicator(t0, S, T):
+  assert(t0 in T) # precondition
+  assert(issubset(T, S)) # precondition
 
-Now, note that $P(s | set=T)$ is the distribution that is given by:
-> Choosing elements from $S$ without replacement until we get an element in $T$.
+  return t0 == process(S, T)
+```
 
-Applying Bayes rule, we get:
+Let's push in `t0 ==` into the definiton of `process` after inling `process`.
+This gives us:
 
-$$
-\begin{align*}
-&P(s|set=T) = P(set=T|s) * P(s) / P(set=T) \\
-&= 1 * (1/|S|) / (|T|/|S|) = 1/|T|
-\end{align*}
-$$
+```py
+def indicator(t0, S, T):
+  assert(t0 in T) # precondition
+  assert(issubset(T, S)) # precondition
 
-**Confusion**: I am very confused in this section; both what the
-probability space is and how bayes rule works out.
+  s = np.random.choice(S)
+  if s in T:
+    # T/S prob. for x in T
+    return t0 == s # 1/|T| prob. for t0 == x
+  else:
+    #  (1 - |T|/|S|) to reach else branch.
+    Snext = S.remove(s); return process(Snext, T) 
+
+```
+
+Now, we write down the recurrence for the probability that we are trying
+to compute: $P(t0, S, T)$ is the probability that `indicator(t0, S, T)` returns
+`True`. Alternatively, it's the probability that `process(S, T)` returns `t0`.
+
+```
+P(t0, S, T) = prob. that process(S, T) = t0
+P(t0, T, T) = T/|T| * 1/|T| = 1/|T| [base case]
+P(t0, S, T) = 1/|S| + (1 - |T|/|S|) * P(t0, |S|-1, T) [induction]
+```
+
+We assume for induction that `P(t0, |S|-1, T) = 1/|T|`. On substitution into `[induction]`,
+we get:
+
+```
+P(t0, S, T) 
+= 1/|S| + (1 - |T|/|S|) * P(t0, |S|-1, T) [induction]
+= 1/|S| + (1 - |T|/|S|) * 1/|T| 
+= 1/|S| + (1/|T| - 1/|S|)s
+= 1/|T|
+```
+Which is indeed the same probability as (1):
+
+> 1. Choosing an element uniformly from a subset $T$ = `1/|T|`.
 
 #### Sampling using the above definition
 
@@ -297,20 +337,20 @@ By induction we assume that $x[n-1] \in w[n-1]$. We must now calculate a
 $w[n], x[n]$ such that (1) $x[n] \in w[n]$, (2) $x[n]$'s proposal is symmetric. 
 (3) $w[n]$'s proposal is symmetric.
 
-###### Blocked set
+###### Blocked set $B$
 
 Define the set $B \subseteq C$ (for blocked) which governs which values $x[n]$ surely cannot
 take from our view of $w[n-1]$. 
 
 $$B \equiv \{ c \in C : (v, \alpha) \in E, w[n-1](\alpha) = \{c\} \}$$
        
-##### Occluded set
+##### Occluded set $O$
 
 Define $O \subseteq C$ (for occluded) be the set colors that might possibly
 be blocked for $v$. $O \equiv  \{ c \in C : (v, \alpha) \in E, c \in w[n-1](\alpha) \}$.
 Note that $B \subseteq O$.
 
-##### Allowed set
+##### Allowed set $A$
 
 Define $A \subset C$ (for allowed) to be $C - O$. Note that any color in $A$
 is surely a valid color for $v$ in $X$; But not all colors that are valid
@@ -336,8 +376,9 @@ We now assign $x[n](v) = S[i]$, and $w[n](v) = A$.
 
 By the above lemma, we know that this is the same as picking uniformly at
 random from $A$. **Confusion:** Do we not want to uniformly pick from
-colors that are allowed in $X$, not from colors that are allowed in $W$? I don't
-see why this is sampling $X$ from the right distribution.
+colors that are allowed in $X$, not from colors from $A$? ie, isn't $A$ an
+under-approximation of the actual colors-that-are-allowed in $X$? I don't
+see why this is sampling the next state of $v$ correctly. 
 
 
 ##### Termination
@@ -374,6 +415,7 @@ X[2]: a:1 -- b:2 -- c:5
 # [Coupling from the past](#coupling-from-the-past)
 
 ##### Relationship between CFTP and reset transitions
+
 ##### References
 - [Dan piponi, running from the past](http://blog.sigfpe.com/2018/10/running-from-past.html)
 - [Coupling from the past, a user's guide](https://pdfs.semanticscholar.org/622e/a9c9c665002670ff26119d1aad5c3c5e0be8.pdf)
@@ -386,7 +428,7 @@ X[2]: a:1 -- b:2 -- c:5
 
 #### Books about charming sentences and how to construct them
 
-# Word problems in Russia and America: 
+# [Word problems in Russia and America](#word-problems-in-russia-and-america)
 
 - [link to article by *Andrei Toom*](http://toomandre.com/travel/sweden05/WP-SWEDEN-NEW.pdf)
 
@@ -395,7 +437,7 @@ scathing critique of how ameriacn math education is screwed:
 anecdote about how looking for 'reality' in mathematical problems may in fact
 break student's ability to think in the abstract! This is a deep insight.
 
-# [Encoding mathematical hieararchies](#encoding-mathematical-hieararhices)
+# [Encoding mathematical hieararchies](#encoding-mathematical-hieararchies)
 
 I've wanted to learn how the SageMATH system is organized when it comes to math
 hieararchies. I also wish to learn how `lean4` encodes their hiearchies. I know

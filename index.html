@@ -41,6 +41,11 @@ My reading list</a>
 <h4><a id=table-of-contents href='#table-of-contents'> § </a> Table of contents:</h4>
 <ul>
 <li>
+ <a href=#rank-select-as-adjunction>
+Rank-select as adjunction</a>
+
+</li>
+<li>
  <a href=#bounding-chains-uniformly-sample-colorings>
 Bounding chains: uniformly sample colorings</a>
 
@@ -61,7 +66,7 @@ Word problems in Russia and America</a>
 
 </li>
 <li>
- <a href=#encoding-mathematical-hieararhices>
+ <a href=#encoding-mathematical-hieararchies>
 Encoding mathematical hieararchies</a>
 
 </li>
@@ -638,6 +643,26 @@ Link Dump</a>
 
 </ul>
 
+<h1><a id=rank-select-as-adjunction href='#rank-select-as-adjunction'> § </a> <a href=#rank-select-as-adjunction>
+Rank-select as adjunction</a>
+</h1>
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> select_1: count -&gt; ix; select_1(count) = index of the 'count'th `1` bit
+<font color="#666666">3:</font> rank_1: ix -&gt; count; rank_1(ix) = number of `1` bits till index `ix`.
+<font color="#666666">4:</font> 
+<font color="#666666">5:</font> rank_1(select_1(count)) = count
+<font color="#666666">6:</font> select_1(rank_1(ix)) &lt; ix
+<font color="#666666">7:</font> 
+<font color="#666666">8:</font> rank :: a -&gt; [a]
+<font color="#666666">9:</font> rank x = scanl (+) . (== x)
+<font color="#666666">10:</font> </tt></pre>
+</div>
+
 <h1><a id=bounding-chains-uniformly-sample-colorings href='#bounding-chains-uniformly-sample-colorings'> § </a> <a href=bounding-chains-uniformly-sample-colorings>
 Bounding chains: uniformly sample colorings</a>
 </h1>
@@ -749,7 +774,7 @@ lens on the transitions of <span class='latexinline'>
 <span style="font-style:italic">X</span></span>:</h4>
 <ol>
 <li>
- Choosing an color uniformly at random from the set of valid colors
+ Choosing a color uniformly at random from the set of valid colors
    for a vertex.
 </li>
 <li>
@@ -764,13 +789,17 @@ We claim that (1) and (2) have the same probability distribution.
 Abstracting slightly, we state:
 <ol>
 <li>
- Choosing an element uniformly from a subset <span class='latexinline'>
-<span style="font-style:italic">T</span></span> of a space <span class='latexinline'>
-<span style="font-style:italic">S</span></span>.
+ Probability of choosing an element <span class='latexinline'>
+<span style="font-style:italic">t</span> &#X2208; <span style="font-style:italic">T</span></span> uniformly from  <span class='latexinline'>
+<span style="font-style:italic">T</span> &#X2286; <span style="font-style:italic">S</span></span>.
+   This has probability <span class='latexinline'>
+1/|<span style="font-style:italic">T</span>|</span>.
 </li>
 <li>
-  Choosing elements from <span class='latexinline'>
-<span style="font-style:italic">S</span></span> without replacement until we get an element in <span class='latexinline'>
+ Probability of choosing a particular element <span class='latexinline'>
+<span style="font-style:italic">t</span> &#X2208; <span style="font-style:italic">T</span></span>, by picking elements
+   from <span class='latexinline'>
+<span style="font-style:italic">S</span></span> without replacement until we get some element in <span class='latexinline'>
 <span style="font-style:italic">T</span></span>.
 </li>
 
@@ -778,77 +807,98 @@ Abstracting slightly, we state:
 
 (1) and (2) have the same probability distribution.
 <h5><a id=proof href='#proof'> § </a> Proof:</h5>
-the probability <span class='latexinline'>
-<span style="font-style:italic">P</span><sub>1</sub>: <span style="font-style:italic">S</span> &#X2192; [0, 1]</span> of choosing an element uniformly from <span class='latexinline'>
-<span style="font-style:italic">T</span></span>  is:
-<div class='latexblock'>
-<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">P</span><sub>1</sub>(<span style="font-style:italic">s</span>)&#XA0;&#X2261;
-</td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell">&#X23A7;<br>
-&#X23A8;<br>
-&#X23A9;</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >1/|<span style="font-style:italic">T</span>|</td><td style="text-align:left;white-space:nowrap" >s &#X2208;T&#XA0;</td></tr>
-<tr><td style="text-align:left;white-space:nowrap" >0</td><td style="text-align:left;white-space:nowrap" >s &#X2209;T&#XA0;</td></tr>
-</table></td></tr>
-</table></td></tr>
-</table></div>
-Let us pick elements <span class='latexinline'>
-<span style="font-style:italic">s</span><sub>1</sub>, <span style="font-style:italic">s</span><sub>2</sub>, &#X2026; <span style="font-style:italic">s</span><sub><span style="font-style:italic">n</span></sub></span> from <span class='latexinline'>
-<span style="font-style:italic">S</span></span> such that:
-<ul>
-<li>
- <span class='latexinline'>
-<span style="font-style:italic">s</span><sub>1</sub>, <span style="font-style:italic">s</span><sub>2</sub> &#X2026; &#X2208; <span style="font-style:italic">S</span>&#X2212;<span style="font-style:italic">T</span></span>, <span class='latexinline'>
-<span style="font-style:italic">s</span><sub><span style="font-style:italic">n</span></sub> &#X2208; <span style="font-style:italic">S</span></span>. 
-</li>
-<li>
- <span class='latexinline'>
-<span style="font-style:italic">s</span><sub><span style="font-style:italic">i</span></sub> &#X2260; <span style="font-style:italic">s</span><sub>&lt; <span style="font-style:italic">i</span></sub></span>. That is, <span class='latexinline'>
-&#X2200; <span style="font-style:italic">j</span> &lt; <span style="font-style:italic">i</span>, <span style="font-style:italic">s</span><sub><span style="font-style:italic">i</span></sub> &#X2260; <span style="font-style:italic">s</span><sub><span style="font-style:italic">j</span></sub></span>.
-</li>
-
-</ul>
-
-Hence, we are choosing <span class='latexinline'>
-<span style="font-style:italic">s</span><sub><span style="font-style:italic">i</span></sub></span> without replacement; <span class='latexinline'>
-<span style="font-style:italic">s</span><sub><span style="font-style:italic">n</span></sub></span> is the first element
-that is in <span class='latexinline'>
-<span style="font-style:italic">T</span></span>.
-Our chains can be at most of length <span class='latexinline'>
-|<span style="font-style:italic">S</span>|</span>, since we are picking without
-replacement. So, the space of all chains is <span class='latexinline'>
-<span style="font-style:italic">S</span><sup>|</sup><span style="font-style:italic">S</span>|</span>, which I will denote
-<span class='latexinline'>
-<span style="font-style:italic">Ch</span> &#X2261; <span style="font-style:italic">S</span><sup>|</sup><span style="font-style:italic">S</span>|</span>.
-We now define <span class='latexinline'>
-<span style="font-style:italic">P</span><sub>2</sub>(<span style="font-style:italic">x</span>, <span style="font-style:italic">set</span>)</span> to be the probability that
-<span class='latexinline'>
-<span style="font-style:italic">x</span></span> is <i>first</i> of the chain to belong to <span class='latexinline'>
-<span style="font-style:italic">set</span></span>.
-<div class='latexblock'><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
-&#XA0;&#XA0;&#XA0;&#XA0;&#XA0;
-
-</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">P</span><sub>2</sub>(<span style="font-style:italic">x</span>,&#XA0;<span style="font-style:italic">set</span>):&#XA0;<span style="font-style:italic">S</span>&#XA0;&#XD7;&#XA0;{<span style="font-style:italic">S</span>,&#XA0;<span style="font-style:italic">T</span>}&#XA0;&#X2192;&#XA0;[0,&#XA0;1]&#XA0;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
-<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">P</span><sub>2</sub>(<span style="font-style:italic">x</span>,&#XA0;<span style="font-style:italic">set</span>)&#XA0;=&#XA0;|{&#XA0;<span style="font-style:italic">c</span>&#XA0;:&#XA0;<span style="font-style:italic">c</span>&#XA0;&#X2208;&#XA0;<span style="font-style:italic">Ch</span>,&#XA0;<span style="font-style:italic">x</span>&#XA0;&#X2208;&#XA0;<span style="font-style:italic">set</span>,&#XA0;<span style="font-style:italic">c</span>[<span style="font-style:italic">i</span>]&#XA0;=&#XA0;<span style="font-style:italic">x</span>,&#XA0;<span style="font-style:italic">c</span>[&lt;<span style="font-style:italic">i</span>]&#XA0;&#X2209;<span style="font-style:italic">set</span>&#XA0;}|&#XA0;/&#XA0;|<span style="font-style:italic">Ch</span>|
-</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
-</table></td></tr>
-</table>
+Process (2) in code is the following:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> <b><u><font color="#000000">def</font></u></b> process(S, T):
+<font color="#666666">3:</font>   <b><u><font color="#000000">assert</font></u></b>(issubset(T, S)) <i><font color="#808080"># precondition</font></i>
+<font color="#666666">4:</font>   s = np.random.choice(S) <i><font color="#808080"># uniform choice over S.</font></i>
+<font color="#666666">5:</font>   <b><u><font color="#000000">if</font></u></b> s <b><u><font color="#000000">in</font></u></b> T: <b><u><font color="#000000">return</font></u></b> s <i><font color="#808080"># |T|/|S| prob. to enter `if`.</font></i>
+<font color="#666666">6:</font>   <b><u><font color="#000000">else</font></u></b>:
+<font color="#666666">7:</font>     <i><font color="#808080"># (1 - |T|/|S|) to enter `else`</font></i>
+<font color="#666666">8:</font>     Snext = S.remove(s); <b><u><font color="#000000">return</font></u></b> process(Snext, T) 
+<font color="#666666">9:</font> </tt></pre>
 </div>
-Now, note that <span class='latexinline'>
-<span style="font-style:italic">P</span>(<span style="font-style:italic">s</span> | <span style="font-style:italic">set</span>=<span style="font-style:italic">T</span>)</span> is the distribution that is given by:
-<blockquote> Choosing elements from <span class='latexinline'>
-<span style="font-style:italic">S</span></span> without replacement until we get an element in <span class='latexinline'>
-<span style="font-style:italic">T</span></span>.</blockquote>
-Applying Bayes rule, we get:
-<div class='latexblock'><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
-&#XA0;&#XA0;&#XA0;&#XA0;&#XA0;
 
-</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">P</span>(<span style="font-style:italic">s</span>|<span style="font-style:italic">set</span>=<span style="font-style:italic">T</span>)&#XA0;=&#XA0;<span style="font-style:italic">P</span>(<span style="font-style:italic">set</span>=<span style="font-style:italic">T</span>|<span style="font-style:italic">s</span>)&#XA0;*&#XA0;<span style="font-style:italic">P</span>(<span style="font-style:italic">s</span>)&#XA0;/&#XA0;<span style="font-style:italic">P</span>(<span style="font-style:italic">set</span>=<span style="font-style:italic">T</span>)&#XA0;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
-<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >=&#XA0;1&#XA0;*&#XA0;(1/|<span style="font-style:italic">S</span>|)&#XA0;/&#XA0;(|<span style="font-style:italic">T</span>|/|<span style="font-style:italic">S</span>|)&#XA0;=&#XA0;1/|<span style="font-style:italic">T</span>|
-</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
-</table></td></tr>
-</table>
+We claim that the probability that <code>process(S, T) = t0</code> for a fixed <code>t0</code> in <code>T</code>
+is <span class='latexinline'>
+1/|<span style="font-style:italic">T</span>|</span>. We create a new function <code>indicator</code> to express this:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> <b><u><font color="#000000">def</font></u></b> indicator(t0, S, T):
+<font color="#666666">3:</font>   <b><u><font color="#000000">assert</font></u></b>(t0 <b><u><font color="#000000">in</font></u></b> T) <i><font color="#808080"># precondition</font></i>
+<font color="#666666">4:</font>   <b><u><font color="#000000">assert</font></u></b>(issubset(T, S)) <i><font color="#808080"># precondition</font></i>
+<font color="#666666">5:</font> 
+<font color="#666666">6:</font>   <b><u><font color="#000000">return</font></u></b> t0 == process(S, T)
+<font color="#666666">7:</font> </tt></pre>
 </div>
-<b>Confusion</b>: I am very confused in this section; both what the
-probability space is and how bayes rule works out.
+
+Let's push in <code>t0 ==</code> into the definiton of <code>process</code> after inling <code>process</code>.
+This gives us:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">01:</font> 
+<font color="#666666">02:</font> <b><u><font color="#000000">def</font></u></b> indicator(t0, S, T):
+<font color="#666666">03:</font>   <b><u><font color="#000000">assert</font></u></b>(t0 <b><u><font color="#000000">in</font></u></b> T) <i><font color="#808080"># precondition</font></i>
+<font color="#666666">04:</font>   <b><u><font color="#000000">assert</font></u></b>(issubset(T, S)) <i><font color="#808080"># precondition</font></i>
+<font color="#666666">05:</font> 
+<font color="#666666">06:</font>   s = np.random.choice(S)
+<font color="#666666">07:</font>   <b><u><font color="#000000">if</font></u></b> s <b><u><font color="#000000">in</font></u></b> T:
+<font color="#666666">08:</font>     <i><font color="#808080"># T/S prob. for x in T</font></i>
+<font color="#666666">09:</font>     <b><u><font color="#000000">return</font></u></b> t0 == s <i><font color="#808080"># 1/|T| prob. for t0 == x</font></i>
+<font color="#666666">10:</font>   <b><u><font color="#000000">else</font></u></b>:
+<font color="#666666">11:</font>     <i><font color="#808080">#  (1 - |T|/|S|) to reach else branch.</font></i>
+<font color="#666666">12:</font>     Snext = S.remove(s); <b><u><font color="#000000">return</font></u></b> process(Snext, T) 
+<font color="#666666">13:</font> 
+<font color="#666666">14:</font> </tt></pre>
+</div>
+
+Now, we write down the recurrence for the probability that we are trying
+to compute: <span class='latexinline'>
+<span style="font-style:italic">P</span>(<span style="font-style:italic">t</span>0, <span style="font-style:italic">S</span>, <span style="font-style:italic">T</span>)</span> is the probability that <code>indicator(t0, S, T)</code> returns
+<code>True</code>. Alternatively, it's the probability that <code>process(S, T)</code> returns <code>t0</code>.
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> P(t0, S, T) = prob. that process(S, T) = t0
+<font color="#666666">3:</font> P(t0, T, T) = T/|T| * 1/|T| = 1/|T| [base case]
+<font color="#666666">4:</font> P(t0, S, T) = 1/|S| + (1 - |T|/|S|) * P(t0, |S|-1, T) [induction]
+<font color="#666666">5:</font> </tt></pre>
+</div>
+
+We assume for induction that <code>P(t0, |S|-1, T) = 1/|T|</code>. On substitution into <code>[induction]</code>,
+we get:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> P(t0, S, T) 
+<font color="#666666">3:</font> = 1/|S| + (1 - |T|/|S|) * P(t0, |S|-1, T) [induction]
+<font color="#666666">4:</font> = 1/|S| + (1 - |T|/|S|) * 1/|T| 
+<font color="#666666">5:</font> = 1/|S| + (1/|T| - 1/|S|)s
+<font color="#666666">6:</font> = 1/|T|
+<font color="#666666">7:</font> </tt></pre>
+</div>
+
+Which is indeed the same probability as (1):
+<blockquote> 1. Choosing an element uniformly from a subset <span class='latexinline'>
+<span style="font-style:italic">T</span></span> = <code>1/|T|</code>.</blockquote>
 <h4><a id=sampling-using-the-above-definition href='#sampling-using-the-above-definition'> § </a> Sampling using the above definition</h4>
 Recall that <span class='latexinline'>
 <span style="font-style:italic">State</span>(<span style="font-style:italic">X</span>) &#X2261; <span style="font-style:italic">V</span> &#X2192; <span style="font-style:italic">C</span></span>, <span class='latexinline'>
@@ -871,7 +921,8 @@ By induction we assume that <span class='latexinline'>
 <span style="font-style:italic">x</span>[<span style="font-style:italic">n</span>]</span>'s proposal is symmetric. 
 (3) <span class='latexinline'>
 <span style="font-style:italic">w</span>[<span style="font-style:italic">n</span>]</span>'s proposal is symmetric.
-<h6><a id=blocked-set href='#blocked-set'> § </a> Blocked set</h6>
+<h6><a id=bblocked-set- href='#bblocked-set-'> § </a> Blocked set <span class='latexinline'>
+<span style="font-style:italic">B</span></span></h6>
 Define the set <span class='latexinline'>
 <span style="font-style:italic">B</span> &#X2286; <span style="font-style:italic">C</span></span> (for blocked) which governs which values <span class='latexinline'>
 <span style="font-style:italic">x</span>[<span style="font-style:italic">n</span>]</span> surely cannot
@@ -881,7 +932,8 @@ take from our view of <span class='latexinline'>
 <table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">B</span>&#XA0;&#X2261;&#XA0;{&#XA0;<span style="font-style:italic">c</span>&#XA0;&#X2208;&#XA0;<span style="font-style:italic">C</span>&#XA0;:&#XA0;(<span style="font-style:italic">v</span>,&#XA0;&#X3B1;)&#XA0;&#X2208;&#XA0;<span style="font-style:italic">E</span>,&#XA0;<span style="font-style:italic">w</span>[<span style="font-style:italic">n</span>&#X2212;1](&#X3B1;)&#XA0;=&#XA0;{<span style="font-style:italic">c</span>}&#XA0;}</td></tr>
 </table></div>
        
-<h5><a id=occluded-set href='#occluded-set'> § </a> Occluded set</h5>
+<h5><a id=ooccluded-set- href='#ooccluded-set-'> § </a> Occluded set <span class='latexinline'>
+<span style="font-style:italic">O</span></span></h5>
 Define <span class='latexinline'>
 <span style="font-style:italic">O</span> &#X2286; <span style="font-style:italic">C</span></span> (for occluded) be the set colors that might possibly
 be blocked for <span class='latexinline'>
@@ -889,7 +941,8 @@ be blocked for <span class='latexinline'>
 <span style="font-style:italic">O</span> &#X2261; { <span style="font-style:italic">c</span> &#X2208; <span style="font-style:italic">C</span> : (<span style="font-style:italic">v</span>, &#X3B1;) &#X2208; <span style="font-style:italic">E</span>, <span style="font-style:italic">c</span> &#X2208; <span style="font-style:italic">w</span>[<span style="font-style:italic">n</span>&#X2212;1](&#X3B1;) }</span>.
 Note that <span class='latexinline'>
 <span style="font-style:italic">B</span> &#X2286; <span style="font-style:italic">O</span></span>.
-<h5><a id=allowed-set href='#allowed-set'> § </a> Allowed set</h5>
+<h5><a id=aallowed-set- href='#aallowed-set-'> § </a> Allowed set <span class='latexinline'>
+<span style="font-style:italic">A</span></span></h5>
 Define <span class='latexinline'>
 <span style="font-style:italic">A</span> &#X2282; <span style="font-style:italic">C</span></span> (for allowed) to be <span class='latexinline'>
 <span style="font-style:italic">C</span> &#X2212; <span style="font-style:italic">O</span></span>. Note that any color in <span class='latexinline'>
@@ -937,10 +990,13 @@ By the above lemma, we know that this is the same as picking uniformly at
 random from <span class='latexinline'>
 <span style="font-style:italic">A</span></span>. <b>Confusion:</b> Do we not want to uniformly pick from
 colors that are allowed in <span class='latexinline'>
-<span style="font-style:italic">X</span></span>, not from colors that are allowed in <span class='latexinline'>
-<span style="font-style:italic">W</span></span>? I don't
-see why this is sampling <span class='latexinline'>
-<span style="font-style:italic">X</span></span> from the right distribution.
+<span style="font-style:italic">X</span></span>, not from colors from <span class='latexinline'>
+<span style="font-style:italic">A</span></span>? ie, isn't <span class='latexinline'>
+<span style="font-style:italic">A</span></span> an
+under-approximation of the actual colors-that-are-allowed in <span class='latexinline'>
+<span style="font-style:italic">X</span></span>? I don't
+see why this is sampling the next state of <span class='latexinline'>
+<span style="font-style:italic">v</span></span> correctly. 
 <h5><a id=termination href='#termination'> § </a> Termination</h5>
 We terminate when <span class='latexinline'>
 <span style="font-style:italic">W</span></span> has "trapped" <span class='latexinline'>
@@ -1032,7 +1088,9 @@ My quest to get better at writing</a>
 <h4><a id=active-vs-passive-vocabulary href='#active-vs-passive-vocabulary'> § </a> Active v/s passive vocabulary</h4>
 <h4><a id=english-grammar href='#english-grammar'> § </a> English grammar</h4>
 <h4><a id=books-about-charming-sentences-and-how-to-construct-them href='#books-about-charming-sentences-and-how-to-construct-them'> § </a> Books about charming sentences and how to construct them</h4>
-<h1><a id=word-problems-in-russia-and-america- href='#word-problems-in-russia-and-america-'> § </a> Word problems in Russia and America: </h1>
+<h1><a id=word-problems-in-russia-and-america href='#word-problems-in-russia-and-america'> § </a> <a href=#word-problems-in-russia-and-america>
+Word problems in Russia and America</a>
+</h1>
 <ul>
 <li>
  <a href=http://toomandre.com/travel/sweden05/WP-SWEDEN-NEW.pdf>
@@ -1046,7 +1104,7 @@ scathing critique of how ameriacn math education is screwed:
  also, interesting
 anecdote about how looking for 'reality' in mathematical problems may in fact
 break student's ability to think in the abstract! This is a deep insight.
-<h1><a id=encoding-mathematical-hieararchies href='#encoding-mathematical-hieararchies'> § </a> <a href=#encoding-mathematical-hieararhices>
+<h1><a id=encoding-mathematical-hieararchies href='#encoding-mathematical-hieararchies'> § </a> <a href=#encoding-mathematical-hieararchies>
 Encoding mathematical hieararchies</a>
 </h1>
 I've wanted to learn how the SageMATH system is organized when it comes to math
