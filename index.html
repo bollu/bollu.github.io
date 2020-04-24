@@ -1,4 +1,4 @@
-<!DOCTYPE html><meta charset='UTF-8'><html><head><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('static/iosevka-fixed-extendedmedium.ttf');}@font-face {font-family: 'Blog Text'; src: url('static/iosevka-etoile-regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: rgb(20, 0, 0, 0.8);  font-family: 'Blog Text', serif; font-size: 21px; line-height: 1.5em;  max-width: 100%; }
+<!DOCTYPE html><meta charset='UTF-8'><html><head><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('static/iosevka-fixed-extendedmedium.ttf');}@font-face {font-family: 'Blog Text'; src: url('static/iosevka-etoile-regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: rgb(20, 0, 0, 0.8);  font-family: 'Blog Text', monospace; font-size: 21px; line-height: 1.5em;  max-width: 100%; }
 img { display:block; }.container { margin-left: 20%; margin-right: 20%; }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
@@ -10,6 +10,7 @@ pre, .latexblock, blockquote { border-left-color:#DDDDDD;  border-left-style: so
 .latexinline { border-bottom-color: #DDDDDD; border-bottom-style: solid;                border-bottom-width: 1px; padding-bottom: 2px;                padding-left: 2px; padding-right: 2px; }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.latexblock .li-itemize{margin:1ex 0ex;}.latexblock .li-enumerate{margin:1ex 0ex;}.latexblock .footnotetext{margin:0ex; padding:0ex;}.latexblock div.footnotetext P{margin:0px; text-indent:1em;}.latexblock .thefootnotes{text-align:left;margin:0ex;}.latexblock .dt-thefootnotes{margin:0em;}.latexblock .dd-thefootnotes{margin:0em 0em 0em 2em;}.latexblock .footnoterule{margin:1em auto 1em 0px;width:50%;}.latexblock .caption{padding-left:2ex; padding-right:2ex; margin-left:auto; margin-right:auto}.latexblock .title{margin:2ex auto;text-align:center}.latexblock .titlemain{margin:1ex 2ex 2ex 1ex;}.latexblock .center{text-align:center;margin-left:auto;margin-right:auto;}.latexblock .flushleft{text-align:left;margin-left:0ex;margin-right:auto;}.latexblock .flushright{text-align:right;margin-left:auto;margin-right:0ex;}.latexblock div table{margin-left:inherit;margin-right:inherit;margin-bottom:2px;margin-top:2px}.latexblock td table{margin:auto;}.latexblock table{border-collapse:collapse;}.latexblock td{padding:0;}.latexblock .cellpadding0 tr td{padding:0;}.latexblock .cellpadding1 tr td{padding:1px;}.latexblock pre{text-align:left;margin-left:0ex;margin-right:auto;}.latexblock blockquote{margin-left:4ex;margin-right:4ex;text-align:left;}.latexblock td p{margin:0px;}.latexblock .hbar{border:none;height:2px;width:100%;background-color:black;}.latexblock .display{border-collapse:separate;border-spacing:2px;width:auto; border:none;}.latexblock .dcell{white-space:nowrap;padding:0px; border:none;}.latexblock .dcenter{margin:0ex auto;}.latexblock .theorem{text-align:left;margin:1ex auto 1ex 0ex;}.latexblock .tst{font-family:sans;font-style:oblique;color:maroon}.latexblock .highlight{color:lime}</style></head><body><div class='container'>
 
 <h2><a id=a-universe-of-sorts href='#a-universe-of-sorts'> § </a> A Universe of Sorts</h2>
+<h5><a id=siddharth-bhat href='#siddharth-bhat'> § </a> Siddharth Bhat</h5>
 <ul>
 <li>
  <a href=http://github.com/bollu>
@@ -40,13 +41,43 @@ My reading list</a>
 <h4><a id=table-of-contents href='#table-of-contents'> § </a> Table of contents:</h4>
 <ul>
 <li>
+ <a href=#bounding-chains-uniformly-sample-colorings>
+Bounding chains: uniformly sample colorings</a>
+
+</li>
+<li>
+ <a href=#coupling-from-the-past>
+Coupling from the past (WIP)</a>
+
+</li>
+<li>
+ <a href=#my-quest-to-get-better-at-writing>
+My quest to get better at writing</a>
+
+</li>
+<li>
+ <a href=#word-problems-in-russia-and-america>
+Word problems in Russia and America</a>
+
+</li>
+<li>
+ <a href=#encoding-mathematical-hieararhices>
+Encoding mathematical hieararchies</a>
+
+</li>
+<li>
+ <a href=#big-list-of-english-syntax>
+Big list of English syntax (WIP)</a>
+
+</li>
+<li>
  <a href=#learning-code-by-hearing-it>
 Learning code by hearing it</a>
 
 </li>
 <li>
  <a href=#my-long-list-of-emacs-gripes>
-My long list of emacs gripes</a>
+My long list of emacs gripes (WIP)</a>
 
 </li>
 <li>
@@ -607,6 +638,522 @@ Link Dump</a>
 
 </ul>
 
+<h1><a id=bounding-chains-uniformly-sample-colorings href='#bounding-chains-uniformly-sample-colorings'> § </a> <a href=bounding-chains-uniformly-sample-colorings>
+Bounding chains: uniformly sample colorings</a>
+</h1>
+We wish to <i>uniformly sample</i> <code>k</code> colorings of a graph <span class='latexinline'>
+<span style="font-style:italic">G</span></span> with maximum degree
+<span class='latexinline'>
+&#X394;</span>. Hence, we require <span class='latexinline'>
+<span style="font-style:italic">k</span> &#X2265; &#X394; + 1</span>. To perform this sampling,
+we use MCMC to sample from a markov chain whose states are <span class='latexinline'>
+<span style="font-style:italic">k</span></span>-colorings of <span class='latexinline'>
+<span style="font-style:italic">G</span></span>,
+whose stationary distribution is the uniform distribution over valid colorings.
+The issue with MCMC techniques is that we never know when our chain has reached
+the stationary state. To ensure we receive uniformly distributed samples,
+we built a "bounding chain" <span class='latexinline'>
+<span style="font-style:italic">W</span></span> which has the following properties:
+<ul>
+<li>
+ States of <span class='latexinline'>
+<span style="font-style:italic">W</span></span> cover states of <span class='latexinline'>
+<span style="font-style:italic">X</span></span> [ie, state space of <span class='latexinline'>
+<span style="font-style:italic">W</span></span> are subsets of the state space of <span class='latexinline'>
+<span style="font-style:italic">X</span></span>].
+</li>
+<li>
+ <span class='latexinline'>
+<span style="font-style:italic">W</span></span>'s convergence to a stationary state can be checked.
+</li>
+<li>
+ Upon convergence of <span class='latexinline'>
+<span style="font-style:italic">W</span></span>, state of <span class='latexinline'>
+<span style="font-style:italic">W</span></span> = state of <span class='latexinline'>
+<span style="font-style:italic">X</span></span>.
+</li>
+
+</ul>
+
+We will in fact run the <span class='latexinline'>
+<span style="font-style:italic">W</span></span> chain, and prove that running the <span class='latexinline'>
+<span style="font-style:italic">W</span></span> chain
+is equivalent to running a 'shadow' of the <span class='latexinline'>
+<span style="font-style:italic">X</span></span> chain, and that stationary
+states of the <span class='latexinline'>
+<span style="font-style:italic">W</span></span> chain correspond to stationary sates of the <span class='latexinline'>
+<span style="font-style:italic">X</span></span> chain.
+Let <span class='latexinline'>
+<span style="font-style:italic">X</span></span> be the chain whose states are valid <span class='latexinline'>
+<span style="font-style:italic">k</span></span> colorings of <span class='latexinline'>
+<span style="font-style:italic">G</span></span>. In one step
+of the chain <span class='latexinline'>
+<span style="font-style:italic">X</span></span>, we choose a vertex <span class='latexinline'>
+<span style="font-style:italic">v</span></span> uniformly at random; we then choose a
+color <span class='latexinline'>
+<span style="font-style:italic">c</span>&#X2032;<sub><span style="font-style:italic">v</span></sub></span> uniformly at random for <span class='latexinline'>
+<span style="font-style:italic">v</span></span> that makes it a proper coloring. The vertex
+<span class='latexinline'>
+<span style="font-style:italic">v</span></span> is changed to this new color <span class='latexinline'>
+<span style="font-style:italic">c</span>&#X2032;</span>. This is a symmetric proposal distribution,
+Hence this chain has the uniform distribution over <span class='latexinline'>
+<span style="font-style:italic">k</span></span>-colorings to be
+the stationary state.
+Sampling exactly from this chain is hard: construct an initial state <span class='latexinline'>
+<span style="font-style:italic">X</span><sub>0</sub></span>
+amounts to finding some valid <span class='latexinline'>
+<span style="font-style:italic">k</span></span> coloring which in itself might be
+challenging. Worse, we do not know whether the chain <span class='latexinline'>
+<span style="font-style:italic">X</span></span> has reached a
+stationary state or not.
+<h5><a id=bounding-chain href='#bounding-chain'> § </a> Bounding Chain</h5>
+We construct a new chain <span class='latexinline'>
+<span style="font-style:italic">W</span></span> (the bounding chain of <span class='latexinline'>
+<span style="font-style:italic">X</span></span>), whose states are <i>sets of colors</i> for
+vertices in <span class='latexinline'>
+<span style="font-style:italic">G</span></span>. Formally, the states of <span class='latexinline'>
+<span style="font-style:italic">W</span></span> are functions <span class='latexinline'>
+<span style="font-style:italic">Vert</span>(<span style="font-style:italic">G</span>) &#X2192; 2<sup><span style="font-style:italic">C</span></sup></span> where
+<span class='latexinline'>
+<span style="font-style:italic">Vert</span>(<span style="font-style:italic">G</span>)</span> denotes the vertices of <span class='latexinline'>
+<span style="font-style:italic">G</span></span>; <span class='latexinline'>
+<span style="font-style:italic">C</span></span> the set of colors. The transition
+will be to pick a vertex <span class='latexinline'>
+<span style="font-style:italic">v</span></span> uniformly at random. Then, pick a new set of
+legal colors <span class='latexinline'>
+<span style="font-style:italic">C</span>&#X2032;<sub><span style="font-style:italic">v</span></sub></span> for <span class='latexinline'>
+<span style="font-style:italic">v</span></span>, such that:
+<ul>
+<li>
+ It is guaranteed that if <span class='latexinline'>
+<span style="font-style:italic">X</span></span> were transitioning on <span class='latexinline'>
+<span style="font-style:italic">v</span></span>, the
+  color <span class='latexinline'>
+<span style="font-style:italic">c</span>&#X2032;<sub><span style="font-style:italic">v</span></sub></span> that would be picked by <span class='latexinline'>
+<span style="font-style:italic">X</span></span> for <span class='latexinline'>
+<span style="font-style:italic">v</span></span> is a member of <span class='latexinline'>
+<span style="font-style:italic">C</span>&#X2032;<sub><span style="font-style:italic">v</span></sub></span>. [state is covered]
+</li>
+<li>
+ The size of the set <span class='latexinline'>
+<span style="font-style:italic">C</span>&#X2032;<sub><span style="font-style:italic">v</span></sub></span> attempts to be smaller than the current set of colorings <span class='latexinline'>
+<span style="font-style:italic">C</span><sub><span style="font-style:italic">v</span></sub></span>. [convergence]
+</li>
+
+</ul>
+
+We describe the transition function next. But first, we need an alternate
+lens on the transitions of <span class='latexinline'>
+<span style="font-style:italic">X</span></span> that is amenable to massaging. 
+<h4><a id=equivalent-description-of-the-transitions-of- href='#equivalent-description-of-the-transitions-of-'> § </a> Equivalent description of the transitions of <span class='latexinline'>
+<span style="font-style:italic">X</span></span>:</h4>
+<ol>
+<li>
+ Choosing an color uniformly at random from the set of valid colors
+   for a vertex.
+</li>
+<li>
+ Choosing colors from <span class='latexinline'>
+<span style="font-style:italic">C</span></span> without replacement until we get a color 
+   that is a valid color. 
+</li>
+
+</ol>
+
+We claim that (1) and (2) have the same probability distribution.
+Abstracting slightly, we state:
+<ol>
+<li>
+ Choosing an element uniformly from a subset <span class='latexinline'>
+<span style="font-style:italic">T</span></span> of a space <span class='latexinline'>
+<span style="font-style:italic">S</span></span>.
+</li>
+<li>
+  Choosing elements from <span class='latexinline'>
+<span style="font-style:italic">S</span></span> without replacement until we get an element in <span class='latexinline'>
+<span style="font-style:italic">T</span></span>.
+</li>
+
+</ol>
+
+(1) and (2) have the same probability distribution.
+<h5><a id=proof href='#proof'> § </a> Proof:</h5>
+the probability <span class='latexinline'>
+<span style="font-style:italic">P</span><sub>1</sub>: <span style="font-style:italic">S</span> &#X2192; [0, 1]</span> of choosing an element uniformly from <span class='latexinline'>
+<span style="font-style:italic">T</span></span>  is:
+<div class='latexblock'>
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">P</span><sub>1</sub>(<span style="font-style:italic">s</span>)&#XA0;&#X2261;
+</td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell">&#X23A7;<br>
+&#X23A8;<br>
+&#X23A9;</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >1/|<span style="font-style:italic">T</span>|</td><td style="text-align:left;white-space:nowrap" >s &#X2208;T&#XA0;</td></tr>
+<tr><td style="text-align:left;white-space:nowrap" >0</td><td style="text-align:left;white-space:nowrap" >s &#X2209;T&#XA0;</td></tr>
+</table></td></tr>
+</table></td></tr>
+</table></div>
+Let us pick elements <span class='latexinline'>
+<span style="font-style:italic">s</span><sub>1</sub>, <span style="font-style:italic">s</span><sub>2</sub>, &#X2026; <span style="font-style:italic">s</span><sub><span style="font-style:italic">n</span></sub></span> from <span class='latexinline'>
+<span style="font-style:italic">S</span></span> such that:
+<ul>
+<li>
+ <span class='latexinline'>
+<span style="font-style:italic">s</span><sub>1</sub>, <span style="font-style:italic">s</span><sub>2</sub> &#X2026; &#X2208; <span style="font-style:italic">S</span>&#X2212;<span style="font-style:italic">T</span></span>, <span class='latexinline'>
+<span style="font-style:italic">s</span><sub><span style="font-style:italic">n</span></sub> &#X2208; <span style="font-style:italic">S</span></span>. 
+</li>
+<li>
+ <span class='latexinline'>
+<span style="font-style:italic">s</span><sub><span style="font-style:italic">i</span></sub> &#X2260; <span style="font-style:italic">s</span><sub>&lt; <span style="font-style:italic">i</span></sub></span>. That is, <span class='latexinline'>
+&#X2200; <span style="font-style:italic">j</span> &lt; <span style="font-style:italic">i</span>, <span style="font-style:italic">s</span><sub><span style="font-style:italic">i</span></sub> &#X2260; <span style="font-style:italic">s</span><sub><span style="font-style:italic">j</span></sub></span>.
+</li>
+
+</ul>
+
+Hence, we are choosing <span class='latexinline'>
+<span style="font-style:italic">s</span><sub><span style="font-style:italic">i</span></sub></span> without replacement; <span class='latexinline'>
+<span style="font-style:italic">s</span><sub><span style="font-style:italic">n</span></sub></span> is the first element
+that is in <span class='latexinline'>
+<span style="font-style:italic">T</span></span>.
+Our chains can be at most of length <span class='latexinline'>
+|<span style="font-style:italic">S</span>|</span>, since we are picking without
+replacement. So, the space of all chains is <span class='latexinline'>
+<span style="font-style:italic">S</span><sup>|</sup><span style="font-style:italic">S</span>|</span>, which I will denote
+<span class='latexinline'>
+<span style="font-style:italic">Ch</span> &#X2261; <span style="font-style:italic">S</span><sup>|</sup><span style="font-style:italic">S</span>|</span>.
+We now define <span class='latexinline'>
+<span style="font-style:italic">P</span><sub>2</sub>(<span style="font-style:italic">x</span>, <span style="font-style:italic">set</span>)</span> to be the probability that
+<span class='latexinline'>
+<span style="font-style:italic">x</span></span> is <i>first</i> of the chain to belong to <span class='latexinline'>
+<span style="font-style:italic">set</span></span>.
+<div class='latexblock'><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+&#XA0;&#XA0;&#XA0;&#XA0;&#XA0;
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">P</span><sub>2</sub>(<span style="font-style:italic">x</span>,&#XA0;<span style="font-style:italic">set</span>):&#XA0;<span style="font-style:italic">S</span>&#XA0;&#XD7;&#XA0;{<span style="font-style:italic">S</span>,&#XA0;<span style="font-style:italic">T</span>}&#XA0;&#X2192;&#XA0;[0,&#XA0;1]&#XA0;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">P</span><sub>2</sub>(<span style="font-style:italic">x</span>,&#XA0;<span style="font-style:italic">set</span>)&#XA0;=&#XA0;|{&#XA0;<span style="font-style:italic">c</span>&#XA0;:&#XA0;<span style="font-style:italic">c</span>&#XA0;&#X2208;&#XA0;<span style="font-style:italic">Ch</span>,&#XA0;<span style="font-style:italic">x</span>&#XA0;&#X2208;&#XA0;<span style="font-style:italic">set</span>,&#XA0;<span style="font-style:italic">c</span>[<span style="font-style:italic">i</span>]&#XA0;=&#XA0;<span style="font-style:italic">x</span>,&#XA0;<span style="font-style:italic">c</span>[&lt;<span style="font-style:italic">i</span>]&#XA0;&#X2209;<span style="font-style:italic">set</span>&#XA0;}|&#XA0;/&#XA0;|<span style="font-style:italic">Ch</span>|
+</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+</div>
+Now, note that <span class='latexinline'>
+<span style="font-style:italic">P</span>(<span style="font-style:italic">s</span> | <span style="font-style:italic">set</span>=<span style="font-style:italic">T</span>)</span> is the distribution that is given by:
+<blockquote> Choosing elements from <span class='latexinline'>
+<span style="font-style:italic">S</span></span> without replacement until we get an element in <span class='latexinline'>
+<span style="font-style:italic">T</span></span>.</blockquote>
+Applying Bayes rule, we get:
+<div class='latexblock'><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+&#XA0;&#XA0;&#XA0;&#XA0;&#XA0;
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">P</span>(<span style="font-style:italic">s</span>|<span style="font-style:italic">set</span>=<span style="font-style:italic">T</span>)&#XA0;=&#XA0;<span style="font-style:italic">P</span>(<span style="font-style:italic">set</span>=<span style="font-style:italic">T</span>|<span style="font-style:italic">s</span>)&#XA0;*&#XA0;<span style="font-style:italic">P</span>(<span style="font-style:italic">s</span>)&#XA0;/&#XA0;<span style="font-style:italic">P</span>(<span style="font-style:italic">set</span>=<span style="font-style:italic">T</span>)&#XA0;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >=&#XA0;1&#XA0;*&#XA0;(1/|<span style="font-style:italic">S</span>|)&#XA0;/&#XA0;(|<span style="font-style:italic">T</span>|/|<span style="font-style:italic">S</span>|)&#XA0;=&#XA0;1/|<span style="font-style:italic">T</span>|
+</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+</div>
+<b>Confusion</b>: I am very confused in this section; both what the
+probability space is and how bayes rule works out.
+<h4><a id=sampling-using-the-above-definition href='#sampling-using-the-above-definition'> § </a> Sampling using the above definition</h4>
+Recall that <span class='latexinline'>
+<span style="font-style:italic">State</span>(<span style="font-style:italic">X</span>) &#X2261; <span style="font-style:italic">V</span> &#X2192; <span style="font-style:italic">C</span></span>, <span class='latexinline'>
+<span style="font-style:italic">State</span>(<span style="font-style:italic">W</span>) &#X2261; <span style="font-style:italic">V</span> &#X2192; 2<sup><span style="font-style:italic">C</span></sup></span>.
+Let <span class='latexinline'>
+<span style="font-style:italic">x</span>[&#XA0;], <span style="font-style:italic">w</span>[&#XA0;]</span> be the states of some run in the markov chains.
+We start by having <span class='latexinline'>
+<span style="font-style:italic">x</span>[0]</span> to be <i>any</i> valid k-coloring of <span class='latexinline'>
+<span style="font-style:italic">G</span></span>, and <span class='latexinline'>
+<span style="font-style:italic">w</span>[0]</span> to
+be the state where all vertices have all possible colors; <span class='latexinline'>
+<span style="font-style:italic">w</span>[0] &#X2261; _ &#X21A6; <span style="font-style:italic">C</span></span>.
+Clearly, <span class='latexinline'>
+<span style="font-style:italic">x</span>[0] &#X2208; <span style="font-style:italic">w</span>[0]</span>.
+By induction we assume that <span class='latexinline'>
+<span style="font-style:italic">x</span>[<span style="font-style:italic">n</span>&#X2212;1] &#X2208; <span style="font-style:italic">w</span>[<span style="font-style:italic">n</span>&#X2212;1]</span>. We must now calculate a
+<span class='latexinline'>
+<span style="font-style:italic">w</span>[<span style="font-style:italic">n</span>], <span style="font-style:italic">x</span>[<span style="font-style:italic">n</span>]</span> such that (1) <span class='latexinline'>
+<span style="font-style:italic">x</span>[<span style="font-style:italic">n</span>] &#X2208; <span style="font-style:italic">w</span>[<span style="font-style:italic">n</span>]</span>, (2) <span class='latexinline'>
+<span style="font-style:italic">x</span>[<span style="font-style:italic">n</span>]</span>'s proposal is symmetric. 
+(3) <span class='latexinline'>
+<span style="font-style:italic">w</span>[<span style="font-style:italic">n</span>]</span>'s proposal is symmetric.
+<h6><a id=blocked-set href='#blocked-set'> § </a> Blocked set</h6>
+Define the set <span class='latexinline'>
+<span style="font-style:italic">B</span> &#X2286; <span style="font-style:italic">C</span></span> (for blocked) which governs which values <span class='latexinline'>
+<span style="font-style:italic">x</span>[<span style="font-style:italic">n</span>]</span> surely cannot
+take from our view of <span class='latexinline'>
+<span style="font-style:italic">w</span>[<span style="font-style:italic">n</span>&#X2212;1]</span>. 
+<div class='latexblock'>
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">B</span>&#XA0;&#X2261;&#XA0;{&#XA0;<span style="font-style:italic">c</span>&#XA0;&#X2208;&#XA0;<span style="font-style:italic">C</span>&#XA0;:&#XA0;(<span style="font-style:italic">v</span>,&#XA0;&#X3B1;)&#XA0;&#X2208;&#XA0;<span style="font-style:italic">E</span>,&#XA0;<span style="font-style:italic">w</span>[<span style="font-style:italic">n</span>&#X2212;1](&#X3B1;)&#XA0;=&#XA0;{<span style="font-style:italic">c</span>}&#XA0;}</td></tr>
+</table></div>
+       
+<h5><a id=occluded-set href='#occluded-set'> § </a> Occluded set</h5>
+Define <span class='latexinline'>
+<span style="font-style:italic">O</span> &#X2286; <span style="font-style:italic">C</span></span> (for occluded) be the set colors that might possibly
+be blocked for <span class='latexinline'>
+<span style="font-style:italic">v</span></span>. <span class='latexinline'>
+<span style="font-style:italic">O</span> &#X2261; { <span style="font-style:italic">c</span> &#X2208; <span style="font-style:italic">C</span> : (<span style="font-style:italic">v</span>, &#X3B1;) &#X2208; <span style="font-style:italic">E</span>, <span style="font-style:italic">c</span> &#X2208; <span style="font-style:italic">w</span>[<span style="font-style:italic">n</span>&#X2212;1](&#X3B1;) }</span>.
+Note that <span class='latexinline'>
+<span style="font-style:italic">B</span> &#X2286; <span style="font-style:italic">O</span></span>.
+<h5><a id=allowed-set href='#allowed-set'> § </a> Allowed set</h5>
+Define <span class='latexinline'>
+<span style="font-style:italic">A</span> &#X2282; <span style="font-style:italic">C</span></span> (for allowed) to be <span class='latexinline'>
+<span style="font-style:italic">C</span> &#X2212; <span style="font-style:italic">O</span></span>. Note that any color in <span class='latexinline'>
+<span style="font-style:italic">A</span></span>
+is surely a valid color for <span class='latexinline'>
+<span style="font-style:italic">v</span></span> in <span class='latexinline'>
+<span style="font-style:italic">X</span></span>; But not all colors that are valid
+colors for <span class='latexinline'>
+<span style="font-style:italic">v</span></span> in <span class='latexinline'>
+<span style="font-style:italic">X</span></span> belong to <span class='latexinline'>
+<span style="font-style:italic">A</span></span>; <span class='latexinline'>
+<span style="font-style:italic">A</span></span> is an under-approxmation of the
+true set of allowed colors, as <span class='latexinline'>
+<span style="font-style:italic">A</span></span> is the complemenet of <span class='latexinline'>
+<span style="font-style:italic">O</span></span>, which is an
+over-approximation of the true set of obstructing colors.
+<h5><a id=ordering-on-the-allowed-set href='#ordering-on-the-allowed-set'> § </a> Ordering on the allowed set</h5>
+Now, impose an ordering uniformly at random on <span class='latexinline'>
+<span style="font-style:italic">A</span></span>, and call
+this sequence as <span class='latexinline'>
+<span style="font-style:italic">S</span> : [1..|<span style="font-style:italic">A</span>|] &#X2192; <span style="font-style:italic">A</span></span>;
+Aet <span class='latexinline'>
+<span style="font-style:italic">i</span></span> be  the <i>first</i> index of <span class='latexinline'>
+<span style="font-style:italic">S</span></span> such that <span class='latexinline'>
+<span style="font-style:italic">S</span>[<span style="font-style:italic">i</span>]</span> is a member of <span class='latexinline'>
+<span style="font-style:italic">A</span></span>.
+Formally, <span class='latexinline'>
+<span style="font-style:italic">S</span>[<span style="font-style:italic">i</span>] &#X2208; <span style="font-style:italic">A</span></span> and <span class='latexinline'>
+<span style="font-style:italic">S</span>[&lt; <span style="font-style:italic">i</span>] &#X2209;<span style="font-style:italic">A</span></span>.
+We note that <span class='latexinline'>
+<span style="font-style:italic">A</span></span> will always be non-empty, because we are guaranteed that 
+the <span class='latexinline'>
+<span style="font-style:italic">k</span></span> (the number of colors) is greater than <span class='latexinline'>
+&#X394;</span> (the maximum degree
+of the graph). Hence, we will <i>always have</i> that <span class='latexinline'>
+<span style="font-style:italic">S</span>[&#X394;+1] &#X2208; <span style="font-style:italic">A</span></span>. 
+This guarantees the existence of a <i>first index</i> <span class='latexinline'>
+<span style="font-style:italic">i</span></span> to pick from <span class='latexinline'>
+<span style="font-style:italic">S</span></span>.
+<h5><a id=transition href='#transition'> § </a> Transition</h5>
+We now assign <span class='latexinline'>
+<span style="font-style:italic">x</span>[<span style="font-style:italic">n</span>](<span style="font-style:italic">v</span>) = <span style="font-style:italic">S</span>[<span style="font-style:italic">i</span>]</span>, and <span class='latexinline'>
+<span style="font-style:italic">w</span>[<span style="font-style:italic">n</span>](<span style="font-style:italic">v</span>) = <span style="font-style:italic">A</span></span>.
+By the above lemma, we know that this is the same as picking uniformly at
+random from <span class='latexinline'>
+<span style="font-style:italic">A</span></span>. <b>Confusion:</b> Do we not want to uniformly pick from
+colors that are allowed in <span class='latexinline'>
+<span style="font-style:italic">X</span></span>, not from colors that are allowed in <span class='latexinline'>
+<span style="font-style:italic">W</span></span>? I don't
+see why this is sampling <span class='latexinline'>
+<span style="font-style:italic">X</span></span> from the right distribution.
+<h5><a id=termination href='#termination'> § </a> Termination</h5>
+We terminate when <span class='latexinline'>
+<span style="font-style:italic">W</span></span> has "trapped" <span class='latexinline'>
+<span style="font-style:italic">X</span></span>. That is, <span class='latexinline'>
+|<span style="font-style:italic">w</span>[<span style="font-style:italic">n</span>](<span style="font-style:italic">v</span>)| = 1</span> forall <span class='latexinline'>
+<span style="font-style:italic">v</span> &#X2208; <span style="font-style:italic">V</span></span>.
+In such a case, the states of <span class='latexinline'>
+<span style="font-style:italic">W</span></span> is equal to states of <span class='latexinline'>
+<span style="font-style:italic">X</span></span>. This is
+a coalescence (as it occurs in coupling from the past). From the coupling
+from the past theory, we know that we have reached a stationary state of <span class='latexinline'>
+<span style="font-style:italic">A</span></span>
+when this happens.
+<h4><a id=example-1 href='#example-1'> § </a> Example 1</h4>
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> W[1]: a{1, 2} -- b{3, 4} -- c{5, 2}
+<font color="#666666">3:</font> X[1]: a:1 -- b:3 -- c:5
+<font color="#666666">4:</font> </tt></pre>
+</div>
+
+<ul>
+<li>
+ <span class='latexinline'>
+<span style="font-style:italic">B</span>(<span style="font-style:italic">b</span>) &#X2261; &#X2205;</span>
+</li>
+<li>
+ <span class='latexinline'>
+<span style="font-style:italic">O</span>(<span style="font-style:italic">b</span>) &#X2261; { 1, 2, 5 }</span>
+</li>
+<li>
+ <span class='latexinline'>
+<span style="font-style:italic">A</span>(<span style="font-style:italic">b</span>) &#X2261; { 3, 4 }</span>
+</li>
+<li>
+ <span class='latexinline'>
+<span style="font-style:italic">S</span> = [3, 4]</span>.
+</li>
+
+</ul>
+
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> W[1]: a{1, 2} -- b{2, 3} -- c{5, 2}                                                 
+<font color="#666666">3:</font> X[2]: a:1 -- b:2 -- c:5
+<font color="#666666">4:</font> </tt></pre>
+</div>
+
+<h5><a id=references href='#references'> § </a> References</h5>
+<ul>
+<li>
+ <a href=https://dl.acm.org/doi/10.1145/276698.276709>
+Exact Sampling and Approximate Counting Techniques</a>
+
+</li>
+
+</ul>
+
+<h1><a id=coupling-from-the-past href='#coupling-from-the-past'> § </a> <a href=#coupling-from-the-past>
+Coupling from the past</a>
+</h1>
+<h5><a id=relationship-between-cftp-and-reset-transitions href='#relationship-between-cftp-and-reset-transitions'> § </a> Relationship between CFTP and reset transitions</h5>
+<h5><a id=references href='#references'> § </a> References</h5>
+<ul>
+<li>
+ <a href=http://blog.sigfpe.com/2018/10/running-from-past.html>
+Dan piponi, running from the past</a>
+
+</li>
+<li>
+ <a href=https://pdfs.semanticscholar.org/622e/a9c9c665002670ff26119d1aad5c3c5e0be8.pdf>
+Coupling from the past, a user's guide</a>
+
+</li>
+
+</ul>
+
+<h1><a id=my-quest-to-get-better-at-writing href='#my-quest-to-get-better-at-writing'> § </a> <a href=#my-quest-to-get-better-at-writing>
+My quest to get better at writing</a>
+</h1>
+<h4><a id=active-vs-passive-vocabulary href='#active-vs-passive-vocabulary'> § </a> Active v/s passive vocabulary</h4>
+<h4><a id=english-grammar href='#english-grammar'> § </a> English grammar</h4>
+<h4><a id=books-about-charming-sentences-and-how-to-construct-them href='#books-about-charming-sentences-and-how-to-construct-them'> § </a> Books about charming sentences and how to construct them</h4>
+<h1><a id=word-problems-in-russia-and-america- href='#word-problems-in-russia-and-america-'> § </a> Word problems in Russia and America: </h1>
+<ul>
+<li>
+ <a href=http://toomandre.com/travel/sweden05/WP-SWEDEN-NEW.pdf>
+link to article by <i>Andrei Toom</i></a>
+
+</li>
+
+</ul>
+
+scathing critique of how ameriacn math education is screwed:
+ also, interesting
+anecdote about how looking for 'reality' in mathematical problems may in fact
+break student's ability to think in the abstract! This is a deep insight.
+<h1><a id=encoding-mathematical-hieararchies href='#encoding-mathematical-hieararchies'> § </a> <a href=#encoding-mathematical-hieararhices>
+Encoding mathematical hieararchies</a>
+</h1>
+I've wanted to learn how the SageMATH system is organized when it comes to math
+hieararchies. I also wish to learn how <code>lean4</code> encodes their hiearchies. I know
+how mathematical components does it. This might help narrow in on what what the
+"goldilocks zone" is for typeclass design.
+<h5><a id=references href='#references'> § </a> References</h5>
+<ul>
+<li>
+ <a href=https://cicm-conference.org/2016/slides/I3.pdf>
+Slides : Infrastructure for generic code in <code>SageMath</code></a>
+
+</li>
+<li>
+ <a href=https://arxiv.org/abs/2001.04301>
+Tabled typeclass resolution</a>
+
+</li>
+<li>
+ <a href=https://math-comp.github.io/mcb/>
+Mathematical components, the book</a>
+
+</li>
+
+</ul>
+
+<h1><a id=big-list-of-english-syntax href='#big-list-of-english-syntax'> § </a> <a href=#big-list-of-english-syntax>
+Big list of english syntax</a>
+</h1>
+<ul>
+<li>
+ <a href=https://www.englishclub.com/grammar/pronouns-relative.htm>
+english club</a>
+
+</li>
+<li>
+ <a href=https://www.gingersoftware.com/content/grammar-rules/>
+ginger software: grammar rules</a>
+
+</li>
+<li>
+ <a href=https://literarydevices.net/>
+Literary devices</a>
+
+</li>
+
+</ul>
+
+I couldn't really find a good "grammar book", so I decided
+to simply poll friends every time I came across a word that I 
+didn't know. Assumes knowledge of <code>noun</code>, <code>pronoun</code>,
+<code>verb</code>, <code>adjective</code>.
+<h4><a id=classification-of-pronouns href='#classification-of-pronouns'> § </a> Classification of pronouns</h4>
+<h5><a id=demonstrative-pronoun href='#demonstrative-pronoun'> § </a> Demonstrative pronoun</h5>
+<h5><a id=relative-pronoun href='#relative-pronoun'> § </a> Relative pronoun</h5>
+<h5><a id=interrogative-pronoun href='#interrogative-pronoun'> § </a> Interrogative pronoun</h5>
+<ul>
+<li>
+ <code>Which</code> in <code>which room</code>
+</li>
+
+</ul>
+
+<h5><a id=personal-pronoun href='#personal-pronoun'> § </a> Personal pronoun</h5>
+<ul>
+<li>
+ <code>He</code>, <code>She</code>, <code>It</code>.
+</li>
+
+</ul>
+
+<h5><a id=indefinite-pronoun href='#indefinite-pronoun'> § </a> Indefinite pronoun</h5>
+<ul>
+<li>
+ <code>None</code>
+</li>
+
+</ul>
+
+<h5><a id=possessive-pronoun href='#possessive-pronoun'> § </a> Possessive pronoun</h5>
+<ul>
+<li>
+ <code>His</code>, <code>Hers</code>, <code>Theirs</code>
+</li>
+
+</ul>
+
+<h4><a id=pronoun-resolution href='#pronoun-resolution'> § </a> Pronoun resolution</h4>
+<ul>
+<li>
+ cataphora: later reference, anaphora: past reference?
+</li>
+
+</ul>
+
+The connection between this and <code>catamorphism</code>/<code>anamorphism</code>
+is something I wish to explore.
+<ul>
+<li>
+ <code>let ([x 5]) (+ x 3))</code>: <code>x</code> is anaphora resolution.
+</li>
+<li>
+ 
+</li>
+
+</ul>
+
 <h1><a id=learning-code-by-hearing-it href='#learning-code-by-hearing-it'> § </a> <a href=#learning-code-by-hearing-it>
 Learning code by hearing it</a>
 </h1>
@@ -796,6 +1343,9 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#666666">3:</font> </tt></pre>
 </div>
 
+<h5><a id=linum-lags-on-large-files href='#linum-lags-on-large-files'> § </a> linum lags on large files</h5>
+<h5><a id=emacs-lags-on-long-lines href='#emacs-lags-on-long-lines'> § </a> emacs lags on long lines</h5>
+<h5><a id=emacs-single-threading-causes-pauses-on-auto-completecompany href='#emacs-single-threading-causes-pauses-on-auto-completecompany'> § </a> emacs' single threading causes pauses on auto-complete/company</h5>
 <h2><a id=your-arm-can-be-a-spinor href='#your-arm-can-be-a-spinor'> § </a> <a href=#your-arm-can-be-a-spinor>
 Your arm can be a spinor</a>
 </h2>
@@ -4004,13 +4554,10 @@ by change <span class='latexinline'>
 <h2><a id=efficient-tree-transformations-on-gpus href='#efficient-tree-transformations-on-gpus'> § </a> <a href=#efficient-tree-transformations-on-gpus>
 Efficient tree transformations on GPUs</a>
 </h2>
-All material lifted straight from <a href=TODO>
+All material lifted straight from <a href=https://scholarworks.iu.edu/dspace/handle/2022/24749>
 Aaron Hsu's PhD thesis</a>
 . I'll be converting
 APL notation to C++-like notation.
-<a href=TODO>
-Source code link to my implementation is here</a>
-
 <h4><a id=tree-repsentation-as-multi-dimensional-ragged-nested-arrays href='#tree-repsentation-as-multi-dimensional-ragged-nested-arrays'> § </a> Tree repsentation as multi-dimensional ragged nested arrays</h4>
 We're interested in this tree:
 <div class='code'>

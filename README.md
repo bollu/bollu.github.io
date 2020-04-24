@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
 -->
 
 ## A Universe of Sorts
+##### Siddharth Bhat
 
 
 - [My github](http://github.com/bollu)
@@ -51,8 +52,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 
+- [Bounding chains: uniformly sample colorings](#bounding-chains-uniformly-sample-colorings)
+- [Coupling from the past (WIP)](#coupling-from-the-past)
+- [My quest to get better at writing](#my-quest-to-get-better-at-writing)
+- [Word problems in Russia and America](#word-problems-in-russia-and-america)
+- [Encoding mathematical hieararchies](#encoding-mathematical-hieararhices)
+- [Big list of English syntax (WIP)](#big-list-of-english-syntax)
 - [Learning code by hearing it](#learning-code-by-hearing-it)
-- [My long list of emacs gripes](#my-long-list-of-emacs-gripes)
+- [My long list of emacs gripes (WIP)](#my-long-list-of-emacs-gripes)
 - [Your arm can be a spinor](#your-arm-can-be-a-spinor)
 - [Self modifying code for function calls](#self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack)
 - [Adjunctions as advice](#adjunctions-as-advice)
@@ -164,6 +171,285 @@ document.addEventListener("DOMContentLoaded", function() {
 - [GSoC 2015 week 7](content/blog/gsoc-vispy-week-7.md)
 - [GSoC 2015 final report](content/blog/gsoc-vispy-report-6.md)
 - [Link Dump](#link-dump)
+
+
+# [Bounding chains: uniformly sample colorings](bounding-chains-uniformly-sample-colorings)
+
+We wish to _uniformly sample_ `k` colorings of a graph $G$ with maximum degree
+$\Delta$. Hence, we require $k \geq \Delta + 1$. To perform this sampling,
+we use MCMC to sample from a markov chain whose states are $k$-colorings of $G$,
+whose stationary distribution is the uniform distribution over valid colorings.
+
+
+The issue with MCMC techniques is that we never know when our chain has reached
+the stationary state. To ensure we receive uniformly distributed samples,
+we built a "bounding chain" $W$ which has the following properties:
+
+- States of $W$ cover states of $X$ [ie, state space of $W$ are subsets of the state space of $X$].
+- $W$'s convergence to a stationary state can be checked.
+- Upon convergence of $W$, state of $W$ = state of $X$.
+
+We will in fact run the $W$ chain, and prove that running the $W$ chain
+is equivalent to running a 'shadow' of the $X$ chain, and that stationary
+states of the $W$ chain correspond to stationary sates of the $X$ chain.
+
+Let $X$ be the chain whose states are valid $k$ colorings of $G$. In one step
+of the chain $X$, we choose a vertex $v$ uniformly at random; we then choose a
+color $c'_v$ uniformly at random for $v$ that makes it a proper coloring. The vertex
+$v$ is changed to this new color $c'$. This is a symmetric proposal distribution,
+Hence this chain has the uniform distribution over $k$-colorings to be
+the stationary state.
+
+Sampling exactly from this chain is hard: construct an initial state $X_0$
+amounts to finding some valid $k$ coloring which in itself might be
+challenging. Worse, we do not know whether the chain $X$ has reached a
+stationary state or not.
+
+##### Bounding Chain
+
+We construct a new chain $W$ (the bounding chain of $X$), whose states are _sets of colors_ for
+vertices in $G$. Formally, the states of $W$ are functions $Vert(G) \rightarrow 2^C$ where
+$Vert(G)$ denotes the vertices of $G$; $C$ the set of colors. The transition
+will be to pick a vertex $v$ uniformly at random. Then, pick a new set of
+legal colors $C'_v$ for $v$, such that:
+
+- It is guaranteed that if $X$ were transitioning on $v$, the
+  color $c'_v$ that would be picked by $X$ for $v$ is a member of $C'_v$. [state is covered]
+- The size of the set $C'_v$ attempts to be smaller than the current set of colorings $C_v$. [convergence]
+
+We describe the transition function next. But first, we need an alternate
+lens on the transitions of $X$ that is amenable to massaging. 
+
+#### Equivalent description of the transitions of $X$:
+
+1. Choosing an color uniformly at random from the set of valid colors
+   for a vertex.
+2. Choosing colors from $C$ without replacement until we get a color 
+   that is a valid color. 
+
+We claim that (1) and (2) have the same probability distribution.
+
+Abstracting slightly, we state:
+
+1. Choosing an element uniformly from a subset $T$ of a space $S$.
+2.  Choosing elements from $S$ without replacement until we get an element in $T$.
+
+(1) and (2) have the same probability distribution.
+
+##### Proof:
+
+the probability $P_1: S \rightarrow [0, 1]$ of choosing an element uniformly from $T$  is:
+
+$$
+P_1(s) \equiv
+\begin{cases} 1/|T| & \text{s \in T} \\ 0 & \text{s \not \in T} \end{cases}
+$$
+
+Let us pick elements $s_1, s_2, \dots s_n$ from $S$ such that:
+- $s_1, s_2 \dots \in S-T$, $s_n \in S$. 
+- $s_i \neq s_{< i}$. That is, $\forall j < i, s_i \neq s_j$.
+
+Hence, we are choosing $s_i$ without replacement; $s_n$ is the first element
+that is in $T$.
+
+
+
+Our chains can be at most of length $|S|$, since we are picking without
+replacement. So, the space of all chains is $S^|S|$, which I will denote
+$Ch \equiv S^|S|$.
+
+We now define $P_2(x, set)$ to be the probability that
+$x$ is _first_ of the chain to belong to $set$.
+
+$$
+\begin{align*}
+&P_2(x, set): S \times \{S, T\} \rightarrow [0, 1] \\
+&P_2(x, set) = |\{ c : c \in Ch, x \in set, c[i] = x, c[<i] \not \in set \}| / |Ch|
+\end{align*}
+$$
+
+Now, note that $P(s | set=T)$ is the distribution that is given by:
+> Choosing elements from $S$ without replacement until we get an element in $T$.
+
+Applying Bayes rule, we get:
+
+$$
+\begin{align*}
+&P(s|set=T) = P(set=T|s) * P(s) / P(set=T) \\
+&= 1 * (1/|S|) / (|T|/|S|) = 1/|T|
+\end{align*}
+$$
+
+**Confusion**: I am very confused in this section; both what the
+probability space is and how bayes rule works out.
+
+#### Sampling using the above definition
+
+Recall that $State(X) \equiv V \rightarrow C$, $State(W) \equiv V \rightarrow 2^C$.
+Let $x[~], w[~]$ be the states of some run in the markov chains.
+
+We start by having $x[0]$ to be _any_ valid k-coloring of $G$, and $w[0]$ to
+be the state where all vertices have all possible colors; $w[0] \equiv \_ \mapsto C$.
+Clearly, $x[0] \in w[0]$.
+
+
+By induction we assume that $x[n-1] \in w[n-1]$. We must now calculate a
+$w[n], x[n]$ such that (1) $x[n] \in w[n]$, (2) $x[n]$'s proposal is symmetric. 
+(3) $w[n]$'s proposal is symmetric.
+
+###### Blocked set
+
+Define the set $B \subseteq C$ (for blocked) which governs which values $x[n]$ surely cannot
+take from our view of $w[n-1]$. 
+
+$$B \equiv \{ c \in C : (v, \alpha) \in E, w[n-1](\alpha) = \{c\} \}$$
+       
+##### Occluded set
+
+Define $O \subseteq C$ (for occluded) be the set colors that might possibly
+be blocked for $v$. $O \equiv  \{ c \in C : (v, \alpha) \in E, c \in w[n-1](\alpha) \}$.
+Note that $B \subseteq O$.
+
+##### Allowed set
+
+Define $A \subset C$ (for allowed) to be $C - O$. Note that any color in $A$
+is surely a valid color for $v$ in $X$; But not all colors that are valid
+colors for $v$ in $X$ belong to $A$; $A$ is an under-approxmation of the
+true set of allowed colors, as $A$ is the complemenet of $O$, which is an
+over-approximation of the true set of obstructing colors.
+
+##### Ordering on the allowed set
+
+Now, impose an ordering uniformly at random on $A$, and call
+this sequence as $S :  [1..|A|] \rightarrow A$;
+Aet $i$ be  the _first_ index of $S$ such that $S[i]$ is a member of $A$.
+Formally, $S[i] \in A$ and $S[< i] \not \in A$.
+
+We note that $A$ will always be non-empty, because we are guaranteed that 
+the $k$ (the number of colors) is greater than $\Delta$ (the maximum degree
+of the graph). Hence, we will _always have_ that $S[\Delta+1] \in A$. 
+This guarantees the existence of a _first index_ $i$ to pick from $S$.
+
+##### Transition
+
+We now assign $x[n](v) = S[i]$, and $w[n](v) = A$.
+
+By the above lemma, we know that this is the same as picking uniformly at
+random from $A$. **Confusion:** Do we not want to uniformly pick from
+colors that are allowed in $X$, not from colors that are allowed in $W$? I don't
+see why this is sampling $X$ from the right distribution.
+
+
+##### Termination
+
+We terminate when $W$ has "trapped" $X$. That is, $|w[n](v)| = 1$ forall $v \in V$.
+In such a case, the states of $W$ is equal to states of $X$. This is
+a coalescence (as it occurs in coupling from the past). From the coupling
+from the past theory, we know that we have reached a stationary state of $A$
+when this happens.
+
+#### Example 1
+
+```
+W[1]: a{1, 2} -- b{3, 4} -- c{5, 2}
+X[1]: a:1 -- b:3 -- c:5
+```
+
+- $B(b) \equiv \emptyset$
+- $O(b) \equiv \{ 1, 2, 5 \}$
+- $A(b) \equiv \{ 3, 4 \}$
+- $S = [3, 4]$.
+
+```
+W[1]: a{1, 2} -- b{2, 3} -- c{5, 2}                                                 
+X[2]: a:1 -- b:2 -- c:5
+```
+
+
+
+##### References
+
+- [Exact Sampling and Approximate Counting Techniques](https://dl.acm.org/doi/10.1145/276698.276709)
+
+# [Coupling from the past](#coupling-from-the-past)
+
+##### Relationship between CFTP and reset transitions
+##### References
+- [Dan piponi, running from the past](http://blog.sigfpe.com/2018/10/running-from-past.html)
+- [Coupling from the past, a user's guide](https://pdfs.semanticscholar.org/622e/a9c9c665002670ff26119d1aad5c3c5e0be8.pdf)
+
+# [My quest to get better at writing](#my-quest-to-get-better-at-writing)
+
+#### Active v/s passive vocabulary
+
+#### English grammar
+
+#### Books about charming sentences and how to construct them
+
+# Word problems in Russia and America: 
+
+- [link to article by *Andrei Toom*](http://toomandre.com/travel/sweden05/WP-SWEDEN-NEW.pdf)
+
+scathing critique of how ameriacn math education is screwed:
+ also, interesting
+anecdote about how looking for 'reality' in mathematical problems may in fact
+break student's ability to think in the abstract! This is a deep insight.
+
+# [Encoding mathematical hieararchies](#encoding-mathematical-hieararhices)
+
+I've wanted to learn how the SageMATH system is organized when it comes to math
+hieararchies. I also wish to learn how `lean4` encodes their hiearchies. I know
+how mathematical components does it. This might help narrow in on what what the
+"goldilocks zone" is for typeclass design.
+
+##### References
+
+- [Slides : Infrastructure for generic code in `SageMath`](https://cicm-conference.org/2016/slides/I3.pdf)
+- [Tabled typeclass resolution](https://arxiv.org/abs/2001.04301)
+- [Mathematical components, the book](https://math-comp.github.io/mcb/)
+
+# [Big list of english syntax](#big-list-of-english-syntax)
+
+- [english club](https://www.englishclub.com/grammar/pronouns-relative.htm)
+- [ginger software: grammar rules](https://www.gingersoftware.com/content/grammar-rules/)
+- [Literary devices](https://literarydevices.net/)
+
+I couldn't really find a good "grammar book", so I decided
+to simply poll friends every time I came across a word that I 
+didn't know. Assumes knowledge of `noun`, `pronoun`,
+`verb`, `adjective`.
+
+#### Classification of pronouns
+
+##### Demonstrative pronoun
+
+##### Relative pronoun
+
+##### Interrogative pronoun
+
+- `Which` in `which room`
+
+##### Personal pronoun
+
+- `He`, `She`, `It`.
+
+##### Indefinite pronoun
+
+- `None`
+
+##### Possessive pronoun
+
+- `His`, `Hers`, `Theirs`
+
+#### Pronoun resolution
+
+- cataphora: later reference, anaphora: past reference?
+
+The connection between this and `catamorphism`/`anamorphism`
+is something I wish to explore.
+
+- `let ([x 5]) (+ x 3))`: `x` is anaphora resolution.
+- 
 
 # [Learning code by hearing it](#learning-code-by-hearing-it)
 
@@ -311,6 +597,11 @@ The spell is:
 (set-language-environment "UTF-8")
 ```
 
+##### linum lags on large files
+
+##### emacs lags on long lines
+
+##### emacs' single threading causes pauses on auto-complete/company
 
 ## [Your arm can be a spinor](#your-arm-can-be-a-spinor)
 
@@ -2262,9 +2553,8 @@ $g(x_0 + \episilon) = c$.
 
 ## [Efficient tree transformations on GPUs](#efficient-tree-transformations-on-gpus)
 
-All material lifted straight from [Aaron Hsu's PhD thesis](TODO). I'll be converting
+All material lifted straight from [Aaron Hsu's PhD thesis](https://scholarworks.iu.edu/dspace/handle/2022/24749). I'll be converting
 APL notation to C++-like notation.
-[Source code link to my implementation is here](TODO)
 
 
 #### Tree repsentation as multi-dimensional ragged nested arrays
