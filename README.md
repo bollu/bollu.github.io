@@ -177,16 +177,27 @@ document.addEventListener("DOMContentLoaded", function() {
 
 # [Rank-select as adjunction](#rank-select-as-adjunction)
 
-```
-select_1: count -> ix; select_1(count) = index of the 'count'th `1` bit
-rank_1: ix -> count; rank_1(ix) = number of `1` bits till index `ix`.
+```hs
+{-# LANGUAGE GeneralizedNewtypeDeriving #-}
 
-rank_1(select_1(count)) = count
-select_1(rank_1(ix)) < ix
+import Data.List
+newtype Count = Count Int deriving(Eq, Show, Ord, Num)
+newtype Ix = Ix Int deriving(Eq, Show, Ord, Num)
 
-rank :: a -> [a]
-rank x = scanl (+) . (== x)
+
+eqscan :: Eq a => a -> [a] -> [Count]
+eqscan a0 as = map Count $ scanl (+) 0 [if a0 == a then 1 else 0 | a <- as]
+
+-- | finds the index `Ix` in `as` at which `a` has occured
+-- | for the `Count`th time.
+select :: Eq a => a -> [a] -> Count -> Maybe Ix
+select a0 as c = Ix <$> findIndex (== c) (eqscan a0 as)
+
+-- | finds the number of times `a` has occured in `as` till `Ix`.
+rank :: Eq a => a -> [a] -> Ix -> Count
+rank a as (Ix ix) = (eqscan a as) !! ix
 ```
+
 
 # [Bounding chains: uniformly sample colorings](bounding-chains-uniformly-sample-colorings)
 
@@ -375,51 +386,98 @@ By induction we assume that $x[n-1] \in w[n-1]$. We must now calculate a
 $w[n], x[n]$ such that (1) $x[n] \in w[n]$, (2) $x[n]$'s proposal is symmetric. 
 (3) $w[n]$'s proposal is symmetric.
 
-###### Blocked set $B$
-
-Define the set $B \subseteq C$ (for blocked) which governs which values $x[n]$ surely cannot
-take from our view of $w[n-1]$. 
-
-$$B \equiv \{ c \in C : (v, \alpha) \in E, w[n-1](\alpha) = \{c\} \}$$
-       
 ##### Occluded set $O$
 
 Define $O \subseteq C$ (for occluded) be the set colors that might possibly
-be blocked for $v$. $O \equiv  \{ c \in C : (v, \alpha) \in E, c \in w[n-1](\alpha) \}$.
-Note that $B \subseteq O$.
+be blocked for $v$ from our view of `w`. Note that this is an
+**over-approxmation**: that is, there may be colors that are not blocked for `v`, which we
+believe to be blocked from `w`'s point of view.
+
+$$O \equiv  \{ c \in C : (v, \alpha) \in E, c \in w[n-1](\alpha) \}$$
 
 ##### Allowed set $A$
 
-Define $A \subset C$ (for allowed) to be $C - O$. Note that any color in $A$
-is surely a valid color for $v$ in $X$; But not all colors that are valid
-colors for $v$ in $X$ belong to $A$; $A$ is an under-approxmation of the
-true set of allowed colors, as $A$ is the complemenet of $O$, which is an
-over-approximation of the true set of obstructing colors.
+Define $A \subset C$ (for allowed) to be $C - O$. Note that $A$ is
+an **under-approxmation**, since `O` was an _over-approximation_. That is:
+- Any color in `A` is definitely a legal color for `v` in `x[n]`.  
+- There are colors which are legal for `v` in `x[n]` that is not in `A`.
 
-##### Ordering on the allowed set
+##### S: the sequence of states for transition
 
-Now, impose an ordering uniformly at random on $A$, and call
-this sequence as $S :  [1..|A|] \rightarrow A$;
-Aet $i$ be  the _first_ index of $S$ such that $S[i]$ is a member of $A$.
-Formally, $S[i] \in A$ and $S[< i] \not \in A$.
+Now, we pick elements of $C$ in sequence till we get an element of `A`.
+call this sequence $S$. 
 
-We note that $A$ will always be non-empty, because we are guaranteed that 
-the $k$ (the number of colors) is greater than $\Delta$ (the maximum degree
-of the graph). Hence, we will _always have_ that $S[\Delta+1] \in A$. 
-This guarantees the existence of a _first index_ $i$ to pick from $S$.
+We will at worst pick $\Delta + 1$ elements for $S$, since the max-degree
+of the graph is $\Delta$.
 
 ##### Transition
 
-We now assign $x[n](v) = S[i]$, and $w[n](v) = A$.
+Let $i$ be the first index in $S$ where we get a color that is _truly legal_
+for $v$ in $x[n]$. Note that such an index will always exist: We pick
+elements into $S$ till we get an element in $A$, and elements of $A$ are 
+always legal. However, there can be elements which are not in $A$ that
+are still legal for $v$ in $x[n]$, since $A$ is an under-approximation.
 
-By the above lemma, we know that this is the same as picking uniformly at
-random from $A$. **Confusion:** Do we not want to uniformly pick from
-colors that are allowed in $X$, not from colors from $A$? ie, isn't $A$ an
-under-approximation of the actual colors-that-are-allowed in $X$? I don't
-see why this is sampling the next state of $v$ correctly. 
+- We assign $x[n](v) = i$. So, `x` only cares about `S[:i]`.
+- We assign  $w[n](v) = A$. So, `W` cares about the entire sequence.
+
+By the lemma proven, we know that this process of picking colors `C` 
+in a sequence till we get a color that is legal for $v$ at index $i$
+is the same as picking uniformly at random from the set of colors that are legal for 
+$v$. 
 
 
-##### Termination
+#### An example
+For example, we could have:
+
+```
+X | p:2 --- q:4
+W | p:{1, 2} --- q:{4, 5}
+
+we are sampling q:
+
+O = {1, 2}
+A = {3, 4, 5}
+S = [2, 1, 3]
+
+X | p:1 -- q:2 
+W | p:{1, 2} -- q:{1, 2, 3}
+```
+
+If we analyze `S = [2, 1, 3]` we notice that:
+
+```
+2: invalid for W(p:[1, 2]), invalid for X(p:2)    
+1: invalid for W, valid for X  
+3: valid for W, valid for X
+```
+
+So, what we are really sampling ix:
+- A _prefix_ sequence `SX = [1]` (for Xs transition)
+- A _leftover_ sequence `SW = [2, 3]` (for Ws transition)
+
+
+To transition `X`, we can safely drop `SW`. However, to transition `W` correctly,
+we generate more elements in the sequence, till we hit a "safe" element.
+
+
+#### An optimisation on picking colors: why we need a blocking set
+
+
+Define the set $B \subseteq C$ (for blocked) which governs which values
+$x[n]$ **surely cannot take** from our view of $w[n-1]$.
+Note that $B$ is an **under-approximation**. `v` might have
+more colors that are blocked than what `w` sees.
+
+$$B \equiv \{ c \in C : (v, \alpha) \in E, w[n-1](\alpha) = \{c\} \}$$
+       
+Rather than sampling colors from `C` till we get an element of `A`, we can
+sample colors from `C/B`. We know that the colors in `B` can **never** be used 
+by $X$, since the colors in `B` are those that we know are blocked **for sure**.
+
+This is used in the theoretical analysis of the paper.
+
+#### Termination
 
 We terminate when $W$ has "trapped" $X$. That is, $|w[n](v)| = 1$ forall $v \in V$.
 In such a case, the states of $W$ is equal to states of $X$. This is
@@ -427,21 +485,52 @@ a coalescence (as it occurs in coupling from the past). From the coupling
 from the past theory, we know that we have reached a stationary state of $A$
 when this happens.
 
-#### Example 1
 
-```
-W[1]: a{1, 2} -- b{3, 4} -- c{5, 2}
-X[1]: a:1 -- b:3 -- c:5
-```
+#### Pseudocode
 
-- $B(b) \equiv \emptyset$
-- $O(b) \equiv \{ 1, 2, 5 \}$
-- $A(b) \equiv \{ 3, 4 \}$
-- $S = [3, 4]$.
+```hs
+-- | colors, vertices, edges
+cs :: [C]; cs = ...
+vs :: [V]; vs = ...
+es :: [(V, V); es = ...
 
-```
-W[1]: a{1, 2} -- b{2, 3} -- c{5, 2}                                                 
-X[2]: a:1 -- b:2 -- c:5
+
+-- | definitely not allowed
+blocked :: (V -> [C]) -> (V -> [C])
+blocked v2cs v0 = concat [v2cs w | (v, w) <- es, v == v0, length (v2cs w) == 1]
+
+
+-- | maybe not allowed
+occluded :: (V -> [C]) -> (V -> [C])
+occluded v2cs v0 = concat [v2cs w | (v, w) <- es, v == v0]
+
+-- | definitely allowed from Ws point of view
+allowed :: (V -> [C]) -> (V -> [C])
+allowed v2cs = cs \\ occluded v2cs 
+
+-- | perturb the color function to another function
+perturb :: (V -> [C]) -> Rand (V -> [C])
+perturb v2cs = do $ 
+  randv <- uniform_rand vs
+  randc_for_v <- uniform_rand (allowed v2cs v)
+  return $ \v -> if v == randv then randc_for_v else v2cs v
+  
+
+-- | check if we are done
+terminated :: (V -> [C]) -> Bool
+terminated v2cs = all [length (v2cs v) == 1 | v <- vs]
+
+-- | generate chain
+chain :: (V -> [C]) -> Rand [V -> [C]]
+chain f = do
+  if terminated f 
+  then [] else do 
+    f;' <- perturb f; fs <- chain f'; return (f:fs)
+
+-- | return a sample
+sample :: (V -> [C]) -> Rand (V -> [C])
+sample = last . chain
+
 ```
 
 

@@ -6,7 +6,7 @@ a:visited { color: #1a73e8; text-decoration: none; }
 a:active { color: #1a73e8; text-decoration: none; }
 
 pre, .latexblock, blockquote { border-left-color:#DDDDDD;  border-left-style: solid;      border-left-width: 4px; padding-left: 5px; }
- blockquote { border-left-color:#DDDDDD;  border-left-style: solid;      border-left-width: 4px; padding-left: 5px; color: #666666;}.latexblock, .latexinline, .code { font-family: 'Blog Mono', monospace; line-height: 1em; font-size: 80%;  }.latexblock { margin-top: 5px; margin-bottom: 5px; padding-bottom: 5px; padding-top: 5px; background-color: #EEEEEE; }.code, code { background-color: #EEEEEE; width: 100%; } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code { width: 100%; overflow-x: hidden; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; }
+ blockquote { border-left-color:#DDDDDD;  border-left-style: solid;      border-left-width: 4px; padding-left: 5px; color: #666666;}.latexblock, .latexinline, .code { font-family: 'Blog Mono', monospace; line-height: 1.2em; font-size: 80%;  }.latexblock { margin-top: 5px; margin-bottom: 5px; padding-bottom: 5px; padding-top: 5px; background-color: #EEEEEE; }.code, code { background-color: #EEEEEE; width: 100%; } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code { width: 100%; overflow-x: hidden; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; }
 .latexinline { border-bottom-color: #DDDDDD; border-bottom-style: solid;                border-bottom-width: 1px; padding-bottom: 2px;                padding-left: 2px; padding-right: 2px; }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.latexblock .li-itemize{margin:1ex 0ex;}.latexblock .li-enumerate{margin:1ex 0ex;}.latexblock .footnotetext{margin:0ex; padding:0ex;}.latexblock div.footnotetext P{margin:0px; text-indent:1em;}.latexblock .thefootnotes{text-align:left;margin:0ex;}.latexblock .dt-thefootnotes{margin:0em;}.latexblock .dd-thefootnotes{margin:0em 0em 0em 2em;}.latexblock .footnoterule{margin:1em auto 1em 0px;width:50%;}.latexblock .caption{padding-left:2ex; padding-right:2ex; margin-left:auto; margin-right:auto}.latexblock .title{margin:2ex auto;text-align:center}.latexblock .titlemain{margin:1ex 2ex 2ex 1ex;}.latexblock .center{text-align:center;margin-left:auto;margin-right:auto;}.latexblock .flushleft{text-align:left;margin-left:0ex;margin-right:auto;}.latexblock .flushright{text-align:right;margin-left:auto;margin-right:0ex;}.latexblock div table{margin-left:inherit;margin-right:inherit;margin-bottom:2px;margin-top:2px}.latexblock td table{margin:auto;}.latexblock table{border-collapse:collapse;}.latexblock td{padding:0;}.latexblock .cellpadding0 tr td{padding:0;}.latexblock .cellpadding1 tr td{padding:1px;}.latexblock pre{text-align:left;margin-left:0ex;margin-right:auto;}.latexblock blockquote{margin-left:4ex;margin-right:4ex;text-align:left;}.latexblock td p{margin:0px;}.latexblock .hbar{border:none;height:2px;width:100%;background-color:black;}.latexblock .display{border-collapse:separate;border-spacing:2px;width:auto; border:none;}.latexblock .dcell{white-space:nowrap;padding:0px; border:none;}.latexblock .dcenter{margin:0ex auto;}.latexblock .theorem{text-align:left;margin:1ex auto 1ex 0ex;}.latexblock .tst{font-family:sans;font-style:oblique;color:maroon}.latexblock .highlight{color:lime}</style></head><body><div class='container'>
 
 <h2><a id=a-universe-of-sorts href='#a-universe-of-sorts'> § </a> A Universe of Sorts</h2>
@@ -651,16 +651,26 @@ Rank-select as adjunction</a>
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt><font color="#666666">1:</font> 
-<font color="#666666">2:</font> select_1: count -&gt; ix; select_1(count) = index of the 'count'th `1` bit
-<font color="#666666">3:</font> rank_1: ix -&gt; count; rank_1(ix) = number of `1` bits till index `ix`.
-<font color="#666666">4:</font> 
-<font color="#666666">5:</font> rank_1(select_1(count)) = count
-<font color="#666666">6:</font> select_1(rank_1(ix)) &lt; ix
-<font color="#666666">7:</font> 
-<font color="#666666">8:</font> rank :: a -&gt; [a]
-<font color="#666666">9:</font> rank x = scanl (+) . (== x)
-<font color="#666666">10:</font> </tt></pre>
+<pre><tt><font color="#666666">01:</font> 
+<font color="#666666">02:</font> <i><font color="#808080">{-# LANGUAGE GeneralizedNewtypeDeriving #-}</font></i>
+<font color="#666666">03:</font> 
+<font color="#666666">04:</font> <b><u><font color="#000000">import</font></u></b> Data.<b><font color="#000000">List</font></b>
+<font color="#666666">05:</font> <b><u><font color="#000000">newtype</font></u></b> <b><font color="#000000">Count</font></b> = <b><font color="#000000">Count</font></b> <b><font color="#000000">Int</font></b> <b><u><font color="#000000">deriving</font></u></b>(<b><font color="#000000">Eq</font></b>, <b><font color="#000000">Show</font></b>, <b><font color="#000000">Ord</font></b>, <b><font color="#000000">Num</font></b>)
+<font color="#666666">06:</font> <b><u><font color="#000000">newtype</font></u></b> <b><font color="#000000">Ix</font></b> = <b><font color="#000000">Ix</font></b> <b><font color="#000000">Int</font></b> <b><u><font color="#000000">deriving</font></u></b>(<b><font color="#000000">Eq</font></b>, <b><font color="#000000">Show</font></b>, <b><font color="#000000">Ord</font></b>, <b><font color="#000000">Num</font></b>)
+<font color="#666666">07:</font> 
+<font color="#666666">08:</font> 
+<font color="#666666">09:</font> eqscan :: <b><font color="#000000">Eq</font></b> a =&gt; a -&gt; [a] -&gt; [<b><font color="#000000">Count</font></b>]
+<font color="#666666">10:</font> eqscan a0 as = map <b><font color="#000000">Count</font></b> $ scanl (+) <font color="#000000">0</font> [<b><u><font color="#000000">if</font></u></b> a0 == a <b><u><font color="#000000">then</font></u></b> <font color="#000000">1</font> <b><u><font color="#000000">else</font></u></b> <font color="#000000">0</font> | a &lt;- as]
+<font color="#666666">11:</font> 
+<font color="#666666">12:</font> <i><font color="#808080">-- | finds the index `Ix` in `as` at which `a` has occured</font></i>
+<font color="#666666">13:</font> <i><font color="#808080">-- | for the `Count`th time.</font></i>
+<font color="#666666">14:</font> select :: <b><font color="#000000">Eq</font></b> a =&gt; a -&gt; [a] -&gt; <b><font color="#000000">Count</font></b> -&gt; <b><font color="#000000">Maybe</font></b> <b><font color="#000000">Ix</font></b>
+<font color="#666666">15:</font> select a0 as c = <b><font color="#000000">Ix</font></b> &lt;$&gt; findIndex (== c) (eqscan a0 as)
+<font color="#666666">16:</font> 
+<font color="#666666">17:</font> <i><font color="#808080">-- | finds the number of times `a` has occured in `as` till `Ix`.</font></i>
+<font color="#666666">18:</font> rank :: <b><font color="#000000">Eq</font></b> a =&gt; a -&gt; [a] -&gt; <b><font color="#000000">Ix</font></b> -&gt; <b><font color="#000000">Count</font></b>
+<font color="#666666">19:</font> rank a as (<b><font color="#000000">Ix</font></b> ix) = (eqscan a as) !! ix
+<font color="#666666">20:</font> </tt></pre>
 </div>
 
 <h1><a id=bounding-chains-uniformly-sample-colorings href='#bounding-chains-uniformly-sample-colorings'> § </a> <a href=bounding-chains-uniformly-sample-colorings>
@@ -981,83 +991,147 @@ By induction we assume that <span class='latexinline'>
 <span style="font-style:italic">x</span>[<span style="font-style:italic">n</span>]</span>'s proposal is symmetric. 
 (3) <span class='latexinline'>
 <span style="font-style:italic">w</span>[<span style="font-style:italic">n</span>]</span>'s proposal is symmetric.
-<h6><a id=bblocked-set- href='#bblocked-set-'> § </a> Blocked set <span class='latexinline'>
-<span style="font-style:italic">B</span></span></h6>
-Define the set <span class='latexinline'>
-<span style="font-style:italic">B</span> &#X2286; <span style="font-style:italic">C</span></span> (for blocked) which governs which values <span class='latexinline'>
-<span style="font-style:italic">x</span>[<span style="font-style:italic">n</span>]</span> surely cannot
-take from our view of <span class='latexinline'>
-<span style="font-style:italic">w</span>[<span style="font-style:italic">n</span>&#X2212;1]</span>. 
-<div class='latexblock'>
-<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">B</span>&#XA0;&#X2261;&#XA0;{&#XA0;<span style="font-style:italic">c</span>&#XA0;&#X2208;&#XA0;<span style="font-style:italic">C</span>&#XA0;:&#XA0;(<span style="font-style:italic">v</span>,&#XA0;&#X3B1;)&#XA0;&#X2208;&#XA0;<span style="font-style:italic">E</span>,&#XA0;<span style="font-style:italic">w</span>[<span style="font-style:italic">n</span>&#X2212;1](&#X3B1;)&#XA0;=&#XA0;{<span style="font-style:italic">c</span>}&#XA0;}</td></tr>
-</table></div>
-       
 <h5><a id=ooccluded-set- href='#ooccluded-set-'> § </a> Occluded set <span class='latexinline'>
 <span style="font-style:italic">O</span></span></h5>
 Define <span class='latexinline'>
 <span style="font-style:italic">O</span> &#X2286; <span style="font-style:italic">C</span></span> (for occluded) be the set colors that might possibly
 be blocked for <span class='latexinline'>
-<span style="font-style:italic">v</span></span>. <span class='latexinline'>
-<span style="font-style:italic">O</span> &#X2261; { <span style="font-style:italic">c</span> &#X2208; <span style="font-style:italic">C</span> : (<span style="font-style:italic">v</span>, &#X3B1;) &#X2208; <span style="font-style:italic">E</span>, <span style="font-style:italic">c</span> &#X2208; <span style="font-style:italic">w</span>[<span style="font-style:italic">n</span>&#X2212;1](&#X3B1;) }</span>.
-Note that <span class='latexinline'>
-<span style="font-style:italic">B</span> &#X2286; <span style="font-style:italic">O</span></span>.
+<span style="font-style:italic">v</span></span> from our view of <code>w</code>. Note that this is an
+<b>over-approxmation</b>: that is, there may be colors that are not blocked for <code>v</code>, which we
+believe to be blocked from <code>w</code>'s point of view.
+<div class='latexblock'>
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">O</span>&#XA0;&#X2261;&#XA0;&#XA0;{&#XA0;<span style="font-style:italic">c</span>&#XA0;&#X2208;&#XA0;<span style="font-style:italic">C</span>&#XA0;:&#XA0;(<span style="font-style:italic">v</span>,&#XA0;&#X3B1;)&#XA0;&#X2208;&#XA0;<span style="font-style:italic">E</span>,&#XA0;<span style="font-style:italic">c</span>&#XA0;&#X2208;&#XA0;<span style="font-style:italic">w</span>[<span style="font-style:italic">n</span>&#X2212;1](&#X3B1;)&#XA0;}</td></tr>
+</table></div>
 <h5><a id=aallowed-set- href='#aallowed-set-'> § </a> Allowed set <span class='latexinline'>
 <span style="font-style:italic">A</span></span></h5>
 Define <span class='latexinline'>
 <span style="font-style:italic">A</span> &#X2282; <span style="font-style:italic">C</span></span> (for allowed) to be <span class='latexinline'>
-<span style="font-style:italic">C</span> &#X2212; <span style="font-style:italic">O</span></span>. Note that any color in <span class='latexinline'>
-<span style="font-style:italic">A</span></span>
-is surely a valid color for <span class='latexinline'>
-<span style="font-style:italic">v</span></span> in <span class='latexinline'>
-<span style="font-style:italic">X</span></span>; But not all colors that are valid
-colors for <span class='latexinline'>
-<span style="font-style:italic">v</span></span> in <span class='latexinline'>
-<span style="font-style:italic">X</span></span> belong to <span class='latexinline'>
-<span style="font-style:italic">A</span></span>; <span class='latexinline'>
-<span style="font-style:italic">A</span></span> is an under-approxmation of the
-true set of allowed colors, as <span class='latexinline'>
-<span style="font-style:italic">A</span></span> is the complemenet of <span class='latexinline'>
-<span style="font-style:italic">O</span></span>, which is an
-over-approximation of the true set of obstructing colors.
-<h5><a id=ordering-on-the-allowed-set href='#ordering-on-the-allowed-set'> § </a> Ordering on the allowed set</h5>
-Now, impose an ordering uniformly at random on <span class='latexinline'>
-<span style="font-style:italic">A</span></span>, and call
-this sequence as <span class='latexinline'>
-<span style="font-style:italic">S</span> : [1..|<span style="font-style:italic">A</span>|] &#X2192; <span style="font-style:italic">A</span></span>;
-Aet <span class='latexinline'>
-<span style="font-style:italic">i</span></span> be  the <i>first</i> index of <span class='latexinline'>
-<span style="font-style:italic">S</span></span> such that <span class='latexinline'>
-<span style="font-style:italic">S</span>[<span style="font-style:italic">i</span>]</span> is a member of <span class='latexinline'>
-<span style="font-style:italic">A</span></span>.
-Formally, <span class='latexinline'>
-<span style="font-style:italic">S</span>[<span style="font-style:italic">i</span>] &#X2208; <span style="font-style:italic">A</span></span> and <span class='latexinline'>
-<span style="font-style:italic">S</span>[&lt; <span style="font-style:italic">i</span>] &#X2209;<span style="font-style:italic">A</span></span>.
-We note that <span class='latexinline'>
-<span style="font-style:italic">A</span></span> will always be non-empty, because we are guaranteed that 
-the <span class='latexinline'>
-<span style="font-style:italic">k</span></span> (the number of colors) is greater than <span class='latexinline'>
-&#X394;</span> (the maximum degree
-of the graph). Hence, we will <i>always have</i> that <span class='latexinline'>
-<span style="font-style:italic">S</span>[&#X394;+1] &#X2208; <span style="font-style:italic">A</span></span>. 
-This guarantees the existence of a <i>first index</i> <span class='latexinline'>
-<span style="font-style:italic">i</span></span> to pick from <span class='latexinline'>
-<span style="font-style:italic">S</span></span>.
+<span style="font-style:italic">C</span> &#X2212; <span style="font-style:italic">O</span></span>. Note that <span class='latexinline'>
+<span style="font-style:italic">A</span></span> is
+an <b>under-approxmation</b>, since <code>O</code> was an <i>over-approximation</i>. That is:
+<ul>
+<li>
+ Any color in <code>A</code> is definitely a legal color for <code>v</code> in <code>x[n]</code>.  
+</li>
+<li>
+ There are colors which are legal for <code>v</code> in <code>x[n]</code> that is not in <code>A</code>.
+</li>
+
+</ul>
+
+<h5><a id=s-the-sequence-of-states-for-transition href='#s-the-sequence-of-states-for-transition'> § </a> S: the sequence of states for transition</h5>
+Now, we pick elements of <span class='latexinline'>
+<span style="font-style:italic">C</span></span> in sequence till we get an element of <code>A</code>.
+call this sequence <span class='latexinline'>
+<span style="font-style:italic">S</span></span>. 
+We will at worst pick <span class='latexinline'>
+&#X394; + 1</span> elements for <span class='latexinline'>
+<span style="font-style:italic">S</span></span>, since the max-degree
+of the graph is <span class='latexinline'>
+&#X394;</span>.
 <h5><a id=transition href='#transition'> § </a> Transition</h5>
-We now assign <span class='latexinline'>
-<span style="font-style:italic">x</span>[<span style="font-style:italic">n</span>](<span style="font-style:italic">v</span>) = <span style="font-style:italic">S</span>[<span style="font-style:italic">i</span>]</span>, and <span class='latexinline'>
-<span style="font-style:italic">w</span>[<span style="font-style:italic">n</span>](<span style="font-style:italic">v</span>) = <span style="font-style:italic">A</span></span>.
-By the above lemma, we know that this is the same as picking uniformly at
-random from <span class='latexinline'>
-<span style="font-style:italic">A</span></span>. <b>Confusion:</b> Do we not want to uniformly pick from
-colors that are allowed in <span class='latexinline'>
-<span style="font-style:italic">X</span></span>, not from colors from <span class='latexinline'>
-<span style="font-style:italic">A</span></span>? ie, isn't <span class='latexinline'>
-<span style="font-style:italic">A</span></span> an
-under-approximation of the actual colors-that-are-allowed in <span class='latexinline'>
-<span style="font-style:italic">X</span></span>? I don't
-see why this is sampling the next state of <span class='latexinline'>
-<span style="font-style:italic">v</span></span> correctly. 
-<h5><a id=termination href='#termination'> § </a> Termination</h5>
+Let <span class='latexinline'>
+<span style="font-style:italic">i</span></span> be the first index in <span class='latexinline'>
+<span style="font-style:italic">S</span></span> where we get a color that is <i>truly legal</i>
+for <span class='latexinline'>
+<span style="font-style:italic">v</span></span> in <span class='latexinline'>
+<span style="font-style:italic">x</span>[<span style="font-style:italic">n</span>]</span>. Note that such an index will always exist: We pick
+elements into <span class='latexinline'>
+<span style="font-style:italic">S</span></span> till we get an element in <span class='latexinline'>
+<span style="font-style:italic">A</span></span>, and elements of <span class='latexinline'>
+<span style="font-style:italic">A</span></span> are 
+always legal. However, there can be elements which are not in <span class='latexinline'>
+<span style="font-style:italic">A</span></span> that
+are still legal for <span class='latexinline'>
+<span style="font-style:italic">v</span></span> in <span class='latexinline'>
+<span style="font-style:italic">x</span>[<span style="font-style:italic">n</span>]</span>, since <span class='latexinline'>
+<span style="font-style:italic">A</span></span> is an under-approximation.
+<ul>
+<li>
+ We assign <span class='latexinline'>
+<span style="font-style:italic">x</span>[<span style="font-style:italic">n</span>](<span style="font-style:italic">v</span>) = <span style="font-style:italic">i</span></span>. So, <code>x</code> only cares about <code>S[:i]</code>.
+</li>
+<li>
+ We assign  <span class='latexinline'>
+<span style="font-style:italic">w</span>[<span style="font-style:italic">n</span>](<span style="font-style:italic">v</span>) = <span style="font-style:italic">A</span></span>. So, <code>W</code> cares about the entire sequence.
+</li>
+
+</ul>
+
+By the lemma proven, we know that this process of picking colors <code>C</code> 
+in a sequence till we get a color that is legal for <span class='latexinline'>
+<span style="font-style:italic">v</span></span> at index <span class='latexinline'>
+<span style="font-style:italic">i</span></span>
+is the same as picking uniformly at random from the set of colors that are legal for 
+<span class='latexinline'>
+<span style="font-style:italic">v</span></span>. 
+<h4><a id=an-example href='#an-example'> § </a> An example</h4>
+For example, we could have:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">01:</font> 
+<font color="#666666">02:</font> X | p:2 --- q:4
+<font color="#666666">03:</font> W | p:{1, 2} --- q:{4, 5}
+<font color="#666666">04:</font> 
+<font color="#666666">05:</font> we are sampling q:
+<font color="#666666">06:</font> 
+<font color="#666666">07:</font> O = {1, 2}
+<font color="#666666">08:</font> A = {3, 4, 5}
+<font color="#666666">09:</font> S = [2, 1, 3]
+<font color="#666666">10:</font> 
+<font color="#666666">11:</font> X | p:1 -- q:2 
+<font color="#666666">12:</font> W | p:{1, 2} -- q:{1, 2, 3}
+<font color="#666666">13:</font> </tt></pre>
+</div>
+
+If we analyze <code>S = [2, 1, 3]</code> we notice that:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> 2: invalid for W(p:[1, 2]), invalid for X(p:2)    
+<font color="#666666">3:</font> 1: invalid for W, valid for X  
+<font color="#666666">4:</font> 3: valid for W, valid for X
+<font color="#666666">5:</font> </tt></pre>
+</div>
+
+So, what we are really sampling ix:
+<ul>
+<li>
+ A <i>prefix</i> sequence <code>SX = [1]</code> (for Xs transition)
+</li>
+<li>
+ A <i>leftover</i> sequence <code>SW = [2, 3]</code> (for Ws transition)
+</li>
+
+</ul>
+
+To transition <code>X</code>, we can safely drop <code>SW</code>. However, to transition <code>W</code> correctly,
+we generate more elements in the sequence, till we hit a "safe" element.
+<h4><a id=an-optimisation-on-picking-colors-why-we-need-a-blocking-set href='#an-optimisation-on-picking-colors-why-we-need-a-blocking-set'> § </a> An optimisation on picking colors: why we need a blocking set</h4>
+Define the set <span class='latexinline'>
+<span style="font-style:italic">B</span> &#X2286; <span style="font-style:italic">C</span></span> (for blocked) which governs which values
+<span class='latexinline'>
+<span style="font-style:italic">x</span>[<span style="font-style:italic">n</span>]</span> <b>surely cannot take</b> from our view of <span class='latexinline'>
+<span style="font-style:italic">w</span>[<span style="font-style:italic">n</span>&#X2212;1]</span>.
+Note that <span class='latexinline'>
+<span style="font-style:italic">B</span></span> is an <b>under-approximation</b>. <code>v</code> might have
+more colors that are blocked than what <code>w</code> sees.
+<div class='latexblock'>
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">B</span>&#XA0;&#X2261;&#XA0;{&#XA0;<span style="font-style:italic">c</span>&#XA0;&#X2208;&#XA0;<span style="font-style:italic">C</span>&#XA0;:&#XA0;(<span style="font-style:italic">v</span>,&#XA0;&#X3B1;)&#XA0;&#X2208;&#XA0;<span style="font-style:italic">E</span>,&#XA0;<span style="font-style:italic">w</span>[<span style="font-style:italic">n</span>&#X2212;1](&#X3B1;)&#XA0;=&#XA0;{<span style="font-style:italic">c</span>}&#XA0;}</td></tr>
+</table></div>
+       
+Rather than sampling colors from <code>C</code> till we get an element of <code>A</code>, we can
+sample colors from <code>C/B</code>. We know that the colors in <code>B</code> can <b>never</b> be used 
+by <span class='latexinline'>
+<span style="font-style:italic">X</span></span>, since the colors in <code>B</code> are those that we know are blocked <b>for sure</b>.
+This is used in the theoretical analysis of the paper.
+<h4><a id=termination href='#termination'> § </a> Termination</h4>
 We terminate when <span class='latexinline'>
 <span style="font-style:italic">W</span></span> has "trapped" <span class='latexinline'>
 <span style="font-style:italic">X</span></span>. That is, <span class='latexinline'>
@@ -1070,47 +1144,56 @@ a coalescence (as it occurs in coupling from the past). From the coupling
 from the past theory, we know that we have reached a stationary state of <span class='latexinline'>
 <span style="font-style:italic">A</span></span>
 when this happens.
-<h4><a id=example-1 href='#example-1'> § </a> Example 1</h4>
+<h4><a id=pseudocode href='#pseudocode'> § </a> Pseudocode</h4>
 <div class='code'>
 <!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt><font color="#666666">1:</font> 
-<font color="#666666">2:</font> W[1]: a{1, 2} -- b{3, 4} -- c{5, 2}
-<font color="#666666">3:</font> X[1]: a:1 -- b:3 -- c:5
-<font color="#666666">4:</font> </tt></pre>
-</div>
-
-<ul>
-<li>
- <span class='latexinline'>
-<span style="font-style:italic">B</span>(<span style="font-style:italic">b</span>) &#X2261; &#X2205;</span>
-</li>
-<li>
- <span class='latexinline'>
-<span style="font-style:italic">O</span>(<span style="font-style:italic">b</span>) &#X2261; { 1, 2, 5 }</span>
-</li>
-<li>
- <span class='latexinline'>
-<span style="font-style:italic">A</span>(<span style="font-style:italic">b</span>) &#X2261; { 3, 4 }</span>
-</li>
-<li>
- <span class='latexinline'>
-<span style="font-style:italic">S</span> = [3, 4]</span>.
-</li>
-
-</ul>
-
-<div class='code'>
-<!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><font color="#666666">1:</font> 
-<font color="#666666">2:</font> W[1]: a{1, 2} -- b{2, 3} -- c{5, 2}                                                 
-<font color="#666666">3:</font> X[2]: a:1 -- b:2 -- c:5
-<font color="#666666">4:</font> </tt></pre>
+<pre><tt><font color="#666666">01:</font> 
+<font color="#666666">02:</font> <i><font color="#808080">-- | colors, vertices, edges</font></i>
+<font color="#666666">03:</font> cs :: [<b><font color="#000000">C</font></b>]; cs = ...
+<font color="#666666">04:</font> vs :: [<b><font color="#000000">V</font></b>]; vs = ...
+<font color="#666666">05:</font> es :: [(<b><font color="#000000">V</font></b>, <b><font color="#000000">V</font></b>); es = ...
+<font color="#666666">06:</font> 
+<font color="#666666">07:</font> 
+<font color="#666666">08:</font> <i><font color="#808080">-- | definitely not allowed</font></i>
+<font color="#666666">09:</font> blocked :: (<b><font color="#000000">V</font></b> -&gt; [<b><font color="#000000">C</font></b>]) -&gt; (<b><font color="#000000">V</font></b> -&gt; [<b><font color="#000000">C</font></b>])
+<font color="#666666">10:</font> blocked v2cs v0 = concat [v2cs w | (v, w) &lt;- es, v == v0, length (v2cs w) == <font color="#000000">1</font>]
+<font color="#666666">11:</font> 
+<font color="#666666">12:</font> 
+<font color="#666666">13:</font> <i><font color="#808080">-- | maybe not allowed</font></i>
+<font color="#666666">14:</font> occluded :: (<b><font color="#000000">V</font></b> -&gt; [<b><font color="#000000">C</font></b>]) -&gt; (<b><font color="#000000">V</font></b> -&gt; [<b><font color="#000000">C</font></b>])
+<font color="#666666">15:</font> occluded v2cs v0 = concat [v2cs w | (v, w) &lt;- es, v == v0]
+<font color="#666666">16:</font> 
+<font color="#666666">17:</font> <i><font color="#808080">-- | definitely allowed from Ws point of view</font></i>
+<font color="#666666">18:</font> allowed :: (<b><font color="#000000">V</font></b> -&gt; [<b><font color="#000000">C</font></b>]) -&gt; (<b><font color="#000000">V</font></b> -&gt; [<b><font color="#000000">C</font></b>])
+<font color="#666666">19:</font> allowed v2cs = cs \\ occluded v2cs 
+<font color="#666666">20:</font> 
+<font color="#666666">21:</font> <i><font color="#808080">-- | perturb the color function to another function</font></i>
+<font color="#666666">22:</font> perturb :: (<b><font color="#000000">V</font></b> -&gt; [<b><font color="#000000">C</font></b>]) -&gt; <b><font color="#000000">Rand</font></b> (<b><font color="#000000">V</font></b> -&gt; [<b><font color="#000000">C</font></b>])
+<font color="#666666">23:</font> perturb v2cs = <b><u><font color="#000000">do</font></u></b> $ 
+<font color="#666666">24:</font>   randv &lt;- uniform_rand vs
+<font color="#666666">25:</font>   randc_for_v &lt;- uniform_rand (allowed v2cs v)
+<font color="#666666">26:</font>   return $ \v -&gt; <b><u><font color="#000000">if</font></u></b> v == randv <b><u><font color="#000000">then</font></u></b> randc_for_v <b><u><font color="#000000">else</font></u></b> v2cs v
+<font color="#666666">27:</font>   
+<font color="#666666">28:</font> 
+<font color="#666666">29:</font> <i><font color="#808080">-- | check if we are done</font></i>
+<font color="#666666">30:</font> terminated :: (<b><font color="#000000">V</font></b> -&gt; [<b><font color="#000000">C</font></b>]) -&gt; <b><font color="#000000">Bool</font></b>
+<font color="#666666">31:</font> terminated v2cs = all [length (v2cs v) == <font color="#000000">1</font> | v &lt;- vs]
+<font color="#666666">32:</font> 
+<font color="#666666">33:</font> <i><font color="#808080">-- | generate chain</font></i>
+<font color="#666666">34:</font> chain :: (<b><font color="#000000">V</font></b> -&gt; [<b><font color="#000000">C</font></b>]) -&gt; <b><font color="#000000">Rand</font></b> [<b><font color="#000000">V</font></b> -&gt; [<b><font color="#000000">C</font></b>]]
+<font color="#666666">35:</font> chain f = <b><u><font color="#000000">do</font></u></b>
+<font color="#666666">36:</font>   <b><u><font color="#000000">if</font></u></b> terminated f 
+<font color="#666666">37:</font>   <b><u><font color="#000000">then</font></u></b> [] <b><u><font color="#000000">else</font></u></b> <b><u><font color="#000000">do</font></u></b> 
+<font color="#666666">38:</font>     f;' &lt;- perturb f; fs &lt;- chain f'; return (f:fs)
+<font color="#666666">39:</font> 
+<font color="#666666">40:</font> <i><font color="#808080">-- | return a sample</font></i>
+<font color="#666666">41:</font> sample :: (<b><font color="#000000">V</font></b> -&gt; [<b><font color="#000000">C</font></b>]) -&gt; <b><font color="#000000">Rand</font></b> (<b><font color="#000000">V</font></b> -&gt; [<b><font color="#000000">C</font></b>])
+<font color="#666666">42:</font> sample = last . chain
+<font color="#666666">43:</font> 
+<font color="#666666">44:</font> </tt></pre>
 </div>
 
 <h5><a id=references href='#references'> § </a> References</h5>
