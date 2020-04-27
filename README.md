@@ -176,6 +176,7 @@ document.addEventListener("DOMContentLoaded", function() {
 - [GSoC 2015 week 7](content/blog/gsoc-vispy-week-7.md)
 - [GSoC 2015 final report](content/blog/gsoc-vispy-report-6.md)
 - [Link Dump](#link-dump)
+- [Recipes](#recipes)
 
 
 # [Networks are now faster than disks](#networks-are-now-faster-than-disks)
@@ -9768,10 +9769,24 @@ For example: "More people have been to Berlin than I have."
 - [final report](content/blog/gsoc-vispy-report-6.md)
 
 
-## Link dump
+# Link dump
 
 - [ADHD: A lifelong struggle: Why organisation systems don't work](https://gekk.info/articles/adhd.html)
 - [Slides for intuition on converting number systems to data structures by Ralf Hinze](http://www.cs.nott.ac.uk/~pszgmh/bctcs-slides/hinze.pdf)
 - [James mickens: hilarious articles --- this one on security](https://www.usenix.org/system/files/1401_08-12_mickens.pdf)
 - [ADHD: A lifelong struggle | Why organisation systems don't work](https://gekk.info/articles/adhd.html)
+
+# [Recipes](#recipes)
+
+##### Upma
+
+- start with ghee, sesame seeds, curry leaves, red + green chili, ginger garlic
+  paste, hing (asaefodita).
+- finely chopped onion, allow this to caramelize.
+- A dash of turmeric for depth.
+- Add in the rava, allow it to cook/heat.
+- Add in tomato and a little water when it's done heating. Allow tomato to cook.
+- Add in more water, cover with a lid, and let it come to a boil. Keep stirring
+  to prevent clumps.
+- Garnish with coriander.
 
