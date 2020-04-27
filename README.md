@@ -40,6 +40,8 @@ document.addEventListener("DOMContentLoaded", function() {
 > </script>
 -->
 
+<meta name="google-site-verification" content="8r2n7znO2xbDQsIVyRrvrpje4k5AfPVmDOkpVDhkmvw" />
+
 ## A Universe of Sorts
 ##### Siddharth Bhat
 
