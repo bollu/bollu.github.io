@@ -49,8 +49,18 @@ consistency in a short period of time is "good enough", when it allows
 us to have consistency and availability as well!
 
 \section{Q3}
+Block size $B = 4096$ bytes. Main memory is $M = 50 MB = 50 * 10^6 \text{bytes}$. Record $R$
+takes $R = 10^7\text{tuples} \times 10^2 \text{tuples/byte} = 10^9 \text{bytes}$.
+Disk IO is 15 msec.
+
 \section{Q4}
+\subsubsection{Size calculation:}
+\includegraphics[width=\textwidth]{db-q4-1.pdf}
+
+\subsubsection{Cost calculation:}
+\includegraphics[width=\textwidth]{db-q4-2.pdf}
 \section{Q5}
+
 \section{Q6}
 
 When we insert $0011$, there are four records for bucket 0, which overflows.
