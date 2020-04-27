@@ -8,6 +8,24 @@
 
 \section{Q1}
 \section{Q2}
+\textbf{Consistency:} all nodes see the same data at the same time.
+\textbf{Availability:} a guarantee that every request receives a response about whether it was successful or failed.
+\textbf{Partition tolerance:} the system continues to operate despite arbitrary message loss.
+
+The CAP theorem states that you cannot simultaneously have all three; you must make
+tradeoffs among them. The CAP theorem is sometimes incorrectly described  as
+the choice of picking consistency, availability, and partitioning during
+\textbf{design time}. Really, the theorem allows for databases to choose
+between these dynamically at \textbf{run time}.
+
+When using NoSQL databases, we lose trade-off consistency for
+a new property called \textbf{eventual consistency}.
+This allows each system to make updates to data and learn of other updates
+made by other systems within a short period of time, without being totally
+consistent at all times. For most systems, knowing that it will reach
+consistency in a short period of time is "good enough", when it allows
+us to have consistency and availability as well!
+
 \section{Q3}
 \section{Q4}
 \section{Q5}
