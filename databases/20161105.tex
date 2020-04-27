@@ -1,0 +1,45 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\begin{document}
+\textbf{Siddharth Bhat (20161105)}
+\section{Q9}
+\subsubsection{9.1}
+\subsubsection{9.2}
+Selinger optimization improves upon DP approach by keeping for
+each  not only the plan of least cost, but also plans that have higher
+cost but produce a result that is sorted in an order that may
+be useful for parent queries.
+\subsubsection{9.3}
+
+View serializable: If a given schedule is found to be view equivalent to some serial schedule. Alternatively,
+  there are no cycles in the dependency graph.
+Conflict serializable: If there are no cycles in the conflict graph.
+
+
+\subsubsection{9.4}
+
+We can use strict 2-phase locking for recoverability. This requires that
+in addition to the lock being 2-Phase, all Exclusive(X) Locks held by the
+transaction be released until after the Transaction Commits.
+
+\subsubsection{9.5}
+Database operations are in fact relational algebra operations. These
+operations are pure mathematical expressions, and are generally reads or
+writes into disjoint pieces of data. This makes them naturally parallelizable.
+
+
+\subsubsection{9.6}
+File system does not generally have multiple readers and writers to a single
+file. It also does not need to manage structured data. Hence, many of the ACID
+like concerns simply do not occur in the case of a file system.
+
+\subsubsection{9.7}
+\subsubsection{9.8}
+\subsubsection{9.9}
+\subsubsection{9.10}
+all trees of n vertices is $n^{n-2}$. Number of left-deep trees is $n!$.
+$n^{n-2}$ is much larger than $n!$.
+
+
+\end{document}
