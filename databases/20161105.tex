@@ -4,6 +4,15 @@
 \begin{document}
 \textbf{Siddharth Bhat (20161105)}
 \section{Q8}
+\begin{align*}
+    &r_1(O_1) \mapsto \text{$T_1$ puts }IS(B_1); S(O_1); \texttt{release} \\
+    &r_2(O_2) \mapsto \text{$T_2$ puts }IS(B_1); S(O_2); \texttt{release}\\
+    &r_3(O_1) \mapsto \text{$T_3$ puts }IS(B_2); S(O_3); \texttt{release}\\
+    &w_1(O_3) \mapsto \text{$T_1$ puts }IX(B_2); X(O_3); \texttt{release}\\
+    &w_2(O_4) \mapsto \text{$T_2$ puts }IX(B_2); X(O_4); \texttt{release}\\
+    &w_3(O_5) \mapsto \text{$T_3$ puts }IX(B_2); X(O_5); \texttt{release}\\
+    &w_1(O_2) \mapsto \text{$T_1$ puts }IX(B_2); X(O_3); \texttt{release}\\
+\end{align*}
 \section{Q9}
 \subsubsection{9.1}
 In Undo Logging Logging, we need to write all we need to write all modified
