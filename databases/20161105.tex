@@ -6,6 +6,23 @@
 \begin{document}
 \textbf{Siddharth Bhat (20161105)}
 
+\section{Q1}
+\section{Q2}
+\section{Q3}
+\section{Q4}
+\section{Q5}
+\section{Q6}
+
+When we insert $0011$, there are four records for bucket 0, which overflows.
+Adding a second bit to the bucket addresses doesn't help, because the first
+four records all begin with $00$. Thus, we go to $i = 3$ and use the first three
+bits for each bucket address. Now we have space for $4$ records in each bucket;
+however, we can get at maximum $2$ records per bucket --- we have 4 bit hashes,
+our buckets are keyed by 3 bits, leaving 1 bit of ambiguity. 1 bit 
+can be 2 records. When $1111$ is inserted, we have two records in each bucket.
+
+\includegraphics[width=\textwidth, angle=270]{db-q6.pdf}
+
 \section{Q7}
 \subsubsection{Q7.1}
 $SL_x(E)$ for a shared lock by transaction $x$ on elem $E$. $U_x(E)$ for
