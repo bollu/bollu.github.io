@@ -266,3 +266,11 @@ installed, use it to compute closed forms)
   a deep insight.
 - Imaginary numbers are not real: the geometric algebra of spacetime.
 - Topological games: http://www.telgarsky.com/1987-RMJM-Telgarsky-Topological-Games.pdf | games that reflect some topological property.
+- Tibetian book of dying: https://en.wikipedia.org/wiki/Bardo_Thodol
+- Knuth Bendix completion: A generalization of grobner-basis / bucchberger algorithm to arbitrary systems: https://en.wikipedia.org/wiki/Knuth%E2%80%93Bendix_completion_algorithm
+- Guide to Competitive Programming: Antti Laaksonen
+- Maps of meaning: Jordan peterson's lectures; talks about mythological myths (https://www.youtube.com/watch?v=JodNMjXphKA)
+- TOOL TO BUILD: linters that will overlay compiler-tier optimization hints on top of handwritten assembly?
+- https://en.wikipedia.org/wiki/Tensegrity: building structures by hanging things with tension.
+  Example using LEGO: https://www.reddit.com/r/lego/comments/g2230l/lego_tensegrity_structure/
+- Mathematics of tensegrity: Frameworks, tensegrities, and symmetry. Understanding stable structures: http://pi.math.cornell.edu/~web7510/framework.pdf

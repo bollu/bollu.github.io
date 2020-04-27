@@ -51,14 +51,16 @@ document.addEventListener("DOMContentLoaded", function() {
 - email ID: rot13(`fvqqh.qehvq@tznvy.pbz`)
 
 #### Table of contents:
-
+	
+- [Networks are now faster than disks](#networks-are-now-faster-than-disks)
+- [Einstein-de Haas effect](#einstein--de-haas-effect)
+- [Big lost of Coq](#big-list-of-coq)
 - [Rank-select as adjunction](#rank-select-as-adjunction)
 - [Bounding chains: uniformly sample colorings](#bounding-chains-uniformly-sample-colorings)
 - [Coupling from the past (WIP)](#coupling-from-the-past)
 - [My quest to get better at writing](#my-quest-to-get-better-at-writing)
 - [Word problems in Russia and America](#word-problems-in-russia-and-america)
 - [Encoding mathematical hieararchies](#encoding-mathematical-hieararchies)
-- [Big list of English syntax (WIP)](#big-list-of-english-syntax)
 - [Learning code by hearing it](#learning-code-by-hearing-it)
 - [My long list of emacs gripes (WIP)](#my-long-list-of-emacs-gripes)
 - [Your arm can be a spinor](#your-arm-can-be-a-spinor)
@@ -174,8 +176,79 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Link Dump](#link-dump)
 
 
+# [Networks are now faster than disks](#networks-are-now-faster-than-disks)
 
+I learnt of this counter-intutive fact first from this
+[usenix article no SQL](https://www.usenix.org/legacy/publications/login/2011-10/openpdfs/Burd.pdf).
+On checking up, it seems to actually be true. 
+
+[Jeff Dean's keynote at LADIS 2009](https://research.cs.cornell.edu/ladis2009/talks/dean-keynote-ladis2009.pdf) report these numbers:
+
+> Round trip within same datacenter 500,000 ns
+> Disk seek 10,000,000 ns [regular disk]
+
+On the other hand, a commentor on [this discussion at serverfault](https://serverfault.com/questions/238417/are-networks-now-faster-than-disks)
+mentioned that SSDs might be much faster, and the numbers bear out:
+
+> Read 4K randomly from SSD* 150,000
+> Round trip within same datacenter 500,000 ns
+> Disk seek 10,000,000 ns [regular disk]
+
+# [Einstein-de Haas effect](einstein--de-haas-effect)
+
+I learnt of this from hacker news. This is some crazy experiment that shows
+that the 'quantum angular momentum' (spin) and the 'classical angular momentum'
+need to be conserved _together_ for physics to work out:
+
+> There's an experiment that transfers that angular momentum all the way up to
+> macroscopic levels. By magnetizing a cylinder of iron, all the spins start
+> pointing in the same direction. By conservation of angular momentum, the
+> cylinder itself has to start spinning in the opposite direction. I'm very
+> fond of this experiment, because it magnifies a strange quantum phenomenon to
+> the classical level.
+
+So, my understanding of the experiment is:
+
+- classical angular momentum and quantum angular momentum are related.
+- quantum angular momentum is decomposed into spin and orbital angular momentum.
+- for something like iron, spin is 96% of magnetization
+- angular momentum is proportional to magnetization
+- So, the experiment measures the _spin_ (mostly) in terms of the classical
+  spinning of the cylinder.
+
+
+##### References
+
+- [Einstein-de Hass effect on Wikipedia](https://en.m.wikipedia.org/wiki/Einstein%E2%80%93de_Haas_effect)
+
+
+# [Big list of Coq](#big-list-of-coq)
+
+Things in Coq that I keep forgetting, and are hard to lookup.
+
+#### Manually set the value of an existential
+
+```
+instantiate
+```
+	
+#### Rename an expression with an identifier throughout the proof
+
+```
+set (ident := expr) in *
+```
+
+This is useful to not lose information when `destruct` ing.
+	
+	
 # [Rank-select as adjunction](#rank-select-as-adjunction)
+
+We will introduce two operations `rank`, `select`, --- these are used to
+build memory-efficient data structures that can still be queried quickly.
+
+We will show how `rank` and `select` are adjoint. This will also us to also
+consider `coselect`, which is a variation of `select` that is not commonly
+discussed.
 
 ```hs
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
@@ -197,6 +270,22 @@ select a0 as c = Ix <$> findIndex (== c) (eqscan a0 as)
 rank :: Eq a => a -> [a] -> Ix -> Count
 rank a as (Ix ix) = (eqscan a as) !! ix
 ```
+
+Given this, we can prove that `select` and `rank` are adjunctions. There
+are different ways to think about this. My favourite way to is to notice
+that an `Ix` (index) is much "finer" information than `Count`. Hence,
+the concrete domain must be `Ix`, the abstract domain must be `Count`,
+and rank-select is an abstract interpretation!
+
+##### Co-select
+
+
+Thanks to Edward Kmett for teaching me this.
+
+##### References
+- [rank-select for succinct data structures
+- adjunction
+- abstract interpretation.
 
 
 # [Bounding chains: uniformly sample colorings](bounding-chains-uniformly-sample-colorings)
@@ -334,7 +423,7 @@ Which is indeed the same probability as (1):
 
 > 1. Choosing an element uniformly from a subset $T$ = `1/|T|`.
 
-##### Proof by program analysis
+##### Proof by program analysis, Version 1
 
 ```py
 def process(S, T):
@@ -353,8 +442,10 @@ def process(S, T):
     S = S.remove(s)
 ```
 
+As previously, we create an `indicator` function and study its behaviour:
+
 ```py
-def indocator(t0, S, T):
+def indicator(t0, S, T):
   assert(t0 in T) # precondition
   assert(issubset(T, S)) # precondition
 
@@ -364,12 +455,46 @@ def indocator(t0, S, T):
     S = S.remove(s)
 ```
 
+We know that this programs only returns a value from the line:
+- `if s in T: return t0 == s`
+
+We now compute `P(process(S, T) == t0)`.
+Whatever the return value of `indicator`, we can assume that it occured within
+the `if` condition. We can use this to compute:
+
 ```
-P(indicator(t0, S, T) = 1)
- = P(s in T /\ t0 == s)
- = P(s in T) * (t0 == s | s in T)
- = P(np.random.choice(S) in T) * (t0 == s | s in T)
- = |T|/|S| * 1/|T| = 1/|S|
+P(indicator(t0, S, T) = True)
+ = P(t0 == s | s in T) [program only returns in this case]
+ = 1/|T|
+```
+
+##### Proof by program analysis, Version 2
+
+
+Alternatively, we can also analyze this as we did in the _first_ proof,
+using the rule:
+
+```py
+def f():
+  return if cond1 then cond2 else cond3
+```
+
+will have probability:
+
+```
+P(cond1) * P(cond2|cond1) + P(not cond1) * P(cond3|not cond1)
+```
+
+Using this, we can analyze `indicator `as:
+
+```
+P(indicator(t0, S, T) = True)
+ = P(s in T) * P(t0 == s |s in T) + 
+    P(s not in T) * P(indicator(t0, S.remove(s), T) | s not in T)
+ = |T|/|S| * 1/|T| + 
+    (|S|-|T|)/|S| * P(indicator(t0, S.remove(s), T))
+ = 1/|S| + (|S|-|T|)/|S| * 1/|T| [by induction]
+ = 1/|T|
 ```
 
 #### Sampling using the above definition
@@ -549,35 +674,28 @@ sample = last . chain
 
 # [My quest to get better at writing](#my-quest-to-get-better-at-writing)
 
-#### Active v/s passive vocabulary
-
-#### English grammar
-
 #### Books about charming sentences and how to construct them
 
-# [Word problems in Russia and America](#word-problems-in-russia-and-america)
+#### Active v/s passive vocabulary
 
-- [link to article by *Andrei Toom*](http://toomandre.com/travel/sweden05/WP-SWEDEN-NEW.pdf)
+- passive vocabulary: Words one knows and can understand from context.
+- active vocabulary: Words one uses actively while speaking.
 
-scathing critique of how ameriacn math education is screwed:
- also, interesting
-anecdote about how looking for 'reality' in mathematical problems may in fact
-break student's ability to think in the abstract! This is a deep insight.
+The key to good writing for those who read a lot is to expand their
+active vocabulary to match their passive vocabulary.
 
-# [Encoding mathematical hieararchies](#encoding-mathematical-hieararchies)
+- A useful exercise is to look for synonyms during speech; This way,
+one forces an enlargening of active vocabulary. 
 
-I've wanted to learn how the SageMATH system is organized when it comes to math
-hieararchies. I also wish to learn how `lean4` encodes their hiearchies. I know
-how mathematical components does it. This might help narrow in on what what the
-"goldilocks zone" is for typeclass design.
+- Moulding one's inner mologoue to reach the ideal 'Voice' might also be
+  benificial; However, there is a tendency that speech is not the same as
+  writing --- very few people speak as they write. I wish to write like my idol
+  (David Foster Wallace), who does speak like he writes. I surmise it's
+  worthwhile to mould my inner speech to align with how my writing is supposed
+  to be.
 
-##### References
 
-- [Slides : Infrastructure for generic code in `SageMath`](https://cicm-conference.org/2016/slides/I3.pdf)
-- [Tabled typeclass resolution](https://arxiv.org/abs/2001.04301)
-- [Mathematical components, the book](https://math-comp.github.io/mcb/)
-
-# [Big list of english syntax](#big-list-of-english-syntax)
+#### English grammar
 
 - [english club](https://www.englishclub.com/grammar/pronouns-relative.htm)
 - [ginger software: grammar rules](https://www.gingersoftware.com/content/grammar-rules/)
@@ -619,6 +737,30 @@ is something I wish to explore.
 
 - `let ([x 5]) (+ x 3))`: `x` is anaphora resolution.
 - 
+
+# [Word problems in Russia and America](#word-problems-in-russia-and-america)
+
+- [link to article by *Andrei Toom*](http://toomandre.com/travel/sweden05/WP-SWEDEN-NEW.pdf)
+
+scathing critique of how ameriacn math education is screwed:
+ also, interesting
+anecdote about how looking for 'reality' in mathematical problems may in fact
+break student's ability to think in the abstract! This is a deep insight.
+
+# [Encoding mathematical hieararchies](#encoding-mathematical-hieararchies)
+
+I've wanted to learn how the SageMATH system is organized when it comes to math
+hieararchies. I also wish to learn how `lean4` encodes their hiearchies. I know
+how mathematical components does it. This might help narrow in on what what the
+"goldilocks zone" is for typeclass design.
+
+##### References
+
+- [Slides : Infrastructure for generic code in `SageMath`](https://cicm-conference.org/2016/slides/I3.pdf)
+- [Tabled typeclass resolution](https://arxiv.org/abs/2001.04301)
+- [Mathematical components, the book](https://math-comp.github.io/mcb/)
+
+
 
 # [Learning code by hearing it](#learning-code-by-hearing-it)
 
@@ -2014,6 +2156,10 @@ We will show how to establish a relational covering:
 - [Ideas of the Holonomy Decomposition of Finite Transformation Semigroups](http://www.egri-nagy.hu/pdf/holonomy_general.pdf)
 - [Nine chapters on the semigroup art](http://www-groups.mcs.st-andrews.ac.uk/~alanc/pub/c_semigroups/c_semigroups_a4.pdf)
 - [Computational holonomy decompositions of transformation semigroups](http://www.biomicsproject.eu/file-repository/category/CompHolonomy.pdf)
+- [Algebraic Hierarchical Decomposition of finite automata: webpage with links to implementations](http://graspermachine.sourceforge.net/)
+- [`sgpdec` library on github](https://github.com/gap-packages/sgpdec)
+- [Computational semigroup theory blog](https://compsemi.wordpress.com/)
+- [Compact notation for semigroup/automata](https://arxiv.org/pdf/1306.1138.pdf)
 
 ## [Proving block matmul using program analysis](#proving-block-matmul-using-program-analysis)
 

@@ -2,9 +2,55 @@
 - Samples from the moduli space of all possible mathematics.
 
 - [Billiard ball computation](billiard-ball-computation)
+- [On the geometry of distributed algorithms](#on-the-geometry-of-distributed-algorithms)
 - [Compilers as commutative algebra](compilers-as-commutative-algebra)
 
-# Billiard ball computation
+# Segment trees from Mobius inversion
+
+- Mobius inversion allows us to collect information about $g(\leq x)$ in a
+  function $f$
+
+- Segment trees / fenwick trees also let us do this. They let us collect
+  information about lists.
+
+- If we have an algebra of indexees `Ix List` and an algebra of 
+  'segments of a list' `Seg List`, then the fenwick tree is a way to go
+  from repr. to the other. Refer to the orbit representation.
+
+- What happens if we replace `List` with `Tree`? `Ix` is easy. What about
+  `Seg`? Can we have the euler tour 'pop out' from this? How?
+
+# Snooker on a Doughnut: A promenade of geometric computation theory.
+
+#### Paper abstract
+
+We consider the hamiltonian evolution of systems on 
+symplectic manifolds. We perform classical 
+computation on these manifolds with the billiard ball
+model of computation. We investigate the relationship
+of time complexity, space complexity (volume of phase space),
+and gate complexity (billiard ball count)
+as a function of the manifold. We exhibit 
+concrete examples where this model is
+exponentially  than the best known lower bounds
+for space and gate complexity. Intuitively, the power
+of the model is to allow rearrangements of the billiard
+ball evolution to have the balls act as inputs, outputs, and
+gates. This permits a curious form of self-modifying
+programming that allows access to better complexity classes.
+We propose three new lines of research: one on uncovering the
+complexity theoretic phenomena that is present, another
+on the symplectic geometry that is controlling the situation,
+and finally, the intruguing possibility of building such a machine.
+
+
+#### Reflections
+
+A quest for truth, flashes of brilliance, a suicide: the tangled
+history of geometric computation theory has it all. Here, we narrate the
+story, not for the layperson as has been done by many excellent
+expositions, but for the advanced undergraduate who wishes to learn
+the mathematical morphogenisis of modern geometric computation theory.
 
 It was a well known fact that billiard balls could be
 used to model classical computation. However, this avenue was never deeply
@@ -98,13 +144,37 @@ Prove that analogue of $P \neq NP$ in the symplectic regime by using:
   in $\Lambda$, thereby proving $P \neq NP$ 
 
 
-# Compilers as commutative algebra
+# On the geometry of distributed algorithms
 
-# Complexity theory as monad composition
+##### Abstract
 
-# Coinduction as coarse space theory
+We begin with what a model of
+computation for distributed systems: processes on a graph
+which send values from semi-lattices; state variables updated with
+a monotonic join; conditionals are upward
+filters. This implicitly ensures parallelism, idempotence,
+and strong eventual consistency. We then recast this
+setting into a more computational regime, where
+states are vectors in $\mathbb Z^n$, join is
+pointwise `max`, and 
+computations are piecewise-linear functions.
+We then proceed to move to tropical geometry, to associate 
+a tropical varietry to the above distributed algorithm. This
+allows us re-interpret all previously known ideas of 
+distributed algorithms in a purely geometric setting.
+From this pivot, we compute cohomology groups, from which 
+we derive clasically known impossibilities --- 
+the PAC theorem, byzantine one-in-third-impossibility,
+as statements about the non-triviality of the first and higher
+cohomology groups of the geometry. Finally, present many previously
+known communication complexity invariants as being
+topological invariants of the scheme.
 
-# Distributed systems as lattice cohomology.
 
-A lull is present in the distributed systems community, as they continually
-construct more and more contrived models of 
+# Compilers as commutative algebra.
+
+# Complexity theory as monad composition.
+
+# Coinduction as coarse space theory.
+
+
