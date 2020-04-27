@@ -7,6 +7,28 @@
 \textbf{Siddharth Bhat (20161105)}
 
 \section{Q1}
+There is a component, call it A at site that initiated the transaction, and
+components at each of the banks --- components B and C. Component B receives
+the instruction from A. B checks that there is adequate money in the account, and
+aborts if not.  Otherwise, B subtracts 10,000 from the account at B and
+signals C to deposit 10,000 into the designated account at C. Component C
+checks that the account exists, and aborts if not. Otherwise, C adds 10,000 to
+the account and informs A of a successful conclusion. Once A has been
+informed of the successful conclusion, it reports back to the user of
+the success.
+
+Due to the presence of time-outs, and since both $B$ and $C$ can send \texttt{Abort}
+back to $A$, both crashes and failures such as insufficient funds are handled.
+If $B$ or $C$ crash, the request times out; If there are insufficient funds,
+then a \texttt{Abort} message is sent.
+The coordinator sends a rollback message to all the participants.  Each
+participant undoes their transactions using the undo log. Each participant sends an
+acknowledgement to the coordinator.  The coordinator undoes the transaction
+when all acknowledgements have been received.
+
+
+
+
 \section{Q2}
 \textbf{Consistency:} all nodes see the same data at the same time.
 \textbf{Availability:} a guarantee that every request receives a response about whether it was successful or failed.
