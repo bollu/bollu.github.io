@@ -20,6 +20,11 @@
 - What happens if we replace `List` with `Tree`? `Ix` is easy. What about
   `Seg`? Can we have the euler tour 'pop out' from this? How?
 
+
+This is quite easy. We can use `Traversable` to fill any data structure;
+we can use the APL technique of `fold /= 0` to check for beginning-and-ending
+of matching parity.
+
 # Snooker on a Doughnut: A promenade of geometric computation theory.
 
 #### Paper abstract
