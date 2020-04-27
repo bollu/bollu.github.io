@@ -9,6 +9,7 @@ pre, .latexblock, blockquote { border-left-color:#DDDDDD;  border-left-style: so
  blockquote { border-left-color:#DDDDDD;  border-left-style: solid;      border-left-width: 4px; padding-left: 5px; color: #666666;}.latexblock, .latexinline, .code { font-family: 'Blog Mono', monospace; line-height: 1.2em; font-size: 80%;  }.latexblock { margin-top: 5px; margin-bottom: 5px; padding-bottom: 5px; padding-top: 5px; background-color: #EEEEEE; }.code, code { background-color: #EEEEEE; width: 100%; } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code { width: 100%; overflow-x: hidden; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; }
 .latexinline { border-bottom-color: #DDDDDD; border-bottom-style: solid;                border-bottom-width: 1px; padding-bottom: 2px;                padding-left: 2px; padding-right: 2px; }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.latexblock .li-itemize{margin:1ex 0ex;}.latexblock .li-enumerate{margin:1ex 0ex;}.latexblock .footnotetext{margin:0ex; padding:0ex;}.latexblock div.footnotetext P{margin:0px; text-indent:1em;}.latexblock .thefootnotes{text-align:left;margin:0ex;}.latexblock .dt-thefootnotes{margin:0em;}.latexblock .dd-thefootnotes{margin:0em 0em 0em 2em;}.latexblock .footnoterule{margin:1em auto 1em 0px;width:50%;}.latexblock .caption{padding-left:2ex; padding-right:2ex; margin-left:auto; margin-right:auto}.latexblock .title{margin:2ex auto;text-align:center}.latexblock .titlemain{margin:1ex 2ex 2ex 1ex;}.latexblock .center{text-align:center;margin-left:auto;margin-right:auto;}.latexblock .flushleft{text-align:left;margin-left:0ex;margin-right:auto;}.latexblock .flushright{text-align:right;margin-left:auto;margin-right:0ex;}.latexblock div table{margin-left:inherit;margin-right:inherit;margin-bottom:2px;margin-top:2px}.latexblock td table{margin:auto;}.latexblock table{border-collapse:collapse;}.latexblock td{padding:0;}.latexblock .cellpadding0 tr td{padding:0;}.latexblock .cellpadding1 tr td{padding:1px;}.latexblock pre{text-align:left;margin-left:0ex;margin-right:auto;}.latexblock blockquote{margin-left:4ex;margin-right:4ex;text-align:left;}.latexblock td p{margin:0px;}.latexblock .hbar{border:none;height:2px;width:100%;background-color:black;}.latexblock .display{border-collapse:separate;border-spacing:2px;width:auto; border:none;}.latexblock .dcell{white-space:nowrap;padding:0px; border:none;}.latexblock .dcenter{margin:0ex auto;}.latexblock .theorem{text-align:left;margin:1ex auto 1ex 0ex;}.latexblock .tst{font-family:sans;font-style:oblique;color:maroon}.latexblock .highlight{color:lime}</style></head><body><div class='container'>
 
+<meta name="google-site-verification" content="8r2n7znO2xbDQsIVyRrvrpje4k5AfPVmDOkpVDhkmvw" />
 <h2><a id=a-universe-of-sorts href='#a-universe-of-sorts'> § </a> A Universe of Sorts</h2>
 <h5><a id=siddharth-bhat href='#siddharth-bhat'> § </a> Siddharth Bhat</h5>
 <ul>
@@ -28,7 +29,7 @@ My resume</a>
 
 </li>
 <li>
- <a href=todo.md>
+ <a href=todo.html>
 My reading list</a>
 
 </li>
@@ -39,7 +40,23 @@ My reading list</a>
 </ul>
 
 <h4><a id=table-of-contents href='#table-of-contents'> § </a> Table of contents:</h4>
+	
 <ul>
+<li>
+ <a href=#networks-are-now-faster-than-disks>
+Networks are now faster than disks</a>
+
+</li>
+<li>
+ <a href=#einstein--de-haas-effect>
+Einstein-de Haas effect</a>
+
+</li>
+<li>
+ <a href=#big-list-of-coq>
+Big list of Coq</a>
+
+</li>
 <li>
  <a href=#rank-select-as-adjunction>
 Rank-select as adjunction</a>
@@ -68,11 +85,6 @@ Word problems in Russia and America</a>
 <li>
  <a href=#encoding-mathematical-hieararchies>
 Encoding mathematical hieararchies</a>
-
-</li>
-<li>
- <a href=#big-list-of-english-syntax>
-Big list of English syntax (WIP)</a>
 
 </li>
 <li>
@@ -640,12 +652,128 @@ GSoC 2015 final report</a>
 Link Dump</a>
 
 </li>
+<li>
+ <a href=#recipes>
+Recipes</a>
+
+</li>
 
 </ul>
 
+<h1><a id=networks-are-now-faster-than-disks href='#networks-are-now-faster-than-disks'> § </a> <a href=#networks-are-now-faster-than-disks>
+Networks are now faster than disks</a>
+</h1>
+I learnt of this counter-intutive fact first from this
+<a href=https://www.usenix.org/legacy/publications/login/2011-10/openpdfs/Burd.pdf>
+usenix article no SQL</a>
+.
+On checking up, it seems to actually be true. 
+<a href=https://research.cs.cornell.edu/ladis2009/talks/dean-keynote-ladis2009.pdf>
+Jeff Dean's keynote at LADIS 2009</a>
+ report these numbers:
+<ul>
+<li>
+ Round trip within same datacenter: 500,000 ns
+</li>
+<li>
+ Disk seek: 10,000,000 ns [regular disk]
+</li>
+
+</ul>
+
+On the other hand, a commentor on <a href=https://serverfault.com/questions/238417/are-networks-now-faster-than-disks>
+this discussion at serverfault</a>
+
+mentioned that SSDs might be much faster, and the numbers bear out:
+<ul>
+<li>
+ Read 4K randomly from SSD: 150,000 ns
+</li>
+<li>
+ Round trip within same datacenter: 500,000 ns
+</li>
+<li>
+ Disk seek: 10,000,000 ns [regular disk]
+</li>
+
+</ul>
+
+<h1><a id=einstein-de-haas-effect href='#einstein-de-haas-effect'> § </a> <a href=einstein--de-haas-effect>
+Einstein-de Haas effect</a>
+</h1>
+I learnt of this from hacker news. This is some crazy experiment that shows
+that the 'quantum angular momentum' (spin) and the 'classical angular momentum'
+need to be conserved <i>together</i> for physics to work out:
+<blockquote> There's an experiment that transfers that angular momentum all the way up to macroscopic levels. By magnetizing a cylinder of iron, all the spins start pointing in the same direction. By conservation of angular momentum, the cylinder itself has to start spinning in the opposite direction. I'm very fond of this experiment, because it magnifies a strange quantum phenomenon to the classical level.</blockquote>
+So, my understanding of the experiment is:
+<ul>
+<li>
+ classical angular momentum and quantum angular momentum are related.
+</li>
+<li>
+ quantum angular momentum is decomposed into spin and orbital angular momentum.
+</li>
+<li>
+ for something like iron, spin is 96% of magnetization
+</li>
+<li>
+ angular momentum is proportional to magnetization
+</li>
+<li>
+ So, the experiment measures the <i>spin</i> (mostly) in terms of the classical
+  spinning of the cylinder.
+</li>
+
+</ul>
+
+<h5><a id=references href='#references'> § </a> References</h5>
+<ul>
+<li>
+ <a href=https://en.m.wikipedia.org/wiki/Einstein%E2%80%93de_Haas_effect>
+Einstein-de Hass effect on Wikipedia</a>
+
+</li>
+
+</ul>
+
+<h1><a id=big-list-of-coq href='#big-list-of-coq'> § </a> <a href=#big-list-of-coq>
+Big list of Coq</a>
+</h1>
+Things in Coq that I keep forgetting, and are hard to lookup.
+<h4><a id=manually-set-the-value-of-an-existential href='#manually-set-the-value-of-an-existential'> § </a> Manually set the value of an existential</h4>
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> instantiate
+<font color="#666666">3:</font> </tt></pre>
+</div>
+
+	
+<h4><a id=rename-an-expression-with-an-identifier-throughout-the-proof href='#rename-an-expression-with-an-identifier-throughout-the-proof'> § </a> Rename an expression with an identifier throughout the proof</h4>
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> set (ident := expr) in *
+<font color="#666666">3:</font> </tt></pre>
+</div>
+
+This is useful to not lose information when <code>destruct</code> ing.
+	
+	
 <h1><a id=rank-select-as-adjunction href='#rank-select-as-adjunction'> § </a> <a href=#rank-select-as-adjunction>
 Rank-select as adjunction</a>
 </h1>
+We will introduce two operations <code>rank</code>, <code>select</code>, --- these are used to
+build memory-efficient data structures that can still be queried quickly.
+We will show how <code>rank</code> and <code>select</code> are adjoint. This will also us to also
+consider <code>coselect</code>, which is a variation of <code>select</code> that is not commonly
+discussed.
 <div class='code'>
 <!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
@@ -672,6 +800,27 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#666666">19:</font> rank a as (<b><font color="#000000">Ix</font></b> ix) = (eqscan a as) !! ix
 <font color="#666666">20:</font> </tt></pre>
 </div>
+
+Given this, we can prove that <code>select</code> and <code>rank</code> are adjunctions. There
+are different ways to think about this. My favourite way to is to notice
+that an <code>Ix</code> (index) is much "finer" information than <code>Count</code>. Hence,
+the concrete domain must be <code>Ix</code>, the abstract domain must be <code>Count</code>,
+and rank-select is an abstract interpretation!
+<h5><a id=co-select href='#co-select'> § </a> Co-select</h5>
+Thanks to Edward Kmett for teaching me this.
+<h5><a id=references href='#references'> § </a> References</h5>
+<ul>
+<li>
+ [rank-select for succinct data structures
+</li>
+<li>
+ adjunction
+</li>
+<li>
+ abstract interpretation.
+</li>
+
+</ul>
 
 <h1><a id=bounding-chains-uniformly-sample-colorings href='#bounding-chains-uniformly-sample-colorings'> § </a> <a href=bounding-chains-uniformly-sample-colorings>
 Bounding chains: uniformly sample colorings</a>
@@ -909,7 +1058,7 @@ http://www.gnu.org/software/src-highlite -->
 Which is indeed the same probability as (1):
 <blockquote> 1. Choosing an element uniformly from a subset <span class='latexinline'>
 <span style="font-style:italic">T</span></span> = <code>1/|T|</code>.</blockquote>
-<h5><a id=proof-by-program-analysis href='#proof-by-program-analysis'> § </a> Proof by program analysis</h5>
+<h5><a id=proof-by-program-analysis-version-1 href='#proof-by-program-analysis-version-1'> § </a> Proof by program analysis, Version 1</h5>
 <div class='code'>
 <!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
@@ -938,13 +1087,14 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#666666">7:</font> </tt></pre>
 </div>
 
+As previously, we create an <code>indicator</code> function and study its behaviour:
 <div class='code'>
 <!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt><font color="#666666">1:</font> 
-<font color="#666666">2:</font> <b><u><font color="#000000">def</font></u></b> indocator(t0, S, T):
+<font color="#666666">2:</font> <b><u><font color="#000000">def</font></u></b> indicator(t0, S, T):
 <font color="#666666">3:</font>   <b><u><font color="#000000">assert</font></u></b>(t0 <b><u><font color="#000000">in</font></u></b> T) <i><font color="#808080"># precondition</font></i>
 <font color="#666666">4:</font>   <b><u><font color="#000000">assert</font></u></b>(issubset(T, S)) <i><font color="#808080"># precondition</font></i>
 <font color="#666666">5:</font> 
@@ -955,18 +1105,69 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#666666">10:</font> </tt></pre>
 </div>
 
+We know that this programs only returns a value from the line:
+<ul>
+<li>
+ <code>if s in T: return t0 == s</code>
+</li>
+
+</ul>
+
+We now compute <code>P(process(S, T) == t0)</code>.
+Whatever the return value of <code>indicator</code>, we can assume that it occured within
+the <code>if</code> condition. We can use this to compute:
 <div class='code'>
 <!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt><font color="#666666">1:</font> 
-<font color="#666666">2:</font> P(indicator(t0, S, T) = 1)
-<font color="#666666">3:</font>  = P(s in T /\ t0 == s)
-<font color="#666666">4:</font>  = P(s in T) * (t0 == s | s in T)
-<font color="#666666">5:</font>  = P(np.random.choice(S) in T) * (t0 == s | s in T)
-<font color="#666666">6:</font>  = |T|/|S| * 1/|T| = 1/|S|
-<font color="#666666">7:</font> </tt></pre>
+<font color="#666666">2:</font> P(indicator(t0, S, T) = True)
+<font color="#666666">3:</font>  = P(t0 == s | s in T) [program only returns in this case]
+<font color="#666666">4:</font>  = 1/|T|
+<font color="#666666">5:</font> </tt></pre>
+</div>
+
+<h5><a id=proof-by-program-analysis-version-2 href='#proof-by-program-analysis-version-2'> § </a> Proof by program analysis, Version 2</h5>
+Alternatively, we can also analyze this as we did in the <i>first</i> proof,
+using the rule:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> <b><u><font color="#000000">def</font></u></b> f():
+<font color="#666666">3:</font>   <b><u><font color="#000000">return</font></u></b> <b><u><font color="#000000">if</font></u></b> cond1 then cond2 <b><u><font color="#000000">else</font></u></b> cond3
+<font color="#666666">4:</font> </tt></pre>
+</div>
+
+will have probability:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> P(cond1) * P(cond2|cond1) + P(not cond1) * P(cond3|not cond1)
+<font color="#666666">3:</font> </tt></pre>
+</div>
+
+Using this, we can analyze <code>indicator </code>as:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> P(indicator(t0, S, T) = True)
+<font color="#666666">3:</font>  = P(s in T) * P(t0 == s |s in T) + 
+<font color="#666666">4:</font>     P(s not in T) * P(indicator(t0, S.remove(s), T) | s not in T)
+<font color="#666666">5:</font>  = |T|/|S| * 1/|T| + 
+<font color="#666666">6:</font>     (|S|-|T|)/|S| * P(indicator(t0, S.remove(s), T))
+<font color="#666666">7:</font>  = 1/|S| + (|S|-|T|)/|S| * 1/|T| [by induction]
+<font color="#666666">8:</font>  = 1/|T|
+<font color="#666666">9:</font> </tt></pre>
 </div>
 
 <h4><a id=sampling-using-the-above-definition href='#sampling-using-the-above-definition'> § </a> Sampling using the above definition</h4>
@@ -1228,55 +1429,41 @@ Coupling from the past, a user's guide</a>
 <h1><a id=my-quest-to-get-better-at-writing href='#my-quest-to-get-better-at-writing'> § </a> <a href=#my-quest-to-get-better-at-writing>
 My quest to get better at writing</a>
 </h1>
-<h4><a id=active-vs-passive-vocabulary href='#active-vs-passive-vocabulary'> § </a> Active v/s passive vocabulary</h4>
-<h4><a id=english-grammar href='#english-grammar'> § </a> English grammar</h4>
 <h4><a id=books-about-charming-sentences-and-how-to-construct-them href='#books-about-charming-sentences-and-how-to-construct-them'> § </a> Books about charming sentences and how to construct them</h4>
-<h1><a id=word-problems-in-russia-and-america href='#word-problems-in-russia-and-america'> § </a> <a href=#word-problems-in-russia-and-america>
-Word problems in Russia and America</a>
-</h1>
+<h4><a id=active-vs-passive-vocabulary href='#active-vs-passive-vocabulary'> § </a> Active v/s passive vocabulary</h4>
 <ul>
 <li>
- <a href=http://toomandre.com/travel/sweden05/WP-SWEDEN-NEW.pdf>
-link to article by <i>Andrei Toom</i></a>
-
+ passive vocabulary: Words one knows and can understand from context.
+</li>
+<li>
+ active vocabulary: Words one uses actively while speaking.
 </li>
 
 </ul>
 
-scathing critique of how ameriacn math education is screwed:
- also, interesting
-anecdote about how looking for 'reality' in mathematical problems may in fact
-break student's ability to think in the abstract! This is a deep insight.
-<h1><a id=encoding-mathematical-hieararchies href='#encoding-mathematical-hieararchies'> § </a> <a href=#encoding-mathematical-hieararchies>
-Encoding mathematical hieararchies</a>
-</h1>
-I've wanted to learn how the SageMATH system is organized when it comes to math
-hieararchies. I also wish to learn how <code>lean4</code> encodes their hiearchies. I know
-how mathematical components does it. This might help narrow in on what what the
-"goldilocks zone" is for typeclass design.
-<h5><a id=references href='#references'> § </a> References</h5>
+The key to good writing for those who read a lot is to expand their
+active vocabulary to match their passive vocabulary.
 <ul>
 <li>
- <a href=https://cicm-conference.org/2016/slides/I3.pdf>
-Slides : Infrastructure for generic code in <code>SageMath</code></a>
-
-</li>
-<li>
- <a href=https://arxiv.org/abs/2001.04301>
-Tabled typeclass resolution</a>
-
-</li>
-<li>
- <a href=https://math-comp.github.io/mcb/>
-Mathematical components, the book</a>
-
+ A useful exercise is to look for synonyms during speech; This way,
+  one forces an enlargening of active vocabulary. 
 </li>
 
 </ul>
 
-<h1><a id=big-list-of-english-syntax href='#big-list-of-english-syntax'> § </a> <a href=#big-list-of-english-syntax>
-Big list of english syntax</a>
-</h1>
+<ul>
+<li>
+ Moulding one's inner mologoue to reach the ideal 'Voice' might also be
+  benificial; However, there is a tendency that speech is not the same as
+  writing --- very few people speak as they write. I wish to write like my idol
+  (David Foster Wallace), who does speak like he writes. I surmise it's
+  worthwhile to mould my inner speech to align with how my writing is supposed
+  to be.
+</li>
+
+</ul>
+
+<h4><a id=english-grammar href='#english-grammar'> § </a> English grammar</h4>
 <ul>
 <li>
  <a href=https://www.englishclub.com/grammar/pronouns-relative.htm>
@@ -1351,6 +1538,49 @@ is something I wish to explore.
 </li>
 <li>
  
+</li>
+
+</ul>
+
+<h1><a id=word-problems-in-russia-and-america href='#word-problems-in-russia-and-america'> § </a> <a href=#word-problems-in-russia-and-america>
+Word problems in Russia and America</a>
+</h1>
+<ul>
+<li>
+ <a href=http://toomandre.com/travel/sweden05/WP-SWEDEN-NEW.pdf>
+link to article by <i>Andrei Toom</i></a>
+
+</li>
+
+</ul>
+
+scathing critique of how ameriacn math education is screwed:
+ also, interesting
+anecdote about how looking for 'reality' in mathematical problems may in fact
+break student's ability to think in the abstract! This is a deep insight.
+<h1><a id=encoding-mathematical-hieararchies href='#encoding-mathematical-hieararchies'> § </a> <a href=#encoding-mathematical-hieararchies>
+Encoding mathematical hieararchies</a>
+</h1>
+I've wanted to learn how the SageMATH system is organized when it comes to math
+hieararchies. I also wish to learn how <code>lean4</code> encodes their hiearchies. I know
+how mathematical components does it. This might help narrow in on what what the
+"goldilocks zone" is for typeclass design.
+<h5><a id=references href='#references'> § </a> References</h5>
+<ul>
+<li>
+ <a href=https://cicm-conference.org/2016/slides/I3.pdf>
+Slides : Infrastructure for generic code in <code>SageMath</code></a>
+
+</li>
+<li>
+ <a href=https://arxiv.org/abs/2001.04301>
+Tabled typeclass resolution</a>
+
+</li>
+<li>
+ <a href=https://math-comp.github.io/mcb/>
+Mathematical components, the book</a>
+
 </li>
 
 </ul>
@@ -3600,6 +3830,26 @@ Nine chapters on the semigroup art</a>
 <li>
  <a href=http://www.biomicsproject.eu/file-repository/category/CompHolonomy.pdf>
 Computational holonomy decompositions of transformation semigroups</a>
+
+</li>
+<li>
+ <a href=http://graspermachine.sourceforge.net/>
+Algebraic Hierarchical Decomposition of finite automata: webpage with links to implementations</a>
+
+</li>
+<li>
+ <a href=https://github.com/gap-packages/sgpdec>
+<code>sgpdec</code> library on github</a>
+
+</li>
+<li>
+ <a href=https://compsemi.wordpress.com/>
+Computational semigroup theory blog</a>
+
+</li>
+<li>
+ <a href=https://arxiv.org/pdf/1306.1138.pdf>
+Compact notation for semigroup/automata</a>
 
 </li>
 
@@ -14953,7 +15203,7 @@ final report</a>
 
 </ul>
 
-<h2><a id=link-dump href='#link-dump'> § </a> Link dump</h2>
+<h1><a id=link-dump href='#link-dump'> § </a> Link dump</h1>
 <ul>
 <li>
  <a href=https://gekk.info/articles/adhd.html>
@@ -14974,6 +15224,37 @@ James mickens: hilarious articles --- this one on security</a>
  <a href=https://gekk.info/articles/adhd.html>
 ADHD: A lifelong struggle | Why organisation systems don't work</a>
 
+</li>
+
+</ul>
+
+<h1><a id=recipes href='#recipes'> § </a> <a href=#recipes>
+Recipes</a>
+</h1>
+<h5><a id=upma href='#upma'> § </a> Upma</h5>
+<ul>
+<li>
+ start with ghee, sesame seeds, curry leaves, red + green chili, ginger garlic
+  paste, hing (asaefodita).
+</li>
+<li>
+ finely chopped onion, allow this to caramelize.
+</li>
+<li>
+ A dash of turmeric for depth.
+</li>
+<li>
+ Add in the rava, allow it to cook/heat.
+</li>
+<li>
+ Add in tomato and a little water when it's done heating. Allow tomato to cook.
+</li>
+<li>
+ Add in more water, cover with a lid, and let it come to a boil. Keep stirring
+  to prevent clumps.
+</li>
+<li>
+ Garnish with coriander.
 </li>
 
 </ul>

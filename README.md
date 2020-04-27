@@ -49,14 +49,14 @@ document.addEventListener("DOMContentLoaded", function() {
 - [My github](http://github.com/bollu)
 - [My math.se profile](https://math.stackexchange.com/users/261373/siddharth-bhat)
 - [My resume](resume/main.pdf)
-- [My reading list](todo.md)
+- [My reading list](todo.html)
 - email ID: rot13(`fvqqh.qehvq@tznvy.pbz`)
 
 #### Table of contents:
 	
 - [Networks are now faster than disks](#networks-are-now-faster-than-disks)
 - [Einstein-de Haas effect](#einstein--de-haas-effect)
-- [Big lost of Coq](#big-list-of-coq)
+- [Big list of Coq](#big-list-of-coq)
 - [Rank-select as adjunction](#rank-select-as-adjunction)
 - [Bounding chains: uniformly sample colorings](#bounding-chains-uniformly-sample-colorings)
 - [Coupling from the past (WIP)](#coupling-from-the-past)
@@ -187,15 +187,15 @@ On checking up, it seems to actually be true.
 
 [Jeff Dean's keynote at LADIS 2009](https://research.cs.cornell.edu/ladis2009/talks/dean-keynote-ladis2009.pdf) report these numbers:
 
-> Round trip within same datacenter 500,000 ns
-> Disk seek 10,000,000 ns [regular disk]
+- Round trip within same datacenter: 500,000 ns
+- Disk seek: 10,000,000 ns [regular disk]
 
 On the other hand, a commentor on [this discussion at serverfault](https://serverfault.com/questions/238417/are-networks-now-faster-than-disks)
 mentioned that SSDs might be much faster, and the numbers bear out:
 
-> Read 4K randomly from SSD* 150,000
-> Round trip within same datacenter 500,000 ns
-> Disk seek 10,000,000 ns [regular disk]
+- Read 4K randomly from SSD: 150,000 ns
+- Round trip within same datacenter: 500,000 ns
+- Disk seek: 10,000,000 ns [regular disk]
 
 # [Einstein-de Haas effect](einstein--de-haas-effect)
 
@@ -688,7 +688,7 @@ The key to good writing for those who read a lot is to expand their
 active vocabulary to match their passive vocabulary.
 
 - A useful exercise is to look for synonyms during speech; This way,
-one forces an enlargening of active vocabulary. 
+  one forces an enlargening of active vocabulary. 
 
 - Moulding one's inner mologoue to reach the ideal 'Voice' might also be
   benificial; However, there is a tendency that speech is not the same as
