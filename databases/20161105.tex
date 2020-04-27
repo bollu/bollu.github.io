@@ -1,8 +1,30 @@
 \documentclass{article}
+
+\usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \begin{document}
 \textbf{Siddharth Bhat (20161105)}
+
+\section{Q7}
+\subsubsection{Q7.1}
+$SL_x(E)$ for a shared lock by transaction $x$ on elem $E$. $U_x(E)$ for
+unlock by transaction $x$ on elem $E$.
+
+\includegraphics[width=0.8\textwidth]{db-q71.pdf}
+
+All locks are accepted, since there are no conflicting locks.
+
+\subsubsection{Q7.2}
+
+Table will be the same as for the above, since we did not have any read action
+which was followed by a write action of the same element by the same
+transaction.
+
+
+\subsubsection{Q7.3}
+
+
 \section{Q8}
 \begin{align*}
     &r_1(O_1) \mapsto \text{$T_1$ puts }IS(B_1); S(O_1); \texttt{release} \\
