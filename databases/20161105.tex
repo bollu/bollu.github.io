@@ -3,8 +3,14 @@
 \usepackage{amssymb}
 \begin{document}
 \textbf{Siddharth Bhat (20161105)}
+\section{Q8}
 \section{Q9}
 \subsubsection{9.1}
+In Undo Logging Logging, we need to write all we need to write all modified
+data to disk before committing a transaction.  This may need a large number of disk
+I/O’s. This is unlike the case of Redo logging, which allows changes to be
+present in-memory; only need to flush changes before committing.
+
 \subsubsection{9.2}
 Selinger optimization improves upon DP approach by keeping for
 each  not only the plan of least cost, but also plans that have higher
@@ -35,8 +41,27 @@ file. It also does not need to manage structured data. Hence, many of the ACID
 like concerns simply do not occur in the case of a file system.
 
 \subsubsection{9.7}
+the commit bit for X is true if and only if the most recent
+transaction to write X has already committed. The purpose of this bit
+is to avoid a situation where one transaction T reads data written by
+another transaction U, and U then aborts. This problem, where T makes
+a "dirty read" of uncommitted data, certainly can cause the database
+state to become inconsistent, and any scheduler needs a mechanism to
+prevent dirty reads.
+
 \subsubsection{9.8}
+\begin{itemize}
+        \item  Two-phase locking - 2PL.
+        \item General lock based solutions.
+        \item Timestamp ordering.
+        \item Validation based concurrency control.
+\end{itemize}
+
+Increment based locking is good in this case because it allows to add or subtract a constant
+from an element, which is what most kinds of bank transaactions are. Increment locks on the same
+element do not conflict with each other.
 \subsubsection{9.9}
+recovery manager will have to DODO
 \subsubsection{9.10}
 all trees of n vertices is $n^{n-2}$. Number of left-deep trees is $n!$.
 $n^{n-2}$ is much larger than $n!$.
