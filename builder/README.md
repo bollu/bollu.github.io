@@ -32,3 +32,4 @@ if ((window.innerHeight - document.documentElement.clientHeight) >0) {
 - [ ] RSS feed.
 - [ ] Broken link warnings.
 - [ ] Checkboxes.
+- [ ] Link generation for repeats: eg. "#a\n#a" should have links `a-1` and `a-2`.
