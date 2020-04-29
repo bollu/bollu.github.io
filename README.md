@@ -54,15 +54,12 @@ document.addEventListener("DOMContentLoaded", function() {
 	
 - [Networks are now faster than disks](#networks-are-now-faster-than-disks)
 - [Einstein-de Haas effect](#einstein--de-haas-effect)
-- [Big list of Coq](#big-list-of-coq)
 - [Rank-select as adjunction](#rank-select-as-adjunction)
 - [Bounding chains: uniformly sample colorings](#bounding-chains-uniformly-sample-colorings)
 - [Coupling from the past (WIP)](#coupling-from-the-past)
-- [My quest to get better at writing](#my-quest-to-get-better-at-writing)
 - [Word problems in Russia and America](#word-problems-in-russia-and-america)
 - [Encoding mathematical hieararchies](#encoding-mathematical-hieararchies)
 - [Learning code by hearing it](#learning-code-by-hearing-it)
-- [My long list of emacs gripes (WIP)](#my-long-list-of-emacs-gripes)
 - [Your arm can be a spinor](#your-arm-can-be-a-spinor)
 - [Self modifying code for function calls](#self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack)
 - [Adjunctions as advice](#adjunctions-as-advice)
@@ -174,6 +171,10 @@ document.addEventListener("DOMContentLoaded", function() {
 - [GSoC 2015 week 7](content/blog/gsoc-vispy-week-7.md)
 - [GSoC 2015 final report](content/blog/gsoc-vispy-report-6.md)
 - [Link Dump](#link-dump)
+- [Big list of emacs gripes](#big-list-of-emacs-gripes)
+- [Big list of writing](#big-list-of-writing)
+- [Big list of Coq](#big-list-of-coq)
+- [Big list of Latex](#big-list-of-latex)
 - [Recipes](#recipes)
 
 
@@ -223,23 +224,6 @@ So, my understanding of the experiment is:
 - [Einstein-de Hass effect on Wikipedia](https://en.m.wikipedia.org/wiki/Einstein%E2%80%93de_Haas_effect)
 
 
-# [Big list of Coq](#big-list-of-coq)
-
-Things in Coq that I keep forgetting, and are hard to lookup.
-
-#### Manually set the value of an existential
-
-```
-instantiate
-```
-	
-#### Rename an expression with an identifier throughout the proof
-
-```
-set (ident := expr) in *
-```
-
-This is useful to not lose information when `destruct` ing.
 	
 	
 # [Rank-select as adjunction](#rank-select-as-adjunction)
@@ -280,13 +264,15 @@ and rank-select is an abstract interpretation!
 
 ##### Co-select
 
+We can build another version of `select` called `co-select` that scans
+from the right. Alternatively, it finds on the reverse list:
+
+```
+coselect :: Eq a => a -> [a] -> Count -> Maybe Ix
+coselect a0 as c = Ix <$> findIndex (== c) (reverse (eqscan a0 as))
+```
 
 Thanks to Edward Kmett for teaching me this.
-
-##### References
-- [rank-select for succinct data structures
-- adjunction
-- abstract interpretation.
 
 
 # [Bounding chains: uniformly sample colorings](bounding-chains-uniformly-sample-colorings)
@@ -673,71 +659,6 @@ sample = last . chain
 - [Dan piponi, running from the past](http://blog.sigfpe.com/2018/10/running-from-past.html)
 - [Coupling from the past, a user's guide](https://pdfs.semanticscholar.org/622e/a9c9c665002670ff26119d1aad5c3c5e0be8.pdf)
 
-# [My quest to get better at writing](#my-quest-to-get-better-at-writing)
-
-#### Books about charming sentences and how to construct them
-
-#### Active v/s passive vocabulary
-
-- passive vocabulary: Words one knows and can understand from context.
-- active vocabulary: Words one uses actively while speaking.
-
-The key to good writing for those who read a lot is to expand their
-active vocabulary to match their passive vocabulary.
-
-- A useful exercise is to look for synonyms during speech; This way,
-  one forces an enlargening of active vocabulary. 
-
-- Moulding one's inner mologoue to reach the ideal 'Voice' might also be
-  benificial; However, there is a tendency that speech is not the same as
-  writing --- very few people speak as they write. I wish to write like my idol
-  (David Foster Wallace), who does speak like he writes. I surmise it's
-  worthwhile to mould my inner speech to align with how my writing is supposed
-  to be.
-
-
-#### English grammar
-
-- [english club](https://www.englishclub.com/grammar/pronouns-relative.htm)
-- [ginger software: grammar rules](https://www.gingersoftware.com/content/grammar-rules/)
-- [Literary devices](https://literarydevices.net/)
-
-I couldn't really find a good "grammar book", so I decided
-to simply poll friends every time I came across a word that I 
-didn't know. Assumes knowledge of `noun`, `pronoun`,
-`verb`, `adjective`.
-
-#### Classification of pronouns
-
-##### Demonstrative pronoun
-
-##### Relative pronoun
-
-##### Interrogative pronoun
-
-- `Which` in `which room`
-
-##### Personal pronoun
-
-- `He`, `She`, `It`.
-
-##### Indefinite pronoun
-
-- `None`
-
-##### Possessive pronoun
-
-- `His`, `Hers`, `Theirs`
-
-#### Pronoun resolution
-
-- cataphora: later reference, anaphora: past reference?
-
-The connection between this and `catamorphism`/`anamorphism`
-is something I wish to explore.
-
-- `let ([x 5]) (+ x 3))`: `x` is anaphora resolution.
-- 
 
 # [Word problems in Russia and America](#word-problems-in-russia-and-america)
 
@@ -804,118 +725,8 @@ supposedly works well for an audio-based-workflow.
 
 
 
-# [My long list of emacs gripes](#my-long-list-of-emacs-gripes)
 
-#### `markdown-mode` lags when I open a paren `[for a link`.
-
-I suppose this is because
-it's attempting to match it, and is unable to figure out
-what to match to. I now edit markdown in `text-mode`.
-
-#### `ctrl-backspace`/`backward-kill-word` kills far too much.
-
-- [reference `emacs.se`](https://emacs.stackexchange.com/questions/30401/backward-kill-word-kills-too-much-how-to-make-it-more-intelligent)
-
-The answer seems to be:
-yes, it kills a word. You can redefine what a word is,
-and break lots of other stuff in the process, or redefine
-what `ctrl-backspace` does. However, as a non-expert, it's hard
-to say what redefining this will mean. Will it still interact
-with history the same way?
-
-
-#### there is no centralized notion of `C-o` (go back to where I came from).
-
-- [reference `emacs.se`](https://emacs.stackexchange.com/questions/9908/can-cursor-jump-back-to-the-previous-position)
-- [reference `stackoverflow`](https://stackoverflow.com/questions/4918707/in-emacs-how-to-go-back-to-previous-line-position-after-using-semantic-jump-to)
-
-Instead, it differentiates between "go back in buffer" versus
-"go back across buffers".
-
-This is extremely confusing when one is attempting to read
-code and understand control-flow: I want a _unified_ way
-to say "go forward in my history; OK go back" when I am
-exploring code. I don't *want* to keep track of whether
-I came to this buffer from the same buffer or another buffer.
-The fact that emacs needs this is moronic.
-
-#### Scrolling half a page is broken
-
-- [reference `emacs.se`](https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half-page-on-c-v-and-m-v)
-- [reference `emacswiki`](https://www.emacswiki.org/emacs/HalfScrolling)
-
-There is no inbuilt functionality to scroll half a page. The canonical 
-reference points to this:
-
-```lisp
-(autoload 'View-scroll-half-page-forward "view")
-(autoload 'View-scroll-half-page-backward "view")
-(global-set-key (kbd "C-d") 'View-scroll-half-page-forward)
-(global-set-key (kbd "C-u") 'View-scroll-half-page-backward)
-```
-
-However, this does not work well. On press `C-u` to go to
-the top of the file, it does not move the cursor to the
-top completely; once  _the first line is in view_
-(with my cursor still on line 30),
-emacs obstinately refuses to scroll up with a 'beginning of buffer'
-message. I'm sure there's more `elisp` I can write to fix this,
-but the fact that something like moving-half-a-page
-is rocket science just rubs me the wrong way.
-
-This code that is given in `emacswiki` also
-has the exact same issue, I don't understand
-how the poster says they come from vim and
-did not notice this inconsistency.
-
-```lisp
-(defun zz-scroll-half-page (direction)
-  "Scrolls half page up if `direction' is non-nil, otherwise will scroll half page down."
-  (let ((opos (cdr (nth 6 (posn-at-point)))))
-    ;; opos = original position line relative to window
-    (move-to-window-line nil)  ;; Move cursor to middle line
-    (if direction
-	(recenter-top-bottom -1)  ;; Current line becomes last
-      (recenter-top-bottom 0))  ;; Current line becomes first
-    (move-to-window-line opos)))  ;; Restore cursor/point position
-
-(defun zz-scroll-half-page-down ()
-  "Scrolls exactly half page down keeping cursor/point position."
-  (interactive)
-  (zz-scroll-half-page nil))
-
-(defun zz-scroll-half-page-up ()
-  "Scrolls exactly half page up keeping cursor/point position."
-  (interactive)
-  (zz-scroll-half-page t))
-
-
-(global-set-key (kbd "C-d") 'zz-scroll-half-page-down)
-(global-set-key (kbd "C-u") 'zz-scroll-half-page-up)
-```
-
-#### Default encoding is weird: `chinese-iso-8bit`
-
-- [`emacs.se reference`](https://emacs.stackexchange.com/questions/34322/set-default-coding-system-utf-8)
-
-Why in the world is this the option that shows up by default?
-There are so many better options, with `utf-8` being the
-sanest of them all; this is a nice spherical cow of
-the problems with emacs: too much stuff, too like sanity.
-
-The spell is:
-
-```
-(set-language-environment "UTF-8")
-```
-
-##### linum lags on large files
-
-##### emacs lags on long lines
-
-##### emacs' single threading causes pauses on auto-complete/company
-
-## [Your arm can be a spinor](#your-arm-can-be-a-spinor)
+# [Your arm can be a spinor](#your-arm-can-be-a-spinor)
 
 I tend to forget the name of this trick. It exhibits spinors in real life:
 a system that needs to rotate by 720 degrees to return back to its
@@ -9765,6 +9576,304 @@ For example: "More people have been to Berlin than I have."
 - [week 6](content/blog/gsoc-vispy-week-6.md)
 - [week 7](content/blog/gsoc-vispy-week-7.md)
 - [final report](content/blog/gsoc-vispy-report-6.md)
+
+# [Big list of emacs gripes](#big-list-of-emacs-gripes)
+
+#### `markdown-mode` lags when I open a paren `[for a link`.
+
+I suppose this is because
+it's attempting to match it, and is unable to figure out
+what to match to. I now edit markdown in `text-mode`.
+
+#### `ctrl-backspace`/`backward-kill-word` kills far too much.
+
+- [reference `emacs.se`](https://emacs.stackexchange.com/questions/30401/backward-kill-word-kills-too-much-how-to-make-it-more-intelligent)
+
+The answer seems to be:
+yes, it kills a word. You can redefine what a word is,
+and break lots of other stuff in the process, or redefine
+what `ctrl-backspace` does. However, as a non-expert, it's hard
+to say what redefining this will mean. Will it still interact
+with history the same way?
+
+
+#### there is no centralized notion of `C-o` (go back to where I came from).
+
+- [reference `emacs.se`](https://emacs.stackexchange.com/questions/9908/can-cursor-jump-back-to-the-previous-position)
+- [reference `stackoverflow`](https://stackoverflow.com/questions/4918707/in-emacs-how-to-go-back-to-previous-line-position-after-using-semantic-jump-to)
+
+Instead, it differentiates between "go back in buffer" versus
+"go back across buffers".
+
+This is extremely confusing when one is attempting to read
+code and understand control-flow: I want a _unified_ way
+to say "go forward in my history; OK go back" when I am
+exploring code. I don't *want* to keep track of whether
+I came to this buffer from the same buffer or another buffer.
+The fact that emacs needs this is moronic.
+
+#### Scrolling half a page is broken
+
+- [reference `emacs.se`](https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half-page-on-c-v-and-m-v)
+- [reference `emacswiki`](https://www.emacswiki.org/emacs/HalfScrolling)
+
+There is no inbuilt functionality to scroll half a page. The canonical 
+reference points to this:
+
+```lisp
+(autoload 'View-scroll-half-page-forward "view")
+(autoload 'View-scroll-half-page-backward "view")
+(global-set-key (kbd "C-d") 'View-scroll-half-page-forward)
+(global-set-key (kbd "C-u") 'View-scroll-half-page-backward)
+```
+
+However, this does not work well. On press `C-u` to go to
+the top of the file, it does not move the cursor to the
+top completely; once  _the first line is in view_
+(with my cursor still on line 30),
+emacs obstinately refuses to scroll up with a 'beginning of buffer'
+message. I'm sure there's more `elisp` I can write to fix this,
+but the fact that something like moving-half-a-page
+is rocket science just rubs me the wrong way.
+
+This code that is given in `emacswiki` also
+has the exact same issue, I don't understand
+how the poster says they come from vim and
+did not notice this inconsistency.
+
+```lisp
+(defun zz-scroll-half-page (direction)
+  "Scrolls half page up if `direction' is non-nil, otherwise will scroll half page down."
+  (let ((opos (cdr (nth 6 (posn-at-point)))))
+    ;; opos = original position line relative to window
+    (move-to-window-line nil)  ;; Move cursor to middle line
+    (if direction
+	(recenter-top-bottom -1)  ;; Current line becomes last
+      (recenter-top-bottom 0))  ;; Current line becomes first
+    (move-to-window-line opos)))  ;; Restore cursor/point position
+
+(defun zz-scroll-half-page-down ()
+  "Scrolls exactly half page down keeping cursor/point position."
+  (interactive)
+  (zz-scroll-half-page nil))
+
+(defun zz-scroll-half-page-up ()
+  "Scrolls exactly half page up keeping cursor/point position."
+  (interactive)
+  (zz-scroll-half-page t))
+
+
+(global-set-key (kbd "C-d") 'zz-scroll-half-page-down)
+(global-set-key (kbd "C-u") 'zz-scroll-half-page-up)
+```
+
+#### Default encoding is weird: `chinese-iso-8bit`
+
+- [`emacs.se reference`](https://emacs.stackexchange.com/questions/34322/set-default-coding-system-utf-8)
+
+Why in the world is this the option that shows up by default?
+There are so many better options, with `utf-8` being the
+sanest of them all; this is a nice spherical cow of
+the problems with emacs: too much stuff, too like sanity.
+
+The spell is:
+
+```
+(set-language-environment "UTF-8")
+```
+
+##### linum lags on large files
+
+`global-linum-mode` lags on very long files.
+
+##### emacs lags on long lines
+
+`emacs` lags given very long lines.
+
+[A comment by `eli-zaretskli` on reddit](https://old.reddit.com/r/emacs/comments/9qtpak/what_would_it_take_to_make_emacs_perform_well_on/)
+says:
+
+> That is true, but the "fix" part misses the point. There's nothing wrong with
+> the current algorithms, they just cannot handle these situations better than
+> they already do. The main problem that makes redisplay slow in these cases is
+> that, given a cursor motion command, such as `C-n` or `M-v`, the display engine
+> needs first to find where in the buffer that command puts point. And that is
+> non-trivial when variable-size fonts are supported and variable-size
+> characters (or images) can be anywhere on display.
+
+
+So there's a fundamental problem. He continues:
+
+> ... we are talking about one of the following two
+> alternatives: Add new members to the data structures used by the display
+> engine, that would allow it to find good approximations for buffer positions
+> corresponding to given screen coordinates, then augment the algorithms to
+> generate and use this additional data.  edesign the display code to use a
+> model that is entirely different from the current simple 2D canvas. 
+
+
+##### emacs' single threading causes pauses on auto-complete/company
+
+##### emacs crashes on attempting to open an SVG file
+
+- [Link to `emacs` bug repo about segfault](http://emacs.1067599.n8.nabble.com/bug-29581-26-0-90-SVG-file-can-cause-emacs-to-crash-imagemagick-td443659.html)
+
+My `emacs --version` says:
+```
+╰─$ emacs --version
+GNU Emacs 26.2
+Copyright (C) 2019 Free Software Foundation, Inc.
+GNU Emacs comes with ABSOLUTELY NO WARRANTY.
+You may redistribute copies of GNU Emacs
+under the terms of the GNU General Public License.
+For more information about these matters, see the file named COPYING.
+```
+
+I ran it with `emacs -q`. The bactrace points at a segfault in `ImageMagick`:
+
+```
+Fatal error 11: Segmentation fault
+Backtrace:
+emacs[0x50fdc9]
+emacs[0x4f61f7]
+emacs[0x50e77e]
+emacs[0x50ea83]
+emacs[0x50eac0]
+/lib/x86_64-linux-gnu/libpthread.so.0(+0x11390)[0x7f213756b390]
+/usr/lib/x86_64-linux-gnu/ImageMagick-6.8.9/modules-Q16/coders/svg.so(+0xb8b8)[0x7f211676e8b8]
+/usr/lib/x86_64-linux-gnu/libMagickCore-6.Q16.so.2(ReadImage+0x198)[0x7f213d439a18]
+/usr/lib/x86_64-linux-gnu/libMagickWand-6.Q16.so.2(MagickReadImage+0x6a)[0x7f213d90ba3a]
+emacs[0x5e65fc]
+emacs[0x5eed1d]
+emacs[0x5ef1a0]
+emacs[0x56cf26]
+emacs[0x5a5ff8]
+emacs[0x56ce93]
+emacs[0x5a5ff8]
+emacs[0x56ce93]
+emacs[0x5a5ff8]
+emacs[0x56ce93]
+emacs[0x5a5ff8]
+emacs[0x56ce93]
+emacs[0x5a5ff8]
+emacs[0x56ce93]
+emacs[0x5a5ff8]
+emacs[0x56ce93]
+emacs[0x5a5ff8]
+emacs[0x56ce93]
+emacs[0x5a5ff8]
+emacs[0x56ce93]
+emacs[0x5a5ff8]
+emacs[0x56ce93]
+emacs[0x5a5ff8]
+emacs[0x56ce93]
+emacs[0x5a5ff8]
+emacs[0x56ce93]
+emacs[0x5a5ff8]
+emacs[0x56ce93]
+emacs[0x568c9d]
+emacs[0x56cf26]
+emacs[0x56eb24]
+emacs[0x56904e]
+...
+[3]    7224 segmentation fault (core dumped)  emacs -q ~/work/IIIT-H-Code/softwarefoundations/project
+```
+
+This is tagged as "not a bug" --- because
+"if imagemagick crashes, there is no recourse".
+
+
+# [Big list of Latex](#big-list-of-latex)
+
+#### write text under some equation --- variable under max or argmax
+
+```
+y = \underset{x \in X}{\max} f(x)
+```
+
+# [Big list of Coq](#big-list-of-coq)
+
+Things in Coq that I keep forgetting, and are hard to lookup.
+
+#### Manually set the value of an existential
+
+```
+instantiate
+```
+	
+#### Rename an expression with an identifier throughout the proof
+
+```
+set (ident := expr) in *
+```
+
+This is useful to not lose information when `destruct` ing.
+
+# [Big list of writing](#big-list-of-writing)
+
+#### Books about charming sentences and how to construct them
+
+#### Active v/s passive vocabulary
+
+- passive vocabulary: Words one knows and can understand from context.
+- active vocabulary: Words one uses actively while speaking.
+
+The key to good writing for those who read a lot is to expand their
+active vocabulary to match their passive vocabulary.
+
+- A useful exercise is to look for synonyms during speech; This way,
+  one forces an enlargening of active vocabulary. 
+
+- Moulding one's inner mologoue to reach the ideal 'Voice' might also be
+  benificial; However, there is a tendency that speech is not the same as
+  writing --- very few people speak as they write. I wish to write like my idol
+  (David Foster Wallace), who does speak like he writes. I surmise it's
+  worthwhile to mould my inner speech to align with how my writing is supposed
+  to be.
+
+
+#### English grammar
+
+- [english club](https://www.englishclub.com/grammar/pronouns-relative.htm)
+- [ginger software: grammar rules](https://www.gingersoftware.com/content/grammar-rules/)
+- [Literary devices](https://literarydevices.net/)
+
+I couldn't really find a good "grammar book", so I decided
+to simply poll friends every time I came across a word that I 
+didn't know. Assumes knowledge of `noun`, `pronoun`,
+`verb`, `adjective`.
+
+#### Classification of pronouns
+
+##### Demonstrative pronoun
+
+##### Relative pronoun
+
+##### Interrogative pronoun
+
+- `Which` in `which room`
+
+##### Personal pronoun
+
+- `He`, `She`, `It`.
+
+##### Indefinite pronoun
+
+- `None`
+
+##### Possessive pronoun
+
+- `His`, `Hers`, `Theirs`
+
+#### Pronoun resolution
+
+- cataphora: later reference, anaphora: past reference?
+
+The connection between this and `catamorphism`/`anamorphism`
+is something I wish to explore.
+
+- `let ([x 5]) (+ x 3))`: `x` is anaphora resolution.
+- 
 
 
 # Link dump
