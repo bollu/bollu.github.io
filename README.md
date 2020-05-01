@@ -52,6 +52,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 	
+- [Best practices for array indexing](#best-practices-for-array-indexing)
+- [Algebraic structure for vector clocks](#algebraic-structure-for-vector-clocks)
 - [Networks are now faster than disks](#networks-are-now-faster-than-disks)
 - [Einstein-de Haas effect](#einstein--de-haas-effect)
 - [Rank-select as adjunction](#rank-select-as-adjunction)
@@ -177,6 +179,113 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Big list of Latex](#big-list-of-latex)
 - [Recipes](#recipes)
 
+# [Best practices for array indexing](#best-practices-for-array-indexing)
+
+These are rules I'm going to follow when I solve problems on 
+[codeforces](https://codeforces.com/). I describe what these rules are
+and their rationale. 
+
+##### Rule 1: Half-open intervals
+
+Intervals are only represented as `[begin, past-the-end)` That is, we start at
+`begin`, include numbers `begin+1, begin+2, ...`, upto, **but excluding**
+`past-the-end`.
+
+So, for example, `[0, 3) = [0, 1, 2]`, while `[0, 1) = [0]`, and `[0, 0) = []`.
+
+
+I am not allowed to use `[begin, end]`, or `(before-begin, past-the-end)`, or
+any other variation thereof when I represent and think of intervals.
+
+##### Rule 2: No relational operators when using `for/while/do while` loops.
+
+When I write my loop conditions, I am not allowed to use relational operators.
+I must only write `i != n` or `i == m`.
+I am not allowed to write `i < n`, `i <= n`, `i > n`, `i >= n` for my `for` loops.
+
+
+##### Rule 3: The loop iterator lives in "getting to" space:
+
+The loop iterator `i` in `for(int i = a; i != b; ++i)` is to be thought of as
+getting to/living right before" the values `[a, a+1, a+2, ... b-1]`. In
+ASCII-art, I am to imagine the loop iterator as being at these locations:
+
+```
+|| a-1 || a   || a+1 || ... || b-1 ||  b  || b+1 ||
+       ^^     ^^     ^^            ^^
+     (i=a) (i=a+1)  (i=a+2) ...   (i=b)
+```
+
+##### One always reads loops according to the above rules
+
+```c
+for(int i = begin; i != past-the-end; ++i) {
+  // NO: i from begin to past-the-end.
+  // YES: [i _getting to_ the beginning] till [i _getting_ past-the-end]
+}
+```
+
+#### The rationale for banning relational operators
+
+There is a strong different in qualia between `i < n` and `i != n`. The former
+makes on aware of when the loop runs; the latter of when the loop quits.
+
+I wish to be cognizant of the precise moment when I quit a loop; 
+On writing `i != past-the-end`, I know that we quit as soon as we
+**get past the end**. This has the quality I'm looking for --- clarity of thought.
+
+
+#### The rationale for half-open indexing
+
+The first advantage of these conventions is that 
+`[begin, past-the-end)` is the same as `[begin, begin+length)`. I've found this
+to be of great help, to flit between length-based-thoughts and
+indexing-based-thoughts.
+
+The second almost trivial point is that `[begin, begin+length)` holds when
+`length` is **zero**. That is,
+
+```c
+for(int i = begin; i != begin + 0; ++ i) { ... }
+```
+
+does the right thing and iterates over no elements.
+
+The third neat point is that `[begin, begin+length)` holds even when `length`
+is **negative**. Hence, if we want to index the last two elements of an
+array, we recall that we start from index `(n-1)`, and we want a segment
+of length `-2` from there, so our loop is:
+
+
+```c
+for(int i = n-1; i != (n-1) + -2; i--) {
+ // loops over the correct segment.
+}
+```
+
+#### In conclusion
+
+These are rules that I dreamed up after noticing my idiosyncracies in
+loop-writing.  Perhaps this helps you as well in clarifying your thoughts.
+
+
+
+# Algebraic structure for vector clocks
+
+_I_ update my time, ie, union(time me, time me), I get an element that's one up the lattice.
+When I union with someone else, I get the max. So we have an algebraic structure
+which is $(L, \leq, next: L \rightarrow L)$ where `next` is monotone for `(L, <=)`.
+The  induced union operator $\cup: L \times L \rightarrow L$ is:
+
+$$
+x \cup y \equiv \begin{cases} next(x) & x = y  \\ max(x, y) & x \neq y \end{cases}
+$$
+
+- Is the total ordering on vector clocks *not* isomorphic to the total ordering on $\mathbb{R}$?
+
+
+This also shows up in the case of the "Gallager-Humblet-Spira Algorithm" and
+the fragment-name-union-rule.
 
 # [Networks are now faster than disks](#networks-are-now-faster-than-disks)
 
@@ -9897,3 +10006,20 @@ is something I wish to explore.
   to prevent clumps.
 - Garnish with coriander.
 
+# Words
+
+##### decephalized
+
+We need to clone decephalized humans and livestock.
+With thousands of brainless bodies kept alive on life support, you have test
+subjects for a limitless number of experiments that would have never been
+possible before. You also create a never-ending O negative blood supply and
+organ harvesting program.
+It the case of decephalized animals, you also get cruelty free meat. And that's
+how you bootstrap the program and port it to the human model.
+
+##### demagoguery
+
+The ancient Greeks had a word for our modern systems “demagoguery” which
+equates to charismatic liars manipulating gullible people to vote against their
+own good

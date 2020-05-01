@@ -42,6 +42,16 @@ My reading list</a>
 	
 <ul>
 <li>
+ <a href=#best-practices-for-array-indexing>
+Best practices for array indexing</a>
+
+</li>
+<li>
+ <a href=#algebraic-structure-for-vector-clocks>
+Algebraic structure for vector clocks</a>
+
+</li>
+<li>
  <a href=#networks-are-now-faster-than-disks>
 Networks are now faster than disks</a>
 
@@ -664,6 +674,123 @@ Recipes</a>
 
 </ul>
 
+<h1><a id=best-practices-for-array-indexing href='#best-practices-for-array-indexing'> § </a> <a href=#best-practices-for-array-indexing>
+Best practices for array indexing</a>
+</h1>
+These are rules I'm going to follow when I solve problems on 
+<a href=https://codeforces.com/>
+codeforces</a>
+. I describe what these rules are
+and their rationale. 
+<h5><a id=rule-1-half-open-intervals href='#rule-1-half-open-intervals'> § </a> Rule 1: Half-open intervals</h5>
+Intervals are only represented as <code>[begin, past-the-end)</code> That is, we start at
+<code>begin</code>, include numbers <code>begin+1, begin+2, ...</code>, upto, <b>but excluding</b>
+<code>past-the-end</code>.
+So, for example, <code>[0, 3) = [0, 1, 2]</code>, while <code>[0, 1) = [0]</code>, and <code>[0, 0) = []</code>.
+I am not allowed to use <code>[begin, end]</code>, or <code>(before-begin, past-the-end)</code>, or
+any other variation thereof when I represent and think of intervals.
+<h5><a id=loopsledo-whileonal-operators-when-using- href='#loopsledo-whileonal-operators-when-using-'> § </a> Rule 2: No relational operators when using <code>for/while/do while</code> loops.</h5>
+When I write my loop conditions, I am not allowed to use relational operators.
+I must only write <code>i != n</code> or <code>i == m</code>.
+I am not allowed to write <code>i < n</code>, <code>i <= n</code>, <code>i > n</code>, <code>i >= n</code> for my <code>for</code> loops.
+<h5><a id=rule-3-the-loop-iterator-lives-in-getting-to-space href='#rule-3-the-loop-iterator-lives-in-getting-to-space'> § </a> Rule 3: The loop iterator lives in "getting to" space:</h5>
+The loop iterator <code>i</code> in <code>for(int i = a; i != b; ++i)</code> is to be thought of as
+getting to/living right before" the values <code>[a, a+1, a+2, ... b-1]</code>. In
+ASCII-art, I am to imagine the loop iterator as being at these locations:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> || a-1 || a   || a+1 || ... || b-1 ||  b  || b+1 ||
+<font color="#666666">3:</font>        ^^     ^^     ^^            ^^
+<font color="#666666">4:</font>      (i=a) (i=a+1)  (i=a+2) ...   (i=b)
+<font color="#666666">5:</font> </tt></pre>
+</div>
+
+<h5><a id=one-always-reads-loops-according-to-the-above-rules href='#one-always-reads-loops-according-to-the-above-rules'> § </a> One always reads loops according to the above rules</h5>
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> <b><u><font color="#000000">for</font></u></b>(<b><font color="#000000">int</font></b> i = begin; i != past-the-end; ++i) {
+<font color="#666666">3:</font>   <i><font color="#808080">// NO: i from begin to past-the-end.</font></i>
+<font color="#666666">4:</font>   <i><font color="#808080">// YES: [i _getting to_ the beginning] till [i _getting_ past-the-end]</font></i>
+<font color="#666666">5:</font> }
+<font color="#666666">6:</font> </tt></pre>
+</div>
+
+<h4><a id=the-rationale-for-banning-relational-operators href='#the-rationale-for-banning-relational-operators'> § </a> The rationale for banning relational operators</h4>
+There is a strong different in qualia between <code>i < n</code> and <code>i != n</code>. The former
+makes on aware of when the loop runs; the latter of when the loop quits.
+I wish to be cognizant of the precise moment when I quit a loop; 
+On writing <code>i != past-the-end</code>, I know that we quit as soon as we
+<b>get past the end</b>. This has the quality I'm looking for --- clarity of thought.
+<h4><a id=the-rationale-for-half-open-indexing href='#the-rationale-for-half-open-indexing'> § </a> The rationale for half-open indexing</h4>
+The first advantage of these conventions is that 
+<code>[begin, past-the-end)</code> is the same as <code>[begin, begin+length)</code>. I've found this
+to be of great help, to flit between length-based-thoughts and
+indexing-based-thoughts.
+The second almost trivial point is that <code>[begin, begin+length)</code> holds when
+<code>length</code> is <b>zero</b>. That is,
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> <b><u><font color="#000000">for</font></u></b>(<b><font color="#000000">int</font></b> i = begin; i != begin + <font color="#000000">0</font>; ++ i) { ... }
+<font color="#666666">3:</font> </tt></pre>
+</div>
+
+does the right thing and iterates over no elements.
+The third neat point is that <code>[begin, begin+length)</code> holds even when <code>length</code>
+is <b>negative</b>. Hence, if we want to index the last two elements of an
+array, we recall that we start from index <code>(n-1)</code>, and we want a segment
+of length <code>-2</code> from there, so our loop is:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> <b><u><font color="#000000">for</font></u></b>(<b><font color="#000000">int</font></b> i = n-<font color="#000000">1</font>; i != (n-<font color="#000000">1</font>) + -<font color="#000000">2</font>; i--) {
+<font color="#666666">3:</font>  <i><font color="#808080">// loops over the correct segment.</font></i>
+<font color="#666666">4:</font> }
+<font color="#666666">5:</font> </tt></pre>
+</div>
+
+<h4><a id=in-conclusion href='#in-conclusion'> § </a> In conclusion</h4>
+These are rules that I dreamed up after noticing my idiosyncracies in
+loop-writing.  Perhaps this helps you as well in clarifying your thoughts.
+<h1><a id=algebraic-structure-for-vector-clocks href='#algebraic-structure-for-vector-clocks'> § </a> Algebraic structure for vector clocks</h1>
+<i>I</i> update my time, ie, union(time me, time me), I get an element that's one up the lattice.
+When I union with someone else, I get the max. So we have an algebraic structure
+which is <span class='latexinline'>
+(<span style="font-style:italic">L</span>, &#X2264;, <span style="font-style:italic">next</span>: <span style="font-style:italic">L</span> &#X2192; <span style="font-style:italic">L</span>)</span> where <code>next</code> is monotone for <code>(L, <=)</code>.
+The  induced union operator <span class='latexinline'>
+&#X222A;: <span style="font-style:italic">L</span> &#XD7; <span style="font-style:italic">L</span> &#X2192; <span style="font-style:italic">L</span></span> is:
+<div class='latexblock'>
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">x</span>&#XA0;&#X22C3;&#XA0;<span style="font-style:italic">y</span>&#XA0;&#X2261;&#XA0;</td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell">&#X23A7;<br>
+&#X23A8;<br>
+&#X23A9;</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">next</span>(<span style="font-style:italic">x</span>)</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">x</span>&#XA0;=&#XA0;<span style="font-style:italic">y</span>&#XA0;&#XA0;</td></tr>
+<tr><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">max</span>(<span style="font-style:italic">x</span>,&#XA0;<span style="font-style:italic">y</span>)</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">x</span>&#XA0;&#X2260;&#XA0;<span style="font-style:italic">y</span>&#XA0;</td></tr>
+</table></td></tr>
+</table></td></tr>
+</table></div>
+<ul>
+<li>
+ Is the total ordering on vector clocks <i>not</i> isomorphic to the total ordering on <span class='latexinline'>
+&#X211D;</span>?
+</li>
+
+</ul>
+
+This also shows up in the case of the "Gallager-Humblet-Spira Algorithm" and
+the fragment-name-union-rule.
 <h1><a id=networks-are-now-faster-than-disks href='#networks-are-now-faster-than-disks'> § </a> <a href=#networks-are-now-faster-than-disks>
 Networks are now faster than disks</a>
 </h1>
@@ -15086,7 +15213,7 @@ by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt><font color="#666666">1:</font> 
-<font color="#666666">2:</font> ╰─$ emacs --version                                                                                                                                              148 ↵
+<font color="#666666">2:</font> ╰─$ emacs --version
 <font color="#666666">3:</font> GNU Emacs 26.2
 <font color="#666666">4:</font> Copyright (C) 2019 Free Software Foundation, Inc.
 <font color="#666666">5:</font> GNU Emacs comes with ABSOLUTELY NO WARRANTY.
@@ -15367,4 +15494,17 @@ Recipes</a>
 
 </ul>
 
+<h1><a id=words href='#words'> § </a> Words</h1>
+<h5><a id=decephalized href='#decephalized'> § </a> decephalized</h5>
+We need to clone decephalized humans and livestock.
+With thousands of brainless bodies kept alive on life support, you have test
+subjects for a limitless number of experiments that would have never been
+possible before. You also create a never-ending O negative blood supply and
+organ harvesting program.
+It the case of decephalized animals, you also get cruelty free meat. And that's
+how you bootstrap the program and port it to the human model.
+<h5><a id=demagoguery href='#demagoguery'> § </a> demagoguery</h5>
+The ancient Greeks had a word for our modern systems “demagoguery” which
+equates to charismatic liars manipulating gullible people to vote against their
+own good
 </container></body></html>
