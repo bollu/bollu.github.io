@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{graphicx}
 \begin{document}
 
 \section{Phase King algorithm}
@@ -8,6 +9,36 @@
 The algorithm runs for $f+1$ phases, where $f$ is the number of malicious processes.
 We need $f < \texttt{ceil}(n/4)$. In phase $1 \leq 1 \leq f + 1$, the process
 with process id $p_i$ is the "king", which is used to break ties. 
+
+\subsubsection{Example run with 2 faulty, 7 processes}
+
+This algorithm cannot work in this case. We need $f < \texttt{ceil}(n/4)$, or $n > 4 f$.
+However:
+
+$$(n=7) \underset{?}{>} (4f = 4*2 = 8) = \texttt{false}$$
+
+Assume we have this allocation of 0/1 values to
+the processes, where a $M$ above a process means it is malicious.
+
+\begin{figure}[h]
+\centering
+\begin{tabular}{lccccccc}
+  Id         &1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+  Malicious? &  &   &   &   &   & M & M \\
+  Value      &0 & 0 & 1 & 1 & 1 & 0 & 0 \\
+\end{tabular}
+\end{figure}
+
+In this case, in the non-malicious userspace, we have only 2 0s, and three 1s.
+Thus, there is not enough information in the "non-malicious" space to conclude
+that the \textbf{actual majority} is $0$, not $1$.
+
+The bounds for Byzantine agreement is $f \leq \texttt{floor}(n/3)$; This is
+an easier bound to fulfil, since we are
+solving \textbf{agreement} \textbf{not consensus}. In the agreement problem,
+everyone needs to agree on what \textbf{one person}(the general) said;
+This is different from consensus, where everyone \textbf{pools together information}
+together to come to a consensus.
 
 \subsubsection{Preferred over oral message}
 
@@ -81,5 +112,11 @@ $$
 $$
 
 Which is useless. We already know by the worst case that $d_G(u_0, u_1) \leq \texttt{diameter}(G)$.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{graph-spanning-tree.jpg}
+\caption{Example of ring with $5$ nodes; relationship b/w spanning tree distance and graph distance}
+\end{figure}
 
 \end{document}
