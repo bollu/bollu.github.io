@@ -216,7 +216,7 @@ ASCII-art, I am to imagine the loop iterator as being at these locations:
      (i=a) (i=a+1)  (i=a+2) ...   (i=b)
 ```
 
-##### One always reads loops according to the above rules
+##### Ruel 4: One always reads loops according to the above rules
 
 ```c
 for(int i = begin; i != past-the-end; ++i) {
