@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 	
+- [Edit distance](#edit-distance)
 - [Evolution of bee colonies](#evolution-of-bee-colonies)
 - [Best practices for array indexing](#best-practices-for-array-indexing)
 - [Algebraic structure for vector clocks](#algebraic-structure-for-vector-clocks)
@@ -181,6 +182,46 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Big list of Latex](#big-list-of-latex)
 - [Recipes](#recipes)
 
+# [Edit distance](#edit-distance)
+
+This implementation of edit distance crystallizes the fact that when computing
+edit distance, we only ever move forwards on solving the problem. we _do not_
+store the results of the overlapping computations, though we could. Rather,
+the goal of this implementation is to capture the traversal pattern necessary
+for edit distance into a `Cursor`, and to view the edit distance problem from
+the point of view of this `Cursor`. 
+
+```hs
+{-# LANGUAGE ViewPatterns #-}
+type Ix = Int
+data Move = InsertFromDest Ix | RemoveFromSrc Ix | ReplaceSrcWithDest Ix Ix deriving(Show)
+movecost :: Move -> Int; movecost = const 1
+movescost :: [Move] -> Int; movescost = sum . map movecost
+
+argmin2 :: (a -> Int) -> a -> a -> a
+argmin2 f a a' = if (f a) < (f a') then a else a'
+
+data Cursor a = Cursor Ix [a]
+cdone :: Cursor a -> Bool; cdone (Cursor ix vs) = ix >= length vs
+cix :: Cursor a -> Ix; cix (Cursor ix _) = ix
+cval :: Cursor a -> a; cval c@(Cursor ix vs) = vs !! ix
+incr :: Cursor a -> Cursor a; incr (Cursor ix vs) = Cursor (ix+1) vs
+cursor :: [a] -> Cursor a; cursor = Cursor 0
+
+-- we are deciding how to get ixth character of bs from our as.
+edit :: Eq a => Cursor a -> Cursor a -> [Move]
+edit (cdone -> True) (cdone -> True) = []
+edit a@(cdone -> False) b@(cdone -> True) = (RemoveFromSrc (cix a)):edit (incr a) b
+edit a@(cdone -> True) b@(cdone -> False) = (InsertFromDest (cix b)):edit a (incr b)
+edit a b =  
+  let nomatch = argmin2 movescost 
+                (ReplaceSrcWithDest (cix a) (cix b):edit (incr a) (incr b))
+                (RemoveFromSrc (cix a):edit (incr a) b) 
+  -- | Think: it should alwys be cheaper to make progress than to stay?
+  in case cval a == cval b of
+      True -> argmin2 movescost nomatch (edit (incr a) (incr b))
+      False -> nomatch 
+```
 
 # [Evolution of bee colonies](#evolution-of-bee-colonies)
 
@@ -193,8 +234,9 @@ This kind of culture that beehives have is called as 'eusociality'.
 # [Best practices for array indexing](#best-practices-for-array-indexing)
 
 These are rules I'm going to follow when I solve problems on 
-[codeforces](https://codeforces.com/). I describe what these rules are
-and their rationale. 
+[codeforces](https://codeforces.com/). I've arrived at these rules by repeatedly
+noticing the kinds of mistakes I make and attempting to adopt conventions
+to eliminate these.
 
 ##### Rule 1: Half-open intervals
 
@@ -205,8 +247,8 @@ Intervals are only represented as `[begin, past-the-end)` That is, we start at
 So, for example, `[0, 3) = [0, 1, 2]`, while `[0, 1) = [0]`, and `[0, 0) = []`.
 
 
-I am not allowed to use `[begin, end]`, or `(before-begin, past-the-end)`, or
-any other variation thereof when I represent and think of intervals.
+I am not allowed to use `[begin, end]`, or `(before-begin, past-the-end)` or
+any such variation I represent and think of intervals.
 
 ##### Rule 2: No relational operators when using `for/while/do while` loops.
 
@@ -219,7 +261,7 @@ I am not allowed to write `i < n`, `i <= n`, `i > n`, `i >= n` for my `for` loop
 
 The loop iterator `i` in `for(int i = a; i != b; ++i)` is to be thought of as
 getting to/living right before" the values `[a, a+1, a+2, ... b-1]`. In
-ASCII-art, I am to imagine the loop iterator as being at these locations:
+ASCII-art:
 
 ```
 || a-1 || a   || a+1 || ... || b-1 ||  b  || b+1 ||
@@ -238,20 +280,23 @@ for(int i = begin; i != past-the-end; ++i) {
 
 #### The rationale for banning relational operators
 
-There is a strong different in qualia between `i < n` and `i != n`. The former
+There is a strong difference in qualia between `i < n` and `i != n`. The former
 makes on aware of when the loop runs; the latter of when the loop quits.
 
-I wish to be cognizant of the precise moment when I quit a loop; 
+I wish to be cognizant of the precisely when a loop quits. 
 On writing `i != past-the-end`, I know that we quit as soon as we
-**get past the end**. This has the quality I'm looking for --- clarity of thought.
+**get past the end**. This feels much clearer than being aware that the loops
+runs as long as `i < n`.
 
-
-#### The rationale for half-open indexing
+#### half-open indexing: length <-> index
 
 The first advantage of these conventions is that 
 `[begin, past-the-end)` is the same as `[begin, begin+length)`. I've found this
-to be of great help, to flit between length-based-thoughts and
+to be of great help to flit between length-based-thoughts and
 indexing-based-thoughts.
+
+
+#### half-open indexing: `0` length
 
 The second almost trivial point is that `[begin, begin+length)` holds when
 `length` is **zero**. That is,
@@ -261,6 +306,9 @@ for(int i = begin; i != begin + 0; ++ i) { ... }
 ```
 
 does the right thing and iterates over no elements.
+
+
+#### half-open indexing: `-ve` length
 
 The third neat point is that `[begin, begin+length)` holds even when `length`
 is **negative**. Hence, if we want to index the last two elements of an
@@ -274,10 +322,50 @@ for(int i = n-1; i != (n-1) + -2; i--) {
 }
 ```
 
+
+#### half-open indexing: splitting an array
+
+Finally, this convention helps when attempting to take the beginning part
+of a list and the rest of the list. If we want to split an array into
+two segments at some index `len`,
+
+- The first sub-array is `[0, len)` since it starts at location `0` and has
+  length `len`.
+- Since we have taken `len` elements, the second sub-array must have length
+  `n-len`. It must start at index `len` since `len` is past-the-end for the
+  first sub-array. So, the second sub-array has indeces `[len, n-len)`.
+
+Notice how we used _both_ the "length view" and the "past the end" view to
+quickly derive the bounds of the second array from the first array.
+
+#### How to deal with strides
+
+If there's a loop
+
+```c
+for(int i = 0; i < 5; i += 2) { ... }
+```
+
+the naive `i != 5` translation will not work since `i` only takes
+on even numbers `[0, 2, 4, 6, ...]`. For this, we can perform a
+simple transformation and always make sure our loop variables increment
+by `1`. In a compiler, this is often called as "canonicalizing the loop
+induction variable". In LLVM the canonicalization is
+[performed by the `-indvars` pass](https://llvm.org/docs/Passes.html#indvars-canonicalize-induction-variables).
+The above example canonicalized becomes:
+
+```c
+// btc = backedge taken count. How many times we have
+// gone past the "back edge" of the loop to go back to the
+// beginning of the loop.
+for(int btc = 0; btc != 5 / 2; btc += 1) { const int i = btc * 2; }
+```
+
+
 #### In conclusion
 
 These are rules that I dreamed up after noticing my idiosyncracies in
-loop-writing.  Perhaps this helps you as well in clarifying your thoughts.
+loop-writing.
 
 
 

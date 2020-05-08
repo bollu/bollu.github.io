@@ -47,6 +47,11 @@ My reading list</a>
 	
 <ul>
 <li>
+ <a href=#edit-distance>
+Edit distance</a>
+
+</li>
+<li>
  <a href=#evolution-of-bee-colonies>
 Evolution of bee colonies</a>
 
@@ -684,6 +689,53 @@ Recipes</a>
 
 </ul>
 
+<h2><a id=edit-distance href='#edit-distance'> § </a> <a href=#edit-distance>
+Edit distance</a>
+</h2>
+This implementation of edit distance crystallizes the fact that when computing
+edit distance, we only ever move forwards on solving the problem. we <i>do not</i>
+store the results of the overlapping computations, though we could. Rather,
+the goal of this implementation is to capture the traversal pattern necessary
+for edit distance into a <code>Cursor</code>, and to view the edit distance problem from
+the point of view of this <code>Cursor</code>. 
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">01:</font> 
+<font color="#666666">02:</font> <i><font color="#808080">{-# LANGUAGE ViewPatterns #-}</font></i>
+<font color="#666666">03:</font> <b><u><font color="#000000">type</font></u></b> <b><font color="#000000">Ix</font></b> = <b><font color="#000000">Int</font></b>
+<font color="#666666">04:</font> <b><u><font color="#000000">data</font></u></b> <b><font color="#000000">Move</font></b> = <b><font color="#000000">InsertFromDest</font></b> <b><font color="#000000">Ix</font></b> | <b><font color="#000000">RemoveFromSrc</font></b> <b><font color="#000000">Ix</font></b> | <b><font color="#000000">ReplaceSrcWithDest</font></b> <b><font color="#000000">Ix</font></b> <b><font color="#000000">Ix</font></b> <b><u><font color="#000000">deriving</font></u></b>(<b><font color="#000000">Show</font></b>)
+<font color="#666666">05:</font> movecost :: <b><font color="#000000">Move</font></b> -&gt; <b><font color="#000000">Int</font></b>; movecost = const <font color="#000000">1</font>
+<font color="#666666">06:</font> movescost :: [<b><font color="#000000">Move</font></b>] -&gt; <b><font color="#000000">Int</font></b>; movescost = sum . map movecost
+<font color="#666666">07:</font> 
+<font color="#666666">08:</font> argmin2 :: (a -&gt; <b><font color="#000000">Int</font></b>) -&gt; a -&gt; a -&gt; a
+<font color="#666666">09:</font> argmin2 f a a' = if (f a) &lt; (f a') <b><u><font color="#000000">then</font></u></b> a <b><u><font color="#000000">else</font></u></b> a'
+<font color="#666666">10:</font> 
+<font color="#666666">11:</font> <b><u><font color="#000000">data</font></u></b> <b><font color="#000000">Cursor</font></b> a = <b><font color="#000000">Cursor</font></b> <b><font color="#000000">Ix</font></b> [a]
+<font color="#666666">12:</font> cdone :: <b><font color="#000000">Cursor</font></b> a -&gt; <b><font color="#000000">Bool</font></b>; cdone (<b><font color="#000000">Cursor</font></b> ix vs) = ix &gt;= length vs
+<font color="#666666">13:</font> cix :: <b><font color="#000000">Cursor</font></b> a -&gt; <b><font color="#000000">Ix</font></b>; cix (<b><font color="#000000">Cursor</font></b> ix <b><u><font color="#000000">_</font></u></b>) = ix
+<font color="#666666">14:</font> cval :: <b><font color="#000000">Cursor</font></b> a -&gt; a; cval c@(<b><font color="#000000">Cursor</font></b> ix vs) = vs !! ix
+<font color="#666666">15:</font> incr :: <b><font color="#000000">Cursor</font></b> a -&gt; <b><font color="#000000">Cursor</font></b> a; incr (<b><font color="#000000">Cursor</font></b> ix vs) = <b><font color="#000000">Cursor</font></b> (ix+<font color="#000000">1</font>) vs
+<font color="#666666">16:</font> cursor :: [a] -&gt; <b><font color="#000000">Cursor</font></b> a; cursor = <b><font color="#000000">Cursor</font></b> <font color="#000000">0</font>
+<font color="#666666">17:</font> 
+<font color="#666666">18:</font> <i><font color="#808080">-- we are deciding how to get ixth character of bs from our as.</font></i>
+<font color="#666666">19:</font> edit :: <b><font color="#000000">Eq</font></b> a =&gt; <b><font color="#000000">Cursor</font></b> a -&gt; <b><font color="#000000">Cursor</font></b> a -&gt; [<b><font color="#000000">Move</font></b>]
+<font color="#666666">20:</font> edit (cdone -&gt; <b><font color="#000000">True</font></b>) (cdone -&gt; <b><font color="#000000">True</font></b>) = []
+<font color="#666666">21:</font> edit a@(cdone -&gt; <b><font color="#000000">False</font></b>) b@(cdone -&gt; <b><font color="#000000">True</font></b>) = (<b><font color="#000000">RemoveFromSrc</font></b> (cix a)):edit (incr a) b
+<font color="#666666">22:</font> edit a@(cdone -&gt; <b><font color="#000000">True</font></b>) b@(cdone -&gt; <b><font color="#000000">False</font></b>) = (<b><font color="#000000">InsertFromDest</font></b> (cix b)):edit a (incr b)
+<font color="#666666">23:</font> edit a b =  
+<font color="#666666">24:</font>   <b><u><font color="#000000">let</font></u></b> nomatch = argmin2 movescost 
+<font color="#666666">25:</font>                 (<b><font color="#000000">ReplaceSrcWithDest</font></b> (cix a) (cix b):edit (incr a) (incr b))
+<font color="#666666">26:</font>                 (<b><font color="#000000">RemoveFromSrc</font></b> (cix a):edit (incr a) b) 
+<font color="#666666">27:</font>   <i><font color="#808080">-- | Think: it should alwys be cheaper to make progress than to stay?</font></i>
+<font color="#666666">28:</font>   <b><u><font color="#000000">in</font></u></b> <b><u><font color="#000000">case</font></u></b> cval a == cval b <b><u><font color="#000000">of</font></u></b>
+<font color="#666666">29:</font>       <b><font color="#000000">True</font></b> -&gt; argmin2 movescost nomatch (edit (incr a) (incr b))
+<font color="#666666">30:</font>       <b><font color="#000000">False</font></b> -&gt; nomatch 
+<font color="#666666">31:</font> </tt></pre>
+</div>
+
 <h2><a id=evolution-of-bee-colonies href='#evolution-of-bee-colonies'> § </a> <a href=#evolution-of-bee-colonies>
 Evolution of bee colonies</a>
 </h2>
@@ -704,15 +756,16 @@ Best practices for array indexing</a>
 These are rules I'm going to follow when I solve problems on 
 <a href=https://codeforces.com/>
 codeforces</a>
-. I describe what these rules are
-and their rationale. 
+. I've arrived at these rules by repeatedly
+noticing the kinds of mistakes I make and attempting to adopt conventions
+to eliminate these.
 <h6><a id=rule-1-half-open-intervals href='#rule-1-half-open-intervals'> § </a> Rule 1: Half-open intervals</h6>
 Intervals are only represented as <code>[begin, past-the-end)</code> That is, we start at
 <code>begin</code>, include numbers <code>begin+1, begin+2, ...</code>, upto, <b>but excluding</b>
 <code>past-the-end</code>.
 So, for example, <code>[0, 3) = [0, 1, 2]</code>, while <code>[0, 1) = [0]</code>, and <code>[0, 0) = []</code>.
-I am not allowed to use <code>[begin, end]</code>, or <code>(before-begin, past-the-end)</code>, or
-any other variation thereof when I represent and think of intervals.
+I am not allowed to use <code>[begin, end]</code>, or <code>(before-begin, past-the-end)</code> or
+any such variation I represent and think of intervals.
 <h6><a id=loopsledo-whileonal-operators-when-using- href='#loopsledo-whileonal-operators-when-using-'> § </a> Rule 2: No relational operators when using <code>for/while/do while</code> loops.</h6>
 When I write my loop conditions, I am not allowed to use relational operators.
 I must only write <code>i != n</code> or <code>i == m</code>.
@@ -720,7 +773,7 @@ I am not allowed to write <code>i < n</code>, <code>i <= n</code>, <code>i > n</
 <h6><a id=rule-3-the-loop-iterator-lives-in-getting-to-space href='#rule-3-the-loop-iterator-lives-in-getting-to-space'> § </a> Rule 3: The loop iterator lives in "getting to" space:</h6>
 The loop iterator <code>i</code> in <code>for(int i = a; i != b; ++i)</code> is to be thought of as
 getting to/living right before" the values <code>[a, a+1, a+2, ... b-1]</code>. In
-ASCII-art, I am to imagine the loop iterator as being at these locations:
+ASCII-art:
 <div class='code'>
 <!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
@@ -748,16 +801,18 @@ http://www.gnu.org/software/src-highlite -->
 </div>
 
 <h5><a id=the-rationale-for-banning-relational-operators href='#the-rationale-for-banning-relational-operators'> § </a> The rationale for banning relational operators</h5>
-There is a strong different in qualia between <code>i < n</code> and <code>i != n</code>. The former
+There is a strong difference in qualia between <code>i < n</code> and <code>i != n</code>. The former
 makes on aware of when the loop runs; the latter of when the loop quits.
-I wish to be cognizant of the precise moment when I quit a loop; 
+I wish to be cognizant of the precisely when a loop quits. 
 On writing <code>i != past-the-end</code>, I know that we quit as soon as we
-<b>get past the end</b>. This has the quality I'm looking for --- clarity of thought.
-<h5><a id=the-rationale-for-half-open-indexing href='#the-rationale-for-half-open-indexing'> § </a> The rationale for half-open indexing</h5>
+<b>get past the end</b>. This feels much clearer than being aware that the loops
+runs as long as <code>i < n</code>.
+<h5><a id=indexpen-indexing-length- href='#indexpen-indexing-length-'> § </a> half-open indexing: length <-> index</h5>
 The first advantage of these conventions is that 
 <code>[begin, past-the-end)</code> is the same as <code>[begin, begin+length)</code>. I've found this
-to be of great help, to flit between length-based-thoughts and
+to be of great help to flit between length-based-thoughts and
 indexing-based-thoughts.
+<h5><a id=lengthpen-indexing- href='#lengthpen-indexing-'> § </a> half-open indexing: <code>0</code> length</h5>
 The second almost trivial point is that <code>[begin, begin+length)</code> holds when
 <code>length</code> is <b>zero</b>. That is,
 <div class='code'>
@@ -771,6 +826,7 @@ http://www.gnu.org/software/src-highlite -->
 </div>
 
 does the right thing and iterates over no elements.
+<h5><a id=lengthpen-indexing- href='#lengthpen-indexing-'> § </a> half-open indexing: <code>-ve</code> length</h5>
 The third neat point is that <code>[begin, begin+length)</code> holds even when <code>length</code>
 is <b>negative</b>. Hence, if we want to index the last two elements of an
 array, we recall that we start from index <code>(n-1)</code>, and we want a segment
@@ -787,9 +843,62 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#666666">5:</font> </tt></pre>
 </div>
 
+<h5><a id=half-open-indexing-splitting-an-array href='#half-open-indexing-splitting-an-array'> § </a> half-open indexing: splitting an array</h5>
+Finally, this convention helps when attempting to take the beginning part
+of a list and the rest of the list. If we want to split an array into
+two segments at some index <code>len</code>,
+<ul>
+<li>
+ The first sub-array is <code>[0, len)</code> since it starts at location <code>0</code> and has
+  length <code>len</code>.
+</li>
+<li>
+ Since we have taken <code>len</code> elements, the second sub-array must have length
+  <code>n-len</code>. It must start at index <code>len</code> since <code>len</code> is past-the-end for the
+  first sub-array. So, the second sub-array has indeces <code>[len, n-len)</code>.
+</li>
+
+</ul>
+
+Notice how we used <i>both</i> the "length view" and the "past the end" view to
+quickly derive the bounds of the second array from the first array.
+<h5><a id=how-to-deal-with-strides href='#how-to-deal-with-strides'> § </a> How to deal with strides</h5>
+If there's a loop
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> <b><u><font color="#000000">for</font></u></b>(<b><font color="#000000">int</font></b> i = <font color="#000000">0</font>; i &lt; <font color="#000000">5</font>; i += <font color="#000000">2</font>) { ... }
+<font color="#666666">3:</font> </tt></pre>
+</div>
+
+the naive <code>i != 5</code> translation will not work since <code>i</code> only takes
+on even numbers <code>[0, 2, 4, 6, ...]</code>. For this, we can perform a
+simple transformation and always make sure our loop variables increment
+by <code>1</code>. In a compiler, this is often called as "canonicalizing the loop
+induction variable". In LLVM the canonicalization is
+<a href=https://llvm.org/docs/Passes.html#indvars-canonicalize-induction-variables>
+performed by the <code>-indvars</code> pass</a>
+.
+The above example canonicalized becomes:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> <i><font color="#808080">// btc = backedge taken count. How many times we have</font></i>
+<font color="#666666">3:</font> <i><font color="#808080">// gone past the "back edge" of the loop to go back to the</font></i>
+<font color="#666666">4:</font> <i><font color="#808080">// beginning of the loop.</font></i>
+<font color="#666666">5:</font> <b><u><font color="#000000">for</font></u></b>(<b><font color="#000000">int</font></b> btc = <font color="#000000">0</font>; btc != <font color="#000000">5</font> / <font color="#000000">2</font>; btc += <font color="#000000">1</font>) { <b><u><font color="#000000">const</font></u></b> <b><font color="#000000">int</font></b> i = btc * <font color="#000000">2</font>; }
+<font color="#666666">6:</font> </tt></pre>
+</div>
+
 <h5><a id=in-conclusion href='#in-conclusion'> § </a> In conclusion</h5>
 These are rules that I dreamed up after noticing my idiosyncracies in
-loop-writing.  Perhaps this helps you as well in clarifying your thoughts.
+loop-writing.
 <h2><a id=algebraic-structure-for-vector-clocks href='#algebraic-structure-for-vector-clocks'> § </a> Algebraic structure for vector clocks</h2>
 <i>I</i> update my time, ie, union(time me, time me), I get an element that's one up the lattice.
 When I union with someone else, I get the max. So we have an algebraic structure
