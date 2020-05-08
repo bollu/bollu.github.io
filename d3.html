@@ -8,6 +8,7 @@
 </body>
 
 <script>
+    // https://observablehq.com/@d3/selection-join
     
     // ==== LIB ====
     var _promiseTimeouts = new Map;
@@ -97,15 +98,19 @@
     */
     
     document.body.onload = function() {
-        alert("LOADED");
+        const container = document.getElementById("container");
+
         function write_to_container(v) {
             console.log("write_to_container (" + v.value + ")");
-            const container = document.getElementById("container");
-            if (container.firstChild) { container.firstChild.remove(); }
+            container.firstChild.remove();
             container.appendChild(v.value);
             gen.next().then(write_to_container);
-        }
-        write_to_container({ value: new Text("") });
+        };
+
+        gen.next().then(function(v) { 
+            container.appendChild(v.value);
+            gen.next().then(write_to_container);
+        });
     };
 </script>
 </html>
