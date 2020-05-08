@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
 ##### Siddharth Bhat
 
 
+- [Leave feedback for me, `+ve` or `-ve`!](https://www.admonymous.co/bollu)
 - [My github](http://github.com/bollu)
 - [My math.se profile](https://math.stackexchange.com/users/261373/siddharth-bhat)
 - [My resume](resume/main.pdf)
@@ -52,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 	
+- [Evolution of bee colonies](#evolution-of-bee-colonies)
 - [Best practices for array indexing](#best-practices-for-array-indexing)
 - [Algebraic structure for vector clocks](#algebraic-structure-for-vector-clocks)
 - [Networks are now faster than disks](#networks-are-now-faster-than-disks)
@@ -178,6 +180,15 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Big list of Coq](#big-list-of-coq)
 - [Big list of Latex](#big-list-of-latex)
 - [Recipes](#recipes)
+
+
+# [Evolution of bee colonies](#evolution-of-bee-colonies)
+
+This kind of culture that beehives have is called as 'eusociality'.
+
+##### References
+- [Evolution of eusociality](https://en.wikipedia.org/wiki/Evolution_of_eusociality)
+
 
 # [Best practices for array indexing](#best-practices-for-array-indexing)
 
@@ -4794,11 +4805,71 @@ $$
 \end{align*}
 $$
 
-### associativity of $\star$
-### commutativity of $\star$
-### inverse operator
+### associativity, commutativity of $\star$
+
+To prove associativity, it's better to write the formula as:
+$$
+(f \star g)(n) \equiv \sum_{d \vert n} f(n) g(n/d) = \sum_{xy = n} f(x) g(y)
+$$
+
+From this rewrite, it's clear that $(f \star g \star h)(n)$ will unambiguously
+sum over tripes $(x, y, z)$ such that $xyz = n$. I leave the working-this-out
+to you. This should also make the commutativity immediate. Summing over pairs
+of the form $f(x) g(y) : xy = n$ is the same as summing over $f(y) g(x) : yx = n$.
+
+
+
+### Existence of inverse
+
+We can show that an inverse exists by showing that a formula for it exists; The 
+idea is to construct one by induction. 
+
+Clearly, for a given function $f$, we need the inverse $f^{-1}$ to be such that
+$(f \star f^{-1})(n) = id_\star$. Hence:
+
+$$
+\begin{align*}
+&(f \star f^{-1})(1) = id_\star(1) = 1 \\
+&f(1) f^{-1}(1) = 1 \\
+& f^{-1}(1) \equiv 1 / f(1)\\
+\end{align*}
+$$
+
+Great, we have a base case; We can now compute $f^{-1}(n)$ inductively, assuming
+we know the value of $f^{-1}(d)$ for all $d \vert n$.
+
+$$
+\begin{align*}
+&(f \star f^{-1})(n) = id_\star(1) = 0 \\
+&\sum_{d \vert n} f(d) f^{-1}(n/d) = 0 \\
+&f(1) f^{-1}(n) + \sum_{d \vert n, d < n} f(d) f^{-1}(n/d) = 0
+&f^{-1}(n) = \frac{-\sum_{d \vert n, d < n} f(d) f^{-1}(n/d)}{f(1)} 
+\end{align*}
+$$
+
 ### $\mu$ as the inverse of the $one$ function
+
+
 ### Mobius inversion
+
+Now that we know that $\mu = \texttt{const 1}^{-1}$, we can use this fact
+to perform _mobius inversion_:
+
+$$
+f(n) \equiv \sum_{d \vert n} g(n/d) = \texttt{const 1} \star g
+$$
+
+We have $f$ written in terms of $g$. We can now write $g$ in terms of $f$:
+
+$$
+\begin{align*}
+&f(n)  = \texttt{const 1} \star g \\
+&f \star \texttt{const 1}^{-1} = g \\
+&g = f \star \mu \\
+&g = \sum_{d \vert n} f(d) \mu(n/d)
+\end{align*}
+$$
+
 ### $n = \sum_{d \vert n} \phi(d)$
 
 $$
@@ -4825,6 +4896,7 @@ In general, the same argument allows us to prove that:
 $$ n = \sum_{d \vert n} n/d $$
 
 ### Using mobius inversion on the euler totient function
+
 
 ### Other arithmetical functions and their relations
 
@@ -7907,7 +7979,7 @@ I really enjoyed hacking this up and getting nerd sniped.
 
 ## [The janus programming language --- Time reversible computation](#the-janus-programming-language--time-reversible-computation)
 
-- [Wiki link](https://en.wikipedia.org/wiki/Janus_(time-reversible_computing_programming_language))
+- [Wiki link](https://en.wikipedia.org/wiki/Janus_(time-reversible_computing_programming_language)
 - [Original letter to Landlauer](http://tetsuo.jp/ref/janus.pdf)
 
 I found out it's called Janus, since Janus is the god of doorways in greek
@@ -9940,6 +10012,25 @@ active vocabulary to match their passive vocabulary.
   worthwhile to mould my inner speech to align with how my writing is supposed
   to be.
 
+#### Punctuation
+
+Should one use punctuation, or shoud not? How much should one use punctuation?
+What range of punctuation should one use --- from the common`,` and `.`, all the
+way up to `:`, `;`, and `---`. 
+
+There appear to be three distinct schools of thought. 
+
+- The first school of thought is prescriptive;
+  They hold the belief that one must use _as much_ punctuation as is necessary to 
+  accurately transcribe cadence.
+
+- The second school are the moderates. Too much of
+  punctuation can leave writing stilted, or worse, give it an appearance of putting
+  on a veneer of respectability. Use as much punctation as is necessary, they say.
+
+- The third school of thought is anarchic and recommend no punctuation at all 
+  except for `.` as this is a terrific way to get a sense for how to place words as one is forced to switch up vocabulary based on the cadence one wishes for instead of
+  relying on artificial markers afforded by our system of writing.
 
 #### English grammar
 
@@ -9952,27 +10043,6 @@ to simply poll friends every time I came across a word that I
 didn't know. Assumes knowledge of `noun`, `pronoun`,
 `verb`, `adjective`.
 
-#### Classification of pronouns
-
-##### Demonstrative pronoun
-
-##### Relative pronoun
-
-##### Interrogative pronoun
-
-- `Which` in `which room`
-
-##### Personal pronoun
-
-- `He`, `She`, `It`.
-
-##### Indefinite pronoun
-
-- `None`
-
-##### Possessive pronoun
-
-- `His`, `Hers`, `Theirs`
 
 #### Pronoun resolution
 
@@ -9994,7 +10064,7 @@ is something I wish to explore.
 
 # [Recipes](#recipes)
 
-##### Upma
+#### Upma
 
 - start with ghee, sesame seeds, curry leaves, red + green chili, ginger garlic
   paste, hing (asaefodita).
@@ -10005,6 +10075,45 @@ is something I wish to explore.
 - Add in more water, cover with a lid, and let it come to a boil. Keep stirring
   to prevent clumps.
 - Garnish with coriander.
+
+#### General Coconut based thickening agent
+
+
+- A few methi seeds (pungent, deep scent)
+- some coriander seeds (mild herbal scent) 
+- Chopped up red chilis (heat, spice, color)
+- Chopped up green chilis (spice)
+- Chopped up green chilis (spice)
+- Chopped up garlic (some; strong, garlicky flavour and scent)
+
+Heat the spices with oil to create a fragrant mix (Tadka[Hindi] / Oggarane[Kannada]).
+
+
+- Grated coconut
+- Salt (to taste)
+
+Finally, throw in the above heated spices into the blender along with the
+grated coconut and blend all of it. It turns into a thick red paste.
+
+
+#### Breadfruit Sambhar
+
+
+- Heat up oil.
+- Fry **sesame seeds, cumin seeds, curry leaves, a tiny cinnamon stick** first. 
+- Once fried, add in **garlic** to taste. 
+- After garlic has fried as well, saute **onions** till golden. 
+- Finely chop **tomatoes** and add it to the sauteed onions. Cover with a lid
+- till the tomatoes release all their water.
+- Now that we have a solid flavour base, pour in water to cook the breadfruit.
+- Add in the **chopped breadfruit** --- chop the breadfruit in thin slices
+- along the center; the center has interesting texture we wish to maximize. 
+- Add in the **[General coconut based thickening agent](#general-coconut-based-thickening-agent)**.
+- Also add salt to taste.
+- Cover with a lid. Allow breadfruit, water, and thickening agent to come to a boil.
+- Lower flame to low. Allow breadfruit to soften and cook.
+- Once breadfruit is cooked, pour in **coconut milk**. Continue cooking for
+  ten minutes.
 
 # Words
 

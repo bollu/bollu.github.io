@@ -274,3 +274,12 @@ installed, use it to compute closed forms)
 - https://en.wikipedia.org/wiki/Tensegrity: building structures by hanging things with tension.
   Example using LEGO: https://www.reddit.com/r/lego/comments/g2230l/lego_tensegrity_structure/
 - Mathematics of tensegrity: Frameworks, tensegrities, and symmetry. Understanding stable structures: http://pi.math.cornell.edu/~web7510/framework.pdf
+- Spinors: http://www.weylmann.com/spinor.pdf
+- Separation logic through a new lens: Lensifies separation logic.
+- The derivative operator: paper by ken iverson that generalizes derivative to jacobian, curl, whatnot. 
+- combinatorial manifolds / tropical style manifold: https://en.wikipedia.org/wiki/Piecewise_linear_manifold
+- Noncommutative rational series with applications [They work with coefficients in an arbitrary semiring, which can be like watching paint]
+- Evolution of eusociality: https://en.wikipedia.org/wiki/Evolution_of_eusociality
+- Financial Shenanigans by Howard M Schiit. 
+- lying for money, The Match King, The Smartest Guys in the Room, Bad Blood, Billion Dollar Whale
+- Great works in programming languages: https://www.cis.upenn.edu/~bcpierce/courses/670Fall04/GreatWorksInPL.shtml
