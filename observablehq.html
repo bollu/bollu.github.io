@@ -6,7 +6,7 @@
     
     <style>
         @font-face {font-family: 'Blog Mono'; src: url('static/iosevka-fixed-extendedmedium.ttf');}@font-face {font-family: 'Blog Text'; src: url('static/iosevka-etoile-regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: rgb(20, 0, 0, 0.8);  font-family: 'Blog Text', monospace; font-size: 21px; line-height: 1.5em;  max-width: 100%; }
-        img { display:block; }.container { margin-left: 10%; margin-right: 20%; }.image { }
+        img { display:block; }.container { margin-left: 10%; margin-right: 10%; }.image { }
         a:hover { color: #1a73e8; text-decoration: underline;  }
         a { color: #1a73e8; text-decoration: none; }
         a:visited { color: #1a73e8; text-decoration: none; }
@@ -19,18 +19,18 @@
 </head>
 <body>
     <div class="container">
-    <h1> Mathemagic </h1>
-    <h3> A whimsical toybox of mathematical visualization  </h3>
-    <p>
-    The goal of this side project is to create beautiful rendering of ideas
-    in differential geometry which enchant me. So I hope to have renderings
-    of homology, cohomology, exterior calculus, the laplace operator, the heat 
-    equation, the wave equation, curvature, and holonomy. 
-    </p>
+        <h1> Staged Animations as a Generator of Promises </h1>
+        <div id="animation-1"></div>
+        <p>
+            I explain the amazingly slick animation 
+            library from <a href="https://observablehq.com/">observablehq</a>, its 
+            philosophy, and how to get their examples running on a page that's outside
+            of their garden.
+        </p>
 
-    <ul>
-        <li> <a href="./observablehq.html">Co-opting the observablehq library</a> </li>
-    </ul>
+        <h2> The observablehq model, synergy with d3js </h2>
+
+        <h2> Getting their code to compile </h2>
     </div>
 </body>
 
@@ -42,7 +42,9 @@
     // TODO: pull in width as well
     
     
-    function* now() { while (true) {  yield Date.now(); } }
+    function* now() {
+        while (true) {  yield Date.now(); }
+    }
     
     function constant(x) { return function() { return x; }; }
     
@@ -78,12 +80,31 @@
     }
     
     
-    function randomLetters() {
-        return d3.shuffle("abcdefghijklmnopqrstuvwxyz".split(""))
-        .slice(0, Math.floor(6 + Math.random() * 20))
-        .sort();
+    function strings() {
+
+        var r;
+        if (this.prevr == undefined) {
+            r = 0;
+        } else {
+            r = (this.prevr + 1) % 10;
+        }
+        this.prevr = r;
+
+        if (r == 0) { return "A whimsical toybox of mathematics"; }
+        else if (r == 1) { return "Highlights of discrete differential geometry"; }
+        else if(r == 2) { return "A singular mathematical promenade"; }
+        else if (r == 3) { return "Differential geometry made computable"; }
+        else if (r == 4) { return "Imitating great patterns from ObservableHQ"; } 
+        else if (r == 5) { return "For my love for mathematics"; }
+        else if (r == 6) { return "For my love of  Keenan Crane's work"; }
+        else if (r == 7) { return "Inspired by Douglas Hofstadter"; }
+        else if (r == 8) {  return "By bollu"; }
+        else if (r == 9) {  return "By Siddharth Bhat"; }
+        // return d3.shuffle("abcdefghijklmnopqrstuvwxyz".split(""))
+        // .slice(0, Math.floor(6 + Math.random() * 20))
+        // .sort();
     }
-    const width = 400;
+    const width = 800;
     
     async function* RENDERER() {
         const svg = d3.create("svg")
@@ -93,33 +114,35 @@
         .attr("font-family", "monospace");
         
         while (true) {
+            const DURATION_STAY = 2000;
+            const DURATION_ANIMATE = 750;
             const t = svg.transition()
-            .duration(750);
+            .duration(DURATION_ANIMATE);
             
             svg.selectAll("text")
-            .data(randomLetters(), d => d)
+            .data(strings(), d => d)
             .join(
-            enter => enter.append("text")
-            .attr("fill", "green")
-            .attr("x", (d, i) => i * 16)
-            .attr("y", -30)
-            .text(d => d)
-            .call(enter => enter.transition(t)
-            .attr("y", 0)),
-            update => update
-            .attr("fill", "black")
-            .attr("y", 0)
-            .call(update => update.transition(t)
-            .attr("x", (d, i) => i * 16)),
-            exit => exit
-            .attr("fill", "brown")
-            .call(exit => exit.transition(t)
-            .attr("y", 30)
-            .remove())
-            );
+                enter => enter.append("text")
+                .attr("fill", "green")
+                .attr("x", (d, i) => i * 16)
+                .attr("y", -30)
+                .text(d => d)
+                .call(enter => enter.transition(t)
+                    .attr("y", 0)),
+                update => update
+                .attr("fill", "black")
+                .attr("y", 0)
+                .call(update => update.transition(t)
+                    .attr("x", (d, i) => i * 16)),
+                exit => exit
+                .attr("fill", "brown")
+                .call(exit => exit.transition(t)
+                    .attr("y", 30)
+                    .remove())
+                );
             
             yield svg.node();
-            await promiseTick(1200);
+            await promiseTick(DURATION_STAY);
         }
     }
     
@@ -127,7 +150,7 @@
     
     var gen = RENDERER();    
     document.body.onload = function() {
-        const container = document.getElementById("container");
+        const container = document.getElementById("animation-1");
         
         function write_to_container(v) {
             console.log("write_to_container (" + v.value + ")");
