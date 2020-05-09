@@ -1148,10 +1148,10 @@ void toHTML(const char *instr,
             // need the _raw text_. Hmm.
             const char *link = mkHeadingLink(instr, theading);
             // outlen += sprintf(outs + outlen, "<h%d id=%s>", theading->hnum, link);
-            outlen += sprintf(outs + outlen, "<h%d>", 1+theading->hnum);
+            outlen += sprintf(outs + outlen, "<h%d>", min(4, 1+theading->hnum));
             outlen += sprintf(outs + outlen, "<a id=%s href='#%s'> %s </a>", link, link, "§");
             toHTML(instr, tempdirpath, theading->item, outlen, outs);
-            outlen += sprintf(outs + outlen, "</h%d>", 1+theading->hnum);
+            outlen += sprintf(outs + outlen, "</h%d>", min(4, 1+theading->hnum));
 
             free((char *)link);
             return;
@@ -1219,7 +1219,7 @@ const char htmlbegin[] =
 // img as a block
 "img { display:block; }"
 // container
-".container { margin-left: 20%; margin-right: 20%; }"
+".container { margin-left: 20%; margin-right: 10%; }"
 // class for image <div>
 ".image { }"
 "\n"

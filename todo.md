@@ -283,3 +283,6 @@ installed, use it to compute closed forms)
 - Financial Shenanigans by Howard M Schiit. 
 - lying for money, The Match King, The Smartest Guys in the Room, Bad Blood, Billion Dollar Whale
 - Great works in programming languages: https://www.cis.upenn.edu/~bcpierce/courses/670Fall04/GreatWorksInPL.shtml
+- Divided power structure: is a way of making expressions of the form x^n/n! (taylor series-like-objects) meaningful even when we don't have access to n! (n factorial).
+- Arend: https://github.com/JetBrains/Arend | proof assistant for HoTT cubicalTT
+- Errett Bishop: Constructive Analysis
