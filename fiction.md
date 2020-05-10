@@ -1,9 +1,81 @@
+
 # Moduli Space
 - Samples from the moduli space of all possible mathematics.
 
-- [Billiard ball computation](billiard-ball-computation)
+- [Cohomology of haskell types](#cohomology-of-haskell-types)
+- [Laplace transform of haskell types](#laplace-transform-of-haskell-types)
+- [Finite differences of haskell types](#finite-differences-of-haskell-types)
+- [Derivatives of function spaces](#derivatives-of-function-spaces)
+- [Segment trees from Mobius inversion](#segment-trees-from-mobius-inversion)
+- [Billiard ball computation](#billiard-ball-computation)
 - [On the geometry of distributed algorithms](#on-the-geometry-of-distributed-algorithms)
-- [Compilers as commutative algebra](compilers-as-commutative-algebra)
+- [Compilers as commutative algebra](#compilers-as-commutative-algebra)
+
+# [Cohomology of haskell types](#cohomology-of-haskell-types)
+
+We know that some types such as $3x^2$ can be integrated to fill
+a hole, giving us $x^3$. On the other hand, $x^2$ cannot be integrated:
+it gives $x^3/3$. Is there some kind of cohomology that governs this?
+Note that right now we don't have $d^2 = 0$ --- This is something we will
+need to find.
+
+
+This sort of thinking might help if we are trying to identify how to lay
+data down in memory; having zero homology would imply that there's no gaps,
+so we can lay it out contiguously in-memory.
+
+# Laplace transform of haskell types
+
+$$
+\mathcal{L}(e^{at}) = \frac{1}{s-a}
+$$
+
+# Finite differences of haskell types
+
+- What happens if we take finite differences? We know that real derivatives
+  give us one-hole contexts.
+
+$$
+\begin{align*}
+&fdiff(list x) \\
+&= fdiff(1/[1-x])  \\
+&= 1/[1-(x+h)] - 1/[1-x]  \\
+&= ([1-x] - [1-(x+h)])/[1-x][1 - (x+h)]  \\
+&= ([1-x] - [1-x-h])/[1-x][1 - (x+h)]  \\
+&= (1 - x - 1 + x + h)/[1-x][1 - (x + h)]   \\
+&= h/[1-x][1 - (x + h)]   \\
+&= (h, list x, list (either x h))
+\end{align*}
+$$
+
+$$
+\begin{align*}
+&bdiff(list x) \\
+&= fdiff(1/[1-x])  \\
+&= 1/[1-x] - 1/[1-(x - h)]  \\
+&= ([1-x] - [1-(x-h)])/[1-x][1-(x-h)] \\
+&= ([1-x] - [1-x+h])/[1-x][1-(x-h)] \\
+&= (1-x - 1 +x-h))/[1-x][1-(x-h)] \\
+&= -h/[1-x][1-(x-h)] \\
+\end{align*}
+$$
+
+- https://en.wikipedia.org/wiki/Divided_differences
+
+# [Derivatives of function spaces](#derivatives-of-function-spaces)
+
+we can write $\texttt{list}(x)$ as $f: \texttt{nat} \rightarrow x \simeq  x^{\texttt{nat}}$.
+If we attempt to compute the derivative, we get:
+
+$$
+\begin{align*}
+&\frac{d}{dx} (x^{\texttt{nat}}) \\
+&= \textttt{nat} x^{\texttt{nat} - 1}
+\end{align*}
+$$
+
+which is saying "tell me the index of the missing element" --- that is `nat`,
+and also keep a list with a hole: that is, $x^{\texttt{nat} - 1}$.
 
 # Segment trees from Mobius inversion
 
@@ -24,6 +96,7 @@
 This is quite easy. We can use `Traversable` to fill any data structure;
 we can use the APL technique of `fold /= 0` to check for beginning-and-ending
 of matching parity.
+
 
 # Snooker on a Doughnut: A promenade of geometric computation theory.
 
