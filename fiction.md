@@ -42,7 +42,7 @@ for space and gate complexity. Intuitively, the power
 of this model comes from allowing rearrangements of the billiard
 ball evolution. The balls act as inputs, outputs, and
 gates. As a result, a curious form of self-modifying
-programming which allows access to better complexity classes, is formed.
+programming (which allows access to better complexity classes) is formed.
 We propose three new lines of research: uncovering the
 complexity theoretic phenomena that is present, studying the symplectic geometry 
 that is controlling the situation, and the intruguing 
