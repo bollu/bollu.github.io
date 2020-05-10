@@ -31,22 +31,22 @@ of matching parity.
 
 We consider the hamiltonian evolution of systems on 
 symplectic manifolds. We perform classical 
-computation on these manifolds with the billiard ball
+computations on these manifolds using the billiard ball
 model of computation. We investigate the relationship
 of time complexity, space complexity (volume of phase space),
 and gate complexity (billiard ball count)
-as a function of the manifold. We exhibit 
-concrete examples where this model is
-exponentially  than the best known lower bounds
+as a function of the manifold. We also exhibit 
+concrete examples of where this model returns results which are
+exponentially better than the best known lower bounds
 for space and gate complexity. Intuitively, the power
-of the model is to allow rearrangements of the billiard
-ball evolution to have the balls act as inputs, outputs, and
-gates. This permits a curious form of self-modifying
-programming that allows access to better complexity classes.
-We propose three new lines of research: one on uncovering the
-complexity theoretic phenomena that is present, another
-on the symplectic geometry that is controlling the situation,
-and finally, the intruguing possibility of building such a machine.
+of this model comes from allowing rearrangements of the billiard
+ball evolution. The balls act as inputs, outputs, and
+gates. As a result, a curious form of self-modifying
+programming (which allows access to better complexity classes) is formed.
+We propose three new lines of research: uncovering the
+complexity theoretic phenomena that is present, studying the symplectic geometry 
+that is controlling the situation, and the intruguing 
+possibility of building such a machine.
 
 
 #### Reflections
