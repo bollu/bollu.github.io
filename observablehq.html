@@ -28,9 +28,21 @@
             of their garden.
         </p>
 
-        <h2> The observablehq model, synergy with d3js </h2>
+        <h2> D3js </h2>
+        <p>
+            The big idea is this: we use `d3.js` to animate what I'll term a _scene_.
+            A _scene_ consists of some objects `enter`ing, some objects `exit`ing,
+            and some objects `update`ing. To setup control flow _between_ scenes,
+            we will use `async/await` in ES6. 
 
-        <h2> Getting their code to compile </h2>
+            In the text above, a scene is one sentence that's shown. The objects
+            that are entering are the new letters in green. The objects that are
+            exiting are the letters that drop out in red. The objects that
+            are updated are predictably the letters that rearrange in black.
+        </p>
+        <div id="animation-2"></div>
+        <div id="animation-3"></div>
+
     </div>
 </body>
 
@@ -104,13 +116,15 @@
         // .slice(0, Math.floor(6 + Math.random() * 20))
         // .sort();
     }
-    const width = 800;
     
-    async function* RENDERER() {
+    async function* animation_text() {
+        const width = 800;
+        const height = 50;
+
         const svg = d3.create("svg")
         .attr("width", width)
-        .attr("height", 33)
-        .attr("viewBox", `0 -20 ${width} 33`)
+        .attr("height", height)
+        .attr("viewBox", `0 -20 ${width} ${height}`)
         .attr("font-family", "monospace");
         
         while (true) {
@@ -125,7 +139,7 @@
                 enter => enter.append("text")
                 .attr("fill", "green")
                 .attr("x", (d, i) => i * 16)
-                .attr("y", -30)
+                .attr("y", -height*2)
                 .text(d => d)
                 .call(enter => enter.transition(t)
                     .attr("y", 0)),
@@ -137,7 +151,7 @@
                 exit => exit
                 .attr("fill", "brown")
                 .call(exit => exit.transition(t)
-                    .attr("y", 30)
+                    .attr("y", height*2)
                     .remove())
                 );
             
@@ -145,24 +159,213 @@
             await promiseTick(DURATION_STAY);
         }
     }
+
+     async function* animation_heat() {
+        const width = 800;
+        const height = 300;
+
+
+        const svg = d3.create("svg")
+        .attr("width", width+50)
+        .attr("height", height)
+        .attr("viewBox", `0 -20 ${width+50} ${height}`)
+        .attr("font-family", "monospace");
+        
+        const RAD = 4;
+        const NPOINTS = 100;
+
+        // initial values of heat.
+        var vals = [];
+        for (var i = 0; i <= NPOINTS; i = i + 1) { 
+            vals[i] = { "ty": "VALUE:" + i
+                      , "val": height/2 * Math.sin(i/(NPOINTS/13) * Math.PI)
+                      };
+        }
+
+
+        while (true) {
+            
+            const STEPSIZE = 0.5;
+            const DURATION_STAY = 80;
+            const DURATION_ANIMATE = 70;
+            const t = svg.transition()
+            .duration(DURATION_ANIMATE);
+            
+            svg.selectAll("circle")
+            .data(vals, (d, i) => d.ty)
+            .join(
+                enter => enter.append("circle")
+                .attr("fill", "black")
+                .attr("cx", (d, i) => RAD*2 + (i*width/NPOINTS))
+                .attr("cy", (d, i) => height/2-d.val)
+                .attr("r", RAD)
+                , update => update.call(update => update.transition(t).attr("cy", (d, i) => height/2-d.val))
+                , exit => exit// exit.call(exit => exit.transition(t).attr("cy", 0))
+                        
+                );
+            
+
+            var nexts = [];
+            nexts[0] = vals[0];
+            nexts[vals.length-1] = vals[vals.length-1];
+
+            var avgs = [];
+
+            for(var i = 1; i < vals.length-1; i++) {
+                avgs[i-1] = { "ty": "AVG:" + i,  "val": 0.5 * (vals[i-1].val + vals[i+1].val) };
+                nexts[i] = { "ty": "VALUE:" + i, "val": vals[i].val - STEPSIZE * (vals[i].val - avgs[i-1].val) };
+            }
+
+            const t2 = t.transition().duration(DURATION_ANIMATE);
+
+            svg.selectAll("circle")
+            .data(avgs, d => d.ty)
+            .join(
+                enter => enter.append("circle")
+                .attr("fill", "#CCCCCC")
+                .attr("cx", (d, i) => RAD*2 + ((i + 1) *width/NPOINTS))
+                .attr("cy", (d, i) => height/2-d.val)
+                .attr("r", RAD*0.3)
+               , update => update.transition(t2).attr("cy", (d, i) => height/2-d.val)
+              , exit => exit); 
+
+
+
+
+            for(var i = 0; i < vals.length; i++) { vals[i] = nexts[i]; }
+
+            yield svg.node();
+            await promiseTick(DURATION_STAY);
+
+        }
+    }
+
+    async function* animation_wave() {
+        const width = 800;
+        const height = 300;
+
+
+        const svg = d3.create("svg")
+        .attr("width", width+50)
+        .attr("height", height)
+        .attr("viewBox", `0 -20 ${width+50} ${height}`)
+        .attr("font-family", "monospace");
+        
+        const RAD = 4;
+        const NPOINTS = 70;
+
+        // initial values of heat.
+        var vals = [];
+        for (var i = 0; i <= NPOINTS; i = i + 1) { 
+            vals[i] = { "ty": "VALUE:" + i
+                      , "s": height/4 * Math.sin(i/(NPOINTS/13) * Math.PI)
+                      , "v": 0
+                      , "a": 0
+                      };
+        }
+
+
+        while (true) {
+            
+            const STEPSIZE = 1;
+            const DURATION_STAY = 2000;
+            const DURATION_ANIMATE = 1000;
+            const t = svg.transition()
+            .duration(DURATION_ANIMATE);
+            
+            svg.selectAll("circle")
+            .data(vals, (d, i) => d.ty)
+            .join(
+                enter => enter.append("circle")
+                .attr("fill", "black")
+                .attr("cx", (d, i) => RAD*2 + (i*width/NPOINTS))
+                .attr("cy", (d, i) => height/2-d.s)
+                .attr("r", RAD)
+                , update => update.call(update => update.transition(t).attr("cy", (d, i) => height/2-d.s))
+                , exit => exit// exit.call(exit => exit.transition(t).attr("cy", 0))
+                        
+                );
+            
+
+            var nexts = [];
+            nexts[0] = vals[0];
+            nexts[vals.length-1] = vals[vals.length-1];
+
+            var avgs = [];
+
+            for(var i = 1; i < vals.length-1; i++) {
+                 
+                avgs[i-1] = { "ty": "AVG:" + i,  "s": 0.5 * (vals[i-1].s + vals[i+1].s) };
+                const anext = (avgs[i-1].s - vals[i].s); 
+                const vnext = vals[i].v + STEPSIZE * anext;
+                // taylor: ut + 1/2at^2 | consider: symplectic/leapfrog.
+                const snext = vals[i].s + STEPSIZE * vnext + 0.5 * anext * STEPSIZE * STEPSIZE;
+                avgs[i-1].anext = anext;
+
+                nexts[i] = { "ty": "VALUE:" + i, "s": snext, "v": vnext, "a": anext };
+            }
+
+            const t2 = t.transition().duration(DURATION_ANIMATE);
+
+            svg.selectAll("circle")
+            .data(avgs, d => d.ty)
+            .join(
+                enter => enter.append("circle")
+                .attr("fill", "#008888")
+                .attr("cx", (d, i) => RAD*2 + ((i + 1) *width/NPOINTS))
+                .attr("cy", (d, i) => height/2-d.s)
+                .attr("r", RAD*0.7)
+               , update => update.transition(t2)
+                            .attr("cy", (d, i) => height/2-d.s)
+                            .attr("r", (d, i) => 0.3 * Math.abs(d.anext))
+              , exit => exit); 
+
+
+
+
+            for(var i = 0; i < vals.length; i++) { vals[i] = nexts[i]; }
+
+            yield svg.node();
+            await promiseTick(DURATION_STAY);
+
+        }
+    }
+
     
     // === CODE ====
-    
-    var gen = RENDERER();    
-    document.body.onload = function() {
-        const container = document.getElementById("animation-1");
-        
-        function write_to_container(v) {
-            console.log("write_to_container (" + v.value + ")");
-            container.firstChild.remove();
-            container.appendChild(v.value);
-            gen.next().then(write_to_container);
+
+    function setup_animation(container, gen) {
+        function update_container(v) {
+            // console.log("update_container (" + v.value + ")");
+            // container.firstChild.remove();
+            // container.appendChild(v.value);
+            gen.next().then(update_container);
         };
         
         gen.next().then(function(v) { 
             container.appendChild(v.value);
-            gen.next().then(write_to_container);
+            gen.next().then(update_container);
         });
+    }
+    
+    document.body.onload = function() {
+        setup_animation(document.getElementById("animation-1"), animation_text());
+        setup_animation(document.getElementById("animation-2"), animation_heat());
+        setup_animation(document.getElementById("animation-3"), animation_wave());
+
+        // const container = document.getElementById("animation-1");
+        
+        // function write_to_container(v) {
+        //     console.log("write_to_container (" + v.value + ")");
+        //     container.firstChild.remove();
+        //     container.appendChild(v.value);
+        //     gen.next().then(write_to_container);
+        // };
+        
+        // gen.next().then(function(v) { 
+        //     container.appendChild(v.value);
+        //     gen.next().then(write_to_container);
+        // });
     };
 </script>
 </html>
