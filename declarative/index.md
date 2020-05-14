@@ -191,7 +191,7 @@ function anim_const(field, v) {
     f.par = ((g) => anim_parallel(f, g));
     f.seq = ((g) => anim_sequence(f, g));
     return f;
-
+}
 
 function ease_linear(vstart, tlin, vend) { return (1.0 - tlin) * vstart + tlin * vend; }
 
@@ -266,7 +266,7 @@ function anim_stagger(xs, delta) {
 
 <!--script src="ANIMGENERATED.js"></script-->
 <script src="anim.js"></script>
-<script src="./interior-point.js"></script>
+<script src="./script.js"></script>
 
 <script type="text/javascript">
 document.body.onload = function() { init_interior_point(); }

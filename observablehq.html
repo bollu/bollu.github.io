@@ -242,7 +242,7 @@
 
     async function* animation_wave() {
         const width = 800;
-        const height = 300;
+        const height = 400;
 
 
         const svg = d3.create("svg")
@@ -251,14 +251,14 @@
         .attr("viewBox", `0 -20 ${width+50} ${height}`)
         .attr("font-family", "monospace");
         
-        const RAD = 4;
-        const NPOINTS = 70;
+        const RAD = 5;
+        const NPOINTS = 80;
 
         // initial values of heat.
         var vals = [];
         for (var i = 0; i <= NPOINTS; i = i + 1) { 
             vals[i] = { "ty": "VALUE:" + i
-                      , "s": height/4 * Math.sin(i/(NPOINTS/13) * Math.PI)
+                      , "s": height/4 * Math.sin(i/(NPOINTS/11) * Math.PI)
                       , "v": 0
                       , "a": 0
                       };
@@ -267,21 +267,25 @@
 
         while (true) {
             
-            const STEPSIZE = 1;
-            const DURATION_STAY = 2000;
-            const DURATION_ANIMATE = 1000;
+            const STEPSIZE = 0.03;
+            const DURATION_STAY = 20;
+            const DURATION_ANIMATE = 20;
             const t = svg.transition()
             .duration(DURATION_ANIMATE);
             
-            svg.selectAll("circle")
+            svg.selectAll("ellipse")
             .data(vals, (d, i) => d.ty)
             .join(
-                enter => enter.append("circle")
-                .attr("fill", "black")
+                enter => enter.append("ellipse")
+                .attr("fill", "rgba(0, 0, 0, 0.5)")
                 .attr("cx", (d, i) => RAD*2 + (i*width/NPOINTS))
                 .attr("cy", (d, i) => height/2-d.s)
-                .attr("r", RAD)
-                , update => update.call(update => update.transition(t).attr("cy", (d, i) => height/2-d.s))
+                .attr("rx", (d, i) => RAD - Math.abs(0.4 * d.v)) // TODO: volume conservation!
+                .attr("ry", (d, i) => RAD + Math.abs(0.4 * d.v))
+                , update => update.call(update => update.transition(t)
+                     .attr("cy", (d, i) => height/2-d.s)
+                     .attr("ry", (d, i) => RAD + Math.min(RAD/2, Math.abs(0.03 * d.v)))
+                     .attr("rx", (d, i) => RAD - Math.min(RAD/2, Math.abs(0.03 * d.v))))
                 , exit => exit// exit.call(exit => exit.transition(t).attr("cy", 0))
                         
                 );
@@ -295,29 +299,34 @@
 
             for(var i = 1; i < vals.length-1; i++) {
                  
-                avgs[i-1] = { "ty": "AVG:" + i,  "s": 0.5 * (vals[i-1].s + vals[i+1].s) };
-                const anext = (avgs[i-1].s - vals[i].s); 
+                avgs[i-1] = { "ty": "AVG:" + i,  "val": 0.5 * (vals[i-1].s + vals[i+1].s) };
+                const anext = (avgs[i-1].val - vals[i].s); 
                 const vnext = vals[i].v + STEPSIZE * anext;
                 // taylor: ut + 1/2at^2 | consider: symplectic/leapfrog.
                 const snext = vals[i].s + STEPSIZE * vnext + 0.5 * anext * STEPSIZE * STEPSIZE;
                 avgs[i-1].anext = anext;
+                avgs[i-1].snext = snext;
 
                 nexts[i] = { "ty": "VALUE:" + i, "s": snext, "v": vnext, "a": anext };
             }
 
             const t2 = t.transition().duration(DURATION_ANIMATE);
 
-            svg.selectAll("circle")
+            svg.selectAll("ellipse")
             .data(avgs, d => d.ty)
             .join(
-                enter => enter.append("circle")
-                .attr("fill", "#008888")
+                enter => enter.append("ellipse")
+                .attr("fill", "rgba(0, 100, 100, 0.8)")
                 .attr("cx", (d, i) => RAD*2 + ((i + 1) *width/NPOINTS))
-                .attr("cy", (d, i) => height/2-d.s)
-                .attr("r", RAD*0.7)
+                .attr("cy", (d, i) => height/2-d.snext-3*RAD)
+                .attr("rx", 0.5*RAD)
+                .attr("ry", 0.5*RAD)
                , update => update.transition(t2)
-                            .attr("cy", (d, i) => height/2-d.s)
-                            .attr("r", (d, i) => 0.3 * Math.abs(d.anext))
+                            .attr("cy", (d, i) => height/2-d.snext-3*RAD)
+                            // .attr("rx", (d, i) => 0.8*RAD - Math.min(0.8*RAD/2, 0.08 * Math.max(0, d.anext)))
+                            // .attr("ry", (d, i) => 0.8*RAD + Math.min(0.8*RAD/2, 0.08 * Math.max(0, d.anext)))
+                            .attr("fill", (d, i) => "rgba(0, 100, 100," + Math.max(0, 0.05*d.anext) + ")")
+             
               , exit => exit); 
 
 
@@ -333,6 +342,7 @@
 
     
     // === CODE ====
+
 
     function setup_animation(container, gen) {
         function update_container(v) {

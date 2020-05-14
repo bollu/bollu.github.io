@@ -27,7 +27,7 @@ function anim_const(field, v) {
     f.par = ((g) => anim_parallel(f, g));
     f.seq = ((g) => anim_sequence(f, g));
     return f;
-
+}
 
 function ease_linear(vstart, tlin, vend) { return (1.0 - tlin) * vstart + tlin * vend; }
 
