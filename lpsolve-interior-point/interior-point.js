@@ -83,14 +83,12 @@ function logbarrier(polypts, ptcur) {
 
 const anim_circle = anim_const("cx", 100)
     .seq(anim_const("cr", 0))
-    .seq(anim_interpolated(ease_cubic, "cr", 10, 50))
-    .seq(anim_interpolated(ease_cubic, "cx", 300, 100)
-        .par(anim_interpolated(ease_cubic, "cr", 15, 200)))
-    .seq(anim_delay(100))
-    .seq(anim_interpolated(ease_cubic, "cx", 100, 100))
-    .seq(anim_interpolated(ease_cubic, "cr", 0, 100));
-console.log("anim_circle:");
-console.log(anim_circle);
+    .seq(anim_interpolated(ease_cubic, "cr", 10, 2))
+    .seq(anim_interpolated(ease_cubic, "cx", 300, 5)
+        .par(anim_interpolated(ease_cubic, "cr", 70, 5)))
+    .seq(anim_delay(3))
+    .seq(anim_interpolated(ease_cubic, "cx", 100, 5))
+    .seq(anim_interpolated(ease_cubic, "cr", 0, 5));
 
 
 function make_anim1_gen(container, points) {
@@ -110,12 +108,13 @@ function make_anim1_gen(container, points) {
     container.appendChild(svg);
     return (async function*() {
 
-        const DT = 1.0/60.0;
+        const DT = 1.0/30.0;
+        const TOTALFRAMES = 500;
         while(true) {
-            for(var i = 0; i < 2000; ++i) {
-                const anim = anim_circle(i  / 2000.0 * anim_circle.duration, {});
-                circle.setAttribute("cx", anim.cx);
-                circle.setAttribute("r", anim.cr);
+            for(var i = 0; i < TOTALFRAMES; ++i) {
+                const val = anim_circle(i  / TOTALFRAMES * anim_circle.duration, {});
+                circle.setAttribute("cx", val.cx);
+                circle.setAttribute("r", val.cr);
                 await promiseDuration(DT);
                 yield;
             }
@@ -146,7 +145,6 @@ function make_anim2_gen(container, points) {
         while(true) {
             const t = document.getElementById("animation-2-scrubber").value / 1000.0; 
             const anim = anim_circle(t * anim_circle.duration, {});
-            // console.log("scrubbed to: ", t, "val:", anim);
 
             circle.setAttribute("cx", anim.cx);
             circle.setAttribute("r", anim.cr);
@@ -200,7 +198,6 @@ function make_anim3_gen(container, points) {
         while(true) {
             const t = document.getElementById("animation-3-scrubber").value / 1000.0; 
             const val = anim(t * anim.duration, {});
-            console.log(val);
             for(var i = 0; i < NCIRCLES; ++i) {
                 circles[i].setAttribute("cy", val["cy" + i]);
                 circles[i].setAttribute("r", val["cr" + i]);

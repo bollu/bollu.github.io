@@ -7,10 +7,83 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 pre, .latexblock, blockquote { border-left-color:#DDDDDD;  border-left-style: solid;      border-left-width: 4px; padding-left: 5px; }
  blockquote { border-left-color:#DDDDDD;  border-left-style: solid;      border-left-width: 4px; padding-left: 5px; color: #666666;}.latexblock, .latexinline, .code { font-family: 'Blog Mono', monospace; line-height: 1.2em; font-size: 80%;  }.latexblock { margin-top: 5px; margin-bottom: 5px; padding-bottom: 5px; padding-top: 5px; background-color: #EEEEEE; }.code, code { background-color: #EEEEEE; width: 100%; } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code { width: 100%; overflow-x: hidden; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; }
-.latexinline { border-bottom-color: #DDDDDD; border-bottom-style: solid;                border-bottom-width: 1px; padding-bottom: 2px;                padding-left: 2px; padding-right: 2px; }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.latexblock .li-itemize{margin:1ex 0ex;}.latexblock .li-enumerate{margin:1ex 0ex;}.latexblock .footnotetext{margin:0ex; padding:0ex;}.latexblock div.footnotetext P{margin:0px; text-indent:1em;}.latexblock .thefootnotes{text-align:left;margin:0ex;}.latexblock .dt-thefootnotes{margin:0em;}.latexblock .dd-thefootnotes{margin:0em 0em 0em 2em;}.latexblock .footnoterule{margin:1em auto 1em 0px;width:50%;}.latexblock .caption{padding-left:2ex; padding-right:2ex; margin-left:auto; margin-right:auto}.latexblock .title{margin:2ex auto;text-align:center}.latexblock .titlemain{margin:1ex 2ex 2ex 1ex;}.latexblock .center{text-align:center;margin-left:auto;margin-right:auto;}.latexblock .flushleft{text-align:left;margin-left:0ex;margin-right:auto;}.latexblock .flushright{text-align:right;margin-left:auto;margin-right:0ex;}.latexblock div table{margin-left:inherit;margin-right:inherit;margin-bottom:2px;margin-top:2px}.latexblock td table{margin:auto;}.latexblock table{border-collapse:collapse;}.latexblock td{padding:0;}.latexblock .cellpadding0 tr td{padding:0;}.latexblock .cellpadding1 tr td{padding:1px;}.latexblock pre{text-align:left;margin-left:0ex;margin-right:auto;}.latexblock blockquote{margin-left:4ex;margin-right:4ex;text-align:left;}.latexblock td p{margin:0px;}.latexblock .hbar{border:none;height:2px;width:100%;background-color:black;}.latexblock .display{border-collapse:separate;border-spacing:2px;width:auto; border:none;}.latexblock .dcell{white-space:nowrap;padding:0px; border:none;}.latexblock .dcenter{margin:0ex auto;}.latexblock .theorem{text-align:left;margin:1ex auto 1ex 0ex;}.latexblock .tst{font-family:sans;font-style:oblique;color:maroon}.latexblock .highlight{color:lime}</style></head><body><div class='container'><h2><a id=solving-linear-programming-using-gradient-descent href='#solving-linear-programming-using-gradient-descent'> § </a> Solving linear programming using gradient descent</h2>
+.latexinline { border-bottom-color: #DDDDDD; border-bottom-style: solid;                border-bottom-width: 1px; padding-bottom: 2px;                padding-left: 2px; padding-right: 2px; }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.latexblock .li-itemize{margin:1ex 0ex;}.latexblock .li-enumerate{margin:1ex 0ex;}.latexblock .footnotetext{margin:0ex; padding:0ex;}.latexblock div.footnotetext P{margin:0px; text-indent:1em;}.latexblock .thefootnotes{text-align:left;margin:0ex;}.latexblock .dt-thefootnotes{margin:0em;}.latexblock .dd-thefootnotes{margin:0em 0em 0em 2em;}.latexblock .footnoterule{margin:1em auto 1em 0px;width:50%;}.latexblock .caption{padding-left:2ex; padding-right:2ex; margin-left:auto; margin-right:auto}.latexblock .title{margin:2ex auto;text-align:center}.latexblock .titlemain{margin:1ex 2ex 2ex 1ex;}.latexblock .center{text-align:center;margin-left:auto;margin-right:auto;}.latexblock .flushleft{text-align:left;margin-left:0ex;margin-right:auto;}.latexblock .flushright{text-align:right;margin-left:auto;margin-right:0ex;}.latexblock div table{margin-left:inherit;margin-right:inherit;margin-bottom:2px;margin-top:2px}.latexblock td table{margin:auto;}.latexblock table{border-collapse:collapse;}.latexblock td{padding:0;}.latexblock .cellpadding0 tr td{padding:0;}.latexblock .cellpadding1 tr td{padding:1px;}.latexblock pre{text-align:left;margin-left:0ex;margin-right:auto;}.latexblock blockquote{margin-left:4ex;margin-right:4ex;text-align:left;}.latexblock td p{margin:0px;}.latexblock .hbar{border:none;height:2px;width:100%;background-color:black;}.latexblock .display{border-collapse:separate;border-spacing:2px;width:auto; border:none;}.latexblock .dcell{white-space:nowrap;padding:0px; border:none;}.latexblock .dcenter{margin:0ex auto;}.latexblock .theorem{text-align:left;margin:1ex auto 1ex 0ex;}.latexblock .tst{font-family:sans;font-style:oblique;color:maroon}.latexblock .highlight{color:lime}</style></head><body><div class='container'><h3><a id=the-unreasonable-effectiveness-of-functional-programming href='#the-unreasonable-effectiveness-of-functional-programming'> § </a> The unreasonable effectiveness of functional programming</h3>
+<h4><a id=declarative-animations href='#declarative-animations'> § </a> Declarative animations</h4>
+I'd like to show off the usual approach to building animations in javascript,
+and what we can learn by building a tiny version of such a library.
 <h4><a id=an-animation href='#an-animation'> § </a> An animation</h4>
 <div id="animation-1"></div>
-<h4><a id=scrub-through-the-animation href='#scrub-through-the-animation'> § </a> Scrub through the animation</h4>
+Here, we build a simple animation. The code that <b>describes</b> the animation is:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">01:</font> 
+<font color="#666666">02:</font> <b><u><font color="#000000">const</font></u></b> anim_circle = anim_const(<font color="#808080">"cx"</font>, <font color="#000000">100</font>)
+<font color="#666666">03:</font>     .seq(anim_const(<font color="#808080">"cr"</font>, <font color="#000000">0</font>))
+<font color="#666666">04:</font>     .seq(anim_interpolated(ease_cubic, <font color="#808080">"cr"</font>, <i><font color="#808080">/*val=*/</font></i><font color="#000000">10</font>, <i><font color="#808080">/*dur=*/</font></i><font color="#000000">50</font>))
+<font color="#666666">05:</font>     .seq(anim_interpolated(ease_cubic, <font color="#808080">"cx"</font>, <i><font color="#808080">/*val=*/</font></i><font color="#000000">300</font>, <i><font color="#808080">/*dur=*/</font></i><font color="#000000">100</font>)
+<font color="#666666">06:</font>         .par(anim_interpolated(ease_cubic, <font color="#808080">"cr"</font>, <font color="#000000">40</font>, <font color="#000000">100</font>)))
+<font color="#666666">07:</font>     .seq(anim_delay(<font color="#000000">10</font>))
+<font color="#666666">08:</font>     .seq(anim_interpolated(ease_linear, <font color="#808080">"cx"</font>, <font color="#000000">100</font>, <font color="#000000">100</font>))
+<font color="#666666">09:</font>     .seq(anim_interpolated(ease_cubic, <font color="#808080">"cr"</font>, <font color="#000000">0</font>, <font color="#000000">100</font>));
+<font color="#666666">10:</font> 
+<font color="#666666">11:</font> </tt></pre>
+</div>
+
+The entire animation is built out of one primitive and three combinators:
+<ol>
+<li>
+ <code>anim_interpolated</code> to change to a given value in some given duration.
+</li>
+<li>
+ <code>seq</code> to run animations in sequence.
+</li>
+<li>
+ <code>par</code> to run animations in parallel.
+</li>
+<li>
+ <code>anim_delay</code> to add a delay.
+</li>
+
+</ol>
+
+I haven't shown how this <code>anim_circle</code> object is linked to the circle above. 
+Don't worry, it's fairly straightforward. I also haven't described what is
+<i>functional</i> about all of this. We'll get to that too.
+<h4><a id=nimcircle href='#nimcircle'> § </a> What is <code>anim_circle</code>?</h4>
+<code>anim_circle</code> is a <i>function</i>, which can be invoked as <code>val = anim_circle(t)</code>, where
+<span class='latexinline'>
+0 &#X2264; <span style="font-style:italic">t</span> &#X2264; <span style="font-family:monospace">duration</span></span>. It returns a dictionary <code>val</code>, where
+<code>val.cx</code> and <code>val.cr</code> have values as the animation demands. I've plotted
+the values of <code>val.cx</code> and <code>val.cr</code> as well pass <code>t</code> from <code>0</code> to <code>duration</code>.
+This <code>duration</code> is calculated for us by the library, and can be accessed as
+<code>anim_circle.duration</code>.
+<ul>
+<li>
+ PLOT
+</li>
+
+</ul>
+
+To play with the <code>anim_circle</code>, feel free to open your console on the page
+and try:
+<ul>
+<li>
+ <code>anim_circle(0)</code>
+</li>
+<li>
+ <code>anim_circle(anim_circle.duration)</code>
+</li>
+<li>
+ <code>anim_circle(anim_circle.duration/2.0)</code>
+</li>
+
+</ul>
+
+<h4><a id=purity-declarative href='#purity-declarative'> § </a> Purity ⇒ Declarative</h4>
+<h4><a id=purity-time-travel href='#purity-time-travel'> § </a> Purity ⇒ Time Travel</h4>
 <div id="animation-2"></div>
 Play with the slider to move through the animation!  </br>
 <input type="range" id="animation-2-scrubber" min=0 max=1000 value=0 style="width:80%">

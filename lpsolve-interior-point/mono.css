@@ -1,0 +1,31 @@
+body {
+  font-weight: normal;
+  background-color: white;
+}
+
+.linenum { color: #666666; }
+
+.keyword {
+  color: black;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.type {
+  color: black;
+  font-weight: bold;
+}
+
+.string {
+  color: gray;
+}
+
+.comment {
+  color: #808080;
+  font-style: italic;
+}
+
+.number {
+  color: black;
+}
+
