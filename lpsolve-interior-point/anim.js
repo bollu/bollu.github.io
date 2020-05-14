@@ -96,3 +96,23 @@ function anim_parallel(anim1, anim2) {
     f.seq = ((g) => anim_sequence(f, g));
     return f;
 }
+
+function anim_parallel_list(xs) {
+    var x = xs[0];
+    for(var i = 1; i < xs.length; ++i) { x = x.par(xs[i]); }
+    return x;
+}
+
+function anim_stagger(xs, delta) {
+    console.assert(typeof(delta) == "number");
+    var ys = []
+    for(var i = 0; i < xs.length; ++i) {
+        ys.push(anim_delay(delta*i).seq(xs[i]));
+    }
+
+    var y = ys[0];
+    for(var i = 1; i < ys.length; ++i) {
+        y = y.par(ys[i]);
+    }
+    return y;
+}

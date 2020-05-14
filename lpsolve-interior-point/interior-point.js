@@ -1,3 +1,4 @@
+"use strict";
 //https://www.d3indepth.com/shapes/
 //LIBRARY: Promises
 function promiseDuration(dt) {
@@ -112,7 +113,6 @@ function make_anim1_gen(container, points) {
         const DT = 1.0/60.0;
         while(true) {
             for(var i = 0; i < 2000; ++i) {
-                console.log("duration: ", anim_circle.duration);
                 const anim = anim_circle(i  / 2000.0 * anim_circle.duration, {});
                 circle.setAttribute("cx", anim.cx);
                 circle.setAttribute("r", anim.cr);
@@ -134,12 +134,13 @@ function make_anim2_gen(container, points) {
     svg.setAttribute("height", height + "px");
     svg.setAttribute("viewBox", `0 0 ${width} ${height}`)
     svg.setAttribute("font-family", "monospace");
+    container.appendChild(svg);
     
     const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     circle.setAttribute("cy", 100);
     circle.setAttribute("fill", "#1a73e8");
     svg.appendChild(circle);
-    container.appendChild(svg);
+
     return (async function*() {
         const DT = 1.0/60.0;
         while(true) {
@@ -154,6 +155,62 @@ function make_anim2_gen(container, points) {
         }
     })();
 }
+
+function make_anim3_gen(container, points) {
+    const width = 500;
+    const height = 200;
+    const NCIRCLES = 10;
+    const STAGGER = 80;
+
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("width", width + "px");
+    svg.setAttribute("height", height + "px");
+    svg.setAttribute("viewBox", `0 0 ${width} ${height}`)
+    svg.setAttribute("font-family", "monospace");
+    container.appendChild(svg);
+    
+
+    let circles = [];
+    let anim_circles_start = [];
+    let anim_circles_enter = [];
+    let anim_circles_leave = [];
+    const RAD = 5;
+    for(var i = 0; i < NCIRCLES; ++i) {
+        let circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        svg.appendChild(circle);
+
+        circle.setAttribute("fill", "#1a73e8");
+        circle.setAttribute("r", RAD);
+        circle.setAttribute("cx", RAD *3 + RAD * 5 * i);
+        circle.setAttribute("cy", 300);
+        circles.push(circle);
+        anim_circles_start.push(anim_const("cy" + i, 300)
+                                .seq(anim_const("cr"+i, 10)));
+        anim_circles_enter.push(anim_interpolated(ease_cubic, "cy" + i, 100, 300));
+        anim_circles_leave.push(anim_interpolated(ease_cubic, "cr" + i, 0, 800));
+    }
+
+    
+    const anim = anim_parallel_list(anim_circles_start)
+        .seq(anim_stagger([anim_stagger(anim_circles_enter, STAGGER),
+                           anim_stagger(anim_circles_leave, STAGGER)], 500));
+
+    return (async function*() {
+        const DT = 1.0/60.0;
+        while(true) {
+            const t = document.getElementById("animation-3-scrubber").value / 1000.0; 
+            const val = anim(t * anim.duration, {});
+            console.log(val);
+            for(var i = 0; i < NCIRCLES; ++i) {
+                circles[i].setAttribute("cy", val["cy" + i]);
+                circles[i].setAttribute("r", val["cr" + i]);
+            }
+            await promiseDuration(DT);
+            yield;
+        }
+    })();
+}
+
 
 
 function animator_from_generator(gen) {
@@ -172,4 +229,8 @@ function init_interior_point() {
     const anim2 = make_anim2_gen(document.getElementById("animation-2"), 
          [[50, 50], [100, 150], [200, 200], [50, 50]]);
     animator_from_generator(anim2);
+
+    const anim3 = make_anim3_gen(document.getElementById("animation-3"), 
+         [[50, 50], [100, 150], [200, 200], [50, 50]]);
+    animator_from_generator(anim3);
 }                      
