@@ -7,94 +7,297 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 pre, .latexblock, blockquote { border-left-color:#DDDDDD;  border-left-style: solid;      border-left-width: 4px; padding-left: 5px; }
  blockquote { border-left-color:#DDDDDD;  border-left-style: solid;      border-left-width: 4px; padding-left: 5px; color: #666666;}.latexblock, .latexinline, .code { font-family: 'Blog Mono', monospace; line-height: 1.2em; font-size: 80%;  }.latexblock { margin-top: 5px; margin-bottom: 5px; padding-bottom: 5px; padding-top: 5px; background-color: #EEEEEE; }.code, code { background-color: #EEEEEE; width: 100%; } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code { width: 100%; overflow-x: hidden; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; }
-.latexinline { border-bottom-color: #DDDDDD; border-bottom-style: solid;                border-bottom-width: 1px; padding-bottom: 2px;                padding-left: 2px; padding-right: 2px; }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.latexblock .li-itemize{margin:1ex 0ex;}.latexblock .li-enumerate{margin:1ex 0ex;}.latexblock .footnotetext{margin:0ex; padding:0ex;}.latexblock div.footnotetext P{margin:0px; text-indent:1em;}.latexblock .thefootnotes{text-align:left;margin:0ex;}.latexblock .dt-thefootnotes{margin:0em;}.latexblock .dd-thefootnotes{margin:0em 0em 0em 2em;}.latexblock .footnoterule{margin:1em auto 1em 0px;width:50%;}.latexblock .caption{padding-left:2ex; padding-right:2ex; margin-left:auto; margin-right:auto}.latexblock .title{margin:2ex auto;text-align:center}.latexblock .titlemain{margin:1ex 2ex 2ex 1ex;}.latexblock .center{text-align:center;margin-left:auto;margin-right:auto;}.latexblock .flushleft{text-align:left;margin-left:0ex;margin-right:auto;}.latexblock .flushright{text-align:right;margin-left:auto;margin-right:0ex;}.latexblock div table{margin-left:inherit;margin-right:inherit;margin-bottom:2px;margin-top:2px}.latexblock td table{margin:auto;}.latexblock table{border-collapse:collapse;}.latexblock td{padding:0;}.latexblock .cellpadding0 tr td{padding:0;}.latexblock .cellpadding1 tr td{padding:1px;}.latexblock pre{text-align:left;margin-left:0ex;margin-right:auto;}.latexblock blockquote{margin-left:4ex;margin-right:4ex;text-align:left;}.latexblock td p{margin:0px;}.latexblock .hbar{border:none;height:2px;width:100%;background-color:black;}.latexblock .display{border-collapse:separate;border-spacing:2px;width:auto; border:none;}.latexblock .dcell{white-space:nowrap;padding:0px; border:none;}.latexblock .dcenter{margin:0ex auto;}.latexblock .theorem{text-align:left;margin:1ex auto 1ex 0ex;}.latexblock .tst{font-family:sans;font-style:oblique;color:maroon}.latexblock .highlight{color:lime}</style></head><body><div class='container'><h3><a id=the-unreasonable-effectiveness-of-functional-programming href='#the-unreasonable-effectiveness-of-functional-programming'> § </a> The unreasonable effectiveness of functional programming</h3>
+.latexinline { border-bottom-color: #DDDDDD; border-bottom-style: solid;                border-bottom-width: 1px; padding-bottom: 2px;                padding-left: 2px; padding-right: 2px; }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.latexblock .li-itemize{margin:1ex 0ex;}.latexblock .li-enumerate{margin:1ex 0ex;}.latexblock .footnotetext{margin:0ex; padding:0ex;}.latexblock div.footnotetext P{margin:0px; text-indent:1em;}.latexblock .thefootnotes{text-align:left;margin:0ex;}.latexblock .dt-thefootnotes{margin:0em;}.latexblock .dd-thefootnotes{margin:0em 0em 0em 2em;}.latexblock .footnoterule{margin:1em auto 1em 0px;width:50%;}.latexblock .caption{padding-left:2ex; padding-right:2ex; margin-left:auto; margin-right:auto}.latexblock .title{margin:2ex auto;text-align:center}.latexblock .titlemain{margin:1ex 2ex 2ex 1ex;}.latexblock .center{text-align:center;margin-left:auto;margin-right:auto;}.latexblock .flushleft{text-align:left;margin-left:0ex;margin-right:auto;}.latexblock .flushright{text-align:right;margin-left:auto;margin-right:0ex;}.latexblock div table{margin-left:inherit;margin-right:inherit;margin-bottom:2px;margin-top:2px}.latexblock td table{margin:auto;}.latexblock table{border-collapse:collapse;}.latexblock td{padding:0;}.latexblock .cellpadding0 tr td{padding:0;}.latexblock .cellpadding1 tr td{padding:1px;}.latexblock pre{text-align:left;margin-left:0ex;margin-right:auto;}.latexblock blockquote{margin-left:4ex;margin-right:4ex;text-align:left;}.latexblock td p{margin:0px;}.latexblock .hbar{border:none;height:2px;width:100%;background-color:black;}.latexblock .display{border-collapse:separate;border-spacing:2px;width:auto; border:none;}.latexblock .dcell{white-space:nowrap;padding:0px; border:none;}.latexblock .dcenter{margin:0ex auto;}.latexblock .theorem{text-align:left;margin:1ex auto 1ex 0ex;}.latexblock .tst{font-family:sans;font-style:oblique;color:maroon}.latexblock .highlight{color:lime}</style></head><body><div class='container'><h3><a id=the-unreasonable-effectiveness-of-declarative-programming href='#the-unreasonable-effectiveness-of-declarative-programming'> § </a> The unreasonable effectiveness of Declarative programming</h3>
 <h4><a id=declarative-animations href='#declarative-animations'> § </a> Declarative animations</h4>
 I'd like to show off the usual approach to building animations in javascript,
 and what we can learn by building a tiny version of such a library.
-<h4><a id=an-animation href='#an-animation'> § </a> An animation</h4>
+<h4><a id=a-complex-animation href='#a-complex-animation'> § </a> A complex animation</h4>
 <div id="animation-1"></div>
-Here, we build a simple animation. The code that <b>describes</b> the animation is:
+The blue circle's animation is quite complex. It consists of multiple
+stages. (1) The circle grows in size. (2) It continues to grow in size
+at a faster rate, as it shoots off to the right. (3) It pauses. (4) It
+moves to the middle. (5) It pauses again. (6) It shrinks to nothing.
+All of this is captured by a single object <code>anim_circle</code> which <i>declares</i> what the
+animation is doing:
 <div class='code'>
 <!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt><font color="#666666">01:</font> 
-<font color="#666666">02:</font> <b><u><font color="#000000">const</font></u></b> anim_circle = anim_const(<font color="#808080">"cx"</font>, <font color="#000000">100</font>)
-<font color="#666666">03:</font>     .seq(anim_const(<font color="#808080">"cr"</font>, <font color="#000000">0</font>))
-<font color="#666666">04:</font>     .seq(anim_interpolated(ease_cubic, <font color="#808080">"cr"</font>, <i><font color="#808080">/*val=*/</font></i><font color="#000000">10</font>, <i><font color="#808080">/*dur=*/</font></i><font color="#000000">50</font>))
-<font color="#666666">05:</font>     .seq(anim_interpolated(ease_cubic, <font color="#808080">"cx"</font>, <i><font color="#808080">/*val=*/</font></i><font color="#000000">300</font>, <i><font color="#808080">/*dur=*/</font></i><font color="#000000">100</font>)
-<font color="#666666">06:</font>         .par(anim_interpolated(ease_cubic, <font color="#808080">"cr"</font>, <font color="#000000">40</font>, <font color="#000000">100</font>)))
-<font color="#666666">07:</font>     .seq(anim_delay(<font color="#000000">10</font>))
-<font color="#666666">08:</font>     .seq(anim_interpolated(ease_linear, <font color="#808080">"cx"</font>, <font color="#000000">100</font>, <font color="#000000">100</font>))
-<font color="#666666">09:</font>     .seq(anim_interpolated(ease_cubic, <font color="#808080">"cr"</font>, <font color="#000000">0</font>, <font color="#000000">100</font>));
-<font color="#666666">10:</font> 
-<font color="#666666">11:</font> </tt></pre>
+<font color="#666666">02:</font> <i><font color="#808080">// cx = location | cr = radius</font></i>
+<font color="#666666">03:</font> let anim_circle = anim_const(<font color="#808080">"cx"</font>, <font color="#000000">100</font>)
+<font color="#666666">04:</font>     .seq(anim_const(<font color="#808080">"cr"</font>, <font color="#000000">0</font>))
+<font color="#666666">05:</font>     <i><font color="#808080">// (1) grow in size.</font></i>
+<font color="#666666">06:</font>     .seq(anim_interpolated(ease_cubic, <font color="#808080">"cr"</font>, <i><font color="#808080">/*val=*/</font></i><font color="#000000">10</font>, <i><font color="#808080">/*time=*/</font></i><font color="#000000">3</font>))
+<font color="#666666">07:</font>     <i><font color="#808080">// (2) go to right while growing.</font></i>
+<font color="#666666">08:</font>     .seq(anim_interpolated(ease_cubic, <font color="#808080">"cx"</font>, <i><font color="#808080">/*val=*/</font></i><font color="#000000">300</font>, <i><font color="#808080">/*time=*/</font></i><font color="#000000">1</font>)
+<font color="#666666">09:</font>         .par(anim_interpolated(ease_cubic, <font color="#808080">"cr"</font>, <font color="#000000">70</font>, <font color="#000000">1</font>)))
+<font color="#666666">10:</font>     <i><font color="#808080">// (3) pause.</font></i>
+<font color="#666666">11:</font>     .seq(anim_delay(<i><font color="#808080">/*time=*/</font></i><font color="#000000">3</font>))
+<font color="#666666">12:</font>     <i><font color="#808080">// (4) come back to the left.</font></i>
+<font color="#666666">13:</font>     .seq(anim_interpolated(ease_cubic, <font color="#808080">"cx"</font>, <font color="#000000">100</font>, <font color="#000000">1</font>))
+<font color="#666666">14:</font>     <i><font color="#808080">// (5) pause again.</font></i>
+<font color="#666666">15:</font>     .seq(anim_delay(<i><font color="#808080">/*time=*/</font></i><font color="#000000">2</font>))
+<font color="#666666">16:</font>     <i><font color="#808080">// (6) shrink to nothing.</font></i>
+<font color="#666666">17:</font>     .seq(anim_interpolated(ease_cubic, <font color="#808080">"cr"</font>, <font color="#000000">0</font>, <font color="#000000">1</font>));
+<font color="#666666">18:</font> </tt></pre>
 </div>
 
 The entire animation is built out of one primitive and three combinators:
 <ol>
 <li>
- <code>anim_interpolated</code> to change to a given value in some given duration.
+ <code>anim_interpolated(ease, name, val, time)</code> to change to a named value with name <code>name</code>
+   to value <code>val</code> in duration <code>time</code>. 
 </li>
 <li>
- <code>seq</code> to run animations in sequence.
+ <code>anim1.seq(anim2)</code> to run <code>anim2</code> once <code>anim1</code> has completed.
 </li>
 <li>
- <code>par</code> to run animations in parallel.
+ <code>anim1.par(anim2)</code> to run <code>anim2</code> in parallel with <code>anim1</code>.
 </li>
 <li>
- <code>anim_delay</code> to add a delay.
+ <code>anim_delay(time)</code> to do nothing for time <code>time</code>.
 </li>
 
 </ol>
 
-I haven't shown how this <code>anim_circle</code> object is linked to the circle above. 
-Don't worry, it's fairly straightforward. I also haven't described what is
-<i>functional</i> about all of this. We'll get to that too.
-<h4><a id=nimcircle href='#nimcircle'> § </a> What is <code>anim_circle</code>?</h4>
-<code>anim_circle</code> is a <i>function</i>, which can be invoked as <code>val = anim_circle(t)</code>, where
-<span class='latexinline'>
-0 &#X2264; <span style="font-style:italic">t</span> &#X2264; <span style="font-family:monospace">duration</span></span>. It returns a dictionary <code>val</code>, where
-<code>val.cx</code> and <code>val.cr</code> have values as the animation demands. I've plotted
-the values of <code>val.cx</code> and <code>val.cr</code> as well pass <code>t</code> from <code>0</code> to <code>duration</code>.
-This <code>duration</code> is calculated for us by the library, and can be accessed as
-<code>anim_circle.duration</code>.
+<h4><a id=reallyle href='#reallyle'> § </a> What is <code>anim_circle</code>, really?</h4>
+<code>anim_circle</code> is a <i>function</i>, which can be invoked as <code>val = anim_circle(t)</code>.
+It returns an object <code>val</code>.  <code>val.cx</code> and <code>val.cr</code> have values as the animation dictates.
+<b>That's it</b>. It <b>does not modify the DOM</b>. It <b>does not edit the</b> <code>circle</code> tag.
+Given a time <code>t0</code>, it computes <code>cx</code> and <code>cr</code> at time <code>t0</code>. Keep it simple, stupid!
+<div id='plot'></div>
+Here is a plot of the values of <code>val.cx</code> and <code>val.cr</code> for different values of <code>t</code>.
+This plotting code calls <code>anim_circle</code> at different times to plot the
+results. The function <code>anim_circle</code> <i>is</i> these plots,
+since it doesn't compute anything else.
+<blockquote> Fancy ways of saying that <code>anim_circle</code> doesn't change anything else is to say that it  is <i>side-effect-free</i>, or <i>refrentially transparent</i>.</blockquote>
+<h4><a id=in-the-browser href='#in-the-browser'> § </a> Playing with <code>anim_circle</code> in the browser</h4>
 <ul>
 <li>
- PLOT
+ <a  onclick="foo()">
+  Click on this link, paste into the browser's console, and hit enter.
+  </a> <b>This instantly updates the circle's animation and the plots</b>, since the code
+  in the clipboard overwrites the definition of <code>anim_circle</code>! Scroll
+  back to the top to see the new animation and charts.
+  As our page is declarative, both the animations and the plots are driven
+  by the definition of <code>anim_circle</code>.
 </li>
 
 </ul>
 
-To play with the <code>anim_circle</code>, feel free to open your console on the page
-and try:
-<ul>
-<li>
- <code>anim_circle(0)</code>
-</li>
-<li>
- <code>anim_circle(anim_circle.duration)</code>
-</li>
-<li>
- <code>anim_circle(anim_circle.duration/2.0)</code>
-</li>
+The code that's been copied onto your clipboard is:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">01:</font> 
+<font color="#666666">02:</font> <i><font color="#808080">// cx = location | cr = radius</font></i>
+<font color="#666666">03:</font> anim_circle = anim_const(<font color="#808080">"cx"</font>, <font color="#000000">100</font>)
+<font color="#666666">04:</font>     .seq(anim_const(<font color="#808080">"cr"</font>, <font color="#000000">0</font>))
+<font color="#666666">05:</font>     <i><font color="#808080">// (1) grow in size.</font></i>
+<font color="#666666">06:</font>     .seq(anim_interpolated(ease_cubic, <font color="#808080">"cr"</font>, <i><font color="#808080">/*val=*/</font></i><font color="#000000">10</font>, <i><font color="#808080">/*time=*/</font></i><font color="#000000">3</font>))
+<font color="#666666">07:</font>     <i><font color="#808080">// (2) go to right while growing.</font></i>
+<font color="#666666">08:</font>     .seq(anim_interpolated(ease_cubic, <font color="#808080">"cx"</font>, <i><font color="#808080">/*val=*/</font></i><font color="#000000">300</font>, <i><font color="#808080">/*time=*/</font></i><font color="#000000">1</font>)
+<font color="#666666">09:</font>         .par(anim_interpolated(ease_cubic, <font color="#808080">"cr"</font>, <font color="#000000">70</font>, <font color="#000000">1</font>)))
+<font color="#666666">10:</font>     <i><font color="#808080">// (3) shrink to nothing.</font></i>
+<font color="#666666">11:</font>     .seq(anim_interpolated(ease_cubic, <font color="#808080">"cr"</font>, <font color="#000000">0</font>, <font color="#000000">1</font>)); plot()
+<font color="#666666">12:</font> </tt></pre>
+</div>
 
-</ul>
+You can explore different definitions <code>anim_circle</code>s. Feel free to
+play around.  Try evaluating <code>anim_circle(0)</code>, <code>anim_circle(anim_circle.duration)</code>,
+<code>anim_circle(anim_circle.duration/2.0)</code> in the console to get a feel for what
+<code>anim_circle</code> returns. <a onclick="writeOldToClipboard()">
+To go back to the original state of affairs, 
+click on this link to copy the old code onto your clipboard </a>. Paste
+the text, into your console, hit enter. Everything will be back to
+original.
+<h4><a id=declarative-pure href='#declarative-pure'> § </a> Declarative ⇒ Pure</h4>
+As hinted above, since our specification of the animation was entirely declarative,
+it can't really "do anything else" like manipulate the DOM. This gives us 
+fantastic debugging and editing capabilities. As it's "just" a mathemtical
+function:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> anim_circle: (t:Time) -&gt; (cx: float, cr: float)
+<font color="#666666">3:</font> </tt></pre>
+</div>
 
-<h4><a id=purity-declarative href='#purity-declarative'> § </a> Purity ⇒ Declarative</h4>
+we can easily swap it (by pasting the code above), poke it (by calling <code>anim_circle(0.5)</code>),
+and in general deal with is as a <b>unit of thought</b>. It has no unpleasant
+interactions with the rest of the world.
 <h4><a id=purity-time-travel href='#purity-time-travel'> § </a> Purity ⇒ Time Travel</h4>
+Due to this purity, we also get <b>time-travel-debugging</b>. The slider is hooked up
+to <code>anim_circle</code>, and displays the circle as dictated by <code>anim_circle(t_slider)</code>.
+<code>t_slider</code> is received from the slider.
 <div id="animation-2"></div>
-Play with the slider to move through the animation!  </br>
+Drag the slider to move through the animation!  </br>
 <input type="range" id="animation-2-scrubber" min=0 max=1000 value=0 style="width:80%">
-<h4><a id=stagger-as-composition href='#stagger-as-composition'> § </a> Stagger as composition</h4>
+<h4><a id=declarative-composition-staggering-animations href='#declarative-composition-staggering-animations'> § </a> Declarative ⇒ Composition: staggering animations</h4>
 <div id="animation-3"></div>
-Play with the slider to move through the animation!  </br>
+Drag the slider to move through the animation!  </br>
 <input type="range" id="animation-3-scrubber" min=0 max=1000 value=0 style="width:80%">
+<h4><a id=declarative-debuggable href='#declarative-debuggable'> § </a> Declarative ⇒ Debuggable</h4>
+As hinted above, since our specification of the animation was entirely declarative,
+it can't really "do anything else" like manipulate the DOM. This gives us 
+fantastic debugging and editing capabilities. As it's "just" a mathemtical
+function:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> anim_circle: (t:Time) -&gt; (cx: float, cr: float)
+<font color="#666666">3:</font> </tt></pre>
+</div>
+
+<h4><a id=the-algebra href='#the-algebra'> § </a> The algebra</h4>
+We can show that these functions have the algebraic structure of a semiring.
+<ul>
+<li>
+ Our multplication is sequential composition, since it's not commutative.
+</li>
+<li>
+ Our addition is parallel composition, since it is commutative.
+</li>
+<li>
+ The 0 is <code>delay(INFINITY)</code>, because <code>0 * x = 0</code> (sequentially composing something
+  to happen after an infinite 
+</li>
+
+</ul>
+
+<h4><a id=versus-the-world href='#versus-the-world'> § </a> <code>anim.js</code> versus the world</h4>
+<h4><a id=d3ersus- href='#d3ersus-'> § </a> <code>anim.js</code> versus <code>d3</code></h4>
+<h4><a id=animejs href='#animejs'> § </a> <code>anim.js</code> versus <code>anime.js</code></h4>
+<h4><a id=the-full-code-listing href='#the-full-code-listing'> § </a> The full code listing</h4>
+The entire "library", which is written very defensively and sprinked with
+asserts fits in exactly a 100 lines of code. It can be golfed further
+at the expense of either asserts, clarity, or by adding some higher-order
+functions that factor out some common work. I was loath to do any of these.
+The full code listing of <code>anim.js</code> is:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">001:</font> 
+<font color="#666666">002:</font> function assert_precondition(t, out, tstart) {
+<font color="#666666">003:</font>     console.assert(typeof(t) === "number");
+<font color="#666666">004:</font>     if (out === undefined) { out = {}; }
+<font color="#666666">005:</font>     console.assert(typeof(out) === "object");
+<font color="#666666">006:</font>     if (tstart === undefined) { tstart = 0; }
+<font color="#666666">007:</font>     else { console.assert(typeof(tstart) === "number"); }
+<font color="#666666">008:</font>     console.assert(t &gt;= tstart);
+<font color="#666666">009:</font>     return [out, tstart];
+<font color="#666666">010:</font> }
+<font color="#666666">011:</font> 
+<font color="#666666">012:</font> function anim_delay(duration) {
+<font color="#666666">013:</font>     console.assert(typeof(duration) === "number");
+<font color="#666666">014:</font>     let f = function(t, out, tstart) { 
+<font color="#666666">015:</font>         [out, tstart] = assert_precondition(t, out, tstart); return out;
+<font color="#666666">016:</font>     }
+<font color="#666666">017:</font>     f.duration = duration;
+<font color="#666666">018:</font>     f.par = ((g) =&gt; anim_parallel(f, g));
+<font color="#666666">019:</font>     f.seq = ((g) =&gt; anim_sequence(f, g));
+<font color="#666666">020:</font>     return f;
+<font color="#666666">021:</font> }
+<font color="#666666">022:</font> 
+<font color="#666666">023:</font> function anim_const(field, v) {
+<font color="#666666">024:</font>     let f = function(t, out, tstart) {
+<font color="#666666">025:</font>         [out, tstart] = assert_precondition(t, out, tstart); out[field] = v; return out;
+<font color="#666666">026:</font>     };
+<font color="#666666">027:</font>     f.duration = 0;
+<font color="#666666">028:</font>     f.par = ((g) =&gt; anim_parallel(f, g));
+<font color="#666666">029:</font>     f.seq = ((g) =&gt; anim_sequence(f, g));
+<font color="#666666">030:</font>     return f;
+<font color="#666666">031:</font> 
+<font color="#666666">032:</font> 
+<font color="#666666">033:</font> function ease_linear(vstart, tlin, vend) { return (1.0 - tlin) * vstart + tlin * vend; }
+<font color="#666666">034:</font> 
+<font color="#666666">035:</font> function ease_cubic(vstart, tlin, vend) {
+<font color="#666666">036:</font>     const cube = (1 - tlin)*(1-tlin)*(1-tlin); return cube * vstart + (1 - cube) * vend;
+<font color="#666666">037:</font> }
+<font color="#666666">038:</font>                                         
+<font color="#666666">039:</font> function anim_interpolated(fease, field, vend, duration) {
+<font color="#666666">040:</font>     let f =  function(t, out, tstart) {
+<font color="#666666">041:</font>         [out, tstart] = assert_precondition(t, out, tstart);
+<font color="#666666">042:</font>         if (t &lt; tstart + duration &amp;&amp; duration !== 0) {
+<font color="#666666">043:</font>             const tlin = (t - tstart) /duration;
+<font color="#666666">044:</font>             console.assert(tlin &gt;= 0);
+<font color="#666666">045:</font>             console.assert(tlin &lt;= 1);
+<font color="#666666">046:</font>             const vstart = out[field];
+<font color="#666666">047:</font>             out[field] = fease(vstart, tlin, vend);
+<font color="#666666">048:</font>         } else { out[field] = vend; }
+<font color="#666666">049:</font>         return out;
+<font color="#666666">050:</font>     };
+<font color="#666666">051:</font>     f.duration = duration;
+<font color="#666666">052:</font>     f.par = ((g) =&gt; anim_parallel(f, g));
+<font color="#666666">053:</font>     f.seq = ((g) =&gt; anim_sequence(f, g));
+<font color="#666666">054:</font>     return f;
+<font color="#666666">055:</font> 
+<font color="#666666">056:</font> }
+<font color="#666666">057:</font> 
+<font color="#666666">058:</font> function anim_sequence(anim1, anim2) {
+<font color="#666666">059:</font>     const duration = anim1.duration + anim2.duration;
+<font color="#666666">060:</font>     let f =  function(t, out, tstart) {
+<font color="#666666">061:</font>         [out, tstart] = assert_precondition(t, out, tstart);
+<font color="#666666">062:</font>         anim1(t, out, tstart);
+<font color="#666666">063:</font>         if (t &gt;= tstart + anim1.duration) { anim2(t, out, tstart + anim1.duration); }
+<font color="#666666">064:</font>         return out;
+<font color="#666666">065:</font>     }
+<font color="#666666">066:</font>     f.duration = duration;
+<font color="#666666">067:</font>     f.par = ((g) =&gt; anim_parallel(f, g));
+<font color="#666666">068:</font>     f.seq = ((g) =&gt; anim_sequence(f, g));
+<font color="#666666">069:</font>     return f;
+<font color="#666666">070:</font> }
+<font color="#666666">071:</font> 
+<font color="#666666">072:</font> function anim_parallel(anim1, anim2) {
+<font color="#666666">073:</font>     const duration = Math.max(anim1.duration, anim2.duration);
+<font color="#666666">074:</font>     let f =  function(t, out, tstart) {
+<font color="#666666">075:</font>         [out, tstart] = assert_precondition(t, out, tstart);
+<font color="#666666">076:</font>         if (t &gt;= tstart) { anim1(t, out, tstart); anim2(t, out, tstart); }
+<font color="#666666">077:</font>         return out;
+<font color="#666666">078:</font>     }
+<font color="#666666">079:</font>     f.duration = duration;
+<font color="#666666">080:</font>     f.par = ((g) =&gt; anim_parallel(f, g));
+<font color="#666666">081:</font>     f.seq = ((g) =&gt; anim_sequence(f, g));
+<font color="#666666">082:</font>     return f;
+<font color="#666666">083:</font> }
+<font color="#666666">084:</font> 
+<font color="#666666">085:</font> function anim_parallel_list(xs) {
+<font color="#666666">086:</font>     var x = xs[0]; for(var i = 1; i &lt; xs.length; ++i) { x = x.par(xs[i]); }
+<font color="#666666">087:</font>     return x;
+<font color="#666666">088:</font> }
+<font color="#666666">089:</font> 
+<font color="#666666">090:</font> function anim_stagger(xs, delta) {
+<font color="#666666">091:</font>     console.assert(typeof(delta) == "number");
+<font color="#666666">092:</font>     var ys = [];
+<font color="#666666">093:</font>     for(var i = 0; i &lt; xs.length; ++i) {
+<font color="#666666">094:</font>         ys.push(anim_delay(delta*i).seq(xs[i]));
+<font color="#666666">095:</font>     }
+<font color="#666666">096:</font>     var y = ys[0];
+<font color="#666666">097:</font>     for(var i = 1; i &lt; ys.length; ++i) {
+<font color="#666666">098:</font>         y = y.par(ys[i]);
+<font color="#666666">099:</font>     }
+<font color="#666666">100:</font>     return y;
+<font color="#666666">101:</font> }
+<font color="#666666">102:</font> </tt></pre>
+</div>
+
 
 <script src="anim.js"></script>
 <script src="./interior-point.js"></script>
 <script type="text/javascript">
 document.body.onload = function() { init_interior_point(); }
+
 </script>
 </container></body></html>

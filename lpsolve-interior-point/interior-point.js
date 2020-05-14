@@ -81,14 +81,21 @@ function logbarrier(polypts, ptcur) {
 }
 
 
-const anim_circle = anim_const("cx", 100)
+let anim_circle = anim_const("cx", 50)
     .seq(anim_const("cr", 0))
-    .seq(anim_interpolated(ease_cubic, "cr", 10, 2))
-    .seq(anim_interpolated(ease_cubic, "cx", 300, 5)
-        .par(anim_interpolated(ease_cubic, "cr", 70, 5)))
-    .seq(anim_delay(3))
-    .seq(anim_interpolated(ease_cubic, "cx", 100, 5))
-    .seq(anim_interpolated(ease_cubic, "cr", 0, 5));
+    // (1) grow in size.
+    .seq(anim_interpolated(ease_cubic, "cr", /*val=*/10, /*time=*/3))
+    // (2) go to right while growing.
+    .seq(anim_interpolated(ease_cubic, "cx", /*val=*/300, /*time=*/1)
+        .par(anim_interpolated(ease_cubic, "cr", 70, 1)))
+    // (3) pause.
+    .seq(anim_delay(/*time=*/3))
+    // (4) come back to the left.
+    .seq(anim_interpolated(ease_cubic, "cx", 200, 1))
+    // (5) pause again.
+    .seq(anim_delay(/*time=*/2))
+    // (6) shrink to nothing.
+    .seq(anim_interpolated(ease_cubic, "cr", 0, 1));
 
 
 function make_anim1_gen(container, points) {
@@ -216,6 +223,107 @@ function animator_from_generator(gen) {
     });
 }
 
+function foo() {
+    const str = 
+        'anim_circle = anim_const("cx", 100)\n' +
+        '    .seq(anim_const("cr", 0))\n' +
+        '    .seq(anim_interpolated(ease_cubic, "cr", /*val=*/10, /*time=*/3))\n' +
+        '    .seq(anim_interpolated(ease_cubic, "cx", /*val=*/300, /*time=*/1)\n' +
+        '        .par(anim_interpolated(ease_cubic, "cr", 70, 1)))\n' +
+        '    .seq(anim_interpolated(ease_cubic, "cr", 0, 1)); plot()\n';
+
+    // let data = new ClipboardItem({ "text/plain": str });
+    navigator.clipboard.writeText(str);
+}
+
+function writeOldToClipboard() {
+    const str = 
+    'anim_circle = anim_const("cx", 100)\n' +
+    '.seq(anim_const("cr", 0))\n' +
+    '.seq(anim_interpolated(ease_cubic, "cr", /*val=*/10, /*time=*/3))\n' +
+    '.seq(anim_interpolated(ease_cubic, "cx", /*val=*/300, /*time=*/1)\n' +
+    '    .par(anim_interpolated(ease_cubic, "cr", 70, 1)))\n' +
+    '.seq(anim_delay(/*time=*/3))\n' +
+    '.seq(anim_interpolated(ease_cubic, "cx", 100, 1))\n' +
+    '.seq(anim_delay(/*time=*/2))\n' +
+    '.seq(anim_interpolated(ease_cubic, "cr", 0, 1)); plot()';
+
+    // let data = new ClipboardItem({ "text/plain": str });
+    navigator.clipboard.writeText(str);
+}
+
+function plot() {
+    const container = document.getElementById("plot");
+
+    // allow users to call plot()
+    if (container.firstChild !== null) { container.firstChild.remove();}
+
+    const width = 500;
+    const height = 300;
+    const RADIUS = 3;
+    
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("width", width + "px");
+    svg.setAttribute("height", height + "px");
+    svg.setAttribute("viewBox", `0 0 ${width} ${height}`)
+    svg.setAttribute("font-family", "monospace");
+    container.appendChild(svg);
+
+    const NUMPOINTS = 100;
+    var cxs = []; var crs = [];
+    for(var i = 0; i < NUMPOINTS; ++i) {
+        cxs.push(anim_circle(i/NUMPOINTS * anim_circle.duration).cx);
+        crs.push(anim_circle(i/NUMPOINTS * anim_circle.duration).cr);
+    }
+
+    function data_to_plot_height(data) {
+        var miny = data[0]; var maxy = data[0];
+        for(var i = 0; i < NUMPOINTS; ++i) {
+            miny = Math.min(data[i], miny); maxy = Math.max(data[i], maxy);
+        }
+        var plotys = [];
+        for(var i = 0; i < NUMPOINTS; ++i) {
+            plotys.push(height*0.2 - (data[i] - miny)/(maxy - miny) * height * 0.2);
+        }
+        return plotys;
+    }
+
+    cxs = data_to_plot_height(cxs);
+    crs = data_to_plot_height(crs);
+
+    const cxlbl =  document.createElementNS("http://www.w3.org/2000/svg", "text");
+    cxlbl.setAttribute("x", 0);
+    cxlbl.setAttribute("y", 30);
+    cxlbl.setAttribute("fill", "#1a73e8");
+    cxlbl.innerHTML = "cx";
+    svg.appendChild(cxlbl);
+    for(var i = 0; i < NUMPOINTS-1; ++i) {
+        const l = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        l.setAttribute("style", "stroke:#1a73e8;stroke-width:2");
+        l.setAttribute("x1", i /NUMPOINTS * width);
+        l.setAttribute("x2", (i +1) /NUMPOINTS * width);
+        l.setAttribute("y1", height * 0.1 + cxs[i])
+        l.setAttribute("y2", height * 0.1 + cxs[i+1])
+        svg.appendChild(l);
+    }
+
+
+    const crlbl =  document.createElementNS("http://www.w3.org/2000/svg", "text");
+    crlbl.setAttribute("x", 0);
+    crlbl.setAttribute("y", height/2 + 30);
+    crlbl.setAttribute("fill", "#e91e63");
+    crlbl.innerHTML = "cr";
+    svg.appendChild(crlbl);
+    for(var i = 0; i < NUMPOINTS-1; ++i) {
+        const l = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        l.setAttribute("style", "stroke:#e91e63;stroke-width:2");
+        l.setAttribute("x1", i /NUMPOINTS * width);
+        l.setAttribute("x2", (i +1) /NUMPOINTS * width);
+        l.setAttribute("y1", height*0.7 + crs[i])
+        l.setAttribute("y2", height*0.7 + crs[i+1])
+        svg.appendChild(l);
+    }
+}
 
 
 function init_interior_point() {
@@ -230,4 +338,6 @@ function init_interior_point() {
     const anim3 = make_anim3_gen(document.getElementById("animation-3"), 
          [[50, 50], [100, 150], [200, 200], [50, 50]]);
     animator_from_generator(anim3);
+
+    plot();
 }                      
