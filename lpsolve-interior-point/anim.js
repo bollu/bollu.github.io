@@ -8,6 +8,7 @@ function assert_precondition(t, out, tstart) {
 }
 
 function anim_delay(duration) {
+    console.assert(typeof(duration) === "number");
     let f = function(t, out, tstart) { 
         [out, tstart] = assert_precondition(t, out, tstart);
         return out;

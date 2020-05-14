@@ -80,14 +80,19 @@ function logbarrier(polypts, ptcur) {
 }
 
 
+const anim_circle = anim_const("cx", 100)
+    .seq(anim_const("cr", 0))
+    .seq(anim_interpolated(ease_cubic, "cr", 10, 50))
+    .seq(anim_interpolated(ease_cubic, "cx", 300, 100)
+        .par(anim_interpolated(ease_cubic, "cr", 15, 200)))
+    .seq(anim_delay(100))
+    .seq(anim_interpolated(ease_cubic, "cx", 100, 100))
+    .seq(anim_interpolated(ease_cubic, "cr", 0, 100));
+console.log("anim_circle:");
+console.log(anim_circle);
 
 
 function make_anim1_gen(container, points) {
-    let anim_circle = anim_const("cx", 100)
-        .seq(anim_const("cr", 0))
-        .seq(anim_interpolated(ease_cubic, "cr", 10, 100))
-        .seq(anim_interpolated(ease_cubic, "cx", 200, 200)
-            .par(anim_interpolated(ease_cubic, "cr", 15, 200)));
 
     const width = 500;
     const height = 200;
@@ -119,14 +124,8 @@ function make_anim1_gen(container, points) {
     })();
 }
 
+
 function make_anim2_gen(container, points) {
-    let anim_circle = anim_const("cx", 100)
-        .seq(anim_const("cr", 0))
-        .seq(anim_interpolated(ease_linear, "cr", 10, 100))
-        .seq(anim_interpolated(ease_linear, "cx", 200, 200)
-            .par(anim_interpolated(ease_cubic, "cr", 15, 200)));
-    console.log("anim_circle:");
-    console.log(anim_circle);
 
     const width = 500;
     const height = 200;
