@@ -240,7 +240,7 @@ int main() {
     toplevel->seq(new anim_slowend("left_cx", "cx", /*duration=*/200, 100));
 
     anim_parallel *disappear = new anim_parallel("disappear");
-    disappear->par(new anim_slowend("left_disappear_cx", "cx", /*duration=*/ 500, -10));
+    disappear->par(new anim_slowend("left_disappear_cx", "cx", /*duration=*/ 20, 80));
     disappear->par(new anim_slowend("left_disappear_cr", "cr", /*duration=*/ 20, 0));
     toplevel->seq(disappear);
 

@@ -81,8 +81,8 @@ function logbarrier(polypts, ptcur) {
 
 function make_anim1_gen(container, points) {
 
-    const width = 800;
-    const height = 400;
+    const width = 500;
+    const height = 200;
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("width", width + "px");
     svg.setAttribute("height", height + "px");
@@ -90,31 +90,56 @@ function make_anim1_gen(container, points) {
     svg.setAttribute("font-family", "monospace");
     
     const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    circle.setAttribute("cx", 100);
     circle.setAttribute("cy", 100);
-    circle.setAttribute("r", 0);
     circle.setAttribute("fill", "#1a73e8");
     svg.appendChild(circle);
     container.appendChild(svg);
     return (async function*() {
 
         const DT = 1.0/60.0;
-        for(var i = 0; i < 2000; ++i) {
-            const anim = anim_circle({}, i  / 2000.0);
+        while(true) {
+            for(var i = 0; i < 2000; ++i) {
+                const anim = anim_circle({}, i  / 2000.0);
+                circle.setAttribute("cx", anim.cx);
+                circle.setAttribute("r", anim.cr);
+                await promiseDuration(DT);
+                yield;
+            }
+            await promiseDuration(100); yield;
+        }
+    })();
+}
+
+function make_anim2_gen(container, points) {
+
+    const width = 500;
+    const height = 200;
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("width", width + "px");
+    svg.setAttribute("height", height + "px");
+    svg.setAttribute("viewBox", `0 0 ${width} ${height}`)
+    svg.setAttribute("font-family", "monospace");
+    
+    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    circle.setAttribute("cy", 100);
+    circle.setAttribute("fill", "#1a73e8");
+    svg.appendChild(circle);
+    container.appendChild(svg);
+    return (async function*() {
+        const DT = 1.0/60.0;
+        while(true) {
+            const t = document.getElementById("animation-2-scrubber").value / 1000.0; 
+            const anim = anim_circle({},  t);
+            console.log("scrubbed to: ", t);
+
             circle.setAttribute("cx", anim.cx);
             circle.setAttribute("r", anim.cr);
             await promiseDuration(DT);
             yield;
         }
-
-        var i = 0;
-        while(true) {
-            i += 1;
-            await promiseDuration(2000);
-            yield;
-        }
     })();
 }
+
 
 function animator_from_generator(gen) {
     gen.next().then(function() { 
@@ -128,4 +153,8 @@ function init_interior_point() {
     const anim1 = make_anim1_gen(document.getElementById("animation-1"), 
          [[50, 50], [100, 150], [200, 200], [50, 50]]);
     animator_from_generator(anim1);
+
+    const anim2 = make_anim2_gen(document.getElementById("animation-2"), 
+         [[50, 50], [100, 150], [200, 200], [50, 50]]);
+    animator_from_generator(anim2);
 }                      
