@@ -1,4 +1,4 @@
-index.html: index.md interior-point.js anim.out
+index.html: index.md interior-point.js anim.out anim.js
 	ASAN_OPTIONS="detect_leaks=0" ./anim.out > ANIMGENERATED.js
 	ASAN_OPTIONS="detect_leaks=0" builder index.md index.html
 

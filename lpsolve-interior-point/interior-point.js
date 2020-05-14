@@ -79,7 +79,15 @@ function logbarrier(polypts, ptcur) {
     return sum;
 }
 
+
+
+
 function make_anim1_gen(container, points) {
+    let anim_circle = anim_const("cx", 100)
+        .seq(anim_const("cr", 0))
+        .seq(anim_interpolated(ease_cubic, "cr", 10, 100))
+        .seq(anim_interpolated(ease_cubic, "cx", 200, 200)
+            .par(anim_interpolated(ease_cubic, "cr", 15, 200)));
 
     const width = 500;
     const height = 200;
@@ -99,7 +107,8 @@ function make_anim1_gen(container, points) {
         const DT = 1.0/60.0;
         while(true) {
             for(var i = 0; i < 2000; ++i) {
-                const anim = anim_circle({}, i  / 2000.0);
+                console.log("duration: ", anim_circle.duration);
+                const anim = anim_circle(i  / 2000.0 * anim_circle.duration, {});
                 circle.setAttribute("cx", anim.cx);
                 circle.setAttribute("r", anim.cr);
                 await promiseDuration(DT);
@@ -111,6 +120,13 @@ function make_anim1_gen(container, points) {
 }
 
 function make_anim2_gen(container, points) {
+    let anim_circle = anim_const("cx", 100)
+        .seq(anim_const("cr", 0))
+        .seq(anim_interpolated(ease_linear, "cr", 10, 100))
+        .seq(anim_interpolated(ease_linear, "cx", 200, 200)
+            .par(anim_interpolated(ease_cubic, "cr", 15, 200)));
+    console.log("anim_circle:");
+    console.log(anim_circle);
 
     const width = 500;
     const height = 200;
@@ -129,8 +145,8 @@ function make_anim2_gen(container, points) {
         const DT = 1.0/60.0;
         while(true) {
             const t = document.getElementById("animation-2-scrubber").value / 1000.0; 
-            const anim = anim_circle({},  t);
-            console.log("scrubbed to: ", t);
+            const anim = anim_circle(t * anim_circle.duration, {});
+            // console.log("scrubbed to: ", t, "val:", anim);
 
             circle.setAttribute("cx", anim.cx);
             circle.setAttribute("r", anim.cr);
