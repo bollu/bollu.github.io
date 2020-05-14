@@ -197,11 +197,13 @@ void compile_anim_cases(const float time_start, const float parent_time_end, con
     if (const anim_slowend *aslowend = dynamic_cast<const anim_slowend*>(aunk)) {
         oix += indent(os + oix, depth);
         oix += sprintf(os + oix, "} else if (inp.t >= %f && inp.t <= %f) { // elseif %s\n", time_start, parent_time_end, aunk->name);
+        oix += indent(os + oix, depth);
         oix += write_set_accessor_to_val(os + oix, aslowend->acc, aslowend->end);
 
     } else if (const anim_const *aconst = dynamic_cast<const anim_const*>(aunk)) {
         oix += indent(os + oix, depth);
         oix += sprintf(os + oix, "} else if (inp.t >= %f && inp.t <= %f) { // elseif %s\n", time_start, parent_time_end, aunk->name);
+        oix += indent(os + oix, depth);
         oix += write_set_accessor_to_val(os + oix, aconst->acc, aconst->v);
     }
 
