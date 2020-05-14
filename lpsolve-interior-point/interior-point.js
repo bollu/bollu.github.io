@@ -1,43 +1,7 @@
+//https://www.d3indepth.com/shapes/
 //LIBRARY: Promises
-var _promiseTimeouts = new Map;
-// TODO: pull in width as well
-
-
-function* now() {
-    while (true) {  yield Date.now(); }
-}
-
-function constant(x) { return function() { return x; }; }
-
-function _whenTimeout(now, time) {
-    var t = new Promise(function(resolve) {
-        _promiseTimeouts.delete(time);
-        var delay = time - now;
-        if (!(delay > 0)) throw new Error("invalid time");
-        if (delay > 0x7fffffff) throw new Error("too long to wait");
-        setTimeout(resolve, delay);
-    });
-    _promiseTimeouts.set(time, t);
-    return t;
-}
-
-function promiseWhen(time, value) {
-    var now;
-    return (now = _promiseTimeouts.get(time = +time)) ? now.then(constant(value))
-    : (now = Date.now()) >= time ? Promise.resolve(value)
-    : _whenTimeout(now, time).then(constant(value));
-}
-
-function promiseTick(duration, value) {
-    return promiseWhen(Math.ceil((Date.now() + 1) / duration) * duration, value);
-}
-
-function promiseDelay(duration, value) {
-    return new Promise(function(resolve) {
-        setTimeout(function() {
-            resolve(value);
-        }, duration);
-    });
+function promiseDuration(dt) {
+    return new Promise((resolve) => { setTimeout(() => resolve(), dt); });
 }
 
 //LIBRARY:LINALG
@@ -85,16 +49,71 @@ function points2line(pt1, pt2) {
     return [delta[1], delta[0], pt1[1] * delta[0] - pt1[0] * delta[1]];
 }
 
+function centroid(xs) {
+    var c = [0, 0];
+    for(var i = 0; i < xs.length; ++i) { c[0] += xs[i][0]; c[1] += xs[i][1]; }
+    return [c[0] / xs.length, c[1] / xs.length];
+}
+
+// create (nx, ny) dots positioned at (x0 + dx * i, y0 + dy * j)
+function grid(x0, y0, dx, dy, nx, ny) {
+    var data = []
+    for (var i = 0; i < nx; ++i) {
+        for(var j = 0; j < ny; ++j) {
+            data.push([x0 + dx*i, y0 + dy*j]);
+        }
+    }
+    return data;
+
+}
+
+// evaluate the log-barrier of a polygon defined by polypts with current
+// point being ptcur.
+function logbarrier(polypts, ptcur) {
+    var sum = 0;
+    for(var i = 0; i < polypts.length - 1; i++) {
+        var line = points2line(polypts[i], polypts[i+1]);
+        return Math.log(line[0][0] * ptcur[0] + line[0][1] * ptcur[1] - line[1]);
+    }
+
+    return sum;
+}
+
 function make_anim1_gen(container, points) {
+
+    const width = 800;
+    const height = 400;
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("width", width + "px");
+    svg.setAttribute("height", height + "px");
+    svg.setAttribute("viewBox", `0 0 ${width} ${height}`)
+    svg.setAttribute("font-family", "monospace");
+    
+    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    circle.setAttribute("cx", 100);
+    circle.setAttribute("cy", 100);
+    circle.setAttribute("r", 0);
+    circle.setAttribute("fill", "#1a73e8");
+    svg.appendChild(circle);
+    container.appendChild(svg);
     return (async function*() {
+
+        const DT = 1.0/60.0;
+        for(var i = 0; i < 2000; ++i) {
+            const anim = anim_circle({}, i  / 2000.0);
+            circle.setAttribute("cx", anim.cx);
+            circle.setAttribute("r", anim.cr);
+            await promiseDuration(DT);
+            yield;
+        }
+
         var i = 0;
         while(true) {
-            container.innerHTML = i;
             i += 1;
+            await promiseDuration(2000);
             yield;
-            await promiseTick(1000);
         }
-    })()
+    })();
 }
 
 function animator_from_generator(gen) {
@@ -103,8 +122,10 @@ function animator_from_generator(gen) {
     });
 }
 
+
+
 function init_interior_point() {
     const anim1 = make_anim1_gen(document.getElementById("animation-1"), 
-         [[0, 0], [0, 1], [1, 0]])
+         [[50, 50], [100, 150], [200, 200], [50, 50]]);
     animator_from_generator(anim1);
 }                      
