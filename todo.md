@@ -286,3 +286,11 @@ installed, use it to compute closed forms)
 - Divided power structure: is a way of making expressions of the form x^n/n! (taylor series-like-objects) meaningful even when we don't have access to n! (n factorial).
 - Arend: https://github.com/JetBrains/Arend | proof assistant for HoTT cubicalTT
 - Errett Bishop: Constructive Analysis
+- Theory of elites: Thehttps://en.wikipedia.org/wiki/Elite_theory#Italian_school_of_elitism
+- Multiplicative weight update algorithm: contains gradient descent and 
+  sampling-like algorithms as close cousins: https://jeremykun.com/tag/multiplicative-weights-update-algorithm/
+- Regular Car Reviews: 2012 Toyota FJ Cruiser. Explaning simulation v/s simulacra through
+  a car review. Jean Baudillard.
+- Simulacra v/s simulacra, discussion on hackernews: https://news.ycombinator.com/item?id=23154141
+- Learn semantics of javascript: `function mk() { let inner =  function() { console.warn(this.x)}; inner = inner.bind({x: 42}); inner.x = -42; return inner; }; mk()(); console.log(mk().x);`. NOTE: this behaviour changes if `inner` is an arrow function. What are the denotational semantics of this?
+
