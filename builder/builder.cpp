@@ -1206,8 +1206,8 @@ const char htmlbegin[] =
 "<head>"
 "<title> A Universe of Sorts </title>"
 "<style>"
-"@font-face {font-family: 'Blog Mono'; src: url('static/iosevka-fixed-extendedmedium.ttf');}"
-"@font-face {font-family: 'Blog Text'; src: url('static/iosevka-etoile-regular.ttf');}"
+"@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extendedmedium.ttf');}"
+"@font-face {font-family: 'Blog Text'; src: url('/static/iosevka-etoile-regular.ttf');}"
 // body
 "html { font-size: 100%; }"
 "html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } "
