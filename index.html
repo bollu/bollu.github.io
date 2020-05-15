@@ -1,4 +1,4 @@
-<!DOCTYPE html><meta charset='UTF-8'><html><head><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('static/iosevka-fixed-extendedmedium.ttf');}@font-face {font-family: 'Blog Text'; src: url('static/iosevka-etoile-regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: rgb(20, 0, 0, 0.8);  font-family: 'Blog Text', monospace; font-size: 21px; line-height: 1.5em;  max-width: 100%; }
+<!DOCTYPE html><meta charset='UTF-8'><html><head><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extendedmedium.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/iosevka-etoile-regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: rgb(20, 0, 0, 0.8);  font-family: 'Blog Text', monospace; font-size: 21px; line-height: 1.5em;  max-width: 100%; }
 img { display:block; }.container { margin-left: 20%; margin-right: 10%; }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
@@ -46,6 +46,11 @@ My reading list</a>
 <h4><a id=table-of-contents href='#table-of-contents'> § </a> Table of contents:</h4>
 	
 <ul>
+<li>
+ <a href=#intuitionistic-logic-heytig-algebra>
+Intutionstic logic as a Heytig algebra</a>
+
+</li>
 <li>
  <a href=#edit-distance>
 Edit distance</a>
@@ -684,6 +689,262 @@ Big list of Latex</a>
 <li>
  <a href=#recipes>
 Recipes</a>
+
+</li>
+
+</ul>
+
+<h2><a id=intutionstic-logic-as-a-heytig-algebra href='#intutionstic-logic-as-a-heytig-algebra'> § </a> <a href=#intuitionistic-logic-as-a-heytig-algebra>
+Intutionstic logic as a Heytig algebra</a>
+</h2>
+<i>open sets</i> form a Heytig Algebra, which is a lattice plus an implication
+operator. So it's stronger than a lattice, but weaker than a boolean algebra.
+Formally, a Heytig algebra over a set <span class='latexinline'>
+<span style="font-style:italic">X</span></span> is a collection <span class='latexinline'>
+(<span style="font-style:italic">L</span>, &#X2228;, &#X2227;, &#X21D2;)</span>
+where <span class='latexinline'>
+(<span style="font-style:italic">X</span>, &#X2228;, &#X2227;)</span> form a lattice, and <span class='latexinline'>
+&#X2192;</span> obeys the axiom
+<div class='latexblock'>
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">&#X21D2;:&#XA0;<span style="font-style:italic">L</span>&#XA0;&#X2192;&#XA0;<span style="font-style:italic">L</span>;&#XA0;(<span style="font-style:italic">c</span>&#XA0;&#X2227;&#XA0;<span style="font-style:italic">a</span>)&#XA0;&#X2264;&#XA0;<span style="font-style:italic">b</span>&#XA0;&#XA0;&#X21D0;&#X21D2;&#XA0;<span style="font-style:italic">c</span>&#XA0;&#X2264;&#XA0;(<span style="font-style:italic">a</span>&#XA0;&#X21D2;&#XA0;<span style="font-style:italic">b</span>)
+</td></tr>
+</table></div>
+In any topological space <span class='latexinline'>
+(<span style="font-style:italic">U</span>, &#X3C4;)</span> (<span class='latexinline'>
+<span style="font-style:italic">U</span></span> for universe set)
+the open sets of that space form a Heytig algebra.
+Here, set-union and set-intersection become the lattice join and lattice meet.
+We define a "weak complement" denoted by <span class='latexinline'>
+&#XAC;</span> which is defined as:
+<div class='latexblock'>
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">&#XAC;&#XA0;<span style="font-style:italic">A</span>&#XA0;&#X2261;&#XA0;<span style="font-family:monospace">interior</span>(<span style="font-style:italic">A</span><sup><span style="font-style:italic">C</span></sup>)
+</td></tr>
+</table></div>
+We need the <span class='latexinline'>
+<span style="font-family:monospace">interior</span></span> to make sure that we're left with an open
+set. Also, this <span class='latexinline'>
+&#XAC;</span> is not really a complement, since we won't have that
+<span class='latexinline'>
+&#XAC; &#XAC; = <span style="font-style:italic">A</span></span>. but, more on that later!
+We write open intervals with round parenthesis:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font>     A
+<font color="#666666">3:</font> --(===)--
+<font color="#666666">4:</font> </tt></pre>
+</div>
+
+<span class='latexinline'>
+&#XAC; <span style="font-style:italic">A</span></span> of the above set <span class='latexinline'>
+<span style="font-style:italic">A</span></span> becomes the open interval that is in the
+interior of <span class='latexinline'>
+<span style="font-style:italic">A</span></span> complement.
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> --(===)-- A
+<font color="#666666">3:</font> ==]---[== A complement
+<font color="#666666">4:</font> ==)---(== Not A
+<font color="#666666">5:</font> </tt></pre>
+</div>
+
+Now, we can try to ask, when is <span class='latexinline'>
+&#XAC; &#XAC; <span style="font-style:italic">A</span> = <span style="font-style:italic">U</span></span> (where <span class='latexinline'>
+<span style="font-style:italic">U</span></span> is the universe
+set or the full space). If we consider a set containing a single point,
+then we will have:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> ==)(== A 
+<font color="#666666">3:</font> ------------ Not A  
+<font color="#666666">4:</font> ============ Not (Not A)
+<font color="#666666">5:</font> </tt></pre>
+</div>
+
+in words:
+<div class='latexblock'><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+&#XA0;&#XA0;&#XA0;&#XA0;&#XA0;
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">A</span>&#XA0;=&#XA0;<span style="font-style:italic">U</span>&#XA0;&#XA0;{&#XA0;1&#XA0;}&#XA0;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&#XAC;&#XA0;<span style="font-style:italic">A</span>&#XA0;=&#XA0;<span style="font-family:monospace">interior</span>(<span style="font-style:italic">A</span><sup><span style="font-style:italic">c</span></sup>)&#XA0;=&#XA0;<span style="font-family:monospace">interior</span>({&#XA0;1&#XA0;})&#XA0;=&#XA0;&#X2205;&#XA0;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&#XAC;&#XA0;&#XAC;&#XA0;<span style="font-style:italic">A</span>&#XA0;=&#XA0;<span style="font-family:monospace">interior</span>((&#XAC;&#XA0;<span style="font-style:italic">A</span>)<sup><span style="font-style:italic">c</span></sup>)&#XA0;=&#XA0;<span style="font-family:monospace">interior</span>(&#X2205;<sup><span style="font-style:italic">c</span></sup>)&#XA0;=&#XA0;<span style="font-family:monospace">interior</span>(<span style="font-style:italic">U</span>)&#XA0;=&#XA0;<span style="font-style:italic">U</span>&#XA0;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+</div>
+So in some sense, the law of excluded middle is "almost true": It holds that <span class='latexinline'>
+<span style="font-style:italic">A</span> &#X2243; &#XAC; &#XAC; <span style="font-style:italic">A</span></span>,
+where we are allowed to include points in <span class='latexinline'>
+&#XAC; &#XAC; <span style="font-style:italic">A</span></span> of measure 0. This
+is really interesting, since it gives some sort of oddball probabilistic
+flavour to things where if we blind ourselves to measure-0 sets, then <span class='latexinline'>
+&#XAC; &#XAC; <span style="font-style:italic">A</span> = <span style="font-style:italic">A</span></span>.
+Now, we look at implication. The implication <span class='latexinline'>
+<span style="font-style:italic">A</span> &#X21D2; <span style="font-style:italic">B</span></span> is the largest
+set open <span class='latexinline'>
+<span style="font-style:italic">C</span></span> such that <span class='latexinline'>
+<span style="font-style:italic">C</span> &#X2227; <span style="font-style:italic">A</span> = <span style="font-style:italic">B</span></span>. In pictures:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> ---(========)----- A
+<font color="#666666">3:</font> ---------(=====)-- B
+<font color="#666666">4:</font> ---------(==)----- A &amp;&amp; B
+<font color="#666666">5:</font> ===)-----(======== A -&gt; B
+<font color="#666666">6:</font> </tt></pre>
+</div>
+
+The reason this is true is that from the definition:
+<div class='latexblock'>
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">&#X21D2;:&#XA0;<span style="font-style:italic">L</span>&#XA0;&#X2192;&#XA0;<span style="font-style:italic">L</span>;&#XA0;&#XA0;<span style="font-style:italic">c</span>&#XA0;&#X2264;&#XA0;(<span style="font-style:italic">a</span>&#XA0;&#X21D2;&#XA0;<span style="font-style:italic">b</span>)&#XA0;&#XA0;&#X21D0;&#X21D2;&#XA0;(<span style="font-style:italic">c</span>&#XA0;&#X2227;&#XA0;<span style="font-style:italic">a</span>)&#XA0;&#X2264;&#XA0;<span style="font-style:italic">b</span>&#XA0;replacing &#X2264; with = for insight:&#X21D2;:&#XA0;<span style="font-style:italic">L</span>&#XA0;&#X2192;&#XA0;<span style="font-style:italic">L</span>;&#XA0;&#XA0;<span style="font-style:italic">c</span>&#XA0;=&#XA0;(<span style="font-style:italic">a</span>&#XA0;&#X21D2;&#XA0;<span style="font-style:italic">b</span>)&#XA0;&#XA0;&#X21D0;&#X21D2;&#XA0;(<span style="font-style:italic">c</span>&#XA0;&#X2227;&#XA0;<span style="font-style:italic">a</span>)&#XA0;=&#XA0;<span style="font-style:italic">b</span>&#XA0;&#XA0;</td></tr>
+</table></div>
+Alternatively, we can use the fact that in regular boolean algebra:
+                    
+<div class='latexblock'>
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">a</span>&#XA0;&#X21D2;&#XA0;<span style="font-style:italic">b</span>&#XA0;=&#XA0;&#XAC;&#XA0;<span style="font-style:italic">a</span>&#XA0;&#X2228;&#XA0;<span style="font-style:italic">b</span></td></tr>
+</table></div>
+to derive <span class='latexinline'>
+<span style="font-style:italic">A</span> &#X2212;&gt; <span style="font-style:italic">B</span></span>:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> ---(========)----- A
+<font color="#666666">3:</font> ===)--------(===== NOT A
+<font color="#666666">4:</font> ---------(=====)-- B
+<font color="#666666">5:</font> [Extend B to everything that doesn't include
+<font color="#666666">6:</font>   more of A than already included]
+<font color="#666666">7:</font> ===)-----(======== NOT A or B = A -&gt; B
+<font color="#666666">8:</font> </tt></pre>
+</div>
+
+<h4><a id=contained-in- href='#contained-in-'> § </a> <code>a -> b</code> as <code>a</code> contained in <code>b</code>:</h4>
+We'll show that <code>a -> b</code> is true/top/the full real line if and only if
+<code>a</code> is contained in <code>b</code>. We can show this using <span class='latexinline'>
+&#XAC; <span style="font-style:italic">a</span> &#X2228; <span style="font-style:italic">b</span></span> definition:
+<ol>
+<li>
+ <span class='latexinline'>
+<span style="font-style:italic">a</span> &#X2264; <span style="font-style:italic">b</span></span> (given)
+</li>
+<li>
+ Since <span class='latexinline'>
+<span style="font-style:italic">a</span> &#X2264; <span style="font-style:italic">b</span></span>, <span class='latexinline'>
+&#XAC; <span style="font-style:italic">a</span> &#X2265; &#XAC; <span style="font-style:italic">b</span></span>, since <span class='latexinline'>
+&#XAC;</span> reverses inclusion order.
+</li>
+<li>
+ <span class='latexinline'>
+<span style="font-style:italic">x</span> &#X2265; <span style="font-style:italic">y</span></span> implies that <span class='latexinline'>
+<span style="font-style:italic">x</span> &#X2228; <span style="font-style:italic">p</span> &#X2265; <span style="font-style:italic">y</span> &#X2228; <span style="font-style:italic">p</span></span> for all p, since <span class='latexinline'>
+<span style="font-style:italic">p</span></span> is 
+   on both sides.
+</li>
+<li>
+ Specializing to <span class='latexinline'>
+<span style="font-style:italic">x</span> = &#XAC; <span style="font-style:italic">a</span></span>, <span class='latexinline'>
+<span style="font-style:italic">y</span> = &#XAC; <span style="font-style:italic">b</span></span>, <span class='latexinline'>
+<span style="font-style:italic">p</span> = <span style="font-style:italic">b</span></span> gives us
+   <span class='latexinline'>
+&#XAC; <span style="font-style:italic">a</span> &#X2228; <span style="font-style:italic">b</span> &#X2265; &#XAC; <span style="font-style:italic">b</span> &#X2228; <span style="font-style:italic">b</span></span>
+</li>
+<li>
+ <span class='latexinline'>
+&#XAC; <span style="font-style:italic">b</span> &#X2228; <span style="font-style:italic">b</span></span> is universe <span class='latexinline'>
+<span style="font-style:italic">U</span></span>
+</li>
+<li>
+ <span class='latexinline'>
+&#XAC; <span style="font-style:italic">a</span> &#X2228; <span style="font-style:italic">b</span> &#X2265; <span style="font-style:italic">U</span></span>, which means it's equal to <span class='latexinline'>
+<span style="font-style:italic">U</span></span> (nothing can be greater than <span class='latexinline'>
+<span style="font-style:italic">U</span></span>).
+</li>
+
+</ol>
+
+We can also show this geometrically:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> ----------(===)---- A
+<font color="#666666">3:</font> ------(==========) B
+<font color="#666666">4:</font> ----------(===)---- A &amp;&amp; B
+<font color="#666666">5:</font> [Extend B to everything that doesn't include
+<font color="#666666">6:</font>   more of A than already included.
+<font color="#666666">7:</font>   But all of A is
+<font color="#666666">8:</font>   already included!]
+<font color="#666666">9:</font> ================== A -&gt; B
+<font color="#666666">10:</font> </tt></pre>
+</div>
+
+<h4><a id=as-containment href='#as-containment'> § </a> reading <code>curry</code>, <code>uncurry</code> using <code>a -> b</code> as containment:</h4>
+<code>curry</code>, <code>uncurry</code> are the adjunction/isomorphism:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> ((c,a) -&gt; b) ~ (c -&gt; (a -&gt; b))
+<font color="#666666">3:</font> </tt></pre>
+</div>
+
+Read this as:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> ( c     ,         a)     -&gt;         b
+<font color="#666666">3:</font> (c `intersection` a) `contained in` b
+<font color="#666666">4:</font> </tt></pre>
+</div>
+
+if and only if
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> c      -&gt;        (a       -&gt;      b)
+<font color="#666666">3:</font> c `contained in` (a `implication` b)
+<font color="#666666">4:</font> </tt></pre>
+</div>
+
+That is, we have "read" <code>curry/uncurry</code> as:
+<div class='latexblock'>
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">c</span>&#XA0;&#X2227;&#XA0;<span style="font-style:italic">a</span>&#XA0;&#X2264;&#XA0;<span style="font-style:italic">b</span>&#XA0;&#XA0;&#X21D0;&#X21D2;&#XA0;<span style="font-style:italic">c</span>&#XA0;&#X2264;&#XA0;<span style="font-style:italic">a</span>&#XA0;&#X21D2;&#XA0;<span style="font-style:italic">b</span>
+</td></tr>
+</table></div>
+which was the definition of <span class='latexinline'>
+&#X21D2;</span> we wanted!
+<h4><a id=bis-contained-in-then- href='#bis-contained-in-then-'> § </a> Forward direction: if <code>A -> B</code> is the full line , then <code>A</code> is contained in <code>B</code></h4>
+<h4><a id=references href='#references'> § </a> References</h4>
+<ul>
+<li>
+ <a href=https://mail.haskell.org/pipermail/haskell-cafe/2020-May/132297.html>
+Email by Olaf Klinke on haskell-cafe</a>
 
 </li>
 

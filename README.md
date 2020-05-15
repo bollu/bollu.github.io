@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
 -->
 
 ## A Universe of Sorts
-##### Siddharth Bhat
+### Siddharth Bhat
 
 
 - [Leave feedback for me, `+ve` or `-ve`!](https://www.admonymous.co/bollu)
@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 	
+- [Intutionstic logic as a Heytig algebra](#intuitionistic-logic-heytig-algebra)
 - [Edit distance](#edit-distance)
 - [Evolution of bee colonies](#evolution-of-bee-colonies)
 - [Best practices for array indexing](#best-practices-for-array-indexing)
@@ -182,6 +183,177 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Big list of Latex](#big-list-of-latex)
 - [Recipes](#recipes)
 
+
+# [Intutionstic logic as a Heytig algebra](#intuitionistic-logic-as-a-heytig-algebra)
+
+_open sets_ form a Heytig Algebra, which is a lattice plus an implication
+operator. So it's stronger than a lattice, but weaker than a boolean algebra.
+Formally, a Heytig algebra over a set $X$ is a collection $(L, \lor, \land, \Rightarrow)$
+where $(X, \lor, \land)$ form a lattice, and $\rightarrow$ obeys the axiom
+
+$$
+\Rightarrow: L \rightarrow L; (c \land a) \leq b \iff c \leq (a \Rightarrow b)
+$$
+
+In any topological space $(U, \tau)$ ($U$ for universe set)
+the open sets of that space form a Heytig algebra.
+Here, set-union and set-intersection become the lattice join and lattice meet.
+We define a "weak complement" denoted by $\lnot$ which is defined as:
+
+$$
+\lnot A \equiv \texttt{interior}(A^C)
+$$
+
+We need the $\texttt{interior}$ to make sure that we're left with an open
+set. Also, this $\lnot$ is not really a complement, since we won't have that
+$\lnot \lnot = A$. but, more on that later!
+
+We write open intervals with round parenthesis:
+
+```
+    A
+--(===)--
+```
+
+$\lnot A$ of the above set $A$ becomes the open interval that is in the
+interior of $A$ complement.
+
+
+```
+--(===)-- A
+==]---[== A complement
+==)---(== Not A
+```
+
+Now, we can try to ask, when is $\lnot \lnot A = U$ (where $U$ is the universe
+set or the full space). If we consider a set containing a single point,
+then we will have:
+
+
+```
+==)(== A 
+------------ Not A  
+============ Not (Not A)
+```
+in words:
+
+$$
+\begin{align*}
+&A = U \ \{ 1 \} \\
+&\lnot A = \texttt{interior}(A^c) = \texttt{interior}(\{ 1 \}) = \emptyset \\
+&\lnot \lnot A = \texttt{interior}((\lnot A)^c) = \texttt{interior}(\emptyset^c) = \texttt{interior}(U) = U \\
+\end{align*}
+$$
+
+So in some sense, the law of excluded middle is "almost true": It holds that $A \simeq \lnot \lnot A$,
+where we are allowed to include points in $\lnot \lnot A$ of measure 0. This
+is really interesting, since it gives some sort of oddball probabilistic
+flavour to things where if we blind ourselves to measure-0 sets, then $\lnot \lnot A = A$.
+
+
+Now, we look at implication. The implication $A \Rightarrow B$ is the largest
+set open $C$ such that $C \land A = B$. In pictures:
+
+```
+---(========)----- A
+---------(=====)-- B
+---------(==)----- A && B
+===)-----(======== A -> B
+```
+
+The reason this is true is that from the definition:
+
+$$
+&\Rightarrow: L \rightarrow L;  c \leq (a \Rightarrow b) \iff (c \land a) \leq b \\
+&\text{replacing $\leq$ with $=$ for insight:}
+&\Rightarrow: L \rightarrow L;  c = (a \Rightarrow b) \iff (c \land a) = b  \\
+$$
+
+Alternatively, we can use the fact that in regular boolean algebra:
+                    
+$$a \Rightarrow b = \lnot a \lor b$$
+
+to derive $A -> B$:
+
+```
+---(========)----- A
+===)--------(===== NOT A
+---------(=====)-- B
+[Extend B to everything that doesn't include
+  more of A than already included]
+===)-----(======== NOT A or B = A -> B
+```
+
+
+#### `a -> b` as `a` contained in `b`:
+
+We'll show that `a -> b` is true/top/the full real line if and only if
+`a` is contained in `b`. We can show this using $\lnot a \lor b$ definition:
+
+1. $a \leq b$ (given)
+2. Since $a \leq b$, $\lnot a \geq \lnot b$, since $\lnot$ reverses inclusion order.
+3. $x \geq y$ implies that $x \lor p \geq y \lor p$ for all p, since $p$ is 
+   on both sides.
+4. Specializing to $x = \lnot a$, $y = \lnot b$, $p = b$ gives us
+   $\lnot a \lor b \geq \lnot b \lor b$
+5. $\lnot b \lor b$ is universe $U$
+6. $\lnot a \lor b \geq U$, which means it's equal to $U$ (nothing can be greater than $U$).
+
+We can also show this geometrically:
+
+```
+----------(===)---- A
+------(==========) B
+----------(===)---- A && B
+[Extend B to everything that doesn't include
+  more of A than already included.
+  But all of A is
+  already included!]
+================== A -> B
+```
+
+
+#### reading `curry`, `uncurry` using `a -> b` as containment:
+
+`curry`, `uncurry` are the adjunction/isomorphism:
+
+```
+((c,a) -> b) ~ (c -> (a -> b))
+```
+
+Read this as:
+
+```
+( c     ,         a)     ->         b
+(c `intersection` a) `contained in` b
+```
+
+if and only if
+
+```
+c      ->        (a       ->      b)
+c `contained in` (a `implication` b)
+```
+
+That is, we have "read" `curry/uncurry` as:
+
+$$
+c \land a \leq b \iff c \leq a \Rightarrow b
+$$
+
+which was the definition of $\Rightarrow$ we wanted!
+
+
+
+##### Forward direction: if `A -> B` is the full line , then `A` is contained in `B`
+
+
+
+
+##### References
+
+- [Email by Olaf Klinke on haskell-cafe](https://mail.haskell.org/pipermail/haskell-cafe/2020-May/132297.html)
+
 # [Edit distance](#edit-distance)
 
 This implementation of edit distance crystallizes the fact that when computing
@@ -191,43 +363,121 @@ the goal of this implementation is to capture the traversal pattern necessary
 for edit distance into a `Cursor`, and to view the edit distance problem from
 the point of view of this `Cursor`. 
 
+The problem setting is that we have a source string, a destination
+string, and we wish to perform operations that convert the source
+string into the destination string. The operations allowed are to:
+
+- Insert a character from the destination to the source.
+- Remove a character from the source.
+- Replace a character in the source with a character from the destination.
+
+We want to minimise the number of operations to be used. 
+Let's see how we model this.
+
+
 ```hs
 {-# LANGUAGE ViewPatterns #-}
-type Ix = Int
-data Move = InsertFromDest Ix | RemoveFromSrc Ix | ReplaceSrcWithDest Ix Ix deriving(Show)
-movecost :: Move -> Int; movecost = const 1
-movescost :: [Move] -> Int; movescost = sum . map movecost
+type Ix = Int; type DestIx = Ix; type SrcIx = Ix;
+data Move = InsertFromDest DestIx |
+            RemoveFromSrc SrcIx |
+            ReplaceSrcWithDest SrcIx DestIx
+        deriving(Show)
+```
 
-argmin2 :: (a -> Int) -> a -> a -> a
-argmin2 f a a' = if (f a) < (f a') then a else a'
+Our cost model says that each move costs `1`. We are charged for every
+move we make. We are to minimize the number of operations.
 
+```hs
+movescost :: [Move] -> Int; movescost = length
+```
+
+We model this as us having a `Cursor` which contains  list `[a]` and information
+about where we are in the list as an `Ix`. 
+This is the same as a `Zipper` for a list, except that in this case, we only
+allow ourselves to walk forward. 
+
+```hs
 data Cursor a = Cursor Ix [a]
+```
+
+
+- `cdone` tells is if we have completely consumed a cursor.
+- `cix` tells us the index of the cursor.
+- `cval` lets us dereference a cursor.
+- `incr` lets us move a cursor to the next array entry.
+- `cursor` converts a list into a `Cursor` at the first index.
+
+```hs
 cdone :: Cursor a -> Bool; cdone (Cursor ix vs) = ix >= length vs
 cix :: Cursor a -> Ix; cix (Cursor ix _) = ix
 cval :: Cursor a -> a; cval c@(Cursor ix vs) = vs !! ix
 incr :: Cursor a -> Cursor a; incr (Cursor ix vs) = Cursor (ix+1) vs
 cursor :: [a] -> Cursor a; cursor = Cursor 0
+```
 
--- we are deciding how to get ixth character of bs from our as.
+We implement `edit`, that tells us how to edit the source string into
+the destination string. The convention is `edit <src-str> <dest-str>`.
+
+```hs
+-- | decide how to get ixth character of bs from our as.
 edit :: Eq a => Cursor a -> Cursor a -> [Move]
+```
+
+- 1. If both strings have been consumed, then no moves are to be made.
+
+```hs
 edit (cdone -> True) (cdone -> True) = []
-edit a@(cdone -> False) b@(cdone -> True) = (RemoveFromSrc (cix a)):edit (incr a) b
-edit a@(cdone -> True) b@(cdone -> False) = (InsertFromDest (cix b)):edit a (incr b)
+```
+
+- 2. If the destination string has been fully matched while the source string
+   has not, then remove characters from the source string.
+
+```hs
+edit a@(cdone -> False) b@(cdone -> True) = 
+  (RemoveFromSrc (cix a)):edit (incr a) b
+```
+
+- 3. If the source string has run out of characters while the destination string
+   still has characters, insert characters from the destination string.
+
+```hs
+edit a@(cdone -> True) b@(cdone -> False) = 
+  (InsertFromDest (cix b)):edit a (incr b)
+```
+
+- 4. Otherwise, we have characters remaining in both strings. Try the
+   options of (1) replacing a source character with a destination 
+   character (2) removing a character from the source and continuing,
+   and (3) if the current characters match, then keep the match and try
+   to combine characters that come later in the string. We pick the
+   best out of these using the `argmin` combinator.
+
+```hs
 edit a b =  
-  let nomatch = argmin2 movescost 
+  let nomatch = argmin movescost 
                 (ReplaceSrcWithDest (cix a) (cix b):edit (incr a) (incr b))
                 (RemoveFromSrc (cix a):edit (incr a) b) 
-  -- | Think: it should alwys be cheaper to make progress than to stay?
   in case cval a == cval b of
-      True -> argmin2 movescost nomatch (edit (incr a) (incr b))
+      True -> argmin movescost nomatch (edit (incr a) (incr b))
       False -> nomatch 
+```
+      
+The helper used for finding minimum according to a cost model.
+
+```hs
+argmin :: (a -> Int) -> a -> a -> a
+argmin f a a' = if (f a) < (f a') then a else a'
 ```
 
 # [Evolution of bee colonies](#evolution-of-bee-colonies)
 
 This kind of culture that beehives have is called as 'eusociality'.
+I'm interested in this because I want to understand what alien societies might
+look like, and what selection pressures are required to have bee-like societies
+evolve. Many sci-fi books (Ender's game for example) depict aliens with such
+a society, but tend to be hazy on how this state of affairs came to be.
 
-##### References
+
 - [Evolution of eusociality](https://en.wikipedia.org/wiki/Evolution_of_eusociality)
 
 
@@ -483,7 +733,7 @@ coselect a0 as c = Ix <$> findIndex (== c) (reverse (eqscan a0 as))
 Thanks to Edward Kmett for teaching me this.
 
 
-# [Bounding chains: uniformly sample colorings](bounding-chains-uniformly-sample-colorings)
+# [Bounding chains: uniformly sample colorings](#bounding-chains-uniformly-sample-colorings)
 
 We wish to _uniformly sample_ `k` colorings of a graph $G$ with maximum degree
 $\Delta$. Hence, we require $k \geq \Delta + 1$. To perform this sampling,
