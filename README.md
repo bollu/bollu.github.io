@@ -53,7 +53,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 	
-- [Intutionstic logic as a Heytig algebra](#intuitionistic-logic-heytig-algebra)
+- [Burrows Wheeler](#burrows-wheeler)
+- [Intutionstic logic as a Heytig algebra](#intuitionistic-logic-as-a-heytig-algebra)
 - [Edit distance](#edit-distance)
 - [Evolution of bee colonies](#evolution-of-bee-colonies)
 - [Best practices for array indexing](#best-practices-for-array-indexing)
@@ -184,12 +185,60 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Recipes](#recipes)
 
 
+# [Burrows Wheeler](#burrows-wheeler)
+
+We aim to get the $O(n)$ algorithm for burrows wheeler, by starting from the
+naive $O(n^2)$ implementation and then slowly chipping away to get to the
+fastest algorithm.
+
+## String rotations
+
+Given a string $s$ of length $n$, we can index it as $s[0]$, $s[1]$, upto
+$s[n-1]$. We can now build a table consisting of _rotations_ of the string.
+We'll define:
+
+```hs
+lrot :: [a] -> [a]
+lrot [] = []; lrot (x:xs) = xs ++ [x]
+```
+
+We can build a table of left-rotations:
+
+```
+foobar
+oobarf
+obarfo
+barfoo
+arfoob
+rfooba
+```
+
+We can immediately notice that it's a _symmetric matrix_. We can prove
+this as follows. We write $lrot(rot, s)$ as an array such that:
+
+$$
+lrot(rot, s)[i] = s[(rot + i) % n] \text{where $n = |s|$}
+$$
+
+Now, we note that on row $r$ of our array we have the string $lrot(r, s)$.
+So the value at row $r$, column $c$ is $lrot(r, s)[c] = s[(r + c)%n]$.
+But this is symmetric in $c, r$ so can be written as $s[(c + r)%n]$,
+which is equal to $lrot(c, s)[r]$. Formally:
+
+$$
+lrot(r, s)[c] = s[(r + c) %n] = s[(c + r)%n] = lrot(c, s)[r]
+$$
+
+#### References
+- Richard Bird: Pearls of functional algorithm design
+
+
 # [Intutionstic logic as a Heytig algebra](#intuitionistic-logic-as-a-heytig-algebra)
 
 _open sets_ form a Heytig Algebra, which is a lattice plus an implication
 operator. So it's stronger than a lattice, but weaker than a boolean algebra.
 Formally, a Heytig algebra over a set $X$ is a collection $(L, \lor, \land, \Rightarrow)$
-where $(X, \lor, \land)$ form a lattice, and $\rightarrow$ obeys the axiom
+where $(X, \lor, \land)$ form a lattice, and $\Rightarrow$ obeys the axiom
 
 $$
 \Rightarrow: L \rightarrow L; (c \land a) \leq b \iff c \leq (a \Rightarrow b)
@@ -206,7 +255,7 @@ $$
 
 We need the $\texttt{interior}$ to make sure that we're left with an open
 set. Also, this $\lnot$ is not really a complement, since we won't have that
-$\lnot \lnot = A$. but, more on that later!
+$\lnot \lnot A = A$. but, more on that later!
 
 We write open intervals with round parenthesis:
 
@@ -239,15 +288,15 @@ in words:
 
 $$
 \begin{align*}
-&A = U \ \{ 1 \} \\
+&A = U \setminus \{ 1 \} \\
 &\lnot A = \texttt{interior}(A^c) = \texttt{interior}(\{ 1 \}) = \emptyset \\
 &\lnot \lnot A = \texttt{interior}((\lnot A)^c) = \texttt{interior}(\emptyset^c) = \texttt{interior}(U) = U \\
 \end{align*}
 $$
 
 So in some sense, the law of excluded middle is "almost true": It holds that $A \simeq \lnot \lnot A$,
-where we are allowed to include points in $\lnot \lnot A$ of measure 0. This
-is really interesting, since it gives some sort of oddball probabilistic
+where $A$ excludes a set of points of measure zero.
+This is really interesting, since it gives some sort of oddball probabilistic
 flavour to things where if we blind ourselves to measure-0 sets, then $\lnot \lnot A = A$.
 
 
@@ -264,9 +313,11 @@ set open $C$ such that $C \land A = B$. In pictures:
 The reason this is true is that from the definition:
 
 $$
+\begin{align*}
 &\Rightarrow: L \rightarrow L;  c \leq (a \Rightarrow b) \iff (c \land a) \leq b \\
 &\text{replacing $\leq$ with $=$ for insight:}
 &\Rightarrow: L \rightarrow L;  c = (a \Rightarrow b) \iff (c \land a) = b  \\
+\end{align*}
 $$
 
 Alternatively, we can use the fact that in regular boolean algebra:
@@ -342,11 +393,6 @@ c \land a \leq b \iff c \leq a \Rightarrow b
 $$
 
 which was the definition of $\Rightarrow$ we wanted!
-
-
-
-##### Forward direction: if `A -> B` is the full line , then `A` is contained in `B`
-
 
 
 

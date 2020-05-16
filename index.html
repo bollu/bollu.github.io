@@ -47,7 +47,12 @@ My reading list</a>
 	
 <ul>
 <li>
- <a href=#intuitionistic-logic-heytig-algebra>
+ <a href=#burrows-wheeler>
+Burrows Wheeler</a>
+
+</li>
+<li>
+ <a href=#intuitionistic-logic-as-a-heytig-algebra>
 Intutionstic logic as a Heytig algebra</a>
 
 </li>
@@ -694,6 +699,79 @@ Recipes</a>
 
 </ul>
 
+<h2><a id=burrows-wheeler href='#burrows-wheeler'> § </a> <a href=#burrows-wheeler>
+Burrows Wheeler</a>
+</h2>
+We aim to get the <span class='latexinline'>
+<span style="font-style:italic">O</span>(<span style="font-style:italic">n</span>)</span> algorithm for burrows wheeler, by starting from the
+naive <span class='latexinline'>
+<span style="font-style:italic">O</span>(<span style="font-style:italic">n</span><sup>2</sup>)</span> implementation and then slowly chipping away to get to the
+fastest algorithm.
+<h3><a id=string-rotations href='#string-rotations'> § </a> String rotations</h3>
+Given a string <span class='latexinline'>
+<span style="font-style:italic">s</span></span> of length <span class='latexinline'>
+<span style="font-style:italic">n</span></span>, we can index it as <span class='latexinline'>
+<span style="font-style:italic">s</span>[0]</span>, <span class='latexinline'>
+<span style="font-style:italic">s</span>[1]</span>, upto
+<span class='latexinline'>
+<span style="font-style:italic">s</span>[<span style="font-style:italic">n</span>&#X2212;1]</span>. We can now build a table consisting of <i>rotations</i> of the string.
+We'll define:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> lrot :: [a] -&gt; [a]
+<font color="#666666">3:</font> lrot [] = []; lrot (x:xs) = xs ++ [x]
+<font color="#666666">4:</font> </tt></pre>
+</div>
+
+We can build a table of left-rotations:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> foobar
+<font color="#666666">3:</font> oobarf
+<font color="#666666">4:</font> obarfo
+<font color="#666666">5:</font> barfoo
+<font color="#666666">6:</font> arfoob
+<font color="#666666">7:</font> rfooba
+<font color="#666666">8:</font> </tt></pre>
+</div>
+
+We can immediately notice that it's a <i>symmetric matrix</i>. We can prove
+this as follows. We write <span class='latexinline'>
+<span style="font-style:italic">lrot</span>(<span style="font-style:italic">rot</span>, <span style="font-style:italic">s</span>)</span> as an array such that:
+<div class='latexblock'>
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">lrot</span>(<span style="font-style:italic">rot</span>,&#XA0;<span style="font-style:italic">s</span>)[<span style="font-style:italic">i</span>]&#XA0;=&#XA0;<span style="font-style:italic">s</span>[(<span style="font-style:italic">rot</span>&#XA0;+&#XA0;<span style="font-style:italic">i</span>)&#XA0;</td></tr>
+</table></div>
+Now, we note that on row <span class='latexinline'>
+<span style="font-style:italic">r</span></span> of our array we have the string <span class='latexinline'>
+<span style="font-style:italic">lrot</span>(<span style="font-style:italic">r</span>, <span style="font-style:italic">s</span>)</span>.
+So the value at row <span class='latexinline'>
+<span style="font-style:italic">r</span></span>, column <span class='latexinline'>
+<span style="font-style:italic">c</span></span> is <span class='latexinline'>
+</span>.
+But this is symmetric in <span class='latexinline'>
+<span style="font-style:italic">c</span>, <span style="font-style:italic">r</span></span> so can be written as <span class='latexinline'>
+</span>,
+which is equal to <span class='latexinline'>
+<span style="font-style:italic">lrot</span>(<span style="font-style:italic">c</span>, <span style="font-style:italic">s</span>)[<span style="font-style:italic">r</span>]</span>. Formally:
+<div class='latexblock'>
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">lrot</span>(<span style="font-style:italic">r</span>,&#XA0;<span style="font-style:italic">s</span>)[<span style="font-style:italic">c</span>]&#XA0;=&#XA0;<span style="font-style:italic">s</span>[(<span style="font-style:italic">r</span>&#XA0;+&#XA0;<span style="font-style:italic">c</span>)&#XA0;</td></tr>
+</table></div>
+<h4><a id=references href='#references'> § </a> References</h4>
+<ul>
+<li>
+ Richard Bird: Pearls of functional algorithm design
+</li>
+
+</ul>
+
 <h2><a id=intutionstic-logic-as-a-heytig-algebra href='#intutionstic-logic-as-a-heytig-algebra'> § </a> <a href=#intuitionistic-logic-as-a-heytig-algebra>
 Intutionstic logic as a Heytig algebra</a>
 </h2>
@@ -704,7 +782,7 @@ Formally, a Heytig algebra over a set <span class='latexinline'>
 (<span style="font-style:italic">L</span>, &#X2228;, &#X2227;, &#X21D2;)</span>
 where <span class='latexinline'>
 (<span style="font-style:italic">X</span>, &#X2228;, &#X2227;)</span> form a lattice, and <span class='latexinline'>
-&#X2192;</span> obeys the axiom
+&#X21D2;</span> obeys the axiom
 <div class='latexblock'>
 <table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">&#X21D2;:&#XA0;<span style="font-style:italic">L</span>&#XA0;&#X2192;&#XA0;<span style="font-style:italic">L</span>;&#XA0;(<span style="font-style:italic">c</span>&#XA0;&#X2227;&#XA0;<span style="font-style:italic">a</span>)&#XA0;&#X2264;&#XA0;<span style="font-style:italic">b</span>&#XA0;&#XA0;&#X21D0;&#X21D2;&#XA0;<span style="font-style:italic">c</span>&#XA0;&#X2264;&#XA0;(<span style="font-style:italic">a</span>&#XA0;&#X21D2;&#XA0;<span style="font-style:italic">b</span>)
 </td></tr>
@@ -725,7 +803,7 @@ We need the <span class='latexinline'>
 set. Also, this <span class='latexinline'>
 &#XAC;</span> is not really a complement, since we won't have that
 <span class='latexinline'>
-&#XAC; &#XAC; = <span style="font-style:italic">A</span></span>. but, more on that later!
+&#XAC; &#XAC; <span style="font-style:italic">A</span> = <span style="font-style:italic">A</span></span>. but, more on that later!
 We write open intervals with round parenthesis:
 <div class='code'>
 <!-- Generator: GNU source-highlight 3.1.8
@@ -776,7 +854,7 @@ in words:
 <div class='latexblock'><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
 &#XA0;&#XA0;&#XA0;&#XA0;&#XA0;
 
-</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">A</span>&#XA0;=&#XA0;<span style="font-style:italic">U</span>&#XA0;&#XA0;{&#XA0;1&#XA0;}&#XA0;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">A</span>&#XA0;=&#XA0;<span style="font-style:italic">U</span>&#XA0;&#X2216;&#XA0;{&#XA0;1&#XA0;}&#XA0;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
 <tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&#XAC;&#XA0;<span style="font-style:italic">A</span>&#XA0;=&#XA0;<span style="font-family:monospace">interior</span>(<span style="font-style:italic">A</span><sup><span style="font-style:italic">c</span></sup>)&#XA0;=&#XA0;<span style="font-family:monospace">interior</span>({&#XA0;1&#XA0;})&#XA0;=&#XA0;&#X2205;&#XA0;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
 <tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&#XAC;&#XA0;&#XAC;&#XA0;<span style="font-style:italic">A</span>&#XA0;=&#XA0;<span style="font-family:monospace">interior</span>((&#XAC;&#XA0;<span style="font-style:italic">A</span>)<sup><span style="font-style:italic">c</span></sup>)&#XA0;=&#XA0;<span style="font-family:monospace">interior</span>(&#X2205;<sup><span style="font-style:italic">c</span></sup>)&#XA0;=&#XA0;<span style="font-family:monospace">interior</span>(<span style="font-style:italic">U</span>)&#XA0;=&#XA0;<span style="font-style:italic">U</span>&#XA0;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
 <tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
@@ -785,9 +863,9 @@ in words:
 </div>
 So in some sense, the law of excluded middle is "almost true": It holds that <span class='latexinline'>
 <span style="font-style:italic">A</span> &#X2243; &#XAC; &#XAC; <span style="font-style:italic">A</span></span>,
-where we are allowed to include points in <span class='latexinline'>
-&#XAC; &#XAC; <span style="font-style:italic">A</span></span> of measure 0. This
-is really interesting, since it gives some sort of oddball probabilistic
+where <span class='latexinline'>
+<span style="font-style:italic">A</span></span> excludes a set of points of measure zero.
+This is really interesting, since it gives some sort of oddball probabilistic
 flavour to things where if we blind ourselves to measure-0 sets, then <span class='latexinline'>
 &#XAC; &#XAC; <span style="font-style:italic">A</span> = <span style="font-style:italic">A</span></span>.
 Now, we look at implication. The implication <span class='latexinline'>
@@ -809,9 +887,15 @@ http://www.gnu.org/software/src-highlite -->
 </div>
 
 The reason this is true is that from the definition:
-<div class='latexblock'>
-<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">&#X21D2;:&#XA0;<span style="font-style:italic">L</span>&#XA0;&#X2192;&#XA0;<span style="font-style:italic">L</span>;&#XA0;&#XA0;<span style="font-style:italic">c</span>&#XA0;&#X2264;&#XA0;(<span style="font-style:italic">a</span>&#XA0;&#X21D2;&#XA0;<span style="font-style:italic">b</span>)&#XA0;&#XA0;&#X21D0;&#X21D2;&#XA0;(<span style="font-style:italic">c</span>&#XA0;&#X2227;&#XA0;<span style="font-style:italic">a</span>)&#XA0;&#X2264;&#XA0;<span style="font-style:italic">b</span>&#XA0;replacing &#X2264; with = for insight:&#X21D2;:&#XA0;<span style="font-style:italic">L</span>&#XA0;&#X2192;&#XA0;<span style="font-style:italic">L</span>;&#XA0;&#XA0;<span style="font-style:italic">c</span>&#XA0;=&#XA0;(<span style="font-style:italic">a</span>&#XA0;&#X21D2;&#XA0;<span style="font-style:italic">b</span>)&#XA0;&#XA0;&#X21D0;&#X21D2;&#XA0;(<span style="font-style:italic">c</span>&#XA0;&#X2227;&#XA0;<span style="font-style:italic">a</span>)&#XA0;=&#XA0;<span style="font-style:italic">b</span>&#XA0;&#XA0;</td></tr>
-</table></div>
+<div class='latexblock'><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+&#XA0;&#XA0;&#XA0;&#XA0;&#XA0;
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&#X21D2;:&#XA0;<span style="font-style:italic">L</span>&#XA0;&#X2192;&#XA0;<span style="font-style:italic">L</span>;&#XA0;&#XA0;<span style="font-style:italic">c</span>&#XA0;&#X2264;&#XA0;(<span style="font-style:italic">a</span>&#XA0;&#X21D2;&#XA0;<span style="font-style:italic">b</span>)&#XA0;&#XA0;&#X21D0;&#X21D2;&#XA0;(<span style="font-style:italic">c</span>&#XA0;&#X2227;&#XA0;<span style="font-style:italic">a</span>)&#XA0;&#X2264;&#XA0;<span style="font-style:italic">b</span>&#XA0;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >replacing &#X2264; with = for insight:&#XA0;&#XA0;&#XA0;&#XA0;</td><td style="text-align:right;white-space:nowrap" >&#X21D2;:&#XA0;<span style="font-style:italic">L</span>&#XA0;&#X2192;&#XA0;<span style="font-style:italic">L</span>;&#XA0;&#XA0;<span style="font-style:italic">c</span>&#XA0;=&#XA0;(<span style="font-style:italic">a</span>&#XA0;&#X21D2;&#XA0;<span style="font-style:italic">b</span>)&#XA0;&#XA0;&#X21D0;&#X21D2;&#XA0;(<span style="font-style:italic">c</span>&#XA0;&#X2227;&#XA0;<span style="font-style:italic">a</span>)&#XA0;=&#XA0;<span style="font-style:italic">b</span>&#XA0;&#XA0;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+</div>
 Alternatively, we can use the fact that in regular boolean algebra:
                     
 <div class='latexblock'>
@@ -939,7 +1023,6 @@ That is, we have "read" <code>curry/uncurry</code> as:
 </table></div>
 which was the definition of <span class='latexinline'>
 &#X21D2;</span> we wanted!
-<h4><a id=bis-contained-in-then- href='#bis-contained-in-then-'> § </a> Forward direction: if <code>A -> B</code> is the full line , then <code>A</code> is contained in <code>B</code></h4>
 <h4><a id=references href='#references'> § </a> References</h4>
 <ul>
 <li>
