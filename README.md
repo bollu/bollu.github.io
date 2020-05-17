@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 	
+- [Geometric proof of `e^x >= 1+x`, `e^(-x) <= 1-x`](FILL THIS UP)
 - [Ranking and Sorting](#ranking-and-sorting)
 - [Proof of minkowski convex body theorem](#proof-of-minkowski-convex-body-theorem)
 - [Burrows Wheeler (WIP)](#burrows-wheeler)
@@ -186,6 +187,22 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Big list of Latex](#big-list-of-latex)
 - [Recipes](#recipes)
 
+# [Geometric proof of `e^x >= 1+x`, `1-x <= e^(-x)`](FILL THIS UP)
+
+Let's concentrate on the `e^x >= 1 + x` part. 
+
+1. The tangent of `e^x` at `x = 0` is `1 + x`, since the taylor series
+   of `e^x` truncated upto `x` is `1 + x`.
+2. `e^x` is a strongly convex function, since `(e^x)'' = e^x` which is positive
+   everywhere. Hence, `e^x` will always lie above its tangent.
+
+Similarly, for `e^(-x)`, we can either note that it's  substitution of `x` with
+`-x` in our previous statement, and thus our previous statement will continue
+to hold.  Alternatively, working through the math:
+
+1. `1 -x` is tangent at `x=0` to `e^(-x)`
+2. `(e^(-x))'' = -(e^(-x))' e^(-x)` which is again positive everywhere, and
+   hence, `e^(-x)` is strongly convex.
 
 # [Ranking and Sorting](#ranking-and-sorting)
 
@@ -237,11 +254,13 @@ for(int i = 0; i < N; ++i) {
 }
 ```
 
-> **Alternative 1** way to look at our definition of rank is that we are
-> sorting the tuples  `(xs[i], i)` using lex ordering. So if two indeces
-> `i, j` have the same value, then we sort on the index.
+##### Rank: Alternative 1
+An alternative way to look at our definition of rank is that we are
+sorting the tuples  `(xs[i], i)` using lex ordering. So if two indeces
+`i, j` have the same value, then we sort on the index.
 
 
+##### Rank: Alternative 2
 We could have also defined rank as:
 
 ```cpp
