@@ -47,6 +47,11 @@ My reading list</a>
 	
 <ul>
 <li>
+ <a href=#ranking-and-sorting>
+Ranking and Sorting</a>
+
+</li>
+<li>
  <a href=#proof-of-minkowski-convex-body-theorem>
 Proof of minkowski convex body theorem</a>
 
@@ -700,6 +705,234 @@ Big list of Latex</a>
  <a href=#recipes>
 Recipes</a>
 
+</li>
+
+</ul>
+
+<h2><a id=ranking-and-sorting href='#ranking-and-sorting'> § </a> <a href=#ranking-and-sorting>
+Ranking and Sorting</a>
+</h2>
+We we want to sort an arrray <code>xs</code> and write the results into an array <code>ys</code>.
+In both cases, the invariant to be satisfied is that <code>ys</code> is <code>xs</code> in ascending
+order. I'll be considering two broad ways to implement such a thing:
+<ul>
+<li>
+ 1. <b>(RANK)</b> Index straight into <code>ys</code>, reindexed into <code>xs</code>. We name the reindexing
+  array as <code>rs</code> (<code>rs</code> for <i>ranks</i>).
+</li>
+
+</ul>
+
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> <b><u><font color="#000000">for</font></u></b>(<b><font color="#000000">int</font></b> i = <font color="#000000">0</font>; i &lt; N; ++i) {
+<font color="#666666">3:</font>    ys[rs[i]] = xs[i]
+<font color="#666666">4:</font> }
+<font color="#666666">5:</font> </tt></pre>
+</div>
+
+<ul>
+<li>
+ 2. <b>(SELECT)</b> Reindex into <code>ys</code>, index straight into <code>xs</code>. 
+  We name the reindexing array <code>ss</code> (<code>ss</code> for <i>selects</i>).
+</li>
+
+</ul>
+
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> <b><u><font color="#000000">for</font></u></b>(<b><font color="#000000">int</font></b> i = <font color="#000000">0</font>; i &lt; N; ++i) {
+<font color="#666666">3:</font>    ys[i] = xs[ss[i]]
+<font color="#666666">4:</font> }
+<font color="#666666">5:</font> </tt></pre>
+</div>
+
+<h4><a id=defnition-of-rank href='#defnition-of-rank'> § </a> Defnition of rank</h4>
+In the case of <b>(RANK)</b>, the specification is that the rank of an element <code>e</code>
+is the number of elements that are:
+<ol>
+<li>
+ less than <code>e</code>.
+</li>
+<li>
+ equal to <code>e</code> but occur before <code>e</code>.
+</li>
+
+</ol>
+
+This ensures that rank is a <i>permutation</i>: that is, every element <code>e</code> is given
+a <i>unique</i> index. 
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">01:</font> 
+<font color="#666666">02:</font> <b><font color="#000000">int</font></b> rank(<b><u><font color="#000000">const</font></u></b> <b><font color="#000000">int</font></b> *xs, <b><font color="#000000">int</font></b> i) { 
+<font color="#666666">03:</font>     <b><font color="#000000">int</font></b> cnt = <font color="#000000">0</font>;
+<font color="#666666">04:</font>     <b><u><font color="#000000">for</font></u></b> (<b><font color="#000000">int</font></b> j = <font color="#000000">0</font>; j &lt; N; ++j) {
+<font color="#666666">05:</font>         <b><u><font color="#000000">if</font></u></b> (xs[j] &lt; xs[i] || (xs[j] == xs[i] &amp;&amp; j &lt; i)) cnt += <font color="#000000">1</font>;
+<font color="#666666">06:</font>     }
+<font color="#666666">07:</font>     <b><u><font color="#000000">return</font></u></b> cnt;
+<font color="#666666">08:</font> }
+<font color="#666666">09:</font> 
+<font color="#666666">10:</font> <b><u><font color="#000000">for</font></u></b>(<b><font color="#000000">int</font></b> i = <font color="#000000">0</font>; i &lt; N; ++i) {
+<font color="#666666">11:</font>   rs[i] = rank(xs, i);
+<font color="#666666">12:</font> }
+<font color="#666666">13:</font> </tt></pre>
+</div>
+
+<blockquote> <b>Alternative 1</b> way to look at our definition of rank is that we are sorting the tuples  <code>(xs[i], i)</code> using lex ordering. So if two indeces <code>i, j</code> have the same value, then we sort on the index.</blockquote>
+We could have also defined rank as:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> <b><font color="#000000">int</font></b> rank(<b><font color="#000000">int</font></b> *xs, <b><font color="#000000">int</font></b> i) { 
+<font color="#666666">3:</font>     <b><font color="#000000">int</font></b> cnt = <font color="#000000">0</font>;
+<font color="#666666">4:</font>     <b><u><font color="#000000">for</font></u></b> (<b><font color="#000000">int</font></b> j = <font color="#000000">0</font>; j &lt; i; ++j) {
+<font color="#666666">5:</font>         <b><u><font color="#000000">if</font></u></b> (xs[j] &lt;= xs[i]) cnt += <font color="#000000">1</font>
+<font color="#666666">6:</font>     }
+<font color="#666666">7:</font>     <b><u><font color="#000000">return</font></u></b> cnt;
+<font color="#666666">8:</font> }
+<font color="#666666">9:</font> </tt></pre>
+</div>
+
+I declined from doing so because I wanted to show the lex-ordering
+interpretation of <code>rank</code> will be be useful later.
+<h4><a id=definition-of-select href='#definition-of-select'> § </a> Definition of select</h4>
+For <b>(SELECT)</b>, we'll need to think a little harder. Let's try to rewrite
+our way to glory:
+<ul>
+<li>
+ 1. From definition of rank:
+</li>
+
+</ul>
+
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> ys[rs[i]] = xs[i]
+<font color="#666666">3:</font> </tt></pre>
+</div>
+
+<ul>
+<li>
+ 2. move <code>i -> ss[i]</code> where <code>ss[i]</code> is guaranteed to be a permutation,
+  so we will write each index eventually:
+</li>
+
+</ul>
+
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> ys[rs[ss[i]]] = xs[ss[i]]
+<font color="#666666">3:</font> </tt></pre>
+</div>
+
+<ul>
+<li>
+ 3. Stipulate that <code>rs[ss[i]] = i</code>, since we want a <code>ys[i]</code>:
+</li>
+
+</ul>
+
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> ys[i] = xs[ss[i]]
+<font color="#666666">3:</font> </tt></pre>
+</div>
+
+This gives us necessary and sufficient conditions on how to find an <code>ss</code>:
+<code>ss</code> must be a permutation that is an inverse permutation to <code>rs</code>.
+<h4><a id=how-to-invert-a-permutation href='#how-to-invert-a-permutation'> § </a> How to invert a permutation?</h4>
+How does one invert a permutation? We have a permutation <code>rs[i]</code> that maps
+<code>i</code> to <code>rs[i]</code>. We want to find a new permutation <code>ss[i]</code> such that 
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> rs[ss[i]] = i
+<font color="#666666">3:</font> </tt></pre>
+</div>
+
+Equivalently:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> // ss[i] is an index 'k'...
+<font color="#666666">3:</font> ss[i] = k 
+<font color="#666666">4:</font> // 'k' is the location of 'i' in rs.
+<font color="#666666">5:</font> rs[k] = i
+<font color="#666666">6:</font> </tt></pre>
+</div>
+
+So if we first tag each location of <code>rs</code> with its index, and then sort
+with the values of <code>rs</code> being the keys, then <code>ss[i]</code> will be the values.
+In pictures:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> rs[i]          [3 4 0 1 2]
+<font color="#666666">3:</font> rs_tagged[i]   [(3, 0) (4, 1) (0, 2) (1, 3) (2, 4)]
+<font color="#666666">4:</font> rs_sorted[i]   [(0, 2) (1, 3) (2, 4) (3, 0) (4, 1)]
+<font color="#666666">5:</font> ss[i]          [    2      3      4      0      1 ]
+<font color="#666666">6:</font> rs[ss[i]]      [ rs[2]  rs[3]  rs[4]  rs[0]  rs[1]]
+<font color="#666666">7:</font> rs[ss[i]]      [    0      1      2      3      4 ]
+<font color="#666666">8:</font> </tt></pre>
+</div>
+
+<h4><a id=rank-and-select-are-inverses href='#rank-and-select-are-inverses'> § </a> Rank and Select are inverses</h4>
+It's nice, there are a couple of miracles that lined up here:
+<ul>
+<li>
+ Rank starts with <code>r</code> and select starts with <code>s</code> so we get nice naming.
+</li>
+<li>
+ Rank and select are true inverse permutations of each other.
+</li>
+
+</ul>
+
+<h4><a id=generalized-rank-and-select-are-adjoint href='#generalized-rank-and-select-are-adjoint'> § </a> Generalized rank and select are adjoint</h4>
+We had to "fix" our definition of rank to avoid equal elements in the array.
+Hence, we had the rule that we also sort by indexes if the elements are
+equal. However, if we now decide to ignore this rule, we will then recreate
+the classical <i>adjunction</i> between rank and select.
+<h4><a id=references href='#references'> § </a> References</h4>
+<ul>
+<li>
+ Richard Bird: Pearls of functional algorithm design
 </li>
 
 </ul>

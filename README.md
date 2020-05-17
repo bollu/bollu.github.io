@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 	
+- [Ranking and Sorting](#ranking-and-sorting)
 - [Proof of minkowski convex body theorem](#proof-of-minkowski-convex-body-theorem)
 - [Burrows Wheeler (WIP)](#burrows-wheeler)
 - [Intuitionstic logic as a Heytig algebra](#intuitionistic-logic-as-a-heytig-algebra)
@@ -184,6 +185,155 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Big list of Coq](#big-list-of-coq)
 - [Big list of Latex](#big-list-of-latex)
 - [Recipes](#recipes)
+
+
+# [Ranking and Sorting](#ranking-and-sorting)
+
+We we want to sort an arrray `xs` and write the results into an array `ys`.
+In both cases, the invariant to be satisfied is that `ys` is `xs` in ascending
+order. I'll be considering two broad ways to implement such a thing:
+
+
+- 1. **(RANK)** Index straight into `ys`, reindexed into `xs`. We name the reindexing
+  array as `rs` (`rs` for _ranks_).
+
+```cpp
+for(int i = 0; i < N; ++i) {
+   ys[rs[i]] = xs[i]
+}
+```
+
+- 2. **(SELECT)** Reindex into `ys`, index straight into `xs`. 
+  We name the reindexing array `ss` (`ss` for _selects_).
+
+```cpp
+for(int i = 0; i < N; ++i) {
+   ys[i] = xs[ss[i]]
+}
+```
+
+#### Defnition of rank
+
+In the case of **(RANK)**, the specification is that the rank of an element `e`
+is the number of elements that are:
+
+1. less than `e`.
+2. equal to `e` but occur before `e`.
+
+This ensures that rank is a _permutation_: that is, every element `e` is given
+a _unique_ index. 
+
+```cpp
+int rank(const int *xs, int i) { 
+    int cnt = 0;
+    for (int j = 0; j < N; ++j) {
+        if (xs[j] < xs[i] || (xs[j] == xs[i] && j < i)) cnt += 1;
+    }
+    return cnt;
+}
+
+for(int i = 0; i < N; ++i) {
+  rs[i] = rank(xs, i);
+}
+```
+
+> **Alternative 1** way to look at our definition of rank is that we are
+> sorting the tuples  `(xs[i], i)` using lex ordering. So if two indeces
+> `i, j` have the same value, then we sort on the index.
+
+
+We could have also defined rank as:
+
+```cpp
+int rank(int *xs, int i) { 
+    int cnt = 0;
+    for (int j = 0; j < i; ++j) {
+        if (xs[j] <= xs[i]) cnt += 1
+    }
+    return cnt;
+}
+```
+
+I declined from doing so because I wanted to show the lex-ordering
+interpretation of `rank` will be be useful later.
+
+#### Definition of select
+
+For **(SELECT)**, we'll need to think a little harder. Let's try to rewrite
+our way to glory:
+
+- 1. From definition of rank:
+
+```cpp
+ys[rs[i]] = xs[i]
+```
+
+- 2. move `i -> ss[i]` where `ss[i]` is guaranteed to be a permutation,
+  so we will write each index eventually:
+
+```cpp
+ys[rs[ss[i]]] = xs[ss[i]]
+```
+
+- 3. Stipulate that `rs[ss[i]] = i`, since we want a `ys[i]`:
+
+```cpp
+ys[i] = xs[ss[i]]
+```
+
+This gives us necessary and sufficient conditions on how to find an `ss`:
+`ss` must be a permutation that is an inverse permutation to `rs`.
+
+
+#### How to invert a permutation?
+
+How does one invert a permutation? We have a permutation `rs[i]` that maps
+`i` to `rs[i]`. We want to find a new permutation `ss[i]` such that 
+
+```
+rs[ss[i]] = i
+```
+
+Equivalently:
+
+```
+// ss[i] is an index 'k'...
+ss[i] = k 
+// 'k' is the location of 'i' in rs.
+rs[k] = i
+```
+
+So if we first tag each location of `rs` with its index, and then sort
+with the values of `rs` being the keys, then `ss[i]` will be the values.
+
+In pictures:
+
+```
+rs[i]          [3 4 0 1 2]
+rs_tagged[i]   [(3, 0) (4, 1) (0, 2) (1, 3) (2, 4)]
+rs_sorted[i]   [(0, 2) (1, 3) (2, 4) (3, 0) (4, 1)]
+ss[i]          [    2      3      4      0      1 ]
+rs[ss[i]]      [ rs[2]  rs[3]  rs[4]  rs[0]  rs[1]]
+rs[ss[i]]      [    0      1      2      3      4 ]
+```
+
+#### Rank and Select are inverses
+
+It's nice, there are a couple of miracles that lined up here:
+
+- Rank starts with `r` and select starts with `s` so we get nice naming.
+- Rank and select are true inverse permutations of each other.
+
+#### Generalized rank and select are adjoint
+
+We had to "fix" our definition of rank to avoid equal elements in the array.
+Hence, we had the rule that we also sort by indexes if the elements are
+equal. However, if we now decide to ignore this rule, we will then recreate
+the classical _adjunction_ between rank and select.
+
+#### References
+- Richard Bird: Pearls of functional algorithm design
+
 
 
 # [Proof of minkowski convex body theorem](#proof-of-minkowski-convex-body-theorem)
