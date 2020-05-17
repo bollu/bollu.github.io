@@ -718,7 +718,7 @@ difference lies in the lattice. Formally, we have:
  A lattice <span class='latexinline'>
 <span style="font-style:italic">L</span>(<span style="font-style:italic">B</span>) &#X2261; { <span style="font-style:italic">Bx</span> : <span style="font-style:italic">x</span> &#X2208; &#X2124;<sup><span style="font-style:italic">n</span></sup> }</span> for some basis 
    <span class='latexinline'>
-<span style="font-style:italic">B</span> &#X2208; &#X211D;<sup><span style="font-style:italic">n</span></sup></span>. The lattice <span class='latexinline'>
+<span style="font-style:italic">B</span> &#X2208; <sup><span style="font-style:italic">n</span></sup></span>. The lattice <span class='latexinline'>
 <span style="font-style:italic">L</span></span> is spanned by integer linear
    combinations of rows of <span class='latexinline'>
 <span style="font-style:italic">B</span></span>.
@@ -727,7 +727,7 @@ difference lies in the lattice. Formally, we have:
  A body <span class='latexinline'>
 <span style="font-style:italic">S</span> &#X2286; <span style="font-style:italic">R</span><sup><span style="font-style:italic">n</span></sup></span> which <b>need not be convex!</b>, which 
    has volume greater than <span class='latexinline'>
-det<span style="font-style:italic">B</span></span>. Recall that for a lattice <span class='latexinline'>
+det(<span style="font-style:italic">B</span>)</span>. Recall that for a lattice <span class='latexinline'>
 <span style="font-style:italic">L</span>(<span style="font-style:italic">B</span>)</span>,
    the volume of a fundamental unit / fundamental parallelopiped is <span class='latexinline'>
 <span style="font-style:italic">det</span>(<span style="font-style:italic">B</span>)</span>.
@@ -769,7 +769,9 @@ det(<span style="font-style:italic">B</span>)</span>, points from two different 
 </li>
 <li>
  Notice that <span class='latexinline'>
-<span style="font-style:italic">x</span><sub>1</sub> &#X2212; <span style="font-style:italic">x</span><sub>2</sub> &#X2208; <span style="font-style:italic">L</span> &#X2260; 0</span>.
+<span style="font-style:italic">x</span><sub>1</sub> &#X2212; <span style="font-style:italic">x</span><sub>2</sub> = <span style="font-style:italic">l</span><sub>1</sub> &#X2212; <span style="font-style:italic">l</span><sub>2</sub>&#X2208; <span style="font-style:italic">L</span> &#X2260; 0</span>, since we already argued
+   that <span class='latexinline'>
+<span style="font-style:italic">l</span><sub>1</sub> &#X2260; <span style="font-style:italic">l</span><sub>2</sub></span>. This gives us what we want.
 </li>
 
 </ol>
@@ -795,7 +797,25 @@ We can apply Blichfeldt's theorem to get our hands on two points <span class='la
 <span style="font-style:italic">x</span><sub>1</sub>, <span style="font-style:italic">x</span><sub>2</sub> &#X2208; <span style="font-style:italic">T</span></span>
 such that <span class='latexinline'>
 <span style="font-style:italic">x</span><sub>1</sub> &#X2212; <span style="font-style:italic">x</span><sub>2</sub> &#X2208; <span style="font-style:italic">L</span></span>. 
-<div class='latexblock'>
+<div class='latexblock'><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+&#XA0;&#XA0;&#XA0;&#XA0;&#XA0;
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">x</span><sub>1</sub>&#XA0;&#X2208;&#XA0;<span style="font-style:italic">T</span>&#XA0;&#X21D2;&#XA0;2<span style="font-style:italic">x</span><sub>1</sub>&#XA0;&#X2208;&#XA0;<span style="font-style:italic">S</span>&#XA0;&#XA0;(<span style="font-style:italic">S</span>&#XA0;=&#XA0;2<span style="font-style:italic">T</span>)&#XA0;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">x</span><sub>2</sub>&#XA0;&#X2208;&#XA0;<span style="font-style:italic">T</span>&#XA0;&#X21D2;&#XA0;2<span style="font-style:italic">x</span><sub>2</sub>&#XA0;&#X2208;&#XA0;<span style="font-style:italic">S</span>&#XA0;&#XA0;(<span style="font-style:italic">S</span>&#XA0;=&#XA0;2<span style="font-style:italic">T</span>)&#XA0;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >2<span style="font-style:italic">x</span><sub>2</sub>&#XA0;&#X2208;&#XA0;<span style="font-style:italic">S</span>&#XA0;&#X21D2;&#XA0;&#X2212;2<span style="font-style:italic">x</span><sub>2</sub>&#XA0;&#X2208;&#XA0;<span style="font-style:italic">S</span>&#XA0;(<span style="font-style:italic">S</span> is symmetric about origin)&#XA0;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2</td></tr>
+</table></td><td class="dcell">(2<span style="font-style:italic">x</span><sub>1</sub>)&#XA0;+&#XA0;</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2</td></tr>
+</table></td><td class="dcell">&#XA0;(&#X2212;2<span style="font-style:italic">x</span><sub>2</sub>)&#XA0;&#X2208;&#XA0;<span style="font-style:italic">S</span>&#XA0;(<span style="font-style:italic">S</span> is convex)</td></tr>
+</table></td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">x</span><sub>1</sub>&#XA0;&#X2212;&#XA0;<span style="font-style:italic">x</span><sub>2</sub>&#XA0;&#X2208;&#XA0;<span style="font-style:italic">S</span>&#XA0;(Simplification)</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >nonzero lattice point&#XA0;&#X2208;&#XA0;<span style="font-style:italic">S</span>&#XA0;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
 </div>
 <h4><a id=references href='#references'> § </a> References</h4>
 <ul>

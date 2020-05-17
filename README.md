@@ -198,10 +198,10 @@ of large-enough-size in any lattice will have two points such that their
 difference lies in the lattice. Formally, we have:
 
 1. A lattice $L(B) \equiv \{ Bx : x \in \mathbb Z^n \}$ for some basis 
-   $B \in \mathbb R^n$. The lattice $L$ is spanned by integer linear
+   $B \in \mathbb \R^n$. The lattice $L$ is spanned by integer linear
    combinations of rows of $B$.
 2. A body $S \subseteq R^n$ which **need not be convex!**, which 
-   has volume greater than $\det B$. Recall that for a lattice $L(B)$,
+   has volume greater than $\det(B)$. Recall that for a lattice $L(B)$,
    the volume of a fundamental unit / fundamental parallelopiped is $det(B)$.
 
 
@@ -222,7 +222,8 @@ The idea is to:
    $x_2 = l_2 + \delta$. they must have the same $\delta$ since they overlapped
    when they were laid on the fundamental paralellopiped. Also notice that $l_1 \neq l_2$
    since they came from two different parallograms on the plane!
-4. Notice that $x_1 - x_2 \in L \neq 0$.
+4. Notice that $x_1 - x_2 = l_1 - l_2\in L \neq 0$, since we already argued
+   that $l_1 \neq l_2$. This gives us what we want.
 
 #### Minkowskis' Convex body Theorem from Blichfeldt's theorem
 
@@ -242,12 +243,14 @@ We can apply Blichfeldt's theorem to get our hands on two points $x_1, x_2 \in T
 such that $x_1 - x_2 \in L$. 
 
 $$
-x_1 \in T \implies 2x_1 \in S \text{($S = 2T$)} \\
-x_2 \in T \implies 2x_2 \in S \text{($S = 2T$) \\
-2x_2 \in S \implies -2x_2 \in S \text{($S$ is symmetric about origin)} \\
-\frac{1}{2}x_1 + \frac{1}{2} (-2x_2) \in S \\
-x_1 - x_2 \in S \\
-\text{lattice point}~\in S \\
+\begin{align*}
+&x_1 \in T \Rightarrow 2x_1 \in S ~(S = 2T) \\
+&x_2 \in T \Rightarrow 2x_2 \in S ~(S = 2T) \\
+&2x_2 \in S \Rightarrow -2x_2 \in S~\text{($S$ is symmetric about origin)} \\
+&\frac{1}{2}(2x_1) + \frac{1}{2} (-2x_2) \in S~\text{($S$ is convex)}\\
+&x_1 - x_2 \in S~\text{(Simplification)}\\
+&\text{nonzero lattice point}~\in S \\
+\end{align*}
 $$
 
 
