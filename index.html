@@ -47,13 +47,18 @@ My reading list</a>
 	
 <ul>
 <li>
+ <a href=#proof-of-minkowski-convex-body-theorem>
+Proof of minkowski convex body theorem</a>
+
+</li>
+<li>
  <a href=#burrows-wheeler>
-Burrows Wheeler</a>
+Burrows Wheeler (WIP)</a>
 
 </li>
 <li>
  <a href=#intuitionistic-logic-as-a-heytig-algebra>
-Intutionstic logic as a Heytig algebra</a>
+Intuitionstic logic as a Heytig algebra</a>
 
 </li>
 <li>
@@ -699,6 +704,109 @@ Recipes</a>
 
 </ul>
 
+<h2><a id=proof-of-minkowski-convex-body-theorem href='#proof-of-minkowski-convex-body-theorem'> § </a> <a href=#proof-of-minkowski-convex-body-theorem>
+Proof of minkowski convex body theorem</a>
+</h2>
+We can derive a proof of the minkowski convex body theorem starting from
+Blichfeldt’s theorem.
+<h4><a id=blichfeldts-theorem href='#blichfeldts-theorem'> § </a> Blichfeldt's theorem</h4>
+This theorem allows us to prove that a set 
+of large-enough-size in any lattice will have two points such that their
+difference lies in the lattice. Formally, we have:
+<ol>
+<li>
+ A lattice <span class='latexinline'>
+<span style="font-style:italic">L</span>(<span style="font-style:italic">B</span>) &#X2261; { <span style="font-style:italic">Bx</span> : <span style="font-style:italic">x</span> &#X2208; &#X2124;<sup><span style="font-style:italic">n</span></sup> }</span> for some basis 
+   <span class='latexinline'>
+<span style="font-style:italic">B</span> &#X2208; &#X211D;<sup><span style="font-style:italic">n</span></sup></span>. The lattice <span class='latexinline'>
+<span style="font-style:italic">L</span></span> is spanned by integer linear
+   combinations of rows of <span class='latexinline'>
+<span style="font-style:italic">B</span></span>.
+</li>
+<li>
+ A body <span class='latexinline'>
+<span style="font-style:italic">S</span> &#X2286; <span style="font-style:italic">R</span><sup><span style="font-style:italic">n</span></sup></span> which <b>need not be convex!</b>, which 
+   has volume greater than <span class='latexinline'>
+det<span style="font-style:italic">B</span></span>. Recall that for a lattice <span class='latexinline'>
+<span style="font-style:italic">L</span>(<span style="font-style:italic">B</span>)</span>,
+   the volume of a fundamental unit / fundamental parallelopiped is <span class='latexinline'>
+<span style="font-style:italic">det</span>(<span style="font-style:italic">B</span>)</span>.
+</li>
+
+</ol>
+
+Blichfeldt's theorem tells us that there exists two points <span class='latexinline'>
+<span style="font-style:italic">x</span><sub>1</sub>, <span style="font-style:italic">x</span><sub>2</sub> &#X2208; <span style="font-style:italic">S</span></span>
+such that <span class='latexinline'>
+<span style="font-style:italic">x</span><sub>1</sub> &#X2212; <span style="font-style:italic">x</span><sub>2</sub> &#X2208; <span style="font-style:italic">L</span></span>.
+<h4><a id=proof href='#proof'> § </a> Proof</h4>
+The idea is to:
+<ol>
+<li>
+ Chop up sections of <span class='latexinline'>
+<span style="font-style:italic">S</span></span> across all translates of the fundamental parallelopiped
+   that have non-empty intersections with <span class='latexinline'>
+<span style="font-style:italic">S</span></span> back to the origin. This makes
+   all of them overlap with the fundamental parallelopiped with the origin.
+</li>
+<li>
+ Since <span class='latexinline'>
+<span style="font-style:italic">S</span></span> has volume great that <span class='latexinline'>
+det(<span style="font-style:italic">B</span>)</span>, but the fundamental paralellopiped
+   only has volume <span class='latexinline'>
+det(<span style="font-style:italic">B</span>)</span>, points from two different parallelograms <b>must</b>
+   overlap.
+</li>
+<li>
+ "Undo" the translation to find two points which are of the form <span class='latexinline'>
+<span style="font-style:italic">x</span><sub>1</sub> = <span style="font-style:italic">l</span><sub>1</sub> + &#X3B4;</span>,
+   <span class='latexinline'>
+<span style="font-style:italic">x</span><sub>2</sub> = <span style="font-style:italic">l</span><sub>2</sub> + &#X3B4;</span>. they must have the same <span class='latexinline'>
+&#X3B4;</span> since they overlapped
+   when they were laid on the fundamental paralellopiped. Also notice that <span class='latexinline'>
+<span style="font-style:italic">l</span><sub>1</sub> &#X2260; <span style="font-style:italic">l</span><sub>2</sub></span>
+   since they came from two different parallograms on the plane!
+</li>
+<li>
+ Notice that <span class='latexinline'>
+<span style="font-style:italic">x</span><sub>1</sub> &#X2212; <span style="font-style:italic">x</span><sub>2</sub> &#X2208; <span style="font-style:italic">L</span> &#X2260; 0</span>.
+</li>
+
+</ol>
+
+<h4><a id=minkowskis-convex-body-theorem-from-blichfeldts-theorem href='#minkowskis-convex-body-theorem-from-blichfeldts-theorem'> § </a> Minkowskis' Convex body Theorem from Blichfeldt's theorem</h4>
+Consider a convex set <span class='latexinline'>
+<span style="font-style:italic">S</span> &#X2286; &#X211D;<sup><span style="font-style:italic">n</span></sup></span>
+that is symmetric about the origin with volume greater than <span class='latexinline'>
+2<sup><span style="font-style:italic">n</span></sup> <span style="font-style:italic">det</span>(<span style="font-style:italic">B</span>)</span>.
+Create a new set <span class='latexinline'>
+<span style="font-style:italic">T</span></span> which is <span class='latexinline'>
+<span style="font-style:italic">S</span> * 0.5</span>. Formally:
+<div class='latexblock'>
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">T</span>&#XA0;&#X2261;&#XA0;<span style="font-style:italic">S</span>/2&#XA0;=&#XA0;{&#XA0;(<span style="font-style:italic">x</span><sub>1</sub>/2,&#XA0;<span style="font-style:italic">x</span><sub>2</sub>,&#XA0;&#X2026;,&#XA0;<span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub>/2)&#XA0;&#XA0;:&#XA0;(<span style="font-style:italic">x</span><sub>1</sub>,&#XA0;<span style="font-style:italic">x</span><sub>2</sub>,&#XA0;&#X2026;,&#XA0;<span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub>)&#XA0;&#X2208;&#XA0;<span style="font-style:italic">S</span>&#XA0;}</td></tr>
+</table></div>
+We now see that <span class='latexinline'>
+<span style="font-style:italic">Vol</span>(<span style="font-style:italic">T</span>) &gt; <span style="font-style:italic">det</span>(<span style="font-style:italic">B</span>)</span> to invoke  Blichfeldt's theorem.
+Formally:
+<div class='latexblock'>
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">Vol</span>(<span style="font-style:italic">T</span>)&#XA0;=&#XA0;1/2<sup><span style="font-style:italic">n</span></sup>&#XA0;<span style="font-style:italic">Vol</span>(<span style="font-style:italic">S</span>)&#XA0;&gt;&#XA0;1/2<sup><span style="font-style:italic">n</span></sup>&#XA0;(2<sup><span style="font-style:italic">n</span></sup>&#XA0;<span style="font-style:italic">det</span>(<span style="font-style:italic">B</span>))&#XA0;=&#XA0;<span style="font-style:italic">det</span>(<span style="font-style:italic">B</span>)</td></tr>
+</table></div>
+We can apply Blichfeldt's theorem to get our hands on two points <span class='latexinline'>
+<span style="font-style:italic">x</span><sub>1</sub>, <span style="font-style:italic">x</span><sub>2</sub> &#X2208; <span style="font-style:italic">T</span></span>
+such that <span class='latexinline'>
+<span style="font-style:italic">x</span><sub>1</sub> &#X2212; <span style="font-style:italic">x</span><sub>2</sub> &#X2208; <span style="font-style:italic">L</span></span>. 
+<div class='latexblock'>
+</div>
+<h4><a id=references href='#references'> § </a> References</h4>
+<ul>
+<li>
+ <a href=https://www.theoremoftheday.org/GeometryAndTrigonometry/Minkowski/TotDMinkowski.pdf>
+Theorem of the day</a>
+
+</li>
+
+</ul>
+
 <h2><a id=burrows-wheeler href='#burrows-wheeler'> § </a> <a href=#burrows-wheeler>
 Burrows Wheeler</a>
 </h2>
@@ -706,8 +814,9 @@ We aim to get the <span class='latexinline'>
 <span style="font-style:italic">O</span>(<span style="font-style:italic">n</span>)</span> algorithm for burrows wheeler, by starting from the
 naive <span class='latexinline'>
 <span style="font-style:italic">O</span>(<span style="font-style:italic">n</span><sup>2</sup>)</span> implementation and then slowly chipping away to get to the
-fastest algorithm.
-<h3><a id=string-rotations href='#string-rotations'> § </a> String rotations</h3>
+fastest algorithm
+                 
+<h4><a id=string-rotations href='#string-rotations'> § </a> String rotations</h4>
 Given a string <span class='latexinline'>
 <span style="font-style:italic">s</span></span> of length <span class='latexinline'>
 <span style="font-style:italic">n</span></span>, we can index it as <span class='latexinline'>
@@ -764,6 +873,194 @@ which is equal to <span class='latexinline'>
 <div class='latexblock'>
 <table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">lrot</span>(<span style="font-style:italic">r</span>,&#XA0;<span style="font-style:italic">s</span>)[<span style="font-style:italic">c</span>]&#XA0;=&#XA0;<span style="font-style:italic">s</span>[(<span style="font-style:italic">r</span>&#XA0;+&#XA0;<span style="font-style:italic">c</span>)&#XA0;</td></tr>
 </table></div>
+<h4><a id=sorts-of-string-rotations href='#sorts-of-string-rotations'> § </a> Sorts of string rotations</h4>
+We're next interested in considering <i>sorted order</i> of the string
+rotations. For example, in the case of the string "here, there",
+all the rotations are:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">01:</font> 
+<font color="#666666">02:</font> here-there  0
+<font color="#666666">03:</font> ere-thereh  1
+<font color="#666666">04:</font> re-therehe  2
+<font color="#666666">05:</font> e-thereher  3
+<font color="#666666">06:</font> -therehere  4
+<font color="#666666">07:</font> therehere-  5
+<font color="#666666">08:</font> herehere-t  6
+<font color="#666666">09:</font> erehere-th  7
+<font color="#666666">10:</font> rehere-the  8
+<font color="#666666">11:</font> ehere-ther  9
+<font color="#666666">12:</font> </tt></pre>
+</div>
+
+which is calculated with the help of the following haskell code:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> lrot :: [a] -&gt; [a]
+<font color="#666666">3:</font> lrot [] = []; lrot (a:as) = as ++ [a]
+<font color="#666666">4:</font> 
+<font color="#666666">5:</font> lrots :: [a] -&gt; [[a]]; lrots as = take (length as) (iterate lrot as)
+<font color="#666666">6:</font> 
+<font color="#666666">7:</font> main =  putStrLn $ intercalate <font color="#808080">"\n"</font>  
+<font color="#666666">8:</font>   (zipWith (\s i -&gt; s &lt;&gt; <font color="#808080">"  "</font> &lt;&gt; show i)
+<font color="#666666">9:</font>            (lrots <font color="#808080">"here-there"</font>) [<font color="#000000">0</font>,<font color="#000000">1</font>..])
+<font color="#666666">10:</font> </tt></pre>
+</div>
+
+If we now <i>sort</i> these rotations, we get:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">01:</font> 
+<font color="#666666">02:</font> -therehere  0
+<font color="#666666">03:</font> e-thereher  1
+<font color="#666666">04:</font> ehere-ther  2
+<font color="#666666">05:</font> ere-thereh  3
+<font color="#666666">06:</font> erehere-th  4
+<font color="#666666">07:</font> here-there  5
+<font color="#666666">08:</font> herehere-t  6
+<font color="#666666">09:</font> re-therehe  7
+<font color="#666666">10:</font> rehere-the  8
+<font color="#666666">11:</font> therehere-  9
+<font color="#666666">12:</font> </tt></pre>
+</div>
+
+we produce this by chainging the above definition of <code>main</code> to:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> main =  putStrLn $ intercalate "\n"  
+<font color="#666666">3:</font>   (zipWith (\s i -&gt; s &lt;&gt; "  " &lt;&gt; show i)
+<font color="#666666">4:</font>            -- | extra `sort` here
+<font color="#666666">5:</font>            (sort $ lrots "here-there") [0,1..])
+<font color="#666666">6:</font> </tt></pre>
+</div>
+
+Let's look at the <b>final column</b> of that table. We have:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">01:</font> 
+<font color="#666666">02:</font> -thereher|e|  0
+<font color="#666666">03:</font> e-therehe|r|  1
+<font color="#666666">04:</font> ehere-the|r|  2
+<font color="#666666">05:</font> ere-there|h|  3
+<font color="#666666">06:</font> erehere-t|h|  4
+<font color="#666666">07:</font> here-ther|e|  5 &lt;- ORIGINAL STRING
+<font color="#666666">08:</font> herehere-|t|  6
+<font color="#666666">09:</font> re-thereh|e|  7
+<font color="#666666">10:</font> rehere-th|e|  8
+<font color="#666666">11:</font> therehere|-|  9
+<font color="#666666">12:</font> 
+<font color="#666666">13:</font> 0123456789
+<font color="#666666">14:</font> errhhetee-
+<font color="#666666">15:</font> </tt></pre>
+</div>
+
+Now, we'll show how to write a <i>really cool</i> function call <code>bwt</code> such that:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">1:</font> 
+<font color="#666666">2:</font> bwtinv (<font color="#808080">"errhhetee-"</font>,<font color="#000000">5</font>) = <font color="#808080">"here-there"</font>
+<font color="#666666">3:</font> </tt></pre>
+</div>
+
+The <code>5</code> is the index of the original string in the list. That is, given
+the jumbled up last-column and the index of the original string, we're
+able to reconstruct the original string. The reason this is useful is
+that the jumbled string <code>"errhhetee-"</code> is easier to compress: it has
+long runs of <code>r</code>, <code>h</code>, and <code>e</code> which makes it easier to compress.
+The process we performed of rotating, sorting the rotations and taking
+the final column is the Burrows-Wheeler transform. in code:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">01:</font> 
+<font color="#666666">02:</font> <b><u><font color="#000000">import</font></u></b> Data.<b><font color="#000000">List</font></b>
+<font color="#666666">03:</font> lrot :: [a] -&gt; [a]
+<font color="#666666">04:</font> lrot [] = []; lrot (a:as) = as ++ [a]
+<font color="#666666">05:</font> 
+<font color="#666666">06:</font> lrots :: [a] -&gt; [[a]]
+<font color="#666666">07:</font> lrots as = take (length as) (iterate lrot as)
+<font color="#666666">08:</font> 
+<font color="#666666">09:</font> findix :: <b><font color="#000000">Eq</font></b> a =&gt; a -&gt; [a] -&gt; <b><font color="#000000">Int</font></b>
+<font color="#666666">10:</font> findix a as = length (takeWhile (/= a) as)
+<font color="#666666">11:</font> 
+<font color="#666666">12:</font> lastcol :: [[a]] -&gt; [a]; lastcol = map last
+<font color="#666666">13:</font> 
+<font color="#666666">14:</font> bwt :: <b><font color="#000000">Eq</font></b> a =&gt; <b><font color="#000000">Ord</font></b> a =&gt; [a] -&gt; ([a], <b><font color="#000000">Int</font></b>)
+<font color="#666666">15:</font> bwt as = <b><u><font color="#000000">let</font></u></b> as' = (sort . lrots) as in (lastcol as', findix as as')
+<font color="#666666">16:</font> </tt></pre>
+</div>
+
+Now we need to understand how <code>bwtinv</code> is defined and what it does.
+The definition is:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#666666">01:</font> 
+<font color="#666666">02:</font> import Control.Arrow (&amp;&amp;&amp;)
+<font color="#666666">03:</font> 
+<font color="#666666">04:</font> bwtinv :: Eq a =&gt; Ord a =&gt; ([a], Int) -&gt; [a]
+<font color="#666666">05:</font> bwtinv (as, k) = recreate as !! k
+<font color="#666666">06:</font> 
+<font color="#666666">07:</font> -- recreate · lastcol · sort · rots = sort · rots
+<font color="#666666">08:</font> recreate :: (Eq a, Ord a) =&gt; [a] -&gt; [[a]]
+<font color="#666666">09:</font> recreate as = recreate' (length as) as
+<font color="#666666">10:</font> 
+<font color="#666666">11:</font> recreate' :: (Eq a, Ord a) =&gt; Int -&gt; [a] -&gt; [[a]]
+<font color="#666666">12:</font> recreate' 0 = map (const [])
+<font color="#666666">13:</font> recreate' n = hdsort . consCol . (id &amp;&amp;&amp; recreate' (n-1))
+<font color="#666666">14:</font> 
+<font color="#666666">15:</font> 
+<font color="#666666">16:</font> hdsort :: Ord a =&gt; [[a]] -&gt; [[a]]
+<font color="#666666">17:</font> hdsort = let cmp (x:xs) (y:ys) = compare x y
+<font color="#666666">18:</font>          in sortBy cmp 
+<font color="#666666">19:</font> 
+<font color="#666666">20:</font> consCol :: ([a], [[a]]) -&gt; [[a]]
+<font color="#666666">21:</font> consCol = uncurry (zipWith (:))
+<font color="#666666">22:</font> </tt></pre>
+</div>
+
+OK, so much for the code. what does it <i>do</i>?
+The idea is that:
+<ul>
+<li>
+ we recreate the entire matrix from the last column using <code>recreate</code>
+  and take the <code>k</code>th element.
+</li>
+
+</ul>
+
+<ul>
+<li>
+ <code>recreate</code> apprents a copy of the initial last column to a matrix of
+  columns, and then sorts this.
+</li>
+
+</ul>
+
 <h4><a id=references href='#references'> § </a> References</h4>
 <ul>
 <li>
@@ -772,8 +1069,8 @@ which is equal to <span class='latexinline'>
 
 </ul>
 
-<h2><a id=intutionstic-logic-as-a-heytig-algebra href='#intutionstic-logic-as-a-heytig-algebra'> § </a> <a href=#intuitionistic-logic-as-a-heytig-algebra>
-Intutionstic logic as a Heytig algebra</a>
+<h2><a id=intuitionstic-logic-as-a-heytig-algebra href='#intuitionstic-logic-as-a-heytig-algebra'> § </a> <a href=#intuitionistic-logic-as-a-heytig-algebra>
+Intuitionstic logic as a Heytig algebra</a>
 </h2>
 <i>open sets</i> form a Heytig Algebra, which is a lattice plus an implication
 operator. So it's stronger than a lattice, but weaker than a boolean algebra.

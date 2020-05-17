@@ -53,8 +53,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 	
-- [Burrows Wheeler](#burrows-wheeler)
-- [Intutionstic logic as a Heytig algebra](#intuitionistic-logic-as-a-heytig-algebra)
+- [Proof of minkowski convex body theorem](#proof-of-minkowski-convex-body-theorem)
+- [Burrows Wheeler (WIP)](#burrows-wheeler)
+- [Intuitionstic logic as a Heytig algebra](#intuitionistic-logic-as-a-heytig-algebra)
 - [Edit distance](#edit-distance)
 - [Evolution of bee colonies](#evolution-of-bee-colonies)
 - [Best practices for array indexing](#best-practices-for-array-indexing)
@@ -185,13 +186,82 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Recipes](#recipes)
 
 
+# [Proof of minkowski convex body theorem](#proof-of-minkowski-convex-body-theorem)
+
+We can derive a proof of the minkowski convex body theorem starting from
+Blichfeldt’s theorem.
+
+#### Blichfeldt's theorem
+
+This theorem allows us to prove that a set 
+of large-enough-size in any lattice will have two points such that their
+difference lies in the lattice. Formally, we have:
+
+1. A lattice $L(B) \equiv \{ Bx : x \in \mathbb Z^n \}$ for some basis 
+   $B \in \mathbb R^n$. The lattice $L$ is spanned by integer linear
+   combinations of rows of $B$.
+2. A body $S \subseteq R^n$ which **need not be convex!**, which 
+   has volume greater than $\det B$. Recall that for a lattice $L(B)$,
+   the volume of a fundamental unit / fundamental parallelopiped is $det(B)$.
+
+
+Blichfeldt's theorem tells us that there exists two points $x_1, x_2 \in S$
+such that $x_1 - x_2 \in L$.
+
+##### Proof
+
+The idea is to:
+
+1. Chop up sections of $S$ across all translates of the fundamental parallelopiped
+   that have non-empty intersections with $S$ back to the origin. This makes
+   all of them overlap with the fundamental parallelopiped with the origin.
+2. Since $S$ has volume great that $\det(B)$, but the fundamental paralellopiped
+   only has volume $\det(B)$, points from two different parallelograms **must**
+   overlap.
+3. "Undo" the translation to find two points which are of the form $x_1 = l_1 + \delta$,
+   $x_2 = l_2 + \delta$. they must have the same $\delta$ since they overlapped
+   when they were laid on the fundamental paralellopiped. Also notice that $l_1 \neq l_2$
+   since they came from two different parallograms on the plane!
+4. Notice that $x_1 - x_2 \in L \neq 0$.
+
+#### Minkowskis' Convex body Theorem from Blichfeldt's theorem
+
+Consider a convex set $S \subseteq \mathbb R^n$
+that is symmetric about the origin with volume greater than $2^n det(B)$.
+
+Create a new set $T$ which is $S * 0.5$. Formally:
+
+$$T \equiv S/2 = \{ (x_1/2, x_2, \dots, x_n/2)  : (x_1, x_2, \dots, x_n) \in S \}$$
+
+We now see that $Vol(T) > det(B)$ to invoke  Blichfeldt's theorem.
+Formally:
+
+$$Vol(T) = 1/2^n Vol(S) > 1/2^n (2^n det(B)) = det(B)$$
+
+We can apply Blichfeldt's theorem to get our hands on two points $x_1, x_2 \in T$
+such that $x_1 - x_2 \in L$. 
+
+$$
+x_1 \in T \implies 2x_1 \in S \text{($S = 2T$)} \\
+x_2 \in T \implies 2x_2 \in S \text{($S = 2T$) \\
+2x_2 \in S \implies -2x_2 \in S \text{($S$ is symmetric about origin)} \\
+\frac{1}{2}x_1 + \frac{1}{2} (-2x_2) \in S \\
+x_1 - x_2 \in S \\
+\text{lattice point}~\in S \\
+$$
+
+
+#### References
+- [Theorem of the day](https://www.theoremoftheday.org/GeometryAndTrigonometry/Minkowski/TotDMinkowski.pdf)
+
+
 # [Burrows Wheeler](#burrows-wheeler)
 
 We aim to get the $O(n)$ algorithm for burrows wheeler, by starting from the
 naive $O(n^2)$ implementation and then slowly chipping away to get to the
-fastest algorithm.
-
-## String rotations
+fastest algorithm
+                 
+### String rotations
 
 Given a string $s$ of length $n$, we can index it as $s[0]$, $s[1]$, upto
 $s[n-1]$. We can now build a table consisting of _rotations_ of the string.
@@ -229,11 +299,154 @@ $$
 lrot(r, s)[c] = s[(r + c) %n] = s[(c + r)%n] = lrot(c, s)[r]
 $$
 
+### Sorts of string rotations
+
+We're next interested in considering _sorted order_ of the string
+rotations. For example, in the case of the string "here, there",
+all the rotations are:
+
+```
+here-there  0
+ere-thereh  1
+re-therehe  2
+e-thereher  3
+-therehere  4
+therehere-  5
+herehere-t  6
+erehere-th  7
+rehere-the  8
+ehere-ther  9
+```
+
+which is calculated with the help of the following haskell code:
+
+```hs
+lrot :: [a] -> [a]
+lrot [] = []; lrot (a:as) = as ++ [a]
+
+lrots :: [a] -> [[a]]; lrots as = take (length as) (iterate lrot as)
+
+main =  putStrLn $ intercalate "\n"  
+  (zipWith (\s i -> s <> "  " <> show i)
+           (lrots "here-there") [0,1..])
+```
+
+If we now *sort* these rotations, we get:
+
+```
+-therehere  0
+e-thereher  1
+ehere-ther  2
+ere-thereh  3
+erehere-th  4
+here-there  5
+herehere-t  6
+re-therehe  7
+rehere-the  8
+therehere-  9
+```
+
+we produce this by chainging the above definition of `main` to:
+
+```
+main =  putStrLn $ intercalate "\n"  
+  (zipWith (\s i -> s <> "  " <> show i)
+           -- | extra `sort` here
+           (sort $ lrots "here-there") [0,1..])
+```
+
+Let's look at the **final column** of that table. We have:
+
+```
+-thereher|e|  0
+e-therehe|r|  1
+ehere-the|r|  2
+ere-there|h|  3
+erehere-t|h|  4
+here-ther|e|  5 <- ORIGINAL STRING
+herehere-|t|  6
+re-thereh|e|  7
+rehere-th|e|  8
+therehere|-|  9
+
+0123456789
+errhhetee-
+```
+
+Now, we'll show how to write a _really cool_ function call `bwt` such that:
+
+```hs
+bwtinv ("errhhetee-",5) = "here-there"
+```
+
+The `5` is the index of the original string in the list. That is, given
+the jumbled up last-column and the index of the original string, we're
+able to reconstruct the original string. The reason this is useful is
+that the jumbled string `"errhhetee-"` is easier to compress: it has
+long runs of `r`, `h`, and `e` which makes it easier to compress.
+
+The process we performed of rotating, sorting the rotations and taking
+the final column is the Burrows-Wheeler transform. in code:
+
+```hs
+import Data.List
+lrot :: [a] -> [a]
+lrot [] = []; lrot (a:as) = as ++ [a]
+
+lrots :: [a] -> [[a]]
+lrots as = take (length as) (iterate lrot as)
+
+findix :: Eq a => a -> [a] -> Int
+findix a as = length (takeWhile (/= a) as)
+
+lastcol :: [[a]] -> [a]; lastcol = map last
+
+bwt :: Eq a => Ord a => [a] -> ([a], Int)
+bwt as = let as' = (sort . lrots) as in (lastcol as', findix as as')
+```
+
+Now we need to understand how `bwtinv` is defined and what it does.
+The definition is:
+
+```
+import Control.Arrow (&&&)
+
+bwtinv :: Eq a => Ord a => ([a], Int) -> [a]
+bwtinv (as, k) = recreate as !! k
+
+-- recreate · lastcol · sort · rots = sort · rots
+recreate :: (Eq a, Ord a) => [a] -> [[a]]
+recreate as = recreate' (length as) as
+
+recreate' :: (Eq a, Ord a) => Int -> [a] -> [[a]]
+recreate' 0 = map (const [])
+recreate' n = hdsort . consCol . (id &&& recreate' (n-1))
+
+
+hdsort :: Ord a => [[a]] -> [[a]]
+hdsort = let cmp (x:xs) (y:ys) = compare x y
+         in sortBy cmp 
+
+consCol :: ([a], [[a]]) -> [[a]]
+consCol = uncurry (zipWith (:))
+```
+
+OK, so much for the code. what does it _do_?
+
+The idea is that:
+- we recreate the entire matrix from the last column using `recreate`
+  and take the `k`th element.
+
+- `recreate` apprents a copy of the initial last column to a matrix of
+  columns, and then sorts this.
+
+
+
 #### References
 - Richard Bird: Pearls of functional algorithm design
 
 
-# [Intutionstic logic as a Heytig algebra](#intuitionistic-logic-as-a-heytig-algebra)
+# [Intuitionstic logic as a Heytig algebra](#intuitionistic-logic-as-a-heytig-algebra)
 
 _open sets_ form a Heytig Algebra, which is a lattice plus an implication
 operator. So it's stronger than a lattice, but weaker than a boolean algebra.
