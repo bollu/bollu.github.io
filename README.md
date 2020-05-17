@@ -53,17 +53,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 	
-- [Geometric proof of `e^x >= 1+x`, `e^(-x) <= 1-x`](FILL THIS UP)
+- [Geometric proof of `e^x >= 1+x`, `e^(-x) <= 1-x`](#1-x-e-xof-of-)
 - [Ranking and Sorting](#ranking-and-sorting)
 - [Proof of minkowski convex body theorem](#proof-of-minkowski-convex-body-theorem)
 - [Burrows Wheeler (WIP)](#burrows-wheeler)
-- [Intuitionstic logic as a Heytig algebra](#intuitionistic-logic-as-a-heytig-algebra)
+- [Intuitionstic logic as a Heytig algebra](#intuitionstic-logic-as-a-heytig-algebra)
 - [Edit distance](#edit-distance)
 - [Evolution of bee colonies](#evolution-of-bee-colonies)
 - [Best practices for array indexing](#best-practices-for-array-indexing)
 - [Algebraic structure for vector clocks](#algebraic-structure-for-vector-clocks)
 - [Networks are now faster than disks](#networks-are-now-faster-than-disks)
-- [Einstein-de Haas effect](#einstein--de-haas-effect)
+- [Einstein-de Haas effect](#einstein-de-haas-effect)
 - [Rank-select as adjunction](#rank-select-as-adjunction)
 - [Bounding chains: uniformly sample colorings](#bounding-chains-uniformly-sample-colorings)
 - [Coupling from the past (WIP)](#coupling-from-the-past)
@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Big list of Latex](#big-list-of-latex)
 - [Recipes](#recipes)
 
-# [Geometric proof of `e^x >= 1+x`, `1-x <= e^(-x)`](FILL THIS UP)
+# [Geometric proof of `e^x >= 1+x`, `e^(-x) <= 1-x`](#1-x-e-xof-of-)
 
 Let's concentrate on the `e^x >= 1 + x` part. 
 
@@ -618,7 +618,7 @@ The idea is that:
 - Richard Bird: Pearls of functional algorithm design
 
 
-# [Intuitionstic logic as a Heytig algebra](#intuitionistic-logic-as-a-heytig-algebra)
+# [Intuitionstic logic as a Heytig algebra](#intuitionstic-logic-as-a-heytig-algebra)
 
 _open sets_ form a Heytig Algebra, which is a lattice plus an implication
 operator. So it's stronger than a lattice, but weaker than a boolean algebra.
@@ -1019,6 +1019,16 @@ two segments at some index `len`,
 Notice how we used _both_ the "length view" and the "past the end" view to
 quickly derive the bounds of the second array from the first array.
 
+#### half-open indexing: uniformly generate power-of-2 intervals.
+
+If we want intervals of length $2^n$: `1, 2, 4, 8, ...` which is common if one
+is building data structures such as segment trees and fenwick trees, 
+in a half-open representation, this literally becomes `[a, a+1)`, 
+`[a, a+2)`, `[a, a+4)` and so on. On the other hand, if one wants
+to use closed interval based indexing, one needs to generate the
+series $2^n - 1$, which is `[a, a+0]`, `[a, a+3]`, `[a, a+7]` which is
+slightly more finicky.
+
 #### How to deal with strides
 
 If there's a loop
@@ -1085,7 +1095,7 @@ mentioned that SSDs might be much faster, and the numbers bear out:
 - Round trip within same datacenter: 500,000 ns
 - Disk seek: 10,000,000 ns [regular disk]
 
-# [Einstein-de Haas effect](einstein--de-haas-effect)
+# [Einstein-de Haas effect](#einstein-de-haas-effect)
 
 I learnt of this from hacker news. This is some crazy experiment that shows
 that the 'quantum angular momentum' (spin) and the 'classical angular momentum'

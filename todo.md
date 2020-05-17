@@ -293,4 +293,4 @@ installed, use it to compute closed forms)
   a car review. Jean Baudillard.
 - Simulacra v/s simulacra, discussion on hackernews: https://news.ycombinator.com/item?id=23154141
 - Learn semantics of javascript: `function mk() { let inner =  function() { console.warn(this.x)}; inner = inner.bind({x: 42}); inner.x = -42; return inner; }; mk()(); console.log(mk().x);`. NOTE: this behaviour changes if `inner` is an arrow function. What are the denotational semantics of this?
-
+- Queueing Theory.
