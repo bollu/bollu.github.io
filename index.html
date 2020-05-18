@@ -47,6 +47,11 @@ My reading list</a>
 	
 <ul>
 <li>
+ <a href=#lyndon-christoffel-convex-hull>
+Lyndon + Christoffel = Convex Hull</a>
+
+</li>
+<li>
  <a href=#1-x-e-xof-of->
 Geometric proof of <code>e^x >= 1+x</code>, <code>e^(-x) <= 1-x</code></a>
 
@@ -710,6 +715,104 @@ Big list of Latex</a>
  <a href=#recipes>
 Recipes</a>
 
+</li>
+
+</ul>
+
+<h2><a id=lyndon-christoffel-convex-hull href='#lyndon-christoffel-convex-hull'> § </a> <a href=#lyndon-christoffel-convex-hull>
+Lyndon + Christoffel = Convex Hull</a>
+</h2>
+Actual "real world" use-case of lyndon factorization, cribbed from here:
+<ul>
+<li>
+ <a href=https://archipel.uqam.ca/8354/1/Reutenauer-2009a-preprint.pdf>
+Lyndon + Christoffel = digitally convex</a>
+
+</li>
+<li>
+ Combinatorics on Words: Christoffel Words and Repetitions in Words
+</li>
+
+</ul>
+
+I wanted to learn a real-world use-case of lyndon factorization so I could
+remember it. I found a whole bridge between combinatorics/strings and
+discrete geometry (they call it "digital geometry") that I didn't know
+existed before.
+<ul>
+<li>
+ If you have a line with rational slope <span class='latexinline'>
+<span style="font-style:italic">p</span>/<span style="font-style:italic">q</span></span> and you want to draw a
+  "discretized line" by connecting integer points in ZxZ, you can describe this
+  discretized line as starting from <span class='latexinline'>
+(0, 0)</span>, making moves <span class='latexinline'>
+<span style="font-style:italic">dx</span></span> (move up 1 unit
+  along <span class='latexinline'>
+<span style="font-style:italic">x</span></span>), <span class='latexinline'>
+<span style="font-style:italic">dy</span></span> (move up 1 unit along <span class='latexinline'>
+<span style="font-style:italic">y</span></span>), finally reaching the point 
+  <span class='latexinline'>
+(<span style="font-style:italic">p</span>, <span style="font-style:italic">q</span>)</span>. For example, to reach the point <span class='latexinline'>
+(2, 3)</span>, you can make the moves 
+  <span class='latexinline'>
+[<span style="font-style:italic">dx</span>, <span style="font-style:italic">dy</span>, <span style="font-style:italic">dx</span>, <span style="font-style:italic">dy</span>, <span style="font-style:italic">dy</span>]</span>.
+</li>
+
+</ul>
+
+<ul>
+<li>
+ A christoffel word is a word <span class='latexinline'>
+<span style="font-style:italic">w</span> &#X2208; <span style="font-style:italic">dx</span>, <span style="font-style:italic">dy</span><sup>&#X22C6;</sup></span> such that it hugs a line of
+  rational slope <span class='latexinline'>
+<span style="font-style:italic">p</span>/<span style="font-style:italic">q</span></span> as close as possible. Formally, there are no integer
+  points between the line with slope <span class='latexinline'>
+<span style="font-style:italic">p</span>/<span style="font-style:italic">q</span></span> starting from the origin, and the
+  discretized line as described by <span class='latexinline'>
+<span style="font-style:italic">w</span></span>. An example picture:
+</li>
+
+</ul>
+
+<img src="./static/christoffel-word-example.png">
+<ul>
+<li>
+ It turns out that all primitive christoffel words are Lyndon words. I'm not
+  100% sure what primitive is, but the take-away is that these primitive
+  christoffel words represent discrete lines that are <i>good</i> approximations
+  of lines.
+</li>
+
+</ul>
+
+<ul>
+<li>
+ Now, we are given a discrete sequence of adjacent line segments going
+  upwards, where the line segments are described by <span class='latexinline'>
+<span style="font-style:italic">dx</span>, <span style="font-style:italic">dy</span></span> moves. We want to
+  check if the discrete curve defined by them is well-approximating a convex
+  polygon.
+</li>
+
+</ul>
+
+<ul>
+<li>
+ We compute the lyndon factorization of the word. This splits the
+  original line segment into a series of line segments, where each
+  successive line segment has lower slope than the previous (since the
+  lyndon decomposition splits words into non-decreasing lex order).
+</li>
+
+</ul>
+
+<img src="./static/lyndon-convex.png">
+<ul>
+<li>
+ We can then check that each word in the lyndon decomposition is a Christoffel
+  word. If it is, then your sequence of moves describes a "good  discrete
+  convex hull", since as described above, a christoffel word "hugs the line"
+  well. 
 </li>
 
 </ul>
@@ -1961,6 +2064,16 @@ two segments at some index <code>len</code>,
 
 Notice how we used <i>both</i> the "length view" and the "past the end" view to
 quickly derive the bounds of the second array from the first array.
+<h4><a id=half-open-indexing-uniformly-generate-power-of-2-intervals href='#half-open-indexing-uniformly-generate-power-of-2-intervals'> § </a> half-open indexing: uniformly generate power-of-2 intervals.</h4>
+If we want intervals of length <span class='latexinline'>
+2<sup><span style="font-style:italic">n</span></sup></span>: <code>1, 2, 4, 8, ...</code> which is common if one
+is building data structures such as segment trees and fenwick trees, 
+in a half-open representation, this literally becomes <code>[a, a+1)</code>, 
+<code>[a, a+2)</code>, <code>[a, a+4)</code> and so on. On the other hand, if one wants
+to use closed interval based indexing, one needs to generate the
+series <span class='latexinline'>
+2<sup><span style="font-style:italic">n</span></sup> &#X2212; 1</span>, which is <code>[a, a+0]</code>, <code>[a, a+3]</code>, <code>[a, a+7]</code> which is
+slightly more finicky.
 <h4><a id=how-to-deal-with-strides href='#how-to-deal-with-strides'> § </a> How to deal with strides</h4>
 If there's a loop
 <div class='code'>

@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 #### Table of contents:
 	
+- [Lyndon + Christoffel = Convex Hull](#lyndon-christoffel-convex-hull)
 - [Geometric proof of `e^x >= 1+x`, `e^(-x) <= 1-x`](#1-x-e-xof-of-)
 - [Ranking and Sorting](#ranking-and-sorting)
 - [Proof of minkowski convex body theorem](#proof-of-minkowski-convex-body-theorem)
@@ -186,6 +187,55 @@ document.addEventListener("DOMContentLoaded", function() {
 - [Big list of Coq](#big-list-of-coq)
 - [Big list of Latex](#big-list-of-latex)
 - [Recipes](#recipes)
+
+# [Lyndon + Christoffel = Convex Hull](#lyndon-christoffel-convex-hull)
+Actual "real world" use-case of lyndon factorization, cribbed from here:
+
+- [Lyndon + Christoffel = digitally convex](https://archipel.uqam.ca/8354/1/Reutenauer-2009a-preprint.pdf)
+- Combinatorics on Words: Christoffel Words and Repetitions in Words
+
+I wanted to learn a real-world use-case of lyndon factorization so I could
+remember it. I found a whole bridge between combinatorics/strings and
+discrete geometry (they call it "digital geometry") that I didn't know
+existed before.
+
+
+- If you have a line with rational slope $p/q$ and you want to draw a
+  "discretized line" by connecting integer points in ZxZ, you can describe this
+  discretized line as starting from $(0, 0)$, making moves $dx$ (move up 1 unit
+  along $x$), $dy$ (move up 1 unit along $y$), finally reaching the point 
+  $(p, q)$. For example, to reach the point $(2, 3)$, you can make the moves 
+  $[dx, dy, dx, dy, dy]$.
+
+- A christoffel word is a word $w \in {dx, dy}^\star$ such that it hugs a line of
+  rational slope $p/q$ as close as possible. Formally, there are no integer
+  points between the line with slope $p/q$ starting from the origin, and the
+  discretized line as described by $w$. An example picture:
+
+<img src="./static/christoffel-word-example.png">
+
+- It turns out that all primitive christoffel words are Lyndon words. I'm not
+  100% sure what primitive is, but the take-away is that these primitive
+  christoffel words represent discrete lines that are *good* approximations
+  of lines.
+
+- Now, we are given a discrete sequence of adjacent line segments going
+  upwards, where the line segments are described by $dx, dy$ moves. We want to
+  check if the discrete curve defined by them is well-approximating a convex
+  polygon.
+
+- We compute the lyndon factorization of the word. This splits the
+  original line segment into a series of line segments, where each
+  successive line segment has lower slope than the previous (since the
+  lyndon decomposition splits words into non-decreasing lex order).
+
+<img src="./static/lyndon-convex.png">
+
+- We can then check that each word in the lyndon decomposition is a Christoffel
+  word. If it is, then your sequence of moves describes a "good  discrete
+  convex hull", since as described above, a christoffel word "hugs the line"
+  well. 
+
 
 # [Geometric proof of `e^x >= 1+x`, `e^(-x) <= 1-x`](#1-x-e-xof-of-)
 
