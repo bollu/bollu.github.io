@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
 -->
 
 <h2>
-<img style="float:left;display:inline-block;padding-right: 16px" src="./static/favicon-196.png" width="32px">
+<img style="float:left;display:inline-block;padding-right: 16px" src="./static/banner.png" width="32px">
 A Universe of Sorts
 </h2>
 ### Siddharth Bhat

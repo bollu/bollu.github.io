@@ -27,3 +27,5 @@ convert $(ls -v favicon-*.png) favicon.ico
 # rm favicon-*.png
 
 echo Done
+
+cp favicon-196.png banner.png
