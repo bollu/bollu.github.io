@@ -303,12 +303,12 @@ existed before.
 
 - If you have a line with rational slope $p/q$ and you want to draw a
   "discretized line" by connecting integer points in ZxZ, you can describe this
-  discretized line as starting from $(0, 0)$, making moves $dx$ (move up 1 unit
-  along $x$), $dy$ (move up 1 unit along $y$), finally reaching the point 
+  discretized line as starting from $(0, 0)$, making moves $x$ (move up 1 unit
+  along $x$-axis), $y$ (move up 1 unit along $y$-axis), finally reaching the point 
   $(p, q)$. For example, to reach the point $(2, 3)$, you can make the moves 
-  $[dx, dy, dx, dy, dy]$.
+  $[x, x, x, y, y]$.
 
-- A christoffel word is a word $w \in \{dx, dy \}^\star$ such that it hugs a line of
+- A christoffel word is a word $w \in \{x, y \}^\star$ such that it hugs a line of
   rational slope $p/q$ as close as possible. Formally, there are no integer
   points between the line with slope $p/q$ starting from the origin, and the
   discretized line as described by $w$. An example picture:
@@ -321,7 +321,7 @@ existed before.
   of lines.
 
 - Now, we are given a discrete sequence of adjacent line segments going
-  upwards, where the line segments are described by $dx, dy$ moves. We want to
+  upwards, where the line segments are described by $x, y$ moves. We want to
   check if the discrete curve defined by them is well-approximating a convex
   polygon.
 
@@ -343,7 +343,7 @@ existed before.
 <img src="./static/christoffel-cyclic-7-4.png">
 
 
-If we want to draw a line with slope `4/7` using the lower approximation the idea
+If we want to draw a line with slope `p/q = 4/7` using the lower approximation the idea
 is that we keep taking `4` steps along `x`, and every time we "exceed" `7` steps
 along `x`, we take a step along `y`.
 
@@ -352,9 +352,9 @@ This is the same as:
 2. marking an "increase" in a step with an `x`, and a "decrease" in a step
   with `y`.
 
-The intuition is that once we walk `k*x` steps where `k*x >= y`, we want
+The intuition is that once we walk `k*p` steps where `k*p >= q`, we want
 to increment `y`. So, at first glance, we may believe we should consider
-`Z/yZ`. However, this is misguided. Examples to enlighten:
+`Z/qZ`. However, this is misguided. Examples to enlighten:
 
 
 1. Consider `x=1, y=0`. We should use `Z/1Z`: that is, we must keep
@@ -364,46 +364,74 @@ to increment `y`. So, at first glance, we may believe we should consider
   which will cause is to flip `dx -> dy -> dx -> dy -> ...`. 
 
 
-In some sense, we are making sure that we can "start" with an `dx` and see where that takes us.
-In the `Z/1Z` case, we realise that we can keep taking `dx`s. In the
-`Z/2Z` case, we realise we need to flip between `dx` and `dy`.
+In some sense, we are making sure that we can "start" with an `x` and see where that takes us.
+In the `Z/1Z` case, we realise that we can keep taking `x`s. In the
+`Z/2Z` case, we realise we need to flip between `x` and `x`.
 
-Formally speaking, if we choose `Z/yZ`, we will get `k` numbers:
-
-```
-Z:    0, x, 2x, ... (k-1)x, y, kx 
-Z/yZ: 0, x, 2x, ... (k-1)x, y, (kx - y)
-```
-
-But notice that we are inserting `dx` _between_ numbers. So we will get:
-
-```
-Z:    0-dx-> x -dx-> 2x, ... (k-1)x -dy-> (k+1)x 
-Z/yZ: 0-dx-> x -dx-> 2x, ... (k-1)x -dy-> ((k+1)x - y)
-```
-
-That is, we have not "completed" our full steps of `kx` before we have
-been asked to move a `y`. This is the age-old tension that exists across
-"points" and "gaps". For `k` points, there are `k-1` gaps. We are forced
-to remedy this situation by setting up `k+1` points, so we have `k` gaps
-to write `k` dxs. On choosing `Z/(x+y)Z`, we get the sequence:
+Let's try to show this formally, where `k` is the smallest number
+such that `kp >= q`. We'll also have concrete examples where
+`p=2, q=7`. Here, `k=4` since `kx = 4*2 = 8 > 7`. 
+If we work in `Z/yZ = Z/7Z`, we will get the numbers:
 
 
 ```
-Z:    0, x, 2x, ... (k-1)x, y, kx, y + x, (k+1)x
-Z/yZ: 0, x, 2x, ... (k-1)x, y, kx, y + x, (k+1)x - (y+x)
+Z:    0, p, 2p, ... (k-1)p, [q] kp 
+Z/qZ: 0, p, 2p, ... (k-1)p, [q] (kp % q)
+Z/7z: 0, 2,  4, ...      6, [7] (8 % 7 = 1)
+```
+
+But notice that we are inserting `x` _between_ numbers. So we will get:
+
+```
+Z:    0 -x-> p -x-> 2p, ... (k-1)p -y-> (k+1)p
+Z/qZ: 0 -x-> p -x-> 2p, ... (k-1)p -y-> ((k+1)p % y)
+Z/7z: 0 -x-> 2 -x->  4, ...      6 -y-> (8      % 7 = 1) 
+         ^                            ^
+      x since [0 < 2]              y since [6 > 1]
 ```
 
 which gives us the moves:
 
 ```
-Z:    0 -dx-> x ... (k-1)x -dx-> kx -dy-> (k+1)x
-Z/yZ: 0 -dx-> x ... (k-1)x -dx-> kx -dy-> (k+1)x - (y+x)
+Z/7Z: 0 -x-> 2 -x-> 4 -x-> 6 -y-> 8 % 7 = 1
 ```
 
-That is, we are able to get `k` occurences `dx` between `0, x, ..,kx` which
-has `(k+1)` points.
+We only get `3` occurences of `x`, after which on the next accumulation of `p`,
+becomes an `8` which wraps around to a `1`. This is the age-old tension that exists
+between **points** and **gaps**. For `k` points, there are `k-1` gaps. In our
+case, we have `4` points `[0, 2, 4, 6]`, but this leaves us room for only
+three gaps for three`x` moves, while in reality we need `4`.
+We remedy this situation by giving ourselves space enough for _one_ more `x`, by changing from `Z/qZ`
+to `Z/(p+q)Z`. We should look at this as creating space for another gap.
 
+
+```
+Z:        0, p, 2p, ... (k-1)p, [q] kp,  [q+p  ], (k+1)p
+Z/(p+q)Z: 0, p, 2p, ... (k-1)p, [q] kp,  [q+p  ], (k+1)p % (p+q)    
+Z/9z: 0, 2,  4, ...          6, [7]  8,  [7+2=9], (10    %    9=1)
+```
+
+which gives us the moves:
+
+```
+Z:        0 -x-> p -x-> ... (k-1)p -x-> kp -y-> (k+1)p
+Z/(p+q)Z: 0 -x-> p -x-> ... (k-1)p -x-> kp -y-> (k+1)p % (p+q)
+Z/9Z:     0 -x-> 2 -x-> ...      6 -x->  8 -y-> (   10 %     9 = 1)
+             ^                             ^
+           x since [0 < 2]               y since [8 > 1]
+
+```
+
+That is, we are able to get `k` occurences `x` between `0, p, ..,kp` which
+has `(k+1)` points. Concretely, we have:
+
+```
+Z/9Z: 0 -x-> 2 -x-> 4 -x-> 6 -x-> 8 -y-> 1
+```
+where we have 4 occurences of `x` in between after which we have an occurence
+of `y`, which is what we want when `x=2, y = 7`. We need to reach at least
+`q=7` before we have exceeded our denominator and need to make a move
+along `y`.
 
 
 # [Geometric proof of `e^x >= 1+x`, `e^(-x) <= 1-x`](#1-x-e-xof-of-)

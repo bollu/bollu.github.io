@@ -858,16 +858,16 @@ existed before.
   "discretized line" by connecting integer points in ZxZ, you can describe this
   discretized line as starting from <span class='latexinline'>
 (0, 0)</span>, making moves <span class='latexinline'>
-<span style="font-style:italic">dx</span></span> (move up 1 unit
+<span style="font-style:italic">x</span></span> (move up 1 unit
   along <span class='latexinline'>
-<span style="font-style:italic">x</span></span>), <span class='latexinline'>
-<span style="font-style:italic">dy</span></span> (move up 1 unit along <span class='latexinline'>
-<span style="font-style:italic">y</span></span>), finally reaching the point 
+<span style="font-style:italic">x</span></span>-axis), <span class='latexinline'>
+<span style="font-style:italic">y</span></span> (move up 1 unit along <span class='latexinline'>
+<span style="font-style:italic">y</span></span>-axis), finally reaching the point 
   <span class='latexinline'>
 (<span style="font-style:italic">p</span>, <span style="font-style:italic">q</span>)</span>. For example, to reach the point <span class='latexinline'>
 (2, 3)</span>, you can make the moves 
   <span class='latexinline'>
-[<span style="font-style:italic">dx</span>, <span style="font-style:italic">dy</span>, <span style="font-style:italic">dx</span>, <span style="font-style:italic">dy</span>, <span style="font-style:italic">dy</span>]</span>.
+[<span style="font-style:italic">x</span>, <span style="font-style:italic">x</span>, <span style="font-style:italic">x</span>, <span style="font-style:italic">y</span>, <span style="font-style:italic">y</span>]</span>.
 </li>
 
 </ul>
@@ -875,7 +875,7 @@ existed before.
 <ul>
 <li>
  A christoffel word is a word <span class='latexinline'>
-<span style="font-style:italic">w</span> &#X2208; {<span style="font-style:italic">dx</span>, <span style="font-style:italic">dy</span> }<sup>&#X22C6;</sup></span> such that it hugs a line of
+<span style="font-style:italic">w</span> &#X2208; {<span style="font-style:italic">x</span>, <span style="font-style:italic">y</span> }<sup>&#X22C6;</sup></span> such that it hugs a line of
   rational slope <span class='latexinline'>
 <span style="font-style:italic">p</span>/<span style="font-style:italic">q</span></span> as close as possible. Formally, there are no integer
   points between the line with slope <span class='latexinline'>
@@ -901,7 +901,7 @@ existed before.
 <li>
  Now, we are given a discrete sequence of adjacent line segments going
   upwards, where the line segments are described by <span class='latexinline'>
-<span style="font-style:italic">dx</span>, <span style="font-style:italic">dy</span></span> moves. We want to
+<span style="font-style:italic">x</span>, <span style="font-style:italic">y</span></span> moves. We want to
   check if the discrete curve defined by them is well-approximating a convex
   polygon.
 </li>
@@ -931,7 +931,7 @@ existed before.
 
 <h4><a id=bonus-slick-characterization-of-line-drawing href='#bonus-slick-characterization-of-line-drawing'> § </a> Bonus: slick characterization of line drawing</h4>
 <img src="./static/christoffel-cyclic-7-4.png">
-If we want to draw a line with slope <code>4/7</code> using the lower approximation the idea
+If we want to draw a line with slope <code>p/q = 4/7</code> using the lower approximation the idea
 is that we keep taking <code>4</code> steps along <code>x</code>, and every time we "exceed" <code>7</code> steps
 along <code>x</code>, we take a step along <code>y</code>.
 This is the same as:
@@ -946,9 +946,9 @@ This is the same as:
 
 </ol>
 
-The intuition is that once we walk <code>k*x</code> steps where <code>k*x >= y</code>, we want
+The intuition is that once we walk <code>k*p</code> steps where <code>k*p >= q</code>, we want
 to increment <code>y</code>. So, at first glance, we may believe we should consider
-<code>Z/yZ</code>. However, this is misguided. Examples to enlighten:
+<code>Z/qZ</code>. However, this is misguided. Examples to enlighten:
 <ol>
 <li>
  Consider <code>x=1, y=0</code>. We should use <code>Z/1Z</code>: that is, we must keep
@@ -962,47 +962,38 @@ to increment <code>y</code>. So, at first glance, we may believe we should consi
 
 </ol>
 
-In some sense, we are making sure that we can "start" with an <code>dx</code> and see where that takes us.
-In the <code>Z/1Z</code> case, we realise that we can keep taking <code>dx</code>s. In the
-<code>Z/2Z</code> case, we realise we need to flip between <code>dx</code> and <code>dy</code>.
-Formally speaking, if we choose <code>Z/yZ</code>, we will get <code>k</code> numbers:
+In some sense, we are making sure that we can "start" with an <code>x</code> and see where that takes us.
+In the <code>Z/1Z</code> case, we realise that we can keep taking <code>x</code>s. In the
+<code>Z/2Z</code> case, we realise we need to flip between <code>x</code> and <code>x</code>.
+Let's try to show this formally, where <code>k</code> is the smallest number
+such that <code>kp >= q</code>. We'll also have concrete examples where
+<code>p=2, q=7</code>. Here, <code>k=4</code> since <code>kx = 4*2 = 8 > 7</code>. 
+If we work in <code>Z/yZ = Z/7Z</code>, we will get the numbers:
 <div class='code'>
 <!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt><font color="#000000">1:</font> 
-<font color="#000000">2:</font> Z:    0, x, 2x, ... (k-1)x, y, kx 
-<font color="#000000">3:</font> Z/yZ: 0, x, 2x, ... (k-1)x, y, (kx - y)
-<font color="#000000">4:</font> </tt></pre>
+<font color="#000000">2:</font> Z:    0, p, 2p, ... (k-1)p, [q] kp 
+<font color="#000000">3:</font> Z/qZ: 0, p, 2p, ... (k-1)p, [q] (kp % q)
+<font color="#000000">4:</font> Z/7z: 0, 2,  4, ...      6, [7] (8 % 7 = 1)
+<font color="#000000">5:</font> </tt></pre>
 </div>
 
-But notice that we are inserting <code>dx</code> <i>between</i> numbers. So we will get:
+But notice that we are inserting <code>x</code> <i>between</i> numbers. So we will get:
 <div class='code'>
 <!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt><font color="#000000">1:</font> 
-<font color="#000000">2:</font> Z:    0-dx-&gt; x -dx-&gt; 2x, ... (k-1)x -dy-&gt; (k+1)x 
-<font color="#000000">3:</font> Z/yZ: 0-dx-&gt; x -dx-&gt; 2x, ... (k-1)x -dy-&gt; ((k+1)x - y)
-<font color="#000000">4:</font> </tt></pre>
-</div>
-
-That is, we have not "completed" our full steps of <code>kx</code> before we have
-been asked to move a <code>y</code>. This is the age-old tension that exists across
-"points" and "gaps". For <code>k</code> points, there are <code>k-1</code> gaps. We are forced
-to remedy this situation by setting up <code>k+1</code> points, so we have <code>k</code> gaps
-to write <code>k</code> dxs. On choosing <code>Z/(x+y)Z</code>, we get the sequence:
-<div class='code'>
-<!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><font color="#000000">1:</font> 
-<font color="#000000">2:</font> Z:    0, x, 2x, ... (k-1)x, y, kx, y + x, (k+1)x
-<font color="#000000">3:</font> Z/yZ: 0, x, 2x, ... (k-1)x, y, kx, y + x, (k+1)x - (y+x)
-<font color="#000000">4:</font> </tt></pre>
+<font color="#000000">2:</font> Z:    0 -x-&gt; p -x-&gt; 2p, ... (k-1)p -y-&gt; (k+1)p
+<font color="#000000">3:</font> Z/qZ: 0 -x-&gt; p -x-&gt; 2p, ... (k-1)p -y-&gt; ((k+1)p % y)
+<font color="#000000">4:</font> Z/7z: 0 -x-&gt; 2 -x-&gt;  4, ...      6 -y-&gt; (8      % 7 = 1) 
+<font color="#000000">5:</font>          ^                            ^
+<font color="#000000">6:</font>       x since [0 &lt; 2]              y since [6 &gt; 1]
+<font color="#000000">7:</font> </tt></pre>
 </div>
 
 which gives us the moves:
@@ -1012,13 +1003,61 @@ by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt><font color="#000000">1:</font> 
-<font color="#000000">2:</font> Z:    0 -dx-&gt; x ... (k-1)x -dx-&gt; kx -dy-&gt; (k+1)x
-<font color="#000000">3:</font> Z/yZ: 0 -dx-&gt; x ... (k-1)x -dx-&gt; kx -dy-&gt; (k+1)x - (y+x)
-<font color="#000000">4:</font> </tt></pre>
+<font color="#000000">2:</font> Z/7Z: 0 -x-&gt; 2 -x-&gt; 4 -x-&gt; 6 -y-&gt; 8 % 7 = 1
+<font color="#000000">3:</font> </tt></pre>
 </div>
 
-That is, we are able to get <code>k</code> occurences <code>dx</code> between <code>0, x, ..,kx</code> which
-has <code>(k+1)</code> points.
+We only get <code>3</code> occurences of <code>x</code>, after which on the next accumulation of <code>p</code>,
+becomes an <code>8</code> which wraps around to a <code>1</code>. This is the age-old tension that exists
+between <b>points</b> and <b>gaps</b>. For <code>k</code> points, there are <code>k-1</code> gaps. In our
+case, we have <code>4</code> points <code>[0, 2, 4, 6]</code>, but this leaves us room for only
+three <code>x</code> moves, while in reality we need <code>4</code>. We remedy this situation by
+giving ourselves space enough for <i>one</i> more <code>x</code>, by changing from <code>Z/qZ</code>
+to <code>Z/(p+q)Z</code>. We should look at this as creating space for another gap.
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#000000">1:</font> 
+<font color="#000000">2:</font> Z:        0, p, 2p, ... (k-1)p, [q] kp,  [q+p  ], (k+1)p
+<font color="#000000">3:</font> Z/(p+q)Z: 0, p, 2p, ... (k-1)p, [q] kp,  [q+p  ], (k+1)p % (p+q)    
+<font color="#000000">4:</font> Z/9z: 0, 2,  4, ...          6, [7]  8,  [7+2=9], (10    %    9=1)
+<font color="#000000">5:</font> </tt></pre>
+</div>
+
+which gives us the moves:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#000000">1:</font> 
+<font color="#000000">2:</font> Z:        0 -x-&gt; p -x-&gt; ... (k-1)p -x-&gt; kp -y-&gt; (k+1)p
+<font color="#000000">3:</font> Z/(p+q)Z: 0 -x-&gt; p -x-&gt; ... (k-1)p -x-&gt; kp -y-&gt; (k+1)p % (p+q)
+<font color="#000000">4:</font> Z/9Z:     0 -x-&gt; 2 -x-&gt; ...      6 -x-&gt;  8 -y-&gt; (   10 %     9 = 1)
+<font color="#000000">5:</font>              ^                             ^
+<font color="#000000">6:</font>            x since [0 &lt; 2]               y since [8 &gt; 1]
+<font color="#000000">7:</font> 
+<font color="#000000">8:</font> </tt></pre>
+</div>
+
+That is, we are able to get <code>k</code> occurences <code>x</code> between <code>0, p, ..,kp</code> which
+has <code>(k+1)</code> points. Concretely, we have:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#000000">1:</font> 
+<font color="#000000">2:</font> Z/9Z: 0 -x-&gt; 2 -x-&gt; 4 -x-&gt; 6 -x-&gt; 8 -y-&gt; 1
+<font color="#000000">3:</font> </tt></pre>
+</div>
+
+where we have 4 occurences of <code>x</code> in between after which we have an occurence
+of <code>y</code>, which is what we want when <code>x=2, y = 7</code>. We need to reach at least
+<code>q=7</code> before we have exceeded our denominator and need to make a move
+along <code>y</code>.
 <h2><a id=e-x-1-xof-of- href='#e-x-1-xof-of-'> § </a> <a href=#1-x-e-xof-of->
 Geometric proof of <code>e^x >= 1+x</code>, <code>e^(-x) <= 1-x</code></a>
 </h2>
