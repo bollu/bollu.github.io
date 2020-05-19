@@ -56,6 +56,7 @@ A Universe of Sorts
 
 #### Table of contents:
 	
+- [Permutahedron](#permutahedron)
 - [Lyndon + Christoffel = Convex Hull](#lyndon-christoffel-convex-hull)
 - [Geometric proof of `e^x >= 1+x`, `e^(-x) <= 1-x`](#1-x-e-xof-of-)
 - [Ranking and Sorting](#ranking-and-sorting)
@@ -190,6 +191,101 @@ A Universe of Sorts
 - [Big list of Coq](#big-list-of-coq)
 - [Big list of Latex](#big-list-of-latex)
 - [Recipes](#recipes)
+
+
+# [Permutahedron](#permutahedron)
+
+The permutahedron over $n$ letters is a polytope which is defined as the convex
+hull of all permutations of the point $(1, 2, \dots, n)$. 
+For example, the permutahedron over 3 letters is the convex hull of the
+points $(1, 2, 3), (1, 3, 2), (2, 1, 3), (2, 3, 1), (3, 1, 2), (3, 2, 1)$.
+
+
+Here, we show that it can be embedded in $(d-1)$ dimensionl space, and that each point
+$perm((1, 2, \dots n))$ is indeed a vertex of the convex hull. 
+
+An example of a situation where a point is _not_ in the vertex of a convex hull
+is `convexhull(1, 2, 3) = [1, 3]`. Note that `2` was used to generate the
+convex hull, but is not a vertex since it is the convex combination of `1, 3`.
+We wish to prove that such a situation does not happen in the case of the
+permutahedron.
+
+I have not seen an elementary proof that each point that is a permutation of
+the original is a vertex, so I'm recording that proof out of interest.
+
+
+### Showing that all permutations of $(1, 2, \dots, n)$ are vertices
+
+#### Core idea
+
+start by looking at index `i` of the "largest value" `N` in the point `P`.
+Since it's the largest point, if it's a convex combination, all other points in
+the convex combination must have the same "largest value" at that index `i`. So
+we can now ignore the index `i` and get permutations of `[1..N-1]`
+
+Repeat this process to prove that _all_ indexes of things in the convex sum
+must be equal to `P`. But this is absurd, because all vertices are distinct.
+Hence, the only way for this to work out is if we have only one point that we
+are convex-summing over. That is, `P` _cannot_ be written as the convex sum of
+two or more vertices.
+
+#### Formal proof
+
+
+Let us be working with permutations of `[1, 2, ..., N]`. Pick point `P`. Assume
+`P` is in the convex sum of some `{ Xi }`.
+
+Let `index(N, P)` be the index of number `N` in `P`. For example, if 
+`P = [2, 3, 1]`, then 
+
+```
+index(2, P) = 0 (assuming 0-based indexing)
+index(3, P) = 1
+index(1, P) = 2
+```
+
+If `P` is the convex sum of vertices `{ Xi }`, all of them _must_ have that:
+
+```
+Xi[index(N, P)]  = N forall Xi in the convex sum
+```
+
+
+since `N` is the largest value that `X_I` can have at any index. The only way
+to get the maximum value by a convex sum is for all values to be that maximum
+value.
+
+So, we can now ignore dimension `index(N, P)`, since _all the vertices_ `X_i`
+involved in the convex combination and `P` have `index(N, P) = N`. If we
+project out this dimension, we are left with permutation of `(1..N-1)`. 
+
+Repeat the same process. We will need to have all `X_i` to have their value at
+`index(N-1, P)` to be `N-1`. 
+
+Keep doing this till we get that the dimensions of all points in `Xi` and `P`
+are equal. But all the points in `{ Xi }` are distinct since they are
+permutation of `[1..n]`. Hence, `{ Xi }` can contain only a single point, and
+this point is `P`.
+
+Hence, `P` cannot be written as the convex combination of other points. Hence,
+`P` is a vertex.
+
+#### Proof that convex sum of maximum must have maximum
+
+Assume we have values `{v1, v2, ... vn}` with `vn` being the maximum. Now we
+want to write `vn` as the convex sum of `{v1, v2, ... vn}`. We can draw this on
+the number line as:
+
+```
+---[v2---v5---v1---v3-...---(random order)---vn]---
+```
+
+- A convex sum must be inside this line segment between `[v2--..--vn]` (`vn` is
+  to the rightmost since it's known to be the largest value in `{v1...vn}`).
+- So, if we try to write `vn` as the convex sum, we _must_ have the coefficient
+  of `vn=1` and the coefficient of all other points `=0`, since any other
+  combination will "pull the convex sum away from the right (where `vn` sits),
+  towards the left".
 
 # [Lyndon + Christoffel = Convex Hull](#lyndon-christoffel-convex-hull)
 Actual "real world" use-case of lyndon factorization, cribbed from here:

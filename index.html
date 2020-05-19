@@ -50,6 +50,11 @@ My reading list</a>
 	
 <ul>
 <li>
+ <a href=#permutahedron>
+Permutahedron</a>
+
+</li>
+<li>
  <a href=#lyndon-christoffel-convex-hull>
 Lyndon + Christoffel = Convex Hull</a>
 
@@ -718,6 +723,109 @@ Big list of Latex</a>
  <a href=#recipes>
 Recipes</a>
 
+</li>
+
+</ul>
+
+<h2><a id=permutahedron href='#permutahedron'> § </a> <a href=#permutahedron>
+Permutahedron</a>
+</h2>
+The permutahedron over <span class='latexinline'>
+<span style="font-style:italic">n</span></span> letters is a polytope which is defined as the convex
+hull of all permutations of the point <span class='latexinline'>
+(1, 2, &#X2026;, <span style="font-style:italic">n</span>)</span>. 
+For example, the permutahedron over 3 letters is the convex hull of the
+points <span class='latexinline'>
+(1, 2, 3), (1, 3, 2), (2, 1, 3), (2, 3, 1), (3, 1, 2), (3, 2, 1)</span>.
+Here, we show that it can be embedded in <span class='latexinline'>
+(<span style="font-style:italic">d</span>&#X2212;1)</span> dimensionl space, and that each point
+<span class='latexinline'>
+<span style="font-style:italic">perm</span>((1, 2, &#X2026; <span style="font-style:italic">n</span>))</span> is indeed a vertex of the convex hull. 
+An example of a situation where a point is <i>not</i> in the vertex of a convex hull
+is <code>convexhull(1, 2, 3) = [1, 3]</code>. Note that <code>2</code> was used to generate the
+convex hull, but is not a vertex since it is the convex combination of <code>1, 3</code>.
+We wish to prove that such a situation does not happen in the case of the
+permutahedron.
+I have not seen an elementary proof that each point that is a permutation of
+the original is a vertex, so I'm recording that proof out of interest.
+<h4><a id=are-vertices-nl-permutations-of- href='#are-vertices-nl-permutations-of-'> § </a> Showing that all permutations of <span class='latexinline'>
+(1, 2, &#X2026;, <span style="font-style:italic">n</span>)</span> are vertices</h4>
+<h4><a id=core-idea href='#core-idea'> § </a> Core idea</h4>
+start by looking at index <code>i</code> of the "largest value" <code>N</code> in the point <code>P</code>.
+Since it's the largest point, if it's a convex combination, all other points in
+the convex combination must have the same "largest value" at that index <code>i</code>. So
+we can now ignore the index <code>i</code> and get permutations of <code>[1..N-1]</code>
+Repeat this process to prove that <i>all</i> indexes of things in the convex sum
+must be equal to <code>P</code>. But this is absurd, because all vertices are distinct.
+Hence, the only way for this to work out is if we have only one point that we
+are convex-summing over. That is, <code>P</code> <i>cannot</i> be written as the convex sum of
+two or more vertices.
+<h4><a id=formal-proof href='#formal-proof'> § </a> Formal proof</h4>
+Let us be working with permutations of <code>[1, 2, ..., N]</code>. Pick point <code>P</code>. Assume
+<code>P</code> is in the convex sum of some <code>{ Xi }</code>.
+Let <code>index(N, P)</code> be the index of number <code>N</code> in <code>P</code>. For example, if 
+<code>P = [2, 3, 1]</code>, then 
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#000000">1:</font> 
+<font color="#000000">2:</font> index(2, P) = 0 (assuming 0-based indexing)
+<font color="#000000">3:</font> index(3, P) = 1
+<font color="#000000">4:</font> index(1, P) = 2
+<font color="#000000">5:</font> </tt></pre>
+</div>
+
+If <code>P</code> is the convex sum of vertices <code>{ Xi }</code>, all of them <i>must</i> have that:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#000000">1:</font> 
+<font color="#000000">2:</font> Xi[index(N, P)]  = N forall Xi in the convex sum
+<font color="#000000">3:</font> </tt></pre>
+</div>
+
+since <code>N</code> is the largest value that <code>X_I</code> can have at any index. The only way
+to get the maximum value by a convex sum is for all values to be that maximum
+value.
+So, we can now ignore dimension <code>index(N, P)</code>, since <i>all the vertices</i> <code>X_i</code>
+involved in the convex combination and <code>P</code> have <code>index(N, P) = N</code>. If we
+project out this dimension, we are left with permutation of <code>(1..N-1)</code>. 
+Repeat the same process. We will need to have all <code>X_i</code> to have their value at
+<code>index(N-1, P)</code> to be <code>N-1</code>. 
+Keep doing this till we get that the dimensions of all points in <code>Xi</code> and <code>P</code>
+are equal. But all the points in <code>{ Xi }</code> are distinct since they are
+permutation of <code>[1..n]</code>. Hence, <code>{ Xi }</code> can contain only a single point, and
+this point is <code>P</code>.
+Hence, <code>P</code> cannot be written as the convex combination of other points. Hence,
+<code>P</code> is a vertex.
+<h4><a id=proof-that-convex-sum-of-maximum-must-have-maximum href='#proof-that-convex-sum-of-maximum-must-have-maximum'> § </a> Proof that convex sum of maximum must have maximum</h4>
+Assume we have values <code>{v1, v2, ... vn}</code> with <code>vn</code> being the maximum. Now we
+want to write <code>vn</code> as the convex sum of <code>{v1, v2, ... vn}</code>. We can draw this on
+the number line as:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#000000">1:</font> 
+<font color="#000000">2:</font> ---[v2---v5---v1---v3-...---(random order)---vn]---
+<font color="#000000">3:</font> </tt></pre>
+</div>
+
+<ul>
+<li>
+ A convex sum must be inside this line segment between <code>[v2--..--vn]</code> (<code>vn</code> is
+  to the rightmost since it's known to be the largest value in <code>{v1...vn}</code>).
+</li>
+<li>
+ So, if we try to write <code>vn</code> as the convex sum, we <i>must</i> have the coefficient
+  of <code>vn=1</code> and the coefficient of all other points <code>=0</code>, since any other
+  combination will "pull the convex sum away from the right (where <code>vn</code> sits),
+  towards the left".
 </li>
 
 </ul>
