@@ -272,15 +272,17 @@ Hence, `P` cannot be written as the convex combination of other points. Hence,
 
 #### Proof that convex sum of maximum must have maximum
 
-Assume we have values `{v1, v2, ... vn}` with `vn` being the maximum. Now we
-want to write `vn` as the convex sum of `{v1, v2, ... vn}`. We can draw this on
+Assume we have values `{v1, v2, ... vn}` where without loss of generality,
+`v1 <= v2 <= ... <= vn`. We can always relabel otherwise.
+
+Now we want to write `vn` as the convex sum of `{v1, v2, ... vn}`. We can draw this on
 the number line as:
 
 ```
----[v2---v5---v1---v3-...---(random order)---vn]---
+---[v1--v2--v3--...--vn]---
 ```
 
-- A convex sum must be inside this line segment between `[v2--..--vn]` (`vn` is
+- A convex sum must be inside this line segment between `[v1--...--vn]` (`vn` is
   to the rightmost since it's known to be the largest value in `{v1...vn}`).
 - So, if we try to write `vn` as the convex sum, we _must_ have the coefficient
   of `vn=1` and the coefficient of all other points `=0`, since any other

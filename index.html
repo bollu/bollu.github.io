@@ -803,8 +803,9 @@ this point is <code>P</code>.
 Hence, <code>P</code> cannot be written as the convex combination of other points. Hence,
 <code>P</code> is a vertex.
 <h4><a id=proof-that-convex-sum-of-maximum-must-have-maximum href='#proof-that-convex-sum-of-maximum-must-have-maximum'> § </a> Proof that convex sum of maximum must have maximum</h4>
-Assume we have values <code>{v1, v2, ... vn}</code> with <code>vn</code> being the maximum. Now we
-want to write <code>vn</code> as the convex sum of <code>{v1, v2, ... vn}</code>. We can draw this on
+Assume we have values <code>{v1, v2, ... vn}</code> where without loss of generality,
+<code>v1 <= v2 <= ... <= vn</code>. We can always relabel otherwise.
+Now we want to write <code>vn</code> as the convex sum of <code>{v1, v2, ... vn}</code>. We can draw this on
 the number line as:
 <div class='code'>
 <!-- Generator: GNU source-highlight 3.1.8
@@ -812,13 +813,13 @@ by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt><font color="#000000">1:</font> 
-<font color="#000000">2:</font> ---[v2---v5---v1---v3-...---(random order)---vn]---
+<font color="#000000">2:</font> ---[v1--v2--v3--...--vn]---
 <font color="#000000">3:</font> </tt></pre>
 </div>
 
 <ul>
 <li>
- A convex sum must be inside this line segment between <code>[v2--..--vn]</code> (<code>vn</code> is
+ A convex sum must be inside this line segment between <code>[v1--...--vn]</code> (<code>vn</code> is
   to the rightmost since it's known to be the largest value in <code>{v1...vn}</code>).
 </li>
 <li>
