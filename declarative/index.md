@@ -63,7 +63,7 @@ since it doesn't compute anything else.
 > Fancy ways of saying that `anim_circle` doesn't change anything else is to say that it 
 > is _side-effect-free_, or _refrentially transparent_.
 
-## Playing with this webpage: edit `anim_circle` in the browser!
+## Playing with this Webpage: edit `anim_circle` in the browser!
 
 
 - <a  onclick="foo()">
@@ -238,7 +238,6 @@ anim=|---delay---y=|A|bs[2] = -delay=2-----------*as[2]===*
      |             | |bs[4] = -delay=4--------------------*as[4]===*
 ```
 
-
 ## Declarative ⇒ Debuggable
 
 As hinted above, since our specification of the animation was entirely declarative,
@@ -264,7 +263,7 @@ SVG/canvas/what-have-you.
 Building a layer like `anime.js` on top of this is not hard. On the other hand,
 using `anime.js` purely is impossible.
 
-## Code Walkthrough
+## Code Walkthrough / API documentation
 
 The entire "library", which is written very defensively and sprinkled with
 asserts fits in [**exactly 100 lines of code**](https://github.com/bollu/mathemagic/blob/master/declarative/minanim.js). It can be golfed further
@@ -330,8 +329,8 @@ function anim_const(field, v) {
     f.seq = ((g) => anim_sequence(f, g));
     return f;
 }
-
 ```
+
 
 - We implement two **easing functions**, which takes a parameter 
   `tlin` such that `0 <= tlin <= 1`, and two parameters `vstart` and `vend`.
@@ -352,6 +351,10 @@ function ease_linear(vstart, tlin, vend) { return (1.0 - tlin) * vstart + tlin *
 function ease_cubic(vstart, tlin, vend) {
     const cube = (1 - tlin)*(1-tlin)*(1-tlin); return cube * vstart + (1 - cube) * vend;
 }
+function ease_out_back(vstart, tlin, vend) {
+    const c1 = 1.70158; const c3 = c1 + 1; const t = 1 + c3 * pow(x - 1, 3) + c1 * pow(x - 1, 2);
+    return (1-t) * vstart + t*vend;
+}
 ```
 
 - `anim_interpolated(duration)` creates a function `f`. On being invoked, 
@@ -362,6 +365,9 @@ function ease_cubic(vstart, tlin, vend) {
   or has ended. If the animation is currently running, we find the
   current value using `fease`. If the animation has ended, we set
   the value to the `end` value.
+
+
+<div id="animation-interpolated"></div>
 
                                         
 ```js
@@ -386,12 +392,16 @@ function anim_interpolated(fease, field, vend, duration) {
 }
 ```
 
-- This combinator sequences two animations together, setting up `anim2` to begin
+- `anim_sequence(anim1, anim2)` sets up `anim2` to begin
   running once `anim1` has completed. When it is invoked, `t >= tstart`. So
   it can run `anim1` immediately. If it learns that
   `anim1` has completed, it then invokes `anim2`. The total time taken for
   this animation is its `duration`. This is the sum of durations of `anim1`
   and `anim2`.
+
+
+<div id="animation-sequence"></div>
+
 
 ```js
 anim1, anim2: anim
@@ -410,13 +420,15 @@ function anim_sequence(anim1, anim2) {
 }
 ```
 
-- This combinator sequences two animations together, setting up `anim1` and
+- `anim_parallel(anim1, anim2)` sets up `anim1` and
   `anim2` to run in parallel. When it is invoked, `t >= tstart`. So it can
   launch `anim1, anim2` both immediately. The `duration` of this animation
   is the _maximum_ time taken by `anim1`, `anim2`.
 
 
-```
+<div id="animation-parallel"></div>
+
+```js
 function anim_parallel(anim1, anim2) {
     const duration = Math.max(anim1.duration, anim2.duration);
     let f =  function(t, out, tstart) {
@@ -432,7 +444,7 @@ function anim_parallel(anim1, anim2) {
 ```
 
 
-- `anim_parallel_list` is a helpful combinator to write the animations
+- `anim_parallel_list(xs)` is a helpful to write the animations
   in `xs` in parallel. It chains together the elements of the list
   with `par` calls.
 
@@ -443,9 +455,10 @@ function anim_parallel_list(xs) {
 }
 ```
 
-- `anim_stagger` is a combinator to write staggered animations.
+- `anim_stagger(xs, delta)` is a combinator to write staggered animations. It
+  delays the animation at `xs[i]` for a duration `delta*i`. 
 
-```
+```js
 function anim_stagger(xs, delta) {
     console.assert(typeof(delta) == "number");
     var ys = [];

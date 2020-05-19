@@ -207,11 +207,11 @@ by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt><font color="#000000">1:</font> 
-<font color="#000000">2:</font>   | |bs[0] = -delay=0-*bs[0]===*
-<font color="#000000">3:</font>   |P|bs[1] = -delay=1------*bs[1]===*
-<font color="#000000">4:</font> y=|A|bs[2] = -delay=2-----------*bs[2]===*
-<font color="#000000">5:</font>   |R|bs[3] = -delay=3----------------*bs[3]===*
-<font color="#000000">6:</font>   | |bs[4] = -delay=4--------------------*bs[4]===*
+<font color="#000000">2:</font>   | |ys[0] = -delay=0-*bs[0]===*
+<font color="#000000">3:</font>   |P|ys[1] = -delay=1------*bs[1]===*
+<font color="#000000">4:</font> y=|A|ys[2] = -delay=2-----------*bs[2]===*
+<font color="#000000">5:</font>   |R|ys[3] = -delay=3----------------*bs[3]===*
+<font color="#000000">6:</font>   | |ys[4] = -delay=4--------------------*bs[4]===*
 <font color="#000000">7:</font> </tt></pre>
 </div>
 
@@ -231,11 +231,11 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#000000">04:</font>      |x=|A|xs[2] = -delay=2-----------*as[2]===*
 <font color="#000000">05:</font>      |  |R|xs[3] = -delay=3----------------*as[3]===*
 <font color="#000000">06:</font>      |  | |xs[4] = -delay=4--------------------*as[4]===*
-<font color="#000000">07:</font>      |             | |bs[0] = -delay=0-*as[0]===*
-<font color="#000000">08:</font>      |             |P|bs[1] = -delay=1------*as[1]===*
-<font color="#000000">09:</font> anim=|---delay---y=|A|bs[2] = -delay=2-----------*as[2]===*
-<font color="#000000">10:</font>      |             |R|bs[3] = -delay=3----------------*as[3]===*
-<font color="#000000">11:</font>      |             | |bs[4] = -delay=4--------------------*as[4]===*
+<font color="#000000">07:</font>      |                 | |ys[0] = -delay=0-*bs[0]===*
+<font color="#000000">08:</font>      |                 |P|ys[1] = -delay=1------*bs[1]===*
+<font color="#000000">09:</font> anim=|---delay-------y=|A|ys[2] = -delay=2-----------*bs[2]===*
+<font color="#000000">10:</font>      |                 |R|ys[3] = -delay=3----------------*bs[3]===*
+<font color="#000000">11:</font>      |                 | |ys[4] = -delay=4--------------------*bs[4]===*
 <font color="#000000">12:</font> </tt></pre>
 </div>
 
@@ -375,12 +375,10 @@ http://www.gnu.org/software/src-highlite -->
 
 <ul>
 <li>
- <code>anim_delay(duration)</code> creates a function <code>f</code>. On being invoked, it returns
-  whatever value of <code>out</code> has been given to it. That is, it doesn't
-  modify anything. It has three fields, <code>duration</code>, <code>par</code>, and <code>seq</code>.
-  <code>duration</code>. <code>duration</code> is how long the animation runs for. <code>par, seq</code>
-  are methods for chaining, that allows us to compose this delay animation
-  in parallel and in sequence with other animations.
+ <code>const(field, v)</code> creates a function <code>f</code>. On being invoked, it sets
+  <code>out.v = field</code>. It takes zero time to run such an animation, hence it's
+  duration is <code>0</code>. Useful for instaneously setting the value at the
+  start of an animation.
 </li>
 
 </ul>
@@ -401,8 +399,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#000000">09:</font>     f.seq = ((g) =&gt; anim_sequence(f, g));
 <font color="#000000">10:</font>     <b><u><font color="#000000">return</font></u></b> f;
 <font color="#000000">11:</font> }
-<font color="#000000">12:</font> 
-<font color="#000000">13:</font> </tt></pre>
+<font color="#000000">12:</font> </tt></pre>
 </div>
 
 <ul>
@@ -429,14 +426,18 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt><font color="#000000">1:</font> 
-<font color="#000000">2:</font> <i><font color="#222222">// vstart, vend: number. tlin: number, 0 &lt;= tlin &lt;= 1</font></i>
-<font color="#000000">3:</font> <b><u><font color="#000000">function</font></u></b> ease_linear(vstart, tlin, vend) { <b><u><font color="#000000">return</font></u></b> (<font color="#000000">1.0</font> - tlin) * vstart + tlin * vend; }
-<font color="#000000">4:</font> 
-<font color="#000000">5:</font> <b><u><font color="#000000">function</font></u></b> ease_cubic(vstart, tlin, vend) {
-<font color="#000000">6:</font>     <b><u><font color="#000000">const</font></u></b> cube = (<font color="#000000">1</font> - tlin)*(<font color="#000000">1</font>-tlin)*(<font color="#000000">1</font>-tlin); <b><u><font color="#000000">return</font></u></b> cube * vstart + (<font color="#000000">1</font> - cube) * vend;
-<font color="#000000">7:</font> }
-<font color="#000000">8:</font> </tt></pre>
+<pre><tt><font color="#000000">01:</font> 
+<font color="#000000">02:</font> <i><font color="#222222">// vstart, vend: number. tlin: number, 0 &lt;= tlin &lt;= 1</font></i>
+<font color="#000000">03:</font> <b><u><font color="#000000">function</font></u></b> ease_linear(vstart, tlin, vend) { <b><u><font color="#000000">return</font></u></b> (<font color="#000000">1.0</font> - tlin) * vstart + tlin * vend; }
+<font color="#000000">04:</font> 
+<font color="#000000">05:</font> <b><u><font color="#000000">function</font></u></b> ease_cubic(vstart, tlin, vend) {
+<font color="#000000">06:</font>     <b><u><font color="#000000">const</font></u></b> cube = (<font color="#000000">1</font> - tlin)*(<font color="#000000">1</font>-tlin)*(<font color="#000000">1</font>-tlin); <b><u><font color="#000000">return</font></u></b> cube * vstart + (<font color="#000000">1</font> - cube) * vend;
+<font color="#000000">07:</font> }
+<font color="#000000">08:</font> <b><u><font color="#000000">function</font></u></b> ease_out_back(vstart, tlin, vend) {
+<font color="#000000">09:</font>     <b><u><font color="#000000">const</font></u></b> c1 = <font color="#000000">1.70158</font>; <b><u><font color="#000000">const</font></u></b> c3 = c1 + <font color="#000000">1</font>; <b><u><font color="#000000">const</font></u></b> t = <font color="#000000">1</font> + c3 * pow(x - <font color="#000000">1</font>, <font color="#000000">3</font>) + c1 * pow(x - <font color="#000000">1</font>, <font color="#000000">2</font>);
+<font color="#000000">10:</font>     <b><u><font color="#000000">return</font></u></b> (<font color="#000000">1</font>-t) * vstart + t*vend;
+<font color="#000000">11:</font> }
+<font color="#000000">12:</font> </tt></pre>
 </div>
 
 <ul>
@@ -453,6 +454,7 @@ http://www.gnu.org/software/src-highlite -->
 
 </ul>
 
+<div id="animation-interpolated"></div>
 <div class='code'>
 <!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
@@ -483,7 +485,7 @@ http://www.gnu.org/software/src-highlite -->
 
 <ul>
 <li>
- This combinator sequences two animations together, setting up <code>anim2</code> to begin
+ <code>anim_sequence(anim1, anim2)</code> sets up <code>anim2</code> to begin
   running once <code>anim1</code> has completed. When it is invoked, <code>t >= tstart</code>. So
   it can run <code>anim1</code> immediately. If it learns that
   <code>anim1</code> has completed, it then invokes <code>anim2</code>. The total time taken for
@@ -493,6 +495,7 @@ http://www.gnu.org/software/src-highlite -->
 
 </ul>
 
+<div id="animation-sequence"></div>
 <div class='code'>
 <!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
@@ -518,7 +521,7 @@ http://www.gnu.org/software/src-highlite -->
 
 <ul>
 <li>
- This combinator sequences two animations together, setting up <code>anim1</code> and
+ <code>anim_parallel(anim1, anim2)</code> sets up <code>anim1</code> and
   <code>anim2</code> to run in parallel. When it is invoked, <code>t >= tstart</code>. So it can
   launch <code>anim1, anim2</code> both immediately. The <code>duration</code> of this animation
   is the <i>maximum</i> time taken by <code>anim1</code>, <code>anim2</code>.
@@ -526,30 +529,31 @@ http://www.gnu.org/software/src-highlite -->
 
 </ul>
 
+<div id="animation-parallel"></div>
 <div class='code'>
 <!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt><font color="#000000">01:</font> 
-<font color="#000000">02:</font> function anim_parallel(anim1, anim2) {
-<font color="#000000">03:</font>     const duration = Math.max(anim1.duration, anim2.duration);
-<font color="#000000">04:</font>     let f =  function(t, out, tstart) {
+<font color="#000000">02:</font> <b><u><font color="#000000">function</font></u></b> anim_parallel(anim1, anim2) {
+<font color="#000000">03:</font>     <b><u><font color="#000000">const</font></u></b> duration = Math.max(anim1.duration, anim2.duration);
+<font color="#000000">04:</font>     let f =  <b><u><font color="#000000">function</font></u></b>(t, out, tstart) {
 <font color="#000000">05:</font>         [out, tstart] = assert_precondition(t, out, tstart);
-<font color="#000000">06:</font>         if (t &gt;= tstart) { anim1(t, out, tstart); anim2(t, out, tstart); }
-<font color="#000000">07:</font>         return out;
+<font color="#000000">06:</font>         <b><u><font color="#000000">if</font></u></b> (t &gt;= tstart) { anim1(t, out, tstart); anim2(t, out, tstart); }
+<font color="#000000">07:</font>         <b><u><font color="#000000">return</font></u></b> out;
 <font color="#000000">08:</font>     }
 <font color="#000000">09:</font>     f.duration = duration;
 <font color="#000000">10:</font>     f.par = ((g) =&gt; anim_parallel(f, g));
 <font color="#000000">11:</font>     f.seq = ((g) =&gt; anim_sequence(f, g));
-<font color="#000000">12:</font>     return f;
+<font color="#000000">12:</font>     <b><u><font color="#000000">return</font></u></b> f;
 <font color="#000000">13:</font> }
 <font color="#000000">14:</font> </tt></pre>
 </div>
 
 <ul>
 <li>
- <code>anim_parallel_list</code> is a helpful combinator to write the animations
+ <code>anim_parallel_list(xs)</code> is a helpful to write the animations
   in <code>xs</code> in parallel. It chains together the elements of the list
   with <code>par</code> calls.
 </li>
@@ -571,7 +575,8 @@ http://www.gnu.org/software/src-highlite -->
 
 <ul>
 <li>
- <code>anim_stagger</code> is a combinator to write staggered animations.
+ <code>anim_stagger(xs, delta)</code> is a combinator to write staggered animations. It
+  delays the animation at <code>xs[i]</code> for a duration <code>delta*i</code>. 
 </li>
 
 </ul>
@@ -582,17 +587,17 @@ by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt><font color="#000000">01:</font> 
-<font color="#000000">02:</font> function anim_stagger(xs, delta) {
-<font color="#000000">03:</font>     console.assert(typeof(delta) == "number");
-<font color="#000000">04:</font>     var ys = [];
-<font color="#000000">05:</font>     for(var i = 0; i &lt; xs.length; ++i) {
+<font color="#000000">02:</font> <b><u><font color="#000000">function</font></u></b> anim_stagger(xs, delta) {
+<font color="#000000">03:</font>     console.assert(<b><u><font color="#000000">typeof</font></u></b>(delta) == <font color="#808080">"number"</font>);
+<font color="#000000">04:</font>     <b><u><font color="#000000">var</font></u></b> ys = [];
+<font color="#000000">05:</font>     <b><u><font color="#000000">for</font></u></b>(<b><u><font color="#000000">var</font></u></b> i = <font color="#000000">0</font>; i &lt; xs.length; ++i) {
 <font color="#000000">06:</font>         ys.push(anim_delay(delta*i).seq(xs[i]));
 <font color="#000000">07:</font>     }
-<font color="#000000">08:</font>     var y = ys[0];
-<font color="#000000">09:</font>     for(var i = 1; i &lt; ys.length; ++i) {
+<font color="#000000">08:</font>     <b><u><font color="#000000">var</font></u></b> y = ys[<font color="#000000">0</font>];
+<font color="#000000">09:</font>     <b><u><font color="#000000">for</font></u></b>(<b><u><font color="#000000">var</font></u></b> i = <font color="#000000">1</font>; i &lt; ys.length; ++i) {
 <font color="#000000">10:</font>         y = y.par(ys[i]);
 <font color="#000000">11:</font>     }
-<font color="#000000">12:</font>     return y;
+<font color="#000000">12:</font>     <b><u><font color="#000000">return</font></u></b> y;
 <font color="#000000">13:</font> }
 <font color="#000000">14:</font> </tt></pre>
 </div>

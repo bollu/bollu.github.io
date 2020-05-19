@@ -368,6 +368,166 @@ function make_anim34_gen(container) {
 }
 
 
+function make_anim_interpolated_gen(container) {
+    const width = 500;
+    const height = 100;
+    const NINTERPOLATORS = 3;
+
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("width", width + "px");
+    svg.setAttribute("height", height + "px");
+    svg.setAttribute("viewBox", `0 0 ${width} ${height}`)
+    svg.setAttribute("font-family", "monospace");
+    container.appendChild(svg);
+    
+    let circles = [];
+    let anim_circles_start = [];
+    let anim_circles_enter = [];
+    const RAD = 10;
+    const interpolators = [ease_cubic, ease_linear, ease_out_back]
+    for(var i = 0; i < NINTERPOLATORS; ++i) {
+        let circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        svg.appendChild(circle);
+
+        circle.setAttribute("fill", "#1a73e8");
+        circle.setAttribute("r", RAD);
+        circle.setAttribute("cx", 200);
+        circle.setAttribute("cy", 20 + RAD *3 * i);
+        circles.push(circle);
+        anim_circles_start.push(anim_const("cx" + i, 200));
+        anim_circles_enter.push(anim_interpolated(interpolators[i], "cx" + i, 300, 200));
+        
+    }
+
+    
+    // const anim = anim_parallel_list(anim_circles_start)
+    const anim = anim_parallel_list(anim_circles_start)
+            .seq(anim_parallel_list(anim_circles_enter))
+            .seq(anim_delay(200));
+
+    return (async function*() {
+        const TOTALFRAMES = 400;
+        const DT = 1.0 / 30.0;
+        while(true) {
+            for(let n = 0; n < TOTALFRAMES; ++n) {
+                const val = anim(n / TOTALFRAMES * anim.duration, {});
+                for(var i = 0; i < NINTERPOLATORS; ++i) {
+                    circles[i].setAttribute("cx", val["cx" + i]);
+                }
+                await promiseDuration(DT);
+                yield;
+            }
+        }
+    })();
+}
+
+
+function make_anim_sequence_gen(container) {
+    const width = 500;
+    const height = 100;
+    const NCIRCLES = 3;
+
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("width", width + "px");
+    svg.setAttribute("height", height + "px");
+    svg.setAttribute("viewBox", `0 0 ${width} ${height}`)
+    svg.setAttribute("font-family", "monospace");
+    container.appendChild(svg);
+    
+    let circles = [];
+    let anim_circles_start = [];
+    let anim_circles_enter = [];
+    const RAD = 10;
+    for(var i = 0; i < NCIRCLES; ++i) {
+        let circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        svg.appendChild(circle);
+
+        circle.setAttribute("fill", "#1a73e8");
+        circle.setAttribute("r", RAD);
+        circle.setAttribute("cx", 30 + i * 100);
+        circle.setAttribute("cy", 50);
+        circles.push(circle);
+        anim_circles_start.push(anim_const("cx" + i, 30 + i * 100));
+        anim_circles_enter.push(anim_interpolated(ease_linear, "cx" + i, 30 + (i + 1) * 100 - RAD*2, 300));
+        
+    }
+
+    
+    // const anim = anim_parallel_list(anim_circles_start)
+    const anim = anim_parallel_list(anim_circles_start)
+            .seq(anim_sequence_list(anim_circles_enter))
+            .seq(anim_delay(200));
+
+    return (async function*() {
+        const TOTALFRAMES = 1000;
+        const DT = 1.0 / 30.0;
+        while(true) {
+            for(let n = 0; n < TOTALFRAMES; ++n) {
+                const val = anim(n / TOTALFRAMES * anim.duration, {});
+                for(var i = 0; i < NCIRCLES; ++i) {
+                    circles[i].setAttribute("cx", val["cx" + i]);
+                }
+                await promiseDuration(DT);
+                yield;
+            }
+        }
+    })();
+}
+
+
+function make_anim_parallel_gen(container) {
+    const width = 500;
+    const height = 100;
+    const NCIRCLES = 3;
+
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("width", width + "px");
+    svg.setAttribute("height", height + "px");
+    svg.setAttribute("viewBox", `0 0 ${width} ${height}`)
+    svg.setAttribute("font-family", "monospace");
+    container.appendChild(svg);
+    
+    let circles = [];
+    let anim_circles_start = [];
+    let anim_circles_enter = [];
+    const RAD = 10;
+    for(var i = 0; i < NCIRCLES; ++i) {
+        let circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        svg.appendChild(circle);
+
+        circle.setAttribute("fill", "#1a73e8");
+        circle.setAttribute("r", RAD);
+        circle.setAttribute("cx", 200);
+        circle.setAttribute("cy", 20 + RAD *3 * i);
+        circles.push(circle);
+        anim_circles_start.push(anim_const("cx" + i, 200));
+        anim_circles_enter.push(anim_interpolated(ease_cubic, "cx" + i, 300, 300));
+        
+    }
+
+    
+    // const anim = anim_parallel_list(anim_circles_start)
+    const anim = anim_parallel_list(anim_circles_start)
+            .seq(anim_parallel_list(anim_circles_enter))
+            .seq(anim_delay(200));
+
+    return (async function*() {
+        const TOTALFRAMES = 1000;
+        const DT = 1.0 / 30.0;
+        while(true) {
+            for(let n = 0; n < TOTALFRAMES; ++n) {
+                const val = anim(n / TOTALFRAMES * anim.duration, {});
+                for(var i = 0; i < NCIRCLES; ++i) {
+                    circles[i].setAttribute("cx", val["cx" + i]);
+                }
+                await promiseDuration(DT);
+                yield;
+            }
+        }
+    })();
+}
+
+
 
 function animator_from_generator(gen) {
     gen.next().then(function() { 
@@ -500,5 +660,17 @@ function init_animations() {
 
     const anim34 = make_anim34_gen(document.getElementById("animation-34")); 
     animator_from_generator(anim34);
+
+    const anim_interpolated = make_anim_interpolated_gen(document.getElementById("animation-interpolated")); 
+    animator_from_generator(anim_interpolated);
+
+
+    const anim_sequence = make_anim_sequence_gen(document.getElementById("animation-sequence")); 
+    animator_from_generator(anim_sequence);
+
+
+    const anim_parallel = make_anim_parallel_gen(document.getElementById("animation-parallel")); 
+    animator_from_generator(anim_parallel);
+
     plot();
 }                      

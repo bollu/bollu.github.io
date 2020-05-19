@@ -34,6 +34,11 @@ function ease_linear(vstart, tlin, vend) { return (1.0 - tlin) * vstart + tlin *
 function ease_cubic(vstart, tlin, vend) {
     const cube = (1 - tlin)*(1-tlin)*(1-tlin); return cube * vstart + (1 - cube) * vend;
 }
+function ease_out_back(vstart, tlin, vend) {
+    const c1 = 1.70158; const c3 = c1 + 1; const t = 1 + c3 * Math.pow(tlin - 1, 3) + c1 * Math.pow(tlin - 1, 2);
+    return (1-t) * vstart + t*vend;
+}
+
                                         
 function anim_interpolated(fease, field, vend, duration) {
     let f =  function(t, out, tstart) {
@@ -81,10 +86,8 @@ function anim_parallel(anim1, anim2) {
     return f;
 }
 
-function anim_parallel_list(xs) {
-    var x = xs[0]; for(var i = 1; i < xs.length; ++i) { x = x.par(xs[i]); }
-    return x;
-}
+function anim_parallel_list(xs) { var x = xs[0]; for(var i = 1; i < xs.length; ++i) { x = x.par(xs[i]); } return x; }
+function anim_sequence_list(xs) { var x = xs[0]; for(var i = 1; i < xs.length; ++i) { x = x.seq(xs[i]); } return x; }
 
 function anim_stagger(xs, delta) {
     console.assert(typeof(delta) == "number");
