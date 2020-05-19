@@ -297,6 +297,34 @@ http://www.gnu.org/software/src-highlite -->
 so we can play with it on the console, edit it interactively, and plot it.
 It's behaviour can be studied on a piece of paper, since it's entirely
 decoupled from the real world.
+<h3><a id=easingower-of- href='#easingower-of-'> § </a> The power of <code>easing</code></h3>
+So far, we have been using the same <code>easing</code> parameter everywhere: 
+<code>easing_cubic</code>. This parameter is a way to <i>warp time</i>. We only tell the
+library what the <i>final value</i> is supposed to be. It's our library's job
+to figure out how to get from the current value to the final value. However,
+there are <i>many ways</i> to get from the initial value to the final value. We
+could:
+<ul>
+<li>
+ Change the value in constant increments. This is what <code>easing_linear</code> does.
+</li>
+<li>
+ Change the value so that it chages slowly in the beginning, and much
+  faster later. This is what <code>easing_cubic</code> does.
+</li>
+<li>
+ Change the value so that it changes quickly, <i>overshoots</i>, and then
+  comes back to the final value. This is what <code>ease_out_back</code> does. 
+</li>
+
+</ul>
+
+There are many easing functions. Indeed, infinitely many, since we can write
+any function we want. A quick example of the three mentioned above, with
+a slide to notice the difference:
+<div id="animation-showoff-easing"></div>
+Drag the slider to move through the animation!  </br>
+<input type="range" id="animation-showoff-easing-scrubber" min=0 max=1000 value=0 style="width:80%">
 <h3><a id=versus-the-world href='#versus-the-world'> § </a> <code>minanim.js</code> versus the world</h3>
 Both <code>d3.js</code> and <code>anime.js</code> are libraries that intertwine 
 <i>computing</i> with <i>animation</i>. On the other hand, our implementation describes
@@ -502,7 +530,7 @@ by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt><font color="#000000">01:</font> 
-<font color="#000000">02:</font> anim1, anim2: anim
+<font color="#000000">02:</font> <i><font color="#222222">// anim1, anim2: anim</font></i>
 <font color="#000000">03:</font> <b><u><font color="#000000">function</font></u></b> anim_sequence(anim1, anim2) {
 <font color="#000000">04:</font>     <b><u><font color="#000000">const</font></u></b> duration = anim1.duration + anim2.duration;
 <font color="#000000">05:</font>     let f =  <b><u><font color="#000000">function</font></u></b>(t, out, tstart) {
@@ -536,19 +564,20 @@ by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt><font color="#000000">01:</font> 
-<font color="#000000">02:</font> <b><u><font color="#000000">function</font></u></b> anim_parallel(anim1, anim2) {
-<font color="#000000">03:</font>     <b><u><font color="#000000">const</font></u></b> duration = Math.max(anim1.duration, anim2.duration);
-<font color="#000000">04:</font>     let f =  <b><u><font color="#000000">function</font></u></b>(t, out, tstart) {
-<font color="#000000">05:</font>         [out, tstart] = assert_precondition(t, out, tstart);
-<font color="#000000">06:</font>         <b><u><font color="#000000">if</font></u></b> (t &gt;= tstart) { anim1(t, out, tstart); anim2(t, out, tstart); }
-<font color="#000000">07:</font>         <b><u><font color="#000000">return</font></u></b> out;
-<font color="#000000">08:</font>     }
-<font color="#000000">09:</font>     f.duration = duration;
-<font color="#000000">10:</font>     f.par = ((g) =&gt; anim_parallel(f, g));
-<font color="#000000">11:</font>     f.seq = ((g) =&gt; anim_sequence(f, g));
-<font color="#000000">12:</font>     <b><u><font color="#000000">return</font></u></b> f;
-<font color="#000000">13:</font> }
-<font color="#000000">14:</font> </tt></pre>
+<font color="#000000">02:</font> <i><font color="#222222">// anim1, anim2: anim</font></i>
+<font color="#000000">03:</font> <b><u><font color="#000000">function</font></u></b> anim_parallel(anim1, anim2) {
+<font color="#000000">04:</font>     <b><u><font color="#000000">const</font></u></b> duration = Math.max(anim1.duration, anim2.duration);
+<font color="#000000">05:</font>     let f =  <b><u><font color="#000000">function</font></u></b>(t, out, tstart) {
+<font color="#000000">06:</font>         [out, tstart] = assert_precondition(t, out, tstart);
+<font color="#000000">07:</font>         <b><u><font color="#000000">if</font></u></b> (t &gt;= tstart) { anim1(t, out, tstart); anim2(t, out, tstart); }
+<font color="#000000">08:</font>         <b><u><font color="#000000">return</font></u></b> out;
+<font color="#000000">09:</font>     }
+<font color="#000000">10:</font>     f.duration = duration;
+<font color="#000000">11:</font>     f.par = ((g) =&gt; anim_parallel(f, g));
+<font color="#000000">12:</font>     f.seq = ((g) =&gt; anim_sequence(f, g));
+<font color="#000000">13:</font>     <b><u><font color="#000000">return</font></u></b> f;
+<font color="#000000">14:</font> }
+<font color="#000000">15:</font> </tt></pre>
 </div>
 
 <ul>
@@ -566,16 +595,18 @@ by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt><font color="#000000">1:</font> 
-<font color="#000000">2:</font> <b><u><font color="#000000">function</font></u></b> anim_parallel_list(xs) {
-<font color="#000000">3:</font>     <b><u><font color="#000000">var</font></u></b> x = xs[<font color="#000000">0</font>]; <b><u><font color="#000000">for</font></u></b>(<b><u><font color="#000000">var</font></u></b> i = <font color="#000000">1</font>; i &lt; xs.length; ++i) { x = x.par(xs[i]); }
-<font color="#000000">4:</font>     <b><u><font color="#000000">return</font></u></b> x;
-<font color="#000000">5:</font> }
-<font color="#000000">6:</font> </tt></pre>
+<font color="#000000">2:</font> <i><font color="#222222">// xs: list[animation]</font></i>
+<font color="#000000">3:</font> <b><u><font color="#000000">function</font></u></b> anim_parallel_list(xs) {
+<font color="#000000">4:</font>     <b><u><font color="#000000">var</font></u></b> x = xs[<font color="#000000">0</font>]; <b><u><font color="#000000">for</font></u></b>(<b><u><font color="#000000">var</font></u></b> i = <font color="#000000">1</font>; i &lt; xs.length; ++i) { x = x.par(xs[i]); }
+<font color="#000000">5:</font>     <b><u><font color="#000000">return</font></u></b> x;
+<font color="#000000">6:</font> }
+<font color="#000000">7:</font> </tt></pre>
 </div>
 
 <ul>
 <li>
- <code>anim_stagger(xs, delta)</code> is a combinator to write staggered animations. It
+ <code>anim_stagger(xs, delta)</code> is a combinator to stagger the animations in
+  the list of animations <code>xs</code>. It
   delays the animation at <code>xs[i]</code> for a duration <code>delta*i</code>. 
 </li>
 
@@ -587,25 +618,26 @@ by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt><font color="#000000">01:</font> 
-<font color="#000000">02:</font> <b><u><font color="#000000">function</font></u></b> anim_stagger(xs, delta) {
-<font color="#000000">03:</font>     console.assert(<b><u><font color="#000000">typeof</font></u></b>(delta) == <font color="#808080">"number"</font>);
-<font color="#000000">04:</font>     <b><u><font color="#000000">var</font></u></b> ys = [];
-<font color="#000000">05:</font>     <b><u><font color="#000000">for</font></u></b>(<b><u><font color="#000000">var</font></u></b> i = <font color="#000000">0</font>; i &lt; xs.length; ++i) {
-<font color="#000000">06:</font>         ys.push(anim_delay(delta*i).seq(xs[i]));
-<font color="#000000">07:</font>     }
-<font color="#000000">08:</font>     <b><u><font color="#000000">var</font></u></b> y = ys[<font color="#000000">0</font>];
-<font color="#000000">09:</font>     <b><u><font color="#000000">for</font></u></b>(<b><u><font color="#000000">var</font></u></b> i = <font color="#000000">1</font>; i &lt; ys.length; ++i) {
-<font color="#000000">10:</font>         y = y.par(ys[i]);
-<font color="#000000">11:</font>     }
-<font color="#000000">12:</font>     <b><u><font color="#000000">return</font></u></b> y;
-<font color="#000000">13:</font> }
-<font color="#000000">14:</font> </tt></pre>
+<font color="#000000">02:</font> <i><font color="#222222">// xs: list[animation]. delta: duration</font></i>
+<font color="#000000">03:</font> <b><u><font color="#000000">function</font></u></b> anim_stagger(xs, delta) {
+<font color="#000000">04:</font>     console.assert(<b><u><font color="#000000">typeof</font></u></b>(delta) == <font color="#808080">"number"</font>);
+<font color="#000000">05:</font>     <b><u><font color="#000000">var</font></u></b> ys = [];
+<font color="#000000">06:</font>     <b><u><font color="#000000">for</font></u></b>(<b><u><font color="#000000">var</font></u></b> i = <font color="#000000">0</font>; i &lt; xs.length; ++i) {
+<font color="#000000">07:</font>         ys.push(anim_delay(delta*i).seq(xs[i]));
+<font color="#000000">08:</font>     }
+<font color="#000000">09:</font>     <b><u><font color="#000000">var</font></u></b> y = ys[<font color="#000000">0</font>];
+<font color="#000000">10:</font>     <b><u><font color="#000000">for</font></u></b>(<b><u><font color="#000000">var</font></u></b> i = <font color="#000000">1</font>; i &lt; ys.length; ++i) {
+<font color="#000000">11:</font>         y = y.par(ys[i]);
+<font color="#000000">12:</font>     }
+<font color="#000000">13:</font>     <b><u><font color="#000000">return</font></u></b> y;
+<font color="#000000">14:</font> }
+<font color="#000000">15:</font> </tt></pre>
 </div>
 
 <h3><a id=conclusion href='#conclusion'> § </a> Conclusion</h3>
 We saw how to write a tiny, declarative, composable animation library that
-does one thing only (compose functions that manipulate values over time),
-but does it well.
+does <i>one</i> thing: compose functions that manipulate values over time,
+and does it well.
 If you like this content, check out the repo at <a href=https://github.com/bollu/mathemagic>
 bollu/mathemagic</a>
 

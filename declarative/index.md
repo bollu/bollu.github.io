@@ -253,6 +253,29 @@ so we can play with it on the console, edit it interactively, and plot it.
 It's behaviour can be studied on a piece of paper, since it's entirely
 decoupled from the real world.
 
+
+## The power of `easing`
+
+So far, we have been using the same `easing` parameter everywhere: 
+`easing_cubic`. This parameter is a way to _warp time_. We only tell the
+library what the _final value_ is supposed to be. It's our library's job
+to figure out how to get from the current value to the final value. However,
+there are _many ways_ to get from the initial value to the final value. We
+could:
+- Change the value in constant increments. This is what `easing_linear` does.
+- Change the value so that it chages slowly in the beginning, and much
+  faster later. This is what `easing_cubic` does.
+- Change the value so that it changes quickly, _overshoots_, and then
+  comes back to the final value. This is what `ease_out_back` does. 
+
+There are many easing functions. Indeed, infinitely many, since we can write
+any function we want. A quick example of the three mentioned above, with
+a slide to notice the difference:
+
+<div id="animation-showoff-easing"></div>
+Drag the slider to move through the animation!  </br>
+<input type="range" id="animation-showoff-easing-scrubber" min=0 max=1000 value=0 style="width:80%">
+
 ## `minanim.js` versus the world
 
 Both `d3.js` and `anime.js` are libraries that intertwine 
@@ -404,7 +427,7 @@ function anim_interpolated(fease, field, vend, duration) {
 
 
 ```js
-anim1, anim2: anim
+// anim1, anim2: anim
 function anim_sequence(anim1, anim2) {
     const duration = anim1.duration + anim2.duration;
     let f =  function(t, out, tstart) {
@@ -429,6 +452,7 @@ function anim_sequence(anim1, anim2) {
 <div id="animation-parallel"></div>
 
 ```js
+// anim1, anim2: anim
 function anim_parallel(anim1, anim2) {
     const duration = Math.max(anim1.duration, anim2.duration);
     let f =  function(t, out, tstart) {
@@ -449,16 +473,19 @@ function anim_parallel(anim1, anim2) {
   with `par` calls.
 
 ```js
+// xs: list[animation]
 function anim_parallel_list(xs) {
     var x = xs[0]; for(var i = 1; i < xs.length; ++i) { x = x.par(xs[i]); }
     return x;
 }
 ```
 
-- `anim_stagger(xs, delta)` is a combinator to write staggered animations. It
+- `anim_stagger(xs, delta)` is a combinator to stagger the animations in
+  the list of animations `xs`. It
   delays the animation at `xs[i]` for a duration `delta*i`. 
 
 ```js
+// xs: list[animation]. delta: duration
 function anim_stagger(xs, delta) {
     console.assert(typeof(delta) == "number");
     var ys = [];
