@@ -1,10 +1,10 @@
-## The unreasonable effectiveness of Declarative programming
-### Declarative animations
+# The unreasonable effectiveness of Declarative programming
+## Declarative animations
 
 I'd like to show off the usual approach to building animations in javascript,
 and what we can learn by building a tiny version of such a library.
 
-#### A complex animation
+## A complex animation
 <div id="animation-1"></div>
 
 
@@ -36,13 +36,14 @@ let anim_circle = anim_const("cx", 100)
 ```
 
 The entire animation is built out of one primitive and three combinators:
-1. `anim_interpolated(ease, name, val, time)` to change to a named value with name `name`
+1. `anim_const(name, val)` to set a constant value `val` to name `name`.
+2. `anim_interpolated(ease, name, val, time)` to change to a named value with name `name`
    to value `val` in duration `time`. 
-2. `anim1.seq(anim2)` to run `anim2` once `anim1` has completed.
-3. `anim1.par(anim2)` to run `anim2` in parallel with `anim1`.
-4. `anim_delay(time)` to do nothing for time `time`.
+3. `anim1.seq(anim2)` to run `anim2` once `anim1` has completed.
+4. `anim1.par(anim2)` to run `anim2` in parallel with `anim1`.
+5. `anim_delay(time)` to do nothing for time `time`.
 
-#### What is `anim_circle`, really?
+## What is `anim_circle`, really?
 
 `anim_circle` is a _function_, which can be invoked as `val = anim_circle(t)`.
 It returns an object `val`.  `val.cx` and `val.cr` have values as the animation dictates.
@@ -61,7 +62,7 @@ since it doesn't compute anything else.
 > Fancy ways of saying that `anim_circle` doesn't change anything else is to say that it 
 > is _side-effect-free_, or _refrentially transparent_.
 
-#### Playing with `anim_circle` in the browser
+## Playing with `anim_circle` in the browser
 
 
 - <a  onclick="foo()">
@@ -96,7 +97,7 @@ the text, into your console, hit enter. Everything will be back to
 original.
 
 
-#### Declarative ⇒ Pure
+## Declarative ⇒ Pure
 
 As hinted above, since our specification of the animation was entirely declarative,
 it can't really "do anything else" like manipulate the DOM. This gives us 
@@ -111,7 +112,7 @@ we can easily swap it (by pasting the code above), poke it (by calling `anim_cir
 and in general deal with is as a **unit of thought**. It has no unpleasant
 interactions with the rest of the world.
 
-#### Purity ⇒ Time Travel
+## Purity ⇒ Time Travel
 
 Due to this purity, we also get **time-travel-debugging**. The slider is hooked up
 to `anim_circle`, and displays the circle as dictated by `anim_circle(t_slider)`.
@@ -119,16 +120,124 @@ to `anim_circle`, and displays the circle as dictated by `anim_circle(t_slider)`
 
 <div id="animation-2"></div>
 Drag the slider to move through the animation!  </br>
+
 <input type="range" id="animation-2-scrubber" min=0 max=1000 value=0 style="width:80%">
 
 
-#### Declarative ⇒ Composition: staggering animations
+## Declarative ⇒ Composition: staggering animations
+
+Our framework is _composable_, because we can build larger objects from smaller
+objects in a natural way. As an example, a _staggered_ animation is a nice
+way to make the entry of multiple objects feel less monotonous.
 
 <div id="animation-3"></div>
-Drag the slider to move through the animation!  </br>
-<input type="range" id="animation-3-scrubber" min=0 max=1000 value=0 style="width:80%">
 
-#### Declarative ⇒ Debuggable
+
+### Step 1
+The code to achieve this creates a list of animations called `as` which
+has the animations of the ball rising up. Each element `as[i]` has
+the animation of the ball rising up for the same amount of time. This is
+visualized here:
+
+
+```text
+*as[0]===*
+*as[1]===*
+*as[2]===*
+*as[3]===*
+*as[4]===*
+```
+
+<div id="animation-31"></div>
+
+
+
+### Step 2
+Next, each element `as[i]` is modified by creating a new animation `xs[i]`.
+`xs[i]` runs `as[i]` after a delay of `delta*i`.
+We then compose all the `xs[i]` in parallel to create a single animation `x`.
+This animation has the balls rising from the bottom in a staggered fashion.
+
+```text
+  | |xs[0] = -delay=0-*as[0]===*
+  |P|xs[1] = -delay=1------*as[1]===*
+x=|A|xs[2] = -delay=2-----------*as[2]===*
+  |R|xs[3] = -delay=3----------------*as[3]===*
+  | |xs[4] = -delay=3--------------------*as[4]===*
+```
+
+
+<div id="animation-32"></div>
+
+### Step 3
+Next, we similarly create an array of animations called `bs` which
+has animations of the balls disappearing. These are staggered as before.
+This is shown here:
+
+```text
+  | |bs[0] = -delay=0-*bs[0]===*
+  |P|bs[1] = -delay=1------*bs[1]===*
+y=|A|bs[2] = -delay=2-----------*bs[2]===*
+  |R|bs[3] = -delay=3----------------*bs[3]===*
+  | |bs[4] = -delay=3--------------------*bs[4]===*
+```
+
+<div id="animation-33"></div>
+
+### Step 4
+Finally, we compose `x` and `y`, such that `y` is staggered relative to `x`
+by some delay. This allows the first few balls to start disappearing
+_while new balls_ continue entering.
+
+```text
+     |  | |xs[0] = -delay=0-*as[0]===*
+     |  |P|xs[1] = -delay=1------*as[1]===*
+     |x=|A|xs[2] = -delay=2-----------*as[2]===*
+     |  |R|xs[3] = -delay=3----------------*as[3]===*
+     |  | |xs[4] = -delay=3--------------------*as[4]===*
+     |             | |bs[0] = -delay=0-*as[0]===*
+     |             |P|bs[1] = -delay=1------*as[1]===*
+anim=|---delay---y=|A|bs[2] = -delay=2-----------*as[2]===*
+     |             |R|bs[3] = -delay=3----------------*as[3]===*
+     |             | |bs[4] = -delay=3--------------------*as[4]===*
+```
+
+
+<div id="animation-34"></div>
+Drag the slider to move through the animation!  </br>
+<input type="range" id="animation-34-scrubber" min=0 max=1000 value=0 style="width:80%">
+
+
+### Reflection
+
+Notice that the final animation network is quite complex. It's hopeless
+to build it "manually". In code, we write special helpers
+called `anim_stagger` that allow us to stagger animation, and then use
+it, along with `.seq()` and `.par()` to build the full animation:
+
+```js
+const anim = anim_parallel_list(anim_circles_start)
+    .seq(anim_stagger([anim_stagger(anim_circles_enter, STAGGER),
+                       anim_stagger(anim_circles_leave, STAGGER)], 300));
+```
+
+This describes the complicated network:
+
+```text
+     |  | |xs[0] = -delay=0-*as[0]===*
+     |  |P|xs[1] = -delay=1------*as[1]===*
+     |x=|A|xs[2] = -delay=2-----------*as[2]===*
+     |  |R|xs[3] = -delay=3----------------*as[3]===*
+     |  | |xs[4] = -delay=3--------------------*as[4]===*
+     |             | |bs[0] = -delay=0-*as[0]===*
+     |             |P|bs[1] = -delay=1------*as[1]===*
+anim=|---delay---y=|A|bs[2] = -delay=2-----------*as[2]===*
+     |             |R|bs[3] = -delay=3----------------*as[3]===*
+     |             | |bs[4] = -delay=3--------------------*as[4]===*
+```
+
+
+## Declarative ⇒ Debuggable
 
 As hinted above, since our specification of the animation was entirely declarative,
 it can't really "do anything else" like manipulate the DOM. This gives us 
@@ -139,29 +248,34 @@ function:
 anim_circle: (t:Time) -> (cx: float, cr: float)
 ```
 
+so we can play with it on the console, edit stuff interactively.
 
+## `minanim.js` versus the world
 
-#### The algebra
+Both `d3.js` and `anime.js` are libraries that intertwine 
+_computing_ with _animation_. On the other hand, our implementation describes
+_only_ how values change. It's upto us to render this using
+SVG/canvas/what-have-you. 
 
-We can show that these functions have the algebraic structure of a semiring.
-- Our multplication is sequential composition, since it's not commutative.
-- Our addition is parallel composition, since it is commutative.
-- The 0 is `delay(INFINITY)`, because `0 * x = 0` (sequentially composing something
-  to happen after an infinite 
+Building a layer like `anime.js` on top of this is not hard. On the other hand,
+using `anime.js` purely is impossible.
 
-#### `anim.js` versus the world
-###### `anim.js` versus `d3`
-###### `anim.js` versus `anime.js`
-
-#### The full code listing
+## Code Walkthrough
 
 The entire "library", which is written very defensively and sprinked with
 asserts fits in exactly a 100 lines of code. It can be golfed further
 at the expense of either asserts, clarity, or by adding some higher-order
 functions that factor out some common work. I was loath to do any of these.
-The full code listing of `anim.js` is:
+So here's the full source code, explained as we go on.
 
-```
+
+- We write `assert_precondition(t, out, tstart)` to check that `t`
+  and `tstart` are numbers such that `t >= tstart`, and that `out` is an object. 
+  If `tstart` is uninitialized, we initialie `tstart` to `0`. If
+  `out` is uninitialized, we initialize `out` to `{}`.
+
+```js
+// t, tstart: number. out: object
 function assert_precondition(t, out, tstart) {
     console.assert(typeof(t) === "number");
     if (out === undefined) { out = {}; }
@@ -171,7 +285,17 @@ function assert_precondition(t, out, tstart) {
     console.assert(t >= tstart);
     return [out, tstart];
 }
+```
 
+- `anim_delay(duration)` creates a function `f`. On being invoked, it returns
+  whatever value of `out` has been given to it. That is, it doesn't
+  modify anything. It has three fields, `duration`, `par`, and `seq`.
+  `duration`. `duration` is how long the animation runs for. `par, seq`
+  are methods for chaining, that allows us to compose this delay animation
+  in parallel and in sequence with other animations.
+
+```js
+// duration: number
 function anim_delay(duration) {
     console.assert(typeof(duration) === "number");
     let f = function(t, out, tstart) { 
@@ -182,7 +306,19 @@ function anim_delay(duration) {
     f.seq = ((g) => anim_sequence(f, g));
     return f;
 }
+```
 
+
+
+- `anim_delay(duration)` creates a function `f`. On being invoked, it returns
+  whatever value of `out` has been given to it. That is, it doesn't
+  modify anything. It has three fields, `duration`, `par`, and `seq`.
+  `duration`. `duration` is how long the animation runs for. `par, seq`
+  are methods for chaining, that allows us to compose this delay animation
+  in parallel and in sequence with other animations.
+
+```js
+// field: string. v: number
 function anim_const(field, v) {
     let f = function(t, out, tstart) {
         [out, tstart] = assert_precondition(t, out, tstart); out[field] = v; return out;
@@ -193,12 +329,42 @@ function anim_const(field, v) {
     return f;
 }
 
+```
+
+- We implement two **easing functions**, which takes a parameter 
+  `tlin` such that `0 <= tlin <= 1`, and two parameters `vstart` and `vend`.
+  The functions allow us to animate a change from `vstart` to `vend` smoothly.
+  we are to imagine `tlin` as a time. When `tlin=0`, we are at `vstart`.
+  When `tlin=1`, we will be at `tend`.
+  In between, we want values between `vstart` and `vend`. To animate values,
+  we often want the change from `vstart` to `vend` to happen a certain way.
+  For example, we often want the change to start slowly, and then for the
+  change to happen faster towards the end. A good reference for this is
+  [`easings.net`](https://easings.net/). Our animation library can use
+  _any_ easing function we see fit.
+
+```js
+// vstart, vend: number. tlin: number, 0 <= tlin <= 1
 function ease_linear(vstart, tlin, vend) { return (1.0 - tlin) * vstart + tlin * vend; }
 
 function ease_cubic(vstart, tlin, vend) {
     const cube = (1 - tlin)*(1-tlin)*(1-tlin); return cube * vstart + (1 - cube) * vend;
 }
+```
+
+- `anim_interpolated(duration)` creates a function `f`. On being invoked, 
+  it figures out if its animation is running or has already ended.
+  We have a **precondition** `t >= tstart`, which is checked by
+  `assert_precondition`, and is maintained by the library.
+  So, we only need to care whether the animation is currently running
+  or has ended. If the animation is currently running, we find the
+  current value using `fease`. If the animation has ended, we set
+  the value to the `end` value.
+
                                         
+```js
+// fease: easing function.
+// field: string. vend: number. duration: number >= 0
 function anim_interpolated(fease, field, vend, duration) {
     let f =  function(t, out, tstart) {
         [out, tstart] = assert_precondition(t, out, tstart);
@@ -215,9 +381,18 @@ function anim_interpolated(fease, field, vend, duration) {
     f.par = ((g) => anim_parallel(f, g));
     f.seq = ((g) => anim_sequence(f, g));
     return f;
-
 }
+```
 
+- This combinator sequences two animations together, setting up `anim2` to begin
+  running once `anim1` has completed. When it is invoked, `t >= tstart`. So
+  it can run `anim1` immediately. If it learns that
+  `anim1` has completed, it then invokes `anim2`. The total time taken for
+  this animation is its `duration`. This is the sum of durations of `anim1`
+  and `anim2`.
+
+```js
+anim1, anim2: anim
 function anim_sequence(anim1, anim2) {
     const duration = anim1.duration + anim2.duration;
     let f =  function(t, out, tstart) {
@@ -231,7 +406,15 @@ function anim_sequence(anim1, anim2) {
     f.seq = ((g) => anim_sequence(f, g));
     return f;
 }
+```
 
+- This combinator sequences two animations together, setting up `anim1` and
+  `anim2` to run in parallel. When it is invoked, `t >= tstart`. So it can
+  launch `anim1, anim2` both immediately. The `duration` of this animation
+  is the _maximum_ time taken by `anim1`, `anim2`.
+
+
+```
 function anim_parallel(anim1, anim2) {
     const duration = Math.max(anim1.duration, anim2.duration);
     let f =  function(t, out, tstart) {
@@ -244,12 +427,23 @@ function anim_parallel(anim1, anim2) {
     f.seq = ((g) => anim_sequence(f, g));
     return f;
 }
+```
 
+
+- `anim_parallel_list` is a helpful combinator to write the animations
+  in `xs` in parallel. it chains together the elements of the list
+  with `par` calls.
+
+```js
 function anim_parallel_list(xs) {
     var x = xs[0]; for(var i = 1; i < xs.length; ++i) { x = x.par(xs[i]); }
     return x;
 }
+```
 
+- `anim_stagger` is a combinator to write staggered animations.
+
+```
 function anim_stagger(xs, delta) {
     console.assert(typeof(delta) == "number");
     var ys = [];
@@ -265,11 +459,11 @@ function anim_stagger(xs, delta) {
 ```
 
 <!--script src="ANIMGENERATED.js"></script-->
-<script src="anim.js"></script>
+<script src="./minanim.js"></script>
 <script src="./script.js"></script>
 
 <script type="text/javascript">
-document.body.onload = function() { init_interior_point(); }
+document.body.onload = function() { init_animations(); }
 
 </script>
 

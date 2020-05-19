@@ -3,7 +3,7 @@ body {
   background-color: white;
 }
 
-.linenum { color: #666666; }
+.linenum { color: #000000; }
 
 .keyword {
   color: black;
@@ -21,7 +21,7 @@ body {
 }
 
 .comment {
-  color: #808080;
+  color: #222222;
   font-style: italic;
 }
 
