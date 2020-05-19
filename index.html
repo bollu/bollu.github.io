@@ -965,6 +965,60 @@ to increment <code>y</code>. So, at first glance, we may believe we should consi
 In some sense, we are making sure that we can "start" with an <code>dx</code> and see where that takes us.
 In the <code>Z/1Z</code> case, we realise that we can keep taking <code>dx</code>s. In the
 <code>Z/2Z</code> case, we realise we need to flip between <code>dx</code> and <code>dy</code>.
+Formally speaking, if we choose <code>Z/yZ</code>, we will get <code>k</code> numbers:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#000000">1:</font> 
+<font color="#000000">2:</font> Z:    0, x, 2x, ... (k-1)x, y, kx 
+<font color="#000000">3:</font> Z/yZ: 0, x, 2x, ... (k-1)x, y, (kx - y)
+<font color="#000000">4:</font> </tt></pre>
+</div>
+
+But notice that we are inserting <code>dx</code> <i>between</i> numbers. So we will get:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#000000">1:</font> 
+<font color="#000000">2:</font> Z:    0-dx-&gt; x -dx-&gt; 2x, ... (k-1)x -dy-&gt; (k+1)x 
+<font color="#000000">3:</font> Z/yZ: 0-dx-&gt; x -dx-&gt; 2x, ... (k-1)x -dy-&gt; ((k+1)x - y)
+<font color="#000000">4:</font> </tt></pre>
+</div>
+
+That is, we have not "completed" our full steps of <code>kx</code> before we have
+been asked to move a <code>y</code>. This is the age-old tension that exists across
+"points" and "gaps". For <code>k</code> points, there are <code>k-1</code> gaps. We are forced
+to remedy this situation by setting up <code>k+1</code> points, so we have <code>k</code> gaps
+to write <code>k</code> dxs. On choosing <code>Z/(x+y)Z</code>, we get the sequence:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#000000">1:</font> 
+<font color="#000000">2:</font> Z:    0, x, 2x, ... (k-1)x, y, kx, y + x, (k+1)x
+<font color="#000000">3:</font> Z/yZ: 0, x, 2x, ... (k-1)x, y, kx, y + x, (k+1)x - (y+x)
+<font color="#000000">4:</font> </tt></pre>
+</div>
+
+which gives us the moves:
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#000000">1:</font> 
+<font color="#000000">2:</font> Z:    0 -dx-&gt; x ... (k-1)x -dx-&gt; kx -dy-&gt; (k+1)x
+<font color="#000000">3:</font> Z/yZ: 0 -dx-&gt; x ... (k-1)x -dx-&gt; kx -dy-&gt; (k+1)x - (y+x)
+<font color="#000000">4:</font> </tt></pre>
+</div>
+
+That is, we are able to get <code>k</code> occurences <code>dx</code> between <code>0, x, ..,kx</code> which
+has <code>(k+1)</code> points.
 <h2><a id=e-x-1-xof-of- href='#e-x-1-xof-of-'> § </a> <a href=#1-x-e-xof-of->
 Geometric proof of <code>e^x >= 1+x</code>, <code>e^(-x) <= 1-x</code></a>
 </h2>

@@ -368,6 +368,43 @@ In some sense, we are making sure that we can "start" with an `dx` and see where
 In the `Z/1Z` case, we realise that we can keep taking `dx`s. In the
 `Z/2Z` case, we realise we need to flip between `dx` and `dy`.
 
+Formally speaking, if we choose `Z/yZ`, we will get `k` numbers:
+
+```
+Z:    0, x, 2x, ... (k-1)x, y, kx 
+Z/yZ: 0, x, 2x, ... (k-1)x, y, (kx - y)
+```
+
+But notice that we are inserting `dx` _between_ numbers. So we will get:
+
+```
+Z:    0-dx-> x -dx-> 2x, ... (k-1)x -dy-> (k+1)x 
+Z/yZ: 0-dx-> x -dx-> 2x, ... (k-1)x -dy-> ((k+1)x - y)
+```
+
+That is, we have not "completed" our full steps of `kx` before we have
+been asked to move a `y`. This is the age-old tension that exists across
+"points" and "gaps". For `k` points, there are `k-1` gaps. We are forced
+to remedy this situation by setting up `k+1` points, so we have `k` gaps
+to write `k` dxs. On choosing `Z/(x+y)Z`, we get the sequence:
+
+
+```
+Z:    0, x, 2x, ... (k-1)x, y, kx, y + x, (k+1)x
+Z/yZ: 0, x, 2x, ... (k-1)x, y, kx, y + x, (k+1)x - (y+x)
+```
+
+which gives us the moves:
+
+```
+Z:    0 -dx-> x ... (k-1)x -dx-> kx -dy-> (k+1)x
+Z/yZ: 0 -dx-> x ... (k-1)x -dx-> kx -dy-> (k+1)x - (y+x)
+```
+
+That is, we are able to get `k` occurences `dx` between `0, x, ..,kx` which
+has `(k+1)` points.
+
+
 
 # [Geometric proof of `e^x >= 1+x`, `e^(-x) <= 1-x`](#1-x-e-xof-of-)
 
