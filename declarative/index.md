@@ -263,7 +263,7 @@ to figure out how to get from the current value to the final value. However,
 there are _many ways_ to get from the initial value to the final value. We
 could:
 - Change the value in constant increments. This is what `easing_linear` does.
-- Change the value so that it chages slowly in the beginning, and much
+- Change the value so that it changes slowly in the beginning, and much
   faster later. This is what `easing_cubic` does.
 - Change the value so that it changes quickly, _overshoots_, and then
   comes back to the final value. This is what `ease_out_back` does. 
