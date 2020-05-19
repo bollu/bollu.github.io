@@ -1,8 +1,9 @@
-# The unreasonable effectiveness of Declarative programming
+# The Unreasonable Effectiveness Of Declarative Programming
 ## Declarative animations
 
-I'd like to show off the usual approach to building animations in javascript,
-and what we can learn by building a tiny version of such a library.
+I show off [`minanim.js`](https://github.com/bollu/mathemagic/blob/master/declarative/minanim.js),
+a tiny, 100LoC, yet feature-complete library for building animations _declaratively_,
+and why someone would want to do things this way. Enjoy!
 
 ## A complex animation
 <div id="animation-1"></div>
@@ -62,11 +63,11 @@ since it doesn't compute anything else.
 > Fancy ways of saying that `anim_circle` doesn't change anything else is to say that it 
 > is _side-effect-free_, or _refrentially transparent_.
 
-## Playing with `anim_circle` in the browser
+## Playing with this webpage: edit `anim_circle` in the browser!
 
 
 - <a  onclick="foo()">
-  Click on this link, paste into the browser's console, and hit enter.
+  **An ORDER**: Click on this link, paste what has been copied to your clipboard into the browser's console, and hit enter.
   </a> **This instantly updates the circle's animation and the plots**, since the code
   in the clipboard overwrites the definition of `anim_circle`! Scroll
   back to the top to see the new animation and charts.
@@ -91,10 +92,11 @@ You can explore different definitions `anim_circle`s. Feel free to
 play around.  Try evaluating `anim_circle(0)`, `anim_circle(anim_circle.duration)`,
 `anim_circle(anim_circle.duration/2.0)` in the console to get a feel for what
 `anim_circle` returns. <a onclick="writeOldToClipboard()">
-To go back to the original state of affairs, 
-click on this link to copy the old code onto your clipboard </a>. Paste
-the text, into your console, hit enter. Everything will be back to
-original.
+
+- **To go back to the original state of affairs**, 
+  click on this link to copy the old code onto your clipboard </a>. Paste
+  the text, into your console, hit enter. Everything will be back to
+  original.
 
 
 ## Declarative ⇒ Pure
@@ -163,7 +165,7 @@ This animation has the balls rising from the bottom in a staggered fashion.
   |P|xs[1] = -delay=1------*as[1]===*
 x=|A|xs[2] = -delay=2-----------*as[2]===*
   |R|xs[3] = -delay=3----------------*as[3]===*
-  | |xs[4] = -delay=3--------------------*as[4]===*
+  | |xs[4] = -delay=4--------------------*as[4]===*
 ```
 
 
@@ -179,7 +181,7 @@ This is shown here:
   |P|bs[1] = -delay=1------*bs[1]===*
 y=|A|bs[2] = -delay=2-----------*bs[2]===*
   |R|bs[3] = -delay=3----------------*bs[3]===*
-  | |bs[4] = -delay=3--------------------*bs[4]===*
+  | |bs[4] = -delay=4--------------------*bs[4]===*
 ```
 
 <div id="animation-33"></div>
@@ -194,12 +196,12 @@ _while new balls_ continue entering.
      |  |P|xs[1] = -delay=1------*as[1]===*
      |x=|A|xs[2] = -delay=2-----------*as[2]===*
      |  |R|xs[3] = -delay=3----------------*as[3]===*
-     |  | |xs[4] = -delay=3--------------------*as[4]===*
+     |  | |xs[4] = -delay=4--------------------*as[4]===*
      |             | |bs[0] = -delay=0-*as[0]===*
      |             |P|bs[1] = -delay=1------*as[1]===*
 anim=|---delay---y=|A|bs[2] = -delay=2-----------*as[2]===*
      |             |R|bs[3] = -delay=3----------------*as[3]===*
-     |             | |bs[4] = -delay=3--------------------*as[4]===*
+     |             | |bs[4] = -delay=4--------------------*as[4]===*
 ```
 
 
@@ -228,12 +230,12 @@ This describes the complicated network:
      |  |P|xs[1] = -delay=1------*as[1]===*
      |x=|A|xs[2] = -delay=2-----------*as[2]===*
      |  |R|xs[3] = -delay=3----------------*as[3]===*
-     |  | |xs[4] = -delay=3--------------------*as[4]===*
+     |  | |xs[4] = -delay=4--------------------*as[4]===*
      |             | |bs[0] = -delay=0-*as[0]===*
      |             |P|bs[1] = -delay=1------*as[1]===*
 anim=|---delay---y=|A|bs[2] = -delay=2-----------*as[2]===*
      |             |R|bs[3] = -delay=3----------------*as[3]===*
-     |             | |bs[4] = -delay=3--------------------*as[4]===*
+     |             | |bs[4] = -delay=4--------------------*as[4]===*
 ```
 
 
@@ -263,7 +265,7 @@ using `anime.js` purely is impossible.
 ## Code Walkthrough
 
 The entire "library", which is written very defensively and sprinked with
-asserts fits in exactly a 100 lines of code. It can be golfed further
+asserts fits in [**exactly 100 lines of code**](https://github.com/bollu/mathemagic/blob/master/declarative/minanim.js). It can be golfed further
 at the expense of either asserts, clarity, or by adding some higher-order
 functions that factor out some common work. I was loath to do any of these.
 So here's the full source code, explained as we go on.

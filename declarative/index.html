@@ -7,10 +7,13 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 pre, .latexblock, blockquote { border-left-color:#000000;  border-left-style: solid;      border-left-width: 4px; padding-left: 5px; }
  blockquote { color: #222222; margin: 0px; }.latexblock, .latexinline, .code { font-family: 'Blog Mono', monospace; line-height: 1.2em; font-size: 80%;  }.latexblock, blockquote, .code, code { margin-top: 30px; margin-bottom: 30px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; }
-.latexinline { border-bottom-color: #000000; border-bottom-style: solid;                border-bottom-width: 1px; padding-bottom: 2px;                padding-left: 2px; padding-right: 2px; }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.latexblock .li-itemize{margin:1ex 0ex;}.latexblock .li-enumerate{margin:1ex 0ex;}.latexblock .footnotetext{margin:0ex; padding:0ex;}.latexblock div.footnotetext P{margin:0px; text-indent:1em;}.latexblock .thefootnotes{text-align:left;margin:0ex;}.latexblock .dt-thefootnotes{margin:0em;}.latexblock .dd-thefootnotes{margin:0em 0em 0em 2em;}.latexblock .footnoterule{margin:1em auto 1em 0px;width:50%;}.latexblock .caption{padding-left:2ex; padding-right:2ex; margin-left:auto; margin-right:auto}.latexblock .title{margin:2ex auto;text-align:center}.latexblock .titlemain{margin:1ex 2ex 2ex 1ex;}.latexblock .center{text-align:center;margin-left:auto;margin-right:auto;}.latexblock .flushleft{text-align:left;margin-left:0ex;margin-right:auto;}.latexblock .flushright{text-align:right;margin-left:auto;margin-right:0ex;}.latexblock div table{margin-left:inherit;margin-right:inherit;margin-bottom:2px;margin-top:2px}.latexblock td table{margin:auto;}.latexblock table{border-collapse:collapse;}.latexblock td{padding:0;}.latexblock .cellpadding0 tr td{padding:0;}.latexblock .cellpadding1 tr td{padding:1px;}.latexblock pre{text-align:left;margin-left:0ex;margin-right:auto;}.latexblock blockquote{margin-left:4ex;margin-right:4ex;text-align:left;}.latexblock td p{margin:0px;}.latexblock .hbar{border:none;height:2px;width:100%;background-color:black;}.latexblock .display{border-collapse:separate;border-spacing:2px;width:auto; border:none;}.latexblock .dcell{white-space:nowrap;padding:0px; border:none;}.latexblock .dcenter{margin:0ex auto;}.latexblock .theorem{text-align:left;margin:1ex auto 1ex 0ex;}.latexblock .tst{font-family:sans;font-style:oblique;color:maroon}.latexblock .highlight{color:lime}</style></head><body><div class='container'><h2><a id=the-unreasonable-effectiveness-of-declarative-programming href='#the-unreasonable-effectiveness-of-declarative-programming'> § </a> The unreasonable effectiveness of Declarative programming</h2>
+.latexinline { border-bottom-color: #000000; border-bottom-style: solid;                border-bottom-width: 1px; padding-bottom: 2px;                padding-left: 2px; padding-right: 2px; }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.latexblock .li-itemize{margin:1ex 0ex;}.latexblock .li-enumerate{margin:1ex 0ex;}.latexblock .footnotetext{margin:0ex; padding:0ex;}.latexblock div.footnotetext P{margin:0px; text-indent:1em;}.latexblock .thefootnotes{text-align:left;margin:0ex;}.latexblock .dt-thefootnotes{margin:0em;}.latexblock .dd-thefootnotes{margin:0em 0em 0em 2em;}.latexblock .footnoterule{margin:1em auto 1em 0px;width:50%;}.latexblock .caption{padding-left:2ex; padding-right:2ex; margin-left:auto; margin-right:auto}.latexblock .title{margin:2ex auto;text-align:center}.latexblock .titlemain{margin:1ex 2ex 2ex 1ex;}.latexblock .center{text-align:center;margin-left:auto;margin-right:auto;}.latexblock .flushleft{text-align:left;margin-left:0ex;margin-right:auto;}.latexblock .flushright{text-align:right;margin-left:auto;margin-right:0ex;}.latexblock div table{margin-left:inherit;margin-right:inherit;margin-bottom:2px;margin-top:2px}.latexblock td table{margin:auto;}.latexblock table{border-collapse:collapse;}.latexblock td{padding:0;}.latexblock .cellpadding0 tr td{padding:0;}.latexblock .cellpadding1 tr td{padding:1px;}.latexblock pre{text-align:left;margin-left:0ex;margin-right:auto;}.latexblock blockquote{margin-left:4ex;margin-right:4ex;text-align:left;}.latexblock td p{margin:0px;}.latexblock .hbar{border:none;height:2px;width:100%;background-color:black;}.latexblock .display{border-collapse:separate;border-spacing:2px;width:auto; border:none;}.latexblock .dcell{white-space:nowrap;padding:0px; border:none;}.latexblock .dcenter{margin:0ex auto;}.latexblock .theorem{text-align:left;margin:1ex auto 1ex 0ex;}.latexblock .tst{font-family:sans;font-style:oblique;color:maroon}.latexblock .highlight{color:lime}</style></head><body><div class='container'><h2><a id=the-unreasonable-effectiveness-of-declarative-programming href='#the-unreasonable-effectiveness-of-declarative-programming'> § </a> The Unreasonable Effectiveness Of Declarative Programming</h2>
 <h3><a id=declarative-animations href='#declarative-animations'> § </a> Declarative animations</h3>
-I'd like to show off the usual approach to building animations in javascript,
-and what we can learn by building a tiny version of such a library.
+I show off <a href=https://github.com/bollu/mathemagic/blob/master/declarative/minanim.js>
+<code>minanim.js</code></a>
+,
+a tiny, 100LoC, yet feature-complete library for building animations <i>declaratively</i>,
+and why someone would want to do things this way. Enjoy!
 <h3><a id=a-complex-animation href='#a-complex-animation'> § </a> A complex animation</h3>
 <div id="animation-1"></div>
 The blue circle's animation is quite complex. It consists of multiple
@@ -76,11 +79,11 @@ This plotting code calls <code>anim_circle</code> at different times to plot the
 results. The function <code>anim_circle</code> <i>is</i> these plots,
 since it doesn't compute anything else.
 <blockquote> Fancy ways of saying that <code>anim_circle</code> doesn't change anything else is to say that it  is <i>side-effect-free</i>, or <i>refrentially transparent</i>.</blockquote>
-<h3><a id=in-the-browser href='#in-the-browser'> § </a> Playing with <code>anim_circle</code> in the browser</h3>
+<h3><a id=in-the-browseris-webpage-edit- href='#in-the-browseris-webpage-edit-'> § </a> Playing with this webpage: edit <code>anim_circle</code> in the browser!</h3>
 <ul>
 <li>
  <a  onclick="foo()">
-  Click on this link, paste into the browser's console, and hit enter.
+  <b>An ORDER</b>: Click on this link, paste what has been copied to your clipboard into the browser's console, and hit enter.
   </a> <b>This instantly updates the circle's animation and the plots</b>, since the code
   in the clipboard overwrites the definition of <code>anim_circle</code>! Scroll
   back to the top to see the new animation and charts.
@@ -114,10 +117,16 @@ You can explore different definitions <code>anim_circle</code>s. Feel free to
 play around.  Try evaluating <code>anim_circle(0)</code>, <code>anim_circle(anim_circle.duration)</code>,
 <code>anim_circle(anim_circle.duration/2.0)</code> in the console to get a feel for what
 <code>anim_circle</code> returns. <a onclick="writeOldToClipboard()">
-To go back to the original state of affairs, 
-click on this link to copy the old code onto your clipboard </a>. Paste
-the text, into your console, hit enter. Everything will be back to
-original.
+<ul>
+<li>
+ <b>To go back to the original state of affairs</b>, 
+  click on this link to copy the old code onto your clipboard </a>. Paste
+  the text, into your console, hit enter. Everything will be back to
+  original.
+</li>
+
+</ul>
+
 <h3><a id=declarative-pure href='#declarative-pure'> § </a> Declarative ⇒ Pure</h3>
 As hinted above, since our specification of the animation was entirely declarative,
 it can't really "do anything else" like manipulate the DOM. This gives us 
@@ -183,7 +192,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#000000">3:</font>   |P|xs[1] = -delay=1------*as[1]===*
 <font color="#000000">4:</font> x=|A|xs[2] = -delay=2-----------*as[2]===*
 <font color="#000000">5:</font>   |R|xs[3] = -delay=3----------------*as[3]===*
-<font color="#000000">6:</font>   | |xs[4] = -delay=3--------------------*as[4]===*
+<font color="#000000">6:</font>   | |xs[4] = -delay=4--------------------*as[4]===*
 <font color="#000000">7:</font> </tt></pre>
 </div>
 
@@ -202,7 +211,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#000000">3:</font>   |P|bs[1] = -delay=1------*bs[1]===*
 <font color="#000000">4:</font> y=|A|bs[2] = -delay=2-----------*bs[2]===*
 <font color="#000000">5:</font>   |R|bs[3] = -delay=3----------------*bs[3]===*
-<font color="#000000">6:</font>   | |bs[4] = -delay=3--------------------*bs[4]===*
+<font color="#000000">6:</font>   | |bs[4] = -delay=4--------------------*bs[4]===*
 <font color="#000000">7:</font> </tt></pre>
 </div>
 
@@ -221,12 +230,12 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#000000">03:</font>      |  |P|xs[1] = -delay=1------*as[1]===*
 <font color="#000000">04:</font>      |x=|A|xs[2] = -delay=2-----------*as[2]===*
 <font color="#000000">05:</font>      |  |R|xs[3] = -delay=3----------------*as[3]===*
-<font color="#000000">06:</font>      |  | |xs[4] = -delay=3--------------------*as[4]===*
+<font color="#000000">06:</font>      |  | |xs[4] = -delay=4--------------------*as[4]===*
 <font color="#000000">07:</font>      |             | |bs[0] = -delay=0-*as[0]===*
 <font color="#000000">08:</font>      |             |P|bs[1] = -delay=1------*as[1]===*
 <font color="#000000">09:</font> anim=|---delay---y=|A|bs[2] = -delay=2-----------*as[2]===*
 <font color="#000000">10:</font>      |             |R|bs[3] = -delay=3----------------*as[3]===*
-<font color="#000000">11:</font>      |             | |bs[4] = -delay=3--------------------*as[4]===*
+<font color="#000000">11:</font>      |             | |bs[4] = -delay=4--------------------*as[4]===*
 <font color="#000000">12:</font> </tt></pre>
 </div>
 
@@ -261,12 +270,12 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#000000">03:</font>      |  |P|xs[1] = -delay=1------*as[1]===*
 <font color="#000000">04:</font>      |x=|A|xs[2] = -delay=2-----------*as[2]===*
 <font color="#000000">05:</font>      |  |R|xs[3] = -delay=3----------------*as[3]===*
-<font color="#000000">06:</font>      |  | |xs[4] = -delay=3--------------------*as[4]===*
+<font color="#000000">06:</font>      |  | |xs[4] = -delay=4--------------------*as[4]===*
 <font color="#000000">07:</font>      |             | |bs[0] = -delay=0-*as[0]===*
 <font color="#000000">08:</font>      |             |P|bs[1] = -delay=1------*as[1]===*
 <font color="#000000">09:</font> anim=|---delay---y=|A|bs[2] = -delay=2-----------*as[2]===*
 <font color="#000000">10:</font>      |             |R|bs[3] = -delay=3----------------*as[3]===*
-<font color="#000000">11:</font>      |             | |bs[4] = -delay=3--------------------*as[4]===*
+<font color="#000000">11:</font>      |             | |bs[4] = -delay=4--------------------*as[4]===*
 <font color="#000000">12:</font> </tt></pre>
 </div>
 
@@ -295,7 +304,9 @@ Building a layer like <code>anime.js</code> on top of this is not hard. On the o
 using <code>anime.js</code> purely is impossible.
 <h3><a id=code-walkthrough href='#code-walkthrough'> § </a> Code Walkthrough</h3>
 The entire "library", which is written very defensively and sprinked with
-asserts fits in exactly a 100 lines of code. It can be golfed further
+asserts fits in <a href=https://github.com/bollu/mathemagic/blob/master/declarative/minanim.js>
+<b>exactly 100 lines of code</b></a>
+. It can be golfed further
 at the expense of either asserts, clarity, or by adding some higher-order
 functions that factor out some common work. I was loath to do any of these.
 So here's the full source code, explained as we go on.
