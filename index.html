@@ -952,12 +952,12 @@ to increment <code>y</code>. So, at first glance, we may believe we should consi
 <ol>
 <li>
  Consider <code>x=1, y=0</code>. We should use <code>Z/1Z</code>: that is, we must keep
-  moving along <code>dx, dx, dx, dx</code>. This is unlike what happens if we choose
+  moving along <code>x -> x -> x -> ...</code>. This is unlike what happens if we choose
   <code>Z/0Z</code> (which is not a well-defined idea).
 </li>
 <li>
  Consider <code>x=1,y=1</code>. We should use <code>Z/2Z</code>, so we keep going <code>0 -> 1 -> 0 -> ...</code>
-  which will cause is to flip <code>dx -> dy -> dx -> dy -> ...</code>. 
+  which will cause is to flip <code>x -> y -> x -> y -> ...</code>. 
 </li>
 
 </ol>
@@ -967,7 +967,7 @@ In the <code>Z/1Z</code> case, we realise that we can keep taking <code>x</code>
 <code>Z/2Z</code> case, we realise we need to flip between <code>x</code> and <code>x</code>.
 Let's try to show this formally, where <code>k</code> is the smallest number
 such that <code>kp >= q</code>. We'll also have concrete examples where
-<code>p=2, q=7</code>. Here, <code>k=4</code> since <code>kx = 4*2 = 8 > 7</code>. 
+<code>p=2, q=7</code>. For the example, <code>k=4</code> since <code>kp = 4*2 = 8 > 7</code>. 
 If we work in <code>Z/yZ = Z/7Z</code>, we will get the numbers:
 <div class='code'>
 <!-- Generator: GNU source-highlight 3.1.8
@@ -1011,8 +1011,8 @@ We only get <code>3</code> occurences of <code>x</code>, after which on the next
 becomes an <code>8</code> which wraps around to a <code>1</code>. This is the age-old tension that exists
 between <b>points</b> and <b>gaps</b>. For <code>k</code> points, there are <code>k-1</code> gaps. In our
 case, we have <code>4</code> points <code>[0, 2, 4, 6]</code>, but this leaves us room for only
-three <code>x</code> moves, while in reality we need <code>4</code>. We remedy this situation by
-giving ourselves space enough for <i>one</i> more <code>x</code>, by changing from <code>Z/qZ</code>
+three gaps for three<code>x</code> moves, while in reality we need <code>4</code>.
+We remedy this situation by giving ourselves space enough for <i>one</i> more <code>x</code>, by changing from <code>Z/qZ</code>
 to <code>Z/(p+q)Z</code>. We should look at this as creating space for another gap.
 <div class='code'>
 <!-- Generator: GNU source-highlight 3.1.8

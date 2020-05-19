@@ -358,10 +358,10 @@ to increment `y`. So, at first glance, we may believe we should consider
 
 
 1. Consider `x=1, y=0`. We should use `Z/1Z`: that is, we must keep
-  moving along `dx, dx, dx, dx`. This is unlike what happens if we choose
+  moving along `x -> x -> x -> ...`. This is unlike what happens if we choose
   `Z/0Z` (which is not a well-defined idea).
 2. Consider `x=1,y=1`. We should use `Z/2Z`, so we keep going `0 -> 1 -> 0 -> ...`
-  which will cause is to flip `dx -> dy -> dx -> dy -> ...`. 
+  which will cause is to flip `x -> y -> x -> y -> ...`. 
 
 
 In some sense, we are making sure that we can "start" with an `x` and see where that takes us.
@@ -370,7 +370,7 @@ In the `Z/1Z` case, we realise that we can keep taking `x`s. In the
 
 Let's try to show this formally, where `k` is the smallest number
 such that `kp >= q`. We'll also have concrete examples where
-`p=2, q=7`. Here, `k=4` since `kx = 4*2 = 8 > 7`. 
+`p=2, q=7`. For the example, `k=4` since `kp = 4*2 = 8 > 7`. 
 If we work in `Z/yZ = Z/7Z`, we will get the numbers:
 
 
