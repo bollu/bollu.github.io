@@ -325,6 +325,25 @@ a slide to notice the difference:
 <div id="animation-showoff-easing"></div>
 Drag the slider to move through the animation!  </br>
 <input type="range" id="animation-showoff-easing-scrubber" min=0 max=1000 value=0 style="width:80%">
+<h4><a id=code-for-easing href='#code-for-easing'> § </a> Code for easing:</h4>
+<div class='code'>
+<!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#000000">01:</font> 
+<font color="#000000">02:</font> <b><u><font color="#000000">const</font></u></b> interpolators = [ease_cubic, ease_linear, ease_out_back]
+<font color="#000000">03:</font> <b><u><font color="#000000">for</font></u></b>(<b><u><font color="#000000">var</font></u></b> i = <font color="#000000">0</font>; i &lt; NINTERPOLATORS; ++i) {
+<font color="#000000">04:</font>     ...
+<font color="#000000">05:</font>     anim_circles_start.push(anim_const(<font color="#808080">"cx"</font> + i, <font color="#000000">200</font>));
+<font color="#000000">06:</font>     anim_circles_enter.push(anim_interpolated(interpolators[i], <font color="#808080">"cx"</font> + i, <font color="#000000">300</font>, <font color="#000000">200</font>));
+<font color="#000000">07:</font> }
+<font color="#000000">08:</font> ...
+<font color="#000000">09:</font> <b><u><font color="#000000">const</font></u></b> anim = anim_parallel_list(anim_circles_start).seq(anim_parallel_list(anim_circles_enter));
+<font color="#000000">10:</font> 
+<font color="#000000">11:</font> </tt></pre>
+</div>
+
 <h3><a id=versus-the-world href='#versus-the-world'> § </a> <code>minanim.js</code> versus the world</h3>
 Both <code>d3.js</code> and <code>anime.js</code> are libraries that intertwine 
 <i>computing</i> with <i>animation</i>. On the other hand, our implementation describes

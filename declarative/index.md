@@ -276,6 +276,21 @@ a slide to notice the difference:
 Drag the slider to move through the animation!  </br>
 <input type="range" id="animation-showoff-easing-scrubber" min=0 max=1000 value=0 style="width:80%">
 
+
+##### Code for easing:
+
+```js
+const interpolators = [ease_cubic, ease_linear, ease_out_back]
+for(var i = 0; i < NINTERPOLATORS; ++i) {
+    ...
+    anim_circles_start.push(anim_const("cx" + i, 200));
+    anim_circles_enter.push(anim_interpolated(interpolators[i], "cx" + i, 300, 200));
+}
+...
+const anim = anim_parallel_list(anim_circles_start).seq(anim_parallel_list(anim_circles_enter));
+
+```
+
 ## `minanim.js` versus the world
 
 Both `d3.js` and `anime.js` are libraries that intertwine 
