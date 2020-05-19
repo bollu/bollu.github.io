@@ -79,7 +79,7 @@ This plotting code calls <code>anim_circle</code> at different times to plot the
 results. The function <code>anim_circle</code> <i>is</i> these plots,
 since it doesn't compute anything else.
 <blockquote> Fancy ways of saying that <code>anim_circle</code> doesn't change anything else is to say that it  is <i>side-effect-free</i>, or <i>refrentially transparent</i>.</blockquote>
-<h3><a id=in-the-browseris-webpage-edit- href='#in-the-browseris-webpage-edit-'> § </a> Playing with this webpage: edit <code>anim_circle</code> in the browser!</h3>
+<h3><a id=in-the-browseris-webpage-edit- href='#in-the-browseris-webpage-edit-'> § </a> Playing with this Webpage: edit <code>anim_circle</code> in the browser!</h3>
 <ul>
 <li>
  <a  onclick="foo()">
@@ -304,7 +304,7 @@ Both <code>d3.js</code> and <code>anime.js</code> are libraries that intertwine
 SVG/canvas/what-have-you. 
 Building a layer like <code>anime.js</code> on top of this is not hard. On the other hand,
 using <code>anime.js</code> purely is impossible.
-<h3><a id=code-walkthrough href='#code-walkthrough'> § </a> Code Walkthrough</h3>
+<h3><a id=code-walkthrough-api-documentation href='#code-walkthrough-api-documentation'> § </a> Code Walkthrough / API documentation</h3>
 The entire "library", which is written very defensively and sprinkled with
 asserts fits in <a href=https://github.com/bollu/mathemagic/blob/master/declarative/minanim.js>
 <b>exactly 100 lines of code</b></a>
@@ -601,6 +601,13 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#000000">13:</font> }
 <font color="#000000">14:</font> </tt></pre>
 </div>
+
+<h3><a id=conclusion href='#conclusion'> § </a> Conclusion</h3>
+We saw how to write a tiny, declarative, composable animation library that
+does one thing only (compose functions that manipulate values over time),
+but does it well.
+If you like this content, check out the repo at <a href=https://github.com/bollu/mathemagic>
+bollu/mathemagic</a>
 
 
 <script src="./minanim.js"></script>

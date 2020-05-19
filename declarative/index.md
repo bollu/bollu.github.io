@@ -473,6 +473,14 @@ function anim_stagger(xs, delta) {
 }
 ```
 
+## Conclusion
+
+We saw how to write a tiny, declarative, composable animation library that
+does _one_ thing: compose functions that manipulate values over time,
+and does it well.
+
+If you like this content, check out the repo at [bollu/mathemagic](https://github.com/bollu/mathemagic)
+
 <!--script src="ANIMGENERATED.js"></script-->
 <script src="./minanim.js"></script>
 <script src="./script.js"></script>
