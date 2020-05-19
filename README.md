@@ -308,7 +308,7 @@ existed before.
   $(p, q)$. For example, to reach the point $(2, 3)$, you can make the moves 
   $[dx, dy, dx, dy, dy]$.
 
-- A christoffel word is a word $w \in {dx, dy}^\star$ such that it hugs a line of
+- A christoffel word is a word $w \in \{dx, dy \}^\star$ such that it hugs a line of
   rational slope $p/q$ as close as possible. Formally, there are no integer
   points between the line with slope $p/q$ starting from the origin, and the
   discretized line as described by $w$. An example picture:
@@ -338,6 +338,37 @@ existed before.
   well. 
 
 
+### Bonus: slick characterization of line drawing
+
+<img src="./static/christoffel-cyclic-7-4.png">
+
+
+If we want to draw a line with slope `4/7` using the lower approximation the idea
+is that we keep taking `4` steps along `x`, and every time we "exceed" `7` steps
+along `x`, we take a step along `y`.
+
+This is the same as:
+1. working in `Z/(4+7)Z`, starting from `0`, writing down multiples of `4` till we cycle back to `0`
+2. marking an "increase" in a step with an `x`, and a "decrease" in a step
+  with `y`.
+
+The intuition is that once we walk `k*x` steps where `k*x >= y`, we want
+to increment `y`. So, at first glance, we may believe we should consider
+`Z/yZ`. However, this is misguided. Examples to enlighten:
+
+
+1. Consider `x=1, y=0`. We should use `Z/1Z`: that is, we must keep
+  moving along `dx, dx, dx, dx`. This is unlike what happens if we choose
+  `Z/0Z` (which is not a well-defined idea).
+2. Consider `x=1,y=1`. We should use `Z/2Z`, so we keep going `0 -> 1 -> 0 -> ...`
+  which will cause is to flip `x -> y -> x -> y -> ...`. 
+
+
+In some sense, we are making sure that we can "start" with an `x` and see where that takes us.
+In the `Z/1Z` case, we realise that we can keep taking `x`s. In the
+`Z/2Z` case, we realise we need to flip between `x` and `y`.
+
+
 # [Geometric proof of `e^x >= 1+x`, `e^(-x) <= 1-x`](#1-x-e-xof-of-)
 
 Let's concentrate on the `e^x >= 1 + x` part. 
@@ -354,6 +385,9 @@ to hold.  Alternatively, working through the math:
 1. `1 -x` is tangent at `x=0` to `e^(-x)`
 2. `(e^(-x))'' = -(e^(-x))' e^(-x)` which is again positive everywhere, and
    hence, `e^(-x)` is strongly convex.
+
+
+
 
 # [Ranking and Sorting](#ranking-and-sorting)
 

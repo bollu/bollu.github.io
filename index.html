@@ -935,18 +935,36 @@ If we want to draw a line with slope <code>4/7</code> using the lower approximat
 is that we keep taking <code>4</code> steps along <code>x</code>, and every time we "exceed" <code>7</code> steps
 along <code>x</code>, we take a step along <code>y</code>.
 This is the same as:
-<ul>
+<ol>
 <li>
- working in <code>Z/(4+7)</code>, starting from <code>0</code>, writing down multiples of <code>4</code> till we cycle back to <code>0</code>
+ working in <code>Z/(4+7)Z</code>, starting from <code>0</code>, writing down multiples of <code>4</code> till we cycle back to <code>0</code>
 </li>
 <li>
  marking an "increase" in a step with an <code>x</code>, and a "decrease" in a step
   with <code>y</code>.
-  
 </li>
 
-</ul>
+</ol>
 
+The intuition is that once we walk <code>k*x</code> steps where <code>k*x >= y</code>, we want
+to increment <code>y</code>. So, at first glance, we may believe we should consider
+<code>Z/yZ</code>. However, this is misguided. Examples to enlighten:
+<ol>
+<li>
+ Consider <code>x=1, y=0</code>. We should use <code>Z/1Z</code>: that is, we must keep
+  moving along <code>dx, dx, dx, dx</code>. This is unlike what happens if we choose
+  <code>Z/0Z</code> (which is not a well-defined idea).
+</li>
+<li>
+ Consider <code>x=1,y=1</code>. We should use <code>Z/2Z</code>, so we keep going <code>0 -> 1 -> 0 -> ...</code>
+  which will cause is to flip <code>x -> y -> x -> y -> ...</code>. 
+</li>
+
+</ol>
+
+In some sense, we are making sure that we can "start" with an <code>x</code> and see where that takes us.
+In the <code>Z/1Z</code> case, we realise that we can keep taking <code>x</code>s. In the
+<code>Z/2Z</code> case, we realise we need to flip between <code>x</code> and <code>y</code>.
 <h2><a id=e-x-1-xof-of- href='#e-x-1-xof-of-'> § </a> <a href=#1-x-e-xof-of->
 Geometric proof of <code>e^x >= 1+x</code>, <code>e^(-x) <= 1-x</code></a>
 </h2>
