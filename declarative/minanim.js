@@ -32,7 +32,7 @@ function anim_const(field, v) {
 function ease_linear(vstart, tlin, vend) { return (1.0 - tlin) * vstart + tlin * vend; }
 
 function ease_cubic(vstart, tlin, vend) {
-    const cube = (1 - tlin)*(1-tlin)*(1-tlin); return cube * vstart + (1 - cube) * vend;
+    const cube = (1 - tlin)**3; return cube * vstart + (1 - cube) * vend;
 }
 function ease_out_back(vstart, tlin, vend) {
     const c1 = 1.70158; const c3 = c1 + 1; const t = 1 + c3 * Math.pow(tlin - 1, 3) + c1 * Math.pow(tlin - 1, 2);
