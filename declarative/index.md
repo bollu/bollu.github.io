@@ -14,8 +14,8 @@ stages. (1) The circle grows in size. (2) It continues to grow in size
 at a faster rate, as it shoots off to the right. (3) It pauses. (4) It
 moves to the middle. (5) It pauses again. (6) It shrinks to nothing.
 
-All of this is captured by a single object `anim_circle` which _declares_ what the
-animation is doing:
+All of this is captured by a single object `anim_circle` (written using `minanim.js`)
+which _declares_ what the animation is doing:
 
 ```js
 // cx = location | cr = radius
@@ -103,14 +103,14 @@ play around.  Try evaluating `anim_circle(0)`, `anim_circle(anim_circle.duration
 
 As hinted above, since our specification of the animation was entirely declarative,
 it can't really "do anything else" like manipulate the DOM. This gives us 
-fantastic debugging and editing capabilities. As it's "just" a mathemtical
+fantastic debugging and editing capabilities. As it's "just" a mathematical
 function:
 
 ```
 anim_circle: (t:Time) -> (cx: float, cr: float)
 ```
 
-we can easily swap it (by pasting the code above), poke it (by calling `anim_circle(0.5)`),
+We can easily swap it (by pasting the code above), poke it (by calling `anim_circle(0.5)`),
 and in general deal with is as a **unit of thought**. It has no unpleasant
 interactions with the rest of the world.
 
@@ -177,11 +177,11 @@ has animations of the balls disappearing. These are staggered as before.
 This is shown here:
 
 ```text
-  | |bs[0] = -delay=0-*bs[0]===*
-  |P|bs[1] = -delay=1------*bs[1]===*
-y=|A|bs[2] = -delay=2-----------*bs[2]===*
-  |R|bs[3] = -delay=3----------------*bs[3]===*
-  | |bs[4] = -delay=4--------------------*bs[4]===*
+  | |ys[0] = -delay=0-*bs[0]===*
+  |P|ys[1] = -delay=1------*bs[1]===*
+y=|A|ys[2] = -delay=2-----------*bs[2]===*
+  |R|ys[3] = -delay=3----------------*bs[3]===*
+  | |ys[4] = -delay=4--------------------*bs[4]===*
 ```
 
 <div id="animation-33"></div>
@@ -197,11 +197,11 @@ _while new balls_ continue entering.
      |x=|A|xs[2] = -delay=2-----------*as[2]===*
      |  |R|xs[3] = -delay=3----------------*as[3]===*
      |  | |xs[4] = -delay=4--------------------*as[4]===*
-     |             | |bs[0] = -delay=0-*as[0]===*
-     |             |P|bs[1] = -delay=1------*as[1]===*
-anim=|---delay---y=|A|bs[2] = -delay=2-----------*as[2]===*
-     |             |R|bs[3] = -delay=3----------------*as[3]===*
-     |             | |bs[4] = -delay=4--------------------*as[4]===*
+     |                 | |ys[0] = -delay=0-*bs[0]===*
+     |                 |P|ys[1] = -delay=1------*bs[1]===*
+anim=|---delay-------y=|A|ys[2] = -delay=2-----------*bs[2]===*
+     |                 |R|ys[3] = -delay=3----------------*bs[3]===*
+     |                 | |ys[4] = -delay=4--------------------*bs[4]===*
 ```
 
 
@@ -243,20 +243,22 @@ anim=|---delay---y=|A|bs[2] = -delay=2-----------*as[2]===*
 
 As hinted above, since our specification of the animation was entirely declarative,
 it can't really "do anything else" like manipulate the DOM. This gives us 
-fantastic debugging and editing capabilities. As it's "just" a mathemtical
+fantastic debugging and editing capabilities. As it's "just" a mathematical
 function:
 
 ```
 anim_circle: (t:Time) -> (cx: float, cr: float)
 ```
 
-so we can play with it on the console, edit stuff interactively.
+so we can play with it on the console, edit it interactively, and plot it.
+It's behaviour can be studied on a piece of paper, since it's entirely
+decoupled from the real world.
 
 ## `minanim.js` versus the world
 
 Both `d3.js` and `anime.js` are libraries that intertwine 
 _computing_ with _animation_. On the other hand, our implementation describes
-_only_ how values change. It's upto us to render this using
+_only_ how values change. It's up to us to render this using
 SVG/canvas/what-have-you. 
 
 Building a layer like `anime.js` on top of this is not hard. On the other hand,
@@ -264,7 +266,7 @@ using `anime.js` purely is impossible.
 
 ## Code Walkthrough
 
-The entire "library", which is written very defensively and sprinked with
+The entire "library", which is written very defensively and sprinkled with
 asserts fits in [**exactly 100 lines of code**](https://github.com/bollu/mathemagic/blob/master/declarative/minanim.js). It can be golfed further
 at the expense of either asserts, clarity, or by adding some higher-order
 functions that factor out some common work. I was loath to do any of these.
@@ -273,7 +275,7 @@ So here's the full source code, explained as we go on.
 
 - We write `assert_precondition(t, out, tstart)` to check that `t`
   and `tstart` are numbers such that `t >= tstart`, and that `out` is an object. 
-  If `tstart` is uninitialized, we initialie `tstart` to `0`. If
+  If `tstart` is uninitialized, we initialize `tstart` to `0`. If
   `out` is uninitialized, we initialize `out` to `{}`.
 
 ```js
@@ -336,7 +338,7 @@ function anim_const(field, v) {
 - We implement two **easing functions**, which takes a parameter 
   `tlin` such that `0 <= tlin <= 1`, and two parameters `vstart` and `vend`.
   The functions allow us to animate a change from `vstart` to `vend` smoothly.
-  we are to imagine `tlin` as a time. When `tlin=0`, we are at `vstart`.
+  We are to imagine `tlin` as a time. When `tlin=0`, we are at `vstart`.
   When `tlin=1`, we will be at `tend`.
   In between, we want values between `vstart` and `vend`. To animate values,
   we often want the change from `vstart` to `vend` to happen a certain way.
@@ -433,7 +435,7 @@ function anim_parallel(anim1, anim2) {
 
 
 - `anim_parallel_list` is a helpful combinator to write the animations
-  in `xs` in parallel. it chains together the elements of the list
+  in `xs` in parallel. It chains together the elements of the list
   with `par` calls.
 
 ```js

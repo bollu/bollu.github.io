@@ -20,8 +20,8 @@ The blue circle's animation is quite complex. It consists of multiple
 stages. (1) The circle grows in size. (2) It continues to grow in size
 at a faster rate, as it shoots off to the right. (3) It pauses. (4) It
 moves to the middle. (5) It pauses again. (6) It shrinks to nothing.
-All of this is captured by a single object <code>anim_circle</code> which <i>declares</i> what the
-animation is doing:
+All of this is captured by a single object <code>anim_circle</code> (written using <code>minanim.js</code>)
+which <i>declares</i> what the animation is doing:
 <div class='code'>
 <!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
@@ -130,7 +130,7 @@ play around.  Try evaluating <code>anim_circle(0)</code>, <code>anim_circle(anim
 <h3><a id=declarative-pure href='#declarative-pure'> § </a> Declarative ⇒ Pure</h3>
 As hinted above, since our specification of the animation was entirely declarative,
 it can't really "do anything else" like manipulate the DOM. This gives us 
-fantastic debugging and editing capabilities. As it's "just" a mathemtical
+fantastic debugging and editing capabilities. As it's "just" a mathematical
 function:
 <div class='code'>
 <!-- Generator: GNU source-highlight 3.1.8
@@ -142,7 +142,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#000000">3:</font> </tt></pre>
 </div>
 
-we can easily swap it (by pasting the code above), poke it (by calling <code>anim_circle(0.5)</code>),
+We can easily swap it (by pasting the code above), poke it (by calling <code>anim_circle(0.5)</code>),
 and in general deal with is as a <b>unit of thought</b>. It has no unpleasant
 interactions with the rest of the world.
 <h3><a id=purity-time-travel href='#purity-time-travel'> § </a> Purity ⇒ Time Travel</h3>
@@ -282,7 +282,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3><a id=declarative-debuggable href='#declarative-debuggable'> § </a> Declarative ⇒ Debuggable</h3>
 As hinted above, since our specification of the animation was entirely declarative,
 it can't really "do anything else" like manipulate the DOM. This gives us 
-fantastic debugging and editing capabilities. As it's "just" a mathemtical
+fantastic debugging and editing capabilities. As it's "just" a mathematical
 function:
 <div class='code'>
 <!-- Generator: GNU source-highlight 3.1.8
@@ -294,16 +294,18 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#000000">3:</font> </tt></pre>
 </div>
 
-so we can play with it on the console, edit stuff interactively.
+so we can play with it on the console, edit it interactively, and plot it.
+It's behaviour can be studied on a piece of paper, since it's entirely
+decoupled from the real world.
 <h3><a id=versus-the-world href='#versus-the-world'> § </a> <code>minanim.js</code> versus the world</h3>
 Both <code>d3.js</code> and <code>anime.js</code> are libraries that intertwine 
 <i>computing</i> with <i>animation</i>. On the other hand, our implementation describes
-<i>only</i> how values change. It's upto us to render this using
+<i>only</i> how values change. It's up to us to render this using
 SVG/canvas/what-have-you. 
 Building a layer like <code>anime.js</code> on top of this is not hard. On the other hand,
 using <code>anime.js</code> purely is impossible.
 <h3><a id=code-walkthrough href='#code-walkthrough'> § </a> Code Walkthrough</h3>
-The entire "library", which is written very defensively and sprinked with
+The entire "library", which is written very defensively and sprinkled with
 asserts fits in <a href=https://github.com/bollu/mathemagic/blob/master/declarative/minanim.js>
 <b>exactly 100 lines of code</b></a>
 . It can be golfed further
@@ -314,7 +316,7 @@ So here's the full source code, explained as we go on.
 <li>
  We write <code>assert_precondition(t, out, tstart)</code> to check that <code>t</code>
   and <code>tstart</code> are numbers such that <code>t >= tstart</code>, and that <code>out</code> is an object. 
-  If <code>tstart</code> is uninitialized, we initialie <code>tstart</code> to <code>0</code>. If
+  If <code>tstart</code> is uninitialized, we initialize <code>tstart</code> to <code>0</code>. If
   <code>out</code> is uninitialized, we initialize <code>out</code> to <code>{}</code>.
 </li>
 
@@ -408,7 +410,7 @@ http://www.gnu.org/software/src-highlite -->
  We implement two <b>easing functions</b>, which takes a parameter 
   <code>tlin</code> such that <code>0 <= tlin <= 1</code>, and two parameters <code>vstart</code> and <code>vend</code>.
   The functions allow us to animate a change from <code>vstart</code> to <code>vend</code> smoothly.
-  we are to imagine <code>tlin</code> as a time. When <code>tlin=0</code>, we are at <code>vstart</code>.
+  We are to imagine <code>tlin</code> as a time. When <code>tlin=0</code>, we are at <code>vstart</code>.
   When <code>tlin=1</code>, we will be at <code>tend</code>.
   In between, we want values between <code>vstart</code> and <code>vend</code>. To animate values,
   we often want the change from <code>vstart</code> to <code>vend</code> to happen a certain way.
@@ -548,7 +550,7 @@ http://www.gnu.org/software/src-highlite -->
 <ul>
 <li>
  <code>anim_parallel_list</code> is a helpful combinator to write the animations
-  in <code>xs</code> in parallel. it chains together the elements of the list
+  in <code>xs</code> in parallel. It chains together the elements of the list
   with <code>par</code> calls.
 </li>
 
