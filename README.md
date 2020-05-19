@@ -361,12 +361,12 @@ to increment `y`. So, at first glance, we may believe we should consider
   moving along `dx, dx, dx, dx`. This is unlike what happens if we choose
   `Z/0Z` (which is not a well-defined idea).
 2. Consider `x=1,y=1`. We should use `Z/2Z`, so we keep going `0 -> 1 -> 0 -> ...`
-  which will cause is to flip `x -> y -> x -> y -> ...`. 
+  which will cause is to flip `dx -> dy -> dx -> dy -> ...`. 
 
 
-In some sense, we are making sure that we can "start" with an `x` and see where that takes us.
-In the `Z/1Z` case, we realise that we can keep taking `x`s. In the
-`Z/2Z` case, we realise we need to flip between `x` and `y`.
+In some sense, we are making sure that we can "start" with an `dx` and see where that takes us.
+In the `Z/1Z` case, we realise that we can keep taking `dx`s. In the
+`Z/2Z` case, we realise we need to flip between `dx` and `dy`.
 
 
 # [Geometric proof of `e^x >= 1+x`, `e^(-x) <= 1-x`](#1-x-e-xof-of-)
