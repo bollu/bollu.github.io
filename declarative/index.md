@@ -314,12 +314,10 @@ function anim_delay(duration) {
 
 
 
-- `anim_delay(duration)` creates a function `f`. On being invoked, it returns
-  whatever value of `out` has been given to it. That is, it doesn't
-  modify anything. It has three fields, `duration`, `par`, and `seq`.
-  `duration`. `duration` is how long the animation runs for. `par, seq`
-  are methods for chaining, that allows us to compose this delay animation
-  in parallel and in sequence with other animations.
+- `const(field, v)` creates a function `f`. On being invoked, it sets
+  `out.v = field`. It takes zero time to run such an animation, hence it's
+  duration is `0`. Useful for instaneously setting the value at the
+  start of an animation.
 
 ```js
 // field: string. v: number
