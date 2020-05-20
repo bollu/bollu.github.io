@@ -2,14 +2,53 @@
 # Moduli Space
 - Samples from the moduli space of all possible mathematics.
 
+- [Analytic dependent type thoery](#analytic-dependent-type-theory)
 - [Cohomology of haskell types](#cohomology-of-haskell-types)
-- [Laplace transform of haskell types](#laplace-transform-of-haskell-types)
 - [Finite differences of haskell types](#finite-differences-of-haskell-types)
 - [Derivatives of function spaces](#derivatives-of-function-spaces)
 - [Segment trees from Mobius inversion](#segment-trees-from-mobius-inversion)
 - [Billiard ball computation](#billiard-ball-computation)
 - [On the geometry of distributed algorithms](#on-the-geometry-of-distributed-algorithms)
 - [Compilers as commutative algebra](#compilers-as-commutative-algebra)
+
+
+# [Analytic dependent type thoery](#analytic-dependent-type-theory)
+
+Till the early half of the 21st century, we were building type theories
+built with algebraic substrates. This made them excellent for reasoning
+about `A = B`, but lousy for reasoning with `forall epsilon > 0, |A - B| < epsilon`.
+The breakthrough came with three crucial, intertwined insights:
+
+- We should build logics of _relations_, not _functions_.
+
+- To compute with relations, we should use _prolog_-like languages, where
+  computations are non-deterministic, and whose computational content
+  is about relations.
+
+- Relations power order theory, which powers topology. Once topology comes
+  online, we have the world. Computation follows from denotation. 
+
+
+This new breed of languages begin with a theory built of first order logic 
+and [_order theory_](https://en.wikipedia.org/wiki/Order_theory), contrasting the
+[Calculus of constructions](https://en.wikipedia.org/wiki/Calculus_of_constructions),
+which begins with first-order logic with _equality_. One quickly builds
+up topology from this, either ala [Scott](https://en.wikipedia.org/wiki/Scott_continuity),
+or via [Locales](https://en.wikipedia.org/wiki/Pointless_topology). 
+
+Working topologically, we forgo the notion of equality for the notion of
+limits. We never state that `x = y`. Rather, we state that for any sequence of
+radii `epsilon_i`, we will always have that `|x - y| < epsilon_i`, where the
+partial order `<` is a primitive of our logic.  This is of course, horrid for
+algebra. The upshot is that we can do analysis.
+
+
+We discover that programming language semantics, which is really the study of
+computability, which is really topology, works out beautifully in this
+setting, as first discovered by [Scott and Stratchey](https://en.wikipedia.org/wiki/Denotational_semantics), later
+vigorously expanded under the cumbersome title of [synthetic topology of data types and classical spaces](https://www.sciencedirect.com/science/article/pii/S1571066104051357). Cumbersome proofs
+of program properties are the exception, rather than the norm.
+
 
 # [Cohomology of haskell types](#cohomology-of-haskell-types)
 
@@ -24,11 +63,6 @@ This sort of thinking might help if we are trying to identify how to lay
 data down in memory; having zero homology would imply that there's no gaps,
 so we can lay it out contiguously in-memory.
 
-# Laplace transform of haskell types
-
-$$
-\mathcal{L}(e^{at}) = \frac{1}{s-a}
-$$
 
 # Finite differences of haskell types
 
