@@ -14,8 +14,6 @@ document.addEventListener("DOMContentLoaded", function() {
   console.log("finished running katex");
 });
 </script>
--->
-
 
 
 <!-- comment out mathjax
