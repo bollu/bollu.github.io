@@ -1,5 +1,14 @@
 SSC: slate star codex
 
+- Incidence Hopf algebra.
+- Think about lex-ordering as some kind of metric. Eg. `a, b, c` each define
+  a branch in space. `abc` counts for `[a]/4 + [b]/4 + [c]/4`,
+  where `[a] = 1, [b] = 2, [c] =3`. This way, the lowest lex word is the
+  path that keeps us closest to `0`. See how much of the string stuff
+  can be reinterpreted this way.
+
+- Word processing in groups: book on automatic groups, hyperbolic groups,
+  and their relations.
 - Stone duality: https://www.irif.fr/~mgehrke/scriptie.pdf
 - Create a viewer for tensor the way fortran displays arrays.
 - DebugIR.
@@ -294,3 +303,5 @@ installed, use it to compute closed forms)
 - Simulacra v/s simulacra, discussion on hackernews: https://news.ycombinator.com/item?id=23154141
 - Learn semantics of javascript: `function mk() { let inner =  function() { console.warn(this.x)}; inner = inner.bind({x: 42}); inner.x = -42; return inner; }; mk()(); console.log(mk().x);`. NOTE: this behaviour changes if `inner` is an arrow function. What are the denotational semantics of this?
 - Queueing Theory.
+- https://codeforces.com/blog/entry/77551: generating functions for CP
+- Slope trick: https://codeforces.com/blog/entry/47821

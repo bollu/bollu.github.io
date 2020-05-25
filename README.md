@@ -1,4 +1,3 @@
-<!-- comment out katex, it doesn't work as well as mathjax :(
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
@@ -52,13 +51,15 @@ A Universe of Sorts
 - [My math.se profile](https://math.stackexchange.com/users/261373/siddharth-bhat)
 - [My resume](resume/main.pdf)
 - [My reading list](todo.html)
-- email ID: rot13(`fvqqh.qehvq@tznvy.pbz`)
+- Reach me / email ID: `siddu.druid@gmail.com`
 
 #### Table of contents:
 	
+- [Mobius inversion on Incidence Algebras](#mobius-inversion-on-incidence-algebras)
+- [Finite differences and Umbral calculus](#finite-differences-and-umbral-calculus)
 - [Permutahedron](#permutahedron)
 - [Lyndon + Christoffel = Convex Hull](#lyndon-christoffel-convex-hull)
-- [Geometric proof of `e^x >= 1+x`, `e^(-x) <= 1-x`](#1-x-e-xof-of-)
+- [Geometric proof of `e^x >= 1+x`, `e^(-x) >= 1-x`](#1-x-e-xof-of-)
 - [Ranking and Sorting](#ranking-and-sorting)
 - [Proof of minkowski convex body theorem](#proof-of-minkowski-convex-body-theorem)
 - [Burrows Wheeler (WIP)](#burrows-wheeler)
@@ -191,6 +192,381 @@ A Universe of Sorts
 - [Big list of Coq](#big-list-of-coq)
 - [Big list of Latex](#big-list-of-latex)
 - [Recipes](#recipes)
+
+# [Mobius inversion on Incidence Algebras](#mobius-inversion-on-incidence-algebras)
+
+Most of these functions are really defined on the _incidence algebra_ of
+the poset $P$ with ground field $K$. An _incidence_ algebra $I(P)$ is a
+set of functions which maps intervals of $P$ to the ground field $K$. an
+interval is a tuple $(x, y) \in P \times P$ such that $x \leq P$
+(where the $\leq$ comes from the partial order on $P$). We have a product
+structure which I denote $\star$, given by:
+
+$$
+(\alpha \star \beta)([x, z)] = \sum_{x \leq y \leq z} \alpha(x, y) \beta(y, z)
+$$
+
+A linear algebra way to look at this is to consider $|P| x |P|$ matrices over $K$
+where the rows and columns are indexed by $P$.
+The a function $\alpha: P \times P \rightarrow K$
+can be written as the elements of the $P \times P$ matrix.
+Then this convolution-like operator $\star$ is simply matrix multiplication.
+
+We have three natural functions: 
+
+(1) The characteristic function, which is the identity for $\star$:
+
+$$
+\delta([x, z]) \equiv 1 \texttt{ if } x = z \texttt{; } 0 \texttt{ otherwise }
+$$
+
+
+(2) the zeta function, which plays the role of the constant $1$:
+
+$$
+\zeta([x, z]) \equiv  1 \texttt{ if } x \leq z \texttt{; } 0 \texttt{ otherwise }
+$$
+
+(3) The inverse of the zeta function, the mobius function, a tool for mobius inversion:
+
+$$
+\begin{align*}
+&\mu([x, z])  = 1 \\
+&\mu([x, z])  = - \sum_{x \leq y < z} \mu([x, y]) \\
+\end{align*}
+$$
+
+
+The mobius inversion theorem for posets states that $\zeta$ and $\mu$ as
+defined above are convolutional inverses. that is, $\zeta \star \mu = \delta$.
+
+This allows us to prove:
+
+$$
+\begin{align*}
+&g([x, z]) = \sum_{x \leq y \leq z} f([x, y]) \\
+&g([x, z]) = \sum_{x \leq y \leq z} f([x, y]) \cdot 1 \\
+&g([x, z]) = \sum_{x \leq y \leq z} f([x, y]) \cdot \zeta(y, z) \\
+&g = f \star \zeta \\
+&g \star mu = f \star \zeta \star \mu \\
+&g \star mu = f \star \delta \\
+&g \star mu = f
+\end{align*}
+$$
+
+We have managed to find $f$ in terms of $g$, when previously we had $g$
+in terms of $f$. 
+
+
+**TODO**: we are usually interested in a _fixed_ $[x, z]$. What happens if we 
+make this implicit? We may get nice notation for all of this!
+
+### Sums as mobius inversion
+
+We can derive the formula we had for integrals, that:
+
+$$
+F(i) = \sum_{0 \leq i \leq n} f(i) \iff f(k) = F(k) - F(k-1)
+$$
+
+by setting up mobius inversion on the usual partial order for the natural
+numbers. For simplicity, I'll show the example on $[0, 1, 2, 3, 4]$. The example
+immediately generalizes.
+
+- We have the partial (well, total) order $P$: $0 < 1 < 2 < 3 < 4$. 
+- We are given a function $f(\cdot)$ we wish to integrate. We define an
+  auxiliary function $fi([x, y]) = f(y)$ which evaluates $f$ on the right
+  endpoint.
+- We can now define $F([x, z])$  as the sum of $f$ from $x$ to $z$:
+
+$$
+\begin{align*}
+&F([x, z]) \equiv \sum_{x \leq y \leq z} f(y) \\
+&= \sum_{x \leq y \leq z} fi([x, y]) \\
+&= \sum_{x \leq y \leq z} fi([x, y]) \cdot \zeta(y, z) \\
+&= fi \star \zeta
+\end{align*}
+$$
+
+- This tells us that $f(n) = fi([0, n]) = (F \star \mu)([0, n])$:
+
+$$
+\begin{align*}
+&f(n) = fi([0, n]) \equiv  (F \star mu)[0, n] \\
+&=  \sum_{0 \leq x \leq n} F([0, x]) \mu([x, n])
+\end{align*}
+$$
+
+- We note that we need to know the values of $\mu([x, n])$ for a _fixed_ n,
+  for _varying_ x. Let us attempt to calculate $\mu([0, 4]), \mu([1, 4]), \mu([2, 4]), \mu([3, 4]), \mu([4, 4])$
+  and see if this can be generalized:
+
+$$
+\begin{align*}
+\mu([4, 4]) = 1 \text{ By definition}
+\mu([3, 4]) = - (\sum_{3 \leq x < 4}) \text{ By definition }
+\end{align*}
+$$
+# [Finite differences and Umbral calculus](#finite-differences-and-umbral-calculus)
+
+Umbral calculus lays out a large collection of "umbral" / "shadowy"
+coincidences across combinatorics and calculus. Here, I'll lay out some of
+these that I learnt from [Concrete Mathematics](https://en.wikipedia.org/wiki/Concrete_Mathematics). 
+I hope to use this for myself to motivate a bunch of combinatorics. I'll
+provide an interesting proof of why $\sum{1 \leq k < n} k^2 = k(k-1)/2$
+using this umbral calculus.
+
+### Discrete Derivative: Forward difference
+
+We begin by trying to build a discrete version of the derivative operator. The
+derivative of `f` will be denoted using `f'`. The _forward_ difference
+of $f: \mathbb R \rightarrow \mathbb R$ is defined as:
+
+$$
+\delta f: \mathbb R \rightarrow \mathbb R; (\delta f)(x) = f(x + 1) - f(x)
+$$
+
+Immediately, we can see that this operator is linear:
+
+$$
+\begin{align*}
+&\delta(f + g) 
+  &= (f+g)(x+1) - (f+g)(x)  \\
+  &= (f(x+1) - f(x)) + (g(x+1)-g(x))  \\
+  &= (\delta f) + (\delta g)  \\
+&\delta(\alpha f)(x) 
+  &= (\alpha f)(x+1) - (\alpha f)(x) \\
+  &= \alpha \cdot (f(x+1) - f(x))   \\
+  &= \alpha (\delta f)
+\end{align*}
+$$
+
+it obeys a slightly corrupted version of the chain rule, $(fg)' = f' g + g' f$:
+
+$$
+\begin{align*}
+&\delta(fg)  \\
+  &= (fg)(x+1) - (fg)(x)  \\
+  &= f(x+1)g(x+1) - f(x)g(x) + 0 \\
+  &= f(x+1)g(x+1) - f(x)g(x) + [f(x)g(x+1) - f(x)g(x+1)] \\
+  &= g(x+1)[f(x+1) - f(x)] + f(x)[g(x+1) - g(x)] \\
+  &= g(x+1)(\delta f)(x) + f(x) (\delta g)(x) \\
+  &= (Sg \delta f)(x) + (f \delta g)(x) [(Sh)(x) \equiv h(x+1)] \\
+  &= (Sg  \delta f + f \delta g)(x) \\
+\end{align*}
+$$
+
+We need this new $S$ operator to shift the function's input from $x$ to $x+1$.
+
+### Falling factorial as polynomials
+
+cool, now that we seem to have a linear derivative operator that behaves
+roughly sanely, let's test it out! The first reasonable target is a polynomial,
+so let's try $x^2$:
+
+$$
+\delta(x^2) = (x+1)^2 - x^2 = 2x + 1
+$$
+
+This is disappointing, it does not behave very well `:(` However, there _is_
+an analogue that does well. This is the _falling factorial_, defined as:
+
+$$
+x^{(n)} \equiv x*(x-1)*(x-2)*\cdots*(x-n+1)
+$$
+
+For example:
+
+$$
+x^{(0)} = 1 \\
+x^{(1)} = x \\
+x^{(2)} = x(x-1) \\
+x^{(3)} = x(x-1)(x-2) \\
+$$
+
+Let's try and apply our discrete difference $\delta$:
+
+$$
+\begin{align*}
+&\delta(x^{(2)})  \\
+  & = (x+1)(x-1+1) - x(x-1) \\
+  & = (x+1)(x) - x(x-1) \\
+  & = x*2 = 2x(1) \\
+&\delta(x^{(3)})  \\
+  &= (x+1)(x-1+1)(x-2+1) - x(x-1)(x-2) \\
+  &= (x+1)(x)(x-1) - x(x-1)(x-2) \\ 
+  &= x(x-1)((x+1) - (x-2)) = 3x(x-1) = 3x^(2) \\
+\end{align*}
+$$
+
+These falling factorials look pretty unnatural though, why do we care?
+Well, once we build some integral calculus, we can handle our problem
+of $\sum_{1 \leq i < k} i^2$ using this calculus, by rewriting $i^2$
+in terms of these falling factorials.
+
+### Sums as discrete integrals
+
+We want to think of $\sum_{0 \leq i < n} f(i)$ as the correct variant of
+$\int_0^n f(i) di$. The most important property of an integral is
+the fundamental theorem of calculus:
+
+$$
+\int_a^b f'(i) di = f(b) - f(a) \mapsto \sum_{a \leq i < b} (\delta f)(i) =?= f(b) - f(a)
+$$
+
+we can check if the assertion is true:
+
+$$
+\begin{align*}
+&\sum_{a \leq i < b} (\delta f)(i)  \\
+&= [f(a+1) - f(a)] + [f(a+2) - f(a+1)] + [f(a+3)-f(a+2)] + \cdots + [f(b) - f(b-1)] \\
+&= f(b) - f(a) \quad \text{(The sum telescopes)} 
+\end{align*}
+$$
+
+Sweet, so we just kicked a theory of calculus of the ground. Let's put
+this to some use:
+
+### Gauss' famous formula from discrete calculus
+
+Let's begin by deriving the closed form for $[1\cdot(k-1)]$ naturals:
+                                                
+$$
+\sum_{0 \leq i < n} i = \sum_{0 \leq i < n} i^{(1)} = i^{(2)}/2 \big|_{0}^n = n(n-1)/2
+$$
+
+Let's now derive the closed form form the sum of squares of $[1\cdot(k-1)]$:
+
+$$
+\begin{align*}
+&\sum_{0 \leq i < n} i^2  \\
+&= \sum_{0 \leq i < n} i*(i-1) + i  \\
+&= \sum_{0 \leq i < n} i^{(2)} + i^{(1)} \\
+&= n^{(3)}/2 + n^{(2)}/2 \\
+&= n(n-1)(n-2)/3 + n(n-1)/2 \\
+&= n(n-1)(n/3 - 2/3 + 1/2) \\
+&= n(n-1)(2n - 1)/6 \\
+\end{align*}
+$$
+
+Trying to perform this process in general does beg a question: how do we
+convert from $x^n$ into some combination of rising and falling factorials?
+It turns out that _Stirling Numbers_ will show up to aid this conversion.
+But before that, let's see some more connections.
+
+### $2^x$ as the combinatorial version of $e^x$
+
+We want to find the analogue of the exponential function $e^x$, which
+satisfies the equation $f'(x) = f(x)$. Setting this up in the discrete case:
+
+$$
+\begin{align*}
+&d'f(x) = f(x) |  f(0) = 1 \\
+&f(x+1) - f(x) = f(x) | f(0) = 1 \\
+&f(x+1) = 2f(x) | f(0) = 1 \\
+&f(n) = 2^n
+\end{align*}
+$$
+
+What does this buy us? It gives us a nice proof that $\sum_{k} \comb{n}{k} = 2^n$.
+It proceeds by taking the taylor of $e^x$, "combinatorializing it", and then
+simplifying:
+
+$$
+\begin{align*}
+&e^x = \sum_{n=0}^\infty \frac{x^n}{n!} \\
+&2^x = \sum_{n=0}^\infty \frac{x^{(n)}}{n!} \\
+&     = \sum_{n=0}^\infty \frac{x*(x-1)*(x-2)*\cdots(x-n+1)}{n!} \\
+&     = \sum_{n=0}^\infty \frac{x*(x-1)*(x-2)*\cdots(x-n+1)}{n!}
+\end{align*}
+$$
+
+### Harmonic sries as the combinatorial version of logarithm
+
+In the continuous case, we have that $\integral 1/x = \log x$. In the
+discrete case, we get $\sum_{i=1}^n 1/x \equiv H_n$, the sum of the
+first $n$ harmonic numbers. This explains _why_ the harmonic numbers
+keep showing up in different places across discrete math --- We're often
+trying to integrate some kind of $1/x$ quantity.
+This also may tell us that $H_n$ and $2^n$ are somewhat "weak inverses" of each other. 
+I haven't thought about this weak inverse thing too much.
+
+### Stirling numbers of the first kind for convering between polynomials and falling factorials
+
+We can express $x^{(n)} = \sum_{k=0}^n [n, k] x^k$ where $[n, k]$ 
+are the (yet to be defined) unsigned stirling numbers of the first kind. 
+(aside: I wonder if this can be derived from some kind of mobius inversion).
+
+We begin my in fact _defining_ the stirling numbers of the first kind, $[n, k]$
+as the coefficients of the rising factorial:
+
+$$
+x^{(n)} = x(x+1)(x+2) \dots (x+n-1) = \sum_{i=0}^n [n, i] x^i
+$$
+
+The question as a combinatorialist is:
+
+> what do the unsigned striling numbers of the first kind, $[n, i]$, count?
+
+The answer is:
+
+> $[n, i]$ counts the number of permutations of $n$ elements with $i$
+> disjoint cycles.
+
+For example, in the case of the permutations of the set $\{1, 2, 3\}$, 
+we have the permutations:
+
+$$
+\begin{align*}
+(1)(2)(3) \text{3 cycles} \\
+(12)(3) \text{2 cycles} \\
+(1)(23) \text{2 cycles} \\
+(2)(13) \text{2 cycles} \\
+(132) \text{1 cycle} \\
+(123) \text{1 cycle} \\
+\end{align*}
+$$
+
+So, this gives the counts:
+
+$$
+[3, 3] = 1
+[3, 2] = 3
+[3, 1] = 2
+$$
+
+These stirling numbers satisfy a recurrence:
+
+$$
+[n+1, k] = n[n, k] + [n, k-1]
+$$
+
+This can be seen combinatorially. If we want the number permutations of $n+1$ objects
+with $k$ cycles, we can either:
+
+1. Take the permutations of $n$ objects with $k-1$ cycles, $[n, k-1]$, and then
+   insert the new $(n+1)$th object into a new cycle all by itself. That is,
+   we create a new permutation where $p(n+1) = (n+1)$.
+2. Take the permutation of $n$ objects with $k$ cycles, and insert this new $(n+1)$th
+   object into any of the $k$ cycles. If the original permutation had `x -p-> y`,
+   we can insert this new object as `x -p-> * -p->y` for any `x`. Thus, there are
+   $n$ choices of locations to inser `*` --- as the image of all possible `x`s.
+   This gives us the $n[n, k]$ term.
+
+Another cute fact of the unsigned stirling numbers of the first kind $[n, k]$
+is that since permutations are partitioned by their number of cycles, we have:
+
+$$
+\sum_{k=1}^n [n, k] = n!
+$$
+
+
+
+### References
+
+- [Concrete Mathematics](https://en.wikipedia.org/wiki/Concrete_Mathematics)
+- [Cornell 18.312: algebraic combinatorics](http://pi.math.cornell.edu/~levine/18.312/alg-comb-lecture-10.pdf)
+- [An introduction to posets and mobius inversion](https://community.plu.edu/~edgartj/posetMobius.pdf)
 
 
 # [Permutahedron](#permutahedron)
@@ -357,10 +733,10 @@ to increment `y`. So, at first glance, we may believe we should consider
 `Z/qZ`. However, this is misguided. Examples to enlighten:
 
 
-1. Consider `x=1, y=0`. We should use `Z/1Z`: that is, we must keep
-  moving along `x -> x -> x -> ...`. This is unlike what happens if we choose
+1. Consider `x=1, y=0`. We should use `Z/1Z = { 0 }`: that is, we must keep
+  moving along `0 -x -> 0 -x-> 0 -x-> ...`. This is unlike what happens if we choose
   `Z/0Z` (which is not a well-defined idea).
-2. Consider `x=1,y=1`. We should use `Z/2Z`, so we keep going `0 -> 1 -> 0 -> ...`
+2. Consider `x=1,y=1`. We should use `Z/2Z`, so we keep going `0 -x-> 1 -y-> 0 -> ...`
   which will cause is to flip `x -> y -> x -> y -> ...`. 
 
 
@@ -434,7 +810,7 @@ of `y`, which is what we want when `x=2, y = 7`. We need to reach at least
 along `y`.
 
 
-# [Geometric proof of `e^x >= 1+x`, `e^(-x) <= 1-x`](#1-x-e-xof-of-)
+# [Geometric proof of `e^x >= 1+x`, `e^(-x) >= 1-x`](#1-x-e-xof-of-)
 
 Let's concentrate on the `e^x >= 1 + x` part. 
 
@@ -443,9 +819,7 @@ Let's concentrate on the `e^x >= 1 + x` part.
 2. `e^x` is a strongly convex function, since `(e^x)'' = e^x` which is positive
    everywhere. Hence, `e^x` will always lie above its tangent.
 
-Similarly, for `e^(-x)`, we can either note that it's  substitution of `x` with
-`-x` in our previous statement, and thus our previous statement will continue
-to hold.  Alternatively, working through the math:
+Similarly for `e^(-x)`, working through the math:
 
 1. `1 -x` is tangent at `x=0` to `e^(-x)`
 2. `(e^(-x))'' = -(e^(-x))' e^(-x)` which is again positive everywhere, and
