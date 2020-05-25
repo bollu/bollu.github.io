@@ -1013,8 +1013,8 @@ void toHTML(const char *instr,
         case TT::CodeBlock: {
           TCodeBlock *block = (TCodeBlock *)t;
           // TODO: escape HTML content.
-          const char *open = "<div class='code'>\n";
-          const char *close = "</div>\n";
+          const char *open = "<div class='code'>";
+          const char *close = "</div>";
 
           strcpy(outs + outlen, open);
           outlen += strlen(open);
@@ -1074,11 +1074,11 @@ void toHTML(const char *instr,
         // }
 
         case TT::List: {
-          const char *openul = "<ul>\n";
-          const char *closeul = "\n</ul>\n";
+          const char *openul = "<ul>";
+          const char *closeul = "</ul>";
 
-          const char *openli = "<li>\n";
-          const char *closeli = "\n</li>\n";
+          const char *openli = "<li>";
+          const char *closeli = "</li>";
 
           TList *tlist = (TList *)t;
           strcpy(outs + outlen, openul); outlen += strlen(openul);
@@ -1092,11 +1092,11 @@ void toHTML(const char *instr,
         }
 
         case TT::TListNumbered: {
-          const char *openul = "<ol>\n";
-          const char *closeul = "\n</ol>\n";
+          const char *openul = "<ol>";
+          const char *closeul = "</ol>";
 
-          const char *openli = "<li>\n";
-          const char *closeli = "\n</li>\n";
+          const char *openli = "<li>";
+          const char *closeli = "</li>";
 
           TList *tlist = (TList *)t;
           strcpy(outs + outlen, openul); outlen += strlen(openul);
@@ -1112,9 +1112,9 @@ void toHTML(const char *instr,
         case TT::Link: {
           TLink *link = (TLink *)t;
           // toHTML(instr, tempdirpath, link->text,  outlen, outs);
-          outlen += sprintf(outs + outlen, "<a href=%s>\n", link->link);
+          outlen += sprintf(outs + outlen, "<a href=%s>", link->link);
           toHTML(instr, tempdirpath, link->text, outlen, outs);
-          outlen += sprintf(outs + outlen, "</a>\n");
+          outlen += sprintf(outs + outlen, "</a>");
           return;
         }
 
