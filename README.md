@@ -275,7 +275,7 @@ $$
 
 Umbral calculus lays out a large collection of "umbral" / "shadowy"
 coincidences across combinatorics and calculus. Here, I'll lay out some of
-these that I learnt from [Concrete Mathematics](https://en.wikipedia.org/wiki/Concrete_Mathematics). 
+these that I learnt from [Concrete Mathematics](https://en.wikipedia.org/wiki/Concrete_Mathematics).
 I hope to use this for myself to motivate a bunch of combinatorics. I'll
 provide an interesting proof of why $\sum{1 \leq k < n} k^2 = k(k-1)/2$
 using this umbral calculus.
@@ -432,7 +432,7 @@ $$
 \end{align*}
 $$
 
-What does this buy us? It gives us a nice proof that $\sum_{k} \comb{n}{k} = 2^n$.
+What does this buy us? It gives us a nice proof that $\sum_{k} nCk = 2^n$.
 It proceeds by taking the taylor of $e^x$, "combinatorializing it", and then
 simplifying:
 
@@ -445,7 +445,7 @@ $$
 \end{align*}
 $$
 
-### Harmonic sries as the combinatorial version of logarithm
+### Harmonic series as the combinatorial version of logarithm
 
 In the continuous case, we have that $\integral 1/x = \log x$. In the
 discrete case, we get $\sum_{i=1}^n 1/x \equiv H_n$, the sum of the

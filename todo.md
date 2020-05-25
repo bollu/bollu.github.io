@@ -1,5 +1,6 @@
 SSC: slate star codex
 
+- Janus (time travel) for algorithm-X style backtracking algorithms.
 - Incidence Hopf algebra.
 - Think about lex-ordering as some kind of metric. Eg. `a, b, c` each define
   a branch in space. `abc` counts for `[a]/4 + [b]/4 + [c]/4`,
