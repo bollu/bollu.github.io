@@ -201,7 +201,7 @@ interval is a tuple $(x, y) \in P \times P$ such that $x \leq P$
 structure which I denote $\star$, given by:
 
 $$
-(\alpha \star \beta)([x, z)] = \sum_{x \leq y \leq z} \alpha(x, y) \beta(y, z)
+(\alpha \star \beta)([x, z]) = \sum_{x \leq y \leq z} \alpha(x, y) \beta(y, z)
 $$
 
 A linear algebra way to look at this is to consider $|P| x |P|$ matrices over $K$
