@@ -20,7 +20,7 @@ A Universe of Sorts
 - [Finite differences and Umbral calculus](#finite-differences-and-umbral-calculus)
 - [Permutahedron](#permutahedron)
 - [Lyndon + Christoffel = Convex Hull](#lyndon-christoffel-convex-hull)
-- [Geometric proof of `e^x >= 1+x`, `e^(-x) >= 1-x`](#1-x-e-xof-of-)
+- [Geometric proof of `e^x >= 1+x`, `e^(-x) >= 1-x`](#e-x-1-xof-of-)
 - [Ranking and Sorting](#ranking-and-sorting)
 - [Proof of minkowski convex body theorem](#proof-of-minkowski-convex-body-theorem)
 - [Burrows Wheeler (WIP)](#burrows-wheeler)
@@ -774,7 +774,7 @@ of `y`, which is what we want when `x=2, y = 7`. We need to reach at least
 along `y`.
 
 
-# [Geometric proof of `e^x >= 1+x`, `e^(-x) >= 1-x`](#1-x-e-xof-of-)
+# [Geometric proof of `e^x >= 1+x`, `e^(-x) >= 1-x`](#e-x-1-xof-of-)
 
 Let's concentrate on the `e^x >= 1 + x` part. 
 
