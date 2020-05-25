@@ -1,41 +1,3 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  console.log("invoked katex...");
-  renderMathInElement(document.body, { delimiters : [
-  {left: "$$", right: "$$", display: true},
-  {left: "!!", right: "!!", display: true},
-  {left: "$", right: "$", display: false},
-  {left: "\\[", right: "\\]", display: true},
-  {left: "%[", right: "%]", display: true},
-  ] });
-  console.log("finished running katex");
-});
-</script>
-
-
-<!-- comment out mathjax
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-<script
-  type="text/javascript"
-  charset="utf-8"
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
-> </script>
-<script
-  type="text/javascript"
-  charset="utf-8"
-  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
-> </script>
--->
 
 <h2>
 <img style="float:left;display:inline-block;padding-right: 16px" src="./static/banner.png" width="32px">
@@ -53,6 +15,7 @@ A Universe of Sorts
 
 #### Table of contents:
 	
+- [A hacker's guide to numerical analysis](#a-hackers-guide-to-numerical-analysis)
 - [Mobius inversion on Incidence Algebras](#mobius-inversion-on-incidence-algebras)
 - [Finite differences and Umbral calculus](#finite-differences-and-umbral-calculus)
 - [Permutahedron](#permutahedron)
@@ -190,6 +153,9 @@ A Universe of Sorts
 - [Big list of Coq](#big-list-of-coq)
 - [Big list of Latex](#big-list-of-latex)
 - [Recipes](#recipes)
+
+
+# [A hacker's guide to numerical analysis](#a-hackers-guide-to-numerical-analysis)
 
 # [Mobius inversion on Incidence Algebras](#mobius-inversion-on-incidence-algebras)
 
