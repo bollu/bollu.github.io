@@ -1,5 +1,8 @@
 SSC: slate star codex
 
+- Algebraic curves and riemann surfaces: has real cohomology uses,
+  sheaves, all the tools I want to see in action.
+- Domain theory.
 - Janus (time travel) for algorithm-X style backtracking algorithms.
 - Incidence Hopf algebra.
 - Think about lex-ordering as some kind of metric. Eg. `a, b, c` each define
