@@ -1,7 +1,7 @@
 function assert_precondition(t, out = {}, tstart = 0) {
     console.assert(typeof(t) === "number");
     console.assert(typeof(out) === "object");
-    else { console.assert(typeof(tstart) === "number"); }
+    console.assert(typeof(tstart) === "number");
     console.assert(t >= tstart);
     return [out, tstart];
 }
