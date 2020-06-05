@@ -352,7 +352,7 @@ function anim_delay(duration) {
 
 
 - `const(field, v)` creates a function `f`. On being invoked, it sets
-  `out.v = field`. It takes zero time to run such an animation, hence it's
+  `out[field] = v`. It takes zero time to run such an animation, hence it's
   duration is `0`. Useful for instaneously setting the value at the
   start of an animation.
 
