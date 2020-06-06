@@ -258,7 +258,7 @@ giving us:
   discontinuity in `out` at time `7`.
 - We want to fix this, so we make the function `f` multi-valued. 
 
-<img width=400 src=./static/discrete-multi-valued-assign-mult-value.png/>
+<img width=400 src=./static/discrete-multi-valued-assign-multi-value.png>
 
 - We assign both values `8` and `0` to the spoke `a`. We wish to define
   the evaluation of `f: Spoke -> 2^N` relative to path `p`. At time `t`, point

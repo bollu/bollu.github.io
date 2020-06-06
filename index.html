@@ -71,7 +71,7 @@ giving us:
 <img width=400 src="./static/discrete-multi-valued.png"/>
 <ul><li> We are on the space of the spokes, given by <code>a, b, c, d, e, f, g, h</code>.</li><li> We have a function <code>f: Spoke -> Val</code> whose values are given on the spokes.</li><li> We are interested in the path <code>p: Time -> Spoke</code>, <code>p = [a, b, c, d, e, f, g, h, a]</code>.</li><li> If we evaluate the function <code>f</code> on the path <code>p</code>, we get <code>out: Time -> Val</code>, <code>out = [0, 1, 2, 3, 4, 5, 6, 7, 0]</code>.</li><li> We have a "jump" from <code>7</code> to <code>0</code> in <code>out</code> as we cross from <code>h</code> to <code>a</code>. This is a
   discontinuity in <code>out</code> at time <code>7</code>.</li><li> We want to fix this, so we make the function <code>f</code> multi-valued. </li></ul>
-<img width=400 src=./static/discrete-multi-valued-assign-mult-value.png/>
+<img width=400 src=./static/discrete-multi-valued-assign-multi-value.png>
 <ul><li> We assign both values <code>8</code> and <code>0</code> to the spoke <code>a</code>. We wish to define
   the evaluation of <code>f: Spoke -> 2^N</code> relative to path <code>p</code>. At time <code>t</code>, point
   <code>p[t]</code>, we pick any value in <code>f(p[t])</code> that makes <code>out[t]</code> continuous.</li></ul>
