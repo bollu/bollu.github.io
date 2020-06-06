@@ -14,7 +14,17 @@ A Universe of Sorts
 - Reach me / email ID: `siddu.druid@gmail.com`
 
 #### Table of contents:
-	
+
+- [The arg function, continuity, orientation](#the-arg-function-continuity-orientation)
+- [Odd partitions, unique partitions](#odd-partitions-unique-partitions)
+- [Continued fractions, mobius transformations](#continued-fractions-mobius-transformations)
+- [permutations-and-lyndon-factorization](#permutations-and-lyndon-factorization)
+- [Graphs are preorders](#graphs-are-preorders)
+- [Crash course on domain theory](#crash-course-on-domain-theory)
+- [Parallelisable version of maximum sum subarray](#parallelisable-version-of-maximum-sum-subarray)
+- [Thoughts on implicit heaps](#thoughts-on-implicit-heaps)
+- [Discriminant and Resultant](#discriminant-and-resultant)
+- [Polynomial root finding using QR decomposition](#polynomial-root-finding-using-qr-decomposition)
 - [A hacker's guide to numerical analysis (WIP)](#a-hackers-guide-to-numerical-analysis)
 - [Mobius inversion on Incidence Algebras](#mobius-inversion-on-incidence-algebras)
 - [Finite differences and Umbral calculus](#finite-differences-and-umbral-calculus)
@@ -61,7 +71,7 @@ A Universe of Sorts
 - [Energy as triangulaizing state space](#energy-as-triangulaizing-state-space)
 - [The cutest way to write semidirect products](#the-cutest-way-to-write-semidirect-products)
 - [My Favourite APLisms](#my-favourite-aplisms)
-- [Proof of chinese remainder theorem on rings (WIP)](#proof-of-chinese-remainder-theorem-on-rings)
+- [Proof of chinese remainder theorem on rings](#proof-of-chinese-remainder-theorem-on-rings)
 - [monic and epic arrows](#monic-and-epic-arrows)
 - [The geometry of Lagrange multipliers](#the-geometry-of-lagrange-multipliers)
 - [Efficient tree transformations on GPUs (WIP)](#efficient-tree-transformations-on-gpus)
@@ -155,6 +165,508 @@ A Universe of Sorts
 - [Recipes](#recipes)
 
 
+#  [The arg function, continuity, orientation](#the-arg-function-continuity-orientation)
+
+Let us think of the function $arg: \mathbb C \rightarrow \mathbb R$ as a multi
+valued function, which maps each complex number to the set of possible
+valid angles that generate it:
+
+$$
+arg(z) \equiv \{ t \in \mathbb R : |z|e^{i (\pi/2)t} = z  \}
+$$
+
+We plot the function here:
+
+<img width=400 src="./static/arg-multi-value-circle.png">
+<img width=800 src="./static/arg-multi-value-plot.png">
+
+
+- Note that for every value $z \in C$, we get a _set_ of values associated
+  to it.
+
+
+#### Recovering single valued-ness
+
+Now, the question is, can we somehow automatically recover single
+valued-ness? kind of, by stipulating that for any given curve $c: [0, 1] \rightarrow \mathbb C$, 
+the function $arg \circ c: [0, 1] \rightarrow \mathbb R$ is _continuous_. 
+
+Let's try to investigate what happens if we move from `right` towards `bot`,
+arbitrarily stipulating ("picking a branch") that `arg(right) = 0` as a sort
+of basepoint.  
+
+<img width=800 src="./static/arg-multi-value-branch-lower.png">
+
+- Note that we were _forced_ to pick the value `arg(bot) = -1` from our
+  considerations of continuity. No other value extends continuous from the
+  right to the bottom.
+- Also note that we got a *smaller* value: we move from `0 -> -1`: we decrease
+  our value as we move clockwise.
+
+This prompts the natural question:
+
+> what happens if we move in the opposite direction?
+
+#### Counter-clockwise movement
+
+- Let's move counter-clockwise from `right`, arbitrarily picking the branch
+  `arg(right) = 0` as before. This gives us:
+
+
+<img width=800 src="./static/arg-multi-value-branch-upper.png">
+
+
+- Note that once again, we were _forced_ to pick `arg(top) = 1` by continuity
+  considerations.
+
+- Also note that this time, we got a *larger* value: we move from `0 -> 1`: we
+  increase our value as we move counter-clockwise
+
+
+#### Multiple winding
+
+the true power of this multi-valued approach comes from being able to handle
+_multiple_ windings. Here the real meaning of being a multi-valued function shows
+through:
+
+
+
+#### Orientation from continuity
+
+There's something really elegant about being able to recover a notion of
+"orientation" by simply:
+
+1. Allowing multi-valued functions.
+2. Forcing continuity constraints.
+3. Interpreting increase/decrease in the value of the function.
+
+
+#### Discretizing, gaining more insight
+
+I was personally dis-satisfied with the above explanation, because it seemed
+weird that we would need to depend on the history to define this function. We
+can formalize this notion of history. Let's first discretize the situation,
+giving us:
+
+<img width=400 src="./static/discrete-multi-valued.png"/>
+
+- We are on the space of the spokes, given by `a, b, c, d, e, f, g, h`.
+- We have a function `f: Spoke -> Val` whose values are given on the spokes.
+- We are interested in the path `p: Time -> Spoke`, `p = [a, b, c, d, e, f, g, h, a]`.
+- If we evaluate the function `f` on the path `p`, we get `out: Time -> Val`, `out = [0, 1, 2, 3, 4, 5, 6, 7, 0]`.
+- We have a "jump" from `7` to `0` in `out` as we cross from `h` to `a`. This is a
+  discontinuity in `out` at time `7`.
+- We want to fix this, so we make the function `f` multi-valued. 
+
+<img width=400 src=./static/discrete-multi-valued-assign-mult-value.png/>
+
+- We assign both values `8` and `0` to the spoke `a`. We wish to define
+  the evaluation of `f: Spoke -> 2^N` relative to path `p`. At time `t`, point
+  `p[t]`, we pick any value in `f(p[t])` that makes `out[t]` continuous.
+
+- So in this case, when we start, we have two choices for `out[0] = f(p[0]) = f(a)`: `0` and `8`.
+  But we know that `out[1] = f(p[1]) = f(b) = 1`. Hence, for `out[0]` to be continuous, we must
+  pick `out[0] = 0`.
+
+- Similarly, at `out[8]` we have two choices: `0` and `8`. But we have that
+  `out[7] = 7`, hence we pick `out[8] = 8`.
+
+- Note that we say 'we pick the value' that makes `out` continuous.  This is
+  not really rigorous. We can fix this by re-defining `f` in such a way
+  that `f` is not `Spoke -> Val`, but rather it knows the full path:
+  `f': (Time -> Spoke) -> Val`.
+
+#### Making the theory path-dependent
+
+We originally had:
+
+```
+path: Time -> Spoke
+f: Spoke -> 2^Val -- multi-valued
+
+-- | morally, not mathematically.
+out: Time -> Val
+out t = choose_best_value (f(path[t]))
+```
+
+But there was a vagueness in this `choose_best_value`. So we redefine it:
+
+```
+path: Time -> Spoke
+f': (Time -> Spoke) -> Time -> Val
+f'(path, tcur) = 
+  argmax (\v -> |v - path[tcur-1]| + |v - path[tcur+1|)
+         f(path[tcur])
+
+out: Time -> Val
+out = f'(path)
+```
+
+- The function `f'` that defines the value of the path has full
+  access to the path itself!                                                      
+- At time `tcur`, it attempts to pick the value in `f(path[tcur])` which
+  makes the discontinuity as small as possible. It picks a value `v` from the
+  possible values of `f(path[tcur])`. This `v` minimises the 
+  of the distances from the previous time point (`|v - path[tcur-1]`), 
+  and the distance from the next time point (`|v - path[tcur + 1]`).
+- This provides a rigorous definition of what it means to "pick a value in the branch".
+  This can clearly be extended to the continuous domain.
+
+# [Odd partitions, unique partitions](#odd-partitions-unique-partitions)
+
+A well known identity in combinatorics is that the partitions `n = l1 + l2 + ... + ln`
+where each `li` is odd is in bijectiion with a partition where each `li` is unique.
+I really liked this bijection.
+
+
+```
+(15, 9, 9, 5, 5, 5, 3, 3, 3, 1, 1, 1, 1) [all odd]
+=
+(15, 9x2, 5x3, 3x3, 1x4) [group]
+= 
+(15x1, 9x2, 5x(2+1), 3x(2+1), 1x4) [expand base-2]
+=
+(15, 18, [10, 5], [6, 3], 4) [all unique]
+```
+
+# [Continued fractions, mobius transformations](#continued-fractions-mobius-transformations)
+
+read [`ekmett/fractions`](https://github.com/ekmett/fractions) properly
+and write detailed log about it, and the related math.
+
+
+# [Permutations-and-lyndon-factorization](#Permutations-and-lyndon-factorization)
+
+For a string `s`, the Lyndon factorization writes `s` as the concatenation of
+substrings `t1`, `t2`, ..., `tn`, such that:
+
+- each `ti` is a simple word. That is, it is lexicographically smaller than all
+  of its cyclic shifts.
+- the words are in non-increasing order: `t1 >= t2 >= t3 ... >= tn`.
+
+For example, given the word `banana`, the lyndon factorization is:
+
+```
+b; an; an; a; 
+```
+
+We can define a notation for writing permutation as:
+- Each term in a cycle is written in _ascending_ order.
+- Cycles are written in _descending_ order of the first element.
+- Single element are ignored.
+
+```
+(7) (2 3) (1 4 5)
+```
+
+If we treat it as a string `723145`,
+the duval algorithm provides the decomposition:
+
+```
+7; 23; 145; 
+```
+
+So, we can treat the duval algorithm as a way to recover the permutation given
+the raw string. It's a nice way to _remember_ the definition of lyndon
+decomposition if nothng else.
+
+#[Graphs are preorders](#graphs-are-preorders)
+
+I wanted to record this fact for myself, so that I have reason to come back
+to it as I learn more preorder theory. Perhaps there are certain graph theoretic
+phenomena that make more sense when looked at from a preorder point of view.
+
+#[Crash course on domain theory](#crash-course-on-domain-theory)
+
+In lambda calculus, we often see functions of the form $\x -> x(x)$. We would
+like a way to associate a "natural" mathematical object to such a function. The
+most obvious choice for lambda calculus is to try to create a set $V$ of values
+which contains its own function space: $(V  \rightarrow V) \subseteq V$. Unfortunately,
+the only solution for this in sets is the trivial set $\{ * \}$.
+
+### Computation as fixpoints of continuous functions
+
+### CPOs
+
+- Given a partial order $(P, \leq)$. assume we have a subset $Q \subseteq P$. 
+  A least upper bound $u$ of $Q$ is an element that is the smallest element in $P$
+  which is larger than every element in $Q$.
+
+- A subset $Q$ of $P$ is called as a chain if its elements can be put into order.
+  That is, there is a labelling of elements of $Q$ into $q1, q2, \dots, qn$ such
+  that $q1 \leq q2 \leq \dots \leq qn$.
+
+### CCPOs
+
+- A partially ordered set is called as a _chain complete partial order_ if
+  each chain has a least upper bound.
+
+- This is different from a lattice, where each _subset_ has a least upper bound.
+
+- Every ccpo has a minimal element given by $completion(\emptyset) = \lbot$.
+
+- TODO: example of ccpo that is not a lattice
+
+
+### Monotone map
+
+- A function from $P$ to $Q$ is said to be monotone if $p \leq p' \implies f(p) \leq f(p')$.
+  
+- Composition of monotone functions is monotone.
+
+- The image of a chain wrt a monotone function is a chain.
+
+- A monotone function **need not preserve least upper bounds**. Consider:
+
+$$
+f: 2^{\mathbb N} \rightarrow 2^{\mathbb N}
+f(S) \equiv
+\begin{cases}
+S & \text{$S$} is finite \\
+S U \{ 0 \} \text{$S$ is infinite}
+\end{cases}
+$$
+
+This does not preserve least-upper-bounds. Consider the sequence of elements:
+
+$$
+A_1 = \{ 1\}, A_2 = \{1, 2\}, A_3 = \{1, 2, 3\}, \dots, A_n = \{1, 2, 3, \dots, n \}
+$$
+
+The union of all $A_i$ is $\mathbb N$.
+Each of these sets is finite. 
+Hence $f(\{1 \}) = \{1 \}$, $f(\{1, 2 \}) = \{1, 2\}$ and so on. Therefore:
+
+$$
+f(\sqcup A_i) = f(\mathbb  N) = \mathbb N \cup \{ 0 \}\\
+\sqcup f(A_i) = \sqcup A_i = \mathbb N
+$$
+
+### Continuous function
+
+- A function is continous if it is monotone and preserves all LUBs. This is
+  only sensible as a definition on ccpos, because the equation defining it is:
+  `lub . f  = f . lub`, where `lub: chain(P) \rightarrow P`. However, for `lub`
+  to always exist, we need `P` to be a CCPO. So, the definition of continuous
+  only works for CCPOs.
+
+- The composition of continuous functions of chain-complete partially
+  ordered sets is continuous. 
+
+### Fixpoints of continuouts functions
+
+The least fixed point of a continous function $f: D \rightarrow D$ is:
+
+$$FIX(f) \equiv lub(\{ f^n(\lbot) : n \geq 0 \}$$
+
+
+### $\leq$ as implication
+
+We can think of $b \sqgeq a$ as $b \implies a$. That is, $b$ has more information
+than $a$, and hence implies $a$.
+
+### References
+
+- Semantics with Applications: Hanne Riis Nielson, Flemming Nielson.
+
+
+
+# [Parallelisable version of maximum sum subarray](#parallelisable-version-of-maximum-sum-subarray)
+
+I learnt of a "prefix sum/min" based formulation from
+[the solution to question D, codeforces educational round 88](https://codeforces.com/blog/entry/78116).
+
+The idea is to rewrite:
+
+$$
+\begin{align*}
+&\max(L, R): \sum_{L \leq i \leq R} a[i] \\
+&= \max R: (\sum_{0 \leq i \leq R} a[i] - min L: \sum_{0 \leq i \leq L \leq R}) \\
+&asum[n] \equiv \sum_{0 \leq i \leq n} a[i] \\
+&= \max R: (asum[R] - min (L \leq R): asum[L])
+&aminsum[n] \equiv \min_{0 \leq i \leq n} asum[i] \\
+&= \max R: (asum[R] - aminsum[R]) \\
+\end{align*}
+$$
+
+Since $asum$ is a prefix-sum of $a$, and $amin$ is a prefix min of
+$asum$, the whole thing is $O(n)$ serial, $O(\log n)$ parallel.
+In haskell, this translates to:
+
+```hs
+let sums = scanl (+) 0
+let sums_mins = scanl1 min . sums
+let rise xs = zipWith (-) (sums xs) (sums_mins xs)
+main = rise [1, 2, 3, -2, -1, -4, 4, 6]
+> [0,1,3,6,4,3,0,4,10]
+```
+
+`sums_mins` keeps track of the sea level, while the
+`zipWith (-) xxx sums_mins` computes the elevation from the sea level.
+
+
+# [Thoughts on implicit heaps](#thoughts-on-implicit-heaps)
+
+Some musings I had on the ability to represent heaps as arrays, and in general,
+the benifits of knowing the total number of elements.
+
+- Knowing the total number of elements allows us to pre-ordain a memory layout.
+  We can decide that for a node at index `i`, left child is at `2*i`, and
+  right child is at `2*i+1`. This gives parent at `i//2`.
+
+- This immediately gives us `O(1)` access to parent (`i//2`) and sibling `(i^1)`
+  with no extra memory usage.                                                                                                                             S
+
+- This cannot be done for data structures where we need to splice into
+  the middle: For example, an implicit treap where we wish to splice sub-arrays
+  together.
+
+- On coding a heap, we can decide whether to use the left or right sibling by
+  using `next = 2*i + predicate`. If `predicate = false = 0`, we will pick
+  the left child, otherwise the right child. This allows us to compress
+  some annoying if/then/elses into one-liners.
+
+# [Discriminant and Resultant](#discriminant-and-resultant)
+
+I had always seen the definition of a discriminant of a polynomial $p(x)$ as:
+$$
+Disc(p(x)) \equiv a_n^(2n - n) \prod_{i< j} (r_i - r_j)^2
+$$
+
+While it is clear _why_ this tracks if a polynomial has repeated roots
+or not, I could never motivate to myself or remember this definition.
+
+I learnt that in fact, this comes from a more general object, the **resultant**
+of two polynomials $P(x), Q(x)$, which provides a new polynomial $Res(P(x), Q(x)$
+which is zero iff $P, Q$ share a common root. Then, the discriminant is
+defined as the resultant of a polynomial and its derivative. This makes far more
+sense:
+
+- If a polynomial has a repeated root $r$, then its factorization will
+  be of the form $p(x) = (x - r)^2 q(x)$. The derivative of the polynomial 
+  will have an $(x-r)$ term that can be factored out. 
+
+- On the contrary, if a polynomial only has a root of degree 1, then the
+  factorization will be $p(x) = (x - r) q(x)$, where $q(x)$ is not divisible by $(x-r)$.
+  Then, the derivative will be $p'(x) = 1 \cdot q(x) + (x - r) q'(x)$. We cannot take $(x - r)$ common
+   from this, since $q(x)$ is not divisible by $(x-r)$.
+
+This cleared up a lot of the mystery for me.
+
+### How did I run into this? Elimination theory.
+
+I was trying to learn how elimination theory works: Given a variety
+$V = \{ (x, y) : Z(x, y) = 0 \}$, how does one find a rational parametrization
+$(p(t), q(t))$ such that  $Z(p(t), q(t)) = 0$, and $p(t), q(t)$ are
+rational functions? That is, how do we find a rational parametrization of the
+locus of a polynomial $Z(x, y)$? The answer is: use resultants! 
+
+- We have two univariate polynomials $p(a; x), p(b; x)$, where the notation 
+  $p(a; x)$ means that we have a polynomial $p(a; x) \equiv \sum_i a[i] x^i$.
+  The resultant isa polynomial $Res(a; b)$ which is equal to $0$ when
+  $p(a; x)$ and $p(b; x)$ share a common root.
+
+- We can use this to eliminate variables. We can treat a bivariate polynomial $p(x, y)$
+  as a univariate polynomial $p'(y)$ over the ring $R[X]$. This way, given two
+  bivariate polynomial $p(a; x, y)$, $q(b; x, y)$, we can compute their resultant,
+  giving us conditions to detect for which values of $a, b, x$, there exists
+  a common $y$ such that $p(a; x, y)$ and $(q, x, y)$ share a root. If $(a, b)$
+  are constants, then we get a polynomial $Res(x)$ that tracks whether $p(a; x, y)$
+  and $q(a; x, y)$ share a root.
+
+- We can treat the implicit equation above as two equations, $x - p(t) = 0$, 
+  $y - q(t) = 0$. We can apply the method of resultants to project out $t$
+  from the equations.
+
+### 5 minute intro to elimination theory.
+
+Recall that when we have a linear system $Ax = 0$, the system has a non-trivial
+solution iff $|A| = 0$. Formally: $x \neq 0 \iff |A| = 0$. Also, the
+ratio of solutions is given by:
+
+$$x_i / x_j = (-1)^{i+j} |A_i|/|A_j|$$
+
+
+
+If we have two polynomials $p(a; x) = a_0 + a_1 x + a_2 x^2$, and
+$q(b; x) = b_0 + b_1x + b_2 x^2$, then the system $p(a; x)$, $q(b; x)$ has
+a simeltaneous zero iff:
+
+$$
+\begin{bmatrix}
+a_2 & a_1 & a_0 & 0 \\
+0 & a_2 & a_1 & a_0 \\
+b_2 & b_1 & b_0 & 0\\
+0 & b_2 & b_1 & b_0\\
+\end{bmatrix}
+\begin{bmatrix}                                             
+1 \\ x \\ x^2 \\ x^3
+\end{bmatrix}
+= 0 \\
+A x = 0
+$$
+
+#### Big idea
+
+The matrix is setup in such a way that any solution vector $v$ such that
+$Qv = 0$ will be of the form $v = (\alpha^3, \alpha^2, \alpha, 1)$. That is,
+the solution vector is a _polynomial_, such that $Qv = 0$. Since $Qv = 0$,
+we have that $a_2 \alpha^2 + a_1 \alpha + a_0 = 0$, and $b_2 \alpha^2 + b_1 \alpha + b_0 = 0$.
+
+#### Proof
+
+- **Necessity** is clear. If we have some non trivial vector $v \neq 0$ such that
+  $Qv = 0$, then we need $|Q| = 0$.
+
+- **Sufficiency**: Since $|Q| = 0$, there is some vector $v = (w, x, y, z)$
+  such that $Qv = 0$. 
+  We need to show that this $v$ is non-trivial. If the polynomials $p(a;x)$,
+  $q(b;x)$ are not equal, then we have that the rows which have coefficients
+  from $p$ and $q$ are linearly independent. So, the pair of rows $(1, 3)$,
+  and the pair $(2, 4)$ are linearly independent. This means that
+  the linear system:
+
+$$
+a_2 w + a_1 x + a_0 y = 0 \\
+b_2 w + a_1 x + a_0 y = 0 \\
+$$
+
+Similarly:
+
+$$
+a_2 x + a_1 y + a_0 z = 0 \\
+b_2 x + a_1 y + a_0 z = 0 \\
+$$
+
+Since the coefficients of the two systems are the same, we must have that
+$(w, x, y)$ and $(x, y, z)$ are linearly dependent. That is:
+
+$$
+(w, x, y) = \alpha (x, y, z) \\
+w = \alpha x = \alpha^2 y = \alpha^3 z \\
+$$
+
+We can take $z = 1$ arbitrarily, giving us a vector of the form
+$(w, x, y, z) = (\alpha^3, \alpha^2, \alpha, 1)$, which is the structure
+of the solution we are looking for!
+
+
+### References
+
+- [CMU lectures on Math Fundamentals for Robotics](http://www.cs.cmu.edu/~me/811/notes/)
+
+                                                    
+# [Polynomial root finding using QR decomposition](#polynomial-root-finding-using-qr-decomposition)
+
+1. For a polynomial $p(x)$, build the companion matrix $P(x)$.
+2. Show that the characteristic polynomial $cp(P)$ of the companion matrix $P(x)$ is indeed $p(x)$.
+3. Find eigenvalues of $P(x)$, which will be roots of $p(x)$, since the
+   eigenvalues of a matrix $M$ are the roots of its characteristic polynomial $cp(M)$.
+4. We use QR since it is numerically stable. The $Q$ matrix discovered by QR
+   is orthogonal, and hence does not disturb the covariance of the noise
+   on matrix multiplication.
+
+
 # [A hacker's guide to numerical analysis](#a-hackers-guide-to-numerical-analysis)
 
 > Life may toss us ill-conditioned problems, but it is too short
@@ -184,12 +696,12 @@ We can naively define $\hat x$ agrees to $x$ upto $p$ significant digits
 if $\hat x$ and $x$ round to the same number upto $p$ significant digits.
 This definition is seriously problematic. Consider the numbers:
 
-- $x =  0.9949$, $x_1 = 1.0$, $x_2 = 0.99$, $x_3 = 0.9950$
-- $\hat x = 0.9951$, $\hat x_1 = 1.0$, $\hat x_2 = 1.0$, $\hat x_3 = 0.9950$
+- $x = 0.9949$, $x_1 = 1.0$, $x_2 = 0.99$, $x_3 = 0.9950$
+- $y = 0.9951$, $y_1 = 1.0$, $y_2 = 1.0$, $y_3 = 0.9950$
 
-Here, $\hat x$ has correct one and three significant digits, but incorrect
-2 significant digits, since the truncation at $x_2$ and $\hat x_2$ are wildly
-different.
+Here, $y$ has correct one and three significant digits relative to $x$,
+but incorrect 2 significant digits, since the truncation at $x_2$ and $y_2$ 
+do not agree even to the first significant digit.
 
 ### Correct Significant digits --- the correct definition
 
@@ -221,7 +733,7 @@ $y$, in an arithmetic of precision $u$. How do we measure the quality of $\hat y
    so we ask for $\min |\delta x|$. We can divide this error by $x$ as a 
    normalization factor. This is the **backward error**.
 
-<img src="./static/forward-backward-error.png">
+<img width=800 src="./static/forward-backward-error.png">
 
 There are two reasons we prefer backward error.
 
@@ -246,27 +758,27 @@ is the number of significant digits to which our arithmetic operations
 can be performed:
 
 $$
-x \pm y = x(1 + \delta) \pm y(1 + \delta) \forall |\delta| \leq u
+x \pm y = x(1 + \Delta) \pm y(1 + \Delta) \forall |\Delta| \leq u
 $$
 
 Another type of error we can consider is that of the form:
 
 $$                                                                              
-\hat y + \delta y = f(x + \delta x)
+\hat y + \delta y = f(x + \Delta x)
 $$
 
 That is, for a small perturbation in the output $(\delta y)$, we can get a
 backward error of $\delta x$. This is called as **mixed forward backward error**.
 
-<img src="./static/mixed-forward-backward-error.png">
+<img width=800 src="./static/mixed-forward-backward-error.png">
 
 We can say that an algorithm with mixed-forward-backward-error is stable iff:
 
 $$
 \begin{align*}
-&\hat y + \delta y = f(x + \delta x) \\
-&|\delta y|/|\hat y| < \epsilon \\
-&|\delta x|/|\hat x| < \eta \\
+&\hat y + \delta y = f(x + \Delta x) \\
+&|\Delta y|/|\hat y| < \epsilon \\
+&|\Delta x|/|\hat x| < \eta \\
 &\text{$\epsilon, \eta$ are small}
 \end{align*}
 $$
@@ -283,8 +795,8 @@ solution $\hat y = f(x + \delta x)$. Then:
 $$
 \begin{align*}
 &\hat y - y = f(x + \delta x) - f(x) = f'(x) \delta x + O((\delta x)^2) \\
-&(\hat y - y)/y = (x f'(x)/f(x)) (\delta x/x) + O((\delta x)^2) \\
-&(\hat y - y)/y = c(x) (\delta x/x) + O((\delta x)^2)\\
+&(\hat y - y)/y = (x f'(x)/f(x)) (\Delta x/x) + O((\Delta x)^2) \\
+&(\hat y - y)/y = c(x) (\Delta x/x) + O((\Delta x)^2)\\
 &c(x) \equiv |x f'(x)/f(x)|
 \end{align*}
 $$
@@ -380,13 +892,13 @@ We can consider the subtraction:
 $$
 \begin{align*}
 &x = a - b; \hat x = \hat a - \hat b \\
-&\hat a = a(1 + \delta a) \\
-&\hat b = b(1 + \delta b) \\
-&\left| \frac{x - \hat x}{x} \right| 
-&= \left| \frac{-a\delta a - b\delta b}{a - b} \right| \\
-&= \frac{|-a\delta a - b\delta b|}{|a - b|} \\
-&=  \frac{|a\delta a + b\delta b|}{|a - b|} \\
-&\leq  \frac{\max(|\delta a|, |\delta b|) (|a| + |b|)}{|a - b|}
+&\hat a = a(1 + \Delta a) \\
+&\hat b = b(1 + \Delta b) \\
+&\left| \frac{x - \hat x}{x} \right|  \\
+&= \left| \frac{-a\Delta a - b\Delta b}{a - b} \right| \\
+&= \frac{|-a\Delta a - b\Delta b|}{|a - b|} \\
+&=  \frac{|a\Delta a + b\Delta b|}{|a - b|} \\
+&\leq  \frac{\max(|\Delta a|, |\Delta b|) (|a| + |b|)}{|a - b|}
 \end{align*}
 $$
 
@@ -422,8 +934,43 @@ x: 1.00000000000000000000
 That is, even though the function is an identity function, the answer collapses
 to `1`. What is happening?
 
+### Computing $(e^x - 1)/x$
+One way to evaluate this function is as follows:
 
-### Summation
+```cpp 
+double f(double x) { return x == 0 ? 1 : (pow(M_E, x) - 1) / x; }
+```
+
+This can suffer from catastrophic cancellation in the numerator. When
+$x$ is close to $0$, $e^x$ is close to 1, and $e^x - 1$ will magnify the
+error in $e^x$.
+
+```cpp
+double f(double x) { 
+   const double y = pow(M_E, x);
+   return y == 1 ? 1 : (y - 1) / log(y);
+}
+```
+
+This algorithm seems crazy, but there's insight in it. We can show that
+the errors cancel! The idea is that neither $(y - 1)$ nor $\log y$ are
+particularly good, the errors accumulated in them almost completely
+cancel out, leaving out a good value:
+
+$$
+\text{assume $\hat y = 1$} \\
+1 = \hat y \equiv e^x(1 + \delta) \\
+\log 1 = \log (e^x ) + \log(1 + \delta) \\
+x = -\log(1 + \delta) \\
+x = -\delta + O(\delta^2)
+$$
+
+If $\hat y \neq 1$:
+
+$$
+\hat f = (\hat y - 1)/\log{\hat y} = (1+\epsilon_3)(\hat y - 1)(1 + \epsilon+1)/(\log \hat y(1 + \epsilon_2))
+$$
+
 
 
 ### IEEE floating point fun: `+0` and `-0` for complex analysis
@@ -436,6 +983,37 @@ to `1`. What is happening?
 We have two types of zeroes, `+0` and `-0` in IEEE-754. These are used in some
 cases. The most famous is that $1/+0 = +\infty$, while $1/-0 = -\infty$. Here,
 we proceed to discuss some complex-analytic considerations.
+
+> Therefore. implementers of compilers
+> and run-time libraries bear a heavy burden of attention to detail
+> if applications programmers are to realize the full benefit of the
+> IEEE style of complex arithmetic. That benefit deserves Some
+> discussion here if only to reassure implementers that their
+> assiduity will be appreciated.
+
+$$
+\sqrt{-1 + 0 i} = +0 + i \\
+\sqrt{-1 - 0 i} = +0 - i \\
+$$
+These will ensure that $\sqrt{z*} = (\sqrt{z})*$:
+
+
+$$
+\texttt{copysign}(1, +0) = +1 \\
+\texttt{copysign}(1, -0) = -1 \\
+$$
+
+These will ensure that $\copysign{x, 1/x} = x$ when $x = \pm \infty$.
+
+
+An example is provided where the two limits:
+
+$$
+\begin{align*}
+&f(x + i0) = \lim_{y \rightarrow 0-} f(x + i y) \\
+&f(x + i0) = \lim_{y \rightarrow 0-} f(x + i y) \\
+\end{align*}
+$$
 
 #### Complex-analytic considerations
 
@@ -4386,37 +4964,88 @@ ways:
 
 1. $I + J \equiv \{ i + j : \forall i \in I, j \in J \}$
 2. $I \cap J \equiv \{ x : \forall x \in I \land x \in J \}$
-3. $IJ \equiv \{ ij : \forall i \in I \land j \in J \}$ (**wrong!**)
+3. $I\oplus J \equiv \{ (i, j) : \forall i \in I \land j \in J \}$
+4. $IJ \equiv \{ ij : \forall i \in I \land j \in J \}$
 
-Is the third one really right? How do we prove that:
-$\forall i_1, i_2 \in I, j_1, j_2 \in J, \exists i_3 \in I, j_3 \in J$ such that
-$i_1 j_2 + i_2 j_2 = i_3 j_3$?
+We have the containment:
 
-Indeed, we can't do so in general! For
-a quick counter-example, consider the ring $\mathbb Z[X, Y]$ and the ideals
-$I \equiv \langle X \rangle$, $J \equiv \langle Y \rangle$. Now, note
-that $XY  + X^2Y^2$ cannot be written as the product of a power of $X$
-and a power of $Y$.
+$$
+IJ \subseteq I \cap J \subseteq I, J \subseteq I + J \subseteq R
+$$
 
-So, the _correct definition_ is to in fact _generate an ideal_ from all
-elements of the form $ij$. So #3 should be:
+#### $IJ$ is a ideal, $IJ \subseteq I \cap J$
 
-- $IJ \equiv \{ \sum_k i_k j_k : \forall i_k \in I \land j_k \in J \}$ (**right!**)
+it's not immediate from the definition that $IJ$ is an ideal. The idea is
+that given a sum $\sum_k i_k j_k \in IJ$, we can write each $i_k j_k = i'_k$,
+since the ideal $I$ is closed under multiplication with $R$. This gives
+us $\sum i'_k = i'' \in I$. Similarly, we can interpret $\sum_k i_k j_k = \sum_k j'_k = j''k \in J$.
+
+Hence, we get the containment $IJ \subseteq I \cap J$.
+
+#### $I \cap J subseteq I$, $I \cap J \subseteq J$
+
+Immediate from the inclusion function.
+
+#### $I, J \subseteq I + J$
+
+Immediate from inclusion
+
+#### CRT from an exact sequence
+
+There exists an exact sequence:
+
+$$
+\begin{align*}
+0 \rightarrow I \cap J \xrightarrow{f} I \oplus J \xrightarrow{g} I + J \rightarrow 0 \\
+&f(r) = (r, r) \\
+&g((i, j)) = i + j
+\end{align*}
+$$
+
+We are forced into this formula by considerations of dimension. We know:
+
+$$
+\begin{align*}
+&dim(I \oplus J) = dim(I) + dim(J) \\
+&dim(I + J) = dim(I) + dim(J) - dim(I \cap J) \text{[inclusion-exclusion]} \\
+&dim(I + J) = dim(I \oplus J) - dim(I \cap J) \\
+&dim(I + J) - dim(I \oplus J) + dim(I \cap J) = 0\\
+&V - E + F = 2
+\end{align*}
+$$
+
+By analogy to euler characteristic which arises from homology, we need to have
+$I \oplus J$ in the middle of our exact sequence. So we must have:
+
+$$
+0 \rightarrow ? \rightarrow I \oplus J \rightarrow ?\rightarrow 0
+$$
+
+Now we need to decide on the relative ordering between $I \cap J$ and $I + J$.
+- There is  no _universal_ way to send $I oplus J \rightarrow I \cap J$. It's
+  an unnatural operation to restrict the direct sum into the intersection.
+- There is a _universal_ way to send $I \oplus J \rightarrow I + J$: sum
+  the two components. This can be seen as currying the addition operation.
+
+Thus, the exact sequence _must_ have $I + J$ in the image of $I \oplus J$. This
+forces us to arrive at:
+
+$$
+0 \rightarrow I \cap J \rightarrow I \oplus J \rightarrow I + J \rightarrow 0
+$$
+
+The product ideal $IJ$ plays no role, since it's not possible to define a 
+product of modules _in general_ (just as it is not possible to define
+a product of vector spaces). Thus, the exact sequence better involve
+module related operations.  We can now recover CRT:
+
+$$
+0 \rightarrow I \cap J \xrightarrow{f} I \oplus J \xrightarrow{g} I + J \rightarrow 0 \\
+0 \rightarrow R \xrightarrow{f} R \olpus R \xrightarrow{g} R \rightarrow 0 \\
+0 \rightarrow R / (I \cap J) \rightarrow R/I \oplus R /J \rightarrow R/(I + J) \rightarrow 0
+$$
 
 
-#### Specializing ideal operations to $\mathbb Z$
-
-Let $I \equiv \langle 12 \rangle, J \equiv \langle 20 \rangle$.
-
-- $I + J \equiv \{ 12k + 20l : k, l \in \mathbb Z\} = \langle gcd(12, 20) \rangle = \langle 4 \rangle$
-- $IJ \equiv \langle\{ (12 k)(20 l) : k, l \in \mathbb Z \}\rangle = $
-- $I \cap J \equiv ??$
-
-Great. Now, one can conjecture the relation:
-- $(I + J)(I \cap J) = IJ$
-
-by the following chain of inference:
-- $(I + J)(I \cap J) = I(I \cap J) + J(I \cap J) \subseteq IJ + JI = IJ$.
 
 #### References
 

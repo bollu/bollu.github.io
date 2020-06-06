@@ -1,5 +1,19 @@
 SSC: slate star codex
 
+- Planning the Unthinkable: How New Powers Will Use Nuclear, Chemical, and Biological Weapons
+- On Limited Nuclear War in the 21st Century
+- Abel's theorem in problems and solutions.
+- Mikhail Bakunin: founder of collective anarchism.
+- Algebraic geometry: https://www.mathematik.uni-kl.de/~gathmann/class/alggeom-2019/alggeom-2019-c3.pdf
+- Continued fractions, mobius transformations.
+- Domain theory crash course.
+- https://swatisani.net/kitchen/recipe/pita-bread/
+- Learn how to generate music.
+- Fast mobius inversion using heavy/light?
+- Sphere packings, lattices, groups.
+- Gaussian geometry: http://www.matematik.lu.se/matematiklu/personal/sigma/Gauss.pdf
+- Gauss bonnet proof; http://www.math.uchicago.edu/~may/VIGRE/VIGRE2008/REUPapers/Halper.pdf
+- Low dimensional diffgeo (classic, curves, surfaces): http://uregina.ca/~mareal/MATH431-2014.html
 - Algebraic curves and riemann surfaces: has real cohomology uses,
   sheaves, all the tools I want to see in action.
 - Domain theory.
