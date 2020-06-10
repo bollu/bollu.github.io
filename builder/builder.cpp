@@ -1239,18 +1239,18 @@ const char htmlbegin[] =
 // need margin:0px otherwise user agent stylesheet will fuck it up
 " blockquote { color: #222222; margin: 0px; }"
 // monospace font
-".latexblock, .latexinline, .code { font-family: 'Blog Mono', monospace; line-height: 1.2em; font-size: 80%;  }"
+" .code { font-family: 'Blog Mono', monospace; line-height: 1.2em; font-size: 90%;  }"
 // padding and margin for blocks
 ".latexblock, blockquote, .code, code { margin-top: 30px; margin-bottom: 30px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }"
 ".code, code { background-color: #FFFFFF; width: 100%; }"
+// latexblock should have regular line height for correct rendering.
+".latexblock { line-height: 1em }"
 // overflow: latex and code block
 " .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; }"
 // " .code { width: 100%; overflow-x: hidden; white-space: nowrap; }"
 " .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; }"
 "\n"
-".latexinline { border-bottom-color: #000000; border-bottom-style: solid;"
-"                border-bottom-width: 1px; padding-bottom: 2px;"
-"                padding-left: 2px; padding-right: 2px; }"
+".latexinline { padding-left: 2px; padding-right: 2px; }"
 // fix font handling
 "pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }"
 // RESPONSIVE

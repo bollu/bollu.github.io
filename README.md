@@ -15,6 +15,11 @@ A Universe of Sorts
 
 #### Table of contents:
 
+- [The commutator subgroup](#the-commutator-subgroup)
+- [Simplicity of A5 using PSL(2, 5)](#simplicity-of-a5-using-psl-2-5)
+- [Solvability of A5](#simplicity-of-a5)
+- [Complex orthogonality in terms of projective geometry](#complex-orthogonality-in-terms-of-projective-geometry)
+- [Arithmetic sequences, number of integers in a closed interval](#arithmetic-sequences-number-of-integers-in-a-closed-interval)
 - [The arg function, continuity, orientation](#the-arg-function-continuity-orientation)
 - [Odd partitions, unique partitions](#odd-partitions-unique-partitions)
 - [Continued fractions, mobius transformations](#continued-fractions-mobius-transformations)
@@ -164,6 +169,566 @@ A Universe of Sorts
 - [Big list of Latex](#big-list-of-latex)
 - [Recipes](#recipes)
 
+# [The commutator subgroup](#the-commutator-subgroup)
+
+Define the commutator of $g, h$ as $[g, h] \equiv ghg^{-1}h^{-1}$.
+The subgroup **generated** by all commutators
+in a group is called as the commutator subgroup. Sometimes denoted as
+$[G, G]$.
+
+- We need to consider generation. Consider the free group on 4 letters
+  $G = \langle a, b, c, d \rangle$. Now $[a, b] \cdot [c, d]$ has no
+  expression in terms of $[\alpha, \beta]$. 
+
+- In general, the elements of the commutator subgroup will be products
+  of commutators. 
+
+- It measures the degree of non-abelian-ness of the group. $G/[G, G]$ is
+  the largest quotient of $G$ that is abelian. Alternatively, $[G, G]$
+  is the smallest normal subgroup we need to quotient by to get an abelian
+  quotient. This quotienting is called abelianization.
+
+
+# [Simplicity of A5 using PSL(2, 5)](#simplicity-of-a5-using-psl-2-5)
+
+#### Presentation of A5
+
+We take as faith A5 has the presentation:
+
+```
+<a, b | a^2 = b^3 = (ab)^5 = 1>
+```
+
+If I find a nice proof of this isomorphism, or some other way to derive
+the fact that `PSL(2, 5)` is isomorphic to `A5`, I will fill this up.
+
+#### Step 1: `PSL(2, 5)` is isomorphic to `A5`
+
+PSL(2, 5) consists of projective Mobius transformations with function composition
+as the group operation. Here, we freely use the linear algebraic relationship
+between transformations of the form `(az + b)/(cz + d)` and matrices `[a b; c z]`.
+
+$$
+\begin{align*}
+&a, b, c, d \in \mathbb Z5, ad - bc = 1 \\
+&f: \mathbb Z5 \cup \{ \infty \} \rightarrow \mathbb Z5 \cup \{ \infty \} \\
+&f(z) \equiv (az + b)/(cz + d) \\
+\end{align*}
+$$
+
+- We allow coefficients for the Mobius transform to be from $\mathbb Z5$,
+  and we allow the domain and codomain of the function to be projectivized: so we
+  add a point at infinity to $\mathbb Z5$.
+
+- We construct a map from $PSL(2, 5)$ to $A5$ and then show that this map is
+  an isomorphism. We exploit the presentation of $A5$ to find elements
+  $a, b \in PSL(2, 5)$ such that $p^2 = q^3 = (pq)^5 = I$. We can link this
+  to the presentation of A5 which requires precisely those relations.
+
+- For an element of order 3, we pick `q(z) = 1/(1-z)`. 
+
+$$
+\begin{align*}
+&q(z) = 1/(1-z) \\
+&q(q(z)) = \frac{1}{1 - \frac{1}{1-z}}  \\
+&         = \frac{1}{\frac{(1-z) - 1}{1-z}} \\
+&         = \frac{(1-z)}{-z} = \frac{(z-1)}{z}  \\
+&         = 1 - \frac{1}{z} \\
+&q(q(q(z))) = 1 - \frac{1}{q(z)} = 1 - (1 - z) = z
+\end{align*}
+$$
+
+- I don't know of a principled way to arrive at this choice of `q(z)`, except
+  by noticing that `az + b` does not work, and neither does `1/z`. The next
+  simplest choice is things of the form `1/(1-z)`. If there is a nicer way,
+  I'd love to know.
+
+- For a function of order $5$, we have to use the structure of the finite field
+  somehow. We can consider the function `r(z) = 1 + z`. On repeating this 5
+  times, we wil get `5 + z = z`. However, it is hard to connect `r(z) = 1 + z`
+  to the  previous choice of `q(z) = 1/(1-z)`. 
+
+- We use the same idea for `r(z)`, and pick `r(z) = z - 1`. This will allow
+  us to accumulate `-1`s till we hit a `-5 = 0`.
+
+- To get `r(z) = (z - 1)`, we need to compose `q(z) = 1/(1-z)` with `p(z) = -1/z`.
+  This `p(z)` is of order 2.
+
+To recap, we have achieved a set of functions:
+
+```
+p(z) = -1/z [order 2]
+q(z) = 1/(1-z) [order 3]
+r(z) = (z - 1) [order 5]
+r = -1/[1/(1-z)] = p . q
+```
+
+
+That is, we have found a way elements in `PSL(2, 5)` such that `p^2 = q^3 = (pq)^5 = 1`.
+This gives us the [surjective] map from `PSL(2, 5)` into `A5`.
+
+
+- By a cardinality argument, we know that the size of `PSL(2, 5)` is 60. Hence,
+  since `PSL(2, 5)` and `A5` have the same number of elements, this map
+  must be a bijection.
+
+#### Step 2: PSL(2, 5) is simple
+
+TODO! I'm still reading Keith Conrad's notes.
+
+#### References
+
+- [Keith Conrad, Simplicity of PSL](https://kconrad.math.uconn.edu/blurbs/grouptheory/PSLnsimple.pdf)
+- [Math.se: isomorphism from PSL to A5](https://math.stackexchange.com/questions/2051241/showing-psl2-5-is-isomorphic-to-a-5)
+
+
+# [Solvability of A5](#solvability-of-a5)
+
+There are many accounts of why A5 is solvable on the internet. I'm recording my
+version here, because the proof involves certain ad-hoc choices which I want
+to make sure I can find off-hand in the future.
+We'll show that `[A5, A5] = A`, thereby proving that `A5` solvable. 
+
+### Notation
+
+I'll be using non-standard notation: `(12);(34)` means 'perform `(12)` then perform `(34)`'.
+I find this notation makes permutation composition intuitive for me. The `;` 
+is evocative of C-style languages, where we are ending a statement. I will
+be consistently using $[g, h] \equiv ghg^{-1}h^{-1}$ to denote the commutator.
+
+### permutations in A5
+
+First, recall that `A5` only has the _even_ permutations in `S5`. So it can
+have zero, two, four, involutions that build it up. There can't be more after
+simplification, since `S5` ony has `5` elements --- the largest sequence
+of transpositions we can do is `(12)(23)(34)(45)`. So, in `A5`, we have:
+
+- The identity permutation `()`.
+- The transpositions `(ij)(kl)` where `{i, j}` and `{k, l}` do not overlap.
+  From these, we get the 2-cycles.
+- The transpositions `(ij)(kl)` where `{i, j}` and `{k, l}` overlap. Here we
+  cannot have `{i, j} = {k, l}` since then we will just have a single transposition.
+  So, let us assume that we have `j = k`. If we have any other equality, we
+  can always flip the transpositions around to get to the normal form `j = k`:
+
+```
+(23);(12)
+= (32);(12) [(23) = (32)]
+= (32);(21) [(12) = (21)]
+```
+
+- In this case, we can show that such a transposition _must_ be a cycle:
+
+```
+[a b c] -(32)->
+[a c b] -(21)->
+[c a b]
+```
+
+- Intuitively, we are pushing the element `c` backward, and allowing the
+  other elements to take its place using the permutation `(23);(12)`.
+
+- So, from the transpositions of the form `(ij)(kl)` where `{i, j}` and
+  `{k, l}` intersect, we get the 3-cycles.
+
+- Finally, we can have the transpositions of the form `(12)(23)(34)(45)`. 
+  It must be of this form, or some permutation of this form. Otherwise,
+  we would have repeated elements, since these transpositions are packed
+  "as close as possible". These generate the 5-cycles.
+
+### A5 is generated by 3-cycles.
+
+We claim that we can write any element of $A5$ in terms of 3-cycles.
+
+- The disjoint transpositions of the type `(34)(12)` can be written as
+  `(34)(23)(23)(12)`, because `(23)(23) = e`. This can be further
+  broken down into `((34)(23)) ((23)(12))` which is two 2-cycles: 
+  `(234); (123)`.
+
+- The non-disjoint transpositions of the type `(32)(21)` _are_ 3-cycles:
+  `(32)(21) = (123)`.
+
+- 3-cycles are 3-cycles.
+
+- Any 5-cycle an be written as two 3-cycles: `(45)(34)(23)(12)` can be written
+  as `((45)(34))((23)(12))` which is two 3-cycles: `(345); (123)`.
+
+So, if we figure out how to write 3-cycles in terms of commutators, we win.
+Because the commutator subgroup of $A_n$ is generated by elements that
+can be written as $[g, h]$. If we can show that 3-cycles can be written
+as $[g, h]$, then every other element has a representation in terms of
+these 3-cycles, and are therefore elements of the commutator subgroup.
+
+
+### 3-cycles can be generated as commutators of 2-cycles:
+
+- We saw how we can write a 3-cycle of the form `C = (123)` as `(32)(21)`.
+  We wish to write this as the commutator of two elements `g, h`: $C = [g, h]$.
+
+- The idea is that we have the leftover elements `4, 5` that are unsused by `C` in `A5`
+  [here is where `5` is important: `3 + 2 = 5`, and we need two leftover elements].
+
+- We can use these two leftover elements `4, 5` to build elements `g, h`
+  which cancel off, leaving us with `(32)(21)`. We start with `g = (32)___`,
+  `h = (21)___` where the `___` is to be determined:
+
+```
+(32)___||(21)___||___(32)||___(21)
+  g        h        g^-1    h^-1
+```
+
+- It is important that `g` and `h` contain another tuple, because they are
+  members of `A5`! We need them to be permutations having `2, 4, 6` transpositions.
+  
+
+- We insert `(4 5)` everywhere. These `(4 5)` can slide over the `(2 1)` and thereby
+  harmlessly cancel:
+
+
+```
+(32)(45)||(21)(45)||(45)(32)||(45)(21)
+  g        h           g^-1       h^-1
+```
+
+- Simplify the above expression by moving the `(45)` over `(21), (32)`:
+
+```
+(32)||(21)(45)(45)||(32)||(45)(45)(21)
+  g      h          g^-1    h^-1
+```
+
+- cancel the `(45)(45) = e`:
+
+```
+(32)||(21)||(32)||(21)
+  g   h    g^-1   h^-1
+```
+
+                                                
+So we are left with `(32);(21);(32);(21)`. This is the _square_ of what
+we really wanted, `C = (32);(21)`. However, since `C` is a 3-cycle, we know
+that $C = C^{-2}$. So, we can start with $C^{-1}$, use our trick to generate
+$C^{-2}$ which is equal to $C$. Since this works for any $C$, we have shown
+that we can generate 3-cycles from commutators of `A5`.
+
+### Alternate viewpoint on above proof
+
+We have a 3-cycle `s = (a b c)`. We first first a square root `t` such 
+that `t*t=s`. To do this, we make `t` have the cycles of `s` spread out
+in gaps of 2:
+
+```
+t = (a _ _)
+t = (a _ b) [+2]
+t = (a c b) [+2, modulo]
+```
+
+It is hopefully clear that `t*t = s`:
+
+```
+t = (a c b)
+t*t: apply the cycle twice.
+t*t = a -(skip c) -> b
+      b -(skip a) -> c
+      c ->(skip b) -> a
+    = (a b c) = s
+```
+
+Now, we will write `s = t*t` and then find the commutator decomposition from
+it:
+
+```
+s = t*t
+  = (abc)(abc)
+  = (cb)(ba)(cb)(ba)
+  = (cb)|(ba)|(cb)|(ba)
+  = (cb)|(ba)|(cb)|(ba)
+     g     h   g-1   h-1
+```
+
+But there's a problem: this `g` and `h` do not belong to `A5`, they belong
+to `S5`. This is fixed by using a random `(pq)` which we know _will exist_.
+
+### Recap: How have we shown that A5 is solvable?
+
+what have we shown?
+
+- 3-cycles can be written as $[g, h]$ for $g, h \in A_5$. Alternatively,
+  we can say that 3-cycles belong to the commutator subgroup of $A_5$,
+  since they can be written as commutators.
+- any element in $A5$ can be written as the composition of 3-cycles.
+- Hence, any element in $A5$ can be written as the composition of commutators.
+
+
+In my mind, I think of it as:
+
+```
+arbitrary g
+= (3-cycle-1)(3-cycle-2)....(3-cycle-n)
+= [g, h][g2, h2]....[gn, hn]
+= member of [A5, A5]
+```
+
+Recall that $[A5, A5]$ is **generated** by commutators. It not only contains
+elements of the form $[g, h]$, but also all products of the form $[g, h][g', h']$.
+So we don't need to exhibit how to write a 5-cycle as some $[g, h]$. We just
+need to exhibit how to write as the product of commutators, which we have
+now shown.
+
+
+### Solvable implies simple  
+
+We can consider the other definition of simple. Let there be a
+chain of normal subgroups $G = N[0] \leq N[1] \leq N[1] \leq \dots \leq N[m] = e$,
+such that each quotient $N[i] / N[i+1]$ is abelian. Then, if $G$ is 
+simple, this chain can only be $G = N[0] \leq N[1] = e$.
+
+- If we want the quotient $G/N$ to be abelian, then we need the commutator
+  subgroup $[G, G]$ to be a a subset of $N$.
+
+- In our case, $[A_5, A_5] = A_5$. So if we want to remove the non-abelian-ness
+  of A5, we need to quotient by the _whole_ of $A5$. 
+
+- This means that any such chain will immediately collapse to $e$.
+
+### Nagging doubt: Did we depend on our numbering of cycles?
+
+In all my proofs, I had used _one_ 3-cycle, or 5-cycle, or 2-cycle to
+argue that it all works out. Is this really legal? Perhaps the argument
+written for the 3-cycle `C = (123)` will break down for `D = (321)`. Fear not!
+
+- We will show that all 3-cycles are conjugate to each other. So, we can always
+  relabel a 3-cycle within A5.
+- It is easy to note that $g[k, l]g^{-1} = [gkg^{-1}, glg^{-1}]$. This shows
+  that the commutator subgroup is closed under conjugation. It better be,
+  because it ought to be normal for us to take quotients from it.
+- Combining these facts, if we show that `(123)` is in `[A5, A5]`, then some
+  other cycle `(ijk)` can be conjugated to `(123)`. Since the commutator
+  subgroup is closed under conjugation, we have that `(ijk)` is a member
+  of `[A5, A5]`.
+
+
+### All 3-cycles are conjugate to each other in A5.
+
+- Given two 3-cycles `C=(abc)` and `D=(pqr)`, at least one of `a, b, c` must
+  be equal to one of `p, q, r`. Since each `a, b, c` is unique, and each
+  `p, q, r` is unique, for them to not overlap, we would need 6 elements. 
+  But we only have 5, so there must be some overlap:
+
+```
+a   b   c
+1 2 3 4 5
+  p   q r
+```
+
+So, we will perform our proof assuming there is 1 overlap, 2 overlap, 3 overlap.
+Recall that if `C = (a b c)` is a cycle and `s` is a permutation, then the action
+of conjugating `C` with `s` produces a permutation `(s(a) s(b) s(c))`. We will
+prove our results by finding an `s`, and then **making `s` even**. This is
+the difficult part of the proof, since we need to show that all 3-cycles are
+conjugate _in A5_. We will write `s` as two distinct transpositions, which will
+guarantee that it belongs to `A5`.
+
+                    
+- Case 1: `(abx)` and `(pqx)` have a single element `x` in common:
+
+```
+C = (abx)
+D = (pqx)
+
+s: send a to p, b to q
+s = (ap)(bq)
+C = (abx) -conj s-> (pqx) = D
+```
+
+- Case 2: `(axy)` and `(pxy)` have two elements in common, `x` and `y`. Naively,
+  we would pick `s: send x to y`. But this is odd, so this isn't a member of
+  `A5`. To make it even, we rearrange `D = (pxy)` as `D = (yxp)`. This lets us
+  go from `C` to `D` by relabelling `a` to `y`, `y` to `p`. This permutation
+  is even since it has two distinct transpositions.
+
+```
+C = (axy)
+D = (pxy) = (yxp) [cyclic property]
+
+s: send a to y, y to p
+s = (ay)(yp)
+
+C = (axy) -conj s-> (yxp) = D
+```
+
+- Case 3: `(xyz)` and `(xyz)` have all three elements in common, `x`, `y`, `z`.
+  Here we can conjugate by identity and we are done.
+  
+
+### Why do we care about solvable?
+
+- Roughly, we can look at the solvability criterion as giving us a way to build
+  our group $G$ from a series of extensions $N[1], N[2], \dots$. This extension
+  is special, because at each step, we are adding a cyclic group.
+
+- When we want to write a solution using nth roots, we can only add the
+  nth roots of unity, a "cyclic" component. So, any element we can reach
+  by using nth roots ought to be able to be written down as an extension of
+  cyclic elements. 
+
+### SAGE code to play around with commutators of `A5`:
+
+- Create a dictionary `m` which maps each element of `A5` to the commutators
+  that create it.
+
+```py
+from collections import defaultdict
+m = defaultdict(set)
+A5 = AlternatingGroup(5)
+S5 = SymmetricGroup(5) # if necessary
+for g in A5:
+    for h in A5:
+        m[g * h * g^(-1) * h^(-1)] |= { (g, h) }
+
+# all 60 elem can be written in terms of commutators
+print("number of elem generated as commutator: " + str(len(m.keys())))
+
+# Show how to access elements of A5 and their commutator representation
+cyc5 = A5("(1, 2, 3, 4, 5)")
+cyc3 = A5("(1, 2, 3)")
+cyc2disj = A5("(1, 2) (3, 4)")
+
+print(m[cyc5])
+print(m[cyc3])
+print(m[cyc2disj])
+```
+
+### Writing each element in `A5` directly as a commutator
+
+We have shown how to write 3-cycles as the commutator of 2-cycles. We will now
+show how to do this for disjoint 2-cycles and 5-cycles as a matter of
+enlightenment.
+
+### Writing disjoint 2-cycles as commutator
+
+
+First, we will write a two disjoint two cycles as the square root of
+a 4-cycle. We will then show how to write this 4-cycle as two
+3-cycles.
+
+```
+s = (12)(34) 
+```
+
+Note that if we choose `t = (abcd)`, then `t*t` will exchange the first
+and third elements `a <-> c`, and the second and fourth elements `b <-> d`.
+So, if we choose:
+
+```
+t = (1324)
+t*t = (12) (34)
+```
+
+Next, we need to write this `t*t` as `[g, h]` for `g, h` from `A5`.
+
+```
+t*t = (1324)(1324)
+    = (42)(23)(31);(42)(23)(31)
+    = (42)(23)(31);(42)(23)(31)
+    = (42)(23)(31);(23)(23);(42)(23)(31)
+                   ^^^^^^^^ inserted
+    = (42)(23)|(31)(23)|(23)(42)|(23)(31)
+          g   |    h   |   g'   |   h'
+
+    = [(42)(23), (31)(23)]
+```
+
+Where both `(42)(23)`, and `(31)(23)` are members of `A5`.
+
+### Writing 3-cycle as commutator
+
+In the description of showing how to generate 3-cycles, we do this
+explicitly.
+
+
+### Writing 5-cycle as commutator
+
+
+Let `s = (1 2 3 4 5)`. we once again find a square root of `s`. To build
+this, we will build an element with the elements of `s` written with
+gaps of `2`:
+
+```
+t = (1 _ _ _ _) 
+  = (1 _ 2 _ _)  [+2 index]
+  = (1 _ 2 _ 3)  [+2 index, wrap]
+  = (1 4 2 _ 3)  [+2 index, wrap]
+  = (1 4 2 5 3)  [+2 index, wrap]
+```
+
+It should be clear how `t*t = s`: When we take `s = t*t`, the resulting permutation `s`
+will move an element `j = t[i]` to `k = t[i+2]`. But we have built `t` such 
+that `t[i+2] = s[i+1]`. So we will move the element according to how `s` pleases:
+
+```
+t = (1 4 2 5 3)
+t*t = 1 -> (4 skip) -> 2 
+      2 -> (5 skip) -> 3
+      3 -> (1 skip) -> 4
+      3 -> (2 skip) -> 5
+      5 -> (3 skip) -> 1
+t*t = (1 2 3 4 5) = s
+```
+
+We will now use `t*t` to write the commutator:
+
+```
+s = t*t
+  = (35)(52)(24)(41);(35)(52)(24)(41)  
+  =
+  =
+  =
+  = (1, 2)(3, 5)|(1, 5)(2, 4)|(3, 5)(1, 2)|(2, 4)(1, 5)
+
+  = (1, 2)(3, 5)|(1, 5)(2, 4)|(3, 5)(1, 2)|(2, 4)(1, 5)
+         g             h          g^{-1}       h^{-1}
+```
+
+
+### To think: relationship between square roots and commutators?
+
+
+# [Complex orthogonality in terms of projective geometry](#complex-orthogonality-in-terms-of-projective-geometry)
+
+If we think of complex vectors $p = [p_1, p_2]$, $q = [q_1, q_2]$ as belonging to
+_projective space_: that is, $p \simeq p_1/p_2$, and $q \simeq q_1 / q_2$, we can
+interpret orthogonality as:
+
+$$
+\begin{align*}
+p . q = 0 \\
+p_1 \overline q_1 + p_2 \overline q_2 = 0 \\
+p_1 / p_2 = - \overline{q_2} / \overline{q_1} \\
+p = -1/\overline{q} = -q/|q| \\
+\end{align*}
+$$
+
+
+<img src="./static/riemann-sphere-conjugate.png">
+If we imagine these as points on the Riemann sphere, TODO
+
+#### References
+
+- Visual Complex analysis by Tristan Needham
+
+# [Arithmetic sequences, number of integers in a closed interval](#arithmetic-sequences-number-of-integers-in-a-closed-interval)
+
+This is a cute reason for why when we count the number of integers in
+the closed interval `[a, b]`, it's going to be `b - a + 1`. We setup
+an arithmetic sequence with initial term `a`, common difference `1`. Now
+we know that the `n`th term is `a + (n-1)d`. So, we get
+
+```
+a + (n-1)d = b
+(n-1).1 = b - a
+n = b - a + 1
+```
 
 #  [The arg function, continuity, orientation](#the-arg-function-continuity-orientation)
 
@@ -178,7 +743,7 @@ $$
 We plot the function here:
 
 <img width=400 src="./static/arg-multi-value-circle.png">
-<img width=800 src="./static/arg-multi-value-plot.png">
+<img width=400 src="./static/arg-multi-value-plot.png">
 
 
 - Note that for every value $z \in C$, we get a _set_ of values associated
@@ -195,7 +760,7 @@ Let's try to investigate what happens if we move from `right` towards `bot`,
 arbitrarily stipulating ("picking a branch") that `arg(right) = 0` as a sort
 of basepoint.  
 
-<img width=800 src="./static/arg-multi-value-branch-lower.png">
+<img width=400 src="./static/arg-multi-value-branch-lower.png">
 
 - Note that we were _forced_ to pick the value `arg(bot) = -1` from our
   considerations of continuity. No other value extends continuous from the
@@ -213,7 +778,7 @@ This prompts the natural question:
   `arg(right) = 0` as before. This gives us:
 
 
-<img width=800 src="./static/arg-multi-value-branch-upper.png">
+<img width=400 src="./static/arg-multi-value-branch-upper.png">
 
 
 - Note that once again, we were _forced_ to pick `arg(top) = 1` by continuity
@@ -227,7 +792,14 @@ This prompts the natural question:
 
 the true power of this multi-valued approach comes from being able to handle
 _multiple_ windings. Here the real meaning of being a multi-valued function shows
-through:
+through. If we decide to go through the the loop _twice_, as:
+
+```
+bot -> right -> top -> left -> bot -> right -> top -> left
+-1  -> 0     -> 1   -> 2    -> 3   -> 4     -> 5   -> 6
+```
+
+That is, we end up with the value `6`, which can only b
 
 
 
@@ -457,7 +1029,7 @@ $$
 
 The least fixed point of a continous function $f: D \rightarrow D$ is:
 
-$$FIX(f) \equiv lub(\{ f^n(\lbot) : n \geq 0 \}$$
+$$FIX(f) \equiv lub(\{ f^n(\lbot) : n \geq 0 \})$$
 
 
 ### $\leq$ as implication

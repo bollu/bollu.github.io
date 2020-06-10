@@ -1,5 +1,20 @@
 SSC: slate star codex
 
+- algebraic geometry with a lot of geometry: Fulton's Algebraic Curves; Griffiths,Harris's text on Complex Algebraic Geometry
+- Engineering applications of noncommutative harmonic analysis.
+- SnoB / representation theory of Sn / fourier transform on Sn: 
+  (i) [his thesis](https://people.cs.uchicago.edu/~risi/papers/KondorThesis.pdf)
+  (ii) [link to his library](http://www.gatsby.ucl.ac.uk/~risi/SnOB/SnOB/SnOB.pdf)
+  (iii) [link to mini course](http://www.gatsby.ucl.ac.uk/~risi/courses/mini08/mini08.html)
+- Full text search with bloom filters: https://endler.dev/2019/tinysearch/
+- sparse sets using two arrays and pointers between them: https://research.swtch.com/sparse
+  An efficient representation for sparse sets: https://dl.acm.org/doi/10.1145/176454.176484
+- A species approach to the twelvefold path / rota: https://arxiv.org/pdf/1903.11580.pdf
+- Important formulas in combinatorics: https://mathoverflow.net/questions/214927/important-formulas-in-combinatorics/215167#215167
+- George Springer: Introduction to Riemann sufaces. Good, low-technology account
+  of riemann surface theory that gets to Riemann Roch!
+- Icosan calculus: https://en.wikipedia.org/wiki/Icosian_calculus
+- https://en.wikipedia.org/wiki/Modular_lattice | generalization of 2nd isomorphhism theorem.
 - Planning the Unthinkable: How New Powers Will Use Nuclear, Chemical, and Biological Weapons
 - On Limited Nuclear War in the 21st Century
 - Abel's theorem in problems and solutions.
