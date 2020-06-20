@@ -1276,7 +1276,7 @@ phenomena that make more sense when looked at from a preorder point of view.
 
 #[Crash course on domain theory](#crash-course-on-domain-theory)
 
-In lambda calculus, we often see functions of the form $\x -> x(x)$. We would
+In lambda calculus, we often see functions of the form $\lambda x \rightarrow x(x)$. We would
 like a way to associate a "natural" mathematical object to such a function. The
 most obvious choice for lambda calculus is to try to create a set $V$ of values
 which contains its own function space: $(V  \rightarrow V) \subseteq V$. Unfortunately,
@@ -1321,7 +1321,7 @@ f: 2^{\mathbb N} \rightarrow 2^{\mathbb N}
 f(S) \equiv
 \begin{cases}
 S & \text{$S$} is finite \\
-S U \{ 0 \} \text{$S$ is infinite}
+S U \{ 0 \} &\text{$S$ is infinite}
 \end{cases}
 $$
 
@@ -1355,12 +1355,12 @@ $$
 
 The least fixed point of a continous function $f: D \rightarrow D$ is:
 
-$$FIX(f) \equiv lub(\{ f^n(\lbot) : n \geq 0 \})$$
+$$\texttt{FIX}(f) \equiv \texttt{lub}(\{ f^n(\lbot) : n \geq 0 \})$$
 
 
 ### $\leq$ as implication
 
-We can think of $b \sqgeq a$ as $b \implies a$. That is, $b$ has more information
+We can think of $b \leq a$ as $b \implies a$. That is, $b$ has more information
 than $a$, and hence implies $a$.
 
 ### References
@@ -1374,17 +1374,24 @@ than $a$, and hence implies $a$.
 I learnt of a "prefix sum/min" based formulation from
 [the solution to question D, codeforces educational round 88](https://codeforces.com/blog/entry/78116).
 
-The idea is to rewrite:
+The idea is to start with the max prefix sum as the difference of right minus
+left:
 
 $$
 \begin{align*}
-&\max(L, R): \sum_{L \leq i \leq R} a[i] \\
-&= \max R: (\sum_{0 \leq i \leq R} a[i] - min L: \sum_{0 \leq i \leq L \leq R}) \\
-&asum[n] \equiv \sum_{0 \leq i \leq n} a[i] \\
-&= \max R: (asum[R] - min (L \leq R): asum[L])
-&aminsum[n] \equiv \min_{0 \leq i \leq n} asum[i] \\
-&= \max R: (asum[R] - aminsum[R]) \\
+&\max_{(L, R)}: \sum_{L \leq i \leq R} a[i] \\
+&= \max_R: \left(\sum_{0 \leq i \leq R} a[i] - min L: \sum_{0 \leq i \leq L \leq R} \right) \\
 \end{align*}
+$$
+
+Which is then  expressed as: 
+$$
+asum[n] \equiv \sum_{0 \leq i \leq n} a[i] 
+= \max_R: (asum[R] - min_{(L \leq R)}: asum[L])
+$$
+
+$$
+aminsum[n] \equiv \min_{0 \leq i \leq n} asum[i] = \max_R: (asum[R] - aminsum[R])
 $$
 
 Since $asum$ is a prefix-sum of $a$, and $amin$ is a prefix min of
@@ -1428,7 +1435,7 @@ the benifits of knowing the total number of elements.
 
 I had always seen the definition of a discriminant of a polynomial $p(x)$ as:
 $$
-Disc(p(x)) \equiv a_n^(2n - n) \prod_{i< j} (r_i - r_j)^2
+Disc(p(x)) \equiv a_n^{(2n - n)} \prod_{i< j} (r_i - r_j)^2
 $$
 
 While it is clear _why_ this tracks if a polynomial has repeated roots
@@ -1491,7 +1498,8 @@ $q(b; x) = b_0 + b_1x + b_2 x^2$, then the system $p(a; x)$, $q(b; x)$ has
 a simeltaneous zero iff:
 
 $$
-\begin{bmatrix}
+\begin{align*}
+&\begin{bmatrix}
 a_2 & a_1 & a_0 & 0 \\
 0 & a_2 & a_1 & a_0 \\
 b_2 & b_1 & b_0 & 0\\
@@ -1501,7 +1509,8 @@ b_2 & b_1 & b_0 & 0\\
 1 \\ x \\ x^2 \\ x^3
 \end{bmatrix}
 = 0 \\
-A x = 0
+&A x = 0
+\end{align*}
 $$
 
 #### Big idea
@@ -2047,7 +2056,7 @@ $$
 $$
 \begin{align*}
 \mu([4, 4]) = 1 \text{ By definition}
-\mu([3, 4]) = - (\sum_{3 \leq x < 4}) \text{ By definition }
+\mu([3, 4]) = - \left (\sum_{3 \leq x < 4} \right) \text{ By definition }
 \end{align*}
 $$
 # [Finite differences and Umbral calculus](#finite-differences-and-umbral-calculus)
@@ -2094,8 +2103,8 @@ $$
   &= f(x+1)g(x+1) - f(x)g(x) + [f(x)g(x+1) - f(x)g(x+1)] \\
   &= g(x+1)[f(x+1) - f(x)] + f(x)[g(x+1) - g(x)] \\
   &= g(x+1)(\delta f)(x) + f(x) (\delta g)(x) \\
-  &= (Sg \delta f)(x) + (f \delta g)(x) [(Sh)(x) \equiv h(x+1)] \\
-  &= (Sg  \delta f + f \delta g)(x) \\
+  &= (S \delta f)(x) + (f \delta g)(x) [(Sh)(x) \equiv h(x+1)] \\
+  &= (S  \delta f + f \delta g)(x) \\
 \end{align*}
 $$
 
@@ -2115,7 +2124,7 @@ This is disappointing, it does not behave very well `:(` However, there _is_
 an analogue that does well. This is the _falling factorial_, defined as:
 
 $$
-x^{(n)} \equiv x*(x-1)*(x-2)*\cdots*(x-n+1)
+x^{(n)} \equiv x(x-1)(x-2)\cdots(x-n+1)
 $$
 
 For example:
@@ -2138,7 +2147,7 @@ $$
 &\delta(x^{(3)})  \\
   &= (x+1)(x-1+1)(x-2+1) - x(x-1)(x-2) \\
   &= (x+1)(x)(x-1) - x(x-1)(x-2) \\ 
-  &= x(x-1)((x+1) - (x-2)) = 3x(x-1) = 3x^(2) \\
+  &= x(x-1)((x+1) - (x-2)) = 3x(x-1) = 3x^{(2)} \\
 \end{align*}
 $$
 

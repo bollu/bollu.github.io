@@ -756,7 +756,7 @@ char* pygmentize(const char *tempdirpath,
         int err = execlp("source-highlight",
                 "source-highlight",
                 "--style-css=./mono.css", // style provided as css file.
-                "-n", // line numbers
+                //"-n", // line numbers
                 "-s", lang,  // source lang
                 latex_file_path,
                 NULL);
@@ -1236,7 +1236,7 @@ const char htmlbegin[] =
 "\n"
 // code blocks, latex blocks, quote blocks
 "\n"
-"pre, .latexblock, blockquote { border-left-color:#000000;  border-left-style: solid;"
+" blockquote { border-left-color:#000000;  border-left-style: solid;"
 "      border-left-width: 4px; padding-left: 5px; }"
 "\n"
 // need margin:0px otherwise user agent stylesheet will fuck it up
