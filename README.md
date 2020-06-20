@@ -15,9 +15,14 @@ A Universe of Sorts
 
 #### Table of contents:
 
+- [Hyperbolic groups have solvable word problem](#hyperbolic-groups-have-solvable-word-problem)
+- [Elementary uses of Sheaves in complex analysis](#elementary-uses-of-sheaves-in-complex-analysis)
+- [Discrete Random variables: most general definition](#random-variables-most-general-definition)
+- [Snake lemma](#snake-lemma)
+- [Kernel,cokernel,image](#kernel-cokernel-image)
 - [The commutator subgroup](#the-commutator-subgroup)
 - [Simplicity of A5 using PSL(2, 5)](#simplicity-of-a5-using-psl-2-5)
-- [Solvability of A5](#simplicity-of-a5)
+- [Solvability of A5](#solvability-of-a5)
 - [Complex orthogonality in terms of projective geometry](#complex-orthogonality-in-terms-of-projective-geometry)
 - [Arithmetic sequences, number of integers in a closed interval](#arithmetic-sequences-number-of-integers-in-a-closed-interval)
 - [The arg function, continuity, orientation](#the-arg-function-continuity-orientation)
@@ -169,6 +174,324 @@ A Universe of Sorts
 - [Big list of Latex](#big-list-of-latex)
 - [Recipes](#recipes)
 
+#[Hyperbolic groups have solvable word problem](#hyperbolic-groups-have-solvable-word-problem)
+
+I have never seen an elementary account of this in a 'trust these facts, now
+here is why hyperbolic groups have a solvable word problem'. I am writing
+such an account for myself. It's an account for building intuition, so no
+proofs will be provided except for the final theorem. All facts will be backed
+by intuition. Since most of it is geometric, it's easy to convey intuition.
+
+### Graphs of groups, quasi-isometry.
+- **NOTE:** I will consistently denote the inverse of $g$ by $g'$.
+
+We can convert any group into a graph by using the cayley graph of the group.
+We characterize hyperbolic space as a space where we can build 'thin triangles'.
+We also think of hyperbolic space as where geodesics from a given point
+diverge (in terms of angle) exponentially fast. 
+
+The choice of generators for the cayley graph gives different graphs. We can
+assign a **unique** geometric object by considering cayley graphs upto quasi
+isometry. The cayley graph of a group with respect to different generating sets
+are quasi-isometric. We can now try to study properties that are invariant
+under quasi-isometry, since these are somehow 'represented faithfully by the geometry'.
+
+### Hyperbolicity enters the picture
+We now say that a graph is hyperbolic if the cayley graph of the group is
+hyperbolic. We can show that hyperbolicity is preserved by quasi-isometry.
+So this property does not depend on the generating set.
+
+### Isoperimetric Inequality
+
+If we have a finitely presented group $G = \langle S | R \rangle$, and $w$
+is a word in the free group $Free(S)$, if $[[w]] = 1$, we will have 
+
+$$
+w = \prod_{i=1}^n u_i r_i^{\pm 1} u_i' 
+$$
+
+This follows almost by definition. Since we have quotiented by $r$ we can have
+elements of $r$ in between $u u'$. We will need to have a $u'$ since there's
+nothing else to cancel off the $u$.
+
+##### Area of a word
+Let $G = \langle S | R \rangle$. Let $w$ be a word in $S$ such that $[[w]] = e$.
+The area of the word $w$ is the minimal number of such $u r u'$ components
+we need to write it down. Formally:
+
+$$
+Area(w) = \min { n | \prod_{i=1}^n u_i r+i^{\pm 1} u_i'}
+$$
+
+I don't understand the geometric content of this definition. I asked
+[on mathoverflow](https://mathoverflow.net/questions/363455/geometric-content-of-area-of-a-word-in-geometric-group-theory).
+
+
+##### Isopermetric function for a group
+
+$f: \mathbb N \rightarrow \mathbb N$ is a Dehn function or isoperimetric function
+if the area of the word is upper bounded by $f(|word|)$. In some sense, the
+length of the word is the perimeter to the area, and this gives us a form
+of the isoperimetric inequality. Formally, $f$ is a Dehn function if for all
+words $w \in F(S)$ such that $[[w]] = e$, we have $A(w) \leq f(|w|)$. depending
+on the growth of $f$, we say that $G$ has linear, quadratic, exponential etc.
+Dehn function. 
+
+##### Geometric content of Area
+
+We define a map to be aninite, planar, oriented, connected and simply connected simplicial2-complex (!). 
+A map $D$ is a diagram over an alphabet $S$ iff every edge $e \in D$ has a label $lbl(e) \in S$ such that
+$lbl(e^{-1}) = (lbl(e))^{-1}$. Hang on: what does it mean to invert an edge?
+I presume it means to go backwards along an edge. So we assume the graph is
+directed, and we have edges in both directions.
+
+A Van Kampen diagram over a group $G = \langle S | R \rangle$  is a diagram $D$
+over $S$ such that for all faces of $D$, the label of the boundary of $f$
+is labelled by some $r^{\pm} : r \in R$. The area of such a diagram
+is the number of faces.
+
+
+### Hyperbolic iff Linear Isopermetric Inequality is satisfied
+A finitely presented group is hyperbolic if and of if its cayley grah
+satisfies the linear isoperimetric inequality. 
+
+### Deciding if elements are conjugate to each other
+
+- If we can answer the question of whether two elements are conjugate to each
+  other (does there exist a $g$ such that $ghg' =?= k$), we can solve
+  that an element is equal to the identity:
+-   Pick $k = e$. Then if we have $ghg' = k = e$, then $gh = g$ hence $h = e$.
+
+- If we can check that an element is equal to the identity, we can check for
+  equality of elements. two elements $k, l$ are equal iff $kl' = e$.
+
+- So solving conjugacy automatically allows us to check of equality.
+
+
+### Proof that conjugacy is solvable for hyperbolic groups
+
+```
+e------------------x----------------------->x
+|                                           |
+g2                                          g1
+|                                           |
+v                                           v
+g1 =x g1 x'<-------x'--------------------- x g1
+```
+
+Assume such an element `x` exists such that `g2 = x g1 x'`.
+
+Now we have two triangles, `e-x-xg1` and `xg1-x'-g2`. Let us focus on
+`e-x-xg1`. Assume the triangles in our space is $delta$ thin.
+
+```
+         α = δ
+e------------------x----‖------------------>x
+ \_______               ‖                   |
+         \________      ‖    > δ            |
+                  \_____p====================
+                           \________        |
+                                    \_______xg1
+```
+
+Since our triangles are $\delta$ thin, if the distance of the point $p \in [e xg1]$
+to  $$$$
+
+
+### References
+- [Notes On Hyperbolic and Automatic Groups: Michael Batty](https://www.math.ucdavis.edu/~kapovich/280-2009/hyplectures_papasoglu.pdf)
+- [The geometry of the word problem by Martin R Bridson](https://people.maths.ox.ac.uk/bridson/papers/bfs/bfs.pdf)
+
+#[Elementary uses of Sheaves in complex analysis](#elementary-uses-of-sheaves-in-complex-analysis)
+
+I always wanted to see sheaves in the wild in a setting that was both
+elementary but 'correct': In that, it's not some perverse example
+created to show sheaves (DaTaBaSeS arE ShEAvEs). Ahlfors has a great example
+of this which I'm condensing here for future reference.
+
+### Sheafs: Trial 1
+
+- We have function elements $(f:  \Omega \rightarrow \mathbb C, \Omega \subseteq \mathbb C)$.
+  $f$ is complex analytic, $\Omega$ is an open subset of $\mathbb C$.
+- Two function elements $(f_1, \Omega_1), (f_2, \Omega_2)$ are said to be analytic
+  continuations of each other iff $\Omega_1 \cap \Omega_2 \neq \emptyset$, and
+  $f_1 = f_2$ on the set $\Omega_1 \cap \Omega_2)$.
+- $(f_2, \Omega_2)$ can be called as the continuation of $(f_1, \Omega_1)$ to
+  region $\Omega_2$.
+- We will have that the analytic continuation of $f_1$ to $\Omega_2$ is unique.
+  If there exists a function element $(g_2, \Omega_2)$, $(h_2, \Omega_2)$ such that
+  $g_2 = f_1 = h_2$ in the region $\Omega_1 \cap \Omega_2$, then by analyticity,
+  this agreement will extend to all of $\Omega_2$.
+- Analytic continuation is therefore an equivalence relation (prove this!)
+- A chain of analytic continuations is a sequence of $(f_i, \Omega_i)$ such that
+  the adjacent elements of this sequence are analytic continuations of each other.
+  $(f_i, \Omega_i)$ analytically continues $(f_{i+1}, \Omega_{i+1})$.
+- Every equivalence class of this equivalence relation is called as a global
+  analytic function. Put differently, it's a family of function elements
+  $(f, U)$ and $(g, V)$ such that we can start from $(f, U)$ and build
+  analytic continuations to get to $(g, V)$.
+
+### Sheafs: Trial 2
+
+- We can take a different view, with $(f, z \in \mathbb C)$ such that $f$
+  is analytic at some open set $\Omega$ which contains $z$. So we should
+  picture an $f$ sitting analytically on some open set $\Omega$ which contains $z$.
+- Two pairs $(f, z)$, $(f', z')$ are considered equivalent if $z = z'$ and
+  $f = f'$ is some neighbourhood of $z (= z')$.
+- This is clearly an equivalence relation. The equivalence classes are called as _germs_.
+- Each germ $(f, z)$ has a unique projection $z$. We denote a germ of $f$ with projection $z$
+  as $f_z$.
+- A function element $(f, \Omega)$ gives rise to germs $(f, z)$ for each $z \in \Omega$.
+- Conversely, every germ $(f, z)$ is determined by some function element $(f, \Omega)$
+  since we needed $f$ to be analytic around some open neighbourhood of $z$: Call
+  this neighbourhood $\Omega$.
+- Let $D \subseteq \mathbb C$ be an open set. The set of all germs $\{ f_z : z \in D \}$ 
+  is called as a _sheaf_ over $D$. If we are considering analytic $f$ then
+  this will be known as the _sheaf of germs of analytic functions over $D$_. This
+  sheaf will be denoted as $Sh(D)$.
+- There is a projection $\pi: Sh(D) \rightarrow D; (f, z) \mapsto z$. For a fixed $z0 \in D$,
+  the inverse-image $\pi^{-1}(z0)$ is called as the _stalk over $z0$_. It is
+  denoted by $Sh(z)$.
+- $Sh$ carries both topological and algebraic structure. We can give _the sheaf_
+  a topology to talk about about continuous mappings in and out of $Sh$.
+  It also carries a pointwise algebraic structure at each stalk: we can
+  add and subtract functions at each stalk; This makes it an abelain group.
+
+#### Sheaf: Trial 3
+
+A sheaf  over $D$ is a topological space $Sh$ and a mapping $\pi: Sh \rightarrow D$
+with the properties:
+- $\pi$ is a local homeomorphism. Each $s \in S$ has an open neighbourhood $D$
+  such that $\pi(D)$ is open, and the restriction of $\pi$ to $D$ is a homeomorphism.
+- For each point $z \in D$, the stalk $\pi^{-1}(z) \equiv S_z$ has the structre of an abelian
+  group.
+- The group operations are continuous with respect to the topology of $Sh$.
+
+We will pick $D$ to be an open set in the complex plane; Really, $D$ can
+be arbitrary.
+
+### Germs of analytic functions satisfy (Sheaf: Trial 3)
+
+
+
+<img src="./static/sheaf.png">
+
+#[Discrete Random variables: most general definition](#random-variables-most-general-definition)
+
+This is an exercise in needless abstraction, to see if this actually makes some
+things easier to reason about.
+
+- AXIOM: An arbitrary set $\Omega$ is called as a sample space. This is the space
+  of all possible outcomes.
+- AXIOM: Elements of $\Omega$ are **elementary events**.
+- AXIOM: An **event** is a subset $E \subseteq \Omega$.
+- AXIOM: A probability space is a tuple $(\Omega, F \subseteq \Omega, P: F \rightarrow [0, 1])$
+- NOTE: We extend the probability from elementary events to events by defining $P: 2^\Omega \rightarrow [0, 1]$.
+  $P(E) = \sum_{\omega \in E} P(\omega)$.
+- AXIOM: The full probability $P(\Omega) = 1$.
+- AXIOM:The conditional probability of $A$ given $B$ has occurred is    
+  defined as $P[A|B] \equiv P[A \cap B]/P[B]$.                          
+- AXIOM: Two events are independent iff $P[A \cap B] = P[A] P[B]$.
+- NOTE: Equivalently, two events are independent iff $P[A|B] = P[A]$.
+- AXIOM: A random variable on a probability space $(\Omega, P)$ is a function
+  $O: \Omega \rightarrow Y$. $Y$ is an $\mathbb R$ module. 
+- AXIOM: $O: \Omega \rightarrow R$ be a random variable. Then the expectation of $X$
+  is defined as $E[O] \equiv \sum_{\omega \in Omega} P(\{\omega\}) O(\omega)$.
+- From a random variable, we can build events. For example $O =_? y_0$ is an event.
+  It is the set $\{\omega \in Omega: X(\omega) = y_0 \}$. In general, given
+  some predicate $pred: \Omega \righarrow \texttt{Bool}$, we can build an event
+  of the form $\{ \omega \in \Omega : pred(O(\omega)) \}$. Such
+  predicate builder syntax will use the random variable $O$ in place of
+  $O(\omega)$. 
+- For example, the even $O =_? y_0$ really stands for the predicate
+  $pred: \Omega \rightarrow \texttt{Bool} \equiv \lambda \omega. O(\omega) =_? y_0$.
+- Another common example of a predicate is of the form $P(O) \leq \alpha$. Here
+  too we are really forming the predicate $pred \equiv \lambda \omega. P(\omega) \leq \alpha$.
+  
+
+#### References
+- https://kam.mff.cuni.cz/~matousek/eprob-intro.pdf
+
+# [Snake lemma](#snake-lemma)
+
+## Why homomorphisms for chain maps?
+
+First of all, to define a mapping between simplicial complexes $\{ G_i \}$
+and $\{ H_i \}$, one might naively assume that we can ask for _functions_
+$\{ f_i: G_i \rightarrow H_i \}$:
+
+```
+   ∂    ∂
+G3 → G2 → G1 
+↓f3  ↓f2  ↓f1
+H3 → H2 → H1
+   ∂    ∂
+```
+
+
+Unfortunately, to be able to use the
+machinery of Homology, we need the $\{ f_i \}$ to be abelian group homomorphisms.
+However, this is no great loss. Intuitively, when we want to map complexes,
+we first say where the _generators_ of the abelian group ($\mathbb Z$-module)
+maps to; Everything else is determined by the generators. This aligns
+nicely with our intuition of what a map between complexes should look like:
+we tell where the geometry goes ("this edge goes there"), and the algebra
+is "dragged along for the ride". This gives us the diagram:
+
+```
+       
+G3--∂-→G2--∂-→G1 
+|      |      |
+f3     f2     f1
+↓      ↓      ↓
+H3--∂-→H2--∂-→H1
+       
+```
+
+where the `fi` are _homomorphisms_. So, this means we can talk about kernels and
+images!
+
+```
+Ker(f3)----→Ker(f2)--→Ker(f1)
+   |         |          |
+   ↓         ↓          ↓
+   G3--∂----→G2----∂---→G1 
+   |         |          |
+   f3        f2         f1
+   ↓         ↓          ↓  
+Im(f3)--∂--→Im(f2)--∂-→Im(f1)
+```
+
+
+## What do we wish to compute?
+
+- Now that we've agreed that this family of maps $\{ f_i : G_i \rightarrow H_i \}$
+  ought to be structured maps, the next question is "OK, now what? What does
+  one want to determine"? Ideally, we would get a _new_ chain complex which
+  I tacitly denote as $\{ f(G_i) \}$, consisting of the image of $G_i$ inside
+  $H_i$ and the ability to determine its structure.
+
+- However, this is the boring bit. We don't _really_ care about the _chain complex_ $\{ f(G_i) \}$ per se.
+  What we _actually_ care about are the homology groups! So we would really like a tool
+  that allows us to compute $H_i(f(G))$ in some convenient fashion.
+
+
+
+
+
+
+
+# [Kernel,cokernel,image](#kernel-cokernel-image)
+
+Consider a linear map $T: X \rightarrow Y$. we want to solve for $\{ x : T(x) = y0 \}$. 
+- If we have an $x0$ such that $T(x0) = y0$, then see that $T(x0 + Ker(T)) = T(x0) + T(Ker(T)) = y0 + 0 = y0$.
+  So the kernel gives us our degrees of freedom: how much can we change around without
+  changing the solution.
+- Now consider the cokernel: $Coker(T) = Y / Im(T)$. If we want to find 
+  a solution $\{ x : T(x) = y0 \}$. If we have $y0 \neq 0 \in Coker(T)$, then
+  the solution set is empty. The cokernel tells us the _obstruction_ to a 
+  solution.
+
 # [The commutator subgroup](#the-commutator-subgroup)
 
 Define the commutator of $g, h$ as $[g, h] \equiv ghg^{-1}h^{-1}$.
@@ -207,6 +530,7 @@ the fact that `PSL(2, 5)` is isomorphic to `A5`, I will fill this up.
 PSL(2, 5) consists of projective Mobius transformations with function composition
 as the group operation. Here, we freely use the linear algebraic relationship
 between transformations of the form `(az + b)/(cz + d)` and matrices `[a b; c z]`.
+
 
 $$
 \begin{align*}

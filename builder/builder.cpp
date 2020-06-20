@@ -1206,8 +1206,11 @@ const char htmlbegin[] =
 "<head>"
 "<title> A Universe of Sorts </title>"
 "<style>"
-"@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extendedmedium.ttf');}"
-"@font-face {font-family: 'Blog Text'; src: url('/static/iosevka-etoile-regular.ttf');}"
+"@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-regular.ttf');}"
+"@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}"
+// "@font-face {font-family: 'Blog Symbol'; src: url('/static/STIX2Math.woff');}"
+//"@font-face {font-family: 'Blog Symbol'; src: url('/static/Asana-Math.otf');}"
+"@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}"
 // body
 "html { font-size: 100%; }"
 "html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } "
@@ -1240,6 +1243,7 @@ const char htmlbegin[] =
 " blockquote { color: #222222; margin: 0px; }"
 // monospace font
 " .code { font-family: 'Blog Mono', monospace; line-height: 1.2em; font-size: 90%;  }"
+" .latexblock, .latexinline { font-family: 'Blog Symbol', monospace; }"
 // padding and margin for blocks
 ".latexblock, blockquote, .code, code { margin-top: 30px; margin-bottom: 30px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }"
 ".code, code { background-color: #FFFFFF; width: 100%; }"
@@ -1250,7 +1254,7 @@ const char htmlbegin[] =
 // " .code { width: 100%; overflow-x: hidden; white-space: nowrap; }"
 " .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; }"
 "\n"
-".latexinline { padding-left: 2px; padding-right: 2px; }"
+".latexinline { padding-left: 2px; padding-right: 2px;  }"
 // fix font handling
 "pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }"
 // RESPONSIVE

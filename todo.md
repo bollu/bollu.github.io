@@ -1,5 +1,16 @@
 SSC: slate star codex
 
+- The strategy of conflict, book by Schelling about Schelling points: https://www.hup.harvard.edu/catalog.php?isbn=9780674840317&content=reviews 
+- All about circuits: https://www.allaboutcircuits.com/textbook/ How to learn bottom up circuits.
+- https://arxiv.org/pdf/1801.09553.pdf Extending the Algebraic Manipulability of Differentials: Nice notational abuse for higher order
+  integrals.
+- Books that tour mathematical domains: https://math.stackexchange.com/questions/828458/book-ref-request-starting-from-a-mathematically-amorphous-problem-and-comb/829889#829889
+- Catchy encodings of serious mathematics: https://mathoverflow.net/questions/3559/colloquial-catchy-statements-encoding-serious-mathematics/62194#62194
+- Intuition for chernofF: pointwise => integrals: https://math.stackexchange.com/questions/161408/chernoff-inequalities
+- Occurs check: cannot construct the infinite type: a ~ a -> a <- automatically make it a domain?
+  Language with _only_ domains?
+- Think of A5 in terms of the picture I put inside ~/blog/static/
+- https://en.wikipedia.org/wiki/Bill_Mollison: permaculture. (Permaculture One)
 - algebraic geometry with a lot of geometry: Fulton's Algebraic Curves; Griffiths,Harris's text on Complex Algebraic Geometry
 - Engineering applications of noncommutative harmonic analysis.
 - SnoB / representation theory of Sn / fourier transform on Sn: 
