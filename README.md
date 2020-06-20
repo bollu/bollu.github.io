@@ -11,168 +11,170 @@ A Universe of Sorts
 - [My math.se profile](https://math.stackexchange.com/users/261373/siddharth-bhat)
 - [My resume](resume/main.pdf)
 - [My reading list](todo.html)
-- Reach me / email ID: `siddu.druid@gmail.com`
+- Reach me / email ID: <a href='mailto:siddu.druid@gmail.com'> `siddu.druid@gmail.com` </a>
 
 #### Table of contents:
 
-- [Hyperbolic groups have solvable word problem](#hyperbolic-groups-have-solvable-word-problem)
-- [Elementary uses of Sheaves in complex analysis](#elementary-uses-of-sheaves-in-complex-analysis)
-- [Discrete Random variables: most general definition](#random-variables-most-general-definition)
-- [Snake lemma](#snake-lemma)
-- [Kernel,cokernel,image](#kernel-cokernel-image)
-- [The commutator subgroup](#the-commutator-subgroup)
-- [Simplicity of A5 using PSL(2, 5)](#simplicity-of-a5-using-psl-2-5)
-- [Solvability of A5](#solvability-of-a5)
-- [Complex orthogonality in terms of projective geometry](#complex-orthogonality-in-terms-of-projective-geometry)
-- [Arithmetic sequences, number of integers in a closed interval](#arithmetic-sequences-number-of-integers-in-a-closed-interval)
-- [The arg function, continuity, orientation](#the-arg-function-continuity-orientation)
-- [Odd partitions, unique partitions](#odd-partitions-unique-partitions)
-- [Continued fractions, mobius transformations](#continued-fractions-mobius-transformations)
-- [permutations-and-lyndon-factorization](#permutations-and-lyndon-factorization)
-- [Graphs are preorders](#graphs-are-preorders)
-- [Crash course on domain theory](#crash-course-on-domain-theory)
-- [Parallelisable version of maximum sum subarray](#parallelisable-version-of-maximum-sum-subarray)
-- [Thoughts on implicit heaps](#thoughts-on-implicit-heaps)
-- [Discriminant and Resultant](#discriminant-and-resultant)
-- [Polynomial root finding using QR decomposition](#polynomial-root-finding-using-qr-decomposition)
-- [A hacker's guide to numerical analysis (WIP)](#a-hackers-guide-to-numerical-analysis)
-- [Mobius inversion on Incidence Algebras](#mobius-inversion-on-incidence-algebras)
-- [Finite differences and Umbral calculus](#finite-differences-and-umbral-calculus)
-- [Permutahedron](#permutahedron)
-- [Lyndon + Christoffel = Convex Hull](#lyndon-christoffel-convex-hull)
-- [Geometric proof of `e^x >= 1+x`, `e^(-x) >= 1-x`](#e-x-1-xof-of-)
-- [Ranking and Sorting](#ranking-and-sorting)
-- [Proof of minkowski convex body theorem](#proof-of-minkowski-convex-body-theorem)
-- [Burrows Wheeler (WIP)](#burrows-wheeler)
-- [Intuitionstic logic as a Heytig algebra](#intuitionstic-logic-as-a-heytig-algebra)
-- [Edit distance](#edit-distance)
-- [Evolution of bee colonies](#evolution-of-bee-colonies)
-- [Best practices for array indexing](#best-practices-for-array-indexing)
-- [Algebraic structure for vector clocks](#algebraic-structure-for-vector-clocks)
-- [Networks are now faster than disks](#networks-are-now-faster-than-disks)
-- [Einstein-de Haas effect](#einstein-de-haas-effect)
-- [Rank-select as adjunction](#rank-select-as-adjunction)
-- [Bounding chains: uniformly sample colorings](#bounding-chains-uniformly-sample-colorings)
-- [Coupling from the past (WIP)](#coupling-from-the-past)
-- [Word problems in Russia and America](#word-problems-in-russia-and-america)
-- [Encoding mathematical hieararchies](#encoding-mathematical-hieararchies)
-- [Learning code by hearing it](#learning-code-by-hearing-it)
-- [Your arm can be a spinor](#your-arm-can-be-a-spinor)
-- [Self modifying code for function calls](#self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack)
-- [Adjunctions as advice](#adjunctions-as-advice)
-- [Reversible computation as groups on programs](#reversible-computation-as-groups-on-programs)
-- [Blazing fast math rendering on the web](#blazing-fast-math-rendering-on-the-web)
-- [VC dimension](#vc-dimension)
-- [Symplectic version of classical mechanics (WIP)](#symplectic-version-of-classical-mechanics)
-- [Theorems for free](#theorems-for-free)
-- [How to reason with half-open intervals](#how-to-reason-with-half-open-intervals)
-- [how does one build a fusion bomb?](#how-does-one-build-a-fusion-bomb)
-- [Christoffel symbols, geometrically](#christoffel-symbols-geometrically)
-- [A natural vector space without an explicit basis](#a-natural-vector-space-without-an-explicit-basis)
-- [Cache oblivious B trees](#cache-oblivious-b-trees)
-- [Krohn-Rhodes decomposition (WIP)](#krohn-rhodes-decomposition)
-- [Proving block matmul using program analysis (WIP)](#proving-block-matmul-using-program-analysis)
-- [Why I like algebra over analysis](#why-i-like-algebra-over-analysis)
-- [`using` for cleaner function type typedefs](#using-for-cleaner-function-type-typedefs)
-- [A walkway of lanterns (WIP)](#a-walkway-of-laterns)
-- [Natural transformations](#natural-transformations)
-- [The hilarious commentary by dinosaure in OCaml git](#the-hilarious-commentary-by-dinosaure-in-ocaml-git)
-- [How to link against MLIR with CMake](#how-to-link-against-mlir-with-cmake)
-- [Energy as triangulaizing state space](#energy-as-triangulaizing-state-space)
-- [The cutest way to write semidirect products](#the-cutest-way-to-write-semidirect-products)
-- [My Favourite APLisms](#my-favourite-aplisms)
-- [Proof of chinese remainder theorem on rings](#proof-of-chinese-remainder-theorem-on-rings)
-- [monic and epic arrows](#monic-and-epic-arrows)
-- [The geometry of Lagrange multipliers](#the-geometry-of-lagrange-multipliers)
-- [Efficient tree transformations on GPUs (WIP)](#efficient-tree-transformations-on-gpus)
-- [Things I wish I knew when I was learning APL](#things-i-wish-i-knew-when-i-was-learning-apl)
-- [Every ideal that is maximal wrt. being disjoint from a multiplicative subset is prime](#every-ideal-that-is-maximal-wrt-being-disjoint-from-a-multiplicative-subset-is-prime)
-- [Getting started with APL](#getting-started-with-apl)
-- [SpaceChem was the best compiler I ever used](#spacechem-was-the-best-compiler-i-ever-used)
-- [Mnemonic for Kruskal and Prim](#mnemonic-for-kruskal-and-prim)
-- [Legendre transform](#legendre-transform)
-- [Cartesian Trees](#cartesian-trees)
-- [DFS numbers as a monotone map](#dfs-numbers-as-a-monotone-map)
-- [Self attention? not really](#self-attention-not-really)
-- [Coarse structures](#coarse-structures)
-- [Matroids for greedy algorithms (WIP)](#matroids-for-greedy-algorithms)
-- [Grokking Zariski (WIP)](#grokking-zariski)
-- [My preferred version of quicksort](#my-preferred-version-of-quicksort)
-- [Geometric proof of Cauchy Schwarz inequality](#geometric-proof-of-cauchy-schwarz-inequality)
-- [Dataflow analysis using Grobner basis](#dataflow-analysis-using-grobner-basis)
-- [Fenwick trees and orbits](#fenwick-trees-and-orbits)
-- [Dirichlet inversion (WIP)](#dirichlet-inversion)
-- [Incunabulum for the 21st century: Making the J interpreter compile in 2020](#incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020)
-- [An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)](#an-example-of-a-sequence-whose-successive-terms-get-closer-together-but-isnt-cauchy-does-not-converge)
-- [Krylov subspace method](#krylov-subspace-method)
-- [Good reference to the Rete pattern matching algorithm](#good-reference-to-the-rete-pattern-matching-algorithm)
-- [Leapfrog Integration](#leapfrog-integration)
-- [Comparison of forward and reverse mode automatic differentiation](#comparison-of-forward-and-reverse-mode-ad)
-- [An invitation to homology and cohomology: Part 1 --- Homology](#an-invitation-to-homology-and-cohomology-part-1--homology)
-- [An invitation to homology and cohomology: Part 2 --- Cohomology](#an-invitation-to-homology-and-cohomology-part-2--cohomology)
-- [Stuff I learnt in 2019](#stuff-i-learnt-in-2019)
-- [A motivation for p-adic analysis](#a-motivation-for-p-adic-analysis)
-- [Line of investigation to build physical intuition for semidirect products](#line-of-investigation-to-build-physical-intuition-for-semidirect-products)
-- [Topology is really about computation --- part 2](#topology-is-really-about-computation--part-2)
-- [Topology is really about computation --- part 1](#topology-is-really-about-computation--part-1)
-- [PSLQ algorithm: finding integer relations between reals](#pslq-algorithm-finding-integer-relations-between-reals)
-- [Geometric characterization of normal subgroups](#geometric-characterization-of-normal-subgroups)
-- [Radical ideals, nilpotents, and reduced rings](#radical-ideals-nilpotents-and-reduced-rings)
-- [My disenchantment with abstract interpretation](#my-disenchantment-with-abstract-interpretation)
-- [Computing equivalent gate sets using grobner bases](#computing-equivalent-gate-sets-using-grobner-bases)
-- [The janus programming language --- Time reversible computation](#the-janus-programming-language--time-reversible-computation)
-- [`A = B` --- A book about proofs of combinatorial closed forms (TODO link)](#a--b--a-book-about-proofs-of-combinatorial-closed-forms)
-- [Generating `k` bitsets of a given length `n`](#generating-k-bitsets-of-a-given-length-n)
-- [Bondi k-calculus](#bondi-k-calculus)
-- [Vivado toolchain craziness ](#vivado-toolchain-craziness)
-- [What the hell _is_ a Grobner basis? Ideals as rewrite systems](#what-the-hell-is-a-grobner-basis-ideals-as-rewrite-systems)
-- [Lie bracket versus torsion](#lie-bracket-versus-torsion)
-- [Spatial partitioning data structures in molecular dynamics](#spatial-partitioning-data-structures-in-molecular-dynamics)
-- [Vector: Arthur Whitney and text editors](#vector-arthur-whitney-and-text-editors)
-- [Discrete random distributions with conditioning in 20 lines of haskell](#discrete-random-distributions-with-conditioning-in-20-lines-of-haskell)
-- [Everything you know about word2vec is wrong](#everything-you-know-about-word2vec-is-wrong)
-- [Small Haskell MCMC implementation ](#small-haskell-mcmc-implementation)
-- [Debugging debug info in GHC ](#debugging-debug-info-in-ghc)
-- [GHC LLVM code generator: Switch to unreachable](#ghc-llvm-code-generator-switch-to-unreachable)
-- [Concurrency in Haskell](#concurrency-in-haskell)
-- [Handy list of differential geometry definitions](#handy-list-of-differential-geometry-definitions)
-- [Lazy programs have space leaks, Strict programs have time leaks](#lazy-programs-have-space-leaks-strict-programs-have-time-leaks)
-- [Presburger arithmetic can represent the Collatz Conjecture](#presburger-arithmetic-can-represent-the-collatz-conjecture)
-- [Using compactness to argue about covers](#using-compactness-to-argue-about-covers)
-- [Stephen wolfram's live stream](#stephen-wolframs-live-stream)
-- [Japanese Financial Counting system](#japanese-financial-counting-system)
-- [`Cleave` as a word has some of the most irregular inflections](#cleave-as-a-word-has-some-of-the-most-irregular-inflections)
-- [McCune's single axiom for group theory](#mccunes-single-axiom-for-group-theory)
-- [Arthur Whitney: dense code](#arthur-whitney-dense-code)
-- [How does one work with arrays in a linear language?](#how-does-one-work-with-arrays-in-a-linear-language)
-- [Linear optimisation is the same as linear feasibility checking](#linear-optimisation-is-the-same-as-linear-feasibility-checking)
-- [Quantum computation without complex numbers](#quantum-computation-without-complex-numbers)
-- [Linguistic fun fact: Comparative Illusion ](#linguistic-fun-fact-comparative-illusion)
-- [Stuff I learnt in 2018](content/blog/stuff-i-learnt-this-year-2018.md)
-- [Stuff I learnt in 2017](content/blog/papers-I-read-and-loved-in-2017.md)
-- [Reading the `structs` library](content/blog/reading-kmett-structs.md)
-- [Reading the `machines` library (WIP)](content/blog/machines/reading-kmett-machines.md)
-- [Explaining laziness (WIP)](content/blog/laziness-for-c-programmers.md)
-- [Explaining STG(WIP)](stg-explained.md)
-- [Simplexhc: proc points suck / making GHC an order of magnitude faster](content/blog/ghc-micro-optimisations-or-why-proc-points-suck.md)
-- [Simplexhc: dec 2017](this-month-in-simplexhc-dec-2017.md)
-- [Simplexhc: oct 29 2017](this-week-in-simpexhc-oct-29-2017.md)
-- [Simplexhc: july 2017](this-week-in-simplexhc-07-2017.md)
-- [Simplexhc: july 6th 2017](this-week-in-simplexhc-2017-07-06.md)
-- [Simplexhc: announcement](content/blog/announcing-simplexhc.md)
-- [GSoC 2015 proposal](content/blog/gsoc-vispy.md)
-- [GSoC 2015 week 1](content/blog/gsoc-vispy-week-1-and-2.md)
-- [GSoC 2015 week 3 and 4](content/blog/gsoc-vispy-week-3-and-4.md)
-- [GSoC 2015 week 5](content/blog/gsoc-vispy-week-5.md)
-- [GSoC 2015 week 6](content/blog/gsoc-vispy-week-6.md)
-- [GSoC 2015 week 7](content/blog/gsoc-vispy-week-7.md)
-- [GSoC 2015 final report](content/blog/gsoc-vispy-report-6.md)
-- [Link Dump](#link-dump)
-- [Big list of emacs gripes](#big-list-of-emacs-gripes)
-- [Big list of writing](#big-list-of-writing)
-- [Big list of Coq](#big-list-of-coq)
-- [Big list of Latex](#big-list-of-latex)
-- [Recipes](#recipes)
+<ol reversed>
+<li> [Hyperbolic groups have solvable word problem](#hyperbolic-groups-have-solvable-word-problem) </li>
+<li> [Elementary uses of Sheaves in complex analysis](#elementary-uses-of-sheaves-in-complex-analysis) </li>
+<li> [Discrete Random variables: most general definition](#random-variables-most-general-definition) </li>
+<li> [Snake lemma](#snake-lemma) </li>
+<li> [Kernel,cokernel,image](#kernel-cokernel-image) </li>
+<li> [The commutator subgroup](#the-commutator-subgroup) </li>
+<li> [Simplicity of A5 using PSL(2, 5)](#simplicity-of-a5-using-psl-2-5) </li>
+<li> [Solvability of A5](#solvability-of-a5) </li>
+<li> [Complex orthogonality in terms of projective geometry](#complex-orthogonality-in-terms-of-projective-geometry) </li>
+<li> [Arithmetic sequences, number of integers in a closed interval](#arithmetic-sequences-number-of-integers-in-a-closed-interval) </li>
+<li> [The arg function, continuity, orientation](#the-arg-function-continuity-orientation) </li>
+<li> [Odd partitions, unique partitions](#odd-partitions-unique-partitions) </li>
+<li> [Continued fractions, mobius transformations](#continued-fractions-mobius-transformations) </li>
+<li> [permutations-and-lyndon-factorization](#permutations-and-lyndon-factorization) </li>
+<li> [Graphs are preorders](#graphs-are-preorders) </li>
+<li> [Crash course on domain theory](#crash-course-on-domain-theory) </li>
+<li> [Parallelisable version of maximum sum subarray](#parallelisable-version-of-maximum-sum-subarray) </li>
+<li> [Thoughts on implicit heaps](#thoughts-on-implicit-heaps) </li>
+<li> [Discriminant and Resultant](#discriminant-and-resultant) </li>
+<li> [Polynomial root finding using QR decomposition](#polynomial-root-finding-using-qr-decomposition) </li>
+<li> [A hacker's guide to numerical analysis (WIP)](#a-hackers-guide-to-numerical-analysis) </li>
+<li> [Mobius inversion on Incidence Algebras](#mobius-inversion-on-incidence-algebras) </li>
+<li> [Finite differences and Umbral calculus](#finite-differences-and-umbral-calculus) </li>
+<li> [Permutahedron](#permutahedron) </li>
+<li> [Lyndon + Christoffel = Convex Hull](#lyndon-christoffel-convex-hull) </li>
+<li> [Geometric proof of `e^x >= 1+x`, `e^(-x) >= 1-x`](#e-x-1-xof-of-) </li>
+<li> [Ranking and Sorting](#ranking-and-sorting) </li>
+<li> [Proof of minkowski convex body theorem](#proof-of-minkowski-convex-body-theorem) </li>
+<li> [Burrows Wheeler (WIP)](#burrows-wheeler) </li>
+<li> [Intuitionstic logic as a Heytig algebra](#intuitionstic-logic-as-a-heytig-algebra) </li>
+<li> [Edit distance](#edit-distance) </li>
+<li> [Evolution of bee colonies](#evolution-of-bee-colonies) </li>
+<li> [Best practices for array indexing](#best-practices-for-array-indexing) </li>
+<li> [Algebraic structure for vector clocks](#algebraic-structure-for-vector-clocks) </li>
+<li> [Networks are now faster than disks](#networks-are-now-faster-than-disks) </li>
+<li> [Einstein-de Haas effect](#einstein-de-haas-effect) </li>
+<li> [Rank-select as adjunction](#rank-select-as-adjunction) </li>
+<li> [Bounding chains: uniformly sample colorings](#bounding-chains-uniformly-sample-colorings) </li>
+<li> [Coupling from the past (WIP)](#coupling-from-the-past) </li>
+<li> [Word problems in Russia and America](#word-problems-in-russia-and-america) </li>
+<li> [Encoding mathematical hieararchies](#encoding-mathematical-hieararchies) </li>
+<li> [Learning code by hearing it](#learning-code-by-hearing-it) </li>
+<li> [Your arm can be a spinor](#your-arm-can-be-a-spinor) </li>
+<li> [Self modifying code for function calls](#self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack) </li>
+<li> [Adjunctions as advice](#adjunctions-as-advice) </li>
+<li> [Reversible computation as groups on programs](#reversible-computation-as-groups-on-programs) </li>
+<li> [Blazing fast math rendering on the web](#blazing-fast-math-rendering-on-the-web) </li>
+<li> [VC dimension](#vc-dimension) </li>
+<li> [Symplectic version of classical mechanics (WIP)](#symplectic-version-of-classical-mechanics) </li>
+<li> [Theorems for free](#theorems-for-free) </li>
+<li> [How to reason with half-open intervals](#how-to-reason-with-half-open-intervals) </li>
+<li> [how does one build a fusion bomb?](#how-does-one-build-a-fusion-bomb) </li>
+<li> [Christoffel symbols, geometrically](#christoffel-symbols-geometrically) </li>
+<li> [A natural vector space without an explicit basis](#a-natural-vector-space-without-an-explicit-basis) </li>
+<li> [Cache oblivious B trees](#cache-oblivious-b-trees) </li>
+<li> [Krohn-Rhodes decomposition (WIP)](#krohn-rhodes-decomposition) </li>
+<li> [Proving block matmul using program analysis (WIP)](#proving-block-matmul-using-program-analysis) </li>
+<li> [Why I like algebra over analysis](#why-i-like-algebra-over-analysis) </li>
+<li> [`using` for cleaner function type typedefs](#using-for-cleaner-function-type-typedefs) </li>
+<li> [A walkway of lanterns (WIP)](#a-walkway-of-laterns) </li>
+<li> [Natural transformations](#natural-transformations) </li>
+<li> [The hilarious commentary by dinosaure in OCaml git](#the-hilarious-commentary-by-dinosaure-in-ocaml-git) </li>
+<li> [How to link against MLIR with CMake](#how-to-link-against-mlir-with-cmake) </li>
+<li> [Energy as triangulaizing state space](#energy-as-triangulaizing-state-space) </li>
+<li> [The cutest way to write semidirect products](#the-cutest-way-to-write-semidirect-products) </li>
+<li> [My Favourite APLisms](#my-favourite-aplisms) </li>
+<li> [Proof of chinese remainder theorem on rings](#proof-of-chinese-remainder-theorem-on-rings) </li>
+<li> [monic and epic arrows](#monic-and-epic-arrows) </li>
+<li> [The geometry of Lagrange multipliers](#the-geometry-of-lagrange-multipliers) </li>
+<li> [Efficient tree transformations on GPUs (WIP)](#efficient-tree-transformations-on-gpus) </li>
+<li> [Things I wish I knew when I was learning APL](#things-i-wish-i-knew-when-i-was-learning-apl) </li>
+<li> [Every ideal that is maximal wrt. being disjoint from a multiplicative subset is prime](#every-ideal-that-is-maximal-wrt-being-disjoint-from-a-multiplicative-subset-is-prime) </li>
+<li> [Getting started with APL](#getting-started-with-apl) </li>
+<li> [SpaceChem was the best compiler I ever used](#spacechem-was-the-best-compiler-i-ever-used) </li>
+<li> [Mnemonic for Kruskal and Prim](#mnemonic-for-kruskal-and-prim) </li>
+<li> [Legendre transform](#legendre-transform) </li>
+<li> [Cartesian Trees](#cartesian-trees) </li>
+<li> [DFS numbers as a monotone map](#dfs-numbers-as-a-monotone-map) </li>
+<li> [Self attention? not really](#self-attention-not-really) </li>
+<li> [Coarse structures](#coarse-structures) </li>
+<li> [Matroids for greedy algorithms (WIP)](#matroids-for-greedy-algorithms) </li>
+<li> [Grokking Zariski (WIP)](#grokking-zariski) </li>
+<li> [My preferred version of quicksort](#my-preferred-version-of-quicksort) </li>
+<li> [Geometric proof of Cauchy Schwarz inequality](#geometric-proof-of-cauchy-schwarz-inequality) </li>
+<li> [Dataflow analysis using Grobner basis](#dataflow-analysis-using-grobner-basis) </li>
+<li> [Fenwick trees and orbits](#fenwick-trees-and-orbits) </li>
+<li> [Dirichlet inversion (WIP)](#dirichlet-inversion) </li>
+<li> [Incunabulum for the 21st century: Making the J interpreter compile in 2020](#incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020) </li>
+<li> [An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)](#an-example-of-a-sequence-whose-successive-terms-get-closer-together-but-isnt-cauchy-does-not-converge) </li>
+<li> [Krylov subspace method](#krylov-subspace-method) </li>
+<li> [Good reference to the Rete pattern matching algorithm](#good-reference-to-the-rete-pattern-matching-algorithm) </li>
+<li> [Leapfrog Integration](#leapfrog-integration) </li>
+<li> [Comparison of forward and reverse mode automatic differentiation](#comparison-of-forward-and-reverse-mode-ad) </li>
+<li> [An invitation to homology and cohomology: Part 1 --- Homology](#an-invitation-to-homology-and-cohomology-part-1--homology) </li>
+<li> [An invitation to homology and cohomology: Part 2 --- Cohomology](#an-invitation-to-homology-and-cohomology-part-2--cohomology) </li>
+<li> [Stuff I learnt in 2019](#stuff-i-learnt-in-2019) </li>
+<li> [A motivation for p-adic analysis](#a-motivation-for-p-adic-analysis) </li>
+<li> [Line of investigation to build physical intuition for semidirect products](#line-of-investigation-to-build-physical-intuition-for-semidirect-products) </li>
+<li> [Topology is really about computation --- part 2](#topology-is-really-about-computation--part-2) </li>
+<li> [Topology is really about computation --- part 1](#topology-is-really-about-computation--part-1) </li>
+<li> [PSLQ algorithm: finding integer relations between reals](#pslq-algorithm-finding-integer-relations-between-reals) </li>
+<li> [Geometric characterization of normal subgroups](#geometric-characterization-of-normal-subgroups) </li>
+<li> [Radical ideals, nilpotents, and reduced rings](#radical-ideals-nilpotents-and-reduced-rings) </li>
+<li> [My disenchantment with abstract interpretation](#my-disenchantment-with-abstract-interpretation) </li>
+<li> [Computing equivalent gate sets using grobner bases](#computing-equivalent-gate-sets-using-grobner-bases) </li>
+<li> [The janus programming language --- Time reversible computation](#the-janus-programming-language--time-reversible-computation) </li>
+<li> [`A = B` --- A book about proofs of combinatorial closed forms (TODO link)](#a--b--a-book-about-proofs-of-combinatorial-closed-forms) </li>
+<li> [Generating `k` bitsets of a given length `n`](#generating-k-bitsets-of-a-given-length-n) </li>
+<li> [Bondi k-calculus](#bondi-k-calculus) </li>
+<li> [Vivado toolchain craziness ](#vivado-toolchain-craziness) </li>
+<li> [What the hell _is_ a Grobner basis? Ideals as rewrite systems](#what-the-hell-is-a-grobner-basis-ideals-as-rewrite-systems) </li>
+<li> [Lie bracket versus torsion](#lie-bracket-versus-torsion) </li>
+<li>[Spatial partitioning data structures in molecular dynamics](#spatial-partitioning-data-structures-in-molecular-dynamics) </li>
+<li> [Vector: Arthur Whitney and text editors](#vector-arthur-whitney-and-text-editors) </li>
+<li> [Discrete random distributions with conditioning in 20 lines of haskell](#discrete-random-distributions-with-conditioning-in-20-lines-of-haskell) </li>
+<li> [Everything you know about word2vec is wrong](#everything-you-know-about-word2vec-is-wrong) </li>
+<li> [Small Haskell MCMC implementation ](#small-haskell-mcmc-implementation) </li>
+<li> [Debugging debug info in GHC ](#debugging-debug-info-in-ghc) </li>
+<li> [GHC LLVM code generator: Switch to unreachable](#ghc-llvm-code-generator-switch-to-unreachable) </li>
+<li> [Concurrency in Haskell](#concurrency-in-haskell) </li>
+<li> [Handy list of differential geometry definitions](#handy-list-of-differential-geometry-definitions) </li>
+<li> [Lazy programs have space leaks, Strict programs have time leaks](#lazy-programs-have-space-leaks-strict-programs-have-time-leaks) </li>
+<li> [Presburger arithmetic can represent the Collatz Conjecture](#presburger-arithmetic-can-represent-the-collatz-conjecture) </li>
+<li> [Using compactness to argue about covers](#using-compactness-to-argue-about-covers) </li>
+<li> [Stephen wolfram's live stream](#stephen-wolframs-live-stream) </li>
+<li> [Japanese Financial Counting system](#japanese-financial-counting-system) </li>
+<li> [`Cleave` as a word has some of the most irregular inflections](#cleave-as-a-word-has-some-of-the-most-irregular-inflections) </li>
+<li> [McCune's single axiom for group theory](#mccunes-single-axiom-for-group-theory) </li>
+<li> [Arthur Whitney: dense code](#arthur-whitney-dense-code) </li>
+<li> [How does one work with arrays in a linear language?](#how-does-one-work-with-arrays-in-a-linear-language) </li>
+<li> [Linear optimisation is the same as linear feasibility checking](#linear-optimisation-is-the-same-as-linear-feasibility-checking) </li>
+<li> [Quantum computation without complex numbers](#quantum-computation-without-complex-numbers) </li>
+<li>[Linguistic fun fact: Comparative Illusion ](#linguistic-fun-fact-comparative-illusion) </li>
+<li> [Stuff I learnt in 2018](content/blog/stuff-i-learnt-this-year-2018.md) </li>
+<li> [Stuff I learnt in 2017](content/blog/papers-I-read-and-loved-in-2017.md) </li>
+<li> [Reading the `structs` library](content/blog/reading-kmett-structs.md) </li>
+<li> [Reading the `machines` library (WIP)](content/blog/machines/reading-kmett-machines.md) </li>
+<li> [Explaining laziness (WIP)](content/blog/laziness-for-c-programmers.md) </li>
+<li> [Explaining STG(WIP)](stg-explained.md) </li>
+<li> [Simplexhc: proc points suck / making GHC an order of magnitude faster](content/blog/ghc-micro-optimisations-or-why-proc-points-suck.md) </li>
+<li> [Simplexhc: dec 2017](this-month-in-simplexhc-dec-2017.md) </li>
+<li> [Simplexhc: oct 29 2017](this-week-in-simpexhc-oct-29-2017.md) </li>
+<li> [Simplexhc: july 2017](this-week-in-simplexhc-07-2017.md) </li>
+<li> [Simplexhc: july 6th 2017](this-week-in-simplexhc-2017-07-06.md) </li>
+<li> [Simplexhc: announcement](content/blog/announcing-simplexhc.md) </li>
+<li> [GSoC 2015 proposal](content/blog/gsoc-vispy.md) </li>
+<li> [GSoC 2015 week 1](content/blog/gsoc-vispy-week-1-and-2.md) </li>
+<li> [GSoC 2015 week 3 and 4](content/blog/gsoc-vispy-week-3-and-4.md) </li>
+<li> [GSoC 2015 week 5](content/blog/gsoc-vispy-week-5.md) </li>
+<li> [GSoC 2015 week 6](content/blog/gsoc-vispy-week-6.md) </li>
+<li> [GSoC 2015 week 7](content/blog/gsoc-vispy-week-7.md) </li>
+<li> [GSoC 2015 final report](content/blog/gsoc-vispy-report-6.md) </li>
+<li> [Link Dump](#link-dump) </li>
+<li> [Big list of emacs gripes](#big-list-of-emacs-gripes) </li>
+<li> [Big list of writing](#big-list-of-writing) </li>
+<li> [Big list of Coq](#big-list-of-coq) </li>
+<li> [Big list of Latex](#big-list-of-latex) </li>
+<li> [Recipes](#recipes) </li>
+</ol>
 
 #[Hyperbolic groups have solvable word problem](#hyperbolic-groups-have-solvable-word-problem)
 
@@ -5936,9 +5938,11 @@ a product of vector spaces). Thus, the exact sequence better involve
 module related operations.  We can now recover CRT:
 
 $$
+\begin{align*}
 0 \rightarrow I \cap J \xrightarrow{f} I \oplus J \xrightarrow{g} I + J \rightarrow 0 \\
 0 \rightarrow R \xrightarrow{f} R \olpus R \xrightarrow{g} R \rightarrow 0 \\
 0 \rightarrow R / (I \cap J) \rightarrow R/I \oplus R /J \rightarrow R/(I + J) \rightarrow 0
+\end{align*}
 $$
 
 
