@@ -1021,7 +1021,7 @@ void toHTML(const char *instr,
 
           // we want to ignore the first 3 ``` and the last 3 ```
           const Span span =
-              Span(t->span.begin.next("```").next(block->langname),
+              Span(t->span.begin.next("```").next(block->langname).next("\n"),
                       t->span.end.prev("```"));
           char *code_html = pygmentize(tempdirpath,
                   instr + span.begin.si,
@@ -1236,14 +1236,14 @@ const char htmlbegin[] =
 "\n"
 // code blocks, latex blocks, quote blocks
 "\n"
-" blockquote { border-left-color:#000000;  border-left-style: solid;"
-"      border-left-width: 4px; padding-left: 5px; }"
+" .code, .latexblock, blockquote { border-left-color:#000000;  border-left-style: solid;"
+"      border-left-width: 4px; }"
+".code pre { padding-left: 2em; }"
 "\n"
-// need margin:0px otherwise user agent stylesheet will fuck it up
-" blockquote { color: #222222; margin: 0px; }"
 // monospace font
 " .code { font-family: 'Blog Mono', monospace; line-height: 1.2em; font-size: 90%;  }"
-" .latexblock, .latexinline { font-family: 'Blog Symbol', monospace; }"
+// Math fonts, math font control: latex block and latex inline should have letter spacing
+" .latexblock, .latexinline { font-family: 'Blog Symbol', monospace; letter-spacing: 2px; }"
 // padding and margin for blocks
 ".latexblock, blockquote, .code, code { margin-top: 30px; margin-bottom: 30px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }"
 ".code, code { background-color: #FFFFFF; width: 100%; }"
@@ -1252,9 +1252,11 @@ const char htmlbegin[] =
 // overflow: latex and code block
 " .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; }"
 // " .code { width: 100%; overflow-x: hidden; white-space: nowrap; }"
-" .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; }"
+" .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }"
 "\n"
-".latexinline { padding-left: 2px; padding-right: 2px;  }"
+// inline latex: force all text to be on same line.
+".latexinline { padding-left: 2px; padding-right: 2px; white-space: nowrap }"
+
 // fix font handling
 "pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }"
 // RESPONSIVE

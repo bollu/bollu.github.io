@@ -173,7 +173,8 @@ A Universe of Sorts
 <li> [Big list of writing](#big-list-of-writing) </li>
 <li> [Big list of Coq](#big-list-of-coq) </li>
 <li> [Big list of Latex](#big-list-of-latex) </li>
-<li> [Recipes](#recipes) </li>
+<li> [Big list of Architecture](#big-list-of-architecture) </li>
+<li> [Big list of Recipes](#big-list-of-recipes) </li>
 </ol>
 
 #[Hyperbolic groups have solvable word problem](#hyperbolic-groups-have-solvable-word-problem)
@@ -13172,13 +13173,6 @@ This is tagged as "not a bug" --- because
 "if imagemagick crashes, there is no recourse".
 
 
-# [Big list of Latex](#big-list-of-latex)
-
-#### write text under some equation --- variable under max or argmax
-
-```
-y = \underset{x \in X}{\max} f(x)
-```
 
 # [Big list of Coq](#big-list-of-coq)
 
@@ -13262,15 +13256,46 @@ is something I wish to explore.
 - `let ([x 5]) (+ x 3))`: `x` is anaphora resolution.
 - 
 
+# [Big list of Latex](#big-list-of-latex)
 
-# Link dump
+#### write text under some equation --- variable under max or argmax
 
-- [ADHD: A lifelong struggle: Why organisation systems don't work](https://gekk.info/articles/adhd.html)
-- [Slides for intuition on converting number systems to data structures by Ralf Hinze](http://www.cs.nott.ac.uk/~pszgmh/bctcs-slides/hinze.pdf)
-- [James mickens: hilarious articles --- this one on security](https://www.usenix.org/system/files/1401_08-12_mickens.pdf)
-- [ADHD: A lifelong struggle | Why organisation systems don't work](https://gekk.info/articles/adhd.html)
+```
+y = \underset{x \in X}{\max} f(x)
+```
 
-# [Recipes](#recipes)
+# [Big list of Architecture](#big-list-of-architecture) 
+
+I have an interest in architecture and how it might relate to software.
+While the two are quite different, I feel that a deep look at both could
+be useful for both discplines. I think my favourite building to date
+has been [fallingwater](https://en.wikipedia.org/wiki/Fallingwater). Here are
+things on architecture I wish to read and/or have read:
+
+- The way buildings learn.
+- The sciences of the artifical.
+- The timeless way of building.
+- Eisenman
+- [Why you hate contemporary architecture](https://www.currentaffairs.org/2017/10/why-you-hate-contemporary-architecture): 
+  An article that provides points of view and a broad set of link on further
+  reading to how architecture reached the 'contemporary', almost
+  'uncomfortable' style it has today. Some choice quotes:
+
+> There was a good reason why, historically, religious architecture has been
+> the most concerned with beauty for beauty’s sake; the more time is spent
+> elegantly decorating a cathedral, the more it serves its intended function of
+> celebrating God’s glory, whereas the more time is spent decorating an office
+> building, the less money will be left over for the developer. 
+
+- The Geography of Nowhere: The Rise and Decline of America's Man-Made Landscape
+
+- This place is not a place of honor... no highly esteemed deed is commemorated
+  here... nothing valued is here. Design to ward off people for nuclear waste.
+
+
+
+# [Big list of Recipes](#big-list-of-recipes) 
+
 
 #### Upma
 

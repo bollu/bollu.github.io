@@ -1,31 +1,31 @@
 SSC: slate star codex
 
-- The strategy of conflict, book by Schelling about Schelling points: https://www.hup.harvard.edu/catalog.php?isbn=9780674840317&content=reviews 
-- All about circuits: https://www.allaboutcircuits.com/textbook/ How to learn bottom up circuits.
-- https://arxiv.org/pdf/1801.09553.pdf Extending the Algebraic Manipulability of Differentials: Nice notational abuse for higher order
-  integrals.
-- Books that tour mathematical domains: https://math.stackexchange.com/questions/828458/book-ref-request-starting-from-a-mathematically-amorphous-problem-and-comb/829889#829889
-- Catchy encodings of serious mathematics: https://mathoverflow.net/questions/3559/colloquial-catchy-statements-encoding-serious-mathematics/62194#62194
-- Intuition for chernofF: pointwise => integrals: https://math.stackexchange.com/questions/161408/chernoff-inequalities
-- Occurs check: cannot construct the infinite type: a ~ a -> a <- automatically make it a domain?
+- [Free Pascal](https://freepascal.org/?new_version)
+- [The strategy of conflict, book by Schelling about Schelling points](https://www.hup.harvard.edu/catalog.php?isbn=9780674840317&content=reviews )
+- [All about circuits: How to learn bottom up circuits](https://www.allaboutcircuits.com/textbook/)
+- [https://arxiv.org/pdf/1801.09553.pdf](Extending the Algebraic Manipulability of Differentials: Nice notational abuse for higher order integrals.)
+- [Books that tour mathematical domains](https://math.stackexchange.com/questions/828458/book-ref-request-starting-from-a-mathematically-amorphous-problem-and-comb/829889#829889)
+- [Catchy encodings of serious mathematics](https://mathoverflow.net/questions/3559/colloquial-catchy-statements-encoding-serious-mathematics/62194#62194)
+- [Intuition for chernoff: pointwise => integrals](https://math.stackexchange.com/questions/161408/chernoff-inequalities)
+- Occurs check: cannot construct the infinite type: `a ~ a -> a` <- automatically make it a domain?
   Language with _only_ domains?
-- Think of A5 in terms of the picture I put inside ~/blog/static/
-- https://en.wikipedia.org/wiki/Bill_Mollison: permaculture. (Permaculture One)
-- algebraic geometry with a lot of geometry: Fulton's Algebraic Curves; Griffiths,Harris's text on Complex Algebraic Geometry
+- Think of A5 in terms of the picture I put inside ~/blog/static/ [icosian calculus]
+- [Bill Mollison: permaculture/Permaculture One](https://en.wikipedia.org/wiki/Bill_Mollison)
+- Algebraic geometry with a lot of geometry: Fulton's Algebraic Curves; Griffiths,Harris's text on Complex Algebraic Geometry
 - Engineering applications of noncommutative harmonic analysis.
 - SnoB / representation theory of Sn / fourier transform on Sn: 
   (i) [his thesis](https://people.cs.uchicago.edu/~risi/papers/KondorThesis.pdf)
   (ii) [link to his library](http://www.gatsby.ucl.ac.uk/~risi/SnOB/SnOB/SnOB.pdf)
   (iii) [link to mini course](http://www.gatsby.ucl.ac.uk/~risi/courses/mini08/mini08.html)
-- Full text search with bloom filters: https://endler.dev/2019/tinysearch/
-- sparse sets using two arrays and pointers between them: https://research.swtch.com/sparse
-  An efficient representation for sparse sets: https://dl.acm.org/doi/10.1145/176454.176484
-- A species approach to the twelvefold path / rota: https://arxiv.org/pdf/1903.11580.pdf
-- Important formulas in combinatorics: https://mathoverflow.net/questions/214927/important-formulas-in-combinatorics/215167#215167
+- [Full text search with bloom filters](https://endler.dev/2019/tinysearch/)
+- [sparse sets using two arrays and pointers between them](https://research.swtch.com/sparse)
+  [An efficient representation for sparse sets](https://dl.acm.org/doi/10.1145/176454.176484)
+- [A species approach to the twelvefold path / rota](https://arxiv.org/pdf/1903.11580.pdf)
+- [Important formulas in combinatorics](https://mathoverflow.net/questions/214927/important-formulas-in-combinatorics/215167#215167)
 - George Springer: Introduction to Riemann sufaces. Good, low-technology account
   of riemann surface theory that gets to Riemann Roch!
-- Icosan calculus: https://en.wikipedia.org/wiki/Icosian_calculus
-- https://en.wikipedia.org/wiki/Modular_lattice | generalization of 2nd isomorphhism theorem.
+- [Icosan calculus](https://en.wikipedia.org/wiki/Icosian_calculus)
+- [generalization of 2nd isomorphhism theorem: Modular Lattices](https://en.wikipedia.org/wiki/Modular_lattice)
 - Planning the Unthinkable: How New Powers Will Use Nuclear, Chemical, and Biological Weapons
 - On Limited Nuclear War in the 21st Century
 - Abel's theorem in problems and solutions.
@@ -312,40 +312,41 @@ installed, use it to compute closed forms)
   contains use of reciprocal basis!
 - Style: lessons in clarity and grace.
 - Multivariate Calculus and Geometry: has intro to gaussian curvature, theory of surfaces in 3D.
-- Word problems in russia and america: scathing critique of how 
-  ameriacn math education is screwed: http://toomandre.com/travel/sweden05/WP-SWEDEN-NEW.pdf
+- [Word problems in russia and america: scathing critique of how american math education is screwed](http://toomandre.com/travel/sweden05/WP-SWEDEN-NEW.pdf)
   also, interesting anecdote about how looking for 'reality' in mathematical problems
   may in fact break student's ability to think in the abstract! This is
   a deep insight.
 - Imaginary numbers are not real: the geometric algebra of spacetime.
-- Topological games: http://www.telgarsky.com/1987-RMJM-Telgarsky-Topological-Games.pdf | games that reflect some topological property.
-- Tibetian book of dying: https://en.wikipedia.org/wiki/Bardo_Thodol
-- Knuth Bendix completion: A generalization of grobner-basis / bucchberger algorithm to arbitrary systems: https://en.wikipedia.org/wiki/Knuth%E2%80%93Bendix_completion_algorithm
+- [Topological games:  games that reflect some topological property](http://www.telgarsky.com/1987-RMJM-Telgarsky-Topological-Games.pdf)
+- [Tibetian book of dying / Tibedian book of death](https://en.wikipedia.org/wiki/Bardo_Thodol)
+- [Knuth Bendix completion: A generalization of grobner-basis / bucchberger algorithm to arbitrary systems](https://en.wikipedia.org/wiki/Knuth%E2%80%93Bendix_completion_algorithm)
 - Guide to Competitive Programming: Antti Laaksonen
-- Maps of meaning: Jordan peterson's lectures; talks about mythological myths (https://www.youtube.com/watch?v=JodNMjXphKA)
+- [Maps of meaning: Jordan peterson's lectures; talks about mythological myths](https://www.youtube.com/watch?v=JodNMjXphKA)
 - TOOL TO BUILD: linters that will overlay compiler-tier optimization hints on top of handwritten assembly?
-- https://en.wikipedia.org/wiki/Tensegrity: building structures by hanging things with tension.
-  Example using LEGO: https://www.reddit.com/r/lego/comments/g2230l/lego_tensegrity_structure/
-- Mathematics of tensegrity: Frameworks, tensegrities, and symmetry. Understanding stable structures: http://pi.math.cornell.edu/~web7510/framework.pdf
-- Spinors: http://www.weylmann.com/spinor.pdf
+- [building structures by hanging things with tension](https://en.wikipedia.org/wiki/Tensegrity).
+  [Example using LEGO](https://www.reddit.com/r/lego/comments/g2230l/lego_tensegrity_structure/).
+- [Mathematics of tensegrity: Frameworks, tensegrities, and symmetry. Understanding stable structures](http://pi.math.cornell.edu/~web7510/framework.pdf)
+- [Spinors: A gentle introduction](http://www.weylmann.com/spinor.pdf)
 - Separation logic through a new lens: Lensifies separation logic.
 - The derivative operator: paper by ken iverson that generalizes derivative to jacobian, curl, whatnot. 
-- combinatorial manifolds / tropical style manifold: https://en.wikipedia.org/wiki/Piecewise_linear_manifold
+- [Combinatorial manifolds / tropical style manifold](https://en.wikipedia.org/wiki/Piecewise_linear_manifold)
 - Noncommutative rational series with applications [They work with coefficients in an arbitrary semiring, which can be like watching paint]
 - Evolution of eusociality: https://en.wikipedia.org/wiki/Evolution_of_eusociality
 - Financial Shenanigans by Howard M Schiit. 
 - lying for money, The Match King, The Smartest Guys in the Room, Bad Blood, Billion Dollar Whale
-- Great works in programming languages: https://www.cis.upenn.edu/~bcpierce/courses/670Fall04/GreatWorksInPL.shtml
+- [Great works in programming languages](https://www.cis.upenn.edu/~bcpierce/courses/670Fall04/GreatWorksInPL.shtml)
 - Divided power structure: is a way of making expressions of the form x^n/n! (taylor series-like-objects) meaningful even when we don't have access to n! (n factorial).
-- Arend: https://github.com/JetBrains/Arend | proof assistant for HoTT cubicalTT
+- [Arend: proof assistant for HoTT cubicalTT](https://github.com/JetBrains/Arend)
 - Errett Bishop: Constructive Analysis
-- Theory of elites: Thehttps://en.wikipedia.org/wiki/Elite_theory#Italian_school_of_elitism
-- Multiplicative weight update algorithm: contains gradient descent and 
-  sampling-like algorithms as close cousins: https://jeremykun.com/tag/multiplicative-weights-update-algorithm/
+- [Theory of elites: Theh italian school of elitism](https://en.wikipedia.org/wiki/Elite_theory#Italian_school_of_elitism)
+- [Multiplicative weight update algorithm: contains gradient descent and sampling-like algorithms as close cousins](https://jeremykun.com/tag/multiplicative-weights-update-algorithm/)
 - Regular Car Reviews: 2012 Toyota FJ Cruiser. Explaning simulation v/s simulacra through
   a car review. Jean Baudillard.
 - Simulacra v/s simulacra, discussion on hackernews: https://news.ycombinator.com/item?id=23154141
 - Learn semantics of javascript: `function mk() { let inner =  function() { console.warn(this.x)}; inner = inner.bind({x: 42}); inner.x = -42; return inner; }; mk()(); console.log(mk().x);`. NOTE: this behaviour changes if `inner` is an arrow function. What are the denotational semantics of this?
 - Queueing Theory.
-- https://codeforces.com/blog/entry/77551: generating functions for CP
-- Slope trick: https://codeforces.com/blog/entry/47821
+- [https://codeforces.com/blog/entry/77551](generating functions for CP)
+- [Slope trick for DP over convex functions](https://codeforces.com/blog/entry/47821)
+- [ADHD: A lifelong struggle: Why organisation systems don't work](https://gekk.info/articles/adhd.html)
+- [Slides for intuition on converting number systems to data structures by Ralf Hinze](http://www.cs.nott.ac.uk/~pszgmh/bctcs-slides/hinze.pdf)
+- [James mickens: hilarious articles --- this one on security](https://www.usenix.org/system/files/1401_08-12_mickens.pdf)
