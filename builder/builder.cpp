@@ -1238,7 +1238,7 @@ const char htmlbegin[] =
 "\n"
 " .code, .latexblock, blockquote { border-left-color:#000000;  border-left-style: solid;"
 "      border-left-width: 4px; }"
-".code pre { padding-left: 2em; }"
+".code pre, blockquote { padding-left: 2em; }"
 "\n"
 // monospace font
 " .code { font-family: 'Blog Mono', monospace; line-height: 1.2em; font-size: 90%;  }"
