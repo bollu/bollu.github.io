@@ -18,12 +18,11 @@ A Universe of Sorts
 <ol reversed>
 <li> [Hyperbolic groups have solvable word problem](#hyperbolic-groups-have-solvable-word-problem) </li>
 <li> [Elementary uses of Sheaves in complex analysis](#elementary-uses-of-sheaves-in-complex-analysis) </li>
-<li> [Discrete Random variables: most general definition](#random-variables-most-general-definition) </li>
 <li> [Snake lemma](#snake-lemma) </li>
 <li> [Kernel,cokernel,image](#kernel-cokernel-image) </li>
 <li> [The commutator subgroup](#the-commutator-subgroup) </li>
 <li> [Simplicity of A5 using PSL(2, 5)](#simplicity-of-a5-using-psl-2-5) </li>
-<li> [Solvability of A5](#solvability-of-a5) </li>
+<li> [A5 is not solvable](#a5-is-not-solvable) </li>
 <li> [Complex orthogonality in terms of projective geometry](#complex-orthogonality-in-terms-of-projective-geometry) </li>
 <li> [Arithmetic sequences, number of integers in a closed interval](#arithmetic-sequences-number-of-integers-in-a-closed-interval) </li>
 <li> [The arg function, continuity, orientation](#the-arg-function-continuity-orientation) </li>
@@ -176,6 +175,10 @@ A Universe of Sorts
 <li> [Big list of Architecture](#big-list-of-architecture) </li>
 <li> [Big list of Recipes](#big-list-of-recipes) </li>
 </ol>
+
+# [Product of compact spaces in compact](#product-of-compact-spaces-is-compact)
+
+<img src="./static/product-of-compact-is-compact.png">
 
 #[Hyperbolic groups have solvable word problem](#hyperbolic-groups-have-solvable-word-problem)
 
@@ -375,45 +378,7 @@ be arbitrary.
 
 ### Germs of analytic functions satisfy (Sheaf: Trial 3)
 
-
-
 <img src="./static/sheaf.png">
-
-#[Discrete Random variables: most general definition](#random-variables-most-general-definition)
-
-This is an exercise in needless abstraction, to see if this actually makes some
-things easier to reason about.
-
-- AXIOM: An arbitrary set $\Omega$ is called as a sample space. This is the space
-  of all possible outcomes.
-- AXIOM: Elements of $\Omega$ are **elementary events**.
-- AXIOM: An **event** is a subset $E \subseteq \Omega$.
-- AXIOM: A probability space is a tuple $(\Omega, F \subseteq \Omega, P: F \rightarrow [0, 1])$
-- NOTE: We extend the probability from elementary events to events by defining $P: 2^\Omega \rightarrow [0, 1]$.
-  $P(E) = \sum_{\omega \in E} P(\omega)$.
-- AXIOM: The full probability $P(\Omega) = 1$.
-- AXIOM:The conditional probability of $A$ given $B$ has occurred is    
-  defined as $P[A|B] \equiv P[A \cap B]/P[B]$.                          
-- AXIOM: Two events are independent iff $P[A \cap B] = P[A] P[B]$.
-- NOTE: Equivalently, two events are independent iff $P[A|B] = P[A]$.
-- AXIOM: A random variable on a probability space $(\Omega, P)$ is a function
-  $O: \Omega \rightarrow Y$. $Y$ is an $\mathbb R$ module. 
-- AXIOM: $O: \Omega \rightarrow R$ be a random variable. Then the expectation of $X$
-  is defined as $E[O] \equiv \sum_{\omega \in Omega} P(\{\omega\}) O(\omega)$.
-- From a random variable, we can build events. For example $O =_? y_0$ is an event.
-  It is the set $\{\omega \in Omega: X(\omega) = y_0 \}$. In general, given
-  some predicate $pred: \Omega \righarrow \texttt{Bool}$, we can build an event
-  of the form $\{ \omega \in \Omega : pred(O(\omega)) \}$. Such
-  predicate builder syntax will use the random variable $O$ in place of
-  $O(\omega)$. 
-- For example, the even $O =_? y_0$ really stands for the predicate
-  $pred: \Omega \rightarrow \texttt{Bool} \equiv \lambda \omega. O(\omega) =_? y_0$.
-- Another common example of a predicate is of the form $P(O) \leq \alpha$. Here
-  too we are really forming the predicate $pred \equiv \lambda \omega. P(\omega) \leq \alpha$.
-  
-
-#### References
-- https://kam.mff.cuni.cz/~matousek/eprob-intro.pdf
 
 # [Snake lemma](#snake-lemma)
 
@@ -424,11 +389,13 @@ and $\{ H_i \}$, one might naively assume that we can ask for _functions_
 $\{ f_i: G_i \rightarrow H_i \}$:
 
 ```
-   ∂    ∂
-G3 → G2 → G1 
-↓f3  ↓f2  ↓f1
-H3 → H2 → H1
-   ∂    ∂
+       ∂    ∂
+    G3 → G2 → G1 → 0
+    |    |    |
+    f    g    h
+    ↓    ↓    ↓  
+0 → H3 → H2 → H1
+      ∂    ∂
 ```
 
 
@@ -442,28 +409,34 @@ we tell where the geometry goes ("this edge goes there"), and the algebra
 is "dragged along for the ride". This gives us the diagram:
 
 ```
-       
-G3--∂-→G2--∂-→G1 
-|      |      |
-f3     f2     f1
-↓      ↓      ↓
-H3--∂-→H2--∂-→H1
-       
+    G3--∂-→G2--∂-→G1 
+    |      |      |
+    f3     f2     f1
+    ↓      ↓      ↓
+0 →H3--∂-→H2--∂-→H1
 ```
 
 where the `fi` are _homomorphisms_. So, this means we can talk about kernels and
 images!
 
 ```
-Ker(f3)----→Ker(f2)--→Ker(f1)
-   |         |          |
-   ↓         ↓          ↓
-   G3--∂----→G2----∂---→G1 
-   |         |          |
-   f3        f2         f1
-   ↓         ↓          ↓  
-Im(f3)--∂--→Im(f2)--∂-→Im(f1)
+    Ker(f3)----→Ker(f2)--→Ker(f1)
+       |         |          |
+       ↓         ↓          ↓
+       G3--∂----→G2----∂---→G1--→ 0 
+       |         |          |
+       f3        f2         f1
+       ↓         ↓          ↓  
+    Im(f3)--∂--→Im(f2)--∂-→Im(f1)
 ```
+
+```
+F → E → V → {0}
+{0} → {e} → {v} → {0} 
+```
+
+The _Snake Lemma_ gives us a mapping $d: Ker(f1) \rightarrow Im(f3)$ such that
+this long exact sequence is saatisfied:
 
 
 ## What do we wish to compute?
@@ -479,12 +452,7 @@ Im(f3)--∂--→Im(f2)--∂-→Im(f1)
   that allows us to compute $H_i(f(G))$ in some convenient fashion.
 
 
-
-
-
-
-
-# [Kernel,cokernel,image](#kernel-cokernel-image)
+# [Kernel, cokernel, image](#kernel-cokernel-image)
 
 Consider a linear map $T: X \rightarrow Y$. we want to solve for $\{ x : T(x) = y0 \}$. 
 - If we have an $x0$ such that $T(x0) = y0$, then see that $T(x0 + Ker(T)) = T(x0) + T(Ker(T)) = y0 + 0 = y0$.
@@ -609,12 +577,14 @@ TODO! I'm still reading Keith Conrad's notes.
 - [Math.se: isomorphism from PSL to A5](https://math.stackexchange.com/questions/2051241/showing-psl2-5-is-isomorphic-to-a-5)
 
 
-# [Solvability of A5](#solvability-of-a5)
+# [A5 is not solvable](#a5-is-not-solvable)
 
-There are many accounts of why A5 is solvable on the internet. I'm recording my
+There are many accounts of why A5 is not solvable on the internet. I'm recording my
 version here, because the proof involves certain ad-hoc choices which I want
 to make sure I can find off-hand in the future.
-We'll show that `[A5, A5] = A`, thereby proving that `A5` solvable. 
+We'll show that `[A5, A5] = A5`, thereby proving that `A5` not solvable.
+This is useful for Galois theory, where we want to show tha `A5` cannot be
+built as extensions of smaller cyclic groups. 
 
 ### Notation
 
@@ -776,7 +746,7 @@ s = t*t
 But there's a problem: this `g` and `h` do not belong to `A5`, they belong
 to `S5`. This is fixed by using a random `(pq)` which we know _will exist_.
 
-### Recap: How have we shown that A5 is solvable?
+### Recap: How have we shown that A5 is not solvable?
 
 what have we shown?
 
@@ -817,6 +787,11 @@ simple, this chain can only be $G = N[0] \leq N[1] = e$.
   of A5, we need to quotient by the _whole_ of $A5$. 
 
 - This means that any such chain will immediately collapse to $e$.
+
+- So, it's impossible to build $A5$ using 'cycling components' starting from $\{e\}$.
+  Viewed from the field theoretic perspective, this means that it's impossible
+  to reach a polynomial whose splitting field has galois group A5 by simply 
+  appending cycles.
 
 ### Nagging doubt: Did we depend on our numbering of cycles?
 
@@ -7596,8 +7571,9 @@ full set is generated as $\{ x \in \mathbb R^n : 1 \neq 0 \}$.
 #### Semi-decidability
 
 Recall that in this view of topology, for a space $(X, \tau)$, for every
-open set $O \in \tau$, we associate a turing machine $T_O$.
-which obeys the relation:
+open set $O \in \tau$, we associate a turing machine $T_O$ which semi-decides
+inclusion. That is, if a point is in $O$ then it halts with the output `IN-SET`.
+if the point is not in $O$, $T_O$ infinite loops. Formally:
 
 $$
 \begin{align*}
@@ -7606,19 +7582,73 @@ x &&\not \in O \iff \text{$T_O$ does not halts on input $o$}
 \end{align*}
 $$
 
-#### Geometry --- 1D
+Alternatively, for a closed set $C \in \tau$, we associate a a turing machine
+$T_C$ which semi-decides exclusion. That is, if a point is _not_ in $C$
+it halts with the output "NOT-IN-SET". If the point is in $C$, the turing
+machine $T_C$ infinite loops.
 
-Let's consider functions of the form $(\mathbb R^2, Z) \xrightarrow{f} (\mathbb R^2, Z)$
-where $Z$ is the Zariski topology. We are interested in discovering what
-sort of functions $f$ are continuous.
+Now in the case of polynomials, we can write a function that semidecides
+exclusion from closed sets:
+
+```cpp
+# return NOT-IN-SET of x is not a zero of the polynomial
+def is_not_in_zeros(poly, x0):
+  precision = 0 # start with zero precision
+  while True:
+    if poly(x0[:precision]) != 0: return NOT-IN-SET
+    precision += 1 # up the precision
+```
+
+Since we can only evaluate a polynomial up to some finite precision, we
+start with zero precsion and then gradually get more precise. If some
+$x0$ is _not_ a root of $poly$, then at some point, we will have
+that $poly(x0) /neq 0$. If $x0$ is indeed a root, then we will never halt
+this process; We will keep getting `poly(x0[:precision]) = 0` for all
+levels of precision.
+
+#### `Spec(R)`
+
+- To setup a topology for the prime spectrum of a ring, we define the topological
+  space as $Spec(R)$, the set of all prime ideals of $R$.
+
+- The closed sets of the topology are $\{ V(I) : I \text{is an ideal of $R$} \}$,
+  where the function $V: \text{Ideal} \rightarrow 2^\text{Prime Ideal}$ maps
+  each ideal to the set of prime ideals that contain it. Formally,
+  $V(I) = \{ p \in Spec(R) : I \subseteq p \}$. 
 
 
-#### Geometry --- 2D
+- We can think of this differently, by seeing that we can rewrite the condition
+  as  $V(I) = \{ P \in Spec(R) : I \xrightarrow{P} 0}$: On rewriting using the prime ideal $P$, we send the ideal $I$ to $0$.
 
-Let's repeat the exercise for 2D. Here, we will manage to see much richer
-behaviour. Let's consider functions of the form
-$(\mathbb R^2, Z) \xrightarrow{f} (\mathbb R^2, Z)$ where
-$Z$ is the Zariski topology.
+- Thus, the closed sets of $Spec(R)$ are precisely the 'zeroes of polynomials' / 'zeroes of ideals'.
+
+- To make the analogy precise, note that in the polynomial case, we imposed a 
+  topology on $\mathb R$ by saying that the closed sets were $V(p_i) = \{ x \in \mathbb R : p(x) = 0 \}$
+  for some polynomial $p \in \mathbb R[x]$. 
+  
+- Here, we are saying that the closed sets are $V(I) = \{ x \in Spec(R) : I(x) = 0 \}$
+  for some ideal $I \in R$. so we are looking at  ideals as functions
+  from the prime ideal to the reduction of the ideal. That is, $I(P) = I/P$. 
+
+#### `Spec(\mathbb Z)` from this perspective
+
+Since $\mathbb Z$ is a PID, we can think of numbers instead of ideals. The above
+picture asks us to think of a number as a function from a prime to a reduced
+number. $n(p) = n \% p$. We then have that the closed sets are those primes
+which can zero out some number. That is:
+
+$$
+\begin{align*}
+V(I) = \{ x \in Spec(\mathbb Z) : I(x) = 0 \}
+V((n)) = \{ (p) \in Spec(\mathbb Z) : (n)/(p) = 0 \}
+V((n)) = \{ (p) \in Spec(\mathbb Z) : (n) \mod (p) = 0 \}
+\end{align*}
+$$
+
+So in our minds eye, we need to imagine a space of prime ideals (points), which
+are testing with all ideals (polynomials). Given a set of prime ideals (a tentative locus, say a circle),
+the set of prime ideals is closed if it occurs as the zero of some collection of ideas 
+(if the locus occurs as the zero of some collection of polynomials). 
 
 
 ## [My preferred version of quicksort](#my-preferred-version-of-quicksort)
