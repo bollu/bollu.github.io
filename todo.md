@@ -1,4 +1,13 @@
-SSC: slate star codex
+- [Combinatorial meaning of determinant](https://qchu.wordpress.com/2009/11/17/the-lindstrom-gessel-viennot-lemma/)
+- [Motivation for distribution theory](https://mathoverflow.net/a/77983/123769)
+- [Addition in terms of group theory: 2 cocyles](https://www.physicsforums.com/threads/repost-of-carrying-and-cocycles-by-james-dolan-part-one.182195/)
+- [How to think about non hausdorff topologies in the finite case (as a preorder)](https://mathoverflow.net/questions/44109/how-should-one-think-about-non-hausdorff-topologies/44135#44135). Also:
+> To make an example possibly closer to us, think you're in a car in the urban
+> traffic. Due to one-way streets, metric is not the best way to organize your
+> perception of the space: actually, the proper topology to do that is possibly
+> not Hausdorff (usually, you can't move to A without immediately finding
+> yourself in B, and once you are in B, you are enormously far from A, even if
+> you changed your mind about the opportunity of the movement.)
 
 - [Free Pascal](https://freepascal.org/?new_version)
 - [The strategy of conflict, book by Schelling about Schelling points](https://www.hup.harvard.edu/catalog.php?isbn=9780674840317&content=reviews )
@@ -30,16 +39,15 @@ SSC: slate star codex
 - On Limited Nuclear War in the 21st Century
 - Abel's theorem in problems and solutions.
 - Mikhail Bakunin: founder of collective anarchism.
-- Algebraic geometry: https://www.mathematik.uni-kl.de/~gathmann/class/alggeom-2019/alggeom-2019-c3.pdf
+- [Algebraic geometry](https://www.mathematik.uni-kl.de/~gathmann/class/alggeom-2019/alggeom-2019-c3.pdf)
 - Continued fractions, mobius transformations.
 - Domain theory crash course.
-- https://swatisani.net/kitchen/recipe/pita-bread/
 - Learn how to generate music.
 - Fast mobius inversion using heavy/light?
 - Sphere packings, lattices, groups.
-- Gaussian geometry: http://www.matematik.lu.se/matematiklu/personal/sigma/Gauss.pdf
-- Gauss bonnet proof; http://www.math.uchicago.edu/~may/VIGRE/VIGRE2008/REUPapers/Halper.pdf
-- Low dimensional diffgeo (classic, curves, surfaces): http://uregina.ca/~mareal/MATH431-2014.html
+- [Gaussian geometry](http://www.matematik.lu.se/matematiklu/personal/sigma/Gauss.pdf)
+- [Gauss bonnet proof](http://www.math.uchicago.edu/~may/VIGRE/VIGRE2008/REUPapers/Halper.pdf)
+- [Low dimensional diffgeo (classic, curves, surfaces)](http://uregina.ca/~mareal/MATH431-2014.html)
 - Algebraic curves and riemann surfaces: has real cohomology uses,
   sheaves, all the tools I want to see in action.
 - Domain theory.
@@ -53,7 +61,7 @@ SSC: slate star codex
 
 - Word processing in groups: book on automatic groups, hyperbolic groups,
   and their relations.
-- Stone duality: https://www.irif.fr/~mgehrke/scriptie.pdf
+- [Stone duality](https://www.irif.fr/~mgehrke/scriptie.pdf)
 - Create a viewer for tensor the way fortran displays arrays.
 - DebugIR.
 - CRAB for llvm.
@@ -79,8 +87,6 @@ SSC: slate star codex
 - Geometric algebra
 - Information geometry
 - Elements of set theory.
-- http://www.tcs.tifr.res.in/~ramprasad/assets/courses/2017-algComp/algComp_2017.pdf
-- http://people.csail.mit.edu/madhu/FT98/course.html
 - Information theory
 - Topology via logic
 - Geometric algebra
@@ -91,72 +97,53 @@ SSC: slate star codex
 - Ideals, Varietites, and Algorithms
 - Differential forms and connections
 - Differential forms of curves and surfaces
-- http://math.uga.edu/~pete/Tychonoff.pdf
+- [Tychonoff theorem](http://math.uga.edu/~pete/Tychonoff.pdf)
 - Elementary applied topology
-- http://kparc.com/b/readme.txt - Arthur Whitney guy who writes dense code.
-- Coq PR
--`polly_array_index` RFC.
-- Setup key logger.
-- Deltas
-- The Taming of the Semi-Linear Set
-- Word2Man
-- Infertense
-- Uniball Air micro
-- Warren VM
+- [Arthur Whitney guy who writes dense code.](http://kparc.com/b/readme.txt)
 - Directly solve system of recurrences we get from loops. (Loat-purrs has been
-installed, use it to compute closed forms)
+  installed, use it to compute closed forms)
 - Reverse mode automatic differentiation
 - Andrej Bauer blog posts 
 - Toric ideals
 - Noncommutative rational series with applications
-- Normaliz: Can solve hilbert basis. https://github.com/Normaliz/Normaliz/
-- Free probability theory
-- https://en.wikipedia.org/wiki/Quote_notation
+- [Normaliz: Can solve hilbert basis.](https://github.com/Normaliz/Normaliz/)
 - A data parallel compiler hosted on the GPU
-- "Could you go into some detail with your learning process?"
 - Definitional interpreters for higher-order programming languages (Defunctionalization, original paper)
 - Languages of the Underworld of West Bengal
 - Language identification in the limit: inductive inference of regular / context free langs
 - Blog post: An accessible example of classical gauge theory (wave from adding springs)
 - Forcing
-- Homology via everyday examples:
-  https://mathoverflow.net/questions/153302/teaching-homology-via-everyday-examples 
-- Jeff E: Algorithms
-- The little book of OS development: https://littleosbook.github.io/book.pdf
+- [Homology via everyday examples](https://mathoverflow.net/questions/153302/teaching-homology-via-everyday-examples )
+- Jeff E: Algorithms - Excellent collection of explanations of algorithms.
+- [The little book of OS development](https://littleosbook.github.io/book.pdf)
 - Computer architecture, a constructive approach (for processor design)
 - Algebraic geometry and statistical learning theory: Sumio watanabe
-- IRE: https://nlp.stanford.edu/IR-book/pdf/irbookonlinereading.pdf
-- P3G: https://wcipeg.com/wiki/Special:AllPages
-- Intro to programming contests: https://web.stanford.edu/class/cs97si/
-- awesome CP (big list): https://codeforces.com/blog/entry/23054
-- Fenwick tree in terms of orbits: http://michaelnielsen.org/polymath1/index.php?title=Updating_partial_sums_with_Fenwick_tree
-- Schorr-Waite algorithm for graph marking: https://www.cs.cornell.edu/courses/cs312/2007fa/lectures/lec21-schorr-waite.pdf
-- Hamiltonian mechanics in terms of $\omega^{-1}$
+- [IRE: book on information retreival](https://nlp.stanford.edu/IR-book/pdf/irbookonlinereading.pdf)
+- [P3G](https://wcipeg.com/wiki/Special:AllPages)
+- [awesome Competitive Programming (big list)](https://codeforces.com/blog/entry/23054)
+- [Fenwick tree in terms of orbits](http://michaelnielsen.org/polymath1/index.php?title=Updating_partial_sums_with_Fenwick_tree)
+- [Schorr-Waite algorithm for graph marking](https://www.cs.cornell.edu/courses/cs312/2007fa/lectures/lec21-schorr-waite.pdf)
 - GraphQL apparently don't need you to use a graph DB on the backend?
-- Partial evaluation nd automatic program generation: http://www.itu.dk/people/sestoft/pebook/jonesgomardsestoft-letter.pdf
-- Geometry algorithms: http://geomalgorithms.com/
-- Computational Geometry in C:http://cs.smith.edu/~jorourke/books/compgeom.html
-- CP book (good broad overview of all CP techniques): https://cses.fi/book/book.pdf
+- [Partial evaluation nd automatic program generation](http://www.itu.dk/people/sestoft/pebook/jonesgomardsestoft-letter.pdf)
+- [Geometry algorithms](http://geomalgorithms.com/)
+- [Computational Geometry in C](http://cs.smith.edu/~jorourke/books/compgeom.html)
 - Algebraic Curves and Riemann Surfaces (Rick Miranda)
-- https://www.cs.cornell.edu/courses/cs7491/2020sp/ (The great ISAs)
-- What you need to know about Yoneda: https://www.youtube.com/watch?v=TBtDZrPJnv8&feature=emb_logo
-- https://codeforces.com/problemset/problem/69/E
-- order statistics inside C++: https://codeforces.com/blog/entry/11080
-- trie using order statistics tree: https://ideone.com/6VFNZl
-- Matroid intersection: https://codeforces.com/blog/entry/69287
-- https://math.mit.edu/~goemans/18438F09/ advanced combinatorial optimisation
-- Collection of tricks: https://codeforces.com/blog/entry/57282
-- Wavelet trees: https://users.dcc.uchile.cl/~jperez/papers/ioiconf16.pdf
-- FFT, polynomials: https://drive.google.com/file/d/1B9BIfATnI_qL6rYiE5hY9bh20SMVmHZ7/view
-- https://en.wikipedia.org/wiki/Berlekamp%E2%80%93Massey_algorithm (find minimal polynomial for recurrence)
-- Catalan numbers: http://www.geometer.org/mathcircles/catalan.pdf
-- Polya counting: http://www.geometer.org/mathcircles/polya.pdf
-- http://www.geometer.org/mathcircles/Infinity.pdf (ordinals, with lines!)
+- [The great ISAs, a course on computer architecture as it could have been.](https://www.cs.cornell.edu/courses/cs7491/2020sp/)
+- [What you need to know about Yoneda](https://www.youtube.com/watch?v=TBtDZrPJnv8&feature=emb_logo)
+- [order statistics inside C++](https://codeforces.com/blog/entry/11080)
+- [trie using order statistics tree](https://ideone.com/6VFNZl)
+- [Matroid intersection](https://codeforces.com/blog/entry/69287)
+- [Michel X Goemans, advanced combinatorial optimisation](https://math.mit.edu/~goemans/18438F09/)
+- [Collection of competitive programming tricks](https://codeforces.com/blog/entry/57282)
+- [Wavelet trees](https://users.dcc.uchile.cl/~jperez/papers/ioiconf16.pdf)
+- [FFT, polynomials notes](https://drive.google.com/file/d/1B9BIfATnI_qL6rYiE5hY9bh20SMVmHZ7/view)
+- [Finding the minimal polynomial of a recurrence](https://en.wikipedia.org/wiki/Berlekamp%E2%80%93Massey_algorithm)
+- [About ordinals and infinity, contains some exposition from Conway](http://www.geometer.org/mathcircles/Infinity.pdf)
 - Read everything by conway: The Book of Numbers
 - Discrete Morse theory
-- Topos of monoid actions (http://176.58.104.245/NOTES/categories/M-Set.pdf)
-- An introduction to mechanics and symmetry: https://www.fis.unam.mx/~max/mecanica/b_Marsden.pdf
-- The geometry of whales and ants: https://static01.nyt.com/images/blogs/wordplay/Universe_in_Zero_Words_Copyright.pdf
+- [Topos of monoid actions](http://176.58.104.245/NOTES/categories/M-Set.pdf)
+- [An introduction to mechanics and symmetry](https://www.fis.unam.mx/~max/mecanica/b_Marsden.pdf)
+- [The geometry of whales and ants / Intro to hyperbolic geometry](https://static01.nyt.com/images/blogs/wordplay/Universe_in_Zero_Words_Copyright.pdf)
 - The Shape of Space
 - Hartree-Fock method for simulation
 - Fortune's algorithm for Delaunay triangulation
@@ -164,31 +151,28 @@ installed, use it to compute closed forms)
 - Aliens
 - Procrastination by Burka & Yuen.
 - Vehicles: Experiments in Synthetic Psychology
-- Uniform space: https://en.wikipedia.org/wiki/Uniform_space
-- https://www.youtube.com/channel/UCBLr7ISa_YDy5qeATupf26w/featured (algorithms live)
-- DFS bridges intuition: https://codeforces.com/blog/entry/68138
+- [Uniform space](https://en.wikipedia.org/wiki/Uniform_space)
+- [DFS bridges intuition](https://codeforces.com/blog/entry/68138)
 - Discrete morse theory.
-- Legendre transform: https://www.aapt.org/docdirectory/meetingpresentations/sm14/mungan-poster.pdf
-- Essentials of Control Techniques and Theory by John Billingsley
-- Halton sequence / low-discrepancy sequence
-- Three lectures on free probability: why cumulants are the correct way to think about distributions: https://arxiv.org/pdf/1205.2097.pdf
-- mlock / locking memory: https://linux.die.net/man/2/mlock
-- RETYPED NOTES OF MILNOR!!! https://oldbookstonew.blogspot.com/
-- Vector displays (https://en.wikipedia.org/wiki/Vectrex)(https://en.wikipedia.org/wiki/Vector_monitor)
-- APL idioms: http://www.softwarepreservation.org/projects/apl/Papers/MYFAVORITEIDIOM
-- No stinking loops! http://nsl.com/
+- [Legendre transform](https://www.aapt.org/docdirectory/meetingpresentations/sm14/mungan-poster.pdf)
+- [Three lectures on free probability: why cumulants are the correct way to think about distributions](https://arxiv.org/pdf/1205.2097.pdf)
+- [mlock / locking memory: https](//linux.die.net/man/2/mlock)
+- [RETYPED NOTES OF John Milnor](https://oldbookstonew.blogspot.com/)
+- [Vector displays](https://en.wikipedia.org/wiki/Vectrex)
+- [APL idioms](http://www.softwarepreservation.org/projects/apl/Papers/MYFAVORITEIDIOM)
+- [No stinking loops!](http://nsl.com/)
 - Can spaced repetition train LSTMs?
-- Anatoli fomenko artist topology spaces math art: http://chronologia.org/en/math_impressions/images.html
-- Histomorphisms and dynamorphisms: http://www.cs.ox.ac.uk/people/nicolas.wu/publications/Histomorphisms.pdf
+- [Anatoli fomenko artist topology spaces math art](http://chronologia.org/en/math_impressions/images.html)
+- [Histomorphisms and dynamorphisms](http://www.cs.ox.ac.uk/people/nicolas.wu/publications/Histomorphisms.pdf)
 - Primes of the form x2+ny2 (Good intro to algebraic number theory!)
 - An exposition of the Krohn-Rhodes decomposition theorem: http://www-verimag.imag.fr/~maler/Papers/kr-new.pdf
 - Biohazard: The Chilling True Story of the Largest Covert Biological Weapons Program in the World - Told from Inside by the Man Who Ran It
-- Mathematical methods for engineers: https://ocw.mit.edu/courses/mathematics/18-086-mathematical-methods-for-engineers-ii-spring-2006/video-lectures/
+- [Mathematical methods for engineers](https://ocw.mit.edu/courses/mathematics/18-086-mathematical-methods-for-engineers-ii-spring-2006/video-lectures/)
 - Unified Media Programming: An Algebraic Approach (uses semigroups)
 - Check if decomposition gives something useful for presburger automata??
 - Discrete Algebraic Methods: book that contains presburger AND krohn-rhodes!
-- http://beyondloom.com/blog/: list of K/APL articles.
-- https://webusers.imj-prg.fr/~leila.schneps/corr.pdf: A description of the collaboration between Serre and Grothendieck.
+- [Beyondloom: list of K/APL articles](http://beyondloom.com/blog/)
+- [A description of the collaboration between Serre and Grothendieck. Powerfully written](https://webusers.imj-prg.fr/~leila.schneps/corr.pdf)
 - Cascade Decompositions are Bit-Vector Algorithms!
 - "You just pick the speed of light squared in Minkowski space to be an
   appropriate algebraic number, and magic happens! Suddenly solutions of
@@ -201,50 +185,44 @@ installed, use it to compute closed forms)
   behaves like a 3-manifold in certain ways), but the machinery works for
   higher dimensional hyperbolic manifolds as well. "Arithmetic hyperbolic
   manifolds" is a good keyword to look for if you want to dig deeper.
-- http://math.stanford.edu/~akshay/research/takagi.pdf (a link for the above)
-- hull: filesystem to maintain state of program: http://250bpm.com/blog:153
+  [a link for the above](http://math.stanford.edu/~akshay/research/takagi.pdf)
+- [hull: using the filesystem to maintain state of program](http://250bpm.com/blog:153)
 - Dilworth's theorem: |largest antichains (pairwise incomparable elem)| = # of chains
-- Intro to condensed matter: https://podcasts.ox.ac.uk/01-introduction-condensed-matter-einstein-model-vibrations-solids
-- Andreson, more is different, anti-reductionism: http://robotics.cs.tamu.edu/dshell/cs689/papers/anderson72more_is_different.pdf
-- blog on solid state physics/Condensed matter: http://nanoscale.blogspot.com/
-- Solid state physics: https://podcasts.ox.ac.uk/series/oxford-solid-state-basics
-- Lattice differential geometry: https://arxiv.org/pdf/1802.02887.pdf
-- Gerard t'hooft list of physics lecture notes: http://www.goodtheorist.science
+- [Intro to condensed matter](https://podcasts.ox.ac.uk/01-introduction-condensed-matter-einstein-model-vibrations-solids)
+- [Andreson, more is different, anti-reductionism](http://robotics.cs.tamu.edu/dshell/cs689/papers/anderson72more_is_different.pdf)
+- [Blog on solid state physics/Condensed matter](http://nanoscale.blogspot.com/)
+- [Solid state physics basics. Has a bunch of stuff on reciprocal lattices]( https://podcasts.ox.ac.uk/series/oxford-solid-state-basics)
+- [Lattice differential geometry, a generalization of DDG](https://arxiv.org/pdf/1802.02887.pdf)
+- [Gerard t'hooft list of physics lecture notes](http://www.goodtheorist.science)
 - Red plenty: book about how people thought communism would be better economically than capitalism (SSC)
 - The machinery of freedom: 1975 book on libterterianism, feels "fresh". (SSC)
-- https://en.wikipedia.org/wiki/Bregman_divergence
-- http://mark.reid.name/blog/meet-the-bregman-divergences.html
+- [Bregman divergence, great article](http://mark.reid.name/blog/meet-the-bregman-divergences.html)
 - MAthematical methods of classical mechanics: mathematical physics book for classical mechanics.
 - Felix Klein: Development of mathematics in the 19th century: strognly encouraged by V I Arnold
-- Physics travel guide: https://physicstravelguide.com/
+- [https://physicstravelguide.com](Physics travel guide)
 - Axioms and Hulls: Book by knuth on geometry algorithms, starting axiomatically!
 - rework fuzzy to also make use of negative vectors.
 - Theorizing Contemporary Anarchism
 - Visualizing curved spacetime: Rickard M. Jonsson
 - Lycurgus of Sparta
-- Quasirandom sequences reading: http://extremelearning.com.au/unreasonable-effectiveness-of-quasirandom-sequences/
-- Prob. theory in terms of co-intuionistic variant of minimal logic: https://www.lesswrong.com/posts/QGkYCwyC7wTDyt3yT/0-and-1-are-not-probabilities?commentId=qXjDuWnzQuc9zfoJD
+- [Quasirandom sequences reading](http://extremelearning.com.au/unreasonable-effectiveness-of-quasirandom-sequences/)
+- [Prob. theory in terms of co-intuionistic variant of minimal logic](https://www.lesswrong.com/posts/QGkYCwyC7wTDyt3yT/0-and-1-are-not-probabilities?commentId=qXjDuWnzQuc9zfoJD)
 - Is the a relationship between kernels, level sets (kernel is a level set), lagrange multipliers,
   discrete morse theory? [which talks about critical points].
-- The power of prolog: proper prolog tutorials! https://www.metalevel.at/prolog
+- [The power of prolog: proper prolog tutorials!](https://www.metalevel.at/prolog)
 - The Elements of Style: writing advice.
-- Gordon Plotkin pisa notes on domain theory: http://homepages.inf.ed.ac.uk/gdp/publications/Domains_a4.ps
-- Algorithm to decompose number into sum of 4 primes: https://www.alpertron.com.ar/4SQUARES.HTM
-- Jack Cremshaw's article on building compilers mixing parsing with codegen: https://compilers.iecc.com/crenshaw/.
-  Can we write fast C compilers this way? probably not, due to preprocessor :(
-  Can we get fast Pascal commpilers thigs way? Maybe...
+- [Gordon Plotkin pisa notes on domain theory](http://homepages.inf.ed.ac.uk/gdp/publications/Domains_a4.ps)
+- [Algorithm to decompose number into sum of 4 primes](https://www.alpertron.com.ar/4SQUARES.HTM)
+- [Jack Cremshaw's article on building compilers mixing parsing with codegen / Single-pass compilers](https://compilers.iecc.com/crenshaw/).  Can we write fast C compilers this way? probably not, due to preprocessor :( Can we get fast Pascal commpilers thigs way? Maybe...
 - The Zen of Code Optimization ---  The Ultimate Guide to Writing Software That Pushes PCs to the Limit: Low level programming tricks.
 - Hacker's Delight.
-- Agner fog: dude who maintains info about X86 optimiation: https://www.agner.org/optimize/
-- F -G- K -H- L. What is Gal(F/L) where Gal(F/K) = G, Gal(K/L) = H? 
-  I think G semi H
-- moment map reading: https://www.math.columbia.edu/~woit/wordpress/?p=7146
-- Thinking of `H_X = i_X ω` as some kind of "inverting" ω?
-- http://www.math.columbia.edu/~woit/QM/qmbook.pdf: Ch 13 and 14 cover moment maps.
-- https://polyscope.run/: geometry processing library.
-- List of contradictory truisms with an enjoyable flavour; https://www.cs.utexas.edu/~field/holzer/truisms.txt
-- C-w for "wipe out" in emacs. List of similar mnemonics: https://caiorss.github.io/Emacs-Elisp-Programming/Keybindings.html
-- https://www.amazon.com/Build-your-own-working-robot/dp/0830668411: Build your own working robot.
+- [Agner fog: dude who maintains info about X86 optimiation](https://www.agner.org/optimize/)
+- [More moment map reading](https://www.math.columbia.edu/~woit/wordpress/?p=7146)
+- [Book whose Ch 13 and 14 cover moment maps](http://www.math.columbia.edu/~woit/QM/qmbook.pdf)
+- [Polyscope: geometry processing library](https://polyscope.run/)
+- [List of contradictory truisms with an enjoyable flavour](https://www.cs.utexas.edu/~field/holzer/truisms.txt)
+- C-w stands for for "wipe out" in emacs. [List of similar mnemonics](https://caiorss.github.io/Emacs-Elisp-Programming/Keybindings.html)
+- [Build your own working robot](https://www.amazon.com/Build-your-own-working-robot/dp/0830668411)
 - Take birkhoff polytope; is a polytope, can build discrete diff geo
   around it. consider tangent spaces. now perform DHMC on this space?
   Problem is that the "interesting" points are vertices, so we may
@@ -254,37 +232,32 @@ installed, use it to compute closed forms)
 - VC dimension as matroid?
 - How to Write a Sentence: how to get better at writing.
 - Bugs in writing: a guide to debugging you prose.
-- The chicago manual of style.
-- http://bactra.org/reviews/badii-and-politi/: Hierarchical Structures and Scaling in Physics
-- Scott Aaronson review of A new kind of science: 'https://arxiv.org/abs/quant-ph/0206089'
+- The chicago manual of style, for styling on how to write.
+- [Hierarchical Structures and Scaling in Physics](http://bactra.org/reviews/badii-and-politi/)
 - Conversation with arjit about iheritance versus composition. Ie, `SourcePanel : public Panel` versus
   `Panel a = ...; type SourcePanel = Panel Source`.
-- Flat assembler (https://flatassembler.net/docs.php): assembler with very strong macro support.
+- [Flat assembler](https://flatassembler.net/docs.php): assembler with very strong macro support.
 - HLA (high-level-assembler): assembler with a huge STDLIB, C-like-syntax and pattern matching.
-- Lens over tea: https://artyom.me/lens-over-tea-1
+- [Lens over tea](https://artyom.me/lens-over-tea-1)
 - Galculator: proof assistant using galois connections.
-- Topos theory: https://www.youtube.com/watch?v=o-yBDYgUqZQ
-- Tropical fourier transform is a legendre transform?! https://mathoverflow.net/a/80719/123769: https://arxiv.org/pdf/1005.1247.pdf, https://github.com/dpiponi/Legendre/blob/master/legendre.pdf
-- Jet bundles: https://math.stackexchange.com/questions/3626040/introductory-material-for-jets-and-jet-bundles
-- Lagrangian submanifolds: https://mathoverflow.net/questions/60201/what-is-a-lagrangian-submanifold-intuitively
-- Intro to Scheme theory: https://www.math.toronto.edu/dburbani/work/schemes.pdf
-- Church encoding / BÖHM-BERARDUCCI:  http://oleg.fi/gists/posts/2019-06-26-linear-church-encodings.html#short-review-of-b%C3%B6hm-berarducci-encoding
-- Synthesis: self-modifying kernel: http://www.scs.stanford.edu/nyu/04fa/sched/readings/synthesis.pdf
-- Strong towns, we've built cities we cannot afford: https://www.strongtowns.org/journal/2020/4/8/weve-built-cities-we-cant-afford
+- [Topos theory videos](https://www.youtube.com/watch?v=o-yBDYgUqZQ)
+- Tropical fourier transform is a legendre transform?! [mathoverflow](https://mathoverflow.net/a/80719/123769), [arxiv](https://arxiv.org/pdf/1005.1247.pdf), [Dan Piponi's notes](https://github.com/dpiponi/Legendre/blob/master/legendre.pdf)
+- [Jet bundles](https://math.stackexchange.com/questions/3626040/introductory-material-for-jets-and-jet-bundles)
+- [Lagrangian submanifolds](https://mathoverflow.net/questions/60201/what-is-a-lagrangian-submanifold-intuitively)
+- [Intro to Scheme theory](https://www.math.toronto.edu/dburbani/work/schemes.pdf)
+- [Church encoding / BÖHM-BERARDUCCI](http://oleg.fi/gists/posts/2019-06-26-linear-church-encodings.html#short-review-of-b%C3%B6hm-berarducci-encoding)
+- [Synthesis: self-modifying kernel](http://www.scs.stanford.edu/nyu/04fa/sched/readings/synthesis.pdf)
+- [Strong towns, we've built cities we cannot afford](https://www.strongtowns.org/journal/2020/4/8/weve-built-cities-we-cant-afford)
 - Why Nation Fails, How democracies die
 - Chronicles of Wasted Time
-- https://en.wikipedia.org/wiki/Hysterical_realism: a genre of writing that includes Infinite Jest.
-  I might really enjoy it, from the sound of things.
-- sizecoding.org: how to build demos, wealth of demoscene knowledge! shows basic MSdos getting started.
-   http://www.sizecoding.org/wiki/Memories#Introduction
-- pouet.net: demoscene group: https://www.pouet.net/prod.php?which=85227
-- subreddit for tiny code/demoscene: https://www.reddit.com/r/tinycode/
+- [Hysterical Realism: a genre of writing that includes Infinite Jest.  I might really enjoy it, from the sound of things](https://en.wikipedia.org/wiki/Hysterical_realism)
+- [`sizecoding.org` how to build demos, wealth of demoscene knowledge! shows basic MSdos getting started](http://www.sizecoding.org/wiki/Memories#Introduction)
+- [`pouet.net` demoscene group](https://www.pouet.net/prod.php?which=85227)
+- [subreddit for tiny code/demoscene: `tinycode`](https://www.reddit.com/r/tinycode/)
 - lock picking!
-- https://www.chessprogramming.org: they usually have the best knowledge of obscure ASM
-  instructions.
+- [Chess Programming: they usually have the best knowledge of obscure ASM instructions](https://www.chessprogramming.org)
 - PROCEDURAL GENERATION TODO: video of alabama shakes future people.
 - Learn how to free associate when writing/rhyming. Gold standard: Can't stop, RHCP.
-- My mental model for array indexes (indexes point b/w elements) https://blog.nelhage.com/2015/08/indices-point-between-elements/
   Think of a good _algebra_ for this duality between "slots" and "indexes"
 - ponder an algebra that gives us _segments_: ie, given a list, gives us [left..right],
   given a tree, gives us subtree representation (eg. recover euler tour?)
@@ -293,23 +266,20 @@ installed, use it to compute closed forms)
   is linked list, in dense form is array. `tree a = nil | branch a (tree a) (tree a)` in
   sparse form is tree, in dense form is some dense repr. `complete a = leaf a | branch (complete a) (complete a)`
   is tree in sparse form, heap in dense form.
-- https://www.flipcode.com/archives/The_Coverage_Buffer_C-Buffer.shtml: demoscene, rasterization, etc.
-- Extend discussion of topology of computation with Sierpinski space.
-- https://mirtitles.org/: Collection of Russian books on math.
-- Kinematic method for geometry: https://mirtitles.org/2018/05/04/the-kinematic-method-in-geometrical-problems-lyubich-shor/
-- Operational methods: https://mirtitles.org/2018/10/13/operational-methods-maslov/ [theory of distributions]
-- Big list of cybernetics books: https://mirtitles.org/category/computers/
-- The world is built on proabbility (thermodynamics <-> entropy): https://mirtitles.org/2013/09/13/the-world-is-built-on-probability-tarasov/
-- Computational mathematics: https://mirtitles.org/2012/12/26/computational-mathematics-demidovich-maron/
-- Percolation theory: https://mirtitles.org/2011/11/28/science-for-everyone-physics-and-geometry-of-disorder-percolation-theory/
-- A simple non euclidian geometry and its physical basis: https://mirtitles.org/2018/04/24/a-simple-non-euclidean-geometry-and-its-physical-basis-yaglom/
-- Theory of elasiticity: https://mirtitles.org/2017/01/20/theory-of-elasticity-filonenko-borodich/
-- Plasma physics: https://mirtitles.org/2018/04/22/plasma-physics-kadomtsev-ed/
-- Semiconductors: seems to contain explanations of how to use semiconductors. https://mirtitles.org/2018/04/21/semiconductors-testing-and-adjusting-green-shokalsky/
-- Laser physics: https://mirtitles.org/2013/09/17/laser-physics-tarasov/
-- Problems in differential geometry and topology: https://mirtitles.org/2016/06/05/problems-in-differential-geometry-and-topology-mishchenko-solovyev-fomenko/
-- Linear algebra and multidimensional geometry: https://mirtitles.org/2020/02/13/4129/
-  contains use of reciprocal basis!
+- [Flipcode: demoscene, rasterization, etc.](https://www.flipcode.com/archives/The_Coverage_Buffer_C-Buffer.shtml)
+- [Mir: Kinematic method for geometry, contains a lot about  barycentric coordinates](https://mirtitles.org/2018/05/04/the-kinematic-method-in-geometrical-problems-lyubich-shor/)
+- [Mir: Operational methods](https://mirtitles.org/2018/10/13/operational-methods-maslov/). Has theory of distributions.
+- [Mir: Big list of cybernetics books](https://mirtitles.org/category/computers/)
+- [Mir: The world is built on proabbility (thermodynamics <-> entropy)](https://mirtitles.org/2013/09/13/the-world-is-built-on-probability-tarasov/)
+- [Mir: Computational mathematics](https://mirtitles.org/2012/12/26/computational-mathematics-demidovich-maron/)
+- [Mir: Percolation theory: Physics and Geometry of disorder]( https://mirtitles.org/2011/11/28/science-for-everyone-physics-and-geometry-of-disorder-percolation-theory/)
+- [Mir: A simple non euclidian geometry and its physical basis](https://mirtitles.org/2018/04/24/a-simple-non-euclidean-geometry-and-its-physical-basis-yaglom/)
+- [Mir: Theory of elasiticity](https://mirtitles.org/2017/01/20/theory-of-elasticity-filonenko-borodich/)
+- [Mir: Plasma physics](https://mirtitles.org/2018/04/22/plasma-physics-kadomtsev-ed/)
+- [Semiconductors: seems to contain explanations of how to use semiconductors](https://mirtitles.org/2018/04/21/semiconductors-testing-and-adjusting-green-shokalsky/)
+- [Mir: Laser physics](https://mirtitles.org/2013/09/17/laser-physics-tarasov/)
+- [Mir: Problems in differential geometry and topology](https://mirtitles.org/2016/06/05/problems-in-differential-geometry-and-topology-mishchenko-solovyev-fomenko/)
+- [Mir: Linear algebra and multidimensional geometry](https://mirtitles.org/2020/02/13/4129/). Contains use of reciprocal basis!
 - Style: lessons in clarity and grace.
 - Multivariate Calculus and Geometry: has intro to gaussian curvature, theory of surfaces in 3D.
 - [Word problems in russia and america: scathing critique of how american math education is screwed](http://toomandre.com/travel/sweden05/WP-SWEDEN-NEW.pdf)
@@ -331,7 +301,7 @@ installed, use it to compute closed forms)
 - The derivative operator: paper by ken iverson that generalizes derivative to jacobian, curl, whatnot. 
 - [Combinatorial manifolds / tropical style manifold](https://en.wikipedia.org/wiki/Piecewise_linear_manifold)
 - Noncommutative rational series with applications [They work with coefficients in an arbitrary semiring, which can be like watching paint]
-- Evolution of eusociality: https://en.wikipedia.org/wiki/Evolution_of_eusociality
+- [Evolution of eusociality](https://en.wikipedia.org/wiki/Evolution_of_eusociality)
 - Financial Shenanigans by Howard M Schiit. 
 - lying for money, The Match King, The Smartest Guys in the Room, Bad Blood, Billion Dollar Whale
 - [Great works in programming languages](https://www.cis.upenn.edu/~bcpierce/courses/670Fall04/GreatWorksInPL.shtml)
@@ -340,9 +310,8 @@ installed, use it to compute closed forms)
 - Errett Bishop: Constructive Analysis
 - [Theory of elites: Theh italian school of elitism](https://en.wikipedia.org/wiki/Elite_theory#Italian_school_of_elitism)
 - [Multiplicative weight update algorithm: contains gradient descent and sampling-like algorithms as close cousins](https://jeremykun.com/tag/multiplicative-weights-update-algorithm/)
-- Regular Car Reviews: 2012 Toyota FJ Cruiser. Explaning simulation v/s simulacra through
-  a car review. Jean Baudillard.
-- Simulacra v/s simulacra, discussion on hackernews: https://news.ycombinator.com/item?id=23154141
+- Regular Car Reviews: 2012 Toyota FJ Cruiser. Explaning simulation v/s simulacra through a car review. Jean Baudillard.
+- [Simulacra v/s simulacra, discussion on hackernews](https://news.ycombinator.com/item?id=23154141)
 - Learn semantics of javascript: `function mk() { let inner =  function() { console.warn(this.x)}; inner = inner.bind({x: 42}); inner.x = -42; return inner; }; mk()(); console.log(mk().x);`. NOTE: this behaviour changes if `inner` is an arrow function. What are the denotational semantics of this?
 - Queueing Theory.
 - [https://codeforces.com/blog/entry/77551](generating functions for CP)
