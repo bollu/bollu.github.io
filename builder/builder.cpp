@@ -1216,7 +1216,7 @@ const char htmlbegin[] =
 "html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } "
 "body {"
 " background-color: #FFFFFF; color: #000000; " // tufte
-" font-family: 'Blog Text', monospace; font-size: 20px; line-height: 1.4em; "
+" font-family: 'Blog Text', sans-serif; font-size: 20px; line-height: 1.4em; "
 " max-width: 100%; }"
 "\n"
 // img as a block
