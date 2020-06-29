@@ -32,13 +32,14 @@
                 return elem;
             };
 
-            function create_edge(x, y, w, h, click) {
-                const elem = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-                elem.setAttribute("x", x);
-                elem.setAttribute("y", y);
-                elem.setAttribute("width", w);
-                elem.setAttribute("height", h);
-                elem.setAttribute("fill", "#E91E63");
+            function create_edge(x1, y1, x2, y2, w, click) {
+                const elem = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                elem.setAttribute("x1", x1);
+                elem.setAttribute("y1", y1);
+                elem.setAttribute("x2", x2);
+                elem.setAttribute("y2", y2);
+                elem.setAttribute("stroke-width", w);
+                elem.setAttribute("stroke", "#E91E63");
                 elem.addEventListener("click", () => { click(elem); });
                 svg.appendChild(elem);
                 return elem;
@@ -49,9 +50,18 @@
                 let prod = 1; for(let i = 1; i <= n; ++i) { prod *= i; } return prod;
             }
 
-            const X = 100;
-            const Y = 6;
+            const X = 10;
+            const Y = 10;
             const XY = X * Y;
+
+            function ix(x, y) {
+                console.assert(x >= 0);
+                console.assert(y >= 0);
+                console.assert(x < X);
+                console.assert(y < Y);
+                return x*Y+y;
+            }
+
             const infty = 100000;
             adj = [];
             for(let i = 0; i < XY; i++) { 
@@ -61,22 +71,44 @@
             
 
             // const maxdist = fact(Y);
-            const maxdist = 2.0;
+            const maxdist = 10.0;
+
             // (x, y) -> (x+1, y)
             for(let y = 0; y < Y; ++y) {
                 for(let x = 0; x < X-1; ++x) {
-                        adj[x*Y+y][(x+1)*Y+y] = maxdist / (y+1);
-                        adj[(x+1)*Y+y][x*Y+y] = maxdist / (y+1);
+                        adj[ix(x, y)][ix(x+1, y)] = maxdist / (y+1);
+                        adj[ix(x+1, y)][ix(x, y)] = maxdist / (y+1);
                 }
             }
 
             // (x, y) -> (x, y+1)
             for(let x = 0; x < X; ++x) {
                 for(let y = 0; y < Y-1; ++y) {
-                    adj[x*Y+y][x*Y+(y+1)] = 1;
-                    adj[x*Y+(y+1)][x*Y+y] = 1;
+                    adj[ix(x, y)][ix(x, y+1)] = 1;
+                    adj[ix(x, y+1)][ix(x, y)] = 1;
                 }
             }
+
+            // (x, y) -> (x+1, y+1)
+            for(let x = 0; x < X-1; ++x) {
+                for(let y = 0; y < Y-1; ++y) {
+                    // avg of (x, y) -> (x+1, y) and (x+1, y) -> (x+1, y+1)
+                    const wt = 0.5 * (adj[ix(x, y)][ix(x+1, y)] + adj[ix(x+1, y)][ix(x+1, y+1)]);
+                    adj[ix(x, y)][ix(x+1, y+1)] = wt
+                    adj[ix(x+1, y+1)][ix(x, y)] = wt;
+                }
+            }
+
+            // (x, y) -> (x+1, y-1) [/]
+            for(let x = 0; x < X-1; ++x) {
+                for(let y = 1; y < Y; ++y) {
+                    // avg of (x, y) -> (x+1, y) and (x+1, y) -> (x+1, y-1)
+                    const wt = 0.5 * (adj[ix(x, y)][ix(x+1, y)] + adj[ix(x+1, y)][ix(x+1, y-1)]);
+                    adj[ix(x, y)][ix(x+1, y-1)] = wt
+                    adj[ix(x+1, y-1)][ix(x, y)] = wt;
+                }
+            }
+
 
             console.table(adj);
 
@@ -121,9 +153,9 @@
             single_source_shortest_path();
             
             
-            const RADIUS = 8; const RECTFATNESS = 10;
-            const X_PAD_LEFT = 30; const X_GAP = 20;
-            const Y_PAD_TOP = 30; const Y_GAP = 20;
+            const RADIUS = 10; const RECTFATNESS = 4;
+            const X_PAD_LEFT = 100; const X_GAP = 30;
+            const Y_PAD_TOP = 50; const Y_GAP = 30;
           
             
             let edges = []
@@ -135,15 +167,16 @@
             for (let x = 0; x < X; ++x) {
                 for(let y = 0; y < Y - 1; ++y) {
                     const e = 
-                        create_edge(X_PAD_LEFT + x*X_GAP - RECTFATNESS / 2,
+                        create_edge(X_PAD_LEFT + x*X_GAP,
                                     Y_PAD_TOP + y*Y_GAP,
+                                    X_PAD_LEFT + x*X_GAP,
+                                    Y_PAD_TOP + (y+1)*Y_GAP,
                                     RECTFATNESS,
-                                    Y_GAP,
                                     function() {
-                            console.log("edge (" + x + ", " + y + ") --(" + adj[x*Y+y][x*Y+(y+1)]  + ")--> " + "(" + (x+1) + ", " + y + ")");
+                            console.log("edge (" + x + ", " + y + ") --(" + adj[ix(x, y)][ix(x, y+1)]  + ")--> " + "(" + (x+1) + ", " + y + ")");
                     }); 
-                    edges[x*Y+y][x*Y+(y+1)] = e;
-                    edges[x*Y+(y+1)][x*Y+y] = e;
+                    edges[ix(x, y)][ix(x, y+1)] = e;
+                    edges[ix(x, y+1)][ix(x, y)] = e;
                     e.setAttribute("opacity", 0.2);
                 }
             }
@@ -152,18 +185,58 @@
             for (let x = 0; x < X-1; ++x) {
                 for(let y = 0; y < Y; ++y) {
                     const e = 
-                        create_edge(X_PAD_LEFT + x*X_GAP,
-                                    Y_PAD_TOP + y*Y_GAP - RECTFATNESS / 2,
-                                    X_GAP,
+                    create_edge(X_PAD_LEFT + x*X_GAP,
+                                    Y_PAD_TOP + y*Y_GAP,
+                                    X_PAD_LEFT + (x+1)*X_GAP,
+                                    Y_PAD_TOP + y*Y_GAP,
                                     RECTFATNESS,
                                     function() {
-                        console.log("edge (" + x + ", " + y + ") --(" + adj[x*Y+y][(x+1)*Y+y]  + ")--> " + "(" + (x+1) + ", " + y + ")");
+                        console.log("edge (" + x + ", " + y + ") --(" + adj[ix(x, y)][ix(x+1, y)]  + ")--> " + "(" + (x+1) + ", " + y + ")");
                     });
-                    edges[x*Y+y][(x+1)*Y+y] = e;
-                    edges[(x+1)*Y+y][x*Y+y] = e;
+                    edges[ix(x, y)][ix(x+1, y)] = e;
+                    edges[ix(x+1, y)][ix(x, y)] = e;
                     e.setAttribute("opacity", 0.2);
                 }
             }
+
+            // make edges (x, y) -> (x+1, y+1)  [\]
+            for (let x = 0; x < X-1; ++x) {
+                for(let y = 0; y < Y-1; ++y) {
+                    const e = 
+                    create_edge(X_PAD_LEFT + x*X_GAP,
+                                    Y_PAD_TOP + y*Y_GAP,
+                                    X_PAD_LEFT + (x+1)*X_GAP,
+                                    Y_PAD_TOP + (y+1)*Y_GAP,
+                                    RECTFATNESS,
+                                    function() {
+                        console.log("edge (" + x + ", " + y + ") --(" + adj[ix(x, y)][ix(x+1, y)]  + ")--> " + "(" + (x+1) + ", " + y + ")");
+                    });
+                    edges[ix(x, y)][ix(x+1, y+1)] = e;
+                    edges[ix(x+1, y+1)][ix(x, y)] = e;
+                    e.setAttribute("opacity", 0.2);
+                }
+            }
+
+
+
+            // make edges (x, y)  -> (x+1, y-1) [/]
+            for (let x = 0; x < X-1; ++x) {
+                for(let y = 1; y < Y; ++y) {
+                    const e = 
+                    create_edge(X_PAD_LEFT + x*X_GAP,
+                                    Y_PAD_TOP + y*Y_GAP,
+                                    X_PAD_LEFT + (x+1)*X_GAP,
+                                    Y_PAD_TOP + (y-1)*Y_GAP,
+                                    RECTFATNESS,
+                                    function() {
+                        console.log("edge (" + x + ", " + y + ") --(" + adj[ix(x, y)][ix(x+1, y)]  + ")--> " + "(" + (x+1) + ", " + y + ")");
+                    });
+                    edges[ix(x, y)][(x+1)*Y+(y-1)] = e;
+                    edges[(x+1)*Y+(y-1)][ix(x, y)] = e;
+                    e.setAttribute("opacity", 0.2);
+                }
+            }
+
 
             function hide_all_edges() {
                 for(let i = 0; i < XY; i++) {
@@ -181,7 +254,7 @@
                 circles[x] = [];
                 for(let y = 0; y < Y; ++y) {
                     circles[x][y] = create_circle(X_PAD_LEFT + x * X_GAP, Y_PAD_TOP + y * Y_GAP, RADIUS, function() {
-                        console.log("circle (" + x + ", " + y + "): dist: " + dists[x*Y+y]);
+                        console.log("circle (" + x + ", " + y + "): dist: " + dists[ix(x, y)]);
                         hide_all_edges();
                         let cur = x * Y + y;
                         while(cur != 0) {
