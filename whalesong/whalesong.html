@@ -1,0 +1,204 @@
+<!-- https://gomakethings.com/detecting-click-events-on-svgs-with-vanilla-js-event-delegation/ -->
+<!DOCTYPE html>
+<meta charset='UTF-8'>
+<html>
+    <body>
+        <div id="container"></div>
+    </body>
+
+    <script>
+            const container = document.getElementById("container");
+            const width = 1200;
+            const height = 500;
+            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.setAttribute("width", width + "px");
+            svg.setAttribute("height", height + "px");
+            svg.setAttribute("viewBox", `0 0 ${width} ${height}`)
+            svg.setAttribute("font-family", "monospace");
+
+            const GRAY = "#607D8B";
+            const BLUE = "#1a73e8";
+
+            function create_circle(cx, cy, r, onclick) {
+                const elem = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                elem.setAttribute("cy", cy);
+                elem.setAttribute("cx", cx);
+                elem.setAttribute("r", r);
+                elem.setAttribute("fill", BLUE);
+                elem.addEventListener("click", () => { onclick(elem); });
+                elem.addEventListener("mouseover", () => { onclick(elem); });
+
+                svg.appendChild(elem);
+                return elem;
+            };
+
+            function create_edge(x, y, w, h, click) {
+                const elem = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                elem.setAttribute("x", x);
+                elem.setAttribute("y", y);
+                elem.setAttribute("width", w);
+                elem.setAttribute("height", h);
+                elem.setAttribute("fill", "#E91E63");
+                elem.addEventListener("click", () => { click(elem); });
+                svg.appendChild(elem);
+                return elem;
+            }
+
+
+            function fact(n) {
+                let prod = 1; for(let i = 1; i <= n; ++i) { prod *= i; } return prod;
+            }
+
+            const X = 100;
+            const Y = 6;
+            const XY = X * Y;
+            const infty = 100000;
+            adj = [];
+            for(let i = 0; i < XY; i++) { 
+                adj[i] = [];         
+                for(let j = 0; j < XY; ++j) { adj[i][j] = infty; }
+            }
+            
+
+            // const maxdist = fact(Y);
+            const maxdist = 2.0;
+            // (x, y) -> (x+1, y)
+            for(let y = 0; y < Y; ++y) {
+                for(let x = 0; x < X-1; ++x) {
+                        adj[x*Y+y][(x+1)*Y+y] = maxdist / (y+1);
+                        adj[(x+1)*Y+y][x*Y+y] = maxdist / (y+1);
+                }
+            }
+
+            // (x, y) -> (x, y+1)
+            for(let x = 0; x < X; ++x) {
+                for(let y = 0; y < Y-1; ++y) {
+                    adj[x*Y+y][x*Y+(y+1)] = 1;
+                    adj[x*Y+(y+1)][x*Y+y] = 1;
+                }
+            }
+
+            console.table(adj);
+
+            let dists = [];
+            let parents = [];
+            for(var i = 0; i < XY; ++i) { dists[i] = infty; parents[i] = -1; }
+            dists[0] = 0;
+
+            function single_source_shortest_path() {
+                let q = [];
+                q.push({ "cur": 0, "parent":0, "dist":0});
+
+                while(q.length > 0) {
+                    // ascending order by dist
+                    q.sort(function (a, b) { return a["dist"] - b["dist"]; });
+                    console.log("q: ");
+                    console.table(q);
+                    const v = q.shift(1);
+                    console.log("v:"  , v);
+
+                    if (parents[v["cur"]] != -1) { continue; }
+                    // not an improvement on current known. skip.
+                    // if (dists[v["cur"]] <= v["dist"]) {
+                    //     continue;
+                    // }
+
+                    parents[v["cur"]] = v["parent"];
+                    dists[v["cur"]] = v["dist"];
+
+                    for(let i = 0; i < XY; ++i) {
+                        const curdist = adj[v["cur"]][i]; 
+                        if (curdist == infty) { continue; }
+                        console.log("adjcent: " + v["cur"] + " -> " + i)
+                        q.push({"cur":i, "parent":v["cur"], "dist": v["dist"] + curdist});
+                    }
+                }
+                
+                console.table(dists);
+                console.table(parents);
+            }
+
+            single_source_shortest_path();
+            
+            
+            const RADIUS = 8; const RECTFATNESS = 10;
+            const X_PAD_LEFT = 30; const X_GAP = 20;
+            const Y_PAD_TOP = 30; const Y_GAP = 20;
+          
+            
+            let edges = []
+            for (let i = 0; i < XY; ++i) {
+                edges[i] = [];
+            }
+
+            // make edges (x, y) -> (x, y+1)
+            for (let x = 0; x < X; ++x) {
+                for(let y = 0; y < Y - 1; ++y) {
+                    const e = 
+                        create_edge(X_PAD_LEFT + x*X_GAP - RECTFATNESS / 2,
+                                    Y_PAD_TOP + y*Y_GAP,
+                                    RECTFATNESS,
+                                    Y_GAP,
+                                    function() {
+                            console.log("edge (" + x + ", " + y + ") --(" + adj[x*Y+y][x*Y+(y+1)]  + ")--> " + "(" + (x+1) + ", " + y + ")");
+                    }); 
+                    edges[x*Y+y][x*Y+(y+1)] = e;
+                    edges[x*Y+(y+1)][x*Y+y] = e;
+                    e.setAttribute("opacity", 0.2);
+                }
+            }
+
+            // make edges (x, y) -> (x+1, y)
+            for (let x = 0; x < X-1; ++x) {
+                for(let y = 0; y < Y; ++y) {
+                    const e = 
+                        create_edge(X_PAD_LEFT + x*X_GAP,
+                                    Y_PAD_TOP + y*Y_GAP - RECTFATNESS / 2,
+                                    X_GAP,
+                                    RECTFATNESS,
+                                    function() {
+                        console.log("edge (" + x + ", " + y + ") --(" + adj[x*Y+y][(x+1)*Y+y]  + ")--> " + "(" + (x+1) + ", " + y + ")");
+                    });
+                    edges[x*Y+y][(x+1)*Y+y] = e;
+                    edges[(x+1)*Y+y][x*Y+y] = e;
+                    e.setAttribute("opacity", 0.2);
+                }
+            }
+
+            function hide_all_edges() {
+                for(let i = 0; i < XY; i++) {
+                    for(let j = 0; j < XY; j++) {
+                        if (edges[i][j] !== undefined) {
+                            edges[i][j].setAttribute("opacity", 0.2);
+                        }
+                    }
+                
+                }
+            }
+
+            let circles = [];
+            for(let x = 0; x < X; ++x) {
+                circles[x] = [];
+                for(let y = 0; y < Y; ++y) {
+                    circles[x][y] = create_circle(X_PAD_LEFT + x * X_GAP, Y_PAD_TOP + y * Y_GAP, RADIUS, function() {
+                        console.log("circle (" + x + ", " + y + "): dist: " + dists[x*Y+y]);
+                        hide_all_edges();
+                        let cur = x * Y + y;
+                        while(cur != 0) {
+                            let prev = parents[cur];
+                            console.log("cur: ", cur,
+                            "curx:", Math.floor(cur/Y), "cury: " , cur%Y,
+                            "prevx: ", Math.floor(prev/Y), "prevy: ", prev%Y);
+
+                            edges[prev][cur].setAttribute("opacity", 1.0); 
+                            prev = cur;
+                            cur = parents[cur];
+                                                        
+                        }
+                    });
+                    // circles[x][y].setAttribute("opacity", ((y + 1) / Y));
+                }
+            }
+            container.appendChild(svg); 
+    </script>
+</html>
