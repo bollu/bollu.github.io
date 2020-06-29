@@ -1,27 +1,21 @@
-<!DOCTYPE html><meta charset='UTF-8'><html><head><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-regular.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 20px; line-height: 1.4em;  max-width: 100%; }
-img { display:block; }.container { margin-left: 20%; margin-right: 10%; }.image { }
-a:hover { color: #1a73e8; text-decoration: underline;  }
-a { color: #1a73e8; text-decoration: none; }
-a:visited { color: #1a73e8; text-decoration: none; }
-a:active { color: #1a73e8; text-decoration: none; }
-
- .code, .latexblock, blockquote { border-left-color:#000000;  border-left-style: solid;      border-left-width: 4px; }.code pre, blockquote { padding-left: 2em; }
- .code { font-family: 'Blog Mono', monospace; line-height: 1.2em; font-size: 90%;  } .latexblock, .latexinline { font-family: 'Blog Symbol', monospace; letter-spacing: 1px; }.latexblock, blockquote, .code, code { margin-top: 30px; margin-bottom: 30px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
-.latexinline { padding-left: 2px; padding-right: 2px; white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.latexblock .li-itemize{margin:1ex 0ex;}.latexblock .li-enumerate{margin:1ex 0ex;}.latexblock .footnotetext{margin:0ex; padding:0ex;}.latexblock div.footnotetext P{margin:0px; text-indent:1em;}.latexblock .thefootnotes{text-align:left;margin:0ex;}.latexblock .dt-thefootnotes{margin:0em;}.latexblock .dd-thefootnotes{margin:0em 0em 0em 2em;}.latexblock .footnoterule{margin:1em auto 1em 0px;width:50%;}.latexblock .caption{padding-left:2ex; padding-right:2ex; margin-left:auto; margin-right:auto}.latexblock .title{margin:2ex auto;text-align:center}.latexblock .titlemain{margin:1ex 2ex 2ex 1ex;}.latexblock .center{text-align:center;margin-left:auto;margin-right:auto;}.latexblock .flushleft{text-align:left;margin-left:0ex;margin-right:auto;}.latexblock .flushright{text-align:right;margin-left:auto;margin-right:0ex;}.latexblock div table{margin-left:inherit;margin-right:inherit;margin-bottom:2px;margin-top:2px}.latexblock td table{margin:auto;}.latexblock table{border-collapse:collapse;}.latexblock td{padding:0;}.latexblock .cellpadding0 tr td{padding:0;}.latexblock .cellpadding1 tr td{padding:1px;}.latexblock pre{text-align:left;margin-left:0ex;margin-right:auto;}.latexblock blockquote{margin-left:4ex;margin-right:4ex;text-align:left;}.latexblock td p{margin:0px;}.latexblock .hbar{border:none;height:2px;width:100%;background-color:black;}.latexblock .display{border-collapse:separate;border-spacing:2px;width:auto; border:none;}.latexblock .dcell{white-space:nowrap;padding:0px; border:none;}.latexblock .dcenter{margin:0ex auto;}.latexblock .theorem{text-align:left;margin:1ex auto 1ex 0ex;}.latexblock .tst{font-family:sans;font-style:oblique;color:maroon}.latexblock .highlight{color:lime}</style></head><body><div class='container'>
-
-
-
+<!--https://gomakethings.com/detecting-click-events-on-svgs-with-vanilla-js-event-delegation/-->
+<!-- <!DOCTYPE html> -->
+<!-- <meta charset='UTF-8'> -->
+<!-- <html> -->
     
+<!-- <body> -->
+# Whalesong
 
-<h2><a id=whalesong href='#whalesong'> § </a> Whalesong</h2>
 <img src="./whalesong-picture.jpg">
+
 I first heard that whales experience non-euclidian geometry at the splendid
-<a href=https://static01.nyt.com/images/blogs/wordplay/Universe_in_Zero_Words_Copyright.pdf>'The non-Euclidian geometry of whales and ants'</a>.
-It set of a cascade of thoughts, along the lines of <a href=https://warwick.ac.uk/fac/cross_fac/iatl/study/ugmodules/humananimalstudies/lectures/32/nagel_bat.pdf>'what is it like to be a bat'</a>. 
+['The non-Euclidian geometry of whales and ants'](https://static01.nyt.com/images/blogs/wordplay/Universe_in_Zero_Words_Copyright.pdf).
+It set of a cascade of thoughts, along the lines of ['what is it like to be a bat'](https://warwick.ac.uk/fac/cross_fac/iatl/study/ugmodules/humananimalstudies/lectures/32/nagel_bat.pdf). 
 I find it pleasurable to attempt to perceive the world as these beings might,
 whose perception of the world is so non-Euclidian. So I set off to learn
 more, and hopefully try and simulate this phenomena to get a better
 intuition for it.
+
 It's djikstras on a graph, where the edge lengths are obtained by discretizing
 hyperbolic space so the single-source shortest paths discovered by djikstras is
 a reasonable approximation of the real shortest paths in hyperbolic space Ah,
@@ -30,8 +24,14 @@ due to depth, sound "bends" inside water, leading to the shortest paths of
 sound inside water to be those circular arcs plotted above. So you can consider
 the paths that sound travels in space as hyperbolic space. If this is the only
 sense organ whales have, then whales perceive the world as hyperbolic space.
+
+
+
+
 <div id="whalesongGrid"></div>
- <script>   
+<!-- </body> -->
+
+    <script>   
             const whalesongGrid = document.getElementById("whalesongGrid");
             const width = 800;
             const height = 500;
@@ -301,4 +301,3 @@ sense organ whales have, then whales perceive the world as hyperbolic space.
             whalesongGrid.appendChild(svg); 
     </script>
 </html>
-</container></body></html>
