@@ -1,3 +1,12 @@
+- [Ma and the use of negative space](https://en.wikipedia.org/wiki/Ma_(negative_space))
+- [Dan Piponi's notes on differential forms. Has good diagrams](file:///home/bollu/Downloads/forms.pdf)
+- [Jacobi field: Diffeq that contains the Riemann curvature tensor. Maybe useful to develop and intuition.](https://en.wikipedia.org/wiki/Jacobi_field)
+- [William MacNeill’s Plagues and Peoples: Looking at history through the lens of diesease](https://en.wikipedia.org/wiki/Plagues_and_Peoples)
+- [The presentation of self in everyday life](https://en.wikipedia.org/wiki/The_Presentation_of_Self_in_Everyday_Life)
+- [Theirrey Coquand's website](http://www.cse.chalmers.se/~coquand/)
+- [Concept-Model-Idiom](https://gracicot.github.io/conceptmodel/2017/09/13/concept-model-part1.html)
+- [Gorgeous animation: Escher solid](https://www.reddit.com/r/loadingicon/comments/gvx7oc/eschers_solid/)
+- [Eastern European Movies](https://easterneuropeanmovies.com/)
 - [Combinatorial meaning of determinant](https://qchu.wordpress.com/2009/11/17/the-lindstrom-gessel-viennot-lemma/)
 - [Motivation for distribution theory](https://mathoverflow.net/a/77983/123769)
 - [Addition in terms of group theory: 2 cocyles](https://www.physicsforums.com/threads/repost-of-carrying-and-cocycles-by-james-dolan-part-one.182195/)
@@ -187,7 +196,7 @@
   manifolds" is a good keyword to look for if you want to dig deeper.
   [a link for the above](http://math.stanford.edu/~akshay/research/takagi.pdf)
 - [hull: using the filesystem to maintain state of program](http://250bpm.com/blog:153)
-- Dilworth's theorem: |largest antichains (pairwise incomparable elem)| = # of chains
+- Dilworth's theorem: length largest antichains (pairwise incomparable elem) = number of disjoint maximal chains
 - [Intro to condensed matter](https://podcasts.ox.ac.uk/01-introduction-condensed-matter-einstein-model-vibrations-solids)
 - [Andreson, more is different, anti-reductionism](http://robotics.cs.tamu.edu/dshell/cs689/papers/anderson72more_is_different.pdf)
 - [Blog on solid state physics/Condensed matter](http://nanoscale.blogspot.com/)

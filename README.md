@@ -16,6 +16,11 @@ A Universe of Sorts
 #### Table of contents:
 
 <ol reversed>
+<li> [The implicit and inverse function theorem](#the-implicit-and-inverse-function-theorem)
+<li> [Whalesong hyperbolic space in detail](#whalesong-hyperbolic-space-in-detail)
+<li> [Motivating Djikstra's](#intuition-for-hyperbolic-space) </li>
+<li> [Intuitions for hyperbolic space](#intuition-for-hyperbolic-space) </li>
+<li> [Product of compact spaces in compact](#product-of-compact-spaces-is-compact) </li>
 <li> [Hyperbolic groups have solvable word problem](#hyperbolic-groups-have-solvable-word-problem) </li>
 <li> [Elementary uses of Sheaves in complex analysis](#elementary-uses-of-sheaves-in-complex-analysis) </li>
 <li> [Snake lemma](#snake-lemma) </li>
@@ -176,11 +181,189 @@ A Universe of Sorts
 <li> [Big list of Recipes](#big-list-of-recipes) </li>
 </ol>
 
+# [The implicit and inverse function theorem](#the-implicit-and-inverse-function-theorem)
+
+I keep forgetting the precise conditions of these two theorems. So here
+I'm writing it down as a reference for myself.
+
+### Implicit function: Relation to function
+- Example 1: $x^2 + y^2 = 1$ to $y = \sqrt{1 - x^2}$.
+
+If we have a function $y = g(p, q)$, we can write this as $y - g(p, q) = 0$.
+This can be taken as an implicit function $h(y; p, q) = y - g(p, q)$. We then
+want to recover the explicit version of $y = g'(p, q)$ such that
+$h(g'(p, q); p, q) = 0$. That is, we recover the original explicit formulation
+of $y = g'(p, q)$ in a way that satisfies $h$.
+
+#### The 1D linear equation case
+
+In the simplest possible case, assume the relationship between $y$ and $p$
+is a linear one, given implicitly. So we have $h(y; p) = \alpha y + \beta p + \gamma = 0$.
+Solving for $h(y,p) = 0$, one arrives at: $y = -1/\alpha (\beta p + \gamma)$.
+- Note that the solution exists iff $\alpha \neq 0$. 
+- Also note that the the existence of the solution is equivalent to asking that
+  $\partial h / \partial y = \alpha \neq 0$.
+
+
+#### The circle case
+
+In the circle case, we have $h(y; p) = p^2 + y^2 - 1$. We can write
+$y = \pm \sqrt{p^2 - 1}$. These are _two_ solutions, not one, and hence
+a relation, not a function.
+
+- We can however build two functions by taking two parts. $y+ = +\sqrt{p^2 - 1}$;
+  $y- = -\sqrt{p^2 - 1}$.
+
+- In this case, we have $\partial h / \partial y = 2y$, which changes sign
+  for the two solutions. If $y^\star > 0$, then $(\partial h / \partial y)(y^\star = 0)$.
+  Similarly for the negative case.
+
+#### Assuming that a solution for $h(y, p)$ exists
+
+Let us say we wish to solve $h(y; p) = y^3 + p^2 - 3 yp - 7 = 0$. Let's assume
+that we have a solution $y = sol(p)$ around the point $(y=3, p=4)$. Then we 
+must have: $sol(p)^3 + p^2 - 3 sol(p) p - 7 = 0$. Differentiating by $p$, 
+we get: $3 sol(p)^2 sol'(p) + 2p - 3 sol'(p) p - 3 sol(p) = 0$. This gives
+us the condition on the derivative:
+
+$$
+\begin{align*}
+&3 sol(p)^2 sol'(p) + 2p - 3 sol'(p) p - 3 sol(p) = 0 \\
+&sol'(p)\left[ 3 sol(p)^2 - 3p \right] = 3 sol(p) - 2p \\
+&sol'(p) = [3 sol(p) - 2p] / \left[ 3(sol(p)^2 - 3p) \right]  \\
+\end{align*}
+$$
+
+The above solution exists  if $3(sol(p)^2 - 3p \neq 0)$. This quantity is again
+$\partial h / \partial y$.
+
+#### Application to economics
+
+- We have two inputs which are purchaed as $x_1$ units of input 1, $x_2$ units of input $2$.
+- The price of the first input is $w_1 BTC/unit$. That of the second input is $w_2 BTC/unit$.
+- We produce an output which is sold at price $w BTC/unit$.
+- For a given $(x_1, x_2)$ units of input, we can produce  $x_1^a x_2^b$  units of output where
+  $a + b < 1$.
+  [The Coob-douglas function](https://en.wikipedia.org/wiki/Cobb%E2%80%93Douglas_production_function).
+- The profit is going to be $profit(x_1 x_2, w_1, w_2, w) = w(x_1^a x_2^b) - w_1 x_1 - w_2 x_2$.
+- We want to select $x_1, x_2$ to maximize profits.
+- Assume we are at break-even: $profit(x_1, x_2, w_1, w_2, w) = 0$.
+- The implicit function theorem allows us to understand how any variable changes
+  with respect to any other variable. It tells us that locally, for example,
+  that the number of units of the first input we buy ($x_1$) is a function
+  of the price $w_1$. Moreover, we can show that it's a _decreasing function_
+  of the price.
+
+
+
+### Inverse function: Function to Bijection
+
+- Given a differentiable function $f$, at a point $p$, we will have a continuous inverse
+  $f^{-1}(p)$ if the derivative $f'(p)$ is locally invertible.
+
+- The intuition is that we can approximate the original function with a linear
+  function. $y = f(p + \delta) = f(p) + f'(p) \delta$. Now since $f'(p)$ is
+  locally invertible, we can solve for $\delta$. $y = f(p) + f'(p) \delta$
+  implies that $\delta = 1/f'(p) [y - f(p + \delta) ]$.
+  This gives us the pre-image $(p + delta) \mapsto y$.
+
+- The fact that $1/f'(p)$ is non-zero is the key property. This generalizes
+  in multiple dimensions to saying that $f'(p)$ is invertible.
+
+
+One perspective we can adopt is that of Newton's method. Recall that Newton's
+method allows us to find $x^*$ for a fixed $y^*$ such that $y^* = f(x^*)$. It follows
+the exact same process! 
+
+- We start with some $x[1]$.
+- We then find the tangent $f'(x[1])$.
+- We draw the tangent at the point $x[1]$ as $(y[2] - y[1]) = f'(x[1])(x[2] - x[1])$.
+- To find the $y^*$ we set $y[2] = y^*$.
+- This gives us $x[2] = x[1] - (y^* - y[1])/f'(x[1])$.
+- Immediately generalizing, we get $x[n+1] = x[n] - (y^* - y[n]) / f'(x[n])$.
+
+#### References
+
+- [Mathematics for economics, Natalia Lazzati](https://people.ucsc.edu/~nlazzati/Courses/Math519/Notes/Note%203.pdf)
+- [Inverse function theorem via Newton's method](http://mtaylor.web.unc.edu/files/2018/04/invfn.pdf)
+
+# [Whalesong hyperbolic space in detail](#whalesong-hyperbolic-space-in-detail)
+
+We can build a toy model of a space where velocity increases with depth.
+Let the x-y axis be: left-to-right (→) is positive x, top-to-bottom (↓) is positive y.
+Now let the velocity at a given location $(x^\star, y^\star)$ be $(y^\star+1, 1)$.
+That is, velocity along $y$ is constant; the velocity along $x$ is an increasing
+function of the current depth. The velocity along $x$ increases linearly with depth.
+Under such a model, our shortest paths will be 'curved' paths.
+
+
+# [Motivating Djikstra's](#motivating-djikstras)
+
+Usually I've seen Djikstra's algorithm presented as a greedy algorithm,
+and then an analogy given to "fire" for the greediness. We can reverse
+this presentation start with the "fire", and the discretize the "fire" solution
+to arrive at Djikstra's
+
+#### The fire analogy
+
+- Assume we want to find the shortest path from point $A$ to point $B$. We
+  should find the path that fire travels. How do we do this? Well, we simply
+  simulate a fire going through all paths from our initial point,
+  and then pick the shortest path (ala Fermat). We interpret the graph
+  edges as distances between the different locations in space.
+
+- So we write a function $simulate :: V \times T \rightarrow 2^{V \times T}$, which
+  when given a starting vertex $v : V$ and a time $t : T$, returns the set
+  of vertices reachable in at most that time, and the time it took to reach them.
+
+- Notice that we are likely repeating a bunch of work. Say the fire
+  from $x$ reaches $p$, and we know the trajectory of the fire from $p$. The
+  next time where a fire from $y$ reaches $p$, we don't need to _recalculate_
+  the trajectory. We can simply cache this.
+
+- Notice that this time parameter being a real number is pointless;
+  really the only thing that matters are the _events_ (as in computational geometry),
+  where the time crosses some threshold.
+
+
+- By combining the two pieces of information, we are led to the
+  usual implementation: Order the events by time using a queue, and then
+  add new explorations as we get to them.
+
+
+
+
+# [Intuitions for hyperbolic space](#intuition-for-hyperbolic-space) 
+
+#### Whalesong
+
+#### Tree distances
+
+#### Triangles are thin
+
+#### Lightrays diverge exponentially
+
+#### Rationals (Farey diagram)
+
+#### References
+
+
+- [Combinatorial group theory](https://math.stackexchange.com/questions/689257/topics-in-combinatorial-group-theory-for-a-short-talk/692534#692534)
+- [Van Kampen diagrams: an intuition](https://math.stackexchange.com/questions/330531/algebra-best-mental-images/331135#331135)
+- [DIY Hyperbolic geometry](https://math.berkeley.edu/~kpmann/DIYhyp.pdf)
+- [Hyperbolic Embeddings with a Hopefully Right Amount of Hyperbole](https://dawn.cs.stanford.edu/2018/03/19/hyperbolics/)
+- [Notes on Hyperbolic geometry by Canon](library.msri.org/books/Book31/files/cannon.pdf)
+- [What hyperbolic space really looks like](https://math.stackexchange.com/questions/1407550/what-hyperbolic-space-really-looks-like)
+- [Notes On Hyperbolic and Automatic Groups: Michael Batty](https://www.math.ucdavis.edu/~kapovich/280-2009/hyplectures_papasoglu.pdf)
+- [The geometry of the word problem by Martin R Bridson](https://people.maths.ox.ac.uk/bridson/papers/bfs/bfs.pdf)
+- [Living in Hyperbolic space](http://www.stevejtrettel.com/living-in-hyperbolic-space.html)
+
+
 # [Product of compact spaces in compact](#product-of-compact-spaces-is-compact)
 
-<img src="./static/product-of-compact-is-compact.png">
+<img width="600" src="./static/product-of-compact-is-compact.png">
 
-#[Hyperbolic groups have solvable word problem](#hyperbolic-groups-have-solvable-word-problem)
+# [Hyperbolic groups have solvable word problem](#hyperbolic-groups-have-solvable-word-problem)
 
 I have never seen an elementary account of this in a 'trust these facts, now
 here is why hyperbolic groups have a solvable word problem'. I am writing
@@ -301,14 +484,14 @@ e------------------x----‖------------------>x
 ```
 
 Since our triangles are $\delta$ thin, if the distance of the point $p \in [e xg1]$
-to  $$$$
+to  
 
 
 ### References
 - [Notes On Hyperbolic and Automatic Groups: Michael Batty](https://www.math.ucdavis.edu/~kapovich/280-2009/hyplectures_papasoglu.pdf)
 - [The geometry of the word problem by Martin R Bridson](https://people.maths.ox.ac.uk/bridson/papers/bfs/bfs.pdf)
 
-#[Elementary uses of Sheaves in complex analysis](#elementary-uses-of-sheaves-in-complex-analysis)
+# [Elementary uses of Sheaves in complex analysis](#elementary-uses-of-sheaves-in-complex-analysis)
 
 I always wanted to see sheaves in the wild in a setting that was both
 elementary but 'correct': In that, it's not some perverse example
@@ -1244,13 +1427,13 @@ So, we can treat the duval algorithm as a way to recover the permutation given
 the raw string. It's a nice way to _remember_ the definition of lyndon
 decomposition if nothng else.
 
-#[Graphs are preorders](#graphs-are-preorders)
+# [Graphs are preorders](#graphs-are-preorders)
 
 I wanted to record this fact for myself, so that I have reason to come back
 to it as I learn more preorder theory. Perhaps there are certain graph theoretic
 phenomena that make more sense when looked at from a preorder point of view.
 
-#[Crash course on domain theory](#crash-course-on-domain-theory)
+# [Crash course on domain theory](#crash-course-on-domain-theory)
 
 In lambda calculus, we often see functions of the form $\lambda x \rightarrow x(x)$. We would
 like a way to associate a "natural" mathematical object to such a function. The
@@ -3052,7 +3235,7 @@ The reason this is true is that from the definition:
 $$
 \begin{align*}
 &\Rightarrow: L \rightarrow L;  c \leq (a \Rightarrow b) \iff (c \land a) \leq b \\
-&\text{replacing $\leq$ with $=$ for insight:}
+&\text{replacing $\leq$ with $=$ for insight:} \\
 &\Rightarrow: L \rightarrow L;  c = (a \Rightarrow b) \iff (c \land a) = b  \\
 \end{align*}
 $$
@@ -3420,7 +3603,7 @@ which is $(L, \leq, next: L \rightarrow L)$ where `next` is monotone for `(L, <=
 The  induced union operator $\cup: L \times L \rightarrow L$ is:
 
 $$
-x \cup y \equiv \begin{cases} next(x) & x = y  \\ max(x, y) & x \neq y \end{cases}
+x \cup y \equiv \begin{cases} \texttt{next}(x) & x = y  \\ \max(x, y) & x \neq y \end{cases}
 $$
 
 - Is the total ordering on vector clocks *not* isomorphic to the total ordering on $\mathbb{R}$?
@@ -4390,7 +4573,7 @@ Now, the idea is this:
 We can show that this exponential/polynomial behaviour happens in general
 for $S \subseteq X$. 
 
-#[Symplectic version of classical mechanics](#symplectic-version-of-classical-mechanics)
+# [Symplectic version of classical mechanics](#symplectic-version-of-classical-mechanics)
 
 #### Basics, symplectic mechanics as inverting $\omega$:
 
@@ -7611,14 +7794,14 @@ levels of precision.
 - To setup a topology for the prime spectrum of a ring, we define the topological
   space as $Spec(R)$, the set of all prime ideals of $R$.
 
-- The closed sets of the topology are $\{ V(I) : I \text{is an ideal of $R$} \}$,
-  where the function $V: \text{Ideal} \rightarrow 2^\text{Prime Ideal}$ maps
+- The closed sets of the topology are $\{ V(I) : I \text{is an ideal of } R \}$,
+  where the function $V: \text{Ideals of } R \rightarrow 2^{\text{Prime ideals of } R}$
   each ideal to the set of prime ideals that contain it. Formally,
   $V(I) = \{ p \in Spec(R) : I \subseteq p \}$. 
 
 
 - We can think of this differently, by seeing that we can rewrite the condition
-  as  $V(I) = \{ P \in Spec(R) : I \xrightarrow{P} 0}$: On rewriting using the prime ideal $P$, we send the ideal $I$ to $0$.
+  as  $V(I) = \{ P \in Spec(R) : I \xrightarrow{P} 0 \}$: On rewriting using the prime ideal $P$, we send the ideal $I$ to $0$.
 
 - Thus, the closed sets of $Spec(R)$ are precisely the 'zeroes of polynomials' / 'zeroes of ideals'.
 
@@ -7630,7 +7813,7 @@ levels of precision.
   for some ideal $I \in R$. so we are looking at  ideals as functions
   from the prime ideal to the reduction of the ideal. That is, $I(P) = I/P$. 
 
-#### `Spec(\mathbb Z)` from this perspective
+#### $Spec(\mathbb Z)$ from this perspective
 
 Since $\mathbb Z$ is a PID, we can think of numbers instead of ideals. The above
 picture asks us to think of a number as a function from a prime to a reduced
@@ -7996,7 +8179,7 @@ It is defined by:
 We will show that the set of arithmetic functions forms a group
 under the operator $\star$, with identity:
 
--  $id_\star(n) \equiv \floor{1/n} = \begin{cases} 1 & n = 1 \\ 0 & \text{otherwise} \end{cases}$
+$$id_\star(n) \equiv \floor{1/n} = \begin{cases} 1 & n = 1 \\ 0 & \text{otherwise} \end{cases}$$
 
 
 The reason all of this is interesting is that the inverse of the constant function $1(n) \equiv 1$
@@ -8037,7 +8220,7 @@ number $n > 0$, $1/n < 1$, hence $\lfloor 1/n \rfloor = 0$.
 ### verification of $istar$ being the identity
 $$
 \begin{align*}
-(f \star id_\star)(n) \equiv \sum_{d \vert n} f(d) id_\star(n/d) \\
+&(f \star id_\star)(n) \equiv \sum_{d \vert n} f(d) id_\star(n/d) \\
 &= f(n) id_\star(1) + \sum_{d \vert n, d > 1} f(n) id_\star(d) \\
 &= f(n) \cdot 1 + \sum_{d \vert n, d > 1} f(n) \cdot 0 \\
 &= f(n) \\
@@ -8081,8 +8264,8 @@ $$
 \begin{align*}
 &(f \star f^{-1})(n) = id_\star(1) = 0 \\
 &\sum_{d \vert n} f(d) f^{-1}(n/d) = 0 \\
-&f(1) f^{-1}(n) + \sum_{d \vert n, d < n} f(d) f^{-1}(n/d) = 0
-&f^{-1}(n) = \frac{-\sum_{d \vert n, d < n} f(d) f^{-1}(n/d)}{f(1)} 
+&f(1) f^{-1}(n) + \sum_{d \vert n, d < n} f(d) f^{-1}(n/d) = 0 \\
+&f^{-1}(n) = -\frac{\sum_{d \vert n, d < n} f(d) f^{-1}(n/d)}{f(1)} 
 \end{align*}
 $$
 
@@ -8335,7 +8518,7 @@ $$
 
 $$
 \begin{align*}
-\lim_{n \rightarrow \infty} \left| H_{2n} - H_n \right| \\
+&\lim_{n \rightarrow \infty} \left| H_{2n} - H_n \right| \\
 &= \left|\frac{1}{2n} - \frac{1}{n} \right| \\
 &= \sum_{i=n+1}^{2n} \frac{1}{n+1} + \frac{1}{n+2} + \dots + \frac{1}{2n} \\
 &\geq \sum_{i=n+1}^{2n} \frac{1}{2n} + \frac{1}{2n} + \dots + \frac{1}{2n} \\
@@ -8351,9 +8534,9 @@ calculation:
 
 $$
 \begin{align*}
-\lim_{n \rightarrow \infty} a_{n+1} - a_n = \log(n+1) - \log(n)
-= \log((n+1)/n))
-= \log(1 + 1/n) \xrightarrow{n \rightarrow \infty} \log(1) = 0
+&\lim_{n \rightarrow \infty} a_{n+1} - a_n = \log(n+1) - \log(n) \\
+&= \log((n+1)/n)) \\
+&= \log(1 + 1/n) \xrightarrow{n \rightarrow \infty} \log(1) = 0
 \end{align*}
 $$
 
@@ -8362,7 +8545,7 @@ while on the other hand,
 
 $$
 \begin{align*}
-\lim_{n \rightarrow \infty} a_{2n} - a_n
+\lim_{n \rightarrow \infty} a_{2n} - a_n 
 = \log(2n) - \log(n)
 = \log(2) + \log(n) - \log(n)
 = \log 2 \neq 0
@@ -13321,7 +13504,6 @@ things on architecture I wish to read and/or have read:
 
 - This place is not a place of honor... no highly esteemed deed is commemorated
   here... nothing valued is here. Design to ward off people for nuclear waste.
-
 
 
 # [Big list of Recipes](#big-list-of-recipes) 

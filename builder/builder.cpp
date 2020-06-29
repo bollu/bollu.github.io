@@ -1243,7 +1243,7 @@ const char htmlbegin[] =
 // monospace font
 " .code { font-family: 'Blog Mono', monospace; line-height: 1.2em; font-size: 90%;  }"
 // Math fonts, math font control: latex block and latex inline should have letter spacing
-" .latexblock, .latexinline { font-family: 'Blog Symbol', monospace; letter-spacing: 2px; }"
+" .latexblock, .latexinline { font-family: 'Blog Symbol', monospace; letter-spacing: 1px; }"
 // padding and margin for blocks
 ".latexblock, blockquote, .code, code { margin-top: 30px; margin-bottom: 30px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }"
 ".code, code { background-color: #FFFFFF; width: 100%; }"
