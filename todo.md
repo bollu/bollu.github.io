@@ -1,3 +1,5 @@
+- [Fun blog with visualizations by Nicholas Pilkington](https://nickp.svbtle.com/)
+- [Chernoff fish: A way to build fishes that reflect the statistics of the data](https://github.com/tmm-archive/chernoff-fish)
 - [Ma and the use of negative space](https://en.wikipedia.org/wiki/Ma_(negative_space))
 - [Dan Piponi's notes on differential forms. Has good diagrams](file:///home/bollu/Downloads/forms.pdf)
 - [Jacobi field: Diffeq that contains the Riemann curvature tensor. Maybe useful to develop and intuition.](https://en.wikipedia.org/wiki/Jacobi_field)

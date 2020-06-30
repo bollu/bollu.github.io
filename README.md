@@ -297,6 +297,12 @@ function of the current depth. The velocity along $x$ increases linearly with de
 Under such a model, our shortest paths will be 'curved' paths.
 
 
+#### References
+
+- Very funnily, the wikipedia page on Whale vocalization has a 'selected discograpy'
+  section: [Whalesong, selected discography](https://en.wikipedia.org/wiki/Whale_vocalization#Selected_discography)
+
+
 # [Motivating Djikstra's](#motivating-djikstras)
 
 Usually I've seen Djikstra's algorithm presented as a greedy algorithm,
@@ -335,29 +341,22 @@ to arrive at Djikstra's
 
 # [Intuitions for hyperbolic space](#intuition-for-hyperbolic-space) 
 
-#### Whalesong
-
-#### Tree distances
-
-#### Triangles are thin
-
-#### Lightrays diverge exponentially
-
-#### Rationals (Farey diagram)
-
-#### References
-
 
 - [Combinatorial group theory](https://math.stackexchange.com/questions/689257/topics-in-combinatorial-group-theory-for-a-short-talk/692534#692534)
 - [Van Kampen diagrams: an intuition](https://math.stackexchange.com/questions/330531/algebra-best-mental-images/331135#331135)
 - [DIY Hyperbolic geometry](https://math.berkeley.edu/~kpmann/DIYhyp.pdf)
 - [Hyperbolic Embeddings with a Hopefully Right Amount of Hyperbole](https://dawn.cs.stanford.edu/2018/03/19/hyperbolics/)
 - [Notes on Hyperbolic geometry by Canon](library.msri.org/books/Book31/files/cannon.pdf)
-- [What hyperbolic space really looks like](https://math.stackexchange.com/questions/1407550/what-hyperbolic-space-really-looks-like)
+- A question on `math.se` that attempts to describe hyperbolic space: [What hyperbolic space really looks like](https://math.stackexchange.com/questions/1407550/what-hyperbolic-space-really-looks-like)
+- [Another question about what hyperbolic space feels like](https://math.stackexchange.com/questions/3520395/what-does-hyperbolic-space-feel-like)
 - [Notes On Hyperbolic and Automatic Groups: Michael Batty](https://www.math.ucdavis.edu/~kapovich/280-2009/hyplectures_papasoglu.pdf)
 - [The geometry of the word problem by Martin R Bridson](https://people.maths.ox.ac.uk/bridson/papers/bfs/bfs.pdf)
 - [Living in Hyperbolic space](http://www.stevejtrettel.com/living-in-hyperbolic-space.html)
-
+- [We can embed euclidian space into hyperbolic space](https://math.stackexchange.com/questions/1347/studying-euclidean-geometry-using-hyperbolic-criteria)
+- [Amsler surface: A surface with constant negative gaussian curvature](https://math.stackexchange.com/questions/289716/hyperbolic-diameter-of-amslers-surface)
+- [Hyperbolic distance naturally measures distance as paths of light with varying refractive index](https://math.stackexchange.com/questions/1887685/hyperbolic-distance-confusion)
+- [The pseudosphere, another surface with constant negative curvature](https://mathworld.wolfram.com/Pseudosphere.html)
+- [Whalesong, selected discography](https://en.wikipedia.org/wiki/Whale_vocalization#Selected_discography)
 
 # [Product of compact spaces in compact](#product-of-compact-spaces-is-compact)
 

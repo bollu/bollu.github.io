@@ -1216,7 +1216,7 @@ const char htmlbegin[] =
 "html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } "
 "body {"
 " background-color: #FFFFFF; color: #000000; " // tufte
-" font-family: 'Blog Text', sans-serif; font-size: 20px; line-height: 1.4em; "
+" font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em; "
 " max-width: 100%; }"
 "\n"
 // img as a block
@@ -1236,16 +1236,16 @@ const char htmlbegin[] =
 "\n"
 // code blocks, latex blocks, quote blocks
 "\n"
-" .code, .latexblock, blockquote { border-left-color:#000000;  border-left-style: solid;"
-"      border-left-width: 4px; }"
+" .code, .latexblock, blockquote { border-left-color:#CCC;  border-left-style: solid;"
+"      border-left-width: 1px; }"
 ".code pre, blockquote { padding-left: 2em; }"
 "\n"
 // monospace font
-" .code { font-family: 'Blog Mono', monospace; line-height: 1.2em; font-size: 90%;  }"
+" .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }"
 // Math fonts, math font control: latex block and latex inline should have letter spacing
-" .latexblock, .latexinline { font-family: 'Blog Symbol', monospace; letter-spacing: 1px; }"
+" .latexblock, .latexinline { font-family: 'Blog Symbol', monospace; }"
 // padding and margin for blocks
-".latexblock, blockquote, .code, code { margin-top: 30px; margin-bottom: 30px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }"
+".latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }"
 ".code, code { background-color: #FFFFFF; width: 100%; }"
 // latexblock should have regular line height for correct rendering.
 ".latexblock { line-height: 1em }"
@@ -1255,7 +1255,7 @@ const char htmlbegin[] =
 " .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }"
 "\n"
 // inline latex: force all text to be on same line.
-".latexinline { padding-left: 2px; padding-right: 2px; white-space: nowrap }"
+".latexinline { white-space: nowrap }"
 
 // fix font handling
 "pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }"
