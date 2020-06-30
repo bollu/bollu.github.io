@@ -1222,7 +1222,12 @@ const char htmlbegin[] =
 // img as a block
 "img { display:block; }"
 // container
-".container { margin-left: 20%; margin-right: 10%; }"
+
+".container { overflow-x: hidden }"
+"@media (max-width: 480px) { .container { margin-left: 2%; margin-right: 2%; } }"
+"@media (max-width: 1024px) { .container { margin-left: 2%; margin-right: 2%; } }"
+// desktop
+"@media (min-width: 1024px) { .container { margin-left: 20%; margin-right: 10%; } }"
 // class for image <div>
 ".image { }"
 "\n"
