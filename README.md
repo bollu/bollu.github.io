@@ -1,4 +1,3 @@
-
 <h2>
 <img style="float:left;display:inline-block;padding-right: 16px" src="./static/banner.png" width="32px">
 A Universe of Sorts
@@ -174,11 +173,13 @@ A Universe of Sorts
 <li> [GSoC 2015 final report](content/blog/gsoc-vispy-report-6.md) </li>
 <li> [Link Dump](#link-dump) </li>
 <li> [Big list of emacs gripes](#big-list-of-emacs-gripes) </li>
-<li> [Big list of writing](#big-list-of-writing) </li>
 <li> [Big list of Coq](#big-list-of-coq) </li>
+<li> [Big list of writing](#big-list-of-writing) </li>
 <li> [Big list of Latex](#big-list-of-latex) </li>
 <li> [Big list of Architecture](#big-list-of-architecture) </li>
 <li> [Big list of Recipes](#big-list-of-recipes) </li>
+<li> [Big list of words](#big-list-of-haiku) </li>
+<li> [Big list of Haiku](#big-list-of-haiku) </li>
 </ol>
 
 # [The implicit and inverse function theorem](#the-implicit-and-inverse-function-theorem)
@@ -13442,9 +13443,11 @@ There appear to be three distinct schools of thought.
   punctuation can leave writing stilted, or worse, give it an appearance of putting
   on a veneer of respectability. Use as much punctation as is necessary, they say.
 
-- The third school of thought is anarchic and recommend no punctuation at all 
-  except for `.` as this is a terrific way to get a sense for how to place words as one is forced to switch up vocabulary based on the cadence one wishes for instead of
-  relying on artificial markers afforded by our system of writing.
+- The third school of thought is anarchic and recommend no punctuation at all
+  except for `.` as this is a terrific way to get a sense for how to place
+  words as one is forced to switch up vocabulary based on the cadence one
+  wishes for instead of relying on artificial markers afforded by our system of
+  writing.
 
 #### English grammar
 
@@ -13559,7 +13562,7 @@ grated coconut and blend all of it. It turns into a thick red paste.
 - Once breadfruit is cooked, pour in **coconut milk**. Continue cooking for
   ten minutes.
 
-# Words
+# [Big list of words](#big-list-of-words)
 
 ##### decephalized
 
@@ -13576,3 +13579,17 @@ how you bootstrap the program and port it to the human model.
 The ancient Greeks had a word for our modern systems “demagoguery” which
 equates to charismatic liars manipulating gullible people to vote against their
 own good
+
+##### laconic
+
+Named after the spartans.
+
+# [Big list of haiku](#big-list-of-haiku)
+
+Contains haiku that I write, and ones that I enjoy.
+
+> Attention is all you need
+> productivity
+> sprighty, fleeting attention
+
+

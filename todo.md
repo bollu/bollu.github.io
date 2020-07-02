@@ -1,3 +1,5 @@
+- What are the topological obstructions to chaos in 1D and 2D?
+- [Involutive MCMC: new MCMC method that has classical MCMC methods as special cases](https://arxiv.org/pdf/2006.16653.pdf)
 - [Fun blog with visualizations by Nicholas Pilkington](https://nickp.svbtle.com/)
 - [Chernoff fish: A way to build fishes that reflect the statistics of the data](https://github.com/tmm-archive/chernoff-fish)
 - [Ma and the use of negative space](https://en.wikipedia.org/wiki/Ma_(negative_space))
