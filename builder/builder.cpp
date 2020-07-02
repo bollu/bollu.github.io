@@ -1227,7 +1227,7 @@ const char htmlbegin[] =
 "@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }"
 "@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }"
 // desktop
-"@media (min-width: 1024px) { .container { margin-left: 20%; margin-right: 10%; } }"
+"@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }"
 // class for image <div>
 ".image { }"
 "\n"
@@ -1241,7 +1241,7 @@ const char htmlbegin[] =
 "\n"
 // code blocks, latex blocks, quote blocks
 "\n"
-" .code, .latexblock, blockquote { border-left-color:#CCC;  border-left-style: solid;"
+" .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;"
 "      border-left-width: 1px; }"
 ".code pre, blockquote { padding-left: 10px; }"
 "\n"
