@@ -19,9 +19,10 @@
 - Chandy Lamport algorithm
 - Lai-Yang algorithm
 - Mattern’s algorithm
--  Acharya-Badrinath algorithm 
+- Acharya-Badrinath algorithm 
 
 ##### Mutual Exclusion: 
+
 - Requirements, Metrics
 - Lamport’s algorithm
 - Ricart agrawala algorithm
@@ -42,10 +43,12 @@
 - Mitchell and Merritt’s Algorithm for the Single-Resource Model
 
 ##### Termination Detection:
+
 - System Model and definition of termination detection
 - Algorithm - Termination detection by Weight Throwing
 
 ##### Wave and Traversal Algorithms:
+
 - Wave algorithm - properties and an example: the Echo algorithm
 - Traversal algorithms - properties and an example: Sequential Polling
 - Classical Depth-first Search
@@ -236,11 +239,11 @@ class ChandyLamport:
 
 ## Mattern’s algorithm
 - Based on vector clocks, single initiator. Termination detection needed.
-- Initiator pics a future vector time $\mathbf{s}$ when they would like the
+- Initiator picks a future vector time $\mathbf{s}$ when they would like the
   global snapshot to be recorded. $s$ is broadcasted , after which it freezes
   all activity till it receives all acknowledgements of the receipt of
   this broadcast.
-- Upon receiving the broadcast, process remembers the value of $s$ and sends
+- Upon receiving the broadcast, other processes remember the value of $s$ and sends
   and ack to the initiator.
 - The initiator on receiving ack from all processes, increases its vector clock
   to $s$, and sends a `DUMMY` message to all processes.
@@ -422,7 +425,7 @@ of each process $p$ is called $C_p$. Events are ordered by the precedence
 relation $(\leq)$.
 
 - **Termination**: Each computation is finite: $|C| < \infty$.
-- **Decision**:Each computation has at least one decide event $\exists decide \in C$.
+- **Decision** :Each computation has at least one decide event $\exists decide \in C$.
 - **Dependence**: Each decide event is causally preceded by an event:
 
 $$
@@ -726,6 +729,98 @@ Same as chandy-misra, but we allow edges to fail.
   This invalidates $u$, leading to an increasing sequence of distances $3 \rightarrow 5 \rightarrow 7 \dots$.
   If we have an uppoer bound on the distance (`DIAMETER`) then we know that
   this is wrong.
+
+# Minimal Spanning trees
+
+#### Gallager-Humblet-Spira Algorithm
+
+- [Link to algo (IIT Kanpur)](https://cse.iitkgp.ac.in/~pallab/dist_sys/Lec-8a-MinSpanningTree.pdf)
+- [Link to paper](https://www.cs.tau.ac.il/~afek/p66-gallager.pdf)
+
+
+- Fragment: subtree of MST.
+- Extending a Fragment: [f:Fragment + {edge of lowest weight of f} = f'Fragment]
+- Kruskal's: Starts with collection of fragments; merges till only one remains.
+
+In Gallager-Humblet-Spira, we distribute Krusal's. Two assumptions:
+1. Edge node has unique edge weight $w(e)$.
+2. All nodes initially asleep. Wake up before algo execution. When a process
+   is woken up, it first executes initialization, then processes the message.
+
+##### Algorithm Outline
+
+1. Start with each node as fragment.
+2. Nodes in fragment find lowest outgoing edge.
+3. When lowest outgoing edge is found, fragment is combined with. 
+   another fragment by adding the outgoing edge.
+4. Algorithm terminates when only one fragment remains.
+
+##### Notations, Definitions
+
+1. Fragment Name: a GUID for each fragment.
+2. Fragment levels: Initially 0 for each fragment.
+3. Smaller fragments combine w/ larger fragments by adopting {name, level} of
+   larger fragment.
+4. Fragments of the same level give a fragment that is one level higher.
+   The new name of the fragment is the weight of the combining edge (which is
+   guaranteed to be unique); This combining edge is called as the **core edge**
+   of the fragment.
+
+Formally, the rule of union of fragment $f \equiv (n, l)$ to invoke a join
+with  $f' \equiv (n', l')$ where $n$
+is the name, $l$ is the level, and the edge of lowest weight from $f$ to $f'$
+is $e_l[f, f']$ ($l$ for lowest, $f, f'$ for the direction: from $f$ to $f'$):
+
+$$
+f \xrightarrow{e_l[f, f']} f' \equiv
+(n, l) \cup (n', l') \equiv 
+\begin{cases}
+n' & l < l' \\
+(($w(e[f, f']), l+1)$ & l = l' \\
+\text{disallowed} & l > l'
+\end{cases}
+$$
+
+According to paper, above is wrong. Paper says:
+
+
+> If L = L' and fragments F and F' **have the same minimum-weight outgoing edge**,
+> then the fragments combine immediately into a new fragment at
+> level L + 1; the combining edge is then called the core of the new fragment
+
+- We show later, after describing more of the algorithm, that the waiting in the
+  above rules cannot cause a deadlock.
+
+- The reason for the waiting is that the
+  communication required for a fragment to find its minimum-weight edge is
+  **proportional to the fragment size**, and thus **communication is reduced** by small
+  fragments joining into large ones rather than vice versa. 
+
+##### The algorit
+hm
+
+- `stach[p](q): branch | reject | basic`: process $p$ maintains information about the status of edge $(p, q)$.
+  This is `branch` if edge is known to be in MST, `reject` if it is known not
+  to be in MST, `basic` otherwise.
+
+- `father[p]: Edge`: edge leading to the core edge of the fragment.
+
+- `state[p]: sleep | find | found`: Initially in state `sleep`. Find `p`
+  if currently searching for lowest-weight outgoing edge. `found` if
+  already found.
+
+###### the algebra of fragment fusion
+A similar thing happens in clocks for example. When _I_ update my time,
+ie, union(time me, time me), I get an element that's one up the lattice.
+When I union with someone else, I get the max. So we have an algebraic structure
+which is $(L, \leq, next: L \rightarrow L)$ where `next` is monotone for `(L, <=)`.
+The  induced union operator $\cup: L \times L \rightarrow L$ is:
+
+$$
+x \cup y \equiv \begin{cases} next(x) & x = y  \\ max(x, y) & x \neq y \end{cases}
+$$
+
+- Is the total ordering on vector clocks *not* isomorphic to the total ordering on $\mathbb{R}$?
 
 # Byazntine algorithms
 

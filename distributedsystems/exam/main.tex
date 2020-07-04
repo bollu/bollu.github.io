@@ -29,9 +29,12 @@ the processes, where a $M$ above a process means it is malicious.
 \end{tabular}
 \end{figure}
 
-In this case, in the non-malicious userspace, we have only 2 0s, and three 1s.
-Thus, there is not enough information in the "non-malicious" space to conclude
-that the \textbf{actual majority} is $0$, not $1$.
+In this case, the actual majority is $0$ since 4 processes have value $0$,
+while only $3$ have 1. However, along the non-fauly processes $[1\cdots 5]$,
+we have two 0s and three 1s. Thus, the non-faulty processes can be fooled
+to believe that the majority is $1$, not $0$. The non-faulty processes simplt
+do not have enough information to conclude that the \textbf{actual majority} is $0$.
+Hence, there is no way to actually reach consensus on $0$.
 
 The bounds for Byzantine agreement is $f \leq \texttt{floor}(n/3)$; This is
 an easier bound to fulfil, since we are
@@ -56,6 +59,22 @@ send $O(n^f)$ messages, which is not polynomial in $n$ (it is pseudopolynomial).
 \section{Distributed MST: Gallager-Humblet-Spira}
 \subsubsection{Complexity}
 
+When a node is at a given level (other than 0), it can
+receive at most one (a) initiate and one (b) accept. It can transmit at most one
+successful (c) test message, one (d) report message, and one (e) change-root or connect
+message. Since $\log_2 N$ is an upper bound on the highest level, a node can go
+through $\log_2 N - 1$ levels (except 0th level), we have in total $5N (\log_2 N - 1)$ messages. 
+
+When a node is isolated (level 0), each node can receive at most one (a) initiate
+message and can transmit at most one (b) connect message, after which it will join
+someone else. This will be less than $5N$ messages.
+
+This gives a total of $5N \log_2 N$ messages.
+
+
+
+
+
 
 \subsubsection{Making it work with duplicate edge weights, unique node IDs}
 We can augment the edge weight information used for naming fragments
@@ -65,6 +84,11 @@ totally ordered, and will give us unique names for edges. This will ensure
 that we receive unique names for fragment combinations.
 
 \subsubsection{Example}
+
+\includegraphics[width=1\textwidth, angle=270]{IMG_0626.JPG}
+\includegraphics[width=1\textwidth, angle=270]{IMG_0627.JPG}
+\includegraphics[width=1\textwidth, angle=270]{IMG_0628.JPG}
+\includegraphics[width=1\textwidth, angle=270]{IMG_0629.JPG}
 
 \subsubsection{Does the algorithm work with non-unique edge ids, node weights?}
 We can make it work by slightly jittering the edge weights. For each edge $e \in E$
