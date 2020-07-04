@@ -1,5 +1,5 @@
 \documentclass[titlepage]{article}
-\usepackage{amsmath, amssymb}
+\usepackage{amsmath, amssymb, amsthm}
 \usepackage{minted}
 \usepackage{graphicx}
 \usepackage{tikz}
@@ -10,12 +10,22 @@
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\I}{\mathbb{I}}
-\renewcommand{\S}{\texttt{S}}
 \newcommand{\zo}{\{0, 1\}}
-\newcommand{\qed}{\ensuremath{\triangle}}
+\newcommand{\distinct}{\emph{distinct}}
 
+
+\newcommand{\Xbar}{\ensuremath{\overline{X}}}
+
+\theoremstyle{plain} 
 \newtheorem{theorem}{Theorem}
-\newtheorem{proof}{Proof}[theorem]
+\newtheorem{lemma}{Lemma}[theorem]
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[theorem]
+
+
+\theoremstyle{remark} 
+\newtheorem{note}{Note}[theorem]
 \title{Flows in Networks}
 \author{Siddharth Bhat ~ \texttt{siddu.druid@gmail.com}}
 
@@ -28,6 +38,204 @@
 This is a re-type of the RAND corporation report by Ford and Fulkerson. I hope
 to re-type the essential parts of their notes, and then augment this with
 push-relabel and dinic's as well.
+
+\begin{definition}[Network]
+     A directed network or a directed linear graph $G \equiv (N, A)$ consists
+     of $N$ elements (nodes) $x, y, \cdots$ together with a subset $A \subseteq N \times N$ (arcs)
+     of ordered pairs $(x, y)$ of elements taken from $N$.
+\end{definition}
+
+The elements of $N$ are call nodes, and the elements of $A$ are called arcs.
+Our networks are directed, as each arc carries an orientation. We may sometimes
+refer to undirected networks where the set $A$ carries \emph{unordered} pairs
+of nodes, or mixed networks in which some arcs are directed while others are
+left undirected.
+
+We rule out arcs of the form $(x, x)$ that lead from a node to itself. Thus
+all arcs are of the form $(x, y)$ where $x \neq y$. Also while the existence
+of at most one arc $(x, y)$ has been postulated, the notion of a network
+frequently allows multiple arcs joining $x$ to $y$. For most problems we consider
+the added generality adds nothing, so we shall continue to think of at most
+one arc leading from one node to the other.
+
+
+\section{Chains}
+
+\begin{definition}[Chain]
+Let $x_1, x_2, \dots x_n$ ($n \geq 2)$ be a sequence of nodes \emph{distinct} of a network
+such that $(x_i, x_{(i+1)})$ is an arc for each $i = 1, 2, \dots, n-1$. Then
+the sequence of nodes \emph{and} arcs:
+\begin{equation}
+    \tag{Definition of Chain}
+    x_1, (x_1, x_2), x_2, \dots, (x_{(n-1)}, x_n), x_n
+    \label{defn:chain}
+\end{equation}
+is called a \emph{chain}; it leads from $x_1$ to $x_n$. Sometimes for emphasis
+we call \eqref{defn:chain} a \emph{Directed chain}. If the definition is altered
+to have $x_n = x_1$, then the displayed sequence is a \emph{Directed cycle}.
+\end{definition}
+
+\section{Paths}
+\begin{definition}[Path]
+    Let $x_1, x_2, \dots x_n$ be a sequence of \emph{distinct} nodes such that
+    either $(x_i, x_{i+1})$ is an arc, or $(x_{i+1}, x_i)$ is an arc for each
+    $i = 1, 2, \dots, n-1$. Singling out, for each $i$, one of the two
+    possibilities, we call the resulting sequence of nodes and arcs a \emph{path}
+    from $x_1$ to $x_n$.
+\end{definition}
+
+Thus a path differs from a chain by allowing the possibility of traversing an
+arc in a direction opposite to its orientation in going from $x_1$ to $x_n$. 
+Note that for undirected networks, the two notions coincide.
+
+Arcs $(x_i, x_{i+1})$ that belong to the path are called forward arcs; the
+others are reverse arcs. In the definition of a path, if we stipulate $x_n = x_1$,
+then the resulting sequence of nodes and arcs is a \emph{cycle}.
+
+We may shorten the notation and refer unambiguously to the to the chain 
+$x_1, \dots, x_n$ (as opposed to being explicit,
+which is $x_1, (x_1, x_2), dots, (x_{n-1}, x_n), x_n$; to be tacit, we drop the arcs ).
+Occasionally, we shall also refer to some path $x_1, \dots, x_n$;
+Then it is to be understood that some selection of arcs has tacitly been made.
+
+\section{Node-Arc incidence matrix}
+
+\begin{definition}[Node-Arc incidence matrix]
+\end{definition}
+
+\section{Set based notation for functions}
+% pg 20
+To simplify the notation, we adopt the following conventions. If $X$ and $Y$
+are subsets of $N$ let $(X, Y)$ denote the set of all arcs that lead from
+$x \in X$ to $y \in Y$. For any function $g: A \rightarrow \R$, let:
+
+\begin{equation}
+    \tag{function on arc-set}
+    g(X, Y) \equiv \sum_{(x, y) \in (X, Y)} g(x, y)
+    \label{defn:function-on-arc-set}
+\end{equation}
+
+Similarly, when dealing with a function $h: N \rightarrow \R$ defined on
+nodes, let:
+
+\begin{equation}
+    \tag{function on node-set}
+    h(X) \equiv \sum_{x \in X} h(x)
+\end{equation}
+
+If we have $X, Y, Z \subseteq N$, then:
+\begin{align*}
+    &g(X, Y \cup Z) = g(X, Y) + g(X, Z) - g(X, Y \cap Z)  \\
+    &g(Y \cup Z, X) = g(Y, X) + g(Z, X) - g(Y \cap Z, X)
+\end{align*}
+
+Notice that:
+
+\begin{align*}
+    &(B(x), x) = (N, x) \\
+    &(x, A(x)) = (x, N) \\
+\end{align*}
+
+and:
+
+
+\begin{align*}
+      g(N, X) = \sum_{x \in X} g(N, x) = \sum_{x \in X} g(B(x), x) \\
+      g(X, N) = \sum_{x \in X} g(x, N) = \sum_{x \in X} g(x, A(x))
+\end{align*}
+ 
+
+\section{Cuts}
+%pg 21
+Progress towards a solution of maximal network flow problems is made with the
+recognition of the importance of certain subsets of arcs which we shall
+call cuts.
+
+\begin{definition}[Cut]
+    A cut in $[N; A]$ separating $s$ and $t$ is a set of arcs $(X, \Xbar)$.
+    The capacity of the cut is $c(X, \Xbar)$.
+\end{definition}
+
+\begin{lemma}
+    Every chain from $s$ to $t$ must contain some arc of every cut $(X, \Xbar)$.
+\end{lemma}
+\begin{proof}
+    Let $x_1, \dots, x_n$ be a chain with $x_1 = s, x_n = t$. Since $x_1 \in X$,
+    $x_n \in \Xbar$, there must be some transitionary $x_i$ with $(1 \leq i \leq n)$ with
+    $x_i \in X, x_{i+1} \in \Xbar$.  Hence the arc $(x_i, x_{i+1})$ is a 
+    member of the cut $(X, \Xbar)$.
+\end{proof}
+
+\begin{lemma}
+    If all arcs of a of a cut $(X, \Xbar)$ were deleted from the network, there would be no
+    chain chain from $s$ to $t$, and the maximum flow value for the new network
+    is zero.
+\end{lemma}
+\begin{proof}
+    Every chain from $s$ to $t$ must contain \emph{some} element of the
+    arc $(X, \Xbar)$. We delete \emph{all} elements of the arc $(X, \Xbar)$.
+    Hence no chain from $s$ to $t$ can exist; if it did, it would have some
+    element of the arc $(X, \Xbar)$, which has been deleted.
+\end{proof}
+
+Since a cut blocks all chains from $s$ to $t$, it is intuitively clear
+(and indeed obvious in the arc-chain version of the problem) that the value
+$v$ of a flow $f$ cannot exceed the capacity of any cut, a fact that
+we now prove.
+
+\section{Flows and Cuts}
+%22
+
+\begin{lemma}
+    Let $f$ be a flow from $s$ to $t$ in a network $[N; A]$. Let $f$ have
+    value $v$. If $(X, \Xbar)$ is a cut separating $s$ and $t$, then
+
+\begin{equation}
+    \tag{Flow-Cut equality}
+    v = f(X, \Xbar) - f(\Xbar, X) \leq c(X, \Xbar) 
+    \label{eqn:flow-cut-equality}
+\end{equation}
+
+That is, the value of a flow $f$ from $s$ to $t$ is equal to the net flow
+across any cut $(X, \Xbar)$ separating $s$ and $t$.
+\end{lemma}
+\begin{proof}
+Since $f$ is a flow, it satisfies the equations:
+
+\begin{align*}
+    &f(s, N) - f(N, s) = v \\
+    &f(x, N) - f(N, x) = 0 \quad \{x \neq s, t\} \\
+    &f(t, N) - f(N, t) = -v
+\end{align*}
+
+We first establish that $v = f(X, N) - f(N, X)$. To show this, we sum these
+equations over $x \in X$. since $s \in X$, while $t \in \Xbar$ [hence $t \not \in X]$, we get:
+
+\begin{align*}
+    &f(X, N) - f(N, X) = \sum_{x \in X} f(x, N) - f(N, x)\\
+    &= (f(s, N) - f(N, s)) + \sum_{x \in X, x \neq s} f(x, N) - f(N, x) \\
+    &= v + \sum_{x \in X, x \neq s} 0 = v
+\end{align*}
+
+The above is reasonable. we have $s \in X$ contribute $v$ units. 
+Since $t \not in X$, it cannot contribute to this sum. All other
+$x \in X$ contribute $0$ units. Thus the total contribution is $v$.  Now, writing $N = X \cup \Xbar$ yields:
+
+\begin{align*}
+&v = f(X, N) - f(N, X) \quad \text{(From the above)} \\
+&= f(X, X \cup \Xbar) - f(X \cup \Xbar, X) \\
+&= f(X, X) + f(X, \Xbar) - f(X, X) - f(\Xbar, X) \\
+&= f(X, \Xbar) - f(\Xbar, X)
+\end{align*}
+
+Finally, to show that this is upper bounded by capacity, recall that $0 \leq f(X, \Xbar) \leq c(X, \Xbar)$
+by the definition of a valid flow, and the inequality follows.
+
+\end{proof}
+
+\section{Maximal Flow}
+% 23
+
 
 \bibliographystyle{plain}
 \bibliography{references}
