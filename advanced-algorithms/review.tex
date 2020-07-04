@@ -74,8 +74,8 @@ Minima will win vote.
 \subsection{Tangent: finding minima of $n$ elements, faster}
 CRCW, $O(\log \log n)$ time, $O(n \log \log n)$ work.
 
-We use a doubly logarithmic tree. Number of leaf nodes: $l = 2^2^k$. The root node
-has \sqrt(l) = 2^{2^{k-1}} children. In general, node at level $i$ has $l / 2^{i - 1}$ nodes,
+We use a doubly logarithmic tree. Number of leaf nodes: $l = 2^(2^k)$. The root node
+has $\sqrt(l) = 2^{2^{k-1}}$ children. In general, node at level $i$ has $l / 2^{i - 1}$ nodes,
 for $0 \leq i \leq k - 1$. Node at level $k$ has two leaf nodes. Total depth: $k + 1$.
 
 

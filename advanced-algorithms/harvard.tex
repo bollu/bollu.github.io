@@ -1,0 +1,48 @@
+% https://www.youtube.com/watch?v=aHW6HKVC-SY&list=PL2SOU6wwxB0uP4rJgf5ayhHWgw7akUWSf&index=8
+\chapter{Online algorithms}
+
+Making decisions in the face of uncertainty. We don't want to regret things
+too much when we look back from the future. We want to bound versus the
+best in hindsight.
+
+
+We use an algorithm \ALG to make decisions. \OPT is the optimal decision
+given the future. We say an algorithm is $r$ competitive is for all sequences
+$\sigma = [\sigma[1], \sigma[2], \dots]$:
+$$cost(\ALG(\sigma)) \leq r \cdot cost(\OPT(\sigma)) + O(1)$$
+
+Analysing these kinds of algorithms is called competitive analysis by Slater
+and Tarjan (CACM '85).
+
+
+\textbf{Toy example 1:  the Ski rental problem}: What is unknown is $M$, the number
+of days we'll be spending at the vacation. I don't know how long we'll be spending at a vacation. Each
+day, when I wake up, I am told whether I am staying another day.
+We can either rent the ski for a day which costs $\$1$, or buy the skis which costs $\$B$.
+The optimal solution when we know $M$ is to buy the ski of $\$1 \cdot M > \$ B$, and
+rent the ski otherwise. \OPT pays at most $B$.
+Our solution (\ALG), knowing $M$ is to buy the skis on day $(B+1)$. \ALG pays
+at most $2B$.
+
+\textbf{Toy example 2: The Free Pizza problem}:
+There's a long hallway with $n$ evenly spaced rooms, numbered $[-n/2, \dots, 0, n]$
+We're at room number $0$. The pizza is at room $t$.
+\OPT knows where the pizza is so it goes straight there, so he pays $t$ cost.
+Visit rooms $[1, -2, 4, -8, 16, \cdots]$. We pay:
+$$
+(1 + 1) + (2 + 2) + \cdots + (2^m + 2^m) + t
+$$
+
+which is bounded by something like $9t$.
+
+\section{List update problem}
+
+We imagine we have a linked list. We have repeated requests to access items
+in the linked list. It takes $i$ time to get to the $i$th element since
+we need to walk the list. Once we access an element in the linked list, we can
+move the item to anywhere we walked past.
+
+\section{Paging}
+we have cache versus RAM. Cache has bounded size.
+
+
