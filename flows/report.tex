@@ -186,7 +186,7 @@ we now prove.
 \section{Flows and Cuts}
 %22
 
-\begin{lemma}
+\begin{lemma}[Flow-Cut equality]
     Let $f$ be a flow from $s$ to $t$ in a network $[N; A]$. Let $f$ have
     value $v$. If $(X, \Xbar)$ is a cut separating $s$ and $t$, then
 
@@ -235,6 +235,10 @@ by the definition of a valid flow, and the inequality follows.
 
 \section{Maximal Flow}
 % 23
+\begin{theorem}[Max-flow-min-cut]
+    For any network, the maximal flow value from $s$ to $t$ is equal to the 
+    minimal cut capcacity over cuts separating $s$ and $t$.
+\end{theorem}
 
 
 \bibliographystyle{plain}
