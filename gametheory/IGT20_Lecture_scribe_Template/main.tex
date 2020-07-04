@@ -214,69 +214,32 @@ iff it is budget-balanced.
 \end{lemma}
 
 \begin{proof}
-\textbf{Part 1: Quasi-Linear + EPE implies SBB}
+\textbf{Part 1: Quasi-Linear + Ex-post efficient  implies strictly-budget-balanced}
 
-Suppose for contradiction that $f = (k, t)$ is quasi-linear, EPE but not SBB.
-So, there exists a $\theta$ such that 
+Suppose for contradiction that $f = (k, t)$ is quasi-linear, Ex-post efficient but not strictly-budget-balanced.
+There exists a $\theta$ such that 
 $\sum_i t_i(\theta) < 0$. Hence, there exists at least
-one agent $j$ such that $t_j < 0$. (If everyone is positive, sum cannot be less than 0).
+one agent $j$ such that $t_j < 0$. (If every $i$ has positive $t_i$, sum cannot be less than 0).
+Consider a new allocation $X' = (k, t')$ where :
 
-Now consider a new allocation $X' = (k, t')$ where 
-
-$t'_j(\theta) = 
+\begin{align*}
+&t'_j(\theta) \equiv
 \begin{cases}
     t_j(\theta) -  \sum_i t_i(\theta)/n & \text{if $t_j(\theta) < 0$} \\
     t_j(\theta) & \text{otherwise}
-\end{cases}
-$ 
+\end{cases}. \\
+&u'_j(k, t') > u_j(k, t) \text{ for $j$ where $t_j(\theta) < 0$}. \\
+&u'_j(k, t') = u'_j(k, t) \text{ for other agents}.
+\end{align*}
 
-Hence, $u'_j(k, t') > u_j(k, t)$ for such $j$ where $t_j(\theta) < 0$.
-For other agents, $u'_j(k, t') = u'_j(k, t)$.
+Hence, $(k, t')$ \textbf{pareto dominates} $(k, t)$. This is a contradiction
+to the assumption that $f$ was Ex-post-efficient, since we constructed an
+outcome where one agent does better, and others don't do worse.
+Therefore, the function $f$ must be strictly-budget-balanced.
 
-This means that $(k. t')$ pareto dominates $(k. t)$. This is a contradiction
-to the assumption that $f$ was EPE, since we constructed an outcome where
-one agent does better, and others don't do worse.
-
-We now argue that f must be allocatively efficient, if  f is EPE. For contradiction,
-let us assume that $f$ is not AE.
-That means that there is a $k^\star$ such that
-$\sum_i v_i(k^\star, \theta) > v_i (k, \theta)$.
-
-Define $t_i'(\theta)  = v_i(k, \theta) - t_i (\theta) - \sum_j \theta_j(k^\star, \theta) + \epsilon$
-where $\epsilon < \sum_j v_j(k^star, \theta) - theta_j (k, \theta)$.
-
-Note that $v_i(k, \theta) - t_i (\theta)  = u_i(k, t)$. 
-Now note that
-$u_i(k^\star, t') = u_i(k, t) + \epsilon/n$, where $\epsilon$ is positive.
-Hence, $u_i(k^\star, t') > u_i(k, t)$. 
-
-We need to check that $t'$ is feasible: ie, $\sum_i t_i' < 0$.
-
-$$
-\sum_i t_i' = \sum_i v_i(k, theta) - \sum v_j(k^\star, \theta) + \sum_i t_i(\theta) \leq 0??
-$$
-
-Also note that for all $i$, $u_i(k^\star, t') > u_i(k, t)$. This is contradiction
-to the fact that $f$ is APE. Hence, $f$ must be AE.
 
 \textbf{Part 2: Quasi-Linear + SBB implies EPE}
 
-For this, we will need to prove a lemma:
-
-\begin{lemma}
-If $f: \Theta \rightarrow X$ st $\forall \theta \in \Theta$,
-$$
-\sum_i u_i(f(\theta), \theta_i) \geq \sum_i u_i(x, \theta_i) \forall x \in X
-$$
-then $f$ is EPE.
-
-\end{lemma}
-\begin{proof}
-The key idea is to write $u_i = v_i + t_i$, an we can get rid of $t_i$ since
-$f$ is SBB. TODO.
-\end{proof}
-
-TODO
 \end{proof}
 
 
@@ -326,11 +289,14 @@ t_i(\theta_i, \theta_{-i}) \equiv
     which implies:
 
     $$
-      \sum_{i=1}^n v_i(k^*(\theta'_i, \theta_{-i}), \theta_i) >
+      \sum_{i=1}^n  v_i(k^*(\theta'_i, \theta_{-i}), \theta_i) >
       \sum_{i=1}^n v_i(k^*(\theta_i, \theta_{-i}), \theta_i) 
     $$
 
-    However, this contradicts allocative efficiency.
+    However, this contradicts allocative efficiency, since the mechanism
+    chose a $k^*(\theta_i, \theta_{-i}) $ whose net-good is \emph{sub-optimal}:
+    it would have been better for the mechanism to have chosen 
+    $k^*(\theta'_i, \theta_{-i}), \theta_i$.
 
     \begin{align*}
     \end{align*}
@@ -338,9 +304,14 @@ t_i(\theta_i, \theta_{-i}) \equiv
 \end{proof}
 
 \section{Groves mechanism}
-The main result in this section is that in the quasilinear environment, there exist
-social choice functions that are both AE and DSIC. These are in general called the VCG
-(Vickrey–Clarke–Groves) mechanisms.
+A direct revelation mechanism, 
+$D \equiv (\Theta, f(\cdot) \equiv (k(\cdot), t_1(\cdot), \cdots, t_n (\cdot)))$ 
+satisfies allocative efficiency  and Groves payment rule is known as a Groves
+mechanism. These are also called VCG (Vickry Clark Groves) mechanisms.
+
+$$
+\text{Vickry Mechanism} \subsetneq \text{Clarke Mechanism} \subsetneq \text{Groves Mechanism}
+$$
 
 
 
@@ -350,97 +321,128 @@ social choice functions that are both AE and DSIC. These are in general called t
     \item \textbf{Private information}: Seller $\Theta_0 = \{ 0 \}$. Byers = $\theta_1 =\theta_2 = [0, 1]$.
 \end{itemize}
 
-\section{First price versus second price auction}
-First price: reporting valuation truthfully is not an equilibrium. Second
-price: truthful reporting is equilibrium.
-
-How do we generalize this to more situations? The key idea is that in a second
-price auction, our payment is independent of what we report. The allocation
-might depend on our payment, but payment does not. How can we have more
-DSIC mechanisms?
-
-Three families A B C, can go to Munnar or Simla. 
-
-
-\begin{tabular}{l r r l}
-  &  \textbf{Manali} &  \textbf{Shimoga} & \\
-\textbf{A} & -1 &  10 & \\
-\textbf{B} & 5  & -2  & \\
-\textbf{C} & 5  & 4  & (Claire is a kid, loves vacations) \\
-\end{tabular}
-
-We want to get this information truthfully, by using VCG/Groves mechanism.
-
-there are two outcoomes, M or S . If we go to M, the tuility is 5+5-1=9. If
-we choose S, it is 10-2+4=12. so S is allocatively efficient.
-
-
-
-\begin{tabular}{l r r r r r r r}
-    & $\{ A \}$  & $\{ B \}$   & $\{ C \}$  &  $\{ A, B \}$ & $\{ A, C \}$ & $\{ B, C  \}$ & $\{  A, B, C \}$ \\
-$P_1$  & 10 & 0   & 5  &  10  &  20 &   5  &  20 \\
-$P_2$  & 0  & 9   & 15  &  9  &  15 &  20  &  20 \\
-$P_3$  & 10 &  2   & 2  &  10  &  12 &  2  &   28 \\
-$P_4$  & 8  &  3   & 3  &  8  &   8 &   3  &    8
-\end{tabular}
+% \section{First price versus second price auction}
+% First price: reporting valuation truthfully is not an equilibrium. Second
+% price: truthful reporting is equilibrium.
+% 
+% How do we generalize this to more situations? The key idea is that in a second
+% price auction, our payment is independent of what we report. The allocation
+% might depend on our payment, but payment does not. How can we have more
+% DSIC mechanisms?
+% 
+% Three families A B C, can go to Munnar or Simla. 
+% 
+% 
+% \begin{tabular}{l r r l}
+%   &  \textbf{Manali} &  \textbf{Shimoga} & \\
+% \textbf{A} & -1 &  10 & \\
+% \textbf{B} & 5  & -2  & \\
+% \textbf{C} & 5  & 4  & (Claire is a kid, loves vacations) \\
+% \end{tabular}
+% 
+% We want to get this information truthfully, by using VCG/Groves mechanism.
+% 
+% there are two outcoomes, M or S . If we go to M, the tuility is 5+5-1=9. If
+% we choose S, it is 10-2+4=12. so S is allocatively efficient.
+% 
 
 
-Giving $A$ to $P_1$ and $BC$ to $P_2$ gives $10 + 20 = 30$.
+% \begin{tabular}{l r r r r r r r}
+%     & $\{ A \}$  & $\{ B \}$   & $\{ C \}$  &  $\{ A, B \}$ & $\{ A, C \}$ & $\{ B, C  \}$ & $\{  A, B, C \}$ \\
+% $P_1$  & 10 & 0   & 5  &  10  &  20 &   5  &  20 \\
+% $P_2$  & 0  & 9   & 15  &  9  &  15 &  20  &  20 \\
+% $P_3$  & 10 &  2   & 2  &  10  &  12 &  2  &   28 \\
+% $P_4$  & 8  &  3   & 3  &  8  &   8 &   3  &    8
+% \end{tabular}
+% 
+% 
+% Giving $A$ to $P_1$ and $BC$ to $P_2$ gives $10 + 20 = 30$.
 
 
-A direct revelation mechanism in which $f$ satisfies allocative efficiency
-and the groves payment scheme is knows as the groves mechanism.
-before this, there is another mechanism called as Clarke's mechanism
+\section{Clarke mechanism}
 
-\section{Clarke's mechanism}
+A special class of Groves mechanisms was developed by Clarke. These are
+called as Clarke / pivotal mechanisms. We use a particular $h: \Theta \rightarrow \mathbb R$:
 
-$h_i(\theta_i) = \sum_{j \neq i} v_j(k_{-i}^\star(\theta_{-i}, \theta_j)) \forall \theta_{-i} \in \Theta_{-i}$
+\begin{equation}
+    \underset{\text{clarke}}{h_i(\theta_i)} \equiv
+    \sum_{j \neq i} v_j(k_{-i}^\star(\theta_{-i}, \theta_j))
+    \qquad \forall \theta_{-i} \in \Theta_{-i}
+\end{equation}
 
-That is, each agent $i$ receives
-$$
-t_i(\theta) = \sum_{j \neq i}(v_j(k^\star(\theta), \theta_j)) - \sum_{j \neq i} v_j(k^\star_{-i}(\theta_{-i}), \theta_j))
-$$
+That is, each agent $i$ receives:
+
+\begin{equation}
+    \underset{\text{clarke}}{t_i(\theta)} \equiv
+    \sum_{j \neq i}(v_j(k^\star(\theta), \theta_j)) - \sum_{j \neq i} v_j(k^\star_{-i}(\theta_{-i}), \theta_j))
+\end{equation}
 
 This works for combinatorial auctions as well. It's a generalization
 of second-price auction.
 
-\begin{tabular}{l r r l}
-            & \textbf{M} & \textbf{S} & \\
-\textbf{A} &-1  &10 &  \\
-\textbf{B} & 5  &-2 & \\
-\textbf{C} & 5 & 4 &  (C is a kid, loves vacations) \\
+\subsubsection{Example use of Clarke mechanism}
+
+\begin{figure}[H]
+\begin{center}
+\begin{tabular}{l r r }
+& \textbf{M}anali & \textbf{S}himla  \\
+\textbf{A} &-1  &10   \\
+\textbf{B} & 5  &-2  \\
+\textbf{C} & 5 & 4   \\
+\textbf{Total} & 9 & $\mathbf{12}$   \\
 \end{tabular}
+\caption{Payoffs for planning a family vacation to Manali or Shimla. Shimla is allocatively efficient with $A$ involved.}
+\end{center}
+\end{figure}
 
-For player A, first consider:
+Let us attempt to calculate the payoff for $A$. First, when $A$ is involved (ie, all players are considered),
+we find that $[S \equiv 10 - 2 + 4 = 9] > [M \equiv -1 + 5 + 5 = 9]$. That is,
+\textbf{S} is the allocatively efficient option. Next, we consider what
+happens without player $A$:
 
-\begin{tabular}{l r r l}
-& \textbf{M}  & \textbf{S} & \\
-\textbf{A}  & -  & -  & \\
-\textbf{B}  & 5  & -2 & \\
-\textbf{C}  & 5  & 4  & (C is a kid, loves vacations) \\
+\begin{figure}[H]
+\begin{center}
+\begin{tabular}{l r r}
+& \textbf{M}anali  & \textbf{S}himla \\
+\textbf{A}  & ---  & ---   \\
+\textbf{B}  & 5  & -2  \\
+\textbf{C}  & 5  & 4          \\
+\textbf{Total} & $\mathbf{10}$ & 2   \\
 \end{tabular}
+\caption{Payoffs for the same vacation, with $A$ suppressed for Clarke mechanism. Manali is allocatively efficient 
+        without $A$ involved.}
+\end{center}
+\end{figure}
 
-AE is M. 
+In this case, $[\textbf{M} \equiv 5 + 5 = 10] > [\textbf{S} \equiv 4 + -2 = 2]$, and hence \textbf{M}
+is allocatively efficient, and the allocatively efficient valuation is $5 + 5 =
+10$.  Following Clarke Mechanism, we should set the payment for $A$ to be:
 
-Following Clarke Mechanism:
 \begin{align*}
-t_A = &[\text{valuation of remaining agents at allocatively efficient outcome without A}](-2+4)  \\
+\underset{\text{clarke}}{t_A} \equiv &[\text{valuation of remaining agents at allocatively efficient outcome without A}](-2+4)  \\
      & - [\text{valuation of remaining agents at allocatively efficient outcome with A}][5+5] \\
-     = 8
+     &= 8
 \end{align*}
 
 
-for player B, first consider:
+For player B, we once again consider what happens when they are not involved; we
+notice that when they are not involved, the equilibrium does not change; Thus,
+they deserve to be paid \emph{nothing} --- since they have no effect on the
+equilibrium! Performing the computation:
 
-\begin{tabular}{cccc}
-\textbf{A}    & -1 &  10 & \\
-\textbf{B}    &  - & -1 &  -   \\
-\textbf{C}    &  5 & -1 &  4  \\
-     &  M & -1 &  S 
+\begin{figure}[H]
+\begin{center}
+\begin{tabular}{lrr}
+              &  \textbf{M} &   \textbf{S} \\
+\textbf{A}    & -1 &  10  \\
+\textbf{B}    &  --- &  ---   \\
+\textbf{C}    &  5 &  4  \\
+\textbf{Total} & 4    &  \textbf{14}  \\
 \end{tabular}
-
-AE is S.  So, $t_B = 0$. Similarly, $t_C = 0$.
-
+    \caption{Payoffs for the same vacation, with $B$ suppressed for Clarke mechanism. Shimla continues
+        to be allocatively efficient without $B$ involved}.
+\end{center}
+\end{figure}
 
 \nocite{*}
 \bibliographystyle{plain}
