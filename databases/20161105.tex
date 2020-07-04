@@ -49,9 +49,50 @@ consistency in a short period of time is "good enough", when it allows
 us to have consistency and availability as well!
 
 \section{Q3}
-Block size $B = 4096$ bytes. Main memory is $M = 50 MB = 50 * 10^6 \text{bytes}$. Record $R$
-takes $R = 10^7\text{tuples} \times 10^2 \text{tuples/byte} = 10^9 \text{bytes}$.
-Disk IO is 15 msec.
+
+\begin{itemize}
+    \item Disk Block size $B = 4096 = 2^12 \text{bytes/block}$. Main memory is $M = 50 \text{MB} = 50 * 2^{20} \text{bytes}$. 
+    \item Record $R$
+        takes $R = 10^7\text{tuples} \times 10^2 \text{tuples/byte} = 10^9 \text{bytes}$.
+    \item Disk IO is 15 msec.
+    \item Number of blocks needed for relation: $R/B = \frac{10^9 \text{bytes}}{2^{12} \text{bytes/block}} = \frac{10^9}{2^{12}} \simeq 250,000 \text{blocks}$.
+    \item Number of blocks in main memory: $M/B = \frac{50*2^{20}\text{bytes}}{2^{12} \text{bytes/block}} = 50 * 2^{8} = 12800 \text{blocks}$.
+\end{itemize}
+
+\subsubsection{Q3.1}
+Since we are reading and storing in random order, we will need around $15\text{msec}$
+for each block we are reading. 
+We need to read and write each block of the relation $R$ once. This will take us
+$15\text{msec} \times 250,000 \times 2= 7500 \text{seconds}$.
+
+\subsubsection{Q3.2}
+The original data may be stored on consecutive cylinders. Each of the 8192
+cylinders of the Megatron 747 1 MB on average. We store the initial
+data (which is $10^3$ MB) on 1000 cylinders, and we read 50 cylinders to fill
+main memory (which is 50MB). Therefore we can read one cylinder with a single
+seek time. We do not even have to wait for any particular block of the cylinder
+to pass under the head, because the order of records read is not important at
+this phase. It takes 6.4 seconds for the transfer of 12,800 blocks.
+The writing part of phase 1 can also use adjacent cylinders to store the 20
+sorted sublists. of records. They can be written out onto another 1000 cylinders.
+Thus, the writing time for phase 1 is also about 2.15
+minutes, or 4.3 minutes for all of phase 1.
+
+On the other hand, storage by cylinders does not help with the second phase
+of the sort. Thus, the second phase will still take about 125 minutes.
+
+\subsubsection{Q3.3}
+
+Replacing the disk by 4 disks
+
+
+% Number of times we need to read into memory to read full relation: 
+% $$\frac{\text{# of blocks needed for relation}}{\text{{# Number of blocks in main memory}} =\frac{10^9}{2^{12}} * \frac{1}{50 * 2^8} \simeq 20$$
+% Each block needs both  a read and a write, so we need to perfom $20 \times 2 = 40$ main memory
+% operations. Each main memory operations take $15$ milliseconds, so we need to spend
+% a total of 
+
+
 
 \section{Q4}
 \subsubsection{Size calculation:}
@@ -60,6 +101,26 @@ Disk IO is 15 msec.
 \subsubsection{Cost calculation:}
 \includegraphics[width=\textwidth]{db-q4-2.pdf}
 \section{Q5}
+
+\subsubsection{Q5.1}
+After \texttt{<U, B, 20>}, we have transactions $T$ and $U$ active.  So, to start the checkpoint,
+we have to write \texttt{<START CKPT(T, U)>}. 
+
+Transaction $T$ is committed after transaction $U$. So to end, we have  to
+write \texttt{<END CKPT>} record after \texttt{<COMMIT T>}.
+
+\subsubsection{Q5.2}
+
+For \texttt{<V, B, 80>}, we only need to undo \texttt{<V, B, 80>} since
+we have a \texttt{<END CKPT>} checkpoint right before it. 
+
+For \texttt{<U, D, 40>}, we must look back till \texttt{START T} since that
+is the earliest transaction that we active during the checkpoint.
+
+
+For \texttt{<T, A, 10>}, we must look back till the \emph{previous}
+checkpoint --- not the one being discussed in the question, since it
+occured even before the current checkpoint started recoding.
 
 \section{Q6}
 
@@ -121,6 +182,23 @@ View serializable: If a given schedule is found to be view equivalent to some se
 Conflict serializable: If there are no cycles in the conflict graph.
 
 
+Intuitively, view-serializability considers all the connections between
+transactions T and U such that T writes a database element whose value U
+reads. 
+
+The key difference between view, conflict serializability happens
+when a transaction T writes a value A that no other transaction reads (since
+all other transactions later write their own values for A). In this case, the
+$WT(A)$ action can be placed in certain other positions of the schedule (where A
+is likewise never read) that would not be permitted under the definition of
+conflict-serializability. Hence, view serializability is more flexible
+than conflict serializability.
+
+Therefore, every conflict serializable schedule is indeed view serializable.
+But there can be some freedom used by the view serializable version that
+the conflict serializable version cannot use.
+
+
 \subsubsection{9.4}
 
 We can use strict 2-phase locking for recoverability. This requires that
@@ -131,6 +209,10 @@ transaction be released until after the Transaction Commits.
 Database operations are in fact relational algebra operations. These
 operations are pure mathematical expressions, and are generally reads or
 writes into disjoint pieces of data. This makes them naturally parallelizable.
+
+Many DB operations such as projections work tuple-at-a-time, which can be
+parallelized across tuples. If we have the hashes of relations, we can
+compute union, intersection, and difference all in parallel.
 
 
 \subsubsection{9.6}
@@ -159,7 +241,19 @@ Increment based locking is good in this case because it allows to add or subtrac
 from an element, which is what most kinds of bank transaactions are. Increment locks on the same
 element do not conflict with each other.
 \subsubsection{9.9}
-recovery manager will have to DODO
+
+The first task of the recovery manager is to divide the transactions into
+committed and uncommitted transactions. If there is a log record <COMMIT T>,
+then by undo rule f/2 all changes made by transaction T were previously written
+to disk. Thus, T by itself could not have left the database in an inconsistent
+state when the system failure occurred.
+However, suppose that we find a <START T> record on the log but no
+<COMMIT T> record. Then there could have been some changes to the database
+made by T that got written to disk before the crash, while other changes by
+T either were not made, even in the main-memory buffers, or were made in
+the buffers but not copied to disk. In this case, T is an incomplete transaction
+and must be undone.
+
 \subsubsection{9.10}
 all trees of n vertices is $n^{n-2}$. Number of left-deep trees is $n!$.
 $n^{n-2}$ is much larger than $n!$.
