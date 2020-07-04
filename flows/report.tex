@@ -1,0 +1,37 @@
+\documentclass[titlepage]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{minted}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage[colorlinks=true]{hyperref}
+
+
+\newmintinline[cinline]{c}{}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\I}{\mathbb{I}}
+\renewcommand{\S}{\texttt{S}}
+\newcommand{\zo}{\{0, 1\}}
+\newcommand{\qed}{\ensuremath{\triangle}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proof}{Proof}[theorem]
+\title{Flows in Networks}
+\author{Siddharth Bhat ~ \texttt{siddu.druid@gmail.com}}
+
+
+\date{\today}
+\begin{document}
+\maketitle
+
+\section{Introduction}
+This is a re-type of the RAND corporation report by Ford and Fulkerson. I hope
+to re-type the essential parts of their notes, and then augment this with
+push-relabel and dinic's as well.
+
+\bibliographystyle{plain}
+\bibliography{references}
+\nocite{*}
+
+\end{document}
+
