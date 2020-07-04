@@ -12,6 +12,7 @@
 \newcommand{\I}{\mathbb{I}}
 \newcommand{\zo}{\{0, 1\}}
 \newcommand{\distinct}{\emph{distinct}}
+\newcommand{\eps}{\ensuremath{\epsilon}}
 
 
 \newcommand{\Xbar}{\ensuremath{\overline{X}}}
@@ -187,6 +188,7 @@ we now prove.
 %22
 
 \begin{lemma}[Flow-Cut equality]
+    \label{lemma:flow-cut-equality}
     Let $f$ be a flow from $s$ to $t$ in a network $[N; A]$. Let $f$ have
     value $v$. If $(X, \Xbar)$ is a cut separating $s$ and $t$, then
 
@@ -239,6 +241,38 @@ by the definition of a valid flow, and the inequality follows.
     For any network, the maximal flow value from $s$ to $t$ is equal to the 
     minimal cut capcacity over cuts separating $s$ and $t$.
 \end{theorem}
+\begin{proof}
+By our lemma \ref{lemma:flow-cut-equality}, it suffices to establish
+a flow $f$ and a cut $(X_f, \Xbar_f)$ for which equality of
+flow value $f$ and cut capacity $c(X_f, \Xbar_f)$ holds. We do this
+by taking a maximal flow $f$ (why does this exist?), and defining
+in terms of $f$ a cut $(X_f, \Xbar_f)$ such that $f(X_f, \Xbar_f) = c(X_f, \Xbar_f)$,
+and $f(\Xbar_f, X_f) = 0$. This allows the equality to hold:
+
+\begin{align*}
+&v = f(X_f, \Xbar_f) - f(\Xbar_f, X_f) \leq c(X_f, \Xbar_f) \\
+&v = f(X_f, \Xbar_f) - 0 = c(X_f, \Xbar_f)
+\end{align*}
+
+Let $f$ be a maximal flow. We build the set $X_f$ as the set of all nodes
+reachable from $s$ through unsaturated arcs. Formally, we define the
+the equations:
+\begin{align*}
+    &(a) ~ s \in X_f \\
+    &(b_1) ~ \text{if $x \in X_f$ and $f(x, y) \lneq c(x, y)$, then $y \in X_f$ } \\
+    &(b_2) ~ \text{if $x \in X_f$ and $f(y, x) \gneq 0$, then $y \in X_f$ } \\
+\end{align*}
+
+We assert that $t \not \in \Xbar_f$. Suppose not. it follows from the definition of $X_f$
+that there is a path from $s$ to $t$: $[s = x_1], x_2, \dots, x_{n-1}, [x_n = t]$.
+For all forward arcs, we have $f(x_i, x_{i+1}) < c(x_i, x_{i+1})$. For reverse
+arcs, we have $f(x_{i+1}, x_i) > 0$. Let $\eps_{fwd}$ be the minimum of 
+$(c - f)$ taken over all forward arcs of the path. Let $\eps_{bwd}$ be the
+minimum of $f$ taken over all reverse arcs. Let $\eps = \min(\eps_{fwd}, \eps_{bwd}) > 0$.
+We now alter the flow $f$ by adding $\eps$ over all forward arcs and decreasing
+$f$ by $\eps$ on all reverse arcs of the path.
+
+\end{proof}
 
 
 \bibliographystyle{plain}
