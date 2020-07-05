@@ -1,3 +1,5 @@
+- [Mumford's recollections of coming to India and staying at TIFR](www.dam.brown.edu/people/mumford/beyond/papers/2010c--PassagesIndia-journal.pdf)
+- [Indra's pearls: book from mumford](http://klein.math.okstate.edu/IndrasPearls/)
 - [twtxt: UNIX based microblogging](https://twtxt.readthedocs.io/en/latest/)
 - It's called the center of a group, because just like the city centre, everybody commutes there.
 -  Books on the financial system:

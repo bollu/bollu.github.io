@@ -17,6 +17,7 @@ A Universe of Sorts
 #### Table of contents:
 
 <ol reversed>
+<li> [Sanskrit and Sumerian](#sanskrit-and-sumerian)
 <li> [Writing Cuneiform](#writing-cuneiform) </li>
 <li> [The code of hammurabi](#the-code-of-hammurabi) </li>
 <li> [The implicit and inverse function theorem](#the-implicit-and-inverse-function-theorem) </li>
@@ -185,6 +186,59 @@ A Universe of Sorts
 <li> [Big list of words](#big-list-of-haiku) </li>
 <li> [Big list of Haiku](#big-list-of-haiku) </li>
 </ol>
+
+# Sanskrit and Sumerian
+
+#### Sanskrit's precursors 
+
+The oldest known sanskrit text that has been found is the Rig Veda. Eveyrthing
+after is the study of sanskit proper. This is quite problematic because the
+Rig Veda is a complete and consistent textbook with respect to language. It's
+a black-box in terms of language evolution.
+
+The question "what is the precursor" asks for a method of study to determine
+the precursor. We just don't know because we have no writings, text, etc.
+
+##### Archaeological data
+
+Archaeological data is problematic as well. We don't know where the people who
+knew sanskrit came from. Sanskrit was spoken in the northen part of
+Hindusthan [what they originally called Bhrahma-nagar (?)]. While we can
+try to undersatnd where it comes from, it's hard. The script is Brahmi / Devanagiri,
+which means used by Brahma or god. The name "sanskrit" is a compound that stands
+for "well-formed". It's really clean-slate in that sense. The study of Indo-Aryan
+languages in the Indian subcontinent has only one possible known history, which
+stops at the Rig Veda. We don't know the relationship between 2400BC when
+Rig Veda was written to anything before it.
+
+##### Non Vedic sanskrit
+
+Studies in non-vedic sanskrit is known to be the "true" proto-Indo-Europoean (PIE)
+language. The conjecture is that this Indo European language ought to be
+able to cover middle greek, hittite, and sanskit. 
+
+##### Prakrit and its relationship to this story
+
+Prakrit evolved as a vernacular of Sanskrit in the north pahadi region. Hindi
+as we know toady evolved from Hindusthani, which came from languages in 
+northern india. Languages like Marathi, Marvadi, Gujurathi, etc. came a lot
+before Hindi did.
+
+##### TLDR on Sanskrit v/s Hindi
+
+There is a huge gap of time between Sanskit, Prakrit, Pali, and Hindi. 
+Hindi evolved around the 1600s due to the Mughals who used to speak a 
+vernacular of Hindusthani. Kabir also wrote in Hindusthani. There was also
+some Farsi and Urdu mixed in. 
+
+> Hindi is more of a political exploit than an actual language ~ Alok 2020
+
+
+##### The relationship to Sumerian
+
+We don't know what the relationship to sumerian is. Social expectations that
+was setup is sumerian has become more stringent in Sanskrit. 
+
 
 # [Writing Cuneiform](#writing-cuneiform)
 
