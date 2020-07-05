@@ -6,17 +6,21 @@ A Universe of Sorts
 
 
 - [Leave feedback for me, `+ve` or `-ve`!](https://www.admonymous.co/bollu)
+- Reach me / email ID: <a href='mailto:siddu.druid@gmail.com'> `siddu.druid@gmail.com` </a>
 - [My github](http://github.com/bollu)
 - [My math.se profile](https://math.stackexchange.com/users/261373/siddharth-bhat)
 - [My resume](resume/main.pdf)
 - [My reading list](todo.html)
-- Reach me / email ID: <a href='mailto:siddu.druid@gmail.com'> `siddu.druid@gmail.com` </a>
+- [Buy me a coffee](https://ko-fi.com/bollu)
+- [Incentivize me to explain something for you](https://www.patreon.com/bollu)
 
 #### Table of contents:
 
 <ol reversed>
-<li> [The implicit and inverse function theorem](#the-implicit-and-inverse-function-theorem)
-<li> [Whalesong hyperbolic space in detail](#whalesong-hyperbolic-space-in-detail)
+<li> [Writing Cuneiform](#writing-cuneiform) </li>
+<li> [The code of hammurabi](#the-code-of-hammurabi) </li>
+<li> [The implicit and inverse function theorem](#the-implicit-and-inverse-function-theorem) </li>
+<li> [Whalesong hyperbolic space in detail](#whalesong-hyperbolic-space-in-detail) </li>
 <li> [Motivating Djikstra's](#intuition-for-hyperbolic-space) </li>
 <li> [Intuitions for hyperbolic space](#intuition-for-hyperbolic-space) </li>
 <li> [Product of compact spaces in compact](#product-of-compact-spaces-is-compact) </li>
@@ -181,6 +185,38 @@ A Universe of Sorts
 <li> [Big list of words](#big-list-of-haiku) </li>
 <li> [Big list of Haiku](#big-list-of-haiku) </li>
 </ol>
+
+# [Writing Cuneiform](#writing-cuneiform)
+
+I've been reading about the Sumerian people, and I've gotten fascinated with
+the question of how to write in Cuneiform, which is their script. I wanted
+to learn how to write cuneiform. It appears that it was originally written
+down by pressing reed styluses into clay. The script is syllabic in nature.
+We have three components:
+
+1. Vertical wedge `𐏑`
+2. Horizontal wedge `𐎣`
+3. Diagonal `𐏓`
+
+
+
+
+##### References
+
+- [Getty museum: Writing cuneiform](https://www.youtube.com/watch?v=HbZ2asfyHcA)
+- [Irving Finkel teaches how to write cuneiform](https://www.youtube.com/watch?v=XVmsfL5LG90)
+- [CLDI: Cuneiform Digital library initiative](http://cdli.ox.ac.uk/wiki/doku.php?id=cuneiform_writing_techniques)
+- [Font: Old persian block](https://www.compart.com/en/unicode/block/U+103A0)
+
+# [The code of hammurabi](#the-code-of-hammurabi)
+
+I've wanted to read the code of hammurabi since it was name dropped in
+[Snow Crash by Neal Stephenson](https://en.wikipedia.org/wiki/Snow_Crash).
+I finally got around to it. Here's some excerpts I found fascinating.
+
+##### References
+
+- [Translated code of hammurabi](http://www.general-intelligence.com/library/hr.pdf)
 
 # [The implicit and inverse function theorem](#the-implicit-and-inverse-function-theorem)
 

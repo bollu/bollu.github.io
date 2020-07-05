@@ -1,3 +1,7 @@
+- [twtxt: UNIX based microblogging](https://twtxt.readthedocs.io/en/latest/)
+- It's called the center of a group, because just like the city centre, everybody commutes there.
+-  Books on the financial system:
+    (1) A Monetary History of the United States  (2) The General Theory of Employment, Interest and Money
 - What are the topological obstructions to chaos in 1D and 2D?
 - [Involutive MCMC: new MCMC method that has classical MCMC methods as special cases](https://arxiv.org/pdf/2006.16653.pdf)
 - [Fun blog with visualizations by Nicholas Pilkington](https://nickp.svbtle.com/)
