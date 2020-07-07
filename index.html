@@ -12,16 +12,18 @@ a:active { color: #1a73e8; text-decoration: none; }
 A Universe of Sorts
 </h2>
 <h4><a id=siddharth-bhat href='#siddharth-bhat'> § </a> Siddharth Bhat</h4>
-<ul><li> <a href=https://www.admonymous.co/bollu>Leave feedback for me, <code>+ve</code> or <code>-ve</code>!</a></li><li> Reach me / email ID: <a href='mailto:siddu.druid@gmail.com'> <code>siddu.druid@gmail.com</code> </a></li><li> <a href=http://github.com/bollu>My github</a></li><li> <a href=https://math.stackexchange.com/users/261373/siddharth-bhat>My math.se profile</a></li><li> <a href=resume/main.pdf>My resume</a></li><li> <a href=todo.html>My reading list</a></li><li> <a href=https://ko-fi.com/bollu>Buy me a coffee</a></li><li> <a href=https://www.patreon.com/bollu>Incentivize me to explain something for you</a></li></ul>
+<ul><li> <a href=https://www.admonymous.co/bollu>Leave feedback for me, <code>+ve</code> or <code>-ve</code>!</a></li><li> Reach me / email ID: <a href='mailto:siddu.druid@gmail.com'> <code>siddu.druid@gmail.com</code> </a></li><li> <a href=http://github.com/bollu>My github</a></li><li> <a href=https://math.stackexchange.com/users/261373/siddharth-bhat>My math.se profile</a></li><li> <a href=resume/main.pdf>My resume</a></li><li> <a href=todo.html>My reading list</a></li><li> <a href=https://ko-fi.com/bollu>Buy me a coffee</a></li><li> <a href=https://www.patreon.com/bollu>Have me to explain something for you</a></li></ul>
 <h4><a id=table-of-contents href='#table-of-contents'> § </a> Table of contents:</h4>
 <ol reversed>
+<li> <a href=#an-incorrect-derivation-of-special-relativity-in-1d>An incorrect derivation of special relativity in 1D</a> </li>
+<li> <a href=#the-geometry-of-magnetic-monopoles>The geometry and dynamics of magnetic monopoles</a> </li>
 <li> <a href=#sanskrit-and-sumerian>Sanskrit and Sumerian</a>
 <li> <a href=#writing-cuneiform>Writing Cuneiform</a> </li>
 <li> <a href=#the-code-of-hammurabi>The code of hammurabi</a> </li>
 <li> <a href=#the-implicit-and-inverse-function-theorem>The implicit and inverse function theorem</a> </li>
 <li> <a href=#whalesong-hyperbolic-space-in-detail>Whalesong hyperbolic space in detail</a> </li>
-<li> <a href=#intuition-for-hyperbolic-space>Motivating Djikstra's</a> </li>
-<li> <a href=#intuition-for-hyperbolic-space>Intuitions for hyperbolic space</a> </li>
+<li> <a href=#motivating-djikstras>Motivating Djikstra's</a> </li>
+<li> <a href=#intuitions-for-hyperbolic-space>Intuitions for hyperbolic space</a> </li>
 <li> <a href=#product-of-compact-spaces-is-compact>Product of compact spaces in compact</a> </li>
 <li> <a href=#hyperbolic-groups-have-solvable-word-problem>Hyperbolic groups have solvable word problem</a> </li>
 <li> <a href=#elementary-uses-of-sheaves-in-complex-analysis>Elementary uses of Sheaves in complex analysis</a> </li>
@@ -183,7 +185,116 @@ A Universe of Sorts
 <li> <a href=#big-list-of-recipes>Big list of Recipes</a> </li>
 <li> <a href=#big-list-of-haiku>Big list of words</a> </li>
 <li> <a href=#big-list-of-haiku>Big list of Haiku</a> </li>
+<li> <a href=#big-list-of-music>Big list of Music</a> </li>
 </ol>
+<h2><a id=an-incorrect-derivation-of-special-relativity-in-1d href='#an-incorrect-derivation-of-special-relativity-in-1d'> § </a> [An incorrect derivation of special relativity in 1D]</h2>
+I record an <i>incorrect</i> derivation of special relativity, starting from the
+single axiom "speed of light is constant in all inertial reference frames".
+I don't understand why this derivation is incorrect. Help figuring this out
+would be very appreciated.
+<h4><a id=the-assumption href='#the-assumption'> § </a> The assumption</h4>
+We assume that the velocity of light as measured by any inertial frame
+is constant. Thus if <span class='latexinline'>
+<span style="font-style:italic">x</span>, <span style="font-style:italic">x</span>&#X2032;</span> are the locations of light as measured by
+two inertial frames, and <span class='latexinline'>
+<span style="font-style:italic">t</span>, <span style="font-style:italic">t</span>&#X2032;</span> is the time elapsed as measured by two
+inertial frames, we must have that <span class='latexinline'>
+<span style="font-style:italic">dx</span>/<span style="font-style:italic">dt</span> = <span style="font-style:italic">dx</span>&#X2032;/<span style="font-style:italic">dt</span>&#X2032;</span>. This ensures
+that the speed of light is invariant.
+<h4><a id=the-derivation href='#the-derivation'> § </a> The derivation</h4>
+<ul><li> Our coordinate system has an <span class='latexinline'>
+<span style="font-style:italic">x</span></span> space axis and a <span class='latexinline'>
+<span style="font-style:italic">t</span></span> time axis.</li><li> We have observer (1) standing still at the origin, and measures time
+  with a variable <span class='latexinline'>
+<span style="font-style:italic">t</span></span>.</li><li> We have observer (2) moving to the left with a constant velocity <span class='latexinline'>
+<span style="font-style:italic">v</span></span>.</li><li> Observer (1) who is at rest sees a photon starting from the origin
+  travelling towards the right with constant velocity <span class='latexinline'>
+<span style="font-style:italic">c</span></span>. The position of the
+  photon at time <span class='latexinline'>
+<span style="font-style:italic">t</span></span> is <span class='latexinline'>
+<span style="font-style:italic">x</span> = <span style="font-style:italic">c</span> <span style="font-style:italic">t</span></span>.</li><li> Observer (2) also sees this photon. At time <span class='latexinline'>
+<span style="font-style:italic">t</span></span>, he sees the position
+  of the photon as <span class='latexinline'>
+<span style="font-style:italic">x</span>&#X2032; = <span style="font-style:italic">vt</span> + <span style="font-style:italic">ct</span></span>.</li><li> From our rule of invariance, we have that <span class='latexinline'>
+<span style="font-style:italic">dx</span>/<span style="font-style:italic">dt</span> = <span style="font-style:italic">c</span> = <span style="font-style:italic">dx</span>&#X2032;/<span style="font-style:italic">dt</span>&#X2032;</span>.</li></ul>
+We calculate <span class='latexinline'>
+<span style="font-style:italic">dx</span>&#X2032;/<span style="font-style:italic">dt</span>&#X2032; = (<span style="font-style:italic">dx</span>&#X2032;/<span style="font-style:italic">dt</span>)(<span style="font-style:italic">dt</span>/<span style="font-style:italic">dt</span>&#X2032;)</span> [chain rule], giving:
+<div class='latexblock'><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+&#XA0;&#XA0;&#XA0;&#XA0;&#XA0;
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">c</span>&#XA0;=&#XA0;</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">dx</span></td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">dt</span></td></tr>
+</table></td><td class="dcell">&#XA0;=&#XA0;</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">dx</span>&#X2032;</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">dt</span>&#X2032;</td></tr>
+</table></td><td class="dcell">&#XA0;=&#XA0;</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">dx</span>&#X2032;</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">dt</span></td></tr>
+</table></td><td class="dcell">&#XA0;</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">dt</span></td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">dt</span>&#X2032;</td></tr>
+</table></td><td class="dcell">&#XA0;&#XA0;</td></tr>
+</table></td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">c</span>&#XA0;=&#XA0;</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">d</span>(<span style="font-style:italic">vt</span>&#XA0;+&#XA0;<span style="font-style:italic">ct</span>)</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">dt</span></td></tr>
+</table></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">dt</span></td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">dt</span>&#X2032;</td></tr>
+</table></td><td class="dcell">&#XA0;</td></tr>
+</table></td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">c</span>&#XA0;=&#XA0;(<span style="font-style:italic">v</span>&#XA0;+&#XA0;<span style="font-style:italic">ct</span>)&#XA0;</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">dt</span></td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">dt</span>&#X2032;</td></tr>
+</table></td><td class="dcell">&#XA0;</td></tr>
+</table></td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">c</span></td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">v</span>+<span style="font-style:italic">c</span></td></tr>
+</table></td><td class="dcell">&#XA0;=&#XA0;</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">dt</span></td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">dt</span>&#X2032;</td></tr>
+</table></td><td class="dcell">&#XA0;</td></tr>
+</table></td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">dt</span>&#X2032;&#XA0;=&#XA0;(<span style="font-style:italic">v</span>+<span style="font-style:italic">c</span>)<span style="font-style:italic">dt</span>/<span style="font-style:italic">c</span>&#XA0;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">t</span>&#X2032;&#XA0;=&#XA0;(<span style="font-style:italic">v</span>+<span style="font-style:italic">c</span>)<span style="font-style:italic">t</span>/<span style="font-style:italic">c</span>&#XA0;=&#XA0;(1&#XA0;+&#XA0;<span style="font-style:italic">v</span>/<span style="font-style:italic">c</span>)&#XA0;<span style="font-style:italic">t</span>
+</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+</div>
+So we get the relation that time elapsed for observer (2) is related
+to observer (1) as <span class='latexinline'>
+<span style="font-style:italic">t</span>&#X2032; = (1 + <span style="font-style:italic">v</span>/<span style="font-style:italic">c</span>) <span style="font-style:italic">t</span></span>. 
+<ul><li> This checks out: Assume our observer is moving leftward at <span class='latexinline'>
+<span style="font-style:italic">v</span> = <span style="font-style:italic">c</span></span>. He will
+  then see the photon move rightward at <span class='latexinline'>
+<span style="font-style:italic">x</span>&#X2032; = 2<span style="font-style:italic">ct</span></span>. So if his time slows down 
+  to have <span class='latexinline'>
+<span style="font-style:italic">t</span>&#X2032; = 2<span style="font-style:italic">t</span></span>, we will have that <span class='latexinline'>
+<span style="font-style:italic">x</span>/<span style="font-style:italic">t</span>&#X2032; = 2<span style="font-style:italic">ct</span>/2<span style="font-style:italic">t</span> = <span style="font-style:italic">c</span></span>.</li></ul>
+<ul><li> However, this forumla allows us to go faster than the speed of light with
+  no repercurssions! (It is also not the correct formula as anticipated by
+  the usual derivation). This can be fixed.</li></ul>
+<ul><li> Now assume that Observer 2 was moving <i>rightward</i>, not <i>leftward</i>. That is,
+  we simply need to set <span class='latexinline'>
+<span style="font-style:italic">v</span> = &#X2212;<span style="font-style:italic">v</span></span>, since this change of sign accomplishes
+  flipping the direction of motion in 1D. This gives us the equation
+  <span class='latexinline'>
+<span style="font-style:italic">t</span>&#X2032; = (1 &#X2212; <span style="font-style:italic">v</span>/<span style="font-style:italic">c</span>)<span style="font-style:italic">t</span></span>.</li></ul>
+<ul><li> According to this new equation, we are not allowed to approach the speed of
+  light. If we attempt to do so, we will need to elapse zero time; and if
+  we exceed the speed of light, we will need to elapse <i>negative time</i>.</li></ul>
+<ul><li> However, these formulae lead to an absurdity. If our observer 1 and observer 2
+  witness two photons, one moving leftward and one moving rightward, one will
+  need to write down the equations <span class='latexinline'>
+<span style="font-style:italic">t</span>&#X2032; = (1 &#XB1; <span style="font-style:italic">v</span>/<span style="font-style:italic">c</span>)<span style="font-style:italic">t</span></span>, which plainly leads
+  one to contradiction.</li></ul>
+<b>What is wrong with this derivation? I don't know!</b>
+<h2><a id=the-geometry-and-dynamics-of-magnetic-monopoles href='#the-geometry-and-dynamics-of-magnetic-monopoles'> § </a>  <a href=#the-geometry-and-dynamics-of-magnetic-monopoles>The geometry and dynamics of magnetic monopoles</a></h2>
+I found this cool document written by Sir Atiyah which seems to contain
+a nice exposition of electromagnetism from the differential viewpoint.
+I'll record what I read here.
 <h2><a id=sanskrit-and-sumerian href='#sanskrit-and-sumerian'> § </a> Sanskrit and Sumerian</h2>
 <h4><a id=sanskrits-precursors- href='#sanskrits-precursors-'> § </a> Sanskrit's precursors </h4>
 The oldest known sanskrit text that has been found is the Rig Veda. Eveyrthing
@@ -14989,5 +15100,7 @@ own good
 Named after the spartans.
 <h2><a id=big-list-of-haiku href='#big-list-of-haiku'> § </a> <a href=#big-list-of-haiku>Big list of haiku</a></h2>
 Contains haiku that I write, and ones that I enjoy.
-<blockquote> Attention is all you need productivity sprighty, fleeting attention</blockquote>
+<blockquote> Attention is all you need / productivity / sprighty, fleeting attention /</blockquote>
+<h2><a id=big-list-of-music href='#big-list-of-music'> § </a> <a href=#big-list-of-music>Big list of Music</a></h2>
+<ul><li> Clipping: Experimental story telling hip-hop</li><li> Aesop Rock: Crazy large vocabulary, interesting hip-hop</li><li> Red hot Chili Peppers: Love John Frusciante's riffs.</li></ul>
 </container></body></html>

@@ -1,3 +1,5 @@
+- [`Mikutap`: Website with gorgeous transitions, I wish to replicate](https://aidn.jp/mikutap/)
+- [From parametricity to Noerther's theorem](https://bentnib.org/conservation-laws.pdf)
 - [Program design by calculation: Has a sweet graphical/geometric interpretation of galois connections](http://www4.di.uminho.pt/~jno/ps/pdbc.pdf)
 - [Derivation of wave equation](https://en.wikipedia.org/wiki/Wave_equation)
 - [Mumford's recollections of coming to India and staying at TIFR](www.dam.brown.edu/people/mumford/beyond/papers/2010c--PassagesIndia-journal.pdf)

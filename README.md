@@ -12,18 +12,20 @@ A Universe of Sorts
 - [My resume](resume/main.pdf)
 - [My reading list](todo.html)
 - [Buy me a coffee](https://ko-fi.com/bollu)
-- [Incentivize me to explain something for you](https://www.patreon.com/bollu)
+- [Have me to explain something for you](https://www.patreon.com/bollu)
 
 #### Table of contents:
 
 <ol reversed>
+<li> [An incorrect derivation of special relativity in 1D](#an-incorrect-derivation-of-special-relativity-in-1d) </li>
+<li> [The geometry and dynamics of magnetic monopoles](#the-geometry-of-magnetic-monopoles) </li>
 <li> [Sanskrit and Sumerian](#sanskrit-and-sumerian)
 <li> [Writing Cuneiform](#writing-cuneiform) </li>
 <li> [The code of hammurabi](#the-code-of-hammurabi) </li>
 <li> [The implicit and inverse function theorem](#the-implicit-and-inverse-function-theorem) </li>
 <li> [Whalesong hyperbolic space in detail](#whalesong-hyperbolic-space-in-detail) </li>
-<li> [Motivating Djikstra's](#intuition-for-hyperbolic-space) </li>
-<li> [Intuitions for hyperbolic space](#intuition-for-hyperbolic-space) </li>
+<li> [Motivating Djikstra's](#motivating-djikstras) </li>
+<li> [Intuitions for hyperbolic space](#intuitions-for-hyperbolic-space) </li>
 <li> [Product of compact spaces in compact](#product-of-compact-spaces-is-compact) </li>
 <li> [Hyperbolic groups have solvable word problem](#hyperbolic-groups-have-solvable-word-problem) </li>
 <li> [Elementary uses of Sheaves in complex analysis](#elementary-uses-of-sheaves-in-complex-analysis) </li>
@@ -185,7 +187,84 @@ A Universe of Sorts
 <li> [Big list of Recipes](#big-list-of-recipes) </li>
 <li> [Big list of words](#big-list-of-haiku) </li>
 <li> [Big list of Haiku](#big-list-of-haiku) </li>
+<li> [Big list of Music](#big-list-of-music) </li>
 </ol>
+
+# [An incorrect derivation of special relativity in 1D]
+
+I record an _incorrect_ derivation of special relativity, starting from the
+single axiom "speed of light is constant in all inertial reference frames".
+I don't understand why this derivation is incorrect. Help figuring this out
+would be very appreciated.
+
+### The assumption
+
+We assume that the velocity of light as measured by any inertial frame
+is constant. Thus if $x, x'$ are the locations of light as measured by
+two inertial frames, and $t, t'$ is the time elapsed as measured by two
+inertial frames, we must have that $dx/dt = dx'/dt'$. This ensures
+that the speed of light is invariant.
+
+### The derivation
+
+
+- Our coordinate system has an $x$ space axis and a $t$ time axis.
+- We have observer (1) standing still at the origin, and measures time
+  with a variable $t$.
+- We have observer (2) moving to the left with a constant velocity $v$.
+- Observer (1) who is at rest sees a photon starting from the origin
+  travelling towards the right with constant velocity $c$. The position of the
+  photon at time $t$ is $x = c t$.
+- Observer (2) also sees this photon. At time $t$, he sees the position
+  of the photon as $x' = vt + ct$.
+- From our rule of invariance, we have that $dx/dt = c = dx'/dt'$.
+
+We calculate $dx'/dt' = (dx'/dt)(dt/dt')$ [chain rule], giving:
+
+$$
+\begin{align*}
+&c = \frac{dx}{dt} = \frac{dx'}{dt'} = \frac{dx'}{dt} \frac{dt}{dt'}  \\
+&c = \frac{d(vt + ct)}{dt}\frac{dt}{dt'} \\
+&c = (v + ct) \frac{dt}{dt'} \\
+&\frac{c}{v+c} = \frac{dt}{dt'} \\
+&dt' = (v+c)dt/c \\
+&t' = (v+c)t/c = (1 + v/c) t
+\end{align*}
+$$
+
+So we get the relation that time elapsed for observer (2) is related
+to observer (1) as $t' = (1 + v/c) t$. 
+
+- This checks out: Assume our observer is moving leftward at $v = c$. He will
+  then see the photon move rightward at $x' = 2ct$. So if his time slows down 
+  to have $t' = 2t$, we will have that $x/t' = 2ct/2t = c$.
+
+- However, this forumla allows us to go faster than the speed of light with
+  no repercurssions! (It is also not the correct formula as anticipated by
+  the usual derivation). This can be fixed.
+
+- Now assume that Observer 2 was moving _rightward_, not _leftward_. That is,
+  we simply need to set $v = -v$, since this change of sign accomplishes
+  flipping the direction of motion in 1D. This gives us the equation
+  $t' = (1 - v/c)t$.
+
+- According to this new equation, we are not allowed to approach the speed of
+  light. If we attempt to do so, we will need to elapse zero time; and if
+  we exceed the speed of light, we will need to elapse _negative time_.
+
+- However, these formulae lead to an absurdity. If our observer 1 and observer 2
+  witness two photons, one moving leftward and one moving rightward, one will
+  need to write down the equations $t' = (1 \pm v/c)t$, which plainly leads
+  one to contradiction.
+
+**What is wrong with this derivation? I don't know!**
+
+
+#  [The geometry and dynamics of magnetic monopoles](#the-geometry-and-dynamics-of-magnetic-monopoles)
+
+I found this cool document written by Sir Atiyah which seems to contain
+a nice exposition of electromagnetism from the differential viewpoint.
+I'll record what I read here.
 
 # Sanskrit and Sumerian
 
@@ -13678,8 +13757,12 @@ Named after the spartans.
 
 Contains haiku that I write, and ones that I enjoy.
 
-> Attention is all you need
-> productivity
-> sprighty, fleeting attention
+> Attention is all you need /
+> productivity /
+> sprighty, fleeting attention /
 
+# [Big list of Music](#big-list-of-music)
 
+- Clipping: Experimental story telling hip-hop
+- Aesop Rock: Crazy large vocabulary, interesting hip-hop
+- Red hot Chili Peppers: Love John Frusciante's riffs.
