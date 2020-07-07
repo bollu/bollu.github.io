@@ -190,7 +190,7 @@ A Universe of Sorts
 <li> [Big list of Music](#big-list-of-music) </li>
 </ol>
 
-# [An incorrect derivation of special relativity in 1D]
+# [An incorrect derivation of special relativity in 1D](#an-incorrect-derivation-of-special-relativity-in-1d)
 
 I record an _incorrect_ derivation of special relativity, starting from the
 single axiom "speed of light is constant in all inertial reference frames".
@@ -225,7 +225,7 @@ $$
 \begin{align*}
 &c = \frac{dx}{dt} = \frac{dx'}{dt'} = \frac{dx'}{dt} \frac{dt}{dt'}  \\
 &c = \frac{d(vt + ct)}{dt}\frac{dt}{dt'} \\
-&c = (v + ct) \frac{dt}{dt'} \\
+&c = (v + c) \frac{dt}{dt'} \\
 &\frac{c}{v+c} = \frac{dt}{dt'} \\
 &dt' = (v+c)dt/c \\
 &t' = (v+c)t/c = (1 + v/c) t
@@ -257,7 +257,15 @@ to observer (1) as $t' = (1 + v/c) t$.
   need to write down the equations $t' = (1 \pm v/c)t$, which plainly leads
   one to contradiction.
 
-**What is wrong with this derivation? I don't know!**
+### What's the issue?
+
+The issue is the equation $x' = vt + ct$. 
+- It is true that _as per observer (1) standing at the origin_, the distance
+  between observer (2) and the photon is $vt + ct$.
+- It is _not_ true that observer(2) sees the distance between them and 
+  the photon  as $vt + ct$.
+- Intuitively, this equation of $x' = vt + ct$ completely ignores length
+  contraction, and hence cannot be right.
 
 
 #  [The geometry and dynamics of magnetic monopoles](#the-geometry-and-dynamics-of-magnetic-monopoles)
@@ -345,11 +353,105 @@ We have three components:
 
 I've wanted to read the code of hammurabi since it was name dropped in
 [Snow Crash by Neal Stephenson](https://en.wikipedia.org/wiki/Snow_Crash).
-I finally got around to it. Here's some excerpts I found fascinating.
+I finally got around to it. Here's some excerpts I found fascinating. The
+numbers are according to 
+[this translation of the Code of Hammurabi](http://www.general-intelligence.com/library/hr.pdf).
+Some helpful hints were found from the
+[Avalon ancient law codes page of the Yale law school](https://avalon.law.yale.edu/ancient/).
 
-##### References
+- (5) If a judge try a case, reach a decision, and present his judgment in
+  writing; if later error shall appear in his decision,and it be through his
+  own fault, then he shall pay twelve times the fine set by him in the case, and
+  he shall be publicly removed from the judge’s bench, and never again shall he
+  sit there to render judgement. (**Commentary**: These are steep penalties for
+  getting a case wrong. I suppose this encouraged innocent until proven guilty
+  quite a bit.)
 
-- [Translated code of hammurabi](http://www.general-intelligence.com/library/hr.pdf)
+- (23) If the robber is not caught, then shall he who was robbed claim under
+  oath the amount of his loss; then shall the community, and...on whose
+  ground and territory and in whose domain it was compensate him for the goods
+  stolen (**Commentary**: This rule appears to setup some sort of insurance where
+  someone who is robbed is guaranteed recompence)
+
+- (108) If a tavern-keeper (feminine) does not accept corn according to gross
+  weight in payment of drink, but takes money, and the price of the drink is
+  less than that of the corn, she shall be convicted and thrown into the water.
+  (**Commentary**: I wonder why this rule specifically singles out women)
+
+- (120) If any one store corn for safe keeping in another person’s house, and
+  any harm happen to the corn in storage, or if the owner of the house open the
+  granary and take some of the corn, or if especially he deny that the corn was
+  stored in his house: then the owner of the corn shall claim his corn before God
+  (on oath), and the owner of the house shall pay its owner for all of the corn
+  that he took. (**Commentary**: I wonder whether there were many 'owners of corn'
+  who swore false oaths. I suppose not, if this rule was enshrined into law.
+  It is interesting that they held oaths to god as a mechanism to prevent lying)
+
+- (137) 137. If a man wish to separate from a woman who has borne him children,
+  or from his wife who has borne him children: then he shall give that wife her
+  dowry, and a part of the usufruct offield, garden, and property, so that she
+  can rear her children.When she has brought up her children, a portion of all
+  that is given to the children, equal as that of one son, shall be given to her.
+  She may then marry the man of her heart. (**Commentary**: their society
+  seems egalitarian, and provides both a mechanism of divorce, and rights
+  and property to the wife after divorce).
+
+- (168) If a man wish to put his son out of his house, and declare before the
+  judge: “I want to put my son out,” then the judge shall examine into his
+  reasons. If the son be guilty of no great fault, for which he can be
+  rightfully put out, the father shall not put him out; (169). If he be guilty of a
+  grave fault, which should rightfully deprive him of the filial relationship,
+  the father shall forgive him the first time; but if he be guilty of a grave
+  fault a second time the father may deprive his son of all filial relation.
+  (**Commentary**: I find this notion of 'forgive once' being encoded into law
+  very interesting. I don't know of other law codes that have such a thing).
+
+- (188). If an artizan has undertaken to rear a child and teaches him his
+  craft, he can not be demanded back; (189) If he has not taught him his craft,
+  this adopted son may return to his father’s house. (**Commentary**: I find it
+  interesting that this notion of 'taking a son' is intertwined with caring
+  for the son and teaching them a craft to become a future productive member
+  of society)
+
+- (196) If a man put out the eye of another man, his eye shall be put out.
+  [ An eye for an eye ].  (**Commentary**: Fascinating that 'eye for an eye' comes from the code).
+
+- (202). If any one strike the body of a man higher in rank than he,he shall
+  receive sixty blows with an ox-whip in public. 
+  (**Commentary**: Neat how one can glean the existence of a social hierarchy
+  from a law code. I wonder how this hierarchy was defined.)
+
+
+- (215) If a physician make a large incision with an operating knife and cure
+  it, or if he open a tumor (over the eye) with an operating knife, and saves
+  the eye, he shall receive ten shekels in money.
+  (**Commentary**: (i) It is weird that things like doctor's procedures are covered
+  in the law code. How often is the code revised? What happens when a doctor
+  comes up with a new treatment? (ii) It is weird that the prices are recorded
+  in the law code. What about inflation?)
+
+- (249) If any one hire an ox, and God strike it that it die, the man who hired
+  it shall swear by God and be considered guiltless. (**Commentary**: Once again,
+  their belief in the truthfulness of oaths sworn to God. Also, it's nice to
+  know that they do understand and account for truly random events that one
+  has no control over)
+
+- Epilogue: In future time, through all coming generations, let the king,who may be in the
+  land, observe the words of righteousness which I have written on my monument;
+  let him not alter the law of the land which I have given, the edicts which I
+  have enacted; my monument let him not mar. If such a ruler have wisdom, and
+  beable to keep his land in order, he shall observe the words which I have
+  written in this inscription (**Commentary**: This advice for future kings is
+  interesting, and appears to imply that the rules and all the prices in the
+  rules ought to be immutable. I really do wonder how they dealt with their 
+  society changing, new inventions, and inflation)
+
+- [Taken from this introduction to the code of hammurabi from Yale](https://avalon.law.yale.edu/ancient/hammint.asp):
+  An accused person was allowed to cast himself into "the river," the Euphrates.
+  Apparently the art of swimming was unknown; for if the current bore him to the
+  shore alive he was declared innocent, if he drowned he was guilty. So we learn
+  that faith in the justice of the ruling gods was already firmly, though
+  somewhat childishly, established in the minds of men
 
 # [The implicit and inverse function theorem](#the-implicit-and-inverse-function-theorem)
 

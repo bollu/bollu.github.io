@@ -1,3 +1,4 @@
+- [Elanor Ostrom: analysis of how to build systems which encourages cooperation and not competition: Design principles for Common Pool Resource (CPR) institution](https://en.wikipedia.org/wiki/Elinor_Ostrom)
 - [`Mikutap`: Website with gorgeous transitions, I wish to replicate](https://aidn.jp/mikutap/)
 - [From parametricity to Noerther's theorem](https://bentnib.org/conservation-laws.pdf)
 - [Program design by calculation: Has a sweet graphical/geometric interpretation of galois connections](http://www4.di.uminho.pt/~jno/ps/pdbc.pdf)
