@@ -3,6 +3,7 @@ These are my notes on the subjects I've taken in college, and on the paper I've 
 some slides of talks I've given.
 
 # Subjects
+##### [Complexity and advanced algorithms](./flows/report.pdf)
 ##### [Complexity and advanced algorithms](./advanced-algorithms/main.pdf)
 ##### [Complexity theory](./complexity/main.pdf)
 ##### [Quantum Information and computation](./quantum-computation/main.pdf)
