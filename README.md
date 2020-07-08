@@ -6,7 +6,7 @@ A Universe of Sorts
 
 
 - [Leave feedback for me, `+ve` or `-ve`!](https://www.admonymous.co/bollu)
-- Reach me / email ID: <a href='mailto:siddu.druid@gmail.com'> `siddu.druid@gmail.com` </a>
+- Reach me: <a href='mailto:siddu.druid@gmail.com'> `siddu.druid@gmail.com` </a>
 - [My github](http://github.com/bollu)
 - [My math.se profile](https://math.stackexchange.com/users/261373/siddharth-bhat)
 - [My resume](resume/main.pdf)
@@ -17,6 +17,8 @@ A Universe of Sorts
 #### Table of contents:
 
 <ol reversed>
+<li> [Satisfied and frustrated equations](#satisfied-and-frustrated-equations) </li>
+<li> [Combinatorial intuition for Fermat's little theorem](#combinatorial-intuition-for-fermats-little-theorem)
 <li> [An incorrect derivation of special relativity in 1D](#an-incorrect-derivation-of-special-relativity-in-1d) </li>
 <li> [The geometry and dynamics of magnetic monopoles](#the-geometry-of-magnetic-monopoles) </li>
 <li> [Sanskrit and Sumerian](#sanskrit-and-sumerian)
@@ -190,6 +192,130 @@ A Universe of Sorts
 <li> [Big list of Music](#big-list-of-music) </li>
 </ol>
 
+#  [Satisfied and frustrated equations](#satisfied-and-frustrated-equations)
+
+I found [this interesting terminology on a wiki walk](https://en.wikipedia.org/wiki/Gain_graph)
+- An edge is satisfied if some equation `y = f(x)` is **satisfied**.
+- Otherwise, the edge is said to be **frustrated**.
+
+This is far more evocative terminology than UNSAT/unsatisfied, and also
+makes for good haskell like variable names. `ss` for satisfied equations,
+`fs` for frustrated equations!
+
+# [Combinatorial intuition for Fermat's little theorem](#combinatorial-intuition-for-fermats-little-theorem)
+
+We wish to show that $x^p \equiv x (\mod p)$ _combinatorially_. Let's take
+$2^3 (\mod 3)$ for simplicity. The general case follows. Let's first write
+down strings which enumerate $2^3$:
+
+```
+000
+001
+010
+011
+100
+101
+110
+111
+```
+
+To make use of $\mod 3$, we're going to treat our strings as _necklaces_. So,
+for example, the string `011` looks like:
+
+```
+*-→ 0 -*
+|      |
+|      ↓
+1 ←--- 1
+```
+
+So we have three possible rotations of the string `011`:
+
+```
+011
+110
+101
+```
+
+- Each of these rotations are unique, since they can be totally ordered using
+  lexicographic ordering. Indeed, for **any string** other than `000`, `111`,
+  all of its rotations are unique.
+
+- So we can count the above 7 strings with equivalence class representatives.
+  These representatives are those strings that are the lex smallest in their
+  cyclic shifts. (Why are cyclic shifts _so important_?) 
+
+```
+Cyclic subshifts of strings:
+---------------------------
+000, 000, 000
+001, 010, 100
+011, 110, 101
+111, 111, 111
+```
+
+- We've written the strings along with their cyclic subshifts, with the
+  representative of the equivalence class as the first element. So the
+  representatitives are `000, 001, 011, 111`. Note that two of these (`000, 111`)
+  are equal to their cyclic subshifts. All of the others are distinct, and generate
+  3 elements.
+
+- So we can count the above strings as:
+
+```
+all strings   = {shifts of 001, 011}U{000, 111}
+|all strings| = |{shifts of 001, 011}|+|{000, 111}|
+no. of shifts = 3*(no. of representatives)
+2^3 = 3 * (no. of representatives) + 2
+2^3 = 3 * (no. of representatives) + 2
+2^3 % 3 = 2
+```
+
+In general, for `x^p % p`, we will get `x` strings that contain the same letter.
+These will not have elements in their cyclic shift equivalence classes. The
+other strings will be generated as the smallest cyclic subshift of some
+string.
+
+#### Why does this not work when `p` is not prime?
+
+Let `p = 4`. In this case, I can pick the string `s = 0101`. It has shifts:
+
+```
+0101 <-
+1010
+0101 <-
+1010
+```
+
+so two of its shifts overlap, hence we will double-count the string `0101`
+if I counted its equivalence class as having size `4`.
+
+#### Relationship to group theory?
+
+- How does this relate to group theory? Well, what we are doing is providing
+  an action of the group `Z/pZ` into the set of strings `X^p` where `X` is
+  some set. Our group action for a number `n ∈ Z/pZ` takes a
+  string `s ∈ X^p` to its cyclic shift by `n` characters.
+
+- We are then using the fact that the orbits of an action when `p` is prime
+  has size either `1` or `p`, since the size of the orbit divides the
+  size of the group `Z/pZ`, which is `p`, a prime. The divisors of
+  `p` are only `1` and `p`. Therefore, the size of the orbit is either `1` 
+  or `p`.
+
+- Only necklaces that have identical elements like `000` and `111` have
+  orbits of size `1`. We have `|X|` such necklaces.
+
+- All other necklaces have size `p`.
+
+- The rest of the proof follows similarly as before.
+
+
+#### References
+
+- [A string of pearls: proofs of Fermat's little theorem](https://ts.data61.csiro.au/publications/nicta_full_text/6061.pdf)
+- [Algorithms thread 1: division under mod](https://www.youtube.com/watch?v=KfTcd0dg0DI&feature=youtu.be&t=815)
+
 # [An incorrect derivation of special relativity in 1D](#an-incorrect-derivation-of-special-relativity-in-1d)
 
 I record an _incorrect_ derivation of special relativity, starting from the
@@ -266,6 +392,9 @@ The issue is the equation $x' = vt + ct$.
   the photon  as $vt + ct$.
 - Intuitively, this equation of $x' = vt + ct$ completely ignores length
   contraction, and hence cannot be right.
+- Alternatively, the equation of $x' = vt + ct$ imposes galilean relativity, 
+  where I am attempting to naively connect reference frames, which cannot be
+  correct.
 
 
 #  [The geometry and dynamics of magnetic monopoles](#the-geometry-and-dynamics-of-magnetic-monopoles)

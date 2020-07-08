@@ -1206,7 +1206,7 @@ const char htmlbegin[] =
 "<head>"
 "<title> A Universe of Sorts </title>"
 "<style>"
-"@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-regular.ttf');}"
+"@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}"
 "@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}"
 // "@font-face {font-family: 'Blog Symbol'; src: url('/static/STIX2Math.woff');}"
 //"@font-face {font-family: 'Blog Symbol'; src: url('/static/Asana-Math.otf');}"
@@ -1264,6 +1264,11 @@ const char htmlbegin[] =
 
 // fix font handling
 "pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }"
+
+// ul's for some reason are padded, and they render their bullets *outside*
+// their area. Fix both:
+// https://stackoverflow.com/questions/13938975/how-to-remove-indentation-from-an-unordered-list-item/13939142
+"ul, ol { list-style-position: inside; padding-left: 0; }"
 // RESPONSIVE
 // " @media (max-width: 1000px) {"
 // "    .container { max-width: 100%; padding: 0; margin-left: 10%; margin-right: 0px;"
