@@ -1255,16 +1255,18 @@ const char htmlbegin[] =
 // latexblock should have regular line height for correct rendering.
 ".latexblock { line-height: 1em }"
 // overflow: latex and code block
+// Latex: do not allow wite space to cause a wrap around of text.
 " .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; }"
 // " .code { width: 100%; overflow-x: hidden; white-space: nowrap; }"
 " .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }"
 "\n"
 // inline latex: force all text to be on same line.
 ".latexinline { white-space: nowrap }"
-
+// inline code: force all text to be on same line. That is, do not allow white
+// space to wrap around.
+".code { white-space: nowrap }"
 // fix font handling
 "pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }"
-
 // ul's for some reason are padded, and they render their bullets *outside*
 // their area. Fix both:
 // https://stackoverflow.com/questions/13938975/how-to-remove-indentation-from-an-unordered-list-item/13939142
