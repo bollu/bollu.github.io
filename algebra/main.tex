@@ -3,6 +3,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage{hyperref}
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
 \newcommand{\Z}{\ensuremath{\mathbb{Z}}}
 \newcommand{\Q}{\ensuremath{\mathbb{Q}}}
@@ -455,10 +456,144 @@ Hence, $X_f$, which contains prime ideals $x$ where $f$ \emph{does not vanish}, 
 
 $(\implies)$: Let  $X_f = \emptyset$. We wish to show that $f$ is nilpotent.
 This means that $\forall x \in X, f \in \frakp_x$. But recall that the intersection
-of all prime ideals in a ring is the nilradical. Hence $f$ is a nilpotent. We recollect
-the proof that the intersection of all prime ideals is the nilradical. \textbf{TODO!}
+of all prime ideals in a ring is the nilradical. Hence $f$ is a nilpotent. 
+We recollect the proof that the intersection of all prime ideals is the
+nilradical. (i) $Nil \subseteq \cap Prime$: The nilradical is contained in the intersection of all prime
+ideals. If an element $a \in A$ is nilpotent, then $a^n = 0 \in \frakp$ for all ideals $\frakp$.
+If $\frakp$ is a prime ideal, then $a^{n-1} \in \frakp \lor a \in \frakp$. Induction
+on $n$ proves that $a \in \frakp$. (ii) $\cap Prime \subseteq Nil$: The multiplicative
+semigroup of elements that do not belong to $\cap Prime$ is $\cup Prime^\complement$.
+We claim that no nilpotent element belongs to $\cup Prime^\complement$. Assume
+it does. Then this nilpotent element $n$ is in the complement of
+some prime ideal $\frakp^\complement$.
+
+[NOTE: I don't have good insight into
+why this works]. On the answer, someone told me to think of nilpotents
+as vanishing elements or infinitesimals, because in the case of an infinitesimal,
+we have that $\epsilon \neq 0, \epsilon^2 = 0$. This is exactly what happens
+with a nilpotent, where we have $f \neq 0, f^2 = 0$. [In general, it seems like
+a good way to get a handle on any ring theoretic definition is to simply adjoin
+constants that satisfy the definition into the ring and see what the geometry is.
+Thinking about constants is a good deal easier than thinking about polynomials].
+Now, looking at the situation, it's intuitive that such an infinitesimal will
+``appear to vanish'', since it cannot be distinguished from $0$ by any
+polynomial. Hence, we will have that $X_\epsilon = 0$, since $\epsilon$ is
+zero everywhere, as far as polynomials are concerned, because no polynomial
+can pick up on the difference between $\epsilon$ and $0$. What do I mean by
+that? Well, we have the relation that $p(x + \epsilon) = p(x) + \epsilon p'(x)$
+inside the ring $\mathbb R[x][\epsilon]/(\epsilon^2)$. Now if we
+want a polynomial to detect epsilon, then it must be such that $p(\epsilon) = 0$;
+
+\begin{align*}
+  &p(x) = q(x) + \epsilon r(x) \quad [q(x), r(x) \in \mathbb R[X]] \\
+  &p(\epsilon) = 0 \quad \text{[we want $p$ to detect $\epsilon$]} \\
+  &\text{Let $q(x) = q_0 + q_1 x + \cdots; r(x) = r_0 + r_1 x + \cdots$ } \\
+  &q(\epsilon) + \epsilon r(\epsilon) = 0 \\
+  &q_0 + q_1(\epsilon) + \epsilon (r_0) = 0 \quad [\text{truncate to $\epsilon$ since $\epsilon^2 = 0$}] \\
+  &q_0 + \epsilon(q_1 + r_0) = 0 \quad [\text{Recall that } q_0, q_1, r_0 \in \mathbb R] \\
+  &q_0 = 0 \land (q_1 = - r_0) \\
+  &p(0) = q(0) + \epsilon r(0) \\
+\end{align*}
+
+\textbf{TODO: figure out the full story}
+
+\subsection{$X_f = X \iff f \text{is unit}$}
+
+Intutively, if $f$ is a unit (eg. $f = 1$), then $f$ does not vanish anywhere. Hence the
+set where $f$ does not vanish, $X_f$ is equal to the entire ring.
+
+Formally, since $f$ is a unit, $f$ cannot be contained in any proper prime ideal of $A$.
+If it were contained in an ideal, then that ideal would become the full ring. the spectrum
+of a ring does not contain the full ring.
+
+Elaborating, we must have that for each proper prime ideal $\frakp \in X$, $f \not \in \frakp$.
+If $f \in \frakp$, then we will have $f \times f^{-1} \in \frakp$
+[ideals are closed under multiplication with entire ring, and
+is hence closed under multiplication with $f^{-1}$].
+This gives us $1 \in \frakp$, and therefore $R = \frakp$.
+But we disallow the full ring in the prime spectrum. Hence contradiction. Therefore
+$f \not \in \frakp$.
+
+
+\href{https://math.stackexchange.com/questions/3751728/geometric-meaning-of-the-nilradical}{I asked about the intuition for the nilradical. Hoping for good answers.}
 
 \subsection{the sets $X_f$ form a basis (base) of open sets for the Zariski  topology}
 
+Clear from the definition of closed sets. We define the closed sets as the
+intersection of vanishing sets of families of polynomials. By complementing, the
+open sets are the unions of non-vanishing sets of polynomials. We can write the
+union of non-vanishing sets in terms of the basic open sets $X_f$.
 
+
+\subsection{$X$ is quasi-compact: every open covering of $X$ has a finite subcovering}
+
+Assume we have an open covering of $X$. Since the open sets are generated from
+$X_f$, we need only consider an open covering in terms of $X_f[i]$ for some
+index set $i \in I$.
+
+
+So we have elements $f[i]$ such that for each $x \in X$, there is some $f[x]$ 
+such that $f[x]$ does not vanish on $\frakp_x$: $f[x] / \frakp_x \neq 0$.
+Now assume that we are given some element $a \in A$. 
+
+\textbf{TODO}
+
+\section{Q18}
+\subsection{The set $\{ x \}$ is closed in $Spec(A) \iff $ $\frakp_x$ is maximal}
+$\implies$: Let $\{ x\}$ be closed. We wish to show that $\frakp_x$ is maximal.
+This means that there is some $F \subseteq I$ such that 
+$F(x) = 0; F / \frakp_x = 0$, and $F(\text{all other prime ideals}) \neq 0$. Hence
+we have a containment of ideal $F \subseteq \frakp_x \subseteq R$, and $F \subsetneq Spec(A)/\{ x\}$.
+That is, $F$ is not contained in any other prime ideal. Thus, $\frakp_x$ is maximal.
+
+
+Assume not. Then the ideal $\frakp_x$ is contained in some maximal ideal $M$.
+Now note that if $F / \frakp_x = 0$, then $F / M = 0$. Also, $M$ is maximal, and
+is hence prime. Therefore, we will have that the zero set of $F$ to be
+at least $\{ \frakp_x, M \}$. This contradicts our assumption that the
+zero set of $F$ was just $\{ \frakp_x \}$.
+
+$\impliedby$: Assume $\frakp_x$ is maximal. We wish to show that $\{ x \}$ is
+closed.  Consider the zero set of $\frakp_x$. We will have that $\frakp_x$ can
+only vanish on $\frakp_x$, since the ideal is maximal. Hence its zero set is
+the single point $\{ x \}$.
+
+\subsection{$\overline{\{ x \}} = V(\frakp_x)$}
+(i) The vanishing set of $\frakp_x$ is the set of points at which
+$\frakp_x$ evaluates to $0$: $V(\frakp_x) = \{ y \in Spec(A) : \frakp_x / \frakp_y = 0 \}$.
+(ii) The closure of the set $\{x \}$ is the intersection of all closed sets that contain $x$.
+Note that the closed sets of $Spec(A)$ are the vanishing sets of subsets of $A$.
+
+\begin{align*}
+    &\overline{\{ x \}} = \bigcap \text{closed sets that contain $x$} \\
+    &= \bigcap_{E \subseteq A} V(E) [x \in V(E)] \\
+    &=  \bigcap_{E\subseteq A} [x \in V(E)]  \{ y \in Spec(A): E \xrightarrow{\frakp_y} 0 \} \
+    &=  \bigcap_{E\subseteq A} [E \xrightarrow{\frakp_x}  0]  \{ y \in Spec(A): E \xrightarrow{\frakp_y} 0 \}
+\end{align*}
+
+\textbf{TODO}
+
+\section{Q19}
+We wish to show that $Spec(A)$ is irreducible iff the nilradical of $A$ is prime.
+Recall that a topological space is irreducible if $X \neq \emptyset$, and
+and every pair of non empty open sets intersect.
+
+\subsection{Incorrect intuition I was carrying about the nilradical}
+We note that the nilradical is a \emph{set} of nilpotent elements. We can show
+that this set is an ideal. However, this ideal \textbf{need not be prime}.
+The intersection of prime ideals
+does not have to be prime! If we have that $p_1 \cap p_2 = p'$ where $p'$ is
+prime, then we have that $p_1 p_2 \subseteq p'$. But because $p'$ is prime,
+it must be that $p_1 \subseteq p' \lor p_2 \subseteq p'$. We also
+have that $p' \subseteq p_1 \land p' \subseteq p_2$ since $p'$ is their intersection.
+Combining the two, we must have that $p' = p_1 \lor p' = p_2$, 
+Hence the intersection of distinct prime ideals that do not contain each other
+cannot be prime.
+
+A more down to earth example is to consider the ring $S \equiv \mathbb R[x, y] / (xy)$.
+We have that $x * y = 0; x^n \neq 0, y^n \neq 0$. We have that $x \not \in Nil(S)$,
+$y \not \in Nil(S)$, but $xy = 0 \in Nil(S)$. Therefore, the nilradical of $S$
+is not prime.
+
+\textbf{TODO}
 \end{document}
