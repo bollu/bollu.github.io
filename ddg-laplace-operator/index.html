@@ -1,0 +1,70 @@
+<!-- https://www.youtube.com/watch?v=oEq9ROl9Umk -->
+<!-- https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API -->
+<!-- https://github.com/rreusser/explorations/blob/bead4459929ee6c5f28f12f621a96ce05d90f887/components/scrollyteller.js -->
+<!DOCTYPE html><meta charset='UTF-8'>
+<html>
+    <body>
+        <div id="container1"></div>
+        <div id="container2"></div>
+        <div id="container3"></div>
+    </body>
+    <script>
+
+
+        // only returns true once we have passed the top of this element
+        // and are inside this elemen
+        function scroll_is_inside_container(elem) {
+            const scrollTop  =  window.pageYOffset || document.documentElement.scrollTop;
+            const height = elem.getBoundingClientRect().height;
+            const top = elem.getBoundingClientRect().top + scrollTop;
+
+            const y = window.scrollY;
+            if (y >= top && y < top + height) {
+                return true;
+            }
+            return false;
+        }
+
+        // 'height' is the height of the container.
+        function make_container(cid, container_height, viewport_height, renderfn) {
+            const c = document.getElementById(cid);
+            const width = 200;
+            const svg = 
+                document.createElementNS("http://www.w3.org/2000/svg", "svg");
+
+            svg.setAttribute("width", width + "px");
+            svg.setAttribute("height", container_height, + "px");
+            svg.setAttribute("viewBox", `0 0 ${width} ${container_height}`)
+            svg.setAttribute("font-family", "monospace");
+            c.appendChild(svg);
+            return svg;
+        };
+
+        const GRAY = "#607D8B";
+        const BLUE = "#64B5F6";
+        const PINK = "#EC407A";
+        const GREEN = "#4CAF50";
+        const DARKORANGE = "#FF5722";
+
+        const svg1 = make_container("container1", 6000);
+        svg1.setAttribute("style", "background-color: " + BLUE);
+        console.log("FOO");
+
+        const svg2 = make_container("container2", 6000);
+        svg2.setAttribute("style", "background-color: " + GRAY);
+
+
+        const svg3 = make_container("container3", 6000);
+        svg3.setAttribute("style", "background-color: " + PINK);
+        console.log("BAR");
+
+        let i = 0;
+        window.addEventListener('scroll', function() {
+            if (scroll_is_inside_container(svg1)) { console.log("SVG1", i, window.scrollY); }
+            if (scroll_is_inside_container(svg2)) { console.log("SVG2", i, window.scrollY); }
+            if (scroll_is_inside_container(svg3)) { console.log("SVG3", i, window.scrollY); }
+            console.log("------", i, window.scrollY);
+            i += 1;
+        }, /*capture=*/true);
+    </script>
+</html>
