@@ -500,16 +500,17 @@ mechanics. To quote:
 > prime ideal of the polynomial ring of the operator
 
 I don't know what the prime ideal of the polynomial ring of the operator is,
-so let's find out!
+so let's find out!  [I got a somewhat incomplete answer on `math.se`](https://math.stackexchange.com/questions/3754152/what-is-the-prime-ideal-of-the-polynomial-ring-of-an-operator)
 
-Also, another user said:
 
- > Lukas H: I like the definition of Spec A that doesn't include the word
- > prime ideal, by a colimit of Hom(A, k) where k run over all fields and the
- > maps are morphisms that make the diagrams commute.
+Another user said:
 
- That's a pretty crazy definition. One can apparently find this definition
- in Peter Schloze's notes on AG.
+> Lukas H: I like the definition of Spec A that doesn't include the word
+> prime ideal, by a colimit of Hom(A, k) where k run over all fields and the
+> maps are morphisms that make the diagrams commute.
+
+That's a pretty crazy definition. One can apparently find this definition
+in Peter Schloze's notes on AG. [I got an answer for this on `math.se`](https://math.stackexchange.com/questions/3754159/categorical-definition-of-spectrum-of-a-ring-as-a-colimit)
 
 # [Ergo proxy](#ergo-proxy)
 
