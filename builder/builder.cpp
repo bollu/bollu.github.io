@@ -916,9 +916,12 @@ void headingToLinkText(const char *instr,
         ll &outlen) {
 
     if (t->ty == TT::InlineGroup) {
+        ll len = 0;
+        cerr << *t << "\n";
         for(T *item : ((TInlineGroup *)t)->items) {
-            headingToLinkText(instr, item, outs, outlen);
-        }
+            headingToLinkText(instr, item, outs + len, len);
+        };
+        outlen = len + 1;
     } else if (t->ty == TT::CodeInline) {
         Span span = Span(t->span.begin.next("`"),
                         t->span.end.prev("`"));
@@ -960,7 +963,7 @@ void headingToLinkText(const char *instr,
 // changes any space to a hyphen.
 // If that is not unique, add "-1", "-2", "-3",... to make it unique
 GIVE const char *mkHeadingLink(KEEP const char *instr, KEEP THeading *heading) {
-    const int BUFSIZE = 2048;
+    const int BUFSIZE = (1 << 14);
     char rawtext[BUFSIZE]; 
     for(int i = 0; i < BUFSIZE; ++i) rawtext[i] = 0;
     ll rawtextlen = 0;

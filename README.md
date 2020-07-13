@@ -11,12 +11,17 @@ A Universe of Sorts
 - [My math.se profile](https://math.stackexchange.com/users/261373/siddharth-bhat)
 - [My resume](resume/main.pdf)
 - [My reading list](todo.html)
-- [Buy me a coffee](https://ko-fi.com/bollu)
-- [Have me to explain something for you](https://www.patreon.com/bollu)
+- [Grab me a coffee](https://ko-fi.com/bollu)
+- [Support me in making more visualizations!](https://www.patreon.com/bollu)
 
 #### Table of contents:
 
 <ol reversed>
+<li> [Intuition for limits in category theory](#intuition-for-limits-in-category-theory) </li>
+<li> [Finite topologies and DFS numbering](#finite-topologies-and-dfs-numbering) </li>
+<li> [Categorical definition of products in painful detail](#categorical-definition-pf-products-in-painful-detail) </li>
+<li> [Why is the spectrum of a ring called so?](#why-is-the-spectrum-of-a-ring-called-so) </li>
+<li> [Ergo Proxy](#ergo-proxy) </li>
 <li> [Satisfied and frustrated equations](#satisfied-and-frustrated-equations) </li>
 <li> [Combinatorial intuition for Fermat's little theorem](#combinatorial-intuition-for-fermats-little-theorem)
 <li> [An incorrect derivation of special relativity in 1D](#an-incorrect-derivation-of-special-relativity-in-1d) </li>
@@ -191,6 +196,335 @@ A Universe of Sorts
 <li> [Big list of Haiku](#big-list-of-haiku) </li>
 <li> [Big list of Music](#big-list-of-music) </li>
 </ol>
+
+# [Intuition for limits in category theory](#intuition-for-limits-in-category-theory)
+
+#### A characterization of limits
+
+The theorem that characterizes limits is this: 
+> A category has Finite Limits iff it has all finite products and equalizers
+
+
+#### Ravi Vakil's intuition for limits
+- An element of a limit gives one of each of its ingredients. For example,
+ $K[[X]] = \lim_n \text{degree}~n~\text{polynomials} $, since we can get
+ a degree n polynomial for all n, from any power series by truncation.
+- **RAPL**: right adjoints preserve limits.
+- Limits commute with limits.
+- These are mentioned in "Algebraic geometry in the time of Covid: Pseudolecture 2"
+
+
+# [Finite topologies and DFS numbering](#finite-topologies-and-dfs-numbering)
+
+In this great math overflow question on
+[How to think about non hausdorff topologies in the finite case](https://mathoverflow.net/questions/44109/how-should-one-think-about-non-hausdorff-topologies/44135#44135), there's an answer that encourages us 
+to think of them as preorders, which are basically graphs. I wanted to understand
+this perspective, as well as connect it to DFS numbers, since they provide a
+nice way to embed these topologies into $\mathbb R$.
+
+### Closure axioms of topology
+We can axiomatize a topology using the kurotawski closure axioms. We need an
+idempotent monotonic function $c: 2^X \rightarrow 2^X$ which satisfies some
+technical conditions. Formally:
+
+1. $c(\emptyset) = \emptyset)$ [$c$ is a strict function: it takes bottoms to bottoms]
+2. $A \subseteq c(A)$. [monotonicity]
+3. $c$ is idempotent: $c(c(A)) = c(A)$. [idempotence]
+4. for all $A, B$ in $X$, $c(A \cup B) = c(A) \cup c(B)$.
+
+Under this, a set is closed if it is a fixed point of $c$: That is, a set $A$
+is closed iff $c(A) = A$.
+
+##### Slight weakening into Single axiom version
+
+Interestingly, this also gives a single axiom version of topological axioms,
+something that maybe useful for machine learning. The single axiom is that
+for all $A, B \subseteq X$, $A \cup c(A) \cup c(C(B)) \subseteq c(A \cup B)$.
+This does not provide that $c(\emptyset) = \emptyset$, but it does provide
+the other axioms [2-4].
+
+
+###### Continuous functions
+
+A function is continuous iff $f(c(A)) \subseteq c'(f(A))$ for every $A \in X$.
+
+**TODO:** give examples of why this works, and why we need $(\subseteq)$ and not just $(eq)$.
+
+### Finite topologies as preorders
+We draw an arrow $x \rightarrow y$ iff $x \in Closure(y)$. Alternatively stated,
+draw an arrow iff $Closure(x) \subseteq Closure(y)$. That is, we have an injection
+from the closure of $x$ into the closure of $y$, and the arrow represents
+the injection. Alternatively, we can think of
+this as ordering the elements $x$ by "information". A point $x$ has less information
+than point $y$ if its closure has fewer points.                         
+
+### T0 in terms of closure
+- $X$ is $T_0$ iff for points $p, q \in X$, we have an open set $O$ which contains
+  one of the points but not the other.Formally,
+  either $p \in O \land q \not \in O$, or $p \not \in O \land q \in O$.
+- An example of a $T0$ space is the [sierpinski space](https://en.wikipedia.org/wiki/Sierpi%C5%84ski_space).
+  Here, we have the open set $\{\lbot \}$ by considering the computation
+  `f(thunk) = force(thunk)`. For more on this perspective, see [Topology is
+  really about computation ](#topology-is-really-about-computation--part-1).
+  This open set contains only $\lbot$ and not $\ltop$.
+- Closure definition: $X$ is $T_0$ iff $x \neq y \implies c(\{x\}) \neq c(\{y\})$
+
+### T1 in terms of closure
+- $X$ is $T_1$ iff for all $p, q$ in $X$, we have open sets $U_p, U_q$ such that
+  $U_p, U_q$ are open neighbourhoods of $p, q$ which do not contain the "other point".
+  Formally, we need $p \in U_p$ and $q \not \in U_p$, and similarly $q \in U_q$ and $p \not \in U_q$.
+  That is, $U_p$ and $U_q$ can split $p, q$ apart, but $U_p$ and $U_q$ need not
+  be disjoint. 
+- An example of $T_1$ is the zariski topology on $\mathbb R$, where
+  the open sets are complements of finite sets. Given two integers $p, q$, use the
+  open sets as the complements of the closed finite sets $U_p = \{q\}^C = \mathbb Z - q$, 
+  and $U_q = \{p\}^C = \mathbb Z - p$. It's clear that these separate $p$ and $q$,
+  but have _huge_ intersection: $U_p \cap U_q = Z - \{ p, q\}$.
+- Closure definition: $X$ is $T_1$ iff $c(\{x\}) = \{x\}$.
+
+### Haussdorf (T2) in terms of closure
+-  $X$ ix $T_1$ iff for all $p, q$ in $X$, we have open set $U_p, U_q$ such that
+   they are disjoint ($U_p \cap U_q = \emptyset$) and are neighbourhoods of $p$, $q$:
+   $p \in U_p$ and $q \in U_q$.
+- An example of a $T_2$ space is that of the real line, where any two points $p, q$
+  can be separated with epsilon balls with centers $p, q$ and radii $(p - q) / 3$.
+- Closure definitoin: $X$ is $T_2$ iff $x \neq y$ implies there is a set $A \in 2^X$ such that
+  $x \not \in c(A) \land y \not \in c(X - A)$ where $X - A$ is the set complement.
+
+### Relationship between DFS and closure when the topology is $T0$
+
+If the topology is $T0$, then we know that the relation will be a poset,
+and hence the graph will be a DAG. Thus, whenever we have $x \rightarrow y$, we 
+will get 
+
+### DFS: the T0 case
+### DFS: the haussdorf case
+### DFS: the back edges
+### DFS: the cross edges
+
+# [Categorical definition of products in painful detail](#categorical-definition-pf-products-in-painful-detail) 
+
+I feel like I have incorrectly understood, then un-understood, and re-understood
+in a slightly less broken way the definition of the product in category theory
+around 5 times. I'm documenting the journey here.
+
+### The definition
+
+Given two objects $a, b$, in a category $C$, any 3-tuple
+$(p \in C, \pi_a \in Hom(p, a), \pi_b \in Hom(p, b))$ is called their _product_, if for any
+other 3 tuple $(q \in C, \pi'_a \in Hom(q, a), \pi'_b \in Hom(q, b))$, we have a
+**unique** factorization map $f \in Hom(q, p)$ such that $\pi'_a = \pi_a \circ f$,
+$\pi'_b = \pi_b \circ f$.
+
+
+(Note that I did not say **the** product. This is on purpose). We claim that
+the product is unique up to unique isomorphism.
+
+Let's choose the category to be the category of sets. Let's try and figure out
+what a product of the sets $a = \{ \alpha, \beta \}$ and $b = \{ \gamma, \delta \}$
+is going to be. 
+
+
+#### Non-example 1: product as $\{ 1 \}$
+Let's try to choose the product set as simply $\{ 1 \}$, with the maps
+being chosen as $\pi_a(1) = \alpha; \pi_b(1) = \gamma$:
+
+```
+     πb
+p{1}--->{ γ }
+  |     { δ }
+  |
+πa|
+  v 
+{ α , β }
+```
+
+In this case, it's easy to see the failure. I can build a set $q = \{ 2 \}$ with
+the maps $\pi'_a(2) = \alpha; \pi'_b(2) = \delta$:
+
+```
+     πb
+q{2}-+  { γ }
+  |  |  {   }
+  |  +->{ δ }
+  |
+πa|
+  v 
+{ α , β }
+```
+
+There is a single, unique map which takes $q$ to $p$, which is the function $f: 2 \mapsto 1$.
+See that $\pi'_b(2) = \delta$, while $\pi_b(f(2)) = \pi_b(1) = \gamma$. Hence
+the universal property can never be satisfied. 
+
+Thus $(\{ 1 \}, 1 \mapsto \alpha, 1 \mapsto \gamma)$ is not a
+product of $\{ \alpha, \beta \}$ and $\{ \gamma, \delta \}$ as it is
+**unable to represent** a pair $(\alpha, \delta)$.
+
+#### Non-example 2: product as $\{ 1, 2, 3, 4, 5 \}$
+
+In this case, we shall see that we will have *too much freedom*, so this will
+violate the "unique map" aspect. Let's pick some choice of $\pi_a$ and $\pi_b$.
+For example, we can use:
+
+$$
+\begin{align*}
+(&p = \{ 1, 2, 3, 4\}, \\
+&\pi_a = 1 \mapsto \alpha, 2 \mapsto \alpha, 3 \mapsto \beta, 4 \mapsto \beta, 5 \mapsto \beta\\
+&\pi_b = 1 \mapsto \gamma, 2 \mapsto \delta, 3 \mapsto \gamma, 4 \mapsto \delta, 5 \mapsto \delta)
+\end{align*}
+$$
+
+Now let's say we have a set $q = \{ 42 \}$ such that $\pi'_a(42) = \beta, \pi'_b(42) = \delta$.
+
+If we try to construct the map $f: q \rightarrow p$, notice that we get \emph{two}
+possible legal maps. We can set $f(42) = 4$, or $f(42) = 5$, because both $4$
+and $5$ map into $(\beta, \delta)$.
+
+This violates the **uniqueness** condition of the product. Thus, the set $\{1, 2, 3, 4, 5\}$
+is not a product of $\{\alpha, \beta \}$ and $\{\gamma, \delta \}$ because it does not
+provide a **unique** map from $q$ into $p$. Alternatively, it does not provide
+a **unique** representation for the tuple $(\beta, \delta)$. Thus it can't be a product.
+
+#### Checking an example: $\{ \alpha, \beta \} \times \{ \gamma , \delta \}$ as $\{1, 2, 3, 4\}$
+
+I claim that a possible product of $a$ and $b$ is:
+
+$$
+\begin{align*}
+(&p = \{ 1, 2, 3, 4\}, \\
+&\pi_a = 1 \mapsto \alpha, 2 \mapsto \alpha, 3 \mapsto \beta, 4 \mapsto \beta,\\
+&\pi_b = 1 \mapsto \gamma, 2 \mapsto \delta, 3 \mapsto \gamma, 4 \mapsto \delta)
+\end{align*}
+$$
+
+
+```
+p       πa            a
+   1------------*--->{α}
+   |  2--------─┘    { }
+   |  | 3-------*--->{β}
+   |  | | 4----─┘
+   +----* |
+πb |  |   |
+   |  *---+
+   |      |
+   v      v
+b {γ      δ}
+```
+
+Now given a 3-tuple $(q, \pi'_a \in Hom(q, a), \pi'_b \in Hom(q, b))$, we construct
+the factorization map $f: q \rightarrow p$, where:
+$$
+f: q \rightarrow p; \quad
+f(x) \equiv
+\begin{cases}
+1 & \pi'_a(x) = \alpha \land \pi'_b(x) = \gamma \\
+2 & \pi'_a(x) = \alpha \land \pi'_b(x) = \delta \\
+3 & \pi'_a(x) = \beta  \land \pi'_b(x) = \gamma \\
+4 & \pi'_a(x) = \beta  \land \pi'_b(x) = \delta \\
+\end{cases}
+$$
+
+That is, we build $f(x)$ such that on composing with $\pi_a$ and $\pi_b$, we will
+get the right answer. For example, if $\pi'_a(x) = \alpha$, then we know that
+we should map $x$ to an element  $y \in p$ such that $\pi(y) = \alpha$. So 
+we need $y = 1 \lor y = 2$. Then looking at $\pi'_b(x)$ allows us to pick a
+**unique** y. There is zero choice in the
+construction of $f$. We need _exactly_ 4 elements to cover all possible ways
+in which $q$ could map into $a$ and $b$ through $\pi'_a, \pi'_b$ such that
+we cover all possibilities with no redundancy. 
+
+This choice of product is _goldilocks_: it does not have too few elements such
+that some elements are not representable; it also does not have too many
+elements such that some elements are redundant.
+
+#### Non uniqueness: product as $\{10, 20, 30, 40\}$
+
+Note that instead of using $p = \{1, 2, 3 4\}$, I could have used 
+$p = \{10, 20, 30, 40 \}$
+and nothing would have changed. 
+I have never depended on using the _values_ $1, 2, 3, 4$.
+Rather, I've only used them as \emph{labels}.
+
+#### Non uniqueness: product as  $\{ (\alpha,  \gamma), (\alpha, \delta), (\beta, \gamma), (\beta, \delta) \}$
+
+Indeed, our usual idea of product also satisfies the product, since it is 
+in unique isomorphism to the set $\{1, 2, 3, 4\}$ we had considered previously.
+But this might be strange: Why is it that the categorical definition of product
+allows for so many other "spurious" products? Clearly this product of tuples 
+is the **best** one, is it not?
+
+Of course not! Inside the category of sets, anything with the same cardinality 
+is isomorphic. So nothing inside the category can distinguish between the
+sets $\{1, 2, 3, 4\}$ and  $\{ (\alpha,  \gamma), (\alpha, \delta), (\beta, \gamma), (\beta, \delta) \}$.
+Hence, the _usual product_ we are so used to dealing with is not privileged.
+
+This should make us happy, not sad. We have removed the (un-necessary)
+privilege we were handing to this one set because it "felt" like it was
+canonical, and have instead identified what actually makes the product of sets
+tick: the fact that their cardinality is the product of the cardinalities of
+the individual sets!
+
+
+#### How to think about the product
+
+Since we are specifying the data of $(p, \pi_a, \pi_b)$, we can simply think of
+elements of $p$ as being "pre-evaluated", as $(x \in p, \pi_a(x), \pi_b(x))$.
+So in our case, we can simplify the previous situation with $(p = \{ 10, 20, 30, 40 \}, \pi_a, \pi_b)$
+by writing the set as 
+$p = \{ (10, \alpha, \gamma), (20, \alpha, \delta), (30, \beta, \gamma), (40, \beta, \delta) \}$.
+This tells us "at a glance" that every element of $a \times b$ is represented,
+as well as what element it is represented by.
+
+
+#### Proof of uniqueness upto unique isomorphism
+
+- Assume we have two products $(p, \pi_a, \pi_b)$ and $(q, \pi_a, \pi_b)$.
+- By the universality of $p$, we get a map $q2p$ ... 
+- By the universality of $q$, we get a map $p2q$
+- We get a map $p2q . q2p$ such that 
+- 
+
+
+# [Why is the spectrum of a ring called so?](#why-is-the-spectrum-of-a-ring-called-so)
+
+I've been watching Ravi Vakil's excellent "pseudolectures" on algebraic geometry,
+aptly titled
+[AGITTC: Algebraic geometry in the time of Covid](https://www.youtube.com/channel/UCy3u23mZE4TyW88yr6JLx9A).
+In lecture 3, there was a discussion going on in the sidebar chat where a user
+said that the name "prime sprectrum" came from something to do with quantum
+mechanics. To quote:
+
+> letheology: spectrum of light -> eigenvalues of the hamiltonian operator ->
+> prime ideal of the polynomial ring of the operator
+
+I don't know what the prime ideal of the polynomial ring of the operator is,
+so let's find out!
+
+Also, another user said:
+
+ > Lukas H: I like the definition of Spec A that doesn't include the word
+ > prime ideal, by a colimit of Hom(A, k) where k run over all fields and the
+ > maps are morphisms that make the diagrams commute.
+
+ That's a pretty crazy definition. One can apparently find this definition
+ in Peter Schloze's notes on AG.
+
+# [Ergo proxy](#ergo-proxy)
+
+I've been watching the anime "Ergo Proxy". I'll keep this section updated
+with things I find intriguing in the anime.
+
+
+- `bios` stood for both bow and life in greek, supposedly. Both lead to death.
+  This is an interesting fact. I wonder if the `BIOS` of our computers is also
+  from this, and was they backronymed into basic input/output system.
+
+- "the white noise that reverberates within the white
+  darkness is life itself". I have no idea what this means. It's a great
+  sentence for sure.
+
 
 #  [Satisfied and frustrated equations](#satisfied-and-frustrated-equations)
 

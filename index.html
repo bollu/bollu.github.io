@@ -12,9 +12,14 @@ a:active { color: #1a73e8; text-decoration: none; }
 A Universe of Sorts
 </h2>
 <h4><a id=siddharth-bhat href='#siddharth-bhat'> § </a> Siddharth Bhat</h4>
-<ul><li> <a href=https://www.admonymous.co/bollu>Leave feedback for me, <code>+ve</code> or <code>-ve</code>!</a></li><li> Reach me: <a href='mailto:siddu.druid@gmail.com'> <code>siddu.druid@gmail.com</code> </a></li><li> <a href=http://github.com/bollu>My github</a></li><li> <a href=https://math.stackexchange.com/users/261373/siddharth-bhat>My math.se profile</a></li><li> <a href=resume/main.pdf>My resume</a></li><li> <a href=todo.html>My reading list</a></li><li> <a href=https://ko-fi.com/bollu>Buy me a coffee</a></li><li> <a href=https://www.patreon.com/bollu>Have me to explain something for you</a></li></ul>
+<ul><li> <a href=https://www.admonymous.co/bollu>Leave feedback for me, <code>+ve</code> or <code>-ve</code>!</a></li><li> Reach me: <a href='mailto:siddu.druid@gmail.com'> <code>siddu.druid@gmail.com</code> </a></li><li> <a href=http://github.com/bollu>My github</a></li><li> <a href=https://math.stackexchange.com/users/261373/siddharth-bhat>My math.se profile</a></li><li> <a href=resume/main.pdf>My resume</a></li><li> <a href=todo.html>My reading list</a></li><li> <a href=https://ko-fi.com/bollu>Grab me a coffee</a></li><li> <a href=https://www.patreon.com/bollu>Support me in making more visualizations!</a></li></ul>
 <h4><a id=table-of-contents href='#table-of-contents'> § </a> Table of contents:</h4>
 <ol reversed>
+<li> <a href=#intuition-for-limits-in-category-theory>Intuition for limits in category theory</a> </li>
+<li> <a href=#finite-topologies-and-dfs-numbering>Finite topologies and DFS numbering</a> </li>
+<li> <a href=#categorical-definition-pf-products-in-painful-detail>Categorical definition of products in painful detail</a> </li>
+<li> <a href=#why-is-the-spectrum-of-a-ring-called-so>Why is the spectrum of a ring called so?</a> </li>
+<li> <a href=#ergo-proxy>Ergo Proxy</a> </li>
 <li> <a href=#satisfied-and-frustrated-equations>Satisfied and frustrated equations</a> </li>
 <li> <a href=#combinatorial-intuition-for-fermats-little-theorem>Combinatorial intuition for Fermat's little theorem</a>
 <li> <a href=#an-incorrect-derivation-of-special-relativity-in-1d>An incorrect derivation of special relativity in 1D</a> </li>
@@ -189,6 +194,433 @@ A Universe of Sorts
 <li> <a href=#big-list-of-haiku>Big list of Haiku</a> </li>
 <li> <a href=#big-list-of-music>Big list of Music</a> </li>
 </ol>
+<h2><a id=intuition-for-limits-in-category-theory href='#intuition-for-limits-in-category-theory'> § </a> <a href=#intuition-for-limits-in-category-theory>Intuition for limits in category theory</a></h2>
+<h4><a id=a-characterization-of-limits href='#a-characterization-of-limits'> § </a> A characterization of limits</h4>
+The theorem that characterizes limits is this: 
+<blockquote> A category has Finite Limits iff it has all finite products and equalizers</blockquote>
+<h4><a id=ravi-vakils-intuition-for-limits href='#ravi-vakils-intuition-for-limits'> § </a> Ravi Vakil's intuition for limits</h4>
+<ul><li> An element of a limit gives one of each of its ingredients. For example,
+ <span class='latexinline'>
+<span style="font-style:italic">K</span>[[<span style="font-style:italic">X</span>]] = lim<sub><span style="font-style:italic">n</span></sub> degree&#XA0;<span style="font-style:italic">n</span>&#XA0;polynomials </span>, since we can get
+ a degree n polynomial for all n, from any power series by truncation.</li><li> <b>RAPL</b>: right adjoints preserve limits.</li><li> Limits commute with limits.</li><li> These are mentioned in "Algebraic geometry in the time of Covid: Pseudolecture 2"</li></ul>
+<h2><a id=finite-topologies-and-dfs-numbering href='#finite-topologies-and-dfs-numbering'> § </a> <a href=#finite-topologies-and-dfs-numbering>Finite topologies and DFS numbering</a></h2>
+In this great math overflow question on
+<a href=https://mathoverflow.net/questions/44109/how-should-one-think-about-non-hausdorff-topologies/44135#44135>How to think about non hausdorff topologies in the finite case</a>, there's an answer that encourages us 
+to think of them as preorders, which are basically graphs. I wanted to understand
+this perspective, as well as connect it to DFS numbers, since they provide a
+nice way to embed these topologies into <span class='latexinline'>
+&#X211D;</span>.
+<h4><a id=closure-axioms-of-topology href='#closure-axioms-of-topology'> § </a> Closure axioms of topology</h4>
+We can axiomatize a topology using the kurotawski closure axioms. We need an
+idempotent monotonic function <span class='latexinline'>
+<span style="font-style:italic">c</span>: 2<sup><span style="font-style:italic">X</span></sup> &#X2192; 2<sup><span style="font-style:italic">X</span></sup></span> which satisfies some
+technical conditions. Formally:
+<ol><li> <span class='latexinline'>
+<span style="font-style:italic">c</span>(&#X2205;) = &#X2205;)</span> [<span class='latexinline'>
+<span style="font-style:italic">c</span></span> is a strict function: it takes bottoms to bottoms]</li><li> <span class='latexinline'>
+<span style="font-style:italic">A</span> &#X2286; <span style="font-style:italic">c</span>(<span style="font-style:italic">A</span>)</span>. [monotonicity]</li><li> <span class='latexinline'>
+<span style="font-style:italic">c</span></span> is idempotent: <span class='latexinline'>
+<span style="font-style:italic">c</span>(<span style="font-style:italic">c</span>(<span style="font-style:italic">A</span>)) = <span style="font-style:italic">c</span>(<span style="font-style:italic">A</span>)</span>. [idempotence]</li><li> for all <span class='latexinline'>
+<span style="font-style:italic">A</span>, <span style="font-style:italic">B</span></span> in <span class='latexinline'>
+<span style="font-style:italic">X</span></span>, <span class='latexinline'>
+<span style="font-style:italic">c</span>(<span style="font-style:italic">A</span> &#X222A; <span style="font-style:italic">B</span>) = <span style="font-style:italic">c</span>(<span style="font-style:italic">A</span>) &#X222A; <span style="font-style:italic">c</span>(<span style="font-style:italic">B</span>)</span>.</li></ol>
+Under this, a set is closed if it is a fixed point of <span class='latexinline'>
+<span style="font-style:italic">c</span></span>: That is, a set <span class='latexinline'>
+<span style="font-style:italic">A</span></span>
+is closed iff <span class='latexinline'>
+<span style="font-style:italic">c</span>(<span style="font-style:italic">A</span>) = <span style="font-style:italic">A</span></span>.
+<h4><a id=slight-weakening-into-single-axiom-version href='#slight-weakening-into-single-axiom-version'> § </a> Slight weakening into Single axiom version</h4>
+Interestingly, this also gives a single axiom version of topological axioms,
+something that maybe useful for machine learning. The single axiom is that
+for all <span class='latexinline'>
+<span style="font-style:italic">A</span>, <span style="font-style:italic">B</span> &#X2286; <span style="font-style:italic">X</span></span>, <span class='latexinline'>
+<span style="font-style:italic">A</span> &#X222A; <span style="font-style:italic">c</span>(<span style="font-style:italic">A</span>) &#X222A; <span style="font-style:italic">c</span>(<span style="font-style:italic">C</span>(<span style="font-style:italic">B</span>)) &#X2286; <span style="font-style:italic">c</span>(<span style="font-style:italic">A</span> &#X222A; <span style="font-style:italic">B</span>)</span>.
+This does not provide that <span class='latexinline'>
+<span style="font-style:italic">c</span>(&#X2205;) = &#X2205;</span>, but it does provide
+the other axioms [2-4].
+<h4><a id=continuous-functions href='#continuous-functions'> § </a> Continuous functions</h4>
+A function is continuous iff <span class='latexinline'>
+<span style="font-style:italic">f</span>(<span style="font-style:italic">c</span>(<span style="font-style:italic">A</span>)) &#X2286; <span style="font-style:italic">c</span>&#X2032;(<span style="font-style:italic">f</span>(<span style="font-style:italic">A</span>))</span> for every <span class='latexinline'>
+<span style="font-style:italic">A</span> &#X2208; <span style="font-style:italic">X</span></span>.
+<b>TODO:</b> give examples of why this works, and why we need <span class='latexinline'>
+(&#X2286;)</span> and not just <span class='latexinline'>
+(<span style="font-style:italic">eq</span>)</span>.
+<h4><a id=finite-topologies-as-preorders href='#finite-topologies-as-preorders'> § </a> Finite topologies as preorders</h4>
+We draw an arrow <span class='latexinline'>
+<span style="font-style:italic">x</span> &#X2192; <span style="font-style:italic">y</span></span> iff <span class='latexinline'>
+<span style="font-style:italic">x</span> &#X2208; <span style="font-style:italic">Closure</span>(<span style="font-style:italic">y</span>)</span>. Alternatively stated,
+draw an arrow iff <span class='latexinline'>
+<span style="font-style:italic">Closure</span>(<span style="font-style:italic">x</span>) &#X2286; <span style="font-style:italic">Closure</span>(<span style="font-style:italic">y</span>)</span>. That is, we have an injection
+from the closure of <span class='latexinline'>
+<span style="font-style:italic">x</span></span> into the closure of <span class='latexinline'>
+<span style="font-style:italic">y</span></span>, and the arrow represents
+the injection. Alternatively, we can think of
+this as ordering the elements <span class='latexinline'>
+<span style="font-style:italic">x</span></span> by "information". A point <span class='latexinline'>
+<span style="font-style:italic">x</span></span> has less information
+than point <span class='latexinline'>
+<span style="font-style:italic">y</span></span> if its closure has fewer points.                         
+<h4><a id=t0-in-terms-of-closure href='#t0-in-terms-of-closure'> § </a> T0 in terms of closure</h4>
+<ul><li> <span class='latexinline'>
+<span style="font-style:italic">X</span></span> is <span class='latexinline'>
+<span style="font-style:italic">T</span><sub>0</sub></span> iff for points <span class='latexinline'>
+<span style="font-style:italic">p</span>, <span style="font-style:italic">q</span> &#X2208; <span style="font-style:italic">X</span></span>, we have an open set <span class='latexinline'>
+<span style="font-style:italic">O</span></span> which contains
+  one of the points but not the other.Formally,
+  either <span class='latexinline'>
+<span style="font-style:italic">p</span> &#X2208; <span style="font-style:italic">O</span> &#X2227; <span style="font-style:italic">q</span> &#X2209;<span style="font-style:italic">O</span></span>, or <span class='latexinline'>
+<span style="font-style:italic">p</span> &#X2209;<span style="font-style:italic">O</span> &#X2227; <span style="font-style:italic">q</span> &#X2208; <span style="font-style:italic">O</span></span>.</li><li> An example of a <span class='latexinline'>
+<span style="font-style:italic">T</span>0</span> space is the <a href=https://en.wikipedia.org/wiki/Sierpi%C5%84ski_space>sierpinski space</a>.
+  Here, we have the open set <span class='latexinline'>
+{ }</span> by considering the computation
+  <code>f(thunk) = force(thunk)</code>. For more on this perspective, see <a href=#topology-is-really-about-computation--part-1>Topology is
+  really about computation </a>.
+  This open set contains only <span class='latexinline'>
+</span> and not <span class='latexinline'>
+</span>.</li><li> Closure definition: <span class='latexinline'>
+<span style="font-style:italic">X</span></span> is <span class='latexinline'>
+<span style="font-style:italic">T</span><sub>0</sub></span> iff <span class='latexinline'>
+<span style="font-style:italic">x</span> &#X2260; <span style="font-style:italic">y</span>  <span style="font-style:italic">c</span>({<span style="font-style:italic">x</span>}) &#X2260; <span style="font-style:italic">c</span>({<span style="font-style:italic">y</span>})</span></li></ul>
+<h4><a id=t1-in-terms-of-closure href='#t1-in-terms-of-closure'> § </a> T1 in terms of closure</h4>
+<ul><li> <span class='latexinline'>
+<span style="font-style:italic">X</span></span> is <span class='latexinline'>
+<span style="font-style:italic">T</span><sub>1</sub></span> iff for all <span class='latexinline'>
+<span style="font-style:italic">p</span>, <span style="font-style:italic">q</span></span> in <span class='latexinline'>
+<span style="font-style:italic">X</span></span>, we have open sets <span class='latexinline'>
+<span style="font-style:italic">U</span><sub><span style="font-style:italic">p</span></sub>, <span style="font-style:italic">U</span><sub><span style="font-style:italic">q</span></sub></span> such that
+  <span class='latexinline'>
+<span style="font-style:italic">U</span><sub><span style="font-style:italic">p</span></sub>, <span style="font-style:italic">U</span><sub><span style="font-style:italic">q</span></sub></span> are open neighbourhoods of <span class='latexinline'>
+<span style="font-style:italic">p</span>, <span style="font-style:italic">q</span></span> which do not contain the "other point".
+  Formally, we need <span class='latexinline'>
+<span style="font-style:italic">p</span> &#X2208; <span style="font-style:italic">U</span><sub><span style="font-style:italic">p</span></sub></span> and <span class='latexinline'>
+<span style="font-style:italic">q</span> &#X2209;<span style="font-style:italic">U</span><sub><span style="font-style:italic">p</span></sub></span>, and similarly <span class='latexinline'>
+<span style="font-style:italic">q</span> &#X2208; <span style="font-style:italic">U</span><sub><span style="font-style:italic">q</span></sub></span> and <span class='latexinline'>
+<span style="font-style:italic">p</span> &#X2209;<span style="font-style:italic">U</span><sub><span style="font-style:italic">q</span></sub></span>.
+  That is, <span class='latexinline'>
+<span style="font-style:italic">U</span><sub><span style="font-style:italic">p</span></sub></span> and <span class='latexinline'>
+<span style="font-style:italic">U</span><sub><span style="font-style:italic">q</span></sub></span> can split <span class='latexinline'>
+<span style="font-style:italic">p</span>, <span style="font-style:italic">q</span></span> apart, but <span class='latexinline'>
+<span style="font-style:italic">U</span><sub><span style="font-style:italic">p</span></sub></span> and <span class='latexinline'>
+<span style="font-style:italic">U</span><sub><span style="font-style:italic">q</span></sub></span> need not
+  be disjoint. </li><li> An example of <span class='latexinline'>
+<span style="font-style:italic">T</span><sub>1</sub></span> is the zariski topology on <span class='latexinline'>
+&#X211D;</span>, where
+  the open sets are complements of finite sets. Given two integers <span class='latexinline'>
+<span style="font-style:italic">p</span>, <span style="font-style:italic">q</span></span>, use the
+  open sets as the complements of the closed finite sets <span class='latexinline'>
+<span style="font-style:italic">U</span><sub><span style="font-style:italic">p</span></sub> = {<span style="font-style:italic">q</span>}<sup><span style="font-style:italic">C</span></sup> = &#X2124; &#X2212; <span style="font-style:italic">q</span></span>, 
+  and <span class='latexinline'>
+<span style="font-style:italic">U</span><sub><span style="font-style:italic">q</span></sub> = {<span style="font-style:italic">p</span>}<sup><span style="font-style:italic">C</span></sup> = &#X2124; &#X2212; <span style="font-style:italic">p</span></span>. It's clear that these separate <span class='latexinline'>
+<span style="font-style:italic">p</span></span> and <span class='latexinline'>
+<span style="font-style:italic">q</span></span>,
+  but have <i>huge</i> intersection: <span class='latexinline'>
+<span style="font-style:italic">U</span><sub><span style="font-style:italic">p</span></sub> &#X2229; <span style="font-style:italic">U</span><sub><span style="font-style:italic">q</span></sub> = <span style="font-style:italic">Z</span> &#X2212; { <span style="font-style:italic">p</span>, <span style="font-style:italic">q</span>}</span>.</li><li> Closure definition: <span class='latexinline'>
+<span style="font-style:italic">X</span></span> is <span class='latexinline'>
+<span style="font-style:italic">T</span><sub>1</sub></span> iff <span class='latexinline'>
+<span style="font-style:italic">c</span>({<span style="font-style:italic">x</span>}) = {<span style="font-style:italic">x</span>}</span>.</li></ul>
+<h4><a id=haussdorf-t2-in-terms-of-closure href='#haussdorf-t2-in-terms-of-closure'> § </a> Haussdorf (T2) in terms of closure</h4>
+<ul><li>  <span class='latexinline'>
+<span style="font-style:italic">X</span></span> ix <span class='latexinline'>
+<span style="font-style:italic">T</span><sub>1</sub></span> iff for all <span class='latexinline'>
+<span style="font-style:italic">p</span>, <span style="font-style:italic">q</span></span> in <span class='latexinline'>
+<span style="font-style:italic">X</span></span>, we have open set <span class='latexinline'>
+<span style="font-style:italic">U</span><sub><span style="font-style:italic">p</span></sub>, <span style="font-style:italic">U</span><sub><span style="font-style:italic">q</span></sub></span> such that
+   they are disjoint (<span class='latexinline'>
+<span style="font-style:italic">U</span><sub><span style="font-style:italic">p</span></sub> &#X2229; <span style="font-style:italic">U</span><sub><span style="font-style:italic">q</span></sub> = &#X2205;</span>) and are neighbourhoods of <span class='latexinline'>
+<span style="font-style:italic">p</span></span>, <span class='latexinline'>
+<span style="font-style:italic">q</span></span>:
+   <span class='latexinline'>
+<span style="font-style:italic">p</span> &#X2208; <span style="font-style:italic">U</span><sub><span style="font-style:italic">p</span></sub></span> and <span class='latexinline'>
+<span style="font-style:italic">q</span> &#X2208; <span style="font-style:italic">U</span><sub><span style="font-style:italic">q</span></sub></span>.</li><li> An example of a <span class='latexinline'>
+<span style="font-style:italic">T</span><sub>2</sub></span> space is that of the real line, where any two points <span class='latexinline'>
+<span style="font-style:italic">p</span>, <span style="font-style:italic">q</span></span>
+  can be separated with epsilon balls with centers <span class='latexinline'>
+<span style="font-style:italic">p</span>, <span style="font-style:italic">q</span></span> and radii <span class='latexinline'>
+(<span style="font-style:italic">p</span> &#X2212; <span style="font-style:italic">q</span>) / 3</span>.</li><li> Closure definitoin: <span class='latexinline'>
+<span style="font-style:italic">X</span></span> is <span class='latexinline'>
+<span style="font-style:italic">T</span><sub>2</sub></span> iff <span class='latexinline'>
+<span style="font-style:italic">x</span> &#X2260; <span style="font-style:italic">y</span></span> implies there is a set <span class='latexinline'>
+<span style="font-style:italic">A</span> &#X2208; 2<sup><span style="font-style:italic">X</span></sup></span> such that
+  <span class='latexinline'>
+<span style="font-style:italic">x</span> &#X2209;<span style="font-style:italic">c</span>(<span style="font-style:italic">A</span>) &#X2227; <span style="font-style:italic">y</span> &#X2209;<span style="font-style:italic">c</span>(<span style="font-style:italic">X</span> &#X2212; <span style="font-style:italic">A</span>)</span> where <span class='latexinline'>
+<span style="font-style:italic">X</span> &#X2212; <span style="font-style:italic">A</span></span> is the set complement.</li></ul>
+<h4><a id=relationship-between-dfs-and-closure-when-the-topology-is-t0 href='#relationship-between-dfs-and-closure-when-the-topology-is-t0'> § </a> Relationship between DFS and closure when the topology is <span class='latexinline'>
+<span style="font-style:italic">T</span>0</span></h4>
+If the topology is <span class='latexinline'>
+<span style="font-style:italic">T</span>0</span>, then we know that the relation will be a poset,
+and hence the graph will be a DAG. Thus, whenever we have <span class='latexinline'>
+<span style="font-style:italic">x</span> &#X2192; <span style="font-style:italic">y</span></span>, we 
+will get 
+<h4><a id=dfs-the-t0-case href='#dfs-the-t0-case'> § </a> DFS: the T0 case</h4>
+<h4><a id=dfs-the-haussdorf-case href='#dfs-the-haussdorf-case'> § </a> DFS: the haussdorf case</h4>
+<h4><a id=dfs-the-back-edges href='#dfs-the-back-edges'> § </a> DFS: the back edges</h4>
+<h4><a id=dfs-the-cross-edges href='#dfs-the-cross-edges'> § </a> DFS: the cross edges</h4>
+<h2><a id=categorical-definition-of-products-in-painful-detail- href='#categorical-definition-of-products-in-painful-detail-'> § </a> <a href=#categorical-definition-pf-products-in-painful-detail>Categorical definition of products in painful detail</a> </h2>
+I feel like I have incorrectly understood, then un-understood, and re-understood
+in a slightly less broken way the definition of the product in category theory
+around 5 times. I'm documenting the journey here.
+<h4><a id=the-definition href='#the-definition'> § </a> The definition</h4>
+Given two objects <span class='latexinline'>
+<span style="font-style:italic">a</span>, <span style="font-style:italic">b</span></span>, in a category <span class='latexinline'>
+<span style="font-style:italic">C</span></span>, any 3-tuple
+<span class='latexinline'>
+(<span style="font-style:italic">p</span> &#X2208; <span style="font-style:italic">C</span>, &#X3C0;<sub><span style="font-style:italic">a</span></sub> &#X2208; <span style="font-style:italic">Hom</span>(<span style="font-style:italic">p</span>, <span style="font-style:italic">a</span>), &#X3C0;<sub><span style="font-style:italic">b</span></sub> &#X2208; <span style="font-style:italic">Hom</span>(<span style="font-style:italic">p</span>, <span style="font-style:italic">b</span>))</span> is called their <i>product</i>, if for any
+other 3 tuple <span class='latexinline'>
+(<span style="font-style:italic">q</span> &#X2208; <span style="font-style:italic">C</span>, &#X3C0;&#X2032;<sub><span style="font-style:italic">a</span></sub> &#X2208; <span style="font-style:italic">Hom</span>(<span style="font-style:italic">q</span>, <span style="font-style:italic">a</span>), &#X3C0;&#X2032;<sub><span style="font-style:italic">b</span></sub> &#X2208; <span style="font-style:italic">Hom</span>(<span style="font-style:italic">q</span>, <span style="font-style:italic">b</span>))</span>, we have a
+<b>unique</b> factorization map <span class='latexinline'>
+<span style="font-style:italic">f</span> &#X2208; <span style="font-style:italic">Hom</span>(<span style="font-style:italic">q</span>, <span style="font-style:italic">p</span>)</span> such that <span class='latexinline'>
+&#X3C0;&#X2032;<sub><span style="font-style:italic">a</span></sub> = &#X3C0;<sub><span style="font-style:italic">a</span></sub> &#X2218; <span style="font-style:italic">f</span></span>,
+<span class='latexinline'>
+&#X3C0;&#X2032;<sub><span style="font-style:italic">b</span></sub> = &#X3C0;<sub><span style="font-style:italic">b</span></sub> &#X2218; <span style="font-style:italic">f</span></span>.
+(Note that I did not say <b>the</b> product. This is on purpose). We claim that
+the product is unique up to unique isomorphism.
+Let's choose the category to be the category of sets. Let's try and figure out
+what a product of the sets <span class='latexinline'>
+<span style="font-style:italic">a</span> = { &#X3B1;, &#X3B2; }</span> and <span class='latexinline'>
+<span style="font-style:italic">b</span> = { &#X3B3;, &#X3B4; }</span>
+is going to be. 
+<h4><a id=non-example-1-product-as-1- href='#non-example-1-product-as-1-'> § </a> Non-example 1: product as <span class='latexinline'>
+{ 1 }</span></h4>
+Let's try to choose the product set as simply <span class='latexinline'>
+{ 1 }</span>, with the maps
+being chosen as <span class='latexinline'>
+&#X3C0;<sub><span style="font-style:italic">a</span></sub>(1) = &#X3B1;; &#X3C0;<sub><span style="font-style:italic">b</span></sub>(1) = &#X3B3;</span>:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>     πb
+p{1}---&gt;{ γ }
+  |     { δ }
+  |
+πa|
+  v 
+{ α , β }
+</tt></pre>
+</div>
+In this case, it's easy to see the failure. I can build a set <span class='latexinline'>
+<span style="font-style:italic">q</span> = { 2 }</span> with
+the maps <span class='latexinline'>
+&#X3C0;&#X2032;<sub><span style="font-style:italic">a</span></sub>(2) = &#X3B1;; &#X3C0;&#X2032;<sub><span style="font-style:italic">b</span></sub>(2) = &#X3B4;</span>:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>     πb
+q{2}-+  { γ }
+  |  |  {   }
+  |  +-&gt;{ δ }
+  |
+πa|
+  v 
+{ α , β }
+</tt></pre>
+</div>
+There is a single, unique map which takes <span class='latexinline'>
+<span style="font-style:italic">q</span></span> to <span class='latexinline'>
+<span style="font-style:italic">p</span></span>, which is the function <span class='latexinline'>
+<span style="font-style:italic">f</span>: 2 &#X21A6; 1</span>.
+See that <span class='latexinline'>
+&#X3C0;&#X2032;<sub><span style="font-style:italic">b</span></sub>(2) = &#X3B4;</span>, while <span class='latexinline'>
+&#X3C0;<sub><span style="font-style:italic">b</span></sub>(<span style="font-style:italic">f</span>(2)) = &#X3C0;<sub><span style="font-style:italic">b</span></sub>(1) = &#X3B3;</span>. Hence
+the universal property can never be satisfied. 
+Thus <span class='latexinline'>
+({ 1 }, 1 &#X21A6; &#X3B1;, 1 &#X21A6; &#X3B3;)</span> is not a
+product of <span class='latexinline'>
+{ &#X3B1;, &#X3B2; }</span> and <span class='latexinline'>
+{ &#X3B3;, &#X3B4; }</span> as it is
+<b>unable to represent</b> a pair <span class='latexinline'>
+(&#X3B1;, &#X3B4;)</span>.
+<h4><a id=non-example-2-product-as-1-2-3-4-5- href='#non-example-2-product-as-1-2-3-4-5-'> § </a> Non-example 2: product as <span class='latexinline'>
+{ 1, 2, 3, 4, 5 }</span></h4>
+In this case, we shall see that we will have <i>too much freedom</i>, so this will
+violate the "unique map" aspect. Let's pick some choice of <span class='latexinline'>
+&#X3C0;<sub><span style="font-style:italic">a</span></sub></span> and <span class='latexinline'>
+&#X3C0;<sub><span style="font-style:italic">b</span></sub></span>.
+For example, we can use:
+<div class='latexblock'><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+&#XA0;&#XA0;&#XA0;&#XA0;&#XA0;
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >(</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">p</span>&#XA0;=&#XA0;{&#XA0;1,&#XA0;2,&#XA0;3,&#XA0;4},&#XA0;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&#X3C0;<sub><span style="font-style:italic">a</span></sub>&#XA0;=&#XA0;1&#XA0;&#X21A6;&#XA0;&#X3B1;,&#XA0;2&#XA0;&#X21A6;&#XA0;&#X3B1;,&#XA0;3&#XA0;&#X21A6;&#XA0;&#X3B2;,&#XA0;4&#XA0;&#X21A6;&#XA0;&#X3B2;,&#XA0;5&#XA0;&#X21A6;&#XA0;&#X3B2;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&#X3C0;<sub><span style="font-style:italic">b</span></sub>&#XA0;=&#XA0;1&#XA0;&#X21A6;&#XA0;&#X3B3;,&#XA0;2&#XA0;&#X21A6;&#XA0;&#X3B4;,&#XA0;3&#XA0;&#X21A6;&#XA0;&#X3B3;,&#XA0;4&#XA0;&#X21A6;&#XA0;&#X3B4;,&#XA0;5&#XA0;&#X21A6;&#XA0;&#X3B4;)
+</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+</div>
+Now let's say we have a set <span class='latexinline'>
+<span style="font-style:italic">q</span> = { 42 }</span> such that <span class='latexinline'>
+&#X3C0;&#X2032;<sub><span style="font-style:italic">a</span></sub>(42) = &#X3B2;, &#X3C0;&#X2032;<sub><span style="font-style:italic">b</span></sub>(42) = &#X3B4;</span>.
+If we try to construct the map <span class='latexinline'>
+<span style="font-style:italic">f</span>: <span style="font-style:italic">q</span> &#X2192; <span style="font-style:italic">p</span></span>, notice that we get \emph{two}
+possible legal maps. We can set <span class='latexinline'>
+<span style="font-style:italic">f</span>(42) = 4</span>, or <span class='latexinline'>
+<span style="font-style:italic">f</span>(42) = 5</span>, because both <span class='latexinline'>
+4</span>
+and <span class='latexinline'>
+5</span> map into <span class='latexinline'>
+(&#X3B2;, &#X3B4;)</span>.
+This violates the <b>uniqueness</b> condition of the product. Thus, the set <span class='latexinline'>
+{1, 2, 3, 4, 5}</span>
+is not a product of <span class='latexinline'>
+{&#X3B1;, &#X3B2; }</span> and <span class='latexinline'>
+{&#X3B3;, &#X3B4; }</span> because it does not
+provide a <b>unique</b> map from <span class='latexinline'>
+<span style="font-style:italic">q</span></span> into <span class='latexinline'>
+<span style="font-style:italic">p</span></span>. Alternatively, it does not provide
+a <b>unique</b> representation for the tuple <span class='latexinline'>
+(&#X3B2;, &#X3B4;)</span>. Thus it can't be a product.
+<h4><a id=checking-an-example-alpha-beta-times-gamma-delta-as-1-2-3-4 href='#checking-an-example-alpha-beta-times-gamma-delta-as-1-2-3-4'> § </a> Checking an example: <span class='latexinline'>
+{ &#X3B1;, &#X3B2; } &#XD7; { &#X3B3; , &#X3B4; }</span> as <span class='latexinline'>
+{1, 2, 3, 4}</span></h4>
+I claim that a possible product of <span class='latexinline'>
+<span style="font-style:italic">a</span></span> and <span class='latexinline'>
+<span style="font-style:italic">b</span></span> is:
+<div class='latexblock'><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+&#XA0;&#XA0;&#XA0;&#XA0;&#XA0;
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >(</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">p</span>&#XA0;=&#XA0;{&#XA0;1,&#XA0;2,&#XA0;3,&#XA0;4},&#XA0;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&#X3C0;<sub><span style="font-style:italic">a</span></sub>&#XA0;=&#XA0;1&#XA0;&#X21A6;&#XA0;&#X3B1;,&#XA0;2&#XA0;&#X21A6;&#XA0;&#X3B1;,&#XA0;3&#XA0;&#X21A6;&#XA0;&#X3B2;,&#XA0;4&#XA0;&#X21A6;&#XA0;&#X3B2;,</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&#X3C0;<sub><span style="font-style:italic">b</span></sub>&#XA0;=&#XA0;1&#XA0;&#X21A6;&#XA0;&#X3B3;,&#XA0;2&#XA0;&#X21A6;&#XA0;&#X3B4;,&#XA0;3&#XA0;&#X21A6;&#XA0;&#X3B3;,&#XA0;4&#XA0;&#X21A6;&#XA0;&#X3B4;)
+</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+</div>
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>p       πa            a
+   1------------*---&gt;{α}
+   |  2--------─┘    { }
+   |  | 3-------*---&gt;{β}
+   |  | | 4----─┘
+   +----* |
+πb |  |   |
+   |  *---+
+   |      |
+   v      v
+b {γ      δ}
+</tt></pre>
+</div>
+Now given a 3-tuple <span class='latexinline'>
+(<span style="font-style:italic">q</span>, &#X3C0;&#X2032;<sub><span style="font-style:italic">a</span></sub> &#X2208; <span style="font-style:italic">Hom</span>(<span style="font-style:italic">q</span>, <span style="font-style:italic">a</span>), &#X3C0;&#X2032;<sub><span style="font-style:italic">b</span></sub> &#X2208; <span style="font-style:italic">Hom</span>(<span style="font-style:italic">q</span>, <span style="font-style:italic">b</span>))</span>, we construct
+the factorization map <span class='latexinline'>
+<span style="font-style:italic">f</span>: <span style="font-style:italic">q</span> &#X2192; <span style="font-style:italic">p</span></span>, where:
+<div class='latexblock'>
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">f</span>:&#XA0;<span style="font-style:italic">q</span>&#XA0;&#X2192;&#XA0;<span style="font-style:italic">p</span>;&#XA0;&#XA0;&#XA0;
+<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)&#XA0;&#X2261;
+</td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell">&#X23A7;<br>
+&#X23AA;<br>
+&#X23A8;<br>
+&#X23AA;<br>
+&#X23A9;</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >1</td><td style="text-align:left;white-space:nowrap" >&#X3C0;&#X2032;<sub><span style="font-style:italic">a</span></sub>(<span style="font-style:italic">x</span>)&#XA0;=&#XA0;&#X3B1;&#XA0;&#X2227;&#XA0;&#X3C0;&#X2032;<sub><span style="font-style:italic">b</span></sub>(<span style="font-style:italic">x</span>)&#XA0;=&#XA0;&#X3B3;&#XA0;</td></tr>
+<tr><td style="text-align:left;white-space:nowrap" >2</td><td style="text-align:left;white-space:nowrap" >&#X3C0;&#X2032;<sub><span style="font-style:italic">a</span></sub>(<span style="font-style:italic">x</span>)&#XA0;=&#XA0;&#X3B1;&#XA0;&#X2227;&#XA0;&#X3C0;&#X2032;<sub><span style="font-style:italic">b</span></sub>(<span style="font-style:italic">x</span>)&#XA0;=&#XA0;&#X3B4;&#XA0;</td></tr>
+<tr><td style="text-align:left;white-space:nowrap" >3</td><td style="text-align:left;white-space:nowrap" >&#X3C0;&#X2032;<sub><span style="font-style:italic">a</span></sub>(<span style="font-style:italic">x</span>)&#XA0;=&#XA0;&#X3B2;&#XA0;&#XA0;&#X2227;&#XA0;&#X3C0;&#X2032;<sub><span style="font-style:italic">b</span></sub>(<span style="font-style:italic">x</span>)&#XA0;=&#XA0;&#X3B3;&#XA0;</td></tr>
+<tr><td style="text-align:left;white-space:nowrap" >4</td><td style="text-align:left;white-space:nowrap" >&#X3C0;&#X2032;<sub><span style="font-style:italic">a</span></sub>(<span style="font-style:italic">x</span>)&#XA0;=&#XA0;&#X3B2;&#XA0;&#XA0;&#X2227;&#XA0;&#X3C0;&#X2032;<sub><span style="font-style:italic">b</span></sub>(<span style="font-style:italic">x</span>)&#XA0;=&#XA0;&#X3B4;&#XA0;</td></tr>
+</table></td></tr>
+</table></td></tr>
+</table></div>
+That is, we build <span class='latexinline'>
+<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)</span> such that on composing with <span class='latexinline'>
+&#X3C0;<sub><span style="font-style:italic">a</span></sub></span> and <span class='latexinline'>
+&#X3C0;<sub><span style="font-style:italic">b</span></sub></span>, we will
+get the right answer. For example, if <span class='latexinline'>
+&#X3C0;&#X2032;<sub><span style="font-style:italic">a</span></sub>(<span style="font-style:italic">x</span>) = &#X3B1;</span>, then we know that
+we should map <span class='latexinline'>
+<span style="font-style:italic">x</span></span> to an element  <span class='latexinline'>
+<span style="font-style:italic">y</span> &#X2208; <span style="font-style:italic">p</span></span> such that <span class='latexinline'>
+&#X3C0;(<span style="font-style:italic">y</span>) = &#X3B1;</span>. So 
+we need <span class='latexinline'>
+<span style="font-style:italic">y</span> = 1 &#X2228; <span style="font-style:italic">y</span> = 2</span>. Then looking at <span class='latexinline'>
+&#X3C0;&#X2032;<sub><span style="font-style:italic">b</span></sub>(<span style="font-style:italic">x</span>)</span> allows us to pick a
+<b>unique</b> y. There is zero choice in the
+construction of <span class='latexinline'>
+<span style="font-style:italic">f</span></span>. We need <i>exactly</i> 4 elements to cover all possible ways
+in which <span class='latexinline'>
+<span style="font-style:italic">q</span></span> could map into <span class='latexinline'>
+<span style="font-style:italic">a</span></span> and <span class='latexinline'>
+<span style="font-style:italic">b</span></span> through <span class='latexinline'>
+&#X3C0;&#X2032;<sub><span style="font-style:italic">a</span></sub>, &#X3C0;&#X2032;<sub><span style="font-style:italic">b</span></sub></span> such that
+we cover all possibilities with no redundancy. 
+This choice of product is <i>goldilocks</i>: it does not have too few elements such
+that some elements are not representable; it also does not have too many
+elements such that some elements are redundant.
+<h4><a id=non-uniqueness-product-as-10-20-30-40 href='#non-uniqueness-product-as-10-20-30-40'> § </a> Non uniqueness: product as <span class='latexinline'>
+{10, 20, 30, 40}</span></h4>
+Note that instead of using <span class='latexinline'>
+<span style="font-style:italic">p</span> = {1, 2, 3 4}</span>, I could have used 
+<span class='latexinline'>
+<span style="font-style:italic">p</span> = {10, 20, 30, 40 }</span>
+and nothing would have changed. 
+I have never depended on using the <i>values</i> <span class='latexinline'>
+1, 2, 3, 4</span>.
+Rather, I've only used them as \emph{labels}.
+<h4><a id=non-uniqueness-product-as-alpha-gamma-alpha-delta-beta-gamma-beta-delta- href='#non-uniqueness-product-as-alpha-gamma-alpha-delta-beta-gamma-beta-delta-'> § </a> Non uniqueness: product as  <span class='latexinline'>
+{ (&#X3B1;, &#X3B3;), (&#X3B1;, &#X3B4;), (&#X3B2;, &#X3B3;), (&#X3B2;, &#X3B4;) }</span></h4>
+Indeed, our usual idea of product also satisfies the product, since it is 
+in unique isomorphism to the set <span class='latexinline'>
+{1, 2, 3, 4}</span> we had considered previously.
+But this might be strange: Why is it that the categorical definition of product
+allows for so many other "spurious" products? Clearly this product of tuples 
+is the <b>best</b> one, is it not?
+Of course not! Inside the category of sets, anything with the same cardinality 
+is isomorphic. So nothing inside the category can distinguish between the
+sets <span class='latexinline'>
+{1, 2, 3, 4}</span> and  <span class='latexinline'>
+{ (&#X3B1;, &#X3B3;), (&#X3B1;, &#X3B4;), (&#X3B2;, &#X3B3;), (&#X3B2;, &#X3B4;) }</span>.
+Hence, the <i>usual product</i> we are so used to dealing with is not privileged.
+This should make us happy, not sad. We have removed the (un-necessary)
+privilege we were handing to this one set because it "felt" like it was
+canonical, and have instead identified what actually makes the product of sets
+tick: the fact that their cardinality is the product of the cardinalities of
+the individual sets!
+<h4><a id=how-to-think-about-the-product href='#how-to-think-about-the-product'> § </a> How to think about the product</h4>
+Since we are specifying the data of <span class='latexinline'>
+(<span style="font-style:italic">p</span>, &#X3C0;<sub><span style="font-style:italic">a</span></sub>, &#X3C0;<sub><span style="font-style:italic">b</span></sub>)</span>, we can simply think of
+elements of <span class='latexinline'>
+<span style="font-style:italic">p</span></span> as being "pre-evaluated", as <span class='latexinline'>
+(<span style="font-style:italic">x</span> &#X2208; <span style="font-style:italic">p</span>, &#X3C0;<sub><span style="font-style:italic">a</span></sub>(<span style="font-style:italic">x</span>), &#X3C0;<sub><span style="font-style:italic">b</span></sub>(<span style="font-style:italic">x</span>))</span>.
+So in our case, we can simplify the previous situation with <span class='latexinline'>
+(<span style="font-style:italic">p</span> = { 10, 20, 30, 40 }, &#X3C0;<sub><span style="font-style:italic">a</span></sub>, &#X3C0;<sub><span style="font-style:italic">b</span></sub>)</span>
+by writing the set as 
+<span class='latexinline'>
+<span style="font-style:italic">p</span> = { (10, &#X3B1;, &#X3B3;), (20, &#X3B1;, &#X3B4;), (30, &#X3B2;, &#X3B3;), (40, &#X3B2;, &#X3B4;) }</span>.
+This tells us "at a glance" that every element of <span class='latexinline'>
+<span style="font-style:italic">a</span> &#XD7; <span style="font-style:italic">b</span></span> is represented,
+as well as what element it is represented by.
+<h4><a id=proof-of-uniqueness-upto-unique-isomorphism href='#proof-of-uniqueness-upto-unique-isomorphism'> § </a> Proof of uniqueness upto unique isomorphism</h4>
+<ul><li> Assume we have two products <span class='latexinline'>
+(<span style="font-style:italic">p</span>, &#X3C0;<sub><span style="font-style:italic">a</span></sub>, &#X3C0;<sub><span style="font-style:italic">b</span></sub>)</span> and <span class='latexinline'>
+(<span style="font-style:italic">q</span>, &#X3C0;<sub><span style="font-style:italic">a</span></sub>, &#X3C0;<sub><span style="font-style:italic">b</span></sub>)</span>.</li><li> By the universality of <span class='latexinline'>
+<span style="font-style:italic">p</span></span>, we get a map <span class='latexinline'>
+<span style="font-style:italic">q</span>2<span style="font-style:italic">p</span></span> ... </li><li> By the universality of <span class='latexinline'>
+<span style="font-style:italic">q</span></span>, we get a map <span class='latexinline'>
+<span style="font-style:italic">p</span>2<span style="font-style:italic">q</span></span></li><li> We get a map <span class='latexinline'>
+<span style="font-style:italic">p</span>2<span style="font-style:italic">q</span> . <span style="font-style:italic">q</span>2<span style="font-style:italic">p</span></span> such that </li><li> </li></ul>
+<h2><a id=why-is-the-spectrum-of-a-ring-called-so href='#why-is-the-spectrum-of-a-ring-called-so'> § </a> <a href=#why-is-the-spectrum-of-a-ring-called-so>Why is the spectrum of a ring called so?</a></h2>
+I've been watching Ravi Vakil's excellent "pseudolectures" on algebraic geometry,
+aptly titled
+<a href=https://www.youtube.com/channel/UCy3u23mZE4TyW88yr6JLx9A>AGITTC: Algebraic geometry in the time of Covid</a>.
+In lecture 3, there was a discussion going on in the sidebar chat where a user
+said that the name "prime sprectrum" came from something to do with quantum
+mechanics. To quote:
+<blockquote> letheology: spectrum of light -> eigenvalues of the hamiltonian operator -> prime ideal of the polynomial ring of the operator</blockquote>
+I don't know what the prime ideal of the polynomial ring of the operator is,
+so let's find out!
+Also, another user said: > Lukas H: I like the definition of Spec A that doesn't include the word
+ > prime ideal, by a colimit of Hom(A, k) where k run over all fields and the
+ > maps are morphisms that make the diagrams commute. That's a pretty crazy definition. One can apparently find this definition
+ in Peter Schloze's notes on AG.
+<h2><a id=ergo-proxy href='#ergo-proxy'> § </a> <a href=#ergo-proxy>Ergo proxy</a></h2>
+I've been watching the anime "Ergo Proxy". I'll keep this section updated
+with things I find intriguing in the anime.
+<ul><li> <code>bios</code> stood for both bow and life in greek, supposedly. Both lead to death.
+  This is an interesting fact. I wonder if the <code>BIOS</code> of our computers is also
+  from this, and was they backronymed into basic input/output system.</li></ul>
+<ul><li> "the white noise that reverberates within the white
+  darkness is life itself". I have no idea what this means. It's a great
+  sentence for sure.</li></ul>
 <h2><a id=satisfied-and-frustrated-equations href='#satisfied-and-frustrated-equations'> § </a>  <a href=#satisfied-and-frustrated-equations>Satisfied and frustrated equations</a></h2>
 I found <a href=https://en.wikipedia.org/wiki/Gain_graph>this interesting terminology on a wiki walk</a>
 <ul><li> An edge is satisfied if some equation <code>y = f(x)</code> is <b>satisfied</b>.</li><li> Otherwise, the edge is said to be <b>frustrated</b>.</li></ul>
@@ -279,7 +711,7 @@ In general, for <code>x^p % p</code>, we will get <code>x</code> strings that co
 These will not have elements in their cyclic shift equivalence classes. The
 other strings will be generated as the smallest cyclic subshift of some
 string.
-<h4><a id=is-not-prime-not-work-when- href='#is-not-prime-not-work-when-'> § </a> Why does this not work when <code>p</code> is not prime?</h4>
+<h4><a id=why-does-this-not-work-when-p-is-not-prime href='#why-does-this-not-work-when-p-is-not-prime'> § </a> Why does this not work when <code>p</code> is not prime?</h4>
 Let <code>p = 4</code>. In this case, I can pick the string <code>s = 0101</code>. It has shifts:
 <div class='code'><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
@@ -610,7 +1042,7 @@ a relation, not a function.
 <span style="font-style:italic">y</span><sup>&#X22C6;</sup>&gt; 0</span>, then <span class='latexinline'>
 (&#X2202; <span style="font-style:italic">h</span> / &#X2202; <span style="font-style:italic">y</span>)(<span style="font-style:italic">y</span><sup>&#X22C6;</sup>= 0)</span>.
   Similarly for the negative case.</li></ul>
-<h4><a id=existsng-that-a-solution-for- href='#existsng-that-a-solution-for-'> § </a> Assuming that a solution for <span class='latexinline'>
+<h4><a id=assuming-that-a-solution-for-hy-p-exists href='#assuming-that-a-solution-for-hy-p-exists'> § </a> Assuming that a solution for <span class='latexinline'>
 <span style="font-style:italic">h</span>(<span style="font-style:italic">y</span>, <span style="font-style:italic">p</span>)</span> exists</h4>
 Let us say we wish to solve <span class='latexinline'>
 <span style="font-style:italic">h</span>(<span style="font-style:italic">y</span>; <span style="font-style:italic">p</span>) = <span style="font-style:italic">y</span><sup>3</sup> + <span style="font-style:italic">p</span><sup>2</sup> &#X2212; 3 <span style="font-style:italic">yp</span> &#X2212; 7 = 0</span>. Let's assume
@@ -753,7 +1185,7 @@ to arrive at Djikstra's
 <ul><li> By combining the two pieces of information, we are led to the
   usual implementation: Order the events by time using a queue, and then
   add new explorations as we get to them.</li></ul>
-<h2><a id=ntuitions-for-hyperbolic-space href='#ntuitions-for-hyperbolic-space'> § </a> <a href=#intuition-for-hyperbolic-space>Intuitions for hyperbolic space</a> </h2>
+<h2><a id=intuitions-for-hyperbolic-space- href='#intuitions-for-hyperbolic-space-'> § </a> <a href=#intuition-for-hyperbolic-space>Intuitions for hyperbolic space</a> </h2>
 <ul><li> <a href=https://math.stackexchange.com/questions/689257/topics-in-combinatorial-group-theory-for-a-short-talk/692534#692534>Combinatorial group theory</a></li><li> <a href=https://math.stackexchange.com/questions/330531/algebra-best-mental-images/331135#331135>Van Kampen diagrams: an intuition</a></li><li> <a href=https://math.berkeley.edu/~kpmann/DIYhyp.pdf>DIY Hyperbolic geometry</a></li><li> <a href=https://dawn.cs.stanford.edu/2018/03/19/hyperbolics/>Hyperbolic Embeddings with a Hopefully Right Amount of Hyperbole</a></li><li> <a href=library.msri.org/books/Book31/files/cannon.pdf>Notes on Hyperbolic geometry by Canon</a></li><li> A question on <code>math.se</code> that attempts to describe hyperbolic space: <a href=https://math.stackexchange.com/questions/1407550/what-hyperbolic-space-really-looks-like>What hyperbolic space really looks like</a></li><li> <a href=https://math.stackexchange.com/questions/3520395/what-does-hyperbolic-space-feel-like>Another question about what hyperbolic space feels like</a></li><li> <a href=https://www.math.ucdavis.edu/~kapovich/280-2009/hyplectures_papasoglu.pdf>Notes On Hyperbolic and Automatic Groups: Michael Batty</a></li><li> <a href=https://people.maths.ox.ac.uk/bridson/papers/bfs/bfs.pdf>The geometry of the word problem by Martin R Bridson</a></li><li> <a href=http://www.stevejtrettel.com/living-in-hyperbolic-space.html>Living in Hyperbolic space</a></li><li> <a href=https://math.stackexchange.com/questions/1347/studying-euclidean-geometry-using-hyperbolic-criteria>We can embed euclidian space into hyperbolic space</a></li><li> <a href=https://math.stackexchange.com/questions/289716/hyperbolic-diameter-of-amslers-surface>Amsler surface: A surface with constant negative gaussian curvature</a></li><li> <a href=https://math.stackexchange.com/questions/1887685/hyperbolic-distance-confusion>Hyperbolic distance naturally measures distance as paths of light with varying refractive index</a></li><li> <a href=https://mathworld.wolfram.com/Pseudosphere.html>The pseudosphere, another surface with constant negative curvature</a></li><li> <a href=https://en.wikipedia.org/wiki/Whale_vocalization#Selected_discography>Whalesong, selected discography</a></li></ul>
 <h2><a id=product-of-compact-spaces-in-compact href='#product-of-compact-spaces-in-compact'> § </a> <a href=#product-of-compact-spaces-is-compact>Product of compact spaces in compact</a></h2>
 <img width="600" src="./static/product-of-compact-is-compact.png">
@@ -1169,7 +1601,7 @@ http://www.gnu.org/software/src-highlite -->
 </div>
 If I find a nice proof of this isomorphism, or some other way to derive
 the fact that <code>PSL(2, 5)</code> is isomorphic to <code>A5</code>, I will fill this up.
-<h4><a id=a5s-isomorphic-to- href='#a5s-isomorphic-to-'> § </a> Step 1: <code>PSL(2, 5)</code> is isomorphic to <code>A5</code></h4>
+<h4><a id=step-1-psl2-5-is-isomorphic-to-a5 href='#step-1-psl2-5-is-isomorphic-to-a5'> § </a> Step 1: <code>PSL(2, 5)</code> is isomorphic to <code>A5</code></h4>
 PSL(2, 5) consists of projective Mobius transformations with function composition
 as the group operation. Here, we freely use the linear algebraic relationship
 between transformations of the form <code>(az + b)/(cz + d)</code> and matrices <code>[a b; c z]</code>.
@@ -1577,7 +2009,7 @@ C = (axy) -conj s-&gt; (yxp) = D
   nth roots of unity, a "cyclic" component. So, any element we can reach
   by using nth roots ought to be able to be written down as an extension of
   cyclic elements. </li></ul>
-<h4><a id=5age-code-to-play-around-with-commutators-of- href='#5age-code-to-play-around-with-commutators-of-'> § </a> SAGE code to play around with commutators of <code>A5</code>:</h4>
+<h4><a id=sage-code-to-play-around-with-commutators-of-a5 href='#sage-code-to-play-around-with-commutators-of-a5'> § </a> SAGE code to play around with commutators of <code>A5</code>:</h4>
 <ul><li> Create a dictionary <code>m</code> which maps each element of <code>A5</code> to the commutators
   that create it.</li></ul>
 <div class='code'><!-- Generator: GNU source-highlight 3.1.8
@@ -1605,7 +2037,7 @@ cyc2disj = A5(<font color="#808080">"(1, 2) (3, 4)"</font>)
 <b><u><font color="#000000">print</font></u></b>(m[cyc2disj])
 </tt></pre>
 </div>
-<h4><a id=directly-as-a-commutator href='#directly-as-a-commutator'> § </a> Writing each element in <code>A5</code> directly as a commutator</h4>
+<h4><a id=writing-each-element-in-a5-directly-as-a-commutator href='#writing-each-element-in-a5-directly-as-a-commutator'> § </a> Writing each element in <code>A5</code> directly as a commutator</h4>
 We have shown how to write 3-cycles as the commutator of 2-cycles. We will now
 show how to do this for disjoint 2-cycles and 5-cycles as a matter of
 enlightenment.
@@ -2008,7 +2440,7 @@ The least fixed point of a continous function <span class='latexinline'>
 <div class='latexblock'>
 <table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-family:monospace">FIX</span>(<span style="font-style:italic">f</span>)&#XA0;&#X2261;&#XA0;<span style="font-family:monospace">lub</span>({&#XA0;<span style="font-style:italic">f</span><sup><span style="font-style:italic">n</span></sup>()&#XA0;:&#XA0;<span style="font-style:italic">n</span>&#XA0;&#X2265;&#XA0;0&#XA0;})</td></tr>
 </table></div>
-<h4><a id=as-implication href='#as-implication'> § </a> <span class='latexinline'>
+<h4><a id=leq-as-implication href='#leq-as-implication'> § </a> <span class='latexinline'>
 &#X2264;</span> as implication</h4>
 We can think of <span class='latexinline'>
 <span style="font-style:italic">b</span> &#X2264; <span style="font-style:italic">a</span></span> as <span class='latexinline'>
@@ -2481,7 +2913,7 @@ The quantity <span class='latexinline'>
 change in output to the relative change in input. Note that this is a property
 of the function <span class='latexinline'>
 <span style="font-style:italic">f</span></span>, not any particular algorithm.
-<h4><a id=log-xle- href='#log-xle-'> § </a> Example: <span class='latexinline'>
+<h4><a id=example-log-x href='#example-log-x'> § </a> Example: <span class='latexinline'>
 log<span style="font-style:italic">x</span></span></h4>
 If <span class='latexinline'>
 <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>) = log<span style="font-style:italic">x</span></span>, then <span class='latexinline'>
@@ -2653,7 +3085,7 @@ x: 1.00000000000000000000
 </div>
 That is, even though the function is an identity function, the answer collapses
 to <code>1</code>. What is happening?
-<h4><a id=ex--1x href='#ex--1x'> § </a> Computing <span class='latexinline'>
+<h4><a id=computing-ex--1x href='#computing-ex--1x'> § </a> Computing <span class='latexinline'>
 (<span style="font-style:italic">e</span><sup><span style="font-style:italic">x</span></sup> &#X2212; 1)/<span style="font-style:italic">x</span></span></h4>
 One way to evaluate this function is as follows:
 <div class='code'><!-- Generator: GNU source-highlight 3.1.8
@@ -2697,7 +3129,7 @@ If <span class='latexinline'>
 <table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">f&#XA0;=&#XA0;(&#X177;&#XA0;&#X2212;&#XA0;1)/log&#X177;&#XA0;=&#XA0;(1+&#X454;<sub>3</sub>)(&#X177;&#XA0;&#X2212;&#XA0;1)(1&#XA0;+&#XA0;&#X454;+1)/(log&#X177;(1&#XA0;+&#XA0;&#X454;<sub>2</sub>))
 </td></tr>
 </table></div>
-<h4><a id=for-complex-analysisfun- href='#for-complex-analysisfun-'> § </a> IEEE floating point fun: <code>+0</code> and <code>-0</code> for complex analysis</h4>
+<h4><a id=ieee-floating-point-fun-0-and--0-for-complex-analysis href='#ieee-floating-point-fun-0-and--0-for-complex-analysis'> § </a> IEEE floating point fun: <code>+0</code> and <code>-0</code> for complex analysis</h4>
 <blockquote> Rather than think of <code>+0</code> and <code>-0</code> as distinct numerical values, think of their sign bit as an auxiliary variable that conveys one bit of information (or misinformation) about any numerical variable that takes on 0 as its value.</blockquote>
 We have two types of zeroes, <code>+0</code> and <code>-0</code> in IEEE-754. These are used in some
 cases. The most famous is that <span class='latexinline'>
@@ -3124,7 +3556,7 @@ convert from <span class='latexinline'>
 <span style="font-style:italic">x</span><sup><span style="font-style:italic">n</span></sup></span> into some combination of rising and falling factorials?
 It turns out that <i>Stirling Numbers</i> will show up to aid this conversion.
 But before that, let's see some more connections.
-<h4><a id=ex-the-combinatorial-version-of- href='#ex-the-combinatorial-version-of-'> § </a> <span class='latexinline'>
+<h4><a id=2x-as-the-combinatorial-version-of-ex href='#2x-as-the-combinatorial-version-of-ex'> § </a> <span class='latexinline'>
 2<sup><span style="font-style:italic">x</span></sup></span> as the combinatorial version of <span class='latexinline'>
 <span style="font-style:italic">e</span><sup><span style="font-style:italic">x</span></sup></span></h4>
 We want to find the analogue of the exponential function <span class='latexinline'>
@@ -3309,7 +3741,7 @@ We wish to prove that such a situation does not happen in the case of the
 permutahedron.
 I have not seen an elementary proof that each point that is a permutation of
 the original is a vertex, so I'm recording that proof out of interest.
-<h4><a id=are-vertices-nl-permutations-of- href='#are-vertices-nl-permutations-of-'> § </a> Showing that all permutations of <span class='latexinline'>
+<h4><a id=showing-that-all-permutations-of-1-2-dots-n-are-vertices href='#showing-that-all-permutations-of-1-2-dots-n-are-vertices'> § </a> Showing that all permutations of <span class='latexinline'>
 (1, 2, &#X2026;, <span style="font-style:italic">n</span>)</span> are vertices</h4>
 <h4><a id=core-idea href='#core-idea'> § </a> Core idea</h4>
 start by looking at index <code>i</code> of the "largest value" <code>N</code> in the point <code>P</code>.
@@ -3516,7 +3948,7 @@ where we have 4 occurences of <code>x</code> in between after which we have an o
 of <code>y</code>, which is what we want when <code>x=2, y = 7</code>. We need to reach at least
 <code>q=7</code> before we have exceeded our denominator and need to make a move
 along <code>y</code>.
-<h2><a id=e-x-1-xof-of- href='#e-x-1-xof-of-'> § </a> <a href=#e-x-1-xof-of->Geometric proof of <code>e^x >= 1+x</code>, <code>e^(-x) >= 1-x</code></a></h2>
+<h2><a id=geometric-proof-of-ex-1x-e-x-1-x href='#geometric-proof-of-ex-1x-e-x-1-x'> § </a> <a href=#e-x-1-xof-of->Geometric proof of <code>e^x >= 1+x</code>, <code>e^(-x) >= 1-x</code></a></h2>
 Let's concentrate on the <code>e^x >= 1 + x</code> part. 
 <ol><li> The tangent of <code>e^x</code> at <code>x = 0</code> is <code>1 + x</code>, since the taylor series
    of <code>e^x</code> truncated upto <code>x</code> is <code>1 + x</code>.</li><li> <code>e^x</code> is a strongly convex function, since <code>(e^x)'' = e^x</code> which is positive
@@ -4101,7 +4533,7 @@ http://www.gnu.org/software/src-highlite -->
 ===)-----(======== NOT A or B = A -&gt; B
 </tt></pre>
 </div>
-<h4><a id=contained-in- href='#contained-in-'> § </a> <code>a -> b</code> as <code>a</code> contained in <code>b</code>:</h4>
+<h4><a id=a--b-as-a-contained-in-b href='#a--b-as-a-contained-in-b'> § </a> <code>a -> b</code> as <code>a</code> contained in <code>b</code>:</h4>
 We'll show that <code>a -> b</code> is true/top/the full real line if and only if
 <code>a</code> is contained in <code>b</code>. We can show this using <span class='latexinline'>
 &#XAC; <span style="font-style:italic">a</span> &#X2228; <span style="font-style:italic">b</span></span> definition:
@@ -4139,7 +4571,7 @@ http://www.gnu.org/software/src-highlite -->
 ================== A -&gt; B
 </tt></pre>
 </div>
-<h4><a id=as-containment href='#as-containment'> § </a> reading <code>curry</code>, <code>uncurry</code> using <code>a -> b</code> as containment:</h4>
+<h4><a id=reading-curry-uncurry-using-a--b-as-containment href='#reading-curry-uncurry-using-a--b-as-containment'> § </a> reading <code>curry</code>, <code>uncurry</code> using <code>a -> b</code> as containment:</h4>
 <code>curry</code>, <code>uncurry</code> are the adjunction/isomorphism:
 <div class='code'><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
@@ -4318,7 +4750,7 @@ Intervals are only represented as <code>[begin, past-the-end)</code> That is, we
 So, for example, <code>[0, 3) = [0, 1, 2]</code>, while <code>[0, 1) = [0]</code>, and <code>[0, 0) = []</code>.
 I am not allowed to use <code>[begin, end]</code>, or <code>(before-begin, past-the-end)</code> or
 any such variation I represent and think of intervals.
-<h4><a id=loopsledo-whileonal-operators-when-using- href='#loopsledo-whileonal-operators-when-using-'> § </a> Rule 2: No relational operators when using <code>for/while/do while</code> loops.</h4>
+<h4><a id=rule-2-no-relational-operators-when-using-forwhiledo-while-loops href='#rule-2-no-relational-operators-when-using-forwhiledo-while-loops'> § </a> Rule 2: No relational operators when using <code>for/while/do while</code> loops.</h4>
 When I write my loop conditions, I am not allowed to use relational operators.
 I must only write <code>i != n</code> or <code>i == m</code>.
 I am not allowed to write <code>i < n</code>, <code>i <= n</code>, <code>i > n</code>, <code>i >= n</code> for my <code>for</code> loops.
@@ -4353,12 +4785,12 @@ I wish to be cognizant of the precisely when a loop quits.
 On writing <code>i != past-the-end</code>, I know that we quit as soon as we
 <b>get past the end</b>. This feels much clearer than being aware that the loops
 runs as long as <code>i < n</code>.
-<h4><a id=indexpen-indexing-length- href='#indexpen-indexing-length-'> § </a> half-open indexing: length <-> index</h4>
+<h4><a id=half-open-indexing-length--index href='#half-open-indexing-length--index'> § </a> half-open indexing: length <-> index</h4>
 The first advantage of these conventions is that 
 <code>[begin, past-the-end)</code> is the same as <code>[begin, begin+length)</code>. I've found this
 to be of great help to flit between length-based-thoughts and
 indexing-based-thoughts.
-<h4><a id=lengthpen-indexing- href='#lengthpen-indexing-'> § </a> half-open indexing: <code>0</code> length</h4>
+<h4><a id=half-open-indexing-0-length href='#half-open-indexing-0-length'> § </a> half-open indexing: <code>0</code> length</h4>
 The second almost trivial point is that <code>[begin, begin+length)</code> holds when
 <code>length</code> is <b>zero</b>. That is,
 <div class='code'><!-- Generator: GNU source-highlight 3.1.8
@@ -4369,7 +4801,7 @@ http://www.gnu.org/software/src-highlite -->
 </tt></pre>
 </div>
 does the right thing and iterates over no elements.
-<h4><a id=lengthpen-indexing- href='#lengthpen-indexing-'> § </a> half-open indexing: <code>-ve</code> length</h4>
+<h4><a id=half-open-indexing--ve-length href='#half-open-indexing--ve-length'> § </a> half-open indexing: <code>-ve</code> length</h4>
 The third neat point is that <code>[begin, begin+length)</code> holds even when <code>length</code>
 is <b>negative</b>. Hence, if we want to index the last two elements of an
 array, we recall that we start from index <code>(n-1)</code>, and we want a segment
@@ -4601,7 +5033,7 @@ legal colors <span class='latexinline'>
 We describe the transition function next. But first, we need an alternate
 lens on the transitions of <span class='latexinline'>
 <span style="font-style:italic">X</span></span> that is amenable to massaging. 
-<h4><a id=equivalent-description-of-the-transitions-of- href='#equivalent-description-of-the-transitions-of-'> § </a> Equivalent description of the transitions of <span class='latexinline'>
+<h4><a id=equivalent-description-of-the-transitions-of-x href='#equivalent-description-of-the-transitions-of-x'> § </a> Equivalent description of the transitions of <span class='latexinline'>
 <span style="font-style:italic">X</span></span>:</h4>
 <ol><li> Choosing a color uniformly at random from the set of valid colors
    for a vertex.</li><li> Choosing colors from <span class='latexinline'>
@@ -4804,7 +5236,7 @@ By induction we assume that <span class='latexinline'>
 <span style="font-style:italic">x</span>[<span style="font-style:italic">n</span>]</span>'s proposal is symmetric. 
 (3) <span class='latexinline'>
 <span style="font-style:italic">w</span>[<span style="font-style:italic">n</span>]</span>'s proposal is symmetric.
-<h4><a id=ooccluded-set- href='#ooccluded-set-'> § </a> Occluded set <span class='latexinline'>
+<h4><a id=occluded-set-o href='#occluded-set-o'> § </a> Occluded set <span class='latexinline'>
 <span style="font-style:italic">O</span></span></h4>
 Define <span class='latexinline'>
 <span style="font-style:italic">O</span> &#X2286; <span style="font-style:italic">C</span></span> (for occluded) be the set colors that might possibly
@@ -4815,7 +5247,7 @@ believe to be blocked from <code>w</code>'s point of view.
 <div class='latexblock'>
 <table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">O</span>&#XA0;&#X2261;&#XA0;&#XA0;{&#XA0;<span style="font-style:italic">c</span>&#XA0;&#X2208;&#XA0;<span style="font-style:italic">C</span>&#XA0;:&#XA0;(<span style="font-style:italic">v</span>,&#XA0;&#X3B1;)&#XA0;&#X2208;&#XA0;<span style="font-style:italic">E</span>,&#XA0;<span style="font-style:italic">c</span>&#XA0;&#X2208;&#XA0;<span style="font-style:italic">w</span>[<span style="font-style:italic">n</span>&#X2212;1](&#X3B1;)&#XA0;}</td></tr>
 </table></div>
-<h4><a id=aallowed-set- href='#aallowed-set-'> § </a> Allowed set <span class='latexinline'>
+<h4><a id=allowed-set-a href='#allowed-set-a'> § </a> Allowed set <span class='latexinline'>
 <span style="font-style:italic">A</span></span></h4>
 Define <span class='latexinline'>
 <span style="font-style:italic">A</span> &#X2282; <span style="font-style:italic">C</span></span> (for allowed) to be <span class='latexinline'>
@@ -5026,7 +5458,7 @@ aseembly language in which TAOCP programs are written.
 I'll explain the usual way one performs call-return, then explain the nifty
 self-modifying-code way. I think this is the cleanest, most accessible
 example of self-modifying-code that I know. 
-<h4><a id=callretditional-solution-for- href='#callretditional-solution-for-'> § </a> The traditional solution for <code>call/ret</code></h4>
+<h4><a id=the-traditional-solution-for-callret href='#the-traditional-solution-for-callret'> § </a> The traditional solution for <code>call/ret</code></h4>
 We wish to have function <code>f</code> call function <code>g</code>. For <code>g</code> to be able to
 return control to <code>f</code>, <code>f</code> pushes a return address into the call stack,
 that <code>g</code> pops and <code>jmp</code>s to
@@ -5394,7 +5826,7 @@ So, to prove that sets of size <span class='latexinline'>
 (&#X2265; <span style="font-style:italic">n</span>)</span> cannot be shattered, it suffices
 to prove that sets of size equal to <span class='latexinline'>
 <span style="font-style:italic">n</span></span> cannot be shattered.
-<h4><a id=for-a-fixed-mber-of-sets-shattered-in- href='#for-a-fixed-mber-of-sets-shattered-in-'> § </a> Growth of number of sets shattered in <span class='latexinline'>
+<h4><a id=growth-of-number-of-sets-shattered-in-s-for-s-subseteq-x-for-a-fixed-h href='#growth-of-number-of-sets-shattered-in-s-for-s-subseteq-x-for-a-fixed-h'> § </a> Growth of number of sets shattered in <span class='latexinline'>
 |<span style="font-style:italic">S</span>|</span> for <span class='latexinline'>
 <span style="font-style:italic">S</span> &#X2286; <span style="font-style:italic">X</span></span> for a fixed <span class='latexinline'>
 <span style="font-style:italic">H</span></span>.</h4>
@@ -5421,7 +5853,7 @@ We can show that this exponential/polynomial behaviour happens in general
 for <span class='latexinline'>
 <span style="font-style:italic">S</span> &#X2286; <span style="font-style:italic">X</span></span>. 
 <h2><a id=symplectic-version-of-classical-mechanics href='#symplectic-version-of-classical-mechanics'> § </a> <a href=#symplectic-version-of-classical-mechanics>Symplectic version of classical mechanics</a></h2>
-<h4><a id=omegas-symplectic-mechanics-as-inverting- href='#omegas-symplectic-mechanics-as-inverting-'> § </a> Basics, symplectic mechanics as inverting <span class='latexinline'>
+<h4><a id=basics-symplectic-mechanics-as-inverting-omega href='#basics-symplectic-mechanics-as-inverting-omega'> § </a> Basics, symplectic mechanics as inverting <span class='latexinline'>
 &#X3C9;</span>:</h4>
 I've never seen this kind of "inverting <span class='latexinline'>
 &#X3C9;</span>" perspective written down
@@ -5511,7 +5943,7 @@ not modify <span class='latexinline'>
 </table></td></tr>
 </table>
 </div>
-<h4><a id=omegarvation-of- href='#omegarvation-of-'> § </a> Preservation of <span class='latexinline'>
+<h4><a id=preservation-of-omega href='#preservation-of-omega'> § </a> Preservation of <span class='latexinline'>
 &#X3C9;</span></h4>
 We wish to show that <span class='latexinline'>
 <span style="font-style:italic">X</span><sub><span style="font-style:italic">H</span></sub><sup>*</sup>(&#X3C9;) = &#X3C9;</span>. That is, pushing forward
@@ -5842,7 +6274,7 @@ We study how to build cache-oblivious B-trees.
 &#X221A;<span style="text-decoration:overline">(</span><span style="font-style:italic">N</span>)</span>
   nodes on the top, and then <span class='latexinline'>
 &#X221A;<span style="text-decoration:overline">(</span><span style="font-style:italic">N</span>)</span> <i>triangles</i> at the bottom.</li></ul>
-<h4><a id=for-any-search-queryeed-to-pull- href='#for-any-search-queryeed-to-pull-'> § </a> Analysis Claim: we need to pull <span class='latexinline'>
+<h4><a id=analysis-claim-we-need-to-pull-ologb-n-blocks-for-any-b-for-any-search-query href='#analysis-claim-we-need-to-pull-ologb-n-blocks-for-any-b-for-any-search-query'> § </a> Analysis Claim: we need to pull <span class='latexinline'>
 <span style="font-style:italic">O</span>(log<sub><span style="font-style:italic">B</span></sub> <span style="font-style:italic">N</span>)</span> blocks for any <span class='latexinline'>
 <span style="font-style:italic">B</span></span> for any search query</h4>
 <span class='latexinline'>
@@ -5892,7 +6324,7 @@ We need a black box: ordered file maintainance (linked list for arrays)
   size <span class='latexinline'>
 log<sup>2</sup>(<span style="font-style:italic">N</span>)</span> amortized.</li><li> We need <span class='latexinline'>
 <span style="font-style:italic">O</span>(1)</span> scans for the data structure.</li></ul>
-<h4><a id=bst-inserts-and-deletes-layout href='#bst-inserts-and-deletes-layout'> § </a> Next: <i>dynamic</i> BST (inserts and deletes): layout</h4>
+<h4><a id=next-d-bst-inserts-and-deletes-layout href='#next-d-bst-inserts-and-deletes-layout'> § </a> Next: <i>dynamic</i> BST (inserts and deletes): layout</h4>
 we take a VEB static tree on top of an ordered file. Tree is a segtree
 that has max of nodes. Leaves are the members of the ordered file.
 <h4><a id=updates href='#updates'> § </a> Updates</h4>
@@ -6316,7 +6748,7 @@ of <span class='latexinline'>
 <span style="font-style:italic">a</span></span></b>.</li><li> The elements of <span class='latexinline'>
 <span style="font-style:italic">B</span><sub><span style="font-style:italic">a</span></sub></span> are called as the <b>bricks of <span class='latexinline'>
 <span style="font-style:italic">a</span></span></b>.</li></ul>
-<h4><a id=a-in-aof-permutations-for- href='#a-in-aof-permutations-for-'> § </a> Group of permutations for <span class='latexinline'>
+<h4><a id=group-of-permutations-for-a-in-a href='#group-of-permutations-for-a-in-a'> § </a> Group of permutations for <span class='latexinline'>
 <span style="font-style:italic">a</span> &#X2208; <span style="font-style:italic">A</span></span></h4>
 Let us assume that there exists a <span class='latexinline'>
 <span style="font-style:italic">s</span> &#X2208; <span style="font-style:italic">S</span></span> such that <span class='latexinline'>
@@ -6631,7 +7063,7 @@ on <code>out[i=i_0][j=j_0-1]</code>. We can represent this by considering a
 </table></div>
 in general, we can reorder statements as long as we do not change
 the <i>directions</i> of the arrows in the dependence set.
-<h4><a id=atmuldence-structure-of- href='#atmuldence-structure-of-'> § </a> Dependence structure of <code>matmul</code>.</h4>
+<h4><a id=dependence-structure-of-matmul href='#dependence-structure-of-matmul'> § </a> Dependence structure of <code>matmul</code>.</h4>
 <h4><a id=fully-parallel-reordering href='#fully-parallel-reordering'> § </a> Fully parallel, reordering</h4>
 <h4><a id=references href='#references'> § </a> References</h4>
 <ul><li> Optimizing Compilers for Modern Architectures: A Dependence-based Approach</li><li> <a href=http://polyhedral.info/>Polyhedral compilation</a></li></ul>
@@ -6678,7 +7110,7 @@ the object well enough that just writing the type down allows us to infer the
 is nothing left to take away".
 I'm really glad that this 2 AM discussion allowed me to finally pin down
 why I like algebra.
-<h3><a id=for-cleaner-function-type-typedefs href='#for-cleaner-function-type-typedefs'> § </a> <a href=#using-for-cleaner-function-type-typedefs><code>using</code> for cleaner function type typedefs</a></h3>
+<h3><a id=using-for-cleaner-function-type-typedefs href='#using-for-cleaner-function-type-typedefs'> § </a> <a href=#using-for-cleaner-function-type-typedefs><code>using</code> for cleaner function type typedefs</a></h3>
 I've always struggled with remembering the syntax for function type typedefs:
 <div class='code'><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
@@ -7179,7 +7611,7 @@ http://www.gnu.org/software/src-highlite -->
 </div>
 The use of <code>n[x] +←1</code> will stably write <code>+1</code> as many times as there are repeated
 indexes in <code>xs</code>.
-<h4><a id=ring-matching-parity-as-fold- href='#ring-matching-parity-as-fold-'> § </a> String matching / parity as fold <code>≠</code>:</h4>
+<h4><a id=string-matching-parity-as-fold- href='#string-matching-parity-as-fold-'> § </a> String matching / parity as fold <code>≠</code>:</h4>
 <div class='code'><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
@@ -7208,7 +7640,7 @@ We have the containment:
 <table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">IJ</span>&#XA0;&#X2286;&#XA0;<span style="font-style:italic">I</span>&#XA0;&#X22C2;&#XA0;<span style="font-style:italic">J</span>&#XA0;&#X2286;&#XA0;<span style="font-style:italic">I</span>,&#XA0;<span style="font-style:italic">J</span>&#XA0;&#X2286;&#XA0;<span style="font-style:italic">I</span>&#XA0;+&#XA0;<span style="font-style:italic">J</span>&#XA0;&#X2286;&#XA0;<span style="font-style:italic">R</span>
 </td></tr>
 </table></div>
-<h4><a id=ij-subseteq-i-cap-j href='#ij-subseteq-i-cap-j'> § </a> <span class='latexinline'>
+<h4><a id=ij-is-a-ideal-ij-subseteq-i-cap-j href='#ij-is-a-ideal-ij-subseteq-i-cap-j'> § </a> <span class='latexinline'>
 <span style="font-style:italic">IJ</span></span> is a ideal, <span class='latexinline'>
 <span style="font-style:italic">IJ</span> &#X2286; <span style="font-style:italic">I</span> &#X2229; <span style="font-style:italic">J</span></span></h4>
 it's not immediate from the definition that <span class='latexinline'>
@@ -7224,7 +7656,7 @@ us <span class='latexinline'>
 &#X2211;<sub><span style="font-style:italic">k</span></sub> <span style="font-style:italic">i</span><sub><span style="font-style:italic">k</span></sub> <span style="font-style:italic">j</span><sub><span style="font-style:italic">k</span></sub> = &#X2211;<sub><span style="font-style:italic">k</span></sub> <span style="font-style:italic">j</span>&#X2032;<sub><span style="font-style:italic">k</span></sub> = <span style="font-style:italic">j</span>&#X2033;<span style="font-style:italic">k</span> &#X2208; <span style="font-style:italic">J</span></span>.
 Hence, we get the containment <span class='latexinline'>
 <span style="font-style:italic">IJ</span> &#X2286; <span style="font-style:italic">I</span> &#X2229; <span style="font-style:italic">J</span></span>.
-<h4><a id=i-cap-j-subseteq-j href='#i-cap-j-subseteq-j'> § </a> <span class='latexinline'>
+<h4><a id=i-cap-j-subseteq-i-i-cap-j-subseteq-j href='#i-cap-j-subseteq-i-i-cap-j-subseteq-j'> § </a> <span class='latexinline'>
 <span style="font-style:italic">I</span> &#X2229; <span style="font-style:italic">J</span> <span style="font-style:italic">subseteq</span> <span style="font-style:italic">I</span></span>, <span class='latexinline'>
 <span style="font-style:italic">I</span> &#X2229; <span style="font-style:italic">J</span> &#X2286; <span style="font-style:italic">J</span></span></h4>
 Immediate from the inclusion function.
@@ -8664,7 +9096,7 @@ We can have an arbitrary ordered universe, on which we want to perform RMQ.
 We can convert this to LCA by using a cartesian tree, and then convert to
 a "clean" RMQ (by using the LCA -> RMQ using depth conversion). This now
 will give us way faster operations (since we now have integers).
-<h4><a id=rmq href='#rmq'> § </a> <code>+-1</code> RMQ:</h4>
+<h4><a id=-1-rmq href='#-1-rmq'> § </a> <code>+-1</code> RMQ:</h4>
 We want the differences between nodes to have a difference of only <code>+-1</code>. We
 had a much wider gap. Here, we perform an Euler tour (walk the tree DFS search order),
 and sribble down every vertex we visit.
@@ -9153,7 +9585,7 @@ levels of precision.
 <span style="font-style:italic">I</span> &#X2208; <span style="font-style:italic">R</span></span>. so we are looking at  ideals as functions
   from the prime ideal to the reduction of the ideal. That is, <span class='latexinline'>
 <span style="font-style:italic">I</span>(<span style="font-style:italic">P</span>) = <span style="font-style:italic">I</span>/<span style="font-style:italic">P</span></span>. </li></ul>
-<h4><a id=from-this-perspective href='#from-this-perspective'> § </a> <span class='latexinline'>
+<h4><a id=specmathbb-z-from-this-perspective href='#specmathbb-z-from-this-perspective'> § </a> <span class='latexinline'>
 <span style="font-style:italic">Spec</span>(&#X2124;)</span> from this perspective</h4>
 Since <span class='latexinline'>
 &#X2124;</span> is a PID, we can think of numbers instead of ideals. The above
@@ -9488,7 +9920,7 @@ http://www.gnu.org/software/src-highlite -->
         <b><u><font color="#000000">print</font></u></b>(<font color="#808080">"--"</font>)
 </tt></pre>
 </div>
-<h4><a id=q-u-1- href='#q-u-1-'> § </a> Case 1: <span class='latexinline'>
+<h4><a id=case-1-q-u href='#case-1-q-u'> § </a> Case 1: <span class='latexinline'>
 <span style="font-style:italic">q</span> = <span style="font-style:italic">u</span></span></h4>
 We note that <span class='latexinline'>
 <span style="font-style:italic">Q</span></span> always decreases the value of <span class='latexinline'>
@@ -9499,13 +9931,13 @@ it. Hence, if <span class='latexinline'>
 <span class='latexinline'>
 &#X2200; <span style="font-style:italic">i</span>, <span style="font-style:italic">j</span> &#X2265; 1, &#XA0;&#XA0; <span style="font-style:italic">Q</span><sup><span style="font-style:italic">i</span></sup> (<span style="font-style:italic">q</span>) &#X2260; <span style="font-style:italic">U</span><sup><span style="font-style:italic">j</span></sup>(<span style="font-style:italic">u</span>)</span>.
 Hence, they meet exactly once as required.
-<h4><a id=q-u-2- href='#q-u-2-'> § </a> Case 2: <span class='latexinline'>
+<h4><a id=case-2-q-u href='#case-2-q-u'> § </a> Case 2: <span class='latexinline'>
 <span style="font-style:italic">q</span> &lt; <span style="font-style:italic">u</span></span></h4>
 As noted above, <span class='latexinline'>
 <span style="font-style:italic">q</span></span> always decreases and <span class='latexinline'>
 <span style="font-style:italic">u</span></span> always increases, hence in this
 case they will never meet as required.
-<h4><a id=q-u-3- href='#q-u-3-'> § </a> Case 3: <span class='latexinline'>
+<h4><a id=case-3-q-u href='#case-3-q-u'> § </a> Case 3: <span class='latexinline'>
 <span style="font-style:italic">q</span> &gt; <span style="font-style:italic">u</span></span></h4>
 Let the entire array have size <span class='latexinline'>
 2<sup><span style="font-style:italic">N</span></sup></span>.
@@ -9602,7 +10034,7 @@ number <span class='latexinline'>
 <span style="font-style:italic">n</span> &gt; 0</span>, <span class='latexinline'>
 1/<span style="font-style:italic">n</span> &lt; 1</span>, hence <span class='latexinline'>
 &#X230A; 1/<span style="font-style:italic">n</span> &#X230B; = 0</span>.
-<h4><a id=being-the-identity href='#being-the-identity'> § </a> verification of <span class='latexinline'>
+<h4><a id=verification-of-istar-being-the-identity href='#verification-of-istar-being-the-identity'> § </a> verification of <span class='latexinline'>
 <span style="font-style:italic">istar</span></span> being the identity</h4>
 <div class='latexblock'><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
 &#XA0;&#XA0;&#XA0;&#XA0;&#XA0;
@@ -9627,7 +10059,7 @@ number <span class='latexinline'>
 </table></td></tr>
 </table>
 </div>
-<h4><a id=starciativity-commutativity-of- href='#starciativity-commutativity-of-'> § </a> associativity, commutativity of <span class='latexinline'>
+<h4><a id=associativity-commutativity-of-star href='#associativity-commutativity-of-star'> § </a> associativity, commutativity of <span class='latexinline'>
 &#X22C6;</span></h4>
 To prove associativity, it's better to write the formula as:
 <div class='latexblock'>
@@ -9699,7 +10131,7 @@ we know the value of <span class='latexinline'>
 </table></td></tr>
 </table>
 </div>
-<h4><a id=functionnverse-of-the- href='#functionnverse-of-the-'> § </a> <span class='latexinline'>
+<h4><a id=mu-as-the-inverse-of-the-one-function href='#mu-as-the-inverse-of-the-one-function'> § </a> <span class='latexinline'>
 &#XB5;</span> as the inverse of the <span class='latexinline'>
 <span style="font-style:italic">one</span></span> function</h4>
 <h4><a id=mobius-inversion href='#mobius-inversion'> § </a> Mobius inversion</h4>
@@ -10402,7 +10834,7 @@ compute the wiggles output to input.
 The first example of <code>z = max(x, y)</code> captures the essential difference
 between the two approached succinctly. Study this, and everything else will make
 sense.
-<h4><a id=z-maxx-y href='#z-maxx-y'> § </a> Maximum: <code>z = max(x, y)</code></h4>
+<h4><a id=maximum-z-maxx-y href='#maximum-z-maxx-y'> § </a> Maximum: <code>z = max(x, y)</code></h4>
 <ul><li> Forward mode equations:</li></ul>
 <div class='latexblock'><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
 &#XA0;&#XA0;&#XA0;&#XA0;&#XA0;
@@ -10554,7 +10986,7 @@ then <span class='latexinline'>
 &#X2202; <span style="font-style:italic">t</span>/&#X2202; <span style="font-style:italic">x</span> = 1</span>.
 Otherwise, it is not sensitive, and <span class='latexinline'>
 &#X2202; <span style="font-style:italic">t</span>/&#X2202; <span style="font-style:italic">x</span> = 0</span>.
-<h4><a id=z-sinx href='#z-sinx'> § </a> sin: <code>z = sin(x)</code></h4>
+<h4><a id=sin-z-sinx href='#sin-z-sinx'> § </a> sin: <code>z = sin(x)</code></h4>
 <ul><li> Forward mode equations:</li></ul>
 <div class='latexblock'><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
 &#XA0;&#XA0;&#XA0;&#XA0;&#XA0;
@@ -10630,7 +11062,7 @@ We can compute <span class='latexinline'>
 <span style="font-style:italic">t</span> = <span style="font-style:italic">z</span></span>.
 That is, setting <span class='latexinline'>
 &#X2202; <span style="font-style:italic">z</span>/&#X2202; <span style="font-style:italic">t</span> = 1</span>.
-<h4><a id=x-y- href='#x-y-'> § </a> addition: <code>z = x + y</code>:</h4>
+<h4><a id=addition-z-x-y href='#addition-z-x-y'> § </a> addition: <code>z = x + y</code>:</h4>
 <ul><li> Forward mode equations:</li></ul>
 <div class='latexblock'><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
 &#XA0;&#XA0;&#XA0;&#XA0;&#XA0;
@@ -10742,7 +11174,7 @@ That is, setting <span class='latexinline'>
 </table></td></tr>
 </table>
 </div>
-<h4><a id=z-xyplication- href='#z-xyplication-'> § </a> multiplication: <code>z = xy</code></h4>
+<h4><a id=multiplication-z-xy href='#multiplication-z-xy'> § </a> multiplication: <code>z = xy</code></h4>
 <ul><li> Forward mode equations:</li></ul>
 <div class='latexblock'><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
 &#XA0;&#XA0;&#XA0;&#XA0;&#XA0;
@@ -10840,7 +11272,7 @@ That is, setting <span class='latexinline'>
 </table></td></tr>
 </table>
 </div>
-<h4><a id=x--yion- href='#x--yion-'> § </a> subtraction: <code>z = x - y</code>:</h4>
+<h4><a id=subtraction-z-x--y href='#subtraction-z-x--y'> § </a> subtraction: <code>z = x - y</code>:</h4>
 <ul><li> Forward mode equations:</li></ul>
 <div class='latexblock'><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
 &#XA0;&#XA0;&#XA0;&#XA0;&#XA0;
@@ -11196,7 +11628,7 @@ that is, it's the linear combination of edges that map to zero through the
 boundary map. Note that this also includes combinations such as <i>two</i> loops
 around the triangle, such as <span class='latexinline'>
 <span style="font-style:italic">o</span> + <span style="font-style:italic">m</span> + <span style="font-style:italic">c</span> + <span style="font-style:italic">o</span> + <span style="font-style:italic">m</span> + <span style="font-style:italic">c</span></span>.
-<h4><a id=trianglees-in-a-space-homology-of-a- href='#trianglees-in-a-space-homology-of-a-'> § </a> (No) Holes in a space: Homology of a <i>filled</i> triangle</h4>
+<h4><a id=no-h-triangle- href='#no-h-triangle-'> § </a> (No) Holes in a space: Homology of a <i>filled</i> triangle</h4>
 <img width=200 height=200 src="static/simplices/homology-triangle-faces.svg">
 In this case, notice that the triangle is <i>filled</i> with a face <span class='latexinline'>
 <span style="font-style:italic">f</span></span>.
@@ -11522,7 +11954,7 @@ going on in the field. What I've read over the past year on these topics is:
   paper, and much to my delight, it was super-effective at regenerating common
   compiler transformations. I want to use this to generate loop optimisations
   as well, by transforming a polyhedral model of the original program.</li></ul>
-<h4><a id=webassembly-compilerng-on-asterius-haskell-- href='#webassembly-compilerng-on-asterius-haskell--'> § </a> Internship at <a href=http://tweag.io/>Tweag.io</a> over the summer: Hacking on Asterius (Haskell -> WebAssembly compiler)</h4>
+<h4><a id=internsh-over-the-summer-hacking-on-asterius-haskell--webassembly-compiler href='#internsh-over-the-summer-hacking-on-asterius-haskell--webassembly-compiler'> § </a> Internship at <a href=http://tweag.io/>Tweag.io</a> over the summer: Hacking on Asterius (Haskell -> WebAssembly compiler)</h4>
 <ul><li> <a href=https://www.tweag.io/posts/2019-09-12-webassembly-internship.html>Blog post on the progress made by me hacking on Austerius over at Tweag</a></li></ul>
 I really enjoyed my time at Tweag! It was fun, and
 <a href=https://github.com/TerrorJack>Shao Cheng</a>
@@ -12052,7 +12484,7 @@ and see what their analogous objects will look like in <span class='latexinline'
 &#X2124;</span>
 relative to a prime <span class='latexinline'>
 <span style="font-style:italic">p</span></span>.
-<h4><a id=perspective-taylor-series-as-writing-in-base- href='#perspective-taylor-series-as-writing-in-base-'> § </a> Perspective: Taylor series as writing in base <span class='latexinline'>
+<h4><a id=perspective-taylor-series-as-writing-in-base-p href='#perspective-taylor-series-as-writing-in-base-p'> § </a> Perspective: Taylor series as writing in base <span class='latexinline'>
 <span style="font-style:italic">p</span></span>:</h4>
 Now, for example, given a prime <span class='latexinline'>
 <span style="font-style:italic">p</span></span>, we can write any positive integer <span class='latexinline'>
@@ -12190,7 +12622,7 @@ as <span class='latexinline'>
 <span style="font-style:italic">x</span> = &#X221A;<span style="text-decoration:overline">2</span></span>, and in <span class='latexinline'>
 &#X211A;<sub><span style="font-style:italic">p</span></sub></span>
 give us a different answer!
-<h4><a id=x2-equiv-25-mod-3n href='#x2-equiv-25-mod-3n'> § </a> Solving <span class='latexinline'>
+<h4><a id=solving-x2-equiv-25-mod-3n href='#solving-x2-equiv-25-mod-3n'> § </a> Solving <span class='latexinline'>
 <span style="font-style:italic">X</span><sup>2</sup> &#X2261; 25 mod 3<sup><span style="font-style:italic">n</span></sup></span></h4>
 Let's start by solving an equation we already know how to solve:
 <span class='latexinline'>
@@ -12206,7 +12638,7 @@ Explicitly, the solutions are:
 <span style="font-style:italic">X</span> &#X2261; 5 mod 9</span></li><li> <span class='latexinline'>
 <span style="font-style:italic">X</span> &#X2261; 5 mod 27</span></li><li> At this point, the answer remains constant.</li></ul>
 This was somewhat predictable. We move to a slightly more interesting case.
-<h4><a id=x--5-mod-3n href='#x--5-mod-3n'> § </a> Solving <span class='latexinline'>
+<h4><a id=solving-x--5-mod-3n href='#solving-x--5-mod-3n'> § </a> Solving <span class='latexinline'>
 <span style="font-style:italic">X</span> = &#X2212;5 mod 3<sup><span style="font-style:italic">n</span></sup></span></h4>
 The solution sets are:
 <ul><li> <span class='latexinline'>
@@ -12229,7 +12661,7 @@ we can say that given a sequence of integers <span class='latexinline'>
 &#X3B1;<sub><span style="font-style:italic">n</span></sub></span> is p-adically coherent sequence</b> iff:
 <ul><li> <span class='latexinline'>
  &#X3B1;<sub><span style="font-style:italic">n</span>+1</sub> = &#X3B1;<sub><span style="font-style:italic">n</span></sub> mod <span style="font-style:italic">p</span><sup><span style="font-style:italic">n</span></sup></span>.</li></ul>
-<h4><a id=x2-25-mod-3nion-sets-of- href='#x2-25-mod-3nion-sets-of-'> § </a> Viewpoint: Solution sets of <span class='latexinline'>
+<h4><a id=viewpoint-solution-sets-of-x2-25-mod-3n href='#viewpoint-solution-sets-of-x2-25-mod-3n'> § </a> Viewpoint: Solution sets of <span class='latexinline'>
 <span style="font-style:italic">X</span><sup>2</sup> = 25 mod 3<sup><span style="font-style:italic">n</span></sup></span></h4>
 Since our solution sets are coherent, we can view the solutions as a tree,
 with the expansions of <span class='latexinline'>
@@ -12238,7 +12670,7 @@ from there. That is, the sequences are
 <ul><li> <span class='latexinline'>
 2 &#X2192; 5 &#X2192; 5 &#X2192; 5 &#X2192; &#X2026;</span></li><li> <span class='latexinline'>
 1 &#X2192; 4 &#X2192; 22 &#X2192; 76 &#X2192; &#X2026;</span></li></ul>
-<h4><a id=x2-equiv-2-mod-7n href='#x2-equiv-2-mod-7n'> § </a> Solving <span class='latexinline'>
+<h4><a id=solving-x2-equiv-2-mod-7n href='#solving-x2-equiv-2-mod-7n'> § </a> Solving <span class='latexinline'>
 <span style="font-style:italic">X</span><sup>2</sup> &#X2261; 2 mod 7<sup><span style="font-style:italic">n</span></sup></span></h4>
 We now construct a solution to the equation <span class='latexinline'>
 <span style="font-style:italic">X</span><sup>2</sup> = 1</span> in the 7-adic system,
@@ -12294,7 +12726,7 @@ a solution that <span class='latexinline'>
 we can already represent every rational in <span class='latexinline'>
 &#X211A;</span> in <span class='latexinline'>
 &#X211A;<sub>7</sub></span>.
-<h4><a id=as-a-recurrenceng- href='#as-a-recurrenceng-'> § </a> Use case: Solving <span class='latexinline'>
+<h4><a id=use-case-solving-x-1-3x-as-a-recurrence href='#use-case-solving-x-1-3x-as-a-recurrence'> § </a> Use case: Solving <span class='latexinline'>
 <span style="font-style:italic">X</span> = 1 + 3<span style="font-style:italic">X</span></span> as a recurrence</h4>
 Let's use the tools we have built so far to solve the equation <span class='latexinline'>
 <span style="font-style:italic">X</span> = 1 + 3<span style="font-style:italic">X</span></span>.
@@ -12571,7 +13003,7 @@ Where <span class='latexinline'>
 <i>semidedicable</i>, in that, we will halt and say <code>TRUE</code> if the element
 belongs in the set. But if an element does not belong in the set, we are
 supposed to never terminate.
-<h4><a id=1-2dive-semidecidability-of-the-interval- href='#1-2dive-semidecidability-of-the-interval-'> § </a> Deep dive: semidecidability of the interval <span class='latexinline'>
+<h4><a id=deep-dive-semidecidability-of-the-interval-1-2 href='#deep-dive-semidecidability-of-the-interval-1-2'> § </a> Deep dive: semidecidability of the interval <span class='latexinline'>
 (1, 2)</span></h4>
 Let's start with an example. We consider the interval <span class='latexinline'>
 <span style="font-style:italic">I</span> = (1, 2)</span>, as a
@@ -13337,7 +13769,7 @@ evaluating reduced a^b^c^d
 1^1^1^1: ref(0) =?= f(0): True
 </tt></pre>
 </div>
-<h4><a id=reduction href='#reduction'> § </a> code for <code>a^b^c^d</code> reduction:</h4>
+<h4><a id=code-for-abcd-reduction href='#code-for-abcd-reduction'> § </a> code for <code>a^b^c^d</code> reduction:</h4>
 <div class='code'><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
@@ -13403,7 +13835,7 @@ mythology. Hence, he is also the god of duality and transitions --- he
 <i>literally</i> looks both into the future and into the past.
 <blockquote> He is usually depicted as having two faces, since he looks to the future and to the past.</blockquote>
 An apt name for the language!
-<h3><a id=-a-book-about-proofs-of-combinatorial-closed-forms href='#-a-book-about-proofs-of-combinatorial-closed-forms'> § </a> <a href=#a--b--a-book-about-proofs-of-combinatorial-closed-forms><code>A = B</code> --- A book about proofs of combinatorial closed forms</a></h3>
+<h3><a id=a-b--a-book-about-proofs-of-combinatorial-closed-forms href='#a-b--a-book-about-proofs-of-combinatorial-closed-forms'> § </a> <a href=#a--b--a-book-about-proofs-of-combinatorial-closed-forms><code>A = B</code> --- A book about proofs of combinatorial closed forms</a></h3>
 The book explains algorithms on solving closed forms for combinatorial
 recurrences, by means of <a href=http://mathworld.wolfram.com/ZeilbergersAlgorithm.html>Zeilberger's algorithm</a>.
 The book is written by Zeilberger himself, and supposedy also teaches one Maple.
@@ -13411,7 +13843,7 @@ I'd like to learn the algorithm, since it might be useful eventually for
 Groebner basis / loop analysis shenanigans I like to play as part of
 my work on compilers.
 <ul><li> <a href=https://www.math.upenn.edu/~wilf/AeqB.pdf>Download link here</a></li></ul>
-<h3><a id=bitsets-of-a-given-length- href='#bitsets-of-a-given-length-'> § </a> <a href=#generating-k-bitsets-of-a-given-length-n>Generating <code>k</code> bitsets of a given length <code>n</code></a>:</h3>
+<h3><a id=generating-k-bitsets-of-a-given-length-n href='#generating-k-bitsets-of-a-given-length-n'> § </a> <a href=#generating-k-bitsets-of-a-given-length-n>Generating <code>k</code> bitsets of a given length <code>n</code></a>:</h3>
 The problem is to generate all bitvectors of length <code>n</code> that have <code>k</code> bits
 set. For example, generate all bitvectors of length <code>5</code> that have <code>3</code> bits
 set.
@@ -13707,7 +14139,7 @@ is supposed to go according to the tutorial!
 <ul><li> Of course, there's no static library version of <code>libxilinxopencl.so</code>, so that's a dead end. I'm completely unsure if the tutorial even makes sense.</li><li> This entire chain of debugging is full of luck.</li></ul>
 <ul><li> <a href=https://www.xilinx.com/html_docs/xilinx2018_2/sdsoc_doc/compiling-and-running-applications-on-arm-processor-hjy1504034381720.html>Link talking about generating <code>BOOT</code> file</a></li></ul>
 At some point, I gave up on the entire enterprise.
-<h3><a id=a-grobner-basis-ideals-as-rewrite-systems href='#a-grobner-basis-ideals-as-rewrite-systems'> § </a> <a href=#what-the-hell-is-a-grobner-basis-ideals-as-rewrite-systems>What the hell <i>is</i> a Grobner basis? Ideals as rewrite systems</a></h3>
+<h3><a id=wha-a-grobner-basis-ideals-as-rewrite-systems href='#wha-a-grobner-basis-ideals-as-rewrite-systems'> § </a> <a href=#what-the-hell-is-a-grobner-basis-ideals-as-rewrite-systems>What the hell <i>is</i> a Grobner basis? Ideals as rewrite systems</a></h3>
 <h4><a id=a-motivating-example href='#a-motivating-example'> § </a> A motivating example</h4>
 The question a Grobner basis allows us to answer is this: can the polynomial
 <span class='latexinline'>
@@ -13789,7 +14221,7 @@ from being formed.
 <h3><a id=blog-post-weekend-paper-replication-of-stoke-the-stochastic-superoptimizer href='#blog-post-weekend-paper-replication-of-stoke-the-stochastic-superoptimizer'> § </a> <a href=https://github.com/bollu/blaze/blob/master/notebooks/tutorial.ipynb>Blog post: Weekend paper replication of STOKE, the stochastic superoptimizer</a></h3>
 Click the title to go to the post. We replicate the <code>STOKE</code> paper in haskell,
 to implement a superoptimiser based on MCMC methods.
-<h3><a id=niquedsing- href='#niquedsing-'> § </a> Collapsing <code>BlockId</code>, <code>Label</code>, <code>Unique</code>:</h3>
+<h3><a id=collapsing-blockid-label-unique href='#collapsing-blockid-label-unique'> § </a> Collapsing <code>BlockId</code>, <code>Label</code>, <code>Unique</code>:</h3>
 We have this hiearchy of <code>BlockId</code>, <code>Label</code>, and <code>Unique</code> that can be
 collapsed.
 <h3><a id=spatial-partitioning-data-structures-in-molecular-dynamics href='#spatial-partitioning-data-structures-in-molecular-dynamics'> § </a> <a href=#spatial-partitioning-data-structures-in-molecular-dynamics>Spatial partitioning data structures in molecular dynamics</a></h3>
@@ -13800,11 +14232,11 @@ in this case since multipole expansions are useful to take into account
 long range effects, but not short range effects.
 <h3><a id=vector-arthur-whitney-and-text-editors href='#vector-arthur-whitney-and-text-editors'> § </a> <a href=#vector-arthur-whitney-and-text-editors>Vector: Arthur Whitney and text editors</a></h3>
 <ul><li> http://archive.vector.org.uk/art10501320</li></ul>
-<h3><a id=intrinsicsng-cps-in-llvm-using-the- href='#intrinsicsng-cps-in-llvm-using-the-'> § </a> Representing CPS in LLVM using the <code>@coro.*</code> intrinsics</h3>
+<h3><a id=representing-cps-in-llvm-using-the-coro-intrinsics href='#representing-cps-in-llvm-using-the-coro-intrinsics'> § </a> Representing CPS in LLVM using the <code>@coro.*</code> intrinsics</h3>
 This is part of a larger thread --- <a href=http://lists.llvm.org/pipermail/llvm-dev/2017-April/112212.html>Adding CPS call support to LLVM</a> where there is a large discussion on the correct design of how to teach LLVM about CPS.
 Gor Nishanov proided the above example of encoding CPS using the llvm <code>coro</code> instructions.
 <ul><li> https://gist.github.com/bollu/e0573dbc145028fb42f89e64c6dd6742</li></ul>
-<h3><a id=moaddwordc-llvm-code-generator-lowering-of- href='#moaddwordc-llvm-code-generator-lowering-of-'> § </a> Bug in the LLVM code generator: Lowering of <code>MO_Add2</code> and <code>MO_AddWordC</code></h3>
+<h3><a id=bug-in-the-llvm-code-generator-lowering-of-moadd2-and-moaddwordc href='#bug-in-the-llvm-code-generator-lowering-of-moadd2-and-moaddwordc'> § </a> Bug in the LLVM code generator: Lowering of <code>MO_Add2</code> and <code>MO_AddWordC</code></h3>
 <a href=https://github.com/ghc/ghc/blob/bf73419518ca550e85188616f860961c7e2a336b/compiler/llvmGen/LlvmCodeGen/CodeGen.hs#L817>Both of these are lowered the same way</a>,
 but they should be different.
 In particular, <code>GHC.Prim</code> explains:
@@ -14498,7 +14930,7 @@ haskell so rad?
 To quote <code>AndreasK</code>:
 <blockquote> - Register allocation, common block elimination, block layout and pretty printing are the "slow" things in the backend as far as I remember. - There are also a handful of TODO's in the x86 codegen which still apply. So you can try to grep for these. - Strength reduction for division by a constant</blockquote>
 <ul><li> <a href=https://gitlab.haskell.org/ghc/ghc/issues/9041>NCG generates slow loop code</a></li></ul>
-<h3><a id=ghctestsuitetestsrtst7160hs href='#ghctestsuitetestsrtst7160hs'> § </a> Varargs in GHC: <code>ghc/testsuite/tests/rts/T7160.hs</code></h3>
+<h3><a id=varargs-in-ghc-ghctestsuitetestsrtst7160hs href='#varargs-in-ghc-ghctestsuitetestsrtst7160hs'> § </a> Varargs in GHC: <code>ghc/testsuite/tests/rts/T7160.hs</code></h3>
 A comment from this test case tells us why the function <code>debugBelch2</code> exists:
 <div class='code'><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
@@ -14620,15 +15052,15 @@ differentiable map <span class='latexinline'>
 A differentiable mapping from <span class='latexinline'>
 <span style="font-style:italic">M</span></span> to <span class='latexinline'>
 <span style="font-style:italic">R</span></span>.
-<h4><a id=fnoted-as-to-a-curve-f-a-function- href='#fnoted-as-to-a-curve-f-a-function-'> § </a> Directional derivative of a function <code>f(m): M -> R</code> with respect to a curve <code>c(t): I -> M</code>, denoted as <code>c[f]</code>.</h4>
+<h4><a id=directional-derivative-of-a-function-fm-m--r-with-respect-to-a-curve-ct-i--m-denoted-as-cf href='#directional-derivative-of-a-function-fm-m--r-with-respect-to-a-curve-ct-i--m-denoted-as-cf'> § </a> Directional derivative of a function <code>f(m): M -> R</code> with respect to a curve <code>c(t): I -> M</code>, denoted as <code>c[f]</code>.</h4>
 Let <code>g(t) = (f . c)(t) :: I -c-> M -f-> R = I -> R</code>.
 This this is the value <code>dg/dt(t0) = (d (f . c) / dt) (0)</code>.
-<h4><a id=tangent-vector-at-a-point- href='#tangent-vector-at-a-point-'> § </a> Tangent vector at a point <code>p</code>:</h4>
+<h4><a id=tangent-vector-at-a-point-p href='#tangent-vector-at-a-point-p'> § </a> Tangent vector at a point <code>p</code>:</h4>
 On a <code>m</code> dimensional manifold <code>M</code>, a tangent vector at a point <code>p</code> is an
 equivalence class of curves that have <code>c(0) = p</code>, such that <code>c1(t) ~ c2(t)</code> iff
 :
 <ul><li> For a (all) charts <code>(O, ch)</code> such that <code>c1(0) ∈  O</code>, <code>d/dt (ch . c1: R -> R^m) = d/dt (ch . c2: R -> R^m)</code>.</li></ul> That is, they have equal derivatives.
-<h4><a id=mngent-space href='#mngent-space'> § </a> Tangent space(<code>TpM</code>):</h4>
+<h4><a id=tangent-spacetpm href='#tangent-spacetpm'> § </a> Tangent space(<code>TpM</code>):</h4>
 The set of all tangent vectors at a point <code>p</code> forms a vector space <code>TpM</code>.
 We prove this by creating a bijection from every curve to a vector <code>R^n</code>.
 Let <code>(U, ch: U -> R)</code> be a chart around the point <code>p</code>, where <code>p ∈ U ⊆ M</code>. Now,
@@ -14644,13 +15076,13 @@ reverse: R^n -&gt; (I -&gt; M)
 reverse(v)(t) = ch^-1 (tv)
 </tt></pre>
 </div>
-<h4><a id=to-ual-space-of-the-tangent-space-space-of-all-linear-functions-from- href='#to-ual-space-of-the-tangent-space-space-of-all-linear-functions-from-'> § </a> Cotangent space(<code>TpM*</code>): dual space of the tangent space / Space of all linear functions from <code>TpM</code> to <code>R</code>.</h4>
+<h4><a id=cotangent-spacetpm-dual-space-of-the-tangent-space-space-of-all-linear-functions-from-tpm-to-r href='#cotangent-spacetpm-dual-space-of-the-tangent-space-space-of-all-linear-functions-from-tpm-to-r'> § </a> Cotangent space(<code>TpM*</code>): dual space of the tangent space / Space of all linear functions from <code>TpM</code> to <code>R</code>.</h4>
 <ul><li> Associated to every function <code>f</code>, there is a cotangent vector, colorfully
   called <code>df</code>. The definition is <code>df: TpM -> R</code>, <code>df(c: I -> M) = c[f]</code>. That is,
   given a curve <code>c</code>, we take the directional derivative of the function <code>f</code>
   along the curve <code>c</code>. We need to prove that this is constant for all vectors
   in the equivalence class and blah.</li></ul>
-<h4><a id=pushf-tpm--tpn href='#pushf-tpm--tpn'> § </a>  Pushforward <code>push(f): TpM -> TpN</code></h4>
+<h4><a id=pushforward-pushf-tpm--tpn href='#pushforward-pushf-tpm--tpn'> § </a>  Pushforward <code>push(f): TpM -> TpN</code></h4>
 Given a curve <code>c: I -> M</code>, the pushforward
 is the curve <code>f . c : I -> N</code>. This extends to the equivalence classes
 and provides us a way to move curves in <code>M</code> to curves in <code>N</code>, and thus
@@ -14663,7 +15095,7 @@ http://www.gnu.org/software/src-highlite -->
 <pre><tt>push(f)(v)[g] === v[g . f]
 </tt></pre>
 </div>
-<h4><a id=pullf-tpn--tpm href='#pullf-tpn--tpm'> § </a> Pullback <code>pull(f): TpN* -> TpM*</code></h4>
+<h4><a id=pullback-pullf-tpn--tpm href='#pullback-pullf-tpn--tpm'> § </a> Pullback <code>pull(f): TpN* -> TpM*</code></h4>
 Given a linear functional <code>wn : TpN -> R</code>, the pullback is defined as
 <code> wn . push(f) : TpM -> R</code>.
 This satisfies the identity:
@@ -14796,13 +15228,13 @@ I've taken to watching the live stream when I have some downtime and want
 some interesting content.
 The discussions of Wolfram with his group are great, and they bring up
 <i>really</i> interesting ideas (like that of cleave being very irregular).
-<h3><a id=as-a-word-has-some-of-the-most-irregular-inflections href='#as-a-word-has-some-of-the-most-irregular-inflections'> § </a> <a href=#cleave-as-a-word-has-some-of-the-most-irregular-inflections><code>Cleave</code> as a word has some of the most irregular inflections</a></h3>
+<h3><a id=cleave-as-a-word-has-some-of-the-most-irregular-inflections href='#cleave-as-a-word-has-some-of-the-most-irregular-inflections'> § </a> <a href=#cleave-as-a-word-has-some-of-the-most-irregular-inflections><code>Cleave</code> as a word has some of the most irregular inflections</a></h3>
 <ul><li> cleave</li><li> clove</li><li> cleaved</li><li> clave</li><li> cleft</li></ul>
 <h3><a id=mccunes-single-axiom-for-group-theory href='#mccunes-single-axiom-for-group-theory'> § </a> <a href=#mccunes-single-axiom-for-group-theory>McCune's single axiom for group theory</a></h3>
 <a href=http://ftp.mcs.anl.gov/pub/tech_reports/reports/P270.pdf>Single Axioms for Groups and Abelian Groups with Various Operations</a>
 provides a single axiom for groups. This can be useful for some ideas I have
 for training groups, where we can use this axiom as the loss function!
-<h3><a id=c-code-implements-gradient-descent-really-weirdly href='#c-code-implements-gradient-descent-really-weirdly'> § </a> <code>Word2Vec</code> C code implements gradient descent really weirdly</h3>
+<h3><a id=word2vec-c-code-implements-gradient-descent-really-weirdly href='#word2vec-c-code-implements-gradient-descent-really-weirdly'> § </a> <code>Word2Vec</code> C code implements gradient descent really weirdly</h3>
 I'll be posting snippets of the original source code, along with a
 link to the Github sources. We are interested in exploring the skip-gram
 implementation of Word2Vec, with negative sampling, without hierarchical
@@ -15025,16 +15457,16 @@ For example: "More people have been to Berlin than I have."
 <ul><li> <a href=content/blog/stuff-i-learnt-this-year-2018.md>2018 reading</a></li><li> <a href=content/blog/papers-I-read-and-loved-in-2017.md>2017 reading</a></li></ul>
 <h3><a id=haskell href='#haskell'> § </a> Haskell</h3>
 <ul><li> <a href=content/blog/reading-kmett-structs.md>Reading the <code>structs</code> library</a></li><li> <a href=content/blog/machines/reading-kmett-machines.md>Reading the <code>machines</code> library (WIP)</a></li><li> <a href=content/blog/laziness-for-c-programmers.md>Explaining laziness (WIP)</a></li><li> <a href=stg-explained.md>Explaining STG(WIP)</a></li></ul>
-<h3><a id=llvm-compiler-progress href='#llvm-compiler-progress'> § </a> Simplexhc (STG -> LLVM compiler) progress</h3>
+<h3><a id=simplexhc-stg--llvm-compiler-progress href='#simplexhc-stg--llvm-compiler-progress'> § </a> Simplexhc (STG -> LLVM compiler) progress</h3>
 <ul><li> <a href=content/blog/ghc-micro-optimisations-or-why-proc-points-suck.md>proc points suck / making GHC an order of magnitude faster</a></li><li> <a href=this-month-in-simplexhc-dec-2017.md>dec 2017</a></li><li> <a href=this-week-in-simpexhc-oct-29-2017.md>oct 29 2017</a></li><li> <a href=this-week-in-simplexhc-07-2017.md>july 2017</a></li><li> <a href=this-week-in-simplexhc-2017-07-06.md>july 6th 2017</a></li><li> <a href=content/blog/announcing-simplexhc.md>announcement</a></li></ul>
 <h3><a id=gsoc-2015 href='#gsoc-2015'> § </a> GSoC (2015)</h3>
 <ul><li> <a href=content/blog/gsoc-vispy.md>proposal</a></li><li> <a href=content/blog/gsoc-vispy-week-1-and-2.md>week 1</a></li><li> <a href=content/blog/gsoc-vispy-week-3-and-4.md>week 3 and 4</a></li><li> <a href=content/blog/gsoc-vispy-week-5.md>week 5</a></li><li> <a href=content/blog/gsoc-vispy-week-6.md>week 6</a></li><li> <a href=content/blog/gsoc-vispy-week-7.md>week 7</a></li><li> <a href=content/blog/gsoc-vispy-report-6.md>final report</a></li></ul>
 <h2><a id=big-list-of-emacs-gripes href='#big-list-of-emacs-gripes'> § </a> <a href=#big-list-of-emacs-gripes>Big list of emacs gripes</a></h2>
-<h4><a id=for-a-linki-open-a-paren- href='#for-a-linki-open-a-paren-'> § </a> <code>markdown-mode</code> lags when I open a paren <code>[for a link</code>.</h4>
+<h4><a id=markdown-mode-lags-when-i-open-a-paren-for-a-link href='#markdown-mode-lags-when-i-open-a-paren-for-a-link'> § </a> <code>markdown-mode</code> lags when I open a paren <code>[for a link</code>.</h4>
 I suppose this is because
 it's attempting to match it, and is unable to figure out
 what to match to. I now edit markdown in <code>text-mode</code>.
-<h4><a id=kills-far-too-much href='#kills-far-too-much'> § </a> <code>ctrl-backspace</code>/<code>backward-kill-word</code> kills far too much.</h4>
+<h4><a id=ctrl-backspacebackward-kill-word-kills-far-too-much href='#ctrl-backspacebackward-kill-word-kills-far-too-much'> § </a> <code>ctrl-backspace</code>/<code>backward-kill-word</code> kills far too much.</h4>
 <ul><li> <a href=https://emacs.stackexchange.com/questions/30401/backward-kill-word-kills-too-much-how-to-make-it-more-intelligent>reference <code>emacs.se</code></a></li></ul>
 The answer seems to be:
 yes, it kills a word. You can redefine what a word is,
@@ -15042,7 +15474,7 @@ and break lots of other stuff in the process, or redefine
 what <code>ctrl-backspace</code> does. However, as a non-expert, it's hard
 to say what redefining this will mean. Will it still interact
 with history the same way?
-<h4><a id=go-back-to-where-i-came-fromof- href='#go-back-to-where-i-came-fromof-'> § </a> there is no centralized notion of <code>C-o</code> (go back to where I came from).</h4>
+<h4><a id=there-is-no-centralized-notion-of-c-o-go-back-to-where-i-came-from href='#there-is-no-centralized-notion-of-c-o-go-back-to-where-i-came-from'> § </a> there is no centralized notion of <code>C-o</code> (go back to where I came from).</h4>
 <ul><li> <a href=https://emacs.stackexchange.com/questions/9908/can-cursor-jump-back-to-the-previous-position>reference <code>emacs.se</code></a></li><li> <a href=https://stackoverflow.com/questions/4918707/in-emacs-how-to-go-back-to-previous-line-position-after-using-semantic-jump-to>reference <code>stackoverflow</code></a></li></ul>
 Instead, it differentiates between "go back in buffer" versus
 "go back across buffers".
@@ -15107,7 +15539,7 @@ http://www.gnu.org/software/src-highlite -->
 (global-set-key (kbd <font color="#808080">"C-u"</font>) <b><font color="#000000">'zz-scroll-half-page-up</font></b>)
 </tt></pre>
 </div>
-<h4><a id=chinese-iso-8bitg-is-weird- href='#chinese-iso-8bitg-is-weird-'> § </a> Default encoding is weird: <code>chinese-iso-8bit</code></h4>
+<h4><a id=default-encoding-is-weird-chinese-iso-8bit href='#default-encoding-is-weird-chinese-iso-8bit'> § </a> Default encoding is weird: <code>chinese-iso-8bit</code></h4>
 <ul><li> <a href=https://emacs.stackexchange.com/questions/34322/set-default-coding-system-utf-8><code>emacs.se reference</code></a></li></ul>
 Why in the world is this the option that shows up by default?
 There are so many better options, with <code>utf-8</code> being the
@@ -15271,7 +15703,7 @@ http://www.gnu.org/software/src-highlite -->
 <pre><tt>y = \underset{x \in X}{\max} f(x)
 </tt></pre>
 </div>
-<h2><a id=ig-list-of-architecture href='#ig-list-of-architecture'> § </a> <a href=#big-list-of-architecture>Big list of Architecture</a> </h2>
+<h2><a id=big-list-of-architecture- href='#big-list-of-architecture-'> § </a> <a href=#big-list-of-architecture>Big list of Architecture</a> </h2>
 I have an interest in architecture and how it might relate to software.
 While the two are quite different, I feel that a deep look at both could
 be useful for both discplines. I think my favourite building to date
@@ -15285,7 +15717,7 @@ things on architecture I wish to read and/or have read:
 <ul><li> The Geography of Nowhere: The Rise and Decline of America's Man-Made Landscape</li></ul>
 <ul><li> This place is not a place of honor... no highly esteemed deed is commemorated
   here... nothing valued is here. Design to ward off people for nuclear waste.</li></ul>
-<h2><a id=ig-list-of-recipes href='#ig-list-of-recipes'> § </a> <a href=#big-list-of-recipes>Big list of Recipes</a> </h2>
+<h2><a id=big-list-of-recipes- href='#big-list-of-recipes-'> § </a> <a href=#big-list-of-recipes>Big list of Recipes</a> </h2>
 <h4><a id=upma href='#upma'> § </a> Upma</h4>
 <ul><li> start with ghee, sesame seeds, curry leaves, red + green chili, ginger garlic
   paste, hing (asaefodita).</li><li> finely chopped onion, allow this to caramelize.</li><li> A dash of turmeric for depth.</li><li> Add in the rava, allow it to cook/heat.</li><li> Add in tomato and a little water when it's done heating. Allow tomato to cook.</li><li> Add in more water, cover with a lid, and let it come to a boil. Keep stirring

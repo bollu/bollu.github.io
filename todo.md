@@ -1,3 +1,12 @@
+- [Handbook of geometry for competitive programmers](https://vlecomte.github.io/cp-geo.pdf)
+- Andrew Marr: A history of the world.
+- [Great animations of sphere eversion, setup with scrolling and webGL](https://rreusser.github.io/explorations/sphere-eversion/)
+- Interesting thought about why people dislike the ribbon layoyt:
+> It sounds like the issue is that the layout isn't spatial. There isn't a 1:1
+> mapping between place and object. The same place can have multiple objects
+> depending on what tab's selected.
+
+- [AG in the time of Covid: Ravi Vakil's course](https://www.youtube.com/channel/UCy3u23mZE4TyW88yr6JLx9A)
 - [Elanor Ostrom: analysis of how to build systems which encourages cooperation and not competition: Design principles for Common Pool Resource (CPR) institution](https://en.wikipedia.org/wiki/Elinor_Ostrom)
 - [`Mikutap`: Website with gorgeous transitions, I wish to replicate](https://aidn.jp/mikutap/)
 - [From parametricity to Noerther's theorem](https://bentnib.org/conservation-laws.pdf)
@@ -237,7 +246,7 @@
 - The Elements of Style: writing advice.
 - [Gordon Plotkin pisa notes on domain theory](http://homepages.inf.ed.ac.uk/gdp/publications/Domains_a4.ps)
 - [Algorithm to decompose number into sum of 4 primes](https://www.alpertron.com.ar/4SQUARES.HTM)
-- [Jack Cremshaw's article on building compilers mixing parsing with codegen / Single-pass compilers](https://compilers.iecc.com/crenshaw/).  Can we write fast C compilers this way? probably not, due to preprocessor :( Can we get fast Pascal commpilers thigs way? Maybe...
+- [Jack Cremshaw's article on building compilers mixing parsing with codegen / Single pass compilers / One pass compilers / 1 pass compilers](https://compilers.iecc.com/crenshaw/).  Can we write fast C compilers this way? probably not, due to preprocessor :( Can we get fast Pascal commpilers thigs way? Maybe...
 - The Zen of Code Optimization ---  The Ultimate Guide to Writing Software That Pushes PCs to the Limit: Low level programming tricks.
 - Hacker's Delight.
 - [Agner fog: dude who maintains info about X86 optimiation](https://www.agner.org/optimize/)
