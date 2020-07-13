@@ -19,7 +19,7 @@ A Universe of Sorts
 <ol reversed>
 <li> [Intuition for limits in category theory](#intuition-for-limits-in-category-theory) </li>
 <li> [Finite topologies and DFS numbering](#finite-topologies-and-dfs-numbering) </li>
-<li> [Categorical definition of products in painful detail](#categorical-definition-pf-products-in-painful-detail) </li>
+<li> [Categorical definition of products in painful detail](#categorical-definition-of-products-in-painful-detail) </li>
 <li> [Why is the spectrum of a ring called so?](#why-is-the-spectrum-of-a-ring-called-so) </li>
 <li> [Ergo Proxy](#ergo-proxy) </li>
 <li> [Satisfied and frustrated equations](#satisfied-and-frustrated-equations) </li>
