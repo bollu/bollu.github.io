@@ -1,13 +1,24 @@
+% - Week 1 is on the website: https://math216.wordpress.com/2020/06/27/discussion-for-this-week-starting-june-27-2020/
+% - Week 2:https://math216.wordpress.com/2020/07/06/readings-and-problem-set-for-after-the-second-pseudolecture/
+% - Week 3: https://math216.wordpress.com/2020/07/13/reading-and-problems-after-the-third-pseudolecture/
+% Link to rising sea: https://math.stanford.edu/~vakil/216blog/FOAGnov1817public.pdf
 \documentclass{book}
 \usepackage{mathtools}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{hyperref}
+\newcommand{\F}{\ensuremath{\mathcal{F}}}
+\newcommand{\G}{\ensuremath{\mathcal{G}}}
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
 \newcommand{\Z}{\ensuremath{\mathbb{Z}}}
 \newcommand{\Q}{\ensuremath{\mathbb{Q}}}
 \newcommand{\C}{\ensuremath{\mathbb{C}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\renewcommand{\O}{\ensuremath{\mathcal{O}}}
+\newcommand{\RP}{\ensuremath{\mathbb{RP}}}
+\newcommand{\Spec}{\ensuremath{Spec}}
+\newcommand{\m}{\mathfrak{m}}
 \newcommand{\frakp}{\ensuremath{\mathfrak{p}}}
 \newcommand{\fraka}{\ensuremath{\mathfrak{a}}}
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
@@ -589,11 +600,486 @@ have that $p' \subseteq p_1 \land p' \subseteq p_2$ since $p'$ is their intersec
 Combining the two, we must have that $p' = p_1 \lor p' = p_2$, 
 Hence the intersection of distinct prime ideals that do not contain each other
 cannot be prime.
-
+                                                                                    
 A more down to earth example is to consider the ring $S \equiv \mathbb R[x, y] / (xy)$.
 We have that $x * y = 0; x^n \neq 0, y^n \neq 0$. We have that $x \not \in Nil(S)$,
 $y \not \in Nil(S)$, but $xy = 0 \in Nil(S)$. Therefore, the nilradical of $S$
 is not prime.
 
 \textbf{TODO}
+
+\chapter{AGITTOC: Chapter 1}
+\href{https://math216.wordpress.com/agittoc-2020/}{Open introduction to AG: algebraic geometry in the time of Covid}.
+A point of view: To learn as much as possible, we're going to be learn
+as much as we need, as little as possible.
+
+\begin{quote} We don't want definitions! We want properties! \end{quote}
+
+\begin{quote}
+    \textbf{Parable of the musicians}: As the math courses get more complicated,
+    the textbooks get thinner. How does one memorize an entire symphony? They don't.
+    They remember certain key points in the piece, and the rest just falls into
+    place. Just like mathematical proofs.
+\end{quote}
+
+\section{Why should we care about AG?}
+
+We want to solve for Pythagorean triples $x^2 + y^2 = z^2$. We can think of it as looking for rational points
+on a circle. We will generally just draw a circle. But a circle has real points!
+So why do we draw a circle (the real set of solutions?) Because it's psychologically
+easier.
+
+To solve the problem of enumerating these triples, we can start with the point $(1, 0)$.
+We can then take a line with rational slope $p/q$ passing through $(1, 0)$. 
+This will cut the circle again. 
+
+That's both \emph{geometry} and \emph{arithmetic}
+
+What about $x^2 + y^n = z^n$. The old trick doesn't work, but there are lots
+of complex solutions. We'll get a complex riemann surface , inside which we have
+real points, inside which we have rational points. How does it help to think
+of the complex surface? There is an amazing theorem (Falting's theorem) which
+says that if there is more than one hole of the riemann surface, then there are
+finitely many rational points. There is something liking the arithmetic, geometry,
+topology, and algebra.
+
+The weil conjectures are a different flavour. Roughly, if we have a bunch
+of equations in $\mathbb{C^n}$ with integer coefficients. We have a thing
+that is a variety, and it has a topology on it. We can take the equations
+$(\mod p)$. The Weil conjectures say that knowing solutions in $(\mod p)$, we can
+learn about the topology of $\mathbb {C}$.
+
+Gauss Bonnet / Riemann roch grow up to become Atiyah Singer. It's about something
+discrete and something continuous being the same for no good reason.
+
+
+We know how to think of elements of $\mathbb C[X]$ as smooth curves. AG allows
+us to think of elements of $\mathbb Z$ also as a smooth curve.
+
+The other thing is "what is projective space".
+
+\section{Categories}
+
+(Read upto section $1.5$ in the rising sea). Why categories? things and maps
+between them. We can compose maps, and we have a way an identity map. We also
+know that composition is associative.
+
+\subsection{Products}
+What is a product? Assume we have two sets $U, V$. We will define $U \times V$.
+It's a thing that has maps to $U$ and $V$. If we have anything (called $W$) that has a map to $U$
+and to $V$, then we have a \emph{unique} map to $U \times V$.
+
+Now if we have another product, they must be the same. Why? Let's call the
+two product sets $U \times V$, $U \boxtimes V$. ... [TODO]
+
+\subsection{Moduli Space}
+
+What are the circles in the plane? They are things of the form $(x - a)^2 + (y - b)^2 = r^2$.
+this is $\R \times \R \times \R^+$ [radius most be positive].
+
+If we now want to to think of projective space? what is $\RP2$? Points in projective
+space correspond to lines through the origin of $\R3$. We have more structure on $\R3$
+than just a set.
+
+If we go to a riemann surfaces, we have a nice collection of these spaces
+called $M3$. It's basically a manifold. We have a set of Riemann surfaces.
+If I have a nice family of riemann surfaces, I have a point on $M3$ for
+every Riemann surface. If such a thing exists, there can only be one such
+upto unique isomorphism.
+
+\subsection{Sheaf}
+Why is a sheaf? Consider some nice space $X$, like a manifold. Consider continuous
+functions on $X$. We want information about continuous functions on all of $X$.
+$O(U)$ is the continuous functions on $U$  where $U$ is some open set in $X$.
+First note that $O(U)$ has a ring structure; we can add and multiply such functions.
+
+If we have a continuous function on $U$, and we have a smaller open set $V \subseteq U$,
+we have a restriction map $O(U) \rightarrow O(V)$. Also, if we have an even smaller
+set $W \subseteq V$, we can either resstrict directly from $O(U)$ to $O(W)$, going
+as $O(U) \mapsto O(W)$, or we can pass through $V$: $O(U) \mapsto O(V) \mapsto O(W)$. 
+This should yield the same result.
+
+
+If we have an open set $U$, and a cover of $U$ called ${C_i}$.  If we now have
+two functions on $U$, called $f$ and $g$ which are the same on each set
+of the cover $C_i$, then $f$ and $g$ must have been the same function to begin
+with.
+
+Similarly, if we have functions on the smaller open sets that agree on the overlap,
+we can glue them together to build a larger function.
+
+
+The exact same story works with differentiable functions.
+
+\chapter{AGITTOC: Week 2}
+\begin{itemize}
+\item \href{https://www.youtube.com/watch?v=mqt1f8owKrU}{Youtube video}.
+\item \href{https://math216.wordpress.com/2020/07/06/readings-and-problem-set-for-after-the-second-pseudolecture/}{Problem set link}
+\end{itemize}
+
+\textbf{Reading}: Section 2.1 - Section 2.3 of the rising sea. \textbf{Homework}: Week 2
+of the problems from last week, Week 1 of 2 problems to be posted.
+
+"We should never take a course on category theory". To learn to play a musical
+instrument, we should not spend a year learning how the key presses work.
+
+As a linear algebra warmup, we're going to write down a 108 equations
+in 26 unknowns. The all have integer coefficients. I will also be told the solution
+$(14, \pi, 9, \sqrt{2}, dots)$.  We should prove that there ought to be a
+rational solution as well.
+
+\section{Limit}
+
+An element of a limit gives one of each of its ingredients. For example,
+$K[[X]] = \lim_n \{ \text{degree $n$ polynomials} \}$, since we can get
+a degree n polynomial for all n, from any power series by truncation.
+
+\emph{RAPL}: right adjoints preserve limits.
+
+Limits commute with limits.
+
+
+\section{Colimit}
+
+An element of one of its ingredients is a colimit. (?) I don't understand this.
+
+\section{Adjoints}
+
+A really nice example of adjoints. Consider the fact that integral domains
+and fields are adjoints. We can build the field of fractions to get a field
+from an integral domain (free functor). Conversely, we can forget the
+field structure to treat a field as an integral domain. So we get a mapping
+of hom-sets:
+
+$$
+Hom(IntegralDomain, Forget(Field)) \simeq Hom(Frac(IntegralDomain), Field)
+$$
+
+\section{Sheafs}
+
+Same story from last time. We want to talk about functions on sub parts of the space.
+We're interested in the space $X = \mathbb R^n$.
+So for every open set $U$, we want $\O(U)$ to be the set of continuous
+functions that are defined on $U$. $\O(U)$ is a ring. We can restrict functions,
+and restrictions can need to have the property that $f|v|w = f|w$. This is
+a \textbf{presheaf}.
+
+Then we have the \textbf{identity axiom}: If we have a set $U$ and a cover $U_i$,
+if two functions $f$ and $g$ agree on each element of the cover $U_i$, then $f$
+and $g$ agree on $U$. Alternatively, if we have a bunch of functions on an open cover,
+we can have at most a single function on $U$ that restricts to the bunch of functions.
+
+Another axiom is the \textbf{gluing axiom}: if we have functions $f$ defined on $U$, $g$ defined on $V$,
+and $f$ and $g$ agree on $U \cap V$, then we must have a glued function $h$ 
+which is defined on $U \cap V$ such that $h|U = f$ and $h|V = g$. The gluing
+axiom gives us the conditions for us to be able to have \emph{at least one} function
+which can be glued together from a bunch of functions using an open cover.
+
+So if we find "at least one" function under
+the conditions of the gluing axiom [existence], the identity axiom allows us to
+show that this function is unique [uniqueness], since we can have "at most one"
+way to glue these functions together.
+
+\subsection{Example 1: Maps into a set}
+
+Sheaf of maps into $Y$. That is, given a set $X$, we can think for each open
+set $U \subseteq X$, we can consider the sheaf of functions from $U$ to $Y$.
+
+\subsection{Example 2:Sections over a space}
+
+Given a space $M$ (think manifold) and some bundle $T$ over $M$ (think tangent bundle),
+we want to consider, for each open set $U \subseteq M$, we want to consider
+the sheaf of sections of $M$ over $U$ (think sheaf of vector fields from $M$ over $U$).
+Clearly, this is a presheaf since we can restrict vector fields. It's a sheaf
+because we can glue vector fields together.
+
+
+\subsection{Example 3: Pushfoward sheaf}
+
+We have a map of topological space $\pi: X \rightarrow Y$ and we have a sheaf on $X$,
+called $\F$ , we can get a sheaf on $Y$. We can think of $X$ as some sort of bundle
+over $Y$. The definition is $(\pi_* F)(u) \equiv F(\pi^{-1}(u))$.
+
+\subsection{Example 4: Skyscraper sheaf}
+For a point $p$, if the open set $U$ does not contain $p$, then there are no sections.
+If the open set $U$ contains $p$, then it will have one section.
+
+\subsection{Example 5: constant sheaf}      
+The sheaf of locally constant functions. That is, for some open set $U$, we 
+get the functions that are \emph{constant} on $U$.
+
+\section{Maps of sheaves}           
+For every open set, we need to have a map, and it should work well with restrictions.
+To meditate. We have a map $\pi: X \rightarrow Y$. We have the sheaf of functions
+on $X$, call it $\O_X$. We have a way to push forward this as a 
+sheaf on $Y$ using $\pi$ as $\pi_* \O_X$. More importantly, there is 
+a map from the sheaf of functions on $Y$ to the pushfoward sheaf of $O_X$.  This is
+because we can always pull back a continuous function $h_Y \in \O_Y$ on
+$Y$ to get some continuous
+function $\pi^{-1} (h_Y) \in \O_X$ on $X$ [TODO: how does one prove this?]. We 
+can now push this forward through the sheaf map, giving us a way to embed
+$\O_Y$ into $\pi_* \O_X$.
+
+\section{Stalks and germs of presheaves}                                          
+
+Two functions have the same germ near $x \in X$ if they are the same near $X$.
+If there's an honest open neighbourhood where the functions are the same.
+Each germ is a function. Is stalk $F_p$ a colimit over the sheaf $F_U$, because
+we are picking some element of the sheaf.
+
+\section{Insight into local rings}
+
+If $X =\mathbb C^n$ is some geometric space, then $\O _p$ is a local ring. A local
+ring is a ring with a single maximal ideal. We consider a map $\O \rightarrow \mathbb C; f \mapsto f(p)$.
+We have a map to a field. The ideal $m_p \equiv \{ g \in \O_p | g(p) = 0 \}$, since
+it's the kernel of the evaluation map. The evaluation map goes to the field.
+Now, anything that is not in the maximal ideal is \emph{invertible}, hence
+$m_p$ is maximal. Thus the ring is a local ring. 
+
+\section{$\O$-modules}
+Module: abelian group with the action of a ring on it, just like vector space
+is an abelian group with the action of a field on it.
+
+
+Sheaf of modules over a sheaf of rings $\O$, which we will think of
+as functions. An $\O$ module is a sheaf of abelian groups 
+with an action on each open set.
+
+\subsection{Example: Vector fields on a manifold}
+For every point, we have a tangent vector. If we have a vector field and a
+function on the manifold, we can act the function on the vector field by scaling.
+So vector fields on manifolds are a module over the ring of functions of the module.
+
+\subsection{Example: pushforward sheaf}
+The push forward is $\pi_* \O_X$ is an $\O_Y$ module, because
+given a function $f \in \O_Y$, I can have it act on $\pi_* \O_X$.
+
+\section{How to abstract out kernels, cokernels?}
+Grothendeick in the tohoku paper defined abelian categories. We need to remember
+that kernels are limits!
+
+Given a map of R-modules $\phi: A \rightarrow B$, the kernel is the limit of
+the diagram:
+
+
+\textbf{TODO: Latex the diagram}
+% ```
+% ker (phi) -.-.-.-.> A
+% |                   | \phi
+% .                   |
+% |                   |
+% .                   V
+% 0 -----------------> B
+% ```
+
+That is, the map into $0$ commutes with the embedding map into $A$. 
+
+Because limits commute with limits, we have things like "limits of kernels = kernels of limits".
+Also because of RAPL, we know that right adjoints preserve kernels because
+right adjoints preserve limits.
+
+Similarly, we can show that cokernels are colimits.
+
+\chapter{AGITTOC: Pseudolecture 3}
+\begin{itemize}
+\item \href{https://www.youtube.com/watch?v=E5HnqUHkvGA}{Youtube video}
+\item \href{https://math216.wordpress.com/2020/07/13/reading-and-problems-after-the-third-pseudolecture/}{Link to exercise}
+\end{itemize}
+
+\section{Last time}
+We talked about sheaves on topological spaces. for example, presheaves of abelian
+groups associate to each open set $U$ an abelian group  $F(U)$. We also
+have restriction maps.
+
+\subsection{Adjoints}
+The category of integral domains must have as morphisms as inclusions for
+the previous argument to work out. Otherwise, we will have the map
+$\mathbb Z \rightarrow \mathbb Z / 2 \mathbb Z$. This is a map of integral domains.
+This does not give us a map from $\mathbb Q$ to $\mathbb Z/2\mathbb Z$ as promised
+by the adjunction.
+
+\section{Ringed spaces}
+
+We have a set, a topology on it, and a sheaf of rings on it. we're going
+to call the rings functions. Formally, it's a space $(X, \O_X)$ where $\O_X$
+is a ring of functions on the space.
+
+\section{Manifold}
+A manifold is a ringed space which is covered by open sets, where each open
+set (plus its sheaf data) is isomorphic to ($U \subseteq \mathbb{C^n}$, sheaf of homolorphic functions).
+
+
+\section{Locally ringed space}
+It's a ringed space where all stalks are local rings. Spelling this out,
+It's a ringed space $(X, \O)$ such that for all $p \in X$, $\O_p$ is a local
+ring. If we have $f \in \O_p$, we define the value of $f$ at $p$ as $f \mod m_p$,
+where $m_p$ is the (unique, since the ring $O_p$ is local) maximal ideal of $O_p$
+This will give us a value in some field because ring quotient maximal ideal is 
+field. We say that $f$ vanishes at $p$ if $f(p) = 0$. that is, $f \in m_p$. 
+
+\subsection{Beware!}
+A function on a locally ringed space, by definition, we can get the value of a 
+point. In general, given a sheaf, we can only find $f|p$, the value of "$f$ near p".
+In that, we can talk about the germ, not about the value.
+
+\section{Varieties and Schemes}
+think of the ring $A \equiv \C[X_1, X_2, \dots X_n] / I$ which allow us to
+define schemes. 
+
+We define $\Spec(A)$ to be the set of prime ideals of $A$, which
+are used to talk about schemes. 
+
+We define $\m\Spec(A)$ to be the set of maximal
+ideals of $A$, which are used to talk about varieties.
+
+This will be our set. We need to know the geometry. We need to understand
+how $\Spec \Z \simeq \Spec \C[t]$.
+
+
+\begin{theorem}
+    Zariski's Lemma If $E/F$ is a field extension and $E$ is finitely generated
+    over $F$ as an algebra, then $E$ is finitely generated over $F$ as a vector space.
+    This means that $E/F$ is a finite extension of fields.
+    This is supposedly equivalent to nullstellensatz (what?!).
+\end{theorem}
+
+\section{Kernel and Cokernel presheaves}
+Suppose we have $V \subseteq U$, and we have a map of presheaves $\phi: \F \rightarrow \G$.
+We can define the kernel presheaf as $(ker \phi)(U) = ker(\phi(U))$.
+
+\section{Kernel and Cokernel sheaves}
+We need to show that the kernel will also be a sheaf. Why? This is complicated,
+because we need to show that it all works out. \textbf{exercise}
+
+\section{Properties of sheaves are preserved by stalks}
+\textbf{Exercise:} Sections of a sheaf on $X$ are determined by their germs.
+
+\section{Sheaf on a base}
+Base of a topology is a collection of open set of $X$ such that every open set
+of $X$  is a union of the base. Because balls (which are the base of $\mathbb R^n$
+are nice and topologically trivial) it's easier to work with balls.
+
+So we want to know what it means to have a sheaf on a base. A base is a bunch
+of open set $B \equiv \{ B_i \}$ such that every open set $U \subseteq X$
+is a union of some base: $U = \cup_j B_j$. 
+
+\emph{NOTE: I will use ball and base interchangably in the next section as Ravi does, 
+since any base can be morally thought of as a collection of balls.}
+We need a  sheaf on a base $\F(B)$. The presheaf data works because we can
+clearly nest and restrict functions on balls. 
+However, we need to be careful when we define the identity and gluing axioms,
+because the intersection (and union) of balls need not be balls! However,
+we know that the union and intersection will be \emph{covered} by balls (since
+the balls are a base).
+
+If we have a bunch of sections $f_i \in F(B_i)$ \textbf{TODO}
+
+\section{Where are we going?}
+We will be forced into the notion of varieties and schemes. We may then
+go do line bundles, curves, etc. There's also questions about smoothness, dimension,
+etc. Two examples of good food for thought:
+
+If I have one 5-dimensional manifold as a ringed space, how do we recover the
+dimension? If we only know the topological space can we know the dimension?
+What about only the set?
+
+If I have a complex analytic variety as a ringed space, how do whether it is
+smooth?
+
+\section{What is the functor of points?}
+
+It's just a terrible name. It's the functor of maps to $X$. Let's say we have
+a category $C$. then we have the functor $H_X: C \rightarrow Sets$, which
+sends $Y$ to $Mor(Y, X)$. A complex point is a $\Spec(\mathbb C)$ valued point.
+
+\section{Why don't people use sheaves in diffgeo?}
+They are. They're used a lot in differential operators.
+
+Another answerer said that the do not use the language much, but sheaves are
+everywhere.
+
+\section{Often manifolds are required to satisfy countability / Haussdorf. How do we impose this?}
+We should add those conditions. There is the Haussdorf condition, which is the wrong
+way of saying it categorically. We should state it in terms of "separatedness" which
+is actually categorical. The second condition (second countability) is some kind
+of finiteness condition.
+
+\section{What is a ringed space which is not a locally ringed space?}
+Why do we bother with locally ringed space? Ravi's answer is that in general,
+such ringed spaces which are not locally ringed are pathological. The good ones
+that come from geometry will be locally ringed.
+
+\section{Nullstellensatz: How does one get a good geometric feel for Nullstellensatz? There are so many statements of Nullstellensatz,
+how do we navigate about them?}
+
+Anything interesting called Nullstellensatz will follow from Zariski's lemma.
+
+It tells you that the maximal ideals that we can "see" are all there are. Ie, maximal
+ideals will correspond to points. We can also do it for non algebraically closed
+case by thinking about $\R$ in terms of galois orbits.
+
+
+\section{When will thinking about adjoints be useful?}
+For me, it is black magic which you learn to use by experimenting with certain
+lesser dark spells. Essentially, we dream for things to be adjoints.
+
+\section{Why did people bother setting up abelian categories?}
+To talk about kernels and cokernels. We're also going to be fooled into
+thinking about them correctly.
+
+\section{Do we use spectral sequences?}
+Yes, they're just a machine. Cohomology is local to global. Spectral sequences
+
+\section{Krull PID theorem}
+if we have a single linear equations on a vector space and we ask where it vanishes,
+it's going to knock the dimension down by 1 or 0. 
+
+\section{What is the big deal with espace etale?}
+the best kind of sheaf of sections is that we have a space $X$, and sheaf of sections
+are literally sections of the space above it. What is the advantage of doing it
+this way? All sorts of stuff comes for free. Serre does this in FAC.
+
+\href{https://mathoverflow.net/questions/96264/what-are-the-benefits-of-viewing-a-sheaf-from-the-espace-%C3%A9tal%C3%A9-perspective}{Math overflow question}
+
+\section{How do we know that sheaves are the right way to talk about geometry?}
+It's an empirical question. Sheaves just work so well.
+
+\chapter{The rising sea, chapter 1}
+\section{Q1.3C: $A \rightarrow S^{-1}A$ is injective iff $S$ has no zero divisors}
+$(\implies)$: 
+Assume $A \rightarrow S^{-1}A$ is injective. We wish to show that $S$ has no 
+zero divisors. Also assume for contradiction that
+$S$ has zero divisors. So there is an element $z$ such that for some
+element $z' \neq 0$ we have $zz' = 0$.
+Since $S$ is multiplicatively closed, we must have that $zw \in S \implies 0 \in S$.
+Hence, for any two elements $a, a' \in A$, we will have that $a/1 = a'/1: ~ 0(1\cdot a - 1\cdot a') = 0$,
+and hence $a/1 = a'/1$. This the mapping  $a \mapsto a/1$ is not injective. This
+is a contradiction. Hence $S$ has no zero divisors.
+
+$(\impliedby)$:
+Assume $S$ has no zero divisors. We wish to show that the map $A \rightarrow S^{-1}A$
+is injective. Let us have that $a/1 = a'/1$ for some $a, a' \in A$. We wish to show
+that $a = a'$. $a/1 = a'/1$ means that $s(a\cdot 1 - a' \cdot 1) = 0$  for some $s \in S$.
+Since $S$ does not have zero divisors, we can conlude that either $s = 0 \lor (a\cdot 1 - a' \cdot 1) = 0$.
+But $0$ itself is a zero divisor in a non-zero ring (since for all other elements $a \in A$, we have $a0 = 0$),
+so we have $s \neq 0$ since $S$ contains no zero divisors. Thus, $a \cdot 1 - a' \cdot 1 = 0$.
+Hence $a = a'$.
+
+\section{1.3D: The map $A \rightarrow S^{-1}A$ is initial among $A$-algebras $B$ such that every element of $S$
+         is sent to an invertible element of $B$}
+Recall that an $A$-algebra $B$ is an $A$-module which has a bilinear operator $*: B^2 \rightarrow B$.
+
+\subsection{$A$-algebra $B$ gives ring map $A \rightarrow B$}
+Let us assume we have an $A$ algebra $B$. We need to construct a ring map $\phi: A \rightarrow B$.
+this only makes sense if the algebra is assumed to be unital, so let's assume we have a unit $1_B$.
+Now we can simply treat $B$ as a ring where the multiplication from the algebra is the ring multiplication.
+\textbf{TODO:}
+\href{https://math.stackexchange.com/questions/3756749/an-a-algebra-b-carries-the-same-data-as-a-ring-map-a-rightarrow-b}{Question on math.se where I got confused}.
+
+\subsection{ring map $A \rightarrow B$ gives rise to $B$ as an $A$-algebra}
+Assume the ring map is called $\phi: A \rightarrow B$. This is naturally an
+action of the ring $A$ on the ring $B$, and hence allows us to view $B$ as
+an $A$-module. We can view the multiplication on $B$ as the product of
+the algebra. This naturally satisfies the bi-linearity axiom.
+
 \end{document}
