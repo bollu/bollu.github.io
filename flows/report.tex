@@ -16,6 +16,7 @@
 
 
 \newcommand{\Xbar}{\ensuremath{\overline{X}}}
+\newcommand{\xbar}{\ensuremath{\overline{x}}}
 
 \theoremstyle{plain} 
 \newtheorem{theorem}{Theorem}
@@ -269,11 +270,83 @@ For all forward arcs, we have $f(x_i, x_{i+1}) < c(x_i, x_{i+1})$. For reverse
 arcs, we have $f(x_{i+1}, x_i) > 0$. Let $\eps_{fwd}$ be the minimum of 
 $(c - f)$ taken over all forward arcs of the path. Let $\eps_{bwd}$ be the
 minimum of $f$ taken over all reverse arcs. Let $\eps = \min(\eps_{fwd}, \eps_{bwd}) > 0$.
-We now alter the flow $f$ by adding $\eps$ over all forward arcs and decreasing
-$f$ by $\eps$ on all reverse arcs of the path.
+We now alter the flow $f$ to create a new flow $f'$ by adding $\eps$ over all forward arcs and decreasing
+$f$ by $\eps$ on all reverse arcs of the path. $f'$ is a valid
+flow from $s$ to $t$ that has value$v + \epsilon$. Then $f$ is not maximal,
+contradicting our assumption. So, $t \in \Xbar_f$. Thus, $(X_f, \Xbar_f)$ is
+a separating cut of $s$ and $t$.
 
+
+Thus we have that:
+\begin{enumerate}
+\item $\forall (x, \xbar) \in (X, \Xbar), f(x, \xbar) = c(x, \xbar)$.
+\item $\forall (x, \xbar) \in (X, \Xbar), f(\xbar, x) = 0$.
+\end{enumerate}
+
+We must have $f(\xbar, x) = 0$, for otherwise, we would have $\xbar \in X$.
 \end{proof}
 
+\begin{definition}[Augmenting Path]
+    a path from $s$ to $t$ with respect to a flow $f$ is called as an
+    augmenting path if $f < c$ on all forward arcs on the path and $f > 0$
+    on all reverse arcs of the path.
+\end{definition}
+
+\begin{theorem}[Maximal flows do not have augmenting paths]
+    A flow $f$ is maximal if and only if there is no flow augmenting path
+    with respect to $f$.
+\end{theorem}
+\begin{proof}[Proof:(Maximal implies no augmenting path)]
+    If a flow $f$ is maximal, there cannot exist an augmenting path. If there
+    was, we can increase the flow along the augmenting path, thereby
+    contradicting that maximality of $f$.
+\end{proof}
+\begin{proof}[Proof:(No augmenting path implies maximal)]
+    We assume that no augmenting path exists. Then the set $X_f$ as defined
+    before cannot contain the sink $t$. Recall the definition of $X_f$:
+    \begin{align*}
+        &(a) ~ s \in X_f \\
+        &(b_1) ~ \text{if $x \in X_f$ and $f(x, y) \lneq c(x, y)$, then $y \in X_f$ } \\
+        &(b_2) ~ \text{if $x \in X_f$ and $f(y, x) \gneq 0$, then $y \in X_f$ } \\
+    \end{align*}
+
+    Hence, we have that $(X, \Xbar)$ is a cut separating $s$ and $t$. This cut
+    has capacity equal to the value of $f$ as before. Hence the flow $f$
+    is maximal.
+\end{proof}
+
+\section{Imposing lower bounds on arc flows}
+We can replace the flow conditions from $0 \leq f(x, y) \leq c(x, y)$ into
+$l(x, y) \leq f(x, y) \leq c(x, y)$, where $l: A \rightarrow \R^+$ is a real-valued
+function on the arcs such that $0 \leq l(x, y) \leq c(x, y)$.
+
+
+We can change the labelling process to handle the situation if we have an
+initial flow $f_0$ that satisfies the equation.
+
+\textbf{TODO: how do we find such a starting flow?}
+
+\section{Node capacities}
+
+We can set a node capacity $k: N \rightarrow \R+$ along with with the 
+arc capacity constraints. We want to maximize $f(s, N)$ subject to the
+constraints:
+
+\begin{enumerate}
+    \item $f(x, N) - f(N, x) = 0 \quad x \neq s, t \quad \text{[Convervation]}$
+    \item $\forall (x, y) \in A: 0 \leq f(x, y) \leq c(x, y) \quad $ \text{[Capacity constraints]}
+    \item $f(x, N) \leq k(x) \quad x \neq t \quad \text{[$x$ can only send (and receive, by conservation) a maximum flow of $k(x)$]}$
+    \item $f(N, t)  \leq k(t) \quad \text{[$t$ can only receive a maximum flow of $k(t)$]}$
+\end{enumerate}
+
+
+\section{Supply-Demand theorem}
+
+Let $(N, A)$ be a network with capacity $c$. Suppose that $N$ is partitioned into
+sources $S$, sinks $T$, intermediate nodes $R$. Associate with each $s \in S$
+a non-negative real number $a(s)$, which is the supply of a commodity at $s$;
+similarly for each $t \in T$, associate a non-negative number $b(t)$, which
+is a demand of a commodity at $t$.
 
 \bibliographystyle{plain}
 \bibliography{references}
