@@ -1,3 +1,41 @@
+- [Deschooling Society](https://davidtinapple.com/illich/1970_deschooling.html)
+>  "Many students, especially those who are poor, intuitively know what the
+>  schools do for them. They school them to confuse process and substance. Once
+>  these become blurred, a new logic is assumed: the more treatment there is,
+>  the better are the results; or, escalation leads to success. The pupil is
+>  thereby "schooled" to confuse teaching with learning, grade advancement with
+>  education, a diploma with competence, and fluency with the ability to say
+>  something new. His imagination is "schooled" to accept service in place of
+>  value. Medical treatment is mistaken for health care, social work for the
+>  improvement of community life, police protection for safety, military poise
+>  for national security, the rat race for productive work. Health, learning,
+>  dignity, independence, and creative endeavor are defined as little more than
+>  the performance of the institutions which claim to serve these ends, and
+>  their improvement is made to depend on allocating more resources to the
+>  management of hospitals, schools, and other agencies in question.  In these
+>  essays, I will show that the institutionalization of values leads inevitably
+>  to physical pollution, social polarization, and psychological impotence:
+>  three dimensions in a process of global degradation and modernized misery." 
+- [Tools for Convivality](https://en.wikipedia.org/wiki/Tools_for_Conviviality)
+> Radical monopoly is a concept defined by philosopher and author Ivan Illich
+> in his 1973 book, "Tools for Conviviality," and revisited in his later work,
+> which describes how a technology or service becomes so exceptionally dominant
+> that even with multiple providers, its users are excluded from society
+> without access to the product. His initial example is the effect of cars on
+> societies, where the car itself shaped cities by its needs, so much so that
+> people without cars become excluded from participation in cities. A radical
+> monopoly is when the dominance of one type of product supersedes dominance by
+> any one brand.  Social media as a technology in the forms of
+> Facebook/Instagram/Twitter could be seen as a radical monopoly for
+> reputation, as is Linkedin for employment, colleges for education, etc.  I
+> think Illich's criticisms of car culture pushed him outside the Overton
+> window of policy making, but his radical monopoly concept is a useful
+> critical tool for reasoning about tech and ethics. A counter argument could
+> use the example that the discovery of fire created a radical monopoly on
+> heat, and therefore it's so general as to be applied arbitrarily to anything
+> you don't like. However, being able to think about the consequences of a new
+> radical monopoly might have on some aspect of human experience is useful for
+> anticipating policy options in response to dynamic technology development. 
 - [Handbook of geometry for competitive programmers](https://vlecomte.github.io/cp-geo.pdf)
 - Andrew Marr: A history of the world.
 - [Great animations of sphere eversion, setup with scrolling and webGL](https://rreusser.github.io/explorations/sphere-eversion/)
