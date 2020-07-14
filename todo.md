@@ -1,3 +1,24 @@
+- [Dark Mountain movement](https://dark-mountain.net/about/manifesto/). A movement
+  about changing the narrative of the 21st century to stave off, or at least
+  prepare better for, the eventual cycle of collapse of society.
+> What both Russell and Conrad were getting at was a simple fact which any
+> historian could confirm: human civilisation is an intensely fragile
+> construction. It is built on little more than belief: belief in the rightness
+> of its values; belief in the strength of its system of law and order; belief in
+> its currency; above all, perhaps, belief in its future.
+> …
+> Once that belief begins to crumble, the collapse of a civilisation may
+> become unstoppable. That civilisations fall, sooner or later, is as much a
+> law of history as gravity is a law of physics. What remains after the fall
+> is a wild mixture of cultural debris, confused and angry people whose
+> certainties have betrayed them, and those forces which were always there,
+> deeper than the foundations of the city walls: the desire to survive and
+> the desire for meaning
+> …
+> What remains after the fall is a wild mixture of cultural debris, confused
+> and angry people whose certainties have betrayed them, and those forces which
+> were always there, deeper than the foundations of the city walls: the desire to
+> survive and the desire for meaning
 - [Deschooling Society](https://davidtinapple.com/illich/1970_deschooling.html)
 >  "Many students, especially those who are poor, intuitively know what the
 >  schools do for them. They school them to confuse process and substance. Once
