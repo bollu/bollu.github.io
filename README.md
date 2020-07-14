@@ -17,6 +17,7 @@ A Universe of Sorts
 #### Table of contents:
 
 <ol reversed>
+<li> [Connectedness in terms of continuity](#connectedness-in-terms-of-continuity) </li>
 <li> [Intuition for limits in category theory](#intuition-for-limits-in-category-theory) </li>
 <li> [Finite topologies and DFS numbering](#finite-topologies-and-dfs-numbering) </li>
 <li> [Categorical definition of products in painful detail](#categorical-definition-of-products-in-painful-detail) </li>
@@ -25,7 +26,7 @@ A Universe of Sorts
 <li> [Satisfied and frustrated equations](#satisfied-and-frustrated-equations) </li>
 <li> [Combinatorial intuition for Fermat's little theorem](#combinatorial-intuition-for-fermats-little-theorem)
 <li> [An incorrect derivation of special relativity in 1D](#an-incorrect-derivation-of-special-relativity-in-1d) </li>
-<li> [The geometry and dynamics of magnetic monopoles](#the-geometry-of-magnetic-monopoles) </li>
+<li> [The geometry and dynamics of magnetic monopoles](#the-geometry-and-dynamics-of-magnetic-monopoles) </li>
 <li> [Sanskrit and Sumerian](#sanskrit-and-sumerian)
 <li> [Writing Cuneiform](#writing-cuneiform) </li>
 <li> [The code of hammurabi](#the-code-of-hammurabi) </li>
@@ -196,6 +197,37 @@ A Universe of Sorts
 <li> [Big list of Haiku](#big-list-of-haiku) </li>
 <li> [Big list of Music](#big-list-of-music) </li>
 </ol>
+
+# [Connectedness in terms of continuity](#connectedness-in-terms-of-continuity)
+
+This was a shower thought. 
+
+- We usually define a topological space $X$ as connected
+  iff there are disjoint open sets $U, V$ such that $U \cup V = X$. Since
+  they are disjoint, we have that $U \cap V = \emptyset$.
+- An alternative way of stating this is to consider two colors `C = {red, blue }` with
+  the discrete topology.
+- We use the discrete topology on `C` since we want the two
+  colors to be "separate".
+- Now, a space $X$ is connected iff there is a continuous
+  surjective function $f: X \rightarrow C$. That is, we can color the whole space
+  continuously with both colors.
+
+This is equivalent to the original definition by setting $U = f^{-1}(red)$
+and $V = f^{-1}(blue)$: 
+
+- Pre-images of a function must be disjoint. Hence, $U \cap V = \emptyset$.
+- Preimages of $red$ and $blue$ must be open sets since $\{red\}$ and $\{blue\}$
+  are open and $f$ is continuous: continuous functions have pre-images of open
+  sets as open. Hence $U$ and $V$ are open.
+- Since $f$ is surjective, we must have that the pre-images cover the entire set $X$.
+  Hence $U \cup V = X$.
+
+I find this to be appealing, since it's intuitively obvious to me that if a space
+is disconnected, I can color it continuously with two colors, while if a space
+is connected, I should be unable to color it continuously with two colors ---
+there should be a point of "breakage" where we suddenly switch colors.
+
 
 # [Intuition for limits in category theory](#intuition-for-limits-in-category-theory)
 
@@ -480,11 +512,40 @@ as well as what element it is represented by.
 
 #### Proof of uniqueness upto unique isomorphism
 
-- Assume we have two products $(p, \pi_a, \pi_b)$ and $(q, \pi_a, \pi_b)$.
-- By the universality of $p$, we get a map $q2p$ ... 
-- By the universality of $q$, we get a map $p2q$
-- We get a map $p2q . q2p$ such that 
-- 
+- Assume we have two products $(p, \pi_a, \pi_b)$ and $(q, \pi_a, \pi_b)$, which
+  are products of $a$ and $b$
+- By the universality of $p$ wrt $q$, we get a unique! map $q2p$ such that the diagaram commutes.
+- By the universality of $q$ wrt $p$, we get a unique! map $p2q$
+- We get a map $q2p \cdot p2q : p \rightarrow p$. by the universality of $p$ with
+  respect to $p$, we get a unique! map that makes the diagram commute.But we have
+  two such maps: $id_p$ as well as $q2p . p2q$. Hence we must have $id_p = q2p \cdot p2q$. In pictures:
+
+```      
+          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+```
+
+- The full diagram commutes.
+- By definition of identity/commutativity of the diagram, $\pi_a \circ id_p  = \pi_a$.
+- By definition of identity/commutativity of the diagram, $\pi_b \circ id_p  = \pi_b$.
+- By the commutativity of the diagram, we have $\pi_a \circ (q2p \circ p2q) = \pi_a$.
+- By the commutativity of the diagram, we have $\pi_b \circ (q2p \circ p2q) = \pi_b$.
+- We can consider the universal property of the product, where we have
+  $(p, \pi_a, \pi_b)$ as one product, and $(p, \pi_a , \pi_b)$ as another
+  product.
+- This gives us a **unique map** $h$ such that $\pi_a \circ h = \pi_a$, and
+  $\pi_b \circ h = \pi_b$.
+- We have two candidates for $h$: $h = id_p$ and $h = p2q \circ q2p$.
+  Hence, by the uniqueness of $h$, we have that $id_p = p2q \circ q2p$.
 
 
 # [Why is the spectrum of a ring called so?](#why-is-the-spectrum-of-a-ring-called-so)
@@ -1075,8 +1136,7 @@ to arrive at Djikstra's
 
 
 
-# [Intuitions for hyperbolic space](#intuition-for-hyperbolic-space) 
-
+# [Intuitions for hyperbolic space](#intuitions-for-hyperbolic-space)
 
 - [Combinatorial group theory](https://math.stackexchange.com/questions/689257/topics-in-combinatorial-group-theory-for-a-short-talk/692534#692534)
 - [Van Kampen diagrams: an intuition](https://math.stackexchange.com/questions/330531/algebra-best-mental-images/331135#331135)

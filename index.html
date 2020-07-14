@@ -15,6 +15,7 @@ A Universe of Sorts
 <ul><li> <a href=https://www.admonymous.co/bollu>Leave feedback for me, <code>+ve</code> or <code>-ve</code>!</a></li><li> Reach me: <a href='mailto:siddu.druid@gmail.com'> <code>siddu.druid@gmail.com</code> </a></li><li> <a href=http://github.com/bollu>My github</a></li><li> <a href=https://math.stackexchange.com/users/261373/siddharth-bhat>My math.se profile</a></li><li> <a href=resume/main.pdf>My resume</a></li><li> <a href=todo.html>My reading list</a></li><li> <a href=https://ko-fi.com/bollu>Grab me a coffee</a></li><li> <a href=https://www.patreon.com/bollu>Support me in making more visualizations!</a></li></ul>
 <h4><a id=table-of-contents href='#table-of-contents'> § </a> Table of contents:</h4>
 <ol reversed>
+<li> <a href=#connectedness-in-terms-of-continuity>Connectedness in terms of continuity</a> </li>
 <li> <a href=#intuition-for-limits-in-category-theory>Intuition for limits in category theory</a> </li>
 <li> <a href=#finite-topologies-and-dfs-numbering>Finite topologies and DFS numbering</a> </li>
 <li> <a href=#categorical-definition-of-products-in-painful-detail>Categorical definition of products in painful detail</a> </li>
@@ -23,7 +24,7 @@ A Universe of Sorts
 <li> <a href=#satisfied-and-frustrated-equations>Satisfied and frustrated equations</a> </li>
 <li> <a href=#combinatorial-intuition-for-fermats-little-theorem>Combinatorial intuition for Fermat's little theorem</a>
 <li> <a href=#an-incorrect-derivation-of-special-relativity-in-1d>An incorrect derivation of special relativity in 1D</a> </li>
-<li> <a href=#the-geometry-of-magnetic-monopoles>The geometry and dynamics of magnetic monopoles</a> </li>
+<li> <a href=#the-geometry-and-dynamics-of-magnetic-monopoles>The geometry and dynamics of magnetic monopoles</a> </li>
 <li> <a href=#sanskrit-and-sumerian>Sanskrit and Sumerian</a>
 <li> <a href=#writing-cuneiform>Writing Cuneiform</a> </li>
 <li> <a href=#the-code-of-hammurabi>The code of hammurabi</a> </li>
@@ -194,6 +195,44 @@ A Universe of Sorts
 <li> <a href=#big-list-of-haiku>Big list of Haiku</a> </li>
 <li> <a href=#big-list-of-music>Big list of Music</a> </li>
 </ol>
+<h2><a id=connectedness-in-terms-of-continuity href='#connectedness-in-terms-of-continuity'> § </a> <a href=#connectedness-in-terms-of-continuity>Connectedness in terms of continuity</a></h2>
+This was a shower thought. 
+<ul><li> We usually define a topological space <span class='latexinline'>
+<span style="font-style:italic">X</span></span> as connected
+  iff there are disjoint open sets <span class='latexinline'>
+<span style="font-style:italic">U</span>, <span style="font-style:italic">V</span></span> such that <span class='latexinline'>
+<span style="font-style:italic">U</span> &#X222A; <span style="font-style:italic">V</span> = <span style="font-style:italic">X</span></span>. Since
+  they are disjoint, we have that <span class='latexinline'>
+<span style="font-style:italic">U</span> &#X2229; <span style="font-style:italic">V</span> = &#X2205;</span>.</li><li> An alternative way of stating this is to consider two colors <code>C = {red, blue }</code> with
+  the discrete topology.</li><li> We use the discrete topology on <code>C</code> since we want the two
+  colors to be "separate".</li><li> Now, a space <span class='latexinline'>
+<span style="font-style:italic">X</span></span> is connected iff there is a continuous
+  surjective function <span class='latexinline'>
+<span style="font-style:italic">f</span>: <span style="font-style:italic">X</span> &#X2192; <span style="font-style:italic">C</span></span>. That is, we can color the whole space
+  continuously with both colors.</li></ul>
+This is equivalent to the original definition by setting <span class='latexinline'>
+<span style="font-style:italic">U</span> = <span style="font-style:italic">f</span><sup>&#X2212;1</sup>(<span style="font-style:italic">red</span>)</span>
+and <span class='latexinline'>
+<span style="font-style:italic">V</span> = <span style="font-style:italic">f</span><sup>&#X2212;1</sup>(<span style="font-style:italic">blue</span>)</span>: 
+<ul><li> Pre-images of a function must be disjoint. Hence, <span class='latexinline'>
+<span style="font-style:italic">U</span> &#X2229; <span style="font-style:italic">V</span> = &#X2205;</span>.</li><li> Preimages of <span class='latexinline'>
+<span style="font-style:italic">red</span></span> and <span class='latexinline'>
+<span style="font-style:italic">blue</span></span> must be open sets since <span class='latexinline'>
+{<span style="font-style:italic">red</span>}</span> and <span class='latexinline'>
+{<span style="font-style:italic">blue</span>}</span>
+  are open and <span class='latexinline'>
+<span style="font-style:italic">f</span></span> is continuous: continuous functions have pre-images of open
+  sets as open. Hence <span class='latexinline'>
+<span style="font-style:italic">U</span></span> and <span class='latexinline'>
+<span style="font-style:italic">V</span></span> are open.</li><li> Since <span class='latexinline'>
+<span style="font-style:italic">f</span></span> is surjective, we must have that the pre-images cover the entire set <span class='latexinline'>
+<span style="font-style:italic">X</span></span>.
+  Hence <span class='latexinline'>
+<span style="font-style:italic">U</span> &#X222A; <span style="font-style:italic">V</span> = <span style="font-style:italic">X</span></span>.</li></ul>
+I find this to be appealing, since it's intuitively obvious to me that if a space
+is disconnected, I can color it continuously with two colors, while if a space
+is connected, I should be unable to color it continuously with two colors ---
+there should be a point of "breakage" where we suddenly switch colors.
 <h2><a id=intuition-for-limits-in-category-theory href='#intuition-for-limits-in-category-theory'> § </a> <a href=#intuition-for-limits-in-category-theory>Intuition for limits in category theory</a></h2>
 <h4><a id=a-characterization-of-limits href='#a-characterization-of-limits'> § </a> A characterization of limits</h4>
 The theorem that characterizes limits is this: 
@@ -592,12 +631,60 @@ as well as what element it is represented by.
 <h4><a id=proof-of-uniqueness-upto-unique-isomorphism href='#proof-of-uniqueness-upto-unique-isomorphism'> § </a> Proof of uniqueness upto unique isomorphism</h4>
 <ul><li> Assume we have two products <span class='latexinline'>
 (<span style="font-style:italic">p</span>, &#X3C0;<sub><span style="font-style:italic">a</span></sub>, &#X3C0;<sub><span style="font-style:italic">b</span></sub>)</span> and <span class='latexinline'>
-(<span style="font-style:italic">q</span>, &#X3C0;<sub><span style="font-style:italic">a</span></sub>, &#X3C0;<sub><span style="font-style:italic">b</span></sub>)</span>.</li><li> By the universality of <span class='latexinline'>
-<span style="font-style:italic">p</span></span>, we get a map <span class='latexinline'>
-<span style="font-style:italic">q</span>2<span style="font-style:italic">p</span></span> ... </li><li> By the universality of <span class='latexinline'>
-<span style="font-style:italic">q</span></span>, we get a map <span class='latexinline'>
+(<span style="font-style:italic">q</span>, &#X3C0;<sub><span style="font-style:italic">a</span></sub>, &#X3C0;<sub><span style="font-style:italic">b</span></sub>)</span>, which
+  are products of <span class='latexinline'>
+<span style="font-style:italic">a</span></span> and <span class='latexinline'>
+<span style="font-style:italic">b</span></span></li><li> By the universality of <span class='latexinline'>
+<span style="font-style:italic">p</span></span> wrt <span class='latexinline'>
+<span style="font-style:italic">q</span></span>, we get a unique! map <span class='latexinline'>
+<span style="font-style:italic">q</span>2<span style="font-style:italic">p</span></span> such that the diagaram commutes.</li><li> By the universality of <span class='latexinline'>
+<span style="font-style:italic">q</span></span> wrt <span class='latexinline'>
+<span style="font-style:italic">p</span></span>, we get a unique! map <span class='latexinline'>
 <span style="font-style:italic">p</span>2<span style="font-style:italic">q</span></span></li><li> We get a map <span class='latexinline'>
-<span style="font-style:italic">p</span>2<span style="font-style:italic">q</span> . <span style="font-style:italic">q</span>2<span style="font-style:italic">p</span></span> such that </li><li> </li></ul>
+<span style="font-style:italic">q</span>2<span style="font-style:italic">p</span> &#XB7; <span style="font-style:italic">p</span>2<span style="font-style:italic">q</span> : <span style="font-style:italic">p</span> &#X2192; <span style="font-style:italic">p</span></span>. by the universality of <span class='latexinline'>
+<span style="font-style:italic">p</span></span> with
+  respect to <span class='latexinline'>
+<span style="font-style:italic">p</span></span>, we get a unique! map that makes the diagram commute.But we have
+  two such maps: <span class='latexinline'>
+<span style="font-style:italic">id</span><sub><span style="font-style:italic">p</span></sub></span> as well as <span class='latexinline'>
+<span style="font-style:italic">q</span>2<span style="font-style:italic">p</span> . <span style="font-style:italic">p</span>2<span style="font-style:italic">q</span></span>. Hence we must have <span class='latexinline'>
+<span style="font-style:italic">id</span><sub><span style="font-style:italic">p</span></sub> = <span style="font-style:italic">q</span>2<span style="font-style:italic">p</span> &#XB7; <span style="font-style:italic">p</span>2<span style="font-style:italic">q</span></span>. In pictures:</li></ul>
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+<ul><li> The full diagram commutes.</li><li> By definition of identity/commutativity of the diagram, <span class='latexinline'>
+&#X3C0;<sub><span style="font-style:italic">a</span></sub> &#X2218; <span style="font-style:italic">id</span><sub><span style="font-style:italic">p</span></sub> = &#X3C0;<sub><span style="font-style:italic">a</span></sub></span>.</li><li> By definition of identity/commutativity of the diagram, <span class='latexinline'>
+&#X3C0;<sub><span style="font-style:italic">b</span></sub> &#X2218; <span style="font-style:italic">id</span><sub><span style="font-style:italic">p</span></sub> = &#X3C0;<sub><span style="font-style:italic">b</span></sub></span>.</li><li> By the commutativity of the diagram, we have <span class='latexinline'>
+&#X3C0;<sub><span style="font-style:italic">a</span></sub> &#X2218; (<span style="font-style:italic">q</span>2<span style="font-style:italic">p</span> &#X2218; <span style="font-style:italic">p</span>2<span style="font-style:italic">q</span>) = &#X3C0;<sub><span style="font-style:italic">a</span></sub></span>.</li><li> By the commutativity of the diagram, we have <span class='latexinline'>
+&#X3C0;<sub><span style="font-style:italic">b</span></sub> &#X2218; (<span style="font-style:italic">q</span>2<span style="font-style:italic">p</span> &#X2218; <span style="font-style:italic">p</span>2<span style="font-style:italic">q</span>) = &#X3C0;<sub><span style="font-style:italic">b</span></sub></span>.</li><li> We can consider the universal property of the product, where we have
+  <span class='latexinline'>
+(<span style="font-style:italic">p</span>, &#X3C0;<sub><span style="font-style:italic">a</span></sub>, &#X3C0;<sub><span style="font-style:italic">b</span></sub>)</span> as one product, and <span class='latexinline'>
+(<span style="font-style:italic">p</span>, &#X3C0;<sub><span style="font-style:italic">a</span></sub> , &#X3C0;<sub><span style="font-style:italic">b</span></sub>)</span> as another
+  product.</li><li> This gives us a <b>unique map</b> <span class='latexinline'>
+<span style="font-style:italic">h</span></span> such that <span class='latexinline'>
+&#X3C0;<sub><span style="font-style:italic">a</span></sub> &#X2218; <span style="font-style:italic">h</span> = &#X3C0;<sub><span style="font-style:italic">a</span></sub></span>, and
+  <span class='latexinline'>
+&#X3C0;<sub><span style="font-style:italic">b</span></sub> &#X2218; <span style="font-style:italic">h</span> = &#X3C0;<sub><span style="font-style:italic">b</span></sub></span>.</li><li> We have two candidates for <span class='latexinline'>
+<span style="font-style:italic">h</span></span>: <span class='latexinline'>
+<span style="font-style:italic">h</span> = <span style="font-style:italic">id</span><sub><span style="font-style:italic">p</span></sub></span> and <span class='latexinline'>
+<span style="font-style:italic">h</span> = <span style="font-style:italic">p</span>2<span style="font-style:italic">q</span> &#X2218; <span style="font-style:italic">q</span>2<span style="font-style:italic">p</span></span>.
+  Hence, by the uniqueness of <span class='latexinline'>
+<span style="font-style:italic">h</span></span>, we have that <span class='latexinline'>
+<span style="font-style:italic">id</span><sub><span style="font-style:italic">p</span></sub> = <span style="font-style:italic">p</span>2<span style="font-style:italic">q</span> &#X2218; <span style="font-style:italic">q</span>2<span style="font-style:italic">p</span></span>.</li></ul>
 <h2><a id=why-is-the-spectrum-of-a-ring-called-so href='#why-is-the-spectrum-of-a-ring-called-so'> § </a> <a href=#why-is-the-spectrum-of-a-ring-called-so>Why is the spectrum of a ring called so?</a></h2>
 I've been watching Ravi Vakil's excellent "pseudolectures" on algebraic geometry,
 aptly titled
@@ -1185,7 +1272,7 @@ to arrive at Djikstra's
 <ul><li> By combining the two pieces of information, we are led to the
   usual implementation: Order the events by time using a queue, and then
   add new explorations as we get to them.</li></ul>
-<h2><a id=intuitions-for-hyperbolic-space- href='#intuitions-for-hyperbolic-space-'> § </a> <a href=#intuition-for-hyperbolic-space>Intuitions for hyperbolic space</a> </h2>
+<h2><a id=intuitions-for-hyperbolic-space href='#intuitions-for-hyperbolic-space'> § </a> <a href=#intuitions-for-hyperbolic-space>Intuitions for hyperbolic space</a></h2>
 <ul><li> <a href=https://math.stackexchange.com/questions/689257/topics-in-combinatorial-group-theory-for-a-short-talk/692534#692534>Combinatorial group theory</a></li><li> <a href=https://math.stackexchange.com/questions/330531/algebra-best-mental-images/331135#331135>Van Kampen diagrams: an intuition</a></li><li> <a href=https://math.berkeley.edu/~kpmann/DIYhyp.pdf>DIY Hyperbolic geometry</a></li><li> <a href=https://dawn.cs.stanford.edu/2018/03/19/hyperbolics/>Hyperbolic Embeddings with a Hopefully Right Amount of Hyperbole</a></li><li> <a href=library.msri.org/books/Book31/files/cannon.pdf>Notes on Hyperbolic geometry by Canon</a></li><li> A question on <code>math.se</code> that attempts to describe hyperbolic space: <a href=https://math.stackexchange.com/questions/1407550/what-hyperbolic-space-really-looks-like>What hyperbolic space really looks like</a></li><li> <a href=https://math.stackexchange.com/questions/3520395/what-does-hyperbolic-space-feel-like>Another question about what hyperbolic space feels like</a></li><li> <a href=https://www.math.ucdavis.edu/~kapovich/280-2009/hyplectures_papasoglu.pdf>Notes On Hyperbolic and Automatic Groups: Michael Batty</a></li><li> <a href=https://people.maths.ox.ac.uk/bridson/papers/bfs/bfs.pdf>The geometry of the word problem by Martin R Bridson</a></li><li> <a href=http://www.stevejtrettel.com/living-in-hyperbolic-space.html>Living in Hyperbolic space</a></li><li> <a href=https://math.stackexchange.com/questions/1347/studying-euclidean-geometry-using-hyperbolic-criteria>We can embed euclidian space into hyperbolic space</a></li><li> <a href=https://math.stackexchange.com/questions/289716/hyperbolic-diameter-of-amslers-surface>Amsler surface: A surface with constant negative gaussian curvature</a></li><li> <a href=https://math.stackexchange.com/questions/1887685/hyperbolic-distance-confusion>Hyperbolic distance naturally measures distance as paths of light with varying refractive index</a></li><li> <a href=https://mathworld.wolfram.com/Pseudosphere.html>The pseudosphere, another surface with constant negative curvature</a></li><li> <a href=https://en.wikipedia.org/wiki/Whale_vocalization#Selected_discography>Whalesong, selected discography</a></li></ul>
 <h2><a id=product-of-compact-spaces-in-compact href='#product-of-compact-spaces-in-compact'> § </a> <a href=#product-of-compact-spaces-is-compact>Product of compact spaces in compact</a></h2>
 <img width="600" src="./static/product-of-compact-is-compact.png">
