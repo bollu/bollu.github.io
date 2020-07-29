@@ -364,6 +364,9 @@ svg {
             svg.setAttribute("font-family", "monospace");
             container.appendChild(svg);
             svg.renderfn = renderfn;
+            // empty functions for start and end
+            svg.start_render_fn = () => { console.log(svg, "started rendering"); };
+            svg.end_render_fn = () => { console.log(svg, "ended rendering"); };
 
 
             const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
@@ -416,7 +419,7 @@ svg {
             for(let i = 0; i < containers.length; ++i) {
                 status = scroll_is_inside_container(containers[i]);
                  if (status['is_inside'] == true) {
-                    console.log("container:", i, window.scrollY, status);
+                    // console.log("container:", i, window.scrollY, status);
                     cur_svg = svgs[i];
                     break;
                  }
@@ -424,17 +427,24 @@ svg {
 
             if (!cur_svg && prev_svg) {
                 prev_svg.style.position = "static";
+                prev_svg.end_render_fn(status);
                 prev_svg = undefined;
             }
             // if (prev_svg && prev_svg != cur_svg) {
             //     prev_svg.style.position = "static";
             // }
             if (prev_svg != cur_svg) {
-                if (prev_svg) { prev_svg.style.position = "static"; }
+                if (prev_svg) { 
+                    prev_svg.style.position = "static";
+                    prev_svg.end_render_fn(status);
+                }
+                
                 cur_svg.style.position = "fixed";
                 cur_svg.style.top = "0px";
                 cur_svg.style.left = "0px";
-                prev_svg = cur_svg;
+                prev_svg = cur_svg;            
+                cur_svg.start_render_fn(status);
+                
             }
             // invoke the draw() method of the current SVG container.
             if (cur_svg) { cur_svg.renderfn(status); }
