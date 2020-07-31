@@ -40,6 +40,12 @@
 
 </head>
 <style>
+
+body {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
 .explain-card {
     z-index: 100;
     background-color: #FFFFFF;
@@ -50,6 +56,12 @@
     max-width: 50vw;
     position: relative;
 };
+
+.container {
+    margin: 0px;
+    width: 100%;
+}
+
 svg {
     z-index: 0;
 };
@@ -321,31 +333,45 @@ svg {
 
     PDE may not have solutions for given boundary conditions.  
 
-    <div id="container1">
+    <div id="container1" class="container">
         <div class="explain-card" style="position:relative; top:50vh">
             provides a model for a wide variety of physical behaviour. 
             For example, the heat equation: \( du/dt = \nabla u \) </div>
         <div class="explain-card" style="top:100vh">explanation2</div>
     </div>
-    <div id="container2"></div>
-    <div id="container3"></div>
+
+
+    <h1> FOOBAR </h1>
+    <h1> FOOBAR </h1>
+    <h1> FOOBAR </h1>
+    <h1> FOOBAR </h1>
+    <h1> FOOBAR </h1>
+    <h1> FOOBAR </h1>
+
+    <div id="container2" class="container"></div>
+    <div id="container3" class="container"></div>
 
     <script>"use strict";
 
 
         // only returns true once we have passed the top of this element
         // and are inside this elemen
-        function scroll_is_inside_container(elem) {
+        function scroll_is_inside_container(container, svg) {
             const scrollTop  =  window.pageYOffset || document.documentElement.scrollTop;
-            const height = elem.getBoundingClientRect().height;
-            const top = elem.getBoundingClientRect().top + scrollTop;
+            const height = container.getBoundingClientRect().height;
+            const viewpointHeight = svg.getBoundingClientRect().height;
+            const top = container.getBoundingClientRect().top + scrollTop;
 
             const y = window.scrollY;
             if (y >= top && y < top + height) {
-                const progress = (y - top) / height;
+                const progress = (y - top) / (height - viewpointHeight);
+                if (progress > 1) {
+                    // need to convert to absolute positioning here
+                    return { 'is_inside': false, progress: 'leaving_bottom'};
+                }
                 return { 'is_inside': true, 'progress': progress };
             }
-            return { 'is_inside': false, 'progress': undefined };
+            return { 'is_inside': false, 'progress': 'leaving_top' };
         }
 
         // 'height' is the height of the container.
@@ -354,7 +380,6 @@ svg {
             const svg = 
                 document.createElementNS("http://www.w3.org/2000/svg", "svg");
 
-            container.style.width = width + "px"; 
             container.style.height = container_height + "px";
 
             svg.setAttribute("width", "100%");
@@ -367,14 +392,6 @@ svg {
             // empty functions for start and end
             svg.start_render_fn = () => { console.log(svg, "started rendering"); };
             svg.end_render_fn = () => { console.log(svg, "ended rendering"); };
-
-
-            const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-            circle.setAttribute("cx", 400);
-            circle.setAttribute("cy", 300);
-            circle.setAttribute("r", 50);
-            circle.setAttribute("fill", "#222222");
-            svg.appendChild(circle);
 
             return svg;
         };
@@ -393,13 +410,25 @@ svg {
         const container2 = document.getElementById("container2");
         const continer3 = document.getElementById("continer3");
         
-        const svg1 = make_container(container1, 6000, () => { console.log("XXX"); });
-        svg1.style.backgroundColor = BLUE;
-        container1.style.backgroundColor = DARKBLUE;
-        console.log("FOO");
+        const svg1 = make_container(container1, 6000, (dt) => {
+            console.log("CONTAINER1 dt: ", dt);
+        });
+        const circle1 = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        circle1.setAttribute("cx", 400);
+        circle1.setAttribute("cy", 300);
+        circle1.setAttribute("r", 50);
+        circle1.setAttribute("fill", "#222222");
+        svg1.appendChild(circle1);
 
-        const svg2 = make_container(container2, 6000, () => { console.log("YYY"); });
-        svg2.style.backgroundColor =  GRAY;
+
+
+        // svg1.style.backgroundColor = BLUE;
+        // container1.style.backgroundColor = DARKBLUE;
+        // console.log("FOO");
+
+        const svg2 = make_container(container2, 6000, (dt) => {
+            console.log("CONTAINER2 dt: ", dt);
+        });
         container2.style.backgroundColor = DARKGRAY;
 
 
@@ -417,28 +446,24 @@ svg {
             const svgs = [svg1, svg2, svg3];
             let status = undefined;
             for(let i = 0; i < containers.length; ++i) {
-                status = scroll_is_inside_container(containers[i]);
+                status = scroll_is_inside_container(containers[i], svgs[i]);
                  if (status['is_inside'] == true) {
-                    // console.log("container:", i, window.scrollY, status);
                     cur_svg = svgs[i];
                     break;
                  }
             }
 
-            if (!cur_svg && prev_svg) {
+            if (prev_svg != cur_svg && prev_svg) {
+
+                // if (status['progress'] == 'leaving_bottom') {
+                //     prev_svg.style.bottom = "0px";
+                // }
                 prev_svg.style.position = "static";
                 prev_svg.end_render_fn(status);
                 prev_svg = undefined;
             }
-            // if (prev_svg && prev_svg != cur_svg) {
-            //     prev_svg.style.position = "static";
-            // }
+
             if (prev_svg != cur_svg) {
-                if (prev_svg) { 
-                    prev_svg.style.position = "static";
-                    prev_svg.end_render_fn(status);
-                }
-                
                 cur_svg.style.position = "fixed";
                 cur_svg.style.top = "0px";
                 cur_svg.style.left = "0px";
@@ -447,7 +472,7 @@ svg {
                 
             }
             // invoke the draw() method of the current SVG container.
-            if (cur_svg) { cur_svg.renderfn(status); }
+            if (cur_svg) { cur_svg.renderfn(status['progress']); }
             window.requestAnimationFrame(check_scroll);
         }
 
