@@ -60,10 +60,21 @@ body {
 .container {
     margin: 0px;
     width: 100%;
+    position:relative;
+    background-color: #555555 !important;
+}
+
+.marker {
+    position: relative;
+    margin: 0px;
+    width: 100%;
+    height: 1px;
+    background-color: #A0A0A0;
 }
 
 svg {
     z-index: 0;
+    background-color: #eeeeee;
 };
 </style>
     <body>
@@ -149,7 +160,7 @@ svg {
     \delta (x_0) \sim \lim_{r \rightarrow 0} 1/r^2 (\frac{1}{|B_r(x_0)|}) \int_{B_r{x_0}} u(x) dx - u(x_0)
     \] 
 
-    <h1> Heat equation </h1>
+    <h1> Heat equation </h1>    
 
     Change in the function value is equal to the laplacian of the function: \(du/dt = \delta u\).
     Values move to the average of nearby values, till it becomes completely constant.
@@ -328,16 +339,14 @@ svg {
 
     <h2> Neumann conditions </h2>
 
-    <!-- https://youtu.be/oEq9ROl9Umk?t=4093 -->
     Use laplace equation.
 
     PDE may not have solutions for given boundary conditions.  
 
-    <div id="container1" class="container">
-        <div class="explain-card" style="position:relative; top:50vh">
-            provides a model for a wide variety of physical behaviour. 
-            For example, the heat equation: \( du/dt = \nabla u \) </div>
-        <div class="explain-card" style="top:100vh">explanation2</div>
+    <div id="container-1" class="container">
+        <div id="marker-enter-1" class="marker"></div>
+        <div id="scroll-container-1"></div>
+        <div id="marker-exit-1" class="marker"></div>
     </div>
 
 
@@ -348,8 +357,8 @@ svg {
     <h1> FOOBAR </h1>
     <h1> FOOBAR </h1>
 
-    <div id="container2" class="container"></div>
-    <div id="container3" class="container"></div>
+    <div id="container-2" class="container"></div>
+    <div id="container-3" class="container"></div>
 
     <script>"use strict";
 
@@ -375,20 +384,23 @@ svg {
         }
 
         // 'height' is the height of the container.
-        function make_container(container, container_height, renderfn) {
+        function make_container(container, container_height, render_fn) {
             const width = 200;
             const svg = 
                 document.createElementNS("http://www.w3.org/2000/svg", "svg");
 
-            container.style.height = container_height + "px";
+            container.style.height = container_height * 100 + "vh";
 
             svg.setAttribute("width", "100%");
             svg.setAttribute("height", "100vh");
             // so the coordinate system of SVG canvas will be 800x600
             svg.setAttribute("viewBox", "0 0 800 600");
             svg.setAttribute("font-family", "monospace");
+            svg.setAttribute("background-color", "#dd0000");
+
             container.appendChild(svg);
-            svg.renderfn = renderfn;
+            svg.render_fn = render_fn;
+            svg.entered = false;
             // empty functions for start and end
             svg.start_render_fn = () => { console.log(svg, "started rendering"); };
             svg.end_render_fn = () => { console.log(svg, "ended rendering"); };
@@ -406,53 +418,143 @@ svg {
         const DARKBLUE = "#283593";
         const DARKGRAY = "#37474F";
 
-        const container1 = document.getElementById("container1");
-        const container2 = document.getElementById("container2");
-        const continer3 = document.getElementById("continer3");
+        const container_1 = document.getElementById("container-1");
+        const container_2 = document.getElementById("container-2");
+        const container_3 = document.getElementById("container-3");
         
-        const svg1 = make_container(container1, 6000, (dt) => {
-            console.log("CONTAINER1 dt: ", dt);
+        const marker_enter_1 = document.getElementById("marker-enter-1");
+        const marker_enter_2 = document.getElementById("marker-enter-2");
+        const marker_enter_3 = document.getElementById("marker-enter-3");
+
+        const marker_exit_1 = document.getElementById("marker-exit-1");
+        const marker_exit_2 = document.getElementById("marker-exit-2");
+        const marker_exit_3 = document.getElementById("marker-exit-3");
+
+
+        const svg_1 = make_container(document.getElementById("scroll-container-1"), 8, (dt) => {
+            console.log("container_1 dt: ", dt);
         });
-        const circle1 = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-        circle1.setAttribute("cx", 400);
-        circle1.setAttribute("cy", 300);
-        circle1.setAttribute("r", 50);
-        circle1.setAttribute("fill", "#222222");
-        svg1.appendChild(circle1);
+        const circle_1 = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        circle_1.setAttribute("cx", 400);
+        circle_1.setAttribute("cy", 300);
+        circle_1.setAttribute("r", 50);
+        circle_1.setAttribute("fill", "#222222");
+        svg_1.appendChild(circle_1);
 
 
 
         // svg1.style.backgroundColor = BLUE;
-        // container1.style.backgroundColor = DARKBLUE;
+        // container_1.style.backgroundColor = DARKBLUE;
         // console.log("FOO");
 
-        const svg2 = make_container(container2, 6000, (dt) => {
-            console.log("CONTAINER2 dt: ", dt);
+        const svg_2 = make_container(container_2, 4, (dt) => {
+            console.log("container_2 dt: ", dt);
         });
-        container2.style.backgroundColor = DARKGRAY;
+        container_2.style.backgroundColor = DARKGRAY;
 
 
-        const svg3 = make_container(container3, 6000, () => { console.log("ZZZ") });
-        svg3.style.backgroundColor = PINK;
-        container3.style.backgroundColor = DARKPINK;
+        const svg_3 = make_container(container_3, 2, () => { console.log("ZZZ") });
+        svg_3.style.backgroundColor = PINK;
+        container_3.style.backgroundColor = DARKPINK;
         console.log("BAR");
 
         let i = 0;
-        let prev_svg = undefined;
+        let prev_focused_ix = undefined;
 
         function check_scroll() {
-            let cur_svg = undefined;
-            const containers = [ container1, container2, container3];
-            const svgs = [svg1, svg2, svg3];
-            let status = undefined;
-            for(let i = 0; i < containers.length; ++i) {
-                status = scroll_is_inside_container(containers[i], svgs[i]);
-                 if (status['is_inside'] == true) {
-                    cur_svg = svgs[i];
-                    break;
-                 }
+            window.requestAnimationFrame(check_scroll);
+            const containers = [ container_1, container_2, container_3];
+            const svgs = [svg_1, svg_2, svg_3];
+            const enter_markers = [marker_enter_1, marker_enter_2, marker_enter_3];
+            const exit_markers = [marker_exit_1, marker_exit_2, marker_exit_3];
+
+            let cur_focused_ix = undefined;
+
+            for(let i = 0; i < 1; ++i) {
+                // console.log("scrolling: ", containers[i], svgs[i]);
+
+                // boundingClientRect is relative to what is being seen.
+                // When it has .top > 0, it is "above".
+
+                // *(0, 0)------------*--> +x
+                // |     VIEWPORT     |
+                // |                  |
+                // |   *============* |
+                // |   | CONTAINER  | |
+                // *------------------*
+                // |   |            | 
+                // v   *============* 
+                // +y
+                //      
+
+                // When it is .top = 0, it has just filled the screen:
+                // 
+                // *(0, 0)--*=============*-*---> +x
+                // |        | CONTAINER  |  |
+                // |        |            |  |
+                // |        |            |  |
+                // |        *============*  |
+                // |           VIEWPORT     |
+                // v
+                // +y
+
+
+                // When it has top < 0, we are scrolling the container
+                //             *==========*
+                //             |CONTAINER |
+                //  *(0,0)---------------------*---> +x
+                //  |          |          |  |
+                //  |          *==========*  |
+                //  |            VIEWPORT    |
+                //  |
+                //  v
+                // +y
+
+                const viewport = { top: window.scrollY, height: Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0) };
+                const container_rect = containers[i].getBoundingClientRect();
+                const svg_rect = svgs[i].getBoundingClientRect();
+                const enter_marker_rect = enter_markers[i].getBoundingClientRect();
+                const exit_marker_rect = exit_markers[i].getBoundingClientRect();
+
+                if (enter_marker_rect.top > 0) {
+                    svgs[i].style.position = "relative";
+                    svgs[i].style.left = "0px";
+                    svgs[i].style.top = "0px";
+                } else if (exit_marker_rect.bottom < viewport.height) {
+                    svgs[i].style.position = "relative";
+                    svgs[i].style.left = "0px";
+                    svgs[i].style.top = (container_rect.height - svg_rect.height) + "px";
+                } else {
+                    svgs[i].style.position = "fixed";
+                    svgs[i].style.top = "0px";
+                    svgs[i].style.left =  "0px";
+                    // width that we have
+                    const total = (exit_marker_rect.top - exit_marker_rect.bottom - viewport.height);
+                    const progress = 1.0 - (container_rect.bottom - viewport.height) / (container_rect.height - viewport.height);
+
+                    svgs[i].render_fn(progress);
+                    /*
+                    console.log("====");
+                    console.log("enter_marker_rect.top: ",
+                        enter_marker_rect.top,
+                        "enter_marker_rect.bottom: ",
+                        enter_marker_rect.bottom);                     
+                    console.log("exit_marker_rect.top: ",
+                        exit_marker_rect.top,
+                        "exit_marker_rect.bottom",
+                        exit_marker_rect.bottom);
+                    console.log("container_rect.bottom: ", container_rect.bottom);         
+                    console.log("progress: ", progress);      
+                    console.log("viewport.top: ", viewport.top);
+                    */
+
+                }
             }
 
+            prev_focused_ix = cur_focused_ix;
+            //setTimeout(check_scroll, 300);
+
+            /*
             if (prev_svg != cur_svg && prev_svg) {
 
                 // if (status['progress'] == 'leaving_bottom') {
@@ -474,6 +576,8 @@ svg {
             // invoke the draw() method of the current SVG container.
             if (cur_svg) { cur_svg.renderfn(status['progress']); }
             window.requestAnimationFrame(check_scroll);
+        */
+
         }
 
         window.onload = check_scroll;
