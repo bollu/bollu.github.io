@@ -1,3 +1,127 @@
+- [Nice example of left/right identities in terms of colored sheets](https://www.reddit.com/r/math/comments/hzyt8l/consider_a_set_of_opaque_colored_sheets_along/)
+> Consider a set of opaque colored sheets, along with a binary operation of
+> stacking sheets. Then every sheet is a left identity, UNLESS you add a
+> transparent sheet to the set, at which point none of the other sheets are
+> left identities anymore, and only the transparent sheet remains as an
+> identity.
+
+- [Why do people stay poor?](http://sticerd.lse.ac.uk/dps/eopp/eopp67.pdf)
+>  There are two views as to why people stay poor. The equal opportunity view
+>  emphasizesthat differences in individual traits like talent or motivation
+>  make the poor choose lowproductivity jobs.  The poverty traps view
+>  emphasizes that access to opportunitiesdepends on initial wealth and hence
+>  poor people have no choice but to work in lowproductivity jobs. We test the
+>  two views using the random allocation of an asset transferprogram that gave
+>  some of the poorest women in Bangladesh access to the same jobopportunities
+>  as their wealthier counterparts in the same villages.  The data rejectsthe
+>  null of equal opportunities. ...  Our findings imply that largeone-off
+>  transfers that enable people to take on more productive occupations can
+>  helpalleviate persistent poverty.
+
+
+- SPQR by Mary Beard: is a Roman history more or less with the midpoint as the
+  fall of the Republic and transition to Empire... a very apt piece of history
+  in the current political climate.
+- Anarchy, State, and Utopia by Robert Nozick:
+> Nozick argues in favor of a minimal state, "limited to the narrow functions
+> of protection against force, theft, fraud, enforcement of contracts, and so
+> on." When a state takes on more responsibilities than these, Nozick argues,
+> rights will be violated. To support the idea of the minimal state, Nozick
+> presents an argument that illustrates how the minimalist state arises
+> naturally from anarchy and how any expansion of state power past this
+> minimalist threshold is unjustified.
+
+- Lam's Lectures on Rings and Modules, apparently the
+  [best book in the world for rings and modules](https://blog.jpolak.org/?p=1494)
+- [New dimensions in geometry by manin](https://people.mpim-bonn.mpg.de/zagier/files/doi/10.1007/BFb0084581/chapter04.pdf).
+  Describes "supergeometry", where we analyze `Z[x1,..., xn, e1, ... en]`
+  where the `ei` anticommute amongst themselves, and commute with the `xi`.
+  This gives it a symplectic dimension (`ei`), regular space dimension (`xi`),
+  plus a single `Z` dimension. This somehow leads to the notion that `Spec(Z)` ought
+  to be thought of as a 3-manifold..
+- Measure theoretic proof of Chebyshev: https://mathoverflow.net/a/65922/123769
+- [Geometry of Kalman filters](https://projecteuclid.org/euclid.jgsp/1495245641)
+- [How inuit parents teach children to control their anger](https://www.npr.org/sections/goatsandsoda/2019/03/13/685533353/a-playful-way-to-teach-kids-to-control-their-anger).
+>Traditional Inuit parenting is incredibly nurturing and tender. If you took
+> all the parenting styles around the world and ranked them by their gentleness,
+> the Inuit approach would likely rank near the top. (They even have a special
+> kiss for babies, where you put your nose against the cheek and sniff the skin.)
+> The culture views scolding — or even speaking to children in an angry voice —
+> as inappropriate, says Lisa Ipeelie, a radio producer and mom who grew up with
+> 12 siblings. "When they're little, it doesn't help to raise your voice," she
+> says. "It will just make your own heart rate go up."
+> Traditionally, the Inuit saw yelling at a small child as demeaning. It's as if
+> the adult is having a tantrum; it's basically stooping to the level of the
+> child, Briggs documented. 
+- [Vicious circles](https://twitter.com/sigfpe/status/1286298055306706944/photo/1) --- contains
+  stories of sets, quines, and recursion theory. Contains theorems on how to
+  formally derive quines.
+- [MIT OCW lecture notes for combinatorics](https://ocw.mit.edu/courses/mathematics/18-315-combinatorial-theory-introduction-to-graph-theory-extremal-and-enumerative-combinatorics-spring-2005/lecture-notes/)
+- [Uses of the internal language of a topos in AG](https://rawgit.com/iblech/internal-methods/master/notes.pdf).
+  Contains references to why topoi matter.
+- [Good notes on the hungarian algorithm](https://www.cse.ust.hk/~golin/COMP572/Notes/Matching.pdf)
+- [Introduction to the theory of schemes by Manin](https://sites.icmc.usp.br/grossi/Sasha/galg/manin.pdf)
+  appears to contain much geometric content about scheme theory, along with cleaner pictures of `Spec`
+  where `Spec` is drawn as "layered" instead of "fuzzy" as mumford does.
+- [Page of David a Cox that contains a wealth of information about grobner basis, elimination theory, toric varieties](https://dacox.people.amherst.edu/). It also contains information on the [relationship between Newton's method and Galois theory](https://dacox.people.amherst.edu/lectures/newton.pdf).
+- [How to learn arithmetic geometry](https://terrytao.wordpress.com/career-advice/learn-and-relearn-your-field/#comment-36823/)
+- [Great example explaining how egyptian is both logographic as well as phonographic](https://www.reddit.com/r/AskHistorians/comments/hswhqx/how_did_humans_work_in_fields_in_the_heat_for/fyevea7/)
+- Constantinople myth: it will rise and fall to an emperor named Constantine with
+  a mother named Helena.
+- [Algebraic Geometry from the beginning](https://rigtriv.wordpress.com/ag-from-the-beginning/).
+  Expository blog posts that has the algebraic, geometric, and computational
+  parts of AG. Really neat!
+- [The oldschool PC font resource](https://int10h.org/oldschool-pc-fonts/download/).
+  I found some fonts I really enjoyed! (i) Px437 Amstrad PC-2y regular.
+  (ii) Px437 ApricotXenC Regular/Bold. (iii) Px437 Compaq Port3 Regular
+  (iv) Px437 Compis regular. (v) Px437 PhoenixEGA 9x14 regular.
+- [Karpman drama triangle](https://en.wikipedia.org/wiki/Karpman_drama_triangle)
+> The drama triangle is a social model of human interaction – the triangle maps
+> a type of destructive interaction that can occur between people in conflict
+> The triangle of actors in the drama are oppressors, victims and rescuers.
+  **The Victim:** The Victim's stance is "Poor me!" The Victim feels
+  victimized, oppressed, helpless, hopeless, powerless, ashamed, and seems
+  unable to make decisions, solve problems, take pleasure in life, or achieve
+  insight.  The Victim, if not being persecuted, will seek out a Persecutor and
+  also a Rescuer who will save the day but also perpetuate the Victim's
+  negative feelings.  **The Rescuer:** The rescuer's line is "Let me help you."
+  A classic enabler, the Rescuer feels guilty if they don't go to the rescue.
+  Yet their rescuing has negative effects: It keeps the Victim dependent and
+  gives the Victim permission to fail. The rewards derived from this rescue
+  role are that the focus is taken off of the rescuer. When they focus their
+  energy on someone else, it enables them to ignore their own anxiety and
+  issues. This rescue role is also pivotal because their actual primary
+  interest is really an avoidance of their own problems disguised as concern
+  for the victim’s needs.  **The Persecutor: (a.k.a. Villain):** The Persecutor
+  insists, "It's all your fault." The Persecutor is controlling, blaming,
+  critical, oppressive, angry, authoritarian, rigid, and superior.
+
+- [Classical Algebraic Geometry: a modern view](http://www.math.lsa.umich.edu/~idolga/CAG.pdf)
+  Tome of classical AG.
+- [From Tao's article on gauges](https://terrytao.wordpress.com/2008/09/27/what-is-a-gauge/): 
+    (i) Quivers. This theory basically concerns connections on vector bundles over
+     (usually finite) directed graphs. One novel feature, over manifolds, is
+     that the dimension of the “bundle” may change over different points. The
+     “connection”, usually called a representation of the quiver, is a choice
+     of linear map for each edge of the graph. If one fixes a gauge, i.e. a
+     basis for each vector space, then the theory is boring — the space of
+     connections is itself a big vector space. The interest is in the gauge
+     transformations, whose group is the product of the general linear groups
+     of the vector spaces. (ii) Currency trading
+- [if everything is political, nothing works](https://pjmedia.com/news-and-politics/sarah-hoyt/2019/01/20/when-everything-is-political-nothing-works-n63221)
+- [Science is politics; it is not _politics_](https://publicseminar.org/2017/06/not-everything-political-is-politics/)
+- [Kaliedoscopes: optics through applicatives](https://chrispenner.ca/posts/kaleidoscopes)
+- [UPenn linguistics course](https://www.ling.upenn.edu/courses/Fall_2003/ling001/schedule.html). Has 
+  lecture notes.
+- [Three dimensional geometry and topology](https://www.amazon.com/Three-Dimensional-Geometry-Topology-Vol-1/dp/0691083045)
+> Most of it is readable to undergraduates. Its target audience, though, is
+> beginning graduate students in mathematics. If not already familiar with
+> hyperbolic geometry, you might want to get an introduction to the subject
+> first. Once with this background, though, you will discover there is another
+> level of understanding of hyperbolic space you never realized was possible. One
+> imagines Thurston able to skateboard around hyperbolic space with the kind of
+> geometric understanding he conveys here.
+- [1/k! as the volume of the k-simplex: gives geometric meaning to the 1/k! in taylor series.](https://math.stackexchange.com/questions/3753212/is-there-any-geometrical-intuition-for-the-factorials-in-taylor-expansions)
 - [Dark Mountain movement](https://dark-mountain.net/about/manifesto/). A movement
   about changing the narrative of the 21st century to stave off, or at least
   prepare better for, the eventual cycle of collapse of society.
