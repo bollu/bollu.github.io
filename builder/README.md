@@ -12,10 +12,12 @@
 
 - https://www.cprogramming.com/tutorial/unicode.html
 - key-value database: [`kissdb`](https://github.com/adamierymenko/kissdb)
+- [Unpoly](https://unpoly.com/up.protocol) for fast page prefetching and 
+  navigation inside a static site.
 
 
 How to check if horizontal scrollbar exists:
-```
+```js
 if ((window.innerHeight - document.documentElement.clientHeight) >0) {
     console.log('H-scrollbar active')
 }
