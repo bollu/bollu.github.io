@@ -1,2 +1,2 @@
 main.pdf: main.tex
-	pdflatex main.tex
+	latexmk main.tex -shell-escape -pdf
