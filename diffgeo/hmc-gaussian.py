@@ -122,7 +122,7 @@ def gaussian_mh(startq, n):
 
     return (naccept, np.asarray(qs))
 
-NITERS = int(10)
+NITERS = int(20)
 hmc_naccept, hmc_qs = gaussian_hmc(STARTQ, leapfroge, NITERS)
 
 print ("Ideal acceptance ratio: ~20%")
@@ -132,7 +132,7 @@ print("HMC acceptance ratio: %4.2f%%" % (hmc_naccept / NITERS * 100))
 plt.rcParams.update({'font.size': 12, 'font.family':'monospace'})
 fig, ax = plt.subplots()
 
-X, Y = np.meshgrid(np.linspace(-3, 10.0, 100), np.linspace(-3, 10.0, 100))
+X, Y = np.meshgrid(np.linspace(-3, 50.0, 100), np.linspace(-3, 50.0, 100))
 Z = np.empty(X.shape)
 for i in range(X.shape[0]):
     for j in range(X.shape[1]):
@@ -140,13 +140,13 @@ for i in range(X.shape[0]):
 
 plt.contourf(X, Y, Z, cmap='gray')
 
-ax.scatter(hmc_qs[:, 0], hmc_qs[:, 1], label='HMC', c='#E91E6355')
+ax.scatter(hmc_qs[:, 0], hmc_qs[:, 1], label='HMC', c='#E91E63FF')
 
 mh_naccept, mh_qs = gaussian_mh(STARTQ, NITERS)
 
 print("MH acceptance ratio: %4.2f%%" % (mh_naccept / NITERS * 100))
 
-ax.scatter(mh_qs[:, 0], mh_qs[:, 1], label='MH', c='#26C6DA55')
+ax.scatter(mh_qs[:, 0], mh_qs[:, 1], label='MH', c='#26C6DAFF')
 
 
 box = ax.get_position(); ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
