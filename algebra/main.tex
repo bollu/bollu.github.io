@@ -4,6 +4,14 @@
 % Link to rising sea: https://math.stanford.edu/~vakil/216blog/FOAGnov1817public.pdf
 % https://agittoc.zulipchat.com/
 \documentclass{book}
+
+% https://tex.stackexchange.com/a/97128
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+
+
 \usepackage{mathtools}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -13,6 +21,15 @@
 \usepackage{tikz}
 \usepackage{tikz-cd}
 \usepackage{cancel}
+\usepackage{mathtools}
+
+% https://tex.stackexchange.com/questions/469588/strike-out-an-arrow-with-a-small-oblique-segment-like-with-nrightarrow
+% \newcommand*\Neg[2][0mu]{\Neginternal{#1}{\negslash}{#2}}
+% \newcommand*\sNeg[2][0mu]{\Neginternal{#1}{\snegslash}{#2}}
+% \newcommand*\negslash[1]{\m@th#1\not\mathrel{\phantom{=}}}
+% \newcommand*\snegslash[1]{\rotatebox[origin=c]{60}{$\m@th#1-$}}
+
+
 \newcommand{\Hom}{\operatorname{Hom}}
 \newcommand{\F}{\ensuremath{\mathcal{F}}}
 \newcommand{\G}{\ensuremath{\mathcal{G}}}
@@ -29,6 +46,7 @@
 \newcommand{\spec}{\operatorname{Spec}}
 \newcommand{\m}{\mathfrak{m}}
 \newcommand{\p}{\mathfrak{p}}
+\newcommand{\q}{\mathfrak{q}}
 \newcommand{\mSpec}{\m\operatorname{Spec}}
 \newcommand{\mspec}{\m\operatorname{Spec}}
 \newcommand{\frakp}{\ensuremath{\mathfrak{p}}}
@@ -42,6 +60,8 @@
 \newcommand{\piinverse}{\piinv}
 \newcommand{\supp}{\operatorname{Support}}
 \newcommand{\Set}{\ensuremath{\mathbf{Set}}}
+\newcommand{\rad}{\sqrt} % radical
+\newcommand{\c}{\complement} % got tiring
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 \DeclarePairedDelimiter\fracpart{\{}{\}}
@@ -786,7 +806,7 @@ so $radical(\fraka) \xrightarrow{\frakp} 0$.
 
 \section{Q17}
 
-For each $f \in A$, We denote $X_f \equiv V(f)^\complement$ where we have $X = Spec(A)$.
+For each $f \in A$, We denote $X_f \equiv V(f)^\c$ where we have $X = Spec(A)$.
 We first collect some information about these $X_f$ and how to psychologically
 think of them. First, recall that $V(f)$ will contain all the points $x \in X$ such
 that $f$ vanishes over the point $x$: $f \xrightarrow{\frakp_x} 0$. Hence,
@@ -831,10 +851,10 @@ nilradical. (i) $Nil \subseteq \cap Prime$: The nilradical is contained in the i
 ideals. If an element $a \in A$ is nilpotent, then $a^n = 0 \in \frakp$ for all ideals $\frakp$.
 If $\frakp$ is a prime ideal, then $a^{n-1} \in \frakp \lor a \in \frakp$. Induction
 on $n$ proves that $a \in \frakp$. (ii) $\cap Prime \subseteq Nil$: The multiplicative
-semigroup of elements that do not belong to $\cap Prime$ is $\cup Prime^\complement$.
-We claim that no nilpotent element belongs to $\cup Prime^\complement$. Assume
+semigroup of elements that do not belong to $\cap Prime$ is $\cup Prime^\c$.
+We claim that no nilpotent element belongs to $\cup Prime^\c$. Assume
 it does. Then this nilpotent element $n$ is in the complement of
-some prime ideal $\frakp^\complement$.
+some prime ideal $\frakp^\c$.
 
 [NOTE: I don't have good insight into
 why this works]. On the answer, someone told me to think of nilpotents
@@ -965,6 +985,11 @@ $y \not \in Nil(S)$, but $xy = 0 \in Nil(S)$. Therefore, the nilradical of $S$
 is not prime.
 
 \textbf{TODO}
+
+\chapter{AGITTOC: Book reference}
+All problems written with reference to
+\href{https://math.stanford.edu/~vakil/216blog/FOAGnov1817public.pdf}{``The rising sea, November 18, 2017 draft''}.
+
 
 \chapter{AGITTOC: Pseudolecture1 1}
 \begin{itemize}
@@ -2220,11 +2245,78 @@ $$
 \Hom(\F, \G)(U) \equiv Mor(\F|_U, \G|_U).
 $$
 
-Recall that $\F|_U$, the restriction of the sheaf to the open set $U$. 
+Recall that an element in $Mor(F|_U, G|_U)$ is collection of maps for
+each $W \subseteq U$
+$\phi_W: F(W) \rightarrow G(W)$ such that for every $X \subseteq W \subseteq U$,
+we have the restrictions commuting:
+
+\begin{minted}{text}
+F(W)----phi_W----G(W)
+|                 |
+F(W, X)          G(W, X)
+|                 |
+v                 v
+F(X)---phi_X---->G(X)
+\end{minted}
+
+Now to show that this is a presheaf, we need to show that given some other
+subset $U' \subseteq U$, we can build an element in
+$\Hom(\F, \G)(U') \equiv Mor(\F|_U', \G|_U')$. that is, we should be able
+to "restrict" the sheaf map into $U'$.
+
+But this is easy. We can simply take a subset of the data of $\phi$, 
+by defining $\phi'(O') = \phi(O')$ for all $O \subseteq O'$.    
+
+We can also glue morphisms together, because these are morphisms of sets.
+If we have morphisms $\phi_U: F(U) \rightarrow G(U)$, $\phi_V: F(V) \rightarrow G(V)$
+that agree on $U \cap V$, then we can build the glued morphism 
+$\phi_{U \cup V}$ in the "obvious way", by invoking $\phi_U$ or $\phi_V$
+as necessary.
+
+
+Let $Z \subseteq X \subseteq U$. Now the data that is on $H(X)$ are morphisms
+$\phi$, which are maps $\F(X) \xrightarrow{\phi} G(X)$.
 
 \section{Maximal ideals and Galois orbits}
 
+\section{Concrete example of Cokernel pre-sheaf not being sheafy}
+
+Consider the exact sequence:
+
+$$
+0  \rightarrow 2\pi i\Z \xhookrightarrow{\alpha} \O \xrightarrow{\exp(\cdot)} O^\star \rightarrow 0
+$$
+
+
+$\O$ is the sheaf of the additive group of holomorphic functions. 
+$\O^*$ is the sheaf of the group of non-zero holomorphic functions. 
+$\alpha$, which embeds $2\pi i n \in 2 \pi i\Z$ as a constant function $f(\_) = 2\pi i n$ is
+  injective.
+$e^(2\pi i\Z) = 1$. So we have that the composition of the two maps $\exp \circ \alpha$ is
+the zero map, mapping everything in $2 \pi i \Z$ to the identity of $O^*$.
+Thus, $d^2 = 0$, ensuring that this is an exact sequence.
+Let us consider the local situation. At each point $p$, we want to show
+that $\exp$ is surjective. Pick any $ g \in O^*_p$. We have an open neighbourhood $U_g$
+where $g \neq 0$. Take the logarithm of $g$ to pull back $g \in \O^*$ to $\log g \in \O$.
+Thus, `$\beta$ is surjective at each local point $p$.
+On the other hand, the function $h(z) = z$ cannot be in $\O^*$. If it were,
+then there exists a homolorphic function called $l \in \O$ [for \emph{log}] such that
+$\exp(l(z)) = h(z) = z$ everywhere on the complex plane. 
+Assume such a function exists. Then it must be the case that
+$d/dz \exp(l(z)) = d/dz(z) = 1$. Thus, $exp(l(z)) l'(z) = z l'(z) = 1$.
+[use the fact that $\exp(l(z)) = z$]. This means that $l'(z) = 1/z$.
+Now, by integrating in a closed loop of $e^{i \theta}$ we have $\oint l'(z) = l(1) - l(1) = 0$.
+We also have that $\oint l'(z) = \oint 1/z = 2\pi i$.
+This implies that $0 = 2\pi i$ which is absurd.
+Hence, we cannot have a function whose exponential gives `h(z) = z` everywhere.
+Thus, the cokernel is nontrivial globally, even though it is trivial locally.
+So we are unable to "glue cokernels" together, meaning it cannot
+be a sheaf.
+
+
 \section{Cokernel sheaf in terms of stalks, full description}
+
+
 \section{Topologies on categories}
 
 \chapter{AGITTOC Pseudolecture 5}
@@ -2629,21 +2721,312 @@ locus where a function vanishes to be closed. This is the definition of Zariski.
 \section{Section 3.6}
 \section{Section 2.7B}
 \section{Exercise 3.4.E}
+If $I_1, I_2, \dots I_n$ are ideals of ring $A$, show that $\sqrt{\cap_{i=1}^n I_i} = \cap_{i=1}^n \sqrt{I_i}$.
+Set $J \equiv \cap_i I_i$.  That is, show that radicals commute with intersection.
+
+\begin{align*}
+= \{ \p : A \cap B \subseteq p \} \\
+&= \{ \p \in P: A \subseteq \p \land B \subseteq \p \} \\
+&= \{ \p \in P: A \subseteq \p \} \cap \{ \p \in P: B \subseteq \p \} \\
+\end{align*}
+
+Thus, purely from set theory, we get that
+$\rad{A \cap B} = \bigcap \{ p \in \Spec: A \cap B \subseteq \p \}$ is equal
+to $\bigcap (\{ \p \in P: A \subseteq p \} \cap \{ \p \in P: B \subseteq \p \})$
+which is equal to $\rad A \cap \rad B$.
+                           
 \section{Exercise 3.4.F}
-\section{Exercise 3.4.H}
-\section{Exercise 3.4.I}
+We are to now show that the definition of radical we used above is correct.
+We start from the original definition (1): $\sqrt I = \{ a \in A : \exists n \geq 0, a^n \in I\}$.
+We wish to show that (2): $\sqrt I = \bigcap \{ \p \in \Spec: I \subseteq \p \}$
+
+\subsection{$(1) \subseteq (2)$}
+Let $a \in \{ a \in A : \exists n \geq 0, a^n \in I\}$:
+That is $a^n \in I$. We wish to show that for every $\p$ prime
+ideal such that $I \subseteq p$, we have $a \in \p$.
+Since $I \subseteq \p$, $a^n \in I \subseteq \p \implies a^n \in \p$. 
+Since $p$ is a prime ideal, we have that $a^n \in p \implies a \in \p$ [since the quotient by $\p$
+must be an integral domain, we can set $a^n$ to zero only if $a$ itself is made zero].
+Thus $a \in \p$ for all prime ideals $I \subseteq p$. Hence, 
+$I \subseteq \bigcap \{ p \in \Spec: I \subset \p \}$. 
+
+
+\subsection{$(2) \subseteq (1)$}
+Let $a \in J$, where $J = \bigcap \{ \p \in \Spec: I \subseteq \p \}$. We wish to show that
+there exists some $n \geq 0$ such that $a^n \in I$.
+
+
+For $a \in J$, we build the multiplicative subset
+set $S_a \equiv \{ a^i : i \in \N \}$ is a multiplicative set. Thus the set
+$\q = R/S_a$ is a prime ideal, since it is the complement of a 
+multiplicative set. We have two cases:
+
+\begin{itemize}
+\item $I \subsetneq q$: Thus, there exists an $i \in I$ such that $i \not \in \q$.
+ This means that $i \in R/\q$, or $i \in S_a$. So $i = a^n \in S_a$, and we
+ are done.
+
+\item $I \subset q$: We have $a \in J$ which is the intersection of all prime ideals
+ that contain $I$. Hence, $a \in \q$  because $a \inJ \subseteq \q$. But this
+ is absurd, because $\q$ is disjoint from all powers of $a$.
+\end{itemize}
+
+\textbf{Proof 2 using localizations/quotenting:} 
+Consider the ring $R' = R/I$. The radical of $I$ corresponds to the 
+minimal prime ideal of $R/I$. Now consider the image of $a$, $\overline{a}$
+in $I$.  If $\overline{a}^n = 0$, then we have that $a^n \in I$ and we are done.
+Assume not That is, $a^n \not \in I$. We will show that there is a prime
+ideal $\p$ which does not contain $a$. Thus, we have proven the converse.
+
+To do this, assume that there is no $n$ such that $\overline{a}^n \not \in I$.
+Now, localize the ring $R'$ at $a$, giving us $R'_a$. This ring
+is not zero ring because $\overlin{a}$ is not nilpotent.
+So we have a prime ideal $\p \in R'_a$. The pre-image in $R'$ is
+an ideal which does not contain $\overline{a}$. The pre-image in $R$
+is an ideal which does not contain $a$. 
+\textbf{TODO: think hard about whether this is correct}.
+
+\textbf{Proof 3 using quotienting and nilradicals}
+If we consider $R/I$, then the radical $\rad{I}$ becomes the nilradical
+$\rad{0}$. the nilradical $\rad{0}$ is the intersection of all prime ideals.
+Pull back, prime ideals of $R/I$ are the prime ideals of $R$ which contain $I$
+by the third isomorphism theorem.
+
+This is nice, because it directly pumps well known intuition of nilradicals
+into the more general radical case.
+
+
 \section{Exercise 3.4.J}
+Suppose that $I \subseteq B$ is an ideal. Show that $f$ vanishes on $V(I)$
+iff $f \in \sqrt{I}$: that is, $f^n \in I$ for some $n \geq 1$.
+
+Recall that $V(I) = \{ \p \subseteq I : \p \in \Spec(A) \}$.
+$f$ vanishes on $V(I)$ means that for each prime ideal $\p \in I$,
+$f \xrightarrow{\p} 0$, or $f \in \p$. Hence, $f$ is in every prime ideal
+$\p$ such that $I \subseteq \p$. Thus, $f$ is in the radical
+$\rad I = \cap_{I \subseteq \p} \p$.
+
 \section{Exercise 3.5.E}
+show that  $D(f) \subseteq D(g)$ (1) if and only if $f^n \in (g)$
+for some $n \geq  1$. (2) if and only if $g$ is an invertible element
+of $A_f$. 
+
+\textbf{Geometric explanation:}
+This means that $V(g) \subseteq V(f)$. So, $f$ vanishes everywhere $g$
+does. Now, inside $Spec(A)$, we have the subspace where $g$ vanishes,
+which is $V(g) = Spec(A)/(g)$. We know that $f$ vanishes everywhere on $V(g)$.
+Thus, $f$ must be nilpotent on $Spec(A)/(g)$. Hence, we must have that 
+$f^n = 0 (\mod g)$, or $f^n \in g$.
+
+\textbf{(1) $D(f) \subseteq D(g)$ iff $f^n \in (g)$}
+\textbf{(1.1) $D(f) \subseteq D(g)$, then $f^n \in (g)$}
+Let $D(f) \subseteq D(g)$.
+Build the multiplicative set $S \equiv \{ f^i : i \geq 0\}$.
+Consider the prime ideal $\p = A \setminus S $.
+$f$ by definition cannot vanish on $\p$.
+Thus $\p \in D(f) \subseteq D(g)$.
+Thus $\p \in D(g)$.
+This means that $g \not \in \p$, since $g$ does not vanish at
+$\mathfrak p$.
+Hence, $g \in S$ [combine $g \not \in \p$, $S \cup \p = A$].
+This means that $g = f^n$ for some $$n$$.
+
+\textbf{(1.2) $f^n \in (g)$, then $D(f) \subseteq D(g)$}
+
+Let $f^n \in (g)$. This means that $f^n \in \rad{(g)}$, hence, $f \in \rad{(g)}$
+$\rad{(g)}$ is a prime ideal. Thus $f$ vanishes on any ideal that $g$
+vanishes, because $\rad{(g)}$ is the set of prime ideals that contain $g$,
+and $f$ vanishes on all the prime ideals that contain $g$ [ie, the prime ideals that $g$
+vanishes on]. Thus $V(g) \subseteq V(f)$. Hence, complementing,
+we get $D(f) \subseteq D(g)$.
+
+\textbf{(2) $D(f) \subseteq D(g)$ iff $g$ is invertible in $A_f$}
+\textbf{(2.1) $D(f) \subseteq D(g)$ implies $g$ is invertible in $A_f$}
+Let $D(f) \subseteq D(g)$. Build the multiplicative subset $S \equiv \{ f^i: i \geq 0 \}$.
+Consider the prime ideal $\q \equiv A/S$. $f$ cannot vanish on $\q$ by 
+construction. Thus, we must have $\q \in D(f) \subseteq D(g) implies \q \in D(g)$.
+Hence, $g \xrightarrow{\q} \neq 0$, or $g \not \in \q$. This means that
+$g \in S$. So when we localize $A$ at $f$ by converting elements of $S$
+to units, since $g \in S$, $g$ also becomes a unit.
+
+\textbf{(2.2) $g$ is invertible in $A_f$ implies $D(f) \subseteq D(g)$}
+If $g$ is invertible in $A_f$, then this means that $g = f^n$ for some
+$n \geq 0$. 
+
+$D(f) \subseteq D(g) \iff V(g) \subseteq V(f)$.
+\textbf{TODO: I am getting confused with this question}
+
 \section{Exercise 3.6.B}
+\textbf{(a) In an irreducible topological space, any nonempty open set is dense}
+
+
+Let $A$ be an irreducible topological space. Let $\emptyset \subsetneq O \subsetneq A$
+be a proper open set.
+Consider the closure $\overline{O}$. If $\overline{O} = A$, we are done.
+So assume $\overline{O}$ is not equal to $A$.
+Note that we can write $A = O \cup O^\c$. Since $O \subseteq O^c$, we can write
+$A = \overline{O} \cup O^\c$. $O^\c$ is a proper closed subset because $O$ is
+a proper open subset: $\emptyset \neq O \subseteq A$ implies that  $X \neq O^\c \supsetneq \emptyset$.
+Hence, we have written $A$ as the union of two proper closed subsets, which means
+that $A$ is reducible. This is a contradiction.
+
+\textbf{(b) If $X$ is a topological space, and $Z$ (with the subspace topology) is an irreducible
+subset, then the closure $\overline{Z}$ in $X$ is irreducible as well}
+
+To be very clear, we say that a subset $S \subseteq X$ is irreducible iff
+it is irreducible with the subspace topology.
+
+
+Now, we are told that $Z \subseteq X$ is irreducible. We need to show
+that $\overline{Z} \subseteq X$ is also irreducible. 
+
+We will prove by contrapositive. If $\overline{Z}$ is reducible, then
+so is $Z$. Let us write $\overline{Z} = C_1^{\overline Z} \cup C_2^{\overline Z}$
+where $C_i^{\overline Z} = C_i \cap \overline Z$ where $C_i$ is closed in $X$
+[we write it this way because $\overline{Z}$ is reducible wrt subspace topology].
+We can write the above condition as $\overline{Z} = (C_1 \cup C_2) \cap \overline{Z}$,
+where $C_1, C_2$ are closed proper subsets of $\overline{Z}$. Hence, we
+get that $\overline{Z} \subseteq C_1 \cup C_2$.
+
+We now claim that $C_i^Z \equiv C_i \cap Z$ are closed proper subsets of $Z$
+which cover $Z$.  They cover $Z$ since  $Z \subseteq \overline Z \subseteq C_1 \cup C_2$,
+thus $Z = (C_1 \cup C_2) \cap Z$. The only way this could be "wrong" is if
+$C_1 \cap Z = \emptyset $ or $C_1 \cap Z = Z$. 
+
+If $C_1 \cap Z = \emptyset$, then
+$C_1 = \emptyset$ [since $Z \neq emptyset$]. But this is a contradiction since $C_1 \cap \overline{Z}$
+is a closed proper subset of $\overline{Z}$.
+
+
+If $C_1 \cap Z = Z$, then this means that $C_1$ is a closed set of $X$ containing 
+$Z$. Thus, the closure of $Z$ is contained in $C_1$ [the closure is the 
+\emph{smallest} closd set containing $X$]. So, we have $\overline{Z} \subseteq C_1$
+which violates $C_1 \cap \overline{Z}$ being a proper closed subset of $\overline{Z}$.
+
+Thus, we have shown that the set $C_1 \cap Z$, $C_2 \cap Z$ reduce the set
+$Z$ if $C_1 \cap \overline Z, C_2 \cap \overline Z$ cover $\overline Z$. 
+
 \section{Exercise 3.6.C}
+If $A$ is an integral domain, then $\Spec(A)$ is irreducible. [Hint:
+pay attention to the generic point $[(0)]$.]
+\textbf{TODO: No idea, need to think about this!}
+
+
+\section{Exercise 3.6.D}
+Show an irreducible topological space is connected.
+
+Recall that a space is reducible if it can be written as the union of
+two proper closed subsets. A space is irreducible if it is not
+reducible. A space is disconnected if it can be written as the union
+of two proper disjoint open subsets. A space is connected if it is
+not disconnected.
+
+We will show the contrapositive: a disconnected space is always
+reducible. Let $X$ be disconnected. That is, we can write $X = U \cup V$
+where $U, V$ are proper disjoint open subsets. So
+$U, V \neq X$, $U, V \neq \emptyset$ and $U \cap V = \emptyset$. 
+
+For $X$ to be reducible, decompose it into the two closed sets $U^\c$,
+$V^\c$.  (1) $U^\c, V^\c$ must be closed as they are the
+complement of open sets. (2) They must be proper subsets because $U, V$ 
+are not the empty set. If $U^\c \cup V^\c = X$, we are done.
+If it is not, assume there exists an element $x \in X$, $x \not \n U^\c \cup V^\c$.
+This means that $x \in U \cap V$. But this is a contradiction, because we assumed
+that $U \cap V = \emptyset$.
+
+
+More quickly, we can show this as follows:
+
+\begin{align*}
+&U \cap V = \emptyset \implies U^c \cup V^c = X \text{(They cover the space)} \\
+&U, V \neq \emptyset \implies U^c, V^c \neq X \text{(The are proper subsets)}
+\end{align*}
+
 \section{Exercise 3.6.E}
+Consider $\Spec(R[x, y]/(xy))$. This is connected because it corresponds
+to a $+$ shape. This is reducible because it's $V(x) \cup V(y) = V(xy)$.
+So it's the union of two closed subsets. It is connected because
+the point $(0, 0)$ is shared across both components.
+
 \section{Exercise 3.6.F}
+
 \section{Exercise 3.7.E}
 \section{Exercise 3.7.F}
 \section{Exercise 3.7.G}
 \section{Exercise 3.7.H}
 
 \chapter{AGITTOC, pseudolecture 6}
+\begin{itemize}
+    \item \href{https://www.youtube.com/watch?v=zS3I4KKmtW0}{Youtube video}
+    \item \href{https://math216.wordpress.com/2020/08/04/between-pseudolectures-6-and-7/}{Link to exercise}
+    \item We are now at the end of Chapter 3, and the last week or so has been
+    spent on ``understanding the geometry of rings'', or ``drawing rings''. In
+    particular, you should now try to think of rings as topological spaces, and
+    if you haven’t seen the topology on the spectrum (or ``max spectrum'') of a
+    ring (the Zariski topology) before, you should make friends with it, by
+    thinking through examples. If you have seen it before, but don’t yet know
+    how to draw nilpotents, then you can think about fuzzy pictures.
+
+    This coming Saturday, we’ll add in the sheaf of functions (or if you wish,
+    the sheaf of algebraic functions, or regular functions), and at that point
+    we will know about schemes, and can do some examples. Strangely, we won’t
+    yet be able to define varieties, since we haven’t yet figured out how to
+    describe the ``Hausdorff condition''. But we’ll be close.
+    You will also be itching to know what morphisms of schemes are — that’s for the
+    week after, if all goes well.
+    Here are some things to think about as you digest what we are talking about.
+    \textbf{Things to think about.}
+    Get comfortable with the examples of \textbf{section 3.2}. Even the case of
+    the dual numbers is worthwhile.
+    Build your personal dictionary between algebra and geometry, and add to it as
+    we go. I’ve been meaning to make a big one, and I keep starting, but it keeps
+    getting big and then I misplace it.
+    \textbf{Exercise 3.2.L} is an example of how a geometric picture can tell you
+    something algebraic that may not have been obvious. 
+    \textbf{Exercise 3.2.O} is a hands-on example that will make certain you
+    can see why ring maps correspond to set maps in the other direction.
+    \textbf{Exercise 3.2.P} makes this rigorous and precise.
+    I mentioned \texbtbf{Exercise 3.2.T} in a pseudolecture, and it is just fun.
+    If you are new to many of these concepts: there are a number of specific
+    algebra exercises (\textbf{3.2.!}, \textbf{3.2.B}, \textbf{3.2.C},
+    \textbf{3.2.G}) that you can do.
+    If you have experience with differential geometry, try \textbf{Exercise 3.1.A}
+    and \textbf{Exercise 3.1.B}. (This is worthwhile even if you don’t have much
+    experience — you may get some practice with how to think about things.)
+    \textbf{For those with more experience:}
+    \textbf{3.2.I(a)} gives you one way (from Mumford?) of thinking of generic
+    points. \textbf{3.2.I(b)} can be pretty tricky.
+    Related: prove that the maximal ideals of $k[x_1, \dots, x_n]$ are in some
+    sort of ``obvious'' bijection with the Galois orbits of $\overline{k}^n$.
+
+    \texbtf{On the Zariski topology:} there are a number of problems you should do if you
+    haven’t seen it before. Pick problems in \textbf{Section 3.4} to do.
+    If you can, you should make them all second nature. \textbf{Exercise 3.4.J}
+    has an insight that we will use repeatedly. (Exercise \textbf{3.5.E} is an
+    easy variant of it.) \textbf{Exercise 3.5.B} has a useful trick that comes
+    up in ring theory a lot.
+
+    In the section on topological properties (3.6), we won’t need too much of it in
+    depth, but it is important that you become happy with point set topology, and
+    ideally have it digested into your unconscious. \textbf{Exercise 3.6.N} makes my ``zen''
+    comments about generic points somewhat more precise.
+
+    Noetherian rings turn out to be incredibly important, and it is probably a
+    crime in several European countries that I introduced them in so little
+    time. But there is remarkably little you need to know about them (at least
+    to get started), and that’s what I put in the exercises in Section 3.6. It
+    also includes statements about Noetherian modules that we won’t need (any
+    time soon at least), but if you have seen these ideas before, you may as
+    well make sure you’re happy with everything.
+
+    The ``$I(\cdot)$'' map from subsets of the spectra is important, and not hard.
+    \textbf{Theorem 3.7.1} and \textbf{Theorem 3.7.E} are the important
+    correspondences between closed subsets and radical ideals, and between
+    irreducible closed subsets and prime ideals, and are worth digesting. The first
+    of these \textbf{3.7.1} is sometimes called Hilbert’s Nullstellensatz, and
+    it is the ``scheme-theoretic'' version of the ``variety'' version stated
+    earlier. Weirdly, the scheme-theoretic version is much easier!
+\end{itemize}
 
 Today we want to understand the space $\spec A / \mspec A$
 as a ringed space: a set with a topology and a
@@ -3195,5 +3578,25 @@ up like a hadron to recover quarks over $\R$.
 $\spec \Z$ is a curve. There are points on on $\spec \Z$ which contain
 topology.
 
+\chapter{Exercises of pseudolecture 6}
+\section{section 3.2}
+\section{Exercise 3.2.L}
+\section{Exercise 3.2.O} 
+\section{Exercise 3.2.T}
+\section{3.2.!}
+\section{3.2.B}
+\section{3.2.C}
+\section{3.2.G}
+\section{Exercise 3.1.A} 
+\section{Exercise 3.1.B}
+\section{3.2.I(a)} 
+\section{Section 3.4} 
+\section{Exercise 3.4.J} 
+\section{3.5.E} 
+\section{Exercise 3.5.B} 
+\section{Exercise 3.6.N}
+\section{Theorem 3.7.1} 
+\section{Theorem 3.7.E} 
+\section{Exercise 3.7.1} 
 
 \end{document}
