@@ -38,6 +38,7 @@
 \newcommand{\Q}{\ensuremath{\mathbb{Q}}}
 \newcommand{\C}{\ensuremath{\mathbb{C}}}
 \newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\CP}{\ensuremath{\mathbb{CP}}}
 \renewcommand{\P}{\ensuremath{\mathbb{P}}}
 \newcommand{\A}{\ensuremath{\mathbb{A}}}
 \renewcommand{\O}{\ensuremath{\mathcal{O}}}
@@ -61,14 +62,16 @@
 \newcommand{\supp}{\operatorname{Support}}
 \newcommand{\Set}{\ensuremath{\mathbf{Set}}}
 \newcommand{\rad}{\sqrt} % radical
-\newcommand{\c}{\complement} % got tiring
+\renewcommand{\c}{\complement} % got tiring
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 \DeclarePairedDelimiter\fracpart{\{}{\}}
 \theoremstyle{definition}
 \newtheorem{theorem}{Theorem}
 \newtheorem{example}[theorem]{Example}
+\newtheorem{aside}[theorem]{Aside}
 \newtheorem{definition}[theorem]{Definition}
+\newtheorem{exercise}[theorem]{Exercise}
 
 %\newtheorem{proof}[theorem]{Proof}
 \begin{document}
@@ -1440,8 +1443,8 @@ They are. They're used a lot in differential operators.
 Another answerer said that the do not use the language much, but sheaves are
 everywhere.
 
-\section{Often manifolds are required to satisfy countability / Haussdorf. How do we impose this?}
-We should add those conditions. There is the Haussdorf condition, which is the wrong
+\section{Often manifolds are required to satisfy countability / Hausdorff. How do we impose this?}
+We should add those conditions. There is the Hausdorff condition, which is the wrong
 way of saying it categorically. We should state it in terms of "separatedness" which
 is actually categorical. The second condition (second countability) is some kind
 of finiteness condition.
@@ -2767,8 +2770,8 @@ multiplicative set. We have two cases:
  are done.
 
 \item $I \subset q$: We have $a \in J$ which is the intersection of all prime ideals
- that contain $I$. Hence, $a \in \q$  because $a \inJ \subseteq \q$. But this
- is absurd, because $\q$ is disjoint from all powers of $a$.
+that contain $I$. Hence, $a \in \q$  because $a \in J \subseteq \q$. But this
+is absurd, because $\q$ is disjoint from all powers of $a$.
 \end{itemize}
 
 \textbf{Proof 2 using localizations/quotenting:} 
@@ -2780,7 +2783,7 @@ ideal $\p$ which does not contain $a$. Thus, we have proven the converse.
 
 To do this, assume that there is no $n$ such that $\overline{a}^n \not \in I$.
 Now, localize the ring $R'$ at $a$, giving us $R'_a$. This ring
-is not zero ring because $\overlin{a}$ is not nilpotent.
+is not zero ring because $\overline{a}$ is not nilpotent.
 So we have a prime ideal $\p \in R'_a$. The pre-image in $R'$ is
 an ideal which does not contain $\overline{a}$. The pre-image in $R$
 is an ideal which does not contain $a$. 
@@ -2930,7 +2933,7 @@ For $X$ to be reducible, decompose it into the two closed sets $U^\c$,
 $V^\c$.  (1) $U^\c, V^\c$ must be closed as they are the
 complement of open sets. (2) They must be proper subsets because $U, V$ 
 are not the empty set. If $U^\c \cup V^\c = X$, we are done.
-If it is not, assume there exists an element $x \in X$, $x \not \n U^\c \cup V^\c$.
+If it is not, assume there exists an element $x \in X$, $x \not \in U^\c \cup V^\c$.
 This means that $x \in U \cap V$. But this is a contradiction, because we assumed
 that $U \cap V = \emptyset$.
 
@@ -2986,7 +2989,7 @@ the point $(0, 0)$ is shared across both components.
     \textbf{Exercise 3.2.O} is a hands-on example that will make certain you
     can see why ring maps correspond to set maps in the other direction.
     \textbf{Exercise 3.2.P} makes this rigorous and precise.
-    I mentioned \texbtbf{Exercise 3.2.T} in a pseudolecture, and it is just fun.
+    I mentioned \textbf{Exercise 3.2.T} in a pseudolecture, and it is just fun.
     If you are new to many of these concepts: there are a number of specific
     algebra exercises (\textbf{3.2.!}, \textbf{3.2.B}, \textbf{3.2.C},
     \textbf{3.2.G}) that you can do.
@@ -2999,7 +3002,7 @@ the point $(0, 0)$ is shared across both components.
     Related: prove that the maximal ideals of $k[x_1, \dots, x_n]$ are in some
     sort of ``obvious'' bijection with the Galois orbits of $\overline{k}^n$.
 
-    \texbtf{On the Zariski topology:} there are a number of problems you should do if you
+    \textbf{On the Zariski topology:} there are a number of problems you should do if you
     haven’t seen it before. Pick problems in \textbf{Section 3.4} to do.
     If you can, you should make them all second nature. \textbf{Exercise 3.4.J}
     has an insight that we will use repeatedly. (Exercise \textbf{3.5.E} is an
@@ -3491,8 +3494,8 @@ go the other way
 \subsection{Proper maps}
 Image of closed set is closed set.
 
-\subsection{Define Haussdorf in terms of maps: Separated}
-What is a Haussdorf map of topological spaces? This leads to the notion
+\subsection{Define Hausdorff in terms of maps: Separated}
+What is a Hausdorff map of topological spaces? This leads to the notion
 of \emph{separated}.
 
 \subsection{Hilbert basis theorem and Chomp}
@@ -3598,5 +3601,604 @@ topology.
 \section{Theorem 3.7.1} 
 \section{Theorem 3.7.E} 
 \section{Exercise 3.7.1} 
+
+\chapter{Chapter 7}
+\begin{itemize}
+\item \href{https://www.youtube.com/watch?v=4KJwmiYHVk4}{Youtube video pseudolecture 7}
+\end{itemize}
+Today, we define the sheaf of functions on our buildng blocks $\Spec$ and $\mSpec$.
+So we are going to define (pre) varieties and schemes.
+
+\section{An example to know where we are}
+Consider the ring $\C[w, x, y, z]/(wz - xy, wy - x^2, xz - y^2)$. We should
+have an uncontrollable urge to draw a picture! 
+
+Let us do $\mSpec$ first, worry about the bonus points of $\Spec$ later.
+
+In $\C^4$ which we are thinking about $\mSpec$, we are thinking about
+solving equations.
+
+\begin{align*}
+&wz = xy \\
+&wy = x^2 \\
+&xz = y^2
+\end{align*}
+
+Some solutions to this system is:
+$(0, 0, 0, 0)$, $(1, 1, 1, 1)$, $(1, 2, 4, 8)$, $(9, 3, 1, 1/3)$.
+
+It ought to be conelike, because if we have one solution $(w, x, y, z) = (a, ar, ar^2, ar^3)$, 
+we can double each term and it will remain a geometric series $((2a)r, (2a)r^2, (2a)r^3, (2a)r^4)$.
+[TODO: I am unclear on why it is a cone, it does not seem closed under affine combinations?]
+
+
+We even know that $\mSpec$ is a topological space. We know that the closed sets
+are the vanishing sets of functions. We even know what the functions are on
+the space. More strongly, we know that the functions on it [polynomials]
+form a ring, because by definition, we were trying to analyze a ring
+$\C[w, x, y, z]/I$. We also know that the ring has no nilpotents (TODO: how?),
+so functions are determined by their values at points!                                                    
+
+\begin{aside}
+We can see that the ring has no nilpotents by seeing that its nilradical
+contains just $(0)$.
+\end{aside}
+
+A sample open set is [recall $D$ is "does not vanish"]
+$D(w) = \{ p \in \C^4: w(p) \neq 0 \}$.
+
+Let us look inside an open set. That corresponds to inverting $w$. We are 
+guaranteed that inverting $w$ will not collapse the ring because we are
+looking inside $D(w)$, where $w \neq 0$. This is like looking at
+$\C[w, x, y, z, a]/(wz - xy, wy - x^2, xz - y^2, aw - 1)$ (that is, we
+add an $a$ such that $a = 1/w$).
+
+We will now use some algebra to rewrite the ring with $a = 1/w$ nicely:
+\begin{align*}
+\text{Localize at $w$ to make $w$ a unit:}
+&\C[w, x, y, z]_w \\
+\text{Manually insert an $a$ such that $a = 1/w$:}
+&\simeq \C[w, x, y, z, a]/(wz - xy, wy - x^2, xz - y^2, aw - 1) \\
+&\text{Dividing by $w$ in $wz - xy$:} \\
+&\simeq \C[w, x, y, z, a]/(z - axy, wy-x^2, xz - y^2, aw -1) 
+&\text{Replacing $z = axy$:} \\
+&\simeq \C[w, x, y, z, a]/(axy - axy, wy-x^2, ax^2 y - y^2, aw -1)  \\
+&\text{Forgetting $z$, $axy - axy = 0$:} \\
+&\simeq \C[w, x, y, a]/(wy-x^2, ax^2 y - y^2, aw -1)  \\
+&\text{Dividing by $w$ in $wy - x^2$:}
+&\simeq \C[w, x, y, a]/(y-ax^2, ax^2 y - y^2, aw -1)  \\
+&\text{Replacing $y = ax^2$:} \\
+&\simeq \C[w, x, y, a]/(ax^2-ax^2, ax^2 (ax^2) - (ax^2)^2, aw -1)  \\
+&\text{Forgetting $y$ and zero terms:}
+&\simeq \C[w, x, a]/(aw -1)  \\
+&\text{Rewrite in terms of localization:} \\
+&\simeq \C[w, x]_w
+\end{align*} 
+
+
+\begin{itemize}
+\item We were able to divide by $w$ because we were assuming that $w \neq 0$,
+      and that the ring does not collapse, thus dividing by $w$ will not
+      change the nature of the equation! TODO: check what happens if
+      $w = 0$.
+\item We forget $z$ for example, because the value of $z$ is completely 
+      determined by the other variables, $a, x, y$ because $z = axy$.
+\end{itemize}
+
+
+We are left with $\C[w, x]_w$: the $wx$ plane, where $w \neq 0$;
+It's the $wx$ plane minus the $w$ axis.
+
+What about where $w = 0$? This is going to be a closed subset, because it's
+the vanishing set of $w$, $V(w)$:
+
+\begin{align*}
+&\C[w, x, y, z]/(wz - xy, wy - x^2, xz - y^2) \\
+&\text{Set $w = 0$} \\
+&\simeq \C[w, x, y, z]/(wz - xy, wy - x^2, xz - y^2, w) \\
+&\text{substitute $w = 0:$}
+&\C[x, y, z]/(xy, - x^2, xz - y^2) \\
+&\text{replace $x^2$ with $x$, keeping topology, destroying algebra:}
+&\simeq \text{(As topological spaces)} \C[x, y, z]/(xy, x, xz - y^2) \\
+&\text{substitute $x = 0:$}
+&\simeq \text{(As topological spaces)} \C[y, z]/(- y^2) \\
+&\text{replace $y^2$ with $x$, keeping topology, destroying algebra:} \\
+&\simeq \text{(As topological spaces)} \C[y, z]/(y) \\
+&\simeq \C[z] \\
+\end{align*}
+
+So topologically, we are left with a line.
+
+\section{The sheaf of functions of $(\m)\Spec R$:}
+On $D(f)$ we define $\O(D(f)) \equiv A_f = A[x]/(xf - 1)$.
+We now understand $\Spec R$ as a ringed space!
+We need to check that this is a sheaf. 
+We will table this for now, and calculate stuff
+
+\section{Example 1: $U \equiv \A^2-\{0, 0\}$}
+
+What is the ring of functions of $\A^2 - \{0, 0 \}$? First of all, notice
+that the space $U = D(x) U D(y)$: that is, it can be written as $U = \{ (x, y) : x \neq 0 \lor y \neq 0 \}$.
+What are the functions on $D(x)$? it's $\C[x, y]_x$. What are the
+functions on $D(y)$? it's $\C[x, y]_y$. The sheaf conditions
+asks us to check that they agree on the overlap. What is the overlap?
+The space where they both don't vanish: $D(xy) = \C[x, y]_{xy}$. So
+what we want is are function [element of the ring]
+$f_x \in D(x)$, $f_y \in D(y)$. We want $f_x = f_y$ as elements of
+$\C[x, y]_{xy}$.
+
+Really, all of these rings sit inside a larger ring $\C(x, y)$: the field
+of fractions of the ring $\C[x, y]$. So if we ask: what are the 
+functions in $\C[x, y]_x \simeq \C(x)[y]$ and $\C[x, y]_y \simeq \C(y)[x]$ which
+restrict to the same function in $\C(x, y)$? It has to be the polynomials.
+In $\C[x, y]_x$ we can only have $\{x, y, 1/x\}$ as factors. In
+$\C[x,y]_y$, we can only have $\{x, y, 1/y\}$ as factors. When they
+restrict to $C[x, y]_{x, y} \simeq C(x, y)$ they can have factors
+in $\{x, y, 1/x, 1/y\}$. But the common intersection of $\{x, y, 1/x\}$
+and $\{x, y, 1/y\}$ is $\{x, y\}$. So, the only such good functions
+are polynomials!
+
+This was easy because $\C[x, y]$ was an integral domain, so we could think in
+terms of subrings of the field of fractions: $\C(x, y)$.
+
+\section{Example 2: $V \equiv \C[x, y]/(xy)$}
+
+That is, we have the space comprised of the union of both axes. This is
+\emph{not an integral domain} because $x, y \neq 0$ but $xy = 0$.
+
+What are the functions on $U \equiv V - \{(0, 0)\}$? that is,
+start from $V$, the intersection of two axes, erase the origin. What
+are the functions?
+
+We should believe that $U = \Spec \C[x]_x \amalg \C[y]_y$ because we 
+take the $x$-axis minus the origin, the $y$ axis minus the origin [recall
+that localization at $x$ is disallowing $x = 0$]. So if we believe that
+$U = \Spec \C[x]_x \amalg \C[y]_y$. Then the sections of $U$ is like
+choosing a function in the first open set [open because it is $D(x), D(y)$]
+then the second open set, and making sure they don't overlap. So we ought
+to expect that $\C[x]_x \times \C[y]_y \simeq (\C[x, y]/(xy))_{x+y}$
+Why do we localize at $x + y$? It's like saying $x \neq y$.
+Alternatively, we can think of localizing at $x + y$ as throwing out the
+origin $x \neq y$ implies that we don't have the origin.
+
+
+\example{Arithmetic: Chinese remainder theorem}
+Consider $\spec \Z/60$.  It's also not an integral domain. 
+
+As a set,
+it has three points, $(2), (3), (5)$.
+
+With the topology, we use the
+usual vanishing definition. For example, the function $15$ vanishes over
+$(3)$ and $(5)$ but not over $(2)$. The topology is discrete: we can
+build a function which does not vanish over only $(2)$ [$15 = 5 \times 3$], a function
+which does not vanish over only $(3)$ [$10 = 5 \times 2$], and a function
+which does not vanish over only $(5)$ [$6 = 2 \times 3$].
+
+
+As a sheaf, we claim that locally, the functions over $(2)$ is $\Z/4$,
+the functions over $(3)$ are $\Z/3$, the functions over $(5)$ is $\Z/5$.
+[TODO: why?]
+
+
+This means that the sections over everything is going to be a product of
+the sections over each of these. So we should expect that
+$\Z/60 \simeq \Z/4 \times\Z/3 \times \Z/5$. This is the chinese remainder
+theorem!
+
+
+\section{Big definition}
+What is an affine scheme? To a first approximation, it's just $\Spec A$ for
+some ring $A$. Formally, it's going to be a space that' isomorphic to
+$\Spec A$.
+
+
+\begin{definition}
+An affine scheme is a ringed space isomorphic to $\Spec A$ for some ring $A$.
+\end{definition}
+
+\begin{definition}
+An affine variety over a field $k$ is a ringed space isomorphic to 
+$\mSpec A$ for some \textbf{reduced} finitely generated algebra over $k$.
+Reduced means no non-zero nilpotents. That is, no fuzz. Or, nilradical
+is just $\{ 0 \}$, which is also no fuzz. So functions are determined
+by their values at points.
+\end{definition}
+
+\begin{exercise}
+Suppose that $A$ is a reduced ring. Show that $A$ is an integral domain
+iff $\mSpec A$ is irreducible. 
+\end{exercise}
+
+\begin{definition}
+A prevariety (ie, variety minus Hausdorff) is a ringed space with an
+open cover by affine varieties
+\end{definition}
+
+
+\begin{definition}
+A scheme is a ringed space with an open cover by affine schemes
+\end{definition}
+
+\begin{exercise}
+In $\spec A$ show that $D(f)$ is isomorphic as a ringed space to  $\spec A_f$.
+\end{exercise}
+
+
+\begin{theorem}
+If $U$ open, $U \subseteq \spec A$ is an open sub-ringed space, then $U$
+is a scheme, because $U$ is covered by $\{ D(f) : f \in U\}$.
+\end{theorem}
+
+\section{Example: $V \equiv \A^2 - \{(0, 0)\}$: Scheme that is not affine}
+We know that $\A^2 - \{(0, 0)\}$ is a scheme: it is $D(x) \cup D(y)$. 
+We clam it is not affine. Assume it is, so $V \simeq \spec R$ for some ring $R$.
+Then this means that $R = \O(V)$ [that is, the original ring is the ring
+of functions over the entire space by definition]. So we will get 
+that $R = \O(V) = k[x, y]$ for some field $k$. [TODO: why? I don't understand]
+
+We can now recover the points of $V$ as the prime ideals of $R$. So let's
+pick a maximal ideal, $\m \equiv (x, y)$. This is a maximal ideal, and
+is thus definitely prime. This corresponds to $x = y = 0$. But on $V$,
+there is no solution to $x = y = 0$. So this point does not exist on $V$.
+Hence the ring cannot be affine.
+
+\section{Example: A prevariety that is ``not Hausdorff''}
+we can't prove that it's not Hausdorff because we haven't defined Haussdorf yet!
+But we can convince ourselves that this is indeed not Hausdorff.
+
+We are going to take two copies of
+the affine line: $\A^1 =  \Spec \C[t]$, $\A^1 = \Spec \C[u]$.
+We are going to glue them along $D(t) \leftrightarrow D(u)$. So it's
+like gluing a screen protector to a screen. There's a ``bubble at the origin''
+which is going to be annoying. The points $t = 0$ and $u = 0$ are
+\textbf{not glued}.  All of the other points $t = x = u$ are glued.
+
+Since we are trying to glue ringed spaces, we need to glue the topology,
+the sheaf of rings, etc. This seems super painful. 
+
+
+But note that these are both $\Spec$s. So we can ``realize'' this gluing
+as $\C[t, 1/t] \leftrightarrow \C[u, 1/u]$ glued along $t \leftrightarrow u$.
+
+This is supposedly almost a theorem. We can show that all non-haussdorfness
+is of this form. [TODO: why is this "non haussdorf"?]
+
+
+The best explanation I can come up with is that any neighbourhood that one
+attempts to build that tries to separate $t = 0, u = 0$ will always have
+overlaps, because we have glued **every other point** across the two spaces.
+Thus we cannot find two **disjoint** neighborhoods with separate the two
+spaces. So, the space is $T_1$ [we have open sets that separate the two
+points $t = 0, u = 0$] but not $T_2$ [because all open sets around
+$t=0, u=0$ are forced to have overlaps].
+
+\section{Example: projective space}
+The idea is that is that we should think of it as one dimensional subspaces
+of a given space.
+
+For example, if we are in $\R^3$, then we can consider all lines through
+the origin. This gives us $\RP^2$. There is nothing magical about the reals.
+So we can build $\CP^n$ which is 1D subspaces of $\CP^{n+1}$.
+
+We can think of $\RP^2$ as lines through the origin of $\R^3$. Now how do
+we see that $\R^2$ is inside $\R^2$? well, almost all lines through the
+origin meet the ceiling! (eg. some $z = 1$). This gives us an embedding
+of $\R^2$ inside $\RP^2$.
+
+\section{example: $\P^1$}
+
+we glue $\A^1 \equiv \mSpec \C[t]$ to $\A^1 \equiv \mSpec C[u]$ along
+$D(t) \leftrightarrow D(u)$. But we don't glue $t$ to $u$, we glue $t$ to $1/u$.
+[WTF? I don't understand this at all! I drew a picture to make it more
+sensible:]
+\includegraphics{projective-space-glued.png}
+
+
+What are the points? in $\mspec$, we have the $t$-line, $\A^1 \simeq \C$,
+and then we have the $u$ line, leaving out the point $u = 0$ [which is $t = \infty$].
+So we have an extra "point at infinity", $\{ \infty \}$ which comes from
+the unglued $u$. So we really have added a point at infinity!
+
+In the scheme story, we really only have one extra point, the generic 
+point of $t$, which is $[\{0\}]$, the point that is somewhere on that line.
+This generic point of $t$ is glued to the generic point of $u$.
+
+
+What are the functions on $\P^1_\C$? it's a function on $f(t) \in \C[t]$,
+$g(u) \in \C[u]$ such that $f(t) = g(1/t)$  , the point that is somewhere on that line.
+This generic point of $t$ is glued to the generic point of $u$.
+
+
+What are the functions on $\P^1_\C$? it's a function on $f(t) \in \C[t]$ that
+is everywhere except the north pole, and a function $g(u) \in \C[u]$ which
+is defined everywhere other than the south pole. We need
+to impose the condition that $f(t) = g(1/t)$ due to our gluing. The only such
+functions we can build are going to be constants!
+
+\section{Example: General projective space: $\P_k^n$}
+
+The idea is that we have $(n+1)$ space and then we quotient by lines
+through the origin. 
+
+Just as we accepted $\P^1$ by thinking of lines through the ceiling,
+we can think of higher projective spaces by lines through the ceiling,
+lines through the left wall, lines through the right wall...
+
+We start with $\A^n_k = \Spec k[x_{1/0}, x_{2/0}, \dots, x_{n/0}] = U_0$
+where we psychologically think of  $x_{i/j}$ as $x_i / x_j$. To make
+our notation nicer, we can just toss in $x_{0/0} = 1$ anyway, giving
+us $U_0 = \Spec k[x_{0/0}, x_{1/0}, \dots, x_{n/0}$.
+Similarly the standard open set $U_i = \Spec k[x_{1/i}, x_{2/i}, \dots, x_{n/i}]$.
+
+
+Recall that we only need to glue pairwise gluing criteria, and
+make sure that this works for all triples and we are done (This was apparently
+an exercise. Go back and do it!)
+
+
+To glue $U_i$ to $U_j$, we take:
+\begin{align*}
+&\Spec \left(k[x_{1/i}, x_{2/i}, \dots, x_{n/i}]/(x_{i/i} - 1) \right)_{x_{j/i}}
+\leftrightarrow
+\Spec \left(k[x_{1/j}, x_{2/j}, \dots, x_{n/j}]/(x_{j/j} - 1) \right)_{x_{i/j}}
+\end{align*}
+
+Now our notation will tell us to glue $x_{k/i} = x_{k/j}/x_{i/j}$. This
+will "just work??" \textbf{TODO: need to check this!}
+
+\section{Why does $\O(D(f)) = A_f$ define a sheaf?}
+We want $\O(D(f)) = A_f$. We know that topologically, $D(f) \simeq \Spec A_f$.
+Why is this well defined? Why does it give us sheaves over a base?
+
+
+Define $\O(D(f))$ to be the localization of $A$ at the multiplicative subset
+of those functions (elements of $A$) that vanish nowhere in $D(f)$. That is,
+we are allowed to invert function $g$ such that $D(f) \subseteq D(g)$. 
+Alternatively, this is the same as $V(g) \subseteq V(f)$. So we can invert
+by functions which vanish only at points of $V(f)$.
+
+For example, in $\spec k[x, y]$, for $\O(D(x, y))$, we are allowed to divide
+by $x^7$ but not by $x + y$, because $x + y$ vanishes on $(1, -1)$ where $xy$
+does not vanish. 
+
+Most psychologically, we are only allowed to divide by things which 
+are non-zero on $D(f)$. So on restriction to $D(f)$, the functions should
+be non-zero.
+
+The nice thing about this is that we are referring to $D(f)$ but not $f$
+itself! The key thing to check is that this is the same as saying
+$\O(D(f)) = A_f$. \textbf{TODO: Check this!}
+
+
+\subsection{What do we need to check?}
+We need to check that for any $D(f)$ covered by a bunch of $D(f_i)$'s 
+we have the identity and gluability axioms.
+
+The case $D(f) = \spec A$ is notationally simpler, but the proof
+naturally generalizes to $D(f)$ of some arbitrary $f$.
+
+\subsection{More generally}
+If $M$ is an $A$-module we can define a sheaf of $\O$-modules in $\spec A$
+in the same way called $\tilde{M}$. On $D(f)$ we define $\tilde{M}(D(f)) \equiv M_f$.
+
+\section{Stalks of the structure sheaf of $\Spec A$}
+The sheaf $\tilde{M}$ is a "quasicoherent sheaf", apparently.
+
+If we have a point $[\p] \in \Spec A$ then $\O_p \simeq A_p$. 
+Similarly, if $M$ is an $A$-module, then $\tilde{M_\p} = M_\p$. [WHY?]
+
+\subsection{Happy algebra consequence}
+We know that elements of the sheaf are determined by their stalks.
+Let $M$ be an $A$-module. So it's a global section of $\tilde{M}$, the
+sheaf of $A$-modules. We know that sections are defined by their
+stalks. So $M = 0$ iff $M_\p = 0$ for all primes $\p \subseteq A$.
+
+\section{Check the identity axiom}
+
+If $\Spec A = \cup_i D(f_i)$, why is $A \rightarrow \pi A_{f_i}$ an injection?
+\begin{aside}
+Wow, that's a really slick way to rephrase the identity axiom!
+\end{aside}
+Recall that $\spec A = \cup_i D(f_i)$ iff $A = (f_i)$ [ideal generated by these]
+iff $1 = \sum_i a_i f_i$.
+
+
+Now our question can be translated to:
+suppose we have $f_1, f_2, \dots f_n, a_1, a_2, \dots a_n \in A$ such that
+$\sum_i a_i f_i = 1$.  We have a module $m \in M$ such that
+$M \mapsto M_{f_i}$ sends $m \mapsto 0$. Why is $m = 0$?
+
+$m/1 = 0$ in $M_{f_i}$. This means that $f_i^{b_i} m = 0$  in $M$ [$b_i$ for "big"].
+$m = 1 m = (\sum_i a_i f_i)^{\sum_i b_i} m$. Now in the expansion, we will
+have some $f_i^{b_i}$. But $f_i^{b_i} = 0$, so $m = 0$.
+
+The idea is that $\sum_i a_if_i$ is a partition of unity [fuck this is gorgeous].
+We are covering $m$ by a partition of unity.
+
+
+\section{Check the gluability axiom}
+Supposedly for experts, we just need to say "flat descent".  
+
+\section{Next week}
+Gluability? Projective varieties and schemes [the begininning of projective geometry]
+
+\section{Questions}
+\subsection{Quotes by conrad}
+\begin{itemize}
+\item We live as we dream, alone
+\item I don't like work, no man does. But I like what is in the work. The chance
+     to find yourself. But no other man can ever know. They can only see the mere show,
+      and can never tell what it means.
+\item Your strength is just an accident arising from the weakness of others
+\end{itemize}
+\subsection{How do we see things over the rational normal curve}
+Let us consider $k[w, x, y, z] / (wz - xy, wy - x^2, xz - y^2)$. Why is
+it a surface? Why is it reduced? We are claiming it's a surface (2D)
+but we have a 4D thing quotiented by a 3D thing. So do we really need 3 equations?
+turns out we do really need three equations. 
+
+How do we see that this is reduced? How do we know it's a surface? Well,
+we don't even know what dimension is yet. But as long as we agree that
+the plane is dimension 2, then we do know that it is dimension 2 away
+from $w = 0$. This will take care of everything except for the origin. So if
+$\A^2$ is a surface, then we know that the cone better be a surface.
+
+
+How do we know it is reduced (no nilpotents)? The crucial hint  is that we can write
+it differently such that it is obviously an integral domain. We will
+write it as $k[a, b]$  we want the subring of polynomials with a total
+degree of a multiple of $3$. Then $w = a^3$, $x = a^2 b$, $y = ab^2$, $z = b^3$.
+Then we can show that the previous ring is equivalent to this one.
+
+Why do we need three equations? Geometry is telling us that something is
+going on with the origin, because everywhere else, it is "nice". So let
+us focus on the origin. In that local ring, if we compute $\m/\m^2$ we would
+find that it is 4D not 2D, thereby posessing a 4D tangent space, because
+we will have 4 differentials $dw, dx, dy, dz$. Now, the number of degree
+2 monomials in 4 varibles is 10:
+
+$$
+aa ab ac ad
+ba bb bc bd
+ca cb cc cd
+da db dc dd
+$$
+
+We want the upper triangular part.
+
+So we have that $m^2$ mod $m^3$ is 10 dimensional. But the three equations
+that we have are LI. So it's impossible to cut out \emph{something}.
+
+\subsection{Why is it that $f$ is determined by its values if there are no nilpotents?}
+if we have $f \in A$, the claim is that if we now $f \mod p$ for all $p$ then
+we know $f$ as long as there are no nilpotents.
+
+That is because of the fundamental fact that if we have $f \in A$ and we 
+know that $f = 0 \mod p$ for all $p$, then we claim that it is nilpotent.
+The intersection of all prime ideals in a ring is a nilradical.
+
+\subsection{Why is the definition of $\P^1$ is a correct definition?}
+if it walks like projective space and quacks like projective space...
+
+The definition given as projective space works also as manifolds using
+ceilings! 
+
+Vakil does not think that this is the right definition of projective space.
+The right definition of projective space is this: What is a map to
+projective space?  It is the data of a line bundle in $n+1$ sections,
+not all zero. Einsenbud and Harris goes through this in detail.
+
+\subsection{When you write a scheme as the union of two principal open sets, is the $O$ of the union the categorical pullback?}
+Yes, because that is exactly the sheaf condition.
+
+\subsection{Why are we always dealing with triple intersection?}
+Is there an analogy with Van Kampen? Descent is another word for gluing.
+Sometimes we have to use double interesctions, sometime triple. For identity
+we worry about singles, gluing we go to doubles.
+
+Fundamental groups can be thought of in terms of covering spaces. The
+fundamental group data of loops is the same as the deck transformations
+of the covering space.
+
+More generally, if we have a topological space and a surjective map to it.
+If we know how to map into $U$ and $V$, there is extra information about
+how they glue (???)
+
+If there are three open sets, we need the conditions to not contradict
+each other. $U \leftrightarrow V$, $V \leftrightarrow W$ should not contradict
+with $U \leftrightarrow W$.
+
+
+Since the covering space has the same data as the fundamental group,
+assembing the covering space should feel the same as assembling the
+fundamental group. 
+
+The cocycle condition for gluing is the same as asking that the relation
+becomes an equivalence relation (?)
+
+\subsection{Is there a sense in which generic points encode homotopical/homological/global information?}
+Over the generic point, all line bundles are trivial, because all line bundles
+are locally trivial.
+
+Take a curve and take two closed points, take the intersection of all
+neighbourhoods of closed points. This should be a semi-local ring
+because it has two maximal ideals corresponding to the two closed points.
+If we look at $\mspec$ we see two points. If we see $\spec$ they are
+connected by the generic points.
+
+\subsection{How did we find the generic point on $\CP^1$?}
+We had the original generic point of $\A^1$.We then set glued stuff together.
+When we glue the two things, we need to show that the generic points glue.
+Well, the idea is that since most of the points were glued together,
+the generic point which is "everywhere but nowhere" also had glue on it,
+as did the other generic point [lmao, this is hilarious]. So when
+we glue them together, they are the same thing.
+
+
+\subsection{Hartog's theorem}
+In complex analysis. We have an analytic closed subset. It's codimension
+is bigger than 1. Then any function defined on this subset  extends
+over it.
+
+\subsection{Defining the structure sheaf using distinguished open sets is different.}
+But we can use compatibility of germs to build the full structure. So why
+do we need open sets at all? We need to show that the sections over the
+distinguished opens are what we say they are.
+
+If we are given an element $A_p$ for all $p$ and they are compatible.
+Why do they come from $A$? We need to glue!
+
+\subsection{Two ways of gluging $\A^1$}
+They are different as real topological spaces because the points $t = 0, u = 0$
+have different neighbourhoods.
+
+In the zariski topology, they are the same. But Zariski is too blunt. Once
+we have the sheaf of rings, we can distinguish the spaces.
+
+Zariski is deliberately blunt so we can carry information on the sheaf of
+rings.
+
+
+The correct definition of Haussdorf works for arbitrary topologies.
+
+\chapter{AG with matrices}
+\href{https://www.youtube.com/watch?v=1UvW5iTkbLw&feature=youtu.be&t=819}{Richard E Borcherds, AG 8, strong nullstellensatz, time 15:00}.
+
+\section{Nilpotent Matrices}
+Consider $M_n(k)$: all $nxn$ matrices over a field $k$. A matrix
+is nilpotent if $M^n = 0$ where $n$ is the same dimension as the size
+of the matrix. We can show that this is an ideal, call it $I$.
+
+Another way to think of the condition is to think of a matrix $M$ with
+\emph{variable/symbolic} entries $a_{11}, a_{12}, \dots a_{1n}, \dots, a_{nn}$. 
+Now $M^n$ is another \emph{symbolic} matrix with entries as some (very messy!) degree $n$
+homogeneous polynomial. Now the ideal $I$ is the zero set of these homogeneous
+polynomials. So it's the ideal generated by $(M^n[1][1] = 0, M^n[1][1] = 0, \dots, M^n[n][n] = 0)$.
+
+
+Now, is $I$ a radical ideal? That is, is $I = \sqrt{I}$? We clam it is not.
+For example, consider the trace. The Trace of a nilpotent matrix is 0.
+But the trace is $a_{11} + a_{22} + \dots a_{nn}$ which is homogeneous
+of degree 1,\textbf{not} homogeneous of degree $n$. This, it belongs to
+$\sqrt{I}$ but not to $I$.
+
+Let us consider $n = 2$ concretely:
+
+\begin{align*}
+&A = \begin{bmatrix} 
+&     a & b \\
+&     c & d \end{bmatrix} \\
+&A^2 = \begin{bmatrix} a^2 + bc & ab + bd \\ ac + cd & bc + d^2 \end{bmatrix} \\
+&I = (a^2 + bc, a(b+d), c(a+d), d^2 + bc) \\
+&Tr(A) = a + d
+\end{align*}
+Some power of $Tr(A) = a + d$ is in $I$. What is the smallest power of $(a+d)$
+is in $I$? $(a+d)^2 \not \in I$ but $(a+d)^3 \in I$. It's not obvious that
+$(a+d)^3$ ought to lie in $I$ at all!
+
+
+
+\section{Commuting Matrices}
 
 \end{document}
