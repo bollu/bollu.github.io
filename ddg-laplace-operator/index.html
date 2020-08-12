@@ -69,12 +69,12 @@ body {
     margin: 0px;
     width: 100%;
     height: 1px;
-    background-color: #A0A0A0;
+    background-color: #cfcfcf;
 }
 
 svg {
     z-index: 0;
-    background-color: #eeeeee;
+    background-color: #efefef;
 };
 </style>
     <body>
@@ -363,60 +363,27 @@ svg {
     <script>"use strict";
 
 
-        // only returns true once we have passed the top of this element
-        // and are inside this elemen
-        function scroll_is_inside_container(container, svg) {
-            const scrollTop  =  window.pageYOffset || document.documentElement.scrollTop;
-            const height = container.getBoundingClientRect().height;
-            const viewpointHeight = svg.getBoundingClientRect().height;
-            const top = container.getBoundingClientRect().top + scrollTop;
-
-            const y = window.scrollY;
-            if (y >= top && y < top + height) {
-                const progress = (y - top) / (height - viewpointHeight);
-                if (progress > 1) {
-                    // need to convert to absolute positioning here
-                    return { 'is_inside': false, progress: 'leaving_bottom'};
-                }
-                return { 'is_inside': true, 'progress': progress };
-            }
-            return { 'is_inside': false, 'progress': 'leaving_top' };
-        }
-
         // 'height' is the height of the container.
         function make_container(container, container_height, render_fn) {
-            const width = 200;
             const svg = 
                 document.createElementNS("http://www.w3.org/2000/svg", "svg");
-
             container.style.height = container_height * 100 + "vh";
-
             svg.setAttribute("width", "100%");
             svg.setAttribute("height", "100vh");
-            // so the coordinate system of SVG canvas will be 800x600
             svg.setAttribute("viewBox", "0 0 800 600");
             svg.setAttribute("font-family", "monospace");
-            svg.setAttribute("background-color", "#dd0000");
-
             container.appendChild(svg);
-            svg.render_fn = render_fn;
-            svg.entered = false;
-            // empty functions for start and end
+            svg.render_fn = () => { console.log(svg, "rendering fn"); };
             svg.start_render_fn = () => { console.log(svg, "started rendering"); };
             svg.end_render_fn = () => { console.log(svg, "ended rendering"); };
-
             return svg;
         };
 
-
-        const GRAY = "#607D8B";
-        const BLUE = "#64B5F6";
-        const PINK = "#EC407A";
-        const GREEN = "#4CAF50";
-        const DARKORANGE = "#FF5722";
-        const DARKPINK = "#C2185B";
-        const DARKBLUE = "#283593";
-        const DARKGRAY = "#37474F";
+        function make_circle(svg) {
+            let c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            svg.appendChild(c);
+            return c;
+        }
 
         const container_1 = document.getElementById("container-1");
         const container_2 = document.getElementById("container-2");
@@ -431,35 +398,9 @@ svg {
         const marker_exit_3 = document.getElementById("marker-exit-3");
 
 
-        const svg_1 = make_container(document.getElementById("scroll-container-1"), 8, (dt) => {
-            console.log("container_1 dt: ", dt);
-        });
-        const circle_1 = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-        circle_1.setAttribute("cx", 400);
-        circle_1.setAttribute("cy", 300);
-        circle_1.setAttribute("r", 50);
-        circle_1.setAttribute("fill", "#222222");
-        svg_1.appendChild(circle_1);
-
-
-
-        // svg1.style.backgroundColor = BLUE;
-        // container_1.style.backgroundColor = DARKBLUE;
-        // console.log("FOO");
-
-        const svg_2 = make_container(container_2, 4, (dt) => {
-            console.log("container_2 dt: ", dt);
-        });
-        container_2.style.backgroundColor = DARKGRAY;
-
-
-        const svg_3 = make_container(container_3, 2, () => { console.log("ZZZ") });
-        svg_3.style.backgroundColor = PINK;
-        container_3.style.backgroundColor = DARKPINK;
-        console.log("BAR");
-
-        let i = 0;
-        let prev_focused_ix = undefined;
+        const svg_1 = make_container(document.getElementById("scroll-container-1"), 8);
+        const svg_2 = make_container(container_2, 4);
+        const svg_3 = make_container(container_3, 2);
 
         function check_scroll() {
             window.requestAnimationFrame(check_scroll);
@@ -467,9 +408,6 @@ svg {
             const svgs = [svg_1, svg_2, svg_3];
             const enter_markers = [marker_enter_1, marker_enter_2, marker_enter_3];
             const exit_markers = [marker_exit_1, marker_exit_2, marker_exit_3];
-
-            let cur_focused_ix = undefined;
-
             for(let i = 0; i < 1; ++i) {
                 // console.log("scrolling: ", containers[i], svgs[i]);
 
@@ -533,54 +471,51 @@ svg {
                     const progress = 1.0 - (container_rect.bottom - viewport.height) / (container_rect.height - viewport.height);
 
                     svgs[i].render_fn(progress);
-                    /*
-                    console.log("====");
-                    console.log("enter_marker_rect.top: ",
-                        enter_marker_rect.top,
-                        "enter_marker_rect.bottom: ",
-                        enter_marker_rect.bottom);                     
-                    console.log("exit_marker_rect.top: ",
-                        exit_marker_rect.top,
-                        "exit_marker_rect.bottom",
-                        exit_marker_rect.bottom);
-                    console.log("container_rect.bottom: ", container_rect.bottom);         
-                    console.log("progress: ", progress);      
-                    console.log("viewport.top: ", viewport.top);
-                    */
-
                 }
             }
 
-            prev_focused_ix = cur_focused_ix;
-            //setTimeout(check_scroll, 300);
+        }
+        window.onload = check_scroll;
+        
 
-            /*
-            if (prev_svg != cur_svg && prev_svg) {
+        // ===COLORS===        
+        // ===COLORS===        
+        // ===COLORS===        
+        // ===COLORS===        
+        // ===COLORS===        
+        // ===COLORS===        
+        const GRAY = "#607D8B";
 
-                // if (status['progress'] == 'leaving_bottom') {
-                //     prev_svg.style.bottom = "0px";
-                // }
-                prev_svg.style.position = "static";
-                prev_svg.end_render_fn(status);
-                prev_svg = undefined;
-            }
+        const BLUE = "#64B5F6";
+        const PINK = "#EC407A";
+        const GREEN = "#4CAF50";
+        const DARKORANGE = "#FF5722";
+        const DARKPINK = "#C2185B";
+        const DARKBLUE = "#283593";
+        const DARKGRAY = "#37474F";
 
-            if (prev_svg != cur_svg) {
-                cur_svg.style.position = "fixed";
-                cur_svg.style.top = "0px";
-                cur_svg.style.left = "0px";
-                prev_svg = cur_svg;            
-                cur_svg.start_render_fn(status);
-                
-            }
-            // invoke the draw() method of the current SVG container.
-            if (cur_svg) { cur_svg.renderfn(status['progress']); }
-            window.requestAnimationFrame(check_scroll);
-        */
+        // ===SVG-1 HEAT EQN===
+        // ===SVG-1 HEAT EQN===
+        // ===SVG-1 HEAT EQN===
+        // ===SVG-1 HEAT EQN===
+        // ===SVG-1 HEAT EQN===
+        // ===SVG-1 HEAT EQN===
+        // ===SVG-1 HEAT EQN===
 
+        const HEAT_EQN_N_PARTICLES = 100;
+        let heat_particles = [];
+        for(let i = 0; i < HEAT_EQN_N_PARTICLES; ++i) {
+            heat_particles[i] = make_circle(svg_1);
+            heat_particles[i].r = 10;
+            heat_particles[i].cx = i*10;
+            heat_particles[i].cy = 500;
+            
         }
 
-        window.onload = check_scroll;
+        svg_1.render_fn = (dt) => {
+
+        };
+
     </script>
 
 </html>
