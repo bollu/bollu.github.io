@@ -38,3 +38,4 @@ if ((window.innerHeight - document.documentElement.clientHeight) >0) {
 - [ ] MathML
 - [ ] RSS
 - [ ] [twtxt](https://twtxt.readthedocs.io/en/latest/)
+- [ ] [Duktape](https://duktape.org/) for JS interpretation for KaTeX?

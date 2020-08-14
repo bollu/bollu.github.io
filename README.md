@@ -17,6 +17,15 @@ A Universe of Sorts
 #### Table of contents:
 
 <ol reversed>
+<li> [Topological proof of infinitude of primes](topological-proof-infinitude-of-primes)
+<li> [Burnside as space average equals time average](#burnside-as-space-average-equals-time-average)
+<li> [The Ise Grand shrine](#ise-grand-shrine)
+<li> [Edward Kmett's list of useful math](#edward-kmetts-list-of-useful-math)
+<li> [Cokernel is not sheafy](#cokernel-is-not-sheafy)
+<li> [Von neumann: foundations of QM](#von-neumann-foundations-of-qm) </li>
+<li> [Derivative of step is dirac delta](#derivative-of-step-is-dirac-delta) </li>
+<li> [Discrete schild's ladder](#discrete-schilds-ladder) </li>
+<li> [Extended euclidian algorithm](#extened-euclidian-algorithm)
 <li> [Essay on localization](https://bollu.github.io/localization.html)
 <li> [In a PID, all prime ideals are maximal, geometrically](#in-a-pid-all-prime-ideals-are-maximal-geometrically)
 <li> [Prime ideals as maximal among principal ideals](#prime-ideal-as-maximal-among-principal-ideals)
@@ -205,6 +214,436 @@ A Universe of Sorts
 <li> [Big list of Haiku](#big-list-of-haiku) </li>
 <li> [Big list of Music](#big-list-of-music) </li>
 </ol>
+
+# [Topological proof of infinitude of primes](topological-proof-infinitude-of-primes)
+
+We take the topological proof and try to view it from the topology as
+semidecidability perspective.
+
+- Choose a basis for the topology as the basic open sets
+  $S(a, b) = \{ a n + b : n \in \mathbb Z \} = \ mathbb Z + b \}$.
+  This set is indeed semi-decidable. Given a number $k$, I can check if
+  $(k - b) % a == 0$. So this is our basic decidability test.
+- By definition, $\emptyset$ is open, and $\mathbb Z = S(1, 0)$. Thus it is
+  a valid basis for the topology. Generate a topology from this. So we are
+  composing machines that can check in parallel if for *some* $i$,
+  $(k - b[i]) % a[i] == 0$ for some index.
+- The basis $S(a, b)$ is clopen, hence the theory is decidable.
+- Every number other than the units $\{+1, -1\}$ is a multiple of
+  a prime.
+- Hence, $$\mathbb Z \setminus \{ -1, +1 \} = \cup_{p \text{prime}} S(p, 0)$$.
+- Since there a finite number of primes [for contradiction], the right hand side
+  must be must be closed.
+- The complement of $\mathbb Z \setminus \{ -1, +1 \}$ is $\{ -1, +1 \}$. This
+  set cannot be open, because it cannot be written as the union
+  of sets of the form $\{ a n + b \}$: any such union would have infinitely
+  many elements. Hence, $\mathbb Z \setminus \{ -1, +1 \}$ cannot be closed.
+ 
+
+
+# [Burnside as space average equals time average](#burnside-as-space-average-equals-time-average)
+
+
+For a finite group $G$ acting on a set $X$, burnside's lemma equates
+(i) the number of equivalence classes of $X$ under $G$'s action,
+that is, the number of orbits of $X$ with (ii) the average number
+of stabilized elements for each $g \in G$. Formally, it asserts:
+
+$$
+|Orb(X, G)| = 1/|G|\sum_{g \in G} |Stab(g)|
+$$
+
+The left hand size is a time average: If we consider $X, GX, \dots G^{n}X$,
+we will finally be left with the images as the orbits. All other elements
+would have been ``smashed together''.
+
+On the right hand side, we are averaging the group over space. Yes,
+but how does one perform averaging? One needs to have a measure! 
+
+#### A rephrasing in terms of integrators
+
+Consider a system of a particle in a well. We consider two energy levels:
+that with `E = 0`, and `E = 1`. This gives us the following five
+states:
+
+<img src=/>
+
+now I want to simulate this system, like a good computer scientist. So let's
+write the stupdiest one possible, `Δ0`, that doesn't simulate anything
+at all, and `Δ+1`, which steps the system forward by a single step.
+These look like this:
+
+
+<img src=/>
+
+But why only these? Why privilege these time-scales? We should at least
+have `Δ-1`, for the arrow of time is fiction:
+<img src=/>
+
+We should also have coarser integrators. Hence we contemplate `Δ+2` and `Δ-2`.
+Turns out these are equivalent:
+
+<img src=/>
+
+
+# [The Ise Grand shrine](#ise-grand-shrine)
+
+> The shrine buildings at Naikū and Gekū, as well as the Uji Bridge, are
+> rebuilt every 20 years as a part of the Shinto belief of the death and
+> renewal of nature and the impermanence of all things and as a way of passing
+> building techniques from one generation to the next.
+
+I really enjoy this philosophy. I feel I should reflect on this, and update
+how I think about, say, code rewrites, and pouring billions into new
+supercolliders simply to keep the knowledge of how to build it alive.
+
+
+> The shrine has evolved throughout the years in its reconstruction, while
+> maintaining some of its key features. The shrine was not originally
+> constructed with gold copper adornments, however, because of advancements in
+> technology as well as Buddhist influence, it gained them over the years.
+
+
+# [Edward Kmett's list of useful math](#edward-kmetts-list-of-useful-math)
+
+I use Bayesian statistics constantly for probabilistic programming and neural
+networks. Calculus gave me access to understand automatic differentiation,
+which gets used in everything I do. Real analysis doesn't come up often, but
+intermediate value thm. style arguments are handy.
+
+
+I don't use classic geometry, but I when I was doing graphics I used projective
+geometry, and that served as a gateway to understand category theory's duality
+principle, and I use category theory to organize most of the code I write.
+
+I took one course on differential geometry. The knowledge I gained from it
+probably led to about half of my income to date. I've made a career out of
+weaponizing "obscure" math, e.g. using toric varieties of rational functions of
+Zhegalkin polynomials to schedule instructions...
+
+
+Differential equations? Physics? Well, I use Hamiltonian methods for most of
+the sampling I do in the world of probabilistic programming. So understanding
+symplectic integrators is a big step, and I have to move frictionless particles
+subject to a Hamiltonian, so there's diff eq.
+
+
+Fourier analysis, heat equations? Well, if I want to approximate a
+space/distribution, http://ddg.math.uni-goettingen.de/pub/GeodesicsInHeat.pdf
+
+Learning group theory "bottom up" from monoids and the like has been useful,
+because I use monoids basically everywhere as a functional programmer to
+aggregate data. It led to the work I did at S&P Capital IQ, and later to
+basically my entire niche as a functional programmer.
+
+But understanding more of the surrounding landscape has been useful as well, as
+I use all sorts of lattices and order theory when working with propagators. And
+I use regular and inverse semigroups (note, not groups!) when working with all
+sorts of fast parsing techniques.
+
+
+Complex analysis? Understanding Moebius transformations means I can understand
+how continued fractions work, which leads to models for computable reals that
+don't waste computation and are optimally lazy. Knowing analytic functions lets
+me understand complex step differentiation.
+
+
+Linear algebra is in everything I've done since highschool. Learning a bit of
+geometric algebra, and playing around with Plucker coordinates led to me
+licensing tech to old game companies for computational visibility back before
+it was a "solved" problem.
+
+Wandering back a bit, Gröbner bases wind up being useful for comparing circuits
+modulo 'don't care' bits for impossible situations, and all sorts of other
+simplification tasks.
+
+
+Let's go obscure. Pade approximants? Good rational approximations, not
+polynomial ones. Sounds academic, but computing exp and log is expensive, and
+fast rational approximations can be conservative, monotone and have nice
+derivatives, speeding NN-like designs a lot.
+
+
+Weird number systems => Data structures.  Category theory acts as a rosetta
+stone for so many other areas of math it isn't even funny. You can understand
+almost all of the essential bits of quantum computing just knowing by category
+theory.
+
+
+Logic. Well, which logic? You run into a modal logic in a philosophy class
+some time and think of it as a clever hack, but monads in FP are basically a
+modality. Modal logics for necessity/possibility model effect systems well.
+Substructural logics to manage resource usage...
+
+
+
+I don't use a lot of number theory. There. Mind you, this is also one of those
+areas where I'm just standing on weak foundations, so I don't know what I
+don't know. I just know it's hard to do all sorts of things that sound easy
+and try to muddle through w/ my limited background.
+
+
+# [Cokernel is not sheafy](#cokernel-is-not-sheafy)
+
+I wanted to understand why the Cokernel is not a sheafy condition.
+I found an [explanation in Ravi Vakil's homework solutions](https://math.mit.edu/~mckernan/Teaching/07-08/Spring/18.726/model2.pdf)
+which I am expanding on here.
+
+#### Core idea
+
+We will show that there will be an exact sequence which is surjective
+at each stalk, but not globally surjective. So, locally, we wil have
+trivial cokernel, but globally, we will have non-trivial cokernel.
+
+#### Exponential sheaf sequence
+
+
+```
+0  --> 2πiZ -[α:incl]-> O --[β:exp(.)]--> O* --> 0
+```
+
+- `O` is the sheaf of the additive group of holomorphic functions. 
+  `O*` is the sheaf of the group of non-zero holomorphic functions. 
+- `α`, which embeds `2πin ∈2πiZ` as a constant function `f(_) = 2πin` is
+  injective.
+- `e^(2πiZ) = 1`. So we have that the composition of the two maps `β.α` is
+  the zero map, mapping everything in `2πiZ` to the identity of `O*`.
+  Thus, `d^2 = 0`, ensuring that this is an exact sequence.
+- Let us consider the local situation. At each point `p`, we want to show
+  that `β` is surjective. Pick any `g ∈ O*p`. We have an open neighbourhood `Ug`
+  where `g ≠ 0`. take the logarithm of `g` to pull back `g ∈ O*` to `log g ∈ O`.
+  Thus, `β` is surjective at each local point `p`.
+- On the other hand, the function `h(z) = z` cannot be in `O*`. If it were,
+  then there exists a homolorphic function called `l ∈ O` [for `log`] such that
+  `exp(l(z)) = h(z) = z` everywhere on the complex plane. 
+- Assume such a function exists. Then it must be the case that
+  `d/dz exp(l(z)) = d/dz(z) = 1`. Thus, `exp(l(z)) l'(z) = z l'(z) = 1`
+  [use the fact that `exp(l(z)) = z`]. This means that `l'(z) = 1/z`.
+- Now, by integrating in a closed loop of `e^iθ` we have `∮l'(z) = l(1) - l(1) = 0`.
+- We also have that `∮l'(z) = ∮1/z = 2πi`.
+- This implies that `0 = 2πi` which is absurd.
+- Hence, we cannot have a function whose exponential gives `h(z) = z` everywhere.
+- Thus, the cokernel is nontrivial globally.
+
+  
+
+
+
+# [Von neumann: foundations of QM](#von-neumann-foundations-of-qm)
+
+- I wanted to understand what von neumann actually did when he
+  "made QM rigorous", what was missing, and why we need $C^\star$ algebras for
+  quantum mechanics, or even "rigged hilbert spaces".
+- I decided to read Von Neumann: Mathematical foundations of quantum mechanics.
+- It seems he provides a rigorous footing for QM, without any dirac
+  deltas. In particular, he proves the Reisez representation theorem,
+  allow for transforming bras to kets and vice versa. On the other hand,
+  it does not allow for dirac delta as bras and kets.
+- The document [The role of rigged hilbert spaces in QM](https://arxiv.org/pdf/quant-ph/0502053.pdf)
+  provides a gentle introduction on how to add in dirac deltas. 
+- Rigged hilbert spaces (by Gelfand) combine the theory of distributions
+  (by Schwartz), developed to make dirac deltas formal, and the theory of
+  hilbert spaces (by Von Neumann) developed to make quantum mechanics formal.
+- To be even more abstract, we can move to $C^\star$ algebras, which allow
+  us to make QFT rigorous.
+- So it seems that in total, to be able to write, say, a "rigorous shankar"
+  textbook, one should follow Chapter 2 of Von Neumann, continuing with the
+  next document which lays out how to rig a hilbert space.
+- At this point, one has enough mathematical machinery to mathematize all of
+  Shankar.
+
+#### References
+
+- Von neumann: Mathematical foundations of quantum mechanics.
+- [The role of rigged hilbert spaces in QM](https://arxiv.org/pdf/quant-ph/0502053.pdf)
+
+# [Discrete schild's ladder](#discrete-schilds-ladder)
+
+If one is given a finite graph $(V, E)$, which we are guaranteed came
+from discretizing a grid, can we recover a global sense of orientation?
+
+- More formally, assume the grid was of dimensions $W \times H$. So we have
+  the vertex set as $V \equiv \{ (w, h) 1 \leq w \leq W, 1 \leq h \leq H \}$.
+  We have in the edge set all elements of the form $((w, h), (w \pm 1, h \pm 1))$
+  as long as respective elements $(w, h)$ and $(w \pm 1, h \pm 1)$ belong to $V$.
+
+- We lose the information about the grid as comprising of elements of the
+  form $(w, h)$. That is, we are no longer allowed to "look inside". All we
+  have is a pile of vertices and edges $V, E$.
+
+- Can we somehow "re-label" the edges $e \in E$ as "north", "south", "east",
+  and "west" to regain a sense of orientation?
+
+- Yes. Start with some corner. Such a corner vertex will have degree 2. Now,
+  walk "along the edge", by going from a vertex of degree 2 to an neighbour
+  of degree 2. If we finally reach a vertex that has unexplored 
+  neighbours of degree 3 or 4, pick the neighbour of degree 3. This will give
+  us "some edge" of the original rectangle.
+
+- We now arbitrary declare this edge to be the North-South edge. We now need
+  to build the perpendicular East-West edge.
+
+- This entire construction is very reminisecent of
+  [Schild's Ladder](https://en.wikipedia.org/wiki/Schild%27s_ladder)
+
+
+# [Derivative of step is dirac delta](#derivative-of-step-is-dirac-delta)
+
+I learnt of the "distributional derivative" today from [my friend, Mahathi](TODO).
+Recording this here.
+
+#### The theory of distributions
+
+As far as I understand, in the theory of distributions, A distribution
+is simply a linear functional $F: (\mathbb R \rightarrow \mathbb R) \rightarrow \mathbb R$.
+The two distributions we will focus on today are:
+- The step distribution, $step(f) \equiv \int_0^\infty f(x) dx$
+- The dirac delta distribution, $\delta(f) = f(0)$.
+- Notationally, we write $D(f)$ where $D$ is a distribution, $f$ is a function as
+ $\int D(x) f(x) dx$.
+- We can regard any function as a distribution, by sending $f$ to $F(g) \equiv \int f(x) g(x) dx$.
+- But it also lets us cook up "functions" like the dirac delta which cannot actually
+  exist as a function. So we move to the wider world of distributions
+
+#### Derivative of a distribution
+
+Recall that notationally, we wrote $D(f)$ as $\int D(x)f(x) dx$. We now want
+a good definition of the derivative of the distribution, $D'$. How? well,
+use chain rule!
+
+$$
+\begin{align*}
+&\int_0^\infty U dV \\ = [UV]|_0^\infty - \int_0^\infty V dU \\
+&\int_0^\infty f(x) D'(x)  dx = [f(x) D(x)]|_0^\infty - \int_0^\infty D f'(x)
+\end{align*}
+$$
+
+
+
+Here, we assume that $f(\infty) = 0$, ahd that $f$ is differentiable at $0$.
+This is because we only allow ourselves to feed into these distribtions
+certain classes of functions (test functions), which are "nice". The test
+functions $f$ (a) decay at infinity, and (b) are smooth.
+
+The derivation is:
+
+\begin{align*}
+&\int_0^\infty U dV = \int_0^\infty f(x) \delta(x) = f(0) \\
+&[UV]|_0^\infty - \int_0^\infty V dU = [f(x) step(x)]|_0^\infty - \int_0^\infty \step(x) f'(x) \\
+&= [f(\infty)step(\infty) - f(0)step(0)] - step(f') \\
+&= [0 - 0] - (\int_0^\infty f'(x) dx) \\
+&= 0 - (f(\infty) - f(0))
+&= 0 - (0 - f(0))
+&= f(0)
+\end{align*}
+
+- Thus, the derivative of the step distribution is the dirac delta distribution.
+
+# [Extended euclidian algorithm](#extened-euclidian-algorithm)
+
+#### Original definition 
+
+I feel like I only understand the extended euclidian algorithm algebraically,
+so I've been trying to understand it from other perspectives. Note that
+we want to find $gcd(p, p')$. WLOG, we assume that $p > p'$.
+We now find a coefficient $d$ such that $p = d p' + r$ where $0  \leq r < p'$.
+At this stage, we need to repeat the algorithm to find $gcd(p', r)$. We
+stop with the base case $gcd(p', 0) = p'$. 
+
+#### My choice of notation
+
+I dislike the differentiation that occurs between $p$, $p'$, and $r$
+in the notation. I will notate this as $gcd(p_0, p_1)$. WLOG, assume
+that $p_0 > p_1$. We now find a coefficient $d_0$ such that $p_0 = p_1 d_1 + p_2$
+such that $0 \leq p_2 < p_1$. At this stage, we recurse to find 
+$gcd(p_1, p_2)$. We stop with the base case $gcd(p_{n-1}, p_n) = p_n$ iff
+$p_{n-1} = d_n p_n + 0$. That is, when we have $p_{n+1} = 0$, we stop
+with the process, taking the gcd to be $p_n$.
+
+#### Matrices
+
+We can write the equation $p_0 = p_1 d_1 + p_2$ as the equation
+$p_0 = [d_1 & 1] [p_1 & p_2]^T$. But now, we have lost some state. We used
+to have both $p_1$ and $p_2$, but we are left with $p_0$. We should always
+strive to have "matching" inputs and output so we can iterate maps. This
+leads us to the natural generalization:
+
+$$
+\begin{bmatrix} p_0 \\ p_1 \end{bmatrix} = 
+\begin{bmatrix}
+d_1  & 1 \\ 1 & 0 
+\end{bmatrix}
+\begin{bmatrix} p_1 \\ p_2 \end{bmatrix}
+$$
+
+So at the first step, we are trying to find a $(d_1, p_2)$ such that the
+matrix equation holds, and $0 \leq p_2 < d_1$.
+
+#### Extended euclidian division
+
+When we finish, we have that $gcd(p_{n-1}, p_n) = p_n$. I'll call the GCD
+as $g$ for clarity. We can now write the GCD as a linear combination
+of the inputs $g = p_n = 0 \cdot p_{n-1} + 1 \cdot p_n$. We now
+want to backtrack to find out how to write $g = \omega_{n-2} p_{n-2} + \omega_{n-1} p_{n-1}$.
+And so on, all the way to $g = \omega_0 p_0 + \omega_1 p_1$.
+
+
+- We can begin with the general case:
+
+$$
+g = 
+\begin{bmatrix} \omega' & \omega'' \end{bmatrix}
+\begin{bmatrix} p' \\ p'' \end{bmatrix}
+$$
+
+- We have the relationship:
+
+$$
+\begin{bmatrix} p \\ p' \end{bmatrix} = 
+\begin{bmatrix}
+d'  & 1 \\ 1 & 0 
+\end{bmatrix}
+\begin{bmatrix} p' \\ p'' \end{bmatrix}
+$$
+
+- We can invert the matrix to get:
+
+
+$$
+\begin{bmatrix} p' \\ p'' \end{bmatrix} = 
+\begin{bmatrix}
+0  & 1 \\ 1 & - d' 
+\end{bmatrix}
+\begin{bmatrix} p \\ p' \end{bmatrix}
+$$
+
+- now combine with the previous equation to get:
+
+$$
+\begin{align*}
+&g = 
+\begin{bmatrix} \omega' & \omega'' \end{bmatrix}
+\begin{bmatrix} p' \\ p'' \end{bmatrix} \\
+&g = 
+\begin{bmatrix} \omega' & \omega'' \end{bmatrix}
+\begin{bmatrix}
+0  & 1 \\ 1 & - d' 
+\end{bmatrix}
+\begin{bmatrix} p \\ p' \end{bmatrix} \\
+&g = 
+\begin{bmatrix} \omega'' & \omega - d' \omega'  \end{bmatrix}
+\begin{bmatrix} p \\ p' \end{bmatrix} \\
+
+\end{align*}
+$$
+
+#### Fractions
+
+- GCD factorization equation: $p/p' = (\alpha p' + p'')/p' = \alpha + p''/p'$.
+- Bezout equation: $\omega' p' + \omega'' p'' = g$.
+- Bezout equation as fractions $$\omega' + \omega'' p''/p' = g/p'$.
+
+
 
 # [In a PID, all prime ideals are maximal, geometrically](#in-a-pid-all-prime-ideals-are-maximal-geometrically)
 
@@ -1776,32 +2215,10 @@ satisfies the linear isoperimetric inequality.
 
 ### Proof that conjugacy is solvable for hyperbolic groups
 
-```
-e------------------x----------------------->x
-|                                           |
-g2                                          g1
-|                                           |
-v                                           v
-g1 =x g1 x'<-------x'--------------------- x g1
-```
+Consider a solution to the problem of finding an $x$ such that $xgx^{-1} = h$.
+We claim that due to the hyperbolicity of the space, such an $x$ cannot be
+"too long".
 
-Assume such an element `x` exists such that `g2 = x g1 x'`.
-
-Now we have two triangles, `e-x-xg1` and `xg1-x'-g2`. Let us focus on
-`e-x-xg1`. Assume the triangles in our space is $delta$ thin.
-
-```
-         α = δ
-e------------------x----‖------------------>x
- \_______               ‖                   |
-         \________      ‖    > δ            |
-                  \_____p====================
-                           \________        |
-                                    \_______xg1
-```
-
-Since our triangles are $\delta$ thin, if the distance of the point $p \in [e xg1]$
-to  
 
 
 ### References

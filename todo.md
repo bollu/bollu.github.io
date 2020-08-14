@@ -1,3 +1,43 @@
+- Stream fusion to completeness: https://arxiv.org/pdf/1612.06668.pdf
+- PhD qualifying exams, large list: https://math.stackexchange.com/questions/267554/on-ph-d-qualifying-exams/270467#270467
+- Mishchenko/Fomenko - "A Course of Differential Geometry and Topology". It
+  develops everything up from Rn, curves and surfaces to arrive at smooth
+  manifolds and LOTS of examples (Lie groups, classification of surfaces, etc).
+  It is also filled with LOTS of figures and classic drawings of every
+  construction giving a very visual and geometric motivation. It even develops
+  Riemannian geometry, de Rham cohomology and variational calculus on manifolds
+  very easily and their explanations are very down to Earth.
+- Stoker, differential geometry: Very concrete first few chapter, then does
+  abstract manifolds next few chapters, finally ends up at relativity.
+- Ergodic theory explanation for burnside: 
+   https://mathoverflow.net/questions/50033/intuitive-explanation-of-burnsides-lemma
+- Geometry: A metric approach with models by Richard S Millman: https://math.stackexchange.com/a/615095/261373
+- Invitation to ergodic theory by CE Silva. Contains a first chapter on 
+  Lebesgue measure, so no difficulties of "not knowing measure".
+- All the good tutorials on competitive programming in
+  codeforces: https://codeforces.com/blog/entry/57282
+- Computataional algebraic number theory: 
+  A Course in Computational Algebraic Number Theory by Henri Cohen
+- Algorithms to compute the primary decompositions of ideals: 
+  (1) Localization and Primary Decomposition of Polynomial ideals
+  (2) Eisenbud-Huneke-Vasconcelos
+- [Zhegalkin polynomials: Think edward told me about to compute toric varieties](https://en.wikipedia.org/wiki/Zhegalkin_polynomial)
+- Indian IAS preparation textbooks: https://www.jagranjosh.com/articles/best-books-for-ias-exam-1479814834-1
+- Ballentine: Quantum Mechanics: A Modern Development. Rigorously
+  builds up QM from rigged hilbert spaces, and probability theory from
+  Kolmogrov axioms.
+- [Recursive estimation and the kalman filter](https://www.le.ac.uk/users/dsgp1/COURSES/MESOMET/ECMETXT/recurse.pdf)
+- [Books in the style of needleham's Visual complex analysis](https://mathoverflow.net/questions/31879/are-there-other-nice-math-books-close-to-the-style-of-tristan-needham/65746#65746)
+- Online etymology dictionary: [Etymonline](https://www.etymonline.com/)
+- ImagineFX: [digital art magazine](https://www.creativebloq.com/imaginefx)
+- Learning how to draw: structured exercises! [Draw a box](https://drawabox.com)
+- The digital line: a non-Hausdorff space important in graphics: https://math.stackexchange.com/a/3778161/261373.
+  This seems to give topological meaning to a bunch of interesting "discrete"
+  algorithms. I'll have to check it out.
+- Defending the Undefendable: The Pimp, Prostitute, Scab, Slumlord, Libeler,
+  Moneylender, and Other Scapegoats in the Rogue's Gallery of American Society
+  Origins of Mathematical Words, a book about the etymology of mathematical
+  terms.
 - [Nice example of left/right identities in terms of colored sheets](https://www.reddit.com/r/math/comments/hzyt8l/consider_a_set_of_opaque_colored_sheets_along/)
 > Consider a set of opaque colored sheets, along with a binary operation of
 > stacking sheets. Then every sheet is a left identity, UNLESS you add a
@@ -68,6 +108,7 @@
 - [Great example explaining how egyptian is both logographic as well as phonographic](https://www.reddit.com/r/AskHistorians/comments/hswhqx/how_did_humans_work_in_fields_in_the_heat_for/fyevea7/)
 - Constantinople myth: it will rise and fall to an emperor named Constantine with
   a mother named Helena.
+- Using the internal language of toposesin algebraic geometry: https://rawgit.com/iblech/internal-methods/master/notes.pdf
 - [Algebraic Geometry from the beginning](https://rigtriv.wordpress.com/ag-from-the-beginning/).
   Expository blog posts that has the algebraic, geometric, and computational
   parts of AG. Really neat!
