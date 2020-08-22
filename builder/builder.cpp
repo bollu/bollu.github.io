@@ -143,7 +143,7 @@ std::ostream &operator<<(std::ostream &o, const TT &ty) {
     assert(false && "unreachable");
 };
 
-// L for line
+// L for location
 struct L {
     ll si, line, col;
     L(ll si, ll line, ll col) : si(si), line(line), col(col){ };
@@ -176,7 +176,7 @@ struct L {
 
     bool operator != (const L &other) const {   return !(*this == other); }
 };
-const L lfirstline = L(0, 1, 1);
+const L lfirstloc = L(0, 1, 1);
 const L lundefined = L(-1, -1, -1);
 
 std::ostream &operator<<(std::ostream &o, const L &l) {
@@ -195,28 +195,28 @@ std::ostream &operator<<(std::ostream &o, const Span &s) {
     return cout << s.begin << " - " << s.end;
 }
 
-void vprintferr(L line, const char *raw_input, const char *fmt, va_list args) {
+void vprintferr(L loc, const char *raw_input, const char *fmt, va_list args) {
     char *outstr = nullptr;
     vasprintf(&outstr, fmt, args);
     assert(outstr);
 
     cerr << "===\n";
-    cerr << line << "\t" << outstr << "\n";
-    // find the previous newline character.
-    int i = line.si; for(; i >= 1 && raw_input[i-1] != '\n'; i--) {}
+    cerr << loc << "\t" << outstr << "\n";
+    // find the previous newloc character.
+    int i = loc.si; for(; i >= 1 && raw_input[i-1] != '\n'; i--) {}
 
     cerr << "> ";
     for(; raw_input[i] != '\0' && raw_input[i] != '\n'; ++i) {
-        if (i == line.si) { cerr <<  "⌷"; } cerr << raw_input[i];
+        if (i == loc.si) { cerr <<  "⌷"; } cerr << raw_input[i];
     }
     cerr << "\n===\n";
     free(outstr);
 }
 
-void printferr(L line, const char *raw_input, const char *fmt, ...) {
+void printferr(L loc, const char *raw_input, const char *fmt, ...) {
     va_list args;
     va_start(args, fmt);
-    vprintferr(line, raw_input, fmt, args);
+    vprintferr(loc, raw_input, fmt, args);
     va_end(args);
 }
 
@@ -720,7 +720,7 @@ T* tokenizeBlock(const char *s, const ll len, const L lbegin) {
 
 
 void tokenize(const char *s, const ll len, vector<T*> &ts) {
-    Span span(lfirstline, lfirstline);
+    Span span(lfirstloc, lfirstloc);
     while (span.end.si < len) {
         T *t = tokenizeBlock(s, len, span.end);
         assert(t != nullptr);
@@ -907,16 +907,16 @@ GIVE char* compileLatex(KEEP const char *tempdirpath, ll inwritelen,
 // So this strips off all "decoration" leaving only the text in place.
 // TODO: Refactor LatexInline, CodeInline, Bold, Italic
 // to be same struct.
-void headingToLinkText(const char *raw_input,
+void inlineTokenToRawText(const char *raw_input,
         const T *t, 
         char *outs,
         ll &outlen) {
 
     if (t->ty == TT::InlineGroup) {
-        ll len = 0;
         // cerr << *t << "\n";
+        ll len = 0;
         for(T *item : ((TInlineGroup *)t)->items) {
-            headingToLinkText(raw_input, item, outs + len, len);
+            inlineTokenToRawText(raw_input, item, outs + len, len);
         };
         outlen = len + 1;
     } else if (t->ty == TT::CodeInline) {
@@ -936,15 +936,15 @@ void headingToLinkText(const char *raw_input,
         return;
     } else if (t->ty == TT::Bold) {
         TBold *bold = (TBold *)t;
-        headingToLinkText(raw_input, bold->item, outs, outlen);
+        inlineTokenToRawText(raw_input, bold->item, outs, outlen);
     } else if (t->ty == TT::Italic) {
         TItalic *italic = (TItalic *)t;
-        headingToLinkText(raw_input, italic->item, outs, outlen);
+        inlineTokenToRawText(raw_input, italic->item, outs, outlen);
     } else if (t->ty == TT::Link) {
         TLink *link = (TLink *)t;
-        headingToLinkText(raw_input, link->text, outs, outlen);
+        inlineTokenToRawText(raw_input, link->text, outs, outlen);
     } else {
-        cerr << "unexpected token in heading at: " << t->span;
+        printferr(t->span.end, raw_input, "unexpected token in heading!");
         assert(false && "unexpected token in heading.");
     }
 }
@@ -959,12 +959,12 @@ void headingToLinkText(const char *raw_input,
 // remove anything that is not a letter, number, space or hyphen (see the source for how Unicode is handled)
 // changes any space to a hyphen.
 // If that is not unique, add "-1", "-2", "-3",... to make it unique
-GIVE const char *mkHeadingLink(KEEP const char *raw_input, KEEP THeading *heading) {
+GIVE const char *mkHeadingURL(KEEP const char *raw_input, KEEP THeading *heading) {
     const int BUFSIZE = (1 << 14);
     char rawtext[BUFSIZE]; 
     for(int i = 0; i < BUFSIZE; ++i) rawtext[i] = 0;
     ll rawtextlen = 0;
-    headingToLinkText(raw_input, heading->item, rawtext, rawtextlen);
+    inlineTokenToRawText(raw_input, heading->item, rawtext, rawtextlen);
     rawtext[rawtextlen] = 0;
     assert(rawtextlen + 1 < BUFSIZE && "heading exceeded buffer size limits");
 
@@ -1146,7 +1146,7 @@ void toHTML(const char *raw_input,
             THeading *theading = (THeading *)t;
 
             // need the _raw text_. Hmm.
-            const char *link = mkHeadingLink(raw_input, theading);
+            const char *link = mkHeadingURL(raw_input, theading);
             // outlen += sprintf(outs + outlen, "<h%d id=%s>", theading->hnum, link);
             outlen += sprintf(outs + outlen, "<h%d>", min(4, 1+theading->hnum));
             outlen += sprintf(outs + outlen, "<a id=%s href='#%s'> %s </a>", link, link, "§");
@@ -1412,8 +1412,11 @@ int main(int argc, char **argv) {
         assert(heading->hnum == 1);
 
         ix_h1++; while (ix_h1 < ts.size() && !is_h1(ts[ix_h1])) { ix_h1++; }
+        const char *url = mkHeadingURL(raw_input, heading);
+
         // TODO: find some easy way to print WTF is the data in the heading.
-        cerr << "===Writing [" << (uint64_t)heading << "]...===\n";
+        cerr << "===Writing [" << url << "]...===\n";
+
 
         char *outbuf = (char *) calloc(MAX_OUTPUT_BUF_LEN, sizeof(char));
         ll outlen = 0;
@@ -1424,9 +1427,10 @@ int main(int argc, char **argv) {
         outlen += sprintf(outbuf + outlen, "%s", html_postamble);
 
 
+
         // [ix_start, ix_h1) contains the new article
         char html_path[1024];
-        sprintf(html_path, "%s/%lu.html", argv[2], (uint64_t)heading);
+        sprintf(html_path, "%s/%s.html", argv[2], url);
 
         FILE *f = fopen(html_path, "wb");
         if (f == nullptr) {
