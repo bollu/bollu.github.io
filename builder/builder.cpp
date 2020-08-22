@@ -195,7 +195,7 @@ std::ostream &operator<<(std::ostream &o, const Span &s) {
     return cout << s.begin << " - " << s.end;
 }
 
-void vprintferr(L line, const char *instr, const char *fmt, va_list args) {
+void vprintferr(L line, const char *raw_input, const char *fmt, va_list args) {
     char *outstr = nullptr;
     vasprintf(&outstr, fmt, args);
     assert(outstr);
@@ -203,20 +203,20 @@ void vprintferr(L line, const char *instr, const char *fmt, va_list args) {
     cerr << "===\n";
     cerr << line << "\t" << outstr << "\n";
     // find the previous newline character.
-    int i = line.si; for(; i >= 1 && instr[i-1] != '\n'; i--) {}
+    int i = line.si; for(; i >= 1 && raw_input[i-1] != '\n'; i--) {}
 
     cerr << "> ";
-    for(; instr[i] != '\0' && instr[i] != '\n'; ++i) { 
-        if (i == line.si) { cerr <<  "⌷"; } cerr << instr[i];
+    for(; raw_input[i] != '\0' && raw_input[i] != '\n'; ++i) {
+        if (i == line.si) { cerr <<  "⌷"; } cerr << raw_input[i];
     }
     cerr << "\n===\n";
     free(outstr);
 }
 
-void printferr(L line, const char *instr, const char *fmt, ...) {
+void printferr(L line, const char *raw_input, const char *fmt, ...) {
     va_list args;
     va_start(args, fmt);
-    vprintferr(line, instr, fmt, args);
+    vprintferr(line, raw_input, fmt, args);
     va_end(args);
 }
 
@@ -315,23 +315,23 @@ bool strpeek(const char* haystack, const char* needle) {
 }
 
 
-// consume till we file delim in instr
-L strconsume(L l, const char *instr, const char *delim,
+// consume till we file delim in raw_input
+L strconsume(L l, const char *raw_input, const char *delim,
         const char *errfmt, ...)  {
     const L lbegin = l;
-    while (instr[l.si] != '\0' && 
-           !strpeek(instr + l.si, delim)) {
-        l = l.next(instr[l.si]);
+    while (raw_input[l.si] != '\0' &&
+           !strpeek(raw_input + l.si, delim)) {
+        l = l.next(raw_input[l.si]);
     }
 
-    if (instr[l.si] == '\0') {
+    if (raw_input[l.si] == '\0') {
         va_list args;
         va_start(args, errfmt);
-        vprintferr(lbegin, instr, errfmt, args);
+        vprintferr(lbegin, raw_input, errfmt, args);
         va_end(args);
         assert(false && "unable to consume string.");
     } else {
-        assert(strpeek(instr + l.si, delim));
+        assert(strpeek(raw_input + l.si, delim));
         l = l.next(delim);
     }
     return l;
@@ -735,7 +735,7 @@ void tokenize(const char *s, const ll len, vector<T*> &ts) {
 
 
 char* pygmentize(const char *tempdirpath, 
-        const char *code, int codelen, const char *lang, const char *instr, const L loc) {
+        const char *code, int codelen, const char *lang, const char *raw_input, const L loc) {
 
 
     char latex_file_path[512];
@@ -767,7 +767,7 @@ char* pygmentize(const char *tempdirpath,
         int status;
         wait(&status);
         if(WIFEXITED(status) && (WEXITSTATUS(status) != 0)) {
-            printferr(loc, instr, "unable to pygmentize code");
+            printferr(loc, raw_input, "unable to pygmentize code");
             assert(false && "child ended non-gracefully");
         };
     }
@@ -793,17 +793,17 @@ char* pygmentize(const char *tempdirpath,
 // $$\begin{align*} .. \end{align*}$$
 //   TO
 // \begin{align*} .. \end{align*}
-pair<ll, L> removeAlignDollarsHack(const char *instr, const ll inwritelen,
+pair<ll, L> removeAlignDollarsHack(const char *raw_input, const ll inwritelen,
         const L loc) {
-    assert(instr[loc.si] == '$');
+    assert(raw_input[loc.si] == '$');
 
     // we may have inline latex that does not have $$.
-    if(!strpeek(instr + loc.si, "$$")) { return make_pair(inwritelen, loc); }
+    if(!strpeek(raw_input + loc.si, "$$")) { return make_pair(inwritelen, loc); }
     int ix = loc.si + 2;
-    while(instr[ix] == ' ' || instr[ix] == '\n' || instr[ix] == '\t') { ++ix; }
+    while(raw_input[ix] == ' ' || raw_input[ix] == '\n' || raw_input[ix] == '\t') { ++ix; }
     const char *BEGINALIGN = "\\begin{align*}";
 
-    if (strpeek(instr + ix, BEGINALIGN)) {
+    if (strpeek(raw_input + ix, BEGINALIGN)) {
         return make_pair(inwritelen - 4, loc.next("$$"));
     }
     return make_pair(inwritelen, loc);
@@ -811,11 +811,11 @@ pair<ll, L> removeAlignDollarsHack(const char *instr, const ll inwritelen,
 
 
 GIVE char* compileLatex(KEEP const char *tempdirpath, ll inwritelen, 
-        KEEP const char *instr, L loc) {
+        KEEP const char *raw_input, L loc) {
 
-    tie(inwritelen, loc) = removeAlignDollarsHack(instr, inwritelen, loc);
+    tie(inwritelen, loc) = removeAlignDollarsHack(raw_input, inwritelen, loc);
 
-    const ll hash = hashstr(instr + loc.si, inwritelen);
+    const ll hash = hashstr(raw_input + loc.si, inwritelen);
     if (const char *val = lookup_key(hash)) {
         return strdup(val);
     }
@@ -834,7 +834,7 @@ GIVE char* compileLatex(KEEP const char *tempdirpath, ll inwritelen,
     // if we have a \begin{align*} right after.
 
     // fprintf(flatex, "\\usepackage{amssymb}\n");
-    const ll nwritten = fwrite(instr + loc.si, 1, inwritelen, flatex);
+    const ll nwritten = fwrite(raw_input + loc.si, 1, inwritelen, flatex);
     assert(nwritten == (ll)inwritelen);
 
     fclose(flatex);
@@ -866,12 +866,12 @@ GIVE char* compileLatex(KEEP const char *tempdirpath, ll inwritelen,
         wait(&status);
         if(WIFEXITED(status) && (WEXITSTATUS(status) != 0)) {
             fprintf(stderr, "===LATEX ERROR===\n");
-            printferr(loc, instr, "unable to hevea (latexif render) code");
+            printferr(loc, raw_input, "unable to hevea (latexif render) code");
             cerr <<  "====child running hevea ended non-gracefully. Returning input string===\n";
             assert(false && "child ended non-gracefully.");
             char *outs = (char *)malloc((inwritelen+2) *sizeof(char));
             int i  = 0;
-            for(; i < inwritelen; ++i) { outs[i] = instr[loc.si + i]; }
+            for(; i < inwritelen; ++i) { outs[i] = raw_input[loc.si + i]; }
             outs[i] = 0; return outs;
         } 
         // else {
@@ -907,7 +907,7 @@ GIVE char* compileLatex(KEEP const char *tempdirpath, ll inwritelen,
 // So this strips off all "decoration" leaving only the text in place.
 // TODO: Refactor LatexInline, CodeInline, Bold, Italic
 // to be same struct.
-void headingToLinkText(const char *instr, 
+void headingToLinkText(const char *raw_input,
         const T *t, 
         char *outs,
         ll &outlen) {
@@ -916,33 +916,33 @@ void headingToLinkText(const char *instr,
         ll len = 0;
         // cerr << *t << "\n";
         for(T *item : ((TInlineGroup *)t)->items) {
-            headingToLinkText(instr, item, outs + len, len);
+            headingToLinkText(raw_input, item, outs + len, len);
         };
         outlen = len + 1;
     } else if (t->ty == TT::CodeInline) {
         Span span = Span(t->span.begin.next("`"),
                         t->span.end.prev("`"));
-        strncpy(outs, instr + span.begin.si, span.nchars());
+        strncpy(outs, raw_input + span.begin.si, span.nchars());
         outlen += span.nchars();
     } else if (t->ty == TT::LatexInline) {
         Span span = Span(t->span.begin.next("$"),
                         t->span.end.prev("$"));
-        strncpy(outs, instr + span.begin.si, span.nchars());
+        strncpy(outs, raw_input + span.begin.si, span.nchars());
         outlen += span.nchars();
     } else if (t->ty == TT::RawText) {
-        strncpy(outs, instr + t->span.begin.si, t->span.nchars());
+        strncpy(outs, raw_input + t->span.begin.si, t->span.nchars());
         outlen += t->span.nchars();
     } else if (t->ty == TT::Comment) {
         return;
     } else if (t->ty == TT::Bold) {
         TBold *bold = (TBold *)t;
-        headingToLinkText(instr, bold->item, outs, outlen);
+        headingToLinkText(raw_input, bold->item, outs, outlen);
     } else if (t->ty == TT::Italic) {
         TItalic *italic = (TItalic *)t;
-        headingToLinkText(instr, italic->item, outs, outlen);
+        headingToLinkText(raw_input, italic->item, outs, outlen);
     } else if (t->ty == TT::Link) {
         TLink *link = (TLink *)t;
-        headingToLinkText(instr, link->text, outs, outlen);
+        headingToLinkText(raw_input, link->text, outs, outlen);
     } else {
         cerr << "unexpected token in heading at: " << t->span;
         assert(false && "unexpected token in heading.");
@@ -959,12 +959,12 @@ void headingToLinkText(const char *instr,
 // remove anything that is not a letter, number, space or hyphen (see the source for how Unicode is handled)
 // changes any space to a hyphen.
 // If that is not unique, add "-1", "-2", "-3",... to make it unique
-GIVE const char *mkHeadingLink(KEEP const char *instr, KEEP THeading *heading) {
+GIVE const char *mkHeadingLink(KEEP const char *raw_input, KEEP THeading *heading) {
     const int BUFSIZE = (1 << 14);
     char rawtext[BUFSIZE]; 
     for(int i = 0; i < BUFSIZE; ++i) rawtext[i] = 0;
     ll rawtextlen = 0;
-    headingToLinkText(instr, heading->item, rawtext, rawtextlen);
+    headingToLinkText(raw_input, heading->item, rawtext, rawtextlen);
     rawtext[rawtextlen] = 0;
     assert(rawtextlen + 1 < BUFSIZE && "heading exceeded buffer size limits");
 
@@ -987,7 +987,7 @@ GIVE const char *mkHeadingLink(KEEP const char *instr, KEEP THeading *heading) {
     return link;
 }
 
-void toHTML(const char *instr,
+void toHTML(const char *raw_input,
         const char *tempdirpath, 
         const T *t, ll &outlen, char *outs) {
     assert(t != nullptr);
@@ -997,7 +997,7 @@ void toHTML(const char *instr,
 
         case TT::HTML:
         case TT::RawText:
-        strncpy(outs + outlen, instr + t->span.begin.si, t->span.nchars());
+        strncpy(outs + outlen, raw_input + t->span.begin.si, t->span.nchars());
         outlen += t->span.nchars();
         return;
 
@@ -1024,9 +1024,9 @@ void toHTML(const char *instr,
               Span(t->span.begin.next("```").next(block->langname).next("\n"),
                       t->span.end.prev("```"));
           char *code_html = pygmentize(tempdirpath,
-                  instr + span.begin.si,
+                  raw_input + span.begin.si,
                   span.nchars(), block->langname,
-                  instr, t->span.begin);
+                  raw_input, t->span.begin);
 
           strcpy(outs + outlen, code_html);
           outlen += strlen(code_html);
@@ -1050,12 +1050,12 @@ void toHTML(const char *instr,
           if (G_OPTIONS.latex2ascii || true) {
               char *outcompile = compileLatex(tempdirpath,
                       span.nchars(),
-                      instr, t->span.begin);
+                      raw_input, t->span.begin);
               strcpy(outs + outlen, outcompile);
               outlen += strlen(outcompile);
               free(outcompile);
           } else {
-              strncpy(outs + outlen, instr + t->span.begin.si, t->span.nchars());
+              strncpy(outs + outlen, raw_input + t->span.begin.si, t->span.nchars());
               outlen += t->span.nchars();
           }
 
@@ -1084,7 +1084,7 @@ void toHTML(const char *instr,
           strcpy(outs + outlen, openul); outlen += strlen(openul);
           for(auto it: tlist->items) {
               strcpy(outs + outlen, openli); outlen += strlen(openli);
-              toHTML(instr, tempdirpath, it, outlen, outs);
+              toHTML(raw_input, tempdirpath, it, outlen, outs);
               strcpy(outs + outlen, closeli); outlen += strlen(closeli);
           }
           strcpy(outs + outlen, closeul); outlen += strlen(closeul);
@@ -1102,7 +1102,7 @@ void toHTML(const char *instr,
           strcpy(outs + outlen, openul); outlen += strlen(openul);
           for(auto it: tlist->items) {
               strcpy(outs + outlen, openli); outlen += strlen(openli);
-              toHTML(instr, tempdirpath, it, outlen, outs);
+              toHTML(raw_input, tempdirpath, it, outlen, outs);
               strcpy(outs + outlen, closeli); outlen += strlen(closeli);
           }
           strcpy(outs + outlen, closeul); outlen += strlen(closeul);
@@ -1111,9 +1111,9 @@ void toHTML(const char *instr,
 
         case TT::Link: {
           TLink *link = (TLink *)t;
-          // toHTML(instr, tempdirpath, link->text,  outlen, outs);
+          // toHTML(raw_input, tempdirpath, link->text,  outlen, outs);
           outlen += sprintf(outs + outlen, "<a href=%s>", link->link);
-          toHTML(instr, tempdirpath, link->text, outlen, outs);
+          toHTML(raw_input, tempdirpath, link->text, outlen, outs);
           outlen += sprintf(outs + outlen, "</a>");
           return;
         }
@@ -1121,7 +1121,7 @@ void toHTML(const char *instr,
         case TT::InlineGroup: {
             TInlineGroup *group = (TInlineGroup *)t;
             for (T *t : group->items) { 
-                toHTML(instr, tempdirpath, t, outlen, outs);
+                toHTML(raw_input, tempdirpath, t, outlen, outs);
             }
             return;
         }
@@ -1135,7 +1135,7 @@ void toHTML(const char *instr,
             const Span span =
                 Span(t->span.begin.next("`"), t->span.end.prev("`"));
 
-            strncpy(outs + outlen, instr + span.begin.si, span.nchars());
+            strncpy(outs + outlen, raw_input + span.begin.si, span.nchars());
             outlen += span.nchars();
 
             strcpy(outs + outlen, close); outlen += strlen(close);
@@ -1146,11 +1146,11 @@ void toHTML(const char *instr,
             THeading *theading = (THeading *)t;
 
             // need the _raw text_. Hmm.
-            const char *link = mkHeadingLink(instr, theading);
+            const char *link = mkHeadingLink(raw_input, theading);
             // outlen += sprintf(outs + outlen, "<h%d id=%s>", theading->hnum, link);
             outlen += sprintf(outs + outlen, "<h%d>", min(4, 1+theading->hnum));
             outlen += sprintf(outs + outlen, "<a id=%s href='#%s'> %s </a>", link, link, "§");
-            toHTML(instr, tempdirpath, theading->item, outlen, outs);
+            toHTML(raw_input, tempdirpath, theading->item, outlen, outs);
             outlen += sprintf(outs + outlen, "</h%d>", min(4, 1+theading->hnum));
 
             free((char *)link);
@@ -1160,7 +1160,7 @@ void toHTML(const char *instr,
         case TT::Italic: {
             TItalic *tcur = (TItalic *)t;
             outlen += sprintf(outs + outlen, "<i>");
-            toHTML(instr, tempdirpath, tcur->item, outlen, outs);
+            toHTML(raw_input, tempdirpath, tcur->item, outlen, outs);
             outlen += sprintf(outs + outlen, "</i>");
             return;
         }
@@ -1168,7 +1168,7 @@ void toHTML(const char *instr,
         case TT::Bold: {
             TBold *tcur = (TBold *)t;
             outlen += sprintf(outs + outlen, "<b>");
-            toHTML(instr, tempdirpath, tcur->item, outlen, outs);
+            toHTML(raw_input, tempdirpath, tcur->item, outlen, outs);
             outlen += sprintf(outs + outlen, "</b>");
             return;
         }
@@ -1178,7 +1178,7 @@ void toHTML(const char *instr,
 
           outlen += sprintf(outs + outlen, "<blockquote>");
           for(auto it: tq->items) {
-              toHTML(instr, tempdirpath, it, outlen, outs);
+              toHTML(raw_input, tempdirpath, it, outlen, outs);
           }
           outlen += sprintf(outs + outlen, "</blockquote>");
           return;
@@ -1331,7 +1331,7 @@ int option_index(const int argc, char **argv, const char *opt) {
 
 
 T ts[MAX_TOKENS];
-char instr[MAX_CHARS];
+char raw_input[MAX_CHARS];
 
 bool is_h1(const T *t) {
     if (t->ty != TT::Heading) { return false; }
@@ -1364,9 +1364,9 @@ int main(int argc, char **argv) {
     assert(len < MAX_CHARS);
     cout << "===Input length: |" << len << "|===\n";
 
-    const ll nread = fread(instr, 1, len, fin); assert(nread == len);
+    const ll nread = fread(raw_input, 1, len, fin); assert(nread == len);
 
-    vector<T*> ts; tokenize(instr, nread, ts);
+    vector<T*> ts; tokenize(raw_input, nread, ts);
     cerr << "===Done tokenizing; Emitting HTML...===\n";
 
     cerr << "===Creating temporary directory...===\n";
@@ -1388,7 +1388,7 @@ int main(int argc, char **argv) {
         ll outlen = 0;
         outlen += sprintf(index_html_buf + outlen, "%s", html_preamble);
         for (int i = 0; i < ix_h1; ++i) {
-            toHTML(instr, TEMP_DIR_PATH, ts[i], outlen, index_html_buf);
+            toHTML(raw_input, TEMP_DIR_PATH, ts[i], outlen, index_html_buf);
         }
         outlen += sprintf(index_html_buf + outlen, "%s", html_postamble);
 
@@ -1418,8 +1418,8 @@ int main(int argc, char **argv) {
         char *outbuf = (char *) calloc(MAX_OUTPUT_BUF_LEN, sizeof(char));
         ll outlen = 0;
         outlen += sprintf(outbuf + outlen, "%s", html_preamble);
-        for (int i = 0; i < ix_h1; ++i) {
-            toHTML(instr, TEMP_DIR_PATH, ts[i], outlen, outbuf);
+        for (int i = ix_start; i < ix_h1; ++i) {
+            toHTML(raw_input, TEMP_DIR_PATH, ts[i], outlen, outbuf);
         }
         outlen += sprintf(outbuf + outlen, "%s", html_postamble);
 
