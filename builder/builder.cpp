@@ -52,13 +52,13 @@ void loadDB() {
         if (feof(f)) break;
 
         fread(&len, sizeof(ll), 1, f);
-        cerr << __FUNCTION__ << ": loading DB[" << k << "] (size: " << len << ")\n";
+        // cerr << __FUNCTION__ << ": loading DB[" << k << "] (size: " << len << ")\n";
         char *buf = (char *)calloc(sizeof(char), len + 2); //(char *)calloc(len + 2);
         fread(buf, sizeof(char), len, f);
 
         assert(!G_DB.count(k) && "key already in DB");
         G_DB.insert(make_pair(k, buf));
-        cerr << __FUNCTION__ << ": DB[" << k << "] := " << buf << "\n";
+        // cerr << __FUNCTION__ << ": DB[" << k << "] := " << buf << "\n";
     }
     cerr << __FUNCTION__ << ": done reading file.\n";
     fclose(f);
@@ -200,7 +200,8 @@ void vprintferr(L line, const char *instr, const char *fmt, va_list args) {
     vasprintf(&outstr, fmt, args);
     assert(outstr);
 
-    cerr << line << " --- " << outstr << "\n";
+    cerr << "===\n";
+    cerr << line << "\t" << outstr << "\n";
     // find the previous newline character.
     int i = line.si; for(; i >= 1 && instr[i-1] != '\n'; i--) {}
 
@@ -208,7 +209,7 @@ void vprintferr(L line, const char *instr, const char *fmt, va_list args) {
     for(; instr[i] != '\0' && instr[i] != '\n'; ++i) { 
         if (i == line.si) { cerr <<  "⌷"; } cerr << instr[i];
     }
-    cerr << "\n";
+    cerr << "\n===\n";
     free(outstr);
 }
 
@@ -400,7 +401,7 @@ T *tokenizeNext(const char *s, const ll len, const L lbegin) {
         const char c = s[lcur.si];
         const char delim[3] = { c, c, 0 };
 
-        cerr << "BOLD " << lcur << "\n";
+        // cerr << "BOLD " << lcur << "\n";
         T *item = tokenizeInlineTill(s, len, lcur.next(delim), [delim](const char *s, L lcur) {
                 return strpeek(s + lcur.si, delim) || s[lcur.si] == '\n';
             });
@@ -651,14 +652,14 @@ T* tokenizeBlock(const char *s, const ll len, const L lbegin) {
         return new TCodeBlock(Span(lbegin, lcur), langname);
     } 
     else if (strpeek(s + lcur.si, "#")) {
-        cerr << "HEADING" << lcur << "\n";
+        // cerr << "HEADING" << lcur << "\n";
         int i = 0;
         for(;lcur.si < len && s[lcur.si] == '#'; lcur = lcur.next('#')){ i++;};
          T *t = tokenizeInlineTill(s, len, lcur, [](const char *s, L lcur) {
-                 cerr << "HEDING-CHECK" << lcur << " " << s[lcur.si] << "\n";
+                 // cerr << "HEDING-CHECK" << lcur << " " << s[lcur.si] << "\n";
                  return s[lcur.si] == '\n';
          });
-        cerr << "HEADING" << lcur << "\n";
+        // cerr << "HEADING" << lcur << "\n";
          return new THeading(i, Span(lcur, t->span.end), t);
     } else if (s[lcur.si] == '-' && (lcur.si == 0 || s[lcur.si - 1] == '\n')) {
         vector<T*> toks;
@@ -724,7 +725,7 @@ void tokenize(const char *s, const ll len, vector<T*> &ts) {
         T *t = tokenizeBlock(s, len, span.end);
         assert(t != nullptr);
         ts.push_back(t);
-        cerr << *t << "\n";
+        // cerr << *t << "\n";
 
         // we always have to make progress.
         assert(span.end.si != t->span.end.si);
@@ -801,12 +802,8 @@ pair<ll, L> removeAlignDollarsHack(const char *instr, const ll inwritelen,
     int ix = loc.si + 2;
     while(instr[ix] == ' ' || instr[ix] == '\n' || instr[ix] == '\t') { ++ix; }
     const char *BEGINALIGN = "\\begin{align*}";
+
     if (strpeek(instr + ix, BEGINALIGN)) {
-        fprintf(stderr, "|||");
-        for(int i = 0; i < inwritelen-4; ++i) {
-            fprintf(stderr, "%c", instr[loc.next("$$").si + i]);
-        }
-        fprintf(stderr, "|||");
         return make_pair(inwritelen - 4, loc.next("$$"));
     }
     return make_pair(inwritelen, loc);
@@ -917,7 +914,7 @@ void headingToLinkText(const char *instr,
 
     if (t->ty == TT::InlineGroup) {
         ll len = 0;
-        cerr << *t << "\n";
+        // cerr << *t << "\n";
         for(T *item : ((TInlineGroup *)t)->items) {
             headingToLinkText(instr, item, outs + len, len);
         };
@@ -1202,7 +1199,7 @@ void toHTML(const char *instr,
 // TUFTE
 // <body vlink="#660000" text="#000000" link="#CC0000"
 //  bgcolor="#FFFFF3" alink="#660000">
-const char htmlbegin[] =
+const char html_preamble[] =
 "<!DOCTYPE html>"
 "<meta charset='UTF-8'>"
 "<html>"
@@ -1317,10 +1314,12 @@ const char htmlbegin[] =
 "<div class='container'>";
  
 
-const char htmlend[] =
+const char html_postamble[] =
  "</container>"
  "</body>"
  "</html>";
+
+static const ll MAX_OUTPUT_BUF_LEN = (ll)1e9L;
 
 
 int option_index(const int argc, char **argv, const char *opt) {
@@ -1333,6 +1332,13 @@ int option_index(const int argc, char **argv, const char *opt) {
 
 T ts[MAX_TOKENS];
 char instr[MAX_CHARS];
+
+bool is_h1(const T *t) {
+    if (t->ty != TT::Heading) { return false; }
+    if (((THeading *) (t))->hnum != 1) { return false; }
+    return true;
+}
+
 int main(int argc, char **argv) {
     // 1. Load options
     // ---------------
@@ -1356,35 +1362,94 @@ int main(int argc, char **argv) {
 
     fseek(fin, 0, SEEK_END); const ll len = ftell(fin); fseek(fin, 0, SEEK_SET);
     assert(len < MAX_CHARS);
-    cout << "Input length: |" << len << "|\n";
+    cout << "===Input length: |" << len << "|===\n";
 
     const ll nread = fread(instr, 1, len, fin); assert(nread == len);
 
     vector<T*> ts; tokenize(instr, nread, ts);
-    cerr << "Done tokenizing; now parsing...\n";
+    cerr << "===Done tokenizing; Emitting HTML...===\n";
 
-
-    char tempdirpath[100] = "/tmp/blog-build-XXXXXX";
-    const char *success = mkdtemp(tempdirpath);
+    cerr << "===Creating temporary directory...===\n";
+    char TEMP_DIR_PATH[1024] = "/tmp/blog-build-XXXXXX";
+    const char *success = mkdtemp(TEMP_DIR_PATH);
     assert(success != nullptr && "unable to create temporary directory");
 
-    ll MAX_OUTBUF_LEN = (ll)1e8L;
-    char *outbuf = (char *)calloc(MAX_OUTBUF_LEN, sizeof(char));
-    ll outlen = 0;
-    outlen += sprintf(outbuf + outlen, "%s", htmlbegin);
-    for(T * t : ts) { toHTML(instr, tempdirpath, t, outlen, outbuf); }
-    outlen += sprintf(outbuf + outlen, "%s", htmlend);
+    // index of the latest <h1> tag.
+    int ix_h1 = 0;
 
-    rmdir(tempdirpath);
+    // write out index.html
+    {
+        // seek till the first <h1>: put all that data in index.html
+        while (ix_h1 < ts.size() && !is_h1(ts[ix_h1])) { ix_h1++; }
+        cerr << "===Writing index.html...===\n";
+        // [0, ix_h1) stays in index.html
 
+        char *index_html_buf = (char *) calloc(MAX_OUTPUT_BUF_LEN, sizeof(char));
+        ll outlen = 0;
+        outlen += sprintf(index_html_buf + outlen, "%s", html_preamble);
+        for (int i = 0; i < ix_h1; ++i) {
+            toHTML(instr, TEMP_DIR_PATH, ts[i], outlen, index_html_buf);
+        }
+        outlen += sprintf(index_html_buf + outlen, "%s", html_postamble);
 
-    FILE *fout = fopen(argv[2], "wb");
-    if (fout == nullptr) {
-        fprintf(stderr, "unable to open output file: |%s|", argv[2]);
+        char index_html_path[1024];
+        sprintf(index_html_path, "%s/index.html", argv[2]);
+        FILE *f = fopen(index_html_path, "wb");
+        if (f == nullptr) {
+            fprintf(stderr, "===unable to open HTML file: |%s|===", index_html_path);
+            return 1;
+        }
+        assert(f != nullptr);
+        fwrite(index_html_buf, 1, strlen(index_html_buf), f);
+        fclose(f);
     }
-    assert(fout != nullptr);
-    fwrite(outbuf, 1, strlen(outbuf), fout);
-    fclose(fout);
+
+    // write out all of the other .html files.
+    while(ix_h1 < ts.size()) {
+        const int ix_start = ix_h1;
+        assert(ts[ix_start]->ty == TT::Heading);
+        THeading *heading = (THeading*)ts[ix_start];
+        assert(heading->hnum == 1);
+
+        ix_h1++; while (ix_h1 < ts.size() && !is_h1(ts[ix_h1])) { ix_h1++; }
+        // TODO: find some easy way to print WTF is the data in the heading.
+        cerr << "===Writing [" << (uint64_t)heading << "]...===\n";
+
+        char *outbuf = (char *) calloc(MAX_OUTPUT_BUF_LEN, sizeof(char));
+        ll outlen = 0;
+        outlen += sprintf(outbuf + outlen, "%s", html_preamble);
+        for (int i = 0; i < ix_h1; ++i) {
+            toHTML(instr, TEMP_DIR_PATH, ts[i], outlen, outbuf);
+        }
+        outlen += sprintf(outbuf + outlen, "%s", html_postamble);
+
+
+        // [ix_start, ix_h1) contains the new article
+        char html_path[1024];
+        sprintf(html_path, "%s/%lu.html", argv[2], (uint64_t)heading);
+
+        FILE *f = fopen(html_path, "wb");
+        if (f == nullptr) {
+            fprintf(stderr, "===unable to open HTML file: |%s|===", html_path);
+            return 1;
+        }
+        assert(f != nullptr);
+        fwrite(outbuf, 1, strlen(outbuf), f);
+        fclose(f);
+
+    }
+                                          
+    // === write out RSS ===
+    char rss_feed_path[1024];
+    sprintf(rss_feed_path, "%s/rss", argv[2]) ;
+    FILE *frss = fopen(rss_feed_path, "wb");
+    if (frss == nullptr) {
+        fprintf(stderr, "===unable to open RSS file: |%s|===\n", rss_feed_path);
+        return 1;
+    }
+    assert(frss != nullptr);
+    // fwrite(outbuf, 1, strlen(outbuf), fhtml);
+    fclose(frss);
     
     return 0;
 }

@@ -36,6 +36,5 @@ if ((window.innerHeight - document.documentElement.clientHeight) >0) {
 - [ ] Checkboxes.
 - [ ] Link generation for repeats: eg. "#a\n#a" should have links `a-1` and `a-2`.
 - [ ] MathML
-- [ ] RSS
 - [ ] [twtxt](https://twtxt.readthedocs.io/en/latest/)
 - [ ] [Duktape](https://duktape.org/) for JS interpretation for KaTeX?
