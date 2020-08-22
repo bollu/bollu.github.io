@@ -907,7 +907,7 @@ GIVE char* compileLatex(KEEP const char *tempdirpath, ll inwritelen,
 // So this strips off all "decoration" leaving only the text in place.
 // TODO: Refactor LatexInline, CodeInline, Bold, Italic
 // to be same struct.
-void inlineTokenToRawText(const char *raw_input,
+void inlineTokenToPlaintext(const char *raw_input,
         const T *t, 
         char *outs,
         ll &outlen) {
@@ -916,7 +916,7 @@ void inlineTokenToRawText(const char *raw_input,
         // cerr << *t << "\n";
         ll len = 0;
         for(T *item : ((TInlineGroup *)t)->items) {
-            inlineTokenToRawText(raw_input, item, outs + len, len);
+            inlineTokenToPlaintext(raw_input, item, outs + len, len);
         };
         outlen = len + 1;
     } else if (t->ty == TT::CodeInline) {
@@ -936,13 +936,13 @@ void inlineTokenToRawText(const char *raw_input,
         return;
     } else if (t->ty == TT::Bold) {
         TBold *bold = (TBold *)t;
-        inlineTokenToRawText(raw_input, bold->item, outs, outlen);
+        inlineTokenToPlaintext(raw_input, bold->item, outs, outlen);
     } else if (t->ty == TT::Italic) {
         TItalic *italic = (TItalic *)t;
-        inlineTokenToRawText(raw_input, italic->item, outs, outlen);
+        inlineTokenToPlaintext(raw_input, italic->item, outs, outlen);
     } else if (t->ty == TT::Link) {
         TLink *link = (TLink *)t;
-        inlineTokenToRawText(raw_input, link->text, outs, outlen);
+        inlineTokenToPlaintext(raw_input, link->text, outs, outlen);
     } else {
         printferr(t->span.end, raw_input, "unexpected token in heading!");
         assert(false && "unexpected token in heading.");
@@ -961,30 +961,35 @@ void inlineTokenToRawText(const char *raw_input,
 // If that is not unique, add "-1", "-2", "-3",... to make it unique
 GIVE const char *mkHeadingURL(KEEP const char *raw_input, KEEP THeading *heading) {
     const int BUFSIZE = (1 << 14);
-    char rawtext[BUFSIZE]; 
-    for(int i = 0; i < BUFSIZE; ++i) rawtext[i] = 0;
-    ll rawtextlen = 0;
-    inlineTokenToRawText(raw_input, heading->item, rawtext, rawtextlen);
-    rawtext[rawtextlen] = 0;
-    assert(rawtextlen + 1 < BUFSIZE && "heading exceeded buffer size limits");
+    char plaintext[BUFSIZE];
+    for(int i = 0; i < BUFSIZE; ++i) plaintext[i] = 0;
+    ll ptlen = 0;
+    inlineTokenToPlaintext(raw_input, heading->item, plaintext, ptlen);
+    plaintext[ptlen] = 0;
+    assert(ptlen + 1 < BUFSIZE && "heading exceeded buffer size limits");
 
-    char *link = (char *)calloc(rawtextlen +2, sizeof(char));
-    ll li = 0;
+    ll ptbegin = 0; while(plaintext[ptbegin] == ' ') { ptbegin++; }
+    ll ptend = strlen(plaintext); while(plaintext[ptend] == ' ') {ptend--; }
+    assert(ptend - ptbegin >= 0);
+
+    char *url = (char *)calloc(ptlen +2, sizeof(char));
+    ll url_ix = 0;
+
     bool seenalnum = false;
-    for(ll hi = 0; rawtext[hi] != '\0'; ++hi) {
+    for(ll i = ptbegin; i != ptend; ++i) { // heading index
         // convert uppercase -> lowercase
         // keep digits
         // convert space to hyphen
         // convert groups of hyphens into single hyphen
         // remove everything else.
-        const char c = rawtext[hi];
-        if (isalpha(c)) { link[li++] = tolower(c); seenalnum = true; }
-        else if (isdigit(c)) { link[li++] = c; seenalnum = true; }
+        const char c = plaintext[i];
+        if (isalpha(c)) { url[url_ix++] = tolower(c); seenalnum = true; }
+        else if (isdigit(c)) { url[url_ix++] = c; seenalnum = true; }
         else if (c == '-') { 
-            while (rawtext[hi+1] == '-') { hi++; } link[li++] = '-'; seenalnum = false; 
-        } else if (isspace(c) && seenalnum) { link[li++] = '-'; seenalnum = false; }
+            while (plaintext[i+1] == '-') { i++; } url[url_ix++] = '-'; seenalnum = false;
+        } else if (isspace(c) && seenalnum) { url[url_ix++] = '-'; seenalnum = false; }
     }
-    return link;
+    return url;
 }
 
 void toHTML(const char *raw_input,
@@ -1415,7 +1420,7 @@ int main(int argc, char **argv) {
         const char *url = mkHeadingURL(raw_input, heading);
 
         // TODO: find some easy way to print WTF is the data in the heading.
-        cerr << "===Writing [" << url << "]...===\n";
+        cerr << "===Writing [" << url << ".html]...===\n";
 
 
         char *outbuf = (char *) calloc(MAX_OUTPUT_BUF_LEN, sizeof(char));
