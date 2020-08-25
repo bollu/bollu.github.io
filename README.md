@@ -20,6 +20,7 @@ A Universe of Sorts
 #### Table of contents:
 
 <ol reversed>
+<li> [Katex in duktape](#katex-in-duktape)
 <li> [Kebab case](#kebab-case)
 <li> [Localization: Introducing epsilons](#localization-introducing-epsilons)
 <li> [Nan punning](#nan-punning)
@@ -228,6 +229,102 @@ A Universe of Sorts
 
 -->
 
+# [Katex in duktape](#katex-in-duktape)
+
+Here's some code to use `duktape`, a lightweight JavaScript interpreter
+to run `katex` when implementing a custom static site generator [as I
+am doing for this website]. This seems to be *way more lightweight*
+than relying on Node, since we don't need to pay for inter-procedure-calls.
+
+
+I haven't benchmarked my static site generator against others, but I would
+be surprised if it is much faster, since it is written entirely in C, and
+avoids anything 'expensive'.
+
+```c
+#include "duktape.h"
+#include <stdio.h>
+#include <assert.h>
+typedef long long ll;
+
+void vduk_print_stack(duk_context *ctx, const char *fmt, va_list args){
+    char *outstr = nullptr;
+    vasprintf(&outstr, fmt, args);
+    assert(outstr);
+
+    printf("\nvvv%svvv\n", outstr);
+    printf("[TOP OF STACK]\n");
+    const int len = duk_get_top(ctx);
+    for(int i = 1; i <= len; ++i) {
+        duk_dup(ctx, -i);
+        printf("stk[-%2d] = %20s\n", i, duk_to_string(ctx, -1));
+        duk_pop(ctx);
+    }
+    printf("^^^^^^^\n");
+}
+
+
+void duk_print_stack(duk_context *ctx, const char *fmt, ...) {
+    va_list args;
+    va_start(args, fmt);
+    vduk_print_stack(ctx, fmt, args);
+    va_end(args);
+}
+int main() {
+    const char *latex_to_compile = "\\int_0^\\infty f(x) dx";
+    const char *broken_latex_to_compile = "\\int_0^\\infty \\foobar f(x) dx";
+
+    // FILE *fkatex = fopen("/home/bollu/blog/katex/katex.min.js", "rb");
+    FILE *fkatex = fopen("/home/bollu/blog/katex/katex.min.js", "rb");
+    if (fkatex == nullptr) { assert(false && "unable to open katex.min.js"); }
+
+    fseek(fkatex, 0, SEEK_END);
+    const ll len = ftell(fkatex); fseek(fkatex, 0, SEEK_SET);
+    char *js = (char *)calloc(sizeof(char), len + 10);
+
+    const ll nread = fread(js, 1, len, fkatex);
+    assert(nread == len);
+    duk_context *ctx = duk_create_heap_default();
+    duk_push_string(ctx, "katex.min.js"); // for error message
+    if (duk_pcompile_string_filename(ctx, 0, js) != 0) {
+        fprintf(stderr, "===katex.min.js compliation failed===\n%s\n===\n", 
+                duk_safe_to_string(ctx, -1));
+        assert(false && "unable to compile katex.min.js");
+    } else {
+        fprintf(stderr, "===katex.min.js successfully complied===\n");
+
+        duk_print_stack(ctx, "Stack afer compilation", __LINE__);
+        duk_call(ctx, 0);   
+        printf("program result: %s\n", duk_safe_to_string(ctx, -1));
+
+    }
+
+
+
+    // https://wiki.duktape.org/howtofunctioncalls
+    duk_print_stack(ctx, "%d", __LINE__);
+    if(duk_peval_string(ctx, "katex") != 0) {
+        printf("eval failed: %s\n", duk_safe_to_string(ctx, -1));
+        assert(0 && "unable to find the katex object");
+    }  else {
+        duk_print_stack(ctx, "%d", __LINE__);
+    }
+
+    duk_print_stack(ctx, "%d", __LINE__);
+    duk_push_string(ctx, "renderToString");
+    duk_push_string(ctx, latex_to_compile);
+
+    duk_print_stack(ctx, "%d", __LINE__);
+    if(duk_pcall_prop(ctx, -3, 1) == DUK_EXEC_SUCCESS) {
+        printf("===katexed output:===\n%s\n", duk_to_string(ctx, -1));
+    } else {
+        printf("unable to katex: %s\n", duk_to_string(ctx, -1));
+        assert(false && "unable to katex input");
+    }
+ 
+    return 0;
+}
+```
 
 # [Kebab case](#kebab-case)
 
@@ -236,6 +333,7 @@ that `this-style-of-writing` variables is called as `kebab-case`. Very
 evocative.
 
 # [Localization: Introducing epsilons](#localization-introducing-epsilons)
+- 
 
 
 # [NaN punning](#nan-punning)
@@ -366,6 +464,7 @@ for all the languages I use, so I'm building a list:
 
 - C: man pages
 - [C++: cppman](https://github.com/aitjcize/cppman)
+- [C++: synth](https://github.com/Oberon00/synth)
 - [python: pydoc](https://docs.python.org/3/library/pydoc.html)
 - haskell: haddock
 

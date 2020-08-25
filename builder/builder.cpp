@@ -18,6 +18,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include "duktape/duktape.h"
 #include "utf8.h"
 
 #define GIVE
@@ -193,6 +194,7 @@ std::ostream &operator<<(std::ostream &o, const Span &s) {
     return cout << s.begin << " - " << s.end;
 }
 
+// TODO: upgrade this to take a space, not just a location.
 void vprintferr(L loc, const char *raw_input, const char *fmt, va_list args) {
     char *outstr = nullptr;
     vasprintf(&outstr, fmt, args);
@@ -203,7 +205,7 @@ void vprintferr(L loc, const char *raw_input, const char *fmt, va_list args) {
     // find the previous newloc character.
     int i = loc.si; for(; i >= 1 && raw_input[i-1] != '\n'; i--) {}
 
-    cerr << "> ";
+    cerr << "Source file [" << loc << "]> ";
     for(; raw_input[i] != '\0' && raw_input[i] != '\n'; ++i) {
         if (i == loc.si) { cerr <<  "⌷"; } cerr << raw_input[i];
     }
@@ -811,96 +813,31 @@ pair<ll, L> removeAlignDollarsHack(const char *raw_input, const ll inwritelen,
 };
 
 
-GIVE char* compileLatex(KEEP const char *tempdirpath, ll inwritelen, 
+GIVE const char* compileLatex(duk_context *duk_ctx, 
+        KEEP const char *tempdirpath, ll inwritelen, 
         KEEP const char *raw_input, L loc) {
 
 
-    char *out = (char *)calloc(sizeof(char), (inwritelen + 2));
-    for(int i = 0; i < inwritelen; ++i) { out[i] = raw_input[loc.si + i]; }
-    return out;
-
-    tie(inwritelen, loc) = removeAlignDollarsHack(raw_input, inwritelen, loc);
-
-    const ll hash = hashstr(raw_input + loc.si, inwritelen);
-    if (const char *val = lookup_key(hash)) {
-        return strdup(val);
+    if(duk_peval_string(duk_ctx, "katex") != 0) {
+        printferr(loc, raw_input,
+         "====katex.min.js: unable to grab katex object===\n%s\n===\n", 
+         duk_safe_to_string(duk_ctx, -1));
+        assert(false && "unable to find the katex object");
     }
 
+    char *input = (char *)calloc(sizeof(char), inwritelen+2);
+    for(int i = 0; i < inwritelen; ++i) { input[i] = raw_input[loc.si + i]; }
 
-    FILE *flatex = nullptr, *fhtml = nullptr;
-    char latex_file_path[512]; char html_file_path[512];
-    sprintf(latex_file_path, "%s/latex-in.txt", tempdirpath);
-    sprintf(html_file_path, "%s/latex-out.txt", tempdirpath);
+    duk_push_string(duk_ctx, "renderToString");
+    duk_push_string(duk_ctx, input);
 
-    flatex = fopen(latex_file_path, "wb");
-    assert(flatex && "unable to open file for writing");
-    fprintf(flatex, "\\usepackage{amsmath}\n");
-    
-    // SUPER HACK: Process the string to remove the $$
-    // if we have a \begin{align*} right after.
-
-    // fprintf(flatex, "\\usepackage{amssymb}\n");
-    const ll nwritten = fwrite(raw_input + loc.si, 1, inwritelen, flatex);
-    assert(nwritten == (ll)inwritelen);
-
-    fclose(flatex);
-    // cerr << "wrote latex input |";
-    // for(int i = 0; i < inwritelen; ++i) { cerr << ins[i]; }
-    // cerr << "| to: |" << latex_file_path << "|\n";
-
-    int pid;
-    // hevea STDIN
-    if ((pid = fork()) == 0) {
-
-        flatex = fopen(latex_file_path, "rb");
-        assert(flatex && "unable to open input file for reading");
-
-        fhtml = fopen(html_file_path, "wb");
-        assert(fhtml && "unable to open input file for reading");
-
-        // replace stdin with latex.
-        dup2(fileno(flatex), 0);
-        // replace stdout with outfile
-        dup2(fileno(fhtml), 1);
-
-        int err = execlp("hevea", "hevea", "-w", "100", NULL);
-        assert(err != -1 && "unable to launch 'hevea'");
+    if(duk_pcall_prop(duk_ctx, -3, 1) == DUK_EXEC_SUCCESS) {
+        return duk_to_string(duk_ctx, -1);
     } else {
-        // parent, wait for child.
-        // cerr << "waiting for child to terminate...";
-        int status;
-        wait(&status);
-        if(WIFEXITED(status) && (WEXITSTATUS(status) != 0)) {
-            fprintf(stderr, "===LATEX ERROR===\n");
-            printferr(loc, raw_input, "unable to hevea (latexif render) code");
-            cerr <<  "====child running hevea ended non-gracefully. Returning input string===\n";
-            assert(false && "child ended non-gracefully.");
-            char *outs = (char *)malloc((inwritelen+2) *sizeof(char));
-            int i  = 0;
-            for(; i < inwritelen; ++i) { outs[i] = raw_input[loc.si + i]; }
-            outs[i] = 0; return outs;
-        } 
-        // else {
-        //     cerr << "\rchild exited gracefully.\n";
-        // }
+
+        printferr(loc, raw_input, "%s", duk_to_string(duk_ctx, -1));
+        assert(false && "unable to compile katex");
     }
-
-    fhtml = fopen(html_file_path, "rb");
-    if (fhtml == nullptr) { rmdir(tempdirpath); }
-    assert(fhtml && "unable to open output file of pygmentize");
-
-
-    fseek(fhtml, 0, SEEK_END);
-    const ll len = ftell(fhtml); fseek(fhtml, 0, SEEK_SET);
-    char *outs = (char *)calloc(len+1, sizeof(char));
-    assert(outs != nullptr && "unable to allocate buffer");
-    const ll nread = fread(outs, 1, len, fhtml);
-    assert(nread == len);
-    // fprintf(stderr, "HTML output: %s\n", outs);
-    fclose(fhtml);
-
-    store_key_value(hash, outs, len);
-    return outs;
 }
 
 
@@ -998,7 +935,8 @@ GIVE const char *mkHeadingURL(KEEP const char *raw_input, KEEP THeading *heading
     return url;
 }
 
-void toHTML(const char *raw_input,
+void toHTML(duk_context *duk_ctx,
+        const char *raw_input,
         const char *tempdirpath, 
         const T *t, ll &outlen, char *outs) {
     assert(t != nullptr);
@@ -1060,7 +998,7 @@ void toHTML(const char *raw_input,
           } else if (t->ty == TT::LatexInline) {
               outlen += sprintf(outs + outlen, "<span class='latexinline'>");
           }
-          const char *outcompile = compileLatex(tempdirpath,
+          const char *outcompile = compileLatex(duk_ctx, tempdirpath,
                   s.nchars(), raw_input, s.begin);
           strcpy(outs + outlen, outcompile);
           outlen += strlen(outcompile);
@@ -1116,7 +1054,7 @@ void toHTML(const char *raw_input,
           strcpy(outs + outlen, openul); outlen += strlen(openul);
           for(auto it: tlist->items) {
               strcpy(outs + outlen, openli); outlen += strlen(openli);
-              toHTML(raw_input, tempdirpath, it, outlen, outs);
+              toHTML(duk_ctx, raw_input, tempdirpath, it, outlen, outs);
               strcpy(outs + outlen, closeli); outlen += strlen(closeli);
           }
           strcpy(outs + outlen, closeul); outlen += strlen(closeul);
@@ -1134,7 +1072,7 @@ void toHTML(const char *raw_input,
           strcpy(outs + outlen, openul); outlen += strlen(openul);
           for(auto it: tlist->items) {
               strcpy(outs + outlen, openli); outlen += strlen(openli);
-              toHTML(raw_input, tempdirpath, it, outlen, outs);
+              toHTML(duk_ctx, raw_input, tempdirpath, it, outlen, outs);
               strcpy(outs + outlen, closeli); outlen += strlen(closeli);
           }
           strcpy(outs + outlen, closeul); outlen += strlen(closeul);
@@ -1145,7 +1083,7 @@ void toHTML(const char *raw_input,
           TLink *link = (TLink *)t;
           // toHTML(raw_input, tempdirpath, link->text,  outlen, outs);
           outlen += sprintf(outs + outlen, "<a href=%s>", link->link);
-          toHTML(raw_input, tempdirpath, link->text, outlen, outs);
+          toHTML(duk_ctx, raw_input, tempdirpath, link->text, outlen, outs);
           outlen += sprintf(outs + outlen, "</a>");
           return;
         }
@@ -1153,7 +1091,7 @@ void toHTML(const char *raw_input,
         case TT::InlineGroup: {
             TInlineGroup *group = (TInlineGroup *)t;
             for (T *t : group->items) { 
-                toHTML(raw_input, tempdirpath, t, outlen, outs);
+                toHTML(duk_ctx, raw_input, tempdirpath, t, outlen, outs);
             }
             return;
         }
@@ -1182,7 +1120,7 @@ void toHTML(const char *raw_input,
             // outlen += sprintf(outs + outlen, "<h%d id=%s>", theading->hnum, link);
             outlen += sprintf(outs + outlen, "<h%d>", min(4, 1+theading->hnum));
             outlen += sprintf(outs + outlen, "<a id=%s href='#%s'> %s </a>", link, link, "§");
-            toHTML(raw_input, tempdirpath, theading->item, outlen, outs);
+            toHTML(duk_ctx, raw_input, tempdirpath, theading->item, outlen, outs);
             outlen += sprintf(outs + outlen, "</h%d>", min(4, 1+theading->hnum));
 
             free((char *)link);
@@ -1192,7 +1130,7 @@ void toHTML(const char *raw_input,
         case TT::Italic: {
             TItalic *tcur = (TItalic *)t;
             outlen += sprintf(outs + outlen, "<i>");
-            toHTML(raw_input, tempdirpath, tcur->item, outlen, outs);
+            toHTML(duk_ctx, raw_input, tempdirpath, tcur->item, outlen, outs);
             outlen += sprintf(outs + outlen, "</i>");
             return;
         }
@@ -1200,7 +1138,7 @@ void toHTML(const char *raw_input,
         case TT::Bold: {
             TBold *tcur = (TBold *)t;
             outlen += sprintf(outs + outlen, "<b>");
-            toHTML(raw_input, tempdirpath, tcur->item, outlen, outs);
+            toHTML(duk_ctx, raw_input, tempdirpath, tcur->item, outlen, outs);
             outlen += sprintf(outs + outlen, "</b>");
             return;
         }
@@ -1210,7 +1148,7 @@ void toHTML(const char *raw_input,
 
           outlen += sprintf(outs + outlen, "<blockquote>");
           for(auto it: tq->items) {
-              toHTML(raw_input, tempdirpath, it, outlen, outs);
+              toHTML(duk_ctx, raw_input, tempdirpath, it, outlen, outs);
           }
           outlen += sprintf(outs + outlen, "</blockquote>");
           return;
@@ -1348,6 +1286,8 @@ const char html_postamble[] =
  "</body>"
  "</html>";
 
+ const char CONFIG_KATEX_PATH[] = "/home/bollu/blog/katex/katex.min.js";
+
 static const ll MAX_OUTPUT_BUF_LEN = (ll)1e9L;
 
 
@@ -1376,6 +1316,40 @@ int main(int argc, char **argv) {
         return 1;
     }
     G_OPTIONS.latex2ascii = option_index(argc, argv, "--latex2ascii") > 0;
+
+    // 1. Initialize Duck context
+    // --------------------------
+    duk_context *duk_ctx = nullptr;
+    {
+        FILE *fkatex = fopen(CONFIG_KATEX_PATH, "rb");
+        if (fkatex == nullptr) { assert(false && "unable to open katex.min.js"); }
+
+        fseek(fkatex, 0, SEEK_END);
+        const ll len = ftell(fkatex); fseek(fkatex, 0, SEEK_SET);
+        char *js = (char *)calloc(sizeof(char), len + 10);
+
+        const ll nread = fread(js, 1, len, fkatex);
+        assert(nread == len);
+        duk_ctx = duk_create_heap_default();
+
+        duk_push_string(duk_ctx, "katex.min.js");
+        // compile katex
+        if (duk_pcompile_lstring_filename(duk_ctx, 0, js, len) != 0) {
+            fprintf(stderr, "===katex.min.js compliation failed===\n%s\n===\n", 
+                    duk_safe_to_string(duk_ctx, -1));
+            assert(false && "unable to compile katex.min.js");
+        }
+
+        // run katex to get the global.katex object
+        if(duk_pcall(duk_ctx, 0) != 0) {
+            fprintf(stderr, "===katex.min.js execution failed===\n%s\n===\n", 
+                    duk_safe_to_string(duk_ctx, -1));
+            assert(false && "unable to execute katex.min.js");
+        }
+    }
+    assert(duk_ctx != nullptr && "Unable to setup duck context");
+
+
 
     // 1. Load database and test it.
     // ---------------
@@ -1417,7 +1391,7 @@ int main(int argc, char **argv) {
         ll outlen = 0;
         outlen += sprintf(index_html_buf + outlen, "%s", html_preamble);
         for (int i = 0; i < ix_h1; ++i) {
-            toHTML(raw_input, TEMP_DIR_PATH, ts[i], outlen, index_html_buf);
+            toHTML(duk_ctx, raw_input, TEMP_DIR_PATH, ts[i], outlen, index_html_buf);
         }
         outlen += sprintf(index_html_buf + outlen, "%s", html_postamble);
 
@@ -1452,7 +1426,7 @@ int main(int argc, char **argv) {
         ll outlen = 0;
         outlen += sprintf(outbuf + outlen, "%s", html_preamble);
         for (int i = ix_start; i < ix_h1; ++i) {
-            toHTML(raw_input, TEMP_DIR_PATH, ts[i], outlen, outbuf);
+            toHTML(duk_ctx, raw_input, TEMP_DIR_PATH, ts[i], outlen, outbuf);
         }
         outlen += sprintf(outbuf + outlen, "%s", html_postamble);
 
