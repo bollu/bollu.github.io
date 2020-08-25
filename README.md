@@ -902,10 +902,10 @@ a good definition of the derivative of the distribution, $D'$. How? well,
 use chain rule!
 
 $$
-\begin{align*}
+\begin{aligned}
 &\int_0^\infty U dV \\ = [UV]|_0^\infty - \int_0^\infty V dU \\
 &\int_0^\infty f(x) D'(x)  dx = [f(x) D(x)]|_0^\infty - \int_0^\infty D f'(x)
-\end{align*}
+\end{aligned}
 $$
 
 
@@ -918,15 +918,15 @@ functions $f$ (a) decay at infinity, and (b) are smooth.
 The derivation is:
 
 $$
-\begin{align*}
+\begin{aligned}
 &\int_0^\infty U dV = \int_0^\infty f(x) \delta(x) = f(0) \\
-&[UV]|_0^\infty - \int_0^\infty V dU = [f(x) step(x)]|_0^\infty - \int_0^\infty \step(x) f'(x) \\
+&[UV]|_0^\infty - \int_0^\infty V dU = [f(x) step(x)]|_0^\infty - \int_0^\infty step(x) f'(x) \\
 &= [f(\infty)step(\infty) - f(0)step(0)] - step(f') \\
 &= [0 - 0] - (\int_0^\infty f'(x) dx) \\
 &= 0 - (f(\infty) - f(0))
 &= 0 - (0 - f(0))
 &= f(0)
-\end{align*}
+\end{aligned}
 $$
 
 - Thus, the derivative of the step distribution is the dirac delta distribution.
@@ -955,7 +955,7 @@ with the process, taking the gcd to be $p_n$.
 #### Matrices
 
 We can write the equation $p_0 = p_1 d_1 + p_2$ as the equation
-$p_0 = [d_1 & 1] [p_1 & p_2]^T$. But now, we have lost some state. We used
+$p_0 = [d_1; 1] [p_1;  p_2]^T$. But now, we have lost some state. We used
 to have both $p_1$ and $p_2$, but we are left with $p_0$. We should always
 strive to have "matching" inputs and output so we can iterate maps. This
 leads us to the natural generalization:
@@ -1012,7 +1012,7 @@ $$
 - now combine with the previous equation to get:
 
 $$
-\begin{align*}
+\begin{aligned}
 &g = 
 \begin{bmatrix} \omega' & \omega'' \end{bmatrix}
 \begin{bmatrix} p' \\ p'' \end{bmatrix} \\
@@ -1026,7 +1026,7 @@ $$
 \begin{bmatrix} \omega'' & \omega - d' \omega'  \end{bmatrix}
 \begin{bmatrix} p \\ p' \end{bmatrix} \\
 
-\end{align*}
+\end{aligned}
 $$
 
 #### Fractions
@@ -1127,7 +1127,7 @@ of functions is basically a collection of functions $f_i$ where each function
 $f_{i+1}$ is "more defined" than $f_i$. 
 
 Hence we can always get a maximal element $F$, which has a value defined
-at _each_ $F(A_i)$. Otherwise, if we have $F(A_i) = \lbot$, the element
+at _each_ $F(A_i)$. Otherwise, if we have $F(A_i) = \bot$, the element
 is not maximal, since it is dominated by a larger function which is defined
 at $A_i$.
 
@@ -1319,8 +1319,8 @@ by looking at $eval[l\star](T)$, since $eval[l\star](T) = l\star$.
 
 We can show that this point exists in the solution as follows:
 $$
-\begin{align*}
-&\eval[l\star](f) = \sum_i a_i (l\star)^i \\
+\begin{aligned}
+&eval[l\star](f) = \sum_i a_i (l\star)^i \\
 &= \sum_i a_i \phi(T)^i \\
 &\text{Since $\phi$ is ring homomorphism:} \\ 
 &= \sum_i a_i \phi(T^i)  \\ 
@@ -1329,7 +1329,7 @@ $$
 &= \phi(f) \\
 \text{Since $f \in ker(\phi)$:} \\ 
 &= 0
-\end{align*}
+\end{aligned}
 $$
 
 - [This is also asked by me on this `math.se` question](https://math.stackexchange.com/questions/3766418/proof-verification-bijection-between-solutions-to-a-system-of-equations-and-k-a)
@@ -1652,7 +1652,7 @@ than point $y$ if its closure has fewer points.
   Here, we have the open set $\{ \bot \}$ by considering the computation
   `f(thunk) = force(thunk)`. For more on this perspective, see [Topology is
   really about computation ](#topology-is-really-about-computation--part-1).
-  This open set contains only $\bot$ and not $\ltop$.
+  This open set contains only $\bot$ and not $\top$.
 - **Closure definition:** $X$ is $T_0$ iff $x \neq y \implies c(\{x\}) \neq c(\{y\})$
 
 ### T1 in terms of closure:
@@ -1713,7 +1713,7 @@ is going to be.
 Let's try to choose the product set as simply $\{ 1 \}$, with the maps
 being chosen as $\pi_a(1) = \alpha; \pi_b(1) = \gamma$:
 
-```
+```text
      πb
 p{1}--->{ γ }
   |     { δ }
@@ -1726,7 +1726,7 @@ p{1}--->{ γ }
 In this case, it's easy to see the failure. I can build a set $q = \{ 2 \}$ with
 the maps $\pi'_a(2) = \alpha; \pi'_b(2) = \delta$:
 
-```
+```text
      πb
 q{2}-+  { γ }
   |  |  {   }
@@ -1752,11 +1752,11 @@ violate the "unique map" aspect. Let's pick some choice of $\pi_a$ and $\pi_b$.
 For example, we can use:
 
 $$
-\begin{align*}
+\begin{aligned}
 (&p = \{ 1, 2, 3, 4\}, \\
 &\pi_a = 1 \mapsto \alpha, 2 \mapsto \alpha, 3 \mapsto \beta, 4 \mapsto \beta, 5 \mapsto \beta\\
 &\pi_b = 1 \mapsto \gamma, 2 \mapsto \delta, 3 \mapsto \gamma, 4 \mapsto \delta, 5 \mapsto \delta)
-\end{align*}
+\end{aligned}
 $$
 
 Now let's say we have a set $q = \{ 42 \}$ such that $\pi'_a(42) = \beta, \pi'_b(42) = \delta$.
@@ -1775,11 +1775,11 @@ a **unique** representation for the tuple $(\beta, \delta)$. Thus it can't be a 
 I claim that a possible product of $a$ and $b$ is:
 
 $$
-\begin{align*}
+\begin{aligned}
 (&p = \{ 1, 2, 3, 4\}, \\
 &\pi_a = 1 \mapsto \alpha, 2 \mapsto \alpha, 3 \mapsto \beta, 4 \mapsto \beta,\\
 &\pi_b = 1 \mapsto \gamma, 2 \mapsto \delta, 3 \mapsto \gamma, 4 \mapsto \delta)
-\end{align*}
+\end{aligned}
 $$
 
 
@@ -2099,14 +2099,14 @@ that the speed of light is invariant.
 We calculate $dx'/dt' = (dx'/dt)(dt/dt')$ [chain rule], giving:
 
 $$
-\begin{align*}
+\begin{aligned}
 &c = \frac{dx}{dt} = \frac{dx'}{dt'} = \frac{dx'}{dt} \frac{dt}{dt'}  \\
 &c = \frac{d(vt + ct)}{dt}\frac{dt}{dt'} \\
 &c = (v + c) \frac{dt}{dt'} \\
 &\frac{c}{v+c} = \frac{dt}{dt'} \\
 &dt' = (v+c)dt/c \\
 &t' = (v+c)t/c = (1 + v/c) t
-\end{align*}
+\end{aligned}
 $$
 
 So we get the relation that time elapsed for observer (2) is related
@@ -2379,11 +2379,11 @@ we get: $3 sol(p)^2 sol'(p) + 2p - 3 sol'(p) p - 3 sol(p) = 0$. This gives
 us the condition on the derivative:
 
 $$
-\begin{align*}
+\begin{aligned}
 &3 sol(p)^2 sol'(p) + 2p - 3 sol'(p) p - 3 sol(p) = 0 \\
 &sol'(p)\left[ 3 sol(p)^2 - 3p \right] = 3 sol(p) - 2p \\
 &sol'(p) = [3 sol(p) - 2p] / \left[ 3(sol(p)^2 - 3p) \right]  \\
-\end{align*}
+\end{aligned}
 $$
 
 The above solution exists  if $3(sol(p)^2 - 3p \neq 0)$. This quantity is again
@@ -2522,7 +2522,7 @@ proofs will be provided except for the final theorem. All facts will be backed
 by intuition. Since most of it is geometric, it's easy to convey intuition.
 
 ### Graphs of groups, quasi-isometry.
-- **NOTE:** I will consistently denote the inverse of $g$ by $g'$.
+- **NOTE:** I will consistently denote the inverse of $g$ by $g^{-1}$.
 
 We can convert any group into a graph by using the cayley graph of the group.
 We characterize hyperbolic space as a space where we can build 'thin triangles'.
@@ -2816,11 +2816,11 @@ between transformations of the form `(az + b)/(cz + d)` and matrices `[a b; c z]
 
 
 $$
-\begin{align*}
+\begin{aligned}
 &a, b, c, d \in \mathbb Z5, ad - bc = 1 \\
 &f: \mathbb Z5 \cup \{ \infty \} \rightarrow \mathbb Z5 \cup \{ \infty \} \\
 &f(z) \equiv (az + b)/(cz + d) \\
-\end{align*}
+\end{aligned}
 $$
 
 - We allow coefficients for the Mobius transform to be from $\mathbb Z5$,
@@ -2835,14 +2835,14 @@ $$
 - For an element of order 3, we pick `q(z) = 1/(1-z)`. 
 
 $$
-\begin{align*}
+\begin{aligned}
 &q(z) = 1/(1-z) \\
 &q(q(z)) = \frac{1}{1 - \frac{1}{1-z}}  \\
 &         = \frac{1}{\frac{(1-z) - 1}{1-z}} \\
 &         = \frac{(1-z)}{-z} = \frac{(z-1)}{z}  \\
 &         = 1 - \frac{1}{z} \\
 &q(q(q(z))) = 1 - \frac{1}{q(z)} = 1 - (1 - z) = z
-\end{align*}
+\end{aligned}
 $$
 
 - I don't know of a principled way to arrive at this choice of `q(z)`, except
@@ -3316,12 +3316,12 @@ _projective space_: that is, $p \simeq p_1/p_2$, and $q \simeq q_1 / q_2$, we ca
 interpret orthogonality as:
 
 $$
-\begin{align*}
+\begin{aligned}
 p . q = 0 \\
 p_1 \overline q_1 + p_2 \overline q_2 = 0 \\
 p_1 / p_2 = - \overline{q_2} / \overline{q_1} \\
 p = -1/\overline{q} = -q/|q| \\
-\end{align*}
+\end{aligned}
 $$
 
 
@@ -3667,10 +3667,10 @@ The idea is to start with the max prefix sum as the difference of right minus
 left:
 
 $$
-\begin{align*}
+\begin{aligned}
 &\max_{(L, R)}: \sum_{L \leq i \leq R} a[i] \\
 &= \max_R: \left(\sum_{0 \leq i \leq R} a[i] - min L: \sum_{0 \leq i \leq L \leq R} \right) \\
-\end{align*}
+\end{aligned}
 $$
 
 Which is then  expressed as: 
@@ -3787,7 +3787,7 @@ $q(b; x) = b_0 + b_1x + b_2 x^2$, then the system $p(a; x)$, $q(b; x)$ has
 a simeltaneous zero iff:
 
 $$
-\begin{align*}
+\begin{aligned}
 &\begin{bmatrix}
 a_2 & a_1 & a_0 & 0 \\
 0 & a_2 & a_1 & a_0 \\
@@ -3799,7 +3799,7 @@ b_2 & b_1 & b_0 & 0\\
 \end{bmatrix}
 = 0 \\
 &A x = 0
-\end{align*}
+\end{aligned}
 $$
 
 #### Big idea
@@ -3971,12 +3971,12 @@ backward error of $\delta x$. This is called as **mixed forward backward error**
 We can say that an algorithm with mixed-forward-backward-error is stable iff:
 
 $$
-\begin{align*}
+\begin{aligned}
 &\hat y + \delta y = f(x + \Delta x) \\
 &|\Delta y|/|\hat y| < \epsilon \\
 &|\Delta x|/|\hat x| < \eta \\
 &\text{$\epsilon, \eta$ are small}
-\end{align*}
+\end{aligned}
 $$
 
 This definition of stability is useful when rounding errors are the dominant
@@ -3989,12 +3989,12 @@ the sensitivity of solutions to perturbations of data. Let us have an approximat
 solution $\hat y = f(x + \delta x)$. Then:
 
 $$
-\begin{align*}
+\begin{aligned}
 &\hat y - y = f(x + \delta x) - f(x) = f'(x) \delta x + O((\delta x)^2) \\
 &(\hat y - y)/y = (x f'(x)/f(x)) (\Delta x/x) + O((\Delta x)^2) \\
 &(\hat y - y)/y = c(x) (\Delta x/x) + O((\Delta x)^2)\\
 &c(x) \equiv |x f'(x)/f(x)|
-\end{align*}
+\end{aligned}
 $$
 
 The quantity $c(x)$ measures the scaling factor to go from the relative
@@ -4071,10 +4071,10 @@ The reason for this terrible result is that:
 In general:
 
 $$
-\begin{align*}
+\begin{aligned}
 &x \equiv 1 + \epsilon \text{error of order $\epsilon$} \\
 &y \equiv 1 - x = \epsilon \text{value of order $\epsilon$} \\
-\end{align*}
+\end{aligned}
 $$
 
 That is, subtracting values close to each other (in this case, $1$ and $x$)
@@ -4086,7 +4086,7 @@ Alternatively, it brings earlier errors into promience as values.
 We can consider the subtraction:
 
 $$
-\begin{align*}
+\begin{aligned}
 &x = a - b; \hat x = \hat a - \hat b \\
 &\hat a = a(1 + \Delta a) \\
 &\hat b = b(1 + \Delta b) \\
@@ -4095,7 +4095,7 @@ $$
 &= \frac{|-a\Delta a - b\Delta b|}{|a - b|} \\
 &=  \frac{|a\Delta a + b\Delta b|}{|a - b|} \\
 &\leq  \frac{\max(|\Delta a|, |\Delta b|) (|a| + |b|)}{|a - b|}
-\end{align*}
+\end{aligned}
 $$
 
 This quantity will be large when $|a - b| \ll |a| + |b|$: that is, when
@@ -4199,16 +4199,16 @@ $$
 \texttt{copysign}(1, -0) = -1 \\
 $$
 
-These will ensure that $\copysign{x, 1/x} = x$ when $x = \pm \infty$.
+These will ensure that $\texttt{copysign}(x, 1/x) = x$ when $x = \pm \infty$.
 
 
 An example is provided where the two limits:
 
 $$
-\begin{align*}
+\begin{aligned}
 &f(x + i0) = \lim_{y \rightarrow 0-} f(x + i y) \\
 &f(x + i0) = \lim_{y \rightarrow 0-} f(x + i y) \\
-\end{align*}
+\end{aligned}
 $$
 
 #### Complex-analytic considerations
@@ -4370,7 +4370,7 @@ $$
 Immediately, we can see that this operator is linear:
 
 $$
-\begin{align*}
+\begin{aligned}
 &\delta(f + g) 
   &= (f+g)(x+1) - (f+g)(x)  \\
   &= (f(x+1) - f(x)) + (g(x+1)-g(x))  \\
@@ -4379,13 +4379,13 @@ $$
   &= (\alpha f)(x+1) - (\alpha f)(x) \\
   &= \alpha \cdot (f(x+1) - f(x))   \\
   &= \alpha (\delta f)
-\end{align*}
+\end{aligned}
 $$
 
 it obeys a slightly corrupted version of the chain rule, $(fg)' = f' g + g' f$:
 
 $$
-\begin{align*}
+\begin{aligned}
 &\delta(fg)  \\
   &= (fg)(x+1) - (fg)(x)  \\
   &= f(x+1)g(x+1) - f(x)g(x) + 0 \\
@@ -4394,7 +4394,7 @@ $$
   &= g(x+1)(\delta f)(x) + f(x) (\delta g)(x) \\
   &= (S \delta f)(x) + (f \delta g)(x) [(Sh)(x) \equiv h(x+1)] \\
   &= (S  \delta f + f \delta g)(x) \\
-\end{align*}
+\end{aligned}
 $$
 
 We need this new $S$ operator to shift the function's input from $x$ to $x+1$.
@@ -4428,7 +4428,7 @@ $$
 Let's try and apply our discrete difference $\delta$:
 
 $$
-\begin{align*}
+\begin{aligned}
 &\delta(x^{(2)})  \\
   & = (x+1)(x-1+1) - x(x-1) \\
   & = (x+1)(x) - x(x-1) \\
@@ -4437,7 +4437,7 @@ $$
   &= (x+1)(x-1+1)(x-2+1) - x(x-1)(x-2) \\
   &= (x+1)(x)(x-1) - x(x-1)(x-2) \\ 
   &= x(x-1)((x+1) - (x-2)) = 3x(x-1) = 3x^{(2)} \\
-\end{align*}
+\end{aligned}
 $$
 
 These falling factorials look pretty unnatural though, why do we care?
@@ -4458,11 +4458,11 @@ $$
 we can check if the assertion is true:
 
 $$
-\begin{align*}
+\begin{aligned}
 &\sum_{a \leq i < b} (\delta f)(i)  \\
 &= [f(a+1) - f(a)] + [f(a+2) - f(a+1)] + [f(a+3)-f(a+2)] + \cdots + [f(b) - f(b-1)] \\
 &= f(b) - f(a) \quad \text{(The sum telescopes)} 
-\end{align*}
+\end{aligned}
 $$
 
 Sweet, so we just kicked a theory of calculus of the ground. Let's put
@@ -4479,7 +4479,7 @@ $$
 Let's now derive the closed form form the sum of squares of $[1\cdot(k-1)]$:
 
 $$
-\begin{align*}
+\begin{aligned}
 &\sum_{0 \leq i < n} i^2  \\
 &= \sum_{0 \leq i < n} i*(i-1) + i  \\
 &= \sum_{0 \leq i < n} i^{(2)} + i^{(1)} \\
@@ -4487,7 +4487,7 @@ $$
 &= n(n-1)(n-2)/3 + n(n-1)/2 \\
 &= n(n-1)(n/3 - 2/3 + 1/2) \\
 &= n(n-1)(2n - 1)/6 \\
-\end{align*}
+\end{aligned}
 $$
 
 Trying to perform this process in general does beg a question: how do we
@@ -4501,12 +4501,12 @@ We want to find the analogue of the exponential function $e^x$, which
 satisfies the equation $f'(x) = f(x)$. Setting this up in the discrete case:
 
 $$
-\begin{align*}
+\begin{aligned}
 &d'f(x) = f(x) |  f(0) = 1 \\
 &f(x+1) - f(x) = f(x) | f(0) = 1 \\
 &f(x+1) = 2f(x) | f(0) = 1 \\
 &f(n) = 2^n
-\end{align*}
+\end{aligned}
 $$
 
 What does this buy us? It gives us a nice proof that $\sum_{k} nCk = 2^n$.
@@ -4514,17 +4514,17 @@ It proceeds by taking the taylor of $e^x$, "combinatorializing it", and then
 simplifying:
 
 $$
-\begin{align*}
+\begin{aligned}
 &e^x = \sum_{n=0}^\infty \frac{x^n}{n!} \\
 &2^x = \sum_{n=0}^\infty \frac{x^{(n)}}{n!} \\
 &     = \sum_{n=0}^\infty \frac{x*(x-1)*(x-2)*\cdots(x-n+1)}{n!} \\
 &     = \sum_{n=0}^\infty \frac{x*(x-1)*(x-2)*\cdots(x-n+1)}{n!}
-\end{align*}
+\end{aligned}
 $$
 
 ### Harmonic series as the combinatorial version of logarithm
 
-In the continuous case, we have that $\integral 1/x = \log x$. In the
+In the continuous case, we have that $\int 1/x = \log x$. In the
 discrete case, we get $\sum_{i=1}^n 1/x \equiv H_n$, the sum of the
 first $n$ harmonic numbers. This explains _why_ the harmonic numbers
 keep showing up in different places across discrete math --- We're often
@@ -4563,14 +4563,14 @@ For example, in the case of the permutations of the set $\{1, 2, 3\}$,
 we have the permutations:
 
 $$
-\begin{align*}
+\begin{aligned}
 (1)(2)(3) \text{3 cycles} \\
 (12)(3) \text{2 cycles} \\
 (1)(23) \text{2 cycles} \\
 (2)(13) \text{2 cycles} \\
 (132) \text{1 cycle} \\
 (123) \text{1 cycle} \\
-\end{align*}
+\end{aligned}
 $$
 
 So, this gives the counts:
@@ -5055,7 +5055,7 @@ of large-enough-size in any lattice will have two points such that their
 difference lies in the lattice. Formally, we have:
 
 1. A lattice $L(B) \equiv \{ Bx : x \in \mathbb Z^n \}$ for some basis 
-   $B \in \mathbb \R^n$. The lattice $L$ is spanned by integer linear
+   $B \in \mathbb R^n$. The lattice $L$ is spanned by integer linear
    combinations of rows of $B$.
 2. A body $S \subseteq R^n$ which **need not be convex!**, which 
    has volume greater than $\det(B)$. Recall that for a lattice $L(B)$,
@@ -5100,14 +5100,14 @@ We can apply Blichfeldt's theorem to get our hands on two points $x_1, x_2 \in T
 such that $x_1 - x_2 \in L$. 
 
 $$
-\begin{align*}
+\begin{aligned}
 &x_1 \in T \Rightarrow 2x_1 \in S ~(S = 2T) \\
 &x_2 \in T \Rightarrow 2x_2 \in S ~(S = 2T) \\
 &2x_2 \in S \Rightarrow -2x_2 \in S~\text{($S$ is symmetric about origin)} \\
 &\frac{1}{2}(2x_1) + \frac{1}{2} (-2x_2) \in S~\text{($S$ is convex)}\\
 &x_1 - x_2 \in S~\text{(Simplification)}\\
 &\text{nonzero lattice point}~\in S \\
-\end{align*}
+\end{aligned}
 $$
 
 
@@ -5360,11 +5360,11 @@ then we will have:
 in words:
 
 $$
-\begin{align*}
+\begin{aligned}
 &A = U \setminus \{ 1 \} \\
 &\lnot A = \texttt{interior}(A^c) = \texttt{interior}(\{ 1 \}) = \emptyset \\
 &\lnot \lnot A = \texttt{interior}((\lnot A)^c) = \texttt{interior}(\emptyset^c) = \texttt{interior}(U) = U \\
-\end{align*}
+\end{aligned}
 $$
 
 So in some sense, the law of excluded middle is "almost true": It holds that $A \simeq \lnot \lnot A$,
@@ -5386,11 +5386,11 @@ set open $C$ such that $C \land A = B$. In pictures:
 The reason this is true is that from the definition:
 
 $$
-\begin{align*}
+\begin{aligned}
 &\Rightarrow: L \rightarrow L;  c \leq (a \Rightarrow b) \iff (c \land a) \leq b \\
 &\text{replacing $\leq$ with $=$ for insight:} \\
 &\Rightarrow: L \rightarrow L;  c = (a \Rightarrow b) \iff (c \land a) = b  \\
-\end{align*}
+\end{aligned}
 $$
 
 Alternatively, we can use the fact that in regular boolean algebra:
@@ -6411,7 +6411,7 @@ We can't have recursion, or more generally "re-entrance": consider a call chain 
   and vice versa.
 
 
-## [Adjunctions as advice](#adjunctions-as-advice)
+# [Adjunctions as advice](#adjunctions-as-advice)
 
 An adjunction `F |- U` allows us to go from `F a -> x` to `a -> U x`. We 
 can look at this as shifting the "before-advice" from the _input_ to an 
@@ -6450,7 +6450,7 @@ fmap f :: (f a -> x) -> (a       -> u x) [using u (f a) = a]
 
 
 
-## [Reversible computation as groups on programs](#reversible-computation-as-groups-on-programs)
+# [Reversible computation as groups on programs](#reversible-computation-as-groups-on-programs)
 
 If we consider a language like [`Janus`](https://en.wikipedia.org/wiki/Janus_(time-reversible_computing_programming_language)
 where every program is reversible, we can then get a group structure on
@@ -6465,7 +6465,7 @@ exploration of the program space? Ie, can we somehow exploit the
 discrete group structure (in the case of Janus) or the Lie group structure
 of the unitary group (as in the QM case) to find programs in far quicker ways?
 
-## [Blazing fast math rendering on the web](#blazing-fast-math-rendering-on-the-web)
+# [Blazing fast math rendering on the web](#blazing-fast-math-rendering-on-the-web)
 
 So, I've shifted the blog to be static-site-generated using a
 static-site-generator written by yours truly. The code clocks in at around a
@@ -6654,7 +6654,7 @@ how I want it to be, and that makes me $\epsilon$ more happy.
 I think of it as an investment into future me, since I can extend the
 markdown and the transpiler in the way _I_ want it to be.
 
-## [VC dimension](#vc-dimension)
+# [VC dimension](#vc-dimension)
 
 Consider a ground set $X$. Let the space of all possible binary classifications
 be the function space $C \equiv \{ f \mid f : X \rightarrow \pm 1 \}$.
@@ -6742,14 +6742,14 @@ Now, given a hamiltonian $H: M \rightarrow \mathbb R$, we can construct a
 vector field $X_H: M \rightarrow TM$ under the definition:
 
 $$
-\begin{align*}
+\begin{aligned}
 &\text{partially apply $\omega$ to see $\omega$ as a mapping from $T_p$ to $T_p^*M$} \\
 &\omega2: T_p M \rightarrow T_p*M \equiv \lambda (v: T_p M). \lambda (w: T_p M) . \omega(v, w) \\
 &\omega2^{-1}: T_p^*M \rightarrow T_p M; dH: M \rightarrow T_p* M \\
 &X_H \equiv \lambda (p: M) \rightarrow \omega2^{-1} (dH(p)) \\
 &(p: M) \xrightarrow{dH} dH(p) : T_p*M \xrightarrow{\omega2^{-1}} \omega2^{-1}(dH(p)): T_pM \\
 &X_H = \omega2^{-1} \circ dH
-\end{align*}
+\end{aligned}
 $$
 
 This way, given a hamiltonian $H: M \rightarrow \mathbb R$, we can construct
@@ -6759,12 +6759,12 @@ We can also go the other way. Given the $X$, we can build the $dH$
 under the equivalence:
 
 $$
-\begin{align*}
+\begin{aligned}
 &\omega2^{-1} \circ dH  = X_H\\
 &dH = \omega2(X_H) \\
 &\int dH  = \int \omega2(X_H)  \\
 &H = \int \omega2(X_H) 
-\end{align*}
+\end{aligned}
 $$
 
 This needs some demands, like the one-form $dH$ being integrable. But this
@@ -6772,11 +6772,11 @@ works, and gives us a bijection between $X_H$ and $H$ as we wanted.
 
 We can also analyze the definition we got from the previous manipulation:
 $$
-\begin{align*}
+\begin{aligned}
 &\omega2(X_H) =  dH \\
 &\lambda (w: T_p M) \omega(X_H, w) = dH \\
 &\omega(X_H, \cdot) = dH \\
-\end{align*}
+\end{aligned}
 $$
 
 We can take this as a _relationship_ between $X_H$ and $dH$. Exploiting
@@ -6784,11 +6784,11 @@ this, we can notice that $dH(X_H) = 0$. That is, moving along $X_H$ does
 not modify $dH$:
 
 $$
-\begin{align*}
+\begin{aligned}
 &\omega2(X_H) =  dH \\
 &\lambda (w: T_p M) \omega(X_H, w) = dH \\
 &dH(X_H) = \omega(X_H, X_H) = 0 ~ \text{$\omega$ is anti-symmetric}
-\end{align*}
+\end{aligned}
 $$
 
 #### Preservation of $\omega$
@@ -6811,11 +6811,11 @@ We can create a map from the Lie algebra $\mathfrak{g} \in \mathfrak{G}$ to
 a vector field $X_{\mathfrak g}$, performing:
 
 $$
-\begin{align*}
+\begin{aligned}
 &t : \mathbb R \mapsto e^{t\mathfrak g} : G \\
 &t : \mathbb R \mapsto \phi(e^{t\mathfrak g}) : M \\
 &X_{\mathfrak g} \equiv \frac{d}{dt}(\phi(e^{t\mathfrak g}))|_{t = 0}: TM
-\end{align*}
+\end{aligned}
 $$
 
 We can then attempt to recover a hamiltonian $H_{\mathfrak g}$ from
@@ -6823,7 +6823,7 @@ $X_{\mathfrak g}$. If we get a hamiltonian from this process, then it
 will have the right symmetries.
 
 
-## [Theorems for free](#theorems-for-free)
+# [Theorems for free](#theorems-for-free)
 
 These are personal notes I made of a custom notation for denoting the relations
 from the theorems for free paper. I developed the notation since I wanted
@@ -6891,7 +6891,7 @@ If this is the case, then we can simplify the math to be:
 #### References
 - [Theorems for free by Phil Wadler](https://ecee.colorado.edu/ecen5533/fall11/reading/free.pdf)
 
-## [How to reason with half-open intervals](#how-to-reason-with-half-open-intervals)
+# [How to reason with half-open intervals](#how-to-reason-with-half-open-intervals)
 
 I've always found code that uses half-open intervals far harder to write
 than using closed intervals. For example, when performing string processing,
@@ -6932,7 +6932,7 @@ easier to analyse. It took me this long it's easier for me to _think_
 in this viewpoint as well.
 
 
-## [How does one build a fusion bomb?](#how-does-one-build-a-fusion-bomb)
+# [How does one build a fusion bomb?](#how-does-one-build-a-fusion-bomb)
 
 I haven't found anything on the internet that describes how to build
 a fusion bomb; it's almost as if this information has been supressed
@@ -6949,7 +6949,7 @@ I read on wikipedia that most countries classify the details:
 > even if it is created by persons who are not government employees or
 > associated with weapons programs, in a legal doctrine known as "born secret".
 
-## [Christoffel symbols, geometrically](#christoffel-symbols-geometrically)
+# [Christoffel symbols, geometrically](#christoffel-symbols-geometrically)
 
 Suppose we have a manifold $M$. of dimension $d$ that has been embedded isometrically
 into $\mathbb R^n$. So we have a function $e: \mathbb R^d \rightarrow \mathbb R^n$
@@ -6959,11 +6959,11 @@ Recall that $\partial_{x_i} e : \mathbb R^d \rightarrow \mathbb R^n$
 is defined as:
 
 $$
-\begin{align*}
+\begin{aligned}
 &\partial_{x_i}e : \mathbb R^d \rightarrow \mathbb R^n \\
 &[\partial {x_i}e](p) \equiv
  \lim_{\delta x \rightarrow 0} \frac{e(p + (0:0, 1:0\dots, i:\delta_x, \dots, n:0)) - e(p)}{\delta x}
-\end{align*}
+\end{aligned}
 $$
 
 Note that it is a function of type $\mathbb R^d \rightarrow \mathbb R^n$.
@@ -6982,11 +6982,11 @@ Note that it is a function of type $\mathbb R^d \rightarrow \mathbb R^n$.
 We can calculate the derivaive of this vector field as follows:
 
 $$
-\begin{align*}
+\begin{aligned}
 &\frac{V(p)}{\partial x^i} \\
 &= \partial_{x_i} \left[ v_j(p) \partial_{x_j} e \right]
 &= v^j \cdot \partial_{x_i} \partial_{x_j} e + \partial_{x_j}e \cdot \partial_{x_i} v^j
-\end{align*}
+\end{aligned}
 $$
 
 We choose to rewrite the second degree term in terms of the tangent
@@ -7008,7 +7008,7 @@ that contains the projection of the full derivative in $\mathbb R^n$ onto
 the tangent space $T_p M$. This is defined by the equations:
 
 $$
-\begin{align*}
+\begin{aligned}
  &\nabla_{e_i} V \equiv \partial_{x_i} V - \vec{n}  \\
  &= \Pi_{\vec{n}^\bot} \left [v^j \cdot \partial_{x_i} \partial_{x_j} e + \partial_{x_j}e \cdot \partial_{x_i} v^j \right] \\
  &= \Pi_{\vec{n}^\bot} \left[ v^j \cdot (\Gamma^k_{ij} \partial_{x_k} e + \vec{n})+ \partial_{x_j}e \cdot \partial_{x_i} v^j \right] \\
@@ -7016,7 +7016,7 @@ $$
  &= v^j \cdot (\Gamma^k_{ij} \partial_{x_k} e + \vec 0) + \partial_{x_k}e \cdot \partial_{x_i} v^k \\
  &= v^j \cdot \Gamma^k_{ij} \partial_{x_k} e  + \partial_{x_k}e \cdot \partial_{x_i} v^k \\
  &= \partial_{x_k} e \left( v^j \cdot \Gamma^k_{ij}  + \partial_{x_i} v^k \right) \\
-\end{align*}
+\end{aligned}
 $$
 
 
@@ -7025,7 +7025,7 @@ $$
 
 - [The wikipedia page on Covariant derivative](https://en.wikipedia.org/wiki/Covariant_derivative#Informal_definition_using_an_embedding_into_Euclidean_space)
 
-## [A natural vector space without an explicit basis](#a-natural-vector-space-without-an-explicit-basis)
+# [A natural vector space without an explicit basis](#a-natural-vector-space-without-an-explicit-basis)
 
 On learning about infinite dimensional vector spaces, one learns that
 we need to use the axiom of choice to assert that every such vector space
@@ -7069,7 +7069,7 @@ For example, one can write the equation:
 ```
 
 
-## [Cache oblivious B trees](#cache-oblivious-b-trees)
+# [Cache oblivious B trees](#cache-oblivious-b-trees)
 
 Central idea: assume a memory model where computation is free, only cost
 is pulling data from cache into memory. Cache has total size $M$, can hold
@@ -7181,7 +7181,7 @@ that has max of nodes. Leaves are the members of the ordered file.
 
 - [Erik demaine, advanced data structures, lecture 7: Memory hiearchy: models, cache oblivious B trees](https://courses.csail.mit.edu/6.851/fall17/lectures/L07.html?notes=5)
 
-## [Krohn-Rhodes decomposition](#krohn-rhodes-decomposition)
+# [Krohn-Rhodes decomposition](#krohn-rhodes-decomposition)
 
 We denote partial functions with $X \rightharpoonup Y$ and total functions
 with $X \rightarrow Y$.
@@ -7295,7 +7295,7 @@ $$
 X \triangleleft_{\phi} Y
 $$
 
-- If $\phi \subeteq Q_Y \times Q_X $ is _both_ surjective and partial,
+- If $\phi \subseteq Q_Y \times Q_X $ is _both_ surjective and partial,
   then we say that $\phi$ is a __covering__ and write:
 
 $$
@@ -7343,8 +7343,8 @@ This will be called as __companion relation__ of $\phi$.
 Let $X \equiv (Q_X, S_X)$ and $Y \equiv (Q_Y, S_Y)$. We're going to define a large
 product $X \wr Y$.
 
-We begn with the set $W \equiv S_X^Q_Y \times S_Y$, where
-$S_X^Q_Y \equiv \{ f : Q_Y \rightarrow S_X \}$.
+We begn with the set $W \equiv S_X^{Q_Y} \times S_Y$, where
+$S_X^{Q_Y} \equiv \{ f : Q_Y \rightarrow S_X \}$.
 The wreath product then becomes:
 
 $$
@@ -7462,10 +7462,10 @@ permutation of $A_a$: $s A_a = A_a$. Now note that this induces a permutation
 of the set $B_a$. This creates a transition system:
 
 $$
-\begin{align*}
+\begin{aligned}
 &G_a \equiv \{ s \in S : s a = a \} \\
 &H_a \equiv (B_a, G_a) \\
-\end{align*}
+\end{aligned}
 $$
 
 We have already shown how if $s \in S$ defines a permutation of some set $X$
@@ -7516,7 +7516,7 @@ Formally, for each $p \in Q_Y$, we have that $\phi(p) \in A$ and$h(\phi(p)) \leq
 
 
 We prove that if $X \triangleleft_{\phi} Y$ is a relational covering of rank $i$,
-then $X \triangleleft_{\phi} \overbar{H_i^\lor} \wr Y$ is a relational covering
+then $X \triangleleft_{\phi} \overline{H_i^\lor} \wr Y$ is a relational covering
 of rank $i - 1$.
 
 The proof is a proof by induction.
@@ -7545,7 +7545,7 @@ we have that:
   and $\overline{u}(a_j) = \phi(qy_i)$.
 
 We will show how to establish a relational covering:
-- $X \triangleleft_{\phi} \wr \overbar{H_i^\lor} Y$ using a relation:
+- $X \triangleleft_{\phi} \wr \overline{H_i^\lor} Y$ using a relation:
 - $\phi \subseteq [(B_{a_1} \cup B_{a_2} \cup \dots B_{a_k})\times Q_Y ] \times Q_X$
 
 #### References
@@ -7560,7 +7560,7 @@ We will show how to establish a relational covering:
 - [Computational semigroup theory blog](https://compsemi.wordpress.com/)
 - [Compact notation for semigroup/automata](https://arxiv.org/pdf/1306.1138.pdf)
 
-## [Proving block matmul using program analysis](#proving-block-matmul-using-program-analysis)
+# [Proving block matmul using program analysis](#proving-block-matmul-using-program-analysis)
 
 It's a somewhat well-known fact that given matrix multiplication: $O = AB$
 where $O \in \mathbb R^{2n \times 2m}$ ($O$ for output),
@@ -7689,7 +7689,7 @@ the _directions_ of the arrows in the dependence set.
 - [Polyhedral compilation](http://polyhedral.info/)
 
 
-## [Why I like algebra over analysis](#why-i-like-algebra-over-analysis)
+# [Why I like algebra over analysis](#why-i-like-algebra-over-analysis)
 
 Midnight discussions with my room-mate
 [Arjun P](https://researchweb.iiit.ac.in/~arjun.p/).
@@ -7745,7 +7745,7 @@ is nothing left to take away".
 I'm really glad that this 2 AM discussion allowed me to finally pin down
 why I like algebra.
 
-## [`using` for cleaner function type typedefs](#using-for-cleaner-function-type-typedefs)
+# [`using` for cleaner function type typedefs](#using-for-cleaner-function-type-typedefs)
 
 I've always struggled with remembering the syntax for function type typedefs:
 
@@ -7770,7 +7770,7 @@ that the usual typedef tends to hide the fact that a
 function pointer is some pointer-like-thing.
 
 
-## [A walkway of lanterns](#a-walkway-of-lanterns)
+# [A walkway of lanterns](#a-walkway-of-lanterns)
 
 ### Semidirect products
 
@@ -7786,7 +7786,7 @@ function pointer is some pointer-like-thing.
 - $D_5 = \mathbb Z5 \rtimes \mathbb Z2$
 
 $$
-\begin{align*}
+\begin{aligned}
 \begin{bmatrix}
 1 & 0 \\
 a & X
@@ -7799,7 +7799,7 @@ b & Y
 1 & 0 \\
 a + X \cdot b & XY
 \end{bmatrix}
-\end{align*}
+\end{aligned}
 $$
 
 - $(Y \mapsto b) \xrightarrow{act} (X \mapsto a)$
@@ -7823,12 +7823,9 @@ $$
 - $toggley\cdot g= (lights:\langle -1 \rangle, loc:13)$
 
 
-### Krohn-rhodes, AKA how to model Freudian psychoanalysis using Lagrangians over semigroups.
 
 
-
-
-## [Natural transformations](#natural-transformations)
+# [Natural transformations](#natural-transformations)
 
 <img width=400  src="./static/natural-transformation.png">
 
@@ -7838,7 +7835,7 @@ the catories $C$, $FC$, and $GC$, and then show the relationship between
 them, so I made this for my own reference.
 
 
-## [The hilarious commentary by dinosaure in OCaml git](#the-hilarious-commentary-by-dinosaure-in-ocaml-git)
+# [The hilarious commentary by dinosaure in OCaml git](#the-hilarious-commentary-by-dinosaure-in-ocaml-git)
 
 the [Ocaml-git](https://github.com/mirage/ocaml-git/) project is a
 re-implementation of `git` in `OCaml`. It's well-written, and I was
@@ -7910,7 +7907,7 @@ devrait avoir un problème. Donc TODO. *)
 (* XXX(dinosaure): at the end, we don't care if we lost something. *)
 ```
 
-## [How to link against MLIR with CMake](#how-to-link-against-mlir-with-cmake)
+# [How to link against MLIR with CMake](#how-to-link-against-mlir-with-cmake)
 
 Since `MLIR` hasn't setup the nice tooling that LLVM has around `CMake`
 as far as I can tell, one needs to actually _know_ `CMake` to link against
@@ -7992,7 +7989,7 @@ target_link_libraries(languagemodels
 
 
 
-## [Energy as triangulaizing state space](#energy-as-triangulaizing-state-space)
+# [Energy as triangulaizing state space](#energy-as-triangulaizing-state-space)
 
 This comes from The wild book by John Rhodes, which I anticipate I'll be posting more of in the coming weeks.
 
@@ -8000,14 +7997,14 @@ This comes from The wild book by John Rhodes, which I anticipate I'll be posting
 
 Let an experiment be a tuple of the phase space $X$, action space $A$,
 and an action of the actions onto the phase space
-$\curverightarrow: A \times X \rightarrow X$. We will write
-$x' = a \curverightarrow x$ to denote the new state of the system
+$\curvearrowright: A \times X \rightarrow X$. We will write
+$x' = a \curvearrowright x$ to denote the new state of the system
 $x$. So the experiment $E$ is the data
-$E \equiv (X, A, \curverightarrow : A \times X \rightarrow X)$.
+$E \equiv (X, A, \curvearrowright : A \times X \rightarrow X)$.
 
 #### Coordinate systems.
 
-The existence of the action $\curverightarrow$ allows us to
+The existence of the action $\curvearrowright$ allows us to
 write the evolution of the system recursively:
 
 $x_{t+1} = a \rightarrow x_t$.
@@ -8043,12 +8040,12 @@ measure some internal state of the system using $M$.
 For example, consider a system $x$ with an energy function $e(x)$. If we
 perform an action $a$ on the system $x$, then we can predict the action
 $e(x' = a \curvearrowright x)$ given just $e(x)$ and $a$ --- here,
-$(x' = a \curverightarrow x)$ is the action of the system $a$ on $x$.
+$(x' = a \curvearrowright x)$ is the action of the system $a$ on $x$.
 
 > In general, conservation principles give a first coordinate
 > of a triangularization. In the main a large part of physics can be viewed as
 > discovering and introducing functions $e$ of the states $q$ of the
-> system such that under action $a$, $e(a \curverightarrow q)$ depends
+> system such that under action $a$, $e(a \curvearrowright q)$ depends
 > only on $e(q)$ and $a$, and **not** on $q$.
 
 
@@ -8064,16 +8061,16 @@ $(x' = a \curverightarrow x)$ is the action of the system $a$ on $x$.
 > group of symmetries to the triangularization, and then precisely write it out
 > in all pedantic detail.
 
-Let an experiment be $E \equiv (X, A, \curverightarrow)$. Then we define $\Pi$
+Let an experiment be $E \equiv (X, A, \curvearrowright)$. Then we define $\Pi$
 is a _symmetry_ of $E$ iff:
 
 1. $\Pi: X \rightarrow X$ is a permutation of $X$.
 2. $\Pi$ commutes with the action of each $a$:
-       $ \Pi(a \curverightarrow x) = a \curverightarrow \Pi(x) $.
+       $ \Pi(a \curvearrowright x) = a \curvearrowright \Pi(x) $.
 
 We say that the theory $E$ is _transitive_ (in the action sense) if for
 all $x_1, x_2 \in X, x_1 \neq x_2$, there exists $a_1, a_2, \dots a_n$
-such that $ x_2 = a_n \curverightarrow \dots (a_1 \curverightarrow x_1) $.
+such that $ x_2 = a_n \curvearrowright \dots (a_1 \curvearrowright x_1) $.
 
 Facts of the symmetries of a system:
 
@@ -8097,7 +8094,7 @@ express the symmetry group in terms of:
 $$(X, S) \leq (G, G)  \wr (\{ O_1, O_2, \dots O_k\}, T)$$
 
 
-## [The cutest way to write semidirect products](#the-cutest-way-to-write-semidirect-products)
+# [The cutest way to write semidirect products](#the-cutest-way-to-write-semidirect-products)
 
 Given two monoids $(M, +, 0_M)$ and $(N, \times, 1_N)$, and a
 homomorphism $\phi: N \rightarrow End(M)$, where $End(M)$
@@ -8144,7 +8141,7 @@ which is indeed the right expression for the inverse.
 
 
 
-## [My Favourite APLisms](#my-favourite-aplisms)
+# [My Favourite APLisms](#my-favourite-aplisms)
 
 #### identity matrix
 ```
@@ -8174,7 +8171,7 @@ indexes in `xs`.
 └~─────────────────────────→┘
 ```
 
-## [Proof of chinese remainder theorem on rings](#proof-of-chinese-remainder-theorem-on-rings)
+# [Proof of chinese remainder theorem on rings](#proof-of-chinese-remainder-theorem-on-rings)
 
 #### General operations on ideals
 We have at our hands a commutative ring $R$, and we wish to study the ideal
@@ -8214,23 +8211,23 @@ Immediate from inclusion
 There exists an exact sequence:
 
 $$
-\begin{align*}
+\begin{aligned}
 0 \rightarrow I \cap J \xrightarrow{f} I \oplus J \xrightarrow{g} I + J \rightarrow 0 \\
 &f(r) = (r, r) \\
 &g((i, j)) = i + j
-\end{align*}
+\end{aligned}
 $$
 
 We are forced into this formula by considerations of dimension. We know:
 
 $$
-\begin{align*}
+\begin{aligned}
 &dim(I \oplus J) = dim(I) + dim(J) \\
 &dim(I + J) = dim(I) + dim(J) - dim(I \cap J) \text{[inclusion-exclusion]} \\
 &dim(I + J) = dim(I \oplus J) - dim(I \cap J) \\
 &dim(I + J) - dim(I \oplus J) + dim(I \cap J) = 0\\
 &V - E + F = 2
-\end{align*}
+\end{aligned}
 $$
 
 By analogy to euler characteristic which arises from homology, we need to have
@@ -8259,11 +8256,11 @@ a product of vector spaces). Thus, the exact sequence better involve
 module related operations.  We can now recover CRT:
 
 $$
-\begin{align*}
+\begin{aligned}
 0 \rightarrow I \cap J \xrightarrow{f} I \oplus J \xrightarrow{g} I + J \rightarrow 0 \\
-0 \rightarrow R \xrightarrow{f} R \olpus R \xrightarrow{g} R \rightarrow 0 \\
+0 \rightarrow R \xrightarrow{f} R \oplus R \xrightarrow{g} R \rightarrow 0 \\
 0 \rightarrow R / (I \cap J) \rightarrow R/I \oplus R /J \rightarrow R/(I + J) \rightarrow 0
-\end{align*}
+\end{aligned}
 $$
 
 
@@ -8273,7 +8270,7 @@ $$
 - [I learnt the material from this course on commutative algebra from IIT bombay](https://www.youtube.com/watch?v=YxyxP894MLk).
 
 
-## [monic and epic arrows](#monic-and-epic-arrows)
+# [monic and epic arrows](#monic-and-epic-arrows)
 
 This is trivial, I'm surprised it took me _this long_ to internalize this fact.
 
@@ -8289,7 +8286,7 @@ Similarly, an epic arrow behaves a lot like the arrow in the inverse poset.
 I wonder if quite a lot of category theoretic diagrams are clarified by thinking
 of monic and epic directly in terms of controlling sizes.
 
-## [The geometry of Lagrange multipliers](#the-geometry-of-lagrange-multipliers)
+# [The geometry of Lagrange multipliers](#the-geometry-of-lagrange-multipliers)
 If we want to minise a function $f(x)$ subject to the constraints $g(x) = c$,
 one uses the method of lagrange multipliers. The idea is to consider a new
 function $L(x, \lambda) = f(x) + \lambda (c - g(x))$. Now, if one has a local maxima
@@ -8316,9 +8313,9 @@ $(x_0) \xrightarrow{wiggle} (x_0 + \vec\epsilon) \equiv x_1$.
 
 If $f'(x_0)$ and $g'(x_0)$ are parallel, then attempting to improve $f(x_0 + \vec \epsilon)$
 by change $g(x_0 + \vec \epsilon)$, and thereby violate the constraint
-$g(x_0 + \episilon) = c$.
+$g(x_0 + \epsilon) = c$.
 
-## [Efficient tree transformations on GPUs](#efficient-tree-transformations-on-gpus)
+# [Efficient tree transformations on GPUs](#efficient-tree-transformations-on-gpus)
 
 All material lifted straight from [Aaron Hsu's PhD thesis](https://scholarworks.iu.edu/dspace/handle/2022/24749). I'll be converting
 APL notation to C++-like notation.
@@ -9399,7 +9396,7 @@ nodes←⍸(X ∧ p≠(⍳≢p))  ⍝ ⍸:pick indexes.
 ### 5.2.2 Edge Mutation Idioms
 ### 5.2.3 Node Mutation Idioms
 
-## [Things I wish I knew when I was learning APL](#things-i-wish-i-knew-when-i-was-learning-apl)
+# [Things I wish I knew when I was learning APL](#things-i-wish-i-knew-when-i-was-learning-apl)
 
 - For pasting multi-line code,
   [there is a bug in the bug tracker for RIDE](https://github.com/Dyalog/ride/issues/323).
@@ -9418,7 +9415,7 @@ nodes←⍸(X ∧ p≠(⍳≢p))  ⍝ ⍸:pick indexes.
 
 - Set `]boxing on` to enable boxing for trains, arguments, everything.
 
-## [Every ideal that is maximal wrt. being disjoint from a multiplicative subset is prime](#every-ideal-that-is-maximal-wrt-being-disjoint-from-a-multiplicative-subset-is-prime)
+# [Every ideal that is maximal wrt. being disjoint from a multiplicative subset is prime](#every-ideal-that-is-maximal-wrt-being-disjoint-from-a-multiplicative-subset-is-prime)
 
 I ran across this when reading another question on math.se, so I
 [posted this proof for verification](https://math.stackexchange.com/questions/3570129/proof-verification-request-complement-of-multiplicative-set-is-ideal-iff-the-id) just to be sure I wasn't missing
@@ -9460,7 +9457,7 @@ in question.
 - But this violates our assumption that $i_1 i_2 \in I$. Hence, contradiction.
 
 
-## [Getting started with APL](#getting-started-with-apl)
+# [Getting started with APL](#getting-started-with-apl)
 
 - Install [Dyalog APL](https://www.dyalog.com/download-zone.htm).
 - Setup [RIDE](https://github.com/Dyalog/ride), the IDE for dyalog APL.
@@ -9472,14 +9469,14 @@ in question.
 - Bookmark [APLCart](https://aplcart.info/), a collection of APL idioms, and
   refer to it when in need.
 
-## [SpaceChem was the best compiler I ever used](#spacechem-was-the-best-compiler-i-ever-used)
+# [SpaceChem was the best compiler I ever used](#spacechem-was-the-best-compiler-i-ever-used)
 
 It's kind of sad that this is the case, but on thinking about this, I realised
 that the SpaceChem game was essentially a compiler, and it was such a pleasure
 to learn how to use and debug --- the visual nature of it made it amazing to
 find out.
 
-## [Mnemonic for Kruskal and Prim](#mnemonic-for-kruskal-and-prim)
+# [Mnemonic for Kruskal and Prim](#mnemonic-for-kruskal-and-prim)
 
 I often forget which is which, so I came up with this:
 
@@ -9487,12 +9484,12 @@ I often forget which is which, so I came up with this:
   picks out the minimum spanning tree one vertex at a time.
 
 
-## [Legendre transform](#legendre-transform)
+# [Legendre transform](#legendre-transform)
 
 <img  src="./static/legendre.png">
 
 
-## [Cartesian Trees](#cartesian-trees)
+# [Cartesian Trees](#cartesian-trees)
 
 Cartesian trees construct a tree $T = C(A)$ given an array $A$, such that
 range minimum query (RMQ) on the array $A$ is equivalent to the lowest common ancestor (LCA)
@@ -9543,7 +9540,7 @@ occurence will do).
 
 
 
-## [DFS numbers as a monotone map](#dfs-numbers-as-a-monotone-map)
+# [DFS numbers as a monotone map](#dfs-numbers-as-a-monotone-map)
 
 Really, we want a partial order that is defined with the tree as the
 Hasse diagram. However, performing operations on this is hard. Hence,
@@ -9558,7 +9555,7 @@ This also begs the question: can we use other partial orders, that chunk
 some information, but don't lose _all_ the information as going to a total
 order (the naturals) does?
 
-## [Self attention? not really](#self-attention-not-really)
+# [Self attention? not really](#self-attention-not-really)
 
 The code is taken from [The annotated transformer](https://nlp.seas.harvard.edu/2018/04/03/attention.html)
 which explains the "attention is all you need paper".
@@ -9630,12 +9627,12 @@ class MultiHeadedAttention(nn.Module):
 where we notice:
 
 ```py
-## 1) Do all the linear projections in batch from d_model => h x d_k
+# 1) Do all the linear projections in batch from d_model => h x d_k
 query, key, value = \
   [l(x).view(nbatches, -1, self.h, self.d_k).transpose(1, 2)
    for l, x in zip(self.linears, (query, key, value))]
 
-## 2) Apply attention on all the projected vectors in batch.
+# 2) Apply attention on all the projected vectors in batch.
 x, self.attn = attention(query, key, value, mask=mask,
                          dropout=self.dropout)
 ```
@@ -9671,7 +9668,7 @@ So It's not _really_ self attention: it's more like: modulated attention
 to self `:)`
 
 
-## [Coarse structures](#coarse-structures)
+# [Coarse structures](#coarse-structures)
 
 A coarse structure on the set $X$ is a collection of relations on $X$:
 $E \subseteq 2^{X \times X}$ (called as _controlled sets_ / _entourages_)
@@ -9706,7 +9703,7 @@ then coarse structures (which are their dual) are related to..?
 #### References
 - [What is a.. coarse structure by AMS](http://www.ams.org/notices/200606/whatis-roe.pdf)
 
-## [Matroids for greedy algorithms](#matroids-for-greedy-algorithms)
+# [Matroids for greedy algorithms](#matroids-for-greedy-algorithms)
 
 #### Definitions of matroids
 
@@ -9798,7 +9795,7 @@ case we are done.
 Otherwise, $\vert C \vert > \vert C_1 \vert$, $\vert C \vert > \vert C_2 \vert$.
 
 Otherwise, consider $C' \equiv C \ \{ e \} = (C_1 \cup C_2) \ \{e\} = (C_1 \ \{e\}) \cup (C_2 \ \{ e \})$.
-- $C' \subseteq S$, since $\C_1 \ \{e\}, C_2 \ \{e\} \subseteq S$.
+- $C' \subseteq S$, since $C_1 \ \{e\}, C_2 \ \{e\} \subseteq S$.
 - $S$ is an independent set, all of whose subsets are independent by
   definition.  So $C'$ is an independent set.
 - $\vert C' \vert \geq \vert C_1 \vert$, $\vert C' \vert \geq \vert C_2 \vert$.
@@ -9875,7 +9872,7 @@ functions $r_1$ and $r_2$. Let $S \in I_1 cap I_2$ and let $F \subseteq E$.
 - [Lecture 11 of Michel Goeman's lecture on Advanced Combinatorial Optimisation](https://math.mit.edu/~goemans/18438F09/lec11.pdf)
 
 
-## [Grokking Zariski](#grokking-zariski)
+# [Grokking Zariski](#grokking-zariski)
 
 There's a lot written on the Zariski topology on the internet, but most
 of them lack explicit examples and pictures. This is my attempt to
@@ -9912,10 +9909,10 @@ inclusion. That is, if a point is in $O$ then it halts with the output `IN-SET`.
 if the point is not in $O$, $T_O$ infinite loops. Formally:
 
 $$
-\begin{align*}
+\begin{aligned}
 x &&\in O \iff \text{$T_O$ halts on input $x$} \\
 x &&\not \in O \iff \text{$T_O$ does not halts on input $o$}
-\end{align*}
+\end{aligned}
 $$
 
 Alternatively, for a closed set $C \in \tau$, we associate a a turing machine
@@ -9959,7 +9956,7 @@ levels of precision.
 - Thus, the closed sets of $Spec(R)$ are precisely the 'zeroes of polynomials' / 'zeroes of ideals'.
 
 - To make the analogy precise, note that in the polynomial case, we imposed a 
-  topology on $\mathb R$ by saying that the closed sets were $V(p_i) = \{ x \in \mathbb R : p(x) = 0 \}$
+  topology on $\mathbb R$ by saying that the closed sets were $V(p_i) = \{ x \in \mathbb R : p(x) = 0 \}$
   for some polynomial $p \in \mathbb R[x]$. 
   
 - Here, we are saying that the closed sets are $V(I) = \{ x \in Spec(R) : I(x) = 0 \}$
@@ -9974,11 +9971,11 @@ number. $n(p) = n \% p$. We then have that the closed sets are those primes
 which can zero out some number. That is:
 
 $$
-\begin{align*}
+\begin{aligned}
 V(I) = \{ x \in Spec(\mathbb Z) : I(x) = 0 \}
 V((n)) = \{ (p) \in Spec(\mathbb Z) : (n)/(p) = 0 \}
 V((n)) = \{ (p) \in Spec(\mathbb Z) : (n) \mod (p) = 0 \}
-\end{align*}
+\end{aligned}
 $$
 
 So in our minds eye, we need to imagine a space of prime ideals (points), which
@@ -10021,7 +10018,7 @@ the set of prime ideals is closed if it occurs as the zero of some collection of
   "infinitesimal thickening" along the $x$-axis
   of the intersection.
 
-## [My preferred version of quicksort](#my-preferred-version-of-quicksort)
+# [My preferred version of quicksort](#my-preferred-version-of-quicksort)
 
 Wikipedia lists the implementation of quicksort as:
 
@@ -10105,7 +10102,7 @@ what data starts and ends where.
 
 What version of quicksort do you prefer? Drop me an email!
 
-## [Geometric proof of Cauchy Schwarz inequality](#geometric-proof-of-cauchy-schwarz-inequality)
+# [Geometric proof of Cauchy Schwarz inequality](#geometric-proof-of-cauchy-schwarz-inequality)
 
 <img src="./static/cauchy-schwarz.svg">
 
@@ -10118,7 +10115,7 @@ inequality:
 
 
 
-## [Dataflow analysis using Grobner basis](#dataflow-analysis-using-grobner-basis)
+# [Dataflow analysis using Grobner basis](#dataflow-analysis-using-grobner-basis)
 
 This was a quick experiment in using Grobner basis to model situations. We
 can represent our dataflow analysis constraints in terms of polynomial
@@ -10163,7 +10160,7 @@ which admit much faster solutions.
 
 
 
-## [Fenwick trees and orbits](#Fenwick-trees-and-orbits)
+# [Fenwick trees and orbits](#Fenwick-trees-and-orbits)
 
 I learnt of a nice, formal way to prove the correctness of Fenwick
 trees in terms of orbits that I wish to reproduce here.
@@ -10223,7 +10220,7 @@ At each  location, we strip off the value $2^r$. We can discover this value
 with bit-fiddling: We claim that $a \& (-a) = 2^r$.
 
 Let $a = x 1 0^r$. Now, $-a = \lnot a + 1 = x01^r + 1 = \overline{x}10^r$.
-Hence, $a \& (-a) = a \& (\lnot a + 1) = (x 10^r) \& (\overline{\x}10^r) = 0^{|\alpha|}10^r = 2^r$
+Hence, $a \& (-a) = a \& (\lnot a + 1) = (x 10^r) \& (\overline{x}10^r) = 0^{|\alpha|}10^r = 2^r$
 
 So the full implementation of query is:
 
@@ -10300,7 +10297,7 @@ do satisfy the conditions above.
 For a quick numerical check, we can use the code blow to ensure
 that the orbits are indeed disjoint:
 ```py
-## calculate orbits of query and update in fenwick tree
+# calculate orbits of query and update in fenwick tree
 
 def lsb(i): return i & (-i)
 def U(i): return i + lsb(i)
@@ -10338,8 +10335,8 @@ case they will never meet as required.
 ##### Case 3: $q > u$
 
 Let the entire array have size $2^N$.
-Let $q = \texttt{e1 f_q}, u = \texttt{e0 f_u}$, where
-$\texttt{e, f_q, f_u}$ may be empty strings.
+Let $q = \texttt{e1 f\_q}, u = \texttt{e0 f\_u}$, where
+$\texttt{e, f\_q, f\_u}$ may be empty strings.
 
 Notice that $Q$ will always strip away rightmost ones in $f_q$,
 leading to $q = \texttt{e10...0}$ at some point.
@@ -10354,7 +10351,7 @@ Hence, at some point $q = u$.
 - [Fenwick trees on PolyMath](http://michaelnielsen.org/polymath1/index.php?title=Updating_partial_sums_with_Fenwick_tree)
 - [Hacker's delight](https://doc.lagout.org/security/Hackers%20Delight.pdf)
 
-## [Dirichlet inversion](#Dirichlet-inversion)
+# [Dirichlet inversion](#Dirichlet-inversion)
 
 We call all functions $f: \mathbb Z \rightarrow \mathbb R$ as
 _arithmetic functions_, since they operate on the integers.
@@ -10366,14 +10363,14 @@ It is defined by:
 We will show that the set of arithmetic functions forms a group
 under the operator $\star$, with identity:
 
-$$id_\star(n) \equiv \floor{1/n} = \begin{cases} 1 & n = 1 \\ 0 & \text{otherwise} \end{cases}$$
+$$id_\star(n) \equiv \lfloor 1/n \rfloor = \begin{cases} 1 & n = 1 \\ 0 & \text{otherwise} \end{cases}$$
 
 
 The reason all of this is interesting is that the inverse of the constant function $1(n) \equiv 1$
 is going to be this function called as the mobius function $\mu$:
 
 $$
-\mu(n=p_1^\alpha_1 p_2^\alpha_2 \dots p_r^\alpha_r) \equiv
+\mu(n=p_1^{\alpha_1} p_2^{\alpha_2} \dots p_r^{\alpha_r}) \equiv
 \begin{cases}
   0 & \text{if any $\alpha_i > 1$} \\
   (-1)^{\alpha_1 + \alpha_2 + \dots + \alpha_r} & \text{if all $\alpha_i \in \{ 0, 1 \}$}
@@ -10383,11 +10380,11 @@ $$
 The mobius function will allow us to perform _mobius inversion_:
 
 $$
-\begin{align*}
+\begin{aligned}
   f(n) &\equiv \sum_{d \vert n} g(d) = \sum_{d \vert n} g(d) 1(n/d) = g \star 1 \\
   f \star 1^{-1} &=  g \star 1 \star 1^{-1} \\
   f \star \mu &= g
-\end{align*}
+\end{aligned}
 $$
 
 That is, we originally had $f$ defined in terms of $g$. We can
@@ -10406,12 +10403,12 @@ number $n > 0$, $1/n < 1$, hence $\lfloor 1/n \rfloor = 0$.
 
 ### verification of $istar$ being the identity
 $$
-\begin{align*}
+\begin{aligned}
 &(f \star id_\star)(n) \equiv \sum_{d \vert n} f(d) id_\star(n/d) \\
 &= f(n) id_\star(1) + \sum_{d \vert n, d > 1} f(n) id_\star(d) \\
 &= f(n) \cdot 1 + \sum_{d \vert n, d > 1} f(n) \cdot 0 \\
 &= f(n) \\
-\end{align*}
+\end{aligned}
 $$
 
 ### associativity, commutativity of $\star$
@@ -10437,23 +10434,23 @@ Clearly, for a given function $f$, we need the inverse $f^{-1}$ to be such that
 $(f \star f^{-1})(n) = id_\star$. Hence:
 
 $$
-\begin{align*}
+\begin{aligned}
 &(f \star f^{-1})(1) = id_\star(1) = 1 \\
 &f(1) f^{-1}(1) = 1 \\
 & f^{-1}(1) \equiv 1 / f(1)\\
-\end{align*}
+\end{aligned}
 $$
 
 Great, we have a base case; We can now compute $f^{-1}(n)$ inductively, assuming
 we know the value of $f^{-1}(d)$ for all $d \vert n$.
 
 $$
-\begin{align*}
+\begin{aligned}
 &(f \star f^{-1})(n) = id_\star(1) = 0 \\
 &\sum_{d \vert n} f(d) f^{-1}(n/d) = 0 \\
 &f(1) f^{-1}(n) + \sum_{d \vert n, d < n} f(d) f^{-1}(n/d) = 0 \\
 &f^{-1}(n) = -\frac{\sum_{d \vert n, d < n} f(d) f^{-1}(n/d)}{f(1)} 
-\end{align*}
+\end{aligned}
 $$
 
 ### $\mu$ as the inverse of the $one$ function
@@ -10471,12 +10468,12 @@ $$
 We have $f$ written in terms of $g$. We can now write $g$ in terms of $f$:
 
 $$
-\begin{align*}
+\begin{aligned}
 &f(n)  = \texttt{const 1} \star g \\
 &f \star \texttt{const 1}^{-1} = g \\
 &g = f \star \mu \\
 &g = \sum_{d \vert n} f(d) \mu(n/d)
-\end{align*}
+\end{aligned}
 $$
 
 ### $n = \sum_{d \vert n} \phi(d)$
@@ -10510,7 +10507,7 @@ $$ n = \sum_{d \vert n} n/d $$
 ### Other arithmetical functions and their relations
 
 
-## [Incunabulum for the 21st century: Making the J interpreter compile in 2020](#incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020)
+# [Incunabulum for the 21st century: Making the J interpreter compile in 2020](#incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020)
 
 This is me trying to understand the fabled interpreter of the `J` language
 working, so I could absorb Arthur Whitney's style of writing C: it's
@@ -10680,7 +10677,7 @@ couldn't find explanaing the code on the internet.
 Until then, enjoy the monolith of code!
 
 
-## [An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)](#an-example-of-a-sequence-whose-successive-terms-get-closer-together-but-isnt-cauchy-does-not-converge)
+# [An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)](#an-example-of-a-sequence-whose-successive-terms-get-closer-together-but-isnt-cauchy-does-not-converge)
 
 #### The problem
 Provide an example of a sequence $a_n: \mathbb N \rightarrow \mathbb R$
@@ -10696,21 +10693,21 @@ The usual solution is to take the harmonic numbers,
 $H_n \equiv \sum_{i=1}^n 1/i$. Then, we show that:
 
 $$
-\begin{align*}
+\begin{aligned}
 \lim_{n \rightarrow \infty} \left| H_{n+1} - H_n \right|
 &= \left| \frac{1}{n+1} - \frac{1}{n} \right| \\
 &= \frac{1}{(n+1)n} \rightarrow 0
-\end{align*}
+\end{aligned}
 $$
 
 $$
-\begin{align*}
+\begin{aligned}
 &\lim_{n \rightarrow \infty} \left| H_{2n} - H_n \right| \\
 &= \left|\frac{1}{2n} - \frac{1}{n} \right| \\
 &= \sum_{i=n+1}^{2n} \frac{1}{n+1} + \frac{1}{n+2} + \dots + \frac{1}{2n} \\
 &\geq \sum_{i=n+1}^{2n} \frac{1}{2n} + \frac{1}{2n} + \dots + \frac{1}{2n} \\
 &\geq \frac{n}{2n} = \frac{1}{2} \neq 0 \text{on} x \rightarrow \infty
-\end{align*}
+\end{aligned}
 $$
 
 
@@ -10720,23 +10717,23 @@ We can much more simply choose $a_n = \log(n)$. This yields the simple
 calculation:
 
 $$
-\begin{align*}
+\begin{aligned}
 &\lim_{n \rightarrow \infty} a_{n+1} - a_n = \log(n+1) - \log(n) \\
 &= \log((n+1)/n)) \\
 &= \log(1 + 1/n) \xrightarrow{n \rightarrow \infty} \log(1) = 0
-\end{align*}
+\end{aligned}
 $$
 
 while on the other hand,
 
 
 $$
-\begin{align*}
+\begin{aligned}
 \lim_{n \rightarrow \infty} a_{2n} - a_n 
 = \log(2n) - \log(n)
 = \log(2) + \log(n) - \log(n)
 = \log 2 \neq 0
-\end{align*}
+\end{aligned}
 $$
 
 I find this far cleaner conceptually, since it's "obvious" to everyone
@@ -10767,9 +10764,9 @@ plod along, keeping $\epsilon$ ball next to $\epsilon$ ball, to reach:
 $$
 \lim_{n \rightarrow \infty} \lim_{\epsilon \rightarrow 0} f(n) \cdot \epsilon
 $$
-whose behaviour can do unexpected things depending on the choice of $\n$.
+whose behaviour can do unexpected things depending on the choice of $n$.
 
-## [Krylov subspace method](#krylov-subspace-method)
+# [Krylov subspace method](#krylov-subspace-method)
 
 <!-- https://www.youtube.com/watch?v=R9DHmkCE9oI -->
 
@@ -10791,13 +10788,13 @@ We notice that $K_M$ is invariant under the action of $A$.
 
 Now, let's consider:
 $$
-\begin{align*}
+\begin{aligned}
 K_m(A, x) &\equiv span \{x, Ax, A^2x, \dots A^m x \} \\
         &= span \{ A^{-1} b, b, Ab, \dots A^{m-1} x \} \qquad \text{(substitute $x = A^{-1}b$)} \\
         &= A span \{ A^{-1} b, b, Ab, \dots A^{m-1} b\} \qquad \text{(Invariance of Krylov subspace)} \\
         &= span \{b, Ab, \dots A^m b\}  \\
         &= K_m(A, b)
-\end{align*}
+\end{aligned}
 $$
 
 We learnt that $Ax = b$ has a solution in $K_m(A, b)$. Using this, we can build
@@ -10813,7 +10810,7 @@ define the _residual_ as $r_n \equiv A x_n - b$.
 
 ## Conjugate gradient descent
 
-## [Good reference to the Rete pattern matching algorithm](#good-reference-to-the-rete-pattern-matching-algorithm)
+# [Good reference to the Rete pattern matching algorithm](#good-reference-to-the-rete-pattern-matching-algorithm)
 
 The [Rete pattern matching algorithm](https://en.wikipedia.org/wiki/Rete_algorithm)
 is an algorithm that allows matching a huge number of rules with a huge database
@@ -10856,15 +10853,15 @@ I now have a reference to an accessible description of this stuff. I might
 implement Rete to understand it, so that it's part of my toolkit if I ever
 need it.
 
-## [Leapfrog Integration](#leapfrog-integration)
+# [Leapfrog Integration](#leapfrog-integration)
 
 We have a system we wish to simulate using hamilton's equations:
 
 $$
-\begin{align*}
+\begin{aligned}
 \frac{\partial q}{\partial t} = \frac{\partial H}{\partial p}|_{(p_0, q_0)} \\
 \frac{\partial p}{\partial t} = -\frac{\partial H}{\partial q}|_{(p_0, q_0)} \\
-\end{align*}
+\end{aligned}
 $$
 
 We want to simulate a system using these differential equations. We will begin
@@ -10910,7 +10907,7 @@ Often, code makes most ideas very clear!
 
 ##### Incantations
 ```py
-## Run HMC with a particular choice of potential
+# Run HMC with a particular choice of potential
 import numpy as np
 from matplotlib.animation import FuncAnimation
 import matplotlib.pyplot as plt
@@ -10918,8 +10915,8 @@ import numpy.linalg
 ```
 
 ```py
-## dq/dt = dH/dp|_{p0, q0}
-## dp/dt = -dH/dq|_{p0, q0}
+# dq/dt = dH/dp|_{p0, q0}
+# dp/dt = -dH/dq|_{p0, q0}
 def leapfrog(dhdp, dhdq, q0, p0, dt):
     p0 += -dhdq(q0, p0) * 0.5 * dt
 
@@ -10997,7 +10994,7 @@ plt.savefig("leapfrog-vs-euler.png")
 plt.show()
 ```
 
-## [Comparison of forward and reverse mode AD](#comparison-of-forward-and-reverse-mode-ad)
+# [Comparison of forward and reverse mode AD](#comparison-of-forward-and-reverse-mode-ad)
 
 Quite a lot of ink has been spilt on this topic. My favourite reference
 is the one by [Rufflewind](https://rufflewind.com/2016-12-30/reverse-mode-automatic-differentiation).
@@ -11038,7 +11035,7 @@ sense.
 - Forward mode equations:
 
 $$
-\begin{align*}
+\begin{aligned}
 z &= max(x, y) \\
 \frac{\partial x}{\partial t} &= ? \\
 \frac{\partial y}{\partial t} &= ? \\
@@ -11047,7 +11044,7 @@ z &= max(x, y) \\
         \frac{\partial x}{\partial t} & \text{if $x > y$} \\
         \frac{\partial y}{\partial t} & \text{otherwise} \\
     \end{cases}
-\end{align*}
+\end{aligned}
 $$
 
 We can compute $\frac{\partial z}{\partial x}$ by setting $t = x$.
@@ -11066,7 +11063,7 @@ $x > y$, then we know that $z$ is as sensitive to $t$ as $x$ is.
 - Reverse mode equations:
 
 $$
-\begin{align*}
+\begin{aligned}
 z &= max(x, y) \\
 \frac{\partial t}{\partial z} &= ? \\
 \frac{\partial t}{\partial x}
@@ -11079,7 +11076,7 @@ z &= max(x, y) \\
     \frac{\partial t}{\partial z} & \text{$if y > x$} \\
     0 & \text{otherwise}
   \end{cases}
-\end{align*}
+\end{aligned}
 $$
 
 We can compute $\frac{\partial z}{\partial x}, \frac{\partial z}{\partial y}$
@@ -11097,13 +11094,13 @@ Otherwise, it is not sensitive, and $\frac{\partial t}{\partial x} = 0$.
 - Forward mode equations:
 
 $$
-\begin{align*}
+\begin{aligned}
 z &= sin(x) \\
 \frac{\partial x}{\partial t} &= ? \\
 \frac{\partial z}{\partial t}
   &= \frac{\partial z}{\partial x} \frac{\partial x}{\partial t} \\
   &= cos(x) \frac{\partial x}{\partial t}
-\end{align*}
+\end{aligned}
 $$
 
 We can compute $\frac{\partial z}{\partial x}$ by setting $t = x$.
@@ -11112,13 +11109,13 @@ That is, setting $\frac{\partial x}{\partial t} = 1$.
 - Reverse mode equations:
 
 $$
-\begin{align*}
+\begin{aligned}
 z &= sin(x) \\
 \frac{\partial t}{\partial z} &= ? \\
 \frac{\partial t}{\partial x}
   &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial x} \\
   &= \frac{\partial t}{\partial z} cos(x)
-\end{align*}
+\end{aligned}
 $$
 
 
@@ -11130,7 +11127,7 @@ That is, setting $\frac{\partial z}{\partial t} = 1$.
 - Forward mode equations:
 
 $$
-\begin{align*}
+\begin{aligned}
 z &= x + y \\
 \frac{\partial x}{\partial t} &= ? \\
 \frac{\partial y}{\partial t} &= ? \\
@@ -11139,14 +11136,14 @@ z &= x + y \\
     \frac{\partial z}{\partial y} \frac{\partial y}{\partial t} \\
   &= 1 \cdot \frac{\partial x}{\partial t} + 1 \cdot \frac{\partial y}{\partial t}
   = \frac{\partial x}{\partial t} + \frac{\partial y}{\partial t}
-\end{align*}
+\end{aligned}
 $$
 
 
 - Reverse mode equations:
 
 $$
-\begin{align*}
+\begin{aligned}
 z &= x + y \\
 \frac{\partial t}{\partial z} &= ? \\
 \frac{\partial t}{\partial x}
@@ -11155,7 +11152,7 @@ z &= x + y \\
 \frac{\partial t}{\partial y}
   &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial y} \\
   &= \frac{\partial t}{\partial z} \cdot 1 = \frac{\partial t}{\partial z}
-\end{align*}
+\end{aligned}
 $$
 
 
@@ -11164,7 +11161,7 @@ $$
 - Forward mode equations:
 
 $$
-\begin{align*}
+\begin{aligned}
 z &= x y \\
 \frac{\partial x}{\partial t} &= ? \\
 \frac{\partial y}{\partial t} &= ? \\
@@ -11172,13 +11169,13 @@ z &= x y \\
   &= \frac{\partial z}{\partial x} \frac{\partial x}{\partial t} +
     \frac{\partial z}{\partial y} \frac{\partial y}{\partial t} \\
   &= y \frac{\partial x}{\partial t} + x \frac{\partial y}{\partial t}
-\end{align*}
+\end{aligned}
 $$
 
 - Reverse mode equations:
 
 $$
-\begin{align*}
+\begin{aligned}
 z &= x y \\
 \frac{\partial t}{\partial z} &= ? \\
 \frac{\partial t}{\partial x}
@@ -11187,7 +11184,7 @@ z &= x y \\
 \frac{\partial t}{\partial y}
   &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial y}
   = \frac{\partial t}{\partial z} \cdot x
-\end{align*}
+\end{aligned}
 $$
 
 
@@ -11196,7 +11193,7 @@ $$
 - Forward mode equations:
 
 $$
-\begin{align*}
+\begin{aligned}
 z &= x + y \\
 \frac{\partial x}{\partial t} &= ? \\
 \frac{\partial y}{\partial t} &= ? \\
@@ -11205,13 +11202,13 @@ z &= x + y \\
     \frac{\partial z}{\partial y} \frac{\partial y}{\partial t} \\
   &= 1 \cdot \frac{\partial x}{\partial t} - 1 \cdot \frac{\partial y}{\partial t}
   = \frac{\partial x}{\partial t} - \frac{\partial y}{\partial t}
-\end{align*}
+\end{aligned}
 $$
 
 - Reverse mode equations:
 
 $$
-\begin{align*}
+\begin{aligned}
 z &= x - y \\
 \frac{\partial t}{\partial z} &= ? \\
 \frac{\partial t}{\partial x}
@@ -11220,11 +11217,11 @@ z &= x - y \\
 \frac{\partial t}{\partial y}
   &= \frac{\partial t}{\partial z} \frac{\partial z}{\partial y} \\
   &= \frac{\partial t}{\partial z} \cdot -1 = -\frac{\partial t}{\partial z}
-\end{align*}
+\end{aligned}
 $$
 
 
-## [An invitation to homology and cohomology, Part 1 --- Homology](#an-invitation-to-homology-and-cohomology-part-1--homology)
+# [An invitation to homology and cohomology, Part 1 --- Homology](#an-invitation-to-homology-and-cohomology-part-1--homology)
 
 There are many introductions to homology on the internet, but none of them
 really met my criteria for being simple, picture filled, and getting the
@@ -11261,8 +11258,9 @@ try to find algebraic objects that allow us to "detect" these holes.
 
 - A $k$-dimensional simplex is the convex hull of $k+1$
   linearly independent points $(u_i \in \mathbb R^{k+1})$
-  in $k+1$ dimensional space.
-  $ S_k \equiv \left \\{ \sum \theta_i u_i ~\mid~ \theta_i \geq 0, ~ \sum_i \theta_i = 1 \right\\} $
+  in $k+1$ dimensional space.  
+
+$$S_k \equiv \left \{ \sum \theta_i u_i ~\mid~ \theta_i \geq 0, ~ \sum_i \theta_i = 1 \right \} $$
 
 ### Simplicial complexes
 
@@ -11370,7 +11368,7 @@ the edge in terms of vertices, just like we would describe a direction vector
 The action of the operator on a linear combination of edges is:
 
 $$
-\begin{align*}
+\begin{aligned}
 &\partial_{EV}: \mathcal E \rightarrow \mathcal V \\
 &\partial_{EV}(1, 0, 0) \equiv (1, -1, 0) \qquad o \mapsto r - g \\
 &\partial_{EV}(0, 1, 0) \equiv (-1, 0, 1) \qquad m \mapsto b - r \\
@@ -11380,7 +11378,7 @@ $$
   s \partial_{EV}(1, 0, 0) +
   t \partial_{EV}(0, 1, 0) +
   u \partial_{EV}(0, 0, 1) = (s - t, u - s, t - u)
-\end{align*}
+\end{aligned}
 $$
 
 Now, notice that to traverse the cycle, we should traverse the orange edge,
@@ -11394,11 +11392,11 @@ entered and exited each vertex, so the total sum must be $0$.
 Formally:
 
 $$
-\begin{align*}
+\begin{aligned}
   &\partial_{EV}(s, t, u) \equiv (s - t, u - s, t - u) \\
   &o + m + c = (1, 1, 1) \in \mathcal E \quad
   \partial_{EV}((1, 1, 1) = (1 - 1, 1 - 1, 1 - 1) = (0, 0, 0)
-\end{align*}
+\end{aligned}
 $$
 
 ##### Formal definition of cycles
@@ -11413,23 +11411,23 @@ which map to zero)
 So, we define (tentatively) the first homology group:
 
 $$
-\begin{align*}
+\begin{aligned}
 H_1 \equiv Kernel(\partial_{EV}) \equiv
 \left \{ (a, b, c) \in \mathcal E \mid \partial_EV((a, b, c)) = (0, 0, 0) \right \}
 \subset \mathcal E
-\end{align*}
+\end{aligned}
 $$
 
 If we try to compute this, we will have to have:
 
 $$
-\begin{align*}
+\begin{aligned}
 H_1 &\equiv Kernel(\partial_{EV}) \\
 &= \{ (s, t, u) ~\mid~ \partial_{EV}(s, t, u) = (0, 0, 0) ~ s, t, u \in \mathbb Z \} \\
 &= \{ (s, t, u) ~\mid~ (s-t, u-s, t-u) = (0, 0, 0) ~ s, t, u \in \mathbb Z  \} \\
 &= \{ (s, t, u) ~\mid~ s = t = u \quad s, t, u \in \mathbb Z \} \\
 &= \{ (x, x, x) ~\mid~ x \in \mathbb Z \} \simeq \mathbb Z
-\end{align*}
+\end{aligned}
 $$
 
 So, we know that we have a $\mathbb Z$ worth of cycles in our triangle, which
@@ -11462,12 +11460,12 @@ which counts copies of our face $f$, and we define another boundary operator,
 such that the boundary of the face $f$ is $o + m + c$.
 
 $$
-\begin{align*}
+\begin{aligned}
 &\partial_{FE} : \mathcal F \rightarrow \mathcal E \\
 &\partial_{FE}(1) \equiv (1, 1, 1)  \\
 &\text{(Extend using linearity)} \\
 &\partial_{FE}(c) \equiv c \partial(1) = (c, c, c)
-\end{align*}
+\end{aligned}
 $$
 
 Now, we should notice that the _image_ of $\partial_{FE}$ is a loop
@@ -11485,10 +11483,9 @@ we can construct $H_1$ as:
 - $H_1 \equiv Kernel(\partial_{EV}) / Image(\partial_{FE}) \subset E$
 
 
-### A complicated space: Homology of a butterfly
 
 
-## [An invitation to homology and cohomology, Part 2 --- Cohomology](#an-invitation-to-homology-and-cohomology-part-2--cohomology)
+# [An invitation to homology and cohomology, Part 2 --- Cohomology](#an-invitation-to-homology-and-cohomology-part-2--cohomology)
 
 <!--
 f is closed <=> df = 0
@@ -11628,7 +11625,7 @@ is measured by the _existence of a function $h_e$ that is closed but not exact!_
 This reveals a deep connection between homology and cohomology, which is
 made explicit by the [Universal Coefficient Theorem](TODO)
 
-## [Stuff I learnt in 2019](#stuff-i-learnt-in-2019)
+# [Stuff I learnt in 2019](#stuff-i-learnt-in-2019)
 
 I write these retrospective blog posts every year since 2017. I tend to post a
 collection of papers, books, and ideas I've stumbled across that year.
@@ -12391,7 +12388,7 @@ reading one topic (in exclusion of all else). I don't know what this says
 about my chances as a grad student in the future `:)`.
 
 
-## [A motivation for p-adic analysis](#a-motivation-for-p-adic-analysis)
+# [A motivation for p-adic analysis](#a-motivation-for-p-adic-analysis)
 
 I've seen the definitions of p-adic numbers scattered around on the internet,
 but this analogy as motivated by the book
@@ -12448,18 +12445,18 @@ for every negative coefficient, we arrive at:
 
 
 $$
-\begin{align*}
+\begin{aligned}
 1/4 &= 1/(1+p) = 1 - p + p^2 - p^3 + p^4 + \cdots \\
 &= 1 + (- p + 3p) + (- p^3 + 3p^3)  +  \cdots \\
 &= 1 + 2p + 2p^3 + \cdots
-\end{align*}
+\end{aligned}
 $$
 
 We can verify that this is indeed correct, by multiplying with $4 = (1 + p)$
 and checking that the result is $1$:
 
 $$
-\begin{align*}
+\begin{aligned}
 &(1 + p)(1 + 2p + 2p^3 + \cdots) \\
 &= (1 + p) + (2p + 2p^2) + (2p^3 + 2p^4) + \cdots \\
 &= 1 + 3p + 2p^2 + 2p^3 + 2p^4 + \cdots \\
@@ -12470,7 +12467,7 @@ $$
 &= 1 + 3p^3 + 2p^4 + \cdots \\
 &= 1 + 3p^4 + \cdots \\
 &= 1 + \cdots = 1
-\end{align*}
+\end{aligned}
 $$
 
 What winds up happening is that all the numbers after $1$ end up being cleared
@@ -12488,7 +12485,7 @@ $-1$. This eventually leads us to an infinite series expansion for $-1$. Written
 down formally, the calculation proceeds as:
 
 $$
-\begin{align*}
+\begin{aligned}
 -1 &= -1 + p - p  \qquad \text{(borrow $p$, and subtract to keep equality)} \\
 &= (p - 1) - p \qquad \text{(Now we have a problem of $-p$)} \\
 &= (p - 1) - p + p^2 - p^2  \\
@@ -12497,7 +12494,7 @@ $$
 &= (p - 1) + p(p - 1) + p^2(p - 1) - p^3 \\
 &\text{(Generalizing the above pattern)} \\
 -1 &= (p - 1) + p(p - 1) + p^2(p - 1) + p^3(p - 1) + p^4(p - 1) + \cdots \\
-\end{align*}
+\end{aligned}
 $$
 
 This now gives us access to negative numbers, since we can formally multiply
@@ -12587,14 +12584,14 @@ with those for $n = 1$. So, we solve for:
 Solving the first of these:
 
 $$
-\begin{align*}
+\begin{aligned}
 (3 + 7k)^2 &\equiv 2 \mod 49 \\
 9 + 42 k + 49k^2 &\equiv 2 \mod 49 \\
 9 + 42 k + 0k^2 &\equiv 2 \mod 49 \\
 7 + 42 k &\equiv 0 \mod 49 \\
 1 + 6 k &\equiv 0 \mod 49 \\
 k &\equiv 1 \mod 7
-\end{align*}
+\end{aligned}
 $$
 
 This gives the solution $X \equiv 10 \mod 49$. The other branch ($X = 4 + 7k$)
@@ -12764,7 +12761,7 @@ I highly recommend the book
 
 
 
-## [Line of investigation to build physical intuition for semidirect products](#line-of-investigation-to-build-physical-intuition-for-semidirect-products)
+# [Line of investigation to build physical intuition for semidirect products](#line-of-investigation-to-build-physical-intuition-for-semidirect-products)
 
 To quote wikipedia:
 > In crystallography, the space group of a crystal splits as the semidirect
@@ -12777,7 +12774,7 @@ object as well, which makes it way easier to visualize. I'm going to hunt down
 the definitions involved so I can finally feel like I truly understand semidirect
 products from the "action" perspective.
 
-## [Topology is really about computation --- part 2](#topology-is-really-about-computation--part-2)
+# [Topology is really about computation --- part 2](#topology-is-really-about-computation--part-2)
 
 Here, we're going to describe whatever I've picked up of sheaves in the past
 couple of weeks. I'm trying to understand the relationship between sheaves,
@@ -12786,7 +12783,7 @@ and how sheaves allow us to model geometry, but I see nothing about the
 relationship! I'm hoping that writing this down will allow me to gain some
 perspective on this.
 
-## What is a sheaf?
+### What is a sheaf?
 
 Let's consider two sets $P, A$, $P \subseteq A$. Now, given a function
 $f: A \rightarrow X$, we can restrict this function to $ A_P: P \rightarrow X $.
@@ -12800,7 +12797,7 @@ We should now try to discover some sort of structure to this "reversal"
 business. Perhaps we will discover a contravariant functor! (Spoiler: we will).
 
 
-## [Topology is really about computation --- part 1](#topology-is-really-about-computation--part-1)
+# [Topology is really about computation --- part 1](#topology-is-really-about-computation--part-1)
 
 Most people believe that topology is about some notion of "nearness" or
 "closeness", which has been abstracted out from our usual notion of
@@ -12827,10 +12824,10 @@ A subset $Q\subseteq S$ is _semidecidable_, if there exists a turing machine
 $\hat Q: Q \rightarrow \{ \bot, \top \}$, such that:
 
 $$
-\begin{align*}
+\begin{aligned}
 \hat Q(q) = \top \iff q \in Q \\
 \hat Q(q) = \bot \iff q \notin Q \\
-\end{align*}
+\end{aligned}
 $$
 
 Where $\top$ signifies stopping at a state and returning `TRUE`, and
@@ -12853,7 +12850,7 @@ semi-decides whether ${a \in I}$.
 Let's consider the numbers in $I$:
 
 $$
-\begin{align*}
+\begin{aligned}
 &0 \rightarrow \texttt{NO} \\
 &0.\overline{9} \rightarrow \texttt{NO} \\
 &1.00\dots \rightarrow \texttt{NO} \\
@@ -12861,7 +12858,7 @@ $$
 &1.\overline{9} \rightarrow \texttt{NO} \\
 &2.0 \rightarrow \texttt{NO} \\
 &2.a_1 a_2 \rightarrow \texttt{NO}
-\end{align*}
+\end{aligned}
 $$
 
 So, we can write a turing machine (ie, some code) that tries to decide whether
@@ -12979,7 +12976,7 @@ of them halt.
 For example, consider the sequence of machines produced by `machine_creator`:
 
 ```py
-## creates a machine that stops after n steps
+# creates a machine that stops after n steps
 def machine_creator(n):
     # f terminates after n steps
     def f(x):
@@ -13029,7 +13026,7 @@ def loop(): while True: pass
 #### References
 - [Synthetic topology of data types and classical spaces. Martın Escardo](https://www.cs.bham.ac.uk/~mhe/papers/entcs87.pdf)
 
-## [PSLQ algorithm: finding integer relations between reals](#pslq-algorithm-finding-integer-relations-between-reals)
+# [PSLQ algorithm: finding integer relations between reals](#pslq-algorithm-finding-integer-relations-between-reals)
 
 An algorithm to find _integer_ relations between _real_ numbers. It was
 apparently named "algorithms of the century" by Computing in science and
@@ -13037,7 +13034,7 @@ engineering.
 
 - [Wolfram link](http://mathworld.wolfram.com/PSLQAlgorithm.html)
 
-## [Geometric characterization of normal subgroups](#geometric-characterization-of-normal-subgroups)
+# [Geometric characterization of normal subgroups](#geometric-characterization-of-normal-subgroups)
 > $Stab(Orb(x)) = Stab(x) \iff Stab(x) \text{ is normal}$
 
 > $\forall x' \in Orb(x), Stab(x') = Stab(x) \iff Stab(x) \text{ is normal}$
@@ -13075,7 +13072,7 @@ From the above equation $Stab(g \cdot x) = g Stab(x) g^{-1}$. If the
 entire orbit has the same stabilizer, $Stab (g \cdot x) = Stab(x)$. Hence,
 we get $Stab(x) = g Stab(x) g^{-1}$, proving that it's normal.
 
-## [Handy characterization of adding an element into an ideal, proof that maximal ideal is prime](#handy-characterization-of-adding-an-element-into-an-ideal-proof-that-maximal-ideal-is-prime)
+# [Handy characterization of adding an element into an ideal, proof that maximal ideal is prime](#handy-characterization-of-adding-an-element-into-an-ideal-proof-that-maximal-ideal-is-prime)
 
 ##### The characterization
 
@@ -13084,12 +13081,12 @@ defined as $A \equiv (I \cup \{ a\})$. We prove that $A = I + aR$.
 
 
 $$
-\begin{align*}
+\begin{aligned}
 &(I \cup \{a \})  \\
 &= \quad \{ \alpha i + \beta a | i \in I, \alpha, \beta \in R \} \\
 &= \quad \{ i' + \beta a | i' \in I, \alpha, \beta \in R \} \qquad \text{($I$ is closed under multiplication by $R$)} \\
 &= I + aR
-\end{align*}
+\end{aligned}
 $$
 
 ##### Quotient based proof that maximal ideal is prime
@@ -13136,7 +13133,7 @@ $b \in I$.
 
 
 
-## [Radical ideals, nilpotents, and reduced rings](#radical-ideals-nilpotents-and-reduced-rings)
+# [Radical ideals, nilpotents, and reduced rings](#radical-ideals-nilpotents-and-reduced-rings)
 
 ##### Radical Ideals
 A radical ideal of a ring $R$ is an ideal such that
@@ -13204,7 +13201,7 @@ and $b \in I \implies \overline b = 0)$.
 I learnt of this explanation from this
 [excellent blog post by Stefano Ottolenghi](http://quickmathintuitions.org/relationship-between-reduced-rings-radical-ideals-and-nilpotent-elements/).
 
-## [My disenchantment with abstract interpretation](#my-disenchantment-with-abstract-interpretation)
+# [My disenchantment with abstract interpretation](#my-disenchantment-with-abstract-interpretation)
 
 When I first ran across the theory of abstract interpretation, it seemed magical:
 Define two functions, check that they're monotone maps, and boom, we have
@@ -13254,7 +13251,7 @@ to pay that price, as long as it's an honest-to-god abstract interpretation.
 This was a huge bummer for me to find out that this is not the case.
 
 
-## [Computing equivalent gate sets using grobner bases](#computing-equivalent-gate-sets-using-grobner-bases)
+# [Computing equivalent gate sets using grobner bases](#computing-equivalent-gate-sets-using-grobner-bases)
 
 Here's a fun little problem, whose only solution I know involves a fair
 bit of math and computer algebra:
@@ -13419,35 +13416,35 @@ but it does not appear in the _original_ problem.
 
 
 ```py
-## Create ring with variables a, b, c, axorb, bxorc, axorc
+# Create ring with variables a, b, c, axorb, bxorc, axorc
 R = IntegerModRing(8)['a, b, c, axorb, bxorc, axorc']
 (a, b, c, axorb, bxorc, axorc) = R.gens()
 
 
-## xor of 2 numbers as a polynomial
+# xor of 2 numbers as a polynomial
 def xor2(x, y): return x + y - 2*x*y
 
-## xor of 3 numbers as a polynomial
+# xor of 3 numbers as a polynomial
 def xor3(x, y, z): return xor2(x, xor2(y, z))
 
-## define the ideal which contains relations:
-## xor2(a, b) -> axorb, xor2(b, c) -> bxorc, xor2(a, c) -> axorc
-## we also add the relation (a^2 - a = 0 => a = 0 or a = 1)
-## since we know that our variables are only {0, 1}
+# define the ideal which contains relations:
+# xor2(a, b) -> axorb, xor2(b, c) -> bxorc, xor2(a, c) -> axorc
+# we also add the relation (a^2 - a = 0 => a = 0 or a = 1)
+# since we know that our variables are only {0, 1}
 I = ideal((axorb - xor2(a, b), bxorc - xor2(b, c), axorc - xor2(a, c), a*a-a, b*b-b, c*c-c))
 
-## the polynomial representing a^b^c we wish to reduce
+# the polynomial representing a^b^c we wish to reduce
 f_orig = xor3(a, b, c)
 
-## we take the groebner basis of the ring to reduce the polynomial f.
+# we take the groebner basis of the ring to reduce the polynomial f.
 IG = I.groebner_basis()
 
-## we reduce a^b^c with respect to the groebner basis.
+# we reduce a^b^c with respect to the groebner basis.
 f_reduced = f_orig.reduce(IG)
 
 print("value of a^b^c:\n\t%s\n\treduced: %s" % (f_orig, f_reduced))
 
-## Code to evaluate the function `f` on all inputs to check correctness
+# Code to evaluate the function `f` on all inputs to check correctness
 def evalxor2(f):
     for (i, j, k) in [(i, j, k) for i in [0, 1] for j in [0, 1] for k in [0, 1]]:
       ref = i^^j^^k
@@ -13455,11 +13452,11 @@ def evalxor2(f):
       print("%s^%s^%s: ref(%s) =?= f(%s): %s" %
         (i, j, k, ref, eval, ref == eval))
 
-## check original formulation is correct
+# check original formulation is correct
 print("evaulating original f for sanity check:")
 evalxor2(f_orig)
 
-## Check reduced formulation is correct
+# Check reduced formulation is correct
 print("evaulating reduced f:")
 evalxor2(f_reduced)
 ```
@@ -13624,7 +13621,7 @@ the use of machinery such as grobner basis for solving real-world problems!
 I really enjoyed hacking this up and getting nerd sniped.
 
 
-## [The janus programming language --- Time reversible computation](#the-janus-programming-language--time-reversible-computation)
+# [The janus programming language --- Time reversible computation](#the-janus-programming-language--time-reversible-computation)
 
 - [Wiki link](https://en.wikipedia.org/wiki/Janus_(time-reversible_computing_programming_language)
 - [Original letter to Landlauer](http://tetsuo.jp/ref/janus.pdf)
@@ -13638,7 +13635,7 @@ _literally_ looks both into the future and into the past.
 
 An apt name for the language!
 
-## [`A = B` --- A book about proofs of combinatorial closed forms](#a--b--a-book-about-proofs-of-combinatorial-closed-forms)
+# [`A = B` --- A book about proofs of combinatorial closed forms](#a--b--a-book-about-proofs-of-combinatorial-closed-forms)
 
 
 The book explains algorithms on solving closed forms for combinatorial
@@ -13651,7 +13648,7 @@ my work on compilers.
 
 - [Download link here](https://www.math.upenn.edu/~wilf/AeqB.pdf)
 
-## [Generating `k` bitsets of a given length `n`](#generating-k-bitsets-of-a-given-length-n):
+# [Generating `k` bitsets of a given length `n`](#generating-k-bitsets-of-a-given-length-n):
 
 The problem is to generate all bitvectors of length `n` that have `k` bits
 set. For example, generate all bitvectors of length `5` that have `3` bits
@@ -13809,7 +13806,7 @@ Continuing this process gives us the rest of the sequence:
 9 | 1 1 0 1 0
 10| 1 1 1 0 0
 ```
-## [Bondi k-calculus](#bondi-k-calculus)
+# [Bondi k-calculus](#bondi-k-calculus)
 
 - [Link here](https://en.wikipedia.org/wiki/Bondi_k-calculus)
 
@@ -13834,11 +13831,11 @@ the end:
 
 which seems to imply that we need to use hyperbolic geometry for this.
 
-## Topology as an object telling us what zero-locus is closed:
+# Topology as an object telling us what zero-locus is closed:
 
 - [Idea from this amazing post on `math.se`](https://math.stackexchange.com/questions/53852/is-there-a-way-of-working-with-the-zariski-topology-in-terms-of-convergence-limi)
 
-## [Vivado toolchain craziness ](#vivado-toolchain-craziness)
+# [Vivado toolchain craziness ](#vivado-toolchain-craziness)
 
 I found this file as I was cleaning up some old code, for a project to implement
 a [fast K/V store on an FPGA](https://github.com/AakashKT/CuckooHashingHLS),
@@ -13960,7 +13957,7 @@ is supposed to go according to the tutorial!
 
 At some point, I gave up on the entire enterprise.
 
-## [What the hell _is_ a Grobner basis? Ideals as rewrite systems](#what-the-hell-is-a-grobner-basis-ideals-as-rewrite-systems)
+# [What the hell _is_ a Grobner basis? Ideals as rewrite systems](#what-the-hell-is-a-grobner-basis-ideals-as-rewrite-systems)
 
 ##### A motivating example
 
@@ -14025,7 +14022,7 @@ The S-polynomial induced by $f_i, f_j$ is defined as $S(f_i, f_j) = m_i f_i - m_
 - [Sympy has excellent reading material on grobner basis](https://mattpap.github.io/masters-thesis/html/src/groebner.html)
 
 
-## [Lie bracket versus torsion](lie-bracket-versus-torsion)
+# [Lie bracket versus torsion](lie-bracket-versus-torsion)
 
 
 <img width=200 height=200 src="static/lie-bracket-versus-torsion.png">
@@ -14040,18 +14037,18 @@ well, a parallelogram: we set them up using parallel transport.
 On the other hand, the lie bracket measures the actual failure of the parallelogram
 from being formed.
 
-## [Blog post: Weekend paper replication of STOKE, the stochastic superoptimizer](https://github.com/bollu/blaze/blob/master/notebooks/tutorial.ipynb)
+# [Blog post: Weekend paper replication of STOKE, the stochastic superoptimizer](https://github.com/bollu/blaze/blob/master/notebooks/tutorial.ipynb)
 
 Click the title to go to the post. We replicate the `STOKE` paper in haskell,
 to implement a superoptimiser based on MCMC methods.
 
-## Collapsing `BlockId`, `Label`, `Unique`:
+# Collapsing `BlockId`, `Label`, `Unique`:
 
 We have this hiearchy of `BlockId`, `Label`, and `Unique` that can be
 collapsed.
 
 
-## [Spatial partitioning data structures in molecular dynamics](#spatial-partitioning-data-structures-in-molecular-dynamics)
+# [Spatial partitioning data structures in molecular dynamics](#spatial-partitioning-data-structures-in-molecular-dynamics)
 
 - [Cell lists](https://en.wikipedia.org/wiki/Cell_lists)
 - [Verlet lists](https://en.wikipedia.org/wiki/Verlet_list)
@@ -14062,12 +14059,12 @@ in this case since multipole expansions are useful to take into account
 long range effects, but not short range effects.
 
 
-## [Vector: Arthur Whitney and text editors](#vector-arthur-whitney-and-text-editors)
+# [Vector: Arthur Whitney and text editors](#vector-arthur-whitney-and-text-editors)
 
 - http://archive.vector.org.uk/art10501320
 
 
-## Representing CPS in LLVM using the `@coro.*` intrinsics
+# Representing CPS in LLVM using the `@coro.*` intrinsics
 
 This is part of a larger thread --- [Adding CPS call support to LLVM](http://lists.llvm.org/pipermail/llvm-dev/2017-April/112212.html) where there is a large discussion on the correct design of how to teach LLVM about CPS.
 
@@ -14075,7 +14072,7 @@ Gor Nishanov proided the above example of encoding CPS using the llvm `coro` ins
 
 - https://gist.github.com/bollu/e0573dbc145028fb42f89e64c6dd6742
 
-## Bug in the LLVM code generator: Lowering of `MO_Add2` and `MO_AddWordC`
+# Bug in the LLVM code generator: Lowering of `MO_Add2` and `MO_AddWordC`
 
 [Both of these are lowered the same way](https://github.com/ghc/ghc/blob/bf73419518ca550e85188616f860961c7e2a336b/compiler/llvmGen/LlvmCodeGen/CodeGen.hs#L817),
 but they should be different.
@@ -14087,7 +14084,7 @@ In particular, `GHC.Prim` explains:
 Honestly, this is confusing, but I guess there's some story to having two separate primops for this?
 
 
-## [Discrete random distributions with conditioning in 20 lines of haskell](#discrete-random-distributions-with-conditioning-in-20-lines-of-haskell)
+# [Discrete random distributions with conditioning in 20 lines of haskell](#discrete-random-distributions-with-conditioning-in-20-lines-of-haskell)
 
 ```hs
 newtype D a = D { unD :: [(a, Double)] } deriving(Eq, Show, Ord)
@@ -14156,7 +14153,7 @@ D {unD = [(1,0.0),
 
 Notice that `D a ~= WriterT (Product Float) []`!
 
-## [Everything you know about word2vec is wrong](#everything-you-know-about-word2vec-is-wrong)
+# [Everything you know about word2vec is wrong](#everything-you-know-about-word2vec-is-wrong)
 
 The classic explanation of `word2vec`, in skip-gram, with negative sampling,
 in the paper and countless blog posts on the internet is as follows:
@@ -14314,7 +14311,7 @@ question. But I'm frankly incredibly pissed, and this is probably the last
 time I take a machine learning paper's explanation of the algorithm
 seriously again --- from next time, I read the source _first_.
 
-## Hamiltonian monte carlo, leapfrog integrators, and sympletic geometry
+# Hamiltonian monte carlo, leapfrog integrators, and sympletic geometry
 
 This is a section that I'll update as I learn more about the space, since I'm studying
 differential geometry over the summer, I hope to know enough about "sympletic manifolds".
@@ -14358,7 +14355,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import numpy.linalg
 
-## dq/dt = dH/dp | dp/dt = -dH/dq (a = -del V)
+# dq/dt = dH/dp | dp/dt = -dH/dq (a = -del V)
 def leapfroge(dhdp, dhdq, q, p, dt):
     p += -dhdq(q, p) * 0.5 * dt # halfstep momentum
     q += dhdp(q, p) * dt # fullstep position
@@ -14408,7 +14405,7 @@ plt.show()
 plt.savefig("leapfrog-vs-euler.png")
 ```
 
-## [Small Haskell MCMC implementation](#small-haskell-mcmc-implementation)
+# [Small Haskell MCMC implementation](#small-haskell-mcmc-implementation)
 
 We create a simple monad called `PL` which allows for a single operation: sampling
 from a uniform distribution. We then exploit this to implement MCMC using metropolis hastings,
@@ -14694,7 +14691,7 @@ sampling from x^4 with finite support
 
 ```
 
-## The smallest implementation of reverse mode AD (autograd) ever:
+# The smallest implementation of reverse mode AD (autograd) ever:
 
 ```hs
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
@@ -14791,7 +14788,7 @@ Yeah, in ~80 lines of code, you can basically build an autograd engine. Isn't
 haskell so rad?
 
 
-## Timings of passes in GHC, and low hanging fruit in the backend:
+# Timings of passes in GHC, and low hanging fruit in the backend:
 
 - One can use `-v3` to get pass timings.
 - Apparently, GHC spends a lot of time in the simplifier, and time
@@ -14805,7 +14802,7 @@ To quote `AndreasK`:
 
 - [NCG generates slow loop code](https://gitlab.haskell.org/ghc/ghc/issues/9041)
 
-## Varargs in GHC: `ghc/testsuite/tests/rts/T7160.hs`
+# Varargs in GHC: `ghc/testsuite/tests/rts/T7160.hs`
 
 A comment from this test case tells us why the function `debugBelch2` exists:
 
@@ -14843,7 +14840,7 @@ debugBelch(const char*s, ...)
   va_end(ap);
 }
 ```
-## [Debugging debug info in GHC](#debugging-debug-info-in-GHC)
+# [Debugging debug info in GHC](#debugging-debug-info-in-GHC)
 
 
 I wanted to use debug info to help build a better debugging experience
@@ -14859,18 +14856,18 @@ tucked inside a cute note in GHC (`Note [Debugging DWARF unwinding info]`):
 - [Link to GHC sources](https://github.com/ghc/ghc/blob/535a26c90f458801aeb1e941a3f541200d171e8f/compiler/cmm/Debug.hs#L458)
 
 
-## [GHC LLVM code generator: Switch to unreachable](#ghc-llvm-code-generator-switch-to-unreachable)
+# [GHC LLVM code generator: Switch to unreachable](#ghc-llvm-code-generator-switch-to-unreachable)
 
 The [switch to out of range](https://github.com/ghc/ghc/blob/master/compiler/llvmGen/LlvmCodeGen/CodeGen.hs#L1102)
 code generator switches to the first label. It should be more profitable
 to switch to a `unreachable` block. That way, LLVM can take advantage of UB.
 
-## [Concurrency in Haskell](#concurrency-in-haskell)
+# [Concurrency in Haskell](#concurrency-in-haskell)
 
 Great link to the GHC wiki that describes the concurrency primitives
 "bottom up": https://gitlab.haskell.org/ghc/ghc/wikis/lightweight-concurrency
 
-## [Handy list of differential geometry definitions](#handy-list-of-differential-geometry-definitions)
+# [Handy list of differential geometry definitions](#handy-list-of-differential-geometry-definitions)
 
 There are way too many objects in diffgeo, all of them subtly connected.
 Here I catalogue all of the ones I have run across:
@@ -14986,7 +14983,7 @@ TODO
 ##### Lie derivation as lie bracket
 
 
-## [Lazy programs have space leaks, Strict programs have time leaks](#lazy-programs-have-space-leaks-strict-programs-have-time-leaks)
+# [Lazy programs have space leaks, Strict programs have time leaks](#lazy-programs-have-space-leaks-strict-programs-have-time-leaks)
 
 Stumbled across this idea while reading some posts on a private discourse.
 - Continually adding new thunks without forcing them can lead to a space leak,
@@ -15001,7 +14998,7 @@ analogue to a space leak in the strict world, so I saw them as a pathology. But
 with this new perspective, I can see that the strict world's version of a space
 leak is a time leak.
 
-## [Presburger arithmetic can represent the Collatz Conjecture](#presburger-arithmetic-can-represent-the-collatz-conjecture)
+# [Presburger arithmetic can represent the Collatz Conjecture](#presburger-arithmetic-can-represent-the-collatz-conjecture)
 
 An observation I had: the function
 
@@ -15060,7 +15057,7 @@ to improve the functions `isl_map_power` and `isl_map_transitive_closure`
 though.
 
 
-## [Using compactness to argue about covers](#using-compactness-to-argue-about-covers)
+# [Using compactness to argue about covers](#using-compactness-to-argue-about-covers)
 
 I've always seen compactness be used by _starting_ with a possibly infinite
 coverm and then _filtering it_ into a finite subcover. This finite
@@ -15100,7 +15097,7 @@ that the cantor set is non-empty, since:
 3. Invoke theorem.
 
 
-## [Japanese Financial Counting system](#japanese-financial-counting-system)
+# [Japanese Financial Counting system](#japanese-financial-counting-system)
 
 - [Wikipedia](https://en.wikipedia.org/wiki/Japanese_numerals#Formal_numbers)
 
@@ -15108,14 +15105,14 @@ Japanese contains a separate kanji set called `daiji`, to prevent people
 from adding strokes to stuff previously written.
 
 ```
-##  |Common |Formal
+#  |Common |Formal
 1  |一     |壱
 2  |二     |弐
 3  |三     |参
 ```
 
 
-## [Stephen wolfram's live stream](#stephen-wolframs-live-stream)
+# [Stephen wolfram's live stream](#stephen-wolframs-live-stream)
 
 - [Twitch.tv link](https://www.twitch.tv/videos/408653972)
 
@@ -15126,20 +15123,20 @@ some interesting content.
 The discussions of Wolfram with his group are great, and they bring up
 _really_ interesting ideas (like that of cleave being very irregular).
 
-## [`Cleave` as a word has some of the most irregular inflections](#cleave-as-a-word-has-some-of-the-most-irregular-inflections)
+# [`Cleave` as a word has some of the most irregular inflections](#cleave-as-a-word-has-some-of-the-most-irregular-inflections)
 - cleave
 - clove
 - cleaved
 - clave
 - cleft
 
-## [McCune's single axiom for group theory](#mccunes-single-axiom-for-group-theory)
+# [McCune's single axiom for group theory](#mccunes-single-axiom-for-group-theory)
 
 [Single Axioms for Groups and Abelian Groups with Various Operations](http://ftp.mcs.anl.gov/pub/tech_reports/reports/P270.pdf)
 provides a single axiom for groups. This can be useful for some ideas I have
 for training groups, where we can use this axiom as the loss function!
 
-## `Word2Vec` C code implements gradient descent really weirdly
+# `Word2Vec` C code implements gradient descent really weirdly
 I'll be posting snippets of the original source code, along with a
 link to the Github sources. We are interested in exploring the skip-gram
 implementation of Word2Vec, with negative sampling, without hierarchical
@@ -15276,7 +15273,7 @@ does _any blog post that I've read_. I don't understand what's going on,
 and I plan on updating this section when I understand this better.
 
 
-## [Arthur Whitney: dense code](#arthur-whitney-dense-code)
+# [Arthur Whitney: dense code](#arthur-whitney-dense-code)
 
 
 - Guy who wrote a bunch of APL dialects, write code in an eclectic style
@@ -15289,7 +15286,7 @@ and I plan on updating this section when I understand this better.
 - [A history of APL in 50 functions](https://www.jsoftware.com/papers/50/) ---
   A great list of APL snippets that solve classical problems.
 
-## [How does one work with arrays in a linear language?](#how-does-one-work-with-arrays-in-a-linear-language)
+# [How does one work with arrays in a linear language?](#how-does-one-work-with-arrays-in-a-linear-language)
 
 Given an array of qubits `xs: Qubit[]`, I want to switch to little endian.
 Due to no-cloning, I can't copy them! I suppose I can use recursion to build
@@ -15331,7 +15328,7 @@ is _forced_ since mutation very often involves temporaries / copying!
 (I'm solving assignments in [qsharp](https://docs.microsoft.com/en-us/quantum/)
 for my course in college)
 
-## [Linear optimisation is the same as linear feasibility checking](#linear-optimisation-is-the-same-as-linear-feasibility-checking)
+# [Linear optimisation is the same as linear feasibility checking](#linear-optimisation-is-the-same-as-linear-feasibility-checking)
 Core building block of effectively using the ellipsoid algorithm.
 
 - If we posess a way to check if a point $p \in P$ where $P$ is a polytope, we
@@ -15347,7 +15344,7 @@ Core building block of effectively using the ellipsoid algorithm.
 - This way, we have converted a _linear programming_ problem into a
   _check if this polytope is empty_ problem!
 
-## [Quantum computation without complex numbers](#quantum-computation-without-complex-numbers)
+# [Quantum computation without complex numbers](#quantum-computation-without-complex-numbers)
 
 I recently learnt that the Toeffili and Hadamard gates are universal for
 quantum computation. The description of these gates involve no complex numbers.
@@ -15367,7 +15364,7 @@ something to ponder.
 - [Dorit Aharonov: A Simple Proof that Toffoli and Hadamard are Quantum Universal](https://arxiv.org/pdf/quant-ph/0301040)
 
 
-## [Linguistic fun fact: Comparative Illusion](#linguistic-fun-fact-comparative-illusion)
+# [Linguistic fun fact: Comparative Illusion](#linguistic-fun-fact-comparative-illusion)
 
 I steal from wikipedia:
 
@@ -15377,7 +15374,7 @@ I steal from wikipedia:
 
 For example: "More people have been to Berlin than I have."
 
-## Long-form posts:
+# Long-form posts:
 ## Reading
 - [2018 reading](content/blog/stuff-i-learnt-this-year-2018.md)
 - [2017 reading](content/blog/papers-I-read-and-loved-in-2017.md)

@@ -2,7 +2,6 @@
 // TODO: RSS feed.
 // Font to try: Iosevka
 #include <string.h>
-#include <assert.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -20,6 +19,9 @@
 #include <sys/wait.h>
 #include "duktape/duktape.h"
 #include "utf8.h"
+
+#undef NDEBUG
+#include <assert.h>
 
 #define GIVE
 #define TAKE
@@ -741,41 +743,46 @@ char* pygmentize(const char *tempdirpath,
         const L loc) {
 
 
-    char latex_file_path[512];
-    sprintf(latex_file_path, "%s/input.txt", tempdirpath);
-    FILE *f = fopen(latex_file_path, "w");
+    char input_file_path[512];
+    sprintf(input_file_path, "%s/input.txt", tempdirpath);
+    FILE *f = fopen(input_file_path, "w");
     assert(f && "unable to open temp file");
     ll nwritten = fwrite(code, 1, codelen, f);
     assert(nwritten == codelen);
     fclose(f);
 
-    // cerr << "wrote pygmentize input to: |" << latex_file_path << "|\n";
+    char output_file_path[512];
+    sprintf(output_file_path, "%s/input.txt.html", tempdirpath);
 
-    char output_file_name[512];
-    sprintf(output_file_name, "%s/input.txt.html", tempdirpath);
-
-    int pid;
+    pid_t pid;
     // source-highlight -s cpp  /tmp/foo.py && cat /tmp/foo.py.html
     if ((pid = fork()) == 0) {
         int err = execlp("source-highlight",
                 "source-highlight",
-                "--style-css=./mono.css", // style provided as css file.
+                // "--style-css=./mono.css", // style provided as css file.
                 //"-n", // line numbers
                 "-s", lang,  // source lang
-                latex_file_path,
+                input_file_path,
                 NULL);
         assert(err != -1 && "unable to write pygments file.");
     } else {
         // parent, wait for child.
         int status;
-        wait(&status);
-        if(WIFEXITED(status) && (WEXITSTATUS(status) != 0)) {
-            printferr(loc, raw_input, "unable to pygmentize code");
-            assert(false && "child ended non-gracefully");
-        };
+        if (wait(&status) == -1) {
+            const bool has_child = errno != ECHILD;
+            const bool child_abnormal = !WIFEXITED(status);
+            if(has_child && child_abnormal)  {
+                printferr(loc, raw_input, 
+                        "syntax highlight failed on |%s|."
+                        "Child exited abnormally with exit code |%d|",
+                        input_file_path, WEXITSTATUS(status));
+                perror(nullptr);
+                assert(false && "syntax highlight failed");
+            }
+        }
     }
 
-    f = fopen(output_file_name, "r");
+    f = fopen(output_file_path, "r");
     // cleanup.
     if (f == nullptr) { rmdir(tempdirpath); }
     assert(f && "unable to open output file of pygmentize");
@@ -1384,7 +1391,7 @@ int main(int argc, char **argv) {
     {
         // seek till the first <h1>: put all that data in index.html
         while (ix_h1 < (ll)ts.size() && !is_h1(ts[ix_h1])) { ix_h1++; }
-        cerr << "===Writing index.html...===\n";
+        cerr << "===Writing index.html===\n";
         // [0, ix_h1) stays in index.html
 
         char *index_html_buf = (char *) calloc(MAX_OUTPUT_BUF_LEN, sizeof(char));
@@ -1419,7 +1426,7 @@ int main(int argc, char **argv) {
         const char *url = mkHeadingURL(raw_input, heading);
 
         // TODO: find some easy way to print WTF is the data in the heading.
-        cerr << "===Writing [" << url << ".html]...===\n";
+        cerr << "===Writing [" << url << ".html]===\n";
 
 
         char *outbuf = (char *) calloc(MAX_OUTPUT_BUF_LEN, sizeof(char));
