@@ -14,6 +14,8 @@
 - key-value database: [`kissdb`](https://github.com/adamierymenko/kissdb)
 - [Unpoly](https://unpoly.com/up.protocol) for fast page prefetching and 
   navigation inside a static site.
+- [`httpserver.h`](https://github.com/jeremycw/httpserver.h) for a minimal HTTP server to run `libCURL` on.
+- [`libCURL` API](https://curl.haxx.se/libcurl/c/) to check that all links exist.
 
 
 How to check if horizontal scrollbar exists:

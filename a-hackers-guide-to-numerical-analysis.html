@@ -1,0 +1,311 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><script defer src='katex/katex.min.js'    integrity='sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4'    crossorigin='anonymous'></script><script>    function on_katex_load() {        const katex_opts = [            {left: '$', right: '$', display: false},            {left: '$$', right: '$$', display: true}        ];        renderMathInElement(document.body, katex_opts);        let elemsInline = document.getElementsByClassName('latexinline');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsInline.item(i).textContent, elemsInline.item(i));}        let elemsBlock = document.getElementsByClassName('latexblock');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsBlock.item(i).textContent, elemsBlock.item(i), {displayMode: true});}    }</script><!-- To automatically render math in text elements, include the auto-render extension: --><script defer src='katex/auto-render.min.js'    integrity='sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa'    crossorigin='anonymous'    onload='on_katex_load();'></script><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
+img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+ .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
+ .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
+.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=a-hackers-guide-to-numerical-analysis href='#a-hackers-guide-to-numerical-analysis'> § </a> <a href=#a-hackers-guide-to-numerical-analysis>A hacker's guide to numerical analysis</a></h2>
+<blockquote> Life may toss us ill-conditioned problems, but it is too short to settle for unstable algorithms. - D.P. O'Leary</blockquote>
+<h4><a id=measures-of-error href='#measures-of-error'> § </a> Measures of error</h4>
+If <span class='latexinline'>x</span> is a number and <span class='latexinline'>\hat x</span> is its approximation, then the are two notions of
+error:
+<ol><li> absolute errror: <span class='latexinline'>|x - \hat x|</span>.</li><li> relative error: <span class='latexinline'>|x - \hat x|/|x|</span>. </li></ol>
+Since the relative error is invariant under scaling <span class='latexinline'>(x \mapsto \alpha x)</span>, we
+will mostly be interested in relative error.
+<h4><a id=significant-digits href='#significant-digits'> § </a> Significant digits</h4>
+The significant digits in a number are the first nonzero digit and all
+succeeding digits. Thus <code>1.7320</code> has five significant digits. <code>0.0491</code> has
+only three significant digits.
+<b>It is not transparent to me why this definition is sensible</b>.
+<h4><a id=correct-significant-digits--a-first-stab href='#correct-significant-digits--a-first-stab'> § </a> Correct Significant digits --- a first stab</h4>
+We can naively define <span class='latexinline'>\hat x</span> agrees to <span class='latexinline'>x</span> upto <span class='latexinline'>p</span> significant digits
+if <span class='latexinline'>\hat x</span> and <span class='latexinline'>x</span> round to the same number upto <span class='latexinline'>p</span> significant digits.
+This definition is seriously problematic. Consider the numbers:
+<ul><li> <span class='latexinline'>x = 0.9949</span>, <span class='latexinline'>x_1 = 1.0</span>, <span class='latexinline'>x_2 = 0.99</span>, <span class='latexinline'>x_3 = 0.9950</span></li><li> <span class='latexinline'>y = 0.9951</span>, <span class='latexinline'>y_1 = 1.0</span>, <span class='latexinline'>y_2 = 1.0</span>, <span class='latexinline'>y_3 = 0.9950</span></li></ul>
+Here, <span class='latexinline'>y</span> has correct one and three significant digits relative to <span class='latexinline'>x</span>,
+but incorrect 2 significant digits, since the truncation at <span class='latexinline'>x_2</span> and <span class='latexinline'>y_2</span> 
+do not agree even to the first significant digit.
+<h4><a id=correct-significant-digits--the-correct-definition href='#correct-significant-digits--the-correct-definition'> § </a> Correct Significant digits --- the correct definition</h4>
+We say that <span class='latexinline'>\hat x</span> agress to <span class='latexinline'>x</span> upto <span class='latexinline'>p</span> significant digits if <span class='latexinline'>|x - \hat x|</span>
+is less than half a unit in the pth significant digit of <span class='latexinline'>x</span>.
+<h4><a id=accuracy-vs-precision href='#accuracy-vs-precision'> § </a> Accuracy v/s precision</h4>
+<ul><li> Accuracy: absolute or relative error of a quantity.</li><li> Precision: accuracy with which basic arithmetic <code>+, -, *, /</code> are performed.
+  for floating point, measured by unit round-off (we have not met this yet).</li></ul>
+<b>Accuracy is not limited by precision</b>: By using fixed precision arithmetic,
+we can emulate arbitrary precision arithmetic. The problem is that often
+this emulation is too expensive to be useful.
+<h4><a id=backward-forward-errors href='#backward-forward-errors'> § </a> Backward, Forward errors</h4>
+Let <span class='latexinline'>y = f(x)</span>, where <span class='latexinline'>f: \mathbb R \rightarrow \mathbb R</span>. Let us compute <span class='latexinline'>\hat y</span> as an approximation to 
+<span class='latexinline'>y</span>, in an arithmetic of precision <span class='latexinline'>u</span>. How do we measure the quality of <span class='latexinline'>\hat y</span>?
+<ol><li> In many cases, we maybe happy with an <span class='latexinline'>\hat y</span> such that the relative error between
+   <span class='latexinline'>y</span> and <span class='latexinline'>\hat y</span> is equal to <span class='latexinline'>u</span>: we did the best we can with the precision
+   that was given. This is the <b>forward error</b>. </li><li> An alternative question we can ask is, for what <span class='latexinline'>\delta x</span> do we have that 
+   <span class='latexinline'>\hat y = f(x + \delta x)</span>. That is, how far away from the input do we 
+   need to stray, to get a matching output? There maybe many such <span class='latexinline'>\delta x</span>,
+   so we ask for <span class='latexinline'>\min |\delta x|</span>. We can divide this error by <span class='latexinline'>x</span> as a 
+   normalization factor. This is the <b>backward error</b>.</li></ol>
+<img width=800 src="./static/forward-backward-error.png">
+There are two reasons we prefer backward error.
+<ol><li> It converts error analysis into "data analysis". The data itself tends
+   to be uncertain. If the error given by the backward analysis is smaller
+   than the data uncertainty, then we can write off our error as being
+   too small. Since for all we know, we have 'fixed' the uncertain data
+   with our small error.</li><li> It reduces the question of error analysis into perturbation theory,
+   which is very well understood for a large class of problems.</li></ol>
+<h4><a id=backward-stable href='#backward-stable'> § </a> Backward stable</h4>
+A method for computing <span class='latexinline'>y = f(x)</span> is called <b>backward stable</b>
+if it produces a <span class='latexinline'>\hat y</span> with small backward error. That is, we need a 
+small <span class='latexinline'>\delta x</span> such that <span class='latexinline'>\hat y = f(x + \delta x)</span>.
+<h4><a id=mixed-forward-backward-error href='#mixed-forward-backward-error'> § </a> Mixed forward-backward error</h4>
+We assume that addition and subtraction are backward stable, where <span class='latexinline'>u</span>
+is the number of significant digits to which our arithmetic operations
+can be performed:
+<div class='latexblock'>
+x \pm y = x(1 + \Delta) \pm y(1 + \Delta) \forall |\Delta| \leq u
+</div>
+Another type of error we can consider is that of the form:
+<div class='latexblock'>                                                                              
+\hat y + \delta y = f(x + \Delta x)
+</div>
+That is, for a small perturbation in the output <span class='latexinline'>(\delta y)</span>, we can get a
+backward error of <span class='latexinline'>\delta x</span>. This is called as <b>mixed forward backward error</b>.
+<img width=800 src="./static/mixed-forward-backward-error.png">
+We can say that an algorithm with mixed-forward-backward-error is stable iff:
+<div class='latexblock'>
+\begin{align*}
+&\hat y + \delta y = f(x + \Delta x) \\
+&|\Delta y|/|\hat y| < \epsilon \\
+&|\Delta x|/|\hat x| < \eta \\
+&\text{$\epsilon, \eta$ are small}
+\end{align*}
+</div>
+This definition of stability is useful when rounding errors are the dominant
+form of errors.
+<h4><a id=conditioning href='#conditioning'> § </a> Conditioning</h4>
+Relationship between forward and backward error is govered by <i>conditioning</i>:
+the sensitivity of solutions to perturbations of data. Let us have an approximate
+solution <span class='latexinline'>\hat y = f(x + \delta x)</span>. Then:
+<div class='latexblock'>
+\begin{align*}
+&\hat y - y = f(x + \delta x) - f(x) = f'(x) \delta x + O((\delta x)^2) \\
+&(\hat y - y)/y = (x f'(x)/f(x)) (\Delta x/x) + O((\Delta x)^2) \\
+&(\hat y - y)/y = c(x) (\Delta x/x) + O((\Delta x)^2)\\
+&c(x) \equiv |x f'(x)/f(x)|
+\end{align*}
+</div>
+The quantity <span class='latexinline'>c(x)</span> measures the scaling factor to go from the relative
+change in output to the relative change in input. Note that this is a property
+of the function <span class='latexinline'>f</span>, not any particular algorithm.
+<h4><a id=example-log-x href='#example-log-x'> § </a> Example: <span class='latexinline'>\log x</span></h4>
+If <span class='latexinline'>f(x) = \log x</span>, then <span class='latexinline'>c(x) = |(x (\log x)') / \log x| = |1/\log x|</span>. This
+quantity is very large for <span class='latexinline'>x \simeq 1</span>. So, a small change in <span class='latexinline'>x</span> can 
+produce a drastic change in <span class='latexinline'>\log x</span> around <span class='latexinline'>1</span>.
+<ul><li> Note the the <i>absolute</i> change is quite small: <span class='latexinline'>\log(x + \delta x) \simeq \log x + \delta x/x</span>.
+  However, relative to <span class='latexinline'>\log x</span>, this change of <span class='latexinline'>\delta x/x</span> is quite large.</li></ul>
+<h4><a id=rule-of-thumb href='#rule-of-thumb'> § </a> Rule of thumb</h4>
+We now gain access to the useful rule:
+<div class='latexblock'>
+\text{forward error} \lesssim \text{condition number} \times \text{backward error}
+</div>
+<ul><li> Glass half empty: Ill-conditioned problems can have large forward error.</li><li> Glass half full: Well-conditioned problems do not amplify error in data.</li></ul>
+<h4><a id=forward-stable href='#forward-stable'> § </a> Forward stable</h4>
+If a method produces answers with forward errors of similar magnitude to those
+produced by a backward stable method, then it is called forward stable. 
+<b>Backward stability implies forward stability, but not vice-versa</b> (TODO: why?)
+<h4><a id=cancellation href='#cancellation'> § </a> Cancellation</h4>
+Consider the following program:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+which produces the output:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+This is <b>clearly wrong</b>, because we know that <span class='latexinline'>(1-\cos x)/x^2) \leq 1/2</span>.
+The reason for this terrible result is that:
+<ul><li> we know <span class='latexinline'>\cos x</span> to high accuracy, since <span class='latexinline'>x</span> was some fixed quantity.</li><li> <span class='latexinline'>1 - \cos x</span> converted the <b>error</b> in <span class='latexinline'>\cos x</span> into its <b>value</b>.</li><li> <span class='latexinline'>1 - \cos x</span> has only one significant figure.</li><li> This makes it practically useless for anything else we are interested in doing.</li></ul>
+In general:
+<div class='latexblock'>
+\begin{align*}
+&x \equiv 1 + \epsilon \text{error of order $\epsilon$} \\
+&y \equiv 1 - x = \epsilon \text{value of order $\epsilon$} \\
+\end{align*}
+</div>
+That is, subtracting values close to each other (in this case, <span class='latexinline'>1</span> and <span class='latexinline'>x</span>)
+converts <b>error order of magnitude</b> into <b>value order of magnitude</b>. 
+Alternatively, it brings earlier errors into promience as values.
+<h4><a id=analysis-of-subtraction href='#analysis-of-subtraction'> § </a> Analysis of subtraction</h4>
+We can consider the subtraction:
+<div class='latexblock'>
+\begin{align*}
+&x = a - b; \hat x = \hat a - \hat b \\
+&\hat a = a(1 + \Delta a) \\
+&\hat b = b(1 + \Delta b) \\
+&\left| \frac{x - \hat x}{x} \right|  \\
+&= \left| \frac{-a\Delta a - b\Delta b}{a - b} \right| \\
+&= \frac{|-a\Delta a - b\Delta b|}{|a - b|} \\
+&=  \frac{|a\Delta a + b\Delta b|}{|a - b|} \\
+&\leq  \frac{\max(|\Delta a|, |\Delta b|) (|a| + |b|)}{|a - b|}
+\end{align*}
+</div>
+This quantity will be large when <span class='latexinline'>|a - b| \ll |a| + |b|</span>: that is, when
+there is heavy cancellation in the subtraction to compute <span class='latexinline'>x</span>. 
+<h4><a id=underflow href='#underflow'> § </a> Underflow</h4>
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+This produces the output:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+That is, even though the function is an identity function, the answer collapses
+to <code>1</code>. What is happening?
+<h4><a id=computing-ex--1x href='#computing-ex--1x'> § </a> Computing <span class='latexinline'>(e^x - 1)/x</span></h4>
+One way to evaluate this function is as follows:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+This can suffer from catastrophic cancellation in the numerator. When
+<span class='latexinline'>x</span> is close to <span class='latexinline'>0</span>, <span class='latexinline'>e^x</span> is close to 1, and <span class='latexinline'>e^x - 1</span> will magnify the
+error in <span class='latexinline'>e^x</span>.
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+This algorithm seems crazy, but there's insight in it. We can show that
+the errors cancel! The idea is that neither <span class='latexinline'>(y - 1)</span> nor <span class='latexinline'>\log y</span> are
+particularly good, the errors accumulated in them almost completely
+cancel out, leaving out a good value:
+<div class='latexblock'>
+\text{assume $\hat y = 1$} \\
+1 = \hat y \equiv e^x(1 + \delta) \\
+\log 1 = \log (e^x ) + \log(1 + \delta) \\
+x = -\log(1 + \delta) \\
+x = -\delta + O(\delta^2)
+</div>
+If <span class='latexinline'>\hat y \neq 1</span>:
+<div class='latexblock'>
+\hat f = (\hat y - 1)/\log{\hat y} = (1+\epsilon_3)(\hat y - 1)(1 + \epsilon+1)/(\log \hat y(1 + \epsilon_2))
+</div>
+<h4><a id=ieee-floating-point-fun-0-and--0-for-complex-analysis href='#ieee-floating-point-fun-0-and--0-for-complex-analysis'> § </a> IEEE floating point fun: <code>+0</code> and <code>-0</code> for complex analysis</h4>
+<blockquote> Rather than think of <code>+0</code> and <code>-0</code> as distinct numerical values, think of their sign bit as an auxiliary variable that conveys one bit of information (or misinformation) about any numerical variable that takes on 0 as its value.</blockquote>
+We have two types of zeroes, <code>+0</code> and <code>-0</code> in IEEE-754. These are used in some
+cases. The most famous is that <span class='latexinline'>1/+0 = +\infty</span>, while <span class='latexinline'>1/-0 = -\infty</span>. Here,
+we proceed to discuss some complex-analytic considerations.
+<blockquote> Therefore. implementers of compilers and run-time libraries bear a heavy burden of attention to detail if applications programmers are to realize the full benefit of the IEEE style of complex arithmetic. That benefit deserves Some discussion here if only to reassure implementers that their assiduity will be appreciated.</blockquote>
+<div class='latexblock'>
+\sqrt{-1 + 0 i} = +0 + i \\
+\sqrt{-1 - 0 i} = +0 - i \\
+</div>
+These will ensure that <span class='latexinline'>\sqrt{z*} = (\sqrt{z})*</span>:
+<div class='latexblock'>
+\texttt{copysign}(1, +0) = +1 \\
+\texttt{copysign}(1, -0) = -1 \\
+</div>
+These will ensure that <span class='latexinline'>\copysign{x, 1/x} = x</span> when <span class='latexinline'>x = \pm \infty</span>.
+An example is provided where the two limits:
+<div class='latexblock'>
+\begin{align*}
+&f(x + i0) = \lim_{y \rightarrow 0-} f(x + i y) \\
+&f(x + i0) = \lim_{y \rightarrow 0-} f(x + i y) \\
+\end{align*}
+</div>
+<h4><a id=complex-analytic-considerations href='#complex-analytic-considerations'> § </a> Complex-analytic considerations</h4>
+The principal branch of a complex function is a way to select one branch
+of a complex-function, which tends to be multi-valued. A classical example
+is the argument function, where <span class='latexinline'>\arg(r e^{i \theta} = \theta</span>. 
+However, this is ambiguous: we can map <span class='latexinline'>\theta \mapsto \theta + 2 \pi</span>
+and still have the same complex number. So, we need to fix some standard.
+We usually pick the "branch" where <span class='latexinline'>0 \leq \theta < 2 \pi</span>.
+In general, we need to carefully handle what happens to the function at
+the discontinuity.
+<blockquote> What deserves to be undermined is blind faith in the power of Algebra. We should not believe that the equivalence class of expressions that all describe the same complex analytic function can be recognized by algebraic means alone, not even if relatively uncomplicated expressions are the only ones considered.</blockquote>
+<h4><a id=references href='#references'> § </a> References</h4>
+<ul><li> Accuracy and stability of numerical algorithms</li><li> <a href=https://people.freebsd.org/~das/kahan86branch.pdf>Branch Cuts for complex elementary functions, or much ado about Nothing's Sign Bit</a></li></ul>
+</container></body></html>

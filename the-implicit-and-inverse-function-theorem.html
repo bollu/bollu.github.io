@@ -1,0 +1,74 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><script defer src='katex/katex.min.js'    integrity='sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4'    crossorigin='anonymous'></script><script>    function on_katex_load() {        const katex_opts = [            {left: '$', right: '$', display: false},            {left: '$$', right: '$$', display: true}        ];        renderMathInElement(document.body, katex_opts);        let elemsInline = document.getElementsByClassName('latexinline');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsInline.item(i).textContent, elemsInline.item(i));}        let elemsBlock = document.getElementsByClassName('latexblock');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsBlock.item(i).textContent, elemsBlock.item(i), {displayMode: true});}    }</script><!-- To automatically render math in text elements, include the auto-render extension: --><script defer src='katex/auto-render.min.js'    integrity='sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa'    crossorigin='anonymous'    onload='on_katex_load();'></script><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
+img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+ .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
+ .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
+.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=the-implicit-and-inverse-function-theorem href='#the-implicit-and-inverse-function-theorem'> § </a> <a href=#the-implicit-and-inverse-function-theorem>The implicit and inverse function theorem</a></h2>
+I keep forgetting the precise conditions of these two theorems. So here
+I'm writing it down as a reference for myself.
+<h4><a id=implicit-function-relation-to-function href='#implicit-function-relation-to-function'> § </a> Implicit function: Relation to function</h4>
+<ul><li> Example 1: <span class='latexinline'>x^2 + y^2 = 1</span> to <span class='latexinline'>y = \sqrt{1 - x^2}</span>.</li></ul>
+If we have a function <span class='latexinline'>y = g(p, q)</span>, we can write this as <span class='latexinline'>y - g(p, q) = 0</span>.
+This can be taken as an implicit function <span class='latexinline'>h(y; p, q) = y - g(p, q)</span>. We then
+want to recover the explicit version of <span class='latexinline'>y = g'(p, q)</span> such that
+<span class='latexinline'>h(g'(p, q); p, q) = 0</span>. That is, we recover the original explicit formulation
+of <span class='latexinline'>y = g'(p, q)</span> in a way that satisfies <span class='latexinline'>h</span>.
+<h4><a id=the-1d-linear-equation-case href='#the-1d-linear-equation-case'> § </a> The 1D linear equation case</h4>
+In the simplest possible case, assume the relationship between <span class='latexinline'>y</span> and <span class='latexinline'>p</span>
+is a linear one, given implicitly. So we have <span class='latexinline'>h(y; p) = \alpha y + \beta p + \gamma = 0</span>.
+Solving for <span class='latexinline'>h(y,p) = 0</span>, one arrives at: <span class='latexinline'>y = -1/\alpha (\beta p + \gamma)</span>.
+<ul><li> Note that the solution exists iff <span class='latexinline'>\alpha \neq 0</span>. </li><li> Also note that the the existence of the solution is equivalent to asking that
+  <span class='latexinline'>\partial h / \partial y = \alpha \neq 0</span>.</li></ul>
+<h4><a id=the-circle-case href='#the-circle-case'> § </a> The circle case</h4>
+In the circle case, we have <span class='latexinline'>h(y; p) = p^2 + y^2 - 1</span>. We can write
+<span class='latexinline'>y = \pm \sqrt{p^2 - 1}</span>. These are <i>two</i> solutions, not one, and hence
+a relation, not a function.
+<ul><li> We can however build two functions by taking two parts. <span class='latexinline'>y+ = +\sqrt{p^2 - 1}</span>;
+  <span class='latexinline'>y- = -\sqrt{p^2 - 1}</span>.</li></ul>
+<ul><li> In this case, we have <span class='latexinline'>\partial h / \partial y = 2y</span>, which changes sign
+  for the two solutions. If <span class='latexinline'>y^\star > 0</span>, then <span class='latexinline'>(\partial h / \partial y)(y^\star = 0)</span>.
+  Similarly for the negative case.</li></ul>
+<h4><a id=assuming-that-a-solution-for-hy-p-exists href='#assuming-that-a-solution-for-hy-p-exists'> § </a> Assuming that a solution for <span class='latexinline'>h(y, p)</span> exists</h4>
+Let us say we wish to solve <span class='latexinline'>h(y; p) = y^3 + p^2 - 3 yp - 7 = 0</span>. Let's assume
+that we have a solution <span class='latexinline'>y = sol(p)</span> around the point <span class='latexinline'>(y=3, p=4)</span>. Then we 
+must have: <span class='latexinline'>sol(p)^3 + p^2 - 3 sol(p) p - 7 = 0</span>. Differentiating by <span class='latexinline'>p</span>, 
+we get: <span class='latexinline'>3 sol(p)^2 sol'(p) + 2p - 3 sol'(p) p - 3 sol(p) = 0</span>. This gives
+us the condition on the derivative:
+<div class='latexblock'>
+\begin{align*}
+&3 sol(p)^2 sol'(p) + 2p - 3 sol'(p) p - 3 sol(p) = 0 \\
+&sol'(p)\left[ 3 sol(p)^2 - 3p \right] = 3 sol(p) - 2p \\
+&sol'(p) = [3 sol(p) - 2p] / \left[ 3(sol(p)^2 - 3p) \right]  \\
+\end{align*}
+</div>
+The above solution exists  if <span class='latexinline'>3(sol(p)^2 - 3p \neq 0)</span>. This quantity is again
+<span class='latexinline'>\partial h / \partial y</span>.
+<h4><a id=application-to-economics href='#application-to-economics'> § </a> Application to economics</h4>
+<ul><li> We have two inputs which are purchaed as <span class='latexinline'>x_1</span> units of input 1, <span class='latexinline'>x_2</span> units of input <span class='latexinline'>2</span>.</li><li> The price of the first input is <span class='latexinline'>w_1 BTC/unit</span>. That of the second input is <span class='latexinline'>w_2 BTC/unit</span>.</li><li> We produce an output which is sold at price <span class='latexinline'>w BTC/unit</span>.</li><li> For a given <span class='latexinline'>(x_1, x_2)</span> units of input, we can produce  <span class='latexinline'>x_1^a x_2^b</span>  units of output where
+  <span class='latexinline'>a + b < 1</span>.
+  <a href=https://en.wikipedia.org/wiki/Cobb%E2%80%93Douglas_production_function>The Coob-douglas function</a>.</li><li> The profit is going to be <span class='latexinline'>profit(x_1 x_2, w_1, w_2, w) = w(x_1^a x_2^b) - w_1 x_1 - w_2 x_2</span>.</li><li> We want to select <span class='latexinline'>x_1, x_2</span> to maximize profits.</li><li> Assume we are at break-even: <span class='latexinline'>profit(x_1, x_2, w_1, w_2, w) = 0</span>.</li><li> The implicit function theorem allows us to understand how any variable changes
+  with respect to any other variable. It tells us that locally, for example,
+  that the number of units of the first input we buy (<span class='latexinline'>x_1</span>) is a function
+  of the price <span class='latexinline'>w_1</span>. Moreover, we can show that it's a <i>decreasing function</i>
+  of the price.</li></ul>
+<h4><a id=inverse-function-function-to-bijection href='#inverse-function-function-to-bijection'> § </a> Inverse function: Function to Bijection</h4>
+<ul><li> Given a differentiable function <span class='latexinline'>f</span>, at a point <span class='latexinline'>p</span>, we will have a continuous inverse
+  <span class='latexinline'>f^{-1}(p)</span> if the derivative <span class='latexinline'>f'(p)</span> is locally invertible.</li></ul>
+<ul><li> The intuition is that we can approximate the original function with a linear
+  function. <span class='latexinline'>y = f(p + \delta) = f(p) + f'(p) \delta</span>. Now since <span class='latexinline'>f'(p)</span> is
+  locally invertible, we can solve for <span class='latexinline'>\delta</span>. <span class='latexinline'>y = f(p) + f'(p) \delta</span>
+  implies that <span class='latexinline'>\delta = 1/f'(p) [y - f(p + \delta) ]</span>.
+  This gives us the pre-image <span class='latexinline'>(p + delta) \mapsto y</span>.</li></ul>
+<ul><li> The fact that <span class='latexinline'>1/f'(p)</span> is non-zero is the key property. This generalizes
+  in multiple dimensions to saying that <span class='latexinline'>f'(p)</span> is invertible.</li></ul>
+One perspective we can adopt is that of Newton's method. Recall that Newton's
+method allows us to find <span class='latexinline'>x^*</span> for a fixed <span class='latexinline'>y^*</span> such that <span class='latexinline'>y^* = f(x^*)</span>. It follows
+the exact same process! 
+<ul><li> We start with some <span class='latexinline'>x[1]</span>.</li><li> We then find the tangent <span class='latexinline'>f'(x[1])</span>.</li><li> We draw the tangent at the point <span class='latexinline'>x[1]</span> as <span class='latexinline'>(y[2] - y[1]) = f'(x[1])(x[2] - x[1])</span>.</li><li> To find the <span class='latexinline'>y^*</span> we set <span class='latexinline'>y[2] = y^*</span>.</li><li> This gives us <span class='latexinline'>x[2] = x[1] - (y^* - y[1])/f'(x[1])</span>.</li><li> Immediately generalizing, we get <span class='latexinline'>x[n+1] = x[n] - (y^* - y[n]) / f'(x[n])</span>.</li></ul>
+<h4><a id=references href='#references'> § </a> References</h4>
+<ul><li> <a href=https://people.ucsc.edu/~nlazzati/Courses/Math519/Notes/Note%203.pdf>Mathematics for economics, Natalia Lazzati</a></li><li> <a href=http://mtaylor.web.unc.edu/files/2018/04/invfn.pdf>Inverse function theorem via Newton's method</a></li></ul>
+</container></body></html>

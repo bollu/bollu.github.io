@@ -1,0 +1,519 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><script defer src='katex/katex.min.js'    integrity='sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4'    crossorigin='anonymous'></script><script>    function on_katex_load() {        const katex_opts = [            {left: '$', right: '$', display: false},            {left: '$$', right: '$$', display: true}        ];        renderMathInElement(document.body, katex_opts);        let elemsInline = document.getElementsByClassName('latexinline');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsInline.item(i).textContent, elemsInline.item(i));}        let elemsBlock = document.getElementsByClassName('latexblock');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsBlock.item(i).textContent, elemsBlock.item(i), {displayMode: true});}    }</script><!-- To automatically render math in text elements, include the auto-render extension: --><script defer src='katex/auto-render.min.js'    integrity='sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa'    crossorigin='anonymous'    onload='on_katex_load();'></script><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
+img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+ .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
+ .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
+.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=a5-is-not-solvable href='#a5-is-not-solvable'> § </a> <a href=#a5-is-not-solvable>A5 is not solvable</a></h2>
+There are many accounts of why A5 is not solvable on the internet. I'm recording my
+version here, because the proof involves certain ad-hoc choices which I want
+to make sure I can find off-hand in the future.
+We'll show that <code>[A5, A5] = A5</code>, thereby proving that <code>A5</code> not solvable.
+This is useful for Galois theory, where we want to show tha <code>A5</code> cannot be
+built as extensions of smaller cyclic groups. 
+<h4><a id=notation href='#notation'> § </a> Notation</h4>
+I'll be using non-standard notation: <code>(12);(34)</code> means 'perform <code>(12)</code> then perform <code>(34)</code>'.
+I find this notation makes permutation composition intuitive for me. The <code>;</code> 
+is evocative of C-style languages, where we are ending a statement. I will
+be consistently using <span class='latexinline'>[g, h] \equiv ghg^{-1}h^{-1}</span> to denote the commutator.
+<h4><a id=permutations-in-a5 href='#permutations-in-a5'> § </a> permutations in A5</h4>
+First, recall that <code>A5</code> only has the <i>even</i> permutations in <code>S5</code>. So it can
+have zero, two, four, involutions that build it up. There can't be more after
+simplification, since <code>S5</code> ony has <code>5</code> elements --- the largest sequence
+of transpositions we can do is <code>(12)(23)(34)(45)</code>. So, in <code>A5</code>, we have:
+<ul><li> The identity permutation <code>()</code>.</li><li> The transpositions <code>(ij)(kl)</code> where <code>{i, j}</code> and <code>{k, l}</code> do not overlap.
+  From these, we get the 2-cycles.</li><li> The transpositions <code>(ij)(kl)</code> where <code>{i, j}</code> and <code>{k, l}</code> overlap. Here we
+  cannot have <code>{i, j} = {k, l}</code> since then we will just have a single transposition.
+  So, let us assume that we have <code>j = k</code>. If we have any other equality, we
+  can always flip the transpositions around to get to the normal form <code>j = k</code>:</li></ul>
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+<ul><li> In this case, we can show that such a transposition <i>must</i> be a cycle:</li></ul>
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+<ul><li> Intuitively, we are pushing the element <code>c</code> backward, and allowing the
+  other elements to take its place using the permutation <code>(23);(12)</code>.</li></ul>
+<ul><li> So, from the transpositions of the form <code>(ij)(kl)</code> where <code>{i, j}</code> and
+  <code>{k, l}</code> intersect, we get the 3-cycles.</li></ul>
+<ul><li> Finally, we can have the transpositions of the form <code>(12)(23)(34)(45)</code>. 
+  It must be of this form, or some permutation of this form. Otherwise,
+  we would have repeated elements, since these transpositions are packed
+  "as close as possible". These generate the 5-cycles.</li></ul>
+<h4><a id=a5-is-generated-by-3-cycles href='#a5-is-generated-by-3-cycles'> § </a> A5 is generated by 3-cycles.</h4>
+We claim that we can write any element of <span class='latexinline'>A5</span> in terms of 3-cycles.
+<ul><li> The disjoint transpositions of the type <code>(34)(12)</code> can be written as
+  <code>(34)(23)(23)(12)</code>, because <code>(23)(23) = e</code>. This can be further
+  broken down into <code>((34)(23)) ((23)(12))</code> which is two 2-cycles: 
+  <code>(234); (123)</code>.</li></ul>
+<ul><li> The non-disjoint transpositions of the type <code>(32)(21)</code> <i>are</i> 3-cycles:
+  <code>(32)(21) = (123)</code>.</li></ul>
+<ul><li> 3-cycles are 3-cycles.</li></ul>
+<ul><li> Any 5-cycle an be written as two 3-cycles: <code>(45)(34)(23)(12)</code> can be written
+  as <code>((45)(34))((23)(12))</code> which is two 3-cycles: <code>(345); (123)</code>.</li></ul>
+So, if we figure out how to write 3-cycles in terms of commutators, we win.
+Because the commutator subgroup of <span class='latexinline'>A_n</span> is generated by elements that
+can be written as <span class='latexinline'>[g, h]</span>. If we can show that 3-cycles can be written
+as <span class='latexinline'>[g, h]</span>, then every other element has a representation in terms of
+these 3-cycles, and are therefore elements of the commutator subgroup.
+<h4><a id=3-cycles-can-be-generated-as-commutators-of-2-cycles href='#3-cycles-can-be-generated-as-commutators-of-2-cycles'> § </a> 3-cycles can be generated as commutators of 2-cycles:</h4>
+<ul><li> We saw how we can write a 3-cycle of the form <code>C = (123)</code> as <code>(32)(21)</code>.
+  We wish to write this as the commutator of two elements <code>g, h</code>: <span class='latexinline'>C = [g, h]</span>.</li></ul>
+<ul><li> The idea is that we have the leftover elements <code>4, 5</code> that are unsused by <code>C</code> in <code>A5</code>
+  [here is where <code>5</code> is important: <code>3 + 2 = 5</code>, and we need two leftover elements].</li></ul>
+<ul><li> We can use these two leftover elements <code>4, 5</code> to build elements <code>g, h</code>
+  which cancel off, leaving us with <code>(32)(21)</code>. We start with <code>g = (32)___</code>,
+  <code>h = (21)___</code> where the <code>___</code> is to be determined:</li></ul>
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+<ul><li> It is important that <code>g</code> and <code>h</code> contain another tuple, because they are
+  members of <code>A5</code>! We need them to be permutations having <code>2, 4, 6</code> transpositions.
+  </li></ul>
+<ul><li> We insert <code>(4 5)</code> everywhere. These <code>(4 5)</code> can slide over the <code>(2 1)</code> and thereby
+  harmlessly cancel:</li></ul>
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+<ul><li> Simplify the above expression by moving the <code>(45)</code> over <code>(21), (32)</code>:</li></ul>
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+<ul><li> cancel the <code>(45)(45) = e</code>:</li></ul>
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+So we are left with <code>(32);(21);(32);(21)</code>. This is the <i>square</i> of what
+we really wanted, <code>C = (32);(21)</code>. However, since <code>C</code> is a 3-cycle, we know
+that <span class='latexinline'>C = C^{-2}</span>. So, we can start with <span class='latexinline'>C^{-1}</span>, use our trick to generate
+<span class='latexinline'>C^{-2}</span> which is equal to <span class='latexinline'>C</span>. Since this works for any <span class='latexinline'>C</span>, we have shown
+that we can generate 3-cycles from commutators of <code>A5</code>.
+<h4><a id=alternate-viewpoint-on-above-proof href='#alternate-viewpoint-on-above-proof'> § </a> Alternate viewpoint on above proof</h4>
+We have a 3-cycle <code>s = (a b c)</code>. We first first a square root <code>t</code> such 
+that <code>t*t=s</code>. To do this, we make <code>t</code> have the cycles of <code>s</code> spread out
+in gaps of 2:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+It is hopefully clear that <code>t*t = s</code>:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+Now, we will write <code>s = t*t</code> and then find the commutator decomposition from
+it:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+But there's a problem: this <code>g</code> and <code>h</code> do not belong to <code>A5</code>, they belong
+to <code>S5</code>. This is fixed by using a random <code>(pq)</code> which we know <i>will exist</i>.
+<h4><a id=recap-how-have-we-shown-that-a5-is-not-solvable href='#recap-how-have-we-shown-that-a5-is-not-solvable'> § </a> Recap: How have we shown that A5 is not solvable?</h4>
+what have we shown?
+<ul><li> 3-cycles can be written as <span class='latexinline'>[g, h]</span> for <span class='latexinline'>g, h \in A_5</span>. Alternatively,
+  we can say that 3-cycles belong to the commutator subgroup of <span class='latexinline'>A_5</span>,
+  since they can be written as commutators.</li><li> any element in <span class='latexinline'>A5</span> can be written as the composition of 3-cycles.</li><li> Hence, any element in <span class='latexinline'>A5</span> can be written as the composition of commutators.</li></ul>
+In my mind, I think of it as:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+Recall that <span class='latexinline'>[A5, A5]</span> is <b>generated</b> by commutators. It not only contains
+elements of the form <span class='latexinline'>[g, h]</span>, but also all products of the form <span class='latexinline'>[g, h][g', h']</span>.
+So we don't need to exhibit how to write a 5-cycle as some <span class='latexinline'>[g, h]</span>. We just
+need to exhibit how to write as the product of commutators, which we have
+now shown.
+<h4><a id=solvable-implies-simple- href='#solvable-implies-simple-'> § </a> Solvable implies simple  </h4>
+We can consider the other definition of simple. Let there be a
+chain of normal subgroups <span class='latexinline'>G = N[0] \leq N[1] \leq N[1] \leq \dots \leq N[m] = e</span>,
+such that each quotient <span class='latexinline'>N[i] / N[i+1]</span> is abelian. Then, if <span class='latexinline'>G</span> is 
+simple, this chain can only be <span class='latexinline'>G = N[0] \leq N[1] = e</span>.
+<ul><li> If we want the quotient <span class='latexinline'>G/N</span> to be abelian, then we need the commutator
+  subgroup <span class='latexinline'>[G, G]</span> to be a a subset of <span class='latexinline'>N</span>.</li></ul>
+<ul><li> In our case, <span class='latexinline'>[A_5, A_5] = A_5</span>. So if we want to remove the non-abelian-ness
+  of A5, we need to quotient by the <i>whole</i> of <span class='latexinline'>A5</span>. </li></ul>
+<ul><li> This means that any such chain will immediately collapse to <span class='latexinline'>e</span>.</li></ul>
+<ul><li> So, it's impossible to build <span class='latexinline'>A5</span> using 'cycling components' starting from <span class='latexinline'>\{e\}</span>.
+  Viewed from the field theoretic perspective, this means that it's impossible
+  to reach a polynomial whose splitting field has galois group A5 by simply 
+  appending cycles.</li></ul>
+<h4><a id=nagging-doubt-did-we-depend-on-our-numbering-of-cycles href='#nagging-doubt-did-we-depend-on-our-numbering-of-cycles'> § </a> Nagging doubt: Did we depend on our numbering of cycles?</h4>
+In all my proofs, I had used <i>one</i> 3-cycle, or 5-cycle, or 2-cycle to
+argue that it all works out. Is this really legal? Perhaps the argument
+written for the 3-cycle <code>C = (123)</code> will break down for <code>D = (321)</code>. Fear not!
+<ul><li> We will show that all 3-cycles are conjugate to each other. So, we can always
+  relabel a 3-cycle within A5.</li><li> It is easy to note that <span class='latexinline'>g[k, l]g^{-1} = [gkg^{-1}, glg^{-1}]</span>. This shows
+  that the commutator subgroup is closed under conjugation. It better be,
+  because it ought to be normal for us to take quotients from it.</li><li> Combining these facts, if we show that <code>(123)</code> is in <code>[A5, A5]</code>, then some
+  other cycle <code>(ijk)</code> can be conjugated to <code>(123)</code>. Since the commutator
+  subgroup is closed under conjugation, we have that <code>(ijk)</code> is a member
+  of <code>[A5, A5]</code>.</li></ul>
+<h4><a id=all-3-cycles-are-conjugate-to-each-other-in-a5 href='#all-3-cycles-are-conjugate-to-each-other-in-a5'> § </a> All 3-cycles are conjugate to each other in A5.</h4>
+<ul><li> Given two 3-cycles <code>C=(abc)</code> and <code>D=(pqr)</code>, at least one of <code>a, b, c</code> must
+  be equal to one of <code>p, q, r</code>. Since each <code>a, b, c</code> is unique, and each
+  <code>p, q, r</code> is unique, for them to not overlap, we would need 6 elements. 
+  But we only have 5, so there must be some overlap:</li></ul>
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+So, we will perform our proof assuming there is 1 overlap, 2 overlap, 3 overlap.
+Recall that if <code>C = (a b c)</code> is a cycle and <code>s</code> is a permutation, then the action
+of conjugating <code>C</code> with <code>s</code> produces a permutation <code>(s(a) s(b) s(c))</code>. We will
+prove our results by finding an <code>s</code>, and then <b>making <code>s</code> even</b>. This is
+the difficult part of the proof, since we need to show that all 3-cycles are
+conjugate <i>in A5</i>. We will write <code>s</code> as two distinct transpositions, which will
+guarantee that it belongs to <code>A5</code>.
+<ul><li> Case 1: <code>(abx)</code> and <code>(pqx)</code> have a single element <code>x</code> in common:</li></ul>
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+<ul><li> Case 2: <code>(axy)</code> and <code>(pxy)</code> have two elements in common, <code>x</code> and <code>y</code>. Naively,
+  we would pick <code>s: send x to y</code>. But this is odd, so this isn't a member of
+  <code>A5</code>. To make it even, we rearrange <code>D = (pxy)</code> as <code>D = (yxp)</code>. This lets us
+  go from <code>C</code> to <code>D</code> by relabelling <code>a</code> to <code>y</code>, <code>y</code> to <code>p</code>. This permutation
+  is even since it has two distinct transpositions.</li></ul>
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+<ul><li> Case 3: <code>(xyz)</code> and <code>(xyz)</code> have all three elements in common, <code>x</code>, <code>y</code>, <code>z</code>.
+  Here we can conjugate by identity and we are done.
+  </li></ul>
+<h4><a id=why-do-we-care-about-solvable href='#why-do-we-care-about-solvable'> § </a> Why do we care about solvable?</h4>
+<ul><li> Roughly, we can look at the solvability criterion as giving us a way to build
+  our group <span class='latexinline'>G</span> from a series of extensions <span class='latexinline'>N[1], N[2], \dots</span>. This extension
+  is special, because at each step, we are adding a cyclic group.</li></ul>
+<ul><li> When we want to write a solution using nth roots, we can only add the
+  nth roots of unity, a "cyclic" component. So, any element we can reach
+  by using nth roots ought to be able to be written down as an extension of
+  cyclic elements. </li></ul>
+<h4><a id=sage-code-to-play-around-with-commutators-of-a5 href='#sage-code-to-play-around-with-commutators-of-a5'> § </a> SAGE code to play around with commutators of <code>A5</code>:</h4>
+<ul><li> Create a dictionary <code>m</code> which maps each element of <code>A5</code> to the commutators
+  that create it.</li></ul>
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+<h4><a id=writing-each-element-in-a5-directly-as-a-commutator href='#writing-each-element-in-a5-directly-as-a-commutator'> § </a> Writing each element in <code>A5</code> directly as a commutator</h4>
+We have shown how to write 3-cycles as the commutator of 2-cycles. We will now
+show how to do this for disjoint 2-cycles and 5-cycles as a matter of
+enlightenment.
+<h4><a id=writing-disjoint-2-cycles-as-commutator href='#writing-disjoint-2-cycles-as-commutator'> § </a> Writing disjoint 2-cycles as commutator</h4>
+First, we will write a two disjoint two cycles as the square root of
+a 4-cycle. We will then show how to write this 4-cycle as two
+3-cycles.
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+Note that if we choose <code>t = (abcd)</code>, then <code>t*t</code> will exchange the first
+and third elements <code>a <-> c</code>, and the second and fourth elements <code>b <-> d</code>.
+So, if we choose:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+Next, we need to write this <code>t*t</code> as <code>[g, h]</code> for <code>g, h</code> from <code>A5</code>.
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+Where both <code>(42)(23)</code>, and <code>(31)(23)</code> are members of <code>A5</code>.
+<h4><a id=writing-3-cycle-as-commutator href='#writing-3-cycle-as-commutator'> § </a> Writing 3-cycle as commutator</h4>
+In the description of showing how to generate 3-cycles, we do this
+explicitly.
+<h4><a id=writing-5-cycle-as-commutator href='#writing-5-cycle-as-commutator'> § </a> Writing 5-cycle as commutator</h4>
+Let <code>s = (1 2 3 4 5)</code>. we once again find a square root of <code>s</code>. To build
+this, we will build an element with the elements of <code>s</code> written with
+gaps of <code>2</code>:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+It should be clear how <code>t*t = s</code>: When we take <code>s = t*t</code>, the resulting permutation <code>s</code>
+will move an element <code>j = t[i]</code> to <code>k = t[i+2]</code>. But we have built <code>t</code> such 
+that <code>t[i+2] = s[i+1]</code>. So we will move the element according to how <code>s</code> pleases:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+We will now use <code>t*t</code> to write the commutator:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+<h4><a id=to-think-relationship-between-square-roots-and-commutators href='#to-think-relationship-between-square-roots-and-commutators'> § </a> To think: relationship between square roots and commutators?</h4>
+</container></body></html>

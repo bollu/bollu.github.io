@@ -12,12 +12,22 @@ A Universe of Sorts
 - [My resume](resume/main.pdf)
 - [My reading list](todo.html)
 - [Grab me a coffee](https://ko-fi.com/bollu)
+
+
 <!-- - [Support me in making more visualizations!](https://www.patreon.com/bollu) -->
 
+<!--
 #### Table of contents:
 
 <ol reversed>
-<li> [Topological proof of infinitude of primes](topological-proof-infinitude-of-primes)
+<li> [Kebab case](#kebab-case)
+<li> [Localization: Introducing epsilons](#localization-introducing-epsilons)
+<li> [Nan punning](#nan-punning)
+<li> [Offline Documentation](#offline-documentation)
+<li> [Using Gurobi](#using-gurobi)
+<li> [osqp: convex optimizer in 6000 LoC](osqp-convex-optimizer-in-6000-loc)
+<li> [stars and bars by generating functions](#stars-and-bars-by-generating-functions)
+<li> [Topological proof of infinitude of primes](#topological-proof-infinitude-of-primes)
 <li> [Burnside as space average equals time average](#burnside-as-space-average-equals-time-average)
 <li> [The Ise Grand shrine](#ise-grand-shrine)
 <li> [Edward Kmett's list of useful math](#edward-kmetts-list-of-useful-math)
@@ -211,9 +221,290 @@ A Universe of Sorts
 <li> [Big list of Architecture](#big-list-of-architecture) </li>
 <li> [Big list of Recipes](#big-list-of-recipes) </li>
 <li> [Big list of history](#big-list-of-history) </li>
-<li> [Big list of Haiku](#big-list-of-haiku) </li>
+<li> [Big list of words](#big-list-of-words) </li>
 <li> [Big list of Music](#big-list-of-music) </li>
+<li> [Big list of Social Science](#big-list-of-social-science) </li>
 </ol>
+
+-->
+
+
+# [Kebab case](#kebab-case)
+
+[I learnt from the Nu shell blog](https://www.nushell.sh/blog/2020/08/23/year_of_nushell.html)
+that `this-style-of-writing` variables is called as `kebab-case`. Very
+evocative.
+
+# [Localization: Introducing epsilons](#localization-introducing-epsilons)
+
+
+# [NaN punning](#nan-punning)
+
+```cpp
+#include <assert.h>
+#include <iostream>
+#include <limits>
+using namespace std;
+// https://en.wikipedia.org/wiki/NaN
+union PunDouble { 
+    double d;
+    struct { 
+        uint64_t m      : 51;
+        uint32_t qnan: 1;
+        uint32_t e      : 11;
+        uint32_t s      : 1;
+    } bits;
+    PunDouble(double d) : d(d) {};
+    PunDouble(uint32_t s, uint32_t e, uint64_t m) {
+        bits.s = s;
+        bits.e = e;
+        bits.qnan = 1;
+        bits.m = m;
+    }
+};
+
+union PunInt {
+    int32_t i;
+    uint32_t bits;
+    PunInt(int32_t i): i(i) {};
+};
+
+using namespace std;
+struct Box {
+
+    inline bool is_int() const { 
+        auto pd = PunDouble(d);
+        return pd.bits.e == 0b11111111111 && pd.bits.qnan == 1;
+    }
+    inline bool isdouble() const {
+        auto pd = PunDouble(d);
+        return (pd.bits.e != 0b11111111111) || (pd.bits.qnan == 0); 
+    }
+    int32_t get_int() const { 
+        assert(is_int());
+        uint64_t m = PunDouble(d).bits.m; return PunInt(m).i;
+    }
+    double get_double() const { assert(isdouble()); return d; }
+    Box operator +(const Box &other) const;
+
+    static Box mk_int(int32_t i) { 
+        return Box(PunDouble(1, 0b11111111111, PunInt(i).bits).d);
+    }
+    static Box mk_double(double d) { return Box(d); }
+    double rawdouble() const { return d; }
+    private:
+    double d; Box(double d) : d(d) {}
+};
+
+// = 64 bits
+Box Box::operator + (const Box &other) const {
+    if (isdouble()) { 
+        assert(other.isdouble());
+        return Box::mk_double(d + other.d);
+    }
+    else { 
+        assert(is_int());
+        assert(other.is_int());
+        return Box::mk_int(get_int() + other.get_int());
+    }
+}
+
+ostream &operator << (ostream &o, const Box &b) {
+    if (b.isdouble()) { return o << "[" << b.get_double() << "]"; }
+    else { return o << "[" << b.get_int() << "]"; }
+}
+
+int32_t randint() { return (rand() %2?1:-1) * (rand() % 100); }
+                    
+int32_t main() {
+
+    // generate random integers, check that addition checks out
+    srand(7);
+    for(int32_t i = 0; i < 1000; ++i) {
+        const int32_t i1 = randint(), i2 = randint();
+        const Box b1 = Box::mk_int(i1), b2 = Box::mk_int(i2);
+        cout << "i1:" << i1 << "  b1:" << b1 << "  b1.double:" << b1.rawdouble() << "  b1.get_int:" << b1.get_int() << "\n";
+        cout << "i2:" << i2 << "  b2:" << b2 << "  b2.double:" << b2.rawdouble() << "  b2.get_int:" << b2.get_int() << "\n";
+        assert(b1.is_int());
+        assert(b2.is_int());
+        assert(b1.get_int() == i1);
+        assert(b2.get_int() == i2);
+        Box b3 = b1 + b2;
+        assert(b3.is_int());
+        assert(b3.get_int() == i1 + i2);
+    }
+
+    for(int32_t i = 0; i < 1000; ++i) {
+        const int32_t p1 = randint(), q1=randint(), p2 = randint(), q2=randint();
+        const double d1 = (double)p1/(double)q1;
+        const double d2 = (double)p2/(double)q2;
+        const Box b1 = Box::mk_double(d1);
+        const Box b2 = Box::mk_double(d2);
+        cout << "d1: " << d1 << " | b1: " << b1 << "\n";
+        cout << "d2 " << d2 << " | b2: " << b2 << "\n";
+        assert(b1.isdouble());
+        assert(b2.isdouble());
+
+        assert(b1.get_double() == d1);
+        assert(b2.get_double() == d2);;
+        Box b3 = b1 + b2;
+        assert(b3.isdouble());
+        assert(b3.get_double() == d1 + d2);
+    }
+    return 0;
+}
+```
+
+
+
+# [Offline Documentation](#offline-documentation)
+I'm collecting sources of offline documentation, because my internet
+has been quite unstable lately due to the monsoon. I realized that when it
+came to C, I would always `man malloc`, or `apropos exit` to recall
+the `calloc` API, or to learn about `atexit`. I wanted to get offline docs
+for all the languages I use, so I'm building a list:
+
+- C: man pages
+- [C++: cppman](https://github.com/aitjcize/cppman)
+- [python: pydoc](https://docs.python.org/3/library/pydoc.html)
+- haskell: haddock
+
+
+# [Using Gurobi](#using-gurobi)
+
+I've been trying to learn how to use Gurobi, the industrial strength 
+solver for linear and quadratic equation systems.
+
+- [compile the C+ bindings](https://stackoverflow.com/questions/46779850/cannot-compile-gurobi-examples-in-version-7-5-1)
+
+```
+$ cd /path/to/gurobi90/linux64/src/build/ && make
+```
+
+# [osqp: convex optimizer in 6000 LoC](osqp-an-industrial-strength-convex-optimizer-in-6000-loc)
+
+- [Here's the github link to their repo](https://github.com/oxfordcontrol/osqp)
+
+It's written by heavyweights like Boyd himself, the author of the famous
+convex optmization textbook and course.
+
+
+```
+╰─$ cloc .
+     343 text files.
+     329 unique files.
+     163 files ignored.
+---------------------
+Language         code
+---------------------
+C                6483
+C/C++ Header     3215
+CMake            1930
+make             1506
+Python            701
+C++               496
+JSON              232
+Markdown          213
+Bourne Shell      186
+DOS Batch         140
+CSS               121
+YAML              105
+HTML               19
+---------------------
+SUM:            15347
+---------------------
+```
+
+
+I find it amazing that all of the code lives in around 6500 lines. They're
+supposedly industrial strength, and can handle large problems. Reading this
+code should provide a lot of insight into how to write good convex optimizers!
+I would love to take a course which explains the source code.
+
+
+# [stars and bars by generating functions](#stars-and-bars-by-generating-functions)
+ Say I have `C` colors of objects, and `S` slots to put these objects in. In
+ how manys can I put objects into slots, without regard to order? For example,
+ say we have 4 colors `c, m, y, k` and `2` slots `_ _`. The number of colorings
+ that I want to count is:
+
+```
+cc cm cy ck
+mc mm my mk
+yc ym yy yk
+kc km ky kk
+```
+
+Everything coloring on the lower diagonal (say, `mc`) is equivalent to one on
+the upper diagonal (`cm`). So in total, there are 10 colorings:
+
+```
+cc cm cy ck
+*  mm my mk
+*  *  yy yk
+*  *  *  kk
+```
+
+One can solve this using stars-and-bars. Take the number of slots `S` to be the
+number of stars. Take the number of colors `C` to be the number of bars. The
+answer to the stars-and-basrs is the same as the coloring question.
+
+I don't like stars and bars for this, because it seems to force an ordering of
+the colors `c1 < c2 < .. < cn`. [which bar cooresponds to which color]. Is
+there some way to not have to do this?
+
+Is there some other way to show the `(n + k - 1)Ck` without imposing this
+ordering, or some other way to count this quantity?
+
+One other way you can look at this is using multinomial expansion, but its
+computation is slightly more involved. Its advantage is that it ignores
+ordering of the objects, which is what you desire.
+
+In this case, we represent each color as the polynomial 1 + x + x^2, here the
+power of x represents the number of instances you are taking of that color. 
+
+So, if you take (1 + x + x^2)^4, you have found the number of ways to arrange
+four colors, for different numbers of slots. If you take coefficient of x^2
+from that polynomial, you get the answer to your question 
+
+Why does this set of shady manipulations not work?
+
+
+```
+answer = coeff. of x^2 in (1 + x + x^2)^4
+[We can add higher powers, won't change coeff of x^2]
+answer = coeff. of x^2 in (1 + x + x^2 + x^3)^4
+answer = coeff. of x^2 in (1 + x + x^2 + ...)^4
+answer = coeff. of x^2 in (1/(1-x))^4
+
+Call f(x) = (1/(1-x))^4
+f(x) =taylor= f(0) + f'(x) x + f''(0) x^2/2 + f'''(0) x^3 / 6 + ...
+
+1/(1-x)^4 =taylor= ... + (1/(1-x)^4)''(0) x^2/2 + ...
+
+so:
+
+answer = coeff. of x^2 in ... + (1/(1-x)^4)''(0) x^2/2 + ...
+```
+
+Now compute `(1/(1-x)^4)''` evaluated at `0` and divide
+by `2`. This gives:
+
+
+```
+(1/(1-x)^4)'' (0)
+= (-4/(1-x)^5)' (0)
+= (20/(1-x)^6) (0)
+= (20/(1-0)^6)
+= (20)
+```
+
+so we get the answer as `answer = 20/2! = 10`. ~~This is wrong, it ought to be `5`.~~
+I am stupid, the answer is indeed `10`, as shown by exhaustively enumerating before. The world is safe.
+
+# [this is not a place of honor](#this-is-not-a-place-of-honor)
+
+- [Long term nuclear waste](https://en.wikipedia.org/wiki/Long-time_nuclear_waste_warning_messages)
 
 # [Topological proof of infinitude of primes](topological-proof-infinitude-of-primes)
 
@@ -231,7 +522,7 @@ semidecidability perspective.
 - The basis $S(a, b)$ is clopen, hence the theory is decidable.
 - Every number other than the units $\{+1, -1\}$ is a multiple of
   a prime.
-- Hence, $$\mathbb Z \setminus \{ -1, +1 \} = \cup_{p \text{prime}} S(p, 0)$$.
+- Hence, $\mathbb Z \setminus \{ -1, +1 \} = \cup_{p \text{prime}} S(p, 0)$.
 - Since there a finite number of primes [for contradiction], the right hand side
   must be must be closed.
 - The complement of $\mathbb Z \setminus \{ -1, +1 \}$ is $\{ -1, +1 \}$. This
@@ -527,6 +818,7 @@ functions $f$ (a) decay at infinity, and (b) are smooth.
 
 The derivation is:
 
+$$
 \begin{align*}
 &\int_0^\infty U dV = \int_0^\infty f(x) \delta(x) = f(0) \\
 &[UV]|_0^\infty - \int_0^\infty V dU = [f(x) step(x)]|_0^\infty - \int_0^\infty \step(x) f'(x) \\
@@ -536,6 +828,7 @@ The derivation is:
 &= 0 - (0 - f(0))
 &= f(0)
 \end{align*}
+$$
 
 - Thus, the derivative of the step distribution is the dirac delta distribution.
 
@@ -641,7 +934,7 @@ $$
 
 - GCD factorization equation: $p/p' = (\alpha p' + p'')/p' = \alpha + p''/p'$.
 - Bezout equation: $\omega' p' + \omega'' p'' = g$.
-- Bezout equation as fractions $$\omega' + \omega'' p''/p' = g/p'$.
+- Bezout equation as fractions $\omega' + \omega'' p''/p' = g/p'$.
 
 
 
@@ -926,6 +1219,7 @@ by looking at $eval[l\star](T)$, since $eval[l\star](T) = l\star$.
 
 
 We can show that this point exists in the solution as follows:
+$$
 \begin{align*}
 &\eval[l\star](f) = \sum_i a_i (l\star)^i \\
 &= \sum_i a_i \phi(T)^i \\
@@ -937,6 +1231,7 @@ We can show that this point exists in the solution as follows:
 \text{Since $f \in ker(\phi)$:} \\ 
 &= 0
 \end{align*}
+$$
 
 - [This is also asked by me on this `math.se` question](https://math.stackexchange.com/questions/3766418/proof-verification-bijection-between-solutions-to-a-system-of-equations-and-k-a)
 
@@ -1036,7 +1331,7 @@ o2x = id_o
 
 Hence, we learn how to map every other arrow `ηy(p)`. If we know how to map
 the arrows, we can map the objects in the hom-sets as images of the arrows,
-since we know what ηo[id_o] maps to. Concretely:
+since we know what `ηo[id_o]` maps to. Concretely:
 
 ##### Images `ηo(q)` for `q ∈ Hom(o, o)` after `ηo(id_o)` is fixed:
 
@@ -1051,7 +1346,7 @@ takes `id_o` to `q`. By the structure of the natural transformation, we have tha
     G[p](ηx(o2x)) = ηy(p'(o2x))
 ```
 
-- Pick `x = y = o, `o2x = id_o`, `p = q`. This gives:
+- Pick `x = y = o`, `o2x = id_o`, `p = q`. This gives:
 
 ```
     G[q](ηo(id_o)) = ηo(q'(id_o))
@@ -2224,6 +2519,7 @@ We claim that due to the hyperbolicity of the space, such an $x$ cannot be
 ### References
 - [Notes On Hyperbolic and Automatic Groups: Michael Batty](https://www.math.ucdavis.edu/~kapovich/280-2009/hyplectures_papasoglu.pdf)
 - [The geometry of the word problem by Martin R Bridson](https://people.maths.ox.ac.uk/bridson/papers/bfs/bfs.pdf)
+- [My math.stackexchange question asking about why delta thin triangles help to solve conjugacy](https://math.stackexchange.com/questions/3789681/delta-thin-trianges-implies-solvable-conjugacy-problem-for-hyperbolic-groups)
 
 # [Elementary uses of Sheaves in complex analysis](#elementary-uses-of-sheaves-in-complex-analysis)
 
@@ -2585,6 +2881,7 @@ these 3-cycles, and are therefore elements of the commutator subgroup.
 - We can use these two leftover elements `4, 5` to build elements `g, h`
   which cancel off, leaving us with `(32)(21)`. We start with `g = (32)___`,
   `h = (21)___` where the `___` is to be determined:
+
 
 ```
 (32)___||(21)___||___(32)||___(21)
@@ -3841,7 +4138,7 @@ the discontinuity.
 # [Mobius inversion on Incidence Algebras](#mobius-inversion-on-incidence-algebras)
 
 Most of these functions are really defined on the _incidence algebra_ of
-the poset $P$ with ground field $K$. An _incidence_ algebra $I(P)$ is a
+the poset $P$ with ground field $K$. An _incidence_ algebra $ I(P) $ is a
 set of functions which maps intervals of $P$ to the ground field $K$. an
 interval is a tuple $(x, y) \in P \times P$ such that $x \leq P$
 (where the $\leq$ comes from the partial order on $P$). We have a product
@@ -3875,10 +4172,10 @@ $$
 (3) The inverse of the zeta function, the mobius function, a tool for mobius inversion:
 
 $$
-\begin{align*}
+\begin{aligned}
 &\mu([x, z])  = 1 \\
 &\mu([x, z])  = - \sum_{x \leq y < z} \mu([x, y]) \\
-\end{align*}
+\end{aligned}
 $$
 
 
@@ -3888,15 +4185,15 @@ defined above are convolutional inverses. that is, $\zeta \star \mu = \delta$.
 This allows us to prove:
 
 $$
-\begin{align*}
+\begin{aligned}
 &g([x, z]) = \sum_{x \leq y \leq z} f([x, y]) \\
 &g([x, z]) = \sum_{x \leq y \leq z} f([x, y]) \cdot 1 \\
 &g([x, z]) = \sum_{x \leq y \leq z} f([x, y]) \cdot \zeta(y, z) \\
 &g = f \star \zeta \\
-&g \star mu = f \star \zeta \star \mu \\
-&g \star mu = f \star \delta \\
-&g \star mu = f
-\end{align*}
+&g \star \mu = f \star \zeta \star \mu \\
+&g \star \mu = f \star \delta \\
+&g \star \mu = f
+\end{aligned}
 $$
 
 We have managed to find $f$ in terms of $g$, when previously we had $g$
@@ -3925,21 +4222,21 @@ immediately generalizes.
 - We can now define $F([x, z])$  as the sum of $f$ from $x$ to $z$:
 
 $$
-\begin{align*}
+\begin{aligned}
 &F([x, z]) \equiv \sum_{x \leq y \leq z} f(y) \\
 &= \sum_{x \leq y \leq z} fi([x, y]) \\
 &= \sum_{x \leq y \leq z} fi([x, y]) \cdot \zeta(y, z) \\
 &= fi \star \zeta
-\end{align*}
+\end{aligned}
 $$
 
 - This tells us that $f(n) = fi([0, n]) = (F \star \mu)([0, n])$:
 
 $$
-\begin{align*}
+\begin{aligned}
 &f(n) = fi([0, n]) \equiv  (F \star mu)[0, n] \\
 &=  \sum_{0 \leq x \leq n} F([0, x]) \mu([x, n])
-\end{align*}
+\end{aligned}
 $$
 
 - We note that we need to know the values of $\mu([x, n])$ for a _fixed_ n,
@@ -3947,10 +4244,10 @@ $$
   and see if this can be generalized:
 
 $$
-\begin{align*}
-\mu([4, 4]) = 1 \text{ By definition}
-\mu([3, 4]) = - \left (\sum_{3 \leq x < 4} \right) \text{ By definition }
-\end{align*}
+\begin{aligned}
+& \mu([4, 4]) = 1 \text{ By definition} \\
+& \mu([3, 4]) = - \left (\sum_{3 \leq x < 4} \right) \text{ By definition } \\
+\end{aligned}
 $$
 # [Finite differences and Umbral calculus](#finite-differences-and-umbral-calculus)
 
@@ -4158,6 +4455,11 @@ The answer is:
 > $[n, i]$ counts the number of permutations of $n$ elements with $i$
 > disjoint cycles.
 
+There is a more evocative definition, which goes like this:
+
+> $[n, i]$ counts the number of ways to seat $n$ people at $i$ 
+> circular tables, such that no table is left empty.
+
 For example, in the case of the permutations of the set $\{1, 2, 3\}$, 
 we have the permutations:
 
@@ -4174,11 +4476,29 @@ $$
 
 So, this gives the counts:
 
-$$
-[3, 3] = 1
-[3, 2] = 3
-[3, 1] = 2
-$$
+- $[3, 1] = 2$
+- $[3, 2] = 3$
+- $[3, 3] = 1$
+
+From the seating people perspective, here's how this goes:
+- $[3, 1]$ is the number of ways to seat 3 people at 1 table. The first
+  person sits at the table in only **one way**. The second person can sit to the
+  left or to the right of the first person, but this is symmetric: they too
+  have only **one way**. Now the third person can sit to the left of the first
+  person or to the left of the second person. So there are **two ways**.
+  In total, there are only two ways. **Key idea:** On a circular table, it
+  only matters who is to your left, since there is no difference between left
+  and right.
+  The second person has two choices: they
+- $[3, 3]$ is the number of ways to seat 3 people at 3 tables so that no table
+  is empty. We are forced to place one person per table.
+- $[3, 2]$ is the number of ways to seat 3 people at 2 tables so that no table
+  is empty. So we will need to have two people on the first table,
+  and then the final personal on the second table.
+  Once we pick which two people sit together in the first table, we are done,
+  because for upto two people, it doesn't matter how they sit at a table,
+  the situation is symmetric.
+
 
 These stirling numbers satisfy a recurrence:
 
@@ -5905,7 +6225,7 @@ to consider our entire arm + cup we are holding as a system for this to work.
 - [Baliense cup trick](https://www.youtube.com/watch?v=Rzt_byhgujg)
 
 
-## [Self modifying code for function calls: Look ma, I don't need a stack!](#self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack)
+# [Self modifying code for function calls: Look ma, I don't need a stack!](#self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack)
 
 If one does not have recursive calls, one can eliminate the need to push
 return addresses on a call stack by writing self-modifying code ---
@@ -12437,7 +12757,7 @@ $$
 \begin{align*}
 &0 \rightarrow \texttt{NO} \\
 &0.\overline{9} \rightarrow \texttt{NO} \\
-&1 \rightarrow \texttt{NO} \\
+&1.00\dots \rightarrow \texttt{NO} \\
 &1.a_1 a_2 \dots \rightarrow \texttt{YES} \\
 &1.\overline{9} \rightarrow \texttt{NO} \\
 &2.0 \rightarrow \texttt{NO} \\
@@ -12453,11 +12773,13 @@ as follows:
 def decide_number_in_open_1_2(f):
   # if the number is (1.abcd)
   if f(0) == 1:
-    # (1.99...99x) | look for the x.
-    # If the number is 1.999..., do not terminate.
-    # if the number is any other number of the form 1.99..x, terminate
-    i = 1
-    while f(i) != 9: i += 1
+    # (1.0...0<NOT0>) | look for the <NOT0>
+    # If the number is 1.00..., do not terminate.
+    if f(1) == 0: while f(i) == 0: i += 1
+    # (1.99...9<NOT9>) | look for the <NOT9>
+    # If the number is 1.99..., do not terminate.
+    if f(1) == 9:  while f(i) == 9: i += 1 
+    else: return
     return
   # if the number is not 1.abcd, do not terminate
   while True: pass
@@ -15366,6 +15688,16 @@ grated coconut and blend all of it. It turns into a thick red paste.
 - Once breadfruit is cooked, pour in **coconut milk**. Continue cooking for
   ten minutes.
 
+#### Rava Dosa
+- Mix bombay rava, maida/refined flour(2 tablespoons), rice flour (2 tablespoons),
+  curd/buttermilk(100ml), salt (2 tablespoon), water (2 cups). Mix to form wet batter.
+- We add the bombay rava for softness, refined flour as glue, and rice flour for
+  crispiness. Curd for sourness and thickening.
+- Next, heat up some oil, fry sesame seeds, finely chopped onions, curry leaves,
+  asaefoedita, garlic. Add all of this into the batter mix.
+- Allow batter to ferment overnight in the fridge.
+- Make pancakes the next day.
+
 # [Big list of history](#big-list-of-history)
 
 ##### Crusades were a thing of the past by the time of the fall of Constatinople. (1453)
@@ -15379,22 +15711,23 @@ The crusades were roughly from 1000 to 1200.
 Comes from miners digging under the walls. Learnt this from
 'Rise of Empires: Ottoman'.
 
-> The mining under the tunnel for the offensive (the Ottomans) was by serbian silver miners.
-> John Grant is the engineer during the siege of constantinople for the defense of the
-> Byzantines/romans. He put barrels of water, and looked at the water ripples
-> to figure out where the digging was going on.
-> to quote: 'In pretty much all of history you will find a random British
-> person, perhaps Scotsman involved in a war'
+> The mining under the tunnel for the offensive (the Ottomans) was by serbian
+> silver miners.  John Grant is the engineer during the siege of constantinople
+> for the defense of the Byzantines/romans. He put barrels of water, and looked
+> at the water ripples to figure out where the digging was going on. To quote:
+> In pretty much all of history you will find a random British person, perhaps
+> Scotsman involved in a war
+
                                                                                        
 ##### decephalized
 
-We need to clone decephalized humans and livestock.
-With thousands of brainless bodies kept alive on life support, you have test
-subjects for a limitless number of experiments that would have never been
-possible before. You also create a never-ending O negative blood supply and
-organ harvesting program.
-It the case of decephalized animals, you also get cruelty free meat. And that's
-how you bootstrap the program and port it to the human model.
+> We need to clone decephalized humans and livestock.  With thousands of
+> brainless bodies kept alive on life support, you have test subjects for a
+> limitless number of experiments that would have never been possible before.
+> You also create a never-ending O negative blood supply and organ harvesting
+> program.  It the case of decephalized animals, you also get cruelty free
+> meat. And that's how you bootstrap the program and port it to the human
+> model.
 
 ##### demagoguery
 
@@ -15406,16 +15739,46 @@ own good
 
 Named after the spartans.
 
-# [Big list of haiku](#big-list-of-haiku)
+# [Big list of words](#big-list-of-words)
 
-Contains haiku that I write, and ones that I enjoy.
+Contains words that I write, and ones that I enjoy.
 
 > Attention is all you need /
 > productivity /
 > sprighty, fleeting attention /
+
+#### syncretism
+
+I ran into the word in the description of the electronic artist 'Jaenga'.
+
+> human technological syncretism ...
+
+
+**Meaning:** the amalgamation or attempted amalgamation of different religions,
+cultures, or schools of thought.
+
 
 # [Big list of Music](#big-list-of-music)
 
 - Clipping: Experimental story telling hip-hop
 - Aesop Rock: Crazy large vocabulary, interesting hip-hop
 - Red hot Chili Peppers: Love John Frusciante's riffs.
+
+# [Big list of Social Science](#big-list-of-social-science) 
+
+- [HN link for quote below](https://news.ycombinator.com/item?id=24265400)
+
+> Social justice and "fairness" is rarely one of the main goals of a
+> meritocracy. The main goal of a meritocracy is peak performance. NFL teams
+> select the "best" quarter-backs not because it's most fair, but because it
+> will produce the most wins. Universities grant tenure to the most productive
+> professors, because that will enhance the University's reputation. Hospitals
+> hire the best doctors, because they can save the most lives. A society should
+> delegate its most important responsibilities to its smartest/most-knowledgable
+> members, because they can best lead society through worldly challenges.
+> 
+> Which is not to say that Social Justice isn't important. It is vital. But you
+> don't get to it by hiring the wrong people in the wrong roles. A meritocracy
+> excels at producing wealth - Universal Basic Income, Universal Healthcare,
+> Unemployment Insurance, better Public Schooling... these are the kind of Social
+> Justice programs that best distribute the wealth back to society.

@@ -1,0 +1,155 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><script defer src='katex/katex.min.js'    integrity='sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4'    crossorigin='anonymous'></script><script>    function on_katex_load() {        const katex_opts = [            {left: '$', right: '$', display: false},            {left: '$$', right: '$$', display: true}        ];        renderMathInElement(document.body, katex_opts);        let elemsInline = document.getElementsByClassName('latexinline');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsInline.item(i).textContent, elemsInline.item(i));}        let elemsBlock = document.getElementsByClassName('latexblock');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsBlock.item(i).textContent, elemsBlock.item(i), {displayMode: true});}    }</script><!-- To automatically render math in text elements, include the auto-render extension: --><script defer src='katex/auto-render.min.js'    integrity='sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa'    crossorigin='anonymous'    onload='on_katex_load();'></script><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
+img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+ .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
+ .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
+.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=combinatorial-intuition-for-fermats-little-theorem href='#combinatorial-intuition-for-fermats-little-theorem'> § </a> <a href=#combinatorial-intuition-for-fermats-little-theorem>Combinatorial intuition for Fermat's little theorem</a></h2>
+We wish to show that <span class='latexinline'>x^p \equiv x (\mod p)</span> <i>combinatorially</i>. Let's take
+<span class='latexinline'>2^3 (\mod 3)</span> for simplicity. The general case follows. Let's first write
+down strings which enumerate <span class='latexinline'>2^3</span>:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+To make use of <span class='latexinline'>\mod 3</span>, we're going to treat our strings as <i>necklaces</i>. So,
+for example, the string <code>011</code> looks like:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+So we have three possible rotations of the string <code>011</code>:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+<ul><li> Each of these rotations are unique, since they can be totally ordered using
+  lexicographic ordering. Indeed, for <b>any string</b> other than <code>000</code>, <code>111</code>,
+  all of its rotations are unique.</li></ul>
+<ul><li> So we can count the above 7 strings with equivalence class representatives.
+  These representatives are those strings that are the lex smallest in their
+  cyclic shifts. (Why are cyclic shifts <i>so important</i>?) </li></ul>
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+<ul><li> We've written the strings along with their cyclic subshifts, with the
+  representative of the equivalence class as the first element. So the
+  representatitives are <code>000, 001, 011, 111</code>. Note that two of these (<code>000, 111</code>)
+  are equal to their cyclic subshifts. All of the others are distinct, and generate
+  3 elements.</li></ul>
+<ul><li> So we can count the above strings as:</li></ul>
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+In general, for <code>x^p % p</code>, we will get <code>x</code> strings that contain the same letter.
+These will not have elements in their cyclic shift equivalence classes. The
+other strings will be generated as the smallest cyclic subshift of some
+string.
+<h4><a id=why-does-this-not-work-when-p-is-not-prime href='#why-does-this-not-work-when-p-is-not-prime'> § </a> Why does this not work when <code>p</code> is not prime?</h4>
+Let <code>p = 4</code>. In this case, I can pick the string <code>s = 0101</code>. It has shifts:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+so two of its shifts overlap, hence we will double-count the string <code>0101</code>
+if I counted its equivalence class as having size <code>4</code>.
+<h4><a id=relationship-to-group-theory href='#relationship-to-group-theory'> § </a> Relationship to group theory?</h4>
+<ul><li> How does this relate to group theory? Well, what we are doing is providing
+  an action of the group <code>Z/pZ</code> into the set of strings <code>X^p</code> where <code>X</code> is
+  some set. Our group action for a number <code>n ∈ Z/pZ</code> takes a
+  string <code>s ∈ X^p</code> to its cyclic shift by <code>n</code> characters.</li></ul>
+<ul><li> We are then using the fact that the orbits of an action when <code>p</code> is prime
+  has size either <code>1</code> or <code>p</code>, since the size of the orbit divides the
+  size of the group <code>Z/pZ</code>, which is <code>p</code>, a prime. The divisors of
+  <code>p</code> are only <code>1</code> and <code>p</code>. Therefore, the size of the orbit is either <code>1</code> 
+  or <code>p</code>.</li></ul>
+<ul><li> Only necklaces that have identical elements like <code>000</code> and <code>111</code> have
+  orbits of size <code>1</code>. We have <code>|X|</code> such necklaces.</li></ul>
+<ul><li> All other necklaces have size <code>p</code>.</li></ul>
+<ul><li> The rest of the proof follows similarly as before.</li></ul>
+<h4><a id=references href='#references'> § </a> References</h4>
+<ul><li> <a href=https://ts.data61.csiro.au/publications/nicta_full_text/6061.pdf>A string of pearls: proofs of Fermat's little theorem</a></li><li> <a href=https://www.youtube.com/watch?v=KfTcd0dg0DI&feature=youtu.be&t=815>Algorithms thread 1: division under mod</a></li></ul>
+</container></body></html>

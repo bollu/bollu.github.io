@@ -1,0 +1,70 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><script defer src='katex/katex.min.js'    integrity='sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4'    crossorigin='anonymous'></script><script>    function on_katex_load() {        const katex_opts = [            {left: '$', right: '$', display: false},            {left: '$$', right: '$$', display: true}        ];        renderMathInElement(document.body, katex_opts);        let elemsInline = document.getElementsByClassName('latexinline');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsInline.item(i).textContent, elemsInline.item(i));}        let elemsBlock = document.getElementsByClassName('latexblock');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsBlock.item(i).textContent, elemsBlock.item(i), {displayMode: true});}    }</script><!-- To automatically render math in text elements, include the auto-render extension: --><script defer src='katex/auto-render.min.js'    integrity='sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa'    crossorigin='anonymous'    onload='on_katex_load();'></script><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
+img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+ .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
+ .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
+.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=finite-topologies-and-dfs-numbering href='#finite-topologies-and-dfs-numbering'> § </a> <a href=#finite-topologies-and-dfs-numbering>Finite topologies and DFS numbering</a></h2>
+In this great math overflow question on
+<a href=https://mathoverflow.net/questions/44109/how-should-one-think-about-non-hausdorff-topologies/44135#44135>How to think about non hausdorff topologies in the finite case</a>, there's an answer that encourages us 
+to think of them as preorders, which are basically graphs. I wanted to understand
+this perspective, as well as connect it to DFS numbers, since they provide a
+nice way to embed these topologies into <span class='latexinline'>\mathbb R</span>.
+<h4><a id=closure-axioms-of-topology href='#closure-axioms-of-topology'> § </a> Closure axioms of topology</h4>
+We can axiomatize a topology using the kurotawski closure axioms. We need an
+idempotent monotonic function <span class='latexinline'>c: 2^X \rightarrow 2^X</span> which satisfies some
+technical conditions. Formally:
+<ol><li> <span class='latexinline'>c(\emptyset) = \emptyset)</span> [<span class='latexinline'>c</span> is a strict function: it takes bottoms to bottoms]</li><li> <span class='latexinline'>A \subseteq c(A)</span>. [monotonicity]</li><li> <span class='latexinline'>c</span> is idempotent: <span class='latexinline'>c(c(A)) = c(A)</span>. [idempotence]</li><li> for all <span class='latexinline'>A, B</span> in <span class='latexinline'>X</span>, <span class='latexinline'>c(A \cup B) = c(A) \cup c(B)</span>.</li></ol>
+Under this, a set is closed if it is a fixed point of <span class='latexinline'>c</span>: That is, a set <span class='latexinline'>A</span>
+is closed iff <span class='latexinline'>c(A) = A</span>.
+<h4><a id=slight-weakening-into-single-axiom-version href='#slight-weakening-into-single-axiom-version'> § </a> Slight weakening into Single axiom version</h4>
+Interestingly, this also gives a single axiom version of topological axioms,
+something that maybe useful for machine learning. The single axiom is that
+for all <span class='latexinline'>A, B \subseteq X</span>, <span class='latexinline'>A \cup c(A) \cup c(C(B)) \subseteq c(A \cup B)</span>.
+This does not provide that <span class='latexinline'>c(\emptyset) = \emptyset</span>, but it does provide
+the other axioms [2-4].
+<h4><a id=continuous-functions href='#continuous-functions'> § </a> Continuous functions</h4>
+A function is continuous iff <span class='latexinline'>f(c(A)) \subseteq c'(f(A))</span> for every <span class='latexinline'>A \in X</span>.
+<b>TODO:</b> give examples of why this works, and why we need <span class='latexinline'>(\subseteq)</span> and not just <span class='latexinline'>(eq)</span>.
+<h4><a id=finite-topologies-as-preorders href='#finite-topologies-as-preorders'> § </a> Finite topologies as preorders</h4>
+We draw an arrow <span class='latexinline'>x \rightarrow y</span> iff <span class='latexinline'>x \in Closure(y)</span>. Alternatively stated,
+draw an arrow iff <span class='latexinline'>Closure(x) \subseteq Closure(y)</span>. That is, we have an injection
+from the closure of <span class='latexinline'>x</span> into the closure of <span class='latexinline'>y</span>, and the arrow represents
+the injection. Alternatively, we can think of
+this as ordering the elements <span class='latexinline'>x</span> by "information". A point <span class='latexinline'>x</span> has less information
+than point <span class='latexinline'>y</span> if its closure has fewer points.                         
+<h4><a id=t0-in-terms-of-closure href='#t0-in-terms-of-closure'> § </a> T0 in terms of closure:</h4>
+<ul><li> <span class='latexinline'>X</span> is <span class='latexinline'>T_0</span> iff for points <span class='latexinline'>p, q \in X</span>, we have an open set <span class='latexinline'>O</span> which contains
+  one of the points but not the other. Formally,
+  either <span class='latexinline'>p \in O \land q \not \in O</span>, or <span class='latexinline'>p \not \in O \land q \in O</span>.</li><li> <b>Example</b> of a <span class='latexinline'>T_0</span> space is the <a href=https://en.wikipedia.org/wiki/Sierpi%C5%84ski_space>sierpinski space</a>.
+  Here, we have the open set <span class='latexinline'>\{ \bot \}</span> by considering the computation
+  <code>f(thunk) = force(thunk)</code>. For more on this perspective, see <a href=#topology-is-really-about-computation--part-1>Topology is
+  really about computation </a>.
+  This open set contains only <span class='latexinline'>\bot</span> and not <span class='latexinline'>\ltop</span>.</li><li> <b>Closure definition:</b> <span class='latexinline'>X</span> is <span class='latexinline'>T_0</span> iff <span class='latexinline'>x \neq y \implies c(\{x\}) \neq c(\{y\})</span></li></ul>
+<h4><a id=t1-in-terms-of-closure href='#t1-in-terms-of-closure'> § </a> T1 in terms of closure:</h4>
+<ul><li> <span class='latexinline'>X</span> is <span class='latexinline'>T_1</span> iff for all <span class='latexinline'>p, q</span> in <span class='latexinline'>X</span>, we have open sets <span class='latexinline'>U_p, U_q</span> such that
+  <span class='latexinline'>U_p, U_q</span> are open neighbourhoods of <span class='latexinline'>p, q</span> which do not contain the "other point".
+  Formally, we need <span class='latexinline'>p \in U_p</span> and <span class='latexinline'>q \not \in U_p</span>, and similarly <span class='latexinline'>q \in U_q</span> and <span class='latexinline'>p \not \in U_q</span>.
+  That is, <span class='latexinline'>U_p</span> and <span class='latexinline'>U_q</span> can split <span class='latexinline'>p, q</span> apart, but <span class='latexinline'>U_p</span> and <span class='latexinline'>U_q</span> need not
+  be disjoint. </li><li> <b>Example</b> of <span class='latexinline'>T_1</span> is the zariski/co-finite topology on <span class='latexinline'>\mathbb Z</span>, where
+  the open sets are complements of finite sets. Given two integers <span class='latexinline'>p, q</span>, use the
+  open sets as the complements of the closed finite sets <span class='latexinline'>U_p = \{q\}^C = \mathbb Z - q</span>, 
+  and <span class='latexinline'>U_q = \{p\}^C = \mathbb Z - p</span>. These separate <span class='latexinline'>p</span> and <span class='latexinline'>q</span>,
+  but have <i>huge</i> intersection: <span class='latexinline'>U_p \cap U_q = Z - \{ p, q\}</span>.</li><li> <b>Closure definition:</b> <span class='latexinline'>X</span> is <span class='latexinline'>T_1</span> iff <span class='latexinline'>c(\{x\}) = \{x\}</span>.</li><li> <a href=https://mathoverflow.net/a/337/123769>T1 has all singleton sets as closed</a></li></ul>
+<h4><a id=haussdorf-t2-in-terms-of-closure href='#haussdorf-t2-in-terms-of-closure'> § </a> Haussdorf (T2) in terms of closure</h4>
+<ul><li>  <span class='latexinline'>X</span> ix <span class='latexinline'>T_1</span> iff for all <span class='latexinline'>p, q</span> in <span class='latexinline'>X</span>, we have open set <span class='latexinline'>U_p, U_q</span> such that
+   they are disjoint (<span class='latexinline'>U_p \cap U_q = \emptyset</span>) and are neighbourhoods of <span class='latexinline'>p</span>, <span class='latexinline'>q</span>:
+   <span class='latexinline'>p \in U_p</span> and <span class='latexinline'>q \in U_q</span>.</li><li> <b>Example</b> of a <span class='latexinline'>T_2</span> space is that of the real line, where any two points <span class='latexinline'>p, q</span>
+  can be separated with epsilon balls with centers <span class='latexinline'>p, q</span> and radii <span class='latexinline'>(p - q) / 3</span>.</li><li> <b>Closure definition</b>: <span class='latexinline'>X</span> is <span class='latexinline'>T_2</span> iff <span class='latexinline'>x \neq y</span> implies there is a set <span class='latexinline'>A \in 2^X</span> such that
+  <span class='latexinline'>x \not \in c(A) \land y \not \in c(X - A)</span> where <span class='latexinline'>X - A</span> is the set complement.</li></ul>
+<h4><a id=relationship-between-dfs-and-closure-when-the-topology-is-t0 href='#relationship-between-dfs-and-closure-when-the-topology-is-t0'> § </a> Relationship between DFS and closure when the topology is <span class='latexinline'>T0</span></h4>
+If the topology is <span class='latexinline'>T0</span>, then we know that the relation will be a poset,
+and hence the graph will be a DAG. Thus, whenever we have <span class='latexinline'>x \rightarrow y</span>, we 
+will get 
+<h4><a id=dfs-the-t0-case href='#dfs-the-t0-case'> § </a> DFS: the T0 case</h4>
+<h4><a id=dfs-the-back-edges href='#dfs-the-back-edges'> § </a> DFS: the back edges</h4>
+    
+</container></body></html>

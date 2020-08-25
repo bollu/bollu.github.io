@@ -1,0 +1,57 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><script defer src='katex/katex.min.js'    integrity='sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4'    crossorigin='anonymous'></script><script>    function on_katex_load() {        const katex_opts = [            {left: '$', right: '$', display: false},            {left: '$$', right: '$$', display: true}        ];        renderMathInElement(document.body, katex_opts);        let elemsInline = document.getElementsByClassName('latexinline');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsInline.item(i).textContent, elemsInline.item(i));}        let elemsBlock = document.getElementsByClassName('latexblock');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsBlock.item(i).textContent, elemsBlock.item(i), {displayMode: true});}    }</script><!-- To automatically render math in text elements, include the auto-render extension: --><script defer src='katex/auto-render.min.js'    integrity='sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa'    crossorigin='anonymous'    onload='on_katex_load();'></script><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
+img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+ .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
+ .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
+.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=proof-of-minkowski-convex-body-theorem href='#proof-of-minkowski-convex-body-theorem'> § </a> <a href=#proof-of-minkowski-convex-body-theorem>Proof of minkowski convex body theorem</a></h2>
+We can derive a proof of the minkowski convex body theorem starting from
+Blichfeldt’s theorem.
+<h4><a id=blichfeldts-theorem href='#blichfeldts-theorem'> § </a> Blichfeldt's theorem</h4>
+This theorem allows us to prove that a set 
+of large-enough-size in any lattice will have two points such that their
+difference lies in the lattice. Formally, we have:
+<ol><li> A lattice <span class='latexinline'>L(B) \equiv \{ Bx : x \in \mathbb Z^n \}</span> for some basis 
+   <span class='latexinline'>B \in \mathbb \R^n</span>. The lattice <span class='latexinline'>L</span> is spanned by integer linear
+   combinations of rows of <span class='latexinline'>B</span>.</li><li> A body <span class='latexinline'>S \subseteq R^n</span> which <b>need not be convex!</b>, which 
+   has volume greater than <span class='latexinline'>\det(B)</span>. Recall that for a lattice <span class='latexinline'>L(B)</span>,
+   the volume of a fundamental unit / fundamental parallelopiped is <span class='latexinline'>det(B)</span>.</li></ol>
+Blichfeldt's theorem tells us that there exists two points <span class='latexinline'>x_1, x_2 \in S</span>
+such that <span class='latexinline'>x_1 - x_2 \in L</span>.
+<h4><a id=proof href='#proof'> § </a> Proof</h4>
+The idea is to:
+<ol><li> Chop up sections of <span class='latexinline'>S</span> across all translates of the fundamental parallelopiped
+   that have non-empty intersections with <span class='latexinline'>S</span> back to the origin. This makes
+   all of them overlap with the fundamental parallelopiped with the origin.</li><li> Since <span class='latexinline'>S</span> has volume great that <span class='latexinline'>\det(B)</span>, but the fundamental paralellopiped
+   only has volume <span class='latexinline'>\det(B)</span>, points from two different parallelograms <b>must</b>
+   overlap.</li><li> "Undo" the translation to find two points which are of the form <span class='latexinline'>x_1 = l_1 + \delta</span>,
+   <span class='latexinline'>x_2 = l_2 + \delta</span>. they must have the same <span class='latexinline'>\delta</span> since they overlapped
+   when they were laid on the fundamental paralellopiped. Also notice that <span class='latexinline'>l_1 \neq l_2</span>
+   since they came from two different parallograms on the plane!</li><li> Notice that <span class='latexinline'>x_1 - x_2 = l_1 - l_2\in L \neq 0</span>, since we already argued
+   that <span class='latexinline'>l_1 \neq l_2</span>. This gives us what we want.</li></ol>
+<h4><a id=minkowskis-convex-body-theorem-from-blichfeldts-theorem href='#minkowskis-convex-body-theorem-from-blichfeldts-theorem'> § </a> Minkowskis' Convex body Theorem from Blichfeldt's theorem</h4>
+Consider a convex set <span class='latexinline'>S \subseteq \mathbb R^n</span>
+that is symmetric about the origin with volume greater than <span class='latexinline'>2^n det(B)</span>.
+Create a new set <span class='latexinline'>T</span> which is <span class='latexinline'>S * 0.5</span>. Formally:
+<div class='latexblock'>T \equiv S/2 = \{ (x_1/2, x_2, \dots, x_n/2)  : (x_1, x_2, \dots, x_n) \in S \}</div>
+We now see that <span class='latexinline'>Vol(T) > det(B)</span> to invoke  Blichfeldt's theorem.
+Formally:
+<div class='latexblock'>Vol(T) = 1/2^n Vol(S) > 1/2^n (2^n det(B)) = det(B)</div>
+We can apply Blichfeldt's theorem to get our hands on two points <span class='latexinline'>x_1, x_2 \in T</span>
+such that <span class='latexinline'>x_1 - x_2 \in L</span>. 
+<div class='latexblock'>
+\begin{align*}
+&x_1 \in T \Rightarrow 2x_1 \in S ~(S = 2T) \\
+&x_2 \in T \Rightarrow 2x_2 \in S ~(S = 2T) \\
+&2x_2 \in S \Rightarrow -2x_2 \in S~\text{($S$ is symmetric about origin)} \\
+&\frac{1}{2}(2x_1) + \frac{1}{2} (-2x_2) \in S~\text{($S$ is convex)}\\
+&x_1 - x_2 \in S~\text{(Simplification)}\\
+&\text{nonzero lattice point}~\in S \\
+\end{align*}
+</div>
+<h4><a id=references href='#references'> § </a> References</h4>
+<ul><li> <a href=https://www.theoremoftheday.org/GeometryAndTrigonometry/Minkowski/TotDMinkowski.pdf>Theorem of the day</a></li></ul>
+</container></body></html>

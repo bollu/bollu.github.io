@@ -24,7 +24,6 @@
 #define TAKE
 #define KEEP
 
-
 using namespace std;
 
 using ll = long long;
@@ -159,7 +158,7 @@ struct L {
         for(int i = 0; s[i] != 0; ++i) { l = l.next(s[i]); } return l;
     }
 
-    L prev(char c) {
+    L prev(char c) const {
         if (c == '\n') { assert(false && "don't know how to walk back newline");
         } else { return prevcol(); }
     }
@@ -176,8 +175,7 @@ struct L {
 
     bool operator != (const L &other) const {   return !(*this == other); }
 };
-const L lfirstloc = L(0, 1, 1);
-const L lundefined = L(-1, -1, -1);
+const L LOC_FIRST = L(0, 1, 1);
 
 std::ostream &operator<<(std::ostream &o, const L &l) {
     return cout << ":" << l.line << ":" << l.col;
@@ -720,7 +718,7 @@ T* tokenizeBlock(const char *s, const ll len, const L lbegin) {
 
 
 void tokenize(const char *s, const ll len, vector<T*> &ts) {
-    Span span(lfirstloc, lfirstloc);
+    Span span(LOC_FIRST, LOC_FIRST);
     while (span.end.si < len) {
         T *t = tokenizeBlock(s, len, span.end);
         assert(t != nullptr);
@@ -735,7 +733,10 @@ void tokenize(const char *s, const ll len, vector<T*> &ts) {
 
 
 char* pygmentize(const char *tempdirpath, 
-        const char *code, int codelen, const char *lang, const char *raw_input, const L loc) {
+        const char *code, 
+        int codelen, 
+        const char *lang, const char *raw_input,
+        const L loc) {
 
 
     char latex_file_path[512];
@@ -812,6 +813,11 @@ pair<ll, L> removeAlignDollarsHack(const char *raw_input, const ll inwritelen,
 
 GIVE char* compileLatex(KEEP const char *tempdirpath, ll inwritelen, 
         KEEP const char *raw_input, L loc) {
+
+
+    char *out = (char *)calloc(sizeof(char), (inwritelen + 2));
+    for(int i = 0; i < inwritelen; ++i) { out[i] = raw_input[loc.si + i]; }
+    return out;
 
     tie(inwritelen, loc) = removeAlignDollarsHack(raw_input, inwritelen, loc);
 
@@ -1044,25 +1050,20 @@ void toHTML(const char *raw_input,
 
         case TT::LatexInline: 
         case TT::LatexBlock: {
-          // const Span span = Span(t->span.begin.next("$"), t->span.end.prev("$"));
-          const Span span = t->span; 
+
+          const Span s = t->ty == TT::LatexBlock ?
+              Span(t->span.begin.next("$$"), t->span.end.prev("$$")) :
+              Span(t->span.begin.next('$'), t->span.end.prev('$'));
+
           if (t->ty == TT::LatexBlock) { 
               outlen += sprintf(outs + outlen, "<div class='latexblock'>");
           } else if (t->ty == TT::LatexInline) {
               outlen += sprintf(outs + outlen, "<span class='latexinline'>");
           }
-
-          if (G_OPTIONS.latex2ascii || true) {
-              char *outcompile = compileLatex(tempdirpath,
-                      span.nchars(),
-                      raw_input, t->span.begin);
-              strcpy(outs + outlen, outcompile);
-              outlen += strlen(outcompile);
-              free(outcompile);
-          } else {
-              strncpy(outs + outlen, raw_input + t->span.begin.si, t->span.nchars());
-              outlen += t->span.nchars();
-          }
+          const char *outcompile = compileLatex(tempdirpath,
+                  s.nchars(), raw_input, s.begin);
+          strcpy(outs + outlen, outcompile);
+          outlen += strlen(outcompile);
 
           if (t->ty == TT::LatexBlock) { 
               outlen += sprintf(outs + outlen, "</div>");
@@ -1070,6 +1071,32 @@ void toHTML(const char *raw_input,
               outlen += sprintf(outs + outlen, "</span>");
           }
           return;
+
+          // #// const Span span = Span(t->span.begin.next("$"), t->span.end.prev("$"));
+          // #if (t->ty == TT::LatexBlock) { 
+          // #    outlen += sprintf(outs + outlen, "<div class='latexblock'>");
+          // #} else if (t->ty == TT::LatexInline) {
+          // #    outlen += sprintf(outs + outlen, "<span class='latexinline'>");
+          // #}
+
+          // #if (G_OPTIONS.latex2ascii || true) {
+          // #    char *outcompile = compileLatex(tempdirpath,
+          // #            span.nchars(),
+          // #            raw_input, t->span.begin);
+          // #    strcpy(outs + outlen, outcompile);
+          // #    outlen += strlen(outcompile);
+          // #    free(outcompile);
+          // #} else {
+          // #    strncpy(outs + outlen, raw_input + t->span.begin.si, t->span.nchars());
+          // #    outlen += t->span.nchars();
+          // #}
+
+          // #if (t->ty == TT::LatexBlock) { 
+          // #    outlen += sprintf(outs + outlen, "</div>");
+          // #} else if (t->ty == TT::LatexInline) { 
+          // #    outlen += sprintf(outs + outlen, "</span>");
+          // #}
+          // #return;
         }
 
         // case TT::LatexBlock: {
@@ -1209,6 +1236,34 @@ const char html_preamble[] =
 "<meta charset='UTF-8'>"
 "<html>"
 "<head>"
+// ===KateX===
+"<link rel='stylesheet' href='katex/katex.min.css'"
+"    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'"
+"    crossorigin='anonymous'>"
+"<!-- The loading of KaTeX is deferred to speed up page rendering -->"
+"<script defer src='katex/katex.min.js'"
+"    integrity='sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4'"
+"    crossorigin='anonymous'></script>"
+"<script>"
+"    function on_katex_load() {"
+"        const katex_opts = ["
+"            {left: '$', right: '$', display: false},"
+"            {left: '$$', right: '$$', display: true}"
+"        ];"
+"        renderMathInElement(document.body, katex_opts);"
+"        let elemsInline = document.getElementsByClassName('latexinline');"
+// https://stackoverflow.com/questions/39959563/render-math-with-katex-in-the-browser
+"        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsInline.item(i).textContent, elemsInline.item(i));}"
+"        let elemsBlock = document.getElementsByClassName('latexblock');"
+"        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsBlock.item(i).textContent, elemsBlock.item(i), {displayMode: true});}"
+"    }"
+"</script>"
+"<!-- To automatically render math in text elements, include the auto-render extension: -->"
+"<script defer src='katex/auto-render.min.js'"
+"    integrity='sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa'"
+"    crossorigin='anonymous'"
+"    onload='on_katex_load();'></script>"
+// ===End KateX===
 "<title> A Universe of Sorts </title>"
 "<style>"
 "@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}"
@@ -1253,7 +1308,7 @@ const char html_preamble[] =
 // monospace font
 " .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }"
 // Math fonts, math font control: latex block and latex inline should have letter spacing
-" .latexblock, .latexinline { font-family: 'Blog Symbol', monospace; }"
+// " .latexblock, .latexinline { font-family: 'Blog Symbol', monospace; }"
 // padding and margin for blocks
 ".latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }"
 ".code, code { background-color: #FFFFFF; width: 100%; }"
@@ -1281,37 +1336,6 @@ const char html_preamble[] =
 // "    .container { max-width: 100%; padding: 0; margin-left: 10%; margin-right: 0px;"
 // "                 padding-left: 0px; padding-right: 0px; border: none; }"
 // "}"
-// HEVEA
-".latexblock .li-itemize{margin:1ex 0ex;}"
-".latexblock .li-enumerate{margin:1ex 0ex;}"
-".latexblock .footnotetext{margin:0ex; padding:0ex;}"
-".latexblock div.footnotetext P{margin:0px; text-indent:1em;}"
-".latexblock .thefootnotes{text-align:left;margin:0ex;}"
-".latexblock .dt-thefootnotes{margin:0em;}"
-".latexblock .dd-thefootnotes{margin:0em 0em 0em 2em;}"
-".latexblock .footnoterule{margin:1em auto 1em 0px;width:50%;}"
-".latexblock .caption{padding-left:2ex; padding-right:2ex; margin-left:auto; margin-right:auto}"
-".latexblock .title{margin:2ex auto;text-align:center}"
-".latexblock .titlemain{margin:1ex 2ex 2ex 1ex;}"
-".latexblock .center{text-align:center;margin-left:auto;margin-right:auto;}"
-".latexblock .flushleft{text-align:left;margin-left:0ex;margin-right:auto;}"
-".latexblock .flushright{text-align:right;margin-left:auto;margin-right:0ex;}"
-".latexblock div table{margin-left:inherit;margin-right:inherit;margin-bottom:2px;margin-top:2px}"
-".latexblock td table{margin:auto;}"
-".latexblock table{border-collapse:collapse;}"
-".latexblock td{padding:0;}"
-".latexblock .cellpadding0 tr td{padding:0;}"
-".latexblock .cellpadding1 tr td{padding:1px;}"
-".latexblock pre{text-align:left;margin-left:0ex;margin-right:auto;}"
-".latexblock blockquote{margin-left:4ex;margin-right:4ex;text-align:left;}"
-".latexblock td p{margin:0px;}"
-".latexblock .hbar{border:none;height:2px;width:100%;background-color:black;}"
-".latexblock .display{border-collapse:separate;border-spacing:2px;width:auto; border:none;}"
-".latexblock .dcell{white-space:nowrap;padding:0px; border:none;}"
-".latexblock .dcenter{margin:0ex auto;}"
-".latexblock .theorem{text-align:left;margin:1ex auto 1ex 0ex;}"
-".latexblock .tst{font-family:sans;font-style:oblique;color:maroon}"
-".latexblock .highlight{color:lime}"
 // end style
 "</style>"
 "</head>"
@@ -1380,12 +1404,12 @@ int main(int argc, char **argv) {
     assert(success != nullptr && "unable to create temporary directory");
 
     // index of the latest <h1> tag.
-    int ix_h1 = 0;
+    ll ix_h1 = 0;
 
     // write out index.html
     {
         // seek till the first <h1>: put all that data in index.html
-        while (ix_h1 < ts.size() && !is_h1(ts[ix_h1])) { ix_h1++; }
+        while (ix_h1 < (ll)ts.size() && !is_h1(ts[ix_h1])) { ix_h1++; }
         cerr << "===Writing index.html...===\n";
         // [0, ix_h1) stays in index.html
 
@@ -1410,13 +1434,14 @@ int main(int argc, char **argv) {
     }
 
     // write out all of the other .html files.
-    while(ix_h1 < ts.size()) {
+    while(ix_h1 < (ll)ts.size()) {
         const int ix_start = ix_h1;
         assert(ts[ix_start]->ty == TT::Heading);
         THeading *heading = (THeading*)ts[ix_start];
         assert(heading->hnum == 1);
 
-        ix_h1++; while (ix_h1 < ts.size() && !is_h1(ts[ix_h1])) { ix_h1++; }
+        ix_h1++;
+        while (ix_h1 < (ll)ts.size() && !is_h1(ts[ix_h1])) { ix_h1++; }
         const char *url = mkHeadingURL(raw_input, heading);
 
         // TODO: find some easy way to print WTF is the data in the heading.
@@ -1457,7 +1482,6 @@ int main(int argc, char **argv) {
         return 1;
     }
     assert(frss != nullptr);
-    // fwrite(outbuf, 1, strlen(outbuf), fhtml);
     fclose(frss);
     
     return 0;

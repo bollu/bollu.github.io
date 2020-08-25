@@ -1,0 +1,221 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><script defer src='katex/katex.min.js'    integrity='sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4'    crossorigin='anonymous'></script><script>    function on_katex_load() {        const katex_opts = [            {left: '$', right: '$', display: false},            {left: '$$', right: '$$', display: true}        ];        renderMathInElement(document.body, katex_opts);        let elemsInline = document.getElementsByClassName('latexinline');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsInline.item(i).textContent, elemsInline.item(i));}        let elemsBlock = document.getElementsByClassName('latexblock');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsBlock.item(i).textContent, elemsBlock.item(i), {displayMode: true});}    }</script><!-- To automatically render math in text elements, include the auto-render extension: --><script defer src='katex/auto-render.min.js'    integrity='sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa'    crossorigin='anonymous'    onload='on_katex_load();'></script><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
+img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+ .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
+ .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
+.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=finite-differences-and-umbral-calculus href='#finite-differences-and-umbral-calculus'> § </a> <a href=#finite-differences-and-umbral-calculus>Finite differences and Umbral calculus</a></h2>
+Umbral calculus lays out a large collection of "umbral" / "shadowy"
+coincidences across combinatorics and calculus. Here, I'll lay out some of
+these that I learnt from <a href=https://en.wikipedia.org/wiki/Concrete_Mathematics>Concrete Mathematics</a>.
+I hope to use this for myself to motivate a bunch of combinatorics. I'll
+provide an interesting proof of why <span class='latexinline'>\sum{1 \leq k < n} k^2 = k(k-1)/2</span>
+using this umbral calculus.
+<h4><a id=discrete-derivative-forward-difference href='#discrete-derivative-forward-difference'> § </a> Discrete Derivative: Forward difference</h4>
+We begin by trying to build a discrete version of the derivative operator. The
+derivative of <code>f</code> will be denoted using <code>f'</code>. The <i>forward</i> difference
+of <span class='latexinline'>f: \mathbb R \rightarrow \mathbb R</span> is defined as:
+<div class='latexblock'>
+\delta f: \mathbb R \rightarrow \mathbb R; (\delta f)(x) = f(x + 1) - f(x)
+</div>
+Immediately, we can see that this operator is linear:
+<div class='latexblock'>
+\begin{align*}
+&\delta(f + g) 
+  &= (f+g)(x+1) - (f+g)(x)  \\
+  &= (f(x+1) - f(x)) + (g(x+1)-g(x))  \\
+  &= (\delta f) + (\delta g)  \\
+&\delta(\alpha f)(x) 
+  &= (\alpha f)(x+1) - (\alpha f)(x) \\
+  &= \alpha \cdot (f(x+1) - f(x))   \\
+  &= \alpha (\delta f)
+\end{align*}
+</div>
+it obeys a slightly corrupted version of the chain rule, <span class='latexinline'>(fg)' = f' g + g' f</span>:
+<div class='latexblock'>
+\begin{align*}
+&\delta(fg)  \\
+  &= (fg)(x+1) - (fg)(x)  \\
+  &= f(x+1)g(x+1) - f(x)g(x) + 0 \\
+  &= f(x+1)g(x+1) - f(x)g(x) + [f(x)g(x+1) - f(x)g(x+1)] \\
+  &= g(x+1)[f(x+1) - f(x)] + f(x)[g(x+1) - g(x)] \\
+  &= g(x+1)(\delta f)(x) + f(x) (\delta g)(x) \\
+  &= (S \delta f)(x) + (f \delta g)(x) [(Sh)(x) \equiv h(x+1)] \\
+  &= (S  \delta f + f \delta g)(x) \\
+\end{align*}
+</div>
+We need this new <span class='latexinline'>S</span> operator to shift the function's input from <span class='latexinline'>x</span> to <span class='latexinline'>x+1</span>.
+<h4><a id=falling-factorial-as-polynomials href='#falling-factorial-as-polynomials'> § </a> Falling factorial as polynomials</h4>
+cool, now that we seem to have a linear derivative operator that behaves
+roughly sanely, let's test it out! The first reasonable target is a polynomial,
+so let's try <span class='latexinline'>x^2</span>:
+<div class='latexblock'>
+\delta(x^2) = (x+1)^2 - x^2 = 2x + 1
+</div>
+This is disappointing, it does not behave very well <code>:(</code> However, there <i>is</i>
+an analogue that does well. This is the <i>falling factorial</i>, defined as:
+<div class='latexblock'>
+x^{(n)} \equiv x(x-1)(x-2)\cdots(x-n+1)
+</div>
+For example:
+<div class='latexblock'>
+x^{(0)} = 1 \\
+x^{(1)} = x \\
+x^{(2)} = x(x-1) \\
+x^{(3)} = x(x-1)(x-2) \\
+</div>
+Let's try and apply our discrete difference <span class='latexinline'>\delta</span>:
+<div class='latexblock'>
+\begin{align*}
+&\delta(x^{(2)})  \\
+  & = (x+1)(x-1+1) - x(x-1) \\
+  & = (x+1)(x) - x(x-1) \\
+  & = x*2 = 2x(1) \\
+&\delta(x^{(3)})  \\
+  &= (x+1)(x-1+1)(x-2+1) - x(x-1)(x-2) \\
+  &= (x+1)(x)(x-1) - x(x-1)(x-2) \\ 
+  &= x(x-1)((x+1) - (x-2)) = 3x(x-1) = 3x^{(2)} \\
+\end{align*}
+</div>
+These falling factorials look pretty unnatural though, why do we care?
+Well, once we build some integral calculus, we can handle our problem
+of <span class='latexinline'>\sum_{1 \leq i < k} i^2</span> using this calculus, by rewriting <span class='latexinline'>i^2</span>
+in terms of these falling factorials.
+<h4><a id=sums-as-discrete-integrals href='#sums-as-discrete-integrals'> § </a> Sums as discrete integrals</h4>
+We want to think of <span class='latexinline'>\sum_{0 \leq i < n} f(i)</span> as the correct variant of
+<span class='latexinline'>\int_0^n f(i) di</span>. The most important property of an integral is
+the fundamental theorem of calculus:
+<div class='latexblock'>
+\int_a^b f'(i) di = f(b) - f(a) \mapsto \sum_{a \leq i < b} (\delta f)(i) =?= f(b) - f(a)
+</div>
+we can check if the assertion is true:
+<div class='latexblock'>
+\begin{align*}
+&\sum_{a \leq i < b} (\delta f)(i)  \\
+&= [f(a+1) - f(a)] + [f(a+2) - f(a+1)] + [f(a+3)-f(a+2)] + \cdots + [f(b) - f(b-1)] \\
+&= f(b) - f(a) \quad \text{(The sum telescopes)} 
+\end{align*}
+</div>
+Sweet, so we just kicked a theory of calculus of the ground. Let's put
+this to some use:
+<h4><a id=gauss-famous-formula-from-discrete-calculus href='#gauss-famous-formula-from-discrete-calculus'> § </a> Gauss' famous formula from discrete calculus</h4>
+Let's begin by deriving the closed form for <span class='latexinline'>[1\cdot(k-1)]</span> naturals:
+                                                
+<div class='latexblock'>
+\sum_{0 \leq i < n} i = \sum_{0 \leq i < n} i^{(1)} = i^{(2)}/2 \big|_{0}^n = n(n-1)/2
+</div>
+Let's now derive the closed form form the sum of squares of <span class='latexinline'>[1\cdot(k-1)]</span>:
+<div class='latexblock'>
+\begin{align*}
+&\sum_{0 \leq i < n} i^2  \\
+&= \sum_{0 \leq i < n} i*(i-1) + i  \\
+&= \sum_{0 \leq i < n} i^{(2)} + i^{(1)} \\
+&= n^{(3)}/2 + n^{(2)}/2 \\
+&= n(n-1)(n-2)/3 + n(n-1)/2 \\
+&= n(n-1)(n/3 - 2/3 + 1/2) \\
+&= n(n-1)(2n - 1)/6 \\
+\end{align*}
+</div>
+Trying to perform this process in general does beg a question: how do we
+convert from <span class='latexinline'>x^n</span> into some combination of rising and falling factorials?
+It turns out that <i>Stirling Numbers</i> will show up to aid this conversion.
+But before that, let's see some more connections.
+<h4><a id=2x-as-the-combinatorial-version-of-ex href='#2x-as-the-combinatorial-version-of-ex'> § </a> <span class='latexinline'>2^x</span> as the combinatorial version of <span class='latexinline'>e^x</span></h4>
+We want to find the analogue of the exponential function <span class='latexinline'>e^x</span>, which
+satisfies the equation <span class='latexinline'>f'(x) = f(x)</span>. Setting this up in the discrete case:
+<div class='latexblock'>
+\begin{align*}
+&d'f(x) = f(x) |  f(0) = 1 \\
+&f(x+1) - f(x) = f(x) | f(0) = 1 \\
+&f(x+1) = 2f(x) | f(0) = 1 \\
+&f(n) = 2^n
+\end{align*}
+</div>
+What does this buy us? It gives us a nice proof that <span class='latexinline'>\sum_{k} nCk = 2^n</span>.
+It proceeds by taking the taylor of <span class='latexinline'>e^x</span>, "combinatorializing it", and then
+simplifying:
+<div class='latexblock'>
+\begin{align*}
+&e^x = \sum_{n=0}^\infty \frac{x^n}{n!} \\
+&2^x = \sum_{n=0}^\infty \frac{x^{(n)}}{n!} \\
+&     = \sum_{n=0}^\infty \frac{x*(x-1)*(x-2)*\cdots(x-n+1)}{n!} \\
+&     = \sum_{n=0}^\infty \frac{x*(x-1)*(x-2)*\cdots(x-n+1)}{n!}
+\end{align*}
+</div>
+<h4><a id=harmonic-series-as-the-combinatorial-version-of-logarithm href='#harmonic-series-as-the-combinatorial-version-of-logarithm'> § </a> Harmonic series as the combinatorial version of logarithm</h4>
+In the continuous case, we have that <span class='latexinline'>\integral 1/x = \log x</span>. In the
+discrete case, we get <span class='latexinline'>\sum_{i=1}^n 1/x \equiv H_n</span>, the sum of the
+first <span class='latexinline'>n</span> harmonic numbers. This explains <i>why</i> the harmonic numbers
+keep showing up in different places across discrete math --- We're often
+trying to integrate some kind of <span class='latexinline'>1/x</span> quantity.
+This also may tell us that <span class='latexinline'>H_n</span> and <span class='latexinline'>2^n</span> are somewhat "weak inverses" of each other. 
+I haven't thought about this weak inverse thing too much.
+<h4><a id=stirling-numbers-of-the-first-kind-for-convering-between-polynomials-and-falling-factorials href='#stirling-numbers-of-the-first-kind-for-convering-between-polynomials-and-falling-factorials'> § </a> Stirling numbers of the first kind for convering between polynomials and falling factorials</h4>
+We can express <span class='latexinline'>x^{(n)} = \sum_{k=0}^n [n, k] x^k</span> where <span class='latexinline'>[n, k]</span> 
+are the (yet to be defined) unsigned stirling numbers of the first kind. 
+(aside: I wonder if this can be derived from some kind of mobius inversion).
+We begin my in fact <i>defining</i> the stirling numbers of the first kind, <span class='latexinline'>[n, k]</span>
+as the coefficients of the rising factorial:
+<div class='latexblock'>
+x^{(n)} = x(x+1)(x+2) \dots (x+n-1) = \sum_{i=0}^n [n, i] x^i
+</div>
+The question as a combinatorialist is:
+<blockquote> what do the unsigned striling numbers of the first kind, <span class='latexinline'>[n, i]</span>, count?</blockquote>
+The answer is:
+<blockquote> <span class='latexinline'>[n, i]</span> counts the number of permutations of <span class='latexinline'>n</span> elements with <span class='latexinline'>i</span> disjoint cycles.</blockquote>
+There is a more evocative definition, which goes like this:
+<blockquote> <span class='latexinline'>[n, i]</span> counts the number of ways to seat <span class='latexinline'>n</span> people at <span class='latexinline'>i</span>  circular tables, such that no table is left empty.</blockquote>
+For example, in the case of the permutations of the set <span class='latexinline'>\{1, 2, 3\}</span>, 
+we have the permutations:
+<div class='latexblock'>
+\begin{align*}
+(1)(2)(3) \text{3 cycles} \\
+(12)(3) \text{2 cycles} \\
+(1)(23) \text{2 cycles} \\
+(2)(13) \text{2 cycles} \\
+(132) \text{1 cycle} \\
+(123) \text{1 cycle} \\
+\end{align*}
+</div>
+So, this gives the counts:
+<ul><li> <span class='latexinline'>[3, 1] = 2</span></li><li> <span class='latexinline'>[3, 2] = 3</span></li><li> <span class='latexinline'>[3, 3] = 1</span></li></ul>
+From the seating people perspective, here's how this goes:
+<ul><li> <span class='latexinline'>[3, 1]</span> is the number of ways to seat 3 people at 1 table. The first
+  person sits at the table in only <b>one way</b>. The second person can sit to the
+  left or to the right of the first person, but this is symmetric: they too
+  have only <b>one way</b>. Now the third person can sit to the left of the first
+  person or to the left of the second person. So there are <b>two ways</b>.
+  In total, there are only two ways. <b>Key idea:</b> On a circular table, it
+  only matters who is to your left, since there is no difference between left
+  and right.
+  The second person has two choices: they</li><li> <span class='latexinline'>[3, 3]</span> is the number of ways to seat 3 people at 3 tables so that no table
+  is empty. We are forced to place one person per table.</li><li> <span class='latexinline'>[3, 2]</span> is the number of ways to seat 3 people at 2 tables so that no table
+  is empty. So we will need to have two people on the first table,
+  and then the final personal on the second table.
+  Once we pick which two people sit together in the first table, we are done,
+  because for upto two people, it doesn't matter how they sit at a table,
+  the situation is symmetric.</li></ul>
+These stirling numbers satisfy a recurrence:
+<div class='latexblock'>
+[n+1, k] = n[n, k] + [n, k-1]
+</div>
+This can be seen combinatorially. If we want the number permutations of <span class='latexinline'>n+1</span> objects
+with <span class='latexinline'>k</span> cycles, we can either:
+<ol><li> Take the permutations of <span class='latexinline'>n</span> objects with <span class='latexinline'>k-1</span> cycles, <span class='latexinline'>[n, k-1]</span>, and then
+   insert the new <span class='latexinline'>(n+1)</span>th object into a new cycle all by itself. That is,
+   we create a new permutation where <span class='latexinline'>p(n+1) = (n+1)</span>.</li><li> Take the permutation of <span class='latexinline'>n</span> objects with <span class='latexinline'>k</span> cycles, and insert this new <span class='latexinline'>(n+1)</span>th
+   object into any of the <span class='latexinline'>k</span> cycles. If the original permutation had <code>x -p-> y</code>,
+   we can insert this new object as <code>x -p-> * -p->y</code> for any <code>x</code>. Thus, there are
+   <span class='latexinline'>n</span> choices of locations to inser <code>*</code> --- as the image of all possible <code>x</code>s.
+   This gives us the <span class='latexinline'>n[n, k]</span> term.</li></ol>
+Another cute fact of the unsigned stirling numbers of the first kind <span class='latexinline'>[n, k]</span>
+is that since permutations are partitioned by their number of cycles, we have:
+<div class='latexblock'>
+\sum_{k=1}^n [n, k] = n!
+</div>
+<h4><a id=references href='#references'> § </a> References</h4>
+<ul><li> <a href=https://en.wikipedia.org/wiki/Concrete_Mathematics>Concrete Mathematics</a></li><li> <a href=http://pi.math.cornell.edu/~levine/18.312/alg-comb-lecture-10.pdf>Cornell 18.312: algebraic combinatorics</a></li><li> <a href=https://community.plu.edu/~edgartj/posetMobius.pdf>An introduction to posets and mobius inversion</a></li></ul>
+</container></body></html>

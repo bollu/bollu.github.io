@@ -1,0 +1,94 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><script defer src='katex/katex.min.js'    integrity='sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4'    crossorigin='anonymous'></script><script>    function on_katex_load() {        const katex_opts = [            {left: '$', right: '$', display: false},            {left: '$$', right: '$$', display: true}        ];        renderMathInElement(document.body, katex_opts);        let elemsInline = document.getElementsByClassName('latexinline');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsInline.item(i).textContent, elemsInline.item(i));}        let elemsBlock = document.getElementsByClassName('latexblock');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsBlock.item(i).textContent, elemsBlock.item(i), {displayMode: true});}    }</script><!-- To automatically render math in text elements, include the auto-render extension: --><script defer src='katex/auto-render.min.js'    integrity='sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa'    crossorigin='anonymous'    onload='on_katex_load();'></script><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
+img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+ .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
+ .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
+.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=mobius-inversion-on-incidence-algebras href='#mobius-inversion-on-incidence-algebras'> § </a> <a href=#mobius-inversion-on-incidence-algebras>Mobius inversion on Incidence Algebras</a></h2>
+Most of these functions are really defined on the <i>incidence algebra</i> of
+the poset <span class='latexinline'>P</span> with ground field <span class='latexinline'>K</span>. An <i>incidence</i> algebra <span class='latexinline'> I(P) </span> is a
+set of functions which maps intervals of <span class='latexinline'>P</span> to the ground field <span class='latexinline'>K</span>. an
+interval is a tuple <span class='latexinline'>(x, y) \in P \times P</span> such that <span class='latexinline'>x \leq P</span>
+(where the <span class='latexinline'>\leq</span> comes from the partial order on <span class='latexinline'>P</span>). We have a product
+structure which I denote <span class='latexinline'>\star</span>, given by:
+<div class='latexblock'>
+(\alpha \star \beta)([x, z]) = \sum_{x \leq y \leq z} \alpha(x, y) \beta(y, z)
+</div>
+A linear algebra way to look at this is to consider <span class='latexinline'>|P| x |P|</span> matrices over <span class='latexinline'>K</span>
+where the rows and columns are indexed by <span class='latexinline'>P</span>.
+The a function <span class='latexinline'>\alpha: P \times P \rightarrow K</span>
+can be written as the elements of the <span class='latexinline'>P \times P</span> matrix.
+Then this convolution-like operator <span class='latexinline'>\star</span> is simply matrix multiplication.
+We have three natural functions: 
+(1) The characteristic function, which is the identity for <span class='latexinline'>\star</span>:
+<div class='latexblock'>
+\delta([x, z]) \equiv 1 \texttt{ if } x = z \texttt{; } 0 \texttt{ otherwise }
+</div>
+(2) the zeta function, which plays the role of the constant <span class='latexinline'>1</span>:
+<div class='latexblock'>
+\zeta([x, z]) \equiv  1 \texttt{ if } x \leq z \texttt{; } 0 \texttt{ otherwise }
+</div>
+(3) The inverse of the zeta function, the mobius function, a tool for mobius inversion:
+<div class='latexblock'>
+\begin{aligned}
+&\mu([x, z])  = 1 \\
+&\mu([x, z])  = - \sum_{x \leq y < z} \mu([x, y]) \\
+\end{aligned}
+</div>
+The mobius inversion theorem for posets states that <span class='latexinline'>\zeta</span> and <span class='latexinline'>\mu</span> as
+defined above are convolutional inverses. that is, <span class='latexinline'>\zeta \star \mu = \delta</span>.
+This allows us to prove:
+<div class='latexblock'>
+\begin{aligned}
+&g([x, z]) = \sum_{x \leq y \leq z} f([x, y]) \\
+&g([x, z]) = \sum_{x \leq y \leq z} f([x, y]) \cdot 1 \\
+&g([x, z]) = \sum_{x \leq y \leq z} f([x, y]) \cdot \zeta(y, z) \\
+&g = f \star \zeta \\
+&g \star \mu = f \star \zeta \star \mu \\
+&g \star \mu = f \star \delta \\
+&g \star \mu = f
+\end{aligned}
+</div>
+We have managed to find <span class='latexinline'>f</span> in terms of <span class='latexinline'>g</span>, when previously we had <span class='latexinline'>g</span>
+in terms of <span class='latexinline'>f</span>. 
+<b>TODO</b>: we are usually interested in a <i>fixed</i> <span class='latexinline'>[x, z]</span>. What happens if we 
+make this implicit? We may get nice notation for all of this!
+<h4><a id=sums-as-mobius-inversion href='#sums-as-mobius-inversion'> § </a> Sums as mobius inversion</h4>
+We can derive the formula we had for integrals, that:
+<div class='latexblock'>
+F(i) = \sum_{0 \leq i \leq n} f(i) \iff f(k) = F(k) - F(k-1)
+</div>
+by setting up mobius inversion on the usual partial order for the natural
+numbers. For simplicity, I'll show the example on <span class='latexinline'>[0, 1, 2, 3, 4]</span>. The example
+immediately generalizes.
+<ul><li> We have the partial (well, total) order <span class='latexinline'>P</span>: <span class='latexinline'>0 < 1 < 2 < 3 < 4</span>. </li><li> We are given a function <span class='latexinline'>f(\cdot)</span> we wish to integrate. We define an
+  auxiliary function <span class='latexinline'>fi([x, y]) = f(y)</span> which evaluates <span class='latexinline'>f</span> on the right
+  endpoint.</li><li> We can now define <span class='latexinline'>F([x, z])</span>  as the sum of <span class='latexinline'>f</span> from <span class='latexinline'>x</span> to <span class='latexinline'>z</span>:</li></ul>
+<div class='latexblock'>
+\begin{aligned}
+&F([x, z]) \equiv \sum_{x \leq y \leq z} f(y) \\
+&= \sum_{x \leq y \leq z} fi([x, y]) \\
+&= \sum_{x \leq y \leq z} fi([x, y]) \cdot \zeta(y, z) \\
+&= fi \star \zeta
+\end{aligned}
+</div>
+<ul><li> This tells us that <span class='latexinline'>f(n) = fi([0, n]) = (F \star \mu)([0, n])</span>:</li></ul>
+<div class='latexblock'>
+\begin{aligned}
+&f(n) = fi([0, n]) \equiv  (F \star mu)[0, n] \\
+&=  \sum_{0 \leq x \leq n} F([0, x]) \mu([x, n])
+\end{aligned}
+</div>
+<ul><li> We note that we need to know the values of <span class='latexinline'>\mu([x, n])</span> for a <i>fixed</i> n,
+  for <i>varying</i> x. Let us attempt to calculate <span class='latexinline'>\mu([0, 4]), \mu([1, 4]), \mu([2, 4]), \mu([3, 4]), \mu([4, 4])</span>
+  and see if this can be generalized:</li></ul>
+<div class='latexblock'>
+\begin{aligned}
+& \mu([4, 4]) = 1 \text{ By definition} \\
+& \mu([3, 4]) = - \left (\sum_{3 \leq x < 4} \right) \text{ By definition } \\
+\end{aligned}
+</div>
+</container></body></html>

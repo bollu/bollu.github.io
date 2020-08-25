@@ -1,0 +1,185 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><script defer src='katex/katex.min.js'    integrity='sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4'    crossorigin='anonymous'></script><script>    function on_katex_load() {        const katex_opts = [            {left: '$', right: '$', display: false},            {left: '$$', right: '$$', display: true}        ];        renderMathInElement(document.body, katex_opts);        let elemsInline = document.getElementsByClassName('latexinline');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsInline.item(i).textContent, elemsInline.item(i));}        let elemsBlock = document.getElementsByClassName('latexblock');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsBlock.item(i).textContent, elemsBlock.item(i), {displayMode: true});}    }</script><!-- To automatically render math in text elements, include the auto-render extension: --><script defer src='katex/auto-render.min.js'    integrity='sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa'    crossorigin='anonymous'    onload='on_katex_load();'></script><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
+img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+ .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
+ .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
+.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=lyndon-christoffel-convex-hull href='#lyndon-christoffel-convex-hull'> § </a> <a href=#lyndon-christoffel-convex-hull>Lyndon + Christoffel = Convex Hull</a></h2>
+Actual "real world" use-case of lyndon factorization, cribbed from here:
+<ul><li> <a href=https://archipel.uqam.ca/8354/1/Reutenauer-2009a-preprint.pdf>Lyndon + Christoffel = digitally convex</a></li><li> Combinatorics on Words: Christoffel Words and Repetitions in Words</li></ul>
+I wanted to learn a real-world use-case of lyndon factorization so I could
+remember it. I found a whole bridge between combinatorics/strings and
+discrete geometry (they call it "digital geometry") that I didn't know
+existed before.
+<ul><li> If you have a line with rational slope <span class='latexinline'>p/q</span> and you want to draw a
+  "discretized line" by connecting integer points in ZxZ, you can describe this
+  discretized line as starting from <span class='latexinline'>(0, 0)</span>, making moves <span class='latexinline'>x</span> (move up 1 unit
+  along <span class='latexinline'>x</span>-axis), <span class='latexinline'>y</span> (move up 1 unit along <span class='latexinline'>y</span>-axis), finally reaching the point 
+  <span class='latexinline'>(p, q)</span>. For example, to reach the point <span class='latexinline'>(2, 3)</span>, you can make the moves 
+  <span class='latexinline'>[x, x, x, y, y]</span>.</li></ul>
+<ul><li> A christoffel word is a word <span class='latexinline'>w \in \{x, y \}^\star</span> such that it hugs a line of
+  rational slope <span class='latexinline'>p/q</span> as close as possible. Formally, there are no integer
+  points between the line with slope <span class='latexinline'>p/q</span> starting from the origin, and the
+  discretized line as described by <span class='latexinline'>w</span>. An example picture:</li></ul>
+<img src="./static/christoffel-word-example.png">
+<ul><li> It turns out that all primitive christoffel words are Lyndon words. I'm not
+  100% sure what primitive is, but the take-away is that these primitive
+  christoffel words represent discrete lines that are <i>good</i> approximations
+  of lines.</li></ul>
+<ul><li> Now, we are given a discrete sequence of adjacent line segments going
+  upwards, where the line segments are described by <span class='latexinline'>x, y</span> moves. We want to
+  check if the discrete curve defined by them is well-approximating a convex
+  polygon.</li></ul>
+<ul><li> We compute the lyndon factorization of the word. This splits the
+  original line segment into a series of line segments, where each
+  successive line segment has lower slope than the previous (since the
+  lyndon decomposition splits words into non-decreasing lex order).</li></ul>
+<img src="./static/lyndon-convex.png">
+<ul><li> We can then check that each word in the lyndon decomposition is a Christoffel
+  word. If it is, then your sequence of moves describes a "good  discrete
+  convex hull", since as described above, a christoffel word "hugs the line"
+  well. </li></ul>
+<h4><a id=bonus-slick-characterization-of-line-drawing href='#bonus-slick-characterization-of-line-drawing'> § </a> Bonus: slick characterization of line drawing</h4>
+<img src="./static/christoffel-cyclic-7-4.png">
+If we want to draw a line with slope <code>p/q = 4/7</code> using the lower approximation the idea
+is that we keep taking <code>4</code> steps along <code>x</code>, and every time we "exceed" <code>7</code> steps
+along <code>x</code>, we take a step along <code>y</code>.
+This is the same as:
+<ol><li> working in <code>Z/(4+7)Z</code>, starting from <code>0</code>, writing down multiples of <code>4</code> till we cycle back to <code>0</code></li><li> marking an "increase" in a step with an <code>x</code>, and a "decrease" in a step
+  with <code>y</code>.</li></ol>
+The intuition is that once we walk <code>k*p</code> steps where <code>k*p >= q</code>, we want
+to increment <code>y</code>. So, at first glance, we may believe we should consider
+<code>Z/qZ</code>. However, this is misguided. Examples to enlighten:
+<ol><li> Consider <code>x=1, y=0</code>. We should use <code>Z/1Z = { 0 }</code>: that is, we must keep
+  moving along <code>0 -x -> 0 -x-> 0 -x-> ...</code>. This is unlike what happens if we choose
+  <code>Z/0Z</code> (which is not a well-defined idea).</li><li> Consider <code>x=1,y=1</code>. We should use <code>Z/2Z</code>, so we keep going <code>0 -x-> 1 -y-> 0 -> ...</code>
+  which will cause is to flip <code>x -> y -> x -> y -> ...</code>. </li></ol>
+In some sense, we are making sure that we can "start" with an <code>x</code> and see where that takes us.
+In the <code>Z/1Z</code> case, we realise that we can keep taking <code>x</code>s. In the
+<code>Z/2Z</code> case, we realise we need to flip between <code>x</code> and <code>x</code>.
+Let's try to show this formally, where <code>k</code> is the smallest number
+such that <code>kp >= q</code>. We'll also have concrete examples where
+<code>p=2, q=7</code>. For the example, <code>k=4</code> since <code>kp = 4*2 = 8 > 7</code>. 
+If we work in <code>Z/yZ = Z/7Z</code>, we will get the numbers:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+But notice that we are inserting <code>x</code> <i>between</i> numbers. So we will get:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+which gives us the moves:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+We only get <code>3</code> occurences of <code>x</code>, after which on the next accumulation of <code>p</code>,
+becomes an <code>8</code> which wraps around to a <code>1</code>. This is the age-old tension that exists
+between <b>points</b> and <b>gaps</b>. For <code>k</code> points, there are <code>k-1</code> gaps. In our
+case, we have <code>4</code> points <code>[0, 2, 4, 6]</code>, but this leaves us room for only
+three gaps for three<code>x</code> moves, while in reality we need <code>4</code>.
+We remedy this situation by giving ourselves space enough for <i>one</i> more <code>x</code>, by changing from <code>Z/qZ</code>
+to <code>Z/(p+q)Z</code>. We should look at this as creating space for another gap.
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+which gives us the moves:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+That is, we are able to get <code>k</code> occurences <code>x</code> between <code>0, p, ..,kp</code> which
+has <code>(k+1)</code> points. Concretely, we have:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+where we have 4 occurences of <code>x</code> in between after which we have an occurence
+of <code>y</code>, which is what we want when <code>x=2, y = 7</code>. We need to reach at least
+<code>q=7</code> before we have exceeded our denominator and need to make a move
+along <code>y</code>.
+</container></body></html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><script defer src='katex/katex.min.js'    integrity='sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4'    crossorigin='anonymous'></script><script>    function on_katex_load() {        const katex_opts = [            {left: '$', right: '$', display: false},            {left: '$$', right: '$$', display: true}        ];        renderMathInElement(document.body, katex_opts);        let elemsInline = document.getElementsByClassName('latexinline');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsInline.item(i).textContent, elemsInline.item(i));}        let elemsBlock = document.getElementsByClassName('latexblock');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsBlock.item(i).textContent, elemsBlock.item(i), {displayMode: true});}    }</script><!-- To automatically render math in text elements, include the auto-render extension: --><script defer src='katex/auto-render.min.js'    integrity='sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa'    crossorigin='anonymous'    onload='on_katex_load();'></script><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
+img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+ .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
+ .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
+.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=big-list-of-emacs-gripes href='#big-list-of-emacs-gripes'> § </a> <a href=#big-list-of-emacs-gripes>Big list of emacs gripes</a></h2>
+<h4><a id=markdown-mode-lags-when-i-open-a-paren-for-a-link href='#markdown-mode-lags-when-i-open-a-paren-for-a-link'> § </a> <code>markdown-mode</code> lags when I open a paren <code>[for a link</code>.</h4>
+I suppose this is because
+it's attempting to match it, and is unable to figure out
+what to match to. I now edit markdown in <code>text-mode</code>.
+<h4><a id=ctrl-backspacebackward-kill-word-kills-far-too-much href='#ctrl-backspacebackward-kill-word-kills-far-too-much'> § </a> <code>ctrl-backspace</code>/<code>backward-kill-word</code> kills far too much.</h4>
+<ul><li> <a href=https://emacs.stackexchange.com/questions/30401/backward-kill-word-kills-too-much-how-to-make-it-more-intelligent>reference <code>emacs.se</code></a></li></ul>
+The answer seems to be:
+yes, it kills a word. You can redefine what a word is,
+and break lots of other stuff in the process, or redefine
+what <code>ctrl-backspace</code> does. However, as a non-expert, it's hard
+to say what redefining this will mean. Will it still interact
+with history the same way?
+<h4><a id=there-is-no-centralized-notion-of-c-o-go-back-to-where-i-came-from href='#there-is-no-centralized-notion-of-c-o-go-back-to-where-i-came-from'> § </a> there is no centralized notion of <code>C-o</code> (go back to where I came from).</h4>
+<ul><li> <a href=https://emacs.stackexchange.com/questions/9908/can-cursor-jump-back-to-the-previous-position>reference <code>emacs.se</code></a></li><li> <a href=https://stackoverflow.com/questions/4918707/in-emacs-how-to-go-back-to-previous-line-position-after-using-semantic-jump-to>reference <code>stackoverflow</code></a></li></ul>
+Instead, it differentiates between "go back in buffer" versus
+"go back across buffers".
+This is extremely confusing when one is attempting to read
+code and understand control-flow: I want a <i>unified</i> way
+to say "go forward in my history; OK go back" when I am
+exploring code. I don't <i>want</i> to keep track of whether
+I came to this buffer from the same buffer or another buffer.
+The fact that emacs needs this is moronic.
+<h4><a id=scrolling-half-a-page-is-broken href='#scrolling-half-a-page-is-broken'> § </a> Scrolling half a page is broken</h4>
+<ul><li> <a href=https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half-page-on-c-v-and-m-v>reference <code>emacs.se</code></a></li><li> <a href=https://www.emacswiki.org/emacs/HalfScrolling>reference <code>emacswiki</code></a></li></ul>
+There is no inbuilt functionality to scroll half a page. The canonical 
+reference points to this:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+However, this does not work well. On press <code>C-u</code> to go to
+the top of the file, it does not move the cursor to the
+top completely; once  <i>the first line is in view</i>
+(with my cursor still on line 30),
+emacs obstinately refuses to scroll up with a 'beginning of buffer'
+message. I'm sure there's more <code>elisp</code> I can write to fix this,
+but the fact that something like moving-half-a-page
+is rocket science just rubs me the wrong way.
+This code that is given in <code>emacswiki</code> also
+has the exact same issue, I don't understand
+how the poster says they come from vim and
+did not notice this inconsistency.
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+<h4><a id=default-encoding-is-weird-chinese-iso-8bit href='#default-encoding-is-weird-chinese-iso-8bit'> § </a> Default encoding is weird: <code>chinese-iso-8bit</code></h4>
+<ul><li> <a href=https://emacs.stackexchange.com/questions/34322/set-default-coding-system-utf-8><code>emacs.se reference</code></a></li></ul>
+Why in the world is this the option that shows up by default?
+There are so many better options, with <code>utf-8</code> being the
+sanest of them all; this is a nice spherical cow of
+the problems with emacs: too much stuff, too like sanity.
+The spell is:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+<h4><a id=linum-lags-on-large-files href='#linum-lags-on-large-files'> § </a> linum lags on large files</h4>
+<code>global-linum-mode</code> lags on very long files.
+<h4><a id=emacs-lags-on-long-lines href='#emacs-lags-on-long-lines'> § </a> emacs lags on long lines</h4>
+<code>emacs</code> lags given very long lines.
+<a href=https://old.reddit.com/r/emacs/comments/9qtpak/what_would_it_take_to_make_emacs_perform_well_on/>A comment by <code>eli-zaretskli</code> on reddit</a>
+says:
+<blockquote> That is true, but the "fix" part misses the point. There's nothing wrong with the current algorithms, they just cannot handle these situations better than they already do. The main problem that makes redisplay slow in these cases is that, given a cursor motion command, such as <code>C-n</code> or <code>M-v</code>, the display engine needs first to find where in the buffer that command puts point. And that is non-trivial when variable-size fonts are supported and variable-size characters (or images) can be anywhere on display.</blockquote>
+So there's a fundamental problem. He continues:
+<blockquote> ... we are talking about one of the following two alternatives: Add new members to the data structures used by the display engine, that would allow it to find good approximations for buffer positions corresponding to given screen coordinates, then augment the algorithms to generate and use this additional data.  edesign the display code to use a model that is entirely different from the current simple 2D canvas. </blockquote>
+<h4><a id=emacs-single-threading-causes-pauses-on-auto-completecompany href='#emacs-single-threading-causes-pauses-on-auto-completecompany'> § </a> emacs' single threading causes pauses on auto-complete/company</h4>
+<h4><a id=emacs-crashes-on-attempting-to-open-an-svg-file href='#emacs-crashes-on-attempting-to-open-an-svg-file'> § </a> emacs crashes on attempting to open an SVG file</h4>
+<ul><li> <a href=http://emacs.1067599.n8.nabble.com/bug-29581-26-0-90-SVG-file-can-cause-emacs-to-crash-imagemagick-td443659.html>Link to <code>emacs</code> bug repo about segfault</a></li></ul>
+My <code>emacs --version</code> says:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+I ran it with <code>emacs -q</code>. The bactrace points at a segfault in <code>ImageMagick</code>:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>          ∃!id(p)
+          +---+
+          |   |
+          |   v
++---------ppppp--------+
+| πa      |   ^     πb |  
+v      ∃!p2q  |        v
+a         |   |        b
+^         |  ∃!q2p     ^
+| π'b     v   |    π'b |
++---------qqqqq--------+
+</tt></pre>
+</div>
+This is tagged as "not a bug" --- because
+"if imagemagick crashes, there is no recourse".
+</container></body></html>

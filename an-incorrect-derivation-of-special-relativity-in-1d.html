@@ -1,0 +1,65 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><script defer src='katex/katex.min.js'    integrity='sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4'    crossorigin='anonymous'></script><script>    function on_katex_load() {        const katex_opts = [            {left: '$', right: '$', display: false},            {left: '$$', right: '$$', display: true}        ];        renderMathInElement(document.body, katex_opts);        let elemsInline = document.getElementsByClassName('latexinline');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsInline.item(i).textContent, elemsInline.item(i));}        let elemsBlock = document.getElementsByClassName('latexblock');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsBlock.item(i).textContent, elemsBlock.item(i), {displayMode: true});}    }</script><!-- To automatically render math in text elements, include the auto-render extension: --><script defer src='katex/auto-render.min.js'    integrity='sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa'    crossorigin='anonymous'    onload='on_katex_load();'></script><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
+img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+ .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
+ .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
+.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=an-incorrect-derivation-of-special-relativity-in-1d href='#an-incorrect-derivation-of-special-relativity-in-1d'> § </a> <a href=#an-incorrect-derivation-of-special-relativity-in-1d>An incorrect derivation of special relativity in 1D</a></h2>
+I record an <i>incorrect</i> derivation of special relativity, starting from the
+single axiom "speed of light is constant in all inertial reference frames".
+I don't understand why this derivation is incorrect. Help figuring this out
+would be very appreciated.
+<h4><a id=the-assumption href='#the-assumption'> § </a> The assumption</h4>
+We assume that the velocity of light as measured by any inertial frame
+is constant. Thus if <span class='latexinline'>x, x'</span> are the locations of light as measured by
+two inertial frames, and <span class='latexinline'>t, t'</span> is the time elapsed as measured by two
+inertial frames, we must have that <span class='latexinline'>dx/dt = dx'/dt'</span>. This ensures
+that the speed of light is invariant.
+<h4><a id=the-derivation href='#the-derivation'> § </a> The derivation</h4>
+<ul><li> Our coordinate system has an <span class='latexinline'>x</span> space axis and a <span class='latexinline'>t</span> time axis.</li><li> We have observer (1) standing still at the origin, and measures time
+  with a variable <span class='latexinline'>t</span>.</li><li> We have observer (2) moving to the left with a constant velocity <span class='latexinline'>v</span>.</li><li> Observer (1) who is at rest sees a photon starting from the origin
+  travelling towards the right with constant velocity <span class='latexinline'>c</span>. The position of the
+  photon at time <span class='latexinline'>t</span> is <span class='latexinline'>x = c t</span>.</li><li> Observer (2) also sees this photon. At time <span class='latexinline'>t</span>, he sees the position
+  of the photon as <span class='latexinline'>x' = vt + ct</span>.</li><li> From our rule of invariance, we have that <span class='latexinline'>dx/dt = c = dx'/dt'</span>.</li></ul>
+We calculate <span class='latexinline'>dx'/dt' = (dx'/dt)(dt/dt')</span> [chain rule], giving:
+<div class='latexblock'>
+\begin{align*}
+&c = \frac{dx}{dt} = \frac{dx'}{dt'} = \frac{dx'}{dt} \frac{dt}{dt'}  \\
+&c = \frac{d(vt + ct)}{dt}\frac{dt}{dt'} \\
+&c = (v + c) \frac{dt}{dt'} \\
+&\frac{c}{v+c} = \frac{dt}{dt'} \\
+&dt' = (v+c)dt/c \\
+&t' = (v+c)t/c = (1 + v/c) t
+\end{align*}
+</div>
+So we get the relation that time elapsed for observer (2) is related
+to observer (1) as <span class='latexinline'>t' = (1 + v/c) t</span>. 
+<ul><li> This checks out: Assume our observer is moving leftward at <span class='latexinline'>v = c</span>. He will
+  then see the photon move rightward at <span class='latexinline'>x' = 2ct</span>. So if his time slows down 
+  to have <span class='latexinline'>t' = 2t</span>, we will have that <span class='latexinline'>x/t' = 2ct/2t = c</span>.</li></ul>
+<ul><li> However, this forumla allows us to go faster than the speed of light with
+  no repercurssions! (It is also not the correct formula as anticipated by
+  the usual derivation). This can be fixed.</li></ul>
+<ul><li> Now assume that Observer 2 was moving <i>rightward</i>, not <i>leftward</i>. That is,
+  we simply need to set <span class='latexinline'>v = -v</span>, since this change of sign accomplishes
+  flipping the direction of motion in 1D. This gives us the equation
+  <span class='latexinline'>t' = (1 - v/c)t</span>.</li></ul>
+<ul><li> According to this new equation, we are not allowed to approach the speed of
+  light. If we attempt to do so, we will need to elapse zero time; and if
+  we exceed the speed of light, we will need to elapse <i>negative time</i>.</li></ul>
+<ul><li> However, these formulae lead to an absurdity. If our observer 1 and observer 2
+  witness two photons, one moving leftward and one moving rightward, one will
+  need to write down the equations <span class='latexinline'>t' = (1 \pm v/c)t</span>, which plainly leads
+  one to contradiction.</li></ul>
+<h4><a id=whats-the-issue href='#whats-the-issue'> § </a> What's the issue?</h4>
+The issue is the equation <span class='latexinline'>x' = vt + ct</span>. 
+<ul><li> It is true that <i>as per observer (1) standing at the origin</i>, the distance
+  between observer (2) and the photon is <span class='latexinline'>vt + ct</span>.</li><li> It is <i>not</i> true that observer(2) sees the distance between them and 
+  the photon  as <span class='latexinline'>vt + ct</span>.</li><li> Intuitively, this equation of <span class='latexinline'>x' = vt + ct</span> completely ignores length
+  contraction, and hence cannot be right.</li><li> Alternatively, the equation of <span class='latexinline'>x' = vt + ct</span> imposes galilean relativity, 
+  where I am attempting to naively connect reference frames, which cannot be
+  correct.</li></ul>
+</container></body></html>

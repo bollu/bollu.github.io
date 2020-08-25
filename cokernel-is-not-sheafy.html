@@ -1,0 +1,38 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><script defer src='katex/katex.min.js'    integrity='sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4'    crossorigin='anonymous'></script><script>    function on_katex_load() {        const katex_opts = [            {left: '$', right: '$', display: false},            {left: '$$', right: '$$', display: true}        ];        renderMathInElement(document.body, katex_opts);        let elemsInline = document.getElementsByClassName('latexinline');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsInline.item(i).textContent, elemsInline.item(i));}        let elemsBlock = document.getElementsByClassName('latexblock');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsBlock.item(i).textContent, elemsBlock.item(i), {displayMode: true});}    }</script><!-- To automatically render math in text elements, include the auto-render extension: --><script defer src='katex/auto-render.min.js'    integrity='sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa'    crossorigin='anonymous'    onload='on_katex_load();'></script><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
+img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+ .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
+ .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
+.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=cokernel-is-not-sheafy href='#cokernel-is-not-sheafy'> § </a> <a href=#cokernel-is-not-sheafy>Cokernel is not sheafy</a></h2>
+I wanted to understand why the Cokernel is not a sheafy condition.
+I found an <a href=https://math.mit.edu/~mckernan/Teaching/07-08/Spring/18.726/model2.pdf>explanation in Ravi Vakil's homework solutions</a>
+which I am expanding on here.
+<h4><a id=core-idea href='#core-idea'> § </a> Core idea</h4>
+We will show that there will be an exact sequence which is surjective
+at each stalk, but not globally surjective. So, locally, we wil have
+trivial cokernel, but globally, we will have non-trivial cokernel.
+<h4><a id=exponential-sheaf-sequence href='#exponential-sheaf-sequence'> § </a> Exponential sheaf sequence</h4>
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>0  --&gt; 2πiZ -[α:incl]-&gt; O --[β:exp(.)]--&gt; O* --&gt; 0
+</tt></pre>
+</div>
+<ul><li> <code>O</code> is the sheaf of the additive group of holomorphic functions. 
+  <code>O*</code> is the sheaf of the group of non-zero holomorphic functions. </li><li> <code>α</code>, which embeds <code>2πin ∈2πiZ</code> as a constant function <code>f(_) = 2πin</code> is
+  injective.</li><li> <code>e^(2πiZ) = 1</code>. So we have that the composition of the two maps <code>β.α</code> is
+  the zero map, mapping everything in <code>2πiZ</code> to the identity of <code>O*</code>.
+  Thus, <code>d^2 = 0</code>, ensuring that this is an exact sequence.</li><li> Let us consider the local situation. At each point <code>p</code>, we want to show
+  that <code>β</code> is surjective. Pick any <code>g ∈ O*p</code>. We have an open neighbourhood <code>Ug</code>
+  where <code>g ≠ 0</code>. take the logarithm of <code>g</code> to pull back <code>g ∈ O*</code> to <code>log g ∈ O</code>.
+  Thus, <code>β</code> is surjective at each local point <code>p</code>.</li><li> On the other hand, the function <code>h(z) = z</code> cannot be in <code>O*</code>. If it were,
+  then there exists a homolorphic function called <code>l ∈ O</code> [for <code>log</code>] such that
+  <code>exp(l(z)) = h(z) = z</code> everywhere on the complex plane. </li><li> Assume such a function exists. Then it must be the case that
+  <code>d/dz exp(l(z)) = d/dz(z) = 1</code>. Thus, <code>exp(l(z)) l'(z) = z l'(z) = 1</code>
+  [use the fact that <code>exp(l(z)) = z</code>]. This means that <code>l'(z) = 1/z</code>.</li><li> Now, by integrating in a closed loop of <code>e^iθ</code> we have <code>∮l'(z) = l(1) - l(1) = 0</code>.</li><li> We also have that <code>∮l'(z) = ∮1/z = 2πi</code>.</li><li> This implies that <code>0 = 2πi</code> which is absurd.</li><li> Hence, we cannot have a function whose exponential gives <code>h(z) = z</code> everywhere.</li><li> Thus, the cokernel is nontrivial globally.</li></ul>
+</container></body></html>

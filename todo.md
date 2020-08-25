@@ -1,3 +1,13 @@
+- Video lectures on computational AG: http://swc.math.arizona.edu/oldaws/06Notes.html
+- Algebraic function fields and codes: Covers some version of Riemann Roch in chapter 1!
+  Seems to build a decent amount of algebraic number theory to then perform 
+  coding theory. Is very cool.
+- Street fighting mathematics: How to do mathematics: https://www.cs.cmu.edu/~odonnell/toolkit13/how-to-do-math-and-tcs.pdf
+- Books on writing: (1) On Writing by Stephen King, (2) Anatomy of Story by
+  John Truby (3) The Art of Dramatic Writing by Lajos Egri,
+  (4) Bird by Bird by Anne Lamott, (5) Theory of Prose by Shklovsky,
+  (6) Morphology of the Folk Tale by Propp, (7) Narrative Discourse by Genette,
+  and (8) Structural Semantics by Greimas, (9) Building Great Sentences 
 - Stream fusion to completeness: https://arxiv.org/pdf/1612.06668.pdf
 - PhD qualifying exams, large list: https://math.stackexchange.com/questions/267554/on-ph-d-qualifying-exams/270467#270467
 - Mishchenko/Fomenko - "A Course of Differential Geometry and Topology". It

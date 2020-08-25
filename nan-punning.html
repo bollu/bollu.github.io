@@ -1,0 +1,129 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><script defer src='katex/katex.min.js'    integrity='sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4'    crossorigin='anonymous'></script><script>    function on_katex_load() {        const katex_opts = [            {left: '$', right: '$', display: false},            {left: '$$', right: '$$', display: true}        ];        renderMathInElement(document.body, katex_opts);        let elemsInline = document.getElementsByClassName('latexinline');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsInline.item(i).textContent, elemsInline.item(i));}        let elemsBlock = document.getElementsByClassName('latexblock');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsBlock.item(i).textContent, elemsBlock.item(i), {displayMode: true});}    }</script><!-- To automatically render math in text elements, include the auto-render extension: --><script defer src='katex/auto-render.min.js'    integrity='sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa'    crossorigin='anonymous'    onload='on_katex_load();'></script><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
+img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+ .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
+ .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
+.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=nan-punning href='#nan-punning'> § </a> <a href=#nan-punning>NaN punning</a></h2>
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><b><u><font color="#000000">#include</font></u></b> <font color="#808080">&lt;assert.h&gt;</font>
+<b><u><font color="#000000">#include</font></u></b> <font color="#808080">&lt;iostream&gt;</font>
+<b><u><font color="#000000">#include</font></u></b> <font color="#808080">&lt;limits&gt;</font>
+<b><u><font color="#000000">using</font></u></b> <b><u><font color="#000000">namespace</font></u></b> std;
+<i><font color="#222222">// https://en.wikipedia.org/wiki/NaN</font></i>
+<b><u><font color="#000000">union</font></u></b> PunDouble { 
+    <b><font color="#000000">double</font></b> d;
+    <b><u><font color="#000000">struct</font></u></b> { 
+        uint64_t m      : <font color="#000000">51</font>;
+        uint32_t qnan: <font color="#000000">1</font>;
+        uint32_t e      : <font color="#000000">11</font>;
+        uint32_t s      : <font color="#000000">1</font>;
+    } bits;
+    PunDouble(<b><font color="#000000">double</font></b> d) : d(d) {};
+    PunDouble(uint32_t s, uint32_t e, uint64_t m) {
+        bits.s = s;
+        bits.e = e;
+        bits.qnan = <font color="#000000">1</font>;
+        bits.m = m;
+    }
+};
+
+<b><u><font color="#000000">union</font></u></b> PunInt {
+    int32_t i;
+    uint32_t bits;
+    PunInt(int32_t i): i(i) {};
+};
+
+<b><u><font color="#000000">using</font></u></b> <b><u><font color="#000000">namespace</font></u></b> std;
+<b><u><font color="#000000">struct</font></u></b> Box {
+
+    <b><u><font color="#000000">inline</font></u></b> <b><font color="#000000">bool</font></b> is_int() <b><u><font color="#000000">const</font></u></b> { 
+        <b><u><font color="#000000">auto</font></u></b> pd = PunDouble(d);
+        <b><u><font color="#000000">return</font></u></b> pd.bits.e == 0b11111111111 &amp;&amp; pd.bits.qnan == <font color="#000000">1</font>;
+    }
+    <b><u><font color="#000000">inline</font></u></b> <b><font color="#000000">bool</font></b> isdouble() <b><u><font color="#000000">const</font></u></b> {
+        <b><u><font color="#000000">auto</font></u></b> pd = PunDouble(d);
+        <b><u><font color="#000000">return</font></u></b> (pd.bits.e != 0b11111111111) || (pd.bits.qnan == <font color="#000000">0</font>); 
+    }
+    int32_t get_int() <b><u><font color="#000000">const</font></u></b> { 
+        assert(is_int());
+        uint64_t m = PunDouble(d).bits.m; <b><u><font color="#000000">return</font></u></b> PunInt(m).i;
+    }
+    <b><font color="#000000">double</font></b> get_double() <b><u><font color="#000000">const</font></u></b> { assert(isdouble()); <b><u><font color="#000000">return</font></u></b> d; }
+    Box <b><u><font color="#000000">operator</font></u></b> +(<b><u><font color="#000000">const</font></u></b> Box &amp;other) <b><u><font color="#000000">const</font></u></b>;
+
+    <b><u><font color="#000000">static</font></u></b> Box mk_int(int32_t i) { 
+        <b><u><font color="#000000">return</font></u></b> Box(PunDouble(<font color="#000000">1</font>, 0b11111111111, PunInt(i).bits).d);
+    }
+    <b><u><font color="#000000">static</font></u></b> Box mk_double(<b><font color="#000000">double</font></b> d) { <b><u><font color="#000000">return</font></u></b> Box(d); }
+    <b><font color="#000000">double</font></b> rawdouble() <b><u><font color="#000000">const</font></u></b> { <b><u><font color="#000000">return</font></u></b> d; }
+    <b><u><font color="#000000">private</font></u></b>:
+    <b><font color="#000000">double</font></b> d; Box(<b><font color="#000000">double</font></b> d) : d(d) {}
+};
+
+<i><font color="#222222">// = 64 bits</font></i>
+Box Box::<b><u><font color="#000000">operator</font></u></b> + (<b><u><font color="#000000">const</font></u></b> Box &amp;other) <b><u><font color="#000000">const</font></u></b> {
+    <b><u><font color="#000000">if</font></u></b> (isdouble()) { 
+        assert(other.isdouble());
+        <b><u><font color="#000000">return</font></u></b> Box::mk_double(d + other.d);
+    }
+    <b><u><font color="#000000">else</font></u></b> { 
+        assert(is_int());
+        assert(other.is_int());
+        <b><u><font color="#000000">return</font></u></b> Box::mk_int(get_int() + other.get_int());
+    }
+}
+
+ostream &amp;<b><u><font color="#000000">operator</font></u></b> &lt;&lt; (ostream &amp;o, <b><u><font color="#000000">const</font></u></b> Box &amp;b) {
+    <b><u><font color="#000000">if</font></u></b> (b.isdouble()) { <b><u><font color="#000000">return</font></u></b> o &lt;&lt; <font color="#808080">"["</font> &lt;&lt; b.get_double() &lt;&lt; <font color="#808080">"]"</font>; }
+    <b><u><font color="#000000">else</font></u></b> { <b><u><font color="#000000">return</font></u></b> o &lt;&lt; <font color="#808080">"["</font> &lt;&lt; b.get_int() &lt;&lt; <font color="#808080">"]"</font>; }
+}
+
+int32_t randint() { <b><u><font color="#000000">return</font></u></b> (rand() %<font color="#000000">2</font>?<font color="#000000">1</font>:-<font color="#000000">1</font>) * (rand() % <font color="#000000">100</font>); }
+                    
+int32_t main() {
+
+    <i><font color="#222222">// generate random integers, check that addition checks out</font></i>
+    srand(<font color="#000000">7</font>);
+    <b><u><font color="#000000">for</font></u></b>(int32_t i = <font color="#000000">0</font>; i &lt; <font color="#000000">1000</font>; ++i) {
+        <b><u><font color="#000000">const</font></u></b> int32_t i1 = randint(), i2 = randint();
+        <b><u><font color="#000000">const</font></u></b> Box b1 = Box::mk_int(i1), b2 = Box::mk_int(i2);
+        cout &lt;&lt; <font color="#808080">"i1:"</font> &lt;&lt; i1 &lt;&lt; <font color="#808080">"  b1:"</font> &lt;&lt; b1 &lt;&lt; <font color="#808080">"  b1.double:"</font> &lt;&lt; b1.rawdouble() &lt;&lt; <font color="#808080">"  b1.get_int:"</font> &lt;&lt; b1.get_int() &lt;&lt; <font color="#808080">"</font>\n<font color="#808080">"</font>;
+        cout &lt;&lt; <font color="#808080">"i2:"</font> &lt;&lt; i2 &lt;&lt; <font color="#808080">"  b2:"</font> &lt;&lt; b2 &lt;&lt; <font color="#808080">"  b2.double:"</font> &lt;&lt; b2.rawdouble() &lt;&lt; <font color="#808080">"  b2.get_int:"</font> &lt;&lt; b2.get_int() &lt;&lt; <font color="#808080">"</font>\n<font color="#808080">"</font>;
+        assert(b1.is_int());
+        assert(b2.is_int());
+        assert(b1.get_int() == i1);
+        assert(b2.get_int() == i2);
+        Box b3 = b1 + b2;
+        assert(b3.is_int());
+        assert(b3.get_int() == i1 + i2);
+    }
+
+    <b><u><font color="#000000">for</font></u></b>(int32_t i = <font color="#000000">0</font>; i &lt; <font color="#000000">1000</font>; ++i) {
+        <b><u><font color="#000000">const</font></u></b> int32_t p1 = randint(), q1=randint(), p2 = randint(), q2=randint();
+        <b><u><font color="#000000">const</font></u></b> <b><font color="#000000">double</font></b> d1 = (<b><font color="#000000">double</font></b>)p1/(<b><font color="#000000">double</font></b>)q1;
+        <b><u><font color="#000000">const</font></u></b> <b><font color="#000000">double</font></b> d2 = (<b><font color="#000000">double</font></b>)p2/(<b><font color="#000000">double</font></b>)q2;
+        <b><u><font color="#000000">const</font></u></b> Box b1 = Box::mk_double(d1);
+        <b><u><font color="#000000">const</font></u></b> Box b2 = Box::mk_double(d2);
+        cout &lt;&lt; <font color="#808080">"d1: "</font> &lt;&lt; d1 &lt;&lt; <font color="#808080">" | b1: "</font> &lt;&lt; b1 &lt;&lt; <font color="#808080">"</font>\n<font color="#808080">"</font>;
+        cout &lt;&lt; <font color="#808080">"d2 "</font> &lt;&lt; d2 &lt;&lt; <font color="#808080">" | b2: "</font> &lt;&lt; b2 &lt;&lt; <font color="#808080">"</font>\n<font color="#808080">"</font>;
+        assert(b1.isdouble());
+        assert(b2.isdouble());
+
+        assert(b1.get_double() == d1);
+        assert(b2.get_double() == d2);;
+        Box b3 = b1 + b2;
+        assert(b3.isdouble());
+        assert(b3.get_double() == d1 + d2);
+    }
+    <b><u><font color="#000000">return</font></u></b> <font color="#000000">0</font>;
+}
+</tt></pre>
+</div>
+</container></body></html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><script defer src='katex/katex.min.js'    integrity='sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4'    crossorigin='anonymous'></script><script>    function on_katex_load() {        const katex_opts = [            {left: '$', right: '$', display: false},            {left: '$$', right: '$$', display: true}        ];        renderMathInElement(document.body, katex_opts);        let elemsInline = document.getElementsByClassName('latexinline');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsInline.item(i).textContent, elemsInline.item(i));}        let elemsBlock = document.getElementsByClassName('latexblock');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsBlock.item(i).textContent, elemsBlock.item(i), {displayMode: true});}    }</script><!-- To automatically render math in text elements, include the auto-render extension: --><script defer src='katex/auto-render.min.js'    integrity='sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa'    crossorigin='anonymous'    onload='on_katex_load();'></script><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
+img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+ .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
+ .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
+.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=edward-kmetts-list-of-useful-math href='#edward-kmetts-list-of-useful-math'> § </a> <a href=#edward-kmetts-list-of-useful-math>Edward Kmett's list of useful math</a></h2>
+I use Bayesian statistics constantly for probabilistic programming and neural
+networks. Calculus gave me access to understand automatic differentiation,
+which gets used in everything I do. Real analysis doesn't come up often, but
+intermediate value thm. style arguments are handy.
+I don't use classic geometry, but I when I was doing graphics I used projective
+geometry, and that served as a gateway to understand category theory's duality
+principle, and I use category theory to organize most of the code I write.
+I took one course on differential geometry. The knowledge I gained from it
+probably led to about half of my income to date. I've made a career out of
+weaponizing "obscure" math, e.g. using toric varieties of rational functions of
+Zhegalkin polynomials to schedule instructions...
+Differential equations? Physics? Well, I use Hamiltonian methods for most of
+the sampling I do in the world of probabilistic programming. So understanding
+symplectic integrators is a big step, and I have to move frictionless particles
+subject to a Hamiltonian, so there's diff eq.
+Fourier analysis, heat equations? Well, if I want to approximate a
+space/distribution, http://ddg.math.uni-goettingen.de/pub/GeodesicsInHeat.pdf
+Learning group theory "bottom up" from monoids and the like has been useful,
+because I use monoids basically everywhere as a functional programmer to
+aggregate data. It led to the work I did at S&P Capital IQ, and later to
+basically my entire niche as a functional programmer.
+But understanding more of the surrounding landscape has been useful as well, as
+I use all sorts of lattices and order theory when working with propagators. And
+I use regular and inverse semigroups (note, not groups!) when working with all
+sorts of fast parsing techniques.
+Complex analysis? Understanding Moebius transformations means I can understand
+how continued fractions work, which leads to models for computable reals that
+don't waste computation and are optimally lazy. Knowing analytic functions lets
+me understand complex step differentiation.
+Linear algebra is in everything I've done since highschool. Learning a bit of
+geometric algebra, and playing around with Plucker coordinates led to me
+licensing tech to old game companies for computational visibility back before
+it was a "solved" problem.
+Wandering back a bit, Gröbner bases wind up being useful for comparing circuits
+modulo 'don't care' bits for impossible situations, and all sorts of other
+simplification tasks.
+Let's go obscure. Pade approximants? Good rational approximations, not
+polynomial ones. Sounds academic, but computing exp and log is expensive, and
+fast rational approximations can be conservative, monotone and have nice
+derivatives, speeding NN-like designs a lot.
+Weird number systems => Data structures.  Category theory acts as a rosetta
+stone for so many other areas of math it isn't even funny. You can understand
+almost all of the essential bits of quantum computing just knowing by category
+theory.
+Logic. Well, which logic? You run into a modal logic in a philosophy class
+some time and think of it as a clever hack, but monads in FP are basically a
+modality. Modal logics for necessity/possibility model effect systems well.
+Substructural logics to manage resource usage...
+I don't use a lot of number theory. There. Mind you, this is also one of those
+areas where I'm just standing on weak foundations, so I don't know what I
+don't know. I just know it's hard to do all sorts of things that sound easy
+and try to muddle through w/ my limited background.
+</container></body></html>

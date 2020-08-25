@@ -1,0 +1,83 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><script defer src='katex/katex.min.js'    integrity='sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4'    crossorigin='anonymous'></script><script>    function on_katex_load() {        const katex_opts = [            {left: '$', right: '$', display: false},            {left: '$$', right: '$$', display: true}        ];        renderMathInElement(document.body, katex_opts);        let elemsInline = document.getElementsByClassName('latexinline');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsInline.item(i).textContent, elemsInline.item(i));}        let elemsBlock = document.getElementsByClassName('latexblock');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsBlock.item(i).textContent, elemsBlock.item(i), {displayMode: true});}    }</script><!-- To automatically render math in text elements, include the auto-render extension: --><script defer src='katex/auto-render.min.js'    integrity='sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa'    crossorigin='anonymous'    onload='on_katex_load();'></script><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
+img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+ .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
+ .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
+.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=hyperbolic-groups-have-solvable-word-problem href='#hyperbolic-groups-have-solvable-word-problem'> § </a> <a href=#hyperbolic-groups-have-solvable-word-problem>Hyperbolic groups have solvable word problem</a></h2>
+I have never seen an elementary account of this in a 'trust these facts, now
+here is why hyperbolic groups have a solvable word problem'. I am writing
+such an account for myself. It's an account for building intuition, so no
+proofs will be provided except for the final theorem. All facts will be backed
+by intuition. Since most of it is geometric, it's easy to convey intuition.
+<h4><a id=graphs-of-groups-quasi-isometry href='#graphs-of-groups-quasi-isometry'> § </a> Graphs of groups, quasi-isometry.</h4>
+<ul><li> <b>NOTE:</b> I will consistently denote the inverse of <span class='latexinline'>g</span> by <span class='latexinline'>g'</span>.</li></ul>
+We can convert any group into a graph by using the cayley graph of the group.
+We characterize hyperbolic space as a space where we can build 'thin triangles'.
+We also think of hyperbolic space as where geodesics from a given point
+diverge (in terms of angle) exponentially fast. 
+The choice of generators for the cayley graph gives different graphs. We can
+assign a <b>unique</b> geometric object by considering cayley graphs upto quasi
+isometry. The cayley graph of a group with respect to different generating sets
+are quasi-isometric. We can now try to study properties that are invariant
+under quasi-isometry, since these are somehow 'represented faithfully by the geometry'.
+<h4><a id=hyperbolicity-enters-the-picture href='#hyperbolicity-enters-the-picture'> § </a> Hyperbolicity enters the picture</h4>
+We now say that a graph is hyperbolic if the cayley graph of the group is
+hyperbolic. We can show that hyperbolicity is preserved by quasi-isometry.
+So this property does not depend on the generating set.
+<h4><a id=isoperimetric-inequality href='#isoperimetric-inequality'> § </a> Isoperimetric Inequality</h4>
+If we have a finitely presented group <span class='latexinline'>G = \langle S | R \rangle</span>, and <span class='latexinline'>w</span>
+is a word in the free group <span class='latexinline'>Free(S)</span>, if <span class='latexinline'>[[w]] = 1</span>, we will have 
+<div class='latexblock'>
+w = \prod_{i=1}^n u_i r_i^{\pm 1} u_i' 
+</div>
+This follows almost by definition. Since we have quotiented by <span class='latexinline'>r</span> we can have
+elements of <span class='latexinline'>r</span> in between <span class='latexinline'>u u'</span>. We will need to have a <span class='latexinline'>u'</span> since there's
+nothing else to cancel off the <span class='latexinline'>u</span>.
+<h4><a id=area-of-a-word href='#area-of-a-word'> § </a> Area of a word</h4>
+Let <span class='latexinline'>G = \langle S | R \rangle</span>. Let <span class='latexinline'>w</span> be a word in <span class='latexinline'>S</span> such that <span class='latexinline'>[[w]] = e</span>.
+The area of the word <span class='latexinline'>w</span> is the minimal number of such <span class='latexinline'>u r u'</span> components
+we need to write it down. Formally:
+<div class='latexblock'>
+Area(w) = \min { n | \prod_{i=1}^n u_i r+i^{\pm 1} u_i'}
+</div>
+I don't understand the geometric content of this definition. I asked
+<a href=https://mathoverflow.net/questions/363455/geometric-content-of-area-of-a-word-in-geometric-group-theory>on mathoverflow</a>.
+<h4><a id=isopermetric-function-for-a-group href='#isopermetric-function-for-a-group'> § </a> Isopermetric function for a group</h4>
+<span class='latexinline'>f: \mathbb N \rightarrow \mathbb N</span> is a Dehn function or isoperimetric function
+if the area of the word is upper bounded by <span class='latexinline'>f(|word|)</span>. In some sense, the
+length of the word is the perimeter to the area, and this gives us a form
+of the isoperimetric inequality. Formally, <span class='latexinline'>f</span> is a Dehn function if for all
+words <span class='latexinline'>w \in F(S)</span> such that <span class='latexinline'>[[w]] = e</span>, we have <span class='latexinline'>A(w) \leq f(|w|)</span>. depending
+on the growth of <span class='latexinline'>f</span>, we say that <span class='latexinline'>G</span> has linear, quadratic, exponential etc.
+Dehn function. 
+<h4><a id=geometric-content-of-area href='#geometric-content-of-area'> § </a> Geometric content of Area</h4>
+We define a map to be aninite, planar, oriented, connected and simply connected simplicial2-complex (!). 
+A map <span class='latexinline'>D</span> is a diagram over an alphabet <span class='latexinline'>S</span> iff every edge <span class='latexinline'>e \in D</span> has a label <span class='latexinline'>lbl(e) \in S</span> such that
+<span class='latexinline'>lbl(e^{-1}) = (lbl(e))^{-1}</span>. Hang on: what does it mean to invert an edge?
+I presume it means to go backwards along an edge. So we assume the graph is
+directed, and we have edges in both directions.
+A Van Kampen diagram over a group <span class='latexinline'>G = \langle S | R \rangle</span>  is a diagram <span class='latexinline'>D</span>
+over <span class='latexinline'>S</span> such that for all faces of <span class='latexinline'>D</span>, the label of the boundary of <span class='latexinline'>f</span>
+is labelled by some <span class='latexinline'>r^{\pm} : r \in R</span>. The area of such a diagram
+is the number of faces.
+<h4><a id=hyperbolic-iff-linear-isopermetric-inequality-is-satisfied href='#hyperbolic-iff-linear-isopermetric-inequality-is-satisfied'> § </a> Hyperbolic iff Linear Isopermetric Inequality is satisfied</h4>
+A finitely presented group is hyperbolic if and of if its cayley grah
+satisfies the linear isoperimetric inequality. 
+<h4><a id=deciding-if-elements-are-conjugate-to-each-other href='#deciding-if-elements-are-conjugate-to-each-other'> § </a> Deciding if elements are conjugate to each other</h4>
+<ul><li> If we can answer the question of whether two elements are conjugate to each
+  other (does there exist a <span class='latexinline'>g</span> such that <span class='latexinline'>ghg' =?= k</span>), we can solve
+  that an element is equal to the identity:</li><li>   Pick <span class='latexinline'>k = e</span>. Then if we have <span class='latexinline'>ghg' = k = e</span>, then <span class='latexinline'>gh = g</span> hence <span class='latexinline'>h = e</span>.</li></ul>
+<ul><li> If we can check that an element is equal to the identity, we can check for
+  equality of elements. two elements <span class='latexinline'>k, l</span> are equal iff <span class='latexinline'>kl' = e</span>.</li></ul>
+<ul><li> So solving conjugacy automatically allows us to check of equality.</li></ul>
+<h4><a id=proof-that-conjugacy-is-solvable-for-hyperbolic-groups href='#proof-that-conjugacy-is-solvable-for-hyperbolic-groups'> § </a> Proof that conjugacy is solvable for hyperbolic groups</h4>
+Consider a solution to the problem of finding an <span class='latexinline'>x</span> such that <span class='latexinline'>xgx^{-1} = h</span>.
+We claim that due to the hyperbolicity of the space, such an <span class='latexinline'>x</span> cannot be
+"too long".
+<h4><a id=references href='#references'> § </a> References</h4>
+<ul><li> <a href=https://www.math.ucdavis.edu/~kapovich/280-2009/hyplectures_papasoglu.pdf>Notes On Hyperbolic and Automatic Groups: Michael Batty</a></li><li> <a href=https://people.maths.ox.ac.uk/bridson/papers/bfs/bfs.pdf>The geometry of the word problem by Martin R Bridson</a></li><li> <a href=https://math.stackexchange.com/questions/3789681/delta-thin-trianges-implies-solvable-conjugacy-problem-for-hyperbolic-groups>My math.stackexchange question asking about why delta thin triangles help to solve conjugacy</a></li></ul>
+</container></body></html>
