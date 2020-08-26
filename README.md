@@ -2150,9 +2150,12 @@ The issue is the equation $x' = vt + ct$.
 
 #  [The geometry and dynamics of magnetic monopoles](#the-geometry-and-dynamics-of-magnetic-monopoles)
 
-I found this cool document written by Sir Atiyah which seems to contain
+I found this cool document written by Sir Atiyah, called as 
+["The geometry and dynamics of magnetic monopoles"](https://www.jstor.org/stable/j.ctt7zv206)
+which contains
 a nice exposition of electromagnetism from the differential viewpoint.
 I'll record what I read here.
+
 
 # Sanskrit and Sumerian
 

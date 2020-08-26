@@ -736,7 +736,7 @@ void tokenize(const char *s, const ll len, vector<T*> &ts) {
 }
 
 
-char* pygmentize(const char *tempdirpath, 
+char* pygmentize(const char *temp_dir_path, 
         const char *code, 
         int codelen, 
         const char *lang, const char *raw_input,
@@ -744,7 +744,7 @@ char* pygmentize(const char *tempdirpath,
 
 
     char input_file_path[512];
-    sprintf(input_file_path, "%s/input.txt", tempdirpath);
+    sprintf(input_file_path, "%s/input.txt", temp_dir_path);
     FILE *f = fopen(input_file_path, "w");
     assert(f && "unable to open temp file");
     ll nwritten = fwrite(code, 1, codelen, f);
@@ -752,7 +752,7 @@ char* pygmentize(const char *tempdirpath,
     fclose(f);
 
     char output_file_path[512];
-    sprintf(output_file_path, "%s/input.txt.html", tempdirpath);
+    sprintf(output_file_path, "%s/input.txt.html", temp_dir_path);
 
     pid_t pid;
     // source-highlight -s cpp  /tmp/foo.py && cat /tmp/foo.py.html
@@ -784,7 +784,7 @@ char* pygmentize(const char *tempdirpath,
 
     f = fopen(output_file_path, "r");
     // cleanup.
-    if (f == nullptr) { rmdir(tempdirpath); }
+    if (f == nullptr) { rmdir(temp_dir_path); }
     assert(f && "unable to open output file of pygmentize");
 
     fseek(f, 0, SEEK_END); const ll len = ftell(f); fseek(f, 0, SEEK_SET);
@@ -819,10 +819,45 @@ pair<ll, L> removeAlignDollarsHack(const char *raw_input, const ll inwritelen,
     return make_pair(inwritelen, loc);
 };
 
+enum class LatexType {
+    LatexTypeBlock, LatexTypeInline
+};
+
+void vduk_debug_print_stack(duk_context *ctx, const char *fmt, va_list args){
+    char *outstr = nullptr;
+    vasprintf(&outstr, fmt, args);
+    assert(outstr);
+
+    printf("\nvvv%svvv\n", outstr);
+    printf("[TOP OF STACK]\n");
+    const int len = duk_get_top(ctx);
+    for(int i = 1; i <= len; ++i) {
+        duk_dup(ctx, -i);
+        printf("stk[-%2d] = %20s\n", i, duk_to_string(ctx, -1));
+        duk_pop(ctx);
+    }
+    printf("^^^^^^^\n");
+}
+
+
+void duk_debug_print_stack(duk_context *ctx, const char *fmt, ...) {
+    va_list args;
+    va_start(args, fmt);
+    vduk_debug_print_stack(ctx, fmt, args);
+    va_end(args);
+}
+
 
 GIVE const char* compileLatex(duk_context *duk_ctx, 
-        KEEP const char *tempdirpath, ll inwritelen, 
-        KEEP const char *raw_input, L loc) {
+        KEEP const char *temp_dir_path, ll inwritelen, 
+        KEEP const char *raw_input,
+        L loc,
+        LatexType ty) {
+    
+    // TODO: fixup inline v/s block math. Code is here:
+    // duk_push_obj();
+    // duk_set_property(displayMath, true) // or whatever
+
 
 
     if(duk_peval_string(duk_ctx, "katex") != 0) {
@@ -837,8 +872,14 @@ GIVE const char* compileLatex(duk_context *duk_ctx,
 
     duk_push_string(duk_ctx, "renderToString");
     duk_push_string(duk_ctx, input);
+    duk_push_object(duk_ctx); // { displayMode: ... }
+    duk_push_boolean(duk_ctx, ty == LatexType::LatexTypeBlock);
+    duk_put_prop_string(duk_ctx, -2, "displayMode");
 
-    if(duk_pcall_prop(duk_ctx, -3, 1) == DUK_EXEC_SUCCESS) {
+    // duk_debug_print_stack(duk_ctx, "");
+
+
+    if(duk_pcall_prop(duk_ctx, -4, 2) == DUK_EXEC_SUCCESS) {
         return duk_to_string(duk_ctx, -1);
     } else {
 
@@ -944,7 +985,7 @@ GIVE const char *mkHeadingURL(KEEP const char *raw_input, KEEP THeading *heading
 
 void toHTML(duk_context *duk_ctx,
         const char *raw_input,
-        const char *tempdirpath, 
+        const char *temp_dir_path, 
         const T *t, ll &outlen, char *outs) {
     assert(t != nullptr);
     switch(t->ty) {
@@ -979,7 +1020,7 @@ void toHTML(duk_context *duk_ctx,
           const Span span =
               Span(t->span.begin.next("```").next(block->langname).next("\n"),
                       t->span.end.prev("```"));
-          char *code_html = pygmentize(tempdirpath,
+          char *code_html = pygmentize(temp_dir_path,
                   raw_input + span.begin.si,
                   span.nchars(), block->langname,
                   raw_input, t->span.begin);
@@ -1005,8 +1046,9 @@ void toHTML(duk_context *duk_ctx,
           } else if (t->ty == TT::LatexInline) {
               outlen += sprintf(outs + outlen, "<span class='latexinline'>");
           }
-          const char *outcompile = compileLatex(duk_ctx, tempdirpath,
-                  s.nchars(), raw_input, s.begin);
+          const char *outcompile = compileLatex(duk_ctx, temp_dir_path,
+                  s.nchars(), raw_input, s.begin, 
+                  t->ty == TT::LatexBlock ? LatexType::LatexTypeBlock : LatexType::LatexTypeInline);
           strcpy(outs + outlen, outcompile);
           outlen += strlen(outcompile);
 
@@ -1025,7 +1067,7 @@ void toHTML(duk_context *duk_ctx,
           // #}
 
           // #if (G_OPTIONS.latex2ascii || true) {
-          // #    char *outcompile = compileLatex(tempdirpath,
+          // #    char *outcompile = compileLatex(temp_dir_path,
           // #            span.nchars(),
           // #            raw_input, t->span.begin);
           // #    strcpy(outs + outlen, outcompile);
@@ -1061,7 +1103,7 @@ void toHTML(duk_context *duk_ctx,
           strcpy(outs + outlen, openul); outlen += strlen(openul);
           for(auto it: tlist->items) {
               strcpy(outs + outlen, openli); outlen += strlen(openli);
-              toHTML(duk_ctx, raw_input, tempdirpath, it, outlen, outs);
+              toHTML(duk_ctx, raw_input, temp_dir_path, it, outlen, outs);
               strcpy(outs + outlen, closeli); outlen += strlen(closeli);
           }
           strcpy(outs + outlen, closeul); outlen += strlen(closeul);
@@ -1079,7 +1121,7 @@ void toHTML(duk_context *duk_ctx,
           strcpy(outs + outlen, openul); outlen += strlen(openul);
           for(auto it: tlist->items) {
               strcpy(outs + outlen, openli); outlen += strlen(openli);
-              toHTML(duk_ctx, raw_input, tempdirpath, it, outlen, outs);
+              toHTML(duk_ctx, raw_input, temp_dir_path, it, outlen, outs);
               strcpy(outs + outlen, closeli); outlen += strlen(closeli);
           }
           strcpy(outs + outlen, closeul); outlen += strlen(closeul);
@@ -1088,9 +1130,9 @@ void toHTML(duk_context *duk_ctx,
 
         case TT::Link: {
           TLink *link = (TLink *)t;
-          // toHTML(raw_input, tempdirpath, link->text,  outlen, outs);
+          // toHTML(raw_input, temp_dir_path, link->text,  outlen, outs);
           outlen += sprintf(outs + outlen, "<a href=%s>", link->link);
-          toHTML(duk_ctx, raw_input, tempdirpath, link->text, outlen, outs);
+          toHTML(duk_ctx, raw_input, temp_dir_path, link->text, outlen, outs);
           outlen += sprintf(outs + outlen, "</a>");
           return;
         }
@@ -1098,7 +1140,7 @@ void toHTML(duk_context *duk_ctx,
         case TT::InlineGroup: {
             TInlineGroup *group = (TInlineGroup *)t;
             for (T *t : group->items) { 
-                toHTML(duk_ctx, raw_input, tempdirpath, t, outlen, outs);
+                toHTML(duk_ctx, raw_input, temp_dir_path, t, outlen, outs);
             }
             return;
         }
@@ -1127,7 +1169,7 @@ void toHTML(duk_context *duk_ctx,
             // outlen += sprintf(outs + outlen, "<h%d id=%s>", theading->hnum, link);
             outlen += sprintf(outs + outlen, "<h%d>", min(4, 1+theading->hnum));
             outlen += sprintf(outs + outlen, "<a id=%s href='#%s'> %s </a>", link, link, "§");
-            toHTML(duk_ctx, raw_input, tempdirpath, theading->item, outlen, outs);
+            toHTML(duk_ctx, raw_input, temp_dir_path, theading->item, outlen, outs);
             outlen += sprintf(outs + outlen, "</h%d>", min(4, 1+theading->hnum));
 
             free((char *)link);
@@ -1137,7 +1179,7 @@ void toHTML(duk_context *duk_ctx,
         case TT::Italic: {
             TItalic *tcur = (TItalic *)t;
             outlen += sprintf(outs + outlen, "<i>");
-            toHTML(duk_ctx, raw_input, tempdirpath, tcur->item, outlen, outs);
+            toHTML(duk_ctx, raw_input, temp_dir_path, tcur->item, outlen, outs);
             outlen += sprintf(outs + outlen, "</i>");
             return;
         }
@@ -1145,7 +1187,7 @@ void toHTML(duk_context *duk_ctx,
         case TT::Bold: {
             TBold *tcur = (TBold *)t;
             outlen += sprintf(outs + outlen, "<b>");
-            toHTML(duk_ctx, raw_input, tempdirpath, tcur->item, outlen, outs);
+            toHTML(duk_ctx, raw_input, temp_dir_path, tcur->item, outlen, outs);
             outlen += sprintf(outs + outlen, "</b>");
             return;
         }
@@ -1155,7 +1197,7 @@ void toHTML(duk_context *duk_ctx,
 
           outlen += sprintf(outs + outlen, "<blockquote>");
           for(auto it: tq->items) {
-              toHTML(duk_ctx, raw_input, tempdirpath, it, outlen, outs);
+              toHTML(duk_ctx, raw_input, temp_dir_path, it, outlen, outs);
           }
           outlen += sprintf(outs + outlen, "</blockquote>");
           return;
@@ -1186,28 +1228,28 @@ const char html_preamble[] =
 "    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'"
 "    crossorigin='anonymous'>"
 "<!-- The loading of KaTeX is deferred to speed up page rendering -->"
-"<script defer src='katex/katex.min.js'"
-"    integrity='sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4'"
-"    crossorigin='anonymous'></script>"
-"<script>"
-"    function on_katex_load() {"
-"        const katex_opts = ["
-"            {left: '$', right: '$', display: false},"
-"            {left: '$$', right: '$$', display: true}"
-"        ];"
-"        renderMathInElement(document.body, katex_opts);"
-"        let elemsInline = document.getElementsByClassName('latexinline');"
-// https://stackoverflow.com/questions/39959563/render-math-with-katex-in-the-browser
-"        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsInline.item(i).textContent, elemsInline.item(i));}"
-"        let elemsBlock = document.getElementsByClassName('latexblock');"
-"        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsBlock.item(i).textContent, elemsBlock.item(i), {displayMode: true});}"
-"    }"
-"</script>"
-"<!-- To automatically render math in text elements, include the auto-render extension: -->"
-"<script defer src='katex/auto-render.min.js'"
-"    integrity='sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa'"
-"    crossorigin='anonymous'"
-"    onload='on_katex_load();'></script>"
+// "<script defer src='katex/katex.min.js'"
+// "    integrity='sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4'"
+// "    crossorigin='anonymous'></script>"
+// "<script>"
+// "    function on_katex_load() {"
+// "        const katex_opts = ["
+// "            {left: '$', right: '$', display: false},"
+// "            {left: '$$', right: '$$', display: true}"
+// "        ];"
+// "        renderMathInElement(document.body, katex_opts);"
+// "        let elemsInline = document.getElementsByClassName('latexinline');"
+// // https://stackoverflow.com/questions/39959563/render-math-with-katex-in-the-browser
+// "        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsInline.item(i).textContent, elemsInline.item(i));}"
+// "        let elemsBlock = document.getElementsByClassName('latexblock');"
+// "        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsBlock.item(i).textContent, elemsBlock.item(i), {displayMode: true});}"
+// "    }"
+// "</script>"
+// "<!-- To automatically render math in text elements, include the auto-render extension: -->"
+// "<script defer src='katex/auto-render.min.js'"
+// "    integrity='sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa'"
+// "    crossorigin='anonymous'"
+// "    onload='on_katex_load();'></script>"
 // ===End KateX===
 "<title> A Universe of Sorts </title>"
 "<style>"
@@ -1306,13 +1348,51 @@ int option_index(const int argc, char **argv, const char *opt) {
 }
 
 
-T ts[MAX_TOKENS];
 char raw_input[MAX_CHARS];
 
 bool is_h1(const T *t) {
     if (t->ty != TT::Heading) { return false; }
     if (((THeading *) (t))->hnum != 1) { return false; }
     return true;
+}
+
+// returns number of characters written
+// ix: index to start from. This will be the index after the 
+// TODO: unify the API style of writeTableOfContentsHTML and toHTML, to have
+// both of them take a `const char *` at index `0`, and return a `long long`
+// of length.
+long long writeTableOfContentsHTML(duk_context *duk_ctx,
+        const char *raw_input,
+        const char *temp_dir_path,
+        const vector<T*> &ts,
+        KEEP char *outs) {
+
+    printf("===writing TOC===\n");
+    ll outlen = 0;
+    ll ix_h1 = 0;
+
+    outlen += sprintf(outs + outlen, "<ol reversed>"); 
+    while(ix_h1 != (ll)ts.size()) {
+        while (ix_h1 < (ll)ts.size() && !is_h1(ts[ix_h1])) { ix_h1++; }
+        if (ix_h1 == (ll)ts.size()) { break; }
+
+        assert(is_h1(ts[ix_h1]));
+        THeading *theading = (THeading*)ts[ix_h1];
+        ix_h1++;  // proceed to next heading
+        printf("---writing heading |%lld|---\n", ix_h1);
+        
+
+        const char *url = mkHeadingURL(raw_input, theading);
+        // outlen += sprintf(outs + outlen, "<h%d id=%s>", theading->hnum, link);
+        outlen += sprintf(outs + outlen, "<li><a href='%s.html'>" , url);
+        toHTML(duk_ctx, raw_input, temp_dir_path, 
+                theading->item, 
+                outlen, outs);
+        outlen += sprintf(outs + outlen, "</a></li>");
+
+    }
+    outlen += sprintf(outs + outlen, "</ol>"); 
+    return outlen;
 }
 
 int main(int argc, char **argv) {
@@ -1387,7 +1467,7 @@ int main(int argc, char **argv) {
     // index of the latest <h1> tag.
     ll ix_h1 = 0;
 
-    // write out index.html
+    // ===write out index.html===
     {
         // seek till the first <h1>: put all that data in index.html
         while (ix_h1 < (ll)ts.size() && !is_h1(ts[ix_h1])) { ix_h1++; }
@@ -1400,6 +1480,10 @@ int main(int argc, char **argv) {
         for (int i = 0; i < ix_h1; ++i) {
             toHTML(duk_ctx, raw_input, TEMP_DIR_PATH, ts[i], outlen, index_html_buf);
         }
+
+        // ===write out table of contents===
+        outlen += writeTableOfContentsHTML(duk_ctx, raw_input, TEMP_DIR_PATH, 
+                ts, index_html_buf + outlen);
         outlen += sprintf(index_html_buf + outlen, "%s", html_postamble);
 
         char index_html_path[1024];
@@ -1414,7 +1498,7 @@ int main(int argc, char **argv) {
         fclose(f);
     }
 
-    // write out all of the other .html files.
+    // ===write out all of the other .html files===
     while(ix_h1 < (ll)ts.size()) {
         const int ix_start = ix_h1;
         assert(ts[ix_start]->ty == TT::Heading);
