@@ -1,4 +1,4 @@
-<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><script defer src='katex/katex.min.js'    integrity='sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4'    crossorigin='anonymous'></script><script>    function on_katex_load() {        const katex_opts = [            {left: '$', right: '$', display: false},            {left: '$$', right: '$$', display: true}        ];        renderMathInElement(document.body, katex_opts);        let elemsInline = document.getElementsByClassName('latexinline');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsInline.item(i).textContent, elemsInline.item(i));}        let elemsBlock = document.getElementsByClassName('latexblock');        for (var i = 0; i < elemsInline.length; i++) {katex.render(elemsBlock.item(i).textContent, elemsBlock.item(i), {displayMode: true});}    }</script><!-- To automatically render math in text elements, include the auto-render extension: --><script defer src='katex/auto-render.min.js'    integrity='sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa'    crossorigin='anonymous'    onload='on_katex_load();'></script><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
 img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
@@ -7,7 +7,7 @@ a:active { color: #1a73e8; text-decoration: none; }
 
  .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
  .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
-.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=ranking-and-sorting href='#ranking-and-sorting'> § </a> <a href=#ranking-and-sorting>Ranking and Sorting</a></h2>
+.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=ranking-and-sorting href='#ranking-and-sorting'> § </a> Ranking and Sorting</h2>
 We we want to sort an arrray <code>xs</code> and write the results into an array <code>ys</code>.
 In both cases, the invariant to be satisfied is that <code>ys</code> is <code>xs</code> in ascending
 order. I'll be considering two broad ways to implement such a thing:
@@ -17,17 +17,10 @@ order. I'll be considering two broad ways to implement such a thing:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt>          ∃!id(p)
-          +---+
-          |   |
-          |   v
-+---------ppppp--------+
-| πa      |   ^     πb |  
-v      ∃!p2q  |        v
-a         |   |        b
-^         |  ∃!q2p     ^
-| π'b     v   |    π'b |
-+---------qqqqq--------+
+<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
+    G[q](ηo(id_o)) = ηo(q' . id_o)
+    G[q](ηo(id_o)) = ηo(q')
+    ηo(q') = G[q](ηo(id_o))
 </tt></pre>
 </div>
 <ul><li> 2. <b>(SELECT)</b> Reindex into <code>ys</code>, index straight into <code>xs</code>. 
@@ -36,17 +29,10 @@ a         |   |        b
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt>          ∃!id(p)
-          +---+
-          |   |
-          |   v
-+---------ppppp--------+
-| πa      |   ^     πb |  
-v      ∃!p2q  |        v
-a         |   |        b
-^         |  ∃!q2p     ^
-| π'b     v   |    π'b |
-+---------qqqqq--------+
+<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
+    G[q](ηo(id_o)) = ηo(q' . id_o)
+    G[q](ηo(id_o)) = ηo(q')
+    ηo(q') = G[q](ηo(id_o))
 </tt></pre>
 </div>
 <h4><a id=defnition-of-rank href='#defnition-of-rank'> § </a> Defnition of rank</h4>
@@ -59,17 +45,10 @@ a <i>unique</i> index.
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt>          ∃!id(p)
-          +---+
-          |   |
-          |   v
-+---------ppppp--------+
-| πa      |   ^     πb |  
-v      ∃!p2q  |        v
-a         |   |        b
-^         |  ∃!q2p     ^
-| π'b     v   |    π'b |
-+---------qqqqq--------+
+<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
+    G[q](ηo(id_o)) = ηo(q' . id_o)
+    G[q](ηo(id_o)) = ηo(q')
+    ηo(q') = G[q](ηo(id_o))
 </tt></pre>
 </div>
 <h4><a id=rank-alternative-1 href='#rank-alternative-1'> § </a> Rank: Alternative 1</h4>
@@ -82,17 +61,10 @@ We could have also defined rank as:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt>          ∃!id(p)
-          +---+
-          |   |
-          |   v
-+---------ppppp--------+
-| πa      |   ^     πb |  
-v      ∃!p2q  |        v
-a         |   |        b
-^         |  ∃!q2p     ^
-| π'b     v   |    π'b |
-+---------qqqqq--------+
+<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
+    G[q](ηo(id_o)) = ηo(q' . id_o)
+    G[q](ηo(id_o)) = ηo(q')
+    ηo(q') = G[q](ηo(id_o))
 </tt></pre>
 </div>
 I declined from doing so because I wanted to show the lex-ordering
@@ -105,17 +77,10 @@ our way to glory:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt>          ∃!id(p)
-          +---+
-          |   |
-          |   v
-+---------ppppp--------+
-| πa      |   ^     πb |  
-v      ∃!p2q  |        v
-a         |   |        b
-^         |  ∃!q2p     ^
-| π'b     v   |    π'b |
-+---------qqqqq--------+
+<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
+    G[q](ηo(id_o)) = ηo(q' . id_o)
+    G[q](ηo(id_o)) = ηo(q')
+    ηo(q') = G[q](ηo(id_o))
 </tt></pre>
 </div>
 <ul><li> 2. move <code>i -> ss[i]</code> where <code>ss[i]</code> is guaranteed to be a permutation,
@@ -124,17 +89,10 @@ a         |   |        b
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt>          ∃!id(p)
-          +---+
-          |   |
-          |   v
-+---------ppppp--------+
-| πa      |   ^     πb |  
-v      ∃!p2q  |        v
-a         |   |        b
-^         |  ∃!q2p     ^
-| π'b     v   |    π'b |
-+---------qqqqq--------+
+<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
+    G[q](ηo(id_o)) = ηo(q' . id_o)
+    G[q](ηo(id_o)) = ηo(q')
+    ηo(q') = G[q](ηo(id_o))
 </tt></pre>
 </div>
 <ul><li> 3. Stipulate that <code>rs[ss[i]] = i</code>, since we want a <code>ys[i]</code>:</li></ul>
@@ -142,17 +100,10 @@ a         |   |        b
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt>          ∃!id(p)
-          +---+
-          |   |
-          |   v
-+---------ppppp--------+
-| πa      |   ^     πb |  
-v      ∃!p2q  |        v
-a         |   |        b
-^         |  ∃!q2p     ^
-| π'b     v   |    π'b |
-+---------qqqqq--------+
+<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
+    G[q](ηo(id_o)) = ηo(q' . id_o)
+    G[q](ηo(id_o)) = ηo(q')
+    ηo(q') = G[q](ηo(id_o))
 </tt></pre>
 </div>
 This gives us necessary and sufficient conditions on how to find an <code>ss</code>:
@@ -164,17 +115,10 @@ How does one invert a permutation? We have a permutation <code>rs[i]</code> that
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt>          ∃!id(p)
-          +---+
-          |   |
-          |   v
-+---------ppppp--------+
-| πa      |   ^     πb |  
-v      ∃!p2q  |        v
-a         |   |        b
-^         |  ∃!q2p     ^
-| π'b     v   |    π'b |
-+---------qqqqq--------+
+<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
+    G[q](ηo(id_o)) = ηo(q' . id_o)
+    G[q](ηo(id_o)) = ηo(q')
+    ηo(q') = G[q](ηo(id_o))
 </tt></pre>
 </div>
 Equivalently:
@@ -182,17 +126,10 @@ Equivalently:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt>          ∃!id(p)
-          +---+
-          |   |
-          |   v
-+---------ppppp--------+
-| πa      |   ^     πb |  
-v      ∃!p2q  |        v
-a         |   |        b
-^         |  ∃!q2p     ^
-| π'b     v   |    π'b |
-+---------qqqqq--------+
+<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
+    G[q](ηo(id_o)) = ηo(q' . id_o)
+    G[q](ηo(id_o)) = ηo(q')
+    ηo(q') = G[q](ηo(id_o))
 </tt></pre>
 </div>
 So if we first tag each location of <code>rs</code> with its index, and then sort
@@ -202,17 +139,10 @@ In pictures:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt>          ∃!id(p)
-          +---+
-          |   |
-          |   v
-+---------ppppp--------+
-| πa      |   ^     πb |  
-v      ∃!p2q  |        v
-a         |   |        b
-^         |  ∃!q2p     ^
-| π'b     v   |    π'b |
-+---------qqqqq--------+
+<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
+    G[q](ηo(id_o)) = ηo(q' . id_o)
+    G[q](ηo(id_o)) = ηo(q')
+    ηo(q') = G[q](ηo(id_o))
 </tt></pre>
 </div>
 <h4><a id=rank-and-select-are-inverses href='#rank-and-select-are-inverses'> § </a> Rank and Select are inverses</h4>

@@ -1,0 +1,41 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
+img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+ .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
+ .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
+.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=cartesian-trees href='#cartesian-trees'> § </a> Cartesian Trees</h2>
+Cartesian trees construct a tree <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>=</mo><mi>C</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">T = C(A)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mclose">)</span></span></span></span></span> given an array <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span></span></span></span></span>, such that
+range minimum query (RMQ) on the array <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span></span></span></span></span> is equivalent to the lowest common ancestor (LCA)
+of the nodes of the tree <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span></span></span></span></span>.
+<img width=200 height=200 src="./static/cartesian-tree.svg">
+Note that the tree looks like a <i>min-heap</i>.
+To see the connection to LCA, if we want to find the range minimum in the range containing the
+elements <code>[12, 10, 20, 15, 18]</code> of the array, the minimum is <code>10</code>, which is
+indeed the lowest common ancestor of the nodes of <code>12</code> and <code>18</code> in the tree.
+<h4><a id=building-a-cartesian-tree-in-linear-time href='#building-a-cartesian-tree-in-linear-time'> § </a> Building a Cartesian tree in linear time:</h4>
+<h4><a id=converting-lca-to-rmq href='#converting-lca-to-rmq'> § </a> Converting LCA to RMQ</h4>
+We can go the other way, and convert an LCA problem into a RMQ problem. We
+perform an inorder traversal of the nodes, scribbling down the
+depth of the node (<a href=https://youtu.be/0rCFkuQS968?t=934>Link to lecture at 15:30</a>).
+We ask for the <i>argmin</i> version of RMQ, that gives us the <i>index</i> of
+the node with the lowest depth. This gives us the index of where the node lives.
+<h4><a id=universe-reduction-in-rmq href='#universe-reduction-in-rmq'> § </a> Universe reduction in RMQ</h4>
+We can have an arbitrary ordered universe, on which we want to perform RMQ.
+We can convert this to LCA by using a cartesian tree, and then convert to
+a "clean" RMQ (by using the LCA -> RMQ using depth conversion). This now
+will give us way faster operations (since we now have integers).
+<h4><a id=-1-rmq href='#-1-rmq'> § </a> <code>+-1</code> RMQ:</h4>
+We want the differences between nodes to have a difference of only <code>+-1</code>. We
+had a much wider gap. Here, we perform an Euler tour (walk the tree DFS search order),
+and sribble down every vertex we visit.
+To find the LCA, we perform the RMQ on the locations of the <i>first</i> occurence
+of the node. (I think we don't actually need the first occurence, any
+occurence will do).
+<h4><a id=references href='#references'> § </a> References</h4>
+<ul><li> Material shamelessly written down from
+  <a href=https://www.youtube.com/watch?v=0rCFkuQS968>Eric Demaine's excellent (MIT 6.851 Advanced Data Structures): Lecture 15</a></li><li> Image of the tree <a href=https://upload.wikimedia.org/wikipedia/commons/d/d5/Cartesian_tree.svg>taken from WikiMedia</a></li></ul>
+</container></body></html>

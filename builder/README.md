@@ -16,6 +16,7 @@
   navigation inside a static site.
 - [`httpserver.h`](https://github.com/jeremycw/httpserver.h) for a minimal HTTP server to run `libCURL` on.
 - [`libCURL` API](https://curl.haxx.se/libcurl/c/) to check that all links exist.
+- [crankJS](https://crank.js.org/)
 
 
 How to check if horizontal scrollbar exists:

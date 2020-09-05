@@ -229,7 +229,7 @@ A Universe of Sorts
 
 -->
 
-# [Katex in duktape](#katex-in-duktape)
+# Katex in duktape
 
 Here's some code to use `duktape`, a lightweight JavaScript interpreter
 to run `katex` when implementing a custom static site generator [as I
@@ -326,17 +326,17 @@ int main() {
 }
 ```
 
-# [Kebab case](#kebab-case)
+# Kebab case
 
 [I learnt from the Nu shell blog](https://www.nushell.sh/blog/2020/08/23/year_of_nushell.html)
 that `this-style-of-writing` variables is called as `kebab-case`. Very
 evocative.
 
-# [Localization: Introducing epsilons](#localization-introducing-epsilons)
+# Localization: Introducing epsilons
 - 
 
 
-# [NaN punning](#nan-punning)
+# NaN punning
 
 ```cpp
 #include <assert.h>
@@ -455,7 +455,7 @@ int32_t main() {
 
 
 
-# [Offline Documentation](#offline-documentation)
+# Offline Documentation
 I'm collecting sources of offline documentation, because my internet
 has been quite unstable lately due to the monsoon. I realized that when it
 came to C, I would always `man malloc`, or `apropos exit` to recall
@@ -469,7 +469,7 @@ for all the languages I use, so I'm building a list:
 - haskell: haddock
 
 
-# [Using Gurobi](#using-gurobi)
+# Using Gurobi
 
 I've been trying to learn how to use Gurobi, the industrial strength 
 solver for linear and quadratic equation systems.
@@ -521,7 +521,7 @@ code should provide a lot of insight into how to write good convex optimizers!
 I would love to take a course which explains the source code.
 
 
-# [stars and bars by generating functions](#stars-and-bars-by-generating-functions)
+# stars and bars by generating functions
  Say I have `C` colors of objects, and `S` slots to put these objects in. In
  how manys can I put objects into slots, without regard to order? For example,
  say we have 4 colors `c, m, y, k` and `2` slots `_ _`. The number of colorings
@@ -601,7 +601,7 @@ by `2`. This gives:
 so we get the answer as `answer = 20/2! = 10`. ~~This is wrong, it ought to be `5`.~~
 I am stupid, the answer is indeed `10`, as shown by exhaustively enumerating before. The world is safe.
 
-# [this is not a place of honor](#this-is-not-a-place-of-honor)
+# this is not a place of honor
 
 - [Long term nuclear waste](https://en.wikipedia.org/wiki/Long-time_nuclear_waste_warning_messages)
 
@@ -611,7 +611,7 @@ We take the topological proof and try to view it from the topology as
 semidecidability perspective.
 
 - Choose a basis for the topology as the basic open sets
-  $S(a, b) = \{ a n + b : n \in \mathbb Z \} = \ mathbb Z + b \}$.
+  $S(a, b) = \{ a n + b : n \in \mathbb Z \} = \{ mathbb Z + b \}$.
   This set is indeed semi-decidable. Given a number $k$, I can check if
   $(k - b) % a == 0$. So this is our basic decidability test.
 - By definition, $\emptyset$ is open, and $\mathbb Z = S(1, 0)$. Thus it is
@@ -631,7 +631,7 @@ semidecidability perspective.
  
 
 
-# [Burnside as space average equals time average](#burnside-as-space-average-equals-time-average)
+# Burnside as space average equals time average
 
 
 For a finite group $G$ acting on a set $X$, burnside's lemma equates
@@ -676,7 +676,7 @@ Turns out these are equivalent:
 <img src=/>
 
 
-# [The Ise Grand shrine](#ise-grand-shrine)
+# The Ise Grand shrine
 
 > The shrine buildings at Naikū and Gekū, as well as the Uji Bridge, are
 > rebuilt every 20 years as a part of the Shinto belief of the death and
@@ -694,7 +694,7 @@ supercolliders simply to keep the knowledge of how to build it alive.
 > technology as well as Buddhist influence, it gained them over the years.
 
 
-# [Edward Kmett's list of useful math](#edward-kmetts-list-of-useful-math)
+# Edward Kmett's list of useful math
 
 I use Bayesian statistics constantly for probabilistic programming and neural
 networks. Calculus gave me access to understand automatic differentiation,
@@ -773,7 +773,7 @@ don't know. I just know it's hard to do all sorts of things that sound easy
 and try to muddle through w/ my limited background.
 
 
-# [Cokernel is not sheafy](#cokernel-is-not-sheafy)
+# Cokernel is not sheafy
 
 I wanted to understand why the Cokernel is not a sheafy condition.
 I found an [explanation in Ravi Vakil's homework solutions](https://math.mit.edu/~mckernan/Teaching/07-08/Spring/18.726/model2.pdf)
@@ -819,7 +819,7 @@ trivial cokernel, but globally, we will have non-trivial cokernel.
 
 
 
-# [Von neumann: foundations of QM](#von-neumann-foundations-of-qm)
+# Von neumann: foundations of QM
 
 - I wanted to understand what von neumann actually did when he
   "made QM rigorous", what was missing, and why we need $C^\star$ algebras for
@@ -847,7 +847,7 @@ trivial cokernel, but globally, we will have non-trivial cokernel.
 - Von neumann: Mathematical foundations of quantum mechanics.
 - [The role of rigged hilbert spaces in QM](https://arxiv.org/pdf/quant-ph/0502053.pdf)
 
-# [Discrete schild's ladder](#discrete-schilds-ladder)
+# Discrete schild's ladder
 
 If one is given a finite graph $(V, E)$, which we are guaranteed came
 from discretizing a grid, can we recover a global sense of orientation?
@@ -877,7 +877,7 @@ from discretizing a grid, can we recover a global sense of orientation?
   [Schild's Ladder](https://en.wikipedia.org/wiki/Schild%27s_ladder)
 
 
-# [Derivative of step is dirac delta](#derivative-of-step-is-dirac-delta)
+# Derivative of step is dirac delta
 
 I learnt of the "distributional derivative" today from [my friend, Mahathi](TODO).
 Recording this here.
@@ -931,7 +931,7 @@ $$
 
 - Thus, the derivative of the step distribution is the dirac delta distribution.
 
-# [Extended euclidian algorithm](#extened-euclidian-algorithm)
+# Extended euclidian algorithm
 
 #### Original definition 
 
@@ -1037,7 +1037,7 @@ $$
 
 
 
-# [In a PID, all prime ideals are maximal, geometrically](#in-a-pid-all-prime-ideals-are-maximal-geometrically)
+# In a PID, all prime ideals are maximal, geometrically
 
 Assume $R$ is Noetherian.
  
@@ -1083,7 +1083,7 @@ ideals are maximal.
 
 - [Andreas Gathmann's notes](https://www.mathematik.uni-kl.de/~gathmann/class/commalg-2013/commalg-2013-c11.pdf)
 
-# [Prime numbers as maximal among principal ideals](#prime-ideal-as-maximal-among-principal-ideals)
+# Prime numbers as maximal among principal ideals
 
 I learnt of this characterization from benedict gross's lectures, [lecture 31](https://www.youtube.com/watch?v=l1OWAasmBLI&list=PLelIK3uylPMGzHBuR3hLMHrYfMqWWsmx5&index=31).
 
@@ -1108,7 +1108,7 @@ ideal $(p)$ is maximal: no other principal ideal $(a)$ contains it.
   is a unit, therefore $(a) = R$.
 
 
-# [Axiom of Choice and Zorn's Lemma](#axiom-of-choice-and-zorns-lemma)
+# Axiom of Choice and Zorn's Lemma
 
 I have not seen this "style" of proof before of AoC/Zorn's lemma
 by thinking of partial functions $(A \rightarrow B)$ as monotone functions                                 
@@ -1135,7 +1135,7 @@ Hence, we've constructed a choice function by applying Zorn's Lemma.
 Thus, Zorn's Lemma implies Axiom of Choice.
 
 
-# [Local ring in terms of invertibility](#local-ring-in-terms-of-invertibility)
+# Local ring in terms of invertibility
 
 Recall that a local ring $R$ is a ring with a unique maximal ideal $M$.
 This is supposedly equivalent to the definition:
@@ -1193,7 +1193,7 @@ This is supposedly equivalent to the definition:
 
 - [Using the internal language of toposes in algebraic geometry](https://rawgit.com/iblech/internal-methods/master/notes.pdf)
 
-# [Nullstellensatz for schemes](#nullstellensatz-for-schemes)
+# Nullstellensatz for schemes
 
 #### System of equations
 
@@ -1360,7 +1360,7 @@ of points in $L^n$. These points are solutions to the system $X$.
 - [Notes coordinate rings of affine varieties](http://pi.math.cornell.edu/~dmehrle/notes/old/alggeo/34CoordinateRingonAffineVariety.pdf)
 - [Why is this called the coordinate ring](https://math.stackexchange.com/questions/2397249/the-coordinate-ring-its-etymology)
 
-# [Perspectives on Yoneda](#perspectives-on-yoneda)
+# Perspectives on Yoneda
 
 We can try to gain intuition for Yoneda by considering a finite category
 where we view arrows as directed paths. 
@@ -1487,7 +1487,7 @@ From this perspective, it is trivial to see that:
   since the data given by a natural transformation is somehow "different", in a way
   that I'm not sure how to make precise.
 
-# [Germs, Stalks, Sheaves of differentiable functions](#germs-stalks-sheaves-of-differentiable-functions)
+# Germs, Stalks, Sheaves of differentiable functions
 
 I know some differential geometry, so I'll be casting sheaves in terms
 of tangent spaces for my own benefit
@@ -1549,7 +1549,7 @@ gives us a discontinuity at $0$.
 - The rising sea by Ravi Vakil.
 
 
-# [Connectedness in terms of continuity](#connectedness-in-terms-of-continuity)
+# Connectedness in terms of continuity
 
 This was a shower thought. 
 
@@ -1580,7 +1580,7 @@ is connected, I should be unable to color it continuously with two colors ---
 there should be a point of "breakage" where we suddenly switch colors.
 
 
-# [Intuition for limits in category theory](#intuition-for-limits-in-category-theory)
+# Intuition for limits in category theory
 
 #### A characterization of limits
 
@@ -1600,7 +1600,7 @@ The theorem that characterizes limits is this:
 
 
 
-# [Finite topologies and DFS numbering](#finite-topologies-and-dfs-numbering)
+# Finite topologies and DFS numbering
 
 In this great math overflow question on
 [How to think about non hausdorff topologies in the finite case](https://mathoverflow.net/questions/44109/how-should-one-think-about-non-hausdorff-topologies/44135#44135), there's an answer that encourages us 
@@ -1687,7 +1687,7 @@ will get
 ### DFS: the T0 case
 ### DFS: the back edges
     
-# [Categorical definition of products in painful detail](#categorical-definition-pf-products-in-painful-detail) 
+# Categorical definition of products in painful detail 
 
 I feel like I have incorrectly understood, then un-understood, and re-understood
 in a slightly less broken way the definition of the product in category theory
@@ -1903,7 +1903,7 @@ a         |   |        b
 
 - [Link to a misconception of the proof I had carried around for ages](https://math.stackexchange.com/questions/3756610/flaw-in-a-proof-of-uniqueness-of-products-in-a-category/3756693#3756693)
 
-# [Why is the spectrum of a ring called so?](#why-is-the-spectrum-of-a-ring-called-so)
+# Why is the spectrum of a ring called so?
 
 I've been watching Ravi Vakil's excellent "pseudolectures" on algebraic geometry,
 aptly titled
@@ -1928,7 +1928,7 @@ Another user said:
 That's a pretty crazy definition. One can apparently find this definition
 in Peter Schloze's notes on AG. [I got an answer for this on `math.se`](https://math.stackexchange.com/questions/3754159/categorical-definition-of-spectrum-of-a-ring-as-a-colimit)
 
-# [Ergo proxy](#ergo-proxy)
+# Ergo proxy
 
 I've been watching the anime "Ergo Proxy". I'll keep this section updated
 with things I find intriguing in the anime.
@@ -1953,7 +1953,7 @@ This is far more evocative terminology than UNSAT/unsatisfied, and also
 makes for good haskell like variable names. `ss` for satisfied equations,
 `fs` for frustrated equations!
 
-# [Combinatorial intuition for Fermat's little theorem](#combinatorial-intuition-for-fermats-little-theorem)
+# Combinatorial intuition for Fermat's little theorem
 
 We wish to show that $x^p \equiv x (\mod p)$ _combinatorially_. Let's take
 $2^3 (\mod 3)$ for simplicity. The general case follows. Let's first write
@@ -2067,7 +2067,7 @@ if I counted its equivalence class as having size `4`.
 - [A string of pearls: proofs of Fermat's little theorem](https://ts.data61.csiro.au/publications/nicta_full_text/6061.pdf)
 - [Algorithms thread 1: division under mod](https://www.youtube.com/watch?v=KfTcd0dg0DI&feature=youtu.be&t=815)
 
-# [An incorrect derivation of special relativity in 1D](#an-incorrect-derivation-of-special-relativity-in-1d)
+# An incorrect derivation of special relativity in 1D
 
 I record an _incorrect_ derivation of special relativity, starting from the
 single axiom "speed of light is constant in all inertial reference frames".
@@ -2210,7 +2210,7 @@ We don't know what the relationship to sumerian is. Social expectations that
 was setup is sumerian has become more stringent in Sanskrit. 
 
 
-# [Writing Cuneiform](#writing-cuneiform)
+# Writing Cuneiform
 
 I've been reading about the Sumerian people, and I've gotten fascinated with
 the question of how to write in Cuneiform, which is their script. I wanted
@@ -2232,7 +2232,7 @@ We have three components:
 - [CLDI: Cuneiform Digital library initiative](http://cdli.ox.ac.uk/wiki/doku.php?id=cuneiform_writing_techniques)
 - [Font: Old persian block](https://www.compart.com/en/unicode/block/U+103A0)
 
-# [The code of hammurabi](#the-code-of-hammurabi)
+# The code of hammurabi
 
 I've wanted to read the code of hammurabi since it was name dropped in
 [Snow Crash by Neal Stephenson](https://en.wikipedia.org/wiki/Snow_Crash).
@@ -2336,7 +2336,7 @@ Some helpful hints were found from the
   that faith in the justice of the ruling gods was already firmly, though
   somewhat childishly, established in the minds of men
 
-# [The implicit and inverse function theorem](#the-implicit-and-inverse-function-theorem)
+# The implicit and inverse function theorem
 
 I keep forgetting the precise conditions of these two theorems. So here
 I'm writing it down as a reference for myself.
@@ -2442,7 +2442,7 @@ the exact same process!
 - [Mathematics for economics, Natalia Lazzati](https://people.ucsc.edu/~nlazzati/Courses/Math519/Notes/Note%203.pdf)
 - [Inverse function theorem via Newton's method](http://mtaylor.web.unc.edu/files/2018/04/invfn.pdf)
 
-# [Whalesong hyperbolic space in detail](#whalesong-hyperbolic-space-in-detail)
+# Whalesong hyperbolic space in detail
 
 We can build a toy model of a space where velocity increases with depth.
 Let the x-y axis be: left-to-right (→) is positive x, top-to-bottom (↓) is positive y.
@@ -2458,7 +2458,7 @@ Under such a model, our shortest paths will be 'curved' paths.
   section: [Whalesong, selected discography](https://en.wikipedia.org/wiki/Whale_vocalization#Selected_discography)
 
 
-# [Motivating Djikstra's](#motivating-djikstras)
+# Motivating Djikstra's
 
 Usually I've seen Djikstra's algorithm presented as a greedy algorithm,
 and then an analogy given to "fire" for the greediness. We can reverse
@@ -2494,7 +2494,7 @@ to arrive at Djikstra's
 
 
 
-# [Intuitions for hyperbolic space](#intuitions-for-hyperbolic-space)
+# Intuitions for hyperbolic space
 
 - [Combinatorial group theory](https://math.stackexchange.com/questions/689257/topics-in-combinatorial-group-theory-for-a-short-talk/692534#692534)
 - [Van Kampen diagrams: an intuition](https://math.stackexchange.com/questions/330531/algebra-best-mental-images/331135#331135)
@@ -2512,11 +2512,11 @@ to arrive at Djikstra's
 - [The pseudosphere, another surface with constant negative curvature](https://mathworld.wolfram.com/Pseudosphere.html)
 - [Whalesong, selected discography](https://en.wikipedia.org/wiki/Whale_vocalization#Selected_discography)
 
-# [Product of compact spaces in compact](#product-of-compact-spaces-is-compact)
+# Product of compact spaces in compact
 
 <img width="600" src="./static/product-of-compact-is-compact.png">
 
-# [Hyperbolic groups have solvable word problem](#hyperbolic-groups-have-solvable-word-problem)
+# Hyperbolic groups have solvable word problem
 
 I have never seen an elementary account of this in a 'trust these facts, now
 here is why hyperbolic groups have a solvable word problem'. I am writing
@@ -2623,7 +2623,7 @@ We claim that due to the hyperbolicity of the space, such an $x$ cannot be
 - [The geometry of the word problem by Martin R Bridson](https://people.maths.ox.ac.uk/bridson/papers/bfs/bfs.pdf)
 - [My math.stackexchange question asking about why delta thin triangles help to solve conjugacy](https://math.stackexchange.com/questions/3789681/delta-thin-trianges-implies-solvable-conjugacy-problem-for-hyperbolic-groups)
 
-# [Elementary uses of Sheaves in complex analysis](#elementary-uses-of-sheaves-in-complex-analysis)
+# Elementary uses of Sheaves in complex analysis
 
 I always wanted to see sheaves in the wild in a setting that was both
 elementary but 'correct': In that, it's not some perverse example
@@ -2695,7 +2695,7 @@ be arbitrary.
 
 <img src="./static/sheaf.png">
 
-# [Snake lemma](#snake-lemma)
+# Snake lemma
 
 ## Why homomorphisms for chain maps?
 
@@ -2767,7 +2767,7 @@ this long exact sequence is saatisfied:
   that allows us to compute $H_i(f(G))$ in some convenient fashion.
 
 
-# [Kernel, cokernel, image](#kernel-cokernel-image)
+# Kernel, cokernel, image
 
 Consider a linear map $T: X \rightarrow Y$. we want to solve for $\{ x : T(x) = y0 \}$. 
 - If we have an $x0$ such that $T(x0) = y0$, then see that $T(x0 + Ker(T)) = T(x0) + T(Ker(T)) = y0 + 0 = y0$.
@@ -2778,7 +2778,7 @@ Consider a linear map $T: X \rightarrow Y$. we want to solve for $\{ x : T(x) = 
   the solution set is empty. The cokernel tells us the _obstruction_ to a 
   solution.
 
-# [The commutator subgroup](#the-commutator-subgroup)
+# The commutator subgroup
 
 Define the commutator of $g, h$ as $[g, h] \equiv ghg^{-1}h^{-1}$.
 The subgroup **generated** by all commutators
@@ -2798,7 +2798,7 @@ $[G, G]$.
   quotient. This quotienting is called abelianization.
 
 
-# [Simplicity of A5 using PSL(2, 5)](#simplicity-of-a5-using-psl-2-5)
+# Simplicity of A5 using PSL(2, 5)
 
 #### Presentation of A5
 
@@ -2892,7 +2892,7 @@ TODO! I'm still reading Keith Conrad's notes.
 - [Math.se: isomorphism from PSL to A5](https://math.stackexchange.com/questions/2051241/showing-psl2-5-is-isomorphic-to-a-5)
 
 
-# [A5 is not solvable](#a5-is-not-solvable)
+# A5 is not solvable
 
 There are many accounts of why A5 is not solvable on the internet. I'm recording my
 version here, because the proof involves certain ad-hoc choices which I want
@@ -3312,7 +3312,7 @@ s = t*t
 ### To think: relationship between square roots and commutators?
 
 
-# [Complex orthogonality in terms of projective geometry](#complex-orthogonality-in-terms-of-projective-geometry)
+# Complex orthogonality in terms of projective geometry
 
 If we think of complex vectors $p = [p_1, p_2]$, $q = [q_1, q_2]$ as belonging to
 _projective space_: that is, $p \simeq p_1/p_2$, and $q \simeq q_1 / q_2$, we can
@@ -3335,7 +3335,7 @@ If we imagine these as points on the Riemann sphere, TODO
 
 - Visual Complex analysis by Tristan Needham
 
-# [Arithmetic sequences, number of integers in a closed interval](#arithmetic-sequences-number-of-integers-in-a-closed-interval)
+# Arithmetic sequences, number of integers in a closed interval
 
 This is a cute reason for why when we count the number of integers in
 the closed interval `[a, b]`, it's going to be `b - a + 1`. We setup
@@ -3502,7 +3502,7 @@ out = f'(path)
 - This provides a rigorous definition of what it means to "pick a value in the branch".
   This can clearly be extended to the continuous domain.
 
-# [Odd partitions, unique partitions](#odd-partitions-unique-partitions)
+# Odd partitions, unique partitions
 
 A well known identity in combinatorics is that the partitions `n = l1 + l2 + ... + ln`
 where each `li` is odd is in bijectiion with a partition where each `li` is unique.
@@ -3519,13 +3519,13 @@ I really liked this bijection.
 (15, 18, [10, 5], [6, 3], 4) [all unique]
 ```
 
-# [Continued fractions, mobius transformations](#continued-fractions-mobius-transformations)
+# Continued fractions, mobius transformations
 
 read [`ekmett/fractions`](https://github.com/ekmett/fractions) properly
 and write detailed log about it, and the related math.
 
 
-# [Permutations-and-lyndon-factorization](#Permutations-and-lyndon-factorization)
+# Permutations-and-lyndon-factorization
 
 For a string `s`, the Lyndon factorization writes `s` as the concatenation of
 substrings `t1`, `t2`, ..., `tn`, such that:
@@ -3560,13 +3560,13 @@ So, we can treat the duval algorithm as a way to recover the permutation given
 the raw string. It's a nice way to _remember_ the definition of lyndon
 decomposition if nothng else.
 
-# [Graphs are preorders](#graphs-are-preorders)
+# Graphs are preorders
 
 I wanted to record this fact for myself, so that I have reason to come back
 to it as I learn more preorder theory. Perhaps there are certain graph theoretic
 phenomena that make more sense when looked at from a preorder point of view.
 
-# [Crash course on domain theory](#crash-course-on-domain-theory)
+# Crash course on domain theory
 
 In lambda calculus, we often see functions of the form $\lambda x \rightarrow x(x)$. We would
 like a way to associate a "natural" mathematical object to such a function. The
@@ -3661,7 +3661,7 @@ than $a$, and hence implies $a$.
 
 
 
-# [Parallelisable version of maximum sum subarray](#parallelisable-version-of-maximum-sum-subarray)
+# Parallelisable version of maximum sum subarray
 
 I learnt of a "prefix sum/min" based formulation from
 [the solution to question D, codeforces educational round 88](https://codeforces.com/blog/entry/78116).
@@ -3702,7 +3702,7 @@ main = rise [1, 2, 3, -2, -1, -4, 4, 6]
 `zipWith (-) xxx sums_mins` computes the elevation from the sea level.
 
 
-# [Thoughts on implicit heaps](#thoughts-on-implicit-heaps)
+# Thoughts on implicit heaps
 
 Some musings I had on the ability to represent heaps as arrays, and in general,
 the benifits of knowing the total number of elements.
@@ -3723,7 +3723,7 @@ the benifits of knowing the total number of elements.
   the left child, otherwise the right child. This allows us to compress
   some annoying if/then/elses into one-liners.
 
-# [Discriminant and Resultant](#discriminant-and-resultant)
+# Discriminant and Resultant
 
 I had always seen the definition of a discriminant of a polynomial $p(x)$ as:
 $$
@@ -3855,7 +3855,7 @@ of the solution we are looking for!
 - [CMU lectures on Math Fundamentals for Robotics](http://www.cs.cmu.edu/~me/811/notes/)
 
                                                     
-# [Polynomial root finding using QR decomposition](#polynomial-root-finding-using-qr-decomposition)
+# Polynomial root finding using QR decomposition
 
 1. For a polynomial $p(x)$, build the companion matrix $P(x)$.
 2. Show that the characteristic polynomial $cp(P)$ of the companion matrix $P(x)$ is indeed $p(x)$.
@@ -3866,7 +3866,7 @@ of the solution we are looking for!
    on matrix multiplication.
 
 
-# [A hacker's guide to numerical analysis](#a-hackers-guide-to-numerical-analysis)
+# A hacker's guide to numerical analysis
 
 > Life may toss us ill-conditioned problems, but it is too short
 > to settle for unstable algorithms. - D.P. O'Leary
@@ -4237,7 +4237,7 @@ the discontinuity.
 - Accuracy and stability of numerical algorithms
 - [Branch Cuts for complex elementary functions, or much ado about Nothing's Sign Bit](https://people.freebsd.org/~das/kahan86branch.pdf)
 
-# [Mobius inversion on Incidence Algebras](#mobius-inversion-on-incidence-algebras)
+# Mobius inversion on Incidence Algebras
 
 Most of these functions are really defined on the _incidence algebra_ of
 the poset $P$ with ground field $K$. An _incidence_ algebra $ I(P) $ is a
@@ -4351,7 +4351,7 @@ $$
 & \mu([3, 4]) = - \left (\sum_{3 \leq x < 4} \right) \text{ By definition } \\
 \end{aligned}
 $$
-# [Finite differences and Umbral calculus](#finite-differences-and-umbral-calculus)
+# Finite differences and Umbral calculus
 
 Umbral calculus lays out a large collection of "umbral" / "shadowy"
 coincidences across combinatorics and calculus. Here, I'll lay out some of
@@ -4636,7 +4636,7 @@ $$
 - [An introduction to posets and mobius inversion](https://community.plu.edu/~edgartj/posetMobius.pdf)
 
 
-# [Permutahedron](#permutahedron)
+# Permutahedron
 
 The permutahedron over $n$ letters is a polytope which is defined as the convex
 hull of all permutations of the point $(1, 2, \dots, n)$. 
@@ -4732,7 +4732,7 @@ the number line as:
   combination will "pull the convex sum away from the right (where `vn` sits),
   towards the left".
 
-# [Lyndon + Christoffel = Convex Hull](#lyndon-christoffel-convex-hull)
+# Lyndon + Christoffel = Convex Hull
 Actual "real world" use-case of lyndon factorization, cribbed from here:
 
 - [Lyndon + Christoffel = digitally convex](https://archipel.uqam.ca/8354/1/Reutenauer-2009a-preprint.pdf)
@@ -4877,7 +4877,7 @@ of `y`, which is what we want when `x=2, y = 7`. We need to reach at least
 along `y`.
 
 
-# [Geometric proof of `e^x >= 1+x`, `e^(-x) >= 1-x`](#e-x-1-xof-of-)
+# Geometric proof of `e^x >= 1+x`, `e^(-x) >= 1-x`
 
 Let's concentrate on the `e^x >= 1 + x` part. 
 
@@ -4895,7 +4895,7 @@ Similarly for `e^(-x)`, working through the math:
 
 
 
-# [Ranking and Sorting](#ranking-and-sorting)
+# Ranking and Sorting
 
 We we want to sort an arrray `xs` and write the results into an array `ys`.
 In both cases, the invariant to be satisfied is that `ys` is `xs` in ascending
@@ -5046,7 +5046,7 @@ the classical _adjunction_ between rank and select.
 
 
 
-# [Proof of minkowski convex body theorem](#proof-of-minkowski-convex-body-theorem)
+# Proof of minkowski convex body theorem
 
 We can derive a proof of the minkowski convex body theorem starting from
 Blichfeldt’s theorem.
@@ -5118,7 +5118,7 @@ $$
 - [Theorem of the day](https://www.theoremoftheday.org/GeometryAndTrigonometry/Minkowski/TotDMinkowski.pdf)
 
 
-# [Burrows Wheeler](#burrows-wheeler)
+# Burrows Wheeler
 
 We aim to get the $O(n)$ algorithm for burrows wheeler, by starting from the
 naive $O(n^2)$ implementation and then slowly chipping away to get to the
@@ -5309,7 +5309,7 @@ The idea is that:
 - Richard Bird: Pearls of functional algorithm design
 
 
-# [Intuitionstic logic as a Heytig algebra](#intuitionstic-logic-as-a-heytig-algebra)
+# Intuitionstic logic as a Heytig algebra
 
 _open sets_ form a Heytig Algebra, which is a lattice plus an implication
 operator. So it's stronger than a lattice, but weaker than a boolean algebra.
@@ -5476,7 +5476,7 @@ which was the definition of $\Rightarrow$ we wanted!
 
 - [Email by Olaf Klinke on haskell-cafe](https://mail.haskell.org/pipermail/haskell-cafe/2020-May/132297.html)
 
-# [Edit distance](#edit-distance)
+# Edit distance
 
 This implementation of edit distance crystallizes the fact that when computing
 edit distance, we only ever move forwards on solving the problem. we _do not_
@@ -5591,7 +5591,7 @@ argmin :: (a -> Int) -> a -> a -> a
 argmin f a a' = if (f a) < (f a') then a else a'
 ```
 
-# [Evolution of bee colonies](#evolution-of-bee-colonies)
+# Evolution of bee colonies
 
 This kind of culture that beehives have is called as 'eusociality'.
 I'm interested in this because I want to understand what alien societies might
@@ -5603,7 +5603,7 @@ a society, but tend to be hazy on how this state of affairs came to be.
 - [Evolution of eusociality](https://en.wikipedia.org/wiki/Evolution_of_eusociality)
 
 
-# [Best practices for array indexing](#best-practices-for-array-indexing)
+# Best practices for array indexing
 
 These are rules I'm going to follow when I solve problems on 
 [codeforces](https://codeforces.com/). I've arrived at these rules by repeatedly
@@ -5768,7 +5768,7 @@ $$
 This also shows up in the case of the "Gallager-Humblet-Spira Algorithm" and
 the fragment-name-union-rule.
 
-# [Networks are now faster than disks](#networks-are-now-faster-than-disks)
+# Networks are now faster than disks
 
 I learnt of this counter-intutive fact first from this
 [usenix article no SQL](https://www.usenix.org/legacy/publications/login/2011-10/openpdfs/Burd.pdf).
@@ -5786,7 +5786,7 @@ mentioned that SSDs might be much faster, and the numbers bear out:
 - Round trip within same datacenter: 500,000 ns
 - Disk seek: 10,000,000 ns [regular disk]
 
-# [Einstein-de Haas effect](#einstein-de-haas-effect)
+# Einstein-de Haas effect
 
 I learnt of this from hacker news. This is some crazy experiment that shows
 that the 'quantum angular momentum' (spin) and the 'classical angular momentum'
@@ -5816,7 +5816,7 @@ So, my understanding of the experiment is:
 
 	
 	
-# [Rank-select as adjunction](#rank-select-as-adjunction)
+# Rank-select as adjunction
 
 We will introduce two operations `rank`, `select`, --- these are used to
 build memory-efficient data structures that can still be queried quickly.
@@ -5865,7 +5865,7 @@ coselect a0 as c = Ix <$> findIndex (== c) (reverse (eqscan a0 as))
 Thanks to Edward Kmett for teaching me this.
 
 
-# [Bounding chains: uniformly sample colorings](#bounding-chains-uniformly-sample-colorings)
+# Bounding chains: uniformly sample colorings
 
 We wish to _uniformly sample_ `k` colorings of a graph $G$ with maximum degree
 $\Delta$. Hence, we require $k \geq \Delta + 1$. To perform this sampling,
@@ -6241,7 +6241,7 @@ sample = last . chain
 
 - [Exact Sampling and Approximate Counting Techniques](https://dl.acm.org/doi/10.1145/276698.276709)
 
-# [Coupling from the past](#coupling-from-the-past)
+# Coupling from the past
 
 ##### Relationship between CFTP and reset transitions
 
@@ -6250,7 +6250,7 @@ sample = last . chain
 - [Coupling from the past, a user's guide](https://pdfs.semanticscholar.org/622e/a9c9c665002670ff26119d1aad5c3c5e0be8.pdf)
 
 
-# [Word problems in Russia and America](#word-problems-in-russia-and-america)
+# Word problems in Russia and America
 
 - [link to article by *Andrei Toom*](http://toomandre.com/travel/sweden05/WP-SWEDEN-NEW.pdf)
 
@@ -6259,7 +6259,7 @@ scathing critique of how ameriacn math education is screwed:
 anecdote about how looking for 'reality' in mathematical problems may in fact
 break student's ability to think in the abstract! This is a deep insight.
 
-# [Encoding mathematical hieararchies](#encoding-mathematical-hieararchies)
+# Encoding mathematical hieararchies
 
 I've wanted to learn how the SageMATH system is organized when it comes to math
 hieararchies. I also wish to learn how `lean4` encodes their hiearchies. I know
@@ -6274,7 +6274,7 @@ how mathematical components does it. This might help narrow in on what what the
 
 
 
-# [Learning code by hearing it](#learning-code-by-hearing-it)
+# Learning code by hearing it
 
 I learnt of this from an amazing discussion on HackerNews, where a sighted
 programmed, who is going blind, asked the community if he could remain
@@ -6316,7 +6316,7 @@ supposedly works well for an audio-based-workflow.
 
 
 
-# [Your arm can be a spinor](#your-arm-can-be-a-spinor)
+# Your arm can be a spinor
 
 I tend to forget the name of this trick. It exhibits spinors in real life:
 a system that needs to rotate by 720 degrees to return back to its
@@ -6327,7 +6327,7 @@ to consider our entire arm + cup we are holding as a system for this to work.
 - [Baliense cup trick](https://www.youtube.com/watch?v=Rzt_byhgujg)
 
 
-# [Self modifying code for function calls: Look ma, I don't need a stack!](#self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack)
+# Self modifying code for function calls: Look ma, I don't need a stack!
 
 If one does not have recursive calls, one can eliminate the need to push
 return addresses on a call stack by writing self-modifying code ---
@@ -6414,7 +6414,7 @@ We can't have recursion, or more generally "re-entrance": consider a call chain 
   and vice versa.
 
 
-# [Adjunctions as advice](#adjunctions-as-advice)
+# Adjunctions as advice
 
 An adjunction `F |- U` allows us to go from `F a -> x` to `a -> U x`. We 
 can look at this as shifting the "before-advice" from the _input_ to an 
@@ -6453,7 +6453,7 @@ fmap f :: (f a -> x) -> (a       -> u x) [using u (f a) = a]
 
 
 
-# [Reversible computation as groups on programs](#reversible-computation-as-groups-on-programs)
+# Reversible computation as groups on programs
 
 If we consider a language like [`Janus`](https://en.wikipedia.org/wiki/Janus_(time-reversible_computing_programming_language)
 where every program is reversible, we can then get a group structure on
@@ -6468,7 +6468,7 @@ exploration of the program space? Ie, can we somehow exploit the
 discrete group structure (in the case of Janus) or the Lie group structure
 of the unitary group (as in the QM case) to find programs in far quicker ways?
 
-# [Blazing fast math rendering on the web](#blazing-fast-math-rendering-on-the-web)
+# Blazing fast math rendering on the web
 
 So, I've shifted the blog to be static-site-generated using a
 static-site-generator written by yours truly. The code clocks in at around a
@@ -6657,7 +6657,7 @@ how I want it to be, and that makes me $\epsilon$ more happy.
 I think of it as an investment into future me, since I can extend the
 markdown and the transpiler in the way _I_ want it to be.
 
-# [VC dimension](#vc-dimension)
+# VC dimension
 
 Consider a ground set $X$. Let the space of all possible binary classifications
 be the function space $C \equiv \{ f \mid f : X \rightarrow \pm 1 \}$.
@@ -6729,7 +6729,7 @@ Now, the idea is this:
 We can show that this exponential/polynomial behaviour happens in general
 for $S \subseteq X$. 
 
-# [Symplectic version of classical mechanics](#symplectic-version-of-classical-mechanics)
+# Symplectic version of classical mechanics
 
 #### Basics, symplectic mechanics as inverting $\omega$:
 
@@ -6826,7 +6826,7 @@ $X_{\mathfrak g}$. If we get a hamiltonian from this process, then it
 will have the right symmetries.
 
 
-# [Theorems for free](#theorems-for-free)
+# Theorems for free
 
 These are personal notes I made of a custom notation for denoting the relations
 from the theorems for free paper. I developed the notation since I wanted
@@ -6894,7 +6894,7 @@ If this is the case, then we can simplify the math to be:
 #### References
 - [Theorems for free by Phil Wadler](https://ecee.colorado.edu/ecen5533/fall11/reading/free.pdf)
 
-# [How to reason with half-open intervals](#how-to-reason-with-half-open-intervals)
+# How to reason with half-open intervals
 
 I've always found code that uses half-open intervals far harder to write
 than using closed intervals. For example, when performing string processing,
@@ -6935,7 +6935,7 @@ easier to analyse. It took me this long it's easier for me to _think_
 in this viewpoint as well.
 
 
-# [How does one build a fusion bomb?](#how-does-one-build-a-fusion-bomb)
+# How does one build a fusion bomb?
 
 I haven't found anything on the internet that describes how to build
 a fusion bomb; it's almost as if this information has been supressed
@@ -6952,7 +6952,7 @@ I read on wikipedia that most countries classify the details:
 > even if it is created by persons who are not government employees or
 > associated with weapons programs, in a legal doctrine known as "born secret".
 
-# [Christoffel symbols, geometrically](#christoffel-symbols-geometrically)
+# Christoffel symbols, geometrically
 
 Suppose we have a manifold $M$. of dimension $d$ that has been embedded isometrically
 into $\mathbb R^n$. So we have a function $e: \mathbb R^d \rightarrow \mathbb R^n$
@@ -7028,7 +7028,7 @@ $$
 
 - [The wikipedia page on Covariant derivative](https://en.wikipedia.org/wiki/Covariant_derivative#Informal_definition_using_an_embedding_into_Euclidean_space)
 
-# [A natural vector space without an explicit basis](#a-natural-vector-space-without-an-explicit-basis)
+# A natural vector space without an explicit basis
 
 On learning about infinite dimensional vector spaces, one learns that
 we need to use the axiom of choice to assert that every such vector space
@@ -7072,7 +7072,7 @@ For example, one can write the equation:
 ```
 
 
-# [Cache oblivious B trees](#cache-oblivious-b-trees)
+# Cache oblivious B trees
 
 Central idea: assume a memory model where computation is free, only cost
 is pulling data from cache into memory. Cache has total size $M$, can hold
@@ -7184,7 +7184,7 @@ that has max of nodes. Leaves are the members of the ordered file.
 
 - [Erik demaine, advanced data structures, lecture 7: Memory hiearchy: models, cache oblivious B trees](https://courses.csail.mit.edu/6.851/fall17/lectures/L07.html?notes=5)
 
-# [Krohn-Rhodes decomposition](#krohn-rhodes-decomposition)
+# Krohn-Rhodes decomposition
 
 We denote partial functions with $X \rightharpoonup Y$ and total functions
 with $X \rightarrow Y$.
@@ -7563,7 +7563,7 @@ We will show how to establish a relational covering:
 - [Computational semigroup theory blog](https://compsemi.wordpress.com/)
 - [Compact notation for semigroup/automata](https://arxiv.org/pdf/1306.1138.pdf)
 
-# [Proving block matmul using program analysis](#proving-block-matmul-using-program-analysis)
+# Proving block matmul using program analysis
 
 It's a somewhat well-known fact that given matrix multiplication: $O = AB$
 where $O \in \mathbb R^{2n \times 2m}$ ($O$ for output),
@@ -7692,7 +7692,7 @@ the _directions_ of the arrows in the dependence set.
 - [Polyhedral compilation](http://polyhedral.info/)
 
 
-# [Why I like algebra over analysis](#why-i-like-algebra-over-analysis)
+# Why I like algebra over analysis
 
 Midnight discussions with my room-mate
 [Arjun P](https://researchweb.iiit.ac.in/~arjun.p/).
@@ -7748,7 +7748,7 @@ is nothing left to take away".
 I'm really glad that this 2 AM discussion allowed me to finally pin down
 why I like algebra.
 
-# [`using` for cleaner function type typedefs](#using-for-cleaner-function-type-typedefs)
+# `using` for cleaner function type typedefs
 
 I've always struggled with remembering the syntax for function type typedefs:
 
@@ -7773,7 +7773,7 @@ that the usual typedef tends to hide the fact that a
 function pointer is some pointer-like-thing.
 
 
-# [A walkway of lanterns](#a-walkway-of-lanterns)
+# A walkway of lanterns
 
 ### Semidirect products
 
@@ -7828,7 +7828,7 @@ $$
 
 
 
-# [Natural transformations](#natural-transformations)
+# Natural transformations
 
 <img width=400  src="./static/natural-transformation.png">
 
@@ -7838,7 +7838,7 @@ the catories $C$, $FC$, and $GC$, and then show the relationship between
 them, so I made this for my own reference.
 
 
-# [The hilarious commentary by dinosaure in OCaml git](#the-hilarious-commentary-by-dinosaure-in-ocaml-git)
+# The hilarious commentary by dinosaure in OCaml git
 
 the [Ocaml-git](https://github.com/mirage/ocaml-git/) project is a
 re-implementation of `git` in `OCaml`. It's well-written, and I was
@@ -7910,7 +7910,7 @@ devrait avoir un problème. Donc TODO. *)
 (* XXX(dinosaure): at the end, we don't care if we lost something. *)
 ```
 
-# [How to link against MLIR with CMake](#how-to-link-against-mlir-with-cmake)
+# How to link against MLIR with CMake
 
 Since `MLIR` hasn't setup the nice tooling that LLVM has around `CMake`
 as far as I can tell, one needs to actually _know_ `CMake` to link against
@@ -7992,7 +7992,7 @@ target_link_libraries(languagemodels
 
 
 
-# [Energy as triangulaizing state space](#energy-as-triangulaizing-state-space)
+# Energy as triangulaizing state space
 
 This comes from The wild book by John Rhodes, which I anticipate I'll be posting more of in the coming weeks.
 
@@ -8097,7 +8097,7 @@ express the symmetry group in terms of:
 $$(X, S) \leq (G, G)  \wr (\{ O_1, O_2, \dots O_k\}, T)$$
 
 
-# [The cutest way to write semidirect products](#the-cutest-way-to-write-semidirect-products)
+# The cutest way to write semidirect products
 
 Given two monoids $(M, +, 0_M)$ and $(N, \times, 1_N)$, and a
 homomorphism $\phi: N \rightarrow End(M)$, where $End(M)$
@@ -8144,7 +8144,7 @@ which is indeed the right expression for the inverse.
 
 
 
-# [My Favourite APLisms](#my-favourite-aplisms)
+# My Favourite APLisms
 
 #### identity matrix
 ```
@@ -8174,7 +8174,7 @@ indexes in `xs`.
 └~─────────────────────────→┘
 ```
 
-# [Proof of chinese remainder theorem on rings](#proof-of-chinese-remainder-theorem-on-rings)
+# Proof of chinese remainder theorem on rings
 
 #### General operations on ideals
 We have at our hands a commutative ring $R$, and we wish to study the ideal
@@ -8273,7 +8273,7 @@ $$
 - [I learnt the material from this course on commutative algebra from IIT bombay](https://www.youtube.com/watch?v=YxyxP894MLk).
 
 
-# [monic and epic arrows](#monic-and-epic-arrows)
+# monic and epic arrows
 
 This is trivial, I'm surprised it took me _this long_ to internalize this fact.
 
@@ -8289,7 +8289,7 @@ Similarly, an epic arrow behaves a lot like the arrow in the inverse poset.
 I wonder if quite a lot of category theoretic diagrams are clarified by thinking
 of monic and epic directly in terms of controlling sizes.
 
-# [The geometry of Lagrange multipliers](#the-geometry-of-lagrange-multipliers)
+# The geometry of Lagrange multipliers
 If we want to minise a function $f(x)$ subject to the constraints $g(x) = c$,
 one uses the method of lagrange multipliers. The idea is to consider a new
 function $L(x, \lambda) = f(x) + \lambda (c - g(x))$. Now, if one has a local maxima
@@ -8318,7 +8318,7 @@ If $f'(x_0)$ and $g'(x_0)$ are parallel, then attempting to improve $f(x_0 + \ve
 by change $g(x_0 + \vec \epsilon)$, and thereby violate the constraint
 $g(x_0 + \epsilon) = c$.
 
-# [Efficient tree transformations on GPUs](#efficient-tree-transformations-on-gpus)
+# Efficient tree transformations on GPUs
 
 All material lifted straight from [Aaron Hsu's PhD thesis](https://scholarworks.iu.edu/dspace/handle/2022/24749). I'll be converting
 APL notation to C++-like notation.
@@ -9399,7 +9399,7 @@ nodes←⍸(X ∧ p≠(⍳≢p))  ⍝ ⍸:pick indexes.
 ### 5.2.2 Edge Mutation Idioms
 ### 5.2.3 Node Mutation Idioms
 
-# [Things I wish I knew when I was learning APL](#things-i-wish-i-knew-when-i-was-learning-apl)
+# Things I wish I knew when I was learning APL
 
 - For pasting multi-line code,
   [there is a bug in the bug tracker for RIDE](https://github.com/Dyalog/ride/issues/323).
@@ -9418,7 +9418,7 @@ nodes←⍸(X ∧ p≠(⍳≢p))  ⍝ ⍸:pick indexes.
 
 - Set `]boxing on` to enable boxing for trains, arguments, everything.
 
-# [Every ideal that is maximal wrt. being disjoint from a multiplicative subset is prime](#every-ideal-that-is-maximal-wrt-being-disjoint-from-a-multiplicative-subset-is-prime)
+# Every ideal that is maximal wrt. being disjoint from a multiplicative subset is prime
 
 I ran across this when reading another question on math.se, so I
 [posted this proof for verification](https://math.stackexchange.com/questions/3570129/proof-verification-request-complement-of-multiplicative-set-is-ideal-iff-the-id) just to be sure I wasn't missing
@@ -9460,7 +9460,7 @@ in question.
 - But this violates our assumption that $i_1 i_2 \in I$. Hence, contradiction.
 
 
-# [Getting started with APL](#getting-started-with-apl)
+# Getting started with APL
 
 - Install [Dyalog APL](https://www.dyalog.com/download-zone.htm).
 - Setup [RIDE](https://github.com/Dyalog/ride), the IDE for dyalog APL.
@@ -9472,14 +9472,14 @@ in question.
 - Bookmark [APLCart](https://aplcart.info/), a collection of APL idioms, and
   refer to it when in need.
 
-# [SpaceChem was the best compiler I ever used](#spacechem-was-the-best-compiler-i-ever-used)
+# SpaceChem was the best compiler I ever used
 
 It's kind of sad that this is the case, but on thinking about this, I realised
 that the SpaceChem game was essentially a compiler, and it was such a pleasure
 to learn how to use and debug --- the visual nature of it made it amazing to
 find out.
 
-# [Mnemonic for Kruskal and Prim](#mnemonic-for-kruskal-and-prim)
+# Mnemonic for Kruskal and Prim
 
 I often forget which is which, so I came up with this:
 
@@ -9487,12 +9487,12 @@ I often forget which is which, so I came up with this:
   picks out the minimum spanning tree one vertex at a time.
 
 
-# [Legendre transform](#legendre-transform)
+# Legendre transform
 
 <img  src="./static/legendre.png">
 
 
-# [Cartesian Trees](#cartesian-trees)
+# Cartesian Trees
 
 Cartesian trees construct a tree $T = C(A)$ given an array $A$, such that
 range minimum query (RMQ) on the array $A$ is equivalent to the lowest common ancestor (LCA)
@@ -9543,7 +9543,7 @@ occurence will do).
 
 
 
-# [DFS numbers as a monotone map](#dfs-numbers-as-a-monotone-map)
+# DFS numbers as a monotone map
 
 Really, we want a partial order that is defined with the tree as the
 Hasse diagram. However, performing operations on this is hard. Hence,
@@ -9558,7 +9558,7 @@ This also begs the question: can we use other partial orders, that chunk
 some information, but don't lose _all_ the information as going to a total
 order (the naturals) does?
 
-# [Self attention? not really](#self-attention-not-really)
+# Self attention? not really
 
 The code is taken from [The annotated transformer](https://nlp.seas.harvard.edu/2018/04/03/attention.html)
 which explains the "attention is all you need paper".
@@ -9671,7 +9671,7 @@ So It's not _really_ self attention: it's more like: modulated attention
 to self `:)`
 
 
-# [Coarse structures](#coarse-structures)
+# Coarse structures
 
 A coarse structure on the set $X$ is a collection of relations on $X$:
 $E \subseteq 2^{X \times X}$ (called as _controlled sets_ / _entourages_)
@@ -9706,7 +9706,7 @@ then coarse structures (which are their dual) are related to..?
 #### References
 - [What is a.. coarse structure by AMS](http://www.ams.org/notices/200606/whatis-roe.pdf)
 
-# [Matroids for greedy algorithms](#matroids-for-greedy-algorithms)
+# Matroids for greedy algorithms
 
 #### Definitions of matroids
 
@@ -9875,7 +9875,7 @@ functions $r_1$ and $r_2$. Let $S \in I_1 cap I_2$ and let $F \subseteq E$.
 - [Lecture 11 of Michel Goeman's lecture on Advanced Combinatorial Optimisation](https://math.mit.edu/~goemans/18438F09/lec11.pdf)
 
 
-# [Grokking Zariski](#grokking-zariski)
+# Grokking Zariski
 
 There's a lot written on the Zariski topology on the internet, but most
 of them lack explicit examples and pictures. This is my attempt to
@@ -10021,7 +10021,7 @@ the set of prime ideals is closed if it occurs as the zero of some collection of
   "infinitesimal thickening" along the $x$-axis
   of the intersection.
 
-# [My preferred version of quicksort](#my-preferred-version-of-quicksort)
+# My preferred version of quicksort
 
 Wikipedia lists the implementation of quicksort as:
 
@@ -10105,7 +10105,7 @@ what data starts and ends where.
 
 What version of quicksort do you prefer? Drop me an email!
 
-# [Geometric proof of Cauchy Schwarz inequality](#geometric-proof-of-cauchy-schwarz-inequality)
+# Geometric proof of Cauchy Schwarz inequality
 
 <img src="./static/cauchy-schwarz.svg">
 
@@ -10118,7 +10118,7 @@ inequality:
 
 
 
-# [Dataflow analysis using Grobner basis](#dataflow-analysis-using-grobner-basis)
+# Dataflow analysis using Grobner basis
 
 This was a quick experiment in using Grobner basis to model situations. We
 can represent our dataflow analysis constraints in terms of polynomial
@@ -10163,7 +10163,7 @@ which admit much faster solutions.
 
 
 
-# [Fenwick trees and orbits](#Fenwick-trees-and-orbits)
+# Fenwick trees and orbits
 
 I learnt of a nice, formal way to prove the correctness of Fenwick
 trees in terms of orbits that I wish to reproduce here.
@@ -10354,7 +10354,7 @@ Hence, at some point $q = u$.
 - [Fenwick trees on PolyMath](http://michaelnielsen.org/polymath1/index.php?title=Updating_partial_sums_with_Fenwick_tree)
 - [Hacker's delight](https://doc.lagout.org/security/Hackers%20Delight.pdf)
 
-# [Dirichlet inversion](#Dirichlet-inversion)
+# Dirichlet inversion
 
 We call all functions $f: \mathbb Z \rightarrow \mathbb R$ as
 _arithmetic functions_, since they operate on the integers.
@@ -10510,7 +10510,7 @@ $$ n = \sum_{d \vert n} n/d $$
 ### Other arithmetical functions and their relations
 
 
-# [Incunabulum for the 21st century: Making the J interpreter compile in 2020](#incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020)
+# Incunabulum for the 21st century: Making the J interpreter compile in 2020
 
 This is me trying to understand the fabled interpreter of the `J` language
 working, so I could absorb Arthur Whitney's style of writing C: it's
@@ -10680,7 +10680,7 @@ couldn't find explanaing the code on the internet.
 Until then, enjoy the monolith of code!
 
 
-# [An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)](#an-example-of-a-sequence-whose-successive-terms-get-closer-together-but-isnt-cauchy-does-not-converge)
+# An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)
 
 #### The problem
 Provide an example of a sequence $a_n: \mathbb N \rightarrow \mathbb R$
@@ -10769,7 +10769,7 @@ $$
 $$
 whose behaviour can do unexpected things depending on the choice of $n$.
 
-# [Krylov subspace method](#krylov-subspace-method)
+# Krylov subspace method
 
 <!-- https://www.youtube.com/watch?v=R9DHmkCE9oI -->
 
@@ -10813,7 +10813,7 @@ define the _residual_ as $r_n \equiv A x_n - b$.
 
 ## Conjugate gradient descent
 
-# [Good reference to the Rete pattern matching algorithm](#good-reference-to-the-rete-pattern-matching-algorithm)
+# Good reference to the Rete pattern matching algorithm
 
 The [Rete pattern matching algorithm](https://en.wikipedia.org/wiki/Rete_algorithm)
 is an algorithm that allows matching a huge number of rules with a huge database
@@ -10856,7 +10856,7 @@ I now have a reference to an accessible description of this stuff. I might
 implement Rete to understand it, so that it's part of my toolkit if I ever
 need it.
 
-# [Leapfrog Integration](#leapfrog-integration)
+# Leapfrog Integration
 
 We have a system we wish to simulate using hamilton's equations:
 
@@ -10997,7 +10997,7 @@ plt.savefig("leapfrog-vs-euler.png")
 plt.show()
 ```
 
-# [Comparison of forward and reverse mode AD](#comparison-of-forward-and-reverse-mode-ad)
+# Comparison of forward and reverse mode AD
 
 Quite a lot of ink has been spilt on this topic. My favourite reference
 is the one by [Rufflewind](https://rufflewind.com/2016-12-30/reverse-mode-automatic-differentiation).
@@ -11224,7 +11224,7 @@ z &= x - y \\
 $$
 
 
-# [An invitation to homology and cohomology, Part 1 --- Homology](#an-invitation-to-homology-and-cohomology-part-1--homology)
+# An invitation to homology and cohomology, Part 1 --- Homology
 
 There are many introductions to homology on the internet, but none of them
 really met my criteria for being simple, picture filled, and getting the
@@ -11488,7 +11488,7 @@ we can construct $H_1$ as:
 
 
 
-# [An invitation to homology and cohomology, Part 2 --- Cohomology](#an-invitation-to-homology-and-cohomology-part-2--cohomology)
+# An invitation to homology and cohomology, Part 2 --- Cohomology
 
 <!--
 f is closed <=> df = 0
@@ -11628,7 +11628,7 @@ is measured by the _existence of a function $h_e$ that is closed but not exact!_
 This reveals a deep connection between homology and cohomology, which is
 made explicit by the [Universal Coefficient Theorem](TODO)
 
-# [Stuff I learnt in 2019](#stuff-i-learnt-in-2019)
+# Stuff I learnt in 2019
 
 I write these retrospective blog posts every year since 2017. I tend to post a
 collection of papers, books, and ideas I've stumbled across that year.
@@ -12391,7 +12391,7 @@ reading one topic (in exclusion of all else). I don't know what this says
 about my chances as a grad student in the future `:)`.
 
 
-# [A motivation for p-adic analysis](#a-motivation-for-p-adic-analysis)
+# A motivation for p-adic analysis
 
 I've seen the definitions of p-adic numbers scattered around on the internet,
 but this analogy as motivated by the book
@@ -12764,7 +12764,7 @@ I highly recommend the book
 
 
 
-# [Line of investigation to build physical intuition for semidirect products](#line-of-investigation-to-build-physical-intuition-for-semidirect-products)
+# Line of investigation to build physical intuition for semidirect products
 
 To quote wikipedia:
 > In crystallography, the space group of a crystal splits as the semidirect
@@ -12777,7 +12777,7 @@ object as well, which makes it way easier to visualize. I'm going to hunt down
 the definitions involved so I can finally feel like I truly understand semidirect
 products from the "action" perspective.
 
-# [Topology is really about computation --- part 2](#topology-is-really-about-computation--part-2)
+# Topology is really about computation --- part 2
 
 Here, we're going to describe whatever I've picked up of sheaves in the past
 couple of weeks. I'm trying to understand the relationship between sheaves,
@@ -12800,7 +12800,7 @@ We should now try to discover some sort of structure to this "reversal"
 business. Perhaps we will discover a contravariant functor! (Spoiler: we will).
 
 
-# [Topology is really about computation --- part 1](#topology-is-really-about-computation--part-1)
+# Topology is really about computation --- part 1
 
 Most people believe that topology is about some notion of "nearness" or
 "closeness", which has been abstracted out from our usual notion of
@@ -13029,7 +13029,7 @@ def loop(): while True: pass
 #### References
 - [Synthetic topology of data types and classical spaces. Martın Escardo](https://www.cs.bham.ac.uk/~mhe/papers/entcs87.pdf)
 
-# [PSLQ algorithm: finding integer relations between reals](#pslq-algorithm-finding-integer-relations-between-reals)
+# PSLQ algorithm: finding integer relations between reals
 
 An algorithm to find _integer_ relations between _real_ numbers. It was
 apparently named "algorithms of the century" by Computing in science and
@@ -13037,7 +13037,7 @@ engineering.
 
 - [Wolfram link](http://mathworld.wolfram.com/PSLQAlgorithm.html)
 
-# [Geometric characterization of normal subgroups](#geometric-characterization-of-normal-subgroups)
+# Geometric characterization of normal subgroups
 > $Stab(Orb(x)) = Stab(x) \iff Stab(x) \text{ is normal}$
 
 > $\forall x' \in Orb(x), Stab(x') = Stab(x) \iff Stab(x) \text{ is normal}$
@@ -13075,7 +13075,7 @@ From the above equation $Stab(g \cdot x) = g Stab(x) g^{-1}$. If the
 entire orbit has the same stabilizer, $Stab (g \cdot x) = Stab(x)$. Hence,
 we get $Stab(x) = g Stab(x) g^{-1}$, proving that it's normal.
 
-# [Handy characterization of adding an element into an ideal, proof that maximal ideal is prime](#handy-characterization-of-adding-an-element-into-an-ideal-proof-that-maximal-ideal-is-prime)
+# Handy characterization of adding an element into an ideal, proof that maximal ideal is prime
 
 ##### The characterization
 
@@ -13136,7 +13136,7 @@ $b \in I$.
 
 
 
-# [Radical ideals, nilpotents, and reduced rings](#radical-ideals-nilpotents-and-reduced-rings)
+# Radical ideals, nilpotents, and reduced rings
 
 ##### Radical Ideals
 A radical ideal of a ring $R$ is an ideal such that
@@ -13204,7 +13204,7 @@ and $b \in I \implies \overline b = 0)$.
 I learnt of this explanation from this
 [excellent blog post by Stefano Ottolenghi](http://quickmathintuitions.org/relationship-between-reduced-rings-radical-ideals-and-nilpotent-elements/).
 
-# [My disenchantment with abstract interpretation](#my-disenchantment-with-abstract-interpretation)
+# My disenchantment with abstract interpretation
 
 When I first ran across the theory of abstract interpretation, it seemed magical:
 Define two functions, check that they're monotone maps, and boom, we have
@@ -13254,7 +13254,7 @@ to pay that price, as long as it's an honest-to-god abstract interpretation.
 This was a huge bummer for me to find out that this is not the case.
 
 
-# [Computing equivalent gate sets using grobner bases](#computing-equivalent-gate-sets-using-grobner-bases)
+# Computing equivalent gate sets using grobner bases
 
 Here's a fun little problem, whose only solution I know involves a fair
 bit of math and computer algebra:
@@ -13624,7 +13624,7 @@ the use of machinery such as grobner basis for solving real-world problems!
 I really enjoyed hacking this up and getting nerd sniped.
 
 
-# [The janus programming language --- Time reversible computation](#the-janus-programming-language--time-reversible-computation)
+# The janus programming language --- Time reversible computation
 
 - [Wiki link](https://en.wikipedia.org/wiki/Janus_(time-reversible_computing_programming_language)
 - [Original letter to Landlauer](http://tetsuo.jp/ref/janus.pdf)
@@ -13638,7 +13638,7 @@ _literally_ looks both into the future and into the past.
 
 An apt name for the language!
 
-# [`A = B` --- A book about proofs of combinatorial closed forms](#a--b--a-book-about-proofs-of-combinatorial-closed-forms)
+# `A = B` --- A book about proofs of combinatorial closed forms
 
 
 The book explains algorithms on solving closed forms for combinatorial
@@ -13651,7 +13651,7 @@ my work on compilers.
 
 - [Download link here](https://www.math.upenn.edu/~wilf/AeqB.pdf)
 
-# [Generating `k` bitsets of a given length `n`](#generating-k-bitsets-of-a-given-length-n):
+# Generating `k` bitsets of a given length `n`:
 
 The problem is to generate all bitvectors of length `n` that have `k` bits
 set. For example, generate all bitvectors of length `5` that have `3` bits
@@ -13809,7 +13809,7 @@ Continuing this process gives us the rest of the sequence:
 9 | 1 1 0 1 0
 10| 1 1 1 0 0
 ```
-# [Bondi k-calculus](#bondi-k-calculus)
+# Bondi k-calculus
 
 - [Link here](https://en.wikipedia.org/wiki/Bondi_k-calculus)
 
@@ -13838,7 +13838,7 @@ which seems to imply that we need to use hyperbolic geometry for this.
 
 - [Idea from this amazing post on `math.se`](https://math.stackexchange.com/questions/53852/is-there-a-way-of-working-with-the-zariski-topology-in-terms-of-convergence-limi)
 
-# [Vivado toolchain craziness ](#vivado-toolchain-craziness)
+# Vivado toolchain craziness 
 
 I found this file as I was cleaning up some old code, for a project to implement
 a [fast K/V store on an FPGA](https://github.com/AakashKT/CuckooHashingHLS),
@@ -13960,7 +13960,7 @@ is supposed to go according to the tutorial!
 
 At some point, I gave up on the entire enterprise.
 
-# [What the hell _is_ a Grobner basis? Ideals as rewrite systems](#what-the-hell-is-a-grobner-basis-ideals-as-rewrite-systems)
+# What the hell _is_ a Grobner basis? Ideals as rewrite systems
 
 ##### A motivating example
 
@@ -14051,7 +14051,7 @@ We have this hiearchy of `BlockId`, `Label`, and `Unique` that can be
 collapsed.
 
 
-# [Spatial partitioning data structures in molecular dynamics](#spatial-partitioning-data-structures-in-molecular-dynamics)
+# Spatial partitioning data structures in molecular dynamics
 
 - [Cell lists](https://en.wikipedia.org/wiki/Cell_lists)
 - [Verlet lists](https://en.wikipedia.org/wiki/Verlet_list)
@@ -14062,7 +14062,7 @@ in this case since multipole expansions are useful to take into account
 long range effects, but not short range effects.
 
 
-# [Vector: Arthur Whitney and text editors](#vector-arthur-whitney-and-text-editors)
+# Vector: Arthur Whitney and text editors
 
 - http://archive.vector.org.uk/art10501320
 
@@ -14087,7 +14087,7 @@ In particular, `GHC.Prim` explains:
 Honestly, this is confusing, but I guess there's some story to having two separate primops for this?
 
 
-# [Discrete random distributions with conditioning in 20 lines of haskell](#discrete-random-distributions-with-conditioning-in-20-lines-of-haskell)
+# Discrete random distributions with conditioning in 20 lines of haskell
 
 ```hs
 newtype D a = D { unD :: [(a, Double)] } deriving(Eq, Show, Ord)
@@ -14156,7 +14156,7 @@ D {unD = [(1,0.0),
 
 Notice that `D a ~= WriterT (Product Float) []`!
 
-# [Everything you know about word2vec is wrong](#everything-you-know-about-word2vec-is-wrong)
+# Everything you know about word2vec is wrong
 
 The classic explanation of `word2vec`, in skip-gram, with negative sampling,
 in the paper and countless blog posts on the internet is as follows:
@@ -14408,7 +14408,7 @@ plt.show()
 plt.savefig("leapfrog-vs-euler.png")
 ```
 
-# [Small Haskell MCMC implementation](#small-haskell-mcmc-implementation)
+# Small Haskell MCMC implementation
 
 We create a simple monad called `PL` which allows for a single operation: sampling
 from a uniform distribution. We then exploit this to implement MCMC using metropolis hastings,
@@ -14843,7 +14843,7 @@ debugBelch(const char*s, ...)
   va_end(ap);
 }
 ```
-# [Debugging debug info in GHC](#debugging-debug-info-in-GHC)
+# Debugging debug info in GHC
 
 
 I wanted to use debug info to help build a better debugging experience
@@ -14859,18 +14859,18 @@ tucked inside a cute note in GHC (`Note [Debugging DWARF unwinding info]`):
 - [Link to GHC sources](https://github.com/ghc/ghc/blob/535a26c90f458801aeb1e941a3f541200d171e8f/compiler/cmm/Debug.hs#L458)
 
 
-# [GHC LLVM code generator: Switch to unreachable](#ghc-llvm-code-generator-switch-to-unreachable)
+# GHC LLVM code generator: Switch to unreachable
 
 The [switch to out of range](https://github.com/ghc/ghc/blob/master/compiler/llvmGen/LlvmCodeGen/CodeGen.hs#L1102)
 code generator switches to the first label. It should be more profitable
 to switch to a `unreachable` block. That way, LLVM can take advantage of UB.
 
-# [Concurrency in Haskell](#concurrency-in-haskell)
+# Concurrency in Haskell
 
 Great link to the GHC wiki that describes the concurrency primitives
 "bottom up": https://gitlab.haskell.org/ghc/ghc/wikis/lightweight-concurrency
 
-# [Handy list of differential geometry definitions](#handy-list-of-differential-geometry-definitions)
+# Handy list of differential geometry definitions
 
 There are way too many objects in diffgeo, all of them subtly connected.
 Here I catalogue all of the ones I have run across:
@@ -14986,7 +14986,7 @@ TODO
 ##### Lie derivation as lie bracket
 
 
-# [Lazy programs have space leaks, Strict programs have time leaks](#lazy-programs-have-space-leaks-strict-programs-have-time-leaks)
+# Lazy programs have space leaks, Strict programs have time leaks
 
 Stumbled across this idea while reading some posts on a private discourse.
 - Continually adding new thunks without forcing them can lead to a space leak,
@@ -15001,7 +15001,7 @@ analogue to a space leak in the strict world, so I saw them as a pathology. But
 with this new perspective, I can see that the strict world's version of a space
 leak is a time leak.
 
-# [Presburger arithmetic can represent the Collatz Conjecture](#presburger-arithmetic-can-represent-the-collatz-conjecture)
+# Presburger arithmetic can represent the Collatz Conjecture
 
 An observation I had: the function
 
@@ -15060,7 +15060,7 @@ to improve the functions `isl_map_power` and `isl_map_transitive_closure`
 though.
 
 
-# [Using compactness to argue about covers](#using-compactness-to-argue-about-covers)
+# Using compactness to argue about covers
 
 I've always seen compactness be used by _starting_ with a possibly infinite
 coverm and then _filtering it_ into a finite subcover. This finite
@@ -15100,7 +15100,7 @@ that the cantor set is non-empty, since:
 3. Invoke theorem.
 
 
-# [Japanese Financial Counting system](#japanese-financial-counting-system)
+# Japanese Financial Counting system
 
 - [Wikipedia](https://en.wikipedia.org/wiki/Japanese_numerals#Formal_numbers)
 
@@ -15115,7 +15115,7 @@ from adding strokes to stuff previously written.
 ```
 
 
-# [Stephen wolfram's live stream](#stephen-wolframs-live-stream)
+# Stephen wolfram's live stream
 
 - [Twitch.tv link](https://www.twitch.tv/videos/408653972)
 
@@ -15126,14 +15126,14 @@ some interesting content.
 The discussions of Wolfram with his group are great, and they bring up
 _really_ interesting ideas (like that of cleave being very irregular).
 
-# [`Cleave` as a word has some of the most irregular inflections](#cleave-as-a-word-has-some-of-the-most-irregular-inflections)
+# `Cleave` as a word has some of the most irregular inflections
 - cleave
 - clove
 - cleaved
 - clave
 - cleft
 
-# [McCune's single axiom for group theory](#mccunes-single-axiom-for-group-theory)
+# McCune's single axiom for group theory
 
 [Single Axioms for Groups and Abelian Groups with Various Operations](http://ftp.mcs.anl.gov/pub/tech_reports/reports/P270.pdf)
 provides a single axiom for groups. This can be useful for some ideas I have
@@ -15276,7 +15276,7 @@ does _any blog post that I've read_. I don't understand what's going on,
 and I plan on updating this section when I understand this better.
 
 
-# [Arthur Whitney: dense code](#arthur-whitney-dense-code)
+# Arthur Whitney: dense code
 
 
 - Guy who wrote a bunch of APL dialects, write code in an eclectic style
@@ -15289,7 +15289,7 @@ and I plan on updating this section when I understand this better.
 - [A history of APL in 50 functions](https://www.jsoftware.com/papers/50/) ---
   A great list of APL snippets that solve classical problems.
 
-# [How does one work with arrays in a linear language?](#how-does-one-work-with-arrays-in-a-linear-language)
+# How does one work with arrays in a linear language?
 
 Given an array of qubits `xs: Qubit[]`, I want to switch to little endian.
 Due to no-cloning, I can't copy them! I suppose I can use recursion to build
@@ -15331,7 +15331,7 @@ is _forced_ since mutation very often involves temporaries / copying!
 (I'm solving assignments in [qsharp](https://docs.microsoft.com/en-us/quantum/)
 for my course in college)
 
-# [Linear optimisation is the same as linear feasibility checking](#linear-optimisation-is-the-same-as-linear-feasibility-checking)
+# Linear optimisation is the same as linear feasibility checking
 Core building block of effectively using the ellipsoid algorithm.
 
 - If we posess a way to check if a point $p \in P$ where $P$ is a polytope, we
@@ -15347,7 +15347,7 @@ Core building block of effectively using the ellipsoid algorithm.
 - This way, we have converted a _linear programming_ problem into a
   _check if this polytope is empty_ problem!
 
-# [Quantum computation without complex numbers](#quantum-computation-without-complex-numbers)
+# Quantum computation without complex numbers
 
 I recently learnt that the Toeffili and Hadamard gates are universal for
 quantum computation. The description of these gates involve no complex numbers.
@@ -15367,7 +15367,7 @@ something to ponder.
 - [Dorit Aharonov: A Simple Proof that Toffoli and Hadamard are Quantum Universal](https://arxiv.org/pdf/quant-ph/0301040)
 
 
-# [Linguistic fun fact: Comparative Illusion](#linguistic-fun-fact-comparative-illusion)
+# Linguistic fun fact: Comparative Illusion
 
 I steal from wikipedia:
 
@@ -15405,7 +15405,7 @@ For example: "More people have been to Berlin than I have."
 - [week 7](content/blog/gsoc-vispy-week-7.md)
 - [final report](content/blog/gsoc-vispy-report-6.md)
 
-# [Big list of emacs gripes](#big-list-of-emacs-gripes)
+# Big list of emacs gripes
 
 #### `markdown-mode` lags when I open a paren `[for a link`.
 
@@ -15612,7 +15612,7 @@ This is tagged as "not a bug" --- because
 
 
 
-# [Big list of Coq](#big-list-of-coq)
+# Big list of Coq
 
 Things in Coq that I keep forgetting, and are hard to lookup.
 
@@ -15630,7 +15630,7 @@ set (ident := expr) in *
 
 This is useful to not lose information when `destruct` ing.
 
-# [Big list of writing](#big-list-of-writing)
+# Big list of writing
 
 #### Books about charming sentences and how to construct them
 
@@ -15696,7 +15696,7 @@ is something I wish to explore.
 - `let ([x 5]) (+ x 3))`: `x` is anaphora resolution.
 - 
 
-# [Big list of Latex](#big-list-of-latex)
+# Big list of Latex
 
 #### write text under some equation --- variable under max or argmax
 
@@ -15704,7 +15704,7 @@ is something I wish to explore.
 y = \underset{x \in X}{\max} f(x)
 ```
 
-# [Big list of Architecture](#big-list-of-architecture) 
+# Big list of Architecture 
 
 I have an interest in architecture and how it might relate to software.
 While the two are quite different, I feel that a deep look at both could
@@ -15733,7 +15733,7 @@ things on architecture I wish to read and/or have read:
   here... nothing valued is here. Design to ward off people for nuclear waste.
 
 
-# [Big list of Recipes](#big-list-of-recipes) 
+# Big list of Recipes 
 
 
 #### Upma
@@ -15797,7 +15797,7 @@ grated coconut and blend all of it. It turns into a thick red paste.
 - Allow batter to ferment overnight in the fridge.
 - Make pancakes the next day.
 
-# [Big list of history](#big-list-of-history)
+# Big list of history
 
 ##### Crusades were a thing of the past by the time of the fall of Constatinople. (1453)
 
@@ -15838,7 +15838,7 @@ own good
 
 Named after the spartans.
 
-# [Big list of words](#big-list-of-words)
+# Big list of words
 
 Contains words that I write, and ones that I enjoy.
 
@@ -15857,13 +15857,13 @@ I ran into the word in the description of the electronic artist 'Jaenga'.
 cultures, or schools of thought.
 
 
-# [Big list of Music](#big-list-of-music)
+# Big list of Music
 
 - Clipping: Experimental story telling hip-hop
 - Aesop Rock: Crazy large vocabulary, interesting hip-hop
 - Red hot Chili Peppers: Love John Frusciante's riffs.
 
-# [Big list of Social Science](#big-list-of-social-science) 
+# Big list of Social Science 
 
 - [HN link for quote below](https://news.ycombinator.com/item?id=24265400)
 

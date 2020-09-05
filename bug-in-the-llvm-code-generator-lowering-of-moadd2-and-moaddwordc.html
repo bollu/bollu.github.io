@@ -1,0 +1,16 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
+img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+ .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
+ .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
+.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=bug-in-the-llvm-code-generator-lowering-of-moadd2-and-moaddwordc href='#bug-in-the-llvm-code-generator-lowering-of-moadd2-and-moaddwordc'> § </a> Bug in the LLVM code generator: Lowering of <code>MO_Add2</code> and <code>MO_AddWordC</code></h2>
+<a href=https://github.com/ghc/ghc/blob/bf73419518ca550e85188616f860961c7e2a336b/compiler/llvmGen/LlvmCodeGen/CodeGen.hs#L817>Both of these are lowered the same way</a>,
+but they should be different.
+In particular, <code>GHC.Prim</code> explains:
+<ul><li> <a href=http://hackage.haskell.org/package/ghc-prim-0.5.3/docs/GHC-Prim.html#v:addWordC-35-><code>AddWordC#</code></a> returns <code>(result, carry)</code></li><li> <a href=http://hackage.haskell.org/package/ghc-prim-0.5.3/docs/GHC-Prim.html#v:plusWord-35-><code>PlusWordC#</code></a> returns <code>(carry, result)</code></li></ul>
+Honestly, this is confusing, but I guess there's some story to having two separate primops for this?
+</container></body></html>

@@ -858,29 +858,31 @@ GIVE const char* compileLatex(duk_context *duk_ctx,
     // duk_push_obj();
     // duk_set_property(displayMath, true) // or whatever
 
+    // stack:
+    // [katex|]
 
-
-    if(duk_peval_string(duk_ctx, "katex") != 0) {
-        printferr(loc, raw_input,
-         "====katex.min.js: unable to grab katex object===\n%s\n===\n", 
-         duk_safe_to_string(duk_ctx, -1));
-        assert(false && "unable to find the katex object");
-    }
 
     char *input = (char *)calloc(sizeof(char), inwritelen+2);
     for(int i = 0; i < inwritelen; ++i) { input[i] = raw_input[loc.si + i]; }
 
+    // stack: after processing
+    // [katex| renderToString | raw_str | displaymode]
+    //   -4         -3           -2      -1
     duk_push_string(duk_ctx, "renderToString");
     duk_push_string(duk_ctx, input);
     duk_push_object(duk_ctx); // { displayMode: ... }
     duk_push_boolean(duk_ctx, ty == LatexType::LatexTypeBlock);
     duk_put_prop_string(duk_ctx, -2, "displayMode");
 
-    // duk_debug_print_stack(duk_ctx, "");
 
 
     if(duk_pcall_prop(duk_ctx, -4, 2) == DUK_EXEC_SUCCESS) {
-        return duk_to_string(duk_ctx, -1);
+        // stack: call
+        // [katex| out_string]
+        //   -2         -1
+        const char *out = duk_to_string(duk_ctx, -1);
+        duk_pop(duk_ctx);
+        return out;
     } else {
 
         printferr(loc, raw_input, "%s", duk_to_string(duk_ctx, -1));
@@ -1433,6 +1435,13 @@ int main(int argc, char **argv) {
                     duk_safe_to_string(duk_ctx, -1));
             assert(false && "unable to execute katex.min.js");
         }
+
+        if(duk_peval_string(duk_ctx, "katex") != 0) {
+            fprintf(stderr,
+                    "====katex.min.js: unable to grab katex object===\n%s\n===\n", 
+                    duk_safe_to_string(duk_ctx, -1));
+            assert(false && "unable to find the katex object");
+    }
     }
     assert(duk_ctx != nullptr && "Unable to setup duck context");
 

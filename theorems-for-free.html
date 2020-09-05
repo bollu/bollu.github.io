@@ -1,0 +1,44 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
+img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+ .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
+ .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
+.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=theorems-for-free href='#theorems-for-free'> § </a> Theorems for free</h2>
+These are personal notes I made of a custom notation for denoting the relations
+from the theorems for free paper. I developed the notation since I wanted
+to keep track of what types are floating around and what the relations are doing.
+We interpret types as sets.  If elements belong to the relation, ie, if <code>(a, a') ∈ R ⊂ AxA</code>,
+we will denote this as <code>a[A -R- A']a'</code>. We will now write down some inference
+rules:
+<ol><li> We define <code>ReflB</code> as <code>a[Bool ReflB Bool]a</code></li><li> We define <code>ReflI</code> as <code>i[Int ReflI Int]i</code></li><li> The product of two relations <code>[A R B]</code>, <code>[X S Y]</code> is called as <code>RxS</code>,
+   and is defined as: <code>(a,x)[AxX RxS BxY](b,y)</code> iff: <code>∀ abxy, a[A R B]b ∧ x[X S Y]y</code>.</li><li> The list space of a <code>[A R B]</code> is called <code>[A* [A R B] B*]</code>, 
+   and is defined as: <code>la[A* [A R B] B*]lb</code> iff:
+   <code>∀ la lb, |la| = |lb| ∧ (∀ i, la[i][A R B]lb[i])</code></li><li> The function space of two relations<code>[A R B]</code>, <code>[X S Y]</code> is called <code>[A->X R->S B->Y]</code>,
+   and is defined as: <code>f[A->X R->S B->Y]g</code> iff: <code>∀ a b, a[A R B]b => f(a)[X S Y]g(b)</code>.</li><li> The type family space of two relations is a function that takes
+   a relation <code>[A R B]</code> and produces a new relation: 
+   <code>g[FA | [A R B] | FB]h</code>. The relation takes as parameter a relation <code>[A R B]</code>
+    for each choice.</li><li> The space of relations of <code>∀X.F(X)</code> is a relation defined by:
+   <code>g[A->FA | ∀X.F(X) [FA [A R B] FB]| B->FB]h</code>
+    <code>∀ A B R, (g A)[FA | [A R B] |  FB](h B)</code>.</li></ol>
+<h4><a id=parametricity-theorem href='#parametricity-theorem'> § </a> Parametricity theorem</h4>
+The parametricity thm states that for all terms <code>(r: R)</code>, we can deduce
+<code>r[R rel(R) R]r</code> where <code>rel(R)</code> is the relation that fits the type, and is
+derived from the above rules.
+<h4><a id=parametricity-for-lists-when-the-relation-is-a-function href='#parametricity-for-lists-when-the-relation-is-a-function'> § </a> Parametricity for lists when the relation is a function:</h4>
+The list space of a <code>[A R B]</code> is called <code>[A* [A R B] B*]</code>, 
+and is defined as: <code>la[A* [A R B] B*]lb</code> iff:
+<ul><li> <code>∀ la lb, |la| = |lb| ∧ (∀ i, la[i][A R B]lb[i])</code></li></ul>
+Now, let us take a special case where <code>[A R B]</code> is a function <code>δ: A -> B</code>. That is:
+<ul><li> <code>a[A R B]b</code> iff <code>δ(a) = b</code>.</li></ul>
+If this is the case, then we can simplify the math to be:
+<ul><li> <code>la[A* [A R B] B*]lb <=> ∀ la lb, |la| = |lb| ∧ (∀ i, la[i][A R B]lb[i])</code></li><li> <code>la[A* [A R B] B*]lb <=> ∀ la lb, |la| = |lb| ∧ (∀ i, δ(la[i]) = lb[i]</code></li><li> <code>la[A* [A R B] B*]lb <=> ∀ la lb, map δ la = lb</code></li></ul>
+<h4><a id=parametricity-to-prove-rearrangements href='#parametricity-to-prove-rearrangements'> § </a> Parametricity to prove rearrangements</h4>
+<ul><li> <code>r[∀ X. X* -> X*]r</code></li><li> <code>(r A)[A*->A*  | [A*->A* [A R B] B*->B*] |  B*->B*](r B)</code></li><li> <code>as[A* [A R B]  B*]bs => (r A as)[A* [A R B] B*](r B bs)</code></li><li> Pick <code>[A R B]</code> to be a <i>function</i> <code>δ: A -> B</code>. Ie, <code>a[A R B]b</code> iff <code>δ(a) = b</code>.</li><li> This lets us convert all occrences of <code>α[A R B]ω</code> into <code>ω = δ(α)</code>.</li><li> Hence, <code>as[A* [A R B]  B*]bs</code> becomes <code>map δ as = bs</code>.</li><li> Hence, <code>(r A as)[A* [A R B] B*](r B bs)</code> becomes <code>map δ (r A as) = (r B bs)</code></li><li> In toto, this let us replace <code>bs</code> with <code>map δ as</code>. We derive:</li><li> <code>map δ (r A as) = (r B bs)</code></li><li> <code>map δ (r A as) = (r B (map δ as)</code></li><li> <code>map δ . (r A) = (r B) . map δ</code></li><li> Replace <code>bs[i]</code> with <code>δ(as[i])</code>to get result:
+   <code>δ(r A as[i]) = r B δ(as[i])</code>, which was indeed what we were looking for.</li></ul>
+<h4><a id=references href='#references'> § </a> References</h4>
+<ul><li> <a href=https://ecee.colorado.edu/ecen5533/fall11/reading/free.pdf>Theorems for free by Phil Wadler</a></li></ul>
+</container></body></html>

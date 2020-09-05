@@ -1,7 +1,30 @@
+- OpenSCAD: 3D modelling CAD 3D printing tool for mathematically and programatically
+  generating solids.
+- CALM conjecture: when do we need to use coordination? https://arxiv.org/pdf/1901.01930.pdf
+- pwn.college CTF: https://pwn.college/
+- Procrastination by Burka & Yuen. How to stop procrastination: https://news.ycombinator.com/item?id=24120275.
+> In situation X I will do behaviour Y to achieve subgoal Z
+> Value affirmation: Remind yourself of the why.
+- 'Never split the difference': book about negitation.
+- Translation of Odyssey into iambic pentameter: 'Odyssey by Emily Wilson'
+- Milan Kundera --- The Art of the Novel:  If the novel you write isn't smarter
+  than you, it's probably a bad novel.
+- Learning synths: https://learningsynths.ableton.com/en/making-changes/amplitude | https://news.ycombinator.com/item?id=20272346
+- Greg Egan list of physics: https://www.gregegan.net/SCIENCE/Science.html
+- Vim capture groups: https://stackoverflow.com/a/17734304/5305365
+- Books on "raw counting": The Art of Proving Binomial Identities, Bijective Combinatorics
+- Efficient E-Matching for SMT Solvers
+- monotonicity and deltas is needed by datalog inside propagators?
+- Lennart Blog: http://augustss.blogspot.com/2007/04/
+- https://en.wikipedia.org/wiki/Inline_caching#Polymorphic_inline_caching
+- http://twelf.org/wiki/Main_Page
+- LF for dependent types.
+- A hunt for a dictionary of rare words: http://www-personal.umich.edu/~jlawler/wordlist.html,
+  which also led me to http://phrontistery.info/isms.html
 - Video lectures on computational AG: http://swc.math.arizona.edu/oldaws/06Notes.html
 - Algebraic function fields and codes: Covers some version of Riemann Roch in chapter 1!
   Seems to build a decent amount of algebraic number theory to then perform 
-  coding theory. Is very cool.
+  coding theory. Is very cool.          
 - Street fighting mathematics: How to do mathematics: https://www.cs.cmu.edu/~odonnell/toolkit13/how-to-do-math-and-tcs.pdf
 - Books on writing: (1) On Writing by Stephen King, (2) Anatomy of Story by
   John Truby (3) The Art of Dramatic Writing by Lajos Egri,
@@ -416,7 +439,6 @@
 - Fortune's algorithm for Delaunay triangulation
 - Li chao tree
 - Aliens
-- Procrastination by Burka & Yuen.
 - Vehicles: Experiments in Synthetic Psychology
 - [Uniform space](https://en.wikipedia.org/wiki/Uniform_space)
 - [DFS bridges intuition](https://codeforces.com/blog/entry/68138)

@@ -1,0 +1,131 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
+img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+ .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
+ .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
+.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=blazing-fast-math-rendering-on-the-web href='#blazing-fast-math-rendering-on-the-web'> § </a> Blazing fast math rendering on the web</h2>
+So, I've shifted the blog to be static-site-generated using a
+static-site-generator written by yours truly. The code clocks in at around a
+thousand lines of C++:
+<ul><li> <a href=https://github.com/bollu/bollu.github.io/tree/master/builder/builder.cpp>bollu/bollu.github.io/builder/builder.cpp</a></li></ul>
+What did I gain?
+<ol><li> My generator is a real compiler, so I get errors on math and markdown
+  malformation.</li><li> I can write math that <i>loads</i> instantly on your browser, using no MathJax,
+   KaTeX or any client side processing, <i>nor</i> the need to fetch images, which looks like this:</li></ol>
+<div class='latexblock'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>≡</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.3599999999999999em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msubsup><mo>∫</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mi mathvariant="normal">∞</mi></msubsup><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi>d</mi><mi>x</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>x</mi><mo>&gt;</mo><mn>0</mn></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mi mathvariant="normal">∞</mi></msubsup><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>otherwise</mtext></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+h(x) \equiv 
+\begin{cases} 
+\int_{i=0}^\infty f(x) g(x) dx &amp; x &gt; 0 \\
+\sum_{i=0}^\infty f(x) + g(x) &amp; \text{otherwise}
+\end{cases}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≡</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.0000299999999998em;vertical-align:-1.25003em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="margin-right:0.19445em;position:relative;top:-0.0005599999999999772em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8592920000000001em;"><span style="top:-2.34418em;margin-left:-0.19445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.2579000000000002em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">∞</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35582em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mord mathnormal">d</span><span class="mord mathnormal">x</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.804292em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">∞</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">0</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">otherwise</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div>
+<h4><a id=why href='#why'> § </a> Why?</h4>
+My blog is a <a href=https://github.com/bollu/bollu.github.io/blob/master/README.md>single 9000 line markdown file</a>,
+rendered as a <i>single HTML page</i>, so I 
+<i>need it to compile fast, render fast, render beautiful</i>. 
+Existing tools compromise on one or the other.
+<h4><a id=no-seriously-why-a-single-markdown-file href='#no-seriously-why-a-single-markdown-file'> § </a> No seriously, why a single markdown file?</h4>
+I need a single file to edit, so I can rapidly jot down new ideas. This is 
+the essence of why I'm able to log most of what I study: 
+<i>because it's seamless</i>.
+Far more importantly, it provides <b>spatio-temporal locality</b>. I add things
+in chronological order to tbe blog, as I learn thing. If I need to recall
+something I had studied, go to that location in the blog 
+<i>based on a sense of when</i>. 
+When I do get to a location I want, the scrollbar gives me a sense of 
+<i>where I am</i> in the file.  this is important to me, since it hepls me reason
+spatially about what i know and what I've learnt. It's someting I love about
+books, and deeply miss when navigtaing the web.I'm determined to keep this
+spatio-temporal locality on my little slice of the internet.
+<h4><a id=why-is-this-awful href='#why-is-this-awful'> § </a> Why is this awful?</h4>
+As elegant as this model is to <i>edit</i>, it's awful for browsers to render. The
+file used to take on the order of minutes for all the math to finish
+rendering. MathJax (and KaTeX) painfully attempt to render each
+math block. As they do, the page jumps around until everything has settled.
+As this is happening, your CPU throttles, your lap or hand gets warm,
+and the page is stuck. Clearly not great UX.
+I still want math. What do I do?  The solution is easy: Approximate the math
+rendering using ASCII/UTF-8 characters!  There are tools that do this ---
+<a href=http://hevea.inria.fr/><code>hevea</code></a> is one of them. Unfortunately, there is no
+markdown-based-blogging-platform that uses this, so I <i>had</i> to write my own.
+<h4><a id=the-cure href='#the-cure'> § </a> The cure</h4>
+The solution is easy. I wrote the tool. The page you're reading it
+is rendered using the tool. All the math renders in under a second because
+it's nothing crazy, it's just text and tables which browsers know how to
+render. No JavaScript necessary. snappy performance. Whoo!
+<h4><a id=the-details-writing-my-own-markdown-to-html-transpiler href='#the-details-writing-my-own-markdown-to-html-transpiler'> § </a> The details: Writing my own Markdown to HTML transpiler.</h4>
+the final transpiler clocks in at <code>1300Loc</code> of C++,
+which is very small for a feature-complete markdown-to-HTML piece of code
+that's blazing fast, renders math correctly, and provides error messages.
+<h4><a id=quirks-fixed-features-gained href='#quirks-fixed-features-gained'> § </a> Quirks fixed, features gained.</h4>
+I got quite a bit "for free" as I wrote this, fixing mild annoyances
+and larger pain points around using github + markdown for publishing on
+the web:
+<ul><li> I really don't want tables, but I do want the ability to write vertical bars 
+  <code>|</code> freely in my text. Unfortunately, github <i>insists</i> that those are tables,
+   and completely wrecks rendering.</li></ul>
+<ul><li> I get line numbers in code blocks now, which Github Flavoured Markdown
+  did not have.</li></ul>
+<ul><li> I get error messages on incorrectly closed bold/italic/code blocks, using
+  heuristics that prevent them from spanning across too many lines.</li></ul>
+<ul><li> I get error messages on broken latex, since all my latex passes through
+  <code>hevea</code>. This is awesome, since I no longer need to refresh my browser,
+  wait for mathjax to load, go make myself tea (remember that mathjax was slow?),
+  and then come back to see the errors.</li></ul>
+<ul><li> I can get error messages if my internal document links are broken. To be
+  fair, my tool doesn't currently give me these errors, but it can (and soon
+  will).</li></ul>
+<ul><li> In general, I get <i>control</i>, which was something I did not have with
+  rendering directly using Github, or using someone else's tool.</li></ul>
+<h4><a id=choice-of-language href='#choice-of-language'> § </a> Choice of language</h4>
+I choose to write this in C-style-C++, primarily because I wanted the tool
+to be fast, and I'd missed writing C++ for a while. I really enjoy how
+stupid-simple C style C++ turns out to be: the C++ papers over some of C's
+annoyances (like formatted output for custom types), while still preserving the
+KISS feeling of writing C++.
+<b>Why not Rust?</b> I freely admit that rust might have been a sane choice as
+well.  unfortunately, asking rust to treat UTF-8 string as a "ball of bytes" is
+hard, when it's stupidly easy with C. Plus, I wanted to use arena-style-allocation
+where I make <i>huge</i> allocations in one go and then don't think about memory,
+something that I don't have control over in Rust. I don't have any segfaults
+(yet, perhaps), thanks to UBSAN and ASAN. I find Rust to have more impedance
+than C on small applications, and this was indeed small.
+<h4><a id=performance href='#performance'> § </a> Performance</h4>
+Everything <i>except</i> the latex to HTML is blazing fast. Unfortunately,
+calling <code>hevea</code> is slow, so I implemented a caching mechanism to make using
+<code>hevea</code> not-slow. <code>hevea</code> does not have an API, so I need to <code>fork</code> and
+talk to its process which is understandably flow. I built a "key-value-store"
+(read: serialize data into a file) with the stupidly-simple approach of writing
+an append-only log into a file. <code>hevea</code> is a pure function conceptally,
+since on providing the same latex input it's going to produce the same HTML
+output, so it's perfectly safe to cache it:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
+    G[q](ηo(id_o)) = ηo(q' . id_o)
+    G[q](ηo(id_o)) = ηo(q')
+    ηo(q') = G[q](ηo(id_o))
+</tt></pre>
+</div>
+<h4><a id=for-the-future href='#for-the-future'> § </a> For the future</h4>
+I plan to rip out <code>hevea</code> and write my own <code>latex -> HTML</code> converter for
+the <i>subset of LaTeX I actually use</i>. <code>hevea</code>'s strength is its downfall:
+It can handle all of LaTeX, which means it's really slow. If I can concentrate
+on a small subset, I don't need to play caching tricks, and I can likely
+optimise the layout further for my use-cases.
+I also want colored error messages, because who doesn't?
+I'll probably gradually improve my static site generator over time. Once it's
+at a level of polish where I'm happy with it, I'll spin it out as a separate
+project.
+<h4><a id=conclusions href='#conclusions'> § </a> Conclusions</h4>
+Am I glad I did it? Yes, purely because my chunk of the internet aligns with
+how I want it to be, and that makes me <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">ϵ</span></span></span></span></span> more happy.
+I think of it as an investment into future me, since I can extend the
+markdown and the transpiler in the way <i>I</i> want it to be.
+</container></body></html>

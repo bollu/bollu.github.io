@@ -1,0 +1,107 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
+img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+ .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
+ .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
+.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=word2vec-c-code-implements-gradient-descent-really-weirdly href='#word2vec-c-code-implements-gradient-descent-really-weirdly'> § </a> <code>Word2Vec</code> C code implements gradient descent really weirdly</h2>
+I'll be posting snippets of the original source code, along with a
+link to the Github sources. We are interested in exploring the skip-gram
+implementation of Word2Vec, with negative sampling, without hierarchical
+softmax. I assume basic familiarity with word embeddings and the skip-gram
+model.
+<h4><a id=construction-of-the-sigmoid-lookup-table href='#construction-of-the-sigmoid-lookup-table'> § </a> Construction of the sigmoid lookup table</h4>
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
+    G[q](ηo(id_o)) = ηo(q' . id_o)
+    G[q](ηo(id_o)) = ηo(q')
+    ηo(q') = G[q](ηo(id_o))
+</tt></pre>
+</div>
+Here, the code constructs a lookup table which maps <code>[0...EXP_TABLE_SIZE-1]</code>
+to <code>[sigmoid(-MAX_EXP)...sigmoid(MAX_EXP)]</code>. The index <code>i</code> first gets mapped
+to <code>(i / EXP_TABLE_SIZE) * 2 - 1</code>, which sends <code>0</code> to <code>-1</code> and <code>EXP_TABLE_SIZE</code>
+to <code>1</code>. This is then rescaled by <code>MAX_EXP</code>.
+<h4><a id=layer-initialization href='#layer-initialization'> § </a> Layer initialization</h4>
+<ul><li> <code>syn0</code> is a global variable, initialized with random weights in the range of
+  <code>[-0.5...0.5]</code>. It has dimensions <code>VOCAB x HIDDEN</code>.  This layer holds the
+   hidden representations of word vectors.</li></ul>
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
+    G[q](ηo(id_o)) = ηo(q' . id_o)
+    G[q](ηo(id_o)) = ηo(q')
+    ηo(q') = G[q](ηo(id_o))
+</tt></pre>
+</div>
+<ul><li> <code>syn1neg</code> is a global variable that is zero-initialized. It has dimensions
+  <code>VOCAB x HIDDEN</code>. This layer also holds hidden representations of word vectors,
+  <i>when they are used as a negative sample</i>.</li></ul>
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
+    G[q](ηo(id_o)) = ηo(q' . id_o)
+    G[q](ηo(id_o)) = ηo(q')
+    ηo(q') = G[q](ηo(id_o))
+</tt></pre>
+</div>
+<ul><li> <code>neu1e</code> is a temporary per-thread buffer (Remember that the <code>word2vec</code> C code
+  use CPU threads for parallelism) which is zero initialized. It has dimensions
+  <code>1 x HIDDEN</code>.</li></ul>
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
+    G[q](ηo(id_o)) = ηo(q' . id_o)
+    G[q](ηo(id_o)) = ηo(q')
+    ηo(q') = G[q](ηo(id_o))
+</tt></pre>
+</div>
+<h4><a id=backpropogation href='#backpropogation'> § </a> Backpropogation</h4>
+Throughout <code>word2vec</code>, no 2D arrays are used. Indexing of the form
+<code>arr[word][ix]</code> is manually written as <code>arr[word * layer1_size + ix]</code>. So, I
+will call <code>word * layer1_size</code> as the "base address", and <code>ix</code> as the "offset
+of the array index expression henceforth.
+Here, <code>l1</code> is the base address of the word at the center of window (the focus
+word).  <code>l2</code> is the base address of either the word that is negative sampled
+from the corpus, or the word that is a positive sample from within the context
+window.
+<code>label</code> tells us whether the sample is a positive or a negative sample.
+<code>label = 1</code> for positive samples, and <code>label = 0</code> for negative samples.
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
+    G[q](ηo(id_o)) = ηo(q' . id_o)
+    G[q](ηo(id_o)) = ηo(q')
+    ηo(q') = G[q](ηo(id_o))
+</tt></pre>
+</div>
+<ul><li> We have <i>two</i> vectors for each word, one called <code>syn0[l1 + _]</code> and
+  the other <code>syn1neg[l2 + _]</code>. The <code>syn1neg</code> word embedding is used whenever
+  a word is used a negative sample, and is not used anywhere else. Also,
+  the <code>syn1neg</code> vector is zero initialized, while the <code>syn0</code> vectors are
+  randomly initialized.</li></ul>
+<ul><li> The values we backprop with <code>g * syn1neg[l2 + _]</code>, <code>g * syn0[l1 + _]</code> are
+  <i>not</i> the correct gradients of the error term! The derivative of a sigmoid
+  is <code>dsigmoid(x)/dx = sigmoid(x) [1 - sigmoid(x)]</code>. The <code>[1 - sigmoid(x)]</code>
+  is nowhere to be seen, let alone the fact that we are using
+  <code>sigmoid(2x - 1)</code> and not regular sigmoid. Very weird.</li></ul>
+<ul><li> We hold the value of <code>syn0</code> constant throughout all the negative samples,
+  which was not mentioned in any tutorial I've read.</li></ul>
+The paper does not mentioned these implementation details, and neither
+does <i>any blog post that I've read</i>. I don't understand what's going on,
+and I plan on updating this section when I understand this better.
+</container></body></html>

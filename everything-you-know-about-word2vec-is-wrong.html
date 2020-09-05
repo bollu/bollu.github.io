@@ -1,0 +1,112 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
+img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+ .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
+ .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
+.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=everything-you-know-about-word2vec-is-wrong href='#everything-you-know-about-word2vec-is-wrong'> § </a> Everything you know about word2vec is wrong</h2>
+The classic explanation of <code>word2vec</code>, in skip-gram, with negative sampling,
+in the paper and countless blog posts on the internet is as follows:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
+    G[q](ηo(id_o)) = ηo(q' . id_o)
+    G[q](ηo(id_o)) = ηo(q')
+    ηo(q') = G[q](ηo(id_o))
+</tt></pre>
+</div>
+Indeed, if I google "word2vec skipgram", the results I get are:
+<ul><li> <a href=https://en.wikipedia.org/wiki/Word2vec#Training_algorithm>The wikipedia page which describes the algorithm on a high level</a></li><li> <a href=https://www.tensorflow.org/tutorials/representation/word2vec>The tensorflow page with the same explanation</a></li><li> <a href=https://towardsdatascience.com/word2vec-skip-gram-model-part-1-intuition-78614e4d6e0b>The towards data science blog which describes the same algorithm</a></li></ul>
+the list goes on. However, <b>every single one of these implementations is wrong</b>.
+The original word2vec <code>C</code> implementation does <i>not</i> do what's explained above,
+and is <i>drastically different</i>. Most serious users of word embeddings, who use
+embeddings generated from <code>word2vec</code> do one of the following things:
+<ol><li> They invoke the original C implementation directly.</li><li> They invoke the <code>gensim</code> implementation, which is <i>transliterated</i> from the
+   C source to the extent that the variables names are the same.</li></ol>
+Indeed, the <code>gensim</code> implementation is the 
+<b>only one that I know of which is faithful to the C implementation</b>.
+<h4><a id=the-c-implementation href='#the-c-implementation'> § </a> The C implementation</h4>
+The C implementation in fact maintains <i>two vectors for each word</i>, one where
+it appears as a focus word, and one where it appears as a context word.
+(Is this sounding familiar? Indeed, it appears that GloVe actually took this
+idea from <code>word2vec</code>, which has never mentioned this fact!)
+The setup is incredibly well done in the C code:
+<ul><li> An array called <code>syn0</code> holds the vector embedding of a word when it occurs
+  as a <i>focus word</i>. This is <b>random initialized</b>.</li></ul>
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
+    G[q](ηo(id_o)) = ηo(q' . id_o)
+    G[q](ηo(id_o)) = ηo(q')
+    ηo(q') = G[q](ηo(id_o))
+</tt></pre>
+</div>
+<ul><li> Another array called <code>syn1neg</code> holds the vector of a word when it occurs
+  as a <i>context word</i>. This is <b>zero initialized</b>.</li></ul>
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
+    G[q](ηo(id_o)) = ηo(q' . id_o)
+    G[q](ηo(id_o)) = ηo(q')
+    ηo(q') = G[q](ηo(id_o))
+</tt></pre>
+</div>
+<ul><li> During training (skip-gram, negative sampling, though other cases are
+  also similar), we first pick a focus word. This is held constant throughout
+  the positive and negative sample training. The gradients of the focus vector
+  are accumulated in a buffer, and are applied to the focus word
+  <i>after it has been affected by both positive and negative samples</i>.</li></ul>
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
+    G[q](ηo(id_o)) = ηo(q' . id_o)
+    G[q](ηo(id_o)) = ηo(q')
+    ηo(q') = G[q](ηo(id_o))
+</tt></pre>
+</div>
+<h4><a id=why-random-and-zero-initialization href='#why-random-and-zero-initialization'> § </a> Why random and zero initialization?</h4>
+Once again, since none of this actually explained in the original papers
+<i>or on the web</i>, I can only hypothesize.
+My hypothesis is that since the negative samples come from all over the text
+and are not really weighed by frequency, you can wind up picking <i>any word</i>,
+and more often than not, <i>a word whose vector has not been trained much at all</i>.
+If this vector actually had a value, then it could move the actually important
+focus word randomly.
+The solution is to set all negative samples to zero, so that 
+<i>only vectors that have occurred somewhat frequently</i> will affect the representation 
+of another vector.
+It's quite ingenious, really, and until this, I'd never really thought of
+how important initialization strategies really are.
+<h4><a id=why-im-writing-this href='#why-im-writing-this'> § </a> Why I'm writing this</h4>
+I spent two months of my life trying to reproduce <code>word2vec</code>, following
+the paper exactly, reading countless articles, and simply not succeeding.
+I was unable to reach the same scores that <code>word2vec</code> did, and it was not
+for lack of trying.
+I could not have imagined that the paper would have literally fabricated an
+algorithm that doesn't work, while the implementation does something completely
+different.
+Eventually, I decided to read the sources, and spent three whole days convinced
+I was reading the code wrong since literally everything on the internet told me
+otherwise.
+I don't understand why the original paper and the internet contain zero
+explanations of the <i>actual</i> mechanism behind <code>word2vec</code>, so I decided to put
+it up myself.
+This also explains GloVe's radical choice of having a separate vector
+for the negative context --- they were just doing what <code>word2vec</code> does, but
+they told people about it <code>:)</code>.
+Is this academic dishonesty? I don't know the answer, and that's a heavy
+question. But I'm frankly incredibly pissed, and this is probably the last
+time I take a machine learning paper's explanation of the algorithm
+seriously again --- from next time, I read the source <i>first</i>.
+</container></body></html>
