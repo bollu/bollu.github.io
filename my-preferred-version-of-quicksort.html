@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
-img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.centered { margin-left: 30%; margin-right: 25%; }.image { }
+img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
@@ -7,39 +7,39 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-.latexinline { white-space: nowrap }pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><h2 class='centered'><a id=my-preferred-version-of-quicksort href='#my-preferred-version-of-quicksort'> § </a> My preferred version of quicksort</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=my-preferred-version-of-quicksort href='#my-preferred-version-of-quicksort'> § </a> My preferred version of quicksort</h2>
 Wikipedia lists the implementation of quicksort as:
 <pre><code>algorithm <span class="token function">quicksort</span><span class="token punctuation">(</span>A<span class="token punctuation">,</span> lo<span class="token punctuation">,</span> hi<span class="token punctuation">)</span> is
     <span class="token keyword">if</span> lo <span class="token operator">&lt;</span> hi then
-        p <span class="token punctuation">:</span><span class="token operator">=</span> <span class="token function">partition</span><span class="token punctuation">(</span>A<span class="token punctuation">,</span> lo<span class="token punctuation">,</span> hi<span class="token punctuation">)</span>
+        p <span class="token operator">:</span><span class="token operator">=</span> <span class="token function">partition</span><span class="token punctuation">(</span>A<span class="token punctuation">,</span> lo<span class="token punctuation">,</span> hi<span class="token punctuation">)</span>
         <span class="token function">quicksort</span><span class="token punctuation">(</span>A<span class="token punctuation">,</span> lo<span class="token punctuation">,</span> p <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span>
         <span class="token function">quicksort</span><span class="token punctuation">(</span>A<span class="token punctuation">,</span> p <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> hi<span class="token punctuation">)</span>
 
 algorithm <span class="token function">partition</span><span class="token punctuation">(</span>A<span class="token punctuation">,</span> lo<span class="token punctuation">,</span> hi<span class="token punctuation">)</span> is
-    pivot <span class="token punctuation">:</span><span class="token operator">=</span> A<span class="token punctuation">[</span>hi<span class="token punctuation">]</span>
-    i <span class="token punctuation">:</span><span class="token operator">=</span> lo
-    <span class="token keyword">for</span> j <span class="token punctuation">:</span><span class="token operator">=</span> lo to hi <span class="token keyword">do</span>
+    pivot <span class="token operator">:</span><span class="token operator">=</span> A<span class="token punctuation">[</span>hi<span class="token punctuation">]</span>
+    i <span class="token operator">:</span><span class="token operator">=</span> lo
+    <span class="token keyword">for</span> j <span class="token operator">:</span><span class="token operator">=</span> lo to hi <span class="token keyword">do</span>
         <span class="token keyword">if</span> A<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> pivot then
             swap A<span class="token punctuation">[</span>i<span class="token punctuation">]</span> with A<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
-            i <span class="token punctuation">:</span><span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span>
+            i <span class="token operator">:</span><span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span>
     swap A<span class="token punctuation">[</span>i<span class="token punctuation">]</span> with A<span class="token punctuation">[</span>hi<span class="token punctuation">]</span>
     <span class="token keyword">return</span> i
 </code></pre>
 Here, the indeces <code>[lo..i-1]</code> have values less than the pivot, while
 <code>[i..j]</code> are great or equal to the pivot.
-<h4 class='centered'><a id=the-version-i-prefer href='#the-version-i-prefer'> § </a> The version I prefer</h4>
+<h4><a id=the-version-i-prefer href='#the-version-i-prefer'> § </a> The version I prefer</h4>
 <pre><code><span class="token comment">// #define SWAP(ix, ix2) { int t = a[ix]; a[ix] = a[ix2]; a[ix2] = t; }</span>
 <span class="token comment">// sorts the interval [l, r]</span>
-void <span class="token function">qs</span><span class="token punctuation">(</span>int l<span class="token punctuation">,</span> int r<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">void</span> <span class="token function">qs</span><span class="token punctuation">(</span><span class="token keyword">int</span> l<span class="token punctuation">,</span> <span class="token keyword">int</span> r<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>r <span class="token operator">-</span> l <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-    int part <span class="token operator">=</span> a<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// the partition</span>
+    <span class="token keyword">int</span> part <span class="token operator">=</span> a<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// the partition</span>
 
     <span class="token comment">// a[getill...n] >= part (getill = greater or equal till)</span>
     <span class="token comment">// starts at r since we know that a[r] >= (partition=a[r])</span>
-    int getill <span class="token operator">=</span> r<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> getill <span class="token operator">=</span> r<span class="token punctuation">;</span>
     <span class="token comment">// a[l..lttill] &lt; part (lttill = less or equal till.</span>
     <span class="token comment">// starts at (l-1) since we do not know about any value &lt; partition</span>
-    int lttill <span class="token operator">=</span> l<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> lttill <span class="token operator">=</span> l<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
 
 
     <span class="token comment">// loop until they start probing into the other set</span>
@@ -77,4 +77,4 @@ the other partitions resources, its done.
 Due to using closed intervals everywhere, it's very easy to see precisely
 what data starts and ends where.
 What version of quicksort do you prefer? Drop me an email!
-</body></html>
+</container></body></html>

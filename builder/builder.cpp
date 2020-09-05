@@ -151,8 +151,6 @@ std::ostream &operator<<(std::ostream &o, const TT &ty) {
 struct L {
     ll si, line, col;
     L(ll si, ll line, ll col) : si(si), line(line), col(col){ };
-    L nextcol() const { return L(si + 1, line, col + 1); }
-    L prevcol() const { assert(col-1 >= 1); return L(si - 1, line, col - 1); }
     L nextline() const { return L(si + 1, line + 1, 1); }
     L next(char c) const {
         if (c == '\n') { return nextline(); } else { return nextcol(); }
@@ -179,6 +177,10 @@ struct L {
     } 
 
     bool operator != (const L &other) const {   return !(*this == other); }
+
+    private:
+        L nextcol() const { return L(si + 1, line, col + 1); }
+        L prevcol() const { assert(col-1 >= 1); return L(si - 1, line, col - 1); }
 };
 const L LOC_FIRST = L(0, 1, 1);
 
@@ -319,7 +321,8 @@ bool strpeek(const char* haystack, const char* needle) {
 }
 
 
-// consume till we file delim in raw_input
+// consume till we file delim in raw_input.
+// This also consumes DELIM.
 L strconsume(L l, const char *raw_input, const char *delim,
         const char *errfmt, ...)  {
     const L lbegin = l;
@@ -375,7 +378,7 @@ T *tokenizeNext(const char *s, const ll len, const L lbegin) {
         return linkt;
     }
     else if (s[lcur.si] == '`') {
-        lcur = lcur.nextcol();
+        lcur = lcur.next('`');
         // TODO: fix error message here. 
         lcur = strconsume(lcur, s, "`", "unclosed inline code block `...`");
 
@@ -388,7 +391,7 @@ T *tokenizeNext(const char *s, const ll len, const L lbegin) {
         return new T(TT::CodeInline, Span(lbegin, lcur));
     }
     else if (s[lcur.si] == '$') {
-        lcur = lcur.nextcol();
+        lcur = lcur.next('$');
         // TODO: fix error message here. 
         lcur = strconsume(lcur, s, "$", "unclosed inline latex block $");
 
@@ -429,7 +432,7 @@ T *tokenizeNext(const char *s, const ll len, const L lbegin) {
     //This ordering is important; bold MUST be checked first.
     else if (s[lcur.si] == '*' || s[lcur.si] == '_') {
         const char c = s[lcur.si];
-        T *item = tokenizeInlineTill(s, len, lcur.nextcol(), [c](const char *s, L lcur) {
+        T *item = tokenizeInlineTill(s, len, lcur.next(c), [c](const char *s, L lcur) {
                 return s[lcur.si] == c || s[lcur.si] == '\n';
         });
 
@@ -444,7 +447,7 @@ T *tokenizeNext(const char *s, const ll len, const L lbegin) {
             assert(false && "italic spread across multiple lines");
         }
         assert(s[lcur.si] == c);
-        return new TItalic(Span(lbegin, lcur.nextcol()), item);
+        return new TItalic(Span(lbegin, lcur.next(c)), item);
 
     }
     else {
@@ -468,7 +471,7 @@ T *tokenizeLink(const char *s, const ll len, const L opensq) {
     assert(opensq.si < len);
     assert(s[opensq.si] == '[');
 
-    T *text = tokenizeInlineTill(s, len, opensq.nextcol(), 
+    T *text = tokenizeInlineTill(s, len, opensq.next('['), 
             [](const char *s, L lcur) { return s[lcur.si] == ']'; });
 
     const L closesq = text->span.end;
@@ -492,14 +495,14 @@ T *tokenizeLink(const char *s, const ll len, const L opensq) {
     // TODO: change `tokenize` to `tokenizeInline` when the time is right.
     // std::tie(newline, text) = tokenize(s, closesq.si - opensq.si, opensq, false);
     // text = 
-    return new TLink(Span(opensq, closeround.nextcol()), text, link);
+    return new TLink(Span(opensq, closeround.next(')')), text, link);
 }
 
 // we are assuming that this is called on the *first* list item that
 // has been seen.
 T* tokenizeHyphenListItem (const char *s, const ll len, const L lhyphen) {
     assert(s[lhyphen.si] == '-');
-    const L ltextbegin = lhyphen.nextcol();
+    const L ltextbegin = lhyphen.next('-');
     return tokenizeInlineTill(s, len, ltextbegin, [lhyphen, len](const char *s, L lcur) {
             if (s[lcur.si] != '\n') { return false; }
             assert(s[lcur.si] == '\n');
@@ -548,7 +551,7 @@ T* tokenizeNumberedListItem (const char *s, const ll len, const L lhyphen,
 // We parse quotes here.
 T* tokenizeQuoteItem (const char *s, const ll len, const L lquote) {
     assert(s[lquote.si] == '>');
-    const L ltextbegin = lquote.nextcol();
+    const L ltextbegin = lquote.next('>');
     return tokenizeInlineTill(s, len, ltextbegin, [len, lquote](const char *s, L lcur) {
             if (s[lcur.si] != '\n') { return false; }
             assert(s[lcur.si] == '\n');
@@ -624,14 +627,12 @@ T* tokenizeBlock(const char *s, const ll len, const L lbegin) {
         lcur = lcur.next("```");
 
         const int LANG_NAME_SIZE = 20;
-        char langname[LANG_NAME_SIZE];
+        char *langname = (char *)calloc(LANG_NAME_SIZE, sizeof(char));
         ll langlen = 0;
         while(s[lcur.si] != '\n' && langlen < LANG_NAME_SIZE-1) {
             langname[langlen++] = s[lcur.si];
             lcur = lcur.next(s[lcur.si]);
         }
-        assert(langlen <= LANG_NAME_SIZE-1);
-        langname[langlen] = 0;
 
         // error out if the language name is too long.
         if(langlen == LANG_NAME_SIZE-1) {
@@ -761,94 +762,80 @@ void duk_debug_print_stack(duk_context *ctx, const char *fmt, ...) {
     va_end(args);
 }
 
+// given the raw_input, the span where the raw text of the code is found,
+// and the language name, pygmentize it. So give
+// ```
+// [SPAN BEGIN]abc
+// foo[SPAN END]
+// ```
+// we will pygmentize the string "abc\nfoo"
 GIVE char* pygmentize(duk_context *prism_ctx,
-        KEEP const char *temp_dir_path, 
-        KEEP const char *code, 
-        ll codelen, 
-        KEEP const char *lang,
         KEEP const char *raw_input,
-        const L loc) {
+        KEEP const char *lang,
+        const Span span) {
 
-    char *input = (char *)calloc(sizeof(char), codelen+2);
-    for(int i = 0; i < codelen; ++i) { input[i] = code[i]; }
 
-    duk_debug_print_stack(prism_ctx, "stack %d", __LINE__);
+    char *input = (char *)calloc(sizeof(char), span.nchars()+1);
+    for(ll i = 0; i < span.nchars(); ++i) { 
+        input[i] = raw_input[span.begin.si+i];
+    }
+
+    // HACK
+    if (strlen(lang) == 0 || !strcmp(lang, "text")) { return input; }
+
     // we want to run the line:
     // const html = 
     //   Prism.highlight(code, Prism.languages.javascript, 'javascript');
-    // [Prism|]
+    //  
+    // [Prism(-1)|]
 
     duk_push_string(prism_ctx, "highlight");
-    duk_debug_print_stack(prism_ctx, "stack %d", __LINE__);
-    // [Prism|"highlight"]
+    // [Prism(-2)|"highlight"(-1)]
 
     duk_push_string(prism_ctx, input);
-    duk_debug_print_stack(prism_ctx, "stack %d", __LINE__);
     // [Prism(-3)|"highlight"(-2)|<input>(-1)]
     //
     duk_get_prop_string(prism_ctx, -3, "languages");
-    duk_debug_print_stack(prism_ctx, "stack %d", __LINE__);
     // [Prism(-4)|"highlight"(-3)|<input>(-2)|Prism.languages(-1)]
 
-    const char *CURLANG = "clike";
-    duk_get_prop_string(prism_ctx, -1, CURLANG);
-    duk_debug_print_stack(prism_ctx, "stack %d", __LINE__);
+    duk_get_prop_string(prism_ctx, -1, lang);
     // [Prism(-5)|highlight(-4)|input(-3)|Prism.languages(-2)|Prism.languages.lang(-1)]
+    
+    if(duk_is_undefined(prism_ctx, -1)) {
+        printferr(span.begin, raw_input, "unable to find language in prismJS: |%s|", 
+                lang);
+        assert(false && "unable to support language for syntax highlight");
+    }
+
     
 
     duk_swap_top(prism_ctx, -2);
     // [Prism(-5)|highlight(-4)|input(-3)|Prism.languages.lang(-2)|Prism.languages(-1)]
     duk_pop(prism_ctx);
     // [Prism(-4)|highlight(-2)|input(-2)|Prism.languages.lang(-1)]
-
-
-    duk_push_string(prism_ctx, CURLANG);
+    duk_push_string(prism_ctx, lang);
     // [Prism(-5)|highlight(-4)|input(-3)|Prism.languages.lang(-2)| "<lang>"(-1)]
-    duk_debug_print_stack(prism_ctx, "stack %d", __LINE__);
 
     if(duk_pcall_prop(prism_ctx, -5, 3) == DUK_EXEC_SUCCESS) {
         const char *out = duk_to_string(prism_ctx, -1);
         duk_pop(prism_ctx);
         return strdup(out);
     } else {
-        printferr(loc, raw_input, "%s", duk_to_string(prism_ctx, -1));
+        printferr(span.begin, raw_input, "%s", duk_to_string(prism_ctx, -1));
         assert(false && "unable to syntax highlight");
     }
 };
 
-// TODO: fix representation to hold the full span, and the span
-// of the inner data separately.
-// convert:
-// $$\begin{align*} .. \end{align*}$$
-//   TO
-// \begin{align*} .. \end{align*}
-pair<ll, L> removeAlignDollarsHack(const char *raw_input, const ll inwritelen,
-        const L loc) {
-    assert(raw_input[loc.si] == '$');
-
-    // we may have inline latex that does not have $$.
-    if(!strpeek(raw_input + loc.si, "$$")) { return make_pair(inwritelen, loc); }
-    int ix = loc.si + 2;
-    while(raw_input[ix] == ' ' || raw_input[ix] == '\n' || raw_input[ix] == '\t') { ++ix; }
-    const char *BEGINALIGN = "\\begin{align*}";
-
-    if (strpeek(raw_input + ix, BEGINALIGN)) {
-        return make_pair(inwritelen - 4, loc.next("$$"));
-    }
-    return make_pair(inwritelen, loc);
-};
 
 enum class LatexType {
     LatexTypeBlock, LatexTypeInline
 };
 
 
-
 GIVE const char* compileLatex(duk_context *katex_ctx, 
-        KEEP const char *temp_dir_path, ll inwritelen, 
         KEEP const char *raw_input,
-        L loc,
-        LatexType ty) {
+        const Span span,
+        const LatexType ty) {
     
     // TODO: fixup inline v/s block math. Code is here:
     // duk_push_obj();
@@ -858,8 +845,10 @@ GIVE const char* compileLatex(duk_context *katex_ctx,
     // [katex|]
 
 
-    char *input = (char *)calloc(sizeof(char), inwritelen+2);
-    for(int i = 0; i < inwritelen; ++i) { input[i] = raw_input[loc.si + i]; }
+    char *input = (char *)calloc(sizeof(char), span.nchars()+2);
+    for(ll i = 0; i < span.nchars(); ++i) { 
+        input[i] = raw_input[span.begin.si + i];
+    }
 
     // stack: after processing
     // [katex| renderToString | raw_str | displaymode]
@@ -878,10 +867,9 @@ GIVE const char* compileLatex(duk_context *katex_ctx,
         //   -2         -1
         const char *out = duk_to_string(katex_ctx, -1);
         duk_pop(katex_ctx);
-        return out;
+        return strdup(out);
     } else {
-
-        printferr(loc, raw_input, "%s", duk_to_string(katex_ctx, -1));
+        printferr(span.begin, raw_input, "%s", duk_to_string(katex_ctx, -1));
         assert(false && "unable to compile katex");
     }
 }
@@ -993,25 +981,20 @@ GIVE const char *mkHeadingURL(KEEP const char *raw_input, KEEP THeading *heading
 void toHTML(duk_context *katex_ctx,
         duk_context *prism_ctx,
         const char *raw_input,
-        const char *temp_dir_path, 
-        const T *t, ll &outlen, char *outs) {
+        const T *const t, ll &outlen, char *outs) {
     assert(t != nullptr);
     switch(t->ty) {
         case TT::Undefined: { assert(false && "Should not have received undefined"); return ; }
-        case TT::Comment: return;
+        case TT::Comment: { return; }
 
         case TT::HTML:
-        case TT::RawText:
-        strncpy(outs + outlen, raw_input + t->span.begin.si, t->span.nchars());
-        outlen += t->span.nchars();
-        return;
+        case TT::RawText: {
+          strncpy(outs + outlen, raw_input + t->span.begin.si, t->span.nchars());
+          outlen += t->span.nchars();
+          return;
+        }
 
         case TT::LineBreak: {
-        // HACK!
-        return;
-          const char *br = "<br/>"; 
-          strcpy(outs + outlen, br);
-          outlen += strlen(br);
           return;
         }
 
@@ -1028,17 +1011,8 @@ void toHTML(duk_context *katex_ctx,
           const Span span =
               Span(t->span.begin.next("```").next(block->langname).next("\n"),
                       t->span.end.prev("```"));
-          char *code_html = pygmentize(prism_ctx, temp_dir_path,
-                  raw_input + span.begin.si,
-                  span.nchars(), block->langname,
-                  raw_input, t->span.begin);
-
-          /* debugging code to print 
-          char *code_html = (char*)calloc(span.nchars() + 1, sizeof(char));
-          for(int i = 0; i < span.nchars(); ++i) {
-              code_html[i] = raw_input[span.begin.si + i];
-          }
-          */
+          char *code_html = pygmentize(prism_ctx, raw_input,
+                  block->langname, span);
 
           strcpy(outs + outlen, code_html);
           outlen += strlen(code_html);
@@ -1060,9 +1034,9 @@ void toHTML(duk_context *katex_ctx,
               outlen += sprintf(outs + outlen, "<div class='latexblock'>");
           } else if (t->ty == TT::LatexInline) {
               outlen += sprintf(outs + outlen, "<span class='latexinline'>");
-          }
-          const char *outcompile = compileLatex(katex_ctx, temp_dir_path,
-                  s.nchars(), raw_input, s.begin, 
+          } else { assert(false && "expected latex inline or latex block"); }
+          const char *outcompile = compileLatex(katex_ctx, 
+                  raw_input, s,
                   t->ty == TT::LatexBlock ? LatexType::LatexTypeBlock : LatexType::LatexTypeInline);
           strcpy(outs + outlen, outcompile);
           outlen += strlen(outcompile);
@@ -1071,41 +1045,10 @@ void toHTML(duk_context *katex_ctx,
               outlen += sprintf(outs + outlen, "</div>");
           } else if (t->ty == TT::LatexInline) { 
               outlen += sprintf(outs + outlen, "</span>");
-          }
+          }  else { assert(false && "expected latex inline or latex block"); }
           return;
-
-          // #// const Span span = Span(t->span.begin.next("$"), t->span.end.prev("$"));
-          // #if (t->ty == TT::LatexBlock) { 
-          // #    outlen += sprintf(outs + outlen, "<div class='latexblock'>");
-          // #} else if (t->ty == TT::LatexInline) {
-          // #    outlen += sprintf(outs + outlen, "<span class='latexinline'>");
-          // #}
-
-          // #if (G_OPTIONS.latex2ascii || true) {
-          // #    char *outcompile = compileLatex(temp_dir_path,
-          // #            span.nchars(),
-          // #            raw_input, t->span.begin);
-          // #    strcpy(outs + outlen, outcompile);
-          // #    outlen += strlen(outcompile);
-          // #    free(outcompile);
-          // #} else {
-          // #    strncpy(outs + outlen, raw_input + t->span.begin.si, t->span.nchars());
-          // #    outlen += t->span.nchars();
-          // #}
-
-          // #if (t->ty == TT::LatexBlock) { 
-          // #    outlen += sprintf(outs + outlen, "</div>");
-          // #} else if (t->ty == TT::LatexInline) { 
-          // #    outlen += sprintf(outs + outlen, "</span>");
-          // #}
-          // #return;
         }
 
-        // case TT::LatexBlock: {
-        //   strncpy(outs + outlen, ins + t->span.begin.si, t->span.nchars());
-        //   outlen += t->span.nchars();
-        //   return;
-        // }
 
         case TT::List: {
           const char *openul = "<ul>";
@@ -1118,7 +1061,7 @@ void toHTML(duk_context *katex_ctx,
           strcpy(outs + outlen, openul); outlen += strlen(openul);
           for(auto it: tlist->items) {
               strcpy(outs + outlen, openli); outlen += strlen(openli);
-              toHTML(katex_ctx, prism_ctx, raw_input, temp_dir_path, it, outlen, outs);
+              toHTML(katex_ctx, prism_ctx, raw_input, it, outlen, outs);
               strcpy(outs + outlen, closeli); outlen += strlen(closeli);
           }
           strcpy(outs + outlen, closeul); outlen += strlen(closeul);
@@ -1136,7 +1079,7 @@ void toHTML(duk_context *katex_ctx,
           strcpy(outs + outlen, openul); outlen += strlen(openul);
           for(auto it: tlist->items) {
               strcpy(outs + outlen, openli); outlen += strlen(openli);
-              toHTML(katex_ctx, prism_ctx, raw_input, temp_dir_path, it, outlen, outs);
+              toHTML(katex_ctx, prism_ctx, raw_input, it, outlen, outs);
               strcpy(outs + outlen, closeli); outlen += strlen(closeli);
           }
           strcpy(outs + outlen, closeul); outlen += strlen(closeul);
@@ -1147,7 +1090,7 @@ void toHTML(duk_context *katex_ctx,
           TLink *link = (TLink *)t;
           // toHTML(raw_input, temp_dir_path, link->text,  outlen, outs);
           outlen += sprintf(outs + outlen, "<a href=%s>", link->link);
-          toHTML(katex_ctx, prism_ctx, raw_input, temp_dir_path, link->text, outlen, outs);
+          toHTML(katex_ctx, prism_ctx, raw_input, link->text, outlen, outs);
           outlen += sprintf(outs + outlen, "</a>");
           return;
         }
@@ -1155,7 +1098,7 @@ void toHTML(duk_context *katex_ctx,
         case TT::InlineGroup: {
             TInlineGroup *group = (TInlineGroup *)t;
             for (T *t : group->items) { 
-                toHTML(katex_ctx, prism_ctx, raw_input, temp_dir_path, t, outlen, outs);
+                toHTML(katex_ctx, prism_ctx, raw_input, t, outlen, outs);
             }
             return;
         }
@@ -1184,7 +1127,7 @@ void toHTML(duk_context *katex_ctx,
             // outlen += sprintf(outs + outlen, "<h%d id=%s>", theading->hnum, link);
             outlen += sprintf(outs + outlen, "<h%d>", min(4, 1+theading->hnum));
             outlen += sprintf(outs + outlen, "<a id=%s href='#%s'> %s </a>", link, link, "§");
-            toHTML(katex_ctx, prism_ctx, raw_input, temp_dir_path, theading->item, outlen, outs);
+            toHTML(katex_ctx, prism_ctx, raw_input, theading->item, outlen, outs);
             outlen += sprintf(outs + outlen, "</h%d>", min(4, 1+theading->hnum));
 
             free((char *)link);
@@ -1194,7 +1137,7 @@ void toHTML(duk_context *katex_ctx,
         case TT::Italic: {
             TItalic *tcur = (TItalic *)t;
             outlen += sprintf(outs + outlen, "<i>");
-            toHTML(katex_ctx, prism_ctx, raw_input, temp_dir_path, tcur->item, outlen, outs);
+            toHTML(katex_ctx, prism_ctx, raw_input,  tcur->item, outlen, outs);
             outlen += sprintf(outs + outlen, "</i>");
             return;
         }
@@ -1202,7 +1145,7 @@ void toHTML(duk_context *katex_ctx,
         case TT::Bold: {
             TBold *tcur = (TBold *)t;
             outlen += sprintf(outs + outlen, "<b>");
-            toHTML(katex_ctx, prism_ctx, raw_input, temp_dir_path, tcur->item, outlen, outs);
+            toHTML(katex_ctx, prism_ctx, raw_input,  tcur->item, outlen, outs);
             outlen += sprintf(outs + outlen, "</b>");
             return;
         }
@@ -1212,7 +1155,7 @@ void toHTML(duk_context *katex_ctx,
 
           outlen += sprintf(outs + outlen, "<blockquote>");
           for(auto it: tq->items) {
-              toHTML(katex_ctx, prism_ctx, raw_input, temp_dir_path, it, outlen, outs);
+              toHTML(katex_ctx, prism_ctx, raw_input, it, outlen, outs);
           }
           outlen += sprintf(outs + outlen, "</blockquote>");
           return;
@@ -1318,7 +1261,6 @@ const char html_preamble[] =
 // overflow: latex and code block
 "\n"
 // inline latex: force all text to be on same line.
-".latexinline { white-space: nowrap }"
 "pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }"
 // ul's for some reason are padded, and they render their bullets *outside*
 // their area. Fix both:
@@ -1371,7 +1313,6 @@ bool is_h1(const T *t) {
 long long writeTableOfContentsHTML(duk_context *katex_ctx, 
         duk_context *prism_ctx,
         const char *raw_input,
-        const char *temp_dir_path,
         const vector<T*> &ts,
         KEEP char *outs) {
 
@@ -1387,13 +1328,13 @@ long long writeTableOfContentsHTML(duk_context *katex_ctx,
         assert(is_h1(ts[ix_h1]));
         THeading *theading = (THeading*)ts[ix_h1];
         ix_h1++;  // proceed to next heading
-        printf("---writing heading |%lld|---\n", ix_h1);
         
 
         const char *url = mkHeadingURL(raw_input, theading);
+        printf("---writing heading |%lld: %s|---\n", ix_h1, url);
         // outlen += sprintf(outs + outlen, "<h%d id=%s>", theading->hnum, link);
         outlen += sprintf(outs + outlen, "<li><a href='%s.html'>" , url);
-        toHTML(katex_ctx, prism_ctx, raw_input, temp_dir_path, 
+        toHTML(katex_ctx, prism_ctx, raw_input, 
                 theading->item, 
                 outlen, outs);
         outlen += sprintf(outs + outlen, "</a></li>");
@@ -1514,11 +1455,6 @@ int main(int argc, char **argv) {
     vector<T*> ts; tokenize(raw_input, nread, ts);
     cerr << "===Done tokenizing; Emitting HTML...===\n";
 
-    cerr << "===Creating temporary directory...===\n";
-    char TEMP_DIR_PATH[1024] = "/tmp/blog-build-XXXXXX";
-    const char *success = mkdtemp(TEMP_DIR_PATH);
-    assert(success != nullptr && "unable to create temporary directory");
-
     // index of the latest <h1> tag.
     ll ix_h1 = 0;
 
@@ -1534,12 +1470,12 @@ int main(int argc, char **argv) {
         outlen += sprintf(index_html_buf + outlen, "%s", html_preamble);
         for (int i = 0; i < ix_h1; ++i) {
             toHTML(katex_ctx, prism_ctx, 
-                    raw_input, TEMP_DIR_PATH, ts[i], outlen, index_html_buf);
+                    raw_input, ts[i], outlen, index_html_buf);
         }
 
         // ===write out table of contents===
         outlen += writeTableOfContentsHTML(katex_ctx, prism_ctx,
-                raw_input, TEMP_DIR_PATH, 
+                raw_input, 
                 ts, index_html_buf + outlen);
         outlen += sprintf(index_html_buf + outlen, "%s", html_postamble);
 
@@ -1574,7 +1510,7 @@ int main(int argc, char **argv) {
         ll outlen = 0;
         outlen += sprintf(outbuf + outlen, "%s", html_preamble);
         for (int i = ix_start; i < ix_h1; ++i) {
-            toHTML(katex_ctx, prism_ctx, raw_input, TEMP_DIR_PATH, ts[i], outlen, outbuf);
+            toHTML(katex_ctx, prism_ctx, raw_input, ts[i], outlen, outbuf);
         }
         outlen += sprintf(outbuf + outlen, "%s", html_postamble);
 

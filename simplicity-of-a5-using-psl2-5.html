@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
-img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.centered { margin-left: 30%; margin-right: 25%; }.image { }
+img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
@@ -7,14 +7,14 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-.latexinline { white-space: nowrap }pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><h2 class='centered'><a id=simplicity-of-a5-using-psl2-5 href='#simplicity-of-a5-using-psl2-5'> § </a> Simplicity of A5 using PSL(2, 5)</h2>
-<h4 class='centered'><a id=presentation-of-a5 href='#presentation-of-a5'> § </a> Presentation of A5</h4>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=simplicity-of-a5-using-psl2-5 href='#simplicity-of-a5-using-psl2-5'> § </a> Simplicity of A5 using PSL(2, 5)</h2>
+<h4><a id=presentation-of-a5 href='#presentation-of-a5'> § </a> Presentation of A5</h4>
 We take as faith A5 has the presentation:
-<pre><code><span class="token operator">&lt;</span>a<span class="token punctuation">,</span> b <span class="token operator">|</span> a<span class="token operator">^</span><span class="token number">2</span> <span class="token operator">=</span> b<span class="token operator">^</span><span class="token number">3</span> <span class="token operator">=</span> <span class="token punctuation">(</span>ab<span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">5</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">></span>
+<pre><code><a, b | a^2 = b^3 = (ab)^5 = 1>
 </code></pre>
 If I find a nice proof of this isomorphism, or some other way to derive
 the fact that <code>PSL(2, 5)</code> is isomorphic to <code>A5</code>, I will fill this up.
-<h4 class='centered'><a id=step-1-psl2-5-is-isomorphic-to-a5 href='#step-1-psl2-5-is-isomorphic-to-a5'> § </a> Step 1: <code>PSL(2, 5)</code> is isomorphic to <code>A5</code></h4>
+<h4><a id=step-1-psl2-5-is-isomorphic-to-a5 href='#step-1-psl2-5-is-isomorphic-to-a5'> § </a> Step 1: <code>PSL(2, 5)</code> is isomorphic to <code>A5</code></h4>
 PSL(2, 5) consists of projective Mobius transformations with function composition
 as the group operation. Here, we freely use the linear algebraic relationship
 between transformations of the form <code>(az + b)/(cz + d)</code> and matrices <code>[a b; c z]</code>.
@@ -56,18 +56,18 @@ between transformations of the form <code>(az + b)/(cz + d)</code> and matrices 
 <ul><li> To get <code>r(z) = (z - 1)</code>, we need to compose <code>q(z) = 1/(1-z)</code> with <code>p(z) = -1/z</code>.
   This <code>p(z)</code> is of order 2.</li></ul>
 To recap, we have achieved a set of functions:
-<pre><code><span class="token function">p</span><span class="token punctuation">(</span>z<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token operator">/</span>z <span class="token punctuation">[</span>order <span class="token number">2</span><span class="token punctuation">]</span>
-<span class="token function">q</span><span class="token punctuation">(</span>z<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">/</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">-</span>z<span class="token punctuation">)</span> <span class="token punctuation">[</span>order <span class="token number">3</span><span class="token punctuation">]</span>
-<span class="token function">r</span><span class="token punctuation">(</span>z<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span>z <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">[</span>order <span class="token number">5</span><span class="token punctuation">]</span>
-r <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token operator">/</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token operator">/</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">-</span>z<span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> p <span class="token punctuation">.</span> q
+<pre><code>p(z) = -1/z [order 2]
+q(z) = 1/(1-z) [order 3]
+r(z) = (z - 1) [order 5]
+r = -1/[1/(1-z)] = p . q
 </code></pre>
 That is, we have found a way elements in <code>PSL(2, 5)</code> such that <code>p^2 = q^3 = (pq)^5 = 1</code>.
 This gives us the [surjective] map from <code>PSL(2, 5)</code> into <code>A5</code>.
 <ul><li> By a cardinality argument, we know that the size of <code>PSL(2, 5)</code> is 60. Hence,
   since <code>PSL(2, 5)</code> and <code>A5</code> have the same number of elements, this map
   must be a bijection.</li></ul>
-<h4 class='centered'><a id=step-2-psl2-5-is-simple href='#step-2-psl2-5-is-simple'> § </a> Step 2: PSL(2, 5) is simple</h4>
+<h4><a id=step-2-psl2-5-is-simple href='#step-2-psl2-5-is-simple'> § </a> Step 2: PSL(2, 5) is simple</h4>
 TODO! I'm still reading Keith Conrad's notes.
-<h4 class='centered'><a id=references href='#references'> § </a> References</h4>
+<h4><a id=references href='#references'> § </a> References</h4>
 <ul><li> <a href=https://kconrad.math.uconn.edu/blurbs/grouptheory/PSLnsimple.pdf>Keith Conrad, Simplicity of PSL</a></li><li> <a href=https://math.stackexchange.com/questions/2051241/showing-psl2-5-is-isomorphic-to-a-5>Math.se: isomorphism from PSL to A5</a></li></ul>
-</body></html>
+</container></body></html>

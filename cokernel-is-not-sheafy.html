@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
-img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.centered { margin-left: 30%; margin-right: 25%; }.image { }
+img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
@@ -7,16 +7,16 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-.latexinline { white-space: nowrap }pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><h2 class='centered'><a id=cokernel-is-not-sheafy href='#cokernel-is-not-sheafy'> § </a> Cokernel is not sheafy</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=cokernel-is-not-sheafy href='#cokernel-is-not-sheafy'> § </a> Cokernel is not sheafy</h2>
 I wanted to understand why the Cokernel is not a sheafy condition.
 I found an <a href=https://math.mit.edu/~mckernan/Teaching/07-08/Spring/18.726/model2.pdf>explanation in Ravi Vakil's homework solutions</a>
 which I am expanding on here.
-<h4 class='centered'><a id=core-idea href='#core-idea'> § </a> Core idea</h4>
+<h4><a id=core-idea href='#core-idea'> § </a> Core idea</h4>
 We will show that there will be an exact sequence which is surjective
 at each stalk, but not globally surjective. So, locally, we wil have
 trivial cokernel, but globally, we will have non-trivial cokernel.
-<h4 class='centered'><a id=exponential-sheaf-sequence href='#exponential-sheaf-sequence'> § </a> Exponential sheaf sequence</h4>
-<pre><code><span class="token number">0</span>  <span class="token operator">--</span><span class="token operator">></span> <span class="token number">2</span>πiZ <span class="token operator">-</span><span class="token punctuation">[</span>α<span class="token punctuation">:</span>incl<span class="token punctuation">]</span><span class="token operator">-</span><span class="token operator">></span> O <span class="token operator">--</span><span class="token punctuation">[</span>β<span class="token punctuation">:</span><span class="token function">exp</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">--</span><span class="token operator">></span> O<span class="token operator">*</span> <span class="token operator">--</span><span class="token operator">></span> <span class="token number">0</span>
+<h4><a id=exponential-sheaf-sequence href='#exponential-sheaf-sequence'> § </a> Exponential sheaf sequence</h4>
+<pre><code>0  --> 2πiZ -[α:incl]-> O --[β:exp(.)]--> O* --> 0
 </code></pre>
 <ul><li> <code>O</code> is the sheaf of the additive group of holomorphic functions. 
   <code>O*</code> is the sheaf of the group of non-zero holomorphic functions. </li><li> <code>α</code>, which embeds <code>2πin ∈2πiZ</code> as a constant function <code>f(_) = 2πin</code> is
@@ -30,4 +30,4 @@ trivial cokernel, but globally, we will have non-trivial cokernel.
   <code>exp(l(z)) = h(z) = z</code> everywhere on the complex plane. </li><li> Assume such a function exists. Then it must be the case that
   <code>d/dz exp(l(z)) = d/dz(z) = 1</code>. Thus, <code>exp(l(z)) l'(z) = z l'(z) = 1</code>
   [use the fact that <code>exp(l(z)) = z</code>]. This means that <code>l'(z) = 1/z</code>.</li><li> Now, by integrating in a closed loop of <code>e^iθ</code> we have <code>∮l'(z) = l(1) - l(1) = 0</code>.</li><li> We also have that <code>∮l'(z) = ∮1/z = 2πi</code>.</li><li> This implies that <code>0 = 2πi</code> which is absurd.</li><li> Hence, we cannot have a function whose exponential gives <code>h(z) = z</code> everywhere.</li><li> Thus, the cokernel is nontrivial globally.</li></ul>
-</body></html>
+</container></body></html>

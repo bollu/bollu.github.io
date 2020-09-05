@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
-img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.centered { margin-left: 30%; margin-right: 25%; }.image { }
+img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
@@ -7,33 +7,33 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-.latexinline { white-space: nowrap }pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><h2 class='centered'><a id=efficient-tree-transformations-on-gpus href='#efficient-tree-transformations-on-gpus'> § </a> Efficient tree transformations on GPUs</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=efficient-tree-transformations-on-gpus href='#efficient-tree-transformations-on-gpus'> § </a> Efficient tree transformations on GPUs</h2>
 All material lifted straight from <a href=https://scholarworks.iu.edu/dspace/handle/2022/24749>Aaron Hsu's PhD thesis</a>. I'll be converting
 APL notation to C++-like notation.
-<h4 class='centered'><a id=tree-repsentation-as-multi-dimensional-ragged-nested-arrays href='#tree-repsentation-as-multi-dimensional-ragged-nested-arrays'> § </a> Tree repsentation as multi-dimensional ragged nested arrays</h4>
+<h4><a id=tree-repsentation-as-multi-dimensional-ragged-nested-arrays href='#tree-repsentation-as-multi-dimensional-ragged-nested-arrays'> § </a> Tree repsentation as multi-dimensional ragged nested arrays</h4>
 We're interested in this tree:
 <pre><code>      ∘
 ┌──┬──┴────┐
 a  b       c
 │ ┌┴┐  ┌───┼───┐
 p q r  s   t   u
-  │    │   <span class="token operator">|</span>
+  │    │   |
   │   ┌┴┐ ┌┴┐
   v   w x y z
 </code></pre>
 I'll be writing APL commands in front of a <code>$</code> to mimic bash, and I'll
 write some arrays as multi-line. To run them, collapse them into a single
 line. The <code>ast</code> object is represented in memory as:
-<pre><code>$ ast ← <span class="token punctuation">(</span><span class="token string">'∘'</span>
-           <span class="token punctuation">(</span><span class="token string">'a'</span> <span class="token punctuation">(</span><span class="token string">'p'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-           <span class="token punctuation">(</span><span class="token string">'b'</span>
-             <span class="token punctuation">(</span><span class="token string">'q'</span> <span class="token punctuation">(</span><span class="token string">'v'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-             <span class="token punctuation">(</span><span class="token string">'r'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-           <span class="token punctuation">(</span><span class="token string">'c'</span>
-             <span class="token punctuation">(</span><span class="token string">'s'</span> <span class="token punctuation">(</span><span class="token string">'w'</span> <span class="token string">'x'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-             <span class="token punctuation">(</span><span class="token string">'t'</span> <span class="token punctuation">(</span><span class="token string">'y'</span> <span class="token string">'z'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-             <span class="token punctuation">(</span><span class="token string">'u'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-$ <span class="token punctuation">]</span>disp ast
+<pre><code>$ ast ← ('∘'
+           ('a' ('p'))
+           ('b'
+             ('q' ('v'))
+             ('r'))
+           ('c'
+             ('s' ('w' 'x'))
+             ('t' ('y' 'z'))
+             ('u')))
+$ ]disp ast
 ┌→┬──┬────────┬───────────────────┐
 │∘│ap│┌→┬──┬─┐│┌→┬──────┬──────┬─┐│
 │ │  ││b│qv│r│││c│┌→┬──┐│┌→┬──┐│u││
@@ -90,7 +90,7 @@ And so on, leading to the final representation:
 a  b       c
 │ ┌┴┐  ┌───┼───┐
 p q r  s   t   u
-  │    │   <span class="token operator">|</span>
+  │    │   |
   │   ┌┴┐ ┌┴┐
   v   w x y z
 ┌→┬──┬────────┬───────────────────┐
@@ -106,76 +106,76 @@ Note that for this representation to work, we need to be able to:
 I don't understand the memory layout of this, to be honest. I feel like to
 represent this in memory would still rely on pointer-chasing, since we need
 to box all the arrays. This is possibly optimised by APL to not be too bad.
-<h4 class='centered'><a id=the-depth-vector-representation href='#the-depth-vector-representation'> § </a> The depth vector representation</h4>
-<pre><code>      ∘             <span class="token number">0</span>
+<h4><a id=the-depth-vector-representation href='#the-depth-vector-representation'> § </a> The depth vector representation</h4>
+<pre><code>      ∘             0
 ┌──┬──┴────┐
-a  b       c        <span class="token number">1</span>
+a  b       c        1
 │ ┌┴┐  ┌───┼───┐
-p q r  s   t   u    <span class="token number">2</span>
-  │    │   <span class="token operator">|</span>
+p q r  s   t   u    2
+  │    │   |
   │   ┌┴┐ ┌┴┐
-  v   w x y z       <span class="token number">3</span>
+  v   w x y z       3
 </code></pre>
 If we visit this tree and record depths in pre-order <code>(node left right)</code>, we
 arrive at the list:
-<pre><code><span class="token punctuation">(</span>∘<span class="token punctuation">:</span><span class="token number">0</span>
-  <span class="token punctuation">(</span>a<span class="token punctuation">:</span><span class="token number">1</span> <span class="token punctuation">(</span>p<span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>b<span class="token punctuation">:</span><span class="token number">1</span> <span class="token punctuation">(</span>q<span class="token punctuation">:</span><span class="token number">2</span> <span class="token punctuation">(</span>v<span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>r<span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-  <span class="token punctuation">(</span>c<span class="token punctuation">:</span><span class="token number">1</span> <span class="token punctuation">(</span>s<span class="token punctuation">:</span><span class="token number">2</span> <span class="token punctuation">(</span>w<span class="token punctuation">:</span><span class="token number">3</span> x<span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>t<span class="token punctuation">:</span><span class="token number">2</span> <span class="token punctuation">(</span>y<span class="token punctuation">:</span><span class="token number">3</span> z<span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>u<span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<pre><code>(∘:0
+  (a:1 (p:2)) (b:1 (q:2 (v:3)) (r:2))
+  (c:1 (s:2 (w:3 x:3)) (t:2 (y:3 z:3)) (u:2)))
 </code></pre>
 formatted as:
-<pre><code><span class="token punctuation">(</span>∘<span class="token punctuation">:</span><span class="token number">0</span>
-  <span class="token punctuation">(</span>a<span class="token punctuation">:</span><span class="token number">1</span>
-    <span class="token punctuation">(</span>p<span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-  <span class="token punctuation">(</span>b<span class="token punctuation">:</span><span class="token number">1</span>
-    <span class="token punctuation">(</span>q<span class="token punctuation">:</span><span class="token number">2</span> <span class="token punctuation">(</span>v<span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token punctuation">(</span>r<span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">)</span>
-  <span class="token punctuation">)</span>
-  <span class="token punctuation">(</span>c<span class="token punctuation">:</span><span class="token number">1</span> <span class="token punctuation">(</span>s<span class="token punctuation">:</span><span class="token number">2</span> <span class="token punctuation">(</span>w<span class="token punctuation">:</span><span class="token number">3</span> x<span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-       <span class="token punctuation">(</span>t<span class="token punctuation">:</span><span class="token number">2</span> <span class="token punctuation">(</span>y<span class="token punctuation">:</span><span class="token number">3</span> z<span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-       <span class="token punctuation">(</span>u<span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token punctuation">)</span>
+<pre><code>(∘:0
+  (a:1
+    (p:2))
+  (b:1
+    (q:2 (v:3))
+    (r:2)
+  )
+  (c:1 (s:2 (w:3 x:3))
+       (t:2 (y:3 z:3))
+       (u:2))
+)
 </code></pre>
 This linearlized is the list:
-<pre><code>    <span class="token punctuation">(</span>∘ a p b q v r c s w x t y z u<span class="token punctuation">)</span>
-d ← <span class="token punctuation">(</span><span class="token number">0</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">2</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">3</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">3</span> <span class="token number">2</span><span class="token punctuation">)</span>
+<pre><code>    (∘ a p b q v r c s w x t y z u)
+d ← (0 1 2 1 2 3 2 1 2 3 3 2 3 3 2)
 
-      ∘             <span class="token number">0</span>
+      ∘             0
 ┌──┬──┴────┐
-a  b       c        <span class="token number">1</span>
+a  b       c        1
 │ ┌┴┐  ┌───┼───┐
-p q r  s   t   u    <span class="token number">2</span>
-  │    │   <span class="token operator">|</span>
+p q r  s   t   u    2
+  │    │   |
   │   ┌┴┐ ┌┴┐
-  v   w x y z       <span class="token number">3</span>
+  v   w x y z       3
 </code></pre>
 To convert the <code>ast</code> object into a depth vector representation, we can
 use the following call:
-<pre><code>$ ast ← <span class="token punctuation">(</span><span class="token string">'∘'</span> <span class="token punctuation">(</span><span class="token string">'a'</span> <span class="token punctuation">(</span><span class="token string">'p'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token string">'b'</span> <span class="token punctuation">(</span><span class="token string">'q'</span> <span class="token punctuation">(</span><span class="token string">'v'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token string">'r'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token string">'c'</span> <span class="token punctuation">(</span><span class="token string">'s'</span> <span class="token punctuation">(</span><span class="token string">'w'</span> <span class="token string">'x'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token string">'t'</span> <span class="token punctuation">(</span><span class="token string">'y'</span> <span class="token string">'z'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token string">'u'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-$ d ← ∊<span class="token number">0</span><span class="token punctuation">{</span><span class="token punctuation">(</span>⊢<span class="token punctuation">,</span><span class="token punctuation">(</span>⍺<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span>∇⊣<span class="token punctuation">)</span><span class="token operator">/</span>⌽⍺<span class="token punctuation">,</span><span class="token number">1</span>↓⍵<span class="token punctuation">}</span>ast
-<span class="token number">0</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">2</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">3</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">3</span> <span class="token number">2</span>
+<pre><code>$ ast ← ('∘' ('a' ('p')) ('b' ('q' ('v')) ('r')) ('c' ('s' ('w' 'x')) ('t' ('y' 'z')) ('u')))
+$ d ← ∊0{(⊢,(⍺+1)∇⊣)/⌽⍺,1↓⍵}ast
+0 1 2 1 2 3 2 1 2 3 3 2 3 3 2
 </code></pre>
 Let's break this down:
 TODO
-<h4 class='centered'><a id=inverted-tables href='#inverted-tables'> § </a> Inverted tables</h4>
+<h4><a id=inverted-tables href='#inverted-tables'> § </a> Inverted tables</h4>
 We represent data associated with our nodes as follows:
-<pre><code>$ data ← ⍪ ¨<span class="token function">d</span><span class="token punctuation">(</span><span class="token number">15</span>⍴<span class="token string">'T'</span><span class="token punctuation">)</span><span class="token punctuation">(</span>↑<span class="token number">15</span>⍴⊂<span class="token string">'n.'</span><span class="token punctuation">)</span>
-$ <span class="token punctuation">]</span>disp data
+<pre><code>$ data ← ⍪ ¨d(15⍴'T')(↑15⍴⊂'n.')
+$ ]disp data
 ┌→┬─┬──┐
-│<span class="token number">0</span>│T│n<span class="token punctuation">.</span>│
-│<span class="token number">1</span>│T│n<span class="token punctuation">.</span>│
-│<span class="token number">2</span>│T│n<span class="token punctuation">.</span>│
-│<span class="token number">1</span>│T│n<span class="token punctuation">.</span>│
-│<span class="token number">2</span>│T│n<span class="token punctuation">.</span>│
-│<span class="token number">3</span>│T│n<span class="token punctuation">.</span>│
-│<span class="token number">2</span>│T│n<span class="token punctuation">.</span>│
-│<span class="token number">1</span>│T│n<span class="token punctuation">.</span>│
-│<span class="token number">2</span>│T│n<span class="token punctuation">.</span>│
-│<span class="token number">3</span>│T│n<span class="token punctuation">.</span>│
-│<span class="token number">4</span>│T│n<span class="token punctuation">.</span>│
-│<span class="token number">2</span>│T│n<span class="token punctuation">.</span>│
-│<span class="token number">3</span>│T│n<span class="token punctuation">.</span>│
-│<span class="token number">4</span>│T│n<span class="token punctuation">.</span>│
-│<span class="token number">2</span>↓T↓n<span class="token punctuation">.</span>↓
+│0│T│n.│
+│1│T│n.│
+│2│T│n.│
+│1│T│n.│
+│2│T│n.│
+│3│T│n.│
+│2│T│n.│
+│1│T│n.│
+│2│T│n.│
+│3│T│n.│
+│4│T│n.│
+│2│T│n.│
+│3│T│n.│
+│4│T│n.│
+│2↓T↓n.↓
 └→┴→┴─→┘
 </code></pre>
 This is the same thing as a
@@ -183,91 +183,91 @@ This is the same thing as a
 where each array of information (eg, the depth at <code>data[1]</code>, the <code>T</code>
 information at <code>data[2]</code>) are each <i>arrays</i> which can be accessed well on SIMD
 instructions.
-<h4 class='centered'><a id=ast-representation href='#ast-representation'> § </a> AST representation</h4>
+<h4><a id=ast-representation href='#ast-representation'> § </a> AST representation</h4>
 TODO
-<h4 class='centered'><a id=path-matrices href='#path-matrices'> § </a> Path matrices</h4>
+<h4><a id=path-matrices href='#path-matrices'> § </a> Path matrices</h4>
 We want information of how to go up and down the tree in ideally constant time.
 We store this information in what is known as a <i>path matrix</i>.
 For our recurring example, the path matrix is:
-<pre><code>∘ a p b q v r c s w x t y z u <span class="token operator">|</span> preorder traversal
+<pre><code>∘ a p b q v r c s w x t y z u | preorder traversal
 ──────────────────────────────────────────────────
-∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ <span class="token operator">|</span> depth<span class="token operator">=</span><span class="token number">0</span>
-<span class="token operator">-</span> a a b b b b c c c c c c c c <span class="token operator">|</span> depth<span class="token operator">=</span><span class="token number">1</span>
-<span class="token operator">-</span> <span class="token operator">-</span> p <span class="token operator">-</span> q q r <span class="token operator">-</span> s s s t t t u <span class="token operator">|</span> depth<span class="token operator">=</span><span class="token number">2</span>
-<span class="token operator">-</span> <span class="token operator">-</span> <span class="token operator">-</span> <span class="token operator">-</span> <span class="token operator">-</span> v <span class="token operator">-</span> <span class="token operator">-</span> <span class="token operator">-</span> w x <span class="token operator">-</span> y z <span class="token operator">-</span> <span class="token operator">|</span> depth<span class="token operator">=</span><span class="token number">3</span>
+∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ | depth=0
+- a a b b b b c c c c c c c c | depth=1
+- - p - q q r - s s s t t t u | depth=2
+- - - - - v - - - w x - y z - | depth=3
 
-      ∘             <span class="token number">0</span>
+      ∘             0
 ┌──┬──┴────┐
-a  b       c        <span class="token number">1</span>
+a  b       c        1
 │ ┌┴┐  ┌───┼───┐
-p q r  s   t   u    <span class="token number">2</span>
-  │    │   <span class="token operator">|</span>
+p q r  s   t   u    2
+  │    │   |
   │   ┌┴┐ ┌┴┐
-  v   w x y z       <span class="token number">3</span>
+  v   w x y z       3
 </code></pre>
 To efficiently compute this, we first replace every value in
 our tree with its preorder traversal visit time. This changes
 the tree to:
-<pre><code>              ∘<span class="token punctuation">:</span><span class="token number">0</span>                               <span class="token number">0</span>
+<pre><code>              ∘:0                               0
 ┌──────────┬──┴─────────────────┐
-a<span class="token punctuation">:</span><span class="token number">1</span>        b<span class="token punctuation">:</span><span class="token number">3</span>                 c<span class="token punctuation">:</span><span class="token number">7</span>              <span class="token number">1</span>
+a:1        b:3                 c:7              1
 │      ┌───┴───┐     ┌──────────┼───────┐
-p<span class="token punctuation">:</span><span class="token number">2</span>    q<span class="token punctuation">:</span><span class="token number">4</span>     r<span class="token punctuation">:</span><span class="token number">6</span>   s<span class="token punctuation">:</span><span class="token number">8</span>        t<span class="token punctuation">:</span><span class="token number">11</span>    u<span class="token punctuation">:</span><span class="token number">14</span>    <span class="token number">2</span>
+p:2    q:4     r:6   s:8        t:11    u:14    2
        │             │          │
        │          ┌──┴──┐     ┌─┴───┐
-       v<span class="token punctuation">:</span><span class="token number">5</span>        w<span class="token punctuation">:</span><span class="token number">9</span>   x<span class="token punctuation">:</span><span class="token number">10</span>  y<span class="token punctuation">:</span><span class="token number">12</span>  z<span class="token punctuation">:</span><span class="token number">13</span>        <span class="token number">3</span>
+       v:5        w:9   x:10  y:12  z:13        3
 </code></pre>
 The values we store in the tree are the integers. The old labels
 are represented for clarity.
 The path matrix for this tree is:
-<pre><code><span class="token number">0</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">4</span>  <span class="token number">5</span>  <span class="token number">6</span>  <span class="token number">7</span>  <span class="token number">8</span>  <span class="token number">9</span> <span class="token number">10</span> <span class="token number">11</span> <span class="token number">12</span> <span class="token number">13</span> <span class="token number">14</span>  <span class="token operator">|</span> preorder traversal
+<pre><code>0  1  2  3  4  5  6  7  8  9 10 11 12 13 14  | preorder traversal
 ────────────────────────────────────────────────────────────
-<span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token operator">|</span> depth<span class="token operator">=</span><span class="token number">0</span>
-<span class="token operator">-</span>  <span class="token number">1</span>  <span class="token number">1</span>  <span class="token number">3</span>  <span class="token number">3</span>  <span class="token number">3</span>  <span class="token number">3</span>  <span class="token number">7</span>  <span class="token number">7</span>  <span class="token number">7</span>  <span class="token number">7</span>  <span class="token number">7</span>  <span class="token number">7</span>  <span class="token number">7</span>  <span class="token number">7</span>  <span class="token operator">|</span> depth<span class="token operator">=</span><span class="token number">1</span>
-<span class="token operator">-</span>  <span class="token operator">-</span>  <span class="token number">2</span>  <span class="token operator">-</span>  <span class="token number">4</span>  <span class="token number">4</span>  <span class="token number">6</span>  <span class="token operator">-</span>  <span class="token number">8</span>  <span class="token number">8</span>  <span class="token number">8</span> <span class="token number">11</span> <span class="token number">11</span> <span class="token number">11</span> <span class="token number">14</span>  <span class="token operator">|</span> depth<span class="token operator">=</span><span class="token number">2</span>
-<span class="token operator">-</span>  <span class="token operator">-</span>  <span class="token operator">-</span>  <span class="token operator">-</span>  <span class="token operator">-</span>  <span class="token number">5</span>  <span class="token operator">-</span>  <span class="token operator">-</span>  <span class="token operator">-</span>  <span class="token number">9</span> <span class="token number">10</span>  <span class="token operator">-</span> <span class="token number">12</span> <span class="token number">13</span>  <span class="token operator">-</span>  <span class="token operator">|</span> depth<span class="token operator">=</span><span class="token number">3</span>
+0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  | depth=0
+-  1  1  3  3  3  3  7  7  7  7  7  7  7  7  | depth=1
+-  -  2  -  4  4  6  -  8  8  8 11 11 11 14  | depth=2
+-  -  -  -  -  5  -  -  -  9 10  - 12 13  -  | depth=3
 
-              ∘<span class="token punctuation">:</span><span class="token number">0</span>                               <span class="token number">0</span>
+              ∘:0                               0
 ┌──────────┬──┴─────────────────┐
-a<span class="token punctuation">:</span><span class="token number">1</span>        b<span class="token punctuation">:</span><span class="token number">3</span>                 c<span class="token punctuation">:</span><span class="token number">7</span>              <span class="token number">1</span>
+a:1        b:3                 c:7              1
 │      ┌───┴───┐     ┌──────────┼───────┐
-p<span class="token punctuation">:</span><span class="token number">2</span>    q<span class="token punctuation">:</span><span class="token number">4</span>     r<span class="token punctuation">:</span><span class="token number">6</span>   s<span class="token punctuation">:</span><span class="token number">8</span>        t<span class="token punctuation">:</span><span class="token number">11</span>    u<span class="token punctuation">:</span><span class="token number">14</span>    <span class="token number">2</span>
+p:2    q:4     r:6   s:8        t:11    u:14    2
        │             │          │
        │          ┌──┴──┐     ┌─┴───┐
-       v<span class="token punctuation">:</span><span class="token number">5</span>        w<span class="token punctuation">:</span><span class="token number">9</span>   x<span class="token punctuation">:</span><span class="token number">10</span>  y<span class="token punctuation">:</span><span class="token number">12</span>  z<span class="token punctuation">:</span><span class="token number">13</span>        <span class="token number">3</span>
+       v:5        w:9   x:10  y:12  z:13        3
 </code></pre>
-<h4 class='centered'><a id=rendering-the-depth-information-in-2d href='#rendering-the-depth-information-in-2d'> § </a> Rendering the depth information in 2D</h4>
+<h4><a id=rendering-the-depth-information-in-2d href='#rendering-the-depth-information-in-2d'> § </a> Rendering the depth information in 2D</h4>
 We use the incantation:
-<pre><code>$ d ← <span class="token punctuation">(</span><span class="token number">0</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">2</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">3</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">3</span> <span class="token number">2</span><span class="token punctuation">)</span>
-$ <span class="token punctuation">(</span><span class="token punctuation">(</span>⍳≢d<span class="token punctuation">)</span>@<span class="token punctuation">(</span>d<span class="token punctuation">,</span>¨⍳≢d<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>⌈<span class="token operator">/</span>d<span class="token punctuation">)</span> <span class="token punctuation">(</span>≢d<span class="token punctuation">)</span><span class="token punctuation">)</span>⍴<span class="token string">'-'</span>
-<span class="token number">0</span> <span class="token operator">-</span> <span class="token operator">-</span> <span class="token operator">-</span> <span class="token operator">-</span> <span class="token operator">-</span> <span class="token operator">-</span> <span class="token operator">-</span> <span class="token operator">-</span> <span class="token operator">-</span>  <span class="token operator">-</span>  <span class="token operator">-</span>  <span class="token operator">-</span>  <span class="token operator">-</span>  <span class="token operator">-</span>
-<span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">-</span> <span class="token number">3</span> <span class="token operator">-</span> <span class="token operator">-</span> <span class="token operator">-</span> <span class="token number">7</span> <span class="token operator">-</span> <span class="token operator">-</span>  <span class="token operator">-</span>  <span class="token operator">-</span>  <span class="token operator">-</span>  <span class="token operator">-</span>  <span class="token operator">-</span>
-<span class="token operator">-</span> <span class="token operator">-</span> <span class="token number">2</span> <span class="token operator">-</span> <span class="token number">4</span> <span class="token operator">-</span> <span class="token number">6</span> <span class="token operator">-</span> <span class="token number">8</span> <span class="token operator">-</span>  <span class="token operator">-</span> <span class="token number">11</span>  <span class="token operator">-</span>  <span class="token operator">-</span> <span class="token number">14</span>
-<span class="token operator">-</span> <span class="token operator">-</span> <span class="token operator">-</span> <span class="token operator">-</span> <span class="token operator">-</span> <span class="token number">5</span> <span class="token operator">-</span> <span class="token operator">-</span> <span class="token operator">-</span> <span class="token number">9</span>  <span class="token operator">-</span>  <span class="token operator">-</span> <span class="token number">12</span>  <span class="token operator">-</span>  <span class="token operator">-</span>
-<span class="token operator">-</span> <span class="token operator">-</span> <span class="token operator">-</span> <span class="token operator">-</span> <span class="token operator">-</span> <span class="token operator">-</span> <span class="token operator">-</span> <span class="token operator">-</span> <span class="token operator">-</span> <span class="token operator">-</span> <span class="token number">10</span>  <span class="token operator">-</span>  <span class="token operator">-</span> <span class="token number">13</span>  <span class="token operator">-</span>
+<pre><code>$ d ← (0 1 2 1 2 3 2 1 2 3 3 2 3 3 2)
+$ ((⍳≢d)@(d,¨⍳≢d)) ((⌈/d) (≢d))⍴'-'
+0 - - - - - - - - -  -  -  -  -  -
+- 1 - 3 - - - 7 - -  -  -  -  -  -
+- - 2 - 4 - 6 - 8 -  - 11  -  - 14
+- - - - - 5 - - - 9  -  - 12  -  -
+- - - - - - - - - - 10  -  - 13  -
 </code></pre>
 Let's break this down (the symbol <code> </code> means a lamp, for commenting/illumination)
-<pre><code>$ ⍳ <span class="token number">3</span> ⍝ iota<span class="token punctuation">:</span> make a list of n elements<span class="token punctuation">:</span><span class="token punctuation">.</span>
-<span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span>
+<pre><code>$ ⍳ 3 ⍝ iota: make a list of n elements:.
+1 2 3
 </code></pre>
 <pre><code>$ d
-<span class="token number">0</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">2</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">2</span>
+0 1 2 1 2 3 2 1 2 3 4 2 3 4 2
 
-$ ≢d ⍝ tally<span class="token punctuation">:</span> ≢`<span class="token punctuation">.</span> count no<span class="token punctuation">.</span> of elements <span class="token keyword">in</span> d<span class="token punctuation">:</span>
-<span class="token number">15</span>
+$ ≢d ⍝ tally: ≢`. count no. of elements in d:
+15
 </code></pre>
-<pre><code>⍳≢d  ⍝ list of elements of len <span class="token punctuation">(</span>no<span class="token punctuation">.</span> of elements <span class="token keyword">in</span> d<span class="token punctuation">)</span><span class="token punctuation">.</span>
-<span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span> <span class="token number">6</span> <span class="token number">7</span> <span class="token number">8</span> <span class="token number">9</span> <span class="token number">10</span> <span class="token number">11</span> <span class="token number">12</span> <span class="token number">13</span> <span class="token number">14</span> <span class="token number">15</span>
+<pre><code>⍳≢d  ⍝ list of elements of len (no. of elements in d).
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
 </code></pre>
-<pre><code>$ <span class="token punctuation">]</span>disp <span class="token punctuation">(</span><span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">4</span> <span class="token number">5</span> <span class="token number">6</span><span class="token punctuation">)</span> ⍝ <span class="token punctuation">,</span><span class="token punctuation">:</span>concatenate
+<pre><code>$ ]disp (1 2 3),(4 5 6) ⍝ ,:concatenate
 ┌→────┬─────┐
-│<span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span>│<span class="token number">4</span> <span class="token number">5</span> <span class="token number">6</span>│
-└<span class="token operator">~</span>───→┴<span class="token operator">~</span>───→┘
+│1 2 3│4 5 6│
+└~───→┴~───→┘
 </code></pre>
-<pre><code><span class="token punctuation">]</span>disp <span class="token punctuation">(</span><span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">,</span>¨ <span class="token punctuation">(</span><span class="token number">4</span> <span class="token number">5</span> <span class="token number">6</span><span class="token punctuation">)</span>
+<pre><code>]disp (1 2 3) ,¨ (4 5 6)
 ┌→──┬───┬───┐
-│<span class="token number">1</span> <span class="token number">4</span>│<span class="token number">2</span> <span class="token number">5</span>│<span class="token number">3</span> <span class="token number">6</span>│
-└<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┘
+│1 4│2 5│3 6│
+└~─→┴~─→┴~─→┘
 </code></pre>
 The use of <code>¨</code> needs some explanation. <code>¨</code> is a higher order function which
 takes a function and makes it a mapped version of the original function.
@@ -276,16 +276,16 @@ Now, given two arrays <code>(1 2 3)</code>
 and <code>(4 5 6)</code>, <code>(1 2 3) ,¨ 4 5 6</code> attemps to run <code>,</code> on each pair
 <code>1 and 4</code>, <code>2 and 5</code>, <code>3 and 6</code>. This gives us tuples <code>((1 4) (2 5) (3 6))</code>.
 So, for our purposes, <code>zip ← ,¨</code>.
-<pre><code><span class="token punctuation">]</span>disp <span class="token punctuation">(</span>d<span class="token punctuation">,</span>¨⍳≢d<span class="token punctuation">)</span> ⍝ zip d with <span class="token punctuation">[</span><span class="token number">1.</span><span class="token punctuation">.</span>len d<span class="token punctuation">]</span><span class="token punctuation">.</span>
+<pre><code>]disp (d,¨⍳≢d) ⍝ zip d with [1..len d].
 ┌→──┬───┬───┬───┬───┬───┬───┬───┬───┬───┬────┬────┬────┬────┬────┐
-│<span class="token number">0</span> <span class="token number">0</span>│<span class="token number">1</span> <span class="token number">1</span>│<span class="token number">2</span> <span class="token number">2</span>│<span class="token number">1</span> <span class="token number">3</span>│<span class="token number">2</span> <span class="token number">4</span>│<span class="token number">3</span> <span class="token number">5</span>│<span class="token number">2</span> <span class="token number">6</span>│<span class="token number">1</span> <span class="token number">7</span>│<span class="token number">2</span> <span class="token number">8</span>│<span class="token number">3</span> <span class="token number">9</span>│<span class="token number">4</span> <span class="token number">10</span>│<span class="token number">2</span> <span class="token number">11</span>│<span class="token number">3</span> <span class="token number">12</span>│<span class="token number">4</span> <span class="token number">13</span>│<span class="token number">2</span> <span class="token number">14</span>│
-└<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>──→┴<span class="token operator">~</span>──→┴<span class="token operator">~</span>──→┴<span class="token operator">~</span>──→┴<span class="token operator">~</span>──→┘
+│0 0│1 1│2 2│1 3│2 4│3 5│2 6│1 7│2 8│3 9│4 10│2 11│3 12│4 13│2 14│
+└~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~──→┴~──→┴~──→┴~──→┴~──→┘
 </code></pre>
-<pre><code>$ <span class="token punctuation">(</span><span class="token punctuation">(</span>⌈<span class="token operator">/</span>d<span class="token punctuation">)</span> <span class="token punctuation">(</span>≢d<span class="token punctuation">)</span><span class="token punctuation">)</span>⍴<span class="token string">'-'</span> ⍝ array of dim <span class="token punctuation">(</span>max val <span class="token keyword">in</span> d<span class="token punctuation">)</span> x <span class="token punctuation">(</span>no<span class="token punctuation">.</span> of elem <span class="token keyword">in</span> d<span class="token punctuation">)</span>
-<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
-<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
-<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
-<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
+<pre><code>$ ((⌈/d) (≢d))⍴'-' ⍝ array of dim (max val in d) x (no. of elem in d)
+---------------
+---------------
+---------------
+---------------
 </code></pre>
 <ul><li> <code>⌈</code> is the maximum operator and <code>/</code> is the fold operator, so
   <code>⌈/d</code> finds the maximum in <code>d</code>. Recall that <code>(≢d)</code> find the no. of
@@ -293,106 +293,106 @@ So, for our purposes, <code>zip ← ,¨</code>.
    a <code>1x1</code> array containing only <code>-</code>, which gets reshaped into a
    <code>(⌈/d) x (≢d)</code> sizes array of <code>-</code> symbols.</li></ul>
 TODO: explain @ and its use
-<h4 class='centered'><a id=creating-the-path-matrix href='#creating-the-path-matrix'> § </a> Creating the path matrix</h4>
-<pre><code>$ ⎕IO ← <span class="token number">0</span> ⍝ <span class="token punctuation">(</span>inform APL that we wish to use <span class="token number">0</span><span class="token operator">-</span>indexing<span class="token punctuation">.</span><span class="token punctuation">)</span>
-$ d ← <span class="token punctuation">(</span><span class="token number">0</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">2</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">3</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">3</span> <span class="token number">2</span><span class="token punctuation">)</span>
-$ PM ← ⌈\<span class="token punctuation">(</span><span class="token punctuation">(</span>⍳≢d<span class="token punctuation">)</span>@<span class="token punctuation">(</span>d<span class="token punctuation">,</span>¨⍳≢d<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span>⌈<span class="token operator">/</span>d<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">(</span>≢d<span class="token punctuation">)</span><span class="token punctuation">)</span>⍴<span class="token number">0</span><span class="token punctuation">)</span>
+<h4><a id=creating-the-path-matrix href='#creating-the-path-matrix'> § </a> Creating the path matrix</h4>
+<pre><code>$ ⎕IO ← 0 ⍝ (inform APL that we wish to use 0-indexing.)
+$ d ← (0 1 2 1 2 3 2 1 2 3 3 2 3 3 2)
+$ PM ← ⌈\((⍳≢d)@(d,¨⍳≢d))(((⌈/d+1)(≢d))⍴0)
 
-<span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>
-<span class="token number">0</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">3</span> <span class="token number">3</span> <span class="token number">3</span> <span class="token number">3</span> <span class="token number">7</span> <span class="token number">7</span> <span class="token number">7</span>  <span class="token number">7</span>  <span class="token number">7</span>  <span class="token number">7</span>  <span class="token number">7</span>  <span class="token number">7</span>
-<span class="token number">0</span> <span class="token number">0</span> <span class="token number">2</span> <span class="token number">2</span> <span class="token number">4</span> <span class="token number">4</span> <span class="token number">6</span> <span class="token number">6</span> <span class="token number">8</span> <span class="token number">8</span>  <span class="token number">8</span> <span class="token number">11</span> <span class="token number">11</span> <span class="token number">11</span> <span class="token number">14</span>
-<span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">5</span> <span class="token number">5</span> <span class="token number">5</span> <span class="token number">5</span> <span class="token number">9</span> <span class="token number">10</span> <span class="token number">10</span> <span class="token number">12</span> <span class="token number">13</span> <span class="token number">13</span>
+0 0 0 0 0 0 0 0 0 0  0  0  0  0  0
+0 1 1 3 3 3 3 7 7 7  7  7  7  7  7
+0 0 2 2 4 4 6 6 8 8  8 11 11 11 14
+0 0 0 0 0 5 5 5 5 9 10 10 12 13 13
 
-      <span class="token number">0</span>               <span class="token number">0</span>
+      0               0
 ┌──┬──┴───────┐
-<span class="token number">1</span>  <span class="token number">3</span>          <span class="token number">7</span>       <span class="token number">1</span>
+1  3          7       1
 │ ┌┴┐  ┌──────┼───┐
-<span class="token number">2</span> <span class="token number">4</span> <span class="token number">6</span>  <span class="token number">8</span>     <span class="token number">11</span>   <span class="token number">14</span>  <span class="token number">2</span>
-  │    │      <span class="token operator">|</span>
+2 4 6  8     11   14  2
+  │    │      |
   │   ┌┴─┐   ┌┴──┐
-  <span class="token number">5</span>   <span class="token number">9</span>  <span class="token number">10</span>  <span class="token number">12</span>  <span class="token number">13</span>   <span class="token number">3</span>
+  5   9  10  12  13   3
 </code></pre>
 The incantation can be broken down into:
 <ul><li> <code>(((⌈/d+1)(≢d))⍴0)</code> is used to create a <code>max(d+1)x|d|</code> dimension array of zeros.
    Here, the rows define depths, and the columns correspond to tree nodes
    which for us are their preorder indexes.</li></ul>
-<pre><code>$ grid←<span class="token punctuation">(</span>⌈<span class="token operator">/</span>d<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>≢d<span class="token punctuation">)</span> ⍴ <span class="token number">0</span>
+<pre><code>$ grid←(⌈/d+1) (≢d) ⍴ 0
 $ grid
-<span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span>
-<span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span>
-<span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span>
-<span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span>
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 </code></pre>
 <ul><li> <code>((d ,¨ ⍳≢d))</code> creates an array of pairs <code>(depth, preindex)</code>. We will use
   this to fill index <code>(d, pi)</code> with the value <code>pi</code>.</li></ul>
-<pre><code>$ writeixs ← <span class="token punctuation">(</span>d<span class="token punctuation">,</span>¨⍳≢d<span class="token punctuation">)</span>
-$ <span class="token punctuation">]</span>disp writeixs
+<pre><code>$ writeixs ← (d,¨⍳≢d)
+$ ]disp writeixs
 ┌→──┬───┬───┬───┬───┬───┬───┬───┬───┬───┬────┬────┬────┬────┬────┐
-│<span class="token number">0</span> <span class="token number">0</span>│<span class="token number">1</span> <span class="token number">1</span>│<span class="token number">2</span> <span class="token number">2</span>│<span class="token number">1</span> <span class="token number">3</span>│<span class="token number">2</span> <span class="token number">4</span>│<span class="token number">3</span> <span class="token number">5</span>│<span class="token number">2</span> <span class="token number">6</span>│<span class="token number">1</span> <span class="token number">7</span>│<span class="token number">2</span> <span class="token number">8</span>│<span class="token number">3</span> <span class="token number">9</span>│<span class="token number">3</span> <span class="token number">10</span>│<span class="token number">2</span> <span class="token number">11</span>│<span class="token number">3</span> <span class="token number">12</span>│<span class="token number">3</span> <span class="token number">13</span>│<span class="token number">2</span> <span class="token number">14</span>│
-└<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>──→┴<span class="token operator">~</span>──→┴<span class="token operator">~</span>──→┴<span class="token operator">~</span>──→┴<span class="token operator">~</span>──→┘
+│0 0│1 1│2 2│1 3│2 4│3 5│2 6│1 7│2 8│3 9│3 10│2 11│3 12│3 13│2 14│
+└~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~──→┴~──→┴~──→┴~──→┴~──→┘
 </code></pre>
 <ul><li> <code>ixgrid ← ((⍳≢d)@writeixs) grid</code> rewrites at index <code>writeixs[i]</code> the value (<code>(i≢d)[i]</code>).</li></ul>
-<pre><code>$ ixgrid ← <span class="token punctuation">(</span><span class="token punctuation">(</span>⍳≢d<span class="token punctuation">)</span>@writeixs<span class="token punctuation">)</span> grid
+<pre><code>$ ixgrid ← ((⍳≢d)@writeixs) grid
 $ ixgrid
-<span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>
-<span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">3</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">7</span> <span class="token number">0</span> <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>
-<span class="token number">0</span> <span class="token number">0</span> <span class="token number">2</span> <span class="token number">0</span> <span class="token number">4</span> <span class="token number">0</span> <span class="token number">6</span> <span class="token number">0</span> <span class="token number">8</span> <span class="token number">0</span>  <span class="token number">0</span> <span class="token number">11</span>  <span class="token number">0</span>  <span class="token number">0</span> <span class="token number">14</span>
-<span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">5</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">9</span> <span class="token number">10</span>  <span class="token number">0</span> <span class="token number">12</span> <span class="token number">13</span>  <span class="token number">0</span>
+0 0 0 0 0 0 0 0 0 0  0  0  0  0  0
+0 1 0 3 0 0 0 7 0 0  0  0  0  0  0
+0 0 2 0 4 0 6 0 8 0  0 11  0  0 14
+0 0 0 0 0 5 0 0 0 9 10  0 12 13  0
 </code></pre>
 <ul><li> Finally, <code>⌈</code> is the maximum operator, and <code>\</code> is the <a href=>prefix scan</a> operator,
   so <code>⌈\ixgrid</code> creates a prefix scan of the above grid to give us our
   final path matrix:</li></ul>
 <pre><code>$ PM ← ⌈\ixgrid
 $ PM
-<span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>
-<span class="token number">0</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">3</span> <span class="token number">3</span> <span class="token number">3</span> <span class="token number">3</span> <span class="token number">7</span> <span class="token number">7</span> <span class="token number">7</span>  <span class="token number">7</span>  <span class="token number">7</span>  <span class="token number">7</span>  <span class="token number">7</span>  <span class="token number">7</span>
-<span class="token number">0</span> <span class="token number">0</span> <span class="token number">2</span> <span class="token number">2</span> <span class="token number">4</span> <span class="token number">4</span> <span class="token number">6</span> <span class="token number">6</span> <span class="token number">8</span> <span class="token number">8</span>  <span class="token number">8</span> <span class="token number">11</span> <span class="token number">11</span> <span class="token number">11</span> <span class="token number">14</span>
-<span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">5</span> <span class="token number">5</span> <span class="token number">5</span> <span class="token number">5</span> <span class="token number">9</span> <span class="token number">10</span> <span class="token number">10</span> <span class="token number">12</span> <span class="token number">13</span> <span class="token number">13</span>
+0 0 0 0 0 0 0 0 0 0  0  0  0  0  0
+0 1 1 3 3 3 3 7 7 7  7  7  7  7  7
+0 0 2 2 4 4 6 6 8 8  8 11 11 11 14
+0 0 0 0 0 5 5 5 5 9 10 10 12 13 13
 </code></pre>
-<h4 class='centered'><a id=using-the-path-matrix-distance-of-a-node-from-every-other-node href='#using-the-path-matrix-distance-of-a-node-from-every-other-node'> § </a> Using the path matrix:  distance of a node from every other node.</h4>
+<h4><a id=using-the-path-matrix-distance-of-a-node-from-every-other-node href='#using-the-path-matrix-distance-of-a-node-from-every-other-node'> § </a> Using the path matrix:  distance of a node from every other node.</h4>
 Note that the maximum distance between two nodes is to climb
 all the way to the top node, and then climb down:
-<pre><code>dmax ← <span class="token function">depth</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">depth</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>
+<pre><code>dmax ← depth(a) + depth(b)
 </code></pre>
 If we know the lowest common ancestor of two nodes,
 then the distance of one node to another is:
-<pre><code>dcorrect ← <span class="token function">dist</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> <span class="token function">lca</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">dist</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span> <span class="token function">lca</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<pre><code>dcorrect ← dist(a, lca(a, b)) + dist(b, lca(a, b))
 </code></pre>
 So, we can compute the depth as:
-<pre><code>dcorrect ← <span class="token function">dist</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> <span class="token function">lca</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">dist</span><span class="token punctuation">(</span><span class="token function">lca</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">,</span> b<span class="token punctuation">)</span>
- <span class="token operator">=</span> <span class="token function">dist</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> <span class="token function">lca</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">depth</span><span class="token punctuation">(</span><span class="token function">lca</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span>
-   <span class="token function">dist</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span> <span class="token function">lca</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">depth</span><span class="token punctuation">(</span><span class="token function">lca</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span>
-   <span class="token operator">-</span><span class="token number">2</span> <span class="token operator">*</span> <span class="token function">depth</span><span class="token punctuation">(</span><span class="token function">lca</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">)</span>
- <span class="token operator">=</span> <span class="token function">depth</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token operator">+</span>
-   <span class="token function">depth</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span> <span class="token operator">+</span>
-   <span class="token operator">-</span><span class="token number">2</span> <span class="token operator">*</span> depth <span class="token punctuation">(</span><span class="token function">lca</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<pre><code>dcorrect ← dist(a, lca(a, b)) + dist(lca(a, b), b)
+ = dist(a, lca(a, b)) + depth(lca(a, b)) +
+   dist(b, lca(a, b)) + depth(lca(a, b)) +
+   -2 * depth(lca(a, b))
+ = depth(a) +
+   depth(b) +
+   -2 * depth (lca(a, b))
 </code></pre>
 [TODO: picture]
 [TODO: finish writing this]
-<h4 class='centered'><a id=parent-vector-representation href='#parent-vector-representation'> § </a> Parent vector representation</h4>
+<h4><a id=parent-vector-representation href='#parent-vector-representation'> § </a> Parent vector representation</h4>
 A parent vector is a vector of length <code>n</code> where <code>Parent[i]</code> denotes an
 index into <code>Parent</code>. Hence, the following condition will return 1
 if V is a parent vector.
 For example, for our given example, here is the parent vector:
-<pre><code>d ← <span class="token punctuation">(</span><span class="token number">0</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">2</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">3</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">3</span>  <span class="token number">2</span><span class="token punctuation">)</span> │ depths
-    <span class="token punctuation">(</span>∘  a  p  b  q  v  r  c  s  w  x  t  y  z  u<span class="token punctuation">)</span> │ values
-p ← <span class="token punctuation">(</span>∘  ∘  a  ∘  b  q  b  ∘  c  s  s  c  t  t  c<span class="token punctuation">)</span> │ parents
-    <span class="token punctuation">(</span><span class="token number">0</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">4</span>  <span class="token number">5</span>  <span class="token number">6</span>  <span class="token number">7</span>  <span class="token number">8</span>  <span class="token number">9</span> <span class="token number">10</span> <span class="token number">11</span> <span class="token number">12</span> <span class="token number">13</span> <span class="token number">14</span><span class="token punctuation">)</span> <span class="token operator">|</span> indexes
-P ← <span class="token punctuation">(</span><span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">1</span>  <span class="token number">0</span>  <span class="token number">3</span>  <span class="token number">4</span>  <span class="token number">3</span>  <span class="token number">0</span>  <span class="token number">7</span>  <span class="token number">8</span>  <span class="token number">8</span>  <span class="token number">7</span> <span class="token number">11</span> <span class="token number">11</span>  <span class="token number">7</span><span class="token punctuation">)</span> │ parent indices
+<pre><code>d ← (0  1  2  1  2  3  2  1  2  3  3  2  3  3  2) │ depths
+    (∘  a  p  b  q  v  r  c  s  w  x  t  y  z  u) │ values
+p ← (∘  ∘  a  ∘  b  q  b  ∘  c  s  s  c  t  t  c) │ parents
+    (0  1  2  3  4  5  6  7  8  9 10 11 12 13 14) | indexes
+P ← (0  0  1  0  3  4  3  0  7  8  8  7 11 11  7) │ parent indices
 
 
 
-              ∘<span class="token punctuation">:</span><span class="token number">0</span>                               <span class="token number">0</span>
+              ∘:0                               0
 ┌──────────┬──┴─────────────────┐
-a<span class="token punctuation">:</span><span class="token number">1</span>        b<span class="token punctuation">:</span><span class="token number">3</span>                 c<span class="token punctuation">:</span><span class="token number">7</span>              <span class="token number">1</span>
+a:1        b:3                 c:7              1
 │      ┌───┴───┐     ┌──────────┼───────┐
-p<span class="token punctuation">:</span><span class="token number">2</span>    q<span class="token punctuation">:</span><span class="token number">4</span>     r<span class="token punctuation">:</span><span class="token number">6</span>   s<span class="token punctuation">:</span><span class="token number">8</span>        t<span class="token punctuation">:</span><span class="token number">11</span>    u<span class="token punctuation">:</span><span class="token number">14</span>    <span class="token number">2</span>
+p:2    q:4     r:6   s:8        t:11    u:14    2
        │             │          │
        │          ┌──┴──┐     ┌─┴───┐
-       v<span class="token punctuation">:</span><span class="token number">5</span>        w<span class="token punctuation">:</span><span class="token number">9</span>   x<span class="token punctuation">:</span><span class="token number">10</span>  y<span class="token punctuation">:</span><span class="token number">12</span>  z<span class="token punctuation">:</span><span class="token number">13</span>        <span class="token number">3</span>
+       v:5        w:9   x:10  y:12  z:13        3
 </code></pre>
 The condition a parent vector must satisfy is:
-<pre><code>∧<span class="token operator">/</span>V ∊<span class="token punctuation">(</span>⍳≢V<span class="token punctuation">)</span> ⍝ <span class="token punctuation">[</span>All elements of V belong <span class="token keyword">in</span> the list <span class="token punctuation">[</span><span class="token number">1.</span><span class="token punctuation">.</span><span class="token function">len</span><span class="token punctuation">(</span>V<span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token punctuation">]</span>
+<pre><code>∧/V ∊(⍳≢V) ⍝ [All elements of V belong in the list [1..len(V)] ]
 </code></pre>
 <ul><li> <code>V ∊ (⍳≢V)</code> will be a list of whether each element in v belongs (<code>∊</code>) to the list
   <code>(⍳≢V) = [1..len(V)]</code></li><li> Recall that <code>/</code> is for reduction, and <code>∧/</code> is a boolean <code>AND</code> reduction.
@@ -400,27 +400,27 @@ The condition a parent vector must satisfy is:
   point to themselves. This allows us to free ourselves from requiring
   some kind of <code>nullptr</code> check.</li></ul>
 The root node (parent of all elements) can be found using the fixpoint operator (<code>⍨</code>):
-<pre><code>I←<span class="token punctuation">{</span><span class="token punctuation">(</span>⊂⍵<span class="token punctuation">)</span>⌷⍺<span class="token punctuation">}</span> ⍝ index into the left hand side param using right hand side param
+<pre><code>I←{(⊂⍵)⌷⍺} ⍝ index into the left hand side param using right hand side param
 I⍣≡⍨p ⍝ compute the fixpoint of the I operator using ⍨ and apply it to p
 </code></pre>
-<h4 class='centered'><a id=converting-from-depth-vector-to-parent-vector-take-1 href='#converting-from-depth-vector-to-parent-vector-take-1'> § </a> Converting from depth vector to parent vector, Take 1</h4>
+<h4><a id=converting-from-depth-vector-to-parent-vector-take-1 href='#converting-from-depth-vector-to-parent-vector-take-1'> § </a> Converting from depth vector to parent vector, Take 1</h4>
 As usual, let's consider our example:
-<pre><code>d ← <span class="token punctuation">(</span><span class="token number">0</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">2</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">3</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">3</span>  <span class="token number">2</span><span class="token punctuation">)</span> │ depths
-    <span class="token punctuation">(</span>∘  a  p  b  q  v  r  c  s  w  x  t  y  z  u<span class="token punctuation">)</span> │ values
-p ← <span class="token punctuation">(</span>∘  ∘  a  ∘  b  q  b  ∘  c  s  s  c  t  t  c<span class="token punctuation">)</span> │ parents
-    <span class="token punctuation">(</span><span class="token number">0</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">4</span>  <span class="token number">5</span>  <span class="token number">6</span>  <span class="token number">7</span>  <span class="token number">8</span>  <span class="token number">9</span> <span class="token number">10</span> <span class="token number">11</span> <span class="token number">12</span> <span class="token number">13</span> <span class="token number">14</span><span class="token punctuation">)</span> <span class="token operator">|</span> indexes
-P ← <span class="token punctuation">(</span><span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">1</span>  <span class="token number">0</span>  <span class="token number">3</span>  <span class="token number">4</span>  <span class="token number">3</span>  <span class="token number">0</span>  <span class="token number">7</span>  <span class="token number">8</span>  <span class="token number">8</span>  <span class="token number">7</span> <span class="token number">11</span> <span class="token number">11</span>  <span class="token number">7</span><span class="token punctuation">)</span> │ parent indices
+<pre><code>d ← (0  1  2  1  2  3  2  1  2  3  3  2  3  3  2) │ depths
+    (∘  a  p  b  q  v  r  c  s  w  x  t  y  z  u) │ values
+p ← (∘  ∘  a  ∘  b  q  b  ∘  c  s  s  c  t  t  c) │ parents
+    (0  1  2  3  4  5  6  7  8  9 10 11 12 13 14) | indexes
+P ← (0  0  1  0  3  4  3  0  7  8  8  7 11 11  7) │ parent indices
 
 
 
-              ∘<span class="token punctuation">:</span><span class="token number">0</span>                               <span class="token number">0</span>
+              ∘:0                               0
 ┌──────────┬──┴─────────────────┐
-a<span class="token punctuation">:</span><span class="token number">1</span>        b<span class="token punctuation">:</span><span class="token number">3</span>                 c<span class="token punctuation">:</span><span class="token number">7</span>              <span class="token number">1</span>
+a:1        b:3                 c:7              1
 │      ┌───┴───┐     ┌──────────┼───────┐
-p<span class="token punctuation">:</span><span class="token number">2</span>    q<span class="token punctuation">:</span><span class="token number">4</span>     r<span class="token punctuation">:</span><span class="token number">6</span>   s<span class="token punctuation">:</span><span class="token number">8</span>        t<span class="token punctuation">:</span><span class="token number">11</span>    u<span class="token punctuation">:</span><span class="token number">14</span>    <span class="token number">2</span>
+p:2    q:4     r:6   s:8        t:11    u:14    2
        │             │          │
        │          ┌──┴──┐     ┌─┴───┐
-       v<span class="token punctuation">:</span><span class="token number">5</span>        w<span class="token punctuation">:</span><span class="token number">9</span>   x<span class="token punctuation">:</span><span class="token number">10</span>  y<span class="token punctuation">:</span><span class="token number">12</span>  z<span class="token punctuation">:</span><span class="token number">13</span>        <span class="token number">3</span>
+       v:5        w:9   x:10  y:12  z:13        3
 </code></pre>
 Note that the depth vector already encodes parent-child information.
 <ul><li> The parent of node <code>i</code> is a node <code>j</code> such that <code>d[j] = d[i] - 1</code> and
@@ -428,51 +428,51 @@ Note that the depth vector already encodes parent-child information.
 For example, to compute the parent of <code>t:11</code>, notice that it's at depth <code>2</code>.
 So we should find all the nodes from <code>d[0..11]</code> which have depths equal to
 <code>2</code>, and then pick the rightmost one. This translates to the expression:
-<pre><code>$ d ← <span class="token punctuation">(</span><span class="token number">0</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">2</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">3</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">3</span>  <span class="token number">2</span><span class="token punctuation">)</span>
-$ t ← <span class="token number">11</span>   ⍝ target node
+<pre><code>$ d ← (0  1  2  1  2  3  2  1  2  3  3  2  3  3  2)
+$ t ← 11   ⍝ target node
 $ ixs ← ⍳t   ⍝ array indexes upto this node
-  <span class="token number">0</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span> <span class="token number">6</span> <span class="token number">7</span> <span class="token number">8</span> <span class="token number">9</span> <span class="token number">10</span>
-$ d<span class="token punctuation">[</span>ixs<span class="token punctuation">]</span>   ⍝ depths of nodes to the left of the given node t
-  <span class="token number">0</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">2</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">3</span>
-$ d<span class="token punctuation">[</span>ixs<span class="token punctuation">]</span>  <span class="token operator">=</span> d<span class="token punctuation">[</span>t<span class="token punctuation">]</span><span class="token operator">-</span><span class="token number">1</span>  ⍝ boolean vector of nodes whose depth is that of t's parent
-  <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span>
-$ eqds ← ⍸ <span class="token punctuation">(</span>d<span class="token punctuation">[</span>ixs<span class="token punctuation">]</span> <span class="token operator">=</span> d<span class="token punctuation">[</span>t<span class="token punctuation">]</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>  ⍝ array indexes of nodes whose depth is that of t's parent
-  <span class="token number">1</span> <span class="token number">3</span> <span class="token number">7</span>
-$ ⌽ eqds ⍝ reverse of array indexes to extract `<span class="token number">7</span>`
-  <span class="token number">7</span> <span class="token number">3</span> <span class="token number">1</span>
-$ ⊃ ⌽ eqds ⍝ first of the reverse of the array indexes to extract `<span class="token number">7</span>`
-  <span class="token number">7</span>
-$ <span class="token punctuation">(</span>⌽⍸<span class="token punctuation">(</span>d<span class="token punctuation">[</span>⍳t<span class="token punctuation">]</span> <span class="token operator">=</span> d<span class="token punctuation">[</span>t<span class="token punctuation">]</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>  ⍝ APL style one<span class="token operator">-</span>liner of the above
+  0 1 2 3 4 5 6 7 8 9 10
+$ d[ixs]   ⍝ depths of nodes to the left of the given node t
+  0 1 2 1 2 3 2 1 2 3 3
+$ d[ixs]  = d[t]-1  ⍝ boolean vector of nodes whose depth is that of t's parent
+  0 1 0 1 0 0 0 1 0 0 0
+$ eqds ← ⍸ (d[ixs] = d[t]-1)  ⍝ array indexes of nodes whose depth is that of t's parent
+  1 3 7
+$ ⌽ eqds ⍝ reverse of array indexes to extract `7`
+  7 3 1
+$ ⊃ ⌽ eqds ⍝ first of the reverse of the array indexes to extract `7`
+  7
+$ (⌽⍸(d[⍳t] = d[t]-1))[0]  ⍝ APL style one-liner of the above
 </code></pre>
 While this is intuitive, this does not scale: It does not permit us to find
 the parent of all the nodes <i>at once</i> --- ie, it is not parallelisable
 over choices of <code>t</code>.
-<h4 class='centered'><a id=converting-from-depth-vector-to-parent-vector-take-2-or-scan-idiom href='#converting-from-depth-vector-to-parent-vector-take-2-or-scan-idiom'> § </a> Converting from depth vector to parent vector, Take 2 (Or scan idiom)</h4>
+<h4><a id=converting-from-depth-vector-to-parent-vector-take-2-or-scan-idiom href='#converting-from-depth-vector-to-parent-vector-take-2-or-scan-idiom'> § </a> Converting from depth vector to parent vector, Take 2 (Or scan idiom)</h4>
 Imagine we have a list of <code>0</code>s and <code>1</code>s, and we want to find the <i>index</i> of
 the rightmost <code>1</code> value. For example, given:
-<pre><code>       <span class="token number">0</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span> <span class="token number">6</span> <span class="token number">7</span> <span class="token number">8</span> <span class="token number">9</span> <span class="token number">10</span> <span class="token number">11</span> <span class="token number">12</span>
-$ a ← <span class="token punctuation">(</span><span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span><span class="token punctuation">)</span>
+<pre><code>       0 1 2 3 4 5 6 7 8 9 10 11 12
+$ a ← (0 0 1 0 0 0 1 0 1 0  0  0  0)
 </code></pre>
 we want the answer to be <code>f a = 8</code>. We saw an implementation in terms of
 <code>f←{(⌽⍸⍵)[0]}</code> in Take 1.
 (recall that <code>⍵</code> is the symbol for the right-hand-side argument of a function).
 We're going to perform the same operation slightly differently. Let's consider
 the series of transformations:
-<pre><code>⍝      <span class="token number">0</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span> <span class="token number">6</span> <span class="token number">7</span> <span class="token number">8</span> <span class="token number">9</span> <span class="token number">10</span> <span class="token number">11</span> <span class="token number">12</span>
-$ a ← <span class="token punctuation">(</span><span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span><span class="token punctuation">)</span> ⍝ original array
+<pre><code>⍝      0 1 2 3 4 5 6 7 8 9 10 11 12
+$ a ← (0 0 1 0 0 0 1 0 1 0  0  0  0) ⍝ original array
 
 $ ⌽a  ⍝ reverse of a
-  <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span>
+  0 0 0 0 1 0 1 0 0 0 1 0 0
 
-$ ∨\ ⌽a ⍝ prefix <span class="token function">scan</span><span class="token punctuation">(</span>\<span class="token punctuation">)</span> using the <span class="token function">OR</span><span class="token punctuation">(</span>∨<span class="token punctuation">)</span> operator<span class="token punctuation">.</span> Turn all
-        ⍝ entries after the first <span class="token number">1</span> into a <span class="token number">1</span>
-  <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span>
+$ ∨\ ⌽a ⍝ prefix scan(\) using the OR(∨) operator. Turn all
+        ⍝ entries after the first 1 into a 1
+  0 0 0 0 1 1 1 1 1 1 1 1 1
 
-$ <span class="token operator">+</span><span class="token operator">/</span> <span class="token punctuation">(</span>∨\ ⌽a<span class="token punctuation">)</span>  ⍝ sum over the previous list<span class="token punctuation">,</span> counting number of <span class="token number">1</span>s
-  <span class="token number">9</span>
+$ +/ (∨\ ⌽a)  ⍝ sum over the previous list, counting number of 1s
+  9
 
-$ ¯<span class="token number">1</span> <span class="token operator">+</span>  <span class="token punctuation">(</span><span class="token operator">+</span><span class="token operator">/</span> <span class="token punctuation">(</span>∨\ ⌽a<span class="token punctuation">)</span><span class="token punctuation">)</span>  ⍝ subtract <span class="token number">1</span> from the previous number
-  <span class="token number">8</span>
+$ ¯1 +  (+/ (∨\ ⌽a))  ⍝ subtract 1 from the previous number
+  8
 </code></pre>
 Why the hell does this work? Well, here's the proof:
 <ul><li> On running <code>⌽a</code>, we reverse the <code>a</code>. The last 1 of <code>a</code> at index <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span></span>
@@ -482,41 +482,41 @@ Why the hell does this work? Well, here's the proof:
 This technique will work for <b>every row of a matrix</b>. This is paramount,
 since we can now repeat this for the depth vector we were previously
 interested in for each row, and thereby compute the parent index!
-<h4 class='centered'><a id=converting-from-depth-vector-to-parent-vector-take-3-full-matrix href='#converting-from-depth-vector-to-parent-vector-take-3-full-matrix'> § </a> Converting from depth vector to parent vector, Take 3 (full matrix)</h4>
+<h4><a id=converting-from-depth-vector-to-parent-vector-take-3-full-matrix href='#converting-from-depth-vector-to-parent-vector-take-3-full-matrix'> § </a> Converting from depth vector to parent vector, Take 3 (full matrix)</h4>
 We want to extend the previous method we hit upon to compute the parents
 of all nodes in parallel. To perform this, we need to run the moral
 equivalent of the following:
-<pre><code>$ ⎕IO ← <span class="token number">0</span> ⍝ <span class="token number">0</span> indexing
-$ d ← <span class="token punctuation">(</span><span class="token number">0</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">2</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">3</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">3</span>  <span class="token number">2</span><span class="token punctuation">)</span> ⍝ depth vector
-$ t ← <span class="token number">11</span> ⍝ node we are interested <span class="token keyword">in</span>
-$ a←d<span class="token punctuation">[</span>⍳t<span class="token punctuation">]</span><span class="token operator">=</span>d<span class="token punctuation">[</span>t<span class="token punctuation">]</span><span class="token operator">-</span><span class="token number">1</span>  ⍝ boolean vector of nodes whose depth is that of t's parent
-  <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span>
-$ ¯<span class="token number">1</span> <span class="token operator">+</span>  <span class="token punctuation">(</span><span class="token operator">+</span><span class="token operator">/</span> <span class="token punctuation">(</span>∨\ ⌽a<span class="token punctuation">)</span><span class="token punctuation">)</span> ⍝ index of last <span class="token number">0</span> of boolean vector
-<span class="token number">7</span>
+<pre><code>$ ⎕IO ← 0 ⍝ 0 indexing
+$ d ← (0  1  2  1  2  3  2  1  2  3  3  2  3  3  2) ⍝ depth vector
+$ t ← 11 ⍝ node we are interested in
+$ a←d[⍳t]=d[t]-1  ⍝ boolean vector of nodes whose depth is that of t's parent
+  0 1 0 1 0 0 0 1 0 0 0
+$ ¯1 +  (+/ (∨\ ⌽a)) ⍝ index of last 0 of boolean vector
+7
 </code></pre>
 for <i>every single choice of t</i>. To perform this, we can build a 2D matrix
 of <code>d[⍳t]=d[t]-1</code> where <code>t</code> ranges over <code>[0..len(d)-1]</code> (ie, it ranges
 over all the nodes in the graph).
 We begin by using:
-<pre><code>$ ⎕IO ← <span class="token number">0</span> ⋄ d ← <span class="token punctuation">(</span><span class="token number">0</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">2</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">3</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">3</span>  <span class="token number">2</span><span class="token punctuation">)</span> ⍝ depths
-$ <span class="token punctuation">]</span>display ltdepth ← d ∘<span class="token punctuation">.</span><span class="token operator">></span> d ⍝ find `d<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> d<span class="token punctuation">[</span>j<span class="token punctuation">]</span>` <span class="token keyword">for</span> all i<span class="token punctuation">,</span> j<span class="token punctuation">.</span>
+<pre><code>$ ⎕IO ← 0 ⋄ d ← (0  1  2  1  2  3  2  1  2  3  3  2  3  3  2) ⍝ depths
+$ ]display ltdepth ← d ∘.> d ⍝ find `d[i] > d[j]` for all i, j.
 ┌→────────────────────────────┐
-↓<span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span>│
-│<span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span>│
-│<span class="token number">1</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span>│
-│<span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span>│
-│<span class="token number">1</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span>│
-│<span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span>│
-│<span class="token number">1</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span>│
-│<span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span>│
-│<span class="token number">1</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span>│
-│<span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span>│
-│<span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span>│
-│<span class="token number">1</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span>│
-│<span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span>│
-│<span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span>│
-│<span class="token number">1</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span>│
-└<span class="token operator">~</span>────────────────────────────┘
+↓0 0 0 0 0 0 0 0 0 0 0 0 0 0 0│
+│1 0 0 0 0 0 0 0 0 0 0 0 0 0 0│
+│1 1 0 1 0 0 0 1 0 0 0 0 0 0 0│
+│1 0 0 0 0 0 0 0 0 0 0 0 0 0 0│
+│1 1 0 1 0 0 0 1 0 0 0 0 0 0 0│
+│1 1 1 1 1 0 1 1 1 0 0 1 0 0 1│
+│1 1 0 1 0 0 0 1 0 0 0 0 0 0 0│
+│1 0 0 0 0 0 0 0 0 0 0 0 0 0 0│
+│1 1 0 1 0 0 0 1 0 0 0 0 0 0 0│
+│1 1 1 1 1 0 1 1 1 0 0 1 0 0 1│
+│1 1 1 1 1 0 1 1 1 0 0 1 0 0 1│
+│1 1 0 1 0 0 0 1 0 0 0 0 0 0 0│
+│1 1 1 1 1 0 1 1 1 0 0 1 0 0 1│
+│1 1 1 1 1 0 1 1 1 0 0 1 0 0 1│
+│1 1 0 1 0 0 0 1 0 0 0 0 0 0 0│
+└~────────────────────────────┘
 </code></pre>
 <ul><li> Note that <code>gt[i][j] = 1</code> iff <code>d[j] < d[i]</code>. So, for a given row (<code>i = fixed</code>), the <code>1s</code>
   nodes that are at lower depth (ie, potential parents).</li></ul>
@@ -524,193 +524,193 @@ $ <span class="token punctuation">]</span>display ltdepth ← d ∘<span class="
   last one in each row will be such that <code>d[last 1] = d[i] - 1</code>. Why? Because
   the node that is closest to us with a depth less than us <i>must</i> be our parent,
   in the preorder traversal.</li></ul>
-<pre><code>$ ⎕IO ← <span class="token number">0</span> ⋄ d ← <span class="token punctuation">(</span><span class="token number">0</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">2</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">3</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">3</span>  <span class="token number">2</span><span class="token punctuation">)</span> ⍝ depths
-$ <span class="token punctuation">]</span>display left ←  <span class="token punctuation">(</span>⍳<span class="token number">3</span><span class="token punctuation">)</span> ∘<span class="token punctuation">.</span><span class="token operator">></span> <span class="token punctuation">(</span>⍳<span class="token number">3</span><span class="token punctuation">)</span> ⍝ find `i <span class="token operator">></span> j` <span class="token keyword">for</span> all i<span class="token punctuation">,</span> j<span class="token punctuation">.</span>
+<pre><code>$ ⎕IO ← 0 ⋄ d ← (0  1  2  1  2  3  2  1  2  3  3  2  3  3  2) ⍝ depths
+$ ]display left ←  (⍳3) ∘.> (⍳3) ⍝ find `i > j` for all i, j.
 ┌→────┐
-↓<span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span>│
-│<span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span>│
-│<span class="token number">1</span> <span class="token number">1</span> <span class="token number">0</span>│
-└<span class="token operator">~</span>────┘
+↓0 0 0│
+│1 0 0│
+│1 1 0│
+└~────┘
 </code></pre>
 Combining the three techniques, we can arrive at:
-<pre><code>$ ⎕IO ← <span class="token number">0</span> ⋄ d ← <span class="token punctuation">(</span><span class="token number">0</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">2</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">3</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">3</span>  <span class="token number">2</span><span class="token punctuation">)</span> ⍝ depths
-$ ltdepth ← d ∘<span class="token punctuation">.</span><span class="token operator">></span> d ⍝ find `d<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> d<span class="token punctuation">[</span>j<span class="token punctuation">]</span>` <span class="token keyword">for</span> all i<span class="token punctuation">,</span> j<span class="token punctuation">.</span>
-$ preds ←  <span class="token punctuation">(</span>⍳≢d<span class="token punctuation">)</span> ∘<span class="token punctuation">.</span><span class="token operator">></span> <span class="token punctuation">(</span>⍳≢d<span class="token punctuation">)</span> ⍝ predecessors<span class="token punctuation">:</span> find `i <span class="token operator">></span> j` <span class="token keyword">for</span> all i<span class="token punctuation">,</span> j<span class="token punctuation">.</span>
-$ pred_higher ←  ltdepth ∧ left   ⍝ predecessors tht are higher <span class="token keyword">in</span> the tree
-$  parents_take_3 ← ¯<span class="token number">1</span> <span class="token operator">+</span>  <span class="token operator">+</span><span class="token operator">/</span>∨\⌽pred_higher  ⍝ previous idiom <span class="token keyword">for</span> finding last <span class="token number">1.</span>
-¯<span class="token number">1</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">3</span> <span class="token number">0</span> <span class="token number">7</span> <span class="token number">8</span> <span class="token number">8</span> <span class="token number">7</span> <span class="token number">11</span> <span class="token number">11</span> <span class="token number">7</span>
+<pre><code>$ ⎕IO ← 0 ⋄ d ← (0  1  2  1  2  3  2  1  2  3  3  2  3  3  2) ⍝ depths
+$ ltdepth ← d ∘.> d ⍝ find `d[i] > d[j]` for all i, j.
+$ preds ←  (⍳≢d) ∘.> (⍳≢d) ⍝ predecessors: find `i > j` for all i, j.
+$ pred_higher ←  ltdepth ∧ left   ⍝ predecessors tht are higher in the tree
+$  parents_take_3 ← ¯1 +  +/∨\⌽pred_higher  ⍝ previous idiom for finding last 1.
+¯1 0 1 0 3 4 3 0 7 8 8 7 11 11 7
 </code></pre>
 For comparison, the actual value is:
-<pre><code>    <span class="token punctuation">(</span><span class="token number">0</span>   <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">4</span>  <span class="token number">5</span>  <span class="token number">6</span>  <span class="token number">7</span>  <span class="token number">8</span>  <span class="token number">9</span> <span class="token number">10</span> <span class="token number">11</span> <span class="token number">12</span> <span class="token number">13</span> <span class="token number">14</span><span class="token punctuation">)</span>  <span class="token operator">|</span> indexes
-d ← <span class="token punctuation">(</span><span class="token number">0</span>   <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">2</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">3</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">3</span>  <span class="token number">2</span><span class="token punctuation">)</span>  │ depths
-P ← <span class="token punctuation">(</span><span class="token number">0</span>   <span class="token number">0</span>  <span class="token number">1</span>  <span class="token number">0</span>  <span class="token number">3</span>  <span class="token number">4</span>  <span class="token number">3</span>  <span class="token number">0</span>  <span class="token number">7</span>  <span class="token number">8</span>  <span class="token number">8</span>  <span class="token number">7</span> <span class="token number">11</span> <span class="token number">11</span>  <span class="token number">7</span><span class="token punctuation">)</span>  │ parent indices
-    <span class="token punctuation">(</span>¯<span class="token number">1</span>  <span class="token number">0</span>  <span class="token number">1</span>  <span class="token number">0</span>  <span class="token number">3</span>  <span class="token number">4</span>  <span class="token number">3</span>  <span class="token number">0</span>  <span class="token number">7</span>  <span class="token number">8</span>  <span class="token number">8</span>  <span class="token number">7</span> <span class="token number">11</span> <span class="token number">11</span>  <span class="token number">7</span><span class="token punctuation">)</span> <span class="token operator">|</span> parents<span class="token punctuation">,</span> take <span class="token number">3</span>
+<pre><code>    (0   1  2  3  4  5  6  7  8  9 10 11 12 13 14)  | indexes
+d ← (0   1  2  1  2  3  2  1  2  3  3  2  3  3  2)  │ depths
+P ← (0   0  1  0  3  4  3  0  7  8  8  7 11 11  7)  │ parent indices
+    (¯1  0  1  0  3  4  3  0  7  8  8  7 11 11  7) | parents, take 3
 
-              ∘<span class="token punctuation">:</span><span class="token number">0</span>                               <span class="token number">0</span>
+              ∘:0                               0
 ┌──────────┬──┴─────────────────┐
-a<span class="token punctuation">:</span><span class="token number">1</span>        b<span class="token punctuation">:</span><span class="token number">3</span>                 c<span class="token punctuation">:</span><span class="token number">7</span>              <span class="token number">1</span>
+a:1        b:3                 c:7              1
 │      ┌───┴───┐     ┌──────────┼───────┐
-p<span class="token punctuation">:</span><span class="token number">2</span>    q<span class="token punctuation">:</span><span class="token number">4</span>     r<span class="token punctuation">:</span><span class="token number">6</span>   s<span class="token punctuation">:</span><span class="token number">8</span>        t<span class="token punctuation">:</span><span class="token number">11</span>    u<span class="token punctuation">:</span><span class="token number">14</span>    <span class="token number">2</span>
+p:2    q:4     r:6   s:8        t:11    u:14    2
        │             │          │
        │          ┌──┴──┐     ┌─┴───┐
-       v<span class="token punctuation">:</span><span class="token number">5</span>        w<span class="token punctuation">:</span><span class="token number">9</span>   x<span class="token punctuation">:</span><span class="token number">10</span>  y<span class="token punctuation">:</span><span class="token number">12</span>  z<span class="token punctuation">:</span><span class="token number">13</span>        <span class="token number">3</span>
+       v:5        w:9   x:10  y:12  z:13        3
 </code></pre>
 We have an off-by-one error for the <code>0</code> node! That's easily fixed, we simply
 perform a maximum with <code>0</code> to move <code>¯1 -> 0</code>:
-<pre><code>$  parents_take_3 ← <span class="token number">0</span>⌈  ¯<span class="token number">1</span> <span class="token operator">+</span>  <span class="token operator">+</span><span class="token operator">/</span>∨\⌽pred_higher
-<span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">3</span> <span class="token number">0</span> <span class="token number">7</span> <span class="token number">8</span> <span class="token number">8</span> <span class="token number">7</span> <span class="token number">11</span> <span class="token number">11</span> <span class="token number">7</span>
+<pre><code>$  parents_take_3 ← 0⌈  ¯1 +  +/∨\⌽pred_higher
+0 0 1 0 3 4 3 0 7 8 8 7 11 11 7
 </code></pre>
 So, that's our function:
-<pre><code>parents_take_3 ← <span class="token number">0</span>⌈  ¯<span class="token number">1</span> <span class="token operator">+</span>  <span class="token operator">+</span><span class="token operator">/</span>∨\⌽ <span class="token punctuation">(</span><span class="token punctuation">(</span>d∘<span class="token punctuation">.</span><span class="token operator">></span>d<span class="token punctuation">)</span> ∧ <span class="token punctuation">(</span>⍳≢d<span class="token punctuation">)</span>∘<span class="token punctuation">.</span><span class="token operator">></span><span class="token punctuation">(</span>⍳≢d<span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">3</span> <span class="token number">0</span> <span class="token number">7</span> <span class="token number">8</span> <span class="token number">8</span> <span class="token number">7</span> <span class="token number">11</span> <span class="token number">11</span> <span class="token number">7</span>
+<pre><code>parents_take_3 ← 0⌈  ¯1 +  +/∨\⌽ ((d∘.>d) ∧ (⍳≢d)∘.>(⍳≢d))
+0 0 1 0 3 4 3 0 7 8 8 7 11 11 7
 </code></pre>
 Note that the time complexity for this is dominated by having to calculate
 the outer products, which even given infinite parallelism, take <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></span> time.
 We will slowly chip away at this, to be far better.
-<h4 class='centered'><a id=converting-from-depth-vector-to-parent-vector-take-4-log-critial-depth href='#converting-from-depth-vector-to-parent-vector-take-4-log-critial-depth'> § </a> Converting from depth vector to parent vector, Take 4 (log critial depth)</h4>
+<h4><a id=converting-from-depth-vector-to-parent-vector-take-4-log-critial-depth href='#converting-from-depth-vector-to-parent-vector-take-4-log-critial-depth'> § </a> Converting from depth vector to parent vector, Take 4 (log critial depth)</h4>
 We will use the Key(<code>⌸</code>) operator which allows us to create key value pairs.
-<pre><code>$ d ← <span class="token number">0</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">2</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">3</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">3</span> <span class="token number">2</span>
-$ <span class="token punctuation">]</span>disp <span class="token punctuation">(</span>⍳≢d<span class="token punctuation">)</span> <span class="token punctuation">,</span>¨ d ⍝ zip d with indexes
+<pre><code>$ d ← 0 1 2 1 2 3 2 1 2 3 3 2 3 3 2
+$ ]disp (⍳≢d) ,¨ d ⍝ zip d with indexes
 ┌→──┬───┬───┬───┬───┬───┬───┬───┬───┬───┬────┬────┬────┬────┬────┐
-│<span class="token number">0</span> <span class="token number">0</span>│<span class="token number">1</span> <span class="token number">1</span>│<span class="token number">2</span> <span class="token number">2</span>│<span class="token number">3</span> <span class="token number">1</span>│<span class="token number">4</span> <span class="token number">2</span>│<span class="token number">5</span> <span class="token number">3</span>│<span class="token number">6</span> <span class="token number">2</span>│<span class="token number">7</span> <span class="token number">1</span>│<span class="token number">8</span> <span class="token number">2</span>│<span class="token number">9</span> <span class="token number">3</span>│<span class="token number">10</span> <span class="token number">3</span>│<span class="token number">11</span> <span class="token number">2</span>│<span class="token number">12</span> <span class="token number">3</span>│<span class="token number">13</span> <span class="token number">3</span>│<span class="token number">14</span> <span class="token number">2</span>│
-└<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>─→┴<span class="token operator">~</span>──→┴<span class="token operator">~</span>──→┴<span class="token operator">~</span>──→┴<span class="token operator">~</span>──→┴<span class="token operator">~</span>──→┘
+│0 0│1 1│2 2│3 1│4 2│5 3│6 2│7 1│8 2│9 3│10 3│11 2│12 3│13 3│14 2│
+└~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~──→┴~──→┴~──→┴~──→┴~──→┘
 </code></pre>
-<pre><code>$ d ← <span class="token number">0</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">2</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">3</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">3</span> <span class="token number">2</span>
-$ <span class="token punctuation">]</span>display b ← <span class="token punctuation">{</span>⍺ ⍵<span class="token punctuation">}</span>⌸d  ⍝ each row i has tuple <span class="token punctuation">(</span>i<span class="token punctuation">,</span> js<span class="token punctuation">)</span><span class="token punctuation">:</span> d<span class="token punctuation">[</span>js<span class="token punctuation">]</span> <span class="token operator">=</span> i
+<pre><code>$ d ← 0 1 2 1 2 3 2 1 2 3 3 2 3 3 2
+$ ]display b ← {⍺ ⍵}⌸d  ⍝ each row i has tuple (i, js): d[js] = i
 ┌→──────────────────┐
 ↓   ┌→┐             │
-│ <span class="token number">0</span> │<span class="token number">0</span>│             │
-│   └<span class="token operator">~</span>┘             │
+│ 0 │0│             │
+│   └~┘             │
 │   ┌→────┐         │
-│ <span class="token number">1</span> │<span class="token number">1</span> <span class="token number">3</span> <span class="token number">7</span>│         │
-│   └<span class="token operator">~</span>────┘         │
+│ 1 │1 3 7│         │
+│   └~────┘         │
 │   ┌→────────────┐ │
-│ <span class="token number">2</span> │<span class="token number">2</span> <span class="token number">4</span> <span class="token number">6</span> <span class="token number">8</span> <span class="token number">11</span> <span class="token number">14</span>│ │
-│   └<span class="token operator">~</span>────────────┘ │
+│ 2 │2 4 6 8 11 14│ │
+│   └~────────────┘ │
 │   ┌→───────────┐  │
-│ <span class="token number">3</span> │<span class="token number">5</span> <span class="token number">9</span> <span class="token number">10</span> <span class="token number">12</span> <span class="token number">13</span>│  │
-│   └<span class="token operator">~</span>───────────┘  │
+│ 3 │5 9 10 12 13│  │
+│   └~───────────┘  │
 └∊──────────────────┘
 </code></pre>
 In fact, it allows us to apply an arbitrary function to combine keys and values.
 We will use a function that simply returns all the values for each key.
-<pre><code>$ d ← <span class="token number">0</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">2</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">3</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">3</span> <span class="token number">2</span>
-$ <span class="token punctuation">]</span>display b ← <span class="token punctuation">{</span>⍵<span class="token punctuation">}</span>⌸d ⍝ each row i contains values j such that d<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> i<span class="token punctuation">.</span>
+<pre><code>$ d ← 0 1 2 1 2 3 2 1 2 3 3 2 3 3 2
+$ ]display b ← {⍵}⌸d ⍝ each row i contains values j such that d[j] = i.
 ┌→──────────────┐
-↓<span class="token number">0</span> <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>│
-│<span class="token number">1</span> <span class="token number">3</span>  <span class="token number">7</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">0</span>│
-│<span class="token number">2</span> <span class="token number">4</span>  <span class="token number">6</span>  <span class="token number">8</span> <span class="token number">11</span> <span class="token number">14</span>│
-│<span class="token number">5</span> <span class="token number">9</span> <span class="token number">10</span> <span class="token number">12</span> <span class="token number">13</span>  <span class="token number">0</span>│
-└<span class="token operator">~</span>──────────────┘
+↓0 0  0  0  0  0│
+│1 3  7  0  0  0│
+│2 4  6  8 11 14│
+│5 9 10 12 13  0│
+└~──────────────┘
 </code></pre>
 Our first try doesn't quite work: it winds up trying to create a numeric matrix,
 which means that we can't have different rows of different sizes. So, the
 information that <i>only</i> index <code>0</code> is such that <code>d[0] = 0</code> is lost. What we
 can to is to wrap the keys to arrive at:
-<pre><code>$ d ← <span class="token number">0</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">2</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">3</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">3</span> <span class="token number">2</span>
-$ <span class="token punctuation">]</span>display b ← <span class="token punctuation">{</span>⊂⍵<span class="token punctuation">}</span>⌸d ⍝ d<span class="token punctuation">[</span>b<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> i
+<pre><code>$ d ← 0 1 2 1 2 3 2 1 2 3 3 2 3 3 2
+$ ]display b ← {⊂⍵}⌸d ⍝ d[b[i]] = i
 ┌→───────────────────────────────────────────┐
 │ ┌→┐ ┌→────┐ ┌→────────────┐ ┌→───────────┐ │
-│ │<span class="token number">0</span>│ │<span class="token number">1</span> <span class="token number">3</span> <span class="token number">7</span>│ │<span class="token number">2</span> <span class="token number">4</span> <span class="token number">6</span> <span class="token number">8</span> <span class="token number">11</span> <span class="token number">14</span>│ │<span class="token number">5</span> <span class="token number">9</span> <span class="token number">10</span> <span class="token number">12</span> <span class="token number">13</span>│ │
-│ └<span class="token operator">~</span>┘ └<span class="token operator">~</span>────┘ └<span class="token operator">~</span>────────────┘ └<span class="token operator">~</span>───────────┘ │
+│ │0│ │1 3 7│ │2 4 6 8 11 14│ │5 9 10 12 13│ │
+│ └~┘ └~────┘ └~────────────┘ └~───────────┘ │
 └∊───────────────────────────────────────────┘
 </code></pre>
 Consider the groups <code>b[2] = (2 4 6 8 11 14)</code> and <code>b[3] = (5 9 10 12 13)</code>. All of <code>3</code>'s parents
 are present in <code>2</code>. Every element in <code>3</code> fits at some location in <code>2</code>. Here is what
 the fit would look like:
-<pre><code>b<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>  <span class="token number">2</span> <span class="token number">4</span> _ <span class="token number">6</span> <span class="token number">8</span> _  _ <span class="token number">11</span> __ __ <span class="token number">14</span>   <span class="token punctuation">(</span>nodes of depth <span class="token number">2</span><span class="token punctuation">)</span>
-b<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span>      <span class="token number">5</span>     <span class="token number">9</span>  <span class="token number">10</span>   <span class="token number">12</span> <span class="token number">13</span>      <span class="token punctuation">(</span>leaf nodes<span class="token punctuation">)</span>
-          <span class="token number">4</span>     <span class="token number">8</span>   <span class="token number">8</span>   <span class="token number">11</span> <span class="token number">11</span>      <span class="token punctuation">(</span>parents<span class="token punctuation">:</span> predecessor of b<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token keyword">in</span> b<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<pre><code>b[2]  2 4 _ 6 8 _  _ 11 __ __ 14   (nodes of depth 2)
+b[3]      5     9  10   12 13      (leaf nodes)
+          4     8   8   11 11      (parents: predecessor of b[3] in b[2])
 
-              ∘<span class="token punctuation">:</span><span class="token number">0</span>                               <span class="token number">0</span>
+              ∘:0                               0
 ┌──────────┬──┴─────────────────┐
-a<span class="token punctuation">:</span><span class="token number">1</span>        b<span class="token punctuation">:</span><span class="token number">3</span>                 c<span class="token punctuation">:</span><span class="token number">7</span>              <span class="token number">1</span>
+a:1        b:3                 c:7              1
 │      ┌───┴───┐     ┌──────────┼───────┐
-p<span class="token punctuation">:</span><span class="token number">2</span>    q<span class="token punctuation">:</span><span class="token number">4</span>     r<span class="token punctuation">:</span><span class="token number">6</span>   s<span class="token punctuation">:</span><span class="token number">8</span>        t<span class="token punctuation">:</span><span class="token number">11</span>    u<span class="token punctuation">:</span><span class="token number">14</span>    <span class="token number">2</span>
+p:2    q:4     r:6   s:8        t:11    u:14    2
        │             │          │
        │          ┌──┴──┐     ┌─┴───┐
-       v<span class="token punctuation">:</span><span class="token number">5</span>        w<span class="token punctuation">:</span><span class="token number">9</span>   x<span class="token punctuation">:</span><span class="token number">10</span>  y<span class="token punctuation">:</span><span class="token number">12</span>  z<span class="token punctuation">:</span><span class="token number">13</span>        <span class="token number">3</span>
+       v:5        w:9   x:10  y:12  z:13        3
 </code></pre>
 We use the Interval Index(<code>⍸</code>) operator to solve the problem of finding the
 parent / where we should sqeeze a node from <code>b[3]</code> into <code>b[2]</code>
 (This is formally known as the
 <a href=https://en.wikipedia.org/wiki/Predecessor_problem>predecessor problem</a>)
-<pre><code>⍝ left<span class="token punctuation">[</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> is closest number <span class="token operator">&lt;</span> right<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
-⍝ left<span class="token punctuation">[</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> is the predecessor of right<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token keyword">in</span> left<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>
-$ a ← <span class="token punctuation">(</span><span class="token number">1</span> <span class="token number">10</span> <span class="token number">100</span> <span class="token number">1000</span><span class="token punctuation">)</span> ⍸ <span class="token punctuation">(</span><span class="token number">1</span> <span class="token number">2000</span> <span class="token number">300</span> <span class="token number">50</span> <span class="token number">2</span> <span class="token punctuation">)</span>
-<span class="token number">0</span> <span class="token number">3</span> <span class="token number">2</span> <span class="token number">1</span> <span class="token number">0</span>
+<pre><code>⍝ left[a[i]] is closest number < right[i]
+⍝ left[a[i]] is the predecessor of right[i] in left[i].
+$ a ← (1 10 100 1000) ⍸ (1 2000 300 50 2 )
+0 3 2 1 0
 </code></pre>
 Now, we can use the technology of predecessor to find parents
 of depth 3 nodes among the depth 2 nodes:
-<pre><code>$ depth2 ← <span class="token number">2</span> <span class="token number">4</span> <span class="token number">6</span> <span class="token number">8</span> <span class="token number">11</span> <span class="token number">14</span>
-$ depth3 ← <span class="token number">5</span> <span class="token number">9</span> <span class="token number">10</span> <span class="token number">12</span> <span class="token number">13</span> ⍝ parents <span class="token punctuation">(</span>from chart<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token number">4</span> <span class="token number">8</span> <span class="token number">8</span> <span class="token number">11</span> <span class="token number">11</span>
+<pre><code>$ depth2 ← 2 4 6 8 11 14
+$ depth3 ← 5 9 10 12 13 ⍝ parents (from chart): 4 8 8 11 11
 $ depth3parentixs ← depth2 ⍸ depth3
-$ depth3parents  ← depth2<span class="token punctuation">[</span>depth3parentixs<span class="token punctuation">]</span>
-<span class="token number">4</span> <span class="token number">8</span> <span class="token number">8</span> <span class="token number">11</span> <span class="token number">11</span>
+$ depth3parents  ← depth2[depth3parentixs]
+4 8 8 11 11
 
-              ∘<span class="token punctuation">:</span><span class="token number">0</span>                               <span class="token number">0</span>
+              ∘:0                               0
 ┌──────────┬──┴─────────────────┐
-a<span class="token punctuation">:</span><span class="token number">1</span>        b<span class="token punctuation">:</span><span class="token number">3</span>                 c<span class="token punctuation">:</span><span class="token number">7</span>              <span class="token number">1</span>
+a:1        b:3                 c:7              1
 │      ┌───┴───┐     ┌──────────┼───────┐
-p<span class="token punctuation">:</span><span class="token number">2</span>    q<span class="token punctuation">:</span><span class="token number">4</span>     r<span class="token punctuation">:</span><span class="token number">6</span>   s<span class="token punctuation">:</span><span class="token number">8</span>        t<span class="token punctuation">:</span><span class="token number">11</span>    u<span class="token punctuation">:</span><span class="token number">14</span>    <span class="token number">2</span>
+p:2    q:4     r:6   s:8        t:11    u:14    2
        │             │          │
        │          ┌──┴──┐     ┌─┴───┐
-       v<span class="token punctuation">:</span><span class="token number">5</span>        w<span class="token punctuation">:</span><span class="token number">9</span>   x<span class="token punctuation">:</span><span class="token number">10</span>  y<span class="token punctuation">:</span><span class="token number">12</span>  z<span class="token punctuation">:</span><span class="token number">13</span>        <span class="token number">3</span>
+       v:5        w:9   x:10  y:12  z:13        3
 </code></pre>
 We need to know one-more APL-ism: the <code>2-scan</code>. When we write
 a usual scan operation, we have:
-<pre><code>$ ⍳<span class="token number">5</span>
-<span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span>
+<pre><code>$ ⍳5
+1 2 3 4 5
 </code></pre>
-<pre><code>$ <span class="token operator">+</span><span class="token operator">/</span>⍳<span class="token number">5</span> ⍝ reduce
-<span class="token number">15</span>
+<pre><code>$ +/⍳5 ⍝ reduce
+15
 </code></pre>
-<pre><code>$ <span class="token number">2</span><span class="token operator">+</span><span class="token operator">/</span>⍳<span class="token number">5</span> ⍝ apply <span class="token operator">+</span> to _pairs_ <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">=</span> pairs<span class="token punctuation">)</span>
-<span class="token number">3</span> <span class="token number">5</span> <span class="token number">7</span> <span class="token number">9</span> ⍝ <span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">+</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token operator">+</span><span class="token number">4</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token number">4</span><span class="token operator">+</span><span class="token number">5</span><span class="token punctuation">)</span>
+<pre><code>$ 2+/⍳5 ⍝ apply + to _pairs_ (2 = pairs)
+3 5 7 9 ⍝ (1+2) (2+3) (3+4) (4+5)
 </code></pre>
-<pre><code>$ <span class="token number">3</span><span class="token operator">+</span><span class="token operator">/</span>⍳<span class="token number">5</span> ⍝  apply <span class="token operator">+</span> to <span class="token number">3</span><span class="token operator">-</span>tuples
-<span class="token number">6</span> <span class="token number">9</span> <span class="token number">12</span> ⍝ <span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">+</span><span class="token number">2</span><span class="token operator">+</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">+</span><span class="token number">3</span><span class="token operator">+</span><span class="token number">4</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token operator">+</span><span class="token number">4</span><span class="token operator">+</span><span class="token number">5</span><span class="token punctuation">)</span>
+<pre><code>$ 3+/⍳5 ⍝  apply + to 3-tuples
+6 9 12 ⍝ (1+2+3) (2+3+4) (3+4+5)
 </code></pre>
 We begin by assuming the parent of <code>i</code> is <code>i</code> by using <code>p←⍳≢d</code>.
-<pre><code>$ d ← <span class="token punctuation">(</span><span class="token number">0</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">2</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">3</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">3</span> <span class="token number">2</span><span class="token punctuation">)</span>
-$ d2nodes ← <span class="token punctuation">{</span>⊂⍵<span class="token punctuation">}</span>⌸d
+<pre><code>$ d ← (0 1 2 1 2 3 2 1 2 3 3 2 3 3 2)
+$ d2nodes ← {⊂⍵}⌸d
 ┌→┬─────┬─────────────┬─────────────┐
-│<span class="token number">1</span>│<span class="token number">2</span> <span class="token number">4</span> <span class="token number">8</span>│<span class="token number">3</span> <span class="token number">5</span> <span class="token number">7</span> <span class="token number">9</span> <span class="token number">12</span> <span class="token number">15</span>│<span class="token number">6</span> <span class="token number">10</span> <span class="token number">11</span> <span class="token number">13</span> <span class="token number">14</span>│
-└→┴<span class="token operator">~</span>───→┴<span class="token operator">~</span>───────────→┴<span class="token operator">~</span>───────────→┘
+│1│2 4 8│3 5 7 9 12 15│6 10 11 13 14│
+└→┴~───→┴~───────────→┴~───────────→┘
 $ p←⍳≢d
-<span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span> <span class="token number">6</span> <span class="token number">7</span> <span class="token number">8</span> <span class="token number">9</span> <span class="token number">10</span> <span class="token number">11</span> <span class="token number">12</span> <span class="token number">13</span> <span class="token number">14</span> <span class="token number">15</span>
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
 </code></pre>
 Now comes the biggie:
-<pre><code>$ findparent ← <span class="token punctuation">{</span>parentixs ← ⍺⍸⍵ ⋄ p<span class="token punctuation">[</span>⍵<span class="token punctuation">]</span>←⍺<span class="token punctuation">[</span>parentixs<span class="token punctuation">]</span><span class="token punctuation">}</span>
+<pre><code>$ findparent ← {parentixs ← ⍺⍸⍵ ⋄ p[⍵]←⍺[parentixs]}
 </code></pre>
 <ul><li> <code>⍺</code> is the list of parent nodes.</li><li> <code>⍵</code> is the list of current child nodes.</li><li> We first find the indexes of our parent nodes by using
   the <code>pix ← parent ⍸ child</code> idiom.</li><li> Then, we find the actual parents by indexing into
   the parent list: <code>pix[parentixs]</code>.</li><li> We write these into the parents of the child using:
   <code>p[children] ← parent[parent ⍸ child]</code></li></ul>
 This finally culminates in:
-<pre><code>$ d←<span class="token number">0</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">2</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">3</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">3</span> <span class="token number">2</span>
-$ p←⍳≢d ⋄ d2nodes←<span class="token punctuation">{</span>⊂⍵<span class="token punctuation">}</span>⌸d ⋄ findp←<span class="token punctuation">{</span>pix ← ⍺⍸⍵ ⋄ p<span class="token punctuation">[</span>⍵<span class="token punctuation">]</span>←⍺<span class="token punctuation">[</span>pix<span class="token punctuation">]</span><span class="token punctuation">}</span> ⋄ <span class="token number">2</span>findp<span class="token operator">/</span>d2nodes ⋄ p
-<span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">3</span> <span class="token number">0</span> <span class="token number">7</span> <span class="token number">8</span> <span class="token number">8</span> <span class="token number">7</span> <span class="token number">11</span> <span class="token number">11</span> <span class="token number">7</span>
+<pre><code>$ d←0 1 2 1 2 3 2 1 2 3 3 2 3 3 2
+$ p←⍳≢d ⋄ d2nodes←{⊂⍵}⌸d ⋄ findp←{pix ← ⍺⍸⍵ ⋄ p[⍵]←⍺[pix]} ⋄ 2findp/d2nodes ⋄ p
+0 0 1 0 3 4 3 0 7 8 8 7 11 11 7
 
 
-    <span class="token punctuation">(</span><span class="token number">0</span>   <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">4</span>  <span class="token number">5</span>  <span class="token number">6</span>  <span class="token number">7</span>  <span class="token number">8</span>  <span class="token number">9</span> <span class="token number">10</span> <span class="token number">11</span> <span class="token number">12</span> <span class="token number">13</span> <span class="token number">14</span><span class="token punctuation">)</span>  <span class="token operator">|</span> indexes
-d ← <span class="token punctuation">(</span><span class="token number">0</span>   <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">2</span>  <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">3</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">3</span>  <span class="token number">2</span><span class="token punctuation">)</span>  │ depths
-P ← <span class="token punctuation">(</span><span class="token number">0</span>   <span class="token number">0</span>  <span class="token number">1</span>  <span class="token number">0</span>  <span class="token number">3</span>  <span class="token number">4</span>  <span class="token number">3</span>  <span class="token number">0</span>  <span class="token number">7</span>  <span class="token number">8</span>  <span class="token number">8</span>  <span class="token number">7</span> <span class="token number">11</span> <span class="token number">11</span>  <span class="token number">7</span><span class="token punctuation">)</span>  │ parent indices
-              ∘<span class="token punctuation">:</span><span class="token number">0</span>                               <span class="token number">0</span>
+    (0   1  2  3  4  5  6  7  8  9 10 11 12 13 14)  | indexes
+d ← (0   1  2  1  2  3  2  1  2  3  3  2  3  3  2)  │ depths
+P ← (0   0  1  0  3  4  3  0  7  8  8  7 11 11  7)  │ parent indices
+              ∘:0                               0
 ┌──────────┬──┴─────────────────┐
-a<span class="token punctuation">:</span><span class="token number">1</span>        b<span class="token punctuation">:</span><span class="token number">3</span>                 c<span class="token punctuation">:</span><span class="token number">7</span>              <span class="token number">1</span>
+a:1        b:3                 c:7              1
 │      ┌───┴───┐     ┌──────────┼───────┐
-p<span class="token punctuation">:</span><span class="token number">2</span>    q<span class="token punctuation">:</span><span class="token number">4</span>     r<span class="token punctuation">:</span><span class="token number">6</span>   s<span class="token punctuation">:</span><span class="token number">8</span>        t<span class="token punctuation">:</span><span class="token number">11</span>    u<span class="token punctuation">:</span><span class="token number">14</span>    <span class="token number">2</span>
+p:2    q:4     r:6   s:8        t:11    u:14    2
        │             │          │
        │          ┌──┴──┐     ┌─┴───┐
-       v<span class="token punctuation">:</span><span class="token number">5</span>        w<span class="token punctuation">:</span><span class="token number">9</span>   x<span class="token punctuation">:</span><span class="token number">10</span>  y<span class="token punctuation">:</span><span class="token number">12</span>  z<span class="token punctuation">:</span><span class="token number">13</span>        <span class="token number">3</span>
+       v:5        w:9   x:10  y:12  z:13        3
 </code></pre>
 Which can be further golfed to:
-<pre><code>$ p⊣<span class="token number">2</span><span class="token punctuation">{</span>p<span class="token punctuation">[</span>⍵<span class="token punctuation">]</span>←⍺<span class="token punctuation">[</span>⍺⍸⍵<span class="token punctuation">]</span><span class="token punctuation">}</span>⌿⊢∘⊂⌸d⊣p←⍳≢d
-<span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">3</span> <span class="token number">0</span> <span class="token number">7</span> <span class="token number">8</span> <span class="token number">8</span> <span class="token number">7</span> <span class="token number">11</span> <span class="token number">11</span> <span class="token number">7</span>
+<pre><code>$ p⊣2{p[⍵]←⍺[⍺⍸⍵]}⌿⊢∘⊂⌸d⊣p←⍳≢d
+0 0 1 0 3 4 3 0 7 8 8 7 11 11 7
 </code></pre>
 The total time complexity of this method assuming infinite parallelism is as follows:
-<pre><code>$ p←⍳≢d ⋄ d2nodes←<span class="token punctuation">{</span>⊂⍵<span class="token punctuation">}</span>⌸d ⋄ findp←<span class="token punctuation">{</span>pix ← ⍺⍸⍵ ⋄ p<span class="token punctuation">[</span>⍵<span class="token punctuation">]</span>←⍺<span class="token punctuation">[</span>pix<span class="token punctuation">]</span><span class="token punctuation">}</span> ⋄ <span class="token number">2</span>findp<span class="token operator">/</span>d2nodes ⋄ p
+<pre><code>$ p←⍳≢d ⋄ d2nodes←{⊂⍵}⌸d ⋄ findp←{pix ← ⍺⍸⍵ ⋄ p[⍵]←⍺[pix]} ⋄ 2findp/d2nodes ⋄ p
 </code></pre>
 <ul><li> <code>(p←⍳≢d)</code> can be filled in <code>O(1)</code> time.</li><li> <code>(d2nodes←{⊂⍵}⌸d)</code> is searching for keys in a small integer domain, so this is <code>O(#nodes)</code> using
   radix sort as far as I know. However, the thesis mentions that this can be done in
@@ -719,56 +719,56 @@ The total time complexity of this method assuming infinite parallelism is as fol
   for predecessors of <code>⍵</code> in <code>⍺</code>).</li><li> The time complexity of the fold <code>2findp/d2nodes</code> can be done entirely in parallel
   since all the writes into the <code>p</code> vector are independent: we only write the
   parent of the current node we are looking at.</li></ul>
-<h4 class='centered'><a id=34-computing-nearest-parent-by-predicate href='#34-computing-nearest-parent-by-predicate'> § </a> 3.4: Computing nearest Parent by predicate</h4>
+<h4><a id=34-computing-nearest-parent-by-predicate href='#34-computing-nearest-parent-by-predicate'> § </a> 3.4: Computing nearest Parent by predicate</h4>
 I'm going to simplify the original presentation by quite a bit.
-<pre><code>     a b c d e f g h i  <span class="token operator">|</span> names
-     <span class="token number">0</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span> <span class="token number">6</span> <span class="token number">7</span> <span class="token number">8</span>  <span class="token operator">|</span> indexes
-P ← <span class="token punctuation">(</span><span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">0</span> <span class="token number">4</span> <span class="token number">5</span> <span class="token number">6</span> <span class="token number">7</span><span class="token punctuation">)</span> <span class="token operator">|</span> parents
-X ← <span class="token punctuation">(</span><span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">|</span> marked nodes
+<pre><code>     a b c d e f g h i  | names
+     0 1 2 3 4 5 6 7 8  | indexes
+P ← (0 0 1 2 0 4 5 6 7) | parents
+X ← (0 1 0 0 1 1 0 0 0) | marked nodes
 
-     a<span class="token punctuation">:</span><span class="token number">0</span>
+     a:0
 ┌────┴───┐
-b<span class="token punctuation">:</span><span class="token function">1</span><span class="token punctuation">(</span>X<span class="token punctuation">)</span>   e<span class="token punctuation">:</span><span class="token function">4</span><span class="token punctuation">(</span>X<span class="token punctuation">)</span>
-<span class="token operator">|</span>        <span class="token operator">|</span>
-c<span class="token punctuation">:</span><span class="token number">2</span>      f<span class="token punctuation">:</span><span class="token function">5</span><span class="token punctuation">(</span>X<span class="token punctuation">)</span>
-<span class="token operator">|</span>        <span class="token operator">|</span>
-d<span class="token punctuation">:</span><span class="token number">3</span>      g<span class="token punctuation">:</span><span class="token number">6</span>
+b:1(X)   e:4(X)
+|        |
+c:2      f:5(X)
+|        |
+d:3      g:6
          │
-         h<span class="token punctuation">:</span><span class="token number">7</span>
-         <span class="token operator">|</span>
-         i<span class="token punctuation">:</span><span class="token number">8</span>
+         h:7
+         |
+         i:8
 </code></pre>
 We want to find nodes marked as <code>X</code> that are the closest parents to a
 given node. The <code>X</code> vector is a boolean vector that has a <code>1</code> at
 the index of each <code>X</code> node: <code>(b, e, f)</code>. So, the indexes <code>(1, 4, 5)</code>
 are <code>1</code> in the <code>X</code> vector.
 The output we want is the vector:
-<pre><code>      <span class="token number">0</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span> <span class="token number">6</span> <span class="token number">7</span> <span class="token number">8</span>  <span class="token operator">|</span> indexes
-      a b c d e f g h i  <span class="token operator">|</span> names
-PX ← <span class="token punctuation">(</span><span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">4</span> <span class="token number">5</span> <span class="token number">5</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">|</span> closest X parent index
-      a a b b a e f f f  <span class="token operator">|</span> closest X parent name
+<pre><code>      0 1 2 3 4 5 6 7 8  | indexes
+      a b c d e f g h i  | names
+PX ← (0 0 1 1 0 4 5 5 5) | closest X parent index
+      a a b b a e f f f  | closest X parent name
 
-    a<span class="token punctuation">:</span><span class="token number">0</span>
+    a:0
 ┌────┴───┐
-b<span class="token punctuation">:</span><span class="token function">1</span><span class="token punctuation">(</span>X<span class="token punctuation">)</span>   e<span class="token punctuation">:</span><span class="token function">4</span><span class="token punctuation">(</span>X<span class="token punctuation">)</span>
-<span class="token operator">|</span>        <span class="token operator">|</span>
-c<span class="token punctuation">:</span><span class="token number">2</span>      f<span class="token punctuation">:</span><span class="token function">5</span><span class="token punctuation">(</span>X<span class="token punctuation">)</span>
-<span class="token operator">|</span>        <span class="token operator">|</span>
-d<span class="token punctuation">:</span><span class="token number">3</span>      g<span class="token punctuation">:</span><span class="token number">6</span>
+b:1(X)   e:4(X)
+|        |
+c:2      f:5(X)
+|        |
+d:3      g:6
          │
-         h<span class="token punctuation">:</span><span class="token number">7</span>
-         <span class="token operator">|</span>
-         i<span class="token punctuation">:</span><span class="token number">8</span>
+         h:7
+         |
+         i:8
 </code></pre>
 The incantation is:
-<pre><code>$ I←<span class="token punctuation">{</span><span class="token punctuation">(</span>⊂⍵<span class="token punctuation">)</span>⌷⍺<span class="token punctuation">}</span> ⍝ index LHS by RHS <span class="token operator">|</span> <span class="token punctuation">(</span><span class="token number">100</span> <span class="token number">101</span> <span class="token number">102</span> <span class="token number">103</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token number">3</span> <span class="token number">1</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token punctuation">:</span><span class="token operator">=</span> <span class="token number">103</span> <span class="token number">101</span> <span class="token number">102</span>
-$ PX ← P I@<span class="token punctuation">{</span>X<span class="token punctuation">[</span>⍵<span class="token punctuation">]</span>≠<span class="token number">1</span><span class="token punctuation">}</span> ⍣ ≡ P
-<span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">4</span> <span class="token number">5</span> <span class="token number">5</span> <span class="token number">5</span>
+<pre><code>$ I←{(⊂⍵)⌷⍺} ⍝ index LHS by RHS | (100 101 102 103)[(3 1 2)] := 103 101 102
+$ PX ← P I@{X[⍵]≠1} ⍣ ≡ P
+0 0 1 1 0 4 5 5 5
 </code></pre>
 TODO. At any rate, since this does not require any writes and purely reads,
 and nor does it need any synchronization, this is fairly straightforward
 to implement on the GPU.
-<h4 class='centered'><a id=35-lifting-subtrees-to-the-root href='#35-lifting-subtrees-to-the-root'> § </a> 3.5: Lifting subtrees to the root</h4>
+<h4><a id=35-lifting-subtrees-to-the-root href='#35-lifting-subtrees-to-the-root'> § </a> 3.5: Lifting subtrees to the root</h4>
 Once we have marked our <code>X</code> nodes, we now wish to lift entire subtrees of <code>X</code>
 up to the root.
 <ul><li>  This pass displays how to lift subtrees and add new nodes to replace the subtree's original nodes.</li><li> Luckily, there are no <i>sibling</i> relationships that need to be maintained since
@@ -778,50 +778,50 @@ up to the root.
 There is some good advice in the thesis:
 <blockquote> When using APL primitives this way, it may be good to map their names and definitions to the domain of trees. For example, the primitive <code>⍸Predicate</code> is read as "the nodes where <code>Predicate</code> holds" and not as "the indexes where <code>Predicate</code> is 1".</blockquote>
 For example, given the tree:
-<pre><code>      <span class="token number">0</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span>  <span class="token operator">|</span> indexes
-      a b c d e f  <span class="token operator">|</span> names
-P  ← <span class="token punctuation">(</span><span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">3</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token operator">|</span> parents
-X  ← <span class="token punctuation">(</span><span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">|</span> X nodes
-PX ← <span class="token punctuation">(</span><span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">0</span> <span class="token number">3</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token operator">|</span> closest X parent index
+<pre><code>      0 1 2 3 4 5  | indexes
+      a b c d e f  | names
+P  ← (0 0 1 0 3 4) | parents
+X  ← (0 1 0 1 1 0) | X nodes
+PX ← (0 0 1 0 3 4) | closest X parent index
 
-    a<span class="token punctuation">:</span><span class="token number">0</span>
+    a:0
 ┌────┴───┐
-b<span class="token punctuation">:</span><span class="token function">1</span><span class="token punctuation">(</span>X<span class="token punctuation">)</span>   d<span class="token punctuation">:</span><span class="token function">3</span><span class="token punctuation">(</span>X<span class="token punctuation">)</span>
-<span class="token operator">|</span>        <span class="token operator">|</span>
-c<span class="token punctuation">:</span><span class="token number">2</span>      e<span class="token punctuation">:</span><span class="token function">4</span><span class="token punctuation">(</span>X<span class="token punctuation">)</span>
-         <span class="token operator">|</span>
-         f<span class="token punctuation">:</span><span class="token number">5</span>
+b:1(X)   d:3(X)
+|        |
+c:2      e:4(X)
+         |
+         f:5
 </code></pre>
 we want the transformed tree to be:
-<pre><code>    a<span class="token punctuation">:</span><span class="token number">0</span>
+<pre><code>    a:0
 ┌────┴───┐
-bp<span class="token punctuation">:</span><span class="token function">1</span><span class="token punctuation">(</span>X<span class="token punctuation">)</span>   ep<span class="token punctuation">:</span><span class="token function">4</span><span class="token punctuation">(</span>X<span class="token punctuation">)</span>
-<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
-b<span class="token punctuation">:</span><span class="token function">1</span><span class="token punctuation">(</span>X<span class="token punctuation">)</span>
-<span class="token operator">|</span>
-c<span class="token punctuation">:</span><span class="token number">2</span>
-<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
-e<span class="token punctuation">:</span><span class="token number">4</span>
-<span class="token operator">|</span>
-fp<span class="token punctuation">:</span><span class="token number">5</span>
-<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
-f<span class="token punctuation">:</span><span class="token function">5</span><span class="token punctuation">(</span>X<span class="token punctuation">)</span>
-<span class="token operator">|</span>
-g<span class="token punctuation">:</span><span class="token number">6</span>
+bp:1(X)   ep:4(X)
+---------
+b:1(X)
+|
+c:2
+---------
+e:4
+|
+fp:5
+---------
+f:5(X)
+|
+g:6
 </code></pre>
 We first look for nodes that need to be lifted.  There are:
 <ul><li> Non-root nodes (ie, nodes whose parents are not themselves: <code>p≠(⍳≢p)</code>)</li><li> Which have the property <code>X</code>.</li></ul>
-<pre><code>nodes←⍸<span class="token punctuation">(</span>X ∧ p≠<span class="token punctuation">(</span>⍳≢p<span class="token punctuation">)</span><span class="token punctuation">)</span>  ⍝ ⍸<span class="token punctuation">:</span>pick indexes<span class="token punctuation">.</span>
+<pre><code>nodes←⍸(X ∧ p≠(⍳≢p))  ⍝ ⍸:pick indexes.
 </code></pre>
-<h4 class='centered'><a id=36-wrapping-expressions href='#36-wrapping-expressions'> § </a> 3.6: Wrapping Expressions</h4>
-<h4 class='centered'><a id=37-lifting-guard-test-exprsessions href='#37-lifting-guard-test-exprsessions'> § </a> 3.7: Lifting Guard Test Exprsessions</h4>
-<h4 class='centered'><a id=38-couting-rank-of-index-operators href='#38-couting-rank-of-index-operators'> § </a> 3.8: Couting rank of index operators</h4>
-<h4 class='centered'><a id=39-flattening-expressions href='#39-flattening-expressions'> § </a> 3.9: Flattening Expressions</h4>
-<h4 class='centered'><a id=310-associating-frame-slots-and-variables href='#310-associating-frame-slots-and-variables'> § </a> 3.10: Associating Frame slots and variables</h4>
-<h4 class='centered'><a id=311-placing-frames-into-a-lexical-stack href='#311-placing-frames-into-a-lexical-stack'> § </a> 3.11: Placing frames into a lexical stack</h4>
-<h4 class='centered'><a id=312-recording-exported-names href='#312-recording-exported-names'> § </a> 3.12: Recording Exported names</h4>
-<h4 class='centered'><a id=313-lexical-resolution href='#313-lexical-resolution'> § </a> 3.13: Lexical Resolution</h4>
-<h4 class='centered'><a id=521-traversal-idioms href='#521-traversal-idioms'> § </a> 5.2.1 Traversal Idioms</h4>
-<h4 class='centered'><a id=522-edge-mutation-idioms href='#522-edge-mutation-idioms'> § </a> 5.2.2 Edge Mutation Idioms</h4>
-<h4 class='centered'><a id=523-node-mutation-idioms href='#523-node-mutation-idioms'> § </a> 5.2.3 Node Mutation Idioms</h4>
-</body></html>
+<h4><a id=36-wrapping-expressions href='#36-wrapping-expressions'> § </a> 3.6: Wrapping Expressions</h4>
+<h4><a id=37-lifting-guard-test-exprsessions href='#37-lifting-guard-test-exprsessions'> § </a> 3.7: Lifting Guard Test Exprsessions</h4>
+<h4><a id=38-couting-rank-of-index-operators href='#38-couting-rank-of-index-operators'> § </a> 3.8: Couting rank of index operators</h4>
+<h4><a id=39-flattening-expressions href='#39-flattening-expressions'> § </a> 3.9: Flattening Expressions</h4>
+<h4><a id=310-associating-frame-slots-and-variables href='#310-associating-frame-slots-and-variables'> § </a> 3.10: Associating Frame slots and variables</h4>
+<h4><a id=311-placing-frames-into-a-lexical-stack href='#311-placing-frames-into-a-lexical-stack'> § </a> 3.11: Placing frames into a lexical stack</h4>
+<h4><a id=312-recording-exported-names href='#312-recording-exported-names'> § </a> 3.12: Recording Exported names</h4>
+<h4><a id=313-lexical-resolution href='#313-lexical-resolution'> § </a> 3.13: Lexical Resolution</h4>
+<h4><a id=521-traversal-idioms href='#521-traversal-idioms'> § </a> 5.2.1 Traversal Idioms</h4>
+<h4><a id=522-edge-mutation-idioms href='#522-edge-mutation-idioms'> § </a> 5.2.2 Edge Mutation Idioms</h4>
+<h4><a id=523-node-mutation-idioms href='#523-node-mutation-idioms'> § </a> 5.2.3 Node Mutation Idioms</h4>
+</container></body></html>

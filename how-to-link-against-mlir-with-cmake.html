@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
-img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.centered { margin-left: 30%; margin-right: 25%; }.image { }
+img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
@@ -7,7 +7,7 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-.latexinline { white-space: nowrap }pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><h2 class='centered'><a id=how-to-link-against-mlir-with-cmake href='#how-to-link-against-mlir-with-cmake'> § </a> How to link against MLIR with CMake</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=how-to-link-against-mlir-with-cmake href='#how-to-link-against-mlir-with-cmake'> § </a> How to link against MLIR with CMake</h2>
 Since <code>MLIR</code> hasn't setup the nice tooling that LLVM has around <code>CMake</code>
 as far as I can tell, one needs to actually <i>know</i> <code>CMake</code> to link against
 <code>MLIR</code>. However, as is well known, <code>CMake</code> incantations are handed down
@@ -16,66 +16,66 @@ that is the CMake manual. I, an unlucky soul had to go on this adventure,
 and I hope to spare you the trouble.
 I wished to link against a static library build of MLIR. The secret
 lies in the <code>find_library</code> call:
-<pre><code>#If the variable has been set by <span class="token operator">-</span>DMLIR_INCLUDE_PATH<span class="token punctuation">,</span> then keep it<span class="token punctuation">.</span>
-#Otherwise fallback to the environment variable $MLIR_INCLUDE_PATH<span class="token punctuation">.</span>
-#<span class="token keyword">if</span> neither<span class="token punctuation">,</span> then <span class="token operator">*</span>shrug<span class="token operator">*</span><span class="token punctuation">.</span>
-<span class="token function">IF</span><span class="token punctuation">(</span>NOT MLIR_INCLUDE_PATH<span class="token punctuation">)</span>
-    set <span class="token punctuation">(</span>MLIR_INCLUDE_PATH $ENV<span class="token punctuation">{</span>MLIR_INCLUDE_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token function">endif</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<pre><code>#If the variable has been set by -DMLIR_INCLUDE_PATH, then keep it.
+#Otherwise fallback to the environment variable $MLIR_INCLUDE_PATH.
+#if neither, then *shrug*.
+IF(NOT MLIR_INCLUDE_PATH)
+    set (MLIR_INCLUDE_PATH $ENV{MLIR_INCLUDE_PATH})
+endif()
 
-#Resolve <span class="token keyword">for</span><span class="token punctuation">:</span>
-#<span class="token operator">-</span> a library target called `MLIRAnalysis`
-#<span class="token operator">-</span> asking to link against `libMLIAnalysis<span class="token punctuation">.</span>a`
-#<span class="token operator">-</span> using the variable MLIR_INCLUDE_PATH which as we saw before
+#Resolve for:
+#- a library target called `MLIRAnalysis`
+#- asking to link against `libMLIAnalysis.a`
+#- using the variable MLIR_INCLUDE_PATH which as we saw before
 ##  is either an environment variable or a cmake option
-<span class="token function">target_include_directories</span><span class="token punctuation">(</span>languagemodels PRIVATE $<span class="token punctuation">{</span>MLIR_INCLUDE_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
+target_include_directories(languagemodels PRIVATE ${MLIR_INCLUDE_PATH})
 </code></pre>
 I cribbed the actual things to link against from the path
 <a href=https://github.com/llvm/llvm-project/blob/master/mlir/examples/toy/Ch2/CMakeLists.txt><code>mlir/examples/Toy/Ch2/CMakeLists.txt</code></a>
 which helpfully lists MLIR things it needs to link against.
 The full <code>CMakeLists</code> is here:
-<pre><code><span class="token function">cmake_minimum_required</span><span class="token punctuation">(</span>VERSION <span class="token number">3.5</span><span class="token punctuation">)</span>
-<span class="token function">project</span><span class="token punctuation">(</span>languagemodels<span class="token punctuation">)</span>
+<pre><code>cmake_minimum_required(VERSION 3.5)
+project(languagemodels)
 
-<span class="token function">set</span><span class="token punctuation">(</span>CMAKE_CXX_STANDARD <span class="token number">14</span><span class="token punctuation">)</span>
+set(CMAKE_CXX_STANDARD 14)
 
-## I don't want to use find_package since I want proper control over where my LLVM comes from<span class="token punctuation">.</span>
-## <span class="token function">find_package</span><span class="token punctuation">(</span>LLVM REQUIRED<span class="token punctuation">)</span>
+## I don't want to use find_package since I want proper control over where my LLVM comes from.
+## find_package(LLVM REQUIRED)
 
-<span class="token function">add_executable</span><span class="token punctuation">(</span>languagemodels
-        rnn<span class="token punctuation">.</span>cpp codegenc<span class="token punctuation">.</span>h lang<span class="token punctuation">.</span>h codegenmlir<span class="token punctuation">.</span>h<span class="token punctuation">)</span>
+add_executable(languagemodels
+        rnn.cpp codegenc.h lang.h codegenmlir.h)
 
-## Attempt to take these as command line arguments<span class="token punctuation">.</span> IF that fails<span class="token punctuation">,</span>
-## lookup environment<span class="token punctuation">.</span>
-<span class="token function">IF</span><span class="token punctuation">(</span>NOT MLIR_INCLUDE_PATH<span class="token punctuation">)</span>
-    set <span class="token punctuation">(</span>MLIR_INCLUDE_PATH $ENV<span class="token punctuation">{</span>MLIR_INCLUDE_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token function">endif</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+## Attempt to take these as command line arguments. IF that fails,
+## lookup environment.
+IF(NOT MLIR_INCLUDE_PATH)
+    set (MLIR_INCLUDE_PATH $ENV{MLIR_INCLUDE_PATH})
+endif()
 
-<span class="token function">IF</span><span class="token punctuation">(</span>NOT MLIR_LIBRARY_PATH<span class="token punctuation">)</span>
-    set <span class="token punctuation">(</span>MLIR_LIBRARY_PATH $ENV<span class="token punctuation">{</span>MLIR_LIBRARY_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token function">endif</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+IF(NOT MLIR_LIBRARY_PATH)
+    set (MLIR_LIBRARY_PATH $ENV{MLIR_LIBRARY_PATH})
+endif()
 
-<span class="token function">target_include_directories</span><span class="token punctuation">(</span>languagemodels PRIVATE $<span class="token punctuation">{</span>MLIR_INCLUDE_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token function">find_library</span><span class="token punctuation">(</span>MLIRAnalysis MLIRAnalysis $<span class="token punctuation">{</span>MLIR_LIBRARY_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token function">find_library</span><span class="token punctuation">(</span>MLIRIR MLIRIR $<span class="token punctuation">{</span>MLIR_LIBRARY_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token function">find_library</span><span class="token punctuation">(</span>MLIRParser MLIRParser $<span class="token punctuation">{</span>MLIR_LIBRARY_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token function">find_library</span><span class="token punctuation">(</span>MLIRSideEffects MLIRSideEffects $<span class="token punctuation">{</span>MLIR_LIBRARY_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token function">find_library</span><span class="token punctuation">(</span>MLIRTransforms MLIRTransforms $<span class="token punctuation">{</span>MLIR_LIBRARY_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token function">find_library</span><span class="token punctuation">(</span>LLVMCore LLVMCore $<span class="token punctuation">{</span>MLIR_LIBRARY_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token function">find_library</span><span class="token punctuation">(</span>LLVMSupport LLVMSupport $<span class="token punctuation">{</span>MLIR_LIBRARY_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
+target_include_directories(languagemodels PRIVATE ${MLIR_INCLUDE_PATH})
+find_library(MLIRAnalysis MLIRAnalysis ${MLIR_LIBRARY_PATH})
+find_library(MLIRIR MLIRIR ${MLIR_LIBRARY_PATH})
+find_library(MLIRParser MLIRParser ${MLIR_LIBRARY_PATH})
+find_library(MLIRSideEffects MLIRSideEffects ${MLIR_LIBRARY_PATH})
+find_library(MLIRTransforms MLIRTransforms ${MLIR_LIBRARY_PATH})
+find_library(LLVMCore LLVMCore ${MLIR_LIBRARY_PATH})
+find_library(LLVMSupport LLVMSupport ${MLIR_LIBRARY_PATH})
 
-## debugging to check <span class="token keyword">if</span> it's been set properly
-<span class="token function">message</span><span class="token punctuation">(</span>MLIR_INCLUDE_PATH $<span class="token punctuation">{</span>MLIR_INCLUDE_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token function">message</span><span class="token punctuation">(</span>MLIR_LIBRARY_PATH $<span class="token punctuation">{</span>MLIR_LIBRARY_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token function">message</span><span class="token punctuation">(</span>MLIRAnalysis $<span class="token punctuation">{</span>MLIRAnalysis<span class="token punctuation">}</span><span class="token punctuation">)</span>
+## debugging to check if it's been set properly
+message(MLIR_INCLUDE_PATH ${MLIR_INCLUDE_PATH})
+message(MLIR_LIBRARY_PATH ${MLIR_LIBRARY_PATH})
+message(MLIRAnalysis ${MLIRAnalysis})
 
-<span class="token function">target_link_libraries</span><span class="token punctuation">(</span>languagemodels
-        $<span class="token punctuation">{</span>MLIRAnalysis<span class="token punctuation">}</span>
-        $<span class="token punctuation">{</span>MLIRIR<span class="token punctuation">}</span>
-        $<span class="token punctuation">{</span>MLIRParser<span class="token punctuation">}</span>
-        $<span class="token punctuation">{</span>MLIRSideEffects<span class="token punctuation">}</span>
-        $<span class="token punctuation">{</span>MLIRTransforms<span class="token punctuation">}</span>
-        $<span class="token punctuation">{</span>LLVMCore<span class="token punctuation">}</span>
-        $<span class="token punctuation">{</span>LLVMSupport<span class="token punctuation">}</span><span class="token punctuation">)</span>
+target_link_libraries(languagemodels
+        ${MLIRAnalysis}
+        ${MLIRIR}
+        ${MLIRParser}
+        ${MLIRSideEffects}
+        ${MLIRTransforms}
+        ${LLVMCore}
+        ${LLVMSupport})
 </code></pre>
-</body></html>
+</container></body></html>

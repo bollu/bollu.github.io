@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
-img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.centered { margin-left: 30%; margin-right: 25%; }.image { }
+img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
@@ -7,12 +7,12 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-.latexinline { white-space: nowrap }pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><h2 class='centered'><a id=big-list-of-emacs-gripes href='#big-list-of-emacs-gripes'> § </a> Big list of emacs gripes</h2>
-<h4 class='centered'><a id=markdown-mode-lags-when-i-open-a-paren-for-a-link href='#markdown-mode-lags-when-i-open-a-paren-for-a-link'> § </a> <code>markdown-mode</code> lags when I open a paren <code>[for a link</code>.</h4>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=big-list-of-emacs-gripes href='#big-list-of-emacs-gripes'> § </a> Big list of emacs gripes</h2>
+<h4><a id=markdown-mode-lags-when-i-open-a-paren-for-a-link href='#markdown-mode-lags-when-i-open-a-paren-for-a-link'> § </a> <code>markdown-mode</code> lags when I open a paren <code>[for a link</code>.</h4>
 I suppose this is because
 it's attempting to match it, and is unable to figure out
 what to match to. I now edit markdown in <code>text-mode</code>.
-<h4 class='centered'><a id=ctrl-backspacebackward-kill-word-kills-far-too-much href='#ctrl-backspacebackward-kill-word-kills-far-too-much'> § </a> <code>ctrl-backspace</code>/<code>backward-kill-word</code> kills far too much.</h4>
+<h4><a id=ctrl-backspacebackward-kill-word-kills-far-too-much href='#ctrl-backspacebackward-kill-word-kills-far-too-much'> § </a> <code>ctrl-backspace</code>/<code>backward-kill-word</code> kills far too much.</h4>
 <ul><li> <a href=https://emacs.stackexchange.com/questions/30401/backward-kill-word-kills-too-much-how-to-make-it-more-intelligent>reference <code>emacs.se</code></a></li></ul>
 The answer seems to be:
 yes, it kills a word. You can redefine what a word is,
@@ -20,7 +20,7 @@ and break lots of other stuff in the process, or redefine
 what <code>ctrl-backspace</code> does. However, as a non-expert, it's hard
 to say what redefining this will mean. Will it still interact
 with history the same way?
-<h4 class='centered'><a id=there-is-no-centralized-notion-of-c-o-go-back-to-where-i-came-from href='#there-is-no-centralized-notion-of-c-o-go-back-to-where-i-came-from'> § </a> there is no centralized notion of <code>C-o</code> (go back to where I came from).</h4>
+<h4><a id=there-is-no-centralized-notion-of-c-o-go-back-to-where-i-came-from href='#there-is-no-centralized-notion-of-c-o-go-back-to-where-i-came-from'> § </a> there is no centralized notion of <code>C-o</code> (go back to where I came from).</h4>
 <ul><li> <a href=https://emacs.stackexchange.com/questions/9908/can-cursor-jump-back-to-the-previous-position>reference <code>emacs.se</code></a></li><li> <a href=https://stackoverflow.com/questions/4918707/in-emacs-how-to-go-back-to-previous-line-position-after-using-semantic-jump-to>reference <code>stackoverflow</code></a></li></ul>
 Instead, it differentiates between "go back in buffer" versus
 "go back across buffers".
@@ -30,14 +30,14 @@ to say "go forward in my history; OK go back" when I am
 exploring code. I don't <i>want</i> to keep track of whether
 I came to this buffer from the same buffer or another buffer.
 The fact that emacs needs this is moronic.
-<h4 class='centered'><a id=scrolling-half-a-page-is-broken href='#scrolling-half-a-page-is-broken'> § </a> Scrolling half a page is broken</h4>
+<h4><a id=scrolling-half-a-page-is-broken href='#scrolling-half-a-page-is-broken'> § </a> Scrolling half a page is broken</h4>
 <ul><li> <a href=https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half-page-on-c-v-and-m-v>reference <code>emacs.se</code></a></li><li> <a href=https://www.emacswiki.org/emacs/HalfScrolling>reference <code>emacswiki</code></a></li></ul>
 There is no inbuilt functionality to scroll half a page. The canonical 
 reference points to this:
-<pre><code><span class="token punctuation">(</span>autoload 'View<span class="token operator">-</span>scroll<span class="token operator">-</span>half<span class="token operator">-</span>page<span class="token operator">-</span>forward <span class="token string">"view"</span><span class="token punctuation">)</span>
-<span class="token punctuation">(</span>autoload 'View<span class="token operator">-</span>scroll<span class="token operator">-</span>half<span class="token operator">-</span>page<span class="token operator">-</span>backward <span class="token string">"view"</span><span class="token punctuation">)</span>
-<span class="token punctuation">(</span>global<span class="token operator">-</span>set<span class="token operator">-</span>key <span class="token punctuation">(</span>kbd <span class="token string">"C-d"</span><span class="token punctuation">)</span> 'View<span class="token operator">-</span>scroll<span class="token operator">-</span>half<span class="token operator">-</span>page<span class="token operator">-</span>forward<span class="token punctuation">)</span>
-<span class="token punctuation">(</span>global<span class="token operator">-</span>set<span class="token operator">-</span>key <span class="token punctuation">(</span>kbd <span class="token string">"C-u"</span><span class="token punctuation">)</span> 'View<span class="token operator">-</span>scroll<span class="token operator">-</span>half<span class="token operator">-</span>page<span class="token operator">-</span>backward<span class="token punctuation">)</span>
+<pre><code><span class="token punctuation">(</span><span class="token car">autoload</span> <span class="token quoted-symbol variable symbol">'View-scroll-half-page-forward</span> <span class="token string">"view"</span><span class="token punctuation">)</span>
+<span class="token punctuation">(</span><span class="token car">autoload</span> <span class="token quoted-symbol variable symbol">'View-scroll-half-page-backward</span> <span class="token string">"view"</span><span class="token punctuation">)</span>
+<span class="token punctuation">(</span><span class="token car">global-set-key</span> <span class="token punctuation">(</span><span class="token car">kbd</span> <span class="token string">"C-d"</span><span class="token punctuation">)</span> <span class="token quoted-symbol variable symbol">'View-scroll-half-page-forward</span><span class="token punctuation">)</span>
+<span class="token punctuation">(</span><span class="token car">global-set-key</span> <span class="token punctuation">(</span><span class="token car">kbd</span> <span class="token string">"C-u"</span><span class="token punctuation">)</span> <span class="token quoted-symbol variable symbol">'View-scroll-half-page-backward</span><span class="token punctuation">)</span>
 </code></pre>
 However, this does not work well. On press <code>C-u</code> to go to
 the top of the file, it does not move the cursor to the
@@ -51,107 +51,107 @@ This code that is given in <code>emacswiki</code> also
 has the exact same issue, I don't understand
 how the poster says they come from vim and
 did not notice this inconsistency.
-<pre><code><span class="token punctuation">(</span>defun zz<span class="token operator">-</span>scroll<span class="token operator">-</span>half<span class="token operator">-</span>page <span class="token punctuation">(</span>direction<span class="token punctuation">)</span>
-  <span class="token string">"Scrolls half page up if `direction' is non-nil, otherwise will scroll half page down."</span>
-  <span class="token punctuation">(</span>let <span class="token punctuation">(</span><span class="token punctuation">(</span>opos <span class="token punctuation">(</span>cdr <span class="token punctuation">(</span>nth <span class="token number">6</span> <span class="token punctuation">(</span>posn<span class="token operator">-</span>at<span class="token operator">-</span>point<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token punctuation">;</span><span class="token punctuation">;</span> opos <span class="token operator">=</span> original position line relative to window
-    <span class="token punctuation">(</span>move<span class="token operator">-</span>to<span class="token operator">-</span>window<span class="token operator">-</span>line nil<span class="token punctuation">)</span>  <span class="token punctuation">;</span><span class="token punctuation">;</span> Move cursor to middle line
+<pre><code><span class="token punctuation">(</span><span class="token defun"><span class="token keyword">defun</span> <span class="token function">zz-scroll-half-page</span> <span class="token punctuation">(</span><span class="token arguments"><span class="token argument variable">direction</span></span><span class="token punctuation">)</span></span>
+  <span class="token string">"Scrolls half page up if <span class="token symbol">`direction'</span> is non-nil, otherwise will scroll half page down."</span>
+  <span class="token punctuation">(</span><span class="token keyword">let</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token car">opos</span> <span class="token punctuation">(</span><span class="token car">cdr</span> <span class="token punctuation">(</span><span class="token car">nth</span> <span class="token number">6</span> <span class="token punctuation">(</span><span class="token car">posn-at-point</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token comment">;; opos = original position line relative to window</span>
+    <span class="token punctuation">(</span><span class="token car">move-to-window-line</span> <span class="token boolean">nil</span><span class="token punctuation">)</span>  <span class="token comment">;; Move cursor to middle line</span>
     <span class="token punctuation">(</span><span class="token keyword">if</span> direction
-	<span class="token punctuation">(</span>recenter<span class="token operator">-</span>top<span class="token operator">-</span>bottom <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>  <span class="token punctuation">;</span><span class="token punctuation">;</span> Current line becomes last
-      <span class="token punctuation">(</span>recenter<span class="token operator">-</span>top<span class="token operator">-</span>bottom <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token punctuation">;</span><span class="token punctuation">;</span> Current line becomes first
-    <span class="token punctuation">(</span>move<span class="token operator">-</span>to<span class="token operator">-</span>window<span class="token operator">-</span>line opos<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token punctuation">;</span><span class="token punctuation">;</span> Restore cursor<span class="token operator">/</span>point position
+	<span class="token punctuation">(</span><span class="token car">recenter-top-bottom</span> <span class="token number">-1</span><span class="token punctuation">)</span>  <span class="token comment">;; Current line becomes last</span>
+      <span class="token punctuation">(</span><span class="token car">recenter-top-bottom</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment">;; Current line becomes first</span>
+    <span class="token punctuation">(</span><span class="token car">move-to-window-line</span> opos<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment">;; Restore cursor/point position</span>
 
-<span class="token punctuation">(</span>defun zz<span class="token operator">-</span>scroll<span class="token operator">-</span>half<span class="token operator">-</span>page<span class="token operator">-</span>down <span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">(</span><span class="token defun"><span class="token keyword">defun</span> <span class="token function">zz-scroll-half-page-down</span> <span class="token punctuation">(</span><span class="token arguments"></span><span class="token punctuation">)</span></span>
   <span class="token string">"Scrolls exactly half page down keeping cursor/point position."</span>
-  <span class="token punctuation">(</span>interactive<span class="token punctuation">)</span>
-  <span class="token punctuation">(</span>zz<span class="token operator">-</span>scroll<span class="token operator">-</span>half<span class="token operator">-</span>page nil<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">(</span><span class="token interactive keyword">interactive</span><span class="token punctuation">)</span>
+  <span class="token punctuation">(</span><span class="token car">zz-scroll-half-page</span> <span class="token boolean">nil</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-<span class="token punctuation">(</span>defun zz<span class="token operator">-</span>scroll<span class="token operator">-</span>half<span class="token operator">-</span>page<span class="token operator">-</span>up <span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">(</span><span class="token defun"><span class="token keyword">defun</span> <span class="token function">zz-scroll-half-page-up</span> <span class="token punctuation">(</span><span class="token arguments"></span><span class="token punctuation">)</span></span>
   <span class="token string">"Scrolls exactly half page up keeping cursor/point position."</span>
-  <span class="token punctuation">(</span>interactive<span class="token punctuation">)</span>
-  <span class="token punctuation">(</span>zz<span class="token operator">-</span>scroll<span class="token operator">-</span>half<span class="token operator">-</span>page t<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">(</span><span class="token interactive keyword">interactive</span><span class="token punctuation">)</span>
+  <span class="token punctuation">(</span><span class="token car">zz-scroll-half-page</span> <span class="token boolean">t</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
 
-<span class="token punctuation">(</span>global<span class="token operator">-</span>set<span class="token operator">-</span>key <span class="token punctuation">(</span>kbd <span class="token string">"C-d"</span><span class="token punctuation">)</span> 'zz<span class="token operator">-</span>scroll<span class="token operator">-</span>half<span class="token operator">-</span>page<span class="token operator">-</span>down<span class="token punctuation">)</span>
-<span class="token punctuation">(</span>global<span class="token operator">-</span>set<span class="token operator">-</span>key <span class="token punctuation">(</span>kbd <span class="token string">"C-u"</span><span class="token punctuation">)</span> 'zz<span class="token operator">-</span>scroll<span class="token operator">-</span>half<span class="token operator">-</span>page<span class="token operator">-</span>up<span class="token punctuation">)</span>
+<span class="token punctuation">(</span><span class="token car">global-set-key</span> <span class="token punctuation">(</span><span class="token car">kbd</span> <span class="token string">"C-d"</span><span class="token punctuation">)</span> <span class="token quoted-symbol variable symbol">'zz-scroll-half-page-down</span><span class="token punctuation">)</span>
+<span class="token punctuation">(</span><span class="token car">global-set-key</span> <span class="token punctuation">(</span><span class="token car">kbd</span> <span class="token string">"C-u"</span><span class="token punctuation">)</span> <span class="token quoted-symbol variable symbol">'zz-scroll-half-page-up</span><span class="token punctuation">)</span>
 </code></pre>
-<h4 class='centered'><a id=default-encoding-is-weird-chinese-iso-8bit href='#default-encoding-is-weird-chinese-iso-8bit'> § </a> Default encoding is weird: <code>chinese-iso-8bit</code></h4>
+<h4><a id=default-encoding-is-weird-chinese-iso-8bit href='#default-encoding-is-weird-chinese-iso-8bit'> § </a> Default encoding is weird: <code>chinese-iso-8bit</code></h4>
 <ul><li> <a href=https://emacs.stackexchange.com/questions/34322/set-default-coding-system-utf-8><code>emacs.se reference</code></a></li></ul>
 Why in the world is this the option that shows up by default?
 There are so many better options, with <code>utf-8</code> being the
 sanest of them all; this is a nice spherical cow of
 the problems with emacs: too much stuff, too like sanity.
 The spell is:
-<pre><code><span class="token punctuation">(</span>set<span class="token operator">-</span>language<span class="token operator">-</span>environment <span class="token string">"UTF-8"</span><span class="token punctuation">)</span>
+<pre><code>(set-language-environment "UTF-8")
 </code></pre>
-<h4 class='centered'><a id=linum-lags-on-large-files href='#linum-lags-on-large-files'> § </a> linum lags on large files</h4>
+<h4><a id=linum-lags-on-large-files href='#linum-lags-on-large-files'> § </a> linum lags on large files</h4>
 <code>global-linum-mode</code> lags on very long files.
-<h4 class='centered'><a id=emacs-lags-on-long-lines href='#emacs-lags-on-long-lines'> § </a> emacs lags on long lines</h4>
+<h4><a id=emacs-lags-on-long-lines href='#emacs-lags-on-long-lines'> § </a> emacs lags on long lines</h4>
 <code>emacs</code> lags given very long lines.
 <a href=https://old.reddit.com/r/emacs/comments/9qtpak/what_would_it_take_to_make_emacs_perform_well_on/>A comment by <code>eli-zaretskli</code> on reddit</a>
 says:
 <blockquote> That is true, but the "fix" part misses the point. There's nothing wrong with the current algorithms, they just cannot handle these situations better than they already do. The main problem that makes redisplay slow in these cases is that, given a cursor motion command, such as <code>C-n</code> or <code>M-v</code>, the display engine needs first to find where in the buffer that command puts point. And that is non-trivial when variable-size fonts are supported and variable-size characters (or images) can be anywhere on display.</blockquote>
 So there's a fundamental problem. He continues:
 <blockquote> ... we are talking about one of the following two alternatives: Add new members to the data structures used by the display engine, that would allow it to find good approximations for buffer positions corresponding to given screen coordinates, then augment the algorithms to generate and use this additional data.  edesign the display code to use a model that is entirely different from the current simple 2D canvas. </blockquote>
-<h4 class='centered'><a id=emacs-single-threading-causes-pauses-on-auto-completecompany href='#emacs-single-threading-causes-pauses-on-auto-completecompany'> § </a> emacs' single threading causes pauses on auto-complete/company</h4>
-<h4 class='centered'><a id=emacs-crashes-on-attempting-to-open-an-svg-file href='#emacs-crashes-on-attempting-to-open-an-svg-file'> § </a> emacs crashes on attempting to open an SVG file</h4>
+<h4><a id=emacs-single-threading-causes-pauses-on-auto-completecompany href='#emacs-single-threading-causes-pauses-on-auto-completecompany'> § </a> emacs' single threading causes pauses on auto-complete/company</h4>
+<h4><a id=emacs-crashes-on-attempting-to-open-an-svg-file href='#emacs-crashes-on-attempting-to-open-an-svg-file'> § </a> emacs crashes on attempting to open an SVG file</h4>
 <ul><li> <a href=http://emacs.1067599.n8.nabble.com/bug-29581-26-0-90-SVG-file-can-cause-emacs-to-crash-imagemagick-td443659.html>Link to <code>emacs</code> bug repo about segfault</a></li></ul>
 My <code>emacs --version</code> says:
-<pre><code>╰─$ emacs <span class="token operator">--</span>version
-GNU Emacs <span class="token number">26.2</span>
-Copyright <span class="token punctuation">(</span>C<span class="token punctuation">)</span> <span class="token number">2019</span> Free Software Foundation<span class="token punctuation">,</span> Inc<span class="token punctuation">.</span>
-GNU Emacs comes with ABSOLUTELY NO WARRANTY<span class="token punctuation">.</span>
+<pre><code>╰─$ emacs --version
+GNU Emacs 26.2
+Copyright (C) 2019 Free Software Foundation, Inc.
+GNU Emacs comes with ABSOLUTELY NO WARRANTY.
 You may redistribute copies of GNU Emacs
-under the terms of the GNU General Public License<span class="token punctuation">.</span>
-For more information about these matters<span class="token punctuation">,</span> see the file named COPYING<span class="token punctuation">.</span>
+under the terms of the GNU General Public License.
+For more information about these matters, see the file named COPYING.
 </code></pre>
 I ran it with <code>emacs -q</code>. The bactrace points at a segfault in <code>ImageMagick</code>:
-<pre><code>Fatal error <span class="token number">11</span><span class="token punctuation">:</span> Segmentation fault
-Backtrace<span class="token punctuation">:</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x50fdc9</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x4f61f7</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x50e77e</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x50ea83</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x50eac0</span><span class="token punctuation">]</span>
-<span class="token operator">/</span>lib<span class="token operator">/</span>x86_64<span class="token operator">-</span>linux<span class="token operator">-</span>gnu<span class="token operator">/</span>libpthread<span class="token punctuation">.</span>so<span class="token punctuation">.</span><span class="token function">0</span><span class="token punctuation">(</span><span class="token operator">+</span><span class="token number">0x11390</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0x7f213756b390</span><span class="token punctuation">]</span>
-<span class="token operator">/</span>usr<span class="token operator">/</span>lib<span class="token operator">/</span>x86_64<span class="token operator">-</span>linux<span class="token operator">-</span>gnu<span class="token operator">/</span>ImageMagick<span class="token operator">-</span><span class="token number">6.8</span><span class="token number">.9</span><span class="token operator">/</span>modules<span class="token operator">-</span>Q16<span class="token operator">/</span>coders<span class="token operator">/</span>svg<span class="token punctuation">.</span><span class="token function">so</span><span class="token punctuation">(</span><span class="token operator">+</span><span class="token number">0xb8b8</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0x7f211676e8b8</span><span class="token punctuation">]</span>
-<span class="token operator">/</span>usr<span class="token operator">/</span>lib<span class="token operator">/</span>x86_64<span class="token operator">-</span>linux<span class="token operator">-</span>gnu<span class="token operator">/</span>libMagickCore<span class="token operator">-</span><span class="token number">6.</span>Q16<span class="token punctuation">.</span>so<span class="token punctuation">.</span><span class="token function">2</span><span class="token punctuation">(</span>ReadImage<span class="token operator">+</span><span class="token number">0x198</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0x7f213d439a18</span><span class="token punctuation">]</span>
-<span class="token operator">/</span>usr<span class="token operator">/</span>lib<span class="token operator">/</span>x86_64<span class="token operator">-</span>linux<span class="token operator">-</span>gnu<span class="token operator">/</span>libMagickWand<span class="token operator">-</span><span class="token number">6.</span>Q16<span class="token punctuation">.</span>so<span class="token punctuation">.</span><span class="token function">2</span><span class="token punctuation">(</span>MagickReadImage<span class="token operator">+</span><span class="token number">0x6a</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0x7f213d90ba3a</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x5e65fc</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x5eed1d</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x5ef1a0</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x56cf26</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x5a5ff8</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x56ce93</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x5a5ff8</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x56ce93</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x5a5ff8</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x56ce93</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x5a5ff8</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x56ce93</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x5a5ff8</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x56ce93</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x5a5ff8</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x56ce93</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x5a5ff8</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x56ce93</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x5a5ff8</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x56ce93</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x5a5ff8</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x56ce93</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x5a5ff8</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x56ce93</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x5a5ff8</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x56ce93</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x5a5ff8</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x56ce93</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x568c9d</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x56cf26</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x56eb24</span><span class="token punctuation">]</span>
-emacs<span class="token punctuation">[</span><span class="token number">0x56904e</span><span class="token punctuation">]</span>
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span>    <span class="token number">7224</span> segmentation fault <span class="token punctuation">(</span>core dumped<span class="token punctuation">)</span>  emacs <span class="token operator">-</span>q <span class="token operator">~</span><span class="token operator">/</span>work<span class="token operator">/</span>IIIT<span class="token operator">-</span>H<span class="token operator">-</span>Code<span class="token operator">/</span>softwarefoundations<span class="token operator">/</span>project
+<pre><code>Fatal error 11: Segmentation fault
+Backtrace:
+emacs[0x50fdc9]
+emacs[0x4f61f7]
+emacs[0x50e77e]
+emacs[0x50ea83]
+emacs[0x50eac0]
+/lib/x86_64-linux-gnu/libpthread.so.0(+0x11390)[0x7f213756b390]
+/usr/lib/x86_64-linux-gnu/ImageMagick-6.8.9/modules-Q16/coders/svg.so(+0xb8b8)[0x7f211676e8b8]
+/usr/lib/x86_64-linux-gnu/libMagickCore-6.Q16.so.2(ReadImage+0x198)[0x7f213d439a18]
+/usr/lib/x86_64-linux-gnu/libMagickWand-6.Q16.so.2(MagickReadImage+0x6a)[0x7f213d90ba3a]
+emacs[0x5e65fc]
+emacs[0x5eed1d]
+emacs[0x5ef1a0]
+emacs[0x56cf26]
+emacs[0x5a5ff8]
+emacs[0x56ce93]
+emacs[0x5a5ff8]
+emacs[0x56ce93]
+emacs[0x5a5ff8]
+emacs[0x56ce93]
+emacs[0x5a5ff8]
+emacs[0x56ce93]
+emacs[0x5a5ff8]
+emacs[0x56ce93]
+emacs[0x5a5ff8]
+emacs[0x56ce93]
+emacs[0x5a5ff8]
+emacs[0x56ce93]
+emacs[0x5a5ff8]
+emacs[0x56ce93]
+emacs[0x5a5ff8]
+emacs[0x56ce93]
+emacs[0x5a5ff8]
+emacs[0x56ce93]
+emacs[0x5a5ff8]
+emacs[0x56ce93]
+emacs[0x5a5ff8]
+emacs[0x56ce93]
+emacs[0x568c9d]
+emacs[0x56cf26]
+emacs[0x56eb24]
+emacs[0x56904e]
+...
+[3]    7224 segmentation fault (core dumped)  emacs -q ~/work/IIIT-H-Code/softwarefoundations/project
 </code></pre>
 This is tagged as "not a bug" --- because
 "if imagemagick crashes, there is no recourse".
-</body></html>
+</container></body></html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
-img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.centered { margin-left: 30%; margin-right: 25%; }.image { }
+img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
@@ -7,30 +7,30 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-.latexinline { white-space: nowrap }pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><h2 class='centered'><a id=combinatorial-intuition-for-fermats-little-theorem href='#combinatorial-intuition-for-fermats-little-theorem'> § </a> Combinatorial intuition for Fermat's little theorem</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=combinatorial-intuition-for-fermats-little-theorem href='#combinatorial-intuition-for-fermats-little-theorem'> § </a> Combinatorial intuition for Fermat's little theorem</h2>
 We wish to show that <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mi>p</mi></msup><mo>≡</mo><mi>x</mi><mo stretchy="false">(</mo><mspace></mspace><mspace width="0.6666666666666666em"/><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi></mrow><mtext> </mtext><mtext> </mtext><mi>p</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x^p \equiv x (\mod p)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≡</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">x</span><span class="mopen">(</span><span class="mspace allowbreak"></span><span class="mspace" style="margin-right:0.6666666666666666em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">o</span><span class="mord mathrm">d</span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">p</span><span class="mclose">)</span></span></span></span></span> <i>combinatorially</i>. Let's take
 <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>3</mn></msup><mo stretchy="false">(</mo><mspace></mspace><mspace width="0.6666666666666666em"/><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi></mrow><mtext> </mtext><mtext> </mtext><mn>3</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">2^3 (\mod 3)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mspace allowbreak"></span><span class="mspace" style="margin-right:0.6666666666666666em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">o</span><span class="mord mathrm">d</span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mclose">)</span></span></span></span></span> for simplicity. The general case follows. Let's first write
 down strings which enumerate <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">2^3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span>:
-<pre><code><span class="token number">000</span>
-<span class="token number">001</span>
-<span class="token number">010</span>
-<span class="token number">011</span>
-<span class="token number">100</span>
-<span class="token number">101</span>
-<span class="token number">110</span>
-<span class="token number">111</span>
+<pre><code>000
+001
+010
+011
+100
+101
+110
+111
 </code></pre>
 To make use of <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mspace></mspace><mspace width="0.6666666666666666em"/><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi></mrow><mtext> </mtext><mtext> </mtext><mn>3</mn></mrow><annotation encoding="application/x-tex">\mod 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mspace allowbreak"></span><span class="mspace" style="margin-right:0.6666666666666666em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">o</span><span class="mord mathrm">d</span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span></span></span></span></span>, we're going to treat our strings as <i>necklaces</i>. So,
 for example, the string <code>011</code> looks like:
-<pre><code><span class="token operator">*</span><span class="token operator">-</span>→ <span class="token number">0</span> <span class="token operator">-</span><span class="token operator">*</span>
-<span class="token operator">|</span>      <span class="token operator">|</span>
-<span class="token operator">|</span>      ↓
-<span class="token number">1</span> ←<span class="token operator">--</span><span class="token operator">-</span> <span class="token number">1</span>
+<pre><code>*-→ 0 -*
+|      |
+|      ↓
+1 ←--- 1
 </code></pre>
 So we have three possible rotations of the string <code>011</code>:
-<pre><code><span class="token number">011</span>
-<span class="token number">110</span>
-<span class="token number">101</span>
+<pre><code>011
+110
+101
 </code></pre>
 <ul><li> Each of these rotations are unique, since they can be totally ordered using
   lexicographic ordering. Indeed, for <b>any string</b> other than <code>000</code>, <code>111</code>,
@@ -38,12 +38,12 @@ So we have three possible rotations of the string <code>011</code>:
 <ul><li> So we can count the above 7 strings with equivalence class representatives.
   These representatives are those strings that are the lex smallest in their
   cyclic shifts. (Why are cyclic shifts <i>so important</i>?) </li></ul>
-<pre><code>Cyclic subshifts of strings<span class="token punctuation">:</span>
-<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
-<span class="token number">000</span><span class="token punctuation">,</span> <span class="token number">000</span><span class="token punctuation">,</span> <span class="token number">000</span>
-<span class="token number">001</span><span class="token punctuation">,</span> <span class="token number">010</span><span class="token punctuation">,</span> <span class="token number">100</span>
-<span class="token number">011</span><span class="token punctuation">,</span> <span class="token number">110</span><span class="token punctuation">,</span> <span class="token number">101</span>
-<span class="token number">111</span><span class="token punctuation">,</span> <span class="token number">111</span><span class="token punctuation">,</span> <span class="token number">111</span>
+<pre><code>Cyclic subshifts of strings:
+---------------------------
+000, 000, 000
+001, 010, 100
+011, 110, 101
+111, 111, 111
 </code></pre>
 <ul><li> We've written the strings along with their cyclic subshifts, with the
   representative of the equivalence class as the first element. So the
@@ -51,27 +51,27 @@ So we have three possible rotations of the string <code>011</code>:
   are equal to their cyclic subshifts. All of the others are distinct, and generate
   3 elements.</li></ul>
 <ul><li> So we can count the above strings as:</li></ul>
-<pre><code>all strings   <span class="token operator">=</span> <span class="token punctuation">{</span>shifts of <span class="token number">001</span><span class="token punctuation">,</span> <span class="token number">011</span><span class="token punctuation">}</span>U<span class="token punctuation">{</span><span class="token number">000</span><span class="token punctuation">,</span> <span class="token number">111</span><span class="token punctuation">}</span>
-<span class="token operator">|</span>all strings<span class="token operator">|</span> <span class="token operator">=</span> <span class="token operator">|</span><span class="token punctuation">{</span>shifts of <span class="token number">001</span><span class="token punctuation">,</span> <span class="token number">011</span><span class="token punctuation">}</span><span class="token operator">|</span><span class="token operator">+</span><span class="token operator">|</span><span class="token punctuation">{</span><span class="token number">000</span><span class="token punctuation">,</span> <span class="token number">111</span><span class="token punctuation">}</span><span class="token operator">|</span>
-no<span class="token punctuation">.</span> of shifts <span class="token operator">=</span> <span class="token number">3</span><span class="token operator">*</span><span class="token punctuation">(</span>no<span class="token punctuation">.</span> of representatives<span class="token punctuation">)</span>
-<span class="token number">2</span><span class="token operator">^</span><span class="token number">3</span> <span class="token operator">=</span> <span class="token number">3</span> <span class="token operator">*</span> <span class="token punctuation">(</span>no<span class="token punctuation">.</span> of representatives<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">2</span>
-<span class="token number">2</span><span class="token operator">^</span><span class="token number">3</span> <span class="token operator">=</span> <span class="token number">3</span> <span class="token operator">*</span> <span class="token punctuation">(</span>no<span class="token punctuation">.</span> of representatives<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">2</span>
-<span class="token number">2</span><span class="token operator">^</span><span class="token number">3</span> <span class="token operator">%</span> <span class="token number">3</span> <span class="token operator">=</span> <span class="token number">2</span>
+<pre><code>all strings   = {shifts of 001, 011}U{000, 111}
+|all strings| = |{shifts of 001, 011}|+|{000, 111}|
+no. of shifts = 3*(no. of representatives)
+2^3 = 3 * (no. of representatives) + 2
+2^3 = 3 * (no. of representatives) + 2
+2^3 % 3 = 2
 </code></pre>
 In general, for <code>x^p % p</code>, we will get <code>x</code> strings that contain the same letter.
 These will not have elements in their cyclic shift equivalence classes. The
 other strings will be generated as the smallest cyclic subshift of some
 string.
-<h4 class='centered'><a id=why-does-this-not-work-when-p-is-not-prime href='#why-does-this-not-work-when-p-is-not-prime'> § </a> Why does this not work when <code>p</code> is not prime?</h4>
+<h4><a id=why-does-this-not-work-when-p-is-not-prime href='#why-does-this-not-work-when-p-is-not-prime'> § </a> Why does this not work when <code>p</code> is not prime?</h4>
 Let <code>p = 4</code>. In this case, I can pick the string <code>s = 0101</code>. It has shifts:
-<pre><code><span class="token number">0101</span> <span class="token operator">&lt;</span><span class="token operator">-</span>
-<span class="token number">1010</span>
-<span class="token number">0101</span> <span class="token operator">&lt;</span><span class="token operator">-</span>
-<span class="token number">1010</span>
+<pre><code>0101 <-
+1010
+0101 <-
+1010
 </code></pre>
 so two of its shifts overlap, hence we will double-count the string <code>0101</code>
 if I counted its equivalence class as having size <code>4</code>.
-<h4 class='centered'><a id=relationship-to-group-theory href='#relationship-to-group-theory'> § </a> Relationship to group theory?</h4>
+<h4><a id=relationship-to-group-theory href='#relationship-to-group-theory'> § </a> Relationship to group theory?</h4>
 <ul><li> How does this relate to group theory? Well, what we are doing is providing
   an action of the group <code>Z/pZ</code> into the set of strings <code>X^p</code> where <code>X</code> is
   some set. Our group action for a number <code>n ∈ Z/pZ</code> takes a
@@ -85,6 +85,6 @@ if I counted its equivalence class as having size <code>4</code>.
   orbits of size <code>1</code>. We have <code>|X|</code> such necklaces.</li></ul>
 <ul><li> All other necklaces have size <code>p</code>.</li></ul>
 <ul><li> The rest of the proof follows similarly as before.</li></ul>
-<h4 class='centered'><a id=references href='#references'> § </a> References</h4>
+<h4><a id=references href='#references'> § </a> References</h4>
 <ul><li> <a href=https://ts.data61.csiro.au/publications/nicta_full_text/6061.pdf>A string of pearls: proofs of Fermat's little theorem</a></li><li> <a href=https://www.youtube.com/watch?v=KfTcd0dg0DI&feature=youtu.be&t=815>Algorithms thread 1: division under mod</a></li></ul>
-</body></html>
+</container></body></html>

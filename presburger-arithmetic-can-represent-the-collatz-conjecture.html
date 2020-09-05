@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
-img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.centered { margin-left: 30%; margin-right: 25%; }.image { }
+img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
@@ -7,27 +7,27 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-.latexinline { white-space: nowrap }pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><h2 class='centered'><a id=presburger-arithmetic-can-represent-the-collatz-conjecture href='#presburger-arithmetic-can-represent-the-collatz-conjecture'> § </a> Presburger arithmetic can represent the Collatz Conjecture</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=presburger-arithmetic-can-represent-the-collatz-conjecture href='#presburger-arithmetic-can-represent-the-collatz-conjecture'> § </a> Presburger arithmetic can represent the Collatz Conjecture</h2>
 An observation I had: the function
-<pre><code><span class="token function">f</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token operator">=</span> x<span class="token operator">/</span><span class="token number">2</span>      <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
-<span class="token function">f</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">3</span>x <span class="token operator">+</span> <span class="token number">1</span>   otherwise
+<pre><code>f(x) = x/2      if (x % 2 == 0)
+f(x) = 3x + 1   otherwise
 </code></pre>
 is a Presburger function, so by building better approximations to the
 transitive closure of a presburger function, one could get better answers
 to the Collatz conjecture. Unfortunately, ISL (the integer set library) of today
 is not great against the formidable foe.
 The code:
-<pre><code>#include <span class="token operator">&lt;</span>isl<span class="token operator">/</span>set<span class="token punctuation">.</span>h<span class="token operator">></span>
-#include <span class="token operator">&lt;</span>isl<span class="token operator">/</span>version<span class="token punctuation">.</span>h<span class="token operator">></span>
-#include <span class="token operator">&lt;</span>isl<span class="token operator">/</span>map<span class="token punctuation">.</span>h<span class="token operator">></span>
-#include <span class="token operator">&lt;</span>isl<span class="token operator">/</span>aff<span class="token punctuation">.</span>h<span class="token operator">></span>
-#include <span class="token operator">&lt;</span>isl<span class="token operator">/</span>local_space<span class="token punctuation">.</span>h<span class="token operator">></span>
-#include <span class="token operator">&lt;</span>isl<span class="token operator">/</span>constraint<span class="token punctuation">.</span>h<span class="token operator">></span>
-#include <span class="token operator">&lt;</span>isl<span class="token operator">/</span>space<span class="token punctuation">.</span>h<span class="token operator">></span>
+<pre><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;isl/set.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;isl/version.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;isl/map.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;isl/aff.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;isl/local_space.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;isl/constraint.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;isl/space.h></span></span>
 
-int <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     isl_ctx <span class="token operator">*</span>ctx <span class="token operator">=</span> <span class="token function">isl_ctx_alloc</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    const char <span class="token operator">*</span>s <span class="token operator">=</span> <span class="token string">"{ [x] -> [x / 2] : x % 2 = 0; [x] -> [3 * x + 1] : x % 2 = 1}"</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>s <span class="token operator">=</span> <span class="token string">"{ [x] -> [x / 2] : x % 2 = 0; [x] -> [3 * x + 1] : x % 2 = 1}"</span><span class="token punctuation">;</span>
 
     isl_map <span class="token operator">*</span>m <span class="token operator">=</span> <span class="token function">isl_map_read_from_str</span><span class="token punctuation">(</span>ctx<span class="token punctuation">,</span> s<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
@@ -42,15 +42,15 @@ int <span class="token function">main</span><span class="token punctuation">(</s
 <span class="token punctuation">}</span>
 </code></pre>
 Produces the somewhat disappointing, and yet expected output:
-<pre><code>$ clang bug<span class="token punctuation">.</span>c <span class="token operator">-</span>lisl <span class="token operator">-</span>Lisl<span class="token operator">-</span><span class="token number">0.20</span><span class="token operator">/</span><span class="token punctuation">.</span>libs <span class="token operator">-</span>o bug <span class="token operator">-</span>I<span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>include<span class="token operator">/</span>
-$ <span class="token punctuation">.</span><span class="token operator">/</span>bug
-<span class="token punctuation">{</span> <span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">[</span>o0<span class="token punctuation">]</span> <span class="token punctuation">:</span> <span class="token number">2</span>o0 <span class="token operator">=</span> x or <span class="token punctuation">(</span>exists <span class="token punctuation">(</span>e0 <span class="token operator">=</span> <span class="token function">floor</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">+</span> x<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">:</span> o0 <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">+</span> <span class="token number">3</span>x and <span class="token number">2e0</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">+</span> x<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">}</span>
-exact<span class="token punctuation">:</span> <span class="token number">0</span>
-map<span class="token punctuation">:</span>
-<span class="token punctuation">{</span> <span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">[</span>o0<span class="token punctuation">]</span> <span class="token punctuation">}</span>
+<pre><code>$ clang bug.c -lisl -Lisl-0.20/.libs -o bug -I/usr/local/include/
+$ ./bug
+{ [x] -> [o0] : 2o0 = x or (exists (e0 = floor((1 + x)/2): o0 = 1 + 3x and 2e0 = 1 + x)) }
+exact: 0
+map:
+{ [x] -> [o0] }
 </code></pre>
 I find it odd that it is unable to prove <i>anything</i> about the image, even that
 it is non-negative, for example. This is an interesting direction in which
 to improve the functions <code>isl_map_power</code> and <code>isl_map_transitive_closure</code>
 though.
-</body></html>
+</container></body></html>

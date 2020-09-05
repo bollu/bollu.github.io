@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
-img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.centered { margin-left: 30%; margin-right: 25%; }.image { }
+img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
@@ -7,7 +7,7 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-.latexinline { white-space: nowrap }pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><h2 class='centered'><a id=the-hilarious-commentary-by-dinosaure-in-ocaml-git href='#the-hilarious-commentary-by-dinosaure-in-ocaml-git'> § </a> The hilarious commentary by dinosaure in OCaml git</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=the-hilarious-commentary-by-dinosaure-in-ocaml-git href='#the-hilarious-commentary-by-dinosaure-in-ocaml-git'> § </a> The hilarious commentary by dinosaure in OCaml git</h2>
 the <a href=https://github.com/mirage/ocaml-git/>Ocaml-git</a> project is a
 re-implementation of <code>git</code> in <code>OCaml</code>. It's well-written, and I was
 walking through the codebase, when I found absolutely amazing, hilarious,
@@ -15,48 +15,48 @@ and deep comments from <code>dinosaure</code>. I really enjoyed reading through 
 codebase, and the existence of these comments made it more humane to read.
 I don't know who <code>dinosaure</code> is, but I'm really glad they wrote the comments
 they did, it really made my day.
-<h4 class='centered'><a id=the-one-that-takes-a-stab-at-haskell-for-fun href='#the-one-that-takes-a-stab-at-haskell-for-fun'> § </a> The one that takes a stab at Haskell for fun</h4>
-<pre><code><span class="token punctuation">(</span><span class="token operator">*</span> <span class="token function">XXX</span><span class="token punctuation">(</span>dinosaure<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>we can fix this detail but
-I'm lazy like haskell<span class="token punctuation">.</span> TODO<span class="token operator">!</span> <span class="token operator">*</span><span class="token punctuation">)</span>
+<h4><a id=the-one-that-takes-a-stab-at-haskell-for-fun href='#the-one-that-takes-a-stab-at-haskell-for-fun'> § </a> The one that takes a stab at Haskell for fun</h4>
+<pre><code>(* XXX(dinosaure): ...we can fix this detail but
+I'm lazy like haskell. TODO! *)
 </code></pre>
-<h4 class='centered'><a id=the-academic-one-that-broken-links-to-a-paper href='#the-academic-one-that-broken-links-to-a-paper'> § </a> The academic one that broken-links to a paper</h4>
-<pre><code><span class="token punctuation">(</span><span class="token operator">*</span> <span class="token function">XXX</span><span class="token punctuation">(</span>dinosaure<span class="token punctuation">)</span><span class="token punctuation">:</span> see this paper
-https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>github<span class="token punctuation">.</span>com<span class="token operator">/</span>ocamllabs<span class="token operator">/</span>papers<span class="token operator">/</span>blob<span class="token operator">/</span>master<span class="token operator">/</span>irmin<span class="token operator">/</span><span class="token number">2014.08</span><span class="token punctuation">.</span>matthieu<span class="token operator">/</span>rapport<span class="token punctuation">.</span>pdf <span class="token operator">*</span><span class="token punctuation">)</span>
+<h4><a id=the-academic-one-that-broken-links-to-a-paper href='#the-academic-one-that-broken-links-to-a-paper'> § </a> The academic one that broken-links to a paper</h4>
+<pre><code>(* XXX(dinosaure): see this paper
+https://github.com/ocamllabs/papers/blob/master/irmin/2014.08.matthieu/rapport.pdf *)
 </code></pre>
-<h4 class='centered'><a id=the-one-about-the-frustrations-of-bug-hunting href='#the-one-about-the-frustrations-of-bug-hunting'> § </a> The one about the frustrations of bug-hunting</h4>
-<pre><code><span class="token punctuation">(</span><span class="token operator">*</span> <span class="token function">XXX</span><span class="token punctuation">(</span>dinosaure<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token operator">~</span>chunked<span class="token punctuation">:</span><span class="token boolean">false</span><span class="token punctuation">]</span> is mandatory<span class="token punctuation">,</span> I don't want to explain
-why <span class="token punctuation">(</span>I lost one day to find this bug<span class="token punctuation">)</span> but believe me<span class="token punctuation">.</span> <span class="token operator">*</span><span class="token punctuation">)</span>
+<h4><a id=the-one-about-the-frustrations-of-bug-hunting href='#the-one-about-the-frustrations-of-bug-hunting'> § </a> The one about the frustrations of bug-hunting</h4>
+<pre><code>(* XXX(dinosaure): [~chunked:false] is mandatory, I don't want to explain
+why (I lost one day to find this bug) but believe me. *)
 </code></pre>
-<h4 class='centered'><a id=the-one-about-a-potential-heisenbug href='#the-one-about-a-potential-heisenbug'> § </a> The one about a potential heisenbug</h4>
-<pre><code><span class="token punctuation">(</span><span class="token operator">*</span> <span class="token function">XXX</span><span class="token punctuation">(</span>dinosaure<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">if</span><span class="token punctuation">,</span> one day<span class="token punctuation">,</span> we find a bug about the serialization of the
-IDX file<span class="token punctuation">,</span> may be it's about this <span class="token keyword">function</span> <span class="token punctuation">(</span>stable<span class="token operator">/</span>unstable sort<span class="token punctuation">)</span><span class="token punctuation">.</span> <span class="token operator">*</span><span class="token punctuation">)</span>
+<h4><a id=the-one-about-a-potential-heisenbug href='#the-one-about-a-potential-heisenbug'> § </a> The one about a potential heisenbug</h4>
+<pre><code>(* XXX(dinosaure): if, one day, we find a bug about the serialization of the
+IDX file, may be it's about this function (stable/unstable sort). *)
 </code></pre>
-<h4 class='centered'><a id=the-requisite-comment-in-french-for-an-ocaml-project href='#the-requisite-comment-in-french-for-an-ocaml-project'> § </a> The requisite comment in french for an OCaml project</h4>
-<pre><code><span class="token punctuation">(</span><span class="token operator">*</span> <span class="token function">XXX</span><span class="token punctuation">(</span>dinosaure<span class="token punctuation">)</span><span class="token punctuation">:</span> bon ici<span class="token punctuation">,</span> c<span class="token string">'est une note compliqué, j'</span>ai mis <span class="token number">2</span> jours
-à fixer le bug<span class="token punctuation">.</span> Donc je l<span class="token string">'explique en français, c'</span>est plus simple<span class="token punctuation">.</span>
-En gros<span class="token punctuation">,</span> <span class="token punctuation">[</span>Helper<span class="token punctuation">.</span>MakeDecoder<span class="token punctuation">]</span> utilise ce buffer comme buffer interne
-pour gérer les alterations<span class="token punctuation">.</span> Ce qui ce passe<span class="token punctuation">,</span> c'est que dans la
-fonction <span class="token punctuation">[</span>refill<span class="token punctuation">]</span><span class="token punctuation">,</span> il s<span class="token string">'agit de compléter à partir d'</span>un <span class="token punctuation">[</span>input<span class="token punctuation">]</span>
-<span class="token punctuation">(</span>typiquement <span class="token punctuation">[</span>zl<span class="token punctuation">]</span><span class="token punctuation">)</span> le buffer interne<span class="token punctuation">.</span> C'est finalement un
-__mauvais__ jeu entre un <span class="token punctuation">[</span>Cstruct<span class="token punctuation">.</span>t<span class="token punctuation">]</span> et un <span class="token punctuation">[</span>Bigarray<span class="token punctuation">]</span><span class="token punctuation">.</span>
-Il s'agit de connaître la véritable taille du <span class="token punctuation">[</span>Bigarray<span class="token punctuation">]</span> et de
-rajouter avec <span class="token punctuation">[</span>blit<span class="token punctuation">]</span> le contenu de l'<span class="token punctuation">[</span>input<span class="token punctuation">]</span> si la taille du
-<span class="token punctuation">[</span>Bigarray<span class="token punctuation">]</span> <span class="token punctuation">(</span>et pas du <span class="token punctuation">[</span>Cstruct<span class="token punctuation">]</span><span class="token punctuation">)</span> est suffisante<span class="token punctuation">.</span>
-Avant<span class="token punctuation">,</span> cette modification<span class="token punctuation">,</span> <span class="token punctuation">[</span>zl<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>de<span class="token punctuation">]</span> et <span class="token punctuation">[</span>io<span class="token punctuation">]</span> partagaient le même
-<span class="token punctuation">[</span>Bigarray<span class="token punctuation">]</span> découpé <span class="token punctuation">(</span>avec <span class="token punctuation">[</span>Cstruct<span class="token punctuation">]</span><span class="token punctuation">)</span> en <span class="token number">3.</span> Donc<span class="token punctuation">,</span> dans le
-<span class="token punctuation">[</span>MakeDecoder<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>refill<span class="token punctuation">]</span> considérait <span class="token punctuation">(</span>pour des gros fichiers faisant
-plus de <span class="token number">0x8000</span> bytes<span class="token punctuation">)</span> que après <span class="token punctuation">[</span>de<span class="token punctuation">]</span><span class="token punctuation">,</span> nous avions encore de la
-place <span class="token operator">-</span> et dans ce cas<span class="token punctuation">,</span> nous avions <span class="token punctuation">[</span>io<span class="token punctuation">]</span><span class="token punctuation">.</span>
-Ainsi<span class="token punctuation">,</span> on <span class="token punctuation">[</span>blit<span class="token punctuation">]</span>ait <span class="token punctuation">[</span>zl<span class="token punctuation">]</span> dans <span class="token punctuation">[</span>de<span class="token operator">+</span><span class="token function">sizeof</span><span class="token punctuation">(</span>de<span class="token punctuation">)</span> <span class="token operator">==</span> io<span class="token punctuation">]</span><span class="token punctuation">,</span> et finalement<span class="token punctuation">,</span>
+<h4><a id=the-requisite-comment-in-french-for-an-ocaml-project href='#the-requisite-comment-in-french-for-an-ocaml-project'> § </a> The requisite comment in french for an OCaml project</h4>
+<pre><code>(* XXX(dinosaure): bon ici, c'est une note compliqué, j'ai mis 2 jours
+à fixer le bug. Donc je l'explique en français, c'est plus simple.
+En gros, [Helper.MakeDecoder] utilise ce buffer comme buffer interne
+pour gérer les alterations. Ce qui ce passe, c'est que dans la
+fonction [refill], il s'agit de compléter à partir d'un [input]
+(typiquement [zl]) le buffer interne. C'est finalement un
+__mauvais__ jeu entre un [Cstruct.t] et un [Bigarray].
+Il s'agit de connaître la véritable taille du [Bigarray] et de
+rajouter avec [blit] le contenu de l'[input] si la taille du
+[Bigarray] (et pas du [Cstruct]) est suffisante.
+Avant, cette modification, [zl], [de] et [io] partagaient le même
+[Bigarray] découpé (avec [Cstruct]) en 3. Donc, dans le
+[MakeDecoder], [refill] considérait (pour des gros fichiers faisant
+plus de 0x8000 bytes) que après [de], nous avions encore de la
+place - et dans ce cas, nous avions [io].
+Ainsi, on [blit]ait [zl] dans [de+sizeof(de) == io], et finalement,
 on se retrouvait à essayer de décompresser ce que nous avions
-décompressé<span class="token punctuation">.</span> <span class="token punctuation">(</span>YOLO<span class="token punctuation">)</span><span class="token punctuation">.</span>
-Donc<span class="token punctuation">,</span> on considère maintenant <span class="token punctuation">[</span>de<span class="token punctuation">]</span> comme un <span class="token punctuation">[</span>Cstruct<span class="token punctuation">.</span>t<span class="token punctuation">]</span> et un
-<span class="token punctuation">[</span>Bigarray<span class="token punctuation">]</span> physiquement différent pour éviter ce problème<span class="token punctuation">.</span>
-Cependant<span class="token punctuation">,</span> il faudrait continuer à introspecter car j'ai
-l'intuition que pour un fichier plus gros que <span class="token punctuation">[</span><span class="token number">2</span> <span class="token operator">*</span> <span class="token number">0x8000</span><span class="token punctuation">]</span><span class="token punctuation">,</span> on
-devrait avoir un problème<span class="token punctuation">.</span> Donc TODO<span class="token punctuation">.</span> <span class="token operator">*</span><span class="token punctuation">)</span>
+décompressé. (YOLO).
+Donc, on considère maintenant [de] comme un [Cstruct.t] et un
+[Bigarray] physiquement différent pour éviter ce problème.
+Cependant, il faudrait continuer à introspecter car j'ai
+l'intuition que pour un fichier plus gros que [2 * 0x8000], on
+devrait avoir un problème. Donc TODO. *)
 </code></pre>
-<h4 class='centered'><a id=the-deep-one href='#the-deep-one'> § </a> The deep one</h4>
-<pre><code><span class="token punctuation">(</span><span class="token operator">*</span> <span class="token function">XXX</span><span class="token punctuation">(</span>dinosaure<span class="token punctuation">)</span><span class="token punctuation">:</span> at the end<span class="token punctuation">,</span> we don't care <span class="token keyword">if</span> we lost something<span class="token punctuation">.</span> <span class="token operator">*</span><span class="token punctuation">)</span>
+<h4><a id=the-deep-one href='#the-deep-one'> § </a> The deep one</h4>
+<pre><code>(* XXX(dinosaure): at the end, we don't care if we lost something. *)
 </code></pre>
-</body></html>
+</container></body></html>

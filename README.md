@@ -333,7 +333,11 @@ that `this-style-of-writing` variables is called as `kebab-case`. Very
 evocative.
 
 # Localization: Introducing epsilons
-- 
+
+We can think of localization at a zero divisors
+as going from a regime of having divisors of zero into a
+regime of having $\epsilon$. I'll explore this perspective by consider
+$R = \mathbb Z/12 \mathbb Z$.
 
 
 # NaN punning
@@ -476,7 +480,7 @@ solver for linear and quadratic equation systems.
 
 - [compile the C+ bindings](https://stackoverflow.com/questions/46779850/cannot-compile-gurobi-examples-in-version-7-5-1)
 
-```
+```text
 $ cd /path/to/gurobi90/linux64/src/build/ && make
 ```
 
@@ -656,7 +660,7 @@ Consider a system of a particle in a well. We consider two energy levels:
 that with `E = 0`, and `E = 1`. This gives us the following five
 states:
 
-<img src=/>
+<img src=static/burnside//>
 
 now I want to simulate this system, like a good computer scientist. So let's
 write the stupdiest one possible, `Δ0`, that doesn't simulate anything
@@ -696,81 +700,81 @@ supercolliders simply to keep the knowledge of how to build it alive.
 
 # Edward Kmett's list of useful math
 
-I use Bayesian statistics constantly for probabilistic programming and neural
-networks. Calculus gave me access to understand automatic differentiation,
-which gets used in everything I do. Real analysis doesn't come up often, but
-intermediate value thm. style arguments are handy.
-
-
-I don't use classic geometry, but I when I was doing graphics I used projective
-geometry, and that served as a gateway to understand category theory's duality
-principle, and I use category theory to organize most of the code I write.
-
-I took one course on differential geometry. The knowledge I gained from it
-probably led to about half of my income to date. I've made a career out of
-weaponizing "obscure" math, e.g. using toric varieties of rational functions of
-Zhegalkin polynomials to schedule instructions...
-
-
-Differential equations? Physics? Well, I use Hamiltonian methods for most of
-the sampling I do in the world of probabilistic programming. So understanding
-symplectic integrators is a big step, and I have to move frictionless particles
-subject to a Hamiltonian, so there's diff eq.
-
-
-Fourier analysis, heat equations? Well, if I want to approximate a
-space/distribution, http://ddg.math.uni-goettingen.de/pub/GeodesicsInHeat.pdf
-
-Learning group theory "bottom up" from monoids and the like has been useful,
-because I use monoids basically everywhere as a functional programmer to
-aggregate data. It led to the work I did at S&P Capital IQ, and later to
-basically my entire niche as a functional programmer.
-
-But understanding more of the surrounding landscape has been useful as well, as
-I use all sorts of lattices and order theory when working with propagators. And
-I use regular and inverse semigroups (note, not groups!) when working with all
-sorts of fast parsing techniques.
-
-
-Complex analysis? Understanding Moebius transformations means I can understand
-how continued fractions work, which leads to models for computable reals that
-don't waste computation and are optimally lazy. Knowing analytic functions lets
-me understand complex step differentiation.
-
-
-Linear algebra is in everything I've done since highschool. Learning a bit of
-geometric algebra, and playing around with Plucker coordinates led to me
-licensing tech to old game companies for computational visibility back before
-it was a "solved" problem.
-
-Wandering back a bit, Gröbner bases wind up being useful for comparing circuits
-modulo 'don't care' bits for impossible situations, and all sorts of other
-simplification tasks.
-
-
-Let's go obscure. Pade approximants? Good rational approximations, not
-polynomial ones. Sounds academic, but computing exp and log is expensive, and
-fast rational approximations can be conservative, monotone and have nice
-derivatives, speeding NN-like designs a lot.
-
-
-Weird number systems => Data structures.  Category theory acts as a rosetta
-stone for so many other areas of math it isn't even funny. You can understand
-almost all of the essential bits of quantum computing just knowing by category
-theory.
-
-
-Logic. Well, which logic? You run into a modal logic in a philosophy class
-some time and think of it as a clever hack, but monads in FP are basically a
-modality. Modal logics for necessity/possibility model effect systems well.
-Substructural logics to manage resource usage...
-
-
-
-I don't use a lot of number theory. There. Mind you, this is also one of those
-areas where I'm just standing on weak foundations, so I don't know what I
-don't know. I just know it's hard to do all sorts of things that sound easy
-and try to muddle through w/ my limited background.
+- I use Bayesian statistics constantly for probabilistic programming and neural
+  networks. Calculus gave me access to understand automatic differentiation,
+  which gets used in everything I do. Real analysis doesn't come up often, but
+  intermediate value thm. style arguments are handy.
+  
+  
+- I don't use classic geometry, but I when I was doing graphics I used projective
+  geometry, and that served as a gateway to understand category theory's duality
+  principle, and I use category theory to organize most of the code I write.
+  
+- I took one course on differential geometry. The knowledge I gained from it
+  probably led to about half of my income to date. I've made a career out of
+  weaponizing "obscure" math, e.g. using toric varieties of rational functions of
+  Zhegalkin polynomials to schedule instructions...
+  
+  
+- Differential equations? Physics? Well, I use Hamiltonian methods for most of
+  the sampling I do in the world of probabilistic programming. So understanding
+  symplectic integrators is a big step, and I have to move frictionless particles
+  subject to a Hamiltonian, so there's diff eq.
+  
+  
+- Fourier analysis, heat equations? Well, if I want to approximate a
+  space/distribution, http://ddg.math.uni-goettingen.de/pub/GeodesicsInHeat.pdf
+  
+- Learning group theory "bottom up" from monoids and the like has been useful,
+  because I use monoids basically everywhere as a functional programmer to
+  aggregate data. It led to the work I did at S&P Capital IQ, and later to
+  basically my entire niche as a functional programmer.
+  
+- But understanding more of the surrounding landscape has been useful as well, as
+  I use all sorts of lattices and order theory when working with propagators. And
+  I use regular and inverse semigroups (note, not groups!) when working with all
+  sorts of fast parsing techniques.
+  
+  
+- Complex analysis? Understanding Moebius transformations means I can understand
+  how continued fractions work, which leads to models for computable reals that
+  don't waste computation and are optimally lazy. Knowing analytic functions lets
+  me understand complex step differentiation.
+  
+  
+- Linear algebra is in everything I've done since highschool. Learning a bit of
+  geometric algebra, and playing around with Plucker coordinates led to me
+  licensing tech to old game companies for computational visibility back before
+  it was a "solved" problem.
+  
+- Wandering back a bit, Gröbner bases wind up being useful for comparing circuits
+  modulo 'don't care' bits for impossible situations, and all sorts of other
+  simplification tasks.
+  
+  
+- Let's go obscure. Pade approximants? Good rational approximations, not
+  polynomial ones. Sounds academic, but computing exp and log is expensive, and
+  fast rational approximations can be conservative, monotone and have nice
+  derivatives, speeding NN-like designs a lot.
+  
+  
+- Weird number systems => Data structures.  Category theory acts as a rosetta
+  stone for so many other areas of math it isn't even funny. You can understand
+  almost all of the essential bits of quantum computing just knowing by category
+  theory.
+  
+  
+- Logic. Well, which logic? You run into a modal logic in a philosophy class
+  some time and think of it as a clever hack, but monads in FP are basically a
+  modality. Modal logics for necessity/possibility model effect systems well.
+  Substructural logics to manage resource usage...
+  
+  
+  
+- I don't use a lot of number theory. There. Mind you, this is also one of those
+  areas where I'm just standing on weak foundations, so I don't know what I
+  don't know. I just know it's hard to do all sorts of things that sound easy
+  and try to muddle through w/ my limited background.
 
 
 # Cokernel is not sheafy
@@ -1873,7 +1877,7 @@ as well as what element it is represented by.
   respect to $p$, we get a unique! map that makes the diagram commute.But we have
   two such maps: $id_p$ as well as $q2p . p2q$. Hence we must have $id_p = q2p \cdot p2q$. In pictures:
 
-```      
+```
           ∃!id(p)
           +---+
           |   |
@@ -4137,7 +4141,7 @@ to `1`. What is happening?
 ### Computing $(e^x - 1)/x$
 One way to evaluate this function is as follows:
 
-```cpp 
+```cpp
 double f(double x) { return x == 0 ? 1 : (pow(M_E, x) - 1) / x; }
 ```
 
@@ -7201,8 +7205,8 @@ along with function composition forms a semigroup. This is in fact stronger
 than a semigroup. There exists:
 
 - An identify function $e_x: X \rightarrow X; e_X(x) = x$
-- A zero function $\theta_x: X \rightharpoonup X; \theta_x(x) = undef$, where by
-  $undef$ we mean that it is _undefined_.
+- A zero function $\theta_x: X \rightharpoonup X; \theta_x(x) = \texttt{undef}$, where by
+  $\texttt{undef}$ we mean that it is _undefined_.
 
 #### Transformation semigroup(TS)
 
@@ -7232,7 +7236,7 @@ however, $f \neq 1_Q$ , andh ence, $S$ is a not a _transformation monoid_.
 
 ##### Examples of transformation semigroups
 
-1. $(X, \{ \theta(x) = undef \})$. The semigroup with the empty transformation.
+1. $(X, \{ \theta(x) = \texttt{undef} \})$. The semigroup with the empty transformation.
 2. $(X, \emptyset)$, the semigroup with _no_ transformations.
 
 
@@ -7285,7 +7289,7 @@ x & \rightarrow & y \\
 \end{array}
 $$
 
-If $s_x(\phi(q_y)) = \phi(t_y(q_y))$, then we say that $t_y$ covers $s_x$ relative to $\phi$.
+If $s_x(\phi(q_y)) = \phi(t_y(q_y))$ then we say that $t_y$ covers $s_x$ relative to $\phi$.
 We imagine the $t_y$ lying above $s_x$, being projected down by $\phi$.
 
 If a fixed $\phi$, for all $s_x \in S_X$ there exists a $t_y \in S_Y$ such that
@@ -7481,13 +7485,17 @@ the **holonomy group** of $a$.
 We have that $G_a \prec S$ since $G_a$ is a quotient of the sub-semigroup
 $\{ s | s \in S, as = a \}$. (TODO: so what? why does this mean that it's $\prec$?)
 
-**Theorem:** if $a \sim b$, then $H_a \simeq H_b$
-  (similar subsets have isomorphic holonomy transition systems).
-**Proof:** Let us assume that $a \neq b$. since $a \sim b$, we have elements
+##### Theorem:
+
+If $a \sim b$, then $H_a \simeq H_b$ (similar subsets have isomorphic holonomy transition systems).
+
+##### Proof:
+
+Let us assume that $a \neq b$. since $a \sim b$, we have elements
 of the form $s, s^{-1} \in S$ such that $b = s(a)$, $a = s^{-1}(b)$.
 
 Recall that for $b_a \in B_a$ is such that for a member $g \in G_a$,
-$g(b_a) = b_a$. $B_b$ must have the element $s(b_a)$. [TODO!]
+$g(b_a) = b_a$. $B_b$ must have the element $s(b_a) $  [TODO!]
 
 #### Holonomy decomposition
 
@@ -10599,7 +10607,7 @@ get this to work is:
 
 #### the patch
 
-```patch
+```diff
 diff --git a/incunabulum.c b/incunabulum.c
 index 2cae744..778e35a 100644
 --- a/incunabulum.c
