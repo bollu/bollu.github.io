@@ -7218,7 +7218,7 @@ Then the semigroup $X \equiv (Q, S)$ is called as the
 
 We call $X \equiv (Q, S)$ as a _transformation monoid_ if $S$ contains $1_Q(q) = q$.
 
-##### Subtlety of being at transformation monoid.
+##### Subtlety of being a transformation monoid.
 
 There is some subttlety here. Just because $S$ is a monoid does not mean that
 it that is a _transformation monoid_. It must have the identity element of
@@ -7292,21 +7292,11 @@ $t$ covers $s$ relative to $\phi$, then we say that $\phi:$ is a
 _relation of automata_.
 
 - If $\phi: Q_Y \rightarrow Q_X$ is surjective,
-  then we say that $\phi$ is a __relational covering__ and write:
-
-$$
-X \triangleleft_{\phi} Y
-$$
-
+  then we say that $\phi$ is a __relational covering__ and write: $X \triangleleft_{\phi} Y$.
 - If $\phi \subseteq Q_Y \times Q_X $ is _both_ surjective and partial,
-  then we say that $\phi$ is a __covering__ and write:
-
-$$
-X \prec_\phi Y
-$$
-
-If $X \prec_\phi Y$, we say that $Y$ dominates $X$, or $Y$ covers $X$, or
-$X$ divides $Y$.
+  then we say that $\phi$ is a __covering__ and write: $X \prec_\phi Y$
+- If $X \prec_\phi Y$, we say that $Y$ dominates $X$, or $Y$ covers $X$, or
+  $X$ divides $Y$.
 
 #### Checking coverings and generating subsets
 
