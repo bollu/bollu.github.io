@@ -16,7 +16,8 @@
   navigation inside a static site.
 - [`httpserver.h`](https://github.com/jeremycw/httpserver.h) for a minimal HTTP server to run `libCURL` on.
 - [`libCURL` API](https://curl.haxx.se/libcurl/c/) to check that all links exist.
-- [crankJS](https://crank.js.org/)
+- [crankJS](https://crank.js.org/): Lightweight React replacement if I ever need it.
+- [Ace editor](https://ace.c9.io/#nav=embedding) for a lightweight text editor inside the browser.
 
 
 How to check if horizontal scrollbar exists:

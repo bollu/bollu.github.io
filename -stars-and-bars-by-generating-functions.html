@@ -1,0 +1,89 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
+img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+blockquote { margin-left: 0px; margin-right: 0px; } .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
+ .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
+.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=-stars-and-bars-by-generating-functions href='#-stars-and-bars-by-generating-functions'> § </a> stars and bars by generating functions</h2>
+ Say I have <code>C</code> colors of objects, and <code>S</code> slots to put these objects in. In
+ how manys can I put objects into slots, without regard to order? For example,
+ say we have 4 colors <code>c, m, y, k</code> and <code>2</code> slots <code>_ _</code>. The number of colorings
+ that I want to count is:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>cc cm cy ck
+mc mm my mk
+yc ym yy yk
+kc km ky kk
+</tt></pre>
+</div>
+Everything coloring on the lower diagonal (say, <code>mc</code>) is equivalent to one on
+the upper diagonal (<code>cm</code>). So in total, there are 10 colorings:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>cc cm cy ck
+*  mm my mk
+*  *  yy yk
+*  *  *  kk
+</tt></pre>
+</div>
+One can solve this using stars-and-bars. Take the number of slots <code>S</code> to be the
+number of stars. Take the number of colors <code>C</code> to be the number of bars. The
+answer to the stars-and-basrs is the same as the coloring question.
+I don't like stars and bars for this, because it seems to force an ordering of
+the colors <code>c1 < c2 < .. < cn</code>. [which bar cooresponds to which color]. Is
+there some way to not have to do this?
+Is there some other way to show the <code>(n + k - 1)Ck</code> without imposing this
+ordering, or some other way to count this quantity?
+One other way you can look at this is using multinomial expansion, but its
+computation is slightly more involved. Its advantage is that it ignores
+ordering of the objects, which is what you desire.
+In this case, we represent each color as the polynomial 1 + x + x^2, here the
+power of x represents the number of instances you are taking of that color. 
+So, if you take (1 + x + x^2)^4, you have found the number of ways to arrange
+four colors, for different numbers of slots. If you take coefficient of x^2
+from that polynomial, you get the answer to your question 
+Why does this set of shady manipulations not work?
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>answer = coeff. of x^2 in (1 + x + x^2)^4
+[We can add higher powers, won't change coeff of x^2]
+answer = coeff. of x^2 in (1 + x + x^2 + x^3)^4
+answer = coeff. of x^2 in (1 + x + x^2 + ...)^4
+answer = coeff. of x^2 in (1/(1-x))^4
+
+Call f(x) = (1/(1-x))^4
+f(x) =taylor= f(0) + f'(x) x + f''(0) x^2/2 + f'''(0) x^3 / 6 + ...
+
+1/(1-x)^4 =taylor= ... + (1/(1-x)^4)''(0) x^2/2 + ...
+
+so:
+
+answer = coeff. of x^2 in ... + (1/(1-x)^4)''(0) x^2/2 + ...
+</tt></pre>
+</div>
+Now compute <code>(1/(1-x)^4)''</code> evaluated at <code>0</code> and divide
+by <code>2</code>. This gives:
+<div class='code'><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>(1/(1-x)^4)'' (0)
+= (-4/(1-x)^5)' (0)
+= (20/(1-x)^6) (0)
+= (20/(1-0)^6)
+= (20)
+</tt></pre>
+</div>
+so we get the answer as <code>answer = 20/2! = 10</code>. ~~This is wrong, it ought to be <code>5</code>.~~
+I am stupid, the answer is indeed <code>10</code>, as shown by exhaustively enumerating before. The world is safe.
+</container></body></html>

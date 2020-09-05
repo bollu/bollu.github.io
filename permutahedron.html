@@ -1,13 +1,13 @@
-<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
-img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
+img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.centered { margin-left: 30%; margin-right: 25%; }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
 a:active { color: #1a73e8; text-decoration: none; }
 
- .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
- .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
-.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=permutahedron href='#permutahedron'> § </a> Permutahedron</h2>
+blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
+pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
+.latexinline { white-space: nowrap }pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><h2 class='centered'><a id=permutahedron href='#permutahedron'> § </a> Permutahedron</h2>
 The permutahedron over <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span></span> letters is a polytope which is defined as the convex
 hull of all permutations of the point <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(1, 2, \dots, n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></span>. 
 For example, the permutahedron over 3 letters is the convex hull of the
@@ -21,8 +21,8 @@ We wish to prove that such a situation does not happen in the case of the
 permutahedron.
 I have not seen an elementary proof that each point that is a permutation of
 the original is a vertex, so I'm recording that proof out of interest.
-<h4><a id=showing-that-all-permutations-of-1-2-dots-n-are-vertices href='#showing-that-all-permutations-of-1-2-dots-n-are-vertices'> § </a> Showing that all permutations of <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(1, 2, \dots, n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></span> are vertices</h4>
-<h4><a id=core-idea href='#core-idea'> § </a> Core idea</h4>
+<h4 class='centered'><a id=showing-that-all-permutations-of-1-2-dots-n-are-vertices href='#showing-that-all-permutations-of-1-2-dots-n-are-vertices'> § </a> Showing that all permutations of <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(1, 2, \dots, n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></span> are vertices</h4>
+<h4 class='centered'><a id=core-idea href='#core-idea'> § </a> Core idea</h4>
 start by looking at index <code>i</code> of the "largest value" <code>N</code> in the point <code>P</code>.
 Since it's the largest point, if it's a convex combination, all other points in
 the convex combination must have the same "largest value" at that index <code>i</code>. So
@@ -32,32 +32,18 @@ must be equal to <code>P</code>. But this is absurd, because all vertices are di
 Hence, the only way for this to work out is if we have only one point that we
 are convex-summing over. That is, <code>P</code> <i>cannot</i> be written as the convex sum of
 two or more vertices.
-<h4><a id=formal-proof href='#formal-proof'> § </a> Formal proof</h4>
+<h4 class='centered'><a id=formal-proof href='#formal-proof'> § </a> Formal proof</h4>
 Let us be working with permutations of <code>[1, 2, ..., N]</code>. Pick point <code>P</code>. Assume
 <code>P</code> is in the convex sum of some <code>{ Xi }</code>.
 Let <code>index(N, P)</code> be the index of number <code>N</code> in <code>P</code>. For example, if 
 <code>P = [2, 3, 1]</code>, then 
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code><span class="token function">index</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> P<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span> <span class="token punctuation">(</span>assuming <span class="token number">0</span><span class="token operator">-</span>based indexing<span class="token punctuation">)</span>
+<span class="token function">index</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> P<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token function">index</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> P<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">2</span>
+</code></pre>
 If <code>P</code> is the convex sum of vertices <code>{ Xi }</code>, all of them <i>must</i> have that:
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code>Xi<span class="token punctuation">[</span><span class="token function">index</span><span class="token punctuation">(</span>N<span class="token punctuation">,</span> P<span class="token punctuation">)</span><span class="token punctuation">]</span>  <span class="token operator">=</span> N forall Xi <span class="token keyword">in</span> the convex sum
+</code></pre>
 since <code>N</code> is the largest value that <code>X_I</code> can have at any index. The only way
 to get the maximum value by a convex sum is for all values to be that maximum
 value.
@@ -72,24 +58,16 @@ permutation of <code>[1..n]</code>. Hence, <code>{ Xi }</code> can contain only 
 this point is <code>P</code>.
 Hence, <code>P</code> cannot be written as the convex combination of other points. Hence,
 <code>P</code> is a vertex.
-<h4><a id=proof-that-convex-sum-of-maximum-must-have-maximum href='#proof-that-convex-sum-of-maximum-must-have-maximum'> § </a> Proof that convex sum of maximum must have maximum</h4>
+<h4 class='centered'><a id=proof-that-convex-sum-of-maximum-must-have-maximum href='#proof-that-convex-sum-of-maximum-must-have-maximum'> § </a> Proof that convex sum of maximum must have maximum</h4>
 Assume we have values <code>{v1, v2, ... vn}</code> where without loss of generality,
 <code>v1 <= v2 <= ... <= vn</code>. We can always relabel otherwise.
 Now we want to write <code>vn</code> as the convex sum of <code>{v1, v2, ... vn}</code>. We can draw this on
 the number line as:
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code><span class="token operator">--</span><span class="token operator">-</span><span class="token punctuation">[</span>v1<span class="token operator">--</span>v2<span class="token operator">--</span>v3<span class="token operator">--</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">--</span>vn<span class="token punctuation">]</span><span class="token operator">--</span><span class="token operator">-</span>
+</code></pre>
 <ul><li> A convex sum must be inside this line segment between <code>[v1--...--vn]</code> (<code>vn</code> is
   to the rightmost since it's known to be the largest value in <code>{v1...vn}</code>).</li><li> So, if we try to write <code>vn</code> as the convex sum, we <i>must</i> have the coefficient
   of <code>vn=1</code> and the coefficient of all other points <code>=0</code>, since any other
   combination will "pull the convex sum away from the right (where <code>vn</code> sits),
   towards the left".</li></ul>
-</container></body></html>
+</body></html>

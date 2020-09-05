@@ -1,13 +1,13 @@
-<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
-img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
+img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.centered { margin-left: 30%; margin-right: 25%; }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
 a:active { color: #1a73e8; text-decoration: none; }
 
- .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
- .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
-.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=edit-distance href='#edit-distance'> § </a> Edit distance</h2>
+blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
+pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
+.latexinline { white-space: nowrap }pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><h2 class='centered'><a id=edit-distance href='#edit-distance'> § </a> Edit distance</h2>
 This implementation of edit distance crystallizes the fact that when computing
 edit distance, we only ever move forwards on solving the problem. we <i>do not</i>
 store the results of the overlapping computations, though we could. Rather,
@@ -20,126 +20,65 @@ string into the destination string. The operations allowed are to:
 <ul><li> Insert a character from the destination to the source.</li><li> Remove a character from the source.</li><li> Replace a character in the source with a character from the destination.</li></ul>
 We want to minimise the number of operations to be used. 
 Let's see how we model this.
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code><span class="token punctuation">{</span><span class="token operator">-</span># LANGUAGE ViewPatterns #<span class="token operator">-</span><span class="token punctuation">}</span>
+type Ix <span class="token operator">=</span> Int<span class="token punctuation">;</span> type DestIx <span class="token operator">=</span> Ix<span class="token punctuation">;</span> type SrcIx <span class="token operator">=</span> Ix<span class="token punctuation">;</span>
+data Move <span class="token operator">=</span> InsertFromDest DestIx <span class="token operator">|</span>
+            RemoveFromSrc SrcIx <span class="token operator">|</span>
+            ReplaceSrcWithDest SrcIx DestIx
+        <span class="token function">deriving</span><span class="token punctuation">(</span>Show<span class="token punctuation">)</span>
+</code></pre>
 Our cost model says that each move costs <code>1</code>. We are charged for every
 move we make. We are to minimize the number of operations.
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code>movescost <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>Move<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">></span> Int<span class="token punctuation">;</span> movescost <span class="token operator">=</span> length
+</code></pre>
 We model this as us having a <code>Cursor</code> which contains  list <code>[a]</code> and information
 about where we are in the list as an <code>Ix</code>. 
 This is the same as a <code>Zipper</code> for a list, except that in this case, we only
 allow ourselves to walk forward. 
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code>data Cursor a <span class="token operator">=</span> Cursor Ix <span class="token punctuation">[</span>a<span class="token punctuation">]</span>
+</code></pre>
 <ul><li> <code>cdone</code> tells is if we have completely consumed a cursor.</li><li> <code>cix</code> tells us the index of the cursor.</li><li> <code>cval</code> lets us dereference a cursor.</li><li> <code>incr</code> lets us move a cursor to the next array entry.</li><li> <code>cursor</code> converts a list into a <code>Cursor</code> at the first index.</li></ul>
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code>cdone <span class="token punctuation">:</span><span class="token punctuation">:</span> Cursor a <span class="token operator">-</span><span class="token operator">></span> Bool<span class="token punctuation">;</span> cdone <span class="token punctuation">(</span>Cursor ix vs<span class="token punctuation">)</span> <span class="token operator">=</span> ix <span class="token operator">>=</span> length vs
+cix <span class="token punctuation">:</span><span class="token punctuation">:</span> Cursor a <span class="token operator">-</span><span class="token operator">></span> Ix<span class="token punctuation">;</span> cix <span class="token punctuation">(</span>Cursor ix _<span class="token punctuation">)</span> <span class="token operator">=</span> ix
+cval <span class="token punctuation">:</span><span class="token punctuation">:</span> Cursor a <span class="token operator">-</span><span class="token operator">></span> a<span class="token punctuation">;</span> cval c@<span class="token punctuation">(</span>Cursor ix vs<span class="token punctuation">)</span> <span class="token operator">=</span> vs <span class="token operator">!</span><span class="token operator">!</span> ix
+incr <span class="token punctuation">:</span><span class="token punctuation">:</span> Cursor a <span class="token operator">-</span><span class="token operator">></span> Cursor a<span class="token punctuation">;</span> incr <span class="token punctuation">(</span>Cursor ix vs<span class="token punctuation">)</span> <span class="token operator">=</span> Cursor <span class="token punctuation">(</span>ix<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span> vs
+cursor <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>a<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">></span> Cursor a<span class="token punctuation">;</span> cursor <span class="token operator">=</span> Cursor <span class="token number">0</span>
+</code></pre>
 We implement <code>edit</code>, that tells us how to edit the source string into
 the destination string. The convention is <code>edit <src-str> <dest-str></code>.
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code><span class="token operator">--</span> <span class="token operator">|</span> decide how to get ixth character of bs from our as<span class="token punctuation">.</span>
+edit <span class="token punctuation">:</span><span class="token punctuation">:</span> Eq a <span class="token operator">=</span><span class="token operator">></span> Cursor a <span class="token operator">-</span><span class="token operator">></span> Cursor a <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">[</span>Move<span class="token punctuation">]</span>
+</code></pre>
 <ul><li> 1. If both strings have been consumed, then no moves are to be made.</li></ul>
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code>edit <span class="token punctuation">(</span>cdone <span class="token operator">-</span><span class="token operator">></span> True<span class="token punctuation">)</span> <span class="token punctuation">(</span>cdone <span class="token operator">-</span><span class="token operator">></span> True<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+</code></pre>
 <ul><li> 2. If the destination string has been fully matched while the source string
    has not, then remove characters from the source string.</li></ul>
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code>edit a@<span class="token punctuation">(</span>cdone <span class="token operator">-</span><span class="token operator">></span> False<span class="token punctuation">)</span> b@<span class="token punctuation">(</span>cdone <span class="token operator">-</span><span class="token operator">></span> True<span class="token punctuation">)</span> <span class="token operator">=</span> 
+  <span class="token punctuation">(</span>RemoveFromSrc <span class="token punctuation">(</span>cix a<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>edit <span class="token punctuation">(</span>incr a<span class="token punctuation">)</span> b
+</code></pre>
 <ul><li> 3. If the source string has run out of characters while the destination string
    still has characters, insert characters from the destination string.</li></ul>
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code>edit a@<span class="token punctuation">(</span>cdone <span class="token operator">-</span><span class="token operator">></span> True<span class="token punctuation">)</span> b@<span class="token punctuation">(</span>cdone <span class="token operator">-</span><span class="token operator">></span> False<span class="token punctuation">)</span> <span class="token operator">=</span> 
+  <span class="token punctuation">(</span>InsertFromDest <span class="token punctuation">(</span>cix b<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>edit a <span class="token punctuation">(</span>incr b<span class="token punctuation">)</span>
+</code></pre>
 <ul><li> 4. Otherwise, we have characters remaining in both strings. Try the
    options of (1) replacing a source character with a destination 
    character (2) removing a character from the source and continuing,
    and (3) if the current characters match, then keep the match and try
    to combine characters that come later in the string. We pick the
    best out of these using the <code>argmin</code> combinator.</li></ul>
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code>edit a b <span class="token operator">=</span>  
+  let nomatch <span class="token operator">=</span> argmin movescost 
+                <span class="token punctuation">(</span>ReplaceSrcWithDest <span class="token punctuation">(</span>cix a<span class="token punctuation">)</span> <span class="token punctuation">(</span>cix b<span class="token punctuation">)</span><span class="token punctuation">:</span>edit <span class="token punctuation">(</span>incr a<span class="token punctuation">)</span> <span class="token punctuation">(</span>incr b<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">(</span>RemoveFromSrc <span class="token punctuation">(</span>cix a<span class="token punctuation">)</span><span class="token punctuation">:</span>edit <span class="token punctuation">(</span>incr a<span class="token punctuation">)</span> b<span class="token punctuation">)</span> 
+  <span class="token keyword">in</span> case cval a <span class="token operator">==</span> cval b of
+      True <span class="token operator">-</span><span class="token operator">></span> argmin movescost nomatch <span class="token punctuation">(</span>edit <span class="token punctuation">(</span>incr a<span class="token punctuation">)</span> <span class="token punctuation">(</span>incr b<span class="token punctuation">)</span><span class="token punctuation">)</span>
+      False <span class="token operator">-</span><span class="token operator">></span> nomatch 
+</code></pre>
       
 The helper used for finding minimum according to a cost model.
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
-</container></body></html>
+<pre><code>argmin <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>a <span class="token operator">-</span><span class="token operator">></span> Int<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> a <span class="token operator">-</span><span class="token operator">></span> a <span class="token operator">-</span><span class="token operator">></span> a
+argmin f a a<span class="token string">' = if (f a) &lt; (f a'</span><span class="token punctuation">)</span> then a <span class="token keyword">else</span> a'
+</code></pre>
+</body></html>

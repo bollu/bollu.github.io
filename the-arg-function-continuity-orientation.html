@@ -1,13 +1,13 @@
-<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
-img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
+img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.centered { margin-left: 30%; margin-right: 25%; }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
 a:active { color: #1a73e8; text-decoration: none; }
 
- .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
- .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
-.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=the-arg-function-continuity-orientation href='#the-arg-function-continuity-orientation'> § </a>  <a href=#the-arg-function-continuity-orientation>The arg function, continuity, orientation</a></h2>
+blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
+pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
+.latexinline { white-space: nowrap }pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><h2 class='centered'><a id=the-arg-function-continuity-orientation href='#the-arg-function-continuity-orientation'> § </a>  <a href=#the-arg-function-continuity-orientation>The arg function, continuity, orientation</a></h2>
 Let us think of the function <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>r</mi><mi>g</mi><mo>:</mo><mi mathvariant="double-struck">C</mi><mo>→</mo><mi mathvariant="double-struck">R</mi></mrow><annotation encoding="application/x-tex">arg: \mathbb C \rightarrow \mathbb R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68889em;vertical-align:0em;"></span><span class="mord mathbb">C</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68889em;vertical-align:0em;"></span><span class="mord mathbb">R</span></span></span></span></span> as a multi
 valued function, which maps each complex number to the set of possible
 valid angles that generate it:
@@ -19,7 +19,7 @@ We plot the function here:
 <img width=400 src="./static/arg-multi-value-plot.png">
 <ul><li> Note that for every value <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">z \in C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span></span></span>, we get a <i>set</i> of values associated
   to it.</li></ul>
-<h4><a id=recovering-single-valued-ness href='#recovering-single-valued-ness'> § </a> Recovering single valued-ness</h4>
+<h4 class='centered'><a id=recovering-single-valued-ness href='#recovering-single-valued-ness'> § </a> Recovering single valued-ness</h4>
 Now, the question is, can we somehow automatically recover single
 valued-ness? kind of, by stipulating that for any given curve <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>:</mo><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo><mo>→</mo><mi mathvariant="double-struck">C</mi></mrow><annotation encoding="application/x-tex">c: [0, 1] \rightarrow \mathbb C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68889em;vertical-align:0em;"></span><span class="mord mathbb">C</span></span></span></span></span>, 
 the function <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>r</mi><mi>g</mi><mo>∘</mo><mi>c</mi><mo>:</mo><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo><mo>→</mo><mi mathvariant="double-struck">R</mi></mrow><annotation encoding="application/x-tex">arg \circ c: [0, 1] \rightarrow \mathbb R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.63889em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∘</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68889em;vertical-align:0em;"></span><span class="mord mathbb">R</span></span></span></span></span> is <i>continuous</i>. 
@@ -33,7 +33,7 @@ of basepoint.
   our value as we move clockwise.</li></ul>
 This prompts the natural question:
 <blockquote> what happens if we move in the opposite direction?</blockquote>
-<h4><a id=counter-clockwise-movement href='#counter-clockwise-movement'> § </a> Counter-clockwise movement</h4>
+<h4 class='centered'><a id=counter-clockwise-movement href='#counter-clockwise-movement'> § </a> Counter-clockwise movement</h4>
 <ul><li> Let's move counter-clockwise from <code>right</code>, arbitrarily picking the branch
   <code>arg(right) = 0</code> as before. This gives us:</li></ul>
 <img width=400 src="./static/arg-multi-value-branch-upper.png">
@@ -41,26 +41,19 @@ This prompts the natural question:
   considerations.</li></ul>
 <ul><li> Also note that this time, we got a <i>larger</i> value: we move from <code>0 -> 1</code>: we
   increase our value as we move counter-clockwise</li></ul>
-<h4><a id=multiple-winding href='#multiple-winding'> § </a> Multiple winding</h4>
+<h4 class='centered'><a id=multiple-winding href='#multiple-winding'> § </a> Multiple winding</h4>
 the true power of this multi-valued approach comes from being able to handle
 <i>multiple</i> windings. Here the real meaning of being a multi-valued function shows
 through. If we decide to go through the the loop <i>twice</i>, as:
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code>bot <span class="token operator">-</span><span class="token operator">></span> right <span class="token operator">-</span><span class="token operator">></span> top <span class="token operator">-</span><span class="token operator">></span> left <span class="token operator">-</span><span class="token operator">></span> bot <span class="token operator">-</span><span class="token operator">></span> right <span class="token operator">-</span><span class="token operator">></span> top <span class="token operator">-</span><span class="token operator">></span> left
+<span class="token operator">-</span><span class="token number">1</span>  <span class="token operator">-</span><span class="token operator">></span> <span class="token number">0</span>     <span class="token operator">-</span><span class="token operator">></span> <span class="token number">1</span>   <span class="token operator">-</span><span class="token operator">></span> <span class="token number">2</span>    <span class="token operator">-</span><span class="token operator">></span> <span class="token number">3</span>   <span class="token operator">-</span><span class="token operator">></span> <span class="token number">4</span>     <span class="token operator">-</span><span class="token operator">></span> <span class="token number">5</span>   <span class="token operator">-</span><span class="token operator">></span> <span class="token number">6</span>
+</code></pre>
 That is, we end up with the value <code>6</code>, which can only b
-<h4><a id=orientation-from-continuity href='#orientation-from-continuity'> § </a> Orientation from continuity</h4>
+<h4 class='centered'><a id=orientation-from-continuity href='#orientation-from-continuity'> § </a> Orientation from continuity</h4>
 There's something really elegant about being able to recover a notion of
 "orientation" by simply:
 <ol><li> Allowing multi-valued functions.</li><li> Forcing continuity constraints.</li><li> Interpreting increase/decrease in the value of the function.</li></ol>
-<h4><a id=discretizing-gaining-more-insight href='#discretizing-gaining-more-insight'> § </a> Discretizing, gaining more insight</h4>
+<h4 class='centered'><a id=discretizing-gaining-more-insight href='#discretizing-gaining-more-insight'> § </a> Discretizing, gaining more insight</h4>
 I was personally dis-satisfied with the above explanation, because it seemed
 weird that we would need to depend on the history to define this function. We
 can formalize this notion of history. Let's first discretize the situation,
@@ -81,29 +74,25 @@ giving us:
   not really rigorous. We can fix this by re-defining <code>f</code> in such a way
   that <code>f</code> is not <code>Spoke -> Val</code>, but rather it knows the full path:
   <code>f': (Time -> Spoke) -> Val</code>.</li></ul>
-<h4><a id=making-the-theory-path-dependent href='#making-the-theory-path-dependent'> § </a> Making the theory path-dependent</h4>
+<h4 class='centered'><a id=making-the-theory-path-dependent href='#making-the-theory-path-dependent'> § </a> Making the theory path-dependent</h4>
 We originally had:
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code>path<span class="token punctuation">:</span> Time <span class="token operator">-</span><span class="token operator">></span> Spoke
+f<span class="token punctuation">:</span> Spoke <span class="token operator">-</span><span class="token operator">></span> <span class="token number">2</span><span class="token operator">^</span>Val <span class="token operator">--</span> multi<span class="token operator">-</span>valued
+
+<span class="token operator">--</span> <span class="token operator">|</span> morally<span class="token punctuation">,</span> not mathematically<span class="token punctuation">.</span>
+out<span class="token punctuation">:</span> Time <span class="token operator">-</span><span class="token operator">></span> Val
+out t <span class="token operator">=</span> choose_best_value <span class="token punctuation">(</span><span class="token function">f</span><span class="token punctuation">(</span>path<span class="token punctuation">[</span>t<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
 But there was a vagueness in this <code>choose_best_value</code>. So we redefine it:
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code>path<span class="token punctuation">:</span> Time <span class="token operator">-</span><span class="token operator">></span> Spoke
+f'<span class="token punctuation">:</span> <span class="token punctuation">(</span>Time <span class="token operator">-</span><span class="token operator">></span> Spoke<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> Time <span class="token operator">-</span><span class="token operator">></span> Val
+f'<span class="token punctuation">(</span>path<span class="token punctuation">,</span> tcur<span class="token punctuation">)</span> <span class="token operator">=</span> 
+  argmax <span class="token punctuation">(</span>\v <span class="token operator">-</span><span class="token operator">></span> <span class="token operator">|</span>v <span class="token operator">-</span> path<span class="token punctuation">[</span>tcur<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">|</span> <span class="token operator">+</span> <span class="token operator">|</span>v <span class="token operator">-</span> path<span class="token punctuation">[</span>tcur<span class="token operator">+</span><span class="token number">1</span><span class="token operator">|</span><span class="token punctuation">)</span>
+         <span class="token function">f</span><span class="token punctuation">(</span>path<span class="token punctuation">[</span>tcur<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+out<span class="token punctuation">:</span> Time <span class="token operator">-</span><span class="token operator">></span> Val
+out <span class="token operator">=</span> f'<span class="token punctuation">(</span>path<span class="token punctuation">)</span>
+</code></pre>
 <ul><li> The function <code>f'</code> that defines the value of the path has full
   access to the path itself!                                                      </li><li> At time <code>tcur</code>, it attempts to pick the value in <code>f(path[tcur])</code> which
   makes the discontinuity as small as possible. It picks a value <code>v</code> from the
@@ -111,4 +100,4 @@ http://www.gnu.org/software/src-highlite -->
   of the distances from the previous time point (<code>|v - path[tcur-1]</code>), 
   and the distance from the next time point (<code>|v - path[tcur + 1]</code>).</li><li> This provides a rigorous definition of what it means to "pick a value in the branch".
   This can clearly be extended to the continuous domain.</li></ul>
-</container></body></html>
+</body></html>

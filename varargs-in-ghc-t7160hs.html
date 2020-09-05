@@ -1,0 +1,40 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
+img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.centered { margin-left: 30%; margin-right: 25%; }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
+pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
+.latexinline { white-space: nowrap }pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><h2 class='centered'><a id=varargs-in-ghc-t7160hs href='#varargs-in-ghc-t7160hs'> § </a> Varargs in GHC: <code>T7160.hs</code></h2>
+A comment from this test case tells us why the function <code>debugBelch2</code> exists:
+<pre><code>ghc<span class="token operator">/</span>testsuite<span class="token operator">/</span>tests<span class="token operator">/</span>rts<span class="token operator">/</span>T7160<span class="token punctuation">.</span>hs
+<span class="token operator">--</span> Don't use <span class="token function">debugBelch</span><span class="token punctuation">(</span><span class="token punctuation">)</span> directly<span class="token punctuation">,</span> because we cannot call varargs functions
+<span class="token operator">--</span> using the FFI <span class="token punctuation">(</span>doing so produces a segfault on <span class="token number">64</span><span class="token operator">-</span>bit Linux<span class="token punctuation">,</span> <span class="token keyword">for</span> example<span class="token punctuation">)</span><span class="token punctuation">.</span>
+<span class="token operator">--</span> See Debug<span class="token punctuation">.</span>Trace<span class="token punctuation">.</span>traceIO<span class="token punctuation">,</span> which also uses debugBelch2<span class="token punctuation">.</span>
+foreign import ccall <span class="token string">"&amp;debugBelch2"</span> fun <span class="token punctuation">:</span><span class="token punctuation">:</span> FunPtr <span class="token punctuation">(</span>Ptr <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> Ptr <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> IO <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+The implementation is:
+<pre><code>ghc<span class="token operator">/</span>libraries<span class="token operator">/</span>base<span class="token operator">/</span>cbits<span class="token operator">/</span>PrelIOUtils<span class="token punctuation">.</span>c
+
+void <span class="token function">debugBelch2</span><span class="token punctuation">(</span>const char<span class="token operator">*</span>s<span class="token punctuation">,</span> char <span class="token operator">*</span>t<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">debugBelch</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre><code>ghc<span class="token operator">/</span>rts<span class="token operator">/</span>RtsMessages<span class="token punctuation">.</span>c
+
+RtsMsgFunction <span class="token operator">*</span>debugMsgFn  <span class="token operator">=</span> rtsDebugMsgFn<span class="token punctuation">;</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+void
+<span class="token function">debugBelch</span><span class="token punctuation">(</span>const char<span class="token operator">*</span>s<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  va_list ap<span class="token punctuation">;</span>
+  <span class="token function">va_start</span><span class="token punctuation">(</span>ap<span class="token punctuation">,</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">(</span><span class="token operator">*</span>debugMsgFn<span class="token punctuation">)</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span>ap<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">va_end</span><span class="token punctuation">(</span>ap<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+</body></html>

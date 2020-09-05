@@ -1,158 +1,106 @@
-<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
-img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
+img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.centered { margin-left: 30%; margin-right: 25%; }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
 a:active { color: #1a73e8; text-decoration: none; }
 
- .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
- .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
-.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=ranking-and-sorting href='#ranking-and-sorting'> § </a> Ranking and Sorting</h2>
+blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
+pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
+.latexinline { white-space: nowrap }pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><h2 class='centered'><a id=ranking-and-sorting href='#ranking-and-sorting'> § </a> Ranking and Sorting</h2>
 We we want to sort an arrray <code>xs</code> and write the results into an array <code>ys</code>.
 In both cases, the invariant to be satisfied is that <code>ys</code> is <code>xs</code> in ascending
 order. I'll be considering two broad ways to implement such a thing:
 <ul><li> 1. <b>(RANK)</b> Index straight into <code>ys</code>, reindexed into <code>xs</code>. We name the reindexing
   array as <code>rs</code> (<code>rs</code> for <i>ranks</i>).</li></ul>
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code><span class="token keyword">for</span><span class="token punctuation">(</span>int i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> N<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   ys<span class="token punctuation">[</span>rs<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> xs<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <ul><li> 2. <b>(SELECT)</b> Reindex into <code>ys</code>, index straight into <code>xs</code>. 
   We name the reindexing array <code>ss</code> (<code>ss</code> for <i>selects</i>).</li></ul>
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
-<h4><a id=defnition-of-rank href='#defnition-of-rank'> § </a> Defnition of rank</h4>
+<pre><code><span class="token keyword">for</span><span class="token punctuation">(</span>int i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> N<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   ys<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> xs<span class="token punctuation">[</span>ss<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 class='centered'><a id=defnition-of-rank href='#defnition-of-rank'> § </a> Defnition of rank</h4>
 In the case of <b>(RANK)</b>, the specification is that the rank of an element <code>e</code>
 is the number of elements that are:
 <ol><li> less than <code>e</code>.</li><li> equal to <code>e</code> but occur before <code>e</code>.</li></ol>
 This ensures that rank is a <i>permutation</i>: that is, every element <code>e</code> is given
 a <i>unique</i> index. 
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
-<h4><a id=rank-alternative-1 href='#rank-alternative-1'> § </a> Rank: Alternative 1</h4>
+<pre><code>int <span class="token function">rank</span><span class="token punctuation">(</span>const int <span class="token operator">*</span>xs<span class="token punctuation">,</span> int i<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+    int cnt <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>int j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> N<span class="token punctuation">;</span> <span class="token operator">++</span>j<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>xs<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> xs<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token punctuation">(</span>xs<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> xs<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> j <span class="token operator">&lt;</span> i<span class="token punctuation">)</span><span class="token punctuation">)</span> cnt <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> cnt<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">for</span><span class="token punctuation">(</span>int i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> N<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  rs<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">rank</span><span class="token punctuation">(</span>xs<span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 class='centered'><a id=rank-alternative-1 href='#rank-alternative-1'> § </a> Rank: Alternative 1</h4>
 An alternative way to look at our definition of rank is that we are
 sorting the tuples  <code>(xs[i], i)</code> using lex ordering. So if two indeces
 <code>i, j</code> have the same value, then we sort on the index.
-<h4><a id=rank-alternative-2 href='#rank-alternative-2'> § </a> Rank: Alternative 2</h4>
+<h4 class='centered'><a id=rank-alternative-2 href='#rank-alternative-2'> § </a> Rank: Alternative 2</h4>
 We could have also defined rank as:
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code>int <span class="token function">rank</span><span class="token punctuation">(</span>int <span class="token operator">*</span>xs<span class="token punctuation">,</span> int i<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+    int cnt <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>int j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> i<span class="token punctuation">;</span> <span class="token operator">++</span>j<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>xs<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> xs<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> cnt <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> cnt<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
 I declined from doing so because I wanted to show the lex-ordering
 interpretation of <code>rank</code> will be be useful later.
-<h4><a id=definition-of-select href='#definition-of-select'> § </a> Definition of select</h4>
+<h4 class='centered'><a id=definition-of-select href='#definition-of-select'> § </a> Definition of select</h4>
 For <b>(SELECT)</b>, we'll need to think a little harder. Let's try to rewrite
 our way to glory:
 <ul><li> 1. From definition of rank:</li></ul>
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code>ys<span class="token punctuation">[</span>rs<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> xs<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+</code></pre>
 <ul><li> 2. move <code>i -> ss[i]</code> where <code>ss[i]</code> is guaranteed to be a permutation,
   so we will write each index eventually:</li></ul>
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code>ys<span class="token punctuation">[</span>rs<span class="token punctuation">[</span>ss<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> xs<span class="token punctuation">[</span>ss<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span>
+</code></pre>
 <ul><li> 3. Stipulate that <code>rs[ss[i]] = i</code>, since we want a <code>ys[i]</code>:</li></ul>
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code>ys<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> xs<span class="token punctuation">[</span>ss<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span>
+</code></pre>
 This gives us necessary and sufficient conditions on how to find an <code>ss</code>:
 <code>ss</code> must be a permutation that is an inverse permutation to <code>rs</code>.
-<h4><a id=how-to-invert-a-permutation href='#how-to-invert-a-permutation'> § </a> How to invert a permutation?</h4>
+<h4 class='centered'><a id=how-to-invert-a-permutation href='#how-to-invert-a-permutation'> § </a> How to invert a permutation?</h4>
 How does one invert a permutation? We have a permutation <code>rs[i]</code> that maps
 <code>i</code> to <code>rs[i]</code>. We want to find a new permutation <code>ss[i]</code> such that 
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code>rs<span class="token punctuation">[</span>ss<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> i
+</code></pre>
 Equivalently:
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code><span class="token comment">// ss[i] is an index 'k'...</span>
+ss<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> k 
+<span class="token comment">// 'k' is the location of 'i' in rs.</span>
+rs<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> i
+</code></pre>
 So if we first tag each location of <code>rs</code> with its index, and then sort
 with the values of <code>rs</code> being the keys, then <code>ss[i]</code> will be the values.
 In pictures:
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
-<h4><a id=rank-and-select-are-inverses href='#rank-and-select-are-inverses'> § </a> Rank and Select are inverses</h4>
+<pre><code>rs<span class="token punctuation">[</span>i<span class="token punctuation">]</span>          <span class="token punctuation">[</span><span class="token number">3</span> <span class="token number">4</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">2</span><span class="token punctuation">]</span>
+rs_tagged<span class="token punctuation">[</span>i<span class="token punctuation">]</span>   <span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+rs_sorted<span class="token punctuation">[</span>i<span class="token punctuation">]</span>   <span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+ss<span class="token punctuation">[</span>i<span class="token punctuation">]</span>          <span class="token punctuation">[</span>    <span class="token number">2</span>      <span class="token number">3</span>      <span class="token number">4</span>      <span class="token number">0</span>      <span class="token number">1</span> <span class="token punctuation">]</span>
+rs<span class="token punctuation">[</span>ss<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span>      <span class="token punctuation">[</span> rs<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>  rs<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span>  rs<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span>  rs<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>  rs<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+rs<span class="token punctuation">[</span>ss<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span>      <span class="token punctuation">[</span>    <span class="token number">0</span>      <span class="token number">1</span>      <span class="token number">2</span>      <span class="token number">3</span>      <span class="token number">4</span> <span class="token punctuation">]</span>
+</code></pre>
+<h4 class='centered'><a id=rank-and-select-are-inverses href='#rank-and-select-are-inverses'> § </a> Rank and Select are inverses</h4>
 It's nice, there are a couple of miracles that lined up here:
 <ul><li> Rank starts with <code>r</code> and select starts with <code>s</code> so we get nice naming.</li><li> Rank and select are true inverse permutations of each other.</li></ul>
-<h4><a id=generalized-rank-and-select-are-adjoint href='#generalized-rank-and-select-are-adjoint'> § </a> Generalized rank and select are adjoint</h4>
+<h4 class='centered'><a id=generalized-rank-and-select-are-adjoint href='#generalized-rank-and-select-are-adjoint'> § </a> Generalized rank and select are adjoint</h4>
 We had to "fix" our definition of rank to avoid equal elements in the array.
 Hence, we had the rule that we also sort by indexes if the elements are
 equal. However, if we now decide to ignore this rule, we will then recreate
 the classical <i>adjunction</i> between rank and select.
-<h4><a id=references href='#references'> § </a> References</h4>
+<h4 class='centered'><a id=references href='#references'> § </a> References</h4>
 <ul><li> Richard Bird: Pearls of functional algorithm design</li></ul>
-</container></body></html>
+</body></html>

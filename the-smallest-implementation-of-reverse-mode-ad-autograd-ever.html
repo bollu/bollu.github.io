@@ -1,23 +1,102 @@
-<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
-img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
+img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.centered { margin-left: 30%; margin-right: 25%; }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
 a:active { color: #1a73e8; text-decoration: none; }
 
- .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
- .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
-.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=the-smallest-implementation-of-reverse-mode-ad-autograd-ever href='#the-smallest-implementation-of-reverse-mode-ad-autograd-ever'> § </a> The smallest implementation of reverse mode AD (autograd) ever:</h2>
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
+pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
+.latexinline { white-space: nowrap }pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><h2 class='centered'><a id=the-smallest-implementation-of-reverse-mode-ad-autograd-ever href='#the-smallest-implementation-of-reverse-mode-ad-autograd-ever'> § </a> The smallest implementation of reverse mode AD (autograd) ever:</h2>
+<pre><code><span class="token punctuation">{</span><span class="token operator">-</span># LANGUAGE GeneralizedNewtypeDeriving #<span class="token operator">-</span><span class="token punctuation">}</span>
+import qualified Data<span class="token punctuation">.</span>Map<span class="token punctuation">.</span>Strict as M
+
+<span class="token operator">--</span> <span class="token operator">|</span> This file can be copy<span class="token operator">-</span>pasted and will run<span class="token operator">!</span>
+
+<span class="token operator">--</span> <span class="token operator">|</span> Symbols
+type Sym <span class="token operator">=</span> String
+<span class="token operator">--</span> <span class="token operator">|</span> Environments
+type E a <span class="token operator">=</span> M<span class="token punctuation">.</span>Map Sym a
+<span class="token operator">--</span> <span class="token operator">|</span> Newtype to represent deriative values
+type F <span class="token operator">=</span> Float
+newtype Der <span class="token operator">=</span> Der <span class="token punctuation">{</span> under <span class="token punctuation">:</span><span class="token punctuation">:</span> F <span class="token punctuation">}</span> <span class="token function">deriving</span><span class="token punctuation">(</span>Show<span class="token punctuation">,</span> Num<span class="token punctuation">)</span>
+
+infixl <span class="token number">7</span> <span class="token operator">!</span>#
+<span class="token operator">--</span> <span class="token operator">|</span> We are indexing the map at a <span class="token string">"hash"</span> <span class="token punctuation">(</span>Sym<span class="token punctuation">)</span>
+<span class="token punctuation">(</span><span class="token operator">!</span>#<span class="token punctuation">)</span> <span class="token punctuation">:</span><span class="token punctuation">:</span> E a <span class="token operator">-</span><span class="token operator">></span> Sym <span class="token operator">-</span><span class="token operator">></span> a
+<span class="token punctuation">(</span><span class="token operator">!</span>#<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span>M<span class="token punctuation">.</span><span class="token operator">!</span><span class="token punctuation">)</span>
+
+<span class="token operator">--</span> <span class="token operator">|</span> A node <span class="token keyword">in</span> the computation graph
+data Node <span class="token operator">=</span>
+  Node <span class="token punctuation">{</span> name <span class="token punctuation">:</span><span class="token punctuation">:</span> Sym <span class="token operator">--</span> <span class="token operator">^</span> Name of the node
+       <span class="token punctuation">,</span> ins <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>Node<span class="token punctuation">]</span> <span class="token operator">--</span> <span class="token operator">^</span> inputs to the node
+       <span class="token punctuation">,</span> out <span class="token punctuation">:</span><span class="token punctuation">:</span> E F <span class="token operator">-</span><span class="token operator">></span> F <span class="token operator">--</span> <span class="token operator">^</span> output of the node
+       <span class="token punctuation">,</span> der <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>E F<span class="token punctuation">,</span> E <span class="token punctuation">(</span>Sym <span class="token operator">-</span><span class="token operator">></span> Der<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                  <span class="token operator">-</span><span class="token operator">></span> Sym <span class="token operator">-</span><span class="token operator">></span> Der <span class="token operator">--</span> <span class="token operator">^</span> derivative wrt to a name
+       <span class="token punctuation">}</span>
+
+<span class="token operator">--</span> <span class="token operator">|</span> @ looks like a <span class="token string">"circle"</span><span class="token punctuation">,</span> which is a node<span class="token punctuation">.</span> So we are indexing the map
+<span class="token operator">--</span> at a node<span class="token punctuation">.</span>
+<span class="token punctuation">(</span><span class="token operator">!</span>@<span class="token punctuation">)</span> <span class="token punctuation">:</span><span class="token punctuation">:</span> E a <span class="token operator">-</span><span class="token operator">></span> Node <span class="token operator">-</span><span class="token operator">></span> a
+<span class="token punctuation">(</span><span class="token operator">!</span>@<span class="token punctuation">)</span> e node <span class="token operator">=</span> e M<span class="token punctuation">.</span><span class="token operator">!</span> <span class="token punctuation">(</span>name node<span class="token punctuation">)</span>
+
+<span class="token operator">--</span> <span class="token operator">|</span> Given the current environments of values and derivatives<span class="token punctuation">,</span> compute
+<span class="token operator">--</span> <span class="token operator">|</span> The <span class="token keyword">new</span> <span class="token class-name">value</span> and derivative <span class="token keyword">for</span> a node<span class="token punctuation">.</span>
+run_ <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>E F<span class="token punctuation">,</span> E <span class="token punctuation">(</span>Sym <span class="token operator">-</span><span class="token operator">></span> Der<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> Node <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">(</span>E F<span class="token punctuation">,</span> E <span class="token punctuation">(</span>Sym <span class="token operator">-</span><span class="token operator">></span> Der<span class="token punctuation">)</span><span class="token punctuation">)</span>
+run_ ein <span class="token punctuation">(</span>Node name ins out der<span class="token punctuation">)</span> <span class="token operator">=</span>
+  let <span class="token punctuation">(</span>e<span class="token string">', ed'</span><span class="token punctuation">)</span> <span class="token operator">=</span> foldl run_ ein ins <span class="token operator">--</span> run all the inputs
+      v <span class="token operator">=</span> out e' <span class="token operator">--</span> compute the output
+      dv <span class="token operator">=</span> der <span class="token punctuation">(</span>e<span class="token string">', ed'</span><span class="token punctuation">)</span> <span class="token operator">--</span> and the derivative
+  <span class="token keyword">in</span> <span class="token punctuation">(</span>M<span class="token punctuation">.</span>insert name v e<span class="token string">', M.insert name dv ed'</span><span class="token punctuation">)</span>  <span class="token operator">--</span> and insert them
+
+<span class="token operator">--</span> <span class="token operator">|</span> Run the program given a node
+run <span class="token punctuation">:</span><span class="token punctuation">:</span> E F <span class="token operator">-</span><span class="token operator">></span> Node <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">(</span>E F<span class="token punctuation">,</span> E <span class="token punctuation">(</span>Sym <span class="token operator">-</span><span class="token operator">></span> Der<span class="token punctuation">)</span><span class="token punctuation">)</span>
+run e n <span class="token operator">=</span> run_ <span class="token punctuation">(</span>e<span class="token punctuation">,</span> mempty<span class="token punctuation">)</span> n
+
+<span class="token operator">--</span> <span class="token operator">|</span> Let's build nodes
+nconst <span class="token punctuation">:</span><span class="token punctuation">:</span> Sym <span class="token operator">-</span><span class="token operator">></span> F <span class="token operator">-</span><span class="token operator">></span> Node
+nconst n f <span class="token operator">=</span> Node n <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">(</span>\_ <span class="token operator">-</span><span class="token operator">></span> f<span class="token punctuation">)</span> <span class="token punctuation">(</span>\_ _ <span class="token operator">-</span><span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span>
+
+<span class="token operator">--</span> <span class="token operator">|</span> Variable
+nvar <span class="token punctuation">:</span><span class="token punctuation">:</span> Sym <span class="token operator">-</span><span class="token operator">></span> Node
+nvar n <span class="token operator">=</span> Node n <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">(</span><span class="token operator">!</span># n<span class="token punctuation">)</span> <span class="token punctuation">(</span>\_ n<span class="token string">' -> if n == n'</span> then <span class="token number">1</span> <span class="token keyword">else</span> <span class="token number">0</span><span class="token punctuation">)</span>
+
+<span class="token operator">--</span> <span class="token operator">|</span> binary operation
+nbinop <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>F <span class="token operator">-</span><span class="token operator">></span> F <span class="token operator">-</span><span class="token operator">></span> F<span class="token punctuation">)</span>  <span class="token operator">--</span> <span class="token operator">^</span> output computation from inputs
+ <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">(</span>F <span class="token operator">-</span><span class="token operator">></span> Der <span class="token operator">-</span><span class="token operator">></span> F <span class="token operator">-</span><span class="token operator">></span> Der <span class="token operator">-</span><span class="token operator">></span> Der<span class="token punctuation">)</span> <span class="token operator">--</span> <span class="token operator">^</span> derivative computation from outputs
+ <span class="token operator">-</span><span class="token operator">></span> Sym <span class="token operator">--</span> <span class="token operator">^</span> Name
+ <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">(</span>Node<span class="token punctuation">,</span> Node<span class="token punctuation">)</span> <span class="token operator">--</span> <span class="token operator">^</span> input nodes
+ <span class="token operator">-</span><span class="token operator">></span> Node
+nbinop f df n <span class="token punctuation">(</span>in1<span class="token punctuation">,</span> in2<span class="token punctuation">)</span> <span class="token operator">=</span>
+  Node <span class="token punctuation">{</span> name <span class="token operator">=</span> n
+       <span class="token punctuation">,</span> ins <span class="token operator">=</span> <span class="token punctuation">[</span>in1<span class="token punctuation">,</span> in2<span class="token punctuation">]</span>
+       <span class="token punctuation">,</span> out <span class="token operator">=</span> \e <span class="token operator">-</span><span class="token operator">></span> f <span class="token punctuation">(</span>e <span class="token operator">!</span># name in1<span class="token punctuation">)</span> <span class="token punctuation">(</span>e <span class="token operator">!</span># name in2<span class="token punctuation">)</span>
+       <span class="token punctuation">,</span> der <span class="token operator">=</span> \<span class="token punctuation">(</span>e<span class="token punctuation">,</span> ed<span class="token punctuation">)</span> n' <span class="token operator">-</span><span class="token operator">></span>
+                 let <span class="token punctuation">(</span>name1<span class="token punctuation">,</span> name2<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span>name in1<span class="token punctuation">,</span> name in2<span class="token punctuation">)</span>
+                     <span class="token punctuation">(</span>v1<span class="token punctuation">,</span> v2<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span>e <span class="token operator">!</span># name1<span class="token punctuation">,</span> e <span class="token operator">!</span># name2<span class="token punctuation">)</span>
+                     <span class="token punctuation">(</span>dv1<span class="token punctuation">,</span> dv2<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span>ed <span class="token operator">!</span># name1 $ n<span class="token string">', ed !# name2 $ n'</span><span class="token punctuation">)</span>
+                     <span class="token keyword">in</span> df v1 dv1 v2 dv2
+       <span class="token punctuation">}</span>
+
+nadd <span class="token punctuation">:</span><span class="token punctuation">:</span> Sym <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">(</span>Node<span class="token punctuation">,</span> Node<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> Node
+nadd <span class="token operator">=</span> nbinop <span class="token punctuation">(</span><span class="token operator">+</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>\v dv v<span class="token string">' dv'</span> <span class="token operator">-</span><span class="token operator">></span> dv <span class="token operator">+</span> dv'<span class="token punctuation">)</span>
+
+nmul <span class="token punctuation">:</span><span class="token punctuation">:</span> Sym <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">(</span>Node<span class="token punctuation">,</span> Node<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> Node
+nmul <span class="token operator">=</span> nbinop <span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>\v <span class="token punctuation">(</span>Der dv<span class="token punctuation">)</span> v<span class="token string">' (Der dv'</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> Der $ <span class="token punctuation">(</span>v<span class="token operator">*</span>dv<span class="token string">') + (v'</span><span class="token operator">*</span>dv<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+main <span class="token punctuation">:</span><span class="token punctuation">:</span> IO <span class="token punctuation">(</span><span class="token punctuation">)</span>
+main <span class="token operator">=</span> <span class="token keyword">do</span>
+  let x <span class="token operator">=</span> nvar <span class="token string">"x"</span> <span class="token punctuation">:</span><span class="token punctuation">:</span> Node
+  let y <span class="token operator">=</span> nvar <span class="token string">"y"</span>
+  let xsq <span class="token operator">=</span> nmul <span class="token string">"xsq"</span> <span class="token punctuation">(</span>x<span class="token punctuation">,</span> x<span class="token punctuation">)</span>
+  let ten <span class="token operator">=</span> nconst <span class="token string">"10"</span> <span class="token number">10</span>
+  let xsq_plus_10 <span class="token operator">=</span> nadd <span class="token string">"xsq_plus_10"</span> <span class="token punctuation">(</span>xsq<span class="token punctuation">,</span> ten<span class="token punctuation">)</span>
+  let xsq_plus_10_plus_y <span class="token operator">=</span> nadd <span class="token string">"xsq_plus_10_plus_y"</span>  <span class="token punctuation">(</span>xsq_plus_10<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+  let <span class="token punctuation">(</span>e<span class="token punctuation">,</span> de<span class="token punctuation">)</span> <span class="token operator">=</span> run <span class="token punctuation">(</span>M<span class="token punctuation">.</span>fromList $ <span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token string">"x"</span><span class="token punctuation">,</span> <span class="token number">2.0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token string">"y"</span><span class="token punctuation">,</span> <span class="token number">3.0</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span> xsq_plus_10_plus_y
+  putStrLn $ show e
+  putStrLn $ show $ de <span class="token operator">!</span>@ xsq_plus_10_plus_y $ <span class="token string">"x"</span>
+  putStrLn $ show $ de <span class="token operator">!</span>@ xsq_plus_10_plus_y $ <span class="token string">"y"</span>
+</code></pre>
 Yeah, in ~80 lines of code, you can basically build an autograd engine. Isn't
 haskell so rad?
-</container></body></html>
+</body></html>

@@ -1,42 +1,32 @@
-<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
-img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
+img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.centered { margin-left: 30%; margin-right: 25%; }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
 a:active { color: #1a73e8; text-decoration: none; }
 
- .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
- .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
-.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=burrows-wheeler href='#burrows-wheeler'> § </a> Burrows Wheeler</h2>
+blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
+pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
+.latexinline { white-space: nowrap }pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><h2 class='centered'><a id=burrows-wheeler href='#burrows-wheeler'> § </a> Burrows Wheeler</h2>
 We aim to get the <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></span> algorithm for burrows wheeler, by starting from the
 naive <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span> implementation and then slowly chipping away to get to the
 fastest algorithm
                  
-<h4><a id=string-rotations href='#string-rotations'> § </a> String rotations</h4>
+<h4 class='centered'><a id=string-rotations href='#string-rotations'> § </a> String rotations</h4>
 Given a string <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">s</span></span></span></span></span> of length <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span></span>, we can index it as <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo stretchy="false">[</mo><mn>0</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">s[0]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">s</span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span></span></span></span></span>, <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo stretchy="false">[</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">s[1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">s</span><span class="mopen">[</span><span class="mord">1</span><span class="mclose">]</span></span></span></span></span>, upto
 <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo stretchy="false">[</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">s[n-1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">s</span><span class="mopen">[</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span></span>. We can now build a table consisting of <i>rotations</i> of the string.
 We'll define:
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code>lrot <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>a<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">[</span>a<span class="token punctuation">]</span>
+lrot <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span> lrot <span class="token punctuation">(</span>x<span class="token punctuation">:</span>xs<span class="token punctuation">)</span> <span class="token operator">=</span> xs <span class="token operator">++</span> <span class="token punctuation">[</span>x<span class="token punctuation">]</span>
+</code></pre>
 We can build a table of left-rotations:
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code>foobar
+oobarf
+obarfo
+barfoo
+arfoob
+rfooba
+</code></pre>
 We can immediately notice that it's a <i>symmetric matrix</i>. We can prove
 this as follows. We write <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mi>r</mi><mi>o</mi><mi>t</mi><mo stretchy="false">(</mo><mi>r</mi><mi>o</mi><mi>t</mi><mo separator="true">,</mo><mi>s</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">lrot(rot, s)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">o</span><span class="mord mathnormal">t</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">o</span><span class="mord mathnormal">t</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">s</span><span class="mclose">)</span></span></span></span></span> as an array such that:
 <div class='latexblock'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>l</mi><mi>r</mi><mi>o</mi><mi>t</mi><mo stretchy="false">(</mo><mi>r</mi><mi>o</mi><mi>t</mi><mo separator="true">,</mo><mi>s</mi><mo stretchy="false">)</mo><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo>=</mo><mi>s</mi><mo stretchy="false">[</mo><mo stretchy="false">(</mo><mi>r</mi><mi>o</mi><mi>t</mi><mo>+</mo><mi>i</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
@@ -49,75 +39,67 @@ which is equal to <span class='latexinline'><span class="katex"><span class="kat
 <div class='latexblock'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>l</mi><mi>r</mi><mi>o</mi><mi>t</mi><mo stretchy="false">(</mo><mi>r</mi><mo separator="true">,</mo><mi>s</mi><mo stretchy="false">)</mo><mo stretchy="false">[</mo><mi>c</mi><mo stretchy="false">]</mo><mo>=</mo><mi>s</mi><mo stretchy="false">[</mo><mo stretchy="false">(</mo><mi>r</mi><mo>+</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
 lrot(r, s)[c] = s[(r + c) %n] = s[(c + r)%n] = lrot(c, s)[r]
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">o</span><span class="mord mathnormal">t</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">s</span><span class="mclose">)</span><span class="mopen">[</span><span class="mord mathnormal">c</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">s</span><span class="mopen">[</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">c</span><span class="mclose">)</span></span></span></span></span></div>
-<h4><a id=sorts-of-string-rotations href='#sorts-of-string-rotations'> § </a> Sorts of string rotations</h4>
+<h4 class='centered'><a id=sorts-of-string-rotations href='#sorts-of-string-rotations'> § </a> Sorts of string rotations</h4>
 We're next interested in considering <i>sorted order</i> of the string
 rotations. For example, in the case of the string "here, there",
 all the rotations are:
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code>here<span class="token operator">-</span>there  <span class="token number">0</span>
+ere<span class="token operator">-</span>thereh  <span class="token number">1</span>
+re<span class="token operator">-</span>therehe  <span class="token number">2</span>
+e<span class="token operator">-</span>thereher  <span class="token number">3</span>
+<span class="token operator">-</span>therehere  <span class="token number">4</span>
+therehere<span class="token operator">-</span>  <span class="token number">5</span>
+herehere<span class="token operator">-</span>t  <span class="token number">6</span>
+erehere<span class="token operator">-</span>th  <span class="token number">7</span>
+rehere<span class="token operator">-</span>the  <span class="token number">8</span>
+ehere<span class="token operator">-</span>ther  <span class="token number">9</span>
+</code></pre>
 which is calculated with the help of the following haskell code:
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code>lrot <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>a<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">[</span>a<span class="token punctuation">]</span>
+lrot <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span> lrot <span class="token punctuation">(</span>a<span class="token punctuation">:</span>as<span class="token punctuation">)</span> <span class="token operator">=</span> as <span class="token operator">++</span> <span class="token punctuation">[</span>a<span class="token punctuation">]</span>
+
+lrots <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>a<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">[</span><span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> lrots as <span class="token operator">=</span> take <span class="token punctuation">(</span>length as<span class="token punctuation">)</span> <span class="token punctuation">(</span>iterate lrot as<span class="token punctuation">)</span>
+
+main <span class="token operator">=</span>  putStrLn $ intercalate <span class="token string">"\n"</span>  
+  <span class="token punctuation">(</span>zipWith <span class="token punctuation">(</span>\s i <span class="token operator">-</span><span class="token operator">></span> s <span class="token operator">&lt;</span><span class="token operator">></span> <span class="token string">"  "</span> <span class="token operator">&lt;</span><span class="token operator">></span> show i<span class="token punctuation">)</span>
+           <span class="token punctuation">(</span>lrots <span class="token string">"here-there"</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1.</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
 If we now <i>sort</i> these rotations, we get:
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code><span class="token operator">-</span>therehere  <span class="token number">0</span>
+e<span class="token operator">-</span>thereher  <span class="token number">1</span>
+ehere<span class="token operator">-</span>ther  <span class="token number">2</span>
+ere<span class="token operator">-</span>thereh  <span class="token number">3</span>
+erehere<span class="token operator">-</span>th  <span class="token number">4</span>
+here<span class="token operator">-</span>there  <span class="token number">5</span>
+herehere<span class="token operator">-</span>t  <span class="token number">6</span>
+re<span class="token operator">-</span>therehe  <span class="token number">7</span>
+rehere<span class="token operator">-</span>the  <span class="token number">8</span>
+therehere<span class="token operator">-</span>  <span class="token number">9</span>
+</code></pre>
 we produce this by chainging the above definition of <code>main</code> to:
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code>main <span class="token operator">=</span>  putStrLn $ intercalate <span class="token string">"\n"</span>  
+  <span class="token punctuation">(</span>zipWith <span class="token punctuation">(</span>\s i <span class="token operator">-</span><span class="token operator">></span> s <span class="token operator">&lt;</span><span class="token operator">></span> <span class="token string">"  "</span> <span class="token operator">&lt;</span><span class="token operator">></span> show i<span class="token punctuation">)</span>
+           <span class="token operator">--</span> <span class="token operator">|</span> extra `sort` here
+           <span class="token punctuation">(</span>sort $ lrots <span class="token string">"here-there"</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1.</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
 Let's look at the <b>final column</b> of that table. We have:
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code><span class="token operator">-</span>thereher<span class="token operator">|</span>e<span class="token operator">|</span>  <span class="token number">0</span>
+e<span class="token operator">-</span>therehe<span class="token operator">|</span>r<span class="token operator">|</span>  <span class="token number">1</span>
+ehere<span class="token operator">-</span>the<span class="token operator">|</span>r<span class="token operator">|</span>  <span class="token number">2</span>
+ere<span class="token operator">-</span>there<span class="token operator">|</span>h<span class="token operator">|</span>  <span class="token number">3</span>
+erehere<span class="token operator">-</span>t<span class="token operator">|</span>h<span class="token operator">|</span>  <span class="token number">4</span>
+here<span class="token operator">-</span>ther<span class="token operator">|</span>e<span class="token operator">|</span>  <span class="token number">5</span> <span class="token operator">&lt;</span><span class="token operator">-</span> ORIGINAL STRING
+herehere<span class="token operator">-</span><span class="token operator">|</span>t<span class="token operator">|</span>  <span class="token number">6</span>
+re<span class="token operator">-</span>thereh<span class="token operator">|</span>e<span class="token operator">|</span>  <span class="token number">7</span>
+rehere<span class="token operator">-</span>th<span class="token operator">|</span>e<span class="token operator">|</span>  <span class="token number">8</span>
+therehere<span class="token operator">|</span><span class="token operator">-</span><span class="token operator">|</span>  <span class="token number">9</span>
+
+<span class="token number">0123456789</span>
+errhhetee<span class="token operator">-</span>
+</code></pre>
 Now, we'll show how to write a <i>really cool</i> function call <code>bwt</code> such that:
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code>bwtinv <span class="token punctuation">(</span><span class="token string">"errhhetee-"</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token string">"here-there"</span>
+</code></pre>
 The <code>5</code> is the index of the original string in the list. That is, given
 the jumbled up last-column and the index of the original string, we're
 able to reconstruct the original string. The reason this is useful is
@@ -125,34 +107,50 @@ that the jumbled string <code>"errhhetee-"</code> is easier to compress: it has
 long runs of <code>r</code>, <code>h</code>, and <code>e</code> which makes it easier to compress.
 The process we performed of rotating, sorting the rotations and taking
 the final column is the Burrows-Wheeler transform. in code:
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code>import Data<span class="token punctuation">.</span>List
+lrot <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>a<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">[</span>a<span class="token punctuation">]</span>
+lrot <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span> lrot <span class="token punctuation">(</span>a<span class="token punctuation">:</span>as<span class="token punctuation">)</span> <span class="token operator">=</span> as <span class="token operator">++</span> <span class="token punctuation">[</span>a<span class="token punctuation">]</span>
+
+lrots <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>a<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">[</span><span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">]</span>
+lrots as <span class="token operator">=</span> take <span class="token punctuation">(</span>length as<span class="token punctuation">)</span> <span class="token punctuation">(</span>iterate lrot as<span class="token punctuation">)</span>
+
+findix <span class="token punctuation">:</span><span class="token punctuation">:</span> Eq a <span class="token operator">=</span><span class="token operator">></span> a <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">[</span>a<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">></span> Int
+findix a as <span class="token operator">=</span> length <span class="token punctuation">(</span>takeWhile <span class="token punctuation">(</span><span class="token operator">/</span><span class="token operator">=</span> a<span class="token punctuation">)</span> as<span class="token punctuation">)</span>
+
+lastcol <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">;</span> lastcol <span class="token operator">=</span> map last
+
+bwt <span class="token punctuation">:</span><span class="token punctuation">:</span> Eq a <span class="token operator">=</span><span class="token operator">></span> Ord a <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>a<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">(</span><span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">,</span> Int<span class="token punctuation">)</span>
+bwt as <span class="token operator">=</span> let as<span class="token string">' = (sort . lrots) as in (lastcol as'</span><span class="token punctuation">,</span> findix as as'<span class="token punctuation">)</span>
+</code></pre>
 Now we need to understand how <code>bwtinv</code> is defined and what it does.
 The definition is:
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code>import Control<span class="token punctuation">.</span>Arrow <span class="token punctuation">(</span><span class="token operator">&amp;&amp;</span><span class="token operator">&amp;</span><span class="token punctuation">)</span>
+
+bwtinv <span class="token punctuation">:</span><span class="token punctuation">:</span> Eq a <span class="token operator">=</span><span class="token operator">></span> Ord a <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span><span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">,</span> Int<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">[</span>a<span class="token punctuation">]</span>
+bwtinv <span class="token punctuation">(</span>as<span class="token punctuation">,</span> k<span class="token punctuation">)</span> <span class="token operator">=</span> recreate as <span class="token operator">!</span><span class="token operator">!</span> k
+
+<span class="token operator">--</span> recreate · lastcol · sort · rots <span class="token operator">=</span> sort · rots
+recreate <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>Eq a<span class="token punctuation">,</span> Ord a<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>a<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">[</span><span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">]</span>
+recreate as <span class="token operator">=</span> recreate' <span class="token punctuation">(</span>length as<span class="token punctuation">)</span> as
+
+recreate' <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>Eq a<span class="token punctuation">,</span> Ord a<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> Int <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">[</span>a<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">[</span><span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">]</span>
+recreate' <span class="token number">0</span> <span class="token operator">=</span> map <span class="token punctuation">(</span>const <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+recreate<span class="token string">' n = hdsort . consCol . (id &amp;&amp;&amp; recreate'</span> <span class="token punctuation">(</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+
+hdsort <span class="token punctuation">:</span><span class="token punctuation">:</span> Ord a <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span><span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">[</span><span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">]</span>
+hdsort <span class="token operator">=</span> let cmp <span class="token punctuation">(</span>x<span class="token punctuation">:</span>xs<span class="token punctuation">)</span> <span class="token punctuation">(</span>y<span class="token punctuation">:</span>ys<span class="token punctuation">)</span> <span class="token operator">=</span> compare x y
+         <span class="token keyword">in</span> sortBy cmp 
+
+consCol <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">[</span><span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">]</span>
+consCol <span class="token operator">=</span> uncurry <span class="token punctuation">(</span>zipWith <span class="token punctuation">(</span><span class="token punctuation">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
 OK, so much for the code. what does it <i>do</i>?
 The idea is that:
 <ul><li> we recreate the entire matrix from the last column using <code>recreate</code>
   and take the <code>k</code>th element.</li></ul>
 <ul><li> <code>recreate</code> apprents a copy of the initial last column to a matrix of
   columns, and then sorts this.</li></ul>
-<h4><a id=references href='#references'> § </a> References</h4>
+<h4 class='centered'><a id=references href='#references'> § </a> References</h4>
 <ul><li> Richard Bird: Pearls of functional algorithm design</li></ul>
-</container></body></html>
+</body></html>

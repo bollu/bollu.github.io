@@ -1,39 +1,286 @@
-<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
-img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
+img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.centered { margin-left: 30%; margin-right: 25%; }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
 a:active { color: #1a73e8; text-decoration: none; }
 
- .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
- .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
-.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=small-haskell-mcmc-implementation href='#small-haskell-mcmc-implementation'> § </a> Small Haskell MCMC implementation</h2>
+blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
+pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
+.latexinline { white-space: nowrap }pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><h2 class='centered'><a id=small-haskell-mcmc-implementation href='#small-haskell-mcmc-implementation'> § </a> Small Haskell MCMC implementation</h2>
 We create a simple monad called <code>PL</code> which allows for a single operation: sampling
 from a uniform distribution. We then exploit this to implement MCMC using metropolis hastings,
 which is used to sample from arbitrary distributions. Bonus is a small library to render sparklines
 in the CLI.
 For next time:
 <ul><li> Using applicative to speed up computations by exploiting parallelism</li><li> Conditioning of a distribution wrt a variable</li></ul>
-<h4><a id=source-code href='#source-code'> § </a> Source code</h4>
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
-<h4><a id=output href='#output'> § </a> Output</h4>
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
-</container></body></html>
+<h4 class='centered'><a id=source-code href='#source-code'> § </a> Source code</h4>
+<pre><code><span class="token punctuation">{</span><span class="token operator">-</span># LANGUAGE GeneralizedNewtypeDeriving #<span class="token operator">-</span><span class="token punctuation">}</span>
+<span class="token punctuation">{</span><span class="token operator">-</span># LANGUAGE GADTs #<span class="token operator">-</span><span class="token punctuation">}</span>
+<span class="token punctuation">{</span><span class="token operator">-</span># LANGUAGE StandaloneDeriving #<span class="token operator">-</span><span class="token punctuation">}</span>
+<span class="token punctuation">{</span><span class="token operator">-</span># LANGUAGE FlexibleContexts #<span class="token operator">-</span><span class="token punctuation">}</span>
+<span class="token punctuation">{</span><span class="token operator">-</span># LANGUAGE FlexibleInstances #<span class="token operator">-</span><span class="token punctuation">}</span>
+<span class="token punctuation">{</span><span class="token operator">-</span># LANGUAGE UndecidableInstances #<span class="token operator">-</span><span class="token punctuation">}</span>
+<span class="token punctuation">{</span><span class="token operator">-</span># LANGUAGE DeriveFunctor #<span class="token operator">-</span><span class="token punctuation">}</span>
+import System<span class="token punctuation">.</span>Random
+import Data<span class="token punctuation">.</span><span class="token function">List</span><span class="token punctuation">(</span>sort<span class="token punctuation">,</span> nub<span class="token punctuation">)</span>
+import Data<span class="token punctuation">.</span>Proxy
+import Control<span class="token punctuation">.</span>Monad <span class="token punctuation">(</span>replicateM<span class="token punctuation">)</span>
+import qualified Data<span class="token punctuation">.</span>Map as M
+
+
+<span class="token operator">--</span> <span class="token operator">|</span> Loop a monadic computation<span class="token punctuation">.</span>
+mLoop <span class="token punctuation">:</span><span class="token punctuation">:</span> Monad m <span class="token operator">=</span><span class="token operator">></span>
+      <span class="token punctuation">(</span>a <span class="token operator">-</span><span class="token operator">></span> m a<span class="token punctuation">)</span> <span class="token operator">--</span> <span class="token operator">^</span> loop
+      <span class="token operator">-</span><span class="token operator">></span> Int <span class="token operator">--</span> <span class="token operator">^</span> number of times to run
+      <span class="token operator">-</span><span class="token operator">></span> a <span class="token operator">--</span> initial value
+      <span class="token operator">-</span><span class="token operator">></span> m a <span class="token operator">--</span> final value
+mLoop _ <span class="token number">0</span> a <span class="token operator">=</span> <span class="token keyword">return</span> a
+mLoop f n a <span class="token operator">=</span> f a <span class="token operator">></span><span class="token operator">>=</span> mLoop f <span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span>
+
+
+<span class="token operator">--</span> <span class="token operator">|</span> Utility library <span class="token keyword">for</span> drawing sparklines
+
+<span class="token operator">--</span> <span class="token operator">|</span> List of characters that represent sparklines
+sparkchars <span class="token punctuation">:</span><span class="token punctuation">:</span> String
+sparkchars <span class="token operator">=</span> <span class="token string">"_▁▂▃▄▅▆▇█"</span>
+
+<span class="token operator">--</span> Convert an int to a sparkline character
+num2spark <span class="token punctuation">:</span><span class="token punctuation">:</span> RealFrac a <span class="token operator">=</span><span class="token operator">></span> a <span class="token operator">--</span> <span class="token operator">^</span> Max value
+  <span class="token operator">-</span><span class="token operator">></span> a <span class="token operator">--</span> <span class="token operator">^</span> Current value
+  <span class="token operator">-</span><span class="token operator">></span> Char
+num2spark maxv curv <span class="token operator">=</span>
+   sparkchars <span class="token operator">!</span><span class="token operator">!</span>
+     <span class="token punctuation">(</span>floor $ <span class="token punctuation">(</span>curv <span class="token operator">/</span> maxv<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>fromIntegral <span class="token punctuation">(</span>length sparkchars <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+series2spark <span class="token punctuation">:</span><span class="token punctuation">:</span> RealFrac a <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>a<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">></span> String
+series2spark vs <span class="token operator">=</span>
+  let maxv <span class="token operator">=</span> <span class="token keyword">if</span> <span class="token keyword">null</span> vs then <span class="token number">0</span> <span class="token keyword">else</span> maximum vs
+  <span class="token keyword">in</span> map <span class="token punctuation">(</span>num2spark maxv<span class="token punctuation">)</span> vs
+
+seriesPrintSpark <span class="token punctuation">:</span><span class="token punctuation">:</span> RealFrac a <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>a<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">></span> IO <span class="token punctuation">(</span><span class="token punctuation">)</span>
+seriesPrintSpark <span class="token operator">=</span> putStrLn <span class="token punctuation">.</span> series2spark
+
+<span class="token operator">--</span> Probabilities
+<span class="token operator">--</span> <span class="token operator">===</span><span class="token operator">===</span><span class="token operator">===</span><span class="token operator">===</span>
+type F <span class="token operator">=</span> Float
+<span class="token operator">--</span> <span class="token operator">|</span> probability density
+newtype P <span class="token operator">=</span> P <span class="token punctuation">{</span> unP <span class="token punctuation">:</span><span class="token punctuation">:</span> Float <span class="token punctuation">}</span> <span class="token function">deriving</span><span class="token punctuation">(</span>Num<span class="token punctuation">)</span>
+
+<span class="token operator">--</span> <span class="token operator">|</span> prob<span class="token punctuation">.</span> distributions over space a
+newtype D a <span class="token operator">=</span> D <span class="token punctuation">{</span> runD <span class="token punctuation">:</span><span class="token punctuation">:</span> a <span class="token operator">-</span><span class="token operator">></span> P <span class="token punctuation">}</span>
+
+uniform <span class="token punctuation">:</span><span class="token punctuation">:</span> Int <span class="token operator">-</span><span class="token operator">></span> D a
+uniform n <span class="token operator">=</span>
+  D $ \_ <span class="token operator">-</span><span class="token operator">></span> P $ <span class="token number">1.0</span> <span class="token operator">/</span> <span class="token punctuation">(</span>fromIntegral $ n<span class="token punctuation">)</span>
+
+<span class="token punctuation">(</span><span class="token operator">></span>$<span class="token operator">&lt;</span><span class="token punctuation">)</span> <span class="token punctuation">:</span><span class="token punctuation">:</span> Contravariant f <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span>b <span class="token operator">-</span><span class="token operator">></span> a<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> f a  <span class="token operator">-</span><span class="token operator">></span> f b
+<span class="token punctuation">(</span><span class="token operator">></span>$<span class="token operator">&lt;</span><span class="token punctuation">)</span> <span class="token operator">=</span> cofmap
+
+instance Contravariant D where
+  cofmap f <span class="token punctuation">(</span>D d<span class="token punctuation">)</span> <span class="token operator">=</span> D <span class="token punctuation">(</span>d <span class="token punctuation">.</span> f<span class="token punctuation">)</span>
+
+<span class="token operator">--</span> <span class="token operator">|</span> Normal distribution with given mean
+normalD <span class="token punctuation">:</span><span class="token punctuation">:</span> Float <span class="token operator">-</span><span class="token operator">></span>  D Float
+normalD mu <span class="token operator">=</span> D $ \f <span class="token operator">-</span><span class="token operator">></span> P $ exp <span class="token punctuation">(</span><span class="token operator">-</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>f<span class="token operator">-</span>mu<span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token operator">--</span> <span class="token operator">|</span> Distribution that takes on value x<span class="token operator">^</span>p <span class="token keyword">for</span> <span class="token number">1</span> <span class="token operator">&lt;=</span> x <span class="token operator">&lt;=</span> <span class="token number">2.</span>  Is normalized
+polyD <span class="token punctuation">:</span><span class="token punctuation">:</span> Float <span class="token operator">-</span><span class="token operator">></span> D Float
+polyD p <span class="token operator">=</span> D $ \f <span class="token operator">-</span><span class="token operator">></span> P $ <span class="token keyword">if</span> <span class="token number">1</span> <span class="token operator">&lt;=</span> f <span class="token operator">&amp;&amp;</span> f <span class="token operator">&lt;=</span> <span class="token number">2</span> then <span class="token punctuation">(</span>f <span class="token operator">*</span><span class="token operator">*</span> p<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>p <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span><span class="token operator">*</span> <span class="token punctuation">(</span>p<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token number">0</span>
+
+class <span class="token class-name">Contravariant</span> f where
+  cofmap <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>b <span class="token operator">-</span><span class="token operator">></span> a<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> f a <span class="token operator">-</span><span class="token operator">></span> f b
+
+data PL next where
+    Ret <span class="token punctuation">:</span><span class="token punctuation">:</span> next <span class="token operator">-</span><span class="token operator">></span> PL next <span class="token operator">--</span> <span class="token operator">^</span> <span class="token keyword">return</span>  a value
+    Sample01 <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>Float <span class="token operator">-</span><span class="token operator">></span> PL next<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> PL next <span class="token operator">--</span> <span class="token operator">^</span> sample uniformly from a <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> distribution
+
+instance Monad PL where
+  <span class="token keyword">return</span> <span class="token operator">=</span> Ret
+  <span class="token punctuation">(</span>Ret a<span class="token punctuation">)</span> <span class="token operator">></span><span class="token operator">>=</span> f <span class="token operator">=</span> f a
+  <span class="token punctuation">(</span>Sample01 float2plnext<span class="token punctuation">)</span> <span class="token operator">></span><span class="token operator">>=</span> next2next' <span class="token operator">=</span>
+      Sample01 $ \f <span class="token operator">-</span><span class="token operator">></span> float2plnext f <span class="token operator">></span><span class="token operator">>=</span> next2next'
+
+instance Applicative PL where
+    pure <span class="token operator">=</span> <span class="token keyword">return</span>
+    ff <span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">></span> fx <span class="token operator">=</span> <span class="token keyword">do</span>
+        f <span class="token operator">&lt;</span><span class="token operator">-</span> ff
+        x <span class="token operator">&lt;</span><span class="token operator">-</span> fx
+        <span class="token keyword">return</span> $ f x
+
+instance Functor PL where
+    fmap f plx <span class="token operator">=</span> <span class="token keyword">do</span>
+         x <span class="token operator">&lt;</span><span class="token operator">-</span> plx
+         <span class="token keyword">return</span> $ f x
+
+<span class="token operator">--</span> <span class="token operator">|</span> operation to sample from <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+sample01 <span class="token punctuation">:</span><span class="token punctuation">:</span> PL Float
+sample01 <span class="token operator">=</span> Sample01 Ret
+
+
+<span class="token operator">--</span> <span class="token operator">|</span> Run one step of MH on a distribution to obtain a <span class="token punctuation">(</span>correlated<span class="token punctuation">)</span> sample
+mhStep <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>a <span class="token operator">-</span><span class="token operator">></span> Float<span class="token punctuation">)</span> <span class="token operator">--</span> <span class="token operator">^</span> <span class="token keyword">function</span> to score sample with<span class="token punctuation">,</span> proportional to distribution
+  <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">(</span>a <span class="token operator">-</span><span class="token operator">></span> PL a<span class="token punctuation">)</span> <span class="token operator">--</span> <span class="token operator">^</span> Proposal program
+  <span class="token operator">-</span><span class="token operator">></span> a <span class="token operator">--</span> current sample
+  <span class="token operator">-</span><span class="token operator">></span> PL a
+mhStep f q a <span class="token operator">=</span> <span class="token keyword">do</span>
+ 	a' <span class="token operator">&lt;</span><span class="token operator">-</span> q a
+ 	let alpha <span class="token operator">=</span> f a' <span class="token operator">/</span> f a <span class="token operator">--</span> acceptance ratio
+ 	u <span class="token operator">&lt;</span><span class="token operator">-</span> sample01
+ 	<span class="token keyword">return</span> $ <span class="token keyword">if</span> u <span class="token operator">&lt;=</span> alpha then a' <span class="token keyword">else</span> a
+
+<span class="token operator">--</span> Typeclass that can provide me with data to run MCMC on it
+class <span class="token class-name">MCMC</span> a where
+    arbitrary <span class="token punctuation">:</span><span class="token punctuation">:</span> a
+    uniform2val <span class="token punctuation">:</span><span class="token punctuation">:</span> Float <span class="token operator">-</span><span class="token operator">></span> a
+
+instance MCMC Float where
+	arbitrary <span class="token operator">=</span> <span class="token number">0</span>
+	<span class="token operator">--</span> map <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">(</span><span class="token operator">-</span>infty<span class="token punctuation">,</span> infty<span class="token punctuation">)</span>
+	uniform2val v <span class="token operator">=</span> tan <span class="token punctuation">(</span><span class="token operator">-</span>pi<span class="token operator">/</span><span class="token number">2</span> <span class="token operator">+</span> pi <span class="token operator">*</span> v<span class="token punctuation">)</span>
+
+
+<span class="token punctuation">{</span><span class="token operator">-</span>
+<span class="token operator">--</span> <span class="token operator">|</span> Any enumerable object has a way to get me the starting point <span class="token keyword">for</span> MCMC
+instance <span class="token punctuation">(</span>Bounded a<span class="token punctuation">,</span> Enum a<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> MCMC a where
+     arbitrary <span class="token operator">=</span> toEnum <span class="token number">0</span>
+     uniform2val v <span class="token operator">=</span> let
+        maxf <span class="token operator">=</span> fromIntegral <span class="token punctuation">.</span> fromEnum $ maxBound
+        minf <span class="token operator">=</span> fromIntegral <span class="token punctuation">.</span> fromEnum $ minBound
+        <span class="token keyword">in</span> toEnum $ floor $ minf <span class="token operator">+</span> v <span class="token operator">*</span> <span class="token punctuation">(</span>maxf <span class="token operator">-</span> minf<span class="token punctuation">)</span>
+<span class="token operator">-</span><span class="token punctuation">}</span>
+
+
+<span class="token operator">--</span> <span class="token operator">|</span> Run MH to sample from a distribution
+mh <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>a <span class="token operator">-</span><span class="token operator">></span> Float<span class="token punctuation">)</span> <span class="token operator">--</span> <span class="token operator">^</span> <span class="token keyword">function</span> to score sample with
+ <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">(</span>a <span class="token operator">-</span><span class="token operator">></span> PL a<span class="token punctuation">)</span> <span class="token operator">--</span> <span class="token operator">^</span> proposal program
+ <span class="token operator">-</span><span class="token operator">></span> a <span class="token operator">--</span> <span class="token operator">^</span> current sample
+ <span class="token operator">-</span><span class="token operator">></span> PL a
+mh f q a <span class="token operator">=</span> mLoop <span class="token punctuation">(</span>mhStep f q<span class="token punctuation">)</span> <span class="token number">100</span>  $ a
+
+<span class="token operator">--</span> <span class="token operator">|</span> Construct a program to sample from an arbitrary distribution using MCMC
+mhD <span class="token punctuation">:</span><span class="token punctuation">:</span> MCMC a <span class="token operator">=</span><span class="token operator">></span> D a <span class="token operator">-</span><span class="token operator">></span> PL a
+mhD <span class="token punctuation">(</span>D d<span class="token punctuation">)</span> <span class="token operator">=</span>
+    let
+      scorer <span class="token operator">=</span> <span class="token punctuation">(</span>unP <span class="token punctuation">.</span> d<span class="token punctuation">)</span>
+      proposal _ <span class="token operator">=</span> <span class="token keyword">do</span>
+        f <span class="token operator">&lt;</span><span class="token operator">-</span> sample01
+        <span class="token keyword">return</span> $ uniform2val f
+    <span class="token keyword">in</span> mh scorer proposal arbitrary
+
+
+<span class="token operator">--</span> <span class="token operator">|</span> Run the probabilistic value to get a sample
+sample <span class="token punctuation">:</span><span class="token punctuation">:</span> RandomGen g <span class="token operator">=</span><span class="token operator">></span> g <span class="token operator">-</span><span class="token operator">></span> PL a <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">(</span>a<span class="token punctuation">,</span> g<span class="token punctuation">)</span>
+sample g <span class="token punctuation">(</span>Ret a<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span>a<span class="token punctuation">,</span> g<span class="token punctuation">)</span>
+sample g <span class="token punctuation">(</span>Sample01 f2plnext<span class="token punctuation">)</span> <span class="token operator">=</span> let <span class="token punctuation">(</span>f<span class="token punctuation">,</span> g<span class="token string">') = random g in sample g'</span> <span class="token punctuation">(</span>f2plnext f<span class="token punctuation">)</span>
+
+
+<span class="token operator">--</span> <span class="token operator">|</span> Sample n values from the distribution
+samples <span class="token punctuation">:</span><span class="token punctuation">:</span> RandomGen g <span class="token operator">=</span><span class="token operator">></span> Int <span class="token operator">-</span><span class="token operator">></span> g <span class="token operator">-</span><span class="token operator">></span> PL a <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">(</span><span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">,</span> g<span class="token punctuation">)</span>
+samples <span class="token number">0</span> g _ <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> g<span class="token punctuation">)</span>
+samples n g pl <span class="token operator">=</span> let <span class="token punctuation">(</span>a<span class="token punctuation">,</span> g'<span class="token punctuation">)</span> <span class="token operator">=</span> sample g pl
+                     <span class="token punctuation">(</span>as<span class="token punctuation">,</span> g<span class="token string">''</span><span class="token punctuation">)</span> <span class="token operator">=</span> samples <span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> g' pl
+                 <span class="token keyword">in</span> <span class="token punctuation">(</span>a<span class="token punctuation">:</span>as<span class="token punctuation">,</span> g<span class="token string">''</span><span class="token punctuation">)</span>
+
+<span class="token operator">--</span> <span class="token operator">|</span> count fraction of times value occurs <span class="token keyword">in</span> list
+occurFrac <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>Eq a<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>a<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">></span> a <span class="token operator">-</span><span class="token operator">></span> Float
+occurFrac as a <span class="token operator">=</span>
+    let noccur <span class="token operator">=</span> length <span class="token punctuation">(</span>filter <span class="token punctuation">(</span><span class="token operator">==</span>a<span class="token punctuation">)</span> as<span class="token punctuation">)</span>
+        n <span class="token operator">=</span> length as
+    <span class="token keyword">in</span> <span class="token punctuation">(</span>fromIntegral noccur<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>fromIntegral n<span class="token punctuation">)</span>
+
+<span class="token operator">--</span> <span class="token operator">|</span> Produce a distribution from a PL by using the sampler to sample N times
+distribution <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>Eq a<span class="token punctuation">,</span> Num a<span class="token punctuation">,</span> RandomGen g<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> Int <span class="token operator">-</span><span class="token operator">></span> g <span class="token operator">-</span><span class="token operator">></span> PL a <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">(</span>D a<span class="token punctuation">,</span> g<span class="token punctuation">)</span>
+distribution n g pl <span class="token operator">=</span>
+    let <span class="token punctuation">(</span>as<span class="token punctuation">,</span> g<span class="token string">') = samples n g pl in (D (\a -> P (occurFrac as a)), g'</span><span class="token punctuation">)</span>
+
+
+<span class="token operator">--</span> <span class="token operator">|</span> biased coin
+coin <span class="token punctuation">:</span><span class="token punctuation">:</span> Float <span class="token operator">-</span><span class="token operator">></span> PL Int <span class="token operator">--</span> <span class="token number">1</span> with prob<span class="token punctuation">.</span> p1<span class="token punctuation">,</span> <span class="token number">0</span> with prob<span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> p1<span class="token punctuation">)</span>
+coin p1 <span class="token operator">=</span> <span class="token keyword">do</span>
+    Sample01 <span class="token punctuation">(</span>\f <span class="token operator">-</span><span class="token operator">></span> Ret $ <span class="token keyword">if</span> f <span class="token operator">&lt;</span> p1 then <span class="token number">1</span> <span class="token keyword">else</span> <span class="token number">0</span><span class="token punctuation">)</span>
+
+
+<span class="token operator">--</span> <span class="token operator">|</span> Create a histogram from values<span class="token punctuation">.</span>
+histogram <span class="token punctuation">:</span><span class="token punctuation">:</span> Int <span class="token operator">--</span> <span class="token operator">^</span> number of buckets
+          <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">[</span>Float<span class="token punctuation">]</span> <span class="token operator">--</span> values
+          <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">[</span>Int<span class="token punctuation">]</span>
+histogram nbuckets as <span class="token operator">=</span>
+    let
+        minv <span class="token punctuation">:</span><span class="token punctuation">:</span> Float
+        minv <span class="token operator">=</span> minimum as
+        maxv <span class="token punctuation">:</span><span class="token punctuation">:</span> Float
+        maxv <span class="token operator">=</span> maximum as
+        <span class="token operator">--</span> value per bucket
+        perbucket <span class="token punctuation">:</span><span class="token punctuation">:</span> Float
+        perbucket <span class="token operator">=</span> <span class="token punctuation">(</span>maxv <span class="token operator">-</span> minv<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>fromIntegral nbuckets<span class="token punctuation">)</span>
+        bucket <span class="token punctuation">:</span><span class="token punctuation">:</span> Float <span class="token operator">-</span><span class="token operator">></span> Int
+        bucket v <span class="token operator">=</span> floor <span class="token punctuation">(</span>v <span class="token operator">/</span> perbucket<span class="token punctuation">)</span>
+        bucketed <span class="token punctuation">:</span><span class="token punctuation">:</span> M<span class="token punctuation">.</span>Map Int Int
+        bucketed <span class="token operator">=</span> foldl <span class="token punctuation">(</span>\m v <span class="token operator">-</span><span class="token operator">></span> M<span class="token punctuation">.</span>insertWith <span class="token punctuation">(</span><span class="token operator">+</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>bucket v<span class="token punctuation">)</span> <span class="token number">1</span> m<span class="token punctuation">)</span> mempty as
+     <span class="token keyword">in</span> map snd <span class="token punctuation">.</span> M<span class="token punctuation">.</span>toList $ bucketed
+
+
+printSamples <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>Real a<span class="token punctuation">,</span> Eq a<span class="token punctuation">,</span> Ord a<span class="token punctuation">,</span> Show a<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> String <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">[</span>a<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">></span> IO <span class="token punctuation">(</span><span class="token punctuation">)</span>
+printSamples s as <span class="token operator">=</span>  <span class="token keyword">do</span>
+    putStrLn $ <span class="token string">"***"</span> <span class="token operator">&lt;</span><span class="token operator">></span> s
+    putStrLn $ <span class="token string">"   samples: "</span> <span class="token operator">&lt;</span><span class="token operator">></span> series2spark <span class="token punctuation">(</span>map toRational as<span class="token punctuation">)</span>
+
+printHistogram <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>Float<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">></span> IO <span class="token punctuation">(</span><span class="token punctuation">)</span>
+printHistogram samples <span class="token operator">=</span> putStrLn $ series2spark <span class="token punctuation">(</span>map fromIntegral <span class="token punctuation">.</span> histogram <span class="token number">10</span> $  samples<span class="token punctuation">)</span>
+
+
+<span class="token operator">--</span> <span class="token operator">|</span> Given a coin bias<span class="token punctuation">,</span> take samples and print bias
+printCoin <span class="token punctuation">:</span><span class="token punctuation">:</span> Float <span class="token operator">-</span><span class="token operator">></span> IO <span class="token punctuation">(</span><span class="token punctuation">)</span>
+printCoin bias <span class="token operator">=</span> <span class="token keyword">do</span>
+    let g <span class="token operator">=</span> mkStdGen <span class="token number">1</span>
+    let <span class="token punctuation">(</span>tosses<span class="token punctuation">,</span> _<span class="token punctuation">)</span> <span class="token operator">=</span> samples <span class="token number">100</span> g <span class="token punctuation">(</span>coin bias<span class="token punctuation">)</span>
+    printSamples <span class="token punctuation">(</span><span class="token string">"bias: "</span> <span class="token operator">&lt;</span><span class="token operator">></span> show bias<span class="token punctuation">)</span> tosses
+
+
+
+<span class="token operator">--</span> <span class="token operator">|</span> Create normal distribution as sum of uniform distributions<span class="token punctuation">.</span>
+normal <span class="token punctuation">:</span><span class="token punctuation">:</span> PL Float
+normal <span class="token operator">=</span>  fromIntegral <span class="token punctuation">.</span> sum <span class="token operator">&lt;</span>$<span class="token operator">></span> <span class="token punctuation">(</span>replicateM <span class="token number">5</span> <span class="token punctuation">(</span>coin <span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+
+main <span class="token punctuation">:</span><span class="token punctuation">:</span> IO <span class="token punctuation">(</span><span class="token punctuation">)</span>
+main <span class="token operator">=</span> <span class="token keyword">do</span>
+    printCoin <span class="token number">0.01</span>
+    printCoin <span class="token number">0.99</span>
+    printCoin <span class="token number">0.5</span>
+    printCoin <span class="token number">0.7</span>
+
+    putStrLn $ <span class="token string">"normal distribution using central limit theorem: "</span>
+    let g <span class="token operator">=</span> mkStdGen <span class="token number">1</span>
+    let <span class="token punctuation">(</span>nsamples<span class="token punctuation">,</span> _<span class="token punctuation">)</span> <span class="token operator">=</span> samples <span class="token number">1000</span> g normal
+    <span class="token operator">--</span> printSamples <span class="token string">"normal: "</span> nsamples
+    printHistogram nsamples
+
+
+    putStrLn $ <span class="token string">"normal distribution using MCMC: "</span>
+    let <span class="token punctuation">(</span>mcmcsamples<span class="token punctuation">,</span> _<span class="token punctuation">)</span> <span class="token operator">=</span> samples <span class="token number">1000</span> g <span class="token punctuation">(</span>mhD $  normalD <span class="token number">0.5</span><span class="token punctuation">)</span>
+    printHistogram mcmcsamples
+
+    putStrLn $ <span class="token string">"sampling from x^4 with finite support"</span>
+    let <span class="token punctuation">(</span>mcmcsamples<span class="token punctuation">,</span> _<span class="token punctuation">)</span> <span class="token operator">=</span> samples <span class="token number">1000</span> g <span class="token punctuation">(</span>mhD $  polyD <span class="token number">4</span><span class="token punctuation">)</span>
+    printHistogram mcmcsamples
+</code></pre>
+<h4 class='centered'><a id=output href='#output'> § </a> Output</h4>
+<pre><code><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span>bias<span class="token punctuation">:</span> <span class="token number">1.0e-2</span>
+   samples<span class="token punctuation">:</span> ________________________________________█_█________
+<span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span>bias<span class="token punctuation">:</span> <span class="token number">0.99</span>
+   samples<span class="token punctuation">:</span> ███████████████████████████████████████████████████
+<span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span>bias<span class="token punctuation">:</span> <span class="token number">0.5</span>
+   samples<span class="token punctuation">:</span> __█____█__███_███_█__█_█___█_█_██___████████__█_███
+<span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span>bias<span class="token punctuation">:</span> <span class="token number">0.7</span>
+   samples<span class="token punctuation">:</span> __█__█_█__███_█████__███_█_█_█_██_█_████████__█████
+normal distribution using central limit theorem<span class="token punctuation">:</span>
+_▄▇█▄_
+normal distribution using MCMC<span class="token punctuation">:</span>
+__▁▄█▅▂▁___
+sampling from x<span class="token operator">^</span><span class="token number">4</span> with finite support
+▁▁▃▃▃▄▅▆▇█_
+
+</code></pre>
+</body></html>

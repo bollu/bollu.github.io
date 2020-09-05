@@ -1,13 +1,13 @@
-<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
-img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
+img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.centered { margin-left: 30%; margin-right: 25%; }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
 a:active { color: #1a73e8; text-decoration: none; }
 
- .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
- .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
-.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=perspectives-on-yoneda href='#perspectives-on-yoneda'> § </a> Perspectives on Yoneda</h2>
+blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
+pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
+.latexinline { white-space: nowrap }pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><h2 class='centered'><a id=perspectives-on-yoneda href='#perspectives-on-yoneda'> § </a> Perspectives on Yoneda</h2>
 We can try to gain intuition for Yoneda by considering a finite category
 where we view arrows as directed paths. 
 The "interpretation" of a path is taken by going from edges to labels and then
@@ -25,88 +25,58 @@ need to show that the set of natural transformations <code>η: F → G</code>  a
 with the set <code>G[O] ∈ Set</code>.
 We do this by the following consideration. Recall that for the natural transformation,
 we have the commuting diagram:
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>x -p-&gt; y
+<pre><code>x <span class="token operator">-</span>p<span class="token operator">-</span><span class="token operator">></span> y
 
-Hom(o, x) -p'-&gt; Hom(o, y)
-|                |
+<span class="token function">Hom</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> x<span class="token punctuation">)</span> <span class="token operator">-</span>p'<span class="token operator">-</span><span class="token operator">></span> <span class="token function">Hom</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+<span class="token operator">|</span>                <span class="token operator">|</span>
 ηx               ηy
-|                |
+<span class="token operator">|</span>                <span class="token operator">|</span>
 v                v
-G[x] -G[p] --&gt; G[y]
-</tt></pre>
-</div>
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>∀ x y ∈ C,
-  o2x ∈ Hom(o, x),
-  p ∈ Hom(x, y),
-    G[p](ηx(o2x)) = ηy(p'(o2x))
-</tt></pre>
-</div>
+G<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">-</span>G<span class="token punctuation">[</span>p<span class="token punctuation">]</span> <span class="token operator">--</span><span class="token operator">></span> G<span class="token punctuation">[</span>y<span class="token punctuation">]</span>
+</code></pre>
+<pre><code>∀ x y ∈ C<span class="token punctuation">,</span>
+  o2x ∈ <span class="token function">Hom</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  p ∈ <span class="token function">Hom</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    G<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">(</span>η<span class="token function">x</span><span class="token punctuation">(</span>o2x<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=</span> η<span class="token function">y</span><span class="token punctuation">(</span>p'<span class="token punctuation">(</span>o2x<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
 Which on using the definition of <code>p'</code> becomes:
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>∀ x y ∈ C,
-  o2x ∈ Hom(o, x),
-  p ∈ Hom(x, y),
-  G[p](ηx(o2x)) = ηy(o2x . p')
-</tt></pre>
-</div>
+<pre><code>∀ x y ∈ C<span class="token punctuation">,</span>
+  o2x ∈ <span class="token function">Hom</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  p ∈ <span class="token function">Hom</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  G<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">(</span>η<span class="token function">x</span><span class="token punctuation">(</span>o2x<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=</span> η<span class="token function">y</span><span class="token punctuation">(</span>o2x <span class="token punctuation">.</span> p'<span class="token punctuation">)</span>
+</code></pre>
 Now pick the magic <code>x = o</code> and <code>o2x = o2o = id_o</code>. This gives:
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>x = o, y ∈ C
-o2x = id_o
+<pre><code>x <span class="token operator">=</span> o<span class="token punctuation">,</span> y ∈ C
+o2x <span class="token operator">=</span> id_o
 
-∀ y ∈ C, 
-  p ∈ Hom(o, y),
-  G[p](ηo(id_o)) = ηy(id_o . p')
-  G[p](ηo(id_o)) = ηy(p') [By identity arrow]
-  [assume we fix ηo(id_o) ∈ G[o] ]
-  ηy(p') = G[p](ηo(id_o)) [ηy is now forced.
-                          everything on the RHS is known]
-</tt></pre>
-</div>
+∀ y ∈ C<span class="token punctuation">,</span> 
+  p ∈ <span class="token function">Hom</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  G<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">(</span>η<span class="token function">o</span><span class="token punctuation">(</span>id_o<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=</span> η<span class="token function">y</span><span class="token punctuation">(</span>id_o <span class="token punctuation">.</span> p'<span class="token punctuation">)</span>
+  G<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">(</span>η<span class="token function">o</span><span class="token punctuation">(</span>id_o<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=</span> η<span class="token function">y</span><span class="token punctuation">(</span>p'<span class="token punctuation">)</span> <span class="token punctuation">[</span>By identity arrow<span class="token punctuation">]</span>
+  <span class="token punctuation">[</span>assume we fix η<span class="token function">o</span><span class="token punctuation">(</span>id_o<span class="token punctuation">)</span> ∈ G<span class="token punctuation">[</span>o<span class="token punctuation">]</span> <span class="token punctuation">]</span>
+  η<span class="token function">y</span><span class="token punctuation">(</span>p'<span class="token punctuation">)</span> <span class="token operator">=</span> G<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">(</span>η<span class="token function">o</span><span class="token punctuation">(</span>id_o<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">[</span>ηy is now forced<span class="token punctuation">.</span>
+                          everything on the RHS is known<span class="token punctuation">]</span>
+</code></pre>
 Hence, we learn how to map every other arrow <code>ηy(p)</code>. If we know how to map
 the arrows, we can map the objects in the hom-sets as images of the arrows,
 since we know what <code>ηo[id_o]</code> maps to. Concretely:
-<h4><a id=images-oq-for-q-homo-o-after-oido-is-fixed href='#images-oq-for-q-homo-o-after-oido-is-fixed'> § </a> Images <code>ηo(q)</code> for <code>q ∈ Hom(o, o)</code> after <code>ηo(id_o)</code> is fixed:</h4>
+<h4 class='centered'><a id=images-oq-for-q-homo-o-after-oido-is-fixed href='#images-oq-for-q-homo-o-after-oido-is-fixed'> § </a> Images <code>ηo(q)</code> for <code>q ∈ Hom(o, o)</code> after <code>ηo(id_o)</code> is fixed:</h4>
 We have the relation <code>id_o . q = q</code>. So we get that the arrow <code>q': Hom(o, o) → Hom(o, o)</code>
 takes <code>id_o</code> to <code>q</code>. By the structure of the natural transformation, we have that:
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>∀ x y ∈ C,
-  o2x ∈ Hom(o, x),
-  p ∈ Hom(x, y),
-    G[p](ηx(o2x)) = ηy(p'(o2x))
-</tt></pre>
-</div>
+<pre><code>∀ x y ∈ C<span class="token punctuation">,</span>
+  o2x ∈ <span class="token function">Hom</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  p ∈ <span class="token function">Hom</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    G<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">(</span>η<span class="token function">x</span><span class="token punctuation">(</span>o2x<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=</span> η<span class="token function">y</span><span class="token punctuation">(</span>p'<span class="token punctuation">(</span>o2x<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
 <ul><li> Pick <code>x = y = o</code>, <code>o2x = id_o</code>, <code>p = q</code>. This gives:</li></ul>
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code>    G<span class="token punctuation">[</span>q<span class="token punctuation">]</span><span class="token punctuation">(</span>η<span class="token function">o</span><span class="token punctuation">(</span>id_o<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=</span> η<span class="token function">o</span><span class="token punctuation">(</span>q'<span class="token punctuation">(</span>id_o<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    G<span class="token punctuation">[</span>q<span class="token punctuation">]</span><span class="token punctuation">(</span>η<span class="token function">o</span><span class="token punctuation">(</span>id_o<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=</span> η<span class="token function">o</span><span class="token punctuation">(</span>q' <span class="token punctuation">.</span> id_o<span class="token punctuation">)</span>
+    G<span class="token punctuation">[</span>q<span class="token punctuation">]</span><span class="token punctuation">(</span>η<span class="token function">o</span><span class="token punctuation">(</span>id_o<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=</span> η<span class="token function">o</span><span class="token punctuation">(</span>q'<span class="token punctuation">)</span>
+    η<span class="token function">o</span><span class="token punctuation">(</span>q'<span class="token punctuation">)</span> <span class="token operator">=</span> G<span class="token punctuation">[</span>q<span class="token punctuation">]</span><span class="token punctuation">(</span>η<span class="token function">o</span><span class="token punctuation">(</span>id_o<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
 Hence, we've deduced <code>ηo(q')</code>, so we know what element <code>q</code> gets mapped to.
 The same process works with <i>any</i> arrow!
-<h4><a id=a-shift-in-perspective-yoneda-as-partial-monoid href='#a-shift-in-perspective-yoneda-as-partial-monoid'> § </a> A shift in perspective: Yoneda as partial monoid.</h4>
+<h4 class='centered'><a id=a-shift-in-perspective-yoneda-as-partial-monoid href='#a-shift-in-perspective-yoneda-as-partial-monoid'> § </a> A shift in perspective: Yoneda as partial monoid.</h4>
 Since we're considering the sets <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>o</mi><mi>m</mi><mo stretchy="false">(</mo><mi>o</mi><mo separator="true">,</mo><mo>−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Hom(o, -)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mord mathnormal">o</span><span class="mord mathnormal">m</span><span class="mopen">(</span><span class="mord mathnormal">o</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">−</span><span class="mclose">)</span></span></span></span></span>, note that we can always
 pre-compose any element of <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>o</mi><mi>m</mi><mo stretchy="false">(</mo><mi>o</mi><mo separator="true">,</mo><mi>o</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Hom(o, o)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mord mathnormal">o</span><span class="mord mathnormal">m</span><span class="mopen">(</span><span class="mord mathnormal">o</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">o</span><span class="mclose">)</span></span></span></span></span> to every <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>o</mi><mi>m</mi><mo stretchy="false">(</mo><mi>o</mi><mo separator="true">,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Hom(o, p)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mord mathnormal">o</span><span class="mord mathnormal">m</span><span class="mopen">(</span><span class="mord mathnormal">o</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">p</span><span class="mclose">)</span></span></span></span></span>. More-over,
 if we know the value of <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><msub><mi>d</mi><mi>o</mi></msub></mrow><annotation encoding="application/x-tex">id_o</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord mathnormal">i</span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">o</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>, then we have the equation that <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><msub><mi>d</mi><mi>o</mi></msub><mo>∘</mo><mi>a</mi><mo>=</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">id_o \circ a = a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord mathnormal">i</span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">o</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∘</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">a</span></span></span></span></span>.
@@ -134,4 +104,4 @@ From this perspective, it is trivial to see that:
   the monoid structure is the loss of the unique identity. <b>NOTE</b>: This is handwavy,
   since the data given by a natural transformation is somehow "different", in a way
   that I'm not sure how to make precise.</li></ul>
-</container></body></html>
+</body></html>

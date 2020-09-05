@@ -19,6 +19,8 @@
 #include <sys/wait.h>
 #include "duktape/duktape.h"
 #include "utf8.h"
+#include <sys/resource.h>
+
 
 #undef NDEBUG
 #include <assert.h>
@@ -647,7 +649,7 @@ T* tokenizeBlock(const char *s, const ll len, const L lbegin) {
         // we need to have ```\n
         if (lcur.si < len && s[lcur.si] != '\n') {
             printferr(lcur, s, "incorrectly terminated ```."
-                        "must have newline following.");
+                        "must have newline following ```.");
             assert(false && "incorrectly terminated code block.");
         }
 
@@ -735,66 +737,83 @@ void tokenize(const char *s, const ll len, vector<T*> &ts) {
     }
 }
 
+void vduk_debug_print_stack(duk_context *ctx, const char *fmt, va_list args){
+    char *outstr = nullptr;
+    vasprintf(&outstr, fmt, args);
+    assert(outstr);
 
-char* pygmentize(const char *temp_dir_path, 
-        const char *code, 
-        int codelen, 
-        const char *lang, const char *raw_input,
+    printf("\nvvv%svvv\n", outstr);
+    printf("[TOP OF STACK]\n");
+    const int len = duk_get_top(ctx);
+    for(int i = 1; i <= len; ++i) {
+        duk_dup(ctx, -i);
+        printf("stk[-%2d] = %20s\n", i, duk_to_string(ctx, -1));
+        duk_pop(ctx);
+    }
+    printf("^^^^^^^\n");
+}
+
+
+void duk_debug_print_stack(duk_context *ctx, const char *fmt, ...) {
+    va_list args;
+    va_start(args, fmt);
+    vduk_debug_print_stack(ctx, fmt, args);
+    va_end(args);
+}
+
+GIVE char* pygmentize(duk_context *prism_ctx,
+        KEEP const char *temp_dir_path, 
+        KEEP const char *code, 
+        ll codelen, 
+        KEEP const char *lang,
+        KEEP const char *raw_input,
         const L loc) {
 
+    char *input = (char *)calloc(sizeof(char), codelen+2);
+    for(int i = 0; i < codelen; ++i) { input[i] = code[i]; }
 
-    char input_file_path[512];
-    sprintf(input_file_path, "%s/input.txt", temp_dir_path);
-    FILE *f = fopen(input_file_path, "w");
-    assert(f && "unable to open temp file");
-    ll nwritten = fwrite(code, 1, codelen, f);
-    assert(nwritten == codelen);
-    fclose(f);
+    duk_debug_print_stack(prism_ctx, "stack %d", __LINE__);
+    // we want to run the line:
+    // const html = 
+    //   Prism.highlight(code, Prism.languages.javascript, 'javascript');
+    // [Prism|]
 
-    char output_file_path[512];
-    sprintf(output_file_path, "%s/input.txt.html", temp_dir_path);
+    duk_push_string(prism_ctx, "highlight");
+    duk_debug_print_stack(prism_ctx, "stack %d", __LINE__);
+    // [Prism|"highlight"]
 
-    pid_t pid;
-    // source-highlight -s cpp  /tmp/foo.py && cat /tmp/foo.py.html
-    if ((pid = fork()) == 0) {
-        int err = execlp("source-highlight",
-                "source-highlight",
-                // "--style-css=./mono.css", // style provided as css file.
-                //"-n", // line numbers
-                "-s", lang,  // source lang
-                input_file_path,
-                NULL);
-        assert(err != -1 && "unable to write pygments file.");
+    duk_push_string(prism_ctx, input);
+    duk_debug_print_stack(prism_ctx, "stack %d", __LINE__);
+    // [Prism(-3)|"highlight"(-2)|<input>(-1)]
+    //
+    duk_get_prop_string(prism_ctx, -3, "languages");
+    duk_debug_print_stack(prism_ctx, "stack %d", __LINE__);
+    // [Prism(-4)|"highlight"(-3)|<input>(-2)|Prism.languages(-1)]
+
+    const char *CURLANG = "clike";
+    duk_get_prop_string(prism_ctx, -1, CURLANG);
+    duk_debug_print_stack(prism_ctx, "stack %d", __LINE__);
+    // [Prism(-5)|highlight(-4)|input(-3)|Prism.languages(-2)|Prism.languages.lang(-1)]
+    
+
+    duk_swap_top(prism_ctx, -2);
+    // [Prism(-5)|highlight(-4)|input(-3)|Prism.languages.lang(-2)|Prism.languages(-1)]
+    duk_pop(prism_ctx);
+    // [Prism(-4)|highlight(-2)|input(-2)|Prism.languages.lang(-1)]
+
+
+    duk_push_string(prism_ctx, CURLANG);
+    // [Prism(-5)|highlight(-4)|input(-3)|Prism.languages.lang(-2)| "<lang>"(-1)]
+    duk_debug_print_stack(prism_ctx, "stack %d", __LINE__);
+
+    if(duk_pcall_prop(prism_ctx, -5, 3) == DUK_EXEC_SUCCESS) {
+        const char *out = duk_to_string(prism_ctx, -1);
+        duk_pop(prism_ctx);
+        return strdup(out);
     } else {
-        // parent, wait for child.
-        int status;
-        if (wait(&status) == -1) {
-            const bool has_child = errno != ECHILD;
-            const bool child_abnormal = !WIFEXITED(status);
-            if(has_child && child_abnormal)  {
-                printferr(loc, raw_input, 
-                        "syntax highlight failed on |%s|."
-                        "Child exited abnormally with exit code |%d|",
-                        input_file_path, WEXITSTATUS(status));
-                perror(nullptr);
-                assert(false && "syntax highlight failed");
-            }
-        }
+        printferr(loc, raw_input, "%s", duk_to_string(prism_ctx, -1));
+        assert(false && "unable to syntax highlight");
     }
-
-    f = fopen(output_file_path, "r");
-    // cleanup.
-    if (f == nullptr) { rmdir(temp_dir_path); }
-    assert(f && "unable to open output file of pygmentize");
-
-    fseek(f, 0, SEEK_END); const ll len = ftell(f); fseek(f, 0, SEEK_SET);
-    char *outbuf = (char *)calloc(len+1, sizeof(char));
-    assert(outbuf != nullptr && "unable to allocate buffer");
-
-    const ll nread = fread(outbuf, 1, len, f);
-    assert(nread == len);
-    fclose(f);
-    return outbuf;
 };
 
 // TODO: fix representation to hold the full span, and the span
@@ -823,32 +842,9 @@ enum class LatexType {
     LatexTypeBlock, LatexTypeInline
 };
 
-void vduk_debug_print_stack(duk_context *ctx, const char *fmt, va_list args){
-    char *outstr = nullptr;
-    vasprintf(&outstr, fmt, args);
-    assert(outstr);
-
-    printf("\nvvv%svvv\n", outstr);
-    printf("[TOP OF STACK]\n");
-    const int len = duk_get_top(ctx);
-    for(int i = 1; i <= len; ++i) {
-        duk_dup(ctx, -i);
-        printf("stk[-%2d] = %20s\n", i, duk_to_string(ctx, -1));
-        duk_pop(ctx);
-    }
-    printf("^^^^^^^\n");
-}
 
 
-void duk_debug_print_stack(duk_context *ctx, const char *fmt, ...) {
-    va_list args;
-    va_start(args, fmt);
-    vduk_debug_print_stack(ctx, fmt, args);
-    va_end(args);
-}
-
-
-GIVE const char* compileLatex(duk_context *duk_ctx, 
+GIVE const char* compileLatex(duk_context *katex_ctx, 
         KEEP const char *temp_dir_path, ll inwritelen, 
         KEEP const char *raw_input,
         L loc,
@@ -868,24 +864,24 @@ GIVE const char* compileLatex(duk_context *duk_ctx,
     // stack: after processing
     // [katex| renderToString | raw_str | displaymode]
     //   -4         -3           -2      -1
-    duk_push_string(duk_ctx, "renderToString");
-    duk_push_string(duk_ctx, input);
-    duk_push_object(duk_ctx); // { displayMode: ... }
-    duk_push_boolean(duk_ctx, ty == LatexType::LatexTypeBlock);
-    duk_put_prop_string(duk_ctx, -2, "displayMode");
+    duk_push_string(katex_ctx, "renderToString");
+    duk_push_string(katex_ctx, input);
+    duk_push_object(katex_ctx); // { displayMode: ... }
+    duk_push_boolean(katex_ctx, ty == LatexType::LatexTypeBlock);
+    duk_put_prop_string(katex_ctx, -2, "displayMode");
 
 
 
-    if(duk_pcall_prop(duk_ctx, -4, 2) == DUK_EXEC_SUCCESS) {
+    if(duk_pcall_prop(katex_ctx, -4, 2) == DUK_EXEC_SUCCESS) {
         // stack: call
         // [katex| out_string]
         //   -2         -1
-        const char *out = duk_to_string(duk_ctx, -1);
-        duk_pop(duk_ctx);
+        const char *out = duk_to_string(katex_ctx, -1);
+        duk_pop(katex_ctx);
         return out;
     } else {
 
-        printferr(loc, raw_input, "%s", duk_to_string(duk_ctx, -1));
+        printferr(loc, raw_input, "%s", duk_to_string(katex_ctx, -1));
         assert(false && "unable to compile katex");
     }
 }
@@ -968,7 +964,7 @@ GIVE const char *mkHeadingURL(KEEP const char *raw_input, KEEP THeading *heading
     char *url = (char *)calloc(ptlen +2, sizeof(char));
     ll url_ix = 0;
 
-    bool seenalnum = false;
+    bool seenalnum = true;
     for(ll i = ptbegin; i != ptend; ++i) { // heading index
         // convert uppercase -> lowercase
         // keep digits
@@ -976,16 +972,26 @@ GIVE const char *mkHeadingURL(KEEP const char *raw_input, KEEP THeading *heading
         // convert groups of hyphens into single hyphen
         // remove everything else.
         const char c = plaintext[i];
-        if (isalpha(c)) { url[url_ix++] = tolower(c); seenalnum = true; }
-        else if (isdigit(c)) { url[url_ix++] = c; seenalnum = true; }
-        else if (c == '-') { 
-            while (plaintext[i+1] == '-') { i++; } url[url_ix++] = '-'; seenalnum = false;
-        } else if (isspace(c) && seenalnum) { url[url_ix++] = '-'; seenalnum = false; }
+        if ((isalpha(c) || isdigit(c)) && !seenalnum) { 
+            seenalnum = true;
+            url[url_ix++] = '-';
+        }
+
+        if (isalpha(c)) { url[url_ix++] = tolower(c); }
+        else if (isdigit(c)) { url[url_ix++] = c; }
+        else if (c == '-') {
+            // eat repeated hyphens
+            while (plaintext[i+1] == '-') { i++; }
+            seenalnum = false;
+        } else if (isspace(c)) { seenalnum = false; }
     }
+
+    // TODO: strip trailing `-` in URL.
     return url;
 }
 
-void toHTML(duk_context *duk_ctx,
+void toHTML(duk_context *katex_ctx,
+        duk_context *prism_ctx,
         const char *raw_input,
         const char *temp_dir_path, 
         const T *t, ll &outlen, char *outs) {
@@ -1012,8 +1018,8 @@ void toHTML(duk_context *duk_ctx,
         case TT::CodeBlock: {
           TCodeBlock *block = (TCodeBlock *)t;
           // TODO: escape HTML content.
-          const char *open = "<div class='code'>";
-          const char *close = "</div>";
+          const char *open = "<pre><code>";
+          const char *close = "</code></pre>";
 
           strcpy(outs + outlen, open);
           outlen += strlen(open);
@@ -1022,10 +1028,17 @@ void toHTML(duk_context *duk_ctx,
           const Span span =
               Span(t->span.begin.next("```").next(block->langname).next("\n"),
                       t->span.end.prev("```"));
-          char *code_html = pygmentize(temp_dir_path,
+          char *code_html = pygmentize(prism_ctx, temp_dir_path,
                   raw_input + span.begin.si,
                   span.nchars(), block->langname,
                   raw_input, t->span.begin);
+
+          /* debugging code to print 
+          char *code_html = (char*)calloc(span.nchars() + 1, sizeof(char));
+          for(int i = 0; i < span.nchars(); ++i) {
+              code_html[i] = raw_input[span.begin.si + i];
+          }
+          */
 
           strcpy(outs + outlen, code_html);
           outlen += strlen(code_html);
@@ -1048,7 +1061,7 @@ void toHTML(duk_context *duk_ctx,
           } else if (t->ty == TT::LatexInline) {
               outlen += sprintf(outs + outlen, "<span class='latexinline'>");
           }
-          const char *outcompile = compileLatex(duk_ctx, temp_dir_path,
+          const char *outcompile = compileLatex(katex_ctx, temp_dir_path,
                   s.nchars(), raw_input, s.begin, 
                   t->ty == TT::LatexBlock ? LatexType::LatexTypeBlock : LatexType::LatexTypeInline);
           strcpy(outs + outlen, outcompile);
@@ -1105,7 +1118,7 @@ void toHTML(duk_context *duk_ctx,
           strcpy(outs + outlen, openul); outlen += strlen(openul);
           for(auto it: tlist->items) {
               strcpy(outs + outlen, openli); outlen += strlen(openli);
-              toHTML(duk_ctx, raw_input, temp_dir_path, it, outlen, outs);
+              toHTML(katex_ctx, prism_ctx, raw_input, temp_dir_path, it, outlen, outs);
               strcpy(outs + outlen, closeli); outlen += strlen(closeli);
           }
           strcpy(outs + outlen, closeul); outlen += strlen(closeul);
@@ -1123,7 +1136,7 @@ void toHTML(duk_context *duk_ctx,
           strcpy(outs + outlen, openul); outlen += strlen(openul);
           for(auto it: tlist->items) {
               strcpy(outs + outlen, openli); outlen += strlen(openli);
-              toHTML(duk_ctx, raw_input, temp_dir_path, it, outlen, outs);
+              toHTML(katex_ctx, prism_ctx, raw_input, temp_dir_path, it, outlen, outs);
               strcpy(outs + outlen, closeli); outlen += strlen(closeli);
           }
           strcpy(outs + outlen, closeul); outlen += strlen(closeul);
@@ -1134,7 +1147,7 @@ void toHTML(duk_context *duk_ctx,
           TLink *link = (TLink *)t;
           // toHTML(raw_input, temp_dir_path, link->text,  outlen, outs);
           outlen += sprintf(outs + outlen, "<a href=%s>", link->link);
-          toHTML(duk_ctx, raw_input, temp_dir_path, link->text, outlen, outs);
+          toHTML(katex_ctx, prism_ctx, raw_input, temp_dir_path, link->text, outlen, outs);
           outlen += sprintf(outs + outlen, "</a>");
           return;
         }
@@ -1142,7 +1155,7 @@ void toHTML(duk_context *duk_ctx,
         case TT::InlineGroup: {
             TInlineGroup *group = (TInlineGroup *)t;
             for (T *t : group->items) { 
-                toHTML(duk_ctx, raw_input, temp_dir_path, t, outlen, outs);
+                toHTML(katex_ctx, prism_ctx, raw_input, temp_dir_path, t, outlen, outs);
             }
             return;
         }
@@ -1171,7 +1184,7 @@ void toHTML(duk_context *duk_ctx,
             // outlen += sprintf(outs + outlen, "<h%d id=%s>", theading->hnum, link);
             outlen += sprintf(outs + outlen, "<h%d>", min(4, 1+theading->hnum));
             outlen += sprintf(outs + outlen, "<a id=%s href='#%s'> %s </a>", link, link, "§");
-            toHTML(duk_ctx, raw_input, temp_dir_path, theading->item, outlen, outs);
+            toHTML(katex_ctx, prism_ctx, raw_input, temp_dir_path, theading->item, outlen, outs);
             outlen += sprintf(outs + outlen, "</h%d>", min(4, 1+theading->hnum));
 
             free((char *)link);
@@ -1181,7 +1194,7 @@ void toHTML(duk_context *duk_ctx,
         case TT::Italic: {
             TItalic *tcur = (TItalic *)t;
             outlen += sprintf(outs + outlen, "<i>");
-            toHTML(duk_ctx, raw_input, temp_dir_path, tcur->item, outlen, outs);
+            toHTML(katex_ctx, prism_ctx, raw_input, temp_dir_path, tcur->item, outlen, outs);
             outlen += sprintf(outs + outlen, "</i>");
             return;
         }
@@ -1189,7 +1202,7 @@ void toHTML(duk_context *duk_ctx,
         case TT::Bold: {
             TBold *tcur = (TBold *)t;
             outlen += sprintf(outs + outlen, "<b>");
-            toHTML(duk_ctx, raw_input, temp_dir_path, tcur->item, outlen, outs);
+            toHTML(katex_ctx, prism_ctx, raw_input, temp_dir_path, tcur->item, outlen, outs);
             outlen += sprintf(outs + outlen, "</b>");
             return;
         }
@@ -1199,7 +1212,7 @@ void toHTML(duk_context *duk_ctx,
 
           outlen += sprintf(outs + outlen, "<blockquote>");
           for(auto it: tq->items) {
-              toHTML(duk_ctx, raw_input, temp_dir_path, it, outlen, outs);
+              toHTML(katex_ctx, prism_ctx, raw_input, temp_dir_path, it, outlen, outs);
           }
           outlen += sprintf(outs + outlen, "</blockquote>");
           return;
@@ -1230,6 +1243,9 @@ const char html_preamble[] =
 "    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'"
 "    crossorigin='anonymous'>"
 "<!-- The loading of KaTeX is deferred to speed up page rendering -->"
+// ===Prismjs===
+"<link rel='stylesheet' href='prism/prism.css'>"
+//
 // "<script defer src='katex/katex.min.js'"
 // "    integrity='sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4'"
 // "    crossorigin='anonymous'></script>"
@@ -1255,10 +1271,7 @@ const char html_preamble[] =
 // ===End KateX===
 "<title> A Universe of Sorts </title>"
 "<style>"
-"@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}"
-"@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}"
-// "@font-face {font-family: 'Blog Symbol'; src: url('/static/STIX2Math.woff');}"
-//"@font-face {font-family: 'Blog Symbol'; src: url('/static/Asana-Math.otf');}"
+"@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}"
 "@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}"
 // body
 "html { font-size: 100%; }"
@@ -1266,13 +1279,12 @@ const char html_preamble[] =
 "body {"
 " background-color: #FFFFFF; color: #000000; " // tufte
 " font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em; "
-" max-width: 100%; }"
+" max-width: 100%; overflow-x: hidden; }"
 "\n"
 // img as a block
 "img { display:block; }"
 // container
-
-".container { overflow-x: hidden }"
+".container { overflow-x: hidden; max-width:100%; }"
 "@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }"
 "@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }"
 // desktop
@@ -1290,32 +1302,24 @@ const char html_preamble[] =
 "\n"
 // code blocks, latex blocks, quote blocks
 "\n"
-" .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;"
+"blockquote { margin-left: 0px; margin-right: 0px; }"
+" pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;"
 "      border-left-width: 1px; }"
-".code pre, blockquote { padding-left: 10px; }"
+"pre, blockquote { padding-left: 10px; }"
 "\n"
 // monospace font
-" .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }"
-// Math fonts, math font control: latex block and latex inline should have letter spacing
-// " .latexblock, .latexinline { font-family: 'Blog Symbol', monospace; }"
+"pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }"
+// pre: allow scrolling in x direction
+ "pre {  overflow-x: auto; }"
 // padding and margin for blocks
-".latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }"
-".code, code { background-color: #FFFFFF; width: 100%; }"
+".latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }"
 // latexblock should have regular line height for correct rendering.
 ".latexblock { line-height: 1em }"
 // overflow: latex and code block
-// Latex: do not allow wite space to cause a wrap around of text.
-" .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; }"
-// " .code { width: 100%; overflow-x: hidden; white-space: nowrap; }"
-" .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }"
 "\n"
 // inline latex: force all text to be on same line.
 ".latexinline { white-space: nowrap }"
-// inline code: force all text to be on same line. That is, do not allow white
-// space to wrap around.
-".code { white-space: nowrap }"
-// fix font handling
-"pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }"
+"pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }"
 // ul's for some reason are padded, and they render their bullets *outside*
 // their area. Fix both:
 // https://stackoverflow.com/questions/13938975/how-to-remove-indentation-from-an-unordered-list-item/13939142
@@ -1338,6 +1342,7 @@ const char html_postamble[] =
  "</html>";
 
  const char CONFIG_KATEX_PATH[] = "/home/bollu/blog/katex/katex.min.js";
+ const char CONFIG_PRISM_PATH[] = "/home/bollu/blog/prism/prism.js";
 
 static const ll MAX_OUTPUT_BUF_LEN = (ll)1e9L;
 
@@ -1363,7 +1368,8 @@ bool is_h1(const T *t) {
 // TODO: unify the API style of writeTableOfContentsHTML and toHTML, to have
 // both of them take a `const char *` at index `0`, and return a `long long`
 // of length.
-long long writeTableOfContentsHTML(duk_context *duk_ctx,
+long long writeTableOfContentsHTML(duk_context *katex_ctx, 
+        duk_context *prism_ctx,
         const char *raw_input,
         const char *temp_dir_path,
         const vector<T*> &ts,
@@ -1387,7 +1393,7 @@ long long writeTableOfContentsHTML(duk_context *duk_ctx,
         const char *url = mkHeadingURL(raw_input, theading);
         // outlen += sprintf(outs + outlen, "<h%d id=%s>", theading->hnum, link);
         outlen += sprintf(outs + outlen, "<li><a href='%s.html'>" , url);
-        toHTML(duk_ctx, raw_input, temp_dir_path, 
+        toHTML(katex_ctx, prism_ctx, raw_input, temp_dir_path, 
                 theading->item, 
                 outlen, outs);
         outlen += sprintf(outs + outlen, "</a></li>");
@@ -1406,9 +1412,9 @@ int main(int argc, char **argv) {
     }
     G_OPTIONS.latex2ascii = option_index(argc, argv, "--latex2ascii") > 0;
 
-    // 1. Initialize Duck context
+    // 1. Initialize Duck context for katex
     // --------------------------
-    duk_context *duk_ctx = nullptr;
+    duk_context *katex_ctx = nullptr;
     {
         FILE *fkatex = fopen(CONFIG_KATEX_PATH, "rb");
         if (fkatex == nullptr) { assert(false && "unable to open katex.min.js"); }
@@ -1419,31 +1425,71 @@ int main(int argc, char **argv) {
 
         const ll nread = fread(js, 1, len, fkatex);
         assert(nread == len);
-        duk_ctx = duk_create_heap_default();
+        katex_ctx = duk_create_heap_default();
 
-        duk_push_string(duk_ctx, "katex.min.js");
+        duk_push_string(katex_ctx, "katex.min.js");
         // compile katex
-        if (duk_pcompile_lstring_filename(duk_ctx, 0, js, len) != 0) {
+        if (duk_pcompile_lstring_filename(katex_ctx, 0, js, len) != 0) {
             fprintf(stderr, "===katex.min.js compliation failed===\n%s\n===\n", 
-                    duk_safe_to_string(duk_ctx, -1));
+                    duk_safe_to_string(katex_ctx, -1));
             assert(false && "unable to compile katex.min.js");
         }
 
         // run katex to get the global.katex object
-        if(duk_pcall(duk_ctx, 0) != 0) {
+        if(duk_pcall(katex_ctx, 0) != 0) {
             fprintf(stderr, "===katex.min.js execution failed===\n%s\n===\n", 
-                    duk_safe_to_string(duk_ctx, -1));
+                    duk_safe_to_string(katex_ctx, -1));
             assert(false && "unable to execute katex.min.js");
         }
 
-        if(duk_peval_string(duk_ctx, "katex") != 0) {
+        if(duk_peval_string(katex_ctx, "katex") != 0) {
             fprintf(stderr,
                     "====katex.min.js: unable to grab katex object===\n%s\n===\n", 
-                    duk_safe_to_string(duk_ctx, -1));
+                    duk_safe_to_string(katex_ctx, -1));
             assert(false && "unable to find the katex object");
+        }
     }
+    assert(katex_ctx != nullptr && "Unable to setup duck context");
+
+    // 1. Initialize Duck context for prismjs
+    // --------------------------
+    duk_context *prism_ctx = nullptr;
+    {
+        FILE *fprism = fopen(CONFIG_PRISM_PATH, "rb");
+        if (fprism == nullptr) { assert(false && "unable to open prism.min.js"); }
+
+        fseek(fprism, 0, SEEK_END);
+        const ll len = ftell(fprism); fseek(fprism, 0, SEEK_SET);
+        char *js = (char *)calloc(sizeof(char), len + 10);
+
+        const ll nread = fread(js, 1, len, fprism);
+        assert(nread == len);
+        prism_ctx = duk_create_heap_default();
+
+        duk_push_string(prism_ctx, "prism.min.js");
+        // compile prism
+        printf("===compiling prism...===\n");
+        if (duk_pcompile_lstring_filename(prism_ctx, 0, js, len) != 0) {
+            fprintf(stderr, "===prism.min.js compliation failed===\n%s\n===\n", 
+                    duk_safe_to_string(prism_ctx, -1));
+            assert(false && "unable to compile prism.min.js");
+        }
+
+        // run prism to get the global.prism object
+        if(duk_pcall(prism_ctx, 0) != 0) {
+            fprintf(stderr, "===prism.min.js execution failed===\n%s\n===\n", 
+                    duk_safe_to_string(prism_ctx, -1));
+            assert(false && "unable to execute prism.min.js");
+        }
+
+        printf("===loading prism...===\n");
+        if(duk_peval_string(prism_ctx, "Prism") != 0) {
+            fprintf(stderr, "====prism.min.js: unable to grab prism object===\n%s\n===\n", 
+                    duk_safe_to_string(prism_ctx, -1));
+            assert(false && "unable to find the prism object");
+        }
     }
-    assert(duk_ctx != nullptr && "Unable to setup duck context");
+    assert(prism_ctx != nullptr && "Unable to setup duck context for prism");
 
 
 
@@ -1487,11 +1533,13 @@ int main(int argc, char **argv) {
         ll outlen = 0;
         outlen += sprintf(index_html_buf + outlen, "%s", html_preamble);
         for (int i = 0; i < ix_h1; ++i) {
-            toHTML(duk_ctx, raw_input, TEMP_DIR_PATH, ts[i], outlen, index_html_buf);
+            toHTML(katex_ctx, prism_ctx, 
+                    raw_input, TEMP_DIR_PATH, ts[i], outlen, index_html_buf);
         }
 
         // ===write out table of contents===
-        outlen += writeTableOfContentsHTML(duk_ctx, raw_input, TEMP_DIR_PATH, 
+        outlen += writeTableOfContentsHTML(katex_ctx, prism_ctx,
+                raw_input, TEMP_DIR_PATH, 
                 ts, index_html_buf + outlen);
         outlen += sprintf(index_html_buf + outlen, "%s", html_postamble);
 
@@ -1526,7 +1574,7 @@ int main(int argc, char **argv) {
         ll outlen = 0;
         outlen += sprintf(outbuf + outlen, "%s", html_preamble);
         for (int i = ix_start; i < ix_h1; ++i) {
-            toHTML(duk_ctx, raw_input, TEMP_DIR_PATH, ts[i], outlen, outbuf);
+            toHTML(katex_ctx, prism_ctx, raw_input, TEMP_DIR_PATH, ts[i], outlen, outbuf);
         }
         outlen += sprintf(outbuf + outlen, "%s", html_postamble);
 

@@ -1,33 +1,72 @@
-<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-etoile-fixed.ttf');}@font-face {font-family: 'Blog Symbol'; src: url('/static/Symbola.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; }
-img { display:block; }.container { overflow-x: hidden }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
+img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.centered { margin-left: 30%; margin-right: 25%; }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
 a:active { color: #1a73e8; text-decoration: none; }
 
- .code, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }.code pre, blockquote { padding-left: 10px; }
- .code { font-family: 'Blog Mono', monospace; font-size: 90%;  }.latexblock, blockquote, .code, code { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.code, code { background-color: #FFFFFF; width: 100%; }.latexblock { line-height: 1em } .latexblock {  width: 100%; overflow-x: auto; white-space: nowrap; } .code pre { width: 100%; overflow-x: auto; margin: 0px; overflow-y: hidden; padding-top: 5px; padding-bottom: 5px; margin: 0px; }
-.latexinline { white-space: nowrap }.code { white-space: nowrap }pre, code, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=discrete-random-distributions-with-conditioning-in-20-lines-of-haskell href='#discrete-random-distributions-with-conditioning-in-20-lines-of-haskell'> § </a> Discrete random distributions with conditioning in 20 lines of haskell</h2>
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
+pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
+.latexinline { white-space: nowrap }pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><h2 class='centered'><a id=discrete-random-distributions-with-conditioning-in-20-lines-of-haskell href='#discrete-random-distributions-with-conditioning-in-20-lines-of-haskell'> § </a> Discrete random distributions with conditioning in 20 lines of haskell</h2>
+<pre><code>newtype D a <span class="token operator">=</span> D <span class="token punctuation">{</span> unD <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> Double<span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token punctuation">}</span> <span class="token function">deriving</span><span class="token punctuation">(</span>Eq<span class="token punctuation">,</span> Show<span class="token punctuation">,</span> Ord<span class="token punctuation">)</span>
+
+instance Functor D where
+    <span class="token operator">--</span> fmap <span class="token punctuation">:</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>a <span class="token operator">-</span><span class="token operator">></span> b<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> D a <span class="token operator">-</span><span class="token operator">></span> D b
+    fmap f <span class="token punctuation">(</span>D xs<span class="token punctuation">)</span> <span class="token operator">=</span> D $ fmap <span class="token punctuation">(</span>\<span class="token punctuation">(</span>a<span class="token punctuation">,</span> d<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">(</span>f a<span class="token punctuation">,</span> d<span class="token punctuation">)</span><span class="token punctuation">)</span> xs
+
+instance Monad D where
+    <span class="token keyword">return</span> x <span class="token operator">=</span> D $ <span class="token punctuation">[</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+    <span class="token operator">--</span> f <span class="token punctuation">:</span><span class="token punctuation">:</span> a <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">(</span>D b<span class="token punctuation">)</span>
+    <span class="token punctuation">(</span>D as<span class="token punctuation">)</span> <span class="token operator">></span><span class="token operator">>=</span> f <span class="token operator">=</span> D $ <span class="token keyword">do</span> <span class="token operator">--</span> list monad
+                      <span class="token punctuation">(</span>a<span class="token punctuation">,</span> p<span class="token punctuation">)</span> <span class="token operator">&lt;</span><span class="token operator">-</span> as
+                      <span class="token punctuation">(</span>b<span class="token punctuation">,</span> p2<span class="token punctuation">)</span> <span class="token operator">&lt;</span><span class="token operator">-</span> unD <span class="token punctuation">(</span>f a<span class="token punctuation">)</span>
+                      <span class="token keyword">return</span> $ <span class="token punctuation">(</span>b<span class="token punctuation">,</span> p <span class="token operator">*</span> p2<span class="token punctuation">)</span>
+
+<span class="token operator">--</span> <span class="token punctuation">[</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> <span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>b<span class="token punctuation">,</span> <span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+<span class="token operator">--</span> <span class="token punctuation">[</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> <span class="token number">0.3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>a<span class="token punctuation">,</span> <span class="token number">0.2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>b<span class="token punctuation">,</span> <span class="token number">0.1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>b<span class="token punctuation">,</span> <span class="token number">0.4</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+<span class="token operator">--</span>
+instance Applicative D where
+    pure <span class="token operator">=</span> <span class="token keyword">return</span>
+    ff <span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">></span> fa <span class="token operator">=</span> <span class="token keyword">do</span>
+        f <span class="token operator">&lt;</span><span class="token operator">-</span> ff
+        a <span class="token operator">&lt;</span><span class="token operator">-</span> fa
+        <span class="token keyword">return</span> $ f  a
+
+condition <span class="token punctuation">:</span><span class="token punctuation">:</span> Bool <span class="token operator">-</span><span class="token operator">></span> D <span class="token punctuation">(</span><span class="token punctuation">)</span>
+condition True <span class="token operator">=</span> D <span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+condition False <span class="token operator">=</span> D <span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0.0</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+
+
+dice <span class="token punctuation">:</span><span class="token punctuation">:</span> D Int
+dice <span class="token operator">=</span> let p <span class="token operator">=</span> <span class="token number">1.0</span> <span class="token operator">/</span> <span class="token number">6</span> <span class="token keyword">in</span> D $ <span class="token punctuation">[</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> p<span class="token punctuation">)</span> <span class="token operator">|</span> x <span class="token operator">&lt;</span><span class="token operator">-</span> <span class="token punctuation">[</span><span class="token number">1.</span><span class="token number">.6</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+
+
+dice_hard <span class="token punctuation">:</span><span class="token punctuation">:</span> D Int
+dice_hard <span class="token operator">=</span> <span class="token keyword">do</span>
+    x <span class="token operator">&lt;</span><span class="token operator">-</span> dice
+    condition $ x <span class="token operator">></span> <span class="token number">3</span>
+    <span class="token keyword">return</span> $ x
+
+
+main <span class="token punctuation">:</span><span class="token punctuation">:</span> IO <span class="token punctuation">(</span><span class="token punctuation">)</span>
+main <span class="token operator">=</span> <span class="token keyword">do</span>
+    print dice
+    print dice_hard
+</code></pre>
 This gives the output:
-<div class='code'><!-- Generator: GNU source-highlight 3.1.8
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>    G[q](ηo(id_o)) = ηo(q'(id_o))
-    G[q](ηo(id_o)) = ηo(q' . id_o)
-    G[q](ηo(id_o)) = ηo(q')
-    ηo(q') = G[q](ηo(id_o))
-</tt></pre>
-</div>
+<pre><code>D <span class="token punctuation">{</span>unD <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0.16666666666666666</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">0.16666666666666666</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">0.16666666666666666</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">0.16666666666666666</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">0.16666666666666666</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">0.16666666666666666</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">}</span>
+
+D <span class="token punctuation">{</span>unD <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0.0</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">0.0</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">0.0</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">0.16666666666666666</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">0.16666666666666666</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">0.16666666666666666</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">}</span>
+</code></pre>
 Notice that <code>D a ~= WriterT (Product Float) []</code>!
-</container></body></html>
+</body></html>

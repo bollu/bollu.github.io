@@ -601,11 +601,11 @@ by `2`. This gives:
 so we get the answer as `answer = 20/2! = 10`. ~~This is wrong, it ought to be `5`.~~
 I am stupid, the answer is indeed `10`, as shown by exhaustively enumerating before. The world is safe.
 
-# this is not a place of honor
+# This is not a place of honor
 
 - [Long term nuclear waste](https://en.wikipedia.org/wiki/Long-time_nuclear_waste_warning_messages)
 
-# [Topological proof of infinitude of primes](topological-proof-infinitude-of-primes)
+# Topological proof of infinitude of primes
 
 We take the topological proof and try to view it from the topology as
 semidecidability perspective.
@@ -903,8 +903,9 @@ use chain rule!
 
 $$
 \begin{aligned}
-&\int_0^\infty U dV \\ = [UV]|_0^\infty - \int_0^\infty V dU \\
-&\int_0^\infty f(x) D'(x)  dx = [f(x) D(x)]|_0^\infty - \int_0^\infty D f'(x)
+&\int_0^\infty U dV = [UV]|_0^\infty - \int_0^\infty V dU \\
+&\int_0^\infty f(x) D'(x)  dx \\
+&= [f(x) D(x)]|_0^\infty - \int_0^\infty D f'(x)
 \end{aligned}
 $$
 
@@ -923,8 +924,8 @@ $$
 &[UV]|_0^\infty - \int_0^\infty V dU = [f(x) step(x)]|_0^\infty - \int_0^\infty step(x) f'(x) \\
 &= [f(\infty)step(\infty) - f(0)step(0)] - step(f') \\
 &= [0 - 0] - (\int_0^\infty f'(x) dx) \\
-&= 0 - (f(\infty) - f(0))
-&= 0 - (0 - f(0))
+&= 0 - (f(\infty) - f(0)) \\
+&= 0 - (0 - f(0)) \\
 &= f(0)
 \end{aligned}
 $$
@@ -1687,7 +1688,7 @@ will get
 ### DFS: the T0 case
 ### DFS: the back edges
     
-# Categorical definition of products in painful detail 
+# Categorical definition of products in painful detail
 
 I feel like I have incorrectly understood, then un-understood, and re-understood
 in a slightly less broken way the definition of the product in category theory
@@ -14795,7 +14796,7 @@ To quote `AndreasK`:
 
 - [NCG generates slow loop code](https://gitlab.haskell.org/ghc/ghc/issues/9041)
 
-# Varargs in GHC: `ghc/testsuite/tests/rts/T7160.hs`
+# Varargs in GHC: `T7160.hs`
 
 A comment from this test case tells us why the function `debugBelch2` exists:
 
