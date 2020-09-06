@@ -201,13 +201,38 @@ std::ostream &operator<<(std::ostream &o, const Span &s) {
 }
 
 // TODO: upgrade this to take a space, not just a location.
+void vprintfspan(Span span, const char *raw_input, const char *fmt, va_list args) {
+    char *outstr = nullptr;
+    vasprintf(&outstr, fmt, args);
+    assert(outstr);
+    cerr << "===\n";
+    cerr << span.begin << ":" << span.end << "\n";
+
+
+    cerr << "===\n";
+    cerr << span << "\t" << outstr << "\n";
+    for(ll i = span.begin.si; i < span.end.si; ++i) {
+         cerr << raw_input[i];
+    }
+    cerr << "\n===\n";
+
+}
+
+void printfspan(Span span, const char *raw_input, const char *fmt, ...) {
+    va_list args;
+    va_start(args, fmt);
+    vprintfspan(span, raw_input, fmt, args);
+    va_end(args);
+}
+
+
 void vprintferr(L loc, const char *raw_input, const char *fmt, va_list args) {
     char *outstr = nullptr;
     vasprintf(&outstr, fmt, args);
     assert(outstr);
 
     cerr << "===\n";
-    cerr << loc << "\t" << outstr << "\n";
+    cerr << loc << "  " << outstr << "\n";
     // find the previous newloc character.
     int i = loc.si; for(; i >= 1 && raw_input[i-1] != '\n'; i--) {}
 
@@ -832,7 +857,7 @@ enum class LatexType {
 };
 
 
-GIVE const char* compileLatex(duk_context *katex_ctx, 
+GIVE char* compileLatex(duk_context *katex_ctx, 
         KEEP const char *raw_input,
         const Span span,
         const LatexType ty) {
@@ -842,32 +867,43 @@ GIVE const char* compileLatex(duk_context *katex_ctx,
     // duk_set_property(displayMath, true) // or whatever
 
     // stack:
-    // [katex|]
+    // [katex(-1)|]
 
 
-    char *input = (char *)calloc(sizeof(char), span.nchars()+2);
+    char *input = (char *)calloc(span.nchars()+2, sizeof(char));
     for(ll i = 0; i < span.nchars(); ++i) { 
         input[i] = raw_input[span.begin.si + i];
     }
 
-    // stack: after processing
-    // [katex| renderToString | raw_str | displaymode]
-    //   -4         -3           -2      -1
     duk_push_string(katex_ctx, "renderToString");
+    // [katex(-2)| "renderToString"(-1)]
+
     duk_push_string(katex_ctx, input);
+    // [katex(-3)| "renderToString"(-2)|"<input string>"(-1)]
+    
     duk_push_object(katex_ctx); // { displayMode: ... }
+    // [katex(-4)| "renderToString"(-3)|"<input string>"(-2)|Object(-1)]
+    
     duk_push_boolean(katex_ctx, ty == LatexType::LatexTypeBlock);
-    duk_put_prop_string(katex_ctx, -2, "displayMode");
+    // [katex(-5)| "renderToString"(-4)|"<input string>"(-3)|Object(-2)|true/false(-1)]
+    
+    
+    const int OPTIONS_IDX = -2;
+    duk_bool_t rc = duk_put_prop_string(katex_ctx, OPTIONS_IDX, "displayMode");
+    // https://duktape.org/api.html#duk_put_prop
+    assert(rc == 1); // returns 1 on success.
+    // [katex(-4)| "renderToString"(-3)|"<input string>"(-2)|Object{displayMode:true/false}(-1)]
+    // [katex(-4)| renderToString(-3) | raw_str(-2)| displaymode(-1)]
 
 
-
-    if(duk_pcall_prop(katex_ctx, -4, 2) == DUK_EXEC_SUCCESS) {
+    const int KATEX_IDX = -4;
+    if(duk_pcall_prop(katex_ctx, KATEX_IDX, 2) == DUK_EXEC_SUCCESS) {
         // stack: call
         // [katex| out_string]
         //   -2         -1
-        const char *out = duk_to_string(katex_ctx, -1);
+        char *out = strdup(duk_to_string(katex_ctx, -1));
         duk_pop(katex_ctx);
-        return strdup(out);
+        return out;
     } else {
         printferr(span.begin, raw_input, "%s", duk_to_string(katex_ctx, -1));
         assert(false && "unable to compile katex");
@@ -1014,6 +1050,7 @@ void toHTML(duk_context *katex_ctx,
           char *code_html = pygmentize(prism_ctx, raw_input,
                   block->langname, span);
 
+
           strcpy(outs + outlen, code_html);
           outlen += strlen(code_html);
           free(code_html);
@@ -1025,8 +1062,7 @@ void toHTML(duk_context *katex_ctx,
 
         case TT::LatexInline: 
         case TT::LatexBlock: {
-
-          const Span s = t->ty == TT::LatexBlock ?
+          const Span span = t->ty == TT::LatexBlock ?
               Span(t->span.begin.next("$$"), t->span.end.prev("$$")) :
               Span(t->span.begin.next('$'), t->span.end.prev('$'));
 
@@ -1035,11 +1071,15 @@ void toHTML(duk_context *katex_ctx,
           } else if (t->ty == TT::LatexInline) {
               outlen += sprintf(outs + outlen, "<span class='latexinline'>");
           } else { assert(false && "expected latex inline or latex block"); }
-          const char *outcompile = compileLatex(katex_ctx, 
-                  raw_input, s,
+
+
+          char *outcompile = compileLatex(katex_ctx, 
+                  raw_input, span,
                   t->ty == TT::LatexBlock ? LatexType::LatexTypeBlock : LatexType::LatexTypeInline);
           strcpy(outs + outlen, outcompile);
           outlen += strlen(outcompile);
+
+          free(outcompile);
 
           if (t->ty == TT::LatexBlock) { 
               outlen += sprintf(outs + outlen, "</div>");

@@ -7379,7 +7379,8 @@ we shall write $b \leq a$ if either $b \subseteq a$ or there exists some $s \in 
 such that $b \subseteq sa$, where $s(a) \equiv \{ s(a_i) : a_i \in a\}$. We can
 define an equivalence relation $a \sim b \iff a \leq b \land b \leq a$.
 
-**Note**: $ b \leq a \implies |b| \leq |a|$, since 
+##### Note
+$ b \leq a \implies |b| \leq |a|$, since 
 $b \leq a$ means that $b \subseteq s(a)$. Note that $s$ is actually a
 function $s: Q \rightarrow Q$, and a function mapped over a set can only
 ever decrease the number of elements in a set, since a function can only
@@ -7390,11 +7391,13 @@ Hence, $b \subseteq sa \subseteq a$, and thus $|b| \leq |a|$.
 Similiarly, $a \leq b \implies |a| \leq |b|$. Therefore, $b \sim a$ means
 that $|b| = |a|$.
 
-**Theorem**: for all $a, b \in Q_X$ such that
+##### Theorem
+for all $a, b \in Q_X$ such that
 $a ~ b$ such that $b \subseteq s(a)$, we show that $b = s(a)$, and there exists
 a $t \in S_X$ such that $a = t(b)$.
 
-**Proof**: Since $b \subseteq s(a) \subseteq a$ and $|b| = |a|$, $b = s(a)$.
+##### Proof
+Since $b \subseteq s(a) \subseteq a$ and $|b| = |a|$, $b = s(a)$.
 Therefore $s$ is a permutation. Hence, $s$ is invertible and there exists
 an inverse permutation $t$ such that $a = t(b)$. We now need to show that
 $t \in S_X$. To do this, first note that if the order of the permutation
