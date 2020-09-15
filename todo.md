@@ -1,3 +1,5 @@
+- Fisher Yates and Sattolo's algorithm (generate permutation with one cycle) https://danluu.com/sattolo/
+- `monochrom`'s favourite work of djikstra: http://www.vex.net/~trebla/ewd.html
 - Course on solids, crystal groups, tension with video lectures: https://ocw.mit.edu/courses/materials-science-and-engineering/3-60-symmetry-structure-and-tensor-properties-of-materials-fall-2005/index.htm
 - Project oberon: a computing system built from scratch: http://www.projectoberon.com/
 - Domain theory and measurement: http://www.nearmidnight.com/domains.pdf

@@ -13,6 +13,88 @@ A Universe of Sorts
 - [My reading list](todo.html)
 - [Grab me a coffee](https://ko-fi.com/bollu)
 
+# What is a syzygy?
+
+#### The ring of invariants
+
+Rotations of $\R^3$ We have a group $SO(3)$ which is acting on a vector space
+$\mathbb R^3$. This  preserves the length, so it preserves the
+polynomial $x^2 + y^2 + z^2$. This polynomial $x^2 + y^2 + z^2$ is said to be
+the invariant polynomial of the group $SO(3)$ acting on the vector space
+$\mathbb R^3$. But how do we attach meaning to the symbols $x, y, z$? 
+Well, we can formulate them as linear operators on the vector space
+: $x, y, z : \mathbb R^3 \rightarrow \mathbb R$ $x(a, b, c) \equiv a$,
+$y(a, b, c) \equiv b$, and $z(a, b, c) \equiv c$. Then the expression
+$x^2 + y^2 + z^2$ is a _polynomial_ of _linear operators_ of $V$. So the objects
+that are involved in the story are:
+
+- The vector space $V$ of dimension $n$ over the field $k$
+- The group $G$ that acts on the vector space $V$
+- The space of linear operators $V^*$
+- The ring of linear operators $R $.
+
+We can write any polynomial of the linear operators as polynomials of the
+'elementary' projection operators $p_1, \dots, p_n$ [where $n$ is the dimension of $V$].
+So we have that $R \simeq k[p_1, \dots, p_n]$.
+
+Now this ring $R$ is said to be the ring of invariants of the action of the
+group $G$ onto the vector space $V$. 
+
+We haven't seen what a syzygy is yet; We'll come to that.
+
+#### Example 2: The action of $SL_n(2)$ on $\mathbb C^2$
+
+
+#### References
+- [Richard E Borcherds: Commutative Algebra, lecture 3](https://www.youtube.com/watch?v=RYPt7kGdo7s&list=PL8yHsr3EFj53rSexSz7vsYt-3rpHPR3HB&index=3)
+
+
+
+# Under the spell of Leibniz's dream
+
+- [Link to the article by djikstra](http://www.cs.utexas.edu/users/EWD/transcriptions/EWD12xx/EWD1298.html)
+- [`monochrom`'s favourite work on djikstra](http://www.vex.net/~trebla/ewd.html)
+
+I found it very quotable. I'm posting some quotes below.
+
+- On applied versus pure mathematics:
+
+> An important side-effect of the hard times was the creation of a spiritual
+> climate in which the distinction between pure and applied science had
+> vanished: of all the things you could do, you just did the most urgent one,
+> and the development of some urgently needed theory was often the most
+> practical thing to do.
+
+- On 'applied institutes':
+
+> The worst thing with institutes explicitly devoted to applied science is that
+> they tend to become institutes of second-rate theory. 
+
+- On the artificial divide between theory and applied sections of university:
+
+> These days there is so much obsession with application that, if the
+> University is not careful, external forces, which do make the distinction,
+> will drive a wedge between "theory" and "practice" and may try to banish the
+> "theorists" to a ghetto of separate departments and separate buildings. A
+> simple extrapolation will tell us that in due time the isolated practitioners
+> will have little to apply; this is well-known, but has never prevented the
+> financial mind from killing the goose that lays the golden eggs.
+
+- On programming as typing:
+
+> Needless to say, this confusion between the score and the composition led to
+> an underestimation of the intellectual challenges programming presents
+
+- On hilbert and axiomatics:
+
+>  Hilbert's revolution was in any case to redefine "proof" to become a
+>  completely rigorous notion, totally different from the psycho/sociological
+>  "A proof is something that convinces other mathematicians."
+
+
+
+
+
 # Normal operators: Decomposition into Hermitian operators
 
 Given a normal operator $A$, we can always decompose it $A = B + iC$
@@ -47,14 +129,15 @@ and hence $[B, C] = 0$.
 
 
 # Readable pointers
- I need some linguistics(?) help? I don't even know what I want. I need to
- debug a whole bunch of code that manipuates pointers, so I need to stare at
- random things like `0x7f7d6ab2c0c0`, like so:
+
+I recently had to debug a whole bunch of code that manipuates pointers, so I
+need to stare at random things like `0x7f7d6ab2c0c0`, like so:
 
 ```
 mkClosure_capture0_args0 (0x7f079ae2a0c0:) -> 0x556b95a23350:
 mkClosure_capture0_args0 (0x7f079ae2a0e0:) -> 0x556b95a3f3e0:
-mkClosure_capture0_args2 (0x7f079ae2a000:, 0x556b95a23350:, 0x556b95a3f3e0:) -> 0x556b95a232e0:
+mkClosure_capture0_args2 (0x7f079ae2a000:, 
+  0x556b95a23350:, 0x556b95a3f3e0:) -> 0x556b95a232e0:
 evalClosure (0x556b95a232e0:)
   ⋮evalClosure (0x556b95a23350:)
   ⋮  ⋮mkConstructor1 (MkSimpleInt, 0x1) -> 0x556b9596c0b0:
@@ -96,9 +179,14 @@ char *getPronouncableNum(size_t N) {
 which gives me the much more pleasant output:
 
 ```
-mkClosure_capture0_args0 (0x7fbf49b6d0c0:cisi-jece-xecu-yu) -> 0x561c5f11f9d0:suje-zoni-ciho-ko
-mkClosure_capture0_args0 (0x7fbf49b6d0e0:qosi-jece-xecu-yu) -> 0x561c5f12f1b0:leda-guni-ciho-ko
-mkClosure_capture0_args2 (0x7fbf49b6d000:ziqi-jece-xecu-yu, 0x561c5f11f9d0:suje-zoni-ciho-ko, 0x561c5f12f1b0:leda-guni-ciho-ko) -> 0x561c5f11f960:kuhe-zoni-ciho-ko
+mkClosure_capture0_args0 (0x7fbf49b6d0c0:cisi-jece-xecu-yu) 
+  -> 0x561c5f11f9d0:suje-zoni-ciho-ko
+mkClosure_capture0_args0 (0x7fbf49b6d0e0:qosi-jece-xecu-yu) 
+  -> 0x561c5f12f1b0:leda-guni-ciho-ko
+mkClosure_capture0_args2 (0x7fbf49b6d000:ziqi-jece-xecu-yu, 
+  0x561c5f11f9d0:suje-zoni-ciho-ko, 
+  0x561c5f12f1b0:leda-guni-ciho-ko) 
+    -> 0x561c5f11f960:kuhe-zoni-ciho-ko
 evalClosure (0x561c5f11f960:kuhe-zoni-ciho-ko)
   ⋮evalClosure (0x561c5f11f9d0:suje-zoni-ciho-ko)
   ⋮  ⋮mkConstructor1 (MkSimpleInt, 0x1) -> 0x561c5f129c10:qifa-duni-ciho-ko
@@ -115,6 +203,8 @@ evalClosure (0x561c5f11f960:kuhe-zoni-ciho-ko)
 ```
 
 The strings of the form `ziqi-jece-xecu-yu` makes it way easier to see control flow.
+I can also see if two pointers are close, based on shared suffixes: ciho-ko is
+shared, which means the numbers are themselves close.
 
 
 <!-- - [Support me in making more visualizations!](https://www.patreon.com/bollu) -->
