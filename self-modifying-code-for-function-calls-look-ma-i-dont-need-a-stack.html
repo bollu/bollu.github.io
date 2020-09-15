@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
-img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+img { display:block; }.container { overflow-x: auto; overflow-y: hidden;  max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: 20%; } }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
@@ -7,7 +7,7 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack href='#self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack'> § </a> Self modifying code for function calls: Look ma, I don't need a stack!</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack href='#self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack'> § </a><span class='centered'> Self modifying code for function calls: Look ma, I don't need a stack!</h2>
 If one does not have recursive calls, one can eliminate the need to push
 return addresses on a call stack by writing self-modifying code ---
 I leant of this from TAOCP, volume 1. 
@@ -16,34 +16,39 @@ aseembly language in which TAOCP programs are written.
 I'll explain the usual way one performs call-return, then explain the nifty
 self-modifying-code way. I think this is the cleanest, most accessible
 example of self-modifying-code that I know. 
-<h4><a id=the-traditional-solution-for-callret href='#the-traditional-solution-for-callret'> § </a> The traditional solution for <code>call/ret</code></h4>
+<h4><a id=the-traditional-solution-for-callret href='#the-traditional-solution-for-callret'> § </a><span class='centered'> The traditional solution for <code>call/ret</code></h4>
 We wish to have function <code>f</code> call function <code>g</code>. For <code>g</code> to be able to
 return control to <code>f</code>, <code>f</code> pushes a return address into the call stack,
-that <code>g</code> pops and <code>jmp</code>s to
-<pre><code>f's body
-START_F:
+that <code>g</code> pops and <code>jmp</code>s to <code>f</code>s body. In code:
+<pre><code>START_F:
       ...
 L0    push addr(L0); location of instr to be run after call.
       jmp START_G
 L1:   <code after call>
-</code></pre>
-<pre><code>g's body
+
+=========
+
+g's body
 START_G:
       ...
       retloc = pop ; pop location to jump to
 RETG: jmp retloc
+
 </code></pre>
-Rather than <code>push</code>ing and <code>pop</code>ing, we can <i>rewrite</i> the code of <code>g</code>, to <i>change</i> <code>retloc</code> before a call
-to <code>g</code>. In made-up-pseudocode, here's what that would look like:
-<h4><a id=the-jump-based-solution href='#the-jump-based-solution'> § </a> The jump based solution</h4>
+Rather than <code>push</code> ing and <code>pop</code> ing, we can <i><span class='centered'>rewrite</i> the code of <code>g</code>, to
+<i><span class='centered'>change</i> <code>retloc</code> before a call to <code>g</code>. In made-up-pseudocode, here's what that
+would look like:
+<h4><a id=the-jump-based-solution href='#the-jump-based-solution'> § </a><span class='centered'> The jump based solution</h4>
 <pre><code>* f's body
 START_F:
       ...
 L0    store loc(RETG) assemble(jmp addr(L1))
       jmp START_G
 L1:   <code after call>
-</code></pre>
-<pre><code>* g's body
+
+=========
+
+* g's body
 START_G:
       ...
 RETG: <###-to-be-filled-dummy-###>
@@ -60,10 +65,10 @@ RETG: jump addr(L1)
 This way, we have obviated the need for a <code>push/pop</code> sequence, by directly
 modifying <code>g</code>'s code. This is really neat --- we replace the overhead of
 a <code>push/pop</code> with a single <code>store</code>.
-<h4><a id=why-recursion-breaks href='#why-recursion-breaks'> § </a> Why recursion breaks.</h4>
+<h4><a id=why-recursion-breaks href='#why-recursion-breaks'> § </a><span class='centered'> Why recursion breaks.</h4>
 We don't actually need a call stack, as long as we don't want to write recursive functions.
 We can't have recursion, or more generally "re-entrance": consider a call chain of the form:
-<ul><li> <code>A -> B -> C -> B</code>.</li><li> during <code>A -> B</code>, <code>A</code> will scribble a <code><return to A></code> into <code>B</code>.</li><li> during  <code>B -> C</code>, <code>B</code> will scribble a <code><return to  B></code> into <code>C</code>.</li><li> during <code>C -> B</code>, <code>C</code> will scribble <code><return to C></code> into <code>B</code>,
-  <b>destroying the previous <code><return to A></code> </b>.</li><li> This creates a cycle, where <code>C</code> will attempt to return to <code>B</code>
+<ul><li><span class='centered'> <code>A -> B -> C -> B</code>.</li><li><span class='centered'> during <code>A -> B</code>, <code>A</code> will scribble a <code><return to A></code> into <code>B</code>.</li><li><span class='centered'> during  <code>B -> C</code>, <code>B</code> will scribble a <code><return to  B></code> into <code>C</code>.</li><li><span class='centered'> during <code>C -> B</code>, <code>C</code> will scribble <code><return to C></code> into <code>B</code>,
+  <b><span class='centered'>destroying the previous <code><return to A></code> </b>.</li><li><span class='centered'> This creates a cycle, where <code>C</code> will attempt to return to <code>B</code>
   and vice versa.</li></ul>
 </container></body></html>

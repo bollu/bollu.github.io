@@ -13,221 +13,170 @@ A Universe of Sorts
 - [My reading list](todo.html)
 - [Grab me a coffee](https://ko-fi.com/bollu)
 
+# Normal operators: Decomposition into Hermitian operators
+
+Given a normal operator $A$, we can always decompose it $A = B + iC$
+where $B = B^{\dagger}$, $C = C^\dagger$, and $[B, C] = 0$.
+
+
+This means that we can define 'complex measurements' using a normal operator,
+because a normal operator has full complex spectrum. Since we can always
+decompose such an operator $A$ into two hermitian operators $B, C$
+that commute, we can diagonalize $B, C$ simultaneously and thereby measure
+$B, C$ simultaneously.
+
+So extending to "complex measurements" gives us no more power than staying
+at "real measurements"
+
+### Decomposing a normal operator
+
+Assume we have a normal operator $A$. Write the operator in its eigenbasis $\{ |a_k \rangle \}$.
+This will allow us to write $A = \sum_k |a_k \rangle \langle a_k|$.
+with each $a_k = b_k + i c_k$. Now write this as:
+
+$$
+\begin{aligned}
+& A = \sum_k (b_k + i c_k)|a_k \rangle \langle a_k| \\
+& A = \sum_k b_k  |a_k \rangle \langle a_k| + i c_k |a_k \rangle \langle a_k|  \\
+& A = B + iC \\
+\end{aligned}
+$$
+
+$B, C$ are simultaneously diagonalizable in the eigenbasis $\{ |a_k \rangle \}$
+and hence $[B, C] = 0$.
+
+
+# Readable pointers
+ I need some linguistics(?) help? I don't even know what I want. I need to
+ debug a whole bunch of code that manipuates pointers, so I need to stare at
+ random things like `0x7f7d6ab2c0c0`, like so:
+
+```
+mkClosure_capture0_args0 (0x7f079ae2a0c0:) -> 0x556b95a23350:
+mkClosure_capture0_args0 (0x7f079ae2a0e0:) -> 0x556b95a3f3e0:
+mkClosure_capture0_args2 (0x7f079ae2a000:, 0x556b95a23350:, 0x556b95a3f3e0:) -> 0x556b95a232e0:
+evalClosure (0x556b95a232e0:)
+  ⋮evalClosure (0x556b95a23350:)
+  ⋮  ⋮mkConstructor1 (MkSimpleInt, 0x1) -> 0x556b9596c0b0:
+  ⋮=>0x556b9596c0b0:
+  ⋮isConstructorTagEq (0x556b9596c0b0:MkSimpleInt, MkSimpleInt) -> 1
+  ⋮extractConstructorArg  0 -> 0x1:
+  ⋮evalClosure (0x556b95a3f3e0:)
+  ⋮  ⋮mkConstructor1 (MkSimpleInt, 0x2) -> 0x556b95a23190:
+  ⋮=>0x556b95a23190:
+  ⋮isConstructorTagEq (0x556b95a23190:MkSimpleInt, MkSimpleInt) -> 1
+  ⋮extractConstructorArg  0 -> 0x2:
+  ⋮mkConstructor1 (MkSimpleInt, 0x3) -> 0x556b95902a30:
+=>0x556b95902a30:
+```
+
+ I got annoyed because it's hard to spot differences across numbers. So I wrote
+ a small '''algorithm''' that converts this into something pronounceable:
+
+```cpp
+char *getPronouncableNum(size_t N) {
+     const char *cs = "bcdfghjklmnpqrstvwxzy";
+     const char *vs = "aeiou";
+
+     size_t ncs = strlen(cs); size_t nvs = strlen(vs);
+
+     char buf[1024]; char *out = buf;
+     int i = 0;
+     while(N > 0) {
+         const size_t icur = N % (ncs * nvs);
+         *out++ = cs[icur%ncs]; *out++ = vs[(icur/ncs) % nvs];
+         N /= ncs*nvs;
+         if (N > 0 && !(++i % 2)) { *out++ = '-'; }
+     }
+     *out = 0;
+     return strdup(buf);
+};
+```
+
+which gives me the much more pleasant output:
+
+```
+mkClosure_capture0_args0 (0x7fbf49b6d0c0:cisi-jece-xecu-yu) -> 0x561c5f11f9d0:suje-zoni-ciho-ko
+mkClosure_capture0_args0 (0x7fbf49b6d0e0:qosi-jece-xecu-yu) -> 0x561c5f12f1b0:leda-guni-ciho-ko
+mkClosure_capture0_args2 (0x7fbf49b6d000:ziqi-jece-xecu-yu, 0x561c5f11f9d0:suje-zoni-ciho-ko, 0x561c5f12f1b0:leda-guni-ciho-ko) -> 0x561c5f11f960:kuhe-zoni-ciho-ko
+evalClosure (0x561c5f11f960:kuhe-zoni-ciho-ko)
+  ⋮evalClosure (0x561c5f11f9d0:suje-zoni-ciho-ko)
+  ⋮  ⋮mkConstructor1 (MkSimpleInt, 0x1) -> 0x561c5f129c10:qifa-duni-ciho-ko
+  ⋮=>0x561c5f129c10:qifa-duni-ciho-ko
+  ⋮isConstructorTagEq (0x561c5f129c10:MkSimpleInt, MkSimpleInt) -> 1
+  ⋮extractConstructorArg  0 -> 0x1:ca
+  ⋮evalClosure (0x561c5f12f1b0:leda-guni-ciho-ko)
+  ⋮  ⋮mkConstructor1 (MkSimpleInt, 0x2) -> 0x561c5f120200:nuhi-zoni-ciho-ko
+  ⋮=>0x561c5f120200:nuhi-zoni-ciho-ko
+  ⋮isConstructorTagEq (0x561c5f120200:MkSimpleInt, MkSimpleInt) -> 1
+  ⋮extractConstructorArg  0 -> 0x2:da
+  ⋮mkConstructor1 (MkSimpleInt, 0x3) -> 0x561c5f100010:kuqi-koni-ciho-ko
+=>0x561c5f100010:kuqi-koni-ciho-ko
+```
+
+The strings of the form `ziqi-jece-xecu-yu` makes it way easier to see control flow.
+
 
 <!-- - [Support me in making more visualizations!](https://www.patreon.com/bollu) -->
+# The grassmanian, handwavily
 
-<!--
-#### Table of contents:
+The grassmanian is a manifold consisting of, roughly, $k$ dimensional subspaces
+of an $n$ dimensional vector space. 
 
-<ol reversed>
-<li> [Katex in duktape](#katex-in-duktape)
-<li> [Kebab case](#kebab-case)
-<li> [Localization: Introducing epsilons](#localization-introducing-epsilons)
-<li> [Nan punning](#nan-punning)
-<li> [Offline Documentation](#offline-documentation)
-<li> [Using Gurobi](#using-gurobi)
-<li> [osqp: convex optimizer in 6000 LoC](osqp-convex-optimizer-in-6000-loc)
-<li> [stars and bars by generating functions](#stars-and-bars-by-generating-functions)
-<li> [Topological proof of infinitude of primes](#topological-proof-infinitude-of-primes)
-<li> [Burnside as space average equals time average](#burnside-as-space-average-equals-time-average)
-<li> [The Ise Grand shrine](#ise-grand-shrine)
-<li> [Edward Kmett's list of useful math](#edward-kmetts-list-of-useful-math)
-<li> [Cokernel is not sheafy](#cokernel-is-not-sheafy)
-<li> [Von neumann: foundations of QM](#von-neumann-foundations-of-qm) </li>
-<li> [Derivative of step is dirac delta](#derivative-of-step-is-dirac-delta) </li>
-<li> [Discrete schild's ladder](#discrete-schilds-ladder) </li>
-<li> [Extended euclidian algorithm](#extened-euclidian-algorithm)
-<li> [Essay on localization](https://bollu.github.io/localization.html)
-<li> [In a PID, all prime ideals are maximal, geometrically](#in-a-pid-all-prime-ideals-are-maximal-geometrically)
-<li> [Prime ideals as maximal among principal ideals](#prime-ideal-as-maximal-among-principal-ideals)
-<li> [Axiom of Choice and Zorn's Lemma](#axiom-of-choice-and-zorns-lemma)
-<li> [Local ring in terms of invertibility](#local-ring-in-terms-of-invertibility)
-<li> [Nullstellensatz for schemes](#nullstellensatz-for-schemes)
-<li> [Perspectives on Yoneda](#perspectives-on-yoneda) </li>
-<li> [Germs, Stalks, Sheaves of differentiable functions](#germs-stalks-sheaves-of-differentiable-functions)
-<li> [Connectedness in terms of continuity](#connectedness-in-terms-of-continuity) </li>
-<li> [Intuition for limits in category theory](#intuition-for-limits-in-category-theory) </li>
-<li> [Finite topologies and DFS numbering](#finite-topologies-and-dfs-numbering) </li>
-<li> [Categorical definition of products in painful detail](#categorical-definition-of-products-in-painful-detail) </li>
-<li> [Why is the spectrum of a ring called so?](#why-is-the-spectrum-of-a-ring-called-so) </li>
-<li> [Ergo Proxy](#ergo-proxy) </li>
-<li> [Satisfied and frustrated equations](#satisfied-and-frustrated-equations) </li>
-<li> [Combinatorial intuition for Fermat's little theorem](#combinatorial-intuition-for-fermats-little-theorem)
-<li> [An incorrect derivation of special relativity in 1D](#an-incorrect-derivation-of-special-relativity-in-1d) </li>
-<li> [The geometry and dynamics of magnetic monopoles](#the-geometry-and-dynamics-of-magnetic-monopoles) </li>
-<li> [Sanskrit and Sumerian](#sanskrit-and-sumerian)
-<li> [Writing Cuneiform](#writing-cuneiform) </li>
-<li> [The code of hammurabi](#the-code-of-hammurabi) </li>
-<li> [The implicit and inverse function theorem](#the-implicit-and-inverse-function-theorem) </li>
-<li> [Whalesong hyperbolic space in detail](#whalesong-hyperbolic-space-in-detail) </li>
-<li> [Motivating Djikstra's](#motivating-djikstras) </li>
-<li> [Intuitions for hyperbolic space](#intuitions-for-hyperbolic-space) </li>
-<li> [Product of compact spaces in compact](#product-of-compact-spaces-is-compact) </li>
-<li> [Hyperbolic groups have solvable word problem](#hyperbolic-groups-have-solvable-word-problem) </li>
-<li> [Elementary uses of Sheaves in complex analysis](#elementary-uses-of-sheaves-in-complex-analysis) </li>
-<li> [Snake lemma](#snake-lemma) </li>
-<li> [Kernel,cokernel,image](#kernel-cokernel-image) </li>
-<li> [The commutator subgroup](#the-commutator-subgroup) </li>
-<li> [Simplicity of A5 using PSL(2, 5)](#simplicity-of-a5-using-psl-2-5) </li>
-<li> [A5 is not solvable](#a5-is-not-solvable) </li>
-<li> [Complex orthogonality in terms of projective geometry](#complex-orthogonality-in-terms-of-projective-geometry) </li>
-<li> [Arithmetic sequences, number of integers in a closed interval](#arithmetic-sequences-number-of-integers-in-a-closed-interval) </li>
-<li> [The arg function, continuity, orientation](#the-arg-function-continuity-orientation) </li>
-<li> [Odd partitions, unique partitions](#odd-partitions-unique-partitions) </li>
-<li> [Continued fractions, mobius transformations](#continued-fractions-mobius-transformations) </li>
-<li> [permutations-and-lyndon-factorization](#permutations-and-lyndon-factorization) </li>
-<li> [Graphs are preorders](#graphs-are-preorders) </li>
-<li> [Crash course on domain theory](#crash-course-on-domain-theory) </li>
-<li> [Parallelisable version of maximum sum subarray](#parallelisable-version-of-maximum-sum-subarray) </li>
-<li> [Thoughts on implicit heaps](#thoughts-on-implicit-heaps) </li>
-<li> [Discriminant and Resultant](#discriminant-and-resultant) </li>
-<li> [Polynomial root finding using QR decomposition](#polynomial-root-finding-using-qr-decomposition) </li>
-<li> [A hacker's guide to numerical analysis (WIP)](#a-hackers-guide-to-numerical-analysis) </li>
-<li> [Mobius inversion on Incidence Algebras](#mobius-inversion-on-incidence-algebras) </li>
-<li> [Finite differences and Umbral calculus](#finite-differences-and-umbral-calculus) </li>
-<li> [Permutahedron](#permutahedron) </li>
-<li> [Lyndon + Christoffel = Convex Hull](#lyndon-christoffel-convex-hull) </li>
-<li> [Geometric proof of `e^x >= 1+x`, `e^(-x) >= 1-x`](#e-x-1-xof-of-) </li>
-<li> [Ranking and Sorting](#ranking-and-sorting) </li>
-<li> [Proof of minkowski convex body theorem](#proof-of-minkowski-convex-body-theorem) </li>
-<li> [Burrows Wheeler (WIP)](#burrows-wheeler) </li>
-<li> [Intuitionstic logic as a Heytig algebra](#intuitionstic-logic-as-a-heytig-algebra) </li>
-<li> [Edit distance](#edit-distance) </li>
-<li> [Evolution of bee colonies](#evolution-of-bee-colonies) </li>
-<li> [Best practices for array indexing](#best-practices-for-array-indexing) </li>
-<li> [Algebraic structure for vector clocks](#algebraic-structure-for-vector-clocks) </li>
-<li> [Networks are now faster than disks](#networks-are-now-faster-than-disks) </li>
-<li> [Einstein-de Haas effect](#einstein-de-haas-effect) </li>
-<li> [Rank-select as adjunction](#rank-select-as-adjunction) </li>
-<li> [Bounding chains: uniformly sample colorings](#bounding-chains-uniformly-sample-colorings) </li>
-<li> [Coupling from the past (WIP)](#coupling-from-the-past) </li>
-<li> [Word problems in Russia and America](#word-problems-in-russia-and-america) </li>
-<li> [Encoding mathematical hieararchies](#encoding-mathematical-hieararchies) </li>
-<li> [Learning code by hearing it](#learning-code-by-hearing-it) </li>
-<li> [Your arm can be a spinor](#your-arm-can-be-a-spinor) </li>
-<li> [Self modifying code for function calls](#self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack) </li>
-<li> [Adjunctions as advice](#adjunctions-as-advice) </li>
-<li> [Reversible computation as groups on programs](#reversible-computation-as-groups-on-programs) </li>
-<li> [Blazing fast math rendering on the web](#blazing-fast-math-rendering-on-the-web) </li>
-<li> [VC dimension](#vc-dimension) </li>
-<li> [Symplectic version of classical mechanics (WIP)](#symplectic-version-of-classical-mechanics) </li>
-<li> [Theorems for free](#theorems-for-free) </li>
-<li> [How to reason with half-open intervals](#how-to-reason-with-half-open-intervals) </li>
-<li> [how does one build a fusion bomb?](#how-does-one-build-a-fusion-bomb) </li>
-<li> [Christoffel symbols, geometrically](#christoffel-symbols-geometrically) </li>
-<li> [A natural vector space without an explicit basis](#a-natural-vector-space-without-an-explicit-basis) </li>
-<li> [Cache oblivious B trees](#cache-oblivious-b-trees) </li>
-<li> [Krohn-Rhodes decomposition (WIP)](#krohn-rhodes-decomposition) </li>
-<li> [Proving block matmul using program analysis (WIP)](#proving-block-matmul-using-program-analysis) </li>
-<li> [Why I like algebra over analysis](#why-i-like-algebra-over-analysis) </li>
-<li> [`using` for cleaner function type typedefs](#using-for-cleaner-function-type-typedefs) </li>
-<li> [A walkway of lanterns (WIP)](#a-walkway-of-laterns) </li>
-<li> [Natural transformations](#natural-transformations) </li>
-<li> [The hilarious commentary by dinosaure in OCaml git](#the-hilarious-commentary-by-dinosaure-in-ocaml-git) </li>
-<li> [How to link against MLIR with CMake](#how-to-link-against-mlir-with-cmake) </li>
-<li> [Energy as triangulaizing state space](#energy-as-triangulaizing-state-space) </li>
-<li> [The cutest way to write semidirect products](#the-cutest-way-to-write-semidirect-products) </li>
-<li> [My Favourite APLisms](#my-favourite-aplisms) </li>
-<li> [Proof of chinese remainder theorem on rings](#proof-of-chinese-remainder-theorem-on-rings) </li>
-<li> [monic and epic arrows](#monic-and-epic-arrows) </li>
-<li> [The geometry of Lagrange multipliers](#the-geometry-of-lagrange-multipliers) </li>
-<li> [Efficient tree transformations on GPUs (WIP)](#efficient-tree-transformations-on-gpus) </li>
-<li> [Things I wish I knew when I was learning APL](#things-i-wish-i-knew-when-i-was-learning-apl) </li>
-<li> [Every ideal that is maximal wrt. being disjoint from a multiplicative subset is prime](#every-ideal-that-is-maximal-wrt-being-disjoint-from-a-multiplicative-subset-is-prime) </li>
-<li> [Getting started with APL](#getting-started-with-apl) </li>
-<li> [SpaceChem was the best compiler I ever used](#spacechem-was-the-best-compiler-i-ever-used) </li>
-<li> [Mnemonic for Kruskal and Prim](#mnemonic-for-kruskal-and-prim) </li>
-<li> [Legendre transform](#legendre-transform) </li>
-<li> [Cartesian Trees](#cartesian-trees) </li>
-<li> [DFS numbers as a monotone map](#dfs-numbers-as-a-monotone-map) </li>
-<li> [Self attention? not really](#self-attention-not-really) </li>
-<li> [Coarse structures](#coarse-structures) </li>
-<li> [Matroids for greedy algorithms (WIP)](#matroids-for-greedy-algorithms) </li>
-<li> [Grokking Zariski (WIP)](#grokking-zariski) </li>
-<li> [My preferred version of quicksort](#my-preferred-version-of-quicksort) </li>
-<li> [Geometric proof of Cauchy Schwarz inequality](#geometric-proof-of-cauchy-schwarz-inequality) </li>
-<li> [Dataflow analysis using Grobner basis](#dataflow-analysis-using-grobner-basis) </li>
-<li> [Fenwick trees and orbits](#fenwick-trees-and-orbits) </li>
-<li> [Dirichlet inversion (WIP)](#dirichlet-inversion) </li>
-<li> [Incunabulum for the 21st century: Making the J interpreter compile in 2020](#incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020) </li>
-<li> [An example of a sequence whose successive terms get closer together but isn't Cauchy (does not converge)](#an-example-of-a-sequence-whose-successive-terms-get-closer-together-but-isnt-cauchy-does-not-converge) </li>
-<li> [Krylov subspace method](#krylov-subspace-method) </li>
-<li> [Good reference to the Rete pattern matching algorithm](#good-reference-to-the-rete-pattern-matching-algorithm) </li>
-<li> [Leapfrog Integration](#leapfrog-integration) </li>
-<li> [Comparison of forward and reverse mode automatic differentiation](#comparison-of-forward-and-reverse-mode-ad) </li>
-<li> [An invitation to homology and cohomology: Part 1 --- Homology](#an-invitation-to-homology-and-cohomology-part-1--homology) </li>
-<li> [An invitation to homology and cohomology: Part 2 --- Cohomology](#an-invitation-to-homology-and-cohomology-part-2--cohomology) </li>
-<li> [Stuff I learnt in 2019](#stuff-i-learnt-in-2019) </li>
-<li> [A motivation for p-adic analysis](#a-motivation-for-p-adic-analysis) </li>
-<li> [Line of investigation to build physical intuition for semidirect products](#line-of-investigation-to-build-physical-intuition-for-semidirect-products) </li>
-<li> [Topology is really about computation --- part 2](#topology-is-really-about-computation--part-2) </li>
-<li> [Topology is really about computation --- part 1](#topology-is-really-about-computation--part-1) </li>
-<li> [PSLQ algorithm: finding integer relations between reals](#pslq-algorithm-finding-integer-relations-between-reals) </li>
-<li> [Geometric characterization of normal subgroups](#geometric-characterization-of-normal-subgroups) </li>
-<li> [Radical ideals, nilpotents, and reduced rings](#radical-ideals-nilpotents-and-reduced-rings) </li>
-<li> [My disenchantment with abstract interpretation](#my-disenchantment-with-abstract-interpretation) </li>
-<li> [Computing equivalent gate sets using grobner bases](#computing-equivalent-gate-sets-using-grobner-bases) </li>
-<li> [The janus programming language --- Time reversible computation](#the-janus-programming-language--time-reversible-computation) </li>
-<li> [`A = B` --- A book about proofs of combinatorial closed forms (TODO link)](#a--b--a-book-about-proofs-of-combinatorial-closed-forms) </li>
-<li> [Generating `k` bitsets of a given length `n`](#generating-k-bitsets-of-a-given-length-n) </li>
-<li> [Bondi k-calculus](#bondi-k-calculus) </li>
-<li> [Vivado toolchain craziness ](#vivado-toolchain-craziness) </li>
-<li> [What the hell _is_ a Grobner basis? Ideals as rewrite systems](#what-the-hell-is-a-grobner-basis-ideals-as-rewrite-systems) </li>
-<li> [Lie bracket versus torsion](#lie-bracket-versus-torsion) </li>
-<li>[Spatial partitioning data structures in molecular dynamics](#spatial-partitioning-data-structures-in-molecular-dynamics) </li>
-<li> [Vector: Arthur Whitney and text editors](#vector-arthur-whitney-and-text-editors) </li>
-<li> [Discrete random distributions with conditioning in 20 lines of haskell](#discrete-random-distributions-with-conditioning-in-20-lines-of-haskell) </li>
-<li> [Everything you know about word2vec is wrong](#everything-you-know-about-word2vec-is-wrong) </li>
-<li> [Small Haskell MCMC implementation ](#small-haskell-mcmc-implementation) </li>
-<li> [Debugging debug info in GHC ](#debugging-debug-info-in-ghc) </li>
-<li> [GHC LLVM code generator: Switch to unreachable](#ghc-llvm-code-generator-switch-to-unreachable) </li>
-<li> [Concurrency in Haskell](#concurrency-in-haskell) </li>
-<li> [Handy list of differential geometry definitions](#handy-list-of-differential-geometry-definitions) </li>
-<li> [Lazy programs have space leaks, Strict programs have time leaks](#lazy-programs-have-space-leaks-strict-programs-have-time-leaks) </li>
-<li> [Presburger arithmetic can represent the Collatz Conjecture](#presburger-arithmetic-can-represent-the-collatz-conjecture) </li>
-<li> [Using compactness to argue about covers](#using-compactness-to-argue-about-covers) </li>
-<li> [Stephen wolfram's live stream](#stephen-wolframs-live-stream) </li>
-<li> [Japanese Financial Counting system](#japanese-financial-counting-system) </li>
-<li> [`Cleave` as a word has some of the most irregular inflections](#cleave-as-a-word-has-some-of-the-most-irregular-inflections) </li>
-<li> [McCune's single axiom for group theory](#mccunes-single-axiom-for-group-theory) </li>
-<li> [Arthur Whitney: dense code](#arthur-whitney-dense-code) </li>
-<li> [How does one work with arrays in a linear language?](#how-does-one-work-with-arrays-in-a-linear-language) </li>
-<li> [Linear optimisation is the same as linear feasibility checking](#linear-optimisation-is-the-same-as-linear-feasibility-checking) </li>
-<li> [Quantum computation without complex numbers](#quantum-computation-without-complex-numbers) </li>
-<li>[Linguistic fun fact: Comparative Illusion ](#linguistic-fun-fact-comparative-illusion) </li>
-<li> [Stuff I learnt in 2018](content/blog/stuff-i-learnt-this-year-2018.md) </li>
-<li> [Stuff I learnt in 2017](content/blog/papers-I-read-and-loved-in-2017.md) </li>
-<li> [Reading the `structs` library](content/blog/reading-kmett-structs.md) </li>
-<li> [Reading the `machines` library (WIP)](content/blog/machines/reading-kmett-machines.md) </li>
-<li> [Explaining laziness (WIP)](content/blog/laziness-for-c-programmers.md) </li>
-<li> [Explaining STG(WIP)](stg-explained.md) </li>
-<li> [Simplexhc: proc points suck / making GHC an order of magnitude faster](content/blog/ghc-micro-optimisations-or-why-proc-points-suck.md) </li>
-<li> [Simplexhc: dec 2017](this-month-in-simplexhc-dec-2017.md) </li>
-<li> [Simplexhc: oct 29 2017](this-week-in-simpexhc-oct-29-2017.md) </li>
-<li> [Simplexhc: july 2017](this-week-in-simplexhc-07-2017.md) </li>
-<li> [Simplexhc: july 6th 2017](this-week-in-simplexhc-2017-07-06.md) </li>
-<li> [Simplexhc: announcement](content/blog/announcing-simplexhc.md) </li>
-<li> [GSoC 2015 proposal](content/blog/gsoc-vispy.md) </li>
-<li> [GSoC 2015 week 1](content/blog/gsoc-vispy-week-1-and-2.md) </li>
-<li> [GSoC 2015 week 3 and 4](content/blog/gsoc-vispy-week-3-and-4.md) </li>
-<li> [GSoC 2015 week 5](content/blog/gsoc-vispy-week-5.md) </li>
-<li> [GSoC 2015 week 6](content/blog/gsoc-vispy-week-6.md) </li>
-<li> [GSoC 2015 week 7](content/blog/gsoc-vispy-week-7.md) </li>
-<li> [GSoC 2015 final report](content/blog/gsoc-vispy-report-6.md) </li>
-<li> [Link Dump](#link-dump) </li>
-<li> [Big list of emacs gripes](#big-list-of-emacs-gripes) </li>
-<li> [Big list of Coq](#big-list-of-coq) </li>
-<li> [Big list of writing](#big-list-of-writing) </li>
-<li> [Big list of Latex](#big-list-of-latex) </li>
-<li> [Big list of Architecture](#big-list-of-architecture) </li>
-<li> [Big list of Recipes](#big-list-of-recipes) </li>
-<li> [Big list of history](#big-list-of-history) </li>
-<li> [Big list of words](#big-list-of-words) </li>
-<li> [Big list of Music](#big-list-of-music) </li>
-<li> [Big list of Social Science](#big-list-of-social-science) </li>
-</ol>
+Here, I'll record derivations of how we represent grassmanians, the exponential
+map, logarithm map, and the parallel transport with "physicist style"
+reasoning. Really, one needs to be careful because the grassmanian is a
+quotient of the non-compact steifel manifold, so we need to be careful about
+choosing representatives and whatnot. However, nothing beats physicist
+reasoning for intuition, so I'm going to do all the derivations in that style.
 
--->
+[WIP]
+
+
+# Lie bracket as linearization of conjugation
+
+Let us have $Y = GXG^{-1}$ with all of these as matrices. Let's say that $G$
+is very close to the identity: $G = I + E$ with $E^2 = 0$ ($E$ for epsilon).
+Note that now, $G^{-1} = (I + E)^{-1}$, which by abuse of notation
+can be written as $1/(I + E)$, which by taylor expansion is equal to 
+$I - E + E^2 - E^3 + \dots$. Since $E$ is nilpotent, we truncate at $E^2$
+leaving us with $(I - E)$ as the inverse of $(I+E)$. We can check that this is correct, by computing:
+
+$$
+\begin{aligned}
+&(I+E)(I - E) = \\
+&= I - E + E - E^2 \\
+&= I - E^2 = \\
+&= I - 0 = I
+\end{aligned}
+$$
+
+This lets us expand out $Y$ as:
+
+$$
+\begin{aligned}
+&Y = GXG^{-1} \\
+&Y = (I + E)X(I + E)^{-1} \\
+&Y = (I + E)X(I - E) \\
+&Y = IXI -IXE + EXI - EXE \\
+&Y = X - XE + EX - EXE 
+\end{aligned}
+$$
+
+Now we assert that because $E$ is small, $EXE$ is of order $E^2$ and will therefore
+vanish. This leaves us with:
+
+$$ GXG^{-1} = Y = X + [E, X] $$
+
+and so the lie bracket is the Lie algebra's way of recording the effect of the
+group's conjugacy structure.
+
+# Computational Origami
+
+- [RabbitEar: library for building origami visualizations in the browser](https://rabbitear.org/docs/)
+- [ORIPA: tool for visualizing flat folded origami](https://github.com/oripa/oripa)
+- [TreeMaker: ]()
+- [Origami Simulator: Tool to simulate origami, going from flat shaped to folded shaped](https://origamisimulator.org/)
 
 # Katex in duktape
 
@@ -341,6 +290,11 @@ $R = \mathbb Z/12 \mathbb Z$.
 
 
 # NaN punning
+
+This is a technique that allows us to store data inside a `double` by
+punning the value of a `NaN`. This is used inside javascript engines
+to represent all possible user types as a single NaN.
+[This is well explained at the SpiderMonkey internals page](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Internals)
 
 ```cpp
 #include <assert.h>
@@ -3648,7 +3602,7 @@ $$
 - The composition of continuous functions of chain-complete partially
   ordered sets is continuous. 
 
-### Fixpoints of continuouts functions
+### Fixpoints of continuous functions
 
 The least fixed point of a continous function $f: D \rightarrow D$ is:
 
@@ -3663,6 +3617,8 @@ than $a$, and hence implies $a$.
 ### References
 
 - Semantics with Applications: Hanne Riis Nielson, Flemming Nielson.
+- [Lecture notes on denotational semantics: Part 2 of the computer science Tripos](https://www.cl.cam.ac.uk/~gw104/dens.pdf)
+- [Outline of a mathematical theory of computation](https://ropas.snu.ac.kr/~kwang/520/readings/sco70.pdf)
 
 
 
@@ -6348,41 +6304,43 @@ example of self-modifying-code that I know.
 
 We wish to have function `f` call function `g`. For `g` to be able to
 return control to `f`, `f` pushes a return address into the call stack,
-that `g` pops and `jmp`s to
+that `g` pops and `jmp`s to `f`s body. In code:
 
-```
-f's body
+```text
 START_F:
       ...
 L0    push addr(L0); location of instr to be run after call.
       jmp START_G
 L1:   <code after call>
-```
 
-```
+=========
+
 g's body
 START_G:
       ...
       retloc = pop ; pop location to jump to
 RETG: jmp retloc
+
 ```
 
-Rather than `push`ing and `pop`ing, we can _rewrite_ the code of `g`, to _change_ `retloc` before a call
-to `g`. In made-up-pseudocode, here's what that would look like:
+
+Rather than `push` ing and `pop` ing, we can _rewrite_ the code of `g`, to
+_change_ `retloc` before a call to `g`. In made-up-pseudocode, here's what that
+would look like:
 
 
 #### The jump based solution
 
-```
+```text
 * f's body
 START_F:
       ...
 L0    store loc(RETG) assemble(jmp addr(L1))
       jmp START_G
 L1:   <code after call>
-```
 
-```
+=========
+
 * g's body
 START_G:
       ...

@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
-img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+img { display:block; }.container { overflow-x: auto; overflow-y: hidden;  max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: 20%; } }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
@@ -7,10 +7,10 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=efficient-tree-transformations-on-gpus href='#efficient-tree-transformations-on-gpus'> § </a> Efficient tree transformations on GPUs</h2>
-All material lifted straight from <a href=https://scholarworks.iu.edu/dspace/handle/2022/24749>Aaron Hsu's PhD thesis</a>. I'll be converting
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=efficient-tree-transformations-on-gpus href='#efficient-tree-transformations-on-gpus'> § </a><span class='centered'> Efficient tree transformations on GPUs</h2>
+All material lifted straight from <a href=https://scholarworks.iu.edu/dspace/handle/2022/24749><span class='centered'>Aaron Hsu's PhD thesis</a>. I'll be converting
 APL notation to C++-like notation.
-<h4><a id=tree-repsentation-as-multi-dimensional-ragged-nested-arrays href='#tree-repsentation-as-multi-dimensional-ragged-nested-arrays'> § </a> Tree repsentation as multi-dimensional ragged nested arrays</h4>
+<h4><a id=tree-repsentation-as-multi-dimensional-ragged-nested-arrays href='#tree-repsentation-as-multi-dimensional-ragged-nested-arrays'> § </a><span class='centered'> Tree repsentation as multi-dimensional ragged nested arrays</h4>
 We're interested in this tree:
 <pre><code>      ∘
 ┌──┬──┴────┐
@@ -102,11 +102,11 @@ p q r  s   t   u
 └─┴─→┴───────→┴──────────────────→┘
 </code></pre>
 Note that for this representation to work, we need to be able to:
-<ul><li> nest arrays inside arrays.</li><li> have subarrays of different sizes (ragged arrays)</li><li> of different <i>nesting depths</i> --- so it's really not even an array?</li></ul>
+<ul><li><span class='centered'> nest arrays inside arrays.</li><li><span class='centered'> have subarrays of different sizes (ragged arrays)</li><li><span class='centered'> of different <i><span class='centered'>nesting depths</i> --- so it's really not even an array?</li></ul>
 I don't understand the memory layout of this, to be honest. I feel like to
 represent this in memory would still rely on pointer-chasing, since we need
 to box all the arrays. This is possibly optimised by APL to not be too bad.
-<h4><a id=the-depth-vector-representation href='#the-depth-vector-representation'> § </a> The depth vector representation</h4>
+<h4><a id=the-depth-vector-representation href='#the-depth-vector-representation'> § </a><span class='centered'> The depth vector representation</h4>
 <pre><code>      ∘             0
 ┌──┬──┴────┐
 a  b       c        1
@@ -156,7 +156,7 @@ $ d ← ∊0{(⊢,(⍺+1)∇⊣)/⌽⍺,1↓⍵}ast
 </code></pre>
 Let's break this down:
 TODO
-<h4><a id=inverted-tables href='#inverted-tables'> § </a> Inverted tables</h4>
+<h4><a id=inverted-tables href='#inverted-tables'> § </a><span class='centered'> Inverted tables</h4>
 We represent data associated with our nodes as follows:
 <pre><code>$ data ← ⍪ ¨d(15⍴'T')(↑15⍴⊂'n.')
 $ ]disp data
@@ -179,15 +179,15 @@ $ ]disp data
 └→┴→┴─→┘
 </code></pre>
 This is the same thing as a
-<a href=https://en.wikipedia.org/wiki/AoS_and_SoA#Structure_of_Arrays>structure of arrays (SOA) representation</a>,
+<a href=https://en.wikipedia.org/wiki/AoS_and_SoA#Structure_of_Arrays><span class='centered'>structure of arrays (SOA) representation</a>,
 where each array of information (eg, the depth at <code>data[1]</code>, the <code>T</code>
-information at <code>data[2]</code>) are each <i>arrays</i> which can be accessed well on SIMD
+information at <code>data[2]</code>) are each <i><span class='centered'>arrays</i> which can be accessed well on SIMD
 instructions.
-<h4><a id=ast-representation href='#ast-representation'> § </a> AST representation</h4>
+<h4><a id=ast-representation href='#ast-representation'> § </a><span class='centered'> AST representation</h4>
 TODO
-<h4><a id=path-matrices href='#path-matrices'> § </a> Path matrices</h4>
+<h4><a id=path-matrices href='#path-matrices'> § </a><span class='centered'> Path matrices</h4>
 We want information of how to go up and down the tree in ideally constant time.
-We store this information in what is known as a <i>path matrix</i>.
+We store this information in what is known as a <i><span class='centered'>path matrix</i>.
 For our recurring example, the path matrix is:
 <pre><code>∘ a p b q v r c s w x t y z u | preorder traversal
 ──────────────────────────────────────────────────
@@ -236,7 +236,7 @@ p:2    q:4     r:6   s:8        t:11    u:14    2
        │          ┌──┴──┐     ┌─┴───┐
        v:5        w:9   x:10  y:12  z:13        3
 </code></pre>
-<h4><a id=rendering-the-depth-information-in-2d href='#rendering-the-depth-information-in-2d'> § </a> Rendering the depth information in 2D</h4>
+<h4><a id=rendering-the-depth-information-in-2d href='#rendering-the-depth-information-in-2d'> § </a><span class='centered'> Rendering the depth information in 2D</h4>
 We use the incantation:
 <pre><code>$ d ← (0 1 2 1 2 3 2 1 2 3 3 2 3 3 2)
 $ ((⍳≢d)@(d,¨⍳≢d)) ((⌈/d) (≢d))⍴'-'
@@ -287,13 +287,13 @@ So, for our purposes, <code>zip ← ,¨</code>.
 ---------------
 ---------------
 </code></pre>
-<ul><li> <code>⌈</code> is the maximum operator and <code>/</code> is the fold operator, so
+<ul><li><span class='centered'> <code>⌈</code> is the maximum operator and <code>/</code> is the fold operator, so
   <code>⌈/d</code> finds the maximum in <code>d</code>. Recall that <code>(≢d)</code> find the no. of
    elements in <code>d</code>. <code>⍴</code> reshapes an array to the desired size. We pass it
    a <code>1x1</code> array containing only <code>-</code>, which gets reshaped into a
    <code>(⌈/d) x (≢d)</code> sizes array of <code>-</code> symbols.</li></ul>
 TODO: explain @ and its use
-<h4><a id=creating-the-path-matrix href='#creating-the-path-matrix'> § </a> Creating the path matrix</h4>
+<h4><a id=creating-the-path-matrix href='#creating-the-path-matrix'> § </a><span class='centered'> Creating the path matrix</h4>
 <pre><code>$ ⎕IO ← 0 ⍝ (inform APL that we wish to use 0-indexing.)
 $ d ← (0 1 2 1 2 3 2 1 2 3 3 2 3 3 2)
 $ PM ← ⌈\((⍳≢d)@(d,¨⍳≢d))(((⌈/d+1)(≢d))⍴0)
@@ -313,7 +313,7 @@ $ PM ← ⌈\((⍳≢d)@(d,¨⍳≢d))(((⌈/d+1)(≢d))⍴0)
   5   9  10  12  13   3
 </code></pre>
 The incantation can be broken down into:
-<ul><li> <code>(((⌈/d+1)(≢d))⍴0)</code> is used to create a <code>max(d+1)x|d|</code> dimension array of zeros.
+<ul><li><span class='centered'> <code>(((⌈/d+1)(≢d))⍴0)</code> is used to create a <code>max(d+1)x|d|</code> dimension array of zeros.
    Here, the rows define depths, and the columns correspond to tree nodes
    which for us are their preorder indexes.</li></ul>
 <pre><code>$ grid←(⌈/d+1) (≢d) ⍴ 0
@@ -323,7 +323,7 @@ $ grid
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 </code></pre>
-<ul><li> <code>((d ,¨ ⍳≢d))</code> creates an array of pairs <code>(depth, preindex)</code>. We will use
+<ul><li><span class='centered'> <code>((d ,¨ ⍳≢d))</code> creates an array of pairs <code>(depth, preindex)</code>. We will use
   this to fill index <code>(d, pi)</code> with the value <code>pi</code>.</li></ul>
 <pre><code>$ writeixs ← (d,¨⍳≢d)
 $ ]disp writeixs
@@ -331,7 +331,7 @@ $ ]disp writeixs
 │0 0│1 1│2 2│1 3│2 4│3 5│2 6│1 7│2 8│3 9│3 10│2 11│3 12│3 13│2 14│
 └~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~──→┴~──→┴~──→┴~──→┴~──→┘
 </code></pre>
-<ul><li> <code>ixgrid ← ((⍳≢d)@writeixs) grid</code> rewrites at index <code>writeixs[i]</code> the value (<code>(i≢d)[i]</code>).</li></ul>
+<ul><li><span class='centered'> <code>ixgrid ← ((⍳≢d)@writeixs) grid</code> rewrites at index <code>writeixs[i]</code> the value (<code>(i≢d)[i]</code>).</li></ul>
 <pre><code>$ ixgrid ← ((⍳≢d)@writeixs) grid
 $ ixgrid
 0 0 0 0 0 0 0 0 0 0  0  0  0  0  0
@@ -339,7 +339,7 @@ $ ixgrid
 0 0 2 0 4 0 6 0 8 0  0 11  0  0 14
 0 0 0 0 0 5 0 0 0 9 10  0 12 13  0
 </code></pre>
-<ul><li> Finally, <code>⌈</code> is the maximum operator, and <code>\</code> is the <a href=>prefix scan</a> operator,
+<ul><li><span class='centered'> Finally, <code>⌈</code> is the maximum operator, and <code>\</code> is the <a href=><span class='centered'>prefix scan</a> operator,
   so <code>⌈\ixgrid</code> creates a prefix scan of the above grid to give us our
   final path matrix:</li></ul>
 <pre><code>$ PM ← ⌈\ixgrid
@@ -349,7 +349,7 @@ $ PM
 0 0 2 2 4 4 6 6 8 8  8 11 11 11 14
 0 0 0 0 0 5 5 5 5 9 10 10 12 13 13
 </code></pre>
-<h4><a id=using-the-path-matrix-distance-of-a-node-from-every-other-node href='#using-the-path-matrix-distance-of-a-node-from-every-other-node'> § </a> Using the path matrix:  distance of a node from every other node.</h4>
+<h4><a id=using-the-path-matrix-distance-of-a-node-from-every-other-node href='#using-the-path-matrix-distance-of-a-node-from-every-other-node'> § </a><span class='centered'> Using the path matrix:  distance of a node from every other node.</h4>
 Note that the maximum distance between two nodes is to climb
 all the way to the top node, and then climb down:
 <pre><code>dmax ← depth(a) + depth(b)
@@ -369,7 +369,7 @@ So, we can compute the depth as:
 </code></pre>
 [TODO: picture]
 [TODO: finish writing this]
-<h4><a id=parent-vector-representation href='#parent-vector-representation'> § </a> Parent vector representation</h4>
+<h4><a id=parent-vector-representation href='#parent-vector-representation'> § </a><span class='centered'> Parent vector representation</h4>
 A parent vector is a vector of length <code>n</code> where <code>Parent[i]</code> denotes an
 index into <code>Parent</code>. Hence, the following condition will return 1
 if V is a parent vector.
@@ -394,16 +394,16 @@ p:2    q:4     r:6   s:8        t:11    u:14    2
 The condition a parent vector must satisfy is:
 <pre><code>∧/V ∊(⍳≢V) ⍝ [All elements of V belong in the list [1..len(V)] ]
 </code></pre>
-<ul><li> <code>V ∊ (⍳≢V)</code> will be a list of whether each element in v belongs (<code>∊</code>) to the list
-  <code>(⍳≢V) = [1..len(V)]</code></li><li> Recall that <code>/</code> is for reduction, and <code>∧/</code> is a boolean <code>AND</code> reduction.
-  Hence, we compute whether each element of the vector <code>V</code> is in the range <code>[1..len(V)]</code>.</li><li> We add the constraint that root notes that don't have a parent simply
+<ul><li><span class='centered'> <code>V ∊ (⍳≢V)</code> will be a list of whether each element in v belongs (<code>∊</code>) to the list
+  <code>(⍳≢V) = [1..len(V)]</code></li><li><span class='centered'> Recall that <code>/</code> is for reduction, and <code>∧/</code> is a boolean <code>AND</code> reduction.
+  Hence, we compute whether each element of the vector <code>V</code> is in the range <code>[1..len(V)]</code>.</li><li><span class='centered'> We add the constraint that root notes that don't have a parent simply
   point to themselves. This allows us to free ourselves from requiring
   some kind of <code>nullptr</code> check.</li></ul>
 The root node (parent of all elements) can be found using the fixpoint operator (<code>⍨</code>):
 <pre><code>I←{(⊂⍵)⌷⍺} ⍝ index into the left hand side param using right hand side param
 I⍣≡⍨p ⍝ compute the fixpoint of the I operator using ⍨ and apply it to p
 </code></pre>
-<h4><a id=converting-from-depth-vector-to-parent-vector-take-1 href='#converting-from-depth-vector-to-parent-vector-take-1'> § </a> Converting from depth vector to parent vector, Take 1</h4>
+<h4><a id=converting-from-depth-vector-to-parent-vector-take-1 href='#converting-from-depth-vector-to-parent-vector-take-1'> § </a><span class='centered'> Converting from depth vector to parent vector, Take 1</h4>
 As usual, let's consider our example:
 <pre><code>d ← (0  1  2  1  2  3  2  1  2  3  3  2  3  3  2) │ depths
     (∘  a  p  b  q  v  r  c  s  w  x  t  y  z  u) │ values
@@ -423,7 +423,7 @@ p:2    q:4     r:6   s:8        t:11    u:14    2
        v:5        w:9   x:10  y:12  z:13        3
 </code></pre>
 Note that the depth vector already encodes parent-child information.
-<ul><li> The parent of node <code>i</code> is a node <code>j</code> such that <code>d[j] = d[i] - 1</code> and
+<ul><li><span class='centered'> The parent of node <code>i</code> is a node <code>j</code> such that <code>d[j] = d[i] - 1</code> and
   <code>j</code> is the closest index to the left of <code>i</code> such that this happens.</li></ul>
 For example, to compute the parent of <code>t:11</code>, notice that it's at depth <code>2</code>.
 So we should find all the nodes from <code>d[0..11]</code> which have depths equal to
@@ -445,10 +445,10 @@ $ ⊃ ⌽ eqds ⍝ first of the reverse of the array indexes to extract `7`
 $ (⌽⍸(d[⍳t] = d[t]-1))[0]  ⍝ APL style one-liner of the above
 </code></pre>
 While this is intuitive, this does not scale: It does not permit us to find
-the parent of all the nodes <i>at once</i> --- ie, it is not parallelisable
+the parent of all the nodes <i><span class='centered'>at once</i> --- ie, it is not parallelisable
 over choices of <code>t</code>.
-<h4><a id=converting-from-depth-vector-to-parent-vector-take-2-or-scan-idiom href='#converting-from-depth-vector-to-parent-vector-take-2-or-scan-idiom'> § </a> Converting from depth vector to parent vector, Take 2 (Or scan idiom)</h4>
-Imagine we have a list of <code>0</code>s and <code>1</code>s, and we want to find the <i>index</i> of
+<h4><a id=converting-from-depth-vector-to-parent-vector-take-2-or-scan-idiom href='#converting-from-depth-vector-to-parent-vector-take-2-or-scan-idiom'> § </a><span class='centered'> Converting from depth vector to parent vector, Take 2 (Or scan idiom)</h4>
+Imagine we have a list of <code>0</code>s and <code>1</code>s, and we want to find the <i><span class='centered'>index</i> of
 the rightmost <code>1</code> value. For example, given:
 <pre><code>       0 1 2 3 4 5 6 7 8 9 10 11 12
 $ a ← (0 0 1 0 0 0 1 0 1 0  0  0  0)
@@ -475,14 +475,14 @@ $ ¯1 +  (+/ (∨\ ⌽a))  ⍝ subtract 1 from the previous number
   8
 </code></pre>
 Why the hell does this work? Well, here's the proof:
-<ul><li> On running <code>⌽a</code>, we reverse the <code>a</code>. The last 1 of <code>a</code> at index <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span></span>
-  becomes the first <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span> of <code>⌽a</code> at index <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>i</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>≡</mo><mi>n</mi><mo>−</mo><mi>i</mi></mrow><annotation encoding="application/x-tex">i&#x27; \equiv n-i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≡</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span></span>.</li><li> On running  <code>∨\ ⌽a</code>, numbers including and after the first 1
-  become <code>1</code>. That is, all indexes <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi><mo>≥</mo><msup><mi>i</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow><annotation encoding="application/x-tex">j \geq i&#x27;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span></span> have 1 in them.</li><li> On running <code>+/ (∨\ ⌽a)</code>, we sum up all 1s. This will give us <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><msup><mi>i</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n-i&#x27;+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.835222em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span> 1s.
-  That is, <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><msup><mi>i</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>+</mo><mn>1</mn><mo>=</mo><mi>n</mi><mo>−</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mi>i</mi><mo stretchy="false">)</mo><mo>+</mo><mn>1</mn><mo>=</mo><mi>i</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n-i&#x27;+1 = n-(n-i)+1 =i+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.835222em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">i</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span>.</li><li> We subtract a <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span> to correctly find the <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span></span> from <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">i+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span>.</li></ul>
-This technique will work for <b>every row of a matrix</b>. This is paramount,
+<ul><li><span class='centered'> On running <code>⌽a</code>, we reverse the <code>a</code>. The last 1 of <code>a</code> at index <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span></span>
+  becomes the first <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span> of <code>⌽a</code> at index <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>i</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>≡</mo><mi>n</mi><mo>−</mo><mi>i</mi></mrow><annotation encoding="application/x-tex">i&#x27; \equiv n-i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≡</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span></span>.</li><li><span class='centered'> On running  <code>∨\ ⌽a</code>, numbers including and after the first 1
+  become <code>1</code>. That is, all indexes <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi><mo>≥</mo><msup><mi>i</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow><annotation encoding="application/x-tex">j \geq i&#x27;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span></span> have 1 in them.</li><li><span class='centered'> On running <code>+/ (∨\ ⌽a)</code>, we sum up all 1s. This will give us <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><msup><mi>i</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n-i&#x27;+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.835222em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span> 1s.
+  That is, <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><msup><mi>i</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>+</mo><mn>1</mn><mo>=</mo><mi>n</mi><mo>−</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mi>i</mi><mo stretchy="false">)</mo><mo>+</mo><mn>1</mn><mo>=</mo><mi>i</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n-i&#x27;+1 = n-(n-i)+1 =i+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.835222em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">i</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span>.</li><li><span class='centered'> We subtract a <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span> to correctly find the <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span></span> from <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">i+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span>.</li></ul>
+This technique will work for <b><span class='centered'>every row of a matrix</b>. This is paramount,
 since we can now repeat this for the depth vector we were previously
 interested in for each row, and thereby compute the parent index!
-<h4><a id=converting-from-depth-vector-to-parent-vector-take-3-full-matrix href='#converting-from-depth-vector-to-parent-vector-take-3-full-matrix'> § </a> Converting from depth vector to parent vector, Take 3 (full matrix)</h4>
+<h4><a id=converting-from-depth-vector-to-parent-vector-take-3-full-matrix href='#converting-from-depth-vector-to-parent-vector-take-3-full-matrix'> § </a><span class='centered'> Converting from depth vector to parent vector, Take 3 (full matrix)</h4>
 We want to extend the previous method we hit upon to compute the parents
 of all nodes in parallel. To perform this, we need to run the moral
 equivalent of the following:
@@ -494,7 +494,7 @@ $ a←d[⍳t]=d[t]-1  ⍝ boolean vector of nodes whose depth is that of t's par
 $ ¯1 +  (+/ (∨\ ⌽a)) ⍝ index of last 0 of boolean vector
 7
 </code></pre>
-for <i>every single choice of t</i>. To perform this, we can build a 2D matrix
+for <i><span class='centered'>every single choice of t</i>. To perform this, we can build a 2D matrix
 of <code>d[⍳t]=d[t]-1</code> where <code>t</code> ranges over <code>[0..len(d)-1]</code> (ie, it ranges
 over all the nodes in the graph).
 We begin by using:
@@ -518,11 +518,11 @@ $ ]display ltdepth ← d ∘.> d ⍝ find `d[i] > d[j]` for all i, j.
 │1 1 0 1 0 0 0 1 0 0 0 0 0 0 0│
 └~────────────────────────────┘
 </code></pre>
-<ul><li> Note that <code>gt[i][j] = 1</code> iff <code>d[j] < d[i]</code>. So, for a given row (<code>i = fixed</code>), the <code>1s</code>
+<ul><li><span class='centered'> Note that <code>gt[i][j] = 1</code> iff <code>d[j] < d[i]</code>. So, for a given row (<code>i = fixed</code>), the <code>1s</code>
   nodes that are at lower depth (ie, potential parents).</li></ul>
-<ul><li> If we mask this to only have those indeces where <code>j <= i</code>, then the
+<ul><li><span class='centered'> If we mask this to only have those indeces where <code>j <= i</code>, then the
   last one in each row will be such that <code>d[last 1] = d[i] - 1</code>. Why? Because
-  the node that is closest to us with a depth less than us <i>must</i> be our parent,
+  the node that is closest to us with a depth less than us <i><span class='centered'>must</i> be our parent,
   in the preorder traversal.</li></ul>
 <pre><code>$ ⎕IO ← 0 ⋄ d ← (0  1  2  1  2  3  2  1  2  3  3  2  3  3  2) ⍝ depths
 $ ]display left ←  (⍳3) ∘.> (⍳3) ⍝ find `i > j` for all i, j.
@@ -567,7 +567,7 @@ So, that's our function:
 Note that the time complexity for this is dominated by having to calculate
 the outer products, which even given infinite parallelism, take <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></span> time.
 We will slowly chip away at this, to be far better.
-<h4><a id=converting-from-depth-vector-to-parent-vector-take-4-log-critial-depth href='#converting-from-depth-vector-to-parent-vector-take-4-log-critial-depth'> § </a> Converting from depth vector to parent vector, Take 4 (log critial depth)</h4>
+<h4><a id=converting-from-depth-vector-to-parent-vector-take-4-log-critial-depth href='#converting-from-depth-vector-to-parent-vector-take-4-log-critial-depth'> § </a><span class='centered'> Converting from depth vector to parent vector, Take 4 (log critial depth)</h4>
 We will use the Key(<code>⌸</code>) operator which allows us to create key value pairs.
 <pre><code>$ d ← 0 1 2 1 2 3 2 1 2 3 3 2 3 3 2
 $ ]disp (⍳≢d) ,¨ d ⍝ zip d with indexes
@@ -605,7 +605,7 @@ $ ]display b ← {⍵}⌸d ⍝ each row i contains values j such that d[j] = i.
 </code></pre>
 Our first try doesn't quite work: it winds up trying to create a numeric matrix,
 which means that we can't have different rows of different sizes. So, the
-information that <i>only</i> index <code>0</code> is such that <code>d[0] = 0</code> is lost. What we
+information that <i><span class='centered'>only</i> index <code>0</code> is such that <code>d[0] = 0</code> is lost. What we
 can to is to wrap the keys to arrive at:
 <pre><code>$ d ← 0 1 2 1 2 3 2 1 2 3 3 2 3 3 2
 $ ]display b ← {⊂⍵}⌸d ⍝ d[b[i]] = i
@@ -634,7 +634,7 @@ p:2    q:4     r:6   s:8        t:11    u:14    2
 We use the Interval Index(<code>⍸</code>) operator to solve the problem of finding the
 parent / where we should sqeeze a node from <code>b[3]</code> into <code>b[2]</code>
 (This is formally known as the
-<a href=https://en.wikipedia.org/wiki/Predecessor_problem>predecessor problem</a>)
+<a href=https://en.wikipedia.org/wiki/Predecessor_problem><span class='centered'>predecessor problem</a>)
 <pre><code>⍝ left[a[i]] is closest number < right[i]
 ⍝ left[a[i]] is the predecessor of right[i] in left[i].
 $ a ← (1 10 100 1000) ⍸ (1 2000 300 50 2 )
@@ -683,9 +683,9 @@ $ p←⍳≢d
 Now comes the biggie:
 <pre><code>$ findparent ← {parentixs ← ⍺⍸⍵ ⋄ p[⍵]←⍺[parentixs]}
 </code></pre>
-<ul><li> <code>⍺</code> is the list of parent nodes.</li><li> <code>⍵</code> is the list of current child nodes.</li><li> We first find the indexes of our parent nodes by using
-  the <code>pix ← parent ⍸ child</code> idiom.</li><li> Then, we find the actual parents by indexing into
-  the parent list: <code>pix[parentixs]</code>.</li><li> We write these into the parents of the child using:
+<ul><li><span class='centered'> <code>⍺</code> is the list of parent nodes.</li><li><span class='centered'> <code>⍵</code> is the list of current child nodes.</li><li><span class='centered'> We first find the indexes of our parent nodes by using
+  the <code>pix ← parent ⍸ child</code> idiom.</li><li><span class='centered'> Then, we find the actual parents by indexing into
+  the parent list: <code>pix[parentixs]</code>.</li><li><span class='centered'> We write these into the parents of the child using:
   <code>p[children] ← parent[parent ⍸ child]</code></li></ul>
 This finally culminates in:
 <pre><code>$ d←0 1 2 1 2 3 2 1 2 3 3 2 3 3 2
@@ -712,14 +712,14 @@ Which can be further golfed to:
 The total time complexity of this method assuming infinite parallelism is as follows:
 <pre><code>$ p←⍳≢d ⋄ d2nodes←{⊂⍵}⌸d ⋄ findp←{pix ← ⍺⍸⍵ ⋄ p[⍵]←⍺[pix]} ⋄ 2findp/d2nodes ⋄ p
 </code></pre>
-<ul><li> <code>(p←⍳≢d)</code> can be filled in <code>O(1)</code> time.</li><li> <code>(d2nodes←{⊂⍵}⌸d)</code> is searching for keys in a small integer domain, so this is <code>O(#nodes)</code> using
+<ul><li><span class='centered'> <code>(p←⍳≢d)</code> can be filled in <code>O(1)</code> time.</li><li><span class='centered'> <code>(d2nodes←{⊂⍵}⌸d)</code> is searching for keys in a small integer domain, so this is <code>O(#nodes)</code> using
   radix sort as far as I know. However, the thesis mentions that this can be done in
-  <code>O(log(|#nodes|))</code>. I'm not sure how, I need to learn this.</li><li> For each call of <code>findp</code>, the call <code>(pix ← ⍺⍸⍵)</code> can be implemented using binary search
+  <code>O(log(|#nodes|))</code>. I'm not sure how, I need to learn this.</li><li><span class='centered'> For each call of <code>findp</code>, the call <code>(pix ← ⍺⍸⍵)</code> can be implemented using binary search
   leading to a logarthmic complexity in the size of <code>⍺</code> (since we are looking up
-  for predecessors of <code>⍵</code> in <code>⍺</code>).</li><li> The time complexity of the fold <code>2findp/d2nodes</code> can be done entirely in parallel
+  for predecessors of <code>⍵</code> in <code>⍺</code>).</li><li><span class='centered'> The time complexity of the fold <code>2findp/d2nodes</code> can be done entirely in parallel
   since all the writes into the <code>p</code> vector are independent: we only write the
   parent of the current node we are looking at.</li></ul>
-<h4><a id=34-computing-nearest-parent-by-predicate href='#34-computing-nearest-parent-by-predicate'> § </a> 3.4: Computing nearest Parent by predicate</h4>
+<h4><a id=34-computing-nearest-parent-by-predicate href='#34-computing-nearest-parent-by-predicate'> § </a><span class='centered'> 3.4: Computing nearest Parent by predicate</h4>
 I'm going to simplify the original presentation by quite a bit.
 <pre><code>     a b c d e f g h i  | names
      0 1 2 3 4 5 6 7 8  | indexes
@@ -768,15 +768,15 @@ $ PX ← P I@{X[⍵]≠1} ⍣ ≡ P
 TODO. At any rate, since this does not require any writes and purely reads,
 and nor does it need any synchronization, this is fairly straightforward
 to implement on the GPU.
-<h4><a id=35-lifting-subtrees-to-the-root href='#35-lifting-subtrees-to-the-root'> § </a> 3.5: Lifting subtrees to the root</h4>
+<h4><a id=35-lifting-subtrees-to-the-root href='#35-lifting-subtrees-to-the-root'> § </a><span class='centered'> 3.5: Lifting subtrees to the root</h4>
 Once we have marked our <code>X</code> nodes, we now wish to lift entire subtrees of <code>X</code>
 up to the root.
-<ul><li>  This pass displays how to lift subtrees and add new nodes to replace the subtree's original nodes.</li><li> Luckily, there are no <i>sibling</i> relationships that need to be maintained since
-  we are uprooting an entire subtree.</li><li> There are no <i>ordering constraints</i> on how the subtrees should be arranged at
-  the top.</li><li> Hence, we can simply add new nodes to the <i>end</i> of the tree (in terms of the preorder traversal).
+<ul><li><span class='centered'>  This pass displays how to lift subtrees and add new nodes to replace the subtree's original nodes.</li><li><span class='centered'> Luckily, there are no <i><span class='centered'>sibling</i> relationships that need to be maintained since
+  we are uprooting an entire subtree.</li><li><span class='centered'> There are no <i><span class='centered'>ordering constraints</i> on how the subtrees should be arranged at
+  the top.</li><li><span class='centered'> Hence, we can simply add new nodes to the <i><span class='centered'>end</i> of the tree (in terms of the preorder traversal).
   Adding to the middle of the tree will be discussed later.</li></ul>
 There is some good advice in the thesis:
-<blockquote> When using APL primitives this way, it may be good to map their names and definitions to the domain of trees. For example, the primitive <code>⍸Predicate</code> is read as "the nodes where <code>Predicate</code> holds" and not as "the indexes where <code>Predicate</code> is 1".</blockquote>
+<blockquote><span class='centered'> When using APL primitives this way, it may be good to map<span class='centered'> their names and definitions to the domain of trees. For example,<span class='centered'> the primitive <code>⍸Predicate</code> is read as "the nodes where <code>Predicate</code> holds"<span class='centered'> and not as "the indexes where <code>Predicate</code> is 1".</blockquote>
 For example, given the tree:
 <pre><code>      0 1 2 3 4 5  | indexes
       a b c d e f  | names
@@ -810,18 +810,18 @@ f:5(X)
 g:6
 </code></pre>
 We first look for nodes that need to be lifted.  There are:
-<ul><li> Non-root nodes (ie, nodes whose parents are not themselves: <code>p≠(⍳≢p)</code>)</li><li> Which have the property <code>X</code>.</li></ul>
+<ul><li><span class='centered'> Non-root nodes (ie, nodes whose parents are not themselves: <code>p≠(⍳≢p)</code>)</li><li><span class='centered'> Which have the property <code>X</code>.</li></ul>
 <pre><code>nodes←⍸(X ∧ p≠(⍳≢p))  ⍝ ⍸:pick indexes.
 </code></pre>
-<h4><a id=36-wrapping-expressions href='#36-wrapping-expressions'> § </a> 3.6: Wrapping Expressions</h4>
-<h4><a id=37-lifting-guard-test-exprsessions href='#37-lifting-guard-test-exprsessions'> § </a> 3.7: Lifting Guard Test Exprsessions</h4>
-<h4><a id=38-couting-rank-of-index-operators href='#38-couting-rank-of-index-operators'> § </a> 3.8: Couting rank of index operators</h4>
-<h4><a id=39-flattening-expressions href='#39-flattening-expressions'> § </a> 3.9: Flattening Expressions</h4>
-<h4><a id=310-associating-frame-slots-and-variables href='#310-associating-frame-slots-and-variables'> § </a> 3.10: Associating Frame slots and variables</h4>
-<h4><a id=311-placing-frames-into-a-lexical-stack href='#311-placing-frames-into-a-lexical-stack'> § </a> 3.11: Placing frames into a lexical stack</h4>
-<h4><a id=312-recording-exported-names href='#312-recording-exported-names'> § </a> 3.12: Recording Exported names</h4>
-<h4><a id=313-lexical-resolution href='#313-lexical-resolution'> § </a> 3.13: Lexical Resolution</h4>
-<h4><a id=521-traversal-idioms href='#521-traversal-idioms'> § </a> 5.2.1 Traversal Idioms</h4>
-<h4><a id=522-edge-mutation-idioms href='#522-edge-mutation-idioms'> § </a> 5.2.2 Edge Mutation Idioms</h4>
-<h4><a id=523-node-mutation-idioms href='#523-node-mutation-idioms'> § </a> 5.2.3 Node Mutation Idioms</h4>
+<h4><a id=36-wrapping-expressions href='#36-wrapping-expressions'> § </a><span class='centered'> 3.6: Wrapping Expressions</h4>
+<h4><a id=37-lifting-guard-test-exprsessions href='#37-lifting-guard-test-exprsessions'> § </a><span class='centered'> 3.7: Lifting Guard Test Exprsessions</h4>
+<h4><a id=38-couting-rank-of-index-operators href='#38-couting-rank-of-index-operators'> § </a><span class='centered'> 3.8: Couting rank of index operators</h4>
+<h4><a id=39-flattening-expressions href='#39-flattening-expressions'> § </a><span class='centered'> 3.9: Flattening Expressions</h4>
+<h4><a id=310-associating-frame-slots-and-variables href='#310-associating-frame-slots-and-variables'> § </a><span class='centered'> 3.10: Associating Frame slots and variables</h4>
+<h4><a id=311-placing-frames-into-a-lexical-stack href='#311-placing-frames-into-a-lexical-stack'> § </a><span class='centered'> 3.11: Placing frames into a lexical stack</h4>
+<h4><a id=312-recording-exported-names href='#312-recording-exported-names'> § </a><span class='centered'> 3.12: Recording Exported names</h4>
+<h4><a id=313-lexical-resolution href='#313-lexical-resolution'> § </a><span class='centered'> 3.13: Lexical Resolution</h4>
+<h4><a id=521-traversal-idioms href='#521-traversal-idioms'> § </a><span class='centered'> 5.2.1 Traversal Idioms</h4>
+<h4><a id=522-edge-mutation-idioms href='#522-edge-mutation-idioms'> § </a><span class='centered'> 5.2.2 Edge Mutation Idioms</h4>
+<h4><a id=523-node-mutation-idioms href='#523-node-mutation-idioms'> § </a><span class='centered'> 5.2.3 Node Mutation Idioms</h4>
 </container></body></html>

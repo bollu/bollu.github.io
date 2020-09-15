@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
-img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+img { display:block; }.container { overflow-x: auto; overflow-y: hidden;  max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: 20%; } }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
@@ -7,7 +7,7 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=everything-you-know-about-word2vec-is-wrong href='#everything-you-know-about-word2vec-is-wrong'> § </a> Everything you know about word2vec is wrong</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=everything-you-know-about-word2vec-is-wrong href='#everything-you-know-about-word2vec-is-wrong'> § </a><span class='centered'> Everything you know about word2vec is wrong</h2>
 The classic explanation of <code>word2vec</code>, in skip-gram, with negative sampling,
 in the paper and countless blog posts on the internet is as follows:
 <pre><code>while(1) {
@@ -20,23 +20,23 @@ in the paper and countless blog posts on the internet is as follows:
 }
 </code></pre>
 Indeed, if I google "word2vec skipgram", the results I get are:
-<ul><li> <a href=https://en.wikipedia.org/wiki/Word2vec#Training_algorithm>The wikipedia page which describes the algorithm on a high level</a></li><li> <a href=https://www.tensorflow.org/tutorials/representation/word2vec>The tensorflow page with the same explanation</a></li><li> <a href=https://towardsdatascience.com/word2vec-skip-gram-model-part-1-intuition-78614e4d6e0b>The towards data science blog which describes the same algorithm</a></li></ul>
-the list goes on. However, <b>every single one of these implementations is wrong</b>.
-The original word2vec <code>C</code> implementation does <i>not</i> do what's explained above,
-and is <i>drastically different</i>. Most serious users of word embeddings, who use
+<ul><li><span class='centered'> <a href=https://en.wikipedia.org/wiki/Word2vec#Training_algorithm><span class='centered'>The wikipedia page which describes the algorithm on a high level</a></li><li><span class='centered'> <a href=https://www.tensorflow.org/tutorials/representation/word2vec><span class='centered'>The tensorflow page with the same explanation</a></li><li><span class='centered'> <a href=https://towardsdatascience.com/word2vec-skip-gram-model-part-1-intuition-78614e4d6e0b><span class='centered'>The towards data science blog which describes the same algorithm</a></li></ul>
+the list goes on. However, <b><span class='centered'>every single one of these implementations is wrong</b>.
+The original word2vec <code>C</code> implementation does <i><span class='centered'>not</i> do what's explained above,
+and is <i><span class='centered'>drastically different</i>. Most serious users of word embeddings, who use
 embeddings generated from <code>word2vec</code> do one of the following things:
-<ol><li> They invoke the original C implementation directly.</li><li> They invoke the <code>gensim</code> implementation, which is <i>transliterated</i> from the
+<ol><li><span class='centered'> They invoke the original C implementation directly.</li><li><span class='centered'> They invoke the <code>gensim</code> implementation, which is <i><span class='centered'>transliterated</i> from the
    C source to the extent that the variables names are the same.</li></ol>
 Indeed, the <code>gensim</code> implementation is the 
-<b>only one that I know of which is faithful to the C implementation</b>.
-<h4><a id=the-c-implementation href='#the-c-implementation'> § </a> The C implementation</h4>
-The C implementation in fact maintains <i>two vectors for each word</i>, one where
+<b><span class='centered'>only one that I know of which is faithful to the C implementation</b>.
+<h4><a id=the-c-implementation href='#the-c-implementation'> § </a><span class='centered'> The C implementation</h4>
+The C implementation in fact maintains <i><span class='centered'>two vectors for each word</i>, one where
 it appears as a focus word, and one where it appears as a context word.
 (Is this sounding familiar? Indeed, it appears that GloVe actually took this
 idea from <code>word2vec</code>, which has never mentioned this fact!)
 The setup is incredibly well done in the C code:
-<ul><li> An array called <code>syn0</code> holds the vector embedding of a word when it occurs
-  as a <i>focus word</i>. This is <b>random initialized</b>.</li></ul>
+<ul><li><span class='centered'> An array called <code>syn0</code> holds the vector embedding of a word when it occurs
+  as a <i><span class='centered'>focus word</i>. This is <b><span class='centered'>random initialized</b>.</li></ul>
 <pre><code>https<span class="token operator">:</span><span class="token comment">//github.com/tmikolov/word2vec/blob/20c129af10659f7c50e86e3be406df663beff438/word2vec.c#L369</span>
   <span class="token keyword">for</span> <span class="token punctuation">(</span>a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> a <span class="token operator">&lt;</span> vocab_size<span class="token punctuation">;</span> a<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token keyword">for</span> <span class="token punctuation">(</span>b <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> b <span class="token operator">&lt;</span> layer1_size<span class="token punctuation">;</span> b<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     next_random <span class="token operator">=</span> next_random <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">long</span> <span class="token keyword">long</span><span class="token punctuation">)</span><span class="token number">25214903917</span> <span class="token operator">+</span> <span class="token number">11</span><span class="token punctuation">;</span>
@@ -45,17 +45,17 @@ The setup is incredibly well done in the C code:
   <span class="token punctuation">}</span>
 
 </code></pre>
-<ul><li> Another array called <code>syn1neg</code> holds the vector of a word when it occurs
-  as a <i>context word</i>. This is <b>zero initialized</b>.</li></ul>
+<ul><li><span class='centered'> Another array called <code>syn1neg</code> holds the vector of a word when it occurs
+  as a <i><span class='centered'>context word</i>. This is <b><span class='centered'>zero initialized</b>.</li></ul>
 <pre><code>https<span class="token operator">:</span><span class="token comment">//github.com/tmikolov/word2vec/blob/20c129af10659f7c50e86e3be406df663beff438/word2vec.c#L365</span>
 <span class="token keyword">for</span> <span class="token punctuation">(</span>a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> a <span class="token operator">&lt;</span> vocab_size<span class="token punctuation">;</span> a<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token keyword">for</span> <span class="token punctuation">(</span>b <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> b <span class="token operator">&lt;</span> layer1_size<span class="token punctuation">;</span> b<span class="token operator">++</span><span class="token punctuation">)</span>
   syn1neg<span class="token punctuation">[</span>a <span class="token operator">*</span> layer1_size <span class="token operator">+</span> b<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 </code></pre>
-<ul><li> During training (skip-gram, negative sampling, though other cases are
+<ul><li><span class='centered'> During training (skip-gram, negative sampling, though other cases are
   also similar), we first pick a focus word. This is held constant throughout
   the positive and negative sample training. The gradients of the focus vector
   are accumulated in a buffer, and are applied to the focus word
-  <i>after it has been affected by both positive and negative samples</i>.</li></ul>
+  <i><span class='centered'>after it has been affected by both positive and negative samples</i>.</li></ul>
 <pre><code><span class="token keyword">if</span> <span class="token punctuation">(</span>negative <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">for</span> <span class="token punctuation">(</span>d <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> d <span class="token operator">&lt;</span> negative <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> d<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token comment">// if we are performing negative sampling, in the 1st iteration,</span>
   <span class="token comment">// pick a word from the context and set the dot product target to 1</span>
@@ -94,20 +94,20 @@ https<span class="token operator">:</span><span class="token comment">//github.c
 <span class="token comment">// Learn weights input -> hidden</span>
 <span class="token keyword">for</span> <span class="token punctuation">(</span>c <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> c <span class="token operator">&lt;</span> layer1_size<span class="token punctuation">;</span> c<span class="token operator">++</span><span class="token punctuation">)</span> syn0<span class="token punctuation">[</span>c <span class="token operator">+</span> l1<span class="token punctuation">]</span> <span class="token operator">+=</span> neu1e<span class="token punctuation">[</span>c<span class="token punctuation">]</span><span class="token punctuation">;</span>
 </code></pre>
-<h4><a id=why-random-and-zero-initialization href='#why-random-and-zero-initialization'> § </a> Why random and zero initialization?</h4>
+<h4><a id=why-random-and-zero-initialization href='#why-random-and-zero-initialization'> § </a><span class='centered'> Why random and zero initialization?</h4>
 Once again, since none of this actually explained in the original papers
-<i>or on the web</i>, I can only hypothesize.
+<i><span class='centered'>or on the web</i>, I can only hypothesize.
 My hypothesis is that since the negative samples come from all over the text
-and are not really weighed by frequency, you can wind up picking <i>any word</i>,
-and more often than not, <i>a word whose vector has not been trained much at all</i>.
+and are not really weighed by frequency, you can wind up picking <i><span class='centered'>any word</i>,
+and more often than not, <i><span class='centered'>a word whose vector has not been trained much at all</i>.
 If this vector actually had a value, then it could move the actually important
 focus word randomly.
 The solution is to set all negative samples to zero, so that 
-<i>only vectors that have occurred somewhat frequently</i> will affect the representation 
+<i><span class='centered'>only vectors that have occurred somewhat frequently</i> will affect the representation 
 of another vector.
 It's quite ingenious, really, and until this, I'd never really thought of
 how important initialization strategies really are.
-<h4><a id=why-im-writing-this href='#why-im-writing-this'> § </a> Why I'm writing this</h4>
+<h4><a id=why-im-writing-this href='#why-im-writing-this'> § </a><span class='centered'> Why I'm writing this</h4>
 I spent two months of my life trying to reproduce <code>word2vec</code>, following
 the paper exactly, reading countless articles, and simply not succeeding.
 I was unable to reach the same scores that <code>word2vec</code> did, and it was not
@@ -119,7 +119,7 @@ Eventually, I decided to read the sources, and spent three whole days convinced
 I was reading the code wrong since literally everything on the internet told me
 otherwise.
 I don't understand why the original paper and the internet contain zero
-explanations of the <i>actual</i> mechanism behind <code>word2vec</code>, so I decided to put
+explanations of the <i><span class='centered'>actual</i> mechanism behind <code>word2vec</code>, so I decided to put
 it up myself.
 This also explains GloVe's radical choice of having a separate vector
 for the negative context --- they were just doing what <code>word2vec</code> does, but
@@ -127,5 +127,5 @@ they told people about it <code>:)</code>.
 Is this academic dishonesty? I don't know the answer, and that's a heavy
 question. But I'm frankly incredibly pissed, and this is probably the last
 time I take a machine learning paper's explanation of the algorithm
-seriously again --- from next time, I read the source <i>first</i>.
+seriously again --- from next time, I read the source <i><span class='centered'>first</i>.
 </container></body></html>

@@ -1,3 +1,23 @@
+- Course on solids, crystal groups, tension with video lectures: https://ocw.mit.edu/courses/materials-science-and-engineering/3-60-symmetry-structure-and-tensor-properties-of-materials-fall-2005/index.htm
+- Project oberon: a computing system built from scratch: http://www.projectoberon.com/
+- Domain theory and measurement: http://www.nearmidnight.com/domains.pdf
+- Domain theory/Lattices/partial orders and general relativity (GR): http://www.cs.ox.ac.uk/people/bob.coecke/gr2.pdf.
+- https://en.wikipedia.org/wiki/Richard_Hofstadter: American understanding of politics.
+  The age of reform.
+- Good journal about programming: The Art, Science, and Engineering of Programming
+- Adam Curtis: Hypernormalization (https://www.youtube.com/watch?v=-fny99f8amM),
+  Bitter Lake (https://www.youtube.com/watch?v=84P4dzow1Bw),Century of the Self,
+  documentares.
+- Joseph Tainter: The Collapse of Complex Societies
+- 24 hours of local cohomology
+- [8086 is encoded in OCTAL!](https://web.archive.org/web/20041117160755if_/http://www.dabo.de:80/ccc99/www.camp.ccc.de/radio/help.txt)
+- WordPerfect as a word processor: https://news.ycombinator.com/item?id=24411333
+- The entire Landscape series from Macfarlane:
+  (1) Mountains of the Mind (a history and first-person account of mountain climbing),
+  (2)The Wild Places (a history and exploration of the 'wild' landscapes of the British Isles),
+  (3) The Old Ways (a history and exploration of the ancient paths of the world) are 
+  all really excellent (and can be read in any order). He's a fabulous writer,
+  kind of like a Kapuściński for the natural world.
 - OpenSCAD: 3D modelling CAD 3D printing tool for mathematically and programatically
   generating solids.
 - CALM conjecture: when do we need to use coordination? https://arxiv.org/pdf/1901.01930.pdf

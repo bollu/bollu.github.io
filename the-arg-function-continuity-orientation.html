@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
-img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+img { display:block; }.container { overflow-x: auto; overflow-y: hidden;  max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: 20%; } }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
@@ -7,7 +7,7 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=the-arg-function-continuity-orientation href='#the-arg-function-continuity-orientation'> § </a>  <a href=#the-arg-function-continuity-orientation>The arg function, continuity, orientation</a></h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=the-arg-function-continuity-orientation href='#the-arg-function-continuity-orientation'> § </a><span class='centered'>  <a href=#the-arg-function-continuity-orientation><span class='centered'>The arg function, continuity, orientation</a></h2>
 Let us think of the function <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>r</mi><mi>g</mi><mo>:</mo><mi mathvariant="double-struck">C</mi><mo>→</mo><mi mathvariant="double-struck">R</mi></mrow><annotation encoding="application/x-tex">arg: \mathbb C \rightarrow \mathbb R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68889em;vertical-align:0em;"></span><span class="mord mathbb">C</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68889em;vertical-align:0em;"></span><span class="mord mathbb">R</span></span></span></span></span> as a multi
 valued function, which maps each complex number to the set of possible
 valid angles that generate it:
@@ -17,64 +17,64 @@ arg(z) \equiv \{ t \in \mathbb R : |z|e^{i (\pi/2)t} = z  \}
 We plot the function here:
 <img width=400 src="./static/arg-multi-value-circle.png">
 <img width=400 src="./static/arg-multi-value-plot.png">
-<ul><li> Note that for every value <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">z \in C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span></span></span>, we get a <i>set</i> of values associated
+<ul><li><span class='centered'> Note that for every value <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">z \in C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span></span></span>, we get a <i><span class='centered'>set</i> of values associated
   to it.</li></ul>
-<h4><a id=recovering-single-valued-ness href='#recovering-single-valued-ness'> § </a> Recovering single valued-ness</h4>
+<h4><a id=recovering-single-valued-ness href='#recovering-single-valued-ness'> § </a><span class='centered'> Recovering single valued-ness</h4>
 Now, the question is, can we somehow automatically recover single
 valued-ness? kind of, by stipulating that for any given curve <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>:</mo><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo><mo>→</mo><mi mathvariant="double-struck">C</mi></mrow><annotation encoding="application/x-tex">c: [0, 1] \rightarrow \mathbb C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68889em;vertical-align:0em;"></span><span class="mord mathbb">C</span></span></span></span></span>, 
-the function <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>r</mi><mi>g</mi><mo>∘</mo><mi>c</mi><mo>:</mo><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo><mo>→</mo><mi mathvariant="double-struck">R</mi></mrow><annotation encoding="application/x-tex">arg \circ c: [0, 1] \rightarrow \mathbb R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.63889em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∘</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68889em;vertical-align:0em;"></span><span class="mord mathbb">R</span></span></span></span></span> is <i>continuous</i>. 
+the function <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>r</mi><mi>g</mi><mo>∘</mo><mi>c</mi><mo>:</mo><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo><mo>→</mo><mi mathvariant="double-struck">R</mi></mrow><annotation encoding="application/x-tex">arg \circ c: [0, 1] \rightarrow \mathbb R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.63889em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∘</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68889em;vertical-align:0em;"></span><span class="mord mathbb">R</span></span></span></span></span> is <i><span class='centered'>continuous</i>. 
 Let's try to investigate what happens if we move from <code>right</code> towards <code>bot</code>,
 arbitrarily stipulating ("picking a branch") that <code>arg(right) = 0</code> as a sort
 of basepoint.  
 <img width=400 src="./static/arg-multi-value-branch-lower.png">
-<ul><li> Note that we were <i>forced</i> to pick the value <code>arg(bot) = -1</code> from our
+<ul><li><span class='centered'> Note that we were <i><span class='centered'>forced</i> to pick the value <code>arg(bot) = -1</code> from our
   considerations of continuity. No other value extends continuous from the
-  right to the bottom.</li><li> Also note that we got a <i>smaller</i> value: we move from <code>0 -> -1</code>: we decrease
+  right to the bottom.</li><li><span class='centered'> Also note that we got a <i><span class='centered'>smaller</i> value: we move from <code>0 -> -1</code>: we decrease
   our value as we move clockwise.</li></ul>
 This prompts the natural question:
-<blockquote> what happens if we move in the opposite direction?</blockquote>
-<h4><a id=counter-clockwise-movement href='#counter-clockwise-movement'> § </a> Counter-clockwise movement</h4>
-<ul><li> Let's move counter-clockwise from <code>right</code>, arbitrarily picking the branch
+<blockquote><span class='centered'> what happens if we move in the opposite direction?</blockquote>
+<h4><a id=counter-clockwise-movement href='#counter-clockwise-movement'> § </a><span class='centered'> Counter-clockwise movement</h4>
+<ul><li><span class='centered'> Let's move counter-clockwise from <code>right</code>, arbitrarily picking the branch
   <code>arg(right) = 0</code> as before. This gives us:</li></ul>
 <img width=400 src="./static/arg-multi-value-branch-upper.png">
-<ul><li> Note that once again, we were <i>forced</i> to pick <code>arg(top) = 1</code> by continuity
+<ul><li><span class='centered'> Note that once again, we were <i><span class='centered'>forced</i> to pick <code>arg(top) = 1</code> by continuity
   considerations.</li></ul>
-<ul><li> Also note that this time, we got a <i>larger</i> value: we move from <code>0 -> 1</code>: we
+<ul><li><span class='centered'> Also note that this time, we got a <i><span class='centered'>larger</i> value: we move from <code>0 -> 1</code>: we
   increase our value as we move counter-clockwise</li></ul>
-<h4><a id=multiple-winding href='#multiple-winding'> § </a> Multiple winding</h4>
+<h4><a id=multiple-winding href='#multiple-winding'> § </a><span class='centered'> Multiple winding</h4>
 the true power of this multi-valued approach comes from being able to handle
-<i>multiple</i> windings. Here the real meaning of being a multi-valued function shows
-through. If we decide to go through the the loop <i>twice</i>, as:
+<i><span class='centered'>multiple</i> windings. Here the real meaning of being a multi-valued function shows
+through. If we decide to go through the the loop <i><span class='centered'>twice</i>, as:
 <pre><code>bot -> right -> top -> left -> bot -> right -> top -> left
 -1  -> 0     -> 1   -> 2    -> 3   -> 4     -> 5   -> 6
 </code></pre>
 That is, we end up with the value <code>6</code>, which can only b
-<h4><a id=orientation-from-continuity href='#orientation-from-continuity'> § </a> Orientation from continuity</h4>
+<h4><a id=orientation-from-continuity href='#orientation-from-continuity'> § </a><span class='centered'> Orientation from continuity</h4>
 There's something really elegant about being able to recover a notion of
 "orientation" by simply:
-<ol><li> Allowing multi-valued functions.</li><li> Forcing continuity constraints.</li><li> Interpreting increase/decrease in the value of the function.</li></ol>
-<h4><a id=discretizing-gaining-more-insight href='#discretizing-gaining-more-insight'> § </a> Discretizing, gaining more insight</h4>
+<ol><li><span class='centered'> Allowing multi-valued functions.</li><li><span class='centered'> Forcing continuity constraints.</li><li><span class='centered'> Interpreting increase/decrease in the value of the function.</li></ol>
+<h4><a id=discretizing-gaining-more-insight href='#discretizing-gaining-more-insight'> § </a><span class='centered'> Discretizing, gaining more insight</h4>
 I was personally dis-satisfied with the above explanation, because it seemed
 weird that we would need to depend on the history to define this function. We
 can formalize this notion of history. Let's first discretize the situation,
 giving us:
 <img width=400 src="./static/discrete-multi-valued.png"/>
-<ul><li> We are on the space of the spokes, given by <code>a, b, c, d, e, f, g, h</code>.</li><li> We have a function <code>f: Spoke -> Val</code> whose values are given on the spokes.</li><li> We are interested in the path <code>p: Time -> Spoke</code>, <code>p = [a, b, c, d, e, f, g, h, a]</code>.</li><li> If we evaluate the function <code>f</code> on the path <code>p</code>, we get <code>out: Time -> Val</code>, <code>out = [0, 1, 2, 3, 4, 5, 6, 7, 0]</code>.</li><li> We have a "jump" from <code>7</code> to <code>0</code> in <code>out</code> as we cross from <code>h</code> to <code>a</code>. This is a
-  discontinuity in <code>out</code> at time <code>7</code>.</li><li> We want to fix this, so we make the function <code>f</code> multi-valued. </li></ul>
+<ul><li><span class='centered'> We are on the space of the spokes, given by <code>a, b, c, d, e, f, g, h</code>.</li><li><span class='centered'> We have a function <code>f: Spoke -> Val</code> whose values are given on the spokes.</li><li><span class='centered'> We are interested in the path <code>p: Time -> Spoke</code>, <code>p = [a, b, c, d, e, f, g, h, a]</code>.</li><li><span class='centered'> If we evaluate the function <code>f</code> on the path <code>p</code>, we get <code>out: Time -> Val</code>, <code>out = [0, 1, 2, 3, 4, 5, 6, 7, 0]</code>.</li><li><span class='centered'> We have a "jump" from <code>7</code> to <code>0</code> in <code>out</code> as we cross from <code>h</code> to <code>a</code>. This is a
+  discontinuity in <code>out</code> at time <code>7</code>.</li><li><span class='centered'> We want to fix this, so we make the function <code>f</code> multi-valued. </li></ul>
 <img width=400 src=./static/discrete-multi-valued-assign-multi-value.png>
-<ul><li> We assign both values <code>8</code> and <code>0</code> to the spoke <code>a</code>. We wish to define
+<ul><li><span class='centered'> We assign both values <code>8</code> and <code>0</code> to the spoke <code>a</code>. We wish to define
   the evaluation of <code>f: Spoke -> 2^N</code> relative to path <code>p</code>. At time <code>t</code>, point
   <code>p[t]</code>, we pick any value in <code>f(p[t])</code> that makes <code>out[t]</code> continuous.</li></ul>
-<ul><li> So in this case, when we start, we have two choices for <code>out[0] = f(p[0]) = f(a)</code>: <code>0</code> and <code>8</code>.
+<ul><li><span class='centered'> So in this case, when we start, we have two choices for <code>out[0] = f(p[0]) = f(a)</code>: <code>0</code> and <code>8</code>.
   But we know that <code>out[1] = f(p[1]) = f(b) = 1</code>. Hence, for <code>out[0]</code> to be continuous, we must
   pick <code>out[0] = 0</code>.</li></ul>
-<ul><li> Similarly, at <code>out[8]</code> we have two choices: <code>0</code> and <code>8</code>. But we have that
+<ul><li><span class='centered'> Similarly, at <code>out[8]</code> we have two choices: <code>0</code> and <code>8</code>. But we have that
   <code>out[7] = 7</code>, hence we pick <code>out[8] = 8</code>.</li></ul>
-<ul><li> Note that we say 'we pick the value' that makes <code>out</code> continuous.  This is
+<ul><li><span class='centered'> Note that we say 'we pick the value' that makes <code>out</code> continuous.  This is
   not really rigorous. We can fix this by re-defining <code>f</code> in such a way
   that <code>f</code> is not <code>Spoke -> Val</code>, but rather it knows the full path:
   <code>f': (Time -> Spoke) -> Val</code>.</li></ul>
-<h4><a id=making-the-theory-path-dependent href='#making-the-theory-path-dependent'> § </a> Making the theory path-dependent</h4>
+<h4><a id=making-the-theory-path-dependent href='#making-the-theory-path-dependent'> § </a><span class='centered'> Making the theory path-dependent</h4>
 We originally had:
 <pre><code>path: Time -> Spoke
 f: Spoke -> 2^Val -- multi-valued
@@ -93,11 +93,11 @@ f'(path, tcur) =
 out: Time -> Val
 out = f'(path)
 </code></pre>
-<ul><li> The function <code>f'</code> that defines the value of the path has full
-  access to the path itself!                                                      </li><li> At time <code>tcur</code>, it attempts to pick the value in <code>f(path[tcur])</code> which
+<ul><li><span class='centered'> The function <code>f'</code> that defines the value of the path has full
+  access to the path itself!                                                      </li><li><span class='centered'> At time <code>tcur</code>, it attempts to pick the value in <code>f(path[tcur])</code> which
   makes the discontinuity as small as possible. It picks a value <code>v</code> from the
   possible values of <code>f(path[tcur])</code>. This <code>v</code> minimises the 
   of the distances from the previous time point (<code>|v - path[tcur-1]</code>), 
-  and the distance from the next time point (<code>|v - path[tcur + 1]</code>).</li><li> This provides a rigorous definition of what it means to "pick a value in the branch".
+  and the distance from the next time point (<code>|v - path[tcur + 1]</code>).</li><li><span class='centered'> This provides a rigorous definition of what it means to "pick a value in the branch".
   This can clearly be extended to the continuous domain.</li></ul>
 </container></body></html>

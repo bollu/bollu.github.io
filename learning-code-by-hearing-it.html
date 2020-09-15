@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
-img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+img { display:block; }.container { overflow-x: auto; overflow-y: hidden;  max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: 20%; } }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
@@ -7,23 +7,23 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=learning-code-by-hearing-it href='#learning-code-by-hearing-it'> § </a> Learning code by hearing it</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=learning-code-by-hearing-it href='#learning-code-by-hearing-it'> § </a><span class='centered'> Learning code by hearing it</h2>
 I learnt of this from an amazing discussion on HackerNews, where a sighted
 programmed, who is going blind, asked the community if he could remain
 a software engineer. An answer by <code>kolanos</code> read:
-<blockquote> You can definitely continue as a software engineer. I'm living proof. ... For example, as you get better with a screen reader, you'll be bumping the speech rate up to 1.75-2X normal speech. ... Typos will be easily spotted as they just won't "sound right". It will be like listening to a familiar song and then hitting an off note in the melody. <b>And this includes code</b>. Also, because code is no longer represented visually as blocks,  you'll find you're <b>building an increasingly detailed memory model of your code</b>.   Sighted people do this, too, but they tend to visualize in their mind. When you abandon this two dimensional representation, <b>your non-visual mental map suffers no spatial limits</b>. You'll be amazed how good your memory will get without the crutch of sight.</blockquote>
+<blockquote><span class='centered'> You can definitely continue as a software engineer. I'm living proof. ...<span class='centered'> For example, as you get better with a<span class='centered'> screen reader, you'll be bumping the speech rate up to 1.75-2X normal speech.<span class='centered'> ... Typos will be easily spotted as they just won't "sound right". It will be<span class='centered'> like listening to a familiar song and then hitting an off note in the melody.<span class='centered'> <b><span class='centered'>And this includes code</b>. Also, because code is no longer represented<span class='centered'> visually as blocks, <span class='centered'> you'll find you're <b><span class='centered'>building an increasingly detailed memory model of your code</b>.  <span class='centered'> Sighted people do this, too, but they tend to visualize in their mind. When<span class='centered'> you abandon this two dimensional representation,<span class='centered'> <b><span class='centered'>your non-visual mental map suffers no spatial limits</b>. You'll be amazed<span class='centered'> how good your memory will get without the crutch of sight.</blockquote>
 I find this incredibly fascinating. I think I'm going to try this: I'll listen
 to lectures on <code>1.5-2x</code> anyway, so this may work just as well. I'm planning
 on trying this with the MLIR codebase, which I want to get to know intimately.
 I'll write updates on how this goes.
-<a href=https://drewdevault.com/>Drew DeVault</a> also posted links to tools/scripts
+<a href=https://drewdevault.com/><span class='centered'>Drew DeVault</a> also posted links to tools/scripts
 for programming without needing visual feedback:
-<ul><li> <a href=https://git.sr.ht/~sircmpwn/dotfiles/tree/master/lib/vim/vimspeak.vim>vimspeak.vim</a>
+<ul><li><span class='centered'> <a href=https://git.sr.ht/~sircmpwn/dotfiles/tree/master/lib/vim/vimspeak.vim><span class='centered'>vimspeak.vim</a>
   for, if I understand correctly, speaking out loud the current state
   [which buffer, which mode, what line], as well as reading out text from
-  the buffer.</li><li> <a href=https://git.sr.ht/~sircmpwn/dotfiles/tree/master/bin/swaytalk>An extension to the Sway tiling window manager</a>
+  the buffer.</li><li><span class='centered'> <a href=https://git.sr.ht/~sircmpwn/dotfiles/tree/master/bin/swaytalk><span class='centered'>An extension to the Sway tiling window manager</a>
   for providing audio cues.</li></ul>
-I also learnt about <a href=http://emacspeak.sourceforge.net/>emacspeak</a>, which
+I also learnt about <a href=http://emacspeak.sourceforge.net/><span class='centered'>emacspeak</a>, which
 supposedly works well for an audio-based-workflow.
-<ul><li> [https://news.ycombinator.com/item?id=22919455]</li></ul>
+<ul><li><span class='centered'> [https://news.ycombinator.com/item?id=22919455]</li></ul>
 </container></body></html>

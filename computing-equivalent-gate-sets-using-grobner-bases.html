@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
-img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+img { display:block; }.container { overflow-x: auto; overflow-y: hidden;  max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: 20%; } }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
@@ -7,7 +7,7 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=computing-equivalent-gate-sets-using-grobner-bases href='#computing-equivalent-gate-sets-using-grobner-bases'> § </a> Computing equivalent gate sets using grobner bases</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=computing-equivalent-gate-sets-using-grobner-bases href='#computing-equivalent-gate-sets-using-grobner-bases'> § </a><span class='centered'> Computing equivalent gate sets using grobner bases</h2>
 Here's a fun little problem, whose only solution I know involves a fair
 bit of math and computer algebra:
 We are given the grammar for a language <code>L</code>:
@@ -43,8 +43,8 @@ Clearly, this contains only additions/subtractions and multiplications by
 a constant.
 If there's some principled way to derive this (beyond throwing symbolic
 algebra machinery), I'd really love to know ---
-<a href=https://github.com/bollu/bollu.github.io/issues>Please raise an issue with the explanation!</a>
-<h4><a id=what-the-hell-is-grobner-basis href='#what-the-hell-is-grobner-basis'> § </a> What the hell is Grobner Basis?</h4>
+<a href=https://github.com/bollu/bollu.github.io/issues><span class='centered'>Please raise an issue with the explanation!</a>
+<h4><a id=what-the-hell-is-grobner-basis href='#what-the-hell-is-grobner-basis'> § </a><span class='centered'> What the hell is Grobner Basis?</h4>
 The nutshell is that a grobner basis is a way to construct rewrite rules which
 also understand arithmetic (I learnt this viewpoint from the book "Term
 rewriting and all that". Fantastic book in general). Expanding on the
@@ -61,7 +61,7 @@ At this point, we're stuck! we don't have rewrite rules to allow us to
 rewrite <code>(-1*B)B</code> into <code>-B^2</code>. Indeed, creating such a list would be
 infinitely long. But if we are willing to accept that we somehow have
 the rewrite rules that correspond to polynomial arithmetic, where we view
-<code>A, B, C</code> as variables, then we <i>can</i> rewrite the above string to 0:
+<code>A, B, C</code> as variables, then we <i><span class='centered'>can</i> rewrite the above string to 0:
 <pre><code>B^2 + (-1*B)B -> B^2 - B^2 -> 0
 </code></pre>
 A Grobner basis is the algorithmic / mathematical machine that allows us
@@ -70,7 +70,7 @@ In this example, this might appear stupid: what is so special? We simply
 substituted variables and arrived at <code>0</code> by using arithmetic. What's
 so complicated about that? To understand why this is not always so easy,
 let's consider a pathological, specially constructed example
-<h4><a id=a-complicated-example-that-shatters-dreams href='#a-complicated-example-that-shatters-dreams'> § </a> A complicated example that shatters dreams</h4>
+<h4><a id=a-complicated-example-that-shatters-dreams href='#a-complicated-example-that-shatters-dreams'> § </a><span class='centered'> A complicated example that shatters dreams</h4>
 Here's the pathological example:
 <pre><code>A -> 1     -- (1)
 AB -> -B^2 -- (2)
@@ -82,36 +82,36 @@ first rule, we arrive at:
 However, if we apply <code>(2)</code> and then <code>(1)</code>:
 <pre><code>S = AB + B^2 -2-> -B^2 + B^2 -> 0
 </code></pre>
-This tells us that we <i>can't just apply the rewrite rules willy-nilly</i>.
-It's sensitive to the <i>order</i> of the rewrites! That is, the rewrite system
-is not <a href=https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting>confluent</a>).
+This tells us that we <i><span class='centered'>can't just apply the rewrite rules willy-nilly</i>.
+It's sensitive to the <i><span class='centered'>order</i> of the rewrites! That is, the rewrite system
+is not <a href=https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting><span class='centered'>confluent</a>).
 The grobner basis is a function from rewrite systems to rewrite systems.
-When given a rewrite system <code>R</code>, it produces a <i>new</i> rewrite system <code>R'</code>
-that <i>is confluent</i>. So, we can apply the rewrite rules of <code>R'</code> in any order,
+When given a rewrite system <code>R</code>, it produces a <i><span class='centered'>new</i> rewrite system <code>R'</code>
+that <i><span class='centered'>is confluent</i>. So, we can apply the rewrite rules of <code>R'</code> in any order,
 and we guaranteed that we will only get a 0 from <code>R'</code> if and only if
 we could have gotten a <code>0</code> from <code>R</code> for all strings.
 We can then go on to phrase this whole rewriting setup in the language of
 ideals from ring theory, and that is the language in which it is most
 often described. I've gone into more depth on that perspective here: 
-<a href=#what-the-hell-is-a-grobner-basis-ideals-as-rewrite-systems>"What is a grobner basis? polynomial factorization as rewrite systems"</a>.
+<a href=#what-the-hell-is-a-grobner-basis-ideals-as-rewrite-systems><span class='centered'>"What is a grobner basis? polynomial factorization as rewrite systems"</a>.
 Now that we have a handle on what a grobner basis is, let's go on to solve
 the original problem:
-<h4><a id=an-explanation-through-a-slightly-simpler-problem href='#an-explanation-through-a-slightly-simpler-problem'> § </a> An explanation through a slightly simpler problem</h4>
+<h4><a id=an-explanation-through-a-slightly-simpler-problem href='#an-explanation-through-a-slightly-simpler-problem'> § </a><span class='centered'> An explanation through a slightly simpler problem</h4>
 I'll first demonstrate the idea of how to solve the original problem
 by solving a slightly simpler problem:
-<blockquote> Rewrite <code>a^b^c</code> in terms of <code>a^b</code>, <code>b^c</code>, <code>c^a</code> and the same <code>+_mod8</code> instruction set as the original problem. The only difference this time is that we do <i>not</i> have <code>T -> V ^ V ^ V</code>.</blockquote>
+<blockquote><span class='centered'> Rewrite <code>a^b^c</code> in terms of <code>a^b</code>, <code>b^c</code>, <code>c^a</code> and the same <code>+_mod8</code> instruction<span class='centered'> set as the original problem. The only difference this time<span class='centered'> is that we do <i><span class='centered'>not</i> have <code>T -> V ^ V ^ V</code>.</blockquote>
 The idea is to construct the polynomial ring over <code>Z/8Z</code> (integers modulo 8) with
 variables as <code>a, b, c, axorb, bxorc, axorc</code>. Now, we know that <code>a^b = a + b - 2ab</code>. So,
 we setup rewrite rules such that <code>a + b - 2ab -> axorb</code>, <code>b + c - 2bc -> bxorb</code>,
 <code>c + a - 2ca -> cxora</code>.
-We construct the <i>polynomial</i> <code>f(a, b, c) = a^b^c</code>, which
+We construct the <i><span class='centered'>polynomial</i> <code>f(a, b, c) = a^b^c</code>, which
 has been written in terms of addition and multiplication, defined
 as <code>f_orig(a, b, c) = 4*a*b*c - 2*a*b - 2*a*c - 2*b*c + a + b + c</code>. We then
 rewrite <code>f_orig</code> with respect to our rewrite rules. Hopefully, the rewrite
 rules should give us a clean expression in terms of one variable and
 two-variable <code>xor</code>s. There is the danger that we may have some term
 such as <code>a * bxorc</code>, and we do get such a term (<code>2*b*axorc</code>) in this case,
-but it does not appear in the <i>original</i> problem.
+but it does not appear in the <i><span class='centered'>original</i> problem.
 <pre><code><span class="token comment"># Create ring with variables a, b, c, axorb, bxorc, axorc</span>
 R <span class="token operator">=</span> IntegerModRing<span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token string">'a, b, c, axorb, bxorc, axorc'</span><span class="token punctuation">]</span>
 <span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">,</span> axorb<span class="token punctuation">,</span> bxorc<span class="token punctuation">,</span> axorc<span class="token punctuation">)</span> <span class="token operator">=</span> R<span class="token punctuation">.</span>gens<span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -186,8 +186,8 @@ evaulating reduced f:
 </code></pre>
 That is, both the original polynomial and the reduced polynomial match
 the expected results. But the reduced polynomial is not in our language <code>L</code>,
-since it has a term that is a <i>product</i> of <code>b</code> with <code>axorc</code>.
-<h4><a id=tacking-the-original-problem href='#tacking-the-original-problem'> § </a> Tacking the original problem.</h4>
+since it has a term that is a <i><span class='centered'>product</i> of <code>b</code> with <code>axorc</code>.
+<h4><a id=tacking-the-original-problem href='#tacking-the-original-problem'> § </a><span class='centered'> Tacking the original problem.</h4>
 We try the exact same approach to the original problem of expressing
 <code>a ^ b ^ c ^ d</code>. We find that the reduced polynomial is
 <pre><code>-a - b + c + 3*d - 3*axorb - axorc
@@ -241,7 +241,7 @@ evaluating reduced a^b^c^d
 1^1^1^0: ref(1) =?= f(1): True
 1^1^1^1: ref(0) =?= f(0): True
 </code></pre>
-<h4><a id=code-for-abcd-reduction href='#code-for-abcd-reduction'> § </a> code for <code>a^b^c^d</code> reduction:</h4>
+<h4><a id=code-for-abcd-reduction href='#code-for-abcd-reduction'> § </a><span class='centered'> code for <code>a^b^c^d</code> reduction:</h4>
 <pre><code><span class="token keyword">def</span> <span class="token function">xor3</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> z<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">return</span> xor2<span class="token punctuation">(</span>x<span class="token punctuation">,</span> xor2<span class="token punctuation">(</span>y<span class="token punctuation">,</span> z<span class="token punctuation">)</span><span class="token punctuation">)</span>
 
 R <span class="token operator">=</span> IntegerModRing<span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">[</span>'a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">,</span> d<span class="token punctuation">,</span> axorb<span class="token punctuation">,</span> axorc<span class="token punctuation">,</span> axord<span class="token punctuation">,</span> bxorc<span class="token punctuation">,</span> \
@@ -291,7 +291,7 @@ evalxor3<span class="token punctuation">(</span>f_orig<span class="token punctua
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"evaluating reduced a^b^c^d"</span><span class="token punctuation">)</span>
 evalxor3<span class="token punctuation">(</span>f_reduced<span class="token punctuation">)</span>
 </code></pre>
-<h4><a id=closing-thoughts href='#closing-thoughts'> § </a> Closing thoughts</h4>
+<h4><a id=closing-thoughts href='#closing-thoughts'> § </a><span class='centered'> Closing thoughts</h4>
 This was a really fun exercise: Around a hundred lines of code illuminates
 the use of machinery such as grobner basis for solving real-world problems!
 I really enjoyed hacking this up and getting nerd sniped.

@@ -1,0 +1,70 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
+img { display:block; }.container { overflow-x: auto; overflow-y: hidden;  max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: 20%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
+pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=readable-pointers href='#readable-pointers'> § </a><span class='centered'> Readable pointers</h2>
+ I need some linguistics(?) help? I don't even know what I want. I need to
+ debug a whole bunch of code that manipuates pointers, so I need to stare at
+ random things like <code>0x7f7d6ab2c0c0</code>, like so:
+<pre><code>mkClosure_capture0_args0 (0x7f079ae2a0c0:) -> 0x556b95a23350:
+mkClosure_capture0_args0 (0x7f079ae2a0e0:) -> 0x556b95a3f3e0:
+mkClosure_capture0_args2 (0x7f079ae2a000:, 0x556b95a23350:, 0x556b95a3f3e0:) -> 0x556b95a232e0:
+evalClosure (0x556b95a232e0:)
+  ⋮evalClosure (0x556b95a23350:)
+  ⋮  ⋮mkConstructor1 (MkSimpleInt, 0x1) -> 0x556b9596c0b0:
+  ⋮=>0x556b9596c0b0:
+  ⋮isConstructorTagEq (0x556b9596c0b0:MkSimpleInt, MkSimpleInt) -> 1
+  ⋮extractConstructorArg  0 -> 0x1:
+  ⋮evalClosure (0x556b95a3f3e0:)
+  ⋮  ⋮mkConstructor1 (MkSimpleInt, 0x2) -> 0x556b95a23190:
+  ⋮=>0x556b95a23190:
+  ⋮isConstructorTagEq (0x556b95a23190:MkSimpleInt, MkSimpleInt) -> 1
+  ⋮extractConstructorArg  0 -> 0x2:
+  ⋮mkConstructor1 (MkSimpleInt, 0x3) -> 0x556b95902a30:
+=>0x556b95902a30:
+</code></pre> I got annoyed because it's hard to spot differences across numbers. So I wrote
+ a small '''algorithm''' that converts this into something pronounceable:
+<pre><code><span class="token keyword">char</span> <span class="token operator">*</span><span class="token function">getPronouncableNum</span><span class="token punctuation">(</span>size_t N<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>cs <span class="token operator">=</span> <span class="token string">"bcdfghjklmnpqrstvwxzy"</span><span class="token punctuation">;</span>
+     <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>vs <span class="token operator">=</span> <span class="token string">"aeiou"</span><span class="token punctuation">;</span>
+
+     size_t ncs <span class="token operator">=</span> <span class="token function">strlen</span><span class="token punctuation">(</span>cs<span class="token punctuation">)</span><span class="token punctuation">;</span> size_t nvs <span class="token operator">=</span> <span class="token function">strlen</span><span class="token punctuation">(</span>vs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+     <span class="token keyword">char</span> buf<span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">char</span> <span class="token operator">*</span>out <span class="token operator">=</span> buf<span class="token punctuation">;</span>
+     <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+     <span class="token keyword">while</span><span class="token punctuation">(</span>N <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+         <span class="token keyword">const</span> size_t icur <span class="token operator">=</span> N <span class="token operator">%</span> <span class="token punctuation">(</span>ncs <span class="token operator">*</span> nvs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+         <span class="token operator">*</span>out<span class="token operator">++</span> <span class="token operator">=</span> cs<span class="token punctuation">[</span>icur<span class="token operator">%</span>ncs<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token operator">*</span>out<span class="token operator">++</span> <span class="token operator">=</span> vs<span class="token punctuation">[</span><span class="token punctuation">(</span>icur<span class="token operator">/</span>ncs<span class="token punctuation">)</span> <span class="token operator">%</span> nvs<span class="token punctuation">]</span><span class="token punctuation">;</span>
+         N <span class="token operator">/=</span> ncs<span class="token operator">*</span>nvs<span class="token punctuation">;</span>
+         <span class="token keyword">if</span> <span class="token punctuation">(</span>N <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span><span class="token punctuation">(</span><span class="token operator">++</span>i <span class="token operator">%</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">*</span>out<span class="token operator">++</span> <span class="token operator">=</span> <span class="token string">'-'</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+     <span class="token punctuation">}</span>
+     <span class="token operator">*</span>out <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+     <span class="token keyword">return</span> <span class="token function">strdup</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+which gives me the much more pleasant output:
+<pre><code>mkClosure_capture0_args0 (0x7fbf49b6d0c0:cisi-jece-xecu-yu) -> 0x561c5f11f9d0:suje-zoni-ciho-ko
+mkClosure_capture0_args0 (0x7fbf49b6d0e0:qosi-jece-xecu-yu) -> 0x561c5f12f1b0:leda-guni-ciho-ko
+mkClosure_capture0_args2 (0x7fbf49b6d000:ziqi-jece-xecu-yu, 0x561c5f11f9d0:suje-zoni-ciho-ko, 0x561c5f12f1b0:leda-guni-ciho-ko) -> 0x561c5f11f960:kuhe-zoni-ciho-ko
+evalClosure (0x561c5f11f960:kuhe-zoni-ciho-ko)
+  ⋮evalClosure (0x561c5f11f9d0:suje-zoni-ciho-ko)
+  ⋮  ⋮mkConstructor1 (MkSimpleInt, 0x1) -> 0x561c5f129c10:qifa-duni-ciho-ko
+  ⋮=>0x561c5f129c10:qifa-duni-ciho-ko
+  ⋮isConstructorTagEq (0x561c5f129c10:MkSimpleInt, MkSimpleInt) -> 1
+  ⋮extractConstructorArg  0 -> 0x1:ca
+  ⋮evalClosure (0x561c5f12f1b0:leda-guni-ciho-ko)
+  ⋮  ⋮mkConstructor1 (MkSimpleInt, 0x2) -> 0x561c5f120200:nuhi-zoni-ciho-ko
+  ⋮=>0x561c5f120200:nuhi-zoni-ciho-ko
+  ⋮isConstructorTagEq (0x561c5f120200:MkSimpleInt, MkSimpleInt) -> 1
+  ⋮extractConstructorArg  0 -> 0x2:da
+  ⋮mkConstructor1 (MkSimpleInt, 0x3) -> 0x561c5f100010:kuqi-koni-ciho-ko
+=>0x561c5f100010:kuqi-koni-ciho-ko
+</code></pre>
+The strings of the form <code>ziqi-jece-xecu-yu</code> makes it way easier to see control flow.
+
+</container></body></html>

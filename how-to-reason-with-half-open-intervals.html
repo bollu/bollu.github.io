@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
-img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+img { display:block; }.container { overflow-x: auto; overflow-y: hidden;  max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: 20%; } }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
@@ -7,7 +7,7 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=how-to-reason-with-half-open-intervals href='#how-to-reason-with-half-open-intervals'> § </a> How to reason with half-open intervals</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=how-to-reason-with-half-open-intervals href='#how-to-reason-with-half-open-intervals'> § </a><span class='centered'> How to reason with half-open intervals</h2>
 I've always found code that uses half-open intervals far harder to write
 than using closed intervals. For example, when performing string processing,
 I prefer to write <code>closed</code> over <code>halfopen</code> since I find it easier
@@ -26,14 +26,14 @@ However, I realised that by changing how I think about this to:
 <span class="token punctuation">}</span>
 </code></pre>
 It somehow made it way easier to grok.
-<ul><li> I had problems with <code><</code> since I would
+<ul><li><span class='centered'> I had problems with <code><</code> since I would
   mentally shift from <code>i < begin + len</code> to <code>i <= begin + len - 1</code>. Making
-  this move would then make <i>all other reasoning</i> harder, since I had
+  this move would then make <i><span class='centered'>all other reasoning</i> harder, since I had
   keep switching between the <code><</code> and <code><=</code> point of view.</li></ul>
-<ul><li> On the other hand, when using <code>i != begin + len</code>, there was a single location
+<ul><li><span class='centered'> On the other hand, when using <code>i != begin + len</code>, there was a single location
   to focus on: the point <code>begin + len</code>, and what happens when <code>i</code> reaches it.</li></ul>
 Of course, this is old had to anyone who performs loop optimisatison: LLVM
 internally converts most comparisons into the <code>a != b</code> form, because it's
-easier to analyse. It took me this long it's easier for me to <i>think</i>
+easier to analyse. It took me this long it's easier for me to <i><span class='centered'>think</i>
 in this viewpoint as well.
 </container></body></html>

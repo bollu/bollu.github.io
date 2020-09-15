@@ -36,58 +36,6 @@ static const ll PADDING = 10;
 static const ll MAX_TOKENS = 1e7;
 static const ll MAX_CHARS = 1e7;
 
-struct Options {
-    bool latex2ascii = false; // convert latex to ascii
-} G_OPTIONS;
-
-
-const char DB_PATH[]="./blogcache.txt";
-unordered_map<ll, const char *> G_DB;
-void loadDB() {
-    G_DB = {};
-    FILE *f = fopen(DB_PATH, "rb");
-    if (f == nullptr) { 
-        cerr << __FUNCTION__ << ": WARNING: no DB file found at |" << DB_PATH << "|\n";
-        return;
-    }
-    while (!feof(f)) {
-        ll k, len;
-        fread(&k, sizeof(ll), 1, f);
-        if (feof(f)) break;
-
-        fread(&len, sizeof(ll), 1, f);
-        // cerr << __FUNCTION__ << ": loading DB[" << k << "] (size: " << len << ")\n";
-        char *buf = (char *)calloc(sizeof(char), len + 2); //(char *)calloc(len + 2);
-        fread(buf, sizeof(char), len, f);
-
-        assert(!G_DB.count(k) && "key already in DB");
-        G_DB.insert(make_pair(k, buf));
-        // cerr << __FUNCTION__ << ": DB[" << k << "] := " << buf << "\n";
-    }
-    cerr << __FUNCTION__ << ": done reading file.\n";
-    fclose(f);
-};
-
-// TODO: make a combined error reporting and assertion function.
-const char *lookup_key(ll k) {
-    unordered_map<ll, const char *>::iterator it = G_DB.find(k);
-    if (it == G_DB.end()) { return nullptr; }
-    return it->second;
-};
-
-void store_key_value(const ll k, KEEP const char *v, const ll len) {
-    assert(G_DB.count(k) == 0);
-    G_DB.insert(make_pair(k, strdup(v)));
-
-    // TODO: cache this;
-    FILE *f = fopen(DB_PATH, "ab");
-    assert(f != nullptr && "unable to open DB file");
-    fwrite(&k, sizeof(ll), 1, f);
-    fwrite(&len, sizeof(ll), 1, f);
-    fwrite(v, sizeof(char), len, f);
-    fclose(f);
-}
-
 ll hashstr(const char *s, const ll len) {
     const ll p = 53;
     // closest prime below 2^62. found using b(2^62) on 
@@ -1136,6 +1084,7 @@ void toHTML(duk_context *katex_ctx,
         }
 
         case TT::InlineGroup: {
+            outlen += sprintf(outs + outlen, "<span class='centered'>");
             TInlineGroup *group = (TInlineGroup *)t;
             for (T *t : group->items) { 
                 toHTML(katex_ctx, prism_ctx, raw_input, t, outlen, outs);
@@ -1200,15 +1149,6 @@ void toHTML(duk_context *katex_ctx,
           outlen += sprintf(outs + outlen, "</blockquote>");
           return;
         }
-
-        // default: {
-        //     cerr << "outbuf:\n=========\n";
-        //     cerr << outs;
-        //     cerr << "\n";
-        //     cerr << "========\n";
-        //     cerr << "token: " << *t << " | is unknown for toHTML.\n"; 
-        //     assert(false && "unknown token");
-        // }
     };
     assert(false && "unreachabe");
 }
@@ -1267,11 +1207,11 @@ const char html_preamble[] =
 // img as a block
 "img { display:block; }"
 // container
-".container { overflow-x: hidden; max-width:100%; }"
-"@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }"
-"@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }"
+".container { overflow-x: auto; overflow-y: hidden;  max-width:100%; }"
+"@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }"
+"@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }"
 // desktop
-"@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }"
+"@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: 20%; } }"
 // class for image <div>
 ".image { }"
 "\n"
@@ -1387,11 +1327,10 @@ long long writeTableOfContentsHTML(duk_context *katex_ctx,
 int main(int argc, char **argv) {
     // 1. Load options
     // ---------------
-    if (argc < 3) {
-        printf("expected usage: %s <input md path> <output folder path> [--latex2ascii]", argv[0]);
+    if (argc != 3) {
+        printf("expected usage: %s <input md path> <output folder path>\n", argv[0]);
         return 1;
     }
-    G_OPTIONS.latex2ascii = option_index(argc, argv, "--latex2ascii") > 0;
 
     // 1. Initialize Duck context for katex
     // --------------------------
@@ -1472,11 +1411,6 @@ int main(int argc, char **argv) {
     }
     assert(prism_ctx != nullptr && "Unable to setup duck context for prism");
 
-
-
-    // 1. Load database and test it.
-    // ---------------
-    loadDB();
 
     // 2. Open markdown file
     // ---------------------

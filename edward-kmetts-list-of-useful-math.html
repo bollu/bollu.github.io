@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
-img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+img { display:block; }.container { overflow-x: auto; overflow-y: hidden;  max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: 20%; } }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
@@ -7,66 +7,66 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=edward-kmetts-list-of-useful-math href='#edward-kmetts-list-of-useful-math'> § </a> Edward Kmett's list of useful math</h2>
-<ul><li> I use Bayesian statistics constantly for probabilistic programming and neural
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=edward-kmetts-list-of-useful-math href='#edward-kmetts-list-of-useful-math'> § </a><span class='centered'> Edward Kmett's list of useful math</h2>
+<ul><li><span class='centered'> I use Bayesian statistics constantly for probabilistic programming and neural
   networks. Calculus gave me access to understand automatic differentiation,
   which gets used in everything I do. Real analysis doesn't come up often, but
   intermediate value thm. style arguments are handy.
   
-  </li><li> I don't use classic geometry, but I when I was doing graphics I used projective
+  </li><li><span class='centered'> I don't use classic geometry, but I when I was doing graphics I used projective
   geometry, and that served as a gateway to understand category theory's duality
   principle, and I use category theory to organize most of the code I write.
-  </li><li> I took one course on differential geometry. The knowledge I gained from it
+  </li><li><span class='centered'> I took one course on differential geometry. The knowledge I gained from it
   probably led to about half of my income to date. I've made a career out of
   weaponizing "obscure" math, e.g. using toric varieties of rational functions of
   Zhegalkin polynomials to schedule instructions...
   
-  </li><li> Differential equations? Physics? Well, I use Hamiltonian methods for most of
+  </li><li><span class='centered'> Differential equations? Physics? Well, I use Hamiltonian methods for most of
   the sampling I do in the world of probabilistic programming. So understanding
   symplectic integrators is a big step, and I have to move frictionless particles
   subject to a Hamiltonian, so there's diff eq.
   
-  </li><li> Fourier analysis, heat equations? Well, if I want to approximate a
+  </li><li><span class='centered'> Fourier analysis, heat equations? Well, if I want to approximate a
   space/distribution, http://ddg.math.uni-goettingen.de/pub/GeodesicsInHeat.pdf
-  </li><li> Learning group theory "bottom up" from monoids and the like has been useful,
+  </li><li><span class='centered'> Learning group theory "bottom up" from monoids and the like has been useful,
   because I use monoids basically everywhere as a functional programmer to
   aggregate data. It led to the work I did at S&P Capital IQ, and later to
   basically my entire niche as a functional programmer.
-  </li><li> But understanding more of the surrounding landscape has been useful as well, as
+  </li><li><span class='centered'> But understanding more of the surrounding landscape has been useful as well, as
   I use all sorts of lattices and order theory when working with propagators. And
   I use regular and inverse semigroups (note, not groups!) when working with all
   sorts of fast parsing techniques.
   
-  </li><li> Complex analysis? Understanding Moebius transformations means I can understand
+  </li><li><span class='centered'> Complex analysis? Understanding Moebius transformations means I can understand
   how continued fractions work, which leads to models for computable reals that
   don't waste computation and are optimally lazy. Knowing analytic functions lets
   me understand complex step differentiation.
   
-  </li><li> Linear algebra is in everything I've done since highschool. Learning a bit of
+  </li><li><span class='centered'> Linear algebra is in everything I've done since highschool. Learning a bit of
   geometric algebra, and playing around with Plucker coordinates led to me
   licensing tech to old game companies for computational visibility back before
   it was a "solved" problem.
-  </li><li> Wandering back a bit, Gröbner bases wind up being useful for comparing circuits
+  </li><li><span class='centered'> Wandering back a bit, Gröbner bases wind up being useful for comparing circuits
   modulo 'don't care' bits for impossible situations, and all sorts of other
   simplification tasks.
   
-  </li><li> Let's go obscure. Pade approximants? Good rational approximations, not
+  </li><li><span class='centered'> Let's go obscure. Pade approximants? Good rational approximations, not
   polynomial ones. Sounds academic, but computing exp and log is expensive, and
   fast rational approximations can be conservative, monotone and have nice
   derivatives, speeding NN-like designs a lot.
   
-  </li><li> Weird number systems => Data structures.  Category theory acts as a rosetta
+  </li><li><span class='centered'> Weird number systems => Data structures.  Category theory acts as a rosetta
   stone for so many other areas of math it isn't even funny. You can understand
   almost all of the essential bits of quantum computing just knowing by category
   theory.
   
-  </li><li> Logic. Well, which logic? You run into a modal logic in a philosophy class
+  </li><li><span class='centered'> Logic. Well, which logic? You run into a modal logic in a philosophy class
   some time and think of it as a clever hack, but monads in FP are basically a
   modality. Modal logics for necessity/possibility model effect systems well.
   Substructural logics to manage resource usage...
   
   
-  </li><li> I don't use a lot of number theory. There. Mind you, this is also one of those
+  </li><li><span class='centered'> I don't use a lot of number theory. There. Mind you, this is also one of those
   areas where I'm just standing on weak foundations, so I don't know what I
   don't know. I just know it's hard to do all sorts of things that sound easy
   and try to muddle through w/ my limited background.</li></ul>

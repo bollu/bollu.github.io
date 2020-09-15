@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
-img { display:block; }.container { overflow-x: hidden; max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 2%; } body { font-size: 40px; } }@media (min-width: 1024px) { .container { margin-left: 30%; margin-right: 25%; } }.image { }
+img { display:block; }.container { overflow-x: auto; overflow-y: hidden;  max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: 20%; } }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
@@ -7,31 +7,31 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=the-hilarious-commentary-by-dinosaure-in-ocaml-git href='#the-hilarious-commentary-by-dinosaure-in-ocaml-git'> § </a> The hilarious commentary by dinosaure in OCaml git</h2>
-the <a href=https://github.com/mirage/ocaml-git/>Ocaml-git</a> project is a
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=the-hilarious-commentary-by-dinosaure-in-ocaml-git href='#the-hilarious-commentary-by-dinosaure-in-ocaml-git'> § </a><span class='centered'> The hilarious commentary by dinosaure in OCaml git</h2>
+the <a href=https://github.com/mirage/ocaml-git/><span class='centered'>Ocaml-git</a> project is a
 re-implementation of <code>git</code> in <code>OCaml</code>. It's well-written, and I was
 walking through the codebase, when I found absolutely amazing, hilarious,
 and deep comments from <code>dinosaure</code>. I really enjoyed reading through the
 codebase, and the existence of these comments made it more humane to read.
 I don't know who <code>dinosaure</code> is, but I'm really glad they wrote the comments
 they did, it really made my day.
-<h4><a id=the-one-that-takes-a-stab-at-haskell-for-fun href='#the-one-that-takes-a-stab-at-haskell-for-fun'> § </a> The one that takes a stab at Haskell for fun</h4>
+<h4><a id=the-one-that-takes-a-stab-at-haskell-for-fun href='#the-one-that-takes-a-stab-at-haskell-for-fun'> § </a><span class='centered'> The one that takes a stab at Haskell for fun</h4>
 <pre><code>(* XXX(dinosaure): ...we can fix this detail but
 I'm lazy like haskell. TODO! *)
 </code></pre>
-<h4><a id=the-academic-one-that-broken-links-to-a-paper href='#the-academic-one-that-broken-links-to-a-paper'> § </a> The academic one that broken-links to a paper</h4>
+<h4><a id=the-academic-one-that-broken-links-to-a-paper href='#the-academic-one-that-broken-links-to-a-paper'> § </a><span class='centered'> The academic one that broken-links to a paper</h4>
 <pre><code>(* XXX(dinosaure): see this paper
 https://github.com/ocamllabs/papers/blob/master/irmin/2014.08.matthieu/rapport.pdf *)
 </code></pre>
-<h4><a id=the-one-about-the-frustrations-of-bug-hunting href='#the-one-about-the-frustrations-of-bug-hunting'> § </a> The one about the frustrations of bug-hunting</h4>
+<h4><a id=the-one-about-the-frustrations-of-bug-hunting href='#the-one-about-the-frustrations-of-bug-hunting'> § </a><span class='centered'> The one about the frustrations of bug-hunting</h4>
 <pre><code>(* XXX(dinosaure): [~chunked:false] is mandatory, I don't want to explain
 why (I lost one day to find this bug) but believe me. *)
 </code></pre>
-<h4><a id=the-one-about-a-potential-heisenbug href='#the-one-about-a-potential-heisenbug'> § </a> The one about a potential heisenbug</h4>
+<h4><a id=the-one-about-a-potential-heisenbug href='#the-one-about-a-potential-heisenbug'> § </a><span class='centered'> The one about a potential heisenbug</h4>
 <pre><code>(* XXX(dinosaure): if, one day, we find a bug about the serialization of the
 IDX file, may be it's about this function (stable/unstable sort). *)
 </code></pre>
-<h4><a id=the-requisite-comment-in-french-for-an-ocaml-project href='#the-requisite-comment-in-french-for-an-ocaml-project'> § </a> The requisite comment in french for an OCaml project</h4>
+<h4><a id=the-requisite-comment-in-french-for-an-ocaml-project href='#the-requisite-comment-in-french-for-an-ocaml-project'> § </a><span class='centered'> The requisite comment in french for an OCaml project</h4>
 <pre><code>(* XXX(dinosaure): bon ici, c'est une note compliqué, j'ai mis 2 jours
 à fixer le bug. Donc je l'explique en français, c'est plus simple.
 En gros, [Helper.MakeDecoder] utilise ce buffer comme buffer interne
@@ -56,7 +56,7 @@ Cependant, il faudrait continuer à introspecter car j'ai
 l'intuition que pour un fichier plus gros que [2 * 0x8000], on
 devrait avoir un problème. Donc TODO. *)
 </code></pre>
-<h4><a id=the-deep-one href='#the-deep-one'> § </a> The deep one</h4>
+<h4><a id=the-deep-one href='#the-deep-one'> § </a><span class='centered'> The deep one</h4>
 <pre><code>(* XXX(dinosaure): at the end, we don't care if we lost something. *)
 </code></pre>
 </container></body></html>
