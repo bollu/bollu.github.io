@@ -1,3 +1,4 @@
+- A primer on domains and measure theory: https://www.youtube.com/watch?v=UJrnhhRi2IE
 - Fisher Yates and Sattolo's algorithm (generate permutation with one cycle) https://danluu.com/sattolo/
 - `monochrom`'s favourite work of djikstra: http://www.vex.net/~trebla/ewd.html
 - Course on solids, crystal groups, tension with video lectures: https://ocw.mit.edu/courses/materials-science-and-engineering/3-60-symmetry-structure-and-tensor-properties-of-materials-fall-2005/index.htm

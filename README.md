@@ -13,6 +13,46 @@ A Universe of Sorts
 - [My reading list](todo.html)
 - [Grab me a coffee](https://ko-fi.com/bollu)
 
+# Exact sequence of pointed sets
+
+This was a shower thought. I don't even if these form an abelian category.
+Let's assume we have pointed sets, where we write $(S, p)$ for $p \in S$
+as the pointed point in $S$.  $p$ will be analogous to the zero of an abelian
+group. We will also allow multi-functions, where a function can have
+multiple arguments. Now let's consider an "exact sequence":
+
+$$
+\begin{aligned}
+(A \cap B, *) \xrightarrow{\Delta} (A \times B, (*, *)) \xrightarrow{\pi} (A \cup B, *)
+\end{aligned}
+$$
+
+with the maps as:
+
+$$
+\begin{aligned}
+&ab \in A \cap B \xmapsto{\Delta} (ab, ab) \in A \times B \\
+&(a, b) \in A \times B \xmapsto{pi}
+\begin{cases}
+ * & \text{if } a = b \\
+ a, b  &\text{otherwise} \\
+\end{cases} \\
+\end{aligned}
+$$
+
+One can see that:
+- $A \cap B \xrightarrow{\Delta} A \times B$ is injective
+- $A \cap B \xrightarrow{\pi} A \cup B$ is surjective
+- $ker(\pi) = \pi^{-1}(*) = \{ (a, b) : a \in A, b \in B, a = b \} = im(\Delta)$
+
+Note that to get the last equivalence, we do not consider elements like
+$\pi(a, *) = a, *$ to be a pre-image of $*$, because they don't _exact_ ly map
+into $*$ [pun intended].
+
+
+This exact sequence also naturally motivates one to consider
+$A \cup B - A \cap B = A \delta B$, the symmetric difference. 
+
 # What is a syzygy?
 
 #### The ring of invariants
@@ -205,6 +245,9 @@ evalClosure (0x561c5f11f960:kuhe-zoni-ciho-ko)
 The strings of the form `ziqi-jece-xecu-yu` makes it way easier to see control flow.
 I can also see if two pointers are close, based on shared suffixes: ciho-ko is
 shared, which means the numbers are themselves close.
+
+- It turns out there's a system called [proquints](https://arxiv.org/html/0901.4016)
+  that allows for such a thing already!
 
 
 <!-- - [Support me in making more visualizations!](https://www.patreon.com/bollu) -->
@@ -3709,6 +3752,7 @@ than $a$, and hence implies $a$.
 - Semantics with Applications: Hanne Riis Nielson, Flemming Nielson.
 - [Lecture notes on denotational semantics: Part 2 of the computer science Tripos](https://www.cl.cam.ac.uk/~gw104/dens.pdf)
 - [Outline of a mathematical theory of computation](https://ropas.snu.ac.kr/~kwang/520/readings/sco70.pdf)
+- [Domain theory and measure theory: Video](https://www.youtube.com/watch?v=UJrnhhRi2IE)
 
 
 
