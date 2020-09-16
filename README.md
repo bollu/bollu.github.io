@@ -16,10 +16,57 @@ A Universe of Sorts
 # Exact sequence of pointed sets
 
 This was a shower thought. I don't even if these form an abelian category.
-Let's assume we have pointed sets, where we write $(S, p)$ for $p \in S$
-as the pointed point in $S$.  $p$ will be analogous to the zero of an abelian
+Let's assume we have pointed sets, where every set has a distinguished 
+element $*$. $p$ will be analogous to the zero of an abelian
 group. We will also allow multi-functions, where a function can have
-multiple arguments. Now let's consider an "exact sequence":
+multiple outputs. Now let's consider two sets, $A, B$ along with their
+'smash union' $A \vee B$ where we take the disjoint union of $A, B$ with a
+smashed $*$. To be very formal:
+
+$$
+A \vee B = \{0\} \times (A - \{ * \}) \cup \{1\}\times (B - \{ * \}) \cup \{ * \}
+$$
+
+We now consider the exact sequence:
+
+$$
+(A \cap B, *) \xrightarrow{\Delta} (A \vee B, *) \xrightarrow{\pi} (A \cup B, *)
+$$
+
+with the maps as:
+$$
+\begin{aligned}
+&ab \in A \cap B \xmapsto{\Delta} (0, ab), (1, ab) \in A \vee B \\
+&(0, a) \in A \vee B \xmapsto{\pi}
+\begin{cases}
+ * & \text{if } a \in B \\
+ a  &\text{otherwise} \\
+\end{cases} \\
+&(1, b) \in A \vee B \xmapsto{\pi}
+\begin{cases}
+ * & \text{if } b \in A \\
+ b  &\text{otherwise} \\
+\end{cases} \\
+\end{aligned}
+$$
+
+- We note that $\Delta$ is a multi-function, because it produces as output both
+  $(0, ab)$ and $(1, ab)$.
+- $\ker(\pi) = \pi^{-1}(*) = \{ (0, a) : a \in B \} \cup \{ (1, b) : b \in A \}$
+- Since it's tagged $(0, a)$, we know that $a \in A$. Similarly, we know that $b \in B$.
+- Hence, write $\ker(\pi) = \{ (0, ab), (1, ab) : ab \in A \cap B \} = im(\Delta)$
+
+This exact sequence also naturally motivates one to consider
+$A \cup B - A \cap B = A \Delta B$, the symmetric difference. It also gives
+the nice counting formula $|A \vee B| = |A \cap B| + |A \cup B|$, also known
+as inclusion-exclusion.
+
+I wonder if it's possible to recover incidence algebraic derivations from this
+formuation?
+
+#### Variation on the theme: direct product
+
+This version seems wrong to me, but I can't tell what's wrong. Writing it down:
 
 $$
 \begin{aligned}
@@ -32,7 +79,7 @@ with the maps as:
 $$
 \begin{aligned}
 &ab \in A \cap B \xmapsto{\Delta} (ab, ab) \in A \times B \\
-&(a, b) \in A \times B \xmapsto{pi}
+&(a, b) \in A \times B \xmapsto{\pi}
 \begin{cases}
  * & \text{if } a = b \\
  a, b  &\text{otherwise} \\
@@ -50,8 +97,8 @@ $\pi(a, *) = a, *$ to be a pre-image of $*$, because they don't _exact_ ly map
 into $*$ [pun intended].
 
 
-This exact sequence also naturally motivates one to consider
-$A \cup B - A \cap B = A \delta B$, the symmetric difference. 
+
+
 
 # What is a syzygy?
 
