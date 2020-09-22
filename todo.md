@@ -1,3 +1,14 @@
+- algebraic geometry through toric ideals: https://www.youtube.com/watch?v=-AkCtGY7Kc8&list=PLnkl-SmACpdhIZnHAecRG36du2Oc2jiTs&index=1
+- [CadQuery](https://github.com/CadQuery/cadquery): open source python based 
+  3D modelling / 3D printing / parametric CAD tool. Supposedly better than
+  OpenSCAD.
+- Free Culture, Lawrence Lessig
+- Getting Stronger, a blog about training oneself to thrive on stress: https://gettingstronger.org/
+- A visual introduction to Differential Forms and Calculus on Manifolds
+- A general relativity workbook:  Supposedly is like Abel's theorem in problems and solutions,
+  where it gives you exercises to work through.
+- Gentle introduction to general relativity that answers all the 'why's: 
+  A Most Incomprehensible Thing: Notes Towards a Very Gentle Introduction to the Mathematics of Relativity Kindle Edition
 - A primer on domains and measure theory: https://www.youtube.com/watch?v=UJrnhhRi2IE
 - Fisher Yates and Sattolo's algorithm (generate permutation with one cycle) https://danluu.com/sattolo/
 - `monochrom`'s favourite work of djikstra: http://www.vex.net/~trebla/ewd.html

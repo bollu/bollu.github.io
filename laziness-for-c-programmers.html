@@ -1,0 +1,305 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
+img { display:block; }.container { overflow-x: auto; overflow-y: hidden;  max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: 20%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
+pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=laziness-for-c-programmers href='#laziness-for-c-programmers'> § </a><span class='centered'> Laziness for C programmers</h2>
+<h4><a id=side-node-nonsrict-versus-lazy-this-section-can-be-skipped href='#side-node-nonsrict-versus-lazy-this-section-can-be-skipped'> § </a><span class='centered'> Side node: nonsrict versus lazy (This section can be skipped)</h4>
+I will use the word <code>non-strict</code> throughout, and not <code>lazy</code>.
+Roughly speaking, <code>lazy</code> is more of an implementation detail that guarantees
+that a value that is once computed is cached. (operational semantics)
+<code>non-strict</code> is a evaluation order detail that guarantees that values are
+not evaluated until there are truly required. (denotational semantics).
+<code>lazy</code> is one way to <i><span class='centered'>implement</i> <code>non-strict</code>.
+This is pure pedantry, but I'd like to keep it straight, since there seems to be
+a lot of confusion involving the two words in general.
+<h4><a id=showing-off-non-strictness href='#showing-off-non-strictness'> § </a><span class='centered'> Showing off non-strictness:</h4>
+We first need a toy example to work with to explain the fundamentals of
+non-strict evaluation, so let's consider the example below. I'll explain the <code>case</code> construct which is explained below. Don't worry if ato lazy evaluation "looks weird", it feels that way to everyone till one plays around with it for a while!
+We will interpret this example as both a strict program and a non-strict program.
+This will show us that we obtain different outputs on applying different
+interpretations.
+We distinguish between primitive values (integers such as <code>1</code>, <code>2</code>, <code>3</code>) and boxed values
+(functions, data structures). Boxed values can be evaluated non-stricly. Primitive values
+do not need evaluation: they are primitive.
+<h4><a id=code href='#code'> § </a><span class='centered'> Code</h4>
+<pre><code><span class="token comment">-- Lines starting with a `--` are comments.</span>
+<span class="token comment">-- K is a function that takes two arguments, `x` and `y`, that are both boxed values.</span>
+<span class="token comment">-- K returns the first argument, `x`, ignoring the second argument, `y`.</span>
+<span class="token comment">-- Fun fact: K comes for the K combinator in lambda calculus.</span>
+<span class="token hvariable">kCombinator</span> <span class="token operator">::</span> <span class="token constant">Boxed</span> <span class="token operator">-></span> <span class="token constant">Boxed</span> <span class="token operator">-></span> <span class="token constant">Boxed</span>
+<span class="token hvariable">kCombinator</span> <span class="token hvariable">x</span> <span class="token hvariable">y</span> <span class="token operator">=</span> <span class="token hvariable">x</span>
+
+<span class="token comment">-- one is a function that returns the value 1# (primitive 1)</span>
+<span class="token hvariable">one</span> <span class="token operator">::</span> <span class="token constant">PrimInt</span>
+<span class="token hvariable">one</span> <span class="token operator">=</span> <span class="token number">1</span>
+
+<span class="token comment">-- Loopy is a function that takes zero arguments, and tries to return a boxed value.</span>
+<span class="token comment">-- Loopy invokes itself, resulting in an infinite loop, so it does not actually return.</span>
+<span class="token hvariable">loopy</span> <span class="token operator">::</span> <span class="token constant">Boxed</span>
+<span class="token hvariable">loopy</span> <span class="token operator">=</span> <span class="token hvariable">loopy</span>
+
+<span class="token comment">-- main is our program entry point.</span>
+<span class="token comment">-- main takes no arguments, and returns nothing</span>
+<span class="token hvariable">main</span> <span class="token operator">::</span> <span class="token constant">Void</span>
+<span class="token hvariable">main</span> <span class="token operator">=</span> <span class="token keyword">case</span> <span class="token hvariable">kCombinator</span> <span class="token hvariable">one</span> <span class="token hvariable">loopy</span> <span class="token keyword">of</span> <span class="token comment">-- force K to be evaluated with a `case`</span>
+            <span class="token hvariable">kret</span> <span class="token operator">-></span> <span class="token keyword">case</span> <span class="token hvariable">kret</span> <span class="token keyword">of</span>  <span class="token comment">-- Force evaluation</span>
+                    <span class="token hvariable">i</span> <span class="token operator">-></span> <span class="token hvariable">printPrimInt</span> <span class="token hvariable">i</span> <span class="token comment">-- Call the forced value of `kret` as `i` and then print it.</span>
+</code></pre>
+<h4><a id=a-quick-explanation-about-case href='#a-quick-explanation-about-case'> § </a><span class='centered'> A quick explanation about <code>case</code>:</h4>
+<code>case</code> is a language construct that <i><span class='centered'>forces</i> evaluation. In general, no value
+is evaluated unless it is <i><span class='centered'>forced</i> by a case.
+<h4><a id=analysing-the-example-the-strict-interpretation href='#analysing-the-example-the-strict-interpretation'> § </a><span class='centered'> Analysing the example: The strict interpretation</h4>
+If we were coming from a strict world, we would have assumed that the expression
+<code>K one loopy</code> would first try to evaluate the arguments, <code>one</code> and <code>loopy</code>.
+Evaluating <code>one</code> would return the primitive value <code>1</code>, so this has no problem.
+On trying to evaluate <code>loopy</code>, we would need to re-evaluate <code>loopy</code>, and so on
+ad infitum, which would cause this program to never halt.
+This is because, as programmers coming from a strict world, we assume that
+<i><span class='centered'>values are evaluated as soon as possible</i>.
+So, the output of this program is to have the program infinite-loop for ever,
+under the strict interpretation.
+<h4><a id=analysing-the-example-the-non-strict-interpretation href='#analysing-the-example-the-non-strict-interpretation'> § </a><span class='centered'> Analysing the example: The non-strict interpretation:</h4>
+In the non-strict world, we try to evaluate <code>K(1, loopy)</code> since we are asked the result
+of it by the <code>case</code> expression. However, we do not try to evaluate <code>loopy</code>, since 
+no one has asked what it's value is!
+Now, we know that
+<pre><code><span class="token hvariable">kCombinator</span> <span class="token hvariable">x</span> <span class="token hvariable">y</span> <span class="token operator">=</span> <span class="token hvariable">x</span>
+</code></pre>
+Therefore, 
+<pre><code><span class="token hvariable">kCombinator</span> <span class="token hvariable">one</span> <span class="token hvariable">loopy</span> <span class="token operator">=</span> <span class="token hvariable">one</span>
+</code></pre>
+regardless of what value <code>loopy</code> held.
+So, at the case expression:
+<pre><code><span class="token hvariable">main</span> <span class="token operator">=</span> <span class="token keyword">case</span> <span class="token constant">K</span><span class="token punctuation">(</span><span class="token hvariable">one</span><span class="token punctuation">,</span> <span class="token hvariable">loopy</span><span class="token punctuation">)</span> <span class="token keyword">of</span> <span class="token comment">-- force K to be evaluated with a `case`</span>
+<span class="token operator">>>></span>         <span class="token hvariable">kret</span> <span class="token operator">-></span> <span class="token operator">...</span>
+</code></pre>
+<code>kret = one</code>, we can continue with the computation.
+<pre><code><span class="token hvariable">main</span> <span class="token operator">::</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token constant">Void</span>
+<span class="token hvariable">main</span> <span class="token operator">=</span> <span class="token keyword">case</span> <span class="token hvariable">kCombinator</span> <span class="token hvariable">one</span> <span class="token hvariable">loopy</span> <span class="token keyword">of</span> <span class="token comment">-- force K to be evaluated with a `case`</span>
+            <span class="token hvariable">kret</span> <span class="token operator">-></span> <span class="token keyword">case</span> <span class="token hvariable">kret</span> <span class="token keyword">of</span>  <span class="token comment">-- Call the return value of K as `x`, and force evaluation.</span>
+                       <span class="token hvariable">i</span> <span class="token operator">-></span> <span class="token hvariable">printPrimInt</span> <span class="token hvariable">i</span> <span class="token comment">-- Call the vreturn value of `x` as `primx` and then print it.</span>
+</code></pre>
+Here, we force <code>kret</code> (which has value <code>one</code>) to be evaluated with <code>case kret of...</code>.
+since <code>one = 1</code>, <code>i</code> is bound to the value <code>1</code>.
+Once <code>i</code> is returned, we print it out with <code>printPrimInt(primx)</code>.
+ 
+The output of the program under non-strict interpretation is for it to print out <code>1</code>.
+<h4><a id=where-does-the-difference-come-from href='#where-does-the-difference-come-from'> § </a><span class='centered'> Where does the difference come from?</h4>
+Clearly, there is a divide: strict evaluation tells us that this program should
+never halt. Non-strict evaluation tells us that this program will print an output!
+To formalize a notion of strictness, we need a notion of <code>bottom</code> (<code>_|_</code>).
+A value is said to be <code>bottom</code> if in trying to evaluate it, we reach an
+undefined state. (TODO: refine this, ask ben).
+Now, if a function is <i><span class='centered'>strict</i>, it would first evaluate its arguments and then
+compute the result. So, if a strict function is given a value that is <code>bottom</code>,
+the function will try to evaluate the argument, resulting in the computation
+screwing up, causing the output of the whole function to be <code>bottom</code>.
+Formally, a function <code>f</code> is strict iff (if and only if) <code>f(bottom) = bottom</code>.
+Conversely, a <i><span class='centered'>non-strict</i> function does not need to evaluate its arguments if it
+does not use them, as in the case of <code>K 1 loopy</code>. In this case, <code>f(bottom)</code> need
+not be equal to bottom.
+Formally, a function <code>f</code> is non-strict iff (if and only if) <code>f(bottom) /= bottom</code>.
+As Paul Halmos says
+<blockquote><span class='centered'> "A good stack of examples, as large as possible, is indispensable for a<span class='centered'> thorough understanding of any concept, and when I want to learn something<span class='centered'> new, I make it my first job to build one.". Let us consider some examples.</blockquote>
+<ul><li><span class='centered'> <code>id</code></li></ul>
+<pre><code><span class="token builtin">id</span> <span class="token hvariable">x</span> <span class="token operator">=</span> <span class="token hvariable">x</span>
+
+<span class="token builtin">id</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token builtin">id</span> <span class="token punctuation">(</span><span class="token hvariable">bottom</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token hvariable">bottom</span>
+</code></pre>
+<code>id</code> is strict, since <code>id(bottom) = bottom</code>.
+<ul><li><span class='centered'> <code>const</code></li></ul>
+<pre><code><span class="token hvariable">const_one</span> <span class="token hvariable">x</span> <span class="token operator">=</span> <span class="token number">1</span>
+
+<span class="token hvariable">const_one</span><span class="token punctuation">(</span><span class="token hvariable">bottom</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token hvariable">const_one</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1</span>
+</code></pre>
+<code>const_one</code> is not strict, as <code>const_one(bottom) /= bottom</code>.
+<ul><li><span class='centered'> <code>K</code></li></ul>
+<pre><code><span class="token constant">K</span> <span class="token hvariable">x</span> <span class="token hvariable">y</span> <span class="token operator">=</span> <span class="token hvariable">x</span>
+
+<span class="token constant">K</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token constant">K</span> <span class="token number">1</span> <span class="token hvariable">bottom</span> <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token constant">K</span> <span class="token hvariable">bottom</span> <span class="token number">2</span> <span class="token operator">=</span> <span class="token hvariable">bottom</span>
+</code></pre>
+Note that <code>K(bottom, y) = bottom</code>, so K is <i><span class='centered'>strict in its first argument</i>, and
+<code>K(x, bottom) /= bottom</code>, so K is <i><span class='centered'>non-strict in its second argument</i>.
+This is a neat example showing how a function can be strict and lazy in different
+arguments of the function.
+<h4><a id=compiling-non-strictness-v1 href='#compiling-non-strictness-v1'> § </a><span class='centered'> Compiling non-strictness, v1:</h4>
+<h4><a id=how-does-ghc-compile-non-strictness href='#how-does-ghc-compile-non-strictness'> § </a><span class='centered'> How does GHC compile non-strictness?</h4>
+<code>GHC</code> (the Glasgow haskell compiler) internally uses multiple intermediate
+representations, in order of original, to what is finally produced:
+<ul><li><span class='centered'> Haskell (the source language)</li><li><span class='centered'> Core (a minimal set of constructs to represent the source language)</li><li><span class='centered'> STG (Spineless tagless G-machine, a low-level intermediate representation that accurately captures non-strict evaluation)</li><li><span class='centered'> C-- (A C-like language with GHC-specific customization to support platform
+  independent code generation).</li><li><span class='centered'> Assembly</li></ul>
+Here, I will show how to lower simple non-strict programs from a <b><span class='centered'>fictitous</b> <code>Core</code> like language down to <code>C</code> , while skipping <code>STG</code>, since it doesn't
+really add anything to the high-level discussion at this point.
+<h4><a id=our-example-of-compiling-non-strictness href='#our-example-of-compiling-non-strictness'> § </a><span class='centered'> Our example of compiling non-strictness</h4>
+Now, we need a <i><span class='centered'>strategy</i> to compile the non-strict version of our program.
+Clearly, <code>C</code> cannot express laziness directly, so we need some other
+mechanism to implement this. I will first code-dump, and then explain as we go along.
+<h4><a id=executable-replit href='#executable-replit'> § </a><span class='centered'> Executable <code>repl.it</code>:</h4>
+<iframe height="400px" width="100%" src="https://repl.it/@bollu/Compiling-non-strict-programs-on-the-call-stack?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
+<h4><a id=source-code href='#source-code'> § </a><span class='centered'> Source code</h4>
+<pre><code>#include <assert.h>
+#include <stdio.h>
+
+/* a boxed value is a function that can be executed to compute something.
+* We make the return value `void` on purpose. This needs to be typecast to a concrete
+* Boxed type to get a value out of it: eg, typecast to BoxedInt.
+*/
+typedef void (*Boxed)();
+
+/* A boxed int, that on evaluation yields an int*/
+typedef int (*BoxedInt)();
+
+/* one = 1# */
+int one() {
+    return 1;
+}
+
+/* bottom = bottom */
+void bottom() {
+    printf("in function: %s\n", __FUNCTION__);
+    bottom();
+}
+
+/* K x y = x */
+Boxed K(Boxed x, Boxed y) {
+  return x;
+}
+
+/*
+main :: () -> Void
+main = case K(one, loopy) of -- force K to be evaluated with a `case`
+            kret -> case kret of  -- Call the return value of K as `x`, and force evaluation.
+                    i -> printPrimInt(i) -- Call the vreturn value of `x` as `primx` and then print it.
+*/
+int main() {
+    Boxed kret = K((Boxed)one, (Boxed)bottom);
+    int i = (*(BoxedInt)kret)();
+    printf("%d", i);
+    return 1;
+}
+
+</code></pre>
+We convert every possibly lazy value into a <code>Boxed</code> value, which is a function pointer that knows how to compute the
+underlying value. When the lazy value is forced by a <code>case</code>, we call the <code>Boxed</code> function to compute the output.
+This is a straightforward way to encode non-strictness in C. However, do note that this is not <i><span class='centered'>lazy</i>, because a value could get
+recomputed many times. <i><span class='centered'>Laziness</i> guarantees that a value is only computed once and is later memoized.
+<h4><a id=compiling-with-a-custom-call-stack-continuations href='#compiling-with-a-custom-call-stack-continuations'> § </a><span class='centered'> Compiling with a custom call stack / continuations</h4>
+As one may notice, we currenly use the native call stack every time we <i><span class='centered'>force</i> a lazy value. However, in doing  so, we might actually run out of stack space, which is undesirable. Haskell programs like to have "deep" chains of values being forced, so we would quite likely run out of stack space.
+Therefore, GHC opts to manage its own call stack on the heap. The generated code looks as you would imagine: we maintain a stack of function pointers + auxiliary data ( stack saved values), and we push and pop over this "stack". When we run out of space, we <code><find correct way to use mmap></code> to increase our "stack" size. 
+I've played around with this value a little bit, and have found that the modern stack size is quite large: IIRC, It allowed me to allocate ~<code>26 GB</code>. I believe that the amount it lets you allocate is tied directly to the amount of physical memory + swap you have. I'm not too sure, however. So, <a href=https://github.com/bollu/simplexhc-cpp.git><span class='centered'>for my haskell compiler, <code>sxhc</code></a>, I am considering cheating and just using the stack directly.
+Code for the same example (with the K combinator) is provided here.
+<h4><a id=executable-replit href='#executable-replit'> § </a><span class='centered'> Executable <code>repl.it</code>:</h4>
+<iframe height="1000px" width="100%" src="https://repl.it/@bollu/Compiling-programs-with-continuations?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
+<h4><a id=source-code href='#source-code'> § </a><span class='centered'> Source code</h4>
+<pre><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;assert.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token expression">STACK_SIZE <span class="token number">50000</span></span></span>
+
+<span class="token comment">/* a boxed value is a function that can be executed to compute something. */</span>
+<span class="token keyword">typedef</span> <span class="token keyword">void</span> <span class="token punctuation">(</span><span class="token operator">*</span>Boxed<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* a return continuation that receives a boxed value. */</span>
+<span class="token keyword">typedef</span> <span class="token keyword">void</span> <span class="token punctuation">(</span><span class="token operator">*</span>BoxedContinuation<span class="token punctuation">)</span><span class="token punctuation">(</span>Boxed<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* A return continuation that receives an int value. */</span>
+<span class="token keyword">typedef</span> <span class="token keyword">void</span> <span class="token punctuation">(</span><span class="token operator">*</span>IntContinuation<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* Custom stack allocated on the .data section*/</span>
+<span class="token keyword">void</span> <span class="token operator">*</span>stack<span class="token punctuation">[</span>STACK_SIZE<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* Stack pointer */</span>
+<span class="token keyword">int</span> sp <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* Push a continuation `cont` */</span>
+<span class="token keyword">void</span> <span class="token function">pushContinuation</span><span class="token punctuation">(</span><span class="token keyword">void</span> <span class="token operator">*</span>cont<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">assert</span><span class="token punctuation">(</span>sp <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">assert</span><span class="token punctuation">(</span>sp <span class="token operator">&lt;</span> STACK_SIZE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    stack<span class="token punctuation">[</span>sp<span class="token punctuation">]</span> <span class="token operator">=</span> cont<span class="token punctuation">;</span>
+    sp<span class="token operator">++</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* Pop a continuation frame. */</span>
+<span class="token keyword">void</span> <span class="token operator">*</span><span class="token function">popContinuation</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">assert</span><span class="token punctuation">(</span>sp <span class="token operator">&lt;</span> STACK_SIZE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">assert</span><span class="token punctuation">(</span>sp <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sp<span class="token operator">--</span><span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token operator">*</span>cont <span class="token operator">=</span> stack<span class="token punctuation">[</span>sp<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> cont<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* one = 1# */</span>
+<span class="token keyword">void</span> <span class="token function">one</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"in function: %s\n"</span><span class="token punctuation">,</span> __FUNCTION__<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token operator">*</span>f <span class="token operator">=</span> <span class="token function">popContinuation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">(</span>IntContinuation<span class="token punctuation">)</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* bottom = bottom */</span>
+<span class="token keyword">void</span> <span class="token function">bottom</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"in function: %s\n"</span><span class="token punctuation">,</span> __FUNCTION__<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">bottom</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* K x y = x */</span>
+<span class="token keyword">void</span> <span class="token function">K</span><span class="token punctuation">(</span>Boxed x<span class="token punctuation">,</span> Boxed y<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"in function: %s\n"</span><span class="token punctuation">,</span> __FUNCTION__<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token operator">*</span>f <span class="token operator">=</span> <span class="token function">popContinuation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">(</span>BoxedContinuation<span class="token punctuation">)</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">XForceContinuation</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"in function: %s\n"</span><span class="token punctuation">,</span> __FUNCTION__<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">KContinuation</span><span class="token punctuation">(</span>Boxed x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"in function: %s\n"</span><span class="token punctuation">,</span> __FUNCTION__<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">pushContinuation</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">void</span> <span class="token operator">*</span><span class="token punctuation">)</span>XForceContinuation<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">x</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"in function: %s\n"</span><span class="token punctuation">,</span> __FUNCTION__<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">pushContinuation</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">void</span> <span class="token operator">*</span><span class="token punctuation">)</span>KContinuation<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">K</span><span class="token punctuation">(</span>one<span class="token punctuation">,</span> bottom<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+we maintain our own "call stack" of continuations. These continuations are precisely the
+parts of the code that deal with the return value of a case. ever
+<pre><code><span class="token keyword">case</span> <span class="token hvariable">x</span> <span class="token keyword">of</span>
+    <span class="token hvariable">xeval</span> <span class="token operator">-></span> <span class="token hvariable">expr</span>
+</code></pre>
+compiles to:
+<pre><code><span class="token function">pushContinuation</span><span class="token punctuation">(</span>XEvalContinuation<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">x</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+That is, push a continuation, and then "enter" into <code>x</code>.
+One might have a question: does this still not use the call stack? There is a
+function call at the end of most functions in the source code, so in theory, we
+<i><span class='centered'>are</i> using the call stack, right? The answer is no. It's thanks to a neat
+optimisation technique called <i><span class='centered'>tail call elimination</i>. The observation is that
+<i><span class='centered'>after the call</i>, there is no more code to execute in the caller. So, by
+playing some stack tricks, one can convert a <i><span class='centered'>call</i> to a <i><span class='centered'>jump</i>. 
+Remember, a <i><span class='centered'><code>call</code></i> instruction uses the stack to setup a stack frame, under
+the assumption that we will <i><span class='centered'><code>ret</code></i> at some point.  But, clearly, under our
+compilation model, we will never <code>ret</code>, simply call more functions. So, we
+don't <i><span class='centered'>need</i> the state maintained by a <code>call</code>. We can simply <code>jmp</code>.
+<h4><a id=wrapping-up href='#wrapping-up'> § </a><span class='centered'> Wrapping up</h4>
+I hope I've managed to convey the <i><span class='centered'>essence</i> of how to compile Haskell. I skipped a couple of things:
+<ul><li><span class='centered'> haskell data types: sum and product types. These are straightforward, they just compiled to tagged structs.</li><li><span class='centered'> <code>let</code> bindings: These too are straightforward, but come with certain retrictions in STG. It's nothing groundbreaking,and
+   is well written in the paper.</li><li><span class='centered'> Black holes: Currently, we are not truly <i><span class='centered'>lazy</i>, in that we do not update values once they are computed.</li><li><span class='centered'> GC: how to weave the GC through the computation is somewhat non-trivial.</li></ul>
+All of this is documented in the excellent paper:
+<a href=https://www.dcc.fc.up.pt/~pbv/aulas/linguagens/peytonjones92implementing.pdf><span class='centered'>Implementing lazy languages on stock hardware</a>.
+I am considering extending this blog post that expands on these ideas. If there
+is interest, please do e-mail me at <code>siddu.druid@gmail.com</code>.
+</container></body></html>
