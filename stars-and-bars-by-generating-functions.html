@@ -8,10 +8,10 @@ a:active { color: #1a73e8; text-decoration: none; }
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
 pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=stars-and-bars-by-generating-functions href='#stars-and-bars-by-generating-functions'> § </a><span class='centered'> stars and bars by generating functions</h2>
- Say I have <code>C</code> colors of objects, and <code>S</code> slots to put these objects in. In
- how manys can I put objects into slots, without regard to order? For example,
- say we have 4 colors <code>c, m, y, k</code> and <code>2</code> slots <code>_ _</code>. The number of colorings
- that I want to count is:
+Say I have <code>C</code> colors of objects, and <code>S</code> slots to put these objects in. In
+how manys can I put objects into slots, without regard to order? For example,
+say we have 4 colors <code>c, m, y, k</code> and <code>2</code> slots <code>_ _</code>. The number of colorings
+that I want to count is:
 <pre><code>cc cm cy ck
 mc mm my mk
 yc ym yy yk
@@ -64,6 +64,5 @@ by <code>2</code>. This gives:
 = (20/(1-0)^6)
 = (20)
 </code></pre>
-so we get the answer as <code>answer = 20/2! = 10</code>. ~~This is wrong, it ought to be <code>5</code>.~~
-I am stupid, the answer is indeed <code>10</code>, as shown by exhaustively enumerating before. The world is safe.
+so we get the answer as <code>answer = 20/2! = 10</code>. 
 </container></body></html>

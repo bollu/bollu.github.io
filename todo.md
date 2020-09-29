@@ -1,3 +1,13 @@
+- REDIS walk through source code by antirez: https://www.youtube.com/user/antirez/videos
+- 2D general relativity: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.339.3671&rep=rep1&type=pdf
+- general relativity for 1+1 dimensions: https://core.ac.uk/download/pdf/4877178.pdf
+- Regge calculus, a discrete version of General relativity: https://en.wikipedia.org/wiki/Regge_calculus
+- [bidirectional type inference, explained in Agda](https://plfa.github.io/Inference/)
+- Arithmetic of elliptic curves: seems to explain elliptic curves from the "algebraic geometry perspective".
+- Smoothie: https://www.chebfun.org/examples/stats/Smoothies.html
+- [USACO guide](https://usaco.guide/dashboard/)
+- [CSES problem set](https://cses.fi/problemset/). Problem set for competitive programming
+- [The generalized distributive law: general version of FFT, viterbi, ...](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.125.8954&rep=rep1&type=pdf)
 - algebraic geometry through toric ideals: https://www.youtube.com/watch?v=-AkCtGY7Kc8&list=PLnkl-SmACpdhIZnHAecRG36du2Oc2jiTs&index=1
 - [CadQuery](https://github.com/CadQuery/cadquery): open source python based 
   3D modelling / 3D printing / parametric CAD tool. Supposedly better than

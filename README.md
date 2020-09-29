@@ -14,6 +14,632 @@ A Universe of Sorts
 
 <!-- - [Grab me a coffee](https://ko-fi.com/bollu) -->
 
+# Elementary probability theory
+
+I've never learnt elementary probability theory "correctly". This is me
+attempting to fix it.
+
+#### Defn: Sample space
+
+set of all possible outcomes / things that could happen. 
+
+#### Defn: Outcome / Sample point / atomic event
+
+An outcome consists of all the information about the experiment
+*after it has been performed* including the values of all random choices.
+
+## Example: Monty hall
+
+An outcome of the monty hall game **when the the contestant switches** consists of:
+- the box with the prize.
+- the box chosen by the contestant.
+- the box that was revealed.
+
+Once we know the three things, we know everything that happened.
+
+For example, the sample point $(2, 1, 3)$:
+- the prize is in box 2
+- the player first picks box 1
+- the assistant, Carol, reveals box 3.
+- The contestant wins, because we're assuming the player switches. Hnce, they
+  will switch from their initial choice of (1) to (2).
+
+Note that not all 3-tuples correspond to sample points. For example,
+- $(1, 2, 1)$ is not a sample point, because we can't reveal the box with the prize.
+- $(2, 1, 1)$ is not a sample point, because we can't reveal the box the player chose.
+- $(1, 1, 2), (1, 1, 3)$ is OK. The player chooses the correct box, carol reveals some box,
+  and then the player switches.
+
+## Constructing the sample space: tree method
+
+We build a decision tree. 
+
+#### where is the prize?
+
+```
+(prize 1)
+(prize 2)
+(prize 3)
+```
+
+#### player's choice
+
+
+```
+(prize 1
+   (choice 1)
+   (choice 2)
+   (choice 3))
+(prize 2
+   (choice 1)
+   (choice 2)
+   (choice 3))
+(prize 3
+   (choice 1)
+   (choice 2)
+   (choice 3))
+
+```
+
+#### Which box is revealed
+
+
+```
+(prize 1
+   (choice 1 
+      (reveal 2)
+      (reveal 3))
+   (choice 2
+      (reveal 3))
+   (choice 3)
+      (reveal 2))
+(prize 2
+   (choice 1
+     (reveal 3)
+   (choice 2
+     (reveal 1)
+      (reveal 3))
+   (choice 3)
+     (reveal 1))
+(prize 3
+   (choice 1
+     (reveal 2))
+   (choice 2
+     (reveal 1))
+   (choice 3)
+     (reveal 1)
+     (reveal 2))
+```
+
+
+#### Win/Loss
+
+```
+(prize 1
+   (choice 1 
+loss  (reveal 2)  
+loss  (reveal 3)) 
+   (choice 2
+win   (reveal 3))
+   (choice 3)
+win   (reveal 2))
+(prize 2
+   (choice 1
+win  (reveal 3)
+   (choice 2
+loss (reveal 1)
+loss  (reveal 3))
+   (choice 3)
+win  (reveal 1))
+(prize 3
+   (choice 1
+win  (reveal 2))
+   (choice 2
+win  (reveal 1))
+   (choice 3)
+loss (reveal 1)
+loss (reveal 2))
+```
+
+This seems like it's 50/50! But what we're missing is the *likelihood* of an
+outcome.
+
+#### Defn: Probability space
+
+A probability space consists of a sample space (space of al outcomes) and a
+probability function $P$ that maps the sample space to the real numbers, such that:
+- For every outcome, the probability is between zero and one.
+- The sum of all the probabilities is one.
+
+**Interpretation**: For every outcome, the $P(outcome)$ is the probability of
+that outcome happening in an experiment.
+
+
+#### Assumptions for monty hall
+
+- Carol put the prize uniformly randomly. Probability 1/3.
+- No matter where the prize is, the player picks each box with probability 1/3.
+- No matter where the prize is, the box that carol reveals will be picked 
+  uniformly randomly. Probability 1/2.
+
+#### Assigning probabilities to each edge
+
+```
+(prize 1 [1/3]
+   (choice 1 [1/3]
+l  (reveal 2)   [1/2]
+l  (reveal 3))  [1/2]
+   (choice 2 [1/3]
+w   (reveal 3)) [1]
+   (choice 3) [1/3]
+w   (reveal 2)) [1]
+(prize 2 [1/3]
+   (choice 1
+w  (reveal 3)
+   (choice 2
+l (reveal 1)
+l  (reveal 3))
+   (choice 3)
+w  (reveal 1))
+(prize 3  [1/3]
+   (choice 1
+w  (reveal 2))
+   (choice 2
+w  (reveal 1))
+   (choice 3)
+l (reveal 1)
+l (reveal 2))
+```
+
+#### Assigning probabilities to each outcome
+
+- Probability for a sample point is the product of probabilities leading
+  to the outcome
+
+```
+(prize 1 [1/3]
+   (choice 1 [1/3]
+l  (reveal 2)   [1/2]: 1/18
+l  (reveal 3))  [1/2]: 1/18
+   (choice 2 [1/3]
+w   (reveal 3)) [1]: 1/9
+   (choice 3) [1/3]
+w   (reveal 2)) [1]: 1/9
+...
+```
+
+So the probability of winning is going to be $6 \times 1/9 = \frac{2}{3}$.
+
+#### Defn: Event
+
+An event is a *subset* of the sample space.
+
+- For example, $E_l$ is the event that the person loses in Monty Hall.
+
+#### Probability of an event
+
+The probability that an event $E$ occurs is the sum of the probabilities of the 
+sample points of the event: $P(E) \equiv \sum_{e \in E} P(e)$.
+
+
+
+#### What about staying?
+
+I win $2/3$rds of the time when I _switch_. If I don't switch, I must have lost.
+So if I choose to stay, then I _lose_ $2/3$rds of the time. We're using that
+
+- $P(\texttt{win with switch}) = P(\texttt{lose with stick})$.
+
+#### Gambing game
+
+- Dice $A$: $\{2, 6, 7\}$.
+
+```
+\ 2  /
+ \  /
+6 \/ 7
+  ||
+```
+it's the same on the reverse side. It's a fair dice. So the probability of
+getting $2$ is a third. Similarly for $6, 7$.
+
+- Dice $B$: $\{1, 5, 9 \}$.
+- Dice $C$: $\{3, 4, 8 \}$.
+
+- We both dice. The higher dice wins. Loser pays the winner a dollar.
+
+#### Analysis: Dice A v/s Dice C
+
+- Dice $A$ followed by dice $C$:
+
+```
+(2
+  (3
+   4
+   8))
+(6
+  (3
+   4
+   8))
+(7
+  (3
+   4
+   8))
+```
+
+- Assign winning
+
+```
+(2
+  (3    C
+   4    C
+   8))  C
+(6
+  (3    A
+   4    A
+   8))  C
+(7
+  (3    A
+   4    A
+   8))  C
+```
+
+Each of the outcomes has a probability $1/9$, so dice $C$ wins.
+
+#### References
+
+- [Lec 18: math for computer science; elementary probability](https://www.youtube.com/watch?v=SmFwFdESMHI)
+- [Problem set 10](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-042j-mathematics-for-computer-science-fall-2010/assignments/MIT6_042JF10_assn10.pdf)
+- [Problem set 11](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-042j-mathematics-for-computer-science-fall-2010/assignments/MIT6_042JF10_assn11.pdf)
+- [Problem set 12](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-042j-mathematics-for-computer-science-fall-2010/assignments/MIT6_042JF10_assn12.pdf)
+
+# The handshaking lemma by simplicial complexes
+
+### Concrete situation:
+
+Let's take a graph $G \equiv (V, E)$. We can imagine that each edge has a potential
+of $2$. We can redistribute this potential, by providing a potential of $1$
+to each of the vertices incident on the edge. This gives us the calculation
+that the total potential is $2|E|$. But each vertex is assigned a potential of $1$
+for each edge incident on it. Thus, the total potential is $\sum_v \texttt{degree}(v)$.
+This gives the equality $\sum_i \texttt{degree}(v) = 2|E|$.
+
+Thus, if each of the degrees are odd, considering modulo 2, the LHS becomes
+$\sum_v 1 = |V|$ and the RHS becomes $0$. Thus we have that $|V| = 0$ (mod 2), or 
+the number of vertices remains even.
+
+I learnt of this nice way of thinking about it in terms of potentials when
+reading a generalization to simplicial
+complexes.
+
+#### References
+- [The amazing world of simplicial complexes](https://arxiv.org/pdf/1804.08211.pdf)
+
+
+# Git for pure mathematicians
+
+What is `git`? It's not a version control system. It's an interface to work
+with _torsors_. We have a space of files. We can manipulate "differences of
+files", which are represented by patches/diffs. `git`'s model provides us tools
+to work with this space of files.
+
+# Mutorch
+
+```py
+#!/usr/bin/env python3
+
+# x2, w1, w2 are Leaf variables
+# x1 = f(w1, w2)
+# y = g(x1, x2)
+# loss = h(y)
+
+
+# BACKPROP [reverse mode AD]
+# ==========================
+# t is a hallucinated variable.
+# y = f(x)
+# GIVEN: dt/dy
+# TO FIND: dt/dx
+# dt/dx = dt/dy * dy/dx
+# dt/dloss 
+# t = loss
+# dt/dloss = dloss/dloss = 1
+
+
+# y1 = f(x1, x2, x3)
+# y2 = g(x1, x2, x3)
+
+# FORWARD MODE: [Tangent space] ---- objects of the form (partial f/partial x)
+# total gradient of x1: df/dx1 + dg/dx1
+# total gradient of x2: df/dx2 + dg/dx2
+# total gradient of x3: df/dx3 + dg/dx3
+
+# l = r cos(theta)
+# dl = dr cos(theta) + rsin(theta) dtheta 
+# dl/dtheta = dr/dtheta cos(theta) + rsin(theta) dtheta/dtheta
+# dl/dtheta =   0       * .......  + rsin(theta) * 1
+
+# dl/dr = dr/dr cos(theta) + rsin(theta) dtheta/dr
+# dl/dr = cos(theta) +      .............*0
+
+# REVERSE MODE: [CoTangent space] --- objects of the form df
+# total gradient of y1: dy1 = (df/dx1)dx1 + (df/dx2)dx2  + (df/dx3)dx3 
+# total gradient of y2: dy2 = (dg/dx1)dx1 + (dg/dx2)dx2  + (dg/dx3)dx3
+# HALLUCINATED T:
+#    y1 = f(x1, x2, x3)
+#    GIVEN:   dt/dy1 [output]
+#    TO FIND: dt/dx1, dt/dx2, dt/dx3 [inputs]
+#    SOLN:    dt/dxi = dt/dy * dy/dxi 
+#                    = dt/dy * df/dxi 
+import pudb
+
+class Expr:
+    def __mul__(self, other):
+        return Mul(self, other)
+    def __add__(self, other):
+        return Add(self, other)
+
+    def clear_grad(self):
+        pass
+
+class Var(Expr):
+    def __init__(self, name, val):
+        self.name = name
+        self.val = val
+        self._grad = 0
+    def __str__(self):
+        return "(var-%s | %s)" % (self.name, self.val)
+    def __repr__(self):
+        return self.__str__()
+
+    def clear_grad(self):
+        self._grad = 0
+
+    def backprop(self, dt_doutput):
+        self._grad += dt_doutput
+
+    def grad(self):
+        return self._grad
+
+class Mul(Expr):
+    def __init__(self, lhs, rhs):
+        self.lhs = lhs
+        self.rhs = rhs
+        self.val = self.lhs.val * self.rhs.val
+    def __str__(self):
+        return "(* %s %s | %s)" % (self.lhs, self.rhs, self.val)
+    def __repr__(self):
+        return self.__str__()
+
+    #         -------- input1
+    #   S    /
+    #  ---> v 
+    #  <--output *
+    #      ^
+    #       \_________ input2
+    # think in terms of sensitivity.
+    # - output has S sensitivity to something,
+    # - output = input1 + input2
+    # - how much sensitivity does input1 have to S?
+    # - the same (S), because "sensitivity" is linear [a conjecture/axiom]
+    # output = f(input1, input2); f(input1, input2) = input1 + input2 
+    def backprop(self, dt_output):
+        # dt/dinput1 = dt/doutput * ddoutput/dinput1 = 
+        #            = dt/doutput * d(f(input1, input2))/dinput1
+        #            = dt/doutput * d(input1 * input2)/dinput1
+        #            = dt/doutput * input2
+        self.lhs.backprop(dt_output * self.rhs.val)
+        self.rhs.backprop(dt_output * self.lhs.val)
+
+# a = ...   ^
+# b = ...   ^
+# c = a + b ^
+# 
+class Add(Expr):
+    def __init__(self, lhs, rhs):
+        self.lhs = lhs
+        self.rhs = rhs
+        self.val = self.lhs.val + self.rhs.val
+    def __str__(self):
+        return "(+ %s %s | %s)" % (self.lhs, self.rhs, self.val)
+    def __repr__(self):
+        return self.__str__()
+
+    #         -------- input1
+    #   S    /
+    #  ---> v 
+    #  <--output
+    #      ^
+    #       \_________ input2
+    # think in terms of sensitivity.
+    # - output has S sensitivity to something,
+    # - output = input1 + input2
+    # - how much sensitivity does input1 have to S?
+    # - the same (S), because "sensitivity" is linear [a conjecture/axiom]
+    # output = f(input1, input2); f(input1, input2) = input1 + input2 
+    def backprop(self, dt_output):
+        # dt/dinput1 = dt/doutput * ddoutput/dinput1 = 
+        #            = dt/doutput * d(f(input1, input2))/dinput1
+        #            = dt/doutput * d(input1 + input2)/dinput1
+        #            = dt/doutput * 1
+        self.lhs.backprop(dt_output * 1)
+        self.rhs.backprop(dt_output * 1)
+
+class Max(Expr):
+    def __init__(self, lhs, rhs):
+        self.lhs = lhs
+        self.rhs = rhs
+        self.val = max(self.lhs.val, self.rhs.val)
+    def __str__(self):
+        return "(max %s %s | %s)" % (self.lhs, self.rhs, self.val)
+    def __repr__(self):
+        return self.__str__()
+
+    def backprop(self, dt_output):
+        # dt/dinput1 = dt/doutput * doutput/dinput 1 
+        #            = dt/doutput *d max(input1, input2)/dinput1
+        #            = |dt/doutput *d input1/dinput1 [if input1 > input2] = 1
+        #            = |dt/doutput *d input2/dinput1 [if input2 > input1] = 0
+        if self.val == self.lhs.val:
+            self.lhs.backprop(dt_output * 1)
+        else:
+            self.rhs.backprop(dt_output * 1)
+
+x = Var("x", 10)
+print("x: %s" % x)
+y = Var("y", 20)
+p = Var("p", 30)
+print("y: %s" % y)
+z0 = Mul(x, x)
+print("z0: %s" % z0)
+z1 = Add(z0, y)
+print("z1: %s" % z1)
+
+# z1 = x*x+y 
+# dz1/dx = 2x 
+# dz1/dy = 1
+# dz1/dp = 0
+# z1.clear_grad()
+z1.backprop(1) #t = z1
+print("dz/dx: %s" % x.grad())
+print("dz/dy: %s" % y.grad())
+print("dz/dp: %s" % p.grad())
+
+x.clear_grad()
+y.clear_grad()
+z1.backprop(1) #t = z1
+print("dz/dx: %s" % x.grad())
+print("dz/dy: %s" % y.grad())
+```
+
+# Computing the smith normal form
+
+
+```py
+#!/usr/bin/env python3.6
+# Smith normal form
+import numpy as np
+from numpy import *
+import math
+
+def row_for_var(xs, vi: int):
+    NEQNS, NVARS = xs.shape
+    for r in range(vi, NVARS):
+        if xs[r][vi] != 0: return r
+# return numbers (ax, ay) such that ax*x - ay*y = 0
+def elim_scale_factor(x: int, y: int): return (y, x)
+
+def smith_normal_form(xs, ys):
+    NEQNS, NVARS = xs.shape
+    assert(NEQNS == ys.shape[0])
+
+
+    # eliminate variable 'vi' by finding a row 'r' and then using the row
+    # to eliminate.
+    for vi in range(NVARS):
+        ri = row_for_var(xs, vi)
+        if ri is None: 
+            return (f"unable to find non-zero row for variable: {vi}")
+        print(f"-eliminating variable({vi}) using row ({ri}:{xs[ri]})")
+        # eliminate all other rows using this row
+        for r2 in range(NEQNS):
+            # skip the eqn ri.
+            if r2 == ri: continue
+            # eliminate.
+            (scale_ri, scale_r2) = elim_scale_factor(xs[ri][vi], xs[r2][vi])
+
+            print(f"-computing xs[{r2}] = {scale_r2}*xs[{r2}]:{xs[r2]} - {scale_ri}*xs[{ri}]:{xs[ri]}")
+            xs[r2] = scale_r2 * xs[r2] - scale_ri * xs[ri]
+            ys[r2] = scale_r2 * ys[r2] - scale_ri * ys[ri]
+        print(f"-state after eliminating variable({vi})")
+        print(f"xs:\n{xs}\n\nys:{ys}")
+
+    sols = [None for _ in range(NVARS)]
+    for vi in range(NVARS):
+        r = row_for_var(xs, vi)
+        if r is None:
+            print(f"unable to find row for variable {vi}")
+            return None
+        assert(xs[r][vi] != 0)
+        if ys[r] % xs[r][vi] != 0:
+            print(f"unable to solve eqn for variable {vi}: xs:{xs[r]} = y:{ys[r]}")
+            return None
+        else:
+            sols[vi] = ys[r] // xs[r][vi]
+
+    # now check solutions if we have more equations than solutions
+    for r in range(NEQNS):
+        lhs = 0
+        for i in range(NVARS): lhs += xs[r][i] * sols[i]
+        if lhs != ys[r]:
+            print(f"-solution vector sols:{sols} cannot satisfy row xs[{r}] = ys[{r}]:{xs[r]} = {ys[i]}")
+            return None
+        
+
+    return sols
+
+# consistent system
+# x = 6, y = 4
+# x + y = 10
+# x - y = 2
+xs = np.asarray([[1, 1], [1, -1]])
+ys = np.asarray([10, 2]) 
+print("## CONSISTENT ##")
+out = smith_normal_form(xs,ys)
+print("xs:\n%s\n\nys:\n%s\n\nsoln:\n%s" % (xs, ys, out,))
+
+
+# consistent, over-determined system
+# x = 6, y = 4
+# x + y = 10
+# x - y = 2
+# x + 2y = 14
+xs = np.asarray([[1, 1], [1, -1], [1, 2]])
+ys = np.asarray([10, 2, 14]) 
+print("## CONSISTENT OVER DETERMINED ##")
+out = smith_normal_form(xs,ys)
+print("xs:\n%s\n\nys:\n%s\n\nsoln:\n%s" % (xs, ys, out,))
+
+# consistent, under-determined system
+# x = 6, y = 4, z = 1
+# x + y + z = 11
+# x - y + z = 3
+xs = np.asarray([[1, 1], [1, -1], [1, 2]])
+ys = np.asarray([10, 2, 14]) 
+print("## CONSISTENT UNDER DETERMINED ##")
+out = smith_normal_form(xs,ys)
+print("xs:\n%s\n\nys:\n%s\n\nsoln:\n%s" % (xs, ys, out,))
+
+
+# inconsistent system
+# x = 6, y = 4 
+# x + y = 10
+# x - y = 2
+# x + 2y = 1 <- INCONSTENT
+xs = np.asarray([[1, 1], [1, -1], [1, 2]])
+ys = np.asarray([10, 2, 1]) 
+print("## INCONSISTENT (OVER DETERMINED) ##")
+out = smith_normal_form(xs,ys)
+
+# inconsistent system
+# x + y = 10
+# x - y = 2
+xs = np.asarray([[1, -1], [1, 2], [1, 1]])
+ys = np.asarray([10, 2, 1]) 
+print("## INCONSISTENT (OVER DETERMINED) ##")
+out = smith_normal_form(xs,ys)
+
+
+# consistent system over Q, not Z
+# x = y = 0.5
+# x + y = 1
+# x - y = 0
+xs = np.asarray([[1, 1], [1, -1]])
+ys = np.asarray([1, 0]) 
+print("## INCONSISTENT (SOLVABLE OVER Q NOT Z) ##")
+out = smith_normal_form(xs,ys)
+```
+
 # Laziness for C programmers
 
 #### Side node: nonsrict versus lazy (This section can be skipped)
@@ -281,11 +907,23 @@ recomputed many times. *Laziness* guarantees that a value is only computed once 
 
 #### Compiling with a custom call stack / continuations
 
-As one may notice, we currenly use the native call stack every time we *force* a lazy value. However, in doing  so, we might actually run out of stack space, which is undesirable. Haskell programs like to have "deep" chains of values being forced, so we would quite likely run out of stack space.
+As one may notice, we currenly use the native call stack every time we *force*
+a lazy value. However, in doing  so, we might actually run out of stack space,
+which is undesirable. Haskell programs like to have "deep" chains of values
+being forced, so we would quite likely run out of stack space.
 
-Therefore, GHC opts to manage its own call stack on the heap. The generated code looks as you would imagine: we maintain a stack of function pointers + auxiliary data ( stack saved values), and we push and pop over this "stack". When we run out of space, we `<find correct way to use mmap>` to increase our "stack" size. 
+Therefore, GHC opts to manage its own call stack on the heap. The generated
+code looks as you would imagine: we maintain a stack of function pointers +
+auxiliary data ( stack saved values), and we push and pop over this "stack".
+When we run out of space, we `<find correct way to use mmap>` to increase our
+"stack" size. 
 
-I've played around with this value a little bit, and have found that the modern stack size is quite large: IIRC, It allowed me to allocate ~`26 GB`. I believe that the amount it lets you allocate is tied directly to the amount of physical memory + swap you have. I'm not too sure, however. So, [for my haskell compiler, `sxhc`](https://github.com/bollu/simplexhc-cpp.git), I am considering cheating and just using the stack directly.
+I've played around with this value a little bit, and have found that the modern
+stack size is quite large: IIRC, It allowed me to allocate ~`26 GB`. I believe
+that the amount it lets you allocate is tied directly to the amount of physical
+memory + swap you have. I'm not too sure, however. So, [for my haskell
+compiler, `sxhc`](https://github.com/bollu/simplexhc-cpp.git), I am considering
+cheating and just using the stack directly.
 
 Code for the same example (with the K combinator) is provided here.
 
@@ -503,7 +1141,7 @@ into $*$ [pun intended].
 
 
 
-# What is a syzygy?
+# What is a syzygy? (WIP)
 
 #### The ring of invariants
 
@@ -533,6 +1171,9 @@ group $G$ onto the vector space $V$.
 We haven't seen what a syzygy is yet; We'll come to that.
 
 #### Example 2: The action of $SL_n(2)$ on $\mathbb C^2$
+
+### Binary quantics
+
 
 
 #### References
@@ -864,7 +1505,7 @@ int main() {
 that `this-style-of-writing` variables is called as `kebab-case`. Very
 evocative.
 
-# Localization: Introducing epsilons
+# Localization: Introducing epsilons (WIP)
 
 We can think of localization at a zero divisors
 as going from a regime of having divisors of zero into a
@@ -997,6 +1638,7 @@ int32_t main() {
 
 
 # Offline Documentation
+
 I'm collecting sources of offline documentation, because my internet
 has been quite unstable lately due to the monsoon. I realized that when it
 came to C, I would always `man malloc`, or `apropos exit` to recall
@@ -1063,10 +1705,11 @@ I would love to take a course which explains the source code.
 
 
 # stars and bars by generating functions
- Say I have `C` colors of objects, and `S` slots to put these objects in. In
- how manys can I put objects into slots, without regard to order? For example,
- say we have 4 colors `c, m, y, k` and `2` slots `_ _`. The number of colorings
- that I want to count is:
+
+Say I have `C` colors of objects, and `S` slots to put these objects in. In
+how manys can I put objects into slots, without regard to order? For example,
+say we have 4 colors `c, m, y, k` and `2` slots `_ _`. The number of colorings
+that I want to count is:
 
 ```
 cc cm cy ck
@@ -1139,8 +1782,7 @@ by `2`. This gives:
 = (20)
 ```
 
-so we get the answer as `answer = 20/2! = 10`. ~~This is wrong, it ought to be `5`.~~
-I am stupid, the answer is indeed `10`, as shown by exhaustively enumerating before. The world is safe.
+so we get the answer as `answer = 20/2! = 10`. 
 
 # This is not a place of honor
 
@@ -1169,10 +1811,9 @@ semidecidability perspective.
   set cannot be open, because it cannot be written as the union
   of sets of the form $\{ a n + b \}$: any such union would have infinitely
   many elements. Hence, $\mathbb Z \setminus \{ -1, +1 \}$ cannot be closed.
- 
 
 
-# Burnside as space average equals time average
+# Burnside as space average equals time average (WIP)
 
 
 For a finite group $G$ acting on a set $X$, burnside's lemma equates
@@ -1576,7 +2217,6 @@ $$
 - GCD factorization equation: $p/p' = (\alpha p' + p'')/p' = \alpha + p''/p'$.
 - Bezout equation: $\omega' p' + \omega'' p'' = g$.
 - Bezout equation as fractions $\omega' + \omega'' p''/p' = g/p'$.
-
 
 
 # In a PID, all prime ideals are maximal, geometrically
@@ -3156,7 +3796,7 @@ satisfies the linear isoperimetric inequality.
 
 Consider a solution to the problem of finding an $x$ such that $xgx^{-1} = h$.
 We claim that due to the hyperbolicity of the space, such an $x$ cannot be
-"too long".
+"too long". The core idea is 
 
 
 
@@ -4108,13 +4748,57 @@ I wanted to record this fact for myself, so that I have reason to come back
 to it as I learn more preorder theory. Perhaps there are certain graph theoretic
 phenomena that make more sense when looked at from a preorder point of view.
 
-# Crash course on domain theory
+# Crash course on DCPO: formalizing lambda calculus
 
 In lambda calculus, we often see functions of the form $\lambda x \rightarrow x(x)$. We would
 like a way to associate a "natural" mathematical object to such a function. The
 most obvious choice for lambda calculus is to try to create a set $V$ of values
-which contains its own function space: $(V  \rightarrow V) \subseteq V$. Unfortunately,
-the only solution for this in sets is the trivial set $\{ * \}$.
+which contains its own function space: $(V  \rightarrow V) \subseteq V$. This
+seems to ask for a set whose cardinality is such that $|V|^|V| = |V|$, which is
+only possible if $|V| = 1$, ie $V$ is the trivial set $\{ * \}$.
+However, we know that lambda calculus has at least two types of functions:
+functions that terminate and those that don't terminate. Hence the trivial set
+is *not* a valid solution.
+
+However, there is a way out. The crucial insight is one that I shall explain by
+analogy:
+
+- We can see that the cardinality of $\mathbb R$ is different from the cardinality
+   of the space of functions over it, $\mathbb R \rightarrow \mathbb R$.
+- However, "the set of all functions" isn't really something mathematicians consider.
+   One would most likely consider "the set of all _continuous_ functions" $\mathbb R \rightarrow \mathbb R$.
+-  Now note that a function that is continuous over the reals is [determined by its values at the rationals](https://math.stackexchange.com/questions/379899/why-is-every-continuous-function-on-the-reals-determined-by-its-value-on-rationa).
+   So, rather than giving me a continus function $f: \mathbb R \rightarrow \mathbb R$, you can
+   give me a continuous function $f': \mathbb Q \rightarrow \mathbb R$ which I can Cauchy-complete,
+   to get a function $\texttt{completion}(f') : \mathbb R \rightarrow \mathbb R = f$.
+-  Now, [cardinality considerations](https://math.stackexchange.com/a/271641/261373)
+   tell us that:
+
+$$|\mathbb R^\mathbb Q| = (2^{\aleph_0})^{\aleph_0} = 2^{\aleph_0 \cdot \aleph_0} = 2^\aleph_0 = |R|$$
+
+- We've won! We have a space $\mathbb R$ whose space of _continuous_ 
+   functions $\mathbb R \rightarrow \mathbb R$ is isomorphic to $\mathbb R$.
+- We bravely posit: all functions computed by lambda-calculus are continuous!
+   Very well. This leaves us two questions to answer to answer: (1) over what space?
+   (2) with what topology? The answers are (1) a space of partial orders 
+   (2) with the [Scott topology](https://en.wikipedia.org/wiki/Scott_continuity)
+
+
+
+### Difference between DCPO theory and Domain theory
+
+- A DCPO (directed-complete partial order) is an algebraic structure that can
+  be satisfied by some partial orders. This definition ports 'continuity'
+  to partial orders.
+
+- A domain is an algebraic structure of even greater generality than a DCPO.
+  This attempts to capture the fundamental notion of 'finitely approximable'.
+
+- The presentation of a domain is quite messy. The nicest axiomatization of
+  domains that I know of is in terms of [information systems](https://en.wikipedia.org/wiki/Scott_information_system).
+  One can find an introduction to these in the excellent book 
+  ['Introduction to Order Theory' by Davey and Priestly](https://www.cambridge.org/core/books/introduction-to-lattices-and-order/946458CB6638AF86D85BA00F5787F4F4)
+
 
 ### Computation as fixpoints of continuous functions
 
@@ -6858,6 +7542,33 @@ supposedly works well for an audio-based-workflow.
 
 - [https://news.ycombinator.com/item?id=22919455]
 
+### Setting up festival
+
+It seems that festival is the best(?) TTS engine for linux. One should
+1. install `festival`
+2. install the voice packs, given by the name `festvox-*`.
+3. The best (?) festival voice is supposedly in the package `festvox-us-slt-hts`,
+   with voice name `voice_cmu_us_slt_arctic_hts`. The pacakge is also available at
+   the debian site: https://packages.debian.org/sid/all/festvox-us-slt-hts/download
+4. edit the festival config file `/etc/festival.scm` and add a line
+
+```
+; the ' is important to escape the string
+; (set! voice_default '<voice-name>)
+(set! voice_default 'voice_cmu_us_slt_arctic_hts)
+```
+
+### Setting up SVOX pico2wave
+
+- Ubuntu package: `sudo apt install libttspico-utils`
+- Run instructions: 
+
+```
+#!/bin/bash
+pico2wave -w=/tmp/test.wav "$1"
+aplay /tmp/test.wav
+rm /tmp/test.wav
+```
 
 
 

@@ -193,9 +193,21 @@ underlying value. When the lazy value is forced by a <code>case</code>, we call 
 This is a straightforward way to encode non-strictness in C. However, do note that this is not <i><span class='centered'>lazy</i>, because a value could get
 recomputed many times. <i><span class='centered'>Laziness</i> guarantees that a value is only computed once and is later memoized.
 <h4><a id=compiling-with-a-custom-call-stack-continuations href='#compiling-with-a-custom-call-stack-continuations'> § </a><span class='centered'> Compiling with a custom call stack / continuations</h4>
-As one may notice, we currenly use the native call stack every time we <i><span class='centered'>force</i> a lazy value. However, in doing  so, we might actually run out of stack space, which is undesirable. Haskell programs like to have "deep" chains of values being forced, so we would quite likely run out of stack space.
-Therefore, GHC opts to manage its own call stack on the heap. The generated code looks as you would imagine: we maintain a stack of function pointers + auxiliary data ( stack saved values), and we push and pop over this "stack". When we run out of space, we <code><find correct way to use mmap></code> to increase our "stack" size. 
-I've played around with this value a little bit, and have found that the modern stack size is quite large: IIRC, It allowed me to allocate ~<code>26 GB</code>. I believe that the amount it lets you allocate is tied directly to the amount of physical memory + swap you have. I'm not too sure, however. So, <a href=https://github.com/bollu/simplexhc-cpp.git><span class='centered'>for my haskell compiler, <code>sxhc</code></a>, I am considering cheating and just using the stack directly.
+As one may notice, we currenly use the native call stack every time we <i><span class='centered'>force</i>
+a lazy value. However, in doing  so, we might actually run out of stack space,
+which is undesirable. Haskell programs like to have "deep" chains of values
+being forced, so we would quite likely run out of stack space.
+Therefore, GHC opts to manage its own call stack on the heap. The generated
+code looks as you would imagine: we maintain a stack of function pointers +
+auxiliary data ( stack saved values), and we push and pop over this "stack".
+When we run out of space, we <code><find correct way to use mmap></code> to increase our
+"stack" size. 
+I've played around with this value a little bit, and have found that the modern
+stack size is quite large: IIRC, It allowed me to allocate ~<code>26 GB</code>. I believe
+that the amount it lets you allocate is tied directly to the amount of physical
+memory + swap you have. I'm not too sure, however. So, <a href=https://github.com/bollu/simplexhc-cpp.git><span class='centered'>for my haskell
+compiler, <code>sxhc</code></a>, I am considering
+cheating and just using the stack directly.
 Code for the same example (with the K combinator) is provided here.
 <h4><a id=executable-replit href='#executable-replit'> § </a><span class='centered'> Executable <code>repl.it</code>:</h4>
 <iframe height="1000px" width="100%" src="https://repl.it/@bollu/Compiling-programs-with-continuations?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>

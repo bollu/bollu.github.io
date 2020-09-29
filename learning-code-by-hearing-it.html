@@ -26,4 +26,20 @@ for programming without needing visual feedback:
 I also learnt about <a href=http://emacspeak.sourceforge.net/><span class='centered'>emacspeak</a>, which
 supposedly works well for an audio-based-workflow.
 <ul><li><span class='centered'> [https://news.ycombinator.com/item?id=22919455]</li></ul>
+<h4><a id=setting-up-festival href='#setting-up-festival'> § </a><span class='centered'> Setting up festival</h4>
+It seems that festival is the best(?) TTS engine for linux. One should
+<ol><li><span class='centered'> install <code>festival</code></li><li><span class='centered'> install the voice packs, given by the name <code>festvox-*</code>.</li><li><span class='centered'> The best (?) festival voice is supposedly in the package <code>festvox-us-slt-hts</code>,
+   with voice name <code>voice_cmu_us_slt_arctic_hts</code>. The pacakge is also available at
+   the debian site: https://packages.debian.org/sid/all/festvox-us-slt-hts/download</li><li><span class='centered'> edit the festival config file <code>/etc/festival.scm</code> and add a line</li></ol>
+<pre><code>; the ' is important to escape the string
+; (set! voice_default '<voice-name>)
+(set! voice_default 'voice_cmu_us_slt_arctic_hts)
+</code></pre>
+<h4><a id=setting-up-svox-pico2wave href='#setting-up-svox-pico2wave'> § </a><span class='centered'> Setting up SVOX pico2wave</h4>
+<ul><li><span class='centered'> Ubuntu package: <code>sudo apt install libttspico-utils</code></li><li><span class='centered'> Run instructions: </li></ul>
+<pre><code>#!/bin/bash
+pico2wave -w=/tmp/test.wav "$1"
+aplay /tmp/test.wav
+rm /tmp/test.wav
+</code></pre>
 </container></body></html>

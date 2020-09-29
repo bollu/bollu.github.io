@@ -1,0 +1,206 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
+img { display:block; }.container { overflow-x: auto; overflow-y: hidden;  max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: 20%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
+pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=elementary-probability-theory href='#elementary-probability-theory'> § </a><span class='centered'> Elementary probability theory</h2>
+I've never learnt elementary probability theory "correctly". This is me
+attempting to fix it.
+<h4><a id=defn-sample-space href='#defn-sample-space'> § </a><span class='centered'> Defn: Sample space</h4>
+set of all possible outcomes / things that could happen. 
+<h4><a id=defn-outcome-sample-point-atomic-event href='#defn-outcome-sample-point-atomic-event'> § </a><span class='centered'> Defn: Outcome / Sample point / atomic event</h4>
+An outcome consists of all the information about the experiment
+<i><span class='centered'>after it has been performed</i> including the values of all random choices.
+<h3><a id=example-monty-hall href='#example-monty-hall'> § </a><span class='centered'> Example: Monty hall</h3>
+An outcome of the monty hall game <b><span class='centered'>when the the contestant switches</b> consists of:
+<ul><li><span class='centered'> the box with the prize.</li><li><span class='centered'> the box chosen by the contestant.</li><li><span class='centered'> the box that was revealed.</li></ul>
+Once we know the three things, we know everything that happened.
+For example, the sample point <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>2</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mn>3</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(2, 1, 3)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mclose">)</span></span></span></span></span>:
+<ul><li><span class='centered'> the prize is in box 2</li><li><span class='centered'> the player first picks box 1</li><li><span class='centered'> the assistant, Carol, reveals box 3.</li><li><span class='centered'> The contestant wins, because we're assuming the player switches. Hnce, they
+  will switch from their initial choice of (1) to (2).</li></ul>
+Note that not all 3-tuples correspond to sample points. For example,
+<ul><li><span class='centered'> <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(1, 2, 1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span></span> is not a sample point, because we can't reveal the box with the prize.</li><li><span class='centered'> <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>2</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(2, 1, 1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span></span> is not a sample point, because we can't reveal the box the player chose.</li><li><span class='centered'> <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo stretchy="false">)</mo><mo separator="true">,</mo><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mn>3</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(1, 1, 2), (1, 1, 3)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mclose">)</span></span></span></span></span> is OK. The player chooses the correct box, carol reveals some box,
+  and then the player switches.</li></ul>
+<h3><a id=constructing-the-sample-space-tree-method href='#constructing-the-sample-space-tree-method'> § </a><span class='centered'> Constructing the sample space: tree method</h3>
+We build a decision tree. 
+<h4><a id=where-is-the-prize href='#where-is-the-prize'> § </a><span class='centered'> where is the prize?</h4>
+<pre><code>(prize 1)
+(prize 2)
+(prize 3)
+</code></pre>
+<h4><a id=players-choice href='#players-choice'> § </a><span class='centered'> player's choice</h4>
+<pre><code>(prize 1
+   (choice 1)
+   (choice 2)
+   (choice 3))
+(prize 2
+   (choice 1)
+   (choice 2)
+   (choice 3))
+(prize 3
+   (choice 1)
+   (choice 2)
+   (choice 3))
+
+</code></pre>
+<h4><a id=which-box-is-revealed href='#which-box-is-revealed'> § </a><span class='centered'> Which box is revealed</h4>
+<pre><code>(prize 1
+   (choice 1 
+      (reveal 2)
+      (reveal 3))
+   (choice 2
+      (reveal 3))
+   (choice 3)
+      (reveal 2))
+(prize 2
+   (choice 1
+     (reveal 3)
+   (choice 2
+     (reveal 1)
+      (reveal 3))
+   (choice 3)
+     (reveal 1))
+(prize 3
+   (choice 1
+     (reveal 2))
+   (choice 2
+     (reveal 1))
+   (choice 3)
+     (reveal 1)
+     (reveal 2))
+</code></pre>
+<h4><a id=winloss href='#winloss'> § </a><span class='centered'> Win/Loss</h4>
+<pre><code>(prize 1
+   (choice 1 
+loss  (reveal 2)  
+loss  (reveal 3)) 
+   (choice 2
+win   (reveal 3))
+   (choice 3)
+win   (reveal 2))
+(prize 2
+   (choice 1
+win  (reveal 3)
+   (choice 2
+loss (reveal 1)
+loss  (reveal 3))
+   (choice 3)
+win  (reveal 1))
+(prize 3
+   (choice 1
+win  (reveal 2))
+   (choice 2
+win  (reveal 1))
+   (choice 3)
+loss (reveal 1)
+loss (reveal 2))
+</code></pre>
+This seems like it's 50/50! But what we're missing is the <i><span class='centered'>likelihood</i> of an
+outcome.
+<h4><a id=defn-probability-space href='#defn-probability-space'> § </a><span class='centered'> Defn: Probability space</h4>
+A probability space consists of a sample space (space of al outcomes) and a
+probability function <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span></span></span></span> that maps the sample space to the real numbers, such that:
+<ul><li><span class='centered'> For every outcome, the probability is between zero and one.</li><li><span class='centered'> The sum of all the probabilities is one.</li></ul>
+<b><span class='centered'>Interpretation</b>: For every outcome, the <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>o</mi><mi>u</mi><mi>t</mi><mi>c</mi><mi>o</mi><mi>m</mi><mi>e</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(outcome)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal">o</span><span class="mord mathnormal">u</span><span class="mord mathnormal">t</span><span class="mord mathnormal">c</span><span class="mord mathnormal">o</span><span class="mord mathnormal">m</span><span class="mord mathnormal">e</span><span class="mclose">)</span></span></span></span></span> is the probability of
+that outcome happening in an experiment.
+<h4><a id=assumptions-for-monty-hall href='#assumptions-for-monty-hall'> § </a><span class='centered'> Assumptions for monty hall</h4>
+<ul><li><span class='centered'> Carol put the prize uniformly randomly. Probability 1/3.</li><li><span class='centered'> No matter where the prize is, the player picks each box with probability 1/3.</li><li><span class='centered'> No matter where the prize is, the box that carol reveals will be picked 
+  uniformly randomly. Probability 1/2.</li></ul>
+<h4><a id=assigning-probabilities-to-each-edge href='#assigning-probabilities-to-each-edge'> § </a><span class='centered'> Assigning probabilities to each edge</h4>
+<pre><code>(prize 1 [1/3]
+   (choice 1 [1/3]
+l  (reveal 2)   [1/2]
+l  (reveal 3))  [1/2]
+   (choice 2 [1/3]
+w   (reveal 3)) [1]
+   (choice 3) [1/3]
+w   (reveal 2)) [1]
+(prize 2 [1/3]
+   (choice 1
+w  (reveal 3)
+   (choice 2
+l (reveal 1)
+l  (reveal 3))
+   (choice 3)
+w  (reveal 1))
+(prize 3  [1/3]
+   (choice 1
+w  (reveal 2))
+   (choice 2
+w  (reveal 1))
+   (choice 3)
+l (reveal 1)
+l (reveal 2))
+</code></pre>
+<h4><a id=assigning-probabilities-to-each-outcome href='#assigning-probabilities-to-each-outcome'> § </a><span class='centered'> Assigning probabilities to each outcome</h4>
+<ul><li><span class='centered'> Probability for a sample point is the product of probabilities leading
+  to the outcome</li></ul>
+<pre><code>(prize 1 [1/3]
+   (choice 1 [1/3]
+l  (reveal 2)   [1/2]: 1/18
+l  (reveal 3))  [1/2]: 1/18
+   (choice 2 [1/3]
+w   (reveal 3)) [1]: 1/9
+   (choice 3) [1/3]
+w   (reveal 2)) [1]: 1/9
+...
+</code></pre>
+So the probability of winning is going to be <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn><mo>×</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>9</mn><mo>=</mo><mfrac><mn>2</mn><mn>3</mn></mfrac></mrow><annotation encoding="application/x-tex">6 \times 1/9 = \frac{2}{3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">6</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord">/</span><span class="mord">9</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>.
+<h4><a id=defn-event href='#defn-event'> § </a><span class='centered'> Defn: Event</h4>
+An event is a <i><span class='centered'>subset</i> of the sample space.
+<ul><li><span class='centered'> For example, <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi><mi>l</mi></msub></mrow><annotation encoding="application/x-tex">E_l</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> is the event that the person loses in Monty Hall.</li></ul>
+<h4><a id=probability-of-an-event href='#probability-of-an-event'> § </a><span class='centered'> Probability of an event</h4>
+The probability that an event <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span></span> occurs is the sum of the probabilities of the 
+sample points of the event: <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo>≡</mo><msub><mo>∑</mo><mrow><mi>e</mi><mo>∈</mo><mi>E</mi></mrow></msub><mi>P</mi><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(E) \equiv \sum_{e \in E} P(e)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≡</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.07708em;vertical-align:-0.32708000000000004em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.17862099999999992em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="mrel mtight">∈</span><span class="mord mathnormal mtight" style="margin-right:0.05764em;">E</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.32708000000000004em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal">e</span><span class="mclose">)</span></span></span></span></span>.
+<h4><a id=what-about-staying href='#what-about-staying'> § </a><span class='centered'> What about staying?</h4>
+I win <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi mathvariant="normal">/</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">2/3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mord">/</span><span class="mord">3</span></span></span></span></span>rds of the time when I <i><span class='centered'>switch</i>. If I don't switch, I must have lost.
+So if I choose to stay, then I <i><span class='centered'>lose</i> <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi mathvariant="normal">/</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">2/3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mord">/</span><span class="mord">3</span></span></span></span></span>rds of the time. We're using that
+<ul><li><span class='centered'> <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mrow><mtext mathvariant="monospace">win</mtext><mtext> </mtext><mtext mathvariant="monospace">with</mtext><mtext> </mtext><mtext mathvariant="monospace">switch</mtext></mrow><mo stretchy="false">)</mo><mo>=</mo><mi>P</mi><mo stretchy="false">(</mo><mrow><mtext mathvariant="monospace">lose</mtext><mtext> </mtext><mtext mathvariant="monospace">with</mtext><mtext> </mtext><mtext mathvariant="monospace">stick</mtext></mrow><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(\texttt{win with switch}) = P(\texttt{lose with stick})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord text"><span class="mord texttt">win with switch</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord text"><span class="mord texttt">lose with stick</span></span><span class="mclose">)</span></span></span></span></span>.</li></ul>
+<h4><a id=gambing-game href='#gambing-game'> § </a><span class='centered'> Gambing game</h4>
+<ul><li><span class='centered'> Dice <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span></span></span></span></span>: <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mn>2</mn><mo separator="true">,</mo><mn>6</mn><mo separator="true">,</mo><mn>7</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{2, 6, 7\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">6</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">7</span><span class="mclose">}</span></span></span></span></span>.</li></ul>
+<pre><code>\ 2  /
+ \  /
+6 \/ 7
+  ||
+</code></pre>
+it's the same on the reverse side. It's a fair dice. So the probability of
+getting <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span></span> is a third. Similarly for <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn><mo separator="true">,</mo><mn>7</mn></mrow><annotation encoding="application/x-tex">6, 7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">6</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">7</span></span></span></span></span>.
+<ul><li><span class='centered'> Dice <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span></span>: <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mn>1</mn><mo separator="true">,</mo><mn>5</mn><mo separator="true">,</mo><mn>9</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{1, 5, 9 \}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">9</span><span class="mclose">}</span></span></span></span></span>.</li><li><span class='centered'> Dice <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span></span></span>: <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mn>3</mn><mo separator="true">,</mo><mn>4</mn><mo separator="true">,</mo><mn>8</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{3, 4, 8 \}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">4</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">8</span><span class="mclose">}</span></span></span></span></span>.</li></ul>
+<ul><li><span class='centered'> We both dice. The higher dice wins. Loser pays the winner a dollar.</li></ul>
+<h4><a id=analysis-dice-a-vs-dice-c href='#analysis-dice-a-vs-dice-c'> § </a><span class='centered'> Analysis: Dice A v/s Dice C</h4>
+<ul><li><span class='centered'> Dice <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span></span></span></span></span> followed by dice <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span></span></span>:</li></ul>
+<pre><code>(2
+  (3
+   4
+   8))
+(6
+  (3
+   4
+   8))
+(7
+  (3
+   4
+   8))
+</code></pre>
+<ul><li><span class='centered'> Assign winning</li></ul>
+<pre><code>(2
+  (3    C
+   4    C
+   8))  C
+(6
+  (3    A
+   4    A
+   8))  C
+(7
+  (3    A
+   4    A
+   8))  C
+</code></pre>
+Each of the outcomes has a probability <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>9</mn></mrow><annotation encoding="application/x-tex">1/9</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord">/</span><span class="mord">9</span></span></span></span></span>, so dice <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span></span></span> wins.
+<h4><a id=references href='#references'> § </a><span class='centered'> References</h4>
+<ul><li><span class='centered'> <a href=https://www.youtube.com/watch?v=SmFwFdESMHI><span class='centered'>Lec 18: math for computer science; elementary probability</a></li><li><span class='centered'> <a href=https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-042j-mathematics-for-computer-science-fall-2010/assignments/MIT6_042JF10_assn10.pdf><span class='centered'>Problem set 10</a></li><li><span class='centered'> <a href=https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-042j-mathematics-for-computer-science-fall-2010/assignments/MIT6_042JF10_assn11.pdf><span class='centered'>Problem set 11</a></li><li><span class='centered'> <a href=https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-042j-mathematics-for-computer-science-fall-2010/assignments/MIT6_042JF10_assn12.pdf><span class='centered'>Problem set 12</a></li></ul>
+</container></body></html>
