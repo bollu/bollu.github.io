@@ -18,6 +18,8 @@
 - [`libCURL` API](https://curl.haxx.se/libcurl/c/) to check that all links exist.
 - [crankJS](https://crank.js.org/): Lightweight React replacement if I ever need it.
 - [Ace editor](https://ace.c9.io/#nav=embedding) for a lightweight text editor inside the browser.
+- Can use [bear](https://github.com/rizsotto/Bear) + makefiles instead of being
+  forced into using `CMake` just to generate a compilation database.
 
 
 How to check if horizontal scrollbar exists:

@@ -6,6 +6,7 @@ A Universe of Sorts
 
 
 - [Leave feedback for me, `+ve` or `-ve`!](https://www.admonymous.co/bollu)
+- [Chat with me](https://calendly.com/bollu/30min?back=1&month=2020-10)
 - Reach me: <a href='mailto:siddu.druid@gmail.com'> `siddu.druid@gmail.com` </a>
 - [My github](http://github.com/bollu)
 - [My math.se profile](https://math.stackexchange.com/users/261373/siddharth-bhat)
@@ -14,7 +15,162 @@ A Universe of Sorts
 
 <!-- - [Grab me a coffee](https://ko-fi.com/bollu) -->
 
-# Elementary probability theory
+# Nix weirdness on small machines
+
+```
+floobits@pixel-druid:~$ nix-env -iA nixpkgs.hello                                                                                    
++ nix-env -iA nixpkgs.hello                                                                                                          
+installing 'hello-2.10'                                                                                                              
+these paths will be fetched (0.04 MiB download, 0.20 MiB unpacked):                                                                  
+  /nix/store/w9yy7v61ipb5rx6i35zq1mvc2iqfmps1-hello-2.10                                                                             
+copying path '/nix/store/w9yy7v61ipb5rx6i35zq1mvc2iqfmps1-hello-2.10' from 'https://cache.nixos.org'...                              
+error: unable to fork: Cannot allocate memory                                                                                        
+floobits@pixel-druid:~$ gdb --args nix-env -iA nixpkgs.hello                                                                         
++ gdb --args nix-env -iA nixpkgs.hello                                                                                               
+GNU gdb (Ubuntu 7.11.1-0ubuntu1~16.5) 7.11.1                                                                                         
+Copyright (C) 2016 Free Software Foundation, Inc.                                                                                    
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>                                                        
+This is free software: you are free to change and redistribute it.                                                                   
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"                                                           
+and "show warranty" for details.                                                                                                     
+This GDB was configured as "x86_64-linux-gnu".                                                                                       
+Type "show configuration" for configuration details.                                                                                 
+For bug reporting instructions, please see:                                                                                          
+<http://www.gnu.org/software/gdb/bugs/>.                                                                                             
+Find the GDB manual and other documentation resources online at:                                                                     
+<http://www.gnu.org/software/gdb/documentation/>.                                                                                    
+For help, type "help".                                                                                                               
+Type "apropos word" to search for commands related to "word"...                                                                      
+Reading symbols from nix-env...(no debugging symbols found)...done.                                                                  
+(gdb) run                                                                                                                            
+Starting program: /nix/store/d6axkgf0jq41jb537fnsg44080c4rd52-user-environment/bin/nix-env -iA nixpkgs.hello                         
+warning: File "/nix/store/danv012gh0aakh8xnk2b35vahklz72mk-gcc-9.2.0-lib/lib/libstdc++.so.6.0.27-gdb.py" auto-loading has been declin
+ed by your `auto-load safe-path' set to "$debugdir:$datadir/auto-load".                                                              
+To enable execution of this file add                                                                                                 
+        add-auto-load-safe-path /nix/store/danv012gh0aakh8xnk2b35vahklz72mk-gcc-9.2.0-lib/lib/libstdc++.so.6.0.27-gdb.py             
+line to your configuration file "/home/floobits/.gdbinit".                                                                           
+To completely disable this security protection add                                                                                   
+        set auto-load safe-path /                                                                                                    
+line to your configuration file "/home/floobits/.gdbinit".                                                                           
+For more information about this security protection see the                                                                          
+"Auto-loading safe path" section in the GDB manual.  E.g., run from the shell:                                                       
+        info "(gdb)Auto-loading safe path"                                                                                           
+warning: File "/nix/store/xg6ilb9g9zhi2zg1dpi4zcp288rhnvns-glibc-2.30/lib/libthread_db-1.0.so" auto-loading has been declined by your
+ `auto-load safe-path' set to "$debugdir:$datadir/auto-load".                                                                        
+warning: Unable to find libthread_db matching inferior's thread library, thread debugging will not be available.                     
+^[[A[New LWP 21466]                                                                                                                  
+GC Warning: Failed to expand heap by 128045056 bytes                                                                                 
+installing 'hello-2.10'                                                                                                              
+building '/nix/store/k3kz3cwyqdwi5bmwcbl1fzv2b2wkqrl6-user-environment.drv'...                                                       
+created 43 symlinks in user environment                                                                                              
+[LWP 21466 exited]                                                                                                                   
+[Inferior 1 (process 21462) exited normally]                                                                                         
+(gdb) run                                                                                                                            
+```
+
+### All nix subcommands are just symlinks
+
+```
+floobits@pixel-druid:~/idfk/nix-master$ ls -al /nix/store/4vz8sh9ngx34ivi0bw5hlycxdhvy5hvz-nix-2.3.7/bin/                            
+total 1784                                                                                                                           
+dr-xr-xr-x 2 floobits bollu    4096 Jan  1  1970 .                                                                                   
+dr-xr-xr-x 9 floobits bollu    4096 Jan  1  1970 ..                                                                                  
+-r-xr-xr-x 1 floobits bollu 1816768 Jan  1  1970 nix                                                                                 
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-build -> nix                                                                    
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-channel -> nix                                                                  
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-collect-garbage -> nix                                                          
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-copy-closure -> nix                                                             
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-daemon -> nix                                                                   
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-env -> nix                                                                      
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-hash -> nix                                                                     
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-instantiate -> nix                                                              
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-prefetch-url -> nix                                                             
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-shell -> nix                                                                    
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-store -> nix                                                                    
+```
+
+### How does `writeFile` work?
+
+- `cowsay` in nixpkgs
+- `writeFile` in nixpkgs
+- `runCommand'` in nixpkgs
+- `mkDerivation` in nixpkgs
+- `derivation` in nixpkgs
+- `src/libexpr/primops/derivation.nix` in nixos
+- `prim_derivationStrict` in nixos c++
+- `derivationArg` in nixos c++
+- `writeDerivation` in nixos c++
+
+# Autodiff over derivative of integrals
+
+# Proof of projective duality
+
+In projective geometry, we can interchange any statement with "points" and
+"lines" and continue to get a true statement. For example, we have the
+dual statements:
+
+- Two non-equal lines intersect in a unique point (including a point at infinty
+  for a parallel line).
+- Two non-equal points define a unique line.
+
+The proof of the duality principle is simple. Recall that any point in
+projective geometry is of the from $[a : b : c] \simeq (b/a, c/a)$. A projective
+equation is of the form $px + qy + rz = 0$ for coefficients $p, q, r \in \mathbb C$.
+
+- if we have a fixed point $[a : b : c]$, we can trade this to get a
+  line $ax + by + cz = 0$. 
+- If we have a line $ax + by + cz = 0$, we can trade this to get a point $[a:b:c]$.
+- The reason we need projectivity is because this correspondence is only well
+  defined upto scaling: the line $x + 2y + 3$ is the same as the line $2x + 3y + 6$.
+- In using our dictionary, we would get $[1:2:3]$, $[2:4:6]$. Luckily for us,
+  projectivity, these two points are the same! $(2/1, 3/1) = (4/2, 6/2)$.
+- The "projective" condition allows us to set points and lines on equal footing:
+  lines can be scaled, as can points in this setting. 
+
+# Preventing the collapse of civilization
+
+- [video by Jonathan Blow](https://www.youtube.com/watch?v=ZSRHeXYDLko)
+- [The year civilization collapsed](https://www.youtube.com/watch?v=bRcu-ysocX4)
+- [The thirty million line problem](https://caseymuratori.com/blog_0031#:~:text=The%20Thirty%2DMillion%2DLine%20Problem%20(2015))
+- [Civilizations: Institutions, Knowledge, and future](https://www.youtube.com/watch?v=OiNmTVThNEY)
+- [Dark mountain](https://dark-mountain.net/)
+
+I am very sympathetic to the perspective that software has gotten far
+less reliable than it used to be.
+
+# Violent deaths in ancient societies (WIP)
+
+### Kanun in albania
+
+### Honor societies and Revence
+
+### Law codes: Code of Hammurabi
+
+#### References
+
+- [Ethnographic and Archaeological Evidence on Violent Deaths](https://ourworldindata.org/ethnographic-and-archaeological-evidence-on-violent-deaths)
+- [Kanun](https://en.wikipedia.org/wiki/Kanun_(Albania))
+
+# An elementary example of a thing that is not a vector
+
+Consider the tripe (temperature, pressure, humidity) at a point. If we rotate
+the picture by 60 degrees, the triple _does not change_.
+
+
+Now consider the direction of wind at a point. If we rotate the picture by
+60 degrees, the components of the wind vector _change_ with our rotation.
+
+Thus:
+
+> a vector is something that transforms like a vector.
+
+To be more precise, I can phrase it as:
+
+> A vector iss (is and only is) something that transforms like a vector.
+
+Generalization to tensors is left as an exercise for the reader.
+
+# Elementary probability theory (WIP)
 
 I've never learnt elementary probability theory "correctly". This is me
 attempting to fix it.
@@ -286,6 +442,10 @@ getting $2$ is a third. Similarly for $6, 7$.
 
 Each of the outcomes has a probability $1/9$, so dice $C$ wins.
 
+#### Conditional probability
+
+
+
 #### References
 
 - [Lec 18: math for computer science; elementary probability](https://www.youtube.com/watch?v=SmFwFdESMHI)
@@ -293,7 +453,7 @@ Each of the outcomes has a probability $1/9$, so dice $C$ wins.
 - [Problem set 11](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-042j-mathematics-for-computer-science-fall-2010/assignments/MIT6_042JF10_assn11.pdf)
 - [Problem set 12](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-042j-mathematics-for-computer-science-fall-2010/assignments/MIT6_042JF10_assn12.pdf)
 
-# The handshaking lemma by simplicial complexes
+# The handshaking lemma
 
 ### Concrete situation:
 
@@ -16293,36 +16453,40 @@ The code:
 
 int main() {
     isl_ctx *ctx = isl_ctx_alloc();
-    const char *s = "{ [x] -> [x / 2] : x % 2 = 0; [x] -> [3 * x + 1] : x % 2 = 1}";
+    const char *s = "{ [x] -> [x / 2] : x >= 1 and x % 2 = 0; [x] -> [3 * x + 1] : x % 2 = 1}";
 
     isl_map *m = isl_map_read_from_str(ctx, s);
 
     isl_map_dump(m);
 
-    isl_bool b;
+    int b = 0;
     isl_map *p = isl_map_transitive_closure(m, &b);
+    p = isl_map_coalesce(p);
     printf("exact: %d\n", b);
     printf("map:\n");
     isl_map_dump(p);
+    printf("map's range:\n");
+    isl_set_dump(isl_set_coalesce(isl_map_range(isl_map_copy(p))));
+    // print("map's range intersect 1: %d\n");
+    // TODO
 
 }
+
 ```
 
 Produces the somewhat disappointing, and yet expected output:
 
 ```
-$ clang bug.c -lisl -Lisl-0.20/.libs -o bug -I/usr/local/include/
-$ ./bug
-{ [x] -> [o0] : 2o0 = x or (exists (e0 = floor((1 + x)/2): o0 = 1 + 3x and 2e0 = 1 + x)) }
+$ g++ isl.c -lisl -Lisl-0.20/.libs -o isl -I/usr/local/include/ && ./isl
+{ [x] -> [o0] : (2o0 = x and x > 0) or (exists (e0 = floor((1 + x)/2): o0 = 1 + 3x and 2e0 = 1 + x)) }
 exact: 0
 map:
-{ [x] -> [o0] }
+{ [x] -> [o0] : (o0 < x and o0 > 0) or (exists (e0 = floor((x)/2), e1 = floor((2 + o0)/6), e2, e3, e4 = floor((-x + o0 + e2 - e3)/4): 2e0 = x and 6e1 = 2 + o0 and x >= 2 and 4e4 >= -3 - x + o0 + e2 - e3 and 4e4 >= 4 - x + o0 - 2e2 + 2e3 and 4e4 <= -x + o0 + e2 - e3)) or (exists (e0 = floor((x)/2), e1, e2, e3 = floor((-x + o0 + e1 - e2)/4): 2e0 = -1 + x and o0 > 0 and 4e3 >= -3 - x + o0 + e1 - e2 and 4e3 >= 3 - x + o0 - 2e1 + 2e2 and 4e3 <= -x + o0 + e1 - e2)) or (exists (e0 = floor((x)/2), e1, e2, e3 = floor((-x + o0 + e1 - e2)/4): 2e0 = x and x >= 2 and o0 > 0 and 4e3 >= -3 - x + o0 + e1 - e2 and 4e3 >= 3 - x + o0 - 2e1 + 2e2 and 4e3 <= -x + o0 + e1 - e2)) or (exists (e0 = floor((x)/2), e1 = floor((2 + o0)/6): 2e0 = -1 + x and 6e1 = 2 + o0 and o0 < x)) or (exists (e0 = floor((x)/2), e1 = floor((2 + o0)/6): 2e0 = x and 6e1 = 2 + o0 and x >= 2 and o0 <= -2 + x)) or (exists (e0 = floor((x)/2), e1 = floor((2 + o0)/6), e2, e3, e4 = floor((-x + o0 + e2 - e3)/4): 2e0 = -1 + x and 6e1 = 2 + o0 and 4e4 >= -3 - x + o0 + e2 - e3 and 4e4 >= 3 - x + o0 - 2e2 + 2e3 and 4e4 <= -x + o0 + e2 - e3)) }
+map's range:
+{ [i0] : i0 > 0 or exists (e0 = floor((2 + i0)/6): 6e0 = 2 + i0) }
 ```
 
-I find it odd that it is unable to prove _anything_ about the image, even that
-it is non-negative, for example. This is an interesting direction in which
-to improve the functions `isl_map_power` and `isl_map_transitive_closure`
-though.
+I've yet to check that the image contains a `1` for every choice of `x`.
 
 
 # Using compactness to argue about covers
@@ -17146,3 +17310,45 @@ cultures, or schools of thought.
 > excels at producing wealth - Universal Basic Income, Universal Healthcare,
 > Unemployment Insurance, better Public Schooling... these are the kind of Social
 > Justice programs that best distribute the wealth back to society.
+
+# Big list of clojure 
+
+### Neovim/Conjure/Coc-Conjure
+
+```
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'Olical/conjure'
+let g:coc_global_extensions = ['coc-conjure']
+let maplocalleader = ","
+let g:conjure#mapping#eval_current_form = "er"
+let g:conjure#mapping#eval_root_form = "ee"
+let g:conjure#mapping#def_word = "d"
+let g:conjure#mapping#eval_visual = "E"
+let g:conjure#mapping#eval_motion = "E"
+```
+
+- evaluate OUTERMOST at point `<localleader>ee` [I find this very useful]
+- evaluate INNERMOST at point `<localleader>er` [I find this not so useful]
+- evaluate WORD at point: `<localleader>ew`
+- lookup documentation: `<localleader>K`
+- goto definition: `<localleader>d`
+- evaluate selection in visual mode `<localleader>E`
+- split vertical:  `<localleader> lv`
+- auto complete `C-x C-o`
+- I fucking love `parinfer`.
+- [tutorial](https://oli.me.uk/getting-started-with-clojure-neovim-and-conjure-in-minutes/)
+- On using multi-methods, make sure to refresh!
+
+### Emacs/CIDER
+
+- [Cheat sheet](https://github.com/mlakewood/cider-cheatsheet/blob/master/cheat.md)
+- Switch between REPL and file: `C-c C-z`
+- Go to previous location: `M-,`
+- Go back inside file: `C-u C-SPC`
+- Go back across files: `C-x C-SPC`
+- Switch to REPL: `C-c C-z`
+- Eval buffer: `C-c C-k` 
+- Docs: `C-c C-d C-d`
+- Goto symbol: `M.`
+- Eval last sexp: `C-c C-e` / `C-x C-e`
+- eval last definition: `C-c C-c`

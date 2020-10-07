@@ -27,30 +27,34 @@ The code:
 
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     isl_ctx <span class="token operator">*</span>ctx <span class="token operator">=</span> <span class="token function">isl_ctx_alloc</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>s <span class="token operator">=</span> <span class="token string">"{ [x] -> [x / 2] : x % 2 = 0; [x] -> [3 * x + 1] : x % 2 = 1}"</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>s <span class="token operator">=</span> <span class="token string">"{ [x] -> [x / 2] : x >= 1 and x % 2 = 0; [x] -> [3 * x + 1] : x % 2 = 1}"</span><span class="token punctuation">;</span>
 
     isl_map <span class="token operator">*</span>m <span class="token operator">=</span> <span class="token function">isl_map_read_from_str</span><span class="token punctuation">(</span>ctx<span class="token punctuation">,</span> s<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token function">isl_map_dump</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    isl_bool b<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> b <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
     isl_map <span class="token operator">*</span>p <span class="token operator">=</span> <span class="token function">isl_map_transitive_closure</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span> <span class="token operator">&amp;</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    p <span class="token operator">=</span> <span class="token function">isl_map_coalesce</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"exact: %d\n"</span><span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"map:\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">isl_map_dump</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"map's range:\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">isl_set_dump</span><span class="token punctuation">(</span><span class="token function">isl_set_coalesce</span><span class="token punctuation">(</span><span class="token function">isl_map_range</span><span class="token punctuation">(</span><span class="token function">isl_map_copy</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// print("map's range intersect 1: %d\n");</span>
+    <span class="token comment">// TODO</span>
 
 <span class="token punctuation">}</span>
+
 </code></pre>
 Produces the somewhat disappointing, and yet expected output:
-<pre><code>$ clang bug.c -lisl -Lisl-0.20/.libs -o bug -I/usr/local/include/
-$ ./bug
-{ [x] -> [o0] : 2o0 = x or (exists (e0 = floor((1 + x)/2): o0 = 1 + 3x and 2e0 = 1 + x)) }
+<pre><code>$ g++ isl.c -lisl -Lisl-0.20/.libs -o isl -I/usr/local/include/ && ./isl
+{ [x] -> [o0] : (2o0 = x and x > 0) or (exists (e0 = floor((1 + x)/2): o0 = 1 + 3x and 2e0 = 1 + x)) }
 exact: 0
 map:
-{ [x] -> [o0] }
+{ [x] -> [o0] : (o0 < x and o0 > 0) or (exists (e0 = floor((x)/2), e1 = floor((2 + o0)/6), e2, e3, e4 = floor((-x + o0 + e2 - e3)/4): 2e0 = x and 6e1 = 2 + o0 and x >= 2 and 4e4 >= -3 - x + o0 + e2 - e3 and 4e4 >= 4 - x + o0 - 2e2 + 2e3 and 4e4 <= -x + o0 + e2 - e3)) or (exists (e0 = floor((x)/2), e1, e2, e3 = floor((-x + o0 + e1 - e2)/4): 2e0 = -1 + x and o0 > 0 and 4e3 >= -3 - x + o0 + e1 - e2 and 4e3 >= 3 - x + o0 - 2e1 + 2e2 and 4e3 <= -x + o0 + e1 - e2)) or (exists (e0 = floor((x)/2), e1, e2, e3 = floor((-x + o0 + e1 - e2)/4): 2e0 = x and x >= 2 and o0 > 0 and 4e3 >= -3 - x + o0 + e1 - e2 and 4e3 >= 3 - x + o0 - 2e1 + 2e2 and 4e3 <= -x + o0 + e1 - e2)) or (exists (e0 = floor((x)/2), e1 = floor((2 + o0)/6): 2e0 = -1 + x and 6e1 = 2 + o0 and o0 < x)) or (exists (e0 = floor((x)/2), e1 = floor((2 + o0)/6): 2e0 = x and 6e1 = 2 + o0 and x >= 2 and o0 <= -2 + x)) or (exists (e0 = floor((x)/2), e1 = floor((2 + o0)/6), e2, e3, e4 = floor((-x + o0 + e2 - e3)/4): 2e0 = -1 + x and 6e1 = 2 + o0 and 4e4 >= -3 - x + o0 + e2 - e3 and 4e4 >= 3 - x + o0 - 2e2 + 2e3 and 4e4 <= -x + o0 + e2 - e3)) }
+map's range:
+{ [i0] : i0 > 0 or exists (e0 = floor((2 + i0)/6): 6e0 = 2 + i0) }
 </code></pre>
-I find it odd that it is unable to prove <i><span class='centered'>anything</i> about the image, even that
-it is non-negative, for example. This is an interesting direction in which
-to improve the functions <code>isl_map_power</code> and <code>isl_map_transitive_closure</code>
-though.
+I've yet to check that the image contains a <code>1</code> for every choice of <code>x</code>.
 </container></body></html>
