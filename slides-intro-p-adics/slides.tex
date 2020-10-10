@@ -6,6 +6,7 @@
 \usepackage[euler-digits,small]{eulervm}
 %\documentclass[10pt]{llncs}
 %\usepackage{llncsdoc}
+\usepackage{minted}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{fixltx2e}
@@ -79,6 +80,10 @@ $$\text{evaluation of $p(x_0)$ at $x_0 = a$} \simeq \text{remainder of $p(x)$ on
 \item $10(5)$ \pause $ = $ remainder of $10$ when factored by $5$; \pause $10 = 5\cdot 2 + 0$ \pause; $10(5) = 0$ \pause
 \item $10(7)$ \pause $ = $ remainder of $10$ when factored by $7$; \pause $10 = 7\cdot1 + 3$ \pause; $10(7) = 3$ \pause
 \end{itemize}
+\pause
+
+\includegraphics[width=3cm, height=3cm]{./10-as-a-fn.png}
+
 \end{frame}
 
 \begin{frame}{Why $n(p)$: only primes?}
@@ -93,6 +98,7 @@ $$\text{evaluation of $p(x_0)$ at $x_0 = a$} \simeq \text{remainder of $p(x)$ on
 \item $p(1) = $ \pause remainder of $p(x)$ when factored by $(x - 1)$; \pause 
 \item $p(x) = (x-1)(x - 14) + 36$; \pause $p(1) = 36$ \pause
 \end{itemize}
+
 \pause
 
 \begin{theorem}[Fundamental theorem of algebra] 
@@ -117,33 +123,41 @@ $$n = \pm 1 \prod_i p_i$$
 \item $\mathbb R$ with $i$: $i^2 = -1$. \pause That is, $i^2 + 1 = 0$. \pause
 \item Equivalently: $\mathbb R[X]$ \pause divided by $q(x) = x^2 + 1$. \pause
 \item Left with only linear polynomials. \pause
-\item All higher power polynomials $h(x)$  are $h(x) = p(x) \cdot q(x) + r(x)$ \pause $\degree(r) \leq 1$.
+\item All higher power polynomials $h(x)$  are $h(x) = p(x) \cdot q(x) + r(x)$ \pause $\degree(r) \leq 1$. \pause
+\item Example: $7x^2 + 5 = 7(x^2 + 1) - 2$ \pause
 \item Sum of linear polynomials: $(a + xb) + (c + xd) = (a + c) + x(b + d) $\pause
 \item Product of linear polynomials: $(a + xb) \cdot (c + xd) = ac + x(ad + bc) + bdx^2$ \pause
 \item dividing product by $q(x) = x^2 + 1$:
 \end{itemize}
 
-\polylongdiv{bd x^2 + (ad + bc) x + ac }{x^2+1}
+\polylongdiv{bd x^2 + (ad + bc) x + ac }{x^2+1} \pause
 
 \begin{block}{This is what we expect: Complex multiplication}
 $(a + bi) (c + di) = (ad + bc) i + (ac - bd)$
 \end{block}
 \end{frame}
 
-\begin{frame}{Natural numbers at primes}
+\begin{frame}{Taylor series}
 
 \begin{itemize}
-\item $(x - 1)(x - 3)^2$ \pause $ = x^3 - 7x^2 + 15x - 9$ \pause
-\item $x^3 - 7x^2 + 15x - 9 =  2(x - 3)^2 + (x - 3)^3$ \pause
+\item Taylor series of $q(x) \in \C[X]$ at $x = x_0$: $q(x) = \sum_i a_i (x - x_0)^i$ \pause
+\item Taylor series of $n \in \Z$ at $p$ prime: $n = \sum_i b_i p^i$. \pause
+\end{itemize}
+\begin{definition}
+The $p$-adic expansion of a natural number $n$ is
+the unique decomposition $n = \sum_i b_i p^i$ for $0 \leq b_i < p$.
+\end{definition}
+
+\begin{itemize}
+\item Taylor series of $q(x) = x^3 - 7x^2 + 15x - 9$  \pause at $x = 3$: \pause $q(x) =  2(x - 3)^2 + (x - 3)^3$ \pause
+\item $q(x) = (x-3)^2(2 + (x-3))$ \pause $ = (x-3)^2(x-1)$ \pause
 \item $x^3 - 7x^2 + 15x - 9$ has a root at $3$ of order $2$ \pause
-\item $72 = 0\cdot 1 + 0 \cdot 3 + 2 \cdot 3^2 + 2 \cdot 3^3$ \pause
-\item $72 = 3^2 * 2^3$ \pause
-\item $72$ has a root at $3$ of order $2$ \pause
-\item \textbf{Definition:} The $p$-adic expansion of a natural number $n$ is
-   the unique decomposition $n = \sum_i a_i p^i$ for $0 \leq a_i < p$.
+
+\item Taylor series/p-adic expansion of $72$ at $p = 3$: \pause $72 = 0 \cdot 3 + 2 \cdot 3^2 + 2 \cdot 3^3$ \pause
+\item $72 = 3^2 * (2 + 2 \cdot 3) = 3^2 * 2^3$ \pause
+\item $72$ has a root at $p=3$ of order $2$ \pause
 \end{itemize}
 \end{frame}
-
 
 \begin{frame}{Extending to the negatives}
 
@@ -158,9 +172,78 @@ $(a + bi) (c + di) = (ad + bc) i + (ac - bd)$
 \item $-1 \equiv 2 + 6 - 9 + 27 - 27$ \pause
 \item $-1 \equiv 2 + 6 + (27 - 9) - 125$ \pause
 \item $-1 \equiv 2 + 6 + 100 - 125$ \pause
-\item $-1 \equiv 4\cdot 5^0 + 4 \cdot 5^1 + 4 \cdot 5^2 + \cdots$. \pause
-\item Curiously, this matches the 2's complement definition of $-1$.\pause
-\item $-a \equiv -1 \times a$. For example, let's compute $-18 \mod{5}$.
+\item $-1 \equiv 2 \cdot 3^0 + 2 \cdot 3^1 + 2 \cdot 3^2 + \cdots$. \pause
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Checking our math: $-1 + 1$}
+
+\begin{itemize}
+\item $-1 \equiv 2\cdot 3^0 + 2\cdot 3^1 + 2 \cdot 3^2 + 2 \cdot 3^3 + \cdots$. \pause
+\item $-1 +1 = \mathbf{1 + 2\cdot 3^0} +   + 2\cdot 3^1 + 2 \cdot 3^2 + 2 \cdot 3^3 + \cdots$. \pause
+\item $-1 +1 = \mathbf{1 \cdot 3^1 + 2\cdot 3^1} + 2 \cdot 3^2 + 2 \cdot 3^3 + \cdots$. \pause
+\item $-1 +1 = \mathbf{1\cdot 3^2 + 2 \cdot 3^2} + 2 \cdot 3^3 + \cdots$. \pause
+\item $-1 +1 = \mathbf{1\cdot 3^3 + 2 \cdot 3^3} + \cdots$. \pause
+\item $-1 +1 = \cdots$ \pause
+\item $-1 +1 = 0$.
+\end{itemize}
+\end{frame}
+\begin{frame}[fragile]{Positional notation}
+
+\begin{columns}% [T] % align columns
+\begin{column}{.23\textwidth}
+\begin{minted}{text}
+
+...22222
+...00001 + 
+----------
+...?????
+----------
+\end{minted}
+\end{column}
+%
+\begin{column}{.23\textwidth}
+\pause
+\begin{minted}{text}
+      1
+...22222
+...00001 + 
+----------
+       0
+----------
+\end{minted}
+\end{column}
+%
+\begin{column}{.23\textwidth} 
+\pause
+\begin{minted}{text}
+     1 
+...22222
+...00001 + 
+----------
+      00
+----------
+\end{minted}
+\end{column}
+%
+\begin{column}{.23\textwidth} 
+\pause
+\begin{minted}{text}
+      
+...22222
+...00001 + 
+----------
+...00000
+----------
+\end{minted}
+\end{column}
+\end{columns}
+\pause
+
+\begin{itemize}
+\item What is $-1$ is $2$ - adically? \pause
+\item $-1 = \dots 11111$. \pause
+\item Same as $2$'s complement!
 \end{itemize}
 \end{frame}
 
@@ -174,9 +257,7 @@ $(a + bi) (c + di) = (ad + bc) i + (ac - bd)$
 \item $1/4 = 1  + 2\cdot 3 - 3^3 + 3^4 + \cdots$ \pause
 \item $1/4 = 1  + 2\cdot 3 - 3^3 + 3\cdot 3^3 + \cdots$ \pause
 \item $1/4 = 1  + 2\cdot 3 + 2\cdot 3^3 + \cdots$ \pause
-\item $1/4$ is $4^{-1}~\mod{3}$ \pause
-\item $4*4 = 16 \equiv 1~\mod{3}$ \pause
-\item $4^{-1} \equiv 4 ~\mod{3}$\pause
+\item Similar cleverness produces $1/p$ for any rational. \pause
 \end{itemize}
 \end{frame}
 
@@ -191,10 +272,7 @@ $(a + bi) (c + di) = (ad + bc) i + (ac - bd)$
 \begin{frame}{A lemma of Hensel}
 \end{frame}
 
-
-
-
-\begin{frame}[fragile]{On $(x-a)$}
+\begin{frame}[fragile]{Why only primes? Geometry}
 \begin{itemize}
 \item Dividing $p(x)$ by $(x-a_0)$ $\simeq$ evaluating  $p(x)$ at $x = a_0$ \pause
 \item Dividing $z \in \mathbb Z$ by $a_0 \in \mathbb Z$ $\simeq$ evaluating $z$ at $a_0$? \pause
