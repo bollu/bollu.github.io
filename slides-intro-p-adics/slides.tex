@@ -253,35 +253,125 @@ the unique decomposition $n = \sum_i b_i p^i$ for $0 \leq b_i < p$.
 \item $1/4$ \pause $ = 1/(1+3)$ \pause $ = 1 - 3 + 3^2 - 3^3 + 3^4 + \dots$\pause
 \item What is $-3$? that's not allowed! \pause
 \item $3^2 = 3 \cdot 3$ \pause
-\item $1/4 = 1 - 3 + 3\cdot 3 - 3^3 + 3^4 + \cdots$ \pause
-\item $1/4 = 1  + 2\cdot 3 - 3^3 + 3^4 + \cdots$ \pause
-\item $1/4 = 1  + 2\cdot 3 - 3^3 + 3\cdot 3^3 + \cdots$ \pause
+\item $1/4 = 1 \mathbf{- 3 + 3\cdot 3} - 3^3 + 3^4 + \cdots$ \pause
+\item $1/4 = 1  + \mathbf{2\cdot 3} - 3^3 + 3^4 + \cdots$ \pause
+\item $1/4 = 1  + 2\cdot 3 \mathbf{- 3^3 + 3^4} + \cdots$ \pause
+\item $1/4 = 1  + 2\cdot 3 \mathbf{- 3^3 + 3\cdot 3^3} + \cdots$ \pause
 \item $1/4 = 1  + 2\cdot 3 + 2\cdot 3^3 + \cdots$ \pause
+\item $1/4 = 1  + 2\cdot 3 + 2\cdot 3^3 + 2\cdot 3^5 + 2\cdot 3^7 + \cdots$ \pause
 \item Similar cleverness produces $1/p$ for any rational. \pause
 \end{itemize}
 \end{frame}
 
+\begin{frame}{A step back}
+\begin{columns}
+\begin{column}{.48\textwidth}
+\begin{itemize}
+\item Let $x = a_0 + a_1 p + a_2 p^2 + \dots$ \pause
+\item  $x  \equiv a_0 ~\mod{p}$ \pause
+\item  $x \equiv a_0 + a_1 p~~\mod{p^2} $ \pause
+\item  $x - a_0 \equiv a_1 p~~\mod{p^2} $ \pause
+\item  $x \equiv a_0 + a_1 p + a_2 p^2~\mod{p^3}$ \pause
+\item  $x - a_0 - a_1 p \equiv a_2 p^2~\mod{p^3}$ \pause
+\end{itemize}
+% \noindent\rule{2cm}{0.4pt}
+% {\footnotesize
+% \begin{itemize}
+% \item $72 = a_0 + 3 a_1 + 9 a_2 + 27 a_3 + 81 a_4 \dots$\pause
+% \item $72 \equiv a_0 ~\mod{3}$\pause; $a_0 \equiv 0~\mod{3}$\pause
+% \item $72 \equiv 0 + 3 a_1~\mod{9}$\pause; $3a_1 \equiv 0~\mod{3}$\pause
+% \item $72 \equiv 0 + + 0 9 a_1~\mod{27}$\pause; $9a_2 \equiv 17~\mod{27}$\pause
+% \end{itemize}
+% }
+\end{column}
 
-\begin{frame}{Irrationals?}
+\begin{column}{.48\textwidth}
+{\footnotesize
+\begin{itemize}
+\item Let $-1 = \sum_i a_i 3^i$ \pause
+\item Let $-1 = a_0 ~\mod{3}$\pause; $a_0 = 2~\mod{3}$\pause
+\item Let $-1 = 2  + a_1 \cdot 3~\mod{9}$; \pause $-3 = a_1 \cdot 3~\mod{9}$; \pause $6 = a_1 \cdot 3~\mod{9}$; \pause $a_1 = 2$
+\item Let $-1 = 2 + 2 \cdot 3 + 2 \cdot 3^2 + \dots$
+\end{itemize}
+\noindent\rule{2cm}{0.4pt}
+\begin{itemize}
+\item Let $1/4 = \sum_i a_i 3^i$ \pause
+\item What defines $1/4$? \pause The equation $1/4 \cdot 4 = 1$.\pause
+\item $(a_0 + 3a_1 + 9a_2 + \dots)(1 + 3 + 0 \cdot 9 + \cdots) = 1$\pause
+\item $a_0 \cdot 1 \equiv 1~\mod{3}$\pause $a_0 = 1$.\pause
+\item $(1 + 3a_1) (1 + 3) \equiv 1~\mod{9}$\pause  $4 + 12 a_1 \equiv 1~\mod{9}$\pause
+\item $3a_1 \equiv -3 \equiv 6~\mod{9}$ \pause
+\item $a_1 \equiv 2\mod{9}$\pause
+\item $1/4 = 1 + 2\cdot 3 + 2 \cdot 3^3 + \dots$
+\end{itemize}
+}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Irrationals}
+\begin{itemize}
+\item Let's solve $X^2 = 2$ in the $7-$adics. \pause
+\item Such a solution does not "really exist" in the rationals or the integers.\pause
+\item Start with $X \equiv 3 \mod~{7}$, $X \equiv 4 \equiv -3~\mod{7}$.
+\end{itemize}
 \end{frame}
 
 
 \begin{frame}{Convergence}
-\end{frame}
-
-\begin{frame}{A lemma of Hensel}
-\end{frame}
-
-\begin{frame}[fragile]{Why only primes? Geometry}
 \begin{itemize}
-\item Dividing $p(x)$ by $(x-a_0)$ $\simeq$ evaluating  $p(x)$ at $x = a_0$ \pause
-\item Dividing $z \in \mathbb Z$ by $a_0 \in \mathbb Z$ $\simeq$ evaluating $z$ at $a_0$? \pause
-\item $f(x)$: continuous, emph{non-zero} at $x = a_0$. \pause
-\item $f(x)$: \emph{invertible} around $x = a_0$. \pause
-\item consider $6$. \pause
-\item nonzero at $a_0 = 4$: $6 \simeq 2~\mod{4}$\pause
-\item \emph{not invertible} in $(\mathbb{Z}/4\mathbb{Z})^\times$ \pause
-\item $(\mathbb{Z}/n\mathbb{Z})^\times$:group iff $n$ prime
+\item Intuition: higher powers of $p$ should become ``smaller'' for convergence! \pause
+\item $|a|_p = p^{-1 \cdot \text{highest power of } p \text { which divides } a}$\pause
+\item $|10|_3 = 3^{-0} = 1$\pause
+\item $|3|_3 = 3^{-1} = 1/3$\pause
+\item $|9|_3 = 3^{-2} = 1/9$\pause
+\item $|90|_3 = 3^{-2} = 1/9$\pause
+\item $|27|_3 = 3^{-3} = 1/27$\pause
+\item $|a + b|_p \leq |a|_p + |b|_p$? \pause
+% \item $a = p^\alpha\cdot a'$; \pause $|a|_p = p^{-\alpha}$\pause
+% \item $b = p^\beta\cdot b'$; \pause $|b|_p = p^{-beta}$\pause
+% \item $a + b = p^\min{\alpha, \beta}\cdot x$ \pause
+% \item $|a+b|_p = p^{-\min(\alpha, \beta}$ \pause
+% \item $p^{-\min(\alpha, \beta} < p^{-\alpha} + p^{-\beta}$\pause
+% \item $|60 + 90|_3 = |120|_3 = 1/3 < |60|_3 + |90|_3$\pause
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Scam v/s non-scam}
+\begin{itemize}
+\item Solve $x = 1 + 3x$\pause
+\item \textbf{Non scam}:$-2x = 1$\pause; $x = -1/2$
+\item $x_0 = 1$\pause
+\item $x_1 = 1 + 3$
+\item $x_2 = 1 + 3x_1 = 1 + 3(1 + 3) = 1 + 3 + 3^2$\pause
+\item $x_i = 1 + 3 + 3^2 + \dots + 3^i$\pause
+\item $x_\infty = 1/(1-3) = -1/2$
+\item Converges? We need $|3| < 1$\pause
+\item But it is! $|3|_3 < 1$\pause
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Why only primes? Geometry of functions}
+% \begin{itemize}
+% \item Dividing $p(x)$ by $(x-a_0)$ $\simeq$ evaluating  $p(x)$ at $x = a_0$ \pause
+% \item Dividing $z \in \mathbb Z$ by $a_0 \in \mathbb Z$ $\simeq$ evaluating $z$ at $a_0$? \pause
+% \end{itemize}
+\includegraphics[height=5cm]{./nonzero-fn-locally-invertible.png}\pause
+\begin{itemize}
+\item $f(x)$: continuous, \emph{non-zero} at $x = x_0$. \pause
+\item $f(x)$: \emph{locally invertible} at $x = x_0$. \pause
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Why only primes? Geometry of numbers}
+
+\includegraphics[height=5cm]{./fn-4-on-naturals.png}
+\begin{itemize}
+\item consider $4$. \pause
+\item nonzero at $a_0 = 6$: $4 \simeq 4~\mod{6}$\pause
+\item \emph{not invertible} modulo $6$: $[0, 1, 2, 3, 4, 5] \times 4 \equiv [0, 4, 8, 12, 16, 20] \equiv [0, 4, 2, 0, 4, 2] \mod{6}$ \pause
+\item If we want $4$ to be a \emph{continuous} function\pause
+\item then 6 should not be a point!
 \end{itemize}
 
 \end{frame}
