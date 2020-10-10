@@ -70,6 +70,15 @@
 \newcommand{\ann}{\operatorname{Annhilator}} % annhilator
 \newcommand{\osum}{\oplus} % I confuse it often enough
 \renewcommand{\c}{\complement} % got tiring
+\newcommand{\geqzero}{\ensuremath{\geq 0}}
+\newcommand{\gezero}{\gezero}
+\newcommand{\gtzero}{\ensuremath{> 0}}
+\newcommand{\sym}{\operatorname{Sym}}
+\newcommand{\Sym}{\sym}
+\newcommand{\nil}{\operatorname{NilRadical}}
+\newcommand{\Nil}{\nil}
+\newcommand{\grade}{\ensuremath{\bullet}}
+
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 \DeclarePairedDelimiter\fracpart{\{}{\}}
@@ -82,6 +91,7 @@
 \newtheorem{exercise}[theorem]{Exercise}
 \newtheorem{note}[theorem]{Note}
 \newtheorem{slogan}[theorem]{Slogan}
+\newtheorem{Proposition}[theorem]{Proposition}
 
 \begin{document}
 \tableofcontents
@@ -2128,7 +2138,7 @@ this way? All sorts of stuff comes for free. Serre does this in FAC.
 \section{How do we know that sheaves are the right way to talk about geometry?}
 It's an empirical question. Sheaves just work so well.
 
-\chapter{The rising sea, solutions for first 3 pseudolectures}
+\chapter{AGITTOC Exercises for Pseudolecture 1, 2, 3}
 \section{Q1.3C: $A \rightarrow S^{-1}A$ is injective iff $S$ has no zero divisors}
 $(\implies)$: 
 Assume $A \rightarrow S^{-1}A$ is injective. We wish to show that $S$ has no 
@@ -2871,7 +2881,7 @@ Identity axiom says sameness glues. Gluing axiom says that objects glue. So
 in the first level, we lose objects, because we are forcing equivalence relations
 between objects. For gluing, we are make arrows equal (?)
 
-\chapter{Solutions for pseudolecture 4 exercises}
+\chapter{AGITTOC: Exercises for Pseudolecture 4}
 
 \section{2.2J: ringed spaces, modules, stalks}
     
@@ -3215,7 +3225,7 @@ $$
 
 where $A_f$ is the localization of the ring at $f$.
 
-\section{Exampe: $\C[X, Y]/(y^2 - x^3)$}
+\section{Example: $\C[X, Y]/(y^2 - x^3)$}
 
 We will have all the "points" on $y^2 = x^3$. So we will have those things
 that lie inside the ideal. So for example, we will not have the point
@@ -3358,7 +3368,7 @@ What is the corresponding geometric map?
 We have the set. We need to learn the topology next time! We need the
 locus where a function vanishes to be closed. This is the definition of Zariski.
 
-\chapter{Exercises for Pseudolecture 5}
+\chapter{AGITTOC Exercises for Pseudolecture 5}
 
 \section{Section 3.6}
 \section{Section 2.7B}
@@ -4220,7 +4230,7 @@ up like a hadron to recover quarks over $\R$.
 $\spec \Z$ is a curve. There are points on on $\spec \Z$ which contain
 topology.
 
-\chapter{Exercises for Pseudolecture 6}
+\chapter{AGITTOC Exercises for Pseudolecture 6}
 \section{section 3.2}
 \section{Exercise 3.2.L}
 We want to show that $(\C[x, y]/(xy))_x \simeq \C[x]_x$.
@@ -4253,7 +4263,7 @@ Let $k$ be a field, and $f_1, \dots f_n \in k[x_1, \dots, x_m]$.
 Let $\phi: k[y_1, \dots, y_n] \rightarrow k[x_1, \dots, x_m]$, given
 by $\phi: y_i \mapsto f_i$. 
 
-\subsection{Show that $\phi$ induces a map of sets $\Spec[x_1, \dots, x_m]/I \rightarrow \Spec[y_1, \dots, y_m]/J$
+\subsection{(a) Show that $\phi$ induces a map of sets $\Spec[x_1, \dots, x_m]/I \rightarrow \Spec[y_1, \dots, y_m]/J$
 for ideals $I \subseteq k[x_1, \dots, x_m]$, $J \subseteq k[y_1, \dots, y_n]$ such that $\phi(J) \subseteq I$.}
 We are asked to prove the case when $I = 0$, and when $J = 0$ first, and are also warned
 that this has nothing to do with $k$ being a field. Rather, we can consider
@@ -4281,13 +4291,49 @@ J ⊂ f⁻¹(I) ⊂ f⁻¹(pt)
 f⁻¹(pt) ⊂ A[Q_i]/J ⇒ f⁻¹(pt) ∈ Spc(A[Q_i]/J)
 \end{minted}
 
+\subsection{(b) Show that this map sends the ideal $(x_1 - a_1, \dots, x_m - a_m) \in \Spec A[x_1, \dots, x_m]$
+  to the point $(y_1 - f_1(a_1, \dots, a_m), \dots, y_n - f_n(a_1, \dots, a_m)$}
+
+We have the ideal $I = (x_1 - a_1, \dots, x_m - a_m)$. We are interested
+in the inverse image of this ideal with respect to $\phi$.
 
 \section{Exercise 3.2.T}
+
 \section{3.2.!}
 \section{3.2.B}
+Show that if $(x^2 + ax + b)$ is prime, thenthe quotient $\R[X]/(x^2 + ax + b)$ 
+is isomorphic to $\C$.
+
+If $\p \equiv (x^2 + ax + b)$ is prime, then the polynomial $p(x) \equiv ^2 + ax + b$ must be irreducible.
+If it were reducible into
+$(x - \alpha), (x - \beta)$, then we would have that $(x - \alpha), (x - \beta) \not \in \p$
+[because they are of degree lower than $\p$], but $(x - \alpha)(x - \beta) \in \p$.
+
+Hence, we will metaphorically have elements of the form $(-b \pm i\sqrt{4c - b^2})/2$
+adjoined into $\R$ when we quotient. We can build $i$ from that element
+by removing the arbitrary junk around $i$, thereby giving us $\C$.
+
 \section{3.2.C}
+Describe the set $\A^1_\Q$.
+
 \section{3.2.G}
-\section{Exercise 3.1.A} 
+Any integral domain $A$ which is a finite $k$-algebra, that is, a $k$ algebra
+which is a finite dimensional vector space over $k$ must be a field.
+Hint: show that for any nonzero $x \in A$, the operator $\times_x : A \rightarrow A$
+is an isomorphism.
+
+\section{Exercise 3.1.A}
+Suppose that $\pi: X \rightarrow Y$ is a continuous map of differentiable manifolds,
+as topological spaces. Show that $\pi$ is differentiable if it pulls back 
+differentiable functions to differentiable functions. That is, if $\pi$ gives
+a map $\O Y$ to $\pi_* \O X$.
+
+Take a coordinate patch of $Y$, giving map $C^Y: V \rightarrow \R^m$ for some
+open subset $V \subseteq Y$. Pull back the coordinate patch along $X$. So
+for $U \equiv \pi^{-1}(V)$, we get 
+$C^Y_*: U \rightarrow \R^m: C^Y_*(x) \equiv C_Y(\pi(x))$.
+Also pick actual coordinates for $X$, $C^X: U \rightarrow \R^n$.
+
 \section{Exercise 3.1.B}
 \section{3.2.I(a)} 
 \section{Section 3.4} 
@@ -4862,4 +4908,2312 @@ Zariski is deliberately blunt so we can carry information on the sheaf of
 rings.
 The correct definition of Haussdorf works for arbitrary topologies.
 
+\chapter{AGITTOC Exercises For Pseudolecture 7}
+\begin{itemize}
+\item \href{https://math216.wordpress.com/2017-18-course/#lob}{link to website}
+\item 3.5.B, 3.5.C, 3.5.E, 3.6.B, 3.6.E, 3.6.G, 3.6.I, 3.6.J, 3.6,K, 3.6.O, 3.6.R (or 3.6.U), 3.6.S, 3.6.T, 3.7.D, 3.7.E, 3.7.F, 3.7.G, 4.1.A, 4.1.B, 4.1.D, 4.3.A, 4.3.B, 4.3.F (required), 4.3.G (required), 4.4.A, 4.4.D, 4.4.F, 4.5.A, 4.5.C, 4.5.D, 4.5.E, 4.5.I, 4.5.K
+\end{itemize}
+
+\chapter{AGITTOC Pseudolecture 8: Aug 15 2020}
+\begin{itemize}
+\item \href {https://www.youtube.com/watch?v=JZ01Akw52z8}{Link to youtube video}
+\end{itemize}
+
+We can see the nilpotence by taking the configuration spaces of linkages.
+The plan for this week is to take a close look at projective geometry
+on $\spec A$. We begin to interpret projective geometry in this world.
+
+Support $B$ is a ring and $N$ is a $B$ module. Then we have defined the topological
+space $\spec B$ using the distinguished base: the distinguished open sets
+are of the form $D(f)$ --- doesn't vanish sets of $f$. We need this
+to be hardwired into our brains:
+
+\begin{align*}
+&V(f) = \{ \p \in \spec B : f(p) = 0 \} ~ \text{(Geometry)} \\
+&V(f) = \{ \p \in \spec B : f \in p \} ~ \text{(Algebra)}
+\end{align*}
+
+We define $\tilde N(D(f)) = N_f$. We check that this $\tilde N$ defines
+a presheaf.  Why does it form a sheaf? We check identity and gluing. Once
+we are convinced that it does, we have that $\O = \O_{\spec B}$, a real 
+sheaf on our hands.
+
+\section{Proof: hands on}
+
+We have an open set $D(g)$, and we have an open cover of it, $D(g_1), D(g_2), \dots D(g_n)$.
+We know the pairwise intersections of $D(g_i)$ and $D(g_j)$ is $D(g_i g_j)$: 
+the place where $g_i$ \emph{and} $g_j$ both don't vanish is exactly the place
+where $D(g_i g_j)$ doesn't vanish. We know that the ring of functions
+at each set will be of the form $N_{g_i}$. We want identity and
+gluability axioms to hold for this open cover. It's a question purely
+of commutative algebra.
+
+\section{Time out to think about the sheaf axioms}
+For a sheaf $\F$ of abelian groups on a topological space $X$, and an open
+cover of $U$ by $U_i$ , then the sheaf axioms can be restated as the following:
+
+\begin{align*}
+&\phi: \prod F(U_i) \rightarrow \prod F(U_{ij}) \\
+&\phi(f_1, \dots f_i) \equiv (f_1 - f_2, \dots f_i - f_j)
+&\F(U) = \ker(\phi)
+\end{align*}
+
+\begin{itemize}
+\item What does this say? Let us read it inside-out.
+\item We are considering a map  $\phi$ that sends collections of functions $\{ f_i \}$ to $\{ f_i - f_j \}$ at the corresponding
+      intersections. The kernel of such a map will have functions $\{ f_i \}$ which all agree on the intersections. This
+      gives us gluing.
+\item TODO: why does this give us identity?
+\end{itemize}
+
+Alternatively, as an exact sequence:
+
+$$ 0 \rightarrow \F(U) \rightarrow \prod_i \F(U_i) \rightarrow \prod{ij} F(U_{ij}) $$
+Also note that on the above exact sequence, we start with $\F(U)$ which has no
+indexes, we get to $\F(U_i)$ which has one index, then we get to
+$F(U_{ij})$ where we have two indexes. Can we make this continue somehow,
+to infinity? [Sid: A stack?]
+
+\section{The subcover trick: Identity}
+Suppose $\{ U_i' \} \subseteq \{ U_i \}$ is a subcover of an open cover of $U$
+in a topological space $X$. We can show that if the sheaf axioms holds for
+the subcover, then it holds for the larger cover in general.
+
+More precisely: If we have a presheaf $\F$ that satisfies the identity
+axiom of a subcover $\{ U_i' \}$, then it also does for the entire cover.
+
+If one of the elements of our subcover is the full space, then this is obvious,
+for example. If we know that two functions are equal over the entire space,
+then they must be equal over the entire space. We can ignore all the other
+sets in the subcover.
+
+\section{The subcover trick: Gluability}
+The same thing works for gluability. If we have a presheaf that already
+satisfies the identity axiom, and it then satisfies the gluability axiom
+on some subcover, then it will do so on the full cover.
+
+\section{Back to the discussion about rings and modules}
+We can quickly reduce from the case where we have a distinguished open set
+$D(g)$ where $D(g)$ is not the full space, to the case where it is the
+full space by properly killing the rest of the space out (TODO: I am not
+super clear on how to do this. Happens at 23:54).
+
+So for every $\{f_i \}$ such that $\cup_i D(f_i) = \spec A$, we want to show
+that they satisfy the sheaf axioms.
+
+Now, we should not be able to stop ourselves from saying that the above
+statement is the same as saying $(f_1, f_2, \dots f_n) = (1)$. Also remember
+that an ideal by definition only allows for finite sums to represent
+any element. So we have some sum $\sum_i a_i f_i = 1$ where only finitely many
+$a_i$ are non-zero. So this means that we have a finite number of $\cup_j D(f_j) = \spec A$.
+
+\textbf{Our goal} now is to show that if we have $f_1, \dots f_n$ such that $\sum_i a_i f_i = 1$,
+then $M = \ker (\prod M_{f_i} \rightarrow \prod M_{f_i f_j})$ --- the kernel
+of the map from the localization to the double localization.
+
+\subsection{Identity axiom [repeat of last week]}
+Given $m \in M$, if we have $m = 0$ in each $M_{f_i}$, why is $m = 0$ in $M$?
+If we have something true in a localization, then by definition, it means
+that something is true in $M$:
+
+\begin{align*}
+&\frac{m}{1} = \frac{0}{1} \quad \text{in all $M_{f_i}$} \\
+&\text{use definition of localization:} \\
+& \text{for all $i$, } f_i^b_i (m\cdot 1 - 1\cdot 0)  = 0  \\
+&\text{simplify:} \\
+& \text{for all $i$, } f_i^b_i m = 0 \\
+& \text{Now to exploit $f_i^b_i m = 0$:} \\
+& m = m \cdot 1 = m (a_1 f_1 + \dots + a_n f_n)^{\texttt{huge}} m = 0
+\end{align*}
+
+We need to find a large power, something like $\texttt{huge} = \sum_i b_i$
+such that in each term, we will have some $f_i^{b_i}$ which will make it zero.
+
+Hence we are done, we have force it to be zero.
+TODO: why is it enough to know about $m = 0$? Because we have written the condition
+in terms of kernels!
+
+
+\subsection{Gluability}
+
+\includegraphics[width=0.8\textwidth]{./pseudolecture-8-gluing.png}
+We have a bunch of open sets, with pairwise intersections. Say $D(f_1)$, $D(f_2)$,
+and an intersection $D(f_1) \cap D(f_2)$.
+
+If we now have elements $m_1 / f_1^{l_1} \in M_{f_1}, m_2/f_2^{l_2} \in M_{f_2}$,
+which agree on the overlap, then we must find some $m$ that they glue to.
+
+
+We are going to rename $f_1^{l_1}$ as $g_1$, so we are now considering 
+$m_1/f_1^{l_1} \in M_{f_1} \mapsto m_1/g_1 \in M_{g_1}$. That is, we got
+rid of the annoying exponents, to talk directly about $g_1$. Similarly,
+we rename $g_2 \equiv f_2^{l_2}$, and we think of $m_2/f_2^{l_2} \in M_{f_2}$
+as $m_2/g_2 \n M_{g_2}$.
+
+What does it mean for them to agree on the overlap? It means their difference
+is zero [in the overlap]. So that means:
+
+\begin{align*}
+&\frac{m_1}{g_1} = \frac{m_2}{g_2} \quad \text{in all $M_{g_1 g_@}$} \\
+&\text{use definition of localization:} \\
+&(g_1g_2)^{l_12} (m_1 g_2 - m_2 g_1) = 0 
+\end{align*}
+
+Now we only have a finite number of overlaps, so we can just take the number
+$k = \max l_{ij}$, so we can restate the overlap information as:
+
+
+\begin{align*}
+&\text{Given:} \\
+&(g_ig_j)^{l_ij} (m_i g_j - m_j g_i) = 0  \\
+&\text{Inflate $l_{ij} \mapsto k$:} \\
+&(g_ig_j)^k (m_i g_j - m_j g_i) = 0  \\
+\end{align*}
+
+So we chose $g_i = f_i^{l_i}$. We also have that $D(g_i) = D(f_i)$
+[TODO: what, why? This seems very untrue. What is $f_i$ is a nilpotent?]
+
+
+Now, start with $m_i/g_i$. Multiply top and bottom by $g^k$. Thus gives us
+$g_i^k m_i/g_i^{k+i}$. Call $n_i \equiv g_i^k m_i$, $h_i \equiv g_i^{k+1}$. So 
+the fraction becomes $n_i/h_i = g_i^k m_i/g_i^{k+i} = m_i/g_i$. 
+
+The point of doing this is that the zeroing condition we had before, 
+$(g_ig_j)^k (m_i g_j - m_j g_i) = 0$ can be simplified:
+
+
+\begin{align*}
+&(g_ig_j)^k (m_i g_j - m_j g_i) = 0  \\
+&(m_i g_i^k g_j^{k+1} - m_j g_j^{k} g_i^{k+1}) = 0  \\
+&(n_i h_j - n_j h_i) = 0  \\
+\end{align*}
+
+We must have that $D(h) = D(g)$ [for the same reason that $D(g) = D(f)$]
+
+So we have $n1/h1 = M_{h_1} = M_g$, and that $\sum_i h_i b_i = 1$, with
+trivial overlap: $n_1 h_2 - h_2 n_1 = 0$. We now define $m \equiv \sum_i b_i n_i$ ---
+this will be the global element.
+
+\textbf{Claim: $m = n_i /h_i$  in $M_{h_1}$}
+
+\begin{align*}
+&m =_? n_i/h_i ~ \text{in $M_{h_1}$} \\
+&\exists k, h_i^k (m h_i - n_i) =_? 0  \\
+&\exists k, h_i^k ((\sum_j b_j n_j) h_i - n_i) =_? 0  \\
+&\exists k, h_i^k ((\sum_j b_j n_j) h_i - n_i) =_? 0  \\
+&\exists k, h_i^k ((\sum_j b_j n_j h_i) - n_i) =_? 0  \\
+&\text{Use $n_1 h_2 - h_2 n_1 = 0$:} \\
+&\exists k, h_i^k ((\sum_j b_j ni h_j) - n_i) =_? 0  \\
+&\text{take $n_i$ out: }
+&\exists k, h_i^k (n_i ((\sum_j b_j h_j) - 1)) =_? 0  \\
+&\text{Since $\sum_i h_i b_i = 1$:} \\
+&\exists k, h_i^k (n_i (1 - 1)) = 0
+\end{align*}
+Hence it is indeed true that this is the right choice of element.
+
+\section{Another proof: That is enlightening for people that are already enlightened}
+
+We want to show that given $(f_1, \dots f_n) = 1$, the sequence:
+$$
+0 \rightarrow M \rightarrow \prod_i M_{f_i} \rightarrow \prod_{i, j} M_{f_i f_j}
+$$
+is exact.
+
+To check that something is exact, we need to check that it works if we localize
+at each $f_i$, because $(f_1, \dots, f_n) = 1$. Formally, the statement
+we need to prove is:
+\begin{lemma} If we have a sequence and we are wondering that it is exact,
+we can check it is exact after localizing elements that span the unit ideal.
+\end{lemma}
+
+What is happening is that we can capture the failure of exactness using
+homology [the failure of exactness]. What we are \emph{really using}
+is \textbf{faithful flatness}.
+
+
+We can just check at each $f_k$ that the sequence below is exact:
+
+$$
+0 \rightarrow M_{f_k} \rightarrow \prod_i M_{f_i f_k} \rightarrow \prod_{i, j} M_{f_i f_j f_k}
+$$
+
+Let $B = A_{f_k}$ [a new ring], and new modules $N = M_{f_k}$. Now we want
+to show that this sequence below is exact:
+
+$$
+0 \rightarrow N \rightarrow \prod_i N_f \rightarrow \prod_{i, j} N_{f_i f_j}
+$$
+
+But we should be sad: this is exactly what we started out with, except in a different ring.
+However, we should not be sad, because in this cover, we see $D(f_k) = \spec B$.
+By the subcover trick, as soon as we have the whole space in the cover,
+we are done.
+
+\section{For experts only (not hard, just unmotivated)}
+
+Suppose $M$ is an $A$-module, and $B$ is an $A$-algebra, where $B = \prod_i A_{f_i}$
+We will show that the sequence below is exact under some hypotheses:
+
+\begin{align*}
+&0 \rightarrow M \rightarrow M \otimes_A B \rightarrow M \otimes_A B \otimes_A B  \\
+& m \mapsto m \otimes 1  \\
+& m \otimes b \mapsto m \otimes b \otimes 1 - m \otimes 1 \otimes b\\
+\end{align*}
+
+The first type of hypothesis we can use is that that
+(a) if $A = B$, the sequence is going to be exact. This was
+what let us finish the problem last time. But if we pay attention to the trick,
+we can see that we don't need $A = B$, all we need is that (b) there is a section from $B \rightarrow A$.
+That is, we need a map $\pi: B \rightarrow A$ such that on composition with the map $A \rightarrow B$
+we get identity.  But if we want to be even more general, then we can just say
+that (c) $B$ is faithfully flat over $A$. This means that if the above sequence
+is exact iff it is exact on performing $\otimes_A B$. So we proceed by
+tensoring:
+
+\begin{align*}
+&\text{original:} \\
+&0 \rightarrow M \rightarrow M \otimes_A B \rightarrow M \otimes_A B \otimes_A B  \\
+&\text{use faithful flatness:} \\
+&0 \rightarrow M \otimes_A B \rightarrow M \otimes_A B \otimes_A B\rightarrow M \otimes_A B \otimes_A B \otimes A_B \\
+\end{align*}
+
+We set $A' = B$, $B' = B \otimes_A B$, $M' = M \otimes_A B$. This lets us
+rewrite the sequence as:
+
+
+\begin{align*}
+&\text{use faithful flatness (old):} \\
+&0 \rightarrow M \otimes_A B \rightarrow M \otimes_A B \otimes_A B\rightarrow M \otimes_A B \otimes_A B \otimes A_B \\
+&\text{rewrited in primed versions:} \\
+&0 \rightarrow M' \rightarrow M' \otimes_A B' \rightarrow M' \otimes_A B' \otimes_A B'  \\
+\end{align*}
+
+We now actually gain a section $B' \rightarrow A'$ that sends $b_1 \otimes b_2$ to $b_1 b_2$,
+so we got a section, so we win. [I have no idea what happened].
+
+We have supposedly just proved \textbf{flat descent}.
+
+
+\section{Stalks of the structure sheaf of $\spec A$:}
+
+The stalks $\O_\p$ are $A_\p$ --- the localizations of $A$ at a prime $\p$.
+Similarly, if $M$ is an $A$-module, then its sheaf has stalks $\tilde M_\p = M_\p$.
+
+\section{Algbera consequences:}
+If $M$ is an $A$-module, and $m \in M$, then $m = 0$ iff $m_\p = 0$ for all
+primes $\p \subseteq A$. so zero-ness is local.
+
+So, $M = 0$ iff $M_p = 0$ for all primes $\p \subseteq A$.
+
+\section{Fibers of an $\O$ module $\F$ on a locally ringed space at a point $p$:}
+$\F_p$ is an $\O_p$ module. So we can take $\F_p / \m_p F_p$ is a module
+over the residue field $K = \O_p / \m_p$. We get a vector space for every point.
+
+So now, geometrically, a module over $\spec A$ looks like "local vector spaces".
+
+
+So this seems to imply to a geometer that vector bundles are geometric. Apparently,
+to a number theorist, this implies that class groups are geometric.
+
+
+\section{Stalks at weird "non-closed" points}
+
+
+Localizing and quotienting commute, so we can first quotient $A$ to get $A/p$
+and then localize to get $A_p/\m_p A_p$. 
+Alternatively, we can first localize $A$ to get $A_p$ and then quotient to
+get $A_p/\m_p A_p$.
+
+We can do the same with a module.
+
+\section{We now know what schemes are!}
+Congratulations, we now know what a scheme is!
+
+\section{Useful tip: Gluing schemes}
+
+We want to be able to glue infinitely ringed spaces together.
+Given ringed spaces$X_1, X_2, \dots $ along with open subsets $X_{ij} \subseteq X_i$
+and inverse isomorphisms of ringed spaces: $ X_{ij} \xrightarrow{\phi_{ij}} X_{ji}$,
+and $X_{ji} \xrightarrow{\phi_{ji}} X_{ji}$. 
+We ask a coherence condition $\phi_{ij} \circ \phi_{jk} \circ \phi_ki} = id$ 
+on $X_{ij} \cap X_{ij}$, called as the cocycle condition.
+
+We now want to show that there exists some $X$ and an open cover $\{ X_i \rightarrow X \}$
+which glues together this data, unique upto unique isomorphism.
+
+We can't use induction because we are trying to glue an infinite amount of data.
+But we have a topology, so we know how to glue together infinite amounts of data
+using a topology.
+
+\section{Projective schemes / varieties}
+
+In $\P^2$ consider $p(x_0, x_1, x_2) = x_0^2 + x_1^2 = x_1 x_2$. Note that this is homogeneous.
+We need it to be homogeneous to be an element of $\P^2$.
+
+On $U_0 = \C[x_{1/0}, x_{2/0}]$ and $U_1 = \C[x_{0/1}, x_{2/1}]$. We can communicate
+between these two: $x_{0/1} = 1/x_{1/0}$, and $x_{2/1} = x_{2/0} / x_{0/1}$.
+
+On $U_0$ $p$ is $1 + x_{1/0}^2 = x_{1/0}x_{2/0}$ [set $x_0 = 1$].
+In $U_1$, $p$ is $x_{0/1}^2 + 1 = 1 \cdot x_{2/1}$. We glue them together
+using the conditions, and it is worth checking that they do indeed glue.
+
+More generally, this works for any collection of homogeneous polynomials. 
+For example, in $\P^3$, consider the equations corresponding to
+
+\begin{align*}
+&\rank
+\begin{bmatrix}
+w & x &  y \\
+x & y & z
+\end{bmatrix} = 1 \\
+& wy - x^2 = 0 \\
+& wz - xy = 0 \\
+& xz - y^2 = 0 \\
+\end{align*}
+
+$\P^3$ ought to look like a sphere in our head, and it turns out to be a
+twisted cubic curve.
+
+\section{The Proj construction}
+Given a "graded ring" such as $\C[w, x, y, z]/(wy - x^2, wz - xy, xz - y^2)$
+we get a scheme/variety.
+
+Maps of graded rings should give maps of projective schemes in the opposite
+direction. 
+
+The twisted cubic curve should be isomorphic to $\P^1$.
+
+
+We have $\P^1$ that sits inside $\P^3$. A point in $\P^1$ $[u, v]$
+is an ordered pair upto scaling. Where does it go to in $\P^3$? It goes to $[u^3, u^2v, uv^2, v^3]$.
+
+\section{Schemes, topology}
+We can now extend all the previous notions of connected, quasi-compact, 
+irreducible, noetherian topological space. Recall that noetherian topological
+space implied finitely many pieces.
+
+Any quasi compact scheme [we glue together finitely many affine schemes]
+where we take $\Spec$ of rings, the full space will still have finitely many
+pieces.
+
+We will also have irreducible closed subsets correspond to generic points
+in a scheme.
+
+Also, \textbf{DIMENSION}! is a topological notion. The notion of dimension
+is always hard, but we forget it.
+
+To convince yourself of this, take a manifold. Forget its structure,
+except as a ringed space. how does one recover dimension?
+
+\section{Coming up}
+Properties of varieties and schemes, and morphisms of schemes. We will
+then know the category of schemes.
+
+\section{Questions and Answers}
+\subsection{Relation between flat, locally free, projective}
+This should wait. The word that is left unsaid is quasicoherent sheaf. It's
+an $\O_X$ module which locally looks like $\tilde M$.
+
+\subsection{Why is flat called flat?}
+The word is from Serre (90\% sure) also (90\% sure) that it is in the GAGA
+paper. It didn't even appear there, it was in French! It's not a great word
+in retrospect. Whenever Serre makes up a word, he does it right. He had
+a sense that it would be powerful and useful, but he wasn't sure how.
+
+It is useful for so many different things --- geometry, algebra, etc. What
+is a nice moduli space of something? The word flat shows up. Ravi's secret
+word for ``flat'' is ``exact'': because tensoring preserves exactness. 
+All the uses of flat comes from the exactness.
+
+\subsection{Blow up}
+
+consider a parabola over the complex numbers [it looks like it has two
+components over the complex numbers, wat? TODO!]
+
+If we project it down to the $x$-axis, then the number of points in each
+fiber is $2$, when counted correctly. So even though it is not naively nice,
+it is still nice.
+
+\includegraphics[width=0.8\textwidth]{parabola-flatness.png}
+
+In any nice family, things behave well. After a while, you learn to say
+what is flat and what is not flat.
+
+What is a vector bundle, if we set $\tilde M$ to be a vector bundle? If
+our ring is $A$, $A$ noetherian. We should believe that $M = A \osum A$
+to be a vector bundle. In this case, flat = vector bundle, and not flat
+= not vector bundle.
+
+Somewhere in Mumford, he says:
+\begin{quote}
+It is not immediately clear geometrically what flatness is, but it is the
+answer to many of our prayers
+\end{quote}
+
+and Jonathan Wise remarks:
+\begin{quote}
+I love this idea that you don't know what your prayers are yet but flatness
+will be the answer.
+\end{quote}
+
+to which Ravi chimes in:
+\begin{quote}
+The amazing thing is, after this happens a few times, you're praying for
+something, and you know that the answer has to be flatness. I don't think
+it's possible to know that flatness would have been so important.
+\end{quote}
+
+Unfortunately, it has nothing to do with flatness. A flat connection
+has nothing to do with this.
+
+There is something about the absence of torsion being flat? 
+
+\subsection{What is a Veronese surface}
+
+When we have a ring map $B \rightarrow A$ it induces topological maps 
+$\Spec A \rightarrow \Spec B$. 
+
+We take $\P^n$ and stick it in a larger space $\P^N$. We take
+$[x_0, \dots, x_n]$. We send it to all the degree $d$ monomials in the $x_i$s.
+It will be $[x_0^d, \dots, x_n^d]$. The image of this map
+is called the Veronese.
+
+It's a useful crutch to do many things. It's easy to slice by hyperplanes.
+The nice thing about slicing by hyperplanes in the Veronese is that we
+get some combination of degree $d$ monomials --- so we can slice
+by higher degree things as well.
+
+The twisted cubic is an example.
+
+
+\subsection{What is $\Proj$?}
+Is there a notaitonal difference between rings and graded rings? Graded rings
+draw a little bullet at the bottom to show that there are pieces. Something
+like $S_\circ = \text{graded ring}$, and $S_n = \text{$n$th graded ring}$.
+
+
+Also of use is that each ideal is going to be homogeneous in a graded ring.
+It's generated by homogeneous elements.
+
+Let's say we pick $S_\circ = A[x_1, \dots, x_n] / I$ for some equations $I$:
+we are thinking varieties. We have that $S_\circ = \osum S_n$.
+
+
+$\Spec$ takes a ring and turns it into a scheme. $\Proj$ takes a graded ring,
+and turns it into a scheme.
+
+We defined projective space by gluing things together. We had $S$, a graded
+ring graded by naturals $\geq 0$. Now we take $S_\circ[1/u]$, which now
+has a negative graded object $1/u$. This is the same as homogenizing by $u$ [roughly].
+Finally we take $(S_\circ[1/u])_0$: we homogenize at $u$, and we then take the degree $0$
+part of it. This was how we got elements of projective space, like the elements
+of the form $x_{1/0}$ which sort of represent $x_1/x_0$ --- which has grade $0$.
+
+We don't need to stay at grade $0$, we can stay at many grades. We basically
+get a sort of projective version of $\Spec$. How do we glue? Consider:
+
+$$
+((S_\circ)_u)_0 \cap ((S_\circ)_v)_0
+$$
+
+If we now have a graded ring , like $S_\circ = k[\dots]/I$, and if we
+get rid of the origin, then we get an action of $\C^*$ of it, and if we
+quotient, then we get $\Proj$. The homogeneous primes turn out to be the
+generic points of the orbits.
+
+$\Proj S_\circ[t] = \Spec S_\circ \cup \Proj S_\circ$. This gives
+us the same idea as $\R^3 \cup \R \P^2 = \R \P^3$.
+
+\subsection{What is the relationship between flatness and Tor?}
+$\Tor$ measures the failure of exactness of tensoring. Flatness is about
+failure of exactness with tensoring. So if $\Tor$ vanishes, then we have
+flatness.
+
+The converse is also true. For example, if we are given $M$ and all
+higher $\Tor$s is flat, then $M$ is flat.
+
+Arthur Ogus has an easy proof of $\Tor$ and flatness.
+
+\subsection{$M$ being the kernel of an exact sequence: This process can keep going?}
+What is Cech cohomology? The 3 minute speil about it:
+
+We have a variety where can cover it with finitely many affines. Also, the
+intersection of two affines is affine. If the affines are $U_i$, then 
+we can build a Cech complex:
+
+$$
+0 \rightarrow \prod_i \F(U_i) \rightarrow \prod_i F(U_i \cap U_j) \rightarrow \dots
+$$
+
+The cohomology of this is the Cech cohomology. 
+
+For the cohomology of projective space, we can work it out by hand.
+
+\subsection{Localization}
+
+We are forced to toss in another $s_3$ to get $s_3(s_1 a_2 - s_2 a_1) = 0$.
+We know that this will not work.
+
+When we are small, we learn about fractions, and then they just tell us this
+rule of how to add fractions. You only try to make it work out when you
+learn about localizations.
+
+
+Take $k[x, y]/xy$, and localize it at $x$. Guess from geometry what we will get.
+We should get that this should be $k[x]_x$.
+
+\subsection{Meyer Viteoris vibes from the gluability proof}
+
+When we generalize Meyer Viteoris generalized becomes the Cech spectral
+sequence.
+
+\section{AGITTOC: Exercises for pseudolecture 8}
+
+\begin{itemize}
+\item \href{https://math216.wordpress.com/2017-18-course/#lob}{link to website}
+\item 4.5.O, 5.1.B, 5.1.E, 5.1.F, 5.1.I, 5.2.A, 5.2.C, 5.2.E, 5.2.F, 5.2.H, 5.2.I, 5.3.A, 5.3.B, 5.3.C, 5.3.E, 5.4.I, 5.4.J, 6.2.A, 6.2.C, 6.2.D, 6.3.B, 6.3.C, 6.3.E, 6.3.J, 6.3.I, 6.3.M, 6.3.N, 6.4.D, 6.4.E, 6.4.G, 5.4.A, 5.4.F
+\end{itemize}
+
+\section{AGITTOC: Pseudolecture 9: Saturday, Aug 22, 2020}
+
+\section{Question}
+
+\subsection{What is so affine about affine schemes?}
+Affine things are things that live inside affine space. It's lame, it's not a
+great name. 
+
+\subsection{What is fiber product of affine schemes?}
+Once we know maps of affine schemes, we will know!
+
+\subsection{How do we evaluate function on schemes?}
+
+\textbf{Functor of points} Really soon!
+
+Values of functions on points, and if we have an affine $\Spec A$, we can go
+there in a bunch of different ways, but we always get the same thing. 
+Because modding out and localizing commute, we will get reasonable answers.
+
+If we have $\tilde M$, we get the same thing, we wind up getting a vector
+space over the field regardless of in which order we localize and mod out.
+
+We are two or three lectures for a natural point to stop. After that point,
+we will likely officially stop and re-start.
+
+
+\section{Plan for today}
+We know what schemes are: A ringed space that looks locally like a $\Spec$. 
+We are going to develop the language to talk about them. We are now going to
+define morphisms of schemes.
+
+\section{Projective Schemes}
+\textbf{To read: section 4.5 of the book}
+
+\subsection{Motivation}
+We already built projective space, $\P^n$ with projective coordinates
+$(x_0, \dots, x_n)$. We defined the local coordinate in terms of $\x_{0/1}$.
+We had homogeneous polynomials which we could make sense of.
+
+\section{Graded ring}
+We work with a graded ring $k[x_0, x_1, x_2, x_3] /(x_0^7 + x_1^6 x_2 + x_3^7)$
+gives us a scheme / variety. Ravi \textbf{warns us} that graded rings are harder
+to understand than schemes!
+
+
+\subsection{A $\Z$ graded ring}
+A $\Z$ graded ring is a ring $S_\bullet = \osum_{n \in Z} S_n$. The $n$ in
+the $S_n$ is called as the grading.
+
+We have $+$ and $\times$ respect the grading: $+, \times : S_n \times S_n \rightarrow S_n$ .
+This ring is an algebra over $S_0$.  We might also imagine that $degree(x_i) = 1$.
+But it can be something bizarre, like $degree(x_i) = i$, and we can still
+grade the ring.
+
+
+We should think of polynomial rings quotiented by homogeneous polynomials.
+
+\subsection{Homogeneous ideals}
+$\osum I_\bullet \subseteq \osum S_\bullet$, where any graded piece of 
+an element of $I_\bullet$ is in $I_\bullet$. Alternatively, it is generated by
+homogeneous elements.
+
+
+\subsection{A $\Z^\gezero$ graded ring}
+It's a graded ring with no elements of negative grading. In such a ring,
+we define $S_+ \equiv \sum_{n > 0} S_\bullet$ is a homogeneous ideal, called
+as the \emph{irrelevant ideal}.
+
+
+\begin{exercise}
+If $S_\bullet$ is a finitely generated algebra over $S_0$, then $S_+$ is
+a finitely generated ideal of $S_\bullet$.
+We will say that $S_\bullet$ is a \emph{finitely generated graded ring}. We can
+make schemes out of these.
+\end{exercise}
+
+It is particularly nice with $S_\bullet$ is generated by elements of degree $1$.
+
+\section{Review of the definitions}
+\begin{itemize}
+	\item $\Z$ graded ring
+	\item $S_n$: what is a grading and what homogeneous elements are
+	\item Homogeneous ideal
+	\item Non-negatively graded ring / $\Zgeqzero$ graded ring
+	\item Finitely generated graded ring 
+\end{itemize}
+
+\section{The scheme associated to a graded ring}
+
+We define the scheme $\Proj S_\bullet$. For notational niceness, we let
+$A = S_0$. Then this is called as a ``projective $A$-scheme''. Eg. $A = \C$.
+
+We have defined schemes as ringed space. This is a definition that does
+not appeal to any global structure like an atlas. We also say that locally
+it should look like an affine. Communicating between these is somehow complicated.
+
+(i) We take $S_\bullet$, (ii) we localize at some positive homogeneous polynomial $f$,
+(iii) then we take the $0$th graded piece. Since we have inverted $f$, $1/f$ has
+negative degree. This will give us new elements in the $0$th grade. So, written
+down mathematically, we get:
+
+\begin{itemize}
+\item Starting with $S_\bullet$.
+\iteM Localize at $f$: $(S_\bullet)_f$. These are distinguished open sets.
+\item Take the $0$th graded piece: $((S_\bullet)_f)_0$.
+\item Consider its spectrum: $\Spec ((S_\bullet)_f)_0$.
+\end{itemize}
+
+When we do this for usual $\C[x_1, \dots, x_n]$, we are naturally led to consider
+things like $x_{1/0} \equiv x_1 / x_0$.
+
+
+Now the ringed space picture. The \textbf{points}
+are going to be homogeneous prime ideals
+$\p$. We want them to not contain $S_+$.  As an example, in $\P^2$, the ideal
+$(x_0, x_1, x_2)$, it will be the point such that $x_0 = x_1 = x_2 = 0$, but no 
+such point exists. So we say that it cannot contain $S_+$.
+
+The \textbf{topology} is $V(I_\bullet)$, the vanishing sets of homogeneous ideals.
+The distinguished open sets are going to be generated by a function $f \in S_{n > 0}$,
+which we will write as $D_+(f)$. These will connect to the $\Spec ((S_\bullet)_f)_0$.
+Finally, the \textbf{stalks} at a homogeneous prime $p$ is going to be
+$((S_\bullet)_f)_0)$. We can make sure that everything is compatible, etc.
+
+
+\begin{exercise}
+The condition that $S_+$ is finitely generated, so $S_+ = \langle f_1, \dots, f_n \rangle$
+implies that $\Proj S_\bullet = \cup_i D_+(f_i)$. So $\Proj S$ is quasi-compact.
+Each of the $\D_+(f_i)$ is a $\Spec$: $\Spec(( S_\bullet)_{f_i})_0)$.
+\end{exercise}
+
+\subsection{Thinking cleanly about $\Proj$}
+
+Suppose $V$ is an $n$ dimensional vector space over $k$. we want $\Proj$ 
+to be 1-dimensional subspaces. 
+
+We do this by considering $\Sym^\bullet(V^*) \equiv \sum_{n \geq 0} \Sym^n (V*)$.
+This is a finitely generated $\Zgeqzero$ graded ring. 
+
+Then when we compute $\Proj \Sym^\bullet(V^*) \simeq \P^{n-1}$ after choosing a basis.
+
+We need the dual for some geometry. Let $k$ be algebraically closed.  Then
+the closed points $\Proj \Sym^\bullet(V^*)$ will be naturall/canonical isomorphic
+to one-dimensional subspaces of $V$, no choice of basis needed.
+
+(Ravi quip: It's a good exercise because I always find it confusing. After I'm
+done being confused, I'm a better person than before)
+
+\section{Communicating between Affine open sets}
+
+the problem is that on the geometry, if we have $\Spec A$ (algebra) and
+$\Spec B$ (algebra) inside
+some $X$, how they talk to each other is through geometry, there is no $\Spec$
+involved.
+
+\example{\C-schemes}
+A \C scheme is a scheme whose functions on open sets are not just rings, but \C
+algebras. Restriction maps are restrictons of \C algebras.
+
+
+We can replace \C with an arbitrary ring $A$.
+Every \C scheme is a \Q scheme, every scheme is a \Z scheme.
+
+\section{Stalk-local properties} 
+
+\begin{definition}
+\textbf{Reduced}: Nilpotent free. There is no fuzz, functions are determined
+by their values at points. Recall that for a ring, we had $\nil(A) \equiv \sqrt{0}$.
+We can check that this commutes with localization: $\nil(A_\p) = (\nil A)_\p$. Hence,
+we can show that $\nil(A) = 0 \iff (\nil(A))_\p = 0$ for all $\p$. [More generally,
+module is $0$ if it is zero at all primes.] So that means that the nilradical
+of the stalk is reduced.
+
+A scheme $X$ is reduced if $\O_{X, \p}$ is reduced for all $\p \in X$. This is
+only about the ringed space. 
+\end{definition}
+
+But this definition of reduced is the same as $\Spec A$ being reduced for all
+affine opens $A$ of $X$. This is the same as checking on some affine cover
+of $X$ by the previous identity/gluing lemmas.
+
+\begin{definition}
+\textbf{Integral}: A scheme is integral if it is nonempty and $\O_X(U)$ is 
+an integral domain for all nonempty $U$.
+\end{definition}
+
+\begin{exercise}
+integral = reduced(no fuzz) + irreducible(one piece)
+\end{exercise}
+
+If $A$ is a UFD, it implies that every $A_\p$ is a UFD.  The converse is \textbf{not true!}.
+There exists rings where every $B_\p$ is a UFD, but $B$ is not a UFD.
+\begin{definition}
+We say a scheme $X$ is \textbf{factorial} (Ravi secretly thinks ``locally factorial'')
+if $\O_{X, \p}$ is a UFD for all $\p$.
+\end{definition}
+
+\begin{definition}
+Let $A$ be an integral domain. Let $p(x) \equiv \sum_i a_i x^i + x^n$ ($a_i \in A$) be
+some monic of degree $n$. Let $s$ be any solution of $p(x)$ in the fraction field $K(A)$.
+If $s \in A$ for all such choices of $p, s$, then the domain is salid to be
+\textbf{integrally closed}.
+\end{definition}
+\begin{example}
+The prototypical example of an integrally closed domain is $\Z$. Any solution $s$ in $\Q$
+to an equation with coefficients in $\Z$ must be of the form $s = p_s/1$. That is,
+$s \in \Z$. 
+\end{example}
+
+If $A$ is integrally closed, then $A_\p$ is integrally closed.
+\begin{definition}
+A scheme $X$ is \textbf{normal} iff $\O_{X, \p}$ is integrally closed for all $\p$.
+\end{definition}
+
+Also, every UFD will be integrally closed. Hence, every factorial scheme
+will be a normal scheme. 
+
+We want a notion of "smooth" geometrically. If we have something that is not
+smooth, we try to resolve it to make it smooth. These are halfway houses
+towards being smooth.
+
+\section{Affine Communication Lemma}
+It's really easy to prove, it's powerful. The only way things can be easy
+and powerful is if they are clever.
+
+Fix a scheme $X$. Let $P$ be a property enjoyed by some of the affine
+open subsets of $X$ such that IF:
+
+\begin{itemize}
+\item If $\spec A \subseteq X$ has $P$, then for any $f \in A$, $A_f$ has
+	$P$.
+\item Let $\spec A \subseteq X$, and $(f_1, f_2, \dots f_n) = A$, that is,
+$\spec A = \cup_i \spec f_i$. Now we also know that if $\spec A_f$ have $P$,
+then $\spec A$ has $P$.
+\end{itemize}
+
+THEN if $X = \cup \spec B_i$ where all $\spec B_i$ has $P$, then every affine
+open of $X$ has $P$.
+
+\begin{lemma}
+Nike's lemma [Nike is the greek goddess of victory. Kisin is a Mayan death
+god]. Suppose $\spec A, \spec B$ are two affine opens of a scheme $X$.
+Then $\spec A \cap \spec B$ is covered by open subsets which are simultaneously
+distingushed affine open subsets of $\spec A$ and $\spec B$ at the same time.
+\end{lemma}
+\begin{proof}
+We use that we are in locally ringed spaces. Given any point $p$, we want
+to find a neighbourhood of $p$ that is a distinguished open in both $\Spec A$
+and $\spec B$.
+
+\includegraphics[width=0.8\textwidth]{nikes-lemma-1.png}
+
+To a first approximation, we take $p \in D(f) \in \spec A$, so $f \in A$. That is,
+we are now inside $\spec A_f$. Inside $\spec A_f$ (ie inside $D(f)$),
+we will take $p \in D(g) \subseteq D(f)$ for some $g \in B$. So we now have
+have $\spec B_g \subseteq \spec A_f$.
+
+Since $g \neq 0$ inside $A_f$, we are forced for $g$ to be a distinguished
+open in $A$ [we should use that $g \in A_f \implies g f^n \in A$ for some power of $f$]
+Now we will have that this $D(gf^n)$ is a distinguished open in both $\spec A$
+and $\spec B$.
+
+The way we find something that is distinguished in both is to take something
+that is distinguished in one of them, then something that is distinguished in
+a smaller region of the other. This is forced to be distinguished in the first.
+\end{proof}
+
+We can now prove the affine communication lemma
+\begin{proof}
+We have $\spec A_i$ that cover $\spec A$. we will cover $\spec A$ with things
+that are distinguished in both $A_i$ and $A$, which we can do by nike's lemma.
+\end{proof}
+
+\begin{exercise}
+If $A$ is noetherian, then so is $A_f$. What is less obvious, is that if we 
+have that $(f_1, \dots, f_i) = A$ [ie, $\cup D(f_i) = \spec A$] and each $A_{f_i}$
+is noetherian, then so is $A$
+\end{exercise}
+
+\begin{definition}
+A scheme is \textbf{locally Noetherian }if every affine open subset is $\spec$
+of a noetherian ring
+\end{definition}
+
+\begin{definition}
+a scheme is \textbf{Noetherian} if it is locally noetherian and quasi-compact
+\end{definition}
+
+\begin{exercise}
+Suppse $A$ is an $R$ algebra. If $A$ is finitely generated over $R$, then
+so is $A_f$. If $(f_1, \dots f_n) = A$ and each $A_{f_i}$ is finitely 
+generated over $R$, then so is $A$.
+\end{exercise}
+
+\begin{definition}
+A scheme over $R$ is \textbf{locally of finite type} over $R$ if every affine open subset
+is $\spec$ of a finitely generated algebra over $R$. 
+\end{definition}
+
+\begin{definition}
+A scheme over $R$ is \textbf{finite type} over $R$ if it is  locally of finite
+type over $R$ and is quasicompact
+\end{definition}
+
+``finite type'' translates to finitely generated. So whenever people say finite
+type, we should think of finitely generated.
+
+\begin{definition}
+A variety over a field $k$ is a scheme that is finite type, reduced, and Haussdorff.
+What is Haussdorff?
+\end{definition}
+
+\begin{definition}
+An affine variety over a field $k$ is an affine scheme that is finite type
+and reduced
+\end{definition}
+
+\begin{definition}
+A projective variety over a field $k$ is a projective scheme that is
+finite type and reduced
+\end{definition}
+
+
+\section{Uses of these definitions}
+If $X$ is locally of finite type over $k$, the closed points are precisely those
+$p$ with residue field $k(p)$ a finite exteions of $k$. The degree of a closed
+point $p$ of $X$ is the degree $k(p)/k$. [This is Nullstellensatz?] In the
+complex numbers, all closed points are created equal. In $\R$, we have points
+of degree $1, 2$.
+
+We \textbf{should not read the rest of chapter 5.}
+
+\section{Morphism of schemes}
+Recall that a ringed space is a topological space $(X, \tau)$ equipped with
+a sheaf of functions at each open $U$ \in \tau$.
+
+A morpshism of ringed spaces $(X, \O_X) \rightarrow (Y, \O_Y)$ is a continuous
+map $\pi: X \rightarrow Y$ along with a pullback of functions map
+$\pi^\sharp: \O_Y \rightarrow \pi_\star \O_X$.
+
+A ring map $B \rightarrow A$ creates a map of topological spaces $\spec A \rightarrow \spec B$.
+We can now check that we get a map of ringed spaces $\spec A \rightarrow \spec B$.
+
+Topologically, we have $\pi^{-1}(\spec B_g)= \spec A_{\pi (g)}$.
+
+
+Now for the sheaf map, for any $D(g) \in \spec B$, define $sh: B_g \rightarrow A_{\pi (g)}$
+as $b/g^m \mapsto \pi(b)/ \pi(g)^m$.
+
+
+\section{Next week}
+Next week, we will talk about maps of schemes! 
+
+\textbf{Definition 1:} A map of schemes is a map of ringed spaces that locally
+looks $\spec A \rightarrow \spec B$. This is a true definition, so what's
+wrong with it? The problem is that it's hard to check!
+
+\textbf{Definition 2:}
+We already know  what a locally ringed space is. If we map $\spec A$ to $\spec B$
+in the way we want to, it will be a map of ringed spaces. But there maybe worse
+map of ringed spaces that don't behave well with $\spec$s. The punchline
+is that any map of locally ringed spaces is of the type we want.
+
+
+\section{Questions}
+
+\subsection{What does normal mean geometrically?}
+
+Empirical answer! Some things are fundamentally geometric, some are fundamentally
+algebraic. Normal is algebraic. If something is not ``unibranch'', 
+
+
+What does normal mean for curves? Normal means smooth. What is a curve? A 
+bit of a curve is a Discrete Valuation Ring.
+
+For surfaces, this is not true. 
+
+One way to detect normality is that normal implies smooth in codimension 1.
+There is a criterion called S2: S is for serre, and 2 because he's too good,
+such that if it satisfies S2 and is smooth in codimension 1, then it is normal.
+In particular, we can check this at each point. It's part of the definition
+of Cohen Macaulay.
+
+What is something that is not Cohen macaulay? [Ravi draws a rectangle with a curve
+through it.] Cohen macaulay means things are of the same dimension.
+
+\includegraphics[width=0.8\textwidth]{non-cohen-macaulay.png}
+
+\subsection{Why did we not define locally noetherian as a stalk local property?}
+
+$\O_{X, p}$ is a Noetherian ring for all $p$ is not the same as it being
+a Noetherian scheme.
+
+If a scheme is Noetherian, then $\O_{X, p}$ is a Noetherian ring for all $p$.
+
+The converse is not true: Even if $\O_{X, p}$ is a Noetherian ring for all $p$,
+then scheme need not be Noetherian. A good example is $\overline \Q \times_\Q \overline \Q$.
+It is not Noetherian, but all of its stalks are $\overline \Q$ which is Noetherian.
+
+Alternatively, we can take the limit over all stalks, and this somehow
+gives us a totally disconnected space. Apparently related to Bhatt and
+Schloze's work on ``The pro-étale topology for schemes''.
+
+\subsection{By adjunction, we could have defined the sheaf map differently. When
+is the other useful?}
+
+Ravi says that he cannot help himself from not being able to see the difference
+between these two things. 
+
+\textbf{First:} I cannot see any difference. He also sees a third one: For every open
+set in $Y$ and $X$ mapping to it, he sees a map between functions.
+
+
+\textbf{Second:} why our current definition is advantageous: We have a map $B \rightarrow A$
+and a spec map $\spec A \rightarrow \spec B$ and we have $\tilde M$ on $A$, then we
+can easily tell how to push forward $\tilde M$ as a $B$-module. Pushforward for module
+is easy. So we prefer to write things in terms of pushforwards. If we want to think
+in terms of pullbacks, then pullbacks are useful.
+
+\subsection{Geometric meaning of factorial?}
+
+Even more algebraic. If we take $\C[x_1, \dots, x_m] / (x_1^2 + \dots + x_m^2)$
+if $m = 1$ it is not reduced. If $m \geq 2$ it reduced, if $m \geq 5$ it has
+unique factorization. It is not true with $m = 4$ because you can change coordinates
+over the complex numbers. It is an example of algebraic things that are in a 
+sequence (by Serre).
+
+\subsection{Stalk local versus affine local}
+Stalk local is geometric. Affine local is a algebraic fact. If it is an 
+algebraic notion, it is better to go with affines.
+
+
+\section{AGITTOC: Exercises for pseudolecture 9}
+Should look for chapter 4, 5
+\begin{itemize}
+\item \href{https://math216.wordpress.com/2017-18-course/#lob}{link to website}
+\item 4.5.O, 5.1.B, 5.1.E, 5.1.F, 5.1.I, 5.2.A, 5.2.C, 5.2.E, 5.2.F, 5.2.H, 5.2.I, 5.3.A, 5.3.B, 5.3.C, 5.3.E, 5.4.I, 5.4.J, 6.2.A, 6.2.C, 6.2.D, 6.3.B, 6.3.C, 6.3.E, 6.3.J, 6.3.I, 6.3.M, 6.3.N, 6.4.D, 6.4.E, 6.4.G, 5.4.A, 5.4.F
+\end{itemize}
+
+\section{AGITTOC Pseudolecture 10: Saturday, August 29th 2020}
+
+\begin{itemize}
+\item \href{https://www.youtube.com/watch?v=ghr-BymTY7c}{YouTube link}
+\end{itemize}
+
+We're going to have three or four lectures in September, after that we're going
+to have a new edition, starting with a review. The plan for today is to talk
+about morphisms. We want to understand the category of such things.
+
+Schemes and varieties are ringed spaces. We will have a map $(X, \O_X) \rightarrow (Y, \O_Y)$.
+If we have a ring map $B \rightarrow  A$ we automatically have a spec map
+$\Spec B \rightarrow \spec A$. We want maps of ringed spaces which look
+like maps of $\Spec$s locally.
+
+\begin{definition}
+Morphisms of ringed spaces: We have a topological space $X$ with a sheaf of rings
+$\O_X$. We are mapping into another such thing $(Y, \O_Y)$. we want
+a map of sets, which is continuous, and then we need a pullback map of
+how to pullback sheaf data $\pi^\hash: \O_Y \rightarrow \O_X$. 
+\end{definition}
+
+We can compose these morphisms. Morpshisms to a ringed space can be
+glued together. If we have a target space $(Y, \O_Y)$ and we have a 
+space $X$ with a cover $U_i \subseteq X$ with maps $f_i : U_i \rightarrow Y$ which
+agree pairwise, then they can be glued. Fancily put, maps into the ringed space
+$Y$ form a sheaf.
+
+Also, we can push forward $\O_X$ modules as $\O_Y$ modules.
+
+
+A morphism of rings $B \rightarrow A$ gives a morphism of ringed spaces
+$\pi: \Spec A \rightarrow \spec B$. We need to say what the map is. We need
+to check how to pullback functions. As long as we know how to pullback on a 
+base, we are good.
+
+$$
+\pi^{-1}(D(g)) = D(\phi|g)
+$$
+
+The map sends $B_g$ to $A_{\phi(g)}$. Not every map of ringed spaces looks
+like this. But every map of locally ringed spaces is of this form.
+What is an example of ringed spaces which are not locally ringed? It's a homework
+problem!
+
+\begin{definition}
+Morphisms of locally ringed spaces: A ringed space where the stalks are local
+rings. It's a morphism of ringed spaces such that if $\pi(p) = q$ then
+we want to get a map of stalks $\O_{Y, q} \rightarow \O_{X, p}$. So, 
+to do this, we will need the maximal ideal here to go to a maximal ideal
+there. Geometrically, we need functions vanishing around $q$ to vanish around $p$
+on being pulled back.
+\end{definition}
+
+If we have a map $\pi: \Spec A \rightarrow \spec B$ as a morphism of locally
+ringed spaces,then it is the morphism induced by 
+
+$$
+\pi^{\sharp}:  \Gamma(\Spec B, \O_{\spec B}) \rightarrow \Gamma (\Spec A, \O_{\spec A})
+$$
+where $\Gamma(\Spec B, \O_{\spec B}) \simeq B$ and $\rightarrow \Gamma (\Spec A, \O_{\spec A}) \simeq A$.
+
+\begin{proof}
+We have a map $\pi: \spec A \rightarrow \spec B$ as a map of locally ringed spaces.
+We want to recover it from \textbf{only} the global section data.
+
+So we need to recover the map on sets, then we need the map to be continuous,
+and we need to recover the map on sheaves.
+
+If we have $p \mapsto \pi(p)$. How do we recognize $p$? We can recognize it
+by considering functions vanishing at $p$. Because it's a ringed space, points
+correspond to functions vanishing at that point [the maximal ideal]. 
+
+How do we know what $p$ and $\pi(p)$ are supposed to be? we can notice that
+functions that vanish at $\pi(p)$ become functions that vanish at $p$.
+
+If we take a basic open set where $g$ does not vanish, ie, $\pi^{-1}(D(g)) = D(\pi^*(g))$
+by definition. So topologically we get the right thing: basic opens pull back
+to basic opens.
+
+Finally, we have to recover the local structure. We have
+
+$$
+\pi^{\sharp}:  B = \gamma(\Spec B, \O_{\spec B}) \rightarrow \gamma (\Spec A, \O_{\spec A}) = A
+$$
+
+We want to recover:
+
+
+$$
+\pi^{\sharp}_g: B_g =   \Gamma(\Spec D(g), \O_{\spec B}) \rightarrow \Gamma (\Spec D(\pi^\sharp g), \O_{\spec A}) = A_{\pi^\sharp g}
+$$
+
+We can go from $\gamma(\Spec B, \O_{\spec B})$ to $\gamma(\Spec D(g), \O_{\spec B})$
+by localizing, and similarly for the other component. This uniquely fixes the
+data we want to recover.
+
+The motivation is that we should first have tried that an isomorphism from
+$A$ to $A'$ induces an isomorphism $\Spec A' \rightarrow \Spec A$. If we had
+done it before, then we would have seen all the complications before. 
+
+\begin{definition}
+A morphism of schemes is a morphism of locally ringed spaces.
+\end{definition}
+
+We have no mentions of $\spec$s, but this will still work.
+
+The category of affine schemes is the category of rings with the arrows reversed.
+We can show that this holds even when we replace stuff with arbitrary schemes:
+
+\begin{align*}
+&\spec A \rightarrow \spec B \iff A \leftarrow B \\
+&X \rightarrow \spec B \iff \Gamma(X, \O_X) \leftarrow B \\
+\end{align*}
+Since $X$ is covered by affines, we will have local maps of the form $spec A_i \rightarrow \spec B$.
+Since maps of locally ringed spaces can glued, we are done.
+
+
+\begin{definition}
+an $A$-scheme is a map $X \rightarrow \spec A$. A map of such things is a 
+function $f$ such that the map which projects into $\spec A$ from $X$ and $Y$
+commute
+\includegraphics[width=0.8\textwidth]{map-of-a-schemes.png}
+\end{definition}
+
+
+\section{Ignore this! Functor of points}
+
+It should be renamed ``Functor of maps''. There are too many different kind
+of points that people talk about. There are actual points (the underlying set),
+there are generic points (examples of regular points). When talking about
+varieties, we have points v/s closed points. 
+
+Then we have $S$-valued points and geometric points. A $k$-valued point is
+a map from $\spec k \rightarrow X$. an $A$ valued point is a map $\spec A \rightarrow X$.
+So an $S$ point (where $S$ is a scheme) is a map  $S \rightarrow X$.
+
+A geometric point is a map from an algebraically closed field (or separably
+closed field): $\spec k \rightarrow X$.
+
+
+For concreteness, let's pick an affine scheme $ \spec \Z[x, y]/(x^2 + y^2 - 1)$.
+If we now consider a map from $\spec Q \rightarrow \spec \Z[x, y]/(x^2 + y^2 - 1)$,
+as a ring map, we need to make a ring map $\Z[x, y]/(x^2 + y^2 - 1) \rightarrow \Q$.
+We need to decide what rationals $x, y$ get sent to, which satisfy the relation.
+
+So we get rational solutions to $(x^2 + y^2 - 1)$. If we want the complex solutions,
+we will replace $\Q$ by $\C$. 
+
+We're not even going to say why it's a functor.
+
+
+\section{For complex geometers}
+
+Let $X$ be a complex analytic variety. It's a locally ringed space which locally
+looks like $\C^n$ with nice functions.
+
+A complex algebraic variety are things that locally look like things in complex
+$n$ space cut out by equations. We can analytify the algebraic object.
+
+If we have an affine complex variety $\C[x_1, \dots, x_n] / (f_1, \dots, f_n)$, 
+then we want its analytifation to be the subspace of $\C^n$ that's cut out by 
+$\{ f_1 = 0, f_2 = 0, \dots, f_n = 0 \}$.
+
+
+The slick statement is that we want a complex analytic variety to be a space
+$X^{an} \rightarrow X$ such that for any other $\C$-analytic space, it factors
+through $X^{an}$. Since it's a universal property, this object $X^{an}$ is unique
+upto unique isomorphism.
+
+We can show that this works for affine schemes, then ``for free'' (once we unwind
+the definitions), we will automagically get the right definition. All the gluing
+stuff goes away. Serre's GAGA paper does this.
+
+
+\section{Morphisms of projective schemes}
+
+
+Projective schemes are machines to build a lot of complicated things built
+out of many affines, and rolling all of it in terms of a single graded ring.
+Morphisms of such things are going to be about graded rings.
+
+\subsection{From $\P^2$ to $\P^1$}
+Imagine we want a map from $\P^2$ to $\P^1$. We build a map
+
+$$
+[x, y, z] \rightarrow [x^2 - y^2, x^2 - z^2]
+$$
+
+This works for most locations of $[x, y, z]$ but it screws up if  both
+$(x^2 - y^2 = 0), (x^2 - z^2 = 0)$. So somehow the corresponding
+ring map:
+
+\begin{align*}
+&k[x, y, z] \leftarrow k[u, v] \\
+&x^2 - y^2 \mapsfrom u; x^2 - z^2 \mapsfrom v
+\end{align*}
+
+We should see that $u, v$ is degree 1, $x^2, y^2, z^2$ is degree 2 and it's
+still OK because it continues to be homogeneous.
+
+
+\subsection{From $\P^1$ to $\P^2$}
+A second example is a map from  $\P^1$ to $\P^2$ defined by:
+
+$$
+[u, v] \mapsto [u^2, 2uv, v^2]
+$$
+
+The only way we can get $(0, 0, 0)$ is if $u = v = 0$, but that's not a point
+of $\P^1$. So the problem in the previous case does not arise. The image
+obeys the equation $y^2 = 4xz$. So we should get a map from the quotient
+$k[u, v] \mapsfrom k[x, y, z]/(y^2 - 4x)$.
+
+
+\section{Abstracting the essence (Homework)}
+If we have any map of graded rings $\phi: S_\bullet \rightarrow R_\bullet$,
+where we are allowed to scale by a degree $d \in \Z_{geq 0}$, ie, the map
+will map $S_n$ to $R_{dn}$. Any such map induces a map:
+
+$$
+\Proj R_\grade \ V(\phi_(S_\plus)) \rightarrow \Proj S_\grade
+$$
+
+Hence if $V(\phi(S_+)) = \phi$ then we get an honest map of graded rings
+$\proj R_\grade \rightarrow \proj S_\grade$. 
+
+
+\section{The degree $d$ Veronese embedding}
+
+If we take $k[x_1, \dots, x_{n}] \mapsfrom k[y_{x_0^d}, y_{x_0^{d_1} x_1}, \dots, y_{x_n^d}]$,
+that is, we have a generator for each degree $d$ monominal in $k[x_1, \dots, x_n]$.
+We have $N + 1$ of these monomials. So we get a map from $\P^n \rightarrow \P^N$
+
+So we send $(x_0, \dots, x_n) \rightarrow (x_0^d, \dots, x_n^d)$. This ends up
+being a useful tool.
+
+Examples of veronese embeddings:
+
+\begin{align*}
+&\P^1: [u, v] \rightarrow [u^2, uv, v^2]: \P^2 \\
+&\P^1: [u, v] \rightarrow [u^3, u^2v, uv^2, v^3]: \P^3 \\
+&\P^2: [x, y, z] \rightarrow [x^2, xy, y^2, xz, yz, z^2]: \P^5\\
+\end{align*}
+
+\section{Rational maps from integral schemes}
+These are not necessary morphisms! In scheme land, we have to be nervous when
+someone says ``map'' in scheme land.  They are reduced (they have no fuzz) and
+they are irreducible (they have no piece).
+
+A rational map is a map that is mostly defined: it's allowed to be undefined
+in a few places.
+
+More precisely, we have a map from a dense open $U$ to a space $Y$, equipped
+with an equivalence relation: If $W \subseteq U, V \subseteq X$ such that
+$U \rightarrow Y$ and $V \rightarrow Y$ restrict to the same $W \rightarrow Y$,
+then we say that $(U \rightarrow Y) = (V \rightarrow Y)$.
+
+What if I restrict to another small set $W'$ which has nothing to do with $W$?
+maybe the agree on $W$ but not on $W'$? It turns out that irreduciblility is
+a very strong statement. There's only 'one piece', so any two nonempty open
+sets intersect. So $W, W'$ will have some non-empty intersection.
+
+This feels stalkish, so it should remind us of colimits, fraction fields of
+rings, etc.
+
+
+If $X$ is an integral scheme, and we take the stalk at the generic point of $X$,
+it's going to be a field, which is called as the function field of $X$
+[why is it a field?] We'll call it the field of rational functions on $X$.
+We can compute it by taking any non empty affine open $\spec A \subseteq X$
+and then computing its field of fractions. This is the same as rational maps
+to the affine line $\A^1$.
+
+Functions correspond to maps to $\A^1$. Rational functions correspond to
+rational maps to $\A^1$. [This is not obvious, it's something we need to prove.
+And then it becomes obvious.]
+
+\section{Dominant maps}
+
+\begin{definition}
+If $Y$ is irreducible, we say that $\pi: X \rightarrow Y$ is dominant if the
+image of any representative $U \rightarrow Y$ is dense. So we should think
+``mostly surjective''.
+\end{definition}
+
+\subsection{Composition of dominant maps}
+
+\includegraphics[width=0.8\textwidth]{./category-of-rational-maps.png}
+
+Composition of these maps is kind of hard. Imagine that we have $X \rightarrow Y$
+and the image of some $U \subseteq X \rightarrow Y$ is dense. Similarly, imagine
+we have $V \subseteq Y \rightarrow Z$ where it's dense in $V$. But on composition,
+$U$ might miss $V$ entirely!
+
+However, if we know that $U$ meets every nonempty open set, which it must because
+the map is dominant, we can compose the maps. 
+
+So we have a category of integral schemes, with dominant rational maps
+between them.
+
+Since we have a category, we have a notion of isomorphisms in the category.
+So the isomorphism is called a birational map. It's a rational map from $X \rightarrow Y$
+such that there is an inverse rational map $Y \rightarrow X$ such that their composition
+gives us the map $X \rightarrow X$ which is the identity (on a big open set of $X$).
+
+\begin{definition}
+A birational morphism is a birational map that is an honest morphism.
+\textbf{Caution:} It's inverse need not be an honest morphism
+\end{definition}
+
+
+\begin{definition}
+Rational space: A space is called rational if it is birational to $\A_k^n$.
+\end{definition}
+
+\begin{proposition}
+Two integral schemes which are finite type over $k$ (they are like varieties)
+are birational (mostly isomorphic) if there are dense open subschemes $U
+\subseteq X$ and $V \subseteq Y$ such that $U
+\simeq V$.
+\end{proposition}
+
+So in some sense, in the pure geometric case, mostly isomorphic things are
+indeed birational. Things are rational if they do indeed look like $\A_k^n$:
+so we can find lots of rational solutions.
+
+
+\begin{example}
+$\A_k^2$ and $\P_k^2$ are birational.
+\end{example}
+
+\begin{example}
+$x^2 + y^2 = z^2$ in $\A^3_\Q$ is rational, which is why we can find a formula
+for all Pythagorean triples.
+\end{example}
+
+
+\begin{example}
+$y^4 = x^3y + x^4 + 3x^5$ \textbf{is} rational, and we can solve this over
+any field.
+\end{example}
+
+The correct way to think about this is apparently: ``If a conic has a single
+point, then it has many points''.
+
+\begin{example}
+$x^n + y^n = z^n$ in $\A^3_Q$ is not rational for $n \geq 2$.
+\end{example}
+It's hard to show that something is not rational. This is not at all clear!
+
+\begin{example}
+$\A^2_k$ and $\A^5_k$ are not birational. How?
+\end{example}
+
+\section{Fun and important fact}
+
+If $X, Y$ are integral finite type $k$-schemes then function field extensions
+$FF(X)/FF(Y)$ correspond to dominant rational maps $X \rightarrow Y$.
+
+\begin{slogan}
+Field theory tells us about mostly defined maps of all varieties
+\end{slogan}
+
+\section{Important and useful classes of morphisms}
+
+
+Insight of Grothendieck: It has no logical content, but it's a change of point
+of view. When thinking about anything in mathematics, we should not care about
+properties of a variety of a scheme. But really, it should be properties of maps.
+For example, Haussdorff should not be an adjective of a topological space, but
+of a morphism.
+
+
+\subsection{Open Embeddings}
+
+Every reasonable class of maps should be:
+\begin{itemize}
+\item Closed under composition; Identity should exist [form a category]
+\item Local on the target. If a property $P$ holds at each location on a cover,
+      then it holds everywhere.
+\item Preserved by pullbacks. Fiber products should work.
+\end{itemize}
+
+\subsubsection{Fiber products}
+Let $Y \rightarrow X$ be a nice map. Let $W \rightarrow X$ be arbitrary. Then
+when we build the fiber product $(Z, Z \rightarrow Y, Z \rightarrow W)$, 
+the map $Z \rightarrow W$ should be nice.
+
+\begin{minted}{text}
+     Constructed
+ Z --better be nice --> W
+ |                      |
+ Constructed         Given:arbitrary
+ |                      |
+ v    Given             v
+ Y ----Nice-----------> X
+\end{minted}
+
+We don't even know that schemes and varieties \textbf{have} fiber products!
+But we do know some cases.
+
+\begin{minted}{text}
+?---??------------------->W
+|                         |
+???                    f:arbitrary
+v                         v
+U ---isomorphism--------> X
+\end{minted}
+
+We can pick $? = W, ??: ? \rightarrow W = Id, ???: ? \rightarrow U = f$,
+giving us the solution:
+
+\begin{minted}{text}
+Soln:W---Soln:Identity---->W
+|                         |
+Soln:f                   f:arbitrary
+v                         v
+U ---isomorphism--------> X
+\end{minted}
+
+Isomorphisms are preserved by fiber products!. So let's try open embeddings.
+
+
+\begin{minted}{text}
+?-------??--------------->W (horrible)
+|                         |
+???                     pi:arbitrary
+|                         |
+v                         v
+U ---o:open embedding-----> X
+\end{minted}
+
+Since $o$ is an open embedding, $o(U) \subseteq X$ is some open subset of $X$. So if we 
+pick $? = \pi^{-1}(o(U)) \subseteq W$. The map $??$ is going to be an open embedding, because
+it embeds $\pi^{-1}(o(U))$ into $W$. The image of $??$ is $\pi^{-1}(o(U))$, which
+is open [inverse image of open set]. So $??$ is an open embedding. We can check
+that this satisfies the universal property. So the pullback exists and is an open embedding!
+
+
+Both isomorphisms and open embeddings satisfy the niceness conditions. It'll turn
+out that all 'good maps' obey the above conditions. We should be upset if they
+don't satisfy all three.
+
+\section{Quasicompact morphisms}
+
+A scheme was quasicompact if it had the finite subcover property.
+Let $\pi: X \rightarrow Y$ is quasicompact if for every affine in $Y$ (downstairs),
+the pre-image is compact. A scheme is quasicompact if its map to $\spec Z$ is quasicompact.
+
+It suffices to check on a single affine cover [affine communication lemma].
+
+
+\section{Quasiseparated morphisms}
+The same thing will work out in the Quasiseparated case.
+
+\section{Questions}
+\subsection{What is a rational point?}
+Rational point is a problematic word. In this, what is a $\Q$ point of a scheme
+defined over $\C$.
+
+The first meaning is a $\Q$ point, which is a map of $\spec Q$ to something.
+Another thing it could be, is if we are over a field $k$, ie, we have a map
+$X \rightarrow \spec k$, now a rational point is a map from $\spec k$ into $X$:
+
+\begin{minted}{text}
+X<-------spec(k)
+|        /
+|       /
+v      v
+spec(k)
+\end{minted}
+
+We can think of it as a section:
+\begin{minted}{text}
+X<------*
+|       |
+|       |
+v       |
+spec(k)-*
+\end{minted}
+
+If we try to solve $x^2 + y^2 - 1$ over $\Z$, we start with 
+$\Z[x, y]/(x^2 + y^2 - 1)$, and then try to find maps $\spec Q \rightarrow  \spec \Z[x, y] / (x^2 + y^2 - 1)$.
+For complex solutions, we would find maps $\spec \C \rightarrow \spec \Z[x, y] / (x^2 + y^2 - 1)$.
+
+If we had started with the rationals, then we would start with $\Q[x, y]/(x^2 + y^2 - 1)$.
+Then a rational point becomes a map $\spec Q \rightarrow \spec \Q[x, y]/(x^2 + y^2 - 1)$.
+
+On the other hand, if we started with $\C[x, y]/(x^2 + y^2 - 1)$, then the rational
+solutions are \emph{no longer maps} $\spec Q \rightarrow \spec \C[x, y]/(x^2 + y^2 - 1)$.
+There is no way to map rings in the opposite direction. It is impossible to map $\C$
+into $\Q$ as a ring.
+
+So we should work over the most restrictive field ($\Q$) so that stuff doesn't
+break.
+
+\subsection{Scheme theoretic v/s set theoretic closure}
+
+If we have a map $R \rightarrow R/I$, we already know that as a topological space,
+$\spec R/I$ is a closed subset of $\spec R$.  We'd like a scheme morphism.
+Any ring morphism gives us a map of schemes: $\spec R/I \rightarrow \spec R$.
+We've talked about open subschemes, why not closed as well? The answer is that
+open and closed play very different viewponts. It's a red herring from point
+set topology that they are complements.
+
+There's a metaphor. When we have groups, we have subgroups and quotient groups.
+They play very different roles. For example, the notion of a subquotient: is that
+sub of a quotient or quotient of a sub? 
+
+If we take $\spec k[x, y] \mapsfrom \spec k[x, y]/(x^2, xy)$ this is going to be
+the $y$ axis with a little bit of fuzz. The ideal is telling us about that fuzz.
+We don't know how to globalize this for schemes. But affine wise we know how to
+do this. 
+
+If we say that a closed subscheme is affine by affine, it looks like $R/I$, then
+we can define this using the affine communication lemma.
+
+
+In the case of $\spec R/I \rightarrow \spec R$, the closure of a topological space
+is problematic. We table this because weird things are going to happen.
+
+\subsection{Do rational points imply rationality}
+
+Let's play it safe and try to solve $f(x, y) = 0$. All curves are birational
+to plane curves.  Does rational mean lots of points? The answer is almost.
+If we take the complex points, we can take the Riemann surface it's trying to be.
+If the genus is larger than 1, then there are only finitely many rational points.
+This is an amazing fact that the topology of this curve affects the rational solutions.
+The real solutions is this 1 dimensional things living on it. The rational
+solutions are on the real solutions? 
+
+If the curve is rational, then it's birational to $\A^1$, which has infinitely
+many solutions.
+
+
+There are some irrational curves with infinitely many rational points. These
+are elliptic curves. So infinitely many rational points does not mean rational.
+
+
+If we have a smooth quadric in any dimension, if it has one rational point,
+then it has infinitely many. In $\P^2$ if we have a conic that is smooth,
+and has one single point that is rational, then it has infinitely many. The
+argument is to use stereographic project. The $\P^1$ worth of rational lines
+through this single point will continue to be solutions.
+
+Plugging in $y = mx+b$ gives us some quadratic in $x$. This quadratic has one
+solution that was rational. Hence the other solution is rational as well.
+
+
+\subsection{Something with lots of points that's not rational}
+Surject something rational into something that's not rational. It's hard to
+give an example of such a thing. In the case of curves, there's no such thing.
+If we have any subfield of $\C[x]$, $E$, which is a finitely generated field
+extension of $\C$, then any subfield of this
+must be the function field of something rational:$\C(y)$ where $y = f(x)$. This
+is called Luroth's theorem.
+
+\subsection{A map of graded rings gives a map of $\Proj$s. Are all maps of $\Proj$s look like this?}
+We removed the irrelevant ideal when building the map of $\Proj$s. Will all map 
+of $\Proj$s arise as maps of graded rings with the irrelevant ideal removed?
+When we have maps $A \mapsfrom B$, we also have $\spec A \rightarrow \spec B$. This
+is exactly the same data. It's what makes life really happy.
+
+For graded rings, if we have $A_\graded \mapsfrom B_\graded$, there's all sorts
+of problems in getting $\proj A_\graded \mapsto \proj \B_\graded$. We need to
+throw out stuff. Let's say we're assuming that we'll throw the stuff out. 
+Then, do map of $\proj$'s correspond to maps of graded rings? \textbf{NO!}
+
+(1) There are maps of $\proj$'s that don't come from graded rings. (2)
+There are multiple ring maps which give the same $\proj$ maps.
+
+It's horrible, and we can try to figure out how to make it better. We might
+think that this is easy to do, but it's really not. If we have $\proj S_\graded$,
+we can try to make the best version of $S_\graded$, call it $S^{best}_\graded$ 
+which has the same $\proj$. This is related to saturation. There is a map
+$S_\graded \rightarrow S^{best}_\graded$, but it's almost not worth it,
+because it's hard.
+
+If we have a ring $S_\graded$ and a module $M_\graded$, then we can build the
+'best' version of $M_\graded$ which is called as its saturation. It's probably
+cleaner to first lean cohomology and build this than build it by hand. The
+best evidence of what's good and not good about it is that when Hartshorne
+does things with graded rings, it's confusing. But when we read Eisenbud,
+it's cleaner because we see them in perspective, where the perspective is
+bigger.
+
+$\Proj$ is really a presentation of a space as a quotient by a group action.
+The same space can be presented as a quotient in many different ways. Maps that
+respect the group action are the ones that are maps of graded rings (?)
+
+
+\subsection{What is irrelevant about the irrelevant ideal?}
+We have a graded ring and we want to think about $\Proj$. We can start
+by thinking about $\Spec S_\graded$. Recall that $\CP^{n-1} = (\C^n - \{0\}) / \C^\star$.
+We can similarly think of building $\Proj S_\graded$ as starting from 
+$S$, throwing away something like the origin, a closed subset, $V(\cdot)$,
+and then we need to mod out by $g_n$, the multiplicative group; We can't say $\C^\star$
+because we don't know the field, so we say $g_n$. This maps to $\Proj S_\graded$.
+The things that we throw away is $V(S_+)$.
+
+
+\includegraphics[width=0.8\textwidth]{./irrelevant-ideal-geometry.png}
+
+So we have $\spec S_\graded$ which looks coneline because it's graded. We have
+$V(S_+)$ which starts at the tip of the cone and extends into the cone like
+a line. It can have fuzz at the $V(S_+)$. If we delete all the extra fuzz,
+then we get the best choice.
+
+$g_n$ is acting on the $\spec$ and $V(S_+)$ is the fixed locus. 
+
+There are secretly two different rings and ring constructions. Looking up
+local cohomology may be a good idea.
+
+Karen Smith gave a graduate course on local cohomology. It was a life changing
+experience. It's useful computationally to stick it in a computer. There's
+a book called ``24 hours of local cohomology''.
+
+\subsection{GAGA}
+
+Roughly speaking, if we have a compact algebraic variety over $\C$ that is
+projective, we can do algebraic and analytic constructions. GAGA tells us we'll
+get the same answers always. 
+
+We have maps from the analytic space to the algebraic space. We might try to
+do so using projection maps. This functor will be ``exact'' and then Serre
+was led to consider flatness.
+
+\subsection{Local coordinates in the analytic setting: what about algebraic?}
+
+If we have $\m/\m^2$, think about $k[x_1, \dots, x_n]$. Local coordinates
+should span the cotangent space. So for example, we can pick $x + y^9$,
+$y + x^5$.  Alternatively, scheme theory, locally, they should cut out
+``just the point''.  Local coordinates are also called system of parameters.
+
+\subsection{What is a ring construction that $\spec$ doesn't commute with?}
+Answer was unclear to me.
+
+\subsection{Is there a nice representative for equivalence classes of things that are birational?}
+In the case of curves, the smooth projective irreducible curves are the
+ones we would pick.
+
+In the case of surfaces, there is one from the classification of surfaces,
+and there's sometimes going to be a tie.
+
+In higher dimensions, one of the insights of the 1980's was that smooth may
+not be the best idea. We should pick things that are singular but not too
+singular.
+
+
+\subsection{Why should we be thinking of morphisms instead of objects?}
+
+Lots of times, you will prove things --- it's hard to give an example.
+
+Let's say we have something and we want to show that the object $X$ is nice.
+If $Y$ is nice, and we have a notion of a nice morphism $\phi: X \rightarrow Y$,
+then we \textbf{define} $X$ is nice to be ``the morphism $X \mapsto \{ \star \}$
+is a nice morphism''. Then, we have the diagram:
+
+
+\begin{minted}{text}
+X ---nice morphism ---> Y nice
+X ---nice morphism ---> Y ---nice morphism--> *
+Composing:
+X ---nice morphism---> *
+\end{minted}
+
+So we can think about when objects are nice by thinking about when morphisms
+are nice.
+
+
+When we make Haussdorff as a property of morphisms [separated].
+
+Ravi decides to tell the wrong answer: 
+\begin{theorem}
+Cancellation theorem: If you have commuting maps 
+
+\begin{minted}
+  X -nice?--> Y
+  |          /
+ nice       /
+  |        /
+  v       /
+  Z <----*
+\end{minted}
+$X \rightarrow Z$ is nice, we want to say that $X \rightarrow Y$ is nice. So 
+we want to somehow subtract off $Y \rightarrow Z$. If the diagonal map 
+is nice, then we can subtract and we know that the map $X \rightarrow Y$
+is nice.
+\end{theorem}
+
+\subsection{How do we know when a rational map extends to a morphism?}
+
+That is a tricky question, except in some cases.
+If we have a curve mapping to something compact, for example $\A^1 - \{ 0 \}$ to $\P$,
+then we can extend it.
+
+\chapter{After pseudolecture 9}
+
+It’s been a little long since I have had a chance to do more than get the pseudolectures ready – sorry! I have just trimmed the pseudolecture videos on youtube, and added brief summaries. I intend to post trimmed versions of the slides to the pseudolectures soon.
+
+One thing I am always struck by — the very start seems to move slowly and spend a lot of time on the “basics”, and then things seem to speed up. But that is misleading — in fact we have to get comfortable with the “essentials” at the start, and then we can move ahead quickly and with confidence.
+
+What I would like to do next (or at least, very soon) is to get back to suggesting problems for you to think about (going back a few weeks, and also going ahead a little bit, knowing that I will have weeks where it will be difficult finding time to write). I also want to spend time on zulip.
+
+Where we left off
+
+At the of the previous post, we were at the end of Chapter 3, which is well behind where we are in the pseudolectures. So let’s start with Chapter 4.
+
+The first exercise of the chapter is worth doing — checking that using our definition of the structure sheaf gives the “right answer” for distinguished open sets. Roughly speaking, on \rm{Spec} \; A, the functions on the locus where f \in A doesn’t vanish should be the localization A_f where you’re allowed to invert f.
+
+I wouldn’t skip understanding “base gluability” of the structure sheaf, which is the most complicated part of that argument. Reason: it’s not so bad, and it can sometimes be done in a horrible way, scarring people for life.
+
+Exercise 4.3.A is also worth doing — it is enlightening for most, and strangely confusing (and particularly enlightening) for some — the fact that you can recover a ring from its spectrum in a precise way.
+
+I would also try some of the “easy” exercises if you are feeling nervous — easy doesn’t mean unimportant. Exercises 4.3.F and 4.3.G are also important to know.
+
+Section 4.4 has examples of schemes (and varieties). It is important to get your hands dirty and really get to know many examples of schemes/varieties — they aren’t abstract formalisms, but in fact an abstract way of understanding something concrete. You absolutely should understand projective space, and you may prefer the coordinates in the notes. The line with the doubled-origin is the ur-example of a “non-Hausdorff” space/variety/scheme.
+
+We can get lots and lots of examples (and lots of important and historical examples) from projective geometry. Then in yesterday’s pseudolecture, I described the “Proj” construction. Graded rings and modules sound like they should be way more down to earth than fancy-schmancy things like schemes and strangely named rings, but in fact they can be more confusing! I think it is worth understanding in whatever way you like how to turn a graded ring into a “picture” (or more precisely, into some sort of geometric object).
+
+Now that we know what schemes (and almost, varieties) are, we will define some adjectives which can be applied to them. You should think of these as either natural things you want names for, or else technical things that will turn out to be important, or else properties that essentially always hold in any reasonable situation (but that you need a name for). The first section has topological properties such as connected, irreducible, quasicompact. You’ll see quasiseparated there too — a horrible sounding name! But the thing to remember about quasiseparated is that it essentially always holds in reasonable situations, and it is also always accompanied by his little brother “quasicompact”. When we say a scheme is “quasicompact and quasiseparated” (sometimes abbreviated qcqs because it is so common a hypothesis), we just mean that it is built out of finitely many building blocks (i.e., covered by finitely many affine open sets), and their intersections are also built from finitely many building blocks (i.e. their intersections are themselves covered by finitely many affine open sets).
+
+Then we have the geometric incarnations of “no nilpotents” (“no fuzz” = “reduced”) and “integral domain” (“integral”). Showing that integral = reduced + irreducible (5.2.F) is good practice.
+
+In the pseudolecture, we next discussed two more stalk-local properties — normality and factoriality (section 5.4), and there are lots concrete examples to work out there (within hints!). You will notice that often an exercise that looks very geometric has next to it nearly the same exercise that looks very number-theoretic. There are a lot of exercises here to try to get your hands dirty. (I learned 5.4.H late in life, and have found it particularly useful for producing and understanding examples.)
+
+Then we discussed the affine communication lemma (5.3), which is easy, powerful, and clever — it is worth reading and appreciating. Probably the people who will appreciate it the most are those who struggled with other ways of trying to make sense of well-definedness of definitions.
+
+In particular, we are very close to defining varieties over a field k — they are quasicompact reduced finite-type k-schemes, that are Hausdorff. That is a strange way of saying that they aren’t built out of infinitely many pieces; they have no fuzz; they look like they are cut out by equations in k^n (or more precisely affine $n$-space); and they are (in the correct but not literal sense) Hausdorff (which we haven’t yet defined).
+
+You should then skip the rest of chapter 5 — I have mostly rewritten the discussion of associated points/primes because it is really quite simple when done carefully, and I am unhappy with the discussion in the earlier public version you have. I’d like to get it into a shape that I can share it with you soon, because I’d get great feedback on what works and what doesn’t work. But I know that time won’t allow it.
+
+We’ve begun to talk about morphisms of schemes (and varieties). One of the most basic insights of Grothendieck is that we shouldn’t focus on “things” (objects in a category), but instead on “maps between things” (morphisms) — properties that seem to be about objects are in fact about morphisms (they are “relative” — they are properties of a relation = map from one object to another).
+
+So you may be able to understand fairly quickly how morphisms of schemes can be cheaply defined using the crutch of locally ringed spaces (section 6.3). Once we do that next week, we know the category of schemes; we can now talk about lots of things. The “easy” exercises around here are a great way of solidifying and verifying your understanding.
+
+By the end of this pseudocourse, I’d like to do a good deal of chapters 7 through 10, and conclude with a large number of examples from those chapter to give you an idea of what we can now talk about, as some consolation prize instead of proving a big punchline theorem. Although the fundamental theorem of elimination theory (and elimination of quantifiers) might qualify as a fun punchline.
+
+That’s enough for tonight! I hope to write more soon. If you would like a more explicit list of problems to think about, just let me know (in the comments below might be easiest, but other means work well too).
+
+\chapter{Problems to think about upto pseudolecture 9}
+
+As promised, I want to now give you some problems to think about, mainly in Chapter 4 and Chapter 5.
+
+But first, a quote for the topologists among us:
+
+It was my lot to plant the harpoon of algebraic topology into the body of the whale of algebraic geometry.
+
+— Solomon Lefschetz (A Page of Mathematical Autobiography, Bulletin of the American Mathematical Society, Volume 74, Number 5, 1968)
+
+The end of Chapter 3
+
+If you are happy with 3.7.C and 3.7.D, then you are happy with the theory of this section. If you can do 3.7.B and 3.7.G, then you can work with these ideas.
+
+The structure sheaf.
+
+Our goal here is to understand the sheaf of functions on \text{Spec} \; A (or \text{mSpec} \; A) as simply as possible. We want really to know that it is a sheaf, and to be able to work with it. The idea to keep in mind is that we will understand it only through the distinguished open subsets D(f) (where f Doesn’t vanish), and will take the functions on D(f) to be A_f, except to make sure this is well-defined (i.e, “if D(f) = D(g), then A_f = A_g“) we define the functions in a way depending only on the open set itself (Definition 4.1.1).
+
+So Exercise 4.1.A will make sure you are completely comfortable with the second trick. And Exercise 4.1.B and Exercise 4.1.C will make sure you are comfortable with the first.
+
+If you are already familiar with exact sequences, then Remark 4.1.4 will be a clarifying perspective.
+
+The recurring counterexamples in 4.1.6 are good to keep in mind. You might have noticed that an example from pseudolecture 9 was a variant of the last one — \text{Spec} \; ( \overline{ \mathbb{Q}  } \otimes_{\mathbb{Q}} \overline{\mathbb{Q}} is a non-Noetherian scheme for which all the stalks are Noetherian (in fact, they are fields).
+
+Section 4.2 is all about drawing pictures. It should be fun.
+
+In Section 4.3 there are a lot of things to get used to, so a lot of exercises worth doing. You can see if you get confused by 4.3.A. If 4.3.B is straightforward, then you’ll know you are comfortable with these ringed spacdes. 4.3.E(b) is our first (provable) example of a scheme that is not affine!
+
+Exercise 4.3.G will finally make clear that we have defined our locally ringed space with the properties we want.
+
+People often complain that algebraic geometry is sometimes done so “formally” that there are no examples. I agree that it is hard to really understand something without really playing with actual examples. So in 4.4, do what it takes to become comfortable with these three examples. Exercise 4.4.A is one we will use later, for example, when we defined “Proj” in pseudolecture 9. You should do 4.4.D (and then distill it to make it as painless as possible), and then you’ll really know you can compute stuff on a variety, using its cover.
+
+Then in the next section, “Proj” is a machine to make varieties/schemes from many more open sets, but using just one ring. You may want to Exercise 4.5.B to see how homogeneous polynomials “cut out” a scheme in projective space in a hands-on way, so you’ll have a good feel for it when we think about Proj in generality.
+
+Exercise 4.5.D will put graded rings in general into this context. Definitely do Exercise 4.5.E, and take your time with it. (Feel free to solve it in any way you want, even if it involves rearranging some of the development of the material in this section.) The following few exercises fill out the construction of Proj; try a sampling (or all of them!) to convince yourself that there is nothing tricky here. If you prefer compatible germs, do Exercise 4.5.M.
+
+If you have seen these things before, you may want to try 4.5.Q, not because it is fancy, but because it can be confusing, and it relates to a cause of continuing confusion. Grothendieck often thinks of projectivizations of a vector space not as one-dimensional subspaces, but as one-dimensional quotients. So whenever you see “projectivize” in any algebraic geometry paper (or anything very near algebraic geometry), you have to be careful. In fact, there is method behind Grothendieck’s madness (at least this particular madness) — since he is thinking of geometric things in terms of functions on them, he is thinking of the vector space in terms of the linear functions on them (i.e., the dual vector space), and one-dimensional subspaces of a vector spaces indeed correspond to one-dimensional quotients of the dual vector space.
+
+Okay, enough philosophizing! In chapter 5, the first section is just extending topological notions to these new things we have created. The easy exercises are important in that they make sure you can toss these notions around without thinking. I’m somewhat torn about how important 5.1.E really is — but it is worth doing!
+
+I’d like Exercise 5.1.H to be easy, but I fear it is not. Someone should try it and let me know!
+
+In section 5.2, the key exercise to do is Exercise 5.2.F (integral = reduced + irreducible). Exercise 5.2.H involves an important concept as well. Exercise 5.2.I is why some people start with irreducible varieties, in order to make the sheafy issues less scary.
+
+Section 5.3 is home to the Affine Communication Lemma, which we will use repeatedly, and with great effect. You should understand the proof, and why there isn’t much there! Then the exercises give you lots of opportunities to practice with it. You should try some of the exercises involving the new notions (such as Noetherianness of schemes), but the ones I’ll most suggest you do is 5.3.H and 5.3.I.
+
+Logically (and in pseudolecture 9), section 5.4 could come after 5.2, as it involves more “stalk-local” properties. There are some exercises to make sure you see how the theory fits together (such as 5.4.F), but the really fun ones deal with actual explicit rings (5.4.G to 5.4.L; 5.H is much more useful than it looks).
+
+Then skip the rest of Chapter 5 (I’m in the process of completely rewriting the part on associated points and associated primes), and we will discuss morphisms of schemes in pseudolecture 10!
+
+Plan for these problem.
+
+You can think about these problems for the next couple of weeks. But if by next Wednesday (September 2) you can send your shepherd (or indeed any shepherd) an update on (a) what you have been working on, and (b) how it is going, that will help me figure out what to say next. Also please tell them (c) what is the most confusing thing, (d) what is the coolest thing, (e) what exercise you most want to see an answer to, and (f) what exercise you liked best.
+
+And lastly, more inspired by the question of why the sheaf of functions is called \mathcal{O}, from Tomas Prochazka.
+
+Hi Ravi,
+
+I think you mentioned the linguistic origin of O? I read last year something about the origin of some notation in math (I don’t know to what extent is it reliable but it kind of makes sense):
+
+O … holomorphic from Italian (where they don’t use H, not even in this word) 🙂 it’s quite funny if it is true
+
+k … for field from German Körper (body, that’s how field is called I think in some languages, including Czech)
+
+Z … for integers, in German Zahlen – numbers
+
+e … for unit, again German from einheit
+
+U,V … for open sets, German and French Umgebung (neighbourhood) and voisinage (I don’t know French)
+
+F,G … in topology, ferme, Gebiet
+
+finally they also said that Klein bottle was not a bottle but a surface (in German Flasche vs Fläche) but somehow there was a typo or misunderstanding and they started translating it as a bottle.
+
+\section{AGITTOC Pseudolecture 11: Saturday, September 5th 2020}
+\begin{itemize}
+\item {Pseudolecture 11 Youtube link}{https://www.youtube.com/watch?v=RuFBNbR1XN0}
+\end{itemize}
+
+Comments about the experiment so far: The pace is too fast for people with
+real jobs! But we'll be ending this sequence in two or three weeks. People can
+watch the lectures and digest stuff. We'll be ending on the 19th or the 26th.
+Then we'll pause for two and four weeks.
+
+What we've covered and will cover is completing what schemes and varieties are,
+including morphisms, so that we will have either seen or will get to see
+a bunch of stuff.
+
+Today we'll do parts of chapter 7 and 9.
+
+\section{Morphisms}
+A morphism of schemes is a morphism of ringed spaces which locally look like
+maps of $\spec$s.
+
+\textbf{A favorite fact from last time:} Maps between affine schemes
+$X \rightarrow \spec B$ are the exact same thing as maps from the ring
+to the ring of functions on $X$: $B \rightarrow \O_x(X)$. The special thing
+is that the target is an affine.
+
+\begin{theorem}
+All fibered product of schemes exist.
+\includegraphics[width=0.8\textwidth]{all-fibered-products-exist.png}
+\end{theorem}
+\begin{proof}
+This a perfect example of Grothendieck's point of view.
+
+\includegraphics[width=0.8\textwidth]{all-fibered-products-exist-proof.png}
+
+
+\textbf{The two line proof:}
+A scheme is a sheaf wrt the zariski topology. It's something that locally looks
+like an affine scheme. We'll show how to build a fiber product locally in terms
+of affines and then we'll be done.
+
+\textbf{Observation 1:} We already know that one kind of fiber product exists.
+If one of the two is an open embedding, then the fiber product exists by last week.
+It's the pre-image of the open set as done before.
+
+\textbf{Observation 2:Category of affine schemes, fibered products exist:} So we 
+only have $\spec$s floating around.maps of affine schemes correspond to maps of
+rings. So we can slot in the tensor product, because that's the thing that gives
+us the cofiber product.
+
+\includegraphics[width=0.8\textwidth]{fibered-products-affine-schemes-exist.png}
+
+\textbf{Observation 3: Fiber product of affines exists in the category of all schemes:}
+If $X, Y, Z$ are affine schemes, then $X \times_Z Y$ exists in the category
+of all schemes.
+
+\includegraphics[width=0.8\textwidth]{fibered-products-of-affines-in-category-of-schemes-exist.png}
+Now we can put an arbitrary scheme in the upper left corner, but stuff still works,
+because maps from an arbitrary scheme $W$ to $\spec A$
+correspond to maps of the form $A \rightarrow \O(W)$ [our previous observation].
+
+\textbf{Observation 4: exists when $X$ is an open subset of an affine scheme, $Y, Z$ affine:}
+
+\includegraphics[width=0.8\textwidth]{fibered-products-exist-4.png}
+
+We can first make a fiber product  $P_0 = Y \times_Z X'$ [affine], and then
+the fiber product $P_1 = X \times_X' P_0$. And this $P_1$ is what we want
+by commutativity of the diagram.
+
+\textbf{Observation 5: exists when $X, Y$ are both open subsets of an affine scheme, $Z$ affine:}
+
+repeat the same argument.
+
+
+\textbf{Observation 5: exists when $X, Y, Z$ are both open subsets of an affine scheme:}
+
+\includegraphics[width=0.8\textwidth]{fibered-products-exist-5.png}
+
+
+\textbf{Observation 5: exists when $X$ is the union of two affines:}
+
+
+\textbf{OK, this is super long: just watch the video.}
+\end{proof}
+
+\begin{definition}
+Let $X$ be an integral scheme (it is both reduced: no fuzz, and irreducible: one piece).
+We say $v: \tilde X \rightarrow X$ is the normalization
+of $X$ if it satisfies the following universal property: Any dominant morphism
+(the image of the morphism is dense)
+from a normal (all local rings are integrally closed)
+integral scheme $Y$ factors uniquely through $\tilde X$.
+\end{definition}
+
+\begin{theorem}
+The normalization always exists
+\end{theorem}
+\begin{proof}
+First observe the case $X = \spec A$. 
+
+If $Y$ is affine, ...
+
+If $Y$ is not affine: what if $Y$ is the open subset of an affine? what if $Y$
+is the union of two affines?
+\end{proof}
+
+\begin{slogan}
+Meta theory: to learn a proof, don't just think about the proof. Rather, find another
+theorem where the proof technique can be applied.
+\end{slogan1}
+
+\begin{theorem}
+Another example of the above proof method: Show that reduction of a scheme 
+(all maps from reduced schemes factor through the reduction)
+always exists
+\end{theorem}
+
+
+\begin{definition}
+We can get products as fiber products over the terminal object of the category,
+$\spec Z$.
+\end{definition}
+
+\begin{definition}
+Product of $\C$ schemes: We can write this as $X \times_{\spec \C} Y$, often
+abbreviated to $X \times_{\C} Y$ out of laziness.
+\end{definition}
+
+
+There are many other names for fiber product: scheme theoretic preimage,
+base change, cartesian diagram
+
+\begin{definition}
+Scheme theoretic fiber: If we have a scheme $Z$ with a point $p$, we can map
+the point in: $\spec K(p) \rightarrow \spec Z$.
+Now if we have a map $Y \rightarrow Z$, we'll get a scheme theoretic fiber
+if we try to build the fiber product. We get the correct topology from $Y$,
+so it's actually allowing us to 'pick fibers' from $Y$ for the point $p$.
+\end{definition}
+
+
+Sadly, sometimes, the underlying set of the fiber product need not even be
+the fiber products of the underlying set. So there's no way to build this
+``layer by layer''. Prototypical example:
+
+
+\begin{minted}{text}
+spec C[x, y] ----> spec C[y]
+|                   |
+v                   v
+spec C[x]-------> spec C
+
+
+A^2 --------> A^1
+|             |
+v             v
+A^1---------> *
+\end{minted}
+
+The problem is that the product of a line and a line does indeed give us a line.
+However, the plane has a lot more *generic points*! For example, two different
+curves in a plane will both map to the same generic line.
+
+This is a feature, not a bug. We want $\A_1 \times \A_1$ to be $\A_2$. The
+fiber product of sets is mis-leading.
+
+
+\section{Back to morphisms}
+
+If we have a nice class of morphisms, they're going to be nicely behaved. The
+examples we want to keep in mind are isomorphisms and open embeddings. (1)
+They're both local in nature: it suffices to check on open covers. (2) The
+composition of these is nice. (3) It's preserved by fiber product.
+
+\begin{minted}{text}
+X xZ Y ---therefore nice ---> Y
+ |                            |
+ |                           possibly horrible
+ |                            |
+ v                            v
+ X  --------nice------------> Y
+\end{minted}{text}
+
+
+\subsection{Quasicompact morphism}
+A quasicompact topological space has the finite subcover property. Every open cover
+has a finite subcover.
+
+A quasicompact morphism is one where for every affine subset, the pre-image has
+a finite subcover.
+
+We'll need to check this for every affine which is a pain. We'll show that if it
+holds for a cover, it holds for every affine, using the affine communication lemma.
+
+We turned a property of schemes into a property of morphism of schemes.
+
+
+\begin{proof}
+\textbf{Step 1:} Assume this works for affines, now prove for distinguished opens. 
+$\pi^{-1} \spec B$ is covered by finitely many affines $\spec A_1, \dots \spec A_n$.
+Now we need to show this holds at some $\spec B_f$. we can simply localize the $A_i$,
+so it'll be covered by $\{ \spec (A_i)_f \}$.
+\textbf{Step 2:}If $\spec B = \cup_{i=1}^n \spec B_f$ (ie, $(f_1, \dots, f_n) = B$)
+and $\pi^{-1}(\spec B_{f_i})$ is covered by finitely many, then $\spec B$ is covered by
+finitely many. But it is because we have a finite cover of $B_f$.
+\end{proof} 
+
+We need to show it's preserved by base changed. Think about why this works.
+\end{document}
+
+\begin{definition}
+Finite type = locally finite type + quasicompact
+\end{definition}
+
+\begin{definition}
+\textbf{TRICKY}
+$\pi: X \rightarrow Y$ is an affine morphism if for every affine open subscheme,
+$\spec B \subseteq Y$, $\pi^{-1}(\spec B)$ is affine.
+\end{definition}
+
+
+\begin{theorem}
+It suffices to check affine-ness  of a morphism on any affine cover
+$\{ \spec B_i \}$of $Y$.
+\end{theorem}
+\begin{proof}
+We have that $B = (f_1, \dots, f_n)$ 
+\end{proof}
+
+We are now free to understand many classes of morphisms. 
+
+\begin{definition}
+A finite morphism is an affine morphism such that  ... 
+\end{definition}
+
+
+\begin{definition}
+quasi separated morphism: a map from $X \rightarrow Y$ is quasi separated if
+for every affine in the base, the preimage is quasi-separated.
+(Quasi-separated: intersection of two affines is finitely many affines)
+\end{definition}
+
+But there is a much better definition:
+
+\section{Questions}
+
+\subsection{Morphisms to an affine scheme}
+
+$X \rightarrow \spec A \iff A \rightarrow \O(X)$. We can motivate this
+in complex geometry. If we have $U \subseteq \C^n$.  If we want to map
+a manifold $M$ to $U$, this is exactly the same as taking $n$ functions on $M$ that
+map into $U$, which is the same as $M \rightarrow \C^n$ under some hypotheses.
+So if we have maps into some affine thing, we can recognize it purely ringily
+
+\subsection{$\P^1 \times \P^1$ versus $\P^2$}
+There is no reason to think this is the same. Consider $S^1 \times S^1$ versus $S^2$.
+
+\subsection{Affine morphisms}
+
+If we have an affine scheme, it's $\spec A$. In the case of an affine
+morphism, for each $\spec B$ downstairs, we have a $\spec A$ upstairs corresponding
+to $\spec B$. now this $\spec A$ is a $B$-algebra. this now gives us a sheaf of
+algebras, not just modules. Because it's over a $\spec$, it's going to be like
+$\tilde M$.
+
+There is a quasicoherent sheaf, which is the globalization of a module over a ring.
+It's a special kind of $\O$-module.
+
+A quasicoherent sheaf of algebras  will relativize the notion of spec.
+
+Finite morphisms will relativize a quasicoherent sheaf of algebras of finite type
+(finitely generated).
+
+\subsection{Apply the proof to products of manifolds}
+
+if we have two manifolds and ask about the product, it's obvious! take the product
+of the atlases. But then, how do we show that two choices of atlases don't screw up?
+you might say 'take smaller atlases' etc etc. But the machinery we built in AG is
+robust and it 'just works'.
+
+
+\subsection{$\spec$ of the residue field}
+
+If we have spec of a field $k$ mapping into a $\spec$, then all we need to do is
+to find a point whose residue field is a subfield of $k$ and that gives us a reasonable
+map. 
+
+As a special case, if we literally take the residue field $K(p)$, then it can be called as
+``the point'', because it does indeed map into the point $p$.
+
+
+\chapter{AGITTOC Pseudolecture 12: Saturday, Sept 12 2020}
+\begin{itemize}
+	\item \href{https://www.youtube.com/watch?v=XLJKZKP7yIg}{YouTube link}
+\end{itemize}
+
+Plan to today: We can follow up on morphisms and read the end of part 2 in 
+the notes
+
+\section{Recalling fiber products}
+
+\subsection{Fiber product of sets}
+The fiber product of sets are elements of $X$ and $Y$ that map to the same thing.
+We should learn to draw a magic square.
+
+\begin{minted}{text}
+X xZ Y ------> X x Y
+|                |
+|                |
+v                v
+Z ---delta---> Z x Z
+\end{minted}
+
+In topological spaces, we can do the same thing. The fiber product of topological
+spaces has the same underlying set. The pre-image of opens under the projections
+$X \times_Z Y \rightarrow X, X \times_Z Y \rightarrow Y$ should remain open. We
+can prove that this will be the fiber product.
+
+\subsection{Fibered product of schemes}
+The fiber product of schemes is  not fiber product of the underlying sets because
+of generic points. 
+
+\section{The graph construction}
+The graph of a function $\pi: X \rightarrow Y$ sits inside the product $X \times Y$. 
+We can take $pr_1: X \times Y \rightarrow X, pr_2: X \times Y \rightarrow Y$.
+
+
+So then we have the square:
+\begin{minted}{text}
+    gamma_pi:
+    x -> (x, pi(x))
+X --------------> X x Y ---pr2---> Y
+|                  |
+pi    FIBER        |
+|                  |
+v                  v
+Y ---------------> Y x Y
+    y -> (y, y)
+\end{minted}
+
+So if $\delta: y \mapsto (y, y)$ is nicely behaved, then so is the graph
+morphism!
+
+\section{Reasonable behaved classes of morphisms}
+
+Third example: covering space of a topological space: Locally, they look like
+$X \times \texttt{whatever}$, but globally there could be twisting.  Covering
+spaces pull back, we can check locally, and the composition of covering spaces
+continues to be covering spaces.
+
+\section{Sample implication: preserved by product}
+
+If $X_1 \rightarrow Y_1$ and $X_2 \rightarrow Y_2$ are nice then so is the
+map $X_1 \times X_2 \rightarrow Y_1 \times Y_2$. Reason:
+
+
+\begin{minted}{text}
+X1 x X2 -NICE BY FIBER--> Y1 x X2 --NICE BY FIBER----> Y1 x Y2
+|                         |    |                            |
+v                         v    v                            v
+X1 ---NICE--------------> Y1   X2  --NICE------------------Y2
+\end{minted}{text}
+Since the composition of nice maps is nice, we're done. Note that all we needed
+was the two two squares are fiber product squares, and our morphisms behave
+well with respect to fiber products.
+
+\section{The cancellation theorem}
+
+\begin{minted}{text}
+X---h THEREFORE in P--> Y
+|                      |
+f                      g
+|                      |
+in P                   |
+|                      |
+Z <------delta in P----*
+\end{minted}
+Suppose $P$ is a good class of morphisms.  If $f = g . h$ has P and $\delta g$
+has $P$, then $h$ has $P$ [we can cancel $g$ from the equation \texttt{f:nice = g:nice . h}
+to derive $\texttt{f:nice} \sim h$. All we need is that the digonal of $g$ is nice.
+
+
+In the category of sets, we should think about what injectivity and surjectivity
+and what cancellation theorem says.
+
+\begin{proof}
+we have a morphism, we can factor it through the graph morphism
+
+\begin{minted}{text}
+TODO
+\end{minted}
+
+\end{proof}
+
+\section{Motivation from topological spaces}
+$X$ is Haussdorff if and only if $X \mapsto X \times X$ is a closed subset.
+
+Let's show this. Let $X$ be Haussdorff. Now to show that $X \times X$ is closed,
+let's show that the complement is open. The complement has points of the 
+form $(p, q)$ where $p \neq q$. since $p, q \in X$ we have open neighbourhoods
+which separate $p, q$: $p \in U_p, q \in U_q$ such that $U_p \cap U_q = \emptyset$.
+So we have that $U_p \times U_q \subseteq X \times X$. Since $U_p \times U_q = \emptyset$,
+this open set misses the diagonal. Hence every point not on the diagonal can be
+separated from the diagonal by an open neighbourhood. Thus the complement of the
+diagonal is open, hence the diagonal is closed.
+
+Conversely, let $X \times X$ be closed. Pick two points $(p, q)$ where $p \neq q$. 
+We must produce neighbourhoods $U_p, U_q$ which separate $p, q$. Since $(p, q)$
+does not meet the closed set $X \times X$ there is some open neighbourhood
+$U$ which contains $(p, q)$ which does not meet the closed set $X \times X$.
+But an open in the product topology must come from products of opens in the original
+space. So we can find $(p, q) \in U =  U_1 \times U_2$.  Since $U$ does not
+meet the diagonal, we must have that $U_q \cap U_2 = \emptyset$.
+
+A continuous map $\pi: X \rightarrow Y$ is Haussdorff if the diagonal
+map $X \rightarrow X \times_Y X$ is a closed subset. The special case
+is when $Y$ is a point which recovers the classical definition.
+
+The claim is that it's a reasonably well behaved class of morphisms [check!]
+
+\section{Lots of definitions of classes of morphisms of schemes}
+
+All of these are of the form: ``a morphism $\pi: X \rightarrow Y$
+is FOO if for all affine opens $\spec B \subseteq Y$ the pre-image
+$\pi^{-1}(\spec B) \subseteq X is BAR''.
+
+\begin{itemize}
+	\item quasicompact: preimage of is quasi-compact:
+	\item quasiseparated: preimage is quasi-separated
+	\item affine: preimage is affine
+	\item finite: preimage is affine, and $A$ is a finitely generated $B$ module. 
+	\item locally finite type: preimage can be covered by $\spec A$s,  and all the $\spec A$s are $B$-algebras.
+	\item finite type: locally finite type + quasicompact.
+\end{itemize}
+
+The proof in every single case is the affine communication lemma: $B \rightarrow B_f$,
+and true when we ``un-localize''.
+
+\begin{theorem}
+\textbf{Hard theorem for today:} Affine-ness is a reasonably behaved class of morphisms.
+The pre-images of all affines should be affines.
+\end{theorem}
+\begin{proof}
+Locality is hard.
+\end{proof}
+
+\section{Questions}
+
+\subsection{Projective space doesn't do so well}
+
+A surjection of graded rings will give us a closed embedding of $\proj$s. But
+things get weird for graded rings. 
+
+\subsection{Localization of a scheme at a global section which is not affine}
+
+A really lame example is if $X$ is not affine and $s$ is $1$. All examples
+are ``effectively'' of this form.
+
+
+Rabinowitz trick: $A_f  = A[x] / (xf - 1)$.
+
+
+\subsection{Examples of global sections of non affine things}
+
+If we have something in projective space that is connected and reduced, we want
+some kind of maximum principles: Constants are the only functions on a compact
+manifold. It's cheap to prove for projective connected things.
+
+Affines have lots and lots of functions, while other spaces don't. 
+
+\subsection{Topologically closed versus closed}
+
+If the image of closed is closed, then it's a closed morphism. 
+The notion of being an open morphism and a closed morphism is distinct. The notion
+that open and closed are complementary is a red herring from point-set topology.
+
+
+\subsection{Proof of the fundamental theorem of algebra using lie groups}
+Let $\C$ not be algebraically closed. Go to the algebraic closure $k$ which 
+has finite degree over $\C$. This $k$ is a vector space over $\C$. Throw away
+$0$. This gives us an abelian group which has dim >= 2 so it's simply connected.
+But if a lie group is simply connected we can recover it from its lie algebra.
+But this things lie algebra looks like the lie algbera of $\R^n$. But it can't
+be like $\R^n$ because $\C$ has $i$ which is a 2 torsion element.
+
+It matters that the complex numbers minus the origin is not simply connected.
+
+
+\subsection{}
 \end{document}

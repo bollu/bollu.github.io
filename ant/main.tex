@@ -1,0 +1,185 @@
+\documentclass{book}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{minted}
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\fracpart{\{}{\}}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{nonexample}[theorem]{Non Example}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{aside}[theorem]{Aside}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{note}[theorem]{Note}
+\newtheorem{slogan}[theorem]{Slogan}
+\newtheorem{Proposition}[theorem]{Proposition}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Qbar}{\overline{\Q}}
+\newcommand{\Zbar}{\overline{\Q}}
+\renewcommand{\mod}[1]{\left( \texttt{mod} #1 \right)}
+
+\begin{document}
+
+\chapter{Introduction}
+\begin{itemize}
+\item \href{https://math.ucsd.edu/~kedlaya/math204a/}{Course website}
+\item \href{https://math204-ucsd.zulipchat.com/}{Zulip}
+\end{itemize}
+
+\chapter{Gaussian and Eisenstein integers}
+\begin{itemize}
+\item \href{https://ucsd-som.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d5e9fee8-0edb-4d55-9ff6-ac4b01318006}{URL to video}
+\end{itemize}
+
+\begin{itemize}
+\item $\Qbar$: roots of monic polynomials over $\Q$
+\item $\Zbar$: roots of monic polynomials over $\Z$
+\item $\Z[i] = \{ a + b i : a, b \in \Z \}$: is a ring.
+\item $\Q(i) = \{ a + b i : a, b \in \Q \}$: is a field.
+\end{itemize}
+
+\begin{proposition}
+The ring $\Z[i]$ is a Euclidean domain: For $a, b \in \Z[i]$ with $b \neq 0$ we can write
+$a = qb + r$ where $|r| < |b|$ where $|\cdot|$ is the complex absolute value.
+\end{proposition}
+\begin{proof}
+Consider $a/b$. We have $a/b = q + r/b$. We want $|r/b| < 1$. Round to the 
+nearest gaussian integer, call it $\texttt{round}(a/b)$. When we're on $Z[i]$, 
+we're trying to bound the distance to the nearest gaussian integer. So we're
+sitting on a unit square, and we are asking  ``what is the distance from our
+point to nearest lattice point''? The worst case is when our point is at the
+center of the square, or the distance is $\sqrt(2)/2$. 
+
+The distance from $a/b$ to the nearest gaussian integer is $1/\sqrt 2 < 1$.
+we write $a/b = q + r/b$. This means that $r/b \leq 1/\sqrt 2< 1$.
+So when we write $a = qb + r$,
+we have that $|r| < |b|$.  
+
+Perhaps slightly more intuitively, we are on a 2D plane, and we are running the
+Euclidean algorithm on 2D vectors. 
+
+Also, for any constant
+$c$, there are only finitely many possible absolute values of Gaussian integers
+less than $\mathbb C$.
+
+Even though we infact have finitely many Gaussian integers
+themselves, and not just absolute values, because this will come in handy later.
+For example, when considering polynomials over $\mathbb C$, if we are considering the
+polynomial $(x - a)$, we have infinitely many constant polynomials with degree
+less than $1$ (equal to $0$), but there is a finite number of absolute values
+(ie degrees)less than $1$.a
+
+
+Note that euclidean algorithm does not demand a \emph{unique} decomposition of
+$a = q(a, b) b + r(a, b)$. We can have multiple $(q(a, b), r(a, b))$ which
+satisfy the invariant that $|r(a, b)| < b$! This is different from the ordinary
+integers where there is a canonical choice.
+\end{proof}
+
+We get the Euclidean algorithm in its usual form: to compute the $\gcd(a, b)$, we do
+repated Euclidean division.
+\begin{itemize}
+\item $r_0 = a$
+\item $r_1 = b$
+\item $r_2: $ remainder of $r_0$ divided by $r_1$
+\item $r_3: $ remainder of $r_1$ divided by $r_2$
+\item $\vdots$
+\item $r_k = 0$.
+\end{itemize}
+
+Thus, any ideal of $Z[i]$ is principal. Also, for any $a, b  \in \Z[i]$, there
+exists an $x, y$ such that $ax + by = d$ where $d$ is \emph{a} GCD of $a, b$!
+We don't say \emph{the GCD} because GCD's are not unique. Even in the
+integers there are multiple choices, $gcd(a, b)$ and $-gcd(a, b)$. It's just
+that the set of units in $\Z[i]$ is larger, $\{1, i, -1, -i\}$ so we have
+more GCDs.  \textbf{Sid question:} Are these the only equivalence classes of GCDs?
+
+
+Since we have a Euclidean domain, we can prove unique factorization into primes.
+$\alpha \in \Z[i]$ is prime if (1) $\alpha$ is not a unit, and
+(2) if $\alpha$ divides $\beta \cdot \gamma$, then $\alpha$ divides at least
+one of $\beta$ or $\gamma$, maybe both.
+
+\begin{theorem}
+For every $\beta \in \Z[i]$, there exists a factorization $\beta = u \cdot \prod_i \alpha_i^{e_i}$
+where $u$ is a unit, each of the $\alpha_i$ are prime, and $e_i \in \Z^+$ are non-negative exponents.
+This factorization is unique upto  permutations, and upto the unit $u$.
+\end{theorem}
+
+This begs the question: what are the primes of $\Z[i]$?
+
+\begin{theorem}
+Upto multiplying by units, the primes in $\Z[i]$ are:
+\begin{itemize}
+\item $1 + i$: $|1 + i|^2 = 2$
+\item $(a + bi)$: $|a + bi|^2 = p \equiv 1~\mod{4}$, where $p$ is prime.
+\item $p \in \Z$: $p \equiv 3~\mod{4}$, where we have $|p|^2 = p^2$.
+\end{itemize}
+
+Recall that the norm of complex numbers is multiplicative. If we find something
+with a prime norm, it has to be prime. Every ordinary prime that is $1~\mod{4}$
+is the sum of two squares, since it can be written as
+$|a+bi|^2 = (a + bi)(a - bi) = a^2 + b^2$.
+
+Conversely,if $p$ is the sum of two squares with $p$ prime, then we must have that
+$p = 2$ or $p \equiv 1~\mod{4}$.
+\end{theorem}
+\begin{proof}
+
+\textbf{Key step:} if $p$ is prime and $p \equiv 1 ~\mod{4}$ then $p$ factors
+non-trivially in $\Z[i]$. For example, $5 = (2+i)(2-i)$.
+
+\textbf{Lemma:} There exists $x, y$ such that $x, y$ is not divisible by $p$,
+ and $x^2 + y^2 \equiv 0~\mod{p}$. For example, pick $x = i$, $y = ((p-1)/2)!$.
+ Note that $y^2 = ((p-1)/2)! \cdot ((p-1)/2)!$. But this really contains *all*
+ the primes $[0, \cdots,p-1]$, because we have two copies of the "first half"
+ of $\Z/p\Z$. Then use Wilson's theorem: $(p - 1)! \equiv (-1)~\mod{p}$.
+ As a concrete example, consider $7$. We pick $x = 1$, $y=((7-1)/2)! = 3! = 1\cdot 2 \cdot 3$. Now 
+ if we consider $y^2$ we get $(1 \cdot 2 \cdot 3)\times (1 \cdot 2 \cdot 3) = (1 \cdot 2 \cdot 3) \times (3 \cdot 2 \cdot 1)$,
+ which is equal to $(1 \cdot 2 \cdot 3) \times (-4 \cdot -5 \cdot -6)$.
+ [TODO: his argument doesn't work? You need to pick $x = i$].
+
+
+Now that we have the lemma, look at ideal $I = (p, x + iy)$, pick a generator
+$I = (a + bi)$. We can do this because the ring is euclidean. Since we have that
+$a+ bi$ divides $p$, we must have that $a \overline{a} \divides p \overline{p}$,
+or $(a^2 + b^2)$ divides $p^2$. Since $p$ is a prime,
+I can have either $a^2+b^2 = p$, $a^2+b^2 = p^2$, or $a^2 + b^2 = 1$
+
+I can't have $a^2 + b^2 = 1$ because then $I = (1) = R$ which cannot be the ideal
+generated by the prime, since there are numbers that the prime $p$ doesn't generate?
+
+
+We claim that we \textbf{cannot have} $a^2 + b^2 = p^2$, because in this case,
+$p/(a+bi)$ would be a unit. This is impossible because the only units are $\pm 1, \pm i$.
+
+\textbf{TODO: where did we even use $x + iy$?}
+
+
+For the converse, let $p$ be a sum of two squares with $p$ prime. If $p$ is 2,
+we are done immediately. Otherwise, assume $p$ is an odd prime, so $p = 2k + 1$.
+Now consider residues of squares modulo 4: We have that
+$$[0^2, 1^2, 2^2, 3^2] \equiv [0, 1, 0, 1]~\mod{4}$$. So the square of any
+number modulo 4 is either $0$ or $1$. We know that $p$ is the sum of two squares, 
+and that $p$ is odd. This disallows us from having both $a$ and $b$ be in the
+residue class of $0$ modulo $4$, because the sum of two even numbers is even.
+We can't have both $a$ and $b$ both be in the $1$ residue class either, because the
+sum of two odd numbers is even. (Formally, reduce from $(\mod{4})$ to $\mod{2}$
+and see how the congruences work out). Thus, we will need to take something
+with residue $0$ and something with residue $1$, telling us that the total
+sum of the reside is going to be $1$.
+
+\end{proof}
+
+Teaser for next time: there exist other number fields that have a similar Euclidean
+property. Consider $\Z$ added with a sixth root of unity. These are called as the
+Eisenstein integers.
+\end{document}
