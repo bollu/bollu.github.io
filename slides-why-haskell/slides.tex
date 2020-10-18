@@ -32,12 +32,18 @@
 }
 \renewcommand{\mod}[1]{\left( \texttt{mod}~#1 \right)}
 \newcommand{\N}{\mathbb N}
+\newcommand{\B}{\mathbb B}
 \newcommand{\Z}{\mathbb Z}
 \newcommand{\Q}{\mathbb Q}
 \newcommand{\C}{\mathbb C}
 \newcommand{\degree}{\texttt{degree}}
+\newcommand{\cpp}[1]{\mintinline{cpp}{#1}}
+\newcommand{\py}[1]{\mintinline{py}{#1}}
+\newcommand{\raw}[1]{\mintinline{text}{#1}}
+\newcommand{\hs}[1]{\mintinline{hs}{#1}}
 \tolerance=1000
 \usetheme{Antibes}
+% \usetheme{Warsaw}
 \author{Siddharth Bhat}
 \date{October 18th, 2019}
 \institute{IIIT Open Source Developers group}
@@ -51,7 +57,155 @@
 \maketitle
 
 \begin{frame}[fragile]{What's programming like?}
-    Programming is a lot like building a cathedral.
+    A lot like building a cathedral.
+    \pause
+    \begin{columns}
+    \column{0.5\textwidth}
+    \begin{figure}
+    \includegraphics[height=5cm]{./first-we-build.jpg}
+    \caption{First we build}
+    \end{figure}
+    \column{0.5\textwidth}
+    \pause
+    \begin{figure}
+    \includegraphics[height=5cm]{./then-we-pray.jpg}
+    \caption{Then we pray}
+    \end{figure}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Why we pray}
+\pause
+
+{\small
+\begin{minted}{cpp}
+#include <iostream>
+#include <climits>
+using namespace std;
+
+// f(x) == true ?
+bool f(unsigned x) { return (x + 1) > x; }
+
+int main() {
+    cout << "f(0): " << f(0) << "\n";
+    cout << "f(UINT32_MAX: " << f(UINT32_MAX) << "\n";
+}
+\end{minted}
+}
+
+\pause
+\begin{minted}{text}
+f(0): 1
+f(UINT32_MAX):0
+\end{minted}
+
+\pause
+\begin{itemize}
+    \item 
+        $f: \N \rightarrow \B; f(x) \equiv \begin{cases} \texttt{true} & x + 1 > x \\ \texttt{false} & \text{otherwise} \end{cases}$
+        \pause
+    \item $f(x) \equiv \texttt{true}$ \pause
+    \item $f: \N \rightarrow \B; f(x) \equiv \begin{cases} \texttt{true} & x +_{2^{32}} 1 > x \\ \texttt{false} & \text{otherwise} \end{cases}$ \pause
+    \item $+_{2^32}: \N \times \N \rightarrow \N; x +_{2^{32}} y \equiv (x +_\N y) \% 2^{32}$ \pause 
+    \item $\texttt{UINT32\_MAX} +_{2^{32}} 1 = 0 $
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Why we pray: A second example}
+\begin{minted}{cpp}
+int main() {
+  cout << 2 * ((int) getchar()) << "\n";
+}
+\end{minted}
+\pause
+
+$$ \forall x \in \Z, 2 * x = x + x$$
+\pause
+
+\begin{minted}{cpp}
+int main() {
+  cout << ((int)getchar() + (int)getchar()) << "\n";
+}
+\end{minted}
+
+\pause
+
+
+\begin{itemize}
+    \item \cpp{int getchar()} \pause
+    \item $\texttt{getchar}: \emptyset \rightarrow \texttt{int}$ \pause
+    \item $\{ \} \rightarrow \{ 1, 42, \dots \}$ \pause
+    \item Such a function can't return an output! \pause
+    \item $\texttt{getchar}: \{ \star \} \rightarrow \texttt{int}$ \pause
+    \item $\{ \star \} \rightarrow \{ 1, 42, \dots \}$ \pause
+    \item $\{ \star \} \rightarrow \{ 1, 42, \dots \}~ \star \mapsto 42$ \pause
+    \item Such a function will always return the same output! \pause
+    \item \texttt{getchar} can't be a mathematical function.
+\end{itemize}
+
+\pause
+
+\end{frame}
+
+\begin{frame}[fragile]{Why we pray: A third example}
+\begin{minted}{cpp}
+int K (int x, int y) { return x; } // K(x, y) = x
+\end{minted}
+\pause
+\begin{minted}{cpp}
+int main() { cout << K(10, 20) << "\n" cout << 10; }
+\end{minted}
+\pause
+\cpp{K(10, 20)} $=  10$
+\pause
+\begin{minted}{cpp}
+int err() { exit(1); return 0; }
+int main() { cout << K(10, err()) << "\n" cout << 10; }
+\end{minted}
+\pause
+\cpp{K(10, err())} $\neq 10$
+\pause
+
+\begin{itemize}
+    \item Mathematically, can replace $K(x, y)$ by $x$. \pause
+    \item In C(++), impossible. \pause
+    \item cannot \textbf{equationally reason} about programs. \pause
+    \item \textbf{Can we} reason about programs? \pause
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Can we reason about C++?}
+    \pause
+    \begin{itemize}
+    \item Short answer: Yes. \pause
+    \item Longer answer: Yes. It's complicated. \pause
+    \item Name dropping: Operational/Denotational semantics. \pause
+    \item Name dropping: Hoare logic/Separation logic. \pause
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{How do we escape having to pray?}
+    \pause
+    Define a language, \pause where anything that happens, \pause is what \textbf{mathematics} says should happen.
+    \pause
+
+\begin{figure}
+\includegraphics[height=1cm]{./haskell-logo.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{A taste of Haskell}
+    \begin{itemize}
+        \item \hs{let xs = [1, 2,..10]} \pause
+        \item \py{xs = range(10)} \pause
+        \item \hs{let nats = [1, 2..]} \pause
+        \item \py{xs = ??} \pause
+        \item \item \hs{take 2 nats} \pause
+        \item \item \hs{take 10 nats} \pause
+        \item \item \hs{take 100 nats} \pause
+    \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Philosophical differences}
