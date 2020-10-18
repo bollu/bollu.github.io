@@ -89,6 +89,19 @@ bool f(unsigned x) { return (x + 1) > x; }
 
 int main() {
     cout << "f(0): " << f(0) << "\n";
+}
+\end{minted}
+\pause
+\begin{itemize}
+    \item 
+        $f: \N \rightarrow \B; f(x) \equiv \begin{cases} \texttt{true} & x + 1 > x \\ \texttt{false} & \text{otherwise} \end{cases}$
+        \pause
+    \item $f(x) \equiv \texttt{true}$ \pause
+\end{itemize}
+Always going to return \cpp{true}?
+\pause
+\begin{minted}{cpp}
+int main() {
     cout << "f(UINT32_MAX: " << f(UINT32_MAX) << "\n";
 }
 \end{minted}
@@ -102,10 +115,6 @@ f(UINT32_MAX):0
 
 \pause
 \begin{itemize}
-    \item 
-        $f: \N \rightarrow \B; f(x) \equiv \begin{cases} \texttt{true} & x + 1 > x \\ \texttt{false} & \text{otherwise} \end{cases}$
-        \pause
-    \item $f(x) \equiv \texttt{true}$ \pause
     \item $f: \N \rightarrow \B; f(x) \equiv \begin{cases} \texttt{true} & x +_{2^{32}} 1 > x \\ \texttt{false} & \text{otherwise} \end{cases}$ \pause
     \item $+_{2^32}: \N \times \N \rightarrow \N; x +_{2^{32}} y \equiv (x +_\N y) \% 2^{32}$ \pause 
     \item $\texttt{UINT32\_MAX} +_{2^{32}} 1 = 0 $
@@ -227,7 +236,7 @@ int main() { cout << K(10, err()) << "\n" cout << 10; }
 \item \hs{take 2 "foo"} \pause
 \item \raw{:t take}
 \item \hs{take :: Int -> [a] -> [a]} \pause
-\item $\texttt{take} :: \texttt{Int} \rightarrow \texttt{List}(\alpha) \rightarrow \texttt{List}(\alpha)$
+\item $\texttt{take} :: \forall (\alpha \in \texttt{TYPE}), \texttt{Int} \rightarrow \texttt{List}(\alpha) \rightarrow \texttt{List}(\alpha)$\pause
 \item \hs{take 1 'a'} \pause
 \item
 \begin{minted}{text}
@@ -279,9 +288,6 @@ intercalate " " ["a", "b", "c", "d"]
 \begin{minted}{hs}
 intercalate :: 
   String -> [String] -> String
-intercalate :: 
-  [Char] -> [[Char]] -> [Char]
-intercalate :: [a] -> [[a]] -> [a]
 \end{minted}
 
 \pause
@@ -291,8 +297,19 @@ It inserts the list \verb|xs| in between the lists in \verb|xss| and concatenate
 \pause
 
 \begin{minted}{hs}
+intercalate :: 
+  [Char] -> [[Char]] -> [Char]
+intercalate :: [a] -> [[a]] -> [a]
+\end{minted}
+\pause
+
+\begin{minted}{hs}
 intercalate [1, 2] 
   [[3,4], [30, 40], [300, 400]]
+\end{minted}
+\pause
+\begin{minted}{hs}
+= [3, 4, 1, 2, 30, 40, 1, 2, 300, 400]
 \end{minted}
 
 \end{column}
@@ -443,8 +460,116 @@ length = getSum . foldMap (Sum . const  1)
 {\tiny \url{https://hackage.haskell.org/package/base-4.14.0.0/docs/Data-Foldable.html#t:Foldable}}
 \end{frame}
 
-\begin{frame}[fragile]{Should I learn hasell?}
+\begin{frame}[fragile]{Fibonacci, Take 1}
+\begin{itemize}
+    \item \hs{fib :: Int -> Int}. Produces $n$th fibonacci number
+    \item \hs{fib 0 = 0}\pause
+    \item \hs{fib 1 = 1}\pause
+    \item \hs{fib n = fib (n - 1) + fib (n - 2)}\pause
+    \item \hs{fibs :: [Int]} \pause
+    \item \hs{fib = ???}\pause
+    \item Empty list: \hs{[]} \pause
+    \item append an element using \hs{:} --- \hs{[1] = 1:[]}\pause
+    \item append an element using \hs{:} --- \hs{[1, 2] = 1:2:[]}\pause
+    \item append an element using \hs{:} --- \hs{[1, 2, 3] = 1:2:3:[]}\pause
+    \item Convert a list \hs{[0, 1, 2...]} into a list \hs{[fib 0, fib 1, fib 2, ...]}
+\end{itemize}
 
+\pause
+
+\begin{itemize}
+    \item \hs{ys = map f xs}
+    \item \hs{xs=[x1, x2 ... xn]} $\implies$
+    \item \hs{[f x1, f x2, ..., f xn] = ys}
+    \item \hs{fibs = map fib [0, 1..]} \pause
+    \item \hs{map [] = []} \pause; \hs{map (x:xs) = (f x):(map f xs)}\pause
+    \item \hs{map :: (t1 -> t2) -> [t1] -> [t2]}
+\end{itemize}
+\pause
+\end{frame}
+
+\begin{frame}[fragile]{Fibonacci, Take 2}
+\begin{itemize}
+    \item \hs{fibs} satisfies a recurrence:
+    \item \hs{fibs ! 0 = 0}
+    \item \hs{fibs ! 1 = 1}
+    \item \hs{fibs ! n = fibs ! (n - 1) + fibs ! (n - 2)}
+\end{itemize}
+\pause
+\begin{minted}{raw}
+  [fib 0, fib 1, fib 2, fib 3, fib 4, ..., fib (n-1), fib n]
+\end{minted}
+\pause
+\begin{minted}{raw}
+  [fib 1, fib 2, fib 3, fib 4, fib 5, ..., fib (n-2), fib (n-1)]
+\end{minted}
+\pause
+\begin{minted}{raw}
+= [fib 2, fib 3, fib 4, fib 5, fib 6, ..., fib  n   , fib (n+1)]
+\end{minted}
+\pause
+
+% \begin{minted}{raw}
+% zipWith f xs ys
+% 
+% [x1, x2, x3 ... xn]
+%   f  f   f      f   => [f x1 y1, f x2 y2, ..., f xn yn
+% [y1, y2, y3 ... yn]
+% \end{minted}
+% \pause
+% \begin{minted}{hs}
+% zipWith (<>) ["how ", "hello "] ["are you?", "world!", "extra"] ==
+%  ["how are you?", "hello world!"]
+% \end{minted}
+% \pause
+% \begin{minted}{hs}
+% zipWith f [] [] = []
+% zipWith f (x:xs) [] = []
+% zipWith f (x:xs) (y:ys) = (f x y):zipWith xs ys
+% \end{minted}
+% \pause
+\begin{itemize}
+\item \hs{fibs = }\pause
+\item \hs{fibs = 0}\pause
+\item \hs{fibs = 0:1}\pause
+\item \hs{fibs = 0:1:fib_rec fibs}\pause
+\item \hs{fib_rec fibs = zipAdd fibs (tail fibs)}\pause
+\item \hs{zipAdd (x:xs) (y:ys) = (x+y):(zipAdd xs ys)}\pause
+\end{itemize}
+
+
+\includegraphics[height=3cm]{./zipper.png}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Fibonacci, Take 3}
+\begin{itemize}
+\item \hs{fibs = 0:1:fib_rec fibs}\pause
+\item \hs{fib_rec fibs = zipAdd fibs (tail fibs)}\pause
+\item \hs{zipAdd (x:xs) (y:ys) = (x+y):(zipAdd xs ys)}\pause
+\end{itemize}
+\pause
+\includegraphics[height=3cm]{./zipper.png}
+\pause
+\begin{itemize}
+\item \hs{fibs = 0:1:(zipAdd fibs (tail fibs))}\pause
+\end{itemize}
+
+\begin{definition}{What is the Fibonacci sequence?}
+\hs{fibs = 0:1:(zipWith (+) fibs (tail fibs))}
+\end{definition}
+\pause
+\begin{itemize}
+\item \hs{zipWith  (x:xs) (y:ys) = (f x y):(zipWith xs ys)}
+\item Replace \hs{+} with \hs{f} in \hs{zipAdd} \pause
+\item This was not meant to enlighten! Only show off Haskell!
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Should I learn hasell?}
+\pause
 \begin{itemize}
 \item Will it help me get a job? \pause Unlikely \pause
 \item Will it help me do better at CP? \pause Ask Anurudh \pause
@@ -487,95 +612,25 @@ length = getSum . foldMap (Sum . const  1)
     \end{itemize}
 \end{frame}
 
-
-\begin{frame}[fragile]{Dictionary ordering}
-\begin{quote}
-Oh, that's just monoidal accumulation of a left absorbing semigroup
-\end{quote}
+\begin{frame}[fragile]{Fibonacci, Take 4}
+\pause
+\begin{itemize}
+\item \hs{fib 0 = 1; fib 1 = 1; fib n = fib (n-1) + fib(n-2)}
+\item \hs{fibs = map fib [0,1..]}
+\end{itemize}
+\pause
+\includegraphics[height=2cm]{./fib-repeated-work.png}
+\pause
+\begin{itemize}
+\item \hs{fibs = 0:1:zipWith (+) fibs (tail fibs)}
+\end{itemize}
+\includegraphics[height=3cm]{./demand-fibs.png}
+\includegraphics[height=3cm]{./eval-demand-fibs.png}
 \end{frame}
 
 
-\begin{frame}[fragile]{Fibonacci, Take 1}
-\begin{itemize}
-    \item \hs{fib :: Int -> Int}. Produces $n$th fibonacci number
-    \item \hs{fib 0 = 0}\pause
-    \item \hs{fib 1 = 1}\pause
-    \item \hs{fib n = fib (n - 1) + fib (n - 2)}\pause
-    \item \hs{fibs :: [Int]} \pause
-    \item \hs{fib = ???}\pause
-    \item Empty list: \hs{[]} \pause
-    \item append an element using \hs{:} --- \hs{[1] = 1:[]}\pause
-    \item append an element using \hs{:} --- \hs{[1, 2] = 1:2:[]}\pause
-    \item append an element using \hs{:} --- \hs{[1, 2, 3] = 1:2:3:[]}\pause
-    \item Convert a list \hs{[0, 1, 2...]} into a list \hs{[fib 0, fib 1, fib 2, ...]}
-\end{itemize}
 
-\pause
 
-\begin{itemize}
-    \item \hs{ys = map f xs}
-    \item \hs{xs=[x1, x2 ... xn]} $\implies$
-    \item \hs{[f x1, f x2, ..., f xn] = ys}
-    \item \hs{fibs = map fib [0, 1..]} \pause
-    \item \hs{map [] = []} \pause; \hs{map (x:xs) = (f x):(map f xs)}\pause
-    \item \hs{map :: (t1 -> t2) -> [t1] -> [t2]}
-\end{itemize}
-\pause
-\end{frame}
-
-\begin{frame}[fragile]{Fibonacci, Take 2}
-\begin{itemize}
-    \item \hs{fibs} satisfies a recurrence:
-    \item \hs{fibs ! 0 = 0}
-    \item \hs{fibs ! 1 = 1}
-    \item \hs{fibs ! n = fibs ! (n - 1) + fibs ! (n - 2)}
-\end{itemize}
-\pause
-
-\begin{minted}{raw}
-fibs = [0, 1, ?]
-              1
-            + 0
-            = 1
-\end{minted}
-\pause
-\begin{minted}{raw}
-fibs = [0, 1, 1, ?]
-                 1
-               + 1
-               = 2
-\end{minted}
-\pause
-\begin{minted}{raw}
-[fib 0, fib 1, fib 2, fib 3, fib 4, ..., fib (n-1), fib n]  
-[fib 1, fib 2, fib 3, fib 4, fib 5, ..., fib (n-2), fib (n-1)]
-=
-[fib 2, fib 3, fib 4, fib 5, fib 6, ..., fib  n   , fib (n+1)]
-
-\begin{minted}{raw}
-zipWith f xs ys
-
-[x1, x2, x3 ... xn]
-  f  f   f      f   => [f x1 y1, f x2 y2, ..., f xn yn
-[y1, y2, y3 ... yn]
-\end{minted}
-\pause
-\begin{minted}{hs}
-zipWith (<>) ["how ", "hello "] ["are you?", "world!", "extra"] ==
- ["how are you?", "hello world!"]
-\end{minted}
-\pause
-\begin{minted}{hs}
-zipWith f [] [] = []
-zipWith f (x:xs) [] = []
-zipWith f (x:xs) (y:ys) = (f x y):zipWith xs ys
-\end{minted}
-\pause
-
-\begin{minted}{hs}
-let fibs = 0:1:(zipWith (+) fibs (tail fibs))
-\end{minted}
-\end{frame}
 
 \begin{frame}[fragile]{IO in haskell}
 \begin{itemize}
@@ -693,7 +748,16 @@ xQuasar>      | i have absolutely no idea what frp and ghcjs are
 \end{frame}
 
 
-\begin{frame}{Equality}
+\begin{frame}{Equality: Eq}
 \end{frame}
+
+\begin{frame}[fragile]{Ordering: Ord}
+\end{frame}
+\begin{frame}[fragile]{Dictionary ordering: Ord for lists}
+\begin{quote}
+Oh, that's just monoidal accumulation of a left absorbing semigroup
+\end{quote}
+\end{frame}
+
 
 \end{document}
