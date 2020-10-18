@@ -92,6 +92,10 @@ int main() {
 }
 \end{minted}
 \pause
+\begin{minted}{raw}
+f(0): 1
+\end{minted}
+\pause
 \begin{itemize}
     \item 
         $f: \N \rightarrow \B; f(x) \equiv \begin{cases} \texttt{true} & x + 1 > x \\ \texttt{false} & \text{otherwise} \end{cases}$
@@ -102,35 +106,35 @@ Always going to return \cpp{true}?
 \pause
 \begin{minted}{cpp}
 int main() {
-    cout << "f(UINT32_MAX: " << f(UINT32_MAX) << "\n";
+    cout << "f(UINT32_MAX): " << f(UINT32_MAX) << "\n";
 }
 \end{minted}
 }
 
 \pause
 \begin{minted}{text}
-f(0): 1
 f(UINT32_MAX):0
 \end{minted}
 
 \pause
 \begin{itemize}
     \item $f: \N \rightarrow \B; f(x) \equiv \begin{cases} \texttt{true} & x +_{2^{32}} 1 > x \\ \texttt{false} & \text{otherwise} \end{cases}$ \pause
-    \item $+_{2^32}: \N \times \N \rightarrow \N; x +_{2^{32}} y \equiv (x +_\N y) \% 2^{32}$ \pause 
-    \item $\texttt{UINT32\_MAX} +_{2^{32}} 1 = 0 $
+    \item $+_{2^32}: \N \times \N \rightarrow \N; x +_{2^{32}} y \equiv (x +_\N y) \% 2^{32}$ \pause; $\texttt{UINT32\_MAX} +_{2^{32}} 1 = 0 $
 \end{itemize}
 \end{frame}
 
 
 \begin{frame}[fragile]{Why we pray: A second example}
+\pause
+$$ \forall x \in \Z, 2 * x = x + x$$
+\pause
+(Also holds in modular arithmetic)
+\pause
 \begin{minted}{cpp}
 int main() {
   cout << 2 * ((int) getchar()) << "\n";
 }
 \end{minted}
-\pause
-
-$$ \forall x \in \Z, 2 * x = x + x$$
 \pause
 
 \begin{minted}{cpp}
@@ -170,7 +174,7 @@ int main() { cout << K(10, 20) << "\n" cout << 10; }
 \cpp{K(10, 20)} $=  10$
 \pause
 \begin{minted}{cpp}
-int err() { exit(1); return 0; }
+int err() { exit(1); return 0; } // start praying!
 int main() { cout << K(10, err()) << "\n" cout << 10; }
 \end{minted}
 \pause
@@ -224,9 +228,26 @@ int main() { cout << K(10, err()) << "\n" cout << 10; }
         \item \hs{let k x y = x} \pause
         \item \hs{k 10 20} \pause
         \item \hs{10 + (error "urk")} \pause
-        \item \hs{k 10 (error "urk")} \pause
+        \item \hs{k 10 (error "urk")} \pause \hs{ = 10}
         \item Laziness provides \emph{equational reasoning}
     \end{itemize}
+
+    \pause
+    \begin{columns}
+    \begin{column}{0.48\textwidth}
+    \begin{figure}
+    \includegraphics[height = 3cm]{./k-10-err.png}
+    \caption{Evaluation of \hs{K 10 (error "urk")}}
+    \end{figure}
+    \end{column}
+    \pause
+    \begin{column}{0.48\textwidth}
+    \begin{figure}
+    \includegraphics[height = 3cm]{./plus-10-err.png}
+    \caption{Evaluation of \hs{10 + (error "urk")}}
+    \end{figure}
+    \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]{Types}
@@ -318,20 +339,8 @@ intercalate [1, 2]
 \pause
 {\tiny \url{docs.python.org/3/library/stdtypes.html#str.join}}
 {\tiny \url{hackage.haskell.org/package/base-4.14.0.0/docs/Data-List.html#v:intercalate}}
-
 \end{frame}
 
-\begin{frame}[fragile]{Philosophical differences: Abstract algebra}
-    \begin{itemize}
-        \item Why do we study linear algebra? \pause
-        \item Because many things turn out to be linear algebra! \pause
-        \item \url{https://math.stackexchange.com/questions/5233/vivid-examples-of-vector-spaces} \pause
-        \item Study things at the right level of generality! \pause
-        \item Words Words: Monoids, Groups, Rings, Fields, Partial orders, Lattices, \dots \pause
-        \item \raw{str.join(iterable)} versus \hs{intercalate :: [a] -> [[a]] -> [a]} \pause
-        \item What is an iterable anyway? \pause
-    \end{itemize}
-\end{frame}
 
 \begin{frame}[fragile]{Summing over a list of numbers}
 
@@ -384,6 +393,7 @@ The \verb|sum| function computes the sum of the numbers of a structure.
 
 \end{frame}
 
+
 \begin{frame}[fragile]{\texttt{Num}?}
 \hs{sum :: (Foldable t, Num a) => t a -> a}
 
@@ -427,8 +437,10 @@ class  Num a  where -- Typeclass: `a` is a Num if...
 \end{frame}
 
 \begin{frame}[fragile]{\texttt{Foldable}?}
+\hs{sum :: (Foldable t, Num a) => t a -> a}
 
-A thing one can accumulate answers on. So a list, a set, a binary tree, \dots
+\pause
+An object one can "fold over" / "accumulate answers on". \pause A list, a set, a binary tree, \dots
 
 \begin{itemize}
     \item \hs{let x = Data.Set.fromList [1, 2, 3]} \pause
@@ -442,9 +454,12 @@ A thing one can accumulate answers on. So a list, a set, a binary tree, \dots
 
 \begin{frame}[fragile]{\texttt{Foldable} in detail}
 
+\hs{sum :: (Foldable t, Num a) => t a -> a}
+\pause
+
 
 \begin{minted}{hs}
-class Foldable t where
+class Foldable t where -- a data structure t is foldable if...
   -- | Map each element of the structure to a monoid, and combine the results.
   foldMap :: Monoid m => (a -> m) -> t a -> m
 \end{minted}
@@ -458,6 +473,18 @@ fold = foldMap id
 length = getSum . foldMap (Sum . const  1)
 \end{minted}
 {\tiny \url{https://hackage.haskell.org/package/base-4.14.0.0/docs/Data-Foldable.html#t:Foldable}}
+\end{frame}
+
+\begin{frame}[fragile]{Philosophical differences: Abstract algebra}
+    \begin{itemize}
+        \item Why do we study linear algebra? \pause
+        \item Because many things turn out to be linear algebra! \pause
+        \item \url{https://math.stackexchange.com/questions/5233/vivid-examples-of-vector-spaces} \pause
+        \item Study things at the right level of generality! \pause
+        \item \hs{Foldable}, \hs{Monoid}, \hs{Num}, \hs{[a]}, \dots \pause
+        \item \raw{str.join(iterable)} versus \hs{intercalate :: [a] -> [[a]] -> [a]} \pause
+        \item What is an iterable anyway? \pause
+    \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Fibonacci, Take 1}
