@@ -1,5 +1,5 @@
 <h2>
-<img style="float:left;display:inline-block;padding-right: 16px" src="./static/banner.png" width="32px">
+<img style="float:left;display:inline-block;padding-right: 16px; width: 48px" src="./static/banner.png">
 A Universe of Sorts
 </h2>
 ### Siddharth Bhat
@@ -14,6 +14,577 @@ A Universe of Sorts
 - [My reading list](todo.html)
 
 <!-- - [Grab me a coffee](https://ko-fi.com/bollu) -->
+
+# The algebraic structure of the 'nearest smaller number' question
+
+The [nearest smaller number](https://cses.fi/problemset/task/1645) problem
+can be solved by using a stack along with an observation of monotonicity.
+This is explained in the [USACO guide to stacks in the Gold section](https://usaco-guide.netlify.app/gold/stacks).
+
+What I find interesting is that we need a *stack*. Why does a stack show up?
+Stacks are usually related to a DFS on some appropriate object. What's that object?
+And can we gain insight into when we need to use a stack based on this?
+
+
+The idea is that we are trying to construct the Hasse diagram of the
+original array, treated as a poset with ground set $P \equiv \{ (val, ix) : \texttt{arr}[ix] = val \}$
+with the ordering $(a_1, a_2) < (b_1, b_2) \iff a_1 < b_1 \land a_2 < b_2$.
+
+So we have this hasse diagram, which interestingly is going to be a tree.
+this need not always be the case! consider the divisiblity poset with the 
+elements $3, 5, 15$.
+
+Then the answer is to print the parent of each node in the tree as the parent
+in the Hasse diagram is going to be closest number that is smaller than it.
+
+
+Why does this Hasse diagram show up? What is the relationship between this problem,
+and that of [Graham Scan](https://en.wikipedia.org/wiki/Graham_scan) which also
+uses a similar technique of maintaining a stack. Does this also have a hasse
+diagram associated to it? or a DFS tree?
+
+<img src="./static/nearest-smaller-number.png">
+
+
+
+# Why loss of information is terrifying: Checking that a context-free language is regular is undecidable
+
+This comes from applying [Greibach's theorem](https://en.wikipedia.org/wiki/Greibach%27s_theorem#Applications).
+I find myself thinking about this theorem once in a while, and its repercussions.
+If we once had access to God who tabulated for all all regular languages
+described as context free grammars, and we lost this tablet, we're screwed.
+There's no way to recover this information decidably.
+
+It shows that moving to higher models of computation (From regular to context free)
+can sometimes be irreversably damaging.
+
+
+
+# Sciences of the artificial
+
+> A bridge under its usual conditions of service, behaves simply as a
+> relatively smooth level surface. Only when it has been overloaded do we 
+> learn the physical properties of the  materials from which it is built.
+
+> Ohm's law was suggested to its discovered by its analogy with some simple
+> hydraulic phenomena. 
+
+Why simulation is useful:
+
+- 1. (obvious): while the axioms maybe obvious, their raminifactions may not.
+
+> A NASA launched satellite is surely an artificial object, but we usually
+> do not think of it as simulating the moon; It simply obeys the same laws.
+
+- 2. (subtle) Each layer only depends on an abstraction of the previous. Airplanes
+  don't need the correctness of the Eightfold Way.
+
+> Babbage introduced the words "Mill" and "Store"
+
+> The focal concern of Economics is allocation of scarce resources.
+
+> We can use a theory (say a theory of profit-loss) either positively,
+> as an explaiation, or normatively, as a way to guide how we should run a 
+> firm.
+
+
+
+# Numbering nodes in a tree
+
+If we consider a tree such as:
+
+```
+      a
+b         c
+        d   e
+```
+
+The "standard way" of numbering,  by starting with a `0` and then appending a `0`
+on going to the left, appending a `1` on going to the right doesn't make a great
+deal of sense. On the other hand, we can choose to number them as follows:
+
+- Consider the root to have value `1`
+- Every time we go right, we add `1/2^{height}`. When we go left, we subtract `1/2^{height}`. 
+- This gives us the numbers:
+
+```
+      1
+0.5       1.5
+       1.25     1.75
+```
+
+- This also makes intuitive why to find the node to replace `1.5` when we delete
+  it is to go to the left child `1.25` and then travel as much to the right as 
+  possible. That path corresponds to:
+
+$$
+\begin{aligned}
+&1 + 1/2 - 1/4 + 1/8 + 1/16 + \dots \\
+&=  1 + 1/2 - 1/4 + 1/4 \\
+&= 1.5
+\end{aligned}
+$$
+
+- So in the limit, the rightmost leaf of the left child of the parent 
+  *has the same value* as the parent itself. In the non-limit, we get as close as
+  possible.
+
+- This also may help intuit hyperbolic space? Distances as we go down in the
+  three shrink. Thus, it's easier to "escape" away to the fringes of the space,
+  rather than retrace your step. Recall that random walks in hyperbolic space
+  almost surely move away from the point of origin. It feels to me like this
+  explains why. If going towards the root / decreasing heighttakes distance 
+  $d$, going deeper into the tree / increasing the height
+  needs distance $d/2$. So a particle would "tend to" travel the shorter distance.
+
+# Number of vertices in a rooted tree
+
+Make sure the edges of the tree are ordered to point away from the root $r$.
+So, for all edges $(u, v) \in E$, make sure that $d(r, v) = d(r, u) + 1$.
+
+Create a function $terminal$ which maps every outward arc
+to its target. $terminal: E \rightarrow V$, $terminal((u, v)) = v$.
+
+This map gives us an almost bijection from edges to all vertices other than
+the root. So we have that $|E| + 1 = |V|$. Each of the edges cover one non-root
+vertex, and we then $+1$ to count the root node.
+
+I found this much more intuitive than the inductive argument. I feel like I
+should attempt to "parallelize" inductive arguments so you can see the entire
+counting "at once".
+
+# Median minimizes L1 norm
+
+Consider the meadian of $xs[1..N]$. We want to show that the median minimizes
+the L1 norm $L_1(y) = \sum_i |xs[i] - y|$. If we differentiate $L_1(y)$ with
+respect to $y$, we get:
+
+- $d L_1(y)/y = \sum_i - \texttt{sign}(xs[i] - y) $
+- Recall that $d(|x|)/dx = \texttt{sign}(x)$
+
+Hence, the best $y$ to minimize the $L_1$ norm is the value that makes the sum
+of the signs $\sum_i \texttt{sign}(xs[i] - y)$ minimal.
+
+- The median is perfect for this optimization problem.
+- When the list has an odd number of elements, say, $2k + 1$, $k$ elements
+  will have sign $-1$, the middle element will have sign $0$, and the $k$ elements
+  after will have sign $+1$. The sum will be $0$ since half of the $-1$ and the $+1$
+  cancel each other out.
+- Similar things happen for even, except that we can get a best total sign distance of $+1$
+  using either of the middle elements.
+
+
+- **Proof 2:** Math.se has a nice picture proof abot walking from left to right.
+
+- **Proof 3** Consider the case where $xs$ has only two elements, with $xs[0] < xs[1]$.
+  Then the objective function to minimize the L1 norm, ie, to minimize
+  $|xs[1] - y| + |xs[2] - y|$. This is satisfied by any point in
+  between $xs[1]$ and $xs[2]$.
+
+- In the general case, assume that $xs[1] < xs[2] \dots < xs[N]$. Pick the smallest
+  number $xs[1]$ and the largest number $xs[N]$. We have that any $y$ between $xs[1]$
+  and $xs[N]$ satisfies the condition. Now, drop off $xs[1]$ and $xs[N]$, knowing
+  that we must have $y \in [xs[1], xs[N]]$. Recurse.
+- At the end, we maybe left with a single element $xs[k]$. In such a case, we need
+  to minimize $|xs[k] - y|$. That is, we set $xs[k] = y$.
+- On the other hand, we maybe left with two elements. In this case, any point between
+  the two elements is a legal element.
+- We may think of this process as gradually "trapping" the median between the
+  extremes, using the fact that that any point $y \in [l, r]$ minimizes 
+  $|y - l| + |y - r|$!
+
+
+
+- [Taken from `math.se`](https://math.stackexchange.com/questions/113270/the-median-minimizes-the-sum-of-absolute-deviations-the-ell-1-norm)
+ 
+  
+
+
+# LISP quine
+
+I learnt how to synthesize a LISP quine using MiniKanren. It's quite magical,
+I don't understand it yet.
+
+```lisp
+((lambda (x)            
+   `(,x (quote ,x)))    
+ (quote                 
+   (lambda (x)          
+     `(,x (quote ,x)))))
+
+```
+
+# A slew of order theoretic and graph theoretic results
+
+I've been trying to abstract out the [activity selection problem](https://en.wikipedia.org/wiki/Activity_selection_problem)
+from the lens of order theory. For this, I plan on studying the following
+theorems/algebraic structures:
+
+- Intransitive indifference with unequal indifference intervals
+- Mirsky's theorem
+- Dilworth's theorem
+- Gallai–Hasse–Roy–Vitaver theorem
+- Dirac's theorem
+- Ore's theorem
+- [Course on discrete math](https://www.coursera.org/learn/discrete-mathematics#syllabus)
+- [`cs.stackexchange`: Finding longest chain in poset in sub-quadratic time](https://cs.stackexchange.com/questions/67847/finding-longest-chain-in-poset-in-subquadratic-time)
+
+
+Naively, the solution goes as follows, which can be tested against 
+[CSES' movie festival question](https://cses.fi/problemset/task/1629)
+
+```cpp
+// https://cses.fi/problemset/task/1629
+int main() {
+    int n;
+    cin >> n;
+    vector<pair<int, int>> ms(n);
+    for (int i = 0; i < n; ++i) {
+        cin >> ms[i].first >> ms[i].second;
+    }
+
+    std::sort(ms.begin(), ms.end(), [](pair<int, int> p1, pair<int, int> p2) {
+        return (p1.second < p2.second) ||
+               (p1.second == p2.second && p1.first < p2.first);
+    });
+
+    int njobs = 0;
+    int cur_end = -1;
+    for (int i = 0; i < n; ++i) {
+        if (cur_end <= ms[i].first) {
+            cur_end = ms[i].second;
+            njobs++;
+        }
+    }
+    cout << njobs << "\n";
+    return 0;
+}
+```
+
+#### Explanation 1: exchange argument
+
+- The idea is to pick jobs *greedily*, based on *quickest finishing time*.
+- The argument of optimality is strategy stealing. Think of the first job
+  in our ordering `O` versus the optimal ordering `O*`.
+- If we both use the same job, ie, `O[1] = O*[1]`, recurse into the second job.
+- If we use different jobs then `O[1] != O*[1]`.
+- Since  `O[1]` ends *quickest* [acc to our algorithm],
+  we will have that `end(O[1]) < end(all other jobs)`, hence
+  `end(O[1]) < end(O*[1])`.
+- Since `O*` is a *correct* job schedule, we have that `end(O*[1]) < start(O*[2])`.
+- Chaining inequalities, we get that `end(O[1]) < end(O*[1]) < start(O*[2])`.
+- Thus, we can create `O~` which has `O~[1] = O[1]` and `O~[rest] = O*[rest]`.
+  (`~` for "modified").
+- Now recurse into `O~` to continue aligning `O*` with `O`. We continue to have the
+  same length between `O~`, `O` and `O*`.
+
+#### Explanation 2: posets and interval orders
+
+
+
+# Thebes
+- [BBC in our time]()
+
+# Beethoven
+- [BBC in our time]()
+
+# Neko to follow your cursor around
+
+```
+$ oneko -idle 0 -speed 100 -time 5120 -bg blue -fg orange -position +20+20
+```
+
+This is useful for screen sharing tools that can't display the mouse
+pointer, [like Microsoft Teams](https://docs.microsoft.com/en-us/answers/questions/3222/mouse-pointer-not-visible-when-sharing-screen.html)
+
+# Non commuting observables: Light polarization
+
+- [physics.se](https://physics.stackexchange.com/questions/240543/is-there-something-behind-non-commuting-observables)
+
+
+# Statement expressions and other GCC C extensions
+
+This seems really handy. I've always loved that I could write
+
+```
+let x = if y == 0 { 1 } else { 42}
+```
+
+in Rust. It's awesome to know that the C equivalent is
+
+```cpp
+const int x =  ({ if (y == 0) { return 1; } else { return 42; });
+```
+
+#### [Conditions (`?:`) with omitted operands](https://gcc.gnu.org/onlinedocs/gcc/Conditionals.html#Conditionals)
+
+```c
+x ?: y =defn= x ? x : y
+```
+
+#### [variable length arrays](https://gcc.gnu.org/onlinedocs/gcc/Variable-Length.html#Variable-Length)
+
+```c
+FILE *
+concat_fopen (char *s1, char *s2, char *mode)
+{
+  char str[strlen (s1) + strlen (s2) + 1];
+  strcpy (str, s1);
+  strcat (str, s2);
+  return fopen (str, mode);
+  // str is freed here.                                
+}
+
+```
+
+#### [Designated array initializers: A better way to initialize arrays](https://gcc.gnu.org/onlinedocs/gcc/Designated-Inits.html#Designated-Inits)
+
+- initialize specific indexes
+
+```c
+// initialize specific indexes
+int a[6] = { [4] = 29, [2] = 15 };
+// a[4] = 29; a[2] = 15; a[rest] = 0
+```
+
+
+- initialize ranges:
+
+```c
+// initialize ranges
+int widths[] = { [0 ... 9] = 1, [10 ... 99] = 2, [100] = 3 };
+```
+
+- initialize struct fields:
+
+```
+//initialize struct fields
+struct point { int x, y; };
+struct point p = { .y = yvalue, .x = xvalue };
+```
+
+
+- initialize union variant:
+
+```c
+//initialize union variant
+union foo { int i; double d; };
+union foo f = { .d = 4 };
+```
+
+- Neat trick: lookup for whitespace in ASCII:
+
+```c
+int whitespace[256]
+  = { [' '] = 1, ['\t'] = 1, ['\h'] = 1,
+      ['\f'] = 1, ['\n'] = 1, ['\r'] = 1 };
+```
+
+#### [Cast to union](https://gcc.gnu.org/onlinedocs/gcc/Cast-to-Union.html#Cast-to-Union)
+
+```c
+union foo { int i; double d; };
+int x = 42; z = (union foo) x;
+double y = 1.0; z = (union foo) y;
+```
+
+#### [Dollar signs in identifier names]( https://gcc.gnu.org/onlinedocs/gcc/Dollar-Signs.html#Dollar-Signs)
+
+```c
+int x$;
+int $z;
+```
+
+
+#### [Unnamed union fields](https://gcc.gnu.org/onlinedocs/gcc/Unnamed-Fields.html#Unnamed-Fields)
+
+```c
+struct {
+  int a;
+  union { int b; float c; };
+  int d;
+} foo
+
+// foo.b has type int
+// foo.c has type float, occupies same storage as `foo.b`.
+```
+
+- [GCC manual: statement expressions](https://gcc.gnu.org/onlinedocs/gcc/Statement-Exprs.html)
+- [GCC manual: C extensions](https://gcc.gnu.org/onlinedocs/gcc/C-Extensions.html#C-Extensions)
+
+
+
+# A quick look at impredicativity
+
+I found this video very helpful, since I was indeed confused about the two
+meanings of impredicativity that I had seen floating around. One used by haskellers,
+which was that you can't instantiate a type variable `a` with a  (`forall t`).
+Impredicative in Coq means having `(Type : Type)`. 
+
+- polymorphic types:
+
+```hs
+forall p. [p] -> [p] -- LEGAL
+Int -> (forall p. [p] -> [p])  -- ILLEGAL
+(forall p. [p] -> [p])  -> Int -- ILLEGAL
+[forall a. a -> a] -- ILLEGAL
+```
+
+- Higher rank types: `forall` at the outermost level of a let-bound function,
+  and to the left and right of arrows!
+
+```hs
+Int -> (forall p. [p] -> [p])  -- LEGAL
+(forall p. [p] -> [p])  -> Int -- LEGAL
+runST :: (forall s. ST s a) -> a -- LEGAL
+[forall a. a -> a] -- ILLEGAL
+```
+
+- Impredicative type:
+
+```hs
+[forall a. a -> a]
+```
+
+- We can't type `runST` because of impredicativity:
+
+```hs
+($) :: forall a, forall b, (a -> b) -> a -> b
+runST :: forall a, (forall s, ST s a) -> a -- LEGAL
+st :: forall s. ST s Int
+runST st -- YES
+runST $ st -- NO 
+```
+
+- Expanding out the example:
+
+```hs
+($) runST st
+($) @ (forall s. ST s Int) @Int  (runST @ Int) st
+```
+
+- Data structures of higher kinded things. For example. we might want to have `[∀ a, a -> a]`
+- We have `ids :: [∀ a, a -> a]`. I also have the function `id :: ∀ a, a -> a`. I want
+  to build `ids' = (:) id ids`. That is, I want to cons an `id` onto my list `ids`.
+- How do we type infer this?
+
+#### How does ordinary type inference work?
+
+```hs
+reverse :: ∀ a. [a] -> [a]
+and :: [Bool] -> Bool
+foo = \xs -> (reverse xs, and xs)
+```
+
+- Start with `xs :: α` where `α` is a type variable.
+- Typecheck `reverse xs`. We need to instantiate `reverse`. With what type?
+  **that's what we need to figure out!**
+- (1) Instantiate: Use variable `β`. So we have that our occurence of `reverse` has type 
+  `reverse :: [β] -> [β]`.
+- (2) Constrain: We know that `xs :: α` and `reverse` expects an input argument of
+   type `[β]`, so we set `α ~ [β]` due to the call `reverse xs`.
+- We now need to do `and xs`. (1) `and` doesn't have any type variables, so we don't need
+  to perform instantiation. (2) We can constrain the type, because `and :: [Bool] -> Bool`,
+  we can infer from `and xs` that `α ~ [Bool]`
+- We solve using [**Robinson unification**](https://en.wikipedia.org/wiki/Robinson%27s_unification_algorithm).
+  We get `[β] ~ α ~ [Bool]` or `β = Bool`
+
+#### Where does this fail for polytypes?
+
+- The above works because `α` and `Β` only stand for **monotypes**.
+- Our constraints are **equality constraints**, which can be solved by 
+  **Robinson unification**
+- And we have only **one solution** (principal solution) 
+- When trying to instantiate reverse, how do we instantiate it?
+- Constraints become subsumption constraints
+- Solving is harder
+- No principal solution
+- TODO: construct an example for this intuition? I don't understand it.
+- Consider `incs :: [Int -> Int]`, and `(:) id incs` versus `(:) id ids`.
+
+#### But it looks so easy!
+
+- We want to infer `(:) id ids`
+- We know that the second argument `ids` had type `[∀ a, a -> a]`
+- we need a type `[p]` for the second argument, because `(:) :: p -> [p] -> [p]`
+- Thus we must have `p ~ (∀ a, a -> a)`
+- We got this information **from the second argument**
+- So let's try to treat an application `(f e1 e2 ... en)` as a whole.
+
+#### New plan
+
+- Assume we want to figure out `filter g ids`.
+- start with `filter :: ∀ p, (p -> Bool) -> [p] -> Bool`
+- Instatiate `filter` with **instantiation variables** `κ` to get 
+  `(κ -> Bool) -> [κ] -> Bool`
+- Take a "quick look" at `e1, e2` to see if we know that `κ` should be
+- We get from `filter g ids` that `κ := (∀ a, a -> a)`.
+- Substitute for `κ`  (1) the type that "quick look" learnt, if any, and 
+  (2) A **monomorphic** unification variable otherwise.
+- Typecheck against the type. In this case, we learnt that `κ := (∀ a, a -> a)`,
+  so we replace `κ` with `(∀ a, a -> a)`.
+- Note that this happens at each **call site**!
+
+#### The big picture
+
+Replace the idea of:
+- instantate function with unficiation variables, with the idea.
+- instantiate function with a quick look at the calling context. 
+- We don't need fully saturated calls. We take a look at whatever we can see!
+- Everything else is completely unchanged.
+
+#### What can QuickLook learn?
+
+
+
+- [Video](https://www.youtube.com/watch?v=ZuNMo136QqI)
+
+# Resolution and Prolog
+
+TODO
+
+
+# Data oriented programming in C++
+
+- Calcuating entropy to find out if a variable is worth it! Fucking amazing.
+- [Video](https://www.youtube.com/watch?v=rX0ItVEVjHc)
+
+
+# Retro glitch
+
+<img src=static/retro-glitch.jpg />
+
+- There's something great about the juxtaposition of the classic Christian scene
+  with the glitch aesthetic. I'm unable to articulate _what_ it is that I so 
+  thoroughly enjoy about this image. 
+
+
+# SSA as linear typed language
+
+- Control flow is linear in a basic block: ie, we can have a sea of nodes
+  representation, where each terminator instruction produces _linear_ control
+  flow tokens: `br: token[-1] --> token[1]`. `brcond: token[-1] -> -> (token[1], token[1])`,
+  `return: token[-1] -> ()`. This ensures that each branching only happens once,
+  thereby "sealing their fate. On the other hand, reguar instructions also
+  take a "control token", but don't _consume it_. so for example, `add: token[0] -> (name, name) -> name`.
+
+- Next question: is dominance also somehow 'linear'?
+- Answer: yes. We need quantitative types. When we branch from basic block `A`
+  into blocks `B, C`
+  attach `1/2A` to the control tokens from `(%tokb, %tokc) = br cond %cond0 B, C`.
+  Now, if someone builds a token that's at a basic block `D` that is merged
+  into by both `B, C`, they will receive a "full" `A` that they can use.
+  Pictorially:
+
+```
+       A
+       ...
+
+   B        C  
+[1/2A]     [1/2A]
+       D
+       1A
+```
 
 # Nix weirdness on small machines
 
@@ -89,6 +660,10 @@ lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-shell -> nix
 lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-store -> nix                                                                    
 ```
 
+It seems the way this works is that the `nix` tool figures out from what
+_symlink_ it's being invoked to decide what to do. God, that's ugly? brilliant?
+I don't even know.
+
 ### How does `writeFile` work?
 
 - `cowsay` in nixpkgs
@@ -102,6 +677,9 @@ lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-store -> nix
 - `writeDerivation` in nixos c++
 
 # Autodiff over derivative of integrals
+
+- [Reynolds transport theorem](https://en.wikipedia.org/wiki/Reynolds_transport_theorem)
+- [Physics based differential rendering](https://shuangz.com/courses/pbdr-course-sg20/)
 
 # Proof of projective duality
 
@@ -5055,24 +5633,30 @@ than $a$, and hence implies $a$.
 I learnt of a "prefix sum/min" based formulation from
 [the solution to question D, codeforces educational round 88](https://codeforces.com/blog/entry/78116).
 
-The idea is to start with the max prefix sum as the difference of right minus
+The idea is to start with the max prefix sum $opt$ (for optima)
+as the difference of right minus
 left:
 
 $$
 \begin{aligned}
-&\max_{(L, R)}: \sum_{L \leq i \leq R} a[i] \\
-&= \max_R: \left(\sum_{0 \leq i \leq R} a[i] - min L: \sum_{0 \leq i \leq L \leq R} \right) \\
+&opt \equiv \max_{(L, R)}: \sum_{L \leq i \leq R} a[i] \\
+&= \max_R: \left(\sum_{0 \leq i \leq R} a[i] - \min_{L \leq R}: \sum_{0 \leq i \leq L \leq R} a[i] \right) \\
 \end{aligned}
 $$
 
 Which is then  expressed as: 
 $$
-asum[n] \equiv \sum_{0 \leq i \leq n} a[i] 
-= \max_R: (asum[R] - min_{(L \leq R)}: asum[L])
+\begin{aligned}
+&asum[n] \equiv \sum_{0 \leq i \leq n} a[i]  \\
+&opt = \max_R: (asum[R] - \min_{(L \leq R)}: asum[L])
+\end{aligned}
 $$
 
 $$
-aminsum[n] \equiv \min_{0 \leq i \leq n} asum[i] = \max_R: (asum[R] - aminsum[R])
+\begin{aligned}
+&aminsum[n] \equiv \min_{0\leq i \leq n} asum[i] \\
+&opt = \max_R: (asum[R] - aminsum[R])
+\end{aligned}
 $$
 
 Since $asum$ is a prefix-sum of $a$, and $amin$ is a prefix min of
@@ -5080,16 +5664,23 @@ $asum$, the whole thing is $O(n)$ serial, $O(\log n)$ parallel.
 In haskell, this translates to:
 
 ```hs
-let sums = scanl (+) 0
-let sums_mins = scanl1 min . sums
-let rise xs = zipWith (-) (sums xs) (sums_mins xs)
-main = rise [1, 2, 3, -2, -1, -4, 4, 6]
-> [0,1,3,6,4,3,0,4,10]
+let heights deltas = scanl (+) 0 deltas
+let lowest_heights = scanl1 min . sums
+let elevations xs = zipWith (-) (sums xs) (lowest_heights xs)
+-- elevations [1, 2, 3, -2, -1, -4, 4, 6]
+-- > [0,1,3,6,4,3,0,4,10]
+let max_elevation deltas = max (elevation deltas)
+best = max_elevations [1, 2, 3, -2, -1, -4, 4, 6]
 ```
 
-`sums_mins` keeps track of the sea level, while the
-`zipWith (-) xxx sums_mins` computes the elevation from the sea level.
+`lowest_heights` keeps track of the sea level, while the
+`elevations` computes the elevation from the lowest height. 
+The maximum sum subarray will correspond to treating the elements of the array
+as deltas, where we are trying to find the highest elevation. since elevation
+is an integral (sum) of the deltas in height.
 
+
+<img width=800 src="./static/max-sum-subarray.png">
 
 # Thoughts on implicit heaps
 
@@ -9198,7 +9789,7 @@ that the usual typedef tends to hide the fact that a
 function pointer is some pointer-like-thing.
 
 
-# A walkway of lanterns
+# A walkway of lanterns (WIP)
 
 ### Semidirect products
 
@@ -9743,7 +10334,7 @@ If $f'(x_0)$ and $g'(x_0)$ are parallel, then attempting to improve $f(x_0 + \ve
 by change $g(x_0 + \vec \epsilon)$, and thereby violate the constraint
 $g(x_0 + \epsilon) = c$.
 
-# Efficient tree transformations on GPUs
+# Efficient tree transformations on GPUs (WIP)
 
 All material lifted straight from [Aaron Hsu's PhD thesis](https://scholarworks.iu.edu/dspace/handle/2022/24749). I'll be converting
 APL notation to C++-like notation.
@@ -11131,7 +11722,7 @@ then coarse structures (which are their dual) are related to..?
 #### References
 - [What is a.. coarse structure by AMS](http://www.ams.org/notices/200606/whatis-roe.pdf)
 
-# Matroids for greedy algorithms
+# Matroids for greedy algorithms (WIP)
 
 #### Definitions of matroids
 
@@ -14018,7 +14609,7 @@ $$
 9 + 42 k + 0k^2 &\equiv 2 \mod 49 \\
 7 + 42 k &\equiv 0 \mod 49 \\
 1 + 6 k &\equiv 0 \mod 49 \\
-k &\equiv 1 \mod 7
+k &\equiv 1 \mod 49
 \end{aligned}
 $$
 

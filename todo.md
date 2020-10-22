@@ -1,3 +1,31 @@
+- Differentiable programming for cheaply adding interactivity to graphics: https://tiarkrompf.github.io/notes/?/differentiable-programming-in-js/
+  Very nice!
+- [Talon: hands free input for computers](https://talonvoice.com/docs/) write code using
+  sounds and eye tracking.
+- Advanced data structres by Peter Brass: Describes both the usual things, and
+  exotic okasaki structures, interval trees, ukkonen's in detail.
+- [Oriented matroids](https://en.wikipedia.org/wiki/Oriented_matroid) as the theory of simplex?
+- https://github.com/ssloy/tinyrenderer 
+- [Combinatorial commutative algebra](Combinatorial Commutative Algebra)
+- [Applied finite group actions](https://www.springer.com/gp/book/9783540659419)
+- [How does the C debugger work](https://blog.0x972.info/?d=2014/11/13/10/40/50-how-does-a-debugger-work)
+- [First class patterns](https://hackage.haskell.org/package/first-class-patterns)
+- Complete and easy bidirectional type checking for higher ranked polymorphism.
+- Towards a practical programming language based on dependent type theory.
+- [Refinement types, a tutorial in the nanopass style](https://arxiv.org/pdf/2010.07763.pdf)
+- Manifolds tensors and forms, introduction to mathematicians and physicists: Teaches
+  diffgeo with a heavy emphasis on physics intuition and applications. Is very geometric!
+- [Real time collision detection book](https://realtimecollisiondetection.net/). It
+  is basically a book about spatial data structures and cache aware algorithms.
+- [Werner Harzog](https://en.wikipedia.org/wiki/Werner_Herzog)
+- [Iron smelting from scratch: Harald the blacksmith](https://www.haraldthesmith.com/iron-smelting/)
+- Read Roslyn: https://github.com/dotnet/roslyn
+- The Art of Multiprocessor Programming
+- Read how CILK works. They've clearly spent a lot of time making it fast, and there
+  are papers.
+- [Performance engineering for software systems](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-172-performance-engineering-of-software-systems-fall-2018/)
+- [Ludwig Miles van der Rohe: God is in the details](https://en.wikipedia.org/wiki/Ludwig_Mies_van_der_Rohe)
+- Strange algebraic structures: [racks, shelves, quandles](https://ncatlab.org/nlab/show/rack)
 - Schroeder’s Thermal Physics: Buck learnt stat mech from this.
 - Economics and stat mech: (1) Classical thermodynamics and economic general equilibrium theory,,
   (2) An economic analogy to thermodynamics.

@@ -31,14 +31,14 @@ if ((window.innerHeight - document.documentElement.clientHeight) >0) {
 
 # Features
 
+- [ ] RSS feed.
+- [ ] Broken link warnings.
 - [x] error for `_ _`,  `* *`, `__ __`, `** **` that span multiple lines.
 - [x] error for inline code blocks that span multiple lines.
 - [x] error for incorrectly written LaTeX.
 - [x] error for incorrectly formatted lists.
 - [x] generate links for headers as github does.
 - [ ] figure out which DOM element causes window to overflow horizontally.
-- [ ] RSS feed.
-- [ ] Broken link warnings.
 - [ ] Checkboxes.
 - [ ] Link generation for repeats: eg. "#a\n#a" should have links `a-1` and `a-2`.
 - [ ] MathML

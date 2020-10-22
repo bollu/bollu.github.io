@@ -1204,8 +1204,9 @@ const char html_preamble[] =
 " font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em; "
 " max-width: 100%; overflow-x: hidden; }"
 "\n"
-// img as a block
-"img { display:block; }"
+// img as a block. width: 100% makes it responsive with no fiddling
+// https://stackoverflow.com/questions/15458650/make-an-image-responsive-the-simplest-way
+"img { display:block; width: 100%; max-width: 800px; height: auto }"
 // container
 ".container { overflow-x: auto; overflow-y: hidden;  max-width:100%; }"
 "@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }"
