@@ -2576,7 +2576,7 @@ Consider a system of a particle in a well. We consider two energy levels:
 that with `E = 0`, and `E = 1`. This gives us the following five
 states:
 
-<img src=static/burnside//>
+<img src="./static/burnside/setup.png" >
 
 now I want to simulate this system, like a good computer scientist. So let's
 write the stupdiest one possible, `Δ0`, that doesn't simulate anything
@@ -2584,16 +2584,25 @@ at all, and `Δ+1`, which steps the system forward by a single step.
 These look like this:
 
 
-<img src=/>
+<img src="./static/burnside/simulation-1.png" >
 
 But why only these? Why privilege these time-scales? We should at least
 have `Δ-1`, for the arrow of time is fiction:
-<img src=/>
+<img src="./static/burnside/intergrator-minus-1.png">
 
 We should also have coarser integrators. Hence we contemplate `Δ+2` and `Δ-2`.
 Turns out these are equivalent:
 
-<img src=/>
+<img src="./static/burnside/integrator-plus-2-minus-2.png">
+
+
+We can also consider `Δ + 3`. We also see that `Δ + 4 = Δ`:
+<img src="./static/burnside/integrator-3-4.png">
+
+
+So in conclusion, the calculation gives us:
+
+<img src="./static/burnside/conclusion.png" >
 
 
 # The Ise Grand shrine
@@ -4434,7 +4443,7 @@ to arrive at Djikstra's
 
 # Product of compact spaces in compact
 
-<img width="600" src="./static/product-of-compact-is-compact.png">
+<img src="./static/product-of-compact-is-compact.png">
 
 # Hyperbolic groups have solvable word problem
 
@@ -5280,8 +5289,8 @@ $$
 
 We plot the function here:
 
-<img width=400 src="./static/arg-multi-value-circle.png">
-<img width=400 src="./static/arg-multi-value-plot.png">
+<img src="./static/arg-multi-value-circle.png">
+<img src="./static/arg-multi-value-plot.png">
 
 
 - Note that for every value $z \in C$, we get a _set_ of values associated
@@ -5298,7 +5307,7 @@ Let's try to investigate what happens if we move from `right` towards `bot`,
 arbitrarily stipulating ("picking a branch") that `arg(right) = 0` as a sort
 of basepoint.  
 
-<img width=400 src="./static/arg-multi-value-branch-lower.png">
+<img src="./static/arg-multi-value-branch-lower.png">
 
 - Note that we were _forced_ to pick the value `arg(bot) = -1` from our
   considerations of continuity. No other value extends continuous from the
@@ -5316,7 +5325,7 @@ This prompts the natural question:
   `arg(right) = 0` as before. This gives us:
 
 
-<img width=400 src="./static/arg-multi-value-branch-upper.png">
+<img src="./static/arg-multi-value-branch-upper.png">
 
 
 - Note that once again, we were _forced_ to pick `arg(top) = 1` by continuity
@@ -5358,7 +5367,7 @@ weird that we would need to depend on the history to define this function. We
 can formalize this notion of history. Let's first discretize the situation,
 giving us:
 
-<img width=400 src="./static/discrete-multi-valued.png"/>
+<img src="./static/discrete-multi-valued.png"/>
 
 - We are on the space of the spokes, given by `a, b, c, d, e, f, g, h`.
 - We have a function `f: Spoke -> Val` whose values are given on the spokes.
@@ -5368,7 +5377,7 @@ giving us:
   discontinuity in `out` at time `7`.
 - We want to fix this, so we make the function `f` multi-valued. 
 
-<img width=400 src=./static/discrete-multi-valued-assign-multi-value.png>
+<img src=./static/discrete-multi-valued-assign-multi-value.png>
 
 - We assign both values `8` and `0` to the spoke `a`. We wish to define
   the evaluation of `f: Spoke -> 2^N` relative to path `p`. At time `t`, point
@@ -5680,7 +5689,7 @@ as deltas, where we are trying to find the highest elevation. since elevation
 is an integral (sum) of the deltas in height.
 
 
-<img width=800 src="./static/max-sum-subarray.png">
+<img src="./static/max-sum-subarray.png">
 
 # Thoughts on implicit heaps
 
@@ -5912,7 +5921,7 @@ $y$, in an arithmetic of precision $u$. How do we measure the quality of $\hat y
    so we ask for $\min |\delta x|$. We can divide this error by $x$ as a 
    normalization factor. This is the **backward error**.
 
-<img width=800 src="./static/forward-backward-error.png">
+<img src="./static/forward-backward-error.png">
 
 There are two reasons we prefer backward error.
 
@@ -5949,7 +5958,7 @@ $$
 That is, for a small perturbation in the output $(\delta y)$, we can get a
 backward error of $\delta x$. This is called as **mixed forward backward error**.
 
-<img width=800 src="./static/mixed-forward-backward-error.png">
+<img src="./static/mixed-forward-backward-error.png">
 
 We can say that an algorithm with mixed-forward-backward-error is stable iff:
 
@@ -9846,7 +9855,7 @@ $$
 
 # Natural transformations
 
-<img width=400  src="./static/natural-transformation.png">
+<img  src="./static/natural-transformation.png">
 
 
 I don't find people who draw "all three parts" of the natural transformation:
@@ -11515,7 +11524,7 @@ range minimum query (RMQ) on the array $A$ is equivalent to the lowest common an
 of the nodes of the tree $T$.
 
 
-<img width=200 height=200 src="./static/cartesian-tree.svg">
+<img src="./static/cartesian-tree.svg">
 
 Note that the tree looks like a _min-heap_.
 
@@ -12221,7 +12230,7 @@ Some examples of the range of responsibility of an index are:
 - $15 = 15 = (14, 15]$
 - $16 = 2^4 = (0, 16]$
 
-<img width=300 src="./static/fenwick-structure.gif">
+<img src="./static/fenwick-structure.gif">
 
 
 #### query
@@ -12673,7 +12682,7 @@ a=~3
 
 I liked it so much that I took a screenshot and made it my lock screen.
 
-<img width=500 src="./static/screenshot-j-incunabulum.png">
+<img src="./static/screenshot-j-incunabulum.png">
 
 #### Thoughts
 
@@ -12905,7 +12914,7 @@ of the orbits of planets using two integrators, one that's symplectic (leapfrog)
 and one that isn't (Euler)
 
 
-<img width=400  src="./static/leapfrog-vs-euler.png">
+<img src="./static/leapfrog-vs-euler.png">
 
 Notice that since leapfrog attempts to keep energy conserved, the orbits stay
 as orbits! On the other hand, the euler integrator quickly spirals out, since
@@ -13291,30 +13300,30 @@ Examples of simplicial complexes:
 
 - Every simplex is trivially a simplicial complex.
 
-<img width=200 height=200 src="static/simplices/complex-0-simplices.svg">
+<img src="static/simplices/complex-0-simplices.svg">
 - A collection of points is a simplicial complex with all simplices of degree $0$.
 
-<img width=200 height=200 src="static/simplices/complex-unfilled-triangle.svg">
+<img src="static/simplices/complex-unfilled-triangle.svg">
 - An unfilled triangle is a simplicial complex with simplices of degree $0$, $1$.
 
-<img width=200 height=200 src="static/simplices/complex-unfilled-butterfly.svg">
+<img src="static/simplices/complex-unfilled-butterfly.svg">
 - Non-triangular shapes such  as this "butterfly" are also simplicial complexes,
   this one of degree $0$, $1$.
 
-<img width=200 height=200 src="static/simplices/complex-half-filled-butterfly.svg">
+<img src="static/simplices/complex-half-filled-butterfly.svg">
 - This is the same shape as the unfilled butterly, except now containing a
   simplex of degree 2: the filling in of the bottom of the butterfly.
 
 
 Non-examples of simplicial complexes are:
 
-<img width=200 height=200 src="static/simplices/non-simplex-1.svg">
+<img src="static/simplices/non-simplex-1.svg">
 - This does not contain the point at the lower-left corner, which should exist
   since it is a boundary of the straight line. This violates rule (1):
   Every boundary of a simplex from $K$ is in $K$
 
 
-<img width=200 height=200 src="static/simplices/non-simplex-2.svg">
+<img src="static/simplices/non-simplex-2.svg">
 - This does not contain the points which are at the intersection of the
   triangle and the line. This violates rule (2):
   The intersection of any two simplices in $K$ is also in $K$.
@@ -13324,7 +13333,7 @@ Non-examples of simplicial complexes are:
 Let's consider the simplest possible case of computing the homlogy, and we
 do so, we will expand on what homology _is_, and what we're trying to do.
 
-<img width=200 height=200 src="static/simplices/homology-triangle-edges.svg">
+<img src="static/simplices/homology-triangle-edges.svg">
 
 Look at the triangle above. We have the red, green, and blue vertices, which
 I'll notate $r, g, b$. We also have the edges that are orange ($o$), cyan ($c$), and
@@ -13461,7 +13470,7 @@ around the triangle, such as $o + m + c + o + m + c$.
 
 ### (No) Holes in a space: Homology of a _filled_ triangle
 
-<img width=200 height=200 src="static/simplices/homology-triangle-faces.svg">
+<img src="static/simplices/homology-triangle-faces.svg">
 
 In this case, notice that the triangle is _filled_ with a face $f$.
 Therefore, the "hole" that we had previously is now filled up, and does not
@@ -13511,7 +13520,7 @@ f is closed <=> df = 0
 f is exact <=> f = dg
 -->
 
-<img width=200 height=200 src="static/simplices/cohomology-triangle-vertices.svg">
+<img src="static/simplices/cohomology-triangle-vertices.svg">
 
 Once again, we have our humble triangle with vertices $V = \{r, g, b\}$,
 edges $E = \{o, m, c \}$, faces $F = \{ f \}$ with boundary maps $\partial_{EV}$,
@@ -13585,7 +13594,7 @@ forms such as $g_e$ which can be generated a $g_v$ through the $d$ operator
 are called as **exact differential forms**. That is, $g_e = d g_v$ _exactly_,
 such that there is no "remainder term" on applying the $d$ operator.
 
-<img width=200 height=200 src="static/simplices/cohomology-triangle-edges.svg">
+<img src="static/simplices/cohomology-triangle-edges.svg">
 
 We take an example of a differential form that is _not exact_, which has been
 defined on the edges of the triangle above. Let's call it $h_e$.
@@ -13620,7 +13629,7 @@ the essence of cohomology.
 
 ## Cohomology of half-filled butterfly
 
-<img width=400 src="static/simplices/cohomology-half-filled-butterfly.svg">
+<img  src="static/simplices/cohomology-half-filled-butterfly.svg">
 
 Here, we have vertices $V \equiv \\{ r, g, b, b, p \\}$, edges
 $E \equiv \\{rb, gr, bg, m, o, c \\}$ and faces $F \equiv \\{ f \\}$.
@@ -16044,7 +16053,7 @@ The S-polynomial induced by $f_i, f_j$ is defined as $S(f_i, f_j) = m_i f_i - m_
 # [Lie bracket versus torsion](lie-bracket-versus-torsion)
 
 
-<img width=200 height=200 src="static/lie-bracket-versus-torsion.png">
+<img src="static/lie-bracket-versus-torsion.png">
 
 This picture _finally_ made the difference between these two things clear.
 The lie bracket moves along the _flow_, while the torsion moves along
@@ -16361,7 +16370,7 @@ I'll make this an append-only log to add to the section as I understand more.
 
 ##### Simulating orbits with large timesteps
 
-<img width=200 height=200 src="./static/leapfrog-vs-euler.png">
+<img src="./static/leapfrog-vs-euler.png">
 
 Clearly, the leapfrog integrator preserves energy and continues to move
 in an orbit, while the euler integrator goes batshit and causes orbits

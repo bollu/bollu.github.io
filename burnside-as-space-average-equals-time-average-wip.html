@@ -24,16 +24,20 @@ but how does one perform averaging? One needs to have a measure!
 Consider a system of a particle in a well. We consider two energy levels:
 that with <code>E = 0</code>, and <code>E = 1</code>. This gives us the following five
 states:
-<img src=static/burnside//>
+<img src="./static/burnside/setup.png" >
 now I want to simulate this system, like a good computer scientist. So let's
 write the stupdiest one possible, <code>Δ0</code>, that doesn't simulate anything
 at all, and <code>Δ+1</code>, which steps the system forward by a single step.
 These look like this:
-<img src=/>
+<img src="./static/burnside/simulation-1.png" >
 But why only these? Why privilege these time-scales? We should at least
 have <code>Δ-1</code>, for the arrow of time is fiction:
-<img src=/>
+<img src="./static/burnside/intergrator-minus-1.png">
 We should also have coarser integrators. Hence we contemplate <code>Δ+2</code> and <code>Δ-2</code>.
 Turns out these are equivalent:
-<img src=/>
+<img src="./static/burnside/integrator-plus-2-minus-2.png">
+We can also consider <code>Δ + 3</code>. We also see that <code>Δ + 4 = Δ</code>:
+<img src="./static/burnside/integrator-3-4.png">
+So in conclusion, the calculation gives us:
+<img src="./static/burnside/conclusion.png" >
 </container></body></html>

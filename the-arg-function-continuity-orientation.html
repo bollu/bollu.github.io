@@ -15,8 +15,8 @@ valid angles that generate it:
 arg(z) \equiv \{ t \in \mathbb R : |z|e^{i (\pi/2)t} = z  \}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≡</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68889em;vertical-align:0em;"></span><span class="mord mathbb">R</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.188em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mord">∣</span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.938em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mopen mtight">(</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">π</span><span class="mord mtight">/</span><span class="mord mtight">2</span><span class="mclose mtight">)</span><span class="mord mathnormal mtight">t</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">}</span></span></span></span></span></div>
 We plot the function here:
-<img width=400 src="./static/arg-multi-value-circle.png">
-<img width=400 src="./static/arg-multi-value-plot.png">
+<img src="./static/arg-multi-value-circle.png">
+<img src="./static/arg-multi-value-plot.png">
 <ul><li><span class='centered'> Note that for every value <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">z \in C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span></span></span>, we get a <i><span class='centered'>set</i> of values associated
   to it.</li></ul>
 <h4><a id=recovering-single-valued-ness href='#recovering-single-valued-ness'> § </a><span class='centered'> Recovering single valued-ness</h4>
@@ -26,7 +26,7 @@ the function <span class='latexinline'><span class="katex"><span class="katex-ma
 Let's try to investigate what happens if we move from <code>right</code> towards <code>bot</code>,
 arbitrarily stipulating ("picking a branch") that <code>arg(right) = 0</code> as a sort
 of basepoint.  
-<img width=400 src="./static/arg-multi-value-branch-lower.png">
+<img src="./static/arg-multi-value-branch-lower.png">
 <ul><li><span class='centered'> Note that we were <i><span class='centered'>forced</i> to pick the value <code>arg(bot) = -1</code> from our
   considerations of continuity. No other value extends continuous from the
   right to the bottom.</li><li><span class='centered'> Also note that we got a <i><span class='centered'>smaller</i> value: we move from <code>0 -> -1</code>: we decrease
@@ -36,7 +36,7 @@ This prompts the natural question:
 <h4><a id=counter-clockwise-movement href='#counter-clockwise-movement'> § </a><span class='centered'> Counter-clockwise movement</h4>
 <ul><li><span class='centered'> Let's move counter-clockwise from <code>right</code>, arbitrarily picking the branch
   <code>arg(right) = 0</code> as before. This gives us:</li></ul>
-<img width=400 src="./static/arg-multi-value-branch-upper.png">
+<img src="./static/arg-multi-value-branch-upper.png">
 <ul><li><span class='centered'> Note that once again, we were <i><span class='centered'>forced</i> to pick <code>arg(top) = 1</code> by continuity
   considerations.</li></ul>
 <ul><li><span class='centered'> Also note that this time, we got a <i><span class='centered'>larger</i> value: we move from <code>0 -> 1</code>: we
@@ -58,10 +58,10 @@ I was personally dis-satisfied with the above explanation, because it seemed
 weird that we would need to depend on the history to define this function. We
 can formalize this notion of history. Let's first discretize the situation,
 giving us:
-<img width=400 src="./static/discrete-multi-valued.png"/>
+<img src="./static/discrete-multi-valued.png"/>
 <ul><li><span class='centered'> We are on the space of the spokes, given by <code>a, b, c, d, e, f, g, h</code>.</li><li><span class='centered'> We have a function <code>f: Spoke -> Val</code> whose values are given on the spokes.</li><li><span class='centered'> We are interested in the path <code>p: Time -> Spoke</code>, <code>p = [a, b, c, d, e, f, g, h, a]</code>.</li><li><span class='centered'> If we evaluate the function <code>f</code> on the path <code>p</code>, we get <code>out: Time -> Val</code>, <code>out = [0, 1, 2, 3, 4, 5, 6, 7, 0]</code>.</li><li><span class='centered'> We have a "jump" from <code>7</code> to <code>0</code> in <code>out</code> as we cross from <code>h</code> to <code>a</code>. This is a
   discontinuity in <code>out</code> at time <code>7</code>.</li><li><span class='centered'> We want to fix this, so we make the function <code>f</code> multi-valued. </li></ul>
-<img width=400 src=./static/discrete-multi-valued-assign-multi-value.png>
+<img src=./static/discrete-multi-valued-assign-multi-value.png>
 <ul><li><span class='centered'> We assign both values <code>8</code> and <code>0</code> to the spoke <code>a</code>. We wish to define
   the evaluation of <code>f: Spoke -> 2^N</code> relative to path <code>p</code>. At time <code>t</code>, point
   <code>p[t]</code>, we pick any value in <code>f(p[t])</code> that makes <code>out[t]</code> continuous.</li></ul>
