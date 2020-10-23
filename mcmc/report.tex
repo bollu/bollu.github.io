@@ -184,7 +184,7 @@ supplied by the user. We will show that the \emph{stationary distribution} of $M
 is going to be $\P$. This will ensure that if we interpret \emph{states of $M$} as samples,
 these samples will the distriubted according to $\P$.
 
-\subsection{Detail balance: A tool for proofs}
+\subsection{detailed balance: A tool for proofs}
 We will first require a condition that will enable to rapidly establish that some
 distribution $\P: X \rightarrow \R$ is the stationary distribution of a markov chain $M$. If
 the transition kernel $K: X \times X \rightarrow \R$ of $M \equiv (X, K)$ is such that:
@@ -193,14 +193,14 @@ $$
 \forall x, x' \in X, \P(x) K(x, x') = \P(x') K(x', x)
 $$
 
-Then $\P$ is said to be \textbf{detail balanced} with respect to $M$.
+Then $\P$ is said to be \textbf{detailed balanced} with respect to $M$.
 
 \begin{theorem}
-If $\P$ is detail balanced to $M \equiv (X, K: X \rightarrow (X \rightarrow [0, 1])$,
+If $\P$ is detailed balanced to $M \equiv (X, K: X \rightarrow (X \rightarrow [0, 1])$,
 then $\P$ is the stationary distribution of $M$.
 \end{theorem}
 \begin{proof}
-Let $\P$ be detail balanced to $M$. This means that:
+Let $\P$ be detailed balanced to $M$. This means that:
 $$
 \forall x, x' \in X, \P(x) K(x)(x') = \P(x') K(x')(x)
 $$
@@ -220,14 +220,14 @@ Manipulating $Pnext$, we get:
 
 \begin{align*}
 &Pnext(x'_0) \equiv \sum_x \P(x) K(x)(x'_0) \\
-&= \sum_x \P(x'_0) K(x'_0)(x) \quad \text{(by detail balance)} \\
+&= \sum_x \P(x'_0) K(x'_0)(x) \quad \text{(by detailed balance)} \\
 &= \P(x'_0) \sum_x K(x'_0)(x) \quad \text{($P(x_0)$ is constant} \\
 &= \P(x'_0) \cdot 1 \quad \text{($K(x'_0)$ is a distribution which is being summed over)} \\
 &= \P(x'_0) \quad \text{(eliminate multiplication with 1)}
 \end{align*}
 
 Hence, $Pnext(n'_0) = \P(x'_0)$ if $\P$ is the current state, and $\P$
-is in detail balance with the kernel $K$.
+is in detailed balance with the kernel $K$.
 This means that $\P$ is the stationary distribution of $M$.
 \qed
 \end{proof}
@@ -256,7 +256,7 @@ a way that will improve $\P$.  So, we tentatively define
 $$K[\P, \Prop](x)(x') \stackrel{?}{\equiv} \Prop(x)(x').$$
 
 Recall that for $\P$ to be a stationary distribution of $K$, it is sufficient
-for $\P$ to be in detail balance for $K$. So, we write:
+for $\P$ to be in detailed balance for $K$. So, we write:
 
 \begin{align*}
 &\P(x) K(x, x') \stackrel{?}{=}  \P(x') K(x', x) \quad \text{(going forward equally likely as coming back)} \\
@@ -273,7 +273,7 @@ $$
 K[\P, \Prop](x)(x') \equiv \Prop(x)(x') \alpha(x)(x')
 $$
 
-Redoing detail balance with this new $K$, we get:
+Redoing detailed balance with this new $K$, we get:
 
 \begin{align*}
 &\P(x) K(x, x') \stackrel{?}{=}  \P(x') K(x', x) \quad \text{(going forward equally likely as coming back)} \\
@@ -294,7 +294,7 @@ Hence, we choose to clamp it with a $\min(1, \cdot)$. This finally gives us the 
 &K[\P, \Prop](x)(x') =   \min\left(\Prop(x)(x'), \frac{\P(x')\Prop(x')(x)}{\P(x)} \right) \\
 \end{align*}
 
-We can make sure that detail balance is satisfied:
+We can make sure that detailed balance is satisfied:
 
 \begin{align*}
 &\P(x) K[\P, \Prop](x)(x') =\P(x)  \min\left(\Prop(x)(x'), \frac{\P(x')\Prop(x')(x)}{\P(x)} \right) \\
@@ -310,7 +310,7 @@ we can state that:
 \end{align*}
 
 Hence, we can wrap up, stating that our design of $K$ does indeed give us a
-markov chain whose stationary distribution is $\P$, since $\P$ is detail
+markov chain whose stationary distribution is $\P$, since $\P$ is detailed
 balanced with $K[\P, \Prop]$. As an upshot, we also gained a level of control
 with $\Prop$, where we are able to provide "good" samples for a given point.
 
@@ -356,7 +356,7 @@ def metropolis_hastings(prob, symproposal, x0, N):
 \end{minted}
 }
 
-\subsection{Implementing MH: Devil in the Details}
+\subsection{Implementing MH: Devil in the detailed balance}
 
 \subsubsection{Naive implementation}
 
@@ -429,11 +429,11 @@ xs = list(itertools.islice(mhsimple(0, exp, expprop, ITERS_PER_SAMPLE), NSAMPLES
 % from the \emph{conditional} distribution cleverly. The code is:
 % 
 % 
-% \subsection{Gibbs sampling maintains detail balance}
-% % https://stats.stackexchange.com/questions/118442/does-the-gibbs-sampling-algorithm-guarantee-detailed-balance
+% \subsection{Gibbs sampling maintains detailed balance}
+% % https://stats.stackexchange.com/questions/118442/does-the-gibbs-sampling-algorithm-guarantee-detaileded-balance
 % Consider a two-variate state where we sample the first variable from its conditional distribution.
 % A move between  $(x_1, x_2)$ and $(y_1, y_2)$ has zero probability in both directions
-% if $x_2\neq y_2$, and thus detail balance automatically holds. If $x_2 = y_2$, then
+% if $x_2\neq y_2$, and thus detailed balance automatically holds. If $x_2 = y_2$, then
 % we can consider:
 % 
 % 
@@ -484,8 +484,8 @@ is as follows:
         \emph{randomly choose its velocity}, simulate the ball according to 
         classical mechanics (Newton's laws of motion) for a fixed duration $D \in \R$
         and propose the final position as the final position of the ball. This
-        is reversible and detail balanced because 
-        \emph{classical mechanics is reversible and detail balanced}.
+        is reversible and detailed balanced because 
+        \emph{classical mechanics is reversible and detailed balanced}.
 \end{itemize}
 
 % \begin{align*}
