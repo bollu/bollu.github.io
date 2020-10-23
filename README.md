@@ -1,4 +1,4 @@
-<h2>
+<2>
 <img style="float:left;display:inline-block;padding-right: 16px; width: 48px" src="./static/banner.png">
 A Universe of Sorts
 </h2>
