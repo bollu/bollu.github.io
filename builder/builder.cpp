@@ -1228,7 +1228,7 @@ const char html_preamble[] =
 "\n"
 "blockquote { margin-left: 0px; margin-right: 0px; }"
 " pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;"
-"      border-left-width: 1px; }"
+"      border-left-width: 5px; }"
 "pre, blockquote { padding-left: 10px; }"
 "\n"
 // monospace font
