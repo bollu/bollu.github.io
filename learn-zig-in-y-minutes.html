@@ -1,0 +1,100 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
+img { display:block; width: 100%; max-width: 800px; height: auto }.container { overflow-x: auto; overflow-y: hidden;  max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: 20%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 1px; }pre, blockquote { padding-left: 10px; }
+pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=learn-zig-in-y-minutes href='#learn-zig-in-y-minutes'> § </a><span class='centered'> Learn Zig in Y minutes</h2>
+<pre><code>const std = @import("std");
+
+// global variables.
+const x = 1234;
+
+//! Top level comments are setup using //!
+//! This module provides functions for retrieving the current date and
+//! time with varying degrees of precision and accuracy. It does not
+//! depend on libc, but will use functions from it if available.
+pub fn main() !void {
+    const stdout = std.io.getStdOut().writer();
+    try stdout.print("Hello, {}!\n", .{"world"});
+    // Comments in Zig start with "//" and end at the next LF byte (end of line).
+    // The below line is a comment, and won't be executed.
+
+    // integers
+    const one_plus_one: i32 = 1 + 1;
+    print("1 + 1 = {}\n", .{one_plus_one});
+
+    // floats
+    const seven_div_three: f32 = 7.0 / 3.0;
+    print("7.0 / 3.0 = {}\n", .{seven_div_three});
+
+    // boolean
+    print("{}\n{}\n{}\n", .{
+        true and false,
+        true or false,
+        !true,
+    });
+
+    // optional
+    var optional_value: ?[]const u8 = null;
+    assert(optional_value == null);
+
+    print("\noptional 1\ntype: {}\nvalue: {}\n", .{
+        @typeName(@TypeOf(optional_value)),
+        optional_value,
+    });
+
+    optional_value = "hi";
+    assert(optional_value != null);
+
+    print("\noptional 2\ntype: {}\nvalue: {}\n", .{
+        @typeName(@TypeOf(optional_value)),
+        optional_value,
+    });
+
+    // error union
+    var number_or_error: anyerror!i32 = error.ArgNotFound;
+
+    print("\nerror union 1\ntype: {}\nvalue: {}\n", .{
+        @typeName(@TypeOf(number_or_error)),
+        number_or_error,
+    });
+
+    number_or_error = 1234;
+
+    print("\nerror union 2\ntype: {}\nvalue: {}\n", .{
+        @typeName(@TypeOf(number_or_error)),
+        number_or_error,
+    });
+
+    // It works at global scope as well as inside functions.
+    const y = 5678;
+
+
+}
+
+
+
+// Top-level declarations are order-independent:
+pub fn g() { f(); }
+pub fn f() {}
+
+test "string literals" {
+    const bytes = "hello";
+    assert(@TypeOf(bytes) == *const [5:0]u8);
+    assert(bytes.len == 5);
+    assert(bytes[1] == 'e');
+    assert(bytes[5] == 0);
+    assert('e' == '\x65');
+    assert('\u{1f4a9}' == 128169);
+    assert('💯' == 128175);
+    assert(mem.eql(u8, "hello", "h\x65llo"));
+}
+
+
+
+</code></pre>
+</container></body></html>

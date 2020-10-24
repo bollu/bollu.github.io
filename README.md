@@ -1,4 +1,4 @@
-<2>
+<h2>
 <img style="float:left;display:inline-block;padding-right: 16px; width: 48px" src="./static/banner.png">
 A Universe of Sorts
 </h2>
@@ -14,6 +14,100 @@ A Universe of Sorts
 - [My reading list](todo.html)
 
 <!-- - [Grab me a coffee](https://ko-fi.com/bollu) -->
+
+# Learn Zig in Y minutes
+
+```
+const std = @import("std");
+
+// global variables.
+const x = 1234;
+
+//! Top level comments are setup using //!
+//! This module provides functions for retrieving the current date and
+//! time with varying degrees of precision and accuracy. It does not
+//! depend on libc, but will use functions from it if available.
+pub fn main() !void {
+    const stdout = std.io.getStdOut().writer();
+    try stdout.print("Hello, {}!\n", .{"world"});
+    // Comments in Zig start with "//" and end at the next LF byte (end of line).
+    // The below line is a comment, and won't be executed.
+
+    // integers
+    const one_plus_one: i32 = 1 + 1;
+    print("1 + 1 = {}\n", .{one_plus_one});
+
+    // floats
+    const seven_div_three: f32 = 7.0 / 3.0;
+    print("7.0 / 3.0 = {}\n", .{seven_div_three});
+
+    // boolean
+    print("{}\n{}\n{}\n", .{
+        true and false,
+        true or false,
+        !true,
+    });
+
+    // optional
+    var optional_value: ?[]const u8 = null;
+    assert(optional_value == null);
+
+    print("\noptional 1\ntype: {}\nvalue: {}\n", .{
+        @typeName(@TypeOf(optional_value)),
+        optional_value,
+    });
+
+    optional_value = "hi";
+    assert(optional_value != null);
+
+    print("\noptional 2\ntype: {}\nvalue: {}\n", .{
+        @typeName(@TypeOf(optional_value)),
+        optional_value,
+    });
+
+    // error union
+    var number_or_error: anyerror!i32 = error.ArgNotFound;
+
+    print("\nerror union 1\ntype: {}\nvalue: {}\n", .{
+        @typeName(@TypeOf(number_or_error)),
+        number_or_error,
+    });
+
+    number_or_error = 1234;
+
+    print("\nerror union 2\ntype: {}\nvalue: {}\n", .{
+        @typeName(@TypeOf(number_or_error)),
+        number_or_error,
+    });
+
+    // It works at global scope as well as inside functions.
+    const y = 5678;
+
+
+}
+
+
+
+// Top-level declarations are order-independent:
+pub fn g() { f(); }
+pub fn f() {}
+
+test "string literals" {
+    const bytes = "hello";
+    assert(@TypeOf(bytes) == *const [5:0]u8);
+    assert(bytes.len == 5);
+    assert(bytes[1] == 'e');
+    assert(bytes[5] == 0);
+    assert('e' == '\x65');
+    assert('\u{1f4a9}' == 128169);
+    assert('💯' == 128175);
+    assert(mem.eql(u8, "hello", "h\x65llo"));
+}
+
+
+
+```
+
 
 # The algebraic structure of the 'nearest smaller number' question
 
