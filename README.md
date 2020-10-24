@@ -2,16 +2,16 @@
 <img style="float:left;display:inline-block;padding-right: 16px; width: 48px" src="./static/banner.png">
 A Universe of Sorts
 </h2>
+
 ### Siddharth Bhat
 
-
-- [Leave feedback for me, `+ve` or `-ve`!](https://www.admonymous.co/bollu)
-- [Chat with me](https://calendly.com/bollu/30min?back=1&month=2020-10)
+- [Please leave feedback!](https://www.admonymous.co/bollu)
+- [Vidcall/Hang out](https://calendly.com/bollu/30min?back=1&month=2020-10)
 - Reach me: <a href='mailto:siddu.druid@gmail.com'> `siddu.druid@gmail.com` </a>
-- [My github](http://github.com/bollu)
-- [My math.se profile](https://math.stackexchange.com/users/261373/siddharth-bhat)
-- [My resume](resume/main.pdf)
-- [My reading list](todo.html)
+- [github](http://github.com/bollu)
+- [math.se](https://math.stackexchange.com/users/261373/siddharth-bhat)
+- [resume](resume/main.pdf)
+- [reading list/TODO](todo.html)
 
 <!-- - [Grab me a coffee](https://ko-fi.com/bollu) -->
 
@@ -253,39 +253,48 @@ Consider the meadian of $xs[1..N]$. We want to show that the median minimizes
 the L1 norm $L_1(y) = \sum_i |xs[i] - y|$. If we differentiate $L_1(y)$ with
 respect to $y$, we get:
 
-- $d L_1(y)/y = \sum_i - \texttt{sign}(xs[i] - y) $
-- Recall that $d(|x|)/dx = \texttt{sign}(x)$
+$$d L_1(y)/y = \sum_i - \texttt{sign}(xs[i] - y) $$
+
+
+Recall that $d(|x|)/dx = \texttt{sign}(x)$
 
 Hence, the best $y$ to minimize the $L_1$ norm is the value that makes the sum
-of the signs $\sum_i \texttt{sign}(xs[i] - y)$ minimal.
+of the signs $\sum_i \texttt{sign}(xs[i] - y)$ minimal. The median is perfect
+for this optimization problem.
 
-- The median is perfect for this optimization problem.
-- When the list has an odd number of elements, say, $2k + 1$, $k$ elements
+1. When the list has an odd number of elements, say, $2k + 1$, $k$ elements
   will have sign $-1$, the middle element will have sign $0$, and the $k$ elements
   after will have sign $+1$. The sum will be $0$ since half of the $-1$ and the $+1$
   cancel each other out.
-- Similar things happen for even, except that we can get a best total sign distance of $+1$
+2. Similar things happen for even, except that we can get a best total sign distance of $+1$
   using either of the middle elements.
 
 
-- **Proof 2:** Math.se has a nice picture proof abot walking from left to right.
+#### Proof 2:
+Math.se has a nice picture proof abot walking from left to right.
 
-- **Proof 3** Consider the case where $xs$ has only two elements, with $xs[0] < xs[1]$.
-  Then the objective function to minimize the L1 norm, ie, to minimize
-  $|xs[1] - y| + |xs[2] - y|$. This is satisfied by any point in
-  between $xs[1]$ and $xs[2]$.
+#### Proof 3:
+Consider the case where $xs$ has only two elements, with $xs[0] < xs[1]$.
+Then the objective function to minimize the L1 norm, ie, to minimize
+$|xs[1] - y| + |xs[2] - y|$. This is satisfied by any point in
+between $xs[1]$ and $xs[2]$.
 
-- In the general case, assume that $xs[1] < xs[2] \dots < xs[N]$. Pick the smallest
-  number $xs[1]$ and the largest number $xs[N]$. We have that any $y$ between $xs[1]$
-  and $xs[N]$ satisfies the condition. Now, drop off $xs[1]$ and $xs[N]$, knowing
-  that we must have $y \in [xs[1], xs[N]]$. Recurse.
-- At the end, we maybe left with a single element $xs[k]$. In such a case, we need
-  to minimize $|xs[k] - y|$. That is, we set $xs[k] = y$.
-- On the other hand, we maybe left with two elements. In this case, any point between
-  the two elements is a legal element.
-- We may think of this process as gradually "trapping" the median between the
-  extremes, using the fact that that any point $y \in [l, r]$ minimizes 
-  $|y - l| + |y - r|$!
+In the general case, assume that $xs[1] < xs[2] \dots < xs[N]$. Pick the smallest
+number $xs[1]$ and the largest number $xs[N]$. We have that any $y$ between $xs[1]$
+and $xs[N]$ satisfies the condition. Now, drop off $xs[1]$ and $xs[N]$, knowing
+that we must have $y \in [xs[1], xs[N]]$. Recurse.
+
+
+At the end, we maybe left with a single element $xs[k]$. In such a case, we need
+to minimize $|xs[k] - y|$. That is, we set $xs[k] = y$.
+
+On the other hand, we maybe left with two elements. In this case, any point between
+the two elements is a legal element.
+
+
+We may think of this process as gradually "trapping" the median between the
+extremes, using the fact that that any point $y \in [l, r]$ minimizes 
+$|y - l| + |y - r|$!
 
 
 

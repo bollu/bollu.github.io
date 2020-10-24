@@ -8,4 +8,4 @@ serve:
 	python3 -m http.server
 
 clean:
-	find . -name '*.html' -delete
+	find . -name '*.html' ! -name 'chat.html'  -delete

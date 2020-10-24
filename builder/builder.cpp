@@ -1325,6 +1325,19 @@ long long writeTableOfContentsHTML(duk_context *katex_ctx,
     return outlen;
 }
 
+void writeRSSFeed(FILE *frss, const vector<T*> &ts) {
+    assert(frss != nullptr);
+    // https://www.mnot.net/rss/tutorial/
+    fprintf(frss, "<?xml version=\"1.0\"?>");
+    fprintf(frss, "<rss version=\"2.0\">");
+    fprintf(frss, "<channel>");
+    fprintf(frss, "<title>A universe of sorts</title>");
+    fprintf(frss, "<link>http://bollu.github.io/</link>");
+
+    // fprintf("<description>My example channel</description>");
+    fprintf(frss, "</rss>");
+}
+
 int main(int argc, char **argv) {
     // 1. Load options
     // ---------------
@@ -1508,13 +1521,13 @@ int main(int argc, char **argv) {
                                           
     // === write out RSS ===
     char rss_feed_path[1024];
-    sprintf(rss_feed_path, "%s/rss", argv[2]) ;
+    sprintf(rss_feed_path, "%s/feed.rss", argv[2]) ;
     FILE *frss = fopen(rss_feed_path, "wb");
     if (frss == nullptr) {
         fprintf(stderr, "===unable to open RSS file: |%s|===\n", rss_feed_path);
         return 1;
     }
-    assert(frss != nullptr);
+    writeRSSFeed(frss, ts);
     fclose(frss);
     
     return 0;
