@@ -36,7 +36,7 @@ def hmc(q0, U, dU, nsteps, dt):
         p = np.random.normal(0, M)
         (qnext, pnext) = nextsample(q, p)
         r = np.random.uniform(); 
-        pnext = -p # reverse momentum so our process is reversible
+        pnext = -pnext # reverse momentum so our process is reversible
         if np.log(r) < h(q, p) - h(qnext, pnext): q = qnext
         yield q
 
