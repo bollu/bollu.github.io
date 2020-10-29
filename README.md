@@ -15,6 +15,300 @@ A Universe of Sorts
 
 <!-- - [Grab me a coffee](https://ko-fi.com/bollu) -->
 
+# Z algorithm (TODO)
+
+The `Z` algorithm, for a given string $s$, computes a function $Z: [len(s)] \rightarrow [len(s)$].
+$Z[i]$ is the length of the longest common prefix between $S$ and $S[i:]$.
+So, $S[0] = $S[i]$, $S[1] = S[i+1]$, $S[2] = S[i+2]$, and so on till $S[Z[i]] = S[i + Z[i]]$,
+and then $S[Z[i]+1] \neq S[i + Z[i] + 1]$.
+
+
+If we can compute the `Z` function for a string, we can then check if pattern `P`
+is a substring of text `T` by constructing the string `P#T$`. Then, if we
+have an index such that `Z[i] = len(P)`, we know that at that index, we have
+the string `P` as a substring.
+
+Note that the `Z`-algorithm computes the `Z` function in **linear time**.
+
+
+```cpp
+const int N = 1000;
+int z[N];
+char s[N] = "hello, world";
+int n;
+
+// write the z array into the array z for the string s
+void mkz(const char *s, int *z) {
+    const int N = strlen(s);
+    int curi = 0;
+    while(s[curi]) {
+        int matchlen = 0; 
+        while(curi + matchlen < N) {
+            if (s[curi + matchlen] == s[matchlen]) { matchlen++; }
+            else { break; }
+        }
+        z[curi] = matchlen;
+
+        for(int i = 0; i < matchlen && i < curi; ++i) { z[curi + i] = z[i]; }
+        curi += matchlen;
+    }
+}
+
+int main() {
+in
+}
+```
+
+- Reference: Algorithms on strings, trees, and sequences.
+
+
+# Bijection from `(0, 1)` to `[0, 1]`
+
+<img src="./static/bijection-between-closed-01-open-01.png">
+
+# Rene Girard
+
+- [Link where I first heard of him](https://alexdanco.com/2019/04/28/secrets-about-people-a-short-and-dangerous-introduction-to-rene-girard/)
+
+# Noam Chomsky on anarchism (WIP)
+
+- [Video of interview](https://www.youtube.com/watch?v=totmHrIJzK8)
+- Emma Goldman Archives
+
+#### Interview
+
+
+What do we do with people who don't want to work or those with crimimal tendencies?
+What do we do with people's interests, do they deserve to interchange jobs?
+
+There would a general agreement between people who call themselves anarchists
+should maximise people's abilities to fulfil their potential.
+
+Another problem is that at any point in human history, people have not understood
+what is opression. Chomsky's grandmother didn't think she was opressed while
+being in a patriarchial family.
+
+#### What is anarchism
+
+- [What is anarchism](https://www.youtube.com/watch?v=yccBBzSHFAM)
+
+Start with Rudolf Rocker.
+
+> Anarchism is not a fixed social system with fixed answers, but a trend
+> in mankind that drives for free unhindered unfolding 
+
+These derive from the Enlightenment. Thus institutions that constrain
+such development are illegitimate unless they can justify themselves. Adam 
+Smith extolls the wonder of division of labour. Deeper into the book,
+he argues that in any civilized society, the government must not allow division of labour
+for it makes a human as stupid as they can be.
+
+Anarchism seeks to identify structures of domination, authority, etc that constrain
+human development. It then challenges them to justify themselves. If you 
+cannot meet the challenge, the structure should be dismantled and reconstructed
+from below.
+
+Anarchism is basically 'truism', which has the merit, at least, of being true.
+It's an interesting category of principles that are universal and doubly
+universal: universally accepted, and universally rejected in practice!
+
+
+
+# Slavoj Zizek: Violence
+
+- [Video talk at google](https://www.youtube.com/watch?v=_x0eyNkNpL0)
+
+What does violence react to? What is the everyday texture of our lives? Ideology
+in the sense of complicated networks of social, political prejudices determines
+the way we functions and structures our life. What is ideology?
+
+Donald Rumsfield, gulf war, spoke about known knows (saddam is a dictator),
+known unknowns ('WMD that saddam surely had'), and unknown unknowns 
+('even worse WMD that saddam may have').
+
+What about unknown knowns? Things we don't know that we know? This is ideology.
+The texture into which we are embedded.
+
+European trinity: France (revolutionary, political), 
+German (conservative, poets, thinkers), 
+Anglo saxon (liberal, economy).
+
+Bohr had a horsheshoe above his house. 'Do you believe in it? Aren't you a scientist?'
+'Of course I don't believe in it! But I was told that it works regardless of my belief in it!'.
+
+
+What is ideology today? It seems very shallow, things of the form 'go achieve',
+and whatnot. However, there is a lot more that is tacit.
+
+'Interpassivity': we transpose onto the other our passive reaction. Others are
+passive for us. Canned laughter on TV. Literally, the TV set laughs for you.
+You feel relief as if you have laughed. 
+
+Similarly it's not that we believe. We need someone else to believe for us.
+For example, santa Claus. The parent's don't believe, they do it to not let down
+the kids. The kids don't believe, they pretend for presents and to not let
+down the parents. The whole system of belief functions.
+
+The first person to do this politically is the isareli prime minister
+Golda Meir. When asked 'do you believe in god'. Her answer was 'no. I believe in 
+jewish people, and they believe in God'. But atheism is ~70% of israel.
+
+
+When different cultures are thrown together (globalism) we should break the 
+spell of liberalism: we cannot understand each other, we don't even
+understand ourselves. I don't want to understand all cultures. We need a code
+of discretion. How do we sincerely politely ignore each other? We need proper
+distance to treat others in a non-racist, kind manner.
+
+He upholds that we don't even miss anything deep in this way. Do I really understand
+you? Do I really understand myself? 
+
+> We are the stories we are telling ourselves about ourselves. The basic
+> freedom is to tell your side of the story.
+
+The motto of tolerance:
+
+> An enemy is someone whose story I have not yet heard.
+
+Living libraries, people can visit minorities and talk to them. It works at a
+certain level. But it stops working at some level. Because we would not say
+the same of Hitler.  'The X files insight'. Truth is _out there_. It's not
+in what you are telling yourself about yourself. The story you are telling
+yourself is a lie.
+
+Two extreme examples. One from Europe, one from far east.
+- Grey Eminence
+- Zen at War
+
+
+Corruption is prohibited officially, and it is exactly codified in a communist
+country. Holidays in Japan. You are given 40 days. It's very impolite to take
+more than 20 days. This creates a link between people, the link of politeness.
+This is ideology. Prohibition is is prohibited to be stated publicly.
+
+Nazi germany without glasses is 'sacrifice your country'. With glasses, it is
+'do this, pretend to do this, we can have some fun, beat the jews'. Ideology
+always offers you some bribery.
+
+
+When hitler finishes giving a talk, the people clap. In a communist speech,
+at the end of the speech, the speaker claps with the people. This is a 
+crystallization of the difference between fascism and communism.
+
+
+'Nice to meet you, how are you?' is a sincere lie. From the very beginning
+we entered into language, we enter into requiring one for whom we can 
+create appearances.
+
+- [Zizek interview at BBC](https://www.youtube.com/watch?v=xN2ZGSX0cIE)
+
+> The light at the end of the tunnel is an oncoming train
+
+Embracing hopelessness means to accept that there are no easy solutions. We should
+accept the hopelessness and start a paradigm shift.  Our tragedy is death. 
+Something will have to change fundamentally. We do not yet have the formula of
+what to do. We can now only get ready for a global crisis.
+
+
+
+> The problem with Hitler was that he wasn't violent enough. In the same way
+> that Gandhi was more violent than Hitler, in terms of 'systemic change'.
+> Hitler killed millions to save the system. Gandhi killed no one to setup
+> a radical change. Change will hurt.
+
+We tend to forget the violence of keeping things the same, and we only consider
+the violence of change. Sometimes the gratest violence is to not participate.
+
+Modi, China, Russia: Global market, Cultural narrowness.
+
+
+> Polyamory is instrumental.
+> True love is where you cannot be without someone else.
+
+
+It is a sign of progress that some things are considered ideology. For example,
+''is it right to kill?'' will be laughed at. The problem with current societies
+is that we are eroding the set of things we can laugh at due to dangerous
+ideas of relativism.
+
+- [Zizek v/s Petersen](https://www.youtube.com/watch?v=lsWndfzuOc4)
+
+Petersen: truths of the communist manifesto:
+
+- History is to be viewed as an economic class struggle.
+- Hierarchical structure is not attributable to capitalism.
+- We're also in odds with nature, which never shows up in Marx.
+- Hierarchical structures are necessary to solve complicated problems.
+- Human hierarchy is not based on power. Power is a very unstable means of
+  exploiting people.
+- History comes off as a 'binary' class struggle in Marx.
+- 'Dictatorship  of the proleteriat': Race to bottom of wages. The fact that we
+  assume that all the evil could be attributed to the bourgouise itself
+  setup the seeds for revolution.
+- How will the replacement of the bourgouise happen? Why wouldn't the proleteriat
+  become as or more corrupt than the capitalists?
+- What makes you believe that you can take a complicated system like the free
+  market and then centralize this?
+- A capitalist who is running a business as a manager does add value.
+- The criticism of profit. What's wrong with profit? Profit is theft is the
+  marxist principle. If the capitalist adds value to the corporation, then they
+  do deserve profit. Profit sets a constraint on wasted labour. There are forms
+  of stupidity you cannot engage in because the market will punish you for it.
+- 'The dictatorship of the proleteriat' would become hyper-productive. How?
+  The theory seems to be that once we eradicate the profit motive and the
+  bourgouise allows them to become hyper productive.
+- We need hyper productivity for the dictatorship of the proleteriat to create
+  enough goods for everyone. When this happens, everyone will engage in meaningful
+  creative labour, which they had been alienated from in capitalism. Then this
+  will create a utopia.
+- Does this utopia really be the right utopia for everyone?
+- The Dostovyeskian observation: what shallow take on people do you need to believe
+  that if you hand people everything they need, they'll be happy? We were built
+  for trouble. Hanging out on the beach is a vacation, not a job. We would
+  destroy things just so something can happen just so we can have the adventure
+  of our lives.
+- Marx and Engels admit that there has not been a system that's capable to produce
+  materials in excess as capitalism.
+
+Zizek:
+- The irony of how Petersen and him are both marginalized by the academic
+  community.
+- China today: strong authoritarian state, wild capitalist dynamics. It's managed
+  to uplift hundreds of millions of people out of poverty. They want the
+  Cofuscian ideal of harmonious society.
+- Happiness as goal of life is problematic. Humans are creative in sabotaging
+  pursuit of happiness. We have to find a meaningful cause beyond the mere
+  struggle for pleasurable survival. Modernity means that we should carry the
+  burden of freedom of choice.
+- Never presume that your sufferring is in itself a proof of authenticity.
+  Renunciation of pleasure can turn into the pleasure of renunciation.
+- 
+
+# Poverty: Who's to blame?
+
+- [Video](https://www.youtube.com/watch?v=jAaCpyuwRIw)
+
+#### First blame countries
+- Third world countries have terrible economic policies
+- Administrations in third world countries are dysfunctional.
+- First world countries *block* workers from immigrating for which we can blame
+  first world countries.
+
+#### Secondly blame individuals: The trifecta
+- work at a stable job even if the job is not fun
+- don't have kids if you can't afford it
+
+#### Blame matters
+- Blame affects wheher something is a social issue. For example, is the opioid
+  epidemid a social behaviour? or should we just blame individuals?
+- Blame affects who should be shamed for failing to change their
+  behaviour.
+
+
+#### Books to read
+- Doing the best I can
+- Promises I can keep
+
 # Learn Zig in Y minutes
 
 ```
@@ -660,6 +954,10 @@ TODO
 - There's something great about the juxtaposition of the classic Christian scene
   with the glitch aesthetic. I'm unable to articulate _what_ it is that I so 
   thoroughly enjoy about this image. 
+
+- Fuck me, it turns out this is fascist art, goes by the genre of `fashwave`.
+  Pretty much everything else in this genre is trash, this is the sole 'cool looking'
+  picture of the lot.
 
 
 # SSA as linear typed language
@@ -12297,11 +12595,13 @@ I learnt of a nice, formal way to prove the correctness of Fenwick
 trees in terms of orbits that I wish to reproduce here.
 
 One can use a Fenwick tree to perform cumulative sums
-$Sum(n) \equiv \sum_i^n A[i]$, and updates $Upd(i, v) \equiv A[i] += v$. Naively,
+$Sum(n) \equiv \sum_{i=0}^n A[i]$, and updates $Upd(i, v) \equiv A[i] += v$. Naively,
 cumulative sums can take $O(n)$ time and updates take $O(1)$ time.
 
 A Fenwick tree can perform _both_ in $\log(n)$. In general, we can perform
-any monoid-based catenation and update in $\log(n)$.
+any monoid-based catenation and update in $\log(n)$, **as long as our queries**
+start from the 0th index till some index $n$. So we can only handle monoidal
+fold queries of the form $\sum_{i=0}^n$ and point updates.
 
 #### organization
 
@@ -17978,6 +18278,7 @@ Contains words that I write, and ones that I enjoy.
 > productivity /
 > sprighty, fleeting attention /
 
+
 #### syncretism
 
 I ran into the word in the description of the electronic artist 'Jaenga'.
@@ -17987,6 +18288,26 @@ I ran into the word in the description of the electronic artist 'Jaenga'.
 
 **Meaning:** the amalgamation or attempted amalgamation of different religions,
 cultures, or schools of thought.
+
+#### absurd
+
+The word “absurd” has a number of standard connotations: outlandish, crazy,
+amazing, freakish. It comes from the Latin absurdum, meaning “out of tune,”
+extraordinary. This, however, is not the way that Albert Camus meant the term
+when he coined l’absurd as a philosophical concept in 1942. To Camus, the
+absurd was strangely normal, a state of affairs that describes the human
+condition—in a nutshell, the utter dissonance between the human quest for
+meaning in life and the silent indifference of the universe
+
+#### opprobrium
+
+> public disgrace arising from shameful conduct.
+> "the opprobrium of being closely associated with gangsters"
+
+##### Pyretology
+study of fevers
+
+
 
 
 # Big list of Music
@@ -18055,3 +18376,9 @@ let g:conjure#mapping#eval_motion = "E"
 - Goto symbol: `M.`
 - Eval last sexp: `C-c C-e` / `C-x C-e`
 - eval last definition: `C-c C-c`
+
+# Big list of quotes
+
+> "On and on you will go, making sense of the world, forming notions of order,
+> and being surprised in ways large and small by their failure, forever." —
+> Albert Burneko on Wile E. Coyote.

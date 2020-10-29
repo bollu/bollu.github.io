@@ -1,3 +1,6 @@
+- [Problems on flows](https://gist.github.com/bollu/371caca4d9ad73f401f095c3ac835e60)
+- [The GHIDRA book](https://nostarch.com/GhidraBook): Book about learning how
+  to use GHIDRA
 - Differentiable programming for cheaply adding interactivity to graphics: https://tiarkrompf.github.io/notes/?/differentiable-programming-in-js/
   Very nice!
 - [Talon: hands free input for computers](https://talonvoice.com/docs/) write code using

@@ -31,6 +31,7 @@ if ((window.innerHeight - document.documentElement.clientHeight) >0) {
 
 # Features
 
+- [ ] Disqus / [`gitment`](https://github.com/imsun/gitment) for comments.
 - [ ] RSS feed.
 - [ ] Broken link warnings.
 - [x] error for `_ _`,  `* *`, `__ __`, `** **` that span multiple lines.
