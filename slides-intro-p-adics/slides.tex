@@ -24,7 +24,9 @@
 \usepackage{hyperref}
 \usepackage{polynom}
 \renewcommand{\mod}[1]{\left( \texttt{mod}~#1 \right)}
+\newcommand{\N}{\mathbb N}
 \newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
 \newcommand{\C}{\mathbb C}
 \newcommand{\degree}{\texttt{degree}}
 \tolerance=1000
@@ -45,13 +47,14 @@
 Analogy between:
 \begin{itemize}
 \item $\mathbb Z$, \pause where $3, 5, 7, \dots$ are the ``primes''\pause
-\item $\mathbb C[X]$, \pause where $(x - a)$ are the ``primes''
+\item $\C[X]$, \pause where $(x - a)$ are the ``primes''\pause
+\item $\C[X]$ has evaluation, taylor series. Can we access that in $\Z$?
 \end{itemize}
 \end{frame}
 
-\begin{frame}{What is evaluation?}
+\begin{frame}{What is factorization?}
 
-Remainder when dividing $p(x) = x^3 + x^2 + x + 1$ by $q(x) = x - 1$? \pause
+Remainder when factoring $p(x) = x^3 + x^2 + x + 1$ by $q(x) = x - 1$? \pause
 \polylongdiv{X^3+X^2+X+1}{X-1}
 \pause
 $$(x^3+ x^2 + x + 1) = (x-1)(x^2 + 2x + 3) + 4$$
@@ -121,13 +124,13 @@ $$n = \pm 1 \prod_i p_i$$
 \begin{itemize}
 \item What are the complex numbers? \pause
 \item $\mathbb R$ with $i$: $i^2 = -1$. \pause That is, $i^2 + 1 = 0$. \pause
-\item Equivalently: $\mathbb R[X]$ \pause divided by $q(x) = x^2 + 1$. \pause
+\item Equivalently: $\mathbb R[X]$ \pause factored by by $q(x) = x^2 + 1$. \pause
 \item Left with only linear polynomials. \pause
 \item All higher power polynomials $h(x)$  are $h(x) = p(x) \cdot q(x) + r(x)$ \pause $\degree(r) \leq 1$. \pause
 \item Example: $7x^2 + 5 = 7(x^2 + 1) - 2$ \pause
 \item Sum of linear polynomials: $(a + xb) + (c + xd) = (a + c) + x(b + d) $\pause
 \item Product of linear polynomials: $(a + xb) \cdot (c + xd) = ac + x(ad + bc) + bdx^2$ \pause
-\item dividing product by $q(x) = x^2 + 1$:
+\item factoring product by $q(x) = x^2 + 1$:
 \end{itemize}
 
 \polylongdiv{bd x^2 + (ad + bc) x + ac }{x^2+1} \pause
@@ -313,12 +316,23 @@ the unique decomposition $n = \sum_i b_i p^i$ for $0 \leq b_i < p$.
 \begin{itemize}
 \item Let's solve $X^2 = 2$ in the $7-$adics. \pause
 \item Such a solution does not "really exist" in the rationals or the integers.\pause
-\item Start with $X \equiv 3 \mod~{7}$, $X \equiv 4 \equiv -3~\mod{7}$.
+\item Let $x = \sum_i a_0 + 7 a_1 + 49 a_2 + \dots$\pause
+\item Start with $x^2 \equiv a_0^2 \equiv 2 ~\mod{7}$\pause
+\item $a_0 = 3$
+\item $(3 + 7a_1)^2 \equiv 2 ~\mod{49}$\pause
+\item $9 + 42a_1 + 49a_1^2 \equiv 2 ~\mod{49}$\pause
+\item $7 + 42a_1  \equiv 0 ~\mod{49}$\pause
+\item $-42 + 42a_1  \equiv 0 ~\mod{49}$\pause
+\item $a_1  \equiv 1 ~\mod{49}$\pause
+\item Keep going to extract $a_2, a_3, \dots$\pause
+\item We solved an equation in $\Q_7$ for which we didn't have a solution in $\Q$!\pause
+\item Can we always lift? \textbf{Hensel's lemma}
 \end{itemize}
 \end{frame}
 
 
 \begin{frame}{Convergence}
+
 \begin{itemize}
 \item Intuition: higher powers of $p$ should become ``smaller'' for convergence! \pause
 \item $|a|_p = p^{-1 \cdot \text{highest power of } p \text { which divides } a}$\pause
@@ -327,23 +341,28 @@ the unique decomposition $n = \sum_i b_i p^i$ for $0 \leq b_i < p$.
 \item $|9|_3 = 3^{-2} = 1/9$\pause
 \item $|90|_3 = 3^{-2} = 1/9$\pause
 \item $|27|_3 = 3^{-3} = 1/27$\pause
-\item $|a + b|_p \leq |a|_p + |b|_p$? \pause
-% \item $a = p^\alpha\cdot a'$; \pause $|a|_p = p^{-\alpha}$\pause
-% \item $b = p^\beta\cdot b'$; \pause $|b|_p = p^{-beta}$\pause
-% \item $a + b = p^\min{\alpha, \beta}\cdot x$ \pause
-% \item $|a+b|_p = p^{-\min(\alpha, \beta}$ \pause
-% \item $p^{-\min(\alpha, \beta} < p^{-\alpha} + p^{-\beta}$\pause
-% \item $|60 + 90|_3 = |120|_3 = 1/3 < |60|_3 + |90|_3$\pause
+\item $|ab|_p = |a|_p \cdot |b|_p$. Plays well with multiplication \pause
+\item What about addition? \pause
+\item $|a+b|_p \leq \max(|a|_p, |b|_p)$\pause
+\item Let $a = p^\alpha a'$, $b = p^\beta b'$, let $\alpha \leq \beta$ WLOG.\pause
+\item $(a + b) = p^\alpha (a' + p^{\beta - \alpha} b')$\pause
+\item If $(a' + p^{\beta - \alpha} b')$ is \emph{not} divisible by $p$ \pause , then $|a+b|_p = p^{-\alpha} = |a|_p$\pause
+\item If $(a' + p^{\beta - \alpha} b')$ \emph{is} divisible by $p$ \pause, then $|a+b|_p = p^{-(\alpha + \texttt{more})} < p^{-\alpha}$\pause
+\item $|10|_2 = |2 * 5|_2 = 1/2$; $|40|_2 = |8 * 5|_2 = 1/8$\pause
+\item $|10 + 40|_2 = |50|_2 = |2 * 25|_2 = 1/2$\pause
+\item $|10 + 10|_2 = |20|_2 = |4 * 5|_2 = 1/4$\pause
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Scam v/s non-scam}
 \begin{itemize}
 \item Solve $x = 1 + 3x$\pause
-\item \textbf{Non scam}:$-2x = 1$\pause; $x = -1/2$
+\item \textbf{Non scam}:$-2x = 1$\pause; $x = -1/2$\pause
+\item Recurrence: $x[i+1] = 1 + 3x[i]$\pause
 \item $x_0 = 1$\pause
 \item $x_1 = 1 + 3$
 \item $x_2 = 1 + 3x_1 = 1 + 3(1 + 3) = 1 + 3 + 3^2$\pause
+\item $x_3 = 1 + 3x_2 = 1 + 3(1 + 3 + 3^2) = 1 + 3 + 3^2 + 3^3$\pause
 \item $x_i = 1 + 3 + 3^2 + \dots + 3^i$\pause
 \item $x_\infty = 1/(1-3) = -1/2$
 \item Converges? We need $|3| < 1$\pause
@@ -365,14 +384,59 @@ the unique decomposition $n = \sum_i b_i p^i$ for $0 \leq b_i < p$.
 
 \begin{frame}[fragile]{Why only primes? Geometry of numbers}
 
-\includegraphics[height=5cm]{./fn-4-on-naturals.png}
+\includegraphics[height=4cm]{./fn-4-on-naturals.png}
 \begin{itemize}
-\item consider $4$. \pause
+\item consider $4(\cdot)$ as function $\mathbb N \rightarrow \mathbb N$. \pause
 \item nonzero at $a_0 = 6$: $4 \simeq 4~\mod{6}$\pause
 \item \emph{not invertible} modulo $6$: $[0, 1, 2, 3, 4, 5] \times 4 \equiv [0, 4, 8, 12, 16, 20] \equiv [0, 4, 2, 0, 4, 2] \mod{6}$ \pause
 \item If we want $4$ to be a \emph{continuous} function\pause
 \item then 6 should not be a point!
+\item The only points in $\N$ which obey ``any non zero function is locally invertible'' are primes.
+\item Hence, we only consider evaluation at primes.
 \end{itemize}
-
 \end{frame}
+
+\begin{frame}[fragile]{Why is this useful?}
+\begin{itemize}
+\item Does $x^2 = 2$ have a solution in $\mathbb Z$?
+\item If it has a solution in $\mathbb Z$ \pause
+\item It must continue to have solutions in $Z/n\Z$\pause
+\item $a \cdot b = c \implies a \cdot_n b \equiv c ~\mod{n}$, $a + b = c \implies a +_n b \equiv c~\mod n$\pause
+\item $x^2 = 2~\mod{5}$: $[0, 1, 2, 3, 4]^2 = [0, 1, 4, 9, 16] = [0, 1, 4, 4, 1]$
+\item So $x^2 = 2$ has no solution in $\mathbb Z$
+\item We used a \emph{finite number of candidates} in $\Z/5Z$ \pause, eliminated infinite number of candidates in $\Z$.
+\item Hasse Minkowski: A quadratic form ($ax^2 + bxy + cy^2$) has a root in $\Q$ iff it has roots in all $\Q_p$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Hensel's Lemma}
+\begin{theorem}
+\begin{itemize}
+\item Let $f(x)$ be a polynomial with integer or $p$-adic coefficients.
+\item If $f(r) \equiv 0 ~\mod{p^k}$ and $f'(r) \not \equiv 0 ~\mod{p}$ [non-degenerate], then
+\item (1) there is an integer $s$ such that $f(s) \equiv 0 ~\mod{p^{k+1}}$ [lifting]
+\item (2) and $r \equiv s~\mod{p^k}$ [consistency]
+\end{itemize}
+\end{theorem}
+
+{\footnotesize
+\begin{itemize}
+\item Since $r \equiv s~\mod{p^k}$ [consistency], we have $s =  r + tp^k$ for some $t \in \Z$.\pause
+\item If we find a $t$, then we are done, since that is the unknown to find $s$. \pause
+\item $f(s) = f(r + tp^k) = f(r) + f'(r) tp^k + (tp^k)^2(\dots)$.\pause
+\item $f(s) = f(r + tp^k) = f(r) + f'(r) tp^k + p^{2k}t^2 g(t)$ for some $g(t) \in \Z[t]$.\pause
+\item Since $f(r) \equiv 0~\mod{p^k}$, we have $f(r) = zp^k$ for some $z \in \Z$.\pause
+\item $f(s) = f(r + tp^k) = zp^k + f'(r) tp^k +  p^{2k}t^2 g(t)$.\pause
+\item $f(s) = f(r + tp^k) = p^k(z + f'(r) t) +  p^{2k}t^2 g(t)$.\pause
+\item We need $f(s) \equiv 0 ~\mod{p^{k+1}}$  for [lifting].
+\item $f(s) \equiv 0 ~\mod{p^{k+1}}$ iff $p^k(z + f'(r) t) \equiv 0 ~\mod{p^{k+1}}$ (Substituting $f(s)$, terms die: $p^{k+2}$ factor)\pause
+\item $(z + f'(r)t) \equiv 0 \mod{p}$ [$p^k$ factors common]
+\item $tf'(r) \equiv -z ~\mod{p}$. Hence, $t = z[f'(r)]^{-1}~ \mod{p}$.
+\item $f'(r)$ will have an inverse  if $f'(r) \not \equiv 0 ~\mod{p}$ by virtue
+      of being prime.
+\end{itemize}
+}
+\end{frame}
+
+
 \end{document}
