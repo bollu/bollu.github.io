@@ -6,7 +6,7 @@ A Universe of Sorts
 ### Siddharth Bhat
 
 - [Please leave feedback!](https://www.admonymous.co/bollu)
-- [Vidcall/Hang out](https://calendly.com/bollu/30min?back=1&month=2020-10)
+- [Vidcall/Hang out](https://calendly.com/bollu/)
 - Reach me: <a href='mailto:siddu.druid@gmail.com'> `siddu.druid@gmail.com` </a>
 - [github](http://github.com/bollu)
 - [math.se](https://math.stackexchange.com/users/261373/siddharth-bhat)
@@ -14,6 +14,1407 @@ A Universe of Sorts
 - [reading list/TODO](todo.html)
 
 <!-- - [Grab me a coffee](https://ko-fi.com/bollu) -->
+
+
+# WHO list of essential medicines (WIP)
+- [Wikipedia reference](https://en.wikipedia.org/wiki/WHO_Model_List_of_Essential_Medicines)
+
+# why is `int i = i` allowed in C++?
+
+This bizarre program:
+
+```cpp
+struct Foo { explicit Foo() {}; }
+int main() { Foo foo = foo; cout << "works!"; return 0; }
+```
+
+
+# Kakoune cheatsheet
+
+- `/`: search for some text. `n`: go to next occurence. `Shift-n`: goto next occurence with a multi cursor.
+- `Shift-X`: select multiple lines in sequence. `s`: make a multi-cursor a word in the current selection
+- `space`: remove multiple cursors
+- `Alt+i <key>`: select `<object>` of some type. Example: `Alt+i w`: select word.  `Alt+i s`: select sentence.
+- `Shift-c`: create multiple cursor in line below
+- `X`: select line. 
+
+
+# Assembly IDE
+
+I've wanted to "learn assembly" properly, in the sense of write small to
+medium programs to feel like a native. Scouting around for IDE's, I couldn't
+find much. However, it seems like `emacs` has a rich ecosystem for
+assembly! I had no idea if it's a *good* ecosystem --- my experience with
+`emacs` has been hit and miss. I decided to take the dive.
+
+- [`http://ref.x86asm.net/`](http://ref.x86asm.net/)
+- [`nasmshell`](https://github.com/fishstiqz/nasmshell)
+- [`nasm-mode`](https://nullprogram.com/blog/2015/04/19/)
+- [`x86-lookup`](https://nullprogram.com/blog/2015/11/21/)
+- [blog post](https://vishnudevtj.github.io/notes/assembly-in-emacs)
+- [link to volume 2](/https://software.intel.com/content/www/us/en/develop/download/intel-64-and-ia-32-architectures-sdm-combined-volumes-2a-2b-2c-and-2d-instruction-set-reference-a-z.html)
+- [Link](https://software.intel.com/content/www/us/en/develop/articles/intel-sdm.html)
+  to general page with download link called as Intel 64 and IA-32 architectures software
+  developer's manual combined volumes 2A, 2B, 2C, and 2D: Instruction set reference, A-Z.
+
+# Cohomology is like holism
+
+A shower thought, but Cohomology is indeed like holism. It describes precisely
+how the whole is greater than the sum of its parts, in terms of capturing a
+"global defect" that is oftentimes "locally trivial".
+
+# Flows
+
+- [Srinivas Devdas: Flows](https://www.youtube.com/watch?v=VYZGlgzr_As)
+
+#### Canonical Transformation
+
+- No self loops.
+- No loops of the form `s -> u -> s`. (ie, no 2-vertex loops).
+- This allows us to conflate "positive flow" and "net flow".
+
+#### Notation: Net flow / flow
+
+- A flow on $G$ is a function $f: V \times V \rightarrow \mathbb R$ such that
+  $f(u, v) \leq c(u, v)$ for all vertices $u, v$.
+- **Flow conservation**: for all vertices $u$, $\sum_v f(u, v) = 0$.
+- **anti-symmetry**: $f(u, v) = -f(v, u)$.
+
+#### Implicit summation notation
+
+The value of a flow $f$ denoted as $|f|$ (cardinality of $f$), is denoted as:
+
+$$
+|f| \equiv f(s, V) = \sum_v f(s, v)
+$$
+
+#### Properties of flow
+
+- $f(X, X) = 0$. $f(a, a) = 0$ because self loops are not allowed. for two 
+ different vertices, we're going to get $f(a, b) + f(b, a) = 0$ by skew symmetry.
+ In general, $f(X, Y) = -f(Y, X)$.
+- $f(X \cup Y, Z) = f(X, Z) \cup f(Y, Z)$ if $X \cap Y = \emptyset$.
+
+#### Theorem: $|f| equiv f(s, V) = f(V, t)$
+
+Recall that $|f| = f(s, V)$. We want to show that $|f| = f(s, V) = f(V, t)$.
+So whatever gets pushed out gets pushed in.
+
+$$
+\begin{aligned}
+&|f| \equiv f(s, V) \\
+& f(s, V) + f(V - s, V) = f(V, V) = 0 \\
+&  f(s, V) = f(V - s, V) \\
+&  f(s, V) = f(V - s - t, V) + f(t, V) \\
+&  f(s, V) = f(t, V) - f(V - s - t, V)\\
+& [\text{any vertex in $V - s - t$ is an intermediate vertex, which has 0 net flow] \\
+&  f(s, V) = f(t, V) - 0 \\
+&  f(s, V) = f(t, V) \\
+\end{aligned}
+$$
+
+#### Cut:
+
+A partition of the network into two parts, such that the source is in one
+part and sink in the other. $(S, T)$ is a cut of a flow network $G$ is
+a partition of $V$ such that $s \in S, t \in T$. If $f$ is a flow on $G$
+then the flow across the cut is $f(S, T)$.
+
+
+#### Capacity of a cut and its relationship to flow
+
+$$c(S, T) = \sum_{s \in S, t \in T} c(s, t)$ See that we only get
+**positive coefficents** here. There is no "negative capacity", only "negative flow".
+
+#### Theorem: upper bound flow across a cut
+
+Value of _any_ flow is upeer bounded by the capacity of _any_ cut. We need
+more tools to prove this, as this is basically max-flow-min-cut
+
+#### A different characterization of flow value
+
+Lemma: for any flow $f$ and any cut $(S, T)$ we have that $|f| = f(S, T)$.
+It's because we have the source on one side, and the sink on the other side.
+That gives us the flow! Everything else cancels by conservation.
+
+$$
+\begin{aligned}
+&f(S, T) = f(S, V) - f(S, S) \\
+&f(S, T) = f(S, V) - 0 \\
+&f(S, T) = f(s, V) + f(S - s, V) \\
+\end{aligned}
+$$
+
+As $S - s$ does not contain $t$, by flow conservation, we must have that $f(S - s, V) = 0$.
+Thus we get:
+
+$$
+\begin{aligned}
+f(S, T) = f(s, V) = |f|
+\end{aligned}
+$$
+
+So, I can know the capacity of any cut $(S, T)$ bounds the flow of the network!
+So if I go look at the min-cut, then I can bound the max flow. We don't know
+how to find these min-cuts. That's what we'll need to figure out.
+
+#### Residual network
+
+Network that points us to locations with leftover capacity where we can 
+push flow. $G_f(V, E_f)$ contains all those edges that have positive (greater than zero)
+residual capacity. Edges in $E_f$ admit more flow. If $(v, u) \not \in E$, then
+$c(v, u) = 0$, but $f(v, u) = -f(u, v)$. So we will have extra edges in the
+residual network that don't exist in the original network.
+
+If I have a flow $-1$ due to a back-edge with capacity $0$, I can in fact
+send more flow to make it $0$! So I can have "back edges" in the residual network
+for edges whose flow has to shrink.
+
+#### Augmenting path in $G_f$
+
+> **Sid question:** A path from $s$ to $t$ in $G_f$. Why does the existence of
+> an augmenting path in $G_f$ actually mean that we can increase the flow? even
+> when we have "back edges"? **Sid answer**: Because at the end of the day,
+> we are picking a path from $s$ to $t$ which tells us how to change our flow
+> in a way that we still respect capacity constraints.
+
+
+# Amortized analysis
+
+- [Erik Demaine: amortization --- amortized analysis](https://www.youtube.com/watch?v=3MpzavN3Mco)
+
+#### Table doubling
+- Expected cost of hash lookup: $O(1 + n/m)$ where $n$ items in table of size $m$
+  ($n/m$ is the load factor)
+- Total cost for $n$ insertions: $2^0 + 2^1 + \dots + 2^\log n \simeq O(n)$.
+- Amortized cost per operation is $O(1)$.
+
+#### Aggregate method
+
+We do some sequence of $k$ operations. Measure the total cost of the $k$
+operations and divide by $k$. This **defines the amortized cost** (Weak definition).
+
+#### Generalized definition (amortized cost)
+
+- assign **some cost** for each operation, called the amortized cost, such that it
+  "preserves the sum" of the cost for all operation sequences `op[i]`.
+
+$$
+\begin{aligned}
+\sum \texttt{amortized-cost}(op[i]) \geq \sum \texttt{real-cost}(op[i]) 
+\end{aligned}
+$$
+
+-  The cost that obeys this inequality is called as the **amortized cost**.
+
+
+#### 2/3 trees:
+
+- `O(1)` to create
+- `O(log n)` to insert  (amortized)
+- `O(0)` to delete? (amortized) We can bound the deletion cost by the insertion cost,
+  because we can't delete more items than we have inserted! We can bound the
+  **delete cost** by the **insert cost**. 
+
+- `c` creation time, `i` insertions, `d` deletions. 
+- Let $n^\star$ be the largest size of the tree we've encountered in this
+  sequence of operations. This way, we are really bounding the worst case.
+- The real cost is $(c  + i \log n^\star + d \log n^\star)$. Let's try to show
+  an amortized bound with `O(0)` to delete!.
+
+$$
+\begin{aligned}
+&O(c  + i \log n^\star + d \log n^\star) \\
+&= O(c + (i + d) \log n^\star) \\
+&[\text{$d \leq i$ since we can delete at most number of items}] \\
+&\leq O(c + 2i \log n^\star) \\
+&\leq O(c + i \log n^\star)
+&\leq O(c + i \log n^\star + 0d)
+\end{aligned}
+$$
+
+#### Accounting method
+
+Define a time bank account. An operation can store time credit in that bank account.
+Bank account must always have **non-negative** time balance. Performing operations
+costs time. So we can either directly pay for operations, or we can pull money
+from the time bank account. We can pay for time using the stored credit in the
+bank.
+
+
+##### Sid note
+
+On the whole I always find this confusing; Why would I have a bank account
+if I can also simultaneously pay with an infinite amount of money? So I prefer
+to think of it as me having (1) an infinitely large, slow, reservoir of gold, (2)
+a quick cache of gold [which replaces the "bank"]. To pay for an operation,
+I can only access money from my quick cache, because pulling money from my slow
+reservoir is slow. I can transfer money from my infinitely large reservoir
+to my quick cache of gold. The amortized method calculates the total amount of
+gold that was pulled from the reservoir and stored into the cache.
+We might have leftover gold in the quick cache (upper bound).
+We can't have "negative gold" in the cache.
+We define the **amortized cost** to be the total number of gold coins
+**pulled out of infinite reservoir** by an operation.
+
+
+#### Accounting example: 2/3 trees
+
+When we insert, I pull $2 \log(n^\star)$ from my reservoir. I use $1 \log(n^\star)$
+to pay for the insertion, and keep a reserve of $\log(n^\star)$ in the bank.
+Then when we delete an element, we use the $\log(n^\star)$ extra we had kept
+in the cache from the insert.
+
+##### Better bounds: removing the star
+
+We want to say that we pay $\log(n)$ for insert and delete 
+where $n$ is the size of the tree when we perform the insert or delete.
+
+Per insert, we pull in two gold coins worth $\log(n)$ from the reservoir
+into the cache. When we delete, we use the $\log(n)$ in the cache from 
+the money that was withdrawn when we created that element. See that the $n$
+changes as the size of the data structure changes.
+
+#### Table doubling via accounting
+
+- When we insert a item into a table, withdraw $c + O(1)$ value from the reservoir.
+  Keep gold coin worth $c$ that was in the cache _on the item that was inserted_.
+  So imagine a real gold coin worth $c$ floating above the item.
+
+- When we double the size of the table, use up as many old coins as possible,
+  and then withdraw the rest of the cost from the infinite gold reservoir. Also
+  withdraw to keep coins on the newly inserted items.
+
+- So by the time we double, half of the elements have coins, other half don't.
+  At the end, I'm going to have $n/2$ coins. The amortized cost of **doubling**
+  is going to be $O(n) - cn/2$ which is going to be zero if $c$ is large. since I 
+  will have $cn/2$ coins in my cache of gold.
+
+- Insert costs $O(1 + c) = O(c)$ since we need to pull out those many coins from
+  the infinite gold reservoir.
+
+
+#### Charging method
+
+Time travel/blame the past for your mistakes. We allow operations to charge
+their cost retroactively to their past (not to their future!). An operation
+can withdraw more value that it immediately needs from the infinite reservoir
+into the gold cache, and it keeps it "for itself" for future-itself.
+
+- amortized cost = total gold pulled out of infinite reservoir.
+
+
+#### Charging example: Table doubling
+
+After we double the table, the table is half-full, we need to perform $n/2$
+insertions to get the table to be full. When we double the array next time,
+we charge the doubling to the insertions since the last doubling!
+There are $n/2$ items since the last doubling (I had `2` items, I doubled to `4` items, 
+so there are `n/2` new items. Now I want to double and add `4` more items).
+I have a cost of `O(n)` for the doubling. So I can charge `O(1)` cost to
+all the new items since the last doubling. Note that I only charge once; after
+I've charged items, I've doubled the array, so they are now "old".
+
+#### Charging example: Table doubling, inserts and deletes
+
+(37:00 TODO)
+
+#### Potential method (Most powerful) / Defining karma:
+
+We define a potential function $\phi$ mapping a **data-structure-configuration**
+to an natural number pile of gold coins. It tries to measure how bad the datastructure
+is right now. We can pull money out of the pile of money in the potential.
+Amortized cost is the actual cost plus the change in the amount of money in the
+data structure configuration after and before:
+
+$$
+\texttt{amortized(op)} = \texttt{real(op)} + \phi(\texttt{after(op)})  - \phi(\texttt{before(op)})
+$$
+
+Adding up all the amortized costs, the sum telescopes, giving us 
+
+$$
+\texttt{amortized(total)} = \texttt{real(total)} + \phi(\texttt{end}) - \phi(\texttt{begin})
+$$
+
+- We really like to have $\phi(\texttt{begin}) = 0$.
+
+
+
+#### Potential example: binary counter
+
+flipping a bit is $O(1)$. How much will increment cost? An increment is going
+to cost 1 + the number of trailing ones. We want to make this **constant**.
+
+
+- What is making this bad? the number of trailing ones? Consider `11110` which has
+  zero trailing ones.  If I increment it I get `11111`, which has 5 trailing ones.
+  So I need to pull on 5 gold coins, which is `O(n)`. No good, I want `O(1)`.
+  Though this is the natural thing to try, it doesn't quite work.
+
+- Rather, we can define $\phi$ to be the total number of 1 bits. Whenever I increment,
+  at maximum, I can add one `1`. If a number has `t` trailing bits, then on incrementing,
+  I destroy `t` one bits, and add a single one-bit. eg: `0110 + 1 = 1000`. 
+
+- The amortized cost is: `1 + t` (actual cost). The change
+  in potential is: `t - 1` [lost `t` 1s, gained `1` one]. So the amortized cost is
+  total cost - change in potential, which is `1 + t - (t - 1) = 2`, a constant. 
+
+
+
+# Shelly Kegan: death --- Suicide and rationality (WIP)
+
+How does the fact that we will die affect the way we live? previous 
+chapter! The fact our mortality raises the question of whether or not
+we should put an end to our life. It's the extra feature --- the variability
+of death, the fact that we can control how long we live, and thus we face
+the possibility of ending our life earlier than it would otherwise. Under what
+circumstances is it a good thing to do?
+
+You must be either crazy or immoral is the knee jerk. The very first thing
+to do is to distinguish questions of rationality from morality. 
+
+#### Rationality of suicide
+
+1. When if ever would it be true that you are better off dead?
+2. Assume that the answer to the first question is "under circumstance X, 
+
+   you would be better off dead", can you trust your judgement that this is one
+   of those cases X?
+
+In those circumstances that life is terrible, you can't think clearly. So perhaps
+you ought not attempt to make "rational decisions" under duress. Non existence
+is not a state because it depends on existence.
+
+Dying would be bad because it would deprive us of the good things in life ---
+the deprivation requirement.  If we believe in the two state requirement, how
+can we say this?  The two state argument can't even tell us that it's
+better off to be alive for the happiest person! So the two state requirement
+**is not a genuine requirement**. We simply have to say that the life you would
+have had is a great life; I don't need to say anything about how death is going
+to be inferior. The "loss of a good state" is enough, without needing to know
+what we are transitioning _into_.
+
+But if so, we can flip the argument by symmetry. If a person's life was full
+of suffering and misery and disappointment, then for their life to go
+longer would be bad.
+
+What goes into making someone's life worthwhile? people disagree about the
+ingredients of the best kind of life. Going back to hedonism (add all pleasure,
+subtract all pain), if this number comes out negative, then your life is not
+worth living. The longer you live, the more the balance shifts to the negative
+(say).
+
+Is life itself worth having? Neural container theory: life is a container
+in which good/bad is filled up. Valuable container theories: the very fact
+that you are alive gave you some positive value. Fantastic continer theories:
+doesn't matter how bad the contents get, even so the grand total is still
+positive. What's so incredible about life itself? They argue that being
+alive itself is valuable. But most people don't really mean life, they mean
+life as a person. For example, they would not agree that being alive as a 
+blade of grass is a "good life".
+
+
+What about a life where the person's functioning has decayed, but they can still
+feel pain? In that case perhaps, their life's quality can degrade. 
+
+We can probably find sympathy with the perspective that here on out, their
+life is going to be net negative; someone who has terminal cancer and is in
+great pain.
+
+There could be a person where they're suffering from a degenerative diesease,
+but are still able to think and have a life worth living while slowly losing
+motor control. One day there comes a time when their life is not worth living,
+but by that point, they don't have control over their body.
+
+It's easy to mistake a low point with a global minima; Even if life is
+*less worth living* than you hope it would be, it might feel terrible in
+the position.
+
+#### Deciding under uncertainty
+
+
+
+##### Could it ever be true that you're better off dead?
+
+The very claim that "jones would be better off dead" can't make any sense. In
+order to make comparisons we need to be able to talk about states before
+and after. Call this the two state requirement.
+
+#### Morality of suicide
+
+- [Shelly Kegan: death, 24. Suicide, Part 1](https://www.youtube.com/watch?v=MajfZIyHP8U&list=PLEA18FAF1AD9047B0&index=24)
+
+# Sam harris and jordan peterson: Vancouver 1 (WIP)
+
+> Is there a difference between religious and non-religious totalitarian states?
+> Yes, dogma is the commonality. In the case of stalin / north korea, they
+> are almost religions that are not branded as "religions". ~ Sam
+
+> the problem with dogmas is that they do not allow revision. The moment someone
+> has a better idea you have to shut it down. ~ Sam
+
+> Free speech elevates error correction of dogmas above dogmas. So 
+> Free speech must be on the pinnacle in the hierarchy of values ~ Peterson
+
+> The only problem with the religion is the dogmatism. I've got no problem
+> with the buildings and the music and ... ~ Sam Harris.
+
+> What is the phenomenology of spiritual experience? That phenomenology is
+> real! This phenomenology seems to confirm the dogma.
+
+> The core element of tribal alliance is independent of the religious 
+> substrate? Religion can allow clearly good people who are not captured
+> by tribalism are able to perform atrocities. This suffering is not from a
+> "ape like" urge. If you buy the claim that quran is the perfect word, then
+> human rationality is bounded pathologically  which leads to worrying
+> outcomes.
+
+> Christians were the ones in egland who were against slavery ~ Petersen
+> Yes, because they were the only ones around, so they must have done everything
+> then ~ Sam
+> Don't forget that the christians *used their christian faith* as an argument
+> against slavery ~Petersen
+> Well then it's unfortunate that they were on the losing side of an argument. 
+> If only the bible had said "don't keep slaves" imagine how much easier their
+> movement would have been ~Sam.
+
+> Rise of postmodern interpretations of literature. Take a complex narrative,
+> there are many ways of interpreting it. For example, consider a movie with
+> a twist at the end. The twist changes the emaning of the entire movie. So while
+> the bible may contain, sentence by sentence, things that are "just wrong"
+> from a modern lens, perhaps it's not so when viewed holistically. 
+> Everything in a narraitve is conditioned on the entire text. While you
+> may argue that some sentences in the bible are so horrific that it's impossible
+> to use context to massage them, you have to give the devil his due. The
+> Christian bible is a narrative. 
+
+> OK, what does this do to Moses' laws of war and doctrines?
+
+
+> the notion of revelation and prophecy destroys a whole bunch of 
+> soceity. I've read to the end of the book, it's scary to the end as well!
+
+> there is an idea in the bible, that things are always going to be falling
+> apart, there is an apocalyptic crux to everything touched by humanity.
+> Hero is born in the darkest point in the journey. When things fall apart,
+> that is the time of the hero.
+
+> You can read into any story psychological insights ~ Sam. But you can do that
+> with any set of facts too ~ Peterson. This why fundamentalim has an edge
+> over modern theology. Modern theology concedes that we can't read it literally.
+> But the more you get away from the literal you can broadcast whatever you want.
+
+> This notion that redemption is to be found in truthful speech is embodied
+> as a person. you want to ground values in something that is true. But the
+> problem is that i can't see how you can inerpret the world of facts without
+> an a priori structure.
+
+> Kant identified time and space as a priori intuitions. I claim that stories
+> are another kind of a priori intuition. You can write down stories of utpoia
+> and dystopia; When you do, you're already two thirds your way to heaven and
+> hell. Why not go all the way?
+
+> Literal versus metaphorical truth. There are some truths that are literally
+> false but if you behave as if they were true you come out ahead. 
+
+> Imagine a universe where every possible mind is tuned to the worst possible
+> experience that they can. If anything is bad, that's bad. If the word bad
+> is going to mean anything, it's bad. I claim that this is a "factual claim".
+> Every claim we make about anything, turtles all the way down, gets us to
+> something that's bedrocked on intuition [Perhaps even math, in terms of
+> the axioms _we choose_? Mh, I'm not very convinced, but sure]. If we are
+> going to use the word bad and good, there will be an implicit acknowledgement
+> that the worse possible misery for everyone is *bad*. It's *built in*. ~ Sam
+> Jordan disagrees that this is a factual claim.
+
+
+> Why did people do the worst things 
+
+- [Sam harris and jordan peterson: Vancouver 1](https://www.youtube.com/watch?v=jey_CzIOfYE)
+
+# Correctness of binary search
+
+
+#### Closed-closed intervals
+
+
+```cpp
+// search in interval [l, r] for value `val`
+int binsearch(int l, int r, int val, int *xs) {
+  if (l == r) { return l; }
+  int mid = (l+r)/2;
+  if (xs[mid] <= val) { 
+    return binsearch(l, mid, val, xs);
+  } else {
+    return binsearch(mid+1, r, val, xs);
+  }
+}
+```
+
+We have `(l <= mid < r)` since floor division of the form `(l+r)/2`
+will pull values "downward". The length of the interval `[l, mid]` is smaller
+than the interval `[l, r]` as `mid < r`. The length of the interval
+`[mid+1, r]` is smaller than the interval `[l, r]` as `l < mid+1`. We
+are monotonically decreasing on the quantity "length of interval", and terminate
+the recursion when the length is zero.
+
+
+#### Closed-open intervals
+
+```cpp
+// search in interval [l, r) for value `val`
+int binsearch(int l, int r, int val, int *xs) {
+  // [l, l+1) = { l }
+  if (r == l + 1) { return l; }
+  int mid = (l+r)/2;
+  if (xs[mid] <= val) { 
+    return binsearch(l, mid, val, xs);
+  } else {
+    return binsearch(mid, r, val, xs);
+  }
+}
+```
+
+We have `(l <= mid < r)` since floor division of the form `(l+r)/2`
+will pull values "downward". Furthermore, if `r = l + 1` we end the
+recursion. Thus, we are guaranteed that we will have that `r >= l + 2`.
+Hence, `mid = (l+r)/2 >= (l + l + 2)/2 >= l + 1`. Thus, we have that:
+`l` is to the left of `mid=l+1` is to the left of `r>=l+2`. So the
+intervals `[l, mid)` and `[mid, r)` will be smaller, as we cleanly "separate"
+out `l`, `mid`, and `r`.
+
+# `readlink -f <path>` to access file path
+
+To get the full path of a file, use
+
+```
+$ readline -f file
+/path/to/file
+```
+
+This is useful to `scp`/`rsync` stuff.
+
+# rank/select as compress/decompress
+
+I haven't found a good naming convention so far for describing order
+statistics. I'm taking about the common implementation:
+
+```cpp
+vector<int> xs(n);
+vector<int> order2ix(n);
+for(int i = 0; i < n; ++i) { order2ix[i] = i; }
+
+sort(order2ix.begin(), order2ix.end(),
+     [](int i, int j) {
+        return make_pair(xs[i], i) < make_pair(xs[j], j);
+     };
+```
+
+where `order2ix[o]` gives us the element with that order statistic. So,
+`order2ix[0]` contains the smallest element, `order2ix[n-1]` contains the
+largest element, etc. I've previously tried the naming conventions:
+
+#### rank/select
+
+`rank: ix -> order`, `select: order -> ix`. The pro of this is that it
+uses the [rank/select](http://bitmagic.io/rank-select.html) naming convention.
+This leads into the Galois connection aspect of it, but is otherwise not so
+useful.
+#### order2ix/ix2order
+
+The signatures are `order2ix: order -> ix`, `ix2order: ix -> order`. This uses
+the [order statistic](https://en.wikipedia.org/wiki/Order_statistic) naming
+convention, and thereby makes it clear what the query is: you tell me the
+kth order, I give you the index in the array in `order2ix(k)`. Alternatively,
+you tell me the index `i`, and I'll tell you its order statistic in `ix2order(k).`
+
+
+However, I found implementing this kind of odd. In particular, I need to
+pause for a second and think about what maps to what in the `ix2order[order2ix[o]] = o;`.
+
+```cpp
+vector<int> xs(n);
+vector<int> order2ix(n);
+for(int i = 0; i < n; ++i) { order2ix[i] = i; }
+
+sort(order2ix.begin(), order2ix.end(),
+     [](int i, int j) {
+        return make_pair(xs[i], i) < make_pair(xs[j], j);
+     };
+
+// REVERSE BIJECTION
+vector<int> ix2order(n);
+for(int o = 0; o < n; ++o) { ix2order[order2ix[o]] = i; }
+```
+
+For me, the major source of disconnect is that this "order" feels somewhat
+disconnected from the original array `xs`. So I feel like I'm trying to reason
+about these three
+
+- The indexes `0, 1,..,n`
+- The orders `0th,1st,2nd,..(n-1)th`
+- The array values `xs[0],xs[1],xs[2],..xs[n]`
+
+and it's unlclear to me how the two arrays `order2ix` and `ix2order` 
+relate to each other.
+
+#### `compressed`/`decompressed`:
+
+Now for the new convention that I hope works better: `compressed`/`decompressed`:
+
+The idea is that `compressed` maps the original numbers to their compressed variants.
+So it's going to have a signature `compressed: ix -> smalluniv`, where it
+compresses the element `xs[i]` into `[0..n-1]`. `decompressed` is the inverse
+function, which takes a number in the smaller universe, and returns its
+index in the original array. So we have `decompressed: smalluniv -> ix`.
+
+
+##### Why I like this better
+
+I feel this convention is superior, because it's intuitive to me at a glance
+as to what `compressed`/`decompressed` do and why they should be inverses.  I feel
+it also matches **the deep reason** for why kth order statistic exists: it
+lets us perform universe reduction, to go from a large space of a total order
+to a small space `[0..(n-1)]`. 
+
+Furthermore, the very **name** implies that 
+`compressed` is the compressed version of _something_ (the original array `xs`)
+and that `decompressed` is the decompressed version of _something_ 
+(the compressed universe `[0..(n-1)]`). This makes it clear how they're reated
+to the original array linguistically, which I quite like.
+
+  
+# Remembering Eulerian and Hamiltonian cycles
+
+I used to keep forgetting the difference. Here's how I remember it now. 
+We know that an _euler tour_ always exists for a tree. Indeed, it's
+a [handy data structure](https://en.wikipedia.org/wiki/Euler_tour_technique) 
+that can be used to convet LCA (lowest common ancestor) into RMQ(range minimum query).
+
+So, the "Euler tour" must exist for a tree. See that when we perform a tour
+on the tree, we **definitely** walk a vertex twice (once when entering, once when
+exiting). It seems like we walk the (undirected) edges twice as well.
+However, if we consider the edges as **directed edges**, then we're only walking
+the edges once. 
+
+- So an euler tour must correspond to a tour where we walk over each edge
+  exactly once.
+- A hamiltonian tour must (by complementarity) correspond to a tour where we
+  over each vertex exactly once.
+
+# Nice way to loop over an array in reverse
+
+```cpp
+const double n = sizeof(spheres) / sizeof(Sphere), inf = t = 1e20;
+for (int i = int(n); i--; ) { } //chad
+for (int i = n-1; i >= 0; i--) { // simp
+```
+
+
+# Dynamic Programming: Erik Demaine's lectures
+
+I realized I'd never bothered to ever formally learn dynamic programming,
+so I'm watching Erik Demaine's lectures and taking down notes here.
+
+## DP 1: Fibonacci, shortest paths
+
+- [Video lecture here](https://www.youtube.com/watch?v=OQ5jsbhAv_M&list=PLcDimPvbmfT8qAxD6JH_kmXiQwTNcoK78)
+
+1. DP ~= careful brute force.
+2. DP ~= subproblems + "recurse"
+
+
+#### Fibonacci
+
+```
+F(1) = F(2) = 1; F(n) = F(n-1) + F(n-2)
+```
+
+##### Naive: 
+
+```py
+fib(n):
+  if n <= 2: f = 1
+  else f = fib(n-1) + fib(n-2)
+  return f
+```
+
+EXPONENTIAL time! `T(n) = T(n-1) + T(n-2) + O(1)`. Since it's the fibonacci
+recurrence, the solution is rougly $\phi^n$ where $\phi$ is the golden
+ratio. Alternate, `T(n) >= 2T(n-2) ~ 2^(n/2)`
+
+##### Memoized DP:
+
+```py
+memo = {}
+fib(n):
+  # vvv 
+  if n in memo: return memo[n]
+  if n <= 2: f = 1
+  else f = fib(n-1) + fib(n-2)
+  # ^^^
+  memo[n] = f
+  return f
+```
+
+- We can think about it in terms of the recursion tree, where this allows
+  us to not have to recompute some of the data.
+- The alternative way of thinking about it is that there are **two ways**
+  of calling `fib`: the first time, it's non-memoized, which recurses. Every
+  other time, we're doing **memoized calls** that are constant time.
+- The number of non memoized calls in `n`. These we have to pay for. The non
+  recursive work per call is constant.
+- Therefore, the running time is linear! Linear because there are `n` non
+  memoized calls, and each of them cost **constant time**.
+- In general, in DP, we _memoize_  (remember) solutions to **subproblems** that
+  help us solve the actual problem. So, `DP = recursion + memo`.
+- `Running time = number of different subproblems x time per subproblem`.
+  When we measure **time per subproblem**, we ignore recursive calls!
+  (don't count recursions). 
+
+##### Bottom up DP algorithm
+
+```py
+fib = {}
+ -- | some thought for the loop
+for k in range(1, n+1): 
+  if k <= 2: f = 1
+  else: f = fib[k-1] + fib[k-2]
+  fib[k] = f
+```
+
+Order based on any topo sort of dependency DAG. From the bottom up perspective,
+we can decide how much we need to store based on how much state we need.
+
+```
+  *------------*
+  |            v
+f(n-2) f(n-1) f(n)
+          |    ^
+          *----*
+```
+
+
+#### Single Source Shortest paths (`s-v` path)
+
+- Tool to find answers: *guessing*. Suppose you don't know it. how do you find the
+  answer? guess! Don't try any guess, try *all* guesses! (then take the best one).
+- DP = recursion + memoization + guessing.
+
+
+There is some hypothetical path from `s` to `v`. We don't know what the first
+edge of this hypothetical path is, so we guess. We try all of the paths from
+`s->s'`. This changes `s`, but we really care about **single source** shortest
+path. So rather, we choose to guess `v`. We guess the last edge `u? -> v`.
+Recursively compute the path from `s` to `u?`, and then add the path to `v`.
+
+```
+\delta(s, v) = \min_{(u,v) \in E} \delta(s, u) + w(u, v)
+```
+
+Subpaths of shortest paths are shortest paths! Memoize to make it fast? Why
+is it faster on memoization?
+
+
+```
+*---a----*
+v   ^    v
+s   |    w
+|   |    |
+*-->b<---*
+```
+
+```
+δ(s, w) 
+  δ(s, a)
+     δ(s, b)
+       δ(s, s)
+       δ(s, w) <- INFINITE
+```
+
+- Infinite time on graphs with cycles.
+- For a DAG, it runs on V+E. Number of subproblems = `V`. Time we spend per
+  subproblem at a vertex is the number of incoming edges.
+  we can't take product, because the time per subproblem can vary wildly. So we restate our "time formula" as
+
+```
+total time = sum over times of all subproblems (modulo recursion)
+``` 
+
+This gives us:
+
+```
+total time = sum indeg(v) + O(1) = O(E) + O(1)
+```
+
+- **LESSON LEARNT: subproblem dependencies should be acyclic!
+
+- Claim: can use same approach for graphs! Explode a cycle over time. This makes
+  any graph acyclic.
+
+> **Sid question**: Can we derive Djikstras using the same "cycle explosion"
+> trick?
+
+We define $\delta_k(s, v)$ to be weight of shortest path that uses at most `k` edges.
+
+
+```
+\delta_k(s, v) = \min_{(u, v) \in E} \delta_{k-1}(s, u) + w(u, v)
+```
+
+We've increased the number of subproblems. We know that the longest path
+possible can have $|V| - 1$ edges. So the `k` parameter goes from `[0..|V|-1]`
+while the vertex `v` can be any vertex. Per vertex `v` we spend `indeg(v)` time.
+So we get the total recurrence as:
+
+\begin{aligned}
+&\sum_{(k \in [|V|-1], v \in V)} T(k, v) =  \\
+&\sum_{k \in [|V|-1]} \sum_v indeg(v) = \sum_{k \in [|V|-1]} E = VE
+\end{aligned}
+
+##  DP 2: Text Justification, Blackjack
+
+- [Video Lecture](https://www.youtube.com/watch?v=ENyox7kNKeY&list=PLcDimPvbmfT8qAxD6JH_kmXiQwTNcoK78&index=2)
+
+#### 5 "easy" steps to a DP
+
+1. Define subproblems; analysis - number of subproblems
+2. Guess (part of solution); analysis - number of choices for the guess
+3. Relate subproblem solutions [with a recurrence]; analysis - time per subproblem (ignoring recursion)
+4. Build an algorithm: [recursion/memo, or tabling]; check recurrence is acyclic 
+5. solve original problem;  total time: total time across all subproblems (ignoring recursion).
+   In simple cases, total time = number of subproblems x time per subproblem.
+6. Check that the original problem actually gets solved!
+
+
+#### Recap: Fibonacci
+1. subproblems: `F(1)...F(n)`
+2. guess: nothing
+3. relate: `F(n) = F(n-1) + F(n-2)`; `O(1)` time
+5. F(n). constant time to find 
+
+#### Recap: Shortest path
+1. subproblems: $\delta_k(s, v)$. $V^2 subproblems.
+2. guess: last edge; edge into $v$.
+3. relate: $\delta_k(s, v) = \min_u \delta_{k-1}(s, u) + w(u, v)$; `indegree(v)` time
+5. $\delta_{v-1}(s, v)$ for all $v$. This takes $\Theta(V)$.
+
+#### Text Justification
+
+split text into "good lines". can only cut between word boundaries. Text is
+a list of words. `badness(i, j)`: how bad is it to use `words[i:j]` in a line.
+They may fit, or they may not fit. If they don't fit, then badness is `∞`.
+Otherwise, it's going to be `(pagewidth - total width)^3`.
+We want to minimize the sum of badnesses of the lines.
+
+1. subproblems: the hard part! exponential: Guess for every word, whether a line
+   begins or not. What is the natural thing to guess? guess how long the first
+   line is / guess where the second line begins. After I guess where the second line
+   is, I now have the remaining words to text justify. So the subproblems are
+   going to be suffixes of the array: `words[i:]`. If we have `n` words, we have
+   `n` suffixes. We're going to only remember *one line* [forget the past!],
+   not *all the lines!* [this is exponential!]
+2. Guess: where to start the second line. If we are at location `i`, there are `n-i`
+   choices which we will think of as `O(n)`.
+3. Recurrence: $dp[i] = \min{i+1 \leq j \leq n} \texttt{badness}(\texttt{words[i:j]}) + dp[j]$.
+   Time per subproblem is `constant x [i+1..n]` which is `O(n)`.
+4. Check recurrence is acyclic/topo order: `n, n-1, ... 1`
+5. Total time: `number of subproblems x time per subproblem = O(n^2)`
+6. Original problem: `dp[0]`.
+
+
+#### Parent pointers
+
+Remember which guess was best. Find actual solution, not just the cost of the
+
+##### fiat
+
+> fiat lux.
+
+Let there be light
+solution.
+
+
+n suffixes | exp many sybsets. dont need to know history!
+
+
+
+
+
+#### Blackjack
+
+> whatever, I don't particularly care about the game
+
+## DP 3: Paranthesization, Edit distance,  knapsack
+
+#### Sequences
+
+Good choices of objects to perform DP on:
+
+- Suffixes: `x[i:]` for all `i`. `O(n)`.
+- Prefixes: `x[:j]` for all `j`. `O(n)`.
+- Substrings: `x[i:j]` for all `i` and `j`. `O(n^2)`.
+
+#### Parenthesiztion
+
+optimal order of associative expression.: `A[0] . A[1] ... A[n-1]`. Order
+matters for matmul!
+- What should we guess? There are exponentially many parenthesizations!
+  Guess the outermost/last multiplication. Ie, we want to know
+```
+(A[0] ... A[k-1]) * (A[k] ... A[n-1])`
+```
+
+- We can't just use prefixes and suffies, because when we recurse into
+  `A[0]...A[k-1]`, we're going to get splits of the form `A[0]...A[k']`
+  and `A[k']...A[k-1]`. In general, if we feel we need *both* prefixes AND suffixes, we likely
+  need the full power of substrings.
+- So our choice of subproblem is: `dp[i][j]` is the optimal outermost split for
+  `A[i]...A[j-1]` The number of choices is `O(j-i+1) = O(n)`.
+
+```py
+dp[i][j] = min{
+  for k in range(i+1, j):
+    dp[i][k] + dp[k][j] + cost of (A[i:k] * A[k:j])
+}
+```
+- Time is polynomial. `O(n)` time for subproblem ignoring recursions. 
+  We have `O(n^2)` subproblems (substrings). So the running time is `O(n^3)`.
+- Topological order: in general, if we have prefixes, we go left to right.
+  have suffixes, we go right to left. If we have substrings, we
+  evaluate based on **increasing substring lengths**, since when we split,
+  we get substrings with smaller lengths.
+
+#### Edit distance
+Given two strngs `x` and `y`. Find the cheapest way to convert `x` into `y`. 
+We allow _character edits_ to turn `x` into `y`: We can (1) insert a character 
+anywhere in `x`, (2) delete a character anywhere in `x`, (3) edit any character in `x`.
+We have custom costs for each insert and delete.
+
+- Can also solve longest common subsequence. `HIEROGLYPOHOLOGY`, `MICHAELANGELO`.
+  Drop any set of letters from x and y, we want them to be equal. Model it as
+  edit distance. Cost of insert/delete is `1`, cost of replacement is `0` if
+  characters are equal, `∞` otherwise.
+- We will look at suffixes of `x` and `y` at the subproblem. Subproblem is
+  edit distance on `x[i:]` AND `y[j:]`. Number of subproblems is $O(|x| |y|)$.
+- We need to guess! Not so obvious. Look at the first characters. What can I 
+  do with the first character of `x`? (1) I can replace the first characters.
+  (2) I can insert the character `y[j]` into `x`.
+  (3) I can delete the character `x[i]`. So we have:
+
+1. Replace `x[i]` with `y[j]`.
+2. Insert `y[j]`.
+3. Delete `x[i]`.
+
+
+```py
+dp[i][j] = min{
+  cost of replace x[i] with y[j] + dp[i+1, j+1],
+  cost of insert y[j] + dp[i][j+1],
+  cost of delete x[i] + dp[i+1][j],
+}
+```
+
+The topological order is going to have smaller to larger suffixes.
+
+
+> Sid TODO: watch demaine's lectures on shortest paths on a DAG.
+
+#### Knapsack
+
+List of items, each of size `s[i]` and a desire/value `v[i]`.  The sizes
+are integers. We have a backpack of total size `S`. We want to choose a subset
+of the items which maximize the value, and also fit into the backpack: $\sum s[i] \leq S$.
+
+
+- Even though it seems like we don't have a sequence, we have a set of items
+  we can put in *any* sequence. We can look at sequences of items.  At the item
+  `i`, we should guess if item `i` is included or not.
+
+```py
+# v WRONG
+dp[i] = ... max(dp[i+1], dp[i+1] + v[i])`
+```
+
+We don't keep track of the sizes! Rather, we choose our subproblem to be the suffix
+AND the remaining capacity $x \leq S$. We have $O(n S)$ subproblems
+
+```py
+# v correct
+dp[i][s] = max(dp[i+1][s], dp[i+1][s-s[i]] + v[i])
+```
+
+To be polynomial in the input, it would have to be $\theta(n \log S)$ because
+$S$ is given as a number. It would not be $nS$; $S$ is exponential in the 
+input encoding $\log S$.
+
+
+## R21: DP: Knapsack
+
+We have `n` decisions: `d[i]` is do I take item `i`. What do we need to keep
+track of? I need to know how much weight I have left. This is equivalent to
+knowing the sum of the items. The edge is an arbitrary item, the weight is `-v[i]`
+since we're trying to phrase the problem in terms of shortest path. The state
+in the node is item I'm looking at, and weight of the items I've taken so far.
+
+
+$$
+\begin{matrix}
+\end{matrix}
+$$
+
+
+#### DP4: Guitar fingering, tetris, super mario bros
+
+A second kind of guessing. Guessing usually which subproblem to use to solve
+a bigger subproblem. Another way of guessing is to add more subproblems to guess
+or remember more features of the solution. 
+
+##### Mapping to knapsack
+
+obvious solution was suffix in knapsack. So we needed to know how many units
+of the knapsack we've used up; we're remembering something about the *prefix*
+(but not the full prefix itself). On the other hand, in the forward direction,
+we were solving more _types_ of subproblems, for varying sizes of knapsacks.
+
+#### Piano and guitar fingering: Take 1
+
+Given some musical piece to play: a sequence of `n` notes we want to play.
+We want to find a fingering for each note. We have fingers `1` upto `f`. We want
+to assign a finger to each note. We have a difficulty measure `d(p, f, p', f')`:
+how hard is to transition from note `p` (p for pitch) with finger `f` to note
+`p'` with finger `f'`?
+
+- Subproblems: prefixes? suffixes? substrings? Suffixes are kind of fine. How to
+  play notes `n[i:]`.
+- Guess: Which finger to put on note `i`?
+- Recurrence: 
+
+```py
+dp[i] = min({ 
+   for f in fingers:
+      dp[i+1] + d(i, f, i+1, ?) # WRONG: don't know ?
+})
+```
+
+- Add more subproblems! how to play `notes[i:]` when using finger `f` for `notes[i]`.
+- What to guess? finger `g` for note `(i+1)`
+
+```py
+dp[i][f] = min({
+  for g in fingers:
+      dp[i+1][g] + d[notes[i], f, notes[i+1], g]
+}
+```
+
+- Topological order: 
+
+```py
+for i reversed(range(n)):
+   for f in range(F): ...
+```
+
+- Original problem: we don't know what finger to use for `dp[0]`. So we can take
+  a `min` over all fingers. `min([ dp[0][f] for f in range(F)])`
+
+
+#### guitar chords:
+
+Generalize the notion of "finger" to "finger(F) + string(S)". This gives
+us $O(N((F+S)^2)) = O(NF^2S^2)$.  Multiple notes: `notes[i] = list of F notes` for
+a piano.
+
+- state: we need to know about the assignment of fingers to notes (or no note).
+  So that's $(N+1)^F$. Generalize the rest.
+
+#### Tetris
+
+We know the entire sequence of pieces that's going to fall. For each, we must
+drop the piece from the top. Also, full rows don't clear. 
+The width of the board is small. The board is initially emoty.
+Can you survive?
+
+
+The subproblems are how to play suffixes of `pieces[i:]`. We need to know
+what the board looks like. If the board doesn't clear and we always drop from
+the top, then all we need to know is the skyline.
+
+```
+
+
+1| ###
+2| #
+3|####
+4|####
+5|####
+```
+
+- So we also store the board skyline. We have `h` different choices for each
+  column. There are `w` columns. So we have `(h+1)^w` number of choices for
+  skylines. Total number of subproblems is `n.(h+1)^w`.
+- Guess: what do I do with piece `i`? I can rotate it `0, 1, 2, 3` times, and the
+  where to drop it. I can guess where to drop the piece. This is `4w` choices ---
+  `4` for rotation, `w` for where we drop.
+
+- Here the answer is a boolean: survive (1) or not (0). we want to survive, so
+  we can just use `max` on a boolean.
+
+#### Super Mario Bros
+
+Recall that in the original super mario bros, if something moves out of the
+screen it's lost forever; We can't move back in the old mario. We're given
+the level, and a small $w\times h$ screen. The configuration of the game is
+everything on the screen! Total info is going to be $c^{wh}$ where `c` is some
+constant. We also need Mario's velocity, the score, and time. score can be S
+big, time can be T big. The number of configurations is the product of all of
+these. We also need to know how far to the right we have gone, which is another
+`W`. Draw a graph of all configurations, and then use DP
+
+## Lecture 10: Advanced DP by Srinivas
+
+- [Video](https://www.youtube.com/watch?v=Tw1k46ywN6E&list=PLcDimPvbmfT8qAxD6JH_kmXiQwTNcoK78&index=10)
+
+#### Longest palindromic sequence
+
+Find palindrome inside longer word. Given a string `X[1..n]`. Find longest
+palindrome that is a subsequence.
+
+```
+character
+c arac
+```
+
+answer will be greater than or equal to 1 in length because a single letter
+is a palindrome.
+
+```
+turboventilator
+  r o   t  ator
+```
+
+- `L[i, j]`: length of longest palindromic subsequence in string `xs[i:j]` where `i<=j`.
+
+```py
+def L(i, j): # closed interval
+  if i > j: return 0 # no letters
+  if i == j: return 1 # single letter palindrome
+  if x[i] == x[j]: 
+    return 2 + l(i+1, j-1)
+  return max(L(i+1, j), L(i, j-1))
+```
+- number of subpbroblems: $O(n^2)$. Time per subproblem assuming recursion is free: $O(1)$.
+  Hence, total time is $O(n^2)$.
+
+#### Optimal binary search trees
+
+Find most balanced BST for a set of keys. We have weights for the keys, which
+are search probabilities. Find a BST T (there are exponential number of BSTs)
+that minimizes $\sum_i w_i (depth_T(k_i) + 1)$. Depth of root is 0. Depth
+of a node is distance from the root. This minimizes expected search cost.
+
+##### Enumeration
+
+
+We have exponentially many trees. 
+
+##### Greedy soltution / Why doesn't greedy work?
+
+Assume the keys are sorted.
+Pick `K[i]` in some greedy fashion (max.weight).
+This immediately splits the set of keys into the left and right.
+If we define `e(i, j)` to be the cost of the optimal BST on keys `k[i], ..., k[j]` .
+
+```
+greedy:
+-------
+        2|w=10
+1|w=1           4|w=9
+           3|w=8
+```
+
+
+```
+optimal:
+-------
+         3|w=8
+    2|w=10    4|w=9
+1|w=1         
+```
+
+##### DP
+
+- Guess all possible root nodes. The greedy algorithm doesn't try to guess the
+  root node, that's the only difference.
+
+```py
+-- e(i, j): cost of tree with keys k: i <= k <= j
+def e(i, j):
+  if i == j: return w[i]
+  # | WRONG
+  return min([e(i, r-1) + e(r+1, j) + w[r] 
+              for k in range(i, j+1)])
+```
+
+The weights are going to change when we increase depth, so we actually need
+to add all the weights from `i` to `j`! So we write:
+
+```py
+-- e(i, j): cost of tree with keys k: i <= k <= j
+def e(i, j):
+  if i == j: return w[i]
+  # | WRONG
+  return min([e(i, r-1) + e(r+1, j) + weight(i, j)
+                 for k in range(i, j+1)])
+```
+
+##### Alternating coins
+Have a list of coins. We have an even number of coins.
+Can only pick coins from the outside.
+
+First player can always not lose in the game.  What the first player does
+is compute `v[1] + v[3] + ... v[n-1]` versus `v[2] + v[4] + ...` which is even.
+If the odd values win, the he picks `v[1]`. P2 can pick `v[2]` or `v[n]`. 
+P1 can pick either `v[3]` or `v[n-1]` depending on if P2 picked `v[2]` or `v[n]`.
+
+- We now want to **maximize** the amount of money.
+
+```py
+v(i, j) = max([ range is(i+1, j) with P2 + v[i],
+                range is (i, j-1) with P2 + v[j] ])
+```
+
+If we have `v(i+1, j)` subproblem with the opponent picking, we are guaranteed
+that the opponent plays `min(v(i+1, j-1), v(i+2, j))`. So we can unfold this,
+to get the full DP:
+
+
+```py
+v(i, j) = max([  min(v(i+1, j-1), v(i+2, j)) + v[i],
+                  min(v(i, j-1), v(i+1, j)) + v[j],
+```
+
+##### DP: All pairs shortest paths.
+
+
+
+# Accuracy vs precision
+
+I had a hard time remembering which is which, so here's how I do it now.
+First, I think of it from a probabilistic lens, where one of them is the
+mean, and the other is variance of a gaussian distribution (I don't yet know
+which is which).
+                                            
+
+Next, recall that it's linguistically correct to say:
+
+> you're precisely wrong
+
+but not
+
+> you're accurately wrong.
+
+Thus, if we have a target, the precision tells us 
+
+# Why is the gradient covariant?
+
+- [expanation of gradient being covariant in terms of the integral version](https://physics.stackexchange.com/a/127534/129278)
+
+# Politicization of science
+
+- [Reference](https://en.wikipedia.org/wiki/Politicization_of_science)
+
+# Multi ꙮ cular O: ꙮ / Eye of cthulu
+
+- [Multiocular O](https://en.wikipedia.org/wiki/Multiocular_O)
+
+# You can't measure the one way speed of light
+
+- [Veritasium video](https://www.youtube.com/watch?v=pTn6Ewhb27k)
+
+# Show me the hand strategy
+
+So, how do you surface covert-aggressions and covert-criticism?  Enter the:
+Show Me The Hand Strategy The "show me the hand strategy" can be applied with
+several techniques, including: Pretend you don't understand: if you don't
+understand and they did want to make their point across, they will be forced to
+be more direct in their aggression / offense Ask them what exactly do they
+mean: you can use the broken record technique here, where you keep repeating
+"what do you mean by that", "OK, but it does sound like you were trying to
+criticize my work. It's OK if you do", "then, if you didn't want to criticize,
+what did you mean" Go meta: explain them what they were doing, and tell them
+that you prefer direct talk because "you can take it" (invite criticism into
+the open), because you "expect better from them" (big judge power move), or
+because "it's so much better for both" (leader-like win-win approach) Reframe
+their aggression as support: nice power move and you will possibly get under
+their skin when they wanted to get under yours. They wanted to hurt you, or to
+harm your status, so when you reframe their attack as support, they will feel
+compelled to come out in the open and be more direct
+
+
+# Words that can be distinguished from letters if we know the sign of the permutation
+
+```py
+#!/usr/bin/env python3
+with open("google-10000-english.txt", "r") as f:
+    words = [w.strip() for w in f.readlines()]
+
+
+sorted = {}
+for w in words:
+    wsort = list(w)
+    wsort.sort()
+    wsort = "".join(wsort)
+    if wsort in sorted:
+        sorted[wsort].append(w)
+    else:
+        sorted[wsort] = [w]
+
+collisions = 0
+for wk in sorted:
+    if len(sorted[wk]) == 1: continue
+    collisions += 1
+    print(sorted[wk])
+    print("---")
+
+print(collisions, len(words), 100.0 * float(collisions) / len(words))
+
+
+collisions = 0
+for wk in sorted:
+    collidews = sorted[wk]
+    for i in range(len(collidews):
+            for j in range(i+1, len(collidews))
+    collisions += 1
+    print(sorted[wk])
+    print("---")
+```
+
+# Easy times don't create weak people, they just allow weak people to survive.
+
+Easy times doesn't weaken the _generator_ side of things, it simply weakens
+the _adverserial_ side of things allowing weak people to survive.
+
+# Multiplicative weights algorithm
+
+# ChaoGates: Morphing logic gates that exploit dynamical patterns
+
+
+# How to fairly compare groups
+                                                                                              
+> Why is this a key argument? It’s really quite simple. Let’s say I have two
+> groups, A and B. Group A has 10 people, group B has 2. Each of the 12 people
+> gets randomly assigned a number between 1 and 100 (with replacement). Then I
+> use the highest number in Group A as the score for Group A and the highest
+> number in Group B as the score for Group B. On average, Group A will score
+> 91.4 and Group B 67.2. The only difference between Groups A  and B is the
+> number of people. The larger group has more shots at a high score, so will on
+> average get a higher score. The fair way to compare these unequally sized
+> groups is by comparing their means (averages), not their top values. Of
+> course, in this example, that would be 50 for both groups – no difference!
+
+
+- [Chessbase article about men v/s women in chess](https://en.chessbase.com/post/what-gender-gap-in-chess)
 
 # Z algorithm (TODO)
 
@@ -547,7 +1948,9 @@ Consider the meadian of $xs[1..N]$. We want to show that the median minimizes
 the L1 norm $L_1(y) = \sum_i |xs[i] - y|$. If we differentiate $L_1(y)$ with
 respect to $y$, we get:
 
-$$d L_1(y)/y = \sum_i - \texttt{sign}(xs[i] - y) $$
+$$
+d L_1(y)/y = \sum_i - \texttt{sign}(xs[i] - y)
+$$
 
 
 Recall that $d(|x|)/dx = \texttt{sign}(x)$
@@ -1162,6 +2565,27 @@ set of all possible outcomes / things that could happen.
 
 An outcome consists of all the information about the experiment
 *after it has been performed* including the values of all random choices.
+
+##### NOTE: Keeping straight event v/s outcome
+
+It's easy to get confused between 'event' and 'outcome' (linguistically). I
+personally remember that one of them is the element of the sample space and
+another the subsets, but I can't remember which is which. Here's how I
+recall which is which:
+
+> every experiment has an *outcome*. We write an outcome section when we
+> write a lab manual/lab record for a given experiment.
+
+
+Now, we when perform an expriment, or something random happens, sometimes,
+the result (ie, the outcome) can be _eventful_; it's not linguistically
+right to say that some events can be _outcomeful_.
+
+So, an event is a predicate over the set of outcomes; `event: outcome -> bool`.
+This is the same as being a subset of outcomes (the event is identified
+with the set of outcomes it considers eventful), so we have `event ~= 2^outcomes`.
+
+
 
 ## Example: Monty hall
 
@@ -18164,6 +19588,7 @@ things on architecture I wish to read and/or have read:
 - This place is not a place of honor... no highly esteemed deed is commemorated
   here... nothing valued is here. Design to ward off people for nuclear waste.
 
+- [we forbit what we value most](https://www.strongtowns.org/journal/2017/11/20/we-forbid-what-we-value-most)
 
 # Big list of Recipes 
 
@@ -18305,7 +19730,23 @@ meaning in life and the silent indifference of the universe
 > "the opprobrium of being closely associated with gangsters"
 
 ##### Pyretology
+
 study of fevers
+
+##### Soubrette
+
+an actress or other female performer playing a lively, flirtatious role in a play or opera.
+
+
+##### fiat
+
+> fiat lux.
+
+Let there be light
+
+##### eudaimonia 
+
+happiness as a result of fulfilling one's purpose (eudaimonia)
 
 
 
@@ -18382,3 +19823,47 @@ let g:conjure#mapping#eval_motion = "E"
 > "On and on you will go, making sense of the world, forming notions of order,
 > and being surprised in ways large and small by their failure, forever." —
 > Albert Burneko on Wile E. Coyote.
+
+> "There is a special providence that protects idiots, drunkards, children, and
+> the United States of America." ~ Otto van bismarck
+
+> "Never believe anything in politics until it has been officially denied" 
+> ~ Otto von Bismarck
+
+
+
+> A good proof is one that makes us wiser. -- Yuri Manin
+
+
+>  time is a precious  thread in the fabric of the universe.
+> It deserves its own tool of measurement
+>  ~ General John McNamara [the guy who didn't like musicals]
+
+
+> Crazy STEM conclusions then result when STEM people take the
+> humanities arguments seriously as arguments and follow them to
+> their logical conclusion instead of just using arguments as
+> soldiers like humanities people do.
+> ~ jiro_T on /r/themotte
+ 
+ 
+> As a general rule I subscribe to the saying: "When you mix Science with Politics you get Politics."
+ 
+
+# Empathy
+
+> Oof, I don't really know what to say right now but I'm glad you told me
+- [Brene brown on empathy](https://www.youtube.com/watch?v=1Evwgu369Jw)
+- [It's not about the nail](https://www.youtube.com/watch?v=-4EDhdAHrOg)
+
+- [It's not about the nail](https://www.youtube.com/watch?v=-4EDhdAHrOg&app=desktop)
+
+
+# Vim /sed matching syntax
+
+- `\<word\>`: match word starting and ending.
+
+
+# Chess
+
+- [How to defend `e5` in king's indian defense](https://www.youtube.com/watch?v=jAwSBrLk3Uw)
