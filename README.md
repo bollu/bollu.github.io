@@ -1307,11 +1307,12 @@ v(i, j) = max([  min(v(i+1, j-1), v(i+2, j)) + v[i],
 
 # Accuracy vs precision
 
+<img src="./static/accuracy-vs-precision.png"/>
+
 I had a hard time remembering which is which, so here's how I do it now.
 First, I think of it from a probabilistic lens, where one of them is the
-mean, and the other is variance of a gaussian distribution (I don't yet know
-which is which).
-                                            
+mean, and the other is variance of a gaussian distribution as shown above.
+We don't yet know whether accuracy is the mean or the variance. 
 
 Next, recall that it's linguistically correct to say:
 
@@ -1321,7 +1322,15 @@ but not
 
 > you're accurately wrong.
 
-Thus, if we have a target, the precision tells us 
+Thus, we can be precise about something wrong. That is, we can
+be very "precise" about "hitting the wrong target". So, precision ought
+not care about the *true value*, just about *how well we hit something*.
+This is exactly what the variance attempts to capture: how "spread out"
+we are, or "how well we hit the mean".
+
+
+The accuracy itself is the distance between the mean of our distribution and
+the true reference value we want to hit.
 
 # Why is the gradient covariant?
 
