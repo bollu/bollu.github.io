@@ -1,3 +1,48 @@
+- [zhihu: chinese reddit](https://www.zhihu.com/)
+- [Makepad: sexy rust editor that runs in the web with wasm](https://makepad.nl/)
+- [Olympiad combinatorics](https://artofproblemsolving.com/community/c6h601134)
+- [Evan Cheng's list of books](https://web.evanchen.cc/recommend.html): Has good sources for 
+  algebraic geometry and differential geometry.
+- [Yufei Zhao: olympiad training](https://yufeizhao.com/olympiad/)
+- Dirac general theory of relativity: a good description of torsion as being intrinsic.
+  Learnt from [this answer on mathoverflow](https://mathoverflow.net/a/376498) which goes on to say:
+  
+> I will try to help with the title question. I think that the real motivation
+> for the Levi-Civita connection comes from looking at surfaces in Euclidean
+> 3-space. Differentate one tangent vector field Y along another X by first
+> extending them to be defined in the ambient space, and then taking the
+> tangential projection of XY, i.e. tangential projection of the Euclidean
+> connection. Levi-Civita discovered that this process is intrinsic, i.e.
+> invariant under isometry of surfaces without carrying along the ambient
+> space, and described precisely by torsion freedom. This was clearly a long
+> and difficult process. Dirac uses this view in his book General Theory of
+> Relativity, and this is how I introduce the Levi-Civita connection in my
+> lectures.  I have to agree that there is something missing in the textbook
+> discussions of torsion. I have not found an intuitive understanding of
+> torsion.
+  
+  
+- [`aerc`: email client for CLI](https://aerc-mail.org/)
+- [Graphs, Dioids and Semirings: Provides algebraic descriptions of most graph algorithms](https://www.springer.com/gp/book/9780387754499)
+- [cutter: IDE for reverse engineering](https://cutter.re/)
+- Reversing: Secrets of Reverse Engineering --- book on reverse engineering.
+- [`kaitai` is like `010` editor, but also FOSS](http://kaitai.io/)
+- [010 editor: world's best hex editor, comes with powerful scripting language to describe data layout](https://www.sweetscape.com/010editor/)
+- [MenuetOS: an entire OS written in assembly](https://github.com/marcosptf/menuetos)
+- [Study tree-sitter](https://github.com/tree-sitter/tree-sitter)
+- [Kakoune community's list of CLI tools](https://discuss.kakoune.com/t/terminal-life-lust-for-life/778/29)
+- Prefix sums and their applications: Guy Blelloch
+- [Stanford intro to logic course that uses Herbrand semantics](http://intrologic.stanford.edu/public/index.php)
+- [The herbrand manifesto: why we ought to use herbrand semantics, and the consequences this has on prolog](http://intrologic.stanford.edu/extras/manifesto.html). [Found from this `math.se` link](https://math.stackexchange.com/a/3894320/261373)
+- [Patat: terminal based presentations using Pandoc](https://hackage.haskell.org/package/patat)
+- [Algebraic effects in C](https://www.microsoft.com/en-us/research/wp-content/uploads/2017/06/algeff-in-c-tr.pdf)
+- [BASIC programming in the commodore64](http://tomasp.net/commodore64/)
+- A course on probability: https://www.probabilitycourse.com/
+- A knight moves one square diagonal plus one straight. no need to think of `L`.
+- [Einstein's original 100 page manuscript on relativity](https://www.gutenberg.org/files/36276/36276-pdf.pdf)
+- [Holor theory: generalization of tensors that support either independent/dependent quantities]()
+- An IDE for x86 assembly with great documentation lookup, goto symbol, etc. The
+  things """we expect""". Ie, language server for assembly.
 - [Problems on flows](https://gist.github.com/bollu/371caca4d9ad73f401f095c3ac835e60)
 - [The GHIDRA book](https://nostarch.com/GhidraBook): Book about learning how
   to use GHIDRA

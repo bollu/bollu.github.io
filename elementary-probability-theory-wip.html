@@ -15,6 +15,18 @@ set of all possible outcomes / things that could happen.
 <h4><a id=defn-outcome-sample-point-atomic-event href='#defn-outcome-sample-point-atomic-event'> § </a><span class='centered'> Defn: Outcome / Sample point / atomic event</h4>
 An outcome consists of all the information about the experiment
 <i><span class='centered'>after it has been performed</i> including the values of all random choices.
+<h4><a id=note-keeping-straight-event-vs-outcome href='#note-keeping-straight-event-vs-outcome'> § </a><span class='centered'> NOTE: Keeping straight event v/s outcome</h4>
+It's easy to get confused between 'event' and 'outcome' (linguistically). I
+personally remember that one of them is the element of the sample space and
+another the subsets, but I can't remember which is which. Here's how I
+recall which is which:
+<blockquote><span class='centered'> every experiment has an <i><span class='centered'>outcome</i>. We write an outcome section when we<span class='centered'> write a lab manual/lab record for a given experiment.</blockquote>
+Now, we when perform an expriment, or something random happens, sometimes,
+the result (ie, the outcome) can be <i><span class='centered'>eventful</i>; it's not linguistically
+right to say that some events can be <i><span class='centered'>outcomeful</i>.
+So, an event is a predicate over the set of outcomes; <code>event: outcome -> bool</code>.
+This is the same as being a subset of outcomes (the event is identified
+with the set of outcomes it considers eventful), so we have <code>event ~= 2^outcomes</code>.
 <h3><a id=example-monty-hall href='#example-monty-hall'> § </a><span class='centered'> Example: Monty hall</h3>
 An outcome of the monty hall game <b><span class='centered'>when the the contestant switches</b> consists of:
 <ul><li><span class='centered'> the box with the prize.</li><li><span class='centered'> the box chosen by the contestant.</li><li><span class='centered'> the box that was revealed.</li></ul>

@@ -29,6 +29,9 @@
 #define TAKE
 #define KEEP
 
+static const int LONG_LATEX_BLOCK_SIZE = 30;
+static const int LONG_CODE_BLOCK_SIZE = 30;
+
 using namespace std;
 
 using ll = long long;
@@ -586,6 +589,11 @@ T* tokenizeBlock(const char *s, const ll len, const L lbegin) {
                         "must have newline following.");
             assert(false && "incorrectly terminated $$");
         }
+
+        if (lcur.line - lbegin.line > LONG_LATEX_BLOCK_SIZE) {
+            printferr(lbegin, s, "WARNING: latex block is very long! Perhaps block is overflowing?");
+            printferr(lcur, s, "latex block ends here");
+        }
         return new T(TT::LatexBlock, Span(lbegin, lcur));
     }
     else if (strpeek(s + lcur.si, "<script")) {
@@ -625,6 +633,10 @@ T* tokenizeBlock(const char *s, const ll len, const L lbegin) {
             printferr(lcur, s, "incorrectly terminated ```."
                         "must have newline following ```.");
             assert(false && "incorrectly terminated code block.");
+        }
+
+        if (lcur.line - lbegin.line > LONG_CODE_BLOCK_SIZE) {
+            printferr(lbegin, s, "WARNING: code block is very long! Perhaps block is overflowing?");
         }
 
         return new TCodeBlock(Span(lbegin, lcur), langname);

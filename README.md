@@ -63,7 +63,7 @@ A shower thought, but Cohomology is indeed like holism. It describes precisely
 how the whole is greater than the sum of its parts, in terms of capturing a
 "global defect" that is oftentimes "locally trivial".
 
-# Flows
+# Flows (WIP)
 
 - [Srinivas Devdas: Flows](https://www.youtube.com/watch?v=VYZGlgzr_As)
 
@@ -107,7 +107,7 @@ $$
 &  f(s, V) = f(V - s, V) \\
 &  f(s, V) = f(V - s - t, V) + f(t, V) \\
 &  f(s, V) = f(t, V) - f(V - s - t, V)\\
-& [\text{any vertex in $V - s - t$ is an intermediate vertex, which has 0 net flow] \\
+& [\text{any vertex in $V - s - t$ is an intermediate vertex, which has 0 net flow}] \\
 &  f(s, V) = f(t, V) - 0 \\
 &  f(s, V) = f(t, V) \\
 \end{aligned}
@@ -123,7 +123,8 @@ then the flow across the cut is $f(S, T)$.
 
 #### Capacity of a cut and its relationship to flow
 
-$$c(S, T) = \sum_{s \in S, t \in T} c(s, t)$ See that we only get
+$$c(S, T) = \sum_{s \in S, t \in T} c(s, t)$$
+See that we only get
 **positive coefficents** here. There is no "negative capacity", only "negative flow".
 
 #### Theorem: upper bound flow across a cut
@@ -186,7 +187,7 @@ for edges whose flow has to shrink.
 #### Table doubling
 - Expected cost of hash lookup: $O(1 + n/m)$ where $n$ items in table of size $m$
   ($n/m$ is the load factor)
-- Total cost for $n$ insertions: $2^0 + 2^1 + \dots + 2^\log n \simeq O(n)$.
+- Total cost for $n$ insertions: $2^0 + 2^1 + \dots + 2^{\log n} \simeq O(n)$.
 - Amortized cost per operation is $O(1)$.
 
 #### Aggregate method
@@ -840,15 +841,17 @@ s   |    w
 
 ```
 total time = sum over times of all subproblems (modulo recursion)
-``` 
+```
+
 
 This gives us:
+
 
 ```
 total time = sum indeg(v) + O(1) = O(E) + O(1)
 ```
 
-- **LESSON LEARNT: subproblem dependencies should be acyclic!
+- **LESSON LEARNT: subproblem dependencies should be acyclic!**
 
 - Claim: can use same approach for graphs! Explode a cycle over time. This makes
   any graph acyclic.
@@ -868,10 +871,12 @@ possible can have $|V| - 1$ edges. So the `k` parameter goes from `[0..|V|-1]`
 while the vertex `v` can be any vertex. Per vertex `v` we spend `indeg(v)` time.
 So we get the total recurrence as:
 
+$$
 \begin{aligned}
 &\sum_{(k \in [|V|-1], v \in V)} T(k, v) =  \\
 &\sum_{k \in [|V|-1]} \sum_v indeg(v) = \sum_{k \in [|V|-1]} E = VE
 \end{aligned}
+$$
 
 ##  DP 2: Text Justification, Blackjack
 
@@ -892,12 +897,13 @@ So we get the total recurrence as:
 1. subproblems: `F(1)...F(n)`
 2. guess: nothing
 3. relate: `F(n) = F(n-1) + F(n-2)`; `O(1)` time
-5. F(n). constant time to find 
+4. F(n). constant time to find 
 
 #### Recap: Shortest path
-1. subproblems: $\delta_k(s, v)$. $V^2 subproblems.
+1. subproblems: $\delta_k(s, v)$. $V^2$ subproblems.
 2. guess: last edge; edge into $v$.
 3. relate: $\delta_k(s, v) = \min_u \delta_{k-1}(s, u) + w(u, v)$; `indegree(v)` time
+4. <blank>
 5. $\delta_{v-1}(s, v)$ for all $v$. This takes $\Theta(V)$.
 
 #### Text Justification
@@ -961,7 +967,8 @@ Good choices of objects to perform DP on:
 optimal order of associative expression.: `A[0] . A[1] ... A[n-1]`. Order
 matters for matmul!
 - What should we guess? There are exponentially many parenthesizations!
-  Guess the outermost/last multiplication. Ie, we want to know
+  Guess the outermost/last multiplication. Ie, we want to know:
+
 ```
 (A[0] ... A[k-1]) * (A[k] ... A[n-1])`
 ```
@@ -1395,10 +1402,7 @@ for wk in sorted:
 Easy times doesn't weaken the _generator_ side of things, it simply weakens
 the _adverserial_ side of things allowing weak people to survive.
 
-# Multiplicative weights algorithm
-
-# ChaoGates: Morphing logic gates that exploit dynamical patterns
-
+# Multiplicative weights algorithm (TODO)
 
 # How to fairly compare groups
                                                                                               
@@ -1418,10 +1422,10 @@ the _adverserial_ side of things allowing weak people to survive.
 
 # Z algorithm (TODO)
 
-The `Z` algorithm, for a given string $s$, computes a function $Z: [len(s)] \rightarrow [len(s)$].
+The `Z` algorithm, for a given string $s$, computes a function $Z: [len(s)] \rightarrow [len(s)]$.
 $Z[i]$ is the length of the longest common prefix between $S$ and $S[i:]$.
-So, $S[0] = $S[i]$, $S[1] = S[i+1]$, $S[2] = S[i+2]$, and so on till $S[Z[i]] = S[i + Z[i]]$,
-and then $S[Z[i]+1] \neq S[i + Z[i] + 1]$.
+So, $S[0] = S[i]$, $S[1] = S[i+1]$, $S[2] = S[i+2]$, and so on till 
+$S[Z[i]] = S[i + Z[i]]$, and then $S[Z[i]+1] \neq S[i + Z[i] + 1]$.
 
 
 If we can compute the `Z` function for a string, we can then check if pattern `P`
@@ -19835,24 +19839,10 @@ let g:conjure#mapping#eval_motion = "E"
 > A good proof is one that makes us wiser. -- Yuri Manin
 
 
->  time is a precious  thread in the fabric of the universe.
-> It deserves its own tool of measurement
->  ~ General John McNamara [the guy who didn't like musicals]
-
-
-> Crazy STEM conclusions then result when STEM people take the
-> humanities arguments seriously as arguments and follow them to
-> their logical conclusion instead of just using arguments as
-> soldiers like humanities people do.
-> ~ jiro_T on /r/themotte
- 
- 
-> As a general rule I subscribe to the saying: "When you mix Science with Politics you get Politics."
- 
-
 # Empathy
 
 > Oof, I don't really know what to say right now but I'm glad you told me
+
 - [Brene brown on empathy](https://www.youtube.com/watch?v=1Evwgu369Jw)
 - [It's not about the nail](https://www.youtube.com/watch?v=-4EDhdAHrOg)
 

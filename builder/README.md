@@ -31,7 +31,9 @@ if ((window.innerHeight - document.documentElement.clientHeight) >0) {
 
 # Features
 
+- [ ] Collapsible headings?
 - [ ] Disqus / [`gitment`](https://github.com/imsun/gitment) for comments.
+- [ ] [utterances](https://utteranc.es/) for comments on the blog.
 - [ ] RSS feed.
 - [ ] Broken link warnings.
 - [x] error for `_ _`,  `* *`, `__ __`, `** **` that span multiple lines.

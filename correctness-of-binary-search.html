@@ -1,0 +1,49 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
+img { display:block; width: 100%; max-width: 800px; height: auto }.container { overflow-x: auto; overflow-y: hidden;  max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: 20%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
+pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=correctness-of-binary-search href='#correctness-of-binary-search'> § </a><span class='centered'> Correctness of binary search</h2>
+<h4><a id=closed-closed-intervals href='#closed-closed-intervals'> § </a><span class='centered'> Closed-closed intervals</h4>
+<pre><code><span class="token comment">// search in interval [l, r] for value `val`</span>
+<span class="token keyword">int</span> <span class="token function">binsearch</span><span class="token punctuation">(</span><span class="token keyword">int</span> l<span class="token punctuation">,</span> <span class="token keyword">int</span> r<span class="token punctuation">,</span> <span class="token keyword">int</span> val<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span>xs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>l <span class="token operator">==</span> r<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> l<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+  <span class="token keyword">int</span> mid <span class="token operator">=</span> <span class="token punctuation">(</span>l<span class="token operator">+</span>r<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>xs<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> val<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+    <span class="token keyword">return</span> <span class="token function">binsearch</span><span class="token punctuation">(</span>l<span class="token punctuation">,</span> mid<span class="token punctuation">,</span> val<span class="token punctuation">,</span> xs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">binsearch</span><span class="token punctuation">(</span>mid<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> r<span class="token punctuation">,</span> val<span class="token punctuation">,</span> xs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+We have <code>(l <= mid < r)</code> since floor division of the form <code>(l+r)/2</code>
+will pull values "downward". The length of the interval <code>[l, mid]</code> is smaller
+than the interval <code>[l, r]</code> as <code>mid < r</code>. The length of the interval
+<code>[mid+1, r]</code> is smaller than the interval <code>[l, r]</code> as <code>l < mid+1</code>. We
+are monotonically decreasing on the quantity "length of interval", and terminate
+the recursion when the length is zero.
+<h4><a id=closed-open-intervals href='#closed-open-intervals'> § </a><span class='centered'> Closed-open intervals</h4>
+<pre><code><span class="token comment">// search in interval [l, r) for value `val`</span>
+<span class="token keyword">int</span> <span class="token function">binsearch</span><span class="token punctuation">(</span><span class="token keyword">int</span> l<span class="token punctuation">,</span> <span class="token keyword">int</span> r<span class="token punctuation">,</span> <span class="token keyword">int</span> val<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span>xs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// [l, l+1) = { l }</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>r <span class="token operator">==</span> l <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> l<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+  <span class="token keyword">int</span> mid <span class="token operator">=</span> <span class="token punctuation">(</span>l<span class="token operator">+</span>r<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>xs<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> val<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+    <span class="token keyword">return</span> <span class="token function">binsearch</span><span class="token punctuation">(</span>l<span class="token punctuation">,</span> mid<span class="token punctuation">,</span> val<span class="token punctuation">,</span> xs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">binsearch</span><span class="token punctuation">(</span>mid<span class="token punctuation">,</span> r<span class="token punctuation">,</span> val<span class="token punctuation">,</span> xs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+We have <code>(l <= mid < r)</code> since floor division of the form <code>(l+r)/2</code>
+will pull values "downward". Furthermore, if <code>r = l + 1</code> we end the
+recursion. Thus, we are guaranteed that we will have that <code>r >= l + 2</code>.
+Hence, <code>mid = (l+r)/2 >= (l + l + 2)/2 >= l + 1</code>. Thus, we have that:
+<code>l</code> is to the left of <code>mid=l+1</code> is to the left of <code>r>=l+2</code>. So the
+intervals <code>[l, mid)</code> and <code>[mid, r)</code> will be smaller, as we cleanly "separate"
+out <code>l</code>, <code>mid</code>, and <code>r</code>.
+</container></body></html>
