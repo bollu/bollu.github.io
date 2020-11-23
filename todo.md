@@ -1,3 +1,17 @@
+- [INOI training material](https://www.iarcs.org.in/inoi/online-study-material/topics/articulation-points.php)
+- Discrete Images, Objects, and Functions in Zn: Seems to contain many results on
+  topologies for images.
+- Using the Borsuk-Ulam theorem: lectures on topological methods in combinatorics and geometry
+- Applied finite group actions
+- [Orbit stabilizer for Lie groups? Answers in the book: "Lie Algebras and Algebraic Groups"](https://rads.stackoverflow.com/amzn/click/com/3642063330
+- [the book of Parametrized algorithms](https://www.mimuw.edu.pl/~malcin/book/parameterized-algorithms.pdf)
+- [Second Thread: IGM on codeforces with great videos on competitive programming ideas](https://codeforces.com/blog/SecondThread)
+- [Possibility theory](http://scholarpedia.org/article/Possibility_theory) an ordinal version of probability
+  theory, and [an implementation in racket, called 'ranked programming'](https://github.com/tjitze/ranked-programming/blob/master/documentation/ranked_programming.pdf)
+- [Galois' dream: textbook about lie theory for differential equations](https://www.springer.com/gp/book/9780817636883)
+- [Inverse Noether theorem](https://scholar.harvard.edu/files/noahmiller/files/visualizing_noether.pdf)
+- Atmospheric Thermodynamics: Bohren and Albrecht: Spends a lot of time building up good conventions
+  and notation, does NOT use scam differentials.
 - [zhihu: chinese reddit](https://www.zhihu.com/)
 - [Makepad: sexy rust editor that runs in the web with wasm](https://makepad.nl/)
 - [Olympiad combinatorics](https://artofproblemsolving.com/community/c6h601134)

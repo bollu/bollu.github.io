@@ -14,6 +14,1071 @@ A Universe of Sorts
 - [reading list/TODO](todo.html)
 
 <!-- - [Grab me a coffee](https://ko-fi.com/bollu) -->
+# On reading how to rule
+#### The prince
+
+#### Arthashastra
+
+#### The book of lord shang
+
+
+# Articulation points
+
+I find DFS fascinating, and honestly insane for how much structral
+information of the graph it manages to retain. 
+
+#### Menger's theorem
+
+Let $G$ be a connected undirected graph. Let $u, v$ be two non-adjacent
+vertices.  The minimum number of vertices whose removal from $G$ disconnects
+$u$ and $v$ is equal to the **maximal number of vertex disjoint paths** from $v$
+to $u$.
+
+#### Whitney's theorem (corollary)
+
+An undirected graph is $k$ connected iff $k$ vertices must be removed to
+disconnect the graph.
+
+#### Biconnected components
+
+Menger's theorem tells us that a graph is not biconnected **iff** we can find a vertex
+whose removal disconnected the graph. Such a vertex is an articulation vertex.
+
+> A biconnected component is a maximal subset of edges, such that the induced
+> subgraph is biconnected. Vertices can belong to many components;
+> Indeeed, articulation vertices are those that belong to more than one component.
+
+<img src="./static/structure-of-non-biconnected-graph.png"/>
+
+
+#### Lemma: Characterization of biconnected components
+
+
+#### DFS for articulation vertices - undirected:
+
+<img src="./static/articulation-vertex-undirected.png"/>
+                                                                                                                        
+- The connectivity of a graph is the smallest number of vertices that need to
+  be deleted to disconnect the graph.
+- If the graph has an articulation vertex, the connectivity is 1. More robust
+  graphs that don't have a single point of failure/articulation vertex are
+  said to be *binconnected*.
+- To test for an articulation vertex by brute force, delete each vertex,
+  and check if the graph has disconnected into components. this is $O(V(V+E))$ time.
+
+> Joke: an articulate vertex is one that speaks very well, and is thus important
+> to the functioning of the graph. If it is killed, it will disconnect society,
+> as there is no one to fulfil its ability to cross barriers with its eloquent
+> speech.
+
+#### Articulation vertices on the DFS tree - undirected
+
+- If we think of only the DFS tree for a moment of an undirected graph 
+  and ignore all other edges, then
+  all interneal non-leaf vertices become articulation vertices, because they
+  disconnect the graph into two parts: the part below them (for concreteness,
+  think of a child leaf), and the root component. 
+
+- Blowing up a leaf has no effect, since it does not connect two *components*, 
+  a leaf only connects itself to the main tree.
+
+
+- The root of the tree is special; If it has only one child, then it acts like
+  a leaf, since the root connects itself to the only component. On the other
+  hand, if there are multiple components, then the root acts like an internal
+  node, holding these different components together, making the root an
+  articulation vertex.
+
+#### Articulation vertices on the DFS graph - undireced
+
+- DFS of a general undirected graph also contains *back edges*. These act as
+  security cables that link a vertex back to its ancestor. The security
+  cable from `x` to `y` ensures that none of the nodes on the path `[x..y]`
+  can be articulation vertices.
+
+- So, to find articulation vertices, we need to see how far back 
+  the security cables go.
+
+```cpp
+int anc[V]; int dfs_outdeg[V];
+void processs_vertex_early(int v) { anc[v] = v; }
+void process_edge(int x, int y) {
+  if (dfsedge[x][y].type == TREE) { dfs_outdeg[x]++; }
+  // y <-*
+  //     |
+  //     BACK
+  //     |
+  // x --*
+  if (dfsedge[x][y].type == BACK && (parent[y] != x)) { 
+     if(entry_time[y] < entry_time[anc[x]]) {
+       anc[x] = y;
+     }
+  }
+}
+```
+
+
+<img src="/home/bollu/blog/static/articulation-vertices-undirected-3-cases.png"/>
+
+> In a DFS tree, a vertex v (other than the root) is an articulation
+> vertex iff v is not a leaf and some subtree of v has no back edge incident
+> until a proper ancestor of v.
+
+#### References
+
+- Udi Manber: Introduction to algorithms: A creative approach.
+- Steven Skeina: The algorithm design manual.
+
+# Disjoint set union
+
+#### intuition for correctness of `rank`:
+
+Assume that we had to re-point pointers of all our children to the
+new root when we decide to make another node the root. That is,
+we would have:
+
+```
+void mkroot(int newroot, int prevroot) {
+   for (int child : children[prevroot] {
+        parent[child] = newroot;
+   }
+   parent[prevroot] = newroot];
+   children[prevroot] = {}; // this has no children anymore
+}
+```
+
+- In this setting, we ought to make the *smaller* subtree the `prevroot`
+  and the *larger* subtree the `newroot`: It is better to loop over
+  fewer children.
+
+- When we perform the `rank` based union, we are using the *same heuristic*,
+  even though we don't actually loop over all our children.
+
+
+
+# Making GDB usable
+
+- Use [GEF](https://github.com/hugsy/gef)
+
+# Bouncing light clock is an hourglass
+
+I've always disliked the "clocks" that are used in special relativity,
+because a clock attempts to measure something absolute, rather than something
+relative. So, we should rather use hour glasses. In an hour glass, we can 
+only measure *intervals* of time. 
+
+<br/>
+
+Now, when we have such an hourglass, we should fill the hourglass with
+*photons*, because their speed of falling is invariant for all reference frames.
+So, what we need is the ability to create an hourglass worth of photons which
+we keep dripping down, once the photon at the funnel has reached the bottom.
+
+<br/>
+
+This is *exactly* what the two mirror photon clock does --- it bounces a photon
+between two mirrors. We can look at this as us "flipping" the hourglass
+once the photon reaches the bottom of the hourglass. 
+
+# Euler tours (WIP)
+
+# Representation theory of the symmetric group (WIP)
+
+- [Video lectures: Representation theory, a combinatorial viewpoint](https://www.youtube.com/watch?v=QqJIOnTDbLM&list=PLFE2F2CDA55A9EBB6)
+
+# Maximum matchings in bipartite graphs (WIP)
+
+
+
+#### References
+
+- [Bipartite Graphs/Matching (Intro)-Tutorial 12 D1 Edexcel](https://www.youtube.com/watch?v=JpapV5DrBek)
+- [Maximum Matching Algorithm - Tutorial 13 D1 Edexcel A-Level](https://www.youtube.com/watch?v=gbasc4F-7hk)
+- [Slides on matroid intersection](http://swoh.web.engr.illinois.edu/courses/ie512/handout/matching.pdf)
+
+# Lowest common ancestor (WIP)
+- If you had ancestors fuse on distance `d`, and if you both move up, your ancestors will continue to fuse.
+  So once we consider a distance `d` we don't need to consider it again. 
+
+# p-adics, 2's complement, intuition for bit fiddling (WIP)
+
+Consider the equation $x \& (-x)$ which enables us to find the largest
+power of 2 that divides $x$. One can prove this relatively easily from the
+definitions:
+
+$$
+\begin{aligned}
+&a = \langle x 1 0^r \rangle \\
+&-a = \lnot a + 1 = x01^r + 1 = \overline{x}10^r \\
+&a \& (-a) = a \& (\lnot a + 1) = (x 10^r) \& (\overline{x}10^r) = 0^{|\alpha|}10^r = 2^r
+\end{aligned}
+$$
+
+That is, if we state that $a = \langle x 1 0^r \rangle$ for some arbitrary $r$,
+we then find that $a \& (-a) = 2^r = \langle 1 0^r \rangle$, which is precisely what we need to subtract
+from $a$ to remove the rightmost/trailing $1$. However, I don't find
+this insightful. So I'm going to spend some time dwelling on $2$-adics, to find
+a more intuitive way to think about this.
+
+#### 2-adics and negative numbers
+
+In the 2-adic system, we have that:
+
+$$
+\begin{aligned}
+&-1 = \dots 1 1 1 1 \\
+&-2 = -1 + -1 = \dots 1 1 1 1 + \dots 1 1 1 1 = \dots 1 1 1 0 \\
+&-4 = -2 + -2 = \dots 1 1 1 0 + \dots 1 1 1 0 = \dots 1 1 0 0 \\
+&-8 = -2 + -2 = \dots 1 1 0 0 + \dots 1 1 0 0 = \dots 1 0 0 0 \\
+\end{aligned}
+$$
+
+Of course, these agree with the 2's complement representation, because the 2's
+complement representation simply truncates the 2-adic representation. At any
+rate, the point of interest is that if we now want to know how
+to write $-3$, we start with the "lower" number $-4$ and then add $1$ to it,
+giving us:
+
+$$
+-3 = -4 + 1 = \dots 1 1 0 0 + \dots 0 0 0 1 = \dots 1 1 0 1
+$$
+
+Which once again agrees with the 2's complement definition. 
+
+#### $x \& (-x)$ for powers of 2:
+
+If we now think strictly about powers of 2, we know that, for example,
+$8 = \langle \dots 0 0 1 0 0 \rangle$ while $-8 = \langle \dots 1 1 1 0 0 \rangle$.
+Hence, $x \& (-x) = \langle 0 0 1 0 0$.  This will hold for any power of 2,
+so our claim that $x \& (-x)$ gives us the location of the LSB will work for
+any power of 2.
+
+
+
+# Diameter of a tree: algorithm and proof (WIP)
+
+- Left and Right diameter endpoints must be leaves, otherwise we can extend
+  the diameter.
+- Node at distance $d$ from left of diameter can only have height $h \leq d$.
+
+- Counterxample for graphs.
+
+# Catalan numbers as popular candidate votes (WIP)
+
+- Usually, folks define catalan numbers as paths that go up or right from $(1, 1)$
+  to $(n, n)$ in a way that never goes below the line $y = x$.
+
+- The catalan numbers can be thought to model two candidates $A$ and $B$ such
+  that during voting, the votes for $A$ never dip below the votes for $B$.
+
+I quite like the latter interpretation, because we really are counting
+two different things (votes for $A$ and $B$) and then expressing a relationship
+between them. It also allows us to directly prove that `catalan(n)` is equal
+to $1/(n+1) \binom{2n}{n}$ by reasoning about seqences of votes, called as
+*ballot sequences*
+
+#### Ballot sequences
+
+#### References
+- [Richard Stanley's slides](https://math.mit.edu/~rstan/transparencies/china.pdf)
+
+# The chromatic polynomial (WIP)
+
+I've been on a combinatorics binge lately, so I'm collecting cool facts about
+the chromatic polynomial. We first define the chromatic function of a graph,
+which is a generating function:
+
+$$
+f[G](x) \equiv \texttt{number of ways to color $G$ with $x$ colors} \cdot x^n
+$$
+
+If we have a single vertex $K_1$, then $f[K_1](x) =  n x^n$, since we can color
+the single vertex with the $n$ colors we have.
+
+#### Composition of chromatic funcions of smaller graphs
+
+
+#### The chromatic function is a polynomial
+
+
+
+# Structure theory of finite endo-functions
+
+We study functions $f: V \rightarrow V$ and their properties by thinking of them as a
+graph with vertex set $V$ and directed edges $(v, f(v))$. This gives us insight into
+permutations, rooted trees, and a bunch of counting principles. Such a structure is
+called as *functional digraph*
+
+#### Principle 1: Structure theory
+
+every functional digraph uniquely decomposes into disjont rooted trees which feed into
+one or more disjoint cycles. We think of nodes as pointing from the leaves towards the
+root. The root of the tree lies in a cycle.
+
+#### Existence of tree implies not bijection
+
+If we have a tree, we can keep walking backwards using edges from the root towards
+the leaves. Now this leaf does not have an incoming edge. This means that this leaf
+is not in the image of $f$. Hence $f$ cannot be surjective. 
+
+#### Rooted Trees: a single cycle
+
+in a rooted tree, only the root node $r$ is such that $f(r) = r$. All other nodes point to
+other nodes without cycles.
+
+#### Permutations: no rooted tree, only cycle
+
+In a permutation, all we have are cycles. There are no trees that hang from the cycles.
+
+#### Counting number of rooted trees: $n^{n-2}$: (WIP)
+
+Say we have a function $f: V \rightarrow V$ where $|V| = n$ and $f(1) = 1$, $f(n) = n$.
+
+
+#### References
+- [USACO: functional graphs](https://usaco.guide/silver/func-graphs)
+
+# Number of paths in a DAG
+
+Given the adjacency matrix $A$ of a DAG, this  must be nilpotent. This is because
+$A^k[i][j]$ will tell us the number of paths from $i$ to $j$ with $k$ edges in the path.
+In a DAG, since there are no cycles, there is an upper bound on the number of edges
+a path can have: the longest path is $|V| - 1$, when the DAG is a straight line. Thus,
+we must have that $A^|V| = 0$.
+
+- Let $A^n = 0$.
+- Now, we know that $(I - A)^{-1} = I + A + A^2 + \dots$
+  which will terminate as a finite sum, with $(I - A)^{-1} = I + A + A^2 + \dots + A^{n-1}$.
+- But note that $(I + A + A^2 + \dots A^{n-1})[i][j]$ will count number of paths from 
+  $i$ to $j$ with $0$ edges, $1$ edge, $2$ edges, etc. so we will get the _total_ number of
+  paths from $i$ to $j$!. 
+
+
+# Set partitions
+
+Let $X$ be a set. A breakup of $X$ into pairwise disjoint sets $A[i]$ such that $\cup_i A[i] = X$
+is called a partition $P$ of the set $X$.
+
+
+#### Stirling numbers of the second kind: $S(n, k)$
+
+These count the number of ways to break an $n$ element set into $k$ partitions/equivalence classes.
+
+
+The recurrence is:
+
+$$
+S(n, k) \equiv S(n-1, k-1) + kS(n-1, k)
+$$
+
+- For the $n$th element, I either build a new equivalence class $\{ n \}$
+  and then make $k-1$ equivalence classes from $\{1\dots (n-1)\}$.
+- Alternatively, I have $k$ equivalence classes from $\{1 \dots (n-1)\}$, say $P[1], P[2], \dots, P[k]$
+  I decide into which $P[i]$ the $n$ should go, which gives me $k$ choices. 
+- Initial conditions: $S(0, 0) = 1$, $S(0, k \neq 0) = S(n \neq 0, 0) = 0$.
+
+#### Stirling numbers and surjections
+
+> Interesting interpretation: The number of ways to surject an $n$ element set into a $k$
+> element set, since a surjection breaks a set up into a known number of fibers (in this case, $k$ fibers).
+
+This is not entirely true, because we only get $k$ equivalence classes of the set $\{1, \dots, n\}$. We need to
+decide where to map each equivalence class. So the correct count of $\{ [n] \xrightarrow{onto} [k] \}$
+is $k!S(n, k)$: there are $k!$ ways to map equivalence classes of $n$ to elements of $k$
+
+
+#### Rook theory(!)
+
+Turns out we can provide a crazy relationship betweeen ferrers diagrams, and rooks (as in the chess piece)
+and stirling numbers of the second kind.
+
+We define $\Delta(n)$ to be the board consisting of the integer partition
+$[n-1, n-2, \dots, 1]$. For example, we think of $\Delta(4)$ as:
+
+```
+Delta(4):
++--+
+|  |
++--+--+
+|  |  |
++--+--+--+
+|  |  |  | 
++--+--+--+--+
+```
+
+Hopefully, this looks like a staircase with 4 stairs starting from the ground.
+We have filled in squares of $[3, 2, 1]$ blocks stacked above one another.
+
+
+We define $r(n, k)$ to be the number of legal rook placements on a board $\Delta(n)$
+with $k$ free rows. That is, we have $(n-k)$ rooks to place on the board $\Delta(n)$,
+with one on each row, such that no rook attacks another rook.
+
+- Boundary condition: $r(0, 0) = 0$ 0 free rows on a $\Delta(0)$ board counts as 
+  one configuration.
+- Recurrence: $r(n, k) \equiv r(n-1, k-1) + k r(n-1, k)$
+
+-  $r(n-1, k-1)$ term: 
+   We don't place a rook on the bottom row. This means we have used up a free row,
+   and need to place rooks with $(k-1)$ free rows on an $(n-1)$ board:
+
+```
++--+
+|  |
++--+--+
+|  |  |  r(n-1, k-1)
++--+--+--+
+
++--+--+--+
+|  |  |  |  BLANK
++--+--+--+--+
+```
+
+- $k r(n-1, k)$: We fill out $\Delta(n-1)$ with rooks such that we have 
+  $k$ free rows. Then, we add the final row. Note that since we have rooks,
+  $k$ free rows is equivalent to $k$ free columns! Now, we can't leave the final row
+  free, since we have already exhausted our $k$ free rows in the recursion. We have $k$
+  free columns for the rook in the final row to inhabit. So we get $k r(n-1, k)$.
+
+
+#### Bijection between rooks and Stirling numbers of the second kind
+
+Finally, note that $S(n, k) = r(n-k, k)$, as $S(n, k) = S(n-1, k-1) + k S(n-1, k)$
+which is equivalent to asking:
+
+$$
+\begin{aligned}
+&S(n, k) = S(n-1, k-1) + k S(n-1, k) \\
+&r(n-k, k) =_? r(n-1 - (k-1), k-1) + k r(n-1 - k, k) \\
+&r(n-k, k) =_? r(n-k, k-1) + k r(n-k-1, k) \\
+&\text{set $m = n-k$: } \\
+&r(m, k) = r(m, k-1) + k r(m, k) \\
+\end{aligned}
+$$
+
+#### Directly reading off the bijection between set partitions and rook placements
+
+I found this very cool. The idea is to treat each rook as a "bouncer" that bounces light
+rays. All elements hit by a light ray belong to an equivalence class.
+
+<img src="./static/rooks-equivalence-classes.png"/>
+
+
+#### Wrooks and signless stirling numbers
+
+Similar to the rooks, we define a _wrook_ (a weak rook) as one that only attacks
+on its row. Here $w(n, k)$ denotes a placement of wrooks on $\Delta(n)$ with $k$
+free rows.
+
+$$
+\begin{aligned}
+&w(n, k) \equiv \\
+&~ w(n-1, k-1)~ \text{Leave bottom row free: uses up a free row} + \\
+&~n w(n-1, k)~ \text{Place a wrook on bottom row: $n$ possible positions}
+\end{aligned}
+$$
+
+The corresponding "counting" object is called as the signless stirling numbers:
+
+TODO
+
+
+# Integer partitions
+
+An integer partition of an integer $n$ is a sequence of numbers $p[1], p[2], \dots p[n]$ which
+is weakly decreasing: so we have $p[1] \geq p[2] \dots \geq p[n]$. For example, these
+are the integer partitions of $5$:
+
+- [5]
+- [4, 1]
+- [3, 2]
+- [3, 1, 1]
+- [2, 2, 1]
+- [2, 1, 1, 1]
+- [1, 1, 1, 1, 1]
+
+Thus, $P(5) = 7$. We denote by $P(n, k)$ the number of partitions of $n$ into $k$ parts.
+So we have $P(5, 1) = 1$, $P(5, 2) = 2$, $P(5, 3) = 2$, $P(5, 4) = 1$, $P(5, 5) = 1$.
+
+The recurrence for partitions is:
+
+$$P(n, k) = P(n-1, k-1) + P(n-k, k)$$
+
+The idea is to consider a partition $p[1], p[2], \dots, p[k]$ of $n$ based on the final element:
+- if $p[k] = 1$, then we get a smaller partition by removing the $k$th part, giving us a partition of $(n-1)$  
+  as $[p[1], p[2], \dots, p[k-1]]$. Here the number decreases from $n \mapsto (n-1)$ and the number of parts
+  decreases from $k \mapsto (k-1)$.
+- if $p[k] \neq 1$ (that is, $p[k] > 1$), then we get a partition of $n-k$ by knocking off a $1$ from *each* partition, giving us
+  $[p[1] - 1, p[2] - 1, \dots, p[k]-1]$. Here we decrement on the number $n \mapsto n - k$ while still keeping
+  the same number of parts.
+
+#### References
+
+- Bijective Combinatorics
+- [Slides by Brian Miceli](http://ramanujan.math.trinity.edu/bmiceli/research/TXState04-09-10.pdf)
+
+# Stars and bars by direct bijection
+
+We know that the number of $k$ element multisets using letters from $\{1, \dots, n\}$
+is $\binom{k+n-1}{k}$.  That is, we are allowed to pick elements from $\{1, \dots, n\}$
+repeatedly, and we want $k$ such elements.
+
+#### The usual proof: stars and bars
+
+The usual proof involves creating $k$ "stars" ($\star$) which need to be placed in $n$
+buckets. These buckets are created by having $(n-1)$ "bars" ($|$). For example, if we 
+wish to consider all $k=3$ element multisets of the letter $n=4$: $\{w, x, y, z\}$:
+
+$$
+\begin{aligned}
+&[w, w, w] \mapsto \star \star \star \vert \vert \vert  \\
+&[w, x, y] \mapsto \star \vert \star \vert \star \vert \\
+&[x, x, x] \mapsto \vert \star \star \star \vert \vert  \\
+&[x, z, z] \mapsto \star \vert \vert \star \star \\
+\end{aligned}
+$$
+
+#### Direct bijection.
+
+To build a direct bijection, map a $k$ multiset of $n$ into a $k$ **subset** of $n+k-1$, which 
+is counted by $\binom{n+k-1}{k}$.
+
+
+- We are first given a $k=6$ multiset of $n=3$, say $m = \{3, 1, 2, 1, 3, 3\}$ ($m$ for multiset).
+- We make the representation unique by imposing an ascending order,  so we write $M = [1, 1, 2, 3, 3]$, where each $M[i] \leq M[i+1]$.
+- Now, we map the above sequence to a set of  *unique* values, by mapping $N[i] = M[i] + i$. Since $M[i] \leq M[i+1]$ we have that
+  $M[i] + i < M[i+1] + (i+1)$.
+- This gives us the set $M' = \{ 1+0, 1+1, 2+2, 3+3, 3+4 \} = \{ 1, 2, 3, 6, 7 \}$.
+- See that this process is reversible. Given some set, say $N = \{ 4, 3, 2, 6, 7, 8 \}$, order in ascending order to get
+  $N' = [2, 3, 4, 6, 8]$ and then subtract $i$ from $N'[i]$ to get $[2-0, 3-1, 4-2, 6-3, 7-4, 8-5] = [2, 2, 2, 3, 3, 3]$. 
+  
+
+I found this very elegant, because it "de-multisets" the multiset by adding just enough to make each element unique,
+and then simply counts the unique subset. Very slick! We need to add $k-1$ to the final index, and the largest number
+we can have is $n$ so we need $n + (k-1)$ values. We need a size $k$ multiset, making us need $\binom{n+(k-1)}{k}$. 
+
+- Reference: Bijective Combinatorics
+
+# DFS and topological sorting
+
+The proper way to solve a maze is to keep breadcrumbs! Use recursion.
+Recursively explore the graph, backtracking as necessary.
+
+#### DFS on a component:
+
+```py
+parent = { s: None}
+dfs-visit(adj, s):
+  for v in adj[s]:
+    if v not in parent:
+      parent[v] = s
+      dfs-visit(adj, v)
+```
+
+#### visit all vertices:
+
+```py
+dfs(vs, adj):
+  parent = {}
+  for s in vs:
+    if s not in parent:
+    parent[s] = None
+    dfs-visit(adj, s)
+```
+
+#### Complexity
+
+We call `dfs-visit` once per vertex $V$. Per vertex, we pay `adj(v)` per
+vertex `v`. In total, we visit `|E|`. 
+
+#### Shortest paths?
+
+DFS **does not take the shortest path** to get to a node. If you want shortest
+paths (in an unweighted graph), use BFS.
+
+#### Edge classification
+
+1. **Tree edges**: visit a new vertex via that edge. Parent pointers track
+                   tree edges.
+2. **forward edges**: goes from node `n` to descendant of node `n`.
+3. **backward edges**: goes from a node `n` to an ancestor of node `n`.
+4. **cross edges**: all other edges. Between two non-ancestor-related nodes.
+
+
+How do we know forward, back, cross edges?
+
+#### Computing edge classifications
+
+- **backward edges**: mark nodes being processed. if we see an edge towards a
+                      node still being processed, it's a backward edge.
+- **forward edges**/**cross edges**: use time.
+
+#### Which of these can exist in an undirected graph?
+
+- Tree edges do exist. They better! That's how we visit new nodes.
+- Forward edges: can't happen, because we will always traverse "backwards".
+
+```
+A ----> B
+  ----> C
+```
+
+`A -> C` is a forward edge! 
+If we made the above undirected, then we will have `A -> B` tree edge and `B -> C`
+back-edge.
+
+- Back-edges: can exist in an undirected graph as shown above; `B -> C` is a back edge.
+- Cross-edges: once again, cross edges can only come up from "wrongly directed"
+  edges. But we don't have directions in an undirected graph.
+
+#### Cycle detection
+
+$G$ has a cycle iff $G$'s DFS has a back-edge.
+
+##### Proof: DFS has a back edge => $G$ has a cycle
+
+```
+  tree
+A -...-> X
+^         |       
+---back---*
+```
+
+By definition, `A -> X` is connected using tree edges, and a back edge
+`X -> A`. gives us the cycle.
+
+#### Proof: $G$ has a cycle => DFS has a back edge
+
+Say we have a cycle made of `k` vertices `x, y, z, ...`.
+assume `v[0]` is the first vertex in the cycle visited by the DFS.
+Keep labeling based on how DFS visits then as `v[1], v[2], ... v[k]`.
+The we claim the edge `v[k] -> v[0]` will be a backedge.
+
+- We know that when we're recursing on `v[0]`, we will visit `v[1]` before we 
+  finish `v[0]`.
+- Similarly, `v[i]` will be visited before `v[i-1]`.
+- Chaining, we will finish `v[k]` before we finish `v[0]`. 
+- In terms of balanced parens, it's like `{0 (k; k) 0}`.
+- So, when we look at the edge `v[k] -> v[0]`, we have not yet finished `v[0]`.
+  Thus, we get a backedge.
+
+#### Topological sort
+
+Given a DAG, order vertices so that all edges point from lower order to 
+higher order. The algorithm is to run DFS and output the reverse order of
+finishing time of vertices. Why does this work?
+
+#### Proof that topological sort works
+
+We want to show that for an edge $(u, v)$ that $v$ finishes before $u$, so that $v$
+is ordered _after_ $u$.
+Remember that we sort based on _reverse_ of finishing order.
+
+##### Case 1: `u` starts before `v`
+
+We will eventually visit `v` in the recursion for `u` because `u -> v`
+is an edge.  So, we will have
+the bracketing `{u (v; v) u}` so we're good: we finish `v` before we finish `u`.
+
+##### Case 2: `v` starts before `u`
+
+We have the bracketing `(v ... {u`. If we were to finish `u` before finishing `v`, then 
+`v` is an ancestor of `u`, and this gives the bracketing
+`(v .. {u .. u} .. v)` and thus the edge $(u, v)$ is a back-edge. But this is 
+impossible because the graph cannot have cycles! Thus, we will still have that
+`v` finishes beofre `u`, giving the bracketing `(v v) .. {u u}`.
+
+
+- [MIT introduction to algorithms: Lecture 14, DFS and topological sorting](https://www.youtube.com/watch?v=AfSk24UTFS8)
+
+
+# Tournaments
+
+- Tournament graph: either $U$ beats $V$, so we have $U \rightarrow V$ or we have $V$ beats $U$ so we 
+  have the edges $V \rightarrow U$ for every $U, V$
+
+[image at 49:00 from video math for comp sci lecture 10]
+
+- Example:  `A -> B -> D -> E -> C`. Wait, `C -> A`. It's unclear how to talk about
+  the best player!
+
+#### directed Hamiltonian path
+
+A directed walk that visits every vertex exactly once.
+
+#### Theorem: every tournament graph contains a directed hamiltonian path
+
+Induction on the number of nodes. When we start thinking of the problem,
+we have both nodes and edges as parameters. But edges are directly related to nodes,
+so it makes sense we induct on nodes.
+
+##### Induction
+If $n=1$ we are done.  In the inductive step, assume it holds for $n=n$.  For
+$n=n+1$, let's take out one node $v$ and see what happens. In the remaining
+graph, we still have a tournament graph on $n$ nodes. By the induction
+hypothesis we have a directed hamiltonian path $v_1 v_2 \dots v_n$. We want to
+create a bigger path that includes $v$.
+
+##### Case 1
+If $v \rightarrow v_1$ then we will get a path $v v_1 \dots v_n$.
+                         
+##### Case 2
+If $v_1 \rightarrow v$, then it is harder! Now what do we do?
+Ideally we want to plug $v$ somewhere in the sequence $v_1 v_2 \dots v_n$.
+Let's consider the smallest $i$ such that $v \rightarrow v_i$. We know that $i \neq 1$
+as we are in case 2.
+
+```
+v1 -> ...v[i-1] -> v[i] -> ... vn
+                   ^
+                   v
+```
+
+If we have $v[i-1] \rightarrow v$ we are done because we get to insert $v$
+into the path as $v[i-1] \rightarrow v \rightarrow v[i]$. Because $v[i]$ is the
+smallest index that $v$ beats, we must that $v[i-1]$ beats $v$ --- otherwise $i$
+is no longer the smallest index!
+
+
+#### Chicken tournament
+
+Either a chicken $u$ pecks a chicken $v$ then $u \rightarrow v$ or the other
+direction, $v \rightarrow u$. We say that $u$ *virtually* pecks $v$ if there's
+a patch of pecking for $u$ to peck $v$.
+                                                                            
+> The chicken king is the chicken that virtually pecks all other chickens.
+
+We can have multiple king chickens. We want to find at least one chicken king.
+We may want to show that the vertex with the most number of outgoing edges  
+is going to be a king.
+
+#### Theorem: chicken with highest out degree is the king
+
+Proof by contradiction: assume $u$ has highest out degree and is not the king.
+So there is some vertex $v$ such that $\not u \rightarrow v$. Hence we have
+that $v \rightarrow u$. In the other case, we have that $\not u \rightarrow w \xrightarrow{\star} v$.
+
+- [Reference: Math for computer science, lecture 10](https://www.youtube.com/watch?v=DOIp5D7VMS4)
+
+# Matching problems (TODO)
+
+Given a graph $G = (V, E)$ a matching is a collection of edges of $G$ where every
+node has degree 1. 
+
+#### Perfect matching
+
+A matching is perfect if it has size $|V|/2$, or no vertex is left
+isolated. That is, everyone is matched with someone.
+
+#### Weighted (Perfect) Matching
+
+Some matchings maybe more preferable than orders, by giving weights.Usually,
+lower weights are more desirable. We may want to find the minimum weight matching.                                                          n
+The weight of a matching is the sum of the weights on the edges of $M$. In this
+context, we usually always ask for a **perfect matching**. Otherwise, one can
+trivially *not match anyone* to get a min-weight matching of weight 0.
+So the definition of a min-weight matching for the graph $G$ is a perfect
+matching with minimum weight. 
+
+We don't see these in `6.042`. Will have to read flows/hungarian to study this.
+
+#### Preference matching
+
+Given a matching, $(x, y)$ form a **rogue couple** if they both prefer each
+other over their matched mates. Ie, they both wish to defect from their
+'matched mates'. A matching is **stable** if there aren't any rogue couples.
+The goal is to find a perfect stable matching. That is, get everyone married
+up, and make it stable!
+
+
+The point is, not everyone has to become happy! It's just that we don't allow
+rogue couples who can mutually get a benefit.
+
+#### Bad situation for preference matching
+
+If boys can love boys as well as girls, then we can get preference orderings
+where no stable marriage is possible. The idea is to create a love triangle.
+
+- Alex prefers Bobby over Robin
+- Bobby prefers Robin over Alex
+- Robin prefers Alex over Bobby.
+- And then there is mergatoid, who is the third choice for everyone.
+  mergatoid's preferences don't matter
+
+##### Theorem: there does not exist a stable matching for this graph
+
+Proof: assume there does exist a stable matching, call it $M$. Mergatoid
+must be matched with someone. WLOG, assume mergatoid is matched to Alex by
+symmetry. If mergatoid is matched to alex, then we must have Robin matched
+to Bobby
+
+- Alex and Bobby are not rogue, because Bobby  likes Robin more than Alex.
+- Alex and Robin are the rogue, because (1) Robin prefers Alex over Bobby, and 
+  (2) Alex prefers Robin over Mergatoid.
+
+Hence, we found a rogue couple. So $M$ was not stable.
+
+#### Stable Marriage Problem: success in some cases!
+
+We have $N$ boys and $N$ girls [need the same number of each]. Each boy
+has his own ranked preference list of all the girls. Each gil has her own
+ranked preference list of all the boys. The lists are complete and there
+are no ties. We have to find a perfect matching with no rogue couples.
+
+#### Mating algorithm / Mating ritual
+
+The ritual takes place over several days.
+- In the morning, the girl comes out to the balcony.
+- Each boy goes to his favourite girl who hasn't been crossed off in his list
+  and serenades her.
+- In the afternoon, if a girl has suitors, she tells her favourite suitor
+  "maybe I'll marry you, come back tomrrow". Girls don't make it too easy. For
+  all the lower priority boys, she says "now way I'm marrying you".
+- In the night, all the boys who heard a no cross that girl off from their list.
+  If the boy heard a maybe, he will serenade her.
+- If we encounter a day where every girl has at **most** one suitor, the algorithm
+  terminates. So we don't have two or more boys under one balcony.
+
+
+#### Things to prove
+
+- Show that the algorithm terminates.
+- Show that everyone gets married.
+- Show that there are no rogue couples.
+- We may want to show it runs quickly.
+- Fairness? is this good for girls, or for boys?
+
+#### Termination, terminates quickly: N^2 + 1 days
+
+Proof by contradiction. suppose TMA does not terminate in $N^2+1$ days. 
+
+**Claim** If we don't  terminate on a day, then that's because a girl had
+two or more boys under her balcony. Thus, at least one boy crosses the girl
+off of his list. We measure progress by the cross-out. In $N^2$ days, all boys
+would have crossed out all girls.
+
+#### Invariant
+
+- `P` is that if a girl $G$ every rejected a boy $B$ then she has a suitor who
+  she prefers to $B$.
+
+- To prove that this is indeed an invariant, induction on time. 
+  At the beginning, no girl has rejected any boy, so it's vacuously true.
+
+- Assume `P` holds at the end of day $d$. At the end of day $d+1$, there's two cases.
+- If $G$ rejects $B$ on day $d+1$, there must be a better boy, hence `P` is true.
+- If $G$ rejected $B$ on day less than $d+1$, then $G$ must have had a better suitor $B'$
+  on day $d$ by the induction hypothesis. Now on day $d+1$, she either has $B'$
+  or someone even better, $B''$ came along.
+
+#### Everyone is married
+
+Proof by contradiction. Assume not everyone was married. Assume that some boy $B$ is
+not married. (If there is no boy who is not married then everyone is married).
+- If we was not married at the end, then he must be rejected by *everyone*.
+- If he were not rejected by everyone, then he would be under someone's balcony
+  trying to serenade them. That he is unmatched means that all the girls have
+  rejected him.
+- This means that every girl has somebody better than $B$, which is not possible,
+  because that would mean that every girl was married. That's not possible as there
+  are an equal number of boys and girls.
+
+> Sid note: I don't buy this! we need to show that in the course of the algorithm,
+> it's impossible for a girl to end up empty handed. I'd prove this by noticing that
+> at each round, a girl acts like some kind of "gated compare and swap" where only
+> the highest value is allowed to be put into the mutex, and all of the others
+> are rejected. Thus, if there is a girl who has multiple writes, she will
+> only allow one of the writes to happen, and permanently disallow the other writes.
+> Thus, the other writes have to move to other girls. 
+
+#### No rogue couples
+
+Contradiction: assume that there is a pair that are not married, call them bob and gail. 
+We need to show that they will not go rogue. Since bob and gail are not
+married, either (1) gail rejected bob, or (2) gail did not reject bob because
+bob never serenaded her. If bob had serenaded her *and* was not rejected, then they
+would have been married!.
+
+
+- (1) If gail rejected bob, then gail has marries someone she likes better than bob
+  since she's rejected bob. Thus, gail and bob can't be a rogue couple because she
+  likes her spouse more than bob. 
+
+- (2) bob never serenaded gail. This means that he married someone who he prefers
+  more than gail, cause he never reached gail.
+
+#### Fairness
+
+- The girls get to pick the best ones who come to them.
+- The boys get to go out and try their first choice though. A girl may wait
+  for her Mr. Right who will never come along, and thus satisfice.
+- Which is better? proposors or acceptors? Sociological question! Here it turns
+  out that **boys have all the power**.
+- Let $S$ be the set of all stable matchings. We know that $S$ is not empty
+  because the algorithm is able to produce at least one stable matching.
+- For each person $P$, we define the **realm of possibility** for $P$ to be the
+  set $Q$ of people that they can be matched to in a stable matching. So
+  $Q_p \equiv \{ q : (p, q) \in M, M \in S \}$. That is, there's a stable marriage
+  where you're married to them.
+- A person's **optimal mate** is their most favourite in the realm of possibility. Their
+  **pessimal mate** is their least favourite in the realm of possibility.
+
+#### Theorem: No two boys can have the same optimal mate. 
+
+Assume two boys do have the same optimal mate. Say $(b^\star, g)$ and $(b, g)$. WLOG
+let $g$ prefer $b^\star$ over $b$. Now, there exists some "stable matching" where
+$g$ is matched with $b$, because $g$ is the optimal mate, hence in the realm
+of possibility of $b$. However, this matching is unstable because $(b^\star, g)$
+is a rogue couple: $g$ likes $b^\star$ more than $b$, and $b^\star$ likes $g$ best!
+
+#### Theorem: No two girls can have the same optimal mate
+
+Redo previous proof by switching girl and boy. It's not a proof about the *algorithm*,
+but about the *structure of stable matches* themselves.
+
+
+#### Theorem: The algorithm matches every boy with his optimal mate
+
+Proof by contradiction.  Assume that Nicole is optimal for Keith, but Keith winds
+up not marrying Nicole. This means he must have crossed off Nicole in some day (bad day).
+
+Note that he must have **gotten to Nicole**, because no girls he prefers over nicole
+would have led to a stable marriage, and would thus not be an output generated
+by the algorithm. This, all girls he prefers above nicole must reject him 
+at *some* step of the algorithm till he reaches Nicole.
+
+We assume that in this instance of the algorithm, he does not get Nicole, thus
+Nicole too must have rejected him.
+
+Let us assume that Keith gets rejected by Nicole on the **earliest bad day**.
+
+When Nicole rejects Keith, this means that Nicole had a suitor she likes better
+than Keith. Call him Tom. `Tom >Nicole Keith`. Furthermore, since this is the
+earliest bad day, tom has not crossed off his optimal girl, and thus nicole
+must be the "best girl" for tom --- either out of his league, or the optimal
+feasible math. Thus, `Nicole >Tom optimal-feasible-mate-for-tom`.
+
+
+But this means that in a stable marriage with `(Nicole, Keith)`, we would have
+`(Nicole, Tom)` be a rogue couple! This contradicts the fact that nicole is optimal
+for keith.
+
+
+
+- Proof from Optimal Stable Matching Video, MIT 6.042J Mathematics for Computer Science, Spring 2015.
+
+#### We match every girl with her pessimal mate
+
+
+
+#### Theorem: matchings form a lattice
+
+Let $M = ((b_1, g_1), (b_2, g_2), \dots (b_n, g_n))$  and $M' = ((b_1, g'_1), (b_2, g'_2), \dots, (b_n, g'_n))$
+be two stable matchings. Then.
+
+$$
+M \lor M' \equiv ((b_1, \max_{b_1}(g_1, g_1'), \dots, (b_n, \max_{b_n}(g_n, g_n')))
+$$
+
+is a stable matching.
+
+##### Step 1: This is  a matching
+First we show that it is indeed a matching: the marriages are all monogamous.
+Assume that we had $g_1 = \max_{b_1}(g_1, g_1') = \max_{b_2}(g_2, g_2') = g_2'$.
+
+
+Since $(b_2, g_2')$ is the match in $M'$ and $g_1 = g_2'$, we have that $(b_2, g_1)$
+is the match in $M'$. We also know that $g_1 >_{b_1} g_1'$ from the assumption.
+Since the matching $M'$ is stable, we need to ensure that $(g_1, b_1)$ is not a
+rogue couple; $b_1$ prefers $g_1$ over $g_1'$. Thus, we must have that $b_2 >_{g_1} b_1$
+to ensure that $(b_2, g_1)$ is stable.
+
+However $M$ is stable, and $(b_1, g_1) \in M$.  Since we have that $b_2 >_{g_1} b_1$,
+for $(b_1, g_1)$ to be stable, we must ensure that $(b_2, g_1)$ is not
+a rogue couple, since $g_1$ prefers $b_2$ over $b_1$. This we must have
+that $g'_1 >_{b_2} g_1$.
+
+But this contradicts the equation $\max{b_2}(g_2, g_2') = g_2' = g_1$ (?)
+
+
+
+
+
+   
+
+#### Sid musings
+
+- the girls are monotonic filters, where they only allow themselves to match higher.
+  The propogate (in the kmett/propogators sense of the word) information to all
+  lower requests that they will not match.
+
+#### References
+
+- [MIT OCW Math for comp sci: lecture 7 --- matching](https://www.youtube.com/watch?v=5RSMLgy06Ew)
+- [SPOJ problem](https://www.spoj.com/problems/STABLEMP)
+- [Knuth: Stable matching and its relation to other combinatorial problems](https://www-cs-faculty.stanford.edu/~knuth/ms.html)
+- [Math for Comp Sci: Optimal stable matching](https://www.youtube.com/watch?v=n4KKgKpp--0)
+
+# Four fundamental subspaces
+
+- Column space / Image: $C(A)$, since it corresponds to $C(A) \equiv \{ y : \exists x, y = Ax \}$
+- Null space $N(A) \equiv \{ k : Ak = 0 \}$.
+- Row space: row spans the row space, so it's all linear combinations of the rows
+    of $A$. This is the same as all combinations of the columns of $A^T$.
+  Row space is denoted by $C(A^T)$.
+- Null space of $A^T$: $N(A^T)$, also called as the "left null-space of $A$".
+
+Let $A$ be $m \times n$. The Null space of $A$ is in $\mathbb R^n$. The column
+space is in $\mathbb R^m$. The rows of $A$  are in $\mathbb R^n$. The nullspace
+of $A^T$ is in $\mathbb R^m$.
+
+
+We want a basis for each of those spaces, and what are their dimensions?
+- The dimension of the column space is the rank $r$.
+- The dimension of the row space is also the rank $r$. 
+- The dimension of the nullspace is $n - r$.
+- Similarly, the left nullspace must be $m - r$.
+
+
+#### Basis for the column space
+
+The basis is the pivot columns, and the rank is $r$.
+
+#### Basis for the row space
+
+$C(R) \neq C(A)$. Row operations do not preserve the column space, though
+they have the same row space. The basis for the row space of $A$ and $R$
+since they both have the space row space, we just read off the first $r$
+rows of $R$.
+
+#### Basis for null space
+
+The basis will be the special solutions. Lives in $\mathbb R^n$
+
+
+#### Basis for left null space
+
+It has vectors $y$ such that $A^T y = 0$. We can equally write this as
+$y^T A = 0$. Can we infer what the basis for the left null space is 
+from the process that took us from $A$ to $R$? If we perform gauss-jordan,
+so we compute the reduced row echelon form of $[A_{m\times n} I_{m \times m}]$,
+we're going to get $[R E]$ where $E$ is whatever the identity matrix became.
+
+Since the row reduction steps is equivalent to multiplying by some matrix $M$,
+we must have that:
+
+$$
+\begin{aligned}
+&M [AI] = [RE] \\
+&MA = R; MI = E \implies M = E
+\end{aligned}
+$$
+
+So the matrix that takes $A$ to $R$ is $E$! We can find the basis for the left
+nullspace by lookinag at $E$, because $E$ gives us $EA = R$.
+
+#### Reference
+- [Gilbert strang, lecture 10: four fundamental subspaces](https://www.youtube.com/watch?v=nHlE7EgJFds)
 
 
 # WHO list of essential medicines (WIP)
@@ -1026,7 +2091,9 @@ dp[i][j] = min{
 The topological order is going to have smaller to larger suffixes.
 
 
-> Sid TODO: watch demaine's lectures on shortest paths on a DAG.
+> What I found really interesting is the offhand remark that longest common
+> substring is **just edit distance** where we are allowed to only delete
+> or keep characters.
 
 #### Knapsack
 
@@ -2858,13 +3925,90 @@ getting $2$ is a third. Similarly for $6, 7$.
 
 Each of the outcomes has a probability $1/9$, so dice $C$ wins.
 
-#### Conditional probability
+#### Lecture 19: Conditional probability
 
+
+`P(A|B)` where both `A` and `B` are events, read as probability of `A`
+given `B`.
+
+$$
+P(A|B) \equiv \frac{P(A \cap B)}{P(B)}
+$$
+
+We know $B$ happens so we normalize by $B$. We then intersect $A$ with $B$
+because we want both $A$ and $B$ to have happened, so we consider all outcomes
+that both $A$ and $B$ consider eventful, and then reweigh the probability such
+that our definition of "all possible outcomes" is simply "outcomes in $B$".
+
+- A quick calculation shows us that $P(B|B) = P(B \cap B)/Pr(B) =1$.
+
+#### Product Rule
+
+$$
+P(A \cap B) = P(B) P(A|B)
+$$
+
+follows from the definition by rearranging. 
+
+#### General Product Rule
+
+$$
+P(A_1 \cap A_2 \dots A_n) = P(A_1) P(A_2 | A_1) P(A_3 | A_2 \cap A_1) P(A_4 | A_3 \cap A_2 \cap A_1) \dots P(A_n | A_1 \cap \dots \cap A_{n-1})
+$$
+
+#### Example 1:
+
+In a best two out of three series, the probability of winning the first
+game is $1/2$. The probability of winning a game immediately after a victory is $2/3$.
+Probability of winning after a loss is $1/3$. What is the probability of winning
+given that we win in the first game?
+
+Tree method:
+
+```
+(W1
+  (W2) 
+   (L2 
+      (W3
+      L3)))
+(L1
+  (W2) 
+   (L2 
+      (W3
+      L3)))
+(L1)
+```
+
+The product rule sneakily uses conditional probability! $P(W_1W_2) = P(W_1) P(W_2|W_1)$.
+Etc, solve the problem.
+
+
+#### Random variables
+
+A random variable $R$ is a function from the sample space $S$ to $\mathbb R$. We can 
+create equivalence classes of the fibers of $R$. Each of this is an event,
+since it's a subset of the sample space. Thus, $P(R = x)$ = $P(R^{-1}(x)) = \sum_{w: R(w) = x} P(w)$
+
+#### Independence of random variables
+
+$$
+\forall x_1, x_2 \in \mathbb R, P(R_1 = x_1 | R_2 = x_2) = P(R_1 = x_1)
+$$
+
+> Slogan: No value of $R_2$ can influence any value of $R_1$.
+
+####  Equivalent definition of independence:
+
+$$
+P(R_1 = x_1 \land R_2 = x_2) = P(R_1 = x_1) P(R_2 = x_2)
+$$
 
 
 #### References
 
 - [Lec 18: math for computer science; elementary probability](https://www.youtube.com/watch?v=SmFwFdESMHI)
+- [Lec 19: math for computer science; elementary probability](https://www.youtube.com/watch?v=SmFwFdESMHI)
+- [Lec 21: math for computer science; random variables](https://www.youtube.com/watch?v=MOfhhFaQdjw)
 - [Problem set 10](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-042j-mathematics-for-computer-science-fall-2010/assignments/MIT6_042JF10_assn10.pdf)
 - [Problem set 11](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-042j-mathematics-for-computer-science-fall-2010/assignments/MIT6_042JF10_assn11.pdf)
 - [Problem set 12](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-042j-mathematics-for-computer-science-fall-2010/assignments/MIT6_042JF10_assn12.pdf)
@@ -2899,6 +4043,12 @@ with _torsors_. We have a space of files. We can manipulate "differences of
 files", which are represented by patches/diffs. `git`'s model provides us tools
 to work with this space of files.
 
+We have two spaces, and a rooted DAG that connects to two spaces:
+
+- A space of *files*.
+- A space of *diffs* which forms a monoid with a monoid action on the space of files.
+- A DAG where each node is a diff. The root note in the DAG is the empty diff.
+
 # Mutorch
 
 ```py
@@ -2925,7 +4075,7 @@ to work with this space of files.
 # y1 = f(x1, x2, x3)
 # y2 = g(x1, x2, x3)
 
-# FORWARD MODE: [Tangent space] ---- objects of the form (partial f/partial x)
+# FORWARD MODE: [Tangent space] ---- objects of the does nothing at all :$\texttt{form (partial f/partial x)
 # total gradient of x1: df/dx1 + dg/dx1
 # total gradient of x2: df/dx2 + dg/dx2
 # total gradient of x3: df/dx3 + dg/dx3
@@ -13334,6 +14484,7 @@ in question.
   chapter by chapter.
 - Bookmark [APLCart](https://aplcart.info/), a collection of APL idioms, and
   refer to it when in need.
+- Ask questions at [the APL orchard](https://chat.stackexchange.com/rooms/52405/the-apl-orchard)
 
 # SpaceChem was the best compiler I ever used
 
@@ -13694,6 +14845,26 @@ In this matroid, the
 TODO: picture
 
 
+#### Intersection of matroids is not necessarily a matroid:
+
+```
+M1 = < d {[(a) (b)] c}>
+```
+
+```
+M2 = < {d [(a) (b)]} c>
+```
+
+The intersection of these two matroids will be:
+
+```
+M1 cap M2 = < d [(a) (b)] c>
+```
+
+This is not a matroid because the exchange property fails. There's no
+way to go from `[a, b]` to `< d a b c >` by exchanging one element.
+
+
 
 #### Bipartite matching as matroid intersection
 
@@ -13736,7 +14907,9 @@ functions $r_1$ and $r_2$. Let $S \in I_1 cap I_2$ and let $F \subseteq E$.
 - [Michel Goeman's standalone notes on matroids](http://math.mit.edu/~goemans/18433S11/matroid-notes.pdf)
 - [Michel Goeman's standalone notes on matroid intersection](http://math.mit.edu/~goemans/18433S11/matroid-intersect-notes.pdf)
 - [Lecture 11 of Michel Goeman's lecture on Advanced Combinatorial Optimisation](https://math.mit.edu/~goemans/18438F09/lec11.pdf)
-
+- [Video lecture on fixed-parameter tractability and matroid interesction](https://www.youtube.com/watch?v=BA7ZUz5c3V0)
+- [FTP Lecture 25: introduction to matroids](https://www.youtube.com/watch?v=6uGcXMjse20)
+- [FTP lecture 26: Faster matroid intersection](https://www.youtube.com/watch?v=eq0nb3C9JWU)
 
 # Grokking Zariski
 
@@ -14087,17 +15260,34 @@ So we need to read the indices:
 At each  location, we strip off the value $2^r$. We can discover this value
 with bit-fiddling: We claim that $a \& (-a) = 2^r$.
 
-Let $a = x 1 0^r$. Now, $-a = \lnot a + 1 = x01^r + 1 = \overline{x}10^r$.
-Hence, $a \& (-a) = a \& (\lnot a + 1) = (x 10^r) \& (\overline{x}10^r) = 0^{|\alpha|}10^r = 2^r$
+Let $a \equiv \langle x 1 0^r \rangle$. We wish to extract the output as $2^r = \langle 1 0^r \rangle$,
+which is the power of 2 that we need to subtract from $a$ to strip the rightmost $1$.
+We get:
 
-So the full implementation of query is:
+$$
+\begin{aligned}
+&-a = \lnot a + 1 = x01^r + 1 = \overline{x}10^r \\
+&a \& (-a) = a \& (\lnot a + 1) = (x 10^r) \& (\overline{x}10^r) = 0^{|\alpha|}10^r = 2^r
+\end{aligned}
+$$
+
+
+$$
+a - (a \& (-a)) = \langle x 1 0^r \rangle - \langle 1 0^r \rangle = \langle x 0 0^r \rangle
+$$
+
+That is, we successfully strip off the trailing $1$.
+Armed with the theory, our implemtation becomes: 
 
 ```cpp
 #define LSB(x) x&(-x)
 int a[N];
 int q(int i) {
     int s = 0;
-    while (i > 0) { s += a[i]; i -= LSB(i); }
+    while (i > 0) { 
+        s += a[i];
+        i -= LSB(i); // strip off trailing 1.
+    }
     return s;
 }
 
@@ -19846,6 +21036,15 @@ let g:conjure#mapping#eval_motion = "E"
 
 
 > A good proof is one that makes us wiser. -- Yuri Manin
+
+
+> Keep things in their Gauss given order. -- Gilbert Strang
+
+
+> It is interesting to see where people insist proximity to a subject makes one
+> informed, and where they insist it makes them biased. It is interesting that
+> they think it’s their call to make. [in the context of 'as a male, you don't
+> get a say about toxic masculinity' v/s other 'viewpoints'] ~ [medium article link](https://medium.com/@jencoates/i-am-a-transwoman-i-am-in-the-closet-i-am-not-coming-out-4c2dd1907e42)
 
 
 # Empathy
