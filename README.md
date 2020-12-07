@@ -14,6 +14,107 @@ A Universe of Sorts
 - [reading list/TODO](todo.html)
 
 <!-- - [Grab me a coffee](https://ko-fi.com/bollu) -->
+# Periodic tables and make illegal states unrepresentable
+
+The periodic table of elements succeeded because the "gaps" in the table
+consisted of only legal atoms --- thus, by making illegal states unrepresentable,
+a table of the current state of knowledge becomes valuable because all the
+*gaps* are legal states. The exact same thing happened with juggling and
+juggling notattion.
+# Big list of questions on the structure of graphs
+
+I've been trying to get more of a feeling for graphs lately, so I'm collecting
+sources of "structural" questions of graphs and answers for these questions.
+
+> Q. Is it possible in an unweighted graph, there is exactly one unique shortest
+> path tree for a node u but more than one such shortest path tree for some
+> other node v ?
+
+> Q. Can I orient the edges of a bridge-less undirected bipartite graph with even
+> no. of nodes such that all the nodes are in a cycle ?  
+
+
+# Combinations notation in bijective combinatorics
+
+They explicitly write $nCr$ as $[n]C[r, n-r]$. This makes it better for
+"future uses", where it explicitly allows us to think of $[n]C[x, y]$ as
+breaking $n$ into $x$ things we choose and $y$ things we don't choose.
+
+This makes the recurrence:
+
+$$
+[n]C[r] = [n-1]C[r-1] + [n-1]C[r]
+$$
+
+look as:
+
+$$
+[n]C[r,n-r] = [n-1]C[r-1,n-r] + [n-1]C[r, n-r-1]
+$$
+
+That is, we are reducing on either the first component ($r-1$) or on the
+second component ($n-r-1$), in the smaller set ($n-1$).
+
+
+
+# Arguments for little endian
+Say we wish to store `<MSB> 100 200 300 400 <LSB>`. In little endian, this would be
+stored as:
+
+```
+ix:   0   1   2   3
+val:  400 300 200 100
+```
+
+An interesting theory for why this is good is if we want to treat this 4-bit
+data as 1-bit data, we want the subarray `[400]`. It's easier to *directly*
+acess in little endian as just `data[0]`, instead of in big endian where
+it would be `data[3]`. So, storing stuff backwards makes it easier to chop off
+the LSBs data, since that's the _suffix_. 
+
+# Expectiles (WIP)
+
+
+I think everyone has left the building. Just in case you are still here let me try. BTW am a fan of your popular math stuff.
+TLDR expectiles are to mean what quantiles are to median.
+A longer explanation follows.
+Mean can be looked upon as a location that minimizes a scheme of penalizing your 'prediction' of (many instances of) a random quantity. You can assume that the instances will be revealed after you have made the prediction. If your prediction is over/larger by e you will be penalized by e^2. If your prediction is lower by e then also the penalty is e^2. This makes mean symmetric. It punishes overestimates the same way as underestimates.
+Now if you were to be punished by absolute value |e| as opposed to e^2 then median would be your best prediction. Lets denote the error by e+ if the error is an over-estimate and -e- if its under. Both e+ and e- are non-negative. Now if the penalties were to be * e+ + a e- * that would have led to the different quantiles depending on the values of a > 0. Note a \neq 1 introduces the asymmetry.
+If you were to do introduce a similar asymmetric treatment of e+^2 and e-^2 that would have given rise to expectiles.
+
+
+
+#### References
+- [Codeforces blog](https://codeforces.com/blog/entry/68138)
+
+# Depth first search through linear algebra (WIP)
+
+
+#### References
+- [Talk Video](https://www.youtube.com/watch?v=fKim6IKdr8U)
+- [Link to paper](https://dl.acm.org/doi/pdf/10.1145/3315454.3329962)
+
+# 2-SAT
+
+First break into SCC's. Each SCC represents equivalence: since there is a
+path from every variable to every other variable, they must take on the
+exact same value. Hence if $x$ and $\lnot x$ are in the same SCC, we don't
+have a solution, because this means that $\texttt{true} = \texttt{false}$
+or $\texttt{false} = \texttt{true}$. 
+
+Let's say we find SCC's where this does not happen. Now, zoom out and think of
+the condensation DAG. We want to assign true/false to each node in the SCC DAG.
+How should we assign true/false? Say that $x$ and $\lnot x$ are in two
+different components. So this means that we have the possible orderings
+- $x \implies \lnot x$: $\texttt{true} \implies \texttt{false}$ (Inconsistent!)
+- $x \implies \lnot x$: $\texttt{false} \implies \texttt{true}$ (Consistent, principle of explosion)
+
+Hence, if $x$ implies $\lnot x$, we should set $x$ to $\texttt{false}$. The other
+assignment is _inconsistent_.
+
+# Longest increasing subsequence, step by step (WIP)
+- [The science of Programming by Gries](https://www.cs.cornell.edu/gries/July2016/The-Science-Of-Programming-Gries-038790641X.pdf)
+
 # On reading how to rule
 #### The prince
 
@@ -22,10 +123,103 @@ A Universe of Sorts
 #### The book of lord shang
 
 
-# Articulation points
+# Strongly Connected Components via Kosaraju's algorithm (WIP)
+
+We know that a directed graph can be written as two-levels, a top-level dag,
+with each node in the DAG being a condensation of the original graph. So 
+we wish to discover the DAG, and then each condensation. We wish to
+view Kosaraju's algorithm as a "stronger topological sort" that works
+for general graphs, and not just DAGs.
+
+#### Step 1: Discover the tree/DAG
+
+Run a bog standard DFS on the graph and record entry and exit times,
+because that tell us everything we need to know about the DFS. Let's decide
+what to keep and throw away next.
+
+#### Step 2: Think
+
+If we had a DAG, then we would be done; We sort the nodes according
+to descending order of exit times, and we get the topological order
+of the DAG. However, this is incorrect for our purposes, as this
+only gives us the components if we don't have cycles.
+
+#### Step 3: Mix in cycle detection/single SSC
+
+
+Pick the first node according the topological sort heurstic --- the node
+that's earliest according to exit time. We now need to discover cycles.
+Recall that we built the DAG according to DFS order, so if we run a DFS
+again, we'll get the entire subtree in the DAG! Rather, we want the
+"anti DFS": whatever can reach the 'root' of the 'DAG'. To find this,
+we reverse the DAG and find the component reachable from here.
+
+#### SCC's as adjunction
+I learnt this from Benjamin Pierce's  "Category theory for computer scientists":
+
+> The strong components of a graph themselves form an acyclic graph
+> that is a quotient of the original graph-that is, each node corresponds
+> to an equivalence class of strongly connected nodes in the original. The
+> mapping taking a graph to the acyclic graph of its strongly connected
+> components may be expressed as a left adjoint to the inclusion functor
+> from AcyclicGraph to Graph
+
+
+#### References
+- [CS Cornell lecture notes](https://www.cs.cornell.edu/courses/cs410/1998su/Lectures/lect24.txt)
+
+
+# Articulation points (WIP)
 
 I find DFS fascinating, and honestly insane for how much structral
 information of the graph it manages to retain. 
+
+> A vertex $v$ is an articulation point of a graph $G$ if the removal
+> of $v$ disconnects the induced subgraph.
+
+#### Tactic 1 - Inductively
+
+We first solve the super easy case with the root, and then try to see
+if we can treat other cases like the root node case, then we're good.
+Here, we are given an graph $G$, and we are thinking about a DFS tree 
+$T_G$ of the graph $G$.
+
+#### Thinking about the root
+
+When is the root an articulation point? If the root has multiple children,
+then it is an articulation point; If we remove the root, then it disconnects
+the children. This is because we have an undirected graph, where we only have
+back edges, and no cross edges. A back edge can only go from a node to its
+ancestor. If we remove the root, the back edges cannot save us, for there is
+no ancestor _higher than the root_ to act as an alternate path
+
+#### Non root vertex
+
+When is a non root vertex $v$ an articulation point? When there is *some* child
+$w$ of $v$ such that the subtree of $w$ cannot escape the subtree of $v$.
+That is, all back edges from $w$ do not go above $v$. If we were to now
+remove $v$, then $w$ would be disconnected from the rest of the graph.
+
+> Alternate phrasing: When all cycles in the subtree of $w$ are within the
+> subtree of $v$. This means that the backedges cannot go above $v$.
+> If $w$ could build a cycle that goes above $v$, then $v$ would not be an
+> articulation point, because it'll be involved in some cycle 
+> $v \mapsto  w \mapsto \mapsto p \mapsto v$, which gives us an alternative path
+> to reach $w$ even if $v$ is removed.
+
+
+One way to imagine this maybe to imagine $v$ as the new root, and the other
+stuff that's above $v$ to be to the left of $w$. That way, if we could go to $w$,
+we get a cross edge from the "new root"(v) and the "other section" (the part
+that's connected by a cross edge). If we prevent the existence of these 
+"fake cross edges", we're golden, and $v$ is then an articulation point.
+
+TODO: draw picture!
+
+#### Tactic 2 - Structurally / Characterization
+
+Next we follow a "mathematical" development, where we build theorems
+to characterize k-connectedness and use this to guide our algorithm design
 
 #### Menger's theorem
 
@@ -53,6 +247,22 @@ whose removal disconnected the graph. Such a vertex is an articulation vertex.
 
 #### Lemma: Characterization of biconnected components
 
+> Two edges belong to the same biconnected component iff there is a cycle
+> containing both of them.
+> [This lemma is silent about biconnected components of single edges]
+
+We show that a cycle is always contained in a single binconnected component.
+If a cycle contains edges from more than one biconnected component, then we can
+"fuse" the biconnected components together into a single, larger, biconnected
+component.
+
+
+#### Lemma: Each edge belongs to exactly one biconnected component
+
+
+#### Tactic 3 - 'Intuitively'
+
+We look at pictures and try to figure out how to do this.
 
 #### DFS for articulation vertices - undirected:
 
@@ -128,6 +338,9 @@ void process_edge(int x, int y) {
 
 - Udi Manber: Introduction to algorithms: A creative approach.
 - Steven Skeina: The algorithm design manual.
+- [Codeforces: problems to solve](https://codeforces.com/blog/entry/23617)
+- [A2OJ articulation point problems](https://a2oj.com/category?ID=64)
+- [INOI advanced graph algorithms](https://www.iarcs.org.in/inoi/online-study-material/topics/articulation-points.php)
 
 # Disjoint set union
 
@@ -181,6 +394,26 @@ between two mirrors. We can look at this as us "flipping" the hourglass
 once the photon reaches the bottom of the hourglass. 
 
 # Euler tours (WIP)
+
+#### Tucker's proof: undirected graph with all even degree has an euler tour
+
+I find this proof much more intuitive because it's extremely clear where
+the even condition is used.
+
+1. For each vertex $v$, arbitrarrily pair edges incident at $v$ to get
+   chains $u \-- v \-- w$.
+2. Connect chains to get cycles.
+3. Find a spanning tree of cycles to get an euler tour, where we have an
+   edge between two cycles if they share a common vertex.
+
+It's super clear why we need all vertices to be even degree; You can't pair
+up vertices otherwise! 
+
+#### References
+- [Video on euler tour](https://www.youtube.com/watch?v=8MpoO2zA2l4)
+- [Notes from Emory course on graph theory](http://www.mathcs.emory.edu/~rg/book/chap5.pdf)
+- [CSTheory.stackexchange question on euler tours(https://cstheory.stackexchange.com/questions/31538/runtime-of-tuckers-algorithm-for-generating-a-eulerian-circuit)
+
 
 # Representation theory of the symmetric group (WIP)
 
@@ -253,6 +486,37 @@ Hence, $x \& (-x) = \langle 0 0 1 0 0$.  This will hold for any power of 2,
 so our claim that $x \& (-x)$ gives us the location of the LSB will work for
 any power of 2.
 
+#### Alternative explanation for 2's complement
+
+Start with the fact that we choose a single representation for zero:
+
+```
+0 ~= b0000000
+```
+
+Now, when we subtract 1, ask "are we in signed world or unsigned world"? If
+in signed world, we want the answer to be `-1`. If in unsigned world
+we want the answer to be 255.
+
+```
+0 - 1 
+= b0000000 - b00000001
+= b11111111 
+=unsigned= 255
+```
+
+If we wanted to interpret the answer as *signed*, then we are free to do so.
+This *automatically tell us that*
+
+```
+0 - 1
+=unsigned= b11111111
+=signed= -1
+```
+
+So, the advantage is that our operations don't care about whether the
+number is signed/unsigned.
+
 
 
 # Diameter of a tree: algorithm and proof (WIP)
@@ -302,7 +566,7 @@ the single vertex with the $n$ colors we have.
 
 
 
-# Structure theory of finite endo-functions
+# Structure theory of finite endo-functions (TODO)
 
 We study functions $f: V \rightarrow V$ and their properties by thinking of them as a
 graph with vertex set $V$ and directed edges $(v, f(v))$. This gives us insight into
@@ -354,7 +618,7 @@ we must have that $A^|V| = 0$.
   paths from $i$ to $j$!. 
 
 
-# Set partitions
+# Set partitions (TODO)
 
 Let $X$ be a set. A breakup of $X$ into pairwise disjoint sets $A[i]$ such that $\cup_i A[i] = X$
 is called a partition $P$ of the set $X$.
@@ -483,7 +747,7 @@ The corresponding "counting" object is called as the signless stirling numbers:
 TODO
 
 
-# Integer partitions
+# Integer partitions: Recurrence
 
 An integer partition of an integer $n$ is a sequence of numbers $p[1], p[2], \dots p[n]$ which
 is weakly decreasing: so we have $p[1] \geq p[2] \dots \geq p[n]$. For example, these
@@ -969,7 +1233,7 @@ for keith.
 
 #### We match every girl with her pessimal mate
 
-
+TODO
 
 #### Theorem: matchings form a lattice
 
@@ -1000,17 +1264,13 @@ that $g'_1 >_{b_2} g_1$.
 
 But this contradicts the equation $\max{b_2}(g_2, g_2') = g_2' = g_1$ (?)
 
-
-
-
-
-   
-
 #### Sid musings
 
-- the girls are monotonic filters, where they only allow themselves to match higher.
-  The propogate (in the kmett/propogators sense of the word) information to all
-  lower requests that they will not match.
+> the girls are monotonic filters, where they only allow themselves to match higher.
+> The propogate (in the kmett/propogators sense of the word) information to all
+> lower requests that they will not match. The boys are in some kind of atomic
+> write framework with conflict resolution, where a girl allows a boy to "write"
+> into her 'consider this boy' state if the boy is accepted by her filter.
 
 #### References
 
@@ -10568,7 +10828,7 @@ argmin :: (a -> Int) -> a -> a -> a
 argmin f a a' = if (f a) < (f a') then a else a'
 ```
 
-# Evolution of bee colonies
+# Evolution of bee colonies (WIP)
 
 This kind of culture that beehives have is called as 'eusociality'.
 I'm interested in this because I want to understand what alien societies might
@@ -16299,20 +16559,20 @@ try to find algebraic objects that allow us to "detect" these holes.
 
 - A 0-simplex is a point
 
-<img src="static/simplices/0-simplex.svg">
+<img src="static/simplices/0-simplex.svg" width="200px">
 
 - A 1-simplex is a line
 
-<img src="static/simplices/1-simplex.svg">
+<img src="static/simplices/1-simplex.svg" width="200px">
 
 - A 2-simplex is a filled triangle
 
-<img src="static/simplices/2-simplex.svg">
+<img src="static/simplices/2-simplex.svg" width="200px">
 
 
 - A 3-simplex is a solid tetrahedra
 
-<img src="static/simplices/3-simplex.svg">
+<img src="static/simplices/3-simplex.svg" width="200px">
 
 - A $k$-dimensional simplex is the convex hull of $k+1$
   linearly independent points $(u_i \in \mathbb R^{k+1})$
@@ -16330,30 +16590,30 @@ Examples of simplicial complexes:
 
 - Every simplex is trivially a simplicial complex.
 
-<img src="static/simplices/complex-0-simplices.svg">
+<img src="static/simplices/complex-0-simplices.svg" width="200px">
 - A collection of points is a simplicial complex with all simplices of degree $0$.
 
-<img src="static/simplices/complex-unfilled-triangle.svg">
+<img src="static/simplices/complex-unfilled-triangle.svg" width="200px">
 - An unfilled triangle is a simplicial complex with simplices of degree $0$, $1$.
 
-<img src="static/simplices/complex-unfilled-butterfly.svg">
+<img src="static/simplices/complex-unfilled-butterfly.svg" width="200px">
 - Non-triangular shapes such  as this "butterfly" are also simplicial complexes,
   this one of degree $0$, $1$.
 
-<img src="static/simplices/complex-half-filled-butterfly.svg">
+<img src="static/simplices/complex-half-filled-butterfly.svg" width="200px">
 - This is the same shape as the unfilled butterly, except now containing a
   simplex of degree 2: the filling in of the bottom of the butterfly.
 
 
 Non-examples of simplicial complexes are:
 
-<img src="static/simplices/non-simplex-1.svg">
+<img src="static/simplices/non-simplex-1.svg" width="200px">
 - This does not contain the point at the lower-left corner, which should exist
   since it is a boundary of the straight line. This violates rule (1):
   Every boundary of a simplex from $K$ is in $K$
 
 
-<img src="static/simplices/non-simplex-2.svg">
+<img src="static/simplices/non-simplex-2.svg" width="200px">
 - This does not contain the points which are at the intersection of the
   triangle and the line. This violates rule (2):
   The intersection of any two simplices in $K$ is also in $K$.
@@ -21047,14 +21307,15 @@ let g:conjure#mapping#eval_motion = "E"
 > get a say about toxic masculinity' v/s other 'viewpoints'] ~ [medium article link](https://medium.com/@jencoates/i-am-a-transwoman-i-am-in-the-closet-i-am-not-coming-out-4c2dd1907e42)
 
 
+> "Feeding two birds with one scone"
+> Peta recommended version of "killing two birds with one stone"
+
 # Empathy
 
 > Oof, I don't really know what to say right now but I'm glad you told me
 
 - [Brene brown on empathy](https://www.youtube.com/watch?v=1Evwgu369Jw)
 - [It's not about the nail](https://www.youtube.com/watch?v=-4EDhdAHrOg)
-
-- [It's not about the nail](https://www.youtube.com/watch?v=-4EDhdAHrOg&app=desktop)
 
 
 # Vim /sed matching syntax
@@ -21065,3 +21326,41 @@ let g:conjure#mapping#eval_motion = "E"
 # Chess
 
 - [How to defend `e5` in king's indian defense](https://www.youtube.com/watch?v=jAwSBrLk3Uw)
+
+# Cardistry
+
+#### Currently learning
+- [Overhand Shuffle](https://www.youtube.com/watch?v=0_aY0jC8DY4)
+- [Overhand Shuffle: controlling the top card](https://www.youtube.com/watch?v=VkE8fNFBUw8)
+- [Hindu Shffle: control](https://www.youtube.com/watch?v=P_C1clIaOX4)
+- [Basic Cardistry: Charlier Cut](https://www.youtube.com/watch?v=BNC_DD9XccI&list=PLIYzPFCPrDTDGSbF0Epp7_ZGCCSsUVM1d&index=2):
+  Cut, pick it up, slide, hold. Dealer's grip little finger is useful to keep the non-picked-up part of deck from sliding!
+- Basic Cardistry: Thumb cut
+- [Basic Cardistry: Revolution Cut](https://www.youtube.com/watch?v=4modjrvBopw)
+
+#### Next
+- [Tenkai Vanish](https://www.youtube.com/watch?v=sMLOjQTaKtg)
+- [Flourish: Flirt](https://www.youtube.com/watch?v=tFb7gCgsqcQ)
+- [Chinese deal](https://www.youtube.com/watch?v=FYGY-Z2qQVY)
+
+#### Plan
+- [Cardistry bootcamp](https://www.youtube.com/watch?v=bt0RumRuwGQ&list=PLIYzPFCPrDTDGSbF0Epp7_ZGCCSsUVM1d)
+- [How to get started?](https://www.youtube.com/watch?v=g8mbn7TLATA) 
+   1. Basic grips (School of Cardistrys youtube channel and start from their first video "grips) 2. Cuts 3. Flourishesk
+- [Basics: grips](https://www.youtube.com/watch?v=bt0RumRuwGQ)
+
+1.  Dealer's  / Mechanic's grip (thumb left, index top, others right)
+2. Straddle Grip (pinky bottom, index top, thumb left, others right)
+3. Biddle Grip
+4. End Grip (two index fingers opposing each other) 
+5. "Z" Grip
+- [Basics: Scissor cut](https://www.youtube.com/watch?v=z9YkyM0hG3M)
+- Basics: Swing Cut
+- Basics: Card spring
+- Basics: Thumb Fan
+- Basics: Pressure Fan
+- Basics: Faro Shuffle
+- Basics: Sybil Cut
+- Basics: Werm
+- Basics: Hot Shot Cut
+
