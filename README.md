@@ -12,8 +12,13 @@ A Universe of Sorts
 - [math.se](https://math.stackexchange.com/users/261373/siddharth-bhat)
 - [resume](resume/main.pdf)
 - [reading list/TODO](todo.html)
+- Here is the <a type="application/rss+xml" href="feed.rss">RSS feed for this page</a>
+
+
 
 <!-- - [Grab me a coffee](https://ko-fi.com/bollu) -->
+# Using the `bound` library
+
 # Rota's paths
 
 - Count functions from $A \rightarrow B$.

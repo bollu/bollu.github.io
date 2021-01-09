@@ -3,7 +3,7 @@
 all: build serve
 build: clean
 	make -C ~/blog/builder/build;
-	LSAN_OPTIONS=detect_leaks=0 ./builder/build/builder ~/blog/README.md ~/blog/ 
+	LSAN_OPTIONS=detect_leaks=0 ./builder/build/builder 
 serve:
 	python3 -m http.server
 

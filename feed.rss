@@ -1,1 +1,1673 @@
-<?xml version="1.0"?><rss version="2.0"><channel><title>A universe of sorts</title><link>http://bollu.github.io/</link></rss>
+<?xml version="1.0"?>
+<rss version="2.0">
+<channel>
+<title>A universe of sorts</title>
+<link>http://bollu.github.io/</link>
+<description>A universe of Sorts</description>
+  <item>
+    <title> Using the bound library</title>
+    <guid>https://www.bollu.github.io/using-the-bound-library.html</guid>
+    <link>https://www.bollu.github.io/using-the-bound-library.html</link>
+  </item>
+  <item>
+    <title> Rota &apos; s paths</title>
+    <guid>https://www.bollu.github.io/rotas-paths.html</guid>
+    <link>https://www.bollu.github.io/rotas-paths.html</link>
+  </item>
+  <item>
+    <title> Counting necklackes with unique elements</title>
+    <guid>https://www.bollu.github.io/counting-necklackes-with-unique-elements.html</guid>
+    <link>https://www.bollu.github.io/counting-necklackes-with-unique-elements.html</link>
+  </item>
+  <item>
+    <title> Decomposition of projective space</title>
+    <guid>https://www.bollu.github.io/decomposition-of-projective-space.html</guid>
+    <link>https://www.bollu.github.io/decomposition-of-projective-space.html</link>
+  </item>
+  <item>
+    <title> Childhood: Playing pokemon gold in japanese</title>
+    <guid>https://www.bollu.github.io/childhood-playing-pokemon-gold-in-japanese.html</guid>
+    <link>https://www.bollu.github.io/childhood-playing-pokemon-gold-in-japanese.html</link>
+  </item>
+  <item>
+    <title> Tensor is a thing that transforms like a tensor</title>
+    <guid>https://www.bollu.github.io/tensor-is-a-thing-that-transforms-like-a-tensor.html</guid>
+    <link>https://www.bollu.github.io/tensor-is-a-thing-that-transforms-like-a-tensor.html</link>
+  </item>
+  <item>
+    <title> Tensor Hom adjunction</title>
+    <guid>https://www.bollu.github.io/tensor-hom-adjunction.html</guid>
+    <link>https://www.bollu.github.io/tensor-hom-adjunction.html</link>
+  </item>
+  <item>
+    <title> Schur &apos; s lemma </title>
+    <guid>https://www.bollu.github.io/schurs-lemma.html</guid>
+    <link>https://www.bollu.github.io/schurs-lemma.html</link>
+  </item>
+  <item>
+    <title> Newton polygon and simplification, blowing up (WIP)</title>
+    <guid>https://www.bollu.github.io/newton-polygon-and-simplification-blowing-up-wip.html</guid>
+    <link>https://www.bollu.github.io/newton-polygon-and-simplification-blowing-up-wip.html</link>
+  </item>
+  <item>
+    <title> Daughters of destiny</title>
+    <guid>https://www.bollu.github.io/daughters-of-destiny.html</guid>
+    <link>https://www.bollu.github.io/daughters-of-destiny.html</link>
+  </item>
+  <item>
+    <title> Stuff I learnt in 2020</title>
+    <guid>https://www.bollu.github.io/stuff-i-learnt-in-2020.html</guid>
+    <link>https://www.bollu.github.io/stuff-i-learnt-in-2020.html</link>
+  </item>
+  <item>
+    <title> Method of types in information theory(WIP)</title>
+    <guid>https://www.bollu.github.io/method-of-types-in-information-theorywip.html</guid>
+    <link>https://www.bollu.github.io/method-of-types-in-information-theorywip.html</link>
+  </item>
+  <item>
+    <title> Line bundles, a high level view as I understand them today</title>
+    <guid>https://www.bollu.github.io/line-bundles-a-high-level-view-as-i-understand-them-today.html</guid>
+    <link>https://www.bollu.github.io/line-bundles-a-high-level-view-as-i-understand-them-today.html</link>
+  </item>
+  <item>
+    <title> Conversations with a wood carver</title>
+    <guid>https://www.bollu.github.io/conversations-with-a-wood-carver.html</guid>
+    <link>https://www.bollu.github.io/conversations-with-a-wood-carver.html</link>
+  </item>
+  <item>
+    <title> Resolution and first order logic (WIP)</title>
+    <guid>https://www.bollu.github.io/resolution-and-first-order-logic-wip.html</guid>
+    <link>https://www.bollu.github.io/resolution-and-first-order-logic-wip.html</link>
+  </item>
+  <item>
+    <title> Kruskal card trick (WIP)</title>
+    <guid>https://www.bollu.github.io/kruskal-card-trick-wip.html</guid>
+    <link>https://www.bollu.github.io/kruskal-card-trick-wip.html</link>
+  </item>
+  <item>
+    <title> Discrete Riemann Roch (WIP)</title>
+    <guid>https://www.bollu.github.io/discrete-riemann-roch-wip.html</guid>
+    <link>https://www.bollu.github.io/discrete-riemann-roch-wip.html</link>
+  </item>
+  <item>
+    <title> Conversation with Olaf Klinke</title>
+    <guid>https://www.bollu.github.io/conversation-with-olaf-klinke.html</guid>
+    <link>https://www.bollu.github.io/conversation-with-olaf-klinke.html</link>
+  </item>
+  <item>
+    <title> Topological groups and languages</title>
+    <guid>https://www.bollu.github.io/topological-groups-and-languages.html</guid>
+    <link>https://www.bollu.github.io/topological-groups-and-languages.html</link>
+  </item>
+  <item>
+    <title> Killing fields (WIP)</title>
+    <guid>https://www.bollu.github.io/killing-fields-wip.html</guid>
+    <link>https://www.bollu.github.io/killing-fields-wip.html</link>
+  </item>
+  <item>
+    <title> The mnemonica stack (WIP)</title>
+    <guid>https://www.bollu.github.io/the-mnemonica-stack-wip.html</guid>
+    <link>https://www.bollu.github.io/the-mnemonica-stack-wip.html</link>
+  </item>
+  <item>
+    <title> Conversation with Alok about how I read</title>
+    <guid>https://www.bollu.github.io/conversation-with-alok-about-how-i-read.html</guid>
+    <link>https://www.bollu.github.io/conversation-with-alok-about-how-i-read.html</link>
+  </item>
+  <item>
+    <title> KMP (Knuth, Morris, Pratt) (WIP)</title>
+    <guid>https://www.bollu.github.io/kmp-knuth-morris-pratt-wip.html</guid>
+    <link>https://www.bollu.github.io/kmp-knuth-morris-pratt-wip.html</link>
+  </item>
+  <item>
+    <title> Reading C declarations</title>
+    <guid>https://www.bollu.github.io/reading-c-declarations.html</guid>
+    <link>https://www.bollu.github.io/reading-c-declarations.html</link>
+  </item>
+  <item>
+    <title> Make mnemonics</title>
+    <guid>https://www.bollu.github.io/make-mnemonics.html</guid>
+    <link>https://www.bollu.github.io/make-mnemonics.html</link>
+  </item>
+  <item>
+    <title> Vandermonde and FFT</title>
+    <guid>https://www.bollu.github.io/vandermonde-and-fft.html</guid>
+    <link>https://www.bollu.github.io/vandermonde-and-fft.html</link>
+  </item>
+  <item>
+    <title> Thoughts on blitz chess: 950 ELO</title>
+    <guid>https://www.bollu.github.io/thoughts-on-blitz-chess-950-elo.html</guid>
+    <link>https://www.bollu.github.io/thoughts-on-blitz-chess-950-elo.html</link>
+  </item>
+  <item>
+    <title> Periodic tables and make illegal states unrepresentable</title>
+    <guid>https://www.bollu.github.io/periodic-tables-and-make-illegal-states-unrepresentable.html</guid>
+    <link>https://www.bollu.github.io/periodic-tables-and-make-illegal-states-unrepresentable.html</link>
+  </item>
+  <item>
+    <title> Big list of questions on the structure of graphs</title>
+    <guid>https://www.bollu.github.io/big-list-of-questions-on-the-structure-of-graphs.html</guid>
+    <link>https://www.bollu.github.io/big-list-of-questions-on-the-structure-of-graphs.html</link>
+  </item>
+  <item>
+    <title> Combinations notation in bijective combinatorics</title>
+    <guid>https://www.bollu.github.io/combinations-notation-in-bijective-combinatorics.html</guid>
+    <link>https://www.bollu.github.io/combinations-notation-in-bijective-combinatorics.html</link>
+  </item>
+  <item>
+    <title> Arguments for little endian</title>
+    <guid>https://www.bollu.github.io/arguments-for-little-endian.html</guid>
+    <link>https://www.bollu.github.io/arguments-for-little-endian.html</link>
+  </item>
+  <item>
+    <title> Expectiles</title>
+    <guid>https://www.bollu.github.io/expectiles.html</guid>
+    <link>https://www.bollu.github.io/expectiles.html</link>
+  </item>
+  <item>
+    <title> Depth first search through linear algebra (WIP)</title>
+    <guid>https://www.bollu.github.io/depth-first-search-through-linear-algebra-wip.html</guid>
+    <link>https://www.bollu.github.io/depth-first-search-through-linear-algebra-wip.html</link>
+  </item>
+  <item>
+    <title> 2-SAT</title>
+    <guid>https://www.bollu.github.io/2-sat.html</guid>
+    <link>https://www.bollu.github.io/2-sat.html</link>
+  </item>
+  <item>
+    <title> Longest increasing subsequence, step by step (WIP)</title>
+    <guid>https://www.bollu.github.io/longest-increasing-subsequence-step-by-step-wip.html</guid>
+    <link>https://www.bollu.github.io/longest-increasing-subsequence-step-by-step-wip.html</link>
+  </item>
+  <item>
+    <title> On reading how to rule (WIP)</title>
+    <guid>https://www.bollu.github.io/on-reading-how-to-rule-wip.html</guid>
+    <link>https://www.bollu.github.io/on-reading-how-to-rule-wip.html</link>
+  </item>
+  <item>
+    <title> Strongly Connected Components via Kosaraju &apos; s algorithm</title>
+    <guid>https://www.bollu.github.io/strongly-connected-components-via-kosarajus-algorithm.html</guid>
+    <link>https://www.bollu.github.io/strongly-connected-components-via-kosarajus-algorithm.html</link>
+  </item>
+  <item>
+    <title> Articulation points</title>
+    <guid>https://www.bollu.github.io/articulation-points.html</guid>
+    <link>https://www.bollu.github.io/articulation-points.html</link>
+  </item>
+  <item>
+    <title> Disjoint set union</title>
+    <guid>https://www.bollu.github.io/disjoint-set-union.html</guid>
+    <link>https://www.bollu.github.io/disjoint-set-union.html</link>
+  </item>
+  <item>
+    <title> Making GDB usable</title>
+    <guid>https://www.bollu.github.io/making-gdb-usable.html</guid>
+    <link>https://www.bollu.github.io/making-gdb-usable.html</link>
+  </item>
+  <item>
+    <title> Bouncing light clock is an hourglass</title>
+    <guid>https://www.bollu.github.io/bouncing-light-clock-is-an-hourglass.html</guid>
+    <link>https://www.bollu.github.io/bouncing-light-clock-is-an-hourglass.html</link>
+  </item>
+  <item>
+    <title> Euler tours (WIP)</title>
+    <guid>https://www.bollu.github.io/euler-tours-wip.html</guid>
+    <link>https://www.bollu.github.io/euler-tours-wip.html</link>
+  </item>
+  <item>
+    <title> Representation theory of the symmetric group (WIP)</title>
+    <guid>https://www.bollu.github.io/representation-theory-of-the-symmetric-group-wip.html</guid>
+    <link>https://www.bollu.github.io/representation-theory-of-the-symmetric-group-wip.html</link>
+  </item>
+  <item>
+    <title> Maximum matchings in bipartite graphs (WIP)</title>
+    <guid>https://www.bollu.github.io/maximum-matchings-in-bipartite-graphs-wip.html</guid>
+    <link>https://www.bollu.github.io/maximum-matchings-in-bipartite-graphs-wip.html</link>
+  </item>
+  <item>
+    <title> Lowest common ancestor (WIP)</title>
+    <guid>https://www.bollu.github.io/lowest-common-ancestor-wip.html</guid>
+    <link>https://www.bollu.github.io/lowest-common-ancestor-wip.html</link>
+  </item>
+  <item>
+    <title> p-adics, 2 &apos; s complement, intuition for bit fiddling</title>
+    <guid>https://www.bollu.github.io/p-adics-2s-complement-intuition-for-bit-fiddling.html</guid>
+    <link>https://www.bollu.github.io/p-adics-2s-complement-intuition-for-bit-fiddling.html</link>
+  </item>
+  <item>
+    <title> Diameter of a tree</title>
+    <guid>https://www.bollu.github.io/diameter-of-a-tree.html</guid>
+    <link>https://www.bollu.github.io/diameter-of-a-tree.html</link>
+  </item>
+  <item>
+    <title> Catalan numbers as popular candidate votes (WIP)</title>
+    <guid>https://www.bollu.github.io/catalan-numbers-as-popular-candidate-votes-wip.html</guid>
+    <link>https://www.bollu.github.io/catalan-numbers-as-popular-candidate-votes-wip.html</link>
+  </item>
+  <item>
+    <title> The chromatic polynomial (WIP)</title>
+    <guid>https://www.bollu.github.io/the-chromatic-polynomial-wip.html</guid>
+    <link>https://www.bollu.github.io/the-chromatic-polynomial-wip.html</link>
+  </item>
+  <item>
+    <title> Structure theory of finite endo-functions </title>
+    <guid>https://www.bollu.github.io/structure-theory-of-finite-endo-functions.html</guid>
+    <link>https://www.bollu.github.io/structure-theory-of-finite-endo-functions.html</link>
+  </item>
+  <item>
+    <title> Number of paths in a DAG</title>
+    <guid>https://www.bollu.github.io/number-of-paths-in-a-dag.html</guid>
+    <link>https://www.bollu.github.io/number-of-paths-in-a-dag.html</link>
+  </item>
+  <item>
+    <title> Set partitions</title>
+    <guid>https://www.bollu.github.io/set-partitions.html</guid>
+    <link>https://www.bollu.github.io/set-partitions.html</link>
+  </item>
+  <item>
+    <title> Integer partitions: Recurrence</title>
+    <guid>https://www.bollu.github.io/integer-partitions-recurrence.html</guid>
+    <link>https://www.bollu.github.io/integer-partitions-recurrence.html</link>
+  </item>
+  <item>
+    <title> Stars and bars by direct bijection</title>
+    <guid>https://www.bollu.github.io/stars-and-bars-by-direct-bijection.html</guid>
+    <link>https://www.bollu.github.io/stars-and-bars-by-direct-bijection.html</link>
+  </item>
+  <item>
+    <title> DFS and topological sorting</title>
+    <guid>https://www.bollu.github.io/dfs-and-topological-sorting.html</guid>
+    <link>https://www.bollu.github.io/dfs-and-topological-sorting.html</link>
+  </item>
+  <item>
+    <title> Tournaments</title>
+    <guid>https://www.bollu.github.io/tournaments.html</guid>
+    <link>https://www.bollu.github.io/tournaments.html</link>
+  </item>
+  <item>
+    <title> Matching problems (TODO)</title>
+    <guid>https://www.bollu.github.io/matching-problems-todo.html</guid>
+    <link>https://www.bollu.github.io/matching-problems-todo.html</link>
+  </item>
+  <item>
+    <title> Four fundamental subspaces</title>
+    <guid>https://www.bollu.github.io/four-fundamental-subspaces.html</guid>
+    <link>https://www.bollu.github.io/four-fundamental-subspaces.html</link>
+  </item>
+  <item>
+    <title> WHO list of essential medicines (WIP)</title>
+    <guid>https://www.bollu.github.io/who-list-of-essential-medicines-wip.html</guid>
+    <link>https://www.bollu.github.io/who-list-of-essential-medicines-wip.html</link>
+  </item>
+  <item>
+    <title> why is int i = i allowed in C++?</title>
+    <guid>https://www.bollu.github.io/why-is-int-i-i-allowed-in-c.html</guid>
+    <link>https://www.bollu.github.io/why-is-int-i-i-allowed-in-c.html</link>
+  </item>
+  <item>
+    <title> Kakoune cheatsheet</title>
+    <guid>https://www.bollu.github.io/kakoune-cheatsheet.html</guid>
+    <link>https://www.bollu.github.io/kakoune-cheatsheet.html</link>
+  </item>
+  <item>
+    <title> Assembly IDE</title>
+    <guid>https://www.bollu.github.io/assembly-ide.html</guid>
+    <link>https://www.bollu.github.io/assembly-ide.html</link>
+  </item>
+  <item>
+    <title> Cohomology is like holism</title>
+    <guid>https://www.bollu.github.io/cohomology-is-like-holism.html</guid>
+    <link>https://www.bollu.github.io/cohomology-is-like-holism.html</link>
+  </item>
+  <item>
+    <title> Flows (WIP)</title>
+    <guid>https://www.bollu.github.io/flows-wip.html</guid>
+    <link>https://www.bollu.github.io/flows-wip.html</link>
+  </item>
+  <item>
+    <title> Amortized analysis</title>
+    <guid>https://www.bollu.github.io/amortized-analysis.html</guid>
+    <link>https://www.bollu.github.io/amortized-analysis.html</link>
+  </item>
+  <item>
+    <title> Shelly Kegan: death --- Suicide and rationality (WIP)</title>
+    <guid>https://www.bollu.github.io/shelly-kegan-death-suicide-and-rationality-wip.html</guid>
+    <link>https://www.bollu.github.io/shelly-kegan-death-suicide-and-rationality-wip.html</link>
+  </item>
+  <item>
+    <title> Sam harris and jordan peterson: Vancouver 1 (WIP)</title>
+    <guid>https://www.bollu.github.io/sam-harris-and-jordan-peterson-vancouver-1-wip.html</guid>
+    <link>https://www.bollu.github.io/sam-harris-and-jordan-peterson-vancouver-1-wip.html</link>
+  </item>
+  <item>
+    <title> Correctness of binary search</title>
+    <guid>https://www.bollu.github.io/correctness-of-binary-search.html</guid>
+    <link>https://www.bollu.github.io/correctness-of-binary-search.html</link>
+  </item>
+  <item>
+    <title> readlink -f  &lt; path &gt;  to access file path</title>
+    <guid>https://www.bollu.github.io/readlink-f-path-to-access-file-path.html</guid>
+    <link>https://www.bollu.github.io/readlink-f-path-to-access-file-path.html</link>
+  </item>
+  <item>
+    <title> rank/select as compress/decompress</title>
+    <guid>https://www.bollu.github.io/rankselect-as-compressdecompress.html</guid>
+    <link>https://www.bollu.github.io/rankselect-as-compressdecompress.html</link>
+  </item>
+  <item>
+    <title> Remembering Eulerian and Hamiltonian cycles</title>
+    <guid>https://www.bollu.github.io/remembering-eulerian-and-hamiltonian-cycles.html</guid>
+    <link>https://www.bollu.github.io/remembering-eulerian-and-hamiltonian-cycles.html</link>
+  </item>
+  <item>
+    <title> Nice way to loop over an array in reverse</title>
+    <guid>https://www.bollu.github.io/nice-way-to-loop-over-an-array-in-reverse.html</guid>
+    <link>https://www.bollu.github.io/nice-way-to-loop-over-an-array-in-reverse.html</link>
+  </item>
+  <item>
+    <title> Dynamic Programming: Erik Demaine &apos; s lectures</title>
+    <guid>https://www.bollu.github.io/dynamic-programming-erik-demaines-lectures.html</guid>
+    <link>https://www.bollu.github.io/dynamic-programming-erik-demaines-lectures.html</link>
+  </item>
+  <item>
+    <title> Accuracy vs precision</title>
+    <guid>https://www.bollu.github.io/accuracy-vs-precision.html</guid>
+    <link>https://www.bollu.github.io/accuracy-vs-precision.html</link>
+  </item>
+  <item>
+    <title> Why is the gradient covariant?</title>
+    <guid>https://www.bollu.github.io/why-is-the-gradient-covariant.html</guid>
+    <link>https://www.bollu.github.io/why-is-the-gradient-covariant.html</link>
+  </item>
+  <item>
+    <title> Politicization of science</title>
+    <guid>https://www.bollu.github.io/politicization-of-science.html</guid>
+    <link>https://www.bollu.github.io/politicization-of-science.html</link>
+  </item>
+  <item>
+    <title> Multi ꙮ cular O: ꙮ / Eye of cthulu</title>
+    <guid>https://www.bollu.github.io/multi-cular-o-eye-of-cthulu.html</guid>
+    <link>https://www.bollu.github.io/multi-cular-o-eye-of-cthulu.html</link>
+  </item>
+  <item>
+    <title> You can &apos; t measure the one way speed of light</title>
+    <guid>https://www.bollu.github.io/you-cant-measure-the-one-way-speed-of-light.html</guid>
+    <link>https://www.bollu.github.io/you-cant-measure-the-one-way-speed-of-light.html</link>
+  </item>
+  <item>
+    <title> Show me the hand strategy</title>
+    <guid>https://www.bollu.github.io/show-me-the-hand-strategy.html</guid>
+    <link>https://www.bollu.github.io/show-me-the-hand-strategy.html</link>
+  </item>
+  <item>
+    <title> Words that can be distinguished from letters if we know the sign of the permutation</title>
+    <guid>https://www.bollu.github.io/words-that-can-be-distinguished-from-letters-if-we-know-the-sign-of-the-permutation.html</guid>
+    <link>https://www.bollu.github.io/words-that-can-be-distinguished-from-letters-if-we-know-the-sign-of-the-permutation.html</link>
+  </item>
+  <item>
+    <title> Easy times don &apos; t create weak people, they just allow weak people to survive.</title>
+    <guid>https://www.bollu.github.io/easy-times-dont-create-weak-people-they-just-allow-weak-people-to-survive.html</guid>
+    <link>https://www.bollu.github.io/easy-times-dont-create-weak-people-they-just-allow-weak-people-to-survive.html</link>
+  </item>
+  <item>
+    <title> Multiplicative weights algorithm (TODO)</title>
+    <guid>https://www.bollu.github.io/multiplicative-weights-algorithm-todo.html</guid>
+    <link>https://www.bollu.github.io/multiplicative-weights-algorithm-todo.html</link>
+  </item>
+  <item>
+    <title> How to fairly compare groups</title>
+    <guid>https://www.bollu.github.io/how-to-fairly-compare-groups.html</guid>
+    <link>https://www.bollu.github.io/how-to-fairly-compare-groups.html</link>
+  </item>
+  <item>
+    <title> Z algorithm (TODO)</title>
+    <guid>https://www.bollu.github.io/z-algorithm-todo.html</guid>
+    <link>https://www.bollu.github.io/z-algorithm-todo.html</link>
+  </item>
+  <item>
+    <title> Bijection from (0, 1) to [0, 1]</title>
+    <guid>https://www.bollu.github.io/bijection-from-0-1-to-0-1.html</guid>
+    <link>https://www.bollu.github.io/bijection-from-0-1-to-0-1.html</link>
+  </item>
+  <item>
+    <title> Rene Girard</title>
+    <guid>https://www.bollu.github.io/rene-girard.html</guid>
+    <link>https://www.bollu.github.io/rene-girard.html</link>
+  </item>
+  <item>
+    <title> Noam Chomsky on anarchism (WIP)</title>
+    <guid>https://www.bollu.github.io/noam-chomsky-on-anarchism-wip.html</guid>
+    <link>https://www.bollu.github.io/noam-chomsky-on-anarchism-wip.html</link>
+  </item>
+  <item>
+    <title> Slavoj Zizek: Violence</title>
+    <guid>https://www.bollu.github.io/slavoj-zizek-violence.html</guid>
+    <link>https://www.bollu.github.io/slavoj-zizek-violence.html</link>
+  </item>
+  <item>
+    <title> Poverty: Who &apos; s to blame?</title>
+    <guid>https://www.bollu.github.io/poverty-whos-to-blame.html</guid>
+    <link>https://www.bollu.github.io/poverty-whos-to-blame.html</link>
+  </item>
+  <item>
+    <title> Learn Zig in Y minutes</title>
+    <guid>https://www.bollu.github.io/learn-zig-in-y-minutes.html</guid>
+    <link>https://www.bollu.github.io/learn-zig-in-y-minutes.html</link>
+  </item>
+  <item>
+    <title> The algebraic structure of the  &apos; nearest smaller number &apos;  question</title>
+    <guid>https://www.bollu.github.io/the-algebraic-structure-of-the-nearest-smaller-number-question.html</guid>
+    <link>https://www.bollu.github.io/the-algebraic-structure-of-the-nearest-smaller-number-question.html</link>
+  </item>
+  <item>
+    <title> Why loss of information is terrifying: Checking that a context-free language is regular is undecidable</title>
+    <guid>https://www.bollu.github.io/why-loss-of-information-is-terrifying-checking-that-a-context-free-language-is-regular-is-undecidable.html</guid>
+    <link>https://www.bollu.github.io/why-loss-of-information-is-terrifying-checking-that-a-context-free-language-is-regular-is-undecidable.html</link>
+  </item>
+  <item>
+    <title> Sciences of the artificial</title>
+    <guid>https://www.bollu.github.io/sciences-of-the-artificial.html</guid>
+    <link>https://www.bollu.github.io/sciences-of-the-artificial.html</link>
+  </item>
+  <item>
+    <title> Numbering nodes in a tree</title>
+    <guid>https://www.bollu.github.io/numbering-nodes-in-a-tree.html</guid>
+    <link>https://www.bollu.github.io/numbering-nodes-in-a-tree.html</link>
+  </item>
+  <item>
+    <title> Number of vertices in a rooted tree</title>
+    <guid>https://www.bollu.github.io/number-of-vertices-in-a-rooted-tree.html</guid>
+    <link>https://www.bollu.github.io/number-of-vertices-in-a-rooted-tree.html</link>
+  </item>
+  <item>
+    <title> Median minimizes L1 norm</title>
+    <guid>https://www.bollu.github.io/median-minimizes-l1-norm.html</guid>
+    <link>https://www.bollu.github.io/median-minimizes-l1-norm.html</link>
+  </item>
+  <item>
+    <title> LISP quine</title>
+    <guid>https://www.bollu.github.io/lisp-quine.html</guid>
+    <link>https://www.bollu.github.io/lisp-quine.html</link>
+  </item>
+  <item>
+    <title> A slew of order theoretic and graph theoretic results</title>
+    <guid>https://www.bollu.github.io/a-slew-of-order-theoretic-and-graph-theoretic-results.html</guid>
+    <link>https://www.bollu.github.io/a-slew-of-order-theoretic-and-graph-theoretic-results.html</link>
+  </item>
+  <item>
+    <title> Thebes</title>
+    <guid>https://www.bollu.github.io/thebes.html</guid>
+    <link>https://www.bollu.github.io/thebes.html</link>
+  </item>
+  <item>
+    <title> Beethoven</title>
+    <guid>https://www.bollu.github.io/beethoven.html</guid>
+    <link>https://www.bollu.github.io/beethoven.html</link>
+  </item>
+  <item>
+    <title> Neko to follow your cursor around</title>
+    <guid>https://www.bollu.github.io/neko-to-follow-your-cursor-around.html</guid>
+    <link>https://www.bollu.github.io/neko-to-follow-your-cursor-around.html</link>
+  </item>
+  <item>
+    <title> Non commuting observables: Light polarization</title>
+    <guid>https://www.bollu.github.io/non-commuting-observables-light-polarization.html</guid>
+    <link>https://www.bollu.github.io/non-commuting-observables-light-polarization.html</link>
+  </item>
+  <item>
+    <title> Statement expressions and other GCC C extensions</title>
+    <guid>https://www.bollu.github.io/statement-expressions-and-other-gcc-c-extensions.html</guid>
+    <link>https://www.bollu.github.io/statement-expressions-and-other-gcc-c-extensions.html</link>
+  </item>
+  <item>
+    <title> A quick look at impredicativity</title>
+    <guid>https://www.bollu.github.io/a-quick-look-at-impredicativity.html</guid>
+    <link>https://www.bollu.github.io/a-quick-look-at-impredicativity.html</link>
+  </item>
+  <item>
+    <title> Data oriented programming in C++</title>
+    <guid>https://www.bollu.github.io/data-oriented-programming-in-c.html</guid>
+    <link>https://www.bollu.github.io/data-oriented-programming-in-c.html</link>
+  </item>
+  <item>
+    <title> Retro glitch</title>
+    <guid>https://www.bollu.github.io/retro-glitch.html</guid>
+    <link>https://www.bollu.github.io/retro-glitch.html</link>
+  </item>
+  <item>
+    <title> SSA as linear typed language</title>
+    <guid>https://www.bollu.github.io/ssa-as-linear-typed-language.html</guid>
+    <link>https://www.bollu.github.io/ssa-as-linear-typed-language.html</link>
+  </item>
+  <item>
+    <title> Nix weirdness on small machines</title>
+    <guid>https://www.bollu.github.io/nix-weirdness-on-small-machines.html</guid>
+    <link>https://www.bollu.github.io/nix-weirdness-on-small-machines.html</link>
+  </item>
+  <item>
+    <title> Autodiff over derivative of integrals</title>
+    <guid>https://www.bollu.github.io/autodiff-over-derivative-of-integrals.html</guid>
+    <link>https://www.bollu.github.io/autodiff-over-derivative-of-integrals.html</link>
+  </item>
+  <item>
+    <title> Proof of projective duality</title>
+    <guid>https://www.bollu.github.io/proof-of-projective-duality.html</guid>
+    <link>https://www.bollu.github.io/proof-of-projective-duality.html</link>
+  </item>
+  <item>
+    <title> Preventing the collapse of civilization</title>
+    <guid>https://www.bollu.github.io/preventing-the-collapse-of-civilization.html</guid>
+    <link>https://www.bollu.github.io/preventing-the-collapse-of-civilization.html</link>
+  </item>
+  <item>
+    <title> Violent deaths in ancient societies (WIP)</title>
+    <guid>https://www.bollu.github.io/violent-deaths-in-ancient-societies-wip.html</guid>
+    <link>https://www.bollu.github.io/violent-deaths-in-ancient-societies-wip.html</link>
+  </item>
+  <item>
+    <title> An elementary example of a thing that is not a vector</title>
+    <guid>https://www.bollu.github.io/an-elementary-example-of-a-thing-that-is-not-a-vector.html</guid>
+    <link>https://www.bollu.github.io/an-elementary-example-of-a-thing-that-is-not-a-vector.html</link>
+  </item>
+  <item>
+    <title> Elementary probability theory (WIP)</title>
+    <guid>https://www.bollu.github.io/elementary-probability-theory-wip.html</guid>
+    <link>https://www.bollu.github.io/elementary-probability-theory-wip.html</link>
+  </item>
+  <item>
+    <title> The handshaking lemma</title>
+    <guid>https://www.bollu.github.io/the-handshaking-lemma.html</guid>
+    <link>https://www.bollu.github.io/the-handshaking-lemma.html</link>
+  </item>
+  <item>
+    <title> Git for pure mathematicians</title>
+    <guid>https://www.bollu.github.io/git-for-pure-mathematicians.html</guid>
+    <link>https://www.bollu.github.io/git-for-pure-mathematicians.html</link>
+  </item>
+  <item>
+    <title> Mutorch</title>
+    <guid>https://www.bollu.github.io/mutorch.html</guid>
+    <link>https://www.bollu.github.io/mutorch.html</link>
+  </item>
+  <item>
+    <title> Computing the smith normal form</title>
+    <guid>https://www.bollu.github.io/computing-the-smith-normal-form.html</guid>
+    <link>https://www.bollu.github.io/computing-the-smith-normal-form.html</link>
+  </item>
+  <item>
+    <title> Laziness for C programmers</title>
+    <guid>https://www.bollu.github.io/laziness-for-c-programmers.html</guid>
+    <link>https://www.bollu.github.io/laziness-for-c-programmers.html</link>
+  </item>
+  <item>
+    <title> Exact sequence of pointed sets</title>
+    <guid>https://www.bollu.github.io/exact-sequence-of-pointed-sets.html</guid>
+    <link>https://www.bollu.github.io/exact-sequence-of-pointed-sets.html</link>
+  </item>
+  <item>
+    <title> What is a syzygy? (WIP)</title>
+    <guid>https://www.bollu.github.io/what-is-a-syzygy-wip.html</guid>
+    <link>https://www.bollu.github.io/what-is-a-syzygy-wip.html</link>
+  </item>
+  <item>
+    <title> Under the spell of Leibniz &apos; s dream</title>
+    <guid>https://www.bollu.github.io/under-the-spell-of-leibnizs-dream.html</guid>
+    <link>https://www.bollu.github.io/under-the-spell-of-leibnizs-dream.html</link>
+  </item>
+  <item>
+    <title> Normal operators: Decomposition into Hermitian operators</title>
+    <guid>https://www.bollu.github.io/normal-operators-decomposition-into-hermitian-operators.html</guid>
+    <link>https://www.bollu.github.io/normal-operators-decomposition-into-hermitian-operators.html</link>
+  </item>
+  <item>
+    <title> Readable pointers</title>
+    <guid>https://www.bollu.github.io/readable-pointers.html</guid>
+    <link>https://www.bollu.github.io/readable-pointers.html</link>
+  </item>
+  <item>
+    <title> The grassmanian, handwavily</title>
+    <guid>https://www.bollu.github.io/the-grassmanian-handwavily.html</guid>
+    <link>https://www.bollu.github.io/the-grassmanian-handwavily.html</link>
+  </item>
+  <item>
+    <title> Lie bracket as linearization of conjugation</title>
+    <guid>https://www.bollu.github.io/lie-bracket-as-linearization-of-conjugation.html</guid>
+    <link>https://www.bollu.github.io/lie-bracket-as-linearization-of-conjugation.html</link>
+  </item>
+  <item>
+    <title> Computational Origami</title>
+    <guid>https://www.bollu.github.io/computational-origami.html</guid>
+    <link>https://www.bollu.github.io/computational-origami.html</link>
+  </item>
+  <item>
+    <title> Katex in duktape</title>
+    <guid>https://www.bollu.github.io/katex-in-duktape.html</guid>
+    <link>https://www.bollu.github.io/katex-in-duktape.html</link>
+  </item>
+  <item>
+    <title> Kebab case</title>
+    <guid>https://www.bollu.github.io/kebab-case.html</guid>
+    <link>https://www.bollu.github.io/kebab-case.html</link>
+  </item>
+  <item>
+    <title> Localization: Introducing epsilons (WIP)</title>
+    <guid>https://www.bollu.github.io/localization-introducing-epsilons-wip.html</guid>
+    <link>https://www.bollu.github.io/localization-introducing-epsilons-wip.html</link>
+  </item>
+  <item>
+    <title> NaN punning</title>
+    <guid>https://www.bollu.github.io/nan-punning.html</guid>
+    <link>https://www.bollu.github.io/nan-punning.html</link>
+  </item>
+  <item>
+    <title> Offline Documentation</title>
+    <guid>https://www.bollu.github.io/offline-documentation.html</guid>
+    <link>https://www.bollu.github.io/offline-documentation.html</link>
+  </item>
+  <item>
+    <title> Using Gurobi</title>
+    <guid>https://www.bollu.github.io/using-gurobi.html</guid>
+    <link>https://www.bollu.github.io/using-gurobi.html</link>
+  </item>
+  <item>
+    <title> osqp: convex optimizer in 6000 LoC</title>
+    <guid>https://www.bollu.github.io/osqp-convex-optimizer-in-6000-loc.html</guid>
+    <link>https://www.bollu.github.io/osqp-convex-optimizer-in-6000-loc.html</link>
+  </item>
+  <item>
+    <title> stars and bars by generating functions</title>
+    <guid>https://www.bollu.github.io/stars-and-bars-by-generating-functions.html</guid>
+    <link>https://www.bollu.github.io/stars-and-bars-by-generating-functions.html</link>
+  </item>
+  <item>
+    <title> This is not a place of honor</title>
+    <guid>https://www.bollu.github.io/this-is-not-a-place-of-honor.html</guid>
+    <link>https://www.bollu.github.io/this-is-not-a-place-of-honor.html</link>
+  </item>
+  <item>
+    <title> Topological proof of infinitude of primes</title>
+    <guid>https://www.bollu.github.io/topological-proof-of-infinitude-of-primes.html</guid>
+    <link>https://www.bollu.github.io/topological-proof-of-infinitude-of-primes.html</link>
+  </item>
+  <item>
+    <title> Burnside Theorem</title>
+    <guid>https://www.bollu.github.io/burnside-theorem.html</guid>
+    <link>https://www.bollu.github.io/burnside-theorem.html</link>
+  </item>
+  <item>
+    <title> The Ise Grand shrine</title>
+    <guid>https://www.bollu.github.io/the-ise-grand-shrine.html</guid>
+    <link>https://www.bollu.github.io/the-ise-grand-shrine.html</link>
+  </item>
+  <item>
+    <title> Edward Kmett &apos; s list of useful math</title>
+    <guid>https://www.bollu.github.io/edward-kmetts-list-of-useful-math.html</guid>
+    <link>https://www.bollu.github.io/edward-kmetts-list-of-useful-math.html</link>
+  </item>
+  <item>
+    <title> Cokernel is not sheafy</title>
+    <guid>https://www.bollu.github.io/cokernel-is-not-sheafy.html</guid>
+    <link>https://www.bollu.github.io/cokernel-is-not-sheafy.html</link>
+  </item>
+  <item>
+    <title> Von neumann: foundations of QM</title>
+    <guid>https://www.bollu.github.io/von-neumann-foundations-of-qm.html</guid>
+    <link>https://www.bollu.github.io/von-neumann-foundations-of-qm.html</link>
+  </item>
+  <item>
+    <title> Discrete schild &apos; s ladder</title>
+    <guid>https://www.bollu.github.io/discrete-schilds-ladder.html</guid>
+    <link>https://www.bollu.github.io/discrete-schilds-ladder.html</link>
+  </item>
+  <item>
+    <title> Derivative of step is dirac delta</title>
+    <guid>https://www.bollu.github.io/derivative-of-step-is-dirac-delta.html</guid>
+    <link>https://www.bollu.github.io/derivative-of-step-is-dirac-delta.html</link>
+  </item>
+  <item>
+    <title> Extended euclidian algorithm</title>
+    <guid>https://www.bollu.github.io/extended-euclidian-algorithm.html</guid>
+    <link>https://www.bollu.github.io/extended-euclidian-algorithm.html</link>
+  </item>
+  <item>
+    <title> In a PID, all prime ideals are maximal, geometrically</title>
+    <guid>https://www.bollu.github.io/in-a-pid-all-prime-ideals-are-maximal-geometrically.html</guid>
+    <link>https://www.bollu.github.io/in-a-pid-all-prime-ideals-are-maximal-geometrically.html</link>
+  </item>
+  <item>
+    <title> Prime numbers as maximal among principal ideals</title>
+    <guid>https://www.bollu.github.io/prime-numbers-as-maximal-among-principal-ideals.html</guid>
+    <link>https://www.bollu.github.io/prime-numbers-as-maximal-among-principal-ideals.html</link>
+  </item>
+  <item>
+    <title> Axiom of Choice and Zorn &apos; s Lemma</title>
+    <guid>https://www.bollu.github.io/axiom-of-choice-and-zorns-lemma.html</guid>
+    <link>https://www.bollu.github.io/axiom-of-choice-and-zorns-lemma.html</link>
+  </item>
+  <item>
+    <title> Local ring in terms of invertibility</title>
+    <guid>https://www.bollu.github.io/local-ring-in-terms-of-invertibility.html</guid>
+    <link>https://www.bollu.github.io/local-ring-in-terms-of-invertibility.html</link>
+  </item>
+  <item>
+    <title> Nullstellensatz for schemes</title>
+    <guid>https://www.bollu.github.io/nullstellensatz-for-schemes.html</guid>
+    <link>https://www.bollu.github.io/nullstellensatz-for-schemes.html</link>
+  </item>
+  <item>
+    <title> Perspectives on Yoneda</title>
+    <guid>https://www.bollu.github.io/perspectives-on-yoneda.html</guid>
+    <link>https://www.bollu.github.io/perspectives-on-yoneda.html</link>
+  </item>
+  <item>
+    <title> Germs, Stalks, Sheaves of differentiable functions</title>
+    <guid>https://www.bollu.github.io/germs-stalks-sheaves-of-differentiable-functions.html</guid>
+    <link>https://www.bollu.github.io/germs-stalks-sheaves-of-differentiable-functions.html</link>
+  </item>
+  <item>
+    <title> Connectedness in terms of continuity</title>
+    <guid>https://www.bollu.github.io/connectedness-in-terms-of-continuity.html</guid>
+    <link>https://www.bollu.github.io/connectedness-in-terms-of-continuity.html</link>
+  </item>
+  <item>
+    <title> Intuition for limits in category theory</title>
+    <guid>https://www.bollu.github.io/intuition-for-limits-in-category-theory.html</guid>
+    <link>https://www.bollu.github.io/intuition-for-limits-in-category-theory.html</link>
+  </item>
+  <item>
+    <title> Finite topologies and DFS numbering</title>
+    <guid>https://www.bollu.github.io/finite-topologies-and-dfs-numbering.html</guid>
+    <link>https://www.bollu.github.io/finite-topologies-and-dfs-numbering.html</link>
+  </item>
+  <item>
+    <title> Categorical definition of products in painful detail</title>
+    <guid>https://www.bollu.github.io/categorical-definition-of-products-in-painful-detail.html</guid>
+    <link>https://www.bollu.github.io/categorical-definition-of-products-in-painful-detail.html</link>
+  </item>
+  <item>
+    <title> Why is the spectrum of a ring called so?</title>
+    <guid>https://www.bollu.github.io/why-is-the-spectrum-of-a-ring-called-so.html</guid>
+    <link>https://www.bollu.github.io/why-is-the-spectrum-of-a-ring-called-so.html</link>
+  </item>
+  <item>
+    <title> Ergo proxy</title>
+    <guid>https://www.bollu.github.io/ergo-proxy.html</guid>
+    <link>https://www.bollu.github.io/ergo-proxy.html</link>
+  </item>
+  <item>
+    <title>  Satisfied and frustrated equations</title>
+    <guid>https://www.bollu.github.io/satisfied-and-frustrated-equations.html</guid>
+    <link>https://www.bollu.github.io/satisfied-and-frustrated-equations.html</link>
+  </item>
+  <item>
+    <title> Combinatorial intuition for Fermat &apos; s little theorem</title>
+    <guid>https://www.bollu.github.io/combinatorial-intuition-for-fermats-little-theorem.html</guid>
+    <link>https://www.bollu.github.io/combinatorial-intuition-for-fermats-little-theorem.html</link>
+  </item>
+  <item>
+    <title> An incorrect derivation of special relativity in 1D</title>
+    <guid>https://www.bollu.github.io/an-incorrect-derivation-of-special-relativity-in-1d.html</guid>
+    <link>https://www.bollu.github.io/an-incorrect-derivation-of-special-relativity-in-1d.html</link>
+  </item>
+  <item>
+    <title>  The geometry and dynamics of magnetic monopoles</title>
+    <guid>https://www.bollu.github.io/the-geometry-and-dynamics-of-magnetic-monopoles.html</guid>
+    <link>https://www.bollu.github.io/the-geometry-and-dynamics-of-magnetic-monopoles.html</link>
+  </item>
+  <item>
+    <title> Sanskrit and Sumerian</title>
+    <guid>https://www.bollu.github.io/sanskrit-and-sumerian.html</guid>
+    <link>https://www.bollu.github.io/sanskrit-and-sumerian.html</link>
+  </item>
+  <item>
+    <title> Writing Cuneiform</title>
+    <guid>https://www.bollu.github.io/writing-cuneiform.html</guid>
+    <link>https://www.bollu.github.io/writing-cuneiform.html</link>
+  </item>
+  <item>
+    <title> The code of hammurabi</title>
+    <guid>https://www.bollu.github.io/the-code-of-hammurabi.html</guid>
+    <link>https://www.bollu.github.io/the-code-of-hammurabi.html</link>
+  </item>
+  <item>
+    <title> The implicit and inverse function theorem</title>
+    <guid>https://www.bollu.github.io/the-implicit-and-inverse-function-theorem.html</guid>
+    <link>https://www.bollu.github.io/the-implicit-and-inverse-function-theorem.html</link>
+  </item>
+  <item>
+    <title> Whalesong hyperbolic space in detail</title>
+    <guid>https://www.bollu.github.io/whalesong-hyperbolic-space-in-detail.html</guid>
+    <link>https://www.bollu.github.io/whalesong-hyperbolic-space-in-detail.html</link>
+  </item>
+  <item>
+    <title> Motivating Djikstra &apos; s</title>
+    <guid>https://www.bollu.github.io/motivating-djikstras.html</guid>
+    <link>https://www.bollu.github.io/motivating-djikstras.html</link>
+  </item>
+  <item>
+    <title> Intuitions for hyperbolic space</title>
+    <guid>https://www.bollu.github.io/intuitions-for-hyperbolic-space.html</guid>
+    <link>https://www.bollu.github.io/intuitions-for-hyperbolic-space.html</link>
+  </item>
+  <item>
+    <title> Product of compact spaces in compact</title>
+    <guid>https://www.bollu.github.io/product-of-compact-spaces-in-compact.html</guid>
+    <link>https://www.bollu.github.io/product-of-compact-spaces-in-compact.html</link>
+  </item>
+  <item>
+    <title> Hyperbolic groups have solvable word problem</title>
+    <guid>https://www.bollu.github.io/hyperbolic-groups-have-solvable-word-problem.html</guid>
+    <link>https://www.bollu.github.io/hyperbolic-groups-have-solvable-word-problem.html</link>
+  </item>
+  <item>
+    <title> Elementary uses of Sheaves in complex analysis</title>
+    <guid>https://www.bollu.github.io/elementary-uses-of-sheaves-in-complex-analysis.html</guid>
+    <link>https://www.bollu.github.io/elementary-uses-of-sheaves-in-complex-analysis.html</link>
+  </item>
+  <item>
+    <title> Snake lemma</title>
+    <guid>https://www.bollu.github.io/snake-lemma.html</guid>
+    <link>https://www.bollu.github.io/snake-lemma.html</link>
+  </item>
+  <item>
+    <title> Kernel, cokernel, image</title>
+    <guid>https://www.bollu.github.io/kernel-cokernel-image.html</guid>
+    <link>https://www.bollu.github.io/kernel-cokernel-image.html</link>
+  </item>
+  <item>
+    <title> The commutator subgroup</title>
+    <guid>https://www.bollu.github.io/the-commutator-subgroup.html</guid>
+    <link>https://www.bollu.github.io/the-commutator-subgroup.html</link>
+  </item>
+  <item>
+    <title> Simplicity of A5 using PSL(2, 5)</title>
+    <guid>https://www.bollu.github.io/simplicity-of-a5-using-psl2-5.html</guid>
+    <link>https://www.bollu.github.io/simplicity-of-a5-using-psl2-5.html</link>
+  </item>
+  <item>
+    <title> A5 is not solvable</title>
+    <guid>https://www.bollu.github.io/a5-is-not-solvable.html</guid>
+    <link>https://www.bollu.github.io/a5-is-not-solvable.html</link>
+  </item>
+  <item>
+    <title> Complex orthogonality in terms of projective geometry</title>
+    <guid>https://www.bollu.github.io/complex-orthogonality-in-terms-of-projective-geometry.html</guid>
+    <link>https://www.bollu.github.io/complex-orthogonality-in-terms-of-projective-geometry.html</link>
+  </item>
+  <item>
+    <title> Arithmetic sequences, number of integers in a closed interval</title>
+    <guid>https://www.bollu.github.io/arithmetic-sequences-number-of-integers-in-a-closed-interval.html</guid>
+    <link>https://www.bollu.github.io/arithmetic-sequences-number-of-integers-in-a-closed-interval.html</link>
+  </item>
+  <item>
+    <title>  The arg function, continuity, orientation</title>
+    <guid>https://www.bollu.github.io/the-arg-function-continuity-orientation.html</guid>
+    <link>https://www.bollu.github.io/the-arg-function-continuity-orientation.html</link>
+  </item>
+  <item>
+    <title> Odd partitions, unique partitions</title>
+    <guid>https://www.bollu.github.io/odd-partitions-unique-partitions.html</guid>
+    <link>https://www.bollu.github.io/odd-partitions-unique-partitions.html</link>
+  </item>
+  <item>
+    <title> Continued fractions, mobius transformations</title>
+    <guid>https://www.bollu.github.io/continued-fractions-mobius-transformations.html</guid>
+    <link>https://www.bollu.github.io/continued-fractions-mobius-transformations.html</link>
+  </item>
+  <item>
+    <title> Permutations-and-lyndon-factorization</title>
+    <guid>https://www.bollu.github.io/permutations-and-lyndon-factorization.html</guid>
+    <link>https://www.bollu.github.io/permutations-and-lyndon-factorization.html</link>
+  </item>
+  <item>
+    <title> Graphs are preorders</title>
+    <guid>https://www.bollu.github.io/graphs-are-preorders.html</guid>
+    <link>https://www.bollu.github.io/graphs-are-preorders.html</link>
+  </item>
+  <item>
+    <title> Crash course on DCPO: formalizing lambda calculus</title>
+    <guid>https://www.bollu.github.io/crash-course-on-dcpo-formalizing-lambda-calculus.html</guid>
+    <link>https://www.bollu.github.io/crash-course-on-dcpo-formalizing-lambda-calculus.html</link>
+  </item>
+  <item>
+    <title> Parallelisable version of maximum sum subarray</title>
+    <guid>https://www.bollu.github.io/parallelisable-version-of-maximum-sum-subarray.html</guid>
+    <link>https://www.bollu.github.io/parallelisable-version-of-maximum-sum-subarray.html</link>
+  </item>
+  <item>
+    <title> Thoughts on implicit heaps</title>
+    <guid>https://www.bollu.github.io/thoughts-on-implicit-heaps.html</guid>
+    <link>https://www.bollu.github.io/thoughts-on-implicit-heaps.html</link>
+  </item>
+  <item>
+    <title> Discriminant and Resultant</title>
+    <guid>https://www.bollu.github.io/discriminant-and-resultant.html</guid>
+    <link>https://www.bollu.github.io/discriminant-and-resultant.html</link>
+  </item>
+  <item>
+    <title> Polynomial root finding using QR decomposition</title>
+    <guid>https://www.bollu.github.io/polynomial-root-finding-using-qr-decomposition.html</guid>
+    <link>https://www.bollu.github.io/polynomial-root-finding-using-qr-decomposition.html</link>
+  </item>
+  <item>
+    <title> A hacker &apos; s guide to numerical analysis</title>
+    <guid>https://www.bollu.github.io/a-hackers-guide-to-numerical-analysis.html</guid>
+    <link>https://www.bollu.github.io/a-hackers-guide-to-numerical-analysis.html</link>
+  </item>
+  <item>
+    <title> Mobius inversion on Incidence Algebras</title>
+    <guid>https://www.bollu.github.io/mobius-inversion-on-incidence-algebras.html</guid>
+    <link>https://www.bollu.github.io/mobius-inversion-on-incidence-algebras.html</link>
+  </item>
+  <item>
+    <title> Finite differences and Umbral calculus</title>
+    <guid>https://www.bollu.github.io/finite-differences-and-umbral-calculus.html</guid>
+    <link>https://www.bollu.github.io/finite-differences-and-umbral-calculus.html</link>
+  </item>
+  <item>
+    <title> Permutahedron</title>
+    <guid>https://www.bollu.github.io/permutahedron.html</guid>
+    <link>https://www.bollu.github.io/permutahedron.html</link>
+  </item>
+  <item>
+    <title> Lyndon + Christoffel = Convex Hull</title>
+    <guid>https://www.bollu.github.io/lyndon-christoffel-convex-hull.html</guid>
+    <link>https://www.bollu.github.io/lyndon-christoffel-convex-hull.html</link>
+  </item>
+  <item>
+    <title> Geometric proof of e^x  &gt; = 1+x, e^(-x)  &gt; = 1-x</title>
+    <guid>https://www.bollu.github.io/geometric-proof-of-ex-1x-e-x-1-x.html</guid>
+    <link>https://www.bollu.github.io/geometric-proof-of-ex-1x-e-x-1-x.html</link>
+  </item>
+  <item>
+    <title> Ranking and Sorting</title>
+    <guid>https://www.bollu.github.io/ranking-and-sorting.html</guid>
+    <link>https://www.bollu.github.io/ranking-and-sorting.html</link>
+  </item>
+  <item>
+    <title> Proof of minkowski convex body theorem</title>
+    <guid>https://www.bollu.github.io/proof-of-minkowski-convex-body-theorem.html</guid>
+    <link>https://www.bollu.github.io/proof-of-minkowski-convex-body-theorem.html</link>
+  </item>
+  <item>
+    <title> Burrows Wheeler</title>
+    <guid>https://www.bollu.github.io/burrows-wheeler.html</guid>
+    <link>https://www.bollu.github.io/burrows-wheeler.html</link>
+  </item>
+  <item>
+    <title> Intuitionstic logic as a Heytig algebra</title>
+    <guid>https://www.bollu.github.io/intuitionstic-logic-as-a-heytig-algebra.html</guid>
+    <link>https://www.bollu.github.io/intuitionstic-logic-as-a-heytig-algebra.html</link>
+  </item>
+  <item>
+    <title> Edit distance</title>
+    <guid>https://www.bollu.github.io/edit-distance.html</guid>
+    <link>https://www.bollu.github.io/edit-distance.html</link>
+  </item>
+  <item>
+    <title> Evolution of bee colonies (WIP)</title>
+    <guid>https://www.bollu.github.io/evolution-of-bee-colonies-wip.html</guid>
+    <link>https://www.bollu.github.io/evolution-of-bee-colonies-wip.html</link>
+  </item>
+  <item>
+    <title> Best practices for array indexing</title>
+    <guid>https://www.bollu.github.io/best-practices-for-array-indexing.html</guid>
+    <link>https://www.bollu.github.io/best-practices-for-array-indexing.html</link>
+  </item>
+  <item>
+    <title> Algebraic structure for vector clocks</title>
+    <guid>https://www.bollu.github.io/algebraic-structure-for-vector-clocks.html</guid>
+    <link>https://www.bollu.github.io/algebraic-structure-for-vector-clocks.html</link>
+  </item>
+  <item>
+    <title> Networks are now faster than disks</title>
+    <guid>https://www.bollu.github.io/networks-are-now-faster-than-disks.html</guid>
+    <link>https://www.bollu.github.io/networks-are-now-faster-than-disks.html</link>
+  </item>
+  <item>
+    <title> Einstein-de Haas effect</title>
+    <guid>https://www.bollu.github.io/einstein-de-haas-effect.html</guid>
+    <link>https://www.bollu.github.io/einstein-de-haas-effect.html</link>
+  </item>
+  <item>
+    <title> Rank-select as adjunction</title>
+    <guid>https://www.bollu.github.io/rank-select-as-adjunction.html</guid>
+    <link>https://www.bollu.github.io/rank-select-as-adjunction.html</link>
+  </item>
+  <item>
+    <title> Bounding chains: uniformly sample colorings</title>
+    <guid>https://www.bollu.github.io/bounding-chains-uniformly-sample-colorings.html</guid>
+    <link>https://www.bollu.github.io/bounding-chains-uniformly-sample-colorings.html</link>
+  </item>
+  <item>
+    <title> Coupling from the past</title>
+    <guid>https://www.bollu.github.io/coupling-from-the-past.html</guid>
+    <link>https://www.bollu.github.io/coupling-from-the-past.html</link>
+  </item>
+  <item>
+    <title> Word problems in Russia and America</title>
+    <guid>https://www.bollu.github.io/word-problems-in-russia-and-america.html</guid>
+    <link>https://www.bollu.github.io/word-problems-in-russia-and-america.html</link>
+  </item>
+  <item>
+    <title> Encoding mathematical hieararchies</title>
+    <guid>https://www.bollu.github.io/encoding-mathematical-hieararchies.html</guid>
+    <link>https://www.bollu.github.io/encoding-mathematical-hieararchies.html</link>
+  </item>
+  <item>
+    <title> Learning code by hearing it</title>
+    <guid>https://www.bollu.github.io/learning-code-by-hearing-it.html</guid>
+    <link>https://www.bollu.github.io/learning-code-by-hearing-it.html</link>
+  </item>
+  <item>
+    <title> Your arm can be a spinor</title>
+    <guid>https://www.bollu.github.io/your-arm-can-be-a-spinor.html</guid>
+    <link>https://www.bollu.github.io/your-arm-can-be-a-spinor.html</link>
+  </item>
+  <item>
+    <title> Self modifying code for function calls: Look ma, I don &apos; t need a stack!</title>
+    <guid>https://www.bollu.github.io/self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack.html</guid>
+    <link>https://www.bollu.github.io/self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack.html</link>
+  </item>
+  <item>
+    <title> Adjunctions as advice</title>
+    <guid>https://www.bollu.github.io/adjunctions-as-advice.html</guid>
+    <link>https://www.bollu.github.io/adjunctions-as-advice.html</link>
+  </item>
+  <item>
+    <title> Reversible computation as groups on programs</title>
+    <guid>https://www.bollu.github.io/reversible-computation-as-groups-on-programs.html</guid>
+    <link>https://www.bollu.github.io/reversible-computation-as-groups-on-programs.html</link>
+  </item>
+  <item>
+    <title> Blazing fast math rendering on the web</title>
+    <guid>https://www.bollu.github.io/blazing-fast-math-rendering-on-the-web.html</guid>
+    <link>https://www.bollu.github.io/blazing-fast-math-rendering-on-the-web.html</link>
+  </item>
+  <item>
+    <title> VC dimension</title>
+    <guid>https://www.bollu.github.io/vc-dimension.html</guid>
+    <link>https://www.bollu.github.io/vc-dimension.html</link>
+  </item>
+  <item>
+    <title> Symplectic version of classical mechanics</title>
+    <guid>https://www.bollu.github.io/symplectic-version-of-classical-mechanics.html</guid>
+    <link>https://www.bollu.github.io/symplectic-version-of-classical-mechanics.html</link>
+  </item>
+  <item>
+    <title> Theorems for free</title>
+    <guid>https://www.bollu.github.io/theorems-for-free.html</guid>
+    <link>https://www.bollu.github.io/theorems-for-free.html</link>
+  </item>
+  <item>
+    <title> How to reason with half-open intervals</title>
+    <guid>https://www.bollu.github.io/how-to-reason-with-half-open-intervals.html</guid>
+    <link>https://www.bollu.github.io/how-to-reason-with-half-open-intervals.html</link>
+  </item>
+  <item>
+    <title> How does one build a fusion bomb?</title>
+    <guid>https://www.bollu.github.io/how-does-one-build-a-fusion-bomb.html</guid>
+    <link>https://www.bollu.github.io/how-does-one-build-a-fusion-bomb.html</link>
+  </item>
+  <item>
+    <title> Christoffel symbols, geometrically</title>
+    <guid>https://www.bollu.github.io/christoffel-symbols-geometrically.html</guid>
+    <link>https://www.bollu.github.io/christoffel-symbols-geometrically.html</link>
+  </item>
+  <item>
+    <title> A natural vector space without an explicit basis</title>
+    <guid>https://www.bollu.github.io/a-natural-vector-space-without-an-explicit-basis.html</guid>
+    <link>https://www.bollu.github.io/a-natural-vector-space-without-an-explicit-basis.html</link>
+  </item>
+  <item>
+    <title> Cache oblivious B trees</title>
+    <guid>https://www.bollu.github.io/cache-oblivious-b-trees.html</guid>
+    <link>https://www.bollu.github.io/cache-oblivious-b-trees.html</link>
+  </item>
+  <item>
+    <title> Krohn-Rhodes decomposition</title>
+    <guid>https://www.bollu.github.io/krohn-rhodes-decomposition.html</guid>
+    <link>https://www.bollu.github.io/krohn-rhodes-decomposition.html</link>
+  </item>
+  <item>
+    <title> Proving block matmul using program analysis</title>
+    <guid>https://www.bollu.github.io/proving-block-matmul-using-program-analysis.html</guid>
+    <link>https://www.bollu.github.io/proving-block-matmul-using-program-analysis.html</link>
+  </item>
+  <item>
+    <title> Why I like algebra over analysis</title>
+    <guid>https://www.bollu.github.io/why-i-like-algebra-over-analysis.html</guid>
+    <link>https://www.bollu.github.io/why-i-like-algebra-over-analysis.html</link>
+  </item>
+  <item>
+    <title> using for cleaner function type typedefs</title>
+    <guid>https://www.bollu.github.io/using-for-cleaner-function-type-typedefs.html</guid>
+    <link>https://www.bollu.github.io/using-for-cleaner-function-type-typedefs.html</link>
+  </item>
+  <item>
+    <title> A walkway of lanterns (WIP)</title>
+    <guid>https://www.bollu.github.io/a-walkway-of-lanterns-wip.html</guid>
+    <link>https://www.bollu.github.io/a-walkway-of-lanterns-wip.html</link>
+  </item>
+  <item>
+    <title> Natural transformations</title>
+    <guid>https://www.bollu.github.io/natural-transformations.html</guid>
+    <link>https://www.bollu.github.io/natural-transformations.html</link>
+  </item>
+  <item>
+    <title> The hilarious commentary by dinosaure in OCaml git</title>
+    <guid>https://www.bollu.github.io/the-hilarious-commentary-by-dinosaure-in-ocaml-git.html</guid>
+    <link>https://www.bollu.github.io/the-hilarious-commentary-by-dinosaure-in-ocaml-git.html</link>
+  </item>
+  <item>
+    <title> How to link against MLIR with CMake</title>
+    <guid>https://www.bollu.github.io/how-to-link-against-mlir-with-cmake.html</guid>
+    <link>https://www.bollu.github.io/how-to-link-against-mlir-with-cmake.html</link>
+  </item>
+  <item>
+    <title> Energy as triangulaizing state space</title>
+    <guid>https://www.bollu.github.io/energy-as-triangulaizing-state-space.html</guid>
+    <link>https://www.bollu.github.io/energy-as-triangulaizing-state-space.html</link>
+  </item>
+  <item>
+    <title> The cutest way to write semidirect products</title>
+    <guid>https://www.bollu.github.io/the-cutest-way-to-write-semidirect-products.html</guid>
+    <link>https://www.bollu.github.io/the-cutest-way-to-write-semidirect-products.html</link>
+  </item>
+  <item>
+    <title> My Favourite APLisms</title>
+    <guid>https://www.bollu.github.io/my-favourite-aplisms.html</guid>
+    <link>https://www.bollu.github.io/my-favourite-aplisms.html</link>
+  </item>
+  <item>
+    <title> Proof of chinese remainder theorem on rings</title>
+    <guid>https://www.bollu.github.io/proof-of-chinese-remainder-theorem-on-rings.html</guid>
+    <link>https://www.bollu.github.io/proof-of-chinese-remainder-theorem-on-rings.html</link>
+  </item>
+  <item>
+    <title> monic and epic arrows</title>
+    <guid>https://www.bollu.github.io/monic-and-epic-arrows.html</guid>
+    <link>https://www.bollu.github.io/monic-and-epic-arrows.html</link>
+  </item>
+  <item>
+    <title> The geometry of Lagrange multipliers</title>
+    <guid>https://www.bollu.github.io/the-geometry-of-lagrange-multipliers.html</guid>
+    <link>https://www.bollu.github.io/the-geometry-of-lagrange-multipliers.html</link>
+  </item>
+  <item>
+    <title> Efficient tree transformations on GPUs (WIP)</title>
+    <guid>https://www.bollu.github.io/efficient-tree-transformations-on-gpus-wip.html</guid>
+    <link>https://www.bollu.github.io/efficient-tree-transformations-on-gpus-wip.html</link>
+  </item>
+  <item>
+    <title> Things I wish I knew when I was learning APL</title>
+    <guid>https://www.bollu.github.io/things-i-wish-i-knew-when-i-was-learning-apl.html</guid>
+    <link>https://www.bollu.github.io/things-i-wish-i-knew-when-i-was-learning-apl.html</link>
+  </item>
+  <item>
+    <title> Every ideal that is maximal wrt. being disjoint from a multiplicative subset is prime</title>
+    <guid>https://www.bollu.github.io/every-ideal-that-is-maximal-wrt-being-disjoint-from-a-multiplicative-subset-is-prime.html</guid>
+    <link>https://www.bollu.github.io/every-ideal-that-is-maximal-wrt-being-disjoint-from-a-multiplicative-subset-is-prime.html</link>
+  </item>
+  <item>
+    <title> Getting started with APL</title>
+    <guid>https://www.bollu.github.io/getting-started-with-apl.html</guid>
+    <link>https://www.bollu.github.io/getting-started-with-apl.html</link>
+  </item>
+  <item>
+    <title> SpaceChem was the best compiler I ever used</title>
+    <guid>https://www.bollu.github.io/spacechem-was-the-best-compiler-i-ever-used.html</guid>
+    <link>https://www.bollu.github.io/spacechem-was-the-best-compiler-i-ever-used.html</link>
+  </item>
+  <item>
+    <title> Mnemonic for Kruskal and Prim</title>
+    <guid>https://www.bollu.github.io/mnemonic-for-kruskal-and-prim.html</guid>
+    <link>https://www.bollu.github.io/mnemonic-for-kruskal-and-prim.html</link>
+  </item>
+  <item>
+    <title> Legendre transform</title>
+    <guid>https://www.bollu.github.io/legendre-transform.html</guid>
+    <link>https://www.bollu.github.io/legendre-transform.html</link>
+  </item>
+  <item>
+    <title> Cartesian Trees</title>
+    <guid>https://www.bollu.github.io/cartesian-trees.html</guid>
+    <link>https://www.bollu.github.io/cartesian-trees.html</link>
+  </item>
+  <item>
+    <title> DFS numbers as a monotone map</title>
+    <guid>https://www.bollu.github.io/dfs-numbers-as-a-monotone-map.html</guid>
+    <link>https://www.bollu.github.io/dfs-numbers-as-a-monotone-map.html</link>
+  </item>
+  <item>
+    <title> Self attention? not really</title>
+    <guid>https://www.bollu.github.io/self-attention-not-really.html</guid>
+    <link>https://www.bollu.github.io/self-attention-not-really.html</link>
+  </item>
+  <item>
+    <title> Coarse structures</title>
+    <guid>https://www.bollu.github.io/coarse-structures.html</guid>
+    <link>https://www.bollu.github.io/coarse-structures.html</link>
+  </item>
+  <item>
+    <title> Matroids for greedy algorithms (WIP)</title>
+    <guid>https://www.bollu.github.io/matroids-for-greedy-algorithms-wip.html</guid>
+    <link>https://www.bollu.github.io/matroids-for-greedy-algorithms-wip.html</link>
+  </item>
+  <item>
+    <title> Grokking Zariski</title>
+    <guid>https://www.bollu.github.io/grokking-zariski.html</guid>
+    <link>https://www.bollu.github.io/grokking-zariski.html</link>
+  </item>
+  <item>
+    <title> My preferred version of quicksort</title>
+    <guid>https://www.bollu.github.io/my-preferred-version-of-quicksort.html</guid>
+    <link>https://www.bollu.github.io/my-preferred-version-of-quicksort.html</link>
+  </item>
+  <item>
+    <title> Geometric proof of Cauchy Schwarz inequality</title>
+    <guid>https://www.bollu.github.io/geometric-proof-of-cauchy-schwarz-inequality.html</guid>
+    <link>https://www.bollu.github.io/geometric-proof-of-cauchy-schwarz-inequality.html</link>
+  </item>
+  <item>
+    <title> Dataflow analysis using Grobner basis</title>
+    <guid>https://www.bollu.github.io/dataflow-analysis-using-grobner-basis.html</guid>
+    <link>https://www.bollu.github.io/dataflow-analysis-using-grobner-basis.html</link>
+  </item>
+  <item>
+    <title> Fenwick trees and orbits</title>
+    <guid>https://www.bollu.github.io/fenwick-trees-and-orbits.html</guid>
+    <link>https://www.bollu.github.io/fenwick-trees-and-orbits.html</link>
+  </item>
+  <item>
+    <title> Dirichlet inversion</title>
+    <guid>https://www.bollu.github.io/dirichlet-inversion.html</guid>
+    <link>https://www.bollu.github.io/dirichlet-inversion.html</link>
+  </item>
+  <item>
+    <title> Incunabulum for the 21st century: Making the J interpreter compile in 2020</title>
+    <guid>https://www.bollu.github.io/incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020.html</guid>
+    <link>https://www.bollu.github.io/incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020.html</link>
+  </item>
+  <item>
+    <title> An example of a sequence whose successive terms get closer together but isn &apos; t Cauchy (does not converge)</title>
+    <guid>https://www.bollu.github.io/an-example-of-a-sequence-whose-successive-terms-get-closer-together-but-isnt-cauchy-does-not-converge.html</guid>
+    <link>https://www.bollu.github.io/an-example-of-a-sequence-whose-successive-terms-get-closer-together-but-isnt-cauchy-does-not-converge.html</link>
+  </item>
+  <item>
+    <title> Krylov subspace method</title>
+    <guid>https://www.bollu.github.io/krylov-subspace-method.html</guid>
+    <link>https://www.bollu.github.io/krylov-subspace-method.html</link>
+  </item>
+  <item>
+    <title> Good reference to the Rete pattern matching algorithm</title>
+    <guid>https://www.bollu.github.io/good-reference-to-the-rete-pattern-matching-algorithm.html</guid>
+    <link>https://www.bollu.github.io/good-reference-to-the-rete-pattern-matching-algorithm.html</link>
+  </item>
+  <item>
+    <title> Leapfrog Integration</title>
+    <guid>https://www.bollu.github.io/leapfrog-integration.html</guid>
+    <link>https://www.bollu.github.io/leapfrog-integration.html</link>
+  </item>
+  <item>
+    <title> Comparison of forward and reverse mode AD</title>
+    <guid>https://www.bollu.github.io/comparison-of-forward-and-reverse-mode-ad.html</guid>
+    <link>https://www.bollu.github.io/comparison-of-forward-and-reverse-mode-ad.html</link>
+  </item>
+  <item>
+    <title> An invitation to homology and cohomology, Part 1 --- Homology</title>
+    <guid>https://www.bollu.github.io/an-invitation-to-homology-and-cohomology-part-1-homology.html</guid>
+    <link>https://www.bollu.github.io/an-invitation-to-homology-and-cohomology-part-1-homology.html</link>
+  </item>
+  <item>
+    <title> An invitation to homology and cohomology, Part 2 --- Cohomology</title>
+    <guid>https://www.bollu.github.io/an-invitation-to-homology-and-cohomology-part-2-cohomology.html</guid>
+    <link>https://www.bollu.github.io/an-invitation-to-homology-and-cohomology-part-2-cohomology.html</link>
+  </item>
+  <item>
+    <title> Stuff I learnt in 2019</title>
+    <guid>https://www.bollu.github.io/stuff-i-learnt-in-2019.html</guid>
+    <link>https://www.bollu.github.io/stuff-i-learnt-in-2019.html</link>
+  </item>
+  <item>
+    <title> A motivation for p-adic analysis</title>
+    <guid>https://www.bollu.github.io/a-motivation-for-p-adic-analysis.html</guid>
+    <link>https://www.bollu.github.io/a-motivation-for-p-adic-analysis.html</link>
+  </item>
+  <item>
+    <title> Line of investigation to build physical intuition for semidirect products</title>
+    <guid>https://www.bollu.github.io/line-of-investigation-to-build-physical-intuition-for-semidirect-products.html</guid>
+    <link>https://www.bollu.github.io/line-of-investigation-to-build-physical-intuition-for-semidirect-products.html</link>
+  </item>
+  <item>
+    <title> Topology is really about computation --- part 2</title>
+    <guid>https://www.bollu.github.io/topology-is-really-about-computation-part-2.html</guid>
+    <link>https://www.bollu.github.io/topology-is-really-about-computation-part-2.html</link>
+  </item>
+  <item>
+    <title> Topology is really about computation --- part 1</title>
+    <guid>https://www.bollu.github.io/topology-is-really-about-computation-part-1.html</guid>
+    <link>https://www.bollu.github.io/topology-is-really-about-computation-part-1.html</link>
+  </item>
+  <item>
+    <title> PSLQ algorithm: finding integer relations between reals</title>
+    <guid>https://www.bollu.github.io/pslq-algorithm-finding-integer-relations-between-reals.html</guid>
+    <link>https://www.bollu.github.io/pslq-algorithm-finding-integer-relations-between-reals.html</link>
+  </item>
+  <item>
+    <title> Geometric characterization of normal subgroups</title>
+    <guid>https://www.bollu.github.io/geometric-characterization-of-normal-subgroups.html</guid>
+    <link>https://www.bollu.github.io/geometric-characterization-of-normal-subgroups.html</link>
+  </item>
+  <item>
+    <title> Handy characterization of adding an element into an ideal, proof that maximal ideal is prime</title>
+    <guid>https://www.bollu.github.io/handy-characterization-of-adding-an-element-into-an-ideal-proof-that-maximal-ideal-is-prime.html</guid>
+    <link>https://www.bollu.github.io/handy-characterization-of-adding-an-element-into-an-ideal-proof-that-maximal-ideal-is-prime.html</link>
+  </item>
+  <item>
+    <title> Radical ideals, nilpotents, and reduced rings</title>
+    <guid>https://www.bollu.github.io/radical-ideals-nilpotents-and-reduced-rings.html</guid>
+    <link>https://www.bollu.github.io/radical-ideals-nilpotents-and-reduced-rings.html</link>
+  </item>
+  <item>
+    <title> My disenchantment with abstract interpretation</title>
+    <guid>https://www.bollu.github.io/my-disenchantment-with-abstract-interpretation.html</guid>
+    <link>https://www.bollu.github.io/my-disenchantment-with-abstract-interpretation.html</link>
+  </item>
+  <item>
+    <title> Computing equivalent gate sets using grobner bases</title>
+    <guid>https://www.bollu.github.io/computing-equivalent-gate-sets-using-grobner-bases.html</guid>
+    <link>https://www.bollu.github.io/computing-equivalent-gate-sets-using-grobner-bases.html</link>
+  </item>
+  <item>
+    <title> The janus programming language --- Time reversible computation</title>
+    <guid>https://www.bollu.github.io/the-janus-programming-language-time-reversible-computation.html</guid>
+    <link>https://www.bollu.github.io/the-janus-programming-language-time-reversible-computation.html</link>
+  </item>
+  <item>
+    <title> A = B --- A book about proofs of combinatorial closed forms</title>
+    <guid>https://www.bollu.github.io/a-b-a-book-about-proofs-of-combinatorial-closed-forms.html</guid>
+    <link>https://www.bollu.github.io/a-b-a-book-about-proofs-of-combinatorial-closed-forms.html</link>
+  </item>
+  <item>
+    <title> Generating k bitsets of a given length n:</title>
+    <guid>https://www.bollu.github.io/generating-k-bitsets-of-a-given-length-n.html</guid>
+    <link>https://www.bollu.github.io/generating-k-bitsets-of-a-given-length-n.html</link>
+  </item>
+  <item>
+    <title> Bondi k-calculus</title>
+    <guid>https://www.bollu.github.io/bondi-k-calculus.html</guid>
+    <link>https://www.bollu.github.io/bondi-k-calculus.html</link>
+  </item>
+  <item>
+    <title> Topology as an object telling us what zero-locus is closed:</title>
+    <guid>https://www.bollu.github.io/topology-as-an-object-telling-us-what-zero-locus-is-closed.html</guid>
+    <link>https://www.bollu.github.io/topology-as-an-object-telling-us-what-zero-locus-is-closed.html</link>
+  </item>
+  <item>
+    <title> Vivado toolchain craziness </title>
+    <guid>https://www.bollu.github.io/vivado-toolchain-craziness.html</guid>
+    <link>https://www.bollu.github.io/vivado-toolchain-craziness.html</link>
+  </item>
+  <item>
+    <title> What the hell is a Grobner basis? Ideals as rewrite systems</title>
+    <guid>https://www.bollu.github.io/wh-a-grobner-basis-ideals-as-rewrite-systems.html</guid>
+    <link>https://www.bollu.github.io/wh-a-grobner-basis-ideals-as-rewrite-systems.html</link>
+  </item>
+  <item>
+    <title> Lie bracket versus torsion</title>
+    <guid>https://www.bollu.github.io/lie-bracket-versus-torsion.html</guid>
+    <link>https://www.bollu.github.io/lie-bracket-versus-torsion.html</link>
+  </item>
+  <item>
+    <title> Blog post: Weekend paper replication of STOKE, the stochastic superoptimizer</title>
+    <guid>https://www.bollu.github.io/blog-post-weekend-paper-replication-of-stoke-the-stochastic-superoptimizer.html</guid>
+    <link>https://www.bollu.github.io/blog-post-weekend-paper-replication-of-stoke-the-stochastic-superoptimizer.html</link>
+  </item>
+  <item>
+    <title> Collapsing BlockId, Label, Unique:</title>
+    <guid>https://www.bollu.github.io/collapsing-blockid-label-unique.html</guid>
+    <link>https://www.bollu.github.io/collapsing-blockid-label-unique.html</link>
+  </item>
+  <item>
+    <title> Spatial partitioning data structures in molecular dynamics</title>
+    <guid>https://www.bollu.github.io/spatial-partitioning-data-structures-in-molecular-dynamics.html</guid>
+    <link>https://www.bollu.github.io/spatial-partitioning-data-structures-in-molecular-dynamics.html</link>
+  </item>
+  <item>
+    <title> Vector: Arthur Whitney and text editors</title>
+    <guid>https://www.bollu.github.io/vector-arthur-whitney-and-text-editors.html</guid>
+    <link>https://www.bollu.github.io/vector-arthur-whitney-and-text-editors.html</link>
+  </item>
+  <item>
+    <title> Representing CPS in LLVM using the @coro.* intrinsics</title>
+    <guid>https://www.bollu.github.io/representing-cps-in-llvm-using-the-coro-intrinsics.html</guid>
+    <link>https://www.bollu.github.io/representing-cps-in-llvm-using-the-coro-intrinsics.html</link>
+  </item>
+  <item>
+    <title> Bug in the LLVM code generator: Lowering of MO_Add2 and MO_AddWordC</title>
+    <guid>https://www.bollu.github.io/bug-in-the-llvm-code-generator-lowering-of-moadd2-and-moaddwordc.html</guid>
+    <link>https://www.bollu.github.io/bug-in-the-llvm-code-generator-lowering-of-moadd2-and-moaddwordc.html</link>
+  </item>
+  <item>
+    <title> Discrete random distributions with conditioning in 20 lines of haskell</title>
+    <guid>https://www.bollu.github.io/discrete-random-distributions-with-conditioning-in-20-lines-of-haskell.html</guid>
+    <link>https://www.bollu.github.io/discrete-random-distributions-with-conditioning-in-20-lines-of-haskell.html</link>
+  </item>
+  <item>
+    <title> Everything you know about word2vec is wrong</title>
+    <guid>https://www.bollu.github.io/everything-you-know-about-word2vec-is-wrong.html</guid>
+    <link>https://www.bollu.github.io/everything-you-know-about-word2vec-is-wrong.html</link>
+  </item>
+  <item>
+    <title> Hamiltonian monte carlo, leapfrog integrators, and sympletic geometry</title>
+    <guid>https://www.bollu.github.io/hamiltonian-monte-carlo-leapfrog-integrators-and-sympletic-geometry.html</guid>
+    <link>https://www.bollu.github.io/hamiltonian-monte-carlo-leapfrog-integrators-and-sympletic-geometry.html</link>
+  </item>
+  <item>
+    <title> Small Haskell MCMC implementation</title>
+    <guid>https://www.bollu.github.io/small-haskell-mcmc-implementation.html</guid>
+    <link>https://www.bollu.github.io/small-haskell-mcmc-implementation.html</link>
+  </item>
+  <item>
+    <title> The smallest implementation of reverse mode AD (autograd) ever:</title>
+    <guid>https://www.bollu.github.io/the-smallest-implementation-of-reverse-mode-ad-autograd-ever.html</guid>
+    <link>https://www.bollu.github.io/the-smallest-implementation-of-reverse-mode-ad-autograd-ever.html</link>
+  </item>
+  <item>
+    <title> Timings of passes in GHC, and low hanging fruit in the backend:</title>
+    <guid>https://www.bollu.github.io/timings-of-passes-in-ghc-and-low-hanging-fruit-in-the-backend.html</guid>
+    <link>https://www.bollu.github.io/timings-of-passes-in-ghc-and-low-hanging-fruit-in-the-backend.html</link>
+  </item>
+  <item>
+    <title> Varargs in GHC: T7160.hs</title>
+    <guid>https://www.bollu.github.io/varargs-in-ghc-t7160hs.html</guid>
+    <link>https://www.bollu.github.io/varargs-in-ghc-t7160hs.html</link>
+  </item>
+  <item>
+    <title> Debugging debug info in GHC</title>
+    <guid>https://www.bollu.github.io/debugging-debug-info-in-ghc.html</guid>
+    <link>https://www.bollu.github.io/debugging-debug-info-in-ghc.html</link>
+  </item>
+  <item>
+    <title> GHC LLVM code generator: Switch to unreachable</title>
+    <guid>https://www.bollu.github.io/ghc-llvm-code-generator-switch-to-unreachable.html</guid>
+    <link>https://www.bollu.github.io/ghc-llvm-code-generator-switch-to-unreachable.html</link>
+  </item>
+  <item>
+    <title> Concurrency in Haskell</title>
+    <guid>https://www.bollu.github.io/concurrency-in-haskell.html</guid>
+    <link>https://www.bollu.github.io/concurrency-in-haskell.html</link>
+  </item>
+  <item>
+    <title> Handy list of differential geometry definitions</title>
+    <guid>https://www.bollu.github.io/handy-list-of-differential-geometry-definitions.html</guid>
+    <link>https://www.bollu.github.io/handy-list-of-differential-geometry-definitions.html</link>
+  </item>
+  <item>
+    <title> Lazy programs have space leaks, Strict programs have time leaks</title>
+    <guid>https://www.bollu.github.io/lazy-programs-have-space-leaks-strict-programs-have-time-leaks.html</guid>
+    <link>https://www.bollu.github.io/lazy-programs-have-space-leaks-strict-programs-have-time-leaks.html</link>
+  </item>
+  <item>
+    <title> Presburger arithmetic can represent the Collatz Conjecture</title>
+    <guid>https://www.bollu.github.io/presburger-arithmetic-can-represent-the-collatz-conjecture.html</guid>
+    <link>https://www.bollu.github.io/presburger-arithmetic-can-represent-the-collatz-conjecture.html</link>
+  </item>
+  <item>
+    <title> Using compactness to argue about covers</title>
+    <guid>https://www.bollu.github.io/using-compactness-to-argue-about-covers.html</guid>
+    <link>https://www.bollu.github.io/using-compactness-to-argue-about-covers.html</link>
+  </item>
+  <item>
+    <title> Japanese Financial Counting system</title>
+    <guid>https://www.bollu.github.io/japanese-financial-counting-system.html</guid>
+    <link>https://www.bollu.github.io/japanese-financial-counting-system.html</link>
+  </item>
+  <item>
+    <title> Stephen wolfram &apos; s live stream</title>
+    <guid>https://www.bollu.github.io/stephen-wolframs-live-stream.html</guid>
+    <link>https://www.bollu.github.io/stephen-wolframs-live-stream.html</link>
+  </item>
+  <item>
+    <title> Cleave as a word has some of the most irregular inflections</title>
+    <guid>https://www.bollu.github.io/cleave-as-a-word-has-some-of-the-most-irregular-inflections.html</guid>
+    <link>https://www.bollu.github.io/cleave-as-a-word-has-some-of-the-most-irregular-inflections.html</link>
+  </item>
+  <item>
+    <title> McCune &apos; s single axiom for group theory</title>
+    <guid>https://www.bollu.github.io/mccunes-single-axiom-for-group-theory.html</guid>
+    <link>https://www.bollu.github.io/mccunes-single-axiom-for-group-theory.html</link>
+  </item>
+  <item>
+    <title> Word2Vec C code implements gradient descent really weirdly</title>
+    <guid>https://www.bollu.github.io/word2vec-c-code-implements-gradient-descent-really-weirdly.html</guid>
+    <link>https://www.bollu.github.io/word2vec-c-code-implements-gradient-descent-really-weirdly.html</link>
+  </item>
+  <item>
+    <title> Arthur Whitney: dense code</title>
+    <guid>https://www.bollu.github.io/arthur-whitney-dense-code.html</guid>
+    <link>https://www.bollu.github.io/arthur-whitney-dense-code.html</link>
+  </item>
+  <item>
+    <title> How does one work with arrays in a linear language?</title>
+    <guid>https://www.bollu.github.io/how-does-one-work-with-arrays-in-a-linear-language.html</guid>
+    <link>https://www.bollu.github.io/how-does-one-work-with-arrays-in-a-linear-language.html</link>
+  </item>
+  <item>
+    <title> Linear optimisation is the same as linear feasibility checking</title>
+    <guid>https://www.bollu.github.io/linear-optimisation-is-the-same-as-linear-feasibility-checking.html</guid>
+    <link>https://www.bollu.github.io/linear-optimisation-is-the-same-as-linear-feasibility-checking.html</link>
+  </item>
+  <item>
+    <title> Quantum computation without complex numbers</title>
+    <guid>https://www.bollu.github.io/quantum-computation-without-complex-numbers.html</guid>
+    <link>https://www.bollu.github.io/quantum-computation-without-complex-numbers.html</link>
+  </item>
+  <item>
+    <title> Linguistic fun fact: Comparative Illusion</title>
+    <guid>https://www.bollu.github.io/linguistic-fun-fact-comparative-illusion.html</guid>
+    <link>https://www.bollu.github.io/linguistic-fun-fact-comparative-illusion.html</link>
+  </item>
+  <item>
+    <title> Long-form posts:</title>
+    <guid>https://www.bollu.github.io/long-form-posts.html</guid>
+    <link>https://www.bollu.github.io/long-form-posts.html</link>
+  </item>
+  <item>
+    <title> Big list of emacs gripes</title>
+    <guid>https://www.bollu.github.io/big-list-of-emacs-gripes.html</guid>
+    <link>https://www.bollu.github.io/big-list-of-emacs-gripes.html</link>
+  </item>
+  <item>
+    <title> Big list of Coq</title>
+    <guid>https://www.bollu.github.io/big-list-of-coq.html</guid>
+    <link>https://www.bollu.github.io/big-list-of-coq.html</link>
+  </item>
+  <item>
+    <title> Big list of writing</title>
+    <guid>https://www.bollu.github.io/big-list-of-writing.html</guid>
+    <link>https://www.bollu.github.io/big-list-of-writing.html</link>
+  </item>
+  <item>
+    <title> Big list of Latex</title>
+    <guid>https://www.bollu.github.io/big-list-of-latex.html</guid>
+    <link>https://www.bollu.github.io/big-list-of-latex.html</link>
+  </item>
+  <item>
+    <title> Big list of Architecture </title>
+    <guid>https://www.bollu.github.io/big-list-of-architecture.html</guid>
+    <link>https://www.bollu.github.io/big-list-of-architecture.html</link>
+  </item>
+  <item>
+    <title> Big list of Recipes </title>
+    <guid>https://www.bollu.github.io/big-list-of-recipes.html</guid>
+    <link>https://www.bollu.github.io/big-list-of-recipes.html</link>
+  </item>
+  <item>
+    <title> Big list of history</title>
+    <guid>https://www.bollu.github.io/big-list-of-history.html</guid>
+    <link>https://www.bollu.github.io/big-list-of-history.html</link>
+  </item>
+  <item>
+    <title> Big list of words</title>
+    <guid>https://www.bollu.github.io/big-list-of-words.html</guid>
+    <link>https://www.bollu.github.io/big-list-of-words.html</link>
+  </item>
+  <item>
+    <title> Big list of Music</title>
+    <guid>https://www.bollu.github.io/big-list-of-music.html</guid>
+    <link>https://www.bollu.github.io/big-list-of-music.html</link>
+  </item>
+  <item>
+    <title> Big list of Social Science </title>
+    <guid>https://www.bollu.github.io/big-list-of-social-science.html</guid>
+    <link>https://www.bollu.github.io/big-list-of-social-science.html</link>
+  </item>
+  <item>
+    <title> Big list of clojure </title>
+    <guid>https://www.bollu.github.io/big-list-of-clojure.html</guid>
+    <link>https://www.bollu.github.io/big-list-of-clojure.html</link>
+  </item>
+  <item>
+    <title> Big list of quotes</title>
+    <guid>https://www.bollu.github.io/big-list-of-quotes.html</guid>
+    <link>https://www.bollu.github.io/big-list-of-quotes.html</link>
+  </item>
+  <item>
+    <title> Empathy</title>
+    <guid>https://www.bollu.github.io/empathy.html</guid>
+    <link>https://www.bollu.github.io/empathy.html</link>
+  </item>
+  <item>
+    <title> Big list of Vim </title>
+    <guid>https://www.bollu.github.io/big-list-of-vim.html</guid>
+    <link>https://www.bollu.github.io/big-list-of-vim.html</link>
+  </item>
+  <item>
+    <title> Chess</title>
+    <guid>https://www.bollu.github.io/chess.html</guid>
+    <link>https://www.bollu.github.io/chess.html</link>
+  </item>
+  <item>
+    <title> Big list of shitposting</title>
+    <guid>https://www.bollu.github.io/big-list-of-shitposting.html</guid>
+    <link>https://www.bollu.github.io/big-list-of-shitposting.html</link>
+  </item>
+  <item>
+    <title> Cardistry</title>
+    <guid>https://www.bollu.github.io/cardistry.html</guid>
+    <link>https://www.bollu.github.io/cardistry.html</link>
+  </item>
+  <item>
+    <title> Poems to memorize</title>
+    <guid>https://www.bollu.github.io/poems-to-memorize.html</guid>
+    <link>https://www.bollu.github.io/poems-to-memorize.html</link>
+  </item>
+  <item>
+    <title> X86</title>
+    <guid>https://www.bollu.github.io/x86.html</guid>
+    <link>https://www.bollu.github.io/x86.html</link>
+  </item>
+</channel>
+</rss>

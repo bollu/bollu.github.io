@@ -35,28 +35,25 @@ using namespace std;
 using ll = long long;
 static const ll MAX_CHARS = 1e7;
 
-
 // indent for logging to tell which function is calling what.
 struct Logger {
-    static int G_LOG_INDENT;
-    const int indent;
-    Logger() : indent(G_LOG_INDENT) {
-        G_LOG_INDENT++;
-        if (indent > 40) {
-            assert(false && "indent more than 40 levels deep; you sure this is correct?");
-        }
+  static int G_LOG_INDENT;
+  const int indent;
+  Logger() : indent(G_LOG_INDENT) {
+    G_LOG_INDENT++;
+    if (indent > 40) {
+      assert(false &&
+             "indent more than 40 levels deep; you sure this is correct?");
     }
-    ~Logger() {
-        G_LOG_INDENT--;
+  }
+  ~Logger() { G_LOG_INDENT--; }
+  void print(std::ostream &o) {
+    for (int i = 0; i < indent; ++i) {
+      o << " ";
     }
-    void print(std::ostream &o) {
-        for(int i = 0; i < indent; ++i) {
-            o << " ";
-        }
-    }
+  }
 };
 int Logger::G_LOG_INDENT = 1;
-
 
 ll hashstr(const char *s, const ll len) {
   const ll p = 53;
@@ -352,29 +349,30 @@ bool strpeek(const char *haystack, const char *needle) {
   return needle[i] == '\0';
 }
 
-// consume UPTO non-whitespace or newline character. raw_input[retval] will be non-whitespace or newline
+// consume UPTO non-whitespace or newline character. raw_input[retval] will be
+// non-whitespace or newline
 L consumeIntraLineWhitespace(const char *raw_input, L loc) {
-    while(1) {
-        char c = raw_input[loc.si];
-        if (c == ' ' || c == '\t') { 
-            loc = loc.next(raw_input[loc.si]);
-        } else {
-            return loc;
-        }
+  while (1) {
+    char c = raw_input[loc.si];
+    if (c == ' ' || c == '\t') {
+      loc = loc.next(raw_input[loc.si]);
+    } else {
+      return loc;
     }
+  }
 }
 
-// consume UPTO non-whitespace character. raw_input[retval] will be non-whitespace/
-// ALSO consumes newlines.
+// consume UPTO non-whitespace character. raw_input[retval] will be
+// non-whitespace/ ALSO consumes newlines.
 L consumeInterLineWhitespace(const char *raw_input, L loc) {
-    while(1) {
-        char c = raw_input[loc.si];
-        if (c == '\n' || c == ' ' || c == '\t') { 
-            loc  = loc.next(raw_input[loc.si]);
-        } else {
-            return loc;
-        }
+  while (1) {
+    char c = raw_input[loc.si];
+    if (c == '\n' || c == ' ' || c == '\t') {
+      loc = loc.next(raw_input[loc.si]);
+    } else {
+      return loc;
     }
+  }
 }
 
 // consume till we file delim in raw_input.
@@ -407,7 +405,8 @@ T *tokenizeLineFragment(const char *s, const ll len, const L lbegin) {
   assert(lbegin.si < len);
 
   T *linkt = nullptr;
-  if (s[lbegin.si] == '[' && (linkt = tokenizeLink(s, len, lbegin)) != nullptr) {
+  if (s[lbegin.si] == '[' &&
+      (linkt = tokenizeLink(s, len, lbegin)) != nullptr) {
     logger.print(cerr);
     cerr << "tokenizeLineFragment:link(" << lbegin << ")\n";
     return linkt;
@@ -441,7 +440,8 @@ T *tokenizeLineFragment(const char *s, const ll len, const L lbegin) {
     }
 
     return new T(TT::LatexInline, Span(lbegin, lcur));
-  } else if (lbegin.si < len - 1 && (s[lbegin.si] == '*' || s[lbegin.si] == '_') &&
+  } else if (lbegin.si < len - 1 &&
+             (s[lbegin.si] == '*' || s[lbegin.si] == '_') &&
              s[lbegin.si + 1] == s[lbegin.si]) {
     logger.print(cerr);
     cerr << "tokenizeLineFragment:bold(" << lbegin << ")\n";
@@ -533,8 +533,10 @@ T *tokenizeInlineLine(const char *s, const ll len, const L lbegin) {
   cerr << "tokenizeInlineLine(" << lbegin << ")\n";
   vector<T *> toks;
   L lcur = lbegin;
-  while (1) { 
-    if (s[lcur.si] == '\n') { break; }
+  while (1) {
+    if (s[lcur.si] == '\n') {
+      break;
+    }
     T *t = tokenizeLineFragment(s, len, lcur);
     lcur = t->span.end;
     toks.push_back(t);
@@ -565,8 +567,11 @@ T *tokenizeLink(const char *s, const ll len, const L opensq) {
       break;
     }
 
-    // we have an `[` without an accompanying `]` on the same line, so this can't be a link...
-    if (s[lcur.si] == '\n') { return nullptr; }
+    // we have an `[` without an accompanying `]` on the same line, so this
+    // can't be a link...
+    if (s[lcur.si] == '\n') {
+      return nullptr;
+    }
   };
   assert(s[lcur.si] == ']');
 
@@ -584,7 +589,7 @@ T *tokenizeLink(const char *s, const ll len, const L opensq) {
   if (s[closeround.si] != ')') {
     return nullptr;
   } else {
-      closeround = closeround.next(')');
+    closeround = closeround.next(')');
   }
 
   char *link = (char *)calloc((closeround.si - openround.si), sizeof(char));
@@ -613,36 +618,42 @@ T *tokenizeHyphenListItem(const char *s, const ll len, const L lhyphen) {
     toks.push_back(t);
     lcur = t->span.end;
     assert(lcur.si == len || s[lcur.si] == '\n');
-    if (lcur.si == len) { break; }
-    else {
-        // 1. consume the newline.
-        lcur = lcur.next(s[lcur.si]); 
+    if (lcur.si == len) {
+      break;
+    } else {
+      // 1. consume the newline.
+      lcur = lcur.next(s[lcur.si]);
 
-        // decide if we continue the hyphen.
-        if (s[lcur.si] != ' ' && s[lcur.si] != '\n' && s[lcur.si] != '-') {
-            printferr(lcur, s, "ERROR: list hyphen must either have (1) new aligned text, (2) two newlines, (3) a new list hyphen.");
-            printferr(lhyphen, s, "ERROR: incorrectly terminated list hyphen (started here)...");
-            assert(false && "incorrectly terminated list hyphen");
+      // decide if we continue the hyphen.
+      if (s[lcur.si] != ' ' && s[lcur.si] != '\n' && s[lcur.si] != '-') {
+        printferr(lcur, s,
+                  "ERROR: list hyphen must either have (1) new aligned text, "
+                  "(2) two newlines, (3) a new list hyphen.");
+        printferr(
+            lhyphen, s,
+            "ERROR: incorrectly terminated list hyphen (started here)...");
+        assert(false && "incorrectly terminated list hyphen");
+      } else if (s[lcur.si] == '\n' || s[lcur.si] == '-') {
+        break;
+      } else {
+        lcur = consumeIntraLineWhitespace(s, lcur);
+        if (s[lcur.si] == '\n') {
+          printferr(lcur, s,
+                    "ERROR: list hyphen has incorrect white space ending in a "
+                    "newline after it");
+          printferr(
+              lhyphen, s,
+              "ERROR: incorrectly terminated list hyphen (started here)...");
+          assert(false && "incorrect whitespace-like-line after list hyphen");
         }
-        else if (s[lcur.si] == '\n' || s[lcur.si] == '-') { 
-            break;
-        }
-        else {
-            lcur = consumeIntraLineWhitespace(s, lcur);
-            if (s[lcur.si] == '\n') {
-                printferr(lcur, s, "ERROR: list hyphen has incorrect white space ending in a newline after it");
-                printferr(lhyphen, s, "ERROR: incorrectly terminated list hyphen (started here)...");
-                assert(false && "incorrect whitespace-like-line after list hyphen");
-            }
 
-            // we have whitespace followed by characters. good, continue.
-            continue;
-        }
+        // we have whitespace followed by characters. good, continue.
+        continue;
+      }
     }
   }
   return new TInlineGroup(toks);
 }
-
 
 // return if s[lbegin...] = <number>"."
 // eg.
@@ -661,7 +672,7 @@ bool isNumberedListBegin(const char *s, const ll len, const L lbegin) {
 
 // we are assuming that this is called on the *first* list item that
 // has been seen.
-// s[lhyphen] == start of number; 
+// s[lhyphen] == start of number;
 T *tokenizeNumberedListItem(const char *s, const ll len, const L lhyphen,
                             const ll curnum) {
 
@@ -677,7 +688,7 @@ T *tokenizeNumberedListItem(const char *s, const ll len, const L lhyphen,
     assert(false && "list item not respecting numbering.");
   }
 
-  assert(strpeek(s+lhyphen.si, curitem));
+  assert(strpeek(s + lhyphen.si, curitem));
   L lcur = lhyphen.next(curitem);
 
   vector<T *> toks;
@@ -686,31 +697,39 @@ T *tokenizeNumberedListItem(const char *s, const ll len, const L lhyphen,
     toks.push_back(t);
     lcur = t->span.end;
     assert(lcur.si == len || s[lcur.si] == '\n');
-    if (lcur.si == len) { break; }
-    else {
-        // 1. consume the newline.
-        lcur = lcur.next(s[lcur.si]); 
+    if (lcur.si == len) {
+      break;
+    } else {
+      // 1. consume the newline.
+      lcur = lcur.next(s[lcur.si]);
 
-        // decide if we continue the hyphen.
-        if (s[lcur.si] != ' ' && s[lcur.si] != '\n' && !isNumberedListBegin(s, len, lcur)) {
-            printferr(lcur, s, "ERROR: list hyphen must either have (1) new aligned text, (2) two newlines, (3) a new numbered list beginning.");
-            printferr(lhyphen, s, "ERROR: incorrectly terminated list hyphen (started here)...");
-            assert(false && "incorrectly terminated list hyphen");
+      // decide if we continue the hyphen.
+      if (s[lcur.si] != ' ' && s[lcur.si] != '\n' &&
+          !isNumberedListBegin(s, len, lcur)) {
+        printferr(lcur, s,
+                  "ERROR: list hyphen must either have (1) new aligned text, "
+                  "(2) two newlines, (3) a new numbered list beginning.");
+        printferr(
+            lhyphen, s,
+            "ERROR: incorrectly terminated list hyphen (started here)...");
+        assert(false && "incorrectly terminated list hyphen");
+      } else if (s[lcur.si] == '\n' || isNumberedListBegin(s, len, lcur)) {
+        break;
+      } else {
+        lcur = consumeIntraLineWhitespace(s, lcur);
+        if (s[lcur.si] == '\n') {
+          printferr(lcur, s,
+                    "ERROR: list hyphen has incorrect white space ending in a "
+                    "newline after it");
+          printferr(
+              lhyphen, s,
+              "ERROR: incorrectly terminated list hyphen (started here)...");
+          assert(false && "incorrect whitespace-like-line after list hyphen");
         }
-        else if (s[lcur.si] == '\n' || isNumberedListBegin(s, len, lcur)) { 
-            break;
-        }
-        else {
-            lcur = consumeIntraLineWhitespace(s, lcur);
-            if (s[lcur.si] == '\n') {
-                printferr(lcur, s, "ERROR: list hyphen has incorrect white space ending in a newline after it");
-                printferr(lhyphen, s, "ERROR: incorrectly terminated list hyphen (started here)...");
-                assert(false && "incorrect whitespace-like-line after list hyphen");
-            }
 
-            // we have whitespace followed by characters. good, continue.
-            continue;
-        }
+        // we have whitespace followed by characters. good, continue.
+        continue;
+      }
     }
   }
   return new TInlineGroup(toks);
@@ -735,7 +754,6 @@ T *tokenizeQuoteItem(const char *s, const ll len, const L lquote) {
   }
   return new TQuote(Span(lquote, lcur), toks);
 }
-
 
 // LIST :=
 //  | INLINE-BLOCK "-" LIST
@@ -893,12 +911,12 @@ T *tokenizeBlock(const char *s, const ll len, const L lbegin) {
     }
     return new TListNumbered(toks);
   } else if (s[lcur.si] == '>') {
-      return tokenizeQuoteItem(s, len, lcur);
+    return tokenizeQuoteItem(s, len, lcur);
   } else {
 
     // consume whitespace.
-    while(s[lcur.si] == '\n' || s[lcur.si] == '\t' || s[lcur.si] == ' ') {
-        lcur = lcur.next(s[lcur.si]);
+    while (s[lcur.si] == '\n' || s[lcur.si] == '\t' || s[lcur.si] == ' ') {
+      lcur = lcur.next(s[lcur.si]);
     }
     // TODO: add paragraph here!
     return tokenizeInlineLine(s, len, lbegin);
@@ -911,7 +929,7 @@ void tokenize(const char *s, const ll len, vector<T *> &ts) {
   while (span.end.si < len) {
     cerr << "\n";
     logger.print(cerr);
-    cerr << "tokenize loop(" << span.end <<")\n";
+    cerr << "tokenize loop(" << span.end << ")\n";
     T *t = tokenizeBlock(s, len, span.end);
     assert(t != nullptr);
     ts.push_back(t);
@@ -1379,16 +1397,6 @@ void toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
   assert(false && "unreachabe");
 }
 
-#define utterances_preamble                                                    \
-  "<script src=\"https://utteranc.es/client.js\""                              \
-  "        repo=\"bollu/bollu.github.io\""                                     \
-  "        issue-term=\"pathname\""                                            \
-  "        label=\"question\""                                                 \
-  "        theme=\"github-light\""                                             \
-  "        crossorigin=\"anonymous\""                                          \
-  "        async>"                                                             \
-  "</script>"
-
 // TUFTE
 // <body vlink="#660000" text="#000000" link="#CC0000"
 //  bgcolor="#FFFFF3" alink="#660000">
@@ -1397,6 +1405,8 @@ const char html_preamble[] =
     "<meta charset='UTF-8'>"
     "<html>"
     "<head>"
+    // ===RSS===
+    "<link rel='alternate' type='application/rss+xml' href='feed.rss' title='" "A universe of sorts'" "/>"
     // ===KateX===
     "<link rel='stylesheet' href='katex/katex.min.css'"
     "    "
@@ -1513,23 +1523,30 @@ const char html_preamble[] =
     "<body>"
     "<div class='container'>";
 
+#define utterances_preamble                                                    \
+  "<script src=\"https://utteranc.es/client.js\""                              \
+  "        repo=\"bollu/bollu.github.io\""                                     \
+  "        issue-term=\"pathname\""                                            \
+  "        label=\"question\""                                                 \
+  "        theme=\"github-light\""                                             \
+  "        crossorigin=\"anonymous\""                                          \
+  "        async>"                                                             \
+  "</script>"
+
+
 const char html_postamble[] = "</container>"
                               "</body>"
                               "</html>";
 
+#define CONFIG_WEBSITE_RSS_DESCRIPTION "A universe of Sorts"
 const char CONFIG_KATEX_PATH[] = "/home/bollu/blog/katex/katex.min.js";
 const char CONFIG_PRISM_PATH[] = "/home/bollu/blog/prism/prism.js";
+const char CONFIG_WEBSITE_URL_NO_TRAILING_SLASH[] =
+    "https://www.bollu.github.io";
+const char CONFIG_INPUT_MARKDOWN_PATH[] = "/home/bollu/blog/README.md";
+const char CONFIG_OUTPUT_DIRECTORY_NO_TRAINING_SLASH[] = "/home/bollu/blog";
 
 static const ll MAX_OUTPUT_BUF_LEN = (ll)1e9L;
-
-int option_index(const int argc, char **argv, const char *opt) {
-  for (int i = 1; i < argc; ++i) {
-    if (!strcmp(argv[i], opt)) {
-      return i;
-    }
-  }
-  return 0;
-}
 
 char raw_input[MAX_CHARS];
 
@@ -1581,27 +1598,105 @@ long long writeTableOfContentsHTML(duk_context *katex_ctx,
   return outlen;
 }
 
-void writeRSSFeed(FILE *frss, const vector<T *> &ts) {
-  assert(frss != nullptr);
-  // https://www.mnot.net/rss/tutorial/
-  fprintf(frss, "<?xml version=\"1.0\"?>");
-  fprintf(frss, "<rss version=\"2.0\">");
-  fprintf(frss, "<channel>");
-  fprintf(frss, "<title>A universe of sorts</title>");
-  fprintf(frss, "<link>http://bollu.github.io/</link>");
+struct RSS {
 
-  // fprintf("<description>My example channel</description>");
-  fprintf(frss, "</rss>");
-}
+  // https://en.wikipedia.org/wiki/Character_encodings_in_HTML#XML_character_references
+  static void writeEscapedCharacter(char c, std::string &out) {
+    if (c == '<') {
+      out += " &lt; ";
+    } else if (c == '>') {
+      out += " &gt; ";
+    } else if (c == '\"') {
+      out += " &quot; ";
+    } else if (c == '\'') {
+      out += " &apos; ";
+    } else {
+      out.push_back(c);
+    }
+  }
+
+  static void mkHeadingRSSTitle(const char *raw_input, T *t, std::string &out) {
+    if (t->ty == TT::InlineGroup) {
+      TInlineGroup *group = (TInlineGroup *)t;
+      for (T *item : group->items) {
+        mkHeadingRSSTitle(raw_input, item, out);
+      }
+    } else if (t->ty == TT::Heading) {
+      THeading *heading = (THeading *)t;
+      mkHeadingRSSTitle(raw_input, heading->item, out);
+    } else if (t->ty == TT::Bold) {
+      TBold *bold = (TBold *)t;
+      mkHeadingRSSTitle(raw_input, bold->item, out);
+    } else if (t->ty == TT::Italic) {
+      TItalic *italic = (TItalic *)t;
+      mkHeadingRSSTitle(raw_input, italic->item, out);
+    } else if (t->ty == TT::Link) {
+      TLink *link = (TLink *)t;
+      mkHeadingRSSTitle(raw_input, link->text, out);
+    } else if (t->ty == TT::CodeInline || t->ty == TT::LatexInline) {
+      for (int i = t->span.begin.si + 1; i < t->span.end.si - 1; ++i) {
+        writeEscapedCharacter(raw_input[i], out);
+      }
+    } else if (t->ty == TT::RawText) {
+      for (int i = t->span.begin.si; i < t->span.end.si; ++i) {
+        writeEscapedCharacter(raw_input[i], out);
+      }
+    } else {
+      printferr(t->span.begin, raw_input,
+                "unknown type of token type in a heading: |%d|", t->ty);
+      std::cerr << "unknown token of type: |" << t->ty << "|\n";
+      assert(false && "unknown type of heading to convert in RSS title");
+    }
+  }
+  // https://www.mnot.net/rss/tutorial/
+  static void writeRSSFeed(KEEP FILE *frss, KEEP const char *raw_input,
+                           const vector<T *> &ts) {
+    assert(frss != nullptr);
+    // https://www.mnot.net/rss/tutorial/
+    fprintf(frss, "<?xml version=\"1.0\"?>\n");
+    fprintf(frss, "<rss version=\"2.0\">\n");
+    fprintf(frss, "<channel>\n");
+    fprintf(frss, "<title>A universe of sorts</title>\n");
+    fprintf(frss, "<link>http://bollu.github.io/</link>\n");
+    fprintf(frss, "<description>%s</description>\n",
+            CONFIG_WEBSITE_RSS_DESCRIPTION);
+
+    for (ll ix_h1 = 0; ix_h1 < ts.size(); ++ix_h1) {
+      if (!is_h1(ts[ix_h1])) {
+        continue;
+      }
+      assert(is_h1(ts[ix_h1]));
+
+      // <item>
+      // <title>News for September the Second</title>
+      // <link>http://example.com/2002/09/01</link>
+      // <description>other things happened today</description>
+      // </item>
+
+      THeading *theading = (THeading *)ts[ix_h1];
+      // TODO: make this a useful string of text, not the raw fucking URL
+      const char *url = mkHeadingURL(raw_input, theading);
+      std::string title;
+      mkHeadingRSSTitle(raw_input, theading, title);
+
+      fprintf(frss, "  <item>\n");
+      fprintf(frss, "    <title>%s</title>\n", title.c_str());
+      // tell the aggregators that we are using RSS 2.0
+      fprintf(frss, "    <guid>%s/%s.html</guid>\n",
+              CONFIG_WEBSITE_URL_NO_TRAILING_SLASH, url);
+      fprintf(frss, "    <link>%s/%s.html</link>\n",
+              CONFIG_WEBSITE_URL_NO_TRAILING_SLASH, url);
+      fprintf(frss, "  </item>\n");
+    }
+    // end the file.
+    fprintf(frss, "</channel>\n");
+    fprintf(frss, "</rss>");
+  }
+};
 
 int main(int argc, char **argv) {
-  // 1. Load options
-  // ---------------
-  if (argc != 3) {
-    printf("expected usage: %s <input md path> <output folder path>\n",
-           argv[0]);
-    return 1;
-  }
+  assert(argc == 1 && "usage: builder (options are by changing CONFIG_* "
+                      "variables and recompiling");
 
   // 1. Initialize Duck context for katex
   // --------------------------
@@ -1691,9 +1786,11 @@ int main(int argc, char **argv) {
 
   // 2. Open markdown file
   // ---------------------
-  FILE *fin = fopen(argv[1], "rb");
+  FILE *fin = fopen(CONFIG_INPUT_MARKDOWN_PATH, "rb");
   if (fin == nullptr) {
-    printf("unable to open file: |%s|\n", argv[1]);
+    printf("unable to open file: |%s|. Please set |CONFIG_INPUT_MARKDOWN_PATH| "
+           "in the source code.\n",
+           CONFIG_INPUT_MARKDOWN_PATH);
     return -1;
   }
 
@@ -1725,6 +1822,7 @@ int main(int argc, char **argv) {
     char *index_html_buf = (char *)calloc(MAX_OUTPUT_BUF_LEN, sizeof(char));
     ll outlen = 0;
     outlen += sprintf(index_html_buf + outlen, "%s", html_preamble);
+
     for (int i = 0; i < ix_h1; ++i) {
       toHTML(katex_ctx, prism_ctx, raw_input, ts[i], outlen, index_html_buf);
     }
@@ -1735,7 +1833,8 @@ int main(int argc, char **argv) {
     outlen += sprintf(index_html_buf + outlen, "%s", html_postamble);
 
     char index_html_path[1024];
-    sprintf(index_html_path, "%s/index.html", argv[2]);
+    sprintf(index_html_path, "%s/index.html",
+            CONFIG_OUTPUT_DIRECTORY_NO_TRAINING_SLASH);
     FILE *f = fopen(index_html_path, "wb");
     if (f == nullptr) {
       fprintf(stderr, "===unable to open HTML file: |%s|===", index_html_path);
@@ -1773,7 +1872,8 @@ int main(int argc, char **argv) {
 
     // [ix_start, ix_h1) contains the new article
     char html_path[1024];
-    sprintf(html_path, "%s/%s.html", argv[2], url);
+    sprintf(html_path, "%s/%s.html", CONFIG_OUTPUT_DIRECTORY_NO_TRAINING_SLASH,
+            url);
 
     FILE *f = fopen(html_path, "wb");
     if (f == nullptr) {
@@ -1787,13 +1887,15 @@ int main(int argc, char **argv) {
 
   // === write out RSS ===
   char rss_feed_path[1024];
-  sprintf(rss_feed_path, "%s/feed.rss", argv[2]);
+  sprintf(rss_feed_path, "%s/feed.rss",
+          CONFIG_OUTPUT_DIRECTORY_NO_TRAINING_SLASH);
   FILE *frss = fopen(rss_feed_path, "wb");
   if (frss == nullptr) {
     fprintf(stderr, "===unable to open RSS file: |%s|===\n", rss_feed_path);
     return 1;
   }
-  writeRSSFeed(frss, ts);
+
+  RSS::writeRSSFeed(frss, raw_input, ts);
   fclose(frss);
 
   return 0;
