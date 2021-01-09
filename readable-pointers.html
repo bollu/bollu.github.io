@@ -7,9 +7,9 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=readable-pointers href='#readable-pointers'> § </a><span class='centered'> Readable pointers</h2>
-I recently had to debug a whole bunch of code that manipuates pointers, so I
-need to stare at random things like <code>0x7f7d6ab2c0c0</code>, like so:
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style><script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></head><body><div class='container'><h2><a id=readable-pointers href='#readable-pointers'> § </a><span class='centered'> Readable pointers</h2>
+<span class='centered'>I recently had to debug a whole bunch of code that manipuates pointers, so I
+<span class='centered'>need to stare at random things like <code>0x7f7d6ab2c0c0</code>, like so:
 <pre><code>mkClosure_capture0_args0 (0x7f079ae2a0c0:) -> 0x556b95a23350:
 mkClosure_capture0_args0 (0x7f079ae2a0e0:) -> 0x556b95a3f3e0:
 mkClosure_capture0_args2 (0x7f079ae2a000:, 
@@ -27,8 +27,8 @@ evalClosure (0x556b95a232e0:)
   ⋮extractConstructorArg  0 -> 0x2:
   ⋮mkConstructor1 (MkSimpleInt, 0x3) -> 0x556b95902a30:
 =>0x556b95902a30:
-</code></pre> I got annoyed because it's hard to spot differences across numbers. So I wrote
- a small '''algorithm''' that converts this into something pronounceable:
+</code></pre><span class='centered'> I got annoyed because it's hard to spot differences across numbers. So I wrote
+<span class='centered'> a small '''algorithm''' that converts this into something pronounceable:
 <pre><code><span class="token keyword">char</span> <span class="token operator">*</span><span class="token function">getPronouncableNum</span><span class="token punctuation">(</span>size_t N<span class="token punctuation">)</span> <span class="token punctuation">{</span>
      <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>cs <span class="token operator">=</span> <span class="token string">"bcdfghjklmnpqrstvwxzy"</span><span class="token punctuation">;</span>
      <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>vs <span class="token operator">=</span> <span class="token string">"aeiou"</span><span class="token punctuation">;</span>
@@ -47,7 +47,7 @@ evalClosure (0x556b95a232e0:)
      <span class="token keyword">return</span> <span class="token function">strdup</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-which gives me the much more pleasant output:
+<span class='centered'>which gives me the much more pleasant output:
 <pre><code>mkClosure_capture0_args0 (0x7fbf49b6d0c0:cisi-jece-xecu-yu) 
   -> 0x561c5f11f9d0:suje-zoni-ciho-ko
 mkClosure_capture0_args0 (0x7fbf49b6d0e0:qosi-jece-xecu-yu) 
@@ -70,10 +70,9 @@ evalClosure (0x561c5f11f960:kuhe-zoni-ciho-ko)
   ⋮mkConstructor1 (MkSimpleInt, 0x3) -> 0x561c5f100010:kuqi-koni-ciho-ko
 =>0x561c5f100010:kuqi-koni-ciho-ko
 </code></pre>
-The strings of the form <code>ziqi-jece-xecu-yu</code> makes it way easier to see control flow.
-I can also see if two pointers are close, based on shared suffixes: ciho-ko is
-shared, which means the numbers are themselves close.
-<ul><li><span class='centered'> It turns out there's a system called <a href=https://arxiv.org/html/0901.4016><span class='centered'>proquints</a>
-  that allows for such a thing already!</li></ul>
+<span class='centered'>The strings of the form <code>ziqi-jece-xecu-yu</code> makes it way easier to see control flow.
+<span class='centered'>I can also see if two pointers are close, based on shared suffixes: ciho-ko is
+<span class='centered'>shared, which means the numbers are themselves close.
+<ul><li><span class='centered'><span class='centered'> It turns out there's a system called <a href=https://arxiv.org/html/0901.4016><span class='centered'>proquints</a>)<span class='centered'>that allows for such a thing already!</li></ul>
 
 </container></body></html>

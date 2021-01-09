@@ -7,31 +7,39 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=good-reference-to-the-rete-pattern-matching-algorithm href='#good-reference-to-the-rete-pattern-matching-algorithm'> § </a><span class='centered'> Good reference to the Rete pattern matching algorithm</h2>
-The <a href=https://en.wikipedia.org/wiki/Rete_algorithm><span class='centered'>Rete pattern matching algorithm</a>
-is an algorithm that allows matching a huge number of rules with a huge database
-of "facts".
-MLIR ("multi-language intermediate representation") is a new technology that
-hopes to centralize much of the research and development of various compilers
-into a single authoritative source. The major claim-to-fame is that it allows
-one to mix various "dialects" (much as Racket does). So, to a first order
-approximation, MLIR is "JSON for compiler intermediate representations".
-What MLIR gets right is <i><span class='centered'>tooling</i>. They take the experience that the LLVM project
-has mined for the last decade and a half, and bake many of the good stuff that
-came with LLVM right in. For example, MLIR comes in-built with a pretty printer,
-a notion of types, a notion of "attributes", SSA, enforced provenance
-tracking of code (so one can <i><span class='centered'>always</i> know what the original source code was
-that led to some assembly). Sound engineering might see MLIR succeed where
-many others failed.
-I was reminded of Rete since the MLIR folks are trying to solve the pattern
-matching problem in general for their <a href=https://mlir.llvm.org/docs/GenericDAGRewriter/><span class='centered'>Generic DAG Rewriter</a>.
-They currently just use a worklist based algorithm. I'm trying to understand
-if Rete can be used instead. Rete is famous for being hard to understand,
-so I began a quest to look for good sources to implement it. I found a great
-<a href=http://reports-archive.adm.cs.cmu.edu/anon/1995/CMU-CS-95-113.pdf><span class='centered'>PhD thesis written by Robert B. Doorenboos</a>,
-which quips:
-<blockquote><span class='centered'> Since the Rete match algorithm provides the starting point for much of the work in this thesis,<span class='centered'> this chapter describes Rete. Unfortunately, most of the descriptions of Rete in the literature<span class='centered'> are not particularly lucid,1 which is perhaps why Rete has acquired \a reputation for extreme<span class='centered'> differentialculty."(Perlin, 1990b) To remedy this situation, this chapter describes Rete in a tutorial<span class='centered'> style, rather than just briey reviewing it and referring the reader to the literature for a full<span class='centered'> description. We will first give an overview of Rete, and then discuss the principle data structures<span class='centered'> and procedures commonly used to implement it. High-level pseudocode will be given for many<span class='centered'> of the structures and procedures, so that this chapter may serve as a guide to readers who want<span class='centered'> to implement rete (or some variant) in their own systems.</blockquote>
-I now have a reference to an accessible description of this stuff. I might
-implement Rete to understand it, so that it's part of my toolkit if I ever
-need it.
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style><script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></head><body><div class='container'><h2><a id=good-reference-to-the-rete-pattern-matching-algorithm href='#good-reference-to-the-rete-pattern-matching-algorithm'> § </a><span class='centered'> Good reference to the Rete pattern matching algorithm</h2>
+<span class='centered'>The <a href=https://en.wikipedia.org/wiki/Rete_algorithm><span class='centered'>Rete pattern matching algorithm</a>)
+<span class='centered'>is an algorithm that allows matching a huge number of rules with a huge database
+<span class='centered'>of "facts".
+<span class='centered'>MLIR ("multi-language intermediate representation") is a new technology that
+<span class='centered'>hopes to centralize much of the research and development of various compilers
+<span class='centered'>into a single authoritative source. The major claim-to-fame is that it allows
+<span class='centered'>one to mix various "dialects" (much as Racket does). So, to a first order
+<span class='centered'>approximation, MLIR is "JSON for compiler intermediate representations".
+<span class='centered'>What MLIR gets right is <i><span class='centered'>tooling</i>. They take the experience that the LLVM project
+<span class='centered'>has mined for the last decade and a half, and bake many of the good stuff that
+<span class='centered'>came with LLVM right in. For example, MLIR comes in-built with a pretty printer,
+<span class='centered'>a notion of types, a notion of "attributes", SSA, enforced provenance
+<span class='centered'>tracking of code (so one can <i><span class='centered'>always</i> know what the original source code was
+<span class='centered'>that led to some assembly). Sound engineering might see MLIR succeed where
+<span class='centered'>many others failed.
+<span class='centered'>I was reminded of Rete since the MLIR folks are trying to solve the pattern
+<span class='centered'>matching problem in general for their <a href=https://mlir.llvm.org/docs/GenericDAGRewriter/><span class='centered'>Generic DAG Rewriter</a>).
+<span class='centered'>They currently just use a worklist based algorithm. I'm trying to understand
+<span class='centered'>if Rete can be used instead. Rete is famous for being hard to understand,
+<span class='centered'>so I began a quest to look for good sources to implement it. I found a great
+<span class='centered'><a href=http://reports-archive.adm.cs.cmu.edu/anon/1995/CMU-CS-95-113.pdf><span class='centered'>PhD thesis written by Robert B. Doorenboos</a>),
+<span class='centered'>which quips:
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<span class='centered'>I now have a reference to an accessible description of this stuff. I might
+<span class='centered'>implement Rete to understand it, so that it's part of my toolkit if I ever
+<span class='centered'>need it.
 </container></body></html>

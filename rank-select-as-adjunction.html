@@ -7,12 +7,12 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=rank-select-as-adjunction href='#rank-select-as-adjunction'> § </a><span class='centered'> Rank-select as adjunction</h2>
-We will introduce two operations <code>rank</code>, <code>select</code>, --- these are used to
-build memory-efficient data structures that can still be queried quickly.
-We will show how <code>rank</code> and <code>select</code> are adjoint. This will also us to also
-consider <code>coselect</code>, which is a variation of <code>select</code> that is not commonly
-discussed.
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style><script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></head><body><div class='container'><h2><a id=rank-select-as-adjunction href='#rank-select-as-adjunction'> § </a><span class='centered'> Rank-select as adjunction</h2>
+<span class='centered'>We will introduce two operations <code>rank</code>, <code>select</code>, --- these are used to
+<span class='centered'>build memory-efficient data structures that can still be queried quickly.
+<span class='centered'>We will show how <code>rank</code> and <code>select</code> are adjoint. This will also us to also
+<span class='centered'>consider <code>coselect</code>, which is a variation of <code>select</code> that is not commonly
+<span class='centered'>discussed.
 <pre><code><span class="token comment">{-# LANGUAGE GeneralizedNewtypeDeriving #-}</span>
 
 <span class="token import-statement"><span class="token keyword">import</span> Data.List</span>
@@ -32,16 +32,16 @@ discussed.
 <span class="token hvariable">rank</span> <span class="token operator">::</span> <span class="token constant">Eq</span> <span class="token hvariable">a</span> <span class="token operator">=></span> <span class="token hvariable">a</span> <span class="token operator">-></span> <span class="token punctuation">[</span><span class="token hvariable">a</span><span class="token punctuation">]</span> <span class="token operator">-></span> <span class="token constant">Ix</span> <span class="token operator">-></span> <span class="token constant">Count</span>
 <span class="token hvariable">rank</span> <span class="token hvariable">a</span> <span class="token hvariable">as</span> <span class="token punctuation">(</span><span class="token constant">Ix</span> <span class="token hvariable">ix</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token hvariable">eqscan</span> <span class="token hvariable">a</span> <span class="token hvariable">as</span><span class="token punctuation">)</span> <span class="token operator">!!</span> <span class="token hvariable">ix</span>
 </code></pre>
-Given this, we can prove that <code>select</code> and <code>rank</code> are adjunctions. There
-are different ways to think about this. My favourite way to is to notice
-that an <code>Ix</code> (index) is much "finer" information than <code>Count</code>. Hence,
-the concrete domain must be <code>Ix</code>, the abstract domain must be <code>Count</code>,
-and rank-select is an abstract interpretation!
+<span class='centered'>Given this, we can prove that <code>select</code> and <code>rank</code> are adjunctions. There
+<span class='centered'>are different ways to think about this. My favourite way to is to notice
+<span class='centered'>that an <code>Ix</code> (index) is much "finer" information than <code>Count</code>. Hence,
+<span class='centered'>the concrete domain must be <code>Ix</code>, the abstract domain must be <code>Count</code>,
+<span class='centered'>and rank-select is an abstract interpretation!
 <h4><a id=co-select href='#co-select'> § </a><span class='centered'> Co-select</h4>
-We can build another version of <code>select</code> called <code>co-select</code> that scans
-from the right. Alternatively, it finds on the reverse list:
+<span class='centered'>We can build another version of <code>select</code> called <code>co-select</code> that scans
+<span class='centered'>from the right. Alternatively, it finds on the reverse list:
 <pre><code>coselect :: Eq a => a -> [a] -> Count -> Maybe Ix
 coselect a0 as c = Ix <$> findIndex (== c) (reverse (eqscan a0 as))
 </code></pre>
-Thanks to Edward Kmett for teaching me this.
+<span class='centered'>Thanks to Edward Kmett for teaching me this.
 </container></body></html>

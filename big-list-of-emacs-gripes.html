@@ -7,50 +7,50 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=big-list-of-emacs-gripes href='#big-list-of-emacs-gripes'> § </a><span class='centered'> Big list of emacs gripes</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style><script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></head><body><div class='container'><h2><a id=big-list-of-emacs-gripes href='#big-list-of-emacs-gripes'> § </a><span class='centered'> Big list of emacs gripes</h2>
 <h4><a id=markdown-mode-lags-when-i-open-a-paren-for-a-link href='#markdown-mode-lags-when-i-open-a-paren-for-a-link'> § </a><span class='centered'> <code>markdown-mode</code> lags when I open a paren <code>[for a link</code>.</h4>
-I suppose this is because
-it's attempting to match it, and is unable to figure out
-what to match to. I now edit markdown in <code>text-mode</code>.
+<span class='centered'>I suppose this is because
+<span class='centered'>it's attempting to match it, and is unable to figure out
+<span class='centered'>what to match to. I now edit markdown in <code>text-mode</code>.
 <h4><a id=ctrl-backspacebackward-kill-word-kills-far-too-much href='#ctrl-backspacebackward-kill-word-kills-far-too-much'> § </a><span class='centered'> <code>ctrl-backspace</code>/<code>backward-kill-word</code> kills far too much.</h4>
-<ul><li><span class='centered'> <a href=https://emacs.stackexchange.com/questions/30401/backward-kill-word-kills-too-much-how-to-make-it-more-intelligent><span class='centered'>reference <code>emacs.se</code></a></li></ul>
-The answer seems to be:
-yes, it kills a word. You can redefine what a word is,
-and break lots of other stuff in the process, or redefine
-what <code>ctrl-backspace</code> does. However, as a non-expert, it's hard
-to say what redefining this will mean. Will it still interact
-with history the same way?
+<ul><li><span class='centered'><span class='centered'> <a href=https://emacs.stackexchange.com/questions/30401/backward-kill-word-kills-too-much-how-to-make-it-more-intelligent><span class='centered'>reference <code>emacs.se</code></a>)</li></ul>
+<span class='centered'>The answer seems to be:
+<span class='centered'>yes, it kills a word. You can redefine what a word is,
+<span class='centered'>and break lots of other stuff in the process, or redefine
+<span class='centered'>what <code>ctrl-backspace</code> does. However, as a non-expert, it's hard
+<span class='centered'>to say what redefining this will mean. Will it still interact
+<span class='centered'>with history the same way?
 <h4><a id=there-is-no-centralized-notion-of-c-o-go-back-to-where-i-came-from href='#there-is-no-centralized-notion-of-c-o-go-back-to-where-i-came-from'> § </a><span class='centered'> there is no centralized notion of <code>C-o</code> (go back to where I came from).</h4>
-<ul><li><span class='centered'> <a href=https://emacs.stackexchange.com/questions/9908/can-cursor-jump-back-to-the-previous-position><span class='centered'>reference <code>emacs.se</code></a></li><li><span class='centered'> <a href=https://stackoverflow.com/questions/4918707/in-emacs-how-to-go-back-to-previous-line-position-after-using-semantic-jump-to><span class='centered'>reference <code>stackoverflow</code></a></li></ul>
-Instead, it differentiates between "go back in buffer" versus
-"go back across buffers".
-This is extremely confusing when one is attempting to read
-code and understand control-flow: I want a <i><span class='centered'>unified</i> way
-to say "go forward in my history; OK go back" when I am
-exploring code. I don't <i><span class='centered'>want</i> to keep track of whether
-I came to this buffer from the same buffer or another buffer.
-The fact that emacs needs this is moronic.
+<ul><li><span class='centered'><span class='centered'> <a href=https://emacs.stackexchange.com/questions/9908/can-cursor-jump-back-to-the-previous-position><span class='centered'>reference <code>emacs.se</code></a>)</li><li><span class='centered'><span class='centered'> <a href=https://stackoverflow.com/questions/4918707/in-emacs-how-to-go-back-to-previous-line-position-after-using-semantic-jump-to><span class='centered'>reference <code>stackoverflow</code></a>)</li></ul>
+<span class='centered'>Instead, it differentiates between "go back in buffer" versus
+<span class='centered'>"go back across buffers".
+<span class='centered'>This is extremely confusing when one is attempting to read
+<span class='centered'>code and understand control-flow: I want a <i><span class='centered'>unified</i> way
+<span class='centered'>to say "go forward in my history; OK go back" when I am
+<span class='centered'>exploring code. I don't <i><span class='centered'>want</i> to keep track of whether
+<span class='centered'>I came to this buffer from the same buffer or another buffer.
+<span class='centered'>The fact that emacs needs this is moronic.
 <h4><a id=scrolling-half-a-page-is-broken href='#scrolling-half-a-page-is-broken'> § </a><span class='centered'> Scrolling half a page is broken</h4>
-<ul><li><span class='centered'> <a href=https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half-page-on-c-v-and-m-v><span class='centered'>reference <code>emacs.se</code></a></li><li><span class='centered'> <a href=https://www.emacswiki.org/emacs/HalfScrolling><span class='centered'>reference <code>emacswiki</code></a></li></ul>
-There is no inbuilt functionality to scroll half a page. The canonical 
-reference points to this:
+<ul><li><span class='centered'><span class='centered'> <a href=https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half-page-on-c-v-and-m-v><span class='centered'>reference <code>emacs.se</code></a>)</li><li><span class='centered'><span class='centered'> <a href=https://www.emacswiki.org/emacs/HalfScrolling><span class='centered'>reference <code>emacswiki</code></a>)</li></ul>
+<span class='centered'>There is no inbuilt functionality to scroll half a page. The canonical 
+<span class='centered'>reference points to this:
 <pre><code><span class="token punctuation">(</span><span class="token car">autoload</span> <span class="token quoted-symbol variable symbol">'View-scroll-half-page-forward</span> <span class="token string">"view"</span><span class="token punctuation">)</span>
 <span class="token punctuation">(</span><span class="token car">autoload</span> <span class="token quoted-symbol variable symbol">'View-scroll-half-page-backward</span> <span class="token string">"view"</span><span class="token punctuation">)</span>
 <span class="token punctuation">(</span><span class="token car">global-set-key</span> <span class="token punctuation">(</span><span class="token car">kbd</span> <span class="token string">"C-d"</span><span class="token punctuation">)</span> <span class="token quoted-symbol variable symbol">'View-scroll-half-page-forward</span><span class="token punctuation">)</span>
 <span class="token punctuation">(</span><span class="token car">global-set-key</span> <span class="token punctuation">(</span><span class="token car">kbd</span> <span class="token string">"C-u"</span><span class="token punctuation">)</span> <span class="token quoted-symbol variable symbol">'View-scroll-half-page-backward</span><span class="token punctuation">)</span>
 </code></pre>
-However, this does not work well. On press <code>C-u</code> to go to
-the top of the file, it does not move the cursor to the
-top completely; once  <i><span class='centered'>the first line is in view</i>
-(with my cursor still on line 30),
-emacs obstinately refuses to scroll up with a 'beginning of buffer'
-message. I'm sure there's more <code>elisp</code> I can write to fix this,
-but the fact that something like moving-half-a-page
-is rocket science just rubs me the wrong way.
-This code that is given in <code>emacswiki</code> also
-has the exact same issue, I don't understand
-how the poster says they come from vim and
-did not notice this inconsistency.
+<span class='centered'>However, this does not work well. On press <code>C-u</code> to go to
+<span class='centered'>the top of the file, it does not move the cursor to the
+<span class='centered'>top completely; once  <i><span class='centered'>the first line is in view</i>
+<span class='centered'>(with my cursor still on line 30),
+<span class='centered'>emacs obstinately refuses to scroll up with a 'beginning of buffer'
+<span class='centered'>message. I'm sure there's more <code>elisp</code> I can write to fix this,
+<span class='centered'>but the fact that something like moving-half-a-page
+<span class='centered'>is rocket science just rubs me the wrong way.
+<span class='centered'>This code that is given in <code>emacswiki</code> also
+<span class='centered'>has the exact same issue, I don't understand
+<span class='centered'>how the poster says they come from vim and
+<span class='centered'>did not notice this inconsistency.
 <pre><code><span class="token punctuation">(</span><span class="token defun"><span class="token keyword">defun</span> <span class="token function">zz-scroll-half-page</span> <span class="token punctuation">(</span><span class="token arguments"><span class="token argument variable">direction</span></span><span class="token punctuation">)</span></span>
   <span class="token string">"Scrolls half page up if <span class="token symbol">`direction'</span> is non-nil, otherwise will scroll half page down."</span>
   <span class="token punctuation">(</span><span class="token keyword">let</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token car">opos</span> <span class="token punctuation">(</span><span class="token car">cdr</span> <span class="token punctuation">(</span><span class="token car">nth</span> <span class="token number">6</span> <span class="token punctuation">(</span><span class="token car">posn-at-point</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
@@ -76,27 +76,38 @@ did not notice this inconsistency.
 <span class="token punctuation">(</span><span class="token car">global-set-key</span> <span class="token punctuation">(</span><span class="token car">kbd</span> <span class="token string">"C-u"</span><span class="token punctuation">)</span> <span class="token quoted-symbol variable symbol">'zz-scroll-half-page-up</span><span class="token punctuation">)</span>
 </code></pre>
 <h4><a id=default-encoding-is-weird-chinese-iso-8bit href='#default-encoding-is-weird-chinese-iso-8bit'> § </a><span class='centered'> Default encoding is weird: <code>chinese-iso-8bit</code></h4>
-<ul><li><span class='centered'> <a href=https://emacs.stackexchange.com/questions/34322/set-default-coding-system-utf-8><span class='centered'><code>emacs.se reference</code></a></li></ul>
-Why in the world is this the option that shows up by default?
-There are so many better options, with <code>utf-8</code> being the
-sanest of them all; this is a nice spherical cow of
-the problems with emacs: too much stuff, too like sanity.
-The spell is:
+<ul><li><span class='centered'><span class='centered'> <a href=https://emacs.stackexchange.com/questions/34322/set-default-coding-system-utf-8><span class='centered'><code>emacs.se reference</code></a>)</li></ul>
+<span class='centered'>Why in the world is this the option that shows up by default?
+<span class='centered'>There are so many better options, with <code>utf-8</code> being the
+<span class='centered'>sanest of them all; this is a nice spherical cow of
+<span class='centered'>the problems with emacs: too much stuff, too like sanity.
+<span class='centered'>The spell is:
 <pre><code>(set-language-environment "UTF-8")
 </code></pre>
 <h4><a id=linum-lags-on-large-files href='#linum-lags-on-large-files'> § </a><span class='centered'> linum lags on large files</h4>
-<code>global-linum-mode</code> lags on very long files.
+<span class='centered'><code>global-linum-mode</code> lags on very long files.
 <h4><a id=emacs-lags-on-long-lines href='#emacs-lags-on-long-lines'> § </a><span class='centered'> emacs lags on long lines</h4>
-<code>emacs</code> lags given very long lines.
-<a href=https://old.reddit.com/r/emacs/comments/9qtpak/what_would_it_take_to_make_emacs_perform_well_on/><span class='centered'>A comment by <code>eli-zaretskli</code> on reddit</a>
-says:
-<blockquote><span class='centered'> That is true, but the "fix" part misses the point. There's nothing wrong with<span class='centered'> the current algorithms, they just cannot handle these situations better than<span class='centered'> they already do. The main problem that makes redisplay slow in these cases is<span class='centered'> that, given a cursor motion command, such as <code>C-n</code> or <code>M-v</code>, the display engine<span class='centered'> needs first to find where in the buffer that command puts point. And that is<span class='centered'> non-trivial when variable-size fonts are supported and variable-size<span class='centered'> characters (or images) can be anywhere on display.</blockquote>
-So there's a fundamental problem. He continues:
-<blockquote><span class='centered'> ... we are talking about one of the following two<span class='centered'> alternatives: Add new members to the data structures used by the display<span class='centered'> engine, that would allow it to find good approximations for buffer positions<span class='centered'> corresponding to given screen coordinates, then augment the algorithms to<span class='centered'> generate and use this additional data.  edesign the display code to use a<span class='centered'> model that is entirely different from the current simple 2D canvas. </blockquote>
+<span class='centered'><code>emacs</code> lags given very long lines.
+<span class='centered'><a href=https://old.reddit.com/r/emacs/comments/9qtpak/what_would_it_take_to_make_emacs_perform_well_on/><span class='centered'>A comment by <code>eli-zaretskli</code> on reddit</a>)
+<span class='centered'>says:
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<span class='centered'>So there's a fundamental problem. He continues:
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
 <h4><a id=emacs-single-threading-causes-pauses-on-auto-completecompany href='#emacs-single-threading-causes-pauses-on-auto-completecompany'> § </a><span class='centered'> emacs' single threading causes pauses on auto-complete/company</h4>
 <h4><a id=emacs-crashes-on-attempting-to-open-an-svg-file href='#emacs-crashes-on-attempting-to-open-an-svg-file'> § </a><span class='centered'> emacs crashes on attempting to open an SVG file</h4>
-<ul><li><span class='centered'> <a href=http://emacs.1067599.n8.nabble.com/bug-29581-26-0-90-SVG-file-can-cause-emacs-to-crash-imagemagick-td443659.html><span class='centered'>Link to <code>emacs</code> bug repo about segfault</a></li></ul>
-My <code>emacs --version</code> says:
+<ul><li><span class='centered'><span class='centered'> <a href=http://emacs.1067599.n8.nabble.com/bug-29581-26-0-90-SVG-file-can-cause-emacs-to-crash-imagemagick-td443659.html><span class='centered'>Link to <code>emacs</code> bug repo about segfault</a>)</li></ul>
+<span class='centered'>My <code>emacs --version</code> says:
 <pre><code>╰─$ emacs --version
 GNU Emacs 26.2
 Copyright (C) 2019 Free Software Foundation, Inc.
@@ -105,7 +116,7 @@ You may redistribute copies of GNU Emacs
 under the terms of the GNU General Public License.
 For more information about these matters, see the file named COPYING.
 </code></pre>
-I ran it with <code>emacs -q</code>. The bactrace points at a segfault in <code>ImageMagick</code>:
+<span class='centered'>I ran it with <code>emacs -q</code>. The bactrace points at a segfault in <code>ImageMagick</code>:
 <pre><code>Fatal error 11: Segmentation fault
 Backtrace:
 emacs[0x50fdc9]
@@ -152,6 +163,6 @@ emacs[0x56904e]
 ...
 [3]    7224 segmentation fault (core dumped)  emacs -q ~/work/IIIT-H-Code/softwarefoundations/project
 </code></pre>
-This is tagged as "not a bug" --- because
-"if imagemagick crashes, there is no recourse".
+<span class='centered'>This is tagged as "not a bug" --- because
+<span class='centered'>"if imagemagick crashes, there is no recourse".
 </container></body></html>

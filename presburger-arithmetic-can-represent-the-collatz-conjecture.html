@@ -7,16 +7,16 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=presburger-arithmetic-can-represent-the-collatz-conjecture href='#presburger-arithmetic-can-represent-the-collatz-conjecture'> § </a><span class='centered'> Presburger arithmetic can represent the Collatz Conjecture</h2>
-An observation I had: the function
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style><script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></head><body><div class='container'><h2><a id=presburger-arithmetic-can-represent-the-collatz-conjecture href='#presburger-arithmetic-can-represent-the-collatz-conjecture'> § </a><span class='centered'> Presburger arithmetic can represent the Collatz Conjecture</h2>
+<span class='centered'>An observation I had: the function
 <pre><code>f(x) = x/2      if (x % 2 == 0)
 f(x) = 3x + 1   otherwise
 </code></pre>
-is a Presburger function, so by building better approximations to the
-transitive closure of a presburger function, one could get better answers
-to the Collatz conjecture. Unfortunately, ISL (the integer set library) of today
-is not great against the formidable foe.
-The code:
+<span class='centered'>is a Presburger function, so by building better approximations to the
+<span class='centered'>transitive closure of a presburger function, one could get better answers
+<span class='centered'>to the Collatz conjecture. Unfortunately, ISL (the integer set library) of today
+<span class='centered'>is not great against the formidable foe.
+<span class='centered'>The code:
 <pre><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;isl/set.h></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;isl/version.h></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;isl/map.h></span></span>
@@ -47,7 +47,7 @@ The code:
 <span class="token punctuation">}</span>
 
 </code></pre>
-Produces the somewhat disappointing, and yet expected output:
+<span class='centered'>Produces the somewhat disappointing, and yet expected output:
 <pre><code>$ g++ isl.c -lisl -Lisl-0.20/.libs -o isl -I/usr/local/include/ && ./isl
 { [x] -> [o0] : (2o0 = x and x > 0) or (exists (e0 = floor((1 + x)/2): o0 = 1 + 3x and 2e0 = 1 + x)) }
 exact: 0
@@ -56,5 +56,5 @@ map:
 map's range:
 { [i0] : i0 > 0 or exists (e0 = floor((2 + i0)/6): 6e0 = 2 + i0) }
 </code></pre>
-I've yet to check that the image contains a <code>1</code> for every choice of <code>x</code>.
+<span class='centered'>I've yet to check that the image contains a <code>1</code> for every choice of <code>x</code>.
 </container></body></html>

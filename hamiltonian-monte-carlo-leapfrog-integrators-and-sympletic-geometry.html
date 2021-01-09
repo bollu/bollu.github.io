@@ -7,34 +7,23 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=hamiltonian-monte-carlo-leapfrog-integrators-and-sympletic-geometry href='#hamiltonian-monte-carlo-leapfrog-integrators-and-sympletic-geometry'> § </a><span class='centered'> Hamiltonian monte carlo, leapfrog integrators, and sympletic geometry</h2>
-This is a section that I'll update as I learn more about the space, since I'm studying
-differential geometry over the summer, I hope to know enough about "sympletic manifolds".
-I'll make this an append-only log to add to the section as I understand more.
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style><script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></head><body><div class='container'><h2><a id=hamiltonian-monte-carlo-leapfrog-integrators-and-sympletic-geometry href='#hamiltonian-monte-carlo-leapfrog-integrators-and-sympletic-geometry'> § </a><span class='centered'> Hamiltonian monte carlo, leapfrog integrators, and sympletic geometry</h2>
+<span class='centered'>This is a section that I'll update as I learn more about the space, since I'm studying
+<span class='centered'>differential geometry over the summer, I hope to know enough about "sympletic manifolds".
+<span class='centered'>I'll make this an append-only log to add to the section as I understand more.
 <h4><a id=31st-may href='#31st-may'> § </a><span class='centered'> 31st May</h4>
-<ul><li><span class='centered'> To perform hamiltonian monte carlo, we use the hamiltonian and its
-  derivatives to provide a momentum to our proposal distribution --- That is,
-  when we choose a new point from the current point, our probability
-  distribution for the new point is influenced by our current momentum.</li></ul>
-<ul><li><span class='centered'> For some integral necessary within this scheme, Euler integration doesn't cut it
-  since the error diverges to infinity</li></ul>
-<ul><li><span class='centered'> Hence, we need an integrator that guarantees that the energy of out system is
-  conserved.  Enter the leapfrog integrator. This integrator is also 
-  <i><span class='centered'>time reversible</i> -- We can run it forward for <code>n</code> steps, and then run it
-  backward for <code>n</code> steps to arrive at the same state.  Now I finally know how
-  Braid was implemented, something that bugged the hell out of 9th grade me
-  when I tried to implement Braid-like physics in my engine!</li></ul>
-<ul><li><span class='centered'> The actual derivation of the integrator uses Lie algebras, Sympletic
-  geometry, and other diffgeo ideas, which is great, because it gives me
-  motivation to study differential geometry <code>:)</code></li></ul>
-<ul><li><span class='centered'> Original paper: <a href=https://www.sciencedirect.com/science/article/abs/pii/0375960190900923><span class='centered'>Construction of higher order sympletic integrators</a></li></ul>
+<ul><li><span class='centered'><span class='centered'> To perform hamiltonian monte carlo, we use the hamiltonian and its<span class='centered'>derivatives to provide a momentum to our proposal distribution --- That is,<span class='centered'>when we choose a new point from the current point, our probability<span class='centered'>distribution for the new point is influenced by our current momentum.</li></ul>
+<ul><li><span class='centered'><span class='centered'> For some integral necessary within this scheme, Euler integration doesn't cut it<span class='centered'>since the error diverges to infinity</li></ul>
+<ul><li><span class='centered'><span class='centered'> Hence, we need an integrator that guarantees that the energy of out system is<span class='centered'>conserved.  Enter the leapfrog integrator. This integrator is also <span class='centered'><i><span class='centered'>time reversible</i> -- We can run it forward for <code>n</code> steps, and then run it<span class='centered'>backward for <code>n</code> steps to arrive at the same state.  Now I finally know how<span class='centered'>Braid was implemented, something that bugged the hell out of 9th grade me<span class='centered'>when I tried to implement Braid-like physics in my engine!</li></ul>
+<ul><li><span class='centered'><span class='centered'> The actual derivation of the integrator uses Lie algebras, Sympletic<span class='centered'>geometry, and other diffgeo ideas, which is great, because it gives me<span class='centered'>motivation to study differential geometry <code>:)</code></li></ul>
+<ul><li><span class='centered'><span class='centered'> Original paper: <a href=https://www.sciencedirect.com/science/article/abs/pii/0375960190900923><span class='centered'>Construction of higher order sympletic integrators</a>)</li></ul>
 <h4><a id=simulating-orbits-with-large-timesteps href='#simulating-orbits-with-large-timesteps'> § </a><span class='centered'> Simulating orbits with large timesteps</h4>
-<img src="./static/leapfrog-vs-euler.png">
-Clearly, the leapfrog integrator preserves energy and continues to move
-in an orbit, while the euler integrator goes batshit and causes orbits
-to spiral outwards. Full code is available below. More of the code is
-spent coaxing matplotlib to look nice, than doing the actual
-computation.
+<span class='centered'><img src="./static/leapfrog-vs-euler.png">
+<span class='centered'>Clearly, the leapfrog integrator preserves energy and continues to move
+<span class='centered'>in an orbit, while the euler integrator goes batshit and causes orbits
+<span class='centered'>to spiral outwards. Full code is available below. More of the code is
+<span class='centered'>spent coaxing matplotlib to look nice, than doing the actual
+<span class='centered'>computation.
 <pre><code><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
 <span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
 <span class="token keyword">import</span> numpy<span class="token punctuation">.</span>linalg

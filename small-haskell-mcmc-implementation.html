@@ -7,13 +7,13 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=small-haskell-mcmc-implementation href='#small-haskell-mcmc-implementation'> § </a><span class='centered'> Small Haskell MCMC implementation</h2>
-We create a simple monad called <code>PL</code> which allows for a single operation: sampling
-from a uniform distribution. We then exploit this to implement MCMC using metropolis hastings,
-which is used to sample from arbitrary distributions. Bonus is a small library to render sparklines
-in the CLI.
-For next time:
-<ul><li><span class='centered'> Using applicative to speed up computations by exploiting parallelism</li><li><span class='centered'> Conditioning of a distribution wrt a variable</li></ul>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style><script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></head><body><div class='container'><h2><a id=small-haskell-mcmc-implementation href='#small-haskell-mcmc-implementation'> § </a><span class='centered'> Small Haskell MCMC implementation</h2>
+<span class='centered'>We create a simple monad called <code>PL</code> which allows for a single operation: sampling
+<span class='centered'>from a uniform distribution. We then exploit this to implement MCMC using metropolis hastings,
+<span class='centered'>which is used to sample from arbitrary distributions. Bonus is a small library to render sparklines
+<span class='centered'>in the CLI.
+<span class='centered'>For next time:
+<ul><li><span class='centered'><span class='centered'> Using applicative to speed up computations by exploiting parallelism</li><li><span class='centered'><span class='centered'> Conditioning of a distribution wrt a variable</li></ul>
 <h4><a id=source-code href='#source-code'> § </a><span class='centered'> Source code</h4>
 <pre><code><span class="token comment">{-# LANGUAGE GeneralizedNewtypeDeriving #-}</span>
 <span class="token comment">{-# LANGUAGE GADTs #-}</span>

@@ -1,5 +1,7 @@
 # Builder
 
+- Add the shit tons of latex shortcuts I want.
+- Make list requirements more flexible. allowed `-aa\n\n-bb`
 - Builds HTML from the markdown in the blog.
 - Splits large markdown file into multiple HTML files.
 - TODO: RSS feed.

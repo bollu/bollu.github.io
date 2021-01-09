@@ -7,11 +7,15 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=evolution-of-bee-colonies href='#evolution-of-bee-colonies'> § </a><span class='centered'> Evolution of bee colonies</h2>
-This kind of culture that beehives have is called as 'eusociality'.
-I'm interested in this because I want to understand what alien societies might
-look like, and what selection pressures are required to have bee-like societies
-evolve. Many sci-fi books (Ender's game for example) depict aliens with such
-a society, but tend to be hazy on how this state of affairs came to be.
-<ul><li><span class='centered'> <a href=https://en.wikipedia.org/wiki/Evolution_of_eusociality><span class='centered'>Evolution of eusociality</a></li></ul>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style><script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></head><body><div class='container'><h2><a id=arguments-for-little-endian href='#arguments-for-little-endian'> § </a><span class='centered'> Arguments for little endian</h2>
+<span class='centered'>Say we wish to store <code><MSB> 100 200 300 400 <LSB></code>. In little endian, this would be
+<span class='centered'>stored as:
+<pre><code>ix:   0   1   2   3
+val:  400 300 200 100
+</code></pre>
+<span class='centered'>An interesting theory for why this is good is if we want to treat this 4-bit
+<span class='centered'>data as 1-bit data, we want the subarray <code>[400]</code>. It's easier to <i><span class='centered'>directly</i>
+<span class='centered'>acess in little endian as just <code>data[0]</code>, instead of in big endian where
+<span class='centered'>it would be <code>data[3]</code>. So, storing stuff backwards makes it easier to chop off
+<span class='centered'>the LSBs data, since that's the <i><span class='centered'>suffix</i>. 
 </container></body></html>

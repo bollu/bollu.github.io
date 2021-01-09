@@ -7,11 +7,11 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=disjoint-set-union href='#disjoint-set-union'> § </a><span class='centered'> Disjoint set union</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style><script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></head><body><div class='container'><h2><a id=disjoint-set-union href='#disjoint-set-union'> § </a><span class='centered'> Disjoint set union</h2>
 <h4><a id=intuition-for-correctness-of-rank href='#intuition-for-correctness-of-rank'> § </a><span class='centered'> intuition for correctness of <code>rank</code>:</h4>
-Assume that we had to re-point pointers of all our children to the
-new root when we decide to make another node the root. That is,
-we would have:
+<span class='centered'>Assume that we had to re-point pointers of all our children to the
+<span class='centered'>new root when we decide to make another node the root. That is,
+<span class='centered'>we would have:
 <pre><code>void mkroot(int newroot, int prevroot) {
    for (int child : children[prevroot] {
         parent[child] = newroot;
@@ -20,9 +20,6 @@ we would have:
    children[prevroot] = {}; // this has no children anymore
 }
 </code></pre>
-<ul><li><span class='centered'> In this setting, we ought to make the <i><span class='centered'>smaller</i> subtree the <code>prevroot</code>
-  and the <i><span class='centered'>larger</i> subtree the <code>newroot</code>: It is better to loop over
-  fewer children.</li></ul>
-<ul><li><span class='centered'> When we perform the <code>rank</code> based union, we are using the <i><span class='centered'>same heuristic</i>,
-  even though we don't actually loop over all our children.</li></ul>
+<ul><li><span class='centered'><span class='centered'> In this setting, we ought to make the <i><span class='centered'>smaller</i> subtree the <code>prevroot</code><span class='centered'>and the <i><span class='centered'>larger</i> subtree the <code>newroot</code>: It is better to loop over<span class='centered'>fewer children.</li></ul>
+<ul><li><span class='centered'><span class='centered'> When we perform the <code>rank</code> based union, we are using the <i><span class='centered'>same heuristic</i>,<span class='centered'>even though we don't actually loop over all our children.</li></ul>
 </container></body></html>

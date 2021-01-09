@@ -7,17 +7,17 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=statement-expressions-and-other-gcc-c-extensions href='#statement-expressions-and-other-gcc-c-extensions'> § </a><span class='centered'> Statement expressions and other GCC C extensions</h2>
-This seems really handy. I've always loved that I could write
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style><script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></head><body><div class='container'><h2><a id=statement-expressions-and-other-gcc-c-extensions href='#statement-expressions-and-other-gcc-c-extensions'> § </a><span class='centered'> Statement expressions and other GCC C extensions</h2>
+<span class='centered'>This seems really handy. I've always loved that I could write
 <pre><code>let x = if y == 0 { 1 } else { 42}
 </code></pre>
-in Rust. It's awesome to know that the C equivalent is
+<span class='centered'>in Rust. It's awesome to know that the C equivalent is
 <pre><code><span class="token keyword">const</span> <span class="token keyword">int</span> x <span class="token operator">=</span>  <span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>y <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> <span class="token number">42</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<h4><a id=conditions-with-omitted-operands href='#conditions-with-omitted-operands'> § </a><span class='centered'> <a href=https://gcc.gnu.org/onlinedocs/gcc/Conditionals.html#Conditionals><span class='centered'>Conditions (<code>?:</code>) with omitted operands</a></h4>
+<h4><a id=conditions-with-omitted-operands href='#conditions-with-omitted-operands'> § </a><span class='centered'> <a href=https://gcc.gnu.org/onlinedocs/gcc/Conditionals.html#Conditionals><span class='centered'>Conditions (<code>?:</code>) with omitted operands</a>)</h4>
 <pre><code>x <span class="token operator">?</span><span class="token operator">:</span> y <span class="token operator">=</span>defn<span class="token operator">=</span> x <span class="token operator">?</span> x <span class="token operator">:</span> y
 </code></pre>
-<h4><a id=variable-length-arrays href='#variable-length-arrays'> § </a><span class='centered'> <a href=https://gcc.gnu.org/onlinedocs/gcc/Variable-Length.html#Variable-Length><span class='centered'>variable length arrays</a></h4>
+<h4><a id=variable-length-arrays href='#variable-length-arrays'> § </a><span class='centered'> <a href=https://gcc.gnu.org/onlinedocs/gcc/Variable-Length.html#Variable-Length><span class='centered'>variable length arrays</a>)</h4>
 <pre><code>FILE <span class="token operator">*</span>
 <span class="token function">concat_fopen</span> <span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>s1<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>s2<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>mode<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
@@ -29,41 +29,41 @@ in Rust. It's awesome to know that the C equivalent is
 <span class="token punctuation">}</span>
 
 </code></pre>
-<h4><a id=designated-array-initializers-a-better-way-to-initialize-arrays href='#designated-array-initializers-a-better-way-to-initialize-arrays'> § </a><span class='centered'> <a href=https://gcc.gnu.org/onlinedocs/gcc/Designated-Inits.html#Designated-Inits><span class='centered'>Designated array initializers: A better way to initialize arrays</a></h4>
-<ul><li><span class='centered'> initialize specific indexes</li></ul>
+<h4><a id=designated-array-initializers-a-better-way-to-initialize-arrays href='#designated-array-initializers-a-better-way-to-initialize-arrays'> § </a><span class='centered'> <a href=https://gcc.gnu.org/onlinedocs/gcc/Designated-Inits.html#Designated-Inits><span class='centered'>Designated array initializers: A better way to initialize arrays</a>)</h4>
+<ul><li><span class='centered'><span class='centered'> initialize specific indexes</li></ul>
 <pre><code><span class="token comment">// initialize specific indexes</span>
 <span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">29</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">15</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token comment">// a[4] = 29; a[2] = 15; a[rest] = 0</span>
 </code></pre>
-<ul><li><span class='centered'> initialize ranges:</li></ul>
+<ul><li><span class='centered'><span class='centered'> initialize ranges:</li></ul>
 <pre><code><span class="token comment">// initialize ranges</span>
 <span class="token keyword">int</span> widths<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token punctuation">[</span><span class="token number">0</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token number">9</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">10</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token number">99</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">3</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<ul><li><span class='centered'> initialize struct fields:</li></ul>
+<ul><li><span class='centered'><span class='centered'> initialize struct fields:</li></ul>
 <pre><code>//initialize struct fields
 struct point { int x, y; };
 struct point p = { .y = yvalue, .x = xvalue };
 </code></pre>
-<ul><li><span class='centered'> initialize union variant:</li></ul>
+<ul><li><span class='centered'><span class='centered'> initialize union variant:</li></ul>
 <pre><code><span class="token comment">//initialize union variant</span>
 <span class="token keyword">union</span> foo <span class="token punctuation">{</span> <span class="token keyword">int</span> i<span class="token punctuation">;</span> <span class="token keyword">double</span> d<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token keyword">union</span> foo f <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token punctuation">.</span>d <span class="token operator">=</span> <span class="token number">4</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<ul><li><span class='centered'> Neat trick: lookup for whitespace in ASCII:</li></ul>
+<ul><li><span class='centered'><span class='centered'> Neat trick: lookup for whitespace in ASCII:</li></ul>
 <pre><code><span class="token keyword">int</span> whitespace<span class="token punctuation">[</span><span class="token number">256</span><span class="token punctuation">]</span>
   <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token punctuation">[</span><span class="token string">' '</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'\t'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'\h'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span>
       <span class="token punctuation">[</span><span class="token string">'\f'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'\n'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'\r'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<h4><a id=cast-to-union href='#cast-to-union'> § </a><span class='centered'> <a href=https://gcc.gnu.org/onlinedocs/gcc/Cast-to-Union.html#Cast-to-Union><span class='centered'>Cast to union</a></h4>
+<h4><a id=cast-to-union href='#cast-to-union'> § </a><span class='centered'> <a href=https://gcc.gnu.org/onlinedocs/gcc/Cast-to-Union.html#Cast-to-Union><span class='centered'>Cast to union</a>)</h4>
 <pre><code><span class="token keyword">union</span> foo <span class="token punctuation">{</span> <span class="token keyword">int</span> i<span class="token punctuation">;</span> <span class="token keyword">double</span> d<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token number">42</span><span class="token punctuation">;</span> z <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">union</span> foo<span class="token punctuation">)</span> x<span class="token punctuation">;</span>
 <span class="token keyword">double</span> y <span class="token operator">=</span> <span class="token number">1.0</span><span class="token punctuation">;</span> z <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">union</span> foo<span class="token punctuation">)</span> y<span class="token punctuation">;</span>
 </code></pre>
-<h4><a id=dollar-signs-in-identifier-names href='#dollar-signs-in-identifier-names'> § </a><span class='centered'> <a href= https://gcc.gnu.org/onlinedocs/gcc/Dollar-Signs.html#Dollar-Signs><span class='centered'>Dollar signs in identifier names</a></h4>
+<h4><a id=dollar-signs-in-identifier-names href='#dollar-signs-in-identifier-names'> § </a><span class='centered'> <a href= https://gcc.gnu.org/onlinedocs/gcc/Dollar-Signs.html#Dollar-Signs><span class='centered'>Dollar signs in identifier names</a>)</h4>
 <pre><code><span class="token keyword">int</span> x$<span class="token punctuation">;</span>
 <span class="token keyword">int</span> $z<span class="token punctuation">;</span>
 </code></pre>
-<h4><a id=unnamed-union-fields href='#unnamed-union-fields'> § </a><span class='centered'> <a href=https://gcc.gnu.org/onlinedocs/gcc/Unnamed-Fields.html#Unnamed-Fields><span class='centered'>Unnamed union fields</a></h4>
+<h4><a id=unnamed-union-fields href='#unnamed-union-fields'> § </a><span class='centered'> <a href=https://gcc.gnu.org/onlinedocs/gcc/Unnamed-Fields.html#Unnamed-Fields><span class='centered'>Unnamed union fields</a>)</h4>
 <pre><code><span class="token keyword">struct</span> <span class="token punctuation">{</span>
   <span class="token keyword">int</span> a<span class="token punctuation">;</span>
   <span class="token keyword">union</span> <span class="token punctuation">{</span> <span class="token keyword">int</span> b<span class="token punctuation">;</span> <span class="token keyword">float</span> c<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
@@ -73,5 +73,5 @@ struct point p = { .y = yvalue, .x = xvalue };
 <span class="token comment">// foo.b has type int</span>
 <span class="token comment">// foo.c has type float, occupies same storage as `foo.b`.</span>
 </code></pre>
-<ul><li><span class='centered'> <a href=https://gcc.gnu.org/onlinedocs/gcc/Statement-Exprs.html><span class='centered'>GCC manual: statement expressions</a></li><li><span class='centered'> <a href=https://gcc.gnu.org/onlinedocs/gcc/C-Extensions.html#C-Extensions><span class='centered'>GCC manual: C extensions</a></li></ul>
+<ul><li><span class='centered'><span class='centered'> <a href=https://gcc.gnu.org/onlinedocs/gcc/Statement-Exprs.html><span class='centered'>GCC manual: statement expressions</a>)</li><li><span class='centered'><span class='centered'> <a href=https://gcc.gnu.org/onlinedocs/gcc/C-Extensions.html#C-Extensions><span class='centered'>GCC manual: C extensions</a>)</li></ul>
 </container></body></html>

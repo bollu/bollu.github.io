@@ -1,0 +1,45 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
+img { display:block; width: 100%; max-width: 800px; height: auto }.container { overflow-x: auto; overflow-y: hidden;  max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: 20%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
+pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style><script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></head><body><div class='container'><h2><a id=topological-groups-and-languages href='#topological-groups-and-languages'> § </a><span class='centered'> Topological groups and languages</h2>
+<span class='centered'><a href=http://hackage.haskell.org/package/monoid-subclasses/docs/Data-Monoid-Null.html><span class='centered'>MonoidNull</a>) is a monoid
+<span class='centered'>that allow us to test for <code>mempty</code>. So it obeys the law:
+<pre><code><span class="token keyword">class</span> <span class="token constant">Monoid</span> <span class="token hvariable">m</span> <span class="token operator">=></span> <span class="token constant">MonoidNull</span> <span class="token hvariable">m</span> <span class="token keyword">where</span>
+    <span class="token builtin">null</span> <span class="token operator">::</span> <span class="token constant">Monoid</span> <span class="token hvariable">m</span> <span class="token operator">=></span> <span class="token hvariable">m</span> <span class="token operator">-></span> <span class="token constant">Bool</span>
+    <span class="token comment">-- null x == x == mempty</span>
+</code></pre>
+<span class='centered'>There are <code>MonoidNull</code>s that don't have an <code>Eq</code> instance. For example, consider
+<span class='centered'><code>Maybe (Int -> Int)</code>, where the monoid over <code>(Int -> Int)</code> adds them pointwise.
+<span class='centered'>Clearly, we can't tell when two functions are equal, so there's no way we can
+<span class='centered'>give an <code>Eq</code> instance to <code>Maybe (Int -> Int)</code>. But we can definitely tell
+<span class='centered'>when it's <code>Nothing</code>! So we have a <code>MonoidNull</code> instance without an <code>Eq</code>
+<span class='centered'>instance.
+<span class='centered'>Now the interesting thing is that if we have a group that has <code>MonoidNull</code>,
+<span class='centered'>then it automatically has <code>Eq</code>! Witness:
+<pre><code><span class="token keyword">instance</span> <span class="token punctuation">(</span><span class="token constant">Group</span> <span class="token hvariable">g</span><span class="token punctuation">,</span> <span class="token constant">MonoidNull</span> <span class="token hvariable">g</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token constant">Eq</span> <span class="token hvariable">g</span> <span class="token keyword">where</span>
+   <span class="token hvariable">x</span> <span class="token operator">==</span> <span class="token hvariable">y</span> <span class="token operator">=</span> <span class="token builtin">null</span> <span class="token punctuation">(</span><span class="token hvariable">x</span> <span class="token operator">&lt;></span> <span class="token hvariable">inv</span> <span class="token hvariable">y</span><span class="token punctuation">)</span>
+</code></pre>
+<span class='centered'>See that this is a transport principle: we're able to transport the test
+<span class='centered'>of equality at the origin/<code>mempty</code> provided by <code>null</code> to any point in the
+<span class='centered'>group.
+<span class='centered'>Olaf Klinke remarked:
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<span class='centered'>I found this very interesting, because he's vieweing this from the
+<span class='centered'>"topology of computation" lens, where the existence of <code>null</code> means that
+<span class='centered'>the identity element is isolated. Now since it is a topological group (group
+<span class='centered'>operations are continuous since everything is computable!),
+<span class='centered'>the isolatedness of the identity transports to all points, giving us a discrete
+<span class='centered'>object where equality is decidable! Below is an illustration of how I imagine
+<span class='centered'>the situation.
+<span class='centered'><img src='/home/bollu/blog/static/olaf-topological-groups.png' />
+<h4><a id=references href='#references'> § </a><span class='centered'> References</h4>
+<ul><li><span class='centered'><span class='centered'> <a href=https://mail.haskell.org/pipermail/haskell-cafe/2020-December/133264.html><span class='centered'>Post on haskell-cafe by Olaf Klinke</a>)</li></ul>
+</container></body></html>

@@ -7,15 +7,13 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=lazy-programs-have-space-leaks-strict-programs-have-time-leaks href='#lazy-programs-have-space-leaks-strict-programs-have-time-leaks'> § </a><span class='centered'> Lazy programs have space leaks, Strict programs have time leaks</h2>
-Stumbled across this idea while reading some posts on a private discourse.
-<ul><li><span class='centered'> Continually adding new thunks without forcing them can lead to a space leak,
-  aka the dreaded monadic parsing backtracking problem.</li></ul>
-<ul><li><span class='centered'> Continually <i><span class='centered'>running</i> new thunks can lead to a "time leak", where we spend
-  far too much time running things that should not be run in the first place!</li></ul>
-This is an interesting perspective that I've never seen articulated before, and
-somehow helps make space leaks feel more... palatable? Before, I had no
-analogue to a space leak in the strict world, so I saw them as a pathology. But
-with this new perspective, I can see that the strict world's version of a space
-leak is a time leak.
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style><script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></head><body><div class='container'><h2><a id=lazy-programs-have-space-leaks-strict-programs-have-time-leaks href='#lazy-programs-have-space-leaks-strict-programs-have-time-leaks'> § </a><span class='centered'> Lazy programs have space leaks, Strict programs have time leaks</h2>
+<span class='centered'>Stumbled across this idea while reading some posts on a private discourse.
+<ul><li><span class='centered'><span class='centered'> Continually adding new thunks without forcing them can lead to a space leak,<span class='centered'>aka the dreaded monadic parsing backtracking problem.</li></ul>
+<ul><li><span class='centered'><span class='centered'> Continually <i><span class='centered'>running</i> new thunks can lead to a "time leak", where we spend<span class='centered'>far too much time running things that should not be run in the first place!</li></ul>
+<span class='centered'>This is an interesting perspective that I've never seen articulated before, and
+<span class='centered'>somehow helps make space leaks feel more... palatable? Before, I had no
+<span class='centered'>analogue to a space leak in the strict world, so I saw them as a pathology. But
+<span class='centered'>with this new perspective, I can see that the strict world's version of a space
+<span class='centered'>leak is a time leak.
 </container></body></html>

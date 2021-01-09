@@ -7,36 +7,41 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=learning-code-by-hearing-it href='#learning-code-by-hearing-it'> § </a><span class='centered'> Learning code by hearing it</h2>
-I learnt of this from an amazing discussion on HackerNews, where a sighted
-programmed, who is going blind, asked the community if he could remain
-a software engineer. An answer by <code>kolanos</code> read:
-<blockquote><span class='centered'> You can definitely continue as a software engineer. I'm living proof. ...<span class='centered'> For example, as you get better with a<span class='centered'> screen reader, you'll be bumping the speech rate up to 1.75-2X normal speech.<span class='centered'> ... Typos will be easily spotted as they just won't "sound right". It will be<span class='centered'> like listening to a familiar song and then hitting an off note in the melody.<span class='centered'> <b><span class='centered'>And this includes code</b>. Also, because code is no longer represented<span class='centered'> visually as blocks, <span class='centered'> you'll find you're <b><span class='centered'>building an increasingly detailed memory model of your code</b>.  <span class='centered'> Sighted people do this, too, but they tend to visualize in their mind. When<span class='centered'> you abandon this two dimensional representation,<span class='centered'> <b><span class='centered'>your non-visual mental map suffers no spatial limits</b>. You'll be amazed<span class='centered'> how good your memory will get without the crutch of sight.</blockquote>
-I find this incredibly fascinating. I think I'm going to try this: I'll listen
-to lectures on <code>1.5-2x</code> anyway, so this may work just as well. I'm planning
-on trying this with the MLIR codebase, which I want to get to know intimately.
-I'll write updates on how this goes.
-<a href=https://drewdevault.com/><span class='centered'>Drew DeVault</a> also posted links to tools/scripts
-for programming without needing visual feedback:
-<ul><li><span class='centered'> <a href=https://git.sr.ht/~sircmpwn/dotfiles/tree/master/lib/vim/vimspeak.vim><span class='centered'>vimspeak.vim</a>
-  for, if I understand correctly, speaking out loud the current state
-  [which buffer, which mode, what line], as well as reading out text from
-  the buffer.</li><li><span class='centered'> <a href=https://git.sr.ht/~sircmpwn/dotfiles/tree/master/bin/swaytalk><span class='centered'>An extension to the Sway tiling window manager</a>
-  for providing audio cues.</li></ul>
-I also learnt about <a href=http://emacspeak.sourceforge.net/><span class='centered'>emacspeak</a>, which
-supposedly works well for an audio-based-workflow.
-<ul><li><span class='centered'> [https://news.ycombinator.com/item?id=22919455]</li></ul>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style><script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></head><body><div class='container'><h2><a id=learning-code-by-hearing-it href='#learning-code-by-hearing-it'> § </a><span class='centered'> Learning code by hearing it</h2>
+<span class='centered'>I learnt of this from an amazing discussion on HackerNews, where a sighted
+<span class='centered'>programmed, who is going blind, asked the community if he could remain
+<span class='centered'>a software engineer. An answer by <code>kolanos</code> read:
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<span class='centered'>I find this incredibly fascinating. I think I'm going to try this: I'll listen
+<span class='centered'>to lectures on <code>1.5-2x</code> anyway, so this may work just as well. I'm planning
+<span class='centered'>on trying this with the MLIR codebase, which I want to get to know intimately.
+<span class='centered'>I'll write updates on how this goes.
+<span class='centered'><a href=https://drewdevault.com/><span class='centered'>Drew DeVault</a>) also posted links to tools/scripts
+<span class='centered'>for programming without needing visual feedback:
+<ul><li><span class='centered'><span class='centered'> <a href=https://git.sr.ht/~sircmpwn/dotfiles/tree/master/lib/vim/vimspeak.vim><span class='centered'>vimspeak.vim</a>)<span class='centered'>for, if I understand correctly, speaking out loud the current state<span class='centered'>[which buffer, which mode, what line], as well as reading out text from<span class='centered'>the buffer.</li><li><span class='centered'><span class='centered'> <a href=https://git.sr.ht/~sircmpwn/dotfiles/tree/master/bin/swaytalk><span class='centered'>An extension to the Sway tiling window manager</a>)<span class='centered'>for providing audio cues.</li></ul>
+<span class='centered'>I also learnt about <a href=http://emacspeak.sourceforge.net/><span class='centered'>emacspeak</a>), which
+<span class='centered'>supposedly works well for an audio-based-workflow.
+<ul><li><span class='centered'><span class='centered'> [https://news.ycombinator.com/item?id=22919455]</li></ul>
 <h4><a id=setting-up-festival href='#setting-up-festival'> § </a><span class='centered'> Setting up festival</h4>
-It seems that festival is the best(?) TTS engine for linux. One should
-<ol><li><span class='centered'> install <code>festival</code></li><li><span class='centered'> install the voice packs, given by the name <code>festvox-*</code>.</li><li><span class='centered'> The best (?) festival voice is supposedly in the package <code>festvox-us-slt-hts</code>,
-   with voice name <code>voice_cmu_us_slt_arctic_hts</code>. The pacakge is also available at
-   the debian site: https://packages.debian.org/sid/all/festvox-us-slt-hts/download</li><li><span class='centered'> edit the festival config file <code>/etc/festival.scm</code> and add a line</li></ol>
+<span class='centered'>It seems that festival is the best(?) TTS engine for linux. One should
+<ol><li><span class='centered'><span class='centered'> install <code>festival</code></li><li><span class='centered'><span class='centered'> install the voice packs, given by the name <code>festvox-*</code>.</li><li><span class='centered'><span class='centered'> The best (?) festival voice is supposedly in the package <code>festvox-us-slt-hts</code>,<span class='centered'>with voice name <code>voice_cmu_us_slt_arctic_hts</code>. The pacakge is also available at<span class='centered'>the debian site: https://packages.debian.org/sid/all/festvox-us-slt-hts/download</li><li><span class='centered'><span class='centered'> edit the festival config file <code>/etc/festival.scm</code> and add a line</li></ol>
 <pre><code>; the ' is important to escape the string
 ; (set! voice_default '<voice-name>)
 (set! voice_default 'voice_cmu_us_slt_arctic_hts)
 </code></pre>
 <h4><a id=setting-up-svox-pico2wave href='#setting-up-svox-pico2wave'> § </a><span class='centered'> Setting up SVOX pico2wave</h4>
-<ul><li><span class='centered'> Ubuntu package: <code>sudo apt install libttspico-utils</code></li><li><span class='centered'> Run instructions: </li></ul>
+<ul><li><span class='centered'><span class='centered'> Ubuntu package: <code>sudo apt install libttspico-utils</code></li><li><span class='centered'><span class='centered'> Run instructions: </li></ul>
 <pre><code>#!/bin/bash
 pico2wave -w=/tmp/test.wav "$1"
 aplay /tmp/test.wav

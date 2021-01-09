@@ -7,12 +7,12 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=word2vec-c-code-implements-gradient-descent-really-weirdly href='#word2vec-c-code-implements-gradient-descent-really-weirdly'> § </a><span class='centered'> <code>Word2Vec</code> C code implements gradient descent really weirdly</h2>
-I'll be posting snippets of the original source code, along with a
-link to the Github sources. We are interested in exploring the skip-gram
-implementation of Word2Vec, with negative sampling, without hierarchical
-softmax. I assume basic familiarity with word embeddings and the skip-gram
-model.
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style><script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></head><body><div class='container'><h2><a id=word2vec-c-code-implements-gradient-descent-really-weirdly href='#word2vec-c-code-implements-gradient-descent-really-weirdly'> § </a><span class='centered'> <code>Word2Vec</code> C code implements gradient descent really weirdly</h2>
+<span class='centered'>I'll be posting snippets of the original source code, along with a
+<span class='centered'>link to the Github sources. We are interested in exploring the skip-gram
+<span class='centered'>implementation of Word2Vec, with negative sampling, without hierarchical
+<span class='centered'>softmax. I assume basic familiarity with word embeddings and the skip-gram
+<span class='centered'>model.
 <h4><a id=construction-of-the-sigmoid-lookup-table href='#construction-of-the-sigmoid-lookup-table'> § </a><span class='centered'> Construction of the sigmoid lookup table</h4>
 <pre><code><span class="token comment">// https://github.com/tmikolov/word2vec/blob/master/word2vec.c#L708</span>
 
@@ -24,14 +24,12 @@ expTable <span class="token operator">=</span> <span class="token punctuation">(
       expTable<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">/</span> <span class="token punctuation">(</span>expTable<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Precompute f(x) = x / (x + 1)</span>
 <span class="token punctuation">}</span>
 </code></pre>
-Here, the code constructs a lookup table which maps <code>[0...EXP_TABLE_SIZE-1]</code>
-to <code>[sigmoid(-MAX_EXP)...sigmoid(MAX_EXP)]</code>. The index <code>i</code> first gets mapped
-to <code>(i / EXP_TABLE_SIZE) * 2 - 1</code>, which sends <code>0</code> to <code>-1</code> and <code>EXP_TABLE_SIZE</code>
-to <code>1</code>. This is then rescaled by <code>MAX_EXP</code>.
+<span class='centered'>Here, the code constructs a lookup table which maps <code>[0...EXP_TABLE_SIZE-1]</code>
+<span class='centered'>to <code>[sigmoid(-MAX_EXP)...sigmoid(MAX_EXP)]</code>. The index <code>i</code> first gets mapped
+<span class='centered'>to <code>(i / EXP_TABLE_SIZE) * 2 - 1</code>, which sends <code>0</code> to <code>-1</code> and <code>EXP_TABLE_SIZE</code>
+<span class='centered'>to <code>1</code>. This is then rescaled by <code>MAX_EXP</code>.
 <h4><a id=layer-initialization href='#layer-initialization'> § </a><span class='centered'> Layer initialization</h4>
-<ul><li><span class='centered'> <code>syn0</code> is a global variable, initialized with random weights in the range of
-  <code>[-0.5...0.5]</code>. It has dimensions <code>VOCAB x HIDDEN</code>.  This layer holds the
-   hidden representations of word vectors.</li></ul>
+<ul><li><span class='centered'><span class='centered'> <code>syn0</code> is a global variable, initialized with random weights in the range of<span class='centered'><code>[-0.5...0.5]</code>. It has dimensions <code>VOCAB x HIDDEN</code>.  This layer holds the<span class='centered'>hidden representations of word vectors.</li></ul>
 <pre><code><span class="token comment">// https://github.com/imsky/word2vec/blob/master/word2vec.c#L341</span>
 a <span class="token operator">=</span> <span class="token function">posix_memalign</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">void</span> <span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>syn0<span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">,</span>
                <span class="token punctuation">(</span><span class="token keyword">long</span> <span class="token keyword">long</span><span class="token punctuation">)</span>vocab_size <span class="token operator">*</span> layer1_size <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>real<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -45,9 +43,7 @@ a <span class="token operator">=</span> <span class="token function">posix_memal
                 <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span>next_random <span class="token operator">&amp;</span> <span class="token number">0xFFFF</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>real<span class="token punctuation">)</span><span class="token number">65536</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">0.5</span><span class="token punctuation">)</span> <span class="token operator">/</span> layer1_size<span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
 </code></pre>
-<ul><li><span class='centered'> <code>syn1neg</code> is a global variable that is zero-initialized. It has dimensions
-  <code>VOCAB x HIDDEN</code>. This layer also holds hidden representations of word vectors,
-  <i><span class='centered'>when they are used as a negative sample</i>.</li></ul>
+<ul><li><span class='centered'><span class='centered'> <code>syn1neg</code> is a global variable that is zero-initialized. It has dimensions<span class='centered'><code>VOCAB x HIDDEN</code>. This layer also holds hidden representations of word vectors,<span class='centered'><i><span class='centered'>when they are used as a negative sample</i>.</li></ul>
 <pre><code><span class="token comment">// https://github.com/imsky/word2vec/blob/master/word2vec.c#L350</span>
 a <span class="token operator">=</span> <span class="token function">posix_memalign</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">void</span> <span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>syn1neg<span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">,</span>
                    <span class="token punctuation">(</span><span class="token keyword">long</span> <span class="token keyword">long</span><span class="token punctuation">)</span>vocab_size <span class="token operator">*</span> layer1_size <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>real<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -55,23 +51,21 @@ a <span class="token operator">=</span> <span class="token function">posix_memal
 <span class="token keyword">for</span> <span class="token punctuation">(</span>a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> a <span class="token operator">&lt;</span> vocab_size<span class="token punctuation">;</span> a<span class="token operator">++</span><span class="token punctuation">)</span>
     <span class="token keyword">for</span> <span class="token punctuation">(</span>b <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> b <span class="token operator">&lt;</span> layer1_size<span class="token punctuation">;</span> b<span class="token operator">++</span><span class="token punctuation">)</span> syn1neg<span class="token punctuation">[</span>a <span class="token operator">*</span> layer1_size <span class="token operator">+</span> b<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 </code></pre>
-<ul><li><span class='centered'> <code>neu1e</code> is a temporary per-thread buffer (Remember that the <code>word2vec</code> C code
-  use CPU threads for parallelism) which is zero initialized. It has dimensions
-  <code>1 x HIDDEN</code>.</li></ul>
+<ul><li><span class='centered'><span class='centered'> <code>neu1e</code> is a temporary per-thread buffer (Remember that the <code>word2vec</code> C code<span class='centered'>use CPU threads for parallelism) which is zero initialized. It has dimensions<span class='centered'><code>1 x HIDDEN</code>.</li></ul>
 <pre><code><span class="token comment">// https://github.com/imsky/word2vec/blob/master/word2vec.c#L370</span>
 real <span class="token operator">*</span>neu1e <span class="token operator">=</span> <span class="token punctuation">(</span>real <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">calloc</span><span class="token punctuation">(</span>layer1_size<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>real<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <h4><a id=backpropogation href='#backpropogation'> § </a><span class='centered'> Backpropogation</h4>
-Throughout <code>word2vec</code>, no 2D arrays are used. Indexing of the form
-<code>arr[word][ix]</code> is manually written as <code>arr[word * layer1_size + ix]</code>. So, I
-will call <code>word * layer1_size</code> as the "base address", and <code>ix</code> as the "offset
-of the array index expression henceforth.
-Here, <code>l1</code> is the base address of the word at the center of window (the focus
-word).  <code>l2</code> is the base address of either the word that is negative sampled
-from the corpus, or the word that is a positive sample from within the context
-window.
-<code>label</code> tells us whether the sample is a positive or a negative sample.
-<code>label = 1</code> for positive samples, and <code>label = 0</code> for negative samples.
+<span class='centered'>Throughout <code>word2vec</code>, no 2D arrays are used. Indexing of the form
+<span class='centered'><code>arr[word][ix]</code> is manually written as <code>arr[word * layer1_size + ix]</code>. So, I
+<span class='centered'>will call <code>word * layer1_size</code> as the "base address", and <code>ix</code> as the "offset
+<span class='centered'>of the array index expression henceforth.
+<span class='centered'>Here, <code>l1</code> is the base address of the word at the center of window (the focus
+<span class='centered'>word).  <code>l2</code> is the base address of either the word that is negative sampled
+<span class='centered'>from the corpus, or the word that is a positive sample from within the context
+<span class='centered'>window.
+<span class='centered'><code>label</code> tells us whether the sample is a positive or a negative sample.
+<span class='centered'><code>label = 1</code> for positive samples, and <code>label = 0</code> for negative samples.
 <pre><code><span class="token comment">// zero initialize neu1e</span>
 <span class="token comment">// https://github.com/imsky/word2vec/blob/master/word2vec.c#L419</span>
 <span class="token keyword">for</span> <span class="token punctuation">(</span>c <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> c <span class="token operator">&lt;</span> layer1_size<span class="token punctuation">;</span> c<span class="token operator">++</span><span class="token punctuation">)</span> neu1e<span class="token punctuation">[</span>c<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
@@ -103,19 +97,10 @@ window.
 <span class="token comment">// Learn weights input -> hidden</span>
 <span class="token keyword">for</span> <span class="token punctuation">(</span>c <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> c <span class="token operator">&lt;</span> layer1_size<span class="token punctuation">;</span> c<span class="token operator">++</span><span class="token punctuation">)</span> syn0<span class="token punctuation">[</span>c <span class="token operator">+</span> l1<span class="token punctuation">]</span> <span class="token operator">+=</span> neu1e<span class="token punctuation">[</span>c<span class="token punctuation">]</span><span class="token punctuation">;</span>
 </code></pre>
-<ul><li><span class='centered'> We have <i><span class='centered'>two</i> vectors for each word, one called <code>syn0[l1 + _]</code> and
-  the other <code>syn1neg[l2 + _]</code>. The <code>syn1neg</code> word embedding is used whenever
-  a word is used a negative sample, and is not used anywhere else. Also,
-  the <code>syn1neg</code> vector is zero initialized, while the <code>syn0</code> vectors are
-  randomly initialized.</li></ul>
-<ul><li><span class='centered'> The values we backprop with <code>g * syn1neg[l2 + _]</code>, <code>g * syn0[l1 + _]</code> are
-  <i><span class='centered'>not</i> the correct gradients of the error term! The derivative of a sigmoid
-  is <code>dsigmoid(x)/dx = sigmoid(x) [1 - sigmoid(x)]</code>. The <code>[1 - sigmoid(x)]</code>
-  is nowhere to be seen, let alone the fact that we are using
-  <code>sigmoid(2x - 1)</code> and not regular sigmoid. Very weird.</li></ul>
-<ul><li><span class='centered'> We hold the value of <code>syn0</code> constant throughout all the negative samples,
-  which was not mentioned in any tutorial I've read.</li></ul>
-The paper does not mentioned these implementation details, and neither
-does <i><span class='centered'>any blog post that I've read</i>. I don't understand what's going on,
-and I plan on updating this section when I understand this better.
+<ul><li><span class='centered'><span class='centered'> We have <i><span class='centered'>two</i> vectors for each word, one called <code>syn0[l1 + _]</code> and<span class='centered'>the other <code>syn1neg[l2 + _]</code>. The <code>syn1neg</code> word embedding is used whenever<span class='centered'>a word is used a negative sample, and is not used anywhere else. Also,<span class='centered'>the <code>syn1neg</code> vector is zero initialized, while the <code>syn0</code> vectors are<span class='centered'>randomly initialized.</li></ul>
+<ul><li><span class='centered'><span class='centered'> The values we backprop with <code>g * syn1neg[l2 + _]</code>, <code>g * syn0[l1 + _]</code> are<span class='centered'><i><span class='centered'>not</i> the correct gradients of the error term! The derivative of a sigmoid<span class='centered'>is <code>dsigmoid(x)/dx = sigmoid(x) [1 - sigmoid(x)]</code>. The <code>[1 - sigmoid(x)]</code><span class='centered'>is nowhere to be seen, let alone the fact that we are using<span class='centered'><code>sigmoid(2x - 1)</code> and not regular sigmoid. Very weird.</li></ul>
+<ul><li><span class='centered'><span class='centered'> We hold the value of <code>syn0</code> constant throughout all the negative samples,<span class='centered'>which was not mentioned in any tutorial I've read.</li></ul>
+<span class='centered'>The paper does not mentioned these implementation details, and neither
+<span class='centered'>does <i><span class='centered'>any blog post that I've read</i>. I don't understand what's going on,
+<span class='centered'>and I plan on updating this section when I understand this better.
 </container></body></html>

@@ -7,9 +7,18 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=why-is-int-i-i-allowed-in-c href='#why-is-int-i-i-allowed-in-c'> § </a><span class='centered'> why is <code>int i = i</code> allowed in C++?</h2>
-This bizarre program:
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style><script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></head><body><div class='container'><h2><a id=why-is-int-i-i-allowed-in-c href='#why-is-int-i-i-allowed-in-c'> § </a><span class='centered'> why is <code>int i = i</code> allowed in C++?</h2>
+<span class='centered'>This bizarre program:
 <pre><code><span class="token keyword">struct</span> <span class="token class-name">Foo</span> <span class="token punctuation">{</span> <span class="token keyword">explicit</span> <span class="token function">Foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> Foo foo <span class="token operator">=</span> foo<span class="token punctuation">;</span> cout <span class="token operator">&lt;&lt;</span> <span class="token string">"works!"</span><span class="token punctuation">;</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
 </code></pre>
+<span class='centered'>actually works! Why is this allowed? The only real use-case I know for this is
+<span class='centered'>to write:
+<pre><code><span class="token keyword">const</span> <span class="token keyword">int</span> ARRSIZE <span class="token operator">=</span> <span class="token number">200</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token operator">*</span>ptr <span class="token operator">=</span> <span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>ptr<span class="token punctuation">)</span> <span class="token operator">*</span> ARRSIZE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<span class='centered'>Still, this seems awfully dodgy. It feels like the C speficiation could allow
+<span class='centered'>the use of the left-hand-side name in expression that only need <i><span class='centered'>type</i> information
+<span class='centered'>while emitting compile time errors for expressions that use the left-hand-side-name
+<span class='centered'>as a <i><span class='centered'>value</i>.
 </container></body></html>

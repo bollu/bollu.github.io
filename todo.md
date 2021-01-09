@@ -1,3 +1,49 @@
+- [Tarot of the divine: beautiful tarot cards](https://yoshiyoshitani.store/collections/tarot/products/preorder-tarot-of-the-divine-a-deck-and-guidebook-inspired-by-deities-folklore-and-fairy-tales-from-around-the-world-tarot-deck-only)
+- [Growing a proof assistant](Growing a Proof Assistant)
+- Introduction to Higher-Order Categorical Logic:  Lambek, P. J. Scott on topoi!
+- Method of types
+- Lazy Depth-First Search and Linear Graph Algorithms in Haskell
+- [MAA problem books](https://www.maa.org/sites/default/files/pdf/pubs/books/Problems_book_list.pdf): Series of books
+  about problem solving!
+- The Cauchy Schwarz master class
+- [A shorter model theory](https://www.amazon.in/Shorter-Model-Theory-Wilfrid-Hodges/dp/0521587131): Short book on model theory.
+- [On the complexity of linear arithmetic with divisibility](https://www.cs.ox.ac.uk/people/james.worrell/LICS-main.pdf): Useful for presburger results.
+- [Hori's Mirror symmetry](https://www.claymath.org/library/monographs/cmim01c.pdf) seems to contain good exposition of differential and
+  algebraic geometry.
+- [Shafaravich: Basic Algebraic Geometry](https://www.springer.com/gp/book/9783642579080)
+- [Discrete version of riemann roch](https://mathoverflow.net/a/322850/123769)
+- [The Geometry of Geodesics, by Herbert Busemann, provides a purely intrinsic approach to a large part of differential geometry, through axioms on the metric.  It does not define covariant derivatives — but it defines geodesics without them, as length-preserving maps from the real line.  It does not define vector fields — but it analyzes motions, which are a finite analog to that infinitesimal notion.  It does not define differential forms — but it defines scalar curvature synthetically.](https://mathoverflow.net/a/379424/123769)
+- Relativity in Illustrations: Explains relativity purely geometrically.
+- [Intuition for divisor and genus](https://math.stackexchange.com/questions/1609/intuitive-explanations-for-the-concepts-of-divisor-and-genus/1635#1635)
+- [Group representations in probability and statistics: Covers representation theory of the symmetric group](https://jdc.math.uwo.ca/M9140a-2012-summer/Diaconis.pdf)
+- Symmetries and curvature in general relativity by G S Hall: covers the lie
+  and representation theory of the lorentz group.
+- [Doxastic logic](https://en.wikipedia.org/wiki/Doxastic_logic)
+- [Right-left rule for disambiguating C declarations](http://cseweb.ucsd.edu/~ricko/rt_lt.rule.html)
+- [Grothendieck construction](https://math.mit.edu/~dspivak/CT4S.pdf)
+- [KMP, functionally](https://chaoxuprime.com/posts/2014-04-11-the-kmp-algorithm-in-haskell.html)
+- [Codeforces: voronoi diagrams](https://codeforces.com/blog/entry/85638)
+- [Superflux: imagined futures for the 21st century](https://superflux.in/)
+- [Exact humanities reading list](https://itihas.review/grimoire/hrl.html)
+- [That about wraps it up; using Y combinator to tie the knot](http://www.lfcs.inf.ed.ac.uk/reports/97/ECS-LFCS-97-375/ECS-LFCS-97-375.pdf)
+- [Adjoint operators](http://www.reproducibility.org/RSF/book/bei/conj/paper_html/index.html)
+- [Original BDD reading material: Graph-Based Algorithms for Boolean Function Manipulation](https://www.cs.cmu.edu/~bryant/pubdir/ieeetc86.pdf)
+- [13 ways to think of the correlation coefficient](https://www.jstor.org/stable/pdf/2685263.pdf)
+- [Chasm of unknowing](https://chasm-of-unknowing.tumblr.com/)
+- [A distributed systems reading list](https://dancres.github.io/Pages/)
+- [Linear logic vector spaces?](https://www.cs.bham.ac.uk/~drg/bll/steve.pdf)
+- Book on juggling notation.
+- Applied Analysis by the Hilbert Space Method: book which combines Hilbert spaces, differential equations, and Fourier analysis at very elementary undergraduate level
+- [The major system: remembering numbers](https://artofmemory.com/wiki/Major_System)
+- [Necessary disorder: GIFs with the same style, looping, beautiful](https://necessary-disorder.tumblr.com/page/2)
+- [Chess tactics](https://www.chesstactics.org/)
+- [Geometric Algebra: Eric Chisolm --- the reference that finally made GA make sense for me.](https://arxiv.org/pdf/1205.5935.pdf )
+- [The Topological Structure of Asynchronous Computability](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.78.1455&rep=rep1&type=pdf). Seems to explain a bunch of distributed systems results in combinatorial topology language. Very very cool.
+- [Chess endgames you must know](https://www.goodreads.com/book/show/2897367-100-endgames-you-must-know?ac=1&from_search=true&qid=VFPFB6EwYF&rank=1)
+- [Basic number theory by Weil](https://en.wikipedia.org/wiki/Basic_Number_Theory) --- seems like a good place as any
+  to learn "real Algebraic number theory"
+- [Digraphs: Theory, Algorithms and Applications](https://www.springer.com/gp/book/9781848009974) Seems to be an authoritative
+  textbook on digraph theory. Sadly, it does not contain an exposition of Tarjan's SCC algorithm.
 - [INOI training material](https://www.iarcs.org.in/inoi/online-study-material/topics/articulation-points.php)
 - Discrete Images, Objects, and Functions in Zn: Seems to contain many results on
   topologies for images.
@@ -40,7 +86,7 @@
 - [Graphs, Dioids and Semirings: Provides algebraic descriptions of most graph algorithms](https://www.springer.com/gp/book/9780387754499)
 - [cutter: IDE for reverse engineering](https://cutter.re/)
 - Reversing: Secrets of Reverse Engineering --- book on reverse engineering.
-- [`kaitai` is like `010` editor, but also FOSS](http://kaitai.io/)
+- [`kaitai` is like `010` editor for drilling into binary formats, but also FOSS. With a web IDE!](https://ide.kaitai.io/)
 - [010 editor: world's best hex editor, comes with powerful scripting language to describe data layout](https://www.sweetscape.com/010editor/)
 - [MenuetOS: an entire OS written in assembly](https://github.com/marcosptf/menuetos)
 - [Study tree-sitter](https://github.com/tree-sitter/tree-sitter)

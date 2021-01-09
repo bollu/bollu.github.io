@@ -7,22 +7,22 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=adjunctions-as-advice href='#adjunctions-as-advice'> § </a><span class='centered'> Adjunctions as advice</h2>
-An adjunction <code>F |- U</code> allows us to go from <code>F a -> x</code> to <code>a -> U x</code>. We 
-can look at this as shifting the "before-advice" from the <i><span class='centered'>input</i> to an 
-"after advice" of the <i><span class='centered'>output</i>, where I'm using
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style><script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></head><body><div class='container'><h2><a id=adjunctions-as-advice href='#adjunctions-as-advice'> § </a><span class='centered'> Adjunctions as advice</h2>
+<span class='centered'>An adjunction <code>F |- U</code> allows us to go from <code>F a -> x</code> to <code>a -> U x</code>. We 
+<span class='centered'>can look at this as shifting the "before-advice" from the <i><span class='centered'>input</i> to an 
+<span class='centered'>"after advice" of the <i><span class='centered'>output</i>, where I'm using
 
-Also, to remember this, we can write it as:
+<span class='centered'>Also, to remember this, we can write it as:
 <pre><code>F a <--F--- a
 |           |
 v           v
 x ----U--> U x
 </code></pre>
-Where <code>F</code> is for <code>F</code>ree and <code>U</code> is for forgetf<code>U</code>l.
-Recall that if <code>F</code> is free and <code>U</code> is forgetful, then <code>U(F(x)) = x</code>, since
-adding more structure through the free functor and then stripping it away gives
-us the object back. We can prove that if <code>U(F(x)) = x</code> and <code>U, F</code> are functors,
-then we have a function <code>fwd: (f a -> x) -> (a -> u x)</code> as:
+<span class='centered'>Where <code>F</code> is for <code>F</code>ree and <code>U</code> is for forgetf<code>U</code>l.
+<span class='centered'>Recall that if <code>F</code> is free and <code>U</code> is forgetful, then <code>U(F(x)) = x</code>, since
+<span class='centered'>adding more structure through the free functor and then stripping it away gives
+<span class='centered'>us the object back. We can prove that if <code>U(F(x)) = x</code> and <code>U, F</code> are functors,
+<span class='centered'>then we have a function <code>fwd: (f a -> x) -> (a -> u x)</code> as:
 <pre><code>f      :: (f a -> x) 
 fmap   :: (p   -> q) -> (u p     -> u q)
 fmap   :: (p   -> q) -> (u ( p ) -> u q)
@@ -30,5 +30,5 @@ fmap f :: (f a -> x) -> (u (f a) -> u x)
 fmap f :: (f a -> x) -> (a       -> u x) [using u (f a) = a]
 </code></pre>
 <h4><a id=references href='#references'> § </a><span class='centered'> References</h4>
-<ul><li><span class='centered'> <a href=https://www.youtube.com/watch?v=l1FCXUi6Vlw><span class='centered'>Profunctor optics: the categorical approach, <code>33:00</code> onwards</a></li></ul>
+<ul><li><span class='centered'><span class='centered'> <a href=https://www.youtube.com/watch?v=l1FCXUi6Vlw><span class='centered'>Profunctor optics: the categorical approach, <code>33:00</code> onwards</a>)</li></ul>
 </container></body></html>
