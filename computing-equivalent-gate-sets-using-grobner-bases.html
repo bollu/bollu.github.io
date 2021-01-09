@@ -43,7 +43,7 @@ V = 'a1' | 'a2' | ...
 <span class='centered'>a constant.
 <span class='centered'>If there's some principled way to derive this (beyond throwing symbolic
 <span class='centered'>algebra machinery), I'd really love to know ---
-<span class='centered'><a href=https://github.com/bollu/bollu.github.io/issues><span class='centered'>Please raise an issue with the explanation!</a>)
+<span class='centered'><a href=https://github.com/bollu/bollu.github.io/issues><span class='centered'>Please raise an issue with the explanation!</a>
 <h4><a id=what-the-hell-is-grobner-basis href='#what-the-hell-is-grobner-basis'> § </a><span class='centered'> What the hell is Grobner Basis?</h4>
 <span class='centered'>The nutshell is that a grobner basis is a way to construct rewrite rules which
 <span class='centered'>also understand arithmetic (I learnt this viewpoint from the book "Term
@@ -84,7 +84,7 @@ AB -> -B^2 -- (2)
 </code></pre>
 <span class='centered'>This tells us that we <i><span class='centered'>can't just apply the rewrite rules willy-nilly</i>.
 <span class='centered'>It's sensitive to the <i><span class='centered'>order</i> of the rewrites! That is, the rewrite system
-<span class='centered'>is not <a href=https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting><span class='centered'>confluent</a>)).
+<span class='centered'>is not <a href=https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting><span class='centered'>confluent</a>).
 <span class='centered'>The grobner basis is a function from rewrite systems to rewrite systems.
 <span class='centered'>When given a rewrite system <code>R</code>, it produces a <i><span class='centered'>new</i> rewrite system <code>R'</code>
 <span class='centered'>that <i><span class='centered'>is confluent</i>. So, we can apply the rewrite rules of <code>R'</code> in any order,
@@ -93,15 +93,13 @@ AB -> -B^2 -- (2)
 <span class='centered'>We can then go on to phrase this whole rewriting setup in the language of
 <span class='centered'>ideals from ring theory, and that is the language in which it is most
 <span class='centered'>often described. I've gone into more depth on that perspective here: 
-<span class='centered'><a href=#what-the-hell-is-a-grobner-basis-ideals-as-rewrite-systems><span class='centered'>"What is a grobner basis? polynomial factorization as rewrite systems"</a>).
+<span class='centered'><a href=#what-the-hell-is-a-grobner-basis-ideals-as-rewrite-systems><span class='centered'>"What is a grobner basis? polynomial factorization as rewrite systems"</a>.
 <span class='centered'>Now that we have a handle on what a grobner basis is, let's go on to solve
 <span class='centered'>the original problem:
 <h4><a id=an-explanation-through-a-slightly-simpler-problem href='#an-explanation-through-a-slightly-simpler-problem'> § </a><span class='centered'> An explanation through a slightly simpler problem</h4>
 <span class='centered'>I'll first demonstrate the idea of how to solve the original problem
 <span class='centered'>by solving a slightly simpler problem:
-<blockquote></blockquote>
-<blockquote></blockquote>
-<blockquote></blockquote>
+<blockquote><span class='centered'> Rewrite <code>a^b^c</code> in terms of <code>a^b</code>, <code>b^c</code>, <code>c^a</code> and the same <code>+_mod8</code> instruction<span class='centered'> set as the original problem. The only difference this time<span class='centered'> is that we do <i><span class='centered'>not</i> have <code>T -> V ^ V ^ V</code>.</blockquote>
 <span class='centered'>The idea is to construct the polynomial ring over <code>Z/8Z</code> (integers modulo 8) with
 <span class='centered'>variables as <code>a, b, c, axorb, bxorc, axorc</code>. Now, we know that <code>a^b = a + b - 2ab</code>. So,
 <span class='centered'>we setup rewrite rules such that <code>a + b - 2ab -> axorb</code>, <code>b + c - 2bc -> bxorb</code>,

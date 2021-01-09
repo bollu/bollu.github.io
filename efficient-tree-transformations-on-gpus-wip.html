@@ -8,7 +8,7 @@ a:active { color: #1a73e8; text-decoration: none; }
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
 pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style><script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></head><body><div class='container'><h2><a id=efficient-tree-transformations-on-gpus-wip href='#efficient-tree-transformations-on-gpus-wip'> § </a><span class='centered'> Efficient tree transformations on GPUs (WIP)</h2>
-<span class='centered'>All material lifted straight from <a href=https://scholarworks.iu.edu/dspace/handle/2022/24749><span class='centered'>Aaron Hsu's PhD thesis</a>). I'll be converting
+<span class='centered'>All material lifted straight from <a href=https://scholarworks.iu.edu/dspace/handle/2022/24749><span class='centered'>Aaron Hsu's PhD thesis</a>. I'll be converting
 <span class='centered'>APL notation to C++-like notation.
 <h4><a id=tree-repsentation-as-multi-dimensional-ragged-nested-arrays href='#tree-repsentation-as-multi-dimensional-ragged-nested-arrays'> § </a><span class='centered'> Tree repsentation as multi-dimensional ragged nested arrays</h4>
 <span class='centered'>We're interested in this tree:
@@ -179,7 +179,7 @@ $ ]disp data
 └→┴→┴─→┘
 </code></pre>
 <span class='centered'>This is the same thing as a
-<span class='centered'><a href=https://en.wikipedia.org/wiki/AoS_and_SoA#Structure_of_Arrays><span class='centered'>structure of arrays (SOA) representation</a>),
+<span class='centered'><a href=https://en.wikipedia.org/wiki/AoS_and_SoA#Structure_of_Arrays><span class='centered'>structure of arrays (SOA) representation</a>,
 <span class='centered'>where each array of information (eg, the depth at <code>data[1]</code>, the <code>T</code>
 <span class='centered'>information at <code>data[2]</code>) are each <i><span class='centered'>arrays</i> which can be accessed well on SIMD
 <span class='centered'>instructions.
@@ -332,7 +332,7 @@ $ ixgrid
 0 0 2 0 4 0 6 0 8 0  0 11  0  0 14
 0 0 0 0 0 5 0 0 0 9 10  0 12 13  0
 </code></pre>
-<ul><li><span class='centered'><span class='centered'> Finally, <code>⌈</code> is the maximum operator, and <code>\</code> is the <a href=><span class='centered'>prefix scan</a>) operator,<span class='centered'>so <code>⌈\ixgrid</code> creates a prefix scan of the above grid to give us our<span class='centered'>final path matrix:</li></ul>
+<ul><li><span class='centered'><span class='centered'> Finally, <code>⌈</code> is the maximum operator, and <code>\</code> is the <a href=><span class='centered'>prefix scan</a> operator,<span class='centered'>so <code>⌈\ixgrid</code> creates a prefix scan of the above grid to give us our<span class='centered'>final path matrix:</li></ul>
 <pre><code>$ PM ← ⌈\ixgrid
 $ PM
 0 0 0 0 0 0 0 0 0 0  0  0  0  0  0
@@ -613,7 +613,7 @@ p:2    q:4     r:6   s:8        t:11    u:14    2
 <span class='centered'>We use the Interval Index(<code>⍸</code>) operator to solve the problem of finding the
 <span class='centered'>parent / where we should sqeeze a node from <code>b[3]</code> into <code>b[2]</code>
 <span class='centered'>(This is formally known as the
-<span class='centered'><a href=https://en.wikipedia.org/wiki/Predecessor_problem><span class='centered'>predecessor problem</a>))
+<span class='centered'><a href=https://en.wikipedia.org/wiki/Predecessor_problem><span class='centered'>predecessor problem</a>)
 <pre><code>⍝ left[a[i]] is closest number < right[i]
 ⍝ left[a[i]] is the predecessor of right[i] in left[i].
 $ a ← (1 10 100 1000) ⍸ (1 2000 300 50 2 )
@@ -743,10 +743,7 @@ $ PX ← P I@{X[⍵]≠1} ⍣ ≡ P
 <span class='centered'>up to the root.
 <ul><li><span class='centered'><span class='centered'>  This pass displays how to lift subtrees and add new nodes to replace the subtree's original nodes.</li><li><span class='centered'><span class='centered'> Luckily, there are no <i><span class='centered'>sibling</i> relationships that need to be maintained since<span class='centered'>we are uprooting an entire subtree.</li><li><span class='centered'><span class='centered'> There are no <i><span class='centered'>ordering constraints</i> on how the subtrees should be arranged at<span class='centered'>the top.</li><li><span class='centered'><span class='centered'> Hence, we can simply add new nodes to the <i><span class='centered'>end</i> of the tree (in terms of the preorder traversal).<span class='centered'>Adding to the middle of the tree will be discussed later.</li></ul>
 <span class='centered'>There is some good advice in the thesis:
-<blockquote></blockquote>
-<blockquote></blockquote>
-<blockquote></blockquote>
-<blockquote></blockquote>
+<blockquote><span class='centered'> When using APL primitives this way, it may be good to map<span class='centered'> their names and definitions to the domain of trees. For example,<span class='centered'> the primitive <code>⍸Predicate</code> is read as "the nodes where <code>Predicate</code> holds"<span class='centered'> and not as "the indexes where <code>Predicate</code> is 1".</blockquote>
 <span class='centered'>For example, given the tree:
 <pre><code>      0 1 2 3 4 5  | indexes
       a b c d e f  | names

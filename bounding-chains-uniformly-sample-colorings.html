@@ -93,7 +93,7 @@ P(t0, S, T) = 1/|S| + (1 - |T|/|S|) * P(t0, |S|-1, T) [induction]
 = 1/|T|
 </code></pre>
 <span class='centered'>Which is indeed the same probability as (1):
-<blockquote></blockquote>
+<blockquote><span class='centered'> 1. Choosing an element uniformly from a subset <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span></span></span></span></span> = <code>1/|T|</code>.</blockquote>
 <h4><a id=proof-by-program-analysis-version-1 href='#proof-by-program-analysis-version-1'> § </a><span class='centered'> Proof by program analysis, Version 1</h4>
 <pre><code><span class="token keyword">def</span> <span class="token function">process</span><span class="token punctuation">(</span>S<span class="token punctuation">,</span> T<span class="token punctuation">)</span><span class="token punctuation">:</span>
   s <span class="token operator">=</span> np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>choice<span class="token punctuation">(</span>S<span class="token punctuation">)</span>
@@ -264,5 +264,5 @@ W | p:{1, 2} -- q:{1, 2, 3}
 
 </code></pre>
 <h4><a id=references href='#references'> § </a><span class='centered'> References</h4>
-<ul><li><span class='centered'><span class='centered'> <a href=https://dl.acm.org/doi/10.1145/276698.276709><span class='centered'>Exact Sampling and Approximate Counting Techniques</a>)</li></ul>
+<ul><li><span class='centered'><span class='centered'> <a href=https://dl.acm.org/doi/10.1145/276698.276709><span class='centered'>Exact Sampling and Approximate Counting Techniques</a></li></ul>
 </container></body></html>

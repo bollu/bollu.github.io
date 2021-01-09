@@ -10,15 +10,9 @@ pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: 
 pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style><script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></head><body><div class='container'><h2><a id=incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020 href='#incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020'> § </a><span class='centered'> Incunabulum for the 21st century: Making the J interpreter compile in 2020</h2>
 <span class='centered'>This is me trying to understand the fabled interpreter of the <code>J</code> language
 <span class='centered'>working, so I could absorb Arthur Whitney's style of writing C: it's
-<span class='centered'>cryptic, short, and fits in a page. <a href=https://code.jsoftware.com/wiki/Essays/Incunabulum><span class='centered'>I learnt of this from the <code>J</code> language page</a>),
+<span class='centered'>cryptic, short, and fits in a page. <a href=https://code.jsoftware.com/wiki/Essays/Incunabulum><span class='centered'>I learnt of this from the <code>J</code> language page</a>,
 <span class='centered'>which comes with the quote:
-<blockquote></blockquote>
-<blockquote></blockquote>
-<blockquote></blockquote>
-<blockquote></blockquote>
-<blockquote></blockquote>
-<blockquote></blockquote>
-<blockquote></blockquote>
+<blockquote><span class='centered'> One summer weekend in 1989, Arthur Whitney visited Ken Iverson at Kiln Farm<span class='centered'> and produced—on one page and in one afternoon—an interpreter fragment on the<span class='centered'> AT&T 3B1 computer. I studied this interpreter for about a week for its<span class='centered'> organization and programming style; and on Sunday, August 27, 1989, at about<span class='centered'> four o'clock in the afternoon, wrote the first line of code that became the<span class='centered'> implementation described in this document.<span class='centered'> Arthur's one-page interpreter fragment is as follows:</blockquote>
 <h4><a id=the-original-source href='#the-original-source'> § </a><span class='centered'> The original source</h4>
 <pre><code><span class="token keyword">typedef</span> <span class="token keyword">char</span> C<span class="token punctuation">;</span><span class="token keyword">typedef</span> <span class="token keyword">long</span> I<span class="token punctuation">;</span>
 <span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token class-name">a</span><span class="token punctuation">{</span>I t<span class="token punctuation">,</span>r<span class="token punctuation">,</span>d<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>p<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token operator">*</span>A<span class="token punctuation">;</span>
@@ -142,7 +136,7 @@ a=~3
 <span class='centered'>aspects of the code:
 <ul><li><span class='centered'><span class='centered'> What is the <code>t</code> variable really tracking?</li><li><span class='centered'><span class='centered'> How does one create a multi-dimensional array easily?</li><li><span class='centered'><span class='centered'> What are some interesting programs one can run with this mini-interpreter?</li></ul>
 <span class='centered'>I'd be really glad to know the details. Please leave 
-<span class='centered'><a href=https://github.com/bollu/bollu.github.io/issues/new><span class='centered'>an issue or a pull request against the repo</a>).
+<span class='centered'><a href=https://github.com/bollu/bollu.github.io/issues/new><span class='centered'>an issue or a pull request against the repo</a>.
 <span class='centered'>I'm going write a dissection of the code once I fully understand it, since I
 <span class='centered'>couldn't find explanaing the code on the internet.
 <span class='centered'>Until then, enjoy the monolith of code!

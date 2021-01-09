@@ -24,12 +24,12 @@ vector<span class="token operator">&lt;</span><span class="token keyword">int</s
 <span class='centered'>largest element, etc. I've previously tried the naming conventions:
 <h4><a id=rankselect href='#rankselect'> § </a><span class='centered'> rank/select</h4>
 <span class='centered'><code>rank: ix -> order</code>, <code>select: order -> ix</code>. The pro of this is that it
-<span class='centered'>uses the <a href=http://bitmagic.io/rank-select.html><span class='centered'>rank/select</a>) naming convention.
+<span class='centered'>uses the <a href=http://bitmagic.io/rank-select.html><span class='centered'>rank/select</a> naming convention.
 <span class='centered'>This leads into the Galois connection aspect of it, but is otherwise not so
 <span class='centered'>useful.
 <h4><a id=order2ixix2order href='#order2ixix2order'> § </a><span class='centered'> order2ix/ix2order</h4>
 <span class='centered'>The signatures are <code>order2ix: order -> ix</code>, <code>ix2order: ix -> order</code>. This uses
-<span class='centered'>the <a href=https://en.wikipedia.org/wiki/Order_statistic><span class='centered'>order statistic</a>) naming
+<span class='centered'>the <a href=https://en.wikipedia.org/wiki/Order_statistic><span class='centered'>order statistic</a> naming
 <span class='centered'>convention, and thereby makes it clear what the query is: you tell me the
 <span class='centered'>kth order, I give you the index in the array in <code>order2ix(k)</code>. Alternatively,
 <span class='centered'>you tell me the index <code>i</code>, and I'll tell you its order statistic in <code>ix2order(k).</code>

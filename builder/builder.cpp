@@ -583,6 +583,8 @@ T *tokenizeLink(const char *s, const ll len, const L opensq) {
 
   if (s[closeround.si] != ')') {
     return nullptr;
+  } else {
+      closeround = closeround.next(')');
   }
 
   char *link = (char *)calloc((closeround.si - openround.si), sizeof(char));
@@ -714,7 +716,7 @@ T *tokenizeNumberedListItem(const char *s, const ll len, const L lhyphen,
   return new TInlineGroup(toks);
 }
 
-// We parse quotes here.
+// quotes.
 T *tokenizeQuoteItem(const char *s, const ll len, const L lquote) {
   cerr << "tokenizeQuoteItem(" << lquote << ")\n";
   assert(s[lquote.si] == '>');
@@ -723,9 +725,10 @@ T *tokenizeQuoteItem(const char *s, const ll len, const L lquote) {
   while (1) {
     T *t = tokenizeInlineLine(s, len, lcur);
     toks.push_back(t);
+    lcur = t->span.end;
     assert(s[lcur.si] == '\n');
     if (lcur.si + 1 < len && s[lcur.si + 1] == '>') {
-      lcur = lcur.next('>');
+      lcur = lcur.next("\n>");
       continue;
     }
     break;
@@ -889,18 +892,8 @@ T *tokenizeBlock(const char *s, const ll len, const L lbegin) {
       break;
     }
     return new TListNumbered(toks);
-  } else if (s[lcur.si] == '>' && (lcur.si == 0 || s[lcur.si - 1] == '\n')) {
-    vector<T *> toks;
-    while (1) {
-      T *t = tokenizeInlineLine(s, len, lcur);
-      lcur = t->span.end;
-      if (s[lcur.si] == '>') {
-        lcur = lcur.next('>');
-        continue;
-      }
-      break;
-    }
-    return new TQuote(Span(lbegin, lcur), toks);
+  } else if (s[lcur.si] == '>') {
+      return tokenizeQuoteItem(s, len, lcur);
   } else {
 
     // consume whitespace.

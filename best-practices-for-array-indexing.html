@@ -9,7 +9,7 @@ blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
 pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style><script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></head><body><div class='container'><h2><a id=best-practices-for-array-indexing href='#best-practices-for-array-indexing'> § </a><span class='centered'> Best practices for array indexing</h2>
 <span class='centered'>These are rules I'm going to follow when I solve problems on 
-<span class='centered'><a href=https://codeforces.com/><span class='centered'>codeforces</a>). I've arrived at these rules by repeatedly
+<span class='centered'><a href=https://codeforces.com/><span class='centered'>codeforces</a>. I've arrived at these rules by repeatedly
 <span class='centered'>noticing the kinds of mistakes I make and attempting to adopt conventions
 <span class='centered'>to eliminate these.
 <h4><a id=rule-1-half-open-intervals href='#rule-1-half-open-intervals'> § </a><span class='centered'> Rule 1: Half-open intervals</h4>
@@ -88,7 +88,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-posi
 <span class='centered'>simple transformation and always make sure our loop variables increment
 <span class='centered'>by <code>1</code>. In a compiler, this is often called as "canonicalizing the loop
 <span class='centered'>induction variable". In LLVM the canonicalization is
-<span class='centered'><a href=https://llvm.org/docs/Passes.html#indvars-canonicalize-induction-variables><span class='centered'>performed by the <code>-indvars</code> pass</a>).
+<span class='centered'><a href=https://llvm.org/docs/Passes.html#indvars-canonicalize-induction-variables><span class='centered'>performed by the <code>-indvars</code> pass</a>.
 <span class='centered'>The above example canonicalized becomes:
 <pre><code><span class="token comment">// btc = backedge taken count. How many times we have</span>
 <span class="token comment">// gone past the "back edge" of the loop to go back to the</span>

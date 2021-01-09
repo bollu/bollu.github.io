@@ -105,9 +105,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-posi
 <span class='centered'>not be equal to bottom.
 <span class='centered'>Formally, a function <code>f</code> is non-strict iff (if and only if) <code>f(bottom) /= bottom</code>.
 <span class='centered'>As Paul Halmos says
-<blockquote></blockquote>
-<blockquote></blockquote>
-<blockquote></blockquote>
+<blockquote><span class='centered'> "A good stack of examples, as large as possible, is indispensable for a<span class='centered'> thorough understanding of any concept, and when I want to learn something<span class='centered'> new, I make it my first job to build one.". Let us consider some examples.</blockquote>
 <ul><li><span class='centered'><span class='centered'> <code>id</code></li></ul>
 <pre><code><span class="token builtin">id</span> <span class="token hvariable">x</span> <span class="token operator">=</span> <span class="token hvariable">x</span>
 
@@ -311,7 +309,7 @@ int main() {
 <span class='centered'>I hope I've managed to convey the <i><span class='centered'>essence</i> of how to compile Haskell. I skipped a couple of things:
 <ul><li><span class='centered'><span class='centered'> haskell data types: sum and product types. These are straightforward, they just compiled to tagged structs.</li><li><span class='centered'><span class='centered'> <code>let</code> bindings: These too are straightforward, but come with certain retrictions in STG. It's nothing groundbreaking,and<span class='centered'>is well written in the paper.</li><li><span class='centered'><span class='centered'> Black holes: Currently, we are not truly <i><span class='centered'>lazy</i>, in that we do not update values once they are computed.</li><li><span class='centered'><span class='centered'> GC: how to weave the GC through the computation is somewhat non-trivial.</li></ul>
 <span class='centered'>All of this is documented in the excellent paper:
-<span class='centered'><a href=https://www.dcc.fc.up.pt/~pbv/aulas/linguagens/peytonjones92implementing.pdf><span class='centered'>Implementing lazy languages on stock hardware</a>).
+<span class='centered'><a href=https://www.dcc.fc.up.pt/~pbv/aulas/linguagens/peytonjones92implementing.pdf><span class='centered'>Implementing lazy languages on stock hardware</a>.
 <span class='centered'>I am considering extending this blog post that expands on these ideas. If there
 <span class='centered'>is interest, please do e-mail me at <code>siddu.druid@gmail.com</code>.
 </container></body></html>

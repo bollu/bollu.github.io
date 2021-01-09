@@ -181,13 +181,12 @@ Captures the microcosm of what it means to live in India.
 - sampleraytracer
 - bijective combinatorics
 - [Why do people stay poor?](https://news.ycombinator.com/item?id=25568800)
-
-#### Talk: p-adics
-#### Talk: smallpt-hs
-I partened up with a friend to give a talk 
+- Talk: p-adics
+- Talk: smallpt-hs
 
 # Method of types in information theory(WIP)
-# Line bundle (WIP)
+
+# Line bundles, a high level view as I understand them today
 
 - What is a line bundle?
 - What does it mean to tensor two line bundles?
@@ -205,7 +204,7 @@ All modules are invertible when tensored with their dual.
 
 
 To simplify further, let's move to linear algbera from ring theory; consider the field $\mathbb R$.
-Over this, we have a vector space of dimension $1$, $mathbb R$. Now, if we consider $\mathbb R \otimes \mathbb R^*$,
+Over this, we have a vector space of dimension $1$, $\mathbb R$. Now, if we consider $\mathbb R \otimes \mathbb R^*$,
 this is isomorphic to $\mathbb R$ since we can replace $(r, f) \mapsto f(r)$. This
 amounts to the fact that we can contract tensors.
 

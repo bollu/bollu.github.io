@@ -9,12 +9,10 @@ blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
 pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style><script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></head><body><div class='container'><h2><a id=debugging-debug-info-in-ghc href='#debugging-debug-info-in-ghc'> § </a><span class='centered'> Debugging debug info in GHC</h2>
 <span class='centered'>I wanted to use debug info to help build a better debugging experience
-<span class='centered'>within <a href=http://github.com/tweag/asterius><span class='centered'><code>tweag/asterius</code></a>). So, I was
+<span class='centered'>within <a href=http://github.com/tweag/asterius><span class='centered'><code>tweag/asterius</code></a>. So, I was
 <span class='centered'>reading through the sources of <code>cmm/Debug.hs</code>.
 <span class='centered'>I'd never considered how to debug debug-info, and I found the information
 <span class='centered'>tucked inside a cute note in GHC (<code>Note [Debugging DWARF unwinding info]</code>):
-<blockquote></blockquote>
-<blockquote></blockquote>
-<blockquote></blockquote>
-<ul><li><span class='centered'><span class='centered'> <a href=https://github.com/ghc/ghc/blob/535a26c90f458801aeb1e941a3f541200d171e8f/compiler/cmm/Debug.hs#L458><span class='centered'>Link to GHC sources</a>)</li></ul>
+<blockquote><span class='centered'> This makes GDB produce a trace of its internal workings. Having gone this far,<span class='centered'> it's just a tiny step to run GDB in GDB. Make sure you install debugging<span class='centered'> symbols for gdb if you obtain it through a package manager.</blockquote>
+<ul><li><span class='centered'><span class='centered'> <a href=https://github.com/ghc/ghc/blob/535a26c90f458801aeb1e941a3f541200d171e8f/compiler/cmm/Debug.hs#L458><span class='centered'>Link to GHC sources</a></li></ul>
 </container></body></html>
