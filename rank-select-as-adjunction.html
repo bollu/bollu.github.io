@@ -7,7 +7,7 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style><script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></head><body><div class='container'><h2><a id=rank-select-as-adjunction href='#rank-select-as-adjunction'> § </a><span class='centered'> Rank-select as adjunction</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=rank-select-as-adjunction href='#rank-select-as-adjunction'> § </a><span class='centered'> Rank-select as adjunction</h2>
 <span class='centered'>We will introduce two operations <code>rank</code>, <code>select</code>, --- these are used to
 <span class='centered'>build memory-efficient data structures that can still be queried quickly.
 <span class='centered'>We will show how <code>rank</code> and <code>select</code> are adjoint. This will also us to also
@@ -44,4 +44,4 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-posi
 coselect a0 as c = Ix <$> findIndex (== c) (reverse (eqscan a0 as))
 </code></pre>
 <span class='centered'>Thanks to Edward Kmett for teaching me this.
-</container></body></html>
+<script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

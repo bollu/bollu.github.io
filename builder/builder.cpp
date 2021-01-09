@@ -1508,7 +1508,8 @@ const char html_preamble[] =
     // 0px; border: none; }"
     // "}"
     // end style
-    "</style>" utterances_preamble "</head>"
+    "</style>"
+    "</head>"
     "<body>"
     "<div class='container'>";
 
@@ -1767,6 +1768,7 @@ int main(int argc, char **argv) {
     for (int i = ix_start; i < ix_h1; ++i) {
       toHTML(katex_ctx, prism_ctx, raw_input, ts[i], outlen, outbuf);
     }
+    outlen += sprintf(outbuf + outlen, utterances_preamble);
     outlen += sprintf(outbuf + outlen, "%s", html_postamble);
 
     // [ix_start, ix_h1) contains the new article

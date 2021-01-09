@@ -7,7 +7,7 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style><script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></head><body><div class='container'><h2><a id=varargs-in-ghc-t7160hs href='#varargs-in-ghc-t7160hs'> § </a><span class='centered'> Varargs in GHC: <code>T7160.hs</code></h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=varargs-in-ghc-t7160hs href='#varargs-in-ghc-t7160hs'> § </a><span class='centered'> Varargs in GHC: <code>T7160.hs</code></h2>
 <span class='centered'>A comment from this test case tells us why the function <code>debugBelch2</code> exists:
 <pre><code><span class="token hvariable">ghc</span><span class="token operator">/</span><span class="token hvariable">testsuite</span><span class="token operator">/</span><span class="token hvariable">tests</span><span class="token operator">/</span><span class="token hvariable">rts</span><span class="token operator">/</span><span class="token hvariable">T7160.hs</span>
 <span class="token comment">-- Don't use debugBelch() directly, because we cannot call varargs functions</span>
@@ -37,4 +37,4 @@ debugBelch(const char*s, ...)
   va_end(ap);
 }
 </code></pre>
-</container></body></html>
+<script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>
