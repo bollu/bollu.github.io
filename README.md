@@ -48,11 +48,13 @@ $$
 &\text{($F_2$ has characteristic zero, so $2 = 0$)} \\
 &= \sum_{i=j} o_i A_{ij} o_j + 0 \\
 &\text{(replace $i = j$ with $k$)} \\
-&= \sum_{k} o_i A_{kk} o_j  \\
-&\text{($A_kk = 0$ since graph has no self loops)} \\
-&= \sum_{k} 0 o_k  = 0
+&= \sum_{k} o_k A_{kk} o_k  \\
+&\text{($A_{kk} = 0$ since graph has no self loops)} \\
+&= \sum_{k} 0 \cdot o_k^2  = 0
 \end{aligned}
 $$
+
+So, the number of vertices of odd degree is even.
 
 I want to avoid this computation with respect to the basis, but I'm not
 sure how to do that.
