@@ -1,10 +1,12 @@
+- Classical Tessellations And Three Manifolds: geometric and pictorial account of low dimensional geometry.
+- Representation Theory of Finite Groups Gordon James: introductory account of representation theory phrased in terms of modules.
 - [Tarot of the divine: beautiful tarot cards](https://yoshiyoshitani.store/collections/tarot/products/preorder-tarot-of-the-divine-a-deck-and-guidebook-inspired-by-deities-folklore-and-fairy-tales-from-around-the-world-tarot-deck-only)
 - [Growing a proof assistant](Growing a Proof Assistant)
 - Introduction to Higher-Order Categorical Logic:  Lambek, P. J. Scott on topoi!
 - Method of types
 - Lazy Depth-First Search and Linear Graph Algorithms in Haskell
 - [MAA problem books](https://www.maa.org/sites/default/files/pdf/pubs/books/Problems_book_list.pdf): Series of books
-  about problem solving!
+  about problem solving!    
 - The Cauchy Schwarz master class
 - [A shorter model theory](https://www.amazon.in/Shorter-Model-Theory-Wilfrid-Hodges/dp/0521587131): Short book on model theory.
 - [On the complexity of linear arithmetic with divisibility](https://www.cs.ox.ac.uk/people/james.worrell/LICS-main.pdf): Useful for presburger results.

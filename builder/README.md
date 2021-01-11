@@ -4,15 +4,6 @@
 - Make list requirements more flexible. allowed `-aa\n\n-bb`
 - Builds HTML from the markdown in the blog.
 - Splits large markdown file into multiple HTML files.
-- TODO: RSS feed.
-- TODO: Latex to ASCII.
-- we create source highlihting using
-  [`source-highlight`](https://www.gnu.org/software/src-highlite/).
-
-- [TTH: the TEX to HTML translator](http://hutchinson.belmont.ma.us/tth/)
-- [Hevea](http://hevea.inria.fr/) is used to deal with latex.
-
-- https://www.cprogramming.com/tutorial/unicode.html
 - key-value database: [`kissdb`](https://github.com/adamierymenko/kissdb)
 - [Unpoly](https://unpoly.com/up.protocol) for fast page prefetching and 
   navigation inside a static site.
@@ -41,9 +32,10 @@ if ((window.innerHeight - document.documentElement.clientHeight) >0) {
 - [x] generate links for headers as github does.
 - [x] [Duktape](https://duktape.org/) for JS interpretation for KaTeX?
 - [x] MathML
-- [ ] Disqus / [`gitment`](https://github.com/imsun/gitment) for comments. (I use utterances, so I don't need these)
-- [ ] RSS feed.
-- [ ] Broken link warnings.
+- [x] RSS feed.
+- [ ] pull better span-based error messages from lz into here.
+- [ ] Broken URL and image link warnings.
+- [ ] Disqus / [`gitment`](https://github.com/imsun/gitment) for comments. (I use [utterances](https://utteranc.es/), so I don't need these)
 - [ ] Figure out which DOM element causes window to overflow horizontally.
 - [ ] [twtxt](https://twtxt.readthedocs.io/en/latest/)
 - [ ] Link generation for repeats: eg. "#a\n#a" should have links `a-1` and `a-2`.

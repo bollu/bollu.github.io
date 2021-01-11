@@ -17,13 +17,112 @@ A Universe of Sorts
 
 
 <!-- - [Grab me a coffee](https://ko-fi.com/bollu) -->
-# Using the `bound` library
 
-# Rota's paths
+# Linear algebraic proof of the handshaking lemma
 
-- Count functions from $A \rightarrow B$.
-- These functions can be injective, surjective, or bijective.
-- The functions can have equivalence relations on their image or their fibers.
+We wish to show that the number odd vertices is even. Let $A$ be the adjacency
+matrix of the undirected graph $G$. Since $G$ is undirected, $A = A^T$. Now
+move everything to $F_2$, including $A$. This means that $A$ has entries $\{0, 1\}$.
+Now, denote the vector of all ones by $o \equiv (1, 1, \dots 1)$. See that
+$Ao$ counts the partities of the degrees of each vertex, and $o^T(Ao)$ counts the
+sum of parities of the degrees of each vertex.
+
+
+Note that the vertices of even degree with add $0$ to the sum $o^TAo$, while
+odd vertices will add a $1$. Thus, $o^TAo$ will equal the parity of
+the number of odd vertices. As we wish to show that the number of odd vertices
+is even, we want to prove that $o^TAo = 0$.
+
+
+We will now algebraically simplify $o^TAo$ (does anyone have a cleaner proof?)
+giving us:
+
+
+$$
+\begin{aligned}
+&o^TAo = \sum_{ij} o_i A_{ij} o_j \\
+&= \sum_{i=j} o_i A_{ij} o_j + \sum_{i < j} o_i A_{ij} o_j + o_j A_{ji} o_i \\
+&\text{($A$ is symmetric; $A_{ji} = A_{ij}$)} \\
+&= \sum_{i=j} o_i A_{ij} o_j + \sum_{i < j} o_i A_{ij} o_j + o_j A_{ij} o_i \\
+&= \sum_{i=j} o_i A_{ij} o_j + \sum_{i < j} 2 \cdot o_i A_{ij} o_j  \\
+&\text{($F_2$ has characteristic zero, so $2 = 0$)} \\
+&= \sum_{i=j} o_i A_{ij} o_j + 0 \\
+&\text{(replace $i = j$ with $k$)} \\
+&= \sum_{k} o_i A_{kk} o_j  \\
+&\text{($A_kk = 0$ since graph has no self loops)} \\
+&= \sum_{k} 0 o_k  = 0
+\end{aligned}
+$$
+
+I want to avoid this computation with respect to the basis, but I'm not
+sure how to do that.
+
+
+
+# Using the `bound` library (WIP)
+
+# Historical contemporaries
+
+I continue to be delighted at how connected arbitrary parts of history are.
+Here's a list of contemporaries I would not have guessed:
+
+- Rembrandt sketched Shah jahan
+- Greek ambassador in the Ashoka court
+- "Bhaeatha's kingdom" for Bharat as known by the Chinese
+- Aurangzeb had rockets when fighting his brother 
+- Aurangzeb had a French physician (Francois bernier)
+- Picasso was against the Korean war (1950) and painted about it.
+
+# Rota's twelvefold way
+
+- Count functions from $I \rightarrow O$.
+- See that any such function is a subset of $O^I$.
+- We can write such a function as $(o_1, o_2, \dots, o_{|I|}) \in O^I$
+- if we have $S_I \circ f$, this means that we can permute images.
+- If we have $f \circ S_O$, this means that we can permute fibers.
+
+#### f any function
+
+- we count $O^I$        
+
+#### f injective
+
+- We count $O^{(I)} = O(O-1)\dots(O-I+1)$ as given by the falling factorial.
+
+#### f surjective, with equivalence $S_I \circ f$.
+
+- For each element $o \in O$, pick some subset $I_o \subseteq I$. We need the
+  subsets $I_o$ to be disjoint, and all $I_o$ to be non-empty.
+- We can permute the fibers $I_o$, so we can place them by weakly decreasing order of size.
+- Then this is the same as counting partitions of $I$ into $O$ subsets, given by 
+  $S(n, x)$/${n\brace m}$ (stirling numbers of the second kind).
+
+
+#### f surjective
+
+- For each element $o \in O$, pick some subset $I_o \subseteq I$. We need the subsets $I_o$ to be disjoint,
+  and all $I_o$ to be non-empty.
+- We get partway there by counting **compositions** of $I$: the number of ways to 
+  split $|I|$ into $(a_1, a_2, \dots, a_k)$ such that each $(a_i > 0)$ and $\sum_i a_i = |I|$.
+  Note that ordering matters here, since we write a **tuple** $(a_1, a_2, \dots a_k)$.
+- For example, the compositions of $3$ are $(1, 1, 1)$, $(1, 2)$ and $(2, 1)$.
+  See that we have both $(1, 2)$ and $(2, 1)$.
+- Contrast this with partitions, which I write in weakly decreasing: $(1, 1, 1)$, $(2, 1)$.
+- This can be counted by the stars and bars method:
+
+```
+1 _ 2 _ 3 _ 4 _ ... _  |I|
+```
+
+- We want to fill the $|I|-1$ blanks (`_`) with $k$ bars if we want a $k$-composition (remember that compositions
+  can't have zeros). So we can count this by $\binom{|I|-1}{k}$.
+
+#### f surjective, with equivalence $S_I \circ f \circ S_O$:
+
+
+
+
+
 
 # Counting necklackes with unique elements
 
@@ -52,6 +151,54 @@ current way I think about this is as follows (specialize to $n=3$)
 There's something awkward about this whole thing, notationally speaking. Is there
 a more natural way to show that we have spent the projectivity to renormalize
 $[x: y: z]$ to $(1, y, z)$ ?
+
+
+#### Projective plane in terms of incidence
+
+We can _define_ $\mathbb P^2$ to be an object such that:
+1. Any two lines are incident at a single point.
+2. Two distinct points must be incident to a single line. (dual of (1))
+
+
+#### The points at infinity
+This will give us a copy of $\mathbb R^2$, along with "extra points" for parallel
+lines. 
+
+- Consider two parallel lines $y = mx + 0$ and $y = mx + 1$. These don't traditionally
+  meet, so let's create a point at infinty for them, called $P_m(0, 1)$.
+- Now consider two more parallel lines, $y = mx + 0$ and $y = mx + 2$. These don't
+  traditionally meet either, so let's create a point at infinite for them, called
+  $P_m(0, 2)$.
+- Finally, create another point $P_m(0, 3)$ as the point of intersection between
+   $y = mx + 0$ and $y = mx + 3$.
+
+- Now, consider $P_m(0, 1), P_m(0, 2), P_m(0, 3), dots$. We claim that they must all be equivalent.
+  Assume not. Say that $P_m(0, 1) \neq P_m(0, 2)$.
+- Then there must a line that joins $P_m(0, 1)$ an $P_m(0, 2)$. Call it $L_m(0, 1, 2)$.
+  Now, what is the intersection between $L_m(0, 1, 2)$ and the line $y = mx + 0$?
+  The points $P_m(0, 1)$ and $P_m(0, 2)$ *both* lie on the line $L_m(0, 1, 2)$.
+  But this is a contradiction: two lines must be incident at a single unique point.
+- So we must have $P_m(0, 1) = P_m(0, 2) = P_m$. So, for each direction, we must
+  have a unique point where all lines in that direction meet.
+
+We can make a definition: the **point at infinity for a given direction** is the
+equivalence class of all lines in that direction.
+
+<img src='./static/projective-plane-incidence-points.png'/>
+
+#### The line at infinity
+
+This now begs the question: what lines to different points at infinity lie on?
+Let's consider $P_q, P_r, P_s, P_t$ as four points at infinity for four different
+slopes.
+
+- Consider the lines $L(q, r)$ that is incident on $P_q$ and $P_r$, and then
+  the line $L(s, t)$ that is incident on the lines $P_s$ and $P_t$.
+- This begs the question: where do these lines meet? If we say that the meet at _more new_
+  points of intersection, like $P(q, r, s, t)$ this process will never end.
+- So we demand that _all points at infinity_ lie on a _unique_ line at infinity.
+
+
 
 # Childhood: Playing pokemon gold in japanese
 
@@ -387,7 +534,7 @@ object where equality is decidable! Below is an illustration of how I imagine
 the situation.
 
 
-<img src='/home/bollu/blog/static/olaf-topological-groups.png' />
+<img src='./static/olaf-topological-groups.png' />
 
 
 
@@ -993,7 +1140,7 @@ void process_edge(int x, int y) {
 ```
 
 
-<img src="/home/bollu/blog/static/articulation-vertices-undirected-3-cases.png"/>
+<img src="./static/articulation-vertices-undirected-3-cases.png"/>
 
 > In a DFS tree, a vertex v (other than the root) is an articulation
 > vertex iff v is not a leaf and some subtree of v has no back edge incident
@@ -1057,7 +1204,7 @@ This is *exactly* what the two mirror photon clock does --- it bounces a photon
 between two mirrors. We can look at this as us "flipping" the hourglass
 once the photon reaches the bottom of the hourglass. 
 
-# Euler tours (WIP)
+# Euler tours 
 
 #### Tucker's proof: undirected graph with all even degree has an euler tour
 
@@ -1076,18 +1223,19 @@ up vertices otherwise!
 #### References
 - [Video on euler tour](https://www.youtube.com/watch?v=8MpoO2zA2l4)
 - [Notes from Emory course on graph theory](http://www.mathcs.emory.edu/~rg/book/chap5.pdf)
-- [CSTheory.stackexchange question on euler tours(https://cstheory.stackexchange.com/questions/31538/runtime-of-tuckers-algorithm-for-generating-a-eulerian-circuit)
+- [CSTheory.stackexchange question on euler tours](https://cstheory.stackexchange.com/questions/31538/runtime-of-tuckers-algorithm-for-generating-a-eulerian-circuit)
 
 
 # Representation theory of the symmetric group (WIP)
 
 - [Video lectures: Representation theory, a combinatorial viewpoint](https://www.youtube.com/watch?v=QqJIOnTDbLM&list=PLFE2F2CDA55A9EBB6)
 
-# Maximum matchings in bipartite graphs (WIP)
+# Maximum matchings in bipartite graphs
 
 It turns out that the best way to do this is to simply implement Dinic's with
-scaling. That seems to meet the desired Hopcroft-Karp complexity. Regardless,
-in the interest of making notes, I'm going to record how to do this.
+scaling. That seems to meet the desired Hopcroft-Karp complexity. I was quite
+disappointed to learn this, since I was hoping that Hopcroft-Karp would have
+new ideas.
 
 
 
@@ -1097,9 +1245,6 @@ in the interest of making notes, I'm going to record how to do this.
 - [Maximum Matching Algorithm - Tutorial 13 D1 Edexcel A-Level](https://www.youtube.com/watch?v=gbasc4F-7hk)
 - [Slides on matroid intersection](http://swoh.web.engr.illinois.edu/courses/ie512/handout/matching.pdf)
 
-# Lowest common ancestor (WIP)
-- If you had ancestors fuse on distance `d`, and if you both move up, your ancestors will continue to fuse.
-  So once we consider a distance `d` we don't need to consider it again. 
 
 # p-adics, 2's complement, intuition for bit fiddling
 
@@ -1195,17 +1340,17 @@ number is signed/unsigned.
 - Let $p$ be a path of maximum diameter, which starts at $p$ and ends at $q$.
  Consider a tree where the diameter is shown in golden:
 
-<img src=/home/bollu/blog/static/diameter/tree-diam-spread.png />
+<img src='./static/diameter/tree-diam-spread.png' />
 
 - We claim that a node at distance $d$ from the left can have a subtree of
   height at most $d$:
 
-<img src=/home/bollu/blog/static/diameter/tree-diam-straight-example.png />
+<img src='./static/diameter/tree-diam-straight-example.png' />
 
 - Suppose this were not the case. Then, we can build a *longer* diameter (in pink)
   that is longer than the "supposed diameter" (in gold):
 
-<img src=/home/bollu/blog/static/diameter/tree-diam-straight-counterexample.png />
+<img src='.static/diameter/tree-diam-straight-counterexample.png' />
 
 ## Algorithm to find the diameter:
 
@@ -22134,8 +22279,12 @@ let g:conjure#mapping#eval_motion = "E"
 
 > Sybil, vulgarity is no substitute for wit. ~  Violet, Downton Abbey
 
-> "Why dwell on that now?" "BecauseI want to feel the pleasure of telling you I
+> "Why dwell on that now?" "Because I want to feel the pleasure of telling you I
 > told you so".
+
+
+> The law, in its majestic equality, forbids rich and poor alike to sleep under
+> bridges, to beg in the streets, and to steal loaves of bread.”
 
 # Empathy
 

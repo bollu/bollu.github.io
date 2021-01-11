@@ -5,14 +5,24 @@
 <link>http://bollu.github.io/</link>
 <description>A universe of Sorts</description>
   <item>
-    <title> Using the bound library</title>
-    <guid>https://www.bollu.github.io/using-the-bound-library.html</guid>
-    <link>https://www.bollu.github.io/using-the-bound-library.html</link>
+    <title> Linear algebraic proof of the handshaking lemma</title>
+    <guid>https://www.bollu.github.io/linear-algebraic-proof-of-the-handshaking-lemma.html</guid>
+    <link>https://www.bollu.github.io/linear-algebraic-proof-of-the-handshaking-lemma.html</link>
   </item>
   <item>
-    <title> Rota &apos; s paths</title>
-    <guid>https://www.bollu.github.io/rotas-paths.html</guid>
-    <link>https://www.bollu.github.io/rotas-paths.html</link>
+    <title> Using the bound library (WIP)</title>
+    <guid>https://www.bollu.github.io/using-the-bound-library-wip.html</guid>
+    <link>https://www.bollu.github.io/using-the-bound-library-wip.html</link>
+  </item>
+  <item>
+    <title> Historical contemporaries</title>
+    <guid>https://www.bollu.github.io/historical-contemporaries.html</guid>
+    <link>https://www.bollu.github.io/historical-contemporaries.html</link>
+  </item>
+  <item>
+    <title> Rota &apos; s twelvefold way</title>
+    <guid>https://www.bollu.github.io/rotas-twelvefold-way.html</guid>
+    <link>https://www.bollu.github.io/rotas-twelvefold-way.html</link>
   </item>
   <item>
     <title> Counting necklackes with unique elements</title>
@@ -210,9 +220,9 @@
     <link>https://www.bollu.github.io/bouncing-light-clock-is-an-hourglass.html</link>
   </item>
   <item>
-    <title> Euler tours (WIP)</title>
-    <guid>https://www.bollu.github.io/euler-tours-wip.html</guid>
-    <link>https://www.bollu.github.io/euler-tours-wip.html</link>
+    <title> Euler tours </title>
+    <guid>https://www.bollu.github.io/euler-tours.html</guid>
+    <link>https://www.bollu.github.io/euler-tours.html</link>
   </item>
   <item>
     <title> Representation theory of the symmetric group (WIP)</title>
@@ -220,14 +230,9 @@
     <link>https://www.bollu.github.io/representation-theory-of-the-symmetric-group-wip.html</link>
   </item>
   <item>
-    <title> Maximum matchings in bipartite graphs (WIP)</title>
-    <guid>https://www.bollu.github.io/maximum-matchings-in-bipartite-graphs-wip.html</guid>
-    <link>https://www.bollu.github.io/maximum-matchings-in-bipartite-graphs-wip.html</link>
-  </item>
-  <item>
-    <title> Lowest common ancestor (WIP)</title>
-    <guid>https://www.bollu.github.io/lowest-common-ancestor-wip.html</guid>
-    <link>https://www.bollu.github.io/lowest-common-ancestor-wip.html</link>
+    <title> Maximum matchings in bipartite graphs</title>
+    <guid>https://www.bollu.github.io/maximum-matchings-in-bipartite-graphs.html</guid>
+    <link>https://www.bollu.github.io/maximum-matchings-in-bipartite-graphs.html</link>
   </item>
   <item>
     <title> p-adics, 2 &apos; s complement, intuition for bit fiddling</title>
