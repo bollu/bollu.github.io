@@ -1,3 +1,24 @@
+- Linearity, Symmetry, and Prediction in the Hydrogen Atom: Capstone book for complex analysis and representation theory.
+  Seems like a good bedtime read. Found from an MO question: [why is the physical meaning of an irreducible representation justified](https://mathoverflow.net/questions/16074/how-is-the-physical-meaning-of-an-irreducible-representation-justified)
+- [Big list of useful terminal apps](https://discuss.kakoune.com/t/what-is-your-kakoune-stack/1130/7)
+- C++ move semantics, the complete guide: http://www.cppmove.com/
+- SIMD parsers are sort of like parsers that build an index/semi-index. Can we
+  use this to build a restartable semi-indexed parser? This will let us use
+  seekable machines to play rank/select tricks, while being "fast" and
+  "good in memory" (succinct). Krohn rhodes theory may tell us how to cascade
+  the automata correctly.
+- Inequalities: Theory of Majorization and Its Applications
+- Measure theory youtube videos: https://www.youtube.com/watch?v=xZ69KEg7ccU
+- Representations of Groups A Computational Approach
+- [SAGE issues/tickets related to manifolds](https://trac.sagemath.org/query?status=!closed&reporter=gh-mjungmath)
+- [SAGE ticket on finite topological spaces](https://trac.sagemath.org/ticket/30400)
+- [The real problem at Yale is not free speech](https://palladiummag.com/2019/08/05/the-real-problem-at-yale-is-not-free-speech/)
+> There is a reason why Harvard’s motto is “Veritas”—truth, whereas Yale’s
+> motto is “Lux et veritas”—light and truth. Truth without light is pointless.
+> Knowledge without an aim is at best not useful—and at worst, destructive.
+> ~ The real problem at yale is not free speech
+
+- [Group theory and its application to physical problems](Group theory and its application to physical problems)
 - Classical Tessellations And Three Manifolds: geometric and pictorial account of low dimensional geometry.
 - Representation Theory of Finite Groups Gordon James: introductory account of representation theory phrased in terms of modules.
 - [Tarot of the divine: beautiful tarot cards](https://yoshiyoshitani.store/collections/tarot/products/preorder-tarot-of-the-divine-a-deck-and-guidebook-inspired-by-deities-folklore-and-fairy-tales-from-around-the-world-tarot-deck-only)

@@ -5,14 +5,89 @@
 <link>http://bollu.github.io/</link>
 <description>A universe of Sorts</description>
   <item>
-    <title> Linear algebraic proof of the handshaking lemma</title>
-    <guid>https://www.bollu.github.io/linear-algebraic-proof-of-the-handshaking-lemma.html</guid>
-    <link>https://www.bollu.github.io/linear-algebraic-proof-of-the-handshaking-lemma.html</link>
+    <title> Hook length formula</title>
+    <guid>https://www.bollu.github.io/hook-length-formula.html</guid>
+    <link>https://www.bollu.github.io/hook-length-formula.html</link>
+  </item>
+  <item>
+    <title> The tyranny of light</title>
+    <guid>https://www.bollu.github.io/the-tyranny-of-light.html</guid>
+    <link>https://www.bollu.github.io/the-tyranny-of-light.html</link>
+  </item>
+  <item>
+    <title> Muirhead &apos; s inequality</title>
+    <guid>https://www.bollu.github.io/muirheads-inequality.html</guid>
+    <link>https://www.bollu.github.io/muirheads-inequality.html</link>
+  </item>
+  <item>
+    <title> Rearrangement inequality</title>
+    <guid>https://www.bollu.github.io/rearrangement-inequality.html</guid>
+    <link>https://www.bollu.github.io/rearrangement-inequality.html</link>
+  </item>
+  <item>
+    <title> Triangle inequality</title>
+    <guid>https://www.bollu.github.io/triangle-inequality.html</guid>
+    <link>https://www.bollu.github.io/triangle-inequality.html</link>
+  </item>
+  <item>
+    <title> The Heather subculture</title>
+    <guid>https://www.bollu.github.io/the-heather-subculture.html</guid>
+    <link>https://www.bollu.github.io/the-heather-subculture.html</link>
+  </item>
+  <item>
+    <title> Frobenius Kernel</title>
+    <guid>https://www.bollu.github.io/frobenius-kernel.html</guid>
+    <link>https://www.bollu.github.io/frobenius-kernel.html</link>
+  </item>
+  <item>
+    <title> Galois theory by  &quot; Abel &apos; s theorem in problems and solutions &quot; </title>
+    <guid>https://www.bollu.github.io/galois-theory-by-abels-theorem-in-problems-and-solutions.html</guid>
+    <link>https://www.bollu.github.io/galois-theory-by-abels-theorem-in-problems-and-solutions.html</link>
+  </item>
+  <item>
+    <title> Galois theory perspective of the quadratic equation</title>
+    <guid>https://www.bollu.github.io/galois-theory-perspective-of-the-quadratic-equation.html</guid>
+    <link>https://www.bollu.github.io/galois-theory-perspective-of-the-quadratic-equation.html</link>
+  </item>
+  <item>
+    <title> Burnside lemma by representation theory.</title>
+    <guid>https://www.bollu.github.io/burnside-lemma-by-representation-theory.html</guid>
+    <link>https://www.bollu.github.io/burnside-lemma-by-representation-theory.html</link>
+  </item>
+  <item>
+    <title> Contributing to SAGE</title>
+    <guid>https://www.bollu.github.io/contributing-to-sage.html</guid>
+    <link>https://www.bollu.github.io/contributing-to-sage.html</link>
+  </item>
+  <item>
+    <title> Shadow puppet analogy for entanglement</title>
+    <guid>https://www.bollu.github.io/shadow-puppet-analogy-for-entanglement.html</guid>
+    <link>https://www.bollu.github.io/shadow-puppet-analogy-for-entanglement.html</link>
+  </item>
+  <item>
+    <title> Books for contest math</title>
+    <guid>https://www.bollu.github.io/books-for-contest-math.html</guid>
+    <link>https://www.bollu.github.io/books-for-contest-math.html</link>
+  </item>
+  <item>
+    <title> Analysing simple games</title>
+    <guid>https://www.bollu.github.io/analysing-simple-games.html</guid>
+    <link>https://www.bollu.github.io/analysing-simple-games.html</link>
+  </item>
+  <item>
+    <title> Using egg: Extensible equality saturation (WIP)</title>
+    <guid>https://www.bollu.github.io/using-egg-extensible-equality-saturation-wip.html</guid>
+    <link>https://www.bollu.github.io/using-egg-extensible-equality-saturation-wip.html</link>
   </item>
   <item>
     <title> Using the bound library (WIP)</title>
     <guid>https://www.bollu.github.io/using-the-bound-library-wip.html</guid>
     <link>https://www.bollu.github.io/using-the-bound-library-wip.html</link>
+  </item>
+  <item>
+    <title> Linear algebraic proof of the handshaking lemma</title>
+    <guid>https://www.bollu.github.io/linear-algebraic-proof-of-the-handshaking-lemma.html</guid>
+    <link>https://www.bollu.github.io/linear-algebraic-proof-of-the-handshaking-lemma.html</link>
   </item>
   <item>
     <title> Historical contemporaries</title>

@@ -1,0 +1,37 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='alternate' type='application/rss+xml' href='feed.rss' title='A universe of sorts'/><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Text'; src: url('/static/Exo2-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background-color: #FFFFFF; color: #000000;  font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: 1.4em;  max-width: 100%; overflow-x: hidden; }
+img { display:block; width: 100%; max-width: 800px; height: auto }.container { overflow-x: auto; overflow-y: hidden;  max-width:100%; }@media (max-width: 480px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: 5%; } body { font-size: 30px; } }@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: 20%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
+pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=contributing-to-sage href='#contributing-to-sage'> § </a><span class='centered'> Contributing to SAGE</h2>
+<h4><a id=development href='#development'> § </a><span class='centered'> Development</h4>
+<ul><li><span class='centered'><span class='centered'> Normally, if you just change Python code in the library, it suffices to run <code>./sage -br</code><span class='centered'>to update Python.</li></ul>
+<span class='centered'>(only if you changed docs, and want to test that they still work,
+<span class='centered'>you'd need to run <code>make</code>, or <code>make doc-html</code>)
+<ul><li><span class='centered'><span class='centered'> <code>make build && ./sage -n=jupyter ./test-ddg-notebook.ipynb</code> is reasonably fast.</li></ul>
+<ul><li><span class='centered'><span class='centered'> <a href=https://doc.sagemath.org/html/en/developer/index.html><span class='centered'>SAGE developer index</a></li><li><span class='centered'><span class='centered'> <a href=https://trac.sagemath.org/ticket/31248#comment:1><span class='centered'>Baby's first Trac ticket: #31248 --- Make tableaux error messages more precise</a></li></ul>
+<h4><a id=git-the-hard-way-for-sage href='#git-the-hard-way-for-sage'> § </a><span class='centered'> Git the hard way for SAGE</h4>
+<ul><li><span class='centered'><span class='centered'> <a href=https://doc.sagemath.org/html/en/developer/manual_git.html><span class='centered'>Git the hard way</a></li></ul>
+<span class='centered'>git with SAGE uses different URLs for fetch and push.
+<pre><code>[user@localhost sage]$ git remote add trac git://trac.sagemath.org/sage.git -t master
+[user@localhost sage]$ git remote set-url --push trac git@trac.sagemath.org:sage.git
+trac        git://trac.sagemath.org/sage.git (fetch)
+trac        git@trac.sagemath.org:sage.git (push)
+</code></pre>
+<ul><li><span class='centered'><span class='centered'> I use my github account to develop for SAGE.</li><li><span class='centered'><span class='centered'> <a href=https://doc.sagemath.org/html/en/developer/trac.html#linking-your-public-key-to-your-trac-account><span class='centered'>Linking your SSH key with sage-trac</a></li></ul>
+<h4><a id=getting-the-commit-merged href='#getting-the-commit-merged'> § </a><span class='centered'> Getting the commit merged</h4>
+<span class='centered'>The release manager (Volker Braun) takes care of it.
+<span class='centered'>A number of people can close tickets for invalidity/duplicate etc,
+<span class='centered'>but the actual merging is done by one person only (and a number of
+<span class='centered'>bots/scripts that help).
+<span class='centered'>A positively reviewed ticket with green bots and all fields filled in will
+<span class='centered'>usually be merged in a week or two or rejected (merge conflict, issues
+<span class='centered'>with specific architectures, failing bots). But it might take longer (too
+<span class='centered'>many positively review tickets waiting, end of release cycle).
+<h4><a id=tending-to-the-garden href='#tending-to-the-garden'> § </a><span class='centered'> Tending to the garden</h4>
+<ul><li><span class='centered'><span class='centered'> Fix typos</li><li><span class='centered'><span class='centered'> Fix <code>pep8</code>, <code>pyflakes</code>, lint warnings. Try to simplify code that's<span class='centered'>marked very compliated by <code>radon</code>.</li></ul>
+<script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

@@ -3,12 +3,13 @@
 A Universe of Sorts
 </h2>
 
+
 ### Siddharth Bhat
 
 - [Please leave feedback!](https://www.admonymous.co/bollu)
 - [Vidcall/Hang out](https://calendly.com/bollu/)
 - Reach me: <a href='mailto:siddu.druid@gmail.com'> `siddu.druid@gmail.com` </a>
-- [github](http://github.ncom/bollu)
+- [github](http://github.com/bollu)
 - [math.se](https://math.stackexchange.com/users/261373/siddharth-bhat)
 - [resume](resume/main.pdf)
 - [reading list/TODO](todo.html)
@@ -17,7 +18,626 @@ A Universe of Sorts
 
 
 <!-- - [Grab me a coffee](https://ko-fi.com/bollu) -->
+# Hook length formula
 
+Truly remarkable formula that tells us the number of standard young tableaux
+for a given partition $\lambda$ of $n$. Recall the definitions:
+- A partition $\lambda$ of the number $n$.
+- An assignment of numbers $\{1, 2, \dots n\}$ onto the diagram of the partition
+  such that the assignment is (a) weakly increasing in the rows, and
+  (b) strictly increasing in the columns. It is strictly increasing in the columns
+  because gravity acts downwards.
+- Formally, a partition is written as $\lambda \equiv [\lambda_1, \lambda_2, \dots, \lambda_m]$, 
+  where $\lambda_i \geq 0$ and $\sum_i \lambda_i = n$, and that they
+  are weakly decreasing ($\lambda_1 \geq \lambda_2 \geq \dots$). 
+- Formally, to define the tableaux, we first define the diagram $dg(\lambda) \equiv \{ (i, j) : 1 \leq j \leq \lambda[i] \}$
+  which are the "locations" of the cells when visualizing $\lambda$ as a Ferrers diagram.
+- Finally, the actual assignment of the numbers to the tableaux is given by a bijection
+  $asgn: dg(\lambda) \rightarrow [n]$ such that $f$ is weakly increasing in the rows
+  and strictly increasing in the columns.
+
+
+#### The formula
+Now, we want to count the number of young tableaux (formally, the data $n, \lambda, asgn$)
+for a given partition $\lambda$. The formula is:
+
+$$
+n!/\left(\prod_{\texttt{cell} \in \lambda} hooklen(\texttt{cell})\right)
+$$
+
+where $hooklen$ is the largest "hook shape":
+
+```
+* * *
+*
+*
+...
+```
+
+at the cell $(i, j)$ that is in the partition $\lambda$.
+
+#### The structure of hooks
+
+say we have a hook shape
+
+
+```
+a b c d
+e
+f
+```
+
+And the numbers $\{1, 2, 3, 4, 5, 6\}$. How many ways can we assign the numbers
+to the above hook shape such that its a legal young tableaux?
+
+- First, see that $a = 1$ is a must. Proof by contradiction. Assume $1$
+  is not placed at $a$. Whenever it is placed, it will be less than the number
+  placed at $1$. But this is wrong, because a young tableaux must be weakly
+  increasing in the rows and strictly increasing in the columns.
+- Next, see that after placing $a = 1$, the other numbers can be placed "freely":
+  If we take a subset of $\{2, 3, 4, 5, 6\}$ of the size of the leftover row,
+  ie, $|b~c~d| = 3$, then there is only one way to place them such that they are
+  in ascending order. Similarly, the leftover numbers go to the column where there
+  is only one way to place them.
+- Hence, after $a = 1$ is fixed, for every $5C3$ subset, we get a legal hook.
+- In general, if we have $n=r+c+1$ nodes, with $r+1$ nodes in the row, and $c+1$
+  nodes in the column (the top-left node is counted twice), then we have $\binom{r+c}{r}$
+  number of legal hooks; Once we pick the lowest number for the top left node,
+  every $r$-subset will give us a hook.
+
+- This result matches the hook-length formula. According to the hook length
+  formula, we need to fill in for each node the length of the hook, and divide
+  the full product by $n!$. So for
+  the hook:
+
+```
+a b c d
+e
+f
+```
+
+This becomes:
+
+```
+6 3 2 1
+2
+1
+```
+
+$$
+6!/(6\times 3!\times 2!) = 5!/(3! 2!) = 5C3 = \binom{r+c}{r}
+$$
+
+where $r=3, c=2$.
+
+
+#### Knuth's heuristic
+
+- Consider the hook shape. The only constraint we have is that the top-left
+  number ought to be the smallest. For the hook $H$ to be legal, if we distribute
+  numbers into it uniformly at random, then there is a
+  $1/(\texttt{hook-length}(H))$ probability that the hook will be legal.
+
+
+- The tableaux will be legal iff **all the hooks in the tableaux are legal**
+
+
+- Thus, the probability of getting a legal tableaux is:
+
+$$
+\begin{aligned}
+&\texttt{num}(\lambda)/n! =  \prod_\{h \in \texttt{hook}(\lambda) 1/\texttt{hook-length}(h) \\
+&\texttt{num}(\lambda) =  n!/\prod_\{h \in \texttt{hook}(\lambda)\texttt{hook-length}(h) \\
+\end{aligned}
+$$
+
+
+#### The relationship to representation theory
+
+The RSK correspondence gives us a bijection between the permutation group $S_n$
+and pairs of standard young tableaux: 
+
+$$
+RSK \equiv \bigcup_{\lambda \in \texttt{partition}(n)} SYT(\lambda) \times SYT(\lambda)
+$$
+
+given by the pair of insertion tableaux and the recording tableaux for each partition
+$\lambda$ of $n$.
+
+If we look at this in terms of set sizes, then it tells us that:
+
+$$
+\begin{aligned}
+&|S_n| = |\bigcup_{\lambda \in \texttt{partition}(n)} SYT(\lambda) \times SYT(\lambda) \\
+&n! = \sum_{\lambda \in \texttt{partition}(n)} |SYT(\lambda)|^2 \\
+&n! = \sum_{\lambda \in \texttt{partition}(n)} |\texttt{hook-length-formula}(\lambda)|^2 \\
+\end{aligned}
+$$
+
+This looks very suspicious, almost like the representation theoretic formula of:
+
+$$
+\texttt{group-size} = \sum_{\texttt{irrep} \in Repr(G)} dim(\texttt{irrep})^2
+$$
+
+and it is indeed true that $\texttt{hook-length-formula}(\lambda)$ corresponds
+to the dimension of an irreducible representation of $S_n$, and each $\lambda$
+corresponds to an irrep of $S_n$.
+
+
+
+# The tyranny of light
+
+> More information may
+> lead to less understanding; more information may undermine trust; and more
+> information may make society less rationally governable.
+
+# Muirhead's inequality
+
+We denote by $\sum_! F(x[1], \dots, x[n])$ the sum ov $F$ evaluated over all
+permutations. Formally:
+
+$$
+\sum_! F(x[1], \dots, x[n]) \equiv \sum_{\sigma \in S_n} F(x[\sigma[1]], \dots, x[\sigma[n]])
+$$
+
+
+We write
+
+$$
+[a[1], \dots a[n]] \equiv 1/n! \sum_! x_1^{a[1]} \dots x[n]^{a[n]} = \sum_{\sigma \in S_n} \prod_{j} x[\sigma[j]]^{a[j]}
+$$
+
+For example,we have:
+- $[1, 1] = 1/2! (xy + yx) = xy$
+- $[1, 1, 1] = xyz$
+- $[2, 1, 0] = 1/3! (x^2y + x^2z + y^2z + y^2x + z^2x + z^2 y)$
+- $[1, 0, 0] = 1/3! (x^{[1, 0, 0']} + x^{[1, 0', 0]} + x^{[0, 1, 0']} + x^{[0', 1, 0]} + x^{[0, 0', 1]} + x^{[0', 0, 1]})$.
+  This is equal to $2!(x + y + z)/3! = (x + y + z)/3$.
+- In general, $[1, 0, 0, 0, \dots, 0]$ ($n$ zeroes) is $(n-1)!/n!(\sum_i x_i)$ which is the AM.
+- Also, $[1/2, 1/2] = 1/2!(x^{1/2}y^{1/2} + y^{1/2}x^{1/2}) = \sqrt{xy}$.
+- In general, $[1/n, 1/n, \dots, 1/n]$ is the GM $\sqrt{n}{x[1] x[2] \dots x[n]}$.
+
+#### Majorization
+
+Let $(a), (b) \in \mathbb R^n$ be two non-decreasing sequences: $a[1] \geq a[2] \dots \geq a[n]$,
+and $b[1] \geq b[2] \dots \geq b[n]$.  We will say that $(b)$ is majorized by
+$(a)$  (written as $(b) \prec (a)$) when we have that:
+
+1. $a[1] \geq a[2] \geq \dots a[n]$, $b[1] \geq b[2] \geq \dots b[n]$.
+2. $\sum_i b[i] = \sum_i a[i]$.
+3. $\sum_{i=1}^u b[i] \leq \sum_{i=1}^u a[i]$ for $1 \leq i \leq n$.
+
+It is clear that this is a partial order.
+
+#### Muirhead's theorem statement
+
+for non negative numbers $x[]$, we have:
+
+$$[b] \leq [a] \iff (b) \prec (a)$$
+
+Expanding it out, this means that:
+
+$$
+1/n! \sum_! x^{[b]} \leq 1/n! \sum_! x^{[a]} \iff (b) \prec (a) \\
+\sum_! x^{[b]} \leq \sum_! x^{[a]} \iff (b) \prec (a) \\
+$$
+
+
+#### Connection to tableaux (TODO)
+The dominance ordering... 
+Continuous proof...
+
+
+
+# Rearrangement inequality
+
+If $a[i]$ is a non-decreasing sequence: $a[1] \leq a[2] \leq \dots a[n]$, and 
+similarly $b[i]$ is a non-decreasing sequence: $b[1] \leq b[2] \leq b[n]$ then
+we have that:
+
+$$
+\sum_i a[i] b[i] \geq \sum_i a[\sigma[i] b[i]
+$$
+
+for any permutation $\sigma \in S_n$. 
+
+> insight: the greedy strategy is the best. Think of $b[n]$ as the max. number of times
+> we are allowed to pick some $a[i]$.
+> It is best to be greedy and pick the value $\max_i a[i]$  $b[n]$ number of times.
+> $\max_i a[i] = a[n]$. Thus having $a[n]b[n]$ will beat all others.  
+
+#### Proof
+
+The proof strategy is to: show what happens for a transposition. Every
+permutation can be broken down into transpositions and thus we are done.
+
+Let $S = \sum_i a[i] b[i]$. Let $T$ be $S$ with us picking the value $a[r]$ $b[s]$ times,
+and picking the value $a[s]$ $b[r]$ times. This gives
+
+$$
+T = \sum_{i \neq r, s} a[i] b[i] + a[r]b[s] + a[s]b[r]
+$$
+
+
+Since we wish to show $S > T$, let's consider $S - T$:
+
+$$
+\begin{aligned}
+&S - T = \sum_i a[i]b[i] - (\sum_{i \neq r, s} a[i]b[i] + a[r]b[s] + a[s]b[r]) \\
+&=\sum_{i \neq r, s} a[i]b[i] + a[r]b[r] + a[s]b[s]  - (\sum_{i \neq r, s} a[i]b[i] + a[r]b[s] + a[s]b[r]) \\
+&= a[r]b[r] + a[s]b[s] - a[r]b[s] - a[s]b[r] \\
+&= a[r](b[r] - b[s]) + a[s](b[s] - b[r]) \\
+&= a[r](b[r] - b[s]) - a[s](b[r] - b[s]) \\
+&= (a[r] - a[s])(b[r] - b[s])
+\end{aligned}
+$$
+
+Since $r < s$ we have $b[r] \leq b[s]$, hence $b[r] \leq b[s] < 0$. For the product
+to be greater than zero, we need $a[r] \leq a[s]$, or $a[s] \geq a[r]$ when $s > r$.
+
+Hence, for a transposition, we are done. Thus we are immediately done
+for any permutation:
+
+#### Application: AM-GM
+
+Say we wish to show $(p + q)/2 \geq \sqrt{pq}$. Let WLOG $p \leq q$.
+Pick the sequences:
+
+$$
+a = [p, q]; a' = [q, p]; b = [p, q]
+$$
+
+Then the rearrangement inequality gives us:
+
+$$
+\begin{aligned}
+&a[1]b[1] + a[2]b[2] \geq a'[1]b[1] + a'[2]b[2] \\
+&p^2 + q^2 \geq qp + pq \\
+&(p^2 + q^2)/2 \geq pq
+\end{aligned}
+$$
+
+Pick $p = \sqrt{r}, q = \sqrt{s}$ to arrive at:
+
+$$
+(r + s)/2 \geq \sqrt{rs}
+$$
+
+and thus we are done.
+
+#### References
+- Inequalities: a mathematical olympiad approach
+
+# Triangle inequality
+
+We can write this as:
+
+```
+   *A
+ b/ |
+C*  | 
+ a\ | c
+   *B
+```
+
+The classical version one learns in school:
+$$
+c \leq a + b
+$$
+
+The lower bound version:
+
+$$
+|a - b| \leq c
+$$
+
+This is intuitive because the large value for $a - b$ is attained when $b = 0$.
+(since lengths are non-negative, we have $b \geq 0$. if $b = 0$, then the point $A = C$
+and thus $a = CB = AB = c$.
+
+```
+A/C (b=0)
+|
+| a=c
+|
+B
+```
+
+Otherwise, $b$ will have some length that will cover $a$ (at worst), or cancel $a$ (at best).
+The two cases are something like:
+
+```
+ A
+ ||b
+ ||
+c|*C
+ ||a
+ ||
+ ||
+ B
+```
+
+In this case, it's clear that $a - b < c$ (since $a < c$) and
+$a + b = c$. In the other case, we will have:
+
+```
+ C
+b||
+ ||
+ A|
+ ||
+ ||a
+c||
+ ||
+ ||
+ ||
+ B
+```
+
+Where we get $a - b = c$, and $c < a + b$. These are the extremes when the triangle has
+zero thickness. In general, because the points are spread out, when we
+project everything on the $AB=c$ line, we will get less-than(`<=`) 
+instead of equals (`=`).
+
+# The Heather subculture
+- And finally, [the sweater's perspective](https://www.youtube.com/watch?v=c_PT91SqVX8)
+
+# Frobenius Kernel
+
+#### Some facts about conjugates of a subgroup
+
+Let $H$ be a subgroup of $G$. Define $H_g \equiv \{ g h g^{-1} : h \in H \}$.
+
+- We will always have $e \in H_g$ since $geg^{-1} = e \in H_g$.
+- Pick $k_1 k_2 \in H_g$. This gives us $k_i = gh_ig^{-1}$. So, 
+  $k_1 k_2 = g h_1 g^{-1} g h_2 g^{-1} = g (h_1 h_2) g^{-1} \in H_g$.
+- Thus, the conjugates of a subgroup is going to be another subgroup 
+  that has nontrivial intersection with the original subgroup.
+- For inverse, send $k = ghg^{-1}$ to $k^{-1} = g h^{-1} g^{-1}$.
+
+
+#### Frobenius groups
+
+
+
+# Galois theory by "Abel's theorem in problems and solutions"
+
+I found the ideas in the book fascinating. The rough idea was:
+
+- Show that the $n$th root operation allows for some "winding behaviour"
+  on the complex plane.
+- This winding behaviour of the $n$th root is controlled by $S_n$, since we are
+  controlling how the different sheets of the riemann surface can be permuted.
+- Show that by taking an $n$th root, we are only creating solvable groups.
+- Show tha $S_5$ is not solvable.
+
+
+
+# Galois theory perspective of the quadratic equation
+
+I found this quite delightful the first time I saw it, so I wanted to record
+it ever since.
+
+Let $x^2 + bx + c$ be a quadratic. Now to apply galois theory, we first
+equate it to the roots:
+
+$$
+\begin{aligned}
+&x^2 + bx + c = (x - p)(x-q)
+&x^2 + bx + c = x^2 - x(p + q) + pq
+&-(p + q) = b; pq = c
+\end{aligned}
+$$
+
+We want to extract the values of $b$ and $c$ from this. To do so, consider
+the symmetric functions:
+
+$$
+(p + q)^2 = b^2
+(p - q)^2 = (p + q)^2 - 4pq = b^2 - 4c
+$$
+
+Hence we get that
+
+$$
+p - q = \pm\sqrt{b^2 - 4c}
+$$
+
+From this, we can solve for $p, q$, giving us:
+
+$$
+p = ((p + q) + (p - q))/2 = (-b \pm \sqrt{b^2 - 4c})/2
+$$
+
+#### Galois theory for cubics
+#### Galois theory for bi-quadratics
+#### Galois theory for quintics
+
+#### References
+- [Abel and the insolubility of the quintic](http://www.math.caltech.edu/~jimlb/abel.pdf)
+
+# Burnside lemma by representation theory.
+
+Recall that burnside asks us to show that given a group $G$
+acting on a set $S$, we have that the average
+of the local fixed points $1/|G|(\sum_{g \in G} |\texttt{Fix}(g)|)$ is
+equal to the number of orbits (global fixed points) of $S$, $|S/G|$.
+
+Let us write elements of $g$ as acting on the vector space $V_S$, which is
+a complex vector space spanned by basis vector $\{ v_s : s \in S \}$. Let
+this representation of $G$ be called $\rho$.
+
+Now see that the right hand side is equal to 
+
+$$
+\begin{aligned}
+&1/|G| (\sum_g \in G Tr(\rho(g))) \\
+&= 1/|G| (\sum_g \in G \chi_\rho(g) ) \\
+&\chi \rho \cdot \chi_1
+\end{aligned}
+$$
+
+Where we have:
+- $\chi_1$ is the charcter of the trivial representation $g \mapsto 1$
+- The inner product $\langle \cdot , \cdot \rangle$ is the $G$-average inner
+   product over $G$-functions $G \rightarrow \mathbb C$:
+
+$$
+\langle f , f' \rangle \equiv \sum_{g \in G} f(g) \overline{f'(g)}
+$$
+
+So, we need to show that the number of orbits $|S/G|$ is equal to the
+multiplicity of the trivial representation $1$ in the  current representation
+$\rho$, given by the inner product of their characters $\chi_1 \cdot \chi_\rho$.
+
+
+
+let $s* in S$ whose orbit we wish to inspect. Build
+the subspace spanned by the vector $v[s*] \equiv \sum_{g \in G} \rho(g) v[s]$.
+This is invariant under $G$ and is 1-dimensional. Hence, it corresponds
+to a 1D subrepresentation for all the elements in the orbit of $s*$. 
+(TODO: why is it the **trivial** representation?)
+
+
+# Contributing to SAGE
+
+
+#### Development
+
+- Normally, if you just change Python code in the library, it suffices to run `./sage -br`
+  to update Python.
+
+(only if you changed docs, and want to test that they still work,
+you'd need to run `make`, or `make doc-html`)
+
+- `make build && ./sage -n=jupyter ./test-ddg-notebook.ipynb` is reasonably fast.
+
+- [SAGE developer index](https://doc.sagemath.org/html/en/developer/index.html)
+- [Baby's first Trac ticket: #31248 --- Make tableaux error messages more precise](https://trac.sagemath.org/ticket/31248#comment:1)
+
+#### Git the hard way for SAGE
+
+- [Git the hard way](https://doc.sagemath.org/html/en/developer/manual_git.html)
+
+git with SAGE uses different URLs for fetch and push.
+
+```
+[user@localhost sage]$ git remote add trac git://trac.sagemath.org/sage.git -t master
+[user@localhost sage]$ git remote set-url --push trac git@trac.sagemath.org:sage.git
+trac        git://trac.sagemath.org/sage.git (fetch)
+trac        git@trac.sagemath.org:sage.git (push)
+```
+
+- I use my github account to develop for SAGE.
+- [Linking your SSH key with sage-trac](https://doc.sagemath.org/html/en/developer/trac.html#linking-your-public-key-to-your-trac-account)
+
+#### Getting the commit merged
+
+The release manager (Volker Braun) takes care of it.
+A number of people can close tickets for invalidity/duplicate etc,
+but the actual merging is done by one person only (and a number of
+bots/scripts that help).
+
+A positively reviewed ticket with green bots and all fields filled in will
+usually be merged in a week or two or rejected (merge conflict, issues
+with specific architectures, failing bots). But it might take longer (too
+many positively review tickets waiting, end of release cycle).
+
+
+#### Tending to the garden
+
+- Fix typos
+- Fix `pep8`, `pyflakes`, lint warnings. Try to simplify code that's
+  marked very compliated by `radon`.
+
+# Shadow puppet analogy for entanglement
+
+I found [this answer on quantumcomputing.stackexchange](https://quantumcomputing.stackexchange.com/a/15525/14471)
+to be a visceral example of "something like entanglement":
+
+Imagine making shadow puppets. However in this setup, instead of one you have
+two screens and two torches  pointing 90 degrees apart so
+that the image formed by torch 1 is projected onto screen 2 and the image
+formed by torch 2 is simultaneously projected onto screen 1.
+
+```
+ screen 1       screen 2
+   /               \
+  /                 \
+ /                   \
+          mm              <-  hand
+      \         /
+   torch 1   torch 2
+```
+
+Now any movement of your hand changes both images in a correlated way. In a
+sense, the images are entangled - if you observe image 1 to have a certain
+configuration, then only a small subset of possibilities in the total
+configuration space of image 2 are valid, and vice versa.
+
+
+
+# Books for contest math
+
+A personal list of books I wish to study this year, to get better at 
+"problem solving". This is ranked in order of difficulty
+I wish to spend this year learning nuts and bolts type things.
+
+- Inequalities: an olympid approach --- Nice book, has an axiomatic/algebraic bent.
+- Mathematical circles: Russian experience
+- The art and craft of problem solving
+- Basics of Olympiad Inequalities: Samin Riasat --- quickly covers the big 12.
+- [Evan chen: A Brief Introduction to Olympiad Inequalities ](https://web.evanchen.cc/handouts/Ineq/en.pdf)
+- Pham Kim Hung: Secrets in Inequalities 
+- Edwin Beckenback: Introduction to Inequalities
+- Nicholas D. Kazarinoff : Geometric inequalities
+- Introduction to Functional Equations: Theory and problem-solving strategies for mathematical competitions and beyond
+- [Combinatorics: Introduction to counting and probability](https://artofproblemsolving.com/store/item/intro-counting)
+- [Combinatorics: Intermediate counting and probability](https://artofproblemsolving.com/store/item/intermediate-counting?gtmlist=Bookstore_AoPS_Side)
+- Algebra: 101 Problems in Algebra by Titu Andreescu
+- Number Theory Structures, Examples and Problems
+- Combinatorics: 102 Combinatorial problems
+- Combinatorics: Pablo Soberon’s Problem Solving Methods in Combinatorics
+- Geometry: [Yufi Zhao: handouts](https://yufeizhao.com/olympiad/)
+- Geometry: Trig bashing / Barycentric bashing (evan cheng)
+- Problem-solving Strategies In Mathematics: From Common Approaches To Exemplary Strategies
+- Problems from the Book
+- Straight From the Book
+- [AoPS list of past problems](https://artofproblemsolving.com/community/c13_contests)
+- [AoPS list of books](https://artofproblemsolving.com/wiki/index.php?title=Math_books)
+- [Mathematical problem solving: MIT course](https://yufeizhao.com/a34/)
+
+# Analysing simple games
+
+I found the clear articulation of these ideas quite nice. 
+
+1. In a game with symmetry, a symmetric move can be blocked or prevented **only**
+   by the previous move an opponent has **just made**.
+2. The symmetry in many games can be written as some kind of equality, where
+   at each turn, one first player breaks the symmetry, and the other player
+   (who has the winning strategy) restores it.
+
+#### Example game
+
+Consider a game where two players take turns placing bishops on a chessboard,
+so that the pieces cannot capture each other. The player who cannot win
+loses.
+
+#### Winning strategy
+
+place the bishop symmetrically about the line passing between the fourth and
+fifth column (file). Note that the only way this bishop could be blocked is
+if the move just made by the other player can block it.
+
+
+
+#### References
+- [Mathematical circles: Russian experience](https://bookstore.ams.org/mawrld-7)
+
+# Using `egg`: Extensible equality saturation (WIP)
+
+# Using the `bound` library (WIP)
 # Linear algebraic proof of the handshaking lemma
 
 We wish to show that the number odd vertices is even. Let $A$ be the adjacency
@@ -56,12 +676,23 @@ $$
 
 So, the number of vertices of odd degree is even.
 
+
 I want to avoid this computation with respect to the basis, but I'm not
 sure how to do that.
 
+#### A simplification from arjun
+
+Since $A_{kk} = 0$, we have that $A = B + B^T$ for $B$ lower triangular.
+This allows us to simplify:
+
+\begin{aligned}
+& o^T A o = o^T (B + B^T) o = \\
+& =o^T B o + o^T B^T o = \langle o, Bo \rangle + \langle Bo, o \rangle \\
+& = 2 \cdot \langle o, Bo \rangle = 0
+\end{aligned}
 
 
-# Using the `bound` library (WIP)
+
 
 # Historical contemporaries
 
@@ -326,8 +957,10 @@ Captures the microcosm of what it means to live in India.
 - ZX
 - pwn.college
 - semantics of general relativity
-- mathemagic 
+- mathemagic
 - oripa and FOLD
+- tensegrity
+- uncivilization
 - CSES
 - USACO
 - rete
@@ -2246,6 +2879,7 @@ assembly! I had no idea if it's a *good* ecosystem --- my experience with
 - [Link](https://software.intel.com/content/www/us/en/develop/articles/intel-sdm.html)
   to general page with download link called as Intel 64 and IA-32 architectures software
   developer's manual combined volumes 2A, 2B, 2C, and 2D: Instruction set reference, A-Z.
+- [`cgasm`](https://github.com/bnagy/cgasm) to quickly lookup assembly.
 
 # Cohomology is like holism
 
@@ -22036,6 +22670,24 @@ grated coconut and blend all of it. It turns into a thick red paste.
 - Allow batter to ferment overnight in the fridge.
 - Make pancakes the next day.
 
+#### Chutney
+
+- Green chili
+- Dried Coconut  pieces
+- Salt
+- Blend
+- Add tamarind and water
+- Blend 
+
+#### Regular dosa batter:
+
+- Grind coconut pieces
+- Add dosa rice (2 cups)
+- Add some water (100ml)
+- Blend
+- Salt
+- Add more water (300ml).
+
 # Big list of history
 
 ##### Crusades were a thing of the past by the time of the fall of Constatinople. (1453)
@@ -22288,6 +22940,21 @@ let g:conjure#mapping#eval_motion = "E"
 > The law, in its majestic equality, forbids rich and poor alike to sleep under
 > bridges, to beg in the streets, and to steal loaves of bread.”
 
+
+> 'The history of transistors is the history of solving Schrödinger's equation in various materials.' -- Leon Lederman
+
+> tradition that contested poems would be thrown into a pool. The better poems
+> would float. Now you know why you shouldn't write dense prose. ~ History of india podcast
+
+> children cried with hunger. Women plaited their braids without flowers. ~ History of india podcast.
+
+> "There is a spooky quality about the ability of mathematicians to get there
+> ahead of physicists. It's as if when Neil Armstrong first landed on the moon
+> he found in the lunar dust the footsteps of Jules Verne" - Steven Weinberg on
+> old math being applied in physics
+
+
+
 # Empathy
 
 > Oof, I don't really know what to say right now but I'm glad you told me
@@ -22309,9 +22976,35 @@ let g:conjure#mapping#eval_motion = "E"
 - Thanks to `vim-unimpaired`, going next/previous is as easy as `[q` and `]q`
   (`q` for `quickfix`).
 
-### sed matching syntax
+##### sed matching syntax
+
 
 - `\<word\>`: match word starting and ending.
+
+##### vim motion mnemonics
+
+- f<char> - (f)ind a character forward in a line and move to it
+    - T<char> - find a character backward in a line and move un(t)il it
+- t<char> - find a character forward in a line and move un(t)il it (one character before)
+    - F<char> - (f)ind a character backward in a line and move to it
+
+
+##### vim unimpaired for loclist movement
+
+
+- `]q` /`[q`: move loclist.
+
+##### vim-ninja-feet for motions using text objects
+
+With it installed, add [ or ] between the operator and text object to specify
+which end you wish edit: press c]i} to perform the edit you describe.
+
+-`a)`: a parentheses block
+-`i)`: inner parentheses block
+-`a]`: a bracketed block
+-`i]`: inner bracketed block
+-`a}`: a brace block
+-`i}`: inner brace block
 
 
 # Chess
