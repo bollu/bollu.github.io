@@ -18,6 +18,207 @@ A Universe of Sorts
 
 
 <!-- - [Grab me a coffee](https://ko-fi.com/bollu) -->
+# Markov and chebyshev from a measure theoretic lens
+
+I've been idly watching [Probability and Stochastics for finance: NPTEL](https://www.youtube.com/watch?v=qTg0mqxuGeA&list=PLEYrMI37wMbplhGJmqhlYv0VUSwC6zMsU&index=8), and I came across this nice way to
+think about the markov and chebyshev inequality. I wonder whether Chernoff
+bounds also fall to this viewpoint.
+
+#### Markov's inequality
+
+In markov's inequality, we want to bound $P(X \geq A)$. Since we're in measure land,
+we have no way to directly access $P(\cdot)$. The best we can do is to integreate
+the constant function $1$, since the probability is "hidden inside" the measure.
+This makes us compute:
+
+$$
+P(X \geq A) \equiv = \int_{\{X \geq A\}} 1 d \mu
+$$
+
+Hm, how to proceed? We can only attempt to replace the $1$ with the $X$ to get
+some non-trivial bound on $X$. But we know that $X \geq A$. so we should perhaps
+first introduce the $A$:
+
+
+$$
+P(X \geq A) \equiv = \int_{\{X \geq A\}} 1 d \mu = 1/A \int_{\{X \geq A\}} A d \mu
+$$
+
+Now we are naturally led to see that this is always less than $X$:
+
+$$
+\begin{aligned}
+&P(X \geq A) \equiv = \int_{\{X \geq A\}} 1 d \mu = \\
+& 1/A \int{\{X \geq A\}} A d \mu < 1/A \int_{\{X \geq A\}} X d \mu = 1/A \mathbb{E}[X]
+\end{aligned}
+$$
+
+This completes marov's inequality:
+
+$$
+P(X \geq A) \leq \mathbb{E}[X]/A
+$$
+
+So we are "smearing" the indicator $1$ over the domain $\{X \geq A\}$ and attempting
+to get a bound.
+
+
+
+# Among any 51 integers, that are 2 with squares having equal value modulo 100
+# $1^n + 2^n + \dots + (n-1)^n$ is divisible by $n$ for odd $n$
+# $10^{3n+1}$ cannot be written as sum of two cubes
+# dual of applicative [WIP]
+
+https://hackage.haskell.org/package/contravariant-1.5.3/docs/Data-Functor-Contravariant-Divisible.html
+
+# The dual of traversable [WIP]
+
+https://hackage.haskell.org/package/distributive-0.6.2.1/docs/Data-Distributive.html
+
+
+# Coq-club: the meaning of a specification
+
+> When I was doing my PhD, I faced questions similar to yours. It emerged from my
+> encounter of HOL4 for completing a project after having used Coq for another.
+> 
+> Given your question is on the meaning of a word, I would like to refer to a
+> philosophical doctrine on how words acquire their meaning in a system of signs.
+> Using that doctrine, I put forward  how I came to an answer for myself!
+> 
+> So turns out that a text can be perceived as a construct made around elemental
+> "oppositions". Accordingly, textual constructs only produce meaning through
+> their interplay of DIFFERENCES (mostly emergingin in form of binary contrasts)
+> inside a system of distinct signs. This doctrine was first introduced by
+> Ferdinand Saussure on which J. Derrida drew for introducing his notion of
+> difference.
+> 
+> Considering the above explanation, instead of hard wiring the words
+> "specification" and "implementation" to predetermined functionality or
+> referents, we can perceive them in a contrasting interplay whose connection is
+> established via the proof game. The "specification" is something used by a
+> "proof" to demonstrate "the correctness " of an "implementation ". 
+> 
+> Now going for the Saussurian doctrine, there is no problem for an _expression_
+> to be specification for an implementation,  but itself being an implementation
+> for something else. Therefore, I would definitely hesitate to say it is
+> meaningless (or even misguiding) to use the word specification in the context
+> of formal verification. 
+> 
+> Hopefully that was useful!
+
+
+- [Link to coq-club discussion](https://sympa.inria.fr/sympa/arc/coq-club/2021-01/msg00103.html)
+
+# SQLite opening
+
+```
+** The author disclaims copyright to this source code.  In place of
+** a legal notice, here is a blessing:
+**
+**    May you do good and not evil.
+**    May you find forgiveness for yourself and forgive others.
+**    May you share freely, never taking more than you give.
+```
+
+
+# Old school fonts
+
+I've been rolling with the  `Px437 ToshibaSat 8x14` font as my daily driver purely for nostalgia reasons; It is to be honest quite a good font! Otherwise, I use `Iosevka Fixed Expanded`, or the "agda font", `mononoki`.
+
+- [I love the old school fonts website](https://int10h.org/oldschool-pc-fonts/fontlist/?2#toshiba)
+
+# Stalking `syzigies` on hackernews
+
+He's the author of Macaulay; I learnt quite a bit by [stalking him on hackernews](https://news.ycombinator.com/threads?id=Syzygies)
+
+- Schreier–Sims algorithm for computing with permutations.
+
+- Our phones should learn a private language with us. My dog learns after one
+  repetition; Zoom should learn to arrange my windows as I like, at least after
+  47 repetitions.
+
+- [The bayer filter](https://en.wikipedia.org/wiki/Bayer_filter)
+
+- Our extrapolations always take the form of moving along a tangent vector out
+  from prior experience. Prior to relativity, Newtonian physics was the belief
+  that we actually lived in that tangent space. Surprises come when the
+  deviations are large enough for reality to curve away from our models
+
+- Like flipping through for the soft porn in a friend's "romance" novel, I must
+  confess I searched straight for this guideline.
+
+ - Lisp's signature 17 car pileup at the end of every expression.
+
+- I look for the `$` or equivalent in any proposal out there, to see if the
+  author has written lots of code or is just talking. It's like looking for
+  bone marrow in beef stew, evaluating a cookbook. Marrow is central to the
+  story of Lisp; we got our start being able to wield tools to crack open bones
+  after lions and jackals had left a kill. The added nutrition allowed our
+  brains to increase in size. Soon we mastered fire, then Lisp.
+
+-  I spent the first few months outside doing woodworking; I've been struggling
+   with an overwhelming urge to center my consciousness in my hands. This is of
+   course the history of our species, a biological urge as profound as our sex
+   drive. We figured out how to make very sharp hunting tools from unruly
+   rocks, or we died.
+
+- [spider webs on drugs](http://thirdmonk.net/high-culture/spiders-drugs-affect-webs.html)
+
+-  The first chapter of Berstel and Reutenauer's "Noncommutative Rational
+   Series with Applications" presents Schützenberger's theorem that every
+   noncommuting rational power series is representable, and conversely. The
+   idea is NOT painfully abstract, but makes twenty minutes work of a semester
+   of undergraduate automata theory (an assertion I've tested multiple times in
+   my math office hours).
+
+- You don't want sync software going off and "thinking" about what a symlink
+  really means, anymore than you'd want sync software going off and "thinking"
+  after finding porn on your computer
+
+- Luckily, I was trained far enough down the street from MIT to escape their
+  Lisp world view, so we coded our computer algebra system in C, and it was
+  fast enough to succeed and bring us tenure. Today, we'd choose Haskell.
+
+
+His LISP language with inferred parens:
+
+```
+define | edge? g e
+  let
+    $ es | edges g
+      e2 | reverse e
+    or (member e es) (member e2 es)
+```
+
+```
+(define (edge? g e)
+  (let
+    ( (es (edges g))
+      (e2 (reverse e)))
+    (or (member e es) (member e2 es))))
+```
+
+
+# Conditional probability is neither causal nor temporal
+
+I found this insightful:
+
+> `P(A|B)` means the probability of A happening given B already
+> happened. Not so! `P(A|B)` doesn’t specify the time ordering of A and B. It
+> specifies the order in which YOU learn about them happening. So P(A|B) is the
+> probability of A given you know what happened with B.
+
+This makes sense from the information theoretic perspective; I'd never meditated
+on this difference, though.
+
+I'd seen things like: 
+
+> `P(sunrise | rooster-crow) = large` even though rooster crowing does not *cause*
+> the sunrise to happen. 
+
+but I'd never seen/actively contemplated an example of `P(A|B)` where they 
+are temporally reversed/ambiguous.
+
 # Hook length formula
 
 Truly remarkable formula that tells us the number of standard young tableaux
@@ -172,7 +373,7 @@ corresponds to an irrep of $S_n$.
 > lead to less understanding; more information may undermine trust; and more
 > information may make society less rationally governable.
 
-# Muirhead's inequality
+# Muirhead's inequality [WIP]
 
 We denote by $\sum_! F(x[1], \dots, x[n])$ the sum ov $F$ evaluated over all
 permutations. Formally:
@@ -209,6 +410,30 @@ $(a)$  (written as $(b) \prec (a)$) when we have that:
 3. $\sum_{i=1}^u b[i] \leq \sum_{i=1}^u a[i]$ for $1 \leq i \leq n$.
 
 It is clear that this is a partial order.
+
+TODO: draw a picture!
+
+#### Majorization and step 
+
+We can show that if $(b) \prec (a)$ , then we can get from $(b)$ to $(a)$
+in a finite number of discrete steps, that "borrow" from higherlocations in $b$
+and "give" to lower locations. Formally, define a step operator $S(l, r)$ where
+$l < r$ such that:
+
+$$
+S(l, r)(b)[k] = 
+\begin{cases}
+ b[l]+1 & k = l \\
+ b[r]-1 & k = r \\
+ b[k] & \texttt{otherwise}
+\end{cases}
+$$
+
+That is, this borrows a number of $b[j]$ and gives it to $b[i]$. We can see
+that $(b) \prec S(l, r)(b)$.
+
+For a given $(b) \prec (a)$, we can find a sequence of step operations
+$S(l[i], r[i])$ such that 
 
 #### Muirhead's theorem statement
 
@@ -508,8 +733,10 @@ to a 1D subrepresentation for all the elements in the orbit of $s*$.
 - Normally, if you just change Python code in the library, it suffices to run `./sage -br`
   to update Python.
 
-(only if you changed docs, and want to test that they still work,
-you'd need to run `make`, or `make doc-html`)
+- only if you changed docs, and want to test that they still work,
+  you'd need to run `make`, or `make doc-html`
+
+- To run doctests, can run `./sage -t <filepath>`. [More info on the sage doctesting page](https://doc.sagemath.org/html/en/developer/doctesting.html)
 
 - `make build && ./sage -n=jupyter ./test-ddg-notebook.ipynb` is reasonably fast.
 
@@ -550,6 +777,7 @@ many positively review tickets waiting, end of release cycle).
 - Fix typos
 - Fix `pep8`, `pyflakes`, lint warnings. Try to simplify code that's
   marked very compliated by `radon`.
+- Fix code that's marked by [lgtm](https://lgtm.com/query)
 
 # Shadow puppet analogy for entanglement
 
@@ -634,8 +862,6 @@ if the move just made by the other player can block it.
 
 #### References
 - [Mathematical circles: Russian experience](https://bookstore.ams.org/mawrld-7)
-
-# Using `egg`: Extensible equality saturation (WIP)
 
 # Using the `bound` library (WIP)
 # Linear algebraic proof of the handshaking lemma
@@ -905,7 +1131,6 @@ $$
 So if $w \in im(f)$ then $r_w(g)(w) \in im(f)$ for all $g$. Hence, image
 is an invariant subspace.
 
-  
 
 - Since $V$ is irreducible, we must have that either $ker(f) = 0$ or $ker(f) = V$.
   If this were not the case, then we could write $V = ker(f) \oplus ker(f)^\perp$

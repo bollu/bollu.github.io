@@ -1,3 +1,44 @@
+- [arb: a C library for arbitrary precision arithmetic](https://arblib.org/index.html)
+- James Gilleard: [Hypnotic art that looks like a strange blend of natural and artifical](https://jamesgilleard.net/).
+  Minimal. He lives in Japan now. Has art on mountains, japan, and animals.
+
+- Silent trade:
+
+> Silent trade, also called silent barter, dumb barter ("dumb" here used in its
+> old meaning of "mute"), or depot trade, is a method by which traders who
+> cannot speak each other's language can trade without talking. Group A would
+> leave trade goods in a prominent position and signal, by gong, fire, or drum
+> for example, that they had left goods. Group B would then arrive at the spot,
+> examine the goods and deposit their trade goods or money that they wanted to
+> exchange and withdraw. Group A would then return and either accept the trade
+> by taking the goods from Group B or withdraw again leaving Group B to add to
+> or change out items to create an equal value. The trade ends when Group A
+> accepts Group B's offer and removes the offered goods leaving Group B to
+> remove the original goods.
+
+
+- Deep trust versus broad trust
+
+> we don't have communities like we used to have with deep trust, even the
+> families are not the same anymore.  On the other hand I am not afraid to go to
+> neighboring city (or when I was a kid it could be even other part of the city)
+> so someone would come up with "hey you are not from around here, what are you
+> looking for a trouble here son?".
+> We traded deep trust for broad trust. This way price of transactions on
+> bigger scale went down a lot, even if they went up on personal or local
+> level.
+> In the end broad trust is more useful for people because it enables mobility.
+> One can move to a big city and won't be instantly scammed. If we would value
+> deep trust only, there would be no way for people to move out from "dead end"
+> places.
+
+
+- Multiple cursors as local operational transforms!
+- [Haskell for maths: implementations of lots of algorithms for math](https://hackage.haskell.org/package/HaskellForMaths)
+- [Serees: Permutation group algorithms](https://doc.lagout.org/science/0_Computer%20Science/2_Algorithms/Permutation%20Group%20Algorithms%20%5BSeress%202003-03-17%5D.pdf)
+- [algebraic number theory: a computational approach by the sage dude (William stein)](https://github.com/williamstein/ant)
+- [Beautiful math books along the lines of needham](https://mathoverflow.net/questions/31879/are-there-other-nice-math-books-close-to-the-style-of-tristan-needham/102712#102712)
+- "Introduction to Money" by Honor Croome
 - Linearity, Symmetry, and Prediction in the Hydrogen Atom: Capstone book for complex analysis and representation theory.
   Seems like a good bedtime read. Found from an MO question: [why is the physical meaning of an irreducible representation justified](https://mathoverflow.net/questions/16074/how-is-the-physical-meaning-of-an-irreducible-representation-justified)
 - [Big list of useful terminal apps](https://discuss.kakoune.com/t/what-is-your-kakoune-stack/1130/7)

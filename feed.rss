@@ -5,6 +5,61 @@
 <link>http://bollu.github.io/</link>
 <description>A universe of Sorts</description>
   <item>
+    <title> Markov and chebyshev from a measure theoretic lens</title>
+    <guid>https://www.bollu.github.io/markov-and-chebyshev-from-a-measure-theoretic-lens.html</guid>
+    <link>https://www.bollu.github.io/markov-and-chebyshev-from-a-measure-theoretic-lens.html</link>
+  </item>
+  <item>
+    <title> Among any 51 integers, that are 2 with squares having equal value modulo 100</title>
+    <guid>https://www.bollu.github.io/among-any-51-integers-that-are-2-with-squares-having-equal-value-modulo-100.html</guid>
+    <link>https://www.bollu.github.io/among-any-51-integers-that-are-2-with-squares-having-equal-value-modulo-100.html</link>
+  </item>
+  <item>
+    <title> 1^n + 2^n + \dots + (n-1)^n is divisible by n for odd n</title>
+    <guid>https://www.bollu.github.io/1n-2n-dots-n-1n-is-divisible-by-n-for-odd-n.html</guid>
+    <link>https://www.bollu.github.io/1n-2n-dots-n-1n-is-divisible-by-n-for-odd-n.html</link>
+  </item>
+  <item>
+    <title> 10^{3n+1} cannot be written as sum of two cubes</title>
+    <guid>https://www.bollu.github.io/103n1-cannot-be-written-as-sum-of-two-cubes.html</guid>
+    <link>https://www.bollu.github.io/103n1-cannot-be-written-as-sum-of-two-cubes.html</link>
+  </item>
+  <item>
+    <title> dual of applicative [WIP]</title>
+    <guid>https://www.bollu.github.io/dual-of-applicative-wip.html</guid>
+    <link>https://www.bollu.github.io/dual-of-applicative-wip.html</link>
+  </item>
+  <item>
+    <title> The dual of traversable [WIP]</title>
+    <guid>https://www.bollu.github.io/the-dual-of-traversable-wip.html</guid>
+    <link>https://www.bollu.github.io/the-dual-of-traversable-wip.html</link>
+  </item>
+  <item>
+    <title> Coq-club: the meaning of a specification</title>
+    <guid>https://www.bollu.github.io/coq-club-the-meaning-of-a-specification.html</guid>
+    <link>https://www.bollu.github.io/coq-club-the-meaning-of-a-specification.html</link>
+  </item>
+  <item>
+    <title> SQLite opening</title>
+    <guid>https://www.bollu.github.io/sqlite-opening.html</guid>
+    <link>https://www.bollu.github.io/sqlite-opening.html</link>
+  </item>
+  <item>
+    <title> Old school fonts</title>
+    <guid>https://www.bollu.github.io/old-school-fonts.html</guid>
+    <link>https://www.bollu.github.io/old-school-fonts.html</link>
+  </item>
+  <item>
+    <title> Stalking syzigies on hackernews</title>
+    <guid>https://www.bollu.github.io/stalking-syzigies-on-hackernews.html</guid>
+    <link>https://www.bollu.github.io/stalking-syzigies-on-hackernews.html</link>
+  </item>
+  <item>
+    <title> Conditional probability is neither causal nor temporal</title>
+    <guid>https://www.bollu.github.io/conditional-probability-is-neither-causal-nor-temporal.html</guid>
+    <link>https://www.bollu.github.io/conditional-probability-is-neither-causal-nor-temporal.html</link>
+  </item>
+  <item>
     <title> Hook length formula</title>
     <guid>https://www.bollu.github.io/hook-length-formula.html</guid>
     <link>https://www.bollu.github.io/hook-length-formula.html</link>
@@ -15,9 +70,9 @@
     <link>https://www.bollu.github.io/the-tyranny-of-light.html</link>
   </item>
   <item>
-    <title> Muirhead &apos; s inequality</title>
-    <guid>https://www.bollu.github.io/muirheads-inequality.html</guid>
-    <link>https://www.bollu.github.io/muirheads-inequality.html</link>
+    <title> Muirhead &apos; s inequality [WIP]</title>
+    <guid>https://www.bollu.github.io/muirheads-inequality-wip.html</guid>
+    <link>https://www.bollu.github.io/muirheads-inequality-wip.html</link>
   </item>
   <item>
     <title> Rearrangement inequality</title>
@@ -73,11 +128,6 @@
     <title> Analysing simple games</title>
     <guid>https://www.bollu.github.io/analysing-simple-games.html</guid>
     <link>https://www.bollu.github.io/analysing-simple-games.html</link>
-  </item>
-  <item>
-    <title> Using egg: Extensible equality saturation (WIP)</title>
-    <guid>https://www.bollu.github.io/using-egg-extensible-equality-saturation-wip.html</guid>
-    <link>https://www.bollu.github.io/using-egg-extensible-equality-saturation-wip.html</link>
   </item>
   <item>
     <title> Using the bound library (WIP)</title>
