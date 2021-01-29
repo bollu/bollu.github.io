@@ -1,0 +1,684 @@
+% - Week 1 is on the website: https://math216.wordpress.com/2020/06/27/discussion-for-this-week-starting-june-27-2020/
+% - Week 2:https://math216.wordpress.com/2020/07/06/readings-and-problem-set-for-after-the-second-pseudolecture/
+% - Week 3: https://math216.wordpress.com/2020/07/13/reading-and-problems-after-the-third-pseudolecture/
+% Link to rising sea: https://math.stanford.edu/~vakil/216blog/FOAGnov1817public.pdf
+% https://agittoc.zulipchat.com/
+\documentclass{book}
+
+%%% % https://tex.stackexchange.com/a/97128
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+%%% \linespread{1.025}              % Palatino leads a little more leading
+%%% % Euler for math and numbers
+%%% \usepackage[euler-digits,small]{eulervm}
+
+% \usepackage{cmbright}
+
+
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{minted}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{cancel}
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+
+% https://tex.stackexchange.com/questions/469588/strike-out-an-arrow-with-a-small-oblique-segment-like-with-nrightarrow
+% \newcommand*\Neg[2][0mu]{\Neginternal{#1}{\negslash}{#2}}
+% \newcommand*\sNeg[2][0mu]{\Neginternal{#1}{\snegslash}{#2}}
+% \newcommand*\negslash[1]{\m@th#1\not\mathrel{\phantom{=}}}
+% \newcommand*\snegslash[1]{\rotatebox[origin=c]{60}{$\m@th#1-$}}
+
+
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\F}{\ensuremath{\mathcal{F}}}
+\newcommand{\G}{\ensuremath{\mathcal{G}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\T}{\ensuremath{\mathbb{T}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\newcommand{\Cstar}{\ensuremath{\mathbb{C}^*}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\CP}{\ensuremath{\mathbb{CP}}}
+\renewcommand{\P}{\ensuremath{\mathbb{P}}}
+\newcommand{\A}{\ensuremath{\mathbb{A}}}
+\renewcommand{\O}{\ensuremath{\mathcal{O}}}
+\newcommand{\RP}{\ensuremath{\mathbb{RP}}}
+\newcommand{\B}{\ensuremath{\mathscr{B}}}
+\newcommand{\E}{\ensuremath{\mathbb{E}}}
+% \newcommand{\F}{\ensuremath{\mathscr{F}}}
+\newcommand{\U}{\ensuremath{\mathscr{U}}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\spec}{\operatorname{Spec}}
+\newcommand{\m}{\mathfrak{m}}
+\newcommand{\p}{\mathfrak{p}}
+\newcommand{\q}{\mathfrak{q}}
+\newcommand{\mSpec}{\m\operatorname{Spec}}
+\newcommand{\mspec}{\m\operatorname{Spec}}
+\newcommand{\frakp}{\ensuremath{\mathfrak{p}}}
+\newcommand{\fraka}{\ensuremath{\mathfrak{a}}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\colim}{\operatorname{colim}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\spn}{\Span}
+\newcommand{\inv}{{\ensuremath{-1}}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\piinv}{\ensuremath{\pi^\inv}}
+\renewcommand{\k}{\mathbb{k}} % field 
+\newcommand{\pinv}{\piinv}
+\newcommand{\piinverse}{\piinv}
+\newcommand{\supp}{\operatorname{Support}}
+\newcommand{\Set}{\ensuremath{\mathbf{Set}}}
+\newcommand{\rad}{\sqrt} % radical
+\newcommand{\ann}{\operatorname{Annhilator}} % annhilator
+\newcommand{\osum}{\oplus} % I confuse it often enough
+\newcommand{\tensor}{\otimes} % I confuse it often enough
+\renewcommand{\c}{\complement} % got tiring
+\newcommand{\geqzero}{\ensuremath{\geq 0}}
+\newcommand{\gezero}{\gezero}
+\newcommand{\gtzero}{\ensuremath{> 0}}
+\newcommand{\sym}{\operatorname{Sym}}
+\newcommand{\Sym}{\sym}
+\newcommand{\nil}{\operatorname{NilRadical}}
+\newcommand{\Nil}{\nil}
+\newcommand{\grade}{\ensuremath{\bullet}}
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\fracpart{\{}{\}}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{nonexample}[theorem]{Non Example}
+\newtheorem{aside}[theorem]{Aside}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{note}[theorem]{Note}
+\newtheorem{slogan}[theorem]{Slogan}
+\newtheorem{Proposition}[theorem]{Proposition}
+
+\begin{document}
+\tableofcontents
+
+% https://qchu.wordpress.com/2009/08/30/the-orthogonality-relations-for-representations-of-finite-groups/
+
+\chapter{Intro}
+\begin{itemize}
+\item Probability and Stochastics for finance: NPTEL
+\url{https://www.youtube.com/watch?v=qTg0mqxuGeA&list=PLEYrMI37wMbplhGJmqhlYv0VUSwC6zMsU&index=8}
+\item An introduction to stochastic differential equations by L C Evans.
+\item Conditional expectation: Probability for finance: Sean Dineen.
+\item Steven Shreve: Stochastic calculus for finance.
+\item Lecture notes on probability \url{https://web.ma.utexas.edu/users/gordanz/lecture_notes_page.html}
+\item \url{https://almostsuremath.com/}: Great blog on probability called almost sure.
+\item Brownian Motion Calculus: Non rigorous, intuitive descriptions of stochastic calculus.
+\end{itemize}
+\chapter{Intro}
+
+\section{The high school definition}
+\begin{itemize}
+\item $\Omega$: the set of all possible outcomes.
+\item The outcomes are mutually exclusive, exhaustive, and equally likely.
+\end{itemize}
+
+Suppose $\Omega$ is finite. Then $|\Omega| = N$. An event is a subset of the space of outcomes.
+(outcomes can be eventful, so an event is a function $\Omega \rightarrow \{ \texttt{true}, \texttt{false} \}$.
+This is the same as a subset $A \subseteq \Omega$.  Then $P(A) = |A|/|\Omega|$.
+
+\begin{itemize}
+\item We assume that these are mutually exclusive, exhaustive, equally likely
+--- this tacitly assumes a notion of "likelihood".
+\item Only works for finite sample spaces; for infinite sample spaces, cardinality is bunk.
+\end{itemize}
+
+\section{Sigma algebra}
+
+If we have an infinite number of sets, all subsets cannot be considered as events
+(non measurable sets?)
+
+\begin{definition}
+$\sigma$-algebra: Collection of subsets of $\Omega$, which we call $U \subset 2^{\omega}$.
+\begin{itemize}
+\item $\phi, \omega \in U$.
+\item $A \in U \iff A^C \in U$.
+\item If $A_1, A_2, \dots A_i \in U$ then $\cup_i A_i \in U$.
+\end{itemize}
+\end{definition}
+
+If $A \in U$, then $A$ is called as an event. Every subset of $\omega$ need not
+be an event.
+
+\section{ Kolmogrov's Axiomatic definition}
+
+Start with $\Omega$, the sample space, and $U$, the $\sigma$ algebra of events.
+We also have a function $P: U \rightarrow [0, 1]$.
+
+\begin{itemize}
+\item $P(\emptyset) = 0; P(\Omega) = 1$.
+\item $P(\cup_i A_i) \leq \sum_k P(A_k)$.
+\item If $A_k$ are mutually disjoint, then $P(\cup A_k) = \sum_i P(A_k)$.
+\end{itemize}
+
+A combination of $(\Omega, U, P)$ is called as probability space, where $\Omega$
+is the sample space, $U$ is the $\sigma$-algebra of events, and $P$ is the
+probability function.
+
+It's called a $\sigma$-algebra since we are attempting to sum over a countable
+number of things, hence a ($\Sigma$, sum, $\sigma$).
+
+\chapter{Problems in probability}
+\section{Bertrand's paradox}
+Take two concentric circles of radius $2, 1$. What is the probability that
+a randomly drawn chord of the outer circle intersects the inner circle?
+
+Because the chord intersects the inner circle, whose radius is half the
+original circle, if the midpoint of the chord lies in the inner circle, then it
+intersects the inner circle. Let $A$ be the event that the chord intersects with
+the inner circle. The sample space is all points in the circular disk. The
+legal midpoints are those that are inside the inner circle. So the probability is
+
+$$
+\frac{\texttt{area of inner circle}}{\texttt{area of outer circle}} = 1/4
+$$
+
+Alternatively, look at it as follows:
+draw the diameter of the outer circle. I can take any chord that is at an
+angle $\theta$ from the diameter. We have $-\pi/2 \leq \theta \leq \pi/2$ . 
+Say the largest angle for which the chord hits the inner circle is $\phi$. We'll
+find that $\sin \phi = 1/2$ or $\phi = 30^\circ$. Thus the probability is:
+
+
+
+$$
+\frac{\texttt{range of $\phi$}}{\texttt{range of $\theta$}} = \pi/6/\pi/2 = 1/3
+$$
+
+
+
+\section{Buffon's needle}
+
+
+\chapter{Random variables, distribution functions, independence}
+
+
+
+\section{Random variable}
+
+Let us consider a probability space $(\Omega, \U, \P)$ where $\P$ is a probability
+measure. Also consider the real line $(\R, \B)$  where $B$ is the borel $\sigma$
+algebra. This is the small $\sigma$ algebra that contains all open sets in $\mathbb R$.
+
+$X$ is a random variable if it is of the type $X: \Omega \rightarrow \R$
+such that if $B \in \B, then X^{-1}(B) \in \U$.
+
+\section{Random Vector}
+
+The same setting, except we have $(\Omega, \U, \P)$ and $(\R^n, \B, P)$. Here
+$\B$ is the borel $\sigma$ algebra of $\R^n$. Once again, the random variable
+is a function $X: \Omega \rightarrow \R^n$ such that if $b \in \B \implies X^{-1}(b) \in \U$.
+
+For example, the indicator random variable of an event $A \in \U$:
+
+$$
+\chi_A (\omega) \equiv
+\begin{cases}
+1 & \omega \in A \\
+0 & \omega \not \in A
+\end{cases}
+$$
+
+\section{Simple function}
+We can construct things like $X(\omega) \equiv \sum_i a_i \chi_{A_i}(\omega)$.
+This is called as a simple function.
+
+\section{$\sigma$ algebra generated by a random variable}
+We can define a sigma algebra generated by a random variable:
+
+$$
+\U(X) \equiv \{ X^{-1}(B): B \in \B \}
+$$
+
+Prove that this is a $\sigma$ algebra
+
+\section{Stochastic Processes}
+
+$\{ X(t) : t \geq 0 \}$ is a sequence / collection of random variables is
+called as a stochastic process. 
+
+We say that $X(-, \omega)$, as a function from time to the value is called as a
+\emph{sample path}
+
+
+\section{Integration of simple functions}
+
+Let $X \equiv \sum_i a_i \chi{A_i} \omega$. Now define
+
+$$
+\int X_{\omega} d\P \equiv \sum_i a_i P(A_i)
+$$
+
+This is of course the expected value! So the expectation is literally an integral.
+
+
+\section{Integral for general random variables: Lebesgue integral}
+
+This is defined for non-negative random variables $X$:
+
+$$
+\int X_{\omega} d\P \equiv \sup_{Y \leq X; Y \texttt{simple}} \sum_i Y d\P
+$$
+
+
+\section{Distribution function}
+
+A real valued function that caluclates the probability that $X \leq x$. Formally,
+
+$$
+F_X(x) \equiv P(X \leq x) = P(\{ \omega \in \Omega : X(\omega) \leq x\}) = P(X^{-1}((-\infty, x])
+$$
+
+We need to check that these sets are actually events.
+
+\section{Conditional Probability}
+
+We are in $(\Omega, \U, \P)$, with $A, B \in \U$. Now, $P(A|B)$ is the probability
+that if $\omega \in B$, what is the probability that $\omega \in A$. So $\omega$
+must be in an area where both $A$ and $B$ can occur. 
+
+We need to define the sample space, $\sigma$ algebra, etc. to define $P(A|B)$. We
+don't know how to define the event $(A|B)$.
+
+We pick $B$ from a new sample space $\tilde{\Omega}$. We then have $\tilde{\U} \equiv \{ U \cap B : U \in \U\}$.
+Finally, we define $\tilde{P}(A \cap B) \equiv P(A \cap B) / P(B) = P(A|B)$ See 
+that we only need to consider sets of the form $A \cap B$ because we have defined $\tilde \U$
+to be $B \cap \tilde U$.
+
+\chapter{Chebyshev inequality, Borel Cantelli lemma}
+
+\section{Chebyshev lemma}
+
+
+% https://www.youtube.com/watch?v=xR6dz1MVWUs
+Let $X$ be a random variable, let $1 \leq p \leq \infty$ . 
+$$P(|X| \geq \lambda) \leq \frac{1}{\lambda^p}\E[|X|^p]$$
+
+
+\chapter{Martingales}
+A markov chain is about probability: $P(\texttt{cur}|\texttt{past}) = P(\texttt{cur})$. A martingale
+is about expectation: $\E[M_\texttt{next}|Z_\texttt{cur}, Z_\texttt{past}] = \E[M_\texttt{cur}]$.
+see that we have two processes, $M$ and $Z$; We talk about the expectation of $M$ 
+knowing the history of $Z$. So, $M$ is contant on average given past and present $Z$.
+
+I also read from an answer that:
+
+\begin{quote}
+1. A martingale is the probabilistic extension of a flat line. In other words, a flat line is the martingale when the probability space is trivial. ~ 
+\url{Phttps://www.quora.com/What-is-a-martingale-and-why-is-it-important}
+\end{quote}
+
+
+\begin{definition}
+Filtration: Sequence of $\sigma$ subalgebra $F_i$
+\end{definition}
+
+
+
+$X(t)$ is a stochastic process that is adapted to the filtration $F_t$ if
+$X_t$ is $F_t$ measurable:
+
+\href{https://math.stackexchange.com/questions/2279205/example-of-filtration-in-probability-theory}{Good math.se question about filtrations}
+
+\chapter{Brownian motion 1}
+Price will zigzag over time. In some scenario, we will have some sample path;
+in another scenario, we will have a different path. What is a "scenario"? And
+how do we model such a zigzagging path?
+
+
+Studied by robert brown, of pollen grains in water.
+
+\section{Symmetric random walk}
+Can either go up or down. Take a fair coin, repeatedly toss it. We get $\omega_i \in \{H, T\}$.
+One scenario could be $v \equiv \texttt{HHT}\dots$, with $\overline v \equiv \texttt{TTH}\dots$.
+
+Construct the radom variable $X_j \equiv [\omega_j = 1]$. ($[\cdot]$ is iverson notation). 
+That is, it is the indicator of whether $\omega_j$ is 1.
+
+Define a new stochastic process $\{ M_k \}$ where $M_k \equiv \sum_j=0^k X_j$.
+This is also called a drunkard's walk.
+
+This random process has \emph{independent increments}: If we have 
+$$
+0 = k_0 < k_1  < k_2 < \dots < k_m
+$$
+
+then the random variables:
+
+
+\begin{align*}
+& \delta_1 = M_{k_2} - M_{k_1} \\
+& \delta_2 = M_{k_3} - M_{k_2} \\
+& \dots \\
+& \delta_{m-1} = M_{k_m} - M_{k_{m-1}} \\
+\end{align*}
+
+are all independent from each other (pairwise independent). They're independent
+because the deltas depends purely on the coin tosses which are independent.
+
+See that 
+\begin{align*}
+\E[X_j] = 1\cdot 1/2 + (-1) \cdot 1/2 = 0 \\
+Var(X_j) = 1/2(1-0)^2 + 1/2(-1 - 0)^2 = 1
+\end{align*}
+
+Thus, it is immediate that 
+
+\begin{align*}
+\E[M_{j+1} - M_j] = \E[X_{j+1} = 0 \\
+Var(M_{j+1} - M_j) = ? \\
+\end{align*}
+
+We will also show that a symmetric random walk is a Martingale.
+
+\begin{itemize}
+\item Take any $k < l$, and look at $\E[M_l | \F_k]$. We can write this as
+$\E[M_l - M_k + M_k | \F_k]$.  This is equal to $\E[M_l - M_k| \F_k] +
+\E[M_k|F_k]$.           
+\item see that since $l$ is greater than $k$, $M_l - M_k$ contains all the coin tosses that happened
+after $k$; Thus, the filtration $\F_k$ carries no information. Thus we deduce that
+$\E[M_l - M_k|\F_k] = \E[M_l - M_k]$. 
+\item Then, see that in $\E[M_k|F_k]$, $M_k$ is entirely determined by $\F_k$, so
+  that's equal to $M_k \E[1 | \F_k] = M_k$.
+\item This gives us that $\E[M_l|\F_k] = M_k$.
+\end{itemize}
+
+\section{Quadratic variation}
+
+\begin{align*}
+[M, M]_k \equiv \sum_{j=1}^k (M_j - M_{j-1})^2  \\
+[M, M]_k = \sum_{j=1}^k (X_j)^2 = \sum_{j=1}^k 1 = k
+\end{align*}
+
+
+\section{Scaled symmetric random walk}
+
+We can construct an $n$th level approximation for the brownian motion.
+
+$$
+W^{(n)}(t) \equiv \frac{1}{\sqrt n}M_{nt}
+$$
+
+We need $n$ to be an integer so that $nt$ is an integer. If $nt$ is not
+an integer, that pick $ns, nu$ where $nu, ns$ are integers. Then set $nt$ to 
+be the linear interpolation of values between $nu, ns$. In the limit, the
+sequence $W^{(n)}(t)$ converges to brownian motion.
+
+\chapter{Brownian motion 2}
+
+Brownian motion encapsulates many phenomena; it's a continuous analogue
+of the symmetric random walk. We have $(\Omega, F, \P)$ the probability space.
+A stochastic process with $W(0) = 0$ (recall that $W(0)$ is a random variable; we
+are saying that the initial position is determinstic)
+$\{ W(t) \}$ is called as brownian motion if  given
+any time points $0 < t_1 < \dots < t_n$, the increments $W(t_1) - W(t_0)$; 
+$W(t_2) - W(t_1)$ etc. are all independent random variables.
+
+We can prove using the central limit theorem  that the random variables
+$W(t_{i+1}) - W(t_i)$ for all $i$ 
+obeys a gaussian distribution with mean $0$ and variance $t_{i+1} - t_i$.
+
+Stock prices aren't brownian motion because they can't go below zero, while
+in brownian motion, we can get values less than zero. 
+
+Bachelier was the first person to use brownian motion to model stocks.
+A trick is that if we want non-negativity, use the exponential function.
+
+\section{Filtration associated with a brownian motion}
+
+The filtration $\{ \F(t) \}$ is a collection of sigma algebras such that:
+\begin{itemize}
+ \item $\forall 0 \leq s < t,  \F(s) \subseteq \F(t)$. We have more information as time evolves.
+\item $\{ W(t) \}$ must be adapted to the filtration.
+\item if $0 \leq t < u$ then $W(u) - W(t)$ is independent of $\F(t)$. That is,
+    when we move beyond $t$, $F(t)$ knows nothing about the increment.
+ \end{itemize}
+ $\F(t)$ can be viewed as the filtration generated by the stochastic process.
+
+\section{Brownian motion is a martingale}
+
+Repeat the discrete proof in the continuous case. Take $0 \leq s < t$.
+
+\begin{align*}
+& \E[W(t) | \F(s)] = \\
+& \E[W(t) - W(s) + W(s) | \F(s)] = \\
+& \E[W(t) - W(s)) | \F(s)] + \E[W(s)|F(s)] = \\
+& \E[W(t) - W(s)) | \F(s)] + \E[W(s)|F(s)] = \\
+& 0 + W(s) \E1|F(s)] = \\
+& W(s)                    
+\end{align*}
+
+\section{Exponential martingale}
+
+$Z(t)  \equiv \texttt{exp}\left( \sigma W(t) - 1/2 \sigma^2 t \right); \sigma > 0$
+The idea is that if $W(t)$ is adapted to a filtration, then so will $Z(t)$
+because $Z(t)$ depends purely on $W(t)$.
+
+We'll show that $Z(t)$ is also a martingale. This will capture volatility of
+the stock price.
+
+\subsection{$Z(t)$ is a martingale}
+Let's shut up and calculate:
+\begin{align*}
+&\E[Z(t)|\F(s)]  = \\
+&\E\bigg[\texttt{exp}\left( \sigma W(t) - 1/2 \sigma^2 t \right) | \F(s) \bigg] \\
+&\E\bigg[\texttt{exp}\left( \sigma W(t) - \sigma W(s) + \sigma W(s) - 1/2 \sigma^2 t \right) | \F(s) \bigg] \\
+&\E\bigg[\texttt{exp}\left( \sigma W(t) - \sigma W(s) \right) \texttt{exp} \left(\sigma W(s) - 1/2 \sigma^2 t \right) | \F(s) \bigg] \\
+& \texttt{exp} \left(\sigma W(s) - 1/2 \sigma^2 t \right) \E\bigg[\texttt{exp}\left( \sigma W(t) - \sigma W(s) \right) | \F(s) \bigg] \\
+& \texttt{exp} \left(\sigma W(s) - 1/2 \sigma^2 t \right) \E\bigg[\texttt{exp}\left( \sigma W(t) - \sigma W(s) \right)\bigg] \\
+&\texttt{can compute the $\E[\texttt{exp}(\cdot)]$, and becomes:} \\
+& = Z(s)
+\end{align*}
+
+\subsection{$Z'(t) = (W(t))^2 - t$ is a martingale}
+Proof is left as exercise for reader. Not sure what this martingale means.
+
+\section{Joint probability of brownian motion}
+Recall that we ask that $W(0) = 0$.  We also know that the increments
+are normally distributed with zero mean and variance equal to the time delta.
+This gives us:
+
+$$W(t) = W(t) - W(0) \sim N(0, t) $$
+
+To bound $W(t)$ between $a$ and $b$, we can use the normal distribution. 
+
+
+Now suppose we have $0 < t_1 < t_2 < \dots < t_n$. How do I bound:
+
+$$
+P(a_1 \leq W(t_1) \leq b_1; \dots; _n \leq W(t_n) \leq b_n)
+$$
+
+Suppose it is known to be that $W(t_1) = x$. Then what is $P(a_2 < W(t_2) < b_2) | W(t_1) = x)$?
+Now because we know that the deltas are gaussian, we have that $W(t_2) \sim x_1 + N(0, t_2 - t_1)$.
+
+\chapter{Brownian motion III}
+
+Quadratic variation of brownian motion / $\{ w(t) \}$ ($W$ stands for Weiner)
+in time $[0, T]$.  Take $n$ large, take step length as $T/n$. form the sum:
+
+$$
+\sum_{j=0}^{n-1} (W((j+1)T/n) - W(jT/n))^2
+$$
+
+We are interested in $\lim_{n \rightarrow \infty} =_? T$
+
+Given a sample path $\omega$, brownian motion is continuous as a function of $t$.
+But it's not differentiable anywhere.
+
+We can show (?) that second variation will be zero if function is differentiable
+
+\subsection{First variation}
+Let us have $0 < t_0 < t_1 < \dots t_n < < T$.
+$||\Pi(n)|| \equiv \max_{j=0,1,\dots,(n-1)} (t_{j+1} - t_j)$. This is the largest
+gap between the $\{ t_i \}$. This will reach $0$ as $n \rightarrow \infty$.
+
+Let us now calculate first variation:
+
+\begin{align*}
+&FV_T(f) \equiv  \lim_{n \rightarrow \infty} \sum_{j=0}^{n-1}|f(t_{j+1}) - f(t_j)|  \\
+&\text{Using mean value theorem:} \\
+&FV_T(f) =  \lim_{n \rightarrow \infty} \sum_{j=0}^{n-1}f'(x*_j) (t_{j+1} - t_j) : x*_j \in (t_{j+1}, t_j) \\
+&\text{Using defn of Riemann sum:} \\
+&FV_T(f) =  \int_0^T |f'(t)| dt
+\end{align*}
+
+See that this counts the total "up and down motion".
+
+\subsection{Second variation/quadratic variation}
+Recall that $||\Pi(n)|| \equiv \max_{j=0,1,\dots,(n-1)} (t_{j+1} - t_j)$. This is the largest
+gap between the $\{ t_i \}$. This will reach $0$ as $n \rightarrow \infty$.
+Note that $\lim_{n \rightarrow \infty}$ is the same as $\Pi \rightarrow 0$
+
+\begin{align*}
+&[f, f]_T \equiv \lim_{n \rightarrow \infty} \sum_{j=0}^{n-1} [f(t_{j+1}) - f(t_j)]^2 \\
+&\text{Using mean value theorem:} \\
+& \lim_{n \rightarrow \infty} \sum_{j=0}^{n-1} |f'(t*_j)|^2 (t_{j+1} - t_j)^2 : t*_j \in (t_{j+1}, t_j) \\
+& \text{Use that $(t_{j+1} - t_j) \leq ||\Pi_n$: }
+\leq \lim_{n \rightarrow \infty} ||\Pi_n|| \sum_{j=0}^{n-1} |f'(t*_j)|^2 (t_{j+1} - t_j) : t*_j \in (t_{j+1}, t_j) \\
+=  \lim_{n \rightarrow \infty} ||\Pi_n|| \lim_{n \rightarrow \infty} \sum_{j=0}^{n-1} |f'(t*_j)|^2 (t_{j+1} - t_j) \\ 
+=  \lim_{n \rightarrow \infty} ||\Pi_n|| \lim_{n \rightarrow \infty} \int_0^T |f'(t)|^2 dt \\
+=  0 \\
+\end{align*}
+
+Thus $[f, f](T) = 0$. Wat? this seems completely nonsensical. How can the L1 norm exist while the L2 norm is zero?!
+I guess the idea is that because we're adding squares of infinitesimals, it goes to zero. $\int dx^2 \simeq 0$.
+\href{math.se question about quadratic variation}{https://math.stackexchange.com/questions/1347520/understanding-quadratic-variation}. Indeed, for the integration by parts formula to work, we need quadratic variation to not exist!
+\begin{align*}
+(X + \delta X)(Y + \delta Y) = XY + X \delta Y + Y \delta X + \delta X \delta Y \\
+\delta(XY) = (X + \delta X)(Y + \delta Y) - XY = X \delta Y + Y \delta X + \delta X \delta Y \\
+X_t Y_t - X_0 Y_0  = \sum_{k=0}^{n-1} \delta(X_k Y_k) \\
+X_t Y_t - X_0 Y_0  = \sum_{k=0}^{n-1} X_k \delta Y_k + Y \delta X_k + \delta X_k \delta Y_k \\ 
+\end{align*}
+
+The final term is of order $1/n^2$ and thus vanishes. This gives us the integration by parts formula:
+
+\begin{align*}
+X_t Y_t - X_0 Y_0  = \int_0^t X dY + \int_0^t Y dX + 0
+\end{align*}
+
+So a smooth function never accumulates quadratic variation.
+
+\section{Brownian motion has quadratic variation}
+
+$[W, W](T) = T$ almost sure for all $T > 0$. Because $W$ is a random variable,
+$T$ will again be a random variable.
+
+
+First define the sample quadratic variation $\Q_{\Pi_n}$:
+
+\begin{align*}
+\Q_{\Pi_n} 
+\equiv \sum_{j=0}^n W(t_{j+1} - W(t_j)^2)
+\end{align*}
+
+We will prove that $\lim_{n \rightarrow \infty} \E[\Q_{\Pi_n}] = T$, and
+that $\lim_{n \rightarrow \infty} Var(\Q_{\Pi_n}) = 0$. This tells us that
+if we compute $\Q_{\Pi_n}$ "well enough", it becomes equal to the claimed
+quadratic variation. Let's assume that $\Q_{\Pi_n}$ has the above mean and
+variance. Let's try to show that brownian motion has quadratic variation using this.
+
+By chebyshev:
+
+$$
+P(|Q_{\Pi_n} - T| > 1/n) \leq n^2 Var(Q_{\Pi_n}) \\
+P(|Q_{\Pi_n} - T| > 1/n) \leq n^2 Var(Q_{\Pi_n}) \\
+\lim _{n \rightarrow \infty} P(|Q_{\Pi_n} - T| > 1/n) \leq n^2 \cdot 0 = 0
+$$
+Hence, $\Q_{\Pi_n} \rightarrow T$ in probability. 
+
+Finishing the proof is left for the reader.
+
+\chapter{Ito Integral 1}
+
+We are trying to make sense of
+
+$$
+\int_0^T \Delta(t) dWt
+$$
+
+Where $\{ \Delta(t) \}$ is a process adapted to the filtration $\{ \F(t) \}$
+associated to the brownian motion.
+
+Once again, partition $[0, T]$ into intervals. $0 = t_0 < t_1 < t_2 < \dots t_n$.
+we will take $\{ \Delta(t) \}$ to be a simple process; So on each interval $[t_j, t_{j+1})$,
+the value of $\{ \Delta(t) \}$ is constant. 
+
+Let's work like a finance person. $\Delta(t)$ is the number of stocks we are holding
+of some company at time $t$.  Let $\{ W(t) \}$  describe the price process of the stock.
+$I(t)$ is my gain by trading at time $t$.
+
+Consider $t_0 \leq t < t_1$. I bought $\Delta(t0)$ stocks at time $t_0$ and
+$W(t_0)$ is the price per stock. Total money paid  was $\Delta(t_0) W(t_0)$.
+By selling the stocks at time $t$, I make $\Delta(t_0) W(t)$. The gain is 
+$I(t) = \Delta(t_0) W(t) -\Delta(t_0) W(t_0)$.
+
+
+Now consider the time slice $t_1 \leq t < t_2$: We sell the stock which we
+had bought at time $t_0$. This gives us profit of $+\Delta(t_0)W(t_1)$. Then
+I buy stocks, so I pay $\Delta(t_1)W(t_1)$. Finally, at the end at time $t_2$,
+I sell my stocks, leaving me with $\Delta(t_1)W(t_2)$. This summed up is
+$$I(t) = \Delta(t_0)W(t_1) + (\Delta(t_1)W(t_2) - \Delta(t_1)W(t_1))$$
+
+(TODO: this seems to double spend the stock? I don't understand this)
+
+
+In general for $t_k \leq t < t_{k+1}$:
+
+$$
+I(t) = \sum_{j=0}^{k-1} \Delta(t_j) [W(t_{j+1}) - W(t_j)] + \Delta(t_k)[W(t) - W(t_k)]
+$$
+
+we write this notationally as:
+
+$$
+\int_{t=0}^T \Delta(t) dW(t) \equiv I(t)
+$$
+
+The properties of the Ito integral:
+
+\begin{itemize}
+\item The Ito integral $\{ I(t) \}$ is a martingale! (A process that tries to maintain the status quo)
+\item Ito isometry: $\E[I^2(t)] = \E[\sum_0^t \Delta^2(u) du]$. It is an isometry because
+  we know that $\E[I^2(t)] \equiv \int_{\omega} I^2(t) dP = ||I(t)||^2_{L_2}$. So we are 
+  controlling the length of the integral?
+\end{itemize}
+
+\section{Quadratic variation}
+Ito isometry tells us that 
+
+$$
+[I, I](t) = \int_0^t \Delta^2(u) dx
+$$
+
+the quadratic variation itself is a stochastic process.
+
+\chapter{Magpie of notes}
+
+To get Itˆo’s Lemma, consider that $F(X + dX) − F(X)$ was just the
+change in $F$ and replace $dX^2$ by $dt$, remembering that $\int_0^t (dX)^2 = t$
+
+The Black Scholes equation is a linear parabolic differential equation. Can be
+reduced to the heat equation.
+
+Intuition for Ito's lemma on math overflow: \url{https://mathoverflow.net/questions/29750/intuition-and-or-visualisation-of-ito-integral-itos-lemma}
+An intestesting idea here is that because the taylor expansion will give us lots of random
+variables, we only need to care upto quadratic factor by central limit theorem (only mean and variance come into the picture).
+
+\end{document}
+
