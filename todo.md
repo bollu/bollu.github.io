@@ -1,3 +1,17 @@
+- [Metamorphosis of prime intellect, author](http://localroger.com/)
+- Cheap way to spy on someone's `tty` if they are sharing. Something like `asciinema` but
+  can be live-streamed on a `tty`.
+- do-ocracy: an organizational structure in which individuals choose roles and tasks for themselves and execute them.
+- SAGE and Ito calculus?: https://github.com/acguidoum/Sim.DiffProc
+- https://almostsuremath.com/: great blog on probability
+- Apparently, a LOT of complex analysis can be performed if one knows martingales!
+  Examples include "Proof of Liouville’s theorem from Brownian motion",
+  "Brownian Motion in Complex Analysis". 
+- Seems to be a connection between elliptic/parabolic PDEs (heat equation)
+  and brownian motion, which is also ofc explained in keenan's geodesics in heat.
+  [Here is an MO link](https://mathoverflow.net/questions/115032/non-rigorous-reasoning-in-rigorous-mathematics/115075#115075)
+- David Williams: Probability with Martingales --- motivates probability and measures
+  through martingales.
 - [arb: a C library for arbitrary precision arithmetic](https://arblib.org/index.html)
 - James Gilleard: [Hypnotic art that looks like a strange blend of natural and artifical](https://jamesgilleard.net/).
   Minimal. He lives in Japan now. Has art on mountains, japan, and animals.

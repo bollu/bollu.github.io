@@ -15,9 +15,561 @@ A Universe of Sorts
 - [reading list/TODO](todo.html)
 - Here is the <a type="application/rss+xml" href="feed.rss">RSS feed for this page</a>
 
+# Neovim frontends
+
+- [veonim](https://glitchtron.org/veonim/): Rendered an utterly glitched UI.
+- [uivonum](https://github.com/smolck/uivonim): NPM based, so wasn't my thing.
+- [neovide](https://github.com/Kethku/neovide): rust based, feels very fluid,
+  has cool cursor animations that make it "fun" to type with!
+
+# A semidirect product worked on in great detail (TODO)
+
+We work out the semidirect product structure of the collection of real 2x2 matrices
+
+$$
+\begin{bmatrix}
+1 & a \\ 0 & b
+\end{bmatrix}
+$$
+
+We first see that the multiplication rule is:
+
+
+$$
+\begin{bmatrix}
+1 & a \\ 
+0 & b
+\end{bmatrix}
+\begin{bmatrix}
+1 & p \\ 
+0 & q
+\end{bmatrix}
+= 
+\begin{bmatrix}
+1 &  p + bq \\
+0 & bq
+\end{bmatrix}
+$$
+
+so  these are closed under matrix multiplication. The identity matrix
+is one among these matrices and thus we have the identity. The inverse
+of such a matrix  can also be seen to be of such a kind.
+
+##### Diagonal transforms
+
+
+
+We have two subgroups of matrices in this set of 2x2 matrices.
+The first of these I shall call _diagonal_ and denote with $D$:
+
+$$
+\begin{bmatrix}
+1 & 0 \\ 
+0 & b
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 \\ 
+0 & q
+\end{bmatrix}
+= 
+\begin{bmatrix}
+1 & 0 \\ 
+0 & bq
+\end{bmatrix}
+$$
+
+<img src="./static/semidirect-product/diagonal.png"/>
+
+Hopefully clearly, this is isomorphic
+to $\mathbb R^*$ since the only degree of freedom is the bottom right entry,
+which gets multiplied during matrix multiplication. These transform
+a vector $(x, y)$ into the vector $(x, \delta y)$.
+Informally, the $D$ matrices are responsible for scaling the $y$-axis.
+
+<img src="./static/semidirect-product/diagonal-composition.png"/>
+
+##### Shear transforms
+
+Next, we have the other subgroup of matrices, which I shall call _shear_ 
+and denote by $S$:
+
+$$
+\begin{bmatrix}
+1 & a \\ 
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 & p \\ 
+0 & 1
+\end{bmatrix}
+= 
+\begin{bmatrix}
+1 & (a+p) \\ 
+0 & 1
+\end{bmatrix}
+$$
+
+
+<img src="./static/semidirect-product/shear.png"/>
+
+These are isomorphic to $\mathbb R^+$, since the only degree of freedom is
+their top-right entry, which gets added on matrix multiplication. These
+matrices transform a vector $(x, y)$ into $(x + \delta y, y)$. 
+
+<img src="./static/semidirect-product/shear-composition.png"/>
+
+
+#### Generating all transforms with diagonal and shear transforms
+
+we can write any transform of the form
+
+$$
+T \equiv
+\begin{bmatrix}
+1 & a \\ 
+0 & b
+\end{bmatrix}
+$$
+
+
+#### Semidirect product: Conjugations
+
+We need to check whether the subgroup $D$ or the subgroup $S$ is normal.
+For this, take two arbitrary elements:
+
+$$
+[d] \equiv 
+\begin{bmatrix}
+1 & 0 \\ 
+0 & d
+\end{bmatrix}; ~~~
+[s] \equiv 
+\begin{bmatrix}
+1 & s \\ 
+0 & 1
+\end{bmatrix}
+$$
+
+
+##### Conjugating $D$ by $S$:
+
+Let's to conjugate a diagonal with a shear:
+
+$$
+\begin{aligned}
+&[s^{-1}][d][s](x, y) \\
+&= [s^{-1}][d] (x+sy, y) \\
+&= [s^{-1}](x+sy, dy) \\
+&= (x+sy-sdy, dy) \\
+\end{aligned}
+$$
+
+This doesn't leave us with another diagonal transform. 
+
+<img src="./static/semidirect-product/sinv-d-s.png" />
+
+#####  Conjugating $S$ with $D$
+
+Now let's compute the action of $dsd^{-1}$, and $sds^{-1}$ on some general $(x, y)$:
+
+$$
+\begin{aligned}
+&[d^{-1}][s][d](x, y) \\
+&= [d^{-1}][s] (x, dy) \\
+&= [d^{-1}](x + dy, dy) \\
+&= [d^{-1}](x + dy, dy \times 1/d \\
+&= (x + dy, y)
+\end{aligned}
+$$
+
+See that the final result we end up with is a shear transform which
+shears by $y/d$. So, we can write the equation $DSD^{-1} = S$: conjugating
+a shear by scaling leaves us with a shear.
+
+<img src="./static/semidirect-product/dinv-s-d.png" />
+
+##### The connnection to partial  fractions
+
+Recall that any matrix of the form `[a b; c d]` can be viewed as taking
+the fraction `x/y` to `(ax+by)/(cx+dy)`. In our case, we have:
+
+
+- Diagonal: `[1 0; 0 b]` which take `x/y` to `x/by`.
+- Shear: `[1 a 0 1]` which take `x/y` to `(x + ay)/y`.
+
+It's clear that diagonals and shears compose. What is unclear is how they
+interact. A little thought shows us:
+
+```
+x/y -diagonal->
+x/dy -shear->
+(x+sdy)/dy
+(x+sy')/y'
+```
+
+```
+x/y -shear->
+(x+sy)/y -diagonal->
+(x+sy)/dy
+= (x+(s/d)y')/y'
+```
+
+So, when we compse shears with diagonals, we are left with "twisted shears".
+The "main objects" are the shears (which are normal), and the "twists" are
+provided by the diagonal.
+
+The intuition for why the twisted obect (shears) should be normal
+is that the twisting (by conjugation) should continue to give us twisted
+objects (shears). The "only way" this can resonably happen is if the twisted
+subgroup is normal: ie, invariant under all twistings/conjugations.
+
+
+##### How the semidirect product forms
+
+From the above computations, we can see that it is the shear transform $S$ that
+are normal in the collection of matrices we started out with, since
+$D^{-1}SD = S$. Intuitively, this tells us that it is the diagonal
+part of the transform composes normally, and the shear part of the transform is
+"twisted" by the diagonal/scaling part. This is why composing a shear
+with a diagonal (in either order --- shear followed by diagonal or vice versa)
+leaves us with a twisted shear. This should give a visceral sense of "direct
+product with a twist".
+
+# Direct and Inverse limits
+
+#### Direct limit: definition
+
+A direct limit consists of _injections_ $A_1 \rightarrow A_2 \rightarrow \dots$.
+It leads to a limit object $L$, which as a set is equal to the union of all
+the $A_i$. It is equipped with an equivalence relation. We can push data "towards"
+the limit object, hence it's a "direct" limit.
+
+So each element in $A_i$ has an equivalence class representative in $L$.
+
+
+#### Direct limit: prototypical example
+
+
+###### $S_n$
+
+We can inject the symmetric groups $S_1 \rightarrow S_2 \rightarrow \dots$.
+However, we cannot project back some permutation of $S_2$ (say) to $S_1$:
+if I have $(2, 1)$ (swap 2 and 1), then I can't project this back into $S_1$.
+
+This is prototypical; in general, we will only have injections into the limit,
+not projections out of the limit.
+
+
+##### Prufer group
+
+
+##### Stalks
+
+Given a topological space $(X, T)$ and functions to the reals
+on open sets $F \equiv \{ U \rightarrow \R \}$, we define the restricted
+function spaces $F|_U \equiv \{ F_U : U \rightarrow \mathbb R : f \in F \}$.
+
+
+Given two open sets $U \subseteq W$, we can restrict functions on $W$
+(a larger set) to functions on $U$ (a smaller set). So we get maps
+$F|_W \rightarrow F|_U$.
+
+So given a function on a larger set $W$, we can inject into a smaller set $U$.
+But given a function on a smaller set, it's impossible to uniquely extend
+the function back into a larger set. These maps really are "one way".
+
+The reason it's a union of all functions is because we want to "identify"
+equivalent functions. We don't want to "take the product" of all germs of
+functions; We want to "take the union under equivalence".
+
+###### Finite strings / `A*`
+
+Given an alphabet set $A$, we can construct a finite limit of strings of length
+$0$, strings of length $1$, and so on for strings of any given length $n \in \mathbb N$.
+
+Here, the "problem" is that we can also find projection maps that allow
+us to "chop off" a given string, which makes this example not-so-great.
+
+###### Categorically
+
+Categorically speaking, this is like some sort of union / sum (coproduct).
+This, cateogrically speaking, a **direct limit** is a **colimit**.
+
+#### Inverse limit: definition
+
+An inverse limit consists of _projections_ $A_1 \leftarrow A_2 \leftarrow \dots$.
+It leads to a limit object $L$, which as a set is equal to a subset of the
+product of all the $A_i$, where we only allow elements that "agree downwards"
+.Formally, we write this as:
+
+$$
+L \equiv \{ a[:] \in \prod_i A_i : \texttt{proj}(\alpha \leftarrow \omega)(a[\omega]) = a[\alpha] ~ \forall \alpha \leq \omega \}
+$$
+
+So from each element in $L$, we get the projection maps that give us the component $a[\alpha]$.
+
+
+> These 'feel like' cauchy sequences, where we are refining information at each
+> step to get to the final object.
+
+#### Inverse limit: prototypical example
+
+##### infinite strings
+
+We can consider the set of infinite strings. Given an infinite string,
+we can always find a finite prefix as a projection. However, it is impossible
+to *canonically* inject a finite prefix of a string into an infinite string!
+Given the finite string `xxx`, how do we make it into an infinite string?
+do we choose `xxxa*`, `xxxb*`, `xxxc*`, and so on? There's no canonical choice!
+Hence, we only have *projections*, but no *injections*.
+
+##### P-adics
+
+Consider the 7-adics written as infinite strings of digits in $\{0, 1, \dots, 6\}$.
+Formally, we start by:
+
+1. Having solutions to some equation in $\mathbb{Z}/7\mathbb{Z}$
+2. Finding a solution in $\mathbb{Z}/49\mathbb{Z}$ that restricts to the same solution in
+   $\mathbb{Z}/7\mathbb{Z}$
+3. Keep going.
+
+
+The point is that we define the $7$-adics by projecting back solutions
+from $\mathbb{Z}/49\mathbb{Z}$. It's impossible to correctly _embed_
+$\mathbb{Z}/7\mathbb{Z}$ into $\mathbb{Z}/49\mathbb{Z}$: The naive map
+that sends the "digit i" to the "digit i" fails, because:
+
+- in $\mathbb{Z}/7\mathbb{Z}$ we have that $2 \times 4 \equiv 1$.
+- in $\mathbb{Z}/49\mathbb{Z}$ $2 \times 4 \equiv 8$. 
+
+So $\phi(2) \times \phi(7) \neq \phi(2 \times 7) = \phi(4)$. Hece, we
+**don't have injections**, we **only have projections**.
+
+##### Partitions
+
+Let $S$ be some infinite set. Let $\{ \Pi_n \}$ be a sequence of partitions
+such that $\Pi_{n+1}$ is finer than $\Pi_n$. That is, every element of $\Pi_n$
+is the union of some elements of $\Pi_{n+1}$. Now, given a finer partition,
+we can clearly "coarsen" it as desired, by mapping a cell in the "finer space"
+to the cell containing it in the "coarser space". The reverse has no canonical
+way of being performed; Once again, we only **have projections**, we have
+**no injections**.
+
+
+The inverse limit is:
+
+$$
+\{ (P_0, P_1, P_2, \dots) \in \prod_{i=0}^n \Pi_n : P_a = \texttt{proj}_{a \leftarrow z}(P_z) \forall a \leq z  \}.
+$$
+
+But we only care about "adjacent consistency", since that generates the other
+consistency conditions; So we are left with:
+
+  
+$$
+\{ (P_0, P_1, P_2, \dots) \in \prod_{i=0}^n \Pi_n : P_a = \texttt{proj}_{a \leftarrow b}(P_b) \forall a +1 = b  \}.
+$$
+
+But unravelling the definition of $\texttt{proj}$, we get:
+
+$$
+\{ (P_0, P_1, P_2, \dots) \in \prod_{i=0}^n \Pi_n : P_a \supseteq (P_b) \forall a +1 = b  \}.
+$$
+
+So the inverse limit is the "path" in the "tree of partitions".
+
+
+###### Categorically
+
+Categorically speaking, this is like some sort of product along with equating
+elements.  This, cateogrically speaking, a **inverse limit** is a **limit**
+(recall that categorical limits exist iff products and equalizers exist).
+
+#### Differences
 
 
 <!-- - [Grab me a coffee](https://ko-fi.com/bollu) -->
+# LEAN 4 overfrom from LEAN together 2021
+- add `unsafe` keyword.
+- allow people to provide unsafe version of any opaque function if the 
+  type is inhabited. Type inhabited => proofs are fine. (Do we need to assume UIP for this to work?)
+- mimalloc, custom allocator.
+- counting immutable beans for optimising refcounting. (related work: Perceus: Grabage free refcounting with reuse.)
+- hash tables and arrays are back (thanks to linearity?)
+- Tabled typeclass resolution for allowing diamonds in typeclass resolution
+  (typeclasses no longer need to form a semilattice for resolution).
+- Discrminiation trees.
+- LEAN4 elaborator for adding custom syntax related to monads, tactics.
+- Beyond notation: hygenic macro expansion for theorem proving languages.
+- Kernel can have external type checker.
+
+> during wartime, you do not study the mating ritual of butterflies
+
+- Collaboration: Optimising tensor computations.
+- Collaboration: Rust integration.
+- Collaboration: DSLs for LEAN.
+- Collaboration: SAT/SMT integration
+
+#### Metaprogramming in LEAN4
+
+- macro expansion, elaboration. First expand all macros, elaborate, repeat.
+
+#### Verified decompilation
+
+- We want assured decompilation.
+- Check equivalence of BBs using solvers; compcert approach is too complex.
+
+- [Lean together 2021](https://www.youtube.com/watch?v=UeGvhfW1v9M&list=PLlF-CfQhukNnO8z3TcFcoKozif9gbl7Yt&index=5)
+
+# BLM master thesis
+
+- [link here](https://tspace.library.utoronto.ca/bitstream/1807/101595/3/Khogali_Yusra_201806_MA_thesis.pdf)
+
+# Hololive subculture
+
+- hololive artists
+- 
+
+# RSK correspondence for permutations
+
+##### Tableaux
+
+Tableaux of size $n$ first needs a partition of size $n$ in decreasing
+order. Write it as $\lambda$, such that $\lambda[i] \geq 0$ and $\sum_i \lambda[i] = n$
+and $\lambda[i]$ is weakly decreasing: $\lambda[1] \geq lambda[2] \geq lambda[n]$.
+For example, a partition of $9$ is $4, 2, 2, 1$. This is drawn as:
+
+```
+* * * *
+* *
+* *
+*
+```
+
+Next, we fill the tableau with numbers from $[n] \equiv \{1,\dots,n\}$ such
+that the rows are weakly increasing and columns are strictly increasing
+(gravity acts downwards, and we always want to get bigger). These
+are called **Standard tableay** For example,
+a valid Standard tableau corresponding to the partition above is:
+
+```
+1 3 4 6
+2 5 
+7 9
+8
+```
+
+(Sidenote: here both rows and columns are strictly increasing because we have
+unique numbers. If we did not, then by convention, the rows will be weakly
+increasing and columns strictly increasing. I always repeat the chant
+"rows weakly, columns strictly" to burn it into my brain).
+
+##### Insertion
+
+Say we start with some tableau $T$. Can we add an element $x$ into it such that
+$T' = ins(T, x)$ is a valid tableau? Yes, and this process is called insertion.
+
+##### Deletion
+
+
+This is the reverse of insertion. Say we start with a tableau $T$. Can we delete
+a location $(i, j)$, such that we get a smaller tableau $T'$, and an element $x$
+such that $ins(T', x) = T$? Yes we can, and this process is called deletion.
+
+##### Misoncentions about deletion
+
+Deletion does not mean that we lose the _value_ at $(i, j)$. Rather, we 
+_change the shape_ of the tableau to lose the _cell_ $(i, j)$. consider
+the tableau:
+
+```
+1
+2
+3
+```
+
+If we ask to delete the cell $(r=1,c=3)$ (that is, the cell containing $3$),
+we will be left with the tableau:
+
+```
+2
+3
+```
+
+and the element $1$. So, when we insert $1$ into $[2; 3]$ we get $[1; 2; 3]$.
+
+We **did not get**
+
+```
+1
+2
+```
+
+and the element $3$. This is because if we insert $3$ into $[1;2]$, then we
+get the tableau $[1,3;2]$:
+
+```
+1 3
+2
+```
+
+##### Bijection between permutations and pairs of standard tableau
+
+Given a permutation $p: [n] \rightarrow [n]$, we define two tableau
+corresponding to it: the insertion tableau $P$ and the recording tableau $Q$.
+Informally, the insertion tableau is obtained by inserting $p[1], p[2], \dots, p[n]$
+in sequence into an empty tableau. The recording tableau at step $i$ records
+where the number $i$ was stored in the tableau. So the recording tableau
+at step $i$, $Q_i$ has the same shape as the insertion tableau at step $i$,
+$P_i$, and contains the value $i$ at the cell where $i$ was stored in $P$.
+That is, $P_i[Q_i[i]] = i$.
+
+##### Properties of the insertion and recording tableau
+
+We consider the set of points $(i, p(i))$. This is called as the
+[Viennot's geometric construction](https://en.wikipedia.org/wiki/Viennot%27s_geometric_construction),
+where we reason about the graph. We will reason about the graph here, but couch
+the formal arguments in terms of partial orders to be precise.
+
+At each point $(i, p(i))$, imagine a rectangle with $(i, p(i))$ as the lower left
+corner. Next, shine a flashlight from the point $(0, 0)$ towards the upper right
+quadrant; the boundary that is cast by the rectangles are called as the
+shadow lines. 
+
+Formally, we consider a dominance relationship where $(x, y) \lhd (p, q) \equiv x \leq p \land y \leq q$.
+Then, we get the "points on the shadow lines" by considering the Hasse diagram 
+of the points $(i, p(i))$ under the relationship $\lhd$. Each level of
+the hasse diagram becomes one of the shadow lines.  The collection of all of
+these shadow lines is called as the _first order shadow lines_.
+
+Next, for each anti-chain, pick the element with the smallest $x$-coordinate.
+These points _will form a chain_. This chain will be first row of
+the permutation tableau $P$. 
+
+Funnily enough, it is also one of the longest increasing subsequences of the
+sequence $i \mapsto p(i)$ because the length of the longest chain (the longest increasing
+subsequence) is equal to the number of antichains (the number of shadow lines)
+
+##### Duality theory of $\lhd$
+
+<!-- lhd = left hand delta -->
+
+Note that $\lhd$ as a relation is symmetric in $x$ and $y$. Thus, any order
+theoretic result we prove for $x$ will hold for $y$. But note that $(i, p(i))$
+is the permutation $p$, while $(p(i), i)$ is the inverse permutation $(p^{-1})$.
+Thus, we should expect a "duality" between the order theoretic properties of
+$P$ and $p^{-1}$.
+
+
+
+
+
+# Djikstra's using a segtree
+
+> keep min segtree of distances. Now just have to run n-1 interations.
+> You like segtrees right :P
+
+
 # Markov and chebyshev from a measure theoretic lens
 
 I've been idly watching [Probability and Stochastics for finance: NPTEL](https://www.youtube.com/watch?v=qTg0mqxuGeA&list=PLEYrMI37wMbplhGJmqhlYv0VUSwC6zMsU&index=8), and I came across this nice way to
@@ -409,9 +961,23 @@ $(a)$  (written as $(b) \prec (a)$) when we have that:
 2. $\sum_i b[i] = \sum_i a[i]$.
 3. $\sum_{i=1}^u b[i] \leq \sum_{i=1}^u a[i]$ for $1 \leq i \leq n$.
 
-It is clear that this is a partial order.
+It is clear that this is a partial order. The below figure shows majorization
+in terms of partitions. For two sequences $f, g$, define $F$ to be their "integral"
+(partial sums) and $f', g'$ to be their "derivatives" (finite differences).
+Then the condition that $f \prec g$ states that $F$ is upper bounded by $G$,
+and that $F, G$ are concave functions.
 
-TODO: draw a picture!
+<img src='./static/majorization-partitions.png'>
+
+
+The other lens of viewing majorization is to think of a number as some sort
+of fixed length $l$, and we are allowed to make some progress to reach the goal
+($f(x) > 0$) as long as we progress less at each each timestep ($f''(x) < 0$).
+In this viewpoint, the majorization condition asserts that $f \prec g$ is that
+$g$ will always be ahead of/not fall behind $f$.
+
+
+<img src='./static/majorization-fixed-length.png'>
 
 #### Majorization and step 
 
@@ -429,11 +995,12 @@ S(l, r)(b)[k] =
 \end{cases}
 $$
 
-That is, this borrows a number of $b[j]$ and gives it to $b[i]$. We can see
+That is, this borrows a single value from $b[j]$ and gives it to $b[i]$. We can see
 that $(b) \prec S(l, r)(b)$.
 
 For a given $(b) \prec (a)$, we can find a sequence of step operations
-$S(l[i], r[i])$ such that 
+$S(l[i], r[i])$ such that we transform $(b)$ into $(a)$; That is, it is possible
+to "single-step" the translation from $(b)$ to $(a)$.
 
 #### Muirhead's theorem statement
 
@@ -1589,6 +2156,9 @@ According to him, this is similar to how I read code:
 > skipped over if not called, variables are ignored if not used.  debnatak: You
 > were never confused about the program flow debnatak: Idk, it seemed clean for
 > code, and math ofc because representations
+
+
+##### eye tracking data
 
 
 # KMP (Knuth, Morris, Pratt) (WIP)
@@ -23178,6 +23748,8 @@ let g:conjure#mapping#eval_motion = "E"
 > he found in the lunar dust the footsteps of Jules Verne" - Steven Weinberg on
 > old math being applied in physics
 
+> You can try; trying is the first step of failure ~ GM Ben finegold on mating sequences.
+
 
 
 # Empathy
@@ -23232,9 +23804,13 @@ which end you wish edit: press c]i} to perform the edit you describe.
 -`i}`: inner brace block
 
 
-# Chess
+# Big list of Chess
 
 - [How to defend `e5` in king's indian defense](https://www.youtube.com/watch?v=jAwSBrLk3Uw)
+- [King and pawn versus king](https://www.youtube.com/watch?v=OzskUgwPCEg&list=PLVWaFpMwtaGiBxi79IUqnqn67WF5g5PR4&index=27)
+- [All about forks](https://www.youtube.com/watch?v=51vnCWXXLGc&list=PLVWaFpMwtaGiBxi79IUqnqn67WF5g5PR4&index=49)
+
+- Good linux app: `scid vs pc`. Seems to contain engines .
 
 # Big list of shitposting
 

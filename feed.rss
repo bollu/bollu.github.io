@@ -5,6 +5,46 @@
 <link>http://bollu.github.io/</link>
 <description>A universe of Sorts</description>
   <item>
+    <title> Neovim frontends</title>
+    <guid>https://www.bollu.github.io/neovim-frontends.html</guid>
+    <link>https://www.bollu.github.io/neovim-frontends.html</link>
+  </item>
+  <item>
+    <title> A semidirect product worked on in great detail (TODO)</title>
+    <guid>https://www.bollu.github.io/a-semidirect-product-worked-on-in-great-detail-todo.html</guid>
+    <link>https://www.bollu.github.io/a-semidirect-product-worked-on-in-great-detail-todo.html</link>
+  </item>
+  <item>
+    <title> Direct and Inverse limits</title>
+    <guid>https://www.bollu.github.io/direct-and-inverse-limits.html</guid>
+    <link>https://www.bollu.github.io/direct-and-inverse-limits.html</link>
+  </item>
+  <item>
+    <title> LEAN 4 overfrom from LEAN together 2021</title>
+    <guid>https://www.bollu.github.io/lean-4-overfrom-from-lean-together-2021.html</guid>
+    <link>https://www.bollu.github.io/lean-4-overfrom-from-lean-together-2021.html</link>
+  </item>
+  <item>
+    <title> BLM master thesis</title>
+    <guid>https://www.bollu.github.io/blm-master-thesis.html</guid>
+    <link>https://www.bollu.github.io/blm-master-thesis.html</link>
+  </item>
+  <item>
+    <title> Hololive subculture</title>
+    <guid>https://www.bollu.github.io/hololive-subculture.html</guid>
+    <link>https://www.bollu.github.io/hololive-subculture.html</link>
+  </item>
+  <item>
+    <title> RSK correspondence for permutations</title>
+    <guid>https://www.bollu.github.io/rsk-correspondence-for-permutations.html</guid>
+    <link>https://www.bollu.github.io/rsk-correspondence-for-permutations.html</link>
+  </item>
+  <item>
+    <title> Djikstra &apos; s using a segtree</title>
+    <guid>https://www.bollu.github.io/djikstras-using-a-segtree.html</guid>
+    <link>https://www.bollu.github.io/djikstras-using-a-segtree.html</link>
+  </item>
+  <item>
     <title> Markov and chebyshev from a measure theoretic lens</title>
     <guid>https://www.bollu.github.io/markov-and-chebyshev-from-a-measure-theoretic-lens.html</guid>
     <link>https://www.bollu.github.io/markov-and-chebyshev-from-a-measure-theoretic-lens.html</link>
@@ -1775,9 +1815,9 @@
     <link>https://www.bollu.github.io/big-list-of-vim.html</link>
   </item>
   <item>
-    <title> Chess</title>
-    <guid>https://www.bollu.github.io/chess.html</guid>
-    <link>https://www.bollu.github.io/chess.html</link>
+    <title> Big list of Chess</title>
+    <guid>https://www.bollu.github.io/big-list-of-chess.html</guid>
+    <link>https://www.bollu.github.io/big-list-of-chess.html</link>
   </item>
   <item>
     <title> Big list of shitposting</title>
