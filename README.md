@@ -15,6 +15,22 @@ A Universe of Sorts
 - [reading list/TODO](todo.html)
 - Here is the <a type="application/rss+xml" href="feed.rss">RSS feed for this page</a>
 
+
+# Flat functions
+
+Define 
+
+$$
+f(x) \equiv
+\begin{cases}
+0 & x = 0 \\
+e^{-1/x^2} & x \neq 0
+\end{cases}
+$$
+
+ - [Flat functions on wikipedia](https://en.wikipedia.org/wiki/Flat_function)
+
+
 # Neovim frontends
 
 - [veonim](https://glitchtron.org/veonim/): Rendered an utterly glitched UI.
@@ -22,7 +38,7 @@ A Universe of Sorts
 - [neovide](https://github.com/Kethku/neovide): rust based, feels very fluid,
   has cool cursor animations that make it "fun" to type with!
 
-# A semidirect product worked on in great detail (TODO)
+# A semidirect product worked on in great detail
 
 We work out the semidirect product structure of the collection of real 2x2 matrices
 
@@ -234,6 +250,12 @@ part of the transform composes normally, and the shear part of the transform is
 with a diagonal (in either order --- shear followed by diagonal or vice versa)
 leaves us with a twisted shear. This should give a visceral sense of "direct
 product with a twist".
+
+##### Where to go from here
+
+In some sense, one can view 
+[all semidirect products as notationally the same as this example](http://bollu.github.io/the-cutest-way-to-write-semidirect-products.html)
+so this example provides good intuition for the general case.
 
 # Direct and Inverse limits
 

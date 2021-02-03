@@ -5,14 +5,19 @@
 <link>http://bollu.github.io/</link>
 <description>A universe of Sorts</description>
   <item>
+    <title> Flat functions</title>
+    <guid>https://www.bollu.github.io/flat-functions.html</guid>
+    <link>https://www.bollu.github.io/flat-functions.html</link>
+  </item>
+  <item>
     <title> Neovim frontends</title>
     <guid>https://www.bollu.github.io/neovim-frontends.html</guid>
     <link>https://www.bollu.github.io/neovim-frontends.html</link>
   </item>
   <item>
-    <title> A semidirect product worked on in great detail (TODO)</title>
-    <guid>https://www.bollu.github.io/a-semidirect-product-worked-on-in-great-detail-todo.html</guid>
-    <link>https://www.bollu.github.io/a-semidirect-product-worked-on-in-great-detail-todo.html</link>
+    <title> A semidirect product worked on in great detail</title>
+    <guid>https://www.bollu.github.io/a-semidirect-product-worked-on-in-great-detail.html</guid>
+    <link>https://www.bollu.github.io/a-semidirect-product-worked-on-in-great-detail.html</link>
   </item>
   <item>
     <title> Direct and Inverse limits</title>
