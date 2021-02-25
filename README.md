@@ -13,8 +13,526 @@ A Universe of Sorts
 - [math.se](https://math.stackexchange.com/users/261373/siddharth-bhat)
 - [resume](resume/main.pdf)
 - [reading list/TODO](todo.html)
-- Here is the <a type="application/rss+xml" href="feed.rss">RSS feed for this page</a>
+- Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
+# Stable homotopy theory 1
+
+I watched this for shits and giggles. I don't know enough topology at all, but it's
+fun to watch arbitrary math videos.
+
+#### References
+
+- [CW complexes](https://www.youtube.com/watch?v=XWg4LVbmm3M&list=PLN_4R2IuNuuTWD00k9BAB1fo0UldBHnME&index=21)
+- [Stable homotopy theory 1](https://www.youtube.com/watch?v=neC3HUyqlV0)
+
+# Finitely generated as vector space v/s algebra:
+
+- To be finitely generated as a vector space over $K$ from a generating
+  set $S$ means that we take elements of the form $\sum_i k_i s_i$, or abbreviated,
+  elements of the form $\sum KS$
+- To be finitely generated as a $K$ algebra from a generating set $S$, 
+  we take elements of the form 
+  $\sum_i k_i s_i + \sum_{ij} k_{ij} s_i s_j + \dots$. To abbreviate, elements
+  of the form $\sum C + CS + CS^2 + CS^3 \dots = C/(1-S)$.
+
+As a trivial example, consider $K[X]$. This is not finitely generated as a 
+vector space since it doesn't have a finite basis: the obvious choice of
+generating set $\{ 1, X, X^2, \dots \}$ is not finite. It *is* finitely
+generated as a $K$-algebra with generating set $\{ X \}$.
+
+# Weak and Strong Nullstllensatz
+
+
+#### Weak Nulstellensatz: On the tin
+
+For every maximal ideal $m \subset k[T_1, \dots, T_n]$ there is a unique
+$a \in k^n$ such that $ m = I(\{ a \})$. This says that any maximal ideal
+is the ideal of some point.
+
+#### Weak Nullstellensatz: implication 1 (Solutions) 
+every ideal, since it is contained in a maximal ideal, will have zeroes.
+Zeroes will always exist in all ideas upto the maximal ideal.
+
+- It simply says that for all ideals $J$ in $\mathbb C[X_1, \dots, X_n]$, we have $I(V(J)) = sqrt J$
+- Corollary: $I$ and $V$ are mutual inverses of inclusions between algebraic sets and radical ideals.
+
+
+#### Weak Nullstellensatz: Implication 2 (Non-solutions)
+
+If an ideal does not have zeroes, then it must be the full ring. Hence, 1 must
+be in this ideal. So if $I = (f_1, f_2, \dots, f_n)$ and the system has
+no solutions, then $I$ cannot be included in any maximal ideal, hence $I = \mathbb C[X_1, \dots, X_n]$.
+Thus, $1 \in I$, and there exist $c_i \in \mathbb C[X_1, \dots, X_n]$ such that
+$1 = sum_i f_i c_i$.
+
+
+#### Strong Nullstellensatz: On the Tin
+
+
+For every ideal $J$, we have that $I(V(J)) = |_0^\infty\sqrt J$. I am adopting 
+the radical (heh) notation $|_0^\infty \sqrt x$ for the radical, because this matches
+my intuition of what the radical is doing: it's taking *all roots*, not just *square roots*.
+For example, $\sqrt{(8)} = (2)$ in $\mathbb Z$.
+
+
+#### Strong Nullstellensatz: Implication 1 (solutions)
+
+Let $J = (f_1, \dots, f_m)$. If $g$ is zero on $V(J)$ , then $g \in \sqrt J$. 
+Unwrapping this, $\exist r \in \mathbb N, \exists c_i \in \mathbb C[X_1, \dots,  X_n], \sum_i f_i c_i = g^r$.
+
+
+
+#### Weak Nullstellensatz: Proof
+
+- Let $m$ be a maximal ideal. 
+- Let $K$ be the quotient ring  $K \equiv \mathbb C[X_1, \dots, X_n] / m$.
+- See that $K$ is a field because it is a ring quotiented by a maximal ideal. 
+- Consider the map $\alpha: \mathbb C[X_1, \dots, X_n] \rightarrow K$, or $\alpha : \mathbb C [X_1, \dots, X_n] \rightarrow \mathbb C[X_1, \dots, X_n] / m$ by sending
+  elements into the quotient.
+- We will show that $\alpha$ is an evaluation map, and $K = \mathbb C$. So we will get a function
+  that evaluates polynomials at a given point, which will have a single point as a solution.
+- Core idea: See that $\alpha(\mathbb C) = \mathbb C \subset K$. Hence $K$ is a field that contains 
+  $\mathbb C$. But $\mathbb C$ is algebraically closed, hence $K = C$.
+- First see that $\mathbb C \subset K$, or that $\alpha$ preserves $\mathbb C$ [ie, $\alpha(\mathbb C) = \mathbb C$].
+  note that no complex number can be in $m$.
+  If we had a complex number $z$ in $m$, then we would need to have $1 = 1/z \cdot z$ in $m$ 
+  (since an ideal is closed under multiplication by the full ring), which means $1 \in m$, due to which
+  we get $m$ is the full ring. This can't be the case because $m$ is a proper maximal ideal.
+- Hence, we have $\mathbb C \subseteq K$ or $K = \mathbb C$.
+- Thus the map we have is $\alpha: \mathbb C[X_1, X_2, \dots, X_n] \rightarrow \mathbb C$.
+- Define $z_i = \alpha(X_i)$. Now we get that $\alpha(\sum_{ij} a_{ij} X_i^j) = \sum_{ij} a_{ij} z_i^j$. That is,
+   we have an evaluation map that sends $X_i \mapsto z_i$. 
+- CLAIM: The kernel of an evaluation map $\alpha$ is of the form $(X_1 - z_1, \dots, X_n - z_n)$.
+- PROOF OF CLAIM:TODO 
+- The kernel is also $m$. Hence, $m = (X_1 - z_1, \dots, X_n - z_n)$, and point that corresponds to the
+  maximal ideal is $(z_1, z_2, \dots, z_n)$.
+
+
+#### Strong Nullstellensatz: Proof
+
+We use the [Rabinowitsch trick](https://en.wikipedia.org/wiki/Rabinowitsch_trick).
+- Suppose that wherever $f_1, \dots, f_m$ simultaneously vanish, then so does $g$. [that is, $g \in I(V(J))$
+  where $J = (f_1, \dots, f_m)$].
+- Then the polynomials $f_1, \dots, f_m, 1 - Yg$ have no common zeros where $Y$ is a new 
+  variable into the ring. 
+- Core idea of why they can't have common zeros: Contradiction. assume that $1 - Yg$, and all the $f_i$
+  vanish at some point.
+  Then we need $1 - Yg = 0$ which mean $Y = 1/g$, so $g$ cannot vanish, so $g \neq 0$.
+  However, since all the $f_i$ vanish, $g$ also vanishes as $g \in (V(J))$. This is contradiction.
+- Now by weak Nullstellensatz, the ideal $J = (f_1, \dots, f_m, (1-Y)g)$ cannot be contained
+  in a maximal ideal (for then they would simultaneously vanish). Thus, $J = R$ and $1 \in J$.
+- This means there are coefficients $c_i(Y, \vec x) \mathbb C[X_1, \dots , X_n, Y]$ such that 
+
+$$
+1 = c_0(Y, \vec x) (1 - Yg(\vec x)) \sum_{i=1}^m c_i(Y, \vec x) f_i(\vec x)
+$$
+
+Since this holds when $\vec x, Y$ are arbitrary variables, it continues to hold
+on substituting $Y = 1/g$, the coefficient $c_0(1-Yg) = c_0(1 - g/g) = c_0(1 - 1) = 0$ disappears. This gives:
+
+$$
+1 = \sum_{i=1}^m c_i (Y, \vec x) f_i(\vec x)
+$$
+
+since $Y = 1/g$, we can write $c_i(Y=1/g, \vec x) = n_i(\vec x)/g^r_i(\vec x)$.  By clearing denominators, we get:
+
+$$
+1 = \sum{i=1}^m n_i(\vec x) f_i(\vec x)/ g^R(\vec x) 
+$$
+
+This means that 
+
+$$
+g^R(\vec x) = \sum_{i=1}^m n_i(\vec x) f_i(\vec x)
+$$
+
+#### Strong Nullstellensatz: algebraic proof
+
+- We have $g \in I(V(J))$.
+- We want to show that $g \in \sqrt{J}$ in $R$.
+- This is the  same as showing that $g \in \sqrt{0}$ in $R/J$. ($J \mapsto 0$ in the quotient ring).
+- If $g$ is nilpotent in $R/J$, then the $(R/J)_g$ becomes the trivial ring $\{ 0 \}$. 
+  [Intuitively, if $g$ is nilpotent and a unit, then we will have $g^n = 0$, that is  unit raised to some
+   power is 0, from which we can derive $1 = 0$].
+- Localising at $g$ is the same as computing $R[Y]/(1 - Yg, J)$.
+- But we have that $V(1 - Yg, J) = \emptyset$. Weak Nullstellensatz implies that $(1 - Yg, J) = (1)$.
+- This means that $R[Y]/(1 - Yg,J) = R[Y]/(1) = \{ 0 \}$. Thus, $(R/J)_g$ has $g$ as nilpotent, 
+  or $g \in \sqrt J$ in $R$.
+
+#### Relationship between strong and weak
+
+Strong lets us establish what functions vanish on a *variety*. Weak let us establish
+what functions vanish at a *point*.
+
+#### Strong Nullstellensatz in scheme theory
+
+- Same statement: $I(V(J)) = \sqrt J$.
+- $V(J)$ is the set of points on which $J$ vanihes. Evaluation is quotienting. So it's going to be
+  set of prime ideals $p$ such that $J \xrightarrow{R/p} 0$. So $J \subset p$. This means that
+  $V(J) = \{ p \text{prime ideal in } R, J \subseteq p \}$.
+- $I(V(J))$ is the set of functions that vanish over every point in $V(J)$. The functions that vanish
+  at $p \in V(J)$ are the elements of $p$. So the functions that vanish over all points is 
+  $I(V(J)) = \cap V(J)$.
+- Unwrapping, this means that $I(V(J))$ is the intersection of all ideals in $V(J)$, which is the intersection
+  of all primes that contains $J$, which is the radical of $J$.
+
+Holy shit, scheme theory really does convert Nullstellensatz-the-proof into
+Nullstellensatz-the-definition! I'd never realised this before, but this.. is crazy.
+
+Not only do we get easier proofs, we also get more power! We can reason about generic
+points such as $(x)$ or $(y)$ which don't exist in variety-land. This is really really cool.
+
+- [Reference video](https://www.youtube.com/watch?v=GyWiyR0vULE)
+
+# Screen recording for kakoune pull request
+
+I wanted to show what keys I was pressing to demonstate the change I was 
+proposing. So I used:
+- `SimpleScreenRecorder` to record my screen.
+- `screenkey` to show the keystrokes I press.
+
+This was used the create the PR that
+[improves the page up/page down to mimic vim behaviour](https://github.com/mawww/kakoune/pull/4074)
+# Intuition for why finitely presented abelian groups are isomorphic to product of cyclics
+
+- If we have a finitely presented group, we can write any element as a product
+  of the generators.. Say we have two genetors $g, h$ and some relations between
+  them, we can have elements $gh$, $ghgh$, $gghh$, $ghg^{-1}$, and so on.
+- If the group is abelian, we can rearrange the strings to write them as $g^a h^b$.
+  For example, $ghgh = g^2h^2$, and $ghg^{-1} = g^0h^1$ and so on.
+- Then, the only information about the element is carried by the powers of $g, h$.
+- If $g$ has order $n$ and $h$ has order $m$, then the powers live in $Z/nZ, Z/mZ$.
+- Thus, the group above is isomorphic to $Z/nZ \times Z/mZ$ by rearranging and
+  collecting powers.
+- The same argument works for any finitely generated abelian group.
+
+# Alternative orderings for segtrees (WIP)
+
+# Group structure of nim games (WIP)
+
+#### Mex
+
+# Euler characteristic of sphere
+
+Pick two antipodal points and connect them into a great circle. We have two points.
+To connect them, we need two edges. The great circle divdies the spere into two
+faces. This gives $2-2+2=2$.
+
+
+# John Conway: The symmetries of things
+
+Original way to classify wallpaper groups: think of geometric transforms
+that fix the pattern. Thurston's orbifold solution: think of quotients of $\mathbb R^2$
+by groups --- this gives you an *orbifold* (orbit manifold).
+
+
+Take a chair, surround it around by a sphere.  The symmetries of a physical
+object fixes the center of gravity. So we pick the center of the sphere  to
+be the center of gravity. The "celestial sphere" (the sphere around the chair)
+is a nice manifold (We only have the surface of the sphere). The vertical
+line that divides the chair also divides the sphere into two parts.
+
+- The points of the orbifold are orbits of the group.
+- So now the orbifold gives us a hemisphere in this case.
+- The topology of the orbifold determines the group.
+- This is astonishing, because the group is a metrical object: elements of the group
+  preserve the inner product of the space.
+- And yet, geometrical groups are determined by the *topology* of their orbifolds!
+- Thurston's metrization conjecture: certain topological problems reduce to geometrical ones.
+
+Conway came up with his notation for wallpaper groups/orbifolds. There are only
+four types of features.
+
+-  The hemisphere orbifold is `*`. (group of order 2). `*` denotes the effect on
+   the orbifold. `*` really means: what is left out of a sphere when I cut out a 
+   hemispherical hole. `*` is the name for a disk, because a hemisphere is a disk
+   topologically. It has metrical information as well, but we're not going to
+   speak about it, because all we need is the topological information.
+-  One-fourth of a sphere (symmetry group of rectangular table)
+   is denoted by `* 2 2`. The `*` for the hemisphere, and `2, 2`
+   for the angles of `pi/2`.
+-  If the table is a sphere, then we have diagonal symmetry as well. In this case,
+   the orbifold has angle `pi/4`. So the table is `* 4 4`.
+-  If we take a cube, then we have an even more complicated orbifold. The "fundamental region"
+   of the cube has 2, 3, and 4 mirrors going through them. So in the orbifold, we get
+   triangles of angles `pi/2, pi/3, pi/4`. This would be `* 4 3 2`.
+-  Draw a swastika. This has no reflection
+   symmetry. This has a *gyration*: a point about which the figure can be rotated,
+   but the point is NOT on a line of reflection. We can tear the paper and make
+   it into a cone. This gives us a *cone point*. The angle around the cone point
+   is `2pi/4`. This is the orbifold of the original square with a swastika on it.
+
+An orbifol can be made to carry some amount of metrical information. The cone
+point only has 90 degrees, so it is in some sense, "a quarter of a point".
+
+-  Draw a cube with swastikas marked on each face. This has no reflection
+   symmetry. Once again, we have a gyration, and again, only the gyration/singularities
+   matter. This group is again `4, 3, 2` , but in **blue**. In this notation,
+   **red** is reflection, **blue** is "true motion" (?).
+
+Let us try to work out the euler characteristic of the rectangular table
+orbifold by using $V - E + F$. The orbifold as one face.
+The **wrong thing** to say is that the orbifold has two edges and two vertices.
+It is untrue because the edge of the orbifold is only half an edge --- let's
+say that lines have thickness. In this case, we will have $V = 2/4$, $E = 2/2$,
+and $F = 1$.  The euler characteristic works out to be a half. This is appropriate,
+because the orbifold is a type of divided manifold.
+
+- If we work this out for a cube, we get $2/48$. This is because the sphere gets
+  divided into 48 pieces, and the sphere has an euler characteristic of 2!
+- Alternatively, we can think that we started out with 2 dollars, and we are then
+  buying the various features of our orbifold. `*` costs `1$`, a blue number
+  after a star, for example: `2` costs `1/2` a dollar. `3` costs `2/3` of a dollar,
+  `4` costs `3/4` of a dollar. In general, `n` costs `1 - 1/n`.
+  The red numbers are children, so they cost half an much: `n` consts `1/2(1 - 1/n) = (n-1)/2n`.
+
+
+Now, see that we started with positive euler characteristic (2), and we divide
+it by some `n` (the order of the group). So we end up with a positive euler characteric.
+By a sort of limiting argument, the euler characteristic of the wallpaper groups, 
+which are infinite, is zero. However, see that we must get to the zero by starting
+with two dollars and buying things off the menu! If we try and figure out what
+all the possible ways are to start with 2 dollars and buy things till we are 
+left with exactly 0 dollars, we get that there are 17 possible ways of buying
+things on the menu! Thus, this the reason for there being 17 wallpaper groups.
+
+
+- To buy more than two dollars, you are buying symmetries from the hyperbolic
+  plane!
+
+Because we can completely enumerate 2-manifolds, we can completely enumerate
+2-orbifolds, which are essentially the same thing as symmetry groups. The real
+power is in the 3D case. We don't have a full classification of 3-manifolds. But
+we maybe able to go the other way. This is the metrization theorem.
+
+- [Video lecture](https://www.youtube.com/watch?v=8z6T-7ovA5Q)
+
+# Semidirect product mnemonic
+
+I just learnt that when we write the semidirect product $N \ltimes K$, the
+$\ltimes$ is to look like a combination of $N \triangleleft G$ ($N$ is normal in $G$)
+and the $\times$ operator; This tells us that it is the $N$ part that is normal.
+in $N \ltimes K$.
+
+- A good example to remember is $\mathbb R^3 \ltimes SO(3)$, where we define
+  a group element $(t, r)$ by the action: $(t, r) v = rv + t$ [$t$ for translation and $r$ for rotation].
+
+- Let's compose these. We find that:
+
+$$
+\begin{aligned}
+&(t_2, r_2)((t_1, r_1)(v))  \\
+&= (t_2, r_2)(r_1v + t_1) \\
+&= r_2(r_1v + t_1) + t_2\\
+&= (r_2 r_1) v + (r_2 t_1 + t_2) \\
+&= (r_2 t_1 + t_2, r_2 2_1) v
+\end{aligned}
+$$
+
+- Here, we have the rotation $r_2$ act non-trivially on the translation $t_1$.
+- We need the translation to be normal, since we are messing with the translation
+  by a rotation. 
+- We want the translations to be closed under this messing about by the rotation action;
+  The action of a rotation on a translation should give us another translation.
+  Thus, the translations $(t_1, id)$ ought to be normal in the full group $(t_2, r_2)$.
+
+
+# Non orthogonal projections
+
+Consider the matrix 
+
+$$
+P = \begin{bmatrix} 1 & 1 \\ 0 & 0 \end{bmatrix}
+$$
+- $P^2 = P$, so it's a projection. It projects the vector `[x;y]` to the
+  vector `[x+y;0]`. Clearly, applying it twice will result in 0. `[x; y]`,
+  1. `[x+y; 0]`, 2. `[x+y; 0]`.
+- It projects the value `(x+y)`onto the `x` axis,and kills the `y` axis. 
+- It's **not** a projection onto the coordinate axis. 
+
+
+# Why did maxwell choose his EM wave to be light?
+
+- We Knew gravity as fields
+- dalton/thompson atomic model that had particles: protons, neutrons, electron
+- Knew electricity and magnetism as fields
+- Maxwell wrote down laws, said that the wave solution to his laws was light. (why?)
+- Michaelson morly proved speed of light was constant, matched maxwell prediction 
+- Einstein found photo electric effect. Posited “light particle” (photon). [why light?]
+- De Broglie 
+- [who connected photon to EM wave through gauge?]
+- Weyl created U(1) symmetry for Maxwell’s equations / photon
+- Yang-mills wrote down how photon occurs as particle associated to EM field
+- what is the field that electron corresponds to?  Electron field? Why no wiki page? Dirac spinor field! Dirac spinor
+- How do we get fermi/bose statistics out of the field equation?  In QM, when
+  we perform second quantization, ie, solve for single particle and claim that
+  multi particle is the tensoring of single particle, we “choose the
+  statistics” arbitrarily.
+
+
+# Fast string concatenation in python3
+
+Apparently, the correct way to do this, in a way that's not `O(n^2)` is to
+use the `io.StringIO` module. The API is:
+
+- `x = io.StringIO()`: create a string buffer
+- `x.write(stuff_to_append)`: append into string buffer with correct `realloc()` 
+   doubling semantics for `O(1)` amortized per character
+- `out = x.getvalue()`: pull data out of `StringIO`.
+- `x.close()`: tell the `StringIO` that we are done and it can free its buffer.
+
+It took quite a bit of trawling the API docs to find this while I was
+helping a friend speed up some data munging.
+
+# Split infinitive
+
+```
+to safely remove %v
+```
+
+The infinite "to remove" has been split by "safely".
+
+```
+to remove %v safely.
+```
+
+# Yoneda from string concatenation (WIP)
+
+I'm trying to build intuition for Yoneda (again) this time from the perspective
+of strings and concatenation. The idea is that the identity function behaves
+like the empty string, and "free arrow composition" behaves like string
+concatenation. So can we understand yoneda from this model?
+
+- First, let's think of `Hom(X, X)`. What are the elements here? Well, for one,
+  we need the identity arrow `idX` in `Hom(X, X)`. Maybe we have other elements
+  called `a, b, c` in `Hom(X, X)`. So our picture of `Hom(X, X)` looks like this:
+
+
+<img src="./static/yoneda/hom-x-x-1.png"/>
+
+- what does it *mean* to have an element `a` in `Hom(X, X)`? It means that there's
+  an arrow from `X` to `X` in the category. But this also means that we have
+  a map from `Hom(X, X)` *to* `Hom(X, X)`, given by composing with `a`! That is,
+  we have a map `- . a :: Hom(X, X) -> Hom(X, X)`. 
+
+<img src="./static/yoneda/hom-x-x-2.png"/>
+
+- If we have such a map of "composition with a", then we need to know where this
+  map `-.a` maps all the elements of `Hom(X, X).` Thinking about this,
+  we see that we need to add new elements to `Hom(X, X)`, which are the
+  composition of the current elements (`idX`, `a`, `b`, `c`) with `a`. This
+  gives us the elements
+  `idX.a = a, a.a = aa, b.a = ba, c.a = ca`.
+
+<img src="./static/yoneda/hom-x-x-3.png"/>
+
+- Similarly, we need to know where *these* new elements `aa`, `ba`, `ca` map to,
+  but let's hold off on that for now, for that simply demands an extrapolation of
+  imagination. Let's imagine having another object `Y` and an arrow `g: X -> Y`.
+  This will give us a new hom-set `Hom(X, Y) = Hom(X, X) . g`
+
+<img src="./static/yoneda/hom-x-y-1.png"/>
+
+- In `Hom(X, Y)` we will have as elements all the arrows from `X` to `Y`. 
+  Let's say there's some arrow `h: X -> Y`. Then, we will find this arrow `h` in `Hom(X, Y)`
+  as the image of `idX` under `-.h` . So really, for *any* arrow, we can find
+  what element it maps to as long as know (a) `idX` and (b) `-.h`.
+
+
+ Now that we understand the "internal" structure, let's imagine we're representing
+ this collection of objects and arrows by some other collection of objects
+ and arrows. So we have a functor `F` that takes these sets to other sets,
+ and takes these objects to other objects.
+
+         
+# Right Kan extensions as extending the domain of a functor (WIP)
+
+#### First over functions (fake category fluff)
+
+Given a function $g: C \rightarrow E$ and an embedding $j: C \rightarrow D$,
+then the Right Kan extension of $g$ along $j$, denoted $g/j$ is a new function 
+$g/j: D \rightarrow E$.
+So we are extending the *domain* of $g$, along the extender $j$. Informally,
+we write the new function as $g/j$ because:
+
+```
+C---
+|   \-g---*
+j         |
+|         |
+v         v
+D--g/j--->E
+```
+```
+foo(j(c)) = g(c)
+foo = (g/j)(c) 
+g/j(j(c)) = g(c)
+```
+
+#### Next over preorders (real category stuff)
+
+The kan extension provides us a bijection, for
+any function `f: D -> E`
+
+```
+C---
+|   \-g---*
+j         |
+|         |
+v         v
+D--g/j--->E
+D------f->E
+
+hom(f.j, g) ~= hom(f, g/j)
+```
+
+That is, if we have some way to make congruent `f.j` with `g`, then we can
+"split" the congruence to have `f.j` congruent with `(g/j).j`. Cancelling `j`,
+we can have `f` congruent with `g/j`.
+
+Consider a preorder with a ordering `≤`. Equip with a monoidal structure `<>`,
+which is  a monotone map with a neutral element. (For example, integers with
+multiplication and `≤`).
+
+The bijection of hom-sets is equivalent to saying
+
+```
+m*k <= n iff m <= n/k
+```
+
+(how? I have no idea; I gotta work this out!)
+
+
+#### Question: What happens in the context of vector spaces?
+
+Since linear algebra is probably the nicest thing we have in math, I really
+want to understand what happens in the linear algebra case. I don't really
+understand how to make the correct version of a kan extension inside $Vect$,
+though. A kan extension seems to fundamentally be a 2 categorical construct,
+than a 1 categorical construct.
+
+
+- [Art and dan explain an old trick](https://www.cs.ox.ac.uk/ralf.hinze/Kan.pdf)
+
+# Non standard inner products and unitarity of representations
+
+
+I stumbled across [this questions about non-standard inner products](https://math.stackexchange.com/questions/4021023/visualization-of-length-and-orthogonality-under-non-standard-inner-product). Can I use this to visualize the weyl 
+averaging trick in represention theory?
+
+# take at most 4 letters from 15 letters.
+
+Trivial: use $\binom{15}{0} + \binom{15}{1} + \binom{15}{3} + \binom{15}{4}$.
+Combinatorially, we know that $\binom{n}{r} + \binom{n}{r-1} = \binom{n+1}{r}$.
+We can apply the same here, to get $\binom{15}{0} + \binom{15}{1} = \binom{16}{1}$.
+But what does this *mean*, combinatorially? We are adding a dummy letter, say $d_1$,
+which if chosen is ignored. This lets us model taking at most 4 letters by adding
+4 dummy letters $d_1, d_2, d_3, d_4$ and then ignoring these if we pick them up; we
+pick 4 letters from 15 + 4 dummy = 19 letters.
+
+
+I find it nice how I used to never look for the combinatorial meaning behind
+massaging the algebra, but I do now.            
 
 # Flat functions
 
@@ -28,7 +546,51 @@ e^{-1/x^2} & x \neq 0
 \end{cases}
 $$
 
+This is smooth, but is badly non-analytic. Any taylor expansion around $x=0$
+is going to be identically zero. 
+
  - [Flat functions on wikipedia](https://en.wikipedia.org/wiki/Flat_function)
+
+# Hopf Algebras and combinatorics (WIP)
+
+> Started from algebraic topology in the 40s. In late 70s, Rota 
+> figured out that many combinatorial objects have the structure of a Hopf
+> algebra.
+
+A hopf algebra is a vector space $H$ over a field $K$. together with $K$ linear
+maps $m: A \rightarrow A \otimes A$ (multiplication),
+$U: A \rightarrow K$ (unit), $\Delta: H \rightarrow H \otimes H$ (comultiplication)
+$S: A \rightarrow A$ (co-inverse/antipode). Best explained by examples!
+
+
+- [Hopf algebra and combinatorics](https://www.youtube.com/watch?v=FzVhjCRuXus&list=PL-XzhVrXIVeRLeezwY9h4M68k6yB3yOo-)
+- [Hopf algebras and rooted trees](http://www.math.ubc.ca/~thomas/TeXthings/HopfAlgebras-1.1.pdf)
+
+
+- [Hopf algebra 1](https://www.youtube.com/watch?v=fqirLhXLoXM)
+
+> The idea is that groups act by symmetries. Hopf algebras also act,
+> we can think of as providing quantum symmetries.
+
+
+#### Eg 1: Group algebra: $A = kG$
+
+$G$ is a group, $kG$ is a group algebra. $\delta(g) \equiv g \otimes g$, 
+$\epsilon(g) = 1$, $s(g) = g^{-1}$.
+
+
+
+
+# Butcher group
+
+I really want to read the math about the [butcher group](https://en.wikipedia.org/wiki/Butcher_group),
+which was introduced to study numerical solutions of ODEs using RK, and
+then had far-reaching theoretical applications. Connes remarked:
+
+> We regard Butcher’s work on the classification of numerical integration
+> methods as an impressive example that concrete problem-oriented work can lead
+> to far-reaching conceptual results.
+
 
 
 # Neovim frontends
@@ -37,6 +599,7 @@ $$
 - [uivonum](https://github.com/smolck/uivonim): NPM based, so wasn't my thing.
 - [neovide](https://github.com/Kethku/neovide): rust based, feels very fluid,
   has cool cursor animations that make it "fun" to type with!
+- [goneovim](https://github.com/akiyosi/goneovim)
 
 # A semidirect product worked on in great detail
 
@@ -284,6 +847,56 @@ not projections out of the limit.
 
 ##### Prufer group
 
+Here, the idea is to build a group consisting of all the $p^n$th roots
+of unity. We can directly """define""" the group as:
+
+$$
+P(q)^\infty \equiv \{ \texttt{exp}(2\pi k /q^n) : \forall n, k \in \mathbb N, ~ 0 \leq k \leq q^n \}
+$$
+
+That is, we take $q^1$th roots of unity, $q^2$th roots of unity, and so
+on for all $n \in \mathbb N$.
+
+To build this as a direct limit, we embed the group $Z/q^n Z$ in $Z/q^{n+1}Z$ by sending:
+the $q^n$ th roots of unity to $q^{n+1}$th roots of unity raised to the power $q$.
+An example works well here.
+
+- To embed $Z/9Z$ in $Z/27Z$, we send:
+- $2 \pi 1 /9$ to $2 \pi 1/9 \times (3/3) = 2 \pi 3 / 27$.
+- $2 \pi 2 /9$ to $2 \pi 6/27$
+- $2 \pi 3 /9$ to $2 \pi 9 / 27$
+- $2 \pi k / 9$ to $2 \pi (3k)/27$
+- This gives us a full embedding.
+
+
+The direct limit of this gives us the prufer group. We can see that the prufer group
+is "different" from its components, since for one it has cardinality $\mathbb N$.
+For another, all subgroups of the prufer group are themselves infinite. The idea
+is to see that:
+- Every subgroup of the prufer group is finite.
+- By Lagrange, `|prufer|/|subgroup| = |quotient|`. But this gives us something like 
+  `infinite/finite = infinite`.
+
+To see that every subgroup $H$ of the prufer group is finite, pick an element $o$ outside of
+the subgroup $H$. This element $o$ will belong to some $Z/q^kZ$ for some $k \in \mathbb Z$
+(since the direct limit has an elements the union of all the original elements modulo
+some equivalence). If the subgroup $H$ does not have $o$ (and thus does not contain $Z/q^kZ$),
+then we claim that it cannot contain any of the larger $Z/q^{k+\delta}Z$. If it did
+contain the larger $Z/q^{k + \delta}$, then it would also contain $Z/q^k$ since we inject
+$Z/q^k$ into $Z/q^{k+\delta}$ when building the prufer group. Thus, at MAXIMUM,
+the subgroup $H$ can be $Z/q^{k-1}Z$, or smaller, which is finite in size.  Pictorially:
+
+```
+...         < NOT in H
+Z/q^{k+1}Z  < NOT IN H
+Z/q^kZ      < NOT IN H
+---------
+...         < MAYBE IN H, FINITE
+Z/q^2Z      < MAYBE IN H, FINITE
+Z/qZ        < MAYBE IN H, FINITE
+```
+
+The finite union of finite pieces is finite. This $H$ is finite.
 
 ##### Stalks
 
@@ -307,10 +920,23 @@ functions; We want to "take the union under equivalence".
 ###### Finite strings / `A*`
 
 Given an alphabet set $A$, we can construct a finite limit of strings of length
-$0$, strings of length $1$, and so on for strings of any given length $n \in \mathbb N$.
+$0$, strings of length $1$, and so on for strings of any given length
+$n \in \mathbb N$.  Here, the "problem" is that we can also find projection maps that
+allow us to "chop off" a given string, which makes this example not-so-great.
+However, this example is useful as it lets us **contrast** the finite and infinite
+string case. Here, we see that in the final limit $A*$, we will have all
+strings of _finite_ length.  (In the infinite strings case, which is an 
+inverse limit, we will have all strings of _infinite_ length)
 
-Here, the "problem" is that we can also find projection maps that allow
-us to "chop off" a given string, which makes this example not-so-great.
+##### Vector Spaces over $\mathbb R$
+
+consider a sequence of vector spaces of dimension $n$: $V_1 \rightarrow V_2 \dots V_n$.
+Here, we can also find projection maps that allows us to go down from $V_n$
+to $V_{n-1}$, and thus this has much the same flavour as that of finite strings.
+In the limiting object $V_\infty$, we get vectors that have a finite number of
+nonzero components. This is because any vector in $V_{\infty}$ must have come
+from some $V_N$ for some $N$. Here, it can have at most $N$ nonzero components.
+Further, on emedding, it's going to set all the other components to zero.
 
 ###### Categorically
 
@@ -400,6 +1026,30 @@ $$
 
 So the inverse limit is the "path" in the "tree of partitions".
 
+##### Vector Spaces
+
+I can project back from the vector space $V_n$ to the vector space
+$V_{n-1}$. This is consistent, and I can keep doing this for all $n$. The thing
+that's interesting (and I believe this is true), is that the final object we get,
+$V^\omega$, can contain vectors that have an infinite number of non-zero components!
+This is because we can build the vectors:
+
+$$
+\begin{aligned}
+&(1) \in V_1 \\
+&(1, 1) \in V_2 \\
+&(1, 1, 1) \in V_3 \\
+&(1, 1, 1, 1) \in V_4 \\
+&\dots
+\end{aligned}
+$$
+
+Is there something here, about how when we build $V_\infty$, we build it as a
+direct limit. Then when we dualize it, all the arrows "flip", giving us $V^\omega$?
+This is why the dual space can be larger than the original space for infinite
+dimensional vector spaces?
+
+
 
 ###### Categorically
 
@@ -407,7 +1057,28 @@ Categorically speaking, this is like some sort of product along with equating
 elements.  This, cateogrically speaking, a **inverse limit** is a **limit**
 (recall that categorical limits exist iff products and equalizers exist).
 
-#### Differences
+### Poetically, in terms of book-writing.
+
+- The direct limit is like writing a book one chapter after another. Once we
+  finish a chapter, we can't go back, the full book will contain the chapter,
+  and what we write next must jive with the first chapter. But we only control
+  the *first chapter* (existential).
+
+- The inverse limit is like writing a book from a very rough outline to a more
+  detailed outline. The first outline will be very vague, but it controls the
+  *entire narrative* (universal). But this can be refined by the later drafts
+  we perform, and can thus be "refined" / "cauchy sequence'd" into something
+  finer.
+
+### Differences
+
+- The direct limit consists of taking unions, and we can assert that any element in $D_i$
+  belongs in $\cup_i D_i$. So this lets us assert that $d_i \in D_i$ means that $d_i \in L$,
+  or $\exists d_i \in L$, which gives us some sort of existential quantification.
+- The inverses limit consists of taking $\prod_i D_i$. So given some element $d_i \in D_i$,
+  we can say that elements in $L$ will be of the form $\{d_1\} \times D_2 \times D_3 \dots$.
+  This lets us say $\forall d_1 \in D_1, \{d_1\} \times D_2 \dots \in L$. This is
+  some sort of universal quantification.
 
 
 <!-- - [Grab me a coffee](https://ko-fi.com/bollu) -->
@@ -1314,19 +1985,18 @@ to a 1D subrepresentation for all the elements in the orbit of $s*$.
 (TODO: why is it the **trivial** representation?)
 
 
-# Contributing to SAGE
+# Contributing to SAGEmath
 
 
 #### Development
 
+- The first time, run `make build`. DO NOT RUN `make`, as this performs a `make doc`
+  as well which burns cycles building docs for no reason.
 - Normally, if you just change Python code in the library, it suffices to run `./sage -br`
   to update Python.
-
-- only if you changed docs, and want to test that they still work,
+- Only if you changed docs, and want to test that they still work,
   you'd need to run `make`, or `make doc-html`
-
 - To run doctests, can run `./sage -t <filepath>`. [More info on the sage doctesting page](https://doc.sagemath.org/html/en/developer/doctesting.html)
-
 - `make build && ./sage -n=jupyter ./test-ddg-notebook.ipynb` is reasonably fast.
 
 - [SAGE developer index](https://doc.sagemath.org/html/en/developer/index.html)
@@ -1868,10 +2538,419 @@ believes that it is fundamentally impossible for people to learn carpentry.
 # Discrete Riemann Roch (WIP)
 
 #### Divisors
-#### Principal divisors
-#### The picard group
+Function $V \rightarrow \mathbb Z$. We think of this as formal linear combination
+of vertices.
 
 
+#### Degree of a divisor
+
+$deg(D) \equiv \sum_{v \in V} D(v)$.
+
+#### Borrowing and lending at a vertex $v_\star$
+
+- Lending: $v$ gives 1 unit of money to all its neighbours
+
+$$
+f' = f + \sum_{vw \in E} -v + w
+$$
+
+- Borrowing: $v$ takes 1 unit of money from all its neighbours
+
+$$
+f' = f + \sum_{vw \in E} + v - w
+$$
+
+#### Borrowing and lending on a set $S$:
+
+- Lending on a set $S$: every vertex $v \in S$ gives 1 unit of money to all its neighbours
+
+$$
+f' = f + \sum_{v \in S}\sum_{vw \in E} -v + w
+$$
+
+- Borrowing defined similarly.
+- See that borrowing at a vertex $v$ is the same as lending from $V / v$.
+  The reason being, the lending between vertices of $V/v$ will cancel, and only
+  lends into $v$ will be counted. This is the same as $v$ borrowing.
+
+
+#### Linear equvivalence
+
+Two divisors $D_1, D_2$ are linearly equivalent iff there is a sequence of
+borrowing or lending moves that leads from $D_1$ to $D_2$. This is an
+equivalence relation on the space of divisors.  Equivalence class of $D_1$
+is represented by $[D_1]$.
+
+#### Partial ordering of divisors
+
+We say that $D_1 < D_2$ if for all $v$, $D_1(v) < D_2(v)$. 
+
+#### Effective divisors
+
+A divisor such that $\forall v, D(v) \geq  0$ is called as an effective divisor. Sometimes written
+as $D \geq 0$.
+
+Our goal is given a divisor $D$, to check if it is linearly equivalent to
+a divisor $D'$ such that $D \geq 0$. If we can do so, then no one is in debt,
+and we have won the game.
+
+
+#### Addition of divisors
+
+We add divisors pointwise: $(f + g)(v) \equiv f(v) + g(v)$.
+This respects linear equivalence. Hence, $[D_1] + [D_2] \equiv [D_1 + D_2]$.
+This makes divisors, and their equivalence classes an abelian group
+
+#### The Picard Class Group (group of divisor classes)
+
+The group of equivalence classes of divisors  under pointwise addition is
+the picard group.
+
+#### Jacobian Class group (divisor classes of degree 0).
+
+- Subgroup of picard group of degree 0.
+- That is, all equivalence class elements of degree 0.
+- This is well defined because all linearly equivalent divisors (divisors that can be 
+  gotten by lending/borrowing) all have the same degree (total money). This is because
+  lending/borrowing does not change the total amount of money in the market,
+  only redistributes it.
+
+
+#### Picard group decomposition in terms of Jacobian group
+
+For each $q \in V$, there is an isomorphism of groups $\phi_q: Pic(G) \rightarrow \mathbb Z \times Jac(G)$,
+where we send a divisor class $[D]$ to $\phi_q([D]) \equiv (deg(D), [D - deg(D)q]$.
+
+- Clearly, the new divisor $[D - deg(D)q]$ has total degree $0$, since $deg(D)$
+  has been subtracted off at $q$.
+- We can recover the original divisor since we know $deg(D)$.
+
+
+
+#### Complete linear system $[D]_{\geq 0}|$
+
+The complete linear system of $D$ is the set of all winning configurations from $D$.
+That is:
+
+$$
+[D]_{\geq 0} \equiv \{ E \in [D] : E \geq 0 \}
+$$
+
+We win the game if $[D]_{\geq 0}$ is nonempty.
+
+
+#### The discrete laplacian
+
+The laplacian is the map $L: (V \rightarrow \mathbb Z) \rightarrow (V \rightarrow \mathbb Z)$
+defined by:
+
+$$
+L(f)(v) \equiv \sum_{vw \in E} (f(v) - f(w))
+$$
+
+That is, $L(f)(v)$ is the total **deviation** of $v$ from all of its neighbours $w$.
+
+#### Firing script
+
+A firing script is a function $s: V \rightarrow \mathbb Z$ ($s$ for script) that
+tells us how many times $v$ lends money to its neighbours).
+
+
+- The collection of all firing scripts form an abelian group, and is denoted
+  by $M(G)$. [TODO: why $M$?]
+
+
+- Set lending by a subset $W \subset V$ is denoted by $\chi_W$, where $\chi_W(v) \equiv 1$ if $v \in W$
+ and $\chi_W(v) \equiv 0$ otherwise. Written in iverson notation, we have $\chi_W(v) \equiv [v \in_? W]$.
+
+
+- The effect of running a firing script $s$ on a divisor $D$ to get a divisor $D'$ is:
+
+
+$$
+\begin{aligned}
+D' \equiv D + \sum_{v \in V} s(v) (-v+ w) \\
+\end{aligned}
+$$
+
+
+if $s: V \rightarrow \mathbb Z$ is a firing script, then the divisor of the
+firing script $s$ is:
+
+$$
+div(s) \equiv  \sum_{v \in V} s(v) (-v+ w)
+$$
+
+- The effect of running a firing script is to replace a divisor $D$ by a new
+  divisor $D' = D + div(s)$. We denote this by $D \xrightarrow{s} D'$ and call
+  this as **script-firing**
+
+#### `div` is a group homomorphism
+
+We see that `div` is a function from $M(G) =  V \rightarrow \Z$ to  $Div(G) = V \rightarrow \Z$
+under the map:
+
+$$
+div(s) \equiv  \sum_{v \in V} s(v) (-v+ w)
+$$
+
+We show that $div(s_1 - s_2) = div(s_1) - div(s_2)$ thereby checking the homomorphism
+property.
+
+$$
+\begin{aligned}
+&div(s_1 - s_2) =  \sum_{v \in V} (s_1 - s_2)(v) (-v+ w) \\
+&= \sum_{v \in V} (s_1(v) - s_2(v)) (-v+ w)  \\
+&= \sum_{v \in V} s_1(v) (-v+ w)  - \sum_{v \in V} s_2(v) (-v+ w)  \\
+&= div(s_1) - div(s_2)
+\end{aligned}
+$$
+
+and is hence a group homomorphism.
+
+
+#### `div` produces divisors of degree 0: `deg(div(s)) = 0`.
+
+See that $div$ is balanced, in that for every $-v$ we have a $+w$. This makes
+the total degree zero.
+
+#### Principal divisors: $Prin(G) \equiv div(M(G))$.
+
+- Divisors of the form `div(s)` are called as **Principal divisors**. They are a 
+  subgroup of the degree 0 divisors.
+
+- Moreover, if $D'$ is obtainable from $D$ by a series of lending and borrowing 
+  moves, then $D' - D \in Prin(G)$.
+- This means that linear equivalence is a coset of the principal divisors: $[D] = D + Prin(G)$.
+
+#### Picard, Jacobian Class group  as quotients
+
+- $Pic(G) = Div(G)/Prin(G)$.
+- $Jac(G) = Div^0(G)/Prin(G)$.
+- $Pic(G), Jac(G)$ are class groups because we get equivalence classes of divisors,
+  equivalent upto principal divisors.
+
+
+#### `div` is same as laplacian
+
+<img src='./static/discrete-riemann-roch/laplacian-lending.png'>
+
+#### Picard group is cokernel of L
+
+Recall that `Pic(G) = Div(G)/Prin(G)`, where `Prin(G)` was the collection of
+divisors that could be realised from a firing script.  That is,
+
+$$
+Prin(G) \equiv \{ div(s) : s \in V \rightarrow \mathbb Z \}
+$$
+
+```
+M(G) -div→ Div(G) -quotient→ Pic(G) → 0
+|          |
+f          g
+|          |
+v          v
+Z^n  -L→   Z^n   -quotient'→ cok(L) ~= Z^n/Im L → 0
+```
+
+- The quotient map `quotient` is surjective.
+- The map `quotient'` is also surjective
+
+#### Dollar game in terms of laplacian
+
+given a divisor $D$, does there exist a vector $x \in \mathbb Z^V$
+such that $D + Lx \geq 0$?
+
+Clearly, this is some sort of linear inequality. So, we expect polytopes
+to show up! Since $x$ is an integer point, we want integer points in polytopes.
+
+#### Kernel of laplacian in connected graph: all 1s vector
+                                                    
+- first of all, see that lending by everyone in $V$ has no effect:
+  everyone lends to all their neighbours, and all their neighbours lend to them,
+  having zero net effect.
+
+- Stated in terms of the firing script, this means that $s_1 + s_2 + \dots s_n$
+  is in the kernel of $div$: the firing script creates a zero divisor. If we 
+  choose a basis, this is the all 1s vector.
+
+- In terms of the laplacian, this is stating that the all ones vector is in
+  the kernel of the laplacian.
+
+
+#### Kernel of laplacian in connected graph: constant functions (TODO)
+
+Suppose we have a script $s: V \rightarrow \mathbb Z$ such that $div(s) = 0$.
+
+**TODO **
+
+
+> This feels sheafy to me, in terms of "locally constant".
+
+
+#### Reduced laplacian: Configurations on $G$
+
+We build reduced laplacians to relate the jacobian (degree zero elements of divisor class group)
+and the laplacian.
+
+Fix a vertex $q \in V$. Define $\tilde{V} \equiv V /\{q\}$. A configuration 
+on $G$ with respect to $q$ is an element of the subgroup
+
+$$
+Config(G, q) \equiv \mathbb Z \tilde{V} \subseteq ZV = Div(G)
+$$
+
+so we simply forget the value at $q$. Alternatively, we set the value of $q$
+to zero and continue will our divisor definitions.
+
+We can perform lending and borrowing on a configuration divisor, by simply
+not tracking data at $q$.
+
+#### 3: Winning
+
+#### 4: Acylic orientations
+#### Orientations
+
+An orientation of a graph makes each edge directed. We think of edges now as 
+tuples $e \equiv (u, v)$ as an edge from $u$ to $v$. We denote $e^- = u$ and
+$e^+ = v$ to be the source and sink vertices of the orientation.
+
+
+#### Acylic orientations
+
+An orientation is acyclic if there are no cycles. Every acylic orientation
+must have at least one sink and a source. It must have **at least one source**.
+Assume the acyclic orientation does not have any sources. 
+
+#### Acylic orientation has at least one source
+
+Pick any vertex . If it is a source, done. If it is not a source, it has a parent.
+Go to parent that has NOT BEEN PICKED YET, repeat check. We will eventually:
+
+- Find a source  vertex (vertex with no parent)
+- All parents of current vertex have been picked  (ie, we find a cycle). Can't
+  happen.
+
+Thus all acyclic orientations have at least one source.
+
+
+#### Indegree sequence of an acyclic orientation.
+
+If $O$ is an orientation, define 
+
+$$
+indeg_O(u) \equiv |\{ e \in O : e^+ = u \}|
+$$
+
+That is, to each $u$, associate the number of edges whose end is at $u$.
+
+#### WRONG: Acylic orientation determined by indegree sequence?
+
+The book claims that acyclic orientation is determined by the indegree sequence.
+I don't believe this. Consider the graph $G$:
+
+```
+--a--
+|   |
+v   v
+b   c
+```
+
+- This has indegrees  $(a=0, b=1,c=1)$. 
+
+Now consider $H$:
+
+```
+a
+|
+v
+b
+|
+v
+c
+```
+
+- This has indegrees  $(a=0, b=1, c=1)$ but the graphs are not equal!
+
+#### Acylic orientation determined by indegree sequence
+
+OK, the above is not what the book claims. The book claims that two orientations
+$O_G$, $O'_G$ **of the same graph** are equal if their indegree sequences
+are equal. 
+
+This is believeable, because if the orientations point differently, their
+indegrees will change.
+
+- Proof strategy: induction on number of vertices + forcing sources to be the same + creating new  sources
+  by removing current sources.
+
+- Theorem is immediate with only one vertex. Assume holds for $n$. Now we have
+  a graph with $(n+1)$ vertices. Find source in acyclic orientation $O_G$. This has
+  no incoming edges, so has indegree zero. This must be the same in $O'_G$ since
+  $O_G$ and $O'_G$ have the same indegree sequence. 
+
+- Now remove the sources that are structurally equal. We get a graph of $H$ of
+  (n-1) vertices, and we get $O_H$ and $O'_H$ by removing the sources 
+  from $O_G, O_G'$. Since $O_G = O_G'$ we must have that $O_H = O_H'$ since removing
+  the same source from both graphs modifes the orientations the same way. Recurse
+  into $O_H, O_H'$.
+
+#### Divisor for an orientation
+
+For an orientation $O$ we define a divisor $D(O)$ as:
+
+$$
+D(O) \equiv \sum_{v \in V}(indeg_O(v) - 1) v
+$$
+
+#### 5: Riemann roch
+
+#### The rank function
+
+In one sense, the “degree of winnability” of the dollar game is measured by the size
+of complete linear systems: $D$ is “more winnable” than $D'$ if 
+$[D]_{\geq 0} > [D']_{\geq 0}$. Instead of measuring $[D]_{\geq 0}$, we choose to
+define another function, the rank, that measures "stability/robustness of winnability"
+
+- Fist, $r(D) \equiv -1$ if $D$ is unwinnable: $r(D) \equiv 0$ iff $[D]_{\geq 0} = \emptyset$
+- Next, $r(D) = 1$ if $D$ is barely winnable.  That is, $D$ is winnable, but 
+  there is *some* vertex $v$ such that $D - v$ is unwinnable. That is, $r(D)$
+  is barely winnable if the ability to win at $D$ can be destroyed by a single
+  vertex losing a dollar.
+
+- In general, for $k \geq 0$, define that $r$ is at least $k$ winnable if the dollar
+  game is winnable strating from all divisors obtained from $D$ by removing $k$
+  dollars. Formally, this becomes:
+
+$$
+r(D) \geq k \iff |D - E| \neq \emptyset \text{for all $E \geq 0$ ($E$ effective) of degree $k$}
+$$
+
+This means that $r(D) = l$ if there is some divisor $E$ of degree $l+1$ such that $D - E$ is
+not winnable.
+
+#### $r(D)$ is upper bounded by degree: $r(D) \leq deg(D)$
+#### if $D$ is of degree 0, then rank is 0 iff $D$ is principal
+#### $r(D) \leq r(D + v) \leq r(D) + 1$: adding a dollar can increase rank by at most 1
+#### $r(D + D') \geq r(D) + r(D')$: rank is super-linear.
+#### Lower bound on rank: $r(D) \geq deg(D) - g$
+
+Won't prove this here, depends on other results (if $deg(D) \geq g$, then $D$ is winnable)
+
+
+
+                                                
+#### Canonical divisor
+
+For any orientation $O$, define $O_{rev}$ to be the reversed orientation. Now
+define the canonical divisor $K$ to be $K \equiv D(O) + D(O_{rev})$. See that
+for every $v \in V$:
+
+$$
+\begin{aligned}
+K(V) = indeg_O(v) + outdeg_O(v) = deg_G(v)
+\end{aligned}
+$$
 
 #### References
 
@@ -1892,7 +2971,7 @@ mathematics. Domain theory is a denotational semantics (there are
 others) of lambda calculus. For reading, there is the old testament and
 the new testament, as I call it. The old testament is 
 "A compendium of continuous lattices"
-ISBN 3-540-10111-X
+ISBN 3-540-10111-X                                          
 ISBN 0-387-10111-X
 The new testament is
 "Continuous lattices and domains"
@@ -9994,6 +11073,66 @@ the exact same process!
 - To find the $y^*$ we set $y[2] = y^*$.
 - This gives us $x[2] = x[1] - (y^* - y[1])/f'(x[1])$.
 - Immediately generalizing, we get $x[n+1] = x[n] - (y^* - y[n]) / f'(x[n])$.
+
+##### Idea of proof of implicit function theorem (from first principles)
+
+
+- Let $F(x, y) \neq 0$, point $p$ be the point where we wish to implicitize.
+- To apply implicit fn theorem, take $\partial_y|_pF(x, y) \neq 0$. 
+  Say WLOG that $\partial_y|_p F(x, y) > 0$,
+  since $F$ is assumed to be continuously differentiable.
+- Since $\partial_y F$ is continuous and positive at $p$,
+  it's positive in a nbhd of $p$ by continuity.
+- Consider $F(p_x, y)$ as a single variable function of $y$. Its derivative with
+  respect to $y$ is positive; it's an increasing function in terms of $y$.
+- Since $F(x_0, y_0)$ and is an increasing function of $y_0$, we must have 
+  two $y$ values $y_-, y_+$ such that $F(p_x, y_+)$ is positive, and $F(p_x, y_-)$
+  is negative.
+- Since $F$ is zero and continuous, we have that for all $x$ near $x_0$, that 
+ $F(x_0, y_+) > 0 \implies F(x, y_+) > 0$ and $F(x_0, y_-) < 0 \implies F(x, y_-) < 0$. 
+ We have released $x_0$ into a wild $x$ in the neighbourhood! 
+- Now pick some $x_*$ near $x$. Since we have that $F(x_*, y_+) > 0$ and $F(x_*, y_-) < 0$,
+  there exists a **unique** $y_*$ (by MEAN VALUE THEOREM) that $F(x_*, y_*) = 0$
+- Since the $y_*$ is unique, we found a function: $x_* \xmapsto{f} y_*$. 
+- We are not done. We need to prove the formula for $f'(x)$ where $f$ is the 
+  implicit mapping.
+- $F(x, f(x)) = 0$ by defn of $f(x)$. Apply chain rule!
+
+\begin{aligned}
+&F(x, f(x)) = 0 \\
+&dF = 0 \\
+&\frac{\partial F}{\partial x} \cdot \frac{\partial x}{\partial x}  + \frac{\partial F}{\partial y} \frac{df}{dx} = 0 \\
+&\frac{\partial F}{\partial x} \cdot 1  + \frac{\partial F}{\partial y} \frac{df}{dx} = 0 \\
+&\frac{df}{dx} = \frac{- \frac{\partial F}{\partial y}}{\frac{\partial F}{\partial x} \cdot 1} \\
+\end{aligned}
+
+#### Idea of proof of inverse function theorem (from implicit function theorem)
+
+- Given the implicit function, say we want to locally invert $f(x)$.
+- Pick the implicit function $F(x, y) = f(y) - x$. If we consider the level set $F(x, y) = 0$,
+  the implicit function theorem grants us a $g(x)$ such that $F(x, y=g(x)) = 0$.
+  That is, we get $f(g(x)) - x = 0$, or $f(g(x)) = x$.
+- To show that it's also a right inverse, consider $F(f(k), k) = f(k) - f(k) = 0$.
+  Since $y = g(x)$, we have that $k = g(f(k))$.
+- Hence, $g$ and $f$ are both left and right inverses, and hence bijections.
+
+#### Idea of proof of implicit function theorem (from inverse function theorem)
+
+- We are given a function $F(x, y)$. We wish to find a formula $y = g(x)$ such that
+ $F(x, g(x)) = 0$.
+- The idea is to consider a function $f(x, y) = (x, F(x, y))$. 
+- Since this is invertible, we get a local inverse function $g$ such that $g(f(x, y)) = (x, y)$.
+  That is, $g(x, F(x,y)) = (x, y)$.
+- Now, for a given $x$, set  $y := snd(g(x, 0))$. This gives us a $(x, y)$ such that 
+  $g(x, F(x,y)=0) = (x, y)$. That is, we get a $y$ such that $F(x, y) = 0$ and 
+  this a bijection from $x$ to $y$ since $g$ is a bijection.
+
+#### Idea of proof of inverse function theorem (from newton iterates)
+
+We know that $F(x + \delta x) = F(x) + J \delta x + \eta$ where $J$ is the jacobian,
+$\eta$ is error term. Upto first order, this works. We take iterates of this
+process to get the full inverse.
+
 
 #### References
 
@@ -23554,6 +24693,12 @@ Contains words that I write, and ones that I enjoy.
 > productivity /
 > sprighty, fleeting attention /
 
+##### anodyne
+
+not likely to cause offence or disagreement and somewhat dull.
+> "anodyne music"
+
+
 
 #### syncretism
 
@@ -23634,6 +24779,12 @@ happiness as a result of fulfilling one's purpose (eudaimonia)
 
 > lack of courage or determination; timidity.
 > "the pusillanimity of his answer surprised me"
+
+
+##### Askefise
+
+> one who blows on ashes to bring them to flame
+
 
 
 
@@ -23772,6 +24923,43 @@ let g:conjure#mapping#eval_motion = "E"
 
 > You can try; trying is the first step of failure ~ GM Ben finegold on mating sequences.
 
+> Some folks prefer the carrot, I the stick. So I will use my considerable
+> expertise to stick it to you.
+
+
+> "Machine learning is like money laundering for bias"
+
+> Criticism is prejudice made plausible.” - H.L. Mencken
+
+> David Marquet's credos from "Turn The Ship Around!". Don't ask "Are we
+> ready?"; instead, ask "How ready are we?".  Everything needs to be phrased so
+> as to invite people to express the knowledge they have, rather than demanding
+> what amounts to a declaration of
+> tribal identity.
+
+> You can't just go around recognizing what people don't understand. That's
+> what got Socrates killed. You've gotta make them understand what they don't
+> understand without making them want to kill you. That's what makes a great
+> teacher / leader / etc.
+
+
+> 'Every work of art is an uncommitted crime.' - Adorno.
+
+
+> Policies are nice but at the end of the day we need folks to set an example
+> (rather than being made an example of)
+
+
+
+> “The math students dropped out because they could not understand anything. Of
+> course, I didn’t understand anything either, but non-math students have a
+> different standard of what it means to understand something,” Huh said. “I
+> did understand some of the simple examples he showed in classes, and that was
+> good enough for me.”
+> https://www.quantamagazine.org/a-path-less-taken-to-the-peak-of-the-math-world-20170627/
+
+> "you're such a dick!". 
+> "I'm moby goddamn dick, and you're swimming in my water".
 
 
 # Empathy

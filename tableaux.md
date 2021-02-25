@@ -137,3 +137,68 @@ then there exists a point $p$ such that μ(x < p) = ν(x < p) and μ(p) < ν(p)
 
 Restrict $R$ such that it only works for adjacent elements. May make life easier.
 Currently, we can move index $i$ to $j$ for $j < i$. 
+
+
+- ith row of t2:mu -> different columns of t1:lambda => lambda > mu
+- ith row of t2:mu -> different columns of t1:lambda => mu < lambda
+
+
+1st row of mu:
+---------------
+
+```
+*1 *2 * * * * .. *p
+```
+
+1st row of mu in lambda:
+-------------------------
+
+```
+  |  |  |  |..|..|  |..|    
+  |  |  |  |..|..|  |>= p cols
+*3|  |*1|  |..|..|  |..|
+  |*4|  |  |..|..|  |..|
+  |  |  |*p|..|..|  |..|
+  |  |  |  |..|..|*2|..|
+
+```
+- #of cols of lambda >= # of cols of mu. l1 >= m1
+
+
+2nd row of mu:
+--------------
+
+```
+@1  @2 ... @q
+```
+
+2nd row of mu in lambda:
+-------------------------
+```
+                         >= p cols
+*3|  |*1|  |..|..|  |..|..|
+@2|*4|  |  |@4|..|  |..|..|
+  |  |  |*p|..|..|  |..|..|
+  |  |  |  |..|..|*2|..|..|
+  |@1|  |  |..|..|@3|..|..| 
+  |  |@q|  |..|..|  |..|..|       
+```
+
+pull up
+
+
+```
+                         >= p cols
+*3|*4|*1|*p|@4|..|*2|..|..|
+@2|@1|@q|  |..|..|@3|..|..|
+  |  |  |  |..|..|  |..|..|
+  |  |  |  |..|..|  |..|..|
+  |  |  |  |..|..|  |..|..| 
+  |  |  |  |..|..|  |..|..|       
+```
+
+- the numbers fit in the first two rows.
+- lambda have more space in the first two rows than mu.
+- l1 + l2 >= m1 + mu.
+- And so on. Pull up the values. We will have room in the first i rows.
+

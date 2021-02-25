@@ -1,12 +1,14 @@
 # Builder
 
+- Rewrite using [immer](https://github.com/arximboldi/immer) for functional data structures.
+- Consider using `git blame` to date articles by time of creation and last updated.
 - Add the shit tons of latex shortcuts I want.
 - Make list requirements more flexible. allowed `-aa\n\n-bb`
 - Builds HTML from the markdown in the blog.
 - Splits large markdown file into multiple HTML files.
-- key-value database: [`kissdb`](https://github.com/adamierymenko/kissdb)
+- Key-value database: [`kissdb`](https://github.com/adamierymenko/kissdb)
 - [Unpoly](https://unpoly.com/up.protocol) for fast page prefetching and 
-  navigation inside a static site.
+  Navigation inside a static site.
 - [`httpserver.h`](https://github.com/jeremycw/httpserver.h) for a minimal HTTP server to run `libCURL` on.
 - [`libCURL` API](https://curl.haxx.se/libcurl/c/) to check that all links exist.
 - [crankJS](https://crank.js.org/): Lightweight React replacement if I ever need it.

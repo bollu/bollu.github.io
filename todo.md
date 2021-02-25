@@ -1,3 +1,25 @@
+- [Stable homotopy theory](https://www.youtube.com/watch?v=v5Rr_Z8QsOs&list=PLQuS12Ap6va-VgI5cdIjdHquIH3sLCLdJ)
+- [Computing the continuous discretely: integer point enumeration in polyhedra](http://math.sfsu.edu/beck/papers/noprint.pdf)
+- Algebraic Topology of Finite Topological Spaces and Applications by Jonathan Barmak
+- Memory layout and staging: https://www.youtube.com/watch?v=WOd0ZFbJfQg
+- Concolic execution:
+- Determiniant calculus: https://arxiv.org/pdf/math/9902004.pdf
+- Compact Oxford english dictionary: https://kk.org/cooltools/compact-oxford/
+- Fractional Calculus: An Introduction for Physicists
+- Electromagnetic Theory and Computation: A Topological Approach
+- [Gauge theory and the topology of 4-manifolds](https://www.worldcat.org/title/gauge-theory-and-the-topology-of-four-manifolds/oclc/37806030)
+- A history of gale shapely for selecting doctors: 
+  https://thesheriffofsodium.com/2020/02/10/the-match-part-3-on-proposals-and-the-fight-for-a-student-optimal-match/
+- Being and Event: Dude who claims to use ZFC to
+  "identify the relationship of being to history, Nature, the State, and God"?
+- Read quotes of camus, kierkegaard, nietcheze, derrida, lovecraft, 
+- A Mathematical Introduction to String Theory
+- Fundamental Algorithms for Permutation Groups
+- Topological data structures for surfaces.
+- [Obscurantism](https://en.wikipedia.org/wiki/Obscurantism). Wonderful that there's
+  a wikipedia page for this.
+- [analytical marxism](https://en.wikipedia.org/wiki/Analytical_Marxism)
+- [Inuit parenting](https://www.npr.org/sections/goatsandsoda/2019/03/13/685533353/a-playful-way-to-teach-kids-to-control-their-anger)
 - [Metamorphosis of prime intellect, author](http://localroger.com/)
 - Cheap way to spy on someone's `tty` if they are sharing. Something like `asciinema` but
   can be live-streamed on a `tty`.

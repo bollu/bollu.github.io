@@ -5,9 +5,109 @@
 <link>http://bollu.github.io/</link>
 <description>A universe of Sorts</description>
   <item>
+    <title> Stable homotopy theory 1</title>
+    <guid>https://www.bollu.github.io/stable-homotopy-theory-1.html</guid>
+    <link>https://www.bollu.github.io/stable-homotopy-theory-1.html</link>
+  </item>
+  <item>
+    <title> Finitely generated as vector space v/s algebra:</title>
+    <guid>https://www.bollu.github.io/finitely-generated-as-vector-space-vs-algebra.html</guid>
+    <link>https://www.bollu.github.io/finitely-generated-as-vector-space-vs-algebra.html</link>
+  </item>
+  <item>
+    <title> Weak and Strong Nullstllensatz</title>
+    <guid>https://www.bollu.github.io/weak-and-strong-nullstllensatz.html</guid>
+    <link>https://www.bollu.github.io/weak-and-strong-nullstllensatz.html</link>
+  </item>
+  <item>
+    <title> Screen recording for kakoune pull request</title>
+    <guid>https://www.bollu.github.io/screen-recording-for-kakoune-pull-request.html</guid>
+    <link>https://www.bollu.github.io/screen-recording-for-kakoune-pull-request.html</link>
+  </item>
+  <item>
+    <title> Intuition for why finitely presented abelian groups are isomorphic to product of cyclics</title>
+    <guid>https://www.bollu.github.io/intuition-for-why-finitely-presented-abelian-groups-are-isomorphic-to-product-of-cyclics.html</guid>
+    <link>https://www.bollu.github.io/intuition-for-why-finitely-presented-abelian-groups-are-isomorphic-to-product-of-cyclics.html</link>
+  </item>
+  <item>
+    <title> Alternative orderings for segtrees (WIP)</title>
+    <guid>https://www.bollu.github.io/alternative-orderings-for-segtrees-wip.html</guid>
+    <link>https://www.bollu.github.io/alternative-orderings-for-segtrees-wip.html</link>
+  </item>
+  <item>
+    <title> Group structure of nim games (WIP)</title>
+    <guid>https://www.bollu.github.io/group-structure-of-nim-games-wip.html</guid>
+    <link>https://www.bollu.github.io/group-structure-of-nim-games-wip.html</link>
+  </item>
+  <item>
+    <title> Euler characteristic of sphere</title>
+    <guid>https://www.bollu.github.io/euler-characteristic-of-sphere.html</guid>
+    <link>https://www.bollu.github.io/euler-characteristic-of-sphere.html</link>
+  </item>
+  <item>
+    <title> John Conway: The symmetries of things</title>
+    <guid>https://www.bollu.github.io/john-conway-the-symmetries-of-things.html</guid>
+    <link>https://www.bollu.github.io/john-conway-the-symmetries-of-things.html</link>
+  </item>
+  <item>
+    <title> Semidirect product mnemonic</title>
+    <guid>https://www.bollu.github.io/semidirect-product-mnemonic.html</guid>
+    <link>https://www.bollu.github.io/semidirect-product-mnemonic.html</link>
+  </item>
+  <item>
+    <title> Non orthogonal projections</title>
+    <guid>https://www.bollu.github.io/non-orthogonal-projections.html</guid>
+    <link>https://www.bollu.github.io/non-orthogonal-projections.html</link>
+  </item>
+  <item>
+    <title> Why did maxwell choose his EM wave to be light?</title>
+    <guid>https://www.bollu.github.io/why-did-maxwell-choose-his-em-wave-to-be-light.html</guid>
+    <link>https://www.bollu.github.io/why-did-maxwell-choose-his-em-wave-to-be-light.html</link>
+  </item>
+  <item>
+    <title> Fast string concatenation in python3</title>
+    <guid>https://www.bollu.github.io/fast-string-concatenation-in-python3.html</guid>
+    <link>https://www.bollu.github.io/fast-string-concatenation-in-python3.html</link>
+  </item>
+  <item>
+    <title> Split infinitive</title>
+    <guid>https://www.bollu.github.io/split-infinitive.html</guid>
+    <link>https://www.bollu.github.io/split-infinitive.html</link>
+  </item>
+  <item>
+    <title> Yoneda from string concatenation (WIP)</title>
+    <guid>https://www.bollu.github.io/yoneda-from-string-concatenation-wip.html</guid>
+    <link>https://www.bollu.github.io/yoneda-from-string-concatenation-wip.html</link>
+  </item>
+  <item>
+    <title> Right Kan extensions as extending the domain of a functor (WIP)</title>
+    <guid>https://www.bollu.github.io/right-kan-extensions-as-extending-the-domain-of-a-functor-wip.html</guid>
+    <link>https://www.bollu.github.io/right-kan-extensions-as-extending-the-domain-of-a-functor-wip.html</link>
+  </item>
+  <item>
+    <title> Non standard inner products and unitarity of representations</title>
+    <guid>https://www.bollu.github.io/non-standard-inner-products-and-unitarity-of-representations.html</guid>
+    <link>https://www.bollu.github.io/non-standard-inner-products-and-unitarity-of-representations.html</link>
+  </item>
+  <item>
+    <title> take at most 4 letters from 15 letters.</title>
+    <guid>https://www.bollu.github.io/take-at-most-4-letters-from-15-letters.html</guid>
+    <link>https://www.bollu.github.io/take-at-most-4-letters-from-15-letters.html</link>
+  </item>
+  <item>
     <title> Flat functions</title>
     <guid>https://www.bollu.github.io/flat-functions.html</guid>
     <link>https://www.bollu.github.io/flat-functions.html</link>
+  </item>
+  <item>
+    <title> Hopf Algebras and combinatorics (WIP)</title>
+    <guid>https://www.bollu.github.io/hopf-algebras-and-combinatorics-wip.html</guid>
+    <link>https://www.bollu.github.io/hopf-algebras-and-combinatorics-wip.html</link>
+  </item>
+  <item>
+    <title> Butcher group</title>
+    <guid>https://www.bollu.github.io/butcher-group.html</guid>
+    <link>https://www.bollu.github.io/butcher-group.html</link>
   </item>
   <item>
     <title> Neovim frontends</title>
@@ -155,9 +255,9 @@
     <link>https://www.bollu.github.io/burnside-lemma-by-representation-theory.html</link>
   </item>
   <item>
-    <title> Contributing to SAGE</title>
-    <guid>https://www.bollu.github.io/contributing-to-sage.html</guid>
-    <link>https://www.bollu.github.io/contributing-to-sage.html</link>
+    <title> Contributing to SAGEmath</title>
+    <guid>https://www.bollu.github.io/contributing-to-sagemath.html</guid>
+    <link>https://www.bollu.github.io/contributing-to-sagemath.html</link>
   </item>
   <item>
     <title> Shadow puppet analogy for entanglement</title>
