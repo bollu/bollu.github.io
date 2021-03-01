@@ -15,15 +15,578 @@ A Universe of Sorts
 - [reading list/TODO](todo.html)
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
+# CS and type theory: Talks by vovodesky
+
+- [Talk 1: Computer Science and Homotopy Theory](https://www.youtube.com/watch?v=UvDeVqzcw4k)
+- Think of ZFC sets as rooted trees. Have two axioms:
+- (1) all branches of all vertices are non-isomorphic (otherwise a set would have two copies of the same element)
+- (2) Each leaf must be at finite depth from the root.
+- This is horrible to work with, so type theory!
+- [Talk 2: What if foundations of math is inconsistent?](https://www.youtube.com/watch?v=O45LaFsaqMA)
+- We "know" that first order math is consistent. We can prove that it is impossible
+  to prove that first order math is consistent!
+- Choice 1: If we "know" FOL is consistent, then we should be able to transform
+  this knowledge into a proof, then 2nd incompleteness is false.
+- Choice 2: Admit "transcendental" part of math, write dubious philosophy.
+- Choice 3: Admit that our sensation that FOL +arithmetic is consistent is an illusion
+  and admit that FOL arithmetic is inconsistent.
+- Time to consider Choice 3 seriously?
+
+#### First order arithmetic
+
+Mathematical object which belongs to class of objects called  formal theories.
+Has four pieces of data:
+
+1. Special symbols, names of variables.
+2. Syntactic rules.
+3. Deduction rules: Construct new closed formulas from old closed formula.
+4. Axioms: collection of closed formulas. 
+
+Anything that is obtainable from these deduction rules is called a theorem.
+First order logic have symbols: `∀, ∃, ⇒, !(not)` and so on. First order theory is
+inconsistent if there a closed formula $A$ such that both $A$ and $!A$ is a
+theorem.
+
+- Free variables describe subsets. 
+  Eg: `∃ n: n^2 = m` describes the set `{ m : ∃ n: n^2 = m }`.
+- It's possible to construct subsets (formulae with one free variable) whose
+  membership is undedicable. So you can prove that it is impossible to say
+  anything whatsoever about these subsets.
+
+
+#### Gentzen's proof and problems with it
+
+Tries to reason about trees of deduction. Show that proofs correspond to
+combinatorial objects. Show that inconsistency corresponds to an infinite
+decreasing sequence that never terminates. Then he says that it is 
+"self evident" that this cannot happen. But it is not self evident!
+
+#### What would inconsistency of FOL mean for mathematicians?
+
+- Inconsistency of FOL implies inconsistency of many other systems
+  (eg. set theory).
+- Inconsistency of FOL implies inconsistency of *constructive* (intuitionistic)
+  mathematics! (WTF?) shown by Godel in 1933. Takes a proof of contradiction
+  in classical and strips off LEM.
+- We need foundations that can create *reliable proofs* **despite** being
+  inconsistent!
+- Have systems that react to inconsistency in less drastic ways.
+  One possible candidate is constructive type theories.
+  A proof of a formula in such a system is itself a formula in the system.
+  There are no deduction rules, only syntactic rules. So a proof is an object
+  that can be studied in the system. If one has a proof of contradiction,
+  then such a proof can be detected --- they have certain properties that can
+  be detected by an algorithm (what properties?)
+
+#### New workflow
+
+- Formalize a problem.
+- Construct creative solution.
+- Submit proof to a "reliable" verifier. If the verifier terminates, we are 
+  done. If the verifier does not terminate, we need to look for other proofs that
+  can terminate.
+- our abstract thinking cancels out by normalisation :P 
+
+
+#### Summary
+- Correct interpretation of 2nd incompleteness is a step of proof of inconsistency
+  of FOL (Conjecture).
+- In math, we need to learn how to use inconsistent theories to obtain reliable
+  proofs. Can lead to more freedom in mathematical workflow.
+
+#### Univalent Foundations: New Foundations of Mathematics
+- [Talk 3: Univalent foundations --- New Foundations of Mathematics](https://www.youtube.com/watch?v=E9RiR9AcXeE)
+
+
+- Was uncertain about future when working on 2-categories and higher 
+  math. No way to ground oneself by doing "computations" (numerical experiments).
+  To make it worse, the existing foundations of set theory is bad for these
+  types of objects.
+- Selected papers on Automath.
+- Overcoming category theory as new foundations was very difficult for vovodesky.
+- Categories are "higher dimensional sets"? NO! Categories are "posets in the next dimension".
+  Correct version of "sets in the next dimension" are groupoids (WHY?)
+  [MathOverflow question](https://mathoverflow.net/questions/309515/why-did-voevodsky-consider-categories-posets-in-the-next-dimension-and-groupo)
+- Grothendeick went from isomorphisms to all morphisms, this prevented him from
+  gravitating towards groupoids.
+- Univalent foundations is a complete foundational system.
+- [Sets are groupoids on the next dimension](https://mathoverflow.net/questions/309515/why-did-voevodsky-consider-categories-posets-in-the-next-dimension-and-groupo)
+
+
+
+
+#### Vovodesky's univalence principle --- Joyal
+
+- [Talk 5: Vovodesky's univalence principle --- Joyal](https://www.youtube.com/watch?v=HRBShaxIblI)
+
+- Univanent type theory is arrived at by adding univalence to MLTT.
+- Goal of univalent foundations is to apply UTT to foundations.
+- Univalence is to type theory what induction principle is to peano arithmetic
+- Univalence implies descent. Descent implies Blakers Massey-theorem, which
+  implies Goodwille calculus.
+
+- The syntactic system of type theory is a **tribe**.
+- A clan is a category equipped with a class of _carrable maps_ called fibrations.
+  A map is carrable if we can pull it back along any other map.
+- A clan is a category along with maps called "fibrations", such that (1) every
+  isomorphism is a fibration, (1) closed under composition, (3) fibrations are
+  carrable, (4) base change of fibration is a fibration, (4) Category has a terminal
+  object, and map into the terminal object is a fibration.
+- A map $u: A \rightarrow B$ is **anodyne** if it does something good with respect
+  to fibrations.
+- A **tribe** is a clan such that (1) base chnge of anodyne along fibration is anodyne,
+  (2) every map factorizes as anodyne followed by fibration.
+- Kan complexes form a tribe. A fibration is a Kan fibration. A map is anodyne
+  here if it is a monomorphism and a homotopy equivalence.
+- Given a tribe $E$, can build a new tribe by slicing $E/A$ (this is apparently
+  very similar to things people do in Quillen Model categories).
+- A tribe is like a commutative ring. We can extend by adding new variables to get
+  polynomial rings. An elementary extension is extending the tribe by adding a new
+  element.
+- If $E$ is a tribe, an object of $E$ is a type. We write `E |- A : Type`.
+- If we have a map $a: 1 -> A$, we regard this as an element of A: `E |- a : A`.
+- A fibration is a family of objects. This is a dependent type `x : A |- E(x): Type`.
+  `E(x)` is the fiber  of `p: E -> A` at a variable element `x : A`.
+- A section of a fibration gives an element of the fibration. We write this as 
+  `x : A |- s(x) : E(x)`. `s(x)` denotes the value of `s: A -> E` of a variable
+   element `x : A`. (Inhabitance is being able to take the section of a fiber bundle?!)
+- change of parameters / homomorphism is substitution. 
+
+```
+y : B |- E(y) : Type
+--------------------
+x : A |- E(f(x)) : Type
+```
+
+This is pulling back along fibrations.
+
+- Elementary extension `E -> E(A)` are called as context extensions.
+
+```
+|- B : Type
+-----------
+x : A |- B : Type
+```
+
+- A map between types is a variable element `f(x) : B` indexed by `x : A`
+
+```
+x : A |- f(x) : B
+```
+
+- Sigma formation rule: The total space of the union is the sum of all fibers(?)
+
+```
+x: A |- E(x): Type
+------------------
+|- \sum{x : A}E(x): Type
+```
+
+
+```
+x: A |- E(x): Type
+------------------
+y : B |- \sum{x : f^{-1}(y)}E(x): Type
+```
+
+- Path object for $A$ is obtained by factorial diagonal map `diag: a -> (a, a)` as an anodyne
+  map `r: A -> PA` followed by a fibration `(s, t) : PA -> A x A`.
+
+- A homotopy `h: f ~ g` between two maps `f, g : A -> B` is a map`h: A -> PB` 
+  such that `sh = f` and `th = g`. homotopy is a congruence.
+- `x: A, y : A |- Id_A(x, y) : Type` called the identity type of A.
+- An element `p: Id_A(x, y)` is a proof that `x =A y`.
+- Reflexivity term `x : A |- r(x) : Id_A(x, x)` which proves `x =A x`.
+- The identity type is a path object:
+
+- $\gamma(x, y): Id_A(x, y) -> Eq(E(x), E(y))$. $\gamma$ is some kind of
+  connection: given a path from $x$ to $y$, it lets us transport $E(x)$ to $E(y)$,
+  where the $Eq$ is the distortion from the curvature?
+                                                                                
+# Hilbert basis theorem for polynomial rings over fields (WIP)
+
+**Theorem:** Every ideal $I$ of $k[x_1, \dots, x_n]$ is finitely generated.
+
+First we need a lemma:
+
+#### Lemma:
+Let $I \subseteq k[x_1, \dots, x_n]$ be an ideal. (1) $(LT(I)) \equiv $ is
+a **monomial ideal**. An ideal $I$ is a monomial ideal if there is a subset
+$A \subseteq \mathbb Z^n_{\geq 0}$ (possibly infinite) such that $I = (x^a : a \in a)$.
+That is, $I$ is generated by monomials of the form $x^a$. Recall that since we 
+have 
+
+#### Proof of hilbert basis theorem
+
+- We wish to show that every ideal $I$ of $k[x_1, \dots, x_n]$ is finitely generated.
+- If $I = \{ 0 \}$ then take $I = (0)$ and we are done.
+- Pick polynomials $g_i$ such that $(LT(I)) = (LT(g_1), LT(g_2), \dots, LT(g_t))$.
+  This is always possible from our lemma.
+  We claim that $I = (g_1, g_2, \dots, g_t)$.
+- Since each $g_i \in I$, it is clear that $(g_1, \dots, g_t) \subseteq I$.
+- Conversely, let $f \in I$ be a polynomial. 
+- Divide $f$ by $g_1, \dots, g_t$ to get $f = \sum_i a_i g_i + r$ where no term
+  of $r$ is divisible by $LT(g_1), \dots, LT(g_t)$. We claim that $r = 0$.
+
+
+
+#### References
+
+- Cox, Little, O'Shea: computational AG.
+
+
+# Covering spaces (WIP)
+
+#### Covering spaces: Intuition
+
+- Consider the map $p(z) = z^2 : \mathbb C^\times \rightarrow \mathbb C^\times$. This is a
+  2-to-1 map. We can try to define an inverse regardless.
+- We do define a "square root" if we want. Cut out a half-line $[0, -infty)$
+  called $B$ for branch cuts. We get two functions on 
+  $q_+, q_-: \mathbb C\B \rightarrow \mathbb C^\times$, such that $p(q_+(z)) = z$.
+  Here, we have $q_- = - q_+$.
+- The point of taking the branch cut is to preserve simply connectedness. $\mathbb C^\times$
+  is not simply connected, while $\mathbb C/B$ is simply connected! 
+  (This seems so crucial, why has no one told me this before?!)
+- Eg 2: exponential. Pick $exp: \mathbb C \rightarrow \mathbb C^\times$. This is
+  surjective, and infinite to 1. $e^{z + 2 \pi n} = e^{iz}$.
+- Again, on $\mathbb C / B$, we have $q_n \equiv \log + 2 \pi i n$, such that 
+  $exp(q_n(z)) = z$.                                                        
+- A covering map is, roughly speaking, something like the above. It's a map that's
+  n-to-1, which has n local inverse defined on simply connected subsets of 
+  the target. 
+- So if we have $p: Y \rightarrow X$, we have $q: U \rightarrow Y$ (for $U \subseteq X$)
+  such that $p(q(z)) = z, \forall z \in U$.
+
+
+#### Covering spaces: Definition
+
+- A subset $U \subset X$ is a called as an **elementary neighbourhood**
+  if there is a discrete set $F$ and a homeomorphism $h: p^{-1}(U) \rightarrow U \times F$
+  such that p|_{p^{-1}(U)(y) = fst(h)$ or $p|_{p^{-1}(U) = pr_1 \circ h$.
+- [Alternative definition](https://www.math.wisc.edu/~maxim/751f14w6.pdf)
+  A subset $U \subset X$ is called as **evenly covered/elementary nbhd** if 
+  $p^{-1}(U) = \squp_\alpha V_\alpha$ where the $V_\alpha$ are disjoint and open, and
+  $p|_{V_\alpha} : V_\alpha \rightarrow U$ is a homeomorphism for all $\alpha$.
+- An elementary neighbourhood is the region where we have the local inverses
+  (the complement of a branch cut).
+- We get for each $i \in F$ , a map $q_i : U \rightarrow U \times F; q_i(x) = (x, i)$
+  and then along $h^{-1}$ sending $h^{-1}(x, i) \in p^{-1}(U)$.
+- We say $p$ is a covering map if $X$ is covered by elementary neighbourhoods.
+- We say $V \subseteq Y$ is an elementary sheet if it is path connected and $p(V)$
+  is an elementary neighbourhood. 
+- So, consider $p(x) = e^{ix}: \mathbb R \rightarrow S^1$.  If we cut the space
+  at $(0, 0)$, then we will have elementary neighbourhood $S^1 - \{(0, 0)\}$
+  and elementary sheets $(2 \pi k,  2 \pi+1)$.
+- The point is that the inverse projection $p^{-1}$ takes $U$ to some object of the form $U \times F$:
+  a local product! So even though the global covering space $\mathbb R$ does not look
+  like a product of circles, it locally does. So it's some sort of fiber bundle?
+
+
+> Slogan: Covering space is locally disjoint copies of the original space.
+
+
+#### Path lifting and Monodromy
+
+- Monodromy is behaviour that's induced in the covering space, on moving in a loop in a base. 
+- Etymology: Mono --- single, drome --- running. So running in a single loop /
+  running around a single time.
+- Holonomy is a type of monodromy that occurs due to parallel transport in a loop, **to detect curvature**
+- Loop on the base is an element of $\pi_1(X)$.
+- Pick some point $x \in X$. Consider $F \equiv \pi^{-1}(x)$ ($F$ for fiber).
+- Now move in a small loop on the base, $\gamma$. The local movement will cause
+  movement of the elements of the fiber.
+- Since $\gamma(1) = \gamma(0)$, the elements of the fiber at the end of the movement
+  are equal to the original set $F$.
+- So moving in a loop induces a permutation of the elements of the fiber $F$.
+- Every element of $\pi_1(X)$ induces a permutation of elements of the fiber $F$.
+- This lets us **detect non-triviality** of $\pi_1(X)$. The action of $\pi_1(X)$ on the fiber
+  lets us "detect" what $\pi_1(X)$ is.
+- We will define what is means to "move the fiber along the path".
+
+
+#### Path lifting lemma
+
+**Theorem**:Suppose $p: y \rightarrow X$ is a covering map. Let $\delta: [0, 1] \rightarrow X$
+be a path such that $\delta(0) = x$, and let $y \in p^{-1}(x)$ [$y$ is in the fiber of $x$].
+Then there is a **unique** path $\gamma: [0,1] \rightarrow Y$ which "lifts" $\delta$.
+That is, $\delta(p(y)) = \gamma(y)$, such that $\gamma(0) = Y$. 
+
+
+> Slogan: Paths can be lifted. Given how to begin the lift, can be extended all the way.
+
+- Let $N$ be a collection of **elementary neighbourhoods** of $X$.
+- $\{ \delta^{-1}(U) : U \in N \}$ is an open cover (in the compactness sense) of $[0, 1]$.
+- By compactness, find a finite subcover. Divide interval into subintervals $0 = t_0 < t_1 < \dots t_n = 1$
+  such that $\delta|k = \delta|_{[t_k, t_{k+1}]}$ lands in $U_k$, an elementary neighbourhood.
+- Build $\gamma$ by induction on $k$.
+- We know that $\gamma(0)$ should be $y$.
+- Since we have an elementary neighbourhood, it means that there are a elementary
+  sheets living over $U_0$, indexed by some discrete set $F$. $y$ lives in one
+  of thse sheets. We have local inverses $q_m$. One of them lands on the sheet
+  of $y$, call it $q$.  So we get a map $q: U_0 \rightarrow Y$ such that $q(x) = y$.
+- Define $\gamma(0) \equiv q(\delta(0)) = q(x) = y$.
+- Extend $\gamma$ upto $t_1$.
+- Continue all the way upto $t_k$.
+- To get $\gamma$ from $(t_k, t_{k+1}$, there exists a $q_k: U_k \rightarrow Y$
+  such that $q_k(\delta(t_k)) = \gamma(t_k)$.
+  Define $\gamma(t_k \leq t \leq t_{k_1}) \equiv q_k(\delta(t_k))$.
+- This is continuous because $\delta$ continuous by definition, $q_k$ continuous
+  by neighbourhood, $\gamma$ is pieced together such that endpoints fit,
+  and is thus continuous.
+- Can check this is a lift! We get $p \circ \gamma = p \circ q_k \circ \delta_k$.
+  Since $q_k$ is a local inverse of $p$, we get $p \circ \gamma = \delta_k$
+  in the region.
+
+#### 7.03: Path lifting: uniqueness
+
+If we have a space $X$ and a covering space $Y$, for a path $gamma$ that 
+starts at $x$, we can find a path $\gamma'$ which starts at $y \in p^{-1}(x)$
+and projects down to $\gamma$: $\gamma(t) = p(\gamma'(t))$. We want to show
+that this path lift is **unique**
+
+##### Lemma                                               
+
+Let $p: Y \rightarrow X$ be a covering space. Let $T$ be a connected space
+Let $F: T \rightarrow X$ be a continuous map (for us, $T \simeq [0, 1]$).
+Let $F_1, F_2: T \rightarrow Y$ be lifts of $F$ ($p \circ F_1 = F$, $p \circF_2 = F$).
+We will show that $F_1 = F_2$ iff the lifts are equal for some $t \in $T.
+
+
+> Slogan: Lifts of paths are unique: if they agree at one point, they agree at all points!
+
+<img src="./static/cw/path-lifting-uniqueness-setup.png"/>
+
+- We just need to show that if $F_1$ and $F_2$ agree somewhere in $Y$, they agree 
+  everywhere. It is clear that if they agree everywhere, they must agree somewhere.
+- To show this, pick the set $S$ where $F_1, F_2$ agree in $Y$: $S \equiv \{ t \in T : F_1(t) = F_2(t) \}$.
+- We will show that $S$ is open and closed. Since $T$ is connected, $S$ must
+  be either the full space or the empty set. Since $S$ is assumed to be non-empty,
+  $S = T$ and the two functions agree everywhere.
+- (Intuition: if both $S$ and $S^c$ are open, then we can build a function that colors $T = S \cup S^c$
+  in two colors continuously; ie, we can partition it continuously; ie the spaces
+  must be disconnected. Since $T$ is connected, we cannot allow that to happen,
+  hence $S = \emptyset$ or $S = T$.)
+- Let $t \ in T$. Let $U$ be an evenly covered neighbourhood/elementary neighbourhood of $F(t)$ downstairs (in $X$).
+  Then we have $p^{-1}(U) = \sqcup_\alpha V_\alpha$ such that $p|_V{\alpha}: V_\alpha \rightarrow U$ 
+  is a local homeomorphism.
+- Since $F_1, F_2$ are continuous, we will have opens
+  $V_1, V_2$ in $V_\alpha$, which contain $F_1(t), F_2(t)$ upstairs 
+  (mirrroring $U$ containing $F(t)$ downstairs).
+- The pre-images of $V_1$, $V_2$ along $F_1, F_2$ give us open sets $t \in T_1, T_2 \subseteq T$.
+- Define $T* = T_1 \cap T_2$.  If $F_1(t) \neq F_2(t)$, then $V_1 \neq V_2$
+  and thus $F_1 \neq F_2$ on all of $T*$. So, $S^c = T*$ is open.
+- If $F_1(t) = F_2(t)$, then $V_1 = V_2$ and thus $F_1 = F_2$ on $T*$
+  (since $p \circ F_1 = F = p \circ F_2$, and $p$
+  is injective within $U$, ie within $V_1, V_2$). So $S$ is open.
+- Hence we are done, as $S$ is non-empty and clopen and is thus equal to $T$.
+  Thus, the two functions agree on all of $T$.
+
+#### Homotopy lifting, Monodromy
+
+- Given a loop $\gamma$ in $X$ based at $x$ ,
+  the **monodromy around $\gamma$** is a permutation
+  $\sigma_\gamma : p^{-1}(x) \rightarrow p^{-1}(x)$,
+  where $\sigma_{\gamma}(y) \equiv \gamma^y(1)$
+  where $\gamma^y$ is the unique lift of $\gamma$ staring at $y$.
+  We have that $\sigma_{\gamma} \in Perm(p^{-1}(x))$.
+- Claim: if $\gamma_1 \simeq \gamma_2$ then $\sigma_{\gamma_1} = \sigma_{\gamma_2}$.
+- We need a tool: homotopy lifting lemma.
+
+
+> Slogan: permutation of monodromy depends only on homotopy type
+
+#### Homotopy lifting lemma/property of covering spaces
+
+Suppose $p: Y \rightarrow X$ is a covering map and $\gamma_s$ is a homotopy
+of paths rel. endpoints ($\gamma_s(0)$ and $\gamma_s(1)$ are independent of $s$ /
+endpoints are fixed throughout the homotopy). Then there exists for each 
+lift $\gamma'_0 : [0, 1] \rightarrow Y$ of $\gamma_0:[0,1] \rightarrow X$
+(ie, $\p \circ \gamma'_0 = gamma_0$), a completion
+of the lifted homotopy $\gamma'_s: [0, 1] \rightarrow Y$ (ie, $p \circ gamma'_s = gamma_s$).
+Moreover, this lifted homotopy is rel endpoints: ie, the endpoints of $gamma'$ are
+independent of $s$.
+
+> Slogan: homotopy lifted at 0 can be lifted for all time
+
+- Let $H: [0, 1] \times [0, 1] \rightarrow X$ be the homotopy in $X$ such that 
+  $H(s, t) = \gamma_s(t)$. Subdivide the square into rectangles $R_{ij}$  such that
+  $H(R_{ij})$ is contained in $U_{ij}$ for some elementary neighbourhood $U_{ij}$.
+  We build $H': [0, 1] \times [0, 1] \rightarrow Y$ by building local inverses
+  $q_{ij} : U_{ij} \rightarrow Y$ such that $p \circ q_{ij}  = R_{ij}$.
+  We then set $H'|_{R_{ij}}  = q_{ij} \circ H$.
+
+
+- [Reference video](https://www.youtube.com/watch?v=3CuQ3yfh0eA&list=PLN_4R2IuNuuTWD00k9BAB1fo0UldBHnME&index=31)
+- [Notes for uniqueness of path lifting](https://www.math.wisc.edu/~maxim/751f14w6.pdf)
+
+
+
+# Van Kampen theorem (WIP)
+
+
+- [Reference video](https://www.youtube.com/watch?v=eb_Wa8MFuOY&list=PLN_4R2IuNuuTWD00k9BAB1fo0UldBHnME&index=24)
+
+# Wedge Sum and Smash Product
+
+I sometimes forget which is which. I now remember this as folows:
+
+- First, these work on based spaces so we always need to think of based points.
+- Wedge is a sum, so it's going to be some type of union. It needs to identify
+  things, so it better be $A \cup B / \sim$ where $\sim$ identifies based points.
+- Smash is a product, so it's going to be some type of product. It needs to 
+  identify things, so it better be $A \times B / \sim$, where $\sim$ crushes together
+  anything that has a based point. So $(*, a), (a, *), (*, *)$ are all crushed.
+- If we don't remember the "sum" and "product" bit, and only remember "wedge"
+  and "smash", then "wedge" starts with a "w" which looks like `\/`so it should
+  be a union.
+
 # Stable homotopy theory 1
 
 I watched this for shits and giggles. I don't know enough topology at all, but it's
 fun to watch arbitrary math videos.
 
+#### Quotient topology: Defn, examples
+- Intended to formalise identifications.
+
+Given space $X$ and equivalence relation $\sim$ on $X$, the quotient set
+$X/\sim$ inherits a topology. Let $q : X \rightarrow X/\sim$ send point to
+equivalence class.  Quotient topology is the most **refined** topology
+on $X/\sim$ such that $q$ is continuous. That is, it has the most open sets
+for which this map is continuous.
+
+- More explicitly, a set $U \subset X/\sim$ (which is a collection of equivalence
+  classes) is open iff $q^{-1}(U)$ is open in $X$.
+- Even more explicitly, $V \subseteq X/\sim$ is open iff $U_V \equiv \{ x \in U : [x] \in V \}$
+  is open in $X$. 
+- Even more explicitly, we can write $U \equiv \cup_{v \in V} v$, because the elements of 
+  $v$ are equivalence classes.
+  
+#### Claim: quotient topology is a topology
+
+- The preimage of the empty set is the empty set, and thus is open.
+- The preimage of all equivalence classes is the full space, and thus open.
+- Preimage of union is union of preimages: $\cup_i q^{-1}(V_i) xtend $h$ to get a new homotopy $H$: $H_0 = id_X$ and $H_t|A = h_t$.
+
+
+#### $(X, A)$ have HEP and $A$ is contractible, then $X \simeq X/A$
+- Pick $q: X \rightarrow X/A$. We need another map such that their compositions are
+  homotopic to the identities of $X$ and $X/A$.
+- Define $s: X/A \rightarrow X$ as a section of $q$, given by $s([a]) \equiv a, s([x]) \equiv x$.
+  This is a section of $q$ since $q \circ s = id_{X/A}$ (That is, $s$ maps entirely within the fibers of $q$).
+- Consider $s_t : H_t \circ s : X/A \rightarrow X$. That is, lift from $X/A$ to $X$ using $s$ and then perform $H_t$ on $X$.
+  We claim that The map $(H_1 \circ s)$ is the homotopy inverse of $q$. 
+- (1a) $(H_1 \circ s) \circ q : X \rightarrow X$ is equal to $H_1$, as $H_1(s(q(A))) = H_1(s([a])) = H_1(a) = a  = H_1(A)$, and $H_1(s(q(x))) = H_1(s([x])) = H_1(x)$.
+- (1b) So we have $(H_1 \circ s) \circ q = H_1 \simeq H_0 = id_X$, as $H_0 = id_X$ is from defn, and $H_1 \simeq H_0$ is from homotopy. So we are done
+  in this direction.
+- (2a) Consider $q \circ (H_1 \circ s) : X \rightarrow X/A$. We wish to show that this is continuous. Let's show that it lifs to a continous
+      map upstairs. So consider $q \circ (H_t \circ s) \circ q : X \rightarrow X/A$. We claim that this is equal to $q \circ H_t$,
+	  which is continuous as it is a composition of continuous maps.
+- This relationship is hopefully intuitive:
+  $q \circ (H_t \circ s) \circ q$ asks us to treat all of $A$ as if it were $a$ before applying $H_t$.
+  Since $q$ kills whatever $H_t$ does after, and $H_t$ guarantees to keep $A$ within $A$, it's fine if we treat all of $A$ as just $a$.
+  $q \circ H_t$ asks us to treat $A$ as $A$ itself, and not $a$. Since $q$ kills stuff anyway, we don't really care.
+  The real crux of the argument is that $q \circ stab_A = q \circ stab_A \circ s \circ q$ where $stab_A$ is a map that stabilizes $A$. 
+	  
+- (2b) Consider $(q \circ (H_t \circ s) \circ q)(A) = (q \circ H_t \circ s)([a]) = (q \circ H_t)(a) = --- Since $H_t(a) = h_t(a) = a' \in A$,
+       we crush all data regardless of what happens. This is the same as the value $(q \circ H_t)(A) = [a]$ as $H_t(A) \subseteq A$ and $q(A) = [a]$.
+	   For the other set, we get $(q \circ (H_t \circ s) \circ q)(x) = q \circ H_t \circ s([x]) = q \circ H_t(x)$ and hence we are done.
+- (2c) Now since $q \circ (H_t \circ s))$ is continuous, and that $q \circ (H_0 \circ s) : X/A \rightarrow X/A = id_{X/A}$, we are done
+       since we can homotope from $q \circ H_1 \circ s \simeq q \circ H_0 \circ s = id_{X/A}$.
+- (2d) TODO: We should be able to clean this proof up by refactoring $H_t$, $s$ and $q$ somehow to exploit their relationships.
+
+> Slogan: Use HEP to find homotopy $H$. Use $H_1 \circ s$ as inverse
+> to quotient.
+
+
+#### CW Complexes and HEP
+
+If $X$ is a CW complex and $A$ is a closed subcomplex, then it has the HEP.
+A closed subcomplex is a union of closed cells of $X$ such that $X$ is obtained
+by adding more cells to $A$.
+
+
+##### Lemma
+
+If $e$ is a disk, then there is a continuous map from $e \times [0, 1]$ to
+$\partial e \times [0, 1] \cup (e \times \{ 0 \})$.
+
+<img src="./static/cw/hep-project-disk.png"/>
+
+##### Lemma
+
+If $X$ is obtained from $A$ by attaching one $k$-cell, then $(X, A)$ has HEP.
+
+
+Given a homotopy $h_t: A \times [0, 1] \rightarrow Y$ and a new homotopy 
+$F_0: X \rightarrow Y$ such that $F_0|A = h_t$, we want to complete $F$ 
+such that $F_t|A = h_t$. 
+
+The only part I don't know where to define $F$ on is the new added $e$ portion.
+So I need to construct $H$ on $e \times [0, 1]$. Use the previous map to get to
+$e \times [0, 1] \cp (e \times \{0\})$. This is in the domain of $F_0$ or $h_t$,
+and thus we are done.
+
+##### CW Complexes have HEP
+
+Induction on lemma. base case is empty set.
+
+##### Connected 1D CW Complex
+
+**Theorem:** any connected 1D CW complex is homotopic to wedge of circles.
+
+- Find a contractible subcomplex $A$ of $X$ that passes through all $0$ cells.
+- By HEP, $X \simeq X/A$. $X/A$ has only one zero-cell and other one cells.
+  One cells are only attached to zero cells. Hence, is a wedge of circles.
+- The idea to find a contractible subcomplex is to put a partial order on the
+  set of *all* contractible cell complexes by inclusion.
+- Pick a maximal element with respect to this partial order.
+- Claim: maximal element must contain all zero cells. Suppose not. Then I 
+  can add the new zero cell into the maximal element (why does it remain contractible? Fishy!)
+
+
+#### Stable homotopy theory
+We like stable homotopy groups
+because of the [Freudenthal suspension theorem](https://en.wikipedia.org/wiki/Freudenthal_suspension_theorem)
+which tells us that homotopy groups stabilise after many suspensions. 
+
+The basic idea seems to be something like a tensor-hom adjunction. We have
+the loop spaces which are like $S^1 \rightarrow X$ and the suspension which
+is like $S^1 \wedge X$. The theory begins by considering the tensor-hom-adjunction
+between these objects as fundamental. 
+
+- We then try to ask: how can one invert the suspension formally? One tries
+  to do some sort of formal nonsense, by declaring that maps between $\Sigma^{-n}X$
+  and $\Sigma^{-m} Y$ , but this doesn't work due to some sort of grading issue.
+- Instead, one repaces a single object $X$ with a family of objects $\{ X_i \}$
+  called  as the spectrum. Then, we can invert the suspension by trying to invert
+  maps between objects of the same index.
+
 #### References
 
+- [Homotopy Extension](http://www.homepages.ucl.ac.uk/~ucahjde/tg/html/cw-02.html)
 - [CW complexes](https://www.youtube.com/watch?v=XWg4LVbmm3M&list=PLN_4R2IuNuuTWD00k9BAB1fo0UldBHnME&index=21)
 - [Stable homotopy theory 1](https://www.youtube.com/watch?v=neC3HUyqlV0)
+
+# Tychonoff theorem
+
+# Simply connected spaces
+
+- A space is simply connected iff fundamental group at all points is trivial.
+- We usually don't want to talk about basepoint, so we assume that the space
+  is path-connected. This means we can move the basepoint around, or not 
+  take about the basepoint.
+- So, a path-connected space is simply connected iff the fundamental group is
+  trivial.
+
+#### Simply connected => all paths between two points are homotopic.
+
+If $x, y$ are two points, then there is a single unique homotopy class of 
+points from $x$ to $y$. Consider two paths from $x$ to $y$ called $\alpha, \beta$.
+Since $\beta^{-1} \circ \alpha \in \pi_1(x, x) = 1$, we have that 
+$\beta^{-1} \circ \alpha \simeq \epsilon_x$. [ie, path is homotopic to trivial
+path]. compose by $\beta$ on the left: This becomes $\alpha \simeq \beta$.
+
 
 # Finitely generated as vector space v/s algebra:
 
@@ -1709,11 +2272,6 @@ $$
 $$
 
 
-#### Connection to tableaux (TODO)
-The dominance ordering... 
-Continuous proof...
-
-
 
 # Rearrangement inequality
 
@@ -2808,6 +3366,43 @@ not tracking data at $q$.
 
 #### 3: Winning
 
+#### q-reduced configurations
+
+We wish to solve the game by benelovence: have vertices lend to adjacent vertices.
+Here are the steps to convert such an intuition to a real algorithm:
+
+0. Start with a divisor $D$ we want to find an effective divisor $E \geq 0$
+   that $D$ is linearly equivalent to (ie, there exists a series of moves to convert $D$ to $E$).
+1. Pick some benelovent vertex $q \in V$. Call $q$ the source. Let $V' = V/q$ be the non
+   source vertices.
+2. Let $q$ lend so much money to the non-source-vertices, such that the non-source-vertices,
+   sharing amongst themselves, are out of debt. 
+3. Now only $q$ is in debt from this giving. $q$ makes no lending or borrowing moves.
+   The non-source-vertices must get $q$ out of debt. Find a $S \subseteq V'$ such that if
+   everyone in $S$ lends, then no one in $S$ go into debt. Make the corresponding set-lending
+   move. Repeat until no such $S$ remains. The resulting divisor is said to be $q$-reduced.
+
+In the end, if $q$ is no longer in debt, we win. Otherwise, $D$ is unwinnable.
+
+
+
+#### Superstable configuration
+
+Let $c \in Config(G, q)$. It is called superstable if $c \geq 0$ and has
+no legal non-empty set firings. That is, for each non-empty $S \subseteq V/q$,
+we have some $v \in S$ such that firing $v$ would cause $v$ to go into debt;
+that is, $c(v) < outdeg_S(v)$.
+
+#### Decomposition of divisor into superstable configuration
+
+Every divisor can be written as $D = c + kq$ where $c \in Config(G, q) \geq 0$.
+In this form, $D$ is $q$-reduced iff $c$ is superstable! This follows
+from the definition of $q$-reduced: there is no subset $S$ which can be fired such
+that $S$ stays out of debt. Now, if $q \geq 0$, then we win, from what we know
+of $q$-reduced configurations.
+
+
+  
 #### 4: Acylic orientations
 #### Orientations
 
@@ -9486,7 +10081,7 @@ from discretizing a grid, can we recover a global sense of orientation?
 
 # Derivative of step is dirac delta
 
-I learnt of the "distributional derivative" today from [my friend, Mahathi](TODO).
+I learnt of the "distributional derivative" today from my friend, Mahathi.
 Recording this here.
 
 #### The theory of distributions

@@ -1,3 +1,7 @@
+- [Semantics of type theory](https://www.springer.com/gp/book/9781461267577)
+- Selected papers on Automath.
+- [Higher dimensional type theory](https://favonia.org/courses/hdtt2020/)
+- [Differential algebraic topology: From stratifolds to exotic spheres](http://www.him.uni-bonn.de/fileadmin/user_upload/kreck-DA.pdf)
 - [Stable homotopy theory](https://www.youtube.com/watch?v=v5Rr_Z8QsOs&list=PLQuS12Ap6va-VgI5cdIjdHquIH3sLCLdJ)
 - [Computing the continuous discretely: integer point enumeration in polyhedra](http://math.sfsu.edu/beck/papers/noprint.pdf)
 - Algebraic Topology of Finite Topological Spaces and Applications by Jonathan Barmak
