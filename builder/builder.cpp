@@ -1542,7 +1542,7 @@ const char html_postamble[] = "</container>"
 const char CONFIG_KATEX_PATH[] = "/home/bollu/blog/katex/katex.min.js";
 const char CONFIG_PRISM_PATH[] = "/home/bollu/blog/prism/prism.js";
 const char CONFIG_WEBSITE_URL_NO_TRAILING_SLASH[] =
-    "https://www.bollu.github.io";
+    "https://bollu.github.io";
 const char CONFIG_INPUT_MARKDOWN_PATH[] = "/home/bollu/blog/README.md";
 const char CONFIG_OUTPUT_DIRECTORY_NO_TRAINING_SLASH[] = "/home/bollu/blog";
 
@@ -1657,7 +1657,7 @@ struct RSS {
     fprintf(frss, "<rss version=\"2.0\">\n");
     fprintf(frss, "<channel>\n");
     fprintf(frss, "<title>A universe of sorts</title>\n");
-    fprintf(frss, "<link>http://bollu.github.io/</link>\n");
+    fprintf(frss, "<link>https://bollu.github.io/</link>\n");
     fprintf(frss, "<description>%s</description>\n",
             CONFIG_WEBSITE_RSS_DESCRIPTION);
 
