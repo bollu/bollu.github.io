@@ -15,6 +15,463 @@ A Universe of Sorts
 - [reading list/TODO](todo.html)
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
+# Cayley Hamilton
+
+I've never known a proof of Cayley Hamilton that sticks with me; I think I've
+found one now.
+
+For any matrix $A$, the adjugate has the property:
+
+$$
+A adj(A) = det(A) I
+$$
+
+Using this, Consider the matrix $P_A \equiv xI - A$ which lives in $End(V)[x]$,
+and its corresponding determinant $p_A(x) \equiv det(P_A) = det(xI - A)$.
+
+We have that 
+
+$$
+P_A adj(P_A) = det(P_A) I \\
+(xI  - A) adj(xI - A) = det(xI - A) I = p_A(x) I \\
+$$
+
+If we view this as an equation in $End(V)[x]$, it says that $p_A$ has a factor $xI - A$. This means that
+$x = A$ is a zero of $p_A(X)$. Thus, we know that $A$ satisfies $p_A(x)$, hence $A$ satisfies
+its own characteristic polynomial!
+
+The key is of course the  adjugate matrix equation that relates the adjugate matrix
+to the determinant of $A$.
+
+
+#### Adjugate matrix equation
+
+- Let $A'(i, j)$ be the matrix $A$ with the $i$ th row and $j$ column removed.
+- Let $C[i, j] \equiv (-1)^{i+j} det(A'(i, j))$ be the determinant of the $A'(i, j)$ matrix.
+deleted from $A$.
+- Let define $adj(A) \equiv C^T$ to be the transpose of the cofactor matrix.
+  That is, $adj(A)[i, j] = C[j, i] = det(A'(j, i))$.
+- Call $D \equiv A adj(A)$. We will now compute the entries of $Z$ when $i = j$ and when $i \neq j$.
+  We call it $D$ for diagonal since we will show that $D$ is a diagonal matrix with entry $det(A)$
+  on the diagonal.
+- First, compute $D[i, i]$ (I use einstein summation convention where repeated indices are implicitly
+  summed over):
+
+$$
+\begin{aligned}
+= D[i, i] = (A adj(A))[i, i] \\
+&= A[i, k] adj(A) [k, i] \\
+&= A[i, k] (-1)^{i+k} det(A'[k, i]) \\
+&= det(A)
+\end{aligned}
+$$
+
+The expression $A[i, k] det(A'[k, i])$ is the determinant of $A$ when expanded along the row $i$ using
+the [Laplace expansion](https://en.wikipedia.org/wiki/Laplace_expansion). 
+
+Next, let's compute $D[i, j]$ when $i \neq j$:
+
+$$
+\begin{aligned}
+D[i, j] = (A adj(A))[i, j] \\
+&= A[i, k] adj (A)[k, j] \\
+& = A[i, k] (-1)^{k+j} det(A'[k, j]) \\
+& = A[i, k] (-1)^{j+k} det(A'[k, j]) \\
+& = det(Z)
+\end{aligned}
+$$
+
+This is the determinant of a new matrix $Z$ (for zero), such that the $j$th row of $Z$ is the $i$th
+row of $A$. More explicitly:
+
+$$
+\begin{aligned}
+Z[l, :] \equiv
+\begin{cases}
+A[l, :] & l \neq j \\
+A[i, :] & l = j \\
+\end{cases}
+\end{aligned}
+$$
+
+Since $Z$ differs from $A$ only in the $j$th row, we must have that
+$Z'[k, j] = A'[k, j]$, since $Z'[k, j]$ depends on what happens on all
+rows and columns **outside** of $j$.
+
+If we compute $det(Z)$ by expanding along the $j$ row, we get:
+
+$$
+&det(Z) = (-1)^{j+k} Z[j, k] det(Z'[k, j]) \\
+&det(Z) = (-1)^{j+k} A[j, k] det(Z'[k, j]) \\
+&det(Z) = (-1)^{j+k} A[j, k] det(A'[k, j]) \\
+&= D[i, j]
+$$
+
+But $Z$ has a repeated row: $A[j, :] = A[i, :]$ and $i \neq j$. Hence, $det(Z) = 0$.
+So, $D[i, j] = 0$ when $i \neq j$.
+
+Hence, this means that $A adj(A) = det(A) I$. 
+
+- We can rapidly derive other properties from this reuation. For example, $det(A adj(A)) = det(det(A) I) = det(A)^n$,
+  and hence $det(A) det(adj(A)) = det(A)^n$, or $det(adj(A)) = det(A)^{n-1}$.
+- Also, by rearranging, if $det(A) \neq 0$, we get $A adj(A) = det(A) I$, hence $A (adj(A)/det(A)) = I$,
+  or $adj(A)/det(A) = A^{-1}$.
+
+
+#### Adjuagte in terms of exterior algebra
+
+
+#### References
+
+- [More abstract proof of Cayley Hamilton](https://math.stackexchange.com/questions/605590/is-there-a-simpler-more-abstract-proof-of-the-cayley-hamilton-theorem-for-matri)
+- [PlanetMath: proof of Cayley Hamilton for commutative rings](https://planetmath.org/proofofcayleyhamiltontheoreminacommutativering)
+
+
+# Nakayama's lemma (WIP)
+
+[Geometric applications of Jacobson radical](https://en.wikipedia.org/wiki/Jacobson_radical#Geometric_applications)
+
+# vector fields over the 2 sphere (WIP)
+
+We assume that we already know the hairy ball theorem, which states that
+no continuous vector field on $S^2$ exists that is nowhere vanishing. Using
+this, we wish to deduce (1) that the module of vector fields over $S^2$ is
+not free, and an *explicit* version of what the
+[Serre Swan theorem](https://en.wikipedia.org/wiki/Serre%E2%80%93Swan_theorem)
+tells us, that this module is *projective*
+
+#### 1. Vector fields over the 2-sphere is projective
+
+Embed the 2-sphere as a subset of $\mathbb R^3$. So at each point, we have
+a tangent plane, and a normal vector that is perpendicular to the sphere:
+for the point $p \in S^2$, we have the vector $p$ as being normal to $T_p S^2$ at $p$.
+So the normal bundle is of the form:
+
+$$
+\mathfrak N \equiv \{ \{ s \} \times \{ \lambda s : \lambda in \mathbb R \}  : s \in S^2 \}
+$$
+- If we think of the trivial bundle, that is of the form $Tr \equiv \{ \{s \} \times \mathbb R : s \n \S^2 \}$.
+- We want to show an isomorphism between $N$ and $T$.
+- Consider a map $f: N \rightarrow Tr$ such that $f((s, n)) \equiv (s, ||n||)$. The inverse
+  is $g: Tr \rightarrow N$ given by $g((s, r)) \equiv (s, r \cdot s)$. It's easy to check that these
+  are inverses, so we at least have a bijection.
+- To show that it's a vector bundle morphism, TODO.
+- (This is  hopelessly broken, I can't treat the bundle as a product. I can locally I guess by taking charts;
+   I'm not sure how I ought to treat it globally!)
+
+
+
+#### 1. Vector fields over the sphere is not free
+
+- 1. Given two bundles $E, F$ over any manifold $M$, a module isomorphism
+  $f: \mathfrak X(E) \rightarrow \mathfrak X(F)$ of vector fields as 
+  $C^\infty(M)$ modules is induced by a smooth isomorphism of vector bundles $F: E \rightarrow F$.
+- 2. The module $\mathfrak X(M)$ is finitely generated as a $C^\infty$ module over $M$.
+- Now, assume that $\mathfrak X(S^2)$ is a free module, so we get that
+  $\mathfrak X(S^2) \simeq \osum_i C^\infty(S^2)$.
+- By (2), we know that this
+  must be a finite direct sum for some finite $N$: $mathfrak X(S^2) = \oplus_i=1^N C^\infty(S^n)$.
+- But having $N$ different independent non-vanishing functions on $\mathbb S^2$ is the same as
+  clubbing them all together into a vector of $N$ values at each point at $S^2$.
+- So we get a smooth
+  function $S^2 \rightarrow \mathbb R^n$, AKA a section of the trivial bundle
+  $\underline{\mathbb R^n} \equiv S^2 \times \mathbb R^n$.
+- This means that we have managed to trivialize the vector bundle over the sphere if vector fields over $S^2$ were a free module.
+- Now, pick the element $S^2 \times \{ (1, 1, 1, 1, \dots) \} \in S^2 \times \mathbb R^n$. This is a nowhere
+  vanishing vector field over $S^2$. But such an object cannot exist, and hence vector fields over the
+  sphere cannot be free.
+
+
+
+#### References
+
+- [Smooth vector fields over $S^2$ is not a free module](https://math.stackexchange.com/questions/4052994/smooth-vector-fields-over-the-2-sphere-is-not-a-free-module/)
+- [Smooth vector fields over $S^2$ is a projective module](https://math.stackexchange.com/questions/4053091/explicitly-exhibit-that-vector-fields-over-the-2-sphere-is-a-projective-module)
+
+
+# Learning to talk with your hands
+
+I was intruged by [this HN thread](https://news.ycombinator.com/item?id=26382528)
+about learning to talk with your hands.
+
+# Lovecraftisms
+
+I recently binged a lot of Lovecraftian horror to get a sense of
+his writing style. Here's a big list of my favourite quotes:
+
+> His madness held no affinity to any sort recorded in even the latest and most
+> exhaustive of treatises, and was conjoined to a mental force which would have
+> made him a genius or a leader had it not been twisted into strange and
+> grotesque forms. 
+
+
+> seething vortex of time
+
+> Snatches of what I read and wrote would linger in my memory. There were
+> horrible annals of other worlds and other universes, and of stirrings of
+> formless life outside of all universes
+
+> clinging pathetically to the cold planet and burrowing to its horror-filled
+> core, before the utter end.
+
+> appalled at the measureless age of the fragments
+
+> fitted darkly into certain Papuan and Polynesian legends of infinite
+> antiquity
+
+> The condition and scattering of the blocks told mutely of vertiginous cycles
+> of time and geologic upheavals of cosmic savagery.
+
+> uttermost horrors of the aeon-old legendry
+
+
+> The moon, slightly past full, shone from a clear sky, and drenched the
+> ancient sands with a white, leprous radiance which seemed to me somehow
+> infinitely evil.
+
+> with the bloated, fungoid moon sinking in the west
+
+> how preserved through aeons of geologic convulsion I could not then
+> and cannot now even attempt to guess.
+
+> gently bred families of the town
+
+> could not escape the sensation of being watched from ambush on every hand by
+> sly, staring eyes that never shut.
+
+> and there was that constant, terrifying impression of other sounds--perhaps
+> from regions beyond life--trembling on the very brink of audibility.
+
+> little garden oasis of village-like antiquity where huge, friendly cats
+> sunned themselves atop a convenient shed.
+
+
+> Better it be left alone for the years to topple, lest things be stirred that ought to rest forevrr in the black abyss
+
+> It clearly belonged to some settled technique of infinite maturity and
+> perfection, yet that technique was utterly remote from any--Eastern or
+> Western, ancient or modern--which I had ever heard of or seen exemplified. It
+> was as if the workmanship were that of another planet.
+
+
+> intricate arabesques roused into a kind of ophidian animation. 
+
+> never was an organic brain nearer to utter annihilation in the chaos that
+> transcends form and force and symmetry.
+
+
+> away outside the galaxy and possibly beyond the last curved rim of
+> space. 
+
+
+> It was like the drone of some loathsome, gigantic insect ponderously shaped
+> into the articulate speech of an alien species
+
+> In time the ruts of custom and economic interest became so deeply cut in
+> approved places that there was no longer any reason for going outside them,
+> and the haunted hills were left deserted by accident rather than by design
+
+
+> There were, too, certain caves of problematical depth in the sides of the
+> hills; with mouths closed by boulders in a manner scarcely accidental, and
+> with more than an average quota of the queer prints leading both toward and
+> away from them
+
+> he fortified himself with the mass lore of cryptography
+
+> As before, the sides of the road showed a bruising indicative of the
+> blasphemously stupendous bulk of the horror
+
+> The dogs slavered and crouched close to the feet of the fear-numbed family. 
+
+> an added element of furtiveness in the clouded brain which subtly transformed
+> him from an object to a subject of fear
+
+
+> fireflies come out in abnormal profusion to dance to the raucous, creepily
+> insistent rhythms of stridently piping bull-frogs.
+
+> a seemingly limitless legion of whippoorwills that cried their endless
+> message in repetitions timed diabolically to the wheezing gasps of the dying
+> man
+
+> pandemoniac cachinnation which filled all the countryside
+
+> the left-hand one of which, in the Latin version, contained such monstrous
+> threats to the peace and sanity of the world
+
+> Their arrangement was odd, and seemed to follow the symmetries of some cosmic
+> geometry unknown to earth or the solar system
+
+> faint miasmal odour which clings about houses that have stood too long
+
+> I do not believe I would like to visit that country by night--at least not when the sinister stars are out
+
+> there was much breathless talk of new elements, bizarre optical properties,
+> and other things which puzzled men of science are wont to say when faced by
+> the unknown..
+
+> stealthy bitterness and sickishness, so that even the smallest bites induced a lasting disgust
+
+> plants of that kind ought never to sprout in a healthy world.
+
+
+>  everywhere were those hectic and prismatic variants of some diseased,
+>  underlying primary tone without a place among the known tints of earth.
+> 
+> In her raving there was not a single specific noun, but only verbs and
+> pronouns..
+
+
+> great bare trees clawing up at the grey November sky with a studied malevolence
+
+> There are things which cannot be mentioned, and what is done in common
+> humanity is sometimes cruelly judged by the law.
+
+
+> monstrous constellation of unnatural light, like a glutted swarm of corpse-fed
+> fireflies dancing hellish sarabands over an accursed marsh,
+
+
+> No traveler has ever escaped a sense of strangeness in those deep ravines, and
+> artists shiver as they paint thick woods whose mystery is as much of the
+> spirits as of the eye. 
+
+
+> We live on a placid island of ignorance in the midst of black seas of infinity,
+> and it was not meant that we should voyage far. The sciences, each straining in
+> its own direction, have hitherto harmed us little; but some day the piecing
+> together of dissociated knowledge will open up such terrifying vistas of
+> reality, and of our frightful position therein, that we shall either go mad
+> from the revelation...
+
+
+
+> form which only a diseased fancy could conceive
+
+> ... dreams are older than brooding Tyre, or the contemplative Sphinx, or
+> garden-girdled Babylon
+
+> iridescent flecks and striations resembled nothing familiar to geology or
+> mineralogy. 
+
+
+
+> miserable huddle of hut
+
+> Only poetry or madness could do justice to the noises heard by Legrasse's men
+> as they ploughed on through the black morass.
+
+> In his house at R'lyeh dead Cthulhu waits dreaming
+
+> all the earth would flame with a holocaust of ecstasy and freedom.
+
+> The aperture was black with a darkness almost material.
+
+# Hairy ball theorem from Sperner's Lemma (WIP)
+
+- Let $\Delta$ be an n-dimensional simplex with vertices $v_0, v_1, \dots, v_n$.
+- Let $\Delta_i$ be the face opposite to vertex $v_i$. That is, $\Delta_i$ is the face with all vertices except $v_i$. 
+- The boundary $\partial \Delta$ is the union of all the $n+1$ faces of $\Delta_i$ (i is from $0$ to $n$).
+- Let $\Delta$ be subdivided into smaller simplicies forming a simplciial complex $S$. 
+- **Sperner's lemma**: Let the vertices of $S$ be labelled by $\phi: S \rightarrow \Delta$ (that is,
+   it maps all vertices of the simplicial complex $S$ to one of the vertices of the simplex $\Delta$),
+   such that $v \in \Delta_i  \implies \phi(v) \neq i$. Then there is at least one $n$-dimensional simplices
+   of $S$ whose image is $\Delta$ (That is, there is at least one n-dimensional-sub-simplex $T \subseteq S$
+   such that vertices of $T$ are mapped to $\{0, 1, \dots, n\}$). More strongly, the number of such
+   sub-simplices is *odd*.
+- We can see that the map $\phi$ looks like some sort of retract that maps the complex $S$ to its boundary $\Delta$.
+  Then Sperner's lemma tells us that there is one "region" $T \subseteq S$ that gets mapped onto $\Delta$.
+
+#### 1D: Proof by cohomology
+
+- For 1D, assume we have a line with vertex set $V$ and edges $E$. Let the vertex at the
+  beginning be $v_0$ and the vertx at the end be $v_1$. That is, $\Delta \equiv \{v_0, v_1\}$
+  and $S \equiv (V, E)$ is a subcomplex of $\Delta$ --- that is, it subdivides the line $\Delta$
+  into smaller portions. Let $\phi: S \rightarrow \Delta$ be the labelling function.
+- create a function $f: \Delta \rightarrow \mathbb F_2$ that assigns $0$ to
+  $v_0$ and $+1$  to $v_1$: $f(v_0) \equiv 0; f(v_1) \equiv 1$. Use this to generate a
+  function on the full complex $F: S \rightarrow F_2; F(v) \equiv F(\phi(v))$.
+
+- From $F$, generate a function on the edges
+  $dF: E \rightarrow \F_2; dF(\overline{vw}) = F(w) + F(v)$. See that this scores such that
+  $dF(AB) = +1$, $dF(BA) = +1$, $dF(AA) = dF(BB) = 0$. (Recall that the arithmetic is over $F_2$)
+  So, $dF$ adds a one every time we switch from $A$ to $B$ or from $B$ to $A$.
+- However, we also see that $dF$ is generated from a "potential function "f". Hence we
+  have the identity $\sum_{e \in E} dF(e) = f(v_1) - f(v_0) = 1 - 0 = 1$. Hence,
+  we must have switched signs an odd number of times.
+- Since we start from $A$, that means we must have switched from $A$ to $B$ an odd number of times.
+
+
+#### 2D: Proof by search
+
+- Start from an edge in the bottom $ef$ labeled $BC$. We are looking for a simplex labeled $ABC$.
+- To start: Pick some vertex above $ef$, say $g$. If this is labeled $A$, we are done. If not, say this is
+  labeled $B$. So we get triangle $efg=ABB$. Launch our search procedure from this triangle $efb$.
+- Find the triangle adjacent to $efg$ along the edge $eg=AB$ (the other $AB$ edge, not the one we started with).
+  If this adjacent triangle $egh$ has $h=A$ we are done. If not, move to the triangle $egh$.
+- See that we will either find a triangle labeled $ABC$, or we will keep running into triangles labeled $ABB$.
+- We cannot ever *repeat* a triangle in our path; to repeat a triangle is to start with some edge $xy$
+  and then to pick a vertex $z$ such that $xyz=efg$ where $efg$ was already picked. This must mean that the
+  edge $ef$ was already picked. [WIP]
+  
+
+#### Proof of hairy ball by sperner's lemma [WIP]
+
+
+#### Why hairy ball is interesting: Projective modules 
+
+The reason I care about the hairy ball theorem has to do with vector fields.
+The idea is to first think of smooth vector fields over a smooth manifold.
+What algebraic structure do they have? Indeed, they are a vector space over $\mathbb R$.
+However, it is difficult to exhibit a basis. Naively, for each point $p \in M$, we would
+need a basis $T_p B \subset T_p M$ as a basis. This brings in issues of smoothness, etc.
+Regardless, it would be uncountable in dimension.
+
+On the other hand, let's say we allow ourselves to consider vector fields as *modules*
+over the ring of smooth functions on a manifold. That is, we can scale the vector
+field by a different value at each point.
+
+We can hope the ""dimension"" of the module is much smaller.
+So, for example, if we think of $\mathbb R^2$, given some vector field $V \equiv v_x \hat x + v_y \hat y$,
+the functions $v_x$ and $v_y$ allow us to write  basis! Create the vector fields $V_x \equiv \hat x$
+and $V_y \equiv \hat y$. Then any vector field $V$ can be written as $V = v_x V_x + v_y V_y$
+for functions $v_x, v_y$ in a unique way!
+
+
+However, as we know, **not all modules are free**. A *geometric* example of such
+a phenomenon is the module of vector fields on the _sphere_. By the hairy ball theorem,
+any vector field must vanish at at least a single point. So if we try to build a vector
+field pointing "rightwards" (analogous to $\hat x$) and "upwards" (analogous $\hat y$),
+these *will not be valid smooth vector fields*, because they don't vanish! So,
+we will be forced to take more than two vector fields. But when we do that,
+we will lose uniqueness of representation. However, all is not lost.
+The [Serre Swan theorem](https://en.wikipedia.org/wiki/Serre%E2%80%93Swan_theorem) 
+tells us that any such module of vector fields will be a *projective* module.
+The sphere gives us a module that is not free. I'm not sure how to show that it's projective.
+
+#### Simple example of projective module that is not free.
+
+- Let $K$ be a field. Consider $R \equiv K \times K$ as a ring, and let $M \equiv $K$
+  be a module on top of $R$.
+- $M$ is a projective module because $M \osum K \simeq R$
+  (that is, we can direct sum something onto it to get the some $\osum_i R$)
+- On the other hand, $M$ itself is not free because $M \neq \osum_i R$ for any $i$. Intuitively,
+  $M$ is "half an $R$" as $M \simeq K$ while $R \simeq K\times K$.
+- The geometric picture is that we have a space with two points $\{p, q\}$. We have a bundle
+  on top of it, with $M$ sitting on $p$ and $0$ (the trivial module) sitting on top of $q$.
+  When we restrict to $p$, we have a good bundle $M$.
+- But in total over thr space, we can't write the bundle as $M \times \{p, q\}$ because the
+  **fibers have different dimensions**! The dimension over $p$ is $dim(M) = 1$ while over $q$
+   is $dim(0) = 0$.
+- What we can do is to "complete" the bundle by adding a copy of $M$ over $q$, so that we can
+  then trivialise the bundle to write $M \times \{p, q\}$.
+- So, a projective module corresponds to a vector bundle because it locally is like a vector space,
+  but may not be trivialisable due to a difference in dimension, or compatibility, or some such.
+  
+
+- [Sperner's lemma, Brower's fixed point theorem, and cohomology](https://arxiv.org/pdf/0906.5193.pdf)
+
 # CS and type theory: Talks by vovodesky
 
 - [Talk 1: Computer Science and Homotopy Theory](https://www.youtube.com/watch?v=UvDeVqzcw4k)
@@ -441,7 +898,7 @@ I sometimes forget which is which. I now remember this as folows:
   and "smash", then "wedge" starts with a "w" which looks like `\/`so it should
   be a union.
 
-# Stable homotopy theory 1
+# Quotient topology
 
 I watched this for shits and giggles. I don't know enough topology at all, but it's
 fun to watch arbitrary math videos.
@@ -499,7 +956,7 @@ for which this map is continuous.
 > to quotient.
 
 
-#### CW Complexes and HEP
+# CW Complexes and HEP
 
 If $X$ is a CW complex and $A$ is a closed subcomplex, then it has the HEP.
 A closed subcomplex is a union of closed cells of $X$ such that $X$ is obtained
@@ -545,7 +1002,8 @@ Induction on lemma. base case is empty set.
   can add the new zero cell into the maximal element (why does it remain contractible? Fishy!)
 
 
-#### Stable homotopy theory
+# Stable homotopy theory
+
 We like stable homotopy groups
 because of the [Freudenthal suspension theorem](https://en.wikipedia.org/wiki/Freudenthal_suspension_theorem)
 which tells us that homotopy groups stabilise after many suspensions. 
@@ -568,7 +1026,7 @@ between these objects as fundamental.
 - [CW complexes](https://www.youtube.com/watch?v=XWg4LVbmm3M&list=PLN_4R2IuNuuTWD00k9BAB1fo0UldBHnME&index=21)
 - [Stable homotopy theory 1](https://www.youtube.com/watch?v=neC3HUyqlV0)
 
-# Tychonoff theorem
+# Tychonoff theorem (WIP) 
 
 # Simply connected spaces
 
@@ -586,6 +1044,10 @@ points from $x$ to $y$. Consider two paths from $x$ to $y$ called $\alpha, \beta
 Since $\beta^{-1} \circ \alpha \in \pi_1(x, x) = 1$, we have that 
 $\beta^{-1} \circ \alpha \simeq \epsilon_x$. [ie, path is homotopic to trivial
 path]. compose by $\beta$ on the left: This becomes $\alpha \simeq \beta$.
+
+- This is pretty cool to be, because it shows that a simply connected space is forced
+  to be path connected. Moreover, we can imagine a simply connected space as one we can
+  "continuously crush into a single point".
 
 
 # Finitely generated as vector space v/s algebra:
@@ -756,6 +1218,7 @@ proposing. So I used:
 
 This was used the create the PR that
 [improves the page up/page down to mimic vim behaviour](https://github.com/mawww/kakoune/pull/4074)
+
 # Intuition for why finitely presented abelian groups are isomorphic to product of cyclics
 
 - If we have a finitely presented group, we can write any element as a product
@@ -1104,13 +1567,35 @@ Define
 $$
 f(x) \equiv
 \begin{cases}
-0 & x = 0 \\
-e^{-1/x^2} & x \neq 0
+0 & x <= 0 \\
+e^{-1/x} & x > 0
 \end{cases}
 $$
 
 This is smooth, but is badly non-analytic. Any taylor expansion around $x=0$
-is going to be identically zero. 
+is going to be identically zero. So we're going to prove that it possesses
+all derivatives. This implies that the derivative at zero is equal to zero,
+because the left derivative is always equal to zero.
+
+- $f(x) \equiv e^{-1/x}$. Differentiate to get $f'(x) = e^{-1/x}/x^2$. Change
+  $y \equiv 1/x$ to get $y^2 e^{-y}$. As $y \mapsto \infty$, $e^{-y}$
+  decays more rapidly than $y^2$ increases, thus the limit is zero.
+  Hence, $f'(x) = 0$.
+- For higher derivatives, let $f^{(n)}(x) \equiv p_n(1/x) e^{-1/x}$ for some polynomial $p_n$.
+  See that $f^{(n+1)}(x) = d/dx [p_n(1/x) e^{-1/x})]$. To compute this, set $y \equiv 1/x$
+  and compute $d/dy [p_n(y) e^{-y] dy/dx$ which is:
+  
+\begin{aligned}
+& = d/dy [p_n(y) e^{-y] dy/dx \\
+& = p_n'(y) e^{-y} + p_n(y) (- e^{-y}) \cdot 1/x^2 \\
+& = e^{-1/x} (p_n'(1/x) - p_n(1/x)) 1/x^2 \\
+& = e^{-1/x} (q_n'(1/x) - q_n(1/x)) \\
+& \text{let $r_{n+1}(x) (\equiv q_n'(t) - q_n(t))t^2$} \\
+& = r_{n+1}(1/x) e^{-1/x}
+\end{aligned}
+
+- So we can write higher derivatives too as $poly(1/x)$ times $exp(-1/x)$ which also decays
+  rapidly to $0$.
 
  - [Flat functions on wikipedia](https://en.wikipedia.org/wiki/Flat_function)
 
@@ -9990,35 +10475,39 @@ trivial cokernel, but globally, we will have non-trivial cokernel.
 #### Exponential sheaf sequence
 
 
-```
-0  --> 2πiZ -[α:incl]-> O --[β:exp(.)]--> O* --> 0
-```
+$$
+\begin{aligned}
+0  
+\rightarrow 2\pi i \mathbb Z 
+\xrightarrow{\alpha: \texttt{incl}} \mathfrak O 
+\xrightarrow{\beta:exp(\cdot)} \mathfrak O^* 
+\rightarrow 0
+\end{aligned}
 
-- `O` is the sheaf of the additive group of holomorphic functions. 
-  `O*` is the sheaf of the group of non-zero holomorphic functions. 
-- `α`, which embeds `2πin ∈2πiZ` as a constant function `f(_) = 2πin` is
+- $\mathfrak O$ is the sheaf of the additive group of holomorphic functions. 
+  $\mathfrak O^*$ is the sheaf of the group of non-zero holomorphic functions. 
+- $\alpha$, which embeds $2\pi n \in 2\pi i \mathbb Z$ as a constant function $f_n(\cdot) \equiv  2 \pi i n$ is
   injective.
-- `e^(2πiZ) = 1`. So we have that the composition of the two maps `β.α` is
-  the zero map, mapping everything in `2πiZ` to the identity of `O*`.
+- $\beta(\alpha(n)) = e^{2 \pi i n} = 1$. So we have that the composition of the two maps $\beta \circ \alpha$ is
+  the zero map (multiplicative zero), mapping everything in $2\pi i \mathbb Z$ to the identity of $\mathfrak O^*$.
   Thus, `d^2 = 0`, ensuring that this is an exact sequence.
 - Let us consider the local situation. At each point `p`, we want to show
-  that `β` is surjective. Pick any `g ∈ O*p`. We have an open neighbourhood `Ug`
-  where `g ≠ 0`. take the logarithm of `g` to pull back `g ∈ O*` to `log g ∈ O`.
-  Thus, `β` is surjective at each local point `p`.
-- On the other hand, the function `h(z) = z` cannot be in `O*`. If it were,
-  then there exists a homolorphic function called `l ∈ O` [for `log`] such that
-  `exp(l(z)) = h(z) = z` everywhere on the complex plane. 
+  that $\beta$ is surjective. Pick any $g \in \mathfrak O^*_p$. We have an open neighbourhood $U_g$
+  where $g \neq 0$, since continuous functions are locally invertible.
+  Take the logarithm of $g$ to pull back $g \in O^*_p$ to $\log g \in O_p$.
+  Thus, $\beta: O \rightarrow O^p$ is surjective at each local point $p$, since every element 
+  has a preimage.
+- On the other hand, the function $h(z) \equiv z$ cannot be in $O^*$ If it were,
+  then there exists a homolorphic function called $l \in O$ [for $\log$] such that
+  $\exp(l(z)) = h(z) = z$ everywhere on the complex plane. 
 - Assume such a function exists. Then it must be the case that
-  `d/dz exp(l(z)) = d/dz(z) = 1`. Thus, `exp(l(z)) l'(z) = z l'(z) = 1`
-  [use the fact that `exp(l(z)) = z`]. This means that `l'(z) = 1/z`.
-- Now, by integrating in a closed loop of `e^iθ` we have `∮l'(z) = l(1) - l(1) = 0`.
-- We also have that `∮l'(z) = ∮1/z = 2πi`.
-- This implies that `0 = 2πi` which is absurd.
-- Hence, we cannot have a function whose exponential gives `h(z) = z` everywhere.
+  $d/dz exp(l(z)) = d/dz(z) = 1$. Thus, $exp(l(z)) l'(z) = z l'(z) = 1$
+  [use the fact that $exp(l(z)) = z$]. This means that $l'(z) = 1/z$.
+- Now, by integrating in a closed loop of $e^{i \theta}$` we have `\oint l'(z) = l(1) - l(1) = 0$.
+- We also have that $\oint l'(z) = \oint 1/z = 2\pi i$.
+- This implies that $0 = 2\pi i$ which is absurd.
+- Hence, we cannot have a function whose exponential gives $h(z) = z$ everywhere.
 - Thus, the cokernel is nontrivial globally.
-
-  
-
 
 
 # Von neumann: foundations of QM
@@ -10266,7 +10755,7 @@ Assume $R$ is Noetherian.
   of $Spec(R)$ have height 1.
 - Thus, every point of $Spec(R)$ is maximal, as there are no "higher points"
   that cover them.
-- Hence, every principal ideal is maximal.
+- Hence, in a PID, every prime ideal is maximal.
 
 In a drawing, it would look like this:
 
