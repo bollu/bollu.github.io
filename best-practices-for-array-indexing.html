@@ -14,7 +14,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-posi
 <span class='centered'>to eliminate these.
 <h4><a id=rule-1-half-open-intervals href='#rule-1-half-open-intervals'> § </a><span class='centered'> Rule 1: Half-open intervals</h4>
 <span class='centered'>Intervals are only represented as <code>[begin, past-the-end)</code> That is, we start at
-<span class='centered'><code>begin</code>, include numbers <code>begin+1, begin+2, ...</code>, upto, <b><span class='centered'>but excluding</b>
+<span class='centered'><code>begin</code>, include numbers <code>begin+1, begin+2, ...</code>, upto, <i><span class='centered'><i><span class='centered'>but excluding</i></i>
 <span class='centered'><code>past-the-end</code>.
 <span class='centered'>So, for example, <code>[0, 3) = [0, 1, 2]</code>, while <code>[0, 1) = [0]</code>, and <code>[0, 0) = []</code>.
 <span class='centered'>I am not allowed to use <code>[begin, end]</code>, or <code>(before-begin, past-the-end)</code> or
@@ -42,7 +42,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-posi
 <span class='centered'>makes on aware of when the loop runs; the latter of when the loop quits.
 <span class='centered'>I wish to be cognizant of the precisely when a loop quits. 
 <span class='centered'>On writing <code>i != past-the-end</code>, I know that we quit as soon as we
-<span class='centered'><b><span class='centered'>get past the end</b>. This feels much clearer than being aware that the loops
+<span class='centered'><i><span class='centered'><i><span class='centered'>get past the end</i></i>. This feels much clearer than being aware that the loops
 <span class='centered'>runs as long as <code>i < n</code>.
 <h4><a id=half-open-indexing-length-index href='#half-open-indexing-length-index'> § </a><span class='centered'> half-open indexing: length <-> index</h4>
 <span class='centered'>The first advantage of these conventions is that 
@@ -51,13 +51,13 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-posi
 <span class='centered'>indexing-based-thoughts.
 <h4><a id=half-open-indexing-0-length href='#half-open-indexing-0-length'> § </a><span class='centered'> half-open indexing: <code>0</code> length</h4>
 <span class='centered'>The second almost trivial point is that <code>[begin, begin+length)</code> holds when
-<span class='centered'><code>length</code> is <b><span class='centered'>zero</b>. That is,
+<span class='centered'><code>length</code> is <i><span class='centered'><i><span class='centered'>zero</i></i>. That is,
 <pre><code><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> begin<span class="token punctuation">;</span> i <span class="token operator">!=</span> begin <span class="token operator">+</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token operator">++</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">}</span>
 </code></pre>
 <span class='centered'>does the right thing and iterates over no elements.
 <h4><a id=half-open-indexing-ve-length href='#half-open-indexing-ve-length'> § </a><span class='centered'> half-open indexing: <code>-ve</code> length</h4>
 <span class='centered'>The third neat point is that <code>[begin, begin+length)</code> holds even when <code>length</code>
-<span class='centered'>is <b><span class='centered'>negative</b>. Hence, if we want to index the last two elements of an
+<span class='centered'>is <i><span class='centered'><i><span class='centered'>negative</i></i>. Hence, if we want to index the last two elements of an
 <span class='centered'>array, we recall that we start from index <code>(n-1)</code>, and we want a segment
 <span class='centered'>of length <code>-2</code> from there, so our loop is:
 <pre><code><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">!=</span> <span class="token punctuation">(</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>

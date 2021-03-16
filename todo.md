@@ -1,3 +1,97 @@
+- Laziness and linear types mix in complicated ways.
+
+- [Spaceship earth](https://en.wikipedia.org/wiki/Spaceship_Earth)
+> Spaceship Earth (or Spacecraft Earth or Spaceship Planet Earth) is a
+> worldview encouraging everyone on Earth to act as a harmonious crew working
+> toward the greater good.
+> We travel together, passengers on a little space ship, dependent on its
+> vulnerable reserves of air and soil; all committed for our safety to its
+> security and peace; preserved from annihilation only by the care, the work,
+> and, I will say, the love we give our fragile craft. We cannot maintain it
+> half fortunate, half miserable, half confident, half despairing, half
+> slave—to the ancient enemies of man—half free in a liberation of resources
+> undreamed of until this day. No craft, no crew can travel safely with such
+> vast contradictions. On their resolution depends the survival of us all.
+
+
+- [Dialog can change people's minds](https://www.independent.co.uk/news/world/americas/kkk-klu-klux-klan-members-leave-black-man-racism-friends-convince-persuade-chicago-daryl-davis-a7489596.html)
+> A black man says he has accidentally persuaded around 200 white racists to
+> abandon the Klu Klux Klan simply by befriending them.  Blues musician Daryl
+> Davis has travelled the US for around three decades, actively seeking out white
+> supremacists as a hobby.  In a new documentary, out this month, the 58-year-old
+> can be seen sitting down beside and joking with cloaked members.  “It’s a
+> wonderful thing when you see a light bulb pop on in their heads or they call
+> you and tell you they are quitting,” said the author, actor and lecturer.  “I
+> never set out to convert anyone in the Klan. I just set out to get an answer to
+> my question: ‘How can you hate me when you don’t even know me’.
+
+
+
+- [Jazz standard](https://en.wikipedia.org/wiki/Jazz_standard)
+- [Pannini Projection](http://tksharpless.net/vedutismo/Pannini/)
+- [Hunter versus farmer hypothesis](https://en.wikipedia.org/wiki/Hunter_vs._farmer_hypothesis)
+> This hypothesis proposes that ADHD represents a lack of adaptation of members
+> of hunter-gatherer societies to their transformation into farming societies.
+> Hartmann developed the idea first as a mental model after his own son was
+> diagnosed with ADHD, stating, "It's not hard science, and was never intended to
+> be.". However, more recent molecular and clinical research has given support
+> to a genetic deflection ”theory” of ADHD arising from evolutionary adaptation
+> Hartmann notes that most or all humans were nomadic hunter-gatherers for
+> hundreds of thousands of years, but that this standard gradually changed as
+> agriculture developed in most societies, and more people worldwide became
+> farmers. Over many years, most humans adapted to farming cultures, but Hartmann
+> speculates that people with ADHD retained some of the older hunter
+> characteristics.  A key component of the hypothesis is that the proposed "hyperfocus" aspect of
+> ADHD is a gift or benefit under appropriate circumstances. The hypothesis also
+> explains the distractibility factor in ADHD individuals and their short
+> attention span for subject matter that does not interest the individual (which
+> may or may not trigger hyperfocus), along with various other characteristics
+> such as difficulty adhering to social norms, poor planning and organizing
+> ability, distorted sense of time, impatience, attraction to variety or novelty
+> or excitement, and impulsiveness.[citation needed] It is argued that in the
+> hunter-gatherer cultures that preceded farming societies, hunters needed
+> hyperfocus more than gatherers.
+
+
+- [Gender Differences in Personality and Interests: When, Where, and Why?](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1751-9004.2010.00320.x)
+> How big are gender differences in personality and interests, and how stable are
+> these differences across cultures and over time? To answer these questions, I
+> summarize data from two meta‐analyses and three cross‐cultural studies on
+> gender differences in personality and interests. Results show that gender
+> differences in Big Five personality traits are ‘small’ to ‘moderate,’ with the
+> largest differences occurring for agreeableness and neuroticism (respective
+> ds = 0.40 and 0.34; women higher than men). In contrast, gender differences on
+> the people–things dimension of interests are ‘very large’ (d = 1.18), with
+> women more people‐oriented and less thing‐oriented than men. Gender differences
+> in personality tend to be larger in gender‐egalitarian societies than in
+> gender‐inegalitarian societies, a finding that contradicts social role theory
+> but is consistent with evolutionary, attributional, and social comparison
+> theories. In contrast, gender differences in interests appear to be consistent
+> across cultures and over time, a finding that suggests possible biologic
+> influences.
+
+
+- [Complex analysis: A geometric viewpoint](https://www.maa.org/press/maa-reviews/complex-analysis-the-geometric-viewpoint)
+  Teaches complex analysis using diffgeo.
+- [Can't we talk?](https://web.archive.org/web/20090707084209/http://raysweb.net/poems/articles/tannen.html)
+> A married couple was in a car when the wife turned to her husband and asked,
+> "Would you like to stop for a coffee?" "No, thanks," he answered truthfully.
+> So they didn't stop.  The result? The wife, who had indeed wanted to stop,
+> became annoyed because she felt her preference had not been considered. The
+> husband, seeing his wife was angry, became frustrated. Why didn't she just
+> say what she wanted?  Unfortunately, he failed to see that his wife was
+> asking the question not to get an instant decision, but to begin a
+> negotiation. And the woman didn't realize that when her husband said no, he
+> was just expressing his preference, not making a ruling. When a man and woman
+> interpret the same interchange in such conflicting ways, it's no wonder they
+> can find themselves leveling angry charges of selfishness and obstinacy at
+> each other.  As a specialist in linguistics, I have studied how the
+> conversational styles of men and women differ. We cannot lump all men or all
+> women into fixed categories. But the seemingly senseless misunderstandings
+> that haunt our relationships can in part be explained by the different
+> conversational rules by which men and women play.
+
+
 - [Semantics of type theory](https://www.springer.com/gp/book/9781461267577)
 - Selected papers on Automath.
 - [Higher dimensional type theory](https://favonia.org/courses/hdtt2020/)

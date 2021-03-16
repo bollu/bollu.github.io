@@ -136,7 +136,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-posi
 <span class='centered'><code>GHC</code> (the Glasgow haskell compiler) internally uses multiple intermediate
 <span class='centered'>representations, in order of original, to what is finally produced:
 <ul><li><span class='centered'><span class='centered'> Haskell (the source language)</li><li><span class='centered'><span class='centered'> Core (a minimal set of constructs to represent the source language)</li><li><span class='centered'><span class='centered'> STG (Spineless tagless G-machine, a low-level intermediate representation that accurately captures non-strict evaluation)</li><li><span class='centered'><span class='centered'> C-- (A C-like language with GHC-specific customization to support platform<span class='centered'>independent code generation).</li><li><span class='centered'><span class='centered'> Assembly</li></ul>
-<span class='centered'>Here, I will show how to lower simple non-strict programs from a <b><span class='centered'>fictitous</b> <code>Core</code> like language down to <code>C</code> , while skipping <code>STG</code>, since it doesn't
+<span class='centered'>Here, I will show how to lower simple non-strict programs from a <i><span class='centered'><i><span class='centered'>fictitous</i></i> <code>Core</code> like language down to <code>C</code> , while skipping <code>STG</code>, since it doesn't
 <span class='centered'>really add anything to the high-level discussion at this point.
 <h4><a id=our-example-of-compiling-non-strictness href='#our-example-of-compiling-non-strictness'> § </a><span class='centered'> Our example of compiling non-strictness</h4>
 <span class='centered'>Now, we need a <i><span class='centered'>strategy</i> to compile the non-strict version of our program.
@@ -204,8 +204,7 @@ int main() {
 <span class='centered'>I've played around with this value a little bit, and have found that the modern
 <span class='centered'>stack size is quite large: IIRC, It allowed me to allocate ~<code>26 GB</code>. I believe
 <span class='centered'>that the amount it lets you allocate is tied directly to the amount of physical
-<span class='centered'>memory + swap you have. I'm not too sure, however. So, [for my haskell
-<span class='centered'>compiler, <code>sxhc</code>](https://github.com/bollu/simplexhc-cpp.git), I am considering
+<span class='centered'>memory + swap you have. I'm not too sure, however. So, <a href=https://github.com/bollu/simplexhc-cpp.git><span class='centered'>for my haskell compiler, <code>sxhc</code></a>, I am considering
 <span class='centered'>cheating and just using the stack directly.
 <span class='centered'>Code for the same example (with the K combinator) is provided here.
 <h4><a id=executable-replit href='#executable-replit'> § </a><span class='centered'> Executable <code>repl.it</code>:</h4>

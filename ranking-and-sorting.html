@@ -11,18 +11,18 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-posi
 <span class='centered'>We we want to sort an arrray <code>xs</code> and write the results into an array <code>ys</code>.
 <span class='centered'>In both cases, the invariant to be satisfied is that <code>ys</code> is <code>xs</code> in ascending
 <span class='centered'>order. I'll be considering two broad ways to implement such a thing:
-<ul><li><span class='centered'><span class='centered'> 1. <b><span class='centered'>(RANK)</b> Index straight into <code>ys</code>, reindexed into <code>xs</code>. We name the reindexing<span class='centered'>array as <code>rs</code> (<code>rs</code> for <i><span class='centered'>ranks</i>).</li></ul>
+<ul><li><span class='centered'><span class='centered'> 1. <i><span class='centered'><i><span class='centered'>(RANK)</i></i> Index straight into <code>ys</code>, reindexed into <code>xs</code>. We name the reindexing<span class='centered'>array as <code>rs</code> (<code>rs</code> for <i><span class='centered'>ranks</i>).</li></ul>
 <pre><code><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> N<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
    ys<span class="token punctuation">[</span>rs<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> xs<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<ul><li><span class='centered'><span class='centered'> 2. <b><span class='centered'>(SELECT)</b> Reindex into <code>ys</code>, index straight into <code>xs</code>. <span class='centered'>We name the reindexing array <code>ss</code> (<code>ss</code> for <i><span class='centered'>selects</i>).</li></ul>
+<ul><li><span class='centered'><span class='centered'> 2. <i><span class='centered'><i><span class='centered'>(SELECT)</i></i> Reindex into <code>ys</code>, index straight into <code>xs</code>. <span class='centered'>We name the reindexing array <code>ss</code> (<code>ss</code> for <i><span class='centered'>selects</i>).</li></ul>
 <pre><code><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> N<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
    ys<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> xs<span class="token punctuation">[</span>ss<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <h4><a id=defnition-of-rank href='#defnition-of-rank'> § </a><span class='centered'> Defnition of rank</h4>
-<span class='centered'>In the case of <b><span class='centered'>(RANK)</b>, the specification is that the rank of an element <code>e</code>
+<span class='centered'>In the case of <i><span class='centered'><i><span class='centered'>(RANK)</i></i>, the specification is that the rank of an element <code>e</code>
 <span class='centered'>is the number of elements that are:
 <ol><li><span class='centered'><span class='centered'> less than <code>e</code>.</li><li><span class='centered'><span class='centered'> equal to <code>e</code> but occur before <code>e</code>.</li></ol>
 <span class='centered'>This ensures that rank is a <i><span class='centered'>permutation</i>: that is, every element <code>e</code> is given
@@ -56,7 +56,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-posi
 <span class='centered'>I declined from doing so because I wanted to show the lex-ordering
 <span class='centered'>interpretation of <code>rank</code> will be be useful later.
 <h4><a id=definition-of-select href='#definition-of-select'> § </a><span class='centered'> Definition of select</h4>
-<span class='centered'>For <b><span class='centered'>(SELECT)</b>, we'll need to think a little harder. Let's try to rewrite
+<span class='centered'>For <i><span class='centered'><i><span class='centered'>(SELECT)</i></i>, we'll need to think a little harder. Let's try to rewrite
 <span class='centered'>our way to glory:
 <ul><li><span class='centered'><span class='centered'> 1. From definition of rank:</li></ul>
 <pre><code>ys<span class="token punctuation">[</span>rs<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> xs<span class="token punctuation">[</span>i<span class="token punctuation">]</span>

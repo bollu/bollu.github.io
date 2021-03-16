@@ -36,7 +36,7 @@ rotations don't "look normal". Alternatively, one can try to consider translate-
 versus rotate-translate.
 
 
-<img src="./static/cw/semidirect-product/rotate-translate.png"/>
+<img src="./static/semidirect-product/rotate-translate.png"/>
 - First rotating by $r$ and then translating by $t$ along the x-axis
   has the same effect as first translating by $t'$ at 45 degrees to the x-axis,
   and then rotating by the **same** r. 
@@ -45,7 +45,7 @@ versus rotate-translate.
   translation `t''` and some other rotation `r''` such that `t''; r''` (`t''` first, `r''` next)
   has the same effect as `r;t` (`r` first, `t` next)?
 
-<img src="./static/cw/semidirect-product/translate-rotate.png"/>
+<img src="./static/semidirect-product/translate-rotate.png"/>
 
 - First let's translate by $t$ along the x-axis and then rotating by $r$.
   Now let's think, if we wanted to rotate and then translate, what rotation would
@@ -92,8 +92,8 @@ Now, the physical space $X/O$ is acted upon by some
 group $G$.  If we want to "undo the quotienting" to have $G$ act on all of $X$, then we need to construct $G \ltimes O$.
 $G$ is normal here because $O$ already knows how to act on the whole space; $G$ does not, so $O$ needs to "guide" the action of
 $G$ by acting on it.  The data needed to construct $G \ltimes O$ is a *connection*.
-Topologically, we have $X \rightarrow X/O$ and $G \curverightarrow X/O$. We want to extend
-this to $(G \ltimes O) \curverightarrow X$. We imagine this as:
+Topologically, we have $X \rightarrow X/O$ and $G \curvearrowright X/O$. We want to extend
+this to $(G \ltimes O) \curvearrowright X$. We imagine this as:
 
 ```
 *1| #1 | @1  X
@@ -434,7 +434,7 @@ f(x) - f(x_0) =  (x - x_0) g[1](x) \\
 \end{aligned}
 $$
 
-where we define $g[1](x) \equiv \int_0^1 df((1 - t)x_0) + tx)}{dx} dt $ where the $g[1](x)$ witnesses
+where we define $g[1](x) \equiv \int_0^1 \frac{df((1 - t)x_0) + tx)}{dx} dt $ where the $g[1](x)$ witnesses
 that we have the first derivative of $f$ in its expression. By rearranging, we get:
 
 $$
@@ -541,10 +541,12 @@ rows and columns **outside** of $j$.
 If we compute $det(Z)$ by expanding along the $j$ row, we get:
 
 $$
+\begin{aligned}
 &det(Z) = (-1)^{j+k} Z[j, k] det(Z'[k, j]) \\
 &det(Z) = (-1)^{j+k} A[j, k] det(Z'[k, j]) \\
 &det(Z) = (-1)^{j+k} A[j, k] det(A'[k, j]) \\
 &= D[i, j]
+\end{aligned}
 $$
 
 But $Z$ has a repeated row: $A[j, :] = A[i, :]$ and $i \neq j$. Hence, $det(Z) = 0$.
@@ -561,7 +563,7 @@ Hence, this means that $A adj(A) = det(A) I$.
 #### Determinant in terms of exterior algebra
 
 For a vector space $V$ of dimension $n$, Given a linear map $T: V \rightarrow V$, define
-a map $\Lambda T: \Lambda^n  V \rightarorw \Lambda^n V$ such that
+a map $\Lambda T: \Lambda^n  V \rightarrow \Lambda^n V$ such that
 $\Lambda T(v_1 \wedge v_2 \dots \wedge v_n) \equiv T v_1 \wedge T v_2 \dots \wedge T v_n$.
 Since the space $\Lambda^n V$ is one dimension, we will need one scalar $k$ to define
 $T$: $T(v_1 \wedge \dots \wedge v_n) = k v_1 \wedge \dots \wedge v_n$. It is either a theorem
@@ -791,7 +793,7 @@ $$
 \begin{aligned}
 \vec a \wedge (\vec a x + \vec b y) = \vec a \wedge \vec c \\
 \vec a \wedge \vec b y = \vec a \wedge \vec c \\
-y = \frac{\vec a \wedge \vec c}{\frac \vec a \wedge \vec b} \\
+y = \frac{\vec a \wedge \vec c}{\vec a \wedge \vec b} \\
 y =
 \frac{\begin{vmatrix}
 a[1] & a[2] \\
@@ -838,9 +840,9 @@ for the point $p \in S^2$, we have the vector $p$ as being normal to $T_p S^2$ a
 So the normal bundle is of the form:
 
 $$
-\mathfrak N \equiv \{ \{ s \} \times \{ \lambda s : \lambda in \mathbb R \}  : s \in S^2 \}
+\mathfrak N \equiv \{ \{ s \} \times \{ \lambda s : \lambda in \mathbb R \}  : s \in \mathbb S^2 \}
 $$
-- If we think of the trivial bundle, that is of the form $Tr \equiv \{ \{s \} \times \mathbb R : s \n \S^2 \}$.
+- If we think of the trivial bundle, that is of the form $Tr \equiv \{ s \} \times \mathbb R : s \in \mathbb S^2 \}$.
 - We want to show an isomorphism between $N$ and $T$.
 - Consider a map $f: N \rightarrow Tr$ such that $f((s, n)) \equiv (s, ||n||)$. The inverse
   is $g: Tr \rightarrow N$ given by $g((s, r)) \equiv (s, r \cdot s)$. It's easy to check that these
@@ -858,7 +860,7 @@ $$
   $C^\infty(M)$ modules is induced by a smooth isomorphism of vector bundles $F: E \rightarrow F$.
 - 2. The module $\mathfrak X(M)$ is finitely generated as a $C^\infty$ module over $M$.
 - Now, assume that $\mathfrak X(S^2)$ is a free module, so we get that
-  $\mathfrak X(S^2) \simeq \osum_i C^\infty(S^2)$.
+  $\mathfrak X(S^2) \simeq \oplus_i C^\infty(S^2)$.
 - By (2), we know that this
   must be a finite direct sum for some finite $N$: $mathfrak X(S^2) = \oplus_i=1^N C^\infty(S^n)$.
 - But having $N$ different independent non-vanishing functions on $\mathbb S^2$ is the same as
@@ -1084,7 +1086,7 @@ his writing style. Here's a big list of my favourite quotes:
   function on the full complex $F: S \rightarrow F_2; F(v) \equiv F(\phi(v))$.
 
 - From $F$, generate a function on the edges
-  $dF: E \rightarrow \F_2; dF(\overline{vw}) = F(w) + F(v)$. See that this scores such that
+  $dF: E \rightarrow F_2; dF(\overline{vw}) = F(w) + F(v)$. See that this scores such that
   $dF(AB) = +1$, $dF(BA) = +1$, $dF(AA) = dF(BB) = 0$. (Recall that the arithmetic is over $F_2$)
   So, $dF$ adds a one every time we switch from $A$ to $B$ or from $B$ to $A$.
 - However, we also see that $dF$ is generated from a "potential function "f". Hence we
@@ -1143,9 +1145,9 @@ The sphere gives us a module that is not free. I'm not sure how to show that it'
 
 - Let $K$ be a field. Consider $R \equiv K \times K$ as a ring, and let $M \equiv K$
   be a module on top of $R$.
-- $M$ is a projective module because $M \osum K \simeq R$
-  (that is, we can direct sum something onto it to get the some $\osum_i R$)
-- On the other hand, $M$ itself is not free because $M \neq \osum_i R$ for any $i$. Intuitively,
+- $M$ is a projective module because $M \oplus K \simeq R$
+  (that is, we can direct sum something onto it to get the some $\oplus_i R$)
+- On the other hand, $M$ itself is not free because $M \neq \oplus_i R$ for any $i$. Intuitively,
   $M$ is "half an $R$" as $M \simeq K$ while $R \simeq K\times K$.
 - The geometric picture is that we have a space with two points $\{p, q\}$. We have a bundle
   on top of it, with $M$ sitting on $p$ and $0$ (the trivial module) sitting on top of $q$.
@@ -1387,7 +1389,7 @@ have
   2-to-1 map. We can try to define an inverse regardless.
 - We do define a "square root" if we want. Cut out a half-line $[0, -infty)$
   called $B$ for branch cuts. We get two functions on 
-  $q_+, q_-: \mathbb C\B \rightarrow \mathbb C^\times$, such that $p(q_+(z)) = z$.
+  $q_+, q_-: \mathbb C - B  \rightarrow \mathbb C^\times$, such that $p(q_+(z)) = z$.
   Here, we have $q_- = - q_+$.
 - The point of taking the branch cut is to preserve simply connectedness. $\mathbb C^\times$
   is not simply connected, while $\mathbb C/B$ is simply connected! 
@@ -1407,10 +1409,10 @@ have
 
 - A subset $U \subset X$ is a called as an **elementary neighbourhood**
   if there is a discrete set $F$ and a homeomorphism $h: p^{-1}(U) \rightarrow U \times F$
-  such that $p|_{p^{-1}(U)(y) = fst(h)$ or $p|_{p^{-1}(U) = pr_1 \circ h$.
+  such that $p|_{p^{-1}(U)}(y) = fst(h)$ or $p|_{p^{-1}(U)} = pr_1 \circ h$.
 - [Alternative definition](https://www.math.wisc.edu/~maxim/751f14w6.pdf)
   A subset $U \subset X$ is called as **evenly covered/elementary nbhd** if 
-  $p^{-1}(U) = \squp_\alpha V_\alpha$ where the $V_\alpha$ are disjoint and open, and
+  $p^{-1}(U) = \sqcup \alpha V_\alpha$ where the $V_\alpha$ are disjoint and open, and
   $p|_{V_\alpha} : V_\alpha \rightarrow U$ is a homeomorphism for all $\alpha$.
 - An elementary neighbourhood is the region where we have the local inverses
   (the complement of a branch cut).
@@ -1493,7 +1495,7 @@ that this path lift is **unique**
 
 Let $p: Y \rightarrow X$ be a covering space. Let $T$ be a connected space
 Let $F: T \rightarrow X$ be a continuous map (for us, $T \simeq [0, 1]$).
-Let $F_1, F_2: T \rightarrow Y$ be lifts of $F$ ($p \circ F_1 = F$, $p \circF_2 = F$).
+Let $F_1, F_2: T \rightarrow Y$ be lifts of $F$ ($p \circ F_1 = F$, $p \circ F_2 = F$).
 We will show that $F_1 = F_2$ iff the lifts are equal for some $t \in $T.
 
 
@@ -1546,7 +1548,7 @@ Suppose $p: Y \rightarrow X$ is a covering map and $\gamma_s$ is a homotopy
 of paths rel. endpoints ($\gamma_s(0)$ and $\gamma_s(1)$ are independent of $s$ /
 endpoints are fixed throughout the homotopy). Then there exists for each 
 lift $\gamma'_0 : [0, 1] \rightarrow Y$ of $\gamma_0:[0,1] \rightarrow X$
-(ie, $\p \circ \gamma'_0 = gamma_0$), a completion
+(ie, $p \circ \gamma'_0 = gamma_0$), a completion
 of the lifted homotopy $\gamma'_s: [0, 1] \rightarrow Y$ (ie, $p \circ gamma'_s = gamma_s$).
 Moreover, this lifted homotopy is rel endpoints: ie, the endpoints of $gamma'$ are
 independent of $s$.
@@ -1667,7 +1669,7 @@ such that $F_t|A = h_t$.
 
 The only part I don't know where to define $F$ on is the new added $e$ portion.
 So I need to construct $H$ on $e \times [0, 1]$. Use the previous map to get to
-$e \times [0, 1] \cp (e \times \{0\})$. This is in the domain of $F_0$ or $h_t$,
+$e \times [0, 1] \cup (e \times \{0\})$. This is in the domain of $F_0$ or $h_t$,
 and thus we are done.
 
 ##### CW Complexes have HEP
@@ -2269,11 +2271,11 @@ because the left derivative is always equal to zero.
   Hence, $f'(x) = 0$.
 - For higher derivatives, let $f^{(n)}(x) \equiv p_n(1/x) e^{-1/x}$ for some polynomial $p_n$.
   See that $f^{(n+1)}(x) = d/dx [p_n(1/x) e^{-1/x})]$. To compute this, set $y \equiv 1/x$
-  and compute $d/dy [p_n(y) e^{-y] dy/dx$ which is:
+  and compute $d/dy [p_n(y) e^{-y}] dy/dx$ which is:
 
 $$
 \begin{aligned}
-& = d/dy [p_n(y) e^{-y] dy/dx \\
+& = d/dy [p_n(y) e^{-y}] dy/dx \\
 & = p_n'(y) e^{-y} + p_n(y) (- e^{-y}) \cdot 1/x^2 \\
 & = e^{-1/x} (p_n'(1/x) - p_n(1/x)) 1/x^2 \\
 & = e^{-1/x} (q_n'(1/x) - q_n(1/x)) \\

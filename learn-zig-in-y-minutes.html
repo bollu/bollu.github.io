@@ -8,37 +8,46 @@ a:active { color: #1a73e8; text-decoration: none; }
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
 pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }ul, ol { list-style-position: inside; padding-left: 0; }</style></head><body><div class='container'><h2><a id=learn-zig-in-y-minutes href='#learn-zig-in-y-minutes'> § </a><span class='centered'> Learn Zig in Y minutes</h2>
+<ul><li><span class='centered'><span class='centered'> imports:</li></ul>
 <pre><code>const std = @import("std");
-
-// global variables.
+</code></pre>
+<ul><li><span class='centered'><span class='centered'> globals:</li></ul>
+<pre><code>// global variables.
 const x = 1234;
-
-//! Top level comments are setup using //!
+</code></pre>
+<ul><li><span class='centered'><span class='centered'> comments:</li></ul>
+<pre><code>//! Top level comments are setup using //!
 //! This module provides functions for retrieving the current date and
 //! time with varying degrees of precision and accuracy. It does not
 //! depend on libc, but will use functions from it if available.
-pub fn main() !void {
+</code></pre>
+<ul><li><span class='centered'><span class='centered'> main:</li></ul>
+<pre><code>pub fn main() !void {
     const stdout = std.io.getStdOut().writer();
     try stdout.print("Hello, {}!\n", .{"world"});
     // Comments in Zig start with "//" and end at the next LF byte (end of line).
     // The below line is a comment, and won't be executed.
-
-    // integers
+</code></pre>
+<ul><li><span class='centered'><span class='centered'> ints:</li></ul>
+<pre><code>    // integers
     const one_plus_one: i32 = 1 + 1;
     print("1 + 1 = {}\n", .{one_plus_one});
-
-    // floats
+</code></pre>
+<ul><li><span class='centered'><span class='centered'> floats:</li></ul>
+<pre><code>    // floats
     const seven_div_three: f32 = 7.0 / 3.0;
     print("7.0 / 3.0 = {}\n", .{seven_div_three});
-
-    // boolean
+</code></pre>
+<ul><li><span class='centered'><span class='centered'> bools:</li></ul>
+<pre><code>    // boolean
     print("{}\n{}\n{}\n", .{
         true and false,
         true or false,
         !true,
     });
-
-    // optional
+</code></pre>
+<ul><li><span class='centered'><span class='centered'> optionals:</li></ul>
+<pre><code>    // optional
     var optional_value: ?[]const u8 = null;
     assert(optional_value == null);
 
@@ -54,35 +63,31 @@ pub fn main() !void {
         @typeName(@TypeOf(optional_value)),
         optional_value,
     });
-
-    // error union
+</code></pre>
+<ul><li><span class='centered'><span class='centered'> errors:</li></ul>
+<pre><code>    // error union
     var number_or_error: anyerror!i32 = error.ArgNotFound;
-
     print("\nerror union 1\ntype: {}\nvalue: {}\n", .{
         @typeName(@TypeOf(number_or_error)),
         number_or_error,
     });
-
     number_or_error = 1234;
-
     print("\nerror union 2\ntype: {}\nvalue: {}\n", .{
         @typeName(@TypeOf(number_or_error)),
         number_or_error,
     });
-
     // It works at global scope as well as inside functions.
     const y = 5678;
-
-
 }
 
-
-
-// Top-level declarations are order-independent:
+</code></pre>
+<ul><li><span class='centered'><span class='centered'> Top level ordering:</li></ul>
+<pre><code>// Top-level declarations are order-independent:
 pub fn g() { f(); }
 pub fn f() {}
-
-test "string literals" {
+</code></pre>
+<ul><li><span class='centered'><span class='centered'> strings:</li></ul>
+<pre><code>test "string literals" {
     const bytes = "hello";
     assert(@TypeOf(bytes) == *const [5:0]u8);
     assert(bytes.len == 5);
@@ -93,8 +98,5 @@ test "string literals" {
     assert('💯' == 128175);
     assert(mem.eql(u8, "hello", "h\x65llo"));
 }
-
-
-
 </code></pre>
 <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

@@ -28,7 +28,7 @@
 #define KEEP
 
 static const int LONG_LATEX_BLOCK_SIZE = 30;
-static const int LONG_CODE_BLOCK_SIZE = 30;
+static const int LONG_CODE_BLOCK_SIZE = 60;
 
 using namespace std;
 
@@ -440,7 +440,9 @@ T *tokenizeLineFragment(const char *s, const ll len, const L lbegin) {
     }
 
     return new T(TT::LatexInline, Span(lbegin, lcur));
-  } else if (lbegin.si < len - 1 &&
+  } 
+  /*
+  else if (lbegin.si < len - 1 &&
              (s[lbegin.si] == '*' || s[lbegin.si] == '_') &&
              s[lbegin.si + 1] == s[lbegin.si]) {
     logger.print(cerr);
@@ -477,6 +479,7 @@ T *tokenizeLineFragment(const char *s, const ll len, const L lbegin) {
     return new TBold(Span(lbegin, lcur), new TInlineGroup(toks));
 
   }
+  */
   // This ordering is important; bold MUST be checked first.
   else if (s[lbegin.si] == '*' || s[lbegin.si] == '_') {
     logger.print(cerr);
@@ -498,8 +501,8 @@ T *tokenizeLineFragment(const char *s, const ll len, const L lbegin) {
       assert(lcur.si < len);
 
       if (s[lcur.si] == '\n') {
-        printferr(lbegin, s, "bold emphasis spread across multiple lines!");
-        assert(false && "bold spread across multiple lines");
+        printferr(lbegin, s, "italic emphasis spread across multiple lines!");
+        assert(false && "italic spread across multiple lines");
       }
 
       if (s[lcur.si] == delim) {
@@ -797,12 +800,22 @@ T *tokenizeBlock(const char *s, const ll len, const L lbegin) {
             s[lcur.si + 1] == '\t')) {
       lcur = lcur.next(s[lcur.si]);
     }
+    Logger logger;
+    logger.print(cerr);
+    cerr << "tokenizeBlock->2+Newline(" << lbegin << ")\n";
+
     return new T(TT::LineBreak, Span(lbegin, lcur));
   }
   if (s[lcur.si] == '\n') {
+    Logger logger;
+    logger.print(cerr);
+    cerr << "tokenizeBlock->1Newline(" << lbegin << ")\n";
     return new T(TT::RawText, Span(lcur, lcur.nextline()));
   }
   if (strpeek(s + lcur.si, "$$")) {
+    Logger logger;
+    logger.print(cerr);
+    cerr << "tokenizeBlock->LatexBlock(" << lbegin << ")\n";
     lcur = lcur.next("$$");
 
     // TODO: fix error message here, that will get generated from strconsume.
@@ -823,16 +836,30 @@ T *tokenizeBlock(const char *s, const ll len, const L lbegin) {
           lbegin, s,
           "WARNING: latex block is very long! Perhaps block is overflowing?");
       printferr(lcur, s, "latex block ends here");
+      assert(false && "very large latex block");
     }
     return new T(TT::LatexBlock, Span(lbegin, lcur));
   } else if (strpeek(s + lcur.si, "<script")) {
+    Logger logger;
+    logger.print(cerr);
+    cerr << "tokenizeBlock->Script(" << lbegin << ")\n";
+
     lcur = strconsume(lcur, s, "</script>", "unclosed <script> tag.");
     return new T(TT::HTML, Span(lbegin, lcur));
   } else if (strpeek(s + lcur.si, "<!--")) {
+    Logger logger;
+    logger.print(cerr);
+    cerr << "tokenizeBlock->Comment(" << lbegin << ")\n";
+
     lcur = strconsume(lcur, s, "-->", "unclosed comment till end of file.");
     return new T(TT::Comment, Span(lbegin, lcur));
   } else if (strpeek(s + lbegin.si, "```")) {
+    Logger logger;
+    logger.print(cerr);
+    cerr << "tokenizeBlock->Code(" << lbegin << ")\n";
+
     lcur = lcur.next("```");
+
 
     const int LANG_NAME_SIZE = 20;
     char *langname = (char *)calloc(LANG_NAME_SIZE, sizeof(char));
@@ -868,10 +895,17 @@ T *tokenizeBlock(const char *s, const ll len, const L lbegin) {
       printferr(
           lbegin, s,
           "WARNING: code block is very long! Perhaps block is overflowing?");
+      // TODO: convert this to an assert.
+      // assert(false && "very large code block");
     }
 
     return new TCodeBlock(Span(lbegin, lcur), langname);
   } else if (strpeek(s + lcur.si, "#")) {
+
+    Logger logger;
+    logger.print(cerr);
+    cerr << "tokenizeBlock->Heading(" << lbegin << ")\n";
+
     // cerr << "HEADING" << lcur << "\n";
     int i = 0;
     for (; lcur.si < len && s[lcur.si] == '#'; lcur = lcur.next('#')) {
@@ -881,6 +915,11 @@ T *tokenizeBlock(const char *s, const ll len, const L lbegin) {
     // cerr << "HEADING" << lcur << "\n";
     return new THeading(i, Span(lcur, t->span.end), t);
   } else if (s[lcur.si] == '-') {
+
+    Logger logger;
+    logger.print(cerr);
+    cerr << "tokenizeBlock->List(" << lbegin << ")\n";
+
     vector<T *> toks;
     while (1) {
       T *t = tokenizeHyphenListItem(s, len, lcur);
@@ -896,6 +935,11 @@ T *tokenizeBlock(const char *s, const ll len, const L lbegin) {
     return new TList(toks);
   } else if ((lcur.si == 0 || s[lcur.si - 1] == '\n') &&
              isNumberedListBegin(s, len, lcur)) {
+
+    Logger logger;
+    logger.print(cerr);
+    cerr << "tokenizeBlock->NumberedList(" << lbegin << ")\n";
+
     vector<T *> toks;
     int curnum = 1;
     while (1) {
@@ -913,6 +957,10 @@ T *tokenizeBlock(const char *s, const ll len, const L lbegin) {
   } else if (s[lcur.si] == '>') {
     return tokenizeQuoteItem(s, len, lcur);
   } else {
+
+    Logger logger;
+    logger.print(cerr);
+    cerr << "tokenizeBlock->Inline(" << lbegin << ")\n";
 
     // consume whitespace.
     while (s[lcur.si] == '\n' || s[lcur.si] == '\t' || s[lcur.si] == ' ') {
@@ -1661,7 +1709,7 @@ struct RSS {
     fprintf(frss, "<description>%s</description>\n",
             CONFIG_WEBSITE_RSS_DESCRIPTION);
 
-    for (ll ix_h1 = 0; ix_h1 < ts.size(); ++ix_h1) {
+    for (ll ix_h1 = 0; ix_h1 < (int)ts.size(); ++ix_h1) {
       if (!is_h1(ts[ix_h1])) {
         continue;
       }
