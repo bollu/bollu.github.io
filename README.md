@@ -10373,7 +10373,7 @@ into $*$ [pun intended].
 
 
 
-# What is a syzygy? (WIP)
+# What is a syzygy?
 
 Word comes from greek word for "yoke" . If we have two oxen pulling, we yoke
 them together to make it easier for them to pull.
@@ -10384,43 +10384,186 @@ Rotations of $\mathbb R^3$: We have a group $SO(3)$ which is acting on a vector 
 $\mathbb R^3$. This  preserves the length, so it preserves the
 polynomial $x^2 + y^2 + z^2$. This polynomial $x^2 + y^2 + z^2$ is said to be
 the invariant polynomial of the group $SO(3)$ acting on the vector space
-$\mathbb R^3$. 
+$\mathbb R^3$.
+
+- But what does $x, y, z$ even mean? well, they are linear function $x, y, z: \mathbb R^3 \rightarrow \mathbb R$.
+  So $x^2 + y^2 + z^2$ is a "polynomial" of these linear functions.
 
 #### How does a group act on polynomials?
 
-If $G$ acts of $V$, how does $G$ act on the polynomial function?
-We define $gf(x) \equiv g (f(g^{-1}(x)))$. We should write
-$(gf)(gx) = g(fx)$. This is like $g(ab) = g(a) g(b)$. But we write
-$(gf)(gx)$ as $(gf)(g(g^{-1}x)) = g(fx)$. So we get $(gf)(x) \equiv g(f(g^{-1}(x)))$.
+- If $G$ acts on $V$, how does $G$ act on the polynomial functions $V \rightarrow \mathbb R$?
+- In general, if we have a function $f: X \rightarrow Y$ where $g$ acts on $X$ and $Y$
+  (in our case, $G$ acts trivially on $Y=\mathbb R$), what is $g(f)$?
+- We define $(gf)(x) \equiv g (f(g^{-1}(x)))$.
+- What is the $g^{-1}$? We should write
+  $(gf)(gx) = g(fx)$. This is like $g(ab) = g(a) g(b)$. We want to get
+  $(gf)(x) = (gf)(g(g^{-1}x) = g(f(g^{-1}x))$.
+- If we miss out $g^{-1}$ we get a mess. Let's temporarily define $(gf)(x) = f(g(x))$. Consider
+   $(gh)f(x) = f(ghx)$. But we
+  can also take this as $(gh)(f(x)) = g((hf)(x)) = (hf)(gx) = f(hgx)$. This is
+  absurd as it gives $f(ghx) = f(hgx)$.
 
-If we miss out $g^{-1}$ we get a mess. consider $(gh)f(x) = f(ghx)$. But we
-can also take this as $(gh)(f(x)) = g((hf)(x)) = (hf)(gx) = f(hgx)$. This is
-absurd as it gives $f(ghx) = f(hgx)$.
+#### Determinants
 
-But how do we attach meaning to the symbols $x, y, z$? 
-Well, we can formulate them as linear operators on the vector space
-: $x, y, z : \mathbb R^3 \rightarrow \mathbb R$ $x(a, b, c) \equiv a$,
-$y(a, b, c) \equiv b$, and $z(a, b, c) \equiv c$. Then the expression
-$x^2 + y^2 + z^2$ is a _polynomial_ of _linear operators_ of $V$. So the objects
-that are involved in the story are:
+We have $SL_n(k)$ acting on $k^n$, it acts transitively, so there's no interesting non-constant
+invariants. On the other hand, we can have $SL_n(k)$ act on $\oplus_{i=1}^n k^n$. So if $n=2$
+we have:
 
-- The vector space $V$ of dimension $n$ over the field $k$
-- The group $G$ that acts on the vector space $V$
-- The space of linear operators $V^*$
-- The ring of linear operators $R $.
+$$
+\begin{bmatrix}
+a & b \\ c & d
+\end{bmatrix}
+$$
 
-We can write any polynomial of the linear operators as polynomials of the
-'elementary' projection operators $p_1, \dots, p_n$ [where $n$ is the dimension of $V$].
-So we have that $R \simeq k[p_1, \dots, p_n]$.
+acting on:
 
-Now this ring $R$ is said to be the ring of invariants of the action of the
-group $G$ onto the vector space $V$. 
+$$
+\begin{bmatrix}
+x_1 & y_1 \\ x_2 & y_2
+\end{bmatrix}
+$$
 
-We haven't seen what a syzygy is yet; We'll come to that.
+This action preserves the polynomial $x_1 y_2 - x_2 y_1$, aka the determinant. anything that
+ends with an "-ant" tends to be an "invari-ant" (resultant, discriminant)
 
-#### Example 2: The action of $SL_n(2)$ on $\mathbb C^2$
+#### $S_n$ acting on $\mathbb C^n$ by permuting coordinates.
 
-### Binary quantics
+Polynomials are functions $\mathbb C[x_1, \dots, x_n]$. Symmetric group
+acts on polynomials by permuting $x_1, \dots, x_n$. What are the invariant
+polynomials?
+
+- $e_1 \equiv x_1 + x_2 + \dots x_n$
+- $e_2 \equiv x_1 x_2 + x_1 x_3 + \dots + x_{n-1} x_n$.
+- $e_n \equiv x_1 x_2 \dots x_n$.
+
+These are the famous elementary symmetric functions. If we think of
+$(y - x_1) (y - x_2) \dots (y - x_n) = y^n - e_1 y^{n-1} + \dots e_n$.
+
+- The **basic theory of symmetric functions** says that every invariant polynomial
+  in $x_1, \dots x_n$ is a polynomial in $e_1, \dots, e_n$.
+
+#### Proof of elementary theorem
+
+Define an ordering on the monomials; order by lex order.
+Define $x_1^{m_1} x_2^{m_2} > x_1^{n_1} x_2^{n_2} \dots$ iff either
+$m_1 > n_1$ or $m_1 = n_1 \land m_2 > n_2$ or $m_1 = n_1 \land m_2 = n_2 \land m_3 > n_3$ and so on.
+
+Suppose $f \in \mathbb C[x_1, \dots, x_n]$ is invariant. Look at the biggest monomial in $f$.
+Suppose it is $x_1^{n_1} x_2^{n_2} \dots$. We subtract:
+
+$$
+\begin{aligned}
+P \equiv 
+&(x_1 + x_2 \dots)^{n_1 - n_2} \\
+&\times  (x_1 x_2 + x_1 x_2 \dots)^{n_2 - n_3} \\
+&\times  (x_1 x_2 x_3 + x_1 x_2 x_4 \dots)^{n_3 - n_4} \\
+\end{aligned}
+$$
+
+This kills of the biggest monomial in $f$. If $f$ is symmetric, 
+Then we can order the term we choose such that $n_1 \geq n_2 \geq n_3 \dots$.
+We need this to keep the terms $(n_1 - n_2), (n_2 - n_3), \dots$ to be positive.
+So we have now killed off the largest term of $f$.  Keep doing this to kill of $f$ completely.
+
+This means that the invariants of $S_n$ acting on $\mathbb C^n$ are a finitely generated
+algebra over $\mathbb C$. So we have a finite number of generating invariants such that every invariant
+can be written as a polynomial of the generating invariants with coefficients in $\mathbb C$. This is
+the first non-trivial example of invariants being finitely generated.
+
+
+The algebra of invariants is a **polynomial ring** over $e_1, \dots, e_n$. This means that there
+are no **non-trivial-relations** between $e_1, e_2, \dots, e_n$. This is unusual; usually
+the ring of generators will be complicated.  This simiplicity tends to happen if $G$ is
+a reflection group. We haven't seen what a syzygy is yet; We'll come to that.
+
+#### Complicated ring of invariants
+
+Let $A_n$ (even permutations). Consider the polynomial $\Delta \equiv \prod_{i < j} (x_i - x_j)$
+This is called as the discriminant.
+This looks like $(x_1 - x_2)$, $(x_1 - x_2)(x_1 - x_3)(x_2 - x_3)$, etc. When $S_n$ acts on $\Delta$,
+it either keeps the sign the same or changes the sign. $A_n$ is the subgroup of $S_n$ that
+keeps the sign fixed.
+
+What are the invariants of $A_n$? It's going to be all the invariants of $S_n$, $e_1, \dots, e_n$,
+plus $\Delta$ (because we defined $A_n$ to stabilize $\Delta$). There are no relations between
+$e_1, \dots, e_n$. But there are relations between $\Delta^2$ and $e_1, \dots, e_n$ because $\Delta^2$
+is a symmetric polynomial.
+
+Working this out for $n=2$,we get $\Delta^2 = (x_1 - x_2)^2 = (x_1 + x_2)^2 - 4 x_1 x_2 = e_1^2 - 4 e_1 e_2$.
+When $n$ gets larger, we can still express $\Delta^2$ in terms of the symmetric polynomials,
+but it's frightfully complicated.
+
+This phenomenon is an example of a Syzygy. For $A_n$, the ring of invariants is finitely generated
+by $(e_1, \dots, e_n, \Delta)$. There is a non-trivial relation where $\Delta^2 - poly(e_1, \dots, e_n) = 0$.
+So this ring is not a polynomial ring. This is a first-order Syzygy. Things can get more complicated!
+
+
+#### Second order Syzygy
+
+Take $Z/3Z$ act on $\mathbb C^2$. Let $s$ be the generator of $Z/3Z$. We define
+the action as $s(x, y) = (\omega x, \omega y)$ where $\omega$ is the cube root of unity. 
+We have $x^ay^b$ is invariant if $(a + b)$ is divisible by $3$, since we will just get $\omega^3 = 1$.
+
+So the ring is generated by the monomials $(z_0, z_1, z_2, z_3) \equiv (x^3, x^2y, xy^2, y^3)$.
+Clearly, these have relations between them. For example:
+- $z_0 z_2 =  x^4y^2 = z_1^2$. So $z_0 z_2 - z_1^2 = 0$.
+- $z_1 z_3   x^2y^4 = z_2^2$. So $z_1 z_3 - z_2^2 = 0$.
+- $z_0 z_3 = x^3y^3 = z_1 z_2$. So $z_0 z_3 - z_1 z_2 = 0$.
+
+We have 3 first-order syzygies as written above. Things are more complicated than that. We can
+write the syzygies as:
+
+- $p_1 \equiv z_0 z_2 - z_1^2$.
+- $p_2 \equiv z_1 z_3 - z_2^2$.
+- $p_3 \equiv z_0 z_3 - z_1 z_2$.
+
+We have $z_0 z_2$ in $p_1$. Let's try to cancel it with the $z_2^2$ in $p_2$. So we consider:
+
+$$
+\begin{aligned}
+& z_2 p_1 + z_0 p_2 \\
+&= z_2 (z_0 z_2 - z_1^2) + z_0 (z_1 z_3 - z_2^2) \\
+&= (z_0 z_2^2 - z_2 z_1^2) + (z_0  z_1 z_3 - z_0 z_2^2) \\
+&= z_0 z_1 z_3 - z_2 z_1^2 \\ 
+&= z_1(z_0 z_3 - z_1 z_2) \\
+&= z_1 p_3
+\end{aligned}
+$$
+
+So we have non-trivial relations between $p_1, p_2, p_3$! This is a second order syzygy, a sygyzy between syzygies.
+
+
+We have a ring $R \equiv k[z_0, z_1, z_2, z_3]$. We have a map $R \rightarrow \texttt{invariants}$.
+This has a nontrivial kernel, and this kernel is spanned by $(p_1, p_2, p_3) \simeq R^3$. But this itself
+has a kernel $q = z_1 p_1 + z_2 p_2 + z_3 p_3$. So there's an exact sequence:
+
+$$
+\begin{aligned}
+0 \rightarrow R^1 \rightarrow R^3 \rightarrow R=k[z_0, z_1, z_2, z_3] \rightarrow \texttt{invariants}
+\end{aligned}
+$$
+
+In general, we get an invariant ring of linear maps that are invariant under the group action.
+We have polynomials $R \equiv k[z_0, z_1, \dots]$ that map onto the invariant ring. We have
+relationships between the $z_0, \dots, z_n$. This gives us a sequence of syzygies. We have many
+questions:
+
+1. Is $R$ finitely generated as a $k$ algebra? Can we find a finite number of generators?
+2. Is $R^m$ finitely generated (the syzygies as an $R$-MODULE)? To recall the difference, see that $k[x]$
+   is finitely generated as an ALGEBRA  by $(k, x)$ since we can multiply the $x$s. It's not finitely generated as a
+   MODULE as we need to take all powers of $x$: $(x^0, x^1, \dots)$.
+3. Is this SEQUENCE of sygyzy modulues FINITE?
+4. Hilbert showed that the answer is YES if $G$ is reductive and $k$ has characteristic zero. We will
+   do a special case of $G$ finite group.
+
+We can see why a syzygy is called such; The second order sygyzy "yokes" the first order sygyzy. It ties together
+the polynomials in the first order syzygy the same way oxen are yoked by a syzygy.
+
+
+
+
+
+
 
 
 #### References
