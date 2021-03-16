@@ -15,10 +15,451 @@ A Universe of Sorts
 - [reading list/TODO](todo.html)
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
+# Semidirect product as commuting conditions
+
+Recall that in $N \ltimes K = G$, $N$ is normal. This is from the mnemonic
+that it looks like $N \triangleleft G$, or from the fact that the acting/twisting subgroup
+$K$ is a fish that wants to "eat"/act on the normal subgroup $N$.
+
+
+So, we have $knk^{-1} \in N$ as $N$ is normal, thus $knk^{-1} = n'$. This can be
+written as $kn = n'k$. So:
+
+- When commuting, the element that *gets changed/twisted* in the normal subgroup.
+  This is because the normal subgroup has the requisite constraint on it to be
+  twistable.
+- The element that remains invariant is the actor. 
+
+In the case of translations and rotations, it's the translations that are normal.
+This can be seen either by noticing that they are abelian, and are thus normal, while
+rotations don't "look normal". Alternatively, one can try to consider translate-rotate
+versus rotate-translate.
+
+
+<img src="./static/cw/semidirect-product/rotate-translate.png"/>
+- First rotating by $r$ and then translating by $t$ along the x-axis
+  has the same effect as first translating by $t'$ at 45 degrees to the x-axis,
+  and then rotating by the **same** r. 
+
+- This begs the question, is there some other
+  translation `t''` and some other rotation `r''` such that `t''; r''` (`t''` first, `r''` next)
+  has the same effect as `r;t` (`r` first, `t` next)?
+
+<img src="./static/cw/semidirect-product/translate-rotate.png"/>
+
+- First let's translate by $t$ along the x-axis and then rotating by $r$.
+  Now let's think, if we wanted to rotate and then translate, what rotation would
+  we start with? it would HAVE TO BE $r$, since there's no other way to get the axis
+  in such an angle in the final state. But if we rotate by $r$, then NO translation
+  can get us to the final state we want. So, it's impossible to find a `rotation;translation`
+  pair that mimics our starting `translation;rotation`.
+
+
+# Exact sequences for semidirect products; fiber bundles
+
+#### Fiber bundles
+
+In the case of a bundle, we have a sequence of maps $F \rightarrow E \rightarrow B$ where 
+$F$ is the fiber space (like the tangent space at the identity $T_eM$). $E$ is the total space (the bundle $TM$),
+and $B$ is the base space (the manifold $M$). We require that the inverse of the projection
+$\pi^{-1}: B \rightarrow E$ locally splits as product $\pi^{-1}(U) \simeq U \times F$.
+
+#### Semidirect products
+
+In a semidirect product $N \ltimes K$, we have that $N$ is normal (because the fish wants to eat
+the normal subgroup $N$ / the symbol looks like $N \triangleleft G$ which is how we denote normality).
+Thus, we can only quotient by $N$, leaving us with $K$. This is captured by the SES:
+
+$$
+0 \rightarrow N \rightarrow  N \ltimes K \xrightarrow{\pi} K \rightarrow 0
+$$
+
+- We imagine this as a bundle, with base space $M=K$, bundle $TM=N \ltimes K$,
+  and fiber space (like, tangent space at the identity, say) $T_e M =  N$. 
+
+- Furthermore, this exact sequence splits; So there is a map $s: K \rightarrow N \ltimes K$
+  ($s$ for "section/split") such that $\forall k, \pi(s(k)) = k$. To see that this is true,
+  define $s(k) \equiv (e, k)$. Since all actions of $K$  fix the identity $e \in N$, we have
+  $s(k)s(k') = (e, k) (e, k') = (e, kk') = s(kk')$ so this is a valid map. To see that $\pi$
+  is its inverse, just act $\pi$; $\pi(s(k)) = \pi(e, k) = k$. 
+
+#### Relationship to gauges
+
+Let $X$ be the space of *all* states. Let $O$ be a group action whose orbits identify
+equivalent states. So the space of "physical states" or "states that describe the same 
+physical scenario" is the orbit of $X$ under $O$, or $X/O$.
+Now, the physical space $X/O$ is acted upon by some
+group $G$.  If we want to "undo the quotienting" to have $G$ act on all of $X$, then we need to construct $G \ltimes O$.
+$G$ is normal here because $O$ already knows how to act on the whole space; $G$ does not, so $O$ needs to "guide" the action of
+$G$ by acting on it.  The data needed to construct $G \ltimes O$ is a *connection*.
+Topologically, we have $X \rightarrow X/O$ and $G \curverightarrow X/O$. We want to extend
+this to $(G \ltimes O) \curverightarrow X$. We imagine this as:
+
+```
+*1| #1 | @1  X
+*2| #2 | @2
+*3| #3 | @3
+  | |  |
+  | v  |
+* | #  | @ X/H
+```
+
+where the action of $H$ permutes amongst the fibers of `*, #, @`. Next, we have an action of $G$ on $X/H$:
+
+
+```
+*1| #1 | @1  X
+*2| #2 | @2
+*3| #3 | @3
+  | |  |
+  | v  |
+* | #  | @ [X/H] --G--> # | @ | *
+```
+
+We need to lift this action of `H` the `H`-orbits. This is precisely the data a
+connection gives us (why?) I guess the intuition is that the orbits of $X$ are like
+the tangent spaces where $X \rightarrow X/O$ is the projection from the bundle
+into the base space, and the $G$ is a curve that tells us what the "next point" we want to
+travel to from the current point. The connection allows us to "lift" this to 
+"next tangent vector". That's quite beautiful.
+
+We want the final picture to be:
+
+```
+*1| #1 | @1  X          #2| @2|                    
+*2| #2 | @2    --G-->   #1|   |   
+*3| #3 | @3             #3|   | 
+  | |  |                  |   | 
+  | v  |                  |   |  
+* | #  | @ [X/H] --G--> # | @ | *
+```
+
+
+#### If sequence splits then semidirect product
+
+Consider the exact sequence
+
+$$
+0 \rightarrow N \xrightarrow{\alpha} G \xrightarrow{\pi} H \rightarrow 0
+$$
+
+- We want to show that if there exists a map $s: H \rightarrow G$ such that
+  $\forall h, \pi(s(h)) = h$ (ie, $\pi \circ s = id$), then G$ \simeq N \ltimes H$.
+  So the splitting of the exact sequence decomposes $G$ into a semidirect product.
+- The idea is that elements of $G$ have an $N$ part and a $K$ part. We can get the $K$
+  part by first pushing into $K$ using $\pi$ and then pulling back using $s$. So define
+  $k: G \rightarrow G; k(g) \equiv s(\pi(g))$. This gives us the "K" part. To get the $N$
+  part, invert the "k part" to annihiliate it from $G$. So define a map
+  $n: G \rightarrow G; n(g) \equiv g k(g)^{-1} = g k(g^{-1})$.
+- See that the image of $n$ lies entirely in the kernel of $\pi$, or the image of $n$
+  indeed lies in $N$. This is a check:
+
+$$
+\begin{aligned}
+&\pi(n(g)) \\
+= \pi(g k(g^{-1})) \\
+= \pi(g) \pi(k(g^{-1})) \\
+= \pi(g) \pi(s(\pi(g^{-1}))) \\
+= \text{$\pi(s(x)) = x$:}\\
+= \pi(g) \pi(g^{-1}) = e
+\end{aligned}
+$$
+
+- Hence, the image of $n$ is entirely in the kernel of $\pi$. But the kernel of $\pi$ is isomorphic to $N$,
+  and hence the image of $n$ is isomorphic to $N$. So we've managed to decompose an element of $G$ into a $K$
+  part and an $N$ part. 
+- Write $G$ as $N \ltimes K$, by the map $\phi: G \rightarrow N \ltimes K; \phi(g) = (n(g), k(g))$.
+  Let's discover the composition law.
+
+$$
+\begin{aligned}
+&\phi(gh) =^? \phi(g) \phi(h) \\
+&(n(gh), k(gh)) =^? (n(g), k(g)) (n(h), k(h)) \\
+&(ghk((gh)^{-1}), k(gh)) =^? (gk(g^{-1}), k(g)) (hk(h^{-1}), k(h)) \\
+\end{aligned}
+$$
+
+We need the second to be $k(gh) = k(g) k(h)$, so that composes in an
+entirely straightforward fashion. For the other component, we need:
+
+
+$$
+\begin{aligned}
+&ghk((gh)^{-1})  =^? gk(g^{-1}) \cdot hk(h^{-1}) \\
+&ghk((gh)^{-1})  =^? gk(g^{-1}) k(g) \cdot hk(h^{-1}) k(g^{-1}) \\
+&ghk((gh)^{-1})  =^? g [k(g^{-1}) k(g)] \cdot h [k(h^{-1}) k(g^{-1})] \\
+&ghk((gh)^{-1})  =^? g \cdot h k((gh)^{-1}) \\
+&ghk((gh)^{-1})  = gh k((gh)^{-1}) \\
+\end{aligned}
+$$
+
+So we need the $n$ of $h$ to be twisted by the $k$ component of $g$ by a conjugation. So we define the semidirect
+structure as:
+
+$$
+\begin{aligned}
+(n(g), k(g)) \cdot (n(h), k(h)) \equiv (n(g) k(g) n(h) k(g)^{-1}, k(g) k(h)) \\
+&= (n(g) n(h)^{k(g)}, k(g) k(h))
+\end{aligned}
+$$
+
+We've checked that this works with the group structure. So we now have a morphism $\phi: G \rightarrow N \ltimes K$.
+we need to check that it's an isomorphism, so we need to make sure that this has full image and trivial kernel.
+
+- Full image: Let $(n, k) \in N \ltimes K$. Create the element $g = \alpha(n) s(k) \in G$.
+  We get $\pi(g) = \pi(\alpha(n)s(k)) = \pi(\alpha(n)) \pi(s(k)) = e k = k$.
+  We get $n(g) = g k$
+
+- [physics.se](https://physics.stackexchange.com/questions/13153/discrete-gauge-theories/13171#13171)
+
+
+
+
+
+# Intro to topological quantum field theory
+
+- Once again, watching a videos for shits and giggles.
+- Geometrically, we cut and paste topological indices / defects.
+- QFT in dimensions n+1 (n space, 1 time)
+- Manifold: $X^n$. Can associate a hilbert space of states $H_x$.
+- Space of wave functions on field space.
+- Axioms of hilbert space: (1) if there is no space, the hilbert space $H_\emptyset$ for it is the complex numbers.
+  (2) If we re-orient the space, the hilbert space becomes the dual $H_{-X} = H_X^\star$.
+  (3) Hilbert space over different parts  is the tensor product: $H_{X \cup Y} = H_X \otimes H_Y$.
+- We want arbitrary spacetime topology. We start at space $X$, and we end at a space $Y$.
+  The space $X$ is given positive orientation to mark "beginning" and $Y$ is given negative orientation
+  to mark "end". We will have a time-evolution operator $\Phi: H_X \rightarrow H_Y$.
+- We have a composition law of gluing: Going from $X$ to $Y$ and then from $Y$ to $Z$ is the same as going from
+  $X$ to $Z$. $\phi_{N \circ M} = \phi_N \circ \phi_M$.
+- If we start and end at empty space, then we get a linear map $\Phi: H_\emptyset \rightarrow H_\emptyset$ which is a linear map
+  $\Phi: \mathbb C \rightarrow \mathbb C$, which is a fancy way to talk about a complex number (scaling)
+- If we start with an empty set and end at $Y$, then we get a function $\Phi: H_\emptyset \rightarrow H_Y \simeq \mathbb C \rightarrow \mathbb Y$. But this is the same as picking a state, for example, $\Phi(1) \in H_Y$ [everything else is determined by this choice].
+- If a manifold has two sections $X$ and $-X$, we can glue $X$ to $-X$ to get the trace.
+- Quantum mechanics is `0 + 1` TQFT (!)
+- TQFT of 1+1 dimensions.
+- Take a circle: $S^1 \rightarrow H$.  Let $H$ be finite dimensional.
+- A half-sphere has a circle as boundary. So it's like $H_\emptyset \rightarrow H_{S^1}$. This is the ket $|0\rangle$.
+- This is quite a lot like a string diagram...
+- [Frobenius algebra](https://en.wikipedia.org/wiki/Frobenius_algebra)
+- [Video: IAS PiTP 2015](https://www.youtube.com/watch?v=jEEQO-tcyHc)
+
+
+# Spectral norm of Hermitian matrix equals largest eigenvalue (WIP)
+
+Define $||A|| \equiv \max \{ ||Ax|| : ||x|| = 1 \}$. Let $A$ be 
+hermitian. We wish to show that $||A||$ is equal to the largest eigenvalue.
+The proof idea is to consider the eigenvectors $v[i]$ with eigenvalue $\lambda[i]$
+with largest eigenvalue $v^\star$ of eigenvalue $\lambda^*$ and claim that
+$||Av^\star|| = \lambda^*$ is maximal.
+
+# Non examples of algebraic varieties
+
+It's always good to have a stock of non-examples.
+
+#### Line with hole: Algebraic proof
+
+The set of points $V \equiv \{ (t, t) : t \neq 42, t \in \mathbb R \} \subseteq mathbb R^2$ is not
+a variety. To prove this, assume it is a variety defined by equations $I(V)$.
+Let $f(x, y) \in I(V) \subseteq \mathbb R[x, y]$. Since $f$ vanishes on $V$, we must
+have $f(a, a) = 0$ for all $a \neq 42$ (since $(a, a) \in V$ for all $a \neq 42$).
+So create a new function $g(a) \equiv (a, a)$. Now $f \circ g: \mathbb R \rightarrow \mathbb R = f(g(a)) = f(a, a) = 0$.
+This polynomial (it is a composition of polynomial, and is thus a polynomial)
+has infinitely many zeroes, and is thus identically zero. So, $f(g(a)) = 0$, So $f(a, a) = 0$ for all
+$a$. In particular, $f(42, 42) = 0$ for all equations that define $V$, hence $(42, 42) \in I(V)$. But this
+does not give us the variety $V$. Hence $V$ is not a variety.
+
+#### Line with hole: Analytic proof
+
+The set of points $V \equiv \{ (t, t) : t \neq 42, t \in \mathbb R \} \subseteq mathbb R^2$ is not
+a variety. To prove this, assume it is a variety defined by equations $I(V)$.
+Let $f(x, y) \in I(V) \subseteq \mathbb R[x, y]$. Since $f$ vanishes on $V$, we must
+have $f(a, a) = 0$ for all $a \neq 42$ (since $(a, a) \in V$ for all $a \neq 42$).
+Since $f$ is continuous, $f$ preserves limits. Thus, $\lim_{x \to 42} f(x, x) = f(\lim_{x \to 42} (x, x))$.
+The left hand side is zero, hence the right hand size must be zero. Thus, $f(42, 42) = 0$.
+But this can't be, because $(42, 42) \not \in V$.
+
+#### $\mathbb Z$
+
+The set $\mathbb Z$ is not an algebraic variety. Suppose it is, and is the zero set 
+of a collection of polynomials $\{ f_i \}$. Then for some $f_i$, they must vanish on at least
+all of $\mathbb Z$, and maybe more. This means that $f_i(z) = 0$ for all $z \in \mathbb Z$. But a
+degree $n$ polynomial can have at most $n$ roots, unless it is the zero polynomial.
+Since $f_i$ does not have a finite number of roots, $f_i = 0$. Thus, all the polynomials
+are identically zero, and so their zero set is not $\mathbb Z$; it is all of $\mathbb R$.
+
+
+#### The general story
+
+In general, we are using a *combinatorial* fact that a $n$ degree polynomial has at most $n$ roots.
+In some cases, we could have used *analytic* facts about continuity of polynomials, but it suffices
+to simply use *combiantorial* data which I find interesting.
+
+# Nilradical is intersection of all prime ideals
+
+#### Nilradical is contained in intersection of all prime ideals
+
+Let $x \in \sqrt 0$. We must show that it is contained in all prime ideals.
+Since $x$ is in the nilradical, $x$ is nilpotent, hence $x^n = 0$ for some $n$. Let $p$ be an
+arbitrary prime ideal. Since $0 \in p$ for all prime ideals, we have
+$x^n = 0 \in p$ for $x$. This means that $x^n = x \cdot x^{n-1} \in p$,
+and hence $x \in p \lor x^{n-1} \in p$.  If $x \in p$ we are done.
+If $x^{n-1} \in p$, recurse to get $x \in p$ eventually.
+
+
+#### Proof 1: Intersection of all prime ideals is contained in the Nilradical
+
+Let $f$ be in the intersection of all prime ideals. We wish to show that $f$
+is contained in the nilradical (that is, $f$ is nilpotent). We know that $R_f$ ($R$
+localized at $f$) collapses to the zero ring iff $f$ is nilpotent. So we wish to
+show that the sequence:
+
+$$
+\begin{aligned}
+0 \rightarrow R_f \rightarrow 0
+\end{aligned}
+$$
+
+is exact. But exactness is a local property, so it suffices to check against each $(R_f)_m$ for
+all maximal ideals $m$. Since $(R_f)_m = (R_m)_f$ (localizations commute), let's reason about $(R_m)_f$. 
+We know that $R_m$ is a local ring as $m$ is prime (it is maximal), and thus $R_m$ has only a single
+ideal $m$. Since $f \in m$ for all maximal ideal $m$ (since $f$ lives in the intersection of all prime
+ideals), localizing at $f$ in $R_m$ blows up the only remaining ideal, collapsing us the ring to give
+us the zero ring. Thus, for each maximal ideal $m$, we have that:
+
+
+$$
+\begin{aligned}
+0 \rightarrow (R_f)_m \rightarrow 0
+\end{aligned}
+$$
+
+is exact. Thus, $0 \rightarrow R_f \rightarrow 0$ is exact. Hence, $f$ is nilpotent, or $f$ belongs to the
+nilradical.
+
+#### Proof 2: Intersection of all prime ideals is contained in the Nilradical
+
+- Quotient the ring $R$ by the nilradical $N$.
+- The statement in $R/N$ becomes
+  "in a ring with no ninpotents, intersection of all primes is zero".
+- This means that every non-zero element is **not** contained in  **some** prime ideal. Pick
+  some arbitrary element $f \neq 0 \in R/N$. We know $f$ is not nilpotent, so we naturally consider
+  $S_f \equiv \{ f^i : i \in \mathbb N \}$.
+- The only thing one can do with a  multiplicative subset
+  like that is to localize. So we localize the ring $R/N$ at $S$.
+- If all prime ideals contain the function $f$,
+  then localizing at $f$ destroys all prime ideals, thus blows up all maximal ideals,
+  thereby collapsing the ring into the zero ring (the ring has no maximal ideals, so the ring is the zero ring).
+- Since $S^{-1} R/N = 0$, we have that $0 \in S$. So some $f^i = 0$. This contradicts the assumption that no element of $R/N$
+  is nilpotent. Thus we are done.
+
+#### Lemma: $S$ contains zero  iff  $S^{-1} R = 0$
+
+- (Forward): Let $S$ contain zero. Then we must show that $S^{-1} R = 0$. Consider some element $x/s \in S^{-1} R$.
+  We claim that $x = 0/1$.  To show this, we need to show that there exists an $s' \in S$ such that $xs'/s = 0s'/1$.
+  That is, $s'(x \cdot 1 - 0 \cdot s) = 0$. Choose $s' = 0$ and we are done. Thus every element is $S^{-1}R$ is zero if $S$
+  contains zero.
+
+- (Backward): Let $S^{-1} R = 0$. We need to show that $S$ contains zero. Consider $1/1 \in S^{-1} R$. We have that $1/1 = 0/1$.
+  This means that there is an $s' \in S$ such that $s'1/1 = s'0/1$. Rearranging, this means that
+  $s'(1 \cdot 1 - 1 \cdot 0) = 0$. That is, $s'1 = 0$, or $s' = 0$. Thus, the element $s'$ must be zero for $1$ to be
+  equal to zero.  Hence, for the ring to collapse, we must have $0 = s' \in S$. So, if $S^{-1}R = 0$, then $S$ contains zero.
+
+
+# Exactness of modules is local
+
+
+We wish to show that for some ring $R$ and modules $K, L, M$
+a sequence $K \rightarrow L \rightarrow M$ is exact iff $K_m \rightarrow L_m \rightarrow M_m$
+is exact for every maximal ideal $m \subset R$. This tells us that exactness is local.
+
+
+
+
+# Quotient by maximal ideal gives a field
+
+#### Quick proof
+
+Use correspondence theorem. $R/m$ only has the images of $m, R$ as ideals which
+is the zero ideal and the full field.
+
+#### Element based proof
+
+Let $x + m \neq 0$ be an element in $R/m$. Since $x + m \neq 0$, we have $x \not in m$.
+Consider $(x, m)$. By maximality of $m$, $(x, m) = R$. Hence there exist elements $a, b \in R$
+such that $xa + mb = 1$. Modulo $m$, this read $xa \equiv 1 (\text{mod}~$m$)$. Thus $a$
+is an inverse to $x$, hence every nonzero element is invertible.
+
+
+# Ring of power series with infinite positive and negative terms
+
+If we allow a ring with elements $x^i$ for all $-\infty < x < \infty$, for notation's
+sake, let's call it $R[[[x]]]$. Unfortunately, this is a badly behaved ring.
+Define $S \equiv \sum_{i = -\infty}^\infty x^i$. See that $xS = S$, since
+multiplying  by $x$ shifts powers by 1. Since we are summing over all of $\mathbb Z$,
+$+1$ is an isomorphism. Rearranging gives $(x - 1)S = 0$. If we want our ring
+to be an integral domain, we are forced to accept that $S = 0$. In the Barvinok
+theory of polyhedral point counting, we accept that $S = 0$ and exploit this
+in our theory.
+
+# Mean value theorem and Taylor's theorem. (TODO)
+
+I realise that there are many theorems that I learnt during my preparation for JEE
+that I simply don't know how to prove. This is one of them. Here I exhibit
+the proof of Taylor's theorem from Tu's introduction to smooth manifolds.
+
+> Taylor's theorem: Let $f: \mathbb R \rightarrow \mathbb R$ be a smooth function,
+> and let $n \in \mathbb N$ be an "approximation cutoff". Then there exists
+> for all $x_0 \in \mathbb R$ a smooth function $r \in C^{\infty} \mathbb R$
+> such that:
+> f(x) = f(x_0) + (x - x_0) f'(x_0)/1! + (x - x_0)^2 f'(x_0)/2! + \dots + (x - x_0)^n f^{(n)'}(x_0)/n! + (x - x_0)^{n+1} r
+
+We prove this by induction on $n$. For $n = 0$, we need to show that there exists an $r$ such that
+$f(x) = f(x_0) + r$. We begin by parametrising the path from $x_0$ to $x$ as $p(t) \equiv (1 - t) x_0 + tx$.
+Then we consider $(f \circ p)'$:
+
+$$
+\begin{aligned}
+&\frac{f(p(t))}{dt} = \frac{df((1 - t) x_0) + tx)}{dt} \\
+&= (x - x_0) \frac{df((1 - t)x_0) + tx)}{dx}
+\end{aligned}
+$$
+
+Integrating on both sides with limits $t=0, t=1$ yields:
+
+$$
+\begin{aligned}
+&\int_0^1 \frac{df(p(t))}{dt} dt = \int_0^1 (x - x_0) \frac{df((1 - t)x_0) + tx)}{dx} dt \\
+f(p(1)) - f(p(0)) =  (x - x_0) \int_0^1 \frac{df((1 - t)x_0) + tx)}{dx} dt \\
+f(x) - f(x_0) =  (x - x_0) g[1](x) \\
+\end{aligned}
+$$
+
+where we define $g[1](x) \equiv \int_0^1 df((1 - t)x_0) + tx)}{dx} dt $ where the $g[1](x)$ witnesses
+that we have the first derivative of $f$ in its expression. By rearranging, we get:
+
+$$
+\begin{aligned}
+f(x) - f(x_0) =  (x - x_0) g[1](x) \\
+f(x)  =  f(x_0) + (x - x_0) g[1](x) \\
+\end{aligned}
+$$
+
+If we want higher derivatives, then we simply notice that $g[1](x)$ is of the form:
+
+$$
+\begin{aligned}
+g[1](x) \equiv \int_0^1 f'((1 - t)x_0) + tx) dt \\
+g[1](x) \equiv \int_0^1 f'((1 - t)x_0) + tx) dt \\
+\end{aligned}
+$$
+
+
 # Cayley Hamilton
 
-I've never known a proof of Cayley Hamilton that sticks with me; I think I've
-found one now.
+I find the theorem spectacular, because while naively the vector space $M_n(F)$
+has dimension $n^2$, Cayley-Hamilton tells us that there's only $n$ of $M^0, M^1, \dots$
+are enough to get linear dependence.  However, I've never known a
+proof of Cayley Hamilton that sticks with me; I think I've found one now.
 
 For any matrix $A$, the adjugate has the property:
 
@@ -48,7 +489,6 @@ to the determinant of $A$.
 
 - Let $A'(i, j)$ be the matrix $A$ with the $i$ th row and $j$ column removed.
 - Let $C[i, j] \equiv (-1)^{i+j} det(A'(i, j))$ be the determinant of the $A'(i, j)$ matrix.
-deleted from $A$.
 - Let define $adj(A) \equiv C^T$ to be the transpose of the cofactor matrix.
   That is, $adj(A)[i, j] = C[j, i] = det(A'(j, i))$.
 - Call $D \equiv A adj(A)$. We will now compute the entries of $Z$ when $i = j$ and when $i \neq j$.
@@ -118,7 +558,258 @@ Hence, this means that $A adj(A) = det(A) I$.
   or $adj(A)/det(A) = A^{-1}$.
 
 
-#### Adjuagte in terms of exterior algebra
+#### Determinant in terms of exterior algebra
+
+For a vector space $V$ of dimension $n$, Given a linear map $T: V \rightarrow V$, define
+a map $\Lambda T: \Lambda^n  V \rightarorw \Lambda^n V$ such that
+$\Lambda T(v_1 \wedge v_2 \dots \wedge v_n) \equiv T v_1 \wedge T v_2 \dots \wedge T v_n$.
+Since the space $\Lambda^n V$ is one dimension, we will need one scalar $k$ to define
+$T$: $T(v_1 \wedge \dots \wedge v_n) = k v_1 \wedge \dots \wedge v_n$. It is either a theorem
+or a definition (depending on how one starts this process) that $k = det(T)$.
+
+
+If we choose this as a definition, then let's try to compute the value. Pick orthonormal
+basis $v[i]$. Let $w[i] \equiv T v[i]$ (to write $T$ as a matrix). Define the $T$ matrix to be defined
+by the equation $w[i] = T[i][j] v[j]$. If we now evaluate $\Lambda_T$, we get:
+
+$$
+\begin{aligned}
+\Lambda T(v_1 \wedge \dots v_n) \\
+&= T(v_1) \wedge T(v_2) \dots \wedge T(v_n) \\
+&= w_1 \wedge w_2 \dots w_n \\
+&= (T[1][j_1] v[j_1]) \wedge (T[1][j_2] v[j_2]) \wedge (T[1][j_n] v[j_n]) \\
+&=  (\sum_{\sigma \in S_n} (\prod_i T[i][\sigma(i)] sgn(\sigma))  v[1] \wedge v[2] \dots \wedge v_n
+\end{aligned}
+$$
+
+Where the last equality is because:
+- (1) Repeated vectors get cancelled, so we must have unique $v[1], v[2], \dots v[n]$ in the terms we collect.
+  So all the $j_k$ must be distinct in a given term.
+- A wedge of the form $T[1][j_1] v[j_1] \wedge T[2][j_2] v[j_2] \dots T[n][j_n] v[j_n]$, where all the
+  $j_i$ are distinct (see (1)) can be rearranged by a permutation that sends $v_{j_i} \mapsto v_i$.
+  Formally, apply the permutation $\tau(j_i) \equiv i$. This will reorganize
+  the wedge into $T[1][j_1] T[2][j_2] \dots T[n][j_n] v[1] \wedge v[2] \wedge v[3] \dots v[n] (-1)^{sgn(\tau)}$,
+  where the sign term is picked up by the rearrangement.
+- Now, write the indexing into $T[i][j_i]$ in terms
+  of a permutation $\sigma(i) \equiv j_i$. This becomes $\prod_i T[i][\sigma(i)] (-1)^{sgn(\tau)} v[1] \wedge v[2] \dots \wedge v[n]$.
+- We have two permutations $\sigma, \tau$ in the formula. But we notice that $\sigma = \tau^{-1}$, and hence
+  $sgn(\sigma) = sgn(\tau)$, so we can write the above as $\prod_i T[i][\sigma(i)] (-1)^{sgn(\sigma)} v[1] \wedge v[2] \dots \wedge v[n]$.
+- Thus, we have recovered the "classical determinant formula".
+
+#### Laplace expansion of determinant
+
+
+From the above algebraic encoding of the determinant of $T[i][j]$ as $\sum_{\sigma \in S_n}sgn(\sigma)\prod_i T[i][\sigma(i)]$,
+we can recover the "laplace expansion" rule, that asks to pick a row $r$, and then compute the expression:
+as
+
+$$
+L_r(T) \equiv \sum_c T[r, c] (-1)^{r+c} det(T'(r, c))
+$4
+
+Where $T'(r, c)$ is the matrix $T$ with row $r$ and column $c$ deleted.
+I'll derive this concretely using the determinant definition for the 3 by 3 case. The general
+case follows immediately. I prefer being explicit in a small case as it lets me see what's going on.
+
+Let's pick a basis for $V$, called $b[1], b[2], b[3]$. We have the relationship
+$v[i] \equiv Tb[i]$. We want to evaluate the coefficient of $v[1] \wedge v[2] \wedge v[3]$.
+First grab a basis expansion of $v[i]$ as $v[i] = c[i][j] b[j]$. These uniquely define
+the coefficients $c[i][j]$. Next, expand the wedge:
+
+$$
+\begin{aligned}
+& v[1] \wedge v[2] \wedge v[3] \\
+&= (c[1][1]b[1] + c[1][2]b[2] + c[1][3]b[3]) \wedge 
+   (c[2][1]b[1] + c[2][2]b[2] + c[2][3]b[3]) \wedge 
+   (c[3][1]b[1] + c[3][2]b[2] + c[3][3]b[3]) 
+\end{aligned}
+$$
+
+I now expand out only the first wedge, leaving terms of the form $c[1][1]b[1] (\cdot) + c[1][2]b[2](\cdot) c[1][3]b[3] (\cdot)$.
+(This corresponds to "expanding along and deleting the row" in a laplace expansion when finding the determinant)
+Let's identify the $(\cdot)$ and see what remains:
+
+
+$$
+\begin{aligned}
+& v[1] \wedge v[2] \wedge v[3] \\
+&= c[1][1]b[1] \wedge (c[2][1]b[1] + c[2][2]b[2] + c[2][3]b[3]) \wedge (c[3][1]b[1] + c[3][2]b[2] + c[3][3]b[3]) 
+ + c[1][2]b[2] \wedge(c[2][1]b[1] + c[2][2]b[2] + c[2][3]b[3])  \wedge(c[3][1]b[1] + c[3][2]b[2] + c[3][3]b[3]) 
+ + c[1][3]b[2] \wedge(c[2][1]b[1] + c[2][2]b[2] + c[2][3]b[3])  \wedge(c[3][1]b[1] + c[3][2]b[2] + c[3][3]b[3]) 
+\end{aligned}
+$$
+
+Now, for example, in the first term $c[1][1]b[1] \wedge (\cdot)$, we lose anything inside that contains a $b[1]$,
+as the wedge will give us $b[1] \wedge b[1] = 0$ (this corresponds to "deleting the column" when considering the submatrix).
+Similar considerations have us remove all terms that contain $b[2]$ in the brackets of $c[1][2]b[2]$, and terms that
+contain $b[3]$ in the brackets of $c[1][3]b[3]$. This leaves us with:
+
+$$
+\begin{aligned}
+& v[1] \wedge v[2] \wedge v[3] \\
+&= c[1][1]b[1] \wedge (c[2][2]b[2] + c[2][3]b[3]) \wedge (c[3][2]b[2] + c[3][3]b[3]) 
+ + c[1][2]b[2] \wedge(c[2][1]b[1] + c[2][3]b[3])  \wedge(c[3][1]b[1] +  c[3][3]b[3]) 
+ + c[1][3]b[2] \wedge(c[2][1]b[1] + c[2][2]b[2] )  \wedge(c[3][1]b[1] + c[3][2]b[2]) 
+\end{aligned}
+$$
+
+We are now left with calculating terms like $(c[2][2]b[2] + c[2][3]b[3]) \wedge (c[3][2]b[2] + c[3][3]b[3])$ which
+we can solve by recursion (that is the determinant of the 2x2 submatrix). So if we now write the "by recursion" terms
+down, we will get something like:
+
+$$
+\begin{aligned}
+& v[1] \wedge v[2] \wedge v[3] \\
+&= c[1][1]b[1] \wedge (k[1] b[2] \wedge b[3])
+ + c[1][2]b[2] \wedge(k[2] b[1] \wedge b[3])
+ + c[1][3]b[2] \wedge(k[3] b[1] \wedge b[2])
+\end{aligned}
+$$
+
+
+
+
+Where the $k[i]$ are the values produced by the recursion, and we assume that the recursion will give
+us the coefficients of the wedges "in order": so we always have $b[2] \wedge b[3]$ for example, not $b[3] \wedge b[2]$.
+So, we need to ensure that the final answer we spit out corresponds to $b[1] \wedge b[2] \wedge b[3]$. If we simplify
+the current step we are at, we will get:
+
+$$
+\begin{aligned}
+& v[1] \wedge v[2] \wedge v[3] \\
+&= k[1] c[1][1]b[1] \wedge b[2] \wedge b[3]
+ + k[2] c[1][2]b[2] \wedge b[1] \wedge b[3]
+ + k[3] c[1][3]b[2] \wedge b[1] \wedge b[2]
+\end{aligned}
+$$
+
+
+We need to rearrange our terms to get $b[1] \wedge b[2] \wedge b[3]$ times some constant.
+On rearranging each term into the standard form $b[1] \wedge b[2] \wedge b[3]$, we are forced to pick up the correct sign factors:
+
+$$
+\begin{aligned}
+& v[1] \wedge v[2] \wedge v[3] \\
+&= k[1] c[1][1]b[1] \wedge b[2] \wedge b[3]
+  -k[2] c[1][2]b[1] \wedge b[2] \wedge b[3]
+ + k[3] c[1][3]b[1] \wedge b[2] \wedge b[3] \\
+&= (c[1][1]k[1] - c[1][2]k[2] + c[1][3]k[3])(b[1] \wedge b[2] \wedge b[3])
+\end{aligned}
+$$
+
+We clearly see that for each $c[i]$, the factor is $(-1)^i k[i]$ where $k[i]$ is the answer
+gotten by computing the determinant of the sub-expression where we delete the vector $b[i]$ (ignore the column)
+and also ignore the entire "row", by not thinking about $c[j](\cdot)$ where $j \neq i$.
+So, this proves the laplace expansion by exterior algebra.
+
+
+#### Deriving Cayley Hamilton for rings from $\mathbb Z$
+
+I'll show the idea of how to prove Cayley Hamilton for an arbitrary commutative ring $R$
+given we know Cayley Hamilton for $\mathbb Z$. I describe it for 2x2 matrices.
+The general version is immediate from this. Pick a variable matrix
+and write down the expression for the characteristic polynomial So if:
+
+```
+M = [a b]
+    [c d]
+```
+
+then the characteristic polynomial is:
+
+```
+ch
+= |M - xI|
+=
+|a-x b|
+|c   d-x|
+```
+
+that's $ch(a, b, c, d, x) \equiv (a-x)(d-x) - bc = x^2 +x (a + d) + ad - bc$. This equation has $a, b, c, d, x \in R$
+for some commutative ring $R$. Now, we know that if we set $x = M$, this equation will be satisfied. But what does
+it mean to set $x = A$? Well, we need to let $x$ be an arbitrary matrix:
+
+```
+x = [p q]
+    [r s]
+```
+
+And thus we compute `x^2` to be:
+
+```
+x^2 
+= [p q][p q]
+  [r s][r s]
+= [p^2 + qr; pq + qs]
+  [rp + sr; rq + s^2]
+```
+
+So now expanding out $ch(a, b, c, d, x)$ in terms of $x$ on substituting for $x$ the matrix
+we get the system:
+
+
+```
+[p^2 + qr; pq + qs] + (a + d) [p q] + (ad - bc)[1 0] = [0 0]
+[rp + sr; rq + s^2]           [r s]            [0 1]   [0 0]
+```
+
+We know that these equations hold when $x = M$, because the Cayley-Hamilton theorem
+tells us that $ch(M) = 0$! So we get a different system with `p = a, q = b, r = c, s = d`,
+still with four equations, that we know is equal to zero! This means we have four
+intederminates `a, b, c, d` and four equations, and we know that these equations are true
+for all $\mathbb Z$. But if a polynomial vanishes on infinitely many points, it must
+identically be zero. Thus, this means that `ch(A)` is the zero polynomial, or `ch(A) = 0`
+for *all* `R`. This seems to depend on the fact that the ring is infinite, because otherwise
+imagine we send $\mathbb Z$ to $Z/10Z$.  Since we don't have an infinite number
+of $\mathbb Z$ elements, why should the polynomial be zero? I imagine that this
+needs zariski like arguments to be handled.
+
+
+#### Cramer's rules
+
+We can get cramer's rule using some handwavy manipulation 
+[or rigorizing the manipulation using geometric algebra](https://arxiv.org/pdf/1205.5935.pdf).
+
+Say we have a system of equations:
+
+$$
+\begin{aligned}
+a[1] x + b[1] y = c[1] \\
+a[2] x + b[2] y = c[2] 
+\end{aligned}
+$$
+
+We can write this as:
+
+$$
+\vec a x + \vec b y = \vec c
+$$
+
+where $\vec a \equiv (a_1, a_2)$ and so on. To solve the system, we wedge with $\vec a$ and $\vec b$:
+
+$$
+\begin{aligned}
+\vec a \wedge (\vec a x + \vec b y) = \vec a \wedge \vec c \\
+\vec a \wedge \vec b y = \vec a \wedge \vec c \\
+y = \frac{\vec a \wedge \vec c}{\frac \vec a \wedge \vec b} \\
+y =
+\frac{\begin{vmatrix}
+a[1] & a[2] \\
+c[1] & c[2] 
+\end{vmatrix}}{
+\begin{vmatrix}
+a[1] & b[1] \\
+a[2] & b[2] 
+\end{vmatrix}
+}
+\end{aligned}
+$$
+
+Which is exactly cramer's rule.
+
+
+#### The formula for the adjugate matrix from Cramer's rule (TODO)
+
 
 
 #### References
@@ -192,7 +883,7 @@ $$
 # Learning to talk with your hands
 
 I was intruged by [this HN thread](https://news.ycombinator.com/item?id=26382528)
-about learning to talk with your hands.
+about learning to talk with your hands. I guess I'm going to try and do this more often now.
 
 # Lovecraftisms
 
@@ -383,7 +1074,7 @@ his writing style. Here's a big list of my favourite quotes:
 - We can see that the map $\phi$ looks like some sort of retract that maps the complex $S$ to its boundary $\Delta$.
   Then Sperner's lemma tells us that there is one "region" $T \subseteq S$ that gets mapped onto $\Delta$.
 
-#### 1D: Proof by cohomology
+#### 1D proof of Sperner's: Proof by cohomology
 
 - For 1D, assume we have a line with vertex set $V$ and edges $E$. Let the vertex at the
   beginning be $v_0$ and the vertx at the end be $v_1$. That is, $\Delta \equiv \{v_0, v_1\}$
@@ -403,7 +1094,7 @@ his writing style. Here's a big list of my favourite quotes:
 - Since we start from $A$, that means we must have switched from $A$ to $B$ an odd number of times.
 
 
-#### 2D: Proof by search
+#### 2D proof of Sperner's: Proof by search
 
 - Start from an edge in the bottom $ef$ labeled $BC$. We are looking for a simplex labeled $ABC$.
 - To start: Pick some vertex above $ef$, say $g$. If this is labeled $A$, we are done. If not, say this is
@@ -1154,10 +1845,7 @@ $$
 
 Since this holds when $\vec x, Y$ are arbitrary variables, it continues to hold
 on substituting $Y = 1/g$, the coefficient $c_0(1-Yg) = c_0(1 - g/g) = c_0(1 - 1) = 0$ disappears. This gives:
-
-$$
-1 = \sum_{i=1}^m c_i (Y, \vec x) f_i(\vec x)
-$$
+$1 = \sum_{i=1}^m c_i (Y, \vec x) f_i(\vec x) $
 
 since $Y = 1/g$, we can write $c_i(Y=1/g, \vec x) = n_i(\vec x)/g^r_i(\vec x)$.  By clearing denominators, we get:
 
@@ -1165,11 +1853,7 @@ $$
 1 = \sum{i=1}^m n_i(\vec x) f_i(\vec x)/ g^R(\vec x) 
 $$
 
-This means that 
-
-$$
-g^R(\vec x) = \sum_{i=1}^m n_i(\vec x) f_i(\vec x)
-$$
+This means that $ g^R(\vec x) = \sum_{i=1}^m n_i(\vec x) f_i(\vec x)$
 
 #### Strong Nullstellensatz: algebraic proof
 
@@ -1347,11 +2031,11 @@ in $N \ltimes K$.
 
 $$
 \begin{aligned}
-&(t_2, r_2)((t_1, r_1)(v))  \\
-&= (t_2, r_2)(r_1v + t_1) \\
-&= r_2(r_1v + t_1) + t_2\\
-&= (r_2 r_1) v + (r_2 t_1 + t_2) \\
-&= (r_2 t_1 + t_2, r_2 2_1) v
+&(t2, r2)((t1, r1)(v))  \\
+&= (t2, r2)(r1v + t1) \\
+&= r2(r1v + t1) + t2\\
+&= (r2 r1) v + (r2 t1 + t2) \\
+&= (r2 t1 + t2, r2 21) v
 \end{aligned}
 $$
 
@@ -1361,6 +2045,13 @@ $$
 - We want the translations to be closed under this messing about by the rotation action;
   The action of a rotation on a translation should give us another translation.
   Thus, the translations $(t_1, id)$ ought to be normal in the full group $(t_2, r_2)$.
+
+Another mnemonic for the semidirect product:
+
+> my thesis adviser told me that the acting group (the non-normal subgroup)
+> opens its mouth and tries to swallow / "act on" the group it acts upon (the normal subgroup).
+> The group that is acted on must be normal, because we act "by conjugation". Alternatively,
+> being normal is "tasty", and thus needs to be eaten.
 
 
 # Non orthogonal projections
@@ -2069,7 +2760,7 @@ $$
 But unravelling the definition of $\texttt{proj}$, we get:
 
 $$
-\{ (P_0, P_1, P_2, \dots) \in \prod_{i=0}^n \Pi_n : P_a \supseteq (P_b) \forall a +1 = b  \}.
+\{ (P_0, P_1, P_2, \dots) \in \prod_{i=0}^n \Pi_n : P_a \supseteq P_b) \forall a +1 = b  \}.
 $$
 
 So the inverse limit is the "path" in the "tree of partitions".
@@ -9645,17 +10336,31 @@ into $*$ [pun intended].
 
 
 
-
-
 # What is a syzygy? (WIP)
+
+Word comes from greek word for "yoke" . If we have two oxen pulling, we yoke
+them together to make it easier for them to pull.
 
 #### The ring of invariants
 
-Rotations of $\R^3$ We have a group $SO(3)$ which is acting on a vector space
+Rotations of $\mathbb R^3$: We have a group $SO(3)$ which is acting on a vector space
 $\mathbb R^3$. This  preserves the length, so it preserves the
 polynomial $x^2 + y^2 + z^2$. This polynomial $x^2 + y^2 + z^2$ is said to be
 the invariant polynomial of the group $SO(3)$ acting on the vector space
-$\mathbb R^3$. But how do we attach meaning to the symbols $x, y, z$? 
+$\mathbb R^3$. 
+
+#### How does a group act on polynomials?
+
+If $G$ acts of $V$, how does $G$ act on the polynomial function?
+We define $gf(x) \equiv g (f(g^{-1}(x)))$. We should write
+$(gf)(gx) = g(fx)$. This is like $g(ab) = g(a) g(b)$. But we write
+$(gf)(gx)$ as $(gf)(g(g^{-1}x)) = g(fx)$. So we get $(gf)(x) \equiv g(f(g^{-1}(x)))$.
+
+If we miss out $g^{-1}$ we get a mess. consider $(gh)f(x) = f(ghx)$. But we
+can also take this as $(gh)(f(x)) = g((hf)(x)) = (hf)(gx) = f(hgx)$. This is
+absurd as it gives $f(ghx) = f(hgx)$.
+
+But how do we attach meaning to the symbols $x, y, z$? 
 Well, we can formulate them as linear operators on the vector space
 : $x, y, z : \mathbb R^3 \rightarrow \mathbb R$ $x(a, b, c) \equiv a$,
 $y(a, b, c) \equiv b$, and $z(a, b, c) \equiv c$. Then the expression
@@ -9679,7 +10384,6 @@ We haven't seen what a syzygy is yet; We'll come to that.
 #### Example 2: The action of $SL_n(2)$ on $\mathbb C^2$
 
 ### Binary quantics
-
 
 
 #### References
@@ -9952,6 +10656,7 @@ void duk_print_stack(duk_context *ctx, const char *fmt, ...) {
 int main() {
     const char *latex_to_compile = "\\int_0^\\infty f(x) dx";
     const char *broken_latex_to_compile = "\\int_0^\\infty \\foobar f(x) dx";
+
 
     // FILE *fkatex = fopen("/home/bollu/blog/katex/katex.min.js", "rb");
     FILE *fkatex = fopen("/home/bollu/blog/katex/katex.min.js", "rb");
@@ -26034,7 +26739,6 @@ let g:conjure#mapping#eval_motion = "E"
 > (rather than being made an example of)
 
 
-
 > “The math students dropped out because they could not understand anything. Of
 > course, I didn’t understand anything either, but non-math students have a
 > different standard of what it means to understand something,” Huh said. “I
@@ -26045,6 +26749,15 @@ let g:conjure#mapping#eval_motion = "E"
 > "you're such a dick!". 
 > "I'm moby goddamn dick, and you're swimming in my water".
 
+> When people thought the earth was flat, they were wrong. When people thought
+> the earth was spherical, they were wrong. But if you think that thinking the
+> earth is spherical is just as wrong as thinking the earth is flat, then your
+> view is wronger than both of them put together.
+
+
+> "Ethereum has said they're moving from Proof of Work to Stake; I'm not
+> surprised, given the Ethereum developers seem to abhor Work in all of its
+> forms, including making progress on Ethereum itself"
 
 # Empathy
 
@@ -26052,6 +26765,7 @@ let g:conjure#mapping#eval_motion = "E"
 
 - [Brene brown on empathy](https://www.youtube.com/watch?v=1Evwgu369Jw)
 - [It's not about the nail](https://www.youtube.com/watch?v=-4EDhdAHrOg)
+
 
 
 # Big list of Vim 
