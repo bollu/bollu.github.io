@@ -605,7 +605,7 @@ as
 
 $$
 L_r(T) \equiv \sum_c T[r, c] (-1)^{r+c} det(T'(r, c))
-$4
+$$
 
 Where $T'(r, c)$ is the matrix $T$ with row $r$ and column $c$ deleted.
 I'll derive this concretely using the determinant definition for the 3 by 3 case. The general
@@ -809,7 +809,6 @@ Which is exactly cramer's rule.
 
 
 #### The formula for the adjugate matrix from Cramer's rule (TODO)
-
 
 
 #### References
@@ -1105,7 +1104,6 @@ his writing style. Here's a big list of my favourite quotes:
 - We cannot ever *repeat* a triangle in our path; to repeat a triangle is to start with some edge $xy$
   and then to pick a vertex $z$ such that $xyz=efg$ where $efg$ was already picked. This must mean that the
   edge $ef$ was already picked. [WIP]
-  
 
 #### Proof of hairy ball by sperner's lemma [WIP]
 
@@ -1143,7 +1141,7 @@ The sphere gives us a module that is not free. I'm not sure how to show that it'
 
 #### Simple example of projective module that is not free.
 
-- Let $K$ be a field. Consider $R \equiv K \times K$ as a ring, and let $M \equiv $K$
+- Let $K$ be a field. Consider $R \equiv K \times K$ as a ring, and let $M \equiv K$
   be a module on top of $R$.
 - $M$ is a projective module because $M \osum K \simeq R$
   (that is, we can direct sum something onto it to get the some $\osum_i R$)
@@ -1159,7 +1157,6 @@ The sphere gives us a module that is not free. I'm not sure how to show that it'
   then trivialise the bundle to write $M \times \{p, q\}$.
 - So, a projective module corresponds to a vector bundle because it locally is like a vector space,
   but may not be trivialisable due to a difference in dimension, or compatibility, or some such.
-  
 
 - [Sperner's lemma, Brower's fixed point theorem, and cohomology](https://arxiv.org/pdf/0906.5193.pdf)
 
@@ -1345,12 +1342,11 @@ y : B |- \sum{x : f^{-1}(y)}E(x): Type
 - `x: A, y : A |- Id_A(x, y) : Type` called the identity type of A.
 - An element `p: Id_A(x, y)` is a proof that `x =A y`.
 - Reflexivity term `x : A |- r(x) : Id_A(x, x)` which proves `x =A x`.
-- The identity type is a path object:
-
+- The identity type is a path object
 - $\gamma(x, y): Id_A(x, y) -> Eq(E(x), E(y))$. $\gamma$ is some kind of
   connection: given a path from $x$ to $y$, it lets us transport $E(x)$ to $E(y)$,
   where the $Eq$ is the distortion from the curvature?
-                                                                                
+
 # Hilbert basis theorem for polynomial rings over fields (WIP)
 
 **Theorem:** Every ideal $I$ of $k[x_1, \dots, x_n]$ is finitely generated.
@@ -1411,7 +1407,7 @@ have
 
 - A subset $U \subset X$ is a called as an **elementary neighbourhood**
   if there is a discrete set $F$ and a homeomorphism $h: p^{-1}(U) \rightarrow U \times F$
-  such that p|_{p^{-1}(U)(y) = fst(h)$ or $p|_{p^{-1}(U) = pr_1 \circ h$.
+  such that $p|_{p^{-1}(U)(y) = fst(h)$ or $p|_{p^{-1}(U) = pr_1 \circ h$.
 - [Alternative definition](https://www.math.wisc.edu/~maxim/751f14w6.pdf)
   A subset $U \subset X$ is called as **evenly covered/elementary nbhd** if 
   $p^{-1}(U) = \squp_\alpha V_\alpha$ where the $V_\alpha$ are disjoint and open, and
@@ -1606,15 +1602,15 @@ for which this map is continuous.
 - More explicitly, a set $U \subset X/\sim$ (which is a collection of equivalence
   classes) is open iff $q^{-1}(U)$ is open in $X$.
 - Even more explicitly, $V \subseteq X/\sim$ is open iff $U_V \equiv \{ x \in U : [x] \in V \}$
-  is open in $X$. 
+  is open in $X$.
 - Even more explicitly, we can write $U \equiv \cup_{v \in V} v$, because the elements of 
   $v$ are equivalence classes.
-  
+
 #### Claim: quotient topology is a topology
 
 - The preimage of the empty set is the empty set, and thus is open.
 - The preimage of all equivalence classes is the full space, and thus open.
-- Preimage of union is union of preimages: $\cup_i q^{-1}(V_i) xtend $h$ to get a new homotopy $H$: $H_0 = id_X$ and $H_t|A = h_t$.
+- Preimage of union is union of preimages: $\cup_i q^{-1}(V_i)$ extend $h$ to get a new homotopy $H$: $H_0 = id_X$ and $H_t|A = h_t$.
 
 
 #### $(X, A)$ have HEP and $A$ is contractible, then $X \simeq X/A$
@@ -1628,19 +1624,18 @@ for which this map is continuous.
 - (1b) So we have $(H_1 \circ s) \circ q = H_1 \simeq H_0 = id_X$, as $H_0 = id_X$ is from defn, and $H_1 \simeq H_0$ is from homotopy. So we are done
   in this direction.
 - (2a) Consider $q \circ (H_1 \circ s) : X \rightarrow X/A$. We wish to show that this is continuous. Let's show that it lifs to a continous
-      map upstairs. So consider $q \circ (H_t \circ s) \circ q : X \rightarrow X/A$. We claim that this is equal to $q \circ H_t$,
-	  which is continuous as it is a composition of continuous maps.
+  map upstairs. So consider $q \circ (H_t \circ s) \circ q : X \rightarrow X/A$. We claim that this is equal to $q \circ H_t$,
+  which is continuous as it is a composition of continuous maps.
 - This relationship is hopefully intuitive:
   $q \circ (H_t \circ s) \circ q$ asks us to treat all of $A$ as if it were $a$ before applying $H_t$.
   Since $q$ kills whatever $H_t$ does after, and $H_t$ guarantees to keep $A$ within $A$, it's fine if we treat all of $A$ as just $a$.
   $q \circ H_t$ asks us to treat $A$ as $A$ itself, and not $a$. Since $q$ kills stuff anyway, we don't really care.
-  The real crux of the argument is that $q \circ stab_A = q \circ stab_A \circ s \circ q$ where $stab_A$ is a map that stabilizes $A$. 
-	  
-- (2b) Consider $(q \circ (H_t \circ s) \circ q)(A) = (q \circ H_t \circ s)([a]) = (q \circ H_t)(a) = --- Since $H_t(a) = h_t(a) = a' \in A$,
-       we crush all data regardless of what happens. This is the same as the value $(q \circ H_t)(A) = [a]$ as $H_t(A) \subseteq A$ and $q(A) = [a]$.
-	   For the other set, we get $(q \circ (H_t \circ s) \circ q)(x) = q \circ H_t \circ s([x]) = q \circ H_t(x)$ and hence we are done.
+  The real crux of the argument is that $q \circ stab_A = q \circ stab_A \circ s \circ q$ where $stab_A$ is a map that stabilizes $A$.
+- (2b) Consider $(q \circ (H_t \circ s) \circ q)(A) = (q \circ H_t \circ s)([a]) = (q \circ H_t)(a)$  --- Since $H_t(a) = h_t(a) = a' \in A$,
+  we crush all data regardless of what happens. This is the same as the value $(q \circ H_t)(A) = [a]$ as $H_t(A) \subseteq A$ and $q(A) = [a]$.
+  For the other set, we get $(q \circ (H_t \circ s) \circ q)(x) = q \circ H_t \circ s([x]) = q \circ H_t(x)$ and hence we are done.
 - (2c) Now since $q \circ (H_t \circ s))$ is continuous, and that $q \circ (H_0 \circ s) : X/A \rightarrow X/A = id_{X/A}$, we are done
-       since we can homotope from $q \circ H_1 \circ s \simeq q \circ H_0 \circ s = id_{X/A}$.
+  since we can homotope from $q \circ H_1 \circ s \simeq q \circ H_0 \circ s = id_{X/A}$.
 - (2d) TODO: We should be able to clean this proof up by refactoring $H_t$, $s$ and $q$ somehow to exploit their relationships.
 
 > Slogan: Use HEP to find homotopy $H$. Use $H_1 \circ s$ as inverse
@@ -2275,7 +2270,8 @@ because the left derivative is always equal to zero.
 - For higher derivatives, let $f^{(n)}(x) \equiv p_n(1/x) e^{-1/x}$ for some polynomial $p_n$.
   See that $f^{(n+1)}(x) = d/dx [p_n(1/x) e^{-1/x})]$. To compute this, set $y \equiv 1/x$
   and compute $d/dy [p_n(y) e^{-y] dy/dx$ which is:
-  
+
+$$
 \begin{aligned}
 & = d/dy [p_n(y) e^{-y] dy/dx \\
 & = p_n'(y) e^{-y} + p_n(y) (- e^{-y}) \cdot 1/x^2 \\
@@ -2284,6 +2280,7 @@ because the left derivative is always equal to zero.
 & \text{let $r_{n+1}(x) (\equiv q_n'(t) - q_n(t))t^2$} \\
 & = r_{n+1}(1/x) e^{-1/x}
 \end{aligned}
+$$
 
 - So we can write higher derivatives too as $poly(1/x)$ times $exp(-1/x)$ which also decays
   rapidly to $0$.
@@ -4547,13 +4544,13 @@ not tracking data at $q$.
 We wish to solve the game by benelovence: have vertices lend to adjacent vertices.
 Here are the steps to convert such an intuition to a real algorithm:
 
-0. Start with a divisor $D$ we want to find an effective divisor $E \geq 0$
+1. Start with a divisor $D$ we want to find an effective divisor $E \geq 0$
    that $D$ is linearly equivalent to (ie, there exists a series of moves to convert $D$ to $E$).
-1. Pick some benelovent vertex $q \in V$. Call $q$ the source. Let $V' = V/q$ be the non
+2. Pick some benelovent vertex $q \in V$. Call $q$ the source. Let $V' = V/q$ be the non
    source vertices.
-2. Let $q$ lend so much money to the non-source-vertices, such that the non-source-vertices,
+3. Let $q$ lend so much money to the non-source-vertices, such that the non-source-vertices,
    sharing amongst themselves, are out of debt. 
-3. Now only $q$ is in debt from this giving. $q$ makes no lending or borrowing moves.
+4. Now only $q$ is in debt from this giving. $q$ makes no lending or borrowing moves.
    The non-source-vertices must get $q$ out of debt. Find a $S \subseteq V'$ such that if
    everyone in $S$ lends, then no one in $S$ go into debt. Make the corresponding set-lending
    move. Repeat until no such $S$ remains. The resulting divisor is said to be $q$-reduced.
@@ -8218,37 +8215,72 @@ Zizek:
 
 # Learn Zig in Y minutes
 
+
+- imports:
+
 ```
 const std = @import("std");
+```
 
+
+- globals:
+
+```
 // global variables.
 const x = 1234;
+```
 
+
+- comments:
+
+```
 //! Top level comments are setup using //!
 //! This module provides functions for retrieving the current date and
 //! time with varying degrees of precision and accuracy. It does not
 //! depend on libc, but will use functions from it if available.
+```
+
+- main:
+
+```
 pub fn main() !void {
     const stdout = std.io.getStdOut().writer();
     try stdout.print("Hello, {}!\n", .{"world"});
     // Comments in Zig start with "//" and end at the next LF byte (end of line).
     // The below line is a comment, and won't be executed.
+```
 
+- ints:
+
+```
     // integers
     const one_plus_one: i32 = 1 + 1;
     print("1 + 1 = {}\n", .{one_plus_one});
+```
+- floats:
 
+```
     // floats
     const seven_div_three: f32 = 7.0 / 3.0;
     print("7.0 / 3.0 = {}\n", .{seven_div_three});
+```
 
+- bools:
+
+
+```
     // boolean
     print("{}\n{}\n{}\n", .{
         true and false,
         true or false,
         !true,
     });
+```
 
+- optionals:
+
+
+```
     // optional
     var optional_value: ?[]const u8 = null;
     assert(optional_value == null);
@@ -8265,34 +8297,41 @@ pub fn main() !void {
         @typeName(@TypeOf(optional_value)),
         optional_value,
     });
+```
 
+- errors:
+
+```
     // error union
     var number_or_error: anyerror!i32 = error.ArgNotFound;
-
     print("\nerror union 1\ntype: {}\nvalue: {}\n", .{
         @typeName(@TypeOf(number_or_error)),
         number_or_error,
     });
-
     number_or_error = 1234;
-
     print("\nerror union 2\ntype: {}\nvalue: {}\n", .{
         @typeName(@TypeOf(number_or_error)),
         number_or_error,
     });
-
     // It works at global scope as well as inside functions.
     const y = 5678;
-
-
 }
 
+```
 
 
+
+- Top level ordering:
+
+```
 // Top-level declarations are order-independent:
 pub fn g() { f(); }
 pub fn f() {}
+```
 
+- strings:
+
+```
 test "string literals" {
     const bytes = "hello";
     assert(@TypeOf(bytes) == *const [5:0]u8);
@@ -8304,9 +8343,6 @@ test "string literals" {
     assert('💯' == 128175);
     assert(mem.eql(u8, "hello", "h\x65llo"));
 }
-
-
-
 ```
 
 
@@ -10118,8 +10154,7 @@ When we run out of space, we `<find correct way to use mmap>` to increase our
 I've played around with this value a little bit, and have found that the modern
 stack size is quite large: IIRC, It allowed me to allocate ~`26 GB`. I believe
 that the amount it lets you allocate is tied directly to the amount of physical
-memory + swap you have. I'm not too sure, however. So, [for my haskell
-compiler, `sxhc`](https://github.com/bollu/simplexhc-cpp.git), I am considering
+memory + swap you have. I'm not too sure, however. So, [for my haskell compiler, `sxhc`](https://github.com/bollu/simplexhc-cpp.git), I am considering
 cheating and just using the stack directly.
 
 Code for the same example (with the K combinator) is provided here.
@@ -11188,6 +11223,7 @@ $$
 \xrightarrow{\beta:exp(\cdot)} \mathfrak O^* 
 \rightarrow 0
 \end{aligned}
+$$
 
 - $\mathfrak O$ is the sheaf of the additive group of holomorphic functions. 
   $\mathfrak O^*$ is the sheaf of the group of non-zero holomorphic functions. 
@@ -11208,7 +11244,7 @@ $$
 - Assume such a function exists. Then it must be the case that
   $d/dz exp(l(z)) = d/dz(z) = 1$. Thus, $exp(l(z)) l'(z) = z l'(z) = 1$
   [use the fact that $exp(l(z)) = z$]. This means that $l'(z) = 1/z$.
-- Now, by integrating in a closed loop of $e^{i \theta}$` we have `\oint l'(z) = l(1) - l(1) = 0$.
+- Now, by integrating in a closed loop of $e^{i \theta}$. we have $\oint l'(z) = l(1) - l(1) = 0$.
 - We also have that $\oint l'(z) = \oint 1/z = 2\pi i$.
 - This implies that $0 = 2\pi i$ which is absurd.
 - Hence, we cannot have a function whose exponential gives $h(z) = z$ everywhere.
