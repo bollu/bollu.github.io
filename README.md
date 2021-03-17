@@ -15,6 +15,288 @@ A Universe of Sorts
 - [reading list/TODO](todo.html)
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
+# Covariant hom is left exact
+
+# Internal versus External semidirect products
+
+Say we have an inner semidirect product. This means we have subgroups $N, K$ such that $NK = G$,
+$N$ normal in $G$ and $N \cap K = \{ e \}$. Given such conditions, we can realize $N$ and $K$
+as a semidirect product, where the action of $K$ on $N$ is given by conjugation in $G$.
+So, concretely, let's think of $N$ (as an abstract group) and $K$ (as an abstract group)
+with $K$ acting on $N$ (by conjugation inside $G$). We write the action of $k$ on $n$
+as $n^k \equiv knk^{-1}$.  We then have a homomorphism $\phi: N \ltimes K \rightarrow G$
+given by $\phi((n, k)) = nk$. To check this is well-defined, let's take $s, s' \in N \ltimes K$, with
+$s \equiv (n, k)$ and $s' \equiv (n', k')$. Then we get:
+
+$$
+\begin{aligned}
+&\phi(ss') = \\
+&=\phi((n, k) \cdot (n', k')) \\
+&\text{definition of semidirect product via conjugation:} \\
+&= \phi((n {n'}^k, kk')) \\
+&\text{definition of $\phi$:} \\
+&= n n'^{k} kk' \\
+&\text{definition of $n'^k = k n' k^{-1}$:} \\
+&= n k n'k^{-1} k k'  \\
+&= n k n' k'  \\
+&= \phi(s) \phi(s')
+\end{aligned}
+$$
+
+So, $\phi$ really is a homomorphism from the external description (given in terms of the conjugation)
+and the internal description (given in terms of the multiplication). 
+
+We can also go the other direction, to start from the internal definition and get to the conjugation.
+Let $g \equiv nk$ and $g' \equiv n'k'$. We want to multiply them, and show that the multiplication
+gives us some other term of the form $NK$:
+
+$$
+\begin{aligned}
+gg' \\
+&= (n k) (n' k')  \\
+&= n k n' k'  \\
+&= \text{insert $k^{-1}k$: } \\
+&= n k n' k^{-1} k k' \\
+&= n (k n' k^{-1}) k k' \\
+&= \text{$N$ is normal, so $k n' k^{-1}$ is some other element $n'' \in N$:} \\
+&= n n'' k k' \\
+&= N K
+\end{aligned}
+$$
+
+So, the collection of elements of the form $NK$ in $G$ is closed. We can check that the other properties
+hold as well.
+
+
+# Splitting of semidirect products in terms of projections
+
+Say we have an exact sequence that splits:
+
+$$
+0 \rightarrow N \xrightarrow{i} G \xrightarrow{\pi} K \rightarrow 0
+$$
+
+with the section given by $s: K \rightarrow G$ such that $\forall k \in K, \pi(s(k)) = k$.
+Then we can consider the map $\pi_k \equiv s \circ pi: G \rightarrow G$. See that this firsts
+projects down to $K$, and then re-embeds the value in $G$. The cool thing is that
+this is in fact *idempotent* (so it's a projection!) Compute:
+
+$$
+\begin{aligned}
+&\pi_k \circ \pi_k \\
+&= (s \circ \pi) \circ (s \circ \pi ) \\
+&= s \circ (\pi \circ s) \circ \pi ) \\
+&= s \circ id \circ \pi \\
+&= s \circ \pi = \pi_k \\
+\end{aligned}
+$$
+
+So this "projects onto the $k$ value". We can then extract out the $N$ component as
+$\pi_n: G \rightarrow G; \pi_n(g) \equiv g \cdot \pi(k)^{-1}$.
+
+
+
+# Tensor is right exact
+
+Consider an exact sequence
+
+$$
+0 \rightarrow A \xrightarrow{f} B \xrightarrow{g} C \rightarrow 0
+$$
+
+We wish to consider the operation of tensoring with some ring $R$.
+For a given ring morphism $h: P \rightarrow Q$ this induces a new
+morphism $R \otimes h: R \otimes A \rightarrow R \otimes B$ defined
+by $h(r \otimes a) \equiv r \otimes h(a)$.
+
+So we wish to contemplate the sequence:
+
+
+$$
+R \otimes A \xrightarrow{R \otimes f} R \otimes B \xrightarrow{R \otimes g} R \otimes C
+$$
+
+
+To see if it is left exact, right exact, or both. Consider the classic sequence of
+modules over $\mathbb Z$:
+
+#### A detailed example
+
+
+$$
+0 \rightarrow 2\mathbb Z \xrightarrow{i} \mathbb Z \xrightarrow{\pi} \mathbb Z / \mathbb 2Z \rightarrow 0
+$$
+
+Where $i$ is for inclusion, $\pi$ is for projection. This is an exact sequence, since it's of the form
+kernel-ring-quotient. We have three natural choices to tensor with: $\mathbb Z, \mathbb 2Z, \mathbb Z/\mathbb 2Z$.
+By analogy with fields, tensoring with the base ring $\mathbb Z$ is unlikely to produce anything of interest.
+$\mathbb 2Z$ maybe more interesting, but see that the map $1 \in \mathbb Z \mapsto 2 \in 2 \mathbb Z$ gives us an 
+isomorphism between the two rings. That leaves us with the final and most interesting element (the one with torsion),
+$\mathbb Z / \mathbb 2Z$. So let's tensor by this element:
+
+$$
+\mathbb Z/2\mathbb Z \otimes  2\mathbb Z \xrightarrow{i'}
+\mathbb Z/2\mathbb Z \otimes  \mathbb Z \xrightarrow{\pi'} 
+\mathbb Z/2\mathbb Z \otimes  \mathbb Z / \mathbb 2Z
+$$
+
+- See that $\mathbb Z/2\mathbb Z \otimes 2 \mathbb Z$ has elements of the form $(0, *) = 0$,
+  We might imagine that the full ring collapses since 
+  $1 \otimes 2k) = 2(1 \otimes k) = 2 \otimes k = 0$ (since $2 = 0$ in $\mathbb Z/2\mathbb Z$). But this in fact
+  incorrect! Think of the element $1 \otimes 2$. We *cannot* factorize this as $2(1 \otimes 1)$ since $1 \not \in 2 \mathbb Z$.
+  So we have the element $1 \otimes 2 \in \mathbb Z/2\mathbb Z / \times 2 \mathbb Z$. 
+- See that $\mathbb Z/2\mathbb Z \otimes \mathbb Z \simeq \mathbb Z/2\mathbb Z$: 
+  Factorize $(k, l) = l(k, 1) = (kl, 1) \simeq \mathbb Z/2 \mathbb Z$.
+- Similarly, see that $\mathbb Z/2\mathbb Z \otimes \mathbb Z/2\mathbb Z  \simeq \mathbb Z/2\mathbb Z$.
+  Elements $0 \otimes 0, 0 \otimes 1, 1 \otimes 0 \simeq 0$ and $1 \otimes 1 \simeq 1$.
+- In general, Let's investigate elements $a \otimes b \in \mathbb Z/n\mathbb Z \otimes \mathbb Z/m\mathbb mZ$ .
+  We can write this as $ab 1 \otimes 1$. The $1 \otimes 1$ gives us a "machine" to reduce the number by $n$ and by $m$.
+  So if we first reduce by $n$, we are left with $r$ (for remained) for some $ab = \alpha n + r$. We can then reduce
+  $r$ by $m$ to get $ab = \alpha n + \beta m + r'$. So if $r' = 0$, then we get $ab = \alpha n + \beta m$. But see that
+  all elements of the form $\alpha n + \beta m$ is divisible by $gcd(n, m)$. Hence, all multiples of $gcd(n, m)$ are sent
+  to zero, and the rest of the action follows from this. So we effectively map into $\mathbb Z/ gcd(m, n) \mathbb Z$
+- In fact, we can use the above along with (1) write finitely generated abelian groups as direct sum of cyclic groups,
+  (2) tensor distributes over direct sum. This lets us decompose tensor products of all finitely generated 
+  abelian groups into cyclics.
+- This gives us another heuristic argument for why $\mathbb Z \times \mathbb Z/2\mathbb Z \simeq \mathbb Z/2 \mathbb Z$.
+  We should think of $\mathbb Z$ as $\mathbb Z/\mathbb \infty Z$, since we have "no torsion" or "torsion at infinity".
+  So we get the tensor product should have $gcd(2, \infty) = 2$.
+- Now see that the first two components of the tensor give us a map from
+  $\mathbb Z/2\mathbb Z \otimes \mathbb 2Z \xrightarrow{i} \mathbb Z/2\mathbb Z \otimes \mathbb Z$ which sends:
+
+$$
+\begin{aligned}
+&x \otimes 2k \mapsto x \otimes 2k \in \mathbb Z/2\mathbb Z \otimes \mathbb Z \\
+&= 2 (x \otimes k) \\
+&= (2x \otimes k) \\
+&=0 \otimes k = 0
+\end{aligned}
+$$
+
+- This map is not injective, since this map kills everything! Intuitively, the "doubling" that is latent
+  in $2\mathbb Z$ is "freed" when injecting into $\mathbb Z$. This latent energy explodes on contant
+  with $\mathbb Z/2 \mathbb Z$ giving zero. So, the sequence is no longer left-exact, since the map is
+  not injective!
+
+
+
+- So the induced map is identically zero! Great, let's continue, and inspect the tail end
+  $ \mathbb Z/2\mathbb Z \otimes  \mathbb Z \xrightarrow{\pi} \mathbb Z/2\mathbb Z \otimes  \mathbb Z / \mathbb 2Z$.
+  Here, we sent the element $(x, y) \mapsto (x, y \mod 2)$. This clearly gives us all the elements: For example,
+  we get $0 \otimes 0$ as the preimage of $0 \times 2k$ and we get $1 \otimes 1$ as the preimage of (predictably)
+  $1 \otimes (2k+1)$. Hence, the map is surjective.
+
+So finally, we have the exact sequence:
+
+$$
+\mathbb Z/2\mathbb Z \otimes  2\mathbb Z \xrightarrow{i'}
+\mathbb Z/2\mathbb Z \otimes  \mathbb Z \xrightarrow{\pi'} 
+\mathbb Z/2\mathbb Z \otimes  \mathbb Z / \mathbb 2Z \rightarrow 0
+$$
+
+We do NOT have the initial $(0 \rightarrow \dots)$ since $i'$ is no longer injective.
+It fails injectivity as badly as possible, since $i'(x) = 0$. Thus, tensoring is
+RIGHT EXACT. It takes right exact sequences to right exact sequences!
+
+
+#### The general proof
+
+Given the sequence:
+
+$$
+A \xrightarrow{i} B \xrightarrow{\pi} C \rightarrow 0
+$$
+
+We need to show that the following sequence is exact:
+
+$$
+R \otimes A \xrightarrow{i'} R \otimes B \xrightarrow{\pi'} R \otimes C \rightarrow 0
+$$
+
+- First, to see that $\pi'$ is surjective, consider the basis element $r \otimes c \in R \otimes C$.
+  Since $\pi$ is surjective, there is some element $b \in B$ such that $\pi(b) = c$. So the element
+  $r \otimes b \in B$ maps to $r \otimes c$ by $\pi'$; $\pi'(r \otimes b) = r \otimes \pi(b) = r \otimes c$ 
+  (by definition of $\pi$, and choice of $b$). This proves that $B \xrightarrow{\pi'} R \otimes C \rightarrow 0$
+  is exact.
+
+- Next, we need to show that $im(i') = ker(\pi')$.
+- To show that $im(i') \subseteq ker(\pi')$, consider an arbitrary $r \otimes a$. Now compute:
+
+$$
+\begin{aligned}
+&\pi'(i'(r \otimes a))  \\
+&= \pi'(r \otimes i(a)) \\
+&= r \otimes \pi(i(a))
+& \text{By exactness of $A \xrightarrow{i} B \xrightarrow{\pi} C$, $\pi(i(a)) = 0$:} \\
+&= r \otimes 0  \\
+&= 0
+\end{aligned}
+$$
+So we have that any element in $i'(r \otimes a) \in im(i')$ is in the kernel of $\pi'$.
+
+Next, let's show $ker(\pi') \subseteq im(i')$. This is the "hard part" of the proof. So let's 
+try a different route. I claim that if $im(i') = ker(\pi')$ iff $coker(i') = R \otimes C$. This
+follows because:
+
+$$
+\begin{aligned}
+&coker(i) = (R \otimes B)/ im(i') \\
+& \text{Since } im(i') = ker(\pi')
+&= (R \otimes B)/ker(\pi') \\
+& \text{Isomorphism theorem: } \\
+&= im(\pi') \\
+& \text{$\pi'$ is surjective: } \\
+&= R \otimes C
+\end{aligned}
+$$
+
+Since each line was an equality, if I show that $coker(i) = R \otimes C$, then I have that $im(i') = ker(\pi')$.
+So let's prove this:
+
+
+$$
+\begin{aligned}
+&coker(i) = (R \otimes B)/ im(i') \\
+&= (R \otimes B)/i'(R \otimes A) \\
+& \text{Definition of $i'$: } \\
+&= (R \otimes B)/(R \otimes i(A)) \\
+\end{aligned}
+$$
+
+I claim that the $(R \otimes B)/( R \otimes i(A)) \simeq R \otimes (B/i(A))$ (informally, "take $R$ common").
+Define the quotient map $q: B \rightarrow B/i(A)$. This is a legal quotient map because $i(A) = im(i) \simeq ker(\pi)$
+is a submodule of $B$.
+
+$$
+\begin{aligned}
+q : B \rightarrow B/i(A) \\
+f: R \otimes B \rightarrow  \rightarrow R \otimes (B / i(A)) \\
+f(r \otimes b) = r \otimes  q(b) \\
+r \otimes b  \in R \otimes B \xrightarrow{f = R \otimes q } r \otimes q(b) \in R \otimes B/i(A)
+\end{aligned}
+$$
+
+Let's now study $ker(f)$. It contains all those elements such that $r \otimes q(b) = 0$.
+But this is only possible if $q(b) = 0$. This means that $b \in i(A) = im(i) = ker(\pi)$.
+Also see that for every element $r \otimes (b + i(A)) \in R \otimes (B/i(A))$, there is an inverse
+element $r \otimes b \in R \otimes B$. So, the map $f$ is *surjective*. Hence, $im(f) \simeq R \otimes (B/i(A))$.
+Combining the two facts, we get:
+
+$$
+\begin{aligned}
+&domain(f)/ker(f) \simeq im(f) \\
+&(R \otimes B)/(R \otimes (B/i(A))) \simeq R \otimes (B/i(A))
+&coker(i) = (R \otimes B)/(R \otimes (B/i(A))) \simeq R \otimes (B/i(A)) = R \otimes C
+\end{aligned}
+$$
+
+Hence, $coker(i) \simeq R \otimes C$.
+
+
+- [Reference: Kyle Miller's notes on the exactness of the tensor product](https://math.berkeley.edu/~kmill/notes/tensor.pdf)
+
+
+
 # Semidirect product as commuting conditions
 
 Recall that in $N \ltimes K = G$, $N$ is normal. This is from the mnemonic

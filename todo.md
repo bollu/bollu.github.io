@@ -1,3 +1,5 @@
+- Topology via logic, frames and locales, etc.
+
 - Laziness and linear types mix in complicated ways.
 
 - [Spaceship earth](https://en.wikipedia.org/wiki/Spaceship_Earth)
