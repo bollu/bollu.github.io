@@ -22320,20 +22320,23 @@ try to find algebraic objects that allow us to "detect" these holes.
 
 - A 0-simplex is a point
 
-<img src="static/simplices/0-simplex.svg" width="200px">
+```
+*
+```
 
 - A 1-simplex is a line
-
-<img src="static/simplices/1-simplex.svg" width="200px">
+- 
+```
+*===*
+```
 
 - A 2-simplex is a filled triangle
 
-<img src="static/simplices/2-simplex.svg" width="200px">
-
-
-- A 3-simplex is a solid tetrahedra
-
-<img src="static/simplices/3-simplex.svg" width="200px">
+```
+   *
+  / \
+ *---*
+```
 
 - A $k$-dimensional simplex is the convex hull of $k+1$
   linearly independent points $(u_i \in \mathbb R^{k+1})$
@@ -22351,30 +22354,30 @@ Examples of simplicial complexes:
 
 - Every simplex is trivially a simplicial complex.
 
-<img src="static/simplices/complex-0-simplices.svg" width="200px">
+<img src="static/simplices/complex-0-simplices.svg" width="50">
 - A collection of points is a simplicial complex with all simplices of degree $0$.
 
-<img src="static/simplices/complex-unfilled-triangle.svg" width="200px">
+<img src="static/simplices/complex-unfilled-triangle.svg" width="50">
 - An unfilled triangle is a simplicial complex with simplices of degree $0$, $1$.
 
-<img src="static/simplices/complex-unfilled-butterfly.svg" width="200px">
+<img src="static/simplices/complex-unfilled-butterfly.svg" width="50">
 - Non-triangular shapes such  as this "butterfly" are also simplicial complexes,
   this one of degree $0$, $1$.
 
-<img src="static/simplices/complex-half-filled-butterfly.svg" width="200px">
+<img src="static/simplices/complex-half-filled-butterfly.svg" width="50">
 - This is the same shape as the unfilled butterly, except now containing a
   simplex of degree 2: the filling in of the bottom of the butterfly.
 
 
 Non-examples of simplicial complexes are:
 
-<img src="static/simplices/non-simplex-1.svg" width="200px">
+<img src="static/simplices/non-simplex-1.svg" width="50">
 - This does not contain the point at the lower-left corner, which should exist
   since it is a boundary of the straight line. This violates rule (1):
   Every boundary of a simplex from $K$ is in $K$
 
 
-<img src="static/simplices/non-simplex-2.svg" width="200px">
+<img src="static/simplices/non-simplex-2.svg" width="50">
 - This does not contain the points which are at the intersection of the
   triangle and the line. This violates rule (2):
   The intersection of any two simplices in $K$ is also in $K$.
