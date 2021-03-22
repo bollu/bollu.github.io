@@ -14,6 +14,7 @@
 \usepackage{listing}
 \usepackage{minted}
 \usepackage{cancel}
+\usepackage{quiver}
 \evensidemargin=0.20in
 \oddsidemargin=0.20in
 \topmargin=0.2in
@@ -384,7 +385,7 @@ third person, (Seymour) is $x = vt + 2$. [all of these are relative to the stati
 The moving and stationary observer agree on what $t = 0$ means. Fred will
 send out a light signal to Mary. Seymour will also send out a light signal
 to Mary. They send it in such a way that they arrive to mary at the same
-time. The point will occur _above_ $t = 0$ for Seymour. Let $a$ be the
+time. The point will occur above $t = 0$ for Seymour. Let $a$ be the
 time mary gets fred's light ray. Let $b$ be the "backtraced" point from
 mary to fred along -45 degrees.
 
@@ -963,7 +964,7 @@ Let us justify naming this object $exp$:
     \end{itemize}
 \end{definition}
 
-\chapter{Lie derivative: $\Lie_X Y$}
+\chapter{Lie derivatives}
 \section{The definition of the lie derivative}
 The problem with manifolds is that to compare values at $x, y \in M$, it's
 unclear how to compare objects. We simply cannot, since there is no structure
@@ -1540,7 +1541,7 @@ if it maps $\psi: G \rightarrow Symp(M) \subset Diff(M)$.
 
 We have a one-to-one correspondence between symplectic $\R$ actions and symplectic
 vector fields. This is nice, because a vector field can be checked as symplectic
-_locally_ (TODO: I don't think I've written this down? Check lecture 14). What
+locally (TODO: I don't think I've written this down? Check lecture 14). What
 happens when we don't just have $\R$ actions, but a general $G$ action? Tobias
 says "we need to work harder in this case".
 
@@ -1606,7 +1607,7 @@ field at the identity, we can use the left invariance to "push forward" the
 action by any $g$, which lets us reconstruct the full vector field. 
 
 
-Really the identity is also a misnomer; if we know the value _anywhere_,
+Really the identity is also a misnomer; if we know the value \emph{anywhere},
 we can reconstruct it if we know where we are.
 
 Given some $x_e \in T_e G$, we can define the vector field on the whole group
@@ -1623,7 +1624,7 @@ $$
 $$
 
 where $f: M \rightarrow \mathbb R$ is an observable, and $H$ is the Hamiltonian.
-So, $H$ is the _generator of time translations_. That's a symmetry. The
+So, $H$ is the \emph{generator of time translations}. That's a symmetry. The
 symmetry group is $\mathbb R$. We can think of $H$ as the conserved charge
 of this symmetry group.
 
@@ -1653,7 +1654,7 @@ also conjugation. $G \rightarrow Diff(G); \psi(g) = \lambda h. ghg^{-1}$.
 Derivative at $e \in G$ of $\psi_g: G \rightarrow G$, we get a map
 $Ad_g: \mathfrak g \rightarrow \mathfrak g$. This is an invertible map
 from left invariant vector fields to left invariant vector fields. Note that
-this a \mathbf{representation of the Lie group}, since $\mathfrak g$ is
+this a \emph{representation of the Lie group}, since $\mathfrak g$ is
 a vector space!
 
 
@@ -1668,6 +1669,7 @@ For matrix groups, show that $\frac{d}{dt} A d_{exp(tX)} Y |_{t = 0} = [X, Y]$.
 Let $G = SO(3)$. Let $O \in G$. $O^T O = I$, and $det(O) = 1$. The lie algebra
 is going to be $\mathfrak{g} \equiv \{ A \in M_3(\mathbb R) : A^T = -A \}$
 which can be identified with $\mathbb R^3$.
+\end{example}
 
 \subsection{Coadjoint}
 
@@ -1680,7 +1682,7 @@ Given $\xi \in \mathfrak g^\star$, define:
 
 $$\langle Ad_g^\star \xi, x \rangle \equiv \langle \xi, Ad_{g^{-1}} x\rangle$$
 
-The collection of maps $Ad_g^\star$ forms the _co-adjoint_ representation of $G$
+The collection of maps $Ad_g^\star$ forms the \emph{co-adjoint} representation of $G$
 on $\mathfrak g^\star$. $Ad^\star: G \rightarrow GL(\mathfrak g^\star); g \mapsto Ad_g^\star$.
 
 
@@ -1689,7 +1691,7 @@ acting on $M$ via symplectomorphisms.
 
 
 For every $X \in \mathfrak g$, let $\xi_X$ be the corresponding vector field
-on $M$. I am confused because $X$ is _already_ a left-invariant vector field!
+on $M$. I am confused because $X$ is \emph{already} a left-invariant vector field!
 Ah, no, $X$ is a left invariant vector field on $G$. We want a vector
 field on $M$!
 
@@ -1703,7 +1705,7 @@ $$
 
 
 Since $G$ acts via symplectomorphisms, $\xi_X$ is a symplectic vector field.
-Hence, $L_{xi_X \omega = 0 = d(i_{\xi_X} \omega) = 0$.
+Hence, $L_{xi_X} \omega = 0 = d(i_{\xi_X} \omega) = 0$.
 
 Hence, $i_{\xi_X} \omega$ is \emph{closed}. What we want is for this to be
 exact. Ie, we would like to write:
@@ -1731,10 +1733,10 @@ forms given by $i_{\xi_X} \omega$ are exact.
 Suppose they are exact. Then this means that:
 
 $$
-i_{\xi_X} \omega = d H_X \quad \text{H: M \rightarrow \mathbb R, \forall X \in \mathfrak g}
+i_{\xi_X} \omega = d H_X  \quad  H: M \rightarrow \mathbb R, \forall X \in \mathfrak g
 $$
 
-we can hope that $H$ is _linear_. that is, $H_{X + Y} = H_X + H_Y, \forall X, Y \in \mathfrak g$.
+we can hope that $H$ is \emph{linear}. that is, $H_{X + Y} = H_X + H_Y, \forall X, Y \in \mathfrak g$.
 So, $H: \mathfrak g \times M \rightarrow \mathbb R$, which by curring gives us
 $H: M \rightarrow \mathfrak g \xrightarrow{linear} \mathbb R$. That is,
 $H: M \rightarrow \mathfrak g^\star$. We rename $H$ to $\mu: M \rightarrow \mathfrak g^\star$.
@@ -1746,12 +1748,12 @@ We now revise the definition of hamiltonian action:
 The action $\psi: G \rightarrow Symp(M)$ is hamiltonian when there is a function
 $\mu:  M \rightarrow g^\star$. We define $\mu^X: M \rightarrow \R; \mu^X (p) \equiv \langle \mu(p), X \rangle$.
 
-Let $X^# = \xi_X$ be the vector field on $M$ generated by $\{ exp(tX) : t \in \mathbb R} \subseteq G$.
+Let $X^\sharp = \xi_X$ be the vector field on $M$ generated by $\{ exp(tX) : t \in \mathbb R \} \subseteq G$.
 
-1. Then, $d \mu^X = i_{X^\hash} \omega$ [Condition 1]
+1. Then, $d \mu^X = i_{X^\sharp} \omega$ [Condition 1]
 2. $\mu$ is equivariant with respect to the $\psi$ action on $M$ and 
-   coadjoint action $Ad^\star$ of $G$ on \mathfrak g^\star$:
-   $$\mu \circ \psi_g = Ad_g^\star \circ \mu$$.
+   coadjoint action $Ad^\star$ of $G$ on $\mathfrak g^\star$:
+   $\mu \circ \psi_g = Ad_g^\star \circ \mu$.
 
 The tuple $(M, \omega, G, \mu)$ is called a Hamiltonian $G$-space and $\mu$
 is the moment map.
@@ -1786,7 +1788,7 @@ When we compute $[AB - BA] \in \mathfrak g$,
 we will get the final entries to be the same as $\vec a \times \vec b \in \R^3$.
 
 We can also show that the adjoint and coadjoint action of $G$ on $\mathfrak g$
-is the _usual_ $SO(3)$ action!
+is the usual $SO(3)$ action!
 
 The coadjoint orbits are spheres centered at origin of $\mathbb R^3$.
 
@@ -1797,13 +1799,13 @@ Let $(M, \omega) = (\R^3 \times R^3, \omega \equiv \sum_j dx_j \wedge dp_j)$
 
 Let $G = R^3$ acts on $M$ via $a (x, p) \mapsto (x+a, p)$. The vector
 field corresponding to $a \sim X \in \mathfrak g$ [I need to work out the lie algebra for myself]
-is $X^\hash \equiv \xi_x \equiv a_1 \partial_{x_1} + a_2 \partial_{x_2} + a_3 \partial_{x_3}$.
+is $X^\sharp \equiv \xi_x \equiv a_1 \partial_{x_1} + a_2 \partial_{x_2} + a_3 \partial_{x_3}$.
 
 We can ask if vector field is hamiltonian. We can show that there exists a $\mu_X$
 such that:
 
 $$
-i_{X^hash}(\omega) = d \mu^X
+i_{X^sharp}(\omega) = d \mu^X
 $$   
 
 where
@@ -1821,12 +1823,12 @@ we need to figure out the action of $SO(3)$. Recall that $M$ is equivalent
 to $T^\star \R^3$ (the cotangent bundle). $\psi_g$ acts on $\R^3$ by rotations by
 diffeomorphisms. We know that this can be lifted to act as a symplectomorphism
 on the cotangent bundle [ what is the intuition? how?]. Hence, we get
-the symplectomorphism $\psi_#: \coT M \rightarrow \coT M$. We have the 
-symplectomorphism $\psi_#^g \in Symp(\coT \R^3, \omega)$ where $g \in \mathfrak g$.
-We ave the formula: $\psi_#^g (x, y) = (g \times x, g \times y)$ where we are
+the symplectomorphism $\psi_\sharp: \coT M \rightarrow \coT M$. We have the 
+symplectomorphism $\psi_\sharp^g \in Symp(\coT \R^3, \omega)$ where $g \in \mathfrak g$.
+We ave the formula: $\psi_\sharp^g (x, y) = (g \times x, g \times y)$ where we are
 thinking of $g \in \mathfrak{so}(3)$ as a vector in $\mathbb R^3$.
 
-We can show that it is hamiltonian, with $\mu: \coT \R^3 \rightarrow \mathfrak g^\star$.
+We can show that it is Hamiltonian, with $\mu: \coT \R^3 \rightarrow \mathfrak g^\star$.
 That is, $\mu: \R^6 \rightarrow \R^3; \mu(x, p) = x \times p$.
 
 
@@ -2085,4 +2087,395 @@ $\braket{b}{c} \neq 0$ iff the span of $b$ is contained in the span of $c$.
 This allows us to model situations where we wish to have a notion of containment
 \emph{across subspaces} of a given space.
 
+\section{5: Principal fiber bundle: Lec 19 --- Geometric anatomy of physics}
+
+A principal fiber bundle is a bundle whose fiber is a lie group. PFB (principal
+fiber bundles) are so immensely important because they allow us to understand
+any fiber bundle with a fiber $F$ on which the lie algebra $G$ acts (in a particular way). 
+These fiber bundles on which the lie algebra acts are called "associated bundles".
+In physics, fiber bundles are ubiquitous. 
+
+\begin{itemize}
+\item In GR, the fiber is given by $SO(1, 3)$ Lorentz group. Or if we consider spinor, we get $SL(2, C)$
+	which is a double cover of $SO(1, 3)$.
+\item In Yang-Mills theory (which sparked all of this), a non-abelian gauge theory, we take
+	  $G = SU(2)$ or $G = SU(3)$ this would be electroweak / strong interaction.
+\item Studying principal fiber bundles, studying how the fibers twist, one learns a lot
+     about the manifold. In particular, $K$-theory, roughly speaking, the cohomology groups
+     of the manifold $M$ are essentially defined as the various bundles one can construct
+    over $M$.
+\item In differential geometry, defining what a tensor density is tricky without bundles.
+      We look at a principal bundle whose fibers are $GL(n)$. We make a so-called frame bundle.
+      Then we can define the associated bundles, which adds a determinant factors, that is the
+      density.
+\end{itemize}
+
+\section{5.1: Lie group actions on a manifold}
+
+\begin{definition}
+Let $(G, \cdot)$ be a lie group, let $M$ be a smooth manifold. A smooth map
+$\triangleright: G \times M \rightarrow M$ satisfying: (1) $e \rightarrow p = p$ for all $p \in M$.
+(2) $g_2 \rightarrow (g_1 \rightarrow p) = (g_2 \circ g_1) \rightarrow  p$. Any such map is
+called a left $G$-action on the manifold $M$.
+\end{definition}
+
+\begin{example}
+Let $G$ be a group. Consider a representation $\phi: G \rightarrow GL(V)$. This gives us
+a left action of $G$ on the trivial manifold $\mathbb R^n$.
+\end{example}
+
+
+\begin{definition}
+Let $(G, \cdot)$ be a lie group, let $M$ be a smooth manifold. A smooth map
+$\triangleright: M \times G \rightarrow M$ satisfying: (1) $e \triangleleft p = p$ for all $p \in M$.
+(2) $p \triangleleft g_1 \triangleleft g_2 =  p \triangleleft (g_1 \circ g_2) $. Any such map is
+called a left $G$-action on the manifold $M$.
+\end{definition}
+
+We can make an immediate observation. Let $\triangleright$ be a left action. Then we can define
+a right action $\triangleleft$ as $p \triangleright g \equiv g^{-1} \triangleleft p$. Then this
+is a right action. It's crucial to take an inverse for it to \emph{compose} properly. So they are
+indeed distinct objects!
+
+
+We will always take right actions for principal fiber bundles and associated bundles,
+we will see that the recipe of labelling a basis $e_1, \dots e_{dim M}$ of $T_p M$ by lower
+indices and the components of a vector by upper indices and the corresponding transformation behaviour
+will be understood as a right action of the general linear group on the basis and a left action
+action of the same general linear group on the components. (We need the two to be complementary
+because they should cancel out to leave the geometry invariant).
+
+\begin{definition}
+Let $(G, \cdot)$ and $(H, *)$ be two lie groups and a lie group homomorphism $\rho: G \rightarrow H$
+and let $M$ and $N$ be two smooth manifolds and two left actions $\triangleleft: G \times M \rightarrow M$
+and $\blacktriangleright: H \times N \rightarrow N$ and let $f: M \rightarrow N$ be a smooth map.
+Then, $f$ is called $\rho$ equivariant if 
+
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJHIFxcdGltZXMgTSJdLFswLDMsIk0iXSxbNCwzLCJOIl0sWzQsMCwiSCBcXHRpbWVzIE4iXSxbMCwzLCJcXHJob1xcdGltZXMgZiJdLFsxLDIsImYiXSxbMCwxLCJcXHRyaWFuZ2xlcmlnaHQiLDFdLFszLDIsIlxcYmxhY2t0cmlhbmdsZXJpZ2h0IiwxXV0=
+\[\begin{tikzcd}
+	{G \times M} &&&& {H \times N} \\
+	\\
+	\\
+	M &&&& N
+	\arrow["{\rho\times f}", from=1-1, to=1-5]
+	\arrow["f", from=4-1, to=4-5]
+	\arrow["\triangleright"{description}, from=1-1, to=4-1]
+	\arrow["\blacktriangleright"{description}, from=1-5, to=4-5]
+\end{tikzcd}\]
+
+commutes.
+\end{definition}
+
+
+\begin{definition}
+Let $\triangleright: G \times M \rightarrow M$ be a left action. For any point $p \in M$, (a) its orbit under the action
+is the set $O_p \equiv \{ g \triangleright p \} \subseteq M$. (b) Let $p \sim q$ if there is a $g \in G$ such that $q = g \triangleright p$.
+We can consider $M / G$, the space of equivalence classes. this is the orbit space of $M$. The space is foliated into orbits.
+(c)  For any point $p \in M$ we define the stabilizer $S_p \equiv \{ g \rightarrow p = p : g \in G \} \subseteq G$.
+An action is called is a \emph{free action} of $S_p = \{ e \}$ for all points. A linear action can never be free,
+because all group actions stabilize the zero vector. Translations are free, since any non-trivial translation
+moves all points.
+\end{definition}
+
+\begin{observation}
+If $\triangleright$ is a free $G$ action on $M$, then each $O_p \simeq G$ (it is diffeomorphic as a manifold to $G$).
+For example, create the 2D plane without the origin;
+$M \simeq \mathbb R^2 - \{ 0, 0 \}$.
+We have an action $\triangleright : SO(2) \times M \rightarrow M$.
+It's no longer a vector space action because we don't have a vector space
+(we lost the origin). This action is a free action. We got as orbits the circles. Each of the
+orbit is isomorphic to $SO(2)$, because $SO(2) \simeq U(1)$ is a circle!
+This is also true in the cayley graph/universal covering space case,
+where the free action of the group allows us to label the group elements as paths on the tree.
+\end{observation}
+
+
+\begin{definition}
+A bundle (everything smooth) $(E, \pi, M)$ is called a principal $G$-bundle if
+(a) $E$ is a right-$G$ space. That is, $E$ is equipped with a right $G$ action
+$\triangleleft: E \times G \rightarrow E$).
+(b) The action $\triangleleft$ is free. (this makes it principal)
+(c) If $E \xrightarrow{\pi} M$ is isomorphic as a bundle to $E \xrightarrow{\rho} E/G$ where $\rho$
+is the usual equivalence map. Since the action is free, every orbit in $E/G$ is diffeomorphic to $G$.
+
+Recall that a bundle $E \xrightarrow{\pi} M$ is isomorphic to $E' \xrightarrow{\pi'} M'$ iff
+if there exists smooth diffeos $u: E \rightarrow E'$, $f: M \rightarrow M'$ such that the diagram
+commutes: $ff \circ \pi = \pi \circ u$.
+\end{definition}
+
+
+\begin{example}
+Frame bundle $LM$ over an $n$ dimensional smooth manifold $M$. For a point $x \in M$, we define:
+
+$$L_x M \equiv \{ (e_1, \dots, e_n) | (e_1, \dots, e_n) \text{is a basis for $T_x M$} \} \simeq GL_n(\mathbb R)$$
+This is the space of frames at $x$. The the frame bundle is $LM \equiv \sqcup_{x \in M} L_x M$.
+We equip $LM$ with a smooth atlas inherited from $M$. We find that $dim(LM) = dim(M) + dim(M)^2$. We get the
+$dim(M)^2$ since we have $GL_n(\mathbb R)$ and the $dim(M)$ to track the base space $M$. We of course
+have a projection map $\pi: LM \rightarrow M$ that maps the frames in the bundle to the base space.
+(b) We establish a right $GL(d, \mathbb R)$ action on the total space $LM$. We define
+$(e_1, \dots, e_n) \leftarrow g \equiv (g^i_1 e_i, \dots, g^i_2 e_i, \dots, g^i_n e_i)$.
+This is literally just acting on the basis by $GL(n)$. We claim this is a free action, since,
+given one vector, we can keep it invariant, given two vectors, we can keep them invariant, but given $n$
+vectors, we can't keep them *all* invariant. (c) We claim that $LM \xrightarrow{\pi} M$ is a principal $G$-bundle.
+We need to check that this bundle is isomorphic to $LM \rightarrow LM/GL(d, \mathbb R)$. This seems intuitively
+correct; if I kill the orbits of the $GL_d(\mathbb R$ action, then I glomp all my frames, leaving only the
+basepoint information. The   basic seems that if we have $E\rightarrow M$ as isomorphic to $E \rightarrow E/G$,
+then this means that "handwavily", we have $E/G = M$, so we must have $E = MG$ (locally).
+That is, $E$ locally represents something of the $M x G$, which is why upon quotienting,
+we get a bundle of the form $E \rightarrow E/G$? So, for this to work out, we should be able to get
+from any frame in the fiber to any other frame in the fiber.
+\end{example}
+
+
+Recall that if we have two bundle $E \xrightarrow{\pi} M$ and $E' \xrightarrow{\pi'} M'$, we called
+it a bundle map if we had maps $u: E \rightarrow E'$, and $f: M \rightarrow M'$ such that $f \circ \pi = \pi' \circ u$.
+
+\begin{definition}
+We want to define a principal bundle. If we have two principal $G$ bundles $P \xrightarrow{\pi} M$ and 
+principal bundle $P' \xrightarrow{\pi'} M'$, with the right group actions $\triangleleft: M \times G \rightarrow M$
+and $\triangleleft': M' \times G \rightarrow M'$, We define a $G$ bundle map if:
+
+
+\[\begin{tikzcd}
+	P & {P'} \\
+	P & {P'} \\
+	M & {M'}
+	\arrow["\triangleleft", from=2-1, to=1-1]
+	\arrow["\pi"', from=2-1, to=3-1]
+	\arrow["u", from=2-1, to=2-2]
+	\arrow["{\triangleleft'}", from=2-2, to=1-2]
+	\arrow["{\pi'}", from=2-2, to=3-2]
+	\arrow["f"', from=3-1, to=3-2]
+	\arrow["u"{description}, from=1-1, to=1-2]
+\end{tikzcd}\]
+
+
+commutes. That is, the bundle map is equivariant with the right group action.
+\end{definition}
+
+\begin{definition}
+An important generalization of a principal bundle map $E \xrightarrow{\pi} M$ is to take a principal bundle and equip it with
+a bundle action of group $G$. Then take another principal bundle $E' \xrightarrow{\pi'} M'$ equipped with the action
+of a different group $G'$. then in the middle we will get a group homomorphism.
+\end{definition}
+
+
+There is an important application of this generalization to general relativity. We may look at
+the frame bundle over the spacetime manifold $M$. We have a bundle $P = LM$. The group will be $G = GL_d(\mathbb R)$.
+But since we have a metric we will look at a subspace of $GL_d(\mathbb R)$,  $G = SO(1, 3)$ that preserves
+the metric.  But then we will take $P' = SM$ (the spin-frame bundle), and there, we let the group
+$G' = SL(2, \mathbb C)$.  There is a map $\rho: SL(2, \mathbb C) \rightarrow SO(1, 3)$ that goes from
+spin to rotations which is a 2-to-1 map. This lets us figure out what happens to spinors. The point is
+that we need the metric. There is no finite dimensional representation of spinors in terms of $GL$.
+We need a metric to go to $SO$. Then we need to relate the $SL$ to $SO$.
+
+
+\begin{lemma}
+% https://q.uiver.app/?q=WzAsMyxbMSwwLCJNIl0sWzAsMSwiUCJdLFsyLDEsIlAnIl0sWzEsMiwidSJdLFsxLDAsIlxccGkiLDJdLFsyLDAsIlxccGknIl1d
+\[\begin{tikzcd}
+	{} && M \\
+	& P && {P'} \\
+	& P && P
+	\arrow["u", from=2-2, to=2-4]
+	\arrow["\pi"', from=2-2, to=1-3]
+	\arrow["{\pi'}", from=2-4, to=1-3]
+	\arrow["{\triangleleft G}", from=2-2, to=3-2]
+	\arrow["{\triangleleft' G}", from=2-4, to=3-4]
+	\arrow["u"{description}, from=3-2, to=3-4]
+\end{tikzcd}\]
+
+where $P, P'$ are principal bundles over the same manifold $M$, we have that $u$ is a diffeomorphism.
+\end{lemma}
+\begin{proof}
+(1) $u$ is injective: Let $u(p_1) = u(p_2)$ for $p_1, p_2 \in P$.  Hence:
+
+
+\begin{align*}
+\pi(p_1)
+&= \pi'(u(p_1)) \text{(diagram commutes)} \\
+&= \pi'(u(p_2)) \text{(hypothesis)} \\
+&= \pi(p_2) \text{(diagram commutes)}
+\end{align*}
+
+Hence $\pi(p_1) = \pi(p_2)$ or $p_1$ and $p_2$ lie in the same fiber. Hence there
+exists a unique $g \in G$ such that $p_1 = p_2 \triangleright g$ [The uniqueness
+is because the action of $g$ is free]. This means:
+
+
+\begin{align*}
+&u(p_1) = u(p_2 \triangleleft g) = u(p_2) \triangleleft' g \\
+&= u(p_1) \triangleleft' g \text{(hypothesis)}
+\end{align*}
+
+
+
+This means that $g = e$. Hence, we have that $p_2 = p_1 \triangleleft g = p_1 \triangleleft e = p_1$.
+
+(2) $u$ is surjective: Let $p' \in P'$. We look for a $p \in P$ such that $u(p) = p'$.
+consider some $p \in P$ such that $\pi(p) = \pi'(p')$. That is, choose some $p \in \pi^{-1}(\pi'(p'))$.
+We have:
+
+
+\begin{align*}
+&\pi'(u(p)) = \pi(p) \text{($u$ is a bundle map)} \\
+&\pi(p) = \pi'(p') \text{(by choice of $p$)} 
+\end{align*}
+
+
+This means that $p'$ and $u(p)$ belong to the same fibre. Thus, since the action of $g$
+is free, there is a unique $g$ such that $u(p) \triangleleft' g = p'$.
+But this is the same as $u(p \triangleleft g) = p'$. This means that $p \triangleleft g$
+is the element that maps into $p'$. In fact, this $u$ is a diffeomorphism.
+\end{proof}
+
+Why is this interesting?
+\begin{definition}
+A principal $G$ bundle is called trivial if it is diffeomorphic as a principal $G$
+bundle to $M \times G$. So this diagram must commute:
+
+% https://q.uiver.app/?q=WzAsNyxbMSwwXSxbMCwxLCJQIl0sWzIsMSwiTVxcdGltZXMgRyJdLFsxLDFdLFswLDAsIlAiXSxbMiwwLCJNIFxcdGltZXMgRyJdLFsxLDIsIk0iXSxbMSwyLCJ1Il0sWzEsNCwiXFx0cmlhbmdsZWxlZnQiLDJdLFsyLDUsImlkIFxcdGltZXMgKiIsMl0sWzQsNSwidSIsMV0sWzIsNiwiXFxwaV8xIl0sWzEsNiwiXFxwaSJdXQ==
+\[\begin{tikzcd}
+	P & {} & {M \times G} \\
+	P & {} & {M\times G} \\
+	& M
+	\arrow["u", from=2-1, to=2-3]
+	\arrow["\triangleleft"', from=2-1, to=1-1]
+	\arrow["{id \times *}"', from=2-3, to=1-3]
+	\arrow["u"{description}, from=1-1, to=1-3]
+	\arrow["{\pi_1}", from=2-3, to=3-2]
+	\arrow["\pi", from=2-1, to=3-2]
+\end{tikzcd}\]
+\end{definition}
+
+\begin{example}
+Let $M$ be the sphere. Let $P = LS^2$ be the frame bundle. A section of the frame bundle is the
+basis of the tangent space at each point. We know that there is no such thing, because of hairy
+ball, there is no everywhere non-vanishing smooth vector field. So we definitely do not have
+two linearly independent non-vanishing smooth vector fields. Thus, the $LS^2$ bundle is not
+trivial, because it does not have a smooth section.
+\end{example}
+
+
+\begin{theorem}
+A principal $G$ bundle is trivial iff there exists a smooth section $\sigma:M \rightarrow P$
+(ie, $\pi \circ \sigma = id_M$).
+\end{theorem}
+\begin{proof}
+suppose we have a trivial bundle. We want to show that there is a smooth section.
+
+This means we have the diagram:
+
+% https://q.uiver.app/?q=WzAsNixbMSwwXSxbMCwxLCJQIl0sWzIsMSwiTVxcdGltZXMgRyJdLFswLDAsIlAiXSxbMiwwLCJNIFxcdGltZXMgRyJdLFsxLDIsIk0iXSxbMSwzLCJcXHRyaWFuZ2xlbGVmdCIsMl0sWzIsNCwiaWQgXFx0aW1lcyAqIiwyXSxbMiw1LCJcXHBpXzEiXSxbMSw1LCJcXHBpIl0sWzIsMSwidV57LTF9IiwxXSxbNCwzLCJ1XnstMX0iLDFdXQ==
+\[\begin{tikzcd}
+	P & {} & {M \times G} \\
+	P && {M\times G} \\
+	& M
+	\arrow["\triangleleft"', from=2-1, to=1-1]
+	\arrow["{id \times *}"', from=2-3, to=1-3]
+	\arrow["{\pi_1}", from=2-3, to=3-2]
+	\arrow["\pi", from=2-1, to=3-2]
+	\arrow["{u^{-1}}"{description}, from=2-3, to=2-1]
+	\arrow["{u^{-1}}"{description}, from=1-3, to=1-1]
+\end{tikzcd}\]
+
+Then construct a section $\sigma: M \rightarrow P$ by setting $\sigma(x) = u^{-1}(x, id_G)$.
+This is a section, because $\pi$ will project out $x$ since the bundle is trivial!
+
+
+The opposite direction: We have a section $\sigma: M \rightarrow P$. We need to show that
+$P$ is trivial. Consider $\sigma(\pi(p))$ this will lie on the same fiber as $\pi(p)$.
+Since the action of the group is free and transitive, there will be a unique $g_\sigma(p) \in G$
+such that $\sigma(\pi(p)) \triangleleft g_\sigma(p) = p$. This map "inflates" the section at $\pi(p)$
+to hit the point $p$ in the bundle. This gives us a map $g_\sigma: P \rightarrow G$.
+
+
+We want to show that for all $h \in H$,
+$X_\sigma(p) * h = X_\sigma(p \triangleleft h)$.
+That is, the inflationary action of $X_\sigma$ is compatible with the group structure.
+
+To show this, we start with the RHS, where we know that
+
+\begin{align*}
+&\sigma(\pi(p)) \triangleleft g_\sigma(p) = p \\
+&\text{Replace $p$ with $p \triangleleft h$} \\
+&\sigma(\pi(p \triangleleft h)) \triangleleft g_\sigma(p \triangleleft h) = p \triangleleft h \\
+&\text{since $g$ acts within fibers: $\pi(p \triangleleft h) = \pi(p)$:} \\
+&\sigma(\pi(p)) \triangleleft g_\sigma(p \triangleleft h) = p \triangleleft h \\
+&\sigma(\pi(p)) \triangleleft g_\sigma(p \triangleleft h) = p \triangleleft h \\
+&\sigma(\pi(p)) \triangleleft g_\sigma(p \triangleleft h) = p \triangleleft h \\
+&\text{Use $p = \sigma(\pi(p)) \triangleleft g_\sigma(p)$ on RHS:} \\
+&\sigma(\pi(p)) \triangleleft g_\sigma(p \triangleleft h) = \sigma(\pi(p)) \triangleleft g_\sigma(p) \triangleleft h \\
+&\text{Use $\triangleleft$ is compatible with group:} \\
+&\sigma(\pi(p)) \triangleleft g_\sigma(p \triangleleft h) = \sigma(\pi(p)) \triangleleft (g_\sigma(p) * h) \\
+\end{align*}
+
+Since the action of the group is free, and the two group elements act on the same basepoint, we must have that
+they must be the same group element to wind up at the same point after acting. Hence:
+
+$$g_\sigma(p \triangleleft h) = g_\sigma(p) * h$$
+
+
+Define $u_\sigma: P \rightarrow M \times G$
+that takes $u_\sigma(p) \equiv (\pi(p), g_\sigma(p))$.
+We need to show that $u_\sigma$ is a principal bundle map.
+(a) bundle map: We need to check that $\pi_1 \circ u_\sigma = \pi$. This is trivial because by definition,
+  we have $\pi_1(u_\sigma(p)) = \pi_1((\pi(p), g_\sigma(p))) = \pi(p)$.
+(b) principal bundle map: $u_\sigma(p \triangleleft g) = u_sigma(p) \triangleleft' g$. Calculate:
+
+
+\begin{align*}
+&u_\sigma(p \triangleleft h) \\
+&= (\pi(p \triangleleft h), g_\sigma(p \triangleleft h)) \\
+&\text{($\triangleleft h$ stays in the same fiber):} \\
+&= (\pi(p), g_\sigma(p \triangleleft h)) \\
+&\text{($g_\sigma$ is compatible with $\triangleleft$):} \\
+&= (\pi(p), g_\sigma(p) * h) \\
+&\text{(Definition of trivial action):} \\
+&= (\pi(p), g_\sigma(p)) \triangleleft' h \\
+\end{align*}
+
+
+Hence, we have gotten a bundle map. This means the bundle is diffeomorphic, and thus
+the bundle is trivial(!)
+\end{proof}
+
+\chapter{Section 5.3: Lec 20: Associated Bundles}
+\url{https://www.youtube.com/watch?v=q2GYZz6q3QI&list=PLPH7f_7ZlzxTi6kS4vCmv4ZKm9u8g5yic&index=20}
+
+Given a principal $G$ bundle $G \xleftarrow{\triangleleft G} P \xrightarrow{\pi} M$ and a smooth
+manifold $F$ on which we have a left $G$ action, we define the associated bundle
+$P_F \xrightarrow{\pi_F} M$ by
+
+(a) Let $\sim_G$ be a relation on $P \times F$:
+  $(p, f) \sim_g (p', f')$ iff there exists a $g \in G$ such that $p' = p \triangleleft g$,
+   and $f' = g^{-1} \triangleright f$. Check that this is an equiv. relation.
+   This gives us the quotient space $P_F \equiv (P \times F)/\sim$.
+   Very roughly, since we quotient by $G$, we lose the $P$. So all that is left out is the $F$.
+   So we really get a fiber bundle $F$ over $M$ that is somehow tied to $P$.
+   Elements of this space are equivalence classes $[(p, f)]$.
+(b) Define $P_P \rightarrow{\pi_F} M$ as $\pi_F([(p, f)]) \equiv \pi(p)$. Recall
+    that any other element in the equivalence class will be of the form
+    $(p \triangleleft g, g^{-1} \triangleright f)$. We get
+    $\pi_F([(p \triangleleft g, g^{-1} \triangleright f)]) = \pi(p \triangleleft g) = p$ as $g$
+    keeps stuff in the same fiber.
+
+We need to check that the bundle $P_F \xrightarrow{\pi_F} M$ is a fiber bundle
+with typical fiber $F$ (TODO: exercise!)
+
+
+\begin{example}
+Let $P = LM$ be the frame bundle that associated to each point all bases of the tangnt
+space at that point. Let $F \equiv \mathbb R^d$. (This is sorta like the tangent bundle).
+I have the group act on the left on $F$ as $g \triangleright f \equiv g^{-1} f$.
+This regenerates the tangent bundle, which transforms in the "opposite direction" on a
+change of basis.
+
+Claim: There is a bundle isomorphism from the above constructed bundle to the
+tangent bundle.
+\end{example}
+
+
 \end{document}
+
+
+
