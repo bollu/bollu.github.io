@@ -1,55 +1,31 @@
 const W = 720;
 const H = 400;
-function setup() {
-    createCanvas(W, H);
-}
+function setup() { createCanvas(W, H); }
 
 let pX = 200;
 let pY = 0;
 
-// sage: x, y = var("x y")
-// sage: fx = x/sqrt(x*x+y*y)
-// sage: Jx = Matrix([fx.derivative(x), fx.derivative(y)])
-// sage: fy = y/sqrt(x*x+y*y)
-// sage: Jy = Matrix([fy.derivative(x), fy.derivative(y)])
-// sage:                                                                                                                                         
+
+// f(x, y) = (u: x (x^2+y^2)^{-1/2}, v: y(x^2 + y^2)^{-1/2})
+// du/dx = 1. (x^2+y^2)^{-1/2} + x(-1/2)(x^2+y^2){-3/2}(2x) = (x^2 + y^2)^{-1/2} - x^2(x^2 + y^2)^{-3/2}
+// du/dy = 1.  x(-1/2)(x^2+y^2){-3/2}(2y) = - xy(x^2 + y^2)^{-3/2}
+function jac(x, y, tx, ty) {
+    let xsqysq = x*x+y*y;
+    let dudx = Math.pow(xsqysq, -1/2) - x*x*Math.pow(xsqysq, -3/2);
+    let dudy =  -x*y*Math.pow(xsqysq, -3/2);
+    let dvdx = dudy;
+    let dvdy = Math.pow(xsqysq, -1/2) - y*y*Math.pow(xsqysq, -3/2);
 
 
-// sage: Jy.T                                                                                                                                    
-// [                    -x*y/(x^2 + y^2)^(3/2)]
-// [-y^2/(x^2 + y^2)^(3/2) + 1/sqrt(x^2 + y^2)]
-
-function jacY(x, y) {
-    let x2y2 = x*x+y*y;
-    let dx = (-x*y)/Math.pow(x2y2, 3/2);
-    let dy = -y*y/Math.pow(x2y2,3/2) + 1/Math.sqrt(x2y2);
-    return [dx, dy];
-    
-}
-
-
-// sage: Jx.T                                                                                                                                    
-// [-x^2/(x^2 + y^2)^(3/2) + 1/sqrt(x^2 + y^2)]
-// [                    -x*y/(x^2 + y^2)^(3/2)]
-
-function jacX(x, y) {
-    let x2y2 = x*x+y*y;
-    let dx = -x*x/Math.pow(x2y2, 3/2) + 1/Math.sqrt(x2y2);
-    let dy = (-x*y)/Math.pow(x2y2, 3/2);
-    return [dx, dy];
-}
-
-// compute image of (vX, vY) under J|_(pX, pY)
-function jac(pX, pY, vX, vY) {
-    let jX = jacX(pX, pY);
-    let jY = jacY(pX, pY);
-    // return [vX*jX[0] + vY*jX[1], vY*jY[0] + vY*jY[1]];
-    return [vX*jX[0] + vY*jY[0], vX*jX[1] + vY*jY[1]];
+    let ox = tx*dudx + ty*dudy;
+    let oy = tx*dvdx +  ty*dvdy;
+    console.log("dudx: ", dudx, "dudy: ", dudy, "dvdx: ", dvdx, "dvdy: ", dvdy, "ox: ", ox, "oy: ", oy);
+    return [ox, oy];
 }
 
 
 function draw() {
-    background(102);
+    background(238,238,238);
 
     if (mouseIsPressed) {
 	pX = mouseX - W/2;
@@ -61,22 +37,30 @@ function draw() {
 
     const R = 50;
     
-    let sX = R*pX/Math.sqrt(pX*pX + pY*pY);
-    let sY = R*pY/Math.sqrt(pX*pX + pY*pY);
 
-
-    stroke(0);
-    strokeWeight(4);
+    strokeWeight(6);
+    strokeCap(SQUARE);
+    stroke(13,71,161);
     line(pX+W/2, pY+H/2, mouseX, mouseY);
 
-   
-    let JACAMP = 10; // amplication of input to JAC
+
+    const TGTWT = 4;
+    let sX = (TGTWT+R)*pX/Math.sqrt(pX*pX + pY*pY);
+    let sY = (TGTWT+R)*pY/Math.sqrt(pX*pX + pY*pY);
+
     let stv = jac(pX, pY, vecX, vecY);
+    strokeWeight(0);
+    fill(69,90,100);
     ellipse(W/2, H/2, 2*R, 2*R);
+
+
+    strokeWeight(6);
+    strokeCap(SQUARE);
+    stroke(30,136,229);
     line(W/2 + sX,
 	 H/2 + sY,
-	 W/2 + 2*sX + 20*stv[0],
-	 H/2 + 2*sY + 20*stv[1]);
+	 W/2 +  sX+ 100*stv[0],
+	 H/2 +  sY+ 100*stv[1]);
 
     strokeWeight(0);;
 
