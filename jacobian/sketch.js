@@ -5,6 +5,11 @@ const R = 50;
 let pX = 200;
 let pY = 0;
 
+function easeInOutQuad(x) {
+    return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
+}
+
+
 function easeOutQuart(x) {
     return 1 - Math.pow(1 - x, 4);
 }
@@ -54,7 +59,7 @@ const interactive_derivative = ( sketch ) => {
     };
 
     sketch.draw = () => {
-	sketch.background(238,238,238);
+    sketch.background(255,253,231);
 
 	if (sketch.mouseIsPressed) {
 	    pX = sketch.mouseX - W/2;
@@ -98,7 +103,184 @@ const interactive_derivative = ( sketch ) => {
 
 
 
+const transform_anim_normal = ( s ) => {
+    let pts = [];
+    s.setup = () => {
+	let myCanvas = s.createCanvas(W, H);
+	myCanvas.parent('transform-anim-normal');
+    };
 
+    let t = 0;
+
+    s.draw = () => {
+
+
+	const V = 0.02;
+    t = (t + V) % (4);
+	const NUM_POINTS = 40;
+	if (pts.length > NUM_POINTS) {
+	    pts.shift();
+	}
+
+    const RMOVE = 200;
+    if (t <= 1) { // 0-1
+	    pts.push([R*2 + RMOVE * easeInOutQuad(t), 0]);
+	} else if (t <= 2) { // 1-2
+	    pts.push([R*2 + RMOVE * easeInOutQuad(1), 0]);
+    } else if (t <= 3) {
+        let tcur = t - 2;
+        let trev = 1 - tcur; // 1 - (t - 1) = 1 - t + 1 = 2 - t
+	    pts.push([R*2 + RMOVE * easeInOutQuad(trev), 0]);
+    } else if (t <= 4) {
+	    pts.push([R*2 + RMOVE * easeInOutQuad(0), 0]);
+    }
+
+
+	s.background(238,238,238);
+    s.background(255,253,231);
+	s.noFill();
+	s.stroke(216,27,96);
+	s.strokeWeight(6);
+	s.beginShape();
+	for (let i = 0; i < pts.length; ++i) {
+	    s.stroke(216,27,96);
+	    s.curveVertex(pts[i][0] + W/2, pts[i][1] +H/2);
+	}
+	s.endShape();
+
+	s.strokeWeight(0);
+	s.fill(69,90,100);
+	s.ellipse(W/2, H/2, 2*R, 2*R);
+
+
+	s.stroke(33,150,243);
+	s.strokeWeight(6);
+	s.beginShape();
+	for (let i = 0; i < pts.length; ++i) {
+	    const len = Math.sqrt(pts[i][0] * pts[i][0] + pts[i][1] * pts[i][1]);
+	    s.curveVertex(W/2 + R*pts[i][0]/len, H/2 + R*pts[i][1]/len);
+	}
+	s.endShape();
+
+
+    };
+};
+
+const transform_anim_tangential = ( s ) => {
+    let pts = [];
+    s.setup = () => {
+	let myCanvas = s.createCanvas(W, H);
+	myCanvas.parent('transform-anim-tangential');
+    };
+
+    let t = 0;
+
+    s.draw = () => {
+
+
+	const V = 0.02;
+    t = (t + V) % (4);
+	const NUM_POINTS = 40;
+	if (pts.length > NUM_POINTS) {
+	    pts.shift();
+	}
+
+    const RMOVE = 300;
+    if (t <= 1) { // 0-1
+	    pts.push([R*2, -R*3 + RMOVE * easeInOutQuad(t)]);
+	} else if (t <= 2) { // 1-2
+	    pts.push([R*2, -R*3 + RMOVE * easeInOutQuad(1)]);
+    } else if (t <= 3) {
+        let tcur = t - 2;
+        let trev = 1 - tcur; // 1 - (t - 1) = 1 - t + 1 = 2 - t
+	    pts.push([R*2, -R*3 + RMOVE * easeInOutQuad(trev)]);
+    } else if (t <= 4) {
+	    pts.push([R*2, -R*3 + RMOVE * easeInOutQuad(0)]);
+    }
+
+
+	s.background(238,238,238);
+    s.background(255,253,231);
+	s.noFill();
+	s.stroke(216,27,96);
+	s.strokeWeight(6);
+	s.beginShape();
+	for (let i = 0; i < pts.length; ++i) {
+	    s.stroke(216,27,96);
+	    s.curveVertex(pts[i][0] + W/2, pts[i][1] +H/2);
+	}
+	s.endShape();
+
+	s.strokeWeight(0);
+	s.fill(69,90,100);
+	s.ellipse(W/2, H/2, 2*R, 2*R);
+
+
+	s.stroke(33,150,243);
+	s.strokeWeight(6);
+	s.beginShape();
+	for (let i = 0; i < pts.length; ++i) {
+	    const len = Math.sqrt(pts[i][0] * pts[i][0] + pts[i][1] * pts[i][1]);
+	    s.curveVertex(W/2 + R*pts[i][0]/len, H/2 + R*pts[i][1]/len);
+	}
+	s.endShape();
+
+
+    };
+};
+
+
+
+const transform_anim = ( s ) => {
+    let pts = [];
+    s.setup = () => {
+	let myCanvas = s.createCanvas(W, H);
+	myCanvas.parent('transform-anim');
+    };
+
+    let t1 = 0; let t2 = 0;
+
+    s.draw = () => {
+
+    const R1 = 150; const R2 = 35; const V1 = 0.01; V2 = 0.05;
+    pts.push([R1 * Math.cos(t1) + R2 * Math.cos(t2), R1 * Math.sin(t1) + R2 * Math.sin(t2)]);
+    t1 = (t1 + V1) % (2*Math.PI);
+    t2 = (t2 + V2) % (2*Math.PI);
+
+	const NUM_POINTS = 40;
+	if (pts.length > NUM_POINTS) {
+	    pts.shift();
+	}
+
+	s.background(238,238,238);
+    s.background(255,253,231);
+	s.noFill();
+	s.stroke(216,27,96);
+	s.strokeWeight(6);
+	s.beginShape();
+	for (let i = 0; i < pts.length; ++i) {
+	    s.stroke(216,27,96);
+	    s.curveVertex(pts[i][0] + W/2, pts[i][1] +H/2);
+	}
+	s.endShape();
+
+	s.strokeWeight(0);
+	s.fill(69,90,100);
+	s.ellipse(W/2, H/2, 2*R, 2*R);
+
+
+	s.stroke(33,150,243);
+	s.strokeWeight(6);
+	s.beginShape();
+	for (let i = 0; i < pts.length; ++i) {
+	    const len = Math.sqrt(pts[i][0] * pts[i][0] + pts[i][1] * pts[i][1]);
+	    s.curveVertex(W/2 + R*pts[i][0]/len, H/2 + R*pts[i][1]/len);
+	}
+	s.endShape();
+
+
+    };
+};
 
 
 const transform = ( s ) => {
@@ -117,6 +299,7 @@ const transform = ( s ) => {
 	}
 
 	s.background(238,238,238);
+    s.background(255,253,231);
 	s.noFill();
 	s.stroke(216,27,96);
 	s.strokeWeight(6);
@@ -154,7 +337,7 @@ const crumple = ( s ) => {
     }
 
     s.draw = () => {
-	s.background(238,238,238);
+    s.background(255,253,231);
 	s.noFill();
 
 	s.strokeWeight(0);
@@ -219,7 +402,6 @@ const crumple = ( s ) => {
 	if (fcur < NFRAME_TRANSFORM) {
 	    let t = fcur/NFRAME_TRANSFORM;
 	    t = easeOutQuart(t);
-	    console.log("transform t", t);
 	    for(let i = 0; i < pts.length; ++i) {
 		let x0 = pts[i][0];
 		let y0 = pts[i][1];
@@ -277,6 +459,9 @@ const crumple = ( s ) => {
 
 let p5_crumple = new p5(crumple);
 let p5_transform = new p5(transform);
+let p5_transform_anim = new p5(transform_anim);
+let p5_transform_anim_normal = new p5(transform_anim_normal);
+let p5_transform_anim_tangential = new p5(transform_anim_tangential);
 let p5_interactive_derivative = new p5(interactive_derivative);
 
 

@@ -13,13 +13,92 @@
   </style>
   <script src="p5.js"></script>
   <!-- <script src="../addons/p5.sound.js"></script> -->
+
+  <script>
+		  MathJax = {
+				  tex: {
+						  inlineMath: [['$', '$'], ['\\(', '\\)']]
+				  }
+		  };
+</script>
+  <link rel="stylesheet" href="tufte.css"/>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
   <script src="sketch.js"></script>
 </head>
 <body>
-  <h1> The jacobian </h1>
+  <article>
+  <h1> The Jacobian </h1>
+
+  <section>
+  <p>
+  In this article, I'm going to motivate a geometric quantity known as the
+  Jacobian you may have seen from multivariable calculus. It shows up without
+  explanation when one solves multiple integrals; little explanation is given
+  to what it <em> means </em>. At the end of reading this, if you know what 
+  a Jacobian is, you'll have a sense of what it really means; If you didn't,
+  that's even better --- you'll learn what the Jacobian is with no misconceptions.
+  </p>
+  <p>
+  Let's dive in. To discuss the jacobian, we first need a transformation. Let's
+  pick the transformation that squeezes the entire plane into the unit circle. This is given by
+  \( f(v) \equiv v/|v| \) where \( v \) is a 2D vector, or a point on a plane. Written
+  in terms of coordinates, we make the substitution \( v \mapsto (x, y) \), and the length
+  of the vector \( |v| \mapsto \sqrt{x^2 + y^2} \). This yield the expression
+  \( f(x, y) \equiv (x/\sqrt{x^2 + y^2}, y/\sqrt{x^2 + y^2}) \).  to get a very visceral sense
+  of what this function does, let's think about it this way: we distribute pink-colored points randomly , and then
+  transform these points using \( f\). This gives a sense of how \( f \) crumples the unit plane
+  onto the unit circle.
+  </p>
   <div id="crumple"></div>
+  <p>
+  There's another way to view this transform, which will be slightly more fruitful for us in the future; We're going
+  to look at how this function $f$ transforms <em>curves</em>, because a curve is the most primitive object
+  that has notions of continuity, smoothness, and all other nice geometic properties we know and love from
+  calculus. We have a pink curve that moves around; This curve is mapped by \( f \)
+  to the blue curve that lies entirely on the unit circle. Watching this
+  transformation gives us a sense of what geometry the mapping \( f \) preserves,
+  and what \( f \) destroys.
+  </p>
+  <div id="transform-anim"></div>
+
+  <p>
+  To watch more closely, let's consider two extreme cases. First, where the pink
+  curve is perpendicular to the circle. Here, we see below that that the projection in blue
+  vanishes. Regardless of however long our pink curve is, the projection is always just a single
+  point. A curve that is <em> perpendicular </em> to the circle will have zero projection.
+
+  <div id="transform-anim-normal"></div>
+  </p>
+
+
+  <p>
+  The other case we consider is where the curve is tangent or parallel to the circle. Here,
+  we find the projection of the pink curve to be very long, as the pink curve is able to cast
+  a long shadow onto the circle.
+  </p>
+
+  <div id="transform-anim-tangential"></div>
+  </p>
+
+
+  <p>
+  Finally, if you wish to play with the transform, I've left a little interactive region
+  where you can draw a curve with your mouse. The curve after $f$ is applied
+  is displayed  in blue.
+  </p>
   <div id="transform"></div>
+  </section>
+  </section>
+
+
+
+  <section>
+  <h2> The Jacobian algebraically </h2>
+
   <div id="interactive-derivative"></div>
   </div>
+  </article>
 </body>
 </html>
