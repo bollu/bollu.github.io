@@ -1,6 +1,6 @@
-const W = 720;
-const H = 400;
-const R = 50;
+ W = 300;
+ H = 150;
+ R = 20;
 
 let pX = 200;
 let pY = 0;
@@ -122,7 +122,7 @@ const transform_anim_normal = ( s ) => {
 	    pts.shift();
 	}
 
-    const RMOVE = 200;
+    const RMOVE = R*3;
     if (t <= 1) { // 0-1
 	    pts.push([R*2 + RMOVE * easeInOutQuad(t), 0]);
 	} else if (t <= 2) { // 1-2
@@ -185,17 +185,17 @@ const transform_anim_tangential = ( s ) => {
 	    pts.shift();
 	}
 
-    const RMOVE = 300;
+    const RMOVE = R*4;
     if (t <= 1) { // 0-1
-	    pts.push([R*2, -R*3 + RMOVE * easeInOutQuad(t)]);
+	    pts.push([R*2, -R*2 + RMOVE * easeInOutQuad(t)]);
 	} else if (t <= 2) { // 1-2
-	    pts.push([R*2, -R*3 + RMOVE * easeInOutQuad(1)]);
+	    pts.push([R*2, -R*2 + RMOVE * easeInOutQuad(1)]);
     } else if (t <= 3) {
         let tcur = t - 2;
         let trev = 1 - tcur; // 1 - (t - 1) = 1 - t + 1 = 2 - t
-	    pts.push([R*2, -R*3 + RMOVE * easeInOutQuad(trev)]);
+	    pts.push([R*2, -R*2 + RMOVE * easeInOutQuad(trev)]);
     } else if (t <= 4) {
-	    pts.push([R*2, -R*3 + RMOVE * easeInOutQuad(0)]);
+	    pts.push([R*2, -R*2 + RMOVE * easeInOutQuad(0)]);
     }
 
 
@@ -242,7 +242,7 @@ const transform_anim = ( s ) => {
 
     s.draw = () => {
 
-    const R1 = 150; const R2 = 35; const V1 = 0.01; V2 = 0.05;
+    const R1 = R*2; const R2 = R/2; const V1 = 0.01; V2 = 0.05;
     pts.push([R1 * Math.cos(t1) + R2 * Math.cos(t2), R1 * Math.sin(t1) + R2 * Math.sin(t2)]);
     t1 = (t1 + V1) % (2*Math.PI);
     t2 = (t2 + V2) % (2*Math.PI);
@@ -359,7 +359,7 @@ const crumple = ( s ) => {
 	fi++;
 	let fcur = fi;
 	
-	s.strokeWeight(10);
+	s.strokeWeight(6);
 
 	if (fcur < NFRAME_POINTS) {
 	    if (fcur == 0) {
@@ -469,9 +469,9 @@ const static_derivative = ( s ) => {
 	// myCanvas.parent(document.getElementById('myContainer'));
 	myCanvas.parent('static-derivative');
 
-	for (let i = -200; i < 200; ++i) {
-        let x = 2*i;
-        let y =  2*R;
+	for (let i = -50; i < 50; ++i) {
+        let x = i*2;
+        let y =  1.5*R;
         pts.push([i, x, y]);
 	}
     };
@@ -498,14 +498,14 @@ const static_derivative = ( s ) => {
 
 
 
-    const LEN = 50;
+    const LEN = 30;
     if (fv == 1 && fi == pts.length - LEN - 1) { fv = -1; }
     if (fv == -1 && fi == 1 ) { fv = 1; }
     fi += fv;
 
-    // blue
+    // purple
 	s.strokeWeight(6);
-    s.stroke(33,150,243);
+    s.stroke(106,27,154);
 	s.noFill();
 	s.beginShape();
 	for (let i = fi; i < fi + LEN; ++i) {
@@ -518,12 +518,14 @@ const static_derivative = ( s ) => {
     const xmid = pts[fi+LEN/2][1];
     const ymid = pts[fi+LEN/2][2];
 
+    // blue
     s.strokeWeight(0);
     s.fill(33,150,243);
-    s.ellipse(W/2 + xmid, H/2 + ymid, 15, 15);
+    s.ellipse(W/2 + xmid, H/2 + ymid, 10, 10);
 
-    // pink
-    s.stroke(233,30,99);
+
+    // orange
+    s.stroke(255,111,0)
 	s.strokeWeight(6);
     s.strokeCap(s.SQUARE);
 	s.noFill();
@@ -538,11 +540,13 @@ const static_derivative = ( s ) => {
 	s.endShape();
 
 
+
+    // pink
     const pxmid = R*xmid/Math.sqrt(xmid*xmid+ymid*ymid);
     const pymid = R*ymid/Math.sqrt(xmid*xmid+ymid*ymid);
     s.strokeWeight(0);
     s.fill(233,30,99);
-    s.ellipse(W/2 + pxmid, H/2 + pymid, 15, 15);
+    s.ellipse(W/2 + pxmid, H/2 + pymid, 10, 10);
 
 
 

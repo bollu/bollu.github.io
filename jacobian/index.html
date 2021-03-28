@@ -111,19 +111,115 @@
   </p>
 
   <p>
-  Let's draw tangents to the simplest possible curve: a straight line
+  Let's draw tangents to the simplest possible curve: a straight line. We represent the straight
+  line as function $c: [0, 1] \rightarrow \mathbb R^2$; $c(t) \equiv (t, 0)$. That is, it's a curve
+  with a point that moves along the $x$ axis as $t$ goes from $0$ to $1$. Let's plot the point
+  that moves, along with a straight line at that point, and see how this gets mapped:
   </p>
 
   <div id="static-derivative"></div>
 
   <p>
-  We see that the length of the pink tangent is not constant! As we come closer to the circle, the
-  length of the tangent is longer, since the point moves faster on the circle. As we go farther away
-  from the circle, the length of the tangent grows ever shorter, as the velocity on the point on
-  the circle crawls to a halt.
+  We see that the length of the pink tangent is not constant, even though the blue tangent is
+  constant! As we come closer to the circle, the
+  length of the pink tangent is longer, since the pink point moves faster on the circle. As the blue point
+  goes farther away from the circle, the length of the pink tangent grows ever
+  shorter, as the speed of the pink point on the circle crawls to a halt.
+  Can we calculate this somehow?
   </p>
   </section>
   
+  <section>
+  <h2> Calculating the tangent on the circle </h2>
+
+  <p>
+  We started with the blue point on the curve curve $c(t) \equiv (t, 0)$.
+  We then drew a blue tangent, $c'(t) = (1, 0)$. This was the blue line of constant length.
+  Next, we drew the analogous pink point on the curve. This was computed as $d(t) \equiv f(c(t))$,
+  since we took a point on the curve $c$ and saw where it lands under $f$. Next, we differentiated
+  this curve $d(t)$ to get the pink line $d'(t)$. We wish to relate $c'(t)$ and $d'(t)$. 
+  </p>
+
+  <img src="transform-terms.png"/>
+  <p>
+
+  In our concrete case, we find:
+
+  $$
+  \begin{align*}
+  & d'(t) = \\
+  & \text{(defn of $d$)}\\
+  & = (f(c(t))'  \\
+  &= \frac{d f(c(t))}{dt} \\
+  & \text{(substitute $c(t) = (t, 0)$)}\\ 
+  &= \frac{d f(t, 0)}{dt}  \\
+  & \text{(substitute $f$)} \\ 
+  &= \frac{d ((t/\sqrt{t^2 + 0^2}, 0/\sqrt{t^2 + 0^2}))}{dt}  \\
+  & \text{(simplify)} \\
+  &= \frac{d ((\sqrt{t}, 0))}{dt}  \\
+  & \text{(push derivative inside)}\\ 
+  &= (\frac{d\sqrt{t}}{dt}, \frac{d0}{dt}) \\
+  &d'(t) = (\frac{1}{2\sqrt{t}}, 0) \quad 
+  \end{align*}
+  $$
+
+  Thus, we find that the derivative of the curve $d(t)$ is $d'(t) = (1/2\sqrt{t}, 0)$. This grows smaller
+  as $t$ grows larger in size, mimicking what we saw; As we grow farther away from the center, the pink line
+  on the circle  grew smaller and smaller.
+  </p>
+  </section>
+
+  <section>
+  <h2> Generalizing our computation </h2>
+
+  <p>
+  Previously, we used the concrete definition of $f(x, y)$ and $c(t)$ that we knew to compute the derivative
+  $d'(t)$. What happens if we perform the same derivation in the abstract? This should tell us how to compute $d'(t)$
+  in terms of $f(x, y)$ and $c(t)$ for <em>any $f$ and $c$ </em> Let's try! We begin thinking about
+  $c(t) : [0, 1] \rightarrow \mathbb R^2$. It's a little awkward to deal with, because it produces <em> two outputs </em>.
+  Let's break $c(t)$ into two functions, $c_x(t)$ and $c_y(t)$, so that $c(t) = (c_x(t), c_y(t))$. 
+  </p>
+
+  <p>
+  Similarly, we had 
+  $f: \mathbb R^2 \rightarrow \mathbb R^2$. Let's break this into $f_x(x, y): \mathbb R^2 \rightarrow \mathbb R$
+  and $f_y(x, y): \mathbb R^2 \rightarrow \mathbb R$ such that $f(x, y) = (f_x(x, y), f_y(x, y))$. This gives us two
+  twp variable functions.
+  </p>
+
+  <p>
+  We now have the simplifications we need to carry out our "concrete proof" completely abstractly. Instead of substituting
+  $c(t) = (t, 0)$, we will substitue $c(t) = (c_x(t), c_y(t)$. Similarly, instead of substituting
+  $f(x, y) = (x/\sqrt{x^2 + y^2, y/x^2 + y^2)$, we will substitute $f(x, y) = (f_x(x, y), f_y(x, y)$ and carry out the proof.
+  This yields:
+
+  $$
+  \begin{align*}
+  & d'(t) = \\
+  & \text{(defn of $d$)}\\
+  & = (f(c(t))'  \\
+  &= \frac{d f(c(t))}{dt} \\
+  & \text{(substitute $c(t) = (c_x(t), c_y(t))$)}\\ 
+  &= \frac{d f(c_x(t), c_y(t))}{dt}  \\
+  & \text{(substitute $f(x, y) = (f_x(x, y), f_y(x, y))$)} \\
+  &= \frac{d((f_x(c_x(t), c_y(t)), f_y(c_x(t), c_y(t))))}{dt}  \\
+  & \text{(push derivative inside)}\\ 
+  &= (\frac{f_x(c_x(t), c_y(t))}{dt}, \frac{f_y(c_x(t), c_y(t))}{dt}) \\
+  \end{align*}
+  $$
+  </p>
+
+  At this stage, we're going to whack the expression with the only hammer we have in calculus: the chain rule!
+  This gives us:
+  
+  $$
+  \begin{align*}
+  &= (\frac{f_x(c_x(t), c_y(t))}{dt}, \frac{f_y(c_x(t), c_y(t))}{dt}) \\
+  &= (\frac{f_x}{dx}\frac{dc_x(t)}{dt} + \frac{f_x}{dy} \frac{dc_y(t))}{dt}, \frac{f_y}{dx} \frac{dc_x(t)}{dt} + \frac{f_y}c_y(t))}{dt}) \\
+  \end{align*}
+  $$
+
+  </section>
 
 
   <div id="interactive-derivative"></div>
