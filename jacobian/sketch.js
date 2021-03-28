@@ -48,34 +48,34 @@ function jac(x, y, tx, ty) {
 }
 
 
-const interactive_derivative = ( sketch ) => {
+const interactive_derivative = ( s ) => {
     let x = 100;
     let y = 100;
 
-    sketch.setup = () => {
-	let myCanvas = sketch.createCanvas(W, H);
+    s.setup = () => {
+	let myCanvas = s.createCanvas(W, H);
 	// myCanvas.parent(document.getElementById('myContainer'));
 	myCanvas.parent('interactive-derivative');
     };
 
-    sketch.draw = () => {
-    sketch.background(255,253,231);
+    s.draw = () => {
+    s.background(255,253,231);
 
-	if (sketch.mouseIsPressed) {
-	    pX = sketch.mouseX - W/2;
-	    pY = sketch.mouseY - H/2;
+	if (s.mouseIsPressed) {
+	    pX = s.mouseX - W/2;
+	    pY = s.mouseY - H/2;
 	}
 
-	let vecX = (sketch.mouseX -W/2) - pX;
-	let vecY = (sketch.mouseY - H/2) - pY;
+	let vecX = (s.mouseX -W/2) - pX;
+	let vecY = (s.mouseY - H/2) - pY;
 
 
 	
 
-	sketch.strokeWeight(6);
-	sketch.strokeCap(sketch.SQUARE);
-	sketch.stroke(216,27,96);;
-	sketch.line(pX+W/2, pY+H/2, sketch.mouseX, sketch.mouseY);
+	s.strokeWeight(6);
+	s.strokeCap(s.SQUARE);
+	s.stroke(216,27,96);;
+	s.line(pX+W/2, pY+H/2, s.mouseX, s.mouseY);
 
 
 	const TGTWT = 4;
@@ -83,20 +83,20 @@ const interactive_derivative = ( sketch ) => {
 	let sY = (TGTWT+R)*pY/Math.sqrt(pX*pX + pY*pY);
 
 	let stv = jac(pX, pY, vecX, vecY);
-	sketch.strokeWeight(0);
-	sketch.fill(69,90,100);
-	sketch.ellipse(W/2, H/2, 2*R, 2*R);
+	s.strokeWeight(0);
+	s.fill(69,90,100);
+	s.ellipse(W/2, H/2, 2*R, 2*R);
 
 
-	sketch.strokeWeight(6);
-	sketch.strokeCap(sketch.SQUARE);
-	sketch.stroke(30,136,229);
-	sketch.line(W/2 + sX,
+	s.strokeWeight(6);
+	s.strokeCap(s.SQUARE);
+	s.stroke(30,136,229);
+	s.line(W/2 + sX,
 		    H/2 + sY,
 		    W/2 +  sX+ 100*stv[0],
 		    H/2 +  sY+ 100*stv[1]);
 
-	sketch.strokeWeight(0);;
+	s.strokeWeight(0);;
 
     };
 };
@@ -457,11 +457,70 @@ const crumple = ( s ) => {
     };
 };
 
+const static_derivative = ( s ) => {
+
+    pts = [];
+
+    s.setup = () => {
+	let myCanvas = s.createCanvas(W, H);
+	// myCanvas.parent(document.getElementById('myContainer'));
+	myCanvas.parent('static-derivative');
+
+	for (let i = -200; i < 200; ++i) {
+        let x = W/2+i/2;
+        let y =  H/2 - 3*R + R*(i/200)*(i/200)*(i/200);
+        pts.push([x, y]);
+	}
+    };
+
+    s.draw = () => {
+    s.background(255,253,231);
+
+	s.strokeWeight(0);
+	s.fill(69,90,100);
+	s.ellipse(W/2, H/2, 2*R, 2*R);
+
+
+	s.stroke(33,150,243);
+	s.strokeWeight(6);
+	s.noFill();
+	s.beginShape();
+	for (let i = 0; i < pts.length; ++i) {
+        let x = pts[i][0];
+        let y =  pts[i][1];
+	    s.curveVertex(x, y);
+	}
+	s.endShape();
+
+
+
+	for (let i = 0; i < pts.length - 1; i += 100) {
+        let x1 = pts[i][0];
+        let y1 =  pts[i][1];
+
+        let x2 = pts[i+1][0];
+        let y2 = pts[i+1][1];
+
+        let m = (y2 - y1)/(x2 - x1);
+
+        s.strokeWeight(6);
+        s.strokeCap(s.SQUARE);
+        s.stroke(26,35,126);
+        const LEN = 50;
+        s.line(x1, y1, x2 + LEN, y2 + m*LEN);
+    }
+
+
+    };
+};
+
+
 let p5_crumple = new p5(crumple);
 let p5_transform = new p5(transform);
 let p5_transform_anim = new p5(transform_anim);
 let p5_transform_anim_normal = new p5(transform_anim_normal);
 let p5_transform_anim_tangential = new p5(transform_anim_tangential);
 let p5_interactive_derivative = new p5(interactive_derivative);
+let p5_static_derivative = new p5(static_derivative);
 
 
