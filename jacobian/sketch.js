@@ -13,6 +13,17 @@ function easeInQuart(x) {
     return x * x * x * x;
 }
 
+function halton (index, base) {
+  let fraction = 1;
+  let result = 0;
+  while (index > 0) {
+    fraction /= base;
+    result += fraction * (index % base);
+    index = Math.floor(index / base); // floor division
+  }
+  return result;
+}
+
 
 // f(x, y) = (u: x (x^2+y^2)^{-1/2}, v: y(x^2 + y^2)^{-1/2})
 // du/dx = 1. (x^2+y^2)^{-1/2} + x(-1/2)(x^2+y^2){-3/2}(2x) = (x^2 + y^2)^{-1/2} - x^2(x^2 + y^2)^{-3/2}
@@ -159,7 +170,7 @@ const crumple = ( s ) => {
 
 
 	let c0 = s.color(216,27,96, 255);
-	let c1 = s.color(30,136,229, 255);
+	let c1 = s.color(30,136,229, 128);
 	const BORDER = 60;
 
 	fi++;
@@ -171,8 +182,9 @@ const crumple = ( s ) => {
 	    if (fcur == 0) {
 		pts = [];
 	    } else {
-		let rRand = 2*R + Math.random() * 3*R;
-		let thetaRand = Math.random() * 2 * Math.PI
+		let rRand = 2*R + halton(fcur, 2) * 6*R;
+		let thetaRand = halton(fcur, 3) * 2 * Math.PI
+		
 		pts.push([rRand * Math.cos(thetaRand), rRand * Math.sin(thetaRand)]);
 	    }
 	    for(let i = 0; i < pts.length; ++i) {
@@ -246,12 +258,15 @@ const crumple = ( s ) => {
 		let x1 = R*x0/Math.sqrt(x0*x0 + y0*y0);
 		let y1 = R*y0/Math.sqrt(x0*x0 + y0*y0);
 		let ct = s.color(c1);
-		ct.setAlpha(255*(1.0 - t));
+		ct.setAlpha(128*(1.0 - t));
 		s.stroke(ct);
 		s.point(W/2 + x1, H/2 + y1);		
 	    }
 	    return;
 	}
+
+	// pause.
+	if (fcur < 50) { return; }
 
 	// ran no animation. exhausted.
 	fi = 0;
