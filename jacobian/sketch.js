@@ -5,6 +5,15 @@ const R = 50;
 let pX = 200;
 let pY = 0;
 
+function easeOutQuart(x) {
+    return 1 - Math.pow(1 - x, 4);
+}
+
+function easeInQuart(x) {
+    return x * x * x * x;
+}
+
+
 // f(x, y) = (u: x (x^2+y^2)^{-1/2}, v: y(x^2 + y^2)^{-1/2})
 // du/dx = 1. (x^2+y^2)^{-1/2} + x(-1/2)(x^2+y^2){-3/2}(2x) = (x^2 + y^2)^{-1/2} - x^2(x^2 + y^2)^{-3/2}
 // du/dy = 1.  x(-1/2)(x^2+y^2){-3/2}(2y) = - xy(x^2 + y^2)^{-3/2}
@@ -18,7 +27,7 @@ function jac(x, y, tx, ty) {
 
     let ox = tx*dudx + ty*dudy;
     let oy = tx*dvdx +  ty*dvdy;
-    console.log("dudx: ", dudx, "dudy: ", dudy, "dvdx: ", dvdx, "dvdy: ", dvdy, "ox: ", ox, "oy: ", oy);
+    // console.log("dudx: ", dudx, "dudy: ", dudy, "dvdx: ", dvdx, "dvdy: ", dvdy, "ox: ", ox, "oy: ", oy);
     return [ox, oy];
 }
 
@@ -131,29 +140,7 @@ const crumple = ( s ) => {
     s.setup = () => {
 	let myCanvas = s.createCanvas(W, H);
 	myCanvas.parent(document.getElementById('crumple'));
-
-	NPOINTS = 0;
-	let n = 0; let d = 1;
-	let rs = []; // random numbers from halton sequence;
-	
-	for(let i = 0; i < 2*NPOINTS; ++i) {
-	    const x = d - n;
-	    if (x == 1) {
-		n = 1; d *= 2;
-	    } else {
-		let y = Math.floor(d / 2);
-		while(x <= y) {
-		    y = Math.floor(y/2);
-		}
-		const n = 3*y - x;
-		rs.push(n/2);
-	    }
-	}
-
-	for(let i = 0; i < NPOINTS; i += 2) {
-	    pts.push([rs[i], rs[i+1]]);
-	}
-    };
+    }
 
     s.draw = () => {
 	s.background(238,238,238);
@@ -164,26 +151,112 @@ const crumple = ( s ) => {
 	s.ellipse(W/2, H/2, 2*R, 2*R);
 
 	// generate points using halton sequence?
-
 	// homotope points.
-	fi++;
-	if (fi > 2*fn) { fi = 0; }
-	let t = Math.min(fn, fi)/fn;
+	const NFRAME_POINTS = 100;
+	const NFRAME_TRANSFORM = 40;
+	const NFRAME_STAY = 20;
+	const NFRAME_HIDE = 20;
 
-	s.strokeWeight(10);
+
 	let c0 = s.color(216,27,96, 255);
 	let c1 = s.color(30,136,229, 255);
 	const BORDER = 60;
-	s.stroke(s.lerpColor(c0, c1, t));
-	const N = 100;
-	for(let x0 = -400; x0 < 400; x0 += 50 )  {
-	    let y0 = H/2 - BORDER;
-	    // point is at (i, y)
-	    let x1 = R*i/Math.sqrt(x0*x0 + y0*y0);
-	    let y1 = R*y0/Math.sqrt(x0*x0 + y0*y0);
-	    s.point(W/2 + (1 - t)*x0 + t*x1, H/2 + (1-t)*y0 + t*y1);
+
+	fi++;
+	let fcur = fi;
+	
+	s.strokeWeight(10);
+
+	if (fcur < NFRAME_POINTS) {
+	    if (fcur == 0) {
+		pts = [];
+	    } else {
+		let rRand = 2*R + Math.random() * 3*R;
+		let thetaRand = Math.random() * 2 * Math.PI
+		pts.push([rRand * Math.cos(thetaRand), rRand * Math.sin(thetaRand)]);
+	    }
+	    for(let i = 0; i < pts.length; ++i) {
+		let x0 = pts[i][0];
+		let y0 = pts[i][1];
+		
+		let t = Math.min(1, (fcur - i)/5);
+		let ct = s.color(c0);
+		ct.setAlpha(255*t);
+		s.stroke(ct);
+		s.point(W/2 + x0, H/2 + y0);
+	    }
+	    return;
+	} else {
+	    fcur -= NFRAME_POINTS;
+        }
+
+	if (fcur < NFRAME_STAY) {
+	    let t = fcur /NFRAME_STAY;
+	    for(let i = 0; i < pts.length; ++i) {
+		let x0 = pts[i][0];
+		let y0 = pts[i][1];
+		let x1 = R*x0/Math.sqrt(x0*x0 + y0*y0);
+		let y1 = R*y0/Math.sqrt(x0*x0 + y0*y0);
+		s.stroke(c0);
+		s.point(W/2 + x0, H/2 + y0);		
+	    }
+	    return;
+	} else { fcur -= NFRAME_STAY };
+
+	
+	if (fcur < NFRAME_TRANSFORM) {
+	    let t = fcur/NFRAME_TRANSFORM;
+	    t = easeOutQuart(t);
+	    console.log("transform t", t);
+	    for(let i = 0; i < pts.length; ++i) {
+		let x0 = pts[i][0];
+		let y0 = pts[i][1];
+		let x1 = R*x0/Math.sqrt(x0*x0 + y0*y0);
+		let y1 = R*y0/Math.sqrt(x0*x0 + y0*y0);
+
+		s.stroke(s.lerpColor(c0, c1, t));
+		s.point(W/2 + (1-t)*x0 + t*x1, H/2 + (1-t)*y0 + t*y1);		
+	    }
+	    return;
+	    
+	} else {
+	    fcur -= NFRAME_TRANSFORM;
 	}
 
+	if (fcur < NFRAME_STAY) {
+	   for(let i = 0; i < pts.length; ++i) {
+		let x0 = pts[i][0];
+		let y0 = pts[i][1];
+		let x1 = R*x0/Math.sqrt(x0*x0 + y0*y0);
+		let y1 = R*y0/Math.sqrt(x0*x0 + y0*y0);
+	        s.stroke(c1);
+		s.point(W/2 + x1, H/2 + y1);		
+	   }
+	   return;
+	} else {
+	    fcur -= NFRAME_STAY;
+	}
+	
+	if (fcur < NFRAME_HIDE) {
+	    let t = fcur /NFRAME_HIDE;
+	    t = easeInQuart(t);
+	    for(let i = 0; i < pts.length; ++i) {
+		let x0 = pts[i][0];
+		let y0 = pts[i][1];
+		let x1 = R*x0/Math.sqrt(x0*x0 + y0*y0);
+		let y1 = R*y0/Math.sqrt(x0*x0 + y0*y0);
+		let ct = s.color(c1);
+		ct.setAlpha(255*(1.0 - t));
+		s.stroke(ct);
+		s.point(W/2 + x1, H/2 + y1);		
+	    }
+	    return;
+	}
+
+	// ran no animation. exhausted.
+	fi = 0;
+	pts = [];
+	return;
     };
 };
 
