@@ -5,7 +5,102 @@
 <link>https://bollu.github.io/</link>
 <description>A universe of Sorts</description>
   <item>
-    <title> Covariant hom is left exact</title>
+    <title> Quotes from the culture</title>
+    <guid>https://bollu.github.io/quotes-from-the-culture.html</guid>
+    <link>https://bollu.github.io/quotes-from-the-culture.html</link>
+  </item>
+  <item>
+    <title> Penrose cohomology [WIP]</title>
+    <guid>https://bollu.github.io/penrose-cohomology-wip.html</guid>
+    <link>https://bollu.github.io/penrose-cohomology-wip.html</link>
+  </item>
+  <item>
+    <title> Lie bracket commutator from exponentiation (WIP)</title>
+    <guid>https://bollu.github.io/lie-bracket-commutator-from-exponentiation-wip.html</guid>
+    <link>https://bollu.github.io/lie-bracket-commutator-from-exponentiation-wip.html</link>
+  </item>
+  <item>
+    <title> Thoughts on proof of fundamental group of unit circle</title>
+    <guid>https://bollu.github.io/thoughts-on-proof-of-fundamental-group-of-unit-circle.html</guid>
+    <link>https://bollu.github.io/thoughts-on-proof-of-fundamental-group-of-unit-circle.html</link>
+  </item>
+  <item>
+    <title> Lefschetz fixed point theorem (WIP)</title>
+    <guid>https://bollu.github.io/lefschetz-fixed-point-theorem-wip.html</guid>
+    <link>https://bollu.github.io/lefschetz-fixed-point-theorem-wip.html</link>
+  </item>
+  <item>
+    <title> Pasting lemma</title>
+    <guid>https://bollu.github.io/pasting-lemma.html</guid>
+    <link>https://bollu.github.io/pasting-lemma.html</link>
+  </item>
+  <item>
+    <title> Tensoring with base ring has no effect</title>
+    <guid>https://bollu.github.io/tensoring-with-base-ring-has-no-effect.html</guid>
+    <link>https://bollu.github.io/tensoring-with-base-ring-has-no-effect.html</link>
+  </item>
+  <item>
+    <title> Projective resolution / fundamental theorem of homological algebra (WIP)</title>
+    <guid>https://bollu.github.io/projective-resolution-fundamental-theorem-of-homological-algebra-wip.html</guid>
+    <link>https://bollu.github.io/projective-resolution-fundamental-theorem-of-homological-algebra-wip.html</link>
+  </item>
+  <item>
+    <title> Seeing the semidirect product of the dihedral group.</title>
+    <guid>https://bollu.github.io/seeing-the-semidirect-product-of-the-dihedral-group.html</guid>
+    <link>https://bollu.github.io/seeing-the-semidirect-product-of-the-dihedral-group.html</link>
+  </item>
+  <item>
+    <title> Animating rotations with quaternion curves</title>
+    <guid>https://bollu.github.io/animating-rotations-with-quaternion-curves.html</guid>
+    <link>https://bollu.github.io/animating-rotations-with-quaternion-curves.html</link>
+  </item>
+  <item>
+    <title> Mnemonic for hom-tensor and left-right adjoints </title>
+    <guid>https://bollu.github.io/mnemonic-for-hom-tensor-and-left-right-adjoints.html</guid>
+    <link>https://bollu.github.io/mnemonic-for-hom-tensor-and-left-right-adjoints.html</link>
+  </item>
+  <item>
+    <title> Construction of tensor product: Atiyah macdonald</title>
+    <guid>https://bollu.github.io/construction-of-tensor-product-atiyah-macdonald.html</guid>
+    <link>https://bollu.github.io/construction-of-tensor-product-atiyah-macdonald.html</link>
+  </item>
+  <item>
+    <title> Dupin indicatrix (WIP)</title>
+    <guid>https://bollu.github.io/dupin-indicatrix-wip.html</guid>
+    <link>https://bollu.github.io/dupin-indicatrix-wip.html</link>
+  </item>
+  <item>
+    <title> Rodrigues curvature formula (WIP)</title>
+    <guid>https://bollu.github.io/rodrigues-curvature-formula-wip.html</guid>
+    <link>https://bollu.github.io/rodrigues-curvature-formula-wip.html</link>
+  </item>
+  <item>
+    <title> Weingarten map (WIP)</title>
+    <guid>https://bollu.github.io/weingarten-map-wip.html</guid>
+    <link>https://bollu.github.io/weingarten-map-wip.html</link>
+  </item>
+  <item>
+    <title> Recovering topology from sheaf of functions: Proof from Atiyah Macdonald</title>
+    <guid>https://bollu.github.io/recovering-topology-from-sheaf-of-functions-proof-from-atiyah-macdonald.html</guid>
+    <link>https://bollu.github.io/recovering-topology-from-sheaf-of-functions-proof-from-atiyah-macdonald.html</link>
+  </item>
+  <item>
+    <title> Urhyson &apos; s lemma (WIP)</title>
+    <guid>https://bollu.github.io/urhysons-lemma-wip.html</guid>
+    <link>https://bollu.github.io/urhysons-lemma-wip.html</link>
+  </item>
+  <item>
+    <title> Compact Hausdorff spaces are normal</title>
+    <guid>https://bollu.github.io/compact-hausdorff-spaces-are-normal.html</guid>
+    <link>https://bollu.github.io/compact-hausdorff-spaces-are-normal.html</link>
+  </item>
+  <item>
+    <title> Stone representation theorem: Proof from Atiyah Macdonald</title>
+    <guid>https://bollu.github.io/stone-representation-theorem-proof-from-atiyah-macdonald.html</guid>
+    <link>https://bollu.github.io/stone-representation-theorem-proof-from-atiyah-macdonald.html</link>
+  </item>
+  <item>
+    <title> Covariant Hom is left exact</title>
     <guid>https://bollu.github.io/covariant-hom-is-left-exact.html</guid>
     <link>https://bollu.github.io/covariant-hom-is-left-exact.html</link>
   </item>
@@ -33,6 +128,11 @@
     <title> Exact sequences for semidirect products; fiber bundles</title>
     <guid>https://bollu.github.io/exact-sequences-for-semidirect-products-fiber-bundles.html</guid>
     <link>https://bollu.github.io/exact-sequences-for-semidirect-products-fiber-bundles.html</link>
+  </item>
+  <item>
+    <title>  Semidirect product is equivalent to splitting of exact sequence</title>
+    <guid>https://bollu.github.io/semidirect-product-is-equivalent-to-splitting-of-exact-sequence.html</guid>
+    <link>https://bollu.github.io/semidirect-product-is-equivalent-to-splitting-of-exact-sequence.html</link>
   </item>
   <item>
     <title> Intro to topological quantum field theory</title>
@@ -1075,9 +1175,9 @@
     <link>https://bollu.github.io/localization-introducing-epsilons-wip.html</link>
   </item>
   <item>
-    <title> NaN punning</title>
-    <guid>https://bollu.github.io/nan-punning.html</guid>
-    <link>https://bollu.github.io/nan-punning.html</link>
+    <title> NaN punning: Storing integers in doubles in JavaScript</title>
+    <guid>https://bollu.github.io/nan-punning-storing-integers-in-doubles-in-javascript.html</guid>
+    <link>https://bollu.github.io/nan-punning-storing-integers-in-doubles-in-javascript.html</link>
   </item>
   <item>
     <title> Offline Documentation</title>
@@ -1995,9 +2095,9 @@
     <link>https://bollu.github.io/long-form-posts.html</link>
   </item>
   <item>
-    <title> Big list of emacs gripes</title>
-    <guid>https://bollu.github.io/big-list-of-emacs-gripes.html</guid>
-    <link>https://bollu.github.io/big-list-of-emacs-gripes.html</link>
+    <title> Big list of emacs</title>
+    <guid>https://bollu.github.io/big-list-of-emacs.html</guid>
+    <link>https://bollu.github.io/big-list-of-emacs.html</link>
   </item>
   <item>
     <title> Big list of Coq</title>

@@ -26,6 +26,8 @@ if ((window.innerHeight - document.documentElement.clientHeight) >0) {
 
 # Features
 
+- [ ] Add "go back" link.
+- [ ] Add "subscribe" link.
 - [x] [utterances](https://utteranc.es/) for comments on the blog.
 - [x] error for `_ _`,  `* *`, `__ __`, `** **` that span multiple lines.
 - [x] error for inline code blocks that span multiple lines.

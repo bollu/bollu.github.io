@@ -11,6 +11,9 @@
 - [On the geometry of distributed algorithms](#on-the-geometry-of-distributed-algorithms)
 - [Compilers as commutative algebra](#compilers-as-commutative-algebra)
 
+# [Consensus complexity theory](#consensus-complexity-theory)
+
+Consensus is a physical resource. We are currently running out of it, fast.
 
 # [Analytic dependent type thoery](#analytic-dependent-type-theory)
 

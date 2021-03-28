@@ -12,10 +12,729 @@ A Universe of Sorts
 - [github](http://github.com/bollu)
 - [math.se](https://math.stackexchange.com/users/261373/siddharth-bhat)
 - [resume](resume/main.pdf)
-- [reading list/TODO](todo.html)
+- [reading list and link dump](todo.html)
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
-# Covariant hom is left exact
+# Quotes from the culture
+
+> “Empathize with stupidity and you’re halfway to thinking like an idiot,”
+
+> 'Absolutely not.  Common misconception that; that fun is relaxing.  If it is, you're not doing it right.  That's what the Hole's for; fun.  Fun and games.  Cools down a bit during the day, but it can get pretty wild, too.  The drink festivals are usually the worst.  Shouldn't be any trouble tonight though.  Fairly quiet.'
+
+
+> Excuse me, rector,' Gurgeh said, rising.  The old apex's gaze followed him.  'Duty calls.' 'Obey,' Hamin said.
+
+> The drums are made from human skin; you can see why each set is called a family.
+
+> 'Absolutely not.  Common misconception that; that fun is relaxing.  
+
+> As the adage said; falling never killed anybody; it was when you stopped…
+
+
+> This is not a heroic age,' he told the drone, staring at the fire.  'The individual is obsolete.  That's why life is so comfortable for us. We don't matter, so we're safe
+
+> Genetechnologically, it's been within their grasp for hundreds of years, but it's forbidden.  Illegal, if you remember what that means.' Gurgeh nodded
+
+
+
+> As with all sentient Culture constructs, its precise character had not been fully mapped out before its construction, but allowed to develop as the drone's mind was put together.  The Culture regarded this unpredictable factor in its production of conscious machines as the price to be paid for individuality, but the result was that not every drone so brought into being was entirely suitable for the tasks it had initially been designed for.
+
+
+> So it's false.' 'What isn't?' 'Intellectual achievement.  The exercise of skill.  Human feeling.'
+
+
+> Just another belch in the darkness. Sound but not a word, noise without meaning.
+
+> There seemed little point in telling the creature when; the Dra’Azon called every time “now” even though their language used tenses. 
+
+
+> We are water falling, itinerant and vague, ever seeking the lowest level, trying to collect and connect. We are vapor, raised against our own devices, made nebulous, blown on whatever wind arises. To start again, glacial or not.
+
+> the urge not to feel useless. The Culture’s sole justification for the relatively unworried, hedonistic life its population enjoyed was its good works; the secular evangelism of the Contact Section, not simply finding, cataloguing, investigating and analyzing other, less advanced civilizations but—where the circumstances appeared to Contact to justify so doing—actually interfering (overtly or covertly) in the historical processes of those other cultures.
+
+
+> And if we tamper with our inheritance, so what? What is more ours to tamper with? 
+
+> It was a young, unstable sort of bitterness, a kind of fake, something she assumed for a while, like a child trying on adult clothes. She luxuriated in the feeling of being old and disillusioned for a moment, then let it drop.
+
+Idir was never attacked, and technically never surrendered. Its computer network was taken over by effector weapons, and—freed of designed-in limitations—upgraded itself to sentience, to become a Culture Mind in all but name.
+
+
+> The voice sounded like congealing fat being poured into a jug; 
+
+> It would have helped if the Culture had used some sort of emblem or logo; but, pointlessly unhelpful and unrealistic to the last, the Culture refused to place its trust in symbols. It maintained that it was what it was and had no need for such outward representation.
+
+
+> Just as it could not imprison itself with laws, impoverish itself with money or misguide itself with leaders, so it would not misrepresent itself with signs.
+
+> 
+There was something too about the inexactitude of it all that the Mind found almost frightening. It could look at some carefully machined piece of metal or some delicately molded bit of plastic, and know that to the people who had built the Command System—to their eyes—these things were exact and precise, constructed to fine tolerances with dead straight lines, perfect edges, smooth surfaces, immaculate right angles… and so on. But the Mind, even with its damaged sensors, could see the rough edges, the crudity of the parts and the components involved. They had been good enough for the people at the time, and no doubt they had fulfilled the most important criterion of all; they worked
+
+
+> So it had effectively frozen its primary memory and cognitive functions, wrapping them in fields which prevented both decay and use. It was working instead on back-up picocircuitry, in real space, and using real-space light to think with (how humiliating).
+
+
+> the most select group of rich psychotics in the human galaxy, here to play the game that is to real life what soap opera is to high tragedy.
+
+> Originally Damage was played on such occasions because only during the breakdown of law and morality, and the confusion and chaos normally surrounding Final Events, could the game be carried out in anything remotely resembling part of the civilized galaxy; which, believe it or not, the Players like to think they’re part of. 
+
+
+
+# Penrose cohomology [WIP]
+
+- [I should just reach Cech Cohomology for this!](https://en.wikipedia.org/wiki/%C4%8Cech_cohomology)
+
+# Lie bracket commutator from exponentiation (WIP)
+
+I thought this was quite cute. To make sense of $[a, b]$ we consider
+the expression $e^{\epsilon a} e^{\epsilon b} e^{- \epsilon a} e^{- \epsilon b}$ which is equivalent to:
+
+$$
+\begin{aligned}
+&(1 + \epsilon a + \epsilon^2 a^2/2)(1 + \epsilon b+ \epsilon^2 b^2/2)(1 - \epsilon a + \epsilon^2 a^2/2)(1 - \epsilon b + \epsilon^2 b^2/2)  \\
+&[(1 + \epsilon a + \epsilon^2 a^2/2)(1 - \epsilon a + \epsilon^2 a^2/2)] [(1 + \epsilon b+ \epsilon^2 b^2/2)(1 - \epsilon b + \epsilon^2 b^2/2)]  \\
+&[((1 +\epsilon^2 a^2/2) + \epsilon a)((1 + \epsilon^2 a^2/2) - \epsilon a)] [(1 + \epsilon^2 b^2/2+ )  \epsilon b) ((1 + \epsilon^2 b^2/2)  - \epsilon b)]  \\
+&[((1 +\epsilon^2 a^2/2)^2 -  \epsilon^2 a^2)] [(1 + \epsilon^2 b^2/2^2 -  \epsilon^2 b^2)]  \\
+\end{aligned}
+$$
+
+TODO
+
+# Thoughts on proof of fundamental group of unit circle
+
+#### Definition of covering space
+
+It's important that when we say that $p^{-1}(U) = U \times F$, that the local
+homeomorphisms of $U \times {i} \rightarrow U$ is given by $p|_{U \times \{ i \}}$:
+it is not **some other map** that gives us the homeomorphism, but $p$ itself.
+This makes $p$ locally bijective on a nbhd.
+
+
+#### Path lifting
+
+> A time varying embedding can be lifted for all time given a lift of initial conditions.
+
+> A smoothly varying family of embeddings can be filted given an initial lift.
+
+The fact that we work with intervals are of paramount importance. They are compact,
+and we can thus use induction to path lift.
+
+- [Kan extension condition](https://www.imsc.res.in/~kapil/geometry/topol/kan.html)
+
+
+To prove this, say 
+
+# Lefschetz fixed point theorem (WIP)
+
+#### Deducing Euler Characteristic from Lefschetz
+#### Deducing Brouwer from Lefschetz
+
+# Pasting lemma
+
+Let $f: X \rightarrow Y$ be a function.
+Let $A, B$ are closed subets of $X$ such that $X = A \cup V$. Then $f$ is continuous iff
+$f|_A$ and $f|_B$ are continous.
+
+#### Forward: $f$ continuous implies restriction continuous
+
+This is clear from how restrictions work. Pick $i: A \rightarrow X$ to be the
+function that embeds $A$ with the subspace topology into $X$. This is continuous by
+the definition of the subspace topology. Now define $f|_A : A \rightarrow Y \equiv f \circ i$.
+which is continous since it is the composition of continuous functions. 
+
+#### Backward: restrictions continuous implies $f$ continuous.
+
+Let $V \subseteq Y$ be closed. Then $f_A^{-1}(V)$ is closed in $A$ by the continuity of $f_A$
+Now see that $f_A^{-1}(V)$ is closed in the subspace topology of $A$  means that
+there is some closed $P \subseteq X$ such that $f|_A^{-1}(V) = A \cap P$.
+Since both $A$ and $P$ are closed in $X$, this means that $f^{-1}(V)$ is closed
+in $X$ (see that we have filted "closed in $A$" to "closed in $X$).
+Similarly, we will have that $f|_B^{-1}(V) = B \cap Q$ for some closed $B$ and $Q$.
+Then we can write:
+
+\begin{aligned}
+&f^{-1}(V) \\
+&= f|_A^{-1}(V) \cup f|_B^{-1}(B) \\
+&= (A \cap P) \cup (B \cap Q) \\
+&= \texttt{finite union of closed sets} \\
+&= \texttt{closed} \\
+\end{aligned}
+
+# Tensoring with base ring has no effect
+
+If $0 \rightarrow M' \rightarrow M \rightarrow M''$ is an exact sequence of $A$ modules,
+then so is $0 \rightarrow A \otimes M' \rightarrow A \otimes M \rightarrow A \otimes M''$.
+(As an aside, the order is $M', M, M''$ since the middle term $M$ is somehow
+put together from the other two. So $M$ is the primary. Then by human
+convention, we choose the single prime on the left and the double prime on the
+right).
+
+
+# Projective resolution / fundamental theorem of homological algebra (WIP)
+
+https://www.youtube.com/watch?v=05afG63tUSk
+
+
+# Seeing the semidirect product of the dihedral group.
+
+Think of rigid motions of a hexagon. Let's focus on a single edge.
+See that the movement of this edge determines everything else. 
+So let's see where this edge can go to. There are six different
+locations it can go to, by "rotating". Not only that, but we can 
+also "flip" the edge (by flipping the entire hexagon!) This means
+we have two types of transformations we can perform on this single
+edge, that determines everything else: (1) rotating it, moving it to another
+location, and (2) flipping the edge. We might naively decide to mathematically
+encode the different moves we can make as `(angle, flip)`, which represents
+(a) rotating by an angle, and (b) flipping the hexagon. The next question
+one asks is how to write the result of performing one move after another?
+- If we have two rotations, we can compose them into another rotation.
+- If we have two flips, they compose to become no flip at all.
+- What happens if we have `(angle1, flip=true)` followed by `(angle2, flip=False)`?
+
+In fact, there is a subtlety here. What do we mean by "rotate by an angle"? How do
+we determine "clockwise" and "anti-clockwise"? There are two choices:
+- 1. Define these "from the top view", as viewing the hexagon as the face of a clock.
+- 2. Define this "from the view of the edge", as rotating in the direction of the edge. 
+
+We must make one of the two choices.
+
+TODO: mathemagize this.
+
+# Animating rotations with quaternion curves
+
+- [Reference: classic paper](http://graphics.cs.cmu.edu/nsp/course/15-464/Fall05/assignments/p245-shoemake.pdf)
+- [Comp.graphics usenet FAQ](http://www.faqs.org/faqs/graphics/algorithms-faq/)
+
+# Mnemonic for hom-tensor and left-right adjoints 
+
+- Remember the phrase `tensor-hom` adjunction, thus tensor is left adjoint.
+- Remember that the type of an adjunction is `(f x -> y) -> (x -> g y)` and here,
+  `f` is left adjoint, `g` is right adjoint. Then see that currying is
+  `((p, x) -> y) ->(x -> (p -> y))`. Thus tensor is left adjoint, hom is right
+  adjoint.
+- Remember that RAPL (right adjoints preserve limits); Then recall that
+  tensoring a direct limit (a colimit) preserves the tensor, as a colimit retains
+  torsion (example: prufer group has torsion, its components also have torsion; tensor can detect this by
+  tensoring with $\mathbb Q$).
+  On the other hand, tensoring of an inverse-limit (a limit) is not preserved:
+  think of p-adics. Each of the components have torsion, but the p-adics do not.
+  Thus, tensor DOES NOT preserve limits (inverse limits). And so, tensor CANNOT
+  be right adjoint; tensor must be left adjoint.
+- Since tensor is right exact, because it kills stuff, and could this destroy
+  injectivity, it is left adjoint.
+
+
+# Construction of tensor product: Atiyah macdonald
+
+I've only seen two ways of seeing the tensor product: (1) for vector
+spaces, where one uses a basis, and (2) the universal property, that
+describes the point of the tensor product.
+This is the first hands-on-but-not-basis construction
+of the tensor product I've seen, and so I record it here.
+Let $R$ be the base ring. We are tensoring the modules $M$ and $N$.
+
+- Create the free $R$ module $F \equiv R^{M \times N}$ whose elements are
+  free linear combinations of tuples from $M$ and $N$.
+- Let $K$ (for kill) be the submodule generated by the equations:
+  (1) $(x + x', y) - (x, y) - (x', y)$,
+  (2) $(x, y + y') - (x, y) - (x, y')$,
+  (3) $(rx, y) - r \cdot (x, y)$
+  (4) $(x, ry) - r \cdot (x, y)$
+- Let $T \equiv F/K$. Denote the element of each $(x, y) \in F$ in the
+  quotient $F/K$ as $x \otimes y$. Then $T$ is generated by such elements.
+- From our quotients, we have the equation $(ax) \otimes y = a (x \otimes y) = x \otimes (ay)$,
+  and $(x + x') \otimes y = x \otimes y + x' \otimes y$, and finally
+  $x \otimes (y + y') = x \otimes y + x \otimes y'$.
+
+Any $R$-module map map $f: M \times N \rightarrow O$ where $O$ is an $R$-module extends by
+linearity into   $f_F: F \rightarrow O$ as $f_F(\sum_i r_i (x, y)) \equiv r_i f(x, y)$.
+We also have a map $-/\sim : F \rightarrow T$
+
+```
+ F=R^{MxN} →fF→ MxN →f→ O
+ ↓               ↑
+ F/~             fT
+ ↓               ↑
+ T=M(x)N →→fT→→→→*
+```
+
+For this diagram to commute, we need the fibers of $(f \circ f_F): R^{MxN} \rightarrow O$ to take constant values for each $o \in O$.
+Unwrapping that condition implies that $f$ is bilinear. So, the condition
+$f_T(x \otimes y) = f(x, y)$ uniquely determines $f_T(x \otimes y)$ if $f(x, y)$ is bilinear. 
+If not, the map $f_T$ is ill-defined, as we cannot "kan extend" $f_F$ along $f_T$.
+
+
+# Dupin indicatrix (WIP)
+
+- Hicks notes on diffgeo
+
+# Rodrigues curvature formula (WIP)
+
+- Hicks notes on diffgeo (WIP)
+
+# Weingarten map (WIP)
+
+- Hicks notes on diffgeo
+
+# Recovering topology from sheaf of functions: Proof from Atiyah Macdonald
+
+Let $X$ be a compact Haussdorff space. Such a space is normal (T4), so we can separate closed subsets
+by open neighbourhoods. This also means that the space obeys the Urhyson lemma, so we can construct
+continuous functions that take value $0$ at some point and $1$ at some other point. We will use this
+to argue about zero sets of functions.
+
+- We will first show a strong nullstellensatz like theorem, showing that every maximal ideal $m$ of 
+   the ring of continuous functions $C(x)$ is in bijection with the set of functions that vanish at a point, $V(x)$.
+
+- Let $C(X)$ be the ring of all continuous real valued functions on $X$. For each $x \in X$, define
+  $I(x) \subseteq C(X)$ to be the set of functions that vanish at $x$. 
+  This is a maximal ideal, because it is the kernel of the evaluation map $f \mapsto f(x)$.
+
+- Given some maximal ideal $m \subseteq C(X)$, we will show that there is some point $p \in X$ such that
+  $m = I(p)$. To show this, first consider the common zeros of functions in $m$, $V(m) \equiv \{ x \in X : f(x) = 0 \forall f \in m \}$.
+  We first show that $V(m)$ is non-empty, and we then show that $V(m)$ contains exactly one point.
+
+- To show $V(m)$ is non-empty, suppose for contradiction that $V(m)$ is empty. Thus, for each point $x \in X$,
+   not all functions in $m$ vanish at $x$ (otherwise $x \in V(m)$).
+   So, there is a function $f_x \in m$ that does not vanish at $x$, hence $f_x(x) \neq 0$. Since $f_x$
+   is continuous, there is some open neighbourhood $x \in U_x$ where $f(U_x) \neq 0$. (A continuous function
+   that does not vanish at a point cannot "suddenly" decay to zero. It will be non-zero over an open nbhd).
+   Since the space $X$ is compact, we have a finite number of $U_{x_i}$ that cover $X$. Hence, we build a function
+  $c \equiv \sum_i f_{x_i}^2$ ($c$ for contradiction) that vanishes nowhere. This means $c$ is a unit.
+  But we must have $c \in m$ as $c$ is built out of functions  $f_{x_i} \in m$. This is a contradiction as a unit
+  cannot belong to a maximal ideal. Thus, $V(m)$ contains at least one point.
+
+- To show that $V(m)$ contains exactly one point, suppose that $V(m)$ contains a single point $x$.
+   This means that all functions in $m$ vanish at $x$. Thus, $m \subseteq I(x)$, since $I(x)$ contains all functions
+   (not just ones in $m$) that vanish at $x$. But $m$ is maximal, and hence $m = I(x)$. This tells us that
+   every maximal ideal $m$ corresponds to some vanishing set $I(x)$.
+
+- We will next show that every vanishing set $I(x)$ is distinct. We already know that it is maximal. This gives us an 
+   injection. Let $I(p), I(q)$ be two vanishing sets for distinct points. Let $z_p$ be the function constructed from
+   Urhyson's lemma that is zero at $p$ at nonzero at $q$. Thus, we have $z_p \in I(p)$ and $z_p \not \in I(q)$. Hence,
+   $I(p) \neq I(q)$. This shows that the maximal ideals $I(p), I(q)$ will be distinct.
+
+- We have thus established a **bijection** / **nullstellensatz** between zero sets maximal ideals $V(m)$ and 
+   functions that vanish at a point $I(p)$.
+
+
+- We will next show that this provides a homeomorphism. It suffices to consider basic open sets. We know that the
+   sets $D_{spec}(f) = \{ m \in C(X) : f \not \in m \}$ is a basis for the maximal spectrum of the ring under zariski.
+   We will show that $D_{top}(f) \equiv \{ x \in X: f(x) \neq 0 \}$ is a basis for the topology of $X$. Then the function
+   that takes points to maximal ideals of functions that vanish at that point will provide a topological homeomorphism.
+   Thus, we have shown that the maximal spectrum of the ring allows us to recover the topology of the underlying space!
+
+
+- We wish to show that the open set $D_{top}(f)$ form a base for the topology on $X$. So consider an open set 
+   $U \subseteq X$. Now think of $U^c$ which is closed. We build the function $d(x, U)$ such that $d(x, U)(x) = 1$
+   and $d(x, U)(U^c) = 0$ by invoking Urhyson. Therefore, $x \in D_{top}(d(x, U)) \subseteq U$. So the set $U$ can be
+   covered with $\{ D_{top}(d(x, U)): x \in U \}$, which means the sets $D(d(x, U))$ form a base of the topology on $X$.
+
+- We wish to show that the open sets $D_{spec}(f)$ form a base for the topology on $maxSpec(C(X))$. Let $U$ be a
+   closed  set in $maxSpec(C(X))$. 
+
+-  We wish to show that the open set $D_{spec}(f)$ have homeomorphisms $D_{top}(f)$. This completes the isomorphism into a 
+   homeomorphism, and we have thus completed the proof that we can recover the topology from the spectrum.
+
+- Consider the function $zero: X \rightarrow mSpec(C(X))$  sending the point $x$ to the kernel of the evaluation map at $x$.
+   Let $D_{spec}(f) \subseteq mSpec(C(X))$ be a basic open of $mSpec(C(X))$. Consider $zero^{-1}(D_{spec}(f))$.
+   This will contain all those points $x \in X$ such that $zero(x) \in D_{spec}(f)$. This means that it will contain
+   point $x \in X$ such that $f$ does not vanish at those points, as (1) $zero(x) \in D_{spec}(f)$ implies
+   (2) $f \not \in zero(x)$ which implies $f(x) \neq 0$. Clearly, this is an open subset of $X$, as it is the
+   complement of the closed set $f(x) = 0$ [zero sets are always closed]. Furthermore, the set $zero^{-1}(D_{spec}(f))$
+   maps to what we would expect; it trades the algebraic definition of "does not vanish" to the geometric one,
+   while describing the exact same phenomena.
+
+# Urhyson's lemma (WIP)
+
+We don't know any continuous functions on compact Haussdorf spaces; Let $X$ be a topological space. What functions
+$X \rightarrow \mathbb R$ are continuous? We only have the constant functions!
+If $X$ is a metric space, can we get more continuous functions? We can probably do something
+like $f_p(x) \equiv d(p, x)$. But the compact Haussdorf spaces are very nice, we should know
+*something* about them!
+
+we often asumme we have an embedding (a homeomorphism) of a compact Haussdorff space $X$ into $\mathbb R^n$,
+I then get so many continuous functions! I can take the polynomials on $\mathbb R^n$ and restrict to $X$.
+Polynomials are dense in the compact-open topology! (Stone-Weirstrass)
+
+### Normal space (T4)
+
+A space where points are closed, and two disjoint closed subsets can be separated by open neighbourhoods. It's
+stronger than haussdorf, because we can separate subsets, not just points.
+
+### Urhyson lemma
+
+If $X$ is normal and $A, B$ are closed disjoint subsets of $X$, there exists a continuous
+function $f: X \rightarrow [0, 1]$ such that $f(A) = 0$ and $f(B) = 1$. This gives us
+"interesting continuous function" on an arbitrary topological space.
+
+We ask for normal, because compact Hausfdorff spaces are normal. So "good smooth manifolds"
+for example, are normal.
+
+### Lemma: Re-characterization of normality
+
+If $X$ is normal and $C \subseteq O \subseteq X$ with $C$ closed, $O$ open, then there
+exists a set $U \subseteq X$ that is open such that $C \subseteq U \subseteq \overline{U} \subseteq O$.
+(In fact, this is iff!) See that we "reverse the direction"; We started with closed-open, we end with
+closed-(open-closed)-open.
+
+- Consider $C$ and $O^c$. These are two closed sets. Since $C$ is contained in $O$,
+  $C$ does not meet $O^c$ ($C \subseteq O$, we have $C \cap O^c = \emptyset$). 
+- By normality, we have two opens $P, Q$ such that $C \subseteq P$, $O^c \subseteq Q$, and $P \cap Q = \emptyset$.
+- So we have $C \subseteq P$, and $P \subseteq Q^c$. This gives us $C \subseteq P \subseteq Q^c \subseteq O$.
+- We have $\overline{P} \subseteq Q^c$ as $P \subseteq Q^c$ and $Q^c$ is closed, and thus contains all of its limit points.
+- This together gives $C \subseteq P \subseteq \overline{P} \subseteq Q^c \subseteq O$.
+
+### Proof: Intuition
+
+- Suppse we succeeded. Then the only thing we know is that the space is normal, so it is
+  rich in open sets. We're going to convert the existence of a continuous function into properties
+  of open pre-images. We will then show that we have "enough opens" in $X$ to build the continuous
+  function using the pre-image characterization.
+- Suppose we succeeded. Then $[0, p) \subseteq [0, 1]$ is open in the subspace topology.
+- Define $U_p \equiv f^{-1}([0, p)) \subseteq X$. Each of these $U_p$ are included in one another as we make $p$
+  larger.
+- In fact, we have 
+
+$$U_p = f^{-1}([0, p)) \subseteq f^{-1}([0, p]) \subseteq f^{-1}([0, q)) \subseteq f^{-1}([0, q]])$$
+
+- We have that $\overline{U_p} = f^{-1}([0, p]) \subseteq U_q = f^{-1}([0, q))$ for $p < q$.
+- If we now think of the original sets, we needed $f(A) = 0$, $f(B) = 1$. So we must have that $A \subseteq f^{-1}([0, p))$
+  for all $p > 0$. 
+- Similarly, we have that $U_p \subseteq B^c$ for $p < 1$, as till $p$ reache $1$, we cannot get to $B$.
+- This gives us $A \subseteq U_p \subseteq B^c$.
+- This is the only properties we will use to reconstruct $f$!
+- Really, I only need a dense subset of $U_p$. So let's say I pick $\{ U_p : p \in \mathbb Q \}$.
+- I can reconstruct $f(x)$ by first thinking of $f(x)$. There are sets $U_p$ that reach towards $f(x)$.
+  Consider the closest such
+- So take $y = sup(\{ p \in \mathbb Q : p \leq f(x) \} \cup \{ 0 \})$. Because $\mathbb Q$
+  is dense in $\mathbb R$, this works out and we get $y = f(x)$
+- But if $p \leq f(x)$, this means $x \not \in U_p$ since $U_p$ covers $[0, p)$. So we write this as:
+  $y = sup(\{ p \in \mathbb Q : x \not \in U_p \} \cup \{ 0 \})$. Because $\mathbb Q$
+  is dense in $\mathbb R$, this works out and reconstructs for us us $y = f(x)$
+  (see that we did not use $f$ in the definition of $y$).
+
+
+### Claim 1
+
+Claim: If $P \subseteq (0, 1)$ is dense, and $\{ U_p \}_{p \in P}$ is a collection of open subsets of $X$
+indexed by $p$, such that:
+
+1. $A \subseteq U_p \subseteq B^c$.
+2. $\overline{U_p} \subseteq U_q$ whenever $p < q$
+
+Then $f(x) = sup(\{ p \in P : x \not \in U_p \} \cup \{ 0 \})$ is continuous and $f(A) = 0$, $f(B) = 1$.
+See that we don't even need normality! (Time: 29:30 in video)
+
+- **Proof:** It's clearly well defined based on $sup$. If it's continuous, then it obeys the properties
+  based on the containment assumptions (1) and (2).
+- For $p \in P$, We claim $x \not \in U_p \implies f(x) \geq p$. If $x \not \in U_p$,
+  then $p$ is in the set of points we take a $sup$ over. Hence, we have that $f(x) \geq p$
+  since $f(x)$ is the $sup$.
+- The contrapositive is that $f(x) < p \implies x \in U_p$. 
+- To show $f: X \rightarrow [0, 1]$ is continuous, it suffices to show that preimages of open 
+  sets are open for a basis. We know a basis consisting of intervals $\{ (p, q) : p, q \in P \}$.
+  We need to show that $f^{-1}((r_0, s_0))$ is open for $r_0, s_0 \in P$ with $0 < r_0 < s_0 < 1$.
+  [The cases where $r_0 = 0$ or $s_0 = 1$ are easy modifications].
+- Choose a $x \in f^{-1}((r_0, s_0))$. Since $P$ is dense, we can find $r_x, s_x$ such that
+  $r_0 < r_x < x < s_x < s_0$.
+- We claim that $x \in \overline{U_{r_x}}^c \cap U_{s_x}$. $\overline{U_{r_x}}^c$ is open as it is 
+  the complement of a closed set. Hence, we have shown that $x$ is in this open nbhd.
+- Since $f(x) < U_s$, we must have $x \in U_s$ by our contrapositive.
+- We claim that $x \not \in \overline{U_r}$. Proof by contradiction; suppose $x \in \overline{U_r}$,
+  hence $r < f(x)$.
+  Then, for any $r' \in P$ such that $r < r' < f(x)$, we would have $x \in U_r'$ (by 2).
+  We claim that this is A CONTRADICTION.
+- Since $f(x) = sup(\cdot)$, and $r < f(x)$ we have something in the $sup$ that is bigger than $r$.
+  Let this thing be $r'$ such that $x \not \in U_{r'}$. But this is a contradiction to $x \in \overline{U_r}$.
+- TODO: there is more to proof!
+
+#### Claim: $P \equiv \mathbb Q \cap (0, 1)$
+
+With $P \equiv \mathbb Q \cap (0, 1)$ there exists a collection $\{ U_p \}_{p \in P}$ as we need.
+
+We will prove this by induction. Choose an bijection $\mathbb Q \cap (0, 1) \equiv \{ p_1, p_2, \dots \}$.
+Let $P_n \equiv \{ p_1, p_2, \dots, p_n \}$. To define $U_{p_i}$ choose an open set such
+that:
+
+$$A \subseteq U_{p_1} \subseteq U_{p_1}^c \subseteq B^c$$
+
+Such a set exists by our characterization of normality.
+Now suppose $U_{p_1}, \dots U_{p_n}$ have been constructed such that $\{ U_p \}$
+satisfies the claims (i), (ii). To construct $U_{p_{n+1}}$. Recall that the $p_i$
+can be in arbitrary order, since we choose an arbitrary bijection. So let
+$r$ be the index such that $p_r$ comes right before $p_{n+1}$, and $s$ comes
+right after $p_{n+1}$. This gives us $r = \max \{ p_i | 1 \leq i \leq n \land p_i < p_{r+1} \}$,
+$s = \min \{ p_i | 1 \leq i \leq n \land p_i < p_{r+1} \}$. Then $r \leq s$ and $\overline U_r \subseteq U_s$.
+Thus by our characterization of normality, there exists an open $V$ such that:
+
+$$
+\overline U_r \subseteq V \subset \overline V \subseteq U_s
+$$
+
+
+#### Tietze Extension theorem
+
+
+If $X$ is normal, $A \subseteq X$ is closed, given a continuous bounded function $f: A \subseteq \mathbb R$
+then there exists and continuous and bounded function $F: X \rightarrow \mathbb R$ such that $F|A = f$.
+
+#### Urhyson's Metrization theorem
+
+A normal space with a countable basis is metrizable. We know that metrizable is normal. This says
+that normal is not so far away from metrizable.
+
+#### Embedding of topological manifolds
+
+If $X$ is a compact topological $n$-manifold, then there exists an embedding into some $\mathbb R^m$.
+That's saying that there are "m" very interesting continuous functions, the coordinate functions! So it
+makes sense Urhyson's is involved.
+
+
+
+
+#### References
+- [Urhyson's Lemma video](https://www.youtube.com/watch?v=UQas4Cu89D0)
+- [Urhyson's Lemma lecture notes](http://therisingsea.org/notes/mast30026/lecture22.pdf)
+
+# Compact Hausdorff spaces are normal
+
+
+Let $C, D$ be two disjoint closed subsets. We wish to exhibit disjoint opens
+$U, V$ which separate $C, D$. Formally, we want $C \subseteq U, D \subseteq V, U \cap V = \emptyset$.
+
+
+The crucial idea is to take all pairs of points in $C \times D$, and use
+Hausdorffness to find opens $\{ (U_{cd}, V_{cd}) : (c, d) \in C \times D \}$
+such that $c \in U_{cd}, d \in V_{cd}, U_{cd} \cap V_{cd} = \emptyset$.  which
+separate all pairs $c$ and $d$, and then to use compactness to escalate this
+into a real separating cover.
+
+Now that we have the pairs, for a fixed $c_0 \in C$, consider the cover
+$\cup_{d} V_{cd} $. This covers the set $D$, hence there is a finite subcover
+$D \subseteq V_{cD} \equiv \cup_{d_i} V_{c {d_i}}$. Now, we go back, and build the set
+$c \in U_{cD} \equiv \cap_{d_i} U_{c {d_i}}$. This is the intersection of a finite
+number of opens, and is hence open. So we now have two sets $U_{cD}$ and $V_{cD}$
+which separate $c$ from $D$. We can build such a pair $U_{cD}, V_{cD}$ that separates
+each $c$ from all of $D$. Then, using compactness again, we find a finite subcover of
+sets $U_{c_i D}, V_{c_i D}$ such that the $U_{CD} \equiv \cup_{i=0}^n U_{c_i D}$ cover $C$, each of the
+$V_{c_i D}$ cover $D$ (so $V_{CD} \equiv \cap_{i=0}^n V_{c_i} D$ covers $D$). This gives
+us our final opens $U_{CD}$ and $V_{CD}$. that separate $C$ and $D$.
+
+# Stone representation theorem: Proof from Atiyah Macdonald
+
+A boolean ring is one where for every element $r \in R$, we have $r^2 = r$. We first
+study boolean rings abstactly and collect their properties. Secondly,
+we show an isomorphism between complete lattices and boolean rings.
+Thirdly, we use the topology from $Spec$ to import a topology on complete lattices,
+which will be Haussdorf and completely disconnected. 
+
+#### In a boolean ring, all prime ideals are maximal.
+
+Let $p$ be a prime ideal, and let $x \in p$. One is tempted to use jacobson like arguments,
+and thus one considers the element $(1 - x)$. Since in this ring, we have $x^2 = x$,
+this means that $x(1 - x) = 0$. Hence, we have $x(1 - x) \in p$. This is not so
+useful, until we notice that we never used the fact that $x \in p$!. So pick some **arbitrary**
+element $y \in R$. To show $p$ a prime ideal is maximal, let $y \not \in p$. Then we know
+that $1 - y \in p$. Thus, if $y$ we were added to $p$ (ie, we try to create a larger ideal $m = (y, p)$),
+we get $1 - y + y = 1 \in p$. Thus, the ideal $m = (y, p) = 1$ when $y \not \in p$. Thus, $y$
+is maximal.
+
+#### In a boolean ring, $2 = 1 + 1 = 0$. More generally, $2x = 0$ for all $x$.
+
+Showing $2x = 0$ is the same as showing $x = -x$. We know that $(-x) = (-x)^2 = x^2 = x$
+as in this ring $x^2 = x$ for all $x$. Hence, we have that $x = -x$ or $1 = -1$ or $2 = 0$.
+
+
+#### In the spectrum of a boolean ring, $D(f)$ for $f \in R$ is clopen
+
+That is, the basic open sets of the prime spectrum of the ring are all clopen. The basic
+open sets $D(f)$ (where $D$ stands for doesn't vanish on the prime spectrum)
+are open by definition. To show that $D(f)$ is open, we need to find
+an ideal $I$ such that $D(f) = V(I)$. Consider $g \equiv 1 - f$. We know
+that $f(1 - f) = 0$ for all $f$ and we are considering the prime spectrum.
+Thus, either $f$ or $(1 - f)$ must vanish at each point because $f(1 - f)$ vanishes
+at each point: so $f(1 - f) = 0 \in p$ implies $f \in p$ or $(1 - f) \in p$.
+
+- To see that $V(1 - f) \subset D(f)$, let $p \in V(1 - f)$. Hence, $1 - f \in p$. Thus, we have
+  $f \not \in p$: if $f$ and $(1 - f)$ are both in $p$, then $1 \in p$ which is absurd as $p$ is a proper ideal.
+  Hence, $p \in D(f)$. Thus, $V(1 - f) \subset D(f)$.
+- To see that $D(f) \subset V(1 - f)$, let $p \in D(f)$, hence $f \not \in p$. But $f(1 - f) = 0 \in p$ since
+  the ring is boolean. Hence $(1 - f) \in p$ by the primality of $p$ and since $f(1 - f) \in p$.
+  Thus, $p \in V(1 - f)$. Hence, $D(f) \subset V(1 - f)$.
+
+This shows us that each basic open set is clopen, as each basic open is both open and closed.
+
+#### for all rings, The space $Spec(R)$ is quasi-compact: every open cover of $Spec(R)$ has a finite subcover of $Spec(R)$.
+
+We generally only call Haussdorf spaces "compact". The covering property is called "quasi-compact"
+
+Consider an open covering $C_i$ such that $\cup C_i = Spec(R)$. Since the base of the topology
+is the doesn't vanish sets, we can write each $C_i$ as $C_i = \cup_j D(f_{ij})$. Hence we have that
+$Spec(R) = \cup_{i, j} D(f_{i, j})$. This is the same as saying:
+
+$$
+\begin{aligned}
+&\emptyset = Spec(R)^c \\
+&= (\cup_{i, j} D(f_{i, j}))^c  \\
+&= \cap_{i, j} D(f_{i, j})^c \\
+&= \cap_{i, j} V(f_{i, j})^c \\
+\end{aligned}
+$$
+
+Recall that intersecting vanishing sets is the same as building an ideal containing all those functions.
+So we have an ideal $I \equiv (f_{11}, f_{12}, \dots, f_{21}, \dots, f_{ij})$. 
+Saying that the intersection of all $V(f_{ij})$ is empty is saying that $I = R$. 
+This is by strong nullstellensatz, which states that every maximal ideal (and hence, every ideal which is contained in some maximal ideal)
+must have some solution. The only way to not have a solution (ie, to vanish nowhere) is to generate the entire ring.
+Thus, we must have that $I \equiv (f_{ij}) = R$, and hence $1 \in R$ implies $1 \in I = (f_{ij})$.
+In an ideal, we only ever take **finite sums**. So $1$ is a **finite** linear combination of some $f_{ij}$. So we have
+the equation:
+
+$$
+1 = g_1 f_{i_1 j_1}  + g_2 f_{i_2 j_2} + \dots + g_n f_{1_n j_n}
+$$
+
+Thus we have that $1 \in (f_{i_1 j_1}, f_{i_2 j_2}, \dots f_{i_n j_n}$, and hence $\cap_{k=1}^n V(f_{i_k j_k}) = \emptyset$.
+Complementing both sides, we get that $\cup_{k=1}^n D(f_{i_k j_k}) = Spec(R)$. We know that $D(f_{i_k j_k}) \subseteq C_{i_k}$, as
+the basic open set $D(f_{i_k j_k})$ was used to cover $C_{i_k}$. Hence, we can "expand out" the finite covering by basic opens
+to a finite overing by the covering given to us. So we get $Spec(R) = \cup_{k=1}^n C_{i_k}$.
+
+#### for all rings, each $D(f)$ is quasi-compact
+
+This is a generalization of the fact that $Spec(R)$ is quasi-compact, as $Spec(R) = D(1)$. Localize at $f$, so
+build the ring $R_{(f)}$. Intuitively, $Spec(R_f) = D(f)$, as $Spec(R_f)$ only has ideals where $f$ does not vanish.
+If $f$ vanishes at a prime $p$, then $f \in p$. But we localize at $f$, hence $f$ becomes a unit, so we get $1 \in p_{(f)}$,
+and thus the ideal is no longer an ideal.
+
+#### Topology: Closed subset $S$ of a quasi-compact space $T$ is quasi-compact
+
+Let $S \subseteq T$ be closed. We wish to show that $S$ is quasi-compact; that is,
+any cover of $S$ has a finite subcover. Let $C_i$ be an arbtirary cover of $S$.
+Create a new cover $C'_i$ which is $C_i$ with $S^c$ added. We add $S^c$ so that
+we can cover $T$ with $C'_i$, and from this extract a cover for $S$. This works
+since $S^c$ covers no element of $S$; The subcover we get of $C'_i$ will have
+to create a covering for $S$ using the sets of $C_i$. Ask for a finite subcover
+$F_i$ of $C'_i$. The finite covering of $S$ is $F_i - S^c$.
+
+#### In $Spec(B)$, a boolean ring, the sets $D(f)$ are closed under finite union
+
+We want to show that for each family $D(f_i)$, we have a $g$ such that $D(g) = \cup_i D(f_i)$.
+We will show it for two functions; recurse in general. The idea is that if we have $f, g$,
+we want to build a function that does not vanish when either $f$ or $g$ vanish. Let's
+pretend they are boolean functions. Then we are looking for $f \lor g$. We can realise
+or in terms of and (multiplication) and xor(addition) as $h \equiv f \lor g \equiv f + g + fg$.
+To re-ring-theory this, write $h = f + g + fg = f + g(1 - f)$. See that (1) if $f$ vanishes ($f = 0$)
+then $h = g$, (2) if $g$ vanishes ($g = 0$) then $h = f$ which is as expected. If neither
+$f$ nor $g$ vanish at $p$, then in this case, we must have $(1 - f)$ vanishes at $p$, since $f(1 - f) = f - f^2 = 0 \in p$.
+Hence $f$ or $f^2$ belong to the prime ideal, and hence one of them must vanish. If $f$ 
+does not vanish, then $(1 - f)$ vanishes, and hence $h = f$ does not vanish. So,
+$h$ does not vanish when either $f$ or $g$ do not vanish, which means that $D(f) \cup D(g) = D(h) = D(f + g + fg)$.
+Iterate for $n$.
+
+#### In $Spec(B)$, for a boolean ring, the sets $D(f)$ are the **only** subsets that are clopen.
+
+We know that all the $D(f)$ are clopen. We need to show that these are the only ones.
+So pick some clopen set $A$ (for "ajar", a pun on clopen). Since $A$ is open, we must that $A$
+is a (possibly infinite) union of basic opens $D(f_i)$.
+Since $A$ is closed and $Spec(B)$ is quasi-compact, $A$ is also quasi-compact.
+Thus, we can extract a finite subcover of $A$ to write $A = \cup_{k=1}^n D(f_{i_k})$.
+The sets $D(f)$ are closed under finite union. So there exists some $g$ such that $A = D(g)$.
+Thus, any clopen set $A$ can be written as $D(g)$ for some $g$.
+
+
+#### $Spec(B)$, for a boolean ring, is Haussdorf
+
+Intuitively, since every prime ideal is maximal, given two distint prime ideals $p, q$, we can find
+functions $f, g$ such that $f$ vanishes only on $p$ and $g$ vanishes only on $q$. Since the
+basic opens are clopen, we can then build opens that separate $p$ from $q$ by complementing
+the vanishing sets of $f, g$.
+
+Pick two points $p, q \in Spec(B)$, $p \neq q$.  These are maximal ideals (all prime ideals in $B$ are maximal).
+Thus, neither contain the other; So we must have elements $f \in p - q$, and $g \in q - p$. So
+we have that $V(f) = \{ p \}$ and $V(g) = \{ q \}$. Since $Spec(B)$ is clopen, we know that
+$V(f)^c$ and $V(g)^c$ are also open. So we get neighbourhoods $N_p \equiv V(f) \cap V(g)^c$
+and $N_q \equiv V(g) \cap V(f)^c$ such that $N_p \cap N_q = \emptyset$ and $p \in N_p$, and $q \in N_q$.
+Thus we are able to separate the space.
+
+#### $Spec(B)$, for a boolean ring, is compact
+
+Compact is just a definition that asks for (1) Haussdorf, and (2) quasi-compact,
+both of which we have shown above. Thus, $Spec(B)$ for a boolean ring is compact.
+
+#### A boolean lattice $L$ can be converted into a boolean ring.
+
+Take a boolean lattice $L$ define the zero of the ring to be bottom, so $0 \equiv \bot$,
+and the one of the ring to be the top, so $1 \equiv \top$. The addition operation
+is XOR, and the multiplication is intersection; So we define $a + b \equiv (a \land \lnot b) \lor (\lnot a \land b)$,
+and multiplication as $a \cdot b \equiv a \land b$. It's easy to check that this does obey the
+axioms of a commutative ring, and is boolean because $a^2 = a \land a = a$.
+
+#### Boolean rings $B$ are boolean lattices of the clopen sets of the spectra $BRing(Clopen(Spec(B)))$
+
+Take a boolean ring $B$, build its spectra $Spec(B)$. Take the set of all clopens. We have
+seen that this is exactly the sets $D(f)$. Let us show that $D(fg) = D(f) \cap D(g)$ and 
+$D(f + g) = D(f) \oplus D(g)$ where $\oplus$ is the exclusive or of the sets. This induces
+a map from the ring operations to the lattice operations.
+
+
+### Boolean lattices $L$ are the clopen sets of spectra of boolean rings $Clopen(Spec(R(L)))$.
+
+Take a lattice $L$, treat it as a ring, and consider the clopens generated from the ring.
+We know that for two elements $l, m$ we have that $lm = l \land m$. From the previous
+argument, we know that $D(lm) = D(l) \cap D(m)$. This gies $D(l \land m) =  D(lm) = D(l) \cap D(m)$,
+a lattie homomorphism. we get $D(l \lor m) = D(l) \cup D(m)$ by complementing; Since
+every set is clopen, we can complement a clopen set $D(l)$ to get some clopen set $D(l)^c$.
+But every clopen set can be written as $D(l')$ for some $l'$. 
+
+
+
+
+#### Bonus: quotient ring $R/p$ for prime ideal $p$ is $F_2$
+
+
+# Covariant Hom is left exact
+
+Let's say we have the exact sequence:
+
+$$
+0 \rightarrow A \xrightarrow{i} B \xrightarrow{\pi} C \rightarrow 0
+$$
+
+Where the first arrow is $i$ for inclusion and the third is $\pi$ for projection.
+We now want to consider what happens when we have $Hom(X, -)$ for some target space $X$.
+
+The induced arrows are induced from composition; I will write $(f; g)(x) \equiv g(f(x))$
+to mean "first do $f$, then do $g$". Hence, my arrows linking $Hom(X, A)$ to $Hom(X, B)$ will be
+$-;i$: To first go from $X$ to $A$, and then apply $i$ to go from $A$ to $B$.
+
+This gives us the sequence (which we are to check if it is exact, and which of the left
+and right arrow exist):
+
+
+$$
+0 \xrightarrow{?} Hom(X, A) \xrightarrow{-;i} Hom(X, B) \xrightarrow{;-\pi} Hom(X, C) \xrightarrow{?} 0
+$$
+
+
+#### A particular example
+
+
+As usual, we go to the classic exact sequence:
+
+
+$$
+0 \xrightarrow 2Z \rightarrow{\pi} Z \rightarrow{\pi} Z/2Z \rightarrow 0
+$$
+
+We now have three interesting choices for our $X$ in relation to the above sequence:
+(a) $Z$, (b) $2Z$, (c) $Z/2Z$. Since $Z$ and $2Z$ are isomorphic as modules, let's study
+the case with $Z$ and $Z/2Z$
+
+
+#### $Hom(-; Z)$
+#### $Hom(-; Z/2Z)$
 
 # Internal versus External semidirect products
 
@@ -365,7 +1084,40 @@ $$
   $s(k)s(k') = (e, k) (e, k') = (e, kk') = s(kk')$ so this is a valid map. To see that $\pi$
   is its inverse, just act $\pi$; $\pi(s(k)) = \pi(e, k) = k$. 
 
-#### Relationship to gauges
+
+#### Viewing the semidirect product space as a G-bundle
+
+Consider the space $E \equiv N \ltimes K$ as a bundle over $K$
+given by the projection $E \equiv N \ltimes K \xrightarrow{\pi} K$. We can have $N$ act on the fibers
+by a left and a right action. Let's consider both:
+
+- $N$ acting on right: $(n, k) \triangleleft (n', e) \equiv (n n'^k, ke) \equiv (n n'^k, k)$
+- $N$ acting on left: $(n', e) \triangleright (n, k) \equiv (n' n^e, k) = (n' n, k)$
+   This is the "easier action" to interpret;
+  it permutes fibers, keeping the base space the same. So this gives a principal bundle action.
+- $K$ acting on right: $(n, k) \triangleleft (e, 'k) \equiv (n e^k, kk') = (ne, kk') = (n, kk')$.
+  This action is easy, it permutes fibers.
+- $K$ acting on left: $(e, k') \triangleright (n, k) \equiv (e n^{k'}, k'k) \equiv (n^{k'}, kk')$.
+
+
+So we see that $N$ acting on the left gives us an action that permutes inside fibers,
+and $K$ acting on the right gives us an action that permutes the fibers themselves.
+So we can write this as $N \triangleright N \ltimes K \triangleleft K$ to capture
+the base-space bundle-space relationship, perhaps.
+
+Also, see that if we quotient $N \ltimes K$ by the action of $G\equiv N$ acting on
+the left, with the quotient map called $[\cdot]$ for orbit equivalence classes,
+we get $N\ltimes K \xrightarrow{[\cdot]} (N \ltimes K)/N = K$, which is isomorphic
+to our starting picture $N \ltimes K \xrightarrow{\pi} K$. Hence, it is indeed true
+that this bundle is a principal $G$-bundle.
+
+- [Ref: Geometrical anatomy of theoretical physics, lecture 19, principal bundles](https://www.youtube.com/watch?v=vYAXjTGr_eM&list=PLPH7f_7ZlzxTi6kS4vCmv4ZKm9u8g5yic&index=19)
+
+
+#### Relationship to gauges 
+
+**NOTE**: this was written before I knew what a G-bundle is. This is perhaps
+easier to read, but less useful in hindsight.
 
 Let $X$ be the space of *all* states. Let $O$ be a group action whose orbits identify
 equivalent states. So the space of "physical states" or "states that describe the same 
@@ -417,7 +1169,7 @@ We want the final picture to be:
 ```
 
 
-#### If sequence splits then semidirect product
+#  Semidirect product is equivalent to splitting of exact sequence
 
 Consider the exact sequence
 
@@ -1920,7 +2672,7 @@ for which this map is continuous.
   For the other set, we get $(q \circ (H_t \circ s) \circ q)(x) = q \circ H_t \circ s([x]) = q \circ H_t(x)$ and hence we are done.
 - (2c) Now since $q \circ (H_t \circ s))$ is continuous, and that $q \circ (H_0 \circ s) : X/A \rightarrow X/A = id_{X/A}$, we are done
   since we can homotope from $q \circ H_1 \circ s \simeq q \circ H_0 \circ s = id_{X/A}$.
-- (2d) TODO: We should be able to clean this proof up by refactoring $H_t$, $s$ and $q$ somehow to exploit their relationships.
+
 
 > Slogan: Use HEP to find homotopy $H$. Use $H_1 \circ s$ as inverse
 > to quotient.
@@ -1981,7 +2733,10 @@ which tells us that homotopy groups stabilise after many suspensions.
 The basic idea seems to be something like a tensor-hom adjunction. We have
 the loop spaces which are like $S^1 \rightarrow X$ and the suspension which
 is like $S^1 \wedge X$. The theory begins by considering the tensor-hom-adjunction
-between these objects as fundamental. 
+between these objects as fundamental.  So curry stuff around to write things as
+`(S^1, A) -> B` and `A -> (S^1 -> B)`, which is `Suspension(A) -> B` and `A -> Loop(B)`.
+This gives us the adjunction between suspension and looping.
+
 
 - We then try to ask: how can one invert the suspension formally? One tries
   to do some sort of formal nonsense, by declaring that maps between $\Sigma^{-n}X$
@@ -4497,6 +5252,7 @@ amounts to the fact that we can contract tensors.
 So, $\mathbb R \otimes \mathbb  R^* \simeq \mathbb R$. Generalize to bundles.
 
 #### References
+
 - [Fiber bundles at physics travel guide](https://physicstravelguide.com/advanced_tools/fiber_bundles#tab__concrete)
 
 # Conversations with a wood carver
@@ -7088,9 +7844,6 @@ I have a cost of `O(n)` for the doubling. So I can charge `O(1)` cost to
 all the new items since the last doubling. Note that I only charge once; after
 I've charged items, I've doubled the array, so they are now "old".
 
-#### Charging example: Table doubling, inserts and deletes
-
-(37:00 TODO)
 
 #### Potential method (Most powerful) / Defining karma:
 
@@ -9125,7 +9878,6 @@ foo = \xs -> (reverse xs, and xs)
 - Constraints become subsumption constraints
 - Solving is harder
 - No principal solution
-- TODO: construct an example for this intuition? I don't understand it.
 - Consider `incs :: [Int -> Int]`, and `(:) id incs` versus `(:) id ids`.
 
 #### But it looks so easy!
@@ -10280,7 +11032,7 @@ never halt. Non-strict evaluation tells us that this program will print an outpu
 To formalize a notion of strictness, we need a notion of `bottom` (`_|_`).
 
 A value is said to be `bottom` if in trying to evaluate it, we reach an
-undefined state. (TODO: refine this, ask ben).
+undefined state.
 
 Now, if a function is *strict*, it would first evaluate its arguments and then
 compute the result. So, if a strict function is given a value that is `bottom`,
@@ -11186,7 +11938,7 @@ regime of having $\epsilon$. I'll explore this perspective by consider
 $R = \mathbb Z/12 \mathbb Z$.
 
 
-# NaN punning
+# NaN punning: Storing integers in doubles in JavaScript
 
 This is a technique that allows us to store data inside a `double` by
 punning the value of a `NaN`. This is used inside javascript engines
@@ -22325,7 +23077,7 @@ try to find algebraic objects that allow us to "detect" these holes.
 ```
 
 - A 1-simplex is a line
-- 
+
 ```
 *===*
 ```
@@ -22705,7 +23457,7 @@ So the failure of the space to be fully filled in (ie, the space has a hole),
 is measured by the _existence of a function $h_e$ that is closed but not exact!_
 
 This reveals a deep connection between homology and cohomology, which is
-made explicit by the [Universal Coefficient Theorem](TODO)
+made explicit by the [Universal Coefficient Theorem](https://en.wikipedia.org/wiki/Universal_coefficient_theorem)
 
 # Stuff I learnt in 2019
 
@@ -26056,9 +26808,7 @@ This satisfies the identity:
 (pull (wn : TpN->R): TpM->R) (v : TpM) : R  = (wn: TpN->R) (push (v: TpM): TpN) : R
 ```
 
-##### Vector field as derivation
 
-TODO
 
 ##### Lie derivation
 
@@ -26122,7 +26872,7 @@ int main() {
     printf("map's range:\n");
     isl_set_dump(isl_set_coalesce(isl_map_range(isl_map_copy(p))));
     // print("map's range intersect 1: %d\n");
-    // TODO
+
 
 }
 
@@ -26488,7 +27238,51 @@ For example: "More people have been to Berlin than I have."
 - [week 7](content/blog/gsoc-vispy-week-7.md)
 - [final report](content/blog/gsoc-vispy-report-6.md)
 
-# Big list of emacs gripes
+# Big list of emacs
+
+- `M-q`: `fill-paragraph`: make stuff 80 column, at least in text.  so this is not that bad.
+- `C-u C-space`: go back to where you were in the file.
+- `C-x r t`: `string-rectangle`. insert new text in a rectangle
+     [ergoemacs ascii art](http://ergoemacs.org/emacs/emacs_string-rectangle_ascii-art).  I bind this to `C-x r i` for `insert`.
+- `C-x r k`: delete column of text. For `kill`.
+- `C-x space`: `rectangle-mark-mode` to select rectangles. `C-space` to lay down mark.
+   I bind it to `C-x r r`.
+
+#### Auctex
+
+- `C-c C-a`: compile file.
+- `C-c backtick`: go to error.
+- `C-c C-v`: view file.
+- `M-x TeX-error-overview`: see all errors
+- `C-c C-s`: enter section
+- `C-c C-e`: enter environment (stuff in between `\begin{}...\end{}`)
+- `M-g n`: goto next error. `M-g p`: goto previous error.
+
+## Magit
+- `C-x g`: pop up magit
+
+## LSP mode
+
+```emacs
+(define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
+```
+
+- `C-c l g r`: goto ref
+- `C-c l g g`: goto definition
+
+
+## Eshell
+
+- `C-c C-r`: go to output.
+- `C-u C-c C-r`: narrow to output.
+- `cd = ` gives a list to go do.
+- Using `C-c =` gives a completion list.
+
+## Dired
+
+- `dired-jump`: open current file in dired.
+
+## Gripes
 
 #### `markdown-mode` lags when I open a paren `[for a link`.
 
@@ -26781,6 +27575,7 @@ is something I wish to explore.
 
 # Big list of Latex
 
+
 #### write text under some equation --- variable under max or argmax
 
 ```
@@ -27041,8 +27836,6 @@ happiness as a result of fulfilling one's purpose (eudaimonia)
 > one who blows on ashes to bring them to flame
 
 
-
-
 # Big list of Music
 
 - Clipping: Experimental story telling hip-hop
@@ -27111,6 +27904,12 @@ let g:conjure#mapping#eval_motion = "E"
 - eval last definition: `C-c C-c`
 
 # Big list of quotes
+
+Everyone knows that putting a untrained business major in charge of a
+squadron of soldiers would end badly. He might be able skate by until
+they got into combat, maybe, but after that they wouldn’t listen to
+him for long. But for some reason we think that putting an mba in
+charge of an engineering team is a good idea.
 
 > "On and on you will go, making sense of the world, forming notions of order,
 > and being surprised in ways large and small by their failure, forever." —
