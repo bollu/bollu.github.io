@@ -22,10 +22,12 @@
 		  };
 </script>
   <link rel="stylesheet" href="tufte.css"/>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
   <script src="sketch.js"></script>
+  <!--script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script-->
+  <script src="./polyfill.min.js"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <!--script id="MathJax-script" async src="./mathjax.js"></script-->
+
 </head>
 <body>
   <article>
@@ -102,11 +104,27 @@
   how <em> tangents </em> or derivatives are transformed, since differentiability comes right after
   continuity in Calculus. To explore this, let's first draw a pink curve, draw its tangents, see what
   this curve is mapped to by \( f \), and then draw the mapped curve's tangents. This should give us
-  insight into how the <em> tangents to a curve </em> is transformed by \( f \).
+  insight into how the <em> tangents to a curve </em> is transformed by \( f \). But, what even <em> is </em>
+  a tangent? Calculus tells us that it's straight line that just touches our curve. So we'll draw
+  the tangent as a straight line to our curve, then push the tangent onto the circle using \( f \)
+  to see what it looks like after the transformation. 
+  </p>
+
+  <p>
+  Let's draw tangents to the simplest possible curve: a straight line
   </p>
 
   <div id="static-derivative"></div>
-  </div>
+
+  <p>
+  We see that the length of the pink tangent is not constant! As we come closer to the circle, the
+  length of the tangent is longer, since the point moves faster on the circle. As we go farther away
+  from the circle, the length of the tangent grows ever shorter, as the velocity on the point on
+  the circle crawls to a halt.
+  </p>
+  </section>
+  
+
 
   <div id="interactive-derivative"></div>
   </div>

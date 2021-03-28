@@ -459,7 +459,10 @@ const crumple = ( s ) => {
 
 const static_derivative = ( s ) => {
 
-    pts = [];
+    let pts = [];
+
+    let fi = 0;
+    let fv = 1;
 
     s.setup = () => {
 	let myCanvas = s.createCanvas(W, H);
@@ -467,9 +470,9 @@ const static_derivative = ( s ) => {
 	myCanvas.parent('static-derivative');
 
 	for (let i = -200; i < 200; ++i) {
-        let x = W/2+i/2;
-        let y =  H/2 - 3*R + R*(i/200)*(i/200)*(i/200);
-        pts.push([x, y]);
+        let x = 2*i;
+        let y =  2*R;
+        pts.push([i, x, y]);
 	}
     };
 
@@ -481,34 +484,117 @@ const static_derivative = ( s ) => {
 	s.ellipse(W/2, H/2, 2*R, 2*R);
 
 
-	s.stroke(33,150,243);
-	s.strokeWeight(6);
+	s.stroke(66,66,66);
+	s.strokeWeight(4);
+    s.strokeCap(s.SQUARE);
 	s.noFill();
 	s.beginShape();
 	for (let i = 0; i < pts.length; ++i) {
-        let x = pts[i][0];
-        let y =  pts[i][1];
-	    s.curveVertex(x, y);
+        let x = pts[i][1];
+        let y =  pts[i][2];
+	    s.curveVertex(W/2 + x, H/2 + y);
 	}
 	s.endShape();
 
 
 
-	for (let i = 0; i < pts.length - 1; i += 100) {
-        let x1 = pts[i][0];
-        let y1 =  pts[i][1];
+    const LEN = 50;
+    if (fv == 1 && fi == pts.length - LEN - 1) { fv = -1; }
+    if (fv == -1 && fi == 1 ) { fv = 1; }
+    fi += fv;
 
-        let x2 = pts[i+1][0];
-        let y2 = pts[i+1][1];
+    // blue
+	s.strokeWeight(6);
+    s.stroke(33,150,243);
+	s.noFill();
+	s.beginShape();
+	for (let i = fi; i < fi + LEN; ++i) {
+        let x = pts[i][1];
+        let y =  pts[i][2];
+	    s.curveVertex(W/2 + x, H/2 + y);
+	}
+	s.endShape();
 
-        let m = (y2 - y1)/(x2 - x1);
+    const xmid = pts[fi+LEN/2][1];
+    const ymid = pts[fi+LEN/2][2];
 
-        s.strokeWeight(6);
-        s.strokeCap(s.SQUARE);
-        s.stroke(26,35,126);
-        const LEN = 50;
-        s.line(x1, y1, x2 + LEN, y2 + m*LEN);
-    }
+    s.strokeWeight(0);
+    s.fill(33,150,243);
+    s.ellipse(W/2 + xmid, H/2 + ymid, 15, 15);
+
+    // pink
+    s.stroke(233,30,99);
+	s.strokeWeight(6);
+    s.strokeCap(s.SQUARE);
+	s.noFill();
+	s.beginShape();
+	for (let i = fi; i < fi + LEN; ++i) {
+        let x = pts[i][1];
+        let y =  pts[i][2];
+        let px = R*x/Math.sqrt(x*x+y*y);
+        let py = R*y/Math.sqrt(x*x+y*y);
+	    s.curveVertex(W/2 + px, H/2 + py);
+	}
+	s.endShape();
+
+
+    const pxmid = R*xmid/Math.sqrt(xmid*xmid+ymid*ymid);
+    const pymid = R*ymid/Math.sqrt(xmid*xmid+ymid*ymid);
+    s.strokeWeight(0);
+    s.fill(233,30,99);
+    s.ellipse(W/2 + pxmid, H/2 + pymid, 15, 15);
+
+
+
+
+    // const i = pts[fi][0];
+    // const x1 = pts[fi][1];
+    // const y1 = pts[fi][2];
+    // const x2 = pts[fi+1][1];
+    // const y2 = pts[fi+1][2];
+
+    // let m = (y2 - y1)/(x2 - x1);
+
+	// s.strokeWeight(0);
+    // s.fill(33,150,243);
+	// s.ellipse(W/2 + x1, H/2 + y1, 20, 20);
+
+    // s.strokeWeight(6);
+    // s.strokeCap(s.SQUARE);
+	// s.stroke(33,150,243);
+    // s.line(W/2 + x1 - LEN, H/2 + y1 - m*LEN, W/2 + x1 + LEN, H/2 + y1 + m*LEN);
+
+    // const px1 = R*x1 / Math.sqrt(x1*x1 + y1*y1);
+    // const py1 = R*y1 / Math.sqrt(x1*x1 + y1*y1);
+    // const px2 = R*x2 / Math.sqrt(x2*x2 + y2*y2);
+    // const py2 = R*y2 / Math.sqrt(x2*x2 + y2*y2);
+    // const pm = (py2 - py1)/(px2 - px1);
+
+	// s.strokeWeight(0);
+    // s.fill(233,30,99);
+	// s.ellipse(W/2 + px1, H/2+py1, 20, 20);
+
+    // s.strokeWeight(6);
+    // s.strokeCap(s.SQUARE);
+    // s.stroke(233,30,99);
+    // s.line(W/2 + px1 - LEN, H/2 + py1 - pm*LEN, W/2 + px1 + LEN, H/2 + py1 + pm*LEN);
+
+
+	// for (let i = 0; i < pts.length - 1; i += 100) {
+    //     let x1 = pts[i][0];
+    //     let y1 =  pts[i][1];
+
+    //     let x2 = pts[i+1][0];
+    //     let y2 = pts[i+1][1];
+
+    //     let m = (y2 - y1)/(x2 - x1);
+
+    //     s.strokeWeight(6);
+    //     s.strokeCap(s.SQUARE);
+    //     s.stroke(26,35,126);
+    //     const LEN = 50;
+    //     s.line(x1, y1, x2 + LEN, y2 + m*LEN);
+    // }
 
 
     };
