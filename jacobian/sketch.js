@@ -2,9 +2,6 @@
  H = 150;
  R = 20;
 
-let pX = 200;
-let pY = 0;
-
 function easeInOutQuad(x) {
     return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
 }
@@ -49,8 +46,8 @@ function jac(x, y, tx, ty) {
 
 
 const interactive_derivative = ( s ) => {
-    let x = 100;
-    let y = 100;
+    let pX = R*3;
+    let pY = 0;
 
     s.setup = () => {
 	let myCanvas = s.createCanvas(W, H);
@@ -70,17 +67,17 @@ const interactive_derivative = ( s ) => {
 	let vecY = (s.mouseY - H/2) - pY;
 
 
-	
 
+	s.stroke(30,136,229);
 	s.strokeWeight(6);
 	s.strokeCap(s.SQUARE);
-	s.stroke(216,27,96);;
 	s.line(pX+W/2, pY+H/2, s.mouseX, s.mouseY);
 
 
-	const TGTWT = 4;
-	let sX = (TGTWT+R)*pX/Math.sqrt(pX*pX + pY*pY);
-	let sY = (TGTWT+R)*pY/Math.sqrt(pX*pX + pY*pY);
+	const TGTWT = 6;
+    const len = Math.sqrt(pX*pX + pY*pY);
+	let sX = (TGTWT+R)*pX/len;
+	let sY = (TGTWT+R)*pY/len;
 
 	let stv = jac(pX, pY, vecX, vecY);
 	s.strokeWeight(0);
@@ -88,13 +85,32 @@ const interactive_derivative = ( s ) => {
 	s.ellipse(W/2, H/2, 2*R, 2*R);
 
 
+    s.stroke(255,111,0)
+	s.strokeWeight(6);
+    s.strokeCap(s.SQUARE);
+	s.noFill();
+    s.beginShape();
+    for(let i = 0; i <= len; ++i) {
+        let t = i / len;
+        const x0 = pX; const y0 = pY;
+        const x1 = s.mouseX - W/2; const y1 = s.mouseY - H/2;
+
+        const xt = (1 - t)*x0 + t*x1;
+        const yt = (1 - t)*y0 + t*y1;
+        const tlen = Math.sqrt(xt*xt + yt*yt);
+
+        s.curveVertex(W/2 + R*xt/tlen, H/2 + R*yt/tlen);
+    }
+    s.endShape();
+
+
 	s.strokeWeight(6);
 	s.strokeCap(s.SQUARE);
-	s.stroke(30,136,229);
+	s.stroke(216,27,96);;
 	s.line(W/2 + sX,
 		    H/2 + sY,
-		    W/2 +  sX+ 100*stv[0],
-		    H/2 +  sY+ 100*stv[1]);
+		    W/2 +  sX+ 10*stv[0],
+		    H/2 +  sY+ 10*stv[1]);
 
 	s.strokeWeight(0);;
 
@@ -548,58 +564,96 @@ const static_derivative = ( s ) => {
     s.fill(233,30,99);
     s.ellipse(W/2 + pxmid, H/2 + pymid, 10, 10);
 
+    };
+};
+
+
+const linear_derivative = ( s ) => {
+    let pts = [];
+
+    let fi = 0;
+
+    s.setup = () => {
+	let myCanvas = s.createCanvas(W, H);
+	// myCanvas.parent(document.getElementById('myContainer'));
+	myCanvas.parent('linear-derivative');
+
+	for (let i = -50; i < 50; ++i) {
+        let x = i*2;
+        let y =  1.5*R;
+        pts.push([i, x, y]);
+	}
+    };
+
+    s.draw = () => {
+    s.background(255,253,231);
+
+	s.strokeWeight(0);
+	s.fill(69,90,100);
+	s.ellipse(W/2, H/2, 2*R, 2*R);
+
+
+	s.stroke(66,66,66);
+	s.strokeWeight(4);
+    s.strokeCap(s.SQUARE);
+	s.noFill();
+	s.beginShape();
+	for (let i = 0; i < pts.length; ++i) {
+        let x = pts[i][1];
+        let y =  pts[i][2];
+	    s.curveVertex(W/2 + x, H/2 + y);
+	}
+	s.endShape();
+
+
+    fi = (fi + 0.01) % (2*Math.PI);
+    const LEN = Math.cos(fi) * Math.cos(fi)*40;
+    const MID = 50;
+
+    // purple
+	s.strokeWeight(6);
+    s.stroke(106,27,154);
+	s.noFill();
+	s.beginShape();
+	for (let i = Math.floor(MID-LEN); i < Math.ceil(MID + LEN); ++i) {
+        let x = pts[i][1];
+        let y =  pts[i][2];
+	    s.curveVertex(W/2 + x, H/2 + y);
+	}
+	s.endShape();
+
+    const xmid = pts[MID][1];
+    const ymid = pts[MID][2];
+
+    // blue
+    s.strokeWeight(0);
+    s.fill(33,150,243);
+    s.ellipse(W/2 + xmid, H/2 + ymid, 10, 10);
+
+
+    // orange
+    s.stroke(255,111,0)
+	s.strokeWeight(6);
+    s.strokeCap(s.SQUARE);
+	s.noFill();
+	s.beginShape();
+	for (let i = Math.floor(MID-LEN); i < Math.ceil(MID + LEN); ++i) {
+        let x = pts[i][1];
+        let y =  pts[i][2];
+        let px = R*x/Math.sqrt(x*x+y*y);
+        let py = R*y/Math.sqrt(x*x+y*y);
+	    s.curveVertex(W/2 + px, H/2 + py);
+	}
+	s.endShape();
 
 
 
-    // const i = pts[fi][0];
-    // const x1 = pts[fi][1];
-    // const y1 = pts[fi][2];
-    // const x2 = pts[fi+1][1];
-    // const y2 = pts[fi+1][2];
-
-    // let m = (y2 - y1)/(x2 - x1);
-
-	// s.strokeWeight(0);
-    // s.fill(33,150,243);
-	// s.ellipse(W/2 + x1, H/2 + y1, 20, 20);
-
-    // s.strokeWeight(6);
-    // s.strokeCap(s.SQUARE);
-	// s.stroke(33,150,243);
-    // s.line(W/2 + x1 - LEN, H/2 + y1 - m*LEN, W/2 + x1 + LEN, H/2 + y1 + m*LEN);
-
-    // const px1 = R*x1 / Math.sqrt(x1*x1 + y1*y1);
-    // const py1 = R*y1 / Math.sqrt(x1*x1 + y1*y1);
-    // const px2 = R*x2 / Math.sqrt(x2*x2 + y2*y2);
-    // const py2 = R*y2 / Math.sqrt(x2*x2 + y2*y2);
-    // const pm = (py2 - py1)/(px2 - px1);
-
-	// s.strokeWeight(0);
-    // s.fill(233,30,99);
-	// s.ellipse(W/2 + px1, H/2+py1, 20, 20);
-
-    // s.strokeWeight(6);
-    // s.strokeCap(s.SQUARE);
-    // s.stroke(233,30,99);
-    // s.line(W/2 + px1 - LEN, H/2 + py1 - pm*LEN, W/2 + px1 + LEN, H/2 + py1 + pm*LEN);
-
-
-	// for (let i = 0; i < pts.length - 1; i += 100) {
-    //     let x1 = pts[i][0];
-    //     let y1 =  pts[i][1];
-
-    //     let x2 = pts[i+1][0];
-    //     let y2 = pts[i+1][1];
-
-    //     let m = (y2 - y1)/(x2 - x1);
-
-    //     s.strokeWeight(6);
-    //     s.strokeCap(s.SQUARE);
-    //     s.stroke(26,35,126);
-    //     const LEN = 50;
-    //     s.line(x1, y1, x2 + LEN, y2 + m*LEN);
-    // }
-
+    // pink
+    const pxmid = R*xmid/Math.sqrt(xmid*xmid+ymid*ymid);
+    const pymid = R*ymid/Math.sqrt(xmid*xmid+ymid*ymid);
+    s.strokeWeight(0);
+    s.fill(233,30,99);
+    s.ellipse(W/2 + pxmid, H/2 + pymid, 10, 10);
 
     };
 };
@@ -612,5 +666,6 @@ let p5_transform_anim_normal = new p5(transform_anim_normal);
 let p5_transform_anim_tangential = new p5(transform_anim_tangential);
 let p5_interactive_derivative = new p5(interactive_derivative);
 let p5_static_derivative = new p5(static_derivative);
+let p5_linear_derivative = new p5(linear_derivative);
 
 

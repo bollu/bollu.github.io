@@ -86,18 +86,20 @@
 
 
   <p>
-  Finally, if you wish to play with the transform, I've left a little interactive region
+  Finally, if you wish to play with the transform, I've left 
+  <label for="best-viewed-desktop-1" class="margin-toggle sidenote-number"> a little interactive region </label>
+  <input type="checkbox" id="best-viewed-desktop-1" class="margin-toggle"/>
+  <span class="marginnote"> Best viewed on the desktop </span>
   where you can draw a curve with your mouse. The curve after $f$ is applied
   is displayed  in blue.
   </p>
   <div id="transform"></div>
   </section>
-  </section>
 
 
 
   <section>
-  <h2> The transformation of derivatives </h2>
+  <h2> Transformation of derivatives along a curve </h2>
 
   <p>
   We now have a handle on how <em> continuity </em> is transformed. Let's now try to understand
@@ -158,8 +160,8 @@
   & \text{(simplify)} \\
   &= \frac{d ((\sqrt{t}, 0))}{dt}  \\
   & \text{(push derivative inside)}\\ 
-  &= (\frac{d\sqrt{t}}{dt}, \frac{d0}{dt}) \\
-  &d'(t) = (\frac{1}{2\sqrt{t}}, 0) \quad 
+  &= \bigg( \frac{d\sqrt{t}}{dt}, \frac{d0}{dt} \bigg) \\
+  &d'(t) = \bigg (\frac{1}{2\sqrt{t}}, 0 \bigg) \quad 
   \end{align*}
   $$
 
@@ -167,6 +169,37 @@
   as $t$ grows larger in size, mimicking what we saw; As we grow farther away from the center, the pink line
   on the circle  grew smaller and smaller.
   </p>
+  </section>
+
+  <section>
+      <h2> Transformation of derivative with fixed basepoint </h2>
+      <p>
+      the math tells us that at each point, the derivative is $d'(t) = (1/2\sqrt{t}, 0)$.
+      This means that for a <em> chosen point </em>, say $t = 1$, the derivative is going to be
+
+      $$d'(t=1) = (1/2\sqrt 1, 0) = (1/2, 0).$$
+
+      The derivative of the original curve at the same point is $c'(1) = d/dt(t, 0)|_{t=1} = (1, 0)|_{t=1} = (1, 0)$.
+      That's curious, the new derivative $d'(t)$ seems to be a <em> scaled proportionally </em> 
+      from the old derivative:
+      
+      $$
+      d'(t) = (1/2, 0) = 1/2(1, 0) = 1/2 c'(t).
+      $$
+
+      This means that the tangents on the straight line are are
+      <em> proportionally </em> related to tangents on the circle.  Is this
+      true? Let's watch.
+      </p>
+
+
+      <div id="linear-derivative"></div>
+
+      <p>
+      It does seem to be true; as we vary the length of the purple tangent line on the lie segment,
+      the length of the orange tangent line on the circle grows proportionally! Is there something special
+      about the straight line? Let's try to see what happens in general.
+      </p>
   </section>
 
   <section>
@@ -184,46 +217,94 @@
   Similarly, we had 
   $f: \mathbb R^2 \rightarrow \mathbb R^2$. Let's break this into $f_x(x, y): \mathbb R^2 \rightarrow \mathbb R$
   and $f_y(x, y): \mathbb R^2 \rightarrow \mathbb R$ such that $f(x, y) = (f_x(x, y), f_y(x, y))$. This gives us two
-  twp variable functions.
+  functions $f_x, f_y: \mathbb R^2 \rightarrow \mathbb R$ which takes two inputs and produce a single output.
   </p>
 
   <p>
   We now have the simplifications we need to carry out our "concrete proof" completely abstractly. Instead of substituting
-  $c(t) = (t, 0)$, we will substitue $c(t) = (c_x(t), c_y(t)$. Similarly, instead of substituting
-  $f(x, y) = (x/\sqrt{x^2 + y^2, y/x^2 + y^2)$, we will substitute $f(x, y) = (f_x(x, y), f_y(x, y)$ and carry out the proof.
+  $c(t) = (t, 0)$, we will substitue $c(t) = (c_x(t), c_y(t))$. Similarly, instead of substituting
+  $f(x, y) = (x/\sqrt{x^2 + y^2}, y/\sqrt{x^2 + y^2})$, we will substitute $f(x, y) = (f_x(x, y), f_y(x, y))$ and carry out the proof.
   This yields:
 
   $$
   \begin{align*}
   & d'(t) = \\
   & \text{(defn of $d$)}\\
-  & = (f(c(t))'  \\
-  &= \frac{d f(c(t))}{dt} \\
+  & = (f(c(t))' = \frac{d f(c(t))}{dt} \\
   & \text{(substitute $c(t) = (c_x(t), c_y(t))$)}\\ 
   &= \frac{d f(c_x(t), c_y(t))}{dt}  \\
-  & \text{(substitute $f(x, y) = (f_x(x, y), f_y(x, y))$)} \\
+  & \text{(substitute $f(x, y) = (f_x(x, y), f_y(x, y)))$} \\
   &= \frac{d((f_x(c_x(t), c_y(t)), f_y(c_x(t), c_y(t))))}{dt}  \\
   & \text{(push derivative inside)}\\ 
-  &= (\frac{f_x(c_x(t), c_y(t))}{dt}, \frac{f_y(c_x(t), c_y(t))}{dt}) \\
+  &= \bigg(\frac{df_x(c_x(t), c_y(t))}{dt}, \frac{df_y(c_x(t), c_y(t))}{dt} \bigg)  \\
   \end{align*}
   $$
   </p>
 
+  <p>
   At this stage, we're going to whack the expression with the only hammer we have in calculus: the chain rule!
   This gives us:
   
   $$
   \begin{align*}
-  &= (\frac{f_x(c_x(t), c_y(t))}{dt}, \frac{f_y(c_x(t), c_y(t))}{dt}) \\
-  &= (\frac{f_x}{dx}\frac{dc_x(t)}{dt} + \frac{f_x}{dy} \frac{dc_y(t))}{dt}, \frac{f_y}{dx} \frac{dc_x(t)}{dt} + \frac{f_y}c_y(t))}{dt}) \\
+  &= \bigg(\frac{df_x(c_x(t), c_y(t))}{dt}, \frac{df_y(c_x(t), c_y(t))}{dt} \bigg)  \\
+  &d'(t) = \bigg (\frac{df_x}{dx}\frac{dc_x(t)}{dt} + \frac{df_x}{dy} \frac{dc_y(t)}{dt}, \frac{df_y}{dx} \frac{dc_x(t)}{dt} + \frac{df_y}{dy}\frac{dc_y(t)}{dt} \bigg) \\
   \end{align*}
   $$
 
+  We see that this splits into two "kinds" of derivatives: terms of the form $(dc_x/dt, dc_y/dt)$, and then other terms
+  of the form $\{ df_{x, y}/d_{x, y} \}$.
+  We can write the above as:
+
+  $$
+  \begin{align*}
+  &d'(t) = \bigg (\frac{df_x}{dx}\frac{dc_x(t)}{dt} + \frac{df_x}{dy} \frac{dc_y(t)}{dt}, \frac{df_y}{dx} \frac{dc_x(t)}{dt} + \frac{df_y}{dy}\frac{dc_y(t)}{dt} \bigg) \\
+  &d'(t) = 
+  \begin{bmatrix}
+  df_x/dx & df_x/dy \\
+  dg_x/dx & dg_x/dy \\
+  \end{bmatrix}
+  \begin{bmatrix}
+  dc_x/dt \\ dc_y/dt
+  \end{bmatrix}
+  \end{align*}
+  $$
+
+  So we see that we can write $d'(t)$ as a matrix multiplication (linear transformation) of $(dc_x/dt, dc_y/dt)$
+  with the <em>Jacobian of $f$</em>, $J \equiv \begin{bmatrix} df_x/dx & df_x/dy \\ dg_x/dx & dg_x/dy \\ \end{bmatrix}$.
+  This philosophically means that the new tangent is a <em> linear transform </em> of the old tangent.
+  </p>
+
   </section>
 
+  <section>
+      <h2> Wrapping Up</h2>
 
-  <div id="interactive-derivative"></div>
-  </div>
+      <p>
+      We began exploring what it means to have a complicated transformation and how to visualize it.
+      We then thought about curves, and how curves are transformed under this relationship. This naturally
+      got us thinking about derivatives, where we noticed that the relationship between the derivatives
+      of the original curve and the transformed curve appear to be linear. This culminated in us computing
+      the Jacobian, which precisely quantified the linear relationship in the tangents to the curve.
+
+      <ul>
+          <li> If you want more such articles, check out
+              <a href="https://bollu.github.io/mathemagic">bollu.github.io/mathemagic</a>
+          </li>
+          <li> Follow me on github at <a href="https://github.com/login?return_to=%2Fbollu"> github.com/bollu </a> </li>
+          <li> See more  at <a href="https://bollu.github.io/">  bollu.github.io </a> </li>
+      </ul>
+
+      </p>
+
+      <p>
+      Finally, I end with an interactive toy; Click to select a base point. Move the cursor
+      to draw blue line segments. See the prediction by the Jacobian (in purple) and the real 
+      projection (in orange), and revel in the fact that the purple Jacobian prediction
+      and the orange projection do indeed overlap for small approximations!
+      <div id="interactive-derivative"></div>
+      </p>
+   </section>
   </article>
 </body>
 </html>
