@@ -77,7 +77,7 @@ const interactive_derivative = ( sketch ) => {
 };
 
 
-let p5_interactive_derivative = new p5(interactive_derivative);
+
 
 
 
@@ -122,48 +122,73 @@ const transform = ( s ) => {
 	s.endShape();
 
 
+    };
+};
+const crumple = ( s ) => {
+    const fn = 100; // total # of frames
+    let fi = 0; // current frame.
+    let pts = []
+    s.setup = () => {
+	let myCanvas = s.createCanvas(W, H);
+	myCanvas.parent(document.getElementById('crumple'));
+
+	NPOINTS = 0;
+	let n = 0; let d = 1;
+	let rs = []; // random numbers from halton sequence;
 	
-	// if (s.mouseIsPressed) {
-	//     pX = s.mouseX - W/2;
-	//     pY = s.mouseY - H/2;
-	// }
+	for(let i = 0; i < 2*NPOINTS; ++i) {
+	    const x = d - n;
+	    if (x == 1) {
+		n = 1; d *= 2;
+	    } else {
+		let y = Math.floor(d / 2);
+		while(x <= y) {
+		    y = Math.floor(y/2);
+		}
+		const n = 3*y - x;
+		rs.push(n/2);
+	    }
+	}
 
-	// let vecX = (s.mouseX -W/2) - pX;
-	// let vecY = (s.mouseY - H/2) - pY;
+	for(let i = 0; i < NPOINTS; i += 2) {
+	    pts.push([rs[i], rs[i+1]]);
+	}
+    };
 
-	// const R = 50;
-	
+    s.draw = () => {
+	s.background(238,238,238);
+	s.noFill();
 
-	// s.strokeWeight(6);
-	// s.strokeCap(s.SQUARE);
-	// s.stroke(13,71,161);
-	// s.line(pX+W/2, pY+H/2, s.mouseX, s.mouseY);
+	s.strokeWeight(0);
+	s.fill(69,90,100);
+	s.ellipse(W/2, H/2, 2*R, 2*R);
 
+	// generate points using halton sequence?
 
-	// const TGTWT = 4;
-	// let sX = (TGTWT+R)*pX/Math.sqrt(pX*pX + pY*pY);
-	// let sY = (TGTWT+R)*pY/Math.sqrt(pX*pX + pY*pY);
+	// homotope points.
+	fi++;
+	if (fi > 2*fn) { fi = 0; }
+	let t = Math.min(fn, fi)/fn;
 
-	// let stv = jac(pX, pY, vecX, vecY);
-	// s.strokeWeight(0);
-	// s.fill(69,90,100);
-	// s.ellipse(W/2, H/2, 2*R, 2*R);
-
-
-	// s.strokeWeight(6);
-	// s.strokeCap(s.SQUARE);
-	// s.stroke(30,136,229);
-	// s.line(W/2 + sX,
-	// 	    H/2 + sY,
-	// 	    W/2 +  sX+ 100*stv[0],
-	// 	    H/2 +  sY+ 100*stv[1]);
-
-	// s.strokeWeight(0);;
+	s.strokeWeight(10);
+	let c0 = s.color(216,27,96, 255);
+	let c1 = s.color(30,136,229, 255);
+	const BORDER = 60;
+	s.stroke(s.lerpColor(c0, c1, t));
+	const N = 100;
+	for(let x0 = -400; x0 < 400; x0 += 50 )  {
+	    let y0 = H/2 - BORDER;
+	    // point is at (i, y)
+	    let x1 = R*i/Math.sqrt(x0*x0 + y0*y0);
+	    let y1 = R*y0/Math.sqrt(x0*x0 + y0*y0);
+	    s.point(W/2 + (1 - t)*x0 + t*x1, H/2 + (1-t)*y0 + t*y1);
+	}
 
     };
 };
 
+let p5_crumple = new p5(crumple);
 let p5_transform = new p5(transform);
-
+let p5_interactive_derivative = new p5(interactive_derivative);
 
 
