@@ -1,3 +1,6 @@
+- Mathographics: how to draw mathematics
+- Read EVERYTHING by Milnor!
+- [Method of moving frames](https://math.stackexchange.com/questions/125536/need-references-on-cartans-method-of-moving-frames)
 - Learn to draw impossible figures. It's MUCH harder than I thought it would be.
 - [Mathematics for physics: has everything including bundles](https://www.mathphysicsbook.com/mathematics/)
 - Joahn Baez: Gauge Fields, Knots and Gravity

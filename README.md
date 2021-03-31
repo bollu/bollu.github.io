@@ -15,72 +15,413 @@ A Universe of Sorts
 - [reading list and link dump](todo.html)
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
+# Examples of fiber products / pullbacks
+
+#### Fiber products of sets
+
+If we have a set $S$, we can form a category of bundles over $S$. These are pairs
+$(X, \pi: X \rightarrow S)$. The morphisms between such objects $(X, \pi: X \rightarrow S)$
+and $(X', \pi': X' \rightarrow S)$ are arrows $h: X \rightarrow X'$ that
+make the obvious diagram commute:
+
+
+```
+X ---h--> X'
+ \       /
+ pi     pi'
+   \   /
+    v v
+     S
+```
+
+The product of these objects is given by the fiber product or pullback:
+
+$$
+X \times_S Y \equiv \{ (x, y)  \in X \times Y: \pi_X(x) = \pi_Y(y) \}
+$$
+
+along with the map $\pi_{X \times Y}: X \times_Y \rightarrow S; \pi((x, y)) \equiv \pi_X(x)$.
+See that for consistenty, we could also have defined this as $\pi((x, y)) \equiv \pi_Y(y)$.
+Since our condition is that $\pi_X(x) = \pi_Y(y)$, it all works out.
+Said differently, we consider the product of fibers over the same base-point.
+
+
+###### Fiber products of arbitrary bundle over a single-point base space
+
+If $S \equiv \{ * \}$, then the projections are always $\pi(-) \equiv *$, and the fiber
+product is the usual product.
+
+
+###### Fiber products of singleton bundle over arbitrary base space
+
+If $S$ is arbitrary while $P \equiv \{ p \}$ (for Point),
+then this bundle $P$ will lie over some point in $S$, given
+by $\pi: P \rightarrow S$, where the special point
+is chosen by $\pi(p) = s_p$. If we now consider some other bundle $X$ over $S$,
+Then $P \times_S X$  will pick the element $(p \in P, \pi_X^{-1}(s_p) \subseteq X)$.
+That is $P \times_S X \simeq \pi_X^{-1}(s_*)$, which is the fibre of $X$ over
+the special point $s_p = \pi(p)$. This explains the name.
+
+
+- [Notes on scheme theory](https://www.math.purdue.edu/~arapura/preprints/schemesgalois4.pdf)	
+
+
+
+#### Fiber products of vector bundles
+
+Consider a fiber bundle $E \xrightarrow{\pi} B$. Now consider a new base space $B'$
+with a map $f: B' \rightarrow B$. So we have the data:
+
+```
+       E
+     pi|
+       v
+B'-f-> B 
+```
+
+Given this, we would like to pullback the bundle $E$ along $f$ to get a new
+bundle over $B'$.This is defined by:
+
+$$
+E'_f \equiv \{ (b', e) : f(b') = \pi(e) \} \subseteq B' \times E
+$$
+
+This is equipped with the subspace topology. We have the projection map
+$pi': E'_f \rightarrow B$, $\pi'((b', e)) \equiv b'$. The projection into
+the second factor gives a map $h: E'_f \rightarrow E$, $h((b', e)) \equiv e$.
+This makes the obvious diagram commute:
+
+```
+E' -h-> E
+|pi'    |pi
+B' -f-> B
+```
+
+Any section $\sigma: B \rightarrow E$ of $E$ induces a section of $E'$
+$\sigma': B' \rightarrow E'$, by producing the function (given as a relation):
+
+$$
+\begin{aligned}
+\sigma': B' \rightarrow E' \\
+\sigma(b') \equiv  (b', \sigma(f(b')) \in_? E'  \simeq B' \times E
+\end{aligned}
+$$
+
+This has codomain $E'$. To check, if  $(b', \sigma(f(b'))$ is in $E'$,
+we need $f(b') = \pi(\sigma(f(b'))$. But this is true since $\sigma$
+is a section, and thus $\pi(\sigma(f(b')) = f(b')$. 
+
+Moreover, we need to check that $\sigma'$ is indeed a section of $B'$. For this,
+we need to check that $\pi'(\sigma'(b')) = b'$. Chasing definitions, we find
+that this is:
+
+$$
+\begin{aligned}
+&\pi'(\sigma'(b'))
+&= \pi'(b', \sigma(f(b')))
+&= b'
+\end{aligned}
+$$
+
+Hence we are done, we have indeed produced a legitimate section.
+
+#### Fiber products of Spec of affine scheme (WIP)
+
+Let $R, A, B$ be rings. consider $A \otimes_R B$. What is $Spec(A \otimes_R B)$, in terms of
+$Spec(A)$, $Spec(B)$, and whatever data you like about $R$? (Say I give you both $R$ and $Spec(R)$).
+
+The answer is that apparently, it's exactly $Spec(A) \times_{Spec(R)} Spec(B)$.
+
+
+
+# Covariant derivative
+
+If $x_p \equiv a \partial_x + b \partial_y + c \partial_z$ is a vector at $p \in \mathbb R^3$ and $Y$ is a vector field,
+then the covariant derivative of $Y$ in the direction $X$ is given by taking the directional derivative
+of each component of $Y$ along $X$:
+
+$$
+x_p |- Y \equiv (x_p \cdot Y[1], x_p \cdot Y[2], x_p \cdot Y[3])
+$$
+
+The notation `|-` is meant to suggest that $X_p$ is acting on $Y$.
+For a concrete example, if $X_p \equiv (a, b, c)$ and $Y \equiv (xy^2 + 4z, y^2 - x, x + z^3)$,
+then the computation yields:
+
+$$
+\begin{aligned}
+&x_p |- Y \equiv (x_p \cdot Y[1], x_p \cdot Y_2, x_p \cdot Y_3) \\
+& ((a \partial_x + b \partial_y+ c \partial_z ) \cdot (xy^2 + 4z),
+   (a \partial_x+ b \partial_y+ c \partial_z) \cdot (y^2 - x),
+   (a \partial_x+ b \partial_y+ c \partial_z) \cdot (x + z^3)) 
+&= (ay^2 + 2bxy + 4, -a + 2by, a + 3cz^2)
+\end{aligned}
+$$
+
+#### Property 1: Linearity in RHS
+
+We have that $x_p |- (Y + Z) = x_p |- Y + x_p |- Z$.  This is proven by the linearity of the partial derivative.
+
+#### Property 2: Linearity in LHS: $(x_p + x'_p)|- Y = (x_p |- Y) + (x'_p |- Y)$.
+
+This follows as vector addition is linear, and the action of the directional derivative is linear.
+
+#### Property 3: Scaling of LHS
+
+$(f(p) x_p) |- Y = f(p) (x_p |- y)$
+
+#### Property 3: Scaling of RHS
+
+$x_p |- (fY) = (x_p f(p)) Y + f (x_p |- Y)$
+
+
+$$
+\begin{aligned}
+&x_p |- (fY) \equiv (x_p \cdot fY[1], x_p \cdot fY_2, x_p \cdot fY_3) \\
+&= ((a \partial_x|_{p_x} + b \partial_y|_{p_y} + c \partial_z|_{p_z} ) \cdot (fY[1]), \dots, \dots)
+&= ((a Y[1] \partial_x|_{p_x} f + af \partial_x|_{p_x} Y[1] + 
+     b Y[1] \partial_y|_{p_y} f + b f \partial_y|_{p_y} Y[1] 
+     c Y[2] \partial_z|_{p_z} f + c f \partial_y|_{p_z} Y[2], \dots, \dots) \\
+&= ((fa \partial_x Y[1] + fb\partial_y Y[2] + fc \partial_z Y[3]) Y +  (Y[1] a \partial_x + Y[2] b \partial_y + Y[3] c \partial_z) \cdot f, 
+    \dots, \dots) \\
+&= (fx_p) |- Y + (Y(p) 
+\end{aligned}
+$$
+
+#### Computing $x_p |- Y$
+
+We can compute $x_p |- Y$ once we have a curve $\sigma$ that is compatible with $x_p$.  So if
+we have a curve $\sigma(0) = p$, and $\sigma'(0) = x_p$, and we know $Y$, we can then compute
+$x_p |- Y$ as:
+
+$$
+\begin{aligned}
+\frac{d (Y \circ \sigma(t))}{dt}|_{t = 0} \\
+&Y'(\sigma(t))|_{t=0} \cdot \sigma'(t)|_{t = 0} \\
+&Y'(\sigma(0)) \cdot \sigma'(0) \\
+&Y'(p) \cdot x_p \\
+&x_p[1] \partial_x Y[1] + x_p[2] \partial_y Y[2] + x_p[3] \partial_y Y[3] \\
+&x_p |- Y
+\end{aligned}
+$$
+
+Realy, we only need to  know $Y$ **along** $\sigma$  to compute the derivative, no more. 
+So it's enough to have (1) a curve $\sigma$ that is compatible with $x_p$, and (2)
+knowledge of the vector field $Y$ along $\sigma$.
+
+
+#### Parallel vector fields
+
+Say that a curve $\sigma$ is tangent to a vector $t_p$ if $\sigma(0) = p$ and $\sigma'(0) = t$.
+Then a vector field $Y$ defined a along $\sigma$ is **parallel along** $t$ iff $t_p |- Y = 0$.
+Intuitively, this means that the vector field does not change in the direction of $t_p$, so it keeps 
+its value constant along $t_p$. It is as if the values of $Y(0)$ have been transported "parallely"/
+"with no distortion" along the tangent $t_p$.
+
+#### Parallel vector fields
+
+Let $\sigma$ be a $C^\infty$ curve.     
+
+
+# Clackety sounds: `bucklespring`
+
+I've taken to running [`bucklespring`](https://github.com/zevv/bucklespring) in the background when I code,
+because it makes the experience of programming so much more tactile. Having left my mechanical keyboard
+in college in the time of the plague, I feel like I was sorely missing this sort of auditory feedback!
+
+# Bicycle wheel proof of Gauss Bonnet
+
+https://personal.psu.edu/mxl48/Bicycle_papers_files/gauss-bonnet.bicycle.pdf
+
+
+# What is Levi Cevita trying to describe
+
+https://mathoverflow.net/questions/376486/what-is-the-levi-civita-connection-trying-to-describe/376533
+
+
+# Torsion as giving monodromy of path lifts
+
+https://mathoverflow.net/a/111198/123769
+
+# Cartan's spiral staircase
+
+https://arxiv.org/pdf/0911.2121.pdf
+
+
+# Submersions and immersions
+
+Who in the world decided their names? I remember which is which based on the sound. "Submersion"
+is "surjective", "immersion" is "injective". But really, the naming makes no sense. I can intuitively 
+submerge a ring (a 1D object) into the ocean (a 3D object). so if anything, I'd expect submersions
+to be locally injective. You can only submerge $X$ into $Y$ if $Y$ is "larger" than $X$. The definition
+asks for the precise opposite!
+
+# Ehrsmann connection
+
+Here's my current understanding of how the Ehrsmann connection works.
+
+
+We have a  $G$-bundle $G \xleftarrow{\triangleleft G} P \xrightarrow{\pi} M$.
+Let's first think of it as globally trivial so $P \simeq M \times G$. Now at each point
+$m \in M$, we have the fiber $\{ m \} \times G$ over $m$. We now consider the kernel
+of the map $\pi^*: T_{m, g} M \times G \rightarrow T_m M$. What are the elements here?
+We know that $T(M \times G) \simeq TM \oplus TG \simeq TM \oplus \mathfrak g$ where $\mathfrak g$
+is the Lie algebra of the lie group $G$. So we know that $\pi^*$ maps $T_p M \oplus \mathfrak g \mapsto T_p M$.
+Thus the kernel of $\pi^*$ is going to be $\mathfrak g$. 
+This is called as the "vertical subspace" $V_p P \equiv ker(\pi^*) \subseteq T_p P$.
+
+Now, we have a choice in how we pick $H_p P$ for each point $p \in P$ such that $H_p P \oplus V_p P = T_p P$.
+This choice of $H_p P$ is the connection. We claim that this choice is equally well encoded by a lie-algebra
+valued one form, $\omega : TP \rightarrow \mathfrak g$. That is, $\omega: TM \times TG \rightarrow \mathfrak g$,
+which is $\omega: TM \times \mathfrak g \rightarrow \mathfrak g$. Intuitively, this tells us how much of the component
+along $\mathfrak g$ is not covered by the $H_p P$. 
+
+
+The idea is that since $V_p P \oplus H_p p = T_p P$, given any vector $t_p \in T_p P$, I can compute
+$t^v_p \equiv t_p - H_p(t_p)$. Then I will have $v^p \in V_p P$ since I've killed the component in $H_p P$.
+However, I know that $V_p P$ is the same as $\mathfrak g$. Thus, I spit out the value $t^v_p$, treated as an
+element of $\mathfrak g$. This tells me how much of $V_p$ is *not* stolen away by $H_p P$ in the decomposition.
+
+So we have the map $\pi_h: T_p P \rightarrow V_p P$ given by $pi_h(t_p) \equiv t_p - H_p(t_p)$. The kernel
+of this map is $H_p P = ker(\pi_h)$. 
+
+#### Generalizing to Non-trivial bundles
+
+If we have a non-trivial bundle, then I need some way to link $\mathfrak g$ with $V_p P$ without splitting the bundle
+as I did here. The idea is that element of $T_p P$ are basically curves  $c_p: I \rightarrow P$. We use the curves
+to build derivations. For each lie algebra element $a \in \mathfrak g$, I can build the curve
+$c^a_p: I \rightarrow P$ given by $c^a_p(t) \equiv p \triangleleft \exp(at)$. That is, the curve I get by pushing
+the point $p$ along $a \in \mathfrak g$.  Note that all the points in the curve $a^p$ lie on the same point
+in the base manifold, because the group only moves within fibers. So we have that $\pi(p) = \pi(c^a_p(t))$ for all $t$.
+This means that when we push forward the curve $c^a_p(t)$, it represents the constant curve, which has zero derivative!
+Thus, we have that all these curves are in the kernel $c^a_p(t) \in ker(\pi^*)$, and hence $\mathfrak g \subseteq V_p P$.
+To show the other inclusion, pick some element $v_p \in V_p P \subseteq T_p P$. The group $G$ must be non-trivial,
+otherwise the bundle will also be trivial. Let $p \in \pi^{-1}(m)$ for some $m$. Note that since the bundle is a principal
+bundle, we have that the fiber $\pi^{-1}(m)$ is a $G$-torsor. I guess this is ismorphic as a group to $G$. Now, the
+tangent space $T_p P$ is the tangent space the group $G$, which has the same dimension as the lie algebra $\mathfrak g$.
+Hence, the function we defined above must be surjective.
+
+NOTE TO SELF: there should be a more direct proof that uses the fact that the fiber is $G$-torsor!
+
 # Quotes from the culture
 
 > “Empathize with stupidity and you’re halfway to thinking like an idiot,”
 
-> 'Absolutely not.  Common misconception that; that fun is relaxing.  If it is, you're not doing it right.  That's what the Hole's for; fun.  Fun and games.  Cools down a bit during the day, but it can get pretty wild, too.  The drink festivals are usually the worst.  Shouldn't be any trouble tonight though.  Fairly quiet.'
+> 'Absolutely not.  Common misconception that; that fun is relaxing.  If it is,
+> you're not doing it right.  That's what the Hole's for; fun.  Fun and games.
+> Cools down a bit during the day, but it can get pretty wild, too.  The drink
+> festivals are usually the worst.  Shouldn't be any trouble tonight though.
+> Fairly quiet.'
 
 
-> Excuse me, rector,' Gurgeh said, rising.  The old apex's gaze followed him.  'Duty calls.' 'Obey,' Hamin said.
+> Excuse me, rector,' Gurgeh said, rising.  The old apex's gaze followed him.
+> 'Duty calls.' 'Obey,' Hamin said.
 
-> The drums are made from human skin; you can see why each set is called a family.
+> The drums are made from human skin; you can see why each set is called a
+> family.
 
 > 'Absolutely not.  Common misconception that; that fun is relaxing.  
 
 > As the adage said; falling never killed anybody; it was when you stopped…
 
 
-> This is not a heroic age,' he told the drone, staring at the fire.  'The individual is obsolete.  That's why life is so comfortable for us. We don't matter, so we're safe
+> This is not a heroic age,' he told the drone, staring at the fire.  'The
+> individual is obsolete.  That's why life is so comfortable for us. We don't
+> matter, so we're safe
 
-> Genetechnologically, it's been within their grasp for hundreds of years, but it's forbidden.  Illegal, if you remember what that means.' Gurgeh nodded
-
-
-
-> As with all sentient Culture constructs, its precise character had not been fully mapped out before its construction, but allowed to develop as the drone's mind was put together.  The Culture regarded this unpredictable factor in its production of conscious machines as the price to be paid for individuality, but the result was that not every drone so brought into being was entirely suitable for the tasks it had initially been designed for.
-
-
-> So it's false.' 'What isn't?' 'Intellectual achievement.  The exercise of skill.  Human feeling.'
+> Genetechnologically, it's been within their grasp for hundreds of years, but
+> it's forbidden.  Illegal, if you remember what that means.' Gurgeh nodded
 
 
-> Just another belch in the darkness. Sound but not a word, noise without meaning.
 
-> There seemed little point in telling the creature when; the Dra’Azon called every time “now” even though their language used tenses. 
+> As with all sentient Culture constructs, its precise character had not been
+> fully mapped out before its construction, but allowed to develop as the
+> drone's mind was put together.  The Culture regarded this unpredictable
+> factor in its production of conscious machines as the price to be paid for
+> individuality, but the result was that not every drone so brought into being
+> was entirely suitable for the tasks it had initially been designed for.
 
 
-> We are water falling, itinerant and vague, ever seeking the lowest level, trying to collect and connect. We are vapor, raised against our own devices, made nebulous, blown on whatever wind arises. To start again, glacial or not.
+> So it's false.' 'What isn't?' 'Intellectual achievement.  The exercise of
+> skill.  Human feeling.'
 
-> the urge not to feel useless. The Culture’s sole justification for the relatively unworried, hedonistic life its population enjoyed was its good works; the secular evangelism of the Contact Section, not simply finding, cataloguing, investigating and analyzing other, less advanced civilizations but—where the circumstances appeared to Contact to justify so doing—actually interfering (overtly or covertly) in the historical processes of those other cultures.
+
+> Just another belch in the darkness. Sound but not a word, noise without
+> meaning.
+
+> There seemed little point in telling the creature when; the Dra’Azon called
+> every time “now” even though their language used tenses. 
+
+
+> We are water falling, itinerant and vague, ever seeking the lowest level,
+> trying to collect and connect. We are vapor, raised against our own devices,
+> made nebulous, blown on whatever wind arises. To start again, glacial or not.
+
+> the urge not to feel useless. The Culture’s sole justification for the
+> relatively unworried, hedonistic life its population enjoyed was its good
+> works; the secular evangelism of the Contact Section, not simply finding,
+> cataloguing, investigating and analyzing other, less advanced civilizations
+> but—where the circumstances appeared to Contact to justify so doing—actually
+> interfering (overtly or covertly) in the historical processes of those other
+> cultures.
 
 
 > And if we tamper with our inheritance, so what? What is more ours to tamper with? 
 
-> It was a young, unstable sort of bitterness, a kind of fake, something she assumed for a while, like a child trying on adult clothes. She luxuriated in the feeling of being old and disillusioned for a moment, then let it drop.
+> It was a young, unstable sort of bitterness, a kind of fake, something she
+> assumed for a while, like a child trying on adult clothes. She luxuriated in
+> the feeling of being old and disillusioned for a moment, then let it drop.
 
-Idir was never attacked, and technically never surrendered. Its computer network was taken over by effector weapons, and—freed of designed-in limitations—upgraded itself to sentience, to become a Culture Mind in all but name.
+> Idir was never attacked, and technically never surrendered. Its computer
+> network was taken over by effector weapons, and—freed of designed-in
+> limitations—upgraded itself to sentience, to become a Culture Mind in all but
+> name.
 
 
 > The voice sounded like congealing fat being poured into a jug; 
 
-> It would have helped if the Culture had used some sort of emblem or logo; but, pointlessly unhelpful and unrealistic to the last, the Culture refused to place its trust in symbols. It maintained that it was what it was and had no need for such outward representation.
+> It would have helped if the Culture had used some sort of emblem or logo;
+> but, pointlessly unhelpful and unrealistic to the last, the Culture refused
+> to place its trust in symbols. It maintained that it was what it was and had
+> no need for such outward representation.
 
 
-> Just as it could not imprison itself with laws, impoverish itself with money or misguide itself with leaders, so it would not misrepresent itself with signs.
+> Just as it could not imprison itself with laws, impoverish itself with money
+> or misguide itself with leaders, so it would not misrepresent itself with
+> signs.
 
-> 
-There was something too about the inexactitude of it all that the Mind found almost frightening. It could look at some carefully machined piece of metal or some delicately molded bit of plastic, and know that to the people who had built the Command System—to their eyes—these things were exact and precise, constructed to fine tolerances with dead straight lines, perfect edges, smooth surfaces, immaculate right angles… and so on. But the Mind, even with its damaged sensors, could see the rough edges, the crudity of the parts and the components involved. They had been good enough for the people at the time, and no doubt they had fulfilled the most important criterion of all; they worked
+> There was something too about the inexactitude of it all that the Mind found
+> almost frightening. It could look at some carefully machined piece of metal
+> or some delicately molded bit of plastic, and know that to the people who had
+> built the Command System—to their eyes—these things were exact and precise,
+> constructed to fine tolerances with dead straight lines, perfect edges,
+> smooth surfaces, immaculate right angles… and so on. But the Mind, even with
+> its damaged sensors, could see the rough edges, the crudity of the parts and
+> the components involved. They had been good enough for the people at the
+> time, and no doubt they had fulfilled the most important criterion of all;
+> they worked
 
 
-> So it had effectively frozen its primary memory and cognitive functions, wrapping them in fields which prevented both decay and use. It was working instead on back-up picocircuitry, in real space, and using real-space light to think with (how humiliating).
+> So it had effectively frozen its primary memory and cognitive functions,
+> wrapping them in fields which prevented both decay and use. It was working
+> instead on back-up picocircuitry, in real space, and using real-space light
+> to think with (how humiliating).
 
 
-> the most select group of rich psychotics in the human galaxy, here to play the game that is to real life what soap opera is to high tragedy.
+> the most select group of rich psychotics in the human galaxy, here to play
+> the game that is to real life what soap opera is to high tragedy.
 
-> Originally Damage was played on such occasions because only during the breakdown of law and morality, and the confusion and chaos normally surrounding Final Events, could the game be carried out in anything remotely resembling part of the civilized galaxy; which, believe it or not, the Players like to think they’re part of. 
+> Originally Damage was played on such occasions because only during the
+> breakdown of law and morality, and the confusion and chaos normally
+> surrounding Final Events, could the game be carried out in anything remotely
+> resembling part of the civilized galaxy; which, believe it or not, the
+> Players like to think they’re part of. 
 
 
 
 # Penrose cohomology [WIP]
+
+<img src="./static/penrose-triangle.png"/>
 
 - [I should just reach Cech Cohomology for this!](https://en.wikipedia.org/wiki/%C4%8Cech_cohomology)
 
