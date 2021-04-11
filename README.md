@@ -15,6 +15,185 @@ A Universe of Sorts
 - [reading list and link dump](todo.html)
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
+# Nets from Munkres
+
+#### Directed set
+A direct set is a partial order $J$ which has "weak joins".
+That is, for every $a, b \in J$, there exists a $u \in J$ such that $a \leq u$ and $b \leq u$.
+It's not a join since we don't need $u$ to be UNIQUE.
+
+#### Cofinal subset
+
+A subset $K$ of a partial order $J$ is said to be cofinal if loosely, $\forall J \leq \exists K$.
+That is, for all $j \in J$, there is a $k \in K$ such that $j \leq k$. So intuitively, $K$
+is some sort of portion of $J$ that leaves out a finite part of the bottom of $J$.
+
+#### Cofinal subset is directed
+
+
+#### Nets
+
+Let $X$ be a topological space. a net is a function $f$ from a directed set $J$ into $X$.
+We usually write this as $(x_j)$. 
+
+#### Converge of a net
+
+We say a net $(x_j)$ converges to a limit $x^* \in X$, written as $(x_j) \rightarrow x^*$ iff
+for each neighbourhood $U$ of $x^*$, there is a lower bound $j_U \in J$ such that for all
+$j_U \leq j$, $x_j \in U$. That is, the image of the net after $j_U$ lies in $U$.
+
+
+
+#### Converge of a net with net as $\mathbb N$
+
+#### Product of nets
+
+#### Nets in Hausdorff spaces converge to at most one point
+
+#### Point $p$ is in closure of $A$ iff net in $A$ converges to point $p$
+
+
+#### Function is continuous iff it preserves convergence of nets
+
+#### Subnets
+
+
+#### Subnets of a net converge
+
+#### Accumulation point of a net
+
+#### Subnets converge iff point is accumulation point
+
+#### Compact implies every net has convergent subnet
+
+#### Compact implies every net has convergent subnet
+
+
+
+# Limit point compactness from Munkres
+
+Munkres calls "Bolzano Weirstrass" as limit point compactness. He defines a
+space $X$ to be **limit point compact** if every infinite subset of $X$ has a
+limit point.
+
+#### Compact implies limit compact
+
+We will prove the contrapositive. That is, let $X$ be a compact set. 
+If $A \subseteq X$, does not have any limit point, then $A$ is finite.
+If $A$ does not have any limit point, then $A$ vacuously contains all of its limit
+points. Thus, $A$ is closed. Since $A$ is a closed subset of a compact set $X$, $A$ itself
+is compact. Next, see that for each $a \in A$, we can find an open $U_a$ such that $U_a \cap A = \{ a \}$.
+If we can't find such a $U_a$, then it means that $a$ is a limit point!
+(Since all nbhd of $a$ intersect $A$ non-trivially). Clearly, these "isolating" $U_a$ cover $A$.
+Since $A$ is compact, we have a finite subcover $U_{a_i}$. See that $A = \{ a_i \}$.
+To show this, since the $U_i$ cover $A$, we have $A \subseteq \cup_i U_{a_i}$. Hence,
+$A = (\cup_i U_{a_i}) \cap A$, which is equal to $\cup (U_{a_i} \cap A)$ which is $\cup_i a_i$.
+Hence, $A$ has finitely many points, exactly the $a_i$.
+
+
+#### Classical Proof Using Bisection
+
+Let's prove this in $\mathbb R$.
+Let $C$ be a compact set containing an infinite number of points. We know from
+Heine Borel that $C$ is closed and bounded. Let the interval containing $C$ be $I[0] \equiv [l, r]$.
+Bisect the interval into two sub-intervals: $J[0][0] \equiv [l, m]$ and $J[0][1] \equiv [m, r]$ for $m = (l+r)/2$.
+One of these must contain an infinite number of points (suppose both contain a  finite number of points, then $I[0]$
+itself must contain a finite number of points, contradiction). We can thus recurse, setting $I[1]$ to be the sub-interval
+that has an infinite number of points. This gives us a nested sequence of intevals $I[0] \supset I[1] \supset \dots$.
+The interval $J \equiv \cap_i I[i]$ is closed as it is the intersection of closed intervals. Also, $J$ has length zero
+since we bisect the interval each time. Hence, $J$ is a single point, ie $J = \{ j \}$. We claim that $j$ is an accumulation
+point of the original subsequence. Any open set around $O$ will contain some interval $I[o]$
+
+# Proof of Heine Borel from Munkres
+
+We wish to show that compact iff closed and bounded in $\mathbb R$.
+
+- Let $S$ be closed and bounded. We wish to show that $S$ is compact. Since $S$ is bounded,
+  $S$ is contained in some large closed interval $I$. (1) Closed intervals are compact in the order topology of a
+  complete total order, and thus $I$ is compact ($\mathbb R$ is a complete total order).
+  Then (2) $S$ is a closed subset of a compact set $I$, and is thus compact.
+  Hence closed and bounded implies compact.
+- Let $S$ be compact. We wish to show that $S$ is closed and bounded. Cover $S$ with open balls of increasing
+  radii. This is an open cover; Extract a finite subcover. From the finite subcover, pick the largest open ball
+  $I$. $S$ is entirely contained in $I$, and is thus bounded. (3) $S$ is closed, as it is a compact subset of a 
+  Haussdorff space. Hence, we are done.
+
+#### (1) Closed intervals are compact in the topology of a complete total order.
+
+Let us work with a complete total order $O$.
+Let $[l, r]$ be a closed interval. Let $\{ U_i \}$ be an open cover of $[l, r]$.
+Let $M$ (for middle) be the set of points such that $[l, m]$ has a finite cover using $\{ U_i \}. 
+That is,
+
+$$
+M \equiv \{ p \in [l, r] : [l, m] \text{has finite cover} \}
+$$
+
+We claim that $lub(M) = r$. This implies that $[l, r]$ has a finite subcover using $U_i$. First note
+that $lub(M) \in [l, r]$ since $lub(M)$ exists as $O$ is complete, and $lub(M)$ is in $[l, r]$ as the
+interval is closed and thus contains all its limit points. Hence, this means that $lub(M) \in M$.
+
+
+Next, for contradiction, assume that $lub(M) \neq r$.
+Pick some open set $O$ in the cover that contains $lub(M)$: $lub(M) \in O \in \{ U_i \}$.
+Since $O$ is open, it contains some point $c$ (for contradiction) that is after $lub(M)$.
+That is, $c \in O \land c > lub(M)$. This means that the interval $[l, c]$ has the same
+cover as $[l, lub(M)]$. Hence, $[l, c]$ has a finite cover, thus $c \in M$. This is a contradiction
+because $c \in M \land c > lub(M)$, which is absurd. We would have $c = lub(M)$. Thus, this means
+that $lub(M) = r$, and thus the entire interval $[l, r]$ has finite subcover.
+
+#### (2) Closed subset of a compact set is compact
+
+Let $B$ be a closed subset of a compact space $K$. Take an open cover $\{ U_i \}$ of $B$.
+See that $\{ B^c, U_i \}$ is a cover of the full space $K$, and hence has a finite subcover.
+This subcover will be of the form $\{B^c, U_j\}$. The $\{U_j\}$ are a finite subcover of $B$.
+Thus, $B$ is compact as we have extracted a finite subcover of an open cover.
+
+
+#### (3) Compact subset of Haussdorf space is closed
+
+Morally, this is true because in a Haussdorff space, single point subsets are closed.
+Compactness pushes this local property to a global property --- The entire compact set
+itself becomes closed.
+
+Let $S$ be a compact subset of a haussdorf space $X$. For any point $q \not in S$,
+we need to show the existence of an open set $q \in Q$ such that $S \cap Q = \emptyset$.
+For each point $s \in S$, use Haussdorf to find separating sets 
+$s \in O(s; q)$, $q \in O(q; s)$ such that $O(s; q) \cap Q(q; s) = \emptyset$.
+See that the sets $\{ O(s; q) : s \in S \}$ are a cover of $S$. Extract a finite
+subcover of this, say $\{ O(s_i; q) : s \in S \}$. Use this finite subcover to separate $q$
+from $S$. Now, pick the open set
+$Q \equiv \cap \{ O(q; s_i) \}$, which is open since it's a finite intersection. See that this $Q$
+separates $q$ from $S$. We have that $Q \cap O(s_i, q) = \emptyset$
+for each $O(s_i, q)$. Hence, $Q \cap (\cup O(s_i; q)) = \emptyset$, and thus $Q \cap S = \emptyset$
+as $S \subseteq \cup O(s_i; q)$.
+
+# Alexandrov topology
+
+These are the best generalizations of finite topological spaces.
+I should study them for better intuition + comptutability properties.
+This is a topology where the intersection of all families of open sets
+is open, not just finite intersections. The minimal neighbourhood of a point $V(x)$
+is the intersection of all opens containing $x$. 
+
+- [Alexandrov Topology](https://en.wikipedia.org/wiki/Alexandrov_topology)
+- [Paper on the systematic study of Alexandrov spaces](http://emis.impa.br/EMIS/journals/AMUC/_vol-68/_no_1/_arenas/arenas.pdf)
+
+
+
+# Zeroth singular homology group: Intuition
+
+We wish to show that for a path connected space $X$, the zeroth singular homology group is just $\mathbb Z$.
+The intuition is that the zeroth homology group is given by consider $C[1] \xightarrow{\partial_1} C[0]$,
+$C[0] \xrightarrow{\partial_0} 0$, and then taking $H[0] \equiv ker(\partial_0) / im(\partial_1) = C[0] / im(\partial_1)$.
+Recall that $C[0]$ is the abelian group generated by the direct sum of generators
+$\{ \Delta^0 \rightarrow X \}$, where $\Delta^0$ is the $0$-simplex, that is,
+a single point. So $C[0]$ is an abelian group generated by all points in $X$. Now, $C[1]$ contains all paths
+between all points $p, q \in X$. Thus the boundary of $C[1]$ will be of the form $q - p$. Quotienting by $C[1]$
+identifies all points with each other in $C[0]$. That is, we get $H[0] \equiv \langle x \in X | y = z \forall y, z \in X \rangle$,
+which is isomorphic to $\mathbb Z$. Thus, the zeroth singular homology group is $\mathbb Z$.
+
+
 # Examples of fiber products / pullbacks
 
 #### Fiber products of sets
