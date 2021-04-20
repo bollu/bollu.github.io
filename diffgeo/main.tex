@@ -5,6 +5,7 @@
 \linespread{1.025}              % Palatino leads a little more leading
 % Euler for math and numbers
 \usepackage[euler-digits,small]{eulervm}
+\usepackage{bbding} % for flower. 
 \usepackage{physics}
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
@@ -2474,8 +2475,455 @@ Claim: There is a bundle isomorphism from the above constructed bundle to the
 tangent bundle.
 \end{example}
 
+\chapter{Section 5.4: Lec 21: Connections and connection 1-forms}
+
+Connections on a principal bundle --- we have the right action $P \xleftarrow{\triangleleft G} P \xrightarrow{\pi} M$.
+We have already seen connections/covariant derivative/parallel transport in GR. But we need
+to forget about this. Really, a connection on the principal bundle implies a parallel transport on the
+principal bundle. This implies a parallel transport on any fiber bundle. Then, if this fiber bundle
+is a vector bundle, then we can get a covariant derivative. So connection is most general,
+then parallel transport, then covariant derivative.
+
+The covariant derivative is given in terms of christoffel symbols. A connection on a principal bundle
+will be a 1-form on the principal bundle that takes values in the lie algebra of the group.	We cannot
+give a nonvanishing global section unless the bundle is trivial. This funny behaviour leads to the
+christoffel symbols transforming as they do. 
+
+\section{Connection}
+
+We will first use an elementary definition, which we will then show is equivalent to this definition.
+Let $P \xleftarrow{\triangleleft G}  P \xrightarrow{\pi} M$ be a principal $G$ bundle. Then each
+$A \in T_e G \equiv \mathfrak g$ in the lie algbera induces a vector field $X^A$ on $P$. That is,
+$X^a \in \Gamma(TP)$. This is defined at each point as:
+
+
+\begin{align*}
+&X^a: P \rightarrow TP \\
+&X^a: P \rightarrow (C^{\infty}(P)\rightarrow \mathbb R) \\
+&X^a: P \rightarrow ((P \rightarrow \mathbb R) \rightarrow \mathbb R) \\
+&X^a(p) :  ((P \rightarrow \mathbb R) \rightarrow \mathbb R) \\
+&X^a(p) :  \frac{df(p \triangleleft \exp(ta)}{dt}|_{t = 0} \\
+\end{align*}
+
+The idea is that for each $a \in \mathfrak g$,
+we define a curve $c^G_a: I \rightarrow G$ given by $c_a(t) \equiv \exp(ta)$. This curve
+is what one would get if they ``move along the direction $a \in \mathfrak g$'' in the lie group $G$.
+We now want to move this curve in the group to the bundle. The idea is that for each basepont
+$p \in P$, we create a curve in $P$ by pushing $p$ along $c_a$. This is the curve $c^p_a \equiv p \triangleleft c_a(t)$.
+Formally, we create a curve $c^p_a: I \rightarrow G$, $c^p_a(t) \equiv p \triangleleft \exp(ta)$.
+We then treat the curve $c^p_a$ as a tangent vector by using it to define a derivation, as $(f \circ c^p_a)(t)'$
+and all of that. The basic idea is to (1) but a curve in $G$ that travels along  $a \in \mathfrak g$,
+(2) place this curve all over the space $P$ by using the curve to push points in $P$, (3) treat the
+family of curves as a vector field by using derivations. See that since the curve is pushed
+forward using $c^p_a \equiv p \triangleleft c_a$, the curve $c^p_a$ will lie entirely in the same
+fiber due to the fiber-conservation-ness of $\triangleleft$.
+
+
+We define a map $i: T_e G \equiv \mathfrak g \rightarrow \Gamma(TP)$ where $i(A) \equiv X^A$.
+this map can be shown to be a lie algebra homomorphism, with the lie bracket on $\mathfrak g$
+being the lie bracket on a group, and the bracket on $\Gamma(TP)$ being the lie bracket of vector fields.
+So we see that $i([A, B]) = [i(A), i(B)]$. (TODO: check!)
+
+
+\begin{definition}
+Let $P$ be an element of the principal bundle. Then the vertical subspace at point $P$ is a vector subspace of the tangent space at $P$,
+so $V_p P \subseteq V_p P$ as the kernel of the pushforward of the projection $\pi_\star$. That is, it's all elements:
+\end{definition}
+\begin{align*}
+V_p P \equiv \{ X \in T_p P | \pi^{\star}(X) = 0 \} \\
+\end{align*}
+
+\includegraphics[width=\textwidth]{./g-bundle-pushforward.png}
+Pictorially, locally we have the group attached at each point. The projection map 
+takes a point and projects it down to the basepoint. The pushforward takes a vector "upstairs"
+and pushes it "down" (like what the levi cevita connection does). One way to think
+about this is to think about the curve to which the vector is tangent. And then
+push forward the curve itself by $\pi$. Then the pushforward of the tangent
+is the tangent to the curve that has been pushed forward.
+\includegraphics[width=\textwidth]{./g-bundle-pushforward-curves.png}
+
+\begin{lemma}
+  For every $p \in P$, the $X^A_p$ lies in the vertical subspace $V_p P$.
+  The idea is that the curve that it is defined by, $c^p_a(t) \equiv p \triangleleft \exp (tA)$ lies entirely
+  within a fiber due to the action of $\triangleleft$, and thus has zero projection downwards. This is like
+  having a curve that is ``vertical'', and thus projects down into the zero curve.
+\end{lemma}
+
+\begin{proof}
+  The curve lies entirely in the fiber $\pi^{-1}(\pi(p))$. This the projected vector becomes $\pi(c^p_a(t)) = p$.
+  This means that $\pi^\star(c^p_a(t)) = \frac{d(\pi(c^p_a(t)))}{dt}|_{dt = 0} = \frac{dp}{dt}|_{t = 0} = 0$.
+\end{proof}
+\begin{figure}[h]
+  \includegraphics[width=0.5\textwidth]{./g-bundle-pushforward-vertical.png}
+  \caption{A curve that lies entirely in a fiber and its  zero pushforward tangent.}
+\end{figure}
+
+\begin{definition}
+  Connection tells us how to connect neighbouring fibers in the principal bundle.
+  To formalize nearby, we need a linearization. We have $V_p P$. Then we make a choice
+  of another subspace $H_p P$ such that $V_p P \oplus H_p P$ span the vector space $V$.
+  Precisely, a connection on a principal $G$ bundle $P \xrightarrow{\pi} M$ is a
+  \emph{distribution} (in the diffgeo sense), ie, an assignment where for each $p \in P$,
+  we assign a vector subspace $H_p P \subseteq V_p P$ is chosen such that:
+  (1) $H_P \oplus V_p P = T_p P$,
+  (2) It's compatible with the $G$ action \emph{within} fibers.
+      The push-forward of $H_p P$ by the right action of any $g \in G$ should be compatible
+  with the assignment. Formally, $(\triangleleft g)_* (H_p P) = H_{p \triangleleft g} P$.
+  (3) It's smooth \emph{across} fibers. The decomposition of any vector $X_p \in T_p P$
+  into the horizontal and vertical parts $X_p \equiv hor(X_p) + ver(X_p)$ where $hor(X_p) \in H_p P$,
+  and $ver(X_p) \in V_p P$ is unique, and decomposes every smooth vector field $X \in \Gamma(P)$
+  into $Hor(X) \in \Gamma(P)$ and $Ver(X) \in \Gamma(P)$  such that $X = Hor(X) + Ver(X)$ and
+  these vector fields $Hor(X), Ver(X)$ are smooth. This ensures that the hoizontal components vary
+  smoothly across fibers.
+\end{definition}
+
+\begin{figure}[h]
+  \includegraphics[width=0.3\textwidth]{./connection.png}
+  \includegraphics[width=0.5\textwidth]{./connection-hp.png}
+  \caption{The idea of a connection, that attempts to connect adjacent spaces. Formally, we try to pick a subspace $H$
+  which linearizes the notion of  ``direction of connected point''. }
+\end{figure}
+
+\begin{figure}[h]
+  \includegraphics[width=0.5\textwidth]{./connection-condition-in-fiber.png}
+  \caption{The connection should be compatible with the group action within fibers}
+\end{figure}
+
+\subsection{A caveat of the definition}
+The vertical part and the horizontal part $ver(\cdot), hor(\cdot)$ depend on the choice of the $H_p P$.
+This is because we cannot ask for the decomposition to be \emph{orthogonal}
+Recall that $V_p P$ is given canonically as the kernel of pushforward the projection map.
+
+
+\begin{figure}[h]
+  \includegraphics[width=0.8\textwidth]{./connection-ver-depends-on-hor.png}
+  \caption{The value of $ver(w) = v$ depends also on the choice of the vector field $H$, since we do not need
+    to choose an orthogonal system $V \oplus H$, just a full rank decomposition. This allows us to vary
+    $h = hor(w)$ to decrease or increase the component contributed by  $v = ver(w)$.}
+\end{figure}
+
+\subsection{Technical definition of choosing horizontal subspace}
+Technically, to choose the horizontal subspace $H_p P$ for each $p \in P$ is conveniently encoded
+in a lie algebra valued one-form $\omega: TP \rightarrow \mathfrak g$ given by:
+
+\begin{align*}
+  &\omega(x_p) \equiv i^{-1}(ver(x_p)) \\
+  &i: \mathfrak g = T_e G \rightarrow V_p P \\
+  &i: a \mapsto X^a
+\end{align*}
+
+So it goes back from the ``left invariant vector field'' $V_p P$ which is determined by a single
+lie algebra value $a$, and spits out this lie algebra value. We know that just
+looking at $ver (x_p)$ is good enough to give us information about $hor(x_p)$.
+This is callect as the connection one-form with respect to the connection given
+by the vertical projection $ver_p \equiv  \equiv I - hor_p \equiv I - \pi(H_PP)$,
+where $\pi(H_PP)$ is the projector onto the horizontal subspace $H_p P$
+See that we can recover the horizontal subspace as $ker(ver_p)$:
+
+\begin{align*}
+  &ker(ver_p) \equiv \{ x \in T_p P: ver_p(x) = 0 \} \\
+  & = \{  x \in T_pP: (I - hor_p) x = 0 \} \\
+  & = \{  x \in T_pP: (x - hor_p(x)  = 0 \} \\
+  & = \{  x \in T_pP: (x - \pi(H_p P)(x)  = 0 \} \\
+  & = \{  x \in T_pP: x = \pi(H_p P)(x)  \} \\
+  & = \{  x \in T_pP: x \in H_p P  \} \\
+  ker(ver_p) = H_p P
+\end{align*}
+
+
+We now want to find out what conditions are imposed on $\omega$ from the conditions we had for $H_p P$. Then we
+will elevate this to a definition of a connection, such that we can recover an appropriate $H_p P$ from a given
+$\omega$.
+
+\begin{theorem}
+  A connection one form $\omega$ given by a connection has the following properties:
+  (1) $\omega_p(X^a) \equiv a$. This encodes the $i^{-1}$ term we had.
+
+  % https://q.uiver.app/?q=WzAsOSxbMCwwLCJUX2VHIl0sWzIsMCwiKEkgXFxyaWdodGFycm93IEcpIl0sWzQsMCwiKEkgXFxyaWdodGFycm93IFApX3EiXSxbMywwXSxbNiwwLCJUX3FHIl0sWzYsMiwiVF9lRyJdLFs3LDBdLFs1LDFdLFs1LDBdLFswLDEsImkoYSkgXFxlcXVpdiBcXGxhbWJkYSB0LlxcZXhwKHRhKSJdLFsxLDIsImcodCkgXFxtYXBzdG9cXGxhbWJkYSB0LiBxIFxcdHJpYW5nbGVsZWZ0IGcodCkiXSxbMiw0LCJjX3EodCkgXFxtYXBzdG9cXGxhbWJkYSBmLiBcXGZyYWN7ZCAoZlxcY2lyYyBjX3EpfXtkdH1cXGJpZ3xfMCAiLDJdLFs0LDUsImEgXFxtYXBzdG8gaV57LTF9KHZlcihhKSkiXSxbMCw1LCJpZCIsMl1d
+\[\begin{tikzcd}
+	{T_eG} && {(I \rightarrow G)} & {} & {(I \rightarrow P)_q} & {} & {T_qG} & {} \\
+	&&&&& {} \\
+	&&&&&& {T_eG}
+	\arrow["{i(a) \equiv \lambda t.\exp(ta)}", from=1-1, to=1-3]
+	\arrow["{g(t) \mapsto\lambda t. q \triangleleft g(t)}", from=1-3, to=1-5]
+	\arrow["{c_q(t) \mapsto\lambda f. \frac{d (f\circ c_q)}{dt}\big|_0 }"', from=1-5, to=1-7]
+	\arrow["{a \mapsto i^{-1}(ver(a))}", from=1-7, to=3-7]
+	\arrow["id"', from=1-1, to=3-7]
+      \end{tikzcd}\]
+    
+  (2) $((\triangleleft g)^* \omega )_p(x_p) = (Ad_{g^{-1}})_* (\omega_p (x_p) \in T_e G$. Recall that $Ad_g: G \rightarrow G$
+  by mapping $Ad_g(h) = ghg^{-1}$. This means that $(Ad_g)_*$ took us from $T_e G$ to $T_{heh^{-1}} G = T_e G$.
+    So we have $(Ad_g)_*: T_e \rightarrow T_e$ is a linearization of the conjugation.
+  (2) $\omega$ is a smooth one-form. These correspond to (1), (2), (3) of the horizontal subspace definition.
+\end{theorem}
+\begin{proof}
+  (1) is true by the definition of $\omega$. $\omega(X^a) \equiv i^{-1}(ver(X^a))$. But $X^a$ always lies
+  in the vertical subspace. so this is $i^{-1}(X^a) = a$, since $i$ maps $a$ to $X^a$.
+
+  
+  (2) First observe that the LHS is linear in $X$ as the pullback is a linear function. So we prove it for
+  horizontal and vertical part. (2a) Let $x_p \in V_p P$. Then there exists an $a \in \mathfrak g$ such that $x_p = X^a_p$.
+  TODO: problem sheet! (Video time: 55:00 --- Conncections and connection 1-forms - Lec 21 - Frederic Schuller)
+\end{proof}
+
+\chapter{Lec 22: Local representations of a connection on the base manifold / Yang-Mills fields: Chapter 5.5}
+
+Today, we will study how this lie algebra valued one form on the principal bundle can be locally
+writted as a lie algebra valued one form on the base manifold. These are connection coefficients $\Gamma$,
+or the Yang-Mills field.
+
+In the last lecture, we considered a principal $G$-bundle $P \xleftarrow{\triangleleft G} P \xrightarrow{\pi} M$.
+We had an object that was a lie algebra valued one form:
+$\omega: \Gamma(P) \rightarrow \mathfrak g \simeq T_e G$. It had two conditions:
+(1) $\omega(X^a) = a$, and (2) $((\triangleleft g)^* \omega)(x) = Ad_{g^{-1}}*(\omega(X))$.
+
+Assume we have a map $u: P \rightarrow P$, a principal bundle automorphism. If we have a one form
+that lives $\omega$, if it is a one-form, we should be able to pullback $\omega$ by $u$; Can we still
+do so? Do things like pullbacks generalize correctly? The point is that $(u^* \omega(X)) \equiv \omega(u_* X)$.
+This works out, because the pullback $u^*$ doesn't actually interact with the $\omega$ at all, it simply  pushes
+elements of the domain around. Thus the machinery developed so far continues working!.
+
+In practice, for eg. calculation, one wishes to restrict attention to some subset $U \subseteq M$. Physics
+very often starts at a local patch, after which we globalize. Choose a local sectin $\sigma: U \rightarrow P$
+such that $\pi(\sigma(u)) = u$. This local section induces two things:
+
+% https://q.uiver.app/?q=WzAsMTIsWzIsMSwiUCJdLFsyLDIsIlUiXSxbMCwyLCJVIl0sWzAsMSwiVSBcXHRpbWVzIEciXSxbMiwwLCJQIl0sWzAsMCwiVSBcXHRpbWVzIEciXSxbNCwxLCJcXEdhbW1hIChUUCkiXSxbNSwxLCJcXG1hdGhmcmFrIGciXSxbMywxLCJcXEdhbW1hKFQoVSBcXHRpbWVzIEcpKSJdLFs0LDIsIlxcR2FtbWEoVFUpIl0sWzUsMl0sWzMsMiwiXFxHYW1tYShUVSBcXG9wbHVzIFRHKSJdLFswLDEsIlxccGkiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMiwxLCJpZCIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzMsMiwiZnN0IiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzMsMCwiaCh1LCBnKSBcXGVxdWl2IFxcc2lnbWEodSkgXFx0cmlhbmdsZWxlZnQgZyJdLFswLDQsIlxcdHJpYW5nbGVsZWZ0IEciLDJdLFs2LDcsIlxcb21lZ2EiXSxbOCw2LCJoIl0sWzgsNywiIGheKiBcXG9tZWdhIFxcZXF1aXZcXG9tZWdhIFxcY2lyYyBoIiwwLHsiY3VydmUiOi00LCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNiw5LCJcXHBpIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzksNiwiXFxzaWdtYSIsMCx7ImN1cnZlIjotMX1dLFs5LDcsIlxcb21lZ2FedSBcXGVxdWl2XFxzaWdtYV8qXFxvbWVnYSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs1LDQsImgiXSxbMSwwLCJcXHNpZ21hIiwyLHsiY3VydmUiOjJ9XSxbMyw1LCJcXHRyaWFuZ2xlbGVmdCBHIiwwLHsibGFiZWxfcG9zaXRpb24iOjQwfV0sWzgsMTFdLFsxMSw4LCJcXHNpbWVxIl1d
+\[\begin{tikzcd}
+	{U \times G} && P \\
+	{U \times G} && P & {\Gamma(T(U \times G))} & {\Gamma (TP)} & {\mathfrak g} \\
+	U && U & {\Gamma(TU \oplus TG)} & {\Gamma(TU)} & {}
+	\arrow["\pi", two heads, from=2-3, to=3-3]
+	\arrow["id"', hook, from=3-1, to=3-3]
+	\arrow["fst"', two heads, from=2-1, to=3-1]
+	\arrow["{h(u, g) \equiv \sigma(u) \triangleleft g}", from=2-1, to=2-3]
+	\arrow["{\triangleleft G}"', from=2-3, to=1-3]
+	\arrow["\omega", from=2-5, to=2-6]
+	\arrow["h", from=2-4, to=2-5]
+	\arrow["{ h^* \omega \equiv\omega \circ h}", curve={height=-24pt}, dashed, from=2-4, to=2-6]
+	\arrow["\pi", two heads, from=2-5, to=3-5]
+	\arrow["\sigma", curve={height=-6pt}, from=3-5, to=2-5]
+	\arrow["{\omega^u \equiv\sigma_*\omega}"', dashed, from=3-5, to=2-6]
+	\arrow["h", from=1-1, to=1-3]
+	\arrow["\sigma"', curve={height=12pt}, from=3-3, to=2-3]
+	\arrow["{\triangleleft G}"{pos=0.4}, from=2-1, to=1-1]
+	\arrow[from=2-4, to=3-4]
+	\arrow["\simeq", from=3-4, to=2-4]
+      \end{tikzcd}\]
+    
+    
+\begin{itemize}
+\item  A \emph{Yang-Mills field} $\omega^U: \Gamma(TU) \rightarrow T_e G$. See that we now get a lie algebra valued
+one-form  over the
+\emph{base manifold} $\Gamma(U)$, not over $\Gamma(P)$. This is given by $\omega^u \equiv \sigma^* \omega$.
+That is, $\omega^U(v_u \in T_u M) \equiv \omega(\sigma_*(v_u))$ where $\sigma_*: TU_p \rightarrow TP_{\sigma(p)}$
+  is the jacobian of $\sigma$.
+
+\item This section can be used to define a local trivialization of the principal bundle.  This is $h: U \times G \rightarrow P$.
+  This is defined as $h(u, g) \equiv \sigma(u) \triangleleft g$ $\sigma$ moves into $P$, and then $g$ slides along the fiber.
+  One we have this local trivialization, we can define the local representation of the connection one-form as the pullback of
+  $\omega$ along $h$ --- $h^* \omega$.
+\end{itemize}
+
+\begin{theorem}
+  $(h^*\omega)(v \in T_m U, \gamma \in T_g G) = Ad_{g^{-1}}*(\omega^u(v)) + \Xi_g(\gamma)$.
+
+  See that the $Ad_{g^{-1}}: T_g G \rightarrow T_eG$. So this extra addition $Xi_g: T_g G \rightarrow T_e G$. We can
+  understand the values in the tangent vector space  $T_g G$ as the value of a left-invariant vector field
+  generated by a lie algebra element. So this spits out the lie algebra element that generates this lie group element.
+  This map is called the \emph{Maurer-Cartan form} on the lie group $G$. It is a lie algebra
+  valued on form on the lie group $G$.. Intuitively, given a $\gamma \in T_g G$,
+  it creates the left-invariant vector field $L(\gamma)$ that has value $\gamma$ at $g$:
+  $L(\gamma)(g) = g$. It then evaluates $L(\gamma)(e) \in T_e G$ to find the correct lie algebra element
+  $L(\gamma)(e) \in  \mathfrak g$. This $Xi$ is fixed; it's a property of the group. 
+\end{theorem}
+
+\begin{example}
+  Example for motivation to choose particular section $\sigma: U \rightarrow P$.
+  Consider an $n$-dimensional manifold and the frame bundle
+  as an example, $P \equiv LM$. Any chart $(U, \phi: U \rightarrow \mathbb R^n)$ of the base manifold $M$ induces a section!
+  $\sigma(m \in U) = (\frac{d\phi}{dx^1}|_m, \dots, \frac{d\phi}{dx^n}|_m) \in GL_n(\mathbb R)$.
+  At each point, we have a basis induced by $\phi$. That's the section of the frame bundle.
+
+  Then the Yang-mills field, $\omega^U \equiv \sigma^*\omega$ is a one-form on $U$ that is lie-algbera
+  valued. The lie algebra of $G \equiv GL(n, \mathbb R)$ is $M_n(\mathbb R)$, all matrices. This means
+  it has type $\omega^U: \Gamma(TU) \rightarrow M_n(\mathbb R)$. So at a point, it has the type
+  $\omega^U_p: T_p U \rightarrow M_n(\mathbb R)$. So it needs components lower-$\mu$ to consume a $T_p$,
+  and then a lower and upper $i, j$ to represent $M_n$. This means we have the coordinate values
+  $\Gamma^i_{j, \mu}$ in local coordinates. But the $i, j$ label the lie algebra, while $\mu$ actually
+  has something to do with the base manifold. That's why it doesn't transform as a tensor!
+  These are the Christoffel coefficients.
+\end{example}
+
+\begin{example}
+  Construction of the Mauer Cartan form $\Xi$ for the lie group $G$ given by $GL(d, \mathbb R)$.
+  Choose coordinates on an open set $G^+$ of $G$ containing the identity $e \in G$.
+  Now consider $L^A_g$, a left invariant vector field. This can be applied to coordinate functions.
+  So we evaluate $L^A_g(x^i_j) = \frac{d (x^{i}_j \circ [g \cdot exp(tA)])}{dt}|_0$.
+  If we consider everything in terms of coordinates, then we replace $exp$ with the matrix
+  exponential: $L^A_g = \frac{d (x^{i}_j \circ [g \cdot e^{tA}])}{dt}|_0$. But $x^i_j$ is the
+  thing that pulls out matrix entries. So let's write $g$ also as matrix entries. This becomes:
+
+  
+% \begin{align*}
+% &\frac{d {x^i_j(g^p_k (e^{tA})^k_r)}}{dt}|_0 \\
+% &\frac{d {\delta^i_p \delta_j^r g^p_k (e^{tA})^k_r}}{dt}|_0 \\
+% &\frac{d {g^i_k e^{tA})^k_j}{dt}|_0 \\
+% &\frac{d {g^i_k (I + tA + \dots))^k_j}{dt}|_0 \\
+% &g^i_kA^k_j
+% \end{align*}
+
+So therefore $L^A_g = g^i_k A^k_j \frac{\partial}{\partial x^i_j}$. This is a basis of the tangent space.
+WTF, this would have been so much easier if we had just calculated at identity and then pushed forward.
+The Mauer cartan form $Xi_g: T_g G \rightarrow T_e G$. Here, we simply need to invert.
+So we get $\Xi_{@g, j}^i \equiv (g^{-1})^i_k (dx^k_j)$. Compare:
+% \begin{align*}
+% &L^A_g  \equiv g^i_k \cdot A^k_j \cdot \frac{\partial}{\partial x^i_j} \\
+% &\Xi_{@g} \equiv g^{-1}^i_k \cdot I \cdot dx^k_j \\
+% &\Xi_{@g}(L^A_g) = g^{-1}^i_k (dx^k_j) (g^p_r A^r_q \frac{\partial}{\partial x}^p_q) \\
+% & = A^r_q \cdot g^{-1}^i_k g^p_r  [dx^k_j  \frac{\partial}{\partial x}^p_q] \\
+% & = A^r_q \cdot g^{-1}^i_k g^p_r delta^k_q \delta_j^p  \\
+% & = A^r_q \cdot g^{-1}^i_q g^p_r  \delta_j^p  \\
+% &= 
+% &= A^i_j
+% x\end{align*}
+
+(55:54) TODO: continue watching lecture
+\end{example}
+
+\chapter{Parallel transport: Lecture 23}
+\url{https://www.youtube.com/watch?v=jGHaZc2fuX8&list=PLPH7f_7ZlzxTi6kS4vCmv4ZKm9u8g5yic&index=23}.
+
+The basic idea: $P \xrightarrow{\pi} M$ with group $G$. Let the dimension of $G$ be one, and the dimension
+of $M$ be 2. If $G$ has a connection 1-form $\omega$, which defines at each point $H_p P$.
+
+\includegraphics{./parallel-transport.png}
+
+\chapter{5.7: Curvature and torsion on principal bundles}
+
+Torsion requires additional structure beyond what a principal bundle has.
+The usual linear covariant derivative carries a frame bundle.
+
+\begin{definition}
+  If we have $P \xleftarrow{\triangleleft G} P \xrightarrow{\pi} M$ with a connection $\omega$,
+  and let $\phi$ be a $\FiveFlowerPetal$ (arbitrary)
+  valued $k$-form, then $D(\phi): \Gamma(T^{k+1} P) \rightarrow \FiveFlowerPetal$. It is defined as the ordinary
+  exterior derivative (which does not depend on $\flower$ at all) given by:
+
+  $$
+  D\phi(X_1, \dots, X_{k+1}) \equiv d \phi(hor(X_1), hor(X_2), \dots, hor(X_{k+1}))
+  $$
+
+  We need $\omega$ to define $hor$. This is the covariant exterior derivative of the $k$ form $\phi$.
+\end{definition}
+
+\begin{definition}
+  Curvature: We once again have $P \rightarrow M$ and a one-form $\omega: \Gamma(TP) \rightarrow \mathfrak g$.
+  Then the curvature of the connection is a lie-algebra valued two-form $\Omega: \Gamma(T^2P) \rightarrow \mathfrak g = T_e G$
+  defined as $\Omega \equiv d\omega$.
+
+\end{definition}
+
+We claim that $d\Omega = d\omega + \omega \barwedge \omega$.
+See that we use a special $\barwedge$. We know that the usual exterior derivative is antisymmetric,
+and thus $\omega \wedge \omega = 0$. But here, since we live in lie-groups, we get non-commutativity,
+and hence $\omega \barwedge \omega$ need not disappear! We define this as:
+
+$$
+(\omega \barwedge \omega)(X \in \Gamma(TP), Y \in \Gamma(TP)) \equiv [\omega(X) , \omega(Y)]
+$$
+
+If the lie group is a matrix group, then we can write $\Omega^i_j \equiv d \omega^i_j + \omega^i_k \wedge \omega^k_j$.
+The wedge is sort of like a commutator.
+
+
+\begin{proof}
+  We know that $\omega$ is bilinear. Decompose any vector into a vertical and horizontal part, and then
+  prove separately. TODO: (time: 16:02).
+\end{proof}
+
+\section{Relation to the base space}
+
+How do these definitions relate to objects on the base space? We have $\omega$ and $\Omega$ on the
+principal bundle $P$. We have some section $\sigma: U \rightarrow P$ of $\pi: P \rightarrow M$.
+This induces a Yang-mills field  $\Gamma \equiv \sigma^* \omega$ which is a lie algebra valued one form
+on the base space. This also introduces a Yang-mills field strength ($F$). The field is $A$, the vector potential.
+This Yang-Mills field strength is the pullback of the curvature. This is $\sigma^* Omega \simeq Riem \simeq F$.
+(Riem for Riemann curvature tensor, I guess). They live in $TM \tensor TM \rightarrow \mathfrak g$. Why is this
+well behaved (a tensor) while the christoffel symbols are not?
+
+\begin{align*}
+  \sigma^*(\Omega) \\
+  & = \sigma^*(d\omega + \omega \barwedge \omega) \\
+  &= \sigma^*(d \omega) + \sigma^*(\omega \barwedge \omega) \\
+  &\sigma^*\texttt{distributes over } \barwedge \\
+  &= \sigma^*(d \omega) + \sigma^*(\omega) \barwedge \sigma^*(\omega) \\
+  & \sim \partial \Gamma - (\partial \Gamma \Gamma \Gamma + \Gamma \Gamma) \texttt{(wut?)} \\
+  
+\end{align*}
+
+\begin{theorem}
+  Binanchi identity for curvature: $D \Omega = 0$. Recall that $\Omega = D \omega$.
+  This is NOT because $D^2 = 0$, $D^2 \neq 0$ in general, it's not homological.
+  Proof on problem sheet.
+\end{theorem}
+
+\section{Torsion}
+We have a connection one form $\omega_p: T_pP \rightarrow \mathfrak g$ on a principal $G$ bundle $P \xrightarrow{x} M$.
+We need some extra data $\theta_p: T_p P \rightarrow V$ --- it is a $V$ valued one-form on $P$, is called a
+\emph{solder form / soldering form}. Here, $V$ is a linear representation
+of the group $G$ with the same dimension as that of the base manifold. The precise conditions are:
+
+\begin{itemize}
+  \item $\Theta \in \Omega^1(P) \tensor V$, where $V$ is a linear representation of the group $G$
+  \item $dim(V) = dim(M)$.
+  \item $\Theta$ is a vertical form:  We have $\Theta(ver(X)) = 0$ for all vector fields $X \in \Gamma(TP)$.
+    So this is a vertical one-form. This is unlike the the connection one-form which vanishes on the horizontal vector field,
+    which is why we can recover the horizontal direction as the kernel.
+  \item $g \triangleright ((\triangleleft g)^*\Theta) = \Theta$ ($G$-equivariance)
+  \item $TM \simeq P_V$. The tangent bundle of the base manifold is supposed to be isomorphic to the associated bundle
+      associated to $P$. We need them to be the same as associated bundle maps.
+    \end{itemize}
+
+\subsection{Idea}
+The soldering form is introduced to provide an identification of this chosen vector space $V$ with each
+tangent space of $M$. The key example is as usual, the frame bundle. We define the $\Theta$ as a one form
+$\Theta: \Gamma(TP) \rightarrow \mathbb R^{dim M} \simeq V$. We define this for each frame  $e \in P$.
+$\Theta_e(X) \equiv u_e^{-1}(\pi_*(x)))$
+Where $u_e: \mathbb R^{dim M} \rightarrow T_{\pi e} M$ by $u_e(v) = ev$.
+
+We know that if there is a frame $e$, there is a coframe $\epsilon$.
+I'm lost! Time: around 1 hour into video
+
+\begin{definition}
+  Torsion is the exterior derivative of the solder form. $\Theta \equiv d \theta$ which is $\Theta \in \Omega^2(P) \tensor V$.
+  One can see that $\Theta = d \theta + \omega \wedge \theta$. In diffgeo, we have to identify the
+  torsion with the coframe. For a matrix group, we get $\Theta^i =  d \theta^i  + \omega^i_k \wedge \theta^k$.
+\end{definition}
+
+\begin{theorem}
+  Bianchi identity of torsion: $D \Theta = \Omega \barwedge \theta$.
+\end{theorem}
+
+\chapter{5.8: Lecture 25: Covariant derivatives}
+
+We can ask that the associate bundle is a vector space $F$, and that the
+left action of $G$ on the associated bundle to be linear. Then we can
+do the usual rigamarole of parallel transport, etc. to write down the covariant
+derivative.
+\begin{quote}
+  It is very geometric, it is very intuitive, and it is technically a disaster
+\end{quote}
+
+\section{Technically neater construction}
+
+Once again, we need $F$ a vector space and a linear left action.  For a given
+$\sigma: M \rightarrow P$ we define an associate function $\phi_\sigma: P \rightarrow F$
+Then we need this $\phi_\sigma$ to be $G$-equivariant. We then use the exterior covariant
+derivative on $P$ to get a derivataive of the function sitting up on the $P$.
+Then we need to push this down to the manifold. We work on the principal bundle ONLY.
 
 \end{document}
+
 
 
 
