@@ -275,7 +275,49 @@ the jacobson radical), then we get $M = 0$.
 \url{https://math.stackexchange.com/a/3177237/261373}
 
 
-\section{Exact sequences}
+\section{Ch2: characterization of flatness}
+this is proposition 2.19 in ATM.
+
+
+\subsection{1 and 2: flat on all exact sequences v/s flat on short exact sequences}
+Split a long exact sequence $A \xrightarrow{f} B \xrightarrow{C} \xrightarrow{D} \dots$ into 
+many short exact sequences. Exactness on the short exact sequences implies exactness on the long
+exact sequence
+
+\subsection{flat on short exact sequence v/s tensoring being injective}
+If we know we are flat on SESes, then tensor on the SES $0 \rightarrow M \rightarrow{f} N \rightarrow coker(f) \rightarrow 0$. This shows
+that tensoring is injective. On the other hand, if we know that tensoring is injective, we also know that
+tensoring is right exact. This gives us left exact (from injective) and right exact (from tensor),
+and thus tensoring is exact
+
+\subsection{tensoring being injective versus tensoring being injective on finitely generated modules}
+if tensoring is injective, it continues to be injective on finitely generated modules. For the
+other direction, assume tensoring is injective on finitely generated modules. 
+
+\emph{meme proof}: choose generators $m_I$ and $n_I$ for the modules $M, N$, and write $M$ as a direct limit
+$M \equiv (m_1) \hookrightarrow (m_1, m_2) \hookrightarrow (m_1, m_2, m_3) \dots$ and similarly for $N$.
+Since tensoring is right exact, it is left adjoint. Thus, by RAPL, we have that left adjoints preserve
+colimits. That is, tensoring preserves direct limits. Thus, tensoring is injective as tensoring commutes
+with the direct limit, and each component of the direct limit is injective.
+
+\emph{non-meme-proof}: Find the kernel. If the kernel is non-trivial, finitely generate the kernel. 
+This tells us that the map is *not* injective on this finitely generated submodule. Thus, the function
+cannot by injective due to contrapositive
+
+
+\section{Exercise 2.20}
+The sketch is to write the tensoring, treat it as both a $B$ module and an $A$ module, then use the fact that $M$
+is flat to show injectivity along $A$ module, while using the fact that it is a $B$ module to "triviailize" the tensoring
+with $B$ (since tensoring with the base ring has no effect).
+(TODO: prove that tensoring with base ring has no effect)
+
+The idea is to pick some injective function of $B$ modules $g: Q\rightarrow R$ and to then show that
+$g \otimes 1: (B \otimes_A M) \otimes_B Q \rightarrow (B \otimes_A M) \otimes_B R$ is injective. See that
+we can reorder the above as $h: $g \otimes 1: A_M \otimes_A (B \otimes_B Q) \rightarrow A (M \otimes_A (B \otimes_B R)$,
+where we treat $B \otimes_B Q, B \otimes B_R$ as $A$ modules by restricton of scalars from $f: A \rightarrow B$.
+If we can show that the map $1 \otimes g: (B \otimes_B Q) \rightarrow (B \otimes_B R)$ is injective, then the
+full tensoring must be injective as $M$ is flat. But tensoring with $B$ over the ring B$ itself has no effect. Hence,
+since $Q \rightarrow R$  is injective, the tensor $B \otimes Q \rightarrow B \otimes R$ is injective, and thus we are done.
 
 
 \end{document}
