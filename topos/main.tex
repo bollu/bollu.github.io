@@ -105,7 +105,23 @@
 \maketitle
 \tableofcontents
 
-\chapter{Introduction}
+\chapter{Topoi of $M$-sets and automata}
+
+Finite automata is just an $M$-set where $M$ is the alphabet.
+Subobject classifier for $M$ for a set $A \subseteq X$, $\Xi_A$
+maps elements $ x \in X$ 
+to the left ideal $\Xi_A(x) \equiv \{ m \in M : m \curvearrowright x \in A \}$.
+
+So, given a "subset automata" $A \subseteq X$, which is a state of states closed under
+reachability, $\Xi_A$ assigns to that subset the entire language, and to
+other states $x \in X$ the set of strings with prefixes necessary to reach the subset $A$.
+
+What is conjunction and disjunction? Existential and universal quantification?
+
+The adjunction between $Set$ and $Rel$ should allow us to define $M-Rel$, as
+well as derive the NFA to DFA algorithm.
+
+\chapter{7 sketches}
 I'm following Seven sketches of compositionality. This is a transcription
 of the four parts of lecture 7, which promises to cover sheaves, topoi, and
 internal logics.
@@ -120,7 +136,7 @@ We begin by studying the category of sets, where we normally interpret logic.
 Then, we move to richer logics, for example, those with truth values other than
 $\top, \bot$. For example, we can have things like $(\top~\text{ for 0 < t < 10})$.
 
-\chapter{Logic in the category \Set}
+\chapter{Logic in the category Set}
 
 Objects are all sets, arrows are functions.
 
