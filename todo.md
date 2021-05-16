@@ -1,3 +1,406 @@
+- [Computational aspects of the mobius transform](https://arxiv.org/pdf/1304.1122.pdf)
+- Why PDE is infinite dimensional: The solution to an ordinary differential
+  equation, of order n, can be written
+  as a linear combination of n independent solutions, with n undetermined
+  constants- a vector space of dimension n. The solution to a partial
+  differential equation, of order n, can be written as a linear combination of
+  n independent solutions but with n undetermined functions. The functions
+  themselves constitute an infinite dimensional vector space.
+Source https://www.physicsforums.com/threads/why-a-pde-is-an-infinite-dimensional-system.479880/
+- [Universes ala Rusell and Tarski](https://ncatlab.org/homotopytypetheory/show/universe#cumulativity)
+- Spock's law: A difference that makes no difference is no difference.
+- The thing I find fascinating from a sociology perspective about ransomware is
+  that they have to. To be a successful ransomware company, you have to
+  simultaneously be: 1. Completely immoral enough to attack companies, hold
+  their data ransom and potentially put them out of business and reveal the
+  private details of thousands of people.  2. Create enough trust in the
+  company you attacked that they believe you will give the data back once you
+  pay them.  It is crazy that they are psychologically savvy enough to
+  simultaneously attain those directly conflicting goals.  In a cynical telling
+  this is how you start a government or any organization with a monopoly on
+  violence, ala mafia. First you make it clear that you can cause damage, then
+  you make it clear that tax payers are safe. The next step for ransomware
+  companies is to offer cyber security services, whether you want them or not.
+  We've hacked you. We fixed your crappy unpatched software, if you try to
+  remove us you lose all your data, so now we're your cyber security partners.
+- [Chernoff face](https://en.wikipedia.org/wiki/Chernoff_face) Chernoff faces,
+  invented by applied mathematician, statistician and physicist Herman Chernoff
+  in 1973, display multivariate data in the shape of a human face. The
+  individual parts, such as eyes, ears, mouth and nose represent values of the
+  variables by their shape, size, placement and orientation. The idea behind
+  using faces is that humans easily recognize faces and notice small changes
+  without difficulty.
+- [Notes on Categorical logic](https://faculty.math.illinois.edu/~ruiyuan/catlog.pdf)
+- [Implementing dependently typed languages](https://math.stackexchange.com/a/3468022/261373)
+- [Different parts of the lambda cube](https://cstheory.stackexchange.com/a/36071/49498)
+- A key part of these productive ecosystems is jobs. If you want to learn how
+  to build bridges, you do not set up schools to teach engineering, you fund
+  the building of bridges, and people will figure out how to build them on the
+  job, and the demand for civil engineers will pull students to study this and
+  then universities will open up programs to cater to that demand. The jobs
+  come first. Only 5% of China's population attends university, yet they are
+  able to build all the infrastructure they need because they have a laser like
+  attention to creating jobs. They will even build bridges for America, as long
+  as Chinese workers get to make them. They will build a port for anyone who
+  wants it, as long as Chinese workers are the ones building the port. The
+  entire Belt and Road initiative is an attempt to import infrastructure jobs
+  by sending workers all over the world to build infrastructure, as long as
+  China gets to build it. They know that half these projects will default and
+  not make any money, but what they get out of that is a skilled workforce, and
+  with a skilled workforce they can do anything. They will let American
+  companies set up factories in China as long as there is a knowledge transfer
+  as part of the deal. That all their state owned enterprises are losing money
+  is not important, the acquisition of skills and the creation of productive
+  ecosystems is what matters. I wonder when the US will realize this.  Western
+  economic thinking is focused on P&L, rule of law, etc, and assumes as an
+  article of faith that in such an environment, productive ecosystems will just
+  arise all on their own, like rats being created from piles of trash. It will
+  just happen, because in the past it just happened. So we are focused on
+  abstract principles, but what the last 30 years has shown us is productive
+  ecosystems being destroyed right and left as production migrates over to
+  Asia.
+-  Adding sum types to the bidirectional system breaks this characterization:
+   two terms equivalent up to (some) commuting conversions may both be typable.
+   To fix this, one can try and find type theories in which the commuting
+   conversions no longer preserve equality. By adding (abstract) effects to the
+   language, terms that used to be equivalent can now be distinguished,
+   ensuring that term equality once again coincides with semantic equality.
+   This is the key idea embodied in what is variously called polarized type
+   theory, focalization, or call-by-push-value.
+- Damas–Milner type inference [Damas and Milner 1982] allows only prefix polymorphism. This is a 
+  nice way to describe the difference between `∀ a (∀ b, a -> b -> a)` versus
+  `∀ a a -> (∀ b. b -> a)`. . This restriction is called prefix or prenex
+  polymorphism.  In their terminology, types contain no quantifiers at all;
+  only type schemes can have quantifiers (on the outside). Polymorphism can be
+  introduced only on let expressions.
+- Pronounce `f.g` as `f after g`.
+- [US army: ADVANCED SITUATIONAL AWARENESS](https://armypubs.army.mil/epubs/DR_pubs/DR_a/ARN32030-TC_3-22.69-000-WEB-1.pdf)
+- [Nonlinear dispersive equations: local and global analysis](https://www.math.ucla.edu/~tao/preprints/chapter.pdf)
+- [Threaded code for faster interpreters --- The Structure and Performance of Efficient Interpreters},](http://www.complang.tuwien.ac.at/forth/threaded-code.html)
+- [Paul Taylor: more exposition of topology of computation. In particular, abstract stone duality](http://www.paultaylor.eu/)
+- [Spheres as cogroup objects: A such that hom(a, -) spits out groups](https://math.stackexchange.com/a/2106754/261373)
+-[Something other than spheres for homotopy groups](https://math.stackexchange.com/questions/1465472/have-there-been-successful-attempts-to-use-something-other-than-spheres-for-ho?rq=1)
+- [Sheaves, cosheaves, and applications](https://arxiv.org/pdf/1303.3255.pdf)
+- Some kids grow up on football. I grew up on public speaking (as behavioral
+  therapy for a speech impediment, actually). If you want to get radically
+  better in a hurry: 1) If you ever find yourself buffering on output, rather
+  than making hesitation noises, just pause. People will read that as
+  considered deliberation and intelligence. It's outrageously more effective
+  than the equivalent amount of emm, aww, like, etc. Practice saying nothing.
+  Nothing is often the best possible thing to say. (A great time to say
+  nothing: during applause or laughter.) 2) People remember voice a heck of a
+  lot more than they remember content. Not vocal voice, but your authorial
+  voice, the sort of thing English teachers teach you to detect in written
+  documents. After you have found a voice which works for you and your typical
+  audiences, you can exploit it to the hilt.  I have basically one way to start
+  speeches: with a self-deprecating joke. It almost always gets a laugh out of
+  the crowd, and I can't be nervous when people are laughing with me, so that
+  helps break the ice and warm us into the main topic.  3) Posture hacks: if
+  you're addressing any group of people larger than a dinner table, pick three
+  people in the left, middle, and right of the crowd. Those three people are
+  your new best friends, who have come to hear you talk but for some strange
+  reason are surrounded by great masses of mammals who are uninvolved in the
+  speech. Funny that. Rotate eye contact over your three best friends as you
+  talk, at whatever a natural pace would be for you. (If you don't know what a
+  natural pace is, two sentences or so works for me to a first approximation.)
+  Everyone in the audience -- both your friends and the uninvolved mammals --
+  will perceive that you are looking directly at them for enough of the speech
+  to feel flattered but not quite enough to feel creepy.  4) Podiums were
+  invented by some sadist who hates introverts. Don't give him the
+  satisfaction. Speak from a vantage point where the crowd can see your entire
+  body.  5) Hands: pockets, no, pens, no, fidgeting, no. Gestures, yes. If you
+  don't have enough gross motor control to talk and gesture at the same time
+  (no joke, this was once a problem for me) then having them in a neutral
+  position in front of your body works well.  6) Many people have different
+  thoughts on the level of preparation or memorization which is required. In
+  general, having strong control of the narrative structure of your speech
+  without being wedded to the exact ordering of sentences is a good balance for
+  most people. (The fact that you're coming to the conclusion shouldn't
+  surprise you.) 7) If you remember nothing else on microtactical phrasing when
+  you're up there, remember that most people do not naturally include enough
+  transition words when speaking informally, which tends to make speeches loose
+  narrative cohesion. Throw in a few more than you would ordinarily think to
+  do. ("Another example of this...", "This is why...", "Furthermore...", etc
+  etc.)
+- [Dynamical systems that sort lists, diagonalize matrices, and solve LP problems](http://hrl.harvard.edu/publications/brockett88dynamical.pdf)
+- [A compact kernel for the calculus of inductive constructions](http://cs.unibo.it/~sacerdot/PAPERS/sadhana.pdf)
+- [Hanging pawns: Chess middle games](https://www.youtube.com/watch?v=LV0vbgeRVtY&list=PLssNbVBYrGcD2mB7JrHbpP5qyT_ncxCRj&index=19)
+- [Algebraic K theory: youtube lectures](https://www.youtube.com/watch?v=Kagy_cX4hDs). It seems that K
+  theory automagically forces homotopy of CW complexes when computing the zeroth K-theory.
+- I remember attending two lectures by M. Gromov that began by the remark that not only 4 equals 2 plus 2, but this equality is true in 3 different ways (meaning that there are three equipartitions in two classes of a 4-element set). According to him, a lot of exceptional behaviors in math stem from this, especially from the fact that 3 < 4 (it definitely explains why the alternating group A(4) isn't simple, but Gromov also mentioned the gauge-theoretic oddities in dimension 4). [MathOverflow answer](https://mathoverflow.net/q/47569/123769)
+
+- Learn how to use linux with `HOWTO`s.
+- Programming and proving in Agda: https://github.com/jespercockx/agda-lecture-notes/blob/master/agda.pdf
+- [Hereditary substitution](https://www.cs.nott.ac.uk/~psztxa/publ/msfp10.pdf)
+- Categorical logic and type theory by Bart Jacobs.
+- [tinyxyz cute animation using `tan`](https://doersino.github.io/tixyz/?code=tan%28i*t%2F999%29*%28%7E%7E%28t*24%257%29%3D%3Di%257%29)
+- [Packet life: networks cheat sheets](https://packetlife.net/library/cheat-sheets/)
+- [Lexicon branding: company that discovers brand names](https://www.lexiconbranding.com/neurobrand-team)
+- [Ideal divisors: fast conversion of division into multiplication, plus p-adic goodness from dan piponi](https://news.ycombinator.com/item?id=26971801)
+- [FnV hash: good (non-crypto) fast hash function](https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function)
+- Macrame knots: pretty knot patterns
+- [MicroUI](https://github.com/bollu/microui)
+- [Write your own OS: videos](https://www.youtube.com/watch?v=1rnA6wpF0o4&list=PLHh55M_Kq4OApWScZyPl5HhgsTJS9MZ6M&index=2)
+- Syntax agreement: learn how to make sentences that meander. In particular,
+  the problem I seem to have is that I am unable to continue half written
+  thoughts in a manner that is coherent overall.  Practice this! Normally I
+  feel very nut to crack. I ought to write sentences like the previous version,
+  which are very rising sea.
+- Medeival literature on lying, IP = PSPACE, arithmetization, and Dialogiones
+- [Passion of the western mind](https://en.wikipedia.org/wiki/The_Passion_of_the_Western_Mind)
+- [Gutta percha](https://en.wikipedia.org/wiki/Gutta-percha) and the [Gutta Percha Company](https://en.wikipedia.org/wiki/Gutta_Percha_Company).
+- [nanoscale views: cool blog post about berry phase](http://nanoscale.blogspot.com/)
+- [Suffle Automata](https://www.dcc.fc.up.pt/~nam/publica/bmmric15.pdf)
+- Find out how opaleye works.
+- [Write software rasterizer to render this image](https://pbs.twimg.com/media/Ez1tN9jXMAIPYcn?format=png&name=large)
+- STONITH: Shoot The Other Node In The Head.
+- Find instances of countries which used to be corrupt, that no longer is
+  corrupt.  Use systems that anonymize who sends the systems. So for example,
+  anonymize the application form so that you don't know who is processing
+  your form, and thus you can't bribe them.
+
+- [Higher dimensional type theory 2020: CubicalTT](https://favonia.org/courses/hdtt2020/)
+- [Hitch-hiker's guide to reinventing a prolog machine](https://drops.dagstuhl.de/opus/volltexte/2018/8453/)
+>  We take a fresh, "clean-room" look at implementing Prolog by deriving its
+>  translation to an executable representation and its execution algorithm from
+>  a simple Horn Clause meta-interpreter. The resulting design has some
+>  interesting properties. The heap representation of terms and the abstract
+>  machine instruction encodings are the same. No dedicated code area is used
+>  as the code is placed directly on the heap. Unification and indexing
+>  operations are orthogonal. Filtering of matching clauses happens without
+>  building new structures on the heap. Variables in function and predicate
+>  symbol positions are handled with no performance penalty. A simple
+>  English-like syntax is used as an intermediate representation for clauses
+>  and goals and the same simple syntax can be used by programmers directly as
+>  an alternative to classic Prolog syntax. Solutions of (multiple) logic
+>  engines are exposed as answer streams that can be combined through typical
+>  functional programming patterns, with flexibility to stop, resume,
+>  encapsulate and interleave executions. Performance of a basic interpreter
+>  implementing our design is within a factor of 2 of a highly optimized
+>  compiled WAM-based system using the same host language. To help placing our
+>  design on the fairly rich map of Prolog systems, we discuss similarities to
+>  existing Prolog abstract machines, with emphasis on separating necessary
+>  commonalities from arbitrary implementation choices. 
+- Multidimensional Real Analysis I: J. J. Duistermaat. Gives the 
+  extrinsic definition of a manifold.
+- Read everything by [Ken Perlin](https://mrl.cs.nyu.edu/~perlin/)
+- Spanier's algebraic topology.
+  It's highly rigorous (just like an analysis or algebra book), and many results
+  are formulated in categorical languages. Besides, assumptions are often as weak
+  as possible. simplicial complexes are used extensively.
+- Dieck's Algebraic Topology is great. It is very rigorous, presents an
+  incredibly wide range of topics, uses (admittedly minimal) categorical
+  language, and gives a much more homotopical perspective on many things.
+- [The asses of Parnassus: Short poetry](https://assesofparnassus.tumblr.com/)
+- [DSP MIT OCW](https://ocw.mit.edu/resources/res-6-008-digital-signal-processing-spring-2011/)
+- A pangram (sentence will all letters): "Sphinx of black quartz, judge my vow"
+- [Ringelmann effect: Why groups may not be effective](https://en.wikipedia.org/wiki/Ringelmann_effect)
+> The Ringelmann effect is the tendency for individual members of a group to
+> become increasingly less productive as the size of their group increases.
+> This effect, discovered by French agricultural engineer Maximilien Ringelmann
+> (1861–1931), illustrates the inverse relationship that exists between the
+> size of a group and the magnitude of group members’ individual contribution
+> to the completion of a task. While studying the relationship between process
+> loss (i.e., reductions in performance effectiveness or efficiency) and group
+> productivity, Ringelmann (1913) found that having group members work together
+> on a task (e.g., pulling a rope) actually results in significantly less
+> effort than when individual members are acting alone. Ringelmann discovered
+> that as more and more people are added to a group, the group often becomes
+> increasingly inefficient, ultimately violating the notion that group effort
+> and team participation reliably leads to increased effort on behalf of the
+> members.
+
+- Handbook of Mathematical Economics
+- Authors of set theory books:  Jech, Kunen, Hrbacek/Jech, Just/Weese
+- [How TeX really works](https://www.overleaf.com/learn/latex/How_TeX_macros_actually_work:_Part_1#Introduction:_Objectives_of_this_series)
+- [Google word list culture war](https://developers.google.com/style/word-list)
+> "Language makes thought possible. When the words disappear, so does our
+> ability to think about the ideas the words represent. When they prevent you
+> from saying the obvious, overtime it becomes impossible to see the
+> obvious.... those who control your words control your mind."
+- [Advanced Determinant calculus](https://arxiv.org/abs/math/9902004)
+- Computing in the monster. In Group, Combinatorics & Geometry, Durham 2001, 327–337. World Scientific Publishing, 2003. 
+- [The monster and black box groups](https://arxiv.org/abs/1310.5016)
+- [MSR how to write papers](https://www.microsoft.com/en-us/research/academic-program/write-great-research-paper/#!other-resources)
+- [Mermaid live editor](https://mermaid-js.github.io/mermaid-live-editor)
+- [musicdsp](http://www.musicdsp.org/)
+- [Learn how to make every effect in Clean Slate](https://www.sweetwater.com/insync/zipper-noise)
+- [72pt is one inch tall!](https://news.ycombinator.com/item?id=26846401)
+- [Audo synthesis website like dwitte: tinyrave](https://tinyrave.com/docs)
+- [Explain shader: soft heart](https://www.shadertoy.com/view/ls3GRr)
+- [ALSA PCM](https://www.alsa-project.org/alsa-doc/alsa-lib/pcm.html)
+- [Sound programming website](https://soundprogramming.net/)
+- [Linux kernel](https://www.kernel.org/doc/html/v4.11/index.html)
+- [Celeste sound design](https://www.twitch.tv/videos/248998904)
+- [Corbusier as I knew him](https://thereader.mitpress.mit.edu/le-corbusier-as-i-knew-him/)
+> Corb was a very good friend. His numerous letters and postcards and a
+> constant stream of his paintings and drawings, that he sent me until his
+> death, showed me how seriously he treated friendship. He said living was an
+> art.
+
+- [Cayley Bacharach theorem](https://en.wikipedia.org/wiki/Cayley%E2%80%93Bacharach_theorem)
+- [Moral foundations of politics](https://www.youtube.com/watch?v=s6MOA_Y3MKE&list=PLlPEhuzb-BQA9O5qhAG5DxT23V9jeUG2k)
+- [Why did US universities succeed](https://www.aeaweb.org/research/research-universities-incentives-resources-virtuous-circles-us)
+> What became challenging for all these universities once they started
+> emphasizing research is how to incentivize that activity. One thing that
+> agency theory shows is that one way to achieve this is to create somewhat
+> lumpy rewards. That is to say, rewards that don’t necessarily give you a
+> little bit more for a little bit more output but rather create a big prize.
+> Tenure has that flavor. It basically says if your research output is high
+> enough you’re going to get a lifetime contract at this university. Tenure has
+> a couple of benefits that come out of agency theory. One is that these types
+> of lumpy rewards can be particularly good when you make people compete
+> against each other. The emergence of it in the US, in fact, helped place the
+> US on good footing to compete at research with Europe, which does not have
+> that institution as much.  US university system, which he calls a “perfect
+> mess.” He says it's a mess, but it's a perfect mess, and it's kind of a
+> contradiction. I think that the good side of the US is that it produces a
+> variety of institutions that can do a variety of tasks relatively well. It
+> produces 50 to 100 that do research extremely well and lead the world in this
+> dimension. It produces other schools, to cite the work of Raj Chetty and
+> coauthors, that generate a lot of mobility.  
+> This is not a mess that a social planner would have designed necessarily, but
+> the different parts work well.
+
+
+- [Foundations of modern social theory](https://www.youtube.com/watch?v=hd33BahdAjs&list=PLDF7B08FF8564D1FE&index=1)
+- [Trachtenberg system](https://en.wikipedia.org/wiki/Trachtenberg_system)
+- [Novel writing help blog](https://www.novel-writing-help.com/)
+- [Awakening from the meaning crisis](https://www.youtube.com/watch?v=54l8_ewcOlY)
+- [toxic libs](http://toxiclibs.org/) --- processing like library in Java.
+- [Black: Stafford gambit](https://www.youtube.com/watch?v=XkB4IVNaZWw).
+- [Noncommutativity in chess annotation](https://en.wikipedia.org/wiki/Chess_annotation_symbols#?!_(Dubious_move))
+> !?  an interesting move that may or may not be good
+> ?!  a dubious move or move that is probably an inaccuracy
+
+- Remembering White's queenside and kingside:
+> from White's left (the queenside) to right (the kingside). 
+> "queen on her own color", "white on right".
+> Casting kingside is `O-O` because 2pieces are swapped.
+> Castling queenside is `O-O-O` because the queen is in the "middle".
+- [Will no one rid me of this turbulent priest?](https://en.wikipedia.org/wiki/Will_no_one_rid_me_of_this_turbulent_priest)
+> "Will no one rid me of this turbulent priest?" (also expressed as
+> "troublesome priest" or "meddlesome priest") is a quote attributed to Henry
+> II of England preceding the death of Thomas Becket, the Archbishop of
+> Canterbury, in 1170. While the quote was not expressed as an order, it
+> prompted four knights to travel from Normandy to Canterbury, where they
+> killed Becket. The phrase is commonly used in modern-day contexts to express
+> that a ruler's wish may be interpreted as a command by his or her
+> subordinates.
+
+- [Neat comparison between "skyrocketing trans rates" and "skyrocketing left handed rates"](https://www.washingtonpost.com/news/wonk/wp/2015/09/22/the-surprising-geography-of-american-left-handedness/)
+> Basically, the rates jumped from  2 percent, till they stabilized at the
+> "real rate" of 12 percent.
+
+- [Applications of Lie Groups to Differential Equations](https://www.springer.com/gp/book/9781468402742) Solving DEs using Lie theory.
+- [Natural operations in diffgeo: Covers jet bundles and writes everything from a bundle perspective](https://www.emis.de/monographs/KSM/)
+- [Pierre albin: algebraic topology/homology](https://www.youtube.com/watch?v=XxFGokyYo6g&list=PLpRLWqLFLVTCL15U6N3o35g4uhMSBVA2b)
+- [Marx, Kant, Nietcheze](https://www.youtube.com/watch?v=kIlEkbU4rx0&list=PLDF7B08FF8564D1FE&index=9)
+- [The song of wandering aengus](https://www.poetryfoundation.org/poems/55687/the-song-of-wandering-aengus)
+- [Modern english poetry](https://www.youtube.com/watch?v=ixs5AvKaB4E&list=PLh9mgdi4rNewA25FVJ-lawQ-yr-alF58z&index=4)
+- [Quadratic recirpocity on n-category cafe](https://golem.ph.utexas.edu/category/2007/06/quadratic_reciprocity.html)
+- [Docco: a tool to generate literate javascript docs](http://ashkenas.com/docco/)
+- [Blog post explaining how to implement git. Love the presentation of code](http://gitlet.maryrosecook.com/docs/gitlet.html)
+- [Lattice paths and continued fractions](https://golem.ph.utexas.edu/category/2017/09/lattice_paths_and_continued_fr.html)
+- [Topos of G sets](https://golem.ph.utexas.edu/category/2018/10/topoi_of_gsets.html)
+- [Entropy mod `p`](https://golem.ph.utexas.edu/category/2019/03/entropy_mod_p.html)
+- Learn how to use `zsh` with `info zsh`.
+- [Video lectures on algebraic topology](http://www.math.wsu.edu/faculty/bkrishna/FilesMath524/F19/LecNotes/welcome.html)
+- Nigel Goldenfeld’s book on the renormalization group: Lectures on Phase Transitions and the Renormalization Group
+- [Agonism](https://en.wikipedia.org/wiki/Agonism)
+> There are three elements shared by most theorists of agonism: constitutive
+> pluralism, a tragic view of the world, and a belief in the value of
+> conflict.[1] Constitutive pluralism holds that there is no universal measure
+> of adjudicating between conflicting political values.[2] For example, Chantal
+> Mouffe argues, following Carl Schmitt, that politics is built on the
+> distinction of 'us' and 'them'.[3] Based on this, agonists also believe in "a
+> tragic notion of the world without hope of final redemption from suffering
+> and strife", which cannot find a lasting political solution for all
+> conflicts.[4] Instead, agonists see conflict as a political good.[5][6] For
+> example, Mouffe argues that "In a democratic polity, conflicts and
+> confrontations, far from being a sign of imperfection, indicate that
+> democracy is alive and inhabited by pluralism”.[7]
+- [Hatcher's list of recommended topology books](https://pi.math.cornell.edu/~hatcher/Other/topologybooks.pdf)
+- C P Rourke and B J Sanderson. Introduction to Piecewise-Linear Topology.
+- Topology by Klaus Jainich: Considered to be beautiful, chatty, but full of elegant proofs, especially
+  of things like Tychonoff and Tietze extension.
+- [O Viro, O Ivanov, V Kharlamov, and N Netsvetaev. Elementary Topology](http://www.math.uu.se/˜oleg/educ-texts.html).
+   Essentially just an outline with proofs left as exercises, but with many
+   insightful comments.  Includes also some algebraic topology and manifold
+   theory
+- [Read all the archives of the n category cafe](https://golem.ph.utexas.edu/category/archives.html)
+- [Ends in category theory](https://golem.ph.utexas.edu/category/2014/01/ends.html)
+> “The end of the walking stick is at the bottom.”
+- [The structure of information: from probability to homology](https://128.84.21.199/abs/1709.07807v1)
+> D. Bennequin and P. Baudot introduced a cohomological construction adapted to
+> information theory, called "information cohomology" (see "The homological
+> nature of Entropy", 2015). Our text serves as a detailed introduction to
+> information cohomology, containing the necessary background in probability
+> theory and homological algebra. It makes explicit the link with topos theory,
+> as introduced by Grothendieck, Verdier and their collaborators in the SGA IV.
+> It also contains several new constructions and results. (1) We define
+> generalized information structures, as categories of finite random variables
+> related by a notion of extension or refinement; probability spaces are models
+> (or representations) for these general structures. Generalized information
+> structures form a category with finite products and coproducts. We prove that
+> information cohomology is invariant under isomorphisms of generalized
+> structures. (2) We prove that the relatively-free bar construction gives a
+> projective object for the computation of cohomology. (3) We provide detailed
+> computations of H1 and describe the "degenerate" cases. (4) We establish the
+> homological nature of Tsallis entropy. (5) We re-interpret Shannon's axioms
+> for a 'measure of choice' in the light of this theory and provide a
+> combinatorial justification for his recurrence formula.
+- Pragmatic truth: Truths that allow you to act in a way that maximises your ability to reproduce.
+  Truths with functional utility.
+- [Set Theory and the Continuum Problem](Set Theory and the Continuum Problem)
+> Part One's focus on axiomatic set theory features nine chapters that examine
+> problems related to size comparisons between infinite sets, basics of class
+> theory, and natural numbers. Additional topics include author Raymond
+> Smullyan's double induction principle, super induction, ordinal numbers, order
+> isomorphism and transfinite recursion, and the axiom of foundation and
+> cardinals. The six chapters of Part Two address Mostowski-Shepherdson mappings,
+> reflection principles, constructible sets and constructibility, and the
+> continuum hypothesis. The text concludes with a seven-chapter exploration of
+> forcing and independence results. This treatment is noteworthy for its clear
+> explanations of highly technical proofs and its discussions of countability,
+> uncountability, and mathematical induction, which are simultaneously charming
+> for experts and understandable to graduate students of mathematics.
+- [Path tracing depth of field](https://blog.demofox.org/2018/07/04/pathtraced-depth-of-field-bokeh/)
+- [Peterson: Jung](https://www.youtube.com/watch?v=3iLiKMUiyTI)
+- [Locally finite graphs with ends](https://www.math.uni-hamburg.de/home/diestel/papers/TopSurvey.pdf)
+-  [Differential calculus and gauge theory on finite sets](https://arxiv.org/pdf/hep-th/9401149.pdf)
+- Open question: how to convert Pilot wave theory into quantum field theory?
+- [Fecko: differential geometry and Lie Groups for physicists](https://www.amazon.com/dp/0521187966/?tag=pfamazon01-20&tag=pfamazon01-20)
+- [Audio synthesis: The blog at the bottom of the ocean](https://blog.demofox.org/)
+- [Basic intro to digital waveguide synthesis](https://ccrma.stanford.edu/~jos/swgt/swgt.html)
+- [Light is beautiful: blog of a demoscener](http://lousodrome.net/blog/light/)
+- [Revision 2020 threeway battle](https://gargaj.tumblr.com/post/615750987019436032/a-breakdown-of-the-revision-2020-threeway-battle)
+- [mercury.sexy](http://mercury.sexy/)
+- [`hg_sdf: library for signed distance fields(http://mercury.sexy/hg_sdf/)
+- [On the building blocks of mathematical logic](https://writings.stephenwolfram.com/data/uploads/2020/12/Schonfinkel-OnTheBuildingBlocksOfMathematicalLogic.pdf)
+- [Dependent linear type theory](https://ncatlab.org/nlab/show/dependent+linear+type+theory)
+- [HoTT in Agda](https://www.cs.bham.ac.uk/~mhe/HoTT-UF-in-Agda-Lecture-Notes/HoTT-UF-Agda.html)
+- [Kerodon: A textbook of infinity category theory](https://kerodon.net/tag/0001)
+- Lying in persia
+- [Podgist --- get transcriptions of podcasts](https://www.podgist.com/dan-carlins-hardcore-history/show-56-kings-of-kings/index.html)
+- Why "cogito ergo sum" is insufficient:
+> It reminds me of Descarte's argument that even if we were just brains in vats
+> coerced to believe in reality by some evil demon's manipulation, we still
+> "know" something because "cogito ergo sum".  A simple counter argument is that
+> there's no reason the evil demon can't also coerce logic. For example, that we
+> are in effect constantly entering into contradiction but are unable to see it
+> by design.
+- [Mathworks in the UK](https://in.mathworks.com/company/jobs/locations/unitedkingdom-cambridge.html)
+- [Theorem that quantum circuits can be simulated efficiently classically for hadamard, phase. Gottesman Knill theorem](https://en.wikipedia.org/wiki/Gottesman%E2%80%93Knill_theorem).
+  CHP / Scott Aaronson's [Improved Simulation of Stabilizer Circuits](https://arxiv.org/pdf/quant-ph/0406196.pdf)
+- Learn descriptive set theory.
+- [Murray Gell Mann: MIT or suicide](https://www.youtube.com/watch?v=nfEvQMPDhOg)
+- [Threaded interpretiv languages](https://www.amazon.co.uk/Threaded-Interpretive-Languages-R-G-Loeliger/dp/007038360X)
+- [Tensors: the geometric viewpoint and its uses](https://www.springer.com/gp/book/9783540520184)
+  Book that I learnt much of tensor algebra from.
+  The cover has Shiva on it, and quotes a bunch of Zen buddhism and the Bhagavad gita in its openings.
+  Quite a unique flavour for sure.
+- [VoxelSpace: 2.5D voxel renderer](https://s-macke.github.io/VoxelSpace/)
 - Mathographics: how to draw mathematics
 - Read EVERYTHING by Milnor!
 - [Method of moving frames](https://math.stackexchange.com/questions/125536/need-references-on-cartans-method-of-moving-frames)
@@ -72,7 +475,7 @@ Some Highlights
 - [Groups, Categories, Homological algebra](http://therisingsea.org/post/mast90068/)
 - [Metric and hilbert spaces](http://therisingsea.org/post/mast30026/)
 - [Cohomology operations and applications in homotopy theory](https://www.amazon.com/dp/0486466647)
-- [Homotopic topology](http://www.math.columbia.edu/~khovanov/algtop2013/)
+- [Homotopic topology by Fomenko (guy with amazing drawings)](http://www.math.columbia.edu/~khovanov/algtop2013/)
 - [Trefethen:  Numerical Linear Algebra](https://people.maths.ox.ac.uk/trefethen/text.html)
 - Topology via logic, frames and locales, etc.
 
