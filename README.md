@@ -15,7 +15,794 @@ A Universe of Sorts
 - [reading list and link dump](todo.html)
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
-# Nets from Munkres
+
+# Yoneda Lemma and embedding
+
+
+```hs
+type Hom a b = (a -> b)
+type Nat f g = forall x. f x -> g x
+```
+
+Yoneda, which states that $[C, Set](F(-), Hom(a, -)) \simeq F(a)$:
+
+```
+type YonedaLHS f a = Nat (Hom a) f
+```
+
+
+
+```
+rhs2lhs :: Functor g => g a -> YonedaLHS g a
+-- rhs2lhs :: g a -> (Nat (Hom a) g)
+-- rhs2lhs :: g a -> (forall x. (Hom a) x ->  g x)
+-- rhs2lhs :: g a -> (forall x. (a -> x) -> g x)
+rhs2lhs ga = (\a2x -> fmap a2x ga) :: g x
+```
+
+`rhs2lhs` is a lot like an enriched continuation, where
+we are given a value `(g a)`, and we need to produce
+an "enriched" continuation handler, which when given
+a use `(a -> x)` produces not an `x`, but a `g x`.
+
+
+```hs
+lhs2rhs :: Functor g => YonedaLHS g a -> g a
+-- lhs2rhs :: Nat (Hom a) g -> g a
+-- lhs2rhs :: (forall x. (Hom a x) -> g x) -> g a
+-- lhs2rhs :: (forall x. (a -> x) -> g x) -> g a
+-- set x = a
+-- lhs2rhs :: ((a -> a) -> g a) -> g a
+lhs2rhs cont = (cont (id :: Hom a a)) :: g a
+```
+
+in `lhs2rhs`, given an enriched continuation handler
+`forall x. (a -> x) -> g x`, and we need to produce a `g a`.
+As with regular continuations, we feed in the `id` function
+to recover the trapped continuation value.
+
+```hs
+type List a = [a]
+type Nat f g = forall x. f x -> g x
+listyo :: (Nat (Hom a) List) -> [a]
+-- listyo :: (forall x. (Hom a x) -> List x) -> [a]
+-- listyo :: (f: forall x. (g: a -> x) -> [x]) -> [a]
+-- implement f, is to use g multiple times
+-- f g = [g a1, g a2, ... g an] = fmap g [a1, a2, ... an]
+-- f id = [id a1, id a2, ... id an] = [a1, a2, ... an]
+listyo f = f id
+
+-- F = [.]
+listyo' ::  [a] -> (forall x. (a-> x) -> [x])
+listyo' as = \f -> fmap f as
+```
+
+When we specialize Yoneda to lists, we are led to the idea
+that a continuation of the form `(a -> x) -> [x]` must contain
+`[a]`s which it uses to produce multiple `x`s.
+
+
+
+```
+-- F = (b -> .)
+-- pick x = a
+-- ((a -> a) -> (b -> a) -> (b -> a)
+-- Nat(Hom(a, -), F) ~= F a
+-- type Hom a b = (a -> b)
+-- c -> Hom (c, -)
+-- a, b. arrows ∈ Hom (a, b)
+-- Hom (a, -), Hom(b, -). arrows ∈ Nat Hom (a, -) Hom(b, -)
+--
+-- a, b. arrows ∈ Hom (a, b)
+-- Hom (-, a), Hom(-, b). arrows ∈ Nat Hom (-, a) Hom(-, b)
+contrayo :: Nat (Hom a) (Hom b) -> Hom b a
+contrayo :: (forall x. (a -> x) -> (b -> x)) -> (b -> a)
+contrayo f = f id
+
+contrayo' ::   (b -> a) -> (forall x. (a -> x) -> (b -> x))
+contrayo' b2a = \a2x -> a2x . b2a
+```
+
+When we specialize Yoneda to `b -> -`, we are led to the idea
+that a continuation of the form `(a -> x) -> (b -> x)` must contain
+plumbing to turn `b`s into `a`s: ie, it must contain a function `b -> a` .
+
+```
+-- F = id .
+type Id x = x
+-- Nat(Hom(a, -), Id - ) ~= Id a
+-- Nat(forall x. (a -> x), Id x) ~= Id a
+-- Nat(forall x. (a -> x) -> x) ~= a
+idyo :: (forall x. (a -> x) -> x) -> a
+idyo k = k id
+
+idyo' ::  a -> (forall x. (a -> x) -> x)
+idyo' a = \k -> k a
+```
+
+specializing to `id` recovers usual continuations.
+
+In total, Yoneda tells us that from every enriched continuation 
+`ContF a g = Nat (Hom a) g = forall x. (a -> x) -> g x`,
+we can recover a `g a`. Hence, there is a bijection between `g a` and
+`ContF a g`
+
+#### Yoneda embedding
+
+The yoneda embedding follows from the lemma. The lemma tells us that `Nat(Hom(a, -), F) ~= F(a)`.
+Pick `F = Hom(b, -)`. This gives `Nat(Hom(b, -), Hom(a, -)) ~= Hom(b,  a)` Thus, if
+we consider the mapping `C -> [C, Set]` given by sending `a` to `F(a)`,
+we also preseve the `Hom` sets as natural transformations, since `Hom(b, a)` is isomorphic
+to `Nat(Hom(b, -), Hom(a, -))`. Thus, we get a full and faithful embedding of the original category
+into the `Hom` category.
+
+# Topos of M sets (WIP)
+
+
+# Simplicial approximation: maps can be approximated by simplicial maps (WIP)
+
+# Excision (WIP)
+
+# GHCID
+
+- [ghcid](https://hackage.haskell.org/package/ghcid) + tmux is a nice way to get a REPL/IDE
+  like experience for haskell with minimal fuss.
+
+# Character theory (WIP)
+
+I jot down the rough proof sketches of character theoretic facts for quick reference.
+Fix a group $G$. A group representation of $G$ is a group homomorphism from the group
+to the automorphism group of a complex vector space $V$: Formally,
+$f: G \rightarrow Aut(V)$. A direct sum of representations $f: G \rightarrow Aut(V)$, $f': G \rightarrow Aut(W)$
+is the obvious extension of the maps $f \oplus f': G \rightarrow Aut(V \oplus W)$,
+given by $(f \oplus f')(g) = \lambda v. f(g)(v) \oplus f'(g)(v)$.
+A representation is said to be irreducible if it cannot be written as the
+direct sum of two non-trivial representations. A character is the trace of
+a representation. An irreducible character is the trace of an irreducible representation.
+
+#### All representations are unitary representations
+
+Given a representation $f: G \rightarrow Aut(V)$, we construct
+an _invariant_ inner  product, that is, one where $\langle f(g)(v) | f(g)(w) \rangle = \langle v | w \rangle$.
+This maps the representation unitary, since it preserves this special inner product.
+The idea is to begin with some _arbitrary_ inner product $[v, w]$ which we can always
+induce on $V$ (pick a basis). Then, we build an "averaged" inner product
+given by $\langle v | w \rangle \equiv \sum_{h \in G} [ f(h)(v) | f(h)(w) ]$.
+Intuitively, this inner product is invariant because on considering $\langle f(g)(v) | f(g)(w) \rangle$,
+the definition will contain $[f(h)(f(g)(v)) | f(h)(f(g) w)] = [f(hg)(v) | f(hg)(w)]$,
+which is a re-indexing of the original sum. 
+Hence, the representation $f$ preserves this inner product,
+and we can thus study only unitary representations (which are much simpler).
+From now on, we assume all representations are unitary.
+
+#### Representation has same automorphism for the entire conjugacy classe
+
+Since all representations are unitary, the image of $f(ghg^{-1}) = f(g) f(h)
+f(g)^{-1}$ is going to be a change-of-basis of $f(h)$, and thus does not
+actually change the automorphism given by $f(h)$. Hence, representations are
+the same for an entire conjugacy class .
+
+
+#### Morphism between representations / intertwining
+
+A map between two representations, $f: G \rightarrow V$, $f': G \rihtarrow W$
+is given by $\eta: V \rightarrow W$ if the natural diagram commutes:
+
+```
+V --f--→ V
+|        |
+η        η 
+↓        ↓
+W --f'-→ W
+```
+such a map $\eta$ is called called as an intertwining map or an equivariant map.
+
+
+#### Schur's lemma
+
+The only equivariant maps between irreducible representations is either the
+zero map or a **scalar multiple** of the identity map. This is stronger than
+saying that the equivariant map is a diagonal matrix; scalar multiple of
+identity implies that all dimensions are scaled uniformly.
+
+The main idea of the proof is to show that the kernel and image of the 
+intertwining map is an irreducible subspace of $f, f'$ retrospectively. Since
+the maps are irreducible, we must have the the intertwining is either the zero
+map, or a map into the full group (WIP). This forces the map to be zero or a scalar
+multiple of the identity.
+
+One way to look at this is that for irreps $f: G \rightarrow V$ and
+$f': G \rightarrow W$, the dimension of $Hom(V, W)$ is either 0 or 1 (scalings of identity).
+
+
+
+#### Schur orthogonality
+
+<img src="./static/repr-theory/schur-orthogonality.png">
+
+We consider representations "one matrix index" at a time, and show that
+the matrix entries of irreducible representations is going to be orthogonal.
+The proof is to consider representations $f: G \rightarrow \mathbb GL(n, \mathbb C)$,
+$f': G \rightarrow \mathbb GL(m, \mathbb C)$. For a fixed row/column pair $(r, c)$,
+we consider the inner product $\sum_{g \in G} f(g)[r][c] \overline{f'(g)[r][c]}$ (WIP)
+
+
+#### Inner product of class functions
+
+we impose an inner product relation on the space of class functions (complex valued functions
+constant on conjugacy classes) $G \rightarrow \mathbb C^\times$, given by
+$\langle f | f' \rangle \equiv 1/|G| \sum_{g \in G} f(g)
+\overline{f'(g)}$ where $\overline{f'(g)}$ is the complex conjugate. 
+
+Using the Schur orthogonality relations, we immediately deduce that the inner product
+of two irreducible characters can be viewed as the schur orthogonality applied to their
+(only) matrix entry at location (1, 1). Thus, irreducible characters will be orthogonal,
+and equal characters will have inner product 1.
+
+
+#### Regular representation
+
+The "Cayley-style" representation one would naturally dream up. For a group $G$,
+build a vector space $V$ whose basis is given by elements of $G$. Have $g \in G$
+act on $V$ by seding $v_h$ to $v_{gh}$. Ie, act with $g$ as a permutation on $V$.
+This gives us a "large" representation. For example, the permutation group of $n$
+letters will have a regular representation of $n!$ basis vectors.
+
+This representation contains every irrep. The idea is to show that the dot
+product of the trace of the regular representation with every other irrep is
+nonzero.  Furthermore, since the regular representation has finite dimension,
+this tells us that there are only finitely many irreps: the irreps correspond
+to subrepresentations, and a finite representation only has finitely many
+subrepresentations. This makes the idea of classifying irreps a reasonable task.
+
+#### Abelian groups are controlled by characters
+
+Since abelian groups map to automorphism that all commute with each other, we can
+simultaneously diagonalize these matrices. Thus, we only need to consider
+the data along each diagonal, which is independent. This reduces the representation
+to a direct sum of scalars / 1D representations / characters.
+
+
+# Cofibration
+
+```
+A --gA[t]--> X
+|           ^
+i           |
+|           |
+v           |
+B >-gB[0]---*
+```
+
+The data $(A, B, i)$ is said to be a cofibration  ($i$ like an inclusion $A \rightarrow B$)
+iff given any homotopy $gA[t]: [0, 1] \times A \rightarrow X$, and a map
+downstairs $gB[0]: B \rightarrow X$ such that $gB[0] \circ i = gA[t](0)$,
+we can extend $gB[0]$ into $gB[t]$. We see that this is simply
+the HEP (homotopy extension property), where we have a homotopy of subspace
+$A$, and a starting homotopy of $B$, which can be extended to a full homotopy.
+
+#### Lemma: Cofibration is always inclusion
+
+#### Pushouts
+
+```
+A <-i- P -β-> B
+```
+
+The pushout intuitively glues $B$ to $A$ along $A$'s subspace $P$. For this
+interpretation, let us say that $P$ is a subspace of $A$ (ie, $i$ is an
+injection). Then the result of the pushout is a space where we identify
+$\beta(p) \in B$ with $p \in A$.  The pushout in Set is  $A \cup B/ \sim$
+where we generate an equivalence relation from $i(p) \sim \beta(p)$. In
+groups, the pushout is amalgamated free product.
+
+```hs
+-- | HoTT defn
+f :: C -> A
+g :: C -> B
+inl :: Pushout A  B C f g
+inr ::  Pushout A B C f g
+glue :: Π(c: C) inl (f(c)) = inr(g(c))
+```
+
+Suspension:
+
+```
+1 <- A -> 1
+```
+
+Suspension can "add homotopies". Example, `S1 = Susp(2)`.
+
+```
+A --f--> P
+|       |
+|i      |i'
+v       v
+B -----> B Uf P
+```
+
+We want to show that $P \xrightarrow{i'} B \cup_f X$
+is a cofibration if $A \xrightarrow{i} B$ is a cofibration.
+
+
+
+- [F. Faviona, more on HITs](https://www.youtube.com/watch?v=zn0nAXtoMtU)
+
+
+ 
+# Emily Riehl Contrability as uniqueness
+
+- untyped lambda calc/simply typed is topology of computation.
+- dependent lambda calc/topos theoretic interpretation gives extensional mltt. Diagonal is identity type.
+- challenge: intensional in topological setting. Path space is the identity type.
+
+# Cofactor as derivative of determinant
+
+I saw this at [math.se](https://math.stackexchange.com/questions/4128999/does-taking-derivative-of-determinant-of-a-matrix-with-respect-to-an-entry-give),
+that one can define the cofactor of index $A[i][j]$ of a matrix $A$ as $\frac{\partial A}{\partial A[i][j]}$ which I think is quite cool.
+# History date notations
+
+- CE ~ AD. 
+- BCE ~ BC
+
+
+# Homology, the big picture
+
+First, there was nothing. Then, we decided we want homology. We start out by baby-stepping with
+simplicial homology. We rapidly abandon this in favour of singular homology, since it's easier to define
+notions of chain morphisms with singular homology. We want to know when spaces have the same homology/chain complex.
+A reasonable idea is to prove that when the map between spaces is homotopic to identity, the chain complex
+is identical. During the course of the proof, we feel the need for a notion of "chain equivalence", and thus we
+we are led to define the notion of [chain homotopy](https://en.wikipedia.org/wiki/Homotopy_category_of_chain_complexes), and
+more generally, the homotopy category of chain complexes. 
+
+Next, we want the long exact sequence of homology connecting a space to its
+quotient. To get here, we first consider relative homology, connecting a space
+to a subspace. Next, we are led to build the
+machinery of excision which tells us that relative homlogy is unchanged on
+removing a subspace. Finally, we craft "good pairs", which are spaces for whom
+the relative homology sequence will be equivalent to the quotient long exact sequence.
+Excision lets us prove that relative homology is equal to quotient homology for good pairs.
+
+Once we have excision, we use it to show that show that (1) simplicial and singular
+homology agree, and (2) construct the Mayer Viteoris sequence (the Kunneth of homology).
+
+
+#### Chain equivalence
+
+Two chains $C, D$ are chain equivalent if there's a prism operator betwen them `:)` More seriously,
+
+#### Relative homology
+
+Build sequence $C_n(X) \rightarrow C_n(A) \rightarrow C_n(X)/C_n(A)$. Snake lemma gives us
+long exact sequence of relative homology.
+
+#### Good pair
+
+$(X, A)$ is a good pair if (1) $A$ is closed in $X$ (contains all its boundaries), (2) there is an open nbhd $U$ of $A$
+($A \subseteq U \subseteq X$) such that $U$ deformation retracts onto $A$.
+
+For example, $(D^2, S^1)$ is a good pair, because the subspace $U = D^2 - (0, 0)$ (annulus)
+deformation retracts onto the boundary $S^1$. The subspace $U$ is open since
+it is the complement of a closed set, the point. More generally,
+given an attaching map $f: \partial D^2 \rightarrow X$ to attach a $D^2$ into a
+space $X$, if we build $Y \equiv X \cup_f D^2$, then $(Y, X)$ is a good pair,
+since we have an open $U$ which is $Y$ minus the origin of the disk that conatins $X$. That is,
+set $U \equiv X \cup_f (D^2 - (0, 0))$. $U$ contains $X$, and deformation retracts onto $X$, since we can "deform" the
+ball minus the origin $D^2 - (0, 0)$ back into the original space $X$. This, cellular attachments create a "chain of good spaces".
+
+
+
+Also see this answer on [HEP versus good pair](https://math.stackexchange.com/questions/74528/homotopy-extension-property-vs-good-pairs?rq=1)
+
+
+#### good pair + Excision => relative equals quotient homology
+
+Let $(X, A)$ be a good pair. Consider the projection map which kills $A$, 
+the map $\pi: (X, A) \rightarrow (X/A, [A])$ as a map of good pairs.
+(Note that $(X/A, [A])$ is also a good pair). We claim this induces isomorphisms
+$\pi^*: H_n(X, A) \rightarrow H_n(X/A, [A])$.
+
+
+
+# Normaliztion by evaluation (WIP)
+
+- [Reference NBE video for cubicaltt](https://www.youtube.com/watch?v=atKqqiXslyo&list=PL0OBHndHAAZrGQEkOZGyJu7S7KudAJ8M9&index=6)
+
+  
+# Legal Systems very different from ours
+
+# Lefschetz fixed point theorem (WIP)
+
+# Shrinking wedge of circles / Hawaiian earring (WIP)
+
+I've been trying to make peace with the fact that countably infinite wedge of circles
+is so different from the hawaiian earring. Here are some thoughts:
+
+- Topology on the hawaiian earring is very different. Eg: small opens around the center of infinite
+  wedge is contractible, while no small open around the origin of the hawaiian earring is contractible.
+- We can take infinite products of group elements in the hawaiian earring, since the radii decrease.
+  For example, we can take a loop at *each* circle of radius $1/n$ by making it traverse the circle
+  of radius $1/n$ in the interval $t \in [(n-1)/n, n/(n+1)]$, and stay at $(0, 0)$ at $t=1$.
+
+# Simplicial approxmation of maps (WIP)
+
+#### What we want:
+
+> every map $f: K \rightarrow L$ is homotopic to a simplicial map $f_\triangle: K \rightarrow L$:
+> ie, a map that sends vertices to vertices,
+> and sends other points through an extension of linearity.
+> such that $f(st(v)) \subseteq st(f_\tri(v))$ where $f_\tri$ is the simplicial
+> approximation of $f$.
+
+Recall that $st(v)$ is the intersection of interiors of all simplices that
+contain the vertex $v$. So on a graph, it's going to be a "star shaped" region
+around the vertex of all the edges around the vertex.
+
+#### Why this can't happpen
+
+Consider a triangle as a simplex of a circle. We want to represent rotations of
+the circle.  I can rotate around a circle once, twice, thrice, ... As many
+times as I want. However, if all I have is a triangle, I can represent rotating
+once as the map $1 \mapsto 2, 2 \mapsto 3, 3 \mapsto 1$ and rotating twice as
+maybe $1 \mapsto 3, 3 \mapsto 2, 2 \mapsto 1$, but that's it. I've run out of
+room! So I need to *subdivide* the simplex to get "more points" to represent
+this map.
+
+#### The correct statement
+
+# Lebesgue number lemma (WIP)
+
+for a compact space $X$ and an open cover $\{ U_\alpha \}$, there is a radius
+$r > 0$ such that any ball of such a radius will be in some open cover: For all
+$x \in X$, for all such balls $B(x, r)$, there exists a $U_x \in \{ U_\alpha
+\}$ such that  $B(x, r) \subseteq U_x$.  Intuitively, pick a point $x$. for
+each open $U$, we have a ball $B(x, r)$ that sits inside it since $U$ is open.
+Find the largest such radius, we can do so since $\{x\}$ is the closed subset of a compact set.
+This gives us a function $f$ that maps a point $x$ to the largest radius of ball
+that can fit in _some_ open cover around it. This function $f$ is a continuous function (why?)
+on a compact set, and thus has a minimum. So, for all points $x \in X$, if you give a 
+ball of radius $\min f$, I can find some open cover around it.
+
+#### Lebesgue number lemma, Version 2:
+
+for a compact space $X$ and an open cover $\{ U_\alpha \}$, there is a diameter $d > 0$ such that
+set of smaller radius will be in some open cover: For all $x \in X$, for all
+opens $x \in O$ such that $diam(O) < d$, there exists a $U_x \in \{ U_\alpha \}$ such that  $O \subseteq U_x$.
+
+If we can find radius $B(x, r)$ that satisfies this, then if we are given a set of diameter less than $2r$,
+there will be a ball $B(x, r)$ that contains the set $O$ of diameter at most $d = 2r$,
+and this ball will be contained in some $U_x$.  So we will have the
+containments $O \subseteq B(x, r) \subseteq U_x$.
+
+
+#### Lebesgue number lemma, proof from Hatcher
+
+WIP
+
+
+# Big list of learning Lean internals
+
+- [CIC page in Coq](https://web.mit.edu/jgross/Public/tmp/doc/sphinx/_build/html/language/cic.html)
+- [`bollu/cubicaltt`](https://bollu.github.io/cubicaltt/Main.html): an annotated version of the cubicaltt sources.
+- [CPDT (certified programming with dependent types) chapter on equality](http://adam.chlipala.net/cpdt/html/Cpdt.Equality.html)
+  to learn about the various reduction rules.
+- [Data structures to verify acyclicity of a graph on updates](https://dl.acm.org/doi/10.1145/2756553): A New Approach to
+  Incremental Cycle Detection and Related Problems
+- [Coq Coq correct](https://dl.acm.org/doi/pdf/10.1145/3371076): Paper on
+  formally verifying the type checker for Coq, contains information about data structures used in the kernel.
+
+
+# MicroUI
+
+I love the implementation of [`microui`](https://github.com/rxi/microui), so I wrote
+a [code walkthrough here](https://bollu.github.io/microui/microui-source.html). I feel I learnt
+a nice design pattern for writing such an immediate-mode GUI library in the future.
+
+
+# Proof of tree having (V-1) edges
+
+I'm more comfortable with the proof where we link the vertex to the incoming
+edge "all at once".  The proof of induction feels weird.  So sahiti suggested:
+impose an ordering that makes the time feel better. So if I imagine the tree
+losing leaves from the bottom up left to right, it feels a lot smoother.  So
+sahiti also suggested: shake the tree! This feels better as well. In general, I think
+I prefer thinking of it in terms of "applicative", instead of "monad, where the choices
+are statically determined, and I am not forced to make an arbitrary choice at each step, since
+the arbitrariness of the choice breaks my "flow".
+
+
+# Creating PDFs to read code
+
+1. Use [`vim-bruin`](https://git.sr.ht/~romainl/vim-bruin) for black and white printing
+2. Use `more *.cpp *.h > consolidated.cpp` to create a single file. `ClangFormat` this file.
+3. Open in vim, use `:toHTML` in vim to dump out an HTML.
+4. Open HTML page in firefox, use `save as PDF` to generate a PDF.
+5. Print!
+
+
+# Bias and gain
+
+Bias changes the "central tendency"/"hinge point" of the curve.
+
+```cpp
+float GetBias(float t, float b) {
+  return (t / ((((1/b) - 2)*(1 - t))+1.0));
+}
+```
+
+Gain changes how rapidly we reach the bias point.
+
+```cpp
+function GetGain(t,g) {
+  if(t < 0.5)
+    return GetBias(t * 2.0,g)/2.0;
+  else
+    return GetBias(t * 2.0 - 1.0,1.0 - g)/2.0 + 0.5;
+}
+```
+
+
+# Barycentric subdivision: edge length decreases
+
+For a edge $E$, subdiving the edges into two at the center produces two edges
+both $1/2$ the original length.  Given a triangle $T$, we wish to prove that
+subdividing the triangle by joining the barycenter to the vertices reduces edge
+length by $2/3$ of the maximum length. More generally, we wish to show that the
+edge length decreases to $n/(n+1)$ of the largest length for an $n$ dimensional
+figure.
+
+The barycenter is at the location $b \equiv 1/n \sum_i v_i$. The distance
+from a vertex $v_k$ is $||v_j - b|| = ||v_k - (1/n \sum_i v_i)|| = ||1/n(\sum_i v_k - v_i)||$.
+By Cauchy Schwarz, we have that $||v_j - b|| \leq 1/n ||\sum_i v_k - v_i||. One of the terms,
+where $k = i$ will be zero, and the other (n-1) terms are at most $l$, the length of the longest edge.
+This gives $||v_j - b|| \leq (n-1)l/n$, hence the edge length decreases by a factor of $(n-1)/n$.
+
+
+# Homotopic maps produce same singular homology: Intuition
+
+Take two maps $f, g: X \rightarrow Y$ which are homotopic. We wish
+to show that if $f$ is homotopic to $g$, then we will get the same
+induced singular homology groups from $f$ and $g$. The idea is to take a chain
+$c[n] \in C[n]$, then study the image $f#(c[n])$ and $g#(c[n])$. Since $f$ 
+and $g$ are homotopic, we can build a "prism" that connects $f#(c[n])$ and $g#(c[n])$
+by means of a prism operator, that sends a chain $c \in C[n]$
+to the prism $p(c)$ produced by the chain which lives in $D[n+1]$. Next, we compute the
+boundary of this prism, $\partial p(c)$. This boundary will contain a top portion,
+which is $f#(c)$, a bottom portion which is $g#(c)$, and the boundary edges 
+of the prism itself, which is the same as taking the prism of the boundary edges
+$p(\partial c)$.  This gives the equation $\partial(p(c)) = p(\partial c) + g#(c) - f#(c)$.
+Rearranging, this gives $g#(c) - f#(c) = \partial p(c) - p(\partial c)$. To inspect
+homology, we wish to check that $f#, g#$ agree on elements of $\ker(\partial[n])/\im(\partial[n+1])$.
+So, we set $c \in \ker(\partial[n])$. This kills of $p(\partial c)$. Further, since we 
+quotient by $\partial[n+1]$, the $\partial(p[c])$ also dies off. This means that
+$g#(c) - f#(c) = 0$ when interpreted as an element of $H[Y][n]$. Philosophically,
+living in $\ker(\partial[n])$ kills $- \circ \partial$, and quotienting
+by $\im(\partial[n+1])$ kills $\partial \circ -$. Thus, we get that $g#$ and $f#$ produce the same
+homology element. Intuitively, we are saying that these can be connected by a prism in the space,
+and thus produce the same element. Think of the 0D case in a path-connected
+space, where all points become equivalent since we can connect them by paths.
+
+To compute the boundary of the prism, we break the prism into an interplation from
+$f#$ into $g#$ by raising $f#$ into $g#$ one vertex at a time. This then allows us
+to induce cancellations and show that $\partial(p(c))$ contains the terms
+$p(\partial(c))$, $f#(c)$ and $g#(c)$.
+
+
+Let's consider a 1D line $l: \Delta^1 \rightarrow X$ in $X$, with vertices
+$l[0], l[1]$. The image of this line under $f$ is $m \equiv f \circ l$  with $m[0], m[1]$ as vertices,
+and under $g$ is $n$ with $n[0], n[1]$ as vertices. Let $H: [0, 1] \times [0, 1] \rightarrow X$
+be the homotopy between $H(0) f$ and $H(1) = g$.  The prism is image of the function $p: [0, 1] \times \Delta^1$, defined
+as $p(t, i) \equiv H(t, l(i))$. We see that $p(0, i) = H(0, l(i)) = f(l(i)) = m$, and $p(1, i) = g(l(i)) = n$.
+So, we get a "prism" whose endpoints are $m = f \circ l$ and $n = g \circ l$.
+
+
+# Singular homology: induced homomorphism 
+
+The space of chains $C[i]$ of a topological space $X$
+is defined as all functions $\Delta^i \rightarrow X$.
+The boundary map is defined as:
+
+$$
+\begin{aligned}
+&\partial[n]: C[n] \rightarrow C[n-1] \\
+&\partial[n](\sigma) \equiv \sum_i (-1)^i \sigma|[v[0], v[1], \dots, \hat{v[i]}, \dots, v[n]]
+\end{aligned}
+$$
+
+where $\hat{v[i]}$ means that we exlude this vertex, and $v[0], v[1], \dots$ are the vertices
+of the domain $\Delta^i$.
+
+Now, say we have a function $f: X \rightarrow Y$, and a singular chain complex $D[n]$ for $Y$.
+In this case, we can induce a chain map $f#: C[n] \rightarrow D[n]$, given by:
+
+$$
+\begin{aligned}
+&f#: C[n] \rightarrow D[n] \\
+&f#: (\Delta^n \rightarrow X) \rightarrow (\Delta^n \rightarrow Y) \\
+&f#(\sigma) = f \circ \sigma
+\end{aligned}
+$$
+
+We wish to show that this produces a homomorphism from $H[n](X) \equiv \ker \partial[n]/ \im \partial[n+1]$
+to $H[n](Y) \equiv \ker \partial[D][n] / \im \partial[D][n+1]$. To do this, we already have a map from  $C[n]$ to $D[n]$.
+We need to show that it sends $\ker \partial[n] \mapsto \ker \partial[D][n]$ and.
+
+The core idea is that if we have abelian groups $G, H$ with subgroups $M, N$, and a homomorphism
+$f: G \rightarrow H$, then this descends to a homomorphism $f': G/M \rightarrow H/N$ iff
+$f(M) \subseteq N$. That is, if whatever is identified in $G$ is identified in $H$, then our
+morphism will be valid. To prove this, we need to show that if two cosets $g + M$, $h + M$
+are equal, then their images under $f'$ will be equal. We compute $f(g+M) = f(g) + f(M) = f(g) + 0$,
+and $f(h + M) = f(h) + f(M) = f(h) + 0$. Since $g + M = h+M$, we get $f(g) = f(h)$. Thus, the morphism
+is well-defined.
+
+
+
+# Demoscene tools
+
+- [WaveSabre](https://github.com/bollu/WaveSabre). [Talk at DemoBit](https://youtu.be/JjFyHI1b_Tw?t=7246)
+- [aDDIct](https://conspiracy.hu/release/tool/) --- This not helpful as it contains no sources.
+- [bonzomatic](https://github.com/bollu/Bonzomatic) --- useful for livecoding shaders.
+- [Buzz DAW](https://en.wikipedia.org/wiki/Jeskola_Buzz)
+- [Supercollider](https://supercollider.github.io/)
+
+
+# Binaural Beat
+
+> The beating effect happens when sound waves physically mix together.  Believe
+> it or not though, there is a part of your brain where it mixes (adds) the
+> sounds from each ear together as well.  That means that if you play similar
+> frequencies to different ears, they will mix INSIDE YOUR BRAIN, and you will
+> perceive a different kind of beating effect.
+
+
+# Low pass filter by delaying
+
+ I don't understand this.  Full text with context:
+
+> For example, at a sample rate of 10kHz, one sample delay is equal to the
+> sample time of 0.0001 seconds. ... A signal at 1000Hz has a period of 0.001
+> seconds and a one sample time delay is 1/10 of the period, or 36°. 
+
+I understand the math upto this point. 0.001 seconds -> 360 degrees, so 0.0001
+seconds -> 36 degrees. Thus, a sample delay of 0.0001 seconds corresponds to 36
+degrees of phase shift.
+
+What's the next bit? I don't understand this:
+
+>  The larger phase difference results in a lower amplitude and the higher
+>  frequency signal is attenuated more than the lower frequency signal. The
+>  effect is that of a low-pass filter. 
+
+1. Why does a large phase shift result in a lower amplitude?
+2. Why is the higher frequence signal attenuated (= weakened, as far as I understand) more?
+
+
+Wiki claims that this discrete process is the "same as" the low pass filter:
+
+```cpp
+function lowpass(real[0..n] x, real dt, real RC)
+    var real[0..n] y
+    var real α := dt / (RC + dt)
+    y[0] := α * x[0]
+    for i from 1 to n
+        y[i] := α * x[i] + (1-α) * y[i-1]
+    return y
+```
+
+One proof strategy that I can think of:
+1. Split signal into fourier components
+2. Notice that if the frequency is higher than some threshold, we will start introducing phase deltas larger
+   than $\pi$. This will cause cancellation of a $\sin$ wave.
+3. See that this makes sure that only low frequency signals live.
+
+I'm now trying to understand why this doesn't "wrap around". I would naively
+expect: (1) low frequency = minimal destructive interference (2) high frequency
+(phase difference 180 degrees) = maximal destructive interference (3) EVEN
+HIGHER frequency (phase difference greater than 180 degrees) = non-maximal
+destructive interference?
+
+I believe the resolution is to remember that we only build signals upto what
+Niquist lets us, so we build at max a sin wave of frequency `fs/2` where the same
+period is `fs`. Thus, when we phase shift, we will get a phase of at max 180 degrees.
+
+
+As to why the Niquist ratio is `1/2`, imagine a circle. a `1/2` is how much
+"ambiguity" we have in the phase. In that, if we jump by more that `pi`, (ie,
+more than `1/2` of the circle), we will  ????
+
+
+# Octaves are double frequency apart (TODO)
+
+As I am reading `BasicSynth`, I learnt that:
+
+> Each half-step between notes in the
+> musical scale represents a frequency ratio of $2^{1/12} \simeq 1.059$. 
+
+The $(\cdot)^{1/12}$ is reasonable, because an octave contains 12 semitones.
+The base $2$ is quite mysterious! I wanted to know why this is.
+
+
+a multiple oCochlea and why frequencies are 1:2
+
+> https://physics.stackexchange.com/questions/44469/octave-equivalence-biological-or-more
+
+# Bias and gain
+
+- Bias lets us move the "mean" of the  plot.
+- Gain lets us move "how quickly" we get to the mean.
+
+# Show, don't tell
+
+Think of effects, not causes.
+
+- It was autumn -> the leaves crunched under her feet.
+- She was blind -> She felt for the chair with her white cane.
+
+- https://www.youtube.com/watch?v=YAKcbvioxFk
+
+# Try and think of natural transformations as intertwinings
+
+I'm comfrotable with elementary representation theory, but I feel far less at home manipulating
+natural transformations. I should try and simply think of them as the intertwinig operators
+in representation theory, since they do have the same diagram. Then the functors become
+two representations of the same category (group), and the natural transformation is an
+intertwining operator.
+
+If one does this, then Yoneda sort of begins to look like Schur's lemma. Schur's
+lemma tells us that intertwinings between irreducible representations are either zero
+or a scaling of the identity matrix. That is, they are one-dimensional, and the space
+of all intertwinings is morally isomorphic to the field $\mathbb C$. If we specialize
+to character theory of cyclic groups $Z/nZ$, let's pick one representation to be
+the "standard representation" $\sigma: x \mapsto e^{i 2 \pi x/n\}$. Then, given some other
+representation $\rho: Z/nZ \rightarrow \mathbb C^\times$, the intertwining between
+$\sigma$ and $\rho$ is determined by where $\rho$ sends $1$. If $\rho(1) = k \sigma(1)$
+for $k \in \mathbb R$, then the intertwining is scaling by $k$. Otherwise, the intertwining
+is zero. This is quite a lot like Yoneda, where the natural transformation is fixed
+by wherever the functor sends the identity element.
+
+
+# Subobject classifier measures how much we need to pay to access fact
+
+- Truths are free. We don't pay any of the monoid (given $A \rightarrow B$,
+  subobj assigns full monoid to image of $A$ in $B$).
+- We go bankrupt trying to prove really false things (subobj assigns emptyset)
+- To things that are truth adjacent, we spend some of our monoid (by dividing the filter)
+  to get to the element. So we "spend money" to "fix the lie" of the element in $B$ not being truthful,
+  but close enough to the truth.
+
+
+# Spectral norm of Hermitian matrix equals largest eigenvalue (WIP)
+
+Define $||A|| \equiv \max \{ ||Ax|| : ||x|| = 1 \}$. Let $A$ be 
+hermitian. We wish to show that $||A||$ is equal to the largest eigenvalue.
+The proof idea is to consider the eigenvectors $v[i]$ with eigenvalue $\lambda[i]$
+with largest eigenvalue $v^\star$ of eigenvalue $\lambda^*$ and claim that
+$||Av^\star|| = \lambda^*$ is maximal.
+
+# Penrose cohomology [WIP]
+
+<img src="./static/penrose-triangle.png"/>
+
+- [I should just reach Cech Cohomology for this!](https://en.wikipedia.org/wiki/%C4%8Cech_cohomology)
+
+# Dupin indicatrix (WIP)
+
+- Hicks notes on diffgeo
+
+# Rodrigues curvature formula (WIP)
+
+- Hicks notes on diffgeo (WIP)
+
+# Weingarten map (WIP)
+
+- Hicks notes on diffgeo
+
+# When maps cannot be lifted to the universal cover
+
+-  https://math.stackexchange.com/questions/1734540/existence-of-a-lifting
+
+# Nets from Munkres (WIP)
 
 #### Directed set
 A direct set is a partial order $J$ which has "weak joins".
@@ -30,23 +817,79 @@ is some sort of portion of $J$ that leaves out a finite part of the bottom of $J
 
 #### Cofinal subset is directed
 
-
 #### Nets
 
 Let $X$ be a topological space. a net is a function $f$ from a directed set $J$ into $X$.
 We usually write this as $(x_j)$. 
 
-#### Converge of a net
+#### Net eventually in a subset $A$
 
-We say a net $(x_j)$ converges to a limit $x^* \in X$, written as $(x_j) \rightarrow x^*$ iff
-for each neighbourhood $U$ of $x^*$, there is a lower bound $j_U \in J$ such that for all
-$j_U \leq j$, $x_j \in U$. That is, the image of the net after $j_U$ lies in $U$.
+A net $(x_j)$ is eventually in a subset $A$ if there exists an $i \in I$ such that for all
+$j \geq i$, $x_j \in A$.  This is an $\exists \forall$ formula.
+
+#### Net cofinally/frequently in a subset $A$
+
+The net $x[:]$ is cofinally in a subset $A$ if the set $\{ i \in I : x_i \in A \}$
+is cofinal in $I$. This means that for all $j \in J$, there exists a $k$ such that
+$j \leq k$ and $x_k \in A$. This is a $\forall \exists$ formula. So intuitively,
+the net could "flirt" with the set $A$, by exiting and entering with elements in $A$.
 
 
+#### Eventually in $A$ is stronger than frequently in $A$
+
+Let $x[:]$ be a net that is eventually in $A$. We will show that such a net is also
+frequently in $A$. As the net is eventually in $A$, there exists an $e \in I$ (for eventually), such that
+for all $i$, $e \leq i \implies x[i] \in A$. Now, given an index $f$ (for frequently),
+we must establish an index which $u$ such that $f \leq u \land x[u] \in A$.
+Pick $u$ as the upper bound of $e$ and $f$ which exists as the set $I$ is directed. 
+Hence, $e \leq u \land f \leq u$. We have that $e \leq u \implies x[u] \in A$.
+Thus we have an index $u$ such that $f \leq u \land x[u] \in A$.
+
+#### Not Cofinal/frequently in $A$ iff eventually in $X - A$
+
+##### Not Frequently in $A$ implies eventually in $X - A$
+
+Let the net be $x[:]$ with index set $I$. Since we are not frequently in $A$,
+this means that there is an index $f$ at which we are no longer frequent.
+That is, that there does not exist elements
+$u$ such that $f \leq u \land x[u] \in A$. This means that for all elements
+$u$ such that $f \leq u$, we have $x[u] \not \in A$, or $x[u] \in X - A$.
+Hence, we can choose $f$ as the "eventual index", since all elements above $f$
+are not in $A$.
+
+##### Eventually in $X - A$ implies not frequently in $A$
+
+Let the net be $x[:]$ with index set $I$.
+Since the net is eventually in $X - A$, this means that
+there is an index $e$ (for eventually) such that for all $i$ such that $e \leq
+i$ we have $x[i] \in X - A$, or $x[i] \not \in A$.  Thus, if we pick $e$ as the
+frequent index, we can have no index $u$ such that $e \leq u \land x[u] \in A$,
+since all indexes above $e$ are not in $A$. 
+
+
+#### Convergence of a net
+
+We say a net $(x_j)$ converges to a limit $l\in X$, written as $(x_j) \rightarrow l$ iff
+for each neighbourhood $U$ of $l$, there is a lower bound $j_U \in J$ such that for all $k$,
+$j_U \leq k \implies x_k \in U$. That is, the image of the net after $j_U$ lies in $U$. In other words,
+the net $(x_j)$ is eventually in every neighbourhood of $l$. This is a $\forall \exists \forall$
+formula (for all nbhd, exists cuttoff, for all terms above cutoff, we are in the nbhd)
+
+#### Limit point of a net
+
+We say that a point $l$ is a **limit point** of a net if $x$ is
+cofinally/frequently in every neighbourhood of $A$. That is,
+for all neighbourhoods $U$ of $A$, for all indexes $j \in J$, there
+exists an index $k[U, j]$ such that $j \leq k[U, j] \land x[j] \in U$.
+This ia $\forall \forall \exists$ formula (for all nbhd, for all
+indexes, there exists a higher index that is in the nbhd).
 
 #### Converge of a net with net as $\mathbb N$
 
+
 #### Product of nets
+
+#### Convergenge of product nets iff component nets converge
 
 #### Nets in Hausdorff spaces converge to at most one point
 
@@ -68,6 +911,28 @@ $j_U \leq j$, $x_j \in U$. That is, the image of the net after $j_U$ lies in $U$
 
 #### Compact implies every net has convergent subnet
 
+#### Universal Net
+
+#### Every net has universal subnet
+
+#### Universal net converges in compact space
+
+#### pushforward of universal net is universal
+
+
+#### Tychonoff's theorem
+
+Let $\{ X_\alpha : \alpha \in \Lambda \}$ is a collection of compact
+topological spaces. Let $X \equiv \prod_{\alpha \in \Lambda} X_\alpha$ be the 
+product space. Let $\Phi: D \rightarrow X$ be a universal net for $X$.
+For each $\lamba \in \Lambda$, the push forward net $\pi_\lambda \circ \Phi: D \rightarrow X_\lambda$
+is a universal net. Thus, it converges to some $x_\lambda \in X_\lambda$.
+Since products of nets converge iff their components converge, and here all the components
+converge, the original net also converges in $X$. But this means that $X$ is compact
+as the universal net converges.
+
+- [Pete Clark's notes on point set topology](http://alpha.math.uga.edu/~pete/pointset.pdf)
+- [Tanuj Gupta: Tychonoff theorem](https://www.math.tamu.edu/~tanujgupta17/tychonoff.pdf)
 
 
 # Limit point compactness from Munkres
@@ -304,7 +1169,7 @@ $$
 
 Hence we are done, we have indeed produced a legitimate section.
 
-#### Fiber products of Spec of affine scheme (WIP)
+#### Fiber products of Spec of affine scheme 
 
 Let $R, A, B$ be rings. consider $A \otimes_R B$. What is $Spec(A \otimes_R B)$, in terms of
 $Spec(A)$, $Spec(B)$, and whatever data you like about $R$? (Say I give you both $R$ and $Spec(R)$).
@@ -598,11 +1463,6 @@ NOTE TO SELF: there should be a more direct proof that uses the fact that the fi
 
 
 
-# Penrose cohomology [WIP]
-
-<img src="./static/penrose-triangle.png"/>
-
-- [I should just reach Cech Cohomology for this!](https://en.wikipedia.org/wiki/%C4%8Cech_cohomology)
 
 # Lie bracket commutator from exponentiation (WIP)
 
@@ -633,7 +1493,6 @@ This makes $p$ locally bijective on a nbhd.
 #### Path lifting
 
 > A time varying embedding can be lifted for all time given a lift of initial conditions.
-
 > A smoothly varying family of embeddings can be filted given an initial lift.
 
 The fact that we work with intervals are of paramount importance. They are compact,
@@ -641,13 +1500,6 @@ and we can thus use induction to path lift.
 
 - [Kan extension condition](https://www.imsc.res.in/~kapil/geometry/topol/kan.html)
 
-
-To prove this, say 
-
-# Lefschetz fixed point theorem (WIP)
-
-#### Deducing Euler Characteristic from Lefschetz
-#### Deducing Brouwer from Lefschetz
 
 # Pasting lemma
 
@@ -688,11 +1540,6 @@ then so is $0 \rightarrow A \otimes M' \rightarrow A \otimes M \rightarrow A \ot
 put together from the other two. So $M$ is the primary. Then by human
 convention, we choose the single prime on the left and the double prime on the
 right).
-
-
-# Projective resolution / fundamental theorem of homological algebra (WIP)
-
-https://www.youtube.com/watch?v=05afG63tUSk
 
 
 # Seeing the semidirect product of the dihedral group.
@@ -785,17 +1632,6 @@ $f_T(x \otimes y) = f(x, y)$ uniquely determines $f_T(x \otimes y)$ if $f(x, y)$
 If not, the map $f_T$ is ill-defined, as we cannot "kan extend" $f_F$ along $f_T$.
 
 
-# Dupin indicatrix (WIP)
-
-- Hicks notes on diffgeo
-
-# Rodrigues curvature formula (WIP)
-
-- Hicks notes on diffgeo (WIP)
-
-# Weingarten map (WIP)
-
-- Hicks notes on diffgeo
 
 # Recovering topology from sheaf of functions: Proof from Atiyah Macdonald
 
@@ -866,7 +1702,7 @@ to argue about zero sets of functions.
    maps to what we would expect; it trades the algebraic definition of "does not vanish" to the geometric one,
    while describing the exact same phenomena.
 
-# Urhyson's lemma (WIP)
+# Urhyson's lemma 
 
 We don't know any continuous functions on compact Haussdorf spaces; Let $X$ be a topological space. What functions
 $X \rightarrow \mathbb R$ are continuous? We only have the constant functions!
@@ -1798,13 +2634,6 @@ we need to check that it's an isomorphism, so we need to make sure that this has
 - [Video: IAS PiTP 2015](https://www.youtube.com/watch?v=jEEQO-tcyHc)
 
 
-# Spectral norm of Hermitian matrix equals largest eigenvalue (WIP)
-
-Define $||A|| \equiv \max \{ ||Ax|| : ||x|| = 1 \}$. Let $A$ be 
-hermitian. We wish to show that $||A||$ is equal to the largest eigenvalue.
-The proof idea is to consider the eigenvectors $v[i]$ with eigenvalue $\lambda[i]$
-with largest eigenvalue $v^\star$ of eigenvalue $\lambda^*$ and claim that
-$||Av^\star|| = \lambda^*$ is maximal.
 
 # Non examples of algebraic varieties
 
@@ -2373,11 +3202,19 @@ Which is exactly cramer's rule.
 - [PlanetMath: proof of Cayley Hamilton for commutative rings](https://planetmath.org/proofofcayleyhamiltontheoreminacommutativering)
 
 
-# Nakayama's lemma (WIP)
+# Nakayama's lemma
 
-[Geometric applications of Jacobson radical](https://en.wikipedia.org/wiki/Jacobson_radical#Geometric_applications)
+I read the statement as $IM = M \implies M = 0$, when $I$ is in the jacobson radical.
+1. Essentially, it tells us that if a module $M$ "lives by the $I$", then it also "dies by the $I$". 
+2. Alternatively, we factor the equation as $M(I - 1) = 0$. Since our ideal $I$
+   is a member of the jacobson radical, $(1 - I)$ is "morally" a unit and thus $M = 0$.
+   This is of course completely bogus, but cute nontheless.
+3. We can think of a graded ring, say $R[x]$ acting on some graded module $M$ (say, a subideal, $M = (x^2)$). When we compute $IM$,
+   this will bump up the grading of $M$. If $IM = M$, then $M$ could not have had non-trivial elements in the first place, since the
+   vector of, say, "non-zero elements in each grade" which used to look like $(v_0, v_1, v_2, \dots)$ will now look like $(0, v_0, v_1, \dots)$.
+   Equating the two, we get $v_0 = 0, v_1 = v_0 = 0, v_2 = v_1 = 0$ and so on, collapsing the entire ring.
 
-# vector fields over the 2 sphere (WIP)
+# Vector fields over the 2 sphere
 
 We assume that we already know the hairy ball theorem, which states that
 no continuous vector field on $S^2$ exists that is nowhere vanishing. Using
@@ -2469,7 +3306,6 @@ his writing style. Here's a big list of my favourite quotes:
 > of time and geologic upheavals of cosmic savagery.
 
 > uttermost horrors of the aeon-old legendry
-
 
 > The moon, slightly past full, shone from a clear sky, and drenched the
 > ancient sands with a white, leprous radiance which seemed to me somehow
@@ -2935,7 +3771,7 @@ have
 - Cox, Little, O'Shea: computational AG.
 
 
-# Covering spaces (WIP)
+# Covering spaces
 
 #### Covering spaces: Intuition
 
@@ -3122,10 +3958,6 @@ independent of $s$.
 
 
 
-# Van Kampen theorem (WIP)
-
-
-- [Reference video](https://www.youtube.com/watch?v=eb_Wa8MFuOY&list=PLN_4R2IuNuuTWD00k9BAB1fo0UldBHnME&index=24)
 
 # Wedge Sum and Smash Product
 
@@ -3271,7 +4103,6 @@ This gives us the adjunction between suspension and looping.
 - [CW complexes](https://www.youtube.com/watch?v=XWg4LVbmm3M&list=PLN_4R2IuNuuTWD00k9BAB1fo0UldBHnME&index=21)
 - [Stable homotopy theory 1](https://www.youtube.com/watch?v=neC3HUyqlV0)
 
-# Tychonoff theorem (WIP) 
 
 # Simply connected spaces
 
@@ -3470,11 +4301,6 @@ This was used the create the PR that
   collecting powers.
 - The same argument works for any finitely generated abelian group.
 
-# Alternative orderings for segtrees (WIP)
-
-# Group structure of nim games (WIP)
-
-#### Mex
 
 # Euler characteristic of sphere
 
@@ -3667,7 +4493,7 @@ The infinite "to remove" has been split by "safely".
 to remove %v safely.
 ```
 
-# Yoneda from string concatenation (WIP)
+# Yoneda from string concatenation
 
 I'm trying to build intuition for Yoneda (again) this time from the perspective
 of strings and concatenation. The idea is that the identity function behaves
@@ -3716,7 +4542,7 @@ concatenation. So can we understand yoneda from this model?
  and takes these objects to other objects.
 
          
-# Right Kan extensions as extending the domain of a functor (WIP)
+# Right Kan extensions as extending the domain of a functor
 
 #### First over functions (fake category fluff)
 
@@ -3841,12 +4667,16 @@ $$
 \end{aligned}
 $$
 
-- So we can write higher derivatives too as $poly(1/x)$ times $exp(-1/x)$ which also decays
+- So we can write higher derivatives too as $poly(1/x)$ times $exp(-1/x)$ which also decays 
   rapidly to $0$.
 
- - [Flat functions on wikipedia](https://en.wikipedia.org/wiki/Flat_function)
+- Philosophically, what's going on is that a non-zero polynomial can only have a finite number of zeroes.
+  Since this function has an infinite number of zeroes around it's neighbourhood at $(x = 0)$,
+  any polynomial that agrees with this function in any neighbourhood must be identically zero everywhere.
 
-# Hopf Algebras and combinatorics (WIP)
+- [Flat functions on wikipedia](https://en.wikipedia.org/wiki/Flat_function)
+
+# Hopf Algebras and combinatorics
 
 > Started from algebraic topology in the 40s. In late 70s, Rota 
 > figured out that many combinatorial objects have the structure of a Hopf
@@ -4607,13 +5437,9 @@ to get a bound.
 # Among any 51 integers, that are 2 with squares having equal value modulo 100
 # $1^n + 2^n + \dots + (n-1)^n$ is divisible by $n$ for odd $n$
 # $10^{3n+1}$ cannot be written as sum of two cubes
-# dual of applicative [WIP]
 
 https://hackage.haskell.org/package/contravariant-1.5.3/docs/Data-Functor-Contravariant-Divisible.html
 
-# The dual of traversable [WIP]
-
-https://hackage.haskell.org/package/distributive-0.6.2.1/docs/Data-Distributive.html
 
 
 # Coq-club: the meaning of a specification
@@ -4913,7 +5739,7 @@ corresponds to an irrep of $S_n$.
 > lead to less understanding; more information may undermine trust; and more
 > information may make society less rationally governable.
 
-# Muirhead's inequality [WIP]
+# Muirhead's inequality
 
 We denote by $\sum_! F(x[1], \dots, x[n])$ the sum ov $F$ evaluated over all
 permutations. Formally:
@@ -5412,7 +6238,6 @@ if the move just made by the other player can block it.
 #### References
 - [Mathematical circles: Russian experience](https://bookstore.ams.org/mawrld-7)
 
-# Using the `bound` library (WIP)
 # Linear algebraic proof of the handshaking lemma
 
 We wish to show that the number odd vertices is even. Let $A$ be the adjacency
@@ -5711,10 +6536,6 @@ constant times the identity. That is, there exists a $\lambda$ such that $f = \l
 
 
 
-# Newton polygon and simplification, blowing up (WIP)
-
-- [Borcherds](https://www.youtube.com/watch?v=dGnfONlZwhQ&list=PL8yHsr3EFj53j51FG6wCbQKjBgpjKa5PX&index=34)
-
 # Daughters of destiny
 
 Captures the microcosm of what it means to live in India.
@@ -5745,7 +6566,6 @@ Captures the microcosm of what it means to live in India.
 - Talk: p-adics
 - Talk: smallpt-hs
 
-# Method of types in information theory(WIP)
 
 # Line bundles, a high level view as I understand them today
 
@@ -5820,13 +6640,8 @@ in India. It seems like traditional carpentry in India is dead, and the
 "replacements" are of terrible quality. I was also saddened that he so adamantly
 believes that it is fundamentally impossible for people to learn carpentry.
 
-# Resolution and first order logic (WIP)
 
-- [Stanford intro to logic](http://logic.stanford.edu/intrologic/public/index.php)
-
-# Kruskal card trick (WIP)
-
-# Discrete Riemann Roch (WIP)
+# Discrete Riemann Roch
 
 #### Divisors
 Function $V \rightarrow \mathbb Z$. We think of this as formal linear combination
@@ -6397,11 +7212,6 @@ the situation.
 #### References
 - [Post on haskell-cafe by Olaf Klinke](https://mail.haskell.org/pipermail/haskell-cafe/2020-December/133264.html)
 
-# Killing fields (WIP)
-
-#### References
-
-- [Killing vector field](https://physics.stackexchange.com/questions/225436/why-are-killing-fields-relevant-in-physics)
 
 # The mnemonica stack (WIP)
 
@@ -10466,8 +11276,7 @@ Replace the idea of:
 
 - Next question: is dominance also somehow 'linear'?
 - Answer: yes. We need quantitative types. When we branch from basic block `A`
-  into blocks `B, C`
-  attach `1/2A` to the control tokens from `(%tokb, %tokc) = br cond %cond0 B, C`.
+  into blocks `B, C`, attach `1/2A` to the control tokens from `(%tokb, %tokc) = br cond %cond0 B, C`.
   Now, if someone builds a token that's at a basic block `D` that is merged
   into by both `B, C`, they will receive a "full" `A` that they can use.
   Pictorially:
@@ -12343,7 +13152,7 @@ group's conjugacy structure.
 
 - [RabbitEar: library for building origami visualizations in the browser](https://rabbitear.org/docs/)
 - [ORIPA: tool for visualizing flat folded origami](https://github.com/oripa/oripa)
-- [TreeMaker: ]()
+- [TreeMaker:]()
 - [Origami Simulator: Tool to simulate origami, going from flat shaped to folded shaped](https://origamisimulator.org/)
 
 # Katex in duktape
@@ -14802,11 +15611,12 @@ Dehn function.
 
 ##### Geometric content of Area
 
-We define a map to be aninite, planar, oriented, connected and simply connected simplicial2-complex (!). 
-A map $D$ is a diagram over an alphabet $S$ iff every edge $e \in D$ has a label $lbl(e) \in S$ such that
-$lbl(e^{-1}) = (lbl(e))^{-1}$. Hang on: what does it mean to invert an edge?
-I presume it means to go backwards along an edge. So we assume the graph is
-directed, and we have edges in both directions.
+We define a map to be aninite, planar, oriented, connected and simply connected
+simplicial2-complex (!).  A map $D$ is a diagram over an alphabet $S$ iff every
+edge $e \in D$ has a label $lbl(e) \in S$ such that $lbl(e^{-1}) =
+(lbl(e))^{-1}$. Hang on: what does it mean to invert an edge?  I presume it
+means to go backwards along an edge. So we assume the graph is directed, and we
+have edges in both directions.
 
 A Van Kampen diagram over a group $G = \langle S | R \rangle$  is a diagram $D$
 over $S$ such that for all faces of $D$, the label of the boundary of $f$
@@ -27768,6 +28578,11 @@ For example: "More people have been to Berlin than I have."
 - `C-x space`: `rectangle-mark-mode` to select rectangles. `C-space` to lay down mark.
    I bind it to `C-x r r`.
 
+#### Org
+- `C-c C-c`: org-capture into code snippet.
+- `C-c C-d`: open org-capture list.
+- `C-c C-o`: follow a link.
+
 #### Auctex
 
 - `C-c C-a`: compile file.
@@ -27836,6 +28651,10 @@ to say "go forward in my history; OK go back" when I am
 exploring code. I don't *want* to keep track of whether
 I came to this buffer from the same buffer or another buffer.
 The fact that emacs needs this is moronic.
+
+Furthermore, once a mark is popped, it is lost forever. In vim, one can
+navigate backwards and forwards across movement. This is not possible with
+emacs.
 
 #### Scrolling half a page is broken
 
@@ -28102,6 +28921,15 @@ is something I wish to explore.
 y = \underset{x \in X}{\max} f(x)
 ```
 
+#### Spell check
+
+```
+ispell yourfile.tex
+aspell --mode=tex -c yourfile.tex
+hunspell -l -t -i utf-8 yourfile.tex
+```
+
+
 # Big list of Architecture 
 
 I have an interest in architecture and how it might relate to software.
@@ -28134,6 +28962,10 @@ things on architecture I wish to read and/or have read:
 
 # Big list of Recipes 
 
+#### Babish recipes
+
+- [Binging with babish: Shwarma makes pita](https://www.youtube.com/watch?v=iErqWGwso7o)
+- Chicken breast: https://www.youtube.com/watch?v=hR6agVkRRUo&list=PLopY4n17t8RBuyIohlCY9G8sbyXrdEJls&index=106
 
 #### Upma
 
@@ -28195,6 +29027,14 @@ grated coconut and blend all of it. It turns into a thick red paste.
   asaefoedita, garlic. Add all of this into the batter mix.
 - Allow batter to ferment overnight in the fridge.
 - Make pancakes the next day.
+
+#### Kerela style chicken curry
+
+- Chop ginger and garlic roughly, boil chicken, salt, pepper-ginger-garlic-turmeric.
+- Grate coconut finely, Roast grated coconut in a heated iron pan. Once well roasted,
+  kill heat, add chili and coriander powder and salt, and mix.
+- Next, fry thinly sliced onions in coconut oil.
+- Add the onions in as a garnish at the last step.
 
 #### Chutney
 
@@ -28263,12 +29103,21 @@ Contains words that I write, and ones that I enjoy.
 > productivity /
 > sprighty, fleeting attention /
 
+##### gesamtkunstwerk
+
+A Gesamtkunstwerk (German: [gəˈzamtˌkʊnstvɛʁk], literally "total artwork",
+frequently translated as "total work of art", "ideal work of art",
+"universal artwork", "synthesis of the arts", "comprehensive artwork", or
+"all-embracing art form") is a work of art that makes use of all or many art
+forms or strives to do so. The term is a German loanword which has come to be
+accepted in English as a core term in aesthetics.
+
+
+
 ##### anodyne
 
 not likely to cause offence or disagreement and somewhat dull.
 > "anodyne music"
-
-
 
 #### syncretism
 
@@ -28425,11 +29274,47 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
-Everyone knows that putting a untrained business major in charge of a
-squadron of soldiers would end badly. He might be able skate by until
-they got into combat, maybe, but after that they wouldn’t listen to
-him for long. But for some reason we think that putting an mba in
-charge of an engineering team is a good idea.
+
+> Now symmetry and consistency are convertible terms - thus Poetry
+> and Truth are one ~ Noether's theorem?
+
+> Science is a differential equation. Religion is a boundary condition.
+>(Alan Turing, quoted in J.D. Barrow, “Theories of everything”)
+
+> (I really detest the use of the word "training" in relation to professional
+> activities. Training is what you do to dogs. What you should be doing with
+> people is educating them, not training them. There is a big, big difference.)
+> ~ Ron Garret at JPL
+
+> “Simulated consciousness" was as oxymoronic as "simulated addition.”
+
+
+> A cylinder will roll like a sphere in one direction but not roll like a cube
+> in the other. That doesn't make it a sphere and a cube at the same time. It
+> makes it something different. (in analogy to wave-particle duality)
+
+
+> Talent hits a target no one else can hit; Genius hits a target no one else
+> can see..
+
+> Raising your floor (consistency) is just as important as raising your ceiling
+> (skill)
+
+> "The sky is the limit, so lets build rockets!"
+
+
+> The manner in which the mathematician works his way towards discovery by
+> shifting his confidence from intuition to computation and back again from
+> computation to intuition, while never releasing his hold on either of the
+> two, represents in miniature the whole range of operations by which
+> articulation disciplines and expands the reasoning powers of man. (Personal
+> Knowledge, 131)
+
+> Everyone knows that putting a untrained business major in charge of a
+> squadron of soldiers would end badly. He might be able skate by until they
+> got into combat, maybe, but after that they wouldn’t listen to him for long.
+> But for some reason we think that putting an mba in charge of an engineering
+> team is a good idea.
 
 > "On and on you will go, making sense of the world, forming notions of order,
 > and being surprised in ways large and small by their failure, forever." —
@@ -28440,7 +29325,6 @@ charge of an engineering team is a good idea.
 
 > "Never believe anything in politics until it has been officially denied" 
 > ~ Otto von Bismarck
-
 
 
 > A good proof is one that makes us wiser. -- Yuri Manin
@@ -28466,7 +29350,6 @@ charge of an engineering team is a good idea.
 
 > I hate greek drama. You know, wher everything happens off-stage. 
 > ~Downton abbey, s02e01
-
 
 > you have to speculate to accumulate
 
@@ -28500,7 +29383,6 @@ charge of an engineering team is a good idea.
 > Some folks prefer the carrot, I the stick. So I will use my considerable
 > expertise to stick it to you.
 
-
 > "Machine learning is like money laundering for bias"
 
 > Criticism is prejudice made plausible.” - H.L. Mencken
@@ -28515,7 +29397,6 @@ charge of an engineering team is a good idea.
 > what got Socrates killed. You've gotta make them understand what they don't
 > understand without making them want to kill you. That's what makes a great
 > teacher / leader / etc.
-
 
 > 'Every work of art is an uncommitted crime.' - Adorno.
 
@@ -28599,11 +29480,18 @@ which end you wish edit: press c]i} to perform the edit you describe.
 
 # Big list of Chess
 
+- On Lichess, goto `sound -> speech` to be able to HEAR moves! Similarly,
+  enable notation everywhere in preferences to get used to reading moves in
+  notation.
+
 - [How to defend `e5` in king's indian defense](https://www.youtube.com/watch?v=jAwSBrLk3Uw)
 - [King and pawn versus king](https://www.youtube.com/watch?v=OzskUgwPCEg&list=PLVWaFpMwtaGiBxi79IUqnqn67WF5g5PR4&index=27)
 - [All about forks](https://www.youtube.com/watch?v=51vnCWXXLGc&list=PLVWaFpMwtaGiBxi79IUqnqn67WF5g5PR4&index=49)
 
 - Good linux app: `scid vs pc`. Seems to contain engines .
+- Keep king on a *diagonal* 2 squares away from the knight to ensure safety.
+- Pro tip for king+queen checkmate : always keep the queen at a position as if u r trying to give a check with a knight.
+- knight+bishop: Bishop B7, King to B8. Knight to D7, and that's checkmate
 
 # Big list of shitposting
 
@@ -28718,3 +29606,99 @@ Plan: finish cardistry bootcamp, learn card control from 52kards.
 * r8   arg4 - 8$
 * r9   arg5 - 9
 ```
+
+# Big list of paper writing thoughts
+
+- There is low satisfaction of finishing and understanding a section, it seems
+  to flow a little too continuous.
+- Align figures to either all left or all right.
+- In structure, label references to future sections are non existent, so it
+  would help assure the reader in section x that you will talk more about the
+  uses of this in section y.
+
+# Big list of interpersonal thoughts
+-  What do you have in mind? works well to get to know what the other person
+   would like.
+- So the way I see it, is that as soon as you are
+  naming something, people may ask things like "What
+  is X exactly? What is X composed of?". So I can
+  clearly see reviewers ask "What is DSL composed
+  of?", but if we wouldn't name it, I wouldn't expect
+  reviewers to ask "What is the python interface composed of?"
+
+
+# Big list of common lisp
+
+```lisp
+;; to change package, goto SLIME, type `,` for `, set package`.
+(declaim (optimize (speed 0) (safety 3) (debug 3)))
+(defpackage :rasterizer1 (:use :common-lisp))
+```
+
+- [Paredit cheat sheet](https://www.emacswiki.org/emacs/PareditCheatsheet)
+- [SLIME tutorial](https://www.youtube.com/watch?v=_B_4vhsmRRI)
+- First thing to do: `slime-sync-package-and-default-directory` (`C-c ~`) to setup package and `cwd`.
+- SLIME + parinfer + SBCL is quite a pleasant emacs lisp experience.
+- LISPY-mode interface: eval expr (`e`), jump to definition (`F`), go back (`D`)
+- SLIME debugger: abort(`a`), continue(`c`), quit(`q`),  goto frame source (`v`), toggle frame details (`t`),
+  navigate next/prev frame(`n`, `p`), begin/end (`<`,`>`),
+  inspect condition (`c`), interactive evaluate at frame (`:`)
+- SLIME REPL: send expr to repl(`C-c C-y`), switch to repl (`C-c C-z`), eval last expr (`C-x C-e), trace (`C-c C-t`)
+- SMILE REPL debug: trace (`C-c C-t`). Write `(break)` in code and then run expression to enter debugger,
+  step into (`s`), step over (`x`), step till return (`o`), restart frame (`r`), return from frame (`R`),
+  eval in frame (`e`)
+- SLIME compile: compile whole file (`C-c C-k`), eval defun (`C-c C-c`), trace (`C-c C-t`).
+- SIME docs: lookup on hyperref (`C-c C-d h`)
+- SLIME goto: edit definition (`M-.`), come back (`M-,`). Find all references (`M-?`)
+- TODO: consider [Sly](https://github.com/joaotavora/sly) rather than SLIME?
+- SLIME repl options: set current working directory (`,!d`), set package
+  (`,push-package <package-name>`). Alternatively, execute `(swank:set-default-directory "/path/to/desired/cwd/")`
+- SLIME Restart: [`M-x slime-restart-inferior-lisp`](https://stackoverflow.com/questions/3725595/reset-state-in-common-lisp),
+    or call [`(progn (unload-feature 'your-lib) (load-library "your-lib"))`](https://emacs.stackexchange.com/a/26606/28600)
+- [SLIME force re-evaluation of `defvar`, use `M-x slime-eval-defun` (`C-M-x`)](https://emacs.stackexchange.com/questions/2298/how-do-i-force-re-evaluation-of-a-defvar).
+
+
+
+##### Toys
+
+> Special variables (Mutable globals) should be surrounded by asterisks. These are called earmuffs.
+> (defparameter *positions* (make-array ...))
+
+```lisp
+(assert (condition)
+       (vars-that-can-be-edited))
+;; https://lispcookbook.github.io/cl-cookbook/error_handling.html#handler-case-vs-handler-bind
+(defun divide (x y)
+  (assert (not (zerop y))
+          (y)   ;; list of values that we can change.
+          "Y can not be zero. Please change it") ;; custom error message.
+  (/ x y))
+```
+
+- [common lisp libraries read-the-docs](https://common-lisp-libraries.readthedocs.io/asdf/)
+- [Code eval play loop: livecoding opengl things](https://github.com/cbaggers/cepl)
+- Consider [lispy](https://github.com/abo-abo/lispy)  instead of `parinfer`.
+- [`cl-repl`](ros install koji-kojiro/cl-repl) for quick command line hackery.
+- stdlib is large.
+
+- Loading new libraries:
+
+```
+(ql:quickload "str")
+```
+
+# Big list of Agda
+
+- Load/check file: `C-c C-l`.
+- Show goals: `C-c C-?`.
+- Accept goal value: `C-c C-SPACE`
+- forward goal: `C-c C-f`
+- backward goal: `C-c C-b`
+- Normal form: `C-c C-n`
+- see how to write symbol: `M-x quail-show-key`.
+- Within goal: Case split: `C-c C-c`.
+- Within goal: Refine: `C-c C-r`. Partial give: makes new holes for missing arguments
+- Within goal: Type: `C-c C-t`.
+- Within goal: Deduce type: `C-c C-d`.
+- Within goal: Information: `C-c C-;`.
+
