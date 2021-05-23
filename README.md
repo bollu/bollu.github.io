@@ -15,21 +15,305 @@ A Universe of Sorts
 - [reading list and link dump](todo.html)
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
+# Simplicial approximation: maps can be approximated by simplicial maps (WIP)
+
+# Excision (WIP)
+
+
+# Marshall: Andrej (WIP)
+
+- [Marshall-lang](https://github.com/andrejbauer/marshall.git)
+
+
+# Limit is right adjoint to diagonal
+
+Suppose a category `C` possesses all small limits. This means that for any index category `J`
+and functor `F: J -> C`, the limit `lim F:C` exists in C. We wish to show that the functor
+`const: C -> (J -> C)` given by `const(c) = \j. c` has a right adjoint `lim: (F -> C) -> C`
+which produces the limit of a diagram. So we are saying that `const |- lim`.  So we need
+to provide a morphism `(const c -> diag) -> (c -> lim diag)`. A morphism
+`const c: J -> C -> diag: J -> C` is a natural transformation between the `const c` functor
+and the `diag` functor. This is, by definition, a cone with apex `c`. However, every cone
+factors through the limit cone of the diagram `diag`. Thus, we get a morphism `(c -> lim diag)`,
+from the fact that the cone with apex `c` factors through the cone with apex `lim diag`, as `lim diag`
+is the universal cone.
+
+This establishes that limit is right adjoint to diag. From this, can we get a cheap proof
+that right adjoints preserve limits ? Suppose `L: C -> D`, `R: D -> C` are adjoint `L |- R`.
+Now, consider limits in `D`. This can be considered by taking the category `(J -> D)`. 
+We get an adjunction `const: D -> (J -> D) |- lim: (J -> D) -> C`.
+
+```
+C<-g-D <-lim-   (J -> D)
+C    D          (J -> D)
+C-f->D -const-> (J -> D)
+```
+
+composing gives us:
+
+```
+C <-g- D <-lim-   (J -> D) <-f._ -  (J -> C)
+C      D          (J -> D)          (J -> C)
+C -f-> D -const-> (J -> D)  -g._ -> (J -> C)
+```
+
+I'm not sure how to proceed further, but I feel that it must be possible to proceed! I lack
+the technology, unfortunately, to make this go through.
+
+
+# Working out why right adjoints preserve limits.
+
+We have `L: C -> D` and `R: D -> C` adjoints functors,
+so we have the condition:
+1. Hom(L(a): D, b: D) ~= Hom(a: C, R(b): C)
+
+We will also show that `Hom(A, -)` preserves limits:
+
+```
+Hom(a, lim (F: J -> C):C) : Set ~= lim ({Hom(a, -) . F}: J -> Set): Set
+ Hom(a, lim (F: J -> C):C) : Set ~= lim (\j. Hom(a, F(j)): J -> Set): Set
+```
+
+
+The above statement, fully elaborated with all the types looks as follows:
+
+```
+lim :: (J -> K) -> K
+Hom(a: C, {lim (F: J -> C)}:C ): Set ~= 
+lim (\j. Hom(a, F(j)): J -> Set): Set
+```
+
+Furthermore, we also know from the Yoneda embedding, that `x ~= Hom(x, -)` for all `x`.
+Given these two facts, we can speedily derive that a right adjoint preserves limits:
+
+```
+Hom_C(a:C , R(lim F: J -> D)): Set 
+= Hom_D(L(a), lim F: J -> D) [Adjunction]
+~= {lim (\j. Hom_D(L(a), F(j)): J -> Set}: Set [Hom lim = lim Hom]
+~= {lim (\j. Hom_C(a, R(F(j)))): J -> Set}: Set [Adjunction inside lim]
+~= Hom_C(a, {\j. R(F(j))}: J -> C): C [lim Hom = Hom lim]
+~= Hom_C(a, R . F)
+```
+
+
+
+#### `Hom(a, -)` preserves limits:
+
+We wish to show that the `Hom(a, -)` functor preserves limits. That is:
+
+```
+Hom(a, lim F: J -> C): Set ~= lim(\j. Hom(a, F(j)): J -> Set): Set
+```
+
+Let's start with `Hom(a, lim F: J -> C): Set`. An element of this
+is a morhism `arr: a -> lim F` from `a` to the apex
+of the limit cone `lim F`. We need to translate this into a `lim(\j. Hom(a, F(j)): J -> Set): Set`,
+which is a family of morphisms from each `a` to each `{ F(j) : j in J}`. This is obtained
+by composing the projection maps `pi(j): lim F -> F(j)` with `arr: a -> lim F` to 
+get `pi(j) . arr : a -> F(j)` which lives in `Hom(a, F(j))`. We get the limit by considering
+the family of these maps, as the Limit in `Set` is just a product with coherence conditions,
+and an element of the limit is a tuple/family with coherence conditions.
+
+To go the other way around, suppose we have an element in the limit
+`lim(\j. Hom(a, F(j)): J -> Set): Set`. This means that we have a family of maps from `a` to `F(j)`
+which obeys the coherence conditions. This means that `a` is the apex of some valid cone. But we
+know that `lim F` is the universal cone, thus the `a` cone must factor through `lim F`. This gives
+us a factoring map `factor: a -> lim F`. The map `factor` lives in `Hom(a, lim F)`. This gives the other
+way round.
+
+
+Thus, the two sets are equivalent, and hence `Hom(a, -)` preserves limits (almost by definition).
+
+
+# Limit/Colimit/Cone/Cocone: the arrows are consistent!
+
+I sometimes wonder if a product is a limit or a colimit (not really, because 
+I remember that limits are product + equalizers, but it makes for a nice story
+nonetheless). I realised that the arrows of a cone/co-cone are always consistent.
+Since a cone has arrows _out_ of the apex, the universal cone is given by arrows _into_ the apex
+to be able to compose arrows
+Similarly, since a co-cone has arrows _into_ the apex, the universal co-cone must have arrows
+_out_ of the apex into the apex of another co-cone. Thus a terminal object must be a limit/cone,
+since we want arrows _into_ it (by universality), and that  is compatible if the cone itself has arrows
+_out_ of the apex, ie, a limit, since a limit is a product and thus has projections out of it.
+
+
+
+# Representable Functors
+
+imagine image of functors $F: C \rightarrow D$, $G: C \rightarrow D'$ as lying in sheets.
+Then a nautural transformation $\eta$ goes "perpendicular to these sheets. Often,
+knowing the natural transformation at one point determines it at every other point, if the
+category is rich-in-morphisms (eg. Set is very rich in morphisms). Now if we think of $[C, Set]$
+(category of functors from $C$ to $Set$), we have all the Hom functors here, such as $Hom(x, -)$,
+$Hom(y, -)$, $Hom(z, -)$ etc. We may have some other functor $F: C \rightarrow Set \in [C, Set]$.
+If this functor $F$ is isomorphic to some Hom-functor $Hom(a, -)$, then the functor $F$ is said
+to be a representable functor since it is represented by a single object $a$ through $Hom(a, -)$.
+PArametric polymorphism in haskell, that forces us to write one formula for all types makes
+these functions automatically natural transformations. So any implementation of a function
+such as `foo :: Maybe a -> [a]` will automatically be a nautral transformation (?)
+
+
+Let's try and check if the list functor is representable. If I pick `foo :: (Integer -> x) -> [x]`
+this direction can be implemented as `foo f = fmap f [0,1..]`. On the other hand, the
+other way round does not work: `foo:: [x] -> (Integer -> x)` can't always be implemented. It's
+not representable (proof by haskell intuition).
+
+```hs
+{-# LANGUAGE ExplicitForAll #-}
+{-# LANGUAGE RankNTypes #-}
+{-# LANGUAGE TypeFamilies #-}
+{-# LANGUAGE InstanceSigs #-}
+type Hom a b = a -> b
+type Nat f g = forall x. f x -> g x
+class Representable f where 
+    type Rep f :: * -- the representing object o whose Hom(o, -) ~= f
+    -- tabulate :: Nat (Hom (Rep f)) f
+    -- tabulate :: forall x. Hom (Rep f) x -> f x
+    tabulate :: forall x. ((Rep f ->  x)) -> f x
+    -- index :: Nat f (Hom (Rep f))
+    -- index ::  forall x. f x ->  (Hom (Rep f) x)
+    index ::  forall x. f x ->  (Rep f -> x)
+
+
+```
+
+`Stream` is representable:
+
+```hs
+data Stream a = Cons a (Stream a)
+instance Representable Stream where
+   type Rep Stream = Integer
+   tabulate i2x = go i2x 0 where
+      go :: (Integer -> x) -> Integer -> Stream x
+      go f i = Cons (f i) (go f (i+1))
+
+   index :: Stream x -> Integer -> x
+   index (Cons x xs) n = case n of 0 -> x; not0 -> index xs (n-1)
+```
+
+In general, things that are products tend to be representable, while things
+that are sums tend not to.
+
+#### Every presheaf is a colimit of representables
+
+Roughly, every presheaf $P: C \rightarrow Set$ can be written by "gluing" (union + equivalence relation/colimit)
+functors of the form $Hom(a_i, -)$. Let $P$ be the presheaf. To say that it
+can be written as a colimit of Hom-sets, this means that we have some (yet unknown)
+diagram $dgrm: J \rightarrow [C, Set]$ such that $P$ is the colimit of such a
+set. Unwrapping what this means, it means that we have a functor $dgrm: J \rightarrow [C, Set]$ such that
+the image of $J$ is always a hom-set. That is, $dgrm(j \in J) = Hom(c_j, -) \in [C, Set]$. Furthermore,
+since $P$ is a colimit, we have arrows of the form $dgrm(j) = Hom(c_j, -) \rightarrow P$. Recall that such an
+arrow is a natural transformation between $Hom(c_j, -)$ and $P$. Also recall that by the Yoneda lemma,
+such natural transformations $Hom(c_j, -) \rightarrow P$ are in natural bijection with elements in $P(c_j)$. So at some
+point, we'll probably need to pick elements $P(c_j)$. We're not done yet, this is what one part of 
+what it means to be a colimit; we also need all the diagrams to commute!  (1)
+the embedding natural transformations $Hom(c_j, -) \rightarrow P$ arrows
+commute with image of the arrows in $J$, of the form $Hom(c_j, -) \rightarrow Hom(c_{j'), -)$.
+(2) that $P$ is the universal object in $[C, Set]$ such that
+this rats nest of hom-sets embeds perfectly into $P$. Now the problem boils
+down to designing a $dgrm: J \rightarrow [C, Set]$ which picks out enough
+hom-sets and relations between the hom-sets such that $P$ is the colimit of
+such a $dgrm$.
+
+
+The idea, once, again, goes back to (a) Yoneda, and (b) Grothendeick. It
+appears that to be able to pick out such embedding arrows for the co-cone
+$Hom(c_j, -) \rightarrow P$, we need elements $P(c_j)$. Soo let's build a
+category that does exactly that; This new category called as a _Grothendieck construction_. 
+Given a category $C$ and a presheaf $P: C \rightarrow Set$, this new category called $el(P)$ 
+has as objects pairs of the form $(c \in C, u \in P(c))$. So we have a pair of an abstract object $c \in C$,
+and an element of its set $u \in P(c)$, as $P(c) \in Set$, as $P$ is a presheaf, thus has the type $P: C \rightarrow Set$.
+The arrows in this category $el(P)$ are derived from arrows in the original category $c \xrightarrow{a} d$.
+Such an arrow lifts to a set-function thanks to the presheaf, $P(c) \xrightarrow{P(a)} P(d)$. If we now have
+$u \in P(c)$, we can then build an arrow in $el(C)$ which takes $(c \in C, u \in P(c)) \xrightarrow{el(P)(a)} (d \in C, P(a)(u) \in P(d))$.
+
+
+Picture speaks a thousand words:
+```
+C | c -a→ d
+Set | P(c) -P(a)→ P(d)
+Set | u ∈ P(c) -P(a)→ d ∋ P(a)(u)
+el P | (c∈C, u∈P(c)) 
+el P | (c∈C, u∈P(c)) -el a→ (d∈C, P(a)(u)∈P(d))
+```
+
+So, this category gives us a way to "locate ourselves" within the set $P(c)$, which will be instrumental
+in creating the arrows (natural transformations) of the form $Hom(c_j, -) \rightarrow P(c_j)$, as asked of us by the cocone.
+This also hints at why we use colimis and not limits: because the yoneda goes from the $Hom(c_j, -)$ to $P$, we can only conjure
+arrows into $P$ via Yoneda, thereby forcing us to use a colimit.
+
+We claim that we should choose the diagram category as $J\equiv el(P)$, with the diagram functor $dgrm: el(P) \rightarrow [C, Set]$ given
+by $dgrm(c \in C, u \in P(c)) : el(P) \equiv Hom(c, -) : [C, Set]$. This embeds $(c, u \in P(C))$ where $u$ is a way to locate $P$'s
+view of $C$ as a Hom-set $Hom(c -)$. To give the natural transformation from the image of the diagram to the apex of the cocone $P$,
+we use Yoneda: We need an arrow $Hom(c, -) \rightarrow P$, which we know is in bijection with elements of $P(c)$ through yoneda.
+Luckily, we have $u \in P(c))$ to invoke yoneda, so we build the arrows from $dgrm(c, u) = Hom(c, -)$ to $P$,
+given by applying Yoneda to $u \in P(c)$. Thus, we can at least form a cocone. Whether the arrows of the base of
+the cocone commute with the apex-pointing arrows, and whether this is universal is to be checked next.
+
+Given some other cocone $Q \in [C, Set]$, with co-cone morphisms $\sigma_j: Hom(c_j, -) \rightarrow Q$, we need to 
+create a natural transformation $\theta: P \rightarrow Q$. Let's do this pointwise. for some $c \in C$, 
+we need to build a map $\theta_c: P(c) \rightarrow Q(c)$. Since the domain and codomain are pointwise,
+let's pick some element $x \in P(c)$. See that this can be seen as an element $(c \in C, x \in P(c)$ which is
+an element of the category $el(P)$. But, recall that this was our index category $el(P)$. Thus, there is going
+to be an arrow $dgrm((c \in C, x \in P(c)) = Hom(c, -) \xrightarrow{q(c,x)} Q$ since $Q$ is a cocone. 
+But since $q(c, x) \in [Hom(c, -), Q]$, it's an element of $Q(c)$. We have thus found a way to map $P(c)$ into $Q(c)$
+by "pulling back" into the index category and then "pushing forward" via Yoneda. [What the fuck is actually happening here?]
+
+- [Reference](https://mysite.science.uottawa.ca/phofstra/MAT5147/presheaves.pdf)
+- [Density theorem proof](https://en.wikipedia.org/wiki/Density_theorem_(category_theory)#Proof)
+
+
+# Why terminal object is a limit
+
+1. Thinking in Set, the terminal object is `{*}`, which is the empty product of
+   sets. Hence, the terminal is a type of product, which is a limit.
+2. What does the terminal `{*}` project onto? It should project onto its
+   components, since its a limit. But recall that it was the limit of ZERO
+   objects. `{*}` vacuously projects into zero objects [ie, we're not obliged to
+   construct a projection]
+3. Think about products again. the product is universal such that any other
+   "candidate for the product" must factor through a projection onto the
+   product. Similarly, the terminal is universal such that any other "candidate
+   for the terminal" (literally all other objects) must factor through the
+   terminal [ie, must map into the terminal].
+
+
+
+# Excluded middle is not false in intuitionistic logic
+
+```hs
+{-# LANGUAGE EmptyCase #-}
+
+data Void
+absurd :: Void -> a
+absurd v = case v of
+type NOT x = x -> Void
+type FALSE x = x -> Void
+type LEM x = Either x (NOT x)
+
+type NOTFALSE a = NOT (FALSE a)
+lemNotFalse :: NOTFALSE (LEM a)
+-- lemNotFalse :: (LEM a -> Void) -> Void
+-- lemNotFalse :: (Either a (a -> Void) -> Void) -> Void
+lemNotFalse f = f $ Right $ \a -> f (Left a) 
+
+lemFalseExplodes :: FALSE (LEM a) -> anything
+-- lemFalseExplodes :: LEM a -> Void
+lemFalseExplodes lem = absurd (lemNotFalse lem)
+```
 
 # Yoneda Lemma and embedding
-
 
 ```hs
 type Hom a b = (a -> b)
 type Nat f g = forall x. f x -> g x
 ```
-
 Yoneda, which states that $[C, Set](F(-), Hom(a, -)) \simeq F(a)$:
 
 ```
 type YonedaLHS f a = Nat (Hom a) f
 ```
-
 
 
 ```
@@ -136,12 +420,6 @@ we also preseve the `Hom` sets as natural transformations, since `Hom(b, a)` is 
 to `Nat(Hom(b, -), Hom(a, -))`. Thus, we get a full and faithful embedding of the original category
 into the `Hom` category.
 
-# Topos of M sets (WIP)
-
-
-# Simplicial approximation: maps can be approximated by simplicial maps (WIP)
-
-# Excision (WIP)
 
 # GHCID
 
@@ -177,8 +455,8 @@ From now on, we assume all representations are unitary.
 
 #### Representation has same automorphism for the entire conjugacy classe
 
-Since all representations are unitary, the image of $f(ghg^{-1}) = f(g) f(h)
-f(g)^{-1}$ is going to be a change-of-basis of $f(h)$, and thus does not
+Since all representations are unitary, the image of $f(ghg^{-1}) = f(g) f(h) f(g)^{-1}$
+is going to be a change-of-basis of $f(h)$, and thus does not
 actually change the automorphism given by $f(h)$. Hence, representations are
 the same for an entire conjugacy class .
 
@@ -231,8 +509,8 @@ we consider the inner product $\sum_{g \in G} f(g)[r][c] \overline{f'(g)[r][c]}$
 
 we impose an inner product relation on the space of class functions (complex valued functions
 constant on conjugacy classes) $G \rightarrow \mathbb C^\times$, given by
-$\langle f | f' \rangle \equiv 1/|G| \sum_{g \in G} f(g)
-\overline{f'(g)}$ where $\overline{f'(g)}$ is the complex conjugate. 
+$\langle f | f' \rangle \equiv 1/|G| \sum_{g \in G} f(g) \overline{f'(g)}$
+where $\overline{f'(g)}$ is the complex conjugate. 
 
 Using the Schur orthogonality relations, we immediately deduce that the inner product
 of two irreducible characters can be viewed as the schur orthogonality applied to their
@@ -281,7 +559,7 @@ we can extend $gB[0]$ into $gB[t]$. We see that this is simply
 the HEP (homotopy extension property), where we have a homotopy of subspace
 $A$, and a starting homotopy of $B$, which can be extended to a full homotopy.
 
-#### Lemma: Cofibration is always inclusion
+#### Lemma: Cofibration is always inclusion (Hatcher)
 
 #### Pushouts
 
@@ -326,9 +604,7 @@ is a cofibration if $A \xrightarrow{i} B$ is a cofibration.
 
 
 
-- [F. Faviona, more on HITs](https://www.youtube.com/watch?v=zn0nAXtoMtU)
-
-
+Reference: [F. Faviona, more on HITs](https://www.youtube.com/watch?v=zn0nAXtoMtU)
  
 # Emily Riehl Contrability as uniqueness
 
@@ -340,10 +616,8 @@ is a cofibration if $A \xrightarrow{i} B$ is a cofibration.
 
 I saw this at [math.se](https://math.stackexchange.com/questions/4128999/does-taking-derivative-of-determinant-of-a-matrix-with-respect-to-an-entry-give),
 that one can define the cofactor of index $A[i][j]$ of a matrix $A$ as $\frac{\partial A}{\partial A[i][j]}$ which I think is quite cool.
-# History date notations
 
-- CE ~ AD. 
-- BCE ~ BC
+
 
 
 # Homology, the big picture
@@ -455,8 +729,8 @@ this map.
 
 for a compact space $X$ and an open cover $\{ U_\alpha \}$, there is a radius
 $r > 0$ such that any ball of such a radius will be in some open cover: For all
-$x \in X$, for all such balls $B(x, r)$, there exists a $U_x \in \{ U_\alpha
-\}$ such that  $B(x, r) \subseteq U_x$.  Intuitively, pick a point $x$. for
+$x \in X$, for all such balls $B(x, r)$, there exists a $U_x \in \{ U_\alpha \}$ such that
+$B(x, r) \subseteq U_x$.  Intuitively, pick a point $x$. for
 each open $U$, we have a ball $B(x, r)$ that sits inside it since $U$ is open.
 Find the largest such radius, we can do so since $\{x\}$ is the closed subset of a compact set.
 This gives us a function $f$ that maps a point $x$ to the largest radius of ball
@@ -554,7 +828,7 @@ figure.
 
 The barycenter is at the location $b \equiv 1/n \sum_i v_i$. The distance
 from a vertex $v_k$ is $||v_j - b|| = ||v_k - (1/n \sum_i v_i)|| = ||1/n(\sum_i v_k - v_i)||$.
-By Cauchy Schwarz, we have that $||v_j - b|| \leq 1/n ||\sum_i v_k - v_i||. One of the terms,
+By Cauchy Schwarz, we have that $||v_j - b|| \leq 1/n ||\sum_i v_k - v_i||$. One of the terms,
 where $k = i$ will be zero, and the other (n-1) terms are at most $l$, the length of the longest edge.
 This gives $||v_j - b|| \leq (n-1)l/n$, hence the edge length decreases by a factor of $(n-1)/n$.
 
@@ -786,6 +1060,26 @@ $||Av^\star|| = \lambda^*$ is maximal.
 
 - [I should just reach Cech Cohomology for this!](https://en.wikipedia.org/wiki/%C4%8Cech_cohomology)
 
+
+# Bicycle wheel proof of Gauss Bonnet (WIP)
+
+https://personal.psu.edu/mxl48/Bicycle_papers_files/gauss-bonnet.bicycle.pdf
+
+
+# What is Levi Cevita trying to describe (WIP)
+
+https://mathoverflow.net/questions/376486/what-is-the-levi-civita-connection-trying-to-describe/376533
+
+
+# Torsion as giving monodromy of path lifts (WIP)
+
+https://mathoverflow.net/a/111198/123769
+
+# Cartan's spiral staircase (WIP)
+
+https://arxiv.org/pdf/0911.2121.pdf
+
+
 # Dupin indicatrix (WIP)
 
 - Hicks notes on diffgeo
@@ -861,8 +1155,8 @@ are not in $A$.
 
 Let the net be $x[:]$ with index set $I$.
 Since the net is eventually in $X - A$, this means that
-there is an index $e$ (for eventually) such that for all $i$ such that $e \leq
-i$ we have $x[i] \in X - A$, or $x[i] \not \in A$.  Thus, if we pick $e$ as the
+there is an index $e$ (for eventually) such that for all $i$ such that $e \leq i$ we have
+$x[i] \in X - A$, or $x[i] \not \in A$.  Thus, if we pick $e$ as the
 frequent index, we can have no index $u$ such that $e \leq u \land x[u] \in A$,
 since all indexes above $e$ are not in $A$. 
 
@@ -987,7 +1281,7 @@ We wish to show that compact iff closed and bounded in $\mathbb R$.
 
 Let us work with a complete total order $O$.
 Let $[l, r]$ be a closed interval. Let $\{ U_i \}$ be an open cover of $[l, r]$.
-Let $M$ (for middle) be the set of points such that $[l, m]$ has a finite cover using $\{ U_i \}. 
+Let $M$ (for middle) be the set of points such that $[l, m]$ has a finite cover using $\{ U_i \}$
 That is,
 
 $$
@@ -1272,24 +1566,6 @@ Let $\sigma$ be a $C^\infty$ curve.
 I've taken to running [`bucklespring`](https://github.com/zevv/bucklespring) in the background when I code,
 because it makes the experience of programming so much more tactile. Having left my mechanical keyboard
 in college in the time of the plague, I feel like I was sorely missing this sort of auditory feedback!
-
-# Bicycle wheel proof of Gauss Bonnet
-
-https://personal.psu.edu/mxl48/Bicycle_papers_files/gauss-bonnet.bicycle.pdf
-
-
-# What is Levi Cevita trying to describe
-
-https://mathoverflow.net/questions/376486/what-is-the-levi-civita-connection-trying-to-describe/376533
-
-
-# Torsion as giving monodromy of path lifts
-
-https://mathoverflow.net/a/111198/123769
-
-# Cartan's spiral staircase
-
-https://arxiv.org/pdf/0911.2121.pdf
 
 
 # Submersions and immersions
@@ -13544,6 +13820,8 @@ so we get the answer as `answer = 20/2! = 10`.
 
 # Topological proof of infinitude of primes
 
+- [On an exotic topology of the integers](https://arxiv.org/pdf/1008.0713.pdf)
+
 We take the topological proof and try to view it from the topology as
 semidecidability perspective.
 
@@ -15613,8 +15891,8 @@ Dehn function.
 
 We define a map to be aninite, planar, oriented, connected and simply connected
 simplicial2-complex (!).  A map $D$ is a diagram over an alphabet $S$ iff every
-edge $e \in D$ has a label $lbl(e) \in S$ such that $lbl(e^{-1}) =
-(lbl(e))^{-1}$. Hang on: what does it mean to invert an edge?  I presume it
+edge $e \in D$ has a label $lbl(e) \in S$ such that $lbl(e^{-1}) = (lbl(e))^{-1}$.
+Hang on: what does it mean to invert an edge?  I presume it
 means to go backwards along an edge. So we assume the graph is directed, and we
 have edges in both directions.
 
@@ -29274,6 +29552,12 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
+> "the mark of an enlightened mind is the ability to entertain ideas without
+> accepting them"
+
+> The most intelligent creature in the universe is a rock.
+> None would know it because they have lousy I/O.
+
 
 > Now symmetry and consistency are convertible terms - thus Poetry
 > and Truth are one ~ Noether's theorem?
@@ -29607,8 +29891,11 @@ Plan: finish cardistry bootcamp, learn card control from 52kards.
 * r9   arg5 - 9
 ```
 
-# Big list of paper writing thoughts
+# Big list of writing/paper writing thoughts
 
+- Strongest words ought to start and begin a sentences. A re-phrasing I made:
+ "Thus, we know that `pr-ty` lives in UNIV because of correctness of `synth`" into
+ "Correctness of `synth` guarantees that `pr-ty` lives in UNIV".
 - There is low satisfaction of finishing and understanding a section, it seems
   to flow a little too continuous.
 - Align figures to either all left or all right.
@@ -29643,7 +29930,7 @@ Plan: finish cardistry bootcamp, learn card control from 52kards.
 - SLIME debugger: abort(`a`), continue(`c`), quit(`q`),  goto frame source (`v`), toggle frame details (`t`),
   navigate next/prev frame(`n`, `p`), begin/end (`<`,`>`),
   inspect condition (`c`), interactive evaluate at frame (`:`)
-- SLIME REPL: send expr to repl(`C-c C-y`), switch to repl (`C-c C-z`), eval last expr (`C-x C-e), trace (`C-c C-t`)
+- SLIME REPL: send expr to repl(`C-c C-y`), switch to repl (`C-c C-z`), eval last expr (`C-x C-e`), trace (`C-c C-t`)
 - SMILE REPL debug: trace (`C-c C-t`). Write `(break)` in code and then run expression to enter debugger,
   step into (`s`), step over (`x`), step till return (`o`), restart frame (`r`), return from frame (`R`),
   eval in frame (`e`)
@@ -29701,4 +29988,31 @@ Plan: finish cardistry bootcamp, learn card control from 52kards.
 - Within goal: Type: `C-c C-t`.
 - Within goal: Deduce type: `C-c C-d`.
 - Within goal: Information: `C-c C-;`.
+
+
+# Big list of Hacker news 
+
+> She told me that I was what she calls institutionally poor. That I had been
+> conditioned thru my childhood to think like a poor person and in doing so you
+> send out unconscious signals to others. She told me this because she came up
+> similar. She told me that it causes you to over analyze and over estimate
+> risk and therefore you will not take the bold moves that people that don't
+> have to worry do. That while you can change the world and everyone see it. If
+> you hold onto the fear on meeting your net under you, that you will never
+> extract your true value from other. So I said, so you are going to pay me my
+> fair value, she laughed and said no, I got you for a very good deal. 3 Days
+> latter I walked into her office, with my resignation letter and told her I
+> had an offer from another company. She said, now you get it, how much did
+> they offer. I told her, and she said I will double that if you stay.
+
+
+
+> Here's a discontinuity irl that I read about: you bite into an apple and find
+> a worm. Disgusting. But worse would be to find 1/2 a worm, worse still 1/4 of
+> a worm, etc... continuity would imply the worst case scenario is biting into
+> an apple and not finding a worm.
+
+> PORT (wine) is always LEFT at sea, but never left at dinner.
+> L for LEFT, is close to P for PORT. R for RIGHT, is close to S for STARBOARD
+
 
