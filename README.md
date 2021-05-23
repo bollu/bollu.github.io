@@ -15,12 +15,12 @@ A Universe of Sorts
 - [reading list and link dump](todo.html)
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
-# Simplicial approximation: maps can be approximated by simplicial maps (WIP)
+# Simplicial approximation: maps can be approximated by simplicial maps (TODO)
 
-# Excision (WIP)
+# Excision (TODO)
 
 
-# Marshall: Andrej (WIP)
+# Marshall: Andrej (TODO)
 
 - [Marshall-lang](https://github.com/andrejbauer/marshall.git)
 
@@ -426,7 +426,7 @@ into the `Hom` category.
 - [ghcid](https://hackage.haskell.org/package/ghcid) + tmux is a nice way to get a REPL/IDE
   like experience for haskell with minimal fuss.
 
-# Character theory (WIP)
+# Character theory (TODO)
 
 I jot down the rough proof sketches of character theoretic facts for quick reference.
 Fix a group $G$. A group representation of $G$ is a group homomorphism from the group
@@ -486,7 +486,7 @@ identity implies that all dimensions are scaled uniformly.
 The main idea of the proof is to show that the kernel and image of the 
 intertwining map is an irreducible subspace of $f, f'$ retrospectively. Since
 the maps are irreducible, we must have the the intertwining is either the zero
-map, or a map into the full group (WIP). This forces the map to be zero or a scalar
+map, or a map into the full group (TODO). This forces the map to be zero or a scalar
 multiple of the identity.
 
 One way to look at this is that for irreps $f: G \rightarrow V$ and
@@ -502,7 +502,7 @@ We consider representations "one matrix index" at a time, and show that
 the matrix entries of irreducible representations is going to be orthogonal.
 The proof is to consider representations $f: G \rightarrow \mathbb GL(n, \mathbb C)$,
 $f': G \rightarrow \mathbb GL(m, \mathbb C)$. For a fixed row/column pair $(r, c)$,
-we consider the inner product $\sum_{g \in G} f(g)[r][c] \overline{f'(g)[r][c]}$ (WIP)
+we consider the inner product $\sum_{g \in G} f(g)[r][c] \overline{f'(g)[r][c]}$ (TODO)
 
 
 #### Inner product of class functions
@@ -679,16 +679,16 @@ $\pi^*: H_n(X, A) \rightarrow H_n(X/A, [A])$.
 
 
 
-# Normaliztion by evaluation (WIP)
+# Normaliztion by evaluation (TODO)
 
 - [Reference NBE video for cubicaltt](https://www.youtube.com/watch?v=atKqqiXslyo&list=PL0OBHndHAAZrGQEkOZGyJu7S7KudAJ8M9&index=6)
 
   
 # Legal Systems very different from ours
 
-# Lefschetz fixed point theorem (WIP)
+# Lefschetz fixed point theorem (TODO)
 
-# Shrinking wedge of circles / Hawaiian earring (WIP)
+# Shrinking wedge of circles / Hawaiian earring (TODO)
 
 I've been trying to make peace with the fact that countably infinite wedge of circles
 is so different from the hawaiian earring. Here are some thoughts:
@@ -699,7 +699,7 @@ is so different from the hawaiian earring. Here are some thoughts:
   For example, we can take a loop at *each* circle of radius $1/n$ by making it traverse the circle
   of radius $1/n$ in the interval $t \in [(n-1)/n, n/(n+1)]$, and stay at $(0, 0)$ at $t=1$.
 
-# Simplicial approxmation of maps (WIP)
+# Simplicial approxmation of maps (TODO)
 
 #### What we want:
 
@@ -725,7 +725,7 @@ this map.
 
 #### The correct statement
 
-# Lebesgue number lemma (WIP)
+# Lebesgue number lemma (TODO)
 
 for a compact space $X$ and an open cover $\{ U_\alpha \}$, there is a radius
 $r > 0$ such that any ball of such a radius will be in some open cover: For all
@@ -752,7 +752,7 @@ containments $O \subseteq B(x, r) \subseteq U_x$.
 
 #### Lebesgue number lemma, proof from Hatcher
 
-WIP
+TODO
 
 
 # Big list of learning Lean internals
@@ -1046,7 +1046,7 @@ by wherever the functor sends the identity element.
   but close enough to the truth.
 
 
-# Spectral norm of Hermitian matrix equals largest eigenvalue (WIP)
+# Spectral norm of Hermitian matrix equals largest eigenvalue (TODO)
 
 Define $||A|| \equiv \max \{ ||Ax|| : ||x|| = 1 \}$. Let $A$ be 
 hermitian. We wish to show that $||A||$ is equal to the largest eigenvalue.
@@ -1054,41 +1054,41 @@ The proof idea is to consider the eigenvectors $v[i]$ with eigenvalue $\lambda[i
 with largest eigenvalue $v^\star$ of eigenvalue $\lambda^*$ and claim that
 $||Av^\star|| = \lambda^*$ is maximal.
 
-# Penrose cohomology [WIP]
+# Penrose cohomology [TODO]
 
 <img src="./static/penrose-triangle.png"/>
 
 - [I should just reach Cech Cohomology for this!](https://en.wikipedia.org/wiki/%C4%8Cech_cohomology)
 
 
-# Bicycle wheel proof of Gauss Bonnet (WIP)
+# Bicycle wheel proof of Gauss Bonnet (TODO)
 
 https://personal.psu.edu/mxl48/Bicycle_papers_files/gauss-bonnet.bicycle.pdf
 
 
-# What is Levi Cevita trying to describe (WIP)
+# What is Levi Cevita trying to describe (TODO)
 
 https://mathoverflow.net/questions/376486/what-is-the-levi-civita-connection-trying-to-describe/376533
 
 
-# Torsion as giving monodromy of path lifts (WIP)
+# Torsion as giving monodromy of path lifts (TODO)
 
 https://mathoverflow.net/a/111198/123769
 
-# Cartan's spiral staircase (WIP)
+# Cartan's spiral staircase (TODO)
 
 https://arxiv.org/pdf/0911.2121.pdf
 
 
-# Dupin indicatrix (WIP)
+# Dupin indicatrix (TODO)
 
 - Hicks notes on diffgeo
 
-# Rodrigues curvature formula (WIP)
+# Rodrigues curvature formula (TODO)
 
-- Hicks notes on diffgeo (WIP)
+- Hicks notes on diffgeo (TODO)
 
-# Weingarten map (WIP)
+# Weingarten map (TODO)
 
 - Hicks notes on diffgeo
 
@@ -1096,7 +1096,7 @@ https://arxiv.org/pdf/0911.2121.pdf
 
 -  https://math.stackexchange.com/questions/1734540/existence-of-a-lifting
 
-# Nets from Munkres (WIP)
+# Nets from Munkres (TODO)
 
 #### Directed set
 A direct set is a partial order $J$ which has "weak joins".
@@ -1740,7 +1740,7 @@ NOTE TO SELF: there should be a more direct proof that uses the fact that the fi
 
 
 
-# Lie bracket commutator from exponentiation (WIP)
+# Lie bracket commutator from exponentiation (TODO)
 
 I thought this was quite cute. To make sense of $[a, b]$ we consider
 the expression $e^{\epsilon a} e^{\epsilon b} e^{- \epsilon a} e^{- \epsilon b}$ which is equivalent to:
@@ -3726,7 +3726,7 @@ his writing style. Here's a big list of my favourite quotes:
 
 > The aperture was black with a darkness almost material.
 
-# Hairy ball theorem from Sperner's Lemma (WIP)
+# Hairy ball theorem from Sperner's Lemma (TODO)
 
 - Let $\Delta$ be an n-dimensional simplex with vertices $v_0, v_1, \dots, v_n$.
 - Let $\Delta_i$ be the face opposite to vertex $v_i$. That is, $\Delta_i$ is the face with all vertices except $v_i$. 
@@ -3771,9 +3771,9 @@ his writing style. Here's a big list of my favourite quotes:
 - See that we will either find a triangle labeled $ABC$, or we will keep running into triangles labeled $ABB$.
 - We cannot ever *repeat* a triangle in our path; to repeat a triangle is to start with some edge $xy$
   and then to pick a vertex $z$ such that $xyz=efg$ where $efg$ was already picked. This must mean that the
-  edge $ef$ was already picked. [WIP]
+  edge $ef$ was already picked. [TODO]
 
-#### Proof of hairy ball by sperner's lemma [WIP]
+#### Proof of hairy ball by sperner's lemma [TODO]
 
 
 #### Why hairy ball is interesting: Projective modules 
@@ -4015,7 +4015,7 @@ y : B |- \sum{x : f^{-1}(y)}E(x): Type
   connection: given a path from $x$ to $y$, it lets us transport $E(x)$ to $E(y)$,
   where the $Eq$ is the distortion from the curvature?
 
-# Hilbert basis theorem for polynomial rings over fields (WIP)
+# Hilbert basis theorem for polynomial rings over fields (TODO)
 
 **Theorem:** Every ideal $I$ of $k[x_1, \dots, x_n]$ is finitely generated.
 
@@ -7489,7 +7489,7 @@ the situation.
 - [Post on haskell-cafe by Olaf Klinke](https://mail.haskell.org/pipermail/haskell-cafe/2020-December/133264.html)
 
 
-# The mnemonica stack (WIP)
+# The mnemonica stack (TODO)
 
 ```
 4  c♣
@@ -7559,7 +7559,7 @@ how I read.
 
 In his words:
 
-> Alok: I have seen you spasm on your cursor trying to read text (WIP: get a longer
+> Alok: I have seen you spasm on your cursor trying to read text (TODO: get a longer
 > quote form alok about what this means)
 
 
@@ -7676,7 +7676,7 @@ According to him, this is similar to how I read code:
 ##### eye tracking data
 
 
-# KMP (Knuth, Morris, Pratt) (WIP)
+# KMP (Knuth, Morris, Pratt) (TODO)
 
 #### References
 - [KMP in haskell](https://chaoxuprime.com/posts/2014-04-11-the-kmp-algorithm-in-haskell.html)
@@ -7846,7 +7846,7 @@ $e_-^2$ that would have given rise to expectiles.
 
 
 
-# Depth first search through linear algebra (WIP)
+# Depth first search through linear algebra (TODO)
 
 
 #### References
@@ -7871,10 +7871,10 @@ different components. So this means that we have the possible orderings
 Hence, if $x$ implies $\lnot x$, we should set $x$ to $\texttt{false}$. The other
 assignment is _inconsistent_.
 
-# Longest increasing subsequence, step by step (WIP)
+# Longest increasing subsequence, step by step (TODO)
 - [The science of Programming by Gries](https://www.cs.cornell.edu/gries/July2016/The-Science-Of-Programming-Gries-038790641X.pdf)
 
-# On reading how to rule (WIP)
+# On reading how to rule (TODO)
 #### The prince
 
 #### Arthashastra
@@ -8171,7 +8171,7 @@ up vertices otherwise!
 - [CSTheory.stackexchange question on euler tours](https://cstheory.stackexchange.com/questions/31538/runtime-of-tuckers-algorithm-for-generating-a-eulerian-circuit)
 
 
-# Representation theory of the symmetric group (WIP)
+# Representation theory of the symmetric group (TODO)
 
 - [Video lectures: Representation theory, a combinatorial viewpoint](https://www.youtube.com/watch?v=QqJIOnTDbLM&list=PLFE2F2CDA55A9EBB6)
 
@@ -8323,7 +8323,7 @@ us the diameter (the distance from $v$ to $w$)
   diameter, "because" it's the distance from a lowest node to another lowest
   node.
 
-# Catalan numbers as popular candidate votes (WIP)
+# Catalan numbers as popular candidate votes (TODO)
 
 - Usually, folks define catalan numbers as paths that go up or right from $(1, 1)$
   to $(n, n)$ in a way that never goes below the line $y = x$.
@@ -8342,7 +8342,7 @@ to $1/(n+1) \binom{2n}{n}$ by reasoning about seqences of votes, called as
 #### References
 - [Richard Stanley's slides](https://math.mit.edu/~rstan/transparencies/china.pdf)
 
-# The chromatic polynomial (WIP)
+# The chromatic polynomial (TODO)
 
 I've been on a combinatorics binge lately, so I'm collecting cool facts about
 the chromatic polynomial. We first define the chromatic function of a graph,
@@ -8390,7 +8390,7 @@ other nodes without cycles.
 
 In a permutation, all we have are cycles. There are no trees that hang from the cycles.
 
-#### Counting number of rooted trees: $n^{n-2}$: (WIP)
+#### Counting number of rooted trees: $n^{n-2}$: (TODO)
 
 Say we have a function $f: V \rightarrow V$ where $|V| = n$ and $f(1) = 1$, $f(n) = n$.
 
@@ -9136,7 +9136,7 @@ nullspace by lookinag at $E$, because $E$ gives us $EA = R$.
 - [Gilbert strang, lecture 10: four fundamental subspaces](https://www.youtube.com/watch?v=nHlE7EgJFds)
 
 
-# WHO list of essential medicines (WIP)
+# WHO list of essential medicines (TODO)
 - [Wikipedia reference](https://en.wikipedia.org/wiki/WHO_Model_List_of_Essential_Medicines)
 
 # why is `int i = i` allowed in C++?
@@ -9197,7 +9197,7 @@ A shower thought, but Cohomology is indeed like holism. It describes precisely
 how the whole is greater than the sum of its parts, in terms of capturing a
 "global defect" that is oftentimes "locally trivial".
 
-# Flows (WIP)
+# Flows (TODO)
 
 - [Srinivas Devdas: Flows](https://www.youtube.com/watch?v=VYZGlgzr_As)
 
@@ -9494,7 +9494,7 @@ to cost 1 + the number of trailing ones. We want to make this **constant**.
 
 
 
-# Shelly Kegan: death --- Suicide and rationality (WIP)
+# Shelly Kegan: death --- Suicide and rationality (TODO)
 
 How does the fact that we will die affect the way we live? previous 
 chapter! The fact our mortality raises the question of whether or not
@@ -9577,7 +9577,7 @@ and after. Call this the two state requirement.
 
 - [Shelly Kegan: death, 24. Suicide, Part 1](https://www.youtube.com/watch?v=MajfZIyHP8U&list=PLEA18FAF1AD9047B0&index=24)
 
-# Sam harris and jordan peterson: Vancouver 1 (WIP)
+# Sam harris and jordan peterson: Vancouver 1 (TODO)
 
 > Is there a difference between religious and non-religious totalitarian states?
 > Yes, dogma is the commonality. In the case of stalin / north korea, they
@@ -10617,7 +10617,7 @@ in
 
 - [Link where I first heard of him](https://alexdanco.com/2019/04/28/secrets-about-people-a-short-and-dangerous-introduction-to-rene-girard/)
 
-# Noam Chomsky on anarchism (WIP)
+# Noam Chomsky on anarchism (TODO)
 
 - [Video of interview](https://www.youtube.com/watch?v=totmHrIJzK8)
 - Emma Goldman Archives
@@ -11697,7 +11697,7 @@ equation is of the form $px + qy + rz = 0$ for coefficients $p, q, r \in \mathbb
 I am very sympathetic to the perspective that software has gotten far
 less reliable than it used to be.
 
-# Violent deaths in ancient societies (WIP)
+# Violent deaths in ancient societies (TODO)
 
 ### Kanun in albania
 
@@ -11729,7 +11729,7 @@ To be more precise, I can phrase it as:
 
 Generalization to tensors is left as an exercise for the reader.
 
-# Elementary probability theory (WIP)
+# Elementary probability theory (TODO)
 
 I've never learnt elementary probability theory "correctly". This is me
 attempting to fix it.
@@ -13383,7 +13383,7 @@ quotient of the non-compact steifel manifold, so we need to be careful about
 choosing representatives and whatnot. However, nothing beats physicist
 reasoning for intuition, so I'm going to do all the derivations in that style.
 
-[WIP]
+[TODO]
 
 
 # Lie bracket as linearization of conjugation
@@ -13535,7 +13535,7 @@ int main() {
 that `this-style-of-writing` variables is called as `kebab-case`. Very
 evocative.
 
-# Localization: Introducing epsilons (WIP)
+# Localization: Introducing epsilons (TODO)
 
 We can think of localization at a zero divisors
 as going from a regime of having divisors of zero into a
@@ -18955,7 +18955,7 @@ argmin :: (a -> Int) -> a -> a -> a
 argmin f a a' = if (f a) < (f a') then a else a'
 ```
 
-# Evolution of bee colonies (WIP)
+# Evolution of bee colonies (TODO)
 
 This kind of culture that beehives have is called as 'eusociality'.
 I'm interested in this because I want to understand what alien societies might
@@ -21083,7 +21083,7 @@ We can imagine the scenario as follows:
 
 #### Fully parallel, reordering
 
-[WIP]
+[TODO]
 
 
 #### References
@@ -21173,7 +21173,7 @@ that the usual typedef tends to hide the fact that a
 function pointer is some pointer-like-thing.
 
 
-# A walkway of lanterns (WIP)
+# A walkway of lanterns (TODO)
 
 ### Semidirect products
 
@@ -21718,7 +21718,7 @@ If $f'(x_0)$ and $g'(x_0)$ are parallel, then attempting to improve $f(x_0 + \ve
 by change $g(x_0 + \vec \epsilon)$, and thereby violate the constraint
 $g(x_0 + \epsilon) = c$.
 
-# Efficient tree transformations on GPUs (WIP)
+# Efficient tree transformations on GPUs (TODO)
 
 All material lifted straight from [Aaron Hsu's PhD thesis](https://scholarworks.iu.edu/dspace/handle/2022/24749). I'll be converting
 APL notation to C++-like notation.
@@ -23107,7 +23107,7 @@ then coarse structures (which are their dual) are related to..?
 #### References
 - [What is a.. coarse structure by AMS](http://www.ams.org/notices/200606/whatis-roe.pdf)
 
-# Matroids for greedy algorithms (WIP)
+# Matroids for greedy algorithms (TODO)
 
 #### Definitions of matroids
 
@@ -28826,8 +28826,8 @@ For example: "More people have been to Berlin than I have."
 
 ## Haskell
 - [Reading the `structs` library](content/blog/reading-kmett-structs.md)
-- [Reading the `machines` library (WIP)](content/blog/machines/reading-kmett-machines.md)
-- [Explaining STG(WIP)](stg-explained.md)
+- [Reading the `machines` library (TODO)](content/blog/machines/reading-kmett-machines.md)
+- [Explaining STG(TODO)](stg-explained.md)
 
 ## Simplexhc (STG -> LLVM compiler) progress
 - [proc points suck / making GHC an order of magnitude faster](content/blog/ghc-micro-optimisations-or-why-proc-points-suck.md)
