@@ -1509,10 +1509,11 @@ const char html_preamble[] =
     "-moz-text-size-adjust: none; -ms-text-size-adjust: none; } "
     "body {"
     " background-color: #FFFFFF; color: #000000; " // tufte
-    " font-family: 'Blog Text', sans-serif; font-size: 18px; line-height: "
+    " font-family: 'Blog Serif', sans-serif; font-size: 18px; line-height: "
     "1.4em; "
     " max-width: 100%; overflow-x: hidden; }"
     "\n"
+    "h1, h2, h3, h4, h5 { font-family: 'Blog Sans' }"
     // img as a block. width: 100% makes it responsive with no fiddling
     // https://stackoverflow.com/questions/15458650/make-an-image-responsive-the-simplest-way
     "img { display:block; width: 100%; max-width: 800px; height: auto }"
@@ -1555,11 +1556,12 @@ const char html_preamble[] =
     // overflow: latex and code block
     "\n"
     // inline latex: force all text to be on same line.
-    "pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }"
+    "pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }"
     // ul's for some reason are padded, and they render their bullets *outside*
     // their area. Fix both:
     // https://stackoverflow.com/questions/13938975/how-to-remove-indentation-from-an-unordered-list-item/13939142
-    "ul, ol { list-style-position: inside; padding-left: 0; margin-right: 10px }"
+    "ul, ol { list-style-position: inside; padding-left: 0; }"
+    "ul { list-style-type: disclosure-closed; }"
     // RESPONSIVE
     // " @media (max-width: 1000px) {"
     // "    .container { max-width: 100%; padding: 0; margin-left: 10%;
