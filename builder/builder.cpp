@@ -1499,8 +1499,10 @@ const char html_preamble[] =
     "<style>"
     "@font-face {font-family: 'Blog Mono'; src: "
     "url('/static/iosevka-fixed-extended.ttf');}"
-    "@font-face {font-family: 'Blog Text'; src: "
+    "@font-face {font-family: 'Blog Sans'; src: "
     "url('/static/Exo2-Regular.ttf');}"
+    "@font-face {font-family: 'Blog Serif'; src: "
+    "url('/static/Revans-Regular.ttf');}"
     // body
     "html { font-size: 100%; }"
     "html,body { text-size-adjust: none; -webkit-text-size-adjust: none; "
@@ -1515,14 +1517,13 @@ const char html_preamble[] =
     // https://stackoverflow.com/questions/15458650/make-an-image-responsive-the-simplest-way
     "img { display:block; width: 100%; max-width: 800px; height: auto }"
     // container
-    ".container { overflow-x: auto; overflow-y: hidden;  max-width:100%; }"
+    ".container { overflow-x: auto; overflow-y: hidden;  max-width: 80ex; text-align: justify; }"
     "@media (max-width: 480px) { .container { margin-left: 5%; margin-right: "
     "5%; } body { font-size: 30px; } }"
     "@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: "
     "5%; } body { font-size: 30px; } }"
     // desktop
-    "@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: "
-    "20%; } }"
+    "@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: 20%; } }"
     // class for image <div>
     ".image { }"
     "\n"
@@ -1558,7 +1559,7 @@ const char html_preamble[] =
     // ul's for some reason are padded, and they render their bullets *outside*
     // their area. Fix both:
     // https://stackoverflow.com/questions/13938975/how-to-remove-indentation-from-an-unordered-list-item/13939142
-    "ul, ol { list-style-position: inside; padding-left: 0; }"
+    "ul, ol { list-style-position: inside; padding-left: 0; margin-right: 10px }"
     // RESPONSIVE
     // " @media (max-width: 1000px) {"
     // "    .container { max-width: 100%; padding: 0; margin-left: 10%;

@@ -11,6 +11,14 @@
 - [On the geometry of distributed algorithms](#on-the-geometry-of-distributed-algorithms)
 - [Compilers as commutative algebra](#compilers-as-commutative-algebra)
 
+# Hamiltonian FRP
+
+We should be able to write functional reactive programming in a style that's reminiscent
+of classical mechanics. We currently write it in terms of newton's laws. We should be writing
+it in terms of hamiltonians --- conserved quantities. What does this mean? I don't really know.
+[Here is a post by Baez about getting to the bottom of noether's theorem](https://golem.ph.utexas.edu/category/2020/06/getting_to_the_bottom_of_noeth.html)
+which seems relevant.
+
 # [Consensus complexity theory](#consensus-complexity-theory)
 
 Consensus is a physical resource. We are currently running out of it, fast.

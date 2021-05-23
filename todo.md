@@ -1,3 +1,29 @@
+- J C Butcher: numerical methods for ODEs: Does a mathematical analysis of ODE theory.
+- [Pixel art tutorial](https://saint11.org/blog/pixel-art-tutorials/)
+- [`molikto`'s weblog on dependently typed languages](https://molikto.github.io/)
+- Endless Loops: Detecting and Animating Periodic Patterns in Still Images
+- Threfthen and Bau: numerical linear algebra, is more like finite dimension functional analysis with algorithms.
+  Good for self-study because many exercises.
+- [P=NP upto sharing](http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=484032BD603CAD977553C0849FA5D40E?doi=10.1.1.52.1414&rep=rep1&type=pdf)
+- [What is a spinor mathematically](https://physics.stackexchange.com/a/112041/129278)
+- Dependently typed schemes.
+- Dependently typed Forth.
+- [Study the KISS package manager to learn bash](https://raw.githubusercontent.com/kisslinux/kiss/master/kiss)
+- "If a statementis false, it has no evidence" --- nice way to think of `Not a = a -> Void`.
+- [Elimination with a motive in Coq](http://web.mit.edu/~ezyang/Public/motive/motive.html)
+- Example of left-inverse that is not a right inverse: `parse` and `print`.
+  `parse(print(e)) = e` can be achieved easily by printing into a legal parseable format.
+   On the other hand, `print(parse(s)) = s` is much harder, since for example,
+   `print(parse("1+2")) = "1 + 2"`, while `"1+2" != "1 + 2"`. 
+- Pollack-inconsistency:To make these issues concrete we introduce the notion
+   of Pollack-consistency. This property is
+  related to a system being able to correctly parse formulas that it printed
+  itself. In current systems it happens regularly that this fails.  We argue that
+  a good interactive theorem prover should be Pollack-consistent. We show with
+  examples that many interactive theorem provers currently are not
+  Pollack-consistent. Finally we describe a simple approach for making a system
+  Pollack-consistent, which only consists of a small modification to the printing
+  code of the system.
 - [Computational aspects of the mobius transform](https://arxiv.org/pdf/1304.1122.pdf)
 - Why PDE is infinite dimensional: The solution to an ordinary differential
   equation, of order n, can be written
@@ -1011,10 +1037,8 @@ Some Highlights
 - [Algebraic Geometry from the beginning](https://rigtriv.wordpress.com/ag-from-the-beginning/).
   Expository blog posts that has the algebraic, geometric, and computational
   parts of AG. Really neat!
-- [The oldschool PC font resource](https://int10h.org/oldschool-pc-fonts/download/).
-  I found some fonts I really enjoyed! (i) Px437 Amstrad PC-2y regular.
-  (ii) Px437 ApricotXenC Regular/Bold. (iii) Px437 Compaq Port3 Regular
-  (iv) Px437 Compis regular. (v) Px437 PhoenixEGA 9x14 regular.
+- [The oldschool PC font resource/pixel fonts](https://int10h.org/oldschool-pc-fonts/download/).
+  I recommend the font: Mx437 Nix8810 M15
 - [Karpman drama triangle](https://en.wikipedia.org/wiki/Karpman_drama_triangle)
 > The drama triangle is a social model of human interaction – the triangle maps
 > a type of destructive interaction that can occur between people in conflict

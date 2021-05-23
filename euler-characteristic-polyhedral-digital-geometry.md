@@ -260,7 +260,6 @@ TODO: add image from barvinok
 #### Relationship to connected components:
 
 
-
 #### References
 - Alexander Barvinok, Integer Points in Polyhedra
 - [Alon Amit's answer on Quora about finding connected components](https://www.quora.com/What-are-some-programming-problems-that-look-hard-at-a-first-glance-but-are-actually-easy/answer/Alon-Amit?ch=10&share=aa23bf2f&srid=TLHW)

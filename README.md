@@ -209,7 +209,7 @@ such natural transformations $Hom(c_j, -) \rightarrow P$ are in natural bijectio
 point, we'll probably need to pick elements $P(c_j)$. We're not done yet, this is what one part of 
 what it means to be a colimit; we also need all the diagrams to commute!  (1)
 the embedding natural transformations $Hom(c_j, -) \rightarrow P$ arrows
-commute with image of the arrows in $J$, of the form $Hom(c_j, -) \rightarrow Hom(c_{j'), -)$.
+commute with image of the arrows in $J$, of the form $Hom(c_j, -) \rightarrow Hom(c_{j'}, -)$.
 (2) that $P$ is the universal object in $[C, Set]$ such that
 this rats nest of hom-sets embeds perfectly into $P$. Now the problem boils
 down to designing a $dgrm: J \rightarrow [C, Set]$ which picks out enough
@@ -463,7 +463,7 @@ the same for an entire conjugacy class .
 
 #### Morphism between representations / intertwining
 
-A map between two representations, $f: G \rightarrow V$, $f': G \rihtarrow W$
+A map between two representations, $f: G \rightarrow V$, $f': G \rightarrow W$
 is given by $\eta: V \rightarrow W$ if the natural diagram commutes:
 
 ```
@@ -706,7 +706,7 @@ is so different from the hawaiian earring. Here are some thoughts:
 > every map $f: K \rightarrow L$ is homotopic to a simplicial map $f_\triangle: K \rightarrow L$:
 > ie, a map that sends vertices to vertices,
 > and sends other points through an extension of linearity.
-> such that $f(st(v)) \subseteq st(f_\tri(v))$ where $f_\tri$ is the simplicial
+> such that $f(st(v)) \subseteq st(f_\triangle(v))$ where $f_\triangle$ is the simplicial
 > approximation of $f$.
 
 Recall that $st(v)$ is the intersection of interiors of all simplices that
@@ -838,29 +838,29 @@ This gives $||v_j - b|| \leq (n-1)l/n$, hence the edge length decreases by a fac
 Take two maps $f, g: X \rightarrow Y$ which are homotopic. We wish
 to show that if $f$ is homotopic to $g$, then we will get the same
 induced singular homology groups from $f$ and $g$. The idea is to take a chain
-$c[n] \in C[n]$, then study the image $f#(c[n])$ and $g#(c[n])$. Since $f$ 
-and $g$ are homotopic, we can build a "prism" that connects $f#(c[n])$ and $g#(c[n])$
+$c[n] \in C[n]$, then study the image $f\sharp(c[n])$ and $g\sharp(c[n])$. Since $f$ 
+and $g$ are homotopic, we can build a "prism" that connects $f\sharp(c[n])$ and $g\sharp(c[n])$
 by means of a prism operator, that sends a chain $c \in C[n]$
 to the prism $p(c)$ produced by the chain which lives in $D[n+1]$. Next, we compute the
 boundary of this prism, $\partial p(c)$. This boundary will contain a top portion,
-which is $f#(c)$, a bottom portion which is $g#(c)$, and the boundary edges 
+which is $f\sharp(c)$, a bottom portion which is $g\sharp(c)$, and the boundary edges 
 of the prism itself, which is the same as taking the prism of the boundary edges
-$p(\partial c)$.  This gives the equation $\partial(p(c)) = p(\partial c) + g#(c) - f#(c)$.
-Rearranging, this gives $g#(c) - f#(c) = \partial p(c) - p(\partial c)$. To inspect
-homology, we wish to check that $f#, g#$ agree on elements of $\ker(\partial[n])/\im(\partial[n+1])$.
+$p(\partial c)$.  This gives the equation $\partial(p(c)) = p(\partial c) + g\sharp(c) - f\sharp(c)$.
+Rearranging, this gives $g\sharp(c) - f\sharp(c) = \partial p(c) - p(\partial c)$. To inspect
+homology, we wish to check that $f\sharp, g\sharp$ agree on elements of $\ker(\partial[n])/im(\partial[n+1])$.
 So, we set $c \in \ker(\partial[n])$. This kills of $p(\partial c)$. Further, since we 
 quotient by $\partial[n+1]$, the $\partial(p[c])$ also dies off. This means that
-$g#(c) - f#(c) = 0$ when interpreted as an element of $H[Y][n]$. Philosophically,
+$g\sharp(c) - f\sharp(c) = 0$ when interpreted as an element of $H[Y][n]$. Philosophically,
 living in $\ker(\partial[n])$ kills $- \circ \partial$, and quotienting
-by $\im(\partial[n+1])$ kills $\partial \circ -$. Thus, we get that $g#$ and $f#$ produce the same
+by $im(\partial[n+1])$ kills $\partial \circ -$. Thus, we get that $g\sharp$ and $f\sharp$ produce the same
 homology element. Intuitively, we are saying that these can be connected by a prism in the space,
 and thus produce the same element. Think of the 0D case in a path-connected
 space, where all points become equivalent since we can connect them by paths.
 
 To compute the boundary of the prism, we break the prism into an interplation from
-$f#$ into $g#$ by raising $f#$ into $g#$ one vertex at a time. This then allows us
+$f\sharp$ into $g\sharp$ by raising $f\sharp$ into $g\sharp$ one vertex at a time. This then allows us
 to induce cancellations and show that $\partial(p(c))$ contains the terms
-$p(\partial(c))$, $f#(c)$ and $g#(c)$.
+$p(\partial(c))$, $f\sharp(c)$ and $g\sharp(c)$.
 
 
 Let's consider a 1D line $l: \Delta^1 \rightarrow X$ in $X$, with vertices
@@ -888,18 +888,18 @@ where $\hat{v[i]}$ means that we exlude this vertex, and $v[0], v[1], \dots$ are
 of the domain $\Delta^i$.
 
 Now, say we have a function $f: X \rightarrow Y$, and a singular chain complex $D[n]$ for $Y$.
-In this case, we can induce a chain map $f#: C[n] \rightarrow D[n]$, given by:
+In this case, we can induce a chain map $f\sharp: C[n] \rightarrow D[n]$, given by:
 
 $$
 \begin{aligned}
-&f#: C[n] \rightarrow D[n] \\
-&f#: (\Delta^n \rightarrow X) \rightarrow (\Delta^n \rightarrow Y) \\
-&f#(\sigma) = f \circ \sigma
+&f\sharp: C[n] \rightarrow D[n] \\
+&f\sharp: (\Delta^n \rightarrow X) \rightarrow (\Delta^n \rightarrow Y) \\
+&f\sharp(\sigma) = f \circ \sigma
 \end{aligned}
 $$
 
-We wish to show that this produces a homomorphism from $H[n](X) \equiv \ker \partial[n]/ \im \partial[n+1]$
-to $H[n](Y) \equiv \ker \partial[D][n] / \im \partial[D][n+1]$. To do this, we already have a map from  $C[n]$ to $D[n]$.
+We wish to show that this produces a homomorphism from $H[n](X) \equiv \ker \partial[n]/ im \partial[n+1]$
+to $H[n](Y) \equiv \ker \partial[D][n] / im \partial[D][n+1]$. To do this, we already have a map from  $C[n]$ to $D[n]$.
 We need to show that it sends $\ker \partial[n] \mapsto \ker \partial[D][n]$ and.
 
 The core idea is that if we have abelian groups $G, H$ with subgroups $M, N$, and a homomorphism
@@ -1028,7 +1028,7 @@ lemma tells us that intertwinings between irreducible representations are either
 or a scaling of the identity matrix. That is, they are one-dimensional, and the space
 of all intertwinings is morally isomorphic to the field $\mathbb C$. If we specialize
 to character theory of cyclic groups $Z/nZ$, let's pick one representation to be
-the "standard representation" $\sigma: x \mapsto e^{i 2 \pi x/n\}$. Then, given some other
+the "standard representation" $\sigma: x \mapsto e^{i 2 \pi x/n}$. Then, given some other
 representation $\rho: Z/nZ \rightarrow \mathbb C^\times$, the intertwining between
 $\sigma$ and $\rho$ is determined by where $\rho$ sends $1$. If $\rho(1) = k \sigma(1)$
 for $k \in \mathbb R$, then the intertwining is scaling by $k$. Otherwise, the intertwining
@@ -1219,7 +1219,7 @@ indexes, there exists a higher index that is in the nbhd).
 Let $\{ X_\alpha : \alpha \in \Lambda \}$ is a collection of compact
 topological spaces. Let $X \equiv \prod_{\alpha \in \Lambda} X_\alpha$ be the 
 product space. Let $\Phi: D \rightarrow X$ be a universal net for $X$.
-For each $\lamba \in \Lambda$, the push forward net $\pi_\lambda \circ \Phi: D \rightarrow X_\lambda$
+For each $\lambda \in \Lambda$, the push forward net $\pi_\lambda \circ \Phi: D \rightarrow X_\lambda$
 is a universal net. Thus, it converges to some $x_\lambda \in X_\lambda$.
 Since products of nets converge iff their components converge, and here all the components
 converge, the original net also converges in $X$. But this means that $X$ is compact
@@ -1343,7 +1343,7 @@ is the intersection of all opens containing $x$.
 # Zeroth singular homology group: Intuition
 
 We wish to show that for a path connected space $X$, the zeroth singular homology group is just $\mathbb Z$.
-The intuition is that the zeroth homology group is given by consider $C[1] \xightarrow{\partial_1} C[0]$,
+The intuition is that the zeroth homology group is given by consider $C[1] \xrightarrow{\partial_1} C[0]$,
 $C[0] \xrightarrow{\partial_0} 0$, and then taking $H[0] \equiv ker(\partial_0) / im(\partial_1) = C[0] / im(\partial_1)$.
 Recall that $C[0]$ is the abelian group generated by the direct sum of generators
 $\{ \Delta^0 \rightarrow X \}$, where $\Delta^0$ is the $0$-simplex, that is,
