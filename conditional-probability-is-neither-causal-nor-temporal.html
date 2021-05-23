@@ -7,13 +7,13 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=conditional-probability-is-neither-causal-nor-temporal href='#conditional-probability-is-neither-causal-nor-temporal'> § </a><span class='centered'> Conditional probability is neither causal nor temporal</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=conditional-probability-is-neither-causal-nor-temporal href='#conditional-probability-is-neither-causal-nor-temporal'> § </a><span class='centered'> Conditional probability is neither causal nor temporal</h2>
 <span class='centered'>I found this insightful:
-<blockquote><span class='centered'> <code>P(A|B)</code> means the probability of A happening given B already<span class='centered'> happened. Not so! <code>P(A|B)</code> doesn’t specify the time ordering of A and B. It<span class='centered'> specifies the order in which YOU learn about them happening. So P(A|B) is the<span class='centered'> probability of A given you know what happened with B.</blockquote>
+<blockquote><span class='centered'> <code class='inline'>P(A|B)</code> means the probability of A happening given B already<span class='centered'> happened. Not so! <code class='inline'>P(A|B)</code> doesn’t specify the time ordering of A and B. It<span class='centered'> specifies the order in which YOU learn about them happening. So P(A|B) is the<span class='centered'> probability of A given you know what happened with B.</blockquote>
 <span class='centered'>This makes sense from the information theoretic perspective; I'd never meditated
 <span class='centered'>on this difference, though.
 <span class='centered'>I'd seen things like: 
-<blockquote><span class='centered'> <code>P(sunrise | rooster-crow) = large</code> even though rooster crowing does not <i><span class='centered'>cause</i><span class='centered'> the sunrise to happen. </blockquote>
-<span class='centered'>but I'd never seen/actively contemplated an example of <code>P(A|B)</code> where they 
+<blockquote><span class='centered'> <code class='inline'>P(sunrise | rooster-crow) = large</code> even though rooster crowing does not <i><span class='centered'>cause</i><span class='centered'> the sunrise to happen. </blockquote>
+<span class='centered'>but I'd never seen/actively contemplated an example of <code class='inline'>P(A|B)</code> where they 
 <span class='centered'>are temporally reversed/ambiguous.
 <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

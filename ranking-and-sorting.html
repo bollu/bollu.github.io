@@ -7,25 +7,25 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=ranking-and-sorting href='#ranking-and-sorting'> § </a><span class='centered'> Ranking and Sorting</h2>
-<span class='centered'>We we want to sort an arrray <code>xs</code> and write the results into an array <code>ys</code>.
-<span class='centered'>In both cases, the invariant to be satisfied is that <code>ys</code> is <code>xs</code> in ascending
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=ranking-and-sorting href='#ranking-and-sorting'> § </a><span class='centered'> Ranking and Sorting</h2>
+<span class='centered'>We we want to sort an arrray <code class='inline'>xs</code> and write the results into an array <code class='inline'>ys</code>.
+<span class='centered'>In both cases, the invariant to be satisfied is that <code class='inline'>ys</code> is <code class='inline'>xs</code> in ascending
 <span class='centered'>order. I'll be considering two broad ways to implement such a thing:
-<ul><li><span class='centered'><span class='centered'> 1. <i><span class='centered'><i><span class='centered'>(RANK)</i></i> Index straight into <code>ys</code>, reindexed into <code>xs</code>. We name the reindexing<span class='centered'>array as <code>rs</code> (<code>rs</code> for <i><span class='centered'>ranks</i>).</li></ul>
+<ul><li><span class='centered'><span class='centered'> 1. <i><span class='centered'><i><span class='centered'>(RANK)</i></i> Index straight into <code class='inline'>ys</code>, reindexed into <code class='inline'>xs</code>. We name the reindexing<span class='centered'>array as <code class='inline'>rs</code> (<code class='inline'>rs</code> for <i><span class='centered'>ranks</i>).</li></ul>
 <pre><code><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> N<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
    ys<span class="token punctuation">[</span>rs<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> xs<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<ul><li><span class='centered'><span class='centered'> 2. <i><span class='centered'><i><span class='centered'>(SELECT)</i></i> Reindex into <code>ys</code>, index straight into <code>xs</code>. <span class='centered'>We name the reindexing array <code>ss</code> (<code>ss</code> for <i><span class='centered'>selects</i>).</li></ul>
+<ul><li><span class='centered'><span class='centered'> 2. <i><span class='centered'><i><span class='centered'>(SELECT)</i></i> Reindex into <code class='inline'>ys</code>, index straight into <code class='inline'>xs</code>. <span class='centered'>We name the reindexing array <code class='inline'>ss</code> (<code class='inline'>ss</code> for <i><span class='centered'>selects</i>).</li></ul>
 <pre><code><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> N<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
    ys<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> xs<span class="token punctuation">[</span>ss<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <h4><a id=defnition-of-rank href='#defnition-of-rank'> § </a><span class='centered'> Defnition of rank</h4>
-<span class='centered'>In the case of <i><span class='centered'><i><span class='centered'>(RANK)</i></i>, the specification is that the rank of an element <code>e</code>
+<span class='centered'>In the case of <i><span class='centered'><i><span class='centered'>(RANK)</i></i>, the specification is that the rank of an element <code class='inline'>e</code>
 <span class='centered'>is the number of elements that are:
-<ol><li><span class='centered'><span class='centered'> less than <code>e</code>.</li><li><span class='centered'><span class='centered'> equal to <code>e</code> but occur before <code>e</code>.</li></ol>
-<span class='centered'>This ensures that rank is a <i><span class='centered'>permutation</i>: that is, every element <code>e</code> is given
+<ol><li><span class='centered'><span class='centered'> less than <code class='inline'>e</code>.</li><li><span class='centered'><span class='centered'> equal to <code class='inline'>e</code> but occur before <code class='inline'>e</code>.</li></ol>
+<span class='centered'>This ensures that rank is a <i><span class='centered'>permutation</i>: that is, every element <code class='inline'>e</code> is given
 <span class='centered'>a <i><span class='centered'>unique</i> index. 
 <pre><code><span class="token keyword">int</span> <span class="token function">rank</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">int</span> <span class="token operator">*</span>xs<span class="token punctuation">,</span> <span class="token keyword">int</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
     <span class="token keyword">int</span> cnt <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
@@ -41,8 +41,8 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul,
 </code></pre>
 <h4><a id=rank-alternative-1 href='#rank-alternative-1'> § </a><span class='centered'> Rank: Alternative 1</h4>
 <span class='centered'>An alternative way to look at our definition of rank is that we are
-<span class='centered'>sorting the tuples  <code>(xs[i], i)</code> using lex ordering. So if two indeces
-<span class='centered'><code>i, j</code> have the same value, then we sort on the index.
+<span class='centered'>sorting the tuples  <code class='inline'>(xs[i], i)</code> using lex ordering. So if two indeces
+<span class='centered'><code class='inline'>i, j</code> have the same value, then we sort on the index.
 <h4><a id=rank-alternative-2 href='#rank-alternative-2'> § </a><span class='centered'> Rank: Alternative 2</h4>
 <span class='centered'>We could have also defined rank as:
 <pre><code><span class="token keyword">int</span> <span class="token function">rank</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>xs<span class="token punctuation">,</span> <span class="token keyword">int</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
@@ -54,24 +54,24 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul,
 <span class="token punctuation">}</span>
 </code></pre>
 <span class='centered'>I declined from doing so because I wanted to show the lex-ordering
-<span class='centered'>interpretation of <code>rank</code> will be be useful later.
+<span class='centered'>interpretation of <code class='inline'>rank</code> will be be useful later.
 <h4><a id=definition-of-select href='#definition-of-select'> § </a><span class='centered'> Definition of select</h4>
 <span class='centered'>For <i><span class='centered'><i><span class='centered'>(SELECT)</i></i>, we'll need to think a little harder. Let's try to rewrite
 <span class='centered'>our way to glory:
 <ul><li><span class='centered'><span class='centered'> 1. From definition of rank:</li></ul>
 <pre><code>ys<span class="token punctuation">[</span>rs<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> xs<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
 </code></pre>
-<ul><li><span class='centered'><span class='centered'> 2. move <code>i -> ss[i]</code> where <code>ss[i]</code> is guaranteed to be a permutation,<span class='centered'>so we will write each index eventually:</li></ul>
+<ul><li><span class='centered'><span class='centered'> 2. move <code class='inline'>i -> ss[i]</code> where <code class='inline'>ss[i]</code> is guaranteed to be a permutation,<span class='centered'>so we will write each index eventually:</li></ul>
 <pre><code>ys<span class="token punctuation">[</span>rs<span class="token punctuation">[</span>ss<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> xs<span class="token punctuation">[</span>ss<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span>
 </code></pre>
-<ul><li><span class='centered'><span class='centered'> 3. Stipulate that <code>rs[ss[i]] = i</code>, since we want a <code>ys[i]</code>:</li></ul>
+<ul><li><span class='centered'><span class='centered'> 3. Stipulate that <code class='inline'>rs[ss[i]] = i</code>, since we want a <code class='inline'>ys[i]</code>:</li></ul>
 <pre><code>ys<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> xs<span class="token punctuation">[</span>ss<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span>
 </code></pre>
-<span class='centered'>This gives us necessary and sufficient conditions on how to find an <code>ss</code>:
-<span class='centered'><code>ss</code> must be a permutation that is an inverse permutation to <code>rs</code>.
+<span class='centered'>This gives us necessary and sufficient conditions on how to find an <code class='inline'>ss</code>:
+<span class='centered'><code class='inline'>ss</code> must be a permutation that is an inverse permutation to <code class='inline'>rs</code>.
 <h4><a id=how-to-invert-a-permutation href='#how-to-invert-a-permutation'> § </a><span class='centered'> How to invert a permutation?</h4>
-<span class='centered'>How does one invert a permutation? We have a permutation <code>rs[i]</code> that maps
-<span class='centered'><code>i</code> to <code>rs[i]</code>. We want to find a new permutation <code>ss[i]</code> such that 
+<span class='centered'>How does one invert a permutation? We have a permutation <code class='inline'>rs[i]</code> that maps
+<span class='centered'><code class='inline'>i</code> to <code class='inline'>rs[i]</code>. We want to find a new permutation <code class='inline'>ss[i]</code> such that 
 <pre><code>rs[ss[i]] = i
 </code></pre>
 <span class='centered'>Equivalently:
@@ -80,8 +80,8 @@ ss[i] = k
 // 'k' is the location of 'i' in rs.
 rs[k] = i
 </code></pre>
-<span class='centered'>So if we first tag each location of <code>rs</code> with its index, and then sort
-<span class='centered'>with the values of <code>rs</code> being the keys, then <code>ss[i]</code> will be the values.
+<span class='centered'>So if we first tag each location of <code class='inline'>rs</code> with its index, and then sort
+<span class='centered'>with the values of <code class='inline'>rs</code> being the keys, then <code class='inline'>ss[i]</code> will be the values.
 <span class='centered'>In pictures:
 <pre><code>rs[i]          [3 4 0 1 2]
 rs_tagged[i]   [(3, 0) (4, 1) (0, 2) (1, 3) (2, 4)]
@@ -92,7 +92,7 @@ rs[ss[i]]      [    0      1      2      3      4 ]
 </code></pre>
 <h4><a id=rank-and-select-are-inverses href='#rank-and-select-are-inverses'> § </a><span class='centered'> Rank and Select are inverses</h4>
 <span class='centered'>It's nice, there are a couple of miracles that lined up here:
-<ul><li><span class='centered'><span class='centered'> Rank starts with <code>r</code> and select starts with <code>s</code> so we get nice naming.</li><li><span class='centered'><span class='centered'> Rank and select are true inverse permutations of each other.</li></ul>
+<ul><li><span class='centered'><span class='centered'> Rank starts with <code class='inline'>r</code> and select starts with <code class='inline'>s</code> so we get nice naming.</li><li><span class='centered'><span class='centered'> Rank and select are true inverse permutations of each other.</li></ul>
 <h4><a id=generalized-rank-and-select-are-adjoint href='#generalized-rank-and-select-are-adjoint'> § </a><span class='centered'> Generalized rank and select are adjoint</h4>
 <span class='centered'>We had to "fix" our definition of rank to avoid equal elements in the array.
 <span class='centered'>Hence, we had the rule that we also sort by indexes if the elements are

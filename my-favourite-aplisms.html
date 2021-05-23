@@ -7,17 +7,17 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=my-favourite-aplisms href='#my-favourite-aplisms'> § </a><span class='centered'> My Favourite APLisms</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=my-favourite-aplisms href='#my-favourite-aplisms'> § </a><span class='centered'> My Favourite APLisms</h2>
 <h4><a id=identity-matrix href='#identity-matrix'> § </a><span class='centered'> identity matrix</h4>
 <pre><code>n←3 ⋄ id ← n n ⍴(1,n⍴0) ⋄ id
 </code></pre>
-<span class='centered'>This relies heavily on <code>⍴</code> replicating its arguments.
+<span class='centered'>This relies heavily on <code class='inline'>⍴</code> replicating its arguments.
 <h4><a id=histogram href='#histogram'> § </a><span class='centered'> histogram</h4>
 <pre><code>xs←(1 1 3 3 3 6) ⋄ n←(⌈/xs)⍴0 ⋄ n[xs]+←1 ⋄ n
 </code></pre>
-<span class='centered'>The use of <code>n[x] +←1</code> will stably write <code>+1</code> as many times as there are repeated
-<span class='centered'>indexes in <code>xs</code>.
-<h4><a id=string-matching-parity-as-fold href='#string-matching-parity-as-fold'> § </a><span class='centered'> String matching / parity as fold <code>≠</code>:</h4>
+<span class='centered'>The use of <code class='inline'>n[x] +←1</code> will stably write <code class='inline'>+1</code> as many times as there are repeated
+<span class='centered'>indexes in <code class='inline'>xs</code>.
+<h4><a id=string-matching-parity-as-fold href='#string-matching-parity-as-fold'> § </a><span class='centered'> String matching / parity as fold <code class='inline'>≠</code>:</h4>
 <pre><code>]disp str ← (1 0 0 1 0 0 0 0 1 0 1 0 0 0) ⋄ 2 1 ⍴ ((⊂ str) ⍪ ⊂((≠\str)))
 ┌→──────────────────────────┐
 ↓1 0 0 1 0 0 0 0 1 0 1 0 0 0│

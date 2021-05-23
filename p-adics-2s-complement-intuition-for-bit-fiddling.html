@@ -7,7 +7,7 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=p-adics-2s-complement-intuition-for-bit-fiddling href='#p-adics-2s-complement-intuition-for-bit-fiddling'> § </a><span class='centered'> p-adics, 2's complement, intuition for bit fiddling</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=p-adics-2s-complement-intuition-for-bit-fiddling href='#p-adics-2s-complement-intuition-for-bit-fiddling'> § </a><span class='centered'> p-adics, 2's complement, intuition for bit fiddling</h2>
 <span class='centered'>Consider the equation <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mi mathvariant="normal">&amp;</mi><mo stretchy="false">(</mo><mo>−</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x \&amp; (-x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">x</span><span class="mord">&amp;</span><span class="mopen">(</span><span class="mord">−</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span></span> which enables us to find the largest
 <span class='centered'>power of 2 that divides <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">x</span></span></span></span></span>. One can prove this relatively easily from the
 <span class='centered'>definitions:
@@ -53,7 +53,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul,
 <pre><code>0 ~= b0000000
 </code></pre>
 <span class='centered'>Now, when we subtract 1, ask "are we in signed world or unsigned world"? If
-<span class='centered'>in signed world, we want the answer to be <code>-1</code>. If in unsigned world
+<span class='centered'>in signed world, we want the answer to be <code class='inline'>-1</code>. If in unsigned world
 <span class='centered'>we want the answer to be 255.
 <pre><code>0 - 1 
 = b0000000 - b00000001

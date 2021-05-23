@@ -7,7 +7,7 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=a-semidirect-product-worked-on-in-great-detail href='#a-semidirect-product-worked-on-in-great-detail'> § </a><span class='centered'> A semidirect product worked on in great detail</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=a-semidirect-product-worked-on-in-great-detail href='#a-semidirect-product-worked-on-in-great-detail'> § </a><span class='centered'> A semidirect product worked on in great detail</h2>
 <span class='centered'>We work out the semidirect product structure of the collection of real 2x2 matrices
 <div class='latexblock'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo fence="true">[</mo><mtable rowspacing="0.15999999999999992em" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mi>a</mi></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mi>b</mi></mstyle></mtd></mtr></mtable><mo fence="true">]</mo></mrow><annotation encoding="application/x-tex">
 \begin{bmatrix}
@@ -133,9 +133,9 @@ T \equiv
 <span class='centered'>a shear by scaling leaves us with a shear.
 <span class='centered'><img src="./static/semidirect-product/dinv-s-d.png" />
 <h4><a id=the-connnection-to-partial-fractions href='#the-connnection-to-partial-fractions'> § </a><span class='centered'> The connnection to partial  fractions</h4>
-<span class='centered'>Recall that any matrix of the form <code>[a b; c d]</code> can be viewed as taking
-<span class='centered'>the fraction <code>x/y</code> to <code>(ax+by)/(cx+dy)</code>. In our case, we have:
-<ul><li><span class='centered'><span class='centered'> Diagonal: <code>[1 0; 0 b]</code> which take <code>x/y</code> to <code>x/by</code>.</li><li><span class='centered'><span class='centered'> Shear: <code>[1 a 0 1]</code> which take <code>x/y</code> to <code>(x + ay)/y</code>.</li></ul>
+<span class='centered'>Recall that any matrix of the form <code class='inline'>[a b; c d]</code> can be viewed as taking
+<span class='centered'>the fraction <code class='inline'>x/y</code> to <code class='inline'>(ax+by)/(cx+dy)</code>. In our case, we have:
+<ul><li><span class='centered'><span class='centered'> Diagonal: <code class='inline'>[1 0; 0 b]</code> which take <code class='inline'>x/y</code> to <code class='inline'>x/by</code>.</li><li><span class='centered'><span class='centered'> Shear: <code class='inline'>[1 a 0 1]</code> which take <code class='inline'>x/y</code> to <code class='inline'>(x + ay)/y</code>.</li></ul>
 <span class='centered'>It's clear that diagonals and shears compose. What is unclear is how they
 <span class='centered'>interact. A little thought shows us:
 <pre><code>x/y -diagonal->

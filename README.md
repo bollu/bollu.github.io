@@ -43,7 +43,7 @@ that right adjoints preserve limits ? Suppose `L: C -> D`, `R: D -> C` are adjoi
 Now, consider limits in `D`. This can be considered by taking the category `(J -> D)`. 
 We get an adjunction `const: D -> (J -> D) |- lim: (J -> D) -> C`.
 
-```
+```text
 C<-g-D <-lim-   (J -> D)
 C    D          (J -> D)
 C-f->D -const-> (J -> D)
@@ -51,7 +51,7 @@ C-f->D -const-> (J -> D)
 
 composing gives us:
 
-```
+```text
 C <-g- D <-lim-   (J -> D) <-f._ -  (J -> C)
 C      D          (J -> D)          (J -> C)
 C -f-> D -const-> (J -> D)  -g._ -> (J -> C)

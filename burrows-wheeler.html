@@ -7,7 +7,7 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=burrows-wheeler href='#burrows-wheeler'> § </a><span class='centered'> Burrows Wheeler</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=burrows-wheeler href='#burrows-wheeler'> § </a><span class='centered'> Burrows Wheeler</h2>
 <span class='centered'>We aim to get the <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></span> algorithm for burrows wheeler, by starting from the
 <span class='centered'>naive <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span> implementation and then slowly chipping away to get to the
 <span class='centered'>fastest algorithm
@@ -76,7 +76,7 @@ re-therehe  7
 rehere-the  8
 therehere-  9
 </code></pre>
-<span class='centered'>we produce this by chainging the above definition of <code>main</code> to:
+<span class='centered'>we produce this by chainging the above definition of <code class='inline'>main</code> to:
 <pre><code>main =  putStrLn $ intercalate "\n"  
   (zipWith (\s i -> s <> "  " <> show i)
            -- | extra `sort` here
@@ -97,14 +97,14 @@ therehere|-|  9
 0123456789
 errhhetee-
 </code></pre>
-<span class='centered'>Now, we'll show how to write a <i><span class='centered'>really cool</i> function call <code>bwt</code> such that:
+<span class='centered'>Now, we'll show how to write a <i><span class='centered'>really cool</i> function call <code class='inline'>bwt</code> such that:
 <pre><code><span class="token hvariable">bwtinv</span> <span class="token punctuation">(</span><span class="token string">"errhhetee-"</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token string">"here-there"</span>
 </code></pre>
-<span class='centered'>The <code>5</code> is the index of the original string in the list. That is, given
+<span class='centered'>The <code class='inline'>5</code> is the index of the original string in the list. That is, given
 <span class='centered'>the jumbled up last-column and the index of the original string, we're
 <span class='centered'>able to reconstruct the original string. The reason this is useful is
-<span class='centered'>that the jumbled string <code>"errhhetee-"</code> is easier to compress: it has
-<span class='centered'>long runs of <code>r</code>, <code>h</code>, and <code>e</code> which makes it easier to compress.
+<span class='centered'>that the jumbled string <code class='inline'>"errhhetee-"</code> is easier to compress: it has
+<span class='centered'>long runs of <code class='inline'>r</code>, <code class='inline'>h</code>, and <code class='inline'>e</code> which makes it easier to compress.
 <span class='centered'>The process we performed of rotating, sorting the rotations and taking
 <span class='centered'>the final column is the Burrows-Wheeler transform. in code:
 <pre><code><span class="token import-statement"><span class="token keyword">import</span> Data.List</span>
@@ -122,7 +122,7 @@ errhhetee-
 <span class="token hvariable">bwt</span> <span class="token operator">::</span> <span class="token constant">Eq</span> <span class="token hvariable">a</span> <span class="token operator">=></span> <span class="token constant">Ord</span> <span class="token hvariable">a</span> <span class="token operator">=></span> <span class="token punctuation">[</span><span class="token hvariable">a</span><span class="token punctuation">]</span> <span class="token operator">-></span> <span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token hvariable">a</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token constant">Int</span><span class="token punctuation">)</span>
 <span class="token hvariable">bwt</span> <span class="token hvariable">as</span> <span class="token operator">=</span> <span class="token keyword">let</span> <span class="token hvariable">as</span>' <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token builtin">sort</span><span class="token operator"> . </span><span class="token hvariable">lrots</span><span class="token punctuation">)</span> <span class="token hvariable">as</span> <span class="token keyword">in</span> <span class="token punctuation">(</span><span class="token hvariable">lastcol</span> <span class="token hvariable">as</span>'<span class="token punctuation">,</span> <span class="token hvariable">findix</span> <span class="token hvariable">as</span> <span class="token hvariable">as</span>'<span class="token punctuation">)</span>
 </code></pre>
-<span class='centered'>Now we need to understand how <code>bwtinv</code> is defined and what it does.
+<span class='centered'>Now we need to understand how <code class='inline'>bwtinv</code> is defined and what it does.
 <span class='centered'>The definition is:
 <pre><code>import Control.Arrow (&&&)
 
@@ -147,8 +147,8 @@ consCol = uncurry (zipWith (:))
 </code></pre>
 <span class='centered'>OK, so much for the code. what does it <i><span class='centered'>do</i>?
 <span class='centered'>The idea is that:
-<ul><li><span class='centered'><span class='centered'> we recreate the entire matrix from the last column using <code>recreate</code><span class='centered'>and take the <code>k</code>th element.</li></ul>
-<ul><li><span class='centered'><span class='centered'> <code>recreate</code> apprents a copy of the initial last column to a matrix of<span class='centered'>columns, and then sorts this.</li></ul>
+<ul><li><span class='centered'><span class='centered'> we recreate the entire matrix from the last column using <code class='inline'>recreate</code><span class='centered'>and take the <code class='inline'>k</code>th element.</li></ul>
+<ul><li><span class='centered'><span class='centered'> <code class='inline'>recreate</code> apprents a copy of the initial last column to a matrix of<span class='centered'>columns, and then sorts this.</li></ul>
 <h4><a id=references href='#references'> § </a><span class='centered'> References</h4>
 <ul><li><span class='centered'><span class='centered'> Richard Bird: Pearls of functional algorithm design</li></ul>
 <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

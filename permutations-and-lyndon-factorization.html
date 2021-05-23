@@ -7,18 +7,18 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=permutations-and-lyndon-factorization href='#permutations-and-lyndon-factorization'> § </a><span class='centered'> Permutations-and-lyndon-factorization</h2>
-<span class='centered'>For a string <code>s</code>, the Lyndon factorization writes <code>s</code> as the concatenation of
-<span class='centered'>substrings <code>t1</code>, <code>t2</code>, ..., <code>tn</code>, such that:
-<ul><li><span class='centered'><span class='centered'> each <code>ti</code> is a simple word. That is, it is lexicographically smaller than all<span class='centered'>of its cyclic shifts.</li><li><span class='centered'><span class='centered'> the words are in non-increasing order: <code>t1 >= t2 >= t3 ... >= tn</code>.</li></ul>
-<span class='centered'>For example, given the word <code>banana</code>, the lyndon factorization is:
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=permutations-and-lyndon-factorization href='#permutations-and-lyndon-factorization'> § </a><span class='centered'> Permutations-and-lyndon-factorization</h2>
+<span class='centered'>For a string <code class='inline'>s</code>, the Lyndon factorization writes <code class='inline'>s</code> as the concatenation of
+<span class='centered'>substrings <code class='inline'>t1</code>, <code class='inline'>t2</code>, ..., <code class='inline'>tn</code>, such that:
+<ul><li><span class='centered'><span class='centered'> each <code class='inline'>ti</code> is a simple word. That is, it is lexicographically smaller than all<span class='centered'>of its cyclic shifts.</li><li><span class='centered'><span class='centered'> the words are in non-increasing order: <code class='inline'>t1 >= t2 >= t3 ... >= tn</code>.</li></ul>
+<span class='centered'>For example, given the word <code class='inline'>banana</code>, the lyndon factorization is:
 <pre><code>b; an; an; a; 
 </code></pre>
 <span class='centered'>We can define a notation for writing permutation as:
 <ul><li><span class='centered'><span class='centered'> Each term in a cycle is written in <i><span class='centered'>ascending</i> order.</li><li><span class='centered'><span class='centered'> Cycles are written in <i><span class='centered'>descending</i> order of the first element.</li><li><span class='centered'><span class='centered'> Single element are ignored.</li></ul>
 <pre><code>(7) (2 3) (1 4 5)
 </code></pre>
-<span class='centered'>If we treat it as a string <code>723145</code>,
+<span class='centered'>If we treat it as a string <code class='inline'>723145</code>,
 <span class='centered'>the duval algorithm provides the decomposition:
 <pre><code>7; 23; 145; 
 </code></pre>

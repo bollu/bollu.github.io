@@ -7,7 +7,7 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=lyndon-christoffel-convex-hull href='#lyndon-christoffel-convex-hull'> § </a><span class='centered'> Lyndon + Christoffel = Convex Hull</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=lyndon-christoffel-convex-hull href='#lyndon-christoffel-convex-hull'> § </a><span class='centered'> Lyndon + Christoffel = Convex Hull</h2>
 <span class='centered'>Actual "real world" use-case of lyndon factorization, cribbed from here:
 <ul><li><span class='centered'><span class='centered'> <a href=https://archipel.uqam.ca/8354/1/Reutenauer-2009a-preprint.pdf><span class='centered'>Lyndon + Christoffel = digitally convex</a></li><li><span class='centered'><span class='centered'> Combinatorics on Words: Christoffel Words and Repetitions in Words</li></ul>
 <span class='centered'>I wanted to learn a real-world use-case of lyndon factorization so I could
@@ -24,27 +24,27 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul,
 <ul><li><span class='centered'><span class='centered'> We can then check that each word in the lyndon decomposition is a Christoffel<span class='centered'>word. If it is, then your sequence of moves describes a "good  discrete<span class='centered'>convex hull", since as described above, a christoffel word "hugs the line"<span class='centered'>well. </li></ul>
 <h4><a id=bonus-slick-characterization-of-line-drawing href='#bonus-slick-characterization-of-line-drawing'> § </a><span class='centered'> Bonus: slick characterization of line drawing</h4>
 <span class='centered'><img src="./static/christoffel-cyclic-7-4.png">
-<span class='centered'>If we want to draw a line with slope <code>p/q = 4/7</code> using the lower approximation the idea
-<span class='centered'>is that we keep taking <code>4</code> steps along <code>x</code>, and every time we "exceed" <code>7</code> steps
-<span class='centered'>along <code>x</code>, we take a step along <code>y</code>.
+<span class='centered'>If we want to draw a line with slope <code class='inline'>p/q = 4/7</code> using the lower approximation the idea
+<span class='centered'>is that we keep taking <code class='inline'>4</code> steps along <code class='inline'>x</code>, and every time we "exceed" <code class='inline'>7</code> steps
+<span class='centered'>along <code class='inline'>x</code>, we take a step along <code class='inline'>y</code>.
 <span class='centered'>This is the same as:
-<ol><li><span class='centered'><span class='centered'> working in <code>Z/(4+7)Z</code>, starting from <code>0</code>, writing down multiples of <code>4</code> till we cycle back to <code>0</code></li><li><span class='centered'><span class='centered'> marking an "increase" in a step with an <code>x</code>, and a "decrease" in a step<span class='centered'>with <code>y</code>.</li></ol>
-<span class='centered'>The intuition is that once we walk <code>k*p</code> steps where <code>k*p >= q</code>, we want
-<span class='centered'>to increment <code>y</code>. So, at first glance, we may believe we should consider
-<span class='centered'><code>Z/qZ</code>. However, this is misguided. Examples to enlighten:
-<ol><li><span class='centered'><span class='centered'> Consider <code>x=1, y=0</code>. We should use <code>Z/1Z = { 0 }</code>: that is, we must keep<span class='centered'>moving along <code>0 -x -> 0 -x-> 0 -x-> ...</code>. This is unlike what happens if we choose<span class='centered'><code>Z/0Z</code> (which is not a well-defined idea).</li><li><span class='centered'><span class='centered'> Consider <code>x=1,y=1</code>. We should use <code>Z/2Z</code>, so we keep going <code>0 -x-> 1 -y-> 0 -> ...</code><span class='centered'>which will cause is to flip <code>x -> y -> x -> y -> ...</code>. </li></ol>
-<span class='centered'>In some sense, we are making sure that we can "start" with an <code>x</code> and see where that takes us.
-<span class='centered'>In the <code>Z/1Z</code> case, we realise that we can keep taking <code>x</code>s. In the
-<span class='centered'><code>Z/2Z</code> case, we realise we need to flip between <code>x</code> and <code>x</code>.
-<span class='centered'>Let's try to show this formally, where <code>k</code> is the smallest number
-<span class='centered'>such that <code>kp >= q</code>. We'll also have concrete examples where
-<span class='centered'><code>p=2, q=7</code>. For the example, <code>k=4</code> since <code>kp = 4*2 = 8 > 7</code>. 
-<span class='centered'>If we work in <code>Z/yZ = Z/7Z</code>, we will get the numbers:
+<ol><li><span class='centered'><span class='centered'> working in <code class='inline'>Z/(4+7)Z</code>, starting from <code class='inline'>0</code>, writing down multiples of <code class='inline'>4</code> till we cycle back to <code class='inline'>0</code></li><li><span class='centered'><span class='centered'> marking an "increase" in a step with an <code class='inline'>x</code>, and a "decrease" in a step<span class='centered'>with <code class='inline'>y</code>.</li></ol>
+<span class='centered'>The intuition is that once we walk <code class='inline'>k*p</code> steps where <code class='inline'>k*p >= q</code>, we want
+<span class='centered'>to increment <code class='inline'>y</code>. So, at first glance, we may believe we should consider
+<span class='centered'><code class='inline'>Z/qZ</code>. However, this is misguided. Examples to enlighten:
+<ol><li><span class='centered'><span class='centered'> Consider <code class='inline'>x=1, y=0</code>. We should use <code class='inline'>Z/1Z = { 0 }</code>: that is, we must keep<span class='centered'>moving along <code class='inline'>0 -x -> 0 -x-> 0 -x-> ...</code>. This is unlike what happens if we choose<span class='centered'><code class='inline'>Z/0Z</code> (which is not a well-defined idea).</li><li><span class='centered'><span class='centered'> Consider <code class='inline'>x=1,y=1</code>. We should use <code class='inline'>Z/2Z</code>, so we keep going <code class='inline'>0 -x-> 1 -y-> 0 -> ...</code><span class='centered'>which will cause is to flip <code class='inline'>x -> y -> x -> y -> ...</code>. </li></ol>
+<span class='centered'>In some sense, we are making sure that we can "start" with an <code class='inline'>x</code> and see where that takes us.
+<span class='centered'>In the <code class='inline'>Z/1Z</code> case, we realise that we can keep taking <code class='inline'>x</code>s. In the
+<span class='centered'><code class='inline'>Z/2Z</code> case, we realise we need to flip between <code class='inline'>x</code> and <code class='inline'>x</code>.
+<span class='centered'>Let's try to show this formally, where <code class='inline'>k</code> is the smallest number
+<span class='centered'>such that <code class='inline'>kp >= q</code>. We'll also have concrete examples where
+<span class='centered'><code class='inline'>p=2, q=7</code>. For the example, <code class='inline'>k=4</code> since <code class='inline'>kp = 4*2 = 8 > 7</code>. 
+<span class='centered'>If we work in <code class='inline'>Z/yZ = Z/7Z</code>, we will get the numbers:
 <pre><code>Z:    0, p, 2p, ... (k-1)p, [q] kp 
 Z/qZ: 0, p, 2p, ... (k-1)p, [q] (kp % q)
 Z/7z: 0, 2,  4, ...      6, [7] (8 % 7 = 1)
 </code></pre>
-<span class='centered'>But notice that we are inserting <code>x</code> <i><span class='centered'>between</i> numbers. So we will get:
+<span class='centered'>But notice that we are inserting <code class='inline'>x</code> <i><span class='centered'>between</i> numbers. So we will get:
 <pre><code>Z:    0 -x-> p -x-> 2p, ... (k-1)p -y-> (k+1)p
 Z/qZ: 0 -x-> p -x-> 2p, ... (k-1)p -y-> ((k+1)p % y)
 Z/7z: 0 -x-> 2 -x->  4, ...      6 -y-> (8      % 7 = 1) 
@@ -54,13 +54,13 @@ Z/7z: 0 -x-> 2 -x->  4, ...      6 -y-> (8      % 7 = 1)
 <span class='centered'>which gives us the moves:
 <pre><code>Z/7Z: 0 -x-> 2 -x-> 4 -x-> 6 -y-> 8 % 7 = 1
 </code></pre>
-<span class='centered'>We only get <code>3</code> occurences of <code>x</code>, after which on the next accumulation of <code>p</code>,
-<span class='centered'>becomes an <code>8</code> which wraps around to a <code>1</code>. This is the age-old tension that exists
-<span class='centered'>between <i><span class='centered'><i><span class='centered'>points</i></i> and <i><span class='centered'><i><span class='centered'>gaps</i></i>. For <code>k</code> points, there are <code>k-1</code> gaps. In our
-<span class='centered'>case, we have <code>4</code> points <code>[0, 2, 4, 6]</code>, but this leaves us room for only
-<span class='centered'>three gaps for three<code>x</code> moves, while in reality we need <code>4</code>.
-<span class='centered'>We remedy this situation by giving ourselves space enough for <i><span class='centered'>one</i> more <code>x</code>, by changing from <code>Z/qZ</code>
-<span class='centered'>to <code>Z/(p+q)Z</code>. We should look at this as creating space for another gap.
+<span class='centered'>We only get <code class='inline'>3</code> occurences of <code class='inline'>x</code>, after which on the next accumulation of <code class='inline'>p</code>,
+<span class='centered'>becomes an <code class='inline'>8</code> which wraps around to a <code class='inline'>1</code>. This is the age-old tension that exists
+<span class='centered'>between <i><span class='centered'><i><span class='centered'>points</i></i> and <i><span class='centered'><i><span class='centered'>gaps</i></i>. For <code class='inline'>k</code> points, there are <code class='inline'>k-1</code> gaps. In our
+<span class='centered'>case, we have <code class='inline'>4</code> points <code class='inline'>[0, 2, 4, 6]</code>, but this leaves us room for only
+<span class='centered'>three gaps for three<code class='inline'>x</code> moves, while in reality we need <code class='inline'>4</code>.
+<span class='centered'>We remedy this situation by giving ourselves space enough for <i><span class='centered'>one</i> more <code class='inline'>x</code>, by changing from <code class='inline'>Z/qZ</code>
+<span class='centered'>to <code class='inline'>Z/(p+q)Z</code>. We should look at this as creating space for another gap.
 <pre><code>Z:        0, p, 2p, ... (k-1)p, [q] kp,  [q+p  ], (k+1)p
 Z/(p+q)Z: 0, p, 2p, ... (k-1)p, [q] kp,  [q+p  ], (k+1)p % (p+q)    
 Z/9z: 0, 2,  4, ...          6, [7]  8,  [7+2=9], (10    %    9=1)
@@ -73,12 +73,12 @@ Z/9Z:     0 -x-> 2 -x-> ...      6 -x->  8 -y-> (   10 %     9 = 1)
            x since [0 < 2]               y since [8 > 1]
 
 </code></pre>
-<span class='centered'>That is, we are able to get <code>k</code> occurences <code>x</code> between <code>0, p, ..,kp</code> which
-<span class='centered'>has <code>(k+1)</code> points. Concretely, we have:
+<span class='centered'>That is, we are able to get <code class='inline'>k</code> occurences <code class='inline'>x</code> between <code class='inline'>0, p, ..,kp</code> which
+<span class='centered'>has <code class='inline'>(k+1)</code> points. Concretely, we have:
 <pre><code>Z/9Z: 0 -x-> 2 -x-> 4 -x-> 6 -x-> 8 -y-> 1
 </code></pre>
-<span class='centered'>where we have 4 occurences of <code>x</code> in between after which we have an occurence
-<span class='centered'>of <code>y</code>, which is what we want when <code>x=2, y = 7</code>. We need to reach at least
-<span class='centered'><code>q=7</code> before we have exceeded our denominator and need to make a move
-<span class='centered'>along <code>y</code>.
+<span class='centered'>where we have 4 occurences of <code class='inline'>x</code> in between after which we have an occurence
+<span class='centered'>of <code class='inline'>y</code>, which is what we want when <code class='inline'>x=2, y = 7</code>. We need to reach at least
+<span class='centered'><code class='inline'>q=7</code> before we have exceeded our denominator and need to make a move
+<span class='centered'>along <code class='inline'>y</code>.
 <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

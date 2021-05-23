@@ -7,7 +7,7 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=using-compactness-to-argue-about-covers href='#using-compactness-to-argue-about-covers'> § </a><span class='centered'> Using compactness to argue about covers</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=using-compactness-to-argue-about-covers href='#using-compactness-to-argue-about-covers'> § </a><span class='centered'> Using compactness to argue about covers</h2>
 <span class='centered'>I've always seen compactness be used by <i><span class='centered'>starting</i> with a possibly infinite
 <span class='centered'>coverm and then <i><span class='centered'>filtering it</i> into a finite subcover. This finite
 <span class='centered'>subcover is then used for finiteness properties (like summing, min, max, etc.).
@@ -16,19 +16,19 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul,
 <span class='centered'>from these subcovers if the set is compact. I found it to be a very cool
 <span class='centered'>use of compactness, which I'll record below:
 <h4><a id=theorem href='#theorem'> § </a><span class='centered'> Theorem:</h4>
-<span class='centered'>If a family of compact, countably infinite sets <code>S_a</code> have all
-<span class='centered'><i><span class='centered'>finite intersections</i> non-empty, then the intersection of the family <code>S_a</code>
+<span class='centered'>If a family of compact, countably infinite sets <code class='inline'>S_a</code> have all
+<span class='centered'><i><span class='centered'>finite intersections</i> non-empty, then the intersection of the family <code class='inline'>S_a</code>
 <span class='centered'>is non-empty.
 <h4><a id=proof href='#proof'> § </a><span class='centered'> Proof:</h4>
-<span class='centered'>Let <code>S = intersection of S_a</code>. We know that <code>S</code> must be compact since
-<span class='centered'>all the <code>S_a</code> are compact, and the intersection of a countably infinite
+<span class='centered'>Let <code class='inline'>S = intersection of S_a</code>. We know that <code class='inline'>S</code> must be compact since
+<span class='centered'>all the <code class='inline'>S_a</code> are compact, and the intersection of a countably infinite
 <span class='centered'>number of compact sets is compact.
-<span class='centered'>Now, let <code>S</code> be empty. Therefore, this means there must be a point <code>p ∈ P</code>
-<span class='centered'>such that <code>p !∈ S_i</code> for some arbitrary <code>i</code>.
+<span class='centered'>Now, let <code class='inline'>S</code> be empty. Therefore, this means there must be a point <code class='inline'>p ∈ P</code>
+<span class='centered'>such that <code class='inline'>p !∈ S_i</code> for some arbitrary <code class='inline'>i</code>.
 <h4><a id=cool-use-of-theorem href='#cool-use-of-theorem'> § </a><span class='centered'> Cool use of theorem:</h4>
 <span class='centered'>We can see that the cantor set is non-empty, since it contains a family
-<span class='centered'>of closed and bounded sets <code>S1, S2, S3, ...</code> such that  <code>S1 ⊇ S2 ⊇ S3 ...</code>
-<span class='centered'>where each <code>S_i</code> is one step of the cantor-ification. We can now see
+<span class='centered'>of closed and bounded sets <code class='inline'>S1, S2, S3, ...</code> such that  <code class='inline'>S1 ⊇ S2 ⊇ S3 ...</code>
+<span class='centered'>where each <code class='inline'>S_i</code> is one step of the cantor-ification. We can now see
 <span class='centered'>that the cantor set is non-empty, since:
-<ol><li><span class='centered'><span class='centered'> Each finite intersection is non-empty, and will be equal to the set that<span class='centered'>has the highest index in the finite intersection.</li><li><span class='centered'><span class='centered'> Each of the sets <code>Si</code> are compact since they are closed and bounded subsets of <code>R</code></li><li><span class='centered'><span class='centered'> Invoke theorem.</li></ol>
+<ol><li><span class='centered'><span class='centered'> Each finite intersection is non-empty, and will be equal to the set that<span class='centered'>has the highest index in the finite intersection.</li><li><span class='centered'><span class='centered'> Each of the sets <code class='inline'>Si</code> are compact since they are closed and bounded subsets of <code class='inline'>R</code></li><li><span class='centered'><span class='centered'> Invoke theorem.</li></ol>
 <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

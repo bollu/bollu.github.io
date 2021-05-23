@@ -7,7 +7,7 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=yoneda-lemma-and-embedding href='#yoneda-lemma-and-embedding'> § </a><span class='centered'> Yoneda Lemma and embedding</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=yoneda-lemma-and-embedding href='#yoneda-lemma-and-embedding'> § </a><span class='centered'> Yoneda Lemma and embedding</h2>
 <pre><code><span class="token keyword">type</span> <span class="token constant">Hom</span> <span class="token hvariable">a</span> <span class="token hvariable">b</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token hvariable">a</span> <span class="token operator">-></span> <span class="token hvariable">b</span><span class="token punctuation">)</span>
 <span class="token keyword">type</span> <span class="token constant">Nat</span> <span class="token hvariable">f</span> <span class="token hvariable">g</span> <span class="token operator">=</span> <span class="token hvariable">forall</span> <span class="token hvariable">x</span><span class="token punctuation">.</span> <span class="token hvariable">f</span> <span class="token hvariable">x</span> <span class="token operator">-></span> <span class="token hvariable">g</span> <span class="token hvariable">x</span>
 </code></pre>
@@ -20,10 +20,10 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul,
 -- rhs2lhs :: g a -> (forall x. (a -> x) -> g x)
 rhs2lhs ga = (\a2x -> fmap a2x ga) :: g x
 </code></pre>
-<span class='centered'><code>rhs2lhs</code> is a lot like an enriched continuation, where
-<span class='centered'>we are given a value <code>(g a)</code>, and we need to produce
+<span class='centered'><code class='inline'>rhs2lhs</code> is a lot like an enriched continuation, where
+<span class='centered'>we are given a value <code class='inline'>(g a)</code>, and we need to produce
 <span class='centered'>an "enriched" continuation handler, which when given
-<span class='centered'>a use <code>(a -> x)</code> produces not an <code>x</code>, but a <code>g x</code>.
+<span class='centered'>a use <code class='inline'>(a -> x)</code> produces not an <code class='inline'>x</code>, but a <code class='inline'>g x</code>.
 <pre><code><span class="token hvariable">lhs2rhs</span> <span class="token operator">::</span> <span class="token constant">Functor</span> <span class="token hvariable">g</span> <span class="token operator">=></span> <span class="token constant">YonedaLHS</span> <span class="token hvariable">g</span> <span class="token hvariable">a</span> <span class="token operator">-></span> <span class="token hvariable">g</span> <span class="token hvariable">a</span>
 <span class="token comment">-- lhs2rhs :: Nat (Hom a) g -> g a</span>
 <span class="token comment">-- lhs2rhs :: (forall x. (Hom a x) -> g x) -> g a</span>
@@ -32,9 +32,9 @@ rhs2lhs ga = (\a2x -> fmap a2x ga) :: g x
 <span class="token comment">-- lhs2rhs :: ((a -> a) -> g a) -> g a</span>
 <span class="token hvariable">lhs2rhs</span> <span class="token hvariable">cont</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token hvariable">cont</span> <span class="token punctuation">(</span><span class="token builtin">id</span> <span class="token operator">::</span> <span class="token constant">Hom</span> <span class="token hvariable">a</span> <span class="token hvariable">a</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">::</span> <span class="token hvariable">g</span> <span class="token hvariable">a</span>
 </code></pre>
-<span class='centered'>in <code>lhs2rhs</code>, given an enriched continuation handler
-<span class='centered'><code>forall x. (a -> x) -> g x</code>, and we need to produce a <code>g a</code>.
-<span class='centered'>As with regular continuations, we feed in the <code>id</code> function
+<span class='centered'>in <code class='inline'>lhs2rhs</code>, given an enriched continuation handler
+<span class='centered'><code class='inline'>forall x. (a -> x) -> g x</code>, and we need to produce a <code class='inline'>g a</code>.
+<span class='centered'>As with regular continuations, we feed in the <code class='inline'>id</code> function
 <span class='centered'>to recover the trapped continuation value.
 <pre><code><span class="token keyword">type</span> <span class="token constant">List</span> <span class="token hvariable">a</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token hvariable">a</span><span class="token punctuation">]</span>
 <span class="token keyword">type</span> <span class="token constant">Nat</span> <span class="token hvariable">f</span> <span class="token hvariable">g</span> <span class="token operator">=</span> <span class="token hvariable">forall</span> <span class="token hvariable">x</span><span class="token punctuation">.</span> <span class="token hvariable">f</span> <span class="token hvariable">x</span> <span class="token operator">-></span> <span class="token hvariable">g</span> <span class="token hvariable">x</span>
@@ -51,8 +51,8 @@ rhs2lhs ga = (\a2x -> fmap a2x ga) :: g x
 <span class="token hvariable">listyo</span>' <span class="token hvariable">as</span> <span class="token operator">=</span> <span class="token operator">\</span><span class="token hvariable">f</span> <span class="token operator">-></span> <span class="token builtin">fmap</span> <span class="token hvariable">f</span> <span class="token hvariable">as</span>
 </code></pre>
 <span class='centered'>When we specialize Yoneda to lists, we are led to the idea
-<span class='centered'>that a continuation of the form <code>(a -> x) -> [x]</code> must contain
-<span class='centered'><code>[a]</code>s which it uses to produce multiple <code>x</code>s.
+<span class='centered'>that a continuation of the form <code class='inline'>(a -> x) -> [x]</code> must contain
+<span class='centered'><code class='inline'>[a]</code>s which it uses to produce multiple <code class='inline'>x</code>s.
 <pre><code>-- F = (b -> .)
 -- pick x = a
 -- ((a -> a) -> (b -> a) -> (b -> a)
@@ -71,9 +71,9 @@ contrayo f = f id
 contrayo' ::   (b -> a) -> (forall x. (a -> x) -> (b -> x))
 contrayo' b2a = \a2x -> a2x . b2a
 </code></pre>
-<span class='centered'>When we specialize Yoneda to <code>b -> -</code>, we are led to the idea
-<span class='centered'>that a continuation of the form <code>(a -> x) -> (b -> x)</code> must contain
-<span class='centered'>plumbing to turn <code>b</code>s into <code>a</code>s: ie, it must contain a function <code>b -> a</code> .
+<span class='centered'>When we specialize Yoneda to <code class='inline'>b -> -</code>, we are led to the idea
+<span class='centered'>that a continuation of the form <code class='inline'>(a -> x) -> (b -> x)</code> must contain
+<span class='centered'>plumbing to turn <code class='inline'>b</code>s into <code class='inline'>a</code>s: ie, it must contain a function <code class='inline'>b -> a</code> .
 <pre><code>-- F = id .
 type Id x = x
 -- Nat(Hom(a, -), Id - ) ~= Id a
@@ -85,16 +85,16 @@ idyo k = k id
 idyo' ::  a -> (forall x. (a -> x) -> x)
 idyo' a = \k -> k a
 </code></pre>
-<span class='centered'>specializing to <code>id</code> recovers usual continuations.
+<span class='centered'>specializing to <code class='inline'>id</code> recovers usual continuations.
 <span class='centered'>In total, Yoneda tells us that from every enriched continuation 
-<span class='centered'><code>ContF a g = Nat (Hom a) g = forall x. (a -> x) -> g x</code>,
-<span class='centered'>we can recover a <code>g a</code>. Hence, there is a bijection between <code>g a</code> and
-<span class='centered'><code>ContF a g</code>
+<span class='centered'><code class='inline'>ContF a g = Nat (Hom a) g = forall x. (a -> x) -> g x</code>,
+<span class='centered'>we can recover a <code class='inline'>g a</code>. Hence, there is a bijection between <code class='inline'>g a</code> and
+<span class='centered'><code class='inline'>ContF a g</code>
 <h4><a id=yoneda-embedding href='#yoneda-embedding'> § </a><span class='centered'> Yoneda embedding</h4>
-<span class='centered'>The yoneda embedding follows from the lemma. The lemma tells us that <code>Nat(Hom(a, -), F) ~= F(a)</code>.
-<span class='centered'>Pick <code>F = Hom(b, -)</code>. This gives <code>Nat(Hom(b, -), Hom(a, -)) ~= Hom(b,  a)</code> Thus, if
-<span class='centered'>we consider the mapping <code>C -> [C, Set]</code> given by sending <code>a</code> to <code>F(a)</code>,
-<span class='centered'>we also preseve the <code>Hom</code> sets as natural transformations, since <code>Hom(b, a)</code> is isomorphic
-<span class='centered'>to <code>Nat(Hom(b, -), Hom(a, -))</code>. Thus, we get a full and faithful embedding of the original category
-<span class='centered'>into the <code>Hom</code> category.
+<span class='centered'>The yoneda embedding follows from the lemma. The lemma tells us that <code class='inline'>Nat(Hom(a, -), F) ~= F(a)</code>.
+<span class='centered'>Pick <code class='inline'>F = Hom(b, -)</code>. This gives <code class='inline'>Nat(Hom(b, -), Hom(a, -)) ~= Hom(b,  a)</code> Thus, if
+<span class='centered'>we consider the mapping <code class='inline'>C -> [C, Set]</code> given by sending <code class='inline'>a</code> to <code class='inline'>F(a)</code>,
+<span class='centered'>we also preseve the <code class='inline'>Hom</code> sets as natural transformations, since <code class='inline'>Hom(b, a)</code> is isomorphic
+<span class='centered'>to <code class='inline'>Nat(Hom(b, -), Hom(a, -))</code>. Thus, we get a full and faithful embedding of the original category
+<span class='centered'>into the <code class='inline'>Hom</code> category.
 <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

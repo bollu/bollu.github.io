@@ -7,7 +7,7 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=my-preferred-version-of-quicksort href='#my-preferred-version-of-quicksort'> § </a><span class='centered'> My preferred version of quicksort</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=my-preferred-version-of-quicksort href='#my-preferred-version-of-quicksort'> § </a><span class='centered'> My preferred version of quicksort</h2>
 <span class='centered'>Wikipedia lists the implementation of quicksort as:
 <pre><code>algorithm <span class="token function">quicksort</span><span class="token punctuation">(</span>A<span class="token punctuation">,</span> lo<span class="token punctuation">,</span> hi<span class="token punctuation">)</span> is
     <span class="token keyword">if</span> lo <span class="token operator">&lt;</span> hi then
@@ -25,8 +25,8 @@ algorithm <span class="token function">partition</span><span class="token punctu
     swap A<span class="token punctuation">[</span>i<span class="token punctuation">]</span> with A<span class="token punctuation">[</span>hi<span class="token punctuation">]</span>
     <span class="token keyword">return</span> i
 </code></pre>
-<span class='centered'>Here, the indeces <code>[lo..i-1]</code> have values less than the pivot, while
-<span class='centered'><code>[i..j]</code> are great or equal to the pivot.
+<span class='centered'>Here, the indeces <code class='inline'>[lo..i-1]</code> have values less than the pivot, while
+<span class='centered'><code class='inline'>[i..j]</code> are great or equal to the pivot.
 <h4><a id=the-version-i-prefer href='#the-version-i-prefer'> § </a><span class='centered'> The version I prefer</h4>
 <pre><code><span class="token comment">// #define SWAP(ix, ix2) { int t = a[ix]; a[ix] = a[ix2]; a[ix2] = t; }</span>
 <span class="token comment">// sorts the interval [l, r]</span>
@@ -70,7 +70,7 @@ algorithm <span class="token function">partition</span><span class="token punctu
 <span class='centered'>This implementation to me makes very clear to me what information is "known":
 <ul><li><span class='centered'><span class='centered'> The segments that is strictly less than the partition.</li><li><span class='centered'><span class='centered'> The segment that is strictly great or equal the partition.</li></ul>
 <span class='centered'>It also makes clear what is being "probed"/"tentative":
-<ul><li><span class='centered'><span class='centered'> anything we are accessing as <code>+-1</code> is not known yet, we are feeling out<span class='centered'>the boundaries of our partitions.</li></ul>
+<ul><li><span class='centered'><span class='centered'> anything we are accessing as <code class='inline'>+-1</code> is not known yet, we are feeling out<span class='centered'>the boundaries of our partitions.</li></ul>
 <span class='centered'>The termination condition is clear: when one partition starts reaching into
 <span class='centered'>the other partitions resources, its done.
 <span class='centered'>Due to using closed intervals everywhere, it's very easy to see precisely

@@ -1384,7 +1384,7 @@ void toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
   }
 
   case TT::CodeInline: {
-    const char *open = "<code>";
+    const char *open = "<code class='inline'>";
     const char *close = "</code>";
     strcpy(outs + outlen, open);
     outlen += strlen(open);
@@ -1556,7 +1556,8 @@ const char html_preamble[] =
     // overflow: latex and code block
     "\n"
     // inline latex: force all text to be on same line.
-    "pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }"
+    "pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }"
+    ".inline { white-space: nowrap; background:#efefef; }"
     // ul's for some reason are padded, and they render their bullets *outside*
     // their area. Fix both:
     // https://stackoverflow.com/questions/13938975/how-to-remove-indentation-from-an-unordered-list-item/13939142

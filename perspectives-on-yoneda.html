@@ -7,22 +7,22 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=perspectives-on-yoneda href='#perspectives-on-yoneda'> § </a><span class='centered'> Perspectives on Yoneda</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=perspectives-on-yoneda href='#perspectives-on-yoneda'> § </a><span class='centered'> Perspectives on Yoneda</h2>
 <span class='centered'>We can try to gain intuition for Yoneda by considering a finite category
 <span class='centered'>where we view arrows as directed paths. 
 <span class='centered'>The "interpretation" of a path is taken by going from edges to labels and then
-<span class='centered'>concatenating all edge labels. We "interpret" the label <code>id_x</code> as <code>""</code> (the
-<span class='centered'>empty string), and we "interpret" all other arrows <code>a</code> as some unique string
+<span class='centered'>concatenating all edge labels. We "interpret" the label <code class='inline'>id_x</code> as <code class='inline'>""</code> (the
+<span class='centered'>empty string), and we "interpret" all other arrows <code class='inline'>a</code> as some unique string
 <span class='centered'>associated to each arrow. Composition of arrows becomes concatenation of
 <span class='centered'>strings. This obeys all the axioms of a category. We are basically of a
 <span class='centered'>category as a free monoid.
-<span class='centered'>Let's being our consideration of the covariant functor <code>Hom(O, -): C → Set</code>.
-<span class='centered'>Note that the objects of this category are <i><span class='centered'><i><span class='centered'>sets</i></i> of arrows <code>Hom(O, P)</code>.
-<span class='centered'>To every arrow <code>a: P → Q</code> we associate the set function
-<span class='centered'><code>a': Hom(O, P) → Hom(O, Q)</code>. <code>a'(op) = pq . op</code>.
-<span class='centered'>Now, to apply Yoneda, we need another covariant functor <code>G: S → Set</code>. We now
-<span class='centered'>need to show that the set of natural transformations <code>η: F → G</code>  are in bijection
-<span class='centered'>with the set <code>G[O] ∈ Set</code>.
+<span class='centered'>Let's being our consideration of the covariant functor <code class='inline'>Hom(O, -): C → Set</code>.
+<span class='centered'>Note that the objects of this category are <i><span class='centered'><i><span class='centered'>sets</i></i> of arrows <code class='inline'>Hom(O, P)</code>.
+<span class='centered'>To every arrow <code class='inline'>a: P → Q</code> we associate the set function
+<span class='centered'><code class='inline'>a': Hom(O, P) → Hom(O, Q)</code>. <code class='inline'>a'(op) = pq . op</code>.
+<span class='centered'>Now, to apply Yoneda, we need another covariant functor <code class='inline'>G: S → Set</code>. We now
+<span class='centered'>need to show that the set of natural transformations <code class='inline'>η: F → G</code>  are in bijection
+<span class='centered'>with the set <code class='inline'>G[O] ∈ Set</code>.
 <span class='centered'>We do this by the following consideration. Recall that for the natural transformation,
 <span class='centered'>we have the commuting diagram:
 <pre><code>x -p-> y
@@ -39,13 +39,13 @@ G[x] -G[p] --> G[y]
   p ∈ Hom(x, y),
     G[p](ηx(o2x)) = ηy(p'(o2x))
 </code></pre>
-<span class='centered'>Which on using the definition of <code>p'</code> becomes:
+<span class='centered'>Which on using the definition of <code class='inline'>p'</code> becomes:
 <pre><code>∀ x y ∈ C,
   o2x ∈ Hom(o, x),
   p ∈ Hom(x, y),
   G[p](ηx(o2x)) = ηy(o2x . p')
 </code></pre>
-<span class='centered'>Now pick the magic <code>x = o</code> and <code>o2x = o2o = id_o</code>. This gives:
+<span class='centered'>Now pick the magic <code class='inline'>x = o</code> and <code class='inline'>o2x = o2o = id_o</code>. This gives:
 <pre><code>x = o, y ∈ C
 o2x = id_o
 
@@ -57,24 +57,24 @@ o2x = id_o
   ηy(p') = G[p](ηo(id_o)) [ηy is now forced.
                           everything on the RHS is known]
 </code></pre>
-<span class='centered'>Hence, we learn how to map every other arrow <code>ηy(p)</code>. If we know how to map
+<span class='centered'>Hence, we learn how to map every other arrow <code class='inline'>ηy(p)</code>. If we know how to map
 <span class='centered'>the arrows, we can map the objects in the hom-sets as images of the arrows,
-<span class='centered'>since we know what <code>ηo[id_o]</code> maps to. Concretely:
-<h4><a id=images-oq-for-q-homo-o-after-oido-is-fixed href='#images-oq-for-q-homo-o-after-oido-is-fixed'> § </a><span class='centered'> Images <code>ηo(q)</code> for <code>q ∈ Hom(o, o)</code> after <code>ηo(id_o)</code> is fixed:</h4>
-<span class='centered'>We have the relation <code>id_o . q = q</code>. So we get that the arrow <code>q': Hom(o, o) → Hom(o, o)</code>
-<span class='centered'>takes <code>id_o</code> to <code>q</code>. By the structure of the natural transformation, we have that:
+<span class='centered'>since we know what <code class='inline'>ηo[id_o]</code> maps to. Concretely:
+<h4><a id=images-oq-for-q-homo-o-after-oido-is-fixed href='#images-oq-for-q-homo-o-after-oido-is-fixed'> § </a><span class='centered'> Images <code class='inline'>ηo(q)</code> for <code class='inline'>q ∈ Hom(o, o)</code> after <code class='inline'>ηo(id_o)</code> is fixed:</h4>
+<span class='centered'>We have the relation <code class='inline'>id_o . q = q</code>. So we get that the arrow <code class='inline'>q': Hom(o, o) → Hom(o, o)</code>
+<span class='centered'>takes <code class='inline'>id_o</code> to <code class='inline'>q</code>. By the structure of the natural transformation, we have that:
 <pre><code>∀ x y ∈ C,
   o2x ∈ Hom(o, x),
   p ∈ Hom(x, y),
     G[p](ηx(o2x)) = ηy(p'(o2x))
 </code></pre>
-<ul><li><span class='centered'><span class='centered'> Pick <code>x = y = o</code>, <code>o2x = id_o</code>, <code>p = q</code>. This gives:</li></ul>
+<ul><li><span class='centered'><span class='centered'> Pick <code class='inline'>x = y = o</code>, <code class='inline'>o2x = id_o</code>, <code class='inline'>p = q</code>. This gives:</li></ul>
 <pre><code>    G[q](ηo(id_o)) = ηo(q'(id_o))
     G[q](ηo(id_o)) = ηo(q' . id_o)
     G[q](ηo(id_o)) = ηo(q')
     ηo(q') = G[q](ηo(id_o))
 </code></pre>
-<span class='centered'>Hence, we've deduced <code>ηo(q')</code>, so we know what element <code>q</code> gets mapped to.
+<span class='centered'>Hence, we've deduced <code class='inline'>ηo(q')</code>, so we know what element <code class='inline'>q</code> gets mapped to.
 <span class='centered'>The same process works with <i><span class='centered'>any</i> arrow!
 <h4><a id=a-shift-in-perspective-yoneda-as-partial-monoid href='#a-shift-in-perspective-yoneda-as-partial-monoid'> § </a><span class='centered'> A shift in perspective: Yoneda as partial monoid.</h4>
 <span class='centered'>Since we're considering the sets <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>o</mi><mi>m</mi><mo stretchy="false">(</mo><mi>o</mi><mo separator="true">,</mo><mo>−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Hom(o, -)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mord mathnormal">o</span><span class="mord mathnormal">m</span><span class="mopen">(</span><span class="mord mathnormal">o</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">−</span><span class="mclose">)</span></span></span></span></span>, note that we can always

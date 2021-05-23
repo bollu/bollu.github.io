@@ -7,7 +7,7 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=big-list-of-coq href='#big-list-of-coq'> § </a><span class='centered'> Big list of Coq</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=big-list-of-coq href='#big-list-of-coq'> § </a><span class='centered'> Big list of Coq</h2>
 <span class='centered'>Things in Coq that I keep forgetting, and are hard to lookup.
 <h4><a id=manually-set-the-value-of-an-existential href='#manually-set-the-value-of-an-existential'> § </a><span class='centered'> Manually set the value of an existential</h4>
 <pre><code>instantiate
@@ -16,5 +16,5 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul,
 <h4><a id=rename-an-expression-with-an-identifier-throughout-the-proof href='#rename-an-expression-with-an-identifier-throughout-the-proof'> § </a><span class='centered'> Rename an expression with an identifier throughout the proof</h4>
 <pre><code>set (ident := expr) in *
 </code></pre>
-<span class='centered'>This is useful to not lose information when <code>destruct</code> ing.
+<span class='centered'>This is useful to not lose information when <code class='inline'>destruct</code> ing.
 <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

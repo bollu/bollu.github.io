@@ -7,21 +7,21 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=numbering-nodes-in-a-tree href='#numbering-nodes-in-a-tree'> § </a><span class='centered'> Numbering nodes in a tree</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=numbering-nodes-in-a-tree href='#numbering-nodes-in-a-tree'> § </a><span class='centered'> Numbering nodes in a tree</h2>
 <span class='centered'>If we consider a tree such as:
 <pre><code>      a
 b         c
         d   e
 </code></pre>
-<span class='centered'>The "standard way" of numbering,  by starting with a <code>0</code> and then appending a <code>0</code>
-<span class='centered'>on going to the left, appending a <code>1</code> on going to the right doesn't make a great
+<span class='centered'>The "standard way" of numbering,  by starting with a <code class='inline'>0</code> and then appending a <code class='inline'>0</code>
+<span class='centered'>on going to the left, appending a <code class='inline'>1</code> on going to the right doesn't make a great
 <span class='centered'>deal of sense. On the other hand, we can choose to number them as follows:
-<ul><li><span class='centered'><span class='centered'> Consider the root to have value <code>1</code></li><li><span class='centered'><span class='centered'> Every time we go right, we add <code>1/2^{height}</code>. When we go left, we subtract <code>1/2^{height}</code>. </li><li><span class='centered'><span class='centered'> This gives us the numbers:</li></ul>
+<ul><li><span class='centered'><span class='centered'> Consider the root to have value <code class='inline'>1</code></li><li><span class='centered'><span class='centered'> Every time we go right, we add <code class='inline'>1/2^{height}</code>. When we go left, we subtract <code class='inline'>1/2^{height}</code>. </li><li><span class='centered'><span class='centered'> This gives us the numbers:</li></ul>
 <pre><code>      1
 0.5       1.5
        1.25     1.75
 </code></pre>
-<ul><li><span class='centered'><span class='centered'> This also makes intuitive why to find the node to replace <code>1.5</code> when we delete<span class='centered'>it is to go to the left child <code>1.25</code> and then travel as much to the right as <span class='centered'>possible. That path corresponds to:</li></ul>
+<ul><li><span class='centered'><span class='centered'> This also makes intuitive why to find the node to replace <code class='inline'>1.5</code> when we delete<span class='centered'>it is to go to the left child <code class='inline'>1.25</code> and then travel as much to the right as <span class='centered'>possible. That path corresponds to:</li></ul>
 <div class='latexblock'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.24999999999999992em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mn>1</mn><mo>+</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn><mo>−</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>4</mn><mo>+</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>8</mn><mo>+</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>16</mn><mo>+</mo><mo>…</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mn>1</mn><mo>+</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn><mo>−</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>4</mn><mo>+</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>4</mn></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mn>1.5</mn></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">
 \begin{aligned}
 &amp;1 + 1/2 - 1/4 + 1/8 + 1/16 + \dots \\

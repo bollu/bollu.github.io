@@ -7,7 +7,7 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=low-pass-filter-by-delaying href='#low-pass-filter-by-delaying'> § </a><span class='centered'> Low pass filter by delaying</h2><span class='centered'> I don't understand this.  Full text with context:
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=low-pass-filter-by-delaying href='#low-pass-filter-by-delaying'> § </a><span class='centered'> Low pass filter by delaying</h2><span class='centered'> I don't understand this.  Full text with context:
 <blockquote><span class='centered'> For example, at a sample rate of 10kHz, one sample delay is equal to the<span class='centered'> sample time of 0.0001 seconds. ... A signal at 1000Hz has a period of 0.001<span class='centered'> seconds and a one sample time delay is 1/10 of the period, or 36°. </blockquote>
 <span class='centered'>I understand the math upto this point. 0.001 seconds -> 360 degrees, so 0.0001
 <span class='centered'>seconds -> 36 degrees. Thus, a sample delay of 0.0001 seconds corresponds to 36
@@ -32,9 +32,9 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul,
 <span class='centered'>HIGHER frequency (phase difference greater than 180 degrees) = non-maximal
 <span class='centered'>destructive interference?
 <span class='centered'>I believe the resolution is to remember that we only build signals upto what
-<span class='centered'>Niquist lets us, so we build at max a sin wave of frequency <code>fs/2</code> where the same
-<span class='centered'>period is <code>fs</code>. Thus, when we phase shift, we will get a phase of at max 180 degrees.
-<span class='centered'>As to why the Niquist ratio is <code>1/2</code>, imagine a circle. a <code>1/2</code> is how much
-<span class='centered'>"ambiguity" we have in the phase. In that, if we jump by more that <code>pi</code>, (ie,
-<span class='centered'>more than <code>1/2</code> of the circle), we will  ????
+<span class='centered'>Niquist lets us, so we build at max a sin wave of frequency <code class='inline'>fs/2</code> where the same
+<span class='centered'>period is <code class='inline'>fs</code>. Thus, when we phase shift, we will get a phase of at max 180 degrees.
+<span class='centered'>As to why the Niquist ratio is <code class='inline'>1/2</code>, imagine a circle. a <code class='inline'>1/2</code> is how much
+<span class='centered'>"ambiguity" we have in the phase. In that, if we jump by more that <code class='inline'>pi</code>, (ie,
+<span class='centered'>more than <code class='inline'>1/2</code> of the circle), we will  ????
 <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

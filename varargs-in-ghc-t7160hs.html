@@ -7,8 +7,8 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=varargs-in-ghc-t7160hs href='#varargs-in-ghc-t7160hs'> § </a><span class='centered'> Varargs in GHC: <code>T7160.hs</code></h2>
-<span class='centered'>A comment from this test case tells us why the function <code>debugBelch2</code> exists:
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=varargs-in-ghc-t7160hs href='#varargs-in-ghc-t7160hs'> § </a><span class='centered'> Varargs in GHC: <code class='inline'>T7160.hs</code></h2>
+<span class='centered'>A comment from this test case tells us why the function <code class='inline'>debugBelch2</code> exists:
 <pre><code><span class="token hvariable">ghc</span><span class="token operator">/</span><span class="token hvariable">testsuite</span><span class="token operator">/</span><span class="token hvariable">tests</span><span class="token operator">/</span><span class="token hvariable">rts</span><span class="token operator">/</span><span class="token hvariable">T7160.hs</span>
 <span class="token comment">-- Don't use debugBelch() directly, because we cannot call varargs functions</span>
 <span class="token comment">-- using the FFI (doing so produces a segfault on 64-bit Linux, for example).</span>

@@ -7,7 +7,7 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=blazing-fast-math-rendering-on-the-web href='#blazing-fast-math-rendering-on-the-web'> § </a><span class='centered'> Blazing fast math rendering on the web</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=blazing-fast-math-rendering-on-the-web href='#blazing-fast-math-rendering-on-the-web'> § </a><span class='centered'> Blazing fast math rendering on the web</h2>
 <span class='centered'>So, I've shifted the blog to be static-site-generated using a
 <span class='centered'>static-site-generator written by yours truly. The code clocks in at around a
 <span class='centered'>thousand lines of C++:
@@ -48,7 +48,7 @@ h(x) \equiv
 <span class='centered'>and the page is stuck. Clearly not great UX.
 <span class='centered'>I still want math. What do I do?  The solution is easy: Approximate the math
 <span class='centered'>rendering using ASCII/UTF-8 characters!  There are tools that do this ---
-<span class='centered'><a href=http://hevea.inria.fr/><span class='centered'><code>hevea</code></a> is one of them. Unfortunately, there is no
+<span class='centered'><a href=http://hevea.inria.fr/><span class='centered'><code class='inline'>hevea</code></a> is one of them. Unfortunately, there is no
 <span class='centered'>markdown-based-blogging-platform that uses this, so I <i><span class='centered'>had</i> to write my own.
 <h4><a id=the-cure href='#the-cure'> § </a><span class='centered'> The cure</h4>
 <span class='centered'>The solution is easy. I wrote the tool. The page you're reading it
@@ -56,17 +56,17 @@ h(x) \equiv
 <span class='centered'>it's nothing crazy, it's just text and tables which browsers know how to
 <span class='centered'>render. No JavaScript necessary. snappy performance. Whoo!
 <h4><a id=the-details-writing-my-own-markdown-to-html-transpiler href='#the-details-writing-my-own-markdown-to-html-transpiler'> § </a><span class='centered'> The details: Writing my own Markdown to HTML transpiler.</h4>
-<span class='centered'>the final transpiler clocks in at <code>1300Loc</code> of C++,
+<span class='centered'>the final transpiler clocks in at <code class='inline'>1300Loc</code> of C++,
 <span class='centered'>which is very small for a feature-complete markdown-to-HTML piece of code
 <span class='centered'>that's blazing fast, renders math correctly, and provides error messages.
 <h4><a id=quirks-fixed-features-gained href='#quirks-fixed-features-gained'> § </a><span class='centered'> Quirks fixed, features gained.</h4>
 <span class='centered'>I got quite a bit "for free" as I wrote this, fixing mild annoyances
 <span class='centered'>and larger pain points around using github + markdown for publishing on
 <span class='centered'>the web:
-<ul><li><span class='centered'><span class='centered'> I really don't want tables, but I do want the ability to write vertical bars <span class='centered'><code>|</code> freely in my text. Unfortunately, github <i><span class='centered'>insists</i> that those are tables,<span class='centered'>and completely wrecks rendering.</li></ul>
+<ul><li><span class='centered'><span class='centered'> I really don't want tables, but I do want the ability to write vertical bars <span class='centered'><code class='inline'>|</code> freely in my text. Unfortunately, github <i><span class='centered'>insists</i> that those are tables,<span class='centered'>and completely wrecks rendering.</li></ul>
 <ul><li><span class='centered'><span class='centered'> I get line numbers in code blocks now, which Github Flavoured Markdown<span class='centered'>did not have.</li></ul>
 <ul><li><span class='centered'><span class='centered'> I get error messages on incorrectly closed bold/italic/code blocks, using<span class='centered'>heuristics that prevent them from spanning across too many lines.</li></ul>
-<ul><li><span class='centered'><span class='centered'> I get error messages on broken latex, since all my latex passes through<span class='centered'><code>hevea</code>. This is awesome, since I no longer need to refresh my browser,<span class='centered'>wait for mathjax to load, go make myself tea (remember that mathjax was slow?),<span class='centered'>and then come back to see the errors.</li></ul>
+<ul><li><span class='centered'><span class='centered'> I get error messages on broken latex, since all my latex passes through<span class='centered'><code class='inline'>hevea</code>. This is awesome, since I no longer need to refresh my browser,<span class='centered'>wait for mathjax to load, go make myself tea (remember that mathjax was slow?),<span class='centered'>and then come back to see the errors.</li></ul>
 <ul><li><span class='centered'><span class='centered'> I can get error messages if my internal document links are broken. To be<span class='centered'>fair, my tool doesn't currently give me these errors, but it can (and soon<span class='centered'>will).</li></ul>
 <ul><li><span class='centered'><span class='centered'> In general, I get <i><span class='centered'>control</i>, which was something I did not have with<span class='centered'>rendering directly using Github, or using someone else's tool.</li></ul>
 <h4><a id=choice-of-language href='#choice-of-language'> § </a><span class='centered'> Choice of language</h4>
@@ -84,11 +84,11 @@ h(x) \equiv
 <span class='centered'>than C on small applications, and this was indeed small.
 <h4><a id=performance href='#performance'> § </a><span class='centered'> Performance</h4>
 <span class='centered'>Everything <i><span class='centered'>except</i> the latex to HTML is blazing fast. Unfortunately,
-<span class='centered'>calling <code>hevea</code> is slow, so I implemented a caching mechanism to make using
-<span class='centered'><code>hevea</code> not-slow. <code>hevea</code> does not have an API, so I need to <code>fork</code> and
+<span class='centered'>calling <code class='inline'>hevea</code> is slow, so I implemented a caching mechanism to make using
+<span class='centered'><code class='inline'>hevea</code> not-slow. <code class='inline'>hevea</code> does not have an API, so I need to <code class='inline'>fork</code> and
 <span class='centered'>talk to its process which is understandably flow. I built a "key-value-store"
 <span class='centered'>(read: serialize data into a file) with the stupidly-simple approach of writing
-<span class='centered'>an append-only log into a file. <code>hevea</code> is a pure function conceptally,
+<span class='centered'>an append-only log into a file. <code class='inline'>hevea</code> is a pure function conceptally,
 <span class='centered'>since on providing the same latex input it's going to produce the same HTML
 <span class='centered'>output, so it's perfectly safe to cache it:
 <pre><code><span class="token keyword">const</span> <span class="token keyword">char</span> DB_PATH<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">"./blogcache.txt"</span><span class="token punctuation">;</span>
@@ -127,8 +127,8 @@ unordered_map<span class="token operator">&lt;</span>ll<span class="token punctu
 <span class="token punctuation">}</span>
 </code></pre>
 <h4><a id=for-the-future href='#for-the-future'> § </a><span class='centered'> For the future</h4>
-<span class='centered'>I plan to rip out <code>hevea</code> and write my own <code>latex -> HTML</code> converter for
-<span class='centered'>the <i><span class='centered'>subset of LaTeX I actually use</i>. <code>hevea</code>'s strength is its downfall:
+<span class='centered'>I plan to rip out <code class='inline'>hevea</code> and write my own <code class='inline'>latex -> HTML</code> converter for
+<span class='centered'>the <i><span class='centered'>subset of LaTeX I actually use</i>. <code class='inline'>hevea</code>'s strength is its downfall:
 <span class='centered'>It can handle all of LaTeX, which means it's really slow. If I can concentrate
 <span class='centered'>on a small subset, I don't need to play caching tricks, and I can likely
 <span class='centered'>optimise the layout further for my use-cases.

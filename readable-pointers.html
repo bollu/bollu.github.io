@@ -7,9 +7,9 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=readable-pointers href='#readable-pointers'> § </a><span class='centered'> Readable pointers</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=readable-pointers href='#readable-pointers'> § </a><span class='centered'> Readable pointers</h2>
 <span class='centered'>I recently had to debug a whole bunch of code that manipuates pointers, so I
-<span class='centered'>need to stare at random things like <code>0x7f7d6ab2c0c0</code>, like so:
+<span class='centered'>need to stare at random things like <code class='inline'>0x7f7d6ab2c0c0</code>, like so:
 <pre><code>mkClosure_capture0_args0 (0x7f079ae2a0c0:) -> 0x556b95a23350:
 mkClosure_capture0_args0 (0x7f079ae2a0e0:) -> 0x556b95a3f3e0:
 mkClosure_capture0_args2 (0x7f079ae2a000:, 
@@ -70,7 +70,7 @@ evalClosure (0x561c5f11f960:kuhe-zoni-ciho-ko)
   ⋮mkConstructor1 (MkSimpleInt, 0x3) -> 0x561c5f100010:kuqi-koni-ciho-ko
 =>0x561c5f100010:kuqi-koni-ciho-ko
 </code></pre>
-<span class='centered'>The strings of the form <code>ziqi-jece-xecu-yu</code> makes it way easier to see control flow.
+<span class='centered'>The strings of the form <code class='inline'>ziqi-jece-xecu-yu</code> makes it way easier to see control flow.
 <span class='centered'>I can also see if two pointers are close, based on shared suffixes: ciho-ko is
 <span class='centered'>shared, which means the numbers are themselves close.
 <ul><li><span class='centered'><span class='centered'> It turns out there's a system called <a href=https://arxiv.org/html/0901.4016><span class='centered'>proquints</a><span class='centered'>that allows for such a thing already!</li></ul>

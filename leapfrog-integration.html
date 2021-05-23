@@ -7,7 +7,7 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=leapfrog-integration href='#leapfrog-integration'> § </a><span class='centered'> Leapfrog Integration</h2>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=leapfrog-integration href='#leapfrog-integration'> § </a><span class='centered'> Leapfrog Integration</h2>
 <span class='centered'>We have a system we wish to simulate using hamilton's equations:
 <div class='latexblock'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.24999999999999992em" columnalign="right" columnspacing=""><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mfrac><mrow><mi mathvariant="normal">∂</mi><mi>q</mi></mrow><mrow><mi mathvariant="normal">∂</mi><mi>t</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><mi mathvariant="normal">∂</mi><mi>H</mi></mrow><mrow><mi mathvariant="normal">∂</mi><mi>p</mi></mrow></mfrac><msub><mi mathvariant="normal">∣</mi><mrow><mo stretchy="false">(</mo><msub><mi>p</mi><mn>0</mn></msub><mo separator="true">,</mo><msub><mi>q</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></msub></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mfrac><mrow><mi mathvariant="normal">∂</mi><mi>p</mi></mrow><mrow><mi mathvariant="normal">∂</mi><mi>t</mi></mrow></mfrac><mo>=</mo><mo>−</mo><mfrac><mrow><mi mathvariant="normal">∂</mi><mi>H</mi></mrow><mrow><mi mathvariant="normal">∂</mi><mi>q</mi></mrow></mfrac><msub><mi mathvariant="normal">∣</mi><mrow><mo stretchy="false">(</mo><msub><mi>p</mi><mn>0</mn></msub><mo separator="true">,</mo><msub><mi>q</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></msub></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">
 \begin{aligned}
@@ -73,9 +73,9 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul,
     qnew <span class="token operator">=</span> q <span class="token operator">+</span> dhdp<span class="token punctuation">(</span>q<span class="token punctuation">,</span> p<span class="token punctuation">)</span> <span class="token operator">*</span> dt
     <span class="token keyword">return</span> <span class="token punctuation">(</span>qnew<span class="token punctuation">,</span> pnew<span class="token punctuation">)</span>
 </code></pre>
-<span class='centered'>Finally, we implement <code>planet(integrator, n, dt)</code> which simulates gravitational
-<span class='centered'>potential and usual kinetic energy, using the integrator given by <code>integrator</code>
-<span class='centered'>for <code>n</code> steps, with each timestep taking <code>dt</code>.
+<span class='centered'>Finally, we implement <code class='inline'>planet(integrator, n, dt)</code> which simulates gravitational
+<span class='centered'>potential and usual kinetic energy, using the integrator given by <code class='inline'>integrator</code>
+<span class='centered'>for <code class='inline'>n</code> steps, with each timestep taking <code class='inline'>dt</code>.
 <pre><code><span class="token keyword">def</span> <span class="token function">planet</span><span class="token punctuation">(</span>integrator<span class="token punctuation">,</span> n<span class="token punctuation">,</span> dt<span class="token punctuation">)</span><span class="token punctuation">:</span>
     STRENGTH <span class="token operator">=</span> <span class="token number">0.5</span>
 
@@ -95,7 +95,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; white-space: nowrap; }ul,
         qs<span class="token punctuation">.</span>append<span class="token punctuation">(</span>q<span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
     <span class="token keyword">return</span> np<span class="token punctuation">.</span>asarray<span class="token punctuation">(</span>qs<span class="token punctuation">)</span>
 </code></pre>
-<span class='centered'>We plot the simulations using <code>matplotlib</code> and save them.
+<span class='centered'>We plot the simulations using <code class='inline'>matplotlib</code> and save them.
 <pre><code>NITERS <span class="token operator">=</span> <span class="token number">15</span>
 TIMESTEP <span class="token operator">=</span> <span class="token number">1</span>
 
