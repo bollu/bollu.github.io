@@ -1693,6 +1693,8 @@ struct RSS {
       for (int i = t->span.begin.si; i < t->span.end.si; ++i) {
         writeEscapedCharacter(raw_input[i], out);
       }
+      // at the end of raw text, write a space.
+      writeEscapedCharacter(' ', out);
     } else {
       printferr(t->span.begin, raw_input,
                 "unknown type of token type in a heading: |%d|", t->ty);
