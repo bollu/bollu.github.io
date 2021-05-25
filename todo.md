@@ -1,3 +1,5 @@
+- [Data.Category: embedded category theory in haskell that only uses arrows, no objects](https://hackage.haskell.org/package/data-category-0.10/docs/Data-Category.html#t:Category)
+- [Scrivener](https://www.literatureandlatte.com/scrivener/overview)
 - J C Butcher: numerical methods for ODEs: Does a mathematical analysis of ODE theory.
 - [Pixel art tutorial](https://saint11.org/blog/pixel-art-tutorials/)
 - [`molikto`'s weblog on dependently typed languages](https://molikto.github.io/)
