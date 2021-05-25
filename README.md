@@ -15,9 +15,394 @@ A Universe of Sorts
 - [reading list and link dump](todo.html)
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
+# Greg egan: Orthogonal
+
+I found the idea of writing a story about a universe with a closed loop of time fascinating.
+Here are some of the sentences that really helped me "get" compatiblism as an idea thanks
+to reading the book:
+
+> Suppose we leave a piece of equipment behind on Esilio - say, a
+> small spyglass. Over the eons, from our point of view, we'd expect it to become
+> pitted by dust in the wind, and eventually break up completely and turn to
+> sand. Our spyglass, our rules: that sounds fair, doesn't it? But if that sand
+> stays on Esilio, what origin will it have from Esilio's point of view? Most
+> likely, some ordinary Esilian rock will have broken down to make it - which to
+> us, would look like erosion running backwards. But then, in Esilian time the
+> remnants of that rock will eventually form themselves spontaneously into a
+> spyglass, which lies on the ground until we come along to retrieve it.  So if
+> you follow the history of the matter that makes up the spyglass far enough in
+> both directions, it's clear that it's not committed to either side's rdes.' 
+> 
+> 'Swap the roles of Esilio and the Surveyor,' he replied, 'then tell the same
+> story again. If something from Esilio takes the place of the spyglass, it must
+> be with us already. We must have been carrying it, or the things that will
+> become it, from the very start. Because according to Esilio's arrow of time
+> we've already visited the planet, and it's almost certain that something
+> remained with us when we departed.'
+ 
+
+> 'Tell us one thing that you're sure won't happen,' he challenged her.  She
+> said, 'Two objects in thermal contact will not maintain different
+> temperatures over a long period of time.' 'Because ... ?' 'Because there are
+> vastly more possibilities in which they share their thermal energy more
+> equally. If you pick a possibility at random, it's likely to be one of those.
+> Fundamental physics might make the entropy minimum necessary - but we still
+> expect the cosmos to be as random as it can be.'
+
+
+> There was fine red dust covering the grey hardstone walls of the airlock. He
+> hadn't noticed it by the dimmer illumination of the safety light. He ran a
+> gloved finger along the seal of the outer door, trying to find the point
+> where it had been breached, but if there was a hole it wasn't apparent.  It
+> hardly mattered now; however the dust had entered, he was about to let in a
+> great deal more. But as he began to turn the crank, the realisation hit him:
+> it hadn't corne from outside. They must have brought it with them all the way
+> from the Peerless, scattered invisibly throughout the craft, with a little
+> more accumulating inside the airlock each time the inner door was opened. Or
+> in Esilio's terms: the Surveyor's visit had just ended, and this residue was
+> something they would soon take away with them
+
+
+> Twice, as she jumped out of some indentation in the sand, it vanished. She
+> and Azelio hadn't actually made all the tracks that he'd attributed to them.
+> Or not yet, they hadn't.  'Come and join us,' Azelio said. 'Some of these
+> must be yours.'
+
+
+> Each time Azelio lifted his feet, scattered sand unscattered itself, grains
+> sliding in around the places where he'd stepped to settle more evenly -
+> though not always smoothing the ground completely. After all, 197 Ramiro
+> reasoned, it was possible to walk in someone else's footprints, or to step
+> several times in your own. It would only be the last footfall on any given
+> spot - prior to the next occasion on which the wind levelled everything -
+> that would unmake the imprint completely.
+
+
+
+> 'What happens if I try to walk on pristine ground?' he asked.  'Try it and
+> see!' Agata taunted him.  Ramiro descended to the bottom of the ladder,
+> intending to move quickly and get the ordeal over with, but then his resolve
+> deserted him. When he willed his foot to land on unblemished sand, what
+> exactly would intervene to stop him? A cramp in the muscle, diverting his leg
+> to its proper, predestined target? A puppet-like manipulation of his body by
+> some unseen force too strong to resist, or a trance-like suspension of his
+> whole sense of self? He wasn't sure that he wanted to know the answer. And
+> perhaps that was the simplest resolution: he would lack the courage to walk
+> out across the surface of Esilio for the rest of the mission. He would cower
+> in his room, leaving the work to the others, while he waited to return to the
+> Peerless in disgrace.
+
+> He'd scrutinised the ground beforehand, and he was sure there'd been no
+> footprints at all where his feet now stood.  He lifted one foot and inspected
+> the sand below. He had created an indentation that had not been there before.
+> That was every bit as strange to Esilio as the erasures he'd witnessed were
+> strange to him.
+
+
+>'How?' he demanded, more confused than relieved.  'You
+> really don't listen to me, do you?' Agata chided him. 'Did I ever tell you
+> that the local arrow was inviolable? 'No.' What she'd stressed most of all
+> was a loss of predictability but the sight of her and Azelio unmaking their
+> footprints had crowded everything else out of his mind. Those disappearing
+> marks 198 in the sand might be unsettling, but if he could ignore them and
+> walk wherever he pleased then they were not the shackles he'd taken them to
+> be.  
+
+
+> 'What happens if there are footprints that no one gets around to
+> before the next dust storm?' he asked Agata. 'Ones that were there
+> straight after the last storm?'
+> She said, 'There can't be a footprint untouched by any foot. I don't
+> understand the dynamics of wind and sand well enough to swear to
+> you that there won't be hollows in the ground that come and go of
+> their own accord - but if you're talking about a clear imprint, if we
+> could keep our feet away from it, it simply wouldn't be there.'
+
+
+> Esilio was a world where a certain amount of nOiSY, partial - and
+> predominantly trivial - information about the future would be strewn across
+> the landscape. There had always been plenty of trivial things that could be
+> predicted with near-certainty back on the Peerless, and perhaps as many of
+> them would be lost, here, as these eerie new portents would be gained
+
+> Emboldened, he strode out across the illuminated ground, pausing
+> every few steps to kick at the sand. Sometimes he simply pushed the
+> dust aside; sometimes the dust applied pressure of its own, as it
+> moved in to occupy the space his foot vacated. But that pressure
+> never came out of nowhere: his feet moved as and when he'd willed
+> them to move, followed by the dust but never forced to retreat. Nor
+> were they thrust without warning into the air
+
+> Each time there was a dust storm the record of future movements would be
+> erased, but even in a prolonged period of calm the footprints would overlap,
+> conveying very little information.
+
+> 'You already dug twelve holes!' he observed.
+> 'And I thought you were messing around with Agata all morning.'
+> Azelio made a noncommittal sound. 
+> 'My plan is to dig up all these plants at the end of the trial and take
+> them back to the Peerless for my colleagues to analyse,' Azelio mused.  'So I
+> guess that's when I'll see the transition between cultivated and truly
+> pristine ground. But right now, in Esilio's terms, we've just dug the plants
+> up - so on our terms, we're about to do that. Backwards.' Ramiro said, 'You
+> make it sound as if you've been practising timereversed agronomy all your
+> life.' 'It's not that hard to see what's going on, if you think it through,'
+> Azelio replied lightly.  'But you don't mind following markers like this?
+> Evidence of acts you haven't performed yet?' 'It's a little disconcerting,'
+> Azelio conceded. 'But I can't say that it fills me with claustrophobia to
+> know that I'll carry out the experimental protocols I always planned to carry
+> out.'
+
+
+> He lowered the plant until its roots were in the hole, then
+> he started adding soil from the surrounding mound. Some of the soil
+> was scooped in with pressure from behind, in the ordinary manner.
+> Some appeared to pursue the trowel, the way the dust sometimes
+> pursued Ramiro's feet. What decided between the two? Azelio's own
+> actions had to be consistent with the motion of the soil, but which
+> determined which? Maybe there was no answer to that, short of the
+> impossible act of solving in the finest detail the equations that Agata
+> was yet to discover, revealing exactly which sequences of events
+> were consistent with the laws of physics all the way around the
+> cosmos. 
+
+
+> Ramiro's left arm had grown tired from holding the plant in place over the
+> hole. He shifted it slightly to make himself more comfortable, but as he
+> shifted it back he saw soil rising and adhering to the roots. He stared at
+> this bizarre result for a moment, then decided to stop wasting time delaying
+> an outcome he had no wish to oppose.  He held the trowel to the side of the
+> mound nearest the hole, then drew it closer. The sand followed the blade -
+> not adhering to it and needing to be brought along, but gently pushing it. He
+> lowered the trowel into the hole then withdrew it; the sand parted from the
+> blade and packed itself between the roots of the plant and the side of the
+> hole.
+
+> He hesitated, groping for a clearer sense of his role in the task. But
+> what could he actually do wrong? So long as he was committed to
+> making whatever movements with the trowel were necessary until
+> the plant was securely in place, that state of mind and the strictures
+> of the environment ought to work it out between themselves.
+> He scooped some soil straight into the hole; like the last delivery, it
+> clung to the roots. In Esilio's terms, this soil had spent at least a few
+> stints packed tightly around the plant; if he could have seen the
+> action in reverse, it would have involved nothing stranger than a
+> clump of sand finally coming loose. 
+
+> But as she moved the broom across the floor, duly concentrating the dust
+> ahead of it, other dust began to appear behind it - some of it falling from
+> the air, some sliding over the stone to pile up against the bristles. Its
+> entropy was decreasing too, as it accumulated from whatever scattered reaches
+> of the Surveyor in which it had been lurking.  The net result was that the
+> stretch of floor she'd swept remained as dusty as ever.
+
+> But the plants' uptake of nutrients relied on interactions
+> between their roots and the native soil at a microscopic level, and
+> there was no guarantee that the two systems, left to themselves,
+> would simply sort out their differences
+
+> 'Because the test plots are failing,' Agata explained. 'So we need
+> to take the explosive up into the hills, turn some rock into soil for
+> ourselves - against the Esilian arrow - and see if that imbues the soil
+> with the properties that it needs to support plant growth
+
+
+> 'If we do set off this
+> explosive,' he reasoned, 'shouldn't we be able to see some evidence of
+> that already?'
+> Agata said, 'You mean a crater?'
+> 'Yes.'
+> 'If we found a site like that, it would be useless to us. It would imply
+> that after we set off the bomb, the crater would be gone and the sand
+> around it would be rock again.'
+> Ramiro scowled. 'Esilio doesn't care what's useful or useless, or it
+> wouldn't have killed the plants, would it?'
+> 'Esilio doesn't care,' Agata agreed, 'but why would we go ahead and
+> set off the bomb there, knowing that it would do us no good?'
+> 'Because the crater would prove that we did!' Ramiro replied heatedly.
+> 'But as far as we know, there is no such crater.' Agata met his gaze
+> openly, trying to reassure him of her Sincerity: she wasn't playing
+> some verbal game just to annoy him. 'There is no crater, because if
+> we saw it, we wouldn't choose to make it. Esilio can't force our hand;
+> whatever happens has to be consistent with everything, including
+> our motives. Ramiro said, 'It can't force our hand, but there could still be an
+> accident.' 'That's true. But if we saw such a crater, we wouldn't even go near it
+> with the explosive.' 
+
+> He ran a hand over his face. 'If the plants can't
+> bring their arrow to Esilio, why should a bomb do any better?'
+> 'The roots of a plant aren't entirely passive,' Azelio replied, 'but
+> they do rely on the state of the soil. I don't think the bomb going off
+> will rely on anything like that.'
+> 'But in Esilian time,' Ramiro protested, 'all the soil we're supposedly going to make with this bomb has to mesh perfectly with a
+> backwards explOSion in such a way that it forms a solid rock. How
+> likely is that?' 
+> How likely are the alternatives?' Agata countered. 'How likely is
+> it that the explOSive will fail to detonate? How likely is it that we'll
+> allow it to explode in an existing crater instead - just to pander to
+> Esilio's arrow?'
+
+
+
+> She started swinging her pick into the rock face.
+> Small chips of stone flew out from the point of impact, stinging her
+> forearms, but the rush of power and freedom she felt at the sight of
+> the growing excavation was more than enough to compensate.
+> In Esilian time, the chips were rising from the ground, propelled into
+> the air by conspiracies of time-reversed thermal diffusion, just to aid
+> her as she rebuilt the rock. What stronger proof could there be that
+> the cosmos had a place for her, with all her plans and choices? One
+> day it would kill her, but until then the contract was clear: hardship
+> and frustration and failure were all pOSSible, but she would never be
+> robbed of her will entirely.
+
+
+> the lines on the
+> rock face formed symbols. The sides of the ridges appeared softened
+> and eroded, as if a generation's worth of future dust storms had left
+> their mark. But she could still make out most of the message.
+> ' ... came here from the home world,' she read. 'To offer thanks
+> and bring you ... courage.'
+> Azelia said, 'Who thanks whom for what?'
+> 'It's from the ancestors,' she said. 'They're going to come here and
+> write this. They're going to come here to tell us that everything we've
+> done and everything we've been through was worth it in the end.'
+
+
+> But ever since he'd seen the writing for himself, he'd been unable to stop
+> wondering if the message suited him too well. As far as he could recall, he'd
+> never consciously planned to commit any kind of hoax.  What he didn't know was
+> exactly what his lack of preparation meant. The words were there, nothing could
+> change that now. But with every moment that passed it seemed more likely to him
+> that the ancestors had nothing to do with it, and that he would find a way to
+> write the message himself.
+
+
+> To feel alive, he needed to feel himself struggling moment by
+> moment to shape his own history. It was not enough to look down
+> on events from above like a biologist watching a worm in a maze,
+> content to note that this creature's actions had never actually gone
+> against its wishes.
+
+> nothing helped a plan run more smoothly than having a law of physics on its side
+
+
+> How could he carve anything into the rock face, if the idea of doing
+> it had only come to him after he'd seen the result? Even the choice
+> of words hadn't sounded like his own. If he'd only selected them
+> because he'd read them, who would have made the choice? No one.
+> Agata had told him endlessly: a loop could never contain complexity
+> with no antecedent but itself, because the probability would be far
+> too low. There could be no words appearing on rocks for no other
+> reason than the fact that they'd done so.
+
+
+> 'We've all hit a dead patch,' Lila said sadly. 'Chemists, biologists,
+> astronomers, engineers. Since they switched on the messaging
+> system, there hasn't been a single new idea across the mountain.'
+> 'You mean no one's been sending back new ideas?' Agata had
+> predicted as much - but surely that self-censorship hadn't surprised
+> anyone.
+> 'Oh, the messages have contained no innovations,' Lila confirmed.
+> 'But neither has the work itself.'
+> 'I don't understand,' Agata admitted.
+> Lila said, 'If people did innovate, the results would leak back to
+> them one way or another. I know you believed that they'd be able
+> to keep qUiet, so everything would go on as usual. But everything
+> has not gone on as usual. We've had no new ideas since the system
+> was turned on - because if we'd had them, we would have heard of
+> them before we'd had a chance to think of them ourselves. The
+> barriers to information flow are so porous now that the knowledge
+> gradient has been flattened: the past contains everything the future
+> contains ... which means the future contains nothing more than
+> the past.'
+
+
+> What would her own generation be famous for? Rendering
+> the creation of new knowledge impossible. 
+
+> 'I'm where I need to be.' 'In the administrative sense, or the teleological?'
+
+
+> Azelio hummed with frustration. 'What's all this talk of replacement? If a
+> meteor is going to hit us, it's going to hit us! You can devise as many
+> ingenious plans as you like to try to sabotage the system at the very same
+> moment, but if there's a rock on its way, nothing you do is going to make it
+> disappear.' 'If there's a rock on its way, that's true,' Ramiro conceded.
+> 'But until we know that there is, why should we assume that? The history of
+> the next twelve stints ends with the messaging system failing; we're about as
+> certain of that as we can be. Some sequence of events has to fill the gap
+> between that certainty and all the other things we know. So which snippets
+> would you rather the cosmos had on hand to complete the story? Just one,
+> where a meteor hits the Peerless? Just two: a meteor, or a bomb? Making our
+> own preferred version possible won't rule out everything else - but if we
+> don't even try, we'll rule out our own best hope entirely.'
+
+
+
+> Azelio was looking disoriented. 'I want this to work,' he said
+> haltingly. 'But every time I stop and think about it, it feels as if all
+> we're doing is playing some kind of game.
+
+
+> Azelio glanced down at the pile of notes on her desk. 'And doesn't
+> everything that could happen, happen? Isn't that what your diagram
+> calculus says?'
+> 'No.' Agata nodded at the pile. 'Por a start, you can only add up
+> diagrams that begin and end in exactly the same way: they all take
+> different paths, but their end pOints have to be identical. Getting
+> to the disruption with benign sabotage leaves the mountain intact;
+> getting there with a meteor strike hardly brings you to the same state.
+> And even when the end points are identical, all the alternatives you
+> draw for a process just help you find the probability that the process
+> takes place. Those alternatives don't all get to happen, themselves.'
+> 'Then what makes the choice?' Azelio pressed her. 'When a luxagen
+> could end up in either of two places, how does just one get picked?
+
+> Just because
+> we don't know the cause of the disruption, that doesn't mean that every cause
+> we can imagine will coexist. If you want history to unfold a certain way,
+> forget about wave mechanics. What matters now are the usual things: who we are,
+> what we do, and a certain amount of dumb luck.' 
+
+> Azelio put the diagram down. 'So if there's a meteor coming, how
+> do I stop it? Or avoid it?'
+> 'You can't,' Agata replied. This was the sticking point they always
+> reached. 'Not if the disruption is the proof that it hits us.'
+> 'Then what difference does it make "who we are" and "what we
+> do"?' Azelio asked bitterly. 'If I go through the motions of enacting
+> something more benign ... how will that help? If there's a murderer
+> trying to kill your family, you don't protect them by moving your
+> own tympanum to match the threats being shouted through the
+> door. Or do you really believe in safety through reverse ventriloquism?'
+> Agata wrapped her arms around her head in frustration. 'We don't 
+> know that there's a murderer at the door! We don't know that there's a
+> meteor on its way!'
+
+
+> 'This is your pass,' the woman
+> explained, handing her a red disc. 'Please don't lose it.'
+> 'Do I lose it?' Agata asked.
+> 'Of course you don't,' the guard replied. 'Because I asked you not
+> to.' 'Right.' Agata suppressed a shiver.
+
+> 'I didn't make the inscription,' Tarquinia declared. 'I went out there to try,
+> but nothing happened: no shards of stone rose from the ground to meet the
+> chisel. I tried different tools, different movements ... but I couldn't unwrite
+> those symbols. If anything, when I left they were sharper than I'd found them -
+> as if all I'd done was make the message less clear for Agata and Azelio than if
+> I'd stayed away completely. I wasn't the author of those words. Someone else
+> must be responsible for them.'
+
+> I wish I could talk to them,' she said. 'I wish I could thank
+> them. I wish I could tell them that it wasn't for nothing, that it ended
+> well.' Clara said, 'If that's what you want, then I believe you'll find a
+> way.'
+
 # Simplicial approximation: maps can be approximated by simplicial maps (TODO)
 
 # Excision (TODO)
+
 
 
 # Marshall: Andrej (TODO)
