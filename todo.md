@@ -1,3 +1,47 @@
+- [Compiler construction course with exercises on implementing loop analyses](http://pages.cs.wisc.edu/~fischer/cs701.html)
+- [45th world problems: Has a cool storytelling vibe of strange pictures](https://old.reddit.com/r/45thworldproblems/top/?sort=top&t=all)
+- [Preconquest Consciousness by E. Richard Sorenson from the book Tribal Epistemologies: Essays in the Philosophy of Anthropology](http://ranprieur.com/readings/preconquest.html)
+
+> In the isolated hamlets in the southern forests, infants were kept in
+> continuous bodily contact with mothers or the mothers' friends--on laps
+> when they were seated, on hips, under arms, against backs, or on shoulders
+> when they were standing. Even during intensive food preparation, or when
+> heavy loads were being moved, babies were not put down. They had priority.
+> There was always a place for them against the body of a 'mother' or close
+> associate. Loads could be shed or lightened, but babies were simply not put
+> down, not deprived of constant, ever-ready, interactive body contact--even when
+> the group was on the move under difficult conditions. Babies responded to this
+> blanket of ever-ready empathetic tactile stimulation by tactile responses of
+> their own. Very quickly they began assembling a sophisticated tactile-speech to
+> transmit desires, needs, and states of mind. They didn't whine or cry to get
+> attention; they touched. While babies everywhere are liminally aware, the
+> constant empathetic tactile contact required to produce a sophisticated type of
+> preverbal communication is rare--except among preconquest peoples.
+> Eliciting delight from babies was a desired social norm, and attentive tactile
+> stimulation was the daily lot of infants. It included protracted body-to-body
+> caressing, snuggling, oral sensuality, hugging, fondling, and kissing. The
+> seductive aspect of the play was frequently collective as older children singly
+> or in combination used their inventive wiles to delight a baby. In their
+> hamlets crying might be heard in reaction to accidental pain, but I don't
+> recall a single case of disgruntled whining or demanding crying.
+
+
+
+- [Suren Arakelov: Arithmetic geometer who after soviet torture become "a conventional person"](https://en.wikipedia.org/wiki/Suren_Arakelov)
+> A few days later the following happened. Solzhenitsyn was arrested. Suren
+> Arakelov, a loyal disciple and follower of his great teacher [Shafarevich],
+> decided to fight the regime. He made two posters - on his chest and on his
+> back - with the inscription: “Freedom for Alexander Solzhenitsyn” and went to
+> Red Square. There he was arrested and sent straight to the Serbsky Psychiatry
+> Institute. He was discharged a couple of years later. Igor Rostislavovich
+> [Shafarevich] came to visit him and was amazed at the change that had
+> occurred. The inner fire of his soul was trampled and extinguished. He was
+> not interested in mathematics, or politics, or even the attention of his once
+> beloved teacher. After a while he got married, found some routine job and
+> turned into an average man. On this occasion the specialists from the Serbsky
+> Institute have brilliantly demonstrated their professional competence. They
+> turned a genius into a “normal” mediocrity.
+
 - [Data.Category: embedded category theory in haskell that only uses arrows, no objects](https://hackage.haskell.org/package/data-category-0.10/docs/Data-Category.html#t:Category)
 - [Scrivener](https://www.literatureandlatte.com/scrivener/overview)
 - J C Butcher: numerical methods for ODEs: Does a mathematical analysis of ODE theory.

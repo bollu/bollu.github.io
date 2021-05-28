@@ -1508,9 +1508,11 @@ const char html_preamble[] =
     "html,body { text-size-adjust: none; -webkit-text-size-adjust: none; "
     "-moz-text-size-adjust: none; -ms-text-size-adjust: none; } "
     "body {"
-    " background-color: #FFFFFF; color: #000000; " // tufte
-    " font-family: 'Blog Serif', sans-serif; font-size: 18px; line-height: "
-    "1.4em; "
+    " background: linear-gradient(to right, #2693f5, #2795f6 , #e81d66, #e81d66);"
+    " color: #000000; " // tufte
+    " font-family: 'Blog Serif', sans-serif; "
+    " font-size: 18px; line-height: 1.4em; "
+    " margin-top: 0px; " // by default, there is a margin.
     " max-width: 100%; overflow-x: hidden; }"
     "\n"
     "h1, h2, h3, h4, h5 { font-family: 'Blog Sans' }"
@@ -1518,11 +1520,18 @@ const char html_preamble[] =
     // https://stackoverflow.com/questions/15458650/make-an-image-responsive-the-simplest-way
     "img { display:block; width: 100%; max-width: 800px; height: auto }"
     // container
-    ".container { overflow-x: auto; overflow-y: hidden;  max-width: 80ex; text-align: justify; }"
-    "@media (max-width: 480px) { .container { margin-left: 5%; margin-right: "
-    "5%; } body { font-size: 30px; } }"
-    "@media (max-width: 1024px) { .container { margin-left: 5%; margin-right: "
-    "5%; } body { font-size: 30px; } }"
+    ".container { overflow-x: auto; overflow-y: hidden;  max-width: 80ex; text-align: justify; "
+    "             margin-top: 0px; height: 100%; min-height: 100%;"
+    "             padding-left: 50px; padding-right: 50px; background: #FFFFFF;"
+    "}"
+    "@media (max-width: 480px) { "
+    "  .container { margin-left: 5%; margin-right: " "5%; }"
+    "  body { font-size: 30px; } "
+    " } "
+    "@media (max-width: 1024px) { "
+    " .container { margin-left: 5%; margin-right: " "5%; }"
+    "  body { font-size: 30px; }"
+    "}"
     // desktop
     "@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: 20%; } }"
     // class for image <div>

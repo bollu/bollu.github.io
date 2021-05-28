@@ -29937,6 +29937,8 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
+> You never rise to the occasion, you sink to the level of your training.
+
 > "the mark of an enlightened mind is the ability to entertain ideas without
 > accepting them"
 
