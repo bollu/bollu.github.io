@@ -1,0 +1,163 @@
+\documentclass[11pt]{book}
+%\documentclass[10pt]{llncs}
+%\usepackage{llncsdoc}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+\usepackage{bbding} % for flower. 
+\usepackage{physics}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{listing}
+\usepackage{minted}
+\usepackage{cancel}
+% \usepackage{quiver}
+\evensidemargin=0.20in
+\oddsidemargin=0.20in
+\topmargin=0.2in
+%\headheight=0.0in
+%\headsep=0.0in
+%\setlength{\parskip}{0mm}
+%\setlength{\parindent}{4mm}
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{8.5in}
+%\leftmargin -2in
+%\setlength{\rightmargin}{-2in}
+%\usepackage{epsf}
+%\usepackage{url}
+
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+%\usepackage{minted}
+%\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\R}{\ensuremath{\mathbb R}}
+\newcommand{\coT}{\ensuremath{T^*}}
+\newcommand{\Lie}{\ensuremath{\mathfrak{L}}}
+\newcommand{\Vectorfield}{\ensuremath{\mathfrak{X}}}
+\newcommand{\pushforward}[1]{\ensuremath{{#1}_{\star}}}
+\newcommand{\pullback}[1]{\ensuremath{{#1}^{\star}}}
+\newcommand{\vectorfield}{\ensuremath{\mathfrak{X}}}
+
+\newcommand{\pushfwd}[1]{\pushforward{#1}}
+\newcommand{\pf}[1]{\pushfwd{#1}}
+
+\newcommand{\boldX}{\ensuremath{\mathbf{X}}}
+\newcommand{\boldY}{\ensuremath{\mathbf{Y}}}
+
+
+\newcommand{\G}{\ensuremath{\mathcal{G}}}
+% \newcommand{\braket}[2]{\ensuremath{\left\langle #1 \vert #2 \right\rangle}}
+
+
+\def\qed{$\Box$}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+
+\newcommand{\beginproof}[1][]{\emph{Proof #1}\textbf{:} }
+\newcommand{\question}[1]{\textbf{#1}}
+
+\newcommand{\X}{\ensuremath{\mathfrak{X}}}
+
+\title{Algebraic topology: Hatcher}
+\author{Siddharth Bhat}
+\date{Spring of the second Year of the Plague}
+
+
+\begin{document}
+\maketitle
+\tableofcontents
+\chapter{Categories, Functors, Natural transformations}
+\section{Abstract and concrete categories}
+\section{Duality}
+
+\subsection{Musing}
+How does one remember mono is is $gk = gl \implies k = l$ and vice versa?
+
+\subsection{Solutions}
+\question{Lemma 1.2.3} $f: x \to y$ is an isomorphism iff it defines a bijection $f_*: C(c, x) \to C(c, y)$.
+\beginproof{($f$ is iso $\implies$ post composition with $f$ induces bijection)}
+Let $f: x \to y$ be an isomorphism. Thus we have an inverse arrow $g: y \to x$ such that $fg = id_y$, $gf = id_x$.
+The map: $$C(c, x) \xrightarrow{f*} C(c, y): (\alpha: c \to x) \mapsto (f\alpha: c \to y)$$
+has a two sided inverse:
+
+$$
+C(c, y) \xrightarrow{g*} C(c, x): (\beta: c \to y) \mapsto (g\beta: c \to x)
+$$
+
+which can be checked as $g_*(f_*(\alpha)) = g_*(f\alpha) = gf\alpha = id_x\alpha = \alpha$, and similarly for $f_*(g_*(\beta))$.
+Hence we are done, as the iso induces a bijection of hom-sets.
+\qed
+
+
+\beginproof{(post-composition with $f$ is bijection implies $f$ is iso)}
+We are given that the post composition by $f$, $f_*: C(c, x) \rightarrow C(c, y)$ is a bijection.
+We need to show that $f$ is an isomorphism, which means that there exists a function $g$ such that $fg = id_y$ and $gf = id_x$.
+Since post-composition is a bijection for all $c$, pick $c = y$. This tells us that the post-composition 
+$f_*: C(y, x) \rightarrow C(y, y)$ is a bijection. Since $id_y \in C(y, y)$, $id_y$ an inverse image $g \equiv f_*^{-1}(id_y)$. 
+[We choose to call this map $g$]. By definition of $f_*^{-1}$, we have that $f_*(f_*^{-1}(id_y)) = id_y$ , which means
+that $fg = id_y$. We also need to show that $gf = id_x$. To show this, consider $f_*(gf) = fgf = (fg)f = (1_y)f = f$.
+We also have that $f_*(id_x) = f id_x = f$. Since $f_*$ is a bijection, we have that $id_x = gf$ and we are done.  \qed
+
+
+\question{Q 1.2.ii:} Show that $f: x \rightarrow y$ is split epi iff for all $c \in C$, post composition
+$f \circ - : C(c, x) \rightarrow C(c, y)$ is a surjection.
+\beginproof
+\qed
+
+\question{Q 1.2.iii:} Mono is closed under composition, and if $gf$ is monic then so is $f$.
+
+
+\beginproof[(Mono is closed under composition)]
+Let $f: x \to y, g: y \to z$ be monomorphisms (Recall that $f$ is a monomorphism iff for any $\alpha, \beta$, if $f \alpha = f \beta$ then $\alpha = \beta$).
+We are to show that $gf: x \to z$ is monic.
+Consider this diagram which shows that $gfk = gfl$ for arbitrary $k, l: a \to x$. We wish to show that $k=l$.
+
+\begin{minted}{text}
+    a --k-> x --f--> y --g--> z
+    a --l-> x --f--> y --g--> z
+\end{minted}
+
+Since $g$ is mono, we can cancel it from $gfk = gfl$, giving us $fk = fl$.
+Since $f$ is mono, we can once again cancel it, giving us $k = l$ as desired.
+Hence, we are done.  \qed.
+
+\beginproof[(If $gf$ is monic then so is $f$)]
+Let us assume that $fk = fl$ for arbitrary $l$. We wish to show that $k = l$. We show this
+by applying $g$, giving us $fk = fl \implies gfk = gfl$. As $gf$ is monic, we can cancel, giving
+us $gfk = gfl \implies k = l$. 
+\qed.
+
+
+
+\end{document}
