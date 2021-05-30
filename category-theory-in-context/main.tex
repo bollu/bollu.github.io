@@ -132,7 +132,22 @@ We also have that $f_*(id_x) = f id_x = f$. Since $f_*$ is a bijection, we have 
 
 \question{Q 1.2.ii:} Show that $f: x \rightarrow y$ is split epi iff for all $c \in C$, post composition
 $f \circ - : C(c, x) \rightarrow C(c, y)$ is a surjection.
-\beginproof
+
+
+\beginproof[(split epi implies post composition is surjective)]
+Let $f: e \rightarrow b$ be split epi, and thus possess a section $s: b \rightarrow e$ such that $fs = id_b$.
+We wish to show that post composition $C(c, e) \xrightarrow{f_*} C(c, b)$ is surjective.
+So pick any $g \in C(c, b)$. Define $sg \in C(c, e)$. See: $$f_*(sg) = fsg = (fs)g = id_b g = g$$.
+Hence, for all $g \in C(c, b)$ there exists a pre-image under $f_*$, $sg \in C(c, e)$. Thus, $f_*$ is surjective
+since every element of codomain has a pre-image. \qed
+
+
+\beginproof[(post composition is surjective implies split epi)]
+Let $f: e \to b$ be a morphism such that for all $c \in C$, we have $C(c, e) \xrightarrow{f_*} C(c, b)$ is surjective.
+We need to show that there exists a morpshism $s: b \rightarrow e$ such that $fs = id_b$. Set $c = b$.
+This gives us a surjection $C(b, e) \xrightarrow{f_*} C(b, b)$. Pick an inverse image of $id_b \in C(b, b)$. 
+That is, pick any function $s \in f_*^{-1}(id_b)$. By definition, of $s$ being in the fiber of $id_b$,
+we have that $f_*(s) = fs = id_b$. Thus means that we have found a function $s$ such that $fs = id_b$. Thus we are done.
 \qed
 
 \question{Q 1.2.iii:} Mono is closed under composition, and if $gf$ is monic then so is $f$.
@@ -158,6 +173,35 @@ by applying $g$, giving us $fk = fl \implies gfk = gfl$. As $gf$ is monic, we ca
 us $gfk = gfl \implies k = l$. 
 \qed.
 
+\question{Q 1.2.vi} Mono + split epi iff iso.
 
+
+\beginproof[Iso is mono + split epi]
+Iso is both left and right cancellable. Hence it's mono and epi. It splits because the inverse of the iso splits it. \qed.
+
+
+\beginproof[mono + split epi is iso]
+Let $f: e \rightarrow b$ be mono (for all $k, l: p \to e$, $fk = fl \implies k = l$)
+and split epi (there exists $s: b \rightarrow e$ such that $fs: b \rightarrow b = id_b$.
+We need to show it's iso. That is, there exists a $g: b \rightarrow e$ such that $fg = id_b$ and $gf = id_e$.
+I claim that $g \equiv s$. We already know that $fg = fs = id_b$ from $f$ being split epi. We need to 
+check that $gf = sf = id_a$. Consider:
+
+$$fsf = (fs)f = id_b f = f = f id_e$$
+
+Hence, we have that $f(sf) = f(id_e)$. Since $f$ is mono, we concluce that $sf = id_e$. We are done 
+since we have found a map $s$ such that $fs = id_b, sf = id_e$.
+
+
+\question{1.2.vii} Regarding a poset a category, define the supremum of a subcollection, such that the dual gives the infimum.
+\beginproof We regard an arrow $a \to b$ as witnessing that $a \leq b$. First define an upper bound of a set $O$
+to be an object $u$ such that for all $o \in O$, we have $o \leq u$. Now, the supremum of $O$ is the least upper bound
+of $O$. That is, $s$ is a supremum iff $s$ is an upper bound, and for all other upper bounds $t$ of $O$, we have that $s \leq t$.
+So we draw a diagram showing upper bounds and suprema:
+
+\begin{minipage}{\textwidth}
+\includegraphics[width=\textwidth]{ch1/sup.png}
+    \begin{center}Upper bound and supremum\end{center}
+\end{minipage}
 
 \end{document}
