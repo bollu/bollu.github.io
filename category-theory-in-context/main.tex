@@ -55,6 +55,8 @@
 \usepackage{latexsym}
 \newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
 \newcommand{\R}{\ensuremath{\mathbb R}}
 \newcommand{\coT}{\ensuremath{T^*}}
 \newcommand{\Lie}{\ensuremath{\mathfrak{L}}}
@@ -106,7 +108,9 @@ How does one remember mono is is $gk = gl \implies k = l$ and vice versa?
 
 \subsection{Solutions}
 \question{Lemma 1.2.3} $f: x \to y$ is an isomorphism iff it defines a bijection $f_*: C(c, x) \to C(c, y)$.
-\beginproof{($f$ is iso $\implies$ post composition with $f$ induces bijection)}
+
+
+\beginproof[($f$ is iso $\implies$ post composition with $f$ induces bijection)]
 Let $f: x \to y$ be an isomorphism. Thus we have an inverse arrow $g: y \to x$ such that $fg = id_y$, $gf = id_x$.
 The map: $$C(c, x) \xrightarrow{f*} C(c, y): (\alpha: c \to x) \mapsto (f\alpha: c \to y)$$
 has a two sided inverse:
@@ -120,7 +124,7 @@ Hence we are done, as the iso induces a bijection of hom-sets.
 \qed
 
 
-\beginproof{(post-composition with $f$ is bijection implies $f$ is iso)}
+\beginproof[(post-composition with $f$ is bijection implies $f$ is iso)]
 We are given that the post composition by $f$, $f_*: C(c, x) \rightarrow C(c, y)$ is a bijection.
 We need to show that $f$ is an isomorphism, which means that there exists a function $g$ such that $fg = id_y$ and $gf = id_x$.
 Since post-composition is a bijection for all $c$, pick $c = y$. This tells us that the post-composition 
@@ -129,6 +133,11 @@ $f_*: C(y, x) \rightarrow C(y, y)$ is a bijection. Since $id_y \in C(y, y)$, $id
 that $fg = id_y$. We also need to show that $gf = id_x$. To show this, consider $f_*(gf) = fgf = (fg)f = (1_y)f = f$.
 We also have that $f_*(id_x) = f id_x = f$. Since $f_*$ is a bijection, we have that $id_x = gf$ and we are done.  \qed
 
+
+\begin{minipage}{\textwidth}
+\includegraphics[width=\textwidth]{ch1/iso-is-bijection-of-hom.png}
+    \begin{center}Iso is bijection of hom-sets\end{center}
+\end{minipage}
 
 \question{Q 1.2.ii:} Show that $f: x \rightarrow y$ is split epi iff for all $c \in C$, post composition
 $f \circ - : C(c, x) \rightarrow C(c, y)$ is a surjection.
@@ -172,6 +181,44 @@ Let us assume that $fk = fl$ for arbitrary $l$. We wish to show that $k = l$. We
 by applying $g$, giving us $fk = fl \implies gfk = gfl$. As $gf$ is monic, we can cancel, giving
 us $gfk = gfl \implies k = l$. 
 \qed.
+
+\question{Q 1.2.iv} What are monomorphisms in category of fields?
+
+\beginproof Claim: All morphisms are monomorphisms in the category of fields. Let $f: K \rightarrow L$ be an arbitrary field
+morphism. Consider the kernel of $f$. It can either be $\{ 0 \}$ or $K$, since those are the only two
+ideals of $K$. However, the kernel can't be $K$, since that would send $1$ to $0$ which is an illegal ring map.
+Thus, the map $f$ has trivial kernel, therefore is an injection, is left-cancellable, is a monomorphism.\qed
+
+
+\question{Q 1.2.v} Show that the ring map $i: \mathbb Z \rightarrow \mathbb Q$ is both monic and epic but not iso.
+
+\beginproof[$i$ is not iso]
+No ring map $i: \mathbb Z \rightarrow \mathbb Q$ can be iso since the rings are different (eg. $\mathbb Q$ is a field). \qed
+
+
+
+\beginproof[$i$ is epic]
+To show that it's epic, we must show that given for arbitrary $f, g: \mathbb Q \rightarrow R$ that $fi = gi$:
+
+\begin{minted}{text}
+Z -i-> Q --f--> R
+Z -i-> Q --g--> R
+\end{minted}
+
+implies that $f = g$. Let $fi: \mathbb Z \rightarrow R = gi$. Then, the functions $f, g$ are uniquely determined
+since $\mathbb Q$ is the field of fractions of $\mathbb Z$, thus a ring map $\Z \rightarrow R$ extends uniquely to a ring
+map $\Q \rightarrow R$. Let's assume that $f(i(z)) = g(i(z))$ for all $z$, and show that $f = g$.
+Consider arbitrary $p/q \in \mathbb \Q$ for $p, q \in \Z$. Let's evaluate:
+\begin{align*}
+f(p/q) = f(p)f(q)^{-1} = f(i(p)) \cdot f(i(q))^{-1} = g(i(p)) \cdot g(i(q))^{-1} = g(p/q)
+\end{align*}
+which shows that $f(p/q) = g(p/q)$ for all $p, q$. Thus, we can extend a ring function defined on the integers to rationals uniquely,
+hence $fi = gi \implies f = g$ showing that $i$ is epic.
+\qed
+
+\beginproof[$i$ is monic]
+given two arbitrary maps $k, l: R \rightarrow \Z$, if $ik = il$ then we must have $k = l$. Given $ik = il$, since $i$
+is an injection of $\Z$ into $\Q$, we must have $k = $l.
 
 \question{Q 1.2.vi} Mono + split epi iff iso.
 
