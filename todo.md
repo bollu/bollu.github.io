@@ -1,3 +1,14 @@
+- [Quine: Kmett's shadertoy](https://github.com/ekmett/quine)
+- [Raymarching by Ingo](https://www.iquilezles.org/www/articles/distfunctions/distfunctions.htm)
+- [The Unspeakable Subject of Hieronymus Bosch - Joseph Leo Koerner](https://www.youtube.com/watch?v=oAwilLEhtw4&list=PLED6CCCCA6A866E87&index=6):
+  An entire video studying the one painting by Bosch. I really can't tell if this is shitposting or not.
+- Christian scholars say variety as vanity, in contrast to the one-ness of god.
+- [Language of bindings](https://www.ligatus.org.uk/lob/hierarchy): A declarative description of bindings of books across history.
+- [Best textbooks on every subject](https://www.lesswrong.com/posts/xg3hXCYQPJkwHyik2/the-best-textbooks-on-every-subject)
+- Computational Category Theory by  David E. Rydeheard, Rod M. Burstall
+- [Image cutting with network flow](https://julie-jiang.github.io/image-segmentation/)
+- [Lean: Logic and proof --- good intro for first order logic.](https://leanprover.github.io/logic_and_proof)
+- [Tagless final encoding](https://www.foxhound.systems/blog/final-tagless/)
 - [Compiler construction course with exercises on implementing loop analyses](http://pages.cs.wisc.edu/~fischer/cs701.html)
 - [45th world problems: Has a cool storytelling vibe of strange pictures](https://old.reddit.com/r/45thworldproblems/top/?sort=top&t=all)
 - [Preconquest Consciousness by E. Richard Sorenson from the book Tribal Epistemologies: Essays in the Philosophy of Anthropology](http://ranprieur.com/readings/preconquest.html)

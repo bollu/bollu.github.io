@@ -15,6 +15,22 @@ A Universe of Sorts
 - [reading list and link dump](todo.html)
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
+# Even and odd functions through representation theory
+
+Consider the action of $\mathbb Z/ 2\mathbb Z$ on the space of functions $\mathbb R \to \mathbb R$.
+given by $\phi(0)(f) = f$, and $phi(1)(f) = \lambda x. f(-x)$. How do we write this in terms of irreps? 
+
+- On the even functions, since $e(x) = e(-x)$ for $e$ even, we have that,
+  $\phi(0)(e) = e$ and $\phi(1)(e) = e$ [since $e(-x) = e(x)$], or $\phi(x)(e) = id(e)$,   hence the action
+  of $\phi$ is that of the trivial representation on the subspace spanned by even functions.
+
+- On the odd functions, since $o(-x) = -o(x)$, we have that $\phi(1)(o)(x) = o(-x) = -o(x) = sgn(o)(x)$ hence $\phi(1)(o) = -o$, hence $\phi(x)(o) = sgn(x)(o)$ where $sgn$
+  is the sign representation!
+
+Since the even and odd functions span the space of all functions, as we can write any function $f$ as the
+sum of an even part $e_f(x) \equiv [f(x) + f(-x)]/2$ and an odd part $o_f(x) \equiv [f(x) - f(-x)]/2$. So, 
+we have described the action of $\phi$ in terms of subspaces which span the space, so we've found the irrep decomposition.
+
 # Greg egan: Orthogonal
 
 I found the idea of writing a story about a universe with a closed loop of time fascinating.
@@ -29937,6 +29953,9 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
+> "In the past everything was better, even the future" (K. Valentin, translated)
+
+
 > You never rise to the occasion, you sink to the level of your training.
 
 > "the mark of an enlightened mind is the ability to entertain ideas without
@@ -30401,5 +30420,59 @@ Plan: finish cardistry bootcamp, learn card control from 52kards.
 
 > PORT (wine) is always LEFT at sea, but never left at dinner.
 > L for LEFT, is close to P for PORT. R for RIGHT, is close to S for STARBOARD
+
+
+> Mona Lisa was special in part because it was uncommon for people to smile. In
+> Middle Ages, someone smiling a lot would be perceived as stupid. That's why
+> facial expressions in medieval imagery are so serious. Today, being surprised
+> a lot is often taken as a sign of stupidity, whereas in ancient Greece an owl
+> was the bird of Athena, the goddess of wisdom. Because, obviously, an owl is
+> always surprised, and surprise is the first step to understanding.
+
+# Big list of speaking / oration
+
+- my only other critique, =which is good in general, but try to force yourself to speak slower than you want to
+- taking time to build a diagram is the best way to convey knowledge
+- learning to be comfortable with silences while speaking doesn't come naturally to anyone
+- Some kids grow up on football. I grew up on public speaking (as behavioral
+  therapy for a speech impediment, actually). If you want to get radically
+  better in a hurry: 1) If you ever find yourself buffering on output, rather
+  than making hesitation noises, just pause. People will read that as
+  considered deliberation and intelligence. It's outrageously more effective
+  than the equivalent amount of emm, aww, like, etc. Practice saying nothing.
+  Nothing is often the best possible thing to say. (A great time to say
+  nothing: during applause or laughter.) 2) People remember voice a heck of a
+  lot more than they remember content. Not vocal voice, but your authorial
+  voice, the sort of thing English teachers teach you to detect in written
+  documents. After you have found a voice which works for you and your typical
+  audiences, you can exploit it to the hilt.  I have basically one way to start
+  speeches: with a self-deprecating joke. It almost always gets a laugh out of
+  the crowd, and I can't be nervous when people are laughing with me, so that
+  helps break the ice and warm us into the main topic.  3) Posture hacks: if
+  you're addressing any group of people larger than a dinner table, pick three
+  people in the left, middle, and right of the crowd. Those three people are
+  your new best friends, who have come to hear you talk but for some strange
+  reason are surrounded by great masses of mammals who are uninvolved in the
+  speech. Funny that. Rotate eye contact over your three best friends as you
+  talk, at whatever a natural pace would be for you. (If you don't know what a
+  natural pace is, two sentences or so works for me to a first approximation.)
+  Everyone in the audience -- both your friends and the uninvolved mammals --
+  will perceive that you are looking directly at them for enough of the speech
+  to feel flattered but not quite enough to feel creepy.  4) Podiums were
+  invented by some sadist who hates introverts. Don't give him the
+  satisfaction. Speak from a vantage point where the crowd can see your entire
+  body.  5) Hands: pockets, no, pens, no, fidgeting, no. Gestures, yes. If you
+  don't have enough gross motor control to talk and gesture at the same time
+  (no joke, this was once a problem for me) then having them in a neutral
+  position in front of your body works well.  6) Many people have different
+  thoughts on the level of preparation or memorization which is required. In
+  general, having strong control of the narrative structure of your speech
+  without being wedded to the exact ordering of sentences is a good balance for
+  most people. (The fact that you're coming to the conclusion shouldn't
+  surprise you.) 7) If you remember nothing else on microtactical phrasing when
+  you're up there, remember that most people do not naturally include enough
+  transition words when speaking informally, which tends to make speeches loose
+  narrative cohesion. Throw in a few more than you would ordinarily think to
+  do. ("Another example of this...", "This is why...", "Furthermore...", etc etc.)
 
 
