@@ -33,7 +33,7 @@ static const int LONG_CODE_BLOCK_SIZE = 60;
 using namespace std;
 
 using ll = long long;
-static const ll MAX_CHARS = 1e7;
+static const ll MAX_CHARS = 1e9;
 
 // indent for logging to tell which function is calling what.
 struct Logger {
@@ -1508,7 +1508,7 @@ const char html_preamble[] =
     "html,body { text-size-adjust: none; -webkit-text-size-adjust: none; "
     "-moz-text-size-adjust: none; -ms-text-size-adjust: none; } "
     "body {"
-    " background: linear-gradient(to right, #2693f5, #2795f6 , #e81d66, #e81d66);"
+    " background: linear-gradient(to right, #2693f5 50%, #e81d66 50%);"
     " color: #000000; " // tufte
     " font-family: 'Blog Serif', sans-serif; "
     " font-size: 18px; line-height: 1.4em; "
@@ -1525,11 +1525,11 @@ const char html_preamble[] =
     "             padding-left: 50px; padding-right: 50px; background: #FFFFFF;"
     "}"
     "@media (max-width: 480px) { "
-    "  .container { margin-left: 5%; margin-right: " "5%; }"
+    "  .container { margin-left: 1%; margin-right: " "1%; }"
     "  body { font-size: 30px; } "
     " } "
     "@media (max-width: 1024px) { "
-    " .container { margin-left: 5%; margin-right: " "5%; }"
+    " .container { margin-left: 1%; margin-right: " "1%; }"
     "  body { font-size: 30px; }"
     "}"
     // desktop

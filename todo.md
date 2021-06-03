@@ -1,3 +1,9 @@
+- [pydoit: A dead simple make replacement](https://pydoit.org/)
+- A course in enumeration, Martin Aigner: Abstract algebraic flavoured intro to combinatorics text. Has a nice chapter on involutions.
+- [Combinatorial algorithms for computers and calculators](https://www2.math.upenn.edu/~wilf/website/CombinatorialAlgorithms.pdf
+- [Cmake language grammar](https://cmake.org/cmake/help/latest/manual/cmake-language.7.html)
+-  Data_compression: The Complete Reference by David Salomon
+- [Aberth method: polynomial root finding algorithm](https://en.wikipedia.org/wiki/Aberth_method)
 - [Quine: Kmett's shadertoy](https://github.com/ekmett/quine)
 - [Raymarching by Ingo](https://www.iquilezles.org/www/articles/distfunctions/distfunctions.htm)
 - [The Unspeakable Subject of Hieronymus Bosch - Joseph Leo Koerner](https://www.youtube.com/watch?v=oAwilLEhtw4&list=PLED6CCCCA6A866E87&index=6):
