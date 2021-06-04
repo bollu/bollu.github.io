@@ -15,6 +15,73 @@ A Universe of Sorts
 - [reading list and link dump](todo.html)
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
+# Lagrange multipliers by algebra
+
+#### Constrained optimisataion: the first stab
+
+We want to maximize $z = f(x, y)$ given the constraint that $g(x, y) = 0$.
+Let us arbitrarily say that $x$ is independent and $y$ is dependent on $x$, so there
+is some function $t$ such that $y = t(x)$. This lets us compute $dy/dx$ using:
+
+\begin{aligned}
+& g(x, y) = 0\\
+&\frac{d g(x, y)}{dx}  = d0 = 0\\
+&\frac{\partial g}{\partial x} + \frac{\partial g}{\partial y}\frac{dy}{dx} = 0 \\
+&\frac{dy}{dx} = - \frac{\partial g/\partial x}{\partial g/\partial y}
+\end{aligned}
+
+Next, since $z$ is a function of $x$ alone (as $y$ is dependent on $x$ via $t$), the condition
+$dz/dx = 0$ guarantees a maxima for $z$:
+
+\begin{aligned}
+&\frac{dz}{dx} = 0 \\
+&\frac{\partial f}{\partial x} + \frac{\partial f}{\partial y}\frac{dy}{dx} = 0 \\
+&\frac{\partial f}{\partial x} + \frac{\partial f}{\partial y} \frac{\partial g/\partial x}{\partial g/\partial y} = 0 \\
+\end{aligned}
+
+Solving the above condition along with $g(x, y) = 0$ to recover the value of $y$ gives us the optima.
+
+#### Constrained optimisataion: equal footing
+
+
+$$
+F(x, y, \lambda) = f(x,y) + \lambda g(x, y)
+$$
+
+If we consider the stationary value of $F$, we get:
+
+$$
+\begin{aligned}
+&\frac{\partial F}{\partial x} = \frac{\partial f}{\partial x} + \lambda \frac{\partial g}{\partial x} = 0
+&\frac{\partial F}{\partial y} = \frac{\partial f}{\partial y} + \lambda \frac{\partial g}{\partial y} = 0
+&\frac{\partial F}{\partial \lambda} = \frac{\partial f}{\partial x} + \lambda \frac{\partial g}{\partial x}
+\end{aligned}
+$$
+
+to eliminate $\lambda$ from the above equations, we rearrange:
+
+
+$$
+\begin{aligned}
+&\frac{\partial f}{\partial x}/\frac{\partial g}{\partial x}  = \lambda\\
+&\frac{\partial f}{\partial y})/\frac{\partial g}{\partial y}  = \lambda \\
+\end{aligned}
+$$
+
+This $\lambda$ can be eliminated to recover the previous equation:
+
+$$
+\begin{aligned}
+&\frac{\partial f}{\partial x}/\frac{\partial g}{\partial x}  = &\frac{\partial f}{\partial y})/\frac{\partial g}{\partial y} \\
+&\frac{\partial f}{\partial x} =  \frac{\partial g}{\partial x} \frac{\partial f}{\partial y})/\frac{\partial g}{\partial y} \\
+&\frac{\partial f}{\partial x} - \frac{\partial g}{\partial x} \frac{\partial f}{\partial y})/\frac{\partial g}{\partial y}  = 0 \\
+\end{aligned}
+$$
+
+
+The langrange multipler procedure is nice since it does not break the symmetry between the two variables.
+
+
 # Specht module construction
 
 #### $A[\lambda][t]$, and its image
@@ -84,11 +151,11 @@ $$
 \begin{aligned}
 &A[\lambda][t](x) = \\
 &= A[\lambda][t](\pi' t) \\
-&= \sum_{\sigma \in C[t]} sgn(\sigma) \sigma(\pi' t)
-&= \sum_{\sigma \in C[t]} sgn(\sigma) (\sigma \circ \pi') t)
-&= \sum_{\sigma \circ \pi \in C[t]} sgn(\sigma) sgn(\pi') sgn(\pi') (\sigma \circ \pi') t)
-&=  sgn(\pi') \sum_{\sigma \circ \pi \in C[t]} sgn(\sigma \circ \pi) (\sigma \circ \pi') t)
-&= sgn(\pi') \sum_{\sigma' \in C[t]} sgn(\sigma') \sigma'(t)
+&= \sum_{\sigma \in C[t]} sgn(\sigma) \sigma(\pi' t) \\
+&= \sum_{\sigma \in C[t]} sgn(\sigma) (\sigma \circ \pi') t) \\
+&= \sum_{\sigma \circ \pi \in C[t]} sgn(\sigma) sgn(\pi') sgn(\pi') (\sigma \circ \pi') t) \\
+&=  sgn(\pi') \sum_{\sigma \circ \pi \in C[t]} sgn(\sigma \circ \pi) (\sigma \circ \pi') t) \\
+&= sgn(\pi') \sum_{\sigma' \in C[t]} sgn(\sigma') \sigma'(t) \\
 &= sgn(\pi') A[\lambda][t](t)
 \end{aligned}
 $$
