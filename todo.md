@@ -1,3 +1,5 @@
+- [Mathematics Autodidact's Aid: AMS Notices about recommendations of textbooks](https://www.ams.org/notices/200510/comm-fowler.pdf)
+- The Symmetric Group: Representations, Combinatorial Algorithms, and Symmetric Functions: For more on representation theory of the symmetric group.
 - [pydoit: A dead simple make replacement](https://pydoit.org/)
 - A course in enumeration, Martin Aigner: Abstract algebraic flavoured intro to combinatorics text. Has a nice chapter on involutions.
 - [Combinatorial algorithms for computers and calculators](https://www2.math.upenn.edu/~wilf/website/CombinatorialAlgorithms.pdf

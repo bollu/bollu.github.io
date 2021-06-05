@@ -15,6 +15,15 @@ A Universe of Sorts
 - [reading list and link dump](todo.html)
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
+# Madoka Magica: plot thoughts
+
+- I wonder whether incubator ~ Kyubey ~ kyubii ~ nine-tails.
+- Homura is such a tragic character. 
+
+
+# Chain rule functorially
+
+
 # Lagrange multipliers by algebra
 
 #### Constrained optimisataion: the first stab
@@ -262,6 +271,58 @@ that if $W$ contains a single vector from $S$, then it contains all of $S$: $W \
 - Thus, the **non-zero** vector $\alpha_x h \in W$ (non-zero as $\alpha_x \neq 0$). Hence, the vector $h \in W$.
   Since $W$ is closed under $\mathcal O$ and $S$ is generated as $\mathcal O h$, we have that $S \subseteq W$.
 
+
+#### Have we found all the irreps?
+
+Recall that the number of irreps is upper bounded by the number of conjugacy classes of the group. This follows
+from character theory: (1) the characters of irreps are orthogonal in the space of class functions, and
+(2) the dimension of the space of class functions is is equal to the number of conjugacy classes, since there
+are those many degrees of freedom for a class function --- it must take on a different value per conjugacy class
+[WIP: finish my character theory notes]. In our case, we have found one irrep per conjugacy class, since
+conjugacy classes of $S_n$ is determined by cycle type, and the shape of a diagram encodes the cycle type of
+a permutation. If we show that the irreps of different shapes/diagrams are inequivalent, we are done.
+
+
+#### Characterizing Maps $M[\lambda]$ to $M[\mu]$ 
+
+This is like Schur's lemma, that holds for the larger space $M[\lambda]$ instead of just the irrep $S[\lambda]$.
+
+> Let $T: M[\lambda] \rightarrow M[\mu]$ be an intertwining map. If $S[\lambda] \subsetneq ker(T)$ then $\lambda \trianglerighteq \mu$ .
+> If $\lambda = \mu$, then $T$ restricted to $S[\lambda]$ is a scalar multiple of the identity: $T|S[\lambda] = k id$
+
+**Proof:** Since the kernel is an invariant subspace, since $S[\lambda]$ is not in the kernel, it must be that the kernel and $S[\lambda]$
+are orthogonal to each other.
+
+
+> Let $T: S[\lambda] \rightarrow S[\mu]$ be an intertwining map. If $T \neq 0$, then $\lambda \trianglerighteq \mu$.
+
+**Proof:** Any such $T$ can be extended to an intertwining map between $M[\lambda]$ and $M[\mu]$ by defining the map to be zero
+outside $S[\lambda]$. By the previous lemma, we have that $\lambda \trianglerighteq \mu$.
+
+#### All the $S[\lambda]$ are distinct irreps of $S_n$ 
+
+The above implies that if $S[\lambda] = S[\mu]$, that is, we have an isomorphism $T: S[\lambda] \rightarrow S[\mu]$,
+then we must have that $\lambda \trianglerighteq \mu$. Similarly, since we have a map $T^{-1}$, we find that $\mu \trianglerighteq \lambda$.
+This implies that $\lambda = \mu$.
+
+
+Thus, we have found ALL irreps, since as argued before, there can be at most as many irreps as there are shapes/diagrams of $n$,
+and we've shown that each irrep that corresponds to a shape is distinct.
+
+
+#### All the $S[\lambda]$ are distinct irreps of $S_n$ by Schur's lemma
+
+Suppose that $S[\lambda] \simeq S[\mu]$. Thus we have an invertible intertwining map $T: S[\lambda] \rightarrow S[\mu]$.
+By Schur's lemma, since we know that $S[\lambda]$ and $S[\mu]$ are irreps,
+we know that $T$ is a scalar multiple of the identity map. Let $m$ be a tabloid of shape $\mu$.
+We know that $A[\mu][m](m) \in S[\mu]$. Now consider $T^{-1}(A[\mu][m](m))$. This must be
+equal to $A[\mu][m](T^{-1}(m))$. This means that $T^{-1}(m)$ is not zero when acted upon
+by $A[\mu][m](m)$, thus $T^{-1}(m)$, of shape $\lambda$ must dominate shape $\mu$
+[Argue why this is the case by adapting the proof seen before about spaces].
+
+
+Ruunning the argument is reverse, we get both directions of $\lambda \trianglerighteq \mu$ and $\mu \trianglerighteq \lambda$,
+there by establishing $\lambda = \mu$.
 
 #### Working it out for S3
 
@@ -1230,7 +1291,7 @@ into the `Hom` category.
 - [ghcid](https://hackage.haskell.org/package/ghcid) + tmux is a nice way to get a REPL/IDE
   like experience for haskell with minimal fuss.
 
-# Character theory (TODO)
+# Character theory
 
 I jot down the rough proof sketches of character theoretic facts for quick reference.
 Fix a group $G$. A group representation of $G$ is a group homomorphism from the group
@@ -1242,7 +1303,7 @@ A representation is said to be irreducible if it cannot be written as the
 direct sum of two non-trivial representations. A character is the trace of
 a representation. An irreducible character is the trace of an irreducible representation.
 
-#### All representations are unitary representations
+#### All finite group representations are unitary representations
 
 Given a representation $f: G \rightarrow Aut(V)$, we construct
 an _invariant_ inner  product, that is, one where $\langle f(g)(v) | f(g)(w) \rangle = \langle v | w \rangle$.
@@ -1257,12 +1318,13 @@ Hence, the representation $f$ preserves this inner product,
 and we can thus study only unitary representations (which are much simpler).
 From now on, we assume all representations are unitary.
 
-#### Representation has same automorphism for the entire conjugacy classe
+#### Representation has same value for the entire conjugacy classe
 
 Since all representations are unitary, the image of $f(ghg^{-1}) = f(g) f(h) f(g)^{-1}$
 is going to be a change-of-basis of $f(h)$, and thus does not
 actually change the automorphism given by $f(h)$. Hence, representations are
-the same for an entire conjugacy class .
+the same for an entire conjugacy class. Such functions which are constant
+on a conjugacy class is called as a _class function_.
 
 
 #### Morphism between representations / intertwining
@@ -1290,7 +1352,7 @@ identity implies that all dimensions are scaled uniformly.
 The main idea of the proof is to show that the kernel and image of the 
 intertwining map is an irreducible subspace of $f, f'$ retrospectively. Since
 the maps are irreducible, we must have the the intertwining is either the zero
-map, or a map into the full group (TODO). This forces the map to be zero or a scalar
+map, or a map into the full group. This forces the map to be zero or a scalar
 multiple of the identity.
 
 One way to look at this is that for irreps $f: G \rightarrow V$ and
@@ -1298,16 +1360,96 @@ $f': G \rightarrow W$, the dimension of $Hom(V, W)$ is either 0 or 1 (scalings o
 
 
 
-#### Schur orthogonality
+#### Schur orthogonality relations
+
+
+We consider representations "one matrix index" at a time, and show that
+the matrix entries of irreducible representations is going to be orthogonal
+The proof is to consider representations $\alpha: G \rightarrow \mathbb GL(V)$
+$\beta: G \rightarrow \mathbb GL(W)$, and an intertwining map $T: V \rightarrow W$.
+
+How do we involve all of $\alpha, \beta, T$ at once? Recall that since $T$ is an intertwining, we must have:
+
+$$
+T(\alpha(g)(v)) = \beta(g)(T(v))
+$$
+
+Now, since $\beta$ is invertible (it must be since it's a member of $GL(W)$), I can rewrite
+the above as:
+
+$$
+\beta^{-1}(g)(T(\alpha (g)(v)) = T(v)
+$$
+
+This needs that $T: V \rightarrow W$ is an intertwining map. Can we generalize this
+to any **linear map**? Suppose that $L: V \rightarrow W$ is a **linear map**, not
+necessary intertwining. Let's induce an intertwining map from $L$:
+
+$$
+\begin{aligned}
+&\overline{L}: V \rightarrow W \\
+&\overline{L}(v) \equiv 1/|G|\sum_{g \in G} \beta(g)^{-1} T \alpha(g) v
+\end{aligned}
+$$
+
+We average the intertwining condition of $T(v)$ to produce an appropriate $\overline{L}(v)$.
+Is this an intertwining? Yes, because when we compute $\beta(h)^{-1} \overline L \alpha(h)$,
+the averaging trick winds up shifting the index, exactly as it does for the inner product:
+
+$$
+\begin{aligned}
+&\beta(h)^{-1} \overline L \alpha(h) \\
+&=\beta(h)^{-1} \left( \sum_{g \in G} \beta(g)^{-1} L \alpha(g) \right) \alpha(h) \\
+&=\sum_{g \in G} \beta(gh)^{-1} L \alpha(gh) \\
+&=\sum_{g \in G} \beta(gh)^{-1} L \alpha(gh) \\
+&=\sum_{kh^{-1} \in G} \beta(kh^{-1}h)^{-1} L \alpha(kh^{-1}h) \\
+&=\sum_{kh^{-1} \in G} \beta(k)^{-1} L \alpha(k) \\
+&= \overline{L}
+\end{aligned}
+$$
+
+Thus, for every linear map $L: V \rightarrow W$, if the representation $\alpha$ is not
+isomorphic to the representation $\beta$, then $\overline{L} = 0$, or:
+
+$$
+\begin{aligned}
+&\sum_{g \in G} \beta(g)^{-1} L \alpha(g) = 0 \\
+&\left( \sum_{g \in G} \beta(g)^{-1} L \alpha(g) \right)[i][j] = 0[i][j] \\
+&\sum_{g \in G} \beta(g)^{-1}[i][p] L[p][q] \alpha(g)[q][j] = 0[i][j] \\
+&\text{($\beta$ is unitary)} \\
+&\sum_{g \in G} \beta(g)*[p][i] L[p][q] \alpha(g)[q][j] = 0[i][j] \\
+\end{aligned}
+$$
+
+The above equality holds **for all** indexes $i, j$ and **for all** choices
+of $L[p][q]$ (since $L$ can be **any linear map**). In particular,
+we can choose $L[p][q] = \delta[p][r] \delta[q][s]$ for **arbitrary** $r, s$.
+This gives us the equation:
+
+$$
+\begin{aligned}
+&\sum_{g \in G} \beta(g)*[p][i] L[p][q] \alpha(g)[q][j] = 0[i][j] \\
+&\sum_{g \in G} \beta(g)*[p][i] \delta[p][r] \delta[q][c] \alpha(g)[q][j] = 0[i][j] \\
+&\sum_{g \in G} \beta(g)*[r][i] \alpha(g)[s][j] = 0[i][j] = 0\\
+\end{aligned}
+$$
+
+This tells that we can choose any index $[r, i]$ and index $[i, j]$ and these will be orthogonal,
+when viewed as vectors "along" the set of matrices.
 
 <img src="./static/repr-theory/schur-orthogonality.png">
 
-We consider representations "one matrix index" at a time, and show that
-the matrix entries of irreducible representations is going to be orthogonal.
-The proof is to consider representations $f: G \rightarrow \mathbb GL(n, \mathbb C)$,
-$f': G \rightarrow \mathbb GL(m, \mathbb C)$. For a fixed row/column pair $(r, c)$,
-we consider the inner product $\sum_{g \in G} f(g)[r][c] \overline{f'(g)[r][c]}$ (TODO)
+If the representation is a one-dimensional representation/character, then we have no freedom
+in indexing, and the above becomes:
 
+
+$$
+\begin{aligned}
+&\sum_{g \in G} \beta(g)* \alpha(g) = 0[i][j] = 0
+\end{aligned}
+$$
+
+Thus, different characters are all orthogonal.
 
 #### Inner product of class functions
 
@@ -1362,6 +1504,16 @@ downstairs $gB[0]: B \rightarrow X$ such that $gB[0] \circ i = gA[t](0)$,
 we can extend $gB[0]$ into $gB[t]$. We see that this is simply
 the HEP (homotopy extension property), where we have a homotopy of subspace
 $A$, and a starting homotopy of $B$, which can be extended to a full homotopy.
+
+
+#### Number of irreducible representations
+
+Recall that the characters of irreducible representations are orthogonal. Also,
+the dimension of the space of class functions is equal to the number of
+conjugacy classes of the group $G$, since a class function takes on a distinct
+value over each conjugacy class, so there are those many degrees of freedom.
+This tells us that the number of irreducible representations is at most
+the number of conjugacy classes of the group.
 
 #### Lemma: Cofibration is always inclusion (Hatcher)
 
@@ -30355,6 +30507,10 @@ let g:conjure#mapping#eval_motion = "E"
 - eval last definition: `C-c C-c`
 
 # Big list of quotes
+
+> Knuth says something similar (on his web page I think). He says he doesn't
+> read email because email is good for people who want to stay on top of things
+> but he wants to get to the bottom of things.
 
 > "In the past everything was better, even the future" (K. Valentin, translated)
 

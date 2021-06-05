@@ -5,6 +5,11 @@
 <link>https://bollu.github.io/</link>
 <description>A universe of Sorts</description>
   <item>
+    <title> Madoka Magica: plot thoughts </title>
+    <guid>https://bollu.github.io/madoka-magica-plot-thoughts.html</guid>
+    <link>https://bollu.github.io/madoka-magica-plot-thoughts.html</link>
+  </item>
+  <item>
     <title> Lagrange multipliers by algebra </title>
     <guid>https://bollu.github.io/lagrange-multipliers-by-algebra.html</guid>
     <link>https://bollu.github.io/lagrange-multipliers-by-algebra.html</link>
@@ -80,9 +85,9 @@
     <link>https://bollu.github.io/ghcid.html</link>
   </item>
   <item>
-    <title> Character theory (TODO) </title>
-    <guid>https://bollu.github.io/character-theory-todo.html</guid>
-    <link>https://bollu.github.io/character-theory-todo.html</link>
+    <title> Character theory </title>
+    <guid>https://bollu.github.io/character-theory.html</guid>
+    <link>https://bollu.github.io/character-theory.html</link>
   </item>
   <item>
     <title> Cofibration </title>
