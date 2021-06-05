@@ -1479,6 +1479,35 @@ this tells us that there are only finitely many irreps: the irreps correspond
 to subrepresentations, and a finite representation only has finitely many
 subrepresentations. This makes the idea of classifying irreps a reasonable task.
 
+
+##### Character of the regular representation
+
+**Theorem:** The character $r_G$ of the regular representation is given by $r_G(1) = |G|$,
+$r_G(s) = 0$ for $s \neq 1$. 
+
+- The matrix for the identity element is the identity matrix, and the size
+  of the matrix is the size of the vector space, which is $|G|$ since
+  there's a basis vector for each element of $G$. Thus, $r_G(1) = |G|$. 
+- For any other element $g \in G$, the regular representation will be a permutation matrix
+  with no fixed points. Thus, the diagonal of the matrix is all zeros, and hence $r_G(g) = 0$.
+
+##### Regular representation contains all other irreps
+
+The inner product of the character of the regular representation with any other
+irrep $\alpha$ is going to be:
+
+$$
+\begin{aligned}
+& \langle r_G | \chi_\alpha \rangle  = 1/|G| \sum_{g \in G} r_G(g)* \chi_\alpha(g) \\
+&= 1/|G| (r_G(1) \cdot \chi_\alpha(1)) \\
+&= 1/|G| (|G| \cdot 1) \\
+&= 1
+\end{aligned}
+$$
+
+Thus, the regular rep contains the other irreps, since the character of the regular rep has non-zero
+inner product with irrep, and irrep characters are all orthogonal.
+
 #### Abelian groups are controlled by characters
 
 Since abelian groups map to automorphism that all commute with each other, we can
