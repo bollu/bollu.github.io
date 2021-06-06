@@ -15,7 +15,7 @@
 \usepackage{listing}
 \usepackage{minted}
 \usepackage{cancel}
-% \usepackage{quiver}
+\usepackage{quiver}
 \evensidemargin=0.20in
 \oddsidemargin=0.20in
 \topmargin=0.2in
@@ -90,6 +90,7 @@
 \newcommand{\question}[1]{\textbf{#1}}
 
 \newcommand{\X}{\ensuremath{\mathfrak{X}}}
+\newcommand{\comma}{\downarrow}
 
 \title{Category theory in context}
 \author{Siddharth Bhat}
@@ -250,5 +251,202 @@ So we draw a diagram showing upper bounds and suprema:
 \includegraphics[width=\textwidth]{ch1/sup.png}
     \begin{center}Upper bound and supremum\end{center}
 \end{minipage}
+
+\section{Functors}
+
+\question{Exercise 1.3.i}  What is a functor between groups, when regarded as one-object categories?
+
+
+\beginproof It's going to be a group homomorphism. Since, a functor preserves composition, we have that a
+functor $F: C \rightarrow D$ preserves the group structure; for elements of the group / isos $f, g \in Hom(G, G)$, 
+we have that the functor obeys $F(f \circ_G g) = (F f) \circ_H (F g)$, which is exactly the equation
+we need to preserve group structure. For example, since a functor preserves isomorphisms, an element of the group $f \in Hom(G, G)$
+is mapped to an inverbile element $F(f) \in Hom(H, H)$. \qed
+
+
+\question{Exercise 1.3.ii}  What is a functor between preorders, regarded as a category?
+
+\beginproof Going to be a preorder morphism. I don't know what these are called; If we had a partial order, these
+would be called monotone maps. Recall that $a \rightarrow b$ is the encoding of $a \leq b$  within the category.
+Suppose we have a functors between preorders (encoded as categories) $F: C \rightarrow D$. Since $F$ preserves
+identity arrows, and $a \leq a$ is encoded as $id_a$, we have that $F(a) \leq F(a)$ as:
+
+$$F(a \leq a) = F(id_a) = id_{F(a)} = F(a) \leq F(a)$$
+
+
+Similarly, since functors take arrows to arrows, the fact that $a \leq b$ which is witnessed by an arrow $a \xrightarrow{f} b$
+translates to an arrow $F(a) \xrightarrow{F f} F(b)$, which stands for the relation $F(a) \leq F(b)$. Thus, the map indeed
+preserves the preorder structure. Preservation of composition of arrows preserves transitivity of the order relation. \qed
+
+
+\question{Exercise 1.3.iii} Objects and morphisms in the image of a functor $F: C \rightarrow D$ do not necessarily define a subcategory of $D$.
+
+\beginproof Recall that a morphism can \emph{smoosh} objects, thereby creating coalescing the domains and codomains
+of arrows that used to be disjoint. Concretely, consider the diagram:
+
+% https://q.uiver.app/?q=WzAsMTAsWzAsMCwiYSJdLFsxLDAsImIiXSxbMCwxLCJjIl0sWzEsMSwiZCJdLFszLDAsIngiXSxbMywxLCJ6Il0sWzQsMCwieSJdLFszLDIsIng6YSJdLFs0LDIsInk6YixjIl0sWzMsMywiejpkIl0sWzAsMSwiZiJdLFsyLDMsImciXSxbNCw1LCJnIFxcY2lyYyBmIiwyXSxbNiw1LCJsIl0sWzcsOCwiazpmIl0sWzcsOSwiZyBcXGNpcmMgZiIsMl0sWzgsOSwibDpnIl0sWzQsNiwiayJdXQ==
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJhIl0sWzEsMCwiYiJdLFswLDEsImMiXSxbMSwxLCJkIl0sWzIsMywiZyJdLFswLDEsImYiXV0=
+\[\begin{tikzcd}
+	a & b \\
+	c & d
+	\arrow["g", from=2-1, to=2-2]
+	\arrow["f", from=1-1, to=1-2]
+\end{tikzcd}\]
+
+Where we have a category of four objects $a, b, c, d$ with two disconnected arrow $f: a \to b$, and $g: c \to d$.
+This is the domain of the functor we will build. The codomain is a three object category:
+
+% https://q.uiver.app/?q=WzAsMyxbMCwwLCJ4Il0sWzEsMCwieSJdLFswLDEsInoiXSxbMCwxLCJrIl0sWzEsMiwibCJdLFswLDIsImxcXGNpcmMgayIsMl1d
+\[\begin{tikzcd}
+	x & y \\
+	z
+	\arrow["k", from=1-1, to=1-2]
+	\arrow["l", from=1-2, to=2-1]
+	\arrow["{l\circ k}"', from=1-1, to=2-1]
+\end{tikzcd}\]
+
+
+The functor will smoosh the four objects into three with a functor, which sends $a$ to $x$, both $b, c$ to $y$, and $d$ to $z$.
+Now the image of the functor only has the arrows $k, l$, but not the composite $l \circ k$, which makes the image NOT a subcategory.
+
+% https://q.uiver.app/?q=WzAsMyxbMCwwLCJ4OmEiXSxbMSwwLCJ5OmIsYyJdLFswLDEsIno6ZCJdLFswLDEsIms6ZiJdLFsxLDIsImw6ZyJdLFswLDIsImxcXGNpcmMgazogXFxfIiwyXV0=
+\[\begin{tikzcd}
+	{x:a} & {y:b,c} \\
+	{z:d}
+	\arrow["{k:f}", from=1-1, to=1-2]
+	\arrow["{l:g}", from=1-2, to=2-1]
+	\arrow["{l\circ k: \_}"', from=1-1, to=2-1]
+\end{tikzcd}\]
+
+
+
+\question{Exercise 1.3.iv} Very that the Hom-set construction is functorial.
+
+
+\question{Exercise 1.3.v} What is the difference between a functor $F: C^{op} \rightarrow D$ and a functor $F: C \rightarrow D^{op}$?
+
+\beginproof There is no difference. The functor $C^{op} \rightarrow D$ looks like:
+% https://q.uiver.app/?q=WzAsNixbMSwwLCJiIl0sWzEsMSwiYSJdLFsyLDAsIkZhIl0sWzIsMSwiRmIiXSxbMCwwLCJhIl0sWzAsMSwiYiJdLFswLDJdLFsxLDNdLFswLDEsImZfe29wfSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6InNxdWlnZ2x5In19fV0sWzIsMywiRmZfe29wfSJdLFs0LDUsImYiLDJdXQ==
+\[\begin{tikzcd}
+	a & b & Fa \\
+	b & a & Fb
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=2-2, to=2-3]
+	\arrow["{f_{op}}", squiggly, from=1-2, to=2-2]
+	\arrow["{Ff_{op}}", from=1-3, to=2-3]
+	\arrow["f"', from=1-1, to=2-1]
+\end{tikzcd}\]
+
+while the functor $G: D \rightarrow C^{op}$ looks like:
+
+% https://q.uiver.app/?q=WzAsNixbMCwwLCJwIl0sWzAsMSwicSJdLFsxLDAsIkdwIl0sWzEsMSwiR3EiXSxbMiwwLCJHcCJdLFsyLDEsIkdxIl0sWzAsMSwiZiJdLFswLDJdLFsyLDMsIkdmIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoic3F1aWdnbHkifX19XSxbMSwzXSxbNSw0LCJHZiIsMl1d
+\[\begin{tikzcd}
+	p & Gp & Gp \\
+	q & Gq & Gq
+	\arrow["f", from=1-1, to=2-1]
+	\arrow[from=1-1, to=1-2]
+	\arrow["Gf"', squiggly, from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+	\arrow["Gf"', from=2-3, to=1-3]
+\end{tikzcd}\]
+
+Given a functor $F: C^{op} \rightarrow D$, we can build an associated functor $G_F: C \rightarrow D^{op}$. Consider
+an arrow $x \rightarrow{f} y \in C$ . Dualize it, giving us an arrow $y_{op} \xrightarrow{f_{op}} x_{op} \in C^{op}$. Find
+it image under $F$, which gives us an arrow $F(y_{op}) \xrightarrow{F(f_{op})} F(x_{op}) \in D$. Dualize this
+in $D$, giving us $F(x_{op})_{op} \xrightarrow{F(f_{op})}_{op} F(y_{op}) \in D^{op}$. See that the arrow
+direction coincides with the domain arrow direction $x \rightarrow{f} y \in C$. So we can build a functor $H$
+which sends the arrow $x \rightarrow{f} y \in C$ to the arrow $F(x_{op})_{op} \xrightarrow{F(f_{op})}_{op} F(y_{op}) \in D^{op}$.
+Hence, $H: C \rightarrow D^{op}$, defined by $H(x) \equiv F(x_{op})_{op}$ and $H(f) \equiv F(f_{op})_{op}$. 
+By duality, we get the other direction where we start from $F': C \rightarrow D^{op}$ and end at $H': C^{op} \rightarrow D$.
+Thus, the two are equivalent.
+
+In a nutshell, the diagram is:
+
+% https://q.uiver.app/?q=WzAsMTUsWzEsMCwiYiJdLFsxLDEsImEiXSxbMiwwLCJGYiJdLFsyLDEsIkZhIl0sWzAsMCwiYSJdLFswLDEsImIiXSxbNCwwLCJhIl0sWzQsMSwiYiJdLFs1LDAsIkZhIl0sWzUsMSwiRmIiXSxbNywwLCJGYiJdLFs3LDEsIkZhIl0sWzMsMCwiXFxpbXBsaWVzIl0sWzMsMSwiXFxpbXBsaWVzIl0sWzYsMF0sWzAsMl0sWzEsM10sWzAsMSwiZl97b3B9IiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoic3F1aWdnbHkifX19XSxbMiwzLCJGZl97b3B9Il0sWzQsNSwiZiIsMl0sWzYsNywiZiJdLFs2LDhdLFs4LDksIihGZilfe29wfSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6InNxdWlnZ2x5In19fV0sWzcsOV0sWzEwLDExLCJGZl97b3B9Il1d
+\[\begin{tikzcd}
+	a & b & Fb & \implies & a & Fa & {} & Fb \\
+	b & a & Fa & \implies & b & Fb && Fa
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=2-2, to=2-3]
+	\arrow["{f_{op}}", squiggly, from=1-2, to=2-2]
+	\arrow["{Ff_{op}}", from=1-3, to=2-3]
+	\arrow["f"', from=1-1, to=2-1]
+	\arrow["f", from=1-5, to=2-5]
+	\arrow[from=1-5, to=1-6]
+	\arrow["{(Ff)_{op}}", squiggly, from=1-6, to=2-6]
+	\arrow[from=2-5, to=2-6]
+	\arrow["{Ff_{op}}", from=1-8, to=2-8]
+\end{tikzcd}\]
+
+
+
+\question{Exercise 1.3.vi} Given the comma category $F \downarrow G$, define the domain and codomain projection functors $dom: F \comma G \rightarrow F$
+  and $codom: F \comma G \rightarrow G$.
+
+
+Recall that an object in the comma category is a a triple $(d \in D, e \in E, F(d) \xrightarrow{f} F(e))$, or diagramatically:
+
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJkIFxcaW4gRCJdLFsxLDAsImUgXFxpbiBFIl0sWzAsMSwiRmRcXGluIEMiXSxbMSwxLCJHZSBcXGluIEMiXSxbMCwyLCJGOiBEICIsMl0sWzEsMywiRyJdLFsyLDMsImYiLDJdXQ==
+\[\begin{tikzcd}
+	{d \in D} & {e \in E} \\
+	{Fd\in C} & {Ge \in C}
+	\arrow["{F: D }"', from=1-1, to=2-1]
+	\arrow["G", from=1-2, to=2-2]
+	\arrow["f"', from=2-1, to=2-2]
+\end{tikzcd}\]
+
+and a morphism in such a category is a diagram:
+
+% https://q.uiver.app/?q=WzAsNyxbMSwwLCJGZCJdLFsyLDAsIkdlIl0sWzEsMiwiRmQnIl0sWzIsMiwiR2UnIl0sWzAsMiwiKGQnLCBlJyxmJykiXSxbNSwyXSxbMCwwLCIoZCwgZSxmKSJdLFsyLDMsImYnIiwyXSxbMCwxLCJmIiwyXSxbMCwyLCJcXGFscGhhIiwxXSxbMSwzLCJcXGJldGEgIiwxXSxbNiw0LCIoXFxhbHBoYSBcXGRvd25hcnJvdyBcXGJldGEpIiwxXV0=
+\[\begin{tikzcd}
+	{(d, e,f)} & Fd & Ge \\
+	\\
+	{(d', e',f')} & {Fd'} & {Ge'} &&& {}
+	\arrow["{f'}"', from=3-2, to=3-3]
+	\arrow["f"', from=1-2, to=1-3]
+	\arrow["\alpha"{description}, from=1-2, to=3-2]
+	\arrow["{\beta }"{description}, from=1-3, to=3-3]
+	\arrow["{(\alpha \downarrow \beta)}"{description}, from=1-1, to=3-1]
+\end{tikzcd}\]
+
+We constrct the domain functor $dom$ as a functor that sends an object $(d \in D, e \in E, F(d) \xrightarrow{f} F(e))$ to an object $d \in D$.
+It sends the morphism between $(d, e, f)$ and $(d', e', f')$, given by $(\alpha : Fd \rightarrow Fd', \beta: Ge \rightarrow Ge')$ to
+the arrow $Fd \xrightarrow{\alpha} Fd' \in D$.
+
+In a diagram, this looks like:
+
+% https://q.uiver.app/?q=WzAsMTAsWzEsMCwiRmQiXSxbMiwwLCJHZSJdLFsxLDIsIkZkJyJdLFsyLDIsIkdlJyJdLFswLDAsIihkLCBlLGYpIl0sWzAsMiwiKGQnLCBlJyxmJykiXSxbNSwyXSxbMywxLCJcXHhyaWdodGFycm93e2RvbX0iXSxbNCwwLCJGZCJdLFs0LDIsIkZkJyJdLFsyLDMsImYnIiwyXSxbMCwxLCJmIiwyXSxbMCwyLCJcXGFscGhhIiwxXSxbMSwzLCJcXGJldGEgIiwxXSxbNCw1LCIoXFxhbHBoYSBcXGRvd25hcnJvdyBcXGJldGEpIiwxXSxbOCw5LCJcXGFscGhhIiwxXV0=
+\[\begin{tikzcd}
+	{(d, e,f)} & Fd & Ge && Fd \\
+	&&& {\xrightarrow{dom}} \\
+	{(d', e',f')} & {Fd'} & {Ge'} && {Fd'} & {}
+	\arrow["{f'}"', from=3-2, to=3-3]
+	\arrow["f"', from=1-2, to=1-3]
+	\arrow["\alpha"{description}, from=1-2, to=3-2]
+	\arrow["{\beta }"{description}, from=1-3, to=3-3]
+	\arrow["{(\alpha \downarrow \beta)}"{description}, from=1-1, to=3-1]
+	\arrow["\alpha"{description}, from=1-5, to=3-5]
+\end{tikzcd}\]
+
+$codom$ will do the same thing, by stripping out the codomain of the comma instead of the domain. \qed
+
+\question{Exercise 1.3.vii} Define slice category as special case of the comma category.
+
+
+\beginproof To define the slice $C/c$ whose objects are of the form $d \rightarrow c$ for varying $d \in C$, we pick
+the category $D = C, E = C$, and functors $F : C \rightarrow C = id$, $G : C \rightarrow C = \delta_c$, that is, the constant functor
+which smooshes the entire $C$ category into the object $c \in C$ by mapping all objects to $c$ and all arrows to $id_{c}$.
+
+This causes the diagram to collapse down to objects of the form $d \rightarrow c$, and the arrows to be what we'd expect \qed.
+
+\question{Exercise 1.3.viii} Show that functors need not reflect isomorphisms. for a functor $F: C \rightarrow D$, and a 
+morphisms $f \in C$ such that $F f$ is an isomorphism in $D$ but $f$ is not an isomorphism in $C$.
+
+
+Pick a category $C$ and an object $o \in C$. Build the constant functor $\delta_o: C \rightarrow C$. The image
+of every arrow $c \xrightarrow{a} c'$ is the identity arrow $id_o$ which is an iso. The arrow $a$ need not be iso. The functor
+$\delta_o$ does not reflect isos. \qed
+
+\question{Exercise 1.3.ix} For any group $G$, 
 
 \end{document}
