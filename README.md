@@ -15,14 +15,72 @@ A Universe of Sorts
 - [reading list and link dump](todo.html)
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
+# CubicalTT: sharpening thinking about indexed functions
+
+
+```
+-- | function from nat to nat defined by lambda abstraction
+f1 : nat -> nat -> nat = \(b: nat) -> \(c : nat) ->  b
+```
+
+```
+-- | function from nat, nat -> nat defined by case analaysis
+f2 : nat -> nat -> nat =
+  split
+    zero -> split@(nat -> nat) with 
+                zero -> zero
+                suc b' -> zero
+    suc a' -> split@(nat -> nat) with 
+                zero -> a'
+                suc b' -> b'
+```
+
+```
+-- | parametrized family of nats, defined by definition.
+g1 (b : nat) (c : nat) : nat = b
+```
+
+
+
+```
+-- | Family of nat parameterized by `(x: nat), `(y: nat)
+-- | cannot split on parameters, can only split on fn.
+-- g2 (x : nat) (y : nat) : nat =
+--   split
+--     zero -> split@(nat -> nat) with 
+--                 zero -> zero
+--                 suc b' -> zero
+--     suc a' -> split@(nat -> nat) with 
+--                 zero -> a'
+--                 suc b' -> b'
+```
+x
+
 # Madoka Magica: plot thoughts
 
 - I wonder whether incubator ~ Kyubey ~ kyubii ~ nine-tails.
 - Homura is such a tragic character. 
 
 
-# Chain rule functorially
+# Chain rule functorially
 
+- The first category is $Euc$, whose objects are pointed subsets of Euclidean space.
+   So, the objects are of the form $(U \subseteq \mathbb R^n, a \in U)$. Morphisms
+  are based smooth functions between these opens: smooth functions $f: U \rightarrow V$
+  such that $f(a) = b$.
+- The second category is $M$
+ whose objects are natural numbers and morphisms $n \to m$ are matrices of 
+ dimension $n \times m$.
+- Define a functor $d: Euc \to M$ which
+  sends subsets to the dimension of the space they live in: $U \subseteq \mathbb R^n, a) \to n$,
+  and sends smooth functions $f: (U, a) \rightarrow (V, b)$ to their Jacobian evaluated at the
+  basepoint, $J_f|_a$.
+- Functoriality asserts that the jacobian of the composition of the two functions is a matrix
+  multiplication of the jacobians.
+
+I feel like we shouldn't use natural numbers for $M$, but we should rather use real vector spaces.
+And as for $Euc$, we should replace this with $ManOpen$ where we use based
+"charted" opens of a differentiable manifold.  This makes the diffgeo clear!
 
 # Lagrange multipliers by algebra
 

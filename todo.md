@@ -1,3 +1,7 @@
+- [shellinabox](https://github.com/shellinabox/shellinabox): provide SSH access over HTTPS.
+- Learning R: (1) [R by examples](https://gexijin.github.io/learnR/index.html), (2) [Advanced R](https://adv-r.hadley.nz/),
+  (3) [Tidyverse](https://www.tidyverse.org/)
+- [Induction is not derivable in second order dependent type theory](https://link.springer.com/chapter/10.1007/3-540-45413-6_16)
 - [Mathematics Autodidact's Aid: AMS Notices about recommendations of textbooks](https://www.ams.org/notices/200510/comm-fowler.pdf)
 - The Symmetric Group: Representations, Combinatorial Algorithms, and Symmetric Functions: For more on representation theory of the symmetric group.
 - [pydoit: A dead simple make replacement](https://pydoit.org/)
