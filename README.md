@@ -15,6 +15,139 @@ A Universe of Sorts
 - [reading list and link dump](todo.html)
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
+# Associativity of addition in cubicaltt
+
+Let's first understand what we need to prove. we're trying to prove that addition is associative. addition is defined as follows:
+
+```
+data nat = zero | suc (n : nat)
+
+-- recursive on right argument
+add (m : nat) : nat -> nat = split
+  zero -> m
+  suc n -> suc (add m n)
+```
+
+Since `add` is recursive on the right, we can simplify (by computation) values such as `add x (S y)` to `S (add x y)`. This will be important when reasoning about induction later.
+
+Now, we wish to prove that:
+
+
+
+```
+for all a b, c, 
+  a + (b + c) = (a + b) + c
+```
+
+
+we prove this by induction on `c`. Let's consider the base case and the inductive case:
+
+```
+-- BASE CASE:
+-- a + (b + 0) = (a + b) + 0
+-- [computation]: a + (b) = (a + b)
+```
+
+By computation on the base case, we simplify `(b+0)` to `b`, and we similary simplify `(a + b) + 0` to `(a + b)`. So we're really asked to prove `add a b  = add a b` which is trivial (by reflexivity).
+
+Next, let's think of the inductive case, where we suppose `c = S n`
+and then simplify what we have to prove to a normal form:
+
+```
+-- INDUCTIVE HYPOTHESIS: let c = S n:
+-- a + (b + S n) = (a + b) + S n
+-- =[computation]: a + (S (b + n)) = (a + b) + S n
+-- =[computation]: S (a + (b + n)) = (a + b) + S n
+-- =[computation]: S (a + (b + n)) = S ((a + b) + n)
+```
+
+We see that after simplification by computation, we need to prove that
+`S (a + (b + n)) = S ((a + b) + n`. The core idea is to use associativity
+to prove that `(a + (b + n)) = ((a + b) + n)` and to then stick a `S _` on it, giving `S (a + (b + n)) = S ((a + b) + n)`. In a cubical diagram, this looks like:
+
+```
+-- j=1
+--  ^  S(a+(b+n)) - -- -- -- -- -- - S((a+b) + n)
+--  |  ^                                 ^
+--  |  |                            <j> suc (add (add a b) n)
+--  |  |                                 |
+--  |<j> suc(add a (add b n))            |
+--  |  |                                 |
+--  |  |                                 |
+--  |  S(a+(b+n)) ---------------------> S((a+b)+n)
+--  |           suc (add A a b n @ i)
+-- j=0
+-- i=0 -------------------------------> i=1
+```
+
+- The bottom horizontal line is the first to `comp`, given as `(suc (addA a b n @ i))` 
+
+And in cubical code, it's written as:
+
+- The left and right vertical lines are the second inputs to comp.
+- The left vertical line is given by `<j> suc (add a (add b n)`
+- The right vertical line is given by ` <j> suc (add (add a b) n)`.
+
+In total, the implementation is:
+
+```
+addA (a b: nat) :
+  (c: nat) -> Path nat (add a (add b c))
+                       (add (add a b) c) = split
+  zero -> <i> add a  b
+  suc n -> <i> comp (<i> nat) (suc (addA a b n @ i))
+                [ (i = 0) -> <j> suc (add a (add b n))
+		        , (i = 1) -> <j> suc (add (add a b) n)]
+
+```
+
+**EDIT:** I now realise that we do not need to use `comp` since both the left and right edges of the square are constant. We can implement the above as:
+
+```
+addA (a b: nat):
+  (c: nat) -> Path nat (add a (add b c))
+                       (add (add a b) c) = split
+  zero -> <i> add a  b
+  suc n -> <i> (suc (addA a b n @ i))
+```
+
+
+# Etymology of fiber bundle $F \rightarrow E \rightarrow B$
+
+
+The $F$ stands for fibre, $E$ for ensemble (total space), and $B$ for base space,
+as told in this [math.stackexchange answer](https://math.stackexchange.com/questions/4165418/etymology-of-mathbfbg-for-category-of-one-object-for-g/4165440#4165440)
+
+# Galois correspondence, functorially
+
+For a given group $G$, build the category of subgroups as follows:
+The objects aren't exactly subgroups, but are isomorphic to them ---
+for each coset $H$, the category has the object as the coset space $G/H$,
+equipped with the left-action of $G$ on the coset space . The morphisms
+between $G/H$ and $G/K$ are the intertwining maps $\phi: G/H \rightarrow G/K$
+which commute with the action of $G$: $(g \times ) \circ \phi = \phi \circ (g \times )$.
+
+
+We first work out what it means to have such an intertwining map. Suppose we pick 
+a coset of $H$, which is an element of the coset space $\alpha H \in G/H$ for some $\alpha \in G$.
+Now the intertwining condition says that $\phi(g \alpha H) = g \phi(\alpha H)$. If we pick
+$\alpha = e$, then we get $\phi(g H) = g \phi(H)$. Thus, the intertwining map 
+is entirely determined by where it sends $H$, ie, the image $\phi(H)$.
+
+
+Now, let the image of $\phi(H)$ be some coset $\gamma K \in G/K$. Suppose
+that the coset $gH = g'H$, since writing a coset as $gH$ is not unique. Apply $\phi$
+to both sides and use that $\phi$ is intertwining. This gives
+$\phi(gH) = g \phi(H) = g \gamma K$ and $\phi(g'H) = g'\phi(H) = g' \gamma K$.
+For these to be equal, we need $\gamma^{-1} g'^{-1} g \gamma  \in K$. But since
+$gH = g'H$, we know that this is equivalient to $g g'^{-1} \in H$. Thus, the above condition becomes
+equivalent to $\forall h \in H, \gamma^{-1} h \gamma \in K$.
+
+So we now have a category whose objects are coset spaces and whose morphisms are intertwining maps.
+We now consider the category of a given field extension $L/F$, which has objects intermediate fields
+between $L$ and $F$, and has morphisms as field morphisms which fix $F$.
+
+
 # CubicalTT: sharpening thinking about indexed functions
 
 
@@ -54,7 +187,41 @@ g1 (b : nat) (c : nat) : nat = b
 --                 zero -> a'
 --                 suc b' -> b'
 ```
-x
+
+# Functors to motivate adjuntions
+
+- Consider the category $Set^\partial$ of sets with partial functions
+  as morphisms, and the category $Set^*$, the category of pointed sets and
+  and basepoint-preserving functions as morphisms.
+- The functor $F: Set^\partial \rightarrow Set^*$
+  sends sets to set-with-basepoint. To be very precise about basepoint considerations,
+  since this is where the non-inversion will lie, let us say that for a set $X$, we add a basepoint $\{X \}$.
+  So, the functor $F$ sends a set $X$ to the set `a = {X} in (X U {a}, a)`, which 
+  expanded out is $(X \cup \{ \{ X \} \}, \{ X \})$. The functor $F$ sends a partial function
+  $f: A rightharpoonup B$ to based function by defining $F(f): F(A) \rightarrow F(B)$
+  which sends undefined values $a$ to $\{B\} \in F(B)$, and is forced by definition sends the basepoint $\{ A \} \in F(A)$ to $\{ B \} \in F(B)$.
+- The "inverse" functor $G: Set^* \rightarrow Set^\partial$ forgets the basepoints, and sends
+  a function $h: (A, a) \rightarrow (B, b)$
+  to the partial function $G(h): A \rightarrow B$ by not mapping those elements in the domain
+  which were mapped to $b$ by $h$.
+- Going from a partial function $f$ to a bottomed function $F(f)$ and then back again
+  to partial function $G(F(f))$ forgets no information.
+- On the other hand, going from a basepointed set $(A, \bot)$ for some arbitrary basepoint $\bot$
+  will return a set with a _different_ basepoint, $(A/ \bot \cup \{ \{ A/\bot \} \}, \{ A/\bot \})$. Note that the sets
+  $(A, \bot)$ and $A/\bot \cup \{ \{ A/\bot\} \}$ are isomorphic, but not equal!
+
+
+```
+G(F((A, a)))
+= let x = remove A a in G(x)
+= let x = remove A a;
+      botnew = set([x]) in insert x botnew
+-- | adds the set (A - a) as an element of (A - a)
+= insert (remove A a) (remove A a)
+
+```
+
+Thus, we should come up with a weaker notion of equality : Adjoints!
 
 # Madoka Magica: plot thoughts
 
@@ -64,7 +231,7 @@ x
 
 # Chain rule functorially
 
-- The first category is $Euc$, whose objects are pointed subsets of Euclidean space.
+- The first category is $Euc^*$, whose objects are pointed subsets of Euclidean space.
    So, the objects are of the form $(U \subseteq \mathbb R^n, a \in U)$. Morphisms
   are based smooth functions between these opens: smooth functions $f: U \rightarrow V$
   such that $f(a) = b$.
@@ -77,6 +244,11 @@ x
   basepoint, $J_f|_a$.
 - Functoriality asserts that the jacobian of the composition of the two functions is a matrix
   multiplication of the jacobians.
+
+Let's think through the functoriality. It says that if we have two arrows which can be composed,
+$(f, a)$ and $(g, f(a))$ -- note that it has to be $(g, f(a))$ because only compatible basepoint
+functions can be composed. 
+
 
 I feel like we shouldn't use natural numbers for $M$, but we should rather use real vector spaces.
 And as for $Euc$, we should replace this with $ManOpen$ where we use based
@@ -328,6 +500,25 @@ that if $W$ contains a single vector from $S$, then it contains all of $S$: $W \
   or $\alpha \neq 0$.
 - Thus, the **non-zero** vector $\alpha_x h \in W$ (non-zero as $\alpha_x \neq 0$). Hence, the vector $h \in W$.
   Since $W$ is closed under $\mathcal O$ and $S$ is generated as $\mathcal O h$, we have that $S \subseteq W$.
+
+##### Showing that $H$ as thesigned linear combination of $\mathcal O$ is Hermitian
+
+In the abstract, we define $H \equiv \sum_{O \in \mathcal O} |O| O$, which specializes
+to $H_t \equiv \sum_{\pi \in C_t } \pi sgn(\pi)$ in the tableaux theory. Now consider
+$H^T = \sum_{O \in \mathcal O} |O| O^T$ Since $O$ is orthogonal, $O^T = O^{-1}$. Furthermore,
+we have that $|O| = |O|^{-1}$ since:
+
+$$
+\begin{aligned}
+&|O| = \pm 1 \\
+|O^{-1}|  = |O|^{-1} \\
+&= (\pm 1)^{-1} = \pm 1
+\end{aligned}
+$$
+
+Combined, this tells us that $H^{T} = \sum_{O \in \mathcal O} |O|^{-1} O^{-1}$. Since $\mathcal O$
+is a subgroup, the sum can be re-indexed to be written as $H^{T} = \sum_{O' \in \mathcal O} |O'| O'$,
+which is equal to $H$. Hence, we find that $H^T = H$, or $H$ defined in this way is hermitian.
 
 
 #### Have we found all the irreps?

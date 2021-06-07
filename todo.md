@@ -1,3 +1,6 @@
+- [Herdberg's theorem](https://ncatlab.org/nlab/show/h-set#properties)
+- [Todd and Vishal's blog](https://topologicalmusings.wordpress.com/)
+- [Rococo art](https://en.wikipedia.org/wiki/Rococo)
 - [shellinabox](https://github.com/shellinabox/shellinabox): provide SSH access over HTTPS.
 - Learning R: (1) [R by examples](https://gexijin.github.io/learnR/index.html), (2) [Advanced R](https://adv-r.hadley.nz/),
   (3) [Tidyverse](https://www.tidyverse.org/)
