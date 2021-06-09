@@ -15,6 +15,186 @@ A Universe of Sorts
 - [reading list and link dump](todo.html)
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
+# Invisible cities
+
+> The city does not consist of this, but of relationships between the
+> measurements of its space and the events of its past: the height of a lamppost
+> and the distance from the ground of a hanged usurper’s swaying feet
+
+> Perinthia’s astronomers are faced with a difficult choice. Either they must
+> admit that all their calculations were wrong and their figures are unable to
+> describe the heavens, or else they must reveal that the order of the gods is
+> reflected exactly in the city of monsters.
+
+> ... seek and learn to recognize who and what, in the midst of the inferno,
+> are not inferno, then make them endure, give them space.
+
+
+
+> Bear with me,’ that man answered. ‘I am a wandering herdsman. Sometimes my
+> goats and I have to pass through cities; but we are unable to distinguish them.
+> Ask me the names of the grazing lands: I know them all, the Meadow between the
+> Cliffs, the Green Slope, the Shadowed Grass. Cities have no name for me: they
+> are places without leaves, separating one pasture from another, and where the
+> goats are frightened at street corners and scatter. The dog and I run to keep
+> the flock together.’
+
+
+
+
+> description of Zaira as it is today should contain all Zaira’s past. The city,
+> however, does not tell its past, but contains it like the lines of a hand,
+> written in the corners of the streets, the gratings of the windows, the
+> banisters of the steps, the antennae of the lightning rods, the poles of the
+> flags, every segment marked in turn with scratches, indentations, scrolls.
+
+
+
+> The city’s gods, according to some people, live in the depths, in the black
+> lake that feeds the underground streams. According to others, the gods live in
+> the buckets that rise, suspended from a cable, as they appear over the edge of
+> the wells, in the revolving pulleys, in the windlasses of the norias, in the
+> pump handles, in the blades of the windmills that draw the water up from the
+> drillings, in the trestles that support the twisting probes, in the reservoirs
+> perched on stilts over the roofs, in the slender arches of the aqueducts, in
+> all the columns of water, the vertical pipes, the plungers, the drains,
+
+> the emperor is he who is a foreigner to each of his subjects, and only through
+> foreign eyes and ears could the empire manifest its existence to Kublai. In
+> languages incomprehensible to the Khan, the envoys related information heard in
+> languages incomprehensible to them: from this opaque, dense stridor emerged the
+> revenues received by the imperial treasury, the first and last names of
+> officials dismissed and decapitated, the dimensions of the canals that the
+> narrow rivers fed in times of drought.
+
+> Perhaps, Kublai thought, the empire is nothing but a zodiac of the mind’s phantasms.
+
+
+
+> Marco Polo imagined answering (or Kubiai Khan imagined his answer) that the
+> more one was lost in unfamiliar quarters of distant cities, the more one
+> understood the other cities he had crossed to arrive there; and he retraced the
+> stages of his journeys, and he came to know the port from which he had set
+> sail, and the familiar places of his youth, and the surroundings of home, and a
+> little, square of Venice where he gambolled as a child. At this point Kublai
+> Khan interrupted him or imagined interrupting him, or Marco Polo imagined
+> himself interrupted, with a question such as: ‘You advance always with your
+> head turned back?’ or ‘Is what you see always behind you?’ or rather, ‘Does
+> your journey take place only in the past?’
+
+
+> It is pointless to ask whether the new ones are better or worse than the old,
+> since there is no connection between them, just as the old postcards do not
+> depict Maurilia as it was, but a different city which, by chance, was called
+> Maurilia, like this one.
+
+
+> No one remembers what need or command or desire drove Zenobia’s founders to
+> give their city this form, and so there is no telling whether it was satisfied
+> by the city as we see it today, which has perhaps grown through successive
+> superimpositions from the first, now undecipherable plan. But what is certain
+> is that if you ask an inhabitant of Zenobia to describe his vision of a happy
+> life, it is always a city like Zenobia that he imagines, with its pilings and
+> its suspended stairways, a Zenobia perhaps quite different, a-flutter with
+> banners and ribbons, but always derived by combining elements of that first
+> model.
+
+
+
+> the others tell, each one, his tale of wolves, sisters, treasures, scabies,
+> lovers, battles. And you know that in the long journey ahead of you, when to
+> keep awake against the camel’s swaying or the junk’s rocking, you start
+> summoning up your memories one by one, your wolf will have become another wolf,
+> your sister a different sister, your battle other battles, on your return from
+> Euphemia, the city where memory is traded at every solstice and at every
+> equinox.
+
+
+> Kublai interrupted him: ‘From now I shall describe the cities and you will tell
+> me if they exist and are as I have conceived them
+
+> Abandoned before or after it was inhabited. Armilla cannot be called deserted
+
+> A girl comes along, twirling a parasol on her shoulder, and twirling slightly
+> also her rounded hips. A woman in black comes along, showing her full age, her
+> eyes restless beneath her veil, her lips trembling. A tattooed giant comes
+> along; a young man with white hair; a female dwarf; two girls, twins, dressed
+> in coral. Something runs among them, an exchange of glances like lines that
+> connect one figure with another and draw arrows, stars, triangles, until all
+> combinations are used up in a moment, and other characters come on to the scene
+
+> The ancients built Valdrada on the shores of a lake, with houses all verandas
+> one above the other, and high streets whose railed parapets look out over the
+> water. Thus the traveller, arriving, sees two cities: one erect above the lake,
+> and the other reflected, upside-down
+
+
+
+> Even when lovers twist their naked bodies, skin against skin, seeking the
+> position that will give one the most pleasure in the other, even when murderers
+> plunge the knife into the black veins of the neck and more clotted blood pours
+> out the more they press the blade that slips between the tendons, it is not so
+> much their copulating or murdering that matters as the copulating or murdering
+> of the images, limpid and cold in the mirror.
+
+
+> The city of Sophronia is made up of two half cities. In one there is the great
+> roller-coaster with its steep humps, the carousel with its chain spokes,...The
+> other half-city is of stone and marble and cement, with the bank, the
+> factories, the palaces, the slaughterhouse, the school, and all the rest. One
+> of the half-cities is permanent, the other is temporary, and when the period if
+> its sojourn is over, they uproot it, dismantle it....And so every year the day
+> comes when the workmen remove the marble pediments, lower the stone walls, the
+> cement pylons, take down the Ministry, the monument, the docks, the petroleum
+> refinery, the hospital, load them on trailers, to follow from stand to stand
+> their annual itinerary. ..
+
+> then the whole citizenry decides to move to the next city, which is there
+> waiting for them, empty and good as new; there each will take up a new job, a
+> different wife, will see another landscape on opening his window, and will
+> spend his time with different pastimes, friends, gossip. So their life is
+> renewed from move to move, among cities whose exposure or declivity or streams
+> or winds make each site somehow different from the others.
+
+
+> have constructed in my mind a model city from which all possible cities can be
+> deduced,’ Kublai said. ‘It contains everything corresponding to the norm. Since
+> the cities that exist diverge in varying degree from the norm, I need only
+> foresee the exceptions to the norm and calculate the most probable
+> combinations.’ ‘I have also thought of a model city from which I deduce all the
+> others’ Marco answered, ‘It is a city made only of exceptions, exclusions,
+> incongruities, contradictions. If such a city is the most improbable, by
+> reducing the number of elements, we increase the probability that the city
+> really exists. So I have only to subtract exceptions from my model, and in
+> whatever direction I proceed, I will arrive at one of the cities which, always
+> as an exception, exist. But I cannot force my operation beyond a certain limit:
+> I would achieve cities too probable to be real.’
+
+
+> This is the foundation of the city: a net which serves as passage and as
+> support. All the rest, instead of rising up, is hung below...
+
+> You reach a moment in life when, among the people you have known, the dead
+> outnumber the living. And the mind refuses to accept more faces, more
+> expressionsSuspended over the abyss, the life of Octavia’s inhabitants is
+> less uncertain than in other cities. They know the net will last only so
+> long.
+
+> Besides, the more Leonia’s talent for making new materials excels, the more
+> the rubbish improves in quality, resists time, the elements, fermentations,
+> combustions. A fortress of indestructible leftovers surrounds Leonia,
+> dominating it on every side, like a chain of mountains.
+
+
+> 'Why is Thekla’s construction taking such a long time?’ the inhabitants
+> continue hoisting sacks, lowering leaded strings, moving long brushes up and
+> down, as they answer, ‘So that its destruction cannot begin.’ And if asked
+> whether they fear that, once the scaffolding is removed, the city may begin to
+> crumble and fall to pieces, they add hastily, in a whisper, ‘Not only the
+> city.’
+
+>  It is not the voice that commands the story: it is the ear.’
+
 # Associativity of addition in cubicaltt
 
 Let's first understand what we need to prove. we're trying to prove that addition is associative. addition is defined as follows:
@@ -519,6 +699,13 @@ $$
 Combined, this tells us that $H^{T} = \sum_{O \in \mathcal O} |O|^{-1} O^{-1}$. Since $\mathcal O$
 is a subgroup, the sum can be re-indexed to be written as $H^{T} = \sum_{O' \in \mathcal O} |O'| O'$,
 which is equal to $H$. Hence, we find that $H^T = H$, or $H$ defined in this way is hermitian.
+
+
+##### Showing that $H$ is rank 1
+
+In the symmetric group case, we show that if $x \not \in Orb(t)$ then there is some element $\alpha \in C_t$
+such that $\alpha^2 = I$, $det(\alpha) = -1$ and $\alpha(x) = x$, thereby letting us break $C_t$ into cosets
+$C_t/(\alpha)$ where $(\alpha) = \{ I, \alpha \}$ causing the signs to cancel and making $A[\lambda][t](x) = 0$.
 
 
 #### Have we found all the irreps?
@@ -3034,6 +3221,7 @@ in $X$ (see that we have filted "closed in $A$" to "closed in $X$).
 Similarly, we will have that $f|_B^{-1}(V) = B \cap Q$ for some closed $B$ and $Q$.
 Then we can write:
 
+$$
 \begin{aligned}
 &f^{-1}(V) \\
 &= f|_A^{-1}(V) \cup f|_B^{-1}(B) \\
@@ -3041,6 +3229,7 @@ Then we can write:
 &= \texttt{finite union of closed sets} \\
 &= \texttt{closed} \\
 \end{aligned}
+$$
 
 # Tensoring with base ring has no effect
 
@@ -18949,6 +19138,8 @@ $$
 & \mu([3, 4]) = - \left (\sum_{3 \leq x < 4} \right) \text{ By definition } \\
 \end{aligned}
 $$
+
+
 # Finite differences and Umbral calculus
 
 Umbral calculus lays out a large collection of "umbral" / "shadowy"
@@ -30422,7 +30613,7 @@ The connection between this and `catamorphism`/`anamorphism`
 is something I wish to explore.
 
 - `let ([x 5]) (+ x 3))`: `x` is anaphora resolution.
-- 
+
 
 # Big list of Latex
 
@@ -31268,7 +31459,8 @@ Plan: finish cardistry bootcamp, learn card control from 52kards.
 
 # Big list of speaking / oration
 
-my only other critique, =which is good in general, but try to force yourself to speak slower than you want to.
+my only other critique, =which is good in general, but try to force yourself to
+speak slower than you want to.
 
 taking time to build a diagram is the best way to convey knowledge
 
@@ -31315,3 +31507,4 @@ that most people do not naturally include enough transition words when speaking
 informally, which tends to make speeches loose narrative cohesion. Throw in a
 few more than you would ordinarily think to do. ("Another example of this...",
 "This is why...", "Furthermore...", etc etc.).
+

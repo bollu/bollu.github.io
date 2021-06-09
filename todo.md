@@ -1,3 +1,6 @@
+- Book on compiler construction in racket: [Essentials of compilation](https://github.com/IUCompilerCourse/Essentials-of-Compilation).
+  [Course Videos](https://iucompilercourse.github.io/IU-P423-P523-E313-E513-Fall-2020/).
+- Intel has XML file with operational semantics for all instructions!
 - [Herdberg's theorem](https://ncatlab.org/nlab/show/h-set#properties)
 - [Todd and Vishal's blog](https://topologicalmusings.wordpress.com/)
 - [Rococo art](https://en.wikipedia.org/wiki/Rococo)
