@@ -5,6 +5,21 @@
 <link>https://bollu.github.io/</link>
 <description>A universe of Sorts</description>
   <item>
+    <title> Every continuous function on  [a, b] attains a maximum by hyperreals (TODO) </title>
+    <guid>https://bollu.github.io/every-continuous-function-on-a-b-attains-a-maximum-by-hyperreals-todo.html</guid>
+    <link>https://bollu.github.io/every-continuous-function-on-a-b-attains-a-maximum-by-hyperreals-todo.html</link>
+  </item>
+  <item>
+    <title> Every continuous function on  [a, b] attains a maximum (TODO) </title>
+    <guid>https://bollu.github.io/every-continuous-function-on-a-b-attains-a-maximum-todo.html</guid>
+    <link>https://bollu.github.io/every-continuous-function-on-a-b-attains-a-maximum-todo.html</link>
+  </item>
+  <item>
+    <title> Isopermetric inequality and the legend of Dido </title>
+    <guid>https://bollu.github.io/isopermetric-inequality-and-the-legend-of-dido.html</guid>
+    <link>https://bollu.github.io/isopermetric-inequality-and-the-legend-of-dido.html</link>
+  </item>
+  <item>
     <title> Invisible cities </title>
     <guid>https://bollu.github.io/invisible-cities.html</guid>
     <link>https://bollu.github.io/invisible-cities.html</link>
@@ -315,9 +330,9 @@
     <link>https://bollu.github.io/limit-point-compactness-from-munkres.html</link>
   </item>
   <item>
-    <title> Proof of Heine Borel from Munkres </title>
-    <guid>https://bollu.github.io/proof-of-heine-borel-from-munkres.html</guid>
-    <link>https://bollu.github.io/proof-of-heine-borel-from-munkres.html</link>
+    <title> Proof of Heine Borel from Munkres (compact iff closed, bounded) </title>
+    <guid>https://bollu.github.io/proof-of-heine-borel-from-munkres-compact-iff-closed-bounded.html</guid>
+    <link>https://bollu.github.io/proof-of-heine-borel-from-munkres-compact-iff-closed-bounded.html</link>
   </item>
   <item>
     <title> Alexandrov topology </title>

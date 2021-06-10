@@ -1,3 +1,5 @@
+- [Elementary calculus: a Hyperreal approach](https://people.math.wisc.edu/~keisler/calc.html)
+- [Choice and chance, one thousand exercises by Whitworth](https://www.maa.org/press/periodicals/convergence/mathematical-treasure-whitworth-s-choice-and-chance)
 - Book on compiler construction in racket: [Essentials of compilation](https://github.com/IUCompilerCourse/Essentials-of-Compilation).
   [Course Videos](https://iucompilercourse.github.io/IU-P423-P523-E313-E513-Fall-2020/).
 - Intel has XML file with operational semantics for all instructions!

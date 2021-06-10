@@ -15,6 +15,31 @@ A Universe of Sorts
 - [reading list and link dump](todo.html)
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
+
+# Every continuous function on $[a, b]$ attains a maximum by hyperreals (TODO)
+
+# Every continuous function on $[a, b]$ attains a maximum (TODO)
+
+The plan of attack is:
+
+1. Prove the every continuous function on $[a, b]$ is bounded.
+2. Find a sequence $x[n]$ so that its image converges to the supremum of $y[:] = f[x[:]]$. Call the supremum
+   $M \equiv sup(f[x[:]])$.
+3. Show that there exists a subsequence $x'[:]$ that converges to a point in the domain.
+4. Use continuity to show that the image of the subsequence $y'[:] = f[x'[:]]$ converges to the supremum $M$.
+
+
+##### (1) Every continuous function on $[a, b]$ is bounded.
+
+
+##### (1.1) Closed and bounded implies compact
+
+
+
+# Isopermetric inequality and the legend of Dido
+
+- [Youtube](https://www.youtube.com/watch?v=G0rrnx8SaDI)
+
 # Invisible cities
 
 > The city does not consist of this, but of relationships between the
@@ -2684,7 +2709,7 @@ The interval $J \equiv \cap_i I[i]$ is closed as it is the intersection of close
 since we bisect the interval each time. Hence, $J$ is a single point, ie $J = \{ j \}$. We claim that $j$ is an accumulation
 point of the original subsequence. Any open set around $O$ will contain some interval $I[o]$
 
-# Proof of Heine Borel from Munkres
+# Proof of Heine Borel from Munkres (compact iff closed, bounded)
 
 We wish to show that compact iff closed and bounded in $\mathbb R$.
 
@@ -2700,27 +2725,32 @@ We wish to show that compact iff closed and bounded in $\mathbb R$.
 
 #### (1) Closed intervals are compact in the topology of a complete total order.
 
-Let us work with a complete total order $O$.
+Let us work with a complete total order $T$ (in our case $T = \mathbb R$). We equip $T$
+with the order topology (which matches the usual topology on $\mathbb R$).
 Let $[l, r]$ be a closed interval. Let $\{ U_i \}$ be an open cover of $[l, r]$.
-Let $M$ (for middle) be the set of points such that $[l, m]$ has a finite cover using $\{ U_i \}$
+Let $M$ (for middle) be the set of points $m$ such that $[l, m]$ has a finite cover using $\{ U_i \}$
 That is,
 
 $$
-M \equiv \{ p \in [l, r] : [l, m] \text{has finite cover} \}
+M \equiv \{ m \in [l, r] : [l, m] \text{ has finite cover} \}
 $$
 
-We claim that $lub(M) = r$. This implies that $[l, r]$ has a finite subcover using $U_i$. First note
-that $lub(M) \in [l, r]$ since $lub(M)$ exists as $O$ is complete, and $lub(M)$ is in $[l, r]$ as the
-interval is closed and thus contains all its limit points. Hence, this means that $lub(M) \in M$.
+- **CLAIM 1:** $lub(M) \in M$.
+- Pick an open $lub(M) \in V \in \{ U_i \}$. 
+- As $V$ is open, there is some $(c \in V) < (lub(M) \in V)$.
+- if $c \in M$: the finite cover of $[l, c]$ along with $V$ give a finite cover for $lub(M)$. Thus $lub(M) \in M$.
+- if $c \not \in M$, then $c < lub(M)$ and $c$ is an upper bound for $M$, which is absurd.
+- Thus, $lub(M) \in M$.
+- **CLAIM 2:** $lub(M) = r$. This implies that $r \in M$, and $[l, r]$ has a finite subcover using $U_i$.
+- For contradiction of Claim 2, assume that $lub(M) \neq r$.
+- Pick some open set $O$ in the cover that contains $lub(M)$: $lub(M) \in O \in \{ U_i \}_i$.
+- As $O$ is open, $O$ contains some point $c$ (for contradiction) that is after $lub(M)$: $lub(M) < c$.
+- Rewriting: $c \in O \land c > lub(M)$. So, the interval $[l, c]$ has the same cover as $[l, lub(M)]$.
+- Hence, $[l, c]$ has a finite cover, thus $c \in M$.
+- **CONTRADICTION:** $c \in M \land c > lub(M)$, which is absurd. We would have $c = lub(M)$.
+- Thus, this means that $lub(M) = r$, and thus the entire interval $[l, r]$ has finite subcover.
 
-
-Next, for contradiction, assume that $lub(M) \neq r$.
-Pick some open set $O$ in the cover that contains $lub(M)$: $lub(M) \in O \in \{ U_i \}$.
-Since $O$ is open, it contains some point $c$ (for contradiction) that is after $lub(M)$.
-That is, $c \in O \land c > lub(M)$. This means that the interval $[l, c]$ has the same
-cover as $[l, lub(M)]$. Hence, $[l, c]$ has a finite cover, thus $c \in M$. This is a contradiction
-because $c \in M \land c > lub(M)$, which is absurd. We would have $c = lub(M)$. Thus, this means
-that $lub(M) = r$, and thus the entire interval $[l, r]$ has finite subcover.
+<img src="./static/closed-intervals-compact-in-order-topology.png" />
 
 #### (2) Closed subset of a compact set is compact
 
@@ -2736,17 +2766,41 @@ Morally, this is true because in a Haussdorff space, single point subsets are cl
 Compactness pushes this local property to a global property --- The entire compact set
 itself becomes closed.
 
-Let $S$ be a compact subset of a haussdorf space $X$. For any point $q \not in S$,
-we need to show the existence of an open set $q \in Q$ such that $S \cap Q = \emptyset$.
-For each point $s \in S$, use Haussdorf to find separating sets 
-$s \in O(s; q)$, $q \in O(q; s)$ such that $O(s; q) \cap Q(q; s) = \emptyset$.
-See that the sets $\{ O(s; q) : s \in S \}$ are a cover of $S$. Extract a finite
-subcover of this, say $\{ O(s_i; q) : s \in S \}$. Use this finite subcover to separate $q$
-from $S$. Now, pick the open set
-$Q \equiv \cap \{ O(q; s_i) \}$, which is open since it's a finite intersection. See that this $Q$
-separates $q$ from $S$. We have that $Q \cap O(s_i, q) = \emptyset$
-for each $O(s_i, q)$. Hence, $Q \cap (\cup O(s_i; q)) = \emptyset$, and thus $Q \cap S = \emptyset$
-as $S \subseteq \cup O(s_i; q)$.
+- Let $S$ be a compact subset of a haussdorf space $X$.
+- For any point $q \not \in S$, we need to show the existence of an open set $q \in Q$ such that $S \cap Q = \emptyset$.
+- For each point $s \in S$, use Haussdorf to find separating sets $s \in O(s; q)$, $q \in O(q; s)$ such that $O(s; q) \cap Q(q; s) = \emptyset$.
+- See that the sets $\{ O(s; q) : s \in S \}$ are a cover of $S$. 
+- Extract a finite subcover of this, say $\{ O(s_i; q) : s \in S \}$. 
+- Use this finite subcover to separate $q$ from $S$. 
+- Now, pick the open set $Q \equiv \cap \{ O(q; s_i) \}$, which is open since it's a finite intersection. 
+- See that this $Q$ separates $q$ from $S$. 
+- We have that $Q \cap O(s_i, q) = \emptyset$ for each $O(s_i, q)$. 
+- Thus,$Q \cap (\cup O(s_i; q)) = \emptyset$, and thus $Q \cap S = \emptyset$ as $S \subseteq \cup O(s_i; q)$.
+- if $q \not \in S$, we have an open $Q$ that separates $q$ from $S$,
+  thus $q$ is NOT A LIMIT --- not every open nbhd of $Q$ has non-empty intersection with $S$.
+- Contrapositive: All limit points of $S$ are in $S$. Thus, $S$ is closed. (4)
+
+<img src="./static/compact-subset-of-haussdorf-is-closed.png"/>
+
+#### (4) A set with all limit points is closed (complement of open)
+
+Let $S$ be a set that has all its limit points. Consider the complement set $T$. We will
+show that $T$ is open.
+
+- all points in $T$: have open that separates them from $S$. Union of all of these opens is $T$.
+  $T$ open: infinite union of opens. $S$: the complement of an open set, closed.
+
+More elaborately:
+
+- for all all $t \in T$, $t \not in S$ (by defn).
+- $t$ is not a limit point of $S$ ($S$ has all limit points).
+- Thus, there is an open $U_t$ such that $t \in U_t$ and $U_t \cap S  = \emptyset$.
+- Define: $T' \equiv \cup_{t \in T} U_t$. Claim: $T' = T$.
+- As $U_t$ contains no elements of $S$, $T'$ contains no element of $S$.
+- As $U_t$ contains $t$, $T'$ contains all $t$.
+- Thus $T'$ contains all $t \in T$, and no element of $S$. So $T'$ is a complement of $S$. $T' = T$.
+- $T$ is a infinite union of opens. Thus $T$ is open.
+- $S$ is complement of open set $T$. $S$ is closed.
 
 # Alexandrov topology
 
