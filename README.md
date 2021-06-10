@@ -467,21 +467,25 @@ We want to maximize $z = f(x, y)$ given the constraint that $g(x, y) = 0$.
 Let us arbitrarily say that $x$ is independent and $y$ is dependent on $x$, so there
 is some function $t$ such that $y = t(x)$. This lets us compute $dy/dx$ using:
 
+$$
 \begin{aligned}
 & g(x, y) = 0\\
 &\frac{d g(x, y)}{dx}  = d0 = 0\\
 &\frac{\partial g}{\partial x} + \frac{\partial g}{\partial y}\frac{dy}{dx} = 0 \\
 &\frac{dy}{dx} = - \frac{\partial g/\partial x}{\partial g/\partial y}
 \end{aligned}
+$$
 
 Next, since $z$ is a function of $x$ alone (as $y$ is dependent on $x$ via $t$), the condition
 $dz/dx = 0$ guarantees a maxima for $z$:
 
+$$
 \begin{aligned}
 &\frac{dz}{dx} = 0 \\
 &\frac{\partial f}{\partial x} + \frac{\partial f}{\partial y}\frac{dy}{dx} = 0 \\
 &\frac{\partial f}{\partial x} + \frac{\partial f}{\partial y} \frac{\partial g/\partial x}{\partial g/\partial y} = 0 \\
 \end{aligned}
+$$
 
 Solving the above condition along with $g(x, y) = 0$ to recover the value of $y$ gives us the optima.
 
@@ -496,8 +500,8 @@ If we consider the stationary value of $F$, we get:
 
 $$
 \begin{aligned}
-&\frac{\partial F}{\partial x} = \frac{\partial f}{\partial x} + \lambda \frac{\partial g}{\partial x} = 0
-&\frac{\partial F}{\partial y} = \frac{\partial f}{\partial y} + \lambda \frac{\partial g}{\partial y} = 0
+&\frac{\partial F}{\partial x} = \frac{\partial f}{\partial x} + \lambda \frac{\partial g}{\partial x} = 0 \\
+&\frac{\partial F}{\partial y} = \frac{\partial f}{\partial y} + \lambda \frac{\partial g}{\partial y} = 0 \\
 &\frac{\partial F}{\partial \lambda} = \frac{\partial f}{\partial x} + \lambda \frac{\partial g}{\partial x}
 \end{aligned}
 $$
@@ -508,7 +512,7 @@ to eliminate $\lambda$ from the above equations, we rearrange:
 $$
 \begin{aligned}
 &\frac{\partial f}{\partial x}/\frac{\partial g}{\partial x}  = \lambda\\
-&\frac{\partial f}{\partial y})/\frac{\partial g}{\partial y}  = \lambda \\
+&\frac{\partial f}{\partial y}/\frac{\partial g}{\partial y}  = \lambda \\
 \end{aligned}
 $$
 
@@ -516,8 +520,8 @@ This $\lambda$ can be eliminated to recover the previous equation:
 
 $$
 \begin{aligned}
-&\frac{\partial f}{\partial x}/\frac{\partial g}{\partial x}  = &\frac{\partial f}{\partial y})/\frac{\partial g}{\partial y} \\
-&\frac{\partial f}{\partial x} =  \frac{\partial g}{\partial x} \frac{\partial f}{\partial y})/\frac{\partial g}{\partial y} \\
+&\frac{\partial f}{\partial x}/\frac{\partial g}{\partial x}  = &\frac{\partial f}{\partial y}/\frac{\partial g}{\partial y} \\
+&\frac{\partial f}{\partial x} =  \frac{\partial g}{\partial x} \frac{\partial f}{\partial y}/\frac{\partial g}{\partial y} \\
 &\frac{\partial f}{\partial x} - \frac{\partial g}{\partial x} \frac{\partial f}{\partial y})/\frac{\partial g}{\partial y}  = 0 \\
 \end{aligned}
 $$
