@@ -1,6 +1,6 @@
 % https://github.com/cohomolo-gy/cats-in-context/blob/master/chapter-2/Chapter%202%20Solutions.tex
 
-\documentclass[11pt]{report}
+\documentclass[14pt]{report}
 \usepackage{classicthesis}
 
 \usepackage{bbding} % for flower. 
@@ -513,6 +513,52 @@ leaves objects and arrow invariant. Any arrow $\Z \xrightarrow{\eta(id)} \Z$ is 
 The big thing I don't understand in this is why we need to factor \emph{through} the epi. If I directly define
 $A \rightarrow (A/TA) \oplus TA$, given by the exact sequence $0 \mono TA \mono A \epi A/TA \epi 0$? Ah I see, this sequence
 need not always split. 
+
+\subsubsection{Walking arrow for unnatural isomorphism}
+
+Consider the category $I \equiv (0 \rightarrow 1)$. Consider functors $F: I \rightarrow Vec(\R)$. The functor
+picks out morphsisms between real vector spaces. If we consider endomorphisms, I could consider a functor $F_{id}$ that picked
+out the identity map from $\R$ to $\R$, and another $F_{0}$ that picked out the constant linear function $f(x) = 0$ from $\R$ to $\R$.
+These have the same domain and range, but the actual action of the arrow is wildly different. So, for a natural transformation
+to be natural, it's not enough to have the same action on objects (clearly!)
+
+
+\subsubsection{Permutations and total orderings for unnatural isomorphism}
+
+Define the two functors $P: Set \rightarrow Set$ which takes a set to its set of permutations, and $T: Set \rightarrow Set$ which
+takes a set to its total orderings. 
+
+With $id: [a \mapsto a; b \mapsto b]$, we get the commutative diagram:
+
+% https://q.uiver.app/?q=WzAsOCxbMCwxLCJbYSBcXG1hcHN0byBhOyBiIFxcbWFwc3RvIGJdIFthIFxcbWFwc3RvIGI7IGIgXFxtYXBzdG8gYV0iXSxbMCw0LCJbMSBcXG1hcHN0byBhOyAyIFxcbWFwc3RvIGJdWzEgXFxtYXBzdG8gYjsgMlxcbWFwc3RvIGFdIl0sWzUsMSwiW2EgXFxtYXBzdG8gYTsgYiBcXG1hcHN0byBiXSBbYSBcXG1hcHN0byBiOyBiIFxcbWFwc3RvIGFdIl0sWzAsMCwiaWRfQSBcXGVxdWl2W2EgXFxtYXBzdG8gYTsgYlxcbWFwc3RvIGJdIl0sWzUsNCwiWzEgXFxtYXBzdG8gYTsgMiBcXG1hcHN0byBiXVsxIFxcbWFwc3RvIGI7IDIgXFxtYXBzdG8gYV0iXSxbNSwzLCJbMVxcbWFwc3RvIGE7IDJcXG1hcHN0byBiXVsxIFxcbWFwc3RvIGI7IDIgXFxtYXBzdG8gYV0iXSxbMyw0XSxbNCw0XSxbMCwxLCJcXGV0YV9BIl0sWzIsNSwiXFxldGFfQSIsMl0sWzEsNCwiT3JkKGlkX0EpKGYpID1pZF9BIFxcY2lyYyBmID0gZiJdLFswLDIsIlBlcm0oaWRfQSkoZik9aWRfQSBcXGNpcmMgZiBcXGNpcmMgaWRfQV57LTF9ID0gZiIsMl0sWzUsNCwiXFx0ZXh0e2VxdWFsfSIsMl1d
+\[\begin{tikzcd}
+	{id_A \equiv[a \mapsto a; b\mapsto b]} \\
+	{[a \mapsto a; b \mapsto b] [a \mapsto b; b \mapsto a]} &&&&& {[a \mapsto a; b \mapsto b] [a \mapsto b; b \mapsto a]} \\
+	\\
+	&&&&& {[1\mapsto a; 2\mapsto b][1 \mapsto b; 2 \mapsto a]} \\
+	{[1 \mapsto a; 2 \mapsto b][1 \mapsto b; 2\mapsto a]} &&& {} & {} & {[1 \mapsto a; 2 \mapsto b][1 \mapsto b; 2 \mapsto a]}
+	\arrow["{\eta_A}", from=2-1, to=5-1]
+	\arrow["{\eta_A}"', from=2-6, to=4-6]
+	\arrow["{Ord(id_A)(f) =id_A \circ f = f}", from=5-1, to=5-6]
+	\arrow["{Perm(id_A)(f)=id_A \circ f \circ id_A^{-1} = f}"', from=2-1, to=2-6]
+	\arrow["{\text{equal}}"', from=4-6, to=5-6]
+\end{tikzcd}\]
+
+While with $\sigma: [a \mapsto b; b \mapsto a]$ we get the commutative diagram:
+
+% https://q.uiver.app/?q=WzAsNixbMCwxLCJbYSBcXG1hcHN0byBhOyBiIFxcbWFwc3RvIGJdIFthIFxcbWFwc3RvIGI7IGIgXFxtYXBzdG8gYV0iXSxbMCw0LCJbMSBcXG1hcHN0byBhOyAyIFxcbWFwc3RvIGJdWzEgXFxtYXBzdG8gYjsgMlxcbWFwc3RvIGFdIl0sWzYsMSwiW2IgXFxtYXBzdG8gYjsgYSBcXG1hcHN0byBhXSBbYiBcXG1hcHN0byBhOyBhIFxcbWFwc3RvIGJdIl0sWzAsMCwiXFxzaWdtYSBcXGVxdWl2W2EgXFxtYXBzdG8gYjsgYlxcbWFwc3RvIGFdIl0sWzYsNCwiWzEgXFxtYXBzdG8gYjsgMiBcXG1hcHN0byBhXVsxIFxcbWFwc3RvIGE7IDIgXFxtYXBzdG8gYl0iXSxbNiwzLCJbMlxcbWFwc3RvIGI7IDEgXFxtYXBzdG8gYV1bMiBcXG1hcHN0byBhOyAxIFxcbWFwc3RvIGJdIl0sWzAsMSwiXFxldGFfQSJdLFswLDIsIlBlcm0oXFxzaWdtYSkoZikgPSBcXHNpZ21hIFxcY2lyYyBmIFxcY2lyYyBcXHNpZ21hXnstMX0iLDJdLFsxLDQsIk9yZChcXHNpZ21hKShmKSA9IFxcc2lnbWEgXFxjaXJjIGYiXSxbMiw1LCJcXGV0YV9BIiwyXSxbNSw0LCJcXHRleHR7bm90IGVxdWFsfSIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
+\[\begin{tikzcd}
+	{\sigma \equiv[a \mapsto b; b\mapsto a]} \\
+	{[a \mapsto a; b \mapsto b] [a \mapsto b; b \mapsto a]} &&&&&& {[b \mapsto b; a \mapsto a] [b \mapsto a; a \mapsto b]} \\
+	\\
+	&&&&&& {[2\mapsto b; 1 \mapsto a][2 \mapsto a; 1 \mapsto b]} \\
+	{[1 \mapsto a; 2 \mapsto b][1 \mapsto b; 2\mapsto a]} &&&&&& {[1 \mapsto b; 2 \mapsto a][1 \mapsto a; 2 \mapsto b]}
+	\arrow["{\eta_A}", from=2-1, to=5-1]
+	\arrow["{Perm(\sigma)(f) = \sigma \circ f \circ \sigma^{-1}}"', from=2-1, to=2-7]
+	\arrow["{Ord(\sigma)(f) = \sigma \circ f}", from=5-1, to=5-7]
+	\arrow["{\eta_A}"', from=2-7, to=4-7]
+	\arrow["{\text{not equal}}"', no head, from=4-7, to=5-7]
+\end{tikzcd}\]
 
 
 \subsection{Exercises}
