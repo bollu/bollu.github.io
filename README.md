@@ -15,30 +15,180 @@ A Universe of Sorts
 - [reading list and link dump](todo.html)
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
-
-# Every continuous function on $[a, b]$ attains a maximum by hyperreals (TODO)
-
-# Every continuous function on $[a, b]$ attains a maximum (TODO)
-
-The plan of attack is:
-
-1. Prove the every continuous function on $[a, b]$ is bounded.
-2. Find a sequence $x[n]$ so that its image converges to the supremum of $y[:] = f[x[:]]$. Call the supremum
-   $M \equiv sup(f[x[:]])$.
-3. Show that there exists a subsequence $x'[:]$ that converges to a point in the domain.
-4. Use continuity to show that the image of the subsequence $y'[:] = f[x'[:]]$ converges to the supremum $M$.
+# Ordinals and cardinals
 
 
-##### (1) Every continuous function on $[a, b]$ is bounded.
+This a rough sketch of a part of set theory I know very little about, which I'm encountering as I solve
+the "supplementary exercises" in Munkres, chapter 1.
+
+#### Ordinals
+
+- Two totally ordered sets have the same order type if there is a monotone isomorphism between them.
+  That is, there's a function $f$ which is monotone, and has an inverse. The inverse is guaranteed
+  to be motone (1), so we do not need to stipulate a _monotone_ inverse.
+- Definition of **well ordered set**: totally ordered set where every subset has a least element.
+- Theorem: The set of **well ordered sets** is itself well ordered.
+- Definition **ordinals**: Consider equivalence classes of well ordered sets under order type.
+  of well ordered sets with the same order type. The equivalence classes are **ordinals**.
+
+##### (1) Inverse of a Monotone function is monotone.
+
+- Let $f: A \rightarrow B$ be monotone: $a < a'$ implies $f(a) < f(a')$. Furthermore,
+  there is a function $g: B \rightarrow A$ such that $g(f(a)) = a$ and $f(g(b)) = b$.
+- Claim: if $b < b'$ then $g(b) < g(b')$.
+- Let $b < b'$. We must have (a)  $g(b) < g(b')$, or (b) $g(b) = g(b')$, or (c) $g(b) > g(b')$.
+- If $g(b) < g(b')$ we are done.
+- Suppose for contradiction $g(b) \geq g(b')$ then we must have $f(g(b)) \geq f(g(b'))$ since $f$ is monotone. Since $f, g$ are inverses
+  we get $b \geq b'$. This contradicts the assumption $b < b'$. 
+- This doesn't work for partial orders because we may get $b$ and $b'$ as _incomparable_.
 
 
-##### (1.1) Closed and bounded implies compact
+#### Von Neumann Ordinals
+
+- **Von neumann ordinals:** Representatives of equivalence classes of ordinals.
+  Formally, each Von-Neumann ordinal is the well-ordered set of all smaller ordinals.
+- Formal defn of  Von-Neumann ordinal $o$: (1) every element $x \in o$ will be a subset of $o$, since $x$
+  is itself a set `{ ordinal < x }`, which is a subset of `{ ordinal < o }`. (2) the set $o$
+  is well ordered by set membership, since two such ordinals will always be comparable, and one must
+  contain the other. 
+- For example of Von Neumann ordinals, consider `0 = {}`, `1 = {0}`, `2 = {0, 1}`, `3 = {0, 1, 2}`.
+  We can order `3` based on membership: `0 ∈ 1, 2` so `0 < 1, 2`. `1 ∈ 2` hence `1 < 2`. This totally orders `3`
+  based on set membership. Next, also see that a **member** of `3`, such as `2`, is in face `2 = {0, 1}`, which is a subset of `3`.
+  So every member of `3` is a subset of `3`. (Not vice versa: not every subset is a member! The subset `{1, 2}` is not a member of `3`).
+
+#### Limit ordinals
+
+- A **limit ordinal** is an ordinal that cannot be written as the successor of some other ordinal.
+- **Theorem**: An ordinal must be either zero, or the successor of some other ordinal, or a limit ordinal (2)
+- [References on ordinals](http://www-users.math.umn.edu/~garrett/m/algebra/notes/14.pdf)
+
+#### Cardinality and cardinals
+- We can define cardinality as equivalence classes of sets that are
+  **equinumerous**: ie, sets with bijections between them.  This does not strictly speaking work
+  due to set-theoretic issues, but let's go with it.
+- In each such equivalence class of sets which are equinumerous, there will be many well ordered sets.
+  The smallest such well ordered set (recall that the set of well ordered sets is itself totally ordered).
+  This is called as the **cardinal** for that cardinality.
+- So we redefine cardinality as the smallet ordinal $\alpha$ such that there is
+  a bijection between $X$ and $\alpha$.
+  This is motivated from the "equivalence class of all equinumerous sets", but
+  sidesteps set theoretic issues. For this to work, we need well ordering. Otherwise,
+  there could a set with no ordering that is in bijection with it.
 
 
 
-# Isopermetric inequality and the legend of Dido
+#### Rank
+- The **rank** of the empty set is zero. The rank of a set is recursively the smallest ordinal greater
+  than the ranks of all the members of the set. Every ordinal has a rank equal to itself.
+- $V_0$ is the empty set.
+- $V_{n+1} \equiv 2^{V_n}$. This defines $V$ for successor ordinals.
+- $V_\lambda \equiv \cup_{\beta < \lambda} V_\beta$. This defines $V$ for limit ordinals.
+- The set $V_\alpha$ are also callled stages or ranks. We can define the rank of a set $S$ to be the smallest $\alpha$
+  such that $S \subseteq V_\alpha$.
 
-- [Youtube](https://www.youtube.com/watch?v=G0rrnx8SaDI)
+
+#### Inaccessible cardinal
+
+A cardinal that cannot be created by adding cardinals, taking unions of cardinals, taking power sets
+of cardinals. So the set of cardinals smaller than an inacessible cardinal give a model for ZFC.
+if $\kappa$ is an inaccessible cardinal, then $V_\kappa$, collection of all sets of rank less than $\kappa$
+acts as a place to do mathematics safely, while still having access to the "set of all sets" $V_\kappa$
+(Grothendeick universes, apparently).
+
+
+
+#### Alternative definition of cardinality using rank
+
+- Recall that we wanted to define cardinality as the equivalence class of 
+  of equinumerous sets, but this ran into set theoretic issues.
+- A fix [(by Dana Scott)](https://en.wikipedia.org/wiki/Scott%27s_trick) is for a set $A$, consider the least rank $\kappa$
+  where some set in bijection with $A$ appears. Then we define the cardinality
+  of $A$ to be the equivalence classes of sets in $V_\kappa$ that are in
+  bijection with $A$. This gives us the cardinals without needing us to
+  consider all sets. This works even without well ordering. 
+- I don't actually understand why this works. In my mind, the set `{0}` and `{{0}}` both have the same size, but `{0}` lives in `V1` while `{{0}}`
+  lives in `V2`, so they won't have the same cardinality? Actually, I think I do understand: for the set `{{0}}`, the set `{0}` which is in bijection
+  with `{{0}}` occurs at rank `1`, so the cardinality of `{{0}}` is given by the equivalence class in `V1`: `[{0}]`. 
+- The key part seems to be "find the **smallest** rank". I have no idea how one would formalize this. 
+
+
+
+
+# Musing about Specht modules
+
+If we generalize, to each point $x$, we are creating a group of orthogonal
+matrices $O_x$ (like $C_t$), such that 
+- All points in the orbit have (the same/similar, unsure?) $C_t$
+- For points outside the orbit, we evaluate to zero.
+
+At least in dim=2, we can't take rotations (of finite order) as elements of $O_x$. These behave
+like nth roots of unity on averaging, so we get $1 + \omega + \omega^2 + \dots + \omega^{n-1} = 0$,
+leading to not giving any new points in $O_x$.
+
+- The only way to get new points in dim=2 is by taking reflections. So, for example:
+
+```
+  y
+  |
+p | q
+  |
+```
+
+- reflection of `p` about the `y` axis gives us `q`. So if we set $O_p = \{I, Y\}$, we get $O_p(p) = I - Y$.
+- We need $O_p(q) = sgn(Y)O_p(p)$, which does indeed happen, as $O_p(p) = p - q$, with $O_p(q) = q - p = - (p-q)$.
+- Let's add more points:
+
+```
+  y
+  |
+p | q
+c | d
+```
+
+- The problem with the new points $c, d$ is that they are not in the orbit $O_p(p)$, but they also don't evaluate to zero!
+- This tells us that after we pick the points $p, q$, any new points we pick *must lie on the axis of reflection* to be annhilated.
+- Thus, one valid way of adding new points is:
+
+
+```
+  y
+  |
+  c
+p | q
+--+-----x
+  |
+  d
+  |
+```
+
+- Here, $c, d$ have as group $O_c = O_d = \{I, X\}$, reflection about the $X$ axis. Check that all the axioms are satisfied: elements 
+  in the orbits $O_c, O_d, O_p, O_q$ evaluate to $\pm A_c c, \pm A_p p$. While elements not the orbit become zero.
+- Thus, it seems like the Specht module attempts to construct "reflections" that somehow represent $S_n$. Is this why it is related
+  to Coxeter theory?
+
+- [What is a Coxeter diagram good for](https://math.stackexchange.com/questions/735679/what-is-the-coxeter-diagram-for)
+- [What is a Coxeter group](https://math.stackexchange.com/questions/2895896/what-is-a-coxeter-group)
+
+
+# Every continuous function on $[a, b]$ attains a maximum
+
+The high-level machinery proof:
+1. Continuous image of a compact set `[a, b]` under function $f$ is a compact set `f([a, b])` (1).
+2. Compact set in $\mathbb R$ is closed (2) (Heine Borel).
+3. $sup(f[a, b])$ is a limit point of $f([a, b])$. (4: `sup` is a limit point).
+4. Thus $f([a, b])$ (closed) contains $sup(f([a, b])$ (limit point) (5: closed set contains all limit points).
+5. Thus $f$ attains maxima $sup(f([a, b]))$ on $[a, b]$.
+
+
+##### (1) Continuous image of compact set is compact
+
+- Let $f: A \rightarrow B$ be a continuous function. Let $C \subseteq A$ be a compact set.
+- Need to show $f(C)$ is compact.
+- Take any open cover $\{ V_i \}$ of $f(C)$. Need finite subcover.
+- Pullback $V_i$:  Let $U_i \equiv f^{-1}(V_i)$.  Each $U_i$ open as $f$ is continuous. $\{ U_i = f^{-1}(V_i) \}$ cover  $C$ since $\{ V_i \}$ cover $f(C)$.
+- Extract finite subcover $\{ U_j : j \in J \}$ for finite set $J$.
+- Push forward finite subcover: $\{ V_j : j \in J \}$ cover $f(C)$ as $U_j$ cover $C$.
+
 
 # Invisible cities
 
@@ -732,9 +882,55 @@ which is equal to $H$. Hence, we find that $H^T = H$, or $H$ defined in this way
 
 ##### Showing that $H$ is rank 1
 
-In the symmetric group case, we show that if $x \not \in Orb(t)$ then there is some element $\alpha \in C_t$
-such that $\alpha^2 = I$, $det(\alpha) = -1$ and $\alpha(x) = x$, thereby letting us break $C_t$ into cosets
-$C_t/(\alpha)$ where $(\alpha) = \{ I, \alpha \}$ causing the signs to cancel and making $A[\lambda][t](x) = 0$.
+In the symmetric group case, we consider:
+
+$$A_x \equiv \sum_{\sigma \in C_t} sgn(\sigma) \sigma$$
+
+Now say we have some other $y$. The two cases are:
+
+- $y \in Orb(x, C_x)$. We have $y = \pi x$ for $\pi \in C_x$ In this case, the expression for $A_x y$ can be written as $A_x (\pi x)$
+  which is equal to $sgn(\pi) A_x(x)$. So this belongs to the subspace of $A_x(x)$.
+- $y \not \in Orb(x, C_x)$. This means that we cannot rearrange the columns of tabloid $x$ to get tabloid $y$ (upto row permutation).
+- That is, we have:
+
+```
+xa -> 1
+xb -> 1
+xc -> 2
+```
+
+- where two elements in the same column of $x$ `(xa, xb)` want to go to the same row of $y$. If all elements
+  in the same column of $x$ `(xa, xb, xc)` wanted to go to different rows of $y$ `(3, 1, 2)`, we could have
+  permuted $x$ in a *unique* way as `(xb, xc, xa)` to match the rows. This tells us how to convert $x$ into $y$,
+  for this column. If we can do this for all columns, we are done.
+- The only obstruction to the above process is that we have two elements in the same column of $x$ `(xa, xb)` that
+  want to go to the same row of $y$. Said differently, there is a permutation $p$ that swaps `xa <-> xb` that is in
+  $C_x$ (since `(xa, xb)` are in the same column), whose action leaves  $y$ unchanged (since $y$ a tabloid has
+  these elements in the same row; tabloid invariant under row permutation).
+- Thus, we can write $C_t$ as cosets of the subgroup $\{e, p\}$ whose action of $y$ will be:
+
+$$
+\begin{aligned}
+&(sgn(e) e +sgn(p) p)(y) \\
+&(e - p)(y) \\
+&y - y = 0
+\end{aligned}
+$$
+
+- Thus, the action of the full $C_t$, written as cosets of $\{ e, p\}$ cancels out entirely and becomes zero, since every coset
+  is of the form $h\{e, p\}$, ie $\{h, hp\}$. And the action of this will be:
+
+$$
+\begin{aligned}
+&(sgn(h)h + sgn(hp)hp)y \\
+&=sgn(h) hy + sgn(h)(-1) hp y \\
+&=sgn(h) hy - sgn(h) hp y \\
+&=sgn(h) hy - sgn(h) hy \\
+&=0 
+\end{aligned}
+$$
+
+- Thus, either an element $y$ is in the orbit $C_x$ or not. If it's in the orbit, we get answer $\pm A_x x$. If it's not, we get zero.
 
 
 #### Have we found all the irreps?
@@ -750,30 +946,35 @@ a permutation. If we show that the irreps of different shapes/diagrams are inequ
 
 #### Characterizing Maps $M[\lambda]$ to $M[\mu]$ 
 
-This is like Schur's lemma, that holds for the larger space $M[\lambda]$ instead of just the irrep $S[\lambda]$.
+We wish to prove the key lemma, which is that if we have a non-zero map $f: M[\lambda] \rightarrow M[\mu]$,
+then $\lambda \trianglerighteq \mu$. Let's consider the extreme cases with 3 elements:
 
-> Let $T: M[\lambda] \rightarrow M[\mu]$ be an intertwining map. If $S[\lambda] \subsetneq ker(T)$ then $\lambda \trianglerighteq \mu$ .
-> If $\lambda = \mu$, then $T$ restricted to $S[\lambda]$ is a scalar multiple of the identity: $T|S[\lambda] = k id$
+```
+λ = (1 1 1):
+* * *
+```
 
-**Proof:** Since the kernel is an invariant subspace, since $S[\lambda]$ is not in the kernel, it must be that the kernel and $S[\lambda]$
-are orthogonal to each other.
+```
+μ = 3:
+#
+#
+#
+```
 
-
-> Let $T: S[\lambda] \rightarrow S[\mu]$ be an intertwining map. If $T \neq 0$, then $\lambda \trianglerighteq \mu$.
-
-**Proof:** Any such $T$ can be extended to an intertwining map between $M[\lambda]$ and $M[\mu]$ by defining the map to be zero
-outside $S[\lambda]$. By the previous lemma, we have that $\lambda \trianglerighteq \mu$.
-
-#### All the $S[\lambda]$ are distinct irreps of $S_n$ 
-
-The above implies that if $S[\lambda] = S[\mu]$, that is, we have an isomorphism $T: S[\lambda] \rightarrow S[\mu]$,
-then we must have that $\lambda \trianglerighteq \mu$. Similarly, since we have a map $T^{-1}$, we find that $\mu \trianglerighteq \lambda$.
-This implies that $\lambda = \mu$.
+- Let $l$ be a $\lambda$ tableau, $m$ be a $\mu$ tableau. 
+- Let's consider $A[l](m)$ and $A[m](l)$.
+- For $A_l(m)$ to be non-zero, we need a way to send elements of $m$ in the same column (`#; #; #`) to correct rows in $l$ (`* * *`)But see that $l$
+  has only one row, and $m$ has no choice: it must send all its elements in all columns to that single row of $l$. Thus, the $C_l$ [WRONG]
+  don't hinder us from doing the only thing we possibly can. 
+- For $A_m(l)$ to be non-zero, we need a way to send elements of $l$ in the same column, of which there are three columns, `*`, `*`, `*`, to different rows of
+  $m$. But if $l$ were feeling stubborn, it could say that it wants each of its `*`'s to end up in the first row of $m$. $m$ will be overcrowded, so this
+  leads to the map becoming zero.
+- In general, if $\lambda \triangleright \mu$, then the map $A[\lambda](\mu)$ can be nonzero, since we need to send elements in the same column of $\mu$ to different
+  rows of $\lambda$, and $\lambda$ is "bigger", [WRONG?!]
 
 
 Thus, we have found ALL irreps, since as argued before, there can be at most as many irreps as there are shapes/diagrams of $n$,
 and we've shown that each irrep that corresponds to a shape is distinct.
-
 
 #### All the $S[\lambda]$ are distinct irreps of $S_n$ by Schur's lemma
 
@@ -814,7 +1015,7 @@ Now let's look at the action of the `A` operator `A: Tableaux -> GL(V(Tabloid(mu
 we see that the `A` operator uses _tableaux_ and not _tabloids_ (because we
 need to know which elements are in the same column).
 Recall that the action of `A(t)` on a tabloid `x` is to sum up linear combinations of $sgn(\pi)\pi(x)$,
-where $\pi$ is from the column stabilier of `t`. 
+where $\pi$ is from the column stabilizer of `t`. 
 
 $$
 A(t)(x) \equiv \sum_{\pi \in \texttt{col-stab}(t)} sgn(\pi) \pi(x)
@@ -14681,9 +14882,10 @@ the polynomials in the first order syzygy the same way oxen are yoked by a syzyg
 
 
 
+#### Is inclusion/exclusion a syzygy?
 
-
-
+I feel it is, since each level of the inclusion/exclusion arises as a "yoke" on the previous level.
+I wonder how to make this precise.
 
 
 #### References

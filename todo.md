@@ -1,3 +1,12 @@
+- Threshold concept: 
+> “A threshold concept can be considered as akin to a portal, opening up a
+> new and previously inaccessible way of thinking about something. It
+> represents a transformed way of understanding, or interpreting, or viewing
+> something without which the learner cannot progress.”
+
+
+- [Lectures on Coxeter groups](http://math.sfsu.edu/federico/Clase/Coxeter/lectures.html)
+- [The symmetric group, its representaions, and its combinatorics](https://www.math.uni-tuebingen.de/de/forschung/maphy/lehre/ws-2018-19/sgc/dateien/combinatorics-lecturenotes.pdf): Explains `S_n` and the repr. theory through the lens of coxeter groups.
 - [Elementary calculus: a Hyperreal approach](https://people.math.wisc.edu/~keisler/calc.html)
 - [Choice and chance, one thousand exercises by Whitworth](https://www.maa.org/press/periodicals/convergence/mathematical-treasure-whitworth-s-choice-and-chance)
 - Book on compiler construction in racket: [Essentials of compilation](https://github.com/IUCompilerCourse/Essentials-of-Compilation).
