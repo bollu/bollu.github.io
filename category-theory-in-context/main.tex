@@ -554,7 +554,7 @@ On rearranging: $\alpha^{-1} \cdot F'(g) \cdot \alpha = F(g)$. So it gives a sor
 
 
 \question{Exercise 1.4.iii} What is a natural transformation between a parallel pair of functors between preorders regarded as categories?
-\proof We regard preorders as thin categories, where there is an most arrow from $p \rightarrow p'$ if $p \leq p'$. A functor from $(P, \leq)$ to $(Q, \leq)$
+\proof{} We regard preorders as thin categories, where there is an most arrow from $p \rightarrow p'$ if $p \leq p'$. A functor from $(P, \leq)$ to $(Q, \leq)$
 is a monotone map. A pair of functors $F, G: P \rightarrow Q $ is a pair of monotone maps. A natural transformation $\eta: F \nt G$ makes for each $p \in $P
 the diagram commute:
 
@@ -576,4 +576,85 @@ monotonicity of $F, G$.
 
 
 \question{Exercise 1.4.iv} Prove that distinct parallel morphisms $f, g: c^\to_\to d$ define distinct natural transformations $f_*, g_*: C(-, c) \nt C(-, d)$ by pre-composition.
+
+\question{Exercise 1.4.v} Consider the comma cataegory $F \downarrow G$ for $F: D \rightarrow C, G: E \rightarrow C$. Construct a canonical natural transformation
+$\alpha: F \circ dom \rightarrow G \circ codom$:
+
+% https://q.uiver.app/?q=WzAsNSxbMCwwLCJGIFxcZG93bmFycm93IEciXSxbMiwwLCJFIl0sWzIsMiwiQyJdLFswLDIsIkQiXSxbMSwxLCJcXG5lYXJyb3dfXFxldGEiXSxbMCwxLCJjb2RvbSIsMl0sWzEsMiwiRyIsMl0sWzIsMywiRiIsMl0sWzMsMCwiZG9tIiwyXV0=
+\[\begin{tikzcd}
+	{F \downarrow G} && E \\
+	& {\nearrow_\eta} \\
+	D && C
+	\arrow["codom"', from=1-1, to=1-3]
+	\arrow["G"', from=1-3, to=3-3]
+	\arrow["F"', from=3-3, to=3-1]
+	\arrow["dom"', from=3-1, to=1-1]
+\end{tikzcd}\]
+
+
+\proof{}
+
+Recall that elements  $k, k \in F \downarrow G$ and arrows $k \xrightarrow{a} k'$ is given by:
+
+% https://q.uiver.app/?q=WzAsNixbMCwwLCJrXFxlcXVpdihkLGUsRmRcXHhyaWdodGFycm93e2Ffa31HZSkiXSxbMCwxLCJrJ1xcZXF1aXYoZCcsZScsRmQnXFx4cmlnaHRhcnJvd3thX3trJ319R2UnKSJdLFszLDAsIkZkIl0sWzMsMSwiRmQnIl0sWzQsMCwiR2UiXSxbNCwxLCJHZSciXSxbMCwxLCJhXFxlcXVpdihkXFx4cmlnaHRhcnJvd3thX2R9ZCcsZVxceHJpZ2h0YXJyb3d7YV9lfWUnKSJdLFsyLDMsIkYoYV9kKSIsMl0sWzIsNCwiYV9rIl0sWzMsNSwiYV9rJyIsMl0sWzQsNSwiRihhX2UnKSJdXQ==
+\[\begin{tikzcd}
+	{k\equiv(d,e,Fd\xrightarrow{a_k}Ge)} &&& Fd & Ge \\
+	{k'\equiv(d',e',Fd'\xrightarrow{a_{k'}}Ge')} &&& {Fd'} & {Ge'}
+	\arrow["{a\equiv(d\xrightarrow{a_d}d',e\xrightarrow{a_e}e')}", from=1-1, to=2-1]
+	\arrow["{F(a_d)}"', from=1-4, to=2-4]
+	\arrow["{a_k}", from=1-4, to=1-5]
+	\arrow["{a_k'}"', from=2-4, to=2-5]
+    \arrow["{G(a_e)}", from=1-5, to=2-5]
+\end{tikzcd}\]
+
+We need to make this diagram commute for all $k, k' \in F \downarrow G$
+
+% https://q.uiver.app/?q=WzAsMTAsWzAsMCwiRlxcY2lyYyBkb20oaykiXSxbMCwyLCJGIFxcY2lyYyBkb20oaycpIl0sWzIsMCwiRyBcXGNpcmMgY29kb20oaykiXSxbMiwyLCJHIFxcY2lyYyBjb2RvbShrJykiXSxbMywxLCI9Il0sWzQsMCwiZCJdLFs0LDIsImQnIl0sWzYsMCwiZSJdLFs2LDIsImUnIl0sWzIsM10sWzAsMSwiRiBcXGNpcmMgZG9tKGEpIiwyXSxbMCwyLCJcXGV0YShrKSJdLFsyLDMsIkcgXFxjaXJjIGNvZG9tKGspIl0sWzEsMywiXFxldGEoaycpIiwyXSxbNSw2LCJGYV9kIl0sWzUsNywiXFxldGEoaykiLDJdLFs2LDgsIlxcZXRhKGsnKSJdLFs3LDgsIkdhX2UiLDJdXQ==
+\[\begin{tikzcd}
+	{F\circ dom(k)} && {G \circ codom(k)} && d && e \\
+	&&& {=} \\
+	{F \circ dom(k')} && {G \circ codom(k')} && {d'} && {e'} \\
+	&& {}
+	\arrow["{F \circ dom(a)}"', from=1-1, to=3-1]
+	\arrow["{\eta(k)}", from=1-1, to=1-3]
+	\arrow["{G \circ codom(k)}", from=1-3, to=3-3]
+	\arrow["{\eta(k')}"', from=3-1, to=3-3]
+	\arrow["{Fa_d}", from=1-5, to=3-5]
+	\arrow["{\eta(k)}"', from=1-5, to=1-7]
+	\arrow["{\eta(k')}", from=3-5, to=3-7]
+	\arrow["{Ga_e}"', from=1-7, to=3-7]
+\end{tikzcd}\]
+
+To show the equality between the left square and right square, we simplify using the definitions of $k, k'$:
+\begin{itemize}
+    \item $k \equiv (d, e, Fd \xrightarrow{a_k} Ge)$, $k' \equiv (d', e' Fd' \xrightarrow{a_k'} Ge')$.
+    \item $a : k \rightarrow k'$ is given by $a \equiv (d \xrightarrow{a_d} d', e \xrightarrow{a_e} e')$ such that the diagram commutes.
+    \item $dom(a) = a_d$. $F(dom(a)) = F a_d$. Similarly, $codom(a) = a_e$, and $G(codom(a)) =G(a_e)$.
+    \item $dom(k) = d$. $F(dom(k)) = Fd$. $codom(k) = e$. $G(codom(k)) = G(e)$.
+\end{itemize}
+By comparing the simplified naturality square to the square in the \emph{definition of arrow in the comma category}, we find
+that we can pick $\eta(k) \equiv a_k$, and $\eta(k') \equiv a'_k$, the only data of $k$ and $k'$ we have not used so far!
+This causes the diagram to commute by definition of what it means to have a morphism in a comma category. To be crystal
+clear, we compare the two diagrams:
+
+% https://q.uiver.app/?q=WzAsMTMsWzAsMSwiRmQiXSxbMCwzLCJGZCciXSxbMiwxLCJHZSJdLFsyLDMsIkdlJyJdLFs1LDEsImtcXGVxdWl2KGQsIGUsIEZkXFx4cmlnaHRhcnJvd3thX2t9R2UpIl0sWzUsMywiaydcXGVxdWl2KGQnLGUnRmQnXFx4cmlnaHRhcnJvd3thX3trJ319R2UnKSJdLFs1LDAsIlxcdGV4dHtpbn59IEYgXFxkb3duYXJyb3cgRyJdLFsxLDAsIlxcdGV4dHtjb25kaXRpb24gZm9yfX5hIFxcdGV4dHsgaW4gfUMiXSxbMCw1LCJGZCJdLFswLDcsIkZkJyJdLFsyLDUsIkdlIl0sWzIsNywiR2UnIl0sWzEsNCwiXFx0ZXh0e2NvbmRpdGlvbiBmb3J9fiBcXGV0YX5cXHRleHR7aW4gQ30iXSxbMCwxLCJGYV9kIl0sWzIsMywiR2FfZSJdLFswLDIsImFfayIsMV0sWzEsMywiYSdfayIsMV0sWzQsNSwiYSBcXGVxdWl2IChkIFxceHJpZ2h0YXJyb3d7YV9kfWQnLCBlIFxceHJpZ2h0YXJyb3d7YV9lfSBlJykiLDJdLFs4LDksIkZhX2QiXSxbMTAsMTEsIkdhX2UiXSxbOSwxMSwiXFxldGEoaycpIiwyXSxbOCwxMCwiXFxldGEoaykiLDFdXQ==
+\[\begin{tikzcd}
+	& {\text{condition for}~a \text{ in }C} &&&& {\text{in~} F \downarrow G} \\
+	Fd && Ge &&& {k\equiv(d, e, Fd\xrightarrow{a_k}Ge)} \\
+	\\
+	{Fd'} && {Ge'} &&& {k'\equiv(d',e'Fd'\xrightarrow{a_{k'}}Ge')} \\
+	& {\text{condition for}~ \eta~\text{in C}} \\
+	Fd && Ge \\
+	\\
+	{Fd'} && {Ge'}
+	\arrow["{Fa_d}", from=2-1, to=4-1]
+	\arrow["{Ga_e}", from=2-3, to=4-3]
+	\arrow["{a_k}"{description}, from=2-1, to=2-3]
+	\arrow["{a'_k}"{description}, from=4-1, to=4-3]
+	\arrow["{a \equiv (d \xrightarrow{a_d}d', e \xrightarrow{a_e} e')}"', from=2-6, to=4-6]
+	\arrow["{Fa_d}", from=6-1, to=8-1]
+	\arrow["{Ga_e}", from=6-3, to=8-3]
+	\arrow["{\eta(k')}"', from=8-1, to=8-3]
+	\arrow["{\eta(k)}"{description}, from=6-1, to=6-3]
+\end{tikzcd}\]
 \end{document}
