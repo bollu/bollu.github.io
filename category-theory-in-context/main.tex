@@ -624,6 +624,24 @@ monotonicity of $F, G$.
 
 \question{Exercise 1.4.iv} Prove that distinct parallel morphisms $f, g: c^\to_\to d$ define distinct natural transformations $f_*, g_*: C(-, c) \nt C(-, d)$ by pre-composition.
 
+Recall that the natural transformation by $f_*$ is given for a fixed $o \xrightarrow{a} o'$ by $Hom(o, c) \xrightarrow{f_* \equiv f \circ - } Hom(o, d)$,
+and similarly for $g_*$ by $Hom(o, c) \xrightarrow{g_* \equiv g \circ -} Hom(o, d)$. If we choose $o = c$, then we can consider $Hom(c, c)$.
+Let' then see where $id_c \in Hom(c, c)$ gets mapped to:
+
+\begin{align*}
+&Hom(o, c) \xrightarrow{f_* \equiv f \circ - } Hom(o, d) \\
+&Hom(o=c, c) \xrightarrow{_f* \equiv f \circ - } Hom(o=c, d) \\
+&Hom(c, c) \xrightarrow{f_* \equiv f \circ - } Hom(c, d) \\
+&id_c \in Hom(c, c) \xrightarrow{f_* \equiv f \circ - } f \circ id_c \in Hom(c, d) \\
+&id_c \in Hom(c, c) \xrightarrow{f_* \equiv f \circ - } f \in Hom(c, d) \\
+\end{align*}
+
+So we map $id \in Hom(c, c)$ into $f \in Hom(c,d)$ by $f_*$. Since there was nothing special about $f$, we similarly map $id \in Hom(c, c)$
+into $g \in Hom(c, d)$ by $g_*$. Since the two morphisms are distinct, we have $f \neq g$. 
+Thus, the two distinct parallel morphisms $f, g$. natural transformations $f_*$ and $g_*$ are inequivalent since they have different components
+on the element $c$: $f_*(c): Hom(c, c) \rightarrow Hom(c, d)$ is not the same action as $g_*(c): Hom(c, c) \rightarrow Hom(c, d)$.
+
+
 \question{Exercise 1.4.v} Consider the comma cataegory $F \downarrow G$ for $F: D \rightarrow C, G: E \rightarrow C$. Construct a canonical natural transformation
 $\alpha: F \circ dom \rightarrow G \circ codom$:
 
