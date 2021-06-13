@@ -1,10 +1,12 @@
 \documentclass[11pt]{book}
+\usepackage{classicthesis}
+
 %\documentclass[10pt]{llncs}
 %\usepackage{llncsdoc}
-\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
-\linespread{1.025}              % Palatino leads a little more leading
-% Euler for math and numbers
-\usepackage[euler-digits,small]{eulervm}
+% \usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+% \linespread{1.025}              % Palatino leads a little more leading
+% % Euler for math and numbers
+% \usepackage[euler-digits,small]{eulervm}
 \usepackage{bbding} % for flower. 
 \usepackage{physics}
 \usepackage{amsmath,amssymb}
@@ -16,15 +18,15 @@
 \usepackage{minted}
 \usepackage{cancel}
 \usepackage{quiver}
-\evensidemargin=0.20in
-\oddsidemargin=0.20in
-\topmargin=0.2in
+% \evensidemargin=0.20in
+% \oddsidemargin=0.20in
+% \topmargin=0.2in
 %\headheight=0.0in
 %\headsep=0.0in
 %\setlength{\parskip}{0mm}
 %\setlength{\parindent}{4mm}
-\setlength{\textwidth}{6.4in}
-\setlength{\textheight}{8.5in}
+% \setlength{\textwidth}{6.4in}
+% \setlength{\textheight}{8.5in}
 %\leftmargin -2in
 %\setlength{\rightmargin}{-2in}
 %\usepackage{epsf}
@@ -2807,7 +2809,7 @@ The usual linear covariant derivative carries a frame bundle.
   If we have $P \xleftarrow{\triangleleft G} P \xrightarrow{\pi} M$ with a connection $\omega$,
   and let $\phi$ be a $\FiveFlowerPetal$ (arbitrary)
   valued $k$-form, then $D(\phi): \Gamma(T^{k+1} P) \rightarrow \FiveFlowerPetal$. It is defined as the ordinary
-  exterior derivative (which does not depend on $\flower$ at all) given by:
+  exterior derivative (which does not depend on $\FiveFlowerPetal$ at all) given by:
 
   $$
   D\phi(X_1, \dots, X_{k+1}) \equiv d \phi(hor(X_1), hor(X_2), \dots, hor(X_{k+1}))
@@ -2848,7 +2850,7 @@ principal bundle $P$. We have some section $\sigma: U \rightarrow P$ of $\pi: P 
 This induces a Yang-mills field  $\Gamma \equiv \sigma^* \omega$ which is a lie algebra valued one form
 on the base space. This also introduces a Yang-mills field strength ($F$). The field is $A$, the vector potential.
 This Yang-Mills field strength is the pullback of the curvature. This is $\sigma^* Omega \simeq Riem \simeq F$.
-(Riem for Riemann curvature tensor, I guess). They live in $TM \tensor TM \rightarrow \mathfrak g$. Why is this
+(Riem for Riemann curvature tensor, I guess). They live in $TM \otimes TM \rightarrow \mathfrak g$. Why is this
 well behaved (a tensor) while the christoffel symbols are not?
 
 \begin{align*}
@@ -2858,7 +2860,6 @@ well behaved (a tensor) while the christoffel symbols are not?
   &\sigma^*\texttt{distributes over } \barwedge \\
   &= \sigma^*(d \omega) + \sigma^*(\omega) \barwedge \sigma^*(\omega) \\
   & \sim \partial \Gamma - (\partial \Gamma \Gamma \Gamma + \Gamma \Gamma) \texttt{(wut?)} \\
-  
 \end{align*}
 
 \begin{theorem}
@@ -2874,7 +2875,7 @@ We need some extra data $\theta_p: T_p P \rightarrow V$ --- it is a $V$ valued o
 of the group $G$ with the same dimension as that of the base manifold. The precise conditions are:
 
 \begin{itemize}
-  \item $\Theta \in \Omega^1(P) \tensor V$, where $V$ is a linear representation of the group $G$
+  \item $\Theta \in \Omega^1(P) \otimes V$, where $V$ is a linear representation of the group $G$
   \item $dim(V) = dim(M)$.
   \item $\Theta$ is a vertical form:  We have $\Theta(ver(X)) = 0$ for all vector fields $X \in \Gamma(TP)$.
     So this is a vertical one-form. This is unlike the the connection one-form which vanishes on the horizontal vector field,
@@ -2895,7 +2896,7 @@ We know that if there is a frame $e$, there is a coframe $\epsilon$.
 I'm lost! Time: around 1 hour into video
 
 \begin{definition}
-  Torsion is the exterior derivative of the solder form. $\Theta \equiv d \theta$ which is $\Theta \in \Omega^2(P) \tensor V$.
+  Torsion is the exterior derivative of the solder form. $\Theta \equiv d \theta$ which is $\Theta \in \Omega^2(P) \otimes V$.
   One can see that $\Theta = d \theta + \omega \wedge \theta$. In diffgeo, we have to identify the
   torsion with the coframe. For a matrix group, we get $\Theta^i =  d \theta^i  + \omega^i_k \wedge \theta^k$.
 \end{definition}
@@ -2921,6 +2922,8 @@ $\sigma: M \rightarrow P$ we define an associate function $\phi_\sigma: P \right
 Then we need this $\phi_\sigma$ to be $G$-equivariant. We then use the exterior covariant
 derivative on $P$ to get a derivataive of the function sitting up on the $P$.
 Then we need to push this down to the manifold. We work on the principal bundle ONLY.
+
+
 
 \end{document}
 
