@@ -1,10 +1,8 @@
-\documentclass[11pt]{book}
-%\documentclass[10pt]{llncs}
-%\usepackage{llncsdoc}
-\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
-\linespread{1.025}              % Palatino leads a little more leading
-% Euler for math and numbers
-\usepackage[euler-digits,small]{eulervm}
+% https://github.com/cohomolo-gy/cats-in-context/blob/master/chapter-2/Chapter%202%20Solutions.tex
+
+\documentclass[11pt]{report}
+\usepackage{classicthesis}
+
 \usepackage{bbding} % for flower. 
 \usepackage{physics}
 \usepackage{amsmath,amssymb}
@@ -16,20 +14,6 @@
 \usepackage{minted}
 \usepackage{cancel}
 \usepackage{quiver}
-\evensidemargin=0.20in
-\oddsidemargin=0.20in
-\topmargin=0.2in
-%\headheight=0.0in
-%\headsep=0.0in
-%\setlength{\parskip}{0mm}
-%\setlength{\parindent}{4mm}
-\setlength{\textwidth}{6.4in}
-\setlength{\textheight}{8.5in}
-%\leftmargin -2in
-%\setlength{\rightmargin}{-2in}
-%\usepackage{epsf}
-%\usepackage{url}
-
 \usepackage{booktabs}   %% For formal tables:
                         %% http://ctan.org/pkg/booktabs
 \usepackage{subcaption} %% For complex figures with subfigures/subcaptions
@@ -72,6 +56,36 @@
 \newcommand{\boldY}{\ensuremath{\mathbf{Y}}}
 
 
+\newcommand{\cat}[1]{\mathsf{#1}}
+\newcommand{\functor}[3]{#1 : \cat{#2} \to \cat{#3}}
+\newcommand{\functordef}{\functor{F}{C}{D}}
+\newcommand{\cc}{\cat{C}}
+\renewcommand{\dd}{\cat{D}}
+\newcommand{\ee}{\cat{E}}
+\newcommand{\ccat}{\cat{Cat}}
+\newcommand{\cset}{\cat{Set}}
+\newcommand{\subcat}[2]{\bm{ \mathsf{#1}}_{\bm{ \mathsf{#2}}}}
+\renewcommand{\op}[1]{#1^{\text{op}}}
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\opc}{\op{\cc}}
+\newcommand{\opd}{\op{\dd}}
+\newcommand{\ope}{\op{\ee}}
+\newcommand{\mono}{\rightarrowtail}
+\newcommand{\epi}{\twoheadrightarrow}
+\newcommand{\bg}{\cat{BG}}
+\newcommand{\bgg}{\cat{BG'}}
+\newcommand{\nt}{\Rightarrow}
+%\newcommand{\ant}[2]{\alpha : F \nt G} 
+%\newcommand{\bnt}[2]{\beta : F \nt G} 
+%\newcommand{\anti}[2]{\alpha : F \cong G} 
+%\newcommand{\bnti}[2]{\beta : F \cong G} 
+\newcommand{\zero}{\mathbb{0}}
+\newcommand{\one}{\mathbb{1}}
+\newcommand{\two}{\mathbb{2}}
+\newcommand{\three}{\mathbb{3}}
+
+
+
 \newcommand{\G}{\ensuremath{\mathcal{G}}}
 % \newcommand{\braket}[2]{\ensuremath{\left\langle #1 \vert #2 \right\rangle}}
 
@@ -85,9 +99,11 @@
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{example}[theorem]{Example}
 \newtheorem{exercise}[theorem]{Exercise}
-
-\newcommand{\beginproof}[1][]{\emph{Proof #1}\textbf{:} }
-\newcommand{\question}[1]{\textbf{#1}}
+ 
+% \newcommand{\proof}[1][]{\emph{Proof #1}\textbf{:} }
+\newcommand*{\question}[1]{\leavevmode\newline \textbf{Question #1.}}
+\newcommand*{\proof}[1]{\leavevmode\newline \textbf{Proof #1}}
+\newcommand*{\answer}{\leavevmode\newline \textbf{Answer} }
 
 \newcommand{\X}{\ensuremath{\mathfrak{X}}}
 \newcommand{\comma}{\downarrow}
@@ -103,7 +119,6 @@
 \chapter{Categories, Functors, Natural transformations}
 \section{Abstract and concrete categories}
 \section{Duality}
-
 \subsection{Musing}
 How does one remember mono is is $gk = gl \implies k = l$ and vice versa?
 
@@ -111,7 +126,7 @@ How does one remember mono is is $gk = gl \implies k = l$ and vice versa?
 \question{Lemma 1.2.3} $f: x \to y$ is an isomorphism iff it defines a bijection $f_*: C(c, x) \to C(c, y)$.
 
 
-\beginproof[($f$ is iso $\implies$ post composition with $f$ induces bijection)]
+\proof[($f$ is iso $\implies$ post composition with $f$ induces bijection)]
 Let $f: x \to y$ be an isomorphism. Thus we have an inverse arrow $g: y \to x$ such that $fg = id_y$, $gf = id_x$.
 The map: $$C(c, x) \xrightarrow{f*} C(c, y): (\alpha: c \to x) \mapsto (f\alpha: c \to y)$$
 has a two sided inverse:
@@ -125,7 +140,7 @@ Hence we are done, as the iso induces a bijection of hom-sets.
 \qed
 
 
-\beginproof[(post-composition with $f$ is bijection implies $f$ is iso)]
+\proof[(post-composition with $f$ is bijection implies $f$ is iso)]
 We are given that the post composition by $f$, $f_*: C(c, x) \rightarrow C(c, y)$ is a bijection.
 We need to show that $f$ is an isomorphism, which means that there exists a function $g$ such that $fg = id_y$ and $gf = id_x$.
 Since post-composition is a bijection for all $c$, pick $c = y$. This tells us that the post-composition 
@@ -144,7 +159,7 @@ We also have that $f_*(id_x) = f id_x = f$. Since $f_*$ is a bijection, we have 
 $f \circ - : C(c, x) \rightarrow C(c, y)$ is a surjection.
 
 
-\beginproof[(split epi implies post composition is surjective)]
+\proof[(split epi implies post composition is surjective)]
 Let $f: e \rightarrow b$ be split epi, and thus possess a section $s: b \rightarrow e$ such that $fs = id_b$.
 We wish to show that post composition $C(c, e) \xrightarrow{f_*} C(c, b)$ is surjective.
 So pick any $g \in C(c, b)$. Define $sg \in C(c, e)$. See: $$f_*(sg) = fsg = (fs)g = id_b g = g$$.
@@ -152,7 +167,7 @@ Hence, for all $g \in C(c, b)$ there exists a pre-image under $f_*$, $sg \in C(c
 since every element of codomain has a pre-image. \qed
 
 
-\beginproof[(post composition is surjective implies split epi)]
+\proof[(post composition is surjective implies split epi)]
 Let $f: e \to b$ be a morphism such that for all $c \in C$, we have $C(c, e) \xrightarrow{f_*} C(c, b)$ is surjective.
 We need to show that there exists a morpshism $s: b \rightarrow e$ such that $fs = id_b$. Set $c = b$.
 This gives us a surjection $C(b, e) \xrightarrow{f_*} C(b, b)$. Pick an inverse image of $id_b \in C(b, b)$. 
@@ -163,7 +178,7 @@ we have that $f_*(s) = fs = id_b$. Thus means that we have found a function $s$ 
 \question{Q 1.2.iii:} Mono is closed under composition, and if $gf$ is monic then so is $f$.
 
 
-\beginproof[(Mono is closed under composition)]
+\proof[(Mono is closed under composition)]
 Let $f: x \to y, g: y \to z$ be monomorphisms (Recall that $f$ is a monomorphism iff for any $\alpha, \beta$, if $f \alpha = f \beta$ then $\alpha = \beta$).
 We are to show that $gf: x \to z$ is monic.
 Consider this diagram which shows that $gfk = gfl$ for arbitrary $k, l: a \to x$. We wish to show that $k=l$.
@@ -177,7 +192,7 @@ Since $g$ is mono, we can cancel it from $gfk = gfl$, giving us $fk = fl$.
 Since $f$ is mono, we can once again cancel it, giving us $k = l$ as desired.
 Hence, we are done.  \qed.
 
-\beginproof[(If $gf$ is monic then so is $f$)]
+\proof[(If $gf$ is monic then so is $f$)]
 Let us assume that $fk = fl$ for arbitrary $l$. We wish to show that $k = l$. We show this
 by applying $g$, giving us $fk = fl \implies gfk = gfl$. As $gf$ is monic, we can cancel, giving
 us $gfk = gfl \implies k = l$. 
@@ -185,7 +200,7 @@ us $gfk = gfl \implies k = l$.
 
 \question{Q 1.2.iv} What are monomorphisms in category of fields?
 
-\beginproof Claim: All morphisms are monomorphisms in the category of fields. Let $f: K \rightarrow L$ be an arbitrary field
+\proof{} Claim: All morphisms are monomorphisms in the category of fields. Let $f: K \rightarrow L$ be an arbitrary field
 morphism. Consider the kernel of $f$. It can either be $\{ 0 \}$ or $K$, since those are the only two
 ideals of $K$. However, the kernel can't be $K$, since that would send $1$ to $0$ which is an illegal ring map.
 Thus, the map $f$ has trivial kernel, therefore is an injection, is left-cancellable, is a monomorphism.\qed
@@ -193,12 +208,12 @@ Thus, the map $f$ has trivial kernel, therefore is an injection, is left-cancell
 
 \question{Q 1.2.v} Show that the ring map $i: \mathbb Z \rightarrow \mathbb Q$ is both monic and epic but not iso.
 
-\beginproof[$i$ is not iso]
+\proof[$i$ is not iso]
 No ring map $i: \mathbb Z \rightarrow \mathbb Q$ can be iso since the rings are different (eg. $\mathbb Q$ is a field). \qed
 
 
 
-\beginproof[$i$ is epic]
+\proof[$i$ is epic]
 To show that it's epic, we must show that given for arbitrary $f, g: \mathbb Q \rightarrow R$ that $fi = gi$:
 
 \begin{minted}{text}
@@ -217,18 +232,18 @@ which shows that $f(p/q) = g(p/q)$ for all $p, q$. Thus, we can extend a ring fu
 hence $fi = gi \implies f = g$ showing that $i$ is epic.
 \qed
 
-\beginproof[$i$ is monic]
+\proof[$i$ is monic]
 given two arbitrary maps $k, l: R \rightarrow \Z$, if $ik = il$ then we must have $k = l$. Given $ik = il$, since $i$
 is an injection of $\Z$ into $\Q$, we must have $k = $l.
 
 \question{Q 1.2.vi} Mono + split epi iff iso.
 
 
-\beginproof[Iso is mono + split epi]
+\proof[Iso is mono + split epi]
 Iso is both left and right cancellable. Hence it's mono and epi. It splits because the inverse of the iso splits it. \qed.
 
 
-\beginproof[mono + split epi is iso]
+\proof[mono + split epi is iso]
 Let $f: e \rightarrow b$ be mono (for all $k, l: p \to e$, $fk = fl \implies k = l$)
 and split epi (there exists $s: b \rightarrow e$ such that $fs: b \rightarrow b = id_b$.
 We need to show it's iso. That is, there exists a $g: b \rightarrow e$ such that $fg = id_b$ and $gf = id_e$.
@@ -242,7 +257,7 @@ since we have found a map $s$ such that $fs = id_b, sf = id_e$.
 
 
 \question{1.2.vii} Regarding a poset a category, define the supremum of a subcollection, such that the dual gives the infimum.
-\beginproof We regard an arrow $a \to b$ as witnessing that $a \leq b$. First define an upper bound of a set $O$
+\proof{}  We regard an arrow $a \to b$ as witnessing that $a \leq b$. First define an upper bound of a set $O$
 to be an object $u$ such that for all $o \in O$, we have $o \leq u$. Now, the supremum of $O$ is the least upper bound
 of $O$. That is, $s$ is a supremum iff $s$ is an upper bound, and for all other upper bounds $t$ of $O$, we have that $s \leq t$.
 So we draw a diagram showing upper bounds and suprema:
@@ -257,7 +272,7 @@ So we draw a diagram showing upper bounds and suprema:
 \question{Exercise 1.3.i}  What is a functor between groups, when regarded as one-object categories?
 
 
-\beginproof It's going to be a group homomorphism. Since, a functor preserves composition, we have that a
+\proof{} It's going to be a group homomorphism. Since, a functor preserves composition, we have that a
 functor $F: C \rightarrow D$ preserves the group structure; for elements of the group / isos $f, g \in Hom(G, G)$, 
 we have that the functor obeys $F(f \circ_G g) = (F f) \circ_H (F g)$, which is exactly the equation
 we need to preserve group structure. For example, since a functor preserves isomorphisms, an element of the group $f \in Hom(G, G)$
@@ -266,7 +281,7 @@ is mapped to an inverbile element $F(f) \in Hom(H, H)$. \qed
 
 \question{Exercise 1.3.ii}  What is a functor between preorders, regarded as a category?
 
-\beginproof Going to be a preorder morphism. I don't know what these are called; If we had a partial order, these
+\proof{}Going to be a preorder morphism. I don't know what these are called; If we had a partial order, these
 would be called monotone maps. Recall that $a \rightarrow b$ is the encoding of $a \leq b$  within the category.
 Suppose we have a functors between preorders (encoded as categories) $F: C \rightarrow D$. Since $F$ preserves
 identity arrows, and $a \leq a$ is encoded as $id_a$, we have that $F(a) \leq F(a)$ as:
@@ -281,7 +296,7 @@ preserves the preorder structure. Preservation of composition of arrows preserve
 
 \question{Exercise 1.3.iii} Objects and morphisms in the image of a functor $F: C \rightarrow D$ do not necessarily define a subcategory of $D$.
 
-\beginproof Recall that a morphism can \emph{smoosh} objects, thereby creating coalescing the domains and codomains
+\proof{} Recall that a morphism can \emph{smoosh} objects, thereby creating coalescing the domains and codomains
 of arrows that used to be disjoint. Concretely, consider the diagram:
 
 % https://q.uiver.app/?q=WzAsMTAsWzAsMCwiYSJdLFsxLDAsImIiXSxbMCwxLCJjIl0sWzEsMSwiZCJdLFszLDAsIngiXSxbMywxLCJ6Il0sWzQsMCwieSJdLFszLDIsIng6YSJdLFs0LDIsInk6YixjIl0sWzMsMywiejpkIl0sWzAsMSwiZiJdLFsyLDMsImciXSxbNCw1LCJnIFxcY2lyYyBmIiwyXSxbNiw1LCJsIl0sWzcsOCwiazpmIl0sWzcsOSwiZyBcXGNpcmMgZiIsMl0sWzgsOSwibDpnIl0sWzQsNiwiayJdXQ==
@@ -325,7 +340,7 @@ Now the image of the functor only has the arrows $k, l$, but not the composite $
 
 \question{Exercise 1.3.v} What is the difference between a functor $F: C^{op} \rightarrow D$ and a functor $F: C \rightarrow D^{op}$?
 
-\beginproof There is no difference. The functor $C^{op} \rightarrow D$ looks like:
+\proof{} There is no difference. The functor $C^{op} \rightarrow D$ looks like:
 % https://q.uiver.app/?q=WzAsNixbMSwwLCJiIl0sWzEsMSwiYSJdLFsyLDAsIkZhIl0sWzIsMSwiRmIiXSxbMCwwLCJhIl0sWzAsMSwiYiJdLFswLDJdLFsxLDNdLFswLDEsImZfe29wfSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6InNxdWlnZ2x5In19fV0sWzIsMywiRmZfe29wfSJdLFs0LDUsImYiLDJdXQ==
 \[\begin{tikzcd}
 	a & b & Fa \\
@@ -433,7 +448,7 @@ $codom$ will do the same thing, by stripping out the codomain of the comma inste
 \question{Exercise 1.3.vii} Define slice category as special case of the comma category.
 
 
-\beginproof To define the slice $C/c$ whose objects are of the form $d \rightarrow c$ for varying $d \in C$, we pick
+\proof{} To define the slice $C/c$ whose objects are of the form $d \rightarrow c$ for varying $d \in C$, we pick
 the category $D = C, E = C$, and functors $F : C \rightarrow C = id$, $G : C \rightarrow C = \delta_c$, that is, the constant functor
 which smooshes the entire $C$ category into the object $c \in C$ by mapping all objects to $c$ and all arrows to $id_{c}$.
 
@@ -447,6 +462,118 @@ Pick a category $C$ and an object $o \in C$. Build the constant functor $\delta_
 of every arrow $c \xrightarrow{a} c'$ is the identity arrow $id_o$ which is an iso. The arrow $a$ need not be iso. The functor
 $\delta_o$ does not reflect isos. \qed
 
-\question{Exercise 1.3.ix} For any group $G$, 
+\question{Exercise 1.3.ix} Consider the not-yet-functors $Grp \rightarrow Grp$ that sends a group to its center, comutator subgroup, and automorphism group.
+Are these functors if we limit the category $Grp$ to have (a) only isomorphisms? (b) only epimorphisms? (c) all homomorphisms?
 
+\proof[(isos)] If we have (a) only isomorphisms, then these are indeed functors, since an isomorphism $G \simeq H$
+implies that their group theoretic properties are identical. Thus, we will have
+$Z(G) \simeq Z(H)$, ie, isomorphic centers.
+Thus, an iso arrow $f: G \rightarrow H$ becomes an iso arrow
+$Z(f) : Z(G) \rightarrow Z(H)$. The exact same happens for commutator and automorphism. \qed
+
+\proof[(epis)] If we only have epimorphisms, we first invoke  given footnote 29, that all
+epis in Group are surjections. Thus, given an epi (surjection) $\phi: G \twoheadrightarrow H$, we
+identify $im(\phi) \simeq G/ker(\phi)$ or $H \simeq G/ker(\phi)$, since $H \simeq im(\phi)$ by $\phi$ being a surjection.
+So we can choose to study only quotient maps $\phi: G \rightarrow G/ker \phi$.
+
+For the center, consider the determinant map $|\cdot|: GL(2, \mathbb R) \rightarrow \mathbb R^\times$.
+This map is surjective since we can pick the matrix $\begin{bmatrix} 1 & 0 \\ 0 & r \end{bmatrix}$ to get all possible
+determinants  for arbitrary $r \in \mathbb R$. The center
+of the group of matrices is scalar multiples of the identity, thus $Z(GL(2, \mathbb R)) = \{ k I : k \in \mathbb R \}$.
+The center of the reals $Z(\mathbb R^\times)$ is the reals themselves since it's an abelian group. Now see
+that the determinant of a matrix $kI$ must be $k^2$, since we get two copies of $k$ along the diagonal. Thus, the image
+$\phi(Z(GL(2, \mathbb R))) = \{ k^2 : k \in \mathbb R \} = \mathbb R_{\geq 0}$ which is smaller than the center of the image,
+$Z(\phi(GL(2, \mathbb R))) = Z(\mathbb R^{\times}) = \mathbb R^\times$. Thus, \textbf{the center not functorial on epis}.
+
+\section{Natural Transformations}
+
+\subsection{Musing}
+\subsubsection{Torsion decomposition}
+
+Let $TA$ be the subgroup of $A$ that have finite order.
+
+\begin{itemize}
+\item The idea is to first show that any natural transformation of the identity functor $\eta: 1 \implies 1$ is multiplication by some $n \in \Z$
+(recall that every abelian group is a \Z-module, so this is a sensible thing to say).
+\item Let's study the component of $\eta$ at $\mathbb Z$.
+This means that we have an arrow at $1(\Z) \xrightarrow{\eta(id)} 1(\Z)$, which is $\Z \rightarrow{\eta(id)} \Z$ since identity functor
+leaves objects and arrow invariant. Any arrow $\Z \xrightarrow{\eta(id)} \Z$ is a multiplication by some natural number.
+\item Now consider a homomorphism $f: \Z \rightarrow A$. This is determined entirely by $f(1) \in A$, so any such map is 
+  the same as picking an element $a \in A$. 
+\item Let's now consider the isomorphism $A \epi A/TA \mono TA \oplus (A/TA) \simeq A$. If this isomorphism were natural,
+    then we would have a natural endomorphism of the identity functor $\alpha: 1 \rightarrow 1$.
+\item Let's observe $\alpha$ at $\mathbb Z$. We already know that such a transformation is given by $\Z \xrightarrow{\alpha} \Z$,
+    which is multiplication b a number $n \neq 0$ (can't be zero since we need an isomorphism).
+\item Now consider $C \equiv \Z/2n\Z$ where $n$ is the $\alpha$ scale factor. See that $T(\Z/2n\Z) = \Z/2n\Z$.
+    So we get the factoring as $\Z/2n\Z \epi 0 \mono \Z/2n\Z \oplus 0 \simeq \Z/2n\Z$. Since we factor through zero,
+    the full map is the zero map. However, we know from the natural transformation that the natural transformation 
+    must scale all elements by $n \neq 0$. So we break naturality
+\end{itemize}
+
+The big thing I don't understand in this is why we need to factor \emph{through} the epi. If I directly define
+$A \rightarrow (A/TA) \oplus TA$, given by the exact sequence $0 \mono TA \mono A \epi A/TA \epi 0$? Ah I see, this sequence
+need not always split. 
+
+
+\subsection{Exercises}
+
+\question{Exercise 1.4.i} Let $\alpha: F \nt G$ be a natural isomorphism. Show that the inverses of the components define a natural isomorphism $\inv\alpha: G \nt F$.
+
+\question{Exercise 1.4.ii} What is a natural transformation between a parallel pair of functors between groups regarded as one object categories?
+
+\proof{} Let $G, H$ be groups regarded as one object categories, so elements are arrows. A functor $F: G \rightarrow H$ is a group homomorphism. Two functors $F, F': G \rightarrow H$
+are two group homomorphisms. An natural transformation is a map $\eta: G \rightarrow H$ which for every (the only) object $*_G \in G$, assigns
+an arrow $\eta(*_G): F(*_G) \xrightarrow{\eta(*_G)} G(*_G)$ which is compatible with all arrows:
+
+% https://q.uiver.app/?q=WzAsNSxbMCwwLCJGKCopIFxcaW4gSCJdLFsxLDAsIkYnKCopIFxcaW4gSCJdLFswLDEsIkYoKikgXFxpbiBIIl0sWzEsMSwiRicoKikgXFxpbiBIIl0sWzEsMl0sWzAsMSwiXFxldGEoKikiXSxbMiwzLCJcXGV0YSgqKSJdLFswLDIsIkYoaCkiLDFdLFsxLDMsIkYnKGgpIiwxXV0=
+\[\begin{tikzcd}
+	{F(*_G) \in H} & {F'(*_G) \in H} \\
+	{F(*_G) \in H} & {F'(*_G) \in H} \\
+	& {}
+	\arrow["{\eta(*_G)}", from=1-1, to=1-2]
+	\arrow["{\eta(*_G)}", from=2-1, to=2-2]
+	\arrow["{F(g)}"{description}, from=1-1, to=2-1]
+	\arrow["{F'(g)}"{description}, from=1-2, to=2-2]
+\end{tikzcd}\]
+
+Simplifying the diagram by substituting $F(*) = F'(*) = *$, and setting $\alpha \equiv \eta(*G) \in Hom(*_H, *_H)$, we get:
+
+% https://q.uiver.app/?q=WzAsNSxbMCwwLCIqX0giXSxbMSwwLCIqX0giXSxbMCwxLCIqX0giXSxbMSwxLCIqX0giXSxbMSwyXSxbMCwxLCJcXGFscGhhIFxcZXF1aXYgXFxldGEoKl9HKSJdLFsyLDMsIlxcYWxwaGEgXFxlcXVpdiBcXGV0YSgqX0cpIiwyXSxbMSwzLCJGJyhoKSJdLFswLDIsIkYoaCkiLDJdXQ==
+\[\begin{tikzcd}
+	{*_H} & {*_H} \\
+	{*_H} & {*_H} \\
+	& {}
+	\arrow["{\alpha \equiv \eta(*_G)}", from=1-1, to=1-2]
+	\arrow["{\alpha \equiv \eta(*_G)}"', from=2-1, to=2-2]
+	\arrow["{F'(g)}", from=1-2, to=2-2]
+	\arrow["{F(g)}"', from=1-1, to=2-1]
+\end{tikzcd}\]
+
+So we are looking for an arrow (group element) $\alpha \in H$ such that for all $g \in G$, $F'(g) \cdot \alpha = \alpha \cdot F(g)$.
+On rearranging: $\alpha^{-1} \cdot F'(g) \cdot \alpha = F(g)$. So it gives a sort of  ``inner automorphism'' from $F$ to $F'$. \qed
+
+
+\question{Exercise 1.4.iii} What is a natural transformation between a parallel pair of functors between preorders regarded as categories?
+\proof We regard preorders as thin categories, where there is an most arrow from $p \rightarrow p'$ if $p \leq p'$. A functor from $(P, \leq)$ to $(Q, \leq)$
+is a monotone map. A pair of functors $F, G: P \rightarrow Q $ is a pair of monotone maps. A natural transformation $\eta: F \nt G$ makes for each $p \in $P
+the diagram commute:
+
+% https://q.uiver.app/?q=WzAsNixbMiwwLCJGKHApIl0sWzMsMCwiRyhwKSJdLFsyLDEsIkYocSkiXSxbMywxLCJHKHEpIl0sWzAsMCwicCJdLFswLDEsInEiXSxbMCwxLCJcXGV0YShwKSJdLFsyLDMsIlxcZXRhKHEpIl0sWzAsMiwiRihwPHEpIiwyXSxbMSwzLCJHKHAgPCBxKSJdLFs0LDUsInA8IHEiXV0=
+\[\begin{tikzcd}
+	p && {F(p)} & {G(p)} \\
+	p' && {F(p')} & {G(p')}
+	\arrow["{\eta(p)}", from=1-3, to=1-4]
+	\arrow["{\eta(p)}", from=2-3, to=2-4]
+	\arrow["{F(p<p')}"', from=1-3, to=2-3]
+	\arrow["{G(p < p')}", from=1-4, to=2-4]
+	\arrow["{p< p'}", from=1-1, to=2-1]
+\end{tikzcd}\]
+
+So, for every $p \leq p'$, the functor $F$ maps us to elements $F(p) \leq F(p')$, and $G$ maps us to elements $G(p) \leq G(p')$. The natural transformation $\eta$
+asks to witness an arrow $F(p) \xrightarrow{\eta(p)} G(p)$, which means that we must have $F(p) \leq G(p)$ within the category $Q$, and similarly for $p'$.
+Thus, it witnesses that $G$ is always \emph{above} $F$. For any element $p \in P$, we will always have $F(p) \leq G(p)$, in a way that is consistent with the
+monotonicity of $F, G$.
+
+
+\question{Exercise 1.4.iv} Prove that distinct parallel morphisms $f, g: c^\to_\to d$ define distinct natural transformations $f_*, g_*: C(-, c) \nt C(-, d)$ by pre-composition.
 \end{document}
