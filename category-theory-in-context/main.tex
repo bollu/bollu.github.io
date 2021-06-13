@@ -525,10 +525,13 @@ to be natural, it's not enough to have the same action on objects (clearly!)
 
 \subsubsection{Permutations and total orderings for unnatural isomorphism}
 
-Define the two functors $P: Set \rightarrow Set$ which takes a set to its set of permutations, and $T: Set \rightarrow Set$ which
-takes a set to its total orderings. 
+Consider a subcategory of $Set$ containing only bijections.  Define the functor
+$Perm: Set \rightarrow Set$ which takes a set $S$ to its set of permutations, where a permutation
+is a bijection $S \rightarrow S$, and the functor $Ord: Set \rightarrow Set$ which takes a set $S$ to its total orderings, where a total ordering
+is a bijection $\{1, 2, \dots |S|\} \rightarrow S$. We claim that there is no natural transformation between these two functors.
+To see why, let us study the situation on the smallest non-trivial case, a two element set $\{a, b\}$.
 
-With $id: [a \mapsto a; b \mapsto b]$, we get the commutative diagram:
+With the chosen arrow as $id: [a \mapsto a; b \mapsto b]$, we get the commutative diagram for the naturality square as:
 
 % https://q.uiver.app/?q=WzAsOCxbMCwxLCJbYSBcXG1hcHN0byBhOyBiIFxcbWFwc3RvIGJdIFthIFxcbWFwc3RvIGI7IGIgXFxtYXBzdG8gYV0iXSxbMCw0LCJbMSBcXG1hcHN0byBhOyAyIFxcbWFwc3RvIGJdWzEgXFxtYXBzdG8gYjsgMlxcbWFwc3RvIGFdIl0sWzUsMSwiW2EgXFxtYXBzdG8gYTsgYiBcXG1hcHN0byBiXSBbYSBcXG1hcHN0byBiOyBiIFxcbWFwc3RvIGFdIl0sWzAsMCwiaWRfQSBcXGVxdWl2W2EgXFxtYXBzdG8gYTsgYlxcbWFwc3RvIGJdIl0sWzUsNCwiWzEgXFxtYXBzdG8gYTsgMiBcXG1hcHN0byBiXVsxIFxcbWFwc3RvIGI7IDIgXFxtYXBzdG8gYV0iXSxbNSwzLCJbMVxcbWFwc3RvIGE7IDJcXG1hcHN0byBiXVsxIFxcbWFwc3RvIGI7IDIgXFxtYXBzdG8gYV0iXSxbMyw0XSxbNCw0XSxbMCwxLCJcXGV0YV9BIl0sWzIsNSwiXFxldGFfQSIsMl0sWzEsNCwiT3JkKGlkX0EpKGYpID1pZF9BIFxcY2lyYyBmID0gZiJdLFswLDIsIlBlcm0oaWRfQSkoZik9aWRfQSBcXGNpcmMgZiBcXGNpcmMgaWRfQV57LTF9ID0gZiIsMl0sWzUsNCwiXFx0ZXh0e2VxdWFsfSIsMl1d
 \[\begin{tikzcd}
@@ -544,7 +547,7 @@ With $id: [a \mapsto a; b \mapsto b]$, we get the commutative diagram:
 	\arrow["{\text{equal}}"', from=4-6, to=5-6]
 \end{tikzcd}\]
 
-While with $\sigma: [a \mapsto b; b \mapsto a]$ we get the commutative diagram:
+While with the chosen arrow as $\sigma: [a \mapsto b; b \mapsto a]$ we get the non-commuting diagram for the naturality square as:
 
 % https://q.uiver.app/?q=WzAsNixbMCwxLCJbYSBcXG1hcHN0byBhOyBiIFxcbWFwc3RvIGJdIFthIFxcbWFwc3RvIGI7IGIgXFxtYXBzdG8gYV0iXSxbMCw0LCJbMSBcXG1hcHN0byBhOyAyIFxcbWFwc3RvIGJdWzEgXFxtYXBzdG8gYjsgMlxcbWFwc3RvIGFdIl0sWzYsMSwiW2IgXFxtYXBzdG8gYjsgYSBcXG1hcHN0byBhXSBbYiBcXG1hcHN0byBhOyBhIFxcbWFwc3RvIGJdIl0sWzAsMCwiXFxzaWdtYSBcXGVxdWl2W2EgXFxtYXBzdG8gYjsgYlxcbWFwc3RvIGFdIl0sWzYsNCwiWzEgXFxtYXBzdG8gYjsgMiBcXG1hcHN0byBhXVsxIFxcbWFwc3RvIGE7IDIgXFxtYXBzdG8gYl0iXSxbNiwzLCJbMlxcbWFwc3RvIGI7IDEgXFxtYXBzdG8gYV1bMiBcXG1hcHN0byBhOyAxIFxcbWFwc3RvIGJdIl0sWzAsMSwiXFxldGFfQSJdLFswLDIsIlBlcm0oXFxzaWdtYSkoZikgPSBcXHNpZ21hIFxcY2lyYyBmIFxcY2lyYyBcXHNpZ21hXnstMX0iLDJdLFsxLDQsIk9yZChcXHNpZ21hKShmKSA9IFxcc2lnbWEgXFxjaXJjIGYiXSxbMiw1LCJcXGV0YV9BIiwyXSxbNSw0LCJcXHRleHR7bm90IGVxdWFsfSIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
 \[\begin{tikzcd}
@@ -559,6 +562,8 @@ While with $\sigma: [a \mapsto b; b \mapsto a]$ we get the commutative diagram:
 	\arrow["{\eta_A}"', from=2-7, to=4-7]
 	\arrow["{\text{not equal}}"', no head, from=4-7, to=5-7]
 \end{tikzcd}\]
+
+We see that we cannot define a single $\eta_A$ that works in both cases.
 
 
 \subsection{Exercises}
