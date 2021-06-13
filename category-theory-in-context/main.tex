@@ -519,6 +519,53 @@ need not always split.
 
 \question{Exercise 1.4.i} Let $\alpha: F \nt G$ be a natural isomorphism. Show that the inverses of the components define a natural isomorphism $\inv\alpha: G \nt F$.
 
+We need to show that the square with $?$ in it commutes, given the square on top:
+
+% https://q.uiver.app/?q=WzAsMTMsWzEsMCwiRngiXSxbMiwwLCJHeCJdLFsxLDEsIkZ5Il0sWzIsMSwiR3kiXSxbMCwwLCJ4Il0sWzAsMSwieSJdLFsyLDJdLFsxLDIsIkd4Il0sWzMsMiwiRngiXSxbMSw0LCJHeSJdLFszLDQsIkZ5Il0sWzIsMywiPyJdLFszLDNdLFswLDEsIlxcZXRhKHgpIl0sWzAsMiwiRmEiLDJdLFsyLDMsIlxcZXRhKHkpIiwyXSxbMSwzLCJHYSJdLFs0LDUsImEiLDJdLFs3LDksIkdhIiwyXSxbOCwxMCwiRmEiXSxbNyw4LCJcXGV0YV57LTF9KHgpIl0sWzksMTAsIlxcZXRhXnstMX0oeSkiLDJdXQ==
+\[\begin{tikzcd}
+	x & Fx & Gx \\
+	y & Fy & Gy \\
+	& Gx & {} & Fx \\
+	&& {?} & {} \\
+	& Gy && Fy
+	\arrow["{\eta(x)}", from=1-2, to=1-3]
+	\arrow["Fa"', from=1-2, to=2-2]
+	\arrow["{\eta(y)}"', from=2-2, to=2-3]
+	\arrow["Ga", from=1-3, to=2-3]
+	\arrow["a"', from=1-1, to=2-1]
+	\arrow["Ga"', from=3-2, to=5-2]
+	\arrow["Fa", from=3-4, to=5-4]
+	\arrow["{\eta^{-1}(x)}", from=3-2, to=3-4]
+	\arrow["{\eta^{-1}(y)}"', from=5-2, to=5-4]
+\end{tikzcd}\]
+
+From the square, we know that $Ga \circ \eta(x) = \eta(y) \circ Fa$. Using inverses, we derive:
+
+\begin{align*}
+&Ga \circ \eta(x) = \eta(y) \circ Fa \\
+&Ga \circ \eta(x) \circ \eta^{-1}(x) = \eta(y) \circ Fa \circ \eta^{-1}(x) \\
+&Ga \circ id_x = \eta(y) \circ Fa \circ \eta^{-1}(x) \\
+&Ga = \eta(y) \circ Fa \circ \eta^{-1}(x) \\
+&\eta^{-1}(y) \circ Ga = \eta^{-1}(y) \circ \eta(y) \circ Fa \circ \eta^{-1}(x) \\
+&\eta^{-1}(y) \circ Ga = id_y \circ Fa \circ \eta^{-1}(x) \\
+&\eta^{-1}(y) \circ Ga = Fa \circ \eta^{-1}(x) \\
+\end{align*}
+
+which is exactly the diagram:
+
+% https://q.uiver.app/?q=WzAsOSxbMywwXSxbMiwwLCJHeCJdLFs0LDAsIkZ4Il0sWzIsMiwiR3kiXSxbNCwyLCJGeSJdLFszLDEsIlxcZXRhXnstMX0oeSkgXFxjaXJjIEdhID0gRmEgXFxjaXJjIFxcZXRhXnstMX0oeCkiXSxbNCwxXSxbMCwwLCJ4Il0sWzAsMiwieSJdLFsxLDMsIkdhIiwyXSxbMiw0LCJGYSJdLFsxLDIsIlxcZXRhXnstMX0oeCkiXSxbMyw0LCJcXGV0YV57LTF9KHkpIiwyXSxbNyw4LCJhIiwyXV0=
+\[\begin{tikzcd}
+	x && Gx & {} & Fx \\
+	&&& {\eta^{-1}(y) \circ Ga = Fa \circ \eta^{-1}(x)} & {} \\
+	y && Gy && Fy
+	\arrow["Ga"', from=1-3, to=3-3]
+	\arrow["Fa", from=1-5, to=3-5]
+	\arrow["{\eta^{-1}(x)}", from=1-3, to=1-5]
+	\arrow["{\eta^{-1}(y)}"', from=3-3, to=3-5]
+	\arrow["a"', from=1-1, to=3-1]
+\end{tikzcd}\]
+
+
 \question{Exercise 1.4.ii} What is a natural transformation between a parallel pair of functors between groups regarded as one object categories?
 
 \proof{} Let $G, H$ be groups regarded as one object categories, so elements are arrows. A functor $F: G \rightarrow H$ is a group homomorphism. Two functors $F, F': G \rightarrow H$
@@ -657,4 +704,8 @@ clear, we compare the two diagrams:
 	\arrow["{\eta(k')}"', from=8-1, to=8-3]
 	\arrow["{\eta(k)}"{description}, from=6-1, to=6-3]
 \end{tikzcd}\]
+
+\question{Exercise 1.4.vi} Define extranatural transfrmations.
+
+
 \end{document}
