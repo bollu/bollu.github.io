@@ -1256,10 +1256,12 @@ void toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
   case TT::RawText: {
     strncpy(outs + outlen, raw_input + t->span.begin.si, t->span.nchars());
     outlen += t->span.nchars();
+    outs[outlen] = ' '; outlen++;
     return;
   }
 
   case TT::LineBreak: {
+    outs[outlen] = ' '; outlen++;
     return;
   }
 
