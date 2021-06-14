@@ -1,0 +1,141 @@
+% https://tex.stackexchange.com/questions/1050/whats-the-difference-between-newcommand-and-newcommand
+% https://dbfin.com/topology/munkres/chapter-1/supplementary-exercises-well-ordering/problem-2-solution/
+\documentclass{article}
+
+\usepackage{classicthesis}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\begin{document}
+\newcommand*{\Z}{\mathbb Z}
+\newcommand*{\start}[1]{\leavevmode\newline \textbf{#1} }
+\newcommand*{\question}[1]{\leavevmode\newline \textbf{Question #1.}}
+\newcommand*{\proof}[1]{\leavevmode\newline \textbf{Proof #1}}
+\newcommand*{\answer}{\leavevmode\newline \textbf{Answer} }
+\newcommand*{\qed}{\ensuremath{\blacksquare}}
+
+
+\section{Chapter 1}
+\section{1.9: Infinite sets and the axiom of choice}
+\subsection{Ex1}
+\question{} Define an injective map $f: \Z_+ \rightarrow X^\omega$ where $X$ is the two element set $\{0, 1\}$.
+\answer Define $f(n) \equiv 1^n 0^\omega$. This is an injection, we didn't need choice. \qed
+
+\subsection{Ex3}
+\question{} Let $A$ be a set and let $f[n] : \{1, \dots, n \} rightarrow A$ for $n \in \mathbb Z_+$ be an indexed family of injective functions. Can you define
+an injective function $f_n: \Z_+ \rightarrow A$ without choice?
+\answer TODO
+
+\subsection{Ex5}
+\question{} Use choice to show that every surjective $f: A \rightarrow B$ has a right inverse $h: B \rightarrow A$
+\answer Pick an element from each fiber $f^{-1}(b)$. Formally, build a function $\beta: B \rightarrow 2^A$, given by  $\beta(b) \equiv f{-1}(b)$. Since $f$ is surjective,
+$\beta(b)$ will be non-empty for all $b$. Now, a choice function of $\beta$ will give us the desired section $h$.
+
+\question{} Show that if $f: A \rightarrow B$ is injective and $A$ is not empty, then $f$ has a left inverse.
+
+\answer $A$ is not empty implies we know an element $a_* \in A$. For every element $b \in B$ if it has a (unique, since $f$ is injective) pre-image, then define
+$h(b)$ as the unique element $a_b \in A$ such that $f(a_b) = b$. Otherwise, we know that $b$ has no pre-image so define define $h(b) \equiv a_*$.
+
+\subsection{Ex 7}
+Let $A, B$ be two nonempty sets. If there an injection from $A$ to $B$ but no injection from $B$ to $A$ then $A$ is said to have greater cardinality than $B$.
+
+\question{b} Show that if $A$ has greater cardinality than $B$, $B$ has greater cardinality than $C$, then $A$ has greater cardinality than $C$.
+
+\answer This means that we have an injection $f: A \hookrightarrow B$, and $g: B \hookrightarrow C$ but no reverse injections. Suppose for
+contradiction that $A$ does not have greater cardinality tha $C$. So there exists an injection $h: C \rightarrow A$. By composing $h \circ g: B \rightarrow A$,
+I get an injection from $B$ to $A$ which contradicts the fact that $A$ has larger cardinality than $B$.
+
+\question{c} Find a sequence of sets $A[n]$ of infinite sets. where each set has greater cardinality than the last.
+
+\answer Set $A[1] \equiv \Z$. Set $A[n] = 2^{A[n-1]}$. Since there is no injection back from the powerset into the set, each set here has larger cardinality than the previous.
+
+\question{d} Find a set that for every $n$ has cardinality greater than $A[n]$.
+
+Define $\overline A \equiv \cup_i A[i]$. For a given $A[n]$, since $A[n] \subseteq \overline A$,
+we have an injection from $A[n]$ into $A$. Since 
+$A[n+1] \subseteq \overline A$we cannot have a reverse
+injection $\overline A \rightarrow A[n]$ since that would
+induce an injection $\overline A[n+1] = 2^{A[n]} \rightarrow A[n]$ which cannot be,
+
+
+
+\section{1.10: Well ordering}
+\start{Well Ordering definition} A set $S$ with a total $<$ is said to be well ordered if every subset of $S$ has a smallest element.
+\start{Well Ordering theorem} If $A$ is a set, then there exists an ordering relation on it that is a well ordering.
+\start{Well Ordering corollary} There exiss an uncountable well ordered set.
+\start{Section of a totally ordered set} The section of a set $S$ by element $\alpha$, denoted as $S_\alpha$ or $(S < \alpha)$ is the set of elements of $S$ that
+are smaller than $\alpha: S_\alpha \equiv \{ s \in S : s < \alpha \}$.
+
+\start{Minimal Uncountable well ordered set}
+Let $A$ be a set which is uncountable, with largest element $\Omega$, such that $A_\Omega$ is uncountable, but for all smaller elements $l \in A$, the section $A_l$ is countable.
+So, intuitively, it is only the section $A/\Omega$ which is unountable. Chopping off anything else makes this countable.
+
+
+\start{Theorem} A Minimal Uncountable well ordered set $\overline{S_\omega}$ exists.
+
+\proof{} Let $B$ be an uncountable well ordered set. If no section of $B$ is uncountable, then define $B' \equiv B \cup \{ \Omega \}$ for some element $\Omega$ which is
+stipulated as the greatest element. Thus, $B'$ is a minimal uncountable well ordered set: (1) the section $B'_\Omega = B$ is unountable, (2) $B$ has no uncountable section.
+
+Suppose $B$ has an unountable sections. Define $\Omega \equiv min \{ b \in B : B_b \text{is uncountable} \}$. $\Omega$ is the
+smallest element by whom a section is uncountabe. We claim that $B' \equiv \{ b \in B: b \leq \Omega \}$ is a minimal uncountable well ordered set.
+(1) $\Omega \in B'$ is the largest element of $B'$. (2) The section $B'_\Omega$ is uncountable by definition of $\Omega.$ (3) No other section $B'_x$ (for some $x \in B'$) is
+uncountable: $\Omega$ is the smallest element of $B$ such that the section is uncountable. As $x < \Omega$, the section $B'_x = B_x$ must be countable.
+The set $B' \equiv B_\omega \cup \{ \Omega \}$ is often denoted by $\overline{S_\Omega}$. \qed
+
+\start{Theorem: If $A$ is a countable subset of $S_\Omega$, then $A$ has an upper bound in $S_\Omega$}
+
+TODO
+
+\section{Supplementary exercises: Well ordering}
+
+
+\subsection{Maps between strict total ordes are faithful}
+
+
+start{Map between strict total orders:} A map between strict total orders is a function $f: X \rightarrow Y$
+such that $x < y$ implies $f(x) < f(y)$. This is far stronger than the related condition for total orders
+which states that $x \leq y$ implies $f(x) \leq f(y)$.  The philosophy is that
+any map between strict total orders can't compress anything, or lose any
+information about the domain. These next two lemmas will elucidate this.
+
+\start{Lemma 1:} Let $f: X \rightarrow Y$ be a monotone map of strict total orders. If $f(x) < f(y)$ then $x < y$
+\start{Proof:}. Suppose not. Then we have $f(x) < f(y)$ but not $(x < y)$, so $x \geq y$. But this implies  $f(x) \geq f(y)$
+by monotonicity which contradicts the hypothesis. \qed.
+
+\start{Lemma 2:} Let $f: X \rightarrow Y$ be a monotone map of total orders. If $f(x) = f(y)$ then $x = y$.
+\start{Proof:} Suppose for contradiction that $f(x) = f(y)$ while $x \neq y$.
+WLOG, suppose that $x < y$; All elements must be comparable, so there must be some ordering between $x$ and $y$.
+But this implies $f(x) < f(y)$ by monotonicity of $f$. Hence, contradiction. \qed
+
+Define $S(\alpha) \equiv \{ \beta \in \omega : \beta < \alpha \}$ as the section of a well ordered set $\omega$.
+
+% https://math.stackexchange.com/questions/3624066/munkres-topology-supplementary-exercises-chapter-1-question-2-a-showing-two-d
+\start{2(a)} Let $J$ and $E$ be well ordered sets, let $h: J \rightarrow E$. Show that the following is equivalent: (1) $h$ is order preserving and its image is $E$ or
+a section of $E$. (ii) $h(\alpha) = \text{smallest}(e - h(s_\alpha))$ for all $\alpha$.
+
+\start{(Hint)}
+We first need to show that $h$ being order preserving and its image being $E$ or a section of $E$ implies that 
+$h(S(\alpha))$ is a section of $E$. We will prove something stronger:
+that $h(S_\alpha) = S(h(\alpha))$ We will use transfinite induction to prove this.
+\begin{itemize}
+    \item (i) $h(S(\alpha)) \subset S(h(\alpha))$: Let $x \in h(S(\alpha))$, so $x = h(\beta)$ for some $\beta < \alpha$.
+        since $\beta < \alpha$ and $h$ is monotone, $h(\beta) < h(\alpha)$. As $x = h(\beta) < h(\alpha)$, $h(\beta) \in S(h(\alpha))$.
+        all $x \in h(S(\alpha))$ is also in $S(h(\alpha))$. Thus, $h(S(\alpha)) \subseteq S(h(\alpha))$.
+    \item $S(h(\alpha)) \subset h(S(\alpha))$: Let $y \in S(h(\alpha))$. This means that $y < h(\alpha)$. Since $h$ maps into a section of $E$,
+        and since something that is larger than $y$ is in the image of $h$, so too is $y$. Hence, there exists an $x$ such that $h(x) = y$.
+        So we have $h(x) < h(\alpha)$. Since $h$ is a map between total orders, we must have $x < \alpha$
+
+\end{itemize}
+
+\proof{(i) implies (ii)} Let $h$ be order preserving and its image be $E$ or a section of $E$. 
+\begin{itemize}
+\item Define successor of a subset of $S \subseteq E$ as $succ(S) \equiv \text{smallest}(E - S)$.
+\item We use transfinite induction. Let $J_0$ be the set of all $x \in J$ such that $h(x) = succ(h(S_x))$.
+\item Now suppose we are given some section $S_\beta \subseteq J_0$ for such that for all $b \in S_\beta$ $h(b) = succ(h(S_b))$. We must show
+that $\beta in J_0$, or that $h(\beta) = succ(h(S_\beta))$.
+\item Suppose this is not true. Let $c = succ(h(S_\beta))$ ($c$ for contradiction) and $c \neq h(\beta)$.
+\item Since $J$ is well ordered, we must have either $c < h(\beta)$ or $c > h(\beta)$.
+\item If $c = succ(h(S_\beta)) < h(\beta)$, 
+\end{itemize}
+
+
+\end{document}
