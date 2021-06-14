@@ -7,11 +7,11 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=cubicaltt-sharpening-thinking-about-indexed-functions href='#cubicaltt-sharpening-thinking-about-indexed-functions'> § </a><span class='centered'> CubicalTT: sharpening thinking about indexed functions</h2>
-<pre><code>-- | function from nat to nat defined by lambda abstraction
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=cubicaltt-sharpening-thinking-about-indexed-functions href='#cubicaltt-sharpening-thinking-about-indexed-functions'> § </a><span class='centered'> CubicalTT: sharpening thinking about indexed functions </h2> 
+ <pre><code>-- | function from nat to nat defined by lambda abstraction
 f1 : nat -> nat -> nat = \(b: nat) -> \(c : nat) ->  b
-</code></pre>
-<pre><code>-- | function from nat, nat -> nat defined by case analaysis
+</code></pre> 
+ <pre><code>-- | function from nat, nat -> nat defined by case analaysis
 f2 : nat -> nat -> nat =
   split
     zero -> split@(nat -> nat) with 
@@ -20,11 +20,11 @@ f2 : nat -> nat -> nat =
     suc a' -> split@(nat -> nat) with 
                 zero -> a'
                 suc b' -> b'
-</code></pre>
-<pre><code>-- | parametrized family of nats, defined by definition.
+</code></pre> 
+ <pre><code>-- | parametrized family of nats, defined by definition.
 g1 (b : nat) (c : nat) : nat = b
-</code></pre>
-<pre><code>-- | Family of nat parameterized by `(x: nat), `(y: nat)
+</code></pre> 
+ <pre><code>-- | Family of nat parameterized by `(x: nat), `(y: nat)
 -- | cannot split on parameters, can only split on fn.
 -- g2 (x : nat) (y : nat) : nat =
 --   split
@@ -34,5 +34,5 @@ g1 (b : nat) (c : nat) : nat = b
 --     suc a' -> split@(nat -> nat) with 
 --                 zero -> a'
 --                 suc b' -> b'
-</code></pre>
-<script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>
+</code></pre> 
+ <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

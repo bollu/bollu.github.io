@@ -7,15 +7,15 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=katex-in-duktape href='#katex-in-duktape'> § </a><span class='centered'> Katex in duktape</h2>
-<span class='centered'>Here's some code to use <code class='inline'>duktape</code>, a lightweight JavaScript interpreter
-<span class='centered'>to run <code class='inline'>katex</code> when implementing a custom static site generator [as I
-<span class='centered'>am doing for this website]. This seems to be <i><span class='centered'>way more lightweight</i>
-<span class='centered'>than relying on Node, since we don't need to pay for inter-procedure-calls.
-<span class='centered'>I haven't benchmarked my static site generator against others, but I would
-<span class='centered'>be surprised if it is much faster, since it is written entirely in C, and
-<span class='centered'>avoids anything 'expensive'.
-<pre><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"duktape.h"</span></span>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=katex-in-duktape href='#katex-in-duktape'> § </a><span class='centered'> Katex in duktape </h2> 
+ <span class='centered'>Here's some code to use  <code class='inline'>duktape</code>, a lightweight JavaScript interpreter 
+ <span class='centered'>to run  <code class='inline'>katex</code> when implementing a custom static site generator  [as I 
+ <span class='centered'>am doing for this website ]. This seems to be  <i><span class='centered'>way more lightweight </i>
+ <span class='centered'>than relying on Node, since we don't need to pay for inter-procedure-calls.  
+ <span class='centered'>I haven't benchmarked my static site generator against others, but I would 
+ <span class='centered'>be surprised if it is much faster, since it is written entirely in C, and 
+ <span class='centered'>avoids anything 'expensive'.  
+ <pre><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"duktape.h"</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;assert.h></span></span>
 <span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">long</span> ll<span class="token punctuation">;</span>
@@ -98,5 +98,5 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
  
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre>
-<script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>
+</code></pre> 
+ <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

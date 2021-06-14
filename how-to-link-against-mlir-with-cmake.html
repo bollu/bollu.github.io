@@ -7,16 +7,16 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=how-to-link-against-mlir-with-cmake href='#how-to-link-against-mlir-with-cmake'> § </a><span class='centered'> How to link against MLIR with CMake</h2>
-<span class='centered'>Since <code class='inline'>MLIR</code> hasn't setup the nice tooling that LLVM has around <code class='inline'>CMake</code>
-<span class='centered'>as far as I can tell, one needs to actually <i><span class='centered'>know</i> <code class='inline'>CMake</code> to link against
-<span class='centered'><code class='inline'>MLIR</code>. However, as is well known, <code class='inline'>CMake</code> incantations are handed down
-<span class='centered'>by preists who spend the better part of their lives studying the tome
-<span class='centered'>that is the CMake manual. I, an unlucky soul had to go on this adventure,
-<span class='centered'>and I hope to spare you the trouble.
-<span class='centered'>I wished to link against a static library build of MLIR. The secret
-<span class='centered'>lies in the <code class='inline'>find_library</code> call:
-<pre><code>#If the variable has been set by -DMLIR_INCLUDE_PATH, then keep it.
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=how-to-link-against-mlir-with-cmake href='#how-to-link-against-mlir-with-cmake'> § </a><span class='centered'> How to link against MLIR with CMake </h2> 
+ <span class='centered'>Since  <code class='inline'>MLIR</code> hasn't setup the nice tooling that LLVM has around  <code class='inline'>CMake</code>
+ <span class='centered'>as far as I can tell, one needs to actually  <i><span class='centered'>know </i>  <code class='inline'>CMake</code> to link against 
+ <span class='centered'><code class='inline'>MLIR</code>. However, as is well known,  <code class='inline'>CMake</code> incantations are handed down 
+ <span class='centered'>by preists who spend the better part of their lives studying the tome 
+ <span class='centered'>that is the CMake manual. I, an unlucky soul had to go on this adventure, 
+ <span class='centered'>and I hope to spare you the trouble.  
+ <span class='centered'>I wished to link against a static library build of MLIR. The secret 
+ <span class='centered'>lies in the  <code class='inline'>find_library</code> call:  
+ <pre><code>#If the variable has been set by -DMLIR_INCLUDE_PATH, then keep it.
 #Otherwise fallback to the environment variable $MLIR_INCLUDE_PATH.
 #if neither, then *shrug*.
 IF(NOT MLIR_INCLUDE_PATH)
@@ -29,12 +29,12 @@ endif()
 #- using the variable MLIR_INCLUDE_PATH which as we saw before
 ##  is either an environment variable or a cmake option
 target_include_directories(languagemodels PRIVATE ${MLIR_INCLUDE_PATH})
-</code></pre>
-<span class='centered'>I cribbed the actual things to link against from the path
-<span class='centered'><a href=https://github.com/llvm/llvm-project/blob/master/mlir/examples/toy/Ch2/CMakeLists.txt><span class='centered'><code class='inline'>mlir/examples/Toy/Ch2/CMakeLists.txt</code></a>
-<span class='centered'>which helpfully lists MLIR things it needs to link against.
-<span class='centered'>The full <code class='inline'>CMakeLists</code> is here:
-<pre><code>cmake_minimum_required(VERSION 3.5)
+</code></pre> 
+ <span class='centered'>I cribbed the actual things to link against from the path 
+ <span class='centered'><a href=https://github.com/llvm/llvm-project/blob/master/mlir/examples/toy/Ch2/CMakeLists.txt><span class='centered'><code class='inline'>mlir/examples/Toy/Ch2/CMakeLists.txt</code></a>
+ <span class='centered'>which helpfully lists MLIR things it needs to link against.  
+ <span class='centered'>The full  <code class='inline'>CMakeLists</code> is here:  
+ <pre><code>cmake_minimum_required(VERSION 3.5)
 project(languagemodels)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -77,5 +77,5 @@ target_link_libraries(languagemodels
         ${MLIRTransforms}
         ${LLVMCore}
         ${LLVMSupport})
-</code></pre>
-<script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>
+</code></pre> 
+ <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

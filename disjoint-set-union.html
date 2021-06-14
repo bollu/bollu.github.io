@@ -7,19 +7,19 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=disjoint-set-union href='#disjoint-set-union'> § </a><span class='centered'> Disjoint set union</h2>
-<h4><a id=intuition-for-correctness-of-rank href='#intuition-for-correctness-of-rank'> § </a><span class='centered'> intuition for correctness of <code class='inline'>rank</code>:</h4>
-<span class='centered'>Assume that we had to re-point pointers of all our children to the
-<span class='centered'>new root when we decide to make another node the root. That is,
-<span class='centered'>we would have:
-<pre><code>void mkroot(int newroot, int prevroot) {
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=disjoint-set-union href='#disjoint-set-union'> § </a><span class='centered'> Disjoint set union </h2> 
+ <h4><a id=intuition-for-correctness-of-rank href='#intuition-for-correctness-of-rank'> § </a><span class='centered'> intuition for correctness of  <code class='inline'>rank</code>: </h4> 
+ <span class='centered'>Assume that we had to re-point pointers of all our children to the 
+ <span class='centered'>new root when we decide to make another node the root. That is, 
+ <span class='centered'>we would have:  
+ <pre><code>void mkroot(int newroot, int prevroot) {
    for (int child : children[prevroot] {
         parent[child] = newroot;
    }
    parent[prevroot] = newroot];
    children[prevroot] = {}; // this has no children anymore
 }
-</code></pre>
-<ul><li><span class='centered'><span class='centered'> In this setting, we ought to make the <i><span class='centered'>smaller</i> subtree the <code class='inline'>prevroot</code><span class='centered'>and the <i><span class='centered'>larger</i> subtree the <code class='inline'>newroot</code>: It is better to loop over<span class='centered'>fewer children.</li></ul>
-<ul><li><span class='centered'><span class='centered'> When we perform the <code class='inline'>rank</code> based union, we are using the <i><span class='centered'>same heuristic</i>,<span class='centered'>even though we don't actually loop over all our children.</li></ul>
-<script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'> In this setting, we ought to make the  <i><span class='centered'>smaller </i> subtree the  <code class='inline'>prevroot</code><span class='centered'>and the  <i><span class='centered'>larger </i> subtree the  <code class='inline'>newroot</code>: It is better to loop over <span class='centered'>fewer children. </li></ul> 
+ <ul><li><span class='centered'><span class='centered'> When we perform the  <code class='inline'>rank</code> based union, we are using the  <i><span class='centered'>same heuristic </i>, <span class='centered'>even though we don't actually loop over all our children. </li></ul> 
+ <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

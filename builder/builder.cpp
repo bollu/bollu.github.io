@@ -529,7 +529,7 @@ T *tokenizeLineFragment(const char *s, const ll len, const L lbegin) {
   }
 }
 
-// consumes UPTO newline.
+// consumes INCLUDING newline.
 T *tokenizeInlineLine(const char *s, const ll len, const L lbegin) {
   Logger logger;
   logger.print(cerr);
@@ -538,6 +538,8 @@ T *tokenizeInlineLine(const char *s, const ll len, const L lbegin) {
   L lcur = lbegin;
   while (1) {
     if (s[lcur.si] == '\n') {
+      // consume newline.
+      lcur.si += 1;
       break;
     }
     T *t = tokenizeLineFragment(s, len, lcur);

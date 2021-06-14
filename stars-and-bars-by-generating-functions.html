@@ -7,41 +7,41 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=stars-and-bars-by-generating-functions href='#stars-and-bars-by-generating-functions'> § </a><span class='centered'> stars and bars by generating functions</h2>
-<span class='centered'>Say I have <code class='inline'>C</code> colors of objects, and <code class='inline'>S</code> slots to put these objects in. In
-<span class='centered'>how manys can I put objects into slots, without regard to order? For example,
-<span class='centered'>say we have 4 colors <code class='inline'>c, m, y, k</code> and <code class='inline'>2</code> slots <code class='inline'>_ _</code>. The number of colorings
-<span class='centered'>that I want to count is:
-<pre><code>cc cm cy ck
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=stars-and-bars-by-generating-functions href='#stars-and-bars-by-generating-functions'> § </a><span class='centered'> stars and bars by generating functions </h2> 
+ <span class='centered'>Say I have  <code class='inline'>C</code> colors of objects, and  <code class='inline'>S</code> slots to put these objects in. In 
+ <span class='centered'>how manys can I put objects into slots, without regard to order? For example, 
+ <span class='centered'>say we have 4 colors  <code class='inline'>c, m, y, k</code> and  <code class='inline'>2</code> slots  <code class='inline'>_ _</code>. The number of colorings 
+ <span class='centered'>that I want to count is:  
+ <pre><code>cc cm cy ck
 mc mm my mk
 yc ym yy yk
 kc km ky kk
-</code></pre>
-<span class='centered'>Everything coloring on the lower diagonal (say, <code class='inline'>mc</code>) is equivalent to one on
-<span class='centered'>the upper diagonal (<code class='inline'>cm</code>). So in total, there are 10 colorings:
-<pre><code>cc cm cy ck
+</code></pre> 
+ <span class='centered'>Everything coloring on the lower diagonal (say,  <code class='inline'>mc</code>) is equivalent to one on 
+ <span class='centered'>the upper diagonal ( <code class='inline'>cm</code>). So in total, there are 10 colorings:  
+ <pre><code>cc cm cy ck
 *  mm my mk
 *  *  yy yk
 *  *  *  kk
-</code></pre>
-<span class='centered'>One can solve this using stars-and-bars. Take the number of slots <code class='inline'>S</code> to be the
-<span class='centered'>number of stars. Take the number of colors <code class='inline'>C</code> to be the number of bars. The
-<span class='centered'>answer to the stars-and-basrs is the same as the coloring question.
-<span class='centered'>I don't like stars and bars for this, because it seems to force an ordering of
-<span class='centered'>the colors <code class='inline'>c1 < c2 < .. < cn</code>. [which bar cooresponds to which color]. Is
-<span class='centered'>there some way to not have to do this?
-<span class='centered'>Is there some other way to show the <code class='inline'>(n + k - 1)Ck</code> without imposing this
-<span class='centered'>ordering, or some other way to count this quantity?
-<span class='centered'>One other way you can look at this is using multinomial expansion, but its
-<span class='centered'>computation is slightly more involved. Its advantage is that it ignores
-<span class='centered'>ordering of the objects, which is what you desire.
-<span class='centered'>In this case, we represent each color as the polynomial 1 + x + x^2, here the
-<span class='centered'>power of x represents the number of instances you are taking of that color. 
-<span class='centered'>So, if you take (1 + x + x^2)^4, you have found the number of ways to arrange
-<span class='centered'>four colors, for different numbers of slots. If you take coefficient of x^2
-<span class='centered'>from that polynomial, you get the answer to your question 
-<span class='centered'>Why does this set of shady manipulations not work?
-<pre><code>answer = coeff. of x^2 in (1 + x + x^2)^4
+</code></pre> 
+ <span class='centered'>One can solve this using stars-and-bars. Take the number of slots  <code class='inline'>S</code> to be the 
+ <span class='centered'>number of stars. Take the number of colors  <code class='inline'>C</code> to be the number of bars. The 
+ <span class='centered'>answer to the stars-and-basrs is the same as the coloring question.  
+ <span class='centered'>I don't like stars and bars for this, because it seems to force an ordering of 
+ <span class='centered'>the colors  <code class='inline'>c1 < c2 < .. < cn</code>.  [which bar cooresponds to which color ]. Is 
+ <span class='centered'>there some way to not have to do this?  
+ <span class='centered'>Is there some other way to show the  <code class='inline'>(n + k - 1)Ck</code> without imposing this 
+ <span class='centered'>ordering, or some other way to count this quantity?  
+ <span class='centered'>One other way you can look at this is using multinomial expansion, but its 
+ <span class='centered'>computation is slightly more involved. Its advantage is that it ignores 
+ <span class='centered'>ordering of the objects, which is what you desire.  
+ <span class='centered'>In this case, we represent each color as the polynomial 1 + x + x^2, here the 
+ <span class='centered'>power of x represents the number of instances you are taking of that color.   
+ <span class='centered'>So, if you take (1 + x + x^2)^4, you have found the number of ways to arrange 
+ <span class='centered'>four colors, for different numbers of slots. If you take coefficient of x^2 
+ <span class='centered'>from that polynomial, you get the answer to your question   
+ <span class='centered'>Why does this set of shady manipulations not work?  
+ <pre><code>answer = coeff. of x^2 in (1 + x + x^2)^4
 [We can add higher powers, won't change coeff of x^2]
 answer = coeff. of x^2 in (1 + x + x^2 + x^3)^4
 answer = coeff. of x^2 in (1 + x + x^2 + ...)^4
@@ -55,14 +55,14 @@ f(x) =taylor= f(0) + f'(x) x + f''(0) x^2/2 + f'''(0) x^3 / 6 + ...
 so:
 
 answer = coeff. of x^2 in ... + (1/(1-x)^4)''(0) x^2/2 + ...
-</code></pre>
-<span class='centered'>Now compute <code class='inline'>(1/(1-x)^4)''</code> evaluated at <code class='inline'>0</code> and divide
-<span class='centered'>by <code class='inline'>2</code>. This gives:
-<pre><code>(1/(1-x)^4)'' (0)
+</code></pre> 
+ <span class='centered'>Now compute  <code class='inline'>(1/(1-x)^4)''</code> evaluated at  <code class='inline'>0</code> and divide 
+ <span class='centered'>by  <code class='inline'>2</code>. This gives:  
+ <pre><code>(1/(1-x)^4)'' (0)
 = (-4/(1-x)^5)' (0)
 = (20/(1-x)^6) (0)
 = (20/(1-0)^6)
 = (20)
-</code></pre>
-<span class='centered'>so we get the answer as <code class='inline'>answer = 20/2! = 10</code>. 
-<script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>
+</code></pre> 
+ <span class='centered'>so we get the answer as  <code class='inline'>answer = 20/2! = 10</code>.   
+ <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

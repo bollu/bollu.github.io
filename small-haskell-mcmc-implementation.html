@@ -7,15 +7,15 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=small-haskell-mcmc-implementation href='#small-haskell-mcmc-implementation'> § </a><span class='centered'> Small Haskell MCMC implementation</h2>
-<span class='centered'>We create a simple monad called <code class='inline'>PL</code> which allows for a single operation: sampling
-<span class='centered'>from a uniform distribution. We then exploit this to implement MCMC using metropolis hastings,
-<span class='centered'>which is used to sample from arbitrary distributions. Bonus is a small library to render sparklines
-<span class='centered'>in the CLI.
-<span class='centered'>For next time:
-<ul><li><span class='centered'><span class='centered'> Using applicative to speed up computations by exploiting parallelism</li><li><span class='centered'><span class='centered'> Conditioning of a distribution wrt a variable</li></ul>
-<h4><a id=source-code href='#source-code'> § </a><span class='centered'> Source code</h4>
-<pre><code><span class="token comment">{-# LANGUAGE GeneralizedNewtypeDeriving #-}</span>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=small-haskell-mcmc-implementation href='#small-haskell-mcmc-implementation'> § </a><span class='centered'> Small Haskell MCMC implementation </h2> 
+ <span class='centered'>We create a simple monad called  <code class='inline'>PL</code> which allows for a single operation: sampling 
+ <span class='centered'>from a uniform distribution. We then exploit this to implement MCMC using metropolis hastings, 
+ <span class='centered'>which is used to sample from arbitrary distributions. Bonus is a small library to render sparklines 
+ <span class='centered'>in the CLI.  
+ <span class='centered'>For next time:  
+ <ul><li><span class='centered'><span class='centered'> Using applicative to speed up computations by exploiting parallelism </li><li><span class='centered'><span class='centered'> Conditioning of a distribution wrt a variable </li></ul> 
+ <h4><a id=source-code href='#source-code'> § </a><span class='centered'> Source code </h4>
+ <pre><code><span class="token comment">{-# LANGUAGE GeneralizedNewtypeDeriving #-}</span>
 <span class="token comment">{-# LANGUAGE GADTs #-}</span>
 <span class="token comment">{-# LANGUAGE StandaloneDeriving #-}</span>
 <span class="token comment">{-# LANGUAGE FlexibleContexts #-}</span>
@@ -265,9 +265,9 @@ instance (Bounded a, Enum a) => MCMC a where
     <span class="token builtin">putStrLn</span> <span class="token operator">$</span> <span class="token string">"sampling from x^4 with finite support"</span>
     <span class="token keyword">let</span> <span class="token punctuation">(</span><span class="token hvariable">mcmcsamples</span><span class="token punctuation">,</span> <span class="token hvariable">_</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token hvariable">samples</span> <span class="token number">1000</span> <span class="token hvariable">g</span> <span class="token punctuation">(</span><span class="token hvariable">mhD</span> <span class="token operator">$</span>  <span class="token hvariable">polyD</span> <span class="token number">4</span><span class="token punctuation">)</span>
     <span class="token hvariable">printHistogram</span> <span class="token hvariable">mcmcsamples</span>
-</code></pre>
-<h4><a id=output href='#output'> § </a><span class='centered'> Output</h4>
-<pre><code>***bias: 1.0e-2
+</code></pre> 
+ <h4><a id=output href='#output'> § </a><span class='centered'> Output </h4> 
+ <pre><code>***bias: 1.0e-2
    samples: ________________________________________█_█________
 ***bias: 0.99
    samples: ███████████████████████████████████████████████████
@@ -282,5 +282,5 @@ __▁▄█▅▂▁___
 sampling from x^4 with finite support
 ▁▁▃▃▃▄▅▆▇█_
 
-</code></pre>
-<script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>
+</code></pre> 
+ <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

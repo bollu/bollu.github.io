@@ -7,15 +7,15 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=arguments-for-little-endian href='#arguments-for-little-endian'> § </a><span class='centered'> Arguments for little endian</h2>
-<span class='centered'>Say we wish to store <code class='inline'><MSB> 100 200 300 400 <LSB></code>. In little endian, this would be
-<span class='centered'>stored as:
-<pre><code>ix:   0   1   2   3
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=arguments-for-little-endian href='#arguments-for-little-endian'> § </a><span class='centered'> Arguments for little endian </h2>
+ <span class='centered'>Say we wish to store  <code class='inline'><MSB> 100 200 300 400 <LSB></code>. In little endian, this would be 
+ <span class='centered'>stored as:  
+ <pre><code>ix:   0   1   2   3
 val:  400 300 200 100
-</code></pre>
-<span class='centered'>An interesting theory for why this is good is if we want to treat this 4-bit
-<span class='centered'>data as 1-bit data, we want the subarray <code class='inline'>[400]</code>. It's easier to <i><span class='centered'>directly</i>
-<span class='centered'>acess in little endian as just <code class='inline'>data[0]</code>, instead of in big endian where
-<span class='centered'>it would be <code class='inline'>data[3]</code>. So, storing stuff backwards makes it easier to chop off
-<span class='centered'>the LSBs data, since that's the <i><span class='centered'>suffix</i>. 
-<script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>
+</code></pre> 
+ <span class='centered'>An interesting theory for why this is good is if we want to treat this 4-bit 
+ <span class='centered'>data as 1-bit data, we want the subarray  <code class='inline'>[400]</code>. It's easier to  <i><span class='centered'>directly </i>
+ <span class='centered'>acess in little endian as just  <code class='inline'>data[0]</code>, instead of in big endian where 
+ <span class='centered'>it would be  <code class='inline'>data[3]</code>. So, storing stuff backwards makes it easier to chop off 
+ <span class='centered'>the LSBs data, since that's the  <i><span class='centered'>suffix </i>.   
+ <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

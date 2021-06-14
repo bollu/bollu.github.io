@@ -7,14 +7,14 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020 href='#incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020'> § </a><span class='centered'> Incunabulum for the 21st century: Making the J interpreter compile in 2020</h2>
-<span class='centered'>This is me trying to understand the fabled interpreter of the <code class='inline'>J</code> language
-<span class='centered'>working, so I could absorb Arthur Whitney's style of writing C: it's
-<span class='centered'>cryptic, short, and fits in a page. <a href=https://code.jsoftware.com/wiki/Essays/Incunabulum><span class='centered'>I learnt of this from the <code class='inline'>J</code> language page</a>,
-<span class='centered'>which comes with the quote:
-<blockquote><span class='centered'> One summer weekend in 1989, Arthur Whitney visited Ken Iverson at Kiln Farm<span class='centered'> and produced—on one page and in one afternoon—an interpreter fragment on the<span class='centered'> AT&T 3B1 computer. I studied this interpreter for about a week for its<span class='centered'> organization and programming style; and on Sunday, August 27, 1989, at about<span class='centered'> four o'clock in the afternoon, wrote the first line of code that became the<span class='centered'> implementation described in this document.<span class='centered'> Arthur's one-page interpreter fragment is as follows:</blockquote>
-<h4><a id=the-original-source href='#the-original-source'> § </a><span class='centered'> The original source</h4>
-<pre><code><span class="token keyword">typedef</span> <span class="token keyword">char</span> C<span class="token punctuation">;</span><span class="token keyword">typedef</span> <span class="token keyword">long</span> I<span class="token punctuation">;</span>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020 href='#incunabulum-for-the-21st-century-making-the-j-interpreter-compile-in-2020'> § </a><span class='centered'> Incunabulum for the 21st century: Making the J interpreter compile in 2020 </h2> 
+ <span class='centered'>This is me trying to understand the fabled interpreter of the  <code class='inline'>J</code> language 
+ <span class='centered'>working, so I could absorb Arthur Whitney's style of writing C: it's 
+ <span class='centered'>cryptic, short, and fits in a page.  <a href=https://code.jsoftware.com/wiki/Essays/Incunabulum><span class='centered'>I learnt of this from the  <code class='inline'>J</code> language page </a>, 
+ <span class='centered'>which comes with the quote:  
+ <blockquote><span class='centered'> One summer weekend in 1989, Arthur Whitney visited Ken Iverson at Kiln Farm <span class='centered'> and produced—on one page and in one afternoon—an interpreter fragment on the <span class='centered'> AT&T 3B1 computer. I studied this interpreter for about a week for its <span class='centered'> organization and programming style; and on Sunday, August 27, 1989, at about <span class='centered'> four o'clock in the afternoon, wrote the first line of code that became the <span class='centered'> implementation described in this document. <span class='centered'> Arthur's one-page interpreter fragment is as follows: </blockquote> 
+ <h4><a id=the-original-source href='#the-original-source'> § </a><span class='centered'> The original source </h4> 
+ <pre><code><span class="token keyword">typedef</span> <span class="token keyword">char</span> C<span class="token punctuation">;</span><span class="token keyword">typedef</span> <span class="token keyword">long</span> I<span class="token punctuation">;</span>
 <span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token class-name">a</span><span class="token punctuation">{</span>I t<span class="token punctuation">,</span>r<span class="token punctuation">,</span>d<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>p<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token operator">*</span>A<span class="token punctuation">;</span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token expression">P printf</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token expression">R <span class="token keyword">return</span></span></span>
@@ -56,15 +56,15 @@ I <span class="token operator">*</span><span class="token function">wd</span><sp
  <span class="token function">DO</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span>e<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">(</span>a<span class="token operator">=</span><span class="token function">noun</span><span class="token punctuation">(</span>c<span class="token operator">=</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">?</span>a<span class="token operator">:</span><span class="token punctuation">(</span>a<span class="token operator">=</span><span class="token function">verb</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">?</span>a<span class="token operator">:</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>e<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>R e<span class="token punctuation">;</span><span class="token punctuation">}</span>
 
 <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>C s<span class="token punctuation">[</span><span class="token number">99</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">while</span><span class="token punctuation">(</span><span class="token function">gets</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token function">pr</span><span class="token punctuation">(</span><span class="token function">ex</span><span class="token punctuation">(</span><span class="token function">wd</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
-</code></pre>
-<span class='centered'>It's a lot to take in --- it's quite breathtaking really, the way it all
-<span class='centered'>hangs together in one page.
-<h4><a id=the-attempt-to-get-it-run href='#the-attempt-to-get-it-run'> § </a><span class='centered'> The attempt to get it run</h4>
-<span class='centered'>Unfortunately, this does not work if we try to get it to run in 2020. I decided
-<span class='centered'>to read the code and understand what would happen. I managed to read enough
-<span class='centered'>to understand that the code <code class='inline'>a=~3</code> ought to create an array with values <code class='inline'>[0 1 2]</code>.
-<span class='centered'>On attempting to <i><span class='centered'>run</i> this however, we get:
-<pre><code>$ gcc -O0 -g -std=c89 -fsanitize=address -fsanitize=undefined incunabulum.c -o bin/incunabulum && ./bin/incunabulum
+</code></pre> 
+ <span class='centered'>It's a lot to take in --- it's quite breathtaking really, the way it all 
+ <span class='centered'>hangs together in one page.  
+ <h4><a id=the-attempt-to-get-it-run href='#the-attempt-to-get-it-run'> § </a><span class='centered'> The attempt to get it run </h4> 
+ <span class='centered'>Unfortunately, this does not work if we try to get it to run in 2020. I decided 
+ <span class='centered'>to read the code and understand what would happen. I managed to read enough 
+ <span class='centered'>to understand that the code  <code class='inline'>a=~3</code> ought to create an array with values  <code class='inline'>[0 1 2]</code>. 
+ <span class='centered'>On attempting to  <i><span class='centered'>run </i> this however, we get:  
+ <pre><code>$ gcc -O0 -g -std=c89 -fsanitize=address -fsanitize=undefined incunabulum.c -o bin/incunabulum && ./bin/incunabulum
 ...
 (many many GCC warnings elided)
 ...
@@ -81,12 +81,12 @@ WRITE of size 8 at 0x60300000eff0 thread T0
 SUMMARY: AddressSanitizer: heap-buffer-overflow /home/bollu/work/w/incunabulum.c:40 wd
 ...
 ==23726==ABORTING
-</code></pre>
-<span class='centered'>oops! The code uses a lot of punning between <code class='inline'>int</code>
-<span class='centered'>and <code class='inline'>int*</code>. These assumptions break now that we're in 64-bit. The patch to
-<span class='centered'>get this to work is:
-<h4><a id=the-patch href='#the-patch'> § </a><span class='centered'> the patch</h4>
-<pre><code>diff --git a/incunabulum.c b/incunabulum.c
+</code></pre> 
+ <span class='centered'>oops! The code uses a lot of punning between  <code class='inline'>int</code>
+ <span class='centered'>and  <code class='inline'>int*</code>. These assumptions break now that we're in 64-bit. The patch to 
+ <span class='centered'>get this to work is:  
+ <h4><a id=the-patch href='#the-patch'> § </a><span class='centered'> the patch </h4> 
+ <pre><code>diff --git a/incunabulum.c b/incunabulum.c
 index 2cae744..778e35a 100644
 <span class="token coord">--- a/incunabulum.c</span>
 <span class="token coord">+++ b/incunabulum.c</span>
@@ -117,27 +117,27 @@ index 2cae744..778e35a 100644
 </span></span>
 <span class="token unchanged"><span class="token prefix unchanged"> </span><span class="token line">main(){C s[99];while(gets(s))pr(ex(wd(s)));}
 </span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">
-</span></span></code></pre>
-<h4><a id=it-runs href='#it-runs'> § </a><span class='centered'> It runs!</h4>
-<span class='centered'>After applying the patch, we manage to get the interpreter to run!
-<pre><code>./bin/incunabulum
+</span></span></code></pre> 
+ <h4><a id=it-runs href='#it-runs'> § </a><span class='centered'> It runs! </h4> 
+ <span class='centered'>After applying the patch, we manage to get the interpreter to run!  
+ <pre><code>./bin/incunabulum
 a=~3
 3
 0 1 2
-</code></pre>
-<h4><a id=the-lock-screen href='#the-lock-screen'> § </a><span class='centered'> The lock screen</h4>
-<span class='centered'>I liked it so much that I took a screenshot and made it my lock screen.
-<span class='centered'><img src="./static/screenshot-j-incunabulum.png">
-<h4><a id=thoughts href='#thoughts'> § </a><span class='centered'> Thoughts</h4>
-<span class='centered'>I'm really fascinated by the code. I loved I could simply stare the screenshot
-<span class='centered'>to absorb the code. There was no scrolling involved.  The variables are
-<span class='centered'>well-named (to the extent I understand the code), and it's clearly extremely
-<span class='centered'>well thought out. If there's someone who understands some of the thorny
-<span class='centered'>aspects of the code:
-<ul><li><span class='centered'><span class='centered'> What is the <code class='inline'>t</code> variable really tracking?</li><li><span class='centered'><span class='centered'> How does one create a multi-dimensional array easily?</li><li><span class='centered'><span class='centered'> What are some interesting programs one can run with this mini-interpreter?</li></ul>
-<span class='centered'>I'd be really glad to know the details. Please leave 
-<span class='centered'><a href=https://github.com/bollu/bollu.github.io/issues/new><span class='centered'>an issue or a pull request against the repo</a>.
-<span class='centered'>I'm going write a dissection of the code once I fully understand it, since I
-<span class='centered'>couldn't find explanaing the code on the internet.
-<span class='centered'>Until then, enjoy the monolith of code!
-<script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>
+</code></pre> 
+ <h4><a id=the-lock-screen href='#the-lock-screen'> § </a><span class='centered'> The lock screen </h4> 
+ <span class='centered'>I liked it so much that I took a screenshot and made it my lock screen.  
+ <span class='centered'><img src="./static/screenshot-j-incunabulum.png">  
+ <h4><a id=thoughts href='#thoughts'> § </a><span class='centered'> Thoughts </h4> 
+ <span class='centered'>I'm really fascinated by the code. I loved I could simply stare the screenshot 
+ <span class='centered'>to absorb the code. There was no scrolling involved.  The variables are 
+ <span class='centered'>well-named (to the extent I understand the code), and it's clearly extremely 
+ <span class='centered'>well thought out. If there's someone who understands some of the thorny 
+ <span class='centered'>aspects of the code:  
+ <ul><li><span class='centered'><span class='centered'> What is the  <code class='inline'>t</code> variable really tracking? </li><li><span class='centered'><span class='centered'> How does one create a multi-dimensional array easily? </li><li><span class='centered'><span class='centered'> What are some interesting programs one can run with this mini-interpreter? </li></ul> 
+ <span class='centered'>I'd be really glad to know the details. Please leave  
+ <span class='centered'><a href=https://github.com/bollu/bollu.github.io/issues/new><span class='centered'>an issue or a pull request against the repo </a>.  
+ <span class='centered'>I'm going write a dissection of the code once I fully understand it, since I 
+ <span class='centered'>couldn't find explanaing the code on the internet.  
+ <span class='centered'>Until then, enjoy the monolith of code!  
+ <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

@@ -7,12 +7,12 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=nan-punning-storing-integers-in-doubles-in-javascript href='#nan-punning-storing-integers-in-doubles-in-javascript'> § </a><span class='centered'> NaN punning: Storing integers in doubles in JavaScript</h2>
-<span class='centered'>This is a technique that allows us to store data inside a <code class='inline'>double</code> by
-<span class='centered'>punning the value of a <code class='inline'>NaN</code>. This is used inside javascript engines
-<span class='centered'>to represent all possible user types as a single NaN.
-<span class='centered'><a href=https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Internals><span class='centered'>This is well explained at the SpiderMonkey internals page</a>
-<pre><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;assert.h></span></span>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=nan-punning-storing-integers-in-doubles-in-javascript href='#nan-punning-storing-integers-in-doubles-in-javascript'> § </a><span class='centered'> NaN punning: Storing integers in doubles in JavaScript </h2> 
+ <span class='centered'>This is a technique that allows us to store data inside a  <code class='inline'>double</code> by 
+ <span class='centered'>punning the value of a  <code class='inline'>NaN</code>. This is used inside javascript engines 
+ <span class='centered'>to represent all possible user types as a single NaN. 
+ <span class='centered'><a href=https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Internals><span class='centered'>This is well explained at the SpiderMonkey internals page </a> 
+ <pre><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;assert.h></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;limits></span></span>
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
@@ -124,5 +124,5 @@ ostream <span class="token operator">&amp;</span><span class="token keyword">ope
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre>
-<script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>
+</code></pre> 
+ <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

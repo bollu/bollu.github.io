@@ -1,3 +1,4 @@
+- [Higher dimensional rewriting](http://hdra.gforge.inria.fr/)
 - Threshold concept: 
 > “A threshold concept can be considered as akin to a portal, opening up a
 > new and previously inaccessible way of thinking about something. It

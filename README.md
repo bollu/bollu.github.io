@@ -31768,3 +31768,4 @@ informally, which tends to make speeches loose narrative cohesion. Throw in a
 few more than you would ordinarily think to do. ("Another example of this...",
 "This is why...", "Furthermore...", etc etc.).
 
+Use `for little c in big C` to say things like `for c ∈ C`

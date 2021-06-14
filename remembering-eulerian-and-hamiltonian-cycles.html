@@ -7,15 +7,15 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=remembering-eulerian-and-hamiltonian-cycles href='#remembering-eulerian-and-hamiltonian-cycles'> § </a><span class='centered'> Remembering Eulerian and Hamiltonian cycles</h2>
-<span class='centered'>I used to keep forgetting the difference. Here's how I remember it now. 
-<span class='centered'>We know that an <i><span class='centered'>euler tour</i> always exists for a tree. Indeed, it's
-<span class='centered'>a <a href=https://en.wikipedia.org/wiki/Euler_tour_technique><span class='centered'>handy data structure</a> 
-<span class='centered'>that can be used to convet LCA (lowest common ancestor) into RMQ(range minimum query).
-<span class='centered'>So, the "Euler tour" must exist for a tree. See that when we perform a tour
-<span class='centered'>on the tree, we <i><span class='centered'><i><span class='centered'>definitely</i></i> walk a vertex twice (once when entering, once when
-<span class='centered'>exiting). It seems like we walk the (undirected) edges twice as well.
-<span class='centered'>However, if we consider the edges as <i><span class='centered'><i><span class='centered'>directed edges</i></i>, then we're only walking
-<span class='centered'>the edges once. 
-<ul><li><span class='centered'><span class='centered'> So an euler tour must correspond to a tour where we walk over each edge<span class='centered'>exactly once.</li><li><span class='centered'><span class='centered'> A hamiltonian tour must (by complementarity) correspond to a tour where we<span class='centered'>over each vertex exactly once.</li></ul>
-<script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=remembering-eulerian-and-hamiltonian-cycles href='#remembering-eulerian-and-hamiltonian-cycles'> § </a><span class='centered'> Remembering Eulerian and Hamiltonian cycles </h2> 
+ <span class='centered'>I used to keep forgetting the difference. Here's how I remember it now.  
+ <span class='centered'>We know that an  <i><span class='centered'>euler tour </i> always exists for a tree. Indeed, it's 
+ <span class='centered'>a  <a href=https://en.wikipedia.org/wiki/Euler_tour_technique><span class='centered'>handy data structure </a>  
+ <span class='centered'>that can be used to convet LCA (lowest common ancestor) into RMQ(range minimum query).  
+ <span class='centered'>So, the "Euler tour" must exist for a tree. See that when we perform a tour 
+ <span class='centered'>on the tree, we  <i><span class='centered'><i><span class='centered'>definitely </i></i> walk a vertex twice (once when entering, once when 
+ <span class='centered'>exiting). It seems like we walk the (undirected) edges twice as well. 
+ <span class='centered'>However, if we consider the edges as  <i><span class='centered'><i><span class='centered'>directed edges </i></i>, then we're only walking 
+ <span class='centered'>the edges once.   
+ <ul><li><span class='centered'><span class='centered'> So an euler tour must correspond to a tour where we walk over each edge <span class='centered'>exactly once. </li><li><span class='centered'><span class='centered'> A hamiltonian tour must (by complementarity) correspond to a tour where we <span class='centered'>over each vertex exactly once. </li></ul> 
+ <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

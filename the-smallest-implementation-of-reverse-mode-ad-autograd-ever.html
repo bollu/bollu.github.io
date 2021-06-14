@@ -7,8 +7,8 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=the-smallest-implementation-of-reverse-mode-ad-autograd-ever href='#the-smallest-implementation-of-reverse-mode-ad-autograd-ever'> § </a><span class='centered'> The smallest implementation of reverse mode AD (autograd) ever:</h2>
-<pre><code><span class="token comment">{-# LANGUAGE GeneralizedNewtypeDeriving #-}</span>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=the-smallest-implementation-of-reverse-mode-ad-autograd-ever href='#the-smallest-implementation-of-reverse-mode-ad-autograd-ever'> § </a><span class='centered'> The smallest implementation of reverse mode AD (autograd) ever: </h2> 
+ <pre><code><span class="token comment">{-# LANGUAGE GeneralizedNewtypeDeriving #-}</span>
 <span class="token import-statement"><span class="token keyword">import</span> <span class="token keyword">qualified</span> Data.Map.Strict <span class="token keyword">as</span> M</span>
 
 <span class="token comment">-- | This file can be copy-pasted and will run!</span>
@@ -96,7 +96,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
   <span class="token builtin">putStrLn</span> <span class="token operator">$</span> <span class="token builtin">show</span> <span class="token hvariable">e</span>
   <span class="token builtin">putStrLn</span> <span class="token operator">$</span> <span class="token builtin">show</span> <span class="token operator">$</span> <span class="token hvariable">de</span> <span class="token operator">!@</span> <span class="token hvariable">xsq_plus_10_plus_y</span> <span class="token operator">$</span> <span class="token string">"x"</span>
   <span class="token builtin">putStrLn</span> <span class="token operator">$</span> <span class="token builtin">show</span> <span class="token operator">$</span> <span class="token hvariable">de</span> <span class="token operator">!@</span> <span class="token hvariable">xsq_plus_10_plus_y</span> <span class="token operator">$</span> <span class="token string">"y"</span>
-</code></pre>
-<span class='centered'>Yeah, in ~80 lines of code, you can basically build an autograd engine. Isn't
-<span class='centered'>haskell so rad?
-<script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>
+</code></pre> 
+ <span class='centered'>Yeah, in ~80 lines of code, you can basically build an autograd engine. Isn't 
+ <span class='centered'>haskell so rad?  
+ <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

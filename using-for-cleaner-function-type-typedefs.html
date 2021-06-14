@@ -7,19 +7,19 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=using-for-cleaner-function-type-typedefs href='#using-for-cleaner-function-type-typedefs'> § </a><span class='centered'> <code class='inline'>using</code> for cleaner function type typedefs</h2>
-<span class='centered'>I've always struggled with remembering the syntax for function type typedefs:
-<pre><code><span class="token keyword">typedef</span> <span class="token function">RETTY</span> <span class="token punctuation">(</span><span class="token operator">*</span>FNTYNAME<span class="token punctuation">)</span><span class="token punctuation">(</span>ARGTY1<span class="token punctuation">,</span> ARGTY2<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">,</span> ARGTYn<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<span class='centered'>we can now use <code class='inline'>using</code> for a far more pleasant syntax:
-<pre><code><span class="token keyword">using</span> FNTYNAME <span class="token operator">=</span> <span class="token function">RETTY</span><span class="token punctuation">(</span>ARGTY1<span class="token punctuation">,</span> ARGTY2<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">,</span> ARGTYn<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<span class='centered'>which is also intuitive. You write down the "type"
-<span class='centered'>on the right hand side, and give it a name on the left.
-<span class='centered'>This is not strictly the same, since the <code class='inline'>typedef</code>
-<span class='centered'><code class='inline'>typedefs</code> <code class='inline'>FNTYNAME</code> to a <i><span class='centered'>function pointer type</i>, while
-<span class='centered'>the C++ version typedefs the <i><span class='centered'>function type</i>. I prefer
-<span class='centered'>the latter at any rate, since I dislike the fact
-<span class='centered'>that the usual typedef tends to hide the fact that a
-<span class='centered'>function pointer is some pointer-like-thing.
-<script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=using-for-cleaner-function-type-typedefs href='#using-for-cleaner-function-type-typedefs'> § </a><span class='centered'>  <code class='inline'>using</code> for cleaner function type typedefs </h2> 
+ <span class='centered'>I've always struggled with remembering the syntax for function type typedefs:  
+ <pre><code><span class="token keyword">typedef</span> <span class="token function">RETTY</span> <span class="token punctuation">(</span><span class="token operator">*</span>FNTYNAME<span class="token punctuation">)</span><span class="token punctuation">(</span>ARGTY1<span class="token punctuation">,</span> ARGTY2<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">,</span> ARGTYn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> 
+ <span class='centered'>we can now use  <code class='inline'>using</code> for a far more pleasant syntax:  
+ <pre><code><span class="token keyword">using</span> FNTYNAME <span class="token operator">=</span> <span class="token function">RETTY</span><span class="token punctuation">(</span>ARGTY1<span class="token punctuation">,</span> ARGTY2<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">,</span> ARGTYn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> 
+ <span class='centered'>which is also intuitive. You write down the "type" 
+ <span class='centered'>on the right hand side, and give it a name on the left.  
+ <span class='centered'>This is not strictly the same, since the  <code class='inline'>typedef</code>
+ <span class='centered'><code class='inline'>typedefs</code>  <code class='inline'>FNTYNAME</code> to a  <i><span class='centered'>function pointer type </i>, while 
+ <span class='centered'>the C++ version typedefs the  <i><span class='centered'>function type </i>. I prefer 
+ <span class='centered'>the latter at any rate, since I dislike the fact 
+ <span class='centered'>that the usual typedef tends to hide the fact that a 
+ <span class='centered'>function pointer is some pointer-like-thing.  
+ <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

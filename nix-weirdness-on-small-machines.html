@@ -7,8 +7,8 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=nix-weirdness-on-small-machines href='#nix-weirdness-on-small-machines'> § </a><span class='centered'> Nix weirdness on small machines</h2>
-<pre><code>floobits@pixel-druid:~$ nix-env -iA nixpkgs.hello                                                                                    
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=nix-weirdness-on-small-machines href='#nix-weirdness-on-small-machines'> § </a><span class='centered'> Nix weirdness on small machines </h2> 
+ <pre><code>floobits@pixel-druid:~$ nix-env -iA nixpkgs.hello                                                                                    
 + nix-env -iA nixpkgs.hello                                                                                                          
 installing 'hello-2.10'                                                                                                              
 these paths will be fetched (0.04 MiB download, 0.20 MiB unpacked):                                                                  
@@ -56,9 +56,9 @@ created 43 symlinks in user environment
 [LWP 21466 exited]                                                                                                                   
 [Inferior 1 (process 21462) exited normally]                                                                                         
 (gdb) run                                                                                                                            
-</code></pre>
-<h4><a id=all-nix-subcommands-are-just-symlinks href='#all-nix-subcommands-are-just-symlinks'> § </a><span class='centered'> All nix subcommands are just symlinks</h4>
-<pre><code>floobits@pixel-druid:~/idfk/nix-master$ ls -al /nix/store/4vz8sh9ngx34ivi0bw5hlycxdhvy5hvz-nix-2.3.7/bin/                            
+</code></pre> 
+ <h4><a id=all-nix-subcommands-are-just-symlinks href='#all-nix-subcommands-are-just-symlinks'> § </a><span class='centered'> All nix subcommands are just symlinks </h4> 
+ <pre><code>floobits@pixel-druid:~/idfk/nix-master$ ls -al /nix/store/4vz8sh9ngx34ivi0bw5hlycxdhvy5hvz-nix-2.3.7/bin/                            
 total 1784                                                                                                                           
 dr-xr-xr-x 2 floobits bollu    4096 Jan  1  1970 .                                                                                   
 dr-xr-xr-x 9 floobits bollu    4096 Jan  1  1970 ..                                                                                  
@@ -74,10 +74,10 @@ lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-instantiate -> nix
 lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-prefetch-url -> nix                                                             
 lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-shell -> nix                                                                    
 lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-store -> nix                                                                    
-</code></pre>
-<span class='centered'>It seems the way this works is that the <code class='inline'>nix</code> tool figures out from what
-<span class='centered'><i><span class='centered'>symlink</i> it's being invoked to decide what to do. God, that's ugly? brilliant?
-<span class='centered'>I don't even know.
-<h4><a id=how-does-writefile-work href='#how-does-writefile-work'> § </a><span class='centered'> How does <code class='inline'>writeFile</code> work?</h4>
-<ul><li><span class='centered'><span class='centered'> <code class='inline'>cowsay</code> in nixpkgs</li><li><span class='centered'><span class='centered'> <code class='inline'>writeFile</code> in nixpkgs</li><li><span class='centered'><span class='centered'> <code class='inline'>runCommand'</code> in nixpkgs</li><li><span class='centered'><span class='centered'> <code class='inline'>mkDerivation</code> in nixpkgs</li><li><span class='centered'><span class='centered'> <code class='inline'>derivation</code> in nixpkgs</li><li><span class='centered'><span class='centered'> <code class='inline'>src/libexpr/primops/derivation.nix</code> in nixos</li><li><span class='centered'><span class='centered'> <code class='inline'>prim_derivationStrict</code> in nixos c++</li><li><span class='centered'><span class='centered'> <code class='inline'>derivationArg</code> in nixos c++</li><li><span class='centered'><span class='centered'> <code class='inline'>writeDerivation</code> in nixos c++</li></ul>
-<script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>
+</code></pre> 
+ <span class='centered'>It seems the way this works is that the  <code class='inline'>nix</code> tool figures out from what 
+ <span class='centered'><i><span class='centered'>symlink </i> it's being invoked to decide what to do. God, that's ugly? brilliant? 
+ <span class='centered'>I don't even know.  
+ <h4><a id=how-does-writefile-work href='#how-does-writefile-work'> § </a><span class='centered'> How does  <code class='inline'>writeFile</code> work? </h4> 
+ <ul><li><span class='centered'><span class='centered'>  <code class='inline'>cowsay</code> in nixpkgs </li><li><span class='centered'><span class='centered'>  <code class='inline'>writeFile</code> in nixpkgs </li><li><span class='centered'><span class='centered'>  <code class='inline'>runCommand'</code> in nixpkgs </li><li><span class='centered'><span class='centered'>  <code class='inline'>mkDerivation</code> in nixpkgs </li><li><span class='centered'><span class='centered'>  <code class='inline'>derivation</code> in nixpkgs </li><li><span class='centered'><span class='centered'>  <code class='inline'>src/libexpr/primops/derivation.nix</code> in nixos </li><li><span class='centered'><span class='centered'>  <code class='inline'>prim_derivationStrict</code> in nixos c++ </li><li><span class='centered'><span class='centered'>  <code class='inline'>derivationArg</code> in nixos c++ </li><li><span class='centered'><span class='centered'>  <code class='inline'>writeDerivation</code> in nixos c++ </li></ul> 
+ <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

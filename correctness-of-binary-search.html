@@ -7,9 +7,9 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=correctness-of-binary-search href='#correctness-of-binary-search'> § </a><span class='centered'> Correctness of binary search</h2>
-<h4><a id=closed-closed-intervals href='#closed-closed-intervals'> § </a><span class='centered'> Closed-closed intervals</h4>
-<pre><code><span class="token comment">// search in interval [l, r] for value `val`</span>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=correctness-of-binary-search href='#correctness-of-binary-search'> § </a><span class='centered'> Correctness of binary search </h2> 
+ <h4><a id=closed-closed-intervals href='#closed-closed-intervals'> § </a><span class='centered'> Closed-closed intervals </h4> 
+ <pre><code><span class="token comment">// search in interval [l, r] for value `val`</span>
 <span class="token keyword">int</span> <span class="token function">binsearch</span><span class="token punctuation">(</span><span class="token keyword">int</span> l<span class="token punctuation">,</span> <span class="token keyword">int</span> r<span class="token punctuation">,</span> <span class="token keyword">int</span> val<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span>xs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">if</span> <span class="token punctuation">(</span>l <span class="token operator">==</span> r<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> l<span class="token punctuation">;</span> <span class="token punctuation">}</span>
   <span class="token keyword">int</span> mid <span class="token operator">=</span> <span class="token punctuation">(</span>l<span class="token operator">+</span>r<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
@@ -19,15 +19,15 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
     <span class="token keyword">return</span> <span class="token function">binsearch</span><span class="token punctuation">(</span>mid<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> r<span class="token punctuation">,</span> val<span class="token punctuation">,</span> xs<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre>
-<span class='centered'>We have <code class='inline'>(l <= mid < r)</code> since floor division of the form <code class='inline'>(l+r)/2</code>
-<span class='centered'>will pull values "downward". The length of the interval <code class='inline'>[l, mid]</code> is smaller
-<span class='centered'>than the interval <code class='inline'>[l, r]</code> as <code class='inline'>mid < r</code>. The length of the interval
-<span class='centered'><code class='inline'>[mid+1, r]</code> is smaller than the interval <code class='inline'>[l, r]</code> as <code class='inline'>l < mid+1</code>. We
-<span class='centered'>are monotonically decreasing on the quantity "length of interval", and terminate
-<span class='centered'>the recursion when the length is zero.
-<h4><a id=closed-open-intervals href='#closed-open-intervals'> § </a><span class='centered'> Closed-open intervals</h4>
-<pre><code><span class="token comment">// search in interval [l, r) for value `val`</span>
+</code></pre> 
+ <span class='centered'>We have  <code class='inline'>(l <= mid < r)</code> since floor division of the form  <code class='inline'>(l+r)/2</code>
+ <span class='centered'>will pull values "downward". The length of the interval  <code class='inline'>[l, mid]</code> is smaller 
+ <span class='centered'>than the interval  <code class='inline'>[l, r]</code> as  <code class='inline'>mid < r</code>. The length of the interval 
+ <span class='centered'><code class='inline'>[mid+1, r]</code> is smaller than the interval  <code class='inline'>[l, r]</code> as  <code class='inline'>l < mid+1</code>. We 
+ <span class='centered'>are monotonically decreasing on the quantity "length of interval", and terminate 
+ <span class='centered'>the recursion when the length is zero.  
+ <h4><a id=closed-open-intervals href='#closed-open-intervals'> § </a><span class='centered'> Closed-open intervals </h4> 
+ <pre><code><span class="token comment">// search in interval [l, r) for value `val`</span>
 <span class="token keyword">int</span> <span class="token function">binsearch</span><span class="token punctuation">(</span><span class="token keyword">int</span> l<span class="token punctuation">,</span> <span class="token keyword">int</span> r<span class="token punctuation">,</span> <span class="token keyword">int</span> val<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span>xs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token comment">// [l, l+1) = { l }</span>
   <span class="token keyword">if</span> <span class="token punctuation">(</span>r <span class="token operator">==</span> l <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> l<span class="token punctuation">;</span> <span class="token punctuation">}</span>
@@ -38,12 +38,12 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
     <span class="token keyword">return</span> <span class="token function">binsearch</span><span class="token punctuation">(</span>mid<span class="token punctuation">,</span> r<span class="token punctuation">,</span> val<span class="token punctuation">,</span> xs<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre>
-<span class='centered'>We have <code class='inline'>(l <= mid < r)</code> since floor division of the form <code class='inline'>(l+r)/2</code>
-<span class='centered'>will pull values "downward". Furthermore, if <code class='inline'>r = l + 1</code> we end the
-<span class='centered'>recursion. Thus, we are guaranteed that we will have that <code class='inline'>r >= l + 2</code>.
-<span class='centered'>Hence, <code class='inline'>mid = (l+r)/2 >= (l + l + 2)/2 >= l + 1</code>. Thus, we have that:
-<span class='centered'><code class='inline'>l</code> is to the left of <code class='inline'>mid=l+1</code> is to the left of <code class='inline'>r>=l+2</code>. So the
-<span class='centered'>intervals <code class='inline'>[l, mid)</code> and <code class='inline'>[mid, r)</code> will be smaller, as we cleanly "separate"
-<span class='centered'>out <code class='inline'>l</code>, <code class='inline'>mid</code>, and <code class='inline'>r</code>.
-<script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>
+</code></pre> 
+ <span class='centered'>We have  <code class='inline'>(l <= mid < r)</code> since floor division of the form  <code class='inline'>(l+r)/2</code>
+ <span class='centered'>will pull values "downward". Furthermore, if  <code class='inline'>r = l + 1</code> we end the 
+ <span class='centered'>recursion. Thus, we are guaranteed that we will have that  <code class='inline'>r >= l + 2</code>. 
+ <span class='centered'>Hence,  <code class='inline'>mid = (l+r)/2 >= (l + l + 2)/2 >= l + 1</code>. Thus, we have that: 
+ <span class='centered'><code class='inline'>l</code> is to the left of  <code class='inline'>mid=l+1</code> is to the left of  <code class='inline'>r>=l+2</code>. So the 
+ <span class='centered'>intervals  <code class='inline'>[l, mid)</code> and  <code class='inline'>[mid, r)</code> will be smaller, as we cleanly "separate" 
+ <span class='centered'>out  <code class='inline'>l</code>,  <code class='inline'>mid</code>, and  <code class='inline'>r</code>.  
+ <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

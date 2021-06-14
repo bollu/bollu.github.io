@@ -7,31 +7,31 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=strongly-connected-components-via-kosarajus-algorithm href='#strongly-connected-components-via-kosarajus-algorithm'> § </a><span class='centered'> Strongly Connected Components via Kosaraju's algorithm</h2>
-<span class='centered'>We know that a directed graph can be written as two-levels, a top-level dag,
-<span class='centered'>with each node in the DAG being a condensation of the original graph. So 
-<span class='centered'>we wish to discover the DAG, and then each condensation. We wish to
-<span class='centered'>view Kosaraju's algorithm as a "stronger topological sort" that works
-<span class='centered'>for general graphs, and not just DAGs.
-<h4><a id=step-1-discover-the-treedag href='#step-1-discover-the-treedag'> § </a><span class='centered'> Step 1: Discover the tree/DAG</h4>
-<span class='centered'>Run a bog standard DFS on the graph and record entry and exit times,
-<span class='centered'>because that tell us everything we need to know about the DFS. Let's decide
-<span class='centered'>what to keep and throw away next.
-<h4><a id=step-2-think href='#step-2-think'> § </a><span class='centered'> Step 2: Think</h4>
-<span class='centered'>If we had a DAG, then we would be done; We sort the nodes according
-<span class='centered'>to descending order of exit times, and we get the topological order
-<span class='centered'>of the DAG. However, this is incorrect for our purposes, as this
-<span class='centered'>only gives us the components if we don't have cycles.
-<h4><a id=step-3-mix-in-cycle-detectionsingle-ssc href='#step-3-mix-in-cycle-detectionsingle-ssc'> § </a><span class='centered'> Step 3: Mix in cycle detection/single SSC</h4>
-<span class='centered'>Pick the first node according the topological sort heurstic --- the node
-<span class='centered'>that's earliest according to exit time. We now need to discover cycles.
-<span class='centered'>Recall that we built the DAG according to DFS order, so if we run a DFS
-<span class='centered'>again, we'll get the entire subtree in the DAG! Rather, we want the
-<span class='centered'>"anti DFS": whatever can reach the 'root' of the 'DAG'. To find this,
-<span class='centered'>we reverse the DAG and find the component reachable from here.
-<h4><a id=sccs-as-adjunction href='#sccs-as-adjunction'> § </a><span class='centered'> SCC's as adjunction</h4>
-<span class='centered'>I learnt this from Benjamin Pierce's  "Category theory for computer scientists":
-<blockquote><span class='centered'> The strong components of a graph themselves form an acyclic graph<span class='centered'> that is a quotient of the original graph-that is, each node corresponds<span class='centered'> to an equivalence class of strongly connected nodes in the original. The<span class='centered'> mapping taking a graph to the acyclic graph of its strongly connected<span class='centered'> components may be expressed as a left adjoint to the inclusion functor<span class='centered'> from AcyclicGraph to Graph</blockquote>
-<h4><a id=references href='#references'> § </a><span class='centered'> References</h4>
-<ul><li><span class='centered'><span class='centered'> <a href=https://www.cs.cornell.edu/courses/cs410/1998su/Lectures/lect24.txt><span class='centered'>CS Cornell lecture notes</a></li></ul>
-<script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=strongly-connected-components-via-kosarajus-algorithm href='#strongly-connected-components-via-kosarajus-algorithm'> § </a><span class='centered'> Strongly Connected Components via Kosaraju's algorithm </h2> 
+ <span class='centered'>We know that a directed graph can be written as two-levels, a top-level dag, 
+ <span class='centered'>with each node in the DAG being a condensation of the original graph. So  
+ <span class='centered'>we wish to discover the DAG, and then each condensation. We wish to 
+ <span class='centered'>view Kosaraju's algorithm as a "stronger topological sort" that works 
+ <span class='centered'>for general graphs, and not just DAGs.  
+ <h4><a id=step-1-discover-the-treedag href='#step-1-discover-the-treedag'> § </a><span class='centered'> Step 1: Discover the tree/DAG </h4> 
+ <span class='centered'>Run a bog standard DFS on the graph and record entry and exit times, 
+ <span class='centered'>because that tell us everything we need to know about the DFS. Let's decide 
+ <span class='centered'>what to keep and throw away next.  
+ <h4><a id=step-2-think href='#step-2-think'> § </a><span class='centered'> Step 2: Think </h4> 
+ <span class='centered'>If we had a DAG, then we would be done; We sort the nodes according 
+ <span class='centered'>to descending order of exit times, and we get the topological order 
+ <span class='centered'>of the DAG. However, this is incorrect for our purposes, as this 
+ <span class='centered'>only gives us the components if we don't have cycles.  
+ <h4><a id=step-3-mix-in-cycle-detectionsingle-ssc href='#step-3-mix-in-cycle-detectionsingle-ssc'> § </a><span class='centered'> Step 3: Mix in cycle detection/single SSC </h4> 
+ <span class='centered'>Pick the first node according the topological sort heurstic --- the node 
+ <span class='centered'>that's earliest according to exit time. We now need to discover cycles. 
+ <span class='centered'>Recall that we built the DAG according to DFS order, so if we run a DFS 
+ <span class='centered'>again, we'll get the entire subtree in the DAG! Rather, we want the 
+ <span class='centered'>"anti DFS": whatever can reach the 'root' of the 'DAG'. To find this, 
+ <span class='centered'>we reverse the DAG and find the component reachable from here.  
+ <h4><a id=sccs-as-adjunction href='#sccs-as-adjunction'> § </a><span class='centered'> SCC's as adjunction </h4>
+ <span class='centered'>I learnt this from Benjamin Pierce's  "Category theory for computer scientists":  
+ <blockquote><span class='centered'> The strong components of a graph themselves form an acyclic graph <span class='centered'> that is a quotient of the original graph-that is, each node corresponds <span class='centered'> to an equivalence class of strongly connected nodes in the original. The <span class='centered'> mapping taking a graph to the acyclic graph of its strongly connected <span class='centered'> components may be expressed as a left adjoint to the inclusion functor <span class='centered'> from AcyclicGraph to Graph </blockquote> 
+ <h4><a id=references href='#references'> § </a><span class='centered'> References </h4>
+ <ul><li><span class='centered'><span class='centered'>  <a href=https://www.cs.cornell.edu/courses/cs410/1998su/Lectures/lect24.txt><span class='centered'>CS Cornell lecture notes </a></li></ul> 
+ <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

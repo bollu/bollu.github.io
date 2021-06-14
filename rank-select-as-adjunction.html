@@ -7,13 +7,13 @@ a:active { color: #1a73e8; text-decoration: none; }
 
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
-pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=rank-select-as-adjunction href='#rank-select-as-adjunction'> § </a><span class='centered'> Rank-select as adjunction</h2>
-<span class='centered'>We will introduce two operations <code class='inline'>rank</code>, <code class='inline'>select</code>, --- these are used to
-<span class='centered'>build memory-efficient data structures that can still be queried quickly.
-<span class='centered'>We will show how <code class='inline'>rank</code> and <code class='inline'>select</code> are adjoint. This will also us to also
-<span class='centered'>consider <code class='inline'>coselect</code>, which is a variation of <code class='inline'>select</code> that is not commonly
-<span class='centered'>discussed.
-<pre><code><span class="token comment">{-# LANGUAGE GeneralizedNewtypeDeriving #-}</span>
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=rank-select-as-adjunction href='#rank-select-as-adjunction'> § </a><span class='centered'> Rank-select as adjunction </h2> 
+ <span class='centered'>We will introduce two operations  <code class='inline'>rank</code>,  <code class='inline'>select</code>, --- these are used to 
+ <span class='centered'>build memory-efficient data structures that can still be queried quickly.  
+ <span class='centered'>We will show how  <code class='inline'>rank</code> and  <code class='inline'>select</code> are adjoint. This will also us to also 
+ <span class='centered'>consider  <code class='inline'>coselect</code>, which is a variation of  <code class='inline'>select</code> that is not commonly 
+ <span class='centered'>discussed.  
+ <pre><code><span class="token comment">{-# LANGUAGE GeneralizedNewtypeDeriving #-}</span>
 
 <span class="token import-statement"><span class="token keyword">import</span> Data.List</span>
 <span class="token keyword">newtype</span> <span class="token constant">Count</span> <span class="token operator">=</span> <span class="token constant">Count</span> <span class="token constant">Int</span> <span class="token keyword">deriving</span><span class="token punctuation">(</span><span class="token constant">Eq</span><span class="token punctuation">,</span> <span class="token constant">Show</span><span class="token punctuation">,</span> <span class="token constant">Ord</span><span class="token punctuation">,</span> <span class="token constant">Num</span><span class="token punctuation">)</span>
@@ -31,17 +31,17 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
 <span class="token comment">-- | finds the number of times `a` has occured in `as` till `Ix`.</span>
 <span class="token hvariable">rank</span> <span class="token operator">::</span> <span class="token constant">Eq</span> <span class="token hvariable">a</span> <span class="token operator">=></span> <span class="token hvariable">a</span> <span class="token operator">-></span> <span class="token punctuation">[</span><span class="token hvariable">a</span><span class="token punctuation">]</span> <span class="token operator">-></span> <span class="token constant">Ix</span> <span class="token operator">-></span> <span class="token constant">Count</span>
 <span class="token hvariable">rank</span> <span class="token hvariable">a</span> <span class="token hvariable">as</span> <span class="token punctuation">(</span><span class="token constant">Ix</span> <span class="token hvariable">ix</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token hvariable">eqscan</span> <span class="token hvariable">a</span> <span class="token hvariable">as</span><span class="token punctuation">)</span> <span class="token operator">!!</span> <span class="token hvariable">ix</span>
-</code></pre>
-<span class='centered'>Given this, we can prove that <code class='inline'>select</code> and <code class='inline'>rank</code> are adjunctions. There
-<span class='centered'>are different ways to think about this. My favourite way to is to notice
-<span class='centered'>that an <code class='inline'>Ix</code> (index) is much "finer" information than <code class='inline'>Count</code>. Hence,
-<span class='centered'>the concrete domain must be <code class='inline'>Ix</code>, the abstract domain must be <code class='inline'>Count</code>,
-<span class='centered'>and rank-select is an abstract interpretation!
-<h4><a id=co-select href='#co-select'> § </a><span class='centered'> Co-select</h4>
-<span class='centered'>We can build another version of <code class='inline'>select</code> called <code class='inline'>co-select</code> that scans
-<span class='centered'>from the right. Alternatively, it finds on the reverse list:
-<pre><code>coselect :: Eq a => a -> [a] -> Count -> Maybe Ix
+</code></pre> 
+ <span class='centered'>Given this, we can prove that  <code class='inline'>select</code> and  <code class='inline'>rank</code> are adjunctions. There 
+ <span class='centered'>are different ways to think about this. My favourite way to is to notice 
+ <span class='centered'>that an  <code class='inline'>Ix</code> (index) is much "finer" information than  <code class='inline'>Count</code>. Hence, 
+ <span class='centered'>the concrete domain must be  <code class='inline'>Ix</code>, the abstract domain must be  <code class='inline'>Count</code>, 
+ <span class='centered'>and rank-select is an abstract interpretation!  
+ <h4><a id=co-select href='#co-select'> § </a><span class='centered'> Co-select </h4> 
+ <span class='centered'>We can build another version of  <code class='inline'>select</code> called  <code class='inline'>co-select</code> that scans 
+ <span class='centered'>from the right. Alternatively, it finds on the reverse list:  
+ <pre><code>coselect :: Eq a => a -> [a] -> Count -> Maybe Ix
 coselect a0 as c = Ix <$> findIndex (== c) (reverse (eqscan a0 as))
-</code></pre>
-<span class='centered'>Thanks to Edward Kmett for teaching me this.
-<script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>
+</code></pre> 
+ <span class='centered'>Thanks to Edward Kmett for teaching me this.  
+ <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>
