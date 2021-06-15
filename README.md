@@ -2,25 +2,35 @@
 These are my notes on the subjects I've taken in college, and on the paper I've read, and
 some slides of talks I've given.
 
+# Currently reading
+##### [Tu-intro-to-manifolds](./tu-intro-to-manifolds/main.pdf)
+##### [Munkres](./munkres/main.pdf)
+##### [Category Theory in Context](./category-theory-in-context/main.pdf)
+
 # Subjects
-##### [Flows](./flows/report.pdf)
+##### [Algebraic geometry in the time of COVID](./algebra/main.pdf)
 ##### [Complexity and advanced algorithms](./advanced-algorithms/main.pdf)
-##### [Complexity theory](./complexity/main.pdf)
-##### [Quantum](./quantum/main.pdf)
-- Contains some notes on quantum computation
-- Contains some rigorous foundations of QM from Von Neumann's book
 ##### [Principles of information security](./information-security/main.pdf)
-##### [Learning & information theory (scattered notes)](./learningtheory/main.pdf)
+##### [Complexity theory](./complexity/main.pdf)
+##### [General relativity & Differental geometry](./diffgeo/main.pdf)
+##### [A report on Monte Chain Monte Carlo sampling](./mcmc/report.pdf)
+
+##### [Quantum (incomplete)](./quantum/main.pdf)
+##### [Learning & information theory (incomplete)](./learningtheory/main.pdf)
+##### [Flows (incomplete)](./flows/report.pdf)
 ##### [Optimisation methods: Linear, Convex & Integer](./optimisation/main.pdf)
 ##### [Physics: Gauge theory (terrible notes, but interesting material)](./physics/main.pdf)
-##### [Nonlinear dynamics](./nonlineardynamics/main.pdf)
-##### [Philosophy: God and Knowledge](./philosophy/main.pdf)
-##### [Topics in machine learning](./topics-in-ml/main.pdf)
-##### [General relativity & Differental geometry](./diffgeo/main.pdf)
-##### [Game theory](./gametheory/main.pdf)
-##### [Probabilistic Graphical models](./probabilistic-graphical-models/main.pdf)
-##### [Distributed Systems](./distributedsystems/main.pdf)
+##### [Nonlinear dynamics (incomplete)](./nonlineardynamics/main.pdf)
+##### [Philosophy: God and Knowledge (incomplete)](./philosophy/main.pdf)
+##### [Topics in machine learning (incomplete)](./topics-in-ml/main.pdf)
+##### [Game theory (incomplete)](./gametheory/main.pdf)
+##### [Probabilistic Graphical models (incomplete)](./probabilistic-graphical-models/main.pdf)
+##### [Distributed Systems (incomplete)](./distributedsystems/main.pdf)
 
 # Slides
 ##### [The barvinok algorithm](./barvinok/slides.pdf)
 ##### [Introduction to LLVM: examples of passes](./talk-intro-llvm/talk-llvm-c-compiler.org)
+##### [Egg: intro to equality saturation](./egg-equality-saturation-slides/slides.pdf)
+##### [An introduction to the p-adic numbers](./slides-intro-p-adics/slides.pdf)
+##### [Smallpt: writing a fast raytracer in Haskell](./slides-haskell-exchange-2020-smallpt/slides.pdf)
+

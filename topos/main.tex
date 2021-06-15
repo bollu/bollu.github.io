@@ -222,4 +222,121 @@ onto the LHS!  $(\land: \Omega \times \Omega \rightarrow \Omega)$.
 \textbf{Question:} How do we compute $\land(false, false)$?
 
 We know that the pullback is ging to be
+
+\chapter{Schloze: Condensed Mathematics Masterclass: Session 1}
+
+YouTube playlist link: \url{https://www.youtube.com/watch?v=PHm4bYziyug&list=PLAMniZX5MiiLXPrD4mpZ-O9oiwhev-5Uq&index=1}
+
+
+A topos is a generalization of a sheaf. Let $X$ be a topological space. Let $Op(X) \equiv \{ \text{open sets of } X \}$ be a poset 
+under inclusion, treated as a category.  A presheaf on $X$ is a functor $F: Op(X)^{op} \rightarrow Set$.
+A sheaf on a topological space $X$ is a presheaf $F$ on $X$ such that for any $U \subset X$ open, for $U_i$ open such that
+$\cup_i U_i = U$, we have:
+
+\begin{align*}
+    &F(U) \xrightarrow{\sim} eq \left(\pi_i F(U_i)^\rightarrow_\rightarrow F(U_i \cap U_j) \right)
+\end{align*}
+
+If $Y$ is a topological space, then the presheaf $F_Y(U) \equiv Hom(U, Y)$ is a sheaf.  If $Y$ is a discrete space,
+then the sheaf $F_Y$ on $X$ contains the locally constant functions on $X$. This is called as the ``constant sheaf''.
+Such a sheaf can also be obtained as the sheafification of the \emph{presheaf} $F_Y(U) \equiv Y$.
+
+\section{Sheafification}
+The inclusion $Sh(X) \hookrightarrow Psh(X)$ admits a left adjoint.  This left
+adjoint is the sheafification of the presheaf. 
+
+One way to see that this is possible is to notice that the conditions of a sheaf are defined
+in terms of limits (products and equalizers). Thus the limit of sheafs is also a sheaf. This ensures
+(by the adjoint functor theorem) that this functor has an adjoint.
+
+More concretely, we can construct the sheaf $F^\sharp$ of a presheaf $F$ concretely. Let 
+
+\begin{align*}
+&F^\natural(U) \equiv \colim_{(U_i)_i~\text{covers of U}}  eq \left(\prod_i F(U_i)^\rightarrow_\rightarrow \prod_{i, j} F(U_i \cap U_j) \right)
+&F^\sharp \equiv (F^\natural)^\natural
+\end{align*}
+
+The first operation makes the presheaf into a separated presheaf, and the next time it becomes a sheaf.
+\qed.
+
+\section{Stalks}
+For any $x \in X$, let $F_x \equiv colim_{x \in U} F(U)$ . These are called as the stalks of $F$ at $x$.
+(1) Sheafification does not change stalks. (2) If we have two sections $s, t \in F(U)$, then $s = t$ iff for all $x \in X$, $s_x = t_x$.
+So all the information of a sheaf is contained in the stalks. \qed.
+
+
+\section{Cohomology of abelian sheaves}
+
+
+Define $AB(X)$ as the sheaf of ableian groups (abelian sheaves) on $X$. This is an abelian category.
+We define $0 \rightarrow F' \rightarrow F \rightarrow F'' \rightarrow 0$ is exact iff it is exact at each stalk:
+$0 \rightarrow F'_x \rightarrow F_x \rightarrow F''_x \rightarrow 0$.
+
+But globally, we only get $0 \rightarrow F'(x) \rightarrow F(x) \rightarrow F''(X)$.
+
+
+\section{Sites}
+
+Abstraction of $Op(X)$ with the notion of covers. A Site is a category $C$ together with a set of
+maps $Cov(X) \equiv \{ f_i: (X_i \rightarrow X)_i \}$. Properties:
+
+\begin{itemize}
+        \item Pullbacks of covers exist and are covers.
+        \item Composites of covers are covers.
+        \item Isomorphisms are covers.
+\end{itemize}
+
+Recall: a presheaf on $C$ is a functor $F: C^{op} \rightarrow Set$. A sheaf on $C$ is a preseaf $F$
+such that for all $X \in C$, for all covers, $f_i: X_i \rightarrow X$,  we have that
+
+$$F(X) \simeq eq(\prod_i F(X_i)^\rightarrow_\rightarrow \prod_{i, j}F(X_i \times_X X_j)$$
+
+Notice that we now use fiber products $X_i \times_X X_j$. These fiber products exist
+because we asked for pullbacks to exist.  The interesting thing about this definition
+is that the morphisms $f_i: X_i \rightarrow X$ don't need to be injections!
+Everything carries over, including (a) Sheafification, (b) Abelian sheaves
+$Ab(X)$ form an abelian category. 
+
+An example is the opens on $X$. The real first
+example is the Etale site of a scheme, where $C \equiv \{ f: Y \rightarrow X \text{ etale} \}$.
+covers are maps. Another example is $G$ sets, for $G$ a group, where the covers are actually covers.
+Can consider profinite $G$ acting on profinite sets (inverse limit/limit of finite sets), that is the same
+as compact totally disconnect Haussdorf spaces.
+
+\section{Morphism of sites}
+
+A morphism of sites $f: C' \rightarrow C$ is a functor $f^{-1}: C \rightarrow C'$ (pullback)
+which commutes with finite limits and takes covers to covers. we get a pullback of sheaves
+$Sh(C) \rightarrow Sh(C')$.
+
+\section{Grothendieck topos}
+
+A topos is a category $T$ that is equivalent to $Sh(C)$ for some site $C$.
+Remark: this admits a characterization in terms of certain axioms on $T$, (due to Giraud).
+Sheaves on categories have all limits and colimits, so a topos has all limits and colimits.
+
+A functor of topoi $T' \rightarrow T$ is a pair of adjoint functors $f^*: J \rightarrow J'$,
+$f_*: J' \rightarrow J$. $f^*$ preserves all colimns as it is left adjoint. We ask that it also
+preserves all finite limits. 
+
+A \emph{point of a topos} is a map of topoi $Set \rightarrow J$. $J$ has enough points if
+$\{ f_i^*: J \rightarrow {Set}$ is a conservative family. A functor is conservative if it
+reflects isos: That is, $F(f)$ iso implies that $f$ is iso.
+
+\section{Quasicompact}
+An object $X \in T$ is quasicompact if for any collection of maps $(f_i: X_i \rightarrow X)$
+such that $\cup_i X_i \rightarrow X$ is surjective, then there is some finite $J \subseteq I$
+such that $\cup_{j \in J} X_j \rightarrow X$ is surjective. A map $f: Y \rightarrow X$ is quasicompact
+if $Y \in T/X$ is quasicompact. (lmao, using slice to relativize!) This is the usual notion of
+compact in terms of covers: every cover has a finite subcover.
+
+\section{Quasiseaprated}
+
+$X \in T$ is quasiseparated if for all $Y, Z \rightarrow X$ quasicompact, $Y \times_X Z \rightarrow X$
+is quasicompact. Intuitively, we can say that the diagonal is closed. So we may want to say something
+like $X$ is quasiseparated if $\Delta: X \rightarrow X \times X$ is quasicompact.
+
+
+
+
 \end{document}

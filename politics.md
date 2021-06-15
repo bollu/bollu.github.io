@@ -1,4 +1,7 @@
-Notes on politics
+Notes on politics/econ
+
+# Econ
+> 
 
 # Socialism 1
 - [Engels: principles of communism: ](https://www.marxists.org/archive/marx/works/1847/11/prin-com.htm)
