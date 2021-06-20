@@ -5,50 +5,53 @@
 \usepackage{classicthesis}
 \usepackage{amsmath}
 \usepackage{amssymb}
+
+\newcommand{\sqleq}{\sqsubseteq}
+\newcommand{\sqlt}{\sqsubseteq}
 \begin{document}
 \newcommand*{\Z}{\mathbb Z}
 \newcommand*{\start}[1]{\leavevmode\newline \textbf{#1} }
-\newcommand*{\question}[1]{\leavevmode\newline \textbf{Question #1.}}
-\newcommand*{\proof}[1]{\leavevmode\newline \textbf{Proof #1}}
-\newcommand*{\answer}{\leavevmode\newline \textbf{Answer} }
+\newcommand*{\answer}{\start{Answer}}
+% \newcommand*{\answer}{\leavevmode\newline \textbf{Answer} }
 \newcommand*{\qed}{\ensuremath{\blacksquare}}
 
 
 \section{Chapter 1}
 \section{1.9: Infinite sets and the axiom of choice}
-\subsection{Ex1}
-\question{} Define an injective map $f: \Z_+ \rightarrow X^\omega$ where $X$ is the two element set $\{0, 1\}$.
+% \subsection{Ex1}
+\start{q1} Define an injective map $f: \Z_+ \rightarrow X^\omega$ where $X$ is the two element set $\{0, 1\}$.
 \answer Define $f(n) \equiv 1^n 0^\omega$. This is an injection, we didn't need choice. \qed
 
-\subsection{Ex3}
-\question{} Let $A$ be a set and let $f[n] : \{1, \dots, n \} rightarrow A$ for $n \in \mathbb Z_+$ be an indexed family of injective functions. Can you define
+% \subsection{Ex3}
+\start{q3} Let $A$ be a set and let $f[n] : \{1, \dots, n \} rightarrow A$ for $n \in \mathbb Z_+$ be an indexed family of injective functions. Can you define
 an injective function $f_n: \Z_+ \rightarrow A$ without choice?
 \answer TODO
 
-\subsection{Ex5}
-\question{} Use choice to show that every surjective $f: A \rightarrow B$ has a right inverse $h: B \rightarrow A$
+% \subsection{Ex5}
+\start{q5} Use choice to show that every surjective $f: A \rightarrow B$ has a right inverse $h: B \rightarrow A$
 \answer Pick an element from each fiber $f^{-1}(b)$. Formally, build a function $\beta: B \rightarrow 2^A$, given by  $\beta(b) \equiv f{-1}(b)$. Since $f$ is surjective,
 $\beta(b)$ will be non-empty for all $b$. Now, a choice function of $\beta$ will give us the desired section $h$.
 
-\question{} Show that if $f: A \rightarrow B$ is injective and $A$ is not empty, then $f$ has a left inverse.
+\start{q5} Show that if $f: A \rightarrow B$ is injective and $A$ is not empty, then $f$ has a left inverse.
 
 \answer $A$ is not empty implies we know an element $a_* \in A$. For every element $b \in B$ if it has a (unique, since $f$ is injective) pre-image, then define
 $h(b)$ as the unique element $a_b \in A$ such that $f(a_b) = b$. Otherwise, we know that $b$ has no pre-image so define define $h(b) \equiv a_*$.
 
-\subsection{Ex 7}
+% \subsection{Ex 7}
+\start{q7}
 Let $A, B$ be two nonempty sets. If there an injection from $A$ to $B$ but no injection from $B$ to $A$ then $A$ is said to have greater cardinality than $B$.
 
-\question{b} Show that if $A$ has greater cardinality than $B$, $B$ has greater cardinality than $C$, then $A$ has greater cardinality than $C$.
+\start{q7(b)} Show that if $A$ has greater cardinality than $B$, $B$ has greater cardinality than $C$, then $A$ has greater cardinality than $C$.
 
 \answer This means that we have an injection $f: A \hookrightarrow B$, and $g: B \hookrightarrow C$ but no reverse injections. Suppose for
 contradiction that $A$ does not have greater cardinality tha $C$. So there exists an injection $h: C \rightarrow A$. By composing $h \circ g: B \rightarrow A$,
 I get an injection from $B$ to $A$ which contradicts the fact that $A$ has larger cardinality than $B$.
 
-\question{c} Find a sequence of sets $A[n]$ of infinite sets. where each set has greater cardinality than the last.
+\start{q7(c)} Find a sequence of sets $A[n]$ of infinite sets. where each set has greater cardinality than the last.
 
 \answer Set $A[1] \equiv \Z$. Set $A[n] = 2^{A[n-1]}$. Since there is no injection back from the powerset into the set, each set here has larger cardinality than the previous.
 
-\question{d} Find a set that for every $n$ has cardinality greater than $A[n]$.
+\start{q7(d)} Find a set that for every $n$ has cardinality greater than $A[n]$.
 
 Define $\overline A \equiv \cup_i A[i]$. For a given $A[n]$, since $A[n] \subseteq \overline A$,
 we have an injection from $A[n]$ into $A$. Since 
@@ -72,7 +75,7 @@ So, intuitively, it is only the section $A/\Omega$ which is unountable. Chopping
 
 \start{Theorem} A Minimal Uncountable well ordered set $\overline{S_\omega}$ exists.
 
-\proof{} Let $B$ be an uncountable well ordered set. If no section of $B$ is uncountable, then define $B' \equiv B \cup \{ \Omega \}$ for some element $\Omega$ which is
+\start{Proof} Let $B$ be an uncountable well ordered set. If no section of $B$ is uncountable, then define $B' \equiv B \cup \{ \Omega \}$ for some element $\Omega$ which is
 stipulated as the greatest element. Thus, $B'$ is a minimal uncountable well ordered set: (1) the section $B'_\Omega = B$ is unountable, (2) $B$ has no uncountable section.
 
 Suppose $B$ has an unountable sections. Define $\Omega \equiv min \{ b \in B : B_b \text{is uncountable} \}$. $\Omega$ is the
@@ -85,13 +88,158 @@ The set $B' \equiv B_\omega \cup \{ \Omega \}$ is often denoted by $\overline{S_
 
 TODO
 
+\section{Well ordering notes}
+
+Here is some notes on well ordering, stolen from \href{https://www.math.wustl.edu/~freiwald/ch8.pdf}{notes by Professor Ron Freiwald, Chapter 8: Ordered Sets, Ordinals and Transfinite Methods}. This material is included in the textbook \href{https://openscholarship.wustl.edu/books/20/}{Introduction to set theory and topology}.
+
+\start{one-to-one monotone endomaps will always inflate} Let $f: M \rightarrow M$ be a one-to-one order preserving map. Then $f(m) \geq m$ for all $m \in M$.
+\start{Proof}
+\begin{itemize}
+    \item Being a well order is critical. For example, the map $f: \mathbb R \to \mathbb R $ given by $f(x) \equiv x - 1$ is one-one and monotone, but does not
+        move elements to the right.
+    \item The idea is that since we have a bottom, we can't budge the bottom, and this forces all other elements to inflate.
+    \item Proof by contradiction. Suppose the set of elements that are deflated: $D \equiv \{ m \in M : f(m) < m \}$ is nonempty for contradiction.
+    \item Let $c$ (for contradiction) be the smallest element of $D$. Now consider $f(c)$. We must have $f(c) < c$ by definition.
+    \item Since $f$ monotone, we must have  $f(f(c)) < f(c)$. This implies $f(c) \in D$.
+    \item This contradicts the minimality of $c$, as $[f(c) \in D] < [c = min(D)]$.
+    \item Thus, the set $D$ must be empty.
+\end{itemize}
+
+\start{the only order isomorphism $M \rightarrow M$ is the identity map}
+\start{Proof}
+\begin{itemize}
+    \item  The intuition is that it must send bottom to bottom, and then this propagates.
+    \item Let $f: M \rightarrow M$ be an order isomorphism. By the preceding theorem, we must have $f(m) \geq m$.
+    \item Furthermore, since $f$ is an somorphism, we must have that if $x < y$, then $f(x) < f(y)$, which is stronger than $x \leq y$ implies $f(x) \leq f(y)$.
+    \item If $f$ is not the identity, let the set of inflated elements $I \equiv \{ m : f(m) > m \}$ be non-empty.
+    \item Let $c$ (for contradiction) be the smallest element of $I$. so $f(c) > c$.
+    \item By monotonicity of $f$, we have $f(f(c)) > f(c)$. So $f(c) \in I$.
+    \item We can keep iterating, and get as many number of elements as we like which are in $I$. 
+    \item But this cannot happen, since we will eventually exhaust the set $M$. 
+    \item Thus, by contradition, the only order isomorphism $M \rightarrow M$ is the identity. \qed
+\end{itemize}
+
+\start{there is at most one order isomorphism between two well orders} Suppose we have two well orders $M, N$  and two
+order isomorphisms $f, g: M \rightarrow N$. Then $f = g$.
+\start{Proof}
+\begin{itemize}
+        \item We have one order isomorphism $id_M: M \rightarrow M$. We also have another order isomorphism $g^{-1} \circ f : M \rightarrow M$.
+        \item Since there is only one order isomorphism, we must have $g^{-1} \circ f = id_M$ or.
+        \item This implies $g \circ g^{-1} \circ f = id_M \circ g$, $f = g$ 
+\end{itemize}
+
+% theorem 5.10
+\start{$M$ is not order isomorphic to any of its initial segments}
+\start{Proof}
+\begin{itemize}
+        \item Let $S(\alpha) \subseteq M$ be an initial segment of $M$.
+        \item Consider an order isomorphic map $f: M \rightarrow S(\alpha)$. This can be regarded as a map $\overline{f}: M \rightarrow M$ such that $im(\overline{f}) = S(\alpha)$.
+        \item Since $\overline f$ is a one-to-one endomap, it will always inflate. Thus we have $\overline f(\alpha) \geq \alpha$.
+        \item However, we have $im(\overline f) = S(\alpha)$, and that $S(\alpha) < \alpha \leq \overline f(\alpha) $.
+        \item This gives us $im(\overline f) < \overline f(\alpha)$, which is absurd, as $f\overline (\alpha)$ is in the image!
+        \item Thus, such an isomorphism $f$ cannot exist. \qed
+\end{itemize}
+
+% theorem 5.11
+\start{No two initial segments are equal}
+\start{Proof}
+\begin{itemize}
+    \item Given two initial segments $S(\alpha)$, $S(\beta)$ of $M$, WLOG suppose $\alpha < \beta$. Thus, $S(\alpha)$ is an initial segment of $S(\beta)$.
+    \item Restrict attention to $S(\beta)$ and apply the previous theorem; $M = S(\beta)$ is not order isomorphic to its initial segment $S(\alpha)$. \qed
+\end{itemize}
+
+% 5.12
+\start{Definition of $\sqleq$} Let $\mu, \nu$ are ordinals represented by well
+ordered sets $M, N$ (That is, the equivalence class of $M, N$ under order
+isomorphism). Define $\mu \sqleq \nu$ if $M$ is order isomorphic
+to an initial segment of $N$ -- That is, $M \simeq [0, n)$ for some $n \in N$.
+We will show that this is the same as there existing an proper order injection $M \rightarrow N$ --- that is,
+the image of the injection is strictly smaller than $N$. 
+
+
+\start{Definition of $\eq_\sq$} Let $\mu, \nu$ are ordinals represented by well
+ordered sets $M, N$ ($\mu, \nu$ are equivalence classes of $M, N$ under order
+isomorphism). Define $\mu \eq_\sq \nu$ if there is an order isomorphism between
+$M$ and $N$. See that if this is the case, then $\mu = \nu$ since their equivalence 
+classes become equal. However, for clarity, I shall continue to write $\eq_\sq$.
+
+
+\start{Does Initial segment iff injection hold for chains?}
+The equivalence is not true for chains in general. $(0, 1)$ is order isomorphic to a subset $(0, 1) \subseteq [0, 1]$,
+but $(0, 1)$ is not an initial segment of $[0, 1]$.
+
+
+% 5.13
+\start{Theorem: At most one of $\mu \sqlt \nu$, $\mu \sqgt \nu$, or $\mu \eq_{\sqlt} \nu$ hold}
+\start{Proof}
+\begin{itemize}
+\item Let $M, N$ represent $\mu, \nu$.
+\item 
+    \begin{itemize}
+            \item If we have an order isomorphism $f: M \rightarrow N$ then we say  $\mu \eq_{\sqlt} \nu$.
+            \item For contradiction, suppose $\mu \sqlt \nu$.
+            \item $\mu \sqlt \nu$ implies that there an order injection $i: M \rightarrow [0, n)$.
+            \item That's the same as $i \circ f: M \rightarrow [0, m)$ as $N \simeq M$ as witnessed by $f$.
+            \item But a well ordered set $M$ cannot be order isomorphic to an initial segment of itself, so we cannot have $\mu \sqlt \nu$.
+            \item Similarly, we cannot have $\nu \sqlt \mu$.
+        \end{itemize}
+\item 
+    \begin{itemize}
+            \item WLOG, suppose we have $\mu \sqlt \nu$.
+            \item $\mu \sqlt \nu$ implies that we have a $f: M \rightarrow [0, n)$ for some $n \in N$.
+            \item We cannnot have $\mu =_\sq \nu$ by the previous argument.
+            \item For contradiction, suppose we have $\nu \sqlt \mu$.
+            \item $\nu \sqlt \mu$ implies then we have another injection $g: N \rightarrow [0, m)$.
+            \item Composing the two injections, we get a $g \circ f: M
+                \rightarrow [0, m)$ which is absurd as no well ordered set is
+                order isomorphic to an initial segment of itself.
+            \item Thus, if $\mu \sqlt \nu$  occurs, then $\mu =_\sqlt \nu$ and $\nu \sqlt \mu$ cannot occur. \qed
+        \end{itemize}
+\end{itemize}
+
+% 5.13 corollary
+\start{Corollary: $\sqlt$ is a partial order}
+\start{Proof}
+It is reflexive as we have $id: M \rightarrow M$ witnessing $M \sqlt M$. It is transitive by composing injections.
+It is anti-symmetric by the above theorem. \qed
+
+\start{Notation $ord$: Ordinals less than a given ordinal}
+Define $ord(\mu) \equiv \{ \alpha : \text{$\alpha$ is an ordinal and $\alpha \sqlt \mu$} \}$.
+[I don't understand what set we quantify over topick out the ordinals smaller than us, but whatever. This is naive set theory].
+The set $\ord(\mu)$ is partially ordered by $\sqlt$. We will show that the set is in fact \emph{well ordered} by $\sqlt$.
+
+% 5.14
+\start{Theorem: The set $\ord(\mu)$ is well ordered}
+\start{Proof}
+TODO \qed.
+
+% 5.15
+\start{Ordinal Trichotomy Theorem: For two ordinals $\mu, \nu$, exactly one of $\mu \sqlt \nu$, $\mu =_\sqlt \nu$, $\mu \sqgt \nu$ holds}
+\start{Proof}
+We need to show at least one of the three holds. We have already shown that at most one of the three holds.
+
+TODO \qed.
+
+
+% https://services.math.duke.edu/~wka/math204/choice.pdf
+\start{Aoc implies well ordering}
+\start{Proof}
+\begin{itemize}
+\item suppose AoC. Let $S$ a set, let $f$ be a choice function on the non-empty subsets of $S$. 
+\item We will build a well order on $S$ where the for any initial segment $J \subsetneq X$, the $succ(J) = smallest(X - J) = f(X - J)$.
+\item The idea of the above is that if we have an initial segment with say a single element $\{ x\}$, we can pick the next element from the complement $X-\{x\}$ (we have already used $x$).
+    This will give us the set $\{ x, f(X-\{x\})\}$, which we order as $x < f(X - \{x\})$.
+\item Iterating this, we will get $\{ x, f(X-\{x\}), f(X -\{x, f(X - \{x\}) \})$. and so on. We will eventually build a well order this way.
+\item Proof idea: show that this defines a \emph{unique} well order on $S$ with the above property by transfinite induction.
+\end{itemize}
+
+
 \section{Supplementary exercises: Well ordering}
 
 
 \subsection{Maps between strict total ordes are faithful}
 
-
-start{Map between strict total orders:} A map between strict total orders is a function $f: X \rightarrow Y$
+\start{Map between strict total orders:} A map between strict total orders is a function $f: X \rightarrow Y$
 such that $x < y$ implies $f(x) < f(y)$. This is far stronger than the related condition for total orders
 which states that $x \leq y$ implies $f(x) \leq f(y)$.  The philosophy is that
 any map between strict total orders can't compress anything, or lose any
@@ -106,36 +254,98 @@ by monotonicity which contradicts the hypothesis. \qed.
 WLOG, suppose that $x < y$; All elements must be comparable, so there must be some ordering between $x$ and $y$.
 But this implies $f(x) < f(y)$ by monotonicity of $f$. Hence, contradiction. \qed
 
-Define $S(\alpha) \equiv \{ \beta \in \omega : \beta < \alpha \}$ as the section of a well ordered set $\omega$.
+
+\start{injective monotone maps between total orders} An injective map between total orders $f: X \hookrightarrow Y$ is the same as a map
+between strict total orders.
+\start{Proof}
+\begin{itemize}
+    \item We know that $x \leq y \implies f(x) \leq f(y)$ by being a monotone map.
+    \item If we have $x < y$, by monotonicity, we must have $f(x) \leq f(y)$.
+    \item Since $f$ is injective and $x \neq y$ (as $x < y$) we must have $f(x) \neq f(y)$.
+    \item Thus $f(x) < f(y)$, since $f(x) \leq f(y)$ and $f(x) \neq f(y)$.
+\end{itemize}
+
+\start{Section of a well order} Define $S(\alpha) \equiv \{ \beta \in \omega : \beta < \alpha \}$ as the section of a well ordered set $\omega$.
 
 % https://math.stackexchange.com/questions/3624066/munkres-topology-supplementary-exercises-chapter-1-question-2-a-showing-two-d
 \start{2(a)} Let $J$ and $E$ be well ordered sets, let $h: J \rightarrow E$. Show that the following is equivalent: (1) $h$ is order preserving and its image is $E$ or
 a section of $E$. (ii) $h(\alpha) = \text{smallest}(e - h(s_\alpha))$ for all $\alpha$.
 
-\start{(Hint)}
+\start{Proof (Hint for (i))}
 We first need to show that $h$ being order preserving and its image being $E$ or a section of $E$ implies that 
 $h(S(\alpha))$ is a section of $E$. We will prove something stronger:
 that $h(S_\alpha) = S(h(\alpha))$ We will use transfinite induction to prove this.
 \begin{itemize}
-    \item (i) $h(S(\alpha)) \subset S(h(\alpha))$: Let $x \in h(S(\alpha))$, so $x = h(\beta)$ for some $\beta < \alpha$.
-        since $\beta < \alpha$ and $h$ is monotone, $h(\beta) < h(\alpha)$. As $x = h(\beta) < h(\alpha)$, $h(\beta) \in S(h(\alpha))$.
-        all $x \in h(S(\alpha))$ is also in $S(h(\alpha))$. Thus, $h(S(\alpha)) \subseteq S(h(\alpha))$.
-    \item $S(h(\alpha)) \subset h(S(\alpha))$: Let $y \in S(h(\alpha))$. This means that $y < h(\alpha)$. Since $h$ maps into a section of $E$,
-        and since something that is larger than $y$ is in the image of $h$, so too is $y$. Hence, there exists an $x$ such that $h(x) = y$.
-        So we have $h(x) < h(\alpha)$. Since $h$ is a map between total orders, we must have $x < \alpha$
+    \item 
+        \begin{itemize}
+            \item $h(S(\alpha)) \subset S(h(\alpha))$:
+            \item Let $x \in h(S(\alpha))$, so $x = h(\beta)$ for some $\beta < \alpha$.
+            \item Since $\beta < \alpha$ and $h$ is monotone, $h(\beta) < h(\alpha)$. So $x = h(\beta) \in S(h(\alpha))$.
+            \item All $x \in h(S(\alpha))$ is also in $S(h(\alpha))$. \qed
+        \end{itemize}
+    \item 
+        \begin{itemize}
+                \item $S(h(\alpha)) \subset h(S(\alpha))$:
+                \item Let $y \in S(h(\alpha))$. This means that $y < h(\alpha)$.
+                \item Recall that $h(J) = S(\omega)$ as $h$ maps $J$ into a section of $E$.
+                \item since $y < h(\alpha) < h(\omega)$, $y$ must have a pre-image, since $y \in S(\omega) = h(J)$.
+                \item Hence, there exists an $x$ such that $h(x) = y$.
+                \item So we have $y < h(\alpha)$ or $h(x) < h(\alpha)$.
+                \item We claim $x < \alpha$. Suppose not. Then we must have $x
+                    \geq alpha$.  Then $h(x) \geq h(\alpha)$ by monotonicity,
+                    which is a contradiction.
+                \item Thus, there is an $x < \alpha$ such that $y = h(x)$. So $y \in h(S(\alpha))$. \qed
+        \end{itemize}
 
 \end{itemize}
 
-\proof{(i) implies (ii)} Let $h$ be order preserving and its image be $E$ or a section of $E$. 
+\start{Proof (Hint for (ii))} TODO
+
+
+% \start{Proof: (i) implies (ii)} Let $h$ be order preserving and its image be $E$ or a section of $E$. 
+% \begin{itemize}
+% \item Define successor of a subset of $S \subseteq E$ as $succ(J) \equiv \texttt{smallest}(E - J)$.
+% \item We need to show that $h(\alpha) = succ(h(S(\alpha)))$.
+% \item We use transfinite induction. Let $J_0$ be the set of all $x \in J$ such that $h(x) = succ(h(S(x)))$.
+% \item Now suppose we are given some section $S_\beta \subseteq J_0$ for such that for all $b \in S(\beta)$ $h(b) = succ(h(S(b)))$. We must show
+%     that $\beta \in in J_0$, or that $h(\beta) = succ(h(S(\beta)))$.
+% \item See that $h(\beta) > h(S(\beta))$ by monotonicity.
+% \item Let  $y \equiv succ(h(S(\beta)))$. See that by the definition of $succ$, $y \not \in h(S(\beta))$. So, $y > h(S(\beta))$ as $E$ is totally ordered.
+% \item Thus, both $h(\beta)$ and $y$ are in the segment of $E$ ``after'' $h(S(\beta))$.
+% \end{itemize}
+
+
+\start{2(b) hint} Show that there is at most one injective monotone $J \rightarrow E$ map whose image of $J$ is $E$ or a section of $E$.
+\start{Proof.}
 \begin{itemize}
-\item Define successor of a subset of $S \subseteq E$ as $succ(S) \equiv \text{smallest}(E - S)$.
-\item We use transfinite induction. Let $J_0$ be the set of all $x \in J$ such that $h(x) = succ(h(S_x))$.
-\item Now suppose we are given some section $S_\beta \subseteq J_0$ for such that for all $b \in S_\beta$ $h(b) = succ(h(S_b))$. We must show
-that $\beta in J_0$, or that $h(\beta) = succ(h(S_\beta))$.
-\item Suppose this is not true. Let $c = succ(h(S_\beta))$ ($c$ for contradiction) and $c \neq h(\beta)$.
-\item Since $J$ is well ordered, we must have either $c < h(\beta)$ or $c > h(\beta)$.
-\item If $c = succ(h(S_\beta)) < h(\beta)$, 
+\item Suppose there are two injective monotone functions $h, k: J \rightarrow E$ whose image of $J$ is $E$ or a section of $E$. We must prove that $h = k$.
+\item We shall use transfinite induction. Let $J_0 \subseteq J$ be the set of elements $x \in J$ such that $h(x) = k(x)$.
+\item the transfinite induction hypothesis says to suppose that $S[x] \subseteq J_0$ for some $x in J$. We must prove that $x \in J_0$, or that $h(x) = k(x)$.
+\item For contradiction, suppose that $h(x) \neq k(x)$. As $E$ is totally ordered, WLOG, suppose $h(x) < k(x)$.
+\item This implies that $h(x) \in S(k(x))$, or $h(x) \in k(S(x))$, since $k(S(x)) = S(k(x))$ ( monotone functions whose image is a section have this property as proven previously).
+\item since $h(x) \in k(S(x))$, this tells us that there is a $x' \in S(x)$ or $x' < x$ such that $h(x) = k(x')$. From the induction hypothesis, we know that $k(x') = h(x')$.
+      So we have $h(x') = h(x)$ for $x' < x$.
+\item This is a contradiction as $h$ is an injective function. Hence, there is at mos one injective monotone map $J \rightarrow E$.  \qed 
 \end{itemize}
 
+\start{2(b) corollary} show that no two sections of $E$ have the same order type.
+\start{Proof} 
+\begin{itemize}
+        \item Let $S[\alpha], S[\beta]$ be two sections of $E$ that have the same order type. 
+        \item So we have a map $h: S[\alpha] \rightarrow S[\beta]$ which is a monotone bijection whose inverse is monotone. 
+        \item Let WLOG $\alpha < \beta$. Thus we also have the natural inclusion $i: S[\alpha] \rightarrow S[\beta]$. 
+        \item Since there is at most one injective monotone map between two
+            well orders, we must have $i = h$.
+        \item This means that $i$ is invertible, or we have an "inverse inclusion" $i^{-1}: S[\beta] \rightarrow S[\alpha]$.
+        \item This implies that $\alpha = \beta$, by... Yoneda? [Every element of a partial order is determined by its lower set / section]. \qed
+\end{itemize}
+
+\start{2(b) corollary} Show that no section of $E$ has the same order type as that of $E$. 
+\start{Proof}. The same proof. Suppose there is an order isomorphism $f: J
+\rightarrow E$. There is also the injection $i: J \rightarrow E$. Hence $i = f$, or $J = E$. \qed
+
+\start{q3} Let $J, E$ be well ordered sets. Suppose there is an order preserving map $k: J \rightarrow E$. Use exercise 1 and 2 to show that $J$ has the order
+type of $E$ or a section of $E$.
+\start{Proof}
 
 \end{document}
