@@ -3,6 +3,7 @@
 \documentclass[14pt]{report}
 \usepackage{classicthesis}
 
+\usepackage{bbm}
 \usepackage{bbding} % for flower. 
 \usepackage{physics}
 \usepackage{amsmath,amssymb}
@@ -19,6 +20,7 @@
 \usepackage{subcaption} %% For complex figures with subfigures/subcaptions
                         %% http://ctan.org/pkg/subcaption
 \usepackage{enumitem}
+\usepackage{mathtools}
 %\usepackage{minted}
 %\newminted{fortran}{fontsize=\footnotesize}
 
@@ -79,10 +81,11 @@
 %\newcommand{\bnt}[2]{\beta : F \nt G} 
 %\newcommand{\anti}[2]{\alpha : F \cong G} 
 %\newcommand{\bnti}[2]{\beta : F \cong G} 
-\newcommand{\zero}{\mathbb{0}}
-\newcommand{\one}{\mathbb{1}}
-\newcommand{\two}{\mathbb{2}}
-\newcommand{\three}{\mathbb{3}}
+\newcommand{\zero}{\mathbbm{0}}
+\newcommand{\one}{\mathbbm{1}}
+\newcommand{\two}{\mathbbm{2}}
+\newcommand{\three}{\mathbbm{3}}
+\newcommand{\id}{\operatorname{id}}
 
 
 
@@ -101,7 +104,8 @@
 \newtheorem{exercise}[theorem]{Exercise}
  
 % \newcommand{\proof}[1][]{\emph{Proof #1}\textbf{:} }
-\newcommand*{\question}[1]{\leavevmode\newline \textbf{Question #1.}}
+\newcommand*{\start}[1]{\leavevmode\newline \textbf{#1} }
+\newcommand*{\question}[1]{\leavevmode\newline \textbf{Question: #1.}}
 \newcommand*{\proof}[1]{\leavevmode\newline \textbf{Proof #1}}
 \newcommand*{\answer}{\leavevmode\newline \textbf{Answer} }
 
@@ -784,5 +788,180 @@ clear, we compare the two diagrams:
 I don't understand the question. We need the same common target category to have a common space for the diagrams to live.
 But this feels too naive, so I'm not sure what it is I'm missing.
 
+\section{Equivalence of categories}
 
+\question{Exercise 1.5.i}
+
+First, let's recall the category $\two$:
+
+% https://q.uiver.app/?q=WzAsMixbMCwwLCIwIl0sWzIsMCwiMSJdLFswLDEsIigwIFxccmlnaHRhcnJvdyAxKSJdXQ==
+\[\begin{tikzcd}
+	0 && 1
+	\arrow["{(0 \rightarrow 1)}", from=1-1, to=1-3]
+\end{tikzcd}\]
+
+Now when we take the product of some category $C$ with $\mathbb 2$, get as objects $\cup_{c \in C} \{ (c, 0), (c, 1) \}$ and as arrows
+we get three types:
+\begin{itemize}
+    \item  Cross arrows from $(-, 0)$ to $(-, 1)$: $\{ (c, 0) \xrightarrow{(a, 0 \rightarrow 1)} (d, 1) : c, d \in C; a \in Hom(c, d) \}$
+    \item  Arrows within the component $(-, 0)$: $\{ (c, 0) \xrightarrow{(a, id_0)} (d, 0) : c, d \in C; a \in Hom(c, d) \}$
+    \item  Arrows within the component $(-, 1)$: $\{ (c, 1) \xrightarrow{(a, id_1)} (d, 1) : c, d \in C; a \in Hom(c, d) \}$
+\end{itemize}
+
+If we now have a functor $H: C \times \two \rightarrow D$, we can recover the functors $F, G$ by considering the commutative square:
+
+% https://q.uiver.app/?q=WzAsNSxbMCwwLCJIKGMsIDApIl0sWzIsMCwiSChkLCAwKSJdLFswLDIsIkgoYywgMSkiXSxbMiwyLCJIKGQgLCAxKSJdLFsxLDJdLFsyLDMsIkgoZiwgXFxvcGVyYXRvcm5hbWV7aWR9XzEpIl0sWzAsMSwiSChmLCBcXG9wZXJhdG9ybmFtZXtpZH1fMCkiXSxbMCwyLCJIKFxcb3BlcmF0b3JuYW1le2lkfV9jLCAwIFxccmlnaHRhcnJvdyAxKSIsMV0sWzEsMywiSChcXG9wZXJhdG9ybmFtZXtpZH1fZCwgMCBcXHJpZ2h0YXJyb3cgMSkiLDFdXQ==
+\[\begin{tikzcd}
+	{H(c, 0)} && {H(d, 0)} \\
+	\\
+	{H(c, 1)} & {} & {H(d , 1)}
+	\arrow["{H(f, \operatorname{id}_1)}", from=3-1, to=3-3]
+	\arrow["{H(f, \operatorname{id}_0)}", from=1-1, to=1-3]
+	\arrow["{H(\operatorname{id}_c, 0 \rightarrow 1)}"{description}, from=1-1, to=3-1]
+	\arrow["{H(\operatorname{id}_d, 0 \rightarrow 1)}"{description}, from=1-3, to=3-3]
+\end{tikzcd}\]
+
+Where the top row is $F$, bottom row is $G$, and top-to-bottom morpshism is the natural transformation $\eta$:
+% https://q.uiver.app/?q=WzAsNSxbMCwwLCJGYyBcXHNpbWVxIEgoYywgMCkiXSxbMiwwLCJIKGQsIDApIFxcc2ltZXEgRmQiXSxbMCwyLCJHYyBcXHNpbWVxIEgoYywgMSkiXSxbMiwyLCJIKGQgLCAxKVxcc2ltZXEgR2QiXSxbMSwyXSxbMiwzLCJHZiBcXHNpbWVxIEgoZiwgXFxvcGVyYXRvcm5hbWV7aWR9XzEpIl0sWzAsMSwiRmYgXFxzaW1lcSBIKGYsIFxcb3BlcmF0b3JuYW1le2lkfV8wKSJdLFswLDIsIlxcZXRhX2MgXFxzaW1lcSBIKFxcb3BlcmF0b3JuYW1le2lkfV9jLCAwIFxccmlnaHRhcnJvdyAxKSIsMV0sWzEsMywiSChcXG9wZXJhdG9ybmFtZXtpZH1fZCwgMCBcXHJpZ2h0YXJyb3cgMSlcXHNpbWVxIFxcZXRhX2QiLDFdXQ==
+\[\begin{tikzcd}
+	{Fc \simeq H(c, 0)} && {H(d, 0) \simeq Fd} \\
+	\\
+	{Gc \simeq H(c, 1)} & {} & {H(d , 1)\simeq Gd}
+	\arrow["{Gf \simeq H(f, \operatorname{id}_1)}", from=3-1, to=3-3]
+	\arrow["{Ff \simeq H(f, \operatorname{id}_0)}", from=1-1, to=1-3]
+	\arrow["{\eta_c \simeq H(\operatorname{id}_c, 0 \rightarrow 1)}"{description}, from=1-1, to=3-1]
+	\arrow["{H(\operatorname{id}_d, 0 \rightarrow 1)\simeq \eta_d}"{description}, from=1-3, to=3-3]
+\end{tikzcd}\]
+
+I haven't drawn one arrow, that of $H(f, 0 \rightarrow 1)$. The diagram we have above only tells us that the arrows have the right shape.
+It does not tell us that the diagram actually \emph{commutes}. We need to prove that $G f \circ eta_c = \eta_d \circ F f$. The crux is to show that
+both of these are equal to $H(f, 0 \rightarrow 1)$ by functoriality of $H$:
+
+% https://q.uiver.app/?q=WzAsNSxbMCwwLCJGYyBcXHNpbWVxIEgoYywgMCkiXSxbMiwwLCJIKGQsIDApIFxcc2ltZXEgRmQiXSxbMCwyLCJHYyBcXHNpbWVxIEgoYywgMSkiXSxbMiwyLCJIKGQgLCAxKVxcc2ltZXEgR2QiXSxbMSwyXSxbMiwzLCJHZiBcXHNpbWVxIEgoZiwgXFxvcGVyYXRvcm5hbWV7aWR9XzEpIl0sWzAsMSwiRmYgXFxzaW1lcSBIKGYsIFxcb3BlcmF0b3JuYW1le2lkfV8wKSJdLFswLDIsIlxcZXRhX2MgXFxzaW1lcSBIKFxcb3BlcmF0b3JuYW1le2lkfV9jLCAwIFxccmlnaHRhcnJvdyAxKSIsMl0sWzEsMywiSChcXG9wZXJhdG9ybmFtZXtpZH1fZCwgMCBcXHJpZ2h0YXJyb3cgMSlcXHNpbWVxIFxcZXRhX2QiXSxbMCwzLCJIKGYsIDAgXFxyaWdodGFycm93IDEpIiwxXV0=
+\[\begin{tikzcd}
+	{Fc \simeq H(c, 0)} && {H(d, 0) \simeq Fd} \\
+	\\
+	{Gc \simeq H(c, 1)} & {} & {H(d , 1)\simeq Gd}
+	\arrow["{Gf \simeq H(f, \operatorname{id}_1)}", from=3-1, to=3-3]
+	\arrow["{Ff \simeq H(f, \operatorname{id}_0)}", from=1-1, to=1-3]
+	\arrow["{\eta_c \simeq H(\operatorname{id}_c, 0 \rightarrow 1)}"', from=1-1, to=3-1]
+	\arrow["{H(\operatorname{id}_d, 0 \rightarrow 1)\simeq \eta_d}", from=1-3, to=3-3]
+	\arrow["{H(f, 0 \rightarrow 1)}"{description}, from=1-1, to=3-3]
+\end{tikzcd}\]
+
+Since in the original category we have $f \circ id_c = f$ and $\id_1 \circ (0 \rightarrow 1) = \id_1$, we combine these equations
+to get $(f,  id_1) \circ (id_c, 0 \rightarrow 1) = (f, 0 \rightarrow 1)$. Similarly, we show that $(id_d, 0 \rightarrow 1) \circ (f, id_0)  = (f, 0 \rightarrow 1)$.
+Thus, the diagram does indeed commute, and what we have is a natural transformation.
+
+
+\question{Exercise 1.5.iii}
+
+Recal that the data of the isomorphism of objects $a \simeq a'$ is given by morphisms $\alpha: a \rightarrow a'$ and $\alpha^{-1}: a' \rightarrow a$
+such that $\alpha^{-1} \circ \alpha: a \rightarrow a \simeq id_a$ and $\alpha \circ \alpha^{-1}: a' \rightarrow a' \simeq id_{a'}$. Similarly, posit
+a $\beta$ to witness $b \simeq b'$. Now the square on the left gives us the equation $\beta \circ f \circ \alpha^{-1} = f'$. We compose with $\beta^{-1}, \alpha$
+to get the other squares:
+
+% https://q.uiver.app/?q=WzAsMTIsWzEsMSwiYSJdLFsyLDEsImEnIl0sWzEsMiwiYiJdLFsyLDIsImInIl0sWzMsMSwiYSJdLFs1LDEsImEnIl0sWzMsMywiZiJdLFs1LDMsImYnIl0sWzMsMF0sWzQsMiwiXFxiZXRhIFxcY2lyYyBmIFxcY2lyYyBcXGFscGhhXnstMX0gPWYnIl0sWzAsMSwiXFxhbHBoYSBcXGNpcmMgXFxhbHBoYV57LTF9ID0gaWQiXSxbMCwyLCJcXGJldGEgXFxjaXJjIFxcYmV0YV57LTF9ID0gaWQiXSxbMCwxLCJcXGFscGhhIl0sWzEsMCwiXFxhbHBoYV57LTF9IiwwLHsib2Zmc2V0IjotMn1dLFsyLDMsIlxcYmV0YSIsMCx7Im9mZnNldCI6LTJ9XSxbMywyLCJcXGJldGFeey0xfSIsMCx7Im9mZnNldCI6LTJ9XSxbNSw0LCJcXGFscGhhXnstMX0iLDJdLFs0LDYsImYiLDJdLFs2LDcsIlxcYmV0YSIsMl0sWzUsNywiZiciXV0=
+\[\begin{tikzcd}
+	&&& {} \\
+	{\alpha \circ \alpha^{-1} = id} & a & {a'} & a && {a'} \\
+	{\beta \circ \beta^{-1} = id} & b & {b'} && {\beta \circ f \circ \alpha^{-1} =f'} \\
+	&&& f && {f'}
+	\arrow["\alpha", from=2-2, to=2-3]
+	\arrow["{\alpha^{-1}}", shift left=2, from=2-3, to=2-2]
+	\arrow["\beta", shift left=2, from=3-2, to=3-3]
+	\arrow["{\beta^{-1}}", shift left=2, from=3-3, to=3-2]
+	\arrow["{\alpha^{-1}}"', from=2-6, to=2-4]
+	\arrow["f"', from=2-4, to=4-4]
+	\arrow["\beta"', from=4-4, to=4-6]
+	\arrow["{f'}", from=2-6, to=4-6]
+\end{tikzcd}\]
+
+
+\begin{itemize}
+    \item $\beta \circ f \circ \alpha^{-1} = f'$ implies $f \circ \alpha^{-1} = \beta^{-1} \circ f'$.
+    \item $\beta \circ f \circ \alpha^{-1} = f'$ implies $\beta \circ f = \circ f' \circ \alpha$.
+    \item $\beta \circ f \circ \alpha^{-1} = f'$ implies $f = \beta{-1} \circ f' \circ \alpha$.
+\end{itemize}
+
+\question{Equivalence of categories implies full, faithful, essentially surjective}
+
+
+
+\start{Equivalence is faithful:} Let us have two arrows $c \xrightarrow{p} d$ and $c \xrightarrow{q} d$. We wish to show that if
+$Fc \xrightarrow{Fp} Fd$ equals $Fc \xrightarrow{Fq} Fd$ , then $p$ equals $q$. So $Fp = Fq \implies p = q$. The idea is to apply $G$
+to get $GFp = GFq$, at which point we can apply $\eta: 1_C \rightarrow GF$ to convert from $GFp, GFq$ into $p, q$. Witness the
+diagram:
+
+% https://q.uiver.app/?q=WzAsMjMsWzAsMywiRmMiXSxbMCwwXSxbMCwyLCJGYyJdLFsxLDIsIkZkIl0sWzEsMywiRmQiXSxbMywyLCJHRmMiXSxbNCwyLCJHRmQiXSxbNCwzLCJHRmQiXSxbMywzLCJHRmMiXSxbMyw0LCJjIl0sWzQsNCwiZCJdLFszLDEsImMiXSxbNCwxLCJkIl0sWzUsMSwiYyJdLFs1LDIsIkdGX2MiXSxbNSwzLCJjIl0sWzYsMSwiZCJdLFs2LDIsIkdGX2QiXSxbNiwzLCJkIl0sWzcsMSwiYyJdLFs3LDIsImMiXSxbOCwyLCJkIl0sWzgsMSwiZCJdLFsyLDMsIkZwIl0sWzIsMCwiPSIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCw0LCJGcSIsMl0sWzMsNCwiPSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNSw2LCJHRnAiXSxbNiw3LCI9IiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs1LDgsIj0iLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzgsNywiR0ZxIiwyXSxbOSw4LCJcXGV0YV9jIiwyXSxbMTAsNywiXFxldGFfZCIsMl0sWzExLDEyLCIxcCJdLFs5LDEwLCJxIiwyXSxbMTEsNSwiXFxldGFfYyIsMl0sWzEyLDYsIlxcZXRhX2QiLDJdLFsxNCwxMywiXFxldGFfY157LTF9IiwyXSxbMTUsMTQsIlxcZXRhX2MiLDJdLFsxMywxNiwicCJdLFsxNywxNiwiXFxldGFfZF57LTF9Il0sWzE4LDE3LCJcXGV0YV9kIl0sWzE1LDE4LCJxIiwyXSxbMjAsMjEsInEiLDJdLFsyMCwxOSwiXFxvcGVyYXRvcm5hbWV7aWR9X2MiXSxbMjEsMjIsIlxcb3BlcmF0b3JuYW1le2lkfV9kIiwyXSxbMTksMjIsInAiXV0=
+\[\begin{tikzcd}
+	{} \\
+	&&& c & d & c & d & c & d \\
+	Fc & Fd && GFc & GFd & {GF_c} & {GF_d} & c & d \\
+	Fc & Fd && GFc & GFd & c & d \\
+	&&& c & d
+	\arrow["Fp", from=3-1, to=3-2]
+	\arrow["{=}"', no head, from=3-1, to=4-1]
+	\arrow["Fq"', from=4-1, to=4-2]
+	\arrow["{=}", no head, from=3-2, to=4-2]
+	\arrow["GFp", from=3-4, to=3-5]
+	\arrow["{=}", no head, from=3-5, to=4-5]
+	\arrow["{=}"', no head, from=3-4, to=4-4]
+	\arrow["GFq"', from=4-4, to=4-5]
+	\arrow["{\eta_c}"', from=5-4, to=4-4]
+	\arrow["{\eta_d}"', from=5-5, to=4-5]
+	\arrow["1p", from=2-4, to=2-5]
+	\arrow["q"', from=5-4, to=5-5]
+	\arrow["{\eta_c}"', from=2-4, to=3-4]
+	\arrow["{\eta_d}"', from=2-5, to=3-5]
+	\arrow["{\eta_c^{-1}}"', from=3-6, to=2-6]
+	\arrow["{\eta_c}"', from=4-6, to=3-6]
+	\arrow["p", from=2-6, to=2-7]
+	\arrow["{\eta_d^{-1}}", from=3-7, to=2-7]
+	\arrow["{\eta_d}", from=4-7, to=3-7]
+	\arrow["q"', from=4-6, to=4-7]
+	\arrow["q"', from=3-8, to=3-9]
+	\arrow["{\operatorname{id}_c}", from=3-8, to=2-8]
+	\arrow["{\operatorname{id}_d}"', from=3-9, to=2-9]
+	\arrow["p", from=2-8, to=2-9]
+\end{tikzcd}\]
+
+In text, the proof proceeds as:
+\begin{itemize}
+    \item Start by $Fc \xrightarrow{Fp} Fd = Fc \xrightarrow{Fq}$
+    \item Augment by applying $\eta: 1 \nt FG$, $\eta^{-1}: FG \nt 1$ to the left and the right, giving $$(c \xrightarrow{p} d) \xRightarrow{\eta} (Fc \xrightarrow{Fp} Fd) = (Fc \xrightarrow{Fq} Fd) \xRightarrow{\eta^{-1}} (c \xrightarrow{q} d)$$
+    \item Collapse along the equality, apply composition $\eta^{-1} \circ \eta  = id$ giving: $$(c \xrightarrow{p} d) \xRightarrow{id} (c \xrightarrow q d)$$
+    \item Thus, we derive $p = q$ starting from $F p = F q$. \qed
+\end{itemize}
+
+\start{Equivalence is full:} Suppose we are given an arrow $(Fc \xrightarrow{q} Fc')$ (Note that this \textbf{does not} give us an arrow $(d \xrightarrow{q} d')$ --- we know
+that the objects in question are in the image of the functor). We must show that there is a pre-image of the arrow $q$, so we expect an arrow $(c \xrightarrow{p} d)$ such that $Fp = q$.
+Let's do the obvious thing, and pull back along $G$ to get:
+
+% https://q.uiver.app/?q=WzAsMTEsWzAsMCwiRmMiXSxbMSwwLCJGZCJdLFswLDEsImMiXSxbMSwxLCJkIl0sWzAsMiwiR0ZjIl0sWzEsMiwiR0ZkIl0sWzIsMSwiYyJdLFs0LDEsImQiXSxbMiwyLCJHRmMiXSxbNCwyLCJHRmQiXSxbMiwzXSxbMCwxLCJxIl0sWzIsMywiPyJdLFsyLDQsIlxcZXRhX2MiLDJdLFs0LDUsIkdxIiwyXSxbMyw1LCJcXGV0YV9kIl0sWzYsNywicD1cXGV0YV57LTF9X2RcXGNpcmMgR3EgXFxjaXJjIFxcZXRhX2MiXSxbNiw4LCJcXGV0YV9jIiwyXSxbOCw5LCJHRnA9R3EiLDJdLFs5LDcsIlxcZXRhXnstMX1fZCIsMl1d
+\[\begin{tikzcd}
+	Fc & Fd \\
+	c & d & c && d \\
+	GFc & GFd & GFc && GFd \\
+	&& {}
+	\arrow["q", from=1-1, to=1-2]
+	\arrow["{?}", from=2-1, to=2-2]
+	\arrow["{\eta_c}"', from=2-1, to=3-1]
+	\arrow["Gq"', from=3-1, to=3-2]
+	\arrow["{\eta_d}", from=2-2, to=3-2]
+	\arrow["{p=\eta^{-1}_d\circ Gq \circ \eta_c}", from=2-3, to=2-5]
+	\arrow["{\eta_c}"', from=2-3, to=3-3]
+	\arrow["{GFp=Gq}"', from=3-3, to=3-5]
+	\arrow["{\eta^{-1}_d}"', from=3-5, to=2-5]
+\end{tikzcd}\]
+
+So we define an arrow $p \equiv \eta^{-1}_d \circ Gq \circ \eta_c$ since it seems to be the "right arrow" for our use case. By the commutativity
+of the diagram, we have that $GFp = Gq$. Since $G$ is faithful (as proven above), we have $Fp = q$ and so we are done,
+as we have established a pre-image arrow $p$ for the given $q$.
+
+\start{Equivalence is essentially surjective:} Let $d \in D$. We must find a $c \in C$ such that $F(c) \simeq d$. Let's try the obvious
+candidate, $G(d) \in C$. We get $F(G(d))$, which we must show is isomorphic to $d$. Recall that we have a natural isomorphism 
+$\epsilon: FG \nt 1_D$. We invoke $\epsilon_d$ to get the isomorphism $FGd \xrightarrow{\epsilon_d} d$. It is invertible
+since the isomorphism $\epsilon$ is invertible, with inverse arrow $d \xrightarrow{\epsilon^{-1}_d} FGd$ such that they are
+inverses of each other.
 \end{document}
