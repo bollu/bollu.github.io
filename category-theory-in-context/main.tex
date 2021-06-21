@@ -112,6 +112,10 @@
 \newcommand{\X}{\ensuremath{\mathfrak{X}}}
 \newcommand{\comma}{\downarrow}
 
+
+% \newcommand{\hom}{\ensuremath{\operatorname{Hom}}}
+% \newcommand{\Hom}{\ensuremath{\operatorname{Hom}}}
+
 \title{Category theory in context}
 \author{Siddharth Bhat}
 \date{Monsoon, second year of the plague}
@@ -788,105 +792,14 @@ clear, we compare the two diagrams:
 I don't understand the question. We need the same common target category to have a common space for the diagrams to live.
 But this feels too naive, so I'm not sure what it is I'm missing.
 
-\section{Equivalence of categories}
+\section{1.5: Equivalence of categories}
 
-\question{Exercise 1.5.i}
+\subsection{Musings}
 
-First, let's recall the category $\two$:
+\start{Proof: Equivalence of categories implies full, faithful, essentially surjective}
 
-% https://q.uiver.app/?q=WzAsMixbMCwwLCIwIl0sWzIsMCwiMSJdLFswLDEsIigwIFxccmlnaHRhcnJvdyAxKSJdXQ==
-\[\begin{tikzcd}
-	0 && 1
-	\arrow["{(0 \rightarrow 1)}", from=1-1, to=1-3]
-\end{tikzcd}\]
-
-Now when we take the product of some category $C$ with $\mathbb 2$, get as objects $\cup_{c \in C} \{ (c, 0), (c, 1) \}$ and as arrows
-we get three types:
-\begin{itemize}
-    \item  Cross arrows from $(-, 0)$ to $(-, 1)$: $\{ (c, 0) \xrightarrow{(a, 0 \rightarrow 1)} (d, 1) : c, d \in C; a \in Hom(c, d) \}$
-    \item  Arrows within the component $(-, 0)$: $\{ (c, 0) \xrightarrow{(a, id_0)} (d, 0) : c, d \in C; a \in Hom(c, d) \}$
-    \item  Arrows within the component $(-, 1)$: $\{ (c, 1) \xrightarrow{(a, id_1)} (d, 1) : c, d \in C; a \in Hom(c, d) \}$
-\end{itemize}
-
-If we now have a functor $H: C \times \two \rightarrow D$, we can recover the functors $F, G$ by considering the commutative square:
-
-% https://q.uiver.app/?q=WzAsNSxbMCwwLCJIKGMsIDApIl0sWzIsMCwiSChkLCAwKSJdLFswLDIsIkgoYywgMSkiXSxbMiwyLCJIKGQgLCAxKSJdLFsxLDJdLFsyLDMsIkgoZiwgXFxvcGVyYXRvcm5hbWV7aWR9XzEpIl0sWzAsMSwiSChmLCBcXG9wZXJhdG9ybmFtZXtpZH1fMCkiXSxbMCwyLCJIKFxcb3BlcmF0b3JuYW1le2lkfV9jLCAwIFxccmlnaHRhcnJvdyAxKSIsMV0sWzEsMywiSChcXG9wZXJhdG9ybmFtZXtpZH1fZCwgMCBcXHJpZ2h0YXJyb3cgMSkiLDFdXQ==
-\[\begin{tikzcd}
-	{H(c, 0)} && {H(d, 0)} \\
-	\\
-	{H(c, 1)} & {} & {H(d , 1)}
-	\arrow["{H(f, \operatorname{id}_1)}", from=3-1, to=3-3]
-	\arrow["{H(f, \operatorname{id}_0)}", from=1-1, to=1-3]
-	\arrow["{H(\operatorname{id}_c, 0 \rightarrow 1)}"{description}, from=1-1, to=3-1]
-	\arrow["{H(\operatorname{id}_d, 0 \rightarrow 1)}"{description}, from=1-3, to=3-3]
-\end{tikzcd}\]
-
-Where the top row is $F$, bottom row is $G$, and top-to-bottom morpshism is the natural transformation $\eta$:
-% https://q.uiver.app/?q=WzAsNSxbMCwwLCJGYyBcXHNpbWVxIEgoYywgMCkiXSxbMiwwLCJIKGQsIDApIFxcc2ltZXEgRmQiXSxbMCwyLCJHYyBcXHNpbWVxIEgoYywgMSkiXSxbMiwyLCJIKGQgLCAxKVxcc2ltZXEgR2QiXSxbMSwyXSxbMiwzLCJHZiBcXHNpbWVxIEgoZiwgXFxvcGVyYXRvcm5hbWV7aWR9XzEpIl0sWzAsMSwiRmYgXFxzaW1lcSBIKGYsIFxcb3BlcmF0b3JuYW1le2lkfV8wKSJdLFswLDIsIlxcZXRhX2MgXFxzaW1lcSBIKFxcb3BlcmF0b3JuYW1le2lkfV9jLCAwIFxccmlnaHRhcnJvdyAxKSIsMV0sWzEsMywiSChcXG9wZXJhdG9ybmFtZXtpZH1fZCwgMCBcXHJpZ2h0YXJyb3cgMSlcXHNpbWVxIFxcZXRhX2QiLDFdXQ==
-\[\begin{tikzcd}
-	{Fc \simeq H(c, 0)} && {H(d, 0) \simeq Fd} \\
-	\\
-	{Gc \simeq H(c, 1)} & {} & {H(d , 1)\simeq Gd}
-	\arrow["{Gf \simeq H(f, \operatorname{id}_1)}", from=3-1, to=3-3]
-	\arrow["{Ff \simeq H(f, \operatorname{id}_0)}", from=1-1, to=1-3]
-	\arrow["{\eta_c \simeq H(\operatorname{id}_c, 0 \rightarrow 1)}"{description}, from=1-1, to=3-1]
-	\arrow["{H(\operatorname{id}_d, 0 \rightarrow 1)\simeq \eta_d}"{description}, from=1-3, to=3-3]
-\end{tikzcd}\]
-
-I haven't drawn one arrow, that of $H(f, 0 \rightarrow 1)$. The diagram we have above only tells us that the arrows have the right shape.
-It does not tell us that the diagram actually \emph{commutes}. We need to prove that $G f \circ eta_c = \eta_d \circ F f$. The crux is to show that
-both of these are equal to $H(f, 0 \rightarrow 1)$ by functoriality of $H$:
-
-% https://q.uiver.app/?q=WzAsNSxbMCwwLCJGYyBcXHNpbWVxIEgoYywgMCkiXSxbMiwwLCJIKGQsIDApIFxcc2ltZXEgRmQiXSxbMCwyLCJHYyBcXHNpbWVxIEgoYywgMSkiXSxbMiwyLCJIKGQgLCAxKVxcc2ltZXEgR2QiXSxbMSwyXSxbMiwzLCJHZiBcXHNpbWVxIEgoZiwgXFxvcGVyYXRvcm5hbWV7aWR9XzEpIl0sWzAsMSwiRmYgXFxzaW1lcSBIKGYsIFxcb3BlcmF0b3JuYW1le2lkfV8wKSJdLFswLDIsIlxcZXRhX2MgXFxzaW1lcSBIKFxcb3BlcmF0b3JuYW1le2lkfV9jLCAwIFxccmlnaHRhcnJvdyAxKSIsMl0sWzEsMywiSChcXG9wZXJhdG9ybmFtZXtpZH1fZCwgMCBcXHJpZ2h0YXJyb3cgMSlcXHNpbWVxIFxcZXRhX2QiXSxbMCwzLCJIKGYsIDAgXFxyaWdodGFycm93IDEpIiwxXV0=
-\[\begin{tikzcd}
-	{Fc \simeq H(c, 0)} && {H(d, 0) \simeq Fd} \\
-	\\
-	{Gc \simeq H(c, 1)} & {} & {H(d , 1)\simeq Gd}
-	\arrow["{Gf \simeq H(f, \operatorname{id}_1)}", from=3-1, to=3-3]
-	\arrow["{Ff \simeq H(f, \operatorname{id}_0)}", from=1-1, to=1-3]
-	\arrow["{\eta_c \simeq H(\operatorname{id}_c, 0 \rightarrow 1)}"', from=1-1, to=3-1]
-	\arrow["{H(\operatorname{id}_d, 0 \rightarrow 1)\simeq \eta_d}", from=1-3, to=3-3]
-	\arrow["{H(f, 0 \rightarrow 1)}"{description}, from=1-1, to=3-3]
-\end{tikzcd}\]
-
-Since in the original category we have $f \circ id_c = f$ and $\id_1 \circ (0 \rightarrow 1) = \id_1$, we combine these equations
-to get $(f,  id_1) \circ (id_c, 0 \rightarrow 1) = (f, 0 \rightarrow 1)$. Similarly, we show that $(id_d, 0 \rightarrow 1) \circ (f, id_0)  = (f, 0 \rightarrow 1)$.
-Thus, the diagram does indeed commute, and what we have is a natural transformation.
-
-
-\question{Exercise 1.5.iii}
-
-Recal that the data of the isomorphism of objects $a \simeq a'$ is given by morphisms $\alpha: a \rightarrow a'$ and $\alpha^{-1}: a' \rightarrow a$
-such that $\alpha^{-1} \circ \alpha: a \rightarrow a \simeq id_a$ and $\alpha \circ \alpha^{-1}: a' \rightarrow a' \simeq id_{a'}$. Similarly, posit
-a $\beta$ to witness $b \simeq b'$. Now the square on the left gives us the equation $\beta \circ f \circ \alpha^{-1} = f'$. We compose with $\beta^{-1}, \alpha$
-to get the other squares:
-
-% https://q.uiver.app/?q=WzAsMTIsWzEsMSwiYSJdLFsyLDEsImEnIl0sWzEsMiwiYiJdLFsyLDIsImInIl0sWzMsMSwiYSJdLFs1LDEsImEnIl0sWzMsMywiZiJdLFs1LDMsImYnIl0sWzMsMF0sWzQsMiwiXFxiZXRhIFxcY2lyYyBmIFxcY2lyYyBcXGFscGhhXnstMX0gPWYnIl0sWzAsMSwiXFxhbHBoYSBcXGNpcmMgXFxhbHBoYV57LTF9ID0gaWQiXSxbMCwyLCJcXGJldGEgXFxjaXJjIFxcYmV0YV57LTF9ID0gaWQiXSxbMCwxLCJcXGFscGhhIl0sWzEsMCwiXFxhbHBoYV57LTF9IiwwLHsib2Zmc2V0IjotMn1dLFsyLDMsIlxcYmV0YSIsMCx7Im9mZnNldCI6LTJ9XSxbMywyLCJcXGJldGFeey0xfSIsMCx7Im9mZnNldCI6LTJ9XSxbNSw0LCJcXGFscGhhXnstMX0iLDJdLFs0LDYsImYiLDJdLFs2LDcsIlxcYmV0YSIsMl0sWzUsNywiZiciXV0=
-\[\begin{tikzcd}
-	&&& {} \\
-	{\alpha \circ \alpha^{-1} = id} & a & {a'} & a && {a'} \\
-	{\beta \circ \beta^{-1} = id} & b & {b'} && {\beta \circ f \circ \alpha^{-1} =f'} \\
-	&&& f && {f'}
-	\arrow["\alpha", from=2-2, to=2-3]
-	\arrow["{\alpha^{-1}}", shift left=2, from=2-3, to=2-2]
-	\arrow["\beta", shift left=2, from=3-2, to=3-3]
-	\arrow["{\beta^{-1}}", shift left=2, from=3-3, to=3-2]
-	\arrow["{\alpha^{-1}}"', from=2-6, to=2-4]
-	\arrow["f"', from=2-4, to=4-4]
-	\arrow["\beta"', from=4-4, to=4-6]
-	\arrow["{f'}", from=2-6, to=4-6]
-\end{tikzcd}\]
-
-
-\begin{itemize}
-    \item $\beta \circ f \circ \alpha^{-1} = f'$ implies $f \circ \alpha^{-1} = \beta^{-1} \circ f'$.
-    \item $\beta \circ f \circ \alpha^{-1} = f'$ implies $\beta \circ f = \circ f' \circ \alpha$.
-    \item $\beta \circ f \circ \alpha^{-1} = f'$ implies $f = \beta{-1} \circ f' \circ \alpha$.
-\end{itemize}
-
-\question{Equivalence of categories implies full, faithful, essentially surjective}
-
-
+I reproduce the proof in a way that makes sense to me, since this feels like
+the first somewhat non-trivial theorem we have proven.
 
 \start{Equivalence is faithful:} Let us have two arrows $c \xrightarrow{p} d$ and $c \xrightarrow{q} d$. We wish to show that if
 $Fc \xrightarrow{Fp} Fd$ equals $Fc \xrightarrow{Fq} Fd$ , then $p$ equals $q$. So $Fp = Fq \implies p = q$. The idea is to apply $G$
@@ -964,4 +877,210 @@ candidate, $G(d) \in C$. We get $F(G(d))$, which we must show is isomorphic to $
 $\epsilon: FG \nt 1_D$. We invoke $\epsilon_d$ to get the isomorphism $FGd \xrightarrow{\epsilon_d} d$. It is invertible
 since the isomorphism $\epsilon$ is invertible, with inverse arrow $d \xrightarrow{\epsilon^{-1}_d} FGd$ such that they are
 inverses of each other.
+
+\subsection{Exercises 1.5}
+
+\question{Exercise 1.5.i}
+
+First, let's recall the category $\two$:
+
+% https://q.uiver.app/?q=WzAsMixbMCwwLCIwIl0sWzIsMCwiMSJdLFswLDEsIigwIFxccmlnaHRhcnJvdyAxKSJdXQ==
+\[\begin{tikzcd}
+	0 && 1
+	\arrow["{(0 \rightarrow 1)}", from=1-1, to=1-3]
+\end{tikzcd}\]
+
+Now when we take the product of some category $C$ with $\mathbb 2$, get as objects $\cup_{c \in C} \{ (c, 0), (c, 1) \}$ and as arrows
+we get three types:
+\begin{itemize}
+    \item  Cross arrows from $(-, 0)$ to $(-, 1)$: $\{ (c, 0) \xrightarrow{(a, 0 \rightarrow 1)} (d, 1) : c, d \in C; a \in Hom(c, d) \}$
+    \item  Arrows within the component $(-, 0)$: $\{ (c, 0) \xrightarrow{(a, id_0)} (d, 0) : c, d \in C; a \in Hom(c, d) \}$
+    \item  Arrows within the component $(-, 1)$: $\{ (c, 1) \xrightarrow{(a, id_1)} (d, 1) : c, d \in C; a \in Hom(c, d) \}$
+\end{itemize}
+
+If we now have a functor $H: C \times \two \rightarrow D$, we can recover the functors $F, G$ by considering the commutative square:
+
+% https://q.uiver.app/?q=WzAsNSxbMCwwLCJIKGMsIDApIl0sWzIsMCwiSChkLCAwKSJdLFswLDIsIkgoYywgMSkiXSxbMiwyLCJIKGQgLCAxKSJdLFsxLDJdLFsyLDMsIkgoZiwgXFxvcGVyYXRvcm5hbWV7aWR9XzEpIl0sWzAsMSwiSChmLCBcXG9wZXJhdG9ybmFtZXtpZH1fMCkiXSxbMCwyLCJIKFxcb3BlcmF0b3JuYW1le2lkfV9jLCAwIFxccmlnaHRhcnJvdyAxKSIsMV0sWzEsMywiSChcXG9wZXJhdG9ybmFtZXtpZH1fZCwgMCBcXHJpZ2h0YXJyb3cgMSkiLDFdXQ==
+\[\begin{tikzcd}
+	{H(c, 0)} && {H(d, 0)} \\
+	\\
+	{H(c, 1)} & {} & {H(d , 1)}
+	\arrow["{H(f, \operatorname{id}_1)}", from=3-1, to=3-3]
+	\arrow["{H(f, \operatorname{id}_0)}", from=1-1, to=1-3]
+	\arrow["{H(\operatorname{id}_c, 0 \rightarrow 1)}"{description}, from=1-1, to=3-1]
+	\arrow["{H(\operatorname{id}_d, 0 \rightarrow 1)}"{description}, from=1-3, to=3-3]
+\end{tikzcd}\]
+
+Where the top row is $F$, bottom row is $G$, and top-to-bottom morpshism is the natural transformation $\eta$:
+% https://q.uiver.app/?q=WzAsNSxbMCwwLCJGYyBcXHNpbWVxIEgoYywgMCkiXSxbMiwwLCJIKGQsIDApIFxcc2ltZXEgRmQiXSxbMCwyLCJHYyBcXHNpbWVxIEgoYywgMSkiXSxbMiwyLCJIKGQgLCAxKVxcc2ltZXEgR2QiXSxbMSwyXSxbMiwzLCJHZiBcXHNpbWVxIEgoZiwgXFxvcGVyYXRvcm5hbWV7aWR9XzEpIl0sWzAsMSwiRmYgXFxzaW1lcSBIKGYsIFxcb3BlcmF0b3JuYW1le2lkfV8wKSJdLFswLDIsIlxcZXRhX2MgXFxzaW1lcSBIKFxcb3BlcmF0b3JuYW1le2lkfV9jLCAwIFxccmlnaHRhcnJvdyAxKSIsMV0sWzEsMywiSChcXG9wZXJhdG9ybmFtZXtpZH1fZCwgMCBcXHJpZ2h0YXJyb3cgMSlcXHNpbWVxIFxcZXRhX2QiLDFdXQ==
+\[\begin{tikzcd}
+	{Fc \simeq H(c, 0)} && {H(d, 0) \simeq Fd} \\
+	\\
+	{Gc \simeq H(c, 1)} & {} & {H(d , 1)\simeq Gd}
+	\arrow["{Gf \simeq H(f, \operatorname{id}_1)}", from=3-1, to=3-3]
+	\arrow["{Ff \simeq H(f, \operatorname{id}_0)}", from=1-1, to=1-3]
+	\arrow["{\eta_c \simeq H(\operatorname{id}_c, 0 \rightarrow 1)}"{description}, from=1-1, to=3-1]
+	\arrow["{H(\operatorname{id}_d, 0 \rightarrow 1)\simeq \eta_d}"{description}, from=1-3, to=3-3]
+\end{tikzcd}\]
+
+I haven't drawn one arrow, that of $H(f, 0 \rightarrow 1)$. The diagram we have above only tells us that the arrows have the right shape.
+It does not tell us that the diagram actually \emph{commutes}. We need to prove that $G f \circ eta_c = \eta_d \circ F f$. The crux is to show that
+both of these are equal to $H(f, 0 \rightarrow 1)$ by functoriality of $H$:
+
+% https://q.uiver.app/?q=WzAsNSxbMCwwLCJGYyBcXHNpbWVxIEgoYywgMCkiXSxbMiwwLCJIKGQsIDApIFxcc2ltZXEgRmQiXSxbMCwyLCJHYyBcXHNpbWVxIEgoYywgMSkiXSxbMiwyLCJIKGQgLCAxKVxcc2ltZXEgR2QiXSxbMSwyXSxbMiwzLCJHZiBcXHNpbWVxIEgoZiwgXFxvcGVyYXRvcm5hbWV7aWR9XzEpIl0sWzAsMSwiRmYgXFxzaW1lcSBIKGYsIFxcb3BlcmF0b3JuYW1le2lkfV8wKSJdLFswLDIsIlxcZXRhX2MgXFxzaW1lcSBIKFxcb3BlcmF0b3JuYW1le2lkfV9jLCAwIFxccmlnaHRhcnJvdyAxKSIsMl0sWzEsMywiSChcXG9wZXJhdG9ybmFtZXtpZH1fZCwgMCBcXHJpZ2h0YXJyb3cgMSlcXHNpbWVxIFxcZXRhX2QiXSxbMCwzLCJIKGYsIDAgXFxyaWdodGFycm93IDEpIiwxXV0=
+\[\begin{tikzcd}
+	{Fc \simeq H(c, 0)} && {H(d, 0) \simeq Fd} \\
+	\\
+	{Gc \simeq H(c, 1)} & {} & {H(d , 1)\simeq Gd}
+	\arrow["{Gf \simeq H(f, \operatorname{id}_1)}", from=3-1, to=3-3]
+	\arrow["{Ff \simeq H(f, \operatorname{id}_0)}", from=1-1, to=1-3]
+	\arrow["{\eta_c \simeq H(\operatorname{id}_c, 0 \rightarrow 1)}"', from=1-1, to=3-1]
+	\arrow["{H(\operatorname{id}_d, 0 \rightarrow 1)\simeq \eta_d}", from=1-3, to=3-3]
+	\arrow["{H(f, 0 \rightarrow 1)}"{description}, from=1-1, to=3-3]
+\end{tikzcd}\]
+
+Since in the original category we have $f \circ id_c = f$ and $\id_1 \circ (0 \rightarrow 1) = \id_1$, we combine these equations
+to get $(f,  id_1) \circ (id_c, 0 \rightarrow 1) = (f, 0 \rightarrow 1)$. Similarly, we show that $(id_d, 0 \rightarrow 1) \circ (f, id_0)  = (f, 0 \rightarrow 1)$.
+Thus, the diagram does indeed commute, and what we have is a natural transformation.
+
+\question{Exercise 1.5.ii}
+Define a category $\Gamma$ whose objects are finite sets, and whose morphisms from $S$ to $T$ are maps $\theta: S \rightarrow 2^T$ where $\theta(\alpha)$ and $\theta(\beta)$
+are disjoint when $\alpha \neq \beta$. The composite map is given by $\psi(\alpha) = \cup_{\beta \in \theta(\alpha)} \phi(\beta)$ [set/list monad]. Prove that $\Gamma$
+is equivalent to the opposite of the category $Fin_*$ of finite pointed sets. 
+
+\begin{itemize}
+\item I can see why it is the opposite of finite sets.
+\item The arrow $\theta: S \rightarrow 2^T$ records the data of fibers of maps $T \rightarrow S$.
+\item Define $f_\theta: (T, t_*) \rightarrow (S, s_*)$ given by
+$f(t) = s$ when $t \in \theta(s)$. We are guaranteed such an $s$ is unique since all sets $\theta(s)$ is disjoint.
+\item At this stage, we also see why we need
+pointed sets. If there is no $s$ such that $t \in \theta(s)$, then define $f(t)
+        = s_*$, the basepoint of $S$. This is the ``basepoint encoding'' of
+        partial functions.
+\item The above shows that the functor is full and faithful (each arrow in
+    $Fin_*$ has a corresponding unique arrow in $\Gamma$), and surjective (not
+        just essentially surjective), and thus the functor is an equialence of
+        categories.
+\end{itemize}
+
+\question{Exercise 1.5.iii}
+
+Recall that the data of the isomorphism of objects $a \simeq a'$ is given by morphisms $\alpha: a \rightarrow a'$ and $\alpha^{-1}: a' \rightarrow a$
+such that $\alpha^{-1} \circ \alpha: a \rightarrow a \simeq id_a$ and $\alpha \circ \alpha^{-1}: a' \rightarrow a' \simeq id_{a'}$. Similarly, posit
+a $\beta$ to witness $b \simeq b'$. Now the square on the left gives us the equation $\beta \circ f \circ \alpha^{-1} = f'$. We compose with $\beta^{-1}, \alpha$
+to get the other squares:
+
+% https://q.uiver.app/?q=WzAsMTIsWzEsMSwiYSJdLFsyLDEsImEnIl0sWzEsMiwiYiJdLFsyLDIsImInIl0sWzMsMSwiYSJdLFs1LDEsImEnIl0sWzMsMywiZiJdLFs1LDMsImYnIl0sWzMsMF0sWzQsMiwiXFxiZXRhIFxcY2lyYyBmIFxcY2lyYyBcXGFscGhhXnstMX0gPWYnIl0sWzAsMSwiXFxhbHBoYSBcXGNpcmMgXFxhbHBoYV57LTF9ID0gaWQiXSxbMCwyLCJcXGJldGEgXFxjaXJjIFxcYmV0YV57LTF9ID0gaWQiXSxbMCwxLCJcXGFscGhhIl0sWzEsMCwiXFxhbHBoYV57LTF9IiwwLHsib2Zmc2V0IjotMn1dLFsyLDMsIlxcYmV0YSIsMCx7Im9mZnNldCI6LTJ9XSxbMywyLCJcXGJldGFeey0xfSIsMCx7Im9mZnNldCI6LTJ9XSxbNSw0LCJcXGFscGhhXnstMX0iLDJdLFs0LDYsImYiLDJdLFs2LDcsIlxcYmV0YSIsMl0sWzUsNywiZiciXV0=
+\[\begin{tikzcd}
+	&&& {} \\
+	{\alpha \circ \alpha^{-1} = id} & a & {a'} & a && {a'} \\
+	{\beta \circ \beta^{-1} = id} & b & {b'} && {\beta \circ f \circ \alpha^{-1} =f'} \\
+	&&& f && {f'}
+	\arrow["\alpha", from=2-2, to=2-3]
+	\arrow["{\alpha^{-1}}", shift left=2, from=2-3, to=2-2]
+	\arrow["\beta", shift left=2, from=3-2, to=3-3]
+	\arrow["{\beta^{-1}}", shift left=2, from=3-3, to=3-2]
+	\arrow["{\alpha^{-1}}"', from=2-6, to=2-4]
+	\arrow["f"', from=2-4, to=4-4]
+	\arrow["\beta"', from=4-4, to=4-6]
+	\arrow["{f'}", from=2-6, to=4-6]
+\end{tikzcd}\]
+
+
+\begin{itemize}
+    \item $\beta \circ f \circ \alpha^{-1} = f'$ implies $f \circ \alpha^{-1} = \beta^{-1} \circ f'$.
+    \item $\beta \circ f \circ \alpha^{-1} = f'$ implies $\beta \circ f = \circ f' \circ \alpha$.
+    \item $\beta \circ f \circ \alpha^{-1} = f'$ implies $f = \beta{-1} \circ f' \circ \alpha$.
+\end{itemize}
+
+\question{1.5.iv: Full faithful functor reflects and creates isos}
+
+\begin{Proof (a) reflects isos}
+
+\begin{itemize}
+\item Let $F: C \rightarrow D$ be a full and faithful functor. Let $f: x \rightarrow y$ be an arrow in $C$.
+Let $Ff: Fx \rightarrow Fy$ be an isomorphism. We must show that $f$ is an isomorphism.
+\item Since $Ff$ is an iso, let it have an inverse, say $h$ such that $(Ff) \circ h = id_{Fy}$ and $h \circ (Ff) = id_{Fx}$.
+\item Since $F$ is full and faithful, there is a unique $g$ such that $Fg = h$.
+\item This makes the iso condition $Ff \circ Fg = id_{Fy}$. By using functoriality (a) $Ff \circ Fg = F(f \circ g)$ and (b) $id_{Fy} = F(id_y)$, we get $F (f \circ g) = F(id_y)$.
+\item Since $F$ is faithful, $F (f \circ g) = F(id_y) \implies  f \circ g = id_y$.
+\item Repeat proof for other sided inverse. We are done.
+\end{itemize}
+
+\begin{Proof (b) creates isos}
+
+\begin{itemize}
+\item Let $x, y \in C$ such that $Fx \simeq Fy$. Then we must show that $x
+    \simeq y$.
+\item $Fx \simeq Fy$ means that we have an isomorphism arrow $g: Fx \rightarrow Fy$ which has inverse $g^{-1}: Fy \rightarrow Fx$.
+\item Since the functor is full and faithful, there exists unique $f_1: x \rightarrow y, f_2: y \rightarrow x$ such that $Ff_1 = g$ and $Ff_2 = g^{-1}$.
+\item Repeat the previous proof to see that $f_1, f_2$ witness an iso between $x$ and $y$.
+\end{itemize}
+
+
+\question{1.5.v A faithful functor need not reflect isos}
+\begin{itemize}
+\item High level idea: take a faithful functor $F: C \rightarrow D$ adjoin arrows into $D$ to make arrows in $D$ isos, see that this does not reflect.
+\item consider a category $C \equiv (a \xrightarrow{p} b)$. Map into a category $D$ with arrows $x \xrightarrow{s} y$ and $y \xrightarrow{s^{-1}} x$ where $s, s^{-1}$ are inverses
+of each other.
+\item The functor $F: C \equiv (a \xrightarrow{p} b) \to (x \xrightarrow{s} y)$ is faithful but does not reflect isos.
+\end{itemize}
+
+\question{1.5.vi (i) Composition of full is full}
+\begin{itemize}
+        \item Let $F : C \rightarrow D$, $G: D \rightarrow E$ be full. We must show that $G \circ F$ is full.
+        \item Pick some element $\alpha Hom(GFx, GFy)$. Since $G$ is full, there is an arrow $\beta \in Hom(Fx, Fy)$ such that $G\beta = \alpha$.
+        \item Since $g$ is full, there is an arrow $\gamma \in Hom(x, y)$ such that $F\gamma = \beta$.
+        \item Combining, we see that $F\gamma = \beta$ and $G\beta = \alpha$, or $GF\gamma = \alpha$.
+        \item Thus $GF$ is full since for any $GFx \xrightarrow{\alpha} GFy$ we found a $x \xrightarrow{gamma} y$ such that $GF\gamma = \alpha$.
+\end{itemize}
+
+\question{1.5.vi (i) Composition of faithful is faithful}
+\begin{itemize}
+        \item Let $F : C \rightarrow D$, $G: D \rightarrow E$ be faithul. We must show that $G \circ F$ is full.
+        \item Pick some element $\alpha, \alpha' \in Hom(x, y)$ such that $GF\alpha = GF\alpha'$ . We must show that $\alpha = \alpha'$.
+        \item Since $G$ is faithful, we get that $F\alpha = F\alpha'$. Since $F$ is faithful, we get that $\alpha = \alpha'$.
+        \item Thus $GF$ is faithful.
+\end{itemize}
+
+\question{1.5.vi (i) Composition of eso is eso}
+\begin{itemize}
+        \item Let $F : C \rightarrow D$, $G: D \rightarrow E$ be eso. We must show that $GF$ is eso.
+        \item Consider som element $e \in E$. We must show that there is some $c \in C$ such that $e \simeq GFc$.
+        \item Since $G$ is eso, there must be some $d \in D$ such that $Gd \simeq e$.
+        \item Since $F$ is eso, there must be some $c \in C$ such that $Fc \simeq d$.
+        \item Recall that singe a functor preserves isos, we must have $GFc \simeq Gd$ from $Fc \simeq d$.
+        \item Combining $GFc \simeq Gd$ with $Gd \simeq e$ we get $GFc \simeq e$. Thus, we have found the $c \in C$ such that $GFc \simeq e$.
+        \item Thus, $GF$ reflects isos. (Key lemma: image of iso is iso) \qed
+\end{itemize}
+
+\question{1.5.vii Construct inverse of inclusion of automorphism of some object of groupoid into groupoid}
+\begin{itemize}
+        \item TODO
+\end{itemize}
+
+\question{1.5.viii}
+% Define affine 2D space to consist of lines in 2D. More formally, these are subspaces spanned by non-zero vectors $v$. So $Aff \equiv \mathbb A^2 \equiv \{ span((x, y)) : (x, y) \neq (0, 0) \}$.
+% Define $Proj \equiv \mathbb P^2$ to be the set of 3 tuples $(x,y,z)$  where we set an equivalence relation where $(x, y, z) \sim (x', y', z') $ iff there exists a $\lambda \in \mathbb R$ such that $x' = \lambda x$, $y' = \lambda y$, $z' = \lambda z$. Choosing $z = 0$ gives us the line at infinity. Informally, we can think of this as giving us an affine plane when $z \neq 0$, since we can normalize to get $[x/z, y/z, 1]$ and when $z = 0$, we get a copy of $\mathbb P^1$. So, $\mathbb P^2 \equiv \mathbb A^2 \cup P^1$
+
+
+\question{1.5.ix: Category equivalent to locally small is locally small}
+
+\begin{itemize}
+    \item Let $F: C \rightleftarrows D : G$ be an equivalence of categories. Let $D$ be locally small.
+        We must show that $C$ is locally small.
+    \item Recall that we must have $G: D \rightarrow C$ to be full, faithful,
+        and essentially surjective as it witnesses an equivalence of
+        categories. As $D$ is locally small, all hom-sets $Hom_D(X, Y)$ are
+        small.
+    \item Since $G: D \rightarrow C$ is full, the image $Hom_C(Gx, Gy)$ is surjective, and thus $Hom_C(Gx, Gy)$ can have cardinality at most that of $Hom_D(x, y)$ which is already small.
+        Thus $Hom_C(Gx, Gy)$ is also locally small. This settles the question for all Hom-sets in the image of $G$.
+    \item Consider elements $c, d \in C$  which are not in the image of $G: D \rightarrow C$. Since the functor $G$ is essentialy surjective, we must have elements $Gx, Gy$ such that
+        $c \simeq Gx$ and $d \simeq Gy$. In particular, this implies that $Hom_D(c, d) = Hom_D(Gx, Gy)$. This reduces this case to the previous case, showing that these
+        Hom-sets too are locally small.
+\end{itemize}
+
+\question{1.5.x: Categories equivalent to discrete categories}
+\begin{itemize}
+\end{itemize}
 \end{document}
