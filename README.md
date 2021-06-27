@@ -15,6 +15,720 @@ A Universe of Sorts
 - [reading list and link dump](todo.html)
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
+
+# Cohomology of elementary school arithmetic (WIP)
+
+
+- We consider $\equiv Z_{100}$ (ie, integers modulo 100) as it contains most of the complexities of addition.
+- Define $T \equiv \{ 10k: k \in Z_{100} \}$ is the subgroup of tens multiples in $Z_{100}$.
+- We call the quotient group $Z_{100}/T \equiv O$ for ones.
+- For any element $x \in Z_{100}$, we write $[a][b]$ where $a \in T$ and $b \in O$. We can show that this assignment is bijective;
+  each $x$ corresponds to a unique $[a][b]$ and vice versa.
+- Given $x = [t_1][o_1]$ $y = [t_2][o_2]$, we want to write $x + y = [t][o]$. We wish to find expressions for $a, b$ as functions
+  of $a_i, b_i$, in a way that makes the group structure transparent.
+- $o \equiv o_1 +_O o_2$; Ones digit is given by summing in the one's group.
+- $t \equiv t_1 +_T t_2 +_T z(o_1, o_2)$ where $z: O \times O \rightarrow T$ encodes how the ones digits affect the tens digit.
+- $z(x, y) \equiv [x + y \geq 10]$ (where $[.]$ denotes the [Iverson bracket](https://en.wikipedia.org/wiki/Iverson_bracket)), so $z(x, y) = 1$ if $x + y \geq 10$
+  and $z(x, y) = 0$ otherwise.
+- Let's now exploit the associativity of addition in $Z_{100}$:
+
+$$
+\begin{aligned}
+&([t_1][o_1] + [t_2][o_2]) + [t_3][o_3] = [t_1][o_1] + ([t_2][o_2]) + [t_3][o_3]) \\
+& [t_1 + t_2 + z(o_1, o_2)][o_1 + o_2] + [t_3, o_3] = [t_1][o_1] + [t_2 + t_3 + z(o_2, o_3)][o_2 + o_3] \\
+& [(t_1 + t_2 + z(o_1, o_2)) + t_3 + z(o_1 + o_2, o_3)][o_1 + o_2 + o_3]= [t_1 + (t_2 + t_3 + z(o_2, o_3)) + z(o_1, o_2 + o_3)][o_1 + o_2 + o_3] \\
+&t_1 + t_2 + z(o_1, o_2) + t_3 + z(o_1 + o_2, o_3) = t_1 + t_2 + t_3 + z(o_2, o_3) + z(o_1, o_2 + o_3) \\
+&z(o_1, o_2) + z(o_1 + o_2, o_3) = z(o_2, o_3) + z(o_1, o_2 + o_3) \\
+&z(o_2, o_3) - z(o_1 + o_2, o_3) + z(o_1, o_2 + o_3) - z(o_1, o_2) = 0 \\
+\end{aligned}
+$$
+
+- The final condition is called as _cocycle condition_.
+- $z$ also satisfies $z(0, b) = z(b, 0) = 0$. This is known as the _normalization conditition_.
+
+
+- [Yaar link from Sci-Hub](https://sci-hub.do/10.1080/00029890.2002.11919915)
+
+# Center of a tree (WIP)
+
+- The *remoteness* of a vertex $v$ is its distance from its furthest node. $r(v) \equiv \max_{w \in V} d(v, w)$.
+- The *center* of a tree is the vertex with minimum remoteness.
+- To find a center, iteratively delete leaves till we are left with a single node (or a pair of nodes). 
+- Why are we left only with a single node or a pair?
+
+#### Theorem: all diameters pass through all centers
+
+#### Corollary: center always lies on some diameter
+take any diameter. Center will lie on this diameter by previous theorem.
+
+
+- [Algorithms live: trees and diameters](https://www.youtube.com/watch?v=2PFl93WM_ao)
+
+# Centroid of a tree (WIP)
+
+- **Centroid** is the vertex which when removed  minimizes the size of the largest remaining component.
+- Is a centroid always a center? Imagine line graph with one vertex towards the
+  end having many children. This vertex with many children is the centroid,
+  while the middle vertex is the center (distance $n/2$).
+- Computing centroid: compute subtree sizes. At node $v$, size of subtree for child $c$ in $v$ $s(c)$, size of "parent subtree" is $V - s(v)$.
+  So find $\max(V - s(v), s(c_1), s(c_2), \dots, s(c_n))$.
+  This is the size of largest component on removal of $v$. Find node that minimizes this
+- A tree has at most 2 centroids (why?)
+- On removal of centroid, components have at most $n/2$ size. [How to prove?]  
+- [Algorithms live: trees and diameters](https://www.youtube.com/watch?v=2PFl93WM_ao)
+- https://www.youtube.com/watch?v=doOPlmXxPPQ
+
+
+
+# C++ `lower_bound`, `upper_bound` API
+
+I never remember what precisely `lower_bound` returns, so this is me collecting this information
+in a way that makes sense to me. The API docs say
+
+> Returns an iterator pointing to the first element in the range `[first,last)`
+> which does not compare less than val.
+
+- So `lower_bound(first, last, bound)` it finds the leftmost location `l` in `[first..last)` such that `as[l] >= bound`.
+- See that it can be *equal* to the value `bound`.
+
+
+In contrast, `upper_bound` says:
+> Returns an iterator pointing to the first element in the range `[first,last)` which compares greater than val.
+
+- So `upper_bound(first, last, bound)` it finds the leftmost location `l` in `[first..last)` such that `as[l] > bound`.
+
+
+##### Pictorially
+
+If we have a range:
+
+```
+<<<<<<< ======= >>>>>>>>
+        |     |
+        L     R
+```
+
+- The `<` values are less than bound, `=` values are equal to bound, and `>` values are greater than bound, then
+  `lower_bound` and `upper_bound` return iterators to represent the `=` range `[L, R]` in half-open form. 
+- So we will have `[lower_bound, upper_bound) = [L, R]`. This matches the C++ API where everything uses half-open intervals.
+
+```
+<<<<<<< ======= >>>>>>>>
+        L     R |
+        lower   upper
+```
+
+##### Traversals
+
+- `[L, H]`: loop as `for(auto it = lowerbound(l); it < upperbound(h); ++it) {}`.
+  This works since `upperbound(h)` will find first index `> h`, so we include all `=h`.
+- `[L, H)`: loop as `for(auto it = lowerbound(l); it <= lowerbound(h); ++it) {}`.
+  This works `lowerbound(h)` first first index `>= h`, so we don't include any `=h`.
+- `(L, H]`: use `for(auto it = upperbound(l); it <= upperbound(h); ++it) {}`.
+  `upperbound(l)` finds first index `>l`, so we ignore values `=l`.
+- `(L, H)`: use `for(auto it = upperbound(l); it < lowerbound(h); ++it) {}`.
+
+
+How to think about which one we want? This about it as `lowerbound` shifts
+iterators towards the left, and `upperbound` shifts iterators to right.
+
+
+- For `[L`, we want to shift beginning leftwards, so `lowerbound(L)`.
+- For `(L`, we want to shift  beginning rightwards, so `upperbound(L)`.
+- For `H]`,  we want to shift ending rightwards, so `upperbound(H)`.
+- For `H)`,  we want to shift ending leftwards, so `lowerbound(H)`.
+
+# Books that impart mental models
+
+I love books that impart menetal models of how a domain expert thinks about their field. This was
+something I loved in particular about [TiHKAL](https://en.wikipedia.org/wiki/TiHKAL) which describes
+reaction mechanisms. I'd love references to other books that do the same. 
+
+
+# Subarrays ~= prefixes
+
+To solve any problem about subarrays, we can reinterpret a subarray `[l..r]` as a prefix `[0..r] - [0..l]`.
+For example, to find all subarrays `[l..r]` whose sum of elements divides `n`, we can think of this
+as finding a subarray `[l..r]` where the sum of elements modulo `n` is zero.
+This is CSES' [subarray divisibiity](https://cses.fi/problemset/task/1662/) problem:
+
+```cpp
+ 
+int main() {
+    int n;
+    cin >> n;
+    vector<ll> xs(n);
+    for (int i = 0; i < n; ++i) {
+        cin >> xs[i]; xs[i] = xs[i] % n; if (xs[i] < 0) { xs[i] += n; }
+    }
+ 
+    ll count = 0; // number of subarrays with sum = 0 (mod n)
+    ll cursum = 0; //  current sum [0..i]
+    // number of subarrays [0..r] (for some r) such that Σa[i] = count.
+    map<ll, ll> partial_sum_count;
+    partial_sum_count[0] = 1;
+ 
+    for (int i = 0; i < n; ++i) {
+        // current sum [0..i]
+        cursum = (cursum + xs[i]) % n;
+
+        // for each [0..j] (for j < i) with sum cursum, we want:
+        // sum([i..j]) = 0
+        // => sum([0..i]) - sum([0..j)) = 0
+        // => sum([0..i]) = sum([0..j))
+        // for each such `j`, we get one subarray.
+        auto it = partial_sum_count.find(cursum);
+        if (it != partial_sum_count.end()) {
+            count += it->second;
+        }
+
+        // partial sum [0..i] = cursum
+        partial_sum_count[cursum]++;
+    }
+ 
+    cout << count << "\n";
+ 
+    return 0;
+}
+```
+
+# Operations with modular fractions
+
+- Quick note on why it's legal to perform regular arithmetic operations  on fractions $a/b$ as operations on $ab^{-1}$ where $ab^{-1} \in \mathbb Z/pZ$.
+- The idea is that we wish to show that the map $a/b \mapsto ab^{-1}$ is a ring homomorphism $\phi: \mathbb Q \to \mathbb Z/p \mathbb Z$. 
+- The proof: (i) the map $Z \rightarrow Z/pZ$ is a ring homormophism, (ii)  map from an integral domain to a field always factors through the field of fractions of the domain, we 
+  get a map $\phi: \mathbb Q \rightarrow \mathbb Z/ p \mathbb Z$. So from abstract nonsense, we see that $\phi$ will be a well defined ring.hom.
+- More down to earth: let's check addition multiplication, and multiplicative inverse. All else should work automagically.
+- For addition, we wish to show that $\phi(a/b + c/d) = \phi(a/b) + \phi(c/d)$. Perform the calculation:
+
+\begin{aligned}
+&\phi(a/b + c/d) \\
+&=\phi((ad + bc)/bd) \\
+&= (ad + bc)(bd)^{-1}\\
+&= abb^{-1}d^{-1} + bcb^{-1}d^{-1} \\
+&= ad^{-1} + cd^{-1} \\
+&= \phi{a/d} + \phi{c/d} \\
+\end{aligned}
+
+- For multiplication, we wish to show that $\phi(a/b \cdot c/d) = \phi(a/b) \cdot \phi(c/d)$:
+
+
+\begin{aligned}
+&\phi(a/b \cdot c/d) \\
+&=\phi{ac/bd}
+&= ac(bd)^{-1} \\
+&= acd^{-1}b^{-1} \\
+&= ab^{-1} \cdot cd^{-1} \\
+&= \phi{a/b} \cdot \phi{c/d} \\
+\end{aligned}
+
+- For inverse, we wish to show that $\phi(1/(a/b)) = \phi(a/b)^{-1}$:
+
+\begin{aligned}
+&\phi(1/(a/b))
+&=\phi{b/a}
+&= ba^{-1}
+&= (ab^{-1})^{-1}
+&= \phi(a/b)^{-1}
+\end{aligned}
+
+Thus, we can simply represent terms $a/b$ in terms of $ab^{-1}$ and perform arithmetic as usual. 
+
+
+# Modular inverse calculation
+
+- Easy way to calculate $a^{-1}$ mod $p$ is to use $a^{p-2}$. We know that $a^{p - 1} \equiv 1$ from Lagrane's theorem,
+  so $a^{p-2} \cdot a \equiv 1$, or $a^{-1} \equiv a^{p-2}$. This can be done fairly quickly with repeated exponentiation.
+
+- Another way to do this is to use extended eucliean division. Suppose $ a \not \equiv 0$ (mod p). 
+  Then we can find numbers $\alpha, \beta$ such that $a \alpha + p \beta = gcd(a, p) = 1$.
+  If we look at the whole equation (mod $p$), we find that $a \alpha \equiv 1$ (mod $p$), or $\alpha$ is the modular
+  inverse of $a$.
+
+```cpp
+pair<int, int> euc(int x, int y) {
+  if (x < y) { return euc(y, x); }
+  // x > y
+  if (x % y == 0) { return {0, 1}; } 
+  int a, b; std::tie(a, b) = euc(y, x%y);
+  // ay + b(x%y) = gcd(y, x%y) = gcd(x, y)
+  // ay + b(x - y(x//y)) = gcd(y, x%y) = gcd(x, y)
+  // ay + bx - by(x//y)  = gcd(y, x%y) = gcd(x, y)
+  // (a - b(x//y))y + bx = gcd(y, x%y) = gcd(x, y)
+  // bx + (a - b(x//y))y = gcd(y, x%y) = gcd(x, y)
+  // intuition?
+  return {b, a - b*(x/y)};
+}
+```
+
+
+# The number of pairs `(a,b)` such that `ab≤x` is `O(xlogx)`
+
+Fix a given `a`. `ab ≤ x` implies that `b ≤ x/a`, or there are only `x/a` possible values for `b`. 
+If we now consider all possible values for `a` from `1` upto `x`, we get:
+
+$$
+\begin{aligned}
+|{ (a, b) : ab <= x }|
+= \sum_{a=1}^x |{ b: b <= x/a }|
+\leq \sum_{a=1}^x |x/a|
+\leq x \sum_{a=1}^x (1/a)
+\leq x \log x
+\end{aligned}
+$$
+
+To show that the harmonic numbers are upper bounded by $\log$, 
+can integrate: $\sum_{i=1}^n 1/i \leq \int_0^n 1/i = \log n$
+
+#### Relationship to Euler Mascheroni constant
+
+This is the limit $\gamma \equiv \lim_{n \to \infty} H_n - \log n$. That this is a constant
+tells us that these functions grow at the same rate. To see that this si indeed a constant,
+consider the two functions:
+
+- $f(n) \equiv H_n - \log n$ which starts at $f(1) = 1$ and strictly decreases.
+- $g(n) \equiv H_n - \log(n+1)$ start lower at $g(1) 1 - \log 2$ and strictly increases. [why?]
+- Also, $\lim_n f(n) - g(n) = 0$. So these sandwhich something in between, which is the constant $\gamma$.
+
+
+# DP as path independence
+
+- Dp is about forgetting the past / path independence. Doesn't matter how we got to a state, only what the state is.
+  For example, to DP on subsequences, we don't care about how we got to a given subsequence. We only care about
+  the final result that we computed for that subsequence. This lets us "extend" knowledge about a subsequence.
+  So we go from `2^n` (subsets), to `2` followed by `2` followed by `2` followed by `2`, since at each stage,
+  we forget how we got there and collate information. 
+
+- In this light, the recursive sub-computation is the "path dependent" part since it tries a path. The path independence
+  states that it's safe to cache the results of the sub-computation, since all that matters is the final state (inputs).
+
+
+# Largest index which does not possess some property 
+
+```cpp
+// precondition: has_some_property(0) = false
+// precondition: has_some_property is monotonic;
+//   once it switches to true, does not switch back to false.
+int ans = 0;
+for (int k = 1 << NBITS; k != 0; k >>= 1) {
+  if (!has_some_property(ans + k)) {
+    ans += k;
+  }
+}
+// postcondition: ans is largest index such that has_some_poperty(ans) = 0
+```
+
+- Claim 1: `has_some_property(ans) = 0`. By precondition, this is true before the loop.
+  See that it's a loop invariant, as we only update `ans` to `ans+k` if `has_some_property(ans+k) = 0`.
+- Claim 2: `ans` is the largest number after the loop such thas `has_some_property(ans) = 0`.
+- For contradicion of Claim 2, suppose there is a number `c > ans` such that `has_some_property(c) = 0`.
+  Proof: ???. [Seems ugly.]
+
+
+See that this is very similar to LCA, where we find the lowest node that is *not* an ancestor. The ancestor
+of such a node *must be* the ancestor.
+
+```cpp
+int lca(int u, int v) {
+    if (is_ancestor(u, v)) return u;
+    if (is_ancestor(v, u)) return v;
+
+    // u is not an ancestor of v.
+    // find lowest parent of u that is not an ancestor of v.
+    for (int i = l; i >= 0; --i) {
+        if (!is_ancestor(up[u][i], v))
+            u = up[u][i];
+    }
+    return up[u][0];
+}
+```
+
+# Correctness of `lower_bound` search
+
+
+```cpp
+// precondition: `xs` is sorted.
+// find i such that xs[i] <= y and dp[i+1] > y.
+int tallest(vector<long> &xs, int y) {
+    // [l, r)
+    int l = 0, r = dp.size(); 
+    // precondition: l < r
+    while(1) {
+        if (l + 1 == r) { return l; }
+        // info gained from if: r > (l+1)
+        int m = (l+r)/2;
+        // should this be (xs[m] > y) or (xs[m] >= y)?
+        if (xs[m] > y) {
+            r = m; // will decrease interval floor division.
+        } else { 
+            // r > (l+1)
+            // so m := (l+r/2) > (2l+1)/2 > l.
+            l = m;
+        }
+    }
+}
+```
+
+- Firt see that if we can find such an `i`, then in the extreme case where the array does not have a
+  greater element, we would like the find the *rightmost* `i` that fulfils the condition that `xs[i] <= y`. 
+  So in our imagination, we right pad the array with an infinitely large value.
+- We wish to know whether the `if` condition should have `xs[m] > y` or `xs[m] >= y` before it decides to shrink the search range.
+- Intuitively, we wish to move the search range rightwards. So if we have `xs[m] == y`, we must move `l` towards `m` to move the search range rightwards.
+  For more clarity, let's write the above as:
+
+
+```cpp
+// precondition: `xs` is sorted.
+// find i such that xs[i] <= y and dp[i+1] > y.
+int tallest(vector<long> &xs, int y) {
+    // [l, r)
+    int l = 0, r = dp.size(); 
+    // precondition: l < r
+    while(1) {
+        if (l + 1 == r) { return l; }
+        // info gained from if: r > (l+1)
+        int m = (l+r)/2;
+        // should this be (xs[m] > y) or (xs[m] >= y)?
+        if (xs[m] > y) {
+            // move interval towards `l` for smaller values.
+            r = m; // will decrease interval floor division.
+        } else if (xs[m] < y) { 
+            // move interval towards `r` for larger values.
+            // r > (l+1)
+            // so m := (l+r/2) > (2l+1)/2 > l.
+            l = m;
+        } else {
+            //xs[m] == y
+            // we want rightmost index `l` where `xs[l] <= y`.
+            // - this `xs[m]` is a legal index.
+            // - we want rightmost `m`. Since `m > l`, move `l` rightward by setting `l = m`.
+            l = m;
+        }
+    }
+}
+```
+
+# Greedy Coin change: proof by probing
+
+#### Probing the coin set `{1, 5, 10, 20, 100}`
+
+- Let `O*` be optimal solution for this coin set. I'll write `copies x [coinval$]` notationally.
+- `O*` will convert `5x[1$] → 1x[5$]` , because it's better to use less coins.
+- `O*` will convert `2x[5$] → 1x[10$]`
+- `O*` will convert `2x[10$] → 1x[20$]`
+- `O*` will convert `5x[20$] → 1x[100$]`
+- So we summarize: `O*` can have at most: `4x[1$]`, `1x[5$]`, `1x[10$]`, `4x[20$]`.
+  If it has more than these, it can convert to one copy of a larger coin, losing optimality.
+
+#### Optimal takes as many `100$` as greedy.
+
+
+- Recall: `G` (the greedy solution) takes as many `100, 10, 5, 1` as possible, starting from `100`, working its way down to `1`.
+- Let `G[100$]` be the number of copies of the `100$` coin the greedy solution uses to represent `n`.
+- Claim: `O[100$] >= G[100$]`. Since `O` is optimal, it won't take *more* than greedy since that's wasteful, so as a Corollary `O[100$] = G[100$]`.
+- Suppose for contradiction that `O[100$] < G[100$]`. Then there is a `100$` to be made up by `O`, which `G` fulfils by using a `[100$]` coin.
+- We know by probing that if we stick to coins less than `[100$]`, `O` can have at most `4x[20$] + 1x[10$] + 1x[5$] + 4x[1$]` coins.
+- See that we can't add any more of `[1$], [5$], [10$], [20$]`. For example, suppose we try and use another `[1$]` coin. This means we have 
+  `4x[20$] + 1x[10$] + 1x[5$] + 5x[1$]`. From probing, we know we should change `5x[1$] → 1x[5$]`. This changes the sum to
+  `4x[20$] + 1x[10$] + 2x[5$]`. From probing, we know `2x[5$] → 1x[10$]`. The sum becomes `4x[20$] + 2x[10$]`. Again from probing,
+  we know to be optimal and use less coins, we should change `2x[10$] → 1x[20$]`. This makes the sum `5x[20$]`.
+  This too should be changed to `1x[100$]`, a fact we learnt from probing.
+  But this contradicts the assumption that we want to use only coins smaller than `[100$]`.
+  So if we are using coins smaller than `[100$]`, the maximum value we can represent is given by 
+ `4x[20$] + 1x[10$] + 1x[5$] + 4x[1$]` .
+- The maximum value `4x[20$] + 1x[10$] + 1x[5$] + 4x[1$]`  adds up to `99$`, which is one shy of `100$`. So, it is impossible for us to represent a value of a 100 dollars 
+  using coins of value less than `[100$]` **in an optimal fashion**. Thus, `O[100$] = G[100$]`, as it is best to take as many coins as possible.
+- Repeat the argument for smaller denominations.
+
+
+
+# Clean way to write burnside lemma
+
+Burnside lemma says that $|Orb(G)| \equiv 1/|G| \sum_{g \in G} fix(g)$. We prove this
+as follows:
+
+$$
+\begin{aligned}
+&\sum_{g \in G} fix(g) \\
+&= \sum_{g \in G} |\{x : g(x) = x \}| \\
+&= |\{(g, x) : g(x) = x \}| \\
+&= \sum_{x \in X}|\{x : g(x) = x \}| \\
+&= \sum_{x \in X} Stab(x)
+\end{aligned}
+$$
+
+- From orbit stabilizer, we know that $|Orb(x)||Stab(x)| = |G|$. 
+- Since $|Orb(x)$ is the total cardinality of the orbit, each element in the orbit contributes $1/|Orb(x)|$ towards cardinality of the full orbit.
+- Thus, the sum over an orbit $\sum_{x \in Orb(x)} 1/|Orb(x)|$ will be 1.
+- Suppose a group action has two orbits, $O_1$ and $O_2$. I can write the sum $\sum_{x \in g} 1/|Orb(x)|$ as:
+  $\sum_{x \in O_1} 1/|O_1| + \sum_{x \in O_2} 1/|O_2|$, which is equal to 2.
+- I can equally write the sum as $\sum_{o \in Orbits} \sum_{x \in o} 1/|o|$. But this sum is equal to $\sum_{o \in Orbits} \sum_{x \in o} 1/|Orb(x)|$.
+- This sum sums over the entire group, so it can be written as $\sum_{x \in G} 1/|Orb(x)|$.
+- In general, the sum over the entire group $\sum_{x \in g} 1/|Orb(x)|$ will be the number of orbits, since the same argument holds _for each orbit_.
+
+
+$$
+\begin{aligned}
+&= \sum_{x \in X} Stab(x) \\
+&=  \sum_{x \in X}  |G|/|Orb(x)| \\
+&=  |G| \sum_{o \in orbits} \sum_{x \in o} 1/|o| \\
+&=  |G| \texttt{num.orbits} \\
+\end{aligned}
+$$
+
+So we have derived:
+
+$$
+\begin{aligned}
+&\sum_{g \in G} fix(g) = |G| \texttt{num.orbits} \\
+&1/|G| (\sum_{g \in G} fix(g)) = \texttt{num.orbits} \\
+\end{aligned}
+$$
+
+> If we have a transformation that fixes many things, ie, $fix(g)$ is large,
+> then this $g$ is not helping "fuse" orbits of $x$ together, so the number of
+> orbits will increase.
+
+- [Reference](https://math.mit.edu/~apost/courses/18.204_2018/Jenny_Jin_paper.pdf)
+
+
+# The groupoid interpretation of type theory
+
+The monograph by  Martin Hofmann and Thomas Streicher is remarkably lucid. It
+opens by stating that UIP (uniqueness of identity proofs) is false by providing
+a model for the axioms of MLTT where UIP fails --- a groupoid!
+
+# Mnemonics for free = left adjoint
+
+> To free is a very liberal thought. Very left
+
+> Left and free have the same number of letters (4)
+
+
+
+# Where to scratch a cat
+
+Scratch the sides of their rear legs - that's where they can't scratch themselves.
+Found this useful to know, since we've recently adopted a stray.
+
+
+# Mnemonic for Specht module actions
+
+Consider the two extreme cases, of wide v/s narrow:
+```
+x = [* * *]
+y = [#]
+    [#]
+    [#]
+```
+    
+
+- Consider `x = [* * *]`. It's very wide/fat, so it doesn't like much exercise, which
+  is why it's columns stabilizer $C_x =\{ e\}$ is trivial. Thus, the action $A_x \equiv id$.
+
+- Consider `y = [*][*][*]`. It's very slim, and exercises quite a bit. So it's column stabilizer is $S_3$,
+  and its action $A_y \equiv \dots$ has a lot of exercise.
+
+- Anyone can participate in $x$'s exercise regime. In particular, $A_x(y) = id(y) = y$ since $y$ doesn't tire out from the exercise regime of $x$.
+- On the other side, it's hard to take part in $y$'s exercise regime and not get wiped out. If we consider $A_y(x)$, we're going to get zero
+  because by tableaux, there are swaps in $A_y$ that leave $x$ invariant, which causes sign cancellations. But intuitively, $A_y(x)$ is asking $x$
+  to participate in $y$'s exercise regmine, which it's not strong enough to do, and so it dies.
+
+- In general, if $\lambda \triangleright \mu$, then $\lambda$ is wider/fatter than $\mu$. Thus we will have $A_\mu(\lambda) = 0$ since $A_\mu$ is a harder
+  exercise regime that has more permutations.
+
+- Extend this to arrive at specht module morphism: If we have a non-zero morphism $\phi: S^\lambda \rightarrow S^\mu$ then $\lambda \rightarrow \mu$ [Check this?? Unsure]
+
+# Quotes from 'Braiding Sweetgrass'
+
+> Listening in wild places, we are audience to conversations in a language not
+> our own
+
+
+> Puhpowee,  she explained, translates as “the force which causes mushrooms to
+> push up from the earth overnight.” As a biologist, I was stunned that such a
+> word existed. In all its technical vocabulary, Western science has no such
+> term, no words to hold this mystery. You’d think that biologists, of all
+> people, would have words for life. But in scientific language our terminology
+> is used to define the boundaries of our knowing. What lies beyond our grasp
+> remains unnamed.
+
+> Only 30 percent of English words are verbs, but in Potawatomi that proportion
+> is 70 percent. Which means that 70 percent of the words have to be
+> conjugated, and 70 percent have different tenses and cases to be mastered..
+
+> Our toddlers speak of plants and animals as if they were people, extending to
+> them self and intention and compassion—until we teach them not to. We quickly
+> retrain them and make them forget. When we tell them that the tree is not a
+> who,  but an  it,  we make that maple an object; 
+
+> We don’t know their names or their faces, but our fingers rest right where
+> theirs had been and we know what they too were doing one morning in April
+> long ago. And we know what they had on their pancakes. Our stories are linked
+> in this run of sap; our trees knew them as they know us today..
+
+> I realize that those first homesteaders were not the beneficiaries of that
+> shade, at least not as a young couple. They must have meant for their people
+> to stay here. Surely those two were sleeping up on Cemetery Road long before
+> the shade arched across the road. I am living today in the shady future they
+> imagined, drinking sap from trees planted with their wedding vows. They could
+> not have imagined me, many generations later, and yet I live in the gift of
+> their care. Could they have imagined that when my daughter Linden was
+> married, she would choose leaves of maple sugar for the wedding giveaway?
+
+> You should not be able to walk on a pond. It should be an invitation to
+> wildlife, not a snare. The likelihood of making the pond swimmable, even for
+> geese, seemed remote at best. But I am an ecologist, so I was confident that
+> I could at least improve the situation. The word  ecology  is derived from
+> the Greek  oikos,  the word for home. I could use ecology to make a good home
+> for goslings and girls.
+
+
+> Our appetite for their fruits leads us to till, prune, irrigate, fertilize,
+> and weed on their behalf. Perhaps they have domesticated us. Wild plants have
+> changed to stand in well-behaved rows and wild humans have changed to settle
+> alongside the fields and care for the plants—a kind of mutual taming.
+
+> In that awareness, looking over the objects on my desk—the basket, the
+> candle, the paper—I delight in following their origins back to the ground. I
+> twirl a pencil—a magic wand lathed from incense cedar— between my fingers.
+> The willow bark in the aspirin. Even the metal of my lamp asks me to consider
+> its roots in the strata of the earth.
+
+
+> I smile when I hear my colleagues say “I discovered X.” That’s kind of like
+> Columbus claiming to have discovered America. It was here all along, it’s
+> just that he didn’t know it. Experiments are not about discovery but about
+> listening and translating the knowledge of other beings.
+
+
+> It seems counterintuitive, but when a herd of buffalo grazes down a sward of
+> fresh grass, it actually grows faster in response. This helps the plant
+> recover, but also invites the buffalo back for dinner later in the season.
+> It’s even been discovered that there is an enzyme in the saliva of grazing
+> buffalo that actually stimulates grass growth. To say nothing of the
+> fertilizer produced by a passing herd. Grass gives to buffalo and buffalo
+> give to grass.
+
+
+
+
+# Transfinite recursion: Proof
+- Let $(J, <)$ be a well-ordered set.
+- Denote by $[0, \alpha)$ the set $\{ j \in J : j < \alpha \}$ as suggestive notation. Similarly $[0, \alpha]$ is the set $\{ j \in J: j \leq \alpha \}$.
+- Let $r: (\forall \alpha \in J, [0, \alpha) \rightarrow O) \rightarrow O$ be a recursion formula, which
+  when given a function $f: [0, \alpha) \rightarrow O$ which is well defined on $J$ upto $\alpha$, produce a value $r(\alpha) \in O$
+  that extends $f$ to be well defined at $\alpha$.
+- We wish to find a function $f(j)$ such that for all $j \in J$, $f(j) = r([0, j))$. So this function $f$ is deterined
+  by the recursion principle $r$. We construct such a function by transfinite induction.
+- Let $J_0 \subseteq J$ be the set of $j \in J$ such that there exists a function $f_j: [0, j] \rightarrow O$  (see the closed interval!),
+  which obeys the recursion formula upto $j$. That is, for all other $k \leq j$, we have that $f_j(k) = r(f_j|[0, k))$. Choose $k \leq j$ so that we check that
+  $f_j(j) = r(f_j|[0, j))$.
+- Claim: the set $J_0$ is inductive.
+- Let $[0, j) \subseteq J_0$. Thus, for all $k < j$, there is a function $f_k: [0, k] \rightarrow O$ such that $f_k(l) = r(f_k|[0, l))$.
+- We must show that $j \in J_0$. So we must construct a function $f_j: [0, j] \rightarrow O$ such that ... (reader: fill in the blanks).
+- Handwavy: note that the set of functions $\{ f_k : k \in [0, j) \}$ all agree on their outputs since their outputs are determined by the recursion formula
+  (Foraal: we can first prove that any function that satisfies the recursion scheme is uniquely defined).
+- Thus, we can build the function $g_j: [0, j) \rightarrow O$ given by $g_j \equiv \cup_{k \in [0, j)} f_j$. That is, we literally take the "set union" of the functions
+  as ordered pairs, as the functions are all compatible. This gives us a function defined upto $j$.
+- The value of $f_j$ at $j$ must be $r(g_j)$. So we finally define $f_j \equiv g_j \cup \{ (j, r(g_j) \}$. This is a uniquely defined function as $r$ is a function:
+  $r: [0, j) \rightarrow O$  thus produces a unique output for a unique input $g(j)$.
+- We have a function $f_j$ that obeys the recursion schema: (1) at $j$, it is defined to obey the recursion schema; At $k < j$, it is written as union of prior $f_k$ which
+  obey recursion schema by transfinite induction hypothesis.
+- Thus, we have $j \in J_0$, witnessed by $f_j$.
+- We have fulfilled the induction hypothesis. So $J_0 = J$, and we have a set of function $\{ f_j : j \in J \}$, all of which are compatible with each other and obey the recursion
+  schema. We take their unions and define $f \equiv \cup_j f_j$ and we are done!
+
+# Transfinite induction: Proof
+
+- Let $(J, <)$ be a well-ordered set.
+- Let $S(\alpha) \equiv J < \alpha$, or $S(\alpha) \equiv \{ j \in J: j < \alpha \}$.  This is called as the section of $J$ by $\alpha$.
+- Let a $J_0 \subseteq J$ be *inductive* iff for all $\alpha \in J$, $S(\alpha) \subseteq J_0$ implies $\alpha \in J_0$. That is:
+
+$$
+\text{$J_0$ inductive} \equiv \forall \alpha \in J, S(\alpha) \subseteq J_0 \implies \alpha \in J_0
+$$
+
+- Then transfinite induction states that for any inductive set $J_0 \subseteq J$, we have $J_0 = J$.
+
+- Proof by contradiction. Suppose that $J_0$ is an inductive set such that $J_0 \neq J$.
+- Let $W$ (for wrong) be the set $J_0 - J$. That is, $W$ is elements that are not in $J_0$.
+- $W$ is non-empty since $J_0 \neq J$. Thus, consider $w \equiv \min(W)$, which is possible since $J$ is well-ordered, thus the subset $W$ has a minimum element.
+- $w$ is the smallest element that is not in $J_0$. So all elements smaller than $w$ are in $J_0$. This, $S(w) \subseteq J_0$. This implies $w \in J_0$ as $J_0$ is inductive.
+- This is contradiction, as we start with $w$ is the smallest element not in $J_0$, and then concluded that $w$ is in $J_0$.
+- Thus, the set $W \equiv J_0 - J$ must be empty, or $J_0 = J$. 
+
+# Thoughts on playing Em-Bm
+
+I'm having some trouble playing Eminor followed by Bminor in quick succession.
+The problem was a type of analysis-paralysis, where I wasn't sure in what order I should
+barre the chord, and then place my other fingers.  I'm trying to change my
+mental mode, where I keep in mind a "root finger", which for Bminor is the middle finger
+which I first place on the correct string , and then place all other fingers in relation
+to it. This seems to help, since the task becomes (a) place root finger (b) naturally place
+other fingers after it.
+
+# An explanation for why permutations and linear orders are not naturally isomorphic
+
+the number of linear orders on a finite set is the same as the number of
+bijections: the factorial of the cardinality.  Every linear order on a set is
+isomorphic to any other, but a bijection is only isomorphic to another which
+has the same size and number of cycles. Thus, we have two functors $Perm: Set \rightarrow Set$
+which sends a set to its set of permutations, and $Ord: Set \rightarrow Set$
+which sends a set to its set of linear orders, such that the
+functors are equal on all objects (upto set isomorphism --- ie, produce outputs
+of the same size) but the functors fail to be isomorphic, since they have
+different criteria for "being equal".
+
+
+# We can't define choice for finite sets in Haskell!
+
+> If all you have is a decidable equality relation on the elements, then
+> there seems to be no function which can implement choice. That is, you can’t
+> write a function `choose :: Set a ->  Maybe (a, Set a)`
+
+
+> Concretely, suppose we represent sets as lists of nonrepeated elements. Then,
+> we can write an operation `choose :: Set a -> Maybe (a, Set a)`, which just
+> returns a pair of the head and the tail if the list is nonempty, and returns
+> Nothing if it is empty.
+
+
+> However, this operation does not respect equality on sets. Note that any
+> permutation of a list representing a given set also represents that same set,
+> but the choose operation returns different answers for different permutations.
+> As a result, this operation is not a function, since it does not behave
+> extensionally on finite sets!
+
+
+> I feel there should be an argument involving parametricity which makes this
+> work for arbitrary datatype representations, since all we rely on is the fact
+> that equality can’t distinguish permutations. But I haven’t found it yet.
+
+- [nLab link](https://golem.ph.utexas.edu/category/2012/10/the_curious_dependence_of_set.html#c042358)
+
+
+
+# Geomean is scale independent
+
+`sqrt(ab)` is dimensionally meaningful even if `a` and `b` are dimensionally different. I found
+this interesting, since it implies that Geomean is not "biased": arithmetic mean is more sensitive to large values (eg: `(1 + 999)/2 = 500`),
+while harmonic mean is more sensitive to small values. Geomean is neither, so it's more "balanced".
+
+# Thoughts on playing Em Bm.
+
+
+# Induction on natural numbers cannot be derived from other axioms
+
+The idea is to consider a model of the naturals that obeys all axioms other than induction,
+and to then show how this model fails to be a model of induction. Thus, induction
+does not follow from the peano aximos minus the induction axiom. We build a model of naturals as $M \equiv \mathbb N \cup \{ * \}$
+where we define the successor on $M$ as
+$succ(n \in \mathbb N) = n + 1$ and $succ(*) = *$. Now let's try to prove $P(m) \equiv succ(m) \neq m$ for all $m \in M$.
+$P(0)$ holds as $succ(0) = 1 \neq 0$. It is also true that if $P(m)$, then $P(m+1)$. However,
+it is NOT true that $\forall m \in M, P(m)$ since it does not hold for $* \in M$. So we really do need
+induction as an axiom to rule out other things.
+
 # Ordinals and cardinals
 
 
@@ -112,7 +826,16 @@ acts as a place to do mathematics safely, while still having access to the "set 
 - The key part seems to be "find the **smallest** rank". I have no idea how one would formalize this. 
 
 
+#### Weak and strong limits
 
+- A set $S$ is a strong limit if it cannot be obtained by taking powersets of sets smaller than it.
+- In set theory, we as a rule of thumb replace powerset with successor to get some weaker statement.
+- A set $S$ is a weak limit if it cannot be obtained by taking successor of sets smaller than it.
+
+
+
+#### References
+- [Large Sets 3](https://golem.ph.utexas.edu/category/2021/06/large_sets_3.html)
 
 # Musing about Specht modules
 
@@ -553,7 +1276,7 @@ g1 (b : nat) (c : nat) : nat = b
   since this is where the non-inversion will lie, let us say that for a set $X$, we add a basepoint $\{X \}$.
   So, the functor $F$ sends a set $X$ to the set `a = {X} in (X U {a}, a)`, which 
   expanded out is $(X \cup \{ \{ X \} \}, \{ X \})$. The functor $F$ sends a partial function
-  $f: A rightharpoonup B$ to based function by defining $F(f): F(A) \rightarrow F(B)$
+  $f: A \rightharpoonup B$ to based function by defining $F(f): F(A) \rightarrow F(B)$
   which sends undefined values $a$ to $\{B\} \in F(B)$, and is forced by definition sends the basepoint $\{ A \} \in F(A)$ to $\{ B \} \in F(B)$.
 - The "inverse" functor $G: Set^* \rightarrow Set^\partial$ forgets the basepoints, and sends
   a function $h: (A, a) \rightarrow (B, b)$
@@ -944,7 +1667,9 @@ conjugacy classes of $S_n$ is determined by cycle type, and the shape of a diagr
 a permutation. If we show that the irreps of different shapes/diagrams are inequivalent, we are done.
 
 
-#### Characterizing Maps $M[\lambda]$ to $M[\mu]$ 
+#### Characterizing Maps $S[\lambda]$ to $S[\mu]$ 
+
+
 
 We wish to prove the key lemma, which is that if we have a non-zero map $f: M[\lambda] \rightarrow M[\mu]$,
 then $\lambda \trianglerighteq \mu$. Let's consider the extreme cases with 3 elements:
@@ -3522,9 +4247,6 @@ we determine "clockwise" and "anti-clockwise"? There are two choices:
 - 1. Define these "from the top view", as viewing the hexagon as the face of a clock.
 - 2. Define this "from the view of the edge", as rotating in the direction of the edge. 
 
-We must make one of the two choices.
-
-TODO: mathemagize this.
 
 # Animating rotations with quaternion curves
 
@@ -8243,11 +8965,13 @@ sure how to do that.
 Since $A_{kk} = 0$, we have that $A = B + B^T$ for $B$ lower triangular.
 This allows us to simplify:
 
+$$
 \begin{aligned}
 & o^T A o = o^T (B + B^T) o = \\
 & =o^T B o + o^T B^T o = \langle o, Bo \rangle + \langle Bo, o \rangle \\
 & = 2 \cdot \langle o, Bo \rangle = 0
 \end{aligned}
+$$
 
 
 
@@ -11366,12 +12090,12 @@ int binsearch(int l, int r, int val, int *xs) {
 }
 ```
 
-We have `(l <= mid < r)` since floor division of the form `(l+r)/2`
-will pull values "downward". The length of the interval `[l, mid]` is smaller
-than the interval `[l, r]` as `mid < r`. The length of the interval
-`[mid+1, r]` is smaller than the interval `[l, r]` as `l < mid+1`. We
-are monotonically decreasing on the quantity "length of interval", and terminate
-the recursion when the length is zero.
+- We have `(l <= mid < r)` since floor division of the form `(l+r)/2`
+  will pull values "downward".
+- The length of the interval `[l, mid]` is smaller
+  than the interval `[l, r]` as `mid < r`.
+- The length of the interval `[mid+1, r]` is smaller than the interval `[l, r]` as `l < mid+1`.
+- We are monotonically decreasing on the quantity "length of interval", and terminate the recursion when the length is zero.
 
 
 #### Closed-open intervals
@@ -11390,13 +12114,12 @@ int binsearch(int l, int r, int val, int *xs) {
 }
 ```
 
-We have `(l <= mid < r)` since floor division of the form `(l+r)/2`
-will pull values "downward". Furthermore, if `r = l + 1` we end the
-recursion. Thus, we are guaranteed that we will have that `r >= l + 2`.
-Hence, `mid = (l+r)/2 >= (l + l + 2)/2 >= l + 1`. Thus, we have that:
-`l` is to the left of `mid=l+1` is to the left of `r>=l+2`. So the
-intervals `[l, mid)` and `[mid, r)` will be smaller, as we cleanly "separate"
-out `l`, `mid`, and `r`.
+- We have `(l <= mid < r)` since floor division of the form `(l+r)/2` will pull values "downward".
+- Furthermore, if `r = l + 1` we end the recursion.
+- Thus, we are guaranteed that we will have that `r >= l + 2`.
+- Hence, `mid = (l+r)/2` will be larger than `l` as `r >= l + 1`. We see this from the algebra `m = (l + r) >= (l + l + 2)/2 >= l + 1`.
+- Thus, we have that: `l` is to the left of `mid=l+1` is to the left of `r>=l+2`.
+- So, the intervals `[l, mid)` and `[mid, r)` will be smaller, as we cleanly "separate" out `l`, `mid`, and `r`.
 
 # `readlink -f <path>` to access file path
 
@@ -31236,6 +31959,12 @@ let g:conjure#mapping#eval_motion = "E"
 - eval last definition: `C-c C-c`
 
 # Big list of quotes
+
+> magic is when you have expended more effort to achieve a trick than
+> observers think is reasonable. That you've spent hundreds of hours practising
+> with decks of cards, that you've built a secret passageway across your stage,
+> that you've erected an enormous mirror in a public place, etc..
+
 
 > Knuth says something similar (on his web page I think). He says he doesn't
 > read email because email is good for people who want to stay on top of things

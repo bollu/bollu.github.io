@@ -1,3 +1,25 @@
+- [Intro to critical race theory](https://static1.squarespace.com/static/5441df7ee4b02f59465d2869/t/5d8e9fdec6720c0557cf55fa/1569628126531/DELGADO++Critical+Race+Theory.pdf)
+- [List of all useful codeforces blogs](https://codeforces.com/blog/entry/91363)
+- [Dictionary of basic factors](https://codeforces.com/blog/entry/92092)
+- [Quadratic sieve](http://www.ams.org/notices/199612/pomerance.pdf)
+- Combinatorics of finite sets by I. Anderson
+- [Colin Galen topic streams](https://www.youtube.com/watch?v=zDEQaDl3cso&list=PLDjGkpToBsYCaRoQ-_S5MRxYMuKgHD62w)
+- [Walking libraries: people who used to walk around with books: "Napoleon Bonaparte, perhaps weary of lugging (or telling others to lug) "several boxes holding about sixty volumes each" of his favorite books, did commission his own traveling library from one M. Louis Barbier"](https://www.smithsonianmag.com/smart-news/a-brief-history-of-taking-books-along-for-the-ride-180959116/)
+- [Adjoints as inverses in terms of their graphs](https://math.stackexchange.com/questions/20364/adjoint-functors-as-conceptual-inverses?rq=1)
+- the free functor must be the left adjoint, and not the right, as free and
+  left have the same number of letters.
+- Simplicial Objects in Algebraic Topology: Prereq for Higher topos theory.
+- [Knot theory as playground for topological machinery: Kawaii knots for topological machines](https://mathoverflow.net/a/54241/123769)
+- [Course on spectral sequences](https://www.youtube.com/watch?v=HcolzXhwJWs)
+-  Ordinary inductive types are essentially a constructive way to build
+   well-founded set-level structures, which we can then do induction over.
+   Higher inductive types are a constructive way to build well-founded cell
+   complexes, which we can then do “cellular induction” over.
+- [Finite difference computing with PDEs](http://hplgit.github.io/fdm-book/doc/web/index.html)
+- https://www.theguardian.com/books/2002/apr/20/scienceandnature.highereducation
+> in 1784 when edmund cartwright saw the mechanical turk play chess he was like
+> "fuck it, if machines can play chess, they can weave" and then invented the
+> mechanical loom
 - [Higher dimensional rewriting](http://hdra.gforge.inria.fr/)
 - Threshold concept: 
 > “A threshold concept can be considered as akin to a portal, opening up a

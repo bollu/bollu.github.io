@@ -5,6 +5,141 @@
 <link>https://bollu.github.io/</link>
 <description>A universe of Sorts</description>
   <item>
+    <title> Cohomology of elementary school arithmetic (WIP) </title>
+    <guid>https://bollu.github.io/cohomology-of-elementary-school-arithmetic-wip.html</guid>
+    <link>https://bollu.github.io/cohomology-of-elementary-school-arithmetic-wip.html</link>
+  </item>
+  <item>
+    <title> Center of a tree (WIP) </title>
+    <guid>https://bollu.github.io/center-of-a-tree-wip.html</guid>
+    <link>https://bollu.github.io/center-of-a-tree-wip.html</link>
+  </item>
+  <item>
+    <title> Centroid of a tree (WIP) </title>
+    <guid>https://bollu.github.io/centroid-of-a-tree-wip.html</guid>
+    <link>https://bollu.github.io/centroid-of-a-tree-wip.html</link>
+  </item>
+  <item>
+    <title> C++  lower_bound,  upper_bound API </title>
+    <guid>https://bollu.github.io/c-lowerbound-upperbound-api.html</guid>
+    <link>https://bollu.github.io/c-lowerbound-upperbound-api.html</link>
+  </item>
+  <item>
+    <title> Books that impart mental models </title>
+    <guid>https://bollu.github.io/books-that-impart-mental-models.html</guid>
+    <link>https://bollu.github.io/books-that-impart-mental-models.html</link>
+  </item>
+  <item>
+    <title> Subarrays ~= prefixes </title>
+    <guid>https://bollu.github.io/subarrays-prefixes.html</guid>
+    <link>https://bollu.github.io/subarrays-prefixes.html</link>
+  </item>
+  <item>
+    <title> Operations with modular fractions </title>
+    <guid>https://bollu.github.io/operations-with-modular-fractions.html</guid>
+    <link>https://bollu.github.io/operations-with-modular-fractions.html</link>
+  </item>
+  <item>
+    <title> Modular inverse calculation </title>
+    <guid>https://bollu.github.io/modular-inverse-calculation.html</guid>
+    <link>https://bollu.github.io/modular-inverse-calculation.html</link>
+  </item>
+  <item>
+    <title> The number of pairs  (a,b) such that  ab≤x is  O(xlogx)</title>
+    <guid>https://bollu.github.io/the-number-of-pairs-ab-such-that-abx-is-oxlogx.html</guid>
+    <link>https://bollu.github.io/the-number-of-pairs-ab-such-that-abx-is-oxlogx.html</link>
+  </item>
+  <item>
+    <title> DP as path independence </title>
+    <guid>https://bollu.github.io/dp-as-path-independence.html</guid>
+    <link>https://bollu.github.io/dp-as-path-independence.html</link>
+  </item>
+  <item>
+    <title> Largest index which does not possess some property  </title>
+    <guid>https://bollu.github.io/largest-index-which-does-not-possess-some-property.html</guid>
+    <link>https://bollu.github.io/largest-index-which-does-not-possess-some-property.html</link>
+  </item>
+  <item>
+    <title> Correctness of  lower_bound search </title>
+    <guid>https://bollu.github.io/correctness-of-lowerbound-search.html</guid>
+    <link>https://bollu.github.io/correctness-of-lowerbound-search.html</link>
+  </item>
+  <item>
+    <title> Greedy Coin change: proof by probing </title>
+    <guid>https://bollu.github.io/greedy-coin-change-proof-by-probing.html</guid>
+    <link>https://bollu.github.io/greedy-coin-change-proof-by-probing.html</link>
+  </item>
+  <item>
+    <title> Clean way to write burnside lemma </title>
+    <guid>https://bollu.github.io/clean-way-to-write-burnside-lemma.html</guid>
+    <link>https://bollu.github.io/clean-way-to-write-burnside-lemma.html</link>
+  </item>
+  <item>
+    <title> The groupoid interpretation of type theory </title>
+    <guid>https://bollu.github.io/the-groupoid-interpretation-of-type-theory.html</guid>
+    <link>https://bollu.github.io/the-groupoid-interpretation-of-type-theory.html</link>
+  </item>
+  <item>
+    <title> Mnemonics for free = left adjoint </title>
+    <guid>https://bollu.github.io/mnemonics-for-free-left-adjoint.html</guid>
+    <link>https://bollu.github.io/mnemonics-for-free-left-adjoint.html</link>
+  </item>
+  <item>
+    <title> Where to scratch a cat </title>
+    <guid>https://bollu.github.io/where-to-scratch-a-cat.html</guid>
+    <link>https://bollu.github.io/where-to-scratch-a-cat.html</link>
+  </item>
+  <item>
+    <title> Mnemonic for Specht module actions </title>
+    <guid>https://bollu.github.io/mnemonic-for-specht-module-actions.html</guid>
+    <link>https://bollu.github.io/mnemonic-for-specht-module-actions.html</link>
+  </item>
+  <item>
+    <title> Quotes from  &apos; Braiding Sweetgrass &apos;  </title>
+    <guid>https://bollu.github.io/quotes-from-braiding-sweetgrass.html</guid>
+    <link>https://bollu.github.io/quotes-from-braiding-sweetgrass.html</link>
+  </item>
+  <item>
+    <title> Transfinite recursion: Proof </title>
+    <guid>https://bollu.github.io/transfinite-recursion-proof.html</guid>
+    <link>https://bollu.github.io/transfinite-recursion-proof.html</link>
+  </item>
+  <item>
+    <title> Transfinite induction: Proof </title>
+    <guid>https://bollu.github.io/transfinite-induction-proof.html</guid>
+    <link>https://bollu.github.io/transfinite-induction-proof.html</link>
+  </item>
+  <item>
+    <title> Thoughts on playing Em-Bm </title>
+    <guid>https://bollu.github.io/thoughts-on-playing-em-bm.html</guid>
+    <link>https://bollu.github.io/thoughts-on-playing-em-bm.html</link>
+  </item>
+  <item>
+    <title> An explanation for why permutations and linear orders are not naturally isomorphic </title>
+    <guid>https://bollu.github.io/an-explanation-for-why-permutations-and-linear-orders-are-not-naturally-isomorphic.html</guid>
+    <link>https://bollu.github.io/an-explanation-for-why-permutations-and-linear-orders-are-not-naturally-isomorphic.html</link>
+  </item>
+  <item>
+    <title> We can &apos; t define choice for finite sets in Haskell! </title>
+    <guid>https://bollu.github.io/we-cant-define-choice-for-finite-sets-in-haskell.html</guid>
+    <link>https://bollu.github.io/we-cant-define-choice-for-finite-sets-in-haskell.html</link>
+  </item>
+  <item>
+    <title> Geomean is scale independent </title>
+    <guid>https://bollu.github.io/geomean-is-scale-independent.html</guid>
+    <link>https://bollu.github.io/geomean-is-scale-independent.html</link>
+  </item>
+  <item>
+    <title> Thoughts on playing Em Bm. </title>
+    <guid>https://bollu.github.io/thoughts-on-playing-em-bm.html</guid>
+    <link>https://bollu.github.io/thoughts-on-playing-em-bm.html</link>
+  </item>
+  <item>
+    <title> Induction on natural numbers cannot be derived from other axioms </title>
+    <guid>https://bollu.github.io/induction-on-natural-numbers-cannot-be-derived-from-other-axioms.html</guid>
+    <link>https://bollu.github.io/induction-on-natural-numbers-cannot-be-derived-from-other-axioms.html</link>
+  </item>
+  <item>
     <title> Ordinals and cardinals </title>
     <guid>https://bollu.github.io/ordinals-and-cardinals.html</guid>
     <link>https://bollu.github.io/ordinals-and-cardinals.html</link>
