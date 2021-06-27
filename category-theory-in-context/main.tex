@@ -995,7 +995,7 @@ to get the other squares:
 
 \question{1.5.iv: Full faithful functor reflects and creates isos}
 
-\begin{Proof (a) reflects isos}
+\start{Proof (a) reflects isos}
 
 \begin{itemize}
 \item Let $F: C \rightarrow D$ be a full and faithful functor. Let $f: x \rightarrow y$ be an arrow in $C$.
@@ -1007,7 +1007,7 @@ Let $Ff: Fx \rightarrow Fy$ be an isomorphism. We must show that $f$ is an isomo
 \item Repeat proof for other sided inverse. We are done.
 \end{itemize}
 
-\begin{Proof (b) creates isos}
+\start{Proof (b) creates isos}
 
 \begin{itemize}
 \item Let $x, y \in C$ such that $Fx \simeq Fy$. Then we must show that $x
@@ -1082,5 +1082,144 @@ of each other.
 
 \question{1.5.x: Categories equivalent to discrete categories}
 \begin{itemize}
+        \item TODO
 \end{itemize}
+
+\section{1.6: The art of the diagram chase}
+
+\subsection{Musings}
+\subsection{Exercises 1.6}
+
+\start{1.6.i any map from terminal to initial is iso}
+\begin{itemize}
+\item Let $f: t \rightarrow i$ be map from terminal to initial. We must show that $f$ is iso.
+\item Consider the unique map $g: i \rightarrow t$. This map is unique both because
+    it is (a) \emph{from} the initial object and (b) \emph{to} the terminal object.
+\item Consider $f \circ g: i \rightarrow i$. This is an arrow \emph{from} the initial object,
+    thus is unique. But there is already another arrow $id_i: i \rightarrow i$. This implies $f \circ g = id_i$
+    by uniqueness.
+\item Consider $g \circ f : t \rightarrow t$. This an arrow \emph{to} the terminal object, thus is unique.
+    But there is already another arrow $id_t: t \rightarrow t$. From uniqueness, we get $g \circ f = id_t$.
+\item This implies $f$ is iso, and furthermore $f: t \rightarrow i$ is unique, since another such
+    $f'$ will also be an inverse to $g$, and thus we will have $f = f'$.
+\end{itemize}
+
+\start{1.6.ii: Any two terminal objects are connected by unique iso}
+\begin{itemize}
+    \item Let $t, t'$ be two terminal objects. This gives us two unique maps $f: t \rightarrow t'$ and $g: t' \rightarrow t$,
+        unique by the terminality of $t, t'$.
+    \item Consider $f \circ g: t' \rightarrow t'$. There is another arrow with codomain $t'$, $id_{t'}: t' \rightarrow t'$.
+        By uniqueness of arrows into $t'$, we must have $f \circ g = id_{t'}$.
+    \item Similarly, $g \circ f = id_t$. Thus, $f, g$ are isomorphisms. Furthermore, $f, g$ are unique. So, $t, t'$
+        are isomorphic upto \emph{unique} isomorphism.
+\end{itemize}
+
+\start{1.6.iii: Faithful functor reflects monos}
+\begin{itemize}
+    \item Let $F: C \rightarrow D$, let $Ff$ is mono in $D$. We must show that $f: x \rightarrow y$ is mono in $C$.
+    \item So, given arrows $g, h: w \rightarrow x$, given $f \circ g = f \circ h$, we must show that $g = h$.
+    \item apply the functor, giving $F f \circ F g = F f \circ F h$. 
+    \item Since $F f$ is mono, it is left cancellable, giving $F g = F h$.
+    \item Since $F$ is faithful, it is injective on hom-sets, thus $g = h$ (from $F g = F h$).
+    \item Hence, we've shown that $f \circ g = f \circ h$ implies $g = h$, or that $f$ is mono, and thuus $F$ reflects monos.
+\end{itemize}
+
+\start{1.6.iv, 1.6.v: Faithful functor need not preserve epis}
+\begin{itemize}
+\item Consider $F: Ring \rightarrow Set$. This is faithful.
+\item Recall that the arrow $f: \mathbb Z \rightarrow \mathbb Q$ was epi in $Ring$. However, as a set valued
+    function, this is not surjective. Thus, faithful functors need not \emph{preserve} epis.
+\item Consider the funcor $G: Top \rightarrow Set$ which sends a space to its set of connected components.
+    This is functorial, as given an arrow $g$, the arrow $Gg$ tries to send connected components to connected components.
+    This will always be the case, by virtue of continuity of $g$. Now see that the monomorphism $g: \{0, 1\} \rightarrow [0, 1]$
+    where $\{0, 1 \} \subseteq \mathbb R$ is discrete and $[0, 1]$ is connected, becomes $Gg: \{0, 1 \} \rightarrow \{ * \}$
+    where $\{ * \}$ is the single connected component of $[0, 1]$. $Gg$ is not mono, 
+\item (Explanation: The property of being a mono or epi involves a
+    quantification over all objects of a category. So if a functor is not
+        essentially surjective on objects or not surjective on morphisms, such
+        properties in the source category are usually not enough to guarantee
+        the corresponding property in the target category.  Note that this
+        objection does not apply to isomorphisms, because they are defined by
+        the explicit formulas for a two-sided inverse, not by a universal
+        property.)
+\end{itemize}
+
+\start{1.6.vi: terminal coalgebras}
+\begin{itemize}
+    \item a coalgebra \emph{for} an endofunctor $T: C \rightarrow C$ is a tuple $(c \in C, \gamma : c \rightarrow Tc)$.
+        A morphism of coalgebras $f: (c, \gamma) \rightarrow (c', \gamma'$) is a commuting square of the morphism $f: c \rightarrow c'$:
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJjIl0sWzEsMCwiYyciXSxbMCwxLCJUYyJdLFsxLDEsIlRjJyJdLFswLDEsImYiXSxbMCwyLCJcXGdhbW1hIiwyXSxbMSwzLCJcXGdhbW1hJyJdLFsyLDMsIlRmIiwyXV0=
+\[\begin{tikzcd}
+	c & {c'} \\
+	Tc & {Tc'}
+	\arrow["f", from=1-1, to=1-2]
+	\arrow["\gamma"', from=1-1, to=2-1]
+	\arrow["{\gamma'}", from=1-2, to=2-2]
+	\arrow["Tf"', from=2-1, to=2-2]
+\end{tikzcd}\]
+\item We must show that if $(c, \gamma: c \rightarrow Tc)$ is a terminal coalgebra (that is, it is terminal in the category of coalgebras), then $\gamma$ is an isomorphism.
+\item Given any other coalgbera $(d, \delta: d \rightarrow Td)$ we have a unique $f: d \rightarrow c$ that makes the coalgebra diagram commute, since $c$ is terminal. 
+\item Consider the coalgebra $(Tc, T\gamma: Tc \rightarrow TTc)$. By terminality of $(c, \gamma)$, there is a morphism $f: Tc \rightarrow c$ such that the diagram commutes:
+
+% https://q.uiver.app/?q=WzAsNSxbMCwxLCJUVGMiXSxbMSwwLCJjIl0sWzEsMSwiVGMiXSxbMCwwLCJUYyJdLFs0LDBdLFsxLDIsIlxcZ2FtbWEiXSxbMCwyLCJUVGYiLDJdLFszLDEsImYiXSxbMywwLCJUXFxnYW1tYSIsMl1d
+\[\begin{tikzcd}
+	Tc & c &&& {} \\
+	TTc & Tc
+	\arrow["\gamma", from=1-2, to=2-2]
+	\arrow["TTf"', from=2-1, to=2-2]
+	\arrow["f", from=1-1, to=1-2]
+	\arrow["T\gamma"', from=1-1, to=2-1]
+\end{tikzcd}\]
+
+\item So we have the equation $\gamma \circ f = Tf \circ T\gamma$, or $\gamma \circ f = T (f \circ \gamma)$.
+
+\item Now consider the map of coalgebras $(c, \gamma) \mapsto (Tc, T\gamma)$ given by $\gamma: c \rightarrow Tc$, with the following commutative diagram:
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJjIl0sWzEsMCwiVGMiXSxbMCwxLCJUYyJdLFsxLDEsIlRUYyJdLFswLDEsIlxcZ2FtbWEiXSxbMCwyLCJcXGdhbW1hIiwyXSxbMSwzLCJUXFxnYW1tYSJdLFsyLDMsIlRcXGdhbW1hIiwyXV0=
+\[\begin{tikzcd}
+	c & Tc \\
+	Tc & TTc
+	\arrow["\gamma", from=1-1, to=1-2]
+	\arrow["\gamma"', from=1-1, to=2-1]
+	\arrow["T\gamma", from=1-2, to=2-2]
+	\arrow["T\gamma"', from=2-1, to=2-2]
+\end{tikzcd}\]
+
+\item Composing the previous two diagrams, we get a map of coalgebras $(c, \gamma) \mapsto (c, \gamma)$:
+
+% https://q.uiver.app/?q=WzAsNixbMCwwLCJjIl0sWzEsMCwiVGMiXSxbMCwxLCJUYyJdLFsxLDEsIlRUYyJdLFsyLDAsImMiXSxbMiwxLCJUYyJdLFswLDEsIlxcZ2FtbWEiXSxbMCwyLCJcXGdhbW1hIiwyXSxbMSwzLCJUXFxnYW1tYSJdLFsyLDMsIlRcXGdhbW1hIiwyXSxbMSw0LCJmIl0sWzQsNSwiXFxnYW1tYSJdLFszLDUsIlRmIiwyXV0=
+\[\begin{tikzcd}
+	c & Tc & c \\
+	Tc & TTc & Tc
+	\arrow["\gamma", from=1-1, to=1-2]
+	\arrow["\gamma"', from=1-1, to=2-1]
+	\arrow["T\gamma", from=1-2, to=2-2]
+	\arrow["T\gamma"', from=2-1, to=2-2]
+	\arrow["f", from=1-2, to=1-3]
+	\arrow["\gamma", from=1-3, to=2-3]
+	\arrow["Tf"', from=2-2, to=2-3]
+\end{tikzcd}\]
+\item From the terminality of $(c, \gamma)$, the arrow $f \circ \gamma$ must be unique, and must be isomorphic to $id_c$:
+
+% https://q.uiver.app/?q=WzAsMTAsWzAsMCwiYyJdLFsxLDAsIlRjIl0sWzAsMSwiVGMiXSxbMSwxLCJUVGMiXSxbMiwwLCJjIl0sWzIsMSwiVGMiXSxbNCwwLCJjIl0sWzUsMCwiYyJdLFs0LDEsIlRjIl0sWzUsMSwiVGMiXSxbMCwxLCJcXGdhbW1hIl0sWzAsMiwiXFxnYW1tYSIsMl0sWzEsMywiVFxcZ2FtbWEiXSxbMiwzLCJUXFxnYW1tYSIsMl0sWzEsNCwiZiJdLFs0LDUsIlxcZ2FtbWEiXSxbMyw1LCJUZiIsMl0sWzYsNywiXFxvcGVyYXRvcm5hbWV7aWR9X2MiXSxbNiw4LCJcXGdhbW1hIiwyXSxbNyw5LCJcXGdhbW1hIl0sWzgsOSwiXFxvcGVyYXRvcm5hbWV7aWR9X3tUY30iLDJdXQ==
+\[\begin{tikzcd}
+	c & Tc & c && c & c \\
+	Tc & TTc & Tc && Tc & Tc
+	\arrow["\gamma", from=1-1, to=1-2]
+	\arrow["\gamma"', from=1-1, to=2-1]
+	\arrow["T\gamma", from=1-2, to=2-2]
+	\arrow["T\gamma"', from=2-1, to=2-2]
+	\arrow["f", from=1-2, to=1-3]
+	\arrow["\gamma", from=1-3, to=2-3]
+	\arrow["Tf"', from=2-2, to=2-3]
+	\arrow["{\operatorname{id}_c}", from=1-5, to=1-6]
+	\arrow["\gamma"', from=1-5, to=2-5]
+	\arrow["\gamma", from=1-6, to=2-6]
+	\arrow["{\operatorname{id}_{Tc}}"', from=2-5, to=2-6]
+\end{tikzcd}\]
+
+\item We've now proven $f \circ \gamma = id_c$. We need to show that $\gamma \circ f = id_{Tc}$.
+\item From the equation $\gamma \circ f = T (f \circ \gamma)$, and $[f \circ \gamma = id_c]$ we derive $\gamma \circ f = T (id_c) = id_{Tc}$.
+\item thus, $\gamma$ and $f$ are inverses of each other, and we have the desired isomorphism.
+\end{itemize}
+
 \end{document}
