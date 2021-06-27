@@ -3,11 +3,12 @@ These are my notes on the subjects I've taken in college, and on the paper I've 
 some slides of talks I've given.
 
 # Currently reading
-##### [Tu-intro-to-manifolds](./tu-intro-to-manifolds/main.pdf)
-##### [Munkres](./munkres/main.pdf)
 ##### [Category Theory in Context](./category-theory-in-context/main.pdf)
 
 # Subjects
+##### [Homotopical topology by fomenko](./fomenko-homotopic-topology/main.pdf)
+##### [Munkres](./munkres/main.pdf)
+##### [Tu-intro-to-manifolds](./tu-intro-to-manifolds/main.pdf)
 ##### [Algebraic geometry in the time of COVID](./algebra/main.pdf)
 ##### [Complexity and advanced algorithms](./advanced-algorithms/main.pdf)
 ##### [Principles of information security](./information-security/main.pdf)

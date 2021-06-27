@@ -86,6 +86,12 @@
 
 \newcommand{\X}{\ensuremath{\mathfrak{X}}}
 
+
+\newcommand*{\start}[1]{\leavevmode\newline \textbf{#1} }
+\newcommand*{\answer}{\start{Answer}}
+% \newcommand*{\answer}{\leavevmode\newline \textbf{Answer} }
+\newcommand*{\qed}{\ensuremath{\blacksquare}}
+
 \title{Algebraic topology: Hatcher}
 \author{Siddharth Bhat}
 \date{Spring of the second Year of the Plague}
@@ -103,20 +109,19 @@ If $f_1 ; g_1 \simeq f_2 ; g_2$ and $g_1 ; g_2$ we must show that $f_1 \simeq f_
 witness $f_1; g_1 \simeq f_2; g_2$ and let $h': [0, 1] \times S^1 \rightarrow X$ witness $g_1 \simeq g_2$. Then
 define $h'^{-1}$ as the witness of $g_1^{-1} \simeq g_2^{-1}$. Then say that $f_1 \simeq f_1; g_1; g_1^{-1} \simeq f_2; g_2; \simeq g_2^{-1} \simeq f_2$ via $h; h'^{-1}$.
 
-
 \subsection{Ex2}
 Consider $\beta_h(f) \equiv h \circ f \circ h^{-1}$. If $h \simeq h'$ via the homotopy $H$, then we have that $H; id; H^{-1}$ 
 witnessing $h \circ f \circ h^{-1} \simeq h' \circ f \circ h'^{-1}$. Thus, $\beta_h(f) \simeq \beta_{h'}(f)$ for all $f$.
 
 \subsection{Ex3}
-$\pi_1(X)$ is abelian iff $\beta_h$ depend only on endpoints of $h$.
+\question{$\pi_1(X)$ is abelian iff $\beta_h$ depend only on endpoints of $h$.}
 
-First part: Assume $\beta_h$ depends only on endpoints, prove that $\pi_1(X)$ is abelain. Consider $f, g$ loops at $x_0$
+\start{First part:} Assume $\beta_h$ depends only on endpoints, prove that $\pi_1(X)$ is abelain. Consider $f, g$ loops at $x_0$
 See that $\beta_f(g) = f; g; f^{-1}$, and $\beta_g(g) = g; g; g^{-1} \simeq g$. But $f(0) = g(0) = x_0$ and $f(1) = g(1) = x_0$
 Hence $\beta_f = \beta_g$, thus $\beta_f(g) = \beta_g(g)$, thus $f; g; f^{-1} = g$, or $f; g = g; h$ thus establishing
 that the group is abelian.
 
-Second part: Assume that $\pi_1(X)$ is abelian. Show that $\beta_*$ depends only on endpoints. Let $f, g$ be two
+\start{Second part:} Assume that $\pi_1(X)$ is abelian. Show that $\beta_*$ depends only on endpoints. Let $f, g$ be two
 loops with equal endpoints; $f(0) = g(0)$ and $f(1) = g(1)$. See that:
 
 $$
@@ -126,7 +131,15 @@ $$
 Thus $\beta_f(g) \simeq g$. So this means that $\beta_f$ will perform no action on any path from $f(0)$ to $f(1)$.
 Thus, the action of $\beta_f$ will be equl to all $\beta_g$ as long as $f, g$ have the same endpoints.
 
-
 \subsection{Ex4}
-\url{https://www.youtube.com/watch?v=2R4jvKGwKoE&list=PL2Rb_pWJf9JqgIR6RR3VFF2FwKCyaUUZn}
+\start{Idea:} Use compactness to finite finite subcover of star shaped regions. Within each star shaped region,
+since star shaped is contractible, all paths are nullhomotopic. So we can homotope the section of the path into a point, and then expand
+back into the line segment. [I always get weirded out that homotopy does not preserver cardinality of the image, or indeed any intuition I have about
+``structure''].
+
+
+rigorous seems hard.
+
+\subsection{Ex5}
+
 \end{document}
