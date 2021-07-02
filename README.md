@@ -95,12 +95,12 @@ $$
 &\partial_\alpha - o \cdot \alpha x + p \cdot \alpha x  - \alpha x \cdot o - \alpha x \cdot (- p) - \alpha x \cdot (- \alpha x)  = 0\\
 &\partial_\alpha - 2 \alpha o \cdot x + 2 p \cdot \alpha x  + \alpha^2 x \cdot x  = 0\\
 &\partial_\alpha - 2 \alpha o \cdot x + 2\alpha p \cdot x + \alpha^2 x \cdot x  = 0 \\
-- 2 o \cdot x + 2 p \cdot x + 2 \alpha x \cdot x  = 0 \\
-2 (- o  + p + \alpha x)  \cdot x  = 0 \\
-2 (- o  + l)  \cdot x  = 0 \\
-2 (\vec{lo})  \cdot x  = 0 \\
-(\vec{lo}) \cdot x  = 0 \\
-\vec{lo}) \bot x  = 0
+&- 2 o \cdot x + 2 p \cdot x + 2 \alpha x \cdot x  = 0 \\
+&2 (- o  + p + \alpha x)  \cdot x  = 0 \\
+&2 (- o  + l)  \cdot x  = 0 \\
+&2 (\vec{lo})  \cdot x  = 0 \\
+&(\vec{lo}) \cdot x  = 0 \\
+&\vec{lo}) \bot x  = 0
 \end{aligned}
 $$
 

@@ -5,6 +5,11 @@
 <link>https://bollu.github.io/</link>
 <description>A universe of Sorts</description>
   <item>
+    <title> Formula for squarefree numbers </title>
+    <guid>https://bollu.github.io/formula-for-squarefree-numbers.html</guid>
+    <link>https://bollu.github.io/formula-for-squarefree-numbers.html</link>
+  </item>
+  <item>
     <title> Center of a tree (WIP) </title>
     <guid>https://bollu.github.io/center-of-a-tree-wip.html</guid>
     <link>https://bollu.github.io/center-of-a-tree-wip.html</link>
@@ -13,6 +18,16 @@
     <title> Centroid of a tree (WIP) </title>
     <guid>https://bollu.github.io/centroid-of-a-tree-wip.html</guid>
     <link>https://bollu.github.io/centroid-of-a-tree-wip.html</link>
+  </item>
+  <item>
+    <title> Rota &apos; s twelvefold path </title>
+    <guid>https://bollu.github.io/rotas-twelvefold-path.html</guid>
+    <link>https://bollu.github.io/rotas-twelvefold-path.html</link>
+  </item>
+  <item>
+    <title> Image unshredding as hamiltonian path </title>
+    <guid>https://bollu.github.io/image-unshredding-as-hamiltonian-path.html</guid>
+    <link>https://bollu.github.io/image-unshredding-as-hamiltonian-path.html</link>
   </item>
   <item>
     <title> Distance between lines in nD </title>
