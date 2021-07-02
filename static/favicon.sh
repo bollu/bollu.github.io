@@ -1,5 +1,6 @@
 #!/bin/bash
 # https://graphicdesign.stackexchange.com/questions/77359/how-to-convert-a-square-svg-to-all-size-ico
+# inkscape favicon.svg --export-png=favicon.png -w 128 -h 128 --without-gui
 
 set -ex
 

@@ -598,35 +598,150 @@ else {
 // has_some_poperty(ans) = 0
 ```
 
-- **Claim 1: (Correctness)** `p(ans) = 0`. By precondition, this is true before the loop.
-  See that it's a loop invariant, as we only update `ans` to `ans+k` if `p(ans+k) = 0`.
+- **Claim 1: (Correctness)** `p(ans[i]) = 0`. By precondition, this is true before the loop.
+  See that it's a loop invariant, as we only update `ans[i]` to `ans[i]+k` if `p(ans[i]+k) = 0`.
   Thus, is is true after the loop.
 
 
-- **Claim 2: (Maximality)**: At loop iteration $i$, $p(ans[i] + 2k[i]) = 1$. So we cannot improve our solution
-  by using previous numbers. This implies optimality once the loop ends, as at the end of the loop we have $i = -1$,
-  so $p(ans[-1] + 2k[-1]) = 1$, which is $p(ans+1) = 1$.
+- **Claim 2: (Maximality)**: At loop iteration `i`: `p(ans[i] + 2k[i]) = 1`. We cannot improve our solution
+  by using previous jump lengths. 
 
-- Proof of Claim 2: induction on $i$. 
-  Suppose claim 2 is true till index $i$. So we assert that $p(ans[i] + 2k[i]) = 1$.
-- We must prove the inductio hypothesis holds at index $i-1$.
-- Case analysis based on iteration $i$. Either $p(ans[i] + k[i]) = 0$, or $p(ans[i] + k[i]) = 1$.
-- (a) If $p(ans[i] + k[i]) = 0$, then we have $ans[i-1] = ans[i] + k[i]$. 
-  Suppose for contradiction at $(i-1)$ that $p(ans[i-1] + 2k[i-1]) = 0$. Substituting $ans[i-1]$, we get
-  $p(ans[i] + k[i]) + 2k[i-1]) = 0$. This implies $p(ans[i]+ k[i] + k[i]) = 0$, or $p(ans[i] + 2k[i]) = 0$. This contradicts
-  the loop invariant at index $i$. Proved.
-- (b) If $p(ans[i] + k[i]) = 1$, then $ans[i-1] = ans[i]$. Check the loop invarint at $i-1$:
-  $p(ans[i-1] + 2k[i-1]) = p(ans[i] + k[i]) = 1$. Hence loop invarint at $i-1$ is satisfied.
-- Hence, the loop invariant is satisfied at index $(i-1)$ assuming the loop invariant is satisfied at index $(i)$.
-  By induction, loop invariant holds.
+This implies optimality once the loop ends. At the end of the loop we have `i = -1`.
+So:
 
-- **Less handwavy proof that Maximality implies optimality**: At loop iteration $i=0$, we have that $p(ans[0] + 2*1) = 1$.
-- (a) If $p(ans[0] + 1) =  0$, we set $ans[-1] \equiv ans[0] + 1$. So $p(ans[-1] + 1) = p(ans[0] + 2) = 1$.
-  This is correct, since we have found an $ans[-1]$ where $p(ans[-1]) = 0$ and $p(ans[-1] + 1) = $.
-- (b) If $p(ans[0] + 1) = 1$, we set $ans[-1] \equiv ans[0]$. This leaves us with an $ans[-1]$ such that $p(ans[-1])$ equals $p(ans[0]) = 0$ (by correctness),
-- and $p(ans[-1] + 1)$ equals $p(ans[0] + 1) = 1$ (by case analysis). Here too we are left with the correct value.
-- See that this literally repeats the inductive argument, specialized to the final loop iteration!
+```
+2k[-1] = 2(1/2) = 1
+finalans = ans[-1]
+---
+p(ans[-1] + 2k[-1]) = 1
+=> p(finalans+1) = 1
+```
 
+- Proof of Claim 2: induction on `i`
+- Suppose claim 2 is true till index `i`: `p(ans[i] + 2k[i]) = 1`.
+- To prove: induction hypothesis holds at index `(i-1)`.
+- Case analysis based on loop body at `i`: `p(ans[i] + k[i]) = 0 or 1`
+- (a) `p(ans[i] + k[i]) = 0`. We update  `ans[i-1] = ans[i] + k[i]`. 
+- We wish to show that the loop invariant holds at `i-1`: `p(ans[i-1]+2k[i-1]) == 1`.
+
+$$
+\begin{aligned}
+&\text{k value: }  k[i] = 2^i \\
+&\text{(k-1) value: }  k[i-1] = 2^{i-1} = 2k[i] \\
+&\text{Ind: } p(ans[i] + 2k[i]) = 0 \\
+&\text{Case (a): }  p(ans[i] + k[i]) = 0 \\
+&\text{Update: } ans[i-1] \equiv ans[i] + k[i] \\
+&p(ans[i-1] + 2k[i-1]) \\
+&= p((ans[i] + k[i]) + 2k[i-1])  \\
+&= p(ans[i] + k[i] + k[i])\\
+&= p(ans[i] + 2k[i]) \\
+&= 1 ~\text{(By Induction Hyp.)}
+\end{aligned}
+$$
+
+- We've shown that the induction hypothesis hold at index $(i-1)$ in case (a) where we update the value of $ans[i]$.
+
+- (b) If `p(ans[i] + k[i]) = 1`, then we update `ans[i-1] = ans[i]`. 
+- We wish to show that the loop invariant holds at `i-1`: `p(ans[i-1]+2k[i-1]) ==1`.
+
+$$
+\begin{aligned}
+&\text{k value: }  k[i] = 2^i \\
+&\text{(k-1) value: }  k[i-1] = 2^{i-1} = 2k[i] \\
+&\text{Ind: } p(ans[i] + 2k[i]) = 0 \\
+&\text{Case (b): }  p(ans[i] + k[i]) = 1 \\
+&\text{Update: } ans[i-1] \equiv ans[i] \\
+&p(ans[i-1] + 2k[i-1]) \\
+&= p(ans[i] + 2k[i-1])  \\
+&= p(ans[i] + k[i] + k[i])\\
+&= p(ans[i] + 2k[i]) \\
+&= 1 ~\text{(By Induction Hyp.)}
+\end{aligned}
+$$
+
+- We've shown that the induction hypothesis hold at index $(i-1)$ in case (b) where we don't change the value of $ans[i]$.
+
+- In summary, the loop invariant is held at index $(i-1)$ assuming the loop invariant is satisfied at index $(i)$,
+  for both updates of $ans[i]$.  Thus, by induction, the loop invariant holds for all iterations.
+
+- **Elaborated proof of why `p(ans[0]+1) = 1` at the end of the loop**
+
+See that we can insert a new invaraiant at the end of the loop which asserts  `p(ans[i]+k[i]) == 1`:
+
+```cpp
+if (p(1 << nbits) == 0) { return 1 << nbits; }
+else {
+  assert(p(1<<nbits) == 1);
+  int ans = 0;
+  for (int i = nbits-1; i >= 0; i--) {
+    int k = 1 << i;
+    assert(p(ans + 2*k) == 1);
+    int ans2;
+    if (p(ans + k) == 0) {
+      ans2 = ans + k;
+      // ans2 + k
+      // = (ans + k) + k
+      // = ans + 2k
+      // = 1 (from assertion)
+    } else {
+       ans2 = ans;
+      // ans2 + k
+      // = ans + k
+      // = 1 [from else branch]
+    }
+    // ## new loop end invariant ##
+    // true from then, else branch.
+    assert(p(ans2+k) == 1)
+    ans = ans2;
+  }
+}
+```
+
+- We've proven the correctness of the loop invariant at the *end* of the loop, given the prior loop invariant at the *beginning*
+  of the loop.
+- So, At the end of the `(i=0)` iteration, we have `k=1`, and so `p(ans+1) == 1`, which is the "rightmost index" condition.
+  that we originally wanted.
+
+#### Fully elaborated proof
+
+```cpp
+if (p(1 << nbits) == 0) { return 1 << nbits; }
+else {
+  assert(p(1<<nbits) == 1);
+  int ans = 0;
+  // p(ans[nbits-1] + 2*(1<<nbits-1))
+  // = p(0 + 1 << nbits)
+  // = p(1 << nbits)
+  // = 1 [from assert]
+  for (int i = nbits-1; i >= 0; i--) {
+    int k = 1 << i;
+    // From induction hyp:
+    // p(ans[i] + k[i+1]) == true
+    // => p(ans[i] + 2k[i]) == true
+    assert(p(ans + 2*k) == true);
+
+    if (p(ans + k) == 0) {
+      // ans[i-1] = ans[i] + k[i]
+      ans += ans + k;
+      // p(ans[i-1] + k[i])
+      // = p(ans[i] + k[i] + k[i])
+      // = p(ans[i] + 2k[i])
+      // = p(ans[i] + k[i+1])
+      // = 1 (from induction hyp)
+    } else {
+       ans = ans; // no-op
+       // p(ans[i-1] + k[i])
+       // = p(ans[i] + k[i])
+       // = 1 (from else branch)
+    }
+    // ## new loop end invariant ##
+    // p(ans[i-1] + k[i])== 1
+    assert(p(ans+k) == 1)
+  }
+}
+```
+
+#### Relationship to LCA / binary lifting
 
 This is very similar to LCA, where we find the lowest node that is *not* an ancestor. The ancestor
 of such a node *must be* the ancestor.
