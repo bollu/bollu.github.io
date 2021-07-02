@@ -5,11 +5,6 @@
 <link>https://bollu.github.io/</link>
 <description>A universe of Sorts</description>
   <item>
-    <title> Cohomology of elementary school arithmetic (WIP) </title>
-    <guid>https://bollu.github.io/cohomology-of-elementary-school-arithmetic-wip.html</guid>
-    <link>https://bollu.github.io/cohomology-of-elementary-school-arithmetic-wip.html</link>
-  </item>
-  <item>
     <title> Center of a tree (WIP) </title>
     <guid>https://bollu.github.io/center-of-a-tree-wip.html</guid>
     <link>https://bollu.github.io/center-of-a-tree-wip.html</link>
@@ -18,6 +13,46 @@
     <title> Centroid of a tree (WIP) </title>
     <guid>https://bollu.github.io/centroid-of-a-tree-wip.html</guid>
     <link>https://bollu.github.io/centroid-of-a-tree-wip.html</link>
+  </item>
+  <item>
+    <title> Distance between lines in nD </title>
+    <guid>https://bollu.github.io/distance-between-lines-in-nd.html</guid>
+    <link>https://bollu.github.io/distance-between-lines-in-nd.html</link>
+  </item>
+  <item>
+    <title> Correctness of  lower_bound search with closed intervals </title>
+    <guid>https://bollu.github.io/correctness-of-lowerbound-search-with-closed-intervals.html</guid>
+    <link>https://bollu.github.io/correctness-of-lowerbound-search-with-closed-intervals.html</link>
+  </item>
+  <item>
+    <title> Sliding window implementation style </title>
+    <guid>https://bollu.github.io/sliding-window-implementation-style.html</guid>
+    <link>https://bollu.github.io/sliding-window-implementation-style.html</link>
+  </item>
+  <item>
+    <title> Kawaii implementation of  x = min(x, y)</title>
+    <guid>https://bollu.github.io/kawaii-implementation-of-x-minx-y.html</guid>
+    <link>https://bollu.github.io/kawaii-implementation-of-x-minx-y.html</link>
+  </item>
+  <item>
+    <title> CSES: Counting Towers </title>
+    <guid>https://bollu.github.io/cses-counting-towers.html</guid>
+    <link>https://bollu.github.io/cses-counting-towers.html</link>
+  </item>
+  <item>
+    <title> Smallest positive natural which can &apos; t be represented as sum of any subset of a set of naturals </title>
+    <guid>https://bollu.github.io/smallest-positive-natural-which-cant-be-represented-as-sum-of-any-subset-of-a-set-of-naturals.html</guid>
+    <link>https://bollu.github.io/smallest-positive-natural-which-cant-be-represented-as-sum-of-any-subset-of-a-set-of-naturals.html</link>
+  </item>
+  <item>
+    <title> Example of RVs that are pairwise but not 3-way independent. </title>
+    <guid>https://bollu.github.io/example-of-rvs-that-are-pairwise-but-not-3-way-independent.html</guid>
+    <link>https://bollu.github.io/example-of-rvs-that-are-pairwise-but-not-3-way-independent.html</link>
+  </item>
+  <item>
+    <title> Notes on Liam O Connor &apos; s thesis: Cogent </title>
+    <guid>https://bollu.github.io/notes-on-liam-o-connors-thesis-cogent.html</guid>
+    <link>https://bollu.github.io/notes-on-liam-o-connors-thesis-cogent.html</link>
   </item>
   <item>
     <title> C++  lower_bound,  upper_bound API </title>
@@ -55,14 +90,14 @@
     <link>https://bollu.github.io/dp-as-path-independence.html</link>
   </item>
   <item>
-    <title> Largest index which does not possess some property  </title>
-    <guid>https://bollu.github.io/largest-index-which-does-not-possess-some-property.html</guid>
-    <link>https://bollu.github.io/largest-index-which-does-not-possess-some-property.html</link>
+    <title> Binary search to find rightmost index which does not possess some property  </title>
+    <guid>https://bollu.github.io/binary-search-to-find-rightmost-index-which-does-not-possess-some-property.html</guid>
+    <link>https://bollu.github.io/binary-search-to-find-rightmost-index-which-does-not-possess-some-property.html</link>
   </item>
   <item>
-    <title> Correctness of  lower_bound search </title>
-    <guid>https://bollu.github.io/correctness-of-lowerbound-search.html</guid>
-    <link>https://bollu.github.io/correctness-of-lowerbound-search.html</link>
+    <title> Correctness of  lower_bound search with half-open intervals </title>
+    <guid>https://bollu.github.io/correctness-of-lowerbound-search-with-half-open-intervals.html</guid>
+    <link>https://bollu.github.io/correctness-of-lowerbound-search-with-half-open-intervals.html</link>
   </item>
   <item>
     <title> Greedy Coin change: proof by probing </title>

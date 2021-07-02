@@ -16,38 +16,6 @@ A Universe of Sorts
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
 
-# Cohomology of elementary school arithmetic (WIP)
-
-
-- We consider $\equiv Z_{100}$ (ie, integers modulo 100) as it contains most of the complexities of addition.
-- Define $T \equiv \{ 10k: k \in Z_{100} \}$ is the subgroup of tens multiples in $Z_{100}$.
-- We call the quotient group $Z_{100}/T \equiv O$ for ones.
-- For any element $x \in Z_{100}$, we write $[a][b]$ where $a \in T$ and $b \in O$. We can show that this assignment is bijective;
-  each $x$ corresponds to a unique $[a][b]$ and vice versa.
-- Given $x = [t_1][o_1]$ $y = [t_2][o_2]$, we want to write $x + y = [t][o]$. We wish to find expressions for $a, b$ as functions
-  of $a_i, b_i$, in a way that makes the group structure transparent.
-- $o \equiv o_1 +_O o_2$; Ones digit is given by summing in the one's group.
-- $t \equiv t_1 +_T t_2 +_T z(o_1, o_2)$ where $z: O \times O \rightarrow T$ encodes how the ones digits affect the tens digit.
-- $z(x, y) \equiv [x + y \geq 10]$ (where $[.]$ denotes the [Iverson bracket](https://en.wikipedia.org/wiki/Iverson_bracket)), so $z(x, y) = 1$ if $x + y \geq 10$
-  and $z(x, y) = 0$ otherwise.
-- Let's now exploit the associativity of addition in $Z_{100}$:
-
-$$
-\begin{aligned}
-&([t_1][o_1] + [t_2][o_2]) + [t_3][o_3] = [t_1][o_1] + ([t_2][o_2]) + [t_3][o_3]) \\
-& [t_1 + t_2 + z(o_1, o_2)][o_1 + o_2] + [t_3, o_3] = [t_1][o_1] + [t_2 + t_3 + z(o_2, o_3)][o_2 + o_3] \\
-& [(t_1 + t_2 + z(o_1, o_2)) + t_3 + z(o_1 + o_2, o_3)][o_1 + o_2 + o_3]= [t_1 + (t_2 + t_3 + z(o_2, o_3)) + z(o_1, o_2 + o_3)][o_1 + o_2 + o_3] \\
-&t_1 + t_2 + z(o_1, o_2) + t_3 + z(o_1 + o_2, o_3) = t_1 + t_2 + t_3 + z(o_2, o_3) + z(o_1, o_2 + o_3) \\
-&z(o_1, o_2) + z(o_1 + o_2, o_3) = z(o_2, o_3) + z(o_1, o_2 + o_3) \\
-&z(o_2, o_3) - z(o_1 + o_2, o_3) + z(o_1, o_2 + o_3) - z(o_1, o_2) = 0 \\
-\end{aligned}
-$$
-
-- The final condition is called as _cocycle condition_.
-- $z$ also satisfies $z(0, b) = z(b, 0) = 0$. This is known as the _normalization conditition_.
-
-
-- [Yaar link from Sci-Hub](https://sci-hub.do/10.1080/00029890.2002.11919915)
 
 # Center of a tree (WIP)
 
@@ -77,6 +45,301 @@ take any diameter. Center will lie on this diameter by previous theorem.
 - On removal of centroid, components have at most $n/2$ size. [How to prove?]  
 - [Algorithms live: trees and diameters](https://www.youtube.com/watch?v=2PFl93WM_ao)
 - https://www.youtube.com/watch?v=doOPlmXxPPQ
+
+
+# Distance between lines in nD
+
+- https://www.codechef.com/viewsolution/28723599
+
+# Correctness of `lower_bound` search with closed intervals
+
+```cpp
+// find rightmost ix such that ps[ix].b < t
+// TODO: how to write this with closed llervals?!
+ll max_earlier(ll t, vector<P> &ps) {
+    assert(ps.size() > 0);
+    // cerr << "t: " << t << "\n";
+    // [l, r]
+    ll l = 0, r = ps.size()-1;
+    // closed interval.
+    while (1) {
+        if (l == r) { break; }
+        // l < r
+        // r >= l + 1
+
+        // round up, so that we split the `mid` at a higher point,
+        // so that in the `else` case, we make progress.
+        ll mid = (l+r+1)/2;
+        // mid = (l + r + 1)/2 
+        // mid >= (l + (l+1)+2)/2 >= l + 1
+        // l < l+1 <= mid <= r
+        // l < mid <= r
+        if (ps[mid].b >= t) {
+            // [l, r] -> [l, mid-1] | mid-1 < mid <= r
+            r = mid-1;
+        } else {
+            // [l, r] -> [mid, r] | l < mid
+            l = mid;
+        }
+    }
+    assert(ps[l].b < t);
+    if (l + 1 < ps.size()) { assert(ps[l+1].b >= t); }
+    return l;
+}
+```
+
+
+# Sliding window implementation style
+
+I usually implement sliding window as:
+
+
+```cpp
+// [l, r)
+int l = r = 0;
+while (r < n) {
+ assert(l <= r);
+ if (extend_window) { r++; }
+ else { 
+    l--; //contract window
+ }
+}
+```
+
+However, there are cases where we have complicated invariants on the sliding
+window, such as a maximum length. An example is [codeforces 676c](https://codeforces.com/contest/676/problem/C),
+where we must maintain a sliding window which contains at most `k >= 0` "illegal" elements.
+
+My [flawed implementation](https://codeforces.com/contest/676/submission/121042148) using a `while` loop was:
+
+```cpp
+int best = 0;
+for(int c = 'a'; c <= 'b'; ++c) {
+    // window: [l, r)
+    int l = 0, r = 0;
+    // number of illegal letters changed. <= k
+    int changed = 0; 
+    while(r < n) {
+        assert(changed <= k);
+        assert(l <= r);
+        if (s[r] == c) { r++; } // legal, extend.
+        else {
+            // need to change a letter to extend, s[r] != c.
+            if (changed == k) {
+                // cannot extend, contract from left.
+                if (s[l] != c) { changed--; }
+                l++; 
+            } else {
+                // extend, spending a change.
+                r++;
+                changed++;
+            }
+        }
+        // keep track of best window size.
+        best = max(best, r-l);
+    }
+}
+```
+
+Unfortunately, the above code is flawed. It does not work when the window size is zero. (TODO: explain)
+on the other hand, the implementation where we always stride forward with the `r` value in a `for` loop,
+and only deciding what happens with `l` does not suffer from this ([link to implementation](https://codeforces.com/contest/676/submission/121058022)):
+
+```cpp
+int best = 0;
+for(int c = 'a'; c <= 'b'; ++c) {
+    int l = 0;
+    // number of illegal letters changed. <= k
+    int changed = 0;
+    // [l, r]
+    for(int r = 0; r < n; ++r) {
+        // change to 'a'.
+        if (s[r] != c) { changed++; }
+        // maintain invariants: must have changed <= k,
+        // and at the end of a loop trip, we must have l <= r.
+        while(changed > k && l < r) { 
+            if (s[l] != c) { changed--; }
+            l++;
+        }
+        assert(l <= r);
+        // keep track of best window size.
+        best = max(best, r-l+1);
+    }
+}
+
+```
+
+
+
+
+
+# Kawaii implementation of `x = min(x, y)`
+
+ 
+```cpp
+template <typename T>
+inline void Mn(T &x, T y) { x > y && (x = y); }
+```
+
+Wrapping the thing into a template allows one to write code such as `Mn(x, 10)`
+to mean `x = min(x, 10)`. This a nice pattern!
+
+
+
+
+# CSES: Counting Towers
+
+- [Link to problem](https://cses.fi/problemset/task/2413/) I found the problem interesting, as I found the DP states un-obvious.
+- I eventually performed a DP on the the number of possible towers in y-axis `[0, h)` where we keep track of whether
+  the last layer has a `2x1` tile or two `1x1` tiles.
+- Importantly, this means that the decision of "closing" a section to create a new section is left to the 
+  *next* DP state.
+- This is weirdly reminisecent of some kind of topological phenomena, where we
+  use intervals of the form `[l, l+1)` to cover a space. 
+- It seems to help me to look at this kind of DP as first creating the
+  combinatorial objects, and then switching
+  it over to counting the number of such objects created.
+
+# Smallest positive natural which can't be represented as sum of any subset of a set of naturals
+
+we're given a set of naturals $S \equiv \{ x_i \}$ and we want to find
+$n \equiv \min \{ sum(T): T \subseteq S \}$, the smallest number that can't be written as a sum
+of elements from $S$.
+
+#### By observation
+
+
+- Key observation: If we sort the set $S$ as $s[1] \leq s[2] \leq \dots \leq s[n]$,
+  then we must have $s[1] = 1$. For if not, then $1$ is the smallest nmber which
+  cannot be written as a sum of elements.
+- Next, if we think about the second number, it must be $s[2] = 2$. If not, we return $2$ as the answer.
+- The third number $s[3]$ can be $3$. Interestingly, it can also be $4$, since we can write $3 = 1 + 2$, so we can skip $3$
+  as an input.
+- What about $s[4]$? If we had $[1 \leq 2 \leq 3]$ so far, then see that we can represent all numbers upto $6$.
+  If we have $[1 \leq 2 \leq 4]$ so far, then we can represent all numbers upto $7$. Is it always true that given a "satisfactory"
+  sorted array $A$ (to be defined recursively), we can always build numbers upto $\sum A$? 
+- The answer is yes. Suppose the array $A$ can represent numbers upto $\sum A$. Let's now append $r \equiv sum(A)+1$ into $A$. ($r$ for result).
+  Define `B := append(A, r)`. We claim we can represent numbers $[1 \dots (r+\sum A)]$ using numbers from $B$.
+  By induction hypothesis on `A`. We can represent $[1 \dots \sum A ]$ from $A$. We've added $r = \sum A + 1$ to this array.
+  Since we can build numbers $[1\dots \sum A]$ from $A$, we can add $r$ to this to build the range $[r+1 \dots r + \sum A]$.
+  In total, by not choosing $r$, we build the segment $[1 \dots \sum A ]$ and by choosing $r$ we build the segment $[\sum A + 1 \dots \sum A + r]$
+  giving us the full segment $[1 \dots \sum A + r]$.
+
+
+#### Take 2: code
+
+- Input processing:
+
+```cpp
+void main() {
+  int n;
+  cin >> n;
+  vector<ll> xs(n);
+  for (ll i = 0; i < n; ++i) {
+    cin >> xs[i];
+  }
+```
+
+- Sort to order array
+
+```
+  sort(xs.begin(), xs.end());
+```
+
+- Next define `r` as max sum seen so far.
+
+```cpp
+  ll r = 0; // Σ_i=0^n xs[i]
+```
+
+- We can represent number $[0\dots r]$ What can $xs[i]$ be? If it is greater than $(r+1)$, then we have found a hole. If $xs[i] = r+1$,
+  then we can already represent $[0\dots r]$. We now have $(r+1)$. By using the previous numbers, we can represent $(r+1) + [0 \dots r]$, which is equal
+  to $[r+1 \dots 2r+1]$. More generally, if $xs[i] < r+1$, we can represent $[0 \dots r]; [xs[i]+0, xs[i]+r]$. The condition that this will not leave
+  a gap between $r$ and $xs[i]$ is to say that $xs[i]+0 \leq (r+1)$.
+
+```cpp
+  for (ll i = 0; i < n; ++i) {
+    if (xs[i] <= r+1) {
+      // xs[i] can represent r+1.
+      // We can already represent [0..r]
+      // By adding, we can represent [0..r] + (xs[i]) = [xs[i]..r+xs[i]]
+      // Since xs[i] <= r+1, [xs[i]..r+xs[i]] <= [r+1, 2r+1].
+      // In total, we can represent [0..r] (not using xs[i]) and [<=r+1, <=2r+1]
+      // (by using xs[i]) So we can can be sure we won't miss numbers when going
+      // from [1..r] to [xs[i]<=r+1...] The largest number we can represent is
+      // [xs[i]+r].
+      r += xs[i]; // max number we can represent is previous max plus current
+    } else {
+      // xs[i] > r+1. We have a gap at r+1
+      cout << r + 1 << "\n";
+      return;
+    }
+  }
+  cout << r + 1 << "\n";
+}
+```
+
+
+
+# Example of RVs that are pairwise but not 3-way independent.
+
+Define `X, Y` to be uniformly random `{0, 1}` variables. `Z = X xor Y`. Each of the pairs
+are independent, but `X, Y` determine `Z` so it's not 3-way independent.
+
+
+# Notes on Liam O Connor's thesis: Cogent
+
+- `AutoCoress`: cool tool
+- `sel4`: translate C to HOL using AutoCoress
+- `cake`: verify subset of ML
+- Cogent has no recursion, provide higher order iterators/recursion schemes to do stuff.
+- We do this by using the ! operator. Converts linear, writeable type into read-only type.
+  Function that takes value of type Buffer! is free to read, but not write to Buffer.
+- Constraint based type inference: (1) generate constraints, (2) solve.
+- refinement relation R between values in the value semantics
+    and states in the update semantics, and show that any update semantics evaluation
+    has a corresponding value semantics evaluation that preserves this relation. When each
+    semantics is viewed as a binary relation from initial states to final states (outputs), this
+    requirement can be succinctly expressed as a commutative diagram...
+- "Translation is the art of failure.  Umberto Eco" --- nice.
+-  For the most part, this is because these refinement stages
+    involve shallow embeddings, which do not allow the kind of term inspection
+    needed to directly model a compiler phase and prove it.
+- Strange, refinement relation *goes upwards*? Not downwards?
+- `State = (Set (a, state), bool)` seems weird to me. I would have expected `State = Set (a, state, bool)`.
+  But I guess if some contol flow path leads to UB, you can blow everything out.
+- Translation validation: for each output, produce proof of correctness.
+  Different from proving a compiler correct. More like a proof certificate.
+- The reasoning behind the decision to relate representations instead of Cogent
+  types to C types is quite subtle: Unlike in C, for a Cogent value to be well-typed,
+  all accessible pointers in the value must be valid (i.e. defined in the store μ) and
+  the values those pointers reference must also, in turn, be well-typed. For taken
+  fields of a record, however, no typing obligations are required for those values,
+  as they may include invalid pointers (see the update semantics erasure of the
+  rules in Figure 4.5). In C, however, taken fields [what is a taken field?] must still be well-typed, and
+  values can be well-typed even if they contain invalid pointers. Therefore, it is
+  impossible to determine from a Cogent value alone what C type it corresponds
+  to, making the overloading used for these relations ambiguous
+- Cogent is a total language and does not permit recursion, so we have, in principle,
+  a well-ordering on function calls in any program. Therefore, our tactic proceeds by
+  starting at the leaves of the call graph, proving corres theorems bottom-up until
+  refinement is proven for the entire program. [amazing]
+- With this state definition,
+  it is not well-defined to take a pointer to a stack-allocated variable, nor
+  to reinterpret stack memory as a different type. C code that performs such
+  operations is rejected by the parser.
+- At the moment, such
+  processes are implemented in Cogent with a C shell, which awaits events in a
+  loop and executes a Cogent function whenever an event occurs. These are
+  clearly better speci ed as productive corecursive programs. Extending Cogent
+  to support corecursion will likely be ultimately needed in order to support
+  moving these particular C loops into Cogent. Fortunately, Isabelle also
+  supports corecursive shallow embeddings, providing us with a direct
+  translation target. 
+- Future work: Property based testing,
+  Concurrency, Recursion+Non-termination+Coinduction, Richer type system
+  (refinement types), Data layout /Data description
+
 
 
 
@@ -120,13 +383,13 @@ If we have a range:
 
 ##### Traversals
 
-- `[L, H]`: loop as `for(auto it = lowerbound(l); it < upperbound(h); ++it) {}`.
+- $[L, H]$: loop as `for(auto it = lowerbound(l); it < upperbound(h); ++it) {}`.
   This works since `upperbound(h)` will find first index `> h`, so we include all `=h`.
-- `[L, H)`: loop as `for(auto it = lowerbound(l); it <= lowerbound(h); ++it) {}`.
+- $[L, H)$: loop as `for(auto it = lowerbound(l); it <= lowerbound(h); ++it) {}`.
   This works `lowerbound(h)` first first index `>= h`, so we don't include any `=h`.
-- `(L, H]`: use `for(auto it = upperbound(l); it <= upperbound(h); ++it) {}`.
+- $(L, H]$: use `for(auto it = upperbound(l); it <= upperbound(h); ++it) {}`.
   `upperbound(l)` finds first index `>l`, so we ignore values `=l`.
-- `(L, H)`: use `for(auto it = upperbound(l); it < lowerbound(h); ++it) {}`.
+- $(L, H)$: use `for(auto it = upperbound(l); it < lowerbound(h); ++it) {}`.
 
 
 How to think about which one we want? This about it as `lowerbound` shifts
@@ -137,6 +400,12 @@ iterators towards the left, and `upperbound` shifts iterators to right.
 - For `(L`, we want to shift  beginning rightwards, so `upperbound(L)`.
 - For `H]`,  we want to shift ending rightwards, so `upperbound(H)`.
 - For `H)`,  we want to shift ending leftwards, so `lowerbound(H)`.
+
+##### `equal_range`
+
+- To unify the above description, one can simply use `std::equal_range(fst, last, val)` which
+  returns the half-open interval `[l, r)` where the array has value `val`. This is equivalent to
+  returning a pair of `lower_bound`, `upper_bound`.
 
 # Books that impart mental models
 
@@ -303,29 +572,63 @@ consider the two functions:
   states that it's safe to cache the results of the sub-computation, since all that matters is the final state (inputs).
 
 
-# Largest index which does not possess some property 
+# Binary search to find rightmost index which does not possess some property 
 
 ```cpp
-// precondition: has_some_property(0) = false
-// precondition: has_some_property is monotonic;
+// p for predicate/property
+// precondition: p(0) = false
+// precondition: p(1 << NBITS) = last ix we process.
+// precondition: p is monotonic;
 //   once it switches to true, does not switch back to false.
-int ans = 0;
-for (int k = 1 << NBITS; k != 0; k >>= 1) {
-  if (!has_some_property(ans + k)) {
-    ans += k;
+
+if (p(1 << NBITS) == 0) { return 1 << NBITS; }
+else {
+  assert(p(1<<NBITS) == 1);
+  int ans = 0;
+  for (int i = NBITS-1; i >= 0; i--) {
+    int k = 1 << i;
+    assert(p(ans + 2*k) == 1);
+    if (p(ans + k) == 0) {
+      ans = ans + k;
+    }
   }
 }
-// postcondition: ans is largest index such that has_some_poperty(ans) = 0
+// postcondition: 
+// ans is largest index such that
+// has_some_poperty(ans) = 0
 ```
 
-- Claim 1: `has_some_property(ans) = 0`. By precondition, this is true before the loop.
-  See that it's a loop invariant, as we only update `ans` to `ans+k` if `has_some_property(ans+k) = 0`.
-- Claim 2: `ans` is the largest number after the loop such thas `has_some_property(ans) = 0`.
-- For contradicion of Claim 2, suppose there is a number `c > ans` such that `has_some_property(c) = 0`.
-  Proof: ???. [Seems ugly.]
+- **Claim 1: (Correctness)** `p(ans) = 0`. By precondition, this is true before the loop.
+  See that it's a loop invariant, as we only update `ans` to `ans+k` if `p(ans+k) = 0`.
+  Thus, is is true after the loop.
 
 
-See that this is very similar to LCA, where we find the lowest node that is *not* an ancestor. The ancestor
+- **Claim 2: (Maximality)**: At loop iteration $i$, $p(ans[i] + 2k[i]) = 1$. So we cannot improve our solution
+  by using previous numbers. This implies optimality once the loop ends, as at the end of the loop we have $i = -1$,
+  so $p(ans[-1] + 2k[-1]) = 1$, which is $p(ans+1) = 1$.
+
+- Proof of Claim 2: induction on $i$. 
+  Suppose claim 2 is true till index $i$. So we assert that $p(ans[i] + 2k[i]) = 1$.
+- We must prove the inductio hypothesis holds at index $i-1$.
+- Case analysis based on iteration $i$. Either $p(ans[i] + k[i]) = 0$, or $p(ans[i] + k[i]) = 1$.
+- (a) If $p(ans[i] + k[i]) = 0$, then we have $ans[i-1] = ans[i] + k[i]$. 
+  Suppose for contradiction at $(i-1)$ that $p(ans[i-1] + 2k[i-1]) = 0$. Substituting $ans[i-1]$, we get
+  $p(ans[i] + k[i]) + 2k[i-1]) = 0$. This implies $p(ans[i]+ k[i] + k[i]) = 0$, or $p(ans[i] + 2k[i]) = 0$. This contradicts
+  the loop invariant at index $i$. Proved.
+- (b) If $p(ans[i] + k[i]) = 1$, then $ans[i-1] = ans[i]$. Check the loop invarint at $i-1$:
+  $p(ans[i-1] + 2k[i-1]) = p(ans[i] + k[i]) = 1$. Hence loop invarint at $i-1$ is satisfied.
+- Hence, the loop invariant is satisfied at index $(i-1)$ assuming the loop invariant is satisfied at index $(i)$.
+  By induction, loop invariant holds.
+
+- **Less handwavy proof that Maximality implies optimality**: At loop iteration $i=0$, we have that $p(ans[0] + 2*1) = 1$.
+- (a) If $p(ans[0] + 1) =  0$, we set $ans[-1] \equiv ans[0] + 1$. So $p(ans[-1] + 1) = p(ans[0] + 2) = 1$.
+  This is correct, since we have found an $ans[-1]$ where $p(ans[-1]) = 0$ and $p(ans[-1] + 1) = $.
+- (b) If $p(ans[0] + 1) = 1$, we set $ans[-1] \equiv ans[0]$. This leaves us with an $ans[-1]$ such that $p(ans[-1])$ equals $p(ans[0]) = 0$ (by correctness),
+- and $p(ans[-1] + 1)$ equals $p(ans[0] + 1) = 1$ (by case analysis). Here too we are left with the correct value.
+- See that this literally repeats the inductive argument, specialized to the final loop iteration!
+
+
+This is very similar to LCA, where we find the lowest node that is *not* an ancestor. The ancestor
 of such a node *must be* the ancestor.
 
 ```cpp
@@ -343,12 +646,12 @@ int lca(int u, int v) {
 }
 ```
 
-# Correctness of `lower_bound` search
+# Correctness of `lower_bound` search with half-open intervals
 
 
 ```cpp
 // precondition: `xs` is sorted.
-// find i such that xs[i] <= y and dp[i+1] > y.
+// find rightmost i such that xs[i] <= y and dp[i+1] > y.
 int tallest(vector<long> &xs, int y) {
     // [l, r)
     int l = 0, r = dp.size(); 
@@ -12094,8 +12397,16 @@ int binsearch(int l, int r, int val, int *xs) {
   will pull values "downward".
 - The length of the interval `[l, mid]` is smaller
   than the interval `[l, r]` as `mid < r`.
-- The length of the interval `[mid+1, r]` is smaller than the interval `[l, r]` as `l < mid+1`.
+- The length of the interval `[mid+1, r]` is smaller than the interval `[l, r]` as `l <= mid` implies `l < mid+1`.
 - We are monotonically decreasing on the quantity "length of interval", and terminate the recursion when the length is zero.
+
+
+##### Why not $[l, mid-1]$ and $[mid, r]$?
+
+- Well, for one, imagine we have `[0, 1]`. Then `mid = 0`, and `mid-1` will be `-1`, which is illegal.
+- More generally, since we can have `mid=l`, we need to make sure the interval `[mid, r]` increases in size,
+  so we need to increment `mid` to `mid+1`.
+
 
 
 #### Closed-open intervals
@@ -12118,6 +12429,8 @@ int binsearch(int l, int r, int val, int *xs) {
 - Furthermore, if `r = l + 1` we end the recursion.
 - Thus, we are guaranteed that we will have that `r >= l + 2`.
 - Hence, `mid = (l+r)/2` will be larger than `l` as `r >= l + 1`. We see this from the algebra `m = (l + r) >= (l + l + 2)/2 >= l + 1`.
+- So we have `l < l+1 <= mid < r`. This establishes a "gap" `l < mid < r`, which is possible since all the smallest non-trivial interval `[l, r)` we 
+  consider will be `[l, l+1, l+2)` (recall that `r=l+1` is the base case).
 - Thus, we have that: `l` is to the left of `mid=l+1` is to the left of `r>=l+2`.
 - So, the intervals `[l, mid)` and `[mid, r)` will be smaller, as we cleanly "separate" out `l`, `mid`, and `r`.
 
