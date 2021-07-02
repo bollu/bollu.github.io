@@ -114,14 +114,16 @@ p(ans[-1] + 2k[-1]) = 1
   <span class="token comment">// = 1 [from assert]</span>
   <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> nbits<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">int</span> k <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> i<span class="token punctuation">;</span>
-    <span class="token comment">// From induction hyp:</span>
-    <span class="token comment">// p(ans[i] + k[i+1]) == true</span>
+    <span class="token comment">// From previous loop iteratio (i+1):</span>
+    <span class="token comment">// ---------------------------------</span>
+    <span class="token comment">// p(ans[(i+1)-1] + k[i+1]) == true</span>
+    <span class="token comment">// => p(ans[i] + k[i+1]) == true</span>
     <span class="token comment">// => p(ans[i] + 2k[i]) == true</span>
     <span class="token function">assert</span><span class="token punctuation">(</span><span class="token function">p</span><span class="token punctuation">(</span>ans <span class="token operator">+</span> <span class="token number">2</span><span class="token operator">*</span>k<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">p</span><span class="token punctuation">(</span>ans <span class="token operator">+</span> k<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token comment">// ans[i-1] = ans[i] + k[i]</span>
       ans <span class="token operator">+=</span> ans <span class="token operator">+</span> k<span class="token punctuation">;</span>
+      <span class="token comment">// ASSIGNMENT: ans[i-1] = ans[i] + k[i]</span>
       <span class="token comment">// p(ans[i-1] + k[i])</span>
       <span class="token comment">// = p(ans[i] + k[i] + k[i])</span>
       <span class="token comment">// = p(ans[i] + 2k[i])</span>
@@ -129,6 +131,7 @@ p(ans[-1] + 2k[-1]) = 1
       <span class="token comment">// = 1 (from induction hyp)</span>
     <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
        ans <span class="token operator">=</span> ans<span class="token punctuation">;</span> <span class="token comment">// no-op</span>
+       <span class="token comment">// ASSIGNMENT: ans[i-1] = ans[i].</span>
        <span class="token comment">// p(ans[i-1] + k[i])</span>
        <span class="token comment">// = p(ans[i] + k[i])</span>
        <span class="token comment">// = 1 (from else branch)</span>

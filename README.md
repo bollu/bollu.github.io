@@ -715,14 +715,16 @@ else {
   // = 1 [from assert]
   for (int i = nbits-1; i >= 0; i--) {
     int k = 1 << i;
-    // From induction hyp:
-    // p(ans[i] + k[i+1]) == true
+    // From previous loop iteratio (i+1):
+    // ---------------------------------
+    // p(ans[(i+1)-1] + k[i+1]) == true
+    // => p(ans[i] + k[i+1]) == true
     // => p(ans[i] + 2k[i]) == true
     assert(p(ans + 2*k) == true);
 
     if (p(ans + k) == 0) {
-      // ans[i-1] = ans[i] + k[i]
       ans += ans + k;
+      // ASSIGNMENT: ans[i-1] = ans[i] + k[i]
       // p(ans[i-1] + k[i])
       // = p(ans[i] + k[i] + k[i])
       // = p(ans[i] + 2k[i])
@@ -730,6 +732,7 @@ else {
       // = 1 (from induction hyp)
     } else {
        ans = ans; // no-op
+       // ASSIGNMENT: ans[i-1] = ans[i].
        // p(ans[i-1] + k[i])
        // = p(ans[i] + k[i])
        // = 1 (from else branch)
