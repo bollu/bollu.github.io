@@ -16,6 +16,14 @@ A Universe of Sorts
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
 
+# Formula for squarefree numbers
+
+```
+a(n) = n + floor(1/2 + sqrt(n)).
+```
+
+
+
 
 # Center of a tree (WIP)
 
@@ -46,10 +54,67 @@ take any diameter. Center will lie on this diameter by previous theorem.
 - [Algorithms live: trees and diameters](https://www.youtube.com/watch?v=2PFl93WM_ao)
 - https://www.youtube.com/watch?v=doOPlmXxPPQ
 
+# Rota's twelvefold path
+
+- Choices: upto $S[n]$ on domain,upto $S[n]$ on codomain, injective, surjective, neither, bijective.
+
+# Image unshredding as hamiltonian path
+
+This was a cool use of [hamiltonian path](https://github.com/robinhouston/image-unshredding) that I saw on hacker news
+recently. 
+
+- The problem is this: given an image where the columns are created by shuffling columns of an original image, we must recreate
+  the original image.
+- The reduction: treat each column as a vertex, connect columns that are close to each other in similarity.
+- Hamiltonian path will visit each vertex exactly once (ie, pick each column exactly once).
+
+I think this example is striking enough that I'll never forget that in a hamiltonian path, we can visit 
+vertices exactly one, (in contrast to an euler tour, we must visit each edge exactly once).
+
 
 # Distance between lines in nD
 
 - https://www.codechef.com/viewsolution/28723599
+
+#### Subproblem: point-line distance in nD
+
+- Intuitlvely, given a point $o$ and a line $L \equiv p + \alpha x$ (greek letters will be reals, all else vectors),
+  we must have that the line that witnesses the shortest distance from $o$ to $L$ must be perpendicular to $L$.
+- For if not, we would have some "slack" that we could spend to shorten the distance. Alternatively, using
+  Lagrange multipliers intuition, the gradient must be perpendicular to the level surface of the constraint.
+  In this case, we are tryng to find a point $o'$ that minimizes distance $oo'$ such that $o' \in L$. The ladder
+  is a lagrange constraint, and hence defines a level surface to which the optimal solution must be perpendicular to.
+- Some calculus to prove this Let $l \equiv p + \alpha x$ be a point on the line $L$. We extrmize the length $ol$
+  as a parameter of $\alpha$:
+
+$$
+\begin{aligned}
+&\partial_\alpha (ol \cdot ol) = 0 \\
+&\partial_\alpha ((o - p - \alpha x) \cdot (o - p - \alpha x) = 0 \\
+&\text{only terms with $\alpha$ survive $\partial_\alpha$: } \\
+&\partial_\alpha - o \cdot \alpha x + p \cdot \alpha x  - \alpha x \cdot o - \alpha x \cdot (- p) - \alpha x \cdot (- \alpha x)  = 0\\
+&\partial_\alpha - 2 \alpha o \cdot x + 2 p \cdot \alpha x  + \alpha^2 x \cdot x  = 0\\
+&\partial_\alpha - 2 \alpha o \cdot x + 2\alpha p \cdot x + \alpha^2 x \cdot x  = 0 \\
+- 2 o \cdot x + 2 p \cdot x + 2 \alpha x \cdot x  = 0 \\
+2 (- o  + p + \alpha x)  \cdot x  = 0 \\
+2 (- o  + l)  \cdot x  = 0 \\
+2 (\vec{lo})  \cdot x  = 0 \\
+(\vec{lo}) \cdot x  = 0 \\
+\vec{lo}) \bot x  = 0
+\end{aligned}
+$$
+
+- This tells us that the line $ol$ is perpendicular to the direction $x$, which is the direction of the line $L$. Hence, the 
+  line $(ol)$ from the point $o$ to the line $L$ with minimum distance is orthogonal to the line $L$ itself.
+
+#### Line-Line distance
+
+- We can take two parametric points on two lines $L \equiv p + \alpha x$, and $M \equiv q + \beta y$, and build the line $lm$ which witnesses
+  the shortest distance.
+- From the above derivation, we see that the line $lm$ must be perpendicular to both $L$ and $M$, since we can view line-line-distance as two
+  simultaneous point-line-distance problems: distance from point $l \in L$ to line $M$, and distance from point $m \in M$ to line $L$.
+- This gives us the equations $lm \cdot x = 0$, and $lm \cdot y = 0$. We have two variables $\alpha, \beta$ and two equations, so we solve for $\alpha, beta$.
+- This allows us to find the line $lm$ whose length is the shortest distance.
 
 # Correctness of `lower_bound` search with closed intervals
 

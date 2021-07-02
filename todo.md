@@ -1,3 +1,5 @@
+- [Fundamentals of stellar astrophysics](http://ads.harvard.edu/books/1989fsa..book/)
+- [Schwarz Chrisoffel mapping: conformally map the upper half plane to a polygon](https://en.wikipedia.org/wiki/Schwarz%E2%80%93Christoffel_mapping)
 - [Interesting classification of sliding window styles into fast/slow, fast/catchup, fast/lag, front/back](https://medium.com/outco/how-to-solve-sliding-window-problems-28d67601a66)
 - TODO: learn some algebraic number theory, you know none of it!
 - [fxtbook: Matters Computational --- contains a HUGE list of useful combinatorial and finite field algorithms](https://www.jjj.de/fxt/#fxtbook)
