@@ -1222,4 +1222,281 @@ of each other.
 \item thus, $\gamma$ and $f$ are inverses of each other, and we have the desired isomorphism.
 \end{itemize}
 
+\section{The 2-category of categories}
+
+\subsection{Musing}
+\subsubsection{Vertical Composition}
+\includegraphics[width=\textwidth]{./ch1/vertical-composition-natural-transformation.png}
+
+The idea is to rewrite the arrows in the down-then-right side of the square (in blue) given by
+$H_\alpha \circ \beta_x \circ \alpha_x$ into the right-then-down side of the square (in pink)
+given by $\beta_y \circ \alpha_y \circ F_a$. To perorm the rewrite, we apply the naturality
+of $\alpha$ and $\beta$.
+
+\subsection{Horizontal Composition}
+
+% https://q.uiver.app/?q=WzAsNixbMCwwLCJDIl0sWzIsMCwiRCJdLFs0LDAsIkUiXSxbNiwwLCJDIl0sWzgsMCwiRSJdLFs1LDAsIlxcbWFwc3RvIl0sWzAsMSwiRyIsMCx7ImN1cnZlIjo1fV0sWzAsMSwiRiIsMix7ImN1cnZlIjotNX1dLFsxLDIsIlEiLDAseyJjdXJ2ZSI6NX1dLFsxLDIsIlAiLDIseyJjdXJ2ZSI6LTV9XSxbMyw0LCJQIFxcY2lyYyBGIiwyLHsiY3VydmUiOi01fV0sWzMsNCwiUSBcXGNpcmMgRyIsMCx7ImN1cnZlIjo1fV0sWzksOCwiXFxiZXRhIiwyLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfX1dLFs3LDYsIlxcYWxwaGEiLDIseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV0sWzEwLDExLCJcXGJldGEqXFxhbHBoYSIsMix7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH19XV0=
+\[\begin{tikzcd}
+	C && D && E & \mapsto & C && E
+	\arrow[""{name=0, anchor=center, inner sep=0}, "G", curve={height=30pt}, from=1-1, to=1-3]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "F"', curve={height=-30pt}, from=1-1, to=1-3]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "Q", curve={height=30pt}, from=1-3, to=1-5]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "P"', curve={height=-30pt}, from=1-3, to=1-5]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "{P \circ F}"', curve={height=-30pt}, from=1-7, to=1-9]
+	\arrow[""{name=5, anchor=center, inner sep=0}, "{Q \circ G}", curve={height=30pt}, from=1-7, to=1-9]
+	\arrow["\beta"', shorten <=8pt, shorten >=8pt, Rightarrow, from=3, to=2]
+	\arrow["\alpha"', shorten <=8pt, shorten >=8pt, Rightarrow, from=1, to=0]
+	\arrow["{\beta*\alpha}"', shorten <=8pt, shorten >=8pt, Rightarrow, from=4, to=5]
+      \end{tikzcd}\]
+
+We are trying to define the horizontal composition, given by $\beta * \alpha: PF \nt GQ$.
+First note that we have $2 \times 2 \times 2$ parameters: $\{P, Q\}$, $\{F, G\}$, and $\{x, y\}$. This is best arranged in a cube:
+
+% https://q.uiver.app/?q=WzAsMTAsWzAsMiwiXFxidWxsZXQiXSxbMSwyXSxbMiwwLCJcXGJ1bGxldCJdLFsyLDIsIlxcYnVsbGV0Il0sWzAsNCwiXFxidWxsZXQiXSxbMSwzLCJcXGJ1bGxldCJdLFsxLDEsIlxcYnVsbGV0Il0sWzMsMSwiXFxidWxsZXQiXSxbMiw0LCJcXGJ1bGxldCJdLFszLDMsIlxcYnVsbGV0Il0sWzAsM10sWzAsNF0sWzQsNV0sWzAsNl0sWzYsNV0sWzYsN10sWzMsN10sWzQsOF0sWzgsOV0sWzUsOV0sWzcsOV0sWzMsOF1d
+\[\begin{tikzcd}
+	&& \bullet \\
+	& \bullet && \bullet \\
+	\bullet & {} & \bullet \\
+	& \bullet && \bullet \\
+	\bullet && \bullet
+	\arrow[from=3-1, to=3-3]
+	\arrow[from=3-1, to=5-1]
+	\arrow[from=5-1, to=4-2]
+	\arrow[from=3-1, to=2-2]
+	\arrow[from=2-2, to=4-2]
+	\arrow[from=2-2, to=2-4]
+	\arrow[from=3-3, to=2-4]
+	\arrow[from=5-1, to=5-3]
+	\arrow[from=5-3, to=4-4]
+	\arrow[from=4-2, to=4-4]
+	\arrow[from=2-4, to=4-4]
+	\arrow[from=3-3, to=5-3]
+      \end{tikzcd}\]
+
+First fill up $\{P, Q\}$:
+
+    % https://q.uiver.app/?q=WzAsMTAsWzAsMiwiUCJdLFsxLDJdLFsyLDAsIlxcYnVsbGV0Il0sWzIsMiwiUCJdLFswLDQsIlAiXSxbMSwzLCJRIl0sWzEsMSwiUSJdLFszLDEsIlEiXSxbMiw0LCJQIl0sWzMsMywiUSJdLFswLDNdLFswLDRdLFs0LDVdLFswLDZdLFs2LDVdLFs2LDddLFszLDddLFs0LDhdLFs4LDldLFs1LDldLFs3LDldLFszLDhdXQ==
+\[\begin{tikzcd}
+	&& \bullet \\
+	& Q && Q \\
+	P & {} & P \\
+	& Q && Q \\
+	P && P
+	\arrow[from=3-1, to=3-3]
+	\arrow[from=3-1, to=5-1]
+	\arrow[from=5-1, to=4-2]
+	\arrow[from=3-1, to=2-2]
+	\arrow[from=2-2, to=4-2]
+	\arrow[from=2-2, to=2-4]
+	\arrow[from=3-3, to=2-4]
+	\arrow[from=5-1, to=5-3]
+	\arrow[from=5-3, to=4-4]
+	\arrow[from=4-2, to=4-4]
+	\arrow[from=2-4, to=4-4]
+	\arrow[from=3-3, to=5-3]
+\end{tikzcd}\]
+
+
+Next fill up $\{F, G\}$:
+% https://q.uiver.app/?q=WzAsMTAsWzAsMiwiUEYiXSxbMSwyXSxbMiwwLCJcXGJ1bGxldCJdLFsyLDIsIlBHIl0sWzAsNCwiUEYiXSxbMSwzLCJRRiJdLFsxLDEsIlFGIl0sWzMsMSwiUUciXSxbMiw0LCJQRyJdLFszLDMsIlFHIl0sWzAsM10sWzAsNF0sWzQsNV0sWzAsNl0sWzYsNV0sWzYsN10sWzMsN10sWzQsOF0sWzgsOV0sWzUsOV0sWzcsOV0sWzMsOF1d
+\[\begin{tikzcd}
+	&& \bullet \\
+	& QF && QG \\
+	PF & {} & PG \\
+	& QF && QG \\
+	PF && PG
+	\arrow[from=3-1, to=3-3]
+	\arrow[from=3-1, to=5-1]
+	\arrow[from=5-1, to=4-2]
+	\arrow[from=3-1, to=2-2]
+	\arrow[from=2-2, to=4-2]
+	\arrow[from=2-2, to=2-4]
+	\arrow[from=3-3, to=2-4]
+	\arrow[from=5-1, to=5-3]
+	\arrow[from=5-3, to=4-4]
+	\arrow[from=4-2, to=4-4]
+	\arrow[from=2-4, to=4-4]
+	\arrow[from=3-3, to=5-3]
+      \end{tikzcd}\]
+
+Finally, fill up $\{x, y\}$:
+% \includegraphics[width=\textwidth]{./ch1/horizontal-composition.png}
+
+% https://q.uiver.app/?q=WzAsMTAsWzAsMiwiUEZ4Il0sWzEsMl0sWzIsMCwiXFxidWxsZXQiXSxbMiwyLCJQR3giXSxbMCw0LCJQRnkiXSxbMSwzLCJRRnkiXSxbMSwxLCJRRngiXSxbMywxLCJRR3giXSxbMiw0LCJQR3kiXSxbMywzLCJRR3kiXSxbMCwzXSxbMCw0XSxbNCw1XSxbMCw2XSxbNiw1XSxbNiw3XSxbMyw3XSxbNCw4XSxbOCw5XSxbNSw5XSxbNyw5XSxbMyw4XV0=
+\[\begin{tikzcd}
+	&& \bullet \\
+	& QFx && QGx \\
+	PFx & {} & PGx \\
+	& QFy && QGy \\
+	PFy && PGy
+	\arrow[from=3-1, to=3-3]
+	\arrow[from=3-1, to=5-1]
+	\arrow[from=5-1, to=4-2]
+	\arrow[from=3-1, to=2-2]
+	\arrow[from=2-2, to=4-2]
+	\arrow[from=2-2, to=2-4]
+	\arrow[from=3-3, to=2-4]
+	\arrow[from=5-1, to=5-3]
+	\arrow[from=5-3, to=4-4]
+	\arrow[from=4-2, to=4-4]
+	\arrow[from=2-4, to=4-4]
+	\arrow[from=3-3, to=5-3]
+      \end{tikzcd}\]
+
+    First, let's define $(\beta * \alpha)(\bullet) : PF \bullet \rightarrow QG \bullet$ as the
+    composition of the arrows:
+
+$$
+PF \bullet \xrightarrow{P \alpha \bullet} PG \bullet \xrightarrow{\beta (G \bullet)} QG \bullet
+$$
+
+That is, $(\beta * \alpha)(\bullet) : PF \bullet \rightarrow QG \bullet \equiv \equiv \beta(G\bullet) \circ P(\alpha \bullet)$. 
+
+    
+\subsection{Exercises}
+
+\start{Question 1.7.i} If $C$ is small, $D$ locally small, then $D^C$ is locally small
+\start{Answer}
+Recall that $D^C$ has as objects as fuctors $F, G: C \rightarrow D$, and as arrows has natural transformations $\eta: F \nt G \in Hom(F, G)$.
+Recall that a natural transformation assigns to each object $c \in C$ an arrow $\eta_c: Fc \rightarrow Gc \in Hom_D(Fc, Gc)$. So if we consider
+all natural transformations, the data is given by a choice function, which for every  $c \in C$ assigns an element in $Hom_D(Fc, Gc)$.
+Since $C$ is small, the collection $c \in C$ is a set. Since $D$ is locally small, the set $Hom_D(Fc, Gc)$ is a set. Thus, the data
+of all natural transformations is expressed by:
+
+$$ Hom(F, G) \equiv  \prod_{c \in C} Hom_D(Fc, Gc) $$
+
+This is not exactly a natural transformation, since this does not enfore the coherence conditions. So this is a super-collection
+of the scollection of all natural transformations. We see that is a well defined set-theoretic expression, since $C$ is small, it is legal to range over it,
+and since $D$ is locally small, it is legal to invoke $Hom_D(Fc, Gc)$ as a set. Thus, the full $Hom(F, G)$ is a set.
+
+
+\start{Question 1.7.ii} Given $C \xrightarrow{F} D \xrightarrow{H \nt K} E \xrightarrow{L} F$, where $\eta: H \nt E$, define
+a natural transformation $L \beta F : LHF \rightarrow LKF$ given by $(L \beta F)(\bullet) \equiv L(\beta(F(\bullet))$.
+Prove that $L \beta F$ is indeed
+natural (ie, that the appropriate diagram commutes)
+
+\start{Answer} We start by considering an arrow $x \xrightarrow{a} y \in C$. By applying $F$, we get $Fx \xrightarrow{Fa} Fy \in D$.
+Next, to get access to $\beta: H \nt K$, we start by using $H$ to get $HFx \xrightarrow{HFa} HFy \in E$. We use the naturality
+of $\beta$ to transform to draw the commutative square with $HF$ and $KF$, linked by $\eta$. This diagram lives in $E$
+and commutes by the naturality of $\beta$. Finally, we apply $L$ to send a commutative diagram to another commutative diagram
+in $F$, with the natural transformation between $LHF$ and $LKF$. Hence, naturality is proven.
+
+% https://q.uiver.app/?q=WzAsMTksWzAsMCwieCJdLFsxLDAsInkiXSxbMCwxLCJGeCJdLFsxLDEsIkZ5Il0sWzAsMiwiSEZ4Il0sWzEsMiwiSEZ5Il0sWzAsMywiSChGeCkiXSxbMSwzLCJIKEZ5KSJdLFswLDQsIksoRngpIl0sWzEsNCwiSyhGeSkiXSxbMCw2LCJMKEgoRngpKSJdLFsxLDYsIkwoSyhGeCkpIl0sWzAsNywiTChLKEZ4KSkiXSxbMSw3LCJMKEsoRnkpKSJdLFszLDAsIlxcdGV4dHthcmJpdHJhcnkgYXJyb3cgaW4gfSBDIl0sWzMsMSwiXFx0ZXh0e2FwcGx5IH0gRiBcXHRleHR7IHRvIGxhbmQgaW4gfSBEIl0sWzMsMiwiXFx0ZXh0e2FwcGx5IH0gSCBcXHRleHR7IHRvIGxhbmQgaW4gfSBFIl0sWzMsMywiXFx0ZXh0e05hdHVyYWxpdHkgb2YgfSBcXGJldGEiXSxbMyw2LCJcXHRleHR7YXBwbHkgfSBMIFxcdGV4dHsgdG8gbGFuZCBpbiB9IEYiXSxbMCwxLCJhIl0sWzIsMywiRmEiXSxbNCw1LCJIRmEiXSxbNiw3LCJIKEZhKSJdLFs2LDgsIlxcYmV0YShGeCkiLDJdLFs3LDksIlxcYmV0YShGeSkiXSxbOCw5LCJLKEZhKSIsMl0sWzEwLDExLCJMKEgoRmEpKSJdLFsxMCwxMiwiTChcXGJldGEoRngpKSIsMl0sWzEyLDEzXSxbMTEsMTMsIkwoXFxiZXRhKEZ5KSkiXV0=
+\[\begin{tikzcd}
+	x & y && {\text{arbitrary arrow in } C} \\
+	Fx & Fy && {\text{apply } F \text{ to land in } D} \\
+	HFx & HFy && {\text{apply } H \text{ to land in } E} \\
+	{H(Fx)} & {H(Fy)} && {\text{Naturality of } \beta} \\
+	{K(Fx)} & {K(Fy)} \\
+	\\
+	{L(H(Fx))} & {L(K(Fx))} && {\text{apply } L \text{ to land in } F} \\
+	{L(K(Fx))} & {L(K(Fy))}
+	\arrow["a", from=1-1, to=1-2]
+	\arrow["Fa", from=2-1, to=2-2]
+	\arrow["HFa", from=3-1, to=3-2]
+	\arrow["{H(Fa)}", from=4-1, to=4-2]
+	\arrow["{\beta(Fx)}"', from=4-1, to=5-1]
+	\arrow["{\beta(Fy)}", from=4-2, to=5-2]
+	\arrow["{K(Fa)}"', from=5-1, to=5-2]
+	\arrow["{L(H(Fa))}", from=7-1, to=7-2]
+	\arrow["{L(\beta(Fx))}"', from=7-1, to=8-1]
+	\arrow[from=8-1, to=8-2]
+	\arrow["{L(\beta(Fy))}", from=7-2, to=8-2]
+\end{tikzcd}\]
+
+\start{Question 1.7.iii} Redefine horizontal composition using vertical composition and whiskering.
+Given $C \xrightarrow{F \nt G} D \xrightarrow {P \nt Q} E$, where the natural transformations are $\alpha: F \nt G$
+and $\beta: P \nt Q$, we wish to define $\beta * \alpha : PF \nt QG$. 
+
+\start{Answer}  TODO. I have no idea what the question wants us to do.
+
+
+\start{Question 1.7.iv} Prove 1.7.7 (Middle four interchange), that states that $(\beta \circ \alpha) * (\delta \circ \gamma)$ 
+equals $(\gamma * \alpha) \circ (\delta * \beta)$.
+\start{Answer} Recall that $(\omega : C \xrightarrow{F \nt G} D * \phi : D \xrightarrow{P \nt Q} E) : D \xrightarrow{PF \nt QG} E$ is defined as 
+$(\omega * \phi) : PF \bullet \rightarrow QG \bullet$  given by:
+
+% https://q.uiver.app/?q=WzAsNyxbMCwwLCJQRlxcYnVsbGV0Il0sWzIsMCwiUEdcXGJ1bGxldCJdLFsyLDIsIlFHXFxidWxsZXQiXSxbMCwyLCJRRlxcYnVsbGV0Il0sWzEsNCwiXFxwaGk6IEZcXGJ1bGxldCBcXHJpZ2h0YXJyb3cgR1xcYnVsbGV0Il0sWzEsMywiXFxvbWVnYTogUFxcYnVsbGV0IFxccmlnaHRhcnJvdyBRIFxcYnVsbGV0Il0sWzEsMSwiXFxjaXJjbGVhcnJvd3JpZ2h0IDogIFxcdGV4dHtuYXR1cmFsaXR5IG9mIH0gXFxvbWVnYSJdLFswLDEsIlAoXFxwaGkgIFxcYnVsbGV0KSJdLFsxLDIsIlxcb21lZ2EoR1xcYnVsbGV0KSJdLFswLDMsIlxcb21lZ2EoRlxcYnVsbGV0KSIsMl0sWzMsMiwiUShcXHBoaSBcXGJ1bGxldCkiLDJdLFswLDIsIihcXG9tZWdhICogXFxwaGkpIChcXGJ1bGxldCkiLDEseyJvZmZzZXQiOi0xLCJjdXJ2ZSI6NCwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoic3F1aWdnbHkifX19XV0=
+\[\begin{tikzcd}
+	PF\bullet && PG\bullet \\
+	& {\circlearrowright :  \text{naturality of } \omega} \\
+	QF\bullet && QG\bullet \\
+	& {\omega: P\bullet \rightarrow Q \bullet} \\
+	& {\phi: F\bullet \rightarrow G\bullet}
+	\arrow["{P(\phi  \bullet)}", from=1-1, to=1-3]
+	\arrow["{\omega(G\bullet)}", from=1-3, to=3-3]
+	\arrow["{\omega(F\bullet)}"', from=1-1, to=3-1]
+	\arrow["{Q(\phi \bullet)}"', from=3-1, to=3-3]
+	\arrow["{(\omega * \phi) (\bullet)}"{description}, shift left=1, curve={height=24pt}, squiggly, from=1-1, to=3-3]
+\end{tikzcd}\]
+
+Consider the large commutative diagram:
+
+% https://q.uiver.app/?q=WzAsMTMsWzAsMCwiUEZcXGJ1bGxldCJdLFsyLDAsIlBHIFxcYnVsbGV0Il0sWzQsMCwiUEggXFxidWxsZXQiXSxbMCwyLCJRRiBcXGJ1bGxldCJdLFsyLDIsIlFHIFxcYnVsbGV0Il0sWzQsMiwiUUggXFxidWxsZXQiXSxbMCw0LCJSRiBcXGJ1bGxldCJdLFsyLDQsIlJHIFxcYnVsbGV0Il0sWzQsNCwiUkggXFxidWxsZXQiXSxbMSwxLCJcXHRleHR7bmF0dXJhbGl0eSBvZiB9IFxcZ2FtbWEiXSxbMywxLCJcXHRleHR7bmF0dXJhbGl0eSBvZiB9IFxcZ2FtbWEiXSxbMSwzLCJcXHRleHR7bmF0dXJhbGl0eSBvZiB9IFxcZGVsdGEiXSxbMywzLCJcXHRleHR7bmF0dXJhbGl0eSBvZiB9IFxcZGVsdGEiXSxbMCwxLCJQKFxcYWxwaGEgXFxidWxsZXQpIl0sWzEsMiwiUChcXGJldGEgXFxidWxsZXQpIl0sWzMsNCwiUShcXGFscGhhIFxcYnVsbGV0KSJdLFs2LDcsIlIoXFxhbHBoYSBcXGJ1bGxldCkiXSxbNCw1LCJRKFxcYmV0YSBcXGJ1bGxldCkiXSxbNyw4LCJSKFxcYmV0YSBcXGJ1bGxldCkiXSxbMCwzLCJcXGdhbW1hKEZcXGJ1bGxldCkiLDFdLFsxLDQsIlxcZ2FtbWEoR1xcYnVsbGV0KSIsMV0sWzIsNSwiXFxnYW1tYShIXFxidWxsZXQpIiwxXSxbMyw2LCJcXGRlbHRhKEYgXFxidWxsZXQpIiwxXSxbNCw3LCJcXGRlbHRhKEcgXFxidWxsZXQpIiwxXSxbNSw4LCJcXGRlbHRhKEggXFxidWxsZXQpIiwxXV0=
+\[\begin{tikzcd}
+	PF\bullet && {PG \bullet} && {PH \bullet} \\
+	& {\text{naturality of } \gamma} && {\text{naturality of } \gamma} \\
+	{QF \bullet} && {QG \bullet} && {QH \bullet} \\
+	& {\text{naturality of } \delta} && {\text{naturality of } \delta} \\
+	{RF \bullet} && {RG \bullet} && {RH \bullet}
+	\arrow["{P(\alpha \bullet)}", from=1-1, to=1-3]
+	\arrow["{P(\beta \bullet)}", from=1-3, to=1-5]
+	\arrow["{Q(\alpha \bullet)}", from=3-1, to=3-3]
+	\arrow["{R(\alpha \bullet)}", from=5-1, to=5-3]
+	\arrow["{Q(\beta \bullet)}", from=3-3, to=3-5]
+	\arrow["{R(\beta \bullet)}", from=5-3, to=5-5]
+	\arrow["{\gamma(F\bullet)}"{description}, from=1-1, to=3-1]
+	\arrow["{\gamma(G\bullet)}"{description}, from=1-3, to=3-3]
+	\arrow["{\gamma(H\bullet)}"{description}, from=1-5, to=3-5]
+	\arrow["{\delta(F \bullet)}"{description}, from=3-1, to=5-1]
+	\arrow["{\delta(G \bullet)}"{description}, from=3-3, to=5-3]
+	\arrow["{\delta(H \bullet)}"{description}, from=3-5, to=5-5]
+\end{tikzcd}\]
+
+By composing the outer morphisms, we get:
+
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJQRlxcYnVsbGV0Il0sWzAsMywiUkZcXGJ1bGxldCJdLFs0LDMsIlJIXFxidWxsZXQiXSxbNCwwLCJQSFxcYnVsbGV0Il0sWzAsMSwiKFxcZGVsdGEgXFxjaXJjIFxcZ2FtbWEpKEYgXFxidWxsZXQpIiwyXSxbMSwyLCJSKChcXGJldGEgXFxjaXJjIFxcYWxwaGEgKVxcYnVsbGV0KSIsMl0sWzAsMywiUCgoXFxiZXRhIFxcY2lyYyBcXGFscGhhIClcXGJ1bGxldCkiXSxbMywyLCIoXFxkZWx0YSBcXGNpcmMgXFxnYW1tYSkoSCBcXGJ1bGxldCkiXSxbMCwyLCIoXFxnYW1tYSBcXGNpcmMgXFxkZWx0YSkgKiAoXFxiZXRhIFxcY2lyYyBcXGFscGhhKSIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6InNxdWlnZ2x5In19fV1d
+\[\begin{tikzcd}
+	PF\bullet &&&& PH\bullet \\
+	\\
+	\\
+	RF\bullet &&&& RH\bullet
+	\arrow["{(\delta \circ \gamma)(F \bullet)}"', from=1-1, to=4-1]
+	\arrow["{R((\beta \circ \alpha )\bullet)}"', from=4-1, to=4-5]
+	\arrow["{P((\beta \circ \alpha )\bullet)}", from=1-1, to=1-5]
+	\arrow["{(\delta \circ \gamma)(H \bullet)}", from=1-5, to=4-5]
+	\arrow["{(\gamma \circ \delta) * (\beta \circ \alpha)}"{description}, squiggly, from=1-1, to=4-5]
+\end{tikzcd}\]
+
+By composing the inner morphisms, we get $(\gamma * \alpha) \circ (\delta * \beta)$
+
+% https://q.uiver.app/?q=WzAsMTMsWzAsMCwiUEZcXGJ1bGxldCJdLFszLDAsIlBHIFxcYnVsbGV0Il0sWzYsMCwiUEggXFxidWxsZXQiXSxbMCwzLCJRRiBcXGJ1bGxldCJdLFszLDMsIlFHIFxcYnVsbGV0Il0sWzYsMywiUUggXFxidWxsZXQiXSxbMCw2LCJSRiBcXGJ1bGxldCJdLFszLDYsIlJHIFxcYnVsbGV0Il0sWzYsNiwiUkggXFxidWxsZXQiXSxbMSwyLCJcXGNpcmNsZWFycm93cmlnaHQgXFx0ZXh0e25hdC4gfSBcXGdhbW1hIl0sWzQsMiwiXFxjaXJjbGVhcnJvd3JpZ2h0IFxcdGV4dHtuYXQuIH0gXFxnYW1tYSJdLFsxLDUsIlxcY2lyY2xlYXJyb3dyaWdodCBcXHRleHR7bmF0LiAgfSBcXGRlbHRhIl0sWzQsNSwiXFxjaXJjbGVhcnJvd3JpZ2h0IFxcdGV4dHtuYXQuIH0gXFxkZWx0YSJdLFswLDEsIlAoXFxhbHBoYSBcXGJ1bGxldCkiXSxbMSwyLCJQKFxcYmV0YSBcXGJ1bGxldCkiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMyw0LCJRKFxcYWxwaGEgXFxidWxsZXQpIiwyXSxbNiw3LCJSKFxcYWxwaGEgXFxidWxsZXQpIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzQsNSwiUShcXGJldGEgXFxidWxsZXQpIl0sWzcsOCwiUihcXGJldGEgXFxidWxsZXQpIl0sWzAsMywiXFxnYW1tYShGXFxidWxsZXQpIiwxXSxbMSw0LCJcXGdhbW1hKEdcXGJ1bGxldCkiLDFdLFsyLDUsIlxcZ2FtbWEoSFxcYnVsbGV0KSIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFszLDYsIlxcZGVsdGEoRiBcXGJ1bGxldCkiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNCw3LCJcXGRlbHRhKEcgXFxidWxsZXQpIiwxXSxbNSw4LCJcXGRlbHRhKEggXFxidWxsZXQpIiwxXSxbMCw0LCIoXFxnYW1tYSAqIFxcYWxwaGEpKFxcYnVsbGV0KSIsMCx7ImxhYmVsX3Bvc2l0aW9uIjo2MCwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoic3F1aWdnbHkifX19XSxbNCw4LCIoXFxkZWx0YSAqIFxcYmV0YSkoXFxidWxsZXQpIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoic3F1aWdnbHkifX19XV0=
+\[\begin{tikzcd}
+	PF\bullet &&& {PG \bullet} &&& {PH \bullet} \\
+	\\
+	& {\circlearrowright \text{nat. } \gamma} &&& {\circlearrowright \text{nat. } \gamma} \\
+	{QF \bullet} &&& {QG \bullet} &&& {QH \bullet} \\
+	\\
+	& {\circlearrowright \text{nat.  } \delta} &&& {\circlearrowright \text{nat. } \delta} \\
+	{RF \bullet} &&& {RG \bullet} &&& {RH \bullet}
+	\arrow["{P(\alpha \bullet)}", from=1-1, to=1-4]
+	\arrow["{P(\beta \bullet)}", dashed, from=1-4, to=1-7]
+	\arrow["{Q(\alpha \bullet)}"', from=4-1, to=4-4]
+	\arrow["{R(\alpha \bullet)}", dashed, from=7-1, to=7-4]
+	\arrow["{Q(\beta \bullet)}", from=4-4, to=4-7]
+	\arrow["{R(\beta \bullet)}", from=7-4, to=7-7]
+	\arrow["{\gamma(F\bullet)}"{description}, from=1-1, to=4-1]
+	\arrow["{\gamma(G\bullet)}"{description}, from=1-4, to=4-4]
+	\arrow["{\gamma(H\bullet)}"{description}, dashed, from=1-7, to=4-7]
+	\arrow["{\delta(F \bullet)}"{description}, dashed, from=4-1, to=7-1]
+	\arrow["{\delta(G \bullet)}"{description}, from=4-4, to=7-4]
+	\arrow["{\delta(H \bullet)}"{description}, from=4-7, to=7-7]
+	\arrow["{(\gamma * \alpha)(\bullet)}"{pos=0.6}, squiggly, from=1-1, to=4-4]
+	\arrow["{(\delta * \beta)(\bullet)}", squiggly, from=4-4, to=7-7]
+\end{tikzcd}\]
+
+
+By the commutativity of the large square, these two are equal, and hence the four composition
+theorem holds.
+
 \end{document}
