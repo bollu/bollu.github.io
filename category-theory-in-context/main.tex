@@ -1499,4 +1499,135 @@ By composing the inner morphisms, we get $(\gamma * \alpha) \circ (\delta * \bet
 By the commutativity of the large square, these two are equal, and hence the four composition
 theorem holds.
 
+\question{1.7.v} Show that the
+collection of natural transformations of the form $\{ 1_C \nt 1_C \}$  defines a commutative monoid (under vertical composition).
+
+Consider such a natural transformation $\alpha: 1_C \nt 1_C$. From naturality, for all arrows $x \xrightarrow{a} y$, 
+$\alpha$ must satisfy $a \circ \alpha(x) = \alpha(y) \circ a$:
+
+% https://q.uiver.app/?q=WzAsMTIsWzAsMSwiMV9DeCJdLFsyLDEsIjFfQ3kiXSxbMCwzLCIxX0N4Il0sWzIsMywiMV9DeSJdLFswLDAsIngiXSxbMiwwLCJ5Il0sWzEsMiwiIFxcY2lyY2xlYXJyb3dyaWdodCBcXHRleHR7bmF0IH0gXFxhbHBoYSAgIl0sWzAsNCwieCJdLFsyLDQsInkiXSxbMCw2LCJ4Il0sWzIsNiwieSJdLFsxLDUsImEgXFxjaXJjIFxcYWxwaGEoeCkgPSBcXGFscGhhKHkpIFxcY2lyYyBhIl0sWzAsMSwiMV9DIGEiXSxbMCwyLCJcXGFscGhhIHgiLDJdLFsyLDMsIjFfQyBhIiwyXSxbMSwzLCJcXGFscGhhIHkiXSxbNCw1LCJhIiwyXSxbNyw4LCJhIiwyXSxbNyw5LCJcXGFscGhhIHgiLDJdLFs5LDEwLCJhIl0sWzgsMTAsIlxcYWxwaGEgeSIsMl1d
+\[\begin{tikzcd}
+	x && y \\
+	{1_Cx} && {1_Cy} \\
+	& { \circlearrowright \text{nat } \alpha  } \\
+	{1_Cx} && {1_Cy} \\
+	x && y \\
+	& {a \circ \alpha(x) = \alpha(y) \circ a} \\
+	x && y
+	\arrow["{1_C a}", from=2-1, to=2-3]
+	\arrow["{\alpha x}"', from=2-1, to=4-1]
+	\arrow["{1_C a}"', from=4-1, to=4-3]
+	\arrow["{\alpha y}", from=2-3, to=4-3]
+	\arrow["a"', from=1-1, to=1-3]
+	\arrow["a"', from=5-1, to=5-3]
+	\arrow["{\alpha x}"', from=5-1, to=7-1]
+	\arrow["a", from=7-1, to=7-3]
+	\arrow["{\alpha y}"', from=5-3, to=7-3]
+\end{tikzcd}\]
+
+\begin{itemize}
+\item given two $\alpha, \beta: 1_C \nt 1_C$, we must have that $\alpha(x) \circ \beta(x) = \beta(x) \circ \alpha(x)$ [since $\alpha(x) \circ a = a \circ \alpha(y)]$.
+\item Since this holds at all points, we get $\alpha \circ \beta = \beta \circ \alpha$, or that these are commutative.
+    \item The identity natural transformation
+$e$ given by $e(1_C x) = e(x) \equiv x = 1_C x$  is the identity for the monoid of endo-natural transformations of the functor $1_C$. Verification is formal,
+and left to be jotted down to future Siddharth.
+\end{itemize}
+
+    
+\question{1.7.vi}  TODO
+
+\question{1.7.vii} Show that a bifunction $F: C \times D \rightarrow E$ is equivalent to the data:
+\begin{itemize}
+    \item A functor $F(c, -): D \rightarrow E$ for each $c \in C$
+    \item A natural transformation $F(f, -): F(x, -) \nt F(y, -)$ for each
+    $x \xrightarrow{f} y \in C$, defined functorially in $C$ \item To be ``defined
+        functorially'' is to say that we have a functor $G: C \rightarrow D^E$,
+        which is in bijection with $F: C \times D \rightarrow E$.
+\end{itemize}
+\start{Answer: Bifunctor implies partial application}
+\begin{itemize}
+\item Given a bifunctor $F$, define for each $c \in C$ a funtor $\partial F(c, -): D \rightarrow E$
+\item On objects, we define $\partial F(c, -)(d) \equiv F(c, d)$
+\item On arrows, we define $\partial F(c, -) (x \xrightarrow{g} y) \equiv  F(1_c, g)$.
+\item See that the definition on objects and arrows is consistent:
+
+% https://q.uiver.app/?q=WzAsNixbMCwwLCJ4IFxcaW4gRCJdLFsyLDAsInkgXFxpbiBEIl0sWzAsMSwiXFxwYXJ0aWFsIEYoYywtKSh4KSBcXGluIEUiXSxbMiwxLCJcXHBhcnRpYWwgRihjLC0pKHkpIFxcaW4gRSJdLFswLDIsIkYoYywgeCkiXSxbMiwyLCJGKGMsIHkpIl0sWzAsMSwiZyJdLFsyLDMsIlxccGFydGlhbCBGKGMsIC0pKGcpIl0sWzQsNSwiRigxX2MsIGcpIl1d
+\[\begin{tikzcd}
+	{x \in D} && {y \in D} \\
+	{\partial F(c,-)(x) \in E} && {\partial F(c,-)(y) \in E} \\
+	{F(c, x)} && {F(c, y)}
+	\arrow["g", from=1-1, to=1-3]
+	\arrow["{\partial F(c, -)(g)}", from=2-1, to=2-3]
+	\arrow["{F(\id_c, g)}", from=3-1, to=3-3]
+\end{tikzcd}\]
+
+\item See that $\partial F(c, -)$ preserves identity:
+\begin{align*}
+    & \partial F(c, -)(\id_d) \\
+    & = F(\id_c, \id_d) \quad \text{(Defn of $\partial F(c, -)$}
+    & = id_{F(c, d)} \quad \text{(Functoriality of $F$)}
+\end{align*}
+
+\item See that $\partial F(c, -)$ distributes over $\circ$:
+\begin{align*}
+    & \partial F(c, -)(x \xrightarrow{f} y\xrightarrow{g} z) \\
+    & = F(\id_c, g \circ_D f) \quad \text{(Defn of $\partial F(c, -)$) }\\
+    &= F(\id_c \circ_C id_c, g \circ_D f) \quad \text{($h \circ id_c = id_c$)  } \\
+    &= F((\id_c, g) \circ_{C \times D} (id_c, f)) \quad \text{(Defn. of composition in $C \times D$)} \\
+    &= F((\id_c, g)) \circ_{E} F((id_c, f)) \quad \text{(Functoriality of $F$)}\\
+    &= \partial F(c, -)(g) \circ_{E} \partial F(c, -)(f) \quad \text{(Defn of $\partial F(c, -)$)}\\
+\end{align*}
+
+\item This completes our verification that $\partial F(c -)$ is a functor. 
+\item We move to constructing the natural transformations $\partial F(f, -): \partial F(c, -) \nt \partial F(c', -)$ for each $f: c \rightarrow c'$.
+\item The natural transformation assigns components for each $d \in D$. It must produce arrows $\partial F(c, -)(d) \rightarrow \partial F(c', -)(d)$
+    which live in $E$. We choose to produce the arrow $F(f, id_d)$. That is, $\partial F(f, -)(d) \equiv F(f, id_d)$. This assembles into a
+        square whose commutativity is to be established:
+
+    % https://q.uiver.app/?q=WzAsNyxbMCwwLCJkIl0sWzIsMCwiZCciXSxbMCw0LCJcXHBhcnRpYWwgRihjJywgLSkoZCkiXSxbMCwyLCJcXHBhcnRpYWwgRihjLCAtKShkKSJdLFsyLDIsIlxccGFydGlhbCBGKGMsIC0pKGQnKSJdLFsyLDQsIlxccGFydGlhbCBGKGMnLCAtKShkJykiXSxbMSwzLCJcXGNpcmNsZWFycm93cmlnaHQgPyAiXSxbMCwxLCJhIl0sWzIsNSwiXFxwYXJ0aWFsIEYoYycsIC0pKGEpIl0sWzMsMiwiXFxwYXJ0aWFsIEYoZiwgLSkoZCkiLDJdLFszLDQsIlxccGFydGlhbCBGKGMsIC0pKGEpIl0sWzQsNSwiXFxwYXJ0aWFsIEYoZiwgLSkoZCcpIl1d
+\[\begin{tikzcd}
+	d && {d'} \\
+	\\
+	{\partial F(c, -)(d)} && {\partial F(c, -)(d')} \\
+	& {\circlearrowright ? } \\
+	{\partial F(c', -)(d)} && {\partial F(c', -)(d')}
+	\arrow["a", from=1-1, to=1-3]
+	\arrow["{\partial F(c', -)(a)}", from=5-1, to=5-3]
+	\arrow["{\partial F(f, -)(d)}"', from=3-1, to=5-1]
+	\arrow["{\partial F(c, -)(a)}", from=3-1, to=3-3]
+	\arrow["{\partial F(f, -)(d')}", from=3-3, to=5-3]
+\end{tikzcd}\]
+Which upon substituting definitions becomes:
+
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJGKGMsIGQpIl0sWzIsMCwiRihjLCBkJykiXSxbMCwyLCJGKGMnLCBkKSJdLFsyLDIsIkYoYycsIGQnKSJdLFswLDEsIkYoaWRfYywgYSkiXSxbMCwyLCJGKGYsIGlkX2QpIiwyXSxbMSwzLCJGKGYsIGlkX3tkJ30pIl0sWzIsMywiRihpZF97Yyd9LCBhKSIsMl1d
+\[\begin{tikzcd}
+	{F(c, d)} && {F(c, d')} \\
+	\\
+	{F(c', d)} && {F(c', d')}
+	\arrow["{F(id_c, a)}", from=1-1, to=1-3]
+	\arrow["{F(f, id_d)}"', from=1-1, to=3-1]
+	\arrow["{F(f, id_{d'})}", from=1-3, to=3-3]
+	\arrow["{F(id_{c'}, a)}"', from=3-1, to=3-3]
+\end{tikzcd}\]
+
+Which commutes since $F$ preserves commuting diagrams as it is a functor, and the following diagram commutes
+(by direct verification):
+
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCIoYywgZCkiXSxbMiwwLCIoYywgZCcpIl0sWzAsMiwiKGMnLCBkKSJdLFsyLDIsIihjJywgZCcpIl0sWzAsMSwiKGlkX2MsIGEpIl0sWzAsMiwiKGYsIGlkX2QpIiwyXSxbMiwzLCIoaWRfe2MnfSwgYSkiLDJdLFsxLDMsIihmLCBpZF97ZCd9KSJdXQ==
+\[\begin{tikzcd}
+	{(c, d)} && {(c, d')} \\
+	\\
+	{(c', d)} && {(c', d')}
+	\arrow["{(id_c, a)}", from=1-1, to=1-3]
+	\arrow["{(f, id_d)}"', from=1-1, to=3-1]
+	\arrow["{(id_{c'}, a)}"', from=3-1, to=3-3]
+	\arrow["{(f, id_{d'})}", from=1-3, to=3-3]
+\end{tikzcd}\]
+
+
+
+\end{itemize}
+
+
+
 \end{document}
