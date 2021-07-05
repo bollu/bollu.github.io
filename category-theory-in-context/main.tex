@@ -1544,7 +1544,7 @@ and left to be jotted down to future Siddharth.
         functorially'' is to say that we have a functor $G: C \rightarrow D^E$,
         which is in bijection with $F: C \times D \rightarrow E$.
 \end{itemize}
-\start{Answer: Bifunctor implies partial application}
+\start{Answer ($\implies$): Bifunctor implies partial application}
 \begin{itemize}
 \item Given a bifunctor $F$, define for each $c \in C$ a funtor $\partial F(c, -): D \rightarrow E$
 \item On objects, we define $\partial F(c, -)(d) \equiv F(c, d)$
@@ -1624,9 +1624,16 @@ Which commutes since $F$ preserves commuting diagrams as it is a functor, and th
 	\arrow["{(f, id_{d'})}", from=1-3, to=3-3]
 \end{tikzcd}\]
 
-
+\item To prove functoriality of this assignment, we must show that given $d_1 \xrightarrow{a} d_2 \xrightarrow{b} d_3$,
+    the equation $\partial F (f, -)(b \circ_D a) = \partial F(f, -)(b) \circ_E \partial F(f, -) a$. This follows by
+    computation:
+\begin{aligned}
+& \partial F (f, -)(b \circ_D a) \\
+&= 
+\end{aligned}
 
 \end{itemize}
+
 
 
 
