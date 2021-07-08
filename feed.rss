@@ -5,24 +5,34 @@
 <link>https://bollu.github.io/</link>
 <description>A universe of Sorts</description>
   <item>
-    <title> Formula for squarefree numbers </title>
-    <guid>https://bollu.github.io/formula-for-squarefree-numbers.html</guid>
-    <link>https://bollu.github.io/formula-for-squarefree-numbers.html</link>
+    <title> Heuristics for the prime number theorem </title>
+    <guid>https://bollu.github.io/heuristics-for-the-prime-number-theorem.html</guid>
+    <link>https://bollu.github.io/heuristics-for-the-prime-number-theorem.html</link>
   </item>
   <item>
-    <title> Center of a tree (WIP) </title>
-    <guid>https://bollu.github.io/center-of-a-tree-wip.html</guid>
-    <link>https://bollu.github.io/center-of-a-tree-wip.html</link>
+    <title> Sum of absolute differences of an array </title>
+    <guid>https://bollu.github.io/sum-of-absolute-differences-of-an-array.html</guid>
+    <link>https://bollu.github.io/sum-of-absolute-differences-of-an-array.html</link>
   </item>
   <item>
-    <title> Centroid of a tree (WIP) </title>
-    <guid>https://bollu.github.io/centroid-of-a-tree-wip.html</guid>
-    <link>https://bollu.github.io/centroid-of-a-tree-wip.html</link>
+    <title> GCD  is at most difference of numbers </title>
+    <guid>https://bollu.github.io/gcd-is-at-most-difference-of-numbers.html</guid>
+    <link>https://bollu.github.io/gcd-is-at-most-difference-of-numbers.html</link>
   </item>
   <item>
-    <title> Rota &apos; s twelvefold path </title>
-    <guid>https://bollu.github.io/rotas-twelvefold-path.html</guid>
-    <link>https://bollu.github.io/rotas-twelvefold-path.html</link>
+    <title> implementing GCD and LCM </title>
+    <guid>https://bollu.github.io/implementing-gcd-and-lcm.html</guid>
+    <link>https://bollu.github.io/implementing-gcd-and-lcm.html</link>
+  </item>
+  <item>
+    <title> Centroid of a tree </title>
+    <guid>https://bollu.github.io/centroid-of-a-tree.html</guid>
+    <link>https://bollu.github.io/centroid-of-a-tree.html</link>
+  </item>
+  <item>
+    <title> Center of a tree </title>
+    <guid>https://bollu.github.io/center-of-a-tree.html</guid>
+    <link>https://bollu.github.io/center-of-a-tree.html</link>
   </item>
   <item>
     <title> Image unshredding as hamiltonian path </title>
@@ -35,9 +45,9 @@
     <link>https://bollu.github.io/distance-between-lines-in-nd.html</link>
   </item>
   <item>
-    <title> Correctness of  lower_bound search with closed intervals </title>
-    <guid>https://bollu.github.io/correctness-of-lowerbound-search-with-closed-intervals.html</guid>
-    <link>https://bollu.github.io/correctness-of-lowerbound-search-with-closed-intervals.html</link>
+    <title>  lower_bound binary search with closed intervals </title>
+    <guid>https://bollu.github.io/lowerbound-binary-search-with-closed-intervals.html</guid>
+    <link>https://bollu.github.io/lowerbound-binary-search-with-closed-intervals.html</link>
   </item>
   <item>
     <title> Sliding window implementation style </title>

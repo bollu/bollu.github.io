@@ -1512,7 +1512,8 @@ const char html_preamble[] =
     "html,body { text-size-adjust: none; -webkit-text-size-adjust: none; "
     "-moz-text-size-adjust: none; -ms-text-size-adjust: none; } "
     "body {"
-    " background: linear-gradient(to right, #1565C0 50%, #C2185B 50%);"
+    " background: linear-gradient(to right, #1565C0 1%, #EFEFEF 1%, #EFEFEF 99%, #E91E63 99%); "
+    // " background: linear-gradient(to right, #1565C0 50%, #C2185B 50%);"
     " color: #000000; " // tufte
     " font-family: 'Blog Serif', sans-serif; "
     " font-size: 18px; line-height: 1.4em; "

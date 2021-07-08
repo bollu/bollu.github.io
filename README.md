@@ -16,47 +16,224 @@ A Universe of Sorts
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
 
-# Formula for squarefree numbers
+
+# Heuristics for the prime number theorem
+
+> "It is evident that the primes are randomly distributed but, unfortunately, we don't know what 'random' means."
+
+
+- The prime number theorem says that at $n$, the number of primes upto $n$ is (approx.) $(n/\log n)$. Formally:
+
+$$
+P(n) \equiv |\{ p \text{ prime } : 2 \leq p \leq n \}| \sim \frac{n}{\log n}
+$$
+
+- Consider sieving. In the beginning, everything is potentially prime.
+- When we remove the multiples of a prime `p`, we decrease the density of potential primes. 
+- As we remove `1/p` of the remaining potential primes
+  (eg. removing `2` drops density of potential primes by half. Sieving by `3` *reduces* the density by one-third).
+- See that the reduction is *additive* not *multiplicative*. That is, upon removing the `5`, we lose `1/5` of our potential primes,
+  so the new density is `D2 = D - D/5`. Said differently, we have `4/5`th the number of potential primes we used to have, so `D2 = 4D/5`.
+- Furthermore, removing `5` only begins to affect the density of primes after `5*5 = 25`, since smaller multiples of `5` (`5*1`, `5*2`, `5*3`, `5*4`)
+  have been removed at earlier iterations of the sieve (on sieving  `5`, `2`, `3`, and `2`, respectively).
+- In general: On removing a prime `p`, Our new density becomes `D2 = D - D/p` which is `(1-1/p)D`.
+- In general: On removing a prime `p`, the density till `p*p` remains untouched. Density after `p*p` is multiplicatively scaled by `(p-1)/p`.
+- Define a function $f(x)$ which estimates density of primes around $x$.
+- We consider the effect of the primes in the interval $A \equiv [x, x+dx]$  on the interval $B \equiv [x^2, (x+dx)^2]$
+- Each prime $p$ in interval $A$ decreases the density of primes in interval $B$ by subtracting $f(x^2)/p$, since we lose those many primes.
+  Since each number in $[x, x+dx]$ is basically $x$, we approximate this subtraction to $f(x^2)/x$.
+- In interval $A$, there are $f(x)dx$ primes. 
+
+$$
+\begin{aligned}
+&f((x+dx)^2) = \\
+&= f(x^2) - \text{killing of from primes in $x$} \\
+&= f(x^2) - \sum_{p \in [x, x+dx]} [\texttt{Prob}(p \text{ prime})] \cdot f(x^2)/p \\
+&= f(x^2) - \sum_{p \in [x, x+dx]} [f(p)] \cdot f(x^2)/p \\
+&= \text{($p \sim x$ in $[x, x+dx]$):} \\
+&= f(x^2) - \texttt{length}([x,x+dx]) \cdot [f(x)] \cdot f(x^2)/p \\
+&= f(x^2) - (dx) f(x) \cdot f(x^2)/x \\
+&f((x+dx)^2) = f(x^2) - f(x^2)f(x)dx/x \\
+&f((x+dx)^2) - f(x^2) = -\frac{f(x^2)f(x)dx}{x}
+\end{aligned}
+$$
+
+From this, we now estimate $f'(x^2)$ as:
+
+$$
+\begin{aligned}
+&f((x+dx)^2) - f(x^2) = -\frac{f(x^2)f(x)dx}{x} \\
+&\frac{f((x+dx)^2) - f(x^2)}{dx} = -\frac{f(x^2)f(x)}{x} \\
+&\frac{f(x^2 + 2dx + dx^2) - f(x^2)}{dx} = -\frac{f(x^2)f(x)}{x} \\
+&\text{Ignore $O(dx^2)$:} \\
+&\frac{f(x^2 + 2dx) - f(x^2)}{dx} = -\frac{f(x^2)f(x)}{x} \\
+&\frac{f(x^2 + 2dx) - f(x^2)}{dx \cdot 2x} = -\frac{f(x^2)f(x)}{x\cdot 2x} \\
+&\frac{f(x^2 + 2dx) - f(x^2)}{2xdx} = -\frac{f(x^2)f(x)}{2x^2} \\
+& \text{Let $u = x^2$} \\
+&\frac{f(u + du) - f(u)}{du} = -\frac{f(u)f(\sqrt u)}{2u} \\
+&f'(u) = -\frac{f(u)f(\sqrt u )}{2u}
+\end{aligned}
+$$
+
+#### An immediate consequence
+
+Sice $u$ is large, we approximate $u \sim \sqrt{u}$ to get:
+
+$$
+\begin{aligned}
+&f'(u) = -\frac{f(u)f(\sqrt u )}{2u} \\
+&f'(u) \sim -\frac{f^2(u)}{2u} \\
+&\frac{df}{du} \sim -\frac{f^2(u)}{u} \\
+&\frac{df}{f^2} \sim -\frac{du}{u} \\
+&\int \frac{df}{f^2} \sim - \int \frac{du}{u} \\
+&-\frac{1}{f(u)} \sim -\ln(u) \\
+&\frac{1}{f(u)} \sim \ln(u) \\
+&f(u) \sim  \frac{1}{\ln(u)}
+\end{aligned}
+$$
+
+So the density of primes around $f(u)$ is $1/\ln(u)$. So upto $n$, the number of primes is $\int_0^n f(x) dx$ which is $\int_0^n 1/ln(x) dx$, bounded by $n/ln(n)$.
+This "proves" the prime number theorem.
+
+- [Reference: Feedback, Control, and the Distribution of Prime Numbers](https://www.maa.org/sites/default/files/pdf/upload_library/2/Marshall-MathMag-2014.pdf)
+- [Heuristic derivation of the prime number theorem](https://sites.williams.edu/Morgan/2008/10/11/heuristic-derivation-of-prime-number-theorem/)
+
+
+# Sum of absolute differences of an array
+
+- We are given an array `a[:]` and we are asked to compute the sum of differences $\sum_{i=1}^n \sum_{j=i+1}^n |a[i] - a[j]|$.
+- To compute this efficiently, first sort `a[:]` into a sorted array `s[:]`. For simplicity, say we have `N = 4`. 
+- Now see that if we write down the values for `N=4`, we will see:
 
 ```
-a(n) = n + floor(1/2 + sqrt(n)).
+D = 
+|s[1] - s[2]| + |s[1] - s[3]| + |s[1] - s[4]| +
+|s[2] - s[3]| + |s[2] - s[4]| +
+|s[3] - s[4]|
+```
+
+- `i < j` implies `s[i] < s[j]` as `s` is sorted. So each of the terms `(s[i] - s[j]|)` is negative. We thus flip the terms, giving:
+
+```
+D = 
+(s[2] - s[1]) + (s[3] - s[1]) + (s[4] - s[1]) +
+(s[3] - s[2]) + (s[4] - s[2]) +
+(s[4] - s[3])
+```
+
+- Note that `s[1]` is always negative, so it will have coefficient `-4` on grouping.
+- See that `s[2]` was positive in the grouping `(1, 2)`, and was negative in the groupings `(2, 3)` and `(2, 4)`. 
+  So `2` will have a coefficient `+1*(2-1) -1*(4 - 2)`.
+- Similarly, `s[3]` was positive in the grouping `(1, 3)` and `(2, 3)` and was negative in the grouping `(3, 4)`.
+- In general, `s[i]` will be positive when paired with `[1, 2, ..i-1, i)` and negative when paired with `(i, i+1, i+2, \dots n]`.
+  So `s[i]` will contribute a coefficient of `+1*(i-1) - 1*(n-i)`
+  [using the formula that for intervals `[l, r)` and `(l, r]` the number of elements is `(r-l)`]
+
+# GCD  is at most difference of numbers
+
+- assume WLONG $l< r$. Then, If $g = gcd(l, r)$ then we have $g \leq r - l$.
+- Proof: we have $g \div r$ an $g \div l$ by definition, hence we must have $g \div (r - l)$. Since $r - l \geq 0$,
+  this immediately implies $g \leq (r - l)$.
+- Intuition: the gcd represents the common roots of $l, r$ in Zariski land. That is, if $l, r$ are zero at a prime  then so is $r - l$.
+- So, the GCD equally well represents the common roots of $l$ and $(r - l)$.
+- Now, if a number $x$ vanishes at a subset of the places where $y$ vanishes, we have $x < y$ (the prime factorization of $y$ contains all the prime factors of $x$).
+- Since the GCD vanishes at the subset of the roots of $l$, a subset of the roots of $r$, and a subset of the roots of $(r-l)$, it must be smaller than all of these.
+- Thus, the GCD is at most $r - l$.
+- Why does GCD not vanish at exactly the roots of $r-l$? If $l$ and $r$ both take the same non-zero value
+  at some prime then $(r - l)$ does too. But this is not a loacation where $l$ and $r$ vanish.
+
+# implementing GCD and LCM
+
+```cpp
+// gcd(x, y) = d <=> min({ ax + by : ax + b y >= 0 })= d
+long gcd(long x,long y) { return y == 0 ? x : gcd(y, x%y); }
+long lcm(long x,long y) {return x/gcd(x,y)*y;}
 ```
 
 
+# Centroid of a tree
 
+- A centroid is a node which upon removal creates subtrees of size at most `ceil(n/2)`.
 
-# Center of a tree (WIP)
+#### Existence of centroid for rooted tree (algorithm to compute centroid)
 
-- The *remoteness* of a vertex $v$ is its distance from its furthest node. $r(v) \equiv \max_{w \in V} d(v, w)$.
+- If tree has exactly one node, we are done, the centroid is the root.
+- Suppose for induction a centroid exists for trees of size $n-1$. We will now prove the existence of a centroid for tree of size $n$.
+- Otherwise, if the root has all children whose subtree sizes are at most `ceil(n/2)`, the root is the centroid and we are done.
+- Otherwise, the root has *one* child with subtree size *strictly greater than* `ceil(n/2)`. There can't be two such children, because their
+  combined size would be `2*ceil(n/2) >= n`. This is nonsensical, as the size of the subtrees plus the root node would mean the tree
+  has `2*ceil(n/2) + 1 >= n+1` nodes, a contradiction.
+- We recurse into the subtree. The size of the subtree of the child is at least one less than the size of the root, thus we are decreasing on the size of the tree.
+- By recursion, we must terminate this process and find a centroid.
+
+#### Centroid decomposition
+
+- Once we find the centroid of a tree, we see that all of its subtrees has size less than `ceil(n/2)`.
+- We can now recurse, and find sizes of centroids of these subtrees.
+- These subtrees are disjoint, so we will take at most `O(n)` to compute sizes and whatnot. 
+- We can do this `log(n)` many steps since we're halving the size of the subtree each time. 
+- In total, this implies that we can recursively find centroids to arrive at a "centroid decomposition" of a tree.
+- Note that the centroid decomposition of the tree constructs a new tree, which is different from the original tree, sorta how the dominator tree
+  is a different tree from the original tree.
+
+# Center of a tree
+
+- The *remoteness* / *eccentricity* of a vertex $v$ is its distance from its furthest node. $r(v) \equiv \max_{w \in V} d(v, w)$.
 - The *center* of a tree is the vertex with minimum remoteness.
-- To find a center, iteratively delete leaves till we are left with a single node (or a pair of nodes). 
-- Why are we left only with a single node or a pair?
 
-#### Theorem: all diameters pass through all centers
+#### Claim: center is on any diameter.
 
-#### Corollary: center always lies on some diameter
-take any diameter. Center will lie on this diameter by previous theorem.
+- Let $D$ be the diameter of length $L$.
+- Let $c$ be the center. We claim that $c$ lies on $D$. If so, we are done.
+- If not, then there is a path from $c$ to some vertex $v$ in $D$. Let WLOG the endpoints of the diameter be $s$ and $e$, and such that 
+  $v$ is further from $s$ than $e$. That is: $d(s, v) \geq s(v, e)$. In a picture:
+
+```
+s----------v---e
+           |
+           n
+           | 
+         n-c--n
+           |
+           n
+```
+
+- Key idea: the important distance is the distance from $v$ to $s$. So we can forget everything in a radius of $d(v, e)$, as the distance $d(v, e) < d(v, s)$,
+  and $d(c, e) < d(c, s)$. But if we forget the structure around $v$ in a radius of $e$, all we are left with is:
+
+```
+s-------------------v
+                    |
+                    |
+                    c
+```
+
+where clearly $v$ is closer to $s$ than to $c$, and thus $c$ cannot be the center. In some sense, we are making a large scale/coarse structure argument,
+where the large scale structure is dominated by $d(s, v)$, which is all that matters.
+
+- For any node $n$ in the subtree hanging from $v$, we have $d(n, v) \leq d(v, e)$, since otherwise the path $s-v-n$ would become a path
+  longer than the diameter, contradicting the maximality of the diameter.
+- Hence, we have $d(n, v) \leq d(v, e) \leq d(v, s)$, where the second inequality comes from the assumption of $s$ and $e$.
+  So $s$ is the node that is furthest from $v$ amongst all nodes in the graph.
+- But now notice that $d(c, s) = d(c, v) + d(v, s)$, and this is the longest distance from $c$ to any other node. This implies that $d(c, s) > d(v, s)$ as $d(c, v) > 0$.
+- This contradicts the minimality of the eccentricity of $c$: the longest distance from $c$ to 
 
 
-- [Algorithms live: trees and diameters](https://www.youtube.com/watch?v=2PFl93WM_ao)
+#### Claim: center is median of any diameter
 
-# Centroid of a tree (WIP)
+We've already seen that center is on the diameter. Now if a center node is not on the median,
+the distance to the furthest node (start/end) can be improved by moving the center node
+closer to the median. So the best choice is to have the center be at (one of the) medians.
 
-- **Centroid** is the vertex which when removed  minimizes the size of the largest remaining component.
-- Is a centroid always a center? Imagine line graph with one vertex towards the
-  end having many children. This vertex with many children is the centroid,
-  while the middle vertex is the center (distance $n/2$).
-- Computing centroid: compute subtree sizes. At node $v$, size of subtree for child $c$ in $v$ $s(c)$, size of "parent subtree" is $V - s(v)$.
-  So find $\max(V - s(v), s(c_1), s(c_2), \dots, s(c_n))$.
-  This is the size of largest component on removal of $v$. Find node that minimizes this
-- A tree has at most 2 centroids (why?)
-- On removal of centroid, components have at most $n/2$ size. [How to prove?]  
-- [Algorithms live: trees and diameters](https://www.youtube.com/watch?v=2PFl93WM_ao)
-- https://www.youtube.com/watch?v=doOPlmXxPPQ
 
-# Rota's twelvefold path
 
-- Choices: upto $S[n]$ on domain,upto $S[n]$ on codomain, injective, surjective, neither, bijective.
+#### Claim: center does not change by removing all leaf vertices
+
+We've shown that the center is the median of all diameters. Removing all leaves
+removes two elements at the beginning and end of all diameters, leaving the
+median (the center) invariant.
+
+
 
 # Image unshredding as hamiltonian path
 
@@ -100,7 +277,7 @@ $$
 &2 (- o  + l)  \cdot x  = 0 \\
 &2 (\vec{lo})  \cdot x  = 0 \\
 &(\vec{lo}) \cdot x  = 0 \\
-&\vec{lo}) \bot x  = 0
+&\vec{lo} \bot x
 \end{aligned}
 $$
 
@@ -116,40 +293,32 @@ $$
 - This gives us the equations $lm \cdot x = 0$, and $lm \cdot y = 0$. We have two variables $\alpha, \beta$ and two equations, so we solve for $\alpha, beta$.
 - This allows us to find the line $lm$ whose length is the shortest distance.
 
-# Correctness of `lower_bound` search with closed intervals
+# `lower_bound` binary search with closed intervals
 
 ```cpp
 // find rightmost ix such that ps[ix].b < t
-// TODO: how to write this with closed llervals?!
 ll max_earlier(ll t, vector<P> &ps) {
-    assert(ps.size() > 0);
-    // cerr << "t: " << t << "\n";
-    // [l, r]
-    ll l = 0, r = ps.size()-1;
-    // closed interval.
-    while (1) {
-        if (l == r) { break; }
-        // l < r
-        // r >= l + 1
-
-        // round up, so that we split the `mid` at a higher point,
-        // so that in the `else` case, we make progress.
-        ll mid = (l+r+1)/2;
-        // mid = (l + r + 1)/2 
-        // mid >= (l + (l+1)+2)/2 >= l + 1
-        // l < l+1 <= mid <= r
-        // l < mid <= r
-        if (ps[mid].b >= t) {
-            // [l, r] -> [l, mid-1] | mid-1 < mid <= r
-            r = mid-1;
-        } else {
-            // [l, r] -> [mid, r] | l < mid
-            l = mid;
-        }
+  assert(ps.size() > 0);
+  // [l, r]
+  ll l = 0, r = ps.size()-1;
+  // closed interval.
+  int ans = -1;
+  while (l <= r) {
+    ll mid = l + (r-l)/2;
+    if (ps[mid].b < t) {
+      // we have considered `mid`.
+      // now move to the higher range to find other candidates.
+      ans = max(ans, mid);
+      l = mid+1;
+    } else {
+     // ps[mid] does not satisfy our invariant.
+     // move to the lower range.
+     r = mid-1;
     }
-    assert(ps[l].b < t);
-    if (l + 1 < ps.size()) { assert(ps[l+1].b >= t); }
-    return l;
+  }
+  assert(ps[l].b < t);
+  if (l + 1 < ps.size()) { assert(ps[l+1].b >= t); }
+  return ans;
 }
 ```
 
@@ -318,9 +487,10 @@ void main() {
 ```
 
 - We can represent number $[0\dots r]$ What can $xs[i]$ be? If it is greater than $(r+1)$, then we have found a hole. If $xs[i] = r+1$,
-  then we can already represent $[0\dots r]$. We now have $(r+1)$. By using the previous numbers, we can represent $(r+1) + [0 \dots r]$, which is equal
-  to $[r+1 \dots 2r+1]$. More generally, if $xs[i] < r+1$, we can represent $[0 \dots r]; [xs[i]+0, xs[i]+r]$. The condition that this will not leave
-  a gap between $r$ and $xs[i]$ is to say that $xs[i]+0 \leq (r+1)$.
+  then we can already represent $[0\dots r]$. We now have $(r+1)$. By using the previous numbers, we can represent the sums
+  $(r+1) + [0 \dots r]$, which is equal to $[r+1 \dots 2r+1]$.
+- More generally, if $xs[i] < r+1$, we can represent $[0 \dots r]; [xs[i]+0, xs[i]+r]$.
+- The condition that this will not leave a gap between $r$ and $xs[i]$ is to say that $xs[i]+0 \leq (r+1)$.
 
 ```cpp
   for (ll i = 0; i < n; ++i) {
@@ -809,6 +979,36 @@ else {
 }
 ```
 
+
+#### Simplified implementation
+
+If we are willing to suffer some performance impact, we can change the loop
+to become significantly easier to prove:
+
+```cpp
+if (p(1 << nbits) == 0) { return 1 << nbits; }
+else {
+  assert(p(1<<nbits) == 1);
+  int ans = 0;
+  int i = nbits-1;
+  while(i >= 0) {
+    assert (p(ans+2*k) == 1);
+    int k = 1 << i;
+    if (p(ans + k) == 0) {
+      ans += ans + k;
+    } else {
+        i--;
+    }
+    assert(p(ans) == 0)
+  }
+}
+```
+
+In this version of the loop, we only decrement `i` when we are sure that `p(ans+k) == 0`.
+We don't need to *prove* that decrementing `i` monotonically per loop trip maintains
+the invariant; Rather, we can try "as many `i`s as necessary" and then decrement `i`
+once it turns out to not be useful.
+
 #### Relationship to LCA / binary lifting
 
 This is very similar to LCA, where we find the lowest node that is *not* an ancestor. The ancestor
@@ -828,6 +1028,7 @@ int lca(int u, int v) {
     return up[u][0];
 }
 ```
+
 
 # Correctness of `lower_bound` search with half-open intervals
 
@@ -10724,8 +10925,7 @@ then also the penalty is $e^2$. This makes mean symmetric. It punishes
 overestimates the same way as underestimates.  
 
 
-Now, if you were to be punished
-by absolute value $|e|$ as opposed to $e^2$ then median would be your best
+Now, if you were to be punished by absolute value $|e|$ as opposed to $e^2$ then median would be your best
 prediction.
 
 Lets denote the error by $e_+$ if the error is an over-estimate and
@@ -12564,35 +12764,34 @@ and after. Call this the two state requirement.
 
 
 ```cpp
-// search in interval [l, r] for value `val`
+// search index i in interval [l, r] for value `val`.
+// returns i such that xs[i] = val.
+// return -1 otherwise.
 int binsearch(int l, int r, int val, int *xs) {
-  if (l == r) { return l; }
+  while(l <= r) {
   int mid = (l+r)/2;
-  if (xs[mid] <= val) { 
-    return binsearch(l, mid, val, xs);
+  // l <= mid < r
+  if (xs[mid] == val) {
+    return mid; 
+  } else if (xs[mid] < val) { 
+    // go to higher range, this is too small.
+    // have already considered mid.
+    // l <= mid => l < mid+1
+    l = mid+1; // [l, r] -> [mid+1, r]
   } else {
-    return binsearch(mid+1, r, val, xs);
+    // go to lower range, this is too larger.
+    // have already considered mid, so go to mid-1.
+    // mid < r => mid-1 < r
+    // [l, r] -> [l, mid-1]
+    r = mid -1;
   }
+  return -1;
 }
 ```
 
-- We have `(l <= mid < r)` since floor division of the form `(l+r)/2`
-  will pull values "downward".
-- The length of the interval `[l, mid]` is smaller
-  than the interval `[l, r]` as `mid < r`.
-- The length of the interval `[mid+1, r]` is smaller than the interval `[l, r]` as `l <= mid` implies `l < mid+1`.
-- We are monotonically decreasing on the quantity "length of interval", and terminate the recursion when the length is zero.
 
 
-##### Why not $[l, mid-1]$ and $[mid, r]$?
-
-- Well, for one, imagine we have `[0, 1]`. Then `mid = 0`, and `mid-1` will be `-1`, which is illegal.
-- More generally, since we can have `mid=l`, we need to make sure the interval `[mid, r]` increases in size,
-  so we need to increment `mid` to `mid+1`.
-
-
-
-#### Closed-open intervals
+#### Closed-open / half-open intervals
 
 ```cpp
 // search in interval [l, r) for value `val`
