@@ -62,10 +62,17 @@
 \newcommand{\functor}[3]{#1 : \cat{#2} \to \cat{#3}}
 \newcommand{\functordef}{\functor{F}{C}{D}}
 \newcommand{\cc}{\cat{C}}
+\newcommand{\cC}{\cat{C}}
 \renewcommand{\dd}{\cat{D}}
 \newcommand{\ee}{\cat{E}}
 \newcommand{\ccat}{\cat{Cat}}
+\newcommand{\cCat}{\cat{Cat}}
 \newcommand{\cset}{\cat{Set}}
+\newcommand{\cSet}{\cat{Set}}
+
+\newcommand{\cgrp}{\cat{Grp}}
+\newcommand{\cGrp}{\cat{Grp}}
+
 \newcommand{\subcat}[2]{\bm{ \mathsf{#1}}_{\bm{ \mathsf{#2}}}}
 \renewcommand{\op}[1]{#1^{\text{op}}}
 \newcommand{\inv}[1]{#1^{-1}}
@@ -114,7 +121,7 @@
 
 
 % \newcommand{\hom}{\ensuremath{\operatorname{Hom}}}
-% \newcommand{\Hom}{\ensuremath{\operatorname{Hom}}}
+\newcommand{\Hom}{\ensuremath{\operatorname{Hom}}}
 
 \title{Category theory in context}
 \author{Siddharth Bhat}
@@ -1627,13 +1634,119 @@ Which commutes since $F$ preserves commuting diagrams as it is a functor, and th
 \item To prove functoriality of this assignment, we must show that given $d_1 \xrightarrow{a} d_2 \xrightarrow{b} d_3$,
     the equation $\partial F (f, -)(b \circ_D a) = \partial F(f, -)(b) \circ_E \partial F(f, -) a$. This follows by
     computation:
-\begin{aligned}
+\begin{align*}
 & \partial F (f, -)(b \circ_D a) \\
 &= 
-\end{aligned}
+\end{align*}
 
 \end{itemize}
 
+
+\chapter{Universal Properties, Representability, The Yoneda Lemma}
+
+\section{Representable Functors}
+
+\subsection{Musing}
+
+Let $F: \cSet \to \cGrp $ and $U: \cGrp \to \cSet$ be adjoints, where $F$ is free and $U$ is forgetful. So we can
+translate arrows of the form $Fx \to y$ into arrows $x \to Gy$. Let $1 \equiv \{ * \}$ be the final object in $\cSet$. 
+\textbf{Claim}: $F(1): Grp$ is the representing object for the forgetful functor $U: \cGrp \to \cSet$.
+
+For $F(1)$ to be a representing object, there must be a natural isomorphism between the functor $U: \cGrp \to \cSet$ and the functor $Hom(F(1), -): \cGrp \to \cSet$.
+So we must establish a natural bijection between $U \bullet$ and $Hom(F(1), \bullet)$ for any group $\bullet$.
+
+See that any morphism $[F(1) \to \bullet]$ is in bijection
+with $[1 \to U(\bullet)]$. Morphisms of the form $[1 \to U (\bullet)]$ is isomorphic to $\bullet$, since a map of the form $f: 1 \to U \bullet$
+picks out elements of $U\bullet$ $(im(f) = f(*) \in \bullet$).
+
+In a single line, we have:
+
+$$
+Hom_{Grp}(F(1), G) \simeq Hom_{Set}(1, UG) \simeq UG
+$$
+
+
+\subsubsection{Proof that functors upto equivalence form a groupoid, with all rewrites witnessed by natural transformations.}
+
+
+\subsection{Exercises}
+
+\question{2.1.i} Describe natural transformations between (a)
+the functors $0: \mathbb 1 \rightarrow mathbb 2$, $1: \mathbb 1 \rightarrow \mathbb 2$, and $!: \mathbb 2 \rightarrow \mathbb 1$ and
+(b) the covariant functors $\cCat \to \cSet$ represented by the categories $\mathbb 1$ and $\mathbb 2$, 
+
+TODO: what should we prove? I don't think I understand the question.
+
+\question{2.1.ii} Prove that if $F: \cC \rightarrow \cSet$ is representable then it preserves monomorphisms.
+Let $F$ be represented by some $r \in cC$. So we have a natural isomorphism $\eta: F \rightarrow \Hom_C(r, -)$. Suppose
+we have a monomorphism $y \xrightarrow{m} z$. So given any other arrows $f, g: x \rightarrow y$, we have that $m \circ f = m \circ g$ implies $f = g$.
+
+\begin{itemize}
+\item Consider the image under $\Hom(r, -)$.
+\item We wish to show that if $\Hom(r, -)(m) \circ \Hom(r, -)(f) = \Hom(r, -)(m) \circ \Hom(r, -)(g)$ then
+$\Hom(r, -)(f) = \Hom(r, -)(g)$.
+\item Simplifying using the definition of the $\Hom$ functor, this asks us to show
+that if $m \circ f \circ - = m \circ g \circ -$ then $f \circ - g = \circ -$.
+\item We prove this by applying the desired equality pointwise. 
+\item Suppose that $m \circ f \circ \alpha = m \circ g \circ \alpha$. This can be written as $m \circ (f \circ \alpha) = m \circ (g \circ alpha)$.
+\item This implies $f \circ \alpha = g \circ \alpha$ ($m$ is a monomorphism, is left cancellable). So we have that $f \circ \alpha = g \circ \alpha$
+for all $\alpha$, or $f \circ - = g \circ -$.
+\item Since this works for $\Hom$ functors, it works for representables since a representable is naturally isomorphic to $\Hom$, and thus
+    witnesses the same categorical properties, including being a monomorphism.
+\end{itemize}
+
+\question{2.1.iii} Let $F: \cC \rightarrow \cSet$ be equivalent to $G: \cC \rightarrow \cSet$. So there is an equivalence of
+categories $H: C \rightarrow D$ such that $GH$ is naturally isomorphic to $F$. We must check what the representability of $F$ ($G$) implies
+about the representability of $G$ ($F$).
+
+\start{answer: $F$ representable, is $G$?}
+Recall that an equivalence of categories implies that we have functors $H: C \rightarrow D$ and $H^{-1}: D \rightarrow C$ such that
+$H \circ H^{-1} \simeq id_C$ and $H^{-1} \circ H \simeq id_D$. We have that $GH \simeq F$ and $F$ is represented by an object $c \in C$
+so $F \simeq Hom_C(c, -)$. We need to show that $G$ is is representable, that is, there exists an object $d \in D$ such that $G \simeq \Hom_D(d, -)$.
+A derivation proceeds as follows:
+
+\begin{align*}
+&G \circ H \simeq F  \quad (\text{given}) \\
+&G \simeq F \circ H^{-1}  \quad (\text{$H$ is equivalence, has an inverse})\\
+&G \simeq \Hom_C(c, -) \circ H^{-1} \quad (\text{$F$ is represented by $c$})\\
+&G \simeq \Hom_C(c, H^{-1}(-)) \quad (\text{Computation: Compose the functors}) \\
+&G \simeq \Hom_C(H(r), H(H^{-1}(-))) \quad (\text{Equivalence preserves hom-sets})\\
+&G \simeq \Hom_C(H(r), -) \quad (H \circ H^{-1} \simeq \id)\\
+\end{align*}
+
+So from the above, we find that $G$ is represented by $H(c)$ where $c$ is the representing object for $F$. \qed
+
+\start{Answer: $G$ representable, is $F$?} As per the question, $F$ and $G$ are symmetric, so we repeat the same argument swapping $F$ for $G$
+and $H$ for $H^{-1}$ throughout. \qed
+
+\question{2.1.iv} Characterize the subsets that assemble into a subfunctor of the functor $Hom_C(c, -)$ for a given $c \in C$.
+
+\start{Answer}
+$F$ is a subfunctor of $G$ iff there is a natural transformation $\alpha: F \nt G$ whose components are mono (that is, each of the
+arrows $\alpha \bullet : F \bullet \rightarrow G \bullet$ is a monomorphism). 
+Let $G: \op C \to \cSet$  be a functor, and let $F: \op C \to \cSet$ be a subfunctor of $G$. A natural transformatino
+$\alpha : F \rightarrow G$ will have as components monic arrows $F \bullet \rightarrow G \bullet \in \cSet$. So we get a subsets
+$F \bullet$ of $G \bullet$.
+
+
+Let $F$ be a subfunctor of $\Hom_C(r, -)$ ($r$ for representable).
+So, we have a natural transformation $\eta: F \nt \Hom_C(r, -)$ such that each
+of the components $F x \rightarrow \Hom_C(r, x)$ is a monomorphism / set embedding. This means
+that we can draw a diagram:
+
+% https://q.uiver.app/?q=WzAsNSxbMCwwLCJoIFxcaW4gRngiXSxbMiwwLCJGeSJdLFswLDIsIkhvbV9DKHIsIHgpIl0sWzIsMiwiSG9tX0MociwgeSkiXSxbMSwxLCJGX2YoaCkgPSBmIFxcY2lyYyBoIl0sWzAsMSwiRl9mIl0sWzAsMiwiXFxzdWJzZXQiLDJdLFsyLDMsIlxcbGFtYmRhIFxcYWxwaGEgXFxtYXBzdG8gZiBcXGNpcmMgXFxhbHBoYSIsMl0sWzEsMywiXFxzdWJzZXQiXV0=
+\[\begin{tikzcd}
+	{h \in Fx} && Fy \\
+	& {F_f(h) = f \circ h} \\
+	{Hom_C(r, x)} && {Hom_C(r, y)}
+	\arrow["{F_f}", from=1-1, to=1-3]
+	\arrow["\subset"', from=1-1, to=3-1]
+	\arrow["{\lambda \alpha \mapsto f \circ \alpha}"', from=3-1, to=3-3]
+	\arrow["\subset", from=1-3, to=3-3]
+\end{tikzcd}\]
+
+
+which implies that $F_f(h) = (\lambda \alpha . f \circ \alpha)(h) = f \circ h$
 
 
 
