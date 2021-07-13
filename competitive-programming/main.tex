@@ -200,6 +200,31 @@ steps.
 &= y g(x, y) - y/(1-y)  \\
 \end{align*}
 
+This means the recurrence is:
 
+\begin{align*}
+&g(x, y) - 1/(1-y) =  xy^2 g(x, y)  +  \left[ y g(x, y) - y/(1-y) \right] \\
+&g(x, y) \left( 1 - xy^2 - y\right) = -y(1-y) + 1/(1-y) \\
+&g(x, y) \left( 1 - xy^2 - y\right) = (1-y)/(1-y) = 1 \\
+&g(x, y) = \frac{1}{1 - (xy^2 + y)} = \frac{1}{(1 - y) - xy^2} \\
+&g(x, y) = \frac{1}{1 - y} \left( \frac{1}{1 - \left ( \frac{y^2}{1 - y} \right) \times x} \right) \\
+&g(x, y) = \frac{1}{1-y} \left ( \sum_{p \geq 0} x^p {y^{2p}}{(1-y)^{-p}}  \right)    \\
+&g(x, y) = \sum_{p \geq 0} x^p {y^{2p}}{(1-y)^{-(p+1)}} \\
+&g(x, y) = \sum_{p \geq 0} x^p {y^{2p}}\sum_{j=0}^\infty \binom{(p+1)+j-1}{j}y^j  \\
+&g(x, y) = \sum_{p \geq 0}\sum_{j=0}^\infty  x^p \binom{p+j}{j}y^{2p+j}  \\
+\end{align*}
+
+Let $m = 2p + j$. $p$ is fixed by the summation, so we have $j = m-2p$.
+
+\begin{align*}
+&g(x, y) = \sum_{p \geq 0}\sum_{j=0}^\infty  x^p \binom{p+j}{j}y^{2p+j}  \\
+&g(x, y) = \sum_{p \geq 0}\sum_{j=0}^\infty  x^p \binom{p+(m-2p)}{j}y^{2p+(m-2p)}  \\
+&g(x, y) = \sum_{p \geq 0}\sum_{j=0}^\infty  x^p \binom{m-p}{m-2p}y^{m}  \\
+&g(x, y) = \sum_{p \geq 0}\sum_{j=0}^\infty  x^p \binom{m-p}{(m - p) - (m-2p)}y^{m}  \\
+&g(x, y) = \sum_{p \geq 0}\sum_{j=0}^\infty  x^p \binom{m-p}{p}y^{m}  \\
+\end{align*}
+
+
+So the solution is $f(m, p) \equiv \binom{m-p}{p}$
 \end{document}
 
