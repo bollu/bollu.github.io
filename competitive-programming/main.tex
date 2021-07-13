@@ -1,0 +1,156 @@
+% https://github.com/cohomolo-gy/cats-in-context/blob/master/chapter-2/Chapter%202%20Solutions.tex
+
+\documentclass[14pt]{report}
+\usepackage{bbm}
+\usepackage{bbding} % for flower. 
+\usepackage{physics}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{listing}
+\usepackage{minted}
+\usemintedstyle{perldoc}
+\usepackage{quiver}
+\usepackage{enumitem}
+\usepackage{mathtools}
+
+\usepackage{xargs}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\R}{\ensuremath{\mathbb R}}
+
+\def\qed{\ensuremath{\Box}}
+
+\newcommand*{\start}[1]{\leavevmode\newline \textbf{#1} }
+\newcommand*{\question}[1]{\leavevmode\newline \textbf{Question: #1.}}
+\newcommand*{\proof}[1]{\leavevmode\newline \textbf{Proof #1}}
+\newcommand*{\answer}{\leavevmode\newline \textbf{Answer} }
+\DeclareMathOperator{\lcm}{lcm}
+
+
+\usepackage[adobe-utopia]{mathdesign}
+\usepackage[T1]{fontenc}
+
+\title{Competitive programming proofs}
+\author{Siddharth Bhat}
+\date{Monsoon, second year of the plague}
+
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Codeforces 1389C: woodcutters}
+Problem link is \url{https://codeforces.com/problemset/problem/1389/C}.
+\begin{itemize}
+\item Solution is greedy.
+\item It's hopefully clear that it's always optimal to have the
+    first tree lean left and the last tree lean right.  So we now
+    have the prove that the construction for trees `[1..n-2]` is
+    optimal.
+
+\item Let $O_*$ be the optimal solution, $O$ be the solution discovered by the
+    above algorithm.  Let index $i$ be the first index where $O_*$ and $O$
+        decide to do something different to a tree.  We have $i > 0, i < n-2$
+        since we assume that the algorithms agree on the first and last tree.
+\item We have  6 cases at index `i`: the possibilities are `L` for leaning left, `U` for standing up, and `R` for leaning right.
+\begin{itemize}
+\item  $O_*=L, O=U$: If there is enough space to lean left, $O$ will choose to
+    lean left. This violates the construction of $O$.
+\item  $O_*=L, O=R$: Same as above; If there is space to lean left, $O$ will
+    choose to lean left. This violates the construction of $O$.
+\item  $O_*=U, O=L$: Since $O$ and $O_*$ agree upto $i$ and $O$ chooses to lean
+    left, there must be enough space to lean left for $O_*$. This creates a
+        strictly better solution,  which violates the optimality of $O_*$.
+\item $O_*=U, O=R$: Now what? we can't control $O$ based on $O_*$ or vice
+    versa.  We'll return to this case at the end, as it's the most complex.
+\item $O_*=R, O=L$: There must be enough space for $O_*$ to lean $L$. $O_*=R$
+    only limits the space available for the next tree. So we can modify $O_*$
+        to lean left and reach the same optimality.
+\item $O_*=R, O=U$: If it's possible to lean right, then $O$ will choose to do
+    so. This violates the construction of $O$.
+\end{itemize}
+\item $O_*=U, O=R$: This is the complex case.
+    \begin{itemize}
+            \item In this case, let's consider the sequence of trees felled by $O_*$ after $i$.
+            \item Let us suppose that $O_*$ fells many trees rightward,
+                followed by a tree that is felled in the direction $d_*$ (where
+                $d_* \in \{L, U \} \neq R$.  Formally, $O_*[i, i+1, k] = U; R^k; d_*$ for
+                some $d_* \neq R$. (That is, $d_* \equiv O_*[k]$).
+            \item If such a $d_O$ does not exist, then $O$ can
+                mimic what $O_*$ does, since $O$'s decision to move $O[i]$ right does not impact any tree in the future.
+            \item If such a $d_*$ does exist, then let us consider what $d_*$ is.
+            \item If $d_* \equiv O_*[k]$ is $U$, then we can have $O[k] = U$.
+            \item If $d_* \equiv O_*[k]$ is $L$, then we can have $O[k] = U$.
+    \end{itemize}
+\end{itemize}
+
+\section{Codeforces  1175 C: Electrification}
+
+sliding window argument.
+
+I will proof this by a simple contradiction argument Assume that at least one of the N nearest neighbours of x does not belong to a continuous window of size N containing x. Let us assume this nearest neighbour is Aj. Without loss of generality, assume Aj<x (same proof works for Aj>x). As the window is not continuous as per our assumption, there must exist some element Ak between Aj and x which is not a nearest neighbour of x. But distance of Ak from x is clearly less than distance of Aj from x. So if Aj is a nearest neighbour, Ak must also be a nearest neighbour. That contradicts our assumption.
+
+
+
+
+\section{Codeforces 190D: Non-Secret Cypher}
+
+\begin{quote}{Yeputons}
+It's kind of optimization. Consider problem \href{https://codeforces.com/contest/190/problem/D}{190D - Non-Secret Cypher}. The
+stupid solution goes over all subarrays and checks whether it's good or
+not. Now we notice that if subarray is 'good', then all its superarrays is
+'good' too. Let's go over all left borders $1 \leq x \leq N$
+and for each of them find $r_x$. rx is a minimal number such that subarray
+$x \dots  r_x$ is good.  Obviously, all subarrays which starts at $x$ and
+ends after $r_x$ is good.  If you notice that $r_1 \leq r_2 \leq \dots \leq r_N$,
+you can use 'two pointers' method. The first pointer is $x$ and the second one
+is $r_x$. When you move the first one right, the second one
+\emph{can only move right} too. No matter how many operations you perform in one step,
+algo's running time is $O(n)$, because each of pointers makes $\leq N$
+steps.
+\end{quote}
+
+\section{Codeforces 1389C:}
+\begin{itemize}
+\item It's safe to look for a longest satisfying match with DP, and if the
+    match is of odd length, to decrement it to get an even length string.
+\item This would NOT be safe if we had to chop of an arbitrary length $\delta$!
+    \begin{itemize}
+        \item To instill fear, suppose $\delta = 5$,
+            and that on some problem instance, the best string had length $9$, second best had length $7$.
+        \item Since the DP only keeps track of the longest length, we would
+            have tracked $9$, and then subtracted $5$ to report $9-5=4$ which
+            is much less than the real second-optima of $7$.
+    \end{itemize}
+\item The reason this is safe when we chop off length $1$ is because:
+    \begin{itemize}
+            \item We already know that, say, $9$ is the longest string length.
+                There are no longer solutions that can compete. So we can must
+                only worry about shorter solutions
+            \item Amongst the second largest solutions, we must worry about the second largest solution being $8, 7, 6, \dots$.
+            \item Since we only decrement by $1$, our "mutated" largest solutoin will be $8$. This is as large as the 
+                maximum second-largest solution.
+            \item So we do not lost any second-best optima, since we mutate the first best optima to drop by $1$, which makes it
+                the best-in-class second best optima.
+    \end{itemize}
+\end{itemize}
+
+\include{./problems/676c/main.tex}
+\include{./problems/binary-search/main.tex}
+\end{document}

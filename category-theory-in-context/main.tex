@@ -1678,7 +1678,7 @@ the functors $0: \mathbb 1 \rightarrow mathbb 2$, $1: \mathbb 1 \rightarrow \mat
 TODO: what should we prove? I don't think I understand the question.
 
 \question{2.1.ii} Prove that if $F: \cC \rightarrow \cSet$ is representable then it preserves monomorphisms.
-Let $F$ be represented by some $r \in cC$. So we have a natural isomorphism $\eta: F \rightarrow \Hom_C(r, -)$. Suppose
+Let $F$ be represented by some $r \in \cC$. So we have a natural isomorphism $\eta: F \rightarrow \Hom_C(r, -)$. Suppose
 we have a monomorphism $y \xrightarrow{m} z$. So given any other arrows $f, g: x \rightarrow y$, we have that $m \circ f = m \circ g$ implies $f = g$.
 
 \begin{itemize}
@@ -1686,9 +1686,9 @@ we have a monomorphism $y \xrightarrow{m} z$. So given any other arrows $f, g: x
 \item We wish to show that if $\Hom(r, -)(m) \circ \Hom(r, -)(f) = \Hom(r, -)(m) \circ \Hom(r, -)(g)$ then
 $\Hom(r, -)(f) = \Hom(r, -)(g)$.
 \item Simplifying using the definition of the $\Hom$ functor, this asks us to show
-that if $m \circ f \circ - = m \circ g \circ -$ then $f \circ - g = \circ -$.
+that if $m \circ f \circ - = m \circ g \circ -$ then $f \circ - = g \circ -$.
 \item We prove this by applying the desired equality pointwise. 
-\item Suppose that $m \circ f \circ \alpha = m \circ g \circ \alpha$. This can be written as $m \circ (f \circ \alpha) = m \circ (g \circ alpha)$.
+\item Suppose that $m \circ f \circ \alpha = m \circ g \circ \alpha$. This can be written as $m \circ (f \circ \alpha) = m \circ (g \circ \alpha)$.
 \item This implies $f \circ \alpha = g \circ \alpha$ ($m$ is a monomorphism, is left cancellable). So we have that $f \circ \alpha = g \circ \alpha$
 for all $\alpha$, or $f \circ - = g \circ -$.
 \item Since this works for $\Hom$ functors, it works for representables since a representable is naturally isomorphic to $\Hom$, and thus
@@ -1710,8 +1710,8 @@ A derivation proceeds as follows:
 &G \simeq F \circ H^{-1}  \quad (\text{$H$ is equivalence, has an inverse})\\
 &G \simeq \Hom_C(c, -) \circ H^{-1} \quad (\text{$F$ is represented by $c$})\\
 &G \simeq \Hom_C(c, H^{-1}(-)) \quad (\text{Computation: Compose the functors}) \\
-&G \simeq \Hom_C(H(r), H(H^{-1}(-))) \quad (\text{Equivalence preserves hom-sets})\\
-&G \simeq \Hom_C(H(r), -) \quad (H \circ H^{-1} \simeq \id)\\
+&G \simeq \Hom_C(H(c), H(H^{-1}(-))) \quad (\text{Equivalence preserves hom-sets})\\
+&G \simeq \Hom_C(H(c), -) \quad (H \circ H^{-1} \simeq \id)\\
 \end{align*}
 
 So from the above, we find that $G$ is represented by $H(c)$ where $c$ is the representing object for $F$. \qed

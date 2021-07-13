@@ -1,0 +1,70 @@
+\section{1542c: Strange Function}
+
+Let $f(x) \equiv \min \{ d \in [1, 2, \dots]  : d \not \div x \}$. That is, for a given $x$, $f(x)$ is the smallest $d$ such that $d$ doesn't divide $x$.
+In hasell notation, this is
+
+\begin{minted}{hs}
+f :: Int -> Int
+f n = min [ d `div` n /= 0 | d <- [1..]]
+\end{minted}
+
+For example, the values for small $x$ is:
+\begin{itemize}
+\item $f(1) = 2$ since $2$ is the smallest number that does not divide $1$.
+\item $f(2) = 3$ since $1, 2$ both divide $2$ but $3$ does not.
+\item $f(3) = 2$ since $1, 3$ divide $3$, but there is $2 < 3$ which does not divide $3$.
+\end{itemize}
+
+\begin{itemize}
+\item We wish to compute $\sum_{i=1}^n f(i)$ modulo $10^9 + 7$ for $1 \leq n \leq 10^{16}$.
+\item See that since the upper bound is $10^{16}$, it's imposible to solve this in even linear time (in general, we can compute around $10^9$, since we have 1 gigahertz and a sinngle second). 
+\item So we are forced to look for some kind of closed form for $f(x)$.
+\item Once idea is to look at it this way: we are asked to compute an integral, $\int_0^n f(x) dx \sim \sum_{i=0}^n f(i)$. Unfortunately, the Riemann integral is too expensive. So let's
+  try Lebesgue!
+\item For Lebesgue to work, we we need to compute the sum $\sum_{i=0}^n f(i)$
+   as $\sum_{y=0}^Y y \times (f^{-1}(y) \cap [1, 2, \dots n])$.
+\item We need to be sure that the $Y$ is small, and we need a good expression for $(f^{-1}(y) \cap [1, 2, \dots n])$ to be able to solve the problem well.
+$\item Let's analyze what we need for $f(x) = k$. For this to be true, we need  \min \{ d \in [1, 2, \dots]  : d \not \div x \} = k$.
+\item This implies that that $2 \div x, 3 \div x, \dots, (k-1) \div x$, and $k \not \div x$.
+\item So since $(2 \div x) \land (3 \div x) \land \dots (k-1) \div x$, we must have $\lcm(2, 3, \dots, (k-1)) \div x$. Create new notation: $lcm(< k) \equiv \lcm(2, 3, \dots (k-1))$.
+\item Furthermore, this condition is in fact iff: we have that $f(x) = k$ iff $\lcm(< k) \div x$ and $k \not \div x$ by definition chasing.
+\item Now, to relate $k$ and $x$, see that $\lcm(< k) \div x$ implies $\lcm(< k) \leq x$.
+\item we wish to show that we only need to care about small $k$. Since $1 \leq x \leq 10^{16}$, this implies $\lcm(< k) \leq x \leq 10^{16}$, or $\lcm(< k) \leq 10^{16}$.
+\item So if $\lcm(< k)$ grows fairly rapidly, then we only need to consider a few $k$ to cover the $10^{16}$ range. This makes our Lebesgue integration idea feasible.
+\item Let's focus on trying to lower bound $\lcm(< k)$: We wish to show it grows quickly, so a safe over-approximation is to make it go slower.
+    Recall that $\lcm(< k) \equiv \lcm(2, 3, \dots, (k-1))$. This is lower bounded by $\prod_{p \text{prime } \leq k} p$,
+        since the LCM will contain the primes, and maybe prime powers. For example:
+
+\begin{align*}
+&\lcm(1, 2, 3, 4, 5, 6, 7) \\
+&= \lcm(2, 3, 2^2, 5, 2 \times 3, 7) \\
+&= \lcm(3, 2^2, 5, 7)
+&> \lcm(2, 3, 5, 7) = 2 \times 3 \times 5 \times 7$. \\
+\end{align*}
+
+\item We can replace the product of primes with the product $2^{|\{p \text{ prime} \leq k}$, since we replaced each prime $p \geq 2$ in the product, with a slower growing number
+    $2 \leq p$.
+\item So we now have that: 
+
+\begin{align*}
+&\lcm(< k) \\
+&\geq \prod_{p \text{prime } \leq k} p \\
+&\geq 2^{|\{p \text{ prime} \leq k} \\
+&\text{(prime number theorem: number of primes upto $k$ is $k / \log k$:)}\\
+&\geq 2^{k / \log k} \\
+&\geq 2^{k} \\
+\begin{itemize}
+
+\item TODO: what is the precise principle we are using here?
+\item Suppose we are trying to find the first/smallest: $k$ such that $\lcm(< k)$ exceeds $10^{16}$, since that is the largest $x$ value that we have.
+\item If we try this, we want to find $\argmin_k \lcm(< k) \geq 10^{16}$.
+\item A safe over-approximation to this is $\argmin_k 2^k \geq 10^{16}$.
+\item If we now compute the size of the fibers, we find:
+\begin{align*}
+&\argmin_k 2^k \geq 10^{16} \\
+k \geq 16 \log_2 10 \\
+k \geq 64
+\end{align*}
+\item So $f([1..10^{16}] \subseteq [1 \dots k=64]$, hence it is reasonable for us to compute on the fibers.
+\item  Let's try to figure out the value of $f^{-1}(y_0)$.
+\end{itemize}
