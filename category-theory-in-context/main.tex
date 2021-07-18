@@ -14,6 +14,7 @@
 \usepackage{listing}
 \usepackage{minted}
 \usepackage{cancel}
+\usepackage{color}% or xcolor
 \usepackage{quiver}
 \usepackage{booktabs}   %% For formal tables:
                         %% http://ctan.org/pkg/booktabs
@@ -1798,6 +1799,55 @@ functors and natural transformations. Prove directly without using yoneda that $
 \begin{itemize}
 \item foo
 \end{itemize}
+
+\question{2.2.iv Prove the equivalence between the three statements: (i) $f: x \to y$ is an iso, (ii) $f_*: C(-, x) \nt C(-, y)$ is a natural iso, (lower, so we're kicking it forward) 
+(iii) $f^*: C(y, -) \nt C(x, -)$ is a natural iso. (upper, we're pulling it back by the hair)}
+\answer{2.2.iv: (i) implies (ii)}
+\begin{itemize}
+\item We are given an iso $f: x \to y$. We must show that $f_*: C(-, x) \nt C(-, y)$ is a natural iso.
+\item We know that $f_*$ is a natural transformation. We must show that it's an isomorphism.
+\item Let the inverse of $f$ be $g$. We claim that $g_*$ is an inverse to $f_*$. 
+\item We will prove this pointwise. Consider some object $o$. $f_*(o) : C(o, x) \to C(o, y)$ given by $f_*(o)(\alpha) \equiv f \circ \alpha$. Similarly, $g_*(o) : C(o, y) \to C(o, x)$ given by $g_*(o)(\alpha) \equiv g \circ \alpha$.
+\item The composition of these two components is $g_*(f_*(\alpha)) = g_*(f \circ \alpha) = g \circ f \circ \alpha = id \circ \alpha = \alpha$.
+\item Similarly for the other direction $f_*(g_*(\alpha)) = \alpha$.
+\item This establishes that if $f: x \to y$ is an iso then $f_*$ is a natural iso.
+\end{itemize}
+\answer{2.2.iv: (ii) implies (i)}
+\begin{itemize}
+\item Given a natural iso $f_*: C(-, x) \to C(-, y)$ we wish to recover the isomorphism $f: x \to y$.
+\item evaluate the component of $f_*$ at $x$, which will be an iso. We have $f_*(x): C(x, x) \to C(x, y)$.
+\item Since $1_x \in C(x, x)$ we have $f \equiv f_*(x)(1_x) \in C(x, y)$. We claim that this arrow $f$ is an iso.
+\item Since $f_*$ is iso, it has an inverse $f^{-1}_*: C(-, y) \to C(-, x)$.
+\item  We consider the component of the inverse at $y$, giving us
+      $f^{-1}_*(x): C(y, y) \to C(y, x)$.
+\item Define $\beta \equiv f^{-1}_*(y)(1_y) \in C(y, x)$. We claim $\beta$ is the inverse of $f$.
+
+% https://q.uiver.app/?q=WzAsMTAsWzAsMiwiMV94IFxcaW4gQyhcXHRleHRjb2xvcntncmVlbn17eH0sIHgpIl0sWzIsMiwiZl8qKFxcdGV4dGNvbG9ye2dyZWVufXgpKDFfeCkgXFxpbiBDKFxcdGV4dGNvbG9ye2dyZWVufSB4LCB5KSJdLFswLDAsIkMoLSwgeCkiXSxbMiwwLCJDKC0sIHkpIl0sWzIsNCwiMV95IFxcaW4gQyhcXHRleHRjb2xvcntyZWR9IHksIHkpIl0sWzAsNCwiZl8qXnstMX0oXFx0ZXh0Y29sb3J7cmVkfXkpKDFfeSkgXFxpbiBDKFxcdGV4dGNvbG9ye3JlZH15LCB4KSJdLFswLDUsIjFfeCBcXGluIEMoXFx0ZXh0Y29sb3J7Z3JlZW59IHgsIHgpIl0sWzIsNSwiZl8qKFxcdGV4dGNvbG9ye2dyZWVufSB4KSgxX3gpIFxcaW4gQyhcXHRleHRjb2xvcntncmVlbn0geCwgeSkiXSxbMiw3LCIxX3kgXFxpbiBDKFxcdGV4dGNvbG9ye3JlZH0geSwgeSkiXSxbMCw3LCJmXypeey0xfShcXHRleHRjb2xvcntyZWR9IHkpKDFfeSkgXFxpbiBDKFxcdGV4dGNvbG9ye3JlZH0geSwgeCkiXSxbMCwxLCJmXyooXFx0ZXh0Y29sb3J7Z3JlZW59IHgpIl0sWzIsMywiZl8qIl0sWzQsNSwiZl8qXnstMX0oXFx0ZXh0Y29sb3J7cmVkfSB5KSIsMl0sWzEsNCwiPyIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFswLDUsIj8iLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbOCw5LCJmXypeey0xfShcXHRleHRjb2xvcntyZWR9IHkpIiwxXSxbNiw3LCJmXyooXFx0ZXh0Y29sb3J7Z3JlZW59IHgpIiwxXSxbNyw4LCJDKC0sIHkpKGZfKl57LTF9KFxcdGV4dGNvbG9ye3JlZH0geSkoMV95KSkiLDFdLFs5LDYsIkMoLSwgeCkoZl8qKFxcdGV4dGNvbG9ye2dyZWVufSB4KSgxX3gpKSAiLDFdXQ==
+\[\begin{tikzcd}
+	{C(-, x)} && {C(-, y)} \\
+	\\
+	{1_x \in C(\textcolor{green}{x}, x)} && {f_*(\textcolor{green}x)(1_x) \in C(\textcolor{green} x, y)} \\
+	\\
+	{f_*^{-1}(\textcolor{red}y)(1_y) \in C(\textcolor{red}y, x)} && {1_y \in C(\textcolor{red} y, y)} \\
+	{1_x \in C(\textcolor{green} x, x)} && {f_*(\textcolor{green} x)(1_x) \in C(\textcolor{green} x, y)} \\
+	\\
+	{f_*^{-1}(\textcolor{red} y)(1_y) \in C(\textcolor{red} y, x)} && {1_y \in C(\textcolor{red} y, y)}
+	\arrow["{f_*(\textcolor{green} x)}", from=3-1, to=3-3]
+	\arrow["{f_*}", from=1-1, to=1-3]
+	\arrow["{f_*^{-1}(\textcolor{red} y)}"', from=5-3, to=5-1]
+	\arrow["{?}"{description}, dashed, from=3-3, to=5-3]
+	\arrow["{?}"{description}, dashed, from=3-1, to=5-1]
+	\arrow["{f_*^{-1}(\textcolor{red} y)}"{description}, from=8-3, to=8-1]
+	\arrow["{f_*(\textcolor{green} x)}"{description}, from=6-1, to=6-3]
+	\arrow["{C(-, y)(f_*^{-1}(\textcolor{red} y)(1_y))}"{description}, from=6-3, to=8-3]
+	\arrow["{C(-, x)(f_*(\textcolor{green} x)(1_x)) }"{description}, from=8-1, to=6-1]
+\end{tikzcd}\]
+
+\item Stare at the above diagram till you believe that it establishes the fact that these are inverses.
+
+\end{itemize}
+\answer{2.2.iv: (i) equivalent to (iii)}
+The same arguments as above follow, mutatis mutandis, to account for the change in variance \qed.
 
 \question{2.2.vi Do there exist families of continuous maps $\{ X \to X : X \in \cTop \}$ where not all maps are identities,
 and are natural in all maps in $\cTop$?}
