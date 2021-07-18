@@ -69,16 +69,14 @@
 \newcommand{\cCat}{\cat{Cat}}
 \newcommand{\cset}{\cat{Set}}
 \newcommand{\cSet}{\cat{Set}}
-
+\newcommand{\cTop}{\cat{Top}}
+\newcommand{\ctop}{\cat{Top}}
 \newcommand{\cgrp}{\cat{Grp}}
 \newcommand{\cGrp}{\cat{Grp}}
 
 \newcommand{\subcat}[2]{\bm{ \mathsf{#1}}_{\bm{ \mathsf{#2}}}}
-\renewcommand{\op}[1]{#1^{\text{op}}}
+\renewcommand{\op}{\text{op}}
 \newcommand{\inv}[1]{#1^{-1}}
-\newcommand{\opc}{\op{\cc}}
-\newcommand{\opd}{\op{\dd}}
-\newcommand{\ope}{\op{\ee}}
 \newcommand{\mono}{\rightarrowtail}
 \newcommand{\epi}{\twoheadrightarrow}
 \newcommand{\bg}{\cat{BG}}
@@ -93,6 +91,7 @@
 \newcommand{\two}{\mathbbm{2}}
 \newcommand{\three}{\mathbbm{3}}
 \newcommand{\id}{\operatorname{id}}
+\newcommand{\Id}{\operatorname{id}}
 
 
 
@@ -353,9 +352,9 @@ Now the image of the functor only has the arrows $k, l$, but not the composite $
 \question{Exercise 1.3.iv} Very that the Hom-set construction is functorial.
 
 
-\question{Exercise 1.3.v} What is the difference between a functor $F: C^{op} \rightarrow D$ and a functor $F: C \rightarrow D^{op}$?
+\question{Exercise 1.3.v} What is the difference between a functor $F: C^\op \rightarrow D$ and a functor $F: C \rightarrow D^\op$?
 
-\proof{} There is no difference. The functor $C^{op} \rightarrow D$ looks like:
+\proof{} There is no difference. The functor $C^\op \rightarrow D$ looks like:
 % https://q.uiver.app/?q=WzAsNixbMSwwLCJiIl0sWzEsMSwiYSJdLFsyLDAsIkZhIl0sWzIsMSwiRmIiXSxbMCwwLCJhIl0sWzAsMSwiYiJdLFswLDJdLFsxLDNdLFswLDEsImZfe29wfSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6InNxdWlnZ2x5In19fV0sWzIsMywiRmZfe29wfSJdLFs0LDUsImYiLDJdXQ==
 \[\begin{tikzcd}
 	a & b & Fa \\
@@ -1724,30 +1723,112 @@ and $H$ for $H^{-1}$ throughout. \qed
 \start{Answer}
 $F$ is a subfunctor of $G$ iff there is a natural transformation $\alpha: F \nt G$ whose components are mono (that is, each of the
 arrows $\alpha \bullet : F \bullet \rightarrow G \bullet$ is a monomorphism). 
-Let $G: \op C \to \cSet$  be a functor, and let $F: \op C \to \cSet$ be a subfunctor of $G$. A natural transformatino
+Let $G: C^\op \to \cSet$  be a functor, and let $F: C^\op \to \cSet$ be a subfunctor of $G$. A natural transformatino
 $\alpha : F \rightarrow G$ will have as components monic arrows $F \bullet \rightarrow G \bullet \in \cSet$. So we get a subsets
 $F \bullet$ of $G \bullet$.
 
 
 Let $F$ be a subfunctor of $\Hom_C(r, -)$ ($r$ for representable).
 So, we have a natural transformation $\eta: F \nt \Hom_C(r, -)$ such that each
-of the components $F x \rightarrow \Hom_C(r, x)$ is a monomorphism / set embedding. This means
-that we can draw a diagram:
+of the components $F x \rightarrow \Hom_C(r, x)$ is a monomorphism / set embedding.
+So TODO: Follow what topos told me, and think of this as a sieve.
 
-% https://q.uiver.app/?q=WzAsNSxbMCwwLCJoIFxcaW4gRngiXSxbMiwwLCJGeSJdLFswLDIsIkhvbV9DKHIsIHgpIl0sWzIsMiwiSG9tX0MociwgeSkiXSxbMSwxLCJGX2YoaCkgPSBmIFxcY2lyYyBoIl0sWzAsMSwiRl9mIl0sWzAsMiwiXFxzdWJzZXQiLDJdLFsyLDMsIlxcbGFtYmRhIFxcYWxwaGEgXFxtYXBzdG8gZiBcXGNpcmMgXFxhbHBoYSIsMl0sWzEsMywiXFxzdWJzZXQiXV0=
+\section{The Yoneda Lemma}
+
+\subsection{Exercises}
+
+\question{2.2.i}
+Characterize natural transformations $C(c, -) \nt F$ for contravariant $F: C^{\op} \to \cSet$.
+
+\start{Answer}
+
+\begin{itemize}
+\item Following Yoneda, we suspect that such natural transformations $\eta: C(-, c) \nt F$
+are in bijection with elements of the set $F(c)$.
+\item To prove this, consider a natural transformation $eta: C(-, c) \nt F$.
+\item Consider the component $\eta_c: C(c, c) \to Fc$.
+\item Since $1_c \in C(c, c)$, we have $\eta_c(1_c \in C(c, c)) \in Fc$. 
+\item We claim that the free choice of the image of $\eta_c(1_c)$ (in $Fc$) 
+      determines the action of $\eta$ everywhere. So given the functor $F$ and the value
+      of $\eta_c(1_c)$, we can define $\eta_o$ for all objects $o \in C$ (including $o = c$ at other values than $1_c$)
+\item Consider some object $o \in C$. We wish to determine the action $\eta_o: C(o, c) \to F o$.
+\item Let $o2c \in C(o, c)$. Let's determine the value of $\eta_o(o2c) \in Fo$. If we do this for arbitrary $o2c$,
+      then we have determined $\eta_o$.
+\item This is both an element of the set $C(o, c)$, and a morphism
+      $C(o, c) \xrightarrow{C(-, c)(o2c) \equiv \lambda c2c. c2c \circ o2c } C(o, c)$.
+\item We draw a commutative square and deduce the value of $\eta_o(o2c)$ for arbitrary $o \in C$, arbitrary $o2c \in C(o, c)$.
+ 
+
+% https://q.uiver.app/?q=WzAsMTMsWzAsMSwiQyhvLCBjKSJdLFsyLDEsIkZvIl0sWzAsMiwibzJjIFxcaW4gQyhvLCBjKSJdLFsyLDIsIkZvIl0sWzAsMywiMV9jIFxcaW4gQyhjLCBjKSJdLFsyLDMsIihvMmMoMV9jKSA9IDFfYyBcXGNpcmMgbzJjID0gbzJjKSBcXGluIEMobywgYykgIl0sWzIsNywiRm8iXSxbMCw3LCIoXFxldGFfYygxX2MpIFxcZXF1aXYgXFx0ZXh0e2ZyZWV9IClcXGluICBGYyJdLFsxLDQsIiBGKG8yYykoXFxldGFfYygxX2MpKSA9IFxcZXRhX28obzJjKSJdLFsxLDUsIlxcdGV4dHtVc2UgYXMgZGVmbiBvZiB9IFxcZXRhX28obzJjKSJdLFsxLDYsIlxcZXRhX28obzJjKSBcXGVxdWl2IEYobzJjKShcXGV0YV9jKDFfYykpIl0sWzAsMCwibyJdLFsyLDAsImMiXSxbMCwxLCJcXGV0YV9vIFxcZXF1aXYgPyJdLFsyLDMsIlxcZXRhX28gXFxlcXVpdiA/Il0sWzQsNSwiQygtLCBjKShvMmMpIFxcZXF1aXYgXFxsYW1iZGEgYzJjIFxcbWFwc3RvICBjMmMgXFxjaXJjIG8yYyJdLFs1LDYsIlxcZXRhX28iXSxbNCw3LCJcXGV0YV9jIl0sWzcsNiwiRihvMmMpIFxcZXF1aXYgXFx0ZXh0e2dpdmVufSIsMl0sWzExLDEyLCJvMmMgXFxpbiBDKG8sIGMpIiwxXV0=
 \[\begin{tikzcd}
-	{h \in Fx} && Fy \\
-	& {F_f(h) = f \circ h} \\
-	{Hom_C(r, x)} && {Hom_C(r, y)}
-	\arrow["{F_f}", from=1-1, to=1-3]
-	\arrow["\subset"', from=1-1, to=3-1]
-	\arrow["{\lambda \alpha \mapsto f \circ \alpha}"', from=3-1, to=3-3]
-	\arrow["\subset", from=1-3, to=3-3]
+	o && c \\
+	{C(o, c)} && Fo \\
+	{o2c \in C(o, c)} && Fo \\
+	{1_c \in C(c, c)} && {(o2c(1_c) = 1_c \circ o2c = o2c) \in C(o, c) } \\
+	& { F(o2c)(\eta_c(1_c)) = \eta_o(o2c)} \\
+	& {\text{Use as defn of } \eta_o(o2c)} \\
+	& {\eta_o(o2c) \equiv F(o2c)(\eta_c(1_c))} \\
+	{(\eta_c(1_c) \equiv \text{free} )\in  Fc} && Fo
+	\arrow["{\eta_o \equiv ?}", from=2-1, to=2-3]
+	\arrow["{\eta_o \equiv ?}", from=3-1, to=3-3]
+	\arrow["{C(-, c)(o2c) \equiv \lambda c2c \mapsto  c2c \circ o2c}", from=4-1, to=4-3]
+	\arrow["{\eta_o}", from=4-3, to=8-3]
+	\arrow["{\eta_c}", from=4-1, to=8-1]
+	\arrow["{F(o2c) \equiv \text{given}}"', from=8-1, to=8-3]
+	\arrow["{o2c \in C(o, c)}"{description}, from=1-1, to=1-3]
 \end{tikzcd}\]
 
 
-which implies that $F_f(h) = (\lambda \alpha . f \circ \alpha)(h) = f \circ h$
+\item See that this deduced value is in terms of $\eta_c(1_c)$ [which is freely chosen] and $F(o2c)$ which is given.
+\item Thus, the value of $\eta$ is determined everywhere else.
+\end{itemize}
 
+\question{2.2.ii Explain why Yoneda does not dualize to classify natural transformations from an
+arbitrary set valued functor $F: C \to cSet$to a represented functor $\Hom(c, -)$}
+\begin{itemize}
+\item Suppose such a thing were possible. Then we would have a natural isomorphism between 
+    natural transformations $\eta: F \nt Hom(c, -)$ and elements of the set $Fc$.
+\item However, see that in the equation $Fc$, $F$ and $c$ are covariant, while in the equation $\eta_x : F x \to Hom(c, x)$,
+      $F$ and $c$ are contravariant.
+\item Hence, the variances do not align. 
+\end{itemize}
 
+\question{2.2.iii Describe the yoneda embedding $y: \omega \to \cSet^{\omega^\op}$ as a family of $\omega^\op$ indexed
+functors and natural transformations. Prove directly without using yoneda that $y$ is full and faithful}
+\begin{itemize}
+\item foo
+\end{itemize}
 
+\question{2.2.vi Do there exist families of continuous maps $\{ X \to X : X \in \cTop \}$ where not all maps are identities,
+and are natural in all maps in $\cTop$?}
+\begin{itemize}
+\item I claim that such a family of maps don't exist.
+\item Suppose they do for contradiction.
+\item See that such a family of maps is a natural transformation from the identity functor to itself. So we have a
+      non-trivial $\eta: \Id_\ctop \nt \Id_\ctop$.
+\item Forget the topological structure to land in $\cset$. This leaves us with a $\eta: \Id_\cset \nt \Id_\cset$ whose
+      components $\eta_x$ are not all identity arrows (in $\cset$).
+\item Recall that the identity functor $\Id_\cset$ is representable, and is represented by the single element set.
+     So $\Id_\cset \simeq \Hom(\{*\}, -)$.
+\item Substituting we have that  $\eta \equiv \Id_\cset \simeq \Hom(\{*\}, -) \nt \Id_\cset$. 
+\item By yoneda, we have that $\Hom(\{*\}, -) \nt \Id_\cset \simeq \Id_\cset(\{*\}) \equiv \{*\}$
+\item We already have one choice of $\eta$, the identity natural transformation. This must be the only one possible,
+      since we have a set of cardinality 1 ($\{ * \}$) which classifies $\eta$s. 
+\item Thus, we have a contradiction, which is the existence of another non-trivial $\eta$. \qed.
+\end{itemize}
+
+\question{2.2.vii Use Yoneda to connect homeomorphisms of the standard unit interval to automorphisms of the path functor 
+  $P: \ctop \to \cset$}
+\begin{itemize}
+\item Path functor is represented by the unit interval $[0, 1]$.
+\item Natural transformations from $P$ to itself (ie, natural automorphisms of $P$) 
+      is the same as natural transformations from $\Hom([0, 1], -)$ to $P$.
+\item Yoneda: $\Hom([0, 1], -) \nt P$ is in bijection with $P([0, 1]) \simeq \Hom([0, 1], [0, 1])$. 
+\item The RHS is continuous maps from $[0, 1]$ to itself. If we want invertibility (as we do on the LHS for automorphisms),
+      we get homeomorphisms on the RHS.
+\item To make this precise: isos preserve isos. The natural isomorphism given by Yoneda must preseve isos on both
+      sides of the equation.
+\item This establishes a mapping between natural automorphisms of the path functor and homemorphisms of the unit
+      interval to itself. \qed
+\end{itemize}
 \end{document}
