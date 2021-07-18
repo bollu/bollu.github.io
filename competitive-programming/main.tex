@@ -238,6 +238,19 @@ Let $m = 2p + j$. $p$ is fixed by the summation, so we have $j = m-2p$.
 \end{align*}
 
 
-So the solution is $f(m, p) \equiv \binom{m-p}{p}$
+So the solution is $f(m, p) \equiv \binom{m-p}{p}$.
+
+We have a $1 \times n$ chessboard and $p$ $1x2$ tiles. So treat the $p$ tiles as one kind of object and then $(n-2p)$ spaces
+as another kind of object. How many arrangements of these are there? ($(p + n - 2p)!/p!(n-2p)! = \binom{n-p}{p}$).
+
+In the combinatorial interpretation, we shrink the $1\times 2$ tiles also into $1 \times 1$ tiles.
+This causes us to lose $p$ spaces. Out of these $(n-p)$ leftover locations, we choose $p$ locations
+for the tiles.
+
+\section{Codeforces  ?: Minimise sum of absolute differences while preserving total}
+
+Given a number $S$ create an array of non-negative ($\geq 0$) integers $a[i]$ of size $n$ such that $\sum_{0 \leq i < n} a[i] = S$, 
+which minimises $\delta \equiv \sum_{i > j} | a[i] - a[j]|$.
+
 \end{document}
 
