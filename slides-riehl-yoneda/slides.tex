@@ -78,62 +78,63 @@
 \end{frame}
 
 \begin{frame}[fragile]{The proof (1) (natural transformations $\eta: Hom(a, -) \nt F$ have an element of $F(a)$)}
-\begin{columns}
-\begin{column}{0.4\textwidth}
-    \begin{itemize}
-    \item Given the element $a \in C$, functor $F: C \to \cSet$,
-           natural transformation $\eta: Hom(a, -) \nt F$, we must produce an element of $F(a)$.
-    \item Idea: see that $id_a \in Hom(a, a)$.
-    \item See that the natural transformation at point $a$ is $\eta_a: Hom(a, a) \nt F a$.
-    \item Combine the two, apply $\eta_a(id_a) : F a$.
-    \end{itemize}
-\end{column}
-\begin{column}{0.6\textwidth}
 \begin{minted}{hs}
-  type Hom a b = a -> b
-  type Reader a = Hom a
-  type Nat f g = forall x. f x -> g x
+type Hom a b = a -> b
+type Reader a = Hom a
+type Nat f g = forall x. f x -> g x
 
-  yoFwd :: Nat (Hom a) f -> f a
-  yoFwd :: (forall x. (Hom a x) -> f x) -> f a
-  yoFwd :: (forall x. (a -> x) -> f x) -> f a
-  yoFwd ak = ak (id :: a -> a)
+yoFwd :: Nat (Hom a) f -> f a
+yoFwd :: (forall x. (Hom a x) -> f x) -> f a
+yoFwd :: (forall x. (a -> x) -> f x) -> f a
+yoFwd ak = (ak @ a) (id @ a:: a -> a) :: f a
+-- ak @ a :: (a -> a) -> f a; id @ a :: a -> a
 
-  yoBwd :: f a -> Nat (Hom a) f
+yoBwd :: f a -> Nat (Hom a) f
 \end{minted}
-\end{column}
-\end{columns}
+
+\begin{itemize}
+\item Given the element $a \in C$, functor $F: C \to \cSet$,
+       natural transformation $\eta: Hom(a, -) \nt F$, we must produce an element of $F(a)$. \pause
+\item Idea: see that $id_a \in Hom(a, a)$. \pause
+\item See that the natural transformation at point $a$ is $\eta_a: Hom(a, a) \nt F a$. \pause
+\item Combine the two, apply $\eta_a(id_a) : F a$. \pause
+\end{itemize}
+
+
 \end{frame}
 
+
 \begin{frame}[fragile]{The proof (2) (an element $x \in F(a)$ creates a natural transformation $\eta_a: Hom(a, -) \nt F$)}
-\begin{columns}
-\begin{column}{0.4\textwidth}
-    \begin{itemize}
-    \item Given the element $a \in C$, functor $F: C \to \cSet$,
-            an element $x \in F(a)$, we must produce a natural transformation $\eta_x: Hom(a, -) \nt F$
-    \item Let's try to mimic the haskell proof. 
-    \item We define the natural transformation component-wise. At each $fa \in F(a)$, let's define  
-    \end{itemize}
-\end{column}
-\begin{column}{0.6\textwidth}
+
+\begin{adjustwidth}{-3em}{-3em}
+
 \begin{minted}{hs}
-  type Hom a b = a -> b
-  type Reader a = Hom a
-  type Nat f g = forall x. f x -> g x
 
-  yoFwd :: Nat (Hom a) f -> f a
-  yoFwd :: (forall x. (Hom a x) -> f x) -> f a
-  yoFwd :: (forall x. (a -> x) -> f x) -> f a
-  yoFwd ak = ak (id :: a -> a)
+type Hom a b = a -> b; type Reader a = Hom a; type Nat f g = forall x. f x -> g x
 
-  yoBwd :: f a -> Nat (Hom a) f
-  yoBwd :: f a -> (forall x. (a -> x) -> f x)
-  yoBwd :: forall x. f a -> (a -> x) -> f x
-  yoBwd :: f a -> (a -> x) -> f x
-  yoBwd fa aUser = fmap aUser fa
+yoBwd :: f a -> Nat (Hom a) f
+yoBwd :: f a -> (forall x. (a -> x) -> f x)
+yoBwd :: forall x. f a -> (a -> x) -> f x
+yoBwd :: f a -> (a -> x) -> f x
+yoBwd fa aUser = (fmap @ f) aUser fa
+
+yoFwd :: Nat (Hom a) f -> f a
+yoFwd ak = (ak @ a) (id @ a:: a -> a) :: f a
+
 \end{minted}
-\end{column}
-\end{columns}
+
+\begin{itemize}
+\item Given the element $a \in C$, functor $F: C \to \cSet$,
+        an element $fa \in F(a)$, we must produce a natural transformation $\eta_{fa}: Hom(a, -) \nt F$. \pause
+\item For each $fa \in F(a)$, let's define the natural transformation $\eta_{fa}: Hom(a, -) \nt F -$. \pause
+\item Define it component-wise. For each $x \in C$, consider $\eta_{fa}(x): Hom(a, -)(x) \nt F(x)$. \pause
+\item Take an arrow $a \xrightarrow{aUser} x \in Hom(a, -)(x)$. \pause
+\item Send it to $F(a) \xrightarrow{F(aUser)} F(x)$. \pause
+\item Apply it on $fa \in F(a)$, giving $F(aUser)(fa) \in F(x)$.\pause
+\item Success! elements $fa \in F(a)$ are natural transformations $\eta_{fa}$ defined componentwise. \pause
+\item Naturality? \pause
+\end{itemize}
+\end{adjustwidth}
 \end{frame}
 
 \begin{frame}[fragile]{Proof from the book}
