@@ -228,4 +228,57 @@ yoFwd ak = (ak @ a) (id @ a:: a -> a) :: f a
 \end{adjustwidth}
 \end{frame}
 
+\begin{frame}[fragile]{Naturality in the functor}
+
+    Given a natural transformation $\eta: F \nt G$, we wish to show the diagram commutes:
+
+\begin{adjustwidth}{-3em}{-3em}
+
+    % https://q.uiver.app/?q=WzAsMTAsWzAsMCwiSG9tKEMoYSwgLSksIEYpIl0sWzQsMCwiRmEiXSxbNCw0LCJHYSJdLFswLDQsIkhvbShDKGEsIC0pLCBHKSJdLFsxLDEsIlxcYWxwaGE6SG9tKGEsIC0pIFxcUmlnaHRhcnJvdyBGIl0sWzMsMSwiXFxhbHBoYV9hKGlkX2EpIl0sWzEsMywiXFxldGEgXFxjaXJjIFxcYWxwaGEiXSxbMywyLCJcXGV0YV9hKFxcYWxwaGFfYShpZF9hKSkiXSxbMiwzLCIoXFxldGEgXFxjaXJjIFxcYWxwaGEpKGEpKGlkX2EpIl0sWzMsMywiXFxldGFfYSAoXFxhbHBoYV9hKGlkX2EpKSJdLFsxLDIsIlxcZXRhX2E6IEZhIFxcUmlnaHRhcnJvdyBHYSJdLFswLDEsIlxcdGV4dHR0e1lvfShGKSJdLFszLDIsIlxcdGV4dHR0e1lvfShHKSIsMl0sWzAsMywiXFxldGFfKiBcXGVxdWl2IFxcbGFtYmRhIFxcZ2FtbWEuXFxldGEgXFxjaXJjIFxcZ2FtbWEgIiwyXSxbNCw1LCJcXHRleHR0dHtZb30iLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzQsNiwiXFxldGFfKihcXGFscGhhKSIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbNSw3LCJcXGV0YV9hIiwyXSxbNiw4LCJcXHRleHR0dHtZb30iLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzcsOSwiIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZG90dGVkIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbOCw5LCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkb3R0ZWQifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+\[\begin{tikzcd}
+	{Hom(C(a, -), F)} &&&& Fa \\
+	& {\alpha:Hom(a, -) \Rightarrow F} && {\alpha_a(id_a)} \\
+	&&& {\eta_a(\alpha_a(id_a))} \\
+	& {\eta \circ \alpha} & {(\eta \circ \alpha)(a)(id_a)} & {\eta_a (\alpha_a(id_a))} \\
+	{Hom(C(a, -), G)} &&&& Ga
+	\arrow["{\eta_a: Fa \Rightarrow Ga}", from=1-5, to=5-5]
+	\arrow["{\texttt{Yo}(F)}", from=1-1, to=1-5]
+	\arrow["{\texttt{Yo}(G)}"', from=5-1, to=5-5]
+	\arrow["{\eta_* \equiv \lambda \gamma.\eta \circ \gamma }"', from=1-1, to=5-1]
+	\arrow["{\texttt{Yo}}"', maps to, from=2-2, to=2-4]
+	\arrow["{\eta_*(\alpha)}"', maps to, from=2-2, to=4-2]
+	\arrow["{\eta_a}"', from=2-4, to=3-4]
+	\arrow["{\texttt{Yo}}"', maps to, from=4-2, to=4-3]
+	\arrow[dotted, no head, from=3-4, to=4-4]
+	\arrow[dotted, no head, from=4-3, to=4-4]
+\end{tikzcd}\]
+\end{adjustwidth}
+\end{frame}
+
+\begin{frame}[fragile]{Naturality in the object}
+    Given an arrow $a \xrightarrow{f} b$, in $C$, we wish to show that this diagram commutes:
+\begin{adjustwidth}{-3em}{-3em}
+
+    % https://q.uiver.app/?q=WzAsMTAsWzAsMCwiSG9tKEMoYSwgLSksIEYpIl0sWzMsMCwiRmEiXSxbMCw1LCJIb20oQyhiLCAtKSwgRikiXSxbMyw1LCJGYiJdLFsxLDEsIlxcYWxwaGE6QyhhLCAtKSBcXFJpZ2h0YXJyb3cgRiJdLFsyLDEsIlxcYWxwaGFfYShpZF9hKSJdLFsyLDIsIihGZikoXFxhbHBoYV9hKGlkX2EpKSJdLFsxLDQsIlxcbGFtYmRhIGIyeC4gXFxhbHBoYV94KGIyeCBcXGNpcmMgZikiXSxbMiw0LCJcXGFscGhhX2EoaWRfYSBcXGNpcmMgZikiXSxbMiwzLCJcXGFscGhhX2EoQyhhLC0pKGYpKGlkX2EpKSJdLFswLDEsIlxcdGV4dHR0e1lvfSJdLFswLDIsIlxcbGFtYmRhIFxcZXRhLiBcXGxhbWJkYSBiMnguIFxcZXRhX3goYjJ4IFxcY2lyYyBmKSIsMl0sWzEsMywiRmYiXSxbMiwzLCJcXHRleHR0dHtZb30iLDJdLFs0LDUsIlxcdGV4dHR0e1lvfSIsMl0sWzUsNiwiRmYiLDJdLFs0LDddLFs3LDgsIlxcdGV4dHR0e1lvfSJdLFs4LDldLFs2LDksIlxcdGV4dHR0e25hdHVyYWxpdHl9IiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
+\[\begin{tikzcd}
+	{Hom(C(a, -), F)} &&& Fa \\
+	& {\alpha:C(a, -) \Rightarrow F} & {\alpha_a(id_a)} \\
+	&& {(Ff)(\alpha_a(id_a))} \\
+	&& {\alpha_a(C(a,-)(f)(id_a))} \\
+	& {\lambda b2x. \alpha_x(b2x \circ f)} & {\alpha_a(id_a \circ f)} \\
+	{Hom(C(b, -), F)} &&& Fb
+	\arrow["{\texttt{Yo}}", from=1-1, to=1-4]
+	\arrow["{\lambda \eta. \lambda b2x. \eta_x(b2x \circ f)}"', from=1-1, to=6-1]
+	\arrow["Ff", from=1-4, to=6-4]
+	\arrow["{\texttt{Yo}}"', from=6-1, to=6-4]
+	\arrow["{\texttt{Yo}}"', from=2-2, to=2-3]
+	\arrow["Ff"', from=2-3, to=3-3]
+	\arrow[from=2-2, to=5-2]
+	\arrow["{\texttt{Yo}}", from=5-2, to=5-3]
+	\arrow[from=5-3, to=4-3]
+	\arrow["{\texttt{naturality}}"', dashed, no head, from=3-3, to=4-3]
+\end{tikzcd}\]
+\end{adjustwidth}
+\end{frame}
+
 \end{document}
