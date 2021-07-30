@@ -1,4 +1,4 @@
-<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='alternate' type='application/rss+xml' href='feed.rss' title='A universe of sorts'/><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Sans'; src: url('/static/Exo2-Regular.ttf');}@font-face {font-family: 'Blog Serif'; src: url('/static/Revans-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background: linear-gradient(to right, #1565C0 1%, #EFEFEF 1%, #EFEFEF 99%, #E91E63 99%);  color: #000000;  font-family: 'Blog Serif', sans-serif;  font-size: 18px; line-height: 1.4em;  margin-top: 0px;  max-width: 100%; overflow-x: hidden; }
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='alternate' type='application/rss+xml' href='feed.rss' title='A universe of sorts'/><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Sans'; src: url('/static/Exo2-Regular.ttf');}@font-face {font-family: 'Blog Serif'; src: url('/static/Revans-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background: linear-gradient(to right, #1565C0 1%, #FFF4DD 1%, #FFF4DD 99%, #E91E63 99%);  color: #000000;  font-family: 'Blog Serif', sans-serif;  font-size: 18px; line-height: 1.4em;  margin-top: 0px;  max-width: 100%; overflow-x: hidden; }
 h1, h2, h3, h4, h5 { font-family: 'Blog Sans' }img { display:block; width: 100%; max-width: 800px; height: auto }.container { overflow-x: auto; overflow-y: hidden;  max-width: 80ex; text-align: justify;              margin-top: 0px; height: 100%; min-height: 100%;             padding-left: 50px; padding-right: 50px; background: #FFFFFF;}@media (max-width: 480px) {   .container { margin-left: 1%; margin-right: 1%; }  body { font-size: 30px; }  } @media (max-width: 1024px) {  .container { margin-left: 1%; margin-right: 1%; }  body { font-size: 30px; }}@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: 20%; } }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
@@ -149,6 +149,105 @@ consCol = uncurry (zipWith (:))
  <span class='centered'>The idea is that: 
  <ul><li><span class='centered'><span class='centered'> we recreate the entire matrix from the last column using  <code class='inline'>recreate</code><span class='centered'>and take the  <code class='inline'>k</code>th element. </li></ul> 
  <ul><li><span class='centered'><span class='centered'>  <code class='inline'>recreate</code> apprents a copy of the initial last column to a matrix of <span class='centered'>columns, and then sorts this. </li></ul> 
+ <h4><a id=alternate-explanation-of-why-this-is-invertible href='#alternate-explanation-of-why-this-is-invertible'> § </a><span class='centered'> Alternate explanation of why this is invertible. </h4> 
+ <span class='centered'>Consider the string  <code class='inline'>banana</code> and its cyclic permutations:  
+ <pre><code>banana$
+$banana
+a$banan
+na$bana
+ana$ban
+nana$ba
+anana$b
+</code></pre> 
+ <span class='centered'>Then sorted (where  <code class='inline'>$</code> is considered smallest letter):  
+ <pre><code>$banan|a|
+a$bana|n|
+ana$ba|n|
+anana$|b|
+banana|$|
+na$ban|a|
+nana$b|a|
+</code></pre> 
+ <span class='centered'>The BWT will be  <code class='inline'>annb$aa</code>. Notice that we also know the FIRST column of the BWT table, 
+ <span class='centered'>since it's just the string with its letters sorted! So given the last column, we really know:  
+ <pre><code>|$|?????|a|
+|a|?????|n|
+|a|?????|n|
+|a|?????|b|
+|b|?????|$|
+|n|?????|a|
+|n|?????|a|
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'> This means we know all "2-mers" of our string, which are:  <code class='inline'>a$</code>,  <code class='inline'>na</code>,  <code class='inline'>na</code>,  <code class='inline'>ba</code>,  <code class='inline'>$b</code>,  <code class='inline'>an</code>,  <code class='inline'>an</code>. </li><li><span class='centered'><span class='centered'> If we sort these, then we get the first two letters of our BWT matrix! That is, the sorted 2-mers: </li></ul> 
+ <pre><code>$b
+a$
+an
+an
+ba
+na
+na
+</code></pre> 
+ <span class='centered'>However, we see that we also know the last column of the BWT matrix, so now we know:  
+ <pre><code>|$b|????|a|
+|a$|????|n|
+|an|????|n|
+|an|????|b|
+|ba|????|$|
+|na|????|a|
+|na|????|a|
+</code></pre> 
+ <span class='centered'>We now know 3-mers! Sort again, find 4-mers, etc. till we reconstruct the whole string  <code class='inline'>:)</code>
+ <span class='centered'>This is memory intensive. Can we do better?  
+ <h4><a id=first-last-property-of-bwt href='#first-last-property-of-bwt'> § </a><span class='centered'> First last property of BWT </h4> 
+ <span class='centered'>Consider the cyclic permutations:  
+ <pre><code>b1 a1 n1 a1 n2 a3 $1
+$1 b1 a1 n1 a2 n2 a3
+a3 $1 b1 a1 n1 a2 n2
+n2 a3 $1 b1 a1 n2 a2
+a2 n2 a3 $1 b1 a2 n2
+n1 a2 n2 a3 $1 b1 a1
+a1 n1 a2 n2 a3 $1 b1
+</code></pre> 
+ <span class='centered'>Now let's sort them:  
+ <pre><code>$1 b1 a1 n1 a2 n2 a3
+a3 $1 b1 a1 n1 a2 n2
+a2 n2 a3 $1 b1 a2 n1
+a1 n1 a2 n2 a3 $1 b1
+b1 a1 n1 a1 n2 a3 $1
+n2 a3 $1 b1 a1 n2 a2
+n1 a2 n2 a3 $1 b1 a1
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'> We see that the order of occurrence of  <code class='inline'>a</code> in the first column is  <code class='inline'>[a3 a2 a1]</code>. Similarly in the last column, it occurs <span class='centered'>in the order  <code class='inline'>[a3 a2 a1]</code>. Furthermore, this holds for  <code class='inline'>n</code> as well: we have the order  <code class='inline'>[n2 n1]</code> in both the first and last <span class='centered'>column. </li><li><span class='centered'><span class='centered'> Claim: this always occurs! Proof: consider the strings with  <code class='inline'>[a3, a2, a1]</code> in the first column: </li></ul> 
+ <pre><code>a3 $1 b1 a1 n1 a2 n2
+a2 n2 a3 $1 b1 a2 n2
+a1 n1 a2 n2 a3 $1 b1
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'> These strings are sorted, since they come from BWT. Thus, I can chop off the  <code class='inline'>a</code> from all of them, and they remain sorted (we sort by lex): </li></ul> 
+ <pre><code>$1 b1 a1 n1 a2 n2
+n2 a3 $1 b1 a2 n2
+n1 a2 n2 a3 $1 b1
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'> Furthermore, since we sort by lex, I can place the  <code class='inline'>a</code>s at the end of the strings, still retaining lex ordering: </li></ul> 
+ <pre><code>$1 b1 a1 n1 a2 n2 a3
+n2 a3 $1 b1 a2 n2 a2
+n1 a2 n2 a3 $1 b1 a1
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'> These new strings are (a) still sorted, and (b) cyclic shifts of the original strings! Thus, these occur in the BWT table, and are exactly the strings <span class='centered'>in the last column which have  <code class='inline'>{a1, a2, a3}</code>. Since they're sorted, they'll occur in the order  <code class='inline'>[a3 a2 a1]</code> just like the did in the first column! </li><li><span class='centered'><span class='centered'> This shows that if the first column has  <code class='inline'>a</code> in the order  <code class='inline'>[a3 a2 a1]</code>, then so too does the last column have  <code class='inline'>a</code> in the order  <code class='inline'>[a3, a2, a1]</code>. </li></ul> 
+ <ul><li><span class='centered'><span class='centered'> So now, given the last column of the BWT, we add the first column of the BWT and the numbers, since we know that we can always add the numbers by the <span class='centered'>first-last property: </li></ul> 
+ <pre><code>1 $1 ? ? ? ? ? a3
+2 a3 ? ? ? ? ? n2
+3 a2 ? ? ? ? ? n1
+4 a1 ? ? ? ? ? b1
+5 b1 ? ? ? ? ? $1
+6 n2 ? ? ? ? ? a2
+7 n1 ? ? ? ? ? a1
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'> In the first column, we have  <code class='inline'>$1...a3</code>, which we treat as the string  <code class='inline'>$1 a3</code>. </li><li><span class='centered'><span class='centered'> We see that  <code class='inline'>a3</code> corresponds to 2nd column. We have  <code class='inline'>a3...n2</code>, which we combine with  <code class='inline'>$1 a3</code> to get  <code class='inline'>$1 a3 n2</code>. </li><li><span class='centered'><span class='centered'> We see that  <code class='inline'>n2</code> corresonds to the 6th column , where we have  <code class='inline'>n2...a2</code>. We combine this with  <code class='inline'>$1 a3 n2</code> to get  <code class='inline'>$1 a3 n2 a2</code>. </li><li><span class='centered'><span class='centered'> We see that  <code class='inline'>a2</code> corresonds to the 3r column , where we have  <code class='inline'>a2...n1</code>. We combine this with  <code class='inline'>$1 a3 n2 a2</code> to get  <code class='inline'>$1 a3 n2 a2 n1</code>. </li><li><span class='centered'><span class='centered'> We see that  <code class='inline'>n1</code> corresonds to the 7th column , where we have  <code class='inline'>n1...a1</code>. We combine this with  <code class='inline'>$1 a3 n2 a2 n1</code> to get  <code class='inline'>$1 a3 n2 a2 n1 a1</code>. </li><li><span class='centered'><span class='centered'> We see that  <code class='inline'>a1</code> corresonds to the 4th column , where we have  <code class='inline'>a1...b1</code>. We combine this with  <code class='inline'>$1 a3 n2 a2 n1 a1</code> to get  <code class='inline'>$1 a3 n2 a2 n1 a1 b1</code>. </li><li><span class='centered'><span class='centered'> See that  <code class='inline'>$1 a3 n2 a2 n1 a1 b1</code> is the reverse of  <code class='inline'>banana</code>, the string we encoded! </li><li><span class='centered'><span class='centered'> This lets us rediscover the BWT'd string in O(n) time using the neat property of the BWT! </li></ul> 
+ <h4><a id=finding-substrings-with-bwt href='#finding-substrings-with-bwt'> § </a><span class='centered'> Finding substrings with BWT </h4> 
+ <span class='centered'>Since the BWT list is sorted, can keep top and bottom pointers which tell us where we are looking 
+ <span class='centered'>for current letter. Can find next letter using BWT matix.  
+ <h4><a id=why-bwt-gives-good-run-length-encoding href='#why-bwt-gives-good-run-length-encoding'> § </a><span class='centered'> Why BWT gives good run length encoding </h4> 
+ <ul><li><span class='centered'><span class='centered'> Suppose we have a book with many words. </li><li><span class='centered'><span class='centered'> The book will have many occurrences of the word  <code class='inline'>the</code>. </li><li><span class='centered'><span class='centered'> In the BWT, we will have many strings of the form  <code class='inline'>e.......th</code><span class='centered'>to reflect substrings that have a  <code class='inline'>the</code>.  </li><li><span class='centered'><span class='centered'> This will give us many occurences of  <code class='inline'>h</code> in the last column!. </li></ul> 
  <h4><a id=references href='#references'> § </a><span class='centered'> References </h4>
- <ul><li><span class='centered'><span class='centered'> Richard Bird: Pearls of functional algorithm design </li></ul> 
+ <ul><li><span class='centered'><span class='centered'> Richard Bird: Pearls of functional algorithm design </li><li><span class='centered'><span class='centered'>  <a href=https://www.coursera.org/learn/algorithms-on-strings/lecture/C0opC/inverting-burrows-wheeler-transform><span class='centered'>Algorithms on strings UCSD </a></li></ul> 
  <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

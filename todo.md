@@ -1,3 +1,45 @@
+- [Amortized analysis explained](http://cslabcms.nju.edu.cn/problem_solving/images/3/31/Amortized_Analysis_Explained_%28Fiebrink%29.pdf)
+- [Generative art blog](https://inconvergent.net/generative/differential-lattice/)
+- [List of all string matching algorithms](https://www-igm.univ-mlv.fr/~lecroq/string/)
+- [Lawrence national lab HPC toolkit](https://hpc.llnl.gov/software/development-environment-software/hpc-toolkit)
+- [Jeff Erickson: CP lectures](https://www.youtube.com/watch?v=EoNRncSro4A&list=PL0v718LJg-78SFq81e4kJh_rS8XbKZ7Kn)
+- [Blues 1hour video](https://www.youtube.com/watch?v=ojNbT2A16Tg)
+- Microeconomics: Behavior, Institutions, and Evolution --- good romp through micro econ with math!
+- https://www.coursera.org/learn/algorithms-on-graphs/home/welcome
+- https://en.wikipedia.org/wiki/Boustrophedon
+- [625 things to know in your target language](https://i.redd.it/um9qm4pph5d51.jpg)
+- [Codeforces GM who programs in python.](https://codeforces.com/profile/pajenegod)
+- Stanley: survey of unimodal sequences.
+- [Journal of open source software](https://joss.theoj.org/papers/10.21105/joss.00267)
+- [ASMJIT: small JIT, lightweight](https://asmjit.com/)
+- [Blend2D: 2D vector graphics library](https://blend2d.com/research.html)
+- [Nested word, visibly pushdown grammar for parallel parsing?](https://en.wikipedia.org/wiki/Nested_word)
+- Minimal Perl for UNIX and LINUX people
+- [Enfilade: good vocabulary for segtrees!](https://en.wikipedia.org/wiki/Enfilade_(Xanadu))
+- [Sheaves and homotopy theory: motivate a sheaf as a gadget similar to localization](https://pages.uoregon.edu/ddugger/cech.html)
+- [How to learn LATEX programming](https://tex.stackexchange.com/questions/12668/where-do-i-start-latex-programming)
+- [Schubert calculus youtube videos](https://www.youtube.com/watch?v=DeKdbxGutbg)
+- [Schubert calculus lecture notes](https://users.mccme.ru/valya/Kleiman%20Laksov%20Schubert%20calculus.pdf)
+- [3264 and all that: intersection theory and schubert calculus textbook by eisenbud](https://scholar.harvard.edu/files/joeharris/files/000-final-3264.pdf)
+- [Mathematical Fiction](https://kasmana.people.cofc.edu/MATHFICT/)
+- [Ln: 3D line art engine](https://github.com/fogleman/ln)
+- [SVGBob: covert ASCII to SVG](https://ivanceras.github.io/svgbob-editor/)
+- [Trackball rotations using quaternions](https://www.xarg.org/2021/07/trackball-rotation-using-quaternions/)
+- [Structral regular expressions in SAM](http://doc.cat-v.org/plan_9/4th_edition/papers/sam/)
+- [Vis: efficient text editor with subl/sam (plan9) style multiple cursor in vim ](https://github.com/martanne/vis)
+- [Stali: minimal static linux](https://sta.li/technologies/)
+- [tikzplotlib: save matplotlib figures into latex!](https://github.com/nschloe/tikzplotlib)
+- [Context collapse](https://en.wikipedia.org/wiki/Context_collapse)
+- [Fitt's law](https://en.wikipedia.org/wiki/Fitts%27s_law)
+- [CompileDB: build compile_commands.json for C++ for make based projects](https://github.com/nickdiego/compiledb)
+- Difference equations: from rabbits to chaos.
+- Callahan: the geometry of spacetime; an intro to SR and GR
+- [Comonad apply](https://hackage.haskell.org/package/comonad-5.0.8/docs/Control-Comonad.html#g:2)
+- [Looking for a challenge?](http://www.lookingforachallengethebook.com/)
+- Practical Binary Analysis
+- Learn difference equations from "an introduction to difference eqns".
+- Combinatorial Enumeration: Grad level combinatorics textbook. 350 exercises.
+- Algorithmic Topology and classification of 3 manifolds: Builds "haken theory of normal surfaces", supposedly a cornerstone of 3 manifold theory.
 - [Remez approximation: find chebyshev approximations to functions. Provides control on *maximum* error, instead of other methods that control *expected* error.](https://en.wikipedia.org/wiki/Remez_algorithm)
 - [More modern cmake](https://hsf-training.github.io/hsf-training-cmake-webpage/)
 - [Presburger formulas and polyhedral compilation: Sven's book on ISL and barvinok APIs](https://limo.libis.be/primo-explore/fulldisplay?docid=LIRIAS1656544&context=L&vid=Lirias&search_scope=Lirias&tab=default_tab&lang=en_US&fromSitemap=1)

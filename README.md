@@ -16,6 +16,791 @@ A Universe of Sorts
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
 
+# Inconvergent: beautiful generative art
+
+
+- [https://inconvergent.net/faq/](Link to website)
+
+# DP on monotone matrix (SMAWK)
+
+- As we walk along columns, the indices of the row minima increase.
+- We want to find minimum element in every row.
+
+```
+# 
+#
+  #
+   #
+     #
+```
+
+- Then I can divide and conquer.
+
+- [Jeff E](https://www.youtube.com/watch?v=50yflRM5pc4&list=PL0v718LJg-78SFq81e4kJh_rS8XbKZ7Kn&index=4)
+
+#### Totally monotone, part 1
+
+- Totally monotone: Every 2x2 submatrix is monotone (we don't need to pick adjacent row/col for submatrix.
+  Submatrix is any 4 indexes $(l, u)$, $(r, d)$, $(l, d)$, $(r, u)$.
+
+- We still want to find minimum element in every row.
+- Make a small of only the even rows of the matrix. Find minimum entries in the smaller matrix, lift back up to original matrix.
+- Now, by the total monotonicity, the minimal elements of the odd rows will be "between" the even row elements in a staircase.
+- $T(m, n) = T(m/2, n) + O(m+n)$. It's $O(m+n)$ to walk the staircase. 
+
+
+
+#### Totally monotone, part 2
+- Create a new procedure called 'reduce', which takes a rectangular totally monotone matrix, and makes it square, while retaining all row minima.
+- Idea: total monotonicity forces row minima to be in a certain square subarray of the original array.
+
+
+- Suppose `a` and `b` are minima in their column.
+
+```
+?   ?
+
+a < b
+```
+
+
+```
+c < d
+
+a < b
+```
+
+# Prefix/Border function
+
+Function that for a string `s`, at index `i`, returns the length of the longest border of `s[0..i]` (inclusive).
+For example, consider the string `s=abababcaab`.
+
+- at `i=0`, we have substring `s[0..0]=a` which has no border (border is proper prefix/suffix). So `pr(0) = 0`.
+- at `i=1`, we have substring `s[0..1]=ab` which has no border, so `pr(1) = 0`.
+- at `i=2`, we have substring `s[0..2]=aba` which has `a..a` as border. `pr(2) = 1`
+- at `i=3`, we have substring `s[0..3]=abab` which has `ab..ab` as border. `pr(3) = 2`
+- at `i=4`, we have substring `s[0..4]=ababa` which has `ab[a]ba` as border (that is, the prefix is `aba` and the suffix is `aba` which overlaps).
+   `pr(4) = 3`.
+- at `i=5`, we have substring `s[0..5]=ababab` which has `ab[ab]ab` as border (that is, the prefix is `abab` and the suffix is `abab` which overlaps).
+   `pr(5) = 4`.
+- at `i=6`, we have substring `s[0..6]=abababc` which has no border. `pr(6) = 0`.
+- at `i=7`, we have substring `s[0..7]=abababca` which has border `a..a`. `pr(7) = 1`.
+- at `i=8`, we have substring `s[0..8]=abababcab` which has border `ab..ab`. `pr(8) = 2`.
+
+In toto, the prefix function is:
+
+```
+  ababcaab
+  01234012
+```
+
+#### `s[0..i]` has a border of length at `pr(i+1)-1`
+
+- That is, given the substring `s[0..i]`, we can predict that `s[0..i]` will have some border (perhaps not the longest border) of length `pr(i+1)-1`.
+- Suppose `s[0..i+1]` has longest border of length `L=pr(i+1)` (by definition of `pr`). Suppose `pr(i+1) >= 1`. Then I can write `s[0..i+1]` as:
+
+
+```
+s[0..i+1] = p[0]p[1]...p[L]|s[L+1]...s[i+1-L-1]|p[0]p[1]...p[L]
+            ^^^^^^^^^^^^^^^                     ^^^^^^^^^^^^^^^
+```
+
+If I now want to consider `s[0..i]`, I need to drop the last letter `p[L]`, which leaves me with:
+
+```
+s[0..i] = p[0]p[1]...p[L-1]p[L]|s[L+1]...s[i+1-L-1]|p[0]p[1]...p[L-1]
+          ^^^^^^^^^^^^^^^^^                         ^^^^^^^^^^^^^^^^^
+```
+
+- where we have a border of `p[0]...p[L-1]`. 
+- There maybe a longer border, involving other terms of `s[0..i]`. But we know that the border is *at least* `pr(i) >= pr(i+1)-1`.
+- Upon re-arranging, we see that `pr(i+1) <= pr(i) + 1`.
+- This tells us that the border can *increase* by at most 1 (it can *drop* to zero, no lower bound!). So we have: `0 <= pr(i+1) <= pr(i) + 1`.
+- So if we think of borders of `s[0..i+1]`, we know that the longest border can be of length of border `pr(i) + 1`. All other borders will be of length 
+  `<= pr(i)`, so these other borders will be borders of `s[0..i]`! 
+- Thus, to move from `s[0..i]` to `s[0..(i+1)]`, we simply need to be able to find the *longest* border of `s[0..(i+1)]`. All other borders will come from
+  `s[0..i]`.
+
+#### Lemma: Enumerating borders (what is a good name for this lemma?)
+
+- Think of the longest border `123456`:
+
+```
+123456----123456
+     ^         ^
+     L         N
+```
+
+- Now consider a shorter border `ab`:
+
+```
+ab3456----1234ab
+     ^         ^
+     L         N
+```
+
+- But we must have `a~1` and `b~2` since it's the same string! So the border is really `ab34ab`, and the string is:
+
+```
+ab34ab----ab34ab
+     ^         ^
+     L         N
+```
+
+- This shows that given the longest border `123456` of`s[0:N]` which has length `L`,
+  any other border of `s[0:N]`(such as `ab`) is also a border of `s[0:L]`. 
+- Generalizing, given the longest border of `s[0..n]` of length `L`,  any smaller border of `s[0:N]`
+  is a border of `s[0:L]`.
+
+#### Algorithm to enumerate borders.
+
+All borders of `s[0:N]` can be enumerated by:
+
+1. Taking the longest border of length `L` of `s[0:N]` (given by `pr(N)`).
+2. considering the border as being the substring `s[0:L]` (given by `pr(L)`).
+3. Taking the longest border of `s[0:L]`
+4. ... recurse till we hit empty string.
+
+
+#### Computing `pr(i+1)`
+
+1. We know that `pr(0) = 0`.
+2. At `pr(i+1)`, we know that `s[0:pr(i)] = s[-pr(i):-1]`
+
+#### Border function is a fractal
+
+Consider a general string which looks like:
+
+```
+abcdef--abcdef
+```
+
+If we think of the second longest border, say `12`, we will get that
+the string must be:
+
+```
+12cdef--abcd12
+     ^^  &&
+```
+
+But this implies that the occurrence of `ef` (marked with `&&`) and the occurrence
+of `ab` (marked with `##`) must be `12, 12` respectively. This means that the
+string is:
+
+```
+12cd12--12cd12
+```
+
+So we started with a full string:
+
+```
+------------------
+```
+
+Then matched the left and right (very 1/3 cantor):
+
+```
+-------    ------
+       ----
+```
+
+Then matched the left and right of these again and unified the leftovers,
+finding that it looks like:
+
+```
+--  --   --  --
+  --       -- 
+      ---    
+```
+
+and so on. Isn't this so cool? Borders of a string are a fractal-like object!
+
+
+
+# Shortest walk versus shortest path
+
+- path is a sequence of vertices connected by edges.
+- walk is a simple path or a path with no loops.
+- djikstra's solves shortest walk, not shortest path, since it can't hangle paths with negative cycles!
+- Bellman ford solves shortest path, since it reports when the question of "shortest path" does not have a 
+  sensible answer (ie, the set of paths ordered by length is not well founded).
+
+
+# Diameter in single DFS
+
+- [Gist by pedu](https://gist.github.com/anurudhp/1ecf14f1211c71cd5c99537fad13fecd)
+
+
+# Min cost flow
+
+
+
+- Problem statement: Find a maximal flow with minimum cost.
+
+1. Find max flow.
+2. Find negative cost cycle in residual graph of max flow. Push flow around the negative cost cycle.
+
+
+#### Relation between max flow and min cost circulation
+
+- Recall that min cost circulation asks to compute a circulation with minimum cost [no maximality constraint].
+
+- Given a flow network $(V, E, s, t, C)$ ($C$ is capacity fn), create a new cost function $c: V \to \mathbb R$ which assigns cost zero
+  to all edges in the flow networ. Also add a new edge $t \to s$ which has infinite capacity, cost $-1$. 
+- A circulation with cost lower than zero will have to use the $t \to s$ edge. To get minimum cost, it must send as much flow through
+  this edge as possible. For it to be a circulation, the full flow in the network must be zero. So suppose we send $f$ units of flow
+  back from $t$ to $s$. Then we must send $f$ units of flow from $s$ to $t$ for it to be a circulation. Incrasing $f$ (max flow)
+  decreases the cost of the circluation! Thus, max flow is reduced to min cost circulation.
+
+#### Min Cost Flow in general
+
+- First find max flow using whatever.
+- Next, we need to find negative cost cycle in the residual graph.
+- Use bellman ford, or SPFA to find negative cost cycles in $O(VE)$ time [run edge relaxation $|V|$ times].
+
+
+#### Minimum mean cycle
+
+- Which is best cycle to push flow around to reduce cost? The min cost cycle may not be best, since it may have very little capacity.
+- A negative cycle with max capacity may not have good cost.
+- Correct: `total cost/number of edges` --- that is, the mean cost. 
+
+
+#### shortest path as circulation.
+
+- Need to find single source shortest path in a graph (with possibly negative edges, no negative cycles).
+- We have a balance at each vertex $v$, which tells us how much extra flow must can have coming in versus going out.
+  So, $\sum_u f(l \to v) - \sum_w f(v \to r) = b(v)$. Intuitively, the balance is stored in a tank at the vertex.
+- We need total balance to be zero.
+- We set the source $s$ to have balance $1-v$ (supply) and all the other nodes to have balance $1$ (demand).
+- Let the cost of each edge be the distance, let the capacity of each edge be infinite.
+- Now, what is a min cost flow which obeys the demands?
+- Consider the shortest path tree. Imagine it as carrying a flow. Then the
+  shortest path tree indeed obeys the flow
+  constraints.
+- To convert this into circulation, add back edges from each node back to the source, with a capacity of 1, cost of zero.
+- This converts shortest path trees into flows/circulations.
+
+
+#### Min cost circulation algorithms
+- Old algorithm: start with a circulation that obeys balance, then push more around (by using negative cycles)
+- New algorithm (successive shortest path): remove all negative cycles, then restore balance constraints.
+- how to remove negative cycles? We can just send flow down all negative edges. The resdiual graph will contain no negative cycles.
+  (NOTE: we don't have a valid flow at this point!) This leaves us with resdiual balances at each vertex,
+  about how much more flow we need to send.
+
+#### References
+
+- [Jeff E: algorithms video](https://www.youtube.com/watch?v=k8A5kSo3EW0)
+
+
+# Minimal tech stack
+
+
+- `st`: suckless terminal.
+- `mtm`: minimal terminal multiplexer.
+- text editor? I need one.
+
+
+
+# FFT
+
+- Evaluating a polynomial `p(x)` at `[a0, a1, ... am]` in general is hard, even though
+  we have the recurrence `p(x) = po(x^2) + x pe(x^2)`. This makes the polynomials smaller
+  (degree of `po`, `pe` is half of that of `p`). However, we need to evaluate at all the points
+  `[a0...am]` , so to merge we need to merge values at `[a0...am]` at each step.
+  So our recurrence will be `T(n) = T(n/2) + m` with `T(1) = m`. This solves to `O(nm)`.
+- The special property of DFT is that we can reconstruct `p(x)` at `[w[n][0], ... wn[n][n-1]]` given the
+  values of `po`, `pe` at `[w[n/2][1], w[n/2][2], w[n/2][3], ... w[n/2][n/2-1]]`.  So the number
+  of points we need to evaluate the polynomial decreases with the size of the polynomial!
+- This makes the recurrence `T(n) = T(n/2) + n` with `T(1) = 1` which is `O(n log n)`.
+
+#### Worked out example of FFT of 8 elements
+
+$$
+p(x) \equiv a_0 x^0 + a_1 x^1 + a_2 x^2 + a_3 x^3 + a_4 x^4 + a_5 x^5 + a_6 x^6 + a_7 x^7
+p_e(x) \equiv a_0 x^0 + a_2 x + a_4 x^2 + a_6 x^3 \\
+p_o(x) \equiv a_1 + a_3 x + a_5 x^2 + a_7 x^3 \\
+P(x) = p_e(x) = x p_o(x)
+$$
+
+Now suppose we know how to evaluate $p_e(x)$ and $p_o(x)$ at $[w_4^0, w_4^1, w_4^2, w_4^3]$. where $w_4$
+is the 4th root of unity. We wish to evaluate $p(x)$ at $[w_8^0, w_8^1, w_8^2, \dots, w_8^7]$, where $w_8$
+is the 8th root of unity. The only two properties of the roots of unity we will need are:
+
+- $w_8^2 = w_4$.
+- $w_8^4 = -1$.
+
+Using the value of $w_8$, the above two relations, the values $p_o(w_4^k) = [p_o(1), p_o(w_4, p_o(w_4^2), p_o(w_4^3)]$
+and $p_e(w_4^k) = [p_e(1), p_e(w_4), p_e(w_4^2), p_e(w_4^3)]$, we evaluate $p$ at powers of $w_8$ ( $[p(w_8^k)]$ )  as:
+
+- $p(w_8^k) = p_e((w_8^k)^2) + w_8^k p_o((w_8^k)^2) = p_e(w_4^k) + w_8^k p_o(w_4^k)$.
+- $p(w_8^0) = p_e((w_8^0)  + w_8^0 p_o(w_8^0) = p_e(1) + p_o(1)$ 
+- $p(w_8^1) = p_e(w_8^2)  + w_8^1 p_o(w_8^2) = p_e(w_4^1) + w_8 p_o(w_4^1)$ 
+- $p(w_8^2) = p_e(w_8^4)  + w_8^2 p_o(w_8^4) = p_e(w_4^2) + w_8^2 p_o(w_4^2)$ 
+- $p(w_8^3) = p_e(w_8^6)  + w_8^3 p_o(w_8^6) = p_e(w_4^3) + w_8^3 p_o(w_4^3)$ 
+- $p(w_8^4) = p_e(w_8^8)  + w_8^4 p_o(w_8^8) = p_e(w_4^4) + w_8^4 p_o(w_4^4) = p_e(1) - p_o(1)$ 
+
+
+
+#### Solving the Recurrence: `T(n) = n + T(n/2)`, with `T(1) = 1`
+
+#### Proof 1:
+
+Expand the recurrence:
+
+
+```
+= T(n)
+= n + 2T(n/2)
+= n + 2[n/2 + T(n/4)]
+= n + n + 4T(n/4)
+= n + n + 4[n/4 + 2T(n/8)]
+= n + n + n + 8T(n/8)
+= ...
+= kn + ... 2^k T(n/2^k)
+= (log n)n + 2^(log n) T(n/2^(log n))
+= (log n)n + n T(n/n)
+= (log n)n + n* 1
+= (log n)n + n
+```
+
+#### Proof 2:
+
+Consider the tree:
+
+```
+           8
+          mrg:8
+   4                 4
+   mrg:4           mrg:4
+  2     2          2       2
+ mrg:2  mrg:2     mrg:2   mrg:2
+ 1 1    1  1      1   1    1  1
+```
+
+- Number of leaves is `n`. Cost of each leaf is `T(1) = 1`. Total cost of leaf level is `n`.
+- At each level above, total cost is `8 = 4*2 = 2*4`.
+- Number of levels in `log n`.
+- Total cost is cost of leaf `n`, plus cost of interior nodes `n log n`.
+
+
+# Zscoder codeforces rating
+
+Is quite comforting to see the rating of someone who [started at 1400, dropped to pupil](https://codeforces.com/profile/zscoder)
+and then worked their way back up?
+
+
+
+# Continuum TTRPG
+
+> Events don't conspire. People do. Events *can't* conspire, and people *can*. 
+> Causality is not a renewable resource.
+> If a time machine could be constructed, it would be married to the
+> trend of instant gratification.
+
+#### Fragging
+
+> Sentint force must be applied to undo sentient damage --- time combat.
+
+#### As/As not
+
+> At this moment, anything is possible. 
+
+
+> Causality is only one principle and psycohology essentially 
+> cannot be exhausted by causal methods only.
+
+#### Blending in with levellers
+
+> Anthropologists in the field have noted
+> that to be accepted as a native to a place, one
+> has to be born there. No matter how well you
+> behave, or how welcome a part of the com-
+> munity you become, it will be remembered
+> that you came from outside.
+> A curious exception to this was observed
+> by anthropologist Charles Ward, working
+> in the 1950s: If one leaves the community,
+> and then returns after a distinct absence,
+> one is then welcomed much as a returning
+> native. This can be seen as a norm in most
+> human cultures, as long as the person
+> returning was looked upon favorably when
+> they left.
+
+#### Tipler Cylinder
+
+> A Tipler cylinder, also called a Tipler time machine,
+> is a hypothetical object theorized to be a potential mode
+> of time travel—although results have shown that a Tipler cylinder
+> could only allow time travel if its length were
+> infinite or with the existence of negative energy.
+
+
+
+
+# Words to know in target language
+
+- Animal: dog, cat, fish, bird, cow, pig, mouse, horse, wing, animalC
+
+- Transportation: train, plane, car, truck, bicycle, bus, boat, ship, tire, gasoline, engine, (train) ticket.
+
+- Location: city, house, apartment, street/road, airport, train station,
+  bridge, hotel, restaurant, farm, court, school, office, 
+  room, town, university, club, bar, park, camp, store/shop,
+  theater, library, hospital, church, market, country
+  (USA, France, etc.), building, ground, space (outer space), bank.
+
+- Clothing: hat, dress, suit, skirt, shirt, T-shirt, pants, shoes, pocket, coat, stain, clothingC
+
+- Color: red, green, blue (light/dark), yellow, brown, pink, orange, black, white, gray, colorC
+
+- People: son, daughter, mother, father, parent (= mother/father), baby, man, woman,
+  brother, sister, family, grandfather, grandmother, husband, wife, king, queen,
+  president, neighbor, boy, girl, child (= boy/girl), adult (= man/woman),
+  human (≠ animal), friend (Add a friend’s name), victim, player, fan, crowd, personC
+
+- Job: Teacher, student, lawyer, doctor, patient,
+  waiter, secretary, priest, police, army, soldier,
+  artist, author, manager, reporter, actor, jobC
+
+- Society: religion, heaven, hell, death, medicine, money,
+  dollar, bill, marriage, wedding, team,
+  race (ethnicity), sex (the act), sex (gender), murder,
+  prison, technology, energy, war, peace, attack,
+  election, magazine, newspaper, poison, gun, sport,
+  race (sport), exercise, ball, game, price, 
+  contract, drug, sign, science, God
+
+- Art: band, song, instrument (musical), music, movie, art
+
+- Beverages: coffee, tea, wine, beer, juice, water, milk
+
+- Food: egg, cheese, bread, soup, cake, chicken, pork,
+  beef, apple, banana, orange, lemon, corn, rice, oil,
+  seed, knife, spoon, fork, plate, cup, breakfast,
+  lunch, dinner, sugar, salt, bottle
+
+- Home: table, chair, bed, dream, window, door, 
+  bedroom, kitchen, bathroom, pencil, pen, photograph,
+  soap, book, page, key, paint, letter, note, wall,
+  paper, floor, ceiling, roof, pool, lock, telephone,
+  garden, yard, needle, bag, box, gift, card, ring, tool
+
+- Electronics: clock, lamp, fan, cell phone,
+  network, computer, program (computer), laptop, screen, camera, television, radio
+
+- Body: head, neck, face, beard, hair, eye, mouth, lip, nose,
+  tooth, ear, tear (drop), tongue, back, toe, finger,
+  foot, hand, leg, arm, shoulder, heart,
+  blood, brain, knee, sweat, disease, bone,
+  voice, skin, body
+
+- Nature: sea, ocean, river, mountain, rain, snow, tree, sun,
+  moon, world, Earth, forest, sky, plant, wind,
+  soil/earth, flower, valley, root, lake, star, grass, leaf,
+  air, sand, beach, wave, fire, ice, island, hill, heat
+
+- Materials: glass, metal, plastic, wood, stone,
+  diamond, clay, dust, gold, copper, silver
+
+- Math/Measurements: meter, centimeter, kilogram, inch, foot,
+  pound, half, circle, square, temperature, date, weight, edge, corner
+
+- Misc Nouns: map, dot, consonant, vowel, light, sound, yes,
+  no, piece, pain, injury, hole, image, pattern,
+
+- Parts of speech: noun, verb, adjective. Use as labels to help distinguish between very similar-looking words
+  (i.e., to die (verb), death (noun), dead (adjective))
+
+- Directions: top, bottom, side, front, back, outside, inside,
+  up, down, left, right, straight, north, south, east, west, directionC
+
+- Seasons: Summer, Spring, Winter, Fall, season
+
+- Numbers: 0 to 20, 30, 40, ... 100, 1st...5th
+
+- Months: January, February, March, April, May, June, July, August, September, October, November, December
+
+- Days of the week: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday.
+  Note: You’ll usually find pictures of people going to work on Mondays and partying on Fridays/Saturdays, etc.
+
+- Time: year, month, week, day, hour, minute, second , morning, afternoon, evening, night, time.
+
+- Verbs: work, play, walk, run, drive, fly, swim, goC, stop, follow, think,
+  speak/say, eat, drink, kill, die, smile, laugh, cry, buy, pay, sell,
+  shoot(a gun), learn, jump, smell, hear(a sound), listen(music), taste, touch,
+  see (a bird), watch (TV), kiss, burn, melt, dig, explode,
+  sit, stand, love, pass by, cut, fight, lie down, dance, 
+  sleep, wake up, sing, count, marry, pray, win, lose, 
+  mix/stir, bend, wash, cook, open, close, write, call, turn,
+  build, teach, grow, draw, feed, catch, throw, clean, find, fall,
+  push, pull, carry, break, wear, hang, shake, sign, beat, lift
+
+- Adjectives: long, short (long), tall, short (vs tall), wide, narrow, big/large,
+  small/little, slow, fast, hot, cold, warm, cool, new,
+  old (new), young, old (young), good, bad, wet, dry, sick,
+  healthy, loud, quiet, happy, sad, beautiful, ugly, deaf,
+  blind, nice, mean, rich, poor, thick, thin, expensive,
+  cheap, flat, curved, male, female, tight, loose, high,
+  low, soft, hard, deep, shallow, clean, dirty,
+  strong, weak, dead, alive, heavy, light (heavy),
+  dark, light (dark), nuclear, famous
+
+- Pronouns: I, you (singular), he, she, it, we, you (plural, as in “y’all”), they.
+
+
+# DP on subarrays
+
+We can update subarrays with the rule `dp[l][r] = merge(dp[l][r-1], dp[l+1][r], compute(l, r))`
+where `merge` merges the best results of all subarrays, and `compute(l, r)` computes the
+value for `[l..r]`. This guarantees that `dp[l][r]` will track the best value from all
+subarrays. For this DP to work, we iterate by length of the subarray.
+
+# Vis editor cheat sheet
+
+#### Insert
+- `x/search`: selects all things that match `search`
+- `C-k`/`C-j`: extend cursor above/down
+- `C-n`: select next match [This is sublime's `C-d`].
+- Select a block, hit `I` to create cursors at the beginning of each line
+- Select a block, hit `A` to create cursors on end of each line
+
+#### Removal
+
+- `C-p`: remove the primary selection.
+- `C-x`: skip
+
+#### Navigation
+
+- `C-d`/`C-u`: navigation
+- `+/-`: rotation
+- `<Tab>` and `<S-Tab>`: alignment
+- `_`: trim white space
+- `o`: orientation: move to beginning and ending of selection.
+
+### References
+- [Youtube talk on `vis`](https://www.youtube.com/watch?v=y41MyOrPt8Q)
+- [SAM text editor doc](http://doc.cat-v.org/plan_9/4th_edition/papers/sam/)
+- [Vis manual](https://martanne.github.io/vis/man/vis.1.html)
+
+# Mean, Median and Jensen's
+
+The intuition for Jensen's is typically presented as:
+
+```
+|
+| \       /
+|  \  *  /
+|   \   /
+|    -@-
+| 
++--x----->
+```
+
+- `*` is the average of the $f(x)$
+- `@` is the $f$ of average of the x's.
+- I wish to reinterpret this: the `@` is at the *median* of the $f(x)$s. So Jensen is maybe saying that
+  the value at the median is lower than the mean of the values in this case due to the convexity of $f$.
+- In some sense, this tells us that the "data" $\{ f(x): l \leq x \leq r \}$ is skewed in such a way that
+  median is lower than the mean.
+- I don't know if this perspective helps, or even if it is correct, but I wish to dwell on this perspective
+  since it's one I don't use often. I've been thinking more along these lines due to competitive programming,
+  and I quite enjoy the change!
+
+# The similarity between labellings and representations
+
+- One way to think about labellings is that we track the "entire history" of the object.
+- it's hard to count unlabelled objects. it's easier to count labelled objects.
+- for example, suppose we have graphs $g = (v, e)$ and $h = (v', e')$. an isomorphism of these as unlabelled graphs
+  is a bijection function $f: v \rightarrow v'$ such that $s e t$ if and only if $f(s) e f(t)$. 
+- there could be many such $f$, or no such $f$. it's hard to find out!
+- Now let's suppose the graphs have labellings, so we have labels $l: V \rightarrow [|V|]$ and $l': V' \rightarrow [|V'|]$
+  where $[n] \equiv \{1, 2, \dots, n\}$.
+- An isomorphism of labelled graphs is an unlabelled isomorphism along with the constraint that $l'(f(v)) = l(v)$.
+  That is, we must preseve labels. So, for example, the graph:
+
+```
+a:1 -- b:2
+c:2 -- d:1
+```
+
+are isomorphic since I can send `a -> d` and `b -> c`. 
+
+- On the other hand, the graph:
+
+```
+a:1-b:2-c:3
+d:1-e:3-f:2
+```
+
+is not isomorphic (though they would be if we forget the numbering), since the center vertices `b` and `e` have different labels.
+
+- Let's think of the equation $l'(f(v)) = l(v)$. Since $f$ is a bijection, we have $|V| = |V'|$, so $l$ and $l'$ are both bijections
+  to the same set $[|V|] = [|V'|]$. So we can invert the equation to write $f(v) = l'^{-1}(l(v))$. This tells us that $f$ is *determined*
+  by the labellings!
+- The point of having a labelling is that it forces upon us a **unique isomorphism** (if it exists), given by the equation $f(v) \equiv l^{-1}(l(v))$.
+- This collapses hom sets to either empty, or a unique isomorphism, which is far tamer than having many possible graph isomorphisms that we must
+  *search for*/*enumerate*!
+- In analogy to representation theory, if we consider two irreducible representations of a group $G$, say $\alpha: G \rightarrow GL(V)$ and
+  $\beta: G \rightarrow GL(W)$, Schur's lemma tells us that the Hom-set between the two representations (an intertwining map) is either
+  the zero map (which is like having no isos) or a scaling of the identity map (which is like having a uniquely determined iso).
+- In this sense, we can think of an irrep as a "labelling" of group elements in a particularly nice way, since it constrains
+  the potential isomorphisms of the "labelled objects"!
+
+
+
+# L1 norm is greater than or equal to L2 norm
+
+Pick two points $A \equiv (x_1, y_1)$ and $B \equiv (x_2, y_2)$, and suppose $x_1 < x_2$ and $y_1 < y_2$.
+So we imagine this as two sides of a triangle:
+
+```
+     B
+    /
+   /
+  /
+ /
+A
+```
+
+- The L1 norm is $|x_2 - x_1| + |y_2 - y_1|$. This is the distance on connecting to an origin $O$:
+
+
+```
+  δx
+O----B
+|   /
+δy /
+| /
+|/
+A
+```
+
+- The L2 norm is $\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$, which is the distance of the vector $AB$, or
+   the hypotenuse of the right angled triangle $AOB$:
+
+```
+  δx
+O----B
+|   /
+δy / L2
+| /
+|/
+A
+```
+
+- By triangle inequality, $OA + OB \geq AB$, hence $L_1 = \delta_x + \delta_y \geq L_2$
+
+# Z algorithm 
+
+The `Z` algorithm, for a given string $s$, computes a function $Z: [len(s)] \rightarrow [len(s)]$.
+$Z[i]$ is the length of the longest common prefix between $S$ and $S[i:]$.
+So, $S[0] = S[i]$, $S[1] = S[i+1]$, $S[2] = S[i+2]$, and so on till 
+$S[Z[i]] = S[i + Z[i]]$, and then $S[Z[i]+1] \neq S[i + Z[i] + 1]$.
+
+
+If we can compute the `Z` function for a string, we can then check if pattern `P`
+is a substring of text `T` by constructing the string `P#T$`. Then, if we
+have an index such that `Z[i] = len(P)`, we know that at that index, we have
+the string `P` as a substring.
+
+Note that the `Z`-algorithm computes the `Z` function in **linear time**.
+
+### Specification
+
+```cpp
+vector<int> calcz(std::string s) {
+ const int n = s.size();
+ vector<int> z(n);
+ z[0] = 0;
+ for(int i = 1; i < s.size(); ++i) {
+   z[i] = 0;
+   while(i + z[i] < n && s[i+z[i]] == s[z[i]]) { 
+     z[i]++;
+   }
+ }
+
+ return z;
+}
+```
+
+
+#### Implementation 
+
+```cpp
+vector<int> myz(std::string s) {
+    const int n = s.size();
+    vector<int> z(n);
+    for(int i = 0; i < n; ++i) { z[i] = 0; }
+
+    // shade that was last computed.
+    int l = 0;
+    for(int i = 1; i < n; ++i) {
+        // shade: (l + z[l]) - i
+        // guess from start: z[i-l]
+        z[i] = max(0, min(l + z[l] - i, z[i-l]));
+
+        // compare with initial portion of string.
+        while (i + z[i] < n && s[z[i]] == s[i + z[i]]) { z[i]++; }
+
+        // we exceed the current shade. Begin ruling.
+        if (i + z[i] >= l + z[l]) { l = i; }
+    }
+
+    return z;
+}
+```
+
+- Reference: Algorithms on strings, trees, and sequences.
+
+# For a given recurrence, what base cases do I need to implement?
+
+- For a linear recurrence, we need to defie base cases for as many steps as we go back.
+- For combinations, we step `n` by `1`, `r` by `1`. So we need to define what happens for `n=0` OR `r=0`.
+
+
+# Number of distinct numbers in a partition
+
+- A positive integer $n$ is represented as a partition $\lambda \equiv (k_1, k_2, \dots)$ where
+  $\sum_i k_i = n$ and $k_1 \leq k_2, \dots$.
+  Such a $\lambda$ always contains at most $O(\sqrt n)$ distinct numbers. 
+- Intuition: suppose we want to have the maximum number of distinct numbers.
+  Since we are tied down by the constraint $\sum k_i = n$, we must try to choose
+  the $k_i$ as small as possible. But we know that even $\sum_{i=1}^p i = p(p+1)/2 \sim O(p^2)$. Now if $O(p^2) = n$, then the sum can only run upto $\sqrt p$.
+- Alternate intuiton: asking to build a number $n$ out of distinct numbers $k_1, k_2, \dots$
+  is asking to build a "jagged triangle" out of columns $(i, k_i)$  whose area is $n$. Area is $1/2 b h$, which is sorta quadratic (?)
+
+
+# Splitting $f(x) = y$ into indicators
+
+If the output of $f(x)$ is a natural number, then we can write the value $f(x)$ as:
+
+$$
+f(x) = \sum_{i=1}^\infty [f(x) \geq i]
+$$
+
+where $[f(x) \geq i]$ is $1$ if the condition is true and $0$ otherwise.
+
+Another useful indicator type equation is:
+
+$$
+\sum_x f(x) = \sum_x \sum_i i \cdot [f(x) = i] = \sum_i i \cdot (\sum_x [f(x) = i])
+$$
+
+
+# Why searching for divisors upto `sqrt(n)` works
+
+- It's not that all divisors are smaller than $\sqrt n$. For example, consider $14 = 7 \times 2$. $\sqrt{14} \sim 4$, but one
+  of its diviors ($7$) is greater than 4.
+- Rather, it is that if there is a divisor $l$ (for large) which is larger than $\sqrt n$, there will be another divisor $s$ which is smaller than $\sqrt n$.
+- Proof: Suppose $l \div n$, $l \geq \sqrt n$. So there exists an $s$ such that $ls = n$, or $s = n / l$.
+- Since $l \geq \sqrt n$, $n / l \leq  n / \sqrt n = \sqrt n$. Thus $s \leq \sqrt n$.
+- So if we wish to find *some* factor of $n$, we can simply search within the range $\sqrt n$. 
+- If $n$ has no factors in the range $\sqrt n$, then $n$ must be prime, for if $n$ did have a larger factor,
+  $n$ would also have a smaller factor we would have found.
+
 
 # Heuristics for the prime number theorem
 
@@ -131,10 +916,11 @@ D =
 
 # GCD  is at most difference of numbers
 
-- assume WLONG $l< r$. Then, If $g = gcd(l, r)$ then we have $g \leq r - l$.
-- Proof: we have $g \div r$ an $g \div l$ by definition, hence we must have $g \div (r - l)$. Since $r - l \geq 0$,
-  this immediately implies $g \leq (r - l)$.
-- Intuition: the gcd represents the common roots of $l, r$ in Zariski land. That is, if $l, r$ are zero at a prime  then so is $r - l$.
+- assume WLOG $l< r$. Then, Let $g \equiv gcd(l, r)$. Claim: $g \leq r - l$.
+- Proof: we have $g \div r$ an $g \div l$ by definition, hence we must have $g \div (r - l)$, and $g$, $(r-l)$ are nonnegative.
+  So  $g \leq (r - l)$.
+- Intuition: the gcd represents the common roots of $l, r$ in Zariski land. That is, if $l, r$ are zero at a prime 
+  then so is $r - l$.
 - So, the GCD equally well represents the common roots of $l$ and $(r - l)$.
 - Now, if a number $x$ vanishes at a subset of the places where $y$ vanishes, we have $x < y$ (the prime factorization of $y$ contains all the prime factors of $x$).
 - Since the GCD vanishes at the subset of the roots of $l$, a subset of the roots of $r$, and a subset of the roots of $(r-l)$, it must be smaller than all of these.
@@ -3818,7 +4604,7 @@ containments $O \subseteq B(x, r) \subseteq U_x$.
 TODO
 
 
-# Big list of learning Lean internals
+# Lean internals Cheat Sheet
 
 - [CIC page in Coq](https://web.mit.edu/jgross/Public/tmp/doc/sphinx/_build/html/language/cic.html)
 - [`bollu/cubicaltt`](https://bollu.github.io/cubicaltt/Main.html): an annotated version of the cubicaltt sources.
@@ -10861,7 +11647,7 @@ a table of the current state of knowledge becomes valuable because all the
 juggling notattion.
 
 
-# Big list of questions on the structure of graphs
+# questions on the structure of graphs
 
 I've been trying to get more of a feeling for graphs lately, so I'm collecting
 sources of "structural" questions of graphs and answers for these questions.
@@ -13661,52 +14447,6 @@ the _adverserial_ side of things allowing weak people to survive.
 
 
 - [Chessbase article about men v/s women in chess](https://en.chessbase.com/post/what-gender-gap-in-chess)
-
-# Z algorithm (TODO)
-
-The `Z` algorithm, for a given string $s$, computes a function $Z: [len(s)] \rightarrow [len(s)]$.
-$Z[i]$ is the length of the longest common prefix between $S$ and $S[i:]$.
-So, $S[0] = S[i]$, $S[1] = S[i+1]$, $S[2] = S[i+2]$, and so on till 
-$S[Z[i]] = S[i + Z[i]]$, and then $S[Z[i]+1] \neq S[i + Z[i] + 1]$.
-
-
-If we can compute the `Z` function for a string, we can then check if pattern `P`
-is a substring of text `T` by constructing the string `P#T$`. Then, if we
-have an index such that `Z[i] = len(P)`, we know that at that index, we have
-the string `P` as a substring.
-
-Note that the `Z`-algorithm computes the `Z` function in **linear time**.
-
-
-```cpp
-const int N = 1000;
-int z[N];
-char s[N] = "hello, world";
-int n;
-
-// write the z array into the array z for the string s
-void mkz(const char *s, int *z) {
-    const int N = strlen(s);
-    int curi = 0;
-    while(s[curi]) {
-        int matchlen = 0; 
-        while(curi + matchlen < N) {
-            if (s[curi + matchlen] == s[matchlen]) { matchlen++; }
-            else { break; }
-        }
-        z[curi] = matchlen;
-
-        for(int i = 0; i < matchlen && i < curi; ++i) { z[curi + i] = z[i]; }
-        curi += matchlen;
-    }
-}
-
-int main() {
-in
-}
-```
-
-- Reference: Algorithms on strings, trees, and sequences.
 
 
 # Bijection from `(0, 1)` to `[0, 1]`
@@ -21770,11 +22510,170 @@ The idea is that:
 - `recreate` apprents a copy of the initial last column to a matrix of
   columns, and then sorts this.
 
+#### Alternate explanation of why this is invertible.
+
+Consider the string `banana` and its cyclic permutations:
+
+```
+banana$
+$banana
+a$banan
+na$bana
+ana$ban
+nana$ba
+anana$b
+```
+
+Then sorted (where `$` is considered smallest letter):
+
+```
+$banan|a|
+a$bana|n|
+ana$ba|n|
+anana$|b|
+banana|$|
+na$ban|a|
+nana$b|a|
+```
+
+The BWT will be `annb$aa`. Notice that we also know the FIRST column of the BWT table,
+since it's just the string with its letters sorted! So given the last column, we really know:
+
+```
+|$|?????|a|
+|a|?????|n|
+|a|?????|n|
+|a|?????|b|
+|b|?????|$|
+|n|?????|a|
+|n|?????|a|
+```
+
+- This means we know all "2-mers" of our string, which are: `a$`, `na`, `na`, `ba`, `$b`, `an`, `an`.
+- If we sort these, then we get the first two letters of our BWT matrix! That is, the sorted 2-mers:
+
+```
+$b
+a$
+an
+an
+ba
+na
+na
+```
+
+However, we see that we also know the last column of the BWT matrix, so now we know:
+
+```
+|$b|????|a|
+|a$|????|n|
+|an|????|n|
+|an|????|b|
+|ba|????|$|
+|na|????|a|
+|na|????|a|
+```
+
+We now know 3-mers! Sort again, find 4-mers, etc. till we reconstruct the whole string `:)`
+This is memory intensive. Can we do better?
+
+#### First last property of BWT
+
+Consider the cyclic permutations:
+
+```
+b1 a1 n1 a1 n2 a3 $1
+$1 b1 a1 n1 a2 n2 a3
+a3 $1 b1 a1 n1 a2 n2
+n2 a3 $1 b1 a1 n2 a2
+a2 n2 a3 $1 b1 a2 n2
+n1 a2 n2 a3 $1 b1 a1
+a1 n1 a2 n2 a3 $1 b1
+```
+
+Now let's sort them:
+
+```
+$1 b1 a1 n1 a2 n2 a3
+a3 $1 b1 a1 n1 a2 n2
+a2 n2 a3 $1 b1 a2 n1
+a1 n1 a2 n2 a3 $1 b1
+b1 a1 n1 a1 n2 a3 $1
+n2 a3 $1 b1 a1 n2 a2
+n1 a2 n2 a3 $1 b1 a1
+```
+
+- We see that the order of occurrence of `a` in the first column is `[a3 a2 a1]`. Similarly in the last column, it occurs
+  in the order `[a3 a2 a1]`. Furthermore, this holds for `n` as well: we have the order `[n2 n1]` in both the first and last
+  column.
+- Claim: this always occurs! Proof: consider the strings with `[a3, a2, a1]` in the first column:
+
+```
+a3 $1 b1 a1 n1 a2 n2
+a2 n2 a3 $1 b1 a2 n2
+a1 n1 a2 n2 a3 $1 b1
+```
+
+- These strings are sorted, since they come from BWT. Thus, I can chop off the `a` from all of them, and they remain sorted (we sort by lex):
+
+```
+$1 b1 a1 n1 a2 n2
+n2 a3 $1 b1 a2 n2
+n1 a2 n2 a3 $1 b1
+```
+
+- Furthermore, since we sort by lex, I can place the `a`s at the end of the strings, still retaining lex ordering:
+
+
+```
+$1 b1 a1 n1 a2 n2 a3
+n2 a3 $1 b1 a2 n2 a2
+n1 a2 n2 a3 $1 b1 a1
+```
+
+- These new strings are (a) still sorted, and (b) cyclic shifts of the original strings! Thus, these occur in the BWT table, and are exactly the strings
+  in the last column which have `{a1, a2, a3}`. Since they're sorted, they'll occur in the order `[a3 a2 a1]` just like the did in the first column!
+- This shows that if the first column has `a` in the order `[a3 a2 a1]`, then so too does the last column have `a` in the order `[a3, a2, a1]`.
+
+- So now, given the last column of the BWT, we add the first column of the BWT and the numbers, since we know that we can always add the numbers by the
+  first-last property:
+
+```
+1 $1 ? ? ? ? ? a3
+2 a3 ? ? ? ? ? n2
+3 a2 ? ? ? ? ? n1
+4 a1 ? ? ? ? ? b1
+5 b1 ? ? ? ? ? $1
+6 n2 ? ? ? ? ? a2
+7 n1 ? ? ? ? ? a1
+```
+
+- In the first column, we have `$1...a3`, which we treat as the string `$1 a3`.
+- We see that `a3` corresponds to 2nd column. We have `a3...n2`, which we combine with `$1 a3` to get `$1 a3 n2`.
+- We see that `n2` corresonds to the 6th column , where we have `n2...a2`. We combine this with `$1 a3 n2` to get `$1 a3 n2 a2`.
+- We see that `a2` corresonds to the 3r column , where we have `a2...n1`. We combine this with `$1 a3 n2 a2` to get `$1 a3 n2 a2 n1`.
+- We see that `n1` corresonds to the 7th column , where we have `n1...a1`. We combine this with `$1 a3 n2 a2 n1` to get `$1 a3 n2 a2 n1 a1`.
+- We see that `a1` corresonds to the 4th column , where we have `a1...b1`. We combine this with `$1 a3 n2 a2 n1 a1` to get `$1 a3 n2 a2 n1 a1 b1`.
+- See that `$1 a3 n2 a2 n1 a1 b1` is the reverse of `banana`, the string we encoded!
+- This lets us rediscover the BWT'd string in O(n) time using the neat property of the BWT!
+
+#### Finding substrings with BWT
+
+Since the BWT list is sorted, can keep top and bottom pointers which tell us where we are looking
+for current letter. Can find next letter using BWT matix.
+
+#### Why BWT gives good run length encoding
+
+- Suppose we have a book with many words.
+- The book will have many occurrences of the word `the`.
+- In the BWT, we will have many strings of the form `e.......th`
+   to reflect substrings that have a `the`. 
+- This will give us many occurences of `h` in the last column!.
 
 
 #### References
 - Richard Bird: Pearls of functional algorithm design
-
+- [Algorithms on strings UCSD](https://www.coursera.org/learn/algorithms-on-strings/lecture/C0opC/inverting-burrows-wheeler-transform)
 
 # Intuitionstic logic as a Heytig algebra
 
@@ -31949,7 +32848,7 @@ For example: "More people have been to Berlin than I have."
 - [week 7](content/blog/gsoc-vispy-week-7.md)
 - [final report](content/blog/gsoc-vispy-report-6.md)
 
-# Big list of emacs
+# Emacs Cheat Sheet
 
 - `M-q`: `fill-paragraph`: make stuff 80 column, at least in text.  so this is not that bad.
 - `C-u C-space`: go back to where you were in the file.
@@ -32209,7 +33108,7 @@ This is tagged as "not a bug" --- because
 
 
 
-# Big list of Coq
+# Coq Cheat Sheet
 
 Things in Coq that I keep forgetting, and are hard to lookup.
 
@@ -32227,7 +33126,7 @@ set (ident := expr) in *
 
 This is useful to not lose information when `destruct` ing.
 
-# Big list of writing
+# Writing Cheat Sheet
 
 #### Books about charming sentences and how to construct them
 
@@ -32293,7 +33192,7 @@ is something I wish to explore.
 - `let ([x 5]) (+ x 3))`: `x` is anaphora resolution.
 
 
-# Big list of Latex
+# Latex Cheat Sheet
 
 
 #### write text under some equation --- variable under max or argmax
@@ -32311,7 +33210,7 @@ hunspell -l -t -i utf-8 yourfile.tex
 ```
 
 
-# Big list of Architecture 
+# Architecture Cheat Sheet 
 
 I have an interest in architecture and how it might relate to software.
 While the two are quite different, I feel that a deep look at both could
@@ -32341,7 +33240,7 @@ things on architecture I wish to read and/or have read:
 
 - [we forbit what we value most](https://www.strongtowns.org/journal/2017/11/20/we-forbid-what-we-value-most)
 
-# Big list of Recipes 
+# Recipes Cheat Sheet 
 
 #### Babish recipes
 
@@ -32435,7 +33334,7 @@ grated coconut and blend all of it. It turns into a thick red paste.
 - Salt
 - Add more water (300ml).
 
-# Big list of history
+# History Cheat Sheet
 
 ##### Crusades were a thing of the past by the time of the fall of Constatinople. (1453)
 
@@ -32476,13 +33375,13 @@ own good
 
 Named after the spartans.
 
-# Big list of words
+# Words Cheat Sheet
 
 Contains words that I write, and ones that I enjoy.
 
-> Attention is all you need /
-> productivity /
-> sprighty, fleeting attention /
+##### Mendicant
+
+Given to begging
 
 ##### gesamtkunstwerk
 
@@ -32586,32 +33485,7 @@ happiness as a result of fulfilling one's purpose (eudaimonia)
 > one who blows on ashes to bring them to flame
 
 
-# Big list of Music
-
-- Clipping: Experimental story telling hip-hop
-- Aesop Rock: Crazy large vocabulary, interesting hip-hop
-- Red hot Chili Peppers: Love John Frusciante's riffs.
-
-# Big list of Social Science 
-
-- [HN link for quote below](https://news.ycombinator.com/item?id=24265400)
-
-> Social justice and "fairness" is rarely one of the main goals of a
-> meritocracy. The main goal of a meritocracy is peak performance. NFL teams
-> select the "best" quarter-backs not because it's most fair, but because it
-> will produce the most wins. Universities grant tenure to the most productive
-> professors, because that will enhance the University's reputation. Hospitals
-> hire the best doctors, because they can save the most lives. A society should
-> delegate its most important responsibilities to its smartest/most-knowledgable
-> members, because they can best lead society through worldly challenges.
-> 
-> Which is not to say that Social Justice isn't important. It is vital. But you
-> don't get to it by hiring the wrong people in the wrong roles. A meritocracy
-> excels at producing wealth - Universal Basic Income, Universal Healthcare,
-> Unemployment Insurance, better Public Schooling... these are the kind of Social
-> Justice programs that best distribute the wealth back to society.
-
-# Big list of clojure 
+# Clojure Sheat Sheet 
 
 ### Neovim/Conjure/Coc-Conjure
 
@@ -32750,7 +33624,7 @@ let g:conjure#mapping#eval_motion = "E"
 
 > The mistake of many adults is confusing serious with solemn.
 
-> I hate greek drama. You know, wher everything happens off-stage. 
+> I hate greek drama. You know, where everything happens off-stage. 
 > ~Downton abbey, s02e01
 
 > you have to speculate to accumulate
@@ -32836,7 +33710,7 @@ let g:conjure#mapping#eval_motion = "E"
 
 
 
-# Big list of Vim 
+# Vim Cheat Sheet
 
 ### Using `:grep` and friends
 
@@ -32908,16 +33782,18 @@ which end you wish edit: press c]i} to perform the edit you describe.
 #### Currently learning
 
 Plan: finish cardistry bootcamp, learn card control from 52kards.
-- [Hot shot](https://www.youtube.com/watch?v=ZmXMgJGtgts)
-- [Sybil](https://www.youtube.com/watch?v=s6F3Em7McOs&list=PLIYzPFCPrDTDGSbF0Epp7_ZGCCSsUVM1d&index=20)
+
+
+- [False riffle shuffle by 52kards](https://www.youtube.com/watch?v=sLIS4c2dUwc)
+- [Push off second deal](https://www.youtube.com/watch?v=i5JlED3erBY)
+
+#### Next
+
 - [Straddle pass control by Champion Magic](https://www.youtube.com/watch?v=Hp-lpNJAo5Q)
 - [Card control chris ramsay](https://www.youtube.com/watch?v=NCUfHRvCJj0)
 - [Riffle shuffle from 52kards](https://www.youtube.com/watch?v=uW8zMwJF5ys)
-- [False riffle shuffle by 52kards](https://www.youtube.com/watch?v=sLIS4c2dUwc)
-
-#### Next
+- [Sybil](https://www.youtube.com/watch?v=s6F3Em7McOs&list=PLIYzPFCPrDTDGSbF0Epp7_ZGCCSsUVM1d&index=20)
 - [Basic passes: control top card, prereq for color change](https://www.youtube.com/watch?v=yM-m6j2WuL4)
-- [Push off second deal](https://www.youtube.com/watch?v=i5JlED3erBY)
 - [Bertram color change](https://www.youtube.com/watch?v=omcbLkcQkBk)
 - [Tenkai palm](https://www.youtube.com/watch?v=fsy1FA2n1RY)
 - [Flourish: Flirt](https://www.youtube.com/watch?v=tFb7gCgsqcQ)
@@ -32928,6 +33804,7 @@ Plan: finish cardistry bootcamp, learn card control from 52kards.
 #### Hiatus (too difficult for now)
 
 - [Lepaul spread](https://www.youtube.com/watch?v=0s6beNSX-L0)
+- [Hot shot](https://www.youtube.com/watch?v=ZmXMgJGtgts)
 
 #### Learnt
 
@@ -32986,7 +33863,7 @@ Plan: finish cardistry bootcamp, learn card control from 52kards.
 - [Ode on the Death of the Duke of Wellington](https://www.bartleby.com/246/385.html)
 
 
-# X86
+# X86 Cheat Sheet
 
 ##### Mnemonical for CCall
 ```
@@ -33009,30 +33886,9 @@ Plan: finish cardistry bootcamp, learn card control from 52kards.
 * r9   arg5 - 9
 ```
 
-# Big list of writing/paper writing thoughts
-
-- Strongest words ought to start and begin a sentences. A re-phrasing I made:
- "Thus, we know that `pr-ty` lives in UNIV because of correctness of `synth`" into
- "Correctness of `synth` guarantees that `pr-ty` lives in UNIV".
-- There is low satisfaction of finishing and understanding a section, it seems
-  to flow a little too continuous.
-- Align figures to either all left or all right.
-- In structure, label references to future sections are non existent, so it
-  would help assure the reader in section x that you will talk more about the
-  uses of this in section y.
-
-# Big list of interpersonal thoughts
--  What do you have in mind? works well to get to know what the other person
-   would like.
-- So the way I see it, is that as soon as you are
-  naming something, people may ask things like "What
-  is X exactly? What is X composed of?". So I can
-  clearly see reviewers ask "What is DSL composed
-  of?", but if we wouldn't name it, I wouldn't expect
-  reviewers to ask "What is the python interface composed of?"
 
 
-# Big list of common lisp
+# Common Lisp Cheat Sheet
 
 ```lisp
 ;; to change package, goto SLIME, type `,` for `, set package`.
@@ -33092,7 +33948,7 @@ Plan: finish cardistry bootcamp, learn card control from 52kards.
 (ql:quickload "str")
 ```
 
-# Big list of Agda
+# Agda Cheat Sheet
 
 - Load/check file: `C-c C-l`.
 - Show goals: `C-c C-?`.
@@ -33109,6 +33965,33 @@ Plan: finish cardistry bootcamp, learn card control from 52kards.
 
 
 # Big list of Hacker news 
+
+> Strongest words ought to start and begin a sentences. A re-phrasing I made:
+ "Thus, we know that `pr-ty` lives in UNIV because of correctness of `synth`" into
+ "Correctness of `synth` guarantees that `pr-ty` lives in UNIV".
+
+> There is low satisfaction of finishing and understanding a section, it seems
+  to flow a little too continuous.
+
+> Align figures to either all left or all right.
+
+> In structure, label references to future sections are non existent, so it
+  would help assure the reader in section x that you will talk more about the
+  uses of this in section y.
+
+
+
+> What do you have in mind? works well to get to know what the other person
+   would like.
+
+
+> So the way I see it, is that as soon as you are
+  naming something, people may ask things like "What
+  is X exactly? What is X composed of?". So I can
+  clearly see reviewers ask "What is DSL composed
+  of?", but if we wouldn't name it, I wouldn't expect
+  reviewers to ask "What is the python interface composed of?"
+
 
 > She told me that I was what she calls institutionally poor. That I had been
 > conditioned thru my childhood to think like a poor person and in doing so you
@@ -33141,18 +34024,34 @@ Plan: finish cardistry bootcamp, learn card control from 52kards.
 > was the bird of Athena, the goddess of wisdom. Because, obviously, an owl is
 > always surprised, and surprise is the first step to understanding.
 
-# Big list of speaking / oration
 
-my only other critique, =which is good in general, but try to force yourself to
+- [HN link for quote below](https://news.ycombinator.com/item?id=24265400)
+
+> Social justice and "fairness" is rarely one of the main goals of a
+> meritocracy. The main goal of a meritocracy is peak performance. NFL teams
+> select the "best" quarter-backs not because it's most fair, but because it
+> will produce the most wins. Universities grant tenure to the most productive
+> professors, because that will enhance the University's reputation. Hospitals
+> hire the best doctors, because they can save the most lives. A society should
+> delegate its most important responsibilities to its smartest/most-knowledgable
+> members, because they can best lead society through worldly challenges.
+> 
+> Which is not to say that Social Justice isn't important. It is vital. But you
+> don't get to it by hiring the wrong people in the wrong roles. A meritocracy
+> excels at producing wealth - Universal Basic Income, Universal Healthcare,
+> Unemployment Insurance, better Public Schooling... these are the kind of Social
+> Justice programs that best distribute the wealth back to society.
+
+
+> my only other critique, which is good in general, but try to force yourself to
 speak slower than you want to.
 
-taking time to build a diagram is the best way to convey knowledge
+> taking time to build a diagram is the best way to convey knowledge
+
+> learning to be comfortable with silences while speaking doesn't come naturally to anyone.
 
 
-learning to be comfortable with silences while speaking doesn't come naturally to anyone.
-
-
-Some kids grow up on football. I grew up on public speaking (as behavioral
+> Some kids grow up on football. I grew up on public speaking (as behavioral
 therapy for a speech impediment, actually). If you want to get radically better
 in a hurry: 1) If you ever find yourself buffering on output, rather than
 making hesitation noises, just pause. People will read that as considered
@@ -33189,7 +34088,4 @@ that you're coming to the conclusion shouldn't surprise you.) 7) If you
 remember nothing else on microtactical phrasing when you're up there, remember
 that most people do not naturally include enough transition words when speaking
 informally, which tends to make speeches loose narrative cohesion. Throw in a
-few more than you would ordinarily think to do. ("Another example of this...",
-"This is why...", "Furthermore...", etc etc.).
-
-Use `for little c in big C` to say things like `for c ∈ C`
+few more than you would ordinarily think to do. 

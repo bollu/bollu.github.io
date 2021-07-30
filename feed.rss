@@ -5,6 +5,111 @@
 <link>https://bollu.github.io/</link>
 <description>A universe of Sorts</description>
   <item>
+    <title> Inconvergent: beautiful generative art </title>
+    <guid>https://bollu.github.io/inconvergent-beautiful-generative-art.html</guid>
+    <link>https://bollu.github.io/inconvergent-beautiful-generative-art.html</link>
+  </item>
+  <item>
+    <title> DP on monotone matrix (SMAWK) </title>
+    <guid>https://bollu.github.io/dp-on-monotone-matrix-smawk.html</guid>
+    <link>https://bollu.github.io/dp-on-monotone-matrix-smawk.html</link>
+  </item>
+  <item>
+    <title> Prefix/Border function </title>
+    <guid>https://bollu.github.io/prefixborder-function.html</guid>
+    <link>https://bollu.github.io/prefixborder-function.html</link>
+  </item>
+  <item>
+    <title> Shortest walk versus shortest path </title>
+    <guid>https://bollu.github.io/shortest-walk-versus-shortest-path.html</guid>
+    <link>https://bollu.github.io/shortest-walk-versus-shortest-path.html</link>
+  </item>
+  <item>
+    <title> Diameter in single DFS </title>
+    <guid>https://bollu.github.io/diameter-in-single-dfs.html</guid>
+    <link>https://bollu.github.io/diameter-in-single-dfs.html</link>
+  </item>
+  <item>
+    <title> Min cost flow </title>
+    <guid>https://bollu.github.io/min-cost-flow.html</guid>
+    <link>https://bollu.github.io/min-cost-flow.html</link>
+  </item>
+  <item>
+    <title> Minimal tech stack </title>
+    <guid>https://bollu.github.io/minimal-tech-stack.html</guid>
+    <link>https://bollu.github.io/minimal-tech-stack.html</link>
+  </item>
+  <item>
+    <title> FFT </title>
+    <guid>https://bollu.github.io/fft.html</guid>
+    <link>https://bollu.github.io/fft.html</link>
+  </item>
+  <item>
+    <title> Zscoder codeforces rating </title>
+    <guid>https://bollu.github.io/zscoder-codeforces-rating.html</guid>
+    <link>https://bollu.github.io/zscoder-codeforces-rating.html</link>
+  </item>
+  <item>
+    <title> Continuum TTRPG </title>
+    <guid>https://bollu.github.io/continuum-ttrpg.html</guid>
+    <link>https://bollu.github.io/continuum-ttrpg.html</link>
+  </item>
+  <item>
+    <title> Words to know in target language </title>
+    <guid>https://bollu.github.io/words-to-know-in-target-language.html</guid>
+    <link>https://bollu.github.io/words-to-know-in-target-language.html</link>
+  </item>
+  <item>
+    <title> DP on subarrays </title>
+    <guid>https://bollu.github.io/dp-on-subarrays.html</guid>
+    <link>https://bollu.github.io/dp-on-subarrays.html</link>
+  </item>
+  <item>
+    <title> Vis editor cheat sheet </title>
+    <guid>https://bollu.github.io/vis-editor-cheat-sheet.html</guid>
+    <link>https://bollu.github.io/vis-editor-cheat-sheet.html</link>
+  </item>
+  <item>
+    <title> Mean, Median and Jensen &apos; s </title>
+    <guid>https://bollu.github.io/mean-median-and-jensens.html</guid>
+    <link>https://bollu.github.io/mean-median-and-jensens.html</link>
+  </item>
+  <item>
+    <title> The similarity between labellings and representations </title>
+    <guid>https://bollu.github.io/the-similarity-between-labellings-and-representations.html</guid>
+    <link>https://bollu.github.io/the-similarity-between-labellings-and-representations.html</link>
+  </item>
+  <item>
+    <title> L1 norm is greater than or equal to L2 norm </title>
+    <guid>https://bollu.github.io/l1-norm-is-greater-than-or-equal-to-l2-norm.html</guid>
+    <link>https://bollu.github.io/l1-norm-is-greater-than-or-equal-to-l2-norm.html</link>
+  </item>
+  <item>
+    <title> Z algorithm  </title>
+    <guid>https://bollu.github.io/z-algorithm.html</guid>
+    <link>https://bollu.github.io/z-algorithm.html</link>
+  </item>
+  <item>
+    <title> For a given recurrence, what base cases do I need to implement? </title>
+    <guid>https://bollu.github.io/for-a-given-recurrence-what-base-cases-do-i-need-to-implement.html</guid>
+    <link>https://bollu.github.io/for-a-given-recurrence-what-base-cases-do-i-need-to-implement.html</link>
+  </item>
+  <item>
+    <title> Number of distinct numbers in a partition </title>
+    <guid>https://bollu.github.io/number-of-distinct-numbers-in-a-partition.html</guid>
+    <link>https://bollu.github.io/number-of-distinct-numbers-in-a-partition.html</link>
+  </item>
+  <item>
+    <title> Splitting  f(x) = y into indicators </title>
+    <guid>https://bollu.github.io/splitting-fx-y-into-indicators.html</guid>
+    <link>https://bollu.github.io/splitting-fx-y-into-indicators.html</link>
+  </item>
+  <item>
+    <title> Why searching for divisors upto  sqrt(n) works </title>
+    <guid>https://bollu.github.io/why-searching-for-divisors-upto-sqrtn-works.html</guid>
+    <link>https://bollu.github.io/why-searching-for-divisors-upto-sqrtn-works.html</link>
+  </item>
+  <item>
     <title> Heuristics for the prime number theorem </title>
     <guid>https://bollu.github.io/heuristics-for-the-prime-number-theorem.html</guid>
     <link>https://bollu.github.io/heuristics-for-the-prime-number-theorem.html</link>
@@ -385,9 +490,9 @@
     <link>https://bollu.github.io/lebesgue-number-lemma-todo.html</link>
   </item>
   <item>
-    <title> Big list of learning Lean internals </title>
-    <guid>https://bollu.github.io/big-list-of-learning-lean-internals.html</guid>
-    <link>https://bollu.github.io/big-list-of-learning-lean-internals.html</link>
+    <title> Lean internals Cheat Sheet </title>
+    <guid>https://bollu.github.io/lean-internals-cheat-sheet.html</guid>
+    <link>https://bollu.github.io/lean-internals-cheat-sheet.html</link>
   </item>
   <item>
     <title> MicroUI </title>
@@ -1135,9 +1240,9 @@
     <link>https://bollu.github.io/periodic-tables-and-make-illegal-states-unrepresentable.html</link>
   </item>
   <item>
-    <title> Big list of questions on the structure of graphs </title>
-    <guid>https://bollu.github.io/big-list-of-questions-on-the-structure-of-graphs.html</guid>
-    <link>https://bollu.github.io/big-list-of-questions-on-the-structure-of-graphs.html</link>
+    <title> questions on the structure of graphs </title>
+    <guid>https://bollu.github.io/questions-on-the-structure-of-graphs.html</guid>
+    <link>https://bollu.github.io/questions-on-the-structure-of-graphs.html</link>
   </item>
   <item>
     <title> Combinations notation in bijective combinatorics </title>
@@ -1403,11 +1508,6 @@
     <title> How to fairly compare groups </title>
     <guid>https://bollu.github.io/how-to-fairly-compare-groups.html</guid>
     <link>https://bollu.github.io/how-to-fairly-compare-groups.html</link>
-  </item>
-  <item>
-    <title> Z algorithm (TODO) </title>
-    <guid>https://bollu.github.io/z-algorithm-todo.html</guid>
-    <link>https://bollu.github.io/z-algorithm-todo.html</link>
   </item>
   <item>
     <title> Bijection from  (0, 1) to  [0, 1]</title>
@@ -2560,59 +2660,49 @@
     <link>https://bollu.github.io/long-form-posts.html</link>
   </item>
   <item>
-    <title> Big list of emacs </title>
-    <guid>https://bollu.github.io/big-list-of-emacs.html</guid>
-    <link>https://bollu.github.io/big-list-of-emacs.html</link>
+    <title> Emacs Cheat Sheet </title>
+    <guid>https://bollu.github.io/emacs-cheat-sheet.html</guid>
+    <link>https://bollu.github.io/emacs-cheat-sheet.html</link>
   </item>
   <item>
-    <title> Big list of Coq </title>
-    <guid>https://bollu.github.io/big-list-of-coq.html</guid>
-    <link>https://bollu.github.io/big-list-of-coq.html</link>
+    <title> Coq Cheat Sheet </title>
+    <guid>https://bollu.github.io/coq-cheat-sheet.html</guid>
+    <link>https://bollu.github.io/coq-cheat-sheet.html</link>
   </item>
   <item>
-    <title> Big list of writing </title>
-    <guid>https://bollu.github.io/big-list-of-writing.html</guid>
-    <link>https://bollu.github.io/big-list-of-writing.html</link>
+    <title> Writing Cheat Sheet </title>
+    <guid>https://bollu.github.io/writing-cheat-sheet.html</guid>
+    <link>https://bollu.github.io/writing-cheat-sheet.html</link>
   </item>
   <item>
-    <title> Big list of Latex </title>
-    <guid>https://bollu.github.io/big-list-of-latex.html</guid>
-    <link>https://bollu.github.io/big-list-of-latex.html</link>
+    <title> Latex Cheat Sheet </title>
+    <guid>https://bollu.github.io/latex-cheat-sheet.html</guid>
+    <link>https://bollu.github.io/latex-cheat-sheet.html</link>
   </item>
   <item>
-    <title> Big list of Architecture  </title>
-    <guid>https://bollu.github.io/big-list-of-architecture.html</guid>
-    <link>https://bollu.github.io/big-list-of-architecture.html</link>
+    <title> Architecture Cheat Sheet  </title>
+    <guid>https://bollu.github.io/architecture-cheat-sheet.html</guid>
+    <link>https://bollu.github.io/architecture-cheat-sheet.html</link>
   </item>
   <item>
-    <title> Big list of Recipes  </title>
-    <guid>https://bollu.github.io/big-list-of-recipes.html</guid>
-    <link>https://bollu.github.io/big-list-of-recipes.html</link>
+    <title> Recipes Cheat Sheet  </title>
+    <guid>https://bollu.github.io/recipes-cheat-sheet.html</guid>
+    <link>https://bollu.github.io/recipes-cheat-sheet.html</link>
   </item>
   <item>
-    <title> Big list of history </title>
-    <guid>https://bollu.github.io/big-list-of-history.html</guid>
-    <link>https://bollu.github.io/big-list-of-history.html</link>
+    <title> History Cheat Sheet </title>
+    <guid>https://bollu.github.io/history-cheat-sheet.html</guid>
+    <link>https://bollu.github.io/history-cheat-sheet.html</link>
   </item>
   <item>
-    <title> Big list of words </title>
-    <guid>https://bollu.github.io/big-list-of-words.html</guid>
-    <link>https://bollu.github.io/big-list-of-words.html</link>
+    <title> Words Cheat Sheet </title>
+    <guid>https://bollu.github.io/words-cheat-sheet.html</guid>
+    <link>https://bollu.github.io/words-cheat-sheet.html</link>
   </item>
   <item>
-    <title> Big list of Music </title>
-    <guid>https://bollu.github.io/big-list-of-music.html</guid>
-    <link>https://bollu.github.io/big-list-of-music.html</link>
-  </item>
-  <item>
-    <title> Big list of Social Science  </title>
-    <guid>https://bollu.github.io/big-list-of-social-science.html</guid>
-    <link>https://bollu.github.io/big-list-of-social-science.html</link>
-  </item>
-  <item>
-    <title> Big list of clojure  </title>
-    <guid>https://bollu.github.io/big-list-of-clojure.html</guid>
-    <link>https://bollu.github.io/big-list-of-clojure.html</link>
+    <title> Clojure Sheat Sheet  </title>
+    <guid>https://bollu.github.io/clojure-sheat-sheet.html</guid>
+    <link>https://bollu.github.io/clojure-sheat-sheet.html</link>
   </item>
   <item>
     <title> Big list of quotes </title>
@@ -2625,9 +2715,9 @@
     <link>https://bollu.github.io/empathy.html</link>
   </item>
   <item>
-    <title> Big list of Vim  </title>
-    <guid>https://bollu.github.io/big-list-of-vim.html</guid>
-    <link>https://bollu.github.io/big-list-of-vim.html</link>
+    <title> Vim Cheat Sheet </title>
+    <guid>https://bollu.github.io/vim-cheat-sheet.html</guid>
+    <link>https://bollu.github.io/vim-cheat-sheet.html</link>
   </item>
   <item>
     <title> Big list of Chess </title>
@@ -2650,39 +2740,24 @@
     <link>https://bollu.github.io/poems-to-memorize.html</link>
   </item>
   <item>
-    <title> X86 </title>
-    <guid>https://bollu.github.io/x86.html</guid>
-    <link>https://bollu.github.io/x86.html</link>
+    <title> X86 Cheat Sheet </title>
+    <guid>https://bollu.github.io/x86-cheat-sheet.html</guid>
+    <link>https://bollu.github.io/x86-cheat-sheet.html</link>
   </item>
   <item>
-    <title> Big list of writing/paper writing thoughts </title>
-    <guid>https://bollu.github.io/big-list-of-writingpaper-writing-thoughts.html</guid>
-    <link>https://bollu.github.io/big-list-of-writingpaper-writing-thoughts.html</link>
+    <title> Common Lisp Cheat Sheet </title>
+    <guid>https://bollu.github.io/common-lisp-cheat-sheet.html</guid>
+    <link>https://bollu.github.io/common-lisp-cheat-sheet.html</link>
   </item>
   <item>
-    <title> Big list of interpersonal thoughts </title>
-    <guid>https://bollu.github.io/big-list-of-interpersonal-thoughts.html</guid>
-    <link>https://bollu.github.io/big-list-of-interpersonal-thoughts.html</link>
-  </item>
-  <item>
-    <title> Big list of common lisp </title>
-    <guid>https://bollu.github.io/big-list-of-common-lisp.html</guid>
-    <link>https://bollu.github.io/big-list-of-common-lisp.html</link>
-  </item>
-  <item>
-    <title> Big list of Agda </title>
-    <guid>https://bollu.github.io/big-list-of-agda.html</guid>
-    <link>https://bollu.github.io/big-list-of-agda.html</link>
+    <title> Agda Cheat Sheet </title>
+    <guid>https://bollu.github.io/agda-cheat-sheet.html</guid>
+    <link>https://bollu.github.io/agda-cheat-sheet.html</link>
   </item>
   <item>
     <title> Big list of Hacker news  </title>
     <guid>https://bollu.github.io/big-list-of-hacker-news.html</guid>
     <link>https://bollu.github.io/big-list-of-hacker-news.html</link>
-  </item>
-  <item>
-    <title> Big list of speaking / oration </title>
-    <guid>https://bollu.github.io/big-list-of-speaking-oration.html</guid>
-    <link>https://bollu.github.io/big-list-of-speaking-oration.html</link>
   </item>
 </channel>
 </rss>
