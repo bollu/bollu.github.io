@@ -42,22 +42,32 @@ std::string basek(int n, int k) {
 // == STRING ALGORITHM ==
 vector<int> mkz(string s) {
   const int n = s.size();
+  int tick = 0;
   vector<int> len(n, 0);
   int l = 0; // overhang location
   for (int i = 1; i < n; ++i) {
+    tick++;
     // use overhang to get estimate.
     if (i < l + len[l]) {
       // can't be larger than the overhang itself!
-      len[i] = max<int>(0, min<int>(l + len[i] - i, len[i-l]));
+      len[i] = max<int>(0, min<int>(l + len[l] - i, len[i-l]));
     }
+    
     while (i + len[i] < n && s[len[i]] == s[i + len[i]]) {
+      tick++;
       len[i]++;
     }
     
-    if (i + len[i] > l + len[l]) {
+    if (i + len[i] >= l + len[l]) {
       l = i;
     }
   }
+  if (tick >= 3*n) {
+    std::cout << "**ERROR: expected tick:" << tick
+	      << "  to be < 3.(n:" << n << "):" << 3*n << ". \n";
+  }
+  
+  assert(tick <= 3 * n && "Z must be linear!");
   return len;
 }
 
