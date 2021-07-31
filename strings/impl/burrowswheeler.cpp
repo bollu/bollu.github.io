@@ -37,30 +37,33 @@ string encode(string s) {
   return out;
 }
 
-string decode(const string &l) {
-  map<char, int> char2count; // c -> num of occurrence of c in l.
-  vector<int> rnkat(l.size(), 0); // index -> rank l[index]  l[0..index)];  #. of occurrence of l[c] in [0, index) 
+string decode(const string &enc) {
+  const int  n = enc.size();
+  map<char, int> char2count; // c -> num of occurrence of c in enc.
+  vector<int> rnkEnc(n, 0); // index -> rank enc[index]  enc[0..index)];  #. of occurrence of l[c] in [0, index) 
 
-  for(int i = 0; i < l.size(); ++i) {
-    char2count[l[i]]++;
-    rnkat[i] = char2count[l[i]]; 
+  for(int i = 0; i < n; ++i) {
+    char2count[enc[i]]++;
+    rnkEnc[i] = char2count[enc[i]]; 
   }
 
-  // m: char -> location of 1st occurrence of char c in sorted order.
-  map<char, int> char2fstix;
+  // m: char -> location of 1st occurrence of char c in sorted order
+  // [beginning of block of characters c in sorted order].
+  map<char, int> char2BlkBeginIx;
   int sum = 0;
   for(auto it: char2count) {
-    char2fstix[it.first] = sum;
+    char2BlkBeginIx[it.first] = sum;
     sum += it.second;
   }
 
-  string out; out.resize(l.size());
+  string out; out.resize(n);
   int ix = 0;
-  for(ix = 0; l[ix] != TERMINAL; ++ix) {}
+  for(ix = 0; enc[ix] != TERMINAL; ++ix) {}
 
-  for(int i = l.size() - 1; i >= 0; i--) {
-    out[i] = l[ix];
-    ix = (rnkat[ix]-1) + char2fstix[l[ix]];
+  for(int i = n - 1; i >= 0; i--) {
+    out[i] = enc[ix];
+    // find location of l[ix] in the left column (sorted order)
+    ix = (rnkEnc[ix]-1) + char2BlkBeginIx[enc[ix]];
   }
   return out;
 }
