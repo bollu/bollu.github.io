@@ -37,65 +37,32 @@ string encode(string s) {
   return out;
 }
 
-string decode(string rightmost) {
-  // given last column, we now first column by sorting characters of s.
-  // map nth occurrence of character to its index.
+string decode(const string &l) {
+  map<char, int> k; // char -> num of occurrence.
+  vector<int> c(l.size(), 0); // index -> # of occurrence of l[c] in [0, index) 
 
-  string css[2];
-  css[0] = css[1] = rightmost;
-  sort(css[0].begin(), css[0].end());
-
-  // c=0                 c=1
-  // ----------------------
-  // $0                  .
-  // a0                  .
-  // a1                  .
-  // a2                  .
-  // b0                  .
-  // n0                  .
-  // n1                  .
-
-  const int n = rightmost.size();
-
-  map<char, int> occs[2];
-  map<pair<char, int>, int> char2row[2];
-  map<int, pair<char, int>> row2char[2];
-
-  cout << "decode(" << rightmost << "):\n";
-  for (int lr = 0; lr < 2; ++lr) {
-    for (int r = 0; r < n; ++r) {
-      char c = css[lr][r];
-      int count = occs[lr][c];
-      char2row[lr][std::make_pair(c, count)] = r;
-      row2char[lr][r] = std::make_pair(c, count);
-      occs[lr][c]++;
-    }
-
-
-    cout << "  lr[" << lr << "] = ";
-    for(int i = 0; i < n; ++i) {
-      cout << "[" << i << "]" << row2char[lr][i].first << row2char[lr][i].second << " ";
-      // check that these are inverses.
-      assert(char2row[lr][row2char[lr][i]] == i);
-    }
-    cout << "\n";
+  for(int i = 0; i < l.size(); ++i) {
+    c[i] = k[l[i]]; 
+    k[l[i]]++;
   }
 
-  
-
-  // we are at the right column, at the $0.
-  // TODO: what happens if I start at other column?
-  int row = char2row[0][{TERMINAL, 0}];
-
-  string t;
-  while (t.size() != rightmost.size()) {
-    t += row2char[0][row].first;
-    t += row2char[1][row].first;
-    row = char2row[0][row2char[1][row]];
+  // m: char -> location of 1st occurrence of char c in sorted order.
+  map<char, int> m;
+  int tot = 0;
+  for(auto it: k) {
+    m[it.first] = tot;
+    tot += it.second;
   }
 
-  reverse(t.begin(), t.end());
-  return t;
+  string out; out.resize(l.size());
+  int ix = 0;
+  for(ix = 0; l[ix] != TERMINAL; ++ix) {}
+
+  for(int i = l.size() - 1; i >= 0; i--) {
+    out[i] = l[ix];
+    ix = c[ix] + m[l[ix]];
+  }
+  return out;
 }
 
 // === problem generation stuff ===
