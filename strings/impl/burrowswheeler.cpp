@@ -38,20 +38,20 @@ string encode(string s) {
 }
 
 string decode(const string &l) {
-  map<char, int> k; // char -> num of occurrence.
-  vector<int> c(l.size(), 0); // index -> # of occurrence of l[c] in [0, index) 
+  map<char, int> char2count; // c -> num of occurrence of c in l.
+  vector<int> rnkat(l.size(), 0); // index -> rank l[index]  l[0..index)];  #. of occurrence of l[c] in [0, index) 
 
   for(int i = 0; i < l.size(); ++i) {
-    c[i] = k[l[i]]; 
-    k[l[i]]++;
+    char2count[l[i]]++;
+    rnkat[i] = char2count[l[i]]; 
   }
 
   // m: char -> location of 1st occurrence of char c in sorted order.
-  map<char, int> m;
-  int tot = 0;
-  for(auto it: k) {
-    m[it.first] = tot;
-    tot += it.second;
+  map<char, int> char2fstix;
+  int sum = 0;
+  for(auto it: char2count) {
+    char2fstix[it.first] = sum;
+    sum += it.second;
   }
 
   string out; out.resize(l.size());
@@ -60,7 +60,7 @@ string decode(const string &l) {
 
   for(int i = l.size() - 1; i >= 0; i--) {
     out[i] = l[ix];
-    ix = c[ix] + m[l[ix]];
+    ix = (rnkat[ix]-1) + char2fstix[l[ix]];
   }
   return out;
 }
