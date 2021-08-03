@@ -119,6 +119,9 @@ struct Trie {
 	std::string s;
 	Node *root;
 
+	// TODO: at iteration i:
+	//   let k := min. k such that suf^k(deepest leaf)->next[s[i]] != nullptr.
+	//     add s[i] children or deepest leaf, suf(deepest leaf), suf^2(deepest leaf), ... suf^(k-1)(deepest-leaf).
 	Trie(std::string s) : s(s) {
 		root = new Node();
 		// Node *c0 = new Node();
@@ -133,10 +136,22 @@ struct Trie {
 			vector<Node *> newsuffixes;
 			const char c = s[startix];
 			cout << "\t-adding new nodes for start ix [" << startix << "]" << c << "...\n";
+			// check that we only create nodes for children of the form suf(deepest leaf), suf^2(deepest leaf),
+			// and so on upto suf^(k-1)(deepest-leaf)
+			bool createdNode = true;
 			for(Node *cur = deepest; cur != nullptr; cur = cur->sufsmol) {
 				cout << "\t\t-at node |" << cur << "|\n";
 				if (!cur->next(c)) {
+					assert(createdNode && "have been creating new nodes!");
 					cur->next(c) =  new Node();
+					cout << "\t\t-CREATED new node [" << cur->next(c) << "]" << " @ |" << cur << "|\n";
+				} else {
+					if (createdNode) {
+						cout << "\t\t-STOPPED creating new nodes@ |" << cur << "| [everyone after ALSO must not have new nodes]...\n"; 
+					} else {
+						cout << "\t\t-DID NOT CREATE new node @ |" << cur << "|\n";
+					}
+					createdNode = false;
 				}
 
 				assert(cur->next(c) && "expected next node");
