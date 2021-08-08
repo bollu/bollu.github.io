@@ -2099,4 +2099,138 @@ the object $(c: C, (Ff)(y): Fc)$. This makes the diagram:
 	\arrow["Ff", dashed, from=1-5, to=1-3]
 \end{tikzcd}\]
 
+\chapter{Limits and Colimits}
+\section{Limits and Colimits as universal cones}
+\subsection{Exercises}
+\question{3.1.v} Characterize the limit (and colimit) of a diagram $F: J \to P$ where $P$ is a poset $(P, \leq)$ treated
+as a category.
+
+\begin{itemize}
+    \item Let the limit be $L \in C$. 
+        This means that $L$ has arrows $\lambda_j: L \to F(j)$ for every $j \in J$. This means that $L \leq F(j)$ for every $j \in J$.
+    \item Thus $L$ is a lower bound of the set $\{ F(j) : j \in J \}$.
+    \item Furthermore, the arrows in the diagram category $j \xrightarrow{a} j' \in J$ become arrow $F(j) \leq_a F(j')$ in $P$.
+    \item But such arrows impose no ``coherence conditions'', since all arrows in a poset category are \emph{guaranteed} to 
+        compose by the transitivity of $(\leq)$.
+    \item By the universality of the limit, for any other $\alpha$ such that we have a natural transformation $\eta: \Delta_\alpha \nt F$,
+        we must have an arrow $L_\alpha: \alpha \xrightarrow L$. 
+    \item Unwrapping the above, this means that if we have $\alpha \leq F(j)$ for all $j \in J$, then we must also have $\alpha \leq L$.
+    \item This means that if $\alpha$ is a lower bound of $\{ F(j) : j \in J \}$, then $L$ is greater than $\alpha$.
+    \item Thus, $L$ is a greatest lower bound of the set $\{ F(j) \}$, since it is greater than or equal to
+        all lower bounds of $\{ F(j) \}$.
+\end{itemize}
+
+
+\question{3.1.vi} Prove that in an equalizer diagram, the lone arrow is monic (left-cancellable).
+
+\begin{itemize}
+        \item Recognize that the limit of an equalizer gives us an $L$ such that this diagram commutes:
+% https://q.uiver.app/?q=WzAsMTYsWzEsMSwiSSJdLFszLDEsIk8iXSxbMSwwLCIxIl0sWzMsMCwiMiJdLFswLDAsIko6Il0sWzAsMSwiQzoiXSxbMCwyXSxbMiwyLCJMIl0sWzEsMywiSSJdLFszLDMsIk8iXSxbNCwyLCJmIFxcY2lyYyBcXGxhbWJkYV8xID0gXFxsYW1iZGFfMiJdLFs0LDMsImcgXFxjaXJjIFxcbGFtYmRhXzEgPSBcXGxhbWJkYV8yIl0sWzIsNCwiZiBcXGNpcmMgXFxsYW1iZGFfMSA9IGcgXFxjaXJjIFxcbGFtYmRhXzEiXSxbMSw1LCJMIl0sWzIsNSwiSSJdLFszLDUsIk8iXSxbMCwxLCJnIiwyLHsib2Zmc2V0IjoxfV0sWzAsMSwiZiIsMCx7Im9mZnNldCI6LTF9XSxbMiwzLCJhIl0sWzIsMywiYSciLDIseyJvZmZzZXQiOjJ9XSxbNCw1LCJGIiwyXSxbNyw4LCJcXGxhbWJkYV8xIiwyXSxbNyw5LCJcXGxhbWJkYV8yIl0sWzgsOSwiZiJdLFs4LDksImciLDIseyJvZmZzZXQiOjN9XSxbMTMsMTQsIlxcbGFtYmRhXzEiLDJdLFsxNCwxNSwiZiIsMix7Im9mZnNldCI6LTN9XSxbMTQsMTUsImciLDIseyJvZmZzZXQiOjN9XV0=
+\[\begin{tikzcd}
+	{J:} & 1 && 2 \\
+	{C:} & I && O \\
+	{} && L && {f \circ \lambda_1 = \lambda_2} \\
+	& I && O & {g \circ \lambda_1 = \lambda_2} \\
+	&& {f \circ \lambda_1 = g \circ \lambda_1} \\
+	& L & I & O
+	\arrow["g"', shift right=1, from=2-2, to=2-4]
+	\arrow["f", shift left=1, from=2-2, to=2-4]
+	\arrow["a", from=1-2, to=1-4]
+	\arrow["{a'}"', shift right=2, from=1-2, to=1-4]
+	\arrow["F"', from=1-1, to=2-1]
+	\arrow["{\lambda_1}"', from=3-3, to=4-2]
+	\arrow["{\lambda_2}", from=3-3, to=4-4]
+	\arrow["f", from=4-2, to=4-4]
+	\arrow["g"', shift right=3, from=4-2, to=4-4]
+	\arrow["{\lambda_1}"', from=6-2, to=6-3]
+	\arrow["f"', shift left=3, from=6-3, to=6-4]
+	\arrow["g"', shift right=3, from=6-3, to=6-4]
+\end{tikzcd}\]
+\item Furthermore, the terminality of the limit asserts this. Suppose that for some $\alpha \in C$ and some $\eta_1: \alpha \to I$,
+	this diagram commutes:
+
+% https://q.uiver.app/?q=WzAsMyxbMCwwLCJcXGFscGhhIl0sWzEsMCwiSSJdLFsyLDAsIk8iXSxbMCwxLCJcXGV0YV8xIl0sWzEsMiwiZiJdLFsxLDIsImciLDIseyJsYWJlbF9wb3NpdGlvbiI6NDAsIm9mZnNldCI6Mn1dXQ==
+\[\begin{tikzcd}
+	\alpha & I & O
+	\arrow["{\eta_1}", from=1-1, to=1-2]
+	\arrow["f", from=1-2, to=1-3]
+	\arrow["g"'{pos=0.4}, shift right=2, from=1-2, to=1-3]
+\end{tikzcd}\]
+
+\item Then there exists a unique arrow $t_\alpha: \alpha \to L$ such that this diagram commutes:
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXGFscGhhIl0sWzMsMCwiSSJdLFs0LDAsIk8iXSxbMiwxLCJMIl0sWzAsMSwiXFxldGFfMSJdLFsxLDIsImYiXSxbMSwyLCJnIiwyLHsibGFiZWxfcG9zaXRpb24iOjQwLCJvZmZzZXQiOjJ9XSxbMCwzLCJcXGV4aXN0cyAhIHRfXFxhbHBoYSIsMl0sWzMsMSwiXFxsYW1iZGFfMSIsMl1d
+\[\begin{tikzcd}
+	\alpha &&& I & O \\
+	&& L
+	\arrow["{\eta_1}", from=1-1, to=1-4]
+	\arrow["f", from=1-4, to=1-5]
+	\arrow["g"'{pos=0.4}, shift right=2, from=1-4, to=1-5]
+	\arrow["{\exists ! t_\alpha}"', from=1-1, to=2-3]
+	\arrow["{\lambda_1}"', from=2-3, to=1-4]
+\end{tikzcd}\]
+
+\item Now to show that the arrow $\lambda_1$ is mono, suppose we have two arrows $h, k$ such that this diagram commutes:
+% https://q.uiver.app/?q=WzAsMyxbMSwwLCJMIl0sWzMsMCwiSSJdLFswLDAsIlgiXSxbMCwxLCJcXGxhbWJkYV8xIl0sWzIsMCwiaCJdLFsyLDAsImsiLDIseyJvZmZzZXQiOjN9XV0=
+\[\begin{tikzcd}
+	X & L && I
+	\arrow["{\lambda_1}", from=1-2, to=1-4]
+	\arrow["h", from=1-1, to=1-2]
+	\arrow["k"', shift right=3, from=1-1, to=1-2]
+\end{tikzcd}\]
+
+\item Now we must show that $h = k$. 
+\item Since I know from the above that $\lambda_1 \circ h = \lambda_1 \circ k$ and that $f \circ \lambda_1 = g \circ \lambda_1$,
+I deduce that $ f \circ \lambda_1 \circ h = g \circ \lambda_1 \circ k$:
+\begin{align*}
+&f \circ (\lambda_1 \circ h) = \\
+&(f \circ \lambda_1) \circ h = \\
+&g \circ \lambda_1 \circ h = \\
+&g \circ (\lambda_1 \circ h) = \\
+&g \circ (\lambda_1 \circ k) = \\
+\end{align*}
+
+or that this diagram commutes:
+
+% https://q.uiver.app/?q=WzAsNCxbMSwwLCJMIl0sWzMsMCwiSSJdLFswLDAsIlgiXSxbNCwwLCJPIl0sWzAsMSwiXFxsYW1iZGFfMSJdLFsyLDAsImgiXSxbMiwwLCJrIiwyLHsib2Zmc2V0IjozfV0sWzEsMywiZiJdLFsxLDMsImciLDIseyJvZmZzZXQiOjJ9XV0=
+\[\begin{tikzcd}
+	X & L && I & O
+	\arrow["{\lambda_1}", from=1-2, to=1-4]
+	\arrow["h", from=1-1, to=1-2]
+	\arrow["k"', shift right=3, from=1-1, to=1-2]
+	\arrow["f", from=1-4, to=1-5]
+	\arrow["g"', shift right=2, from=1-4, to=1-5]
+\end{tikzcd}\]
+
+\item So we now see that we have a morphism $(h \circ \lambda_1) \circ f = (h \circ \lambda_1) \circ g$. So the morphism $h \circ \lambda_1$ can be written \emph{uniquely} as $t_X \circ \lambda_1$. This means that $t_X = h$.
+
+% https://q.uiver.app/?q=WzAsNCxbMSwxLCJMIl0sWzMsMCwiSSJdLFswLDAsIlgiXSxbNCwwLCJPIl0sWzAsMSwiXFxsYW1iZGFfMSJdLFsyLDAsImgiXSxbMSwzLCJmIl0sWzEsMywiZyIsMix7Im9mZnNldCI6Mn1dLFsyLDEsIlxcbGFtYmRhXzEgXFxjaXJjIGgiXSxbMiwwLCJcXGV4aXN0cyAhIHQiLDIseyJvZmZzZXQiOjR9XV0=
+\[\begin{tikzcd}
+	X &&& I & O \\
+	& L
+	\arrow["{\lambda_1}", from=2-2, to=1-4]
+	\arrow["h", from=1-1, to=2-2]
+	\arrow["f", from=1-4, to=1-5]
+	\arrow["g"', shift right=2, from=1-4, to=1-5]
+	\arrow["{\lambda_1 \circ h}", from=1-1, to=1-4]
+	\arrow["{\exists ! t_X}"', shift right=4, from=1-1, to=2-2]
+\end{tikzcd}\]
+
+\item Similarly, we have a morphism $(k \circ \lambda_1) \circ f = (k \circ \lambda_1) \circ g$. So the morphism $h \circ \lambda_1$ can be written \emph{uniquely} as $t_X \circ \lambda_1$. This means that $t_X = k$.
+
+% https://q.uiver.app/?q=WzAsNCxbMSwxLCJMIl0sWzMsMCwiSSJdLFswLDAsIlgiXSxbNCwwLCJPIl0sWzAsMSwiXFxsYW1iZGFfMSJdLFsyLDAsImsiXSxbMSwzLCJmIl0sWzEsMywiZyIsMix7Im9mZnNldCI6Mn1dLFsyLDEsIlxcbGFtYmRhXzEgXFxjaXJjIGsiXSxbMiwwLCJcXGV4aXN0cyAhIHRfWCIsMix7Im9mZnNldCI6NH1dXQ==
+\[\begin{tikzcd}
+	X &&& I & O \\
+	& L
+	\arrow["{\lambda_1}", from=2-2, to=1-4]
+	\arrow["k", from=1-1, to=2-2]
+	\arrow["f", from=1-4, to=1-5]
+	\arrow["g"', shift right=2, from=1-4, to=1-5]
+	\arrow["{\lambda_1 \circ k}", from=1-1, to=1-4]
+	\arrow["{\exists ! t_X}"', shift right=4, from=1-1, to=2-2]
+\end{tikzcd}\]
+\item Chain the two together: we get $h = t_X = k$ and we are done.
+\end{itemize}
+
+
+
 \end{document}                                              
