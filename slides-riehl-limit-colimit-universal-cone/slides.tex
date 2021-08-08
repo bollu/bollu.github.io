@@ -160,4 +160,28 @@
     }
 \end{frame}
 
+\begin{frame}{Definition of a Limit 2: Terminal in category of elements}
+    \includegraphics[width=0.8\textwidth]{./category-of-elements-description.png}
+    {\footnotesize
+    \begin{itemize}
+        \item category of elements of $\cCone(-, F): C \to \cSet$ for a given functor $F: J \to C$?
+        \item object: $(x \in C, \eta_x) \in \cCone(x, F) \in cSet$. So, a pair of a summit $x$
+            and a cone with summit $x$ and base $F: J \to C$.
+        \item Objects of the category of elements: cones with different summits.
+        \item Arrows in the category of elements: Arrows $ x \xrightarrow{a} y$
+            in $C$ such that for elements $(x, \eta_x)$ and $(y, \eta_y)$, the
+            functor $\cCone(-, F)$ obeys $\cCone(-, F)(a)(\eta_x) = \eta_y$.
+            \footnote{I just realised that the morphisms of this cone functor
+            have not been defined by Riehl!}
+    \end{itemize} }
+\end{frame}
+
+\begin{frame}{Definition of a Limit 2: Terminal in category of elements}
+    \includegraphics[width=\textwidth]{./category-of-elements-terminal.png}
+    \begin{itemize}
+        \item All cones factor through the terminal cone $(t, \lambda: \Delta_t \nt F$.
+    \end{itemize}
+\end{frame}
+
+
 \end{document}
