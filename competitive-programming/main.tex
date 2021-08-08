@@ -252,5 +252,21 @@ for the tiles.
 Given a number $S$ create an array of non-negative ($\geq 0$) integers $a[i]$ of size $n$ such that $\sum_{0 \leq i < n} a[i] = S$, 
 which minimises $\delta \equiv \sum_{i > j} | a[i] - a[j]|$.
 
+
+\chapter{Combinatorial game theory}
+% https://web.mit.edu/sp.268/www/nim.pdf
+% https://www.youtube.com/watch?v=YV_oWBi1_ck&list=PLxYr6TaF_SDV5r6rmI0LDxuO48FPFb6Rk&index=3
+\start{Definition: Normal rule} player with no moves left \emph{wins}.
+\start{Definition: P position} player with no moves left \emph{loses}. 
+
+\start{Definition: P position} position that is winning for \emph{previous} player (last player who made a move).
+\start{Definition: N position} position that is winning for \emph{next} player (player whose turn it is / player who will be making a move).
+
+\start{Recursive definition of position under misere rule (eg. chess without stalemate)}
+\begin{itemize}
+    \item Terminal positions are P positions.
+    \item From every N position, there is at least one move to a P position.
+    \item from every P position, there is at least one move to an N position.
+\end{itemize}
 \end{document}
 

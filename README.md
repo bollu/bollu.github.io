@@ -5,6 +5,8 @@ some slides of talks I've given.
 # Currently reading
 ##### [Category Theory in Context](./category-theory-in-context/main.pdf)
 ##### [Competitive programming](./competitive-programming/main.pdf)
+##### [Strings](./strings/main.pdf)
+##### [Compact data structures](./compact-ds/main.pdf)
 
 # Subjects
 ##### [Algebraic geometry in the time of COVID](./algebra/main.pdf)
@@ -17,6 +19,7 @@ some slides of talks I've given.
 
 # Aspirational
 
+##### [Frames and locales](./frames-and-locales/main.pdf)
 ##### [Homotopical topology by fomenko](./fomenko-homotopic-topology/main.pdf)
 ##### [Munkres](./munkres/main.pdf)
 ##### [Tu-intro-to-manifolds](./tu-intro-to-manifolds/main.pdf)

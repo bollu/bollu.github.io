@@ -70,6 +70,7 @@
 \newcommand{\cCat}{\cat{Cat}}
 \newcommand{\cset}{\cat{Set}}
 \newcommand{\cSet}{\cat{Set}}
+\newcommand{\cCAT}{\cat{CAT}}
 \newcommand{\cTop}{\cat{Top}}
 \newcommand{\ctop}{\cat{Top}}
 \newcommand{\cgrp}{\cat{Grp}}
@@ -1995,8 +1996,107 @@ given by the equations:
 
 \item These equations fully define $\chi_O$ since we define the value of $\chi_O$ by fibers, and these fibers clearly give us
 equivalence classes of $X$.
-\item See that the inverse image of the open set  $\{ \top  \} \in S$ is the set $O$. In this way, the open $O$ is picked out by the open $\top \in S$.
-\item This means that the space $S$ represents the functor $Opens: \cTop \to \cSet$ which sends a space to its set of opens, since open sets of a space $O \subseteq X$ are in bijection with continuous maps $\chi_O: X \to S$. Hence, $Opens \simeq Hom(-, S)$.
-\item Thus $S$ is univesal in the sense of representing the functor $Opens$.
+\item See that the inverse image of the open set  $\{ \top  \} \in S$ is the
+set $O$. In this way, the open $O$ is picked out by the open $\top \in S$.
+\item This means that the space $S$ represents the functor $Opens: \cTop \to
+    \cSet$ which sends a space to its set of opens, since open sets of a space
+        $O \subseteq X$ are in bijection with continuous maps $\chi_O: X \to S$. Hence, 
+       $Opens \simeq Hom(-, S)$.  \item Thus $S$ is univesal in the sense of representing the functor $Opens$.
 \end{itemize}
-\end{document}
+
+\question{2.4.v} Consider a functor $F: \cSet^\op \to \cSet$ that sends a set to
+its set of preorders. what is the category of elements?  is $F$ representable?
+\begin{itemize}
+\item Let's first describe the functor. It sends an set $S$ to its set of preorders.
+\item Why is this contravariant? It's a function of the form $S \times S \to \texttt{Ord}$ where
+    $\texttt{PreOrd} \equiv \texttt{LT}, \texttt{GT}, \texttt{EQ}$ such that it obeys the preorder axioms (reflexivity, transitivity).
+\item Now if we have an arrow $T \to S$, we can convert the $\texttt{PreOrd}(S)$ into a $\texttt{PreOrd}(T)$
+    which makes it contravariant.
+\item Thus the arrows in \texttt{PreOrd} correspond to pulling back preorder structure!
+\item The functor is representable iff the category has a terminal object.
+\item The \emph{category of preorders} has a terminal object $(*, * \leq *)$.
+    However, this is NOT the terminal object of the category of elements.
+\item \emph{Claim: there is no terminal object.}
+\item Suppose there is a terminal object $T$. Then we must have a unique morphism from $1 \leq 2 \leq 3$ into $T$.
+    But such data will induce more than one possibl morphisms from $4 \leq 5$ into $T$: one by pulling back along $1 \leq 2$,
+    one by pulling back along $2 \leq 3$, one by pulling back along $1 \leq 3$, and so on. Thus, $T$ is not
+    the terminal object since there aren't unique morphisms.
+\end{itemize}
+
+\question{2.4.vii (a)} Define the action on objects of a functor derived
+from the category of elements: $\int (-): \cSet^C \to \cCAT/C$.
+
+\begin{itemize}
+\item OK, now I understand. Given a functor $F: C \to \cSet$, think of $\int F$ as a category in $\cCAT$.
+    This comes equipped with a canonical project $\Pi_F: \int F \to C$. Thus, we can think of $F$ as an element
+        of the slice category $\cCAT/C$ where the category is $\int F$ and the arrow to $C$ is the projection.
+\end{itemize}
+
+\question{2.4.viii}  Prove that for any $F: C \to \cSet$, the canonical forgetful functor $\Pi: \int F \to C$
+has this property: for any morphism $c \xrightarrow{f} d$ in the base category $C$, and any object in
+the fiber $(c, x) \in F^{-1}(c)$, there is a unique lift of the morphism $c \xrightarrow{f} d$ to a morphism
+in $\int F$ with domain $(c, x)$ that projects to $\Pi$ along $f$. Such a functor is a \emph{discrete left fibration}.
+
+We're asked to fill the diagram:
+
+% https://q.uiver.app/?q=WzAsMTAsWzAsMF0sWzcsMF0sWzIsMCwiKGM6QywgeDogRmMpIl0sWzQsMl0sWzQsMCwiPyJdLFsyLDEsImM6QyJdLFsxLDEsIkMiXSxbNCwxLCJkOkMiXSxbMSwwLCJcXGludCBGIl0sWzEsMl0sWzIsNCwiXFxleGlzdHMgIT8iLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMiw1LCJcXFBpX0YiXSxbOCw2LCJcXFBpX0YiLDJdLFs0LDcsIlxcUGlfRiIsMl0sWzUsNywiZiJdXQ==
+\[\begin{tikzcd}
+{} & {\int F} & {(c:C, x: Fc)} && {?} &&& {} \\
+& C & {c:C} && {d:C} \\
+& {} &&& {}
+\arrow["{\exists !?}", dashed, from=1-3, to=1-5]
+\arrow["{\Pi_F}", from=1-3, to=2-3]
+\arrow["{\Pi_F}"', from=1-2, to=2-2]
+\arrow["{\Pi_F}"', from=1-5, to=2-5]
+\arrow["f", from=2-3, to=2-5]
+\end{tikzcd}\]
+
+The choice of function is \emph{obvious}: pick $Ff$, and define the target
+object to be $(d, (Ff)(x))$. The diagram commutes by definition. This makes the
+diagram:
+% https://q.uiver.app/?q=WzAsMTAsWzAsMF0sWzcsMF0sWzIsMCwiKGM6QywgeDogRmMpIl0sWzQsMl0sWzQsMCwiKGQ6QywgKEZmKSh4KTpGZCkiXSxbMiwxLCJjOkMiXSxbMSwxLCJDIl0sWzQsMSwiZDpDIl0sWzEsMCwiXFxpbnQgRiJdLFsxLDJdLFsyLDQsIkZmIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzIsNSwiXFxQaV9GIl0sWzgsNiwiXFxQaV9GIiwyXSxbNCw3LCJcXFBpX0YiLDJdLFs1LDcsImYiXV0=
+\[\begin{tikzcd}
+	{} & {\int F} & {(c:C, x: Fc)} && {(d:C, (Ff)(x):Fd)} &&& {} \\
+	& C & {c:C} && {d:C} \\
+	& {} &&& {}
+	\arrow["Ff", dashed, from=1-3, to=1-5]
+	\arrow["{\Pi_F}", from=1-3, to=2-3]
+	\arrow["{\Pi_F}"', from=1-2, to=2-2]
+	\arrow["{\Pi_F}"', from=1-5, to=2-5]
+	\arrow["f", from=2-3, to=2-5]
+\end{tikzcd}\]
+
+So we should think of the space $Ff$ as some kind of covering space for $C$. Fascinating.
+
+\question{2.4.ix}  Define the dual notion of discrete right fibration.
+
+We're asked to fill out the diagram:
+
+% https://q.uiver.app/?q=WzAsMTAsWzAsMF0sWzcsMF0sWzIsMCwiXFxleGlzdHMhPyJdLFs0LDJdLFsyLDEsImM6QyJdLFsxLDEsIkMiXSxbNCwxLCJkOkMiXSxbMSwwLCJcXGludCBGIl0sWzEsMl0sWzQsMCwiKGQ6IEMsIHk6IEZkKSJdLFsyLDQsIlxcUGlfRiJdLFs3LDUsIlxcUGlfRiIsMl0sWzksNiwiXFxQaV9GIiwyXSxbNCw2LCJmIl0sWzksMiwiXFxleGlzdHMhPyIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	{} & {\int F} & {\exists!?} && {(d: C, y: Fd)} &&& {} \\
+	& C & {c:C} && {d:C} \\
+	& {} &&& {}
+	\arrow["{\Pi_F}", from=1-3, to=2-3]
+	\arrow["{\Pi_F}"', from=1-2, to=2-2]
+	\arrow["{\Pi_F}"', from=1-5, to=2-5]
+	\arrow["f", from=2-3, to=2-5]
+	\arrow["{\exists!?}", dashed, from=1-5, to=1-3]
+\end{tikzcd}\]
+
+Once again, the choice is given by the arrow $Ff$, and
+the object $(c: C, (Ff)(y): Fc)$. This makes the diagram:
+
+% https://q.uiver.app/?q=WzAsMTAsWzAsMF0sWzcsMF0sWzIsMCwiKGM6IEMsIChGZikoeSk6IEZjKSJdLFs0LDJdLFsyLDEsImM6QyJdLFsxLDEsIkMiXSxbNCwxLCJkOkMiXSxbMSwwLCJcXGludCBGIl0sWzEsMl0sWzQsMCwiKGQ6IEMsIHk6IEZkKSJdLFsyLDQsIlxcUGlfRiJdLFs3LDUsIlxcUGlfRiIsMl0sWzksNiwiXFxQaV9GIiwyXSxbNCw2LCJmIl0sWzksMiwiRmYiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\[\begin{tikzcd}
+	{} & {\int F} & {(c: C, (Ff)(y): Fc)} && {(d: C, y: Fd)} &&& {} \\
+	& C & {c:C} && {d:C} \\
+	& {} &&& {}
+	\arrow["{\Pi_F}", from=1-3, to=2-3]
+	\arrow["{\Pi_F}"', from=1-2, to=2-2]
+	\arrow["{\Pi_F}"', from=1-5, to=2-5]
+	\arrow["f", from=2-3, to=2-5]
+	\arrow["Ff", dashed, from=1-5, to=1-3]
+\end{tikzcd}\]
+
+\end{document}                                              
