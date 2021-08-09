@@ -2101,6 +2101,10 @@ the object $(c: C, (Ff)(y): Fc)$. This makes the diagram:
 
 \chapter{Limits and Colimits}
 \section{Limits and Colimits as universal cones}
+
+\subsection{Musings}
+% http://math.andrej.com/2012/09/28/substitution-is-pullback/#
+
 \subsection{Exercises}
 \question{3.1.v} Characterize the limit (and colimit) of a diagram $F: J \to P$ where $P$ is a poset $(P, \leq)$ treated
 as a category.
@@ -2226,11 +2230,91 @@ or that this diagram commutes:
 	\arrow["f", from=1-4, to=1-5]
 	\arrow["g"', shift right=2, from=1-4, to=1-5]
 	\arrow["{\lambda_1 \circ k}", from=1-1, to=1-4]
-	\arrow["{\exists ! t_X}"', shift right=4, from=1-1, to=2-2]
+	\arrow["{\exists t_X}"', shift right=4, from=1-1, to=2-2]
 \end{tikzcd}\]
 \item Chain the two together: we get $h = t_X = k$ and we are done.
 \end{itemize}
 
+\question{3.1.ix} Show that if $J$ has an initial object $I \in J$ , then the limit of any functor $F: J \to C$ is the 
+ image of the initial object $F(I)$.
 
+\begin{itemize}
+\item Consider the catetory $J$ given here:
+
+
+% https://q.uiver.app/?q=WzAsMyxbMSwwLCJJIl0sWzAsMSwieCJdLFsyLDEsInkiXSxbMSwyLCJhIiwxXSxbMCwxLCJcXGV4aXN0cyAhIGlfeCIsMV0sWzAsMiwiXFxleGlzdHMgIWlfeSIsMV1d
+\[\begin{tikzcd}
+	& I \\
+	x && y
+	\arrow["a"{description}, from=2-1, to=2-3]
+	\arrow["{\exists ! i_x}"{description}, from=1-2, to=2-1]
+	\arrow["{\exists !i_y}"{description}, from=1-2, to=2-3]
+\end{tikzcd}\]
+
+
+\item Suppose that $s$  (for summit) is a cone given by $\sigma: \Delta_s \nt F$ ($\sigma$ since it starts with $s$):
+
+% https://q.uiver.app/?q=WzAsNCxbMSwyLCJGKEkpIl0sWzAsMywiRih4KSJdLFsyLDMsIkYoeSkiXSxbMSwwLCJzIl0sWzAsMSwiRihpX3gpIiwxXSxbMCwyLCJGKGlfeSkiLDFdLFsxLDIsIkYoYSkiLDFdLFszLDEsIlxcc2lnbWFfeCIsMSx7ImN1cnZlIjoyfV0sWzMsMiwiXFxzaWdtYV95IiwxLHsiY3VydmUiOi0yfV0sWzMsMCwiXFxzaWdtYV9JIiwxXV0=
+\[\begin{tikzcd}
+	& s \\
+	\\
+	& {F(I)} \\
+	{F(x)} && {F(y)}
+	\arrow["{F(i_x)}"{description}, from=3-2, to=4-1]
+	\arrow["{F(i_y)}"{description}, from=3-2, to=4-3]
+	\arrow["{F(a)}"{description}, from=4-1, to=4-3]
+	\arrow["{\sigma_x}"{description}, curve={height=12pt}, from=1-2, to=4-1]
+	\arrow["{\sigma_y}"{description}, curve={height=-12pt}, from=1-2, to=4-3]
+	\arrow["{\sigma_I}"{description}, from=1-2, to=3-2]
+\end{tikzcd}\]
+
+\item We claim first that we have a cone $L \equiv F(I)$ itself, with the natural transformation given by the
+initial arrows. So $\lambda_k \equiv i_k$ where $i_k$ is the unique arrow given by the initiality of $I$.
+See that the cone $L$ is literally a copy of the embedding of the category $J$ into $C$, just interpreted as a cone
+with apex $F(I)$:
+
+% https://q.uiver.app/?q=WzAsNCxbMSwyLCJGKEkpIl0sWzAsMywiRih4KSJdLFsyLDMsIkYoeSkiXSxbMSwwLCJMIFxcZXF1aXYgRihJKSJdLFswLDIsIkYoaV95KSIsMV0sWzEsMiwiRihhKSIsMV0sWzMsMCwiXFxsYW1iZGFfSSBcXGVxdWl2IGlkX0kiLDFdLFszLDIsIlxcbGFtYmRhX3kgXFxlcXVpdiBGKGlfeSkiLDEseyJjdXJ2ZSI6LTN9XSxbMCwxLCJGKGlfeCkiLDFdLFszLDEsIlxcbGFtYmRhX3ggXFxlcXVpdiBGKGlfeCkiLDEseyJjdXJ2ZSI6Mn1dXQ==
+\[\begin{tikzcd}
+	& {L \equiv F(I)} \\
+	\\
+	& {F(I)} \\
+	{F(x)} && {F(y)}
+	\arrow["{F(i_y)}"{description}, from=3-2, to=4-3]
+	\arrow["{F(a)}"{description}, from=4-1, to=4-3]
+	\arrow["{\lambda_I \equiv id_I}"{description}, from=1-2, to=3-2]
+	\arrow["{\lambda_y \equiv F(i_y)}"{description}, curve={height=-18pt}, from=1-2, to=4-3]
+	\arrow["{F(i_x)}"{description}, from=3-2, to=4-1]
+	\arrow["{\lambda_x \equiv F(i_x)}"{description}, curve={height=12pt}, from=1-2, to=4-1]
+\end{tikzcd}\]
+
+\item Next we claim that this cone $L$ is initial. So We must show the existence of a unique $f$ such that it factors the cone $\sigma$ through $\lambda$. That is, the equation $\lambda_k \circ f = \sigma_k$ must hold:
+
+% https://q.uiver.app/?q=WzAsNixbMSw0LCJGKEkpIl0sWzAsNSwiRih4KSJdLFsyLDUsIkYoeSkiXSxbMSwwLCJzIl0sWzEsMiwiTCBcXGVxdWl2IEYoSSkiXSxbMSw2LCJcXGxhbWJkYV9rIFxcY2lyYyBmID0gXFxldGFfazpcXGFscGhhXFx0byBGKGspIl0sWzAsMiwiRihpX3kpIiwxXSxbMSwyLCJGKGEpIiwxXSxbMywxLCJcXHNpZ21hX3giLDEseyJjdXJ2ZSI6NX1dLFszLDIsIlxcc2lnbWFfeSIsMSx7ImN1cnZlIjotNX1dLFszLDQsIlxcc2lnbWFfSSIsMSx7Im9mZnNldCI6M31dLFs0LDAsIlxcbGFtYmRhX0kgXFxlcXVpdiBpZF9JIiwxXSxbNCwyLCJcXGxhbWJkYV95IFxcZXF1aXYgRihpX3kpIiwxLHsiY3VydmUiOi0zfV0sWzAsMSwiRihpX3gpIiwxXSxbNCwxLCJcXGxhbWJkYV94IFxcZXF1aXYgRihpX3gpIiwxLHsiY3VydmUiOjJ9XSxbMyw0LCJcXGV4aXN0cyAhZj8iLDEseyJvZmZzZXQiOi00LCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\[\begin{tikzcd}
+	& s \\
+	\\
+	& {L \equiv F(I)} \\
+	\\
+	& {F(I)} \\
+	{F(x)} && {F(y)} \\
+	& {\lambda_k \circ f = \eta_k:\alpha\to F(k)}
+	\arrow["{F(i_y)}"{description}, from=5-2, to=6-3]
+	\arrow["{F(a)}"{description}, from=6-1, to=6-3]
+	\arrow["{\sigma_x}"{description}, curve={height=30pt}, from=1-2, to=6-1]
+	\arrow["{\sigma_y}"{description}, curve={height=-30pt}, from=1-2, to=6-3]
+	\arrow["{\sigma_I}"{description}, shift right=3, from=1-2, to=3-2]
+	\arrow["{\lambda_I \equiv id_I}"{description}, from=3-2, to=5-2]
+	\arrow["{\lambda_y \equiv F(i_y)}"{description}, curve={height=-18pt}, from=3-2, to=6-3]
+	\arrow["{F(i_x)}"{description}, from=5-2, to=6-1]
+	\arrow["{\lambda_x \equiv F(i_x)}"{description}, curve={height=12pt}, from=3-2, to=6-1]
+	\arrow["{\exists !f?}"{description}, shift left=4, dashed, from=1-2, to=3-2]
+\end{tikzcd}\]
+
+
+\item Choose $k = I$. This gives $\lambda_I \circ f = \sigma_I$. This means that $id_{F(I)} \circ f = \sigma_I$, or $f = \sigma_I$.
+\item This is unique since we are forced to conclude this by the factoring of the cone. Thus we have found there exists a unique $f$
+   which factors any cone $\sigma$ through the terminal cone $\lambda$.  
+\item Hence the image of the initial object $F(I)$ is indeed the limit of the cone.
+\end{itemize}
 
 \end{document}                                              
