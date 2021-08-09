@@ -75,6 +75,7 @@
 \newcommand{\ctop}{\cat{Top}}
 \newcommand{\cgrp}{\cat{Grp}}
 \newcommand{\cGrp}{\cat{Grp}}
+\newcommand{\cCone}{\cat{Cone}}
 
 \newcommand{\subcat}[2]{\bm{ \mathsf{#1}}_{\bm{ \mathsf{#2}}}}
 \renewcommand{\op}{\text{op}}
@@ -2106,6 +2107,102 @@ the object $(c: C, (Ff)(y): Fc)$. This makes the diagram:
 % http://math.andrej.com/2012/09/28/substitution-is-pullback/#
 
 \subsection{Exercises}
+
+\question{3.1.i} For a fixed $F: J \to C$, describe the action of $\cCone(-, F) : \cC^\op \to \cSet$ to objects and 
+morphisms.
+
+
+\begin{itemize}
+\item On objects, the functor sends an element $s \in C$ to the set of cones with summit $s$: $\{ \Delta_s \nt F \} \in \cSet$
+\item Given an arrow $a: s \to t$, we can pullback a cone $\tau: \Delta_t \nt F$ to a cone $\sigma: \Delta_s \nt F$, given
+    by components as $\sigma_x \equiv \tau_x \circ a$:
+
+% https://q.uiver.app/?q=WzAsNCxbMCwyLCJGeCJdLFsyLDIsIkZ5Il0sWzEsMSwidCJdLFsxLDAsInMiXSxbMCwxLCJGYSIsMV0sWzIsMCwiXFx0YXVfeCIsMV0sWzIsMSwiXFx0YXVfeSIsMV0sWzMsMCwiXFxzaWdtYV94IFxcZXF1aXYgXFx0YXVfeCBcXGNpcmMgYSIsMSx7ImN1cnZlIjoyLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMywyLCJhIl0sWzMsMSwiXFxzaWdtYV95IFxcZXF1aXYgXFx0YXVfeSBcXGNpcmMgYSIsMCx7ImN1cnZlIjotMiwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\[\begin{tikzcd}
+	& s \\
+	& t \\
+	Fx && Fy
+	\arrow["Fa"{description}, from=3-1, to=3-3]
+	\arrow["{\tau_x}"{description}, from=2-2, to=3-1]
+	\arrow["{\tau_y}"{description}, from=2-2, to=3-3]
+	\arrow["{\sigma_x \equiv \tau_x \circ a}"{description}, curve={height=12pt}, dashed, from=1-2, to=3-1]
+	\arrow["a", from=1-2, to=2-2]
+	\arrow["{\sigma_y \equiv \tau_y \circ a}", curve={height=-12pt}, dashed, from=1-2, to=3-3]
+\end{tikzcd}\]
+
+\item This defines the contravariant action which sends the set $\cCone(t, F)$ to the set $\cCone(s, F)$ by sending each cone $\tau$
+  to the cone $\sigma \equiv \tau \circ a$.
+
+\item To prove naturality, let us consider the naturality square we must ponder for $\sigma: \Delta_s \nt F$:
+
+% https://q.uiver.app/?q=WzAsNSxbMCwwLCJcXERlbHRhX3MoeCkiXSxbMiwwLCJcXERlbHRhX3MoeSkiXSxbMCwyLCJGeCJdLFsyLDIsIkZ5Il0sWzEsMSwiXFxjaXJjbGVhcnJvd3JpZ2h0ID8iXSxbMCwxLCJcXERlbHRhX3MoYSkiLDFdLFsyLDMsIkZhIiwxXSxbMCwyLCJcXHNpZ21hX3giLDFdLFsxLDMsIlxcc2lnbWFfeSIsMV1d
+\[\begin{tikzcd}
+	{\Delta_s(x)} && {\Delta_s(y)} \\
+	& {\circlearrowright ?} \\
+	Fx && Fy
+	\arrow["{\Delta_s(a)}"{description}, from=1-1, to=1-3]
+	\arrow["Fa"{description}, from=3-1, to=3-3]
+	\arrow["{\sigma_x}"{description}, from=1-1, to=3-1]
+	\arrow["{\sigma_y}"{description}, from=1-3, to=3-3]
+\end{tikzcd}\]
+
+\item This simplifies upon using the fact that $\Delta_s(\_) = s$ to:
+
+% https://q.uiver.app/?q=WzAsNCxbMCwyLCJGeCJdLFsyLDIsIkZ5Il0sWzEsMSwiXFxjaXJjbGVhcnJvd3JpZ2h0ID8iXSxbMSwwLCJzIl0sWzAsMSwiRmEiLDFdLFszLDAsIlxcc2lnbWFfeCIsMV0sWzMsMSwiXFxzaWdtYV95IiwxXV0=
+\[\begin{tikzcd}
+	& s \\
+	& {\circlearrowright ?} \\
+	Fx && Fy
+	\arrow["Fa"{description}, from=3-1, to=3-3]
+	\arrow["{\sigma_x}"{description}, from=1-2, to=3-1]
+	\arrow["{\sigma_y}"{description}, from=1-2, to=3-3]
+\end{tikzcd}\]
+
+\item Let us now subsitute $\sigma_k \equiv \tau \circ a$ to get the diagram:
+
+% https://q.uiver.app/?q=WzAsNSxbMCwzLCJGeCJdLFsyLDMsIkZ5Il0sWzEsMiwiXFxjaXJjbGVhcnJvd3JpZ2h0ID8iXSxbMSwxLCJ0Il0sWzEsMCwicyJdLFswLDEsIkZhIiwxXSxbMywwLCJcXHRhdV94IiwxXSxbMywxLCJcXHRhdV95IiwxXSxbNCwzLCJhIl1d
+\[\begin{tikzcd}
+	& s \\
+	& t \\
+	& {\circlearrowright ?} \\
+	Fx && Fy
+	\arrow["Fa"{description}, from=4-1, to=4-3]
+	\arrow["{\tau_x}"{description}, from=2-2, to=4-1]
+	\arrow["{\tau_y}"{description}, from=2-2, to=4-3]
+	\arrow["a", from=1-2, to=2-2]
+\end{tikzcd}\]
+
+\item The cone with apex $t$ given by $\tau: \Delta_t \nt F$ commutes since $\tau$ is a cone. Thus, precomposing with $s \xrightarrow{a} t$
+preserves the commutativity of the diagram. [TODO: can I make this feel more rigorous? I need a list of basic diagram operations...]
+\item Thus we have shown that $\sigma$ is the pullback of the cone $\tau$ along $s \xrightarrow{a} t$. So we have
+successfully defined the action of $\cCone(-, F)$ on morphisms by describing how to pull back cones. \qed
+\end{itemize}
+
+\question{3.1.ii} For a fixed $F: J \to C$ show that the functors $\cCone(-, F)$ and $\Hom(\Delta(-), F)$ are naturally isomorphic.
+
+\begin{itemize}
+\item TODO: What is this asking???? What is a cone if not the natural transformation from the constant functor to $F$?
+\end{itemize}
+
+
+\question{3.1.iii} Prove that the category of cones is isomorphic to $\Delta \downarrow F$ where $\Delta: C \to (J \to C)$
+sends an element $c \in C$ to the constant functor $\Delta_c$. The functor $F: 1 \to (J \to C)$ is the functor $F: J \to C$
+which ignores its argument $1$.
+
+\begin{itemize}
+	\item Recall that elements of the comma category $H: X \to C \downarrow K: Y \to C$ consist of triples
+	  $(x \in X, y \in Y, H(x) \xrightarrow{a} K(y))$.
+	\item In our situation, we have $(c \in C, * \in 1, \Delta(c) \nt_a F(*))$
+	\item This is the same as the data $(c \in C, \Delta_c \nt_a F)$ [the $*$ provides no extra information].
+	\item This is exactly the definition of a cone wth apex $c$.
+	\item Thus, the comma category described is indeed a cone. Run the argument backward to extract the cone from the comma.
+	     So, we have an isomorphism.\qed
+\end{itemize}
+
+\question{3.1.iv} Use the universal properties of cones $\lambda: \Delta_l \nt F$ and $\lambda': \Delta_{l'} \nt F$ to directly
+construct the unique iso between their summits.
+
+
 \question{3.1.v} Characterize the limit (and colimit) of a diagram $F: J \to P$ where $P$ is a poset $(P, \leq)$ treated
 as a category.
 
@@ -2233,6 +2330,85 @@ or that this diagram commutes:
 	\arrow["{\exists t_X}"', shift right=4, from=1-1, to=2-2]
 \end{tikzcd}\]
 \item Chain the two together: we get $h = t_X = k$ and we are done.
+\end{itemize}
+
+\question{3.1.vii} Prove that if the the bottom arrow of a pullback square is mono, then the top arrow
+of a pullback square is mono.
+
+\begin{itemize}
+\item We are given the following square, and we must show that $\lambda_a$ is also mono:
+
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJMIl0sWzEsMCwiQSJdLFswLDEsIkIiXSxbMSwxLCJGIl0sWzAsMSwiXFxsYW1iZGFfYSJdLFswLDIsIlxcbGFtYmRhX0IiLDJdLFsyLDMsImIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsxLDMsImEiXSxbMCwzLCIiLDEseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XV0=
+\[\begin{tikzcd}
+	L & A \\
+	B & F
+	\arrow["{\lambda_a}", from=1-1, to=1-2]
+	\arrow["{\lambda_B}"', from=1-1, to=2-1]
+	\arrow["b"', hook, from=2-1, to=2-2]
+	\arrow["a", from=1-2, to=2-2]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+\end{tikzcd}\]
+
+\item Suppose we have two arrows $p, q: D \rightarrow L$ such that $\lambda_a \circ p = \lambda_a \circ q$. We must show that $p = q$.
+\item From the assumption, the following commutes:
+
+% https://q.uiver.app/?q=WzAsNSxbMSwwLCJMIl0sWzIsMCwiQSJdLFsxLDEsIkIiXSxbMiwxLCJGIl0sWzAsMCwiRCJdLFswLDEsIlxcbGFtYmRhX2EiXSxbNCwwLCJwIiwwLHsib2Zmc2V0IjotMn1dLFs0LDAsInEiLDJdXQ==
+\[\begin{tikzcd}
+	D & L & A \\
+	& B & F
+	\arrow["{\lambda_a}", from=1-2, to=1-3]
+	\arrow["p", shift left=2, from=1-1, to=1-2]
+	\arrow["q"', from=1-1, to=1-2]
+\end{tikzcd}\]
+
+\item Compose with $a$ to get:
+
+% https://q.uiver.app/?q=WzAsNSxbMSwwLCJMIl0sWzIsMCwiQSJdLFsxLDEsIkIiXSxbMiwxLCJGIl0sWzAsMCwiRCJdLFswLDEsIlxcbGFtYmRhX2EiXSxbNCwwLCJwIiwwLHsib2Zmc2V0IjotMn1dLFs0LDAsInEiLDJdLFsxLDMsImEiXV0=
+\[\begin{tikzcd}
+	D & L & A \\
+	& B & F
+	\arrow["{\lambda_a}", from=1-2, to=1-3]
+	\arrow["p", shift left=2, from=1-1, to=1-2]
+	\arrow["q"', from=1-1, to=1-2]
+	\arrow["a", from=1-3, to=2-3]
+\end{tikzcd}\]
+
+\item Use the commutativity of the pullback to get:
+
+% https://q.uiver.app/?q=WzAsNSxbMSwwLCJMIl0sWzIsMCwiQSJdLFsxLDEsIkIiXSxbMiwxLCJGIl0sWzAsMCwiRCJdLFs0LDAsInAiLDAseyJvZmZzZXQiOi0yfV0sWzQsMCwicSIsMl0sWzAsMiwiXFxsYW1iZGFfYiIsMl0sWzIsMywiYiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV1d
+\[\begin{tikzcd}
+	D & L & A \\
+	& B & F
+	\arrow["p", shift left=2, from=1-1, to=1-2]
+	\arrow["q"', from=1-1, to=1-2]
+	\arrow["{\lambda_b}"', from=1-2, to=2-2]
+	\arrow["b"', hook, from=2-2, to=2-3]
+\end{tikzcd}\]
+
+\item Use the fact that $b$ is mono to get:
+
+% https://q.uiver.app/?q=WzAsNSxbMSwwLCJMIl0sWzIsMCwiQSJdLFsxLDEsIkIiXSxbMiwxLCJGIl0sWzAsMCwiRCJdLFs0LDAsInAiLDAseyJvZmZzZXQiOi0yfV0sWzQsMCwicSIsMl0sWzAsMiwiXFxsYW1iZGFfYiIsMl1d
+\[\begin{tikzcd}
+	D & L & A \\
+	& B & F
+	\arrow["p", shift left=2, from=1-1, to=1-2]
+	\arrow["q"', from=1-1, to=1-2]
+	\arrow["{\lambda_b}"', from=1-2, to=2-2]
+\end{tikzcd}\]
+
+\item This gives us arrows such that this commutes:
+
+% https://q.uiver.app/?q=WzAsNSxbMSwwLCJMIl0sWzIsMCwiQSJdLFsxLDEsIkIiXSxbMiwxLCJGIl0sWzAsMCwiRCJdLFs0LDIsIlxcbGFtYmRhX2IgXFxjaXJjIHEiLDIseyJjdXJ2ZSI6MX1dLFs0LDEsIlxcbGFtYmRhX2EgXFxjaXJjIHEiLDAseyJvZmZzZXQiOi0xLCJjdXJ2ZSI6LTJ9XSxbMiwzLCJiIiwyXSxbMSwzLCJhIl1d
+\[\begin{tikzcd}
+	D & L & A \\
+	& B & F
+	\arrow["{\lambda_b \circ q}"', curve={height=6pt}, from=1-1, to=2-2]
+	\arrow["{\lambda_a \circ q}", shift left=1, curve={height=-12pt}, from=1-1, to=1-3]
+	\arrow["b"', from=2-2, to=2-3]
+	\arrow["a", from=1-3, to=2-3]
+\end{tikzcd}\]
+
+\item This a
 \end{itemize}
 
 \question{3.1.ix} Show that if $J$ has an initial object $I \in J$ , then the limit of any functor $F: J \to C$ is the 
