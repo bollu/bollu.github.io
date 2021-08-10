@@ -114,7 +114,7 @@
  
 % \newcommand{\proof}[1][]{\emph{Proof #1}\textbf{:} }
 \newcommand*{\start}[1]{\leavevmode\newline \textbf{#1} }
-\newcommand*{\question}[1]{\leavevmode\newline \textbf{Question: #1.}}
+\newcommand*{\question}[1]{\leavevmode\newline \par\noindent\rule{\textwidth}{0.4pt} \textbf{Question: #1.}}
 \newcommand*{\proof}[1]{\leavevmode\newline \textbf{Proof #1}}
 \newcommand*{\answer}{\leavevmode\newline \textbf{Answer} }
 
@@ -2302,7 +2302,9 @@ or that this diagram commutes:
 	\arrow["g"', shift right=2, from=1-4, to=1-5]
 \end{tikzcd}\]
 
-\item So we now see that we have a morphism $(h \circ \lambda_1) \circ f = (h \circ \lambda_1) \circ g$. So the morphism $h \circ \lambda_1$ can be written \emph{uniquely} as $t_X \circ \lambda_1$. This means that $t_X = h$.
+\item So we now see that we have a morphism $(h \circ \lambda_1) \circ f = (h \circ \lambda_1) \circ g$. 
+   Since $\lambda_1$ equalizes $f, g$, the morphism $h \circ \lambda_1$ can be written \emph{uniquely} as $t_X \circ \lambda_1$. 
+   as $L$ is the limit of the equalizer diagram. This means that $t_X = h$.
 
 % https://q.uiver.app/?q=WzAsNCxbMSwxLCJMIl0sWzMsMCwiSSJdLFswLDAsIlgiXSxbNCwwLCJPIl0sWzAsMSwiXFxsYW1iZGFfMSJdLFsyLDAsImgiXSxbMSwzLCJmIl0sWzEsMywiZyIsMix7Im9mZnNldCI6Mn1dLFsyLDEsIlxcbGFtYmRhXzEgXFxjaXJjIGgiXSxbMiwwLCJcXGV4aXN0cyAhIHQiLDIseyJvZmZzZXQiOjR9XV0=
 \[\begin{tikzcd}
@@ -2316,19 +2318,9 @@ or that this diagram commutes:
 	\arrow["{\exists ! t_X}"', shift right=4, from=1-1, to=2-2]
 \end{tikzcd}\]
 
-\item Similarly, we have a morphism $(k \circ \lambda_1) \circ f = (k \circ \lambda_1) \circ g$. So the morphism $h \circ \lambda_1$ can be written \emph{uniquely} as $t_X \circ \lambda_1$. This means that $t_X = k$.
+\item Similarly, we have a morphism $(k \circ \lambda_1) \circ f = (k \circ \lambda_1) \circ g$. 
+  So the morphism $h \circ \lambda_1$ can be written \emph{uniquely} as $t_X \circ \lambda_1$. This means that $t_X = k$.
 
-% https://q.uiver.app/?q=WzAsNCxbMSwxLCJMIl0sWzMsMCwiSSJdLFswLDAsIlgiXSxbNCwwLCJPIl0sWzAsMSwiXFxsYW1iZGFfMSJdLFsyLDAsImsiXSxbMSwzLCJmIl0sWzEsMywiZyIsMix7Im9mZnNldCI6Mn1dLFsyLDEsIlxcbGFtYmRhXzEgXFxjaXJjIGsiXSxbMiwwLCJcXGV4aXN0cyAhIHRfWCIsMix7Im9mZnNldCI6NH1dXQ==
-\[\begin{tikzcd}
-	X &&& I & O \\
-	& L
-	\arrow["{\lambda_1}", from=2-2, to=1-4]
-	\arrow["k", from=1-1, to=2-2]
-	\arrow["f", from=1-4, to=1-5]
-	\arrow["g"', shift right=2, from=1-4, to=1-5]
-	\arrow["{\lambda_1 \circ k}", from=1-1, to=1-4]
-	\arrow["{\exists t_X}"', shift right=4, from=1-1, to=2-2]
-\end{tikzcd}\]
 \item Chain the two together: we get $h = t_X = k$ and we are done.
 \end{itemize}
 
@@ -2396,7 +2388,8 @@ of a pullback square is mono.
 	\arrow["{\lambda_b}"', from=1-2, to=2-2]
 \end{tikzcd}\]
 
-\item This gives us arrows such that this commutes:
+\item Let us concentrate on $q$ (the same works with $p$). By composing $q$ with
+   $\lambda_a, \lambda_b$, we form a cone of the pullback at summit $D$ of the form:
 
 % https://q.uiver.app/?q=WzAsNSxbMSwwLCJMIl0sWzIsMCwiQSJdLFsxLDEsIkIiXSxbMiwxLCJGIl0sWzAsMCwiRCJdLFs0LDIsIlxcbGFtYmRhX2IgXFxjaXJjIHEiLDIseyJjdXJ2ZSI6MX1dLFs0LDEsIlxcbGFtYmRhX2EgXFxjaXJjIHEiLDAseyJvZmZzZXQiOi0xLCJjdXJ2ZSI6LTJ9XSxbMiwzLCJiIiwyXSxbMSwzLCJhIl1d
 \[\begin{tikzcd}
@@ -2408,14 +2401,42 @@ of a pullback square is mono.
 	\arrow["a", from=1-3, to=2-3]
 \end{tikzcd}\]
 
-\item This a
+\item This means that $D$ is the summit of a cone, 
+  and must thus factor through $L$ since $L$ is the limit of such cones.
+  This gives us a unique factorizing arrow $f$:
+
+% https://q.uiver.app/?q=WzAsNSxbMSwwLCJMIl0sWzIsMCwiQSJdLFsxLDEsIkIiXSxbMiwxLCJGIl0sWzAsMCwiRCJdLFs0LDIsIlxcbGFtYmRhX2IgXFxjaXJjIHEiLDIseyJjdXJ2ZSI6MX1dLFs0LDEsIlxcbGFtYmRhX2EgXFxjaXJjIHEiLDAseyJvZmZzZXQiOi0xLCJjdXJ2ZSI6LTJ9XSxbMiwzLCJiIiwyXSxbMSwzLCJhIl0sWzQsMCwiXFxleGlzdHMgIWYiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMCwxLCJcXGxhbWJkYV9hIiwwLHsib2Zmc2V0IjoxfV0sWzAsMiwiXFxsYW1iZGFfYiIsMV1d
+\[\begin{tikzcd}
+	D & L & A \\
+	& B & F
+	\arrow["{\lambda_b \circ q}"', curve={height=6pt}, from=1-1, to=2-2]
+	\arrow["{\lambda_a \circ q}", shift left=1, curve={height=-12pt}, from=1-1, to=1-3]
+	\arrow["b"', from=2-2, to=2-3]
+	\arrow["a", from=1-3, to=2-3]
+	\arrow["{\exists !f}", dashed, from=1-1, to=1-2]
+	\arrow["{\lambda_a}", shift right=1, from=1-2, to=1-3]
+	\arrow["{\lambda_b}"{description}, from=1-2, to=2-2]
+\end{tikzcd}\]
+
+\item This means that there is a unique arrow $f$ such that
+  $\lambda_a \circ f = \lambda_a \circ q$ 
+  (by the commutativity of the diagram).  Hence we have $f = q$.
+
+\item Now replace $q$ with $p$ in the diagram.
+  The same equations go through, giving us $\lambda_a \circ f = \lambda_a \circ p$
+  and hence $f = p$.
+
+\item Together, this implies $p = f = q$ as desired.
+    Hence $\lambda_a$ is mono since we began with 
+    $\lambda_a \circ p = \lambda_a \circ q$
+    and have derived $p = q$ for arbitrary $p, q$ \qed.
 \end{itemize}
 
 \question{3.1.ix} Show that if $J$ has an initial object $I \in J$ , then the limit of any functor $F: J \to C$ is the 
  image of the initial object $F(I)$.
 
 \begin{itemize}
-\item Consider the catetory $J$ given here:
+\item Consider the catetory $J$ given here, with initial object $I$:
 
 
 % https://q.uiver.app/?q=WzAsMyxbMSwwLCJJIl0sWzAsMSwieCJdLFsyLDEsInkiXSxbMSwyLCJhIiwxXSxbMCwxLCJcXGV4aXN0cyAhIGlfeCIsMV0sWzAsMiwiXFxleGlzdHMgIWlfeSIsMV1d
@@ -2491,6 +2512,135 @@ with apex $F(I)$:
 \item This is unique since we are forced to conclude this by the factoring of the cone. Thus we have found there exists a unique $f$
    which factors any cone $\sigma$ through the terminal cone $\lambda$.  
 \item Hence the image of the initial object $F(I)$ is indeed the limit of the cone.
+\item Generalize: choose $J$ to be anything you like; the argument proceeds unchanged. \qed
+\end{itemize}
+
+
+\question{3.1.viii} Given that the right side of two pullback squares is a pullback, show that the left is a pullback iff the composite
+square is a pullback
+
+\question{3.1.viii: Right + left implies composite}
+\begin{itemize}
+\item Given that the two squares are pullbacks:
+
+% https://q.uiver.app/?q=WzAsNixbMCwwLCIxIl0sWzIsMCwiMyJdLFsxLDAsIjIiXSxbMCwxLCI0Il0sWzEsMSwiNSJdLFsyLDEsIjYiXSxbMCwyLCJhIl0sWzAsMywiYyIsMl0sWzIsMSwiYiJdLFszLDQsImYiLDJdLFs0LDUsImciLDJdLFsyLDQsImQiLDFdLFsxLDUsImUiXSxbMiw1LCIiLDAseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XSxbMCw0LCIiLDAseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XV0=
+\[\begin{tikzcd}
+	1 & 2 & 3 \\
+	4 & 5 & 6
+	\arrow["a", from=1-1, to=1-2]
+	\arrow["c"', from=1-1, to=2-1]
+	\arrow["b", from=1-2, to=1-3]
+	\arrow["f"', from=2-1, to=2-2]
+	\arrow["g"', from=2-2, to=2-3]
+	\arrow["d"{description}, from=1-2, to=2-2]
+	\arrow["e", from=1-3, to=2-3]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-2, to=2-3]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+\end{tikzcd}\]
+
+\item We must show that the rectangle is a pullback (ie, that $1$ is the limit of all other cones with summit $s$):
+
+% https://q.uiver.app/?q=WzAsNSxbMSwxLCIxIl0sWzMsMSwiMyJdLFsxLDIsIjQiXSxbMywyLCI2Il0sWzAsMCwicyJdLFswLDIsImMiLDJdLFsxLDMsImUiXSxbMCwxLCJiIFxcY2lyYyBhIiwyXSxbMiwzLCJnIFxcY2lyYyBmIiwyXSxbNCwyLCJcXHNpZ21hXzQiLDIseyJjdXJ2ZSI6Mn1dLFs0LDEsIlxcc2lnbWFfMyIsMCx7ImN1cnZlIjotMn1dLFs0LDAsIlxcZXhpc3RzICFmPyIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRvdHRlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	s \\
+	& 1 && 3 \\
+	& 4 && 6
+	\arrow["c"', from=2-2, to=3-2]
+	\arrow["e", from=2-4, to=3-4]
+	\arrow["{b \circ a}"', from=2-2, to=2-4]
+	\arrow["{g \circ f}"', from=3-2, to=3-4]
+	\arrow["{\sigma_4}"', curve={height=12pt}, from=1-1, to=3-2]
+	\arrow["{\sigma_3}", curve={height=-12pt}, from=1-1, to=2-4]
+	\arrow["{\exists !f?}"{description}, dotted, from=1-1, to=2-2]
+\end{tikzcd}\]
+
+\item The full rectangle is shown below, with the arrows participating in the
+  full square being a pullback in bold lines, and all others
+  as dashed lines:
+
+% https://q.uiver.app/?q=WzAsNyxbMSwxLCIxIl0sWzMsMSwiMyJdLFsxLDIsIjQiXSxbMywyLCI2Il0sWzAsMCwicyJdLFsyLDEsIjIiXSxbMiwyLCI1Il0sWzAsMiwiYyIsMl0sWzEsMywiZSJdLFswLDEsImIgXFxjaXJjIGEiLDIseyJjdXJ2ZSI6LTN9XSxbMiwzLCJnIFxcY2lyYyBmIiwyLHsiY3VydmUiOjN9XSxbNCwyLCJcXHNpZ21hXzQiLDIseyJjdXJ2ZSI6Mn1dLFs0LDEsIlxcc2lnbWFfMyIsMCx7ImN1cnZlIjotM31dLFs0LDAsIlxcZXhpc3RzICFmPyIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRvdHRlZCJ9fX1dLFswLDUsImEiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkb3R0ZWQifX19XSxbNSwxLCJiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZG90dGVkIn19fV0sWzUsNiwiZCIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRvdHRlZCJ9fX1dLFsyLDYsImYiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkb3R0ZWQifX19XSxbNiwzLCJnIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZG90dGVkIn19fV1d
+\[\begin{tikzcd}
+	s \\
+	& 1 & 2 & 3 \\
+	& 4 & 5 & 6
+	\arrow["c"', from=2-2, to=3-2]
+	\arrow["e", from=2-4, to=3-4]
+	\arrow["{b \circ a}"', curve={height=-18pt}, from=2-2, to=2-4]
+	\arrow["{g \circ f}"', curve={height=18pt}, from=3-2, to=3-4]
+	\arrow["{\sigma_4}"', curve={height=12pt}, from=1-1, to=3-2]
+	\arrow["{\sigma_3}", curve={height=-18pt}, from=1-1, to=2-4]
+	\arrow["{\exists !f?}"{description}, dotted, from=1-1, to=2-2]
+	\arrow["a"{description}, dotted, from=2-2, to=2-3]
+	\arrow["b"{description}, dotted, from=2-3, to=2-4]
+	\arrow["d"{description}, dotted, from=2-3, to=3-3]
+	\arrow["f"{description}, dotted, from=3-2, to=3-3]
+	\arrow["g"{description}, dotted, from=3-3, to=3-4]
+\end{tikzcd}\]
+
+\item First compose $\sigma_4$ with $f$ to get $f \circ \sigma_4$ and $\sigma_3$ to act as cone arrows
+for the right pullback square. Since the right square is a pullback square, I
+am guaranteed the existence of an $f_2: s \to 2$ such that this diagram
+commutes:
+
+% https://q.uiver.app/?q=WzAsNyxbMSwxLCIxIl0sWzMsMSwiMyJdLFsxLDIsIjQiXSxbMywyLCI2Il0sWzAsMCwicyJdLFsyLDEsIjIiXSxbMiwyLCI1Il0sWzEsMywiZSJdLFs0LDEsIlxcc2lnbWFfMyIsMCx7ImN1cnZlIjotM31dLFs1LDEsImIiLDFdLFs1LDYsImQiLDFdLFs2LDMsImciLDFdLFs1LDMsIiIsMix7InN0eWxlIjp7Im5hbWUiOiJjb3JuZXIifX1dLFs0LDUsIlxcZXhpc3RzICEgZl8yIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZG90dGVkIn19fV0sWzQsNiwiZiBcXGNpcmMgXFxzaWdtYV8yIiwxLHsiY3VydmUiOjJ9XV0=
+\[\begin{tikzcd}
+	s \\
+	& 1 & 2 & 3 \\
+	& 4 & 5 & 6
+	\arrow["e", from=2-4, to=3-4]
+	\arrow["{\sigma_3}", curve={height=-18pt}, from=1-1, to=2-4]
+	\arrow["b"{description}, from=2-3, to=2-4]
+	\arrow["d"{description}, from=2-3, to=3-3]
+	\arrow["g"{description}, from=3-3, to=3-4]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=2-3, to=3-4]
+	\arrow["{\exists ! f_2}"{description}, dotted, from=1-1, to=2-3]
+	\arrow["{f \circ \sigma_4}"{description}, curve={height=12pt}, from=1-1, to=3-3]
+\end{tikzcd}\]
+
+
+\item Now use $f_2$ to look at $s$ as the summit of a cone for the left pullback square:
+
+% https://q.uiver.app/?q=WzAsNyxbMSwxLCIxIl0sWzIsMSwiMiJdLFszLDEsIjMiXSxbMSwyLCI0Il0sWzIsMiwiNSJdLFszLDIsIjYiXSxbMCwwLCJzIl0sWzYsMSwiZl8yIiwwLHsiY3VydmUiOi00fV0sWzEsNCwiZCJdLFswLDEsImEiXSxbMyw0LCJmIl0sWzAsMywiYyIsMl0sWzYsMywiXFxzaWdtYV80IiwwLHsiY3VydmUiOjN9XSxbMCw0LCIiLDAseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XSxbMSwyLCJiIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZG90dGVkIn19fV0sWzQsNSwiZyIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRvdHRlZCJ9fX1dLFsyLDUsImUiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkb3R0ZWQifX19XV0=
+\[\begin{tikzcd}
+	s \\
+	& 1 & 2 & 3 \\
+	& 4 & 5 & 6
+	\arrow["{f_2}", curve={height=-24pt}, from=1-1, to=2-3]
+	\arrow["d", from=2-3, to=3-3]
+	\arrow["a", from=2-2, to=2-3]
+	\arrow["f", from=3-2, to=3-3]
+	\arrow["c"', from=2-2, to=3-2]
+	\arrow["{\sigma_4}", curve={height=18pt}, from=1-1, to=3-2]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=2-2, to=3-3]
+	\arrow["b", dotted, from=2-3, to=2-4]
+	\arrow["g", dotted, from=3-3, to=3-4]
+	\arrow["e"{description}, dotted, from=2-4, to=3-4]
+\end{tikzcd}\]
+
+\item This is a commutative diagram, since from the right pullback square we have that $g \circ d \circ f_2 = g \circ (f \circ \sigma_4)$,
+  and hence we get that $d \circ f_2 = f \circ \sigma_4$ (DUBIOUS!)
+
+\item This gives us the existence of a factorizing morphism $f_1$:
+
+% https://q.uiver.app/?q=WzAsNyxbMSwxLCIxIl0sWzIsMSwiMiJdLFszLDEsIjMiXSxbMSwyLCI0Il0sWzIsMiwiNSJdLFszLDIsIjYiXSxbMCwwLCJzIl0sWzYsMSwiZl8yIiwwLHsiY3VydmUiOi00fV0sWzEsNCwiZCJdLFswLDEsImEiXSxbMyw0LCJmIl0sWzAsMywiYyIsMl0sWzYsMywiXFxzaWdtYV80IiwwLHsiY3VydmUiOjN9XSxbMCw0LCIiLDAseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XSxbMSwyLCJiIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZG90dGVkIn19fV0sWzQsNSwiZyIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRvdHRlZCJ9fX1dLFsyLDUsImUiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkb3R0ZWQifX19XSxbNiwwLCJcXGV4aXN0cyAhIGZfMSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	s \\
+	& 1 & 2 & 3 \\
+	& 4 & 5 & 6
+	\arrow["{f_2}", curve={height=-24pt}, from=1-1, to=2-3]
+	\arrow["d", from=2-3, to=3-3]
+	\arrow["a", from=2-2, to=2-3]
+	\arrow["f", from=3-2, to=3-3]
+	\arrow["c"', from=2-2, to=3-2]
+	\arrow["{\sigma_4}", curve={height=18pt}, from=1-1, to=3-2]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=2-2, to=3-3]
+	\arrow["b", dotted, from=2-3, to=2-4]
+	\arrow["g", dotted, from=3-3, to=3-4]
+	\arrow["e"{description}, dotted, from=2-4, to=3-4]
+	\arrow["{\exists ! f_1}", dashed, from=1-1, to=2-2]
+\end{tikzcd}\]
+
+
 \end{itemize}
 
 \end{document}                                              
