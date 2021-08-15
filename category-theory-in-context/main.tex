@@ -2643,4 +2643,99 @@ commutes:
 
 \end{itemize}
 
+\section{Limits in the category of sets}
+\subsection{Musing}
+
+factor proof of $\cCone(1, F)$ being $\lim F$ into two parts: (1) show that $\cCone(X, F)$ as the summit
+for $Hom(X, F_j)$. (2) specialize to $X = 1$ to recover Riehl.
+
+Next part of proof: Consider any arrow $f \in \{ * \} \to S$. Such a map uniquely determines $f(*) \in S$, and pulls back
+the cone $\sigma: S \nt F$ to $\{*\} \to_f S \nt_\sigma F$. So for each $s \in S$, we get a cone $\cCone(\{*\}, F)$.
+Thus the cone $S$ factors.
+
+See that 3.2.1 talks about $Hom(X, \lim F)$ which we are rewriting as $\lim Hom(X, F)$!
+
+Limit of THE free monoid on one generator (as a category) is the set of fixpoints.
+
+
+\subsection{Exercises}
+
+\question{Exercise 3.2.i}
+
+\question{Exercise 3.2.ii}
+
+Intuition: the identity arrows add no relations to the equalizer, and thus we can drop them.
+We demonstrate by considering a particular diagram category $J$. Proof generalizes since we rely
+on no features of $J$.
+
+
+
+\question{Exercise 3.2.iii}
+
+\begin{itemize}
+\item We want all arrows $x, y$ such that the diagram commutes:
+
+% https://q.uiver.app/?q=WzAsNCxbMSwwLCJiIl0sWzAsMSwiYyJdLFsxLDEsImQiXSxbMCwwLCJhIl0sWzAsMiwiZyJdLFsxLDIsInkiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMywwLCJ4IiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzMsMSwiZiIsMl1d
+\[\begin{tikzcd}
+	a & b \\
+	c & d
+	\arrow["g", from=1-2, to=2-2]
+	\arrow["y"', dashed, from=2-1, to=2-2]
+	\arrow["x", dashed, from=1-1, to=1-2]
+	\arrow["f"', from=1-1, to=2-1]
+\end{tikzcd}\]
+
+
+\item We rephrase the commutativity in terms of an equalizer of arrows $g \circ x$ and $y \circ f$:
+
+% https://q.uiver.app/?q=WzAsNCxbMiwwLCJiIl0sWzAsMiwiYyJdLFsyLDIsImQiXSxbMCwwLCJhIl0sWzAsMiwiZyJdLFsxLDIsInkiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMywwLCJ4IiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzMsMSwiZiIsMl0sWzMsMiwiZyBcXGNpcmMgeCIsMSx7ImN1cnZlIjotMiwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzMsMiwieSBcXGNpcmMgZiIsMSx7ImN1cnZlIjoyLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\[\begin{tikzcd}
+	a && b \\
+	\\
+	c && d
+	\arrow["g", from=1-3, to=3-3]
+	\arrow["y"', dashed, from=3-1, to=3-3]
+	\arrow["x", dashed, from=1-1, to=1-3]
+	\arrow["f"', from=1-1, to=3-1]
+	\arrow["{g \circ x}"{description}, curve={height=-12pt}, dashed, from=1-1, to=3-3]
+	\arrow["{y \circ f}"{description}, curve={height=12pt}, dashed, from=1-1, to=3-3]
+\end{tikzcd}\]
+
+\item The set we are looking for are ($P$) contains pairs of arrows $(x, y)$ such that the following diagram commutes:
+% https://q.uiver.app/?q=WzAsMTIsWzUsMCwiQyhhLCBjKSJdLFsyLDMsIkMoYiwgZCkiXSxbNSwzLCJDKGEsIGQpIl0sWzIsMCwiUFxcc3Vic2V0IEMoYSwgYykgXFx0aW1lcyBDKGIsIGQpIl0sWzMsMSwiKHgsIHkpIl0sWzQsMSwieCJdLFszLDIsInkiXSxbNCwyLCJ5IFxcY2lyYyBmID0geCBcXGNpcmMgZyJdLFswLDEsImEiXSxbMSwxLCJjIl0sWzEsMiwiZCJdLFswLDIsImIiXSxbMSwyLCJcXGxhbWJkYSB5LiB5IFxcY2lyYyBmIiwyXSxbMywwLCJcXHBpX3IiXSxbMywxLCJcXHBpX2wiLDJdLFswLDIsIlxcbGFtYmRhIHguIGcgXFxjaXJjIHgiXSxbNCw1LCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzQsNiwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFs2LDcsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbNSw3LCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzgsOSwieCIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs5LDEwLCJnIl0sWzgsMTEsImYiLDJdLFsxMSwxMCwieSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFszLDIsIiIsMSx7InN0eWxlIjp7Im5hbWUiOiJjb3JuZXIifX1dXQ==
+\[\begin{tikzcd}
+	&& {P\subset C(a, c) \times C(b, d)} &&& {C(a, c)} \\
+	a & c && {(x, y)} & x \\
+	b & d && y & {y \circ f = x \circ g} \\
+	&& {C(b, d)} &&& {C(a, d)}
+	\arrow["{\lambda y. y \circ f}"', from=4-3, to=4-6]
+	\arrow["{\pi_r}", from=1-3, to=1-6]
+	\arrow["{\pi_l}"', from=1-3, to=4-3]
+	\arrow["{\lambda x. g \circ x}", from=1-6, to=4-6]
+	\arrow[maps to, from=2-4, to=2-5]
+	\arrow[maps to, from=2-4, to=3-4]
+	\arrow[maps to, from=3-4, to=3-5]
+	\arrow[maps to, from=2-5, to=3-5]
+	\arrow["x", dashed, from=2-1, to=2-2]
+	\arrow["g", from=2-2, to=3-2]
+	\arrow["f"', from=2-1, to=3-1]
+	\arrow["y", dashed, from=3-1, to=3-2]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-3, to=4-6]
+\end{tikzcd}\]
+
+
+\item Hence we need the pullback $P$ given by the diagram:
+
+% https% https://q.uiver.app/?q=WzAsNCxbMiwwLCJDKGEsIGMpIl0sWzAsMSwiQyhiLCBkKSJdLFsyLDEsIkMoYSwgZCkiXSxbMCwwLCJcXGV4aXN0cyF+UCJdLFswLDIsIlxcbGFtYmRhIHguIGcgXFxjaXJjIHgiXSxbMSwyLCJcXGxhbWJkYSB5LiB5IFxcY2lyYyBmIiwyXSxbMywwLCJcXGV4aXN0cyEiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMywxLCJcXGV4aXN0cyEiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\[\begin{tikzcd}
+	{\exists!~P} && {C(a, c)} \\
+	{C(b, d)} && {C(a, d)}
+	\arrow["{\lambda x. g \circ x}", from=1-3, to=2-3]
+	\arrow["{\lambda y. y \circ f}"', from=2-1, to=2-3]
+	\arrow["{\exists!}", dashed, from=1-1, to=1-3]
+	\arrow["{\exists!}"', dashed, from=1-1, to=2-1]
+\end{tikzcd}\]
+\end{itemize}
+
+
 \end{document}                                              
