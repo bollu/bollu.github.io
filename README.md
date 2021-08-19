@@ -1,4 +1,4 @@
-<h2>
+
 <img style="float:left;display:inline-block;padding-right: 16px; width: 48px" src="./static/banner.png">
 A Universe of Sorts
 </h2>
@@ -15,13 +15,255 @@ A Universe of Sorts
 - [reading list and link dump](todo.html)
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
+# Simpson's Paradox
 
-# Inconvergent: beautiful generative art
+- The example which made simpson's paradox click for me was the *extreme* case.
+- Suppose
+  department `E` hires _every woman_ but only half the men (`E` for every), while department `N` hires _neither_
+  men nor women.
+- So in each department, women are either advantaged (as in `E`) or are on-par (as in `N`).
+- Suppose we have `100` men and `100` women.
+- Let `90` men apply for `E` and `10` men apply for `N`.
+  In total, `45` men are accepted `(90/2 + 0)`.
+- Let `10` women apply for `E` and `90` women apply for `N`. In total, `10+0` women are accepted.
+- Thus, it _appears_ as if only `10` women are selected to `45` men, implying some kind of bias.
+- In reality, all departments are pro women hiring. The **majority of women apply to the deparment `N`**
+  which is **hard to get into**, thereby making it appear as if the institute (`E` and `N` combined)
+  are against women hires.
+- The information that is lost is that of the split up of men and women who apply to `E` and `N`.
+
+# Myhill Nerode Theorem
+
+- Take a language $L$ over an alphabet $A$.
+- Define $x \in A^\star$ to have a **disginguishing extension** from $y \in A^\star$
+  iff there exists a $s \in A^\star$ such that either (a) $xs \in L \land ys \not \in L$, or
+  $xs \not \in L \land ys \in L$
+- Said differently, given $x$ and $y$, there suffix $s$ which 
+  can distinguish $x$ and $y$ using the membership oracle for $L$.
+- Now define $x \sim_L y$ ($x$ is indistinguishable from $y$) iff there **is no distinguishing extension**
+  between $x$ and $y$ with respect to $L$.
+- See that this is an equivalence relation:
+- *(1) Reflexivity*: $x$ cannot be distinguished from $x$ (using $L$),
+  because any suffix $s$ cannot produce different
+  outputs for $x$ and $x$. 
+- *(2) Symmetry*: If $x$ cannot be disguished from $y$ (using $L$),
+  then $y$ cannot be distinguished from $x$ (using $L$).
+- *(3) Transitivity*: If $x$ cannot be distinguished from $y$ (using $L$)
+   and $y$ cannot be distinguished from $z$ (using $L$),
+   then $x$ cannot be distinguished from $z$ (using $L$). Intuition: 
+   What about $y$ in this situation? It can't be indistinguishable from both $x$ and $z$.
+- *Proof of Transitivity:* Suppose for contradiction $x$ can be distinguished from $z$.
+  There there is a suffix $s$ such that
+  $xs \in L$ while $zs \not \in L$ (WLOG). Now what about $ys$? if $ys \in L$ then we can distinguish $y$
+  and $z$, contradicting assumption that $y$ is indistinguishable from $z$. If $y \not \in L$ then we can
+  distinguish $x$ from $y$ contradicting assumption that $x$ is indistinguishable from $y$.
+- Hence, being indistinguishable is an equivalence relation, denoted by $x \sim y$.
+- Myhill nerode says that the minimal DFA for a language $L$ has as many states as there are
+  equivalence classes for $\sim_L$. 
+
+#### Given DFA $D$ of language $L$ over $A$: $\sim_D$ implies $\sim_L$
+
+- Let $L$ be a regular langugage over alphabet $A$ and let $D$ be a DFA
+  (with finite number of states $|D|$ in the DFA).
+- Partition the set of all strings $A*\star$ via the relation $\sim_D$:
+  $x \sim_D y$ iff $x$ and $y$ end at the same state when fed to DFA.
+- Thus will have $|D|$ equivalence classes for $\sim_D$, one for each state of the DFA.
+- For any two strings such that $x \sim_D y$, given any suffix $s$, we have that $xs \sim_D ys$
+  since we start at the same state at $x$ (or $y$) and continue when we feed the suffix $s$.
+- Thus, strings such that $x \sim_D y$ are indistinguishable for the DFA.
+- So we have $x \sim_L y$, since on any extension, both $xs$ and $ys$ either belong or don't belong to $L$.
+
+#### given language $L$ over $A$: show that $\sim_L$ implies $\sim_D$.
+
+- Let $L$ be a langugage over alphabet $A$ such that
+ $\sim_L$ has finitely many equivalence classes.
+- We will design DFA (called $D$)for $L$ with as many
+  states as equivalence classes.
+- The start state of $D$ is the equivalence class of the empty string with respect to $\sim_L$. 
+- At an equivalence class/state $T$, given character $c \in A$, we move to $T \diamond c$ (extend $T$
+  by $c$).
+- Formally, $\delta(T, c) \equiv T \diamond c$, where $T \diamond c \equiv \{ tc : t \in T \}$
+- This is well defined, as if $t \sim_L t'$ are in the equivalence class $T$, then we must have
+  $tc \sim_L t'c$.
+- Suppose $tc$ is distinguishable from $t'c$ by a suffix $s$. Then we can distinguish between $t$
+  and $t'$ via suffix $cs$. This contradicts $t \sim_L t'$. Thus we have that $t \sim_L t$ implies $tc \sim_L t'c$.
+- Thus our transition function $\delta$ is well defined over equivalence classes $A/\sim_L$.
+- A state $T$ in $D$ is accepting if the state contains \emph{any} string $l \in L$.
+- That is, $T$ is accepting iff there exists a $l \in L$ such that $l \in T$.
+- In this case, we infer that $T \subseteq L$, or any string in $T$ is accepted by $L$.
+- Suppose for contradiction that  $l \in L$ such that $l \in T$ while also having a string $z \in T$, $z \not in L$.
+- the empty string would distinguish the two strings $l, z$ which contradicts $z \sim_L l$
+  since they are both in the equivalence class $T$.
+- Thus for a regular language $L$ there is a DFA $D$ which accepts strings from $L$ and has number of
+  states $|D|$ equal to number of equivalence clases $|A/\sim_L|$.
+
+#### DFA needs at least $|A/\sim_L|$ states
+- Let $n \equiv |A/\sim L|$ be the number of equivalence classes of $\sim L$.
+- Suppose a DFA $D$ recongizes $L$ and has fewer than $|A/\sim L|$ states.
+- Let $x_1, x_2, \dots x_n$ be strings from different equivalence classes of $L$.
+- Push these strings through $D$. Some two strings $x_i, x_j$ must land on the state state $d \in D$
+  of $D$ (by pigeonhole). 
+- We must have $x_i$ and $x_j$ distinguishable, since they come from different equivalence classes.
+  So the DFA must accept one and reject the other.
+- But the DFA can't tell the difference between $x_i$ and $x_j$ since they landed on the same state!
+  So the DFA will accept or reject both.
+- Thus, we have a contradiction from the assumptions (a) $D$ has fewer states than $n$ and (b)
+  $D$ recognizes $L$.
+- Thus the DFA needs at least $|A/\sim L|$ states.
+
+#### The two imply DFA minimization
+
+- We have seen that every DFA for $L$ needs at least $|A/\sim L|$ states.
+- Now starting from $L$, we can build an automata $D^\star$ such that $|D^\star|$ is exactly $|A/\sim L|$.
+- Thus the automata $D^\star$ is a (the) minimal automata for $L$.
+
+# Linearity of expectation for sampling
+
+```py
+# process 1
+def val(c): return 1 + ord(c) - 'a'
+def process(addx, addy):
+    s = 0
+    ndraws = 10
+    for _ in range(ndraws):
+        x = random.choice("abcde"),  # draw a random chit
+        y = random.choice(x*5+"abcde") # draw a random chit, dependent on first random chit.
+        if addx: s += val(x)
+        if addy: x += val(y)
+    return s
+```
+
+- Linearity of expectation says that `process(True, True)` equals `process(True, False) + process(False, True)`.
+- Intuitively, if we run the code for `process` infinitely many times, then each execution of `process(True, True)`
+  can be split into an execution of `process(True, False)` and an execution of `process(False, True)`.
+  This can be depicted as:
+
+<img src="./static/linearity-of-expectation-theory/split-process-in-two.png">
+
+- The above process assumes that we get the *same* results from running `process(True, True)` as we do when we run
+  `process(True, False)` and `process(False, True)` in succession. Of course, this will never happen.
+- However, since we are taking an average over many trials, we can imagine that for a run of `process(True, True)`, we will have
+  corresponding runs of `process(True, False)` and `process(False, True)`:
+
+<img src="./static/linearity-of-expectation-theory/matching-over-trials.png">
+
+- The key thing to remember is that the random variable *does not care* about the process, only about the *value*
+  that is spit out by the process.
+- Thus we can read linearity of expectation as saying either (1) Simulate the full process in one go and accumulate the results
+  as you go along `process(True, True)` or `E[a+b]`, or (2) Simulate the process in parts, and add up the accumulated
+  results from the partial simulations (`process(True, False)` + `process(False, True)` or `E[a] + E[b]`).
+- In *both cases*, we are allowed to simulate the process fully! The only thing that differs is when we accumulate the answers.
+- This is in contrast to computing conditional probability, where the situation/process in which `P(A|B)` occurs is wildly
+  different from `P(A)`.
+- Linearity of expectation asks us to run the *same* process, just tally results differently.
+- It tells us that randomness allows the tallies to line up, whether we tally in two separate phases
+  or in a single phase, which makes intuitive sense!
+
+#### Linearity of expectation is purity
+
+Suppose we write:
+
+```
+x = random.choice("abcde")
+y = random.choice("abcde")
+s =  val(x) + val(y)
+```
+
+- If we ask for the expected value of `s`. It's going to be:
+
+```
+E[s] = E[val(x) + val(y)]
+= E[val(x)] + E[val(y)]
+= 2 E[val(x)]
+```
+
+- The last inequality follows because `x` and `y` are two copies of the same random variable `random.choice("abcde")`,
+  thus have the same expected value for `val(x)`, `val(y)`.
+- So, expecatation 'purifies' random computations.
+
+#### "Deriving" equivalence for two processses using purity
+
+- First write down what `process(True, False) + process(False, True)` as:
+
+```python
+def rhsI():
+    sx = 0; sy = 0
+    ndraws = 10
+    for _ in range(ndraws):
+        x = random.choice("abcde"),  # draw a random chit
+        y = random.choice(x1*5+"abcde") # draw a random chit, dependent on first random chit.
+        sx += val(x)
+
+    for _ in range(ndraws):
+        x = random.choice("abcde"),  # draw a random chit
+        y = random.choice(x2*5+"abcde") # draw a random chit, dependent on first random chit.
+        sy += val(y)
+    return sx + sy
+```
+
+- Next, we use the purity of `random.choice` (within expectation) to fuse the two loops:
+
+```python
+def rhsII():
+    sx = 0; sy = 0
+    ndraws = 10
+
+    # loop fusion is safe, because even though random.choice has a side effect, the order
+    # of calling random.choice does not matter. It commutes with other random ops.
+    for _ in range(ndraws):
+        x1 = random.choice("abcde"),  # draw a random chit
+        y1 = random.choice(x1*5+"abcde") # draw a random chit, dependent on first random chit.
+        sx += val(x1)
+        # loop fusion
+        x2 = random.choice("abcde"),  # draw a random chit
+        y2 = random.choice(x2*5+"abcde") # draw a random chit, dependent on first random chit.
+        sy += val(y2)
+    return sx + sy
+```
+
+- Next, we use purity to set `x1 = x2` and `y1 = y2`, since on expectation, their values are the same.
+
+```python
+def rhsIII():
+    sx = 0; sy = 0
+    ndraws = 10
+
+    # once again, expectation purifies randomness. So within the context of expecattion, we can 
+    # replace `x2` with `x1` with `x1`
+    for _ in range(ndraws):
+        x1 = random.choice("abcde"),  # draw a random chit
+        y1 = random.choice(x1*5+"abcde") # draw a random chit, dependent on first random chit.
+        sx += val(x1)
+        # loop fusion
+        x2 = x1
+        y2 = y1
+        sy += val(y2)
+    return sx + sy
+```
+
+- Finally, we cleanup the code to arrive at `process(True, True)`:
+
+```python
+def rhsIV():
+    sx = 0; sy = 0
+    ndraws = 10
+
+    # once again, expectation purifies randomness. So within the context of expecattion, we can 
+    # replace `x2` with `x1` with `x1`
+    for _ in range(ndraws):
+        x1 = random.choice("abcde"),  # draw a random chit
+        y1 = random.choice(x1*5+"abcde") # draw a random chit, dependent on first random chit.
+        sx += val(x1)
+        sy += val(y1)
+    return sx + sy
+```
 
 
-- [https://inconvergent.net/faq/](Link to website)
+# Dedekind MacNiellie
 
-# DP on monotone matrix (SMAWK)
+- [Dedekind MacNiellie](https://en.wikipedia.org/wiki/Dedekind%E2%80%93MacNeille_completion)
+
+# DP on monotone matrix (SMAWK) (WIP)
 
 - As we walk along columns, the indices of the row minima increase.
 - We want to find minimum element in every row.
@@ -51,8 +293,10 @@ A Universe of Sorts
 
 
 #### Totally monotone, part 2
-- Create a new procedure called 'reduce', which takes a rectangular totally monotone matrix, and makes it square, while retaining all row minima.
-- Idea: total monotonicity forces row minima to be in a certain square subarray of the original array.
+- Create a new procedure called 'reduce', which takes a rectangular totally
+  monotone matrix, and makes it square, while retaining all row minima.  Idea:
+- total monotonicity forces row minima to be in a certain square subarray of
+- the original array.
 
 
 - Suppose `a` and `b` are minima in their column.
@@ -69,6 +313,365 @@ c < d
 
 a < b
 ```
+
+
+  
+# Good and bad combinatorics: intro to counting 
+
+> Elements of sets are the only objects that we are allowed to count.
+
+
+- [From IMO math](https://www.imomath.com/index.php?options=237&lmm=1)
+
+# Expected number of turns to generate all numbers `1..N` (WIP)
+
+- Supposedly, asymptotically `N log N`
+
+#### For $N=1$, the expected number of turns is $1$.
+
+# Diameter in single DFS (WIP)
+
+- [Gist by pedu](https://gist.github.com/anurudhp/1ecf14f1211c71cd5c99537fad13fecd)
+
+
+# Min cost flow (WIP)
+
+
+- Problem statement: Find a maximal flow with minimum cost.
+
+1. Find max flow.
+2. Find negative cost cycle in residual graph of max flow. Push flow around the negative cost cycle.
+
+
+#### Relation between max flow and min cost circulation
+
+- Recall that min cost circulation asks to compute a circulation with minimum cost [no maximality constraint].
+
+- Given a flow network $(V, E, s, t, C)$ ($C$ is capacity fn), create a new cost function $c: V \to \mathbb R$ which assigns cost zero
+  to all edges in the flow networ. Also add a new edge $t \to s$ which has infinite capacity, cost $-1$. 
+- A circulation with cost lower than zero will have to use the $t \to s$ edge. To get minimum cost, it must send as much flow through
+  this edge as possible. For it to be a circulation, the full flow in the network must be zero. So suppose we send $f$ units of flow
+  back from $t$ to $s$. Then we must send $f$ units of flow from $s$ to $t$ for it to be a circulation. Incrasing $f$ (max flow)
+  decreases the cost of the circluation! Thus, max flow is reduced to min cost circulation.
+
+#### Min Cost Flow in general
+
+- First find max flow using whatever.
+- Next, we need to find negative cost cycle in the residual graph.
+- Use bellman ford, or SPFA to find negative cost cycles in $O(VE)$ time [run edge relaxation $|V|$ times].
+
+
+#### Minimum mean cycle
+
+- Which is best cycle to push flow around to reduce cost? The min cost cycle may not be best, since it may have very little capacity.
+- A negative cycle with max capacity may not have good cost.
+- Correct: `total cost/number of edges` --- that is, the mean cost. 
+
+
+#### shortest path as circulation.
+
+- Need to find single source shortest path in a graph (with possibly negative edges, no negative cycles).
+- We have a balance at each vertex $v$, which tells us how much extra flow must can have coming in versus going out.
+  So, $\sum_u f(l \to v) - \sum_w f(v \to r) = b(v)$. Intuitively, the balance is stored in a tank at the vertex.
+- We need total balance to be zero.
+- We set the source $s$ to have balance $1-v$ (supply) and all the other nodes to have balance $1$ (demand).
+- Let the cost of each edge be the distance, let the capacity of each edge be infinite.
+- Now, what is a min cost flow which obeys the demands?
+- Consider the shortest path tree. Imagine it as carrying a flow. Then the
+  shortest path tree indeed obeys the flow
+  constraints.
+- To convert this into circulation, add back edges from each node back to the source, with a capacity of 1, cost of zero.
+- This converts shortest path trees into flows/circulations.
+
+
+#### Min cost circulation algorithms
+- Old algorithm: start with a circulation that obeys balance, then push more around (by using negative cycles)
+- New algorithm (successive shortest path): remove all negative cycles, then restore balance constraints.
+- how to remove negative cycles? We can just send flow down all negative edges. The resdiual graph will contain no negative cycles.
+  (NOTE: we don't have a valid flow at this point!) This leaves us with resdiual balances at each vertex,
+  about how much more flow we need to send.
+
+#### References
+
+- [Jeff E: algorithms video](https://www.youtube.com/watch?v=k8A5kSo3EW0)
+
+
+# Clojure: minimal makefile for REPL driven dev with Neovim
+
+Create the `deps.edn` file:
+
+```
+{:deps
+ {org.clojure/clojure {:mvn/version "1.10.1"}
+   nrepl {:mvn/version "0.7.0"}
+     cider/cider-nrepl {:mvn/version "0.25.2"}}}
+```
+
+and write the `Makefile`:
+
+```
+# https://clojure.org/guides/deps_and_cli
+.PHONY: run
+
+repl:
+    clj -m nrepl.cmdline \
+        --middleware "[cider.nrepl/cider-middleware]" \
+        --interactive
+
+run:
+    clj -X dg/run
+
+test: 
+    clj -Atest
+```
+
+
+# Delimited continuations
+
+- `reset`: add a marker to delimit the capture of the continuation by `shift`.
+  So called because we add a `reset mark` onto the stack.
+- `shift`: .. So called because to start executing a `shift`, we move stack frames upto the closest reset from the stack into the heap.
+  When the continuation of `shift` is called, move back the stack frames from the heap onto the stack.
+
+>  Direct Implementation of Shift and Reset in the MinCaml Compiler
+
+
+
+# Never forget monic again
+
+- Remember monic ~ injective.
+- Remember that injective is $f(x) = f(y) \implies x = y$.
+- Since we're doing category theory, replace $x$ and $y$ by functions $h(p)$ and $k(p)$.
+- This means that the rule of monic is $\forall p, f(h(p)) = f(k(p)) \implies h = k$.
+- Thus, monic is left cancellative!
+
+
+# Weird canonical example of monic and epic: left/right shift
+
+- Consider the function `right` over an infinite sequence `a_n` which is defined as
+  `right(a[:])[i] = 0 if i == 0 else a[i-1]`. That is, it shifts a sequence to the right.
+- See that this is injective, and *not* surjective: for example, there is no pre-image to any sequence
+  that starts with a non-zero value, such as `1, 0, 0, ...`.
+- Its dual, `left(a[:])[i] = a[i+1]` is surjective, but not injective.
+- This makes it ideal as an "extreme case" to test the monic/epic conditions as left/right cancellable.
+
+#### Monic
+
+- We know that `right` is monic. Is it cancellable if we run it before or after? 
+- We should run it after --- that way, if `right(f(a[:]))` equals `right(g(a[:]))` for all `a[:]`,
+  we know that the sequences are `(0, f1, f2, ...)` which equals `(0, g1, g2, ...)` which implies `(f1, f2, ...)` equals `(g1, g2, ...)`.
+  So we can conclude that `f = g` from `right . f = right . g`.
+- On the other hand, if we consider `f(right(a[:]))` and `g(right([a:])`, we will only test the equality of `f` and `g`
+  at sequences of the form `(0, a1, a2, ...)` which is insufficient, this we cannot conclude `f = g`. So we cannot conclude `f = g`
+  from `f . right = g . right`.
+
+#### Epic
+
+- We know that `left` is epic. Is it cancellable if we run it before or after?
+- Suppose `f . left = g . left`. Since `left` is epic, this tests `f` and `g` on every possible input. Thus `f = g`.
+- On the other hand, suppose `left . f = left . g`. This is insufficient, since we will only test the equality of `(f2, f3, ...)`
+  with `(g2, g3, ...)` leaving `f1 =? g1` untested. Thus, we cannot conclude `f = g` from `left . f = left . g`.
+
+
+
+
+
+# Playing guitar: being okay with incorrect chords
+
+- I find it very hard to switch chords, since I feel "afraid" of playing the wrong chord.
+- I feel like this manifests in different ways: I am relunctant to write documents which I fear maybe incorrect,
+  and yet would be valuable to write up. I feel relunctant to compete in competitions for fear of not knowing
+  the "right answer".
+- Regardless, it's very interesting how when playing the guitar, people (and you) literally don't notice!
+- As long as you keep the rhythm up, it "sounds fine".
+- So, if there's a hard chord change to be done, stagger it! play two beats with all strings open. 
+  Then hold down a single finger for a beat. Then another finger for the next beat. And so on, till perhaps
+  at the final beat, we make the "complete/correct" chord.
+- It's interesting, since it adds a sort of design challenge: what is the best sequence of strings to play to "musically"
+  approach a given chord starting from open strings? Different choices of fingers have surprisingly different sounds!
+- It's also very relieving to be able to simply.. play, experiment with leaving strings one-by-one, pressing strings
+  one by one, without worrying about getting it right, as long as I allow the rhythm-beat to march forward :)
+- This lends itself particularly well to the style where we mute the guitar every even beat (1 MUTE 2 MUTE) to create a
+  percurssive effect. It allows one to hear the chord being "layered" up, finger by finger.
+- It also mutes  the "open string" sound by the time we get the first finger on, so it helps create  
+- TL;DR: **strumming hand >>> chord hand**. Focus on the strumming! It's okay to screw up on chords `:)`
+
+# Sparse table
+
+- Given an array `as :: Semilattice a => [a]`, find semilattice join of any range `[lft..rt]` in `O(1)` time, given 
+   `O(n log n)` preprocessing.
+- Core idea: store results of queries `[lft..l+2^k)`. So the code:
+
+```cpp
+// mins [l, l+1) = arr[l]
+for(int i = 0; i < n; ++i) { mins[i][0] = arr[l]; }
+for(int len = 1; len < NBITS; ++len) {
+  for(int i = 0; i < n; ++i) {
+    const int midix = i + 1 << (len-1);
+    if (midix >= n) { break; }
+    // mins [l..l+N) = min mins[l..l+N/2) mins[l+N/2..l+N]
+    mins[i][l] = min(mins[i][len-1], mins[i + midix][len-1]); 
+  }
+}
+```
+
+- Now given a query, the "naive" method is to consider the range `[lft, l+len)`. We break `len` down into its powers
+  of `2`, and then query the indexes based on its binary representation. Eg. a query from `[3, 3+7)` is broken down
+  into `7 = 4 + 2 + 1`, so we query `[3, 3+4)` which is `[3, 7)`,  then `[3+4, 3+4+2)` which is `[7, 9)`, and finally
+  `[3+4+2, 3+4+2+1)` which is `[9, 10)`. But this is `O(log n)` time. We want `O(1)` time.
+
+```
+    [--------------)
+1 2 3 4 5 6 7 8 9 10
+    |       |   |  |
+    [-------)   |  |
+            [---)  |
+                [--)
+```
+
+- The key is to notice that so far, we've only used associatvity of the lattice operation, not idempotence! We can 
+  exploit idempotence by not caring about *overlaps*.
+
+
+
+- to find min in `[3, 9)`, we combine `[3, 3+4)` with `[9-4, 9)`, which is `[3, 7)` combined with `[6, 9)` which
+  overlaps at `6`.
+
+```
+    [-----------)
+1 2 3 4 5 6 7 8 9
+    |     | |   |
+    [-----+-)   |
+          [-----)
+```
+
+The actual expression is:
+
+```cpp
+// [l, r)
+int query_mins(int l, int r) {
+  int len = r-l;
+  if (len < 0) { return INFTY; }
+  int j = log2(len); // round down.
+  // min  [l, l+halflen), [l+halflen, r)
+   return min(mins[l][j], mins[l+-(1<<j)][j]);
+}
+```
+
+# Duval's algorithm
+
+- https://stackoverflow.com/questions/55642656/how-does-duvals-algorithm-handle-odd-length-strings
+- https://ritukundu.wordpress.com/2016/10/07/algorithm-to-find-the-least-lexicographic-rotation-of-a-circular-string/
+
+# Amortized complexity from the verifier perspective
+
+- If we want an API that can verify amortized complexity, then each method returns two costs: (a) "number of cycles" spent on the operation,
+  (b) "claimed cost" of the operation. For example, `vector.push_back()` may return "number of cycles" to be as large as `O(n)` when doubling,
+  while always returning "claimed cost" as `1`.
+- At the end of *any* sequence of operations, the verifier verifies that `sum (claimed cost)` > `sum of (#cycles)`.
+- This establishes that the claimed/amortized cost is an upper bound on the real cost!
+
+# Relationship betwee permutations and runs
+
+- Let the permutation be $\pi \equiv (3 9 2 5 6 7 10 11 13 15 14 16 12 1 4 8)$.
+- Split into runs: $r_1:(3 9)$, $r_2:(2 5 6 7 10 11 13 15)$, $r_3:(14 16)$, $r_4:(12)$, $r_5:(1 4 8)$.
+- The runs begin at indeces $p[1] = 1$, $p[2] = 3$, $p[3] = 11$, $p[4] = 13$, $p[5] = 14$. Total number of runs is $R=5$.
+- Encode each number in $[1..15]$ by the run to which it belongs to. This is us mapping the integer $k$ to $run(\pi^{-1}(k))$.
+- We get that:
+
+```
+1 -> run 5 | (1 4 8)
+2 -> run 2 | (2 5 ... 15)
+3 -> run 1 | (3 9)
+4 -> run 5 | (1 4 8)
+--
+5 -> run 2 | (2 5 ... 15)
+6 -> run 2 | (2 5 ... 15)
+7 -> run 2 | (2 5 ... 15)
+8 -> run 5 | (1 4 8)
+--
+9 -> run 1 | (3 9)
+10 -> run 2| (2 5 ... 15)
+11 -> run 2| (2 5 ... 15)
+12 -> run 4| (12)
+--
+13 -> run 2| (2 5 ... 15)
+14 -> run 3| (14 16)
+15 -> run 2| (2 5 ... 15)
+16 -> run 3| (14 16)
+```
+
+- This gives us the array $S = [5, 2, 1, 5| 2, 2, 2, 5| 1, 2, 2, 4| 2, 3, 2, 3]$
+- The $k$th occurrence of symbol $s$ in $S$ corresponds to the row of the permutation $P[s] + k$.
+  The occurrence will be at $\pi(P[s] + k)$.
+- Suppose we want to find $\pi(P[s] + k) = y$.
+
+
+#### Relationship to burrows wheeler?
+
+- See that we do sort of the same thing, where we identify a string based on the ranks of its characters?!
+
+
+
+# Brouwer's fixed point theorem
+
+#### General statement:
+
+Given an nD simplex that has been subdivided, and a function that maps vertices of the subdivision
+to vertices of the simplex such that the function on the boundary of the simplex maps it to endpoints of the boundary,
+we will always have a subdivided simplex with all vertices of the original
+simplex.
+
+#### 1D
+
+- Given a line with endpoints $a, b$ and points in between, we will always have an occurrence of $ab$ on the line.
+- Can prove something slightly stronger: there will always be an odd number of $ab$ on the line.
+
+#### 2D
+
+- Given a triangle labelled $abc$ and a subdivision of it, there will be a smaller triangle labelled $abc$.
+- Consider all smaller triangles.
+- Call a side with $bc$ a door.
+- How many doors can a triangle have? It can have 0 doors if it is labelled $aaa$, or $abb$, or some such.
+- It can have 1 door if it is:
+
+```
+ a
+/ \
+b==c
+```
+
+- It can have two doors if it is:
+
+```
+  c
+// \
+b===c
+```
+
+- We can't have three doors. So triangles can have 0, 1, or 2 doors.
+- If we find a triangle with one door, we are done, since it will have $abc$.
+- Now start from the bottom of the triangle where we have the side $bc$. Here we will find at least one edge $bc$.
+- Walk along the triangle, entering any triangle with a door.
+- If that's the only door of the triangle, we are done.
+- If not, then the triangle has two doors. Exit the current triangle through the other door (the door we did not enter from). This will take us to another triangle.
+- See that we cannot terminate the walk by exiting from sides $AB$ or $AC$, for such a side will be of the form $ab$. Then to have a door, we will get a $bc$,
+ so the triangle must be $abc$, ie a triangle we are looking for!
+- So if we ever escape the simplex, we must escape from the bottom side $BC$. This removes an even number of
+  $bc$ edges from $BC$. But we know there are an odd number of $bc$ from $BC$, so we must find a triangle $ABC$ eventually.
+
+# XOR on binary trie
+
+If we XOR a number, then it flips the path that were taking on the binary trie! This seems
+like a handy way to visualize numbers. In particular, to solve question [1554C](https://codeforces.com/contest/1554/problem/C)
+
+
+# Inconvergent: beautiful generative art
+
+
+- [https://inconvergent.net/faq/](Link to website)
+
+
 
 # Prefix/Border function
 
@@ -226,72 +829,7 @@ and so on. Isn't this so cool? Borders of a string are a fractal-like object!
   sensible answer (ie, the set of paths ordered by length is not well founded).
 
 
-# Diameter in single DFS
 
-- [Gist by pedu](https://gist.github.com/anurudhp/1ecf14f1211c71cd5c99537fad13fecd)
-
-
-# Min cost flow
-
-
-
-- Problem statement: Find a maximal flow with minimum cost.
-
-1. Find max flow.
-2. Find negative cost cycle in residual graph of max flow. Push flow around the negative cost cycle.
-
-
-#### Relation between max flow and min cost circulation
-
-- Recall that min cost circulation asks to compute a circulation with minimum cost [no maximality constraint].
-
-- Given a flow network $(V, E, s, t, C)$ ($C$ is capacity fn), create a new cost function $c: V \to \mathbb R$ which assigns cost zero
-  to all edges in the flow networ. Also add a new edge $t \to s$ which has infinite capacity, cost $-1$. 
-- A circulation with cost lower than zero will have to use the $t \to s$ edge. To get minimum cost, it must send as much flow through
-  this edge as possible. For it to be a circulation, the full flow in the network must be zero. So suppose we send $f$ units of flow
-  back from $t$ to $s$. Then we must send $f$ units of flow from $s$ to $t$ for it to be a circulation. Incrasing $f$ (max flow)
-  decreases the cost of the circluation! Thus, max flow is reduced to min cost circulation.
-
-#### Min Cost Flow in general
-
-- First find max flow using whatever.
-- Next, we need to find negative cost cycle in the residual graph.
-- Use bellman ford, or SPFA to find negative cost cycles in $O(VE)$ time [run edge relaxation $|V|$ times].
-
-
-#### Minimum mean cycle
-
-- Which is best cycle to push flow around to reduce cost? The min cost cycle may not be best, since it may have very little capacity.
-- A negative cycle with max capacity may not have good cost.
-- Correct: `total cost/number of edges` --- that is, the mean cost. 
-
-
-#### shortest path as circulation.
-
-- Need to find single source shortest path in a graph (with possibly negative edges, no negative cycles).
-- We have a balance at each vertex $v$, which tells us how much extra flow must can have coming in versus going out.
-  So, $\sum_u f(l \to v) - \sum_w f(v \to r) = b(v)$. Intuitively, the balance is stored in a tank at the vertex.
-- We need total balance to be zero.
-- We set the source $s$ to have balance $1-v$ (supply) and all the other nodes to have balance $1$ (demand).
-- Let the cost of each edge be the distance, let the capacity of each edge be infinite.
-- Now, what is a min cost flow which obeys the demands?
-- Consider the shortest path tree. Imagine it as carrying a flow. Then the
-  shortest path tree indeed obeys the flow
-  constraints.
-- To convert this into circulation, add back edges from each node back to the source, with a capacity of 1, cost of zero.
-- This converts shortest path trees into flows/circulations.
-
-
-#### Min cost circulation algorithms
-- Old algorithm: start with a circulation that obeys balance, then push more around (by using negative cycles)
-- New algorithm (successive shortest path): remove all negative cycles, then restore balance constraints.
-- how to remove negative cycles? We can just send flow down all negative edges. The resdiual graph will contain no negative cycles.
-  (NOTE: we don't have a valid flow at this point!) This leaves us with resdiual balances at each vertex,
-  about how much more flow we need to send.
-
-#### References
-
-- [Jeff E: algorithms video](https://www.youtube.com/watch?v=k8A5kSo3EW0)
 
 
 # Minimal tech stack
@@ -401,7 +939,7 @@ and then worked their way back up?
 
 #### Fragging
 
-> Sentint force must be applied to undo sentient damage --- time combat.
+> Sentient force must be applied to undo sentient damage --- time combat.
 
 #### As/As not
 
@@ -3926,36 +4464,37 @@ that are sums tend not to.
 
 #### Every presheaf is a colimit of representables
 
-Roughly, every presheaf $P: C \rightarrow Set$ can be written by "gluing" (union + equivalence relation/colimit)
-functors of the form $Hom(a_i, -)$. Let $P$ be the presheaf. To say that it
-can be written as a colimit of Hom-sets, this means that we have some (yet unknown)
-diagram $dgrm: J \rightarrow [C, Set]$ such that $P$ is the colimit of such a
-set. Unwrapping what this means, it means that we have a functor $dgrm: J \rightarrow [C, Set]$ such that
-the image of $J$ is always a hom-set. That is, $dgrm(j \in J) = Hom(c_j, -) \in [C, Set]$. Furthermore,
-since $P$ is a colimit, we have arrows of the form $dgrm(j) = Hom(c_j, -) \rightarrow P$. Recall that such an
-arrow is a natural transformation between $Hom(c_j, -)$ and $P$. Also recall that by the Yoneda lemma,
-such natural transformations $Hom(c_j, -) \rightarrow P$ are in natural bijection with elements in $P(c_j)$. So at some
-point, we'll probably need to pick elements $P(c_j)$. We're not done yet, this is what one part of 
-what it means to be a colimit; we also need all the diagrams to commute!  (1)
-the embedding natural transformations $Hom(c_j, -) \rightarrow P$ arrows
-commute with image of the arrows in $J$, of the form $Hom(c_j, -) \rightarrow Hom(c_{j'}, -)$.
-(2) that $P$ is the universal object in $[C, Set]$ such that
-this rats nest of hom-sets embeds perfectly into $P$. Now the problem boils
-down to designing a $dgrm: J \rightarrow [C, Set]$ which picks out enough
-hom-sets and relations between the hom-sets such that $P$ is the colimit of
-such a $dgrm$.
-
-
-The idea, once, again, goes back to (a) Yoneda, and (b) Grothendeick. It
-appears that to be able to pick out such embedding arrows for the co-cone
-$Hom(c_j, -) \rightarrow P$, we need elements $P(c_j)$. Soo let's build a
-category that does exactly that; This new category called as a _Grothendieck construction_. 
-Given a category $C$ and a presheaf $P: C \rightarrow Set$, this new category called $el(P)$ 
-has as objects pairs of the form $(c \in C, u \in P(c))$. So we have a pair of an abstract object $c \in C$,
-and an element of its set $u \in P(c)$, as $P(c) \in Set$, as $P$ is a presheaf, thus has the type $P: C \rightarrow Set$.
-The arrows in this category $el(P)$ are derived from arrows in the original category $c \xrightarrow{a} d$.
-Such an arrow lifts to a set-function thanks to the presheaf, $P(c) \xrightarrow{P(a)} P(d)$. If we now have
-$u \in P(c)$, we can then build an arrow in $el(C)$ which takes $(c \in C, u \in P(c)) \xrightarrow{el(P)(a)} (d \in C, P(a)(u) \in P(d))$.
+- Roughly, every presheaf $P: C \rightarrow Set$ can be written by "gluing" (union + equivalence relation/colimit)
+  functors of the form $Hom(a_i, -)$.
+- Let $P$ be the presheaf. To say that it
+  can be written as a colimit of Hom-sets, this means that we have some (yet unknown)
+  diagram $dgrm: J \rightarrow [C, Set]$ such that $P$ is the colimit of such a
+  set.
+- Unwrapping what this means, it means that we have a functor $dgrm: J \rightarrow [C, Set]$ such that
+  the image of $J$ is always a hom-set. That is, $dgrm(j \in J) = Hom(c_j, -) \in [C, Set]$.
+- Furthermore, since $P$ is a colimit, we have arrows of the form $dgrm(j) = Hom(c_j, -) \rightarrow P$.
+- Recall that such an arrow is a natural transformation between $Hom(c_j, -)$ and $P$.
+- Also recall that by the Yoneda lemma, such natural transformations $Hom(c_j, -) \rightarrow P$ are in natural bijection 
+  with elements in $P(c_j)$. So at some point, we'll probably need to pick elements $P(c_j)$. =
+- We're not done yet, this is what one part of  what it means to be a colimit; we also need all the diagrams to commute! 
+- (1) the embedding natural transformations $Hom(c_j, -) \rightarrow P$ arrows
+  commute with image of the arrows in $J$, of the form $Hom(c_j, -) \rightarrow Hom(c_{j'}, -)$.
+- (2) that $P$ is the universal object in $[C, Set]$ such that
+  this rats nest of hom-sets embeds perfectly into $P$.
+- Now the problem boils down to designing a $dgrm: J \rightarrow [C, Set]$ which picks out enough
+  hom-sets and relations between the hom-sets such that $P$ is the colimit of
+  such a $dgrm$.
+- The idea, once, again, goes back to (a) Yoneda, and (b) Grothendeick.
+- It appears that to be able to pick out such embedding arrows for the co-cone
+  $Hom(c_j, -) \rightarrow P$, we need elements $P(c_j)$.
+- Soo let's build a category that does exactly that; This new category called as a _Grothendieck construction_. 
+- Given a category $C$ and a presheaf $P: C \rightarrow Set$, this new category called $el(P)$ 
+  has as objects pairs of the form $(c \in C, u \in P(c))$.
+- So we have a pair of an abstract object $c \in C$, and an element of its set $u \in P(c)$, as $P(c) \in Set$, as $P$ is a presheaf, thus has the type
+  $P: C \rightarrow Set$.
+- The arrows in this category $el(P)$ are derived from arrows in the original category $c \xrightarrow{a} d$.
+  Such an arrow lifts to a set-function thanks to the presheaf, $P(c) \xrightarrow{P(a)} P(d)$.
+- If we now have $u \in P(c)$, we can then build an arrow in $el(C)$ which takes $(c \in C, u \in P(c)) \xrightarrow{el(P)(a)} (d \in C, P(a)(u) \in P(d))$.
 
 
 Picture speaks a thousand words:
@@ -3967,27 +4506,63 @@ el P | (c∈C, u∈P(c))
 el P | (c∈C, u∈P(c)) -el a→ (d∈C, P(a)(u)∈P(d))
 ```
 
-So, this category gives us a way to "locate ourselves" within the set $P(c)$, which will be instrumental
-in creating the arrows (natural transformations) of the form $Hom(c_j, -) \rightarrow P(c_j)$, as asked of us by the cocone.
-This also hints at why we use colimis and not limits: because the yoneda goes from the $Hom(c_j, -)$ to $P$, we can only conjure
-arrows into $P$ via Yoneda, thereby forcing us to use a colimit.
+- So, this category gives us a way to "locate ourselves" within the set $P(c)$, which will be instrumental
+  in creating the arrows (natural transformations) of the form $Hom(c_j, -) \rightarrow P(c_j)$, as asked of us by the cocone.
+- This also hints at why we use colimis and not limits: because the yoneda goes from the $Hom(c_j, -)$ to $P$,
+  we can only conjure arrows into $P$ via Yoneda, thereby forcing us to use a colimit.
 
-We claim that we should choose the diagram category as $J\equiv el(P)$, with the diagram functor $dgrm: el(P) \rightarrow [C, Set]$ given
-by $dgrm(c \in C, u \in P(c)) : el(P) \equiv Hom(c, -) : [C, Set]$. This embeds $(c, u \in P(C))$ where $u$ is a way to locate $P$'s
-view of $C$ as a Hom-set $Hom(c -)$. To give the natural transformation from the image of the diagram to the apex of the cocone $P$,
-we use Yoneda: We need an arrow $Hom(c, -) \rightarrow P$, which we know is in bijection with elements of $P(c)$ through yoneda.
-Luckily, we have $u \in P(c))$ to invoke yoneda, so we build the arrows from $dgrm(c, u) = Hom(c, -)$ to $P$,
-given by applying Yoneda to $u \in P(c)$. Thus, we can at least form a cocone. Whether the arrows of the base of
-the cocone commute with the apex-pointing arrows, and whether this is universal is to be checked next.
+- We claim that we should choose the diagram category as $J\equiv el(P)$, with the diagram functor $dgrm: el(P) \rightarrow [C, Set]$
+  given by $dgrm(c \in C, u \in P(c)) : el(P) \equiv Hom(c, -) : [C, Set]$.
+- This embeds $(c, u \in P(C))$ where $u$ is a way to locate $P$'s view of $C$ as a Hom-set $Hom(c -)$.
+- To give the natural transformation from the image of the diagram to the apex of the cocone $P$,
+  we use Yoneda: We need an arrow $Hom(c, -) \rightarrow P$, which we know is in bijection with elements of $P(c)$ through yoneda.
+- Luckily, we have $u \in P(c))$ to invoke yoneda, so we build the arrows from $dgrm(c, u) = Hom(c, -)$ to $P$,
+  given by applying Yoneda to $u \in P(c)$.
+- Thus, we can at least form a cocone. Whether the arrows of the "base" of
+  the cocone commute with the apex-pointing arrows, and whether this is universal is to be checked next.
+- Given some other cocone $Q \in [C, Set]$, with co-cone morphisms $\sigma_j: Hom(c_j, -) \rightarrow Q$, we need to 
+  create a natural transformation $\theta: P \rightarrow Q$. Let's do this pointwise.
+- For some $c \in C$, we need to build a map $\theta_c: P(c) \rightarrow Q(c)$. Since the domain and codomain are pointwise,
+  let's pick some element $x \in P(c)$.
+- See that this can be seen as an element $(c \in C, x \in P(c)$ which is an element of the category $el(P)$.
+- But, recall that this was our index category $el(P)$.
+  Thus, there is going to be an arrow $dgrm((c \in C, x \in P(c)) = Hom(c, -) \xrightarrow{q(c,x)} Q$ since $Q$ is a cocone. 
+- But since $q(c, x) \in [Hom(c, -), Q]$, it's an element of $Q(c)$. We have thus found a way to map $P(c)$ into $Q(c)$
+  by "pulling back" into the index category and then "pushing forward" via Yoneda. [What the fuck is actually happening here?]
 
-Given some other cocone $Q \in [C, Set]$, with co-cone morphisms $\sigma_j: Hom(c_j, -) \rightarrow Q$, we need to 
-create a natural transformation $\theta: P \rightarrow Q$. Let's do this pointwise. for some $c \in C$, 
-we need to build a map $\theta_c: P(c) \rightarrow Q(c)$. Since the domain and codomain are pointwise,
-let's pick some element $x \in P(c)$. See that this can be seen as an element $(c \in C, x \in P(c)$ which is
-an element of the category $el(P)$. But, recall that this was our index category $el(P)$. Thus, there is going
-to be an arrow $dgrm((c \in C, x \in P(c)) = Hom(c, -) \xrightarrow{q(c,x)} Q$ since $Q$ is a cocone. 
-But since $q(c, x) \in [Hom(c, -), Q]$, it's an element of $Q(c)$. We have thus found a way to map $P(c)$ into $Q(c)$
-by "pulling back" into the index category and then "pushing forward" via Yoneda. [What the fuck is actually happening here?]
+#### Simplified construction of $el(P)$
+
+- Recall that $el(P)$ consisted of a pair $(c \in C, u \in P(c))$. We know from Yoneda that set elements of $P(c)$ are in bijection with natural
+  transformations $eta_c: Hom(-, c) \to P$.
+- Thus $el(P)$ consists of _all_ natural transformations $\eta_c: Hom(-, c) \Rightarrow P$ [for all objects $c$].
+- The arrows in $el(P)$ between $\eta: Hom(-, x) \Rightarrow P$ and $\mu: Hom(-, y) \Rightarrow P$ are pushforwards of arrow
+  $x \xrightarrow{f} y$ (given by $\lambda h. f \circ h$) which make the diagram commute:
+
+```text
+              η
+Hom(-, x) >------->P
+   v               ^
+   |arrow:        /
+   | \h -> f.h   / μ
+   v            /        
+Hom(-, y)>-----* 
+```
+
+- Consider the functor $J: el(P) \to [C^{op}, Set]$ which sends each natural transformation $\eta:Hom(-, x) \Rightarrow P$ to 
+  just $J(\eta: Hom(-, x) \Rightarrow P) \equiv Hom(-, x)$ (ie, forget the mapping, just keep the domain of the natural transformation.
+- We claim that $P$ is the cocone of the functor $J$. So we must have mappings from each $Hom(c, -)$ into $P$.
+- These mappings from $Hom(c, -)$ into $P$ are given by "un-forgetting" the data we forgot when mapping $\eta:Hom(-, c) \Rightarrow P \mapsto Hom(-, c)$.
+  These commute by the construction of $el(P)$.
+- (Are these the only choices of maps? Maybe there are others, not just the ones we "un-forgot"!) 
+- Next we need to check that $P$ is universal. Consider some other $Q: C^{op} \Rightarrow Set$. We must show a map $\alpha: P \Rightarrow Q$
+  (ie, the cocone $Q$ factorizes through $P$, or $P$ is initial cocone.).
+- Let's do this pointwise. So we want to define a family $\alpha_k: P(k) \Rightarrow Q(k)$.
+- Pick some element $e \in P(k)$.
+  This corresponds to some natural transformation $\eta_e: Hom(-, k) \rightarrow P$.
+  We know that we have a corresponding
+  $\eta_e': Hom(-, k) \rightarrow Q$. this is some element $e' \in Q(k)$. So we are forced to set $e \mapsto e'$ when we try to map $P(k)$ to $Q(k)$.
+-  This works for arbitrary $k, e$, so the entire map is determined. This proves that $P$ is terminal cocone.
+
 
 - [Reference](https://mysite.science.uottawa.ca/phofstra/MAT5147/presheaves.pdf)
 - [Density theorem proof](https://en.wikipedia.org/wiki/Density_theorem_(category_theory)#Proof)
@@ -7703,7 +8278,6 @@ The sphere gives us a module that is not free. I'm not sure how to show that it'
 - So, a projective module corresponds to a vector bundle because it locally is like a vector space,
   but may not be trivialisable due to a difference in dimension, or compatibility, or some such.
 
-- [Sperner's lemma, Brower's fixed point theorem, and cohomology](https://arxiv.org/pdf/0906.5193.pdf)
 
 # CS and type theory: Talks by vovodesky
 
@@ -33379,6 +33953,10 @@ Named after the spartans.
 
 Contains words that I write, and ones that I enjoy.
 
+##### Recondite
+
+little known; abstruse
+
 ##### Mendicant
 
 Given to begging
@@ -33528,6 +34106,8 @@ let g:conjure#mapping#eval_motion = "E"
 - eval last definition: `C-c C-c`
 
 # Big list of quotes
+
+> Not knowing things isn't dumb; pretending to know is.
 
 > magic is when you have expended more effort to achieve a trick than
 > observers think is reasonable. That you've spent hundreds of hours practising
@@ -34052,40 +34632,47 @@ speak slower than you want to.
 
 
 > Some kids grow up on football. I grew up on public speaking (as behavioral
-therapy for a speech impediment, actually). If you want to get radically better
-in a hurry: 1) If you ever find yourself buffering on output, rather than
-making hesitation noises, just pause. People will read that as considered
-deliberation and intelligence. It's outrageously more effective than the
-equivalent amount of emm, aww, like, etc. Practice saying nothing.  Nothing is
-often the best possible thing to say. (A great time to say nothing: during
-applause or laughter.) 2) People remember voice a heck of a lot more than they
-remember content. Not vocal voice, but your authorial voice, the sort of thing
-English teachers teach you to detect in written documents. After you have found
-a voice which works for you and your typical audiences, you can exploit it to
-the hilt.  I have basically one way to start speeches: with a self-deprecating
-joke. It almost always gets a laugh out of the crowd, and I can't be nervous
-when people are laughing with me, so that helps break the ice and warm us into
-the main topic.  3) Posture hacks: if you're addressing any group of people
-larger than a dinner table, pick three people in the left, middle, and right of
-the crowd. Those three people are your new best friends, who have come to hear
-you talk but for some strange reason are surrounded by great masses of mammals
-who are uninvolved in the speech. Funny that. Rotate eye contact over your
-three best friends as you talk, at whatever a natural pace would be for you.
-(If you don't know what a natural pace is, two sentences or so works for me to
-a first approximation.) Everyone in the audience -- both your friends and the
-uninvolved mammals -- will perceive that you are looking directly at them for
-enough of the speech to feel flattered but not quite enough to feel creepy.  4)
-Podiums were invented by some sadist who hates introverts. Don't give him the
-satisfaction. Speak from a vantage point where the crowd can see your entire
-body.  5) Hands: pockets, no, pens, no, fidgeting, no. Gestures, yes. If you
-don't have enough gross motor control to talk and gesture at the same time (no
-joke, this was once a problem for me) then having them in a neutral position in
-front of your body works well.  6) Many people have different thoughts on the
-level of preparation or memorization which is required. In general, having
-strong control of the narrative structure of your speech without being wedded
-to the exact ordering of sentences is a good balance for most people. (The fact
-that you're coming to the conclusion shouldn't surprise you.) 7) If you
-remember nothing else on microtactical phrasing when you're up there, remember
-that most people do not naturally include enough transition words when speaking
-informally, which tends to make speeches loose narrative cohesion. Throw in a
-few more than you would ordinarily think to do. 
+> therapy for a speech impediment, actually). If you want to get radically better
+> in a hurry: 1) If you ever find yourself buffering on output, rather than
+> making hesitation noises, just pause. People will read that as considered
+> deliberation and intelligence. It's outrageously more effective than the
+> equivalent amount of emm, aww, like, etc. Practice saying nothing.  Nothing is
+> often the best possible thing to say. (A great time to say nothing: during
+> applause or laughter.) 2) People remember voice a heck of a lot more than they
+> remember content. Not vocal voice, but your authorial voice, the sort of thing
+> English teachers teach you to detect in written documents. After you have found
+> a voice which works for you and your typical audiences, you can exploit it to
+> the hilt.  I have basically one way to start speeches: with a self-deprecating
+> joke. It almost always gets a laugh out of the crowd, and I can't be nervous
+> when people are laughing with me, so that helps break the ice and warm us into
+> the main topic.  3) Posture hacks: if you're addressing any group of people
+> larger than a dinner table, pick three people in the left, middle, and right of
+> the crowd. Those three people are your new best friends, who have come to hear
+> you talk but for some strange reason are surrounded by great masses of mammals
+> who are uninvolved in the speech. Funny that. Rotate eye contact over your
+> three best friends as you talk, at whatever a natural pace would be for you.
+> (If you don't know what a natural pace is, two sentences or so works for me to
+> a first approximation.) Everyone in the audience -- both your friends and the
+> uninvolved mammals -- will perceive that you are looking directly at them for
+> enough of the speech to feel flattered but not quite enough to feel creepy.  4)
+> Podiums were invented by some sadist who hates introverts. Don't give him the
+> satisfaction. Speak from a vantage point where the crowd can see your entire
+> body.  5) Hands: pockets, no, pens, no, fidgeting, no. Gestures, yes. If you
+> don't have enough gross motor control to talk and gesture at the same time (no
+> joke, this was once a problem for me) then having them in a neutral position in
+> front of your body works well.  6) Many people have different thoughts on the
+> level of preparation or memorization which is required. In general, having
+> strong control of the narrative structure of your speech without being wedded
+> to the exact ordering of sentences is a good balance for most people. (The fact
+> that you're coming to the conclusion shouldn't surprise you.) 7) If you
+> remember nothing else on microtactical phrasing when you're up there, remember
+> that most people do not naturally include enough transition words when speaking
+> informally, which tends to make speeches loose narrative cohesion. Throw in a
+> few more than you would ordinarily think to do. 
+
+
+# Favourite Demoscenes
+
+- [Number One / Another one by fairlight](https://www.youtube.com/watch?v=TaEoAJw_0Zc)
+- [Clean Slate](https://www.youtube.com/watch?v=O3T1-nadehU)
+

@@ -1,3 +1,18 @@
+- [Inkscape Cheat sheet](https://inkscape.org/doc/keys046.html)
+- [Jump Flooding algorithm](https://blog.demofox.org/2016/02/29/fast-voronoi-diagrams-and-distance-dield-textures-on-the-gpu-with-the-jump-flooding-algorithm/)
+- [Python Plumbum librar for writing shell scripts](https://plumbum.readthedocs.io/en/latest/#user-guide)
+- [Dedekind MacNiellie](https://en.wikipedia.org/wiki/Dedekind%E2%80%93MacNeille_completion)
+- [Fuzzing Book](https://www.fuzzingbook.org/html/00_Table_of_Contents.html)
+- [IMO Olympiad training material](https://www.imomath.com/index.php?options=257&lmm=1)
+- An introduction to symbolic dynamics and coding: Book about combinatorics of infinite words and the study of periodicity.
+- [Substitution is pullback](http://math.andrej.com/2012/09/28/substitution-is-pullback)
+- passwords: philology, security, authentication
+- Probability via expectation
+- Find a textbook of graph minors.
+- [A theory of changes for higher order languages](https://arxiv.org/abs/1312.0658)
+- [Advanced algoriths: string algorithms, duelling, BWT, suffix things, 4 russians](https://www.youtube.com/c/SebastianWildLectures/videos)
+- Find encoding of tree that makes the "set tree" (interpreting sets as trees) be itself.
+- [Pattern matching: course on advanced / obscure algorithms for pattern matching](https://u.cs.biu.ac.il/~amir/patmat.html)
 - [Amortized analysis explained](http://cslabcms.nju.edu.cn/problem_solving/images/3/31/Amortized_Analysis_Explained_%28Fiebrink%29.pdf)
 - [Generative art blog](https://inconvergent.net/generative/differential-lattice/)
 - [List of all string matching algorithms](https://www-igm.univ-mlv.fr/~lecroq/string/)

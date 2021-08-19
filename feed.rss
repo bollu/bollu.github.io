@@ -5,14 +5,109 @@
 <link>https://bollu.github.io/</link>
 <description>A universe of Sorts</description>
   <item>
+    <title> Simpson &apos; s Paradox </title>
+    <guid>https://bollu.github.io/simpsons-paradox.html</guid>
+    <link>https://bollu.github.io/simpsons-paradox.html</link>
+  </item>
+  <item>
+    <title> Myhill Nerode Theorem </title>
+    <guid>https://bollu.github.io/myhill-nerode-theorem.html</guid>
+    <link>https://bollu.github.io/myhill-nerode-theorem.html</link>
+  </item>
+  <item>
+    <title> Linearity of expectation for sampling </title>
+    <guid>https://bollu.github.io/linearity-of-expectation-for-sampling.html</guid>
+    <link>https://bollu.github.io/linearity-of-expectation-for-sampling.html</link>
+  </item>
+  <item>
+    <title> Dedekind MacNiellie </title>
+    <guid>https://bollu.github.io/dedekind-macniellie.html</guid>
+    <link>https://bollu.github.io/dedekind-macniellie.html</link>
+  </item>
+  <item>
+    <title> DP on monotone matrix (SMAWK) (WIP) </title>
+    <guid>https://bollu.github.io/dp-on-monotone-matrix-smawk-wip.html</guid>
+    <link>https://bollu.github.io/dp-on-monotone-matrix-smawk-wip.html</link>
+  </item>
+  <item>
+    <title> Good and bad combinatorics: intro to counting  </title>
+    <guid>https://bollu.github.io/good-and-bad-combinatorics-intro-to-counting.html</guid>
+    <link>https://bollu.github.io/good-and-bad-combinatorics-intro-to-counting.html</link>
+  </item>
+  <item>
+    <title> Expected number of turns to generate all numbers  1..N (WIP) </title>
+    <guid>https://bollu.github.io/expected-number-of-turns-to-generate-all-numbers-1n-wip.html</guid>
+    <link>https://bollu.github.io/expected-number-of-turns-to-generate-all-numbers-1n-wip.html</link>
+  </item>
+  <item>
+    <title> Diameter in single DFS (WIP) </title>
+    <guid>https://bollu.github.io/diameter-in-single-dfs-wip.html</guid>
+    <link>https://bollu.github.io/diameter-in-single-dfs-wip.html</link>
+  </item>
+  <item>
+    <title> Min cost flow (WIP) </title>
+    <guid>https://bollu.github.io/min-cost-flow-wip.html</guid>
+    <link>https://bollu.github.io/min-cost-flow-wip.html</link>
+  </item>
+  <item>
+    <title> Clojure: minimal makefile for REPL driven dev with Neovim </title>
+    <guid>https://bollu.github.io/clojure-minimal-makefile-for-repl-driven-dev-with-neovim.html</guid>
+    <link>https://bollu.github.io/clojure-minimal-makefile-for-repl-driven-dev-with-neovim.html</link>
+  </item>
+  <item>
+    <title> Delimited continuations </title>
+    <guid>https://bollu.github.io/delimited-continuations.html</guid>
+    <link>https://bollu.github.io/delimited-continuations.html</link>
+  </item>
+  <item>
+    <title> Never forget monic again </title>
+    <guid>https://bollu.github.io/never-forget-monic-again.html</guid>
+    <link>https://bollu.github.io/never-forget-monic-again.html</link>
+  </item>
+  <item>
+    <title> Weird canonical example of monic and epic: left/right shift </title>
+    <guid>https://bollu.github.io/weird-canonical-example-of-monic-and-epic-leftright-shift.html</guid>
+    <link>https://bollu.github.io/weird-canonical-example-of-monic-and-epic-leftright-shift.html</link>
+  </item>
+  <item>
+    <title> Playing guitar: being okay with incorrect chords </title>
+    <guid>https://bollu.github.io/playing-guitar-being-okay-with-incorrect-chords.html</guid>
+    <link>https://bollu.github.io/playing-guitar-being-okay-with-incorrect-chords.html</link>
+  </item>
+  <item>
+    <title> Sparse table </title>
+    <guid>https://bollu.github.io/sparse-table.html</guid>
+    <link>https://bollu.github.io/sparse-table.html</link>
+  </item>
+  <item>
+    <title> Duval &apos; s algorithm </title>
+    <guid>https://bollu.github.io/duvals-algorithm.html</guid>
+    <link>https://bollu.github.io/duvals-algorithm.html</link>
+  </item>
+  <item>
+    <title> Amortized complexity from the verifier perspective </title>
+    <guid>https://bollu.github.io/amortized-complexity-from-the-verifier-perspective.html</guid>
+    <link>https://bollu.github.io/amortized-complexity-from-the-verifier-perspective.html</link>
+  </item>
+  <item>
+    <title> Relationship betwee permutations and runs </title>
+    <guid>https://bollu.github.io/relationship-betwee-permutations-and-runs.html</guid>
+    <link>https://bollu.github.io/relationship-betwee-permutations-and-runs.html</link>
+  </item>
+  <item>
+    <title> Brouwer &apos; s fixed point theorem </title>
+    <guid>https://bollu.github.io/brouwers-fixed-point-theorem.html</guid>
+    <link>https://bollu.github.io/brouwers-fixed-point-theorem.html</link>
+  </item>
+  <item>
+    <title> XOR on binary trie </title>
+    <guid>https://bollu.github.io/xor-on-binary-trie.html</guid>
+    <link>https://bollu.github.io/xor-on-binary-trie.html</link>
+  </item>
+  <item>
     <title> Inconvergent: beautiful generative art </title>
     <guid>https://bollu.github.io/inconvergent-beautiful-generative-art.html</guid>
     <link>https://bollu.github.io/inconvergent-beautiful-generative-art.html</link>
-  </item>
-  <item>
-    <title> DP on monotone matrix (SMAWK) </title>
-    <guid>https://bollu.github.io/dp-on-monotone-matrix-smawk.html</guid>
-    <link>https://bollu.github.io/dp-on-monotone-matrix-smawk.html</link>
   </item>
   <item>
     <title> Prefix/Border function </title>
@@ -23,16 +118,6 @@
     <title> Shortest walk versus shortest path </title>
     <guid>https://bollu.github.io/shortest-walk-versus-shortest-path.html</guid>
     <link>https://bollu.github.io/shortest-walk-versus-shortest-path.html</link>
-  </item>
-  <item>
-    <title> Diameter in single DFS </title>
-    <guid>https://bollu.github.io/diameter-in-single-dfs.html</guid>
-    <link>https://bollu.github.io/diameter-in-single-dfs.html</link>
-  </item>
-  <item>
-    <title> Min cost flow </title>
-    <guid>https://bollu.github.io/min-cost-flow.html</guid>
-    <link>https://bollu.github.io/min-cost-flow.html</link>
   </item>
   <item>
     <title> Minimal tech stack </title>
@@ -2758,6 +2843,11 @@
     <title> Big list of Hacker news  </title>
     <guid>https://bollu.github.io/big-list-of-hacker-news.html</guid>
     <link>https://bollu.github.io/big-list-of-hacker-news.html</link>
+  </item>
+  <item>
+    <title> Favourite Demoscenes </title>
+    <guid>https://bollu.github.io/favourite-demoscenes.html</guid>
+    <link>https://bollu.github.io/favourite-demoscenes.html</link>
   </item>
 </channel>
 </rss>
