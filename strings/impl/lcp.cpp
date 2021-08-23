@@ -117,7 +117,9 @@ int main() {
       lcps[compress[i]] = -1; continue;
     }
 
-    assert(compress[i] > 0 && "string is somehow smallest in lex order while not being $");
+    assert(compress[i] > 0 && 
+            "string is somehow smallest in lex order "
+            "while not being $");
     //  string prior to this one in suffix order.
     const int j = decompress[compress[i]-1].second;
     while(i + lcp < s.size() &&
@@ -127,7 +129,6 @@ int main() {
       ticks++;
     }
     lcps[compress[i]] = lcp;
-
   }
 
   // linear time complexity.
