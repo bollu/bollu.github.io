@@ -1,0 +1,155 @@
+% https://github.com/cohomolo-gy/cats-in-context/blob/master/chapter-2/Chapter%202%20Solutions.tex
+
+\documentclass[14pt]{report}
+\usepackage{bbm}
+\usepackage{bbding} % for flower.
+\usepackage{physics}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{listing}
+\usepackage{minted}
+\usemintedstyle{lovelace}
+\usepackage{quiver}
+\usepackage{enumitem}
+\usepackage{mathtools}
+
+\usepackage{xargs}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\R}{\ensuremath{\mathbb R}}
+
+\def\qed{\ensuremath{\Box}}
+
+\newcommand*{\start}[1]{\leavevmode\newline \textbf{#1} }
+\newcommand*{\question}[1]{\leavevmode\newline \par\noindent\rule{\textwidth}{0.4pt} \textbf{Question: #1.}}
+\newcommand*{\proof}[1]{\leavevmode\newline \textbf{Proof #1}}
+\newcommand*{\answer}{\leavevmode\newline \textbf{Answer} }
+\DeclareMathOperator{\lcm}{lcm}
+
+\usepackage[adobe-utopia]{mathdesign}
+\usepackage[T1]{fontenc}
+
+\title{Algorithms by Jeff E: Dynamic Programming}
+\author{Siddharth Bhat}
+\date{Monsoon, second year of the plague}
+
+
+\begin{document}
+\maketitle
+\question{2a}
+
+\begin{minted}{cpp}
+// cc = closed-closed interval.
+int q2a(string s) {
+  const int n = s.size();
+  vector<int> dp(n+1, 0);
+  // dp[i] = number of words in s[0:i)
+  for(int i = 1; i <= n+1 ++i) {
+      for(int j = 1; j <= i - 1; ++j) {
+          if (!isword(s[cc(j, i-1)]) { continue; }
+          nwords[i] = max(nwords[i], 1 + nwords[j-1]);
+      }
+  }
+  return nwords[n];
+}
+\end{minted}
+
+\question{2b}
+
+\begin{minted}{cpp}
+// cc = closed-closed interval.
+int q2b(string s, string t) {
+  const int n = s.size();
+  vector<int> dp(n+1, 0);
+  // dp[i] = number of words in s[0:i)
+  for(int i = 1; i <= n+1 ++i) {
+      for(int j = 1; j <= i - 1; ++j) {
+          if (!isword(s[cc(j, i-1)])  || !isword(t[cc(j, i-1)])) { continue; }
+          nwords[i] = max(nwords[i], 1 + nwords[j-1]);
+      }
+  }
+  return nwords[n] > 0;
+}
+\end{minted}
+
+
+\question{2c}
+
+\begin{minted}{cpp}
+// cc = closed-closed interval.
+int q2c(string s, string t) {
+  const int n = s.size();
+  vector<int> dp(n+1, 0);
+  // dp[i] = number of words in s[0:i)
+  for(int i = 1; i <= n+1 ++i) {
+      for(int j = 1; j <= i - 1; ++j) {
+          if (!isword(s[cc(j, i-1)])  || !isword(t[cc(j, i-1)])) { continue; }
+          nwords[i] = max(nwords[i], 1 + nwords[j-1]);
+      }
+  }
+  return nwords[n];
+}
+\end{minted}
+
+\question{3a: largest sum subarray}
+
+Standard solution: kendane's algorithm
+
+\begin{minted}{cpp}
+int q3a(const vector<int> &xs) {
+    const int n = xs.size();
+    int best = 0;
+    int cur = 0;
+    for(int i = 0; i < n; ++i) {
+        if (cur + xs[i] < 0) { continue; }
+        cur += xs[i];
+        best = max<int>(best, cur);
+    }
+    return best;
+}
+\end{minted}
+
+$\Theta(n^2)$ solution using
+
+\question{3b: largest product subarray}
+
+
+\begin{minted}{cpp}
+int best = 1, pos = 1, neg = 1;
+int q3b(const vector<int> &xs) {
+    const int n = xs.size();
+    for(int i = 0; i < xs.size(); ++i) {
+      if (xs[i] == 0) { pos = neg = 1; }
+      if (xs[i] < 0) {
+           const int prevpos = pos;
+           pos = neg  * xs[i];
+           neg = prevpos * xs[i];
+       }
+      if (xs[i] > 0) {
+        pos *= xs[i];
+        neg *= xs[i];
+      }
+      best = max<int>(best, pos);
+    }
+    return best;
+}
+\end{minted}
+\end{document}
+
