@@ -5,6 +5,81 @@
 <link>https://bollu.github.io/</link>
 <description>A universe of Sorts</description>
   <item>
+    <title> Why quaternions work better </title>
+    <guid>https://bollu.github.io/why-quaternions-work-better.html</guid>
+    <link>https://bollu.github.io/why-quaternions-work-better.html</link>
+  </item>
+  <item>
+    <title> DFA to CFG via colimits? </title>
+    <guid>https://bollu.github.io/dfa-to-cfg-via-colimits.html</guid>
+    <link>https://bollu.github.io/dfa-to-cfg-via-colimits.html</link>
+  </item>
+  <item>
+    <title> Why pointless topology is powerful </title>
+    <guid>https://bollu.github.io/why-pointless-topology-is-powerful.html</guid>
+    <link>https://bollu.github.io/why-pointless-topology-is-powerful.html</link>
+  </item>
+  <item>
+    <title> Denotational semantics in a few sentences </title>
+    <guid>https://bollu.github.io/denotational-semantics-in-a-few-sentences.html</guid>
+    <link>https://bollu.github.io/denotational-semantics-in-a-few-sentences.html</link>
+  </item>
+  <item>
+    <title> Monge Matrix </title>
+    <guid>https://bollu.github.io/monge-matrix.html</guid>
+    <link>https://bollu.github.io/monge-matrix.html</link>
+  </item>
+  <item>
+    <title> Fixpoint as decorator </title>
+    <guid>https://bollu.github.io/fixpoint-as-decorator.html</guid>
+    <link>https://bollu.github.io/fixpoint-as-decorator.html</link>
+  </item>
+  <item>
+    <title> Combinatorial generation algorithms </title>
+    <guid>https://bollu.github.io/combinatorial-generation-algorithms.html</guid>
+    <link>https://bollu.github.io/combinatorial-generation-algorithms.html</link>
+  </item>
+  <item>
+    <title> Perform DP on measures, not indexes. </title>
+    <guid>https://bollu.github.io/perform-dp-on-measures-not-indexes.html</guid>
+    <link>https://bollu.github.io/perform-dp-on-measures-not-indexes.html</link>
+  </item>
+  <item>
+    <title> Alternative version of Myhill-Nerode </title>
+    <guid>https://bollu.github.io/alternative-version-of-myhill-nerode.html</guid>
+    <link>https://bollu.github.io/alternative-version-of-myhill-nerode.html</link>
+  </item>
+  <item>
+    <title> Polya Enumeration </title>
+    <guid>https://bollu.github.io/polya-enumeration.html</guid>
+    <link>https://bollu.github.io/polya-enumeration.html</link>
+  </item>
+  <item>
+    <title> Weighted Burnside Lemma </title>
+    <guid>https://bollu.github.io/weighted-burnside-lemma.html</guid>
+    <link>https://bollu.github.io/weighted-burnside-lemma.html</link>
+  </item>
+  <item>
+    <title> Cycle index polynomial </title>
+    <guid>https://bollu.github.io/cycle-index-polynomial.html</guid>
+    <link>https://bollu.github.io/cycle-index-polynomial.html</link>
+  </item>
+  <item>
+    <title> Mnemonics For Symmetric Polynomials </title>
+    <guid>https://bollu.github.io/mnemonics-for-symmetric-polynomials.html</guid>
+    <link>https://bollu.github.io/mnemonics-for-symmetric-polynomials.html</link>
+  </item>
+  <item>
+    <title> Uses of minimal string rotation </title>
+    <guid>https://bollu.github.io/uses-of-minimal-string-rotation.html</guid>
+    <link>https://bollu.github.io/uses-of-minimal-string-rotation.html</link>
+  </item>
+  <item>
+    <title> Suffix Automata </title>
+    <guid>https://bollu.github.io/suffix-automata.html</guid>
+    <link>https://bollu.github.io/suffix-automata.html</link>
+  </item>
+  <item>
     <title> Simpson &apos; s Paradox </title>
     <guid>https://bollu.github.io/simpsons-paradox.html</guid>
     <link>https://bollu.github.io/simpsons-paradox.html</link>
@@ -23,11 +98,6 @@
     <title> Dedekind MacNiellie </title>
     <guid>https://bollu.github.io/dedekind-macniellie.html</guid>
     <link>https://bollu.github.io/dedekind-macniellie.html</link>
-  </item>
-  <item>
-    <title> DP on monotone matrix (SMAWK) (WIP) </title>
-    <guid>https://bollu.github.io/dp-on-monotone-matrix-smawk-wip.html</guid>
-    <link>https://bollu.github.io/dp-on-monotone-matrix-smawk-wip.html</link>
   </item>
   <item>
     <title> Good and bad combinatorics: intro to counting  </title>

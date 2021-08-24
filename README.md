@@ -15,6 +15,495 @@ A Universe of Sorts
 - [reading list and link dump](todo.html)
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
+
+# Why quaternions work better
+
+- We want to manipuate $SO(3)$. Imagine it like $SO(1)$.
+- Unfortunately, $\pi_1(SO(3)) = \mathbb Z/2\mathbb Z$. This is a pain, much like rotations of a circle need to be
+  concatenated with modulo, which is a pain.
+- idea for why $\pi_1(SO(3))$ is $\mathbb Z/2\mathbb Z$: $SO(3)$ is sphere with antipodal
+  points identified. So a path from the north pole to the south pole on the sphere is a "loop" in $SO(3)$.
+  Concatenate this loop with itself (make another trip from the south pole to the north pole) to get a full loop around
+  the sphere, which can be shrunk into nothing as $\pi_1(S^2)$ is trivial. So $ns^2 = e$, where $ns$ is the north-south path in $S^2$
+  which is a loop in $SO(3)$).
+- Key idea: deloop the space! How? find univesal cover. Lucikly, universal cover of $SO(3)$ is $SU(2)$ / quaternions, just as 
+  universal cover of $SO(1)$ is $\mathbb R$.
+- Universal cover also explains why $SU(2)$ is a _double_ cover. Since $\pi_1(SO(3))$ is $\mathbb Z/2Z$, we need to deloop "once"
+  to get the delooped space. 
+- No more redundancy now! Just store a bloch sphere representation, or a quaternion (store $SU(2)$).
+  Just like we can just store a real number for angle
+  and add it.
+- How to go back to $SO(3)$ or $SO(1)$? Move down the universal cover map $SU(2) \to SO(3)$ or $\mathbb R \to \mathbb SO(1)$.
+- This is strange though. Why is $\mathbb R$ both the _lie algebra_ and the _covering space_ of $SO(1)$ ? What about in general?
+- In general, the original lie group $SO(3)$ and the universal cover $SU(2)$ both have the same _lie algebra_. It is only
+  that the lie group has less or more fundamental group.
+
+
+# DFA to CFG via colimits?
+
+- Can convert a CFG to DFA by keeping an arbitrary limit on the depth of the stack, counting
+  how many elements are in the stack, and going to a failure state when we exceed the depth.
+- If we do so, can get a DFA for each natural number --- this is the max stack depth we keep track of.
+- Can we now define a _colimit_ of these DFAs? does this recover the CFG?
+- If so, what is the correct category? And is the colimit completion of DFA correspond to DPDA/CFG?
+
+# Why pointless topology is powerful
+
+- Key idea of pointless topology: topology manipulates open sets and their lattice. Forget the set, simply manipulate lattices!
+- When can a lattice be written in terms of sets?
+- Birkhoff representation theorem: Lattice is distributive iff isomorphic to a lattice of subsets of join-irreducible elements.
+- Hence, if we take _non distributive lattices_, we have geometry (locale) which _has no incarnation_ as subsets!
+- Yay, extra power.
+
+# Denotational semantics in a few sentences
+
+- We want to find a math object that reflects lambda calculus
+- Such an object must contain its own space of functions; $L \simeq [L \to L]$.
+- This is impossible for cardinality constraints.
+- Key idea: restrict to _continuous_ functions! $L \simeq [L \xrightarrow{\texttt{cont}} L]$.
+- Solutions exist! Eg. space of continuous $[\mathbb Q \to \mathbb Q]$ is equinumerous to $\mathbb Q$.
+- For continuity, we need a _topology_.
+- What's the right one? That's worth a turing award! The Scott topology.
+
+
+
+
+
+# Monge Matrix
+
+- Suppose we two line segments`AB`, `CD`:
+
+```
+A   C
+@   @
+@   @
+@   @
+B   D
+```
+
+- What is the relationship between the lengths `|AC| + |BD|` (straight lines) versus `|AC| + |BD|` (diagonals)?
+- Draw the diagonal, label the point of intersection of diagonals as `I`.
+
+```
+A---C
+@\ /@
+@ I @
+@/ \@
+B---D
+```
+
+- By triangle inequality, we have that `AI + IC > AC` and `BI + ID > BD`. Adding these up, we get
+  `(AI + IC) + (BI + ID) > AC + BD`.
+- Rearranging we get `(AI + ID) + (BI + IC) > AC + BD`, which is equal to `AD + BC > AC + BD`.
+- So, the _sum of  lengths between opposite points is greater than sum of lengths between non-opposite points_.
+- If we think of this as a matrix `dist[A/B][C/D]`, we have that `dist[a][d] + dist[b][c] > dist[a][c] + dist[b][d]`.
+- If we replace `A=0`, `B=1`, `C=0`, `D=1` (since those are the indexes of the points on the two line segments),
+  we get `dist[0][1] + dist[1][0] > dist[0][0] + dist[1][1]`
+- If we generalize to _sets_ of points on a line, let's have the indexes `i, j`.
+  Then the condition would read `dist[i][j] + dist[j][i] > dist[i][i] + dist[j][j]`.
+- A matrix `dist[.][.]` which obeys this condition is said to be a _Monge Matrix_.
+
+
+#### Theorem: Monge matrices are totally monotone
+
+WIP
+
+# Fixpoint as decorator
+
+```py
+#!/usr/bin/env python3
+class Thunk:
+    def __init__(self, func, *args):
+        self.func = func
+        self.args = args
+    def force(self):
+        return self.func(*self.args)
+
+def fix(f):
+    return f(Thunk(fix, f))
+
+@fix
+def fact(f):
+    def fact_n(n):
+        if n == 0: return 1
+        else: return n * (f.force())(n-1)
+    return fact_n
+
+print(fact(5))
+```
+
+# Combinatorial generation algorithms
+
+- [Visual Guide to Combinatorial Search](https://computationalcombinatorics.wordpress.com/2012/11/28/a-visual-guide-to-combinatorial-search/)
+- [Slides](https://faculty.coe.drexel.edu/jwalsh/Jayant_Mckay.pdf)
+- [Method of homomorphisms](https://www.molgen.de/download/pubs/AlgGroupActDIMACS.pdf)
+- [Canonical Construction Path/Canonical Deletion](https://computationalcombinatorics.wordpress.com/2012/08/13/canonical-deletion/)-
+- [Orbital Branching](https://computationalcombinatorics.wordpress.com/2012/10/21/introduction-to-orbital-branching/)
+- [Ranking/Unraking permutations](https://computationalcombinatorics.wordpress.com/2012/09/10/ranking-and-unranking-of-combinations-and-permutations/)
+
+# Perform DP on measures, not indexes.
+
+- In the problem of longest common subsequence (or any string problem in general), we should
+  conceptually think of the DP state as the _length_. This gives us a natural base case (`length = 0`),
+  as well as makes it much clearer to implement. Compare (1) LCS using indexes as DP state:
+
+```cpp
+int lcs_len(const vector<int> &xs, const vector<int> &ys) {
+    // dp[i][j]: LCS between xs[0:i] and ys[0:j] [closed-closed].
+    vector<vector<int>> dp(xs.size(), vector<int>(ys.size(), 0));
+    int best = 0;
+    for(int i = 0; i < xs.size(); ++i) {
+        for(int j = 0; j < ys.size(); ++j) {
+            if (i > 0 && j > 0) { dp[i][j] = max(dp[i][j], dp[i-1][j-1]); }
+            if (i > 0) { dp[i][j] = max(dp[i][j], dp[i-1][j]); }
+            if (j > 0) { dp[i][j] = max(dp[i][j], dp[i][j-1]); }
+            if (xs[i] == ys[j]) {
+                const int prev = i > 0 && j > 0 ? dp[i-1][j-1] : 0;
+                dp[i][j] = max(dp[i][j], 1 + prev);
+            }
+        }
+    }
+    return dp[xs.size()-1][ys.size()-1];
+}
+```
+
+- Versus using length as DP state:
+
+```cpp
+int lcs_len(const vector<int> &xs, const vector<int> &ys) {
+    // dp[lx][ly]: LCS between xs[0:lx) and ys[0:ly) [closed-open].
+    // lx, ly for ``length of xs, length of ys''
+    vector<vector<int>> dp(1+xs.size(), vector<int>(1+ys.size(), 0));
+    int best = 0;
+    for(int lx = 1; lx <= xs.size(); ++lx) {
+        for(int ly = 1; ly <= ys.size(); ++ly) {
+            dp[lx][ly] = max(dp[lx-1][ly-1], dp[lx][ly-1], dp[lx-1][ly]);
+            if (xs[lx-1] == ys[ly-1]) {
+                dp[lx][ly] = max(dp[lx][ly], 1 + dp[lx-1][ly-1]);
+            }
+        }
+    }
+    return dp[xs.size()][ys.size()];
+}
+```
+
+- Length is more natural, because `length=0` actually corresponds to a degenerate case.
+- In general, whenever performing DP, you will likely always need _extra states_ for the degenerate case. It's a good thing
+  to have this, since it simplifies a TON of the implementation work!
+
+
+# Alternative version of Myhill-Nerode
+
+- In one version of myhill-nerode I know, the states correspond to equivalence classes of strings under the equivalence relation $x \sim y$
+  iff forall strings $s$, $x + s \in L \iff y + s \in L$.
+- In another version (V2), we define the _right context_ of a string $w$ to be the set of all suffixes $s$ such that $w + s  \in L$.
+  That is, $R(w) \equiv \{ s \in A^* : w + s \in L \}$.
+- This induces an equivalence relation where $x \sim y$ iff $R(x) = R(y)$.
+- In this version (V2), the states are the right contexts of all strings in the language.
+- The transitions are given by concatenating strings in the set with the new character.
+- The initial string corresponds to the right context of the empty word.
+- The accepting states are those which correspond to right contexts of words in the language.
+- This version is much more explicit for computational purposes! We can use it to think about what the automata looks like for small
+  languages, in particular for the suffix automata.
+
+
+# Polya Enumeration
+
+- Let $X$ be a set of objects with the action of a group $G$. For example, $X$ is the configurations of a square, represented as 4-tuples
+  by reading the vertices offin clockwise order, and let $G$ be the group of symmetries of a square.
+- Let $C$ be the set of colorings $c_1, c_2, \dots c_n$.
+- Let the objects of $X$ be _colored_ . That is, we have functions $f: X \to C$ which assigns a color $C$ to each element of $X$.
+  Let $Y$ be the set of colorings $X \to C$.
+- We extend the action of the group to the colorings, given by $g (f) \equiv \lambda x. g^{-1}(x)$. This makes the action of the group
+  _consistent_.
+- What's this funny inverse? Well, the idea is this. We _really_ have that $(gf)(gx) \equiv g(f(x))$, as the group must act
+  in an _invariant_ way on the function space and the domain space. So to definethe expression of $(gf)(x')$, we  think of it
+  as $(gf)(x') = (gf)(g(g^{-1}x')) = f(g^{-1}x')$.
+- Define the weight of a coloring $h \in Y$, (ie $h: X \to C$) to be the monomial given by the product of colors; 
+  $wt(h) \equiv \prod_{x \in X} h(x)$. The weight $wt(h)$ is a monomial in the commutative ring $R[c_1, c_2, \dots, c_n]$.
+- **Statement of Polyma Enumeration:**
+  The weight enumerator for the action $G$ on $Y \equiv (X \to C)$ is equal to the cycle index polynomial $Z(G, X)$ with $z_i$ replaced
+  by the power sum symmetric polynomial $P[p](\vec c) \equiv c_1^p + c_2^p + \dots + c_n^p$.
+
+#### Proof via Weighted Burnside Lemma
+
+- Let $g \in G$. By weighted version of Burnside Lemma, we have that
+
+$$
+\sum_{O \in Orb(Y)} wt(O) \equiv 1/|G| \sum_{g \in G} \sum_{y \in Fix(g)} wt(y)
+$$
+
+- Suppose that $g \in G$ have a cycle monomial $z_1^{k_1} \dots z_m^{k_m}$. That is, we _kount_ such that
+   $g$ has $k_1$ cycles of length $1$, $k_2$ cycles of length $2$,
+  and so on upto $k_m$ cycles of length $m$. So $g$ has $k_i$ cycles of length $i$.
+- We want to know which colorings $y \in Y$ are fixed by $g$.
+- Suppose a coloring $y: X \to C$ is fixed by $g$, so $g(y) = y$. Since $g$ pushes things around in its cycles,
+  for each cycle in $g$, we must use _a constant color_.
+- Said differently, all elements in the same cycle of $g$ have the same color.
+- Thus for each cycle of length $l$, We must color all of the $l$ elements (of $X$) with the same color.
+- We can color distinct cycles independent of each other.
+- Thus the weight of a cycle of length $1$ is given by $(c_1 + c_2 + \dots + c_n)$, since we can color the single element with 
+  _either_ $c_1$ _or_ $c_2$ and so on upto $c_n$.
+- The weight of a cycle of length $2$ is given by $(c_1^2 + c_2^2 + \dots + c_n^2)$, since we can color the _two_ elements in the cycle
+  with _either_ $c_1$ _or_ $c_2$ and so on upto $c_i$.
+- The weight of a cycle of length $l$ is given by $(c_1^l + c_2^l + \dots + c_n^l)$ since we can color the $l$ elements in the cycle.
+- Since we the element $g$ has $k_1$ cycles of length $1$, the weight of _all_ cycles of length $1$ is $(c_1 + c_2 + dots + c_n)^k_1$.
+- Since we the element $g$ has $k_2$ cycles of length $2$, the weight of _all_ cycles of length $2$ is $(c_1^2 + c_2^3 + dots + c_n^2)^k_2$.
+- Since we the element $g$ has $k_l$ cycles of length $l$, the weight of _all_ cycles of length $l$ is $(c_1^l + c_2^l + dots + c_n^l)^k_l$.
+- Thus, the total weight of $g$ is given by the polynomial $cyc(g)(p_1(\vec c), p_2(\vec c), \dots, p_l(\vec c))$.
+
+#### Example: Weight enumerator for square with $D_4$ actions.
+
+- $G \equiv D_4$
+- $X$ is the configurations of a square.
+- $C$ are the colors $r, g, b$.
+- $Y$ is the set of colorings of $X$ by $C$.
+
+# Weighted Burnside Lemma
+
+- I'm learning the weighted burnside lemma as a preamble to polya enumeration.
+- Define for a set $X$ with a group action $G$, a weight function on the orbits $O$.
+  Said differently, we have a weight function $w: X \to W$ such that $w(x) = w(g(x))$ for all $x \in X$ and $g \in G$.
+- We wish to count the orbits of $X$ weighted by the weight function $w: X \to W$ (where $W$ is a commutative ring).
+  So we wish to find $\sum_{o \in Orb(X)} w(o)$.
+- Recall that Burnside tells us that:
+
+$$
+|X/G| = \sum_{g \in G} |Fix(g)|
+$$
+
+- We replace cardinality with weight, giving us the statement:
+
+$$
+\begin{aligned}
+&w(X/G) = 1/|G| (\sum_{g \in G} w(Fix(g))) \\
+&=\sum_{[o] \in X/G} w(o) = 1/|G| (\sum_{g \in G} \sum_{x \in Fix(g)} w(x) )
+\end{aligned}
+$$
+
+- In english, this reads: for each orbit in $X/G$, pick an equivalence class representative $o$. The sum of weights of the representatives
+  equals the average over $G$ of the fixpoint-weights.
+
+
+#### Proof
+
+- We begin by considering the LHS:
+- $y = \sum_{g \in G} \sum_{x \in Fix(g)} w(x)$.
+- We switch the order of summation to get $y = \sum_{x \in X} \sum_{g \in G} [gx = x] w(x)$ where $[gx = x]$ is the Iverson bracket --- it
+  evaluates to 1 if $gx = x$ and $0$ if $gx \neq x$.
+- We pull the constant $w(x)$ out to get $y = \sum_{x \in X} w(x) (\sum_{g \in G} [gx = x])$.
+- We see that $\sum_{g \in G} [gx = x]$ is the cardinality of the stabilizer of $x$, written as $|Stab(G, x)|$.
+  So we write this as $y = \sum_{x \in X} |Stab(G, x)| w(x)$.
+- By orbit stabilizer, we use $|Stab(G, x)| \cdot |Orb(G, x)| = |G|$. Thus, we get
+  $y =  |G|  \sum_{x \in X}  w(x) / |Orb(G, x)|$.
+- Since the set of orbits partitions $X$, we write the above as
+- $y = |G| \sum_{[o] \in G/X} \sum_{x \in [o]} w(x)/|Orb(G, x)|$.
+- Since $[o]$ is the orbit of $x$, we replace $Orb(G, x)$ with $o$, giving $y = |G| \sum_{[o] \in G/X} \sum_{x \in [o]} w(x)/|[o]|$.
+- Since the weight is constant on orbits, we replace $w(x)$ by $w(o)$ giving $y = |G| \sum_{[o] \in G/X} \sum_{x \in [o]} w(o)/|[o]|$.
+- We pull the inner terms out giving $y = |G| \sum_{[o] \in X/G} w(o)/|[o]| \sum_{x \in [o]} 1$.
+- Since $\sum_{x \in [o]} 1 = |o|$, we get $|G| \sum_{[o] \in X/G} w(o)/|[o]| |[o]|$ which simplies to $y = |G| \sum_{[o] \in X/G} w(o)$. 
+- We are done, since we have shown that $\sum_{g \in G} \sum_{x \in Fix(g)} w(x) = |G| \sum_{[o] \in X/G} w(o)$.
+
+- The full derivation is:
+
+$$
+\begin{aligned}
+&y = \sum_{g \in G} \sum_{x \in Fix(g)} w(x) \\
+&= \sum_{g \in G} \sum_{x \in X} [gx = x] w(x) \\
+&= \sum_{x \in X}  \sum_{g \in G}  [gx = x] w(x)  \\
+&= \sum_{x \in X}  w(x) \sum_{g \in G}  [gx = x] \\
+&= \sum_{x \in X}  w(x) Stab(x) \\
+&= \sum_{x \in X}  w(x) |G|/|Orb(G, x) \\
+&=|G| \sum_{x \in X}  w(x)/|Orb(G, x) \\
+&=|G|  \sum_{[o] \in X/G} \sum_{x \in O}  w(x) / |Orb(G, x)| \\
+&=|G|  \sum_{[o] \in X/G} \sum_{x \in O}  w(o) / |Orb(G, x)| \\
+&=|G|  \sum_{[o] \in X/G} \sum_{x \in O}  w(o) / |o| \\
+&=|G|  \sum_{[o] \in X/G} w(o) / |o| \sum_{x \in O}  1  \\
+&=|G|  \sum_{[o] \in X/G} w(o) / |o| \cdot |o|  \\
+&=|G|  \sum_{[o] \in X/G} w(o)\\
+\end{aligned}
+$$
+
+#### Example, Unweighted
+
+- Suppose we squares acted on by rotations $e, r, r^2, r^3$. It takes the square:
+
+```
+a b
+c d
+```
+
+to the squares:
+
+```
+e     r     r^2   r^3
+----|-----|-----|-----
+1 2 | 4 1 | 4 2 | 4 3
+3 4 | 3 2 | 3 1 | 1 2
+```
+
+
+# Cycle index polynomial
+
+- If $\sigma \in S_n$ let $cyc(\sigma)$ be the integer partition of $n$ giving cycle lengths.
+- For example, if $\sigma = (1 2)(3)(4 5 6)(7 8)$, then $cyc(\sigma) = 3 + 2 + 2 + 1 \sim (3, 2, 2, 1)$.
+- Recall that an integer partition $\lambda$ of $n$ is a tuple $\lambda[:]$ such that $\sum_i \lambda[i] = n$
+  and $\lambda$ is non-increasing.
+- The cycle index polynomial for a group $G \subseteq S_n$ is $Z(G) \equiv 1/|G| \sum_{g \in G} P[cyc(g)]$
+  where $P[\cdot]$ is the **power sum symmetric polynomial** for the cycle-type partition $cyc(g)$.
+- Recall the definition of power sum symmetric polynomial. First, for a natural number $k \in \mathbb N$,
+  we define $P[k](\vec x) \equiv x_1^k + x_2^k + \dots + x_n^k$.
+- Next, for a partition $\lambda$, we define $P[\lambda](\vec x)$ to be the product over the parts of the partition: 
+  $P[\lambda_1](\vec x) \cdot P[\lambda_2](\vec x) \cdot \dots \cdot P[\lambda_l](\vec x)$.
+
+#### Cycle index polynomial of dihedral group
+
+- For example, consider the dihedral group $D_4$ acting on a square with vertices $a, b, c, d$:
+- More formally, the dihedral group $D_4$ acts on the set of labelled squares $X$.
+
+```
+a b 
+d c
+```
+- 1. For the identity $e$, the cycle is $(a)(b)(c)(d)$. The cycle partition is $(1, 1, 1, 1)$.
+- 2. For the rotation $r$, the cycle is $(a b c d)$. The cycle partition is $(4)$.
+- 3. For the rotation $r^2$, the cycle is $(a c)(b d)$. The cycle partition is $(2, 2)$.
+- 4. For the rotation $r^3$, the cycle is $(a c b d)$. The partition is $(4)$.
+- 5. For the horizontal swap $h$, the cycle is $(a d)(b c)$. The cycle partition is $(2, 2)$.
+- 6. For the vertical  swap $v$, the cycle is $(a b)(c d)$. The cycle partition is $(2, 2)$.
+- 7. For the diagonal `a-c`  swap $ac$, the cycle is $(b d)(a)(c)$. The cycle partition is $(2, 1, 1)$.
+- 8. For the diagonal `b-d`  swap $bd$, the cycle is $(a b)(c)(d)$. The cycle partitionis $(2, 1, 1)$.
+
+
+- The cycle index polynomial is $Z(D_4, X) \equiv 1/|D_4|(P[(1, 1, 1, 1)] + 2P[2, 1, 1] + 3P[2, 2] + P[4])$.
+
+- $P[1, 1, 1, 1] = p_1^4 = (x_1 + x_2 + x_3 + \dots + x_n)^4$, where $p_1$ is a [*power sum symmetric polynomial*](https://en.wikipedia.org/wiki/Power_sum_symmetric_polynomial).
+- $P[2, 1, 1] = p_2 p_1 p_1 = (x_1^2 + x_2^2  + \dots+ x_n^2)\cdot (x_1^1 + x_2^1 + \dots + x+n)^2$.
+- ...and so on.
+
+
+
+# Mnemonics For Symmetric Polynomials
+
+#### Some notation for partitions
+- Consider a partition $\lambda \equiv (\lambda_1, \lambda_2, \dots \lambda_l)$ of a partition of $N$.
+- The $L_0$ norm of the partition will be $1 + 1 + \dots 1$ ($l$ times), which is equal to $N$. Thus, $|\lambda|_0 = l$.
+- So the $L_0$ norm of a partition is the *number of parts* of the partition.
+- The $L_1$ norm of the partition will be $|\lambda_1| + |\lambda_2| + \dots + |\lambda_l|$  which equals $N$.
+- So the $L_1$ norm of a partition is the number it is partitoining. Thus, $|\lambda|_1 = N$. 
+
+
+#### Elementary Symmetric Polynomials (integer)
+
+- We need to define $e_k(\vec r)$ for $k \in \mathbb N$, $r \in X^d$ a sequence of variables ($r$ for "roots").
+- These were *elementary* for Newton/Galois, and so has to do with the structure of roots.
+- The value of $e_k(\vec r)$ is the coefficients of the "root polynomial" $(x - \vec r)$, that is:
+
+$$
+\begin{aligned}
+&(x+r_1)(x+r_2)(x+r_3) = 1x^3 + (r_1 + r_2 + r_3) x^2 + (r_1r_2 + r_2r_3 + r_1r_3) x +  r_1r_2r_3 \cdot x^0 \\
+&e_0 = 1 \\
+&e_1 = r_1 + r_2 + r_3 \\
+&e_2 = r_1 r_2 + r_2 r_3 + r_1 r_3  \\
+&e_3 = r_1 r_2 r_3 \\
+\end{aligned}
+$$
+
+- Formally, we define $e_k(\vec r)$ to be the product of all terms
+  $(r_a r_b\dots, r_k)$ for distinct numbers $(a, b, \dots, k) \in [1, n]$.
+
+$$
+\begin{aligned}
+e_k(\vec r) \equiv \sum_{1 \leq a < b < \dots k \leq n} r_a r_b \dots r_k
+\end{aligned}
+$$
+
+#### Elementary Symmetric Polynomials (partition)
+
+- For a partition $\vec \lambda \equiv (\lambda_1, \lambda_2, \dots, \lambda_l)$, the elementary symmetric polynomial $e_\lambda$
+  is the product of the elementary symmetric polynomial $e_{\lambda_1} \cdot e_{\lambda_2} \dots e_{\lambda_l}$.
+
+#### Monomial Symmetric Polynomials (partition)
+
+- We _symmetrize_ the _monomial_ dictated by the partition. To calculate $m_\lambda(\vec r)$, we compute
+  $\vec r^\lambda \equiv r_1^{\lambda_1} r_2^{\lambda_2} \dots r_l^{\lambda_l}$, and then symmetrize the above monomial.
+- For example, $m_{(3, 1, 1)}(r_1, r_2, r_3)$ is given by symmetrizing $r_1^3 r_2^1 r_3^1$. So we must add the terms $r_1 r_2^3 r_3$
+  and $r_1 r_2 r_3^3$.
+- Thus, $m_{(3, 1, 1)}(r_1, r_2, r_3) \equiv r_1^3 r_2 r_3 + r_1 r_2^3 r_3 + r_1 r_2 r_3^3$.
+
+
+#### Power Sum Symmetric Polynomials (number)
+
+- It's all in the name: take a sum of powers.
+- Alternatively, take a power and symmetrize it.
+- $P_k(\vec r) \equiv r_1^k + r_2^k + \dots + r_n^k$.
+
+#### Power Sum Symmetric Polynomials (partition)
+
+- Extend to partitions by taking product of power sets of numbers.
+- $P_\lambda(\vec r) \equiv P_{\lambda_1}(\vec r) + P_{\lambda 2}(\vec r) + \dots + P_{\lambda_l}(\vec r)$.
+
+
+
+
+# Uses of minimal string rotation
+
+- This algorithm always struck me as useless. Now I know some uses.
+- 1. Finger print identification:
+  We can encode the finger print into
+  many detailed circular strings.
+  How to search such finger print
+  again from those in very
+  huge data base ? Circular comparision using lyndon factorization is requried.
+- 2. Forest canonicalization. Write a tree out in terms of dyck grammar / brackets. Forest will correspond
+  to sequence of such trees. When are two forests equivalent? Normalize them by minimal rotation.
+
+# Suffix Automata
+
+- We take for granted knowledge of the Myhill nerode theorem to build the minimal automata of the
+  set of suffixes of a string $l$.
+- Let the alphabet be $A$, and let us build the suffix automata of $l \in A^\star$.
+- Define the language of suffixes of a string $l$ as $L \equiv \{ l[i:] : i \in \mathbb N \}$.
+- By Myhill Nerode, states of the minimal DFA correspond to strings that are indistinguishable under
+  extensions by a membership oracle of $L$.
+- Suppose a state in the DFA corresponds to two strings $b, s \in A^\star$ ($b$ for big and $s$ for small)
+  such that $|b| \geq |s|$. So we have that $b =_L s$.
+- Now, for all strings $z$ such that $bz \in L$ we also have $sz \in L$.
+
+- So the string must look like follows:
+
+```
+----bbbbzzzzzzzzz
+------sszzzzzzzzz
+```
+
+- This implies that $s$ is a suffix of $b$!
+- Strings in the same state correspond to suffixes of the largest string in the state.
+- Next, we claim that a state consists of all suffixes upto some length. TODO.
+- Therefore, it is helpful to imagine states as "funnels" or "triangles" or "narrowing trapeziums", which
+  have at the top the longest string, and then shorter and shorter suffixes. The suffix link from `a` to `a->link` points from the
+  base of `a` to the top of the trapezium `a->link` such that `a` and `a->link` can be "joined" into a larger trapezium.
+
+
+#### Suffix Automata must be a DAG
+
+- A cycle in the automata implies that we have an infinite number of strings in the language,
+  since we can traverse along the cycle as many times as we want before we reach a final state.
+- Thus, the suffix automata, which accepts a finite language must be a DAG.
+- This implies that we can perform dynamic programming on the DAG.
+
+
+#### Suffix automata: relinking `q` to `qsmol`
+
+
+- Suppose we are inserting a character `c`. We are at a state `p` which points to a state `q` on transitition `c`.
+- Now since `q` contains `p:c`, we have that `len(q) > len(p)`. If `p:c` is the longest string of `q`, then `len(p) + 1 = len(q)`.
+  Otherwise, `q` has longest string a string which contains `p:c` as a proper suffix, and thus `len(p) + 1 < len(q)`.
+- Since `q` contains `p:c`, the suffix link at `q` must point to a state which is a _proper prefix_ of `p:c`.
+- If I therefore create a state with longest string `p:c`, this state `p:c` has a longest string longer than `q->link`.
+- Thus, it is proper to attach `q->link` to the newly created state.
+
+ 
 # Simpson's Paradox
 
 - The example which made simpson's paradox click for me was the *extreme* case.
@@ -98,8 +587,8 @@ A Universe of Sorts
   states $|D|$ equal to number of equivalence clases $|A/\sim_L|$.
 
 #### DFA needs at least $|A/\sim_L|$ states
-- Let $n \equiv |A/\sim L|$ be the number of equivalence classes of $\sim L$.
-- Suppose a DFA $D$ recongizes $L$ and has fewer than $|A/\sim L|$ states.
+- Let $n \equiv |A/\sim_L|$ be the number of equivalence classes of $\sim_L$.
+- Suppose a DFA $D$ recongizes $L$ and has fewer than $|A/\sim_L|$ states.
 - Let $x_1, x_2, \dots x_n$ be strings from different equivalence classes of $L$.
 - Push these strings through $D$. Some two strings $x_i, x_j$ must land on the state state $d \in D$
   of $D$ (by pigeonhole). 
@@ -109,7 +598,7 @@ A Universe of Sorts
   So the DFA will accept or reject both.
 - Thus, we have a contradiction from the assumptions (a) $D$ has fewer states than $n$ and (b)
   $D$ recognizes $L$.
-- Thus the DFA needs at least $|A/\sim L|$ states.
+- Thus the DFA needs at least $|A/\sim_L|$ states.
 
 #### The two imply DFA minimization
 
@@ -262,57 +751,6 @@ def rhsIV():
 # Dedekind MacNiellie
 
 - [Dedekind MacNiellie](https://en.wikipedia.org/wiki/Dedekind%E2%80%93MacNeille_completion)
-
-# DP on monotone matrix (SMAWK) (WIP)
-
-- As we walk along columns, the indices of the row minima increase.
-- We want to find minimum element in every row.
-
-```
-# 
-#
-  #
-   #
-     #
-```
-
-- Then I can divide and conquer.
-
-- [Jeff E](https://www.youtube.com/watch?v=50yflRM5pc4&list=PL0v718LJg-78SFq81e4kJh_rS8XbKZ7Kn&index=4)
-
-#### Totally monotone, part 1
-
-- Totally monotone: Every 2x2 submatrix is monotone (we don't need to pick adjacent row/col for submatrix.
-  Submatrix is any 4 indexes $(l, u)$, $(r, d)$, $(l, d)$, $(r, u)$.
-
-- We still want to find minimum element in every row.
-- Make a small of only the even rows of the matrix. Find minimum entries in the smaller matrix, lift back up to original matrix.
-- Now, by the total monotonicity, the minimal elements of the odd rows will be "between" the even row elements in a staircase.
-- $T(m, n) = T(m/2, n) + O(m+n)$. It's $O(m+n)$ to walk the staircase. 
-
-
-
-#### Totally monotone, part 2
-- Create a new procedure called 'reduce', which takes a rectangular totally
-  monotone matrix, and makes it square, while retaining all row minima.  Idea:
-- total monotonicity forces row minima to be in a certain square subarray of
-- the original array.
-
-
-- Suppose `a` and `b` are minima in their column.
-
-```
-?   ?
-
-a < b
-```
-
-
-```
-c < d
-
-a < b
-```
 
 
   
@@ -1233,18 +1671,25 @@ A
 
 # Z algorithm 
 
-The `Z` algorithm, for a given string $s$, computes a function $Z: [len(s)] \rightarrow [len(s)]$.
-$Z[i]$ is the length of the longest common prefix between $S$ and $S[i:]$.
-So, $S[0] = S[i]$, $S[1] = S[i+1]$, $S[2] = S[i+2]$, and so on till 
-$S[Z[i]] = S[i + Z[i]]$, and then $S[Z[i]+1] \neq S[i + Z[i] + 1]$.
+- The `Z` algorithm, for a given string $s$, computes a function $Z: [len(s)] \rightarrow [len(s)]$.
+- $Z[i]$ is the length of the longest common prefix between $S$ and $S[i:]$.
+- So, $S[0] = S[i]$, $S[1] = S[i+1]$, $S[2] = S[i+2]$, and so on till 
+  $S[Z[i]] = S[i + Z[i]]$, and then $S[Z[i]+1] \neq S[i + Z[i] + 1]$.
 
 
-If we can compute the `Z` function for a string, we can then check if pattern `P`
-is a substring of text `T` by constructing the string `P#T$`. Then, if we
-have an index such that `Z[i] = len(P)`, we know that at that index, we have
-the string `P` as a substring.
+- If we can compute the `Z` function for a string, we can then check if pattern `P`
+  is a substring of text `T` by constructing the string `P#T$`. Then, if we
+  have an index such that `Z[i] = len(P)`, we know that at that index, we have
+  the string `P` as a substring.
 
-Note that the `Z`-algorithm computes the `Z` function in **linear time**.
+- Note that the `Z`-algorithm computes the `Z` function in **linear time**.
+
+- The key idea of the Z algorithm is to see that if we are at an index `i`, but we have an index `l < i`
+  such that `i < l + z[l]`, then we have that `s[0:z[l]] = s[l:l+z[l]]`. Thus, we are "in the shade" of the `l`.
+
+- In this situation, we can reuse `z[i-l]` as a seed for `z[i]`. There are two cases: `i + z[i-l] > l + z[l]` and the converse.
+- If `i + z[i-l] < l + z[l]`, then we are still "in the shade" of `l`, so we can safely set `z[i] = z[i-l]`.
+- If not, we set `z[i] = l + z[l]`, since we know that we match _at least_ this much of the beginning of the string.
 
 ### Specification
 

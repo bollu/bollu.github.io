@@ -27,6 +27,7 @@ if ((window.innerHeight - document.documentElement.clientHeight) >0) {
 
 # Features
 
+- [ ] Client side search with [elasticlunr.js](https://github.com/weixsong/elasticlunr.js/)
 - [ ] Mimic link structure as in [`viewsourcecode.org`](https://viewsourcecode.org/snaptoken/kilo/08.appendices.html#)
 - [ ] Add "go back" link.
 - [ ] Add "subscribe" link.

@@ -1,3 +1,8 @@
+- [Youtube videos: Lie groups and Lie algebras](https://www.youtube.com/watch?v=fXJcoXeiPD8&list=PLRlVmXqzHjURZO0fviJuyikvKlGS6rXrb)
+- [Computational Combinatorics Blog](https://computationalcombinatorics.wordpress.com/page/2/)
+- Inequalities by Hardy, Littlewood, and Polya: book about inequalities
+- [BK tree: data structure for fuzzy string matching](http://blog.notdot.net/2007/4/Damn-Cool-Algorithms-Part-1-BK-Trees)
+- Foundations of Multidimensional and Metric Data Structures
 - [Inkscape Cheat sheet](https://inkscape.org/doc/keys046.html)
 - [Jump Flooding algorithm](https://blog.demofox.org/2016/02/29/fast-voronoi-diagrams-and-distance-dield-textures-on-the-gpu-with-the-jump-flooding-algorithm/)
 - [Python Plumbum librar for writing shell scripts](https://plumbum.readthedocs.io/en/latest/#user-guide)
@@ -897,7 +902,7 @@ Some Highlights
 - Lazy Depth-First Search and Linear Graph Algorithms in Haskell
 - [MAA problem books](https://www.maa.org/sites/default/files/pdf/pubs/books/Problems_book_list.pdf): Series of books
   about problem solving!    
-- The Cauchy Schwarz master class
+- The Cauchy Schwarz master class: inequalities and how to use cauchy schwarz
 - [A shorter model theory](https://www.amazon.in/Shorter-Model-Theory-Wilfrid-Hodges/dp/0521587131): Short book on model theory.
 - [On the complexity of linear arithmetic with divisibility](https://www.cs.ox.ac.uk/people/james.worrell/LICS-main.pdf): Useful for presburger results.
 - [Hori's Mirror symmetry](https://www.claymath.org/library/monographs/cmim01c.pdf) seems to contain good exposition of differential and
