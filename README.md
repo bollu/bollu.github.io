@@ -15,6 +15,643 @@ A Universe of Sorts
 - [reading list and link dump](todo.html)
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
+# GAP permutation syntax
+- The action of permutation on an element is given by $i^p$. This is the "exponential notation" for group actions.
+- See that we only ever write permutations multiplicatively, eg `(1) (23)` is the composition of permutations [written multiplicatively].
+- Thus the identity permutation must be `1`, and it's true that any number `n^1 = n`, so the identity permutation `1` fixes everything.
+
+# Curvature in 1D
+
+
+# "Cheap" proof of euler characteristic
+
+- If we punch a hole in a sphere, we create an edge with no vertex or face. This causes $V - E + F$ to go down by 1.
+- If we punch two holes, that causes $V - E + F$ to go down by two. But we can glue the two edges together. 
+  This gluing gives us a handle, so each hole/genus reduces the euler characteristic by two!
+
+# Siefert Algorithm
+
+- Algorithm to find surface that a knot bounds.
+- If we find a surface, then the genus of the boundary is one minus the genus of the surface.
+- Compute genus via classification of surfaces.
+
+# Cap product [WIP]
+- https://www.youtube.com/watch?v=oxthuLI8PQk
+
+- We need an ordered simplex, so there is a total ordering on the vertices. This is to split a chain apart at number $k$.
+- Takes $i$ cocahins and $k$ chains to spit out a $k - i$ chain given by $\xi \frown \gamma \equiv \sum_a \gamma_a \xi (a_{\leq i}) a_{\geq i}$.
+- The action of the boundary on a cap product will be $\partial (\xi \frown \gamma) \equiv (-1)^i [(\xi \frown \partial \gamma) - (\partial \gamma \frown \gamma)].
+- Consequence: cocycle cap cycle is cycle.
+- coboundary cap cycle is boundary.
+- cocyle cap boundary is boundary.
+- Cap product will be zero if the chain misses the cochain.
+- Cap product will be nonzero if the chain *must* always intersect the cochain.
+- This is why it's also called as the intersection product, since it somehow counts intersections.
+
+# Cup product [WIP]
+
+- We need an ordered simplex, so there is a total ordering on the vertices. This is to split a chain apart at number $k$.
+- Can always multiply functions together. This takes a $k$ chain $\xi$ and an $l$ chain $\eta$ and produces $\xi \cup \eta$ which is a $k + l$
+  cochain. The action on a $(k+l)$ chain $\gamma$ acts by $(\xi \cup \eta)(\gamma) \equiv \xi (\gamma_{\leq k}) \cdot \eta (\gamma_{> k})$.
+- No way this can work for chains, can only ever work for cochains.
+- This cup product "works well" with coboundary. We have $\partial (\xi \cup \eta) \equiv (\partial \xi \cup \eta) + (-1)^k (\xi \cup \partial \eta)$.
+- We get cocycle cup cocyle is cocycle.
+- Similarly, coboundary cup cocycle is coboundary.
+- Simiarly, cocycle cup coboundary is coboundary.
+- The three above propositions imply that the cup product descends to cohomology groups.
+- The _algebra_ of cohomology (cohomology plus the cup product) sees the difference between spaces of identical homology!
+- The space $S^1 \times S^1$ have the same homology as $S^2 \cap S^1 \cap S^1$. Both have equal homology/cohomology.
+- However, we will find that it will be zero on the torus and non-zero on other side.
+- The cup product measures how the two generators are locally product like. So if we pick two generators on the torus, we can find a triangle
+  which gives non-zero 
+
+
+# Colimits examples with small diagram categories
+
+- Given a colimit, compute the value as taking the union of all objects, and imposing the relation $x \sim f(x)$
+  for all arrows $f \in Hom(X, Y)$ and all $x \in X$.
+
+- A colimit of the form $A \xrightarrow{f} B$ is computed by taking $A \sqcup B$ and then imposing the relation $a \sim f(b)$. This is entirely useless.
+- A colimit of the form $A \xrightarrow{f, g} B$ is computed by taking $A \sqcup B$ and then imposing the relation $a \sim f(a)$ as well as $a \sim g(a)$.
+  Thus, this effectively imposes $f(a) \sim g(a)$. If we choose $f = id$, then we get $a \sim g(a)$. So we can create quotients by taking the colimit
+  of an arrow with the identity.
+- A colimit of the form $A \xleftarrow{f} B \xrightarrow{g} C$ will construct $A \cup B \cup C$ and impose the relations $b \sim f(b) \in A$ and $b \sim g(b) \in C$.
+  Thus, we take $A, B, C$ and we glue $A$ and $C$ along $B$ via $f, g$. Imagine gluing the upper and lower hemispheres of a sphere by a great circle.
+
+# Limits examples with small diagram categories
+
+- Given a limit, compute the value as taking product of all objects, and taking only those tuples which obey the relations
+  the relation $f(a) = b$ for all arrows $f \in Hom(X, Y)$.
+
+# Classification of compact 2-manifolds [WIP]
+
+- Oriented compact 2-surfaces: sphere, torus, 2 holed torus, etc.
+- have euler characteristic $V - E + F $ as $2 - 2g$
+- Strategy: cut surface into polygonal pieces. Use oriented edges to know cutting. Lay them down on the surface such that the "top part" or
+  "painted surface" will be up [so we retain orientation].
+- Attach all the polygons into one big polygon on the plane.
+- For each edge on boundary of the big polygon, it must attach to some other boundary of the big poygon [since the manifold is compact].
+  Furthermore, this edge must occur in the *opposite direction* to make the surface orientable. Otherwise we could pass through the side
+  and flip orientation. Consider:
+
+```
+>>>>
+|  |
+>>>>
+```
+
+- When I appear from the "other side", my direction wil have flipped. [TODO]
+
+- So far, we know the edges. What about identifying vertices?
+
+- Next, we need to group vertices together on the big polygon. We can find this by going *around the edges incident at the vertex*
+  on the *manifold surface*.
+
+
+- The next step is to reduce the number of vertices to exactly one. We can cut the current polygon and re-paste it as long as we preserve
+  all cutting/pasting relations.
+
+- Suppose I glue all the B vertices to a single vertex. Then, the edges emenating from this B vertex _must necessarily be the same_.
+  If not, then the edge emenating would need a complementary edge somewhere else, which would give me another "copy" of the B vertex.
+
+- I can imagine such a B vertex as being "pushed inside the polygon" and then "glued over itself", thereby making it part of the *interior*
+of the polygon.
+
+- We can repeat this till there is only one type of vertex (possibly multiple copies).
+- If we only had two adjacent edges [edges incident against the same vertices], then we are done, since we get a sphere.
+- We can always remove adjacent pairs of edges. What about non-adjacent pairs?
+- Take a non adjacent pair. think of these as "left" and "right". We claim that for each edge at the "top", there is a corresponding
+  edge at the "bottom". So we have left and right identified, and top identified with a continugous segment in the bottom. If there  wasn't,
+   then we would need another vertex!
+- This lets me create a commutator on the boundary, of the form
+  $cdc^{-1}d^{-1}x$. Topologically, this is a handle, since if it were "full"
+  [without the extra $x$], then we would have a torus. Since we do have the
+  $x$, we have a "hole on the torus" which is a handle.
+- We keep removing hanldes till we are done.
+
+#### Why does euler characteristic become $2-2g$?
+- If we add a vertex on an edge, we add a vertex and subrtact the (new) edge we have created. Thus $\xi$ is unchanged on adding a vertex on an edge.
+- Joining two vertices on a face also does not change $\xi$, since we add an edge and a face.
+- Given any two subdivisios, we find a common finer subdivision by these steps. Since the steps we use retain the euler characteristic,
+  finally my original subdiv = common subdiv = friend subdiv.
+- Key idea: at each crossing between our subdivsion and the other subdivision, make a new vertex at every crossing. Then "trace over" the
+  other subdivision to make our subdivision agree on the other subdivision on the inside.
+
+https://www.youtube.com/watch?v=dUOmU-0t2Nc&list=PLIljB45xT85DWUiFYYGqJVtfnkUFWkKtP&index=27
+
+# Gauss, normals, fundamental forms [WIP]
+
+- consider a parametrization $r: u, v \to \mathbb R^3$
+- at a point $p = r(u, v)$ on the surface, the tangent vectors are $r_u \equiv \partial_u r$ and similarly $r_v \equiv \partial_v r$.
+- Let $k = xr_u + y r_v$. Then $k \cdot k$ is the **first fundamental form. Computed as 
+  $k= (xr_u + y r+v) \cdot (x r_u + y r_v)$. Write this as $E x^2 + 2F x y + G y^2$.  These numbers depend on the point $(u, v)$,
+  or equally, depend on the point $p = r(u, v)$.
+- Further, we also have a normal vector to the tangent plane.$N(p)$ is the unit normal pointing outwards. We can describe it in terms
+  of a parametrization as $n \equiv r_u \times r_v / ||r_u \times r_v||$.
+- Gauss map / Gauss Rodrigues map ($N$): map from the surface to $S^2$. $N$ sends a point $p$ to the unit normal at $p$.
+- The tangent plane to $N(p)$ on the sphere is parallel to the tanent plane on the surface at $p$, since the normals are the same,
+  as that is the action of $N$ which sends the normal at the surface $p \in S$ to a point of the sphere / normal to the sphere.
+- Thus, the the derivative intuitively "preserves" tangent planes! [as normal directions are determined].
+- If we now think of $dN$, it's a map from $T_p S$ to $T N(p) S^2 = T_p S$. Thus it is a map to the tangent space to _itself_.
+- In terms of this, gauss realized that gaussian curvature $K_2 = K = k_1 k_2$ is the determinant of the map $dN_p$ [ie, the jacobian].
+  Curvature is the distortion of areas by the normal. So we can think of it as the ratio of areas `area of image/area of preimage`.
+
+https://www.youtube.com/watch?v=drOldszOT7I&list=PLIljB45xT85DWUiFYYGqJVtfnkUFWkKtP&index=34
+
+# Shape operator [WIP]
+
+https://www.youtube.com/watch?v=uanrlbRbuEs&list=PLBY4G2o7DhF38OEvEImfR2heX7Szmq5Gs&index=35
+
+# Theorem Egregium [WIP]
+
+- Let $S$ be a 2 dimensional surface.
+- Gauss Rodriguez map map: $N: S \to S^2$. The derivative of this map goes from $dN: T_p S \to T_p S^2$.
+- Since surfaces are parametric, we can think of it as a map from $U \subset \mathbb R^n \to S \to S^2$.
+- For gauss, the curvature of the surface at $p$ is $det(dN|_p)$. This tells us how small areas (on the tangent plane of $S$)
+  is distorted (on the tangent plane of $S^2$, because it's the determinant / jacobian of the map. Thus, heuristically, it is the
+  ratio of the area around $N(p)$ at $S^2$ to the area around $p$ at $S$
+
+- To show that this normal curvature view really is curvature, let's compute $dN_p$ for a normal paraboloid. Wildberger says that
+  all surfaces are like normal paraboloids upto second order.
+- This fits with one of our views of curvature of a curve: one way was one over the osculating circle, the other was $k \cdot ds = d \theta$
+- We had a formula like $\int k ds$ was a change in angle. Similarly, in our case, we see that if we consider $\int \int k(s) darea(s)$, we 
+  get the area of the image of $N$, because infinitesimally is the ratio of areas.
+- In particular if the surface is homeomorphic to a sphere, then we get the total area of the sphere, $4 \pi$.. This is the 2D analogue of
+  the fact that if we integrate the curvature of a closed curve, we get $2 \pi$. [area of a circle]. This is by green's theorem.
+
+
+
+#### Discrete geometry
+
+- If we want to compute the curvature of a discrete polygon at a point, we should look at the gauss map. the total curvature at the point
+  will be equal to the spherical area of the image polygon. The spherical area of a triangle is $\alpha_1 + \alpha_2 + \alpha_3 - \pi$.
+
+- https://www.youtube.com/watch?v=R1oU5m69ILk&list=PLIljB45xT85DWUiFYYGqJVtfnkUFWkKtP&index=35
+
+
+# Conway Zip proof [WIP] 
+
+- https://www.youtube.com/watch?v=-GJs7_NdLm8&list=PL6763F57A61FE6FE8&index=20
+- Key idea: 
+
+
+# Norms and trace
+
+- $L/K$ is often well thought as a K-vector space / K-algebra. Can view
+  elements of $L$ as $K$ linear homomorphisms  from $L$ to $L$ (by
+  multiplication).
+- Thus elements in $L$ have matrices with entries in $K$ in terms of a basis for the vector space which is $L$ over the field $K$.
+- Trace of an element $l \in L$ is the trace of this matrix $l(x) \equiv l \cdot x : L \to L$.
+- The norm is the determinant of the above matrix.
+- We will have for an element $k \in K$, the trace to be $dim(L/K) \cdot k$ since the matrix will scale all $K$-coefficients by $k_0$.
+  Similaly, the norm will be $k^{dim(L/K)}$.
+- This smoothly generalizes to the case when $A \subseteq B$ is an extension of rings, such that $B$ is a free module of $A$ with rank $n$.
+
+##### Overview
+- Our goal is to prove that rings of integers of finitely generated $\mathbb Z$ modules are finitely generated abelian groups.
+  To do this, we need trace.
+- Transitivity of norm and trace
+- Trace, norm, and minimal polynomial
+- Trace, norm preserve integrality (trace of an integral element is integral)
+- the norm is "essentially" the product of galois conjugates, trace is the sum.
+
+#### 18.1: Lemma
+- Let $K \subseteq L \subseteq M$ be a finite extension. Then Norm(M/K) = Norm(L/K) Norm(M/L)
+
+#### References
+
+- [ANT 17: intro to trace and norm](https://www.youtube.com/watch?v=mFBGbeQ_NpY&list=PLB9ZOuiho-g80BM2h7kxSed-_aFavOXXa&index=17)
+- [ANT 18: relation to galois theory](https://www.youtube.com/watch?v=tf5blxur1d4&list=PLB9ZOuiho-g80BM2h7kxSed-_aFavOXXa&index=19)
+
+
+
+# DP over submasks
+- https://codeforces.com/contest/1554/problem/B
+- 5e8 operations is 1
+- take every (mask, submask). The bits of the pair can be `1 1`, `1 0`, and `0 0`. So the pairs of all mask, submask will be `3^n`
+
+for(int m = N; m >= 0; m--) {
+  for(int s = m; s = (s- 1) & m; ) {
+    // get all submasks.
+  }
+}
+
+- let `s` be a submask of `m`.
+  [for arbitrary bits `abc` with the `1` shown being the rightmost 1, followed by all zeroes.]
+- Consider the largest submask of `m` smaller than `s`, call it `t`. We wish to show that `t = (s-1)&m = abc011`.
+- `t` is clearly a submask of `m`, since it is a submask of `s`.
+- We wish to show that `t=(s-1)&m` is the greatest submask of `m` smaller than `s`.
+- For contradiction, suppose `s > c > t` and `c` is a submask of `m`.
+- Let `x` be the index of the rightmost 1 in `s` (`x` marks the spot).
+  So `s` is of the form `s[n]s[n-1]...s[x]s[x-1]...s[0]` where
+  `s[x]=1` and `s[x-1]=s[x-2]=...=s[0]=0`. So we can write `s = s[n]s[n-1]...;x:1;00..0`
+- Now `t` is of the form `t = t[n]t[n-1]...;x:0;00..0`. 
+- Any number `c < s` must have for all indeces `i > x` such that `s[i] = 0` implies `c[i] = 0`. 
+- If `c` is such that for some index `i > x` where `s[i]=1` we have `c[i]=0`, then such a number will be less that `t`
+  since `t[i]=s[i]=1`.
+- Thus, for all indexes `i > x` we have `c[i]=s[i]`.
+  
+
+# Dual of Planar Euler graph is bipartite
+
+### Proof by contradiction
+
+- Euler graph is a graph with an euleian circuit, so we pass through every edge exactly once and return to the
+  node we started from.
+- Alternatively, every node has even degree. Consider the cycle as starting at some vertex `v`. To pass through all edges
+  adjacent to `v` must mean that every time we leave `v` on a previously unused `v->_` we must return back to `v` via a unique edge `_->v`. 
+  This allows us to pair edges together uniquely, giving us an even number of edges at `v`.
+- This argument works at any generic `v`, since we can think of a cycle as starting from any vertex.
+- Thus, every vertex of `G` has even degree.
+- Consider the dual graph `H := G*`.
+- Suppose `H` is not bipartite, so `H` has an odd length cycle `O`.
+- Let `K := H*` be the dual of `H`. Consider the face of `H` that is bounded by the odd length cycle `O`, call it `F(O)`. This face `F(O)`
+  has an odd number of neighbours, one for each edge of `O`. So an number of edges in `K` connect `F(O)` to its neighbours.
+  Thus, `K` has a vertex with an odd number of edges indicent on it.
+- However, `K = H* = G** = G`. This implies that `G` has a vertex with an odd number of neighbours, contradicting its eulerian nature.
+
+### Constructive proof
+
+- Consider a graph embedding. Since the graph is eulerian, we get a path/closed curve
+  `p: S^1 -> R^2` that traverses the graph along its euler tour.
+- If the closed curve `p` has self-intersections, remove them by gently "spreading" `p`. 
+- This gives us two regions on the sphere, one inside the curve and one outside the curve (by jordan curve theorem).
+
+
+- Key takeaway: Euler graphs are graphs you can draw with a pen.
+
+### How this is different from hamiltonian circuit
+
+Consider:
+
+```
+a----------b
+|          |
+f----------c
+|          |
+e----------d
+```
+
+- The cycle `a->b->c->d->e->f->a` is hamiltonian.
+- There is no eulerian cycle since `f` has odd degree. So if we start from `f`, it is impossible to return to `f`.
+- So hamiltonian circuits do not correspond (at least in this way) to geometry.
+
+
+# Yoneda preserves limits
+
+#### Lemma: $Hom(c, -)$ preserves limits
+
+
+#### Yoneda preserves:
+
+- Let $J$ be small, $C$ locally small.
+- Let $F: J \to C$ be a diagram. Let $y : C \to [C^{op}, Set]$ be the contravariant yoneda defined by $y(c) \equiv Hom(-, c)$.
+- Consider $y(\lim F) : C^{op} \to Set$. Is this equal to $\lim (y \circ F : J \to [C^{op}, Set}) : C^{op} \to Set$?
+- We know that limits in functor categories are computed pointwise. So let's start with $\lim (y \circ F) : C^{op} \to Set$.
+  Let's Evaluate at some $e \in C^{op}$.
+- That gives us $(\lim (y \circ F))(e) = \lim (ev_e \circ y \circ F : J \to Set) : Set$.
+- Writing the above out, we get $\lim (ev_e \circ y \circ F) = \lim(\lambda j. (y(F(j))(e))$.
+- Plugging in the definition of $y$, we ge $\lim( \lambda j. Hom(-, F(j))(e))$.
+- Simplifying, we get $\lim (\lambda j. Hom(e, F(j))$.
+- We know from a previous theorem that $\lim Hom(e, F(-)) =  = Hom(e, \lim F)$
+- Thus, we get $\lim(\lambda j. Hom(e, F(j)) = Hom(e, \lim F)$.
+- So we get $(\lim (y \circ F))(e) = Hom(e, \lim F)$.
+- In general, we get $\lim (y \circ F) = Hom(-, \lim F)$, which is the same as $y \circ \lim F$.
+- So we find that $\lim (y \circ F) = y \circ \lim F$, thereby proving that yoneda preserves limits.
+
+
+# Integral elements for a ring.
+
+- main goal of ANT: understand the structure of rings of integers in finite extensions of $\mathbb Q$.
+- The ring of integers is a generalization of $\mathbb Z$ in $\mathbb Q$.
+- Let $A$ be an integral domain. Let $L$ be a field containing $A$. An element $\alpha \in L$ is **integral** over $A$
+  iff there is a monic polynomial $f \in A[x]$ with $f(\alpha)  = 0$.
+- For example, if $A = \mathbb Z$, and $L = \mathbb Q[i]$, we'll see that $i$ is integral over $\mathbb Z$ as it is the root of
+  $x^2 + 1$. However, $i/2$ is not integral (intuitively).
+- We will prove that $\alpha \in L$ is integral over $A$ iff the minimal polynomial over $Frac(A)$ has coefficients in $A$.
+- The minimal polynomial of $i/2$ is $x^2 + 1/4$ which does not have coefficients in $\mathbb Z$.
+
+#### Theorem: integral elements of $L$ over $A$ form a ring (the ring of integers of $L$ over $A$)
+
+- Let $L$ be a field containing an integral domain $A$. Then the elements of
+  $L$ which are integral over $A$ form a ring.
+- First we prove this via symmetric polynomial theory.
+
+- [ANT youtube video](https://www.youtube.com/watch?v=9hQAQVaF3VQ&list=PLB9ZOuiho-g80BM2h7kxSed-_aFavOXXa&index=11)
+
+
+
+# Separable field extensions
+
+- I didn't really study galois theory over char. $p$ all that well the first time I studied it, so let's review.
+- Let $J \subseteq K$ be an inclusion of fields, so $K$ is a field extension of $J$.
+- An irreducible polynomial $f \in J[x]$ is separable iff it has distinct roots in the algebraic closure of $J$, $\overline{J}$.
+- Said differently, the polynomial $f$ has no repeated roots in any extension of $J$.
+- Said differently, the polynomial $f$ has distinct roots in its splitting field over $J$. The roots as separable since we can separate
+  all the roots from each other --- they are all distinct.
+- Said differently, the polynomial derivative $f'$ of $f$ is not the zero polynomial.
+- So, consider the field of rational functions $F_p(X)$, which are rational functions in $X$ over $F_p$.
+  Here, the function $g(Y) = Y^p - X \in K(X)$ has derivative zero, and is thus inseparable.
+- An element $\alpha \in K$ is separable over $J$ iff the minimal polynomial of $\alpha$ over $J$ (ie, a poynomial $a \in J[x]$ such that
+  $\alpha$ is a root of $a$) is separable.
+- $K$ is a separable extension of $J$ if every element of $K$ is separable over $J$.
+- An extension of char. 0 is separable, and any finite extension of a finite field is separable.
+
+#### Example of inseparable extension
+
+#### Primitive element theorem / Theorem of the primitive element
+- Let $J \subseteq K$ be a field extesion. We say $\alpha \in K$ is primitive for the extension $K/J$ (the extension) if $K = J(\alpha)$.
+- If $K/J$ is a finite separable extension, then for some $\alpha \in J$, we have $K = J(\alpha)$.
+- Recall that $J(\alpha) \simeq J[x]/minpoly(x)$.
+
+#### Tensor product of field extensions
+
+- Let $K$ be a finite separable extension of $J$ and $\Omega$ be an arbitrary extension of $J$. (usually, $\Omega$ is the p-adics,
+  $J$ is $\mathbb Q$, $K$ is a number field).
+- Then, $K \otimes_J \Omega$ is a product of finite separable extensions of $\Omega$. So $K \otimes_J \Omega \equiv \prod_i \Omega_i$,
+  where each $\Omega_i$ is a finite extension of $\Omega$.
+- If $\alpha$ is a primitive element for the extension $K$ (so $K = J(\alpha)$), then the image of $\alpha \otimes 1$ in $\Omega_i$
+  is a primitive element for $\Omega_i$ over $\Omega$.
+- If $f$ is the minimal poly. for $\alpha \in K$ over $J$ and $f_i$ is the minimal polynomial for $\alpha_i \in \Omega_i$ over $\Omega$ then
+  $f(x) = \prod_i f_i(x)$.
+
+- **Proof**: Start with a primitive element $\alpha$ for $K/J$. Then $K \simeq_\phi J[x]/(f(x))$
+   for $f(x)$ the minimal polynomial of $\alpha$ over $J$. So $\phi$ witnesses this isomorphism.
+- Consider $K \otimes_J \Omega$. This is isomorphic to $(J[x]/(f(x))) \otimes \Omega$. Call the map that sends the LHS to the RHS as $\phi \otimes id$
+- We claim that the ring  $(J[x]/(f(x))) \otimes_J \Omega$ is isomorphic to $\Omega[x]/(f(x))$. Intuition: tensoring by $J$ doesn't do
+  anything useful, and we can re-interpret $f(x)$ as living in $\Omega(x)$. The isomorphism is
+  $\psi((g(x) + K(x)f(x)) \tensor \omega) \equiv \omega \cdot g(x) + \Omega[x]f(x)$.
+- Now suppose $f$ factors as $\prod_i f_i$ over $\Omega[x]$. Since $\alpha$ is separable over $J$ and $\Omega$ is an extension of $J$,
+  all the $f_i$ are distinct (otherwise it contradicts separability). Thus the family of ideals $\{ (f_i) \}$ is pairwise coprime.
+
+# Using `hypergiant` for `ward`?
+
+- http://alex-charlton.com/posts/Prototype_to_polish_Making_games_in_CHICKEN_Scheme_with_Hypergiant/#introduction
+- This looks potentially very interesting as a prototyping tool!
+
+# Limits of a functor category are computed pointwise.
+
+#### Reduction to discrete category
+
+- Let's take a functor category $[X, Y]$.
+- Take a diagram $D: J \to [X, Y]$. What is the limit $\lim D: [X, Y]$?
+- First, let's assume that $X$ has no arrows, or that we forget all the arrows of $X$ except the identity
+  arrows. denote this forgotten/discrete category by $ob(X)$, whose objects are those of $X$, and morphisms
+  are only identity morphisms.
+- We can define the diagram $ob(D): J \to [ob(X), Y]$. Can we compute $\lim ob(D)$?
+- A functor $ob(X) \to Y$ is the same as a tuple $Y^{ob(X)}$. See that $Y^{ob(X)}$ lives in `CAT`,
+  since it is a category that is the $ob(X)$ copies of $Y$.
+
+#### Formal proof by limits of product categories
+
+- Now, the limit $ob(D)$ can be interpreted as a limit of $ob(D): J \to Y \times Y \times \cdots \times Y$.
+- By the universal property of the product, limits over product categories can be
+  computed _pointwise_. So if we have a diagram $E: K \to X \times Y$, then $l \equiv \lim E$ can be calculated by 
+  calculating $l_x \equiv \lim (\pi_1 \circ E : K \to X)$, then $l_y \equiv \lim (\pi_2 \circ E : K \to Y)$,
+  and then setting $l \equiv (l_x, l_y) \in X \times Y$.
+- Thus, we split the morphism $ob(D): J \to Y \times Y \times \cdots \times Y$ into the individial tuple
+  components, which correspond to the images of $x \im ob(X)$ under $D$, and we compute their limits.
+  So we can compute this pointwise.
+
+#### Draw the right diagram.
+
+- Suppose we had `J = (f -a-> h <-b- g)`, and we had `ob(X) = (p q)`. We only have objects, no morphisms.
+- Now, what is a diagram `ob(D): J -> [ob(X), Y]`? For each of `f, g, h` in `J`, we must get a functor
+  from `ob(X)` to `Y`.
+- Denote `F = ob(D)(f)`, `G = ob(D)(g)`, and `H = ob(D)(h)`. Each of `F, G, H` are functors `ob(X) -> Y`.
+- I'll write the functors by identifying them by their image. The image of `F` is going to be `[Fp Fq]`
+  with no interesting morphisms between `Fp` and `Fq`.
+- Now, that we've considered the action of `ob(D)` on objects of `J`, what about the arrows?
+- The images of the arrows `f -a-> h` and `h <-b- g` are natural transformations from `F` to `H` and
+  `G` to `H` respectively. Denote these by  `F =α>= H` and `H <=β=G`. So we have `ob(D)(a) = α`, `ob(D)(b) = β`.
+- In total, the image of `ob(D)` in `[ob(X), Y]` looks like this:
+
+```
+F =α=> H <=β= G
+```
+
+- If we expand out the functors by identifying them with the image, and write the natural transformations in terms
+  of components, it looks like so:
+
+```
+[Fp     Fq]
+ |       |
+ αp     αq
+ v       v
+[Hp      Hq]
+ ^       ^
+ βp      βq
+ |       |
+[Gp      Gq]
+```
+
+- Really, the diagram consists of two parts which don't interact: the part about `p` and the part about `q`.
+  So computing limits should be possible separately!
+
+#### This extends to `[X, Y]`
+
+- We now believe that given $D: J \to [X, Y]$, we know that we can compute $ob(D): J \to [ob(X), Y]$ pointwise.
+- Formally, we define  $[\lim ob(D)](x)$ to be equal to $\lim (ev_x \circ D : J \to Y)$. 
+- We define the action of $\lim D$ (which is a functor from $X$ to $Y$) on objects of $X$ to be equal to the action of
+  $\lim ob(D)$ on objects of $X$, which is given by the above equation.
+- So what about the action of $\lim D$ on the _morphisms_ of $X$? it's a functor from $X$ to $Y$, so it should send
+  morphisms to morphisms!
+- Now, let's suppose we have a morphism $x \xrightarrow{a} x'$ in $X$. How do we compute the the action of $D$ on the morphism $a$?
+- Well, first off, what's $D(a)$ a morphism between? It must be between $D(x)$ and $D(x')$. 
+- What is $D(x)$? We know that $D(x) \equiv \lim (ev_x \circ D: J \to Y)$. Similarly, we know that $D(x') \equiv \lim ev_x' \circ D: J \to Y)$.
+-
+
+# `a + b = (a or b) + (a and b)`
+
+- `0 + 0 = or(0, 0) + and(0, 0)`
+- `0 + 1 = or(0, 1) + and(0, 1)`
+- `1 + 1 = or(1, 1) + and(1, 1)`
+- Extend by linearity?
+
+
+# Intuition for why choosing closed-closed intervals of `[1..n]` is $(n+1)C2$
+
+- $nC2$ counts all intervals $\{ [i, j]: i > j \}$.
+- To count intervals $[i, i]$, there are $n$ of them, so it's $nC2 + n$ which is $n(n-1)/2 + n $,
+   which is $n(n+1)/2$ or $(n+1)C2$.
+- Combinatorially, add a "special point `*`" to `[1..n]`. If we pick a pair `(i, *)` from the $(n+1)C2$,
+  take this to mean that we are picking the interval `[i, i]`.
+
+
+
+# Thoughtful discussion on the limits of safe spaces
+
+> (2) You cannot make all valuable, positive, motivated people feel safe. It's really sad, but there are fundamental incompatibilities in the kind of safety that different people need (even before we get to what makes them productive--you can't even make everyone feel comfortable!). I think this discussion has demonstrated amazing attempts by people at understanding and incorporating different perspectives, but at the end of it all, some people are going to have to be triaged out, or will have to accept some lack of safety. Two examples: (a) people with low self-esteem tend to find confrontational environments unsafe emotionally, but many neurodivergent people tend to find environments that require high social awareness unsafe emotionally. You can ameliorate this contradiction somewhat with careful guidelines, but fundamentally the problem cannot be solved: the neurodivergent simply cannot do what the emotionally fragile require of them, so one or the other or both is going to have a bad time. There is nothing wicked about either of these people! But they're not compatible. (b) people of a category that has faced systematic discrimination often do not feel safe with "free speech" that is allowed to get anywhere near sounding like discrimination against them (for very good reason!), but people who have exposure to thought-policing with severe consequences for disobedience often do not feel safe with anything less than very broad construal of "free speech". This one's even harder, because both sides can have really deep emotionally salient reasons for their perspective, and yet they are incompatible. There is nothing wicked about either of these people! But different types of wickedness have been done to them or are reasonably feared by them, rendering them incompatible with 
+each other.
+
+
+> you are not literally able to make a community welcoming to everyone who, one-on-one, you would consider a good person. Sometimes you can get a few extra valuable people by special-casing things. (E.g. a reasonable response to "I don't understand respect" might be "we are still going to call it respect, but we will maintain an additional note approximating what 'act with respect' means in terms of other concepts that might be easier to actualize for some people".)
+
+
+> I agree that it is not possible to resolve fundamental incompatibilities through policy. However, it often is resolvable through mediation, a third party who can deal with the needs of both sides and is willing and able to translate, clarify, provide private feedback, and otherwise help smooth over the situation.
+- [Link of NixOS RFC](https://github.com/NixOS/rfcs/pull/98#issuecomment-904229049)
+
+
+
+# Semidirect product: Panning and Zooming
+
+- I think I finally have an example of a semidirect product that I understand well enough I'd dare to teach a friend.
+- Take the real line. We can move points on it by adding them (panning). Viewed differently, we can _pan_ the real line left and right,
+  by the action of the real line on itself. This is a group $P \simeq (\mathbb R, 0, +)$ ($P$ for pan).
+  I'll draw the line as follows:
+
+  ```
+  ^
+  |
+  |
+  0
+  |
+  |
+  v
+  ```
+
+  - Next, we can _zoom_ the real line by multiplication: So given a number, I can scale the entire real line by this number. 
+    This group of zoom operations is $Z \simeq (\mathbb R, \times 1)$.I'll show this by stacking copies of the real line next to each other:
+
+```
+    ^
+    |       ^
+    |       |        ^
+Z---[z=1]---[z=1/2]--[z=1/4]----...
+    |       |        V
+    |       V        P
+    v       P
+    P
+```
+
+- So we show the group `Z` on the horizontal axis, which zooms the real line. We "attach" a copy of `P` to each element `z` of `Z`,
+  appropriately scaled.
+
+- How should I write the pan-and-zoom operation as a single unit? I'll denote by `(z, p)` the operation of panning by `p` and then 
+  zooming by `z`. Why not the other order? Well, if I zoom first by `z` and then pan by `p`, the pan `p` gets "disturbed" by the zoom,
+  since the pan would like to talk about the _initial_ state of the world, but we now need to pan with respect to the world _after_ zooming.
+  So we prefer the order where we can pan first (with no zoom interfering with our affairs), and then zoom. 
+- How do these combine? If we have `(1, p) . (1, p')` we get `(1, p + p')` since combining pans at zoom level `1x` is like
+  us not having zooming. Similarly, combining `(z, 0) . (z', 0)` is `(zz', 0)`, since zooming by `z` with no pan followed by `z'` is the same
+  as zooming in one shot by `zz'`.
+- What about `(z, p). (z', p')`? What does it mean? It means we should (a) pan by `p`, (b) zoom `z`, (c) pan by `p'`, (d) zoom `z'`.
+  See that the total zoom will be `zz'` at the end of this operation. What about the total pan? the second pan by `p'` happens _after_ we
+  have already zoomed by `z`. So relative to _no_ zoom, this is a pan by `zp'`. So in total, we can replace by an operation which (1)
+  pans by `p + zp'`, and then (2) zooms by `zz'`. So we have that `(z, p).(z', p') = (zz', zp + p')`. This is a _semidirect_ product.
+- If we stare at the picture above, we see that we have many copies of `p`, one for each `z`. So the full group is like `Z x P`.
+- It's hopefully clear that if we "squish" the `P`s, (ie, quotient by `P`) down towards the `Z`, we'll still have a fully functioning `Z` group.
+- On the other hand, if we attempt to "squish" the `Z`s(ie, quotient by `Z`) down towards a single `P`, we'll be left with _incompatible_ copies
+  of `P`, each at different scales! This tells us that we _can_ quotient by `P` (so `P` is normal), but _not_ by `Z` (so `Z` is not normal).
+- So, this is sort of like a vector bundle `P -> Z |x P -> Z` where the fibers are `P` and the base space is `Z`. We can remove the fibers 
+  to recover the base space. You can't delete the base space, since there's no way to make the fibers "compatible".
+
+
+
+# Longest Convex Subsequence DP
+
+- This was an enlightening problem to solve due to the presence of many degenerate cases.
+- The question: given an array `xs[]`, find the length of the longest subsequence `ys[]` such that for all indexes `0 <= l < m < r < |ys|`, we have that
+  `2*ys[m] < ys[l] + ys[r]`.
+- Key DP idea: `dp[maxm][maxr]` is the length of the longest convex subsequence with penultimate index `<= maxm` and final index `<= maxr`.
+
+- The bare recurrence (without thinking about base cases) can be implemented as follows:
+
+```cpp
+int f(vector<int> &xs) {
+    const int n = xs.size();
+    vector<vector<int>> dp(n, vector<int>(n, 0));
+
+    for (int r = 0; r < n; ++r) {
+        for (int m = 0; m < r; ++m) {
+            for (int l = 0; l < m; ++l) {
+                if (2 * xs[m] < xs[l] + xs[r]) {
+                    dp[m][r] = max<int>(dp[m][r], 1 + dp[l][m]);
+                }
+            }
+        }
+    }
+
+    return ???;
+}
+```
+
+- The "problem" is to deal with the degenrate cases where the array has only length 0, length 1, or length 2 when the DP conditions don't
+  kick in. How does one implement these neatly? 
+
+- The insight is to see that at each location in the program, we have a _lower bound_ on the best DP value we can achieve. For example,
+  at the beginning, we know that `best >= 0`. When we enter into the loop of `r`, we know that we have at least one element, so `best >= 1`,
+  and so on. If we insert these lower bounds systematically into the code, we arrive at:
+
+```cpp
+int f(vector<int> &xs) {
+    const int n = xs.size();
+    vector<vector<int>> dp(n, vector<int>(n, 0));
+    int best = 0;
+
+    for (int r = 0; r < n; ++r) {
+        ATLEAST1: best = max<int>(best, 1);
+        for (int m = 0; m < r; ++m) {
+            ATLEAST2: best = max<int>(best, 2);
+            dp[m][r] = 2;
+            for (int l = 0; l < m; ++l) {
+                if (2 * xs[m] < xs[l] + xs[r]) {
+                    dp[m][r] = max<int>(dp[m][r], 1 + dp[l][m]);
+                }
+                best = max<int>(best, dp[m][r]);
+            }
+        }
+    }
+
+    return best;
+}
+```
+
+- We see that whenever we "learn" more information, we increase `best`, possibly without being able to even initialize `dp[.][.]`!
+  This happens for example at `ATLEAST1:`, where we have one element so we know that `best >= 1`, but we don't have two elements to initialize
+  the DP array.
+
+# Representation theory of $SU(2)$ [WIP]
+
+- `2x2` unitary matrices, so $AA^\dagger = I$.
+- Lie algebra is $su(2)$, which are of the form $A^\dagger = -A$, and $Tr(A) = 0$.
+- We write $M_v \equiv \begin{bmatrix} ix & y + iz  \\ -y + iz & -ix \end{bmatrix}$.
+- The group elements _are_ matrices, so this is the standard representation, which goes from $SU(2)$ to $GL(2, \mathbb C)$.
+  Turns out this is irreducible, 2D complex representation.
+- We have a transformation which for a $g \in SU(2)$ creates a map which sends a matrix $M_v$ to $g M_v g^{-1}$.
+  so the representation is $g \mapsto \lambda M_v. g M_v g^{-1}$, which has type signature $SU(2) \to GL(su(2))$.
+  This is a 3D, real representation: the vectors $M_v$ have 3 degrees of freedom.
+- We like complex representations, so we're going to build $SU(2) \to GL(su(2) \tensor \mathbb C)$.
+- There is the trivial representation $\lambda g. (1)$.
+- There is a zero dimensional representation $\lambda g. ()$ which maps $\star \in \mathbb C^0$ to $\star$. So it's the identity transformation
+  on $\mathbb C^0$.
+
+#### Theorem
+
+For any integer $n $ there is an irrep $R_n: SU(2) \to GL(n, \mathbb C)$. Also, any irrep $R: SU(2) \to GL(v)$ is isomorphic to one of these.
+
+
+#### New representations from old
+
+- If we have $R: G \to GL(V)$ and $S: G \to GL(W)$, what are new representations?
+- For one, we can build the direct sum $R \osum S$. But this is useless, since we don't get irreps.
+- We shall choose to take tensor product of representations.
+- Symmetric power of $R: G \to GL(V)$  is $R^{\tensor n}: G \to GL(V^{\tensor n})$. This is not irreducible because it contains
+  a subrep of symmetric tensors .
+- Example, in $C^2 \tensor C^2$, we can consider $e1 \tensor e1$, $e2 \tensor e2$, and $e1 \tensor e2 + e2 \tensor e1$.
+
+- Define $Av$ (for averaging) of $v_1 \tensor v_2 \dots v_n$ to be $1/n! \sum_{\sigma \in S_n} v_{\sigma(1)} \tensor v_{\sigma(2)} \dots v_{\sigma(n)}$.
+  In other words, it symmetrizes an input tensor.
+- Define $Sym^n (V) = Im(Av: V^{\tensor n} \to V^{\tensor n})$. We claim that $Sym^n(V)$ is a suprep of $V$.
+  We do this by first showing that $Av$ is a morphism of representations, and then by showing that the image of a 
+  morphism is a sub-representation.
+
+#### Weight space decomposition
+
+- $SU(2)$ contains a subgroup isomorphic to $U(1)$. Call this subgroup $T$, which is of the form
+   $\begin{bmatrix} e^{i \theta} & 0 \\ 0 & e^{-i \theta} \end{bmatrix}$.
+- 
+
+- [Reference](https://www.youtube.com/watch?v=bS-UhmV5DaE&list=PLN_4R2IuNuuRgJb00X2J53Iq9qe7k1nyr&index=26) 
 
 # Why quaternions work better
 
@@ -106,7 +743,15 @@ B---D
 
 #### Theorem: Monge matrices are totally monotone
 
-WIP
+
+#### Theorem: totally monotone matrices have ascending row minima
+
+#### 1D 1D DP
+
+- https://robert1003.github.io/2020/02/29/dp-opt-knuth.html
+- Suppose we have a dp $dp[r] = \min_{0 \leq l \leq r} f(l, r)$. That is, we need to find row minima for 
+  each row $r$ in a 2D matrix.
+- Now assume that $f(l, r)$ has ascending row minima 
 
 # Fixpoint as decorator
 
@@ -1361,10 +2006,12 @@ Consider the tree:
 - Total cost is cost of leaf `n`, plus cost of interior nodes `n log n`.
 
 
-# Zscoder codeforces rating
+# codeforces rating of some GMs
 
-Is quite comforting to see the rating of someone who [started at 1400, dropped to pupil](https://codeforces.com/profile/zscoder)
-and then worked their way back up?
+- Zscoder: Is quite comforting to see the rating of someone who [started at 1400, dropped to pupil](https://codeforces.com/profile/zscoder)
+  and then worked their way back up?
+
+- [ScarletS](https://codeforces.com/profile/ScarletS)
 
 
 
@@ -5399,6 +6046,15 @@ simultaneously diagonalize these matrices. Thus, we only need to consider
 the data along each diagonal, which is independent. This reduces the representation
 to a direct sum of scalars / 1D representations / characters.
 
+#### Number of irreducible representations
+
+Recall that the characters of irreducible representations are orthogonal. Also,
+the dimension of the space of class functions is equal to the number of
+conjugacy classes of the group $G$, since a class function takes on a distinct
+value over each conjugacy class, so there are those many degrees of freedom.
+This tells us that the number of irreducible representations is at most
+the number of conjugacy classes of the group.
+
 
 # Cofibration
 
@@ -5419,14 +6075,6 @@ the HEP (homotopy extension property), where we have a homotopy of subspace
 $A$, and a starting homotopy of $B$, which can be extended to a full homotopy.
 
 
-#### Number of irreducible representations
-
-Recall that the characters of irreducible representations are orthogonal. Also,
-the dimension of the space of class functions is equal to the number of
-conjugacy classes of the group $G$, since a class function takes on a distinct
-value over each conjugacy class, so there are those many degrees of freedom.
-This tells us that the number of irreducible representations is at most
-the number of conjugacy classes of the group.
 
 #### Lemma: Cofibration is always inclusion (Hatcher)
 
@@ -6638,21 +7286,26 @@ NOTE TO SELF: there should be a more direct proof that uses the fact that the fi
 
 
 
-# Lie bracket commutator from exponentiation (TODO)
+# Lie bracket commutator as infinitesimal conjugation
 
-I thought this was quite cute. To make sense of $[a, b]$ we consider
-the expression $e^{\epsilon a} e^{\epsilon b} e^{- \epsilon a} e^{- \epsilon b}$ which is equivalent to:
+
+- Consider the map $c(g, h) = ghg^{-1}$. Say we want to study the map near the identity in the first argument.
+- So we replace $g$ by $e + \epsilon k$ for identity $e$ and $k$ arbitrary group element.
+- This now makes conjugation $(e + \epsilon k) h (e + \epsilon k)^{-1}$.
+- Since $(1+x)^{-1} \simeq 1 - x$ by taylor expansion, the above becomes: $(e + \epsilon k) h (e - \epsilon k)$.
+- Algebra time:
 
 $$
 \begin{aligned}
-&(1 + \epsilon a + \epsilon^2 a^2/2)(1 + \epsilon b+ \epsilon^2 b^2/2)(1 - \epsilon a + \epsilon^2 a^2/2)(1 - \epsilon b + \epsilon^2 b^2/2)  \\
-&[(1 + \epsilon a + \epsilon^2 a^2/2)(1 - \epsilon a + \epsilon^2 a^2/2)] [(1 + \epsilon b+ \epsilon^2 b^2/2)(1 - \epsilon b + \epsilon^2 b^2/2)]  \\
-&[((1 +\epsilon^2 a^2/2) + \epsilon a)((1 + \epsilon^2 a^2/2) - \epsilon a)] [(1 + \epsilon^2 b^2/2+ )  \epsilon b) ((1 + \epsilon^2 b^2/2)  - \epsilon b)]  \\
-&[((1 +\epsilon^2 a^2/2)^2 -  \epsilon^2 a^2)] [(1 + \epsilon^2 b^2/2^2 -  \epsilon^2 b^2)]  \\
+&(e + \epsilon k) h (e - \epsilon k) \\
+&= ehe + e h (- \epsilon k) + \epsilon k) h e - \epsilon k h (-\epsilon k) \\
+&= h - \epsilon hk + \epsilon kh - \epsilon^2 khk \\
+&\simeq h + \epsilon [k, h] + O(\epsilon^2)
 \end{aligned}
 $$
 
-TODO
+- Thus, the linear part/gradient of the conjugation is given by $\epsilon [k, h] = kh - hk$.
+- So, the lie bracket corresonds to infinitesimal conjugation.
 
 # Thoughts on proof of fundamental group of unit circle
 
@@ -20569,6 +21222,7 @@ the exact same process!
   implicit mapping.
 - $F(x, f(x)) = 0$ by defn of $f(x)$. Apply chain rule!
 
+$$
 \begin{aligned}
 &F(x, f(x)) = 0 \\
 &dF = 0 \\
@@ -20576,6 +21230,7 @@ the exact same process!
 &\frac{\partial F}{\partial x} \cdot 1  + \frac{\partial F}{\partial y} \frac{df}{dx} = 0 \\
 &\frac{df}{dx} = \frac{- \frac{\partial F}{\partial y}}{\frac{\partial F}{\partial x} \cdot 1} \\
 \end{aligned}
+$$
 
 #### Idea of proof of inverse function theorem (from implicit function theorem)
 
@@ -34261,6 +34916,19 @@ things on architecture I wish to read and/or have read:
 
 # Recipes Cheat Sheet 
 
+#### A Simple Stew
+
+- chop onions
+- fry Ground nut oil with chopped onions
+- add the tomato to the mixture
+- allow that to fry for about 5 minutes
+-  add the meat water to the mixture
+- curry, thyme, maggi (bouillon cubes), salt, peppers
+- boil for like 5 minutes
+- boil white rice and then serve with stew
+- Thanks to Danda for the recipe!
+
+
 #### Babish recipes
 
 - [Binging with babish: Shwarma makes pita](https://www.youtube.com/watch?v=iErqWGwso7o)
@@ -34551,6 +35219,10 @@ let g:conjure#mapping#eval_motion = "E"
 - eval last definition: `C-c C-c`
 
 # Big list of quotes
+
+
+
+> No guest should be admitted without a date of departure ~ Violet, Downton Abbey
 
 > Not knowing things isn't dumb; pretending to know is.
 
