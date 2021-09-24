@@ -15,12 +15,12 @@ A Universe of Sorts
 - [reading list and link dump](todo.html)
 - Here is the <a type="application/rss+xml" href="feed.rss"> RSS feed for this page</a>
 
+
 # GAP permutation syntax
 - The action of permutation on an element is given by $i^p$. This is the "exponential notation" for group actions.
 - See that we only ever write permutations multiplicatively, eg `(1) (23)` is the composition of permutations [written multiplicatively].
 - Thus the identity permutation must be `1`, and it's true that any number `n^1 = n`, so the identity permutation `1` fixes everything.
 
-# Curvature in 1D
 
 
 # "Cheap" proof of euler characteristic
@@ -29,7 +29,7 @@ A Universe of Sorts
 - If we punch two holes, that causes $V - E + F$ to go down by two. But we can glue the two edges together. 
   This gluing gives us a handle, so each hole/genus reduces the euler characteristic by two!
 
-# Siefert Algorithm
+# Siefert Algorithm [WIP]
 
 - Algorithm to find surface that a knot bounds.
 - If we find a surface, then the genus of the boundary is one minus the genus of the surface.
@@ -162,7 +162,7 @@ https://www.youtube.com/watch?v=drOldszOT7I&list=PLIljB45xT85DWUiFYYGqJVtfnkUFWk
 
 https://www.youtube.com/watch?v=uanrlbRbuEs&list=PLBY4G2o7DhF38OEvEImfR2heX7Szmq5Gs&index=35
 
-# Theorem Egregium [WIP]
+# Theorem Egregium (Integrating curvature in 2D) [WIP]
 
 - Let $S$ be a 2 dimensional surface.
 - Gauss Rodriguez map map: $N: S \to S^2$. The derivative of this map goes from $dN: T_p S \to T_p S^2$.
@@ -179,23 +179,58 @@ https://www.youtube.com/watch?v=uanrlbRbuEs&list=PLBY4G2o7DhF38OEvEImfR2heX7Szmq
 - In particular if the surface is homeomorphic to a sphere, then we get the total area of the sphere, $4 \pi$.. This is the 2D analogue of
   the fact that if we integrate the curvature of a closed curve, we get $2 \pi$. [area of a circle]. This is by green's theorem.
 
+# Integrating Curvature in 1D [WIP]
 
+# Fundamental theorem of symmetric polynomials
 
-#### Discrete geometry
+- Every symmetric polynomial of variables $x, y, z$ can be written in terms of the elementary symmetric polynomials $\sigma_0 \equiv 1$,
+  $\sigma_1 = x + y + z$, $\sigma_2 = xy + yz + xz$. Generalize appropriately.
 
-- If we want to compute the curvature of a discrete polygon at a point, we should look at the gauss map. the total curvature at the point
-  will be equal to the spherical area of the image polygon. The spherical area of a triangle is $\alpha_1 + \alpha_2 + \alpha_3 - \pi$.
+### Two variable case
 
-- https://www.youtube.com/watch?v=R1oU5m69ILk&list=PLIljB45xT85DWUiFYYGqJVtfnkUFWkKtP&index=35
+- For even further simplicity, consider the two variable case: every symmetric polynomial of variables $x, y$ can be written in terms of the
+  elementary symmetric polynomials $\sigma_0 = 1$, $\sigma_1 = x + y$, $\sigma_2 = xy$.
+- Consider some symmetric polynomial $p(x)$. Define an ordering on its monomials $x^ay^b > x^c y^d$ iff either $a + b > c + d$, or $a > c$, or
+  $a = c \land b > d$. So we compare first by degree, then by $(a, b) > (c, d)$ lexicographically. Thus, call this order the *lex* order.
+- Define `bigmon(p)` to be the largest monomial in $p(x)$. Define `bigcoeff(p)` to be the coefficient of `bigmon(p)`. Finally, define
+  `bigterm(p) = bigmon(p) . bigcoeff(p)` as the leading term of the polynomial $p(x, y)$.
+- Prove an easy theorem that `bigterm(pq) = bigterm(p)bigterm(q)`.
+- Now, suppose we have a leading monomial $x^5y^9$. Actually, this is incorrect! If we have a monomial $x^5y^9$, then we will also have a monomial
+  $x^9y^5$, which is lex larger than $x^5y^9$. Thus, in any leading monomial, we will have the powers be in non-increasing (decreasing order).
+- OK, we have leading monomial $x^9 y ^5$. We wish to write this in terms of elementary symmetric polynomials. We could try and write this
+  by using the leading term $x$ in $s_1$ and leading term $xy$ in $s_2$. 
+- This means we need to solve $x^9y^5 = x^k (xy)^l$, or $9 = k + l$ and $5 = l$. This tells us that we should choose $l = 5$ and $k = 9 - 5 = 4$.
+  If we do this, then our combination of symmetric polynomials will kill the leading term of $p(x)$. Any new terms we introduce will be smaller than the
+  leading term, which we can write as elementary symmetric polynomials by induction!
 
+### Three variable case
 
-# Conway Zip proof [WIP] 
+- Now consider three variables. Once again, suppose $p(x)$ has leading monomial $x^ay^bz^c$. We saw earlier that we must have $a \geq b \geq c$ for
+  it to be a leading monomial.
+- Let's write it in terms of $s_1, s_2, s_3$. So we want to write it  as product of  $(x)^p$, $(xy)^q$, and $(xyz)^r$. Their product is
+  $x^{p+q+r}y^{q+r}z^r$.
+- This gives us the system of equations $x^{p+q+r}y^{q+r}z^r = x^ay^bz^c$. This means (1) $r = c$, (2) $q+r = b$ or $q = b - c$, and (3) $p + q + r = a$
+  or $p = a - q - r = a - (b - c) - c = a - b$. 
 
-- https://www.youtube.com/watch?v=-GJs7_NdLm8&list=PL6763F57A61FE6FE8&index=20
-- Key idea: 
+#### General situation
 
+- think of the monomial $x^ay^bz^c$ as a vector $[a, b, c]$. Then the leading terms of the 
+  symmetric polynomials correspond to $[1, 0, 0]$, $[1, 1, 0]$, and $[1, 1, 1$].
+- When we take powers of symmetric polynomials, we scale their exponent vector by that power.
+  So for example, the leading term of $s_2^9$ is $x^9y^9$ which is $[9, 9] = 9[1, 1]$. 
+- When we multiply symmetric polynomials, we add their exponent vectors. For example, the leading term of $s_1 s_2$ is $x(x+y) = x^2 y = [2, 1]$. This is
+  equal to $[1, 0] + [1, 1]$
+- Thus, we wish to write the vector $[a, b, c]$ as a linear combination of vectors $[1, 0, 0]$, $[1, 1, 0]$, and $[1, 1, 1]$. This is solving the equation:
 
-# Norms and trace
+```
+[p][1 0 0]   [a]
+[q][1 1 0] = [b]
+[r][1 1 1]   [c]
+```
+
+- This can be solved via linear algebra, or really, just solve the damn system by substitution.
+
+# Norms and trace for fields
 
 - $L/K$ is often well thought as a K-vector space / K-algebra. Can view
   elements of $L$ as $K$ linear homomorphisms  from $L$ to $L$ (by
