@@ -198,49 +198,35 @@ std::ostream &operator<<(std::ostream &o, const Span &s) {
   return cout << s.begin << " - " << s.end;
 }
 
-// TODO: upgrade this to take a space, not just a location.
-void vprintfspan(Span span, const char *raw_input, const char *fmt,
-                 va_list args) {
-  char *outstr = nullptr;
-  vasprintf(&outstr, fmt, args);
-  assert(outstr);
-  cerr << "===\n";
-  cerr << span.begin << ":" << span.end << "\n";
-
-  cerr << "===\n";
-  cerr << span << "\t" << outstr << "\n";
-  for (ll i = span.begin.si; i < span.end.si; ++i) {
-    cerr << raw_input[i];
+void print_loc(L l, const char *data) {
+  const int len = strlen(data);
+  if (l.si >= len) {
+    printf("\n%4lld>EOF", l.line);
+    return;
   }
   cerr << "\n===\n";
-}
+  int i = l.si;
+  for (; i >= 1 && data[i - 1] != '\n'; i--) {
+  }
 
-void printfspan(Span span, const char *raw_input, const char *fmt, ...) {
-  va_list args;
-  va_start(args, fmt);
-  vprintfspan(span, raw_input, fmt, args);
-  va_end(args);
+  printf("\n%4lld>", l.line);
+  string squiggle;
+  for (; data[i] != '\0' && data[i] != '\n'; ++i) {
+    squiggle += i == l.si ? '^' : ' ';
+    cerr << data[i];
+  }
+  printf("\n%4lld>%s\n", l.line, squiggle.c_str());
 }
 
 void vprintferr(L loc, const char *raw_input, const char *fmt, va_list args) {
+
+  cerr << "===\n";
+  print_loc(loc, raw_input);
+  cerr << "\n---\n";
   char *outstr = nullptr;
   vasprintf(&outstr, fmt, args);
   assert(outstr);
-
-  cerr << "===\n";
-  cerr << loc << "  " << outstr << "\n";
-  // find the previous newloc character.
-  int i = loc.si;
-  for (; i >= 1 && raw_input[i - 1] != '\n'; i--) {
-  }
-
-  cerr << "Source file [" << loc << "]> ";
-  for (; raw_input[i] != '\0' && raw_input[i] != '\n'; ++i) {
-    if (i == loc.si) {
-      cerr << "⌷";
-    }
-    cerr << raw_input[i];
-  }
+  cerr << outstr;
   cerr << "\n===\n";
   free(outstr);
 }

@@ -27,9 +27,9 @@ if ((window.innerHeight - document.documentElement.clientHeight) >0) {
 
 # Features
 
+- [ ] Add a link back at the end of the page to the main page / Add "go back" link.
 - [ ] Client side search with [elasticlunr.js](https://github.com/weixsong/elasticlunr.js/)
 - [ ] Mimic link structure as in [`viewsourcecode.org`](https://viewsourcecode.org/snaptoken/kilo/08.appendices.html#)
-- [ ] Add "go back" link.
 - [ ] Add "subscribe" link.
 - [x] [utterances](https://utteranc.es/) for comments on the blog.
 - [x] error for `_ _`,  `* *`, `__ __`, `** **` that span multiple lines.

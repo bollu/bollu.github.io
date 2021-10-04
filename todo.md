@@ -1,3 +1,22 @@
+- [How to speak: Patrick Winston](https://www.youtube.com/watch?v=Unzc731iCUY&t=189s)
+- [Functioal analysis: Dover books by George Bachman and Lawrence Narci.](https://math.stackexchange.com/a/129282/261373)
+- [Lazy BB versioning: Simple and Effective Type Check Removal through Lazy Basic Block Versioning](https://drops.dagstuhl.de/opus/volltexte/2015/5219/pdf/9.pdf)
+- [Analysis, Measure, and Probability: A visual introduction](http://euclid.trentu.ca/pivato/Teaching/measure.pdf)
+- [Discrete differential geometry by albert chern](https://cseweb.ucsd.edu/~alchern/teaching/DDG.pdf)
+- [The mom test: selling](https://news.ycombinator.com/item?id=28667439)
+- [Topology in condensed matter](https://topocondmat.org/index.html)
+- [Hyperscan: fast SIMD regex matching](https://www.hyperscan.io/2015/10/20/match-regular-expressions/)
+- [Mnemonic peg system](https://artofmemory.com/wiki/Mnemonic_Peg_System/)
+- [the fundamental theorem on symmetric polynomials: history’s first whiff of galois theory](https://arxiv.org/pdf/1301.7116.pdf)
+- [Rota's account of Ulam](https://sgp.fas.org/othergov/doe/lanl/pubs/00285736.pdf)
+- [Class groups: lecture notes and exercises!](https://www.usf-crypto.org/class-groups/)
+- [Graduate course on galois theory](https://www.youtube.com/watch?v=iHoZ3ZheZHs&list=PLu6jbin1VpDBGWvctA_vGFLXzJD8YsA3F&index=9)
+- "Lectures in discrete geometry" by Matousek. Contains geometric information about incidence, polytopes, all that good stuff.
+- Problems on algorithms by Ian Parberrt.
+- [OEIS C sequence: A000080](https://oeis.org/A000080/a000080.c.txt)
+- [Flutter rendering engine](https://www.youtube.com/watch?time_continue=40&v=UUfXWzp0-DU&feature=emb_logo)
+- [Pretentious approach to analytic number theory](https://www.youtube.com/watch?v=RpuhtlFqFLw)
+- Duhamel's principle
 - [Youtube videos: Lie groups and Lie algebras](https://www.youtube.com/watch?v=fXJcoXeiPD8&list=PLRlVmXqzHjURZO0fviJuyikvKlGS6rXrb)
 - [Computational Combinatorics Blog](https://computationalcombinatorics.wordpress.com/page/2/)
 - Inequalities by Hardy, Littlewood, and Polya: book about inequalities

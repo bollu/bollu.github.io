@@ -5,6 +5,161 @@
 <link>https://bollu.github.io/</link>
 <description>A universe of Sorts</description>
   <item>
+    <title> Chebyshev polynomial and cosine </title>
+    <guid>https://bollu.github.io/chebyshev-polynomial-and-cosine.html</guid>
+    <link>https://bollu.github.io/chebyshev-polynomial-and-cosine.html</link>
+  </item>
+  <item>
+    <title> Fuzzing book </title>
+    <guid>https://bollu.github.io/fuzzing-book.html</guid>
+    <link>https://bollu.github.io/fuzzing-book.html</link>
+  </item>
+  <item>
+    <title> Filtered Colimits  [WIP ] </title>
+    <guid>https://bollu.github.io/filtered-colimits-wip.html</guid>
+    <link>https://bollu.github.io/filtered-colimits-wip.html</link>
+  </item>
+  <item>
+    <title> Fisher Yates </title>
+    <guid>https://bollu.github.io/fisher-yates.html</guid>
+    <link>https://bollu.github.io/fisher-yates.html</link>
+  </item>
+  <item>
+    <title> Bucchberger algorithm </title>
+    <guid>https://bollu.github.io/bucchberger-algorithm.html</guid>
+    <link>https://bollu.github.io/bucchberger-algorithm.html</link>
+  </item>
+  <item>
+    <title> GAP permutation syntax </title>
+    <guid>https://bollu.github.io/gap-permutation-syntax.html</guid>
+    <link>https://bollu.github.io/gap-permutation-syntax.html</link>
+  </item>
+  <item>
+    <title> Why division algorithm with multiple variables go bad </title>
+    <guid>https://bollu.github.io/why-division-algorithm-with-multiple-variables-go-bad.html</guid>
+    <link>https://bollu.github.io/why-division-algorithm-with-multiple-variables-go-bad.html</link>
+  </item>
+  <item>
+    <title> Integral elements of a ring form a ring  [WIP ] </title>
+    <guid>https://bollu.github.io/integral-elements-of-a-ring-form-a-ring-wip.html</guid>
+    <link>https://bollu.github.io/integral-elements-of-a-ring-form-a-ring-wip.html</link>
+  </item>
+  <item>
+    <title>  &quot; Cheap &quot;  proof of euler characteristic </title>
+    <guid>https://bollu.github.io/cheap-proof-of-euler-characteristic.html</guid>
+    <link>https://bollu.github.io/cheap-proof-of-euler-characteristic.html</link>
+  </item>
+  <item>
+    <title> Siefert Algorithm  [WIP ] </title>
+    <guid>https://bollu.github.io/siefert-algorithm-wip.html</guid>
+    <link>https://bollu.github.io/siefert-algorithm-wip.html</link>
+  </item>
+  <item>
+    <title> Cap product  [WIP ] </title>
+    <guid>https://bollu.github.io/cap-product-wip.html</guid>
+    <link>https://bollu.github.io/cap-product-wip.html</link>
+  </item>
+  <item>
+    <title> Cup product  [WIP ] </title>
+    <guid>https://bollu.github.io/cup-product-wip.html</guid>
+    <link>https://bollu.github.io/cup-product-wip.html</link>
+  </item>
+  <item>
+    <title> Colimits examples with small diagram categories </title>
+    <guid>https://bollu.github.io/colimits-examples-with-small-diagram-categories.html</guid>
+    <link>https://bollu.github.io/colimits-examples-with-small-diagram-categories.html</link>
+  </item>
+  <item>
+    <title> Limits examples with small diagram categories </title>
+    <guid>https://bollu.github.io/limits-examples-with-small-diagram-categories.html</guid>
+    <link>https://bollu.github.io/limits-examples-with-small-diagram-categories.html</link>
+  </item>
+  <item>
+    <title> Classification of compact 2-manifolds  [WIP ] </title>
+    <guid>https://bollu.github.io/classification-of-compact-2-manifolds-wip.html</guid>
+    <link>https://bollu.github.io/classification-of-compact-2-manifolds-wip.html</link>
+  </item>
+  <item>
+    <title> Gauss, normals, fundamental forms  [WIP ] </title>
+    <guid>https://bollu.github.io/gauss-normals-fundamental-forms-wip.html</guid>
+    <link>https://bollu.github.io/gauss-normals-fundamental-forms-wip.html</link>
+  </item>
+  <item>
+    <title> Shape operator  [WIP ] </title>
+    <guid>https://bollu.github.io/shape-operator-wip.html</guid>
+    <link>https://bollu.github.io/shape-operator-wip.html</link>
+  </item>
+  <item>
+    <title> Theorem Egregium (Integrating curvature in 2D)  [WIP ] </title>
+    <guid>https://bollu.github.io/theorem-egregium-integrating-curvature-in-2d-wip.html</guid>
+    <link>https://bollu.github.io/theorem-egregium-integrating-curvature-in-2d-wip.html</link>
+  </item>
+  <item>
+    <title> Integrating Curvature in 1D  [WIP ] </title>
+    <guid>https://bollu.github.io/integrating-curvature-in-1d-wip.html</guid>
+    <link>https://bollu.github.io/integrating-curvature-in-1d-wip.html</link>
+  </item>
+  <item>
+    <title> Fundamental theorem of symmetric polynomials </title>
+    <guid>https://bollu.github.io/fundamental-theorem-of-symmetric-polynomials.html</guid>
+    <link>https://bollu.github.io/fundamental-theorem-of-symmetric-polynomials.html</link>
+  </item>
+  <item>
+    <title> DP over submasks </title>
+    <guid>https://bollu.github.io/dp-over-submasks.html</guid>
+    <link>https://bollu.github.io/dp-over-submasks.html</link>
+  </item>
+  <item>
+    <title> Dual of Planar Euler graph is bipartite </title>
+    <guid>https://bollu.github.io/dual-of-planar-euler-graph-is-bipartite.html</guid>
+    <link>https://bollu.github.io/dual-of-planar-euler-graph-is-bipartite.html</link>
+  </item>
+  <item>
+    <title> Yoneda preserves limits </title>
+    <guid>https://bollu.github.io/yoneda-preserves-limits.html</guid>
+    <link>https://bollu.github.io/yoneda-preserves-limits.html</link>
+  </item>
+  <item>
+    <title> Separable field extensions </title>
+    <guid>https://bollu.github.io/separable-field-extensions.html</guid>
+    <link>https://bollu.github.io/separable-field-extensions.html</link>
+  </item>
+  <item>
+    <title> Limits of a functor category are computed pointwise. </title>
+    <guid>https://bollu.github.io/limits-of-a-functor-category-are-computed-pointwise.html</guid>
+    <link>https://bollu.github.io/limits-of-a-functor-category-are-computed-pointwise.html</link>
+  </item>
+  <item>
+    <title>  a + b = (a or b) + (a and b)</title>
+    <guid>https://bollu.github.io/a-b-a-or-b-a-and-b.html</guid>
+    <link>https://bollu.github.io/a-b-a-or-b-a-and-b.html</link>
+  </item>
+  <item>
+    <title> Intuition for why choosing closed-closed intervals of  [1..n] is  (n+1)C2</title>
+    <guid>https://bollu.github.io/intuition-for-why-choosing-closed-closed-intervals-of-1n-is-n1c2.html</guid>
+    <link>https://bollu.github.io/intuition-for-why-choosing-closed-closed-intervals-of-1n-is-n1c2.html</link>
+  </item>
+  <item>
+    <title> Thoughtful discussion on the limits of safe spaces </title>
+    <guid>https://bollu.github.io/thoughtful-discussion-on-the-limits-of-safe-spaces.html</guid>
+    <link>https://bollu.github.io/thoughtful-discussion-on-the-limits-of-safe-spaces.html</link>
+  </item>
+  <item>
+    <title> Semidirect product: Panning and Zooming </title>
+    <guid>https://bollu.github.io/semidirect-product-panning-and-zooming.html</guid>
+    <link>https://bollu.github.io/semidirect-product-panning-and-zooming.html</link>
+  </item>
+  <item>
+    <title> Longest Convex Subsequence DP </title>
+    <guid>https://bollu.github.io/longest-convex-subsequence-dp.html</guid>
+    <link>https://bollu.github.io/longest-convex-subsequence-dp.html</link>
+  </item>
+  <item>
+    <title> Representation theory of  SU(2)  [WIP ] </title>
+    <guid>https://bollu.github.io/representation-theory-of-su2-wip.html</guid>
+    <link>https://bollu.github.io/representation-theory-of-su2-wip.html</link>
+  </item>
+  <item>
     <title> Why quaternions work better </title>
     <guid>https://bollu.github.io/why-quaternions-work-better.html</guid>
     <link>https://bollu.github.io/why-quaternions-work-better.html</link>
@@ -200,9 +355,9 @@
     <link>https://bollu.github.io/fft.html</link>
   </item>
   <item>
-    <title> Zscoder codeforces rating </title>
-    <guid>https://bollu.github.io/zscoder-codeforces-rating.html</guid>
-    <link>https://bollu.github.io/zscoder-codeforces-rating.html</link>
+    <title> codeforces rating of some GMs </title>
+    <guid>https://bollu.github.io/codeforces-rating-of-some-gms.html</guid>
+    <link>https://bollu.github.io/codeforces-rating-of-some-gms.html</link>
   </item>
   <item>
     <title> Continuum TTRPG </title>
@@ -830,9 +985,9 @@
     <link>https://bollu.github.io/quotes-from-the-culture.html</link>
   </item>
   <item>
-    <title> Lie bracket commutator from exponentiation (TODO) </title>
-    <guid>https://bollu.github.io/lie-bracket-commutator-from-exponentiation-todo.html</guid>
-    <link>https://bollu.github.io/lie-bracket-commutator-from-exponentiation-todo.html</link>
+    <title> Lie bracket commutator as infinitesimal conjugation </title>
+    <guid>https://bollu.github.io/lie-bracket-commutator-as-infinitesimal-conjugation.html</guid>
+    <link>https://bollu.github.io/lie-bracket-commutator-as-infinitesimal-conjugation.html</link>
   </item>
   <item>
     <title> Thoughts on proof of fundamental group of unit circle </title>
