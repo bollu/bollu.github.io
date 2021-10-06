@@ -5,9 +5,19 @@
 <link>https://bollu.github.io/</link>
 <description>A universe of Sorts</description>
   <item>
-    <title> Chebyshev polynomial and cosine </title>
-    <guid>https://bollu.github.io/chebyshev-polynomial-and-cosine.html</guid>
-    <link>https://bollu.github.io/chebyshev-polynomial-and-cosine.html</link>
+    <title> Defining continuity covariantly </title>
+    <guid>https://bollu.github.io/defining-continuity-covariantly.html</guid>
+    <link>https://bollu.github.io/defining-continuity-covariantly.html</link>
+  </item>
+  <item>
+    <title> Lean &apos; s type theory </title>
+    <guid>https://bollu.github.io/leans-type-theory.html</guid>
+    <link>https://bollu.github.io/leans-type-theory.html</link>
+  </item>
+  <item>
+    <title> Deriving pratt parsing by analyzing recursive descent  [WIP ] </title>
+    <guid>https://bollu.github.io/deriving-pratt-parsing-by-analyzing-recursive-descent-wip.html</guid>
+    <link>https://bollu.github.io/deriving-pratt-parsing-by-analyzing-recursive-descent-wip.html</link>
   </item>
   <item>
     <title> Fuzzing book </title>

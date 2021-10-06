@@ -1,21 +1,22 @@
 
 <img style="float:left;display:inline-block;padding-right: 16px; width: 48px" src="./static/banner.png">
-<h2>
-A Universe of Sorts 
-</h2>
-( <a type="application/rss+xml" href="feed.rss"> RSS feed </a> )
+<h2> A Universe of Sorts </h2>
+<h3> Siddharth Bhat </h3>
+
+- [Leave me your thoughts](https://www.admonymous.co/bollu) / [Chat with me](https://calendly.com/bollu/) / Email me:  <a href='mailto:siddu.druid@gmail.com'> `siddu.druid@gmail.com` </a>
+- [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
+- <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
+
+# Defining continuity covariantly
+
+https://twitter.com/EscardoMartin/status/1444791065735729155
+# Lean's type theory
+
+https://github.com/digama0/lean-type-theory/stargazers
 
 
-### Siddharth Bhat
+# Deriving pratt parsing by analyzing recursive descent [WIP]
 
-- [Leave (anonymous, if you wish) feedback!](https://www.admonymous.co/bollu)
-- [Schedule a call](https://calendly.com/bollu/) / Email:  <a href='mailto:siddu.druid@gmail.com'> `siddu.druid@gmail.com` </a>
-- [github](http://github.com/bollu) / [math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [resume](resume/main.pdf)
-- [reading list and link dump](todo.html)
-
-# Chebyshev polynomial and cosine
-
-- `cos(n theta) = Pn (cos theta)`
 
 
 # Fuzzing book
@@ -24,6 +25,53 @@ A Universe of Sorts
   `cond=True`, so we have full statement coverage. On the other hand, this does not guarantee full branch coverage, since we have not
   exectuted the branch where `cond=False`. We can't tell that we haven't covered this branch since *there is no statement* to record that
   we have taken the `else` branch!
+
+- Branch distances: for conditions `a == b`, `a != b`, `a < b`, `a <= b`, define the "distance true/distance false" to be the number that is to be
+  added/subtracted to `a` to make the condition true/false (for a fixed `b`). So, for example, the "distance true" for `a == b` is `abs(b - a)`,
+  while "distance false" is `1 - int(a == b)`.
+
+- **What are we missing in coverage?** The problem here is that coverage is unable
+  to evaluate the quality of our assertions. Indeed, coverage does not care
+  about assertions at all. However, as we saw above, assertions are an
+  extremely important part of test suite effectiveness. Hence, what we need is
+  a way to evaluate the quality of assertions.
+
+- **Competent Programmer Hypothesis / Finite Nbhd Hypothesis**: Mutation
+  Analysis provides an alternative to a curated set of faults. The key insight
+  is that, if one assumes that the programmer understands the program in
+  question, the majority of errors made are very likely small transcription
+  errors (a small number of tokens). A compiler will likely catch most of these
+  errors. Hence, the majority of residual faults in a program is likely to be
+  due to small (single token) variations at certain points in the structure of
+  the program from the correct program (This particular assumption is called
+  the Competent Programmer Hypothesis or the Finite Neighborhood Hypothesis).
+
+
+- **Equivalent mutants**: However, if the number of mutants are sufficiently
+  large (say > 1000), one may choose a smaller number of mutants from the alive
+  mutants randomly and manually evaluate them to see whether they represent
+  faults. We choose the sample size by
+  [sampling theory of binomial distributions](https://www.itl.nist.gov/div898/handbook/prc/section2/prc242.htm).
+- **Chao's estimator**: way to estimate the number of true mutants (and hence
+  the number of equivalent mutants) is by means of Chao's estimator:
+
+$$
+hat M \equiv 
+\begin{cases}
+M(n) + k_1^2 / (2 k_2) & \text{if } k_2 > 0 \\
+M(n) + k_1(k_1 - 1)/2 & \text{otherwise} \\
+\end{cases}
+$$
+
+- $k_1$ is the number of mutants that were killed exactly once, $k_2$ is the number of mutants that were
+  killed exactly twice. $\hat M$ estimates the the true numbe of mutants.
+- If $T$ is the total mutants generated, then $T - M(n)$ represents **immortal** mutants.
+- $\hat M$ is the  is the mutants that the testset can detect given an infinite amount of time.
+
+
+
+
+
 
 
 # Filtered Colimits [WIP]

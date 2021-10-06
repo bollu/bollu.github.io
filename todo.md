@@ -1,3 +1,4 @@
+- Stochastic Modeling: Analysis and Simulation --- good intro book on queueing theory.
 - [How to speak: Patrick Winston](https://www.youtube.com/watch?v=Unzc731iCUY&t=189s)
 - [Functioal analysis: Dover books by George Bachman and Lawrence Narci.](https://math.stackexchange.com/a/129282/261373)
 - [Lazy BB versioning: Simple and Effective Type Check Removal through Lazy Basic Block Versioning](https://drops.dagstuhl.de/opus/volltexte/2015/5219/pdf/9.pdf)
