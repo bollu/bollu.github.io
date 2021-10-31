@@ -1,4 +1,3 @@
-
 <img style="float:left;display:inline-block;padding-right: 16px; width: 48px" src="./static/banner.png">
 <h2> A Universe of Sorts </h2>
 <h3> Siddharth Bhat </h3>
@@ -7,15 +6,721 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+# Spin as motion about center of mass
+# How GHC does typeclass resolution
+
+Its like 5 steps
+03:04 <davean> Find all instances I that match the target constraint; that is, the target constraint is a substitution instance of I
+03:04 <davean> . These instance declarations are the candidates.
+03:04 <davean> If no candidates remain, the search fails
+03:04 <davean> Eliminate any candidate IX
+03:04 <davean> for which there is another candidate IY such that both of the following hold:
+03:04 <davean>     IY
+03:04 <davean> is strictly more specific than IX. That is, IY is a substitution instance of IX
+03:04 <davean> but not vice versa.
+03:04 <davean> Either IX
+03:04 <davean> is overlappable, or IY
+03:04 <davean>     is overlapping. (This “either/or” design, rather than a “both/and” design, allow a client to deliberately override an instance from a library, without requiring a change to the library.)
+03:05 <davean> If all the remaining candidates are incoherent, the search succeeds, returning an arbitrary surviving candidate.
+03:05 <davean> If more than one non-incoherent candidate remains, the search fails.
+03:05 <davean> Otherwise there is exactly one non-incoherent candidate; call it the “prime candidate”.
+03:05 <davean> Now find all instances, or in-scope given constraints, that unify with the target constraint, but do not match it. Such non-candidate instances might match when the target constraint is further instantiated. If all of them are incoherent top-level instances, the search succeeds, returning the prime candidate. Otherwise the search fails.
+03:05 <davean> there you go, thats all of it
+03:05 <davean> https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/instances.html#overlapping-instances
+
 # Defining continuity covariantly
 
-https://twitter.com/EscardoMartin/status/1444791065735729155
-# Lean's type theory
+- Real analysis: coavriant definition: $f(\lim x) = \lim (f x)$. Contravariant definition in analysis/topology: $f^{-1}(open)$ is open.
+- Contravariant in topology via sierpinski: $U \subseteq X$ is open iff characteristic function $f(x) = \begin{cases} T & x \in U \\ \bot & \otherwise \end{cases}$
+  is continuous.
+- A function $f: X \to Y$ is continuous iff every function $f \circ s$ is continuous for every continuous $s: Y \to S$. That is, a function is continuous iff
+  the pullback of every indicator is an indicator. 
+- A topological space is said to be *sequential* iff every *sequentially open set* is open.
+- A set $K \subseteq X$ is sequentially open iff whenever a sequence $x_n$ has a limit point in $K$, then there is some $M$ such that $x_{\geq M}$ lies in $K$. [TODO: check]
+- Now consider $\mathbb N_\infty$, the one point compactification of the naturals. Here, we add a point called $\infty$ to $\mathbb N$, and declare 
+  that sets which have a divergent sequences and $\infty$ in them are open.
+- More abstractly, we declare all sets that are complements of closed and bounded sets with
+  infinity in them as open. So a set $U \subseteq \mathbb N_{\infty}$ is bounded iff there exists a closed bounded
+  $C \subseteq \mathbb N$ such that $U = \mathbb N / C \cup \{ infty \}. 
+- A function $x: \mathbb N_\infty to X$ is continuous [wrt above topology] iff the sequence $x_n$ converges to the limit $x_\infty$.
+- See that we use functions out of $\mathbb N_\infty$ [covariant] instead of functions into $S$ [contravariant].
+- Now say a function $f: X \to Y$ is sequentially continuous iff for every continuous $x: \mathbb N_\infty \to X$, the composition $f \circ x: \mathbb N_\infty \to Y$
+  is continuous. Informally, the pushforward of every convergent sequence is continuous.
+- Can show that the category of sequential spaces is **cartesian closed**.
+- Now generalize $\mathbb N_\infty$
+- https://twitter.com/EscardoMartin/status/1444791065735729155
 
-https://github.com/digama0/lean-type-theory/stargazers
+# Why commutator is important for QM
 
+- Suppose we have an operator $L$ with eigenvector $x$, eigenvalue $\lambda$. So $Lx = \lambda x$.
+- Now suppose we have another operator $N$ such that $[L, N] = \kappa N$ for some constant $\kappa$.
+- Compute $[L, N]x = \kappa Nx$, which implies:
+
+$$
+\begin{aligned}
+&[L, N]x = \kappa Nx \\
+&(LN - NL)x = \kappa Nx \\
+&L(Nx) - N(Lx) = \kappa Nx \\
+&L(Nx) - N(\lambda x) = \kappa Nx \\
+&L(Nx) - \lambda N(x) = \kappa Nx \\
+&L(Nx) = \kappa Nx + \lambda Nx  \\
+&L(Nx) = (\kappa + \lambda)Nx  \\
+\end{aligned}
+$$
+
+- So $Nx$ is an eigenvector of $L$ with eigenvalue $\kappa + \lambda$.
+- This is how we get "ladder operators" which raise and lower the state. If we have a state $x$ with some eigenvalue $\lambda$, the operator like $N$
+  gives us an "excited state" from $x$ which eigenvalue $\kappa + \lambda$.
 
 # Deriving pratt parsing by analyzing recursive descent [WIP]
+
+
+# Level set of a continuous function must be closed
+
+- Let $f$ be continuous, let $L \equiv f^{-1}(y)$ be a level set. We claim $L$ is closed.
+- Consider any sequence of points $s: \mathbb N \to L$. We must have $f(s_i) = y$
+  since $s(i) \in L$. Thus, $f(s_i) = y$ for all $i$.
+- By continuity, we therefore have $f(\lim s_i) = \lim f(s_i) = y$.
+- Hence, $\lim s_i \in L$.
+- This explains why we build Zariski the way we do: the level sets of functions
+  must be closed. Since we wish to study polynomials, we build our topology out of the
+  level sets of polynomials. 
+
+
+# HPNDUF - Hard problems need design up front!
+- [Norvig v/s some TDD due try to solve sudoku](http://ravimohan.blogspot.com/2007/04/learning-from-sudoku-solvers.html)
+
+
+# Separable Extension is contained in Galois extension
+
+- Recall that an extension is galois if it is separable and normal.
+- Consider some separable extension $L/K$.
+- By primitive element, can be written as $L = K(\alpha)$
+- Since $L$ is separable, the minimal polynomial of $\alpha$, $p(x) \in K[x]$ is separable, and so splits into linear factors.
+- Build the splitting field $M$ of $p(x)$. This will contain $L$, as $L = K(\alpha) \subseteq K(\alpha, \beta, \gamma, \dots)$ 
+  where $\alpha, \beta, \gamma, \dots$ are the roots of $p(x)$.
+- This is normal (since it is the splitting field of a polynomial).
+- This is separable, since it is generated by separable elements $\alpha$, $\beta$, $\gamma$, and so on.
+
+# Extension of field by separable element is separable [WIP]
+
+- Let $K$ be a field, and let $\alpha$ be the root of a separable polynomial $p \in K[X]$. Then we claim that $K(\alpha)$ is separable.
+- Let $L/K$ be a finite extension. Define the **separable degree** of the extension to be the number of distinct morphisms $L/K \to \overline K$.
+- http://www.math.brown.edu/jlubin/sep.pdf
+- [Kconrad's notes](https://kconrad.math.uconn.edu/blurbs/galoistheory/separable2.pdf)
+
+
+# Primitive element theorem without galois groups [WIP]
+
+- [Reference](https://math.stackexchange.com/questions/1248781/primitive-element-theorem-without-galois-group)
+
+
+# Galois extension
+
+- Let $M$ be a finite extension of $K$. Let $G = Gal(M/K)$. Then $M$ is said to be Galois iff:
+1. $M$ is normal and separable (over $K$).
+2. $deg(M/K) = |G|$. We will show that $|G| \leq deg(M/K)$. So $M$ is "symmetric as possible$ --- have the largest possible galois group
+3. $K = M^G$ [The fixed poits of $M$ under $G$]. This is useful for examples.
+4. $M$ is the splitting field of a separable polynomial over $K$. Recall that a polynomial is separable over $K$ if it has distinct roots in 
+   the algebraic closure of $K$. Thus, the number of roots is equal to the degree.
+5. $K \subseteq L \subseteq M$ and $1 \subseteq H \subseteq G$: There is a 1-1 correspondece between $L \mapsto Gal(M/L)$ [NOT $L/K$!],
+   and the other way round, to go from $H$ to $M^H$. This is a 1-1 correspondence. $L$ is in the denominator because we want to fix $L$ when we go back.
+
+- We'll show (1) implies (2) implies (3) implies (4) implies (1)
+
+#### (4) implies (1)
+
+- We've shown that splitting fields of _sets_ of polynomials are normal, so this case is trivial.
+- Just to recall the argument, let $M$ be the splitting field of some separable polynomial $p \in K[x]$ over $K$. We need to show that $M$ is normal and separable.
+- It's separable because it only adds elements to new elements to $K$ which are the roots of $p$, a separable polynomial. Thus, the minimal polynomial of new elements
+  will also be separable, and the base field is trivially separable.
+- We must now show that $M$ is normal. We proceed by induction on degree.
+  Normality is trivial for linear polynomials, if $M$ contains one root it
+  contains all of the roots (the only one).
+- Let $q \in K[x]$ have a root $\alpha \in $M$. If $\alpha \in K$, then divide by $(x - \alpha)$ and use induction. So suppose $\alpha \not \in K$.
+- Then $\alpha$ is some element that is generated by the roots 
+
+- [Borcherds lecture](https://www.youtube.com/watch?v=g87CBjYqHWk&list=PL8yHsr3EFj53Zxu3iRGMYL_89GDMvdkgt&index=8)   
+
+
+
+
+# Separability of field extension as diagonalizability
+
+- Take $Q(\sqrt 2)$ over $Q$. $\sqrt(2)$ corresponds to the linear transform $[0 1][2 0]$ over the basis $a + b \sqrt 2$.
+- The chracteristic polynomial of the linear transform is $x^2 - 2$, which is indeed the minimal polynomial for $\sqrt(2)$.
+- Asking for every element of $Q(\sqrt 2)$ to be separable is the same as
+  asking every element of $Q(\sqrt 2)$ interpreted as a linear opearator to have separable minimal polynomial.
+- Recall that the minimal polynomial is the lowest degree polynomial that annhilates the linear operator.
+  So $minpoly(I) = x - 1$, $charpoly(I) = (x - 1)^n$.
+
+# Motivation for the compact-open topology
+
+- If $X$ is a compact space and $Y$ is a metric space, consider two functions $f, g: X \to Y$.
+- We can define a distance $d(f, g) \equiv \min_{x \in X} d(f(x), g(x))$.
+- The $\min_{x \in X}$ has a maximum because $X$ is compact.
+- Thus this is a real metric on the function space $Map(X, Y)$.
+- Now suppose $Y$ is no longer a metric space, but is Haussdorf. Can we still define a topology on $Map(X, Y)$?
+- Let $K \subseteq X$ be compact, and let $U \subseteq Y$ be open such that $f(K) \subseteq U$.
+- Since $Y$ is Hausdorff, $K \subseteq X$
+
+
+# Example of covariance zero, and yet "correlated"
+
+- $x$ and $y$ coordinates of points on a disk.
+- $E[X], E[Y]$ is zero because symmetric about origin.
+- $E[XY] = 0$ because of symmetry along quadrants.
+- Thus, $E[XY] - E[X] E[Y]$, the covariance, is zero.
+- However, they are clearly correlated. Eg. if $x = 1$, then $y$ must be zero.
+- If $Y = aX+b$ the $corr(X, Y) = sgn(a)$.
+
+# Hypothesis Testing 
+
+#### Mnemonic for type I versus type II errors
+
+- Once something becomes "truth", challenging the status quo and making it
+  "false" is very hard. (see: disinformation).
+- Thus, Science must have high barriers for accepting hypothesis as true.
+- That is, we must have high barries for incorrectly rejecting the null (that
+  nothing happened).
+- This error is called as type I error, and is denoted by $\alpha$ (more
+  important error).
+- The other type of error, where something is true, but we conclude it is false
+  is less important. Some grad student can run the experiment again with better
+  experimental design and prove it's true later if need be.
+- Our goal is to protect science from entrenching/enshrining "wrong" facts as
+  true. Thus, we control type I errors.
+- Our goal is to "reject" current theories (the null) and create "new theories" (the alternative).
+  Thus, in statistics, we setup our tests with the goal of enabling us to "reject the null".
+
+#### Mnemonic for remembering the procedure
+- $H_0$ is the null hypothesis (null for zero). They are presumed innocent until proven guilty.
+- If $H_0$ is judged guilty, we reject them (from society) and send them to the gulag.
+- If $H_0$ is judged not guilty, we retain them (in society).
+- We are the prosecution, who are trying to reject $H_0$ (from society) to send them to the gulag.
+- The scientific /statistical process is the Judiciary which is attempting to keep the structure of "innocent until proven guilty" for $H_0$.
+- We run experiments, and we find out how likely it is that $H_0$ is guilty based on our experiments.
+- We calculate an error $\alpha$, which is the probably we screw up the fundamental truth of the court: we must not send an innocent man to the gulag.
+  Thus, $\alpha$ it the probability that $H_0$ is innocent (ie, true) but we reject it (to the gulag). 
+
+#### P value, Neyman interpretation
+- Now, suppose we wish to send $H_0$ to the gulag, because we're soviet union
+  like that. What's the probability we're wrong in doing so? (That is, what is the probability that us sending $H_0$ is innocent and we are 
+  condemning them incorrectly to a life in the gulag)? that's the $p$ value. We estimate this based on our expeiment, of course.
+- Remember, we **can never speak** of the "probability of $H_0$ being true/false", because $H_0$ _is true_ or _is false_ [frequentist]. There is no
+  probability.
+
+#### P value, Fisher interpretation
+
+- The critical region of the test corresponds to those values of the test statistic
+  that would lead us to reject null hypothesis (and send it to the gulag).
+- Thus, the critical region is also sometimes called the "rejection region",
+  since we reject $H_0$ from society if the test statistic lies in this region. 
+- The rejection region is usually corresponds to the tails of the sampling distribution.
+- The reason for that is that a good critical region almost always corresponds
+  to those values of the test statistic that are least likely to be observed if
+  the null hypothesis is true. This will be the "tails" / "non central tendency" if a test is good.
+- In this situation, we define the $p$ value to be the probability we would have observed a test statistic that is
+  at least as extreme as the one we did get. `P(new test stat >= cur test stat)`.
+- ??? I don't get it.
+
+
+#### P value, completely wrong edition
+
+- "Probability that the null hypothesis is true" --- WRONG
+- compare to "probability _us_ rejecting the null hypothesis is wrong" -- CORRECT. The probability is in US being wrong, and has NOTHING to do with the
+  truth or falsity of the null hypothesis _itself_.
+
+#### Power of the test
+
+- The value $\beta$ is the probability that $H_0$ was guilty, but we chose to retain them into society instead.
+- The less we do this (ie, the larger is $1 - \beta$), the more "power" our test has.
+
+
+
+# Dumb mnemonic for remembering adjunction turnstile
+
+- The left side of the adjunction `F` wants to "push the piston" on the right
+  side, so it must be `F -| G` where `-|` allows `F` to "crush" `G` with the
+  flat surface `|`.
+
+# Delta debugging
+
+- [Delta debugging from the fuzzing book](git@github.com:opencompl/lean-gap.git)
+- Start with a program that crashes.
+- Run `reduce` on it:
+
+```
+def reduce(inp: str, test: str -> bool):
+  assert test(inp) == False
+  # v remove 1/2 of the lines.
+  n = 2 # Initial granularity
+  while len(inp) >= 2:
+    ix = 0
+    found_failure = False
+    skiplen = len(inp) / n
+  
+    while ix < len(inp):
+      inp_noix = inp[:ix] +inp[ix+skiplen:]
+      if not self.test(inp_noix):
+          inp = inp_noix # use smaller input
+          n = max(n - 1, 2) # decrease granularity by 1
+          found_failure = True; break
+      else:
+        ix += skiplen
+  
+    if not found_failure:
+      if n == len(inp): break
+      n = min(n * 2, len(inp)) # double
+  
+  return inp
+```
+
+# Tidy Data
+
+- [The paper](http://vita.had.co.nz/papers/tidy-data.pdf)
+
+- Tidy data is a standard way of mapping the meaning of a dataset to its structure. A dataset is
+  messy or tidy depending on how rows, columns and tables are matched up with observations,
+  variables and types. In tidy data:
+
+> 1. Each variable forms a column.
+> 2. Each observation forms a row.
+> 3. Each type of observational unit forms a table.
+
+> While the order of variables and observations does not affect analysis, a good ordering makes
+> it easier to scan the raw values. One way of organising variables is by their role in the analysis:
+> are values fixed by the design of the data collection, or are they measured during the course of
+> the experiment? Fixed variables describe the experimental design and are known in advance.
+> Computer scientists often call fixed variables dimensions, and statisticians usually denote them
+> with subscripts on random variables. Measured variables are what we actually measure in the
+> study. Fixed variables should come first, followed by measured variables, each ordered so that
+> related variables are contiguous. Rows can then be ordered by the first variable, breaking
+> ties with the second and subsequent (fixed) variables. This is the convention adopted by all
+> tabular displays in this paper. 
+
+
+#### Messy 1: Column headers are values, not variable names
+
+- eg. columns are `religion |<$10k |$10-20k |$20-30k |$30-40k |$40-50k |$50-75k`.
+- melt dataset to get `molten` stacked data.
+
+#### Messy 2: Multiple variables stored in one column
+
+- This often manifests _after_ melting.
+- eg. columns are `country | year | m014 | m1524 | .. | f014 | f1524...`
+- columns represent _both_ sex _and_ age ranges. After metling, we get a single column `sexage` with entries like `m014` or `f1524`
+- The data is still _molten_, so we should reshape it before it sets into tidy columnlar data. We do this by splitting the column into two,
+  one for `age` and one for `sex`.
+
+
+#### Messy 3: Variables are stored in both rows and columns
+
+- Original data:
+
+```
+id      year month element d1 d2 d3 d4 d5 ...
+MX17004 2010 1     tmax    — — — — — — — —
+MX17004 2010 1     tmin    — — — — — — — —
+MX17004 2010 2     tmax    — 27.3 24.1 — — — — —
+MX17004 2010 2     tmin    — 14.4 14.4 — — — — —
+MX17004 2010 3     tmax    — — — — 32.1 — — —
+MX17004 2010 3     tmin    — — — — 14.2 — — —
+MX17004 2010 4     tmax    — — — — — — — —
+MX17004 2010 4     tmin    — — — — — — — —
+MX17004 2010 5     tmax    — — — — — — — —
+MX17004 2010 5     tmin    — — — — — — — —
+```
+
+- Some variables are in individual columns (id, year, month)
+- Some variables are spread across columns (day is spread as d1–d31)
+- Some variables are smearted across rows (eg. `tmax/tmin`). TODO: what does this mean, really?
+- First, tidy by collating into `date`:
+
+```
+id      date       element value
+MX17004 2010-01-30 tmax 27.8
+MX17004 2010-01-30 tmin 14.5
+MX17004 2010-02-02 tmax 27.3
+MX17004 2010-02-02 tmin 14.4
+MX17004 2010-02-03 tmax 24.1
+MX17004 2010-02-03 tmin 14.4
+MX17004 2010-02-11 tmax 29.7
+MX17004 2010-02-11 tmin 13.4
+MX17004 2010-02-23 tmax 29.9
+MX17004 2010-02-23 tmin 10.7
+```
+- Dataset above is still molten. Must reshape along `element` to get two columns for `max` and `min`. This gives:
+
+```
+id      date       tmax tmin
+MX17004 2010-01-30 27.8 14.5
+MX17004 2010-02-02 27.3 14.4
+MX17004 2010-02-03 24.1 14.4
+MX17004 2010-02-11 29.7 13.4
+MX17004 2010-02-23 29.9 10.7
+MX17004 2010-03-05 32.1 14.2
+MX17004 2010-03-10 34.5 16.8
+MX17004 2010-03-16 31.1 17.6
+MX17004 2010-04-27 36.3 16.7
+MX17004 2010-05-27 33.2 18.2
+```
+
+- Months with less than 31 days have structural missing values for the last day(s) of the month.
+- The element column is not a variable; it stores the names of variables.
+
+
+#### Multiple types in one table: 
+
+
+#### data manipulation, relationship to `dplyr`:
+
+- [Data transformation in R for data science](https://r4ds.had.co.nz/transform.html)
+- `mutate()` adds new variables that are functions of existing variables
+- `select()` picks variables based on their names.
+- `filter()` picks cases based on their values.
+- `summarise()` reduces multiple values down to a single summary.
+- `arrange()` changes the ordering of the rows.
+
+
+#### Visualization
+
+- Most of R's visualization ecosystem is tidy by default.
+- base `plot`, `lattice`, `ggplot` are all tidy.
+
+
+#### Modelling
+
+- Most modelling tools work best with tidy datasets.
+
+
+#### Questions about performance benching in terms of tidy
+- Is runs of a program at different performance levels like `O1`, `O2`, `O3` to be stored as
+  separate columns? Or as a categorical column called "optimization level" with
+  entries stored in separate rows of `O1`, `O2`, `O3`?
+- If we go by the tidy rule "Each variable forms a column", then this suggests that `optimization level` is a variable.
+- Then the tidy rule `Each observation forms a row.` makes us use rows like `[foo.test | opt-level=O1 | <runtime>]` and `[foo.test | opt-level=O2 | <runtime>]`.
+- Broader question: what is the tidy rule for categorical column?
+- However, in the tidy data paper, Table 12, it is advocated to have two columns for `tmin` and `tmax` instead of having a column called `element` with
+  choices `tmin`, `tmax`. So it seems to be preferred that if one has a categorical variable, we make its observations into columns.
+- This suggests that I order my bench data as `[foo.test | O1-runtime=_ | O2-runtime=_ | O3-runtime=_ ]`.
+
+# Normal subgroups through the lens of actions
+
+- finite group is permutation subgroup
+- ghg' is relavelling by g
+- if gHg' = H, then H does not care about labelling
+- thus H treats everyone uniformly
+- prove that if H is normal, then if s in fix(H) then orb(s) in fix(H)
+- when is stab(S) normal?when Stab(gx) equals g Stab(x) g' ?
+
+- topology onS: closed sets are the common fixpoints of a set of group elements.
+
+# Writing rebuttals, Tobias style
+
+- Writing rebuttals, key take-aways:
+- Make your headings for all reviewers a sentence
+- Don't write in Q?A style
+- Write as a paragraph, where we write the strong answer first, and then point back to the question.
+- Use subclause to indicate that sentence is unfinished. Eg: the bug in our compiler has been fixed (bad!).
+  The reader may see "the bug in our compiler..." and conclude something crazy.
+  Ratther, we should write "While there was a bug in our compiler, we fixed it ...". The `While` makes it
+  clear 
+
+
+# LCS DP: The speedup is from filtration
+
+- I feel like I finally see where the power of dynamic programming lies.
+- Consider the longest common subsequence problem over arrays $A$, $B$ of size $n$, $m$.
+- Naively, we have $2^n \times 2^m$ pairs of subsequences and we need to process each of them.
+- How does the LCS DP solution manage to solve this in $O(nm)$?
+- Key idea 1: create "filtration" of the problem $F_{i, j} \subseteq 2^n\times2^m$. At step $(i, j)$, consider the "filter" $F_{i, j}$
+  containing all pairs of subsequences $(s \in 2^n, t \in 2^m)$ where `maxix(s) \leq i` and `maxix(t) \leq j`.
+- These filters of the filtration nest into one another, so $F_{i, j} \subseteq F_{i', j'}$ iff $i \leq i'$ and $j \leq j'$.
+- Key idea 2: The value of `max LCS(filter)` is (a) monotonic, and (b) can be computed efficiently from the values of lower filtration.
+  So we have a monotone map from the space of filters to the solution space, and this monotone map is efficiently computable, given the 
+  values of filters below this in the filtration.
+- This gives us a recurrence, where we start from the bottom filter and proceed to build upward.
+- See that this really has _nothing_ to do with recursion. It has to do with _problem decomposition_.
+  We decompose the space $2^n \times 2^m$
+  cleverly via filtration $F_{i, j}$ such that `max LCS(F[i, j])` was efficiently computable.
+- To find a DP, think of the entire state space, then think of filtrations, such that the solution function becomes a monotone map, and the solution
+  function is effeciently computable given the values of filters below it.
+
+# Poisson distribution
+
+- Think about flipping a biased coin with some bias $p$ to associate a coin flip to each real number. Call this $b: \mathbb R \to \{0, 1\}$.
+- Define the count of an interval $I$ as $#I \equiv \{ r \in I | b(r) = 1 \}$.
+- Suppose that this value $#I$ is finite for any bounded interval.
+- Then the process we have is a poisson process.
+- Since the coin flips are independent, all 'hits' of the event must be independent.
+- Since there is either a coin flip or there is not, at most one 'hit' of the event can happen at any moment in time.
+- Since the bias of the coin is fixed, the rate at which we see $1$s is overall constant.
+
+
+
+# F1 or Fun : The field with one element 
+
+- Many combinatorial phenomena can be recovered as the "limit" of geometric phenomena over the "field with one element",
+  a mathematical mirage.
+
+#### Cardinality ~ Lines 
+
+- Consider projective space of dimension $n$ over $F_p$. How many lines are there?
+- Note that for each non-zero vector, we get a 'direction'. So there are $p^n - 1$ potential directions.
+- See that for any choice of direction $d \in F_p - \vec 0$, there are $(p -  1)$ "linearly equivalent" directions, given by $1 \cdot d$, $2 \cdot d$,
+  \dots, $(p - 1) \cdot d$ which are all distinct since field multiplication is a group.
+- Thus, we have $(p^n - 1)/(p - 1)$ lines. This is equal to $1 + p + p^2 + \dots + p^{n-1}$, which is $p^0 + p^1 + \dots + p^{n-1}$
+- If we plug in $p = 1$ (study the "field with one element", we recover $\sum_{i=0}^{n-1} p^i = n$.
+- Thus, "cardinality of a set of size $n$" is the "number of lines of $n$-dimensional projective space over $F_1$!
+- Since $[n] \equiv \{1, 2, \dots, n\}$ is the set of size $n$, it is only natural that $[n]_p$ is defined to be the lines in $F_p^n$.
+  We will abuse notation and conflate $[n]_p$ with the cardinality, $[n]_p \equiv (p^n - 1)/(p - 1)$.
+
+
+#### Permutation ~ Maximal flags
+
+- Recall that a maximal flag is a sequence of subspaces $V_1 \subseteq V_2 \subseteq \dots \subseteq V$. At each step, the dimension increases by $1$,
+  and we start with dimension $1$. So we pick a line $l_1$ through the origin for $V_1$. Then we pick a plane through the origin that contains the line $l_1$
+  through the origin. Said differently, we pick a plane $p_2$ spanned by $l_1, l_2$. And so on.
+- How many ways can we pick a line? That's $[n]_p$. Now we need to pick another line orthogonal to the first line. So we build the quotient space $F_p^n/L$,
+  which is $F_p^{n-1}$. Thus picking another line here is $[n-1]_p$.  On multiplying all of these, we get $[n]_p [n-1]_p \dots [1]_p$.
+- In the case of finite sets, this gives us $1 \cdot 2 \cdot \dots n = n!$.
+
+#### Combinations ~ Grassmanian
+
+- Recall that a grassmanian consists of $k$ dimensional subspaces of an $n$ dimensional space.
+
+
+- [Reference: This week's finds 184 by baez](https://math.ucr.edu/home/baez/week184.html)
+
+# McKay's proof of Cauchy's theorem for groups [WIP]
+
+- In a group, if $gh = 1$ then $hg = 1$. Prove this by writing $hg = hg (h h^{-1})$ = h(gh)h^{-1} = h \cdot 1 \cdot h^{-1} = 1$.
+- We can interpret this as follows: in the multiplication table of a group, firstly, each row contains exactly one $1$.
+- Also, when $g \neq h$ (ie, we are off the main diagonal of the multiplication table), each $gh = 1$ has a "cyclic permutation solution" $hg = 1$.
+- If the group as even order, then there are even number of $1$s on the main diagonal.
+- Thus, the number of solutions to $x^2 = 2$ for $x \in G$ is even, since each solution has another paired with it.
+- Let's generalize from pairs to 
+- [Reference](http://www.cs.toronto.edu/~yuvalf/McKay%20Another%20Proof%20of%20Cauchy's%20Group%20Theorem.pdf)
+
+
+# Odds versus probability [WIP]
+
+- https://www.youtube.com/watch?v=lG4VkPoG3ko
+- https://www.youtube.com/watch?v=HZGCoVF3YvM
+
+
+# ncdu for disk space measurement
+
+- I've started to use `ncdu` to get a quick look at disk space instead of `baobab`. It's quite handy
+  since it's an ncurses based TUI.
+
+
+# nmon versus htop
+
+- I've switched to using `nmon` instead of `htop` for viewing system load. It's TUI looks much nicer than `htop`,
+  and I find its process list much easier to parse.
+
+# Schrier sims --- why purify generators times coset
+
+- Let `p = (0 3 4)(1 2)`. Let `G = <p>`. What is the stabilizer of `k=0`?
+- `purify(p) = e` so we would imagine we would have `H = e`.
+- But actually, consider orbit(k). We have `0 <-> id`, `3 <-> p`, `4 <-> p^2`.
+- If I now consider `p * orbit(k)` then I get `p, p^2, p^3`, where `purify(p) = id`, `purify(p^2) = id`, `purify(p^3) = p^3`.
+- Thus we find the nontrivial generator `p^3`.
+
+# Vyn's feeling about symmetry
+
+- They are of the opinion that the correct definition of a symmetry of an object $S$ in space is that
+  a transformation $T$ is a symmetry of $S$ iff $T(S) = S$ (as a set).
+- The above rules out things like translations of a cube.
+- Indeed, one can only recover translations by considering a line on the space and then considering the orbit of the line under
+  a specific translation $T$.
+
+# Convergence in distribution is very weak
+
+- consider $X \sim N(0, 1)$. Also consider $-X$ which will be identically distributed (by symmetry of $-$ and $N$).
+- So we have that $-X \sim N(0, 1)$. 
+- But this tells us nothing about $X$ and $-x$! so this type of "convergence of distribution" is very weak.
+- Strongest notion of convergence (#2): Almost surely. $T_n \xrightarrow{a.s} T$ iff $P(\{ \omega : T_n(\omega) \to T(\ometa) \}) = 1$.
+  Consider a snowball left out in the sun. In a couple hours, It'll have a random shape, random volume, and so on. But the ball itself
+  is a definite thing --- the $\omega$. Almost sure says that for almost all of the balls, $T_n$ converges to $T$.
+- #2 notion of convergence: Convergence in probability. 
+  $T_n \xrightarrow{P} T$ iff $P(|T_n - T| \geq \epsilon) \xrightarrow{n \to \infty} 0$ for all
+  $\epsilon > 0$. This allows us to squeeze $\epsilon$ probability under the rug.
+- Convergence in $L^p$: $T_n \xrightarrow{L^p} T$ iff $E[|T_n - T|^p] \xrightarrow{n \to \infty} 0$. Eg. think of convergence in variance of a gaussian.
+- Convergence in distrbution: (weakest): $T_n \xrightarrow{d} T$ iff $P[T_n \leq x] \xrightarrow{n \to \infty} P[T \leq x]$ for all $x$.
+
+#### Characterization of convergence in distribution
+
+- (1) $T_n \xrightarrow{d} T$
+- (2) For all $f$ continuous and bounded, we have $E[f(T_n)] \xrightarrow{n \to \infty} E[f(T)]$.
+- (2) we have $E[e^{ixT_n}] \xrightarrow{n \to \infty} E[e^{ixT}]$. [characteristic function converges].
+
+
+#### Strength of different types of convergence
+
+- Almost surely convergence implies convergence in probability. Also, the two limits (which are RVs) are almost surely equal.
+- Convergence in $L^p$ implies convergence in probability and convergence in $L^q$ for all $q \leq p$. Also, the limits (which are RVs) are almost
+  surely equal.
+- If $T$ converges in probability, it also converges in distribution (meaning the two sequences will have the same DISTRIBUTION, not same RV).
+- All of almost surely, probabilistic convergence, convergence in distribution (not $L^p$) 
+  map properly by continuous fns. $T_n \to T$ implies $f(T_n) \to f(T)$.
+- almost surely implies P implies distribution convergence.
+
+
+#### Slutsky's Theorem
+
+- If $X_n \xrightarrow{d}$ X$ and $Y_n \xrightarrow{P} c $ (That is, the sequence of $Y_n$ is eventually deterministic),we then have that
+  $(X_n, Y) \xrightarrow{d} (X, c)$. In particular, we get that $X_n + Y_n \xrightarrow{d} X + c$ and $X_n Y_n \xrightarrow{d} X c$.
+- This is important, because in general, convergence in distribution says nothing about the RV! but in this special case, it's possible.
+
+#### References
+
+-   [MIT OCW stats](https://www.youtube.com/watch?v=C_W1adH-NVE&list=PLUl4u3cNGP60uVBMaoNERc6knT_MgPKS0&index=2)
+
+
+
+
+# Class equation, P-group structure
+
+#### Centralizer
+
+- The centralizer of a subset $S$ of a group $G$ is largest subgroup of $G$ which is the center of $S$.
+  It's defined as $C_G(S) \equiv \{ g \in G : \forall s \in S, gs = sg \}$. This can be 
+  written as $C_G(S) \equiv \{ g \in G : \forall s \in S, gsg^{-1} = s \}$.
+- 
+
+#### Conjucacy classes and the class equation
+
+- Define $g \sim g'$ if there exists a $h$ such that $g' =kgk^{-1}$. This is an equivalence
+  relation on the group, and it partitions the group into _conjugacy classes_.
+- Suppose an element $z \in G$ is in the center (Zentrum). Now, the product $kzk^{-1} = z$ for all $k \in G$.
+  Thus, elements in the center all sit in conjugacy classes of size $1$.
+- Let $Z$ be the center of the group, and let $\{ J_i \subset G \} $ (J for conJugacy) be conjugacy classes of elements other than the center.
+  Let $j_i \in J_i$ be representatives of the conjugacy classes, which also generate the conjugacy class as orbits under the action of
+  conjugation.
+- By orbit stabilizer, we have that $|J_i| = |Orb(j_i)| = |G|/|Stab(j_i)|$.
+- The stabilizer under the action of conjugation is the centralizer! So we have $|Orb(j_i) = |G|/|C(j_i)|$.
+- Thus, we get the class equation: $|G| = |Z| + \sum_{j_i} |G|/C(j_i)|$.
+
+#### $p$-group
+
+- A $p$ group is a group where every element has order divisible by $p$.
+- Claim: a finite group is a $p$-group iff it has cardinality $p^N$ for some $N$.
+- Forward - $|G| = p^N$ implies $G$ is a $p$-group: Let $g \in G$. The $|\langle g \rangle|$ divides $|G| = p^N$ by Lagrange. Hence proved.
+- Backward - $p$ divides |\langle g \rangle| for all $g \in G$ implies $|G| = p^N$ for some $N$: Write $G$ as disjoint union of cyclic subgroups:
+  $G = \langle g_1 \rangle \cup \langle g_2 \rangle \cup \dots \langle g_n \rangle$. Take cardinality on both sides, modulo $p$.
+  Each of the terms on the RHS $|\langle g_i \rangle|$ is divisible by $p$, and thus vanish. Thus, $|G| =_p 0 + 0 + \dots + 0 = 0$ modulo $p$.
+  Hence, $|G|$ is divisible by $p$.
+
+#### Center of $p$ group
+
+- Let $G$ be a $p$-group. We know that $|G| = |Z(G)| + \sum_{g_i} |Orb(g_i)|$, where we are considering orbits under 
+  group conjugation.
+- See that $|Orb(g_i)| = |G|/|Stab(g_i)|$. The quantity on the right must be a power of $p$ (since the numerator is $p^N$). The quantity
+  must be more than $1$, since the element $g_i$ is not in the center (and thus is conjugated non-trivially by _some_ element of the group).
+- Thus, $|Orb(g_i)|$ is divisible by $p$.
+- Take the equation $|G| = |Z(G)| + \sum_{g_i} |Orb(g_i)|$ modulo $p$. This gives $0 =_p |Z(G)$. Hence, $Z(G) \neq \{ e \}$
+  (Since that would give $|Z(G)| =_p 1 \neq 0$). So, the center is non-trivial.
+
+#### Cauchy's theorem: order of group is divisible by $p$ implies group has element of order $p$.
+
+- **Abelian case, order $p$**: immediate, must be the group $Z/pZ$ which has generator of order $p$. Now induction on group cardinality.
+- **Abelian case, order divisible by $p$**: Pick an element $g \in G$ and let the cyclic subgroup be generated by it be $C_g$ and
+  let the order of $g$ be $o$ (Thus, $|C_g| = o$).
+- *Case 1:* If $p$ divides $o$, then there is a power of $g$ with order $p$ (Let $o' \equiv o/p$. Consider $g^{o'}$; this has order $p$).
+- *Case 2:* If $p$ does not divide $o$. Then $p$ divides the order of the
+  quotient $G' \equiv G / C_g$. Thus by induction, we have an element $h C_g \in G / C_g$ of order $p$.
+- Let $o$ be the order of $h$ in $G$. Then we have that that $(h C_g)^o =  h^o C_g = e C_g$, where the last equality follows from the assumption that 
+  $o$ is the order of $h$. Thus we can raise $h C_g$ to $o$ get the identity in $G/C_g$. This implies $p$ (the order of $h G/C_g$)
+  must divide $o$ (the order of $h$).
+- Thus, by an argument similar to the previous, there is some power of $h$ with order $p$. (Let $o' \equiv o/p$. Consider $h^{o'}$' this has order $p$)
+
+- **General case:** consider the center $Z$. If $p$ divides $|Z|$, then use the abelian case to find an element of order $p$ and we are done.
+- Otherwise, use the class equation: $|G| = |Z| + \sum_{j_i} |Orb(j_i)|$.
+- The LHS vanishes modulo $p$, the RHS has $|Z|$ which does not vanish. Thus there is some term $j_i$ whose orbit is not divisible modulo $p$.
+- We know that $Orb(j_i) = G/Stab(j_i)$ where the action is conjugacy. Since the LHS is not divisible by $p$, while $|G|$ is divisible by $p$,
+  this means that $Stab(j_i)$ has order divisible by $p$ and is a subgroup of $G$.
+- Further, $Stab(j_i)$ is a proper subgroup as $Orb(j_i)$ is a proper orbit, and is thus not stabilized by every element of the group.
+- Use induction on $Stab(j_i)$ to find element of order $p$.
+
+#### Subgroups of p-group
+
+- Let $G$ be a finite $p$ group. So $|G| = p^N$. Then  $G$ has a normal subgroup of size $p^l$ for all $l \leq N$.
+- Proof by induction on $l$. 
+- For $l = 0$, we have the normal subgroup $\{ e \}$.
+- Assume this holds for $k$. We need to show it's true for $l \equiv k + 1$.
+- So we have a normal subgroup $N_k$ of size $p^k$. We need to establish a subgroup $N_l$ of size $p^{k+1}$.
+- Consider $G/N_k$. This is a $p$-group and has cardinality $p^{N-k}$. As it is a $p$-group, it has non-trivial center.
+  So, $Z(G/N_k)$ is non-trivial and has cardinality at least $p$.
+- Recall that every subgroup of the center is normal. This is because the center is fixed under conjugation, thus
+  subgroups of the center are fixed under conjugation and are therefore normal.
+- Next, by Cauchy's theorem, there exists an element $z$ of order $p$ in $Z(G/N_k)$. Thus, there is a normal subgroup $\langle z \rangle \subset G/N_k$
+- We want to pull this back to a normal subgroup of $G$ of order $|\langle z \rangle \cdot N_k| = p^{k+1}$.
+- By correspndence theorem, the group $\langle z \rangle \cdot N_k$ is normal in $G$ and has order $p^{k+1}$. Thus we are done.
+
+
+# Sylow Theorem 1
+
+I've always wanted a proof I can remember, and I think I've found one.
+
+- Let $G$ be a group such that $|G| = p^n m $ where $p$ does not divide $m$.
+- We start by considering the set of all subsets of $G$ of size $p^n$. Call this set $\Omega$.
+- We will prove the existence of a special subset $S \subseteq G$ such that
+  $S \in \Omega$, and $|Stab(S)| = p^n$. That is, $|S| = p^n$ and $|Stab(S) = p^n$.
+  This is somewhat natural, since the only way to get subgroups out of actions is to
+  consider stabilizers.
+- We need to show the existence of an $S \in \Omega$ such that $Stab(S)$ has maximal cardinality.
+
+#### Lemma: $\comb{pa}{pb} \equiv_p \comb{a}{b}$:
+
+- this is the coefficient of $x^{pb}$ in $(x + 1)^{pa}$.
+  But modulo $p$, this is the same as the coefficient of $x^{pb}$ in $(x^p + 1^p)^a$. The latter is $\comb{a}{b}$.
+  Thus, $\comb{ap}{bp} \equiv_p \comb{a}{b}$ (modulo $p$).
+
+#### Continuing: Size of $\Omega$ modulo $p$:
+- Let us begin by considering $|\Omega|$. This is $\comb{p^n m}{p^n}$ since we pick all subsets of size $p^n$ from $p^n$ m.
+  See that if we want to calculate $\comb{pa}{pb}$, this is the coefficient of $x^{pb}$ in $(x + 1)^{pa}$.
+  But modulo $p$, this is the same as the coefficient of $x^{pb}$ in $(x^p + 1^p)^a$. The latter is $\comb{a}{b}$.
+  Thus, $\comb{ap}{bp} \equiv_p \comb{a}{b}$ (modulo $p$).
+  Iterating the lemma shows us that $\comb{p^n m}{p^n} = m$. Thus, $p$ does not divide $|\Omega|$, since $m$ was the $p$-free part of $|G|$.
+- This implies that there is some orbit $O \subset \Omega$ whose size is not divisible by $p$.
+  --- Break $\Omega$ into orbits. Since the left hand side $|\Omega|$ is not divisible by $p$,
+  there is some term in the orbits size that is not divisible by $p$.
+- Let the orbit $O$ be generated by a set $S \in \Omega$. So $O = Orb(S)$. Now orbit
+  stabilizer tells us that $|Orb(S)| \cdot |Stab(S)| = |G|$. Since $|O = Orb(S)|$ is not divisible by $p$,
+  this means that $Stab(S)$ must be of size at least $p^n$. It could also have some divisors of $m$ inside it.
+- Next, we will show that $Stab(S)$ can be at most $p^n$.
+
+#### Lemma: size of stabilizer of subset when action is free:
+
+- Let a group $G$ act freely on a set $S$. This means that for all group elements $g$, if for any $s$
+  we have $g(s) = s$, then we must have $g = id$. In logic, this is: $\forall g, \exists s, g(s) = s \implies g = id$.
+- See that an implication of this is that for any two elements $s, t \in S$, we can have at most one $g$ such that $g(s) = t$.
+  Suppose that we have two elements, $g, h$ such that $g(s) = t$ and $h(s) = t$. This means that $g^{-1}h(s) = s$. But we know that
+  in such a case, $gh^{-1} = id$ or $g = h$.
+- What does this mean? it means that $Stab(s) = \{ e \}$ for all $s$.
+- Now let's upgrade this to subsets of $S$. Let $P$ (for part) be a subset of $S$. What is $|Stab(P)|$? We want to show that it
+  is at most $P$. Let's pick a unique basepoint $p_0 \in P$ [thus $p_0 \in S$ since $P \subseteq S$].
+- Let's suppose that $g \in Stab(P)$. This means that $g(p_0) \in P$. Say it sends $p_0$ to $p_g \in P$.
+  Now no other element of $Stab(P)$ can send $p_0$ to $p_g$ since the action is free!
+- Thus, there are at most $|P|$ choices for $p_0$ to be sent to, one for each element of $Stab(P)$.
+- Thus, $|Stab(P)| \leq |P|$.
+
+#### Continuing: Showing that $|Stab(S) = p^n$.
+
+- Since the action of $G$ on $G$ is free, and since we are considering the stabilizer of some subset $S \subseteq G$,
+  we must have that $|Stab(S) \leq |S| = p^n$. Thus, since $|S| \geq p^n$ (from the orbit argument above) and $|S| \leq p^n$ (from the stabilizer
+  argument), we have $|Stab(S) = p^n$. Thus we are done.
+- More explicitly perhaps, let us analyze $|Stab(S)|$. We know that $Stab(S) \cdot S = S$.
+  Thus, for any $t \in S$, we know that $Stab(S) \cdot t \subseteq S$.
+  Thus, $|Stab(s) \cdot t| \leq |S|$.
+- Also notice that $|Stab(S) \cdot t$ is a coset of $Stab(S)$. Thus,
+  $|Stab(S) \cdot t| = |Stab(S)|$.
+- Combining the above, we find that $|Stab(S)| \leq |S|$.
+  So the stabilizer of size $|S| = p^k$ it is in some sense "maximal" --- it has the largest size a stabilizer could have!
+  
 
 
 
