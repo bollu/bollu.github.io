@@ -1,4 +1,4 @@
-<img style="float:left;display:inline-block;padding-right: 16px; width: 48px" src="./static/banner.png">
+t<img style="float:left;display:inline-block;padding-right: 16px; width: 48px" src="./static/banner.png">
 <h2> A Universe of Sorts </h2>
 <h3> Siddharth Bhat </h3>
 
@@ -6,32 +6,38 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
-# Spin as motion about center of mass
+
 # How GHC does typeclass resolution
 
-Its like 5 steps
-03:04 <davean> Find all instances I that match the target constraint; that is, the target constraint is a substitution instance of I
-03:04 <davean> . These instance declarations are the candidates.
-03:04 <davean> If no candidates remain, the search fails
-03:04 <davean> Eliminate any candidate IX
-03:04 <davean> for which there is another candidate IY such that both of the following hold:
-03:04 <davean>     IY
-03:04 <davean> is strictly more specific than IX. That is, IY is a substitution instance of IX
-03:04 <davean> but not vice versa.
-03:04 <davean> Either IX
-03:04 <davean> is overlappable, or IY
-03:04 <davean>     is overlapping. (This “either/or” design, rather than a “both/and” design, allow a client to deliberately override an instance from a library, without requiring a change to the library.)
-03:05 <davean> If all the remaining candidates are incoherent, the search succeeds, returning an arbitrary surviving candidate.
-03:05 <davean> If more than one non-incoherent candidate remains, the search fails.
-03:05 <davean> Otherwise there is exactly one non-incoherent candidate; call it the “prime candidate”.
-03:05 <davean> Now find all instances, or in-scope given constraints, that unify with the target constraint, but do not match it. Such non-candidate instances might match when the target constraint is further instantiated. If all of them are incoherent top-level instances, the search succeeds, returning the prime candidate. Otherwise the search fails.
-03:05 <davean> there you go, thats all of it
-03:05 <davean> https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/instances.html#overlapping-instances
+- As told to me by davean:
+
+- Its like 5 steps
+- Find all instances I that match the target constraint; that is, the target constraint is a substitution instance of I.
+  These instance declarations are the candidates.
+- If no candidates remain, the search fails. Eliminate any candidate IX
+- for which there is another candidate IY such that both of the following hold:
+  IY is strictly more specific than IX. That is, IY is a substitution instance
+  of IX but not vice versa. Either IX is overlappable, or IY is overlapping.
+  (This “either/or” design, rather than a “both/and” design, allow a client to
+  deliberately override an instance from a library, without requiring a change
+  to the library.)
+- If all the remaining candidates are incoherent, the search succeeds,
+  returning an arbitrary surviving candidate.
+- If more than one non-incoherent candidate remains, the search fails.
+- Otherwise there is exactly one non-incoherent candidate; call it the “prime
+  candidate”.
+- Now find all instances, or in-scope given constraints, that unify with the
+  target constraint, but do not match it. Such non-candidate instances might
+  match when the target constraint is further instantiated. If all of them are
+  incoherent top-level instances, the search succeeds, returning the prime
+  candidate. Otherwise the search fails.
+- [GHC manual](https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/instances.html#overlapping-instances)
 
 # Defining continuity covariantly
 
 - Real analysis: coavriant definition: $f(\lim x) = \lim (f x)$. Contravariant definition in analysis/topology: $f^{-1}(open)$ is open.
-- Contravariant in topology via sierpinski: $U \subseteq X$ is open iff characteristic function $f(x) = \begin{cases} T & x \in U \\ \bot & \otherwise \end{cases}$
+- Contravariant in topology via sierpinski: $U \subseteq X$ is open iff characteristic function
+  $f(x) = \begin{cases} T & x \in U \\ \bot & \text{otherwise} \end{cases}$
   is continuous.
 - A function $f: X \to Y$ is continuous iff every function $f \circ s$ is continuous for every continuous $s: Y \to S$. That is, a function is continuous iff
   the pullback of every indicator is an indicator. 
@@ -41,7 +47,7 @@ Its like 5 steps
   that sets which have a divergent sequences and $\infty$ in them are open.
 - More abstractly, we declare all sets that are complements of closed and bounded sets with
   infinity in them as open. So a set $U \subseteq \mathbb N_{\infty}$ is bounded iff there exists a closed bounded
-  $C \subseteq \mathbb N$ such that $U = \mathbb N / C \cup \{ infty \}. 
+  $C \subseteq \mathbb N$ such that $U = \mathbb N / C \cup \{ infty \}$. 
 - A function $x: \mathbb N_\infty to X$ is continuous [wrt above topology] iff the sequence $x_n$ converges to the limit $x_\infty$.
 - See that we use functions out of $\mathbb N_\infty$ [covariant] instead of functions into $S$ [contravariant].
 - Now say a function $f: X \to Y$ is sequentially continuous iff for every continuous $x: \mathbb N_\infty \to X$, the composition $f \circ x: \mathbb N_\infty \to Y$
@@ -118,8 +124,9 @@ $$
 # Galois extension
 
 - Let $M$ be a finite extension of $K$. Let $G = Gal(M/K)$. Then $M$ is said to be Galois iff:
+
 1. $M$ is normal and separable (over $K$).
-2. $deg(M/K) = |G|$. We will show that $|G| \leq deg(M/K)$. So $M$ is "symmetric as possible$ --- have the largest possible galois group
+2. $deg(M/K) = |G|$. We will show that $|G| \leq deg(M/K)$. So $M$ is "symmetric as possible" --- have the largest possible galois group
 3. $K = M^G$ [The fixed poits of $M$ under $G$]. This is useful for examples.
 4. $M$ is the splitting field of a separable polynomial over $K$. Recall that a polynomial is separable over $K$ if it has distinct roots in 
    the algebraic closure of $K$. Thus, the number of roots is equal to the degree.
@@ -137,7 +144,7 @@ $$
 - We must now show that $M$ is normal. We proceed by induction on degree.
   Normality is trivial for linear polynomials, if $M$ contains one root it
   contains all of the roots (the only one).
-- Let $q \in K[x]$ have a root $\alpha \in $M$. If $\alpha \in K$, then divide by $(x - \alpha)$ and use induction. So suppose $\alpha \not \in K$.
+- Let $q \in K[x]$ have a root $\alpha \in M$. If $\alpha \in K$, then divide by $(x - \alpha)$ and use induction. So suppose $\alpha \not \in K$.
 - Then $\alpha$ is some element that is generated by the roots 
 
 - [Borcherds lecture](https://www.youtube.com/watch?v=g87CBjYqHWk&list=PL8yHsr3EFj53Zxu3iRGMYL_89GDMvdkgt&index=8)   
@@ -450,8 +457,8 @@ MX17004 2010-05-27 33.2 18.2
 # Poisson distribution
 
 - Think about flipping a biased coin with some bias $p$ to associate a coin flip to each real number. Call this $b: \mathbb R \to \{0, 1\}$.
-- Define the count of an interval $I$ as $#I \equiv \{ r \in I | b(r) = 1 \}$.
-- Suppose that this value $#I$ is finite for any bounded interval.
+- Define the count of an interval $I$ as $\#I \equiv \{ r \in I | b(r) = 1 \}$.
+- Suppose that this value $\#I$ is finite for any bounded interval.
 - Then the process we have is a poisson process.
 - Since the coin flips are independent, all 'hits' of the event must be independent.
 - Since there is either a coin flip or there is not, at most one 'hit' of the event can happen at any moment in time.
@@ -495,7 +502,7 @@ MX17004 2010-05-27 33.2 18.2
 
 # McKay's proof of Cauchy's theorem for groups [WIP]
 
-- In a group, if $gh = 1$ then $hg = 1$. Prove this by writing $hg = hg (h h^{-1})$ = h(gh)h^{-1} = h \cdot 1 \cdot h^{-1} = 1$.
+- In a group, if $gh = 1$ then $hg = 1$. Prove this by writing $hg = hg (h h^{-1}) = h(gh)h^{-1} = h \cdot 1 \cdot h^{-1} = 1$.
 - We can interpret this as follows: in the multiplication table of a group, firstly, each row contains exactly one $1$.
 - Also, when $g \neq h$ (ie, we are off the main diagonal of the multiplication table), each $gh = 1$ has a "cyclic permutation solution" $hg = 1$.
 - If the group as even order, then there are even number of $1$s on the main diagonal.
@@ -542,7 +549,7 @@ MX17004 2010-05-27 33.2 18.2
 - consider $X \sim N(0, 1)$. Also consider $-X$ which will be identically distributed (by symmetry of $-$ and $N$).
 - So we have that $-X \sim N(0, 1)$. 
 - But this tells us nothing about $X$ and $-x$! so this type of "convergence of distribution" is very weak.
-- Strongest notion of convergence (#2): Almost surely. $T_n \xrightarrow{a.s} T$ iff $P(\{ \omega : T_n(\omega) \to T(\ometa) \}) = 1$.
+- Strongest notion of convergence (#2): Almost surely. $T_n \xrightarrow{a.s} T$ iff $P(\{ \omega : T_n(\omega) \to T(\omega) \}) = 1$.
   Consider a snowball left out in the sun. In a couple hours, It'll have a random shape, random volume, and so on. But the ball itself
   is a definite thing --- the $\omega$. Almost sure says that for almost all of the balls, $T_n$ converges to $T$.
 - #2 notion of convergence: Convergence in probability. 
@@ -571,7 +578,7 @@ MX17004 2010-05-27 33.2 18.2
 
 #### Slutsky's Theorem
 
-- If $X_n \xrightarrow{d}$ X$ and $Y_n \xrightarrow{P} c $ (That is, the sequence of $Y_n$ is eventually deterministic),we then have that
+- If $X_n \xrightarrow{d} X$ and $Y_n \xrightarrow{P} c$ (That is, the sequence of $Y_n$ is eventually deterministic),we then have that
   $(X_n, Y) \xrightarrow{d} (X, c)$. In particular, we get that $X_n + Y_n \xrightarrow{d} X + c$ and $X_n Y_n \xrightarrow{d} X c$.
 - This is important, because in general, convergence in distribution says nothing about the RV! but in this special case, it's possible.
 
@@ -673,18 +680,18 @@ I've always wanted a proof I can remember, and I think I've found one.
   consider stabilizers.
 - We need to show the existence of an $S \in \Omega$ such that $Stab(S)$ has maximal cardinality.
 
-#### Lemma: $\comb{pa}{pb} \equiv_p \comb{a}{b}$:
+#### Lemma: $\binom{pa}{pb} \equiv_p \binom{a}{b}$:
 
 - this is the coefficient of $x^{pb}$ in $(x + 1)^{pa}$.
-  But modulo $p$, this is the same as the coefficient of $x^{pb}$ in $(x^p + 1^p)^a$. The latter is $\comb{a}{b}$.
-  Thus, $\comb{ap}{bp} \equiv_p \comb{a}{b}$ (modulo $p$).
+  But modulo $p$, this is the same as the coefficient of $x^{pb}$ in $(x^p + 1^p)^a$. The latter is $\binom{a}{b}$.
+  Thus, $\binom{ap}{bp} \equiv_p \binom{a}{b}$ (modulo $p$).
 
 #### Continuing: Size of $\Omega$ modulo $p$:
-- Let us begin by considering $|\Omega|$. This is $\comb{p^n m}{p^n}$ since we pick all subsets of size $p^n$ from $p^n$ m.
-  See that if we want to calculate $\comb{pa}{pb}$, this is the coefficient of $x^{pb}$ in $(x + 1)^{pa}$.
-  But modulo $p$, this is the same as the coefficient of $x^{pb}$ in $(x^p + 1^p)^a$. The latter is $\comb{a}{b}$.
-  Thus, $\comb{ap}{bp} \equiv_p \comb{a}{b}$ (modulo $p$).
-  Iterating the lemma shows us that $\comb{p^n m}{p^n} = m$. Thus, $p$ does not divide $|\Omega|$, since $m$ was the $p$-free part of $|G|$.
+- Let us begin by considering $|\Omega|$. This is $\binom{p^n m}{p^n}$ since we pick all subsets of size $p^n$ from $p^n$ m.
+  See that if we want to calculate $\binom{pa}{pb}$, this is the coefficient of $x^{pb}$ in $(x + 1)^{pa}$.
+  But modulo $p$, this is the same as the coefficient of $x^{pb}$ in $(x^p + 1^p)^a$. The latter is $\binom{a}{b}$.
+  Thus, $\binom{ap}{bp} \equiv_p \binom{a}{b}$ (modulo $p$).
+  Iterating the lemma shows us that $\binom{p^n m}{p^n} = m$. Thus, $p$ does not divide $|\Omega|$, since $m$ was the $p$-free part of $|G|$.
 - This implies that there is some orbit $O \subset \Omega$ whose size is not divisible by $p$.
   --- Break $\Omega$ into orbits. Since the left hand side $|\Omega|$ is not divisible by $p$,
   there is some term in the orbits size that is not divisible by $p$.
@@ -713,15 +720,18 @@ I've always wanted a proof I can remember, and I think I've found one.
 - Since the action of $G$ on $G$ is free, and since we are considering the stabilizer of some subset $S \subseteq G$,
   we must have that $|Stab(S) \leq |S| = p^n$. Thus, since $|S| \geq p^n$ (from the orbit argument above) and $|S| \leq p^n$ (from the stabilizer
   argument), we have $|Stab(S) = p^n$. Thus we are done.
+
 - More explicitly perhaps, let us analyze $|Stab(S)|$. We know that $Stab(S) \cdot S = S$.
   Thus, for any $t \in S$, we know that $Stab(S) \cdot t \subseteq S$.
   Thus, $|Stab(s) \cdot t| \leq |S|$.
-- Also notice that $|Stab(S) \cdot t$ is a coset of $Stab(S)$. Thus,
-  $|Stab(S) \cdot t| = |Stab(S)|$.
-- Combining the above, we find that $|Stab(S)| \leq |S|$.
-  So the stabilizer of size $|S| = p^k$ it is in some sense "maximal" --- it has the largest size a stabilizer could have!
-  
 
+- Also notice that $|Stab(S) \cdot t$ is a coset of $Stab(S)$. Thus, $|Stab(S) \cdot t| = |Stab(S)|$.
+
+
+Combining the above, we find that $|Stab(S)| \leq |S|$. So the stabilizer of
+size $|S| = p^k$ it is in some sense "maximal": it has the largest size a
+stabilizer could have!
+  
 
 
 # Fuzzing book
@@ -23595,8 +23605,6 @@ solution iff $|A| = 0$. Formally: $x \neq 0 \iff |A| = 0$. Also, the
 ratio of solutions is given by:
 
 $$x_i / x_j = (-1)^{i+j} |A_i|/|A_j|$$
-
-
 
 If we have two polynomials $p(a; x) = a_0 + a_1 x + a_2 x^2$, and
 $q(b; x) = b_0 + b_1x + b_2 x^2$, then the system $p(a; x)$, $q(b; x)$ has

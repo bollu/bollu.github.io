@@ -5,19 +5,159 @@
 <link>https://bollu.github.io/</link>
 <description>A universe of Sorts</description>
   <item>
+    <title> How GHC does typeclass resolution </title>
+    <guid>https://bollu.github.io/how-ghc-does-typeclass-resolution.html</guid>
+    <link>https://bollu.github.io/how-ghc-does-typeclass-resolution.html</link>
+  </item>
+  <item>
     <title> Defining continuity covariantly </title>
     <guid>https://bollu.github.io/defining-continuity-covariantly.html</guid>
     <link>https://bollu.github.io/defining-continuity-covariantly.html</link>
   </item>
   <item>
-    <title> Lean &apos; s type theory </title>
-    <guid>https://bollu.github.io/leans-type-theory.html</guid>
-    <link>https://bollu.github.io/leans-type-theory.html</link>
+    <title> Why commutator is important for QM </title>
+    <guid>https://bollu.github.io/why-commutator-is-important-for-qm.html</guid>
+    <link>https://bollu.github.io/why-commutator-is-important-for-qm.html</link>
   </item>
   <item>
     <title> Deriving pratt parsing by analyzing recursive descent  [WIP ] </title>
     <guid>https://bollu.github.io/deriving-pratt-parsing-by-analyzing-recursive-descent-wip.html</guid>
     <link>https://bollu.github.io/deriving-pratt-parsing-by-analyzing-recursive-descent-wip.html</link>
+  </item>
+  <item>
+    <title> Level set of a continuous function must be closed </title>
+    <guid>https://bollu.github.io/level-set-of-a-continuous-function-must-be-closed.html</guid>
+    <link>https://bollu.github.io/level-set-of-a-continuous-function-must-be-closed.html</link>
+  </item>
+  <item>
+    <title> HPNDUF - Hard problems need design up front! </title>
+    <guid>https://bollu.github.io/hpnduf-hard-problems-need-design-up-front.html</guid>
+    <link>https://bollu.github.io/hpnduf-hard-problems-need-design-up-front.html</link>
+  </item>
+  <item>
+    <title> Separable Extension is contained in Galois extension </title>
+    <guid>https://bollu.github.io/separable-extension-is-contained-in-galois-extension.html</guid>
+    <link>https://bollu.github.io/separable-extension-is-contained-in-galois-extension.html</link>
+  </item>
+  <item>
+    <title> Extension of field by separable element is separable  [WIP ] </title>
+    <guid>https://bollu.github.io/extension-of-field-by-separable-element-is-separable-wip.html</guid>
+    <link>https://bollu.github.io/extension-of-field-by-separable-element-is-separable-wip.html</link>
+  </item>
+  <item>
+    <title> Primitive element theorem without galois groups  [WIP ] </title>
+    <guid>https://bollu.github.io/primitive-element-theorem-without-galois-groups-wip.html</guid>
+    <link>https://bollu.github.io/primitive-element-theorem-without-galois-groups-wip.html</link>
+  </item>
+  <item>
+    <title> Galois extension </title>
+    <guid>https://bollu.github.io/galois-extension.html</guid>
+    <link>https://bollu.github.io/galois-extension.html</link>
+  </item>
+  <item>
+    <title> Separability of field extension as diagonalizability </title>
+    <guid>https://bollu.github.io/separability-of-field-extension-as-diagonalizability.html</guid>
+    <link>https://bollu.github.io/separability-of-field-extension-as-diagonalizability.html</link>
+  </item>
+  <item>
+    <title> Motivation for the compact-open topology </title>
+    <guid>https://bollu.github.io/motivation-for-the-compact-open-topology.html</guid>
+    <link>https://bollu.github.io/motivation-for-the-compact-open-topology.html</link>
+  </item>
+  <item>
+    <title> Example of covariance zero, and yet  &quot; correlated &quot;  </title>
+    <guid>https://bollu.github.io/example-of-covariance-zero-and-yet-correlated.html</guid>
+    <link>https://bollu.github.io/example-of-covariance-zero-and-yet-correlated.html</link>
+  </item>
+  <item>
+    <title> Hypothesis Testing  </title>
+    <guid>https://bollu.github.io/hypothesis-testing.html</guid>
+    <link>https://bollu.github.io/hypothesis-testing.html</link>
+  </item>
+  <item>
+    <title> Dumb mnemonic for remembering adjunction turnstile </title>
+    <guid>https://bollu.github.io/dumb-mnemonic-for-remembering-adjunction-turnstile.html</guid>
+    <link>https://bollu.github.io/dumb-mnemonic-for-remembering-adjunction-turnstile.html</link>
+  </item>
+  <item>
+    <title> Delta debugging </title>
+    <guid>https://bollu.github.io/delta-debugging.html</guid>
+    <link>https://bollu.github.io/delta-debugging.html</link>
+  </item>
+  <item>
+    <title> Tidy Data </title>
+    <guid>https://bollu.github.io/tidy-data.html</guid>
+    <link>https://bollu.github.io/tidy-data.html</link>
+  </item>
+  <item>
+    <title> Normal subgroups through the lens of actions </title>
+    <guid>https://bollu.github.io/normal-subgroups-through-the-lens-of-actions.html</guid>
+    <link>https://bollu.github.io/normal-subgroups-through-the-lens-of-actions.html</link>
+  </item>
+  <item>
+    <title> Writing rebuttals, Tobias style </title>
+    <guid>https://bollu.github.io/writing-rebuttals-tobias-style.html</guid>
+    <link>https://bollu.github.io/writing-rebuttals-tobias-style.html</link>
+  </item>
+  <item>
+    <title> LCS DP: The speedup is from filtration </title>
+    <guid>https://bollu.github.io/lcs-dp-the-speedup-is-from-filtration.html</guid>
+    <link>https://bollu.github.io/lcs-dp-the-speedup-is-from-filtration.html</link>
+  </item>
+  <item>
+    <title> Poisson distribution </title>
+    <guid>https://bollu.github.io/poisson-distribution.html</guid>
+    <link>https://bollu.github.io/poisson-distribution.html</link>
+  </item>
+  <item>
+    <title> F1 or Fun : The field with one element  </title>
+    <guid>https://bollu.github.io/f1-or-fun-the-field-with-one-element.html</guid>
+    <link>https://bollu.github.io/f1-or-fun-the-field-with-one-element.html</link>
+  </item>
+  <item>
+    <title> McKay &apos; s proof of Cauchy &apos; s theorem for groups  [WIP ] </title>
+    <guid>https://bollu.github.io/mckays-proof-of-cauchys-theorem-for-groups-wip.html</guid>
+    <link>https://bollu.github.io/mckays-proof-of-cauchys-theorem-for-groups-wip.html</link>
+  </item>
+  <item>
+    <title> Odds versus probability  [WIP ] </title>
+    <guid>https://bollu.github.io/odds-versus-probability-wip.html</guid>
+    <link>https://bollu.github.io/odds-versus-probability-wip.html</link>
+  </item>
+  <item>
+    <title> ncdu for disk space measurement </title>
+    <guid>https://bollu.github.io/ncdu-for-disk-space-measurement.html</guid>
+    <link>https://bollu.github.io/ncdu-for-disk-space-measurement.html</link>
+  </item>
+  <item>
+    <title> nmon versus htop </title>
+    <guid>https://bollu.github.io/nmon-versus-htop.html</guid>
+    <link>https://bollu.github.io/nmon-versus-htop.html</link>
+  </item>
+  <item>
+    <title> Schrier sims --- why purify generators times coset </title>
+    <guid>https://bollu.github.io/schrier-sims-why-purify-generators-times-coset.html</guid>
+    <link>https://bollu.github.io/schrier-sims-why-purify-generators-times-coset.html</link>
+  </item>
+  <item>
+    <title> Vyn &apos; s feeling about symmetry </title>
+    <guid>https://bollu.github.io/vyns-feeling-about-symmetry.html</guid>
+    <link>https://bollu.github.io/vyns-feeling-about-symmetry.html</link>
+  </item>
+  <item>
+    <title> Convergence in distribution is very weak </title>
+    <guid>https://bollu.github.io/convergence-in-distribution-is-very-weak.html</guid>
+    <link>https://bollu.github.io/convergence-in-distribution-is-very-weak.html</link>
+  </item>
+  <item>
+    <title> Class equation, P-group structure </title>
+    <guid>https://bollu.github.io/class-equation-p-group-structure.html</guid>
+    <link>https://bollu.github.io/class-equation-p-group-structure.html</link>
+  </item>
+  <item>
+    <title> Sylow Theorem 1 </title>
+    <guid>https://bollu.github.io/sylow-theorem-1.html</guid>
+    <link>https://bollu.github.io/sylow-theorem-1.html</link>
   </item>
   <item>
     <title> Fuzzing book </title>

@@ -1,3 +1,30 @@
+- [Largest list of CP topics ever](https://codeforces.com/blog/entry/95106)
+- [Stanford ICPC team notebook PDF](https://github.com/jaehyunp/stanfordacm/blob/master/notebook.pdf)
+- Algebraic Topology of Finite Topological Spaces and Applications by Jonathan Barmak
+- [LEAN's type theory](https://github.com/digama0/lean-type-theory/stargazers)
+- [uops.info: latency, throughput, data usage tables for ALL processors. Recommended by Casey for performance optimization](http://uops.info/)
+- [A A Albert: Higher algebra --- does galois theory directly via primitive element theorem. Possibly cleaner development](https://mathoverflow.net/questions/26557/what-was-galois-theory-like-before-emil-artin)
+- [Mathematical methods for QM: A real textbook written by mathematicians!](https://www.mat.univie.ac.at/~gerald/ftp/book-schroe/schroe.pdf)
+- [Bayesian statistical thinking in R](https://bookdown.org/connect/#/apps/1850/access)
+- [R: survival analysis](https://cran.r-project.org/web/views/Survival.html)
+- A First Course in Bayesian Statistical Methods
+- [Gwern bayes](https://www.gwern.net/Statistical-notes)
+- OSCP: Security course / certification.
+- [Ext and Tor constructively](https://mathoverflow.net/questions/50971/how-to-make-ext-and-tor-constructive)
+- [Co-applicative style programming](https://www.haskellforall.com/2021/10/co-applicative-programming-style.html)
+- [roy.red: Cool blog about shaders galore!](http://roy.red/posts/uniting-spherical-and-hyperbolic-tilings/)
+- [Fast algorithms for signal processing](https://www.cambridge.org/core/books/fast-algorithms-for-signal-processing/E35F46175F3558980873443CA8A6A4FD)
+- [Is parallel programming hard, and if so, what can you do about it](https://mirrors.edge.kernel.org/pub/linux/kernel/people/paulmck/perfbook/perfbook.html)
+- Lattice Path Counting and Applications
+- [Inside interesting integrals](https://galoisian.files.wordpress.com/2018/11/undergraduate-lecture-notes-in-physics-paul-j-nahin-inside-interesting-integrals-2015-springer-1.pdf)
+- [Scratch a pixel: rendering turorials from scracth](https://www.scratchapixel.com/index.php?redirect)
+- [Doran Zeilberger: mathematician, combinatorial algorithms hypergeometric functions, ultrafinist](https://sites.math.rutgers.edu/~zeilberg/OPINIONS.html)
+- [Invite physicists to write new oblique strategies](https://en.wikipedia.org/wiki/Oblique_Strategies)
+- [Confidence intervals explained via discretization: confidence sets](https://justindomke.wordpress.com/2021/10/11/confidence-games-1-2/)
+- Algorithmic and Computer Methods for Three-Manifolds: By fomenko! 
+- All of Statistics: A Concise Course in Statistical Inference
+- Geometric numerical integration.
+- [An invitation to morse theory](https://www3.nd.edu/~lnicolae/Morse2nd.pdf)
 - Stochastic Modeling: Analysis and Simulation --- good intro book on queueing theory.
 - [How to speak: Patrick Winston](https://www.youtube.com/watch?v=Unzc731iCUY&t=189s)
 - [Functioal analysis: Dover books by George Bachman and Lawrence Narci.](https://math.stackexchange.com/a/129282/261373)
