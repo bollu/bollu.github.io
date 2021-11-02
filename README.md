@@ -1,4 +1,4 @@
-t<img style="float:left;display:inline-block;padding-right: 16px; width: 48px" src="./static/banner.png">
+<img style="float:left;display:inline-block;padding-right: 16px; width: 48px" src="./static/banner.png">
 <h2> A Universe of Sorts </h2>
 <h3> Siddharth Bhat </h3>
 
@@ -6,6 +6,68 @@ t<img style="float:left;display:inline-block;padding-right: 16px; width: 48px" s
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+
+# Eisenstein Theorem for checking irreducibility
+
+- Let $p(x) = a_0 + a_1 x + \dots + a_n x^n$
+- If $p$ divides all coefficients except for the highest one ($a_n$), $a_0$ is $p$-squarefree ($p^2$ does not divide $a_0$), then $p(x)$ is irreducible.
+- That is, $p | a0, p | a_1$, upto $p | a_{n-1}$, $p \not | a_n$, and finally $p^2 \not | a_0$.
+- Then we must show that $p(x)$ is irreducible.
+- Suppose for contradiction that $p(x) = q(x)r(x)$ where $q(x) = (b_0 + b_1 x+ \dots + b_k x^k)$ and $r(x) = (c_0 + c_1 x + \dots c_l x^l)$ (such that $k + l \geq n$, 
+  and $k > 0, l > 0$).
+- See that $a_0 = b_0 c_0$. Since $p | a_0$, $p$ must divide one of $b_0, c_0$. Since $p^2$ **does not divide** $a_0$, $p$ cannot divide **both** $b_0, c_0$.
+  WLOG, suppose $p$ divides $b_0$, and $p$ **does not divide** $c_0$.
+- Also see that since $a_n = (\sum_{i + j = n} b_i c_j)$, $p$ does not divide this coefficient $\sum_{i + j = n} b_i c_j$. Thus, at least one term
+   in $\sum_{i + j = n} b_i c_j$ is not divisible by $p$.
+- Now, we know that $p$ divides $b_0$, $p$ does not divide $c_0$. We will use this as a "domino" to show that $p$ divides $b_1$, $b_2$, and so on, all the way upto $b_k$.
+  But this will imply that the final term $a_n$ will also be divisible by $p$, leading to contradiction.
+- To show the domino effect, start with the coefficient of $x$, which is $a_1 = b_0 c_1 + b_1 c_0$. Since $a_1$ is divisible by $p$, $b_0$ is divisible by $p$, and $c_0$ is 
+  **not** divisible by $p$, the whole equation reduces to $b_1 c_0 \equiv_p 0$, or $b_1 \equiv_p 0$ [since $c_0$ is a unit modulo $p$].
+- Thus, we have now "domino"'d to show that $p$ divides **both** $b_0, b_1$.
+- For induction, suppose $p$ divides everything $b_0, b_1, \dots, b_r$. We must show that $p$ divides $b_{r+1}$.
+- Consider the coefficient of the term $xri$, ie $a_r$. This is divisible by $p$, and we have that $a_r = b_0 c_r + b_1 c_{r-1} + \dots + b_r c_0$. Modulo $p$, the left
+  hand side vanishes (as $a_r$ is divisible by $p$), and every term $b_0, b_1, \dots, b_{r-1}$ vanishes, leaving behind $0 \equiv_p b_r c_0$. Since $c_0$ is a unit, we get
+  $b_r \equiv_p 0$.
+- Thus, every term $\{ b_i \}$ is divisible by $p$, implying $a_n$ is divisible by $p$, leading to contradiction.
+- Again, the key idea: (1) $b_0$ is divisible by $p$ while $c_0$ is not. (This uses $p | a_0$ and $p^2 \not | a_0$).
+  (2) This allows us to "domino" and show that all $b_i$ are divisible by $p$ (This uses $p | a_i$). (3) This
+  show that $a_n$ is divisible by $p$, a contradiction. (This uses $p \not | a_n$).
+
+# Gauss Lemma for polynomials
+
+- Let $z(x) \in Z[X]$ such that $z(x) = p(x) q(x)$ where $p(x), q(x) \in Q[X]$. Then we claim that there exists 
+  $p'(x), q'(x) \in Z[x]$ such that $z(x) = p'(x) q'(x)$.
+- For example, suppose $p(x) = a_0 / b_0 + a_1 x / b_1$ and $q(x) = c_0 / d_0 + c_1 x / d_1$, such that $p(x)q(x) \in \mathbb Z[x]$ and these
+  fractions are in lowest form. So, $b_i \not | a_i$ and $d_i \not | c_i$.
+- Take common demoniator, so we can then find things the denominator divides to write as a product in $\mathbb Z$. For example, we know that
+  $9/10 \cdot 20 / 3 = 6$. This can be obtained by rearranging the product as $(9/3) \cdot (20/10) = 3 \cdot 2 = 6$. We wish to perform a similar rearrangement,
+  by first writing $9/10 \cdot 20 / 3$ as $(9 \cdot 20)/(10 \cdot 3)$, and then pairing up $10 \leftrightarrow 20$ and $3 \leftrightarrow 9$ to get the final
+  integer $(9/3) (20/10) = 6$. After pairing up, each of the pairs $(9/3)$ and $(20/10)$ are clearly integers.
+- Take common demoniator in $p(x)$ and write it as a fraction: $p(x) = (a_0 b_1 + (a_1 b_0)x) / b_0 b_1$, and similarly $q(x) = (c_0 d_1 + (c_1 d_0)x)/d_0 d_1$.
+- We claim that the denominator of $p(x)$, $b_0 b_1$ **does not divide** the numerator of $p(x)$, $(a_0 b_1 + (a_1 b_0)x)$. This can be seen term-by-term.
+  $b_0 b_1$ does not divide $a_0 b_1$ since $a_0 b_1 / b_0 b_1 = a_0 / b_0$ which was assumed to be in lowest form, and a real fraction. Similarly for all terms
+  in the numerator.
+- Since the product $p(x)q(x)$ which we write as fractions as  $(a_0 b_1 + (a_1 b_0)x) (c_0 d_1 + (c_1 d_0)x) / (b_0 b_1)(d_0 d_1)$ is integral, we must have that
+  $b_0 b_1$ divides the numerator. Since $b_0 b_1$ **does not divide** the first factor $(a_0 b_1 + (a_1 b_0)x)$,
+  it **must divide** the second factor $(c_0 d_1 + (c_1 d_0)x)$. Thus, the polynomial
+  $q'(x) \equiv (c_0 d_1 + (c_1 d_0)x)/b_0 b_1$ is therefore integral [ie, $q'(x) \in Z[x]$].
+- By the exact same reasoning, we must have $d_0 d_1$ divides the product $p(x)q(x)$.
+  Since $d_0 d_1$ does not divide $(c_0 d_1 + (c_1 d_0)x)$, it must divide (a_0 b_1 + (a_1 b_0)x) and therefore $p'(x) \equiv (a_0 b_1 + (a_1 b_0)x)/(d_0 d_1)$
+  is integral.
+- Thus, we can write $z(x) = p'(x) q'(x)$ where $p'(x), q'(x) \in \mathbb Z[x]$.
+- This generalizes, since we never used anything about being linear, we simply reasoned term by term.
+
+
+#### Alternate way to show that the factorization is correct.
+
+- Start at $p(x)q(x) = (a_0 b_1 + (a_1 b_0)x) (c_0 d_1 + (c_1 d_0)x) / (b_0 b_1)(d_0 d_1)$.
+- Rewrite as  $ p(x)q(x) \cdot (b_0 b_1)(d_0 d_1) = (a_0 b_1 + (a_1 b_0)x) (c_0 d_1 + (c_1 d_0)x)$
+- Suppose $\alpha$ is a prime factor of $b_0$. Then reduce the above equation mod $\alpha$. We get $0 \equiv_\alpha (a_0 b_1 + (a_1 b_0)x) (c_0 d_1 + (c_1 d_0)x)$.
+  Since $\mathbb Z/\alpha \mathbb Z[x]$ is an integral domain, we have that one of $(a_0 b_1 + (a_1 b_0)x)$ or $(c_0 d_1 + (c_1 d_0)x)$ vanishes, and thus $p$
+  divides one of the two.
+- This works for all prime divisors of the denominators, thus we can "distribute" the prime divisors of the denominators across the two polynomials.
+- Proof that $Z/\alpha Z[x]$ is an integral domain: note that $Z/\alpha Z$ is a field, thus $Z/ \alpha Z[x]$ is a Euclidean domain (run Euclid algorithm).
+  This implies it is integral.
 
 # How GHC does typeclass resolution
 
@@ -1623,7 +1685,7 @@ B---D
 
 #### Theorem: totally monotone matrices have ascending row minima
 
-#### 1D 1D DP
+#### 1D 1D DP [TODO]
 
 - https://robert1003.github.io/2020/02/29/dp-opt-knuth.html
 - Suppose we have a dp $dp[r] = \min_{0 \leq l \leq r} f(l, r)$. That is, we need to find row minima for 
@@ -36253,7 +36315,8 @@ let g:conjure#mapping#eval_motion = "E"
 > It is interesting to see where people insist proximity to a subject makes one
 > informed, and where they insist it makes them biased. It is interesting that
 > they think it’s their call to make. [in the context of 'as a male, you don't
-> get a say about toxic masculinity' v/s other 'viewpoints'] ~ [medium article link](https://medium.com/@jencoates/i-am-a-transwoman-i-am-in-the-closet-i-am-not-coming-out-4c2dd1907e42)
+> get a say about toxic masculinity' v/s other 'viewpoints'] 
+> ~ [medium article link](https://medium.com/@jencoates/i-am-a-transwoman-i-am-in-the-closet-i-am-not-coming-out-4c2dd1907e42)
 
 
 > "Feeding two birds with one scone"
@@ -36341,6 +36404,11 @@ let g:conjure#mapping#eval_motion = "E"
 > "Ethereum has said they're moving from Proof of Work to Stake; I'm not
 > surprised, given the Ethereum developers seem to abhor Work in all of its
 > forms, including making progress on Ethereum itself"
+
+
+> The man is nothing, the work is everything. ~ Napoleon
+> L’homme c’est rien–l’oeuvre c’est tout
+
 
 # Empathy
 

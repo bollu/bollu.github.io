@@ -5,6 +5,16 @@
 <link>https://bollu.github.io/</link>
 <description>A universe of Sorts</description>
   <item>
+    <title> Eisenstein Theorem for checking irreducibility </title>
+    <guid>https://bollu.github.io/eisenstein-theorem-for-checking-irreducibility.html</guid>
+    <link>https://bollu.github.io/eisenstein-theorem-for-checking-irreducibility.html</link>
+  </item>
+  <item>
+    <title> Gauss Lemma for polynomials </title>
+    <guid>https://bollu.github.io/gauss-lemma-for-polynomials.html</guid>
+    <link>https://bollu.github.io/gauss-lemma-for-polynomials.html</link>
+  </item>
+  <item>
     <title> How GHC does typeclass resolution </title>
     <guid>https://bollu.github.io/how-ghc-does-typeclass-resolution.html</guid>
     <link>https://bollu.github.io/how-ghc-does-typeclass-resolution.html</link>
