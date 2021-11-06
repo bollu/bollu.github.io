@@ -420,6 +420,8 @@ T *tokenizeLineFragment(const char *s, const ll len, const L lbegin) {
     lcur = strconsume(lcur, s, "$", "unclosed inline latex block $");
 
     if (lbegin.line != lcur.line) {
+      // inline latex block not allowed to be on two different lines.
+      // TODO: add color to the line!
       printferr(lbegin, s,
                 "inline latex block not allowed to be on two different lines.");
       assert(false && "inline latex block on two different lines.");

@@ -1,3 +1,4 @@
+- [Choices of representations for names](https://jesper.sikanda.be/posts/1001-syntax-representations.html)
 - [Computational geometry video lectures by Philipp Kindermann](https://www.youtube.com/c/PhilippKindermann/playlists)
 - [Largest list of CP topics ever](https://codeforces.com/blog/entry/95106)
 - [Stanford ICPC team notebook PDF](https://github.com/jaehyunp/stanfordacm/blob/master/notebook.pdf)

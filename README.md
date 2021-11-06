@@ -7,6 +7,74 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
 
+# Normal field extensions
+
+## Normal extension
+
+- (1) For an extension $L/K$, if a polynomial $p(x) \in K[x]$ and has a root $\alpha \in L$ has _all_ its roots in $L$. So $p(x)$
+  splits into linear factors $p(x) = (x - l_1)(x - l_2) \cdot (x - l_n)$ for $l_i \in L$.
+- (2) [equivalent] $L$ is the splitting field over $K$ of some _set_ of polynomials. 
+- (3) [equivalent] Consider $K \subseteq L \subseteq \overline K$. Then any automorphism of $\overline K/K$ (ie, aut that fixes $K$ pointwise)
+  maps $L$ to $L$ [fixes $L$ as a set, NOT pointwise].
+- Eq: $Q(2^{1/3})$ is not normal
+- Eq: $Q(2^{1/3}, \omega_3)$ is a normal extension because it's the splitting field of $x^3 - 2$.
+
+#### (1) implies (2)
+
+- (1) We know that $p$ has a root in $L$ implies $p$ has all rots in $L$.
+- For each $\alpha \in L$, we take the minimal polynomial $p(\alpha)$. Then $p$ splits over $L$, because $L$ contains a single root of $p$ ($\alpha$).
+- Thus, $L$ is the splitting field for the set of polynomials $\{ minpoly(\alpha) \in K[x] : \alpha \in L \}$.
+
+#### (2) implies (3)
+
+- (2) says that $L$ is the splitting field for some set of polynomials.
+- An aut $\sigma: \overline K \to \overline K$ that fixes $K$ acts trivially on polynomials in $K[x]$.
+- $L$ is the set of all roots of polynomials $\{ minpoly(\alpha) \in K[x] : \alpha \in L \}$.
+- Since $\sigma$ fixes $K[x]$, it also cannot change the set of roots of the polynomials. Thus the set $\{ minpoly(\alpha) \in K[x] : \alpha \in L \}$
+  remains invariant under $\sigma$. ($\sigma$ cannot add elements into $L$). It can at most permute the roots of $L$. 
+
+#### (3) implies (1)
+
+- (3) says that any automorphism $\sigma$ of $\overline K/K$ fixes $L$ as a set.
+- We wish to show that if $p$ has a root $\alpha \in L$, $L$ has all roots of $p$. 
+- we claim that for any root $\beta \in L$, there is an automorphism $\tau: \overline K/K$ such that $\tau(\alpha) = \beta$.
+- Consider the tower of extensions $K \subseteq K(\alpha) \subseteq \overline K$ and $K \subseteq K(\beta) \subseteq \overline K$.
+  Both $K(\alpha)$ and $K(\beta)$ look like $K[x] / p$ because $p$ is the minimal polynomial for _both_ $\alpha$ and $\beta$.
+- Thus, we can write an a function $\tau: K(\alpha) \to K(\beta)$ which sends $\alpha \mapsto \beta$.
+- Now, by uniqueness of field extensions, this map $\tau$ extends uniquely to a map $\overline K \to \overline K$ which sends $\alpha to \beta$. [TODO: DUBIOUS].
+- But notice that $\tau$ must fix $L$ (by (3)) and $\alpha in L$. Thus, $\tau(\alpha) \in \tau(L)$, or $\beta = \tau(\alpha \in \tau(L) = L$.
+- Thus, for a polynomial $p$ with root $\alpha in L$, and for any other root $\beta$ of $p$, we have that $\beta \in L$.
+
+#### Alternative argument: Splitting field of a polynomial is normal
+
+- Let $L/K$ be the splitting field of $f \in K[x]$. Let $g \in K[x]$ have a root $\alpha \in L$.
+- Let $\beta \in \overline K$ be another root of $g$. We wish to show that $\beta \in L$ to show that $L$ is normal.
+- There is an embedding $i: K(\alpha) \hookrightarrow \overline K$ which fixes $K$ and sends $\alpha$ to $\beta$.
+- See that $i(L)$ is also a splitting field for $f$ over $K$ inside $\overline K$.
+- But splitting fields are unique, so $i(L) = L$.
+- Since $i(\alpha) = \beta$, this means $\beta \in L$ as desired.
+
+#### Degree 2 elements are normal
+
+- Let us have a  degree 2 extension $K \subseteq L$
+- So we have some $p(x) = x^2 + bx + c \in K[x]$, $L = K(\alpha)$ for $\alpha$ a root of $p$.
+- We know that $\alpha + \beta = b$ for $\alpha \in L, b \in K$. Thus $\beta = b - \alpha \in L$. 
+- Thus, the extension is normal since $L$ contains all the roots ($\alpha, \beta$) of $p$ as soon as it contained one of them.
+
+
+#### Is normality of extensions transitivte?
+
+- Consider $K \subseteq L \subseteq M$. If $K \subseteq L$ is normal, $L \subseteq M$ is normal, then is $K \subseteq M$ normal? 
+- Answer: NO!
+- Counter-example: $Q \subseteq Q(2^{1/2}) \subseteq Q(2^{1/4})$.
+- Each of the two pieces are normal since they are degree two. But the full tower is not normal, because $Q(2^{1/4})/Q$ has minimial polynomial $x^4 - 2$.
+- On the other hand, $Q(2^{1/4})/Q(2^{1/2})$ has a minimal polynomial $x^2 - \sqrt{2} \in Q[2^{1/2}]$.
+- So, normality is not transitive!
+- Another way of looking at it: We want to show that $\sigma(M) \subseteq M$ where $\sigma: aut(\overline K/K)$. Since $L/K$ is normal, and $\sigma$ is an  
+  autormophism of $L/K$, we have $\sigma(L) \subseteq L$ [by normal]. Since $M/L$ is normal, we must have $\sigma(M) \subseteq M$. Therefore, we are done?
+- NO! The problem is that $\sigma$ is not a legal automorphism of $M/L$, since $\sigma$ fixes $L$ as a *set* ($\sigma L \subseteq L$),
+  and not *pointwise* ($\sigma(l) = l$ for all $l \in L$.)
+
 # Eisenstein Theorem for checking irreducibility
 
 - Let $p(x) = a_0 + a_1 x + \dots + a_n x^n$
@@ -170,18 +238,234 @@ $$
 - This is normal (since it is the splitting field of a polynomial).
 - This is separable, since it is generated by separable elements $\alpha$, $\beta$, $\gamma$, and so on.
 
-# Extension of field by separable element is separable [WIP]
 
-- Let $K$ be a field, and let $\alpha$ be the root of a separable polynomial $p \in K[X]$. Then we claim that $K(\alpha)$ is separable.
-- Let $L/K$ be a finite extension. Define the **separable degree** of the extension to be the number of distinct morphisms $L/K \to \overline K$.
-- http://www.math.brown.edu/jlubin/sep.pdf
-- [Kconrad's notes](https://kconrad.math.uconn.edu/blurbs/galoistheory/separable2.pdf)
+# Primitive element theorem
+
+- Let $E/k$ be a finite extension. We will characterize when a primitive element exists, and show that
+  this will always happen for separable extensions.
+
+#### Part 1: Primitive element iff number of intermediate subfields is finite
+
+##### Forward: Finitely many intermediate subfields implies primitive
+- If $k$ is a finite field, then $E$ is a finite extension and $E^\times$ is a cyclic group. The generator of $E^\times$ is the primitive element.
+- So suppose $k$ is an infinite field. Let $E/k$ have many intermediate fields.
+- Pick non-zero $\alpha, \beta \in E$. As $c$ varies in $k$, the extension $k(\alpha + c\beta)$ varies amongst the extensions of $E$.
+- Since $E$ only has finitely many extensions while $k$ is infinite, pigeonhole tells us that there are two $c_1 \neq c_2$ in $E$ such that 
+  $k(\alpha + c_1 \beta) = k(\alpha + c_2 \beta)$.
+- Define $L \equiv k(\alpha + c_1 \beta)$. We claim that $L = E$, which shows that $\alpha + c_1 \beta$ is a primitive element for $E$.
+- Since $k(\alpha + c_2 \beta) = k(\alpha + c_1 \beta) = L$, this implies that $\alpha + c_2 \beta \in L$.
+- Thus, we find that $\alpha + c_1 \beta \in L$ and $\alpha + c_2 \beta \in L$. Thus, $(c_1 - c_2) \beta in L$. Since $c_1, c_2 \in k$, we have
+  $(c_1 - c_2)^{-1} \in K$, and thus $\beta \in L$, which implies $\alpha \in L$.
+- Thus $L = k(\alpha, \beta) = k(\alpha + c_1 \beta)$.
+- Done. Prove for more generators by recursion.
+
+##### Backward: primitive implies finitely many intermediate subfields
+
+- Let $E = k(\alpha)$ be a simple field (field generated by a primitive element). We need to show that $E/k$ only has finitely many subfields.
+- Let $a_k(x) \in k[x]$ be the minimal polynomial for $\alpha$ in $k$. By definition, $a$ is irreducible.
+- For any intermediate field $k \subseteq F \subseteq E$, define $a_F(x) \in F[x]$ to be the minimal polynomial of $\alpha$ in $F$.
+- Since $a_k$ is also a member of $F[x]$ and $a_k, a_F$ share a common root $\alpha$ and $a_F$ is irreducible in $F$, this means that $a_F$ divides $a_k$. 
+- Proof sketch that irreducible polynomial divides any polynomial it shares a root with (Also written in another blog post):
+  The GCD $gcd(a_F, a_k) \in F[x]$ must be non constant since $a_F, a_k$ share a root). But the irreducible polynomial $a_F$
+  cannot have a smaller polynomial ($gcd(a_F, a_k)$) as divisor. Thus the GCD itself is the irreducible polynomial $a_F$. This implies that $a_F$ divides $a_k$
+  since GCD must divide $a_k$. 
+- Since $a_k$ is a polynomial, it only has finitely many divisors (upto rescaling, which does not give us new intermediate fields).
+- Thus, there are only finitely many intermediate fields if a field is primitive.
 
 
-# Primitive element theorem without galois groups [WIP]
 
-- [Reference](https://math.stackexchange.com/questions/1248781/primitive-element-theorem-without-galois-group)
+##### Interlude: finite extension with infinitely many subfields
 
+- Let $F = F_p(t, u)$ where $t, u$ are independent variables. This has finite degree since it has a vector space basis $\{ t^iu^j \}$.
+- Let $\alpha, \beta$ be roots of $x^p - t$ and $x^p - u$. Define $L \equiv F(\alpha, \beta)$.
+- Consider intermediate subfields $F_\lambda \equiv  F(\alpha + \lambda \beta)$ for $\lambda \in F$. 
+- Suppose $\lambda \neq \mu$ for two elements in $F$. We want to show that $F_\lambda \neq F_\mu$. This gives us infinitely many subfields as $F$ has infinitely
+  many elements. TODO
+- [Reference](https://www.mathcounterexamples.net/a-finite-extension-that-contains-infinitely-many-subfields/)
+
+
+#### Part 2: If $E/k$ is finite and separable then it has a primitive element
+- Let $K = F(\alpha, \beta)$ be separable for $\alpha, \beta \in K$. Then we will show that there exists a primitive element $\theta \in K$ such that $K = F(\theta)$.
+- By repeated application, this shows that for any number of generators $K = F(\alpha_1, \dots, \alpha_n)$, we can find a primitive element.
+- If $K$ is a finite field, then the generator of the cyclic group $K^\times$ is a primitive element.
+- So from now on, suppose $K$ is infinite, and $K = F(\alpha, \beta)$ for $\alpha, \beta \in F$.
+- Let $g$ be the minimal polynomial for $\alpha$, and $h$ the minimal polynomial for $\beta$. Since the field is separable, $g, h$ have unique roots.
+- Let the unique roots of $g$ be $\alpha_i$ such that $\alpha = \alpha_1$, and similarly let the unique roots of $h$ be $\beta_i$ such that $\beta = beta_1$.
+- Now consider the equations $\alpha_1 + f_{i, j} \beta_1 = \alpha_i + f_{i, j} \beta_j$ for $i \in [1, deg(g)]$ and $j \in [1, deg(h)]$.
+- Rearranging, we get $(\alpha_1 - \alpha_j) = f_{i, j} (\beta_j - \beta_1)$. Since $\beta_j \neq \beta_1$ and $\alpha_1 \neq \alpha_j$, this shows that there 
+  is a unique $f_{i, j} \equiv (\alpha_1 - \alpha_j)/(\beta_j - \beta_1)$ that solves the above equation. 
+- Since the extension $F$ is infinite, we can pick a $f_*$ which avoids the finite number of $f_{i, j}$.
+- Thus, once we choose such an $f_*$, let $\theta \equiv a_1 + f b_1$. Such a $\theta$ can never be equal to $\alpha_i + f \beta_j$ for _any_ $f$, since the only choices of $f$
+  that make $\alpha_1 + f \beta_1 = \alpha_i + f \beta_j$ true are the $f_{i, j}$, and $f_*$ was chosen to be different from these!
+- Now let $F_\theta \equiv F(\theta)$. Since $\theta \in K$, $E$ is a subfield of $K$.
+- See that $K = F(\alpha, \beta) = F(\alpha, \beta, \alpha + f \beta) = F(\beta, \alpha + f \beta) = F(\theta, \beta) = F_\theta(\beta)$.
+- We will prove that $K = F_\theta$.
+- Let $p(x)$ denote the minimal polynomial for $\beta$ over $F_\theta$. Since $K = F_\theta(\beta)$, if $p(x)$ is trivial, the $K = F_\theta$.
+- By definition, $\beta$ is a root of $h(x)$. Since $p(x)$ is an irreducible over $F_\theta$, we have that $p(x)$ divides $h(x)$
+  [proof sketch: irreducible polynomial $p(x)$ shares a root with $h(x)$. Thus, $gcd(p(x), h(x))$ must be linear or higher. Since $gcd$ divides $p(x)$, we must have
+   $gcd = p(x)$ as $p(x)$ is irreducible and cannot have divisors. Thus, $p(x)$, being the GCD, also divides $h(x)$].
+- Thus, the roots of $p(x)$ must be a subset of the roots $\{ \beta_j \}$ of $h(x)$.
+- Consider the polynomial $k(x) = g(\theta - f_* \cdot x)$. $\beta$ is also a root of the polynomial $k(x)$, since $k(\beta) = g(\theta - f_* \beta)$,
+  which is equal to $g((\alpha + f_* \beta) - f_* \beta) = g(\alpha) = 0$. [since $\alpha$ is a root of $g$].
+- Thus, we must have $p(x)$ divides $k(x)$.
+- We will show that $\beta_j$ is not a root of $k(x)$ for $j \neq 2$. $k(\beta_j) = 0$ implies $g(\theta - f_* \beta_j) = 0$, which implies $\theta - f_* \beta_j = \alpha_i$
+  since the roots of $g$ are $\alpha_i$. But then we would have $\theta = \alpha_i + f_* \beta_j$, a contradiction as $\theta$ was chosen precisely to _avoid_ this case!
+- Thus, every root of $p(x)$ must come from $\{ \beta_j \}$. Also, the roots of $p(x)$ must come from the roots of $k(x)$. But $k(x)$ only shares the root $\beta_1$
+  with the set of roots $\beta_2, \dots, \beta_j$. Also, $p(x)$ does not have multiple roots since it is separable. Thus, $p(x)$ is linear, and the degree of the field extension
+  is 1. Therefore, $K = E = F(\theta)$.
+
+#### References
+- [Reference 1: Primitive Element theorem at Planet Math](https://planetmath.org/proofofprimitiveelementtheorem)
+- [Reference 2: NPTEL which has proof based on embeddings into alg. closure](https://nptel.ac.in/content/storage2/courses/111101001/downloads/Lecture12.pdf)
+- [Reference 3: ](https://sites.math.washington.edu/~greenber/MATH404-PrimElem.pdf)
+
+
+# Separable extension via embeddings into alg. closure
+
+#### Defn by embeddings
+- Let $L/K$ be a finite extension.
+- It is separable iff a given embedding $\sigma: K \to \overline K$ can be extended in $[L:K]$ ways (This number can be at most $[L:K]$.)
+- We call the numbe of ways to embed $L$ in $\overline K$ via extending $\sigma$ to be the _separability degree_ of $L/K$.
+
+
+##### At most $[L:K]$ embeddings exist
+
+- We will show for simple extensions $K(\alpha)/K$ that there are at most $[K(\alpha): K]$ ways to extend $\sigma: K \to \overline K$ into $\sigma': K(\alpha) \to \overline K$.
+- We use two facts: first, $\sigma'$ is entirely determined by where it sends $\alpha$. Second, $\alpha$ can only go to another root of its minimal polynomial $p \in K[x]$.
+  Thus, there are only finitely many choices, and the minimal polynomial has at most $degree(p)$ unique roots, and $[K(\alpha):K] = degree(p)$.
+  Thus, there are at most $degree(p_\alpha) = [L:K]$ choices of where $\alpha$ can go to, which entirely determines $\sigma'$. Thus there are at most $degree(p) = [K(\alpha):K]$
+  choices for $\sigma'$.
+- Given a larger extension, write a sequence of extensions $L = K(\alpha_1)(\alpha_2)\dots(\alpha_n)$. Then, since $[L:K] = [K(\alpha):K][K(\alpha_1, \alpha_2):K(\alpha_1)]$
+  and so on, can repeatedly apply the same argument to bound the number of choices of $\sigma'$.
+- In detail, for the case $K(\alpha)/K$, consider the minimal polynomial of $\alpha$, $p(x) \in K[x]$. Then $p(\alpha) = 0$.
+- Since $\sigma$ fixes $K$, and $p$ has coefficients from $K$, we have that $\sigma(p(x)) = p(\sigma(x))$.
+- Thus, in particular, $\sigma(0) = \sigma(p(\alpha)) = p(\sigma(\alpha))$.
+- This implies that $p(\sigma(\alpha)) = 0$, or $\sigma(\alpha)$ is a root of $p$.
+- Since $\sigma': L \to \overline K$, $\sigma'$ can only map $\alpha$ to one of the other roots of $p$.
+- $p$ has at most $deg(p)$ unique roots [can have repeated roots, or some such, so could have fewer that that].
+- Further, $\sigma'$ is entirely determined by where it maps $\alpha$. Thus, there are at most $[K(\alpha):K]$ ways to extend $\sigma$ to $\sigma'$.
+
+##### Separability is transitive
+- Given a tower $K \subseteq L \subseteq M \subseteq \overline K$, we fix an embedding $\kappa: K \to \overline K$. If both $L/K$ and $M/L$ are
+  finite and separable, then $\kappa$ extends into $\lambda: L \to \overline K$ through $L/K$ in $[L:K]$ ways, and then again 
+  as $\mu: L \to \overline K$ in $[M:L]$ ways.
+- This together means that we have $[L:K] \cdot [M:L] = [M:K]$ ways to extend $\kappa$ into $\mu$, which is the maximum possible.
+- Thus, $M/K$ is separable.  
+
+##### Separable by polynomial implies separable by embeddings
+- Let every $\alpha \in L$ have minimal polynomial that is separable (ie, has distinct roots).
+- Then we must show that $L/K$ allows us to extend any embedding $\sigma: K \to \overline K$ in $[L:K]$ ways into $\sigma': L \to K$
+- Write $L$ as a tower of extensions. Let $K_0 \equiv K$, and $K_{i+1} \equiv K_i(\alpha_i)$ with $K_n = L$.
+- At each step, since the polynomial is separable, we have the maximal number of choices of where we send $\sigma'$. Since degree
+  is multiplicative, we have that $[L:K] = [K_1:K_0][K_2:K_1]\dots[K_{n-1}:K_n$.
+- We build $\sigma'$ inductively as $\sigma'_i: K \to K_i$ with $\sigma'_0 \equiv \sigma$.
+- Then at step $i$, $\sigma'_{i+1}: K \to K(i+1)$ which is $\sigma'_{i+1}: K \to K_i(\alpha_{i+1})$ has $[K_{i+1}:K_i]$ choices, since $\alpha_{i+1}$ is separable over
+  $K_i$ since its minimal polynomial is separable. 
+- This means that in toto, we have the correct $[L:K]$ number of choices for $\sigma_n: K \to K_n = L$, which is what it means to be separable by embeddings.
+
+##### Separable by embeddings implies separable by polynomial  
+- Let $L/K$ be separable in terms of embeddings. Consider some element $\alpha \in L$, let its minimal polynomial be $p(x)$. 
+- Write $L = K(\alpha)(\beta_1, \dots, \beta_n)$. Since degree is multiplicative, we have $[L:K] = [K(\alpha):K][K(\alpha, \beta_i):K(\alpha)]$.
+- So given an embedding $\sigma: K \to \overline K$,we must be able to extend it in $[L:K]$ ways.
+- Since $\sigma$ must send $\alpha$ to a root of $\alpha$, and we need the total to be $[L:K]$, we must have that $p(x)$ has no repeated roots.
+- If $p(x)$ had repeated roots, then we will have fewer choices of $\sigma(\alpha)$ thatn $[K(\alpha):K]$, which means the total count of choices for $\sigma'$ will be
+  less than $[L:K]$, thereby contradicting separability.
+
+
+#### Finite extensions generated by separable elements are separable
+
+- Let $L = K(\alpha_1, \dots, \alpha_n)$ be separable, so there are $[L: K]$ ways to extend a map $\kappa: K \to \overline K$ into $\lambda: L \to \overline L$.
+- Since we have shown that separable by polyomial implies separable by embedding, we write $L = K(\alpha_1)(\alpha_2)\dots(\alpha_n)$. Each step is separable
+  by the arguments given above in terms of counting automorphisms by where they send $\alpha_i$. Thus, the full $L$ is separable. 
+
+##### References
+- https://math.stackexchange.com/questions/2227777/compositum-of-separable-extension
+- https://math.stackexchange.com/questions/1248781/primitive-element-theorem-without-galois-group
+
+
+# Separable extensions via derivation
+- Let $R$ be a commutative ring, $M$ an $R$-module. A derivation is a map such that $D(a + b) = D(a) + D(b)$ and $D(ab) = aD(b) + D(a)b$ [ie, the calculus chain rule is obeyed].
+- Note that the map does not need to be an $R$-homomorphism (?!)
+- The elements of $R$ such that $D(R) = 0$ are said to be the _constants_ of $R$.
+- The set of constants under $X$-differentiation for $K[X]$ in char. 0 is $K$, and $K[X^p]$ in char. p
+- Let $R$ be an integral domain with field of fractions $K$. Any derivation $D: R \to K$ uniquely extends to $D': K \to K$ given by the
+  quotient rule: $D'(a/b) = (bD(a) - aD(b))/b^2$.
+- Any derivation $D: R \to R$ extends to a derivation $(.)^D: R[x] \to R[x]$. For a $f = \sum_i a_i x^i \in R[x]$, the derivation
+  is given by $f^D(x) \equiv \sum_i D(a_i) X^i$. This applies $D$ to $f(x)$ coefficientwise.
+- For a derivation $D: R \to R$ with ring of constants $C$, the associated derivation $(.)^D: R[x] \to R[x]$ has ring of constants $C[x]$.
+- **Key thm:** Let $L/K$ be a field extension and let $D: K \to K$ be a derivation. $D$ extends uniquely to $D_L$ iff $L$ is separable over $K$.
+
+#### If $\alpha$ separable, then derivation over $K$ lifts uniquely to $K(\alpha)$ 
+
+- Let $D: K \to K$ be a derivation.
+- Let $\alpha \in L$ be separable over $K$ with minimal polynomial $\pi(X) \in K[X]$.
+- So, $\pi(X)$ is irreducible in $K[X]$, $\pi(\alpha) = 0$, and $\pi'(\alpha) \neq 0$.
+- Then $D$ has a unique extension $D': K(\alpha) \to K(\alpha)$ given by:
+
+\begin{aligned}
+D'(f(\alpha)) \equiv f^D(\alpha) - f'(\alpha) \frac{\pi^D(\alpha)}{pi'(\alpha)}
+\end{aligned} 
+
+- To prove this, we start by assuming $D$ has an extension, and then showing that it must agree with $D'$. This tells us why it __must__ look this way.
+- Then, after doing this, we start with $D'$ and show that it is well defined and obeys the derivation conditions. This tells us why it's __well-defined__.
+
+#### Non example: derivation that does not extend in inseparable case
+
+- Consider $F_p(u)$ as the base field, and let $L = F_p(u)(\alpha)$ where $\alpha$ is a root of $X^p - u \in F_p(u)[x]$. This is inseparable over $K$.
+- The $u$ derivative on $F_p(u)$ [which treats $u$ as a polynomial and differentiates it] cannot be extended to $L$.
+- Consider the equation $\alpha^p = u$, which holds in $L$, since $\alpha$ was explicitly a root of $X^p - u$.
+- Applying the $u$ derivative gives us $p \alpha^{p-1} D(\alpha) = D(u)$. The LHS is zero since we are in characteristic $p$.
+  The RHS is 1 since $D$ is the $u$ derivative, and so $D(u) = 1$. This is a contradiction, and so $D$ does not exist [any mathematical operation must respect equalities].
+
+
+#### Part 2.a: Extension by inseparable element $\alpha$ does not have unique lift of derivation for $K(\alpha)/K$
+- Let $\alpha \in L$ be inseparable over $K$. Then $\pi'(X) = 0$ where $\pi(X)$ is the minimal polynomial for $\alpha \in L$.
+- In particular, $\pi'(\alpha) = 0$. We will use the vanishing of $\pi'(\alpha)$ to build a nonzero derivation on $K(\alpha)$ which extends the zero
+  derivation on $K$.
+- Thus, the zero derivation on $K$ has two lifts to $K(\alpha)$: one as the zero derivation on $K(\alpha)$, and one as our non-vanishing lift.
+- Define $Z: K(\alpha) \to K(\alpha)$ given by $Z(f(\alpha)) = f'(\alpha)$ where $f(x) \in K[x]$. By doing this, we are conflating elements $l \in K(\alpha)$
+  with elements of the form $\sum_i k_i \alpha^i = f(\alpha)$. We need to check that this is well defined, that if $f(\alpha) = g(\alpha)$, then $Z(f(\alpha)) = Z(g(\alpha))$.
+- So start with $f(\alpha) = g(\alpha)$. This implies that $f(x) \equiv g(x)$ modulo $\pi(x)$.
+- So we write $f(x) = g(x) + k(x)\pi(x)$.
+- Differentiating both sides wrt $x$, we get $f'(x) = g'(x) + k'(x) \pi(x) + k(x) \pi'(x)$.
+- Since $\pi(\alpha) = \pi'(\alpha) = 0$, we get that $f'(\alpha) = g'(\alpha) + 0$ by evaluating previous equation at $\alpha$.
+- This shows that $Z: K(\alpha) \to K(\alpha)$ is well defined.
+- See that the derivation $Z$ kills $K$ since $K = K \alpha^0$. But we see that $Z(\alpha) = 1$, so $Z$ extends the zero derivation on $K$ while not being zero itself.
+- We needed separability for the derivation to be well-defined.  
+
+
+##### Part 2.b: Inseparable extension can be written as extension by inseparable element
+
+- Above, we showed that if we have $K(\alpha)/K$ where $\alpha$ inseparable, then derivations cannot be uniquely lifted.
+- We want to show that if we have $L/K$ inseparable, then derivation cannot be uniquely lifted. But this is not the same! 
+- $L/K$ inseparable implies that there is some $\alpha \in L$ which is inseparable, NOT that $L = K(\alpha)/K$ is inseparable!
+- So we either need to find some element $\alpha$ such that $L = K(\alpha)$ [not always possible], or find some field $F$ such that $L = F(\alpha)$ and
+  $\alpha$ is inseparable over $F$.
+- Reiterating: Given $L/K$ is inseparable, we want to find some $F/K$ such that $L = F(\alpha)$ where $\alpha$ is inseparable over $F$.
+- TODO!
+
+
+#### Part 1 + Part 2: Separable iff unique lift
+
+- Let $L/K$ be separable. By primitive element theorem, $L = K(\alpha)$ for some $\alpha \in L$, $\alpha$ separable over $K$.
+- Any derivation of $K$ can be extended to a derivation of $L$ from results above. Thus, separable implies unique lift.
+- Suppose $L/K$ is inseparable. Then we can write $L = F(\alpha)/K$ where $\alpha$ is inseparable over $F$, and $K \subseteq F \subseteq L$.
+- Then by Part 2.a, we use the $Z$ derivation to non-zero derivation on $L$ that is zero on $F$. Since it is zero on $F$ and $K \subseteq F$, it is zero on $K$.
+- This shows that if $L/K$ is inseparable, then there are two ways to lift the zero derivation, violating uniqueness.
+
+
+#### Lemma: Derivations at intermediate separable extensions
+- Let $L/K$ be a finite extension, and let $F/K$ be an intermediate separable extension. So $K \subseteq F \subseteq L$ and $F/K$ is separable.
+- Then we claim that every derivation $D: F \to L$ that sends $K$ to $K$ has values in $F$. (ie, it's range is only $F$, not all of $L$).
+- Pick $\alpha \in F$, so $\alpha$ is separable over $K$. We know what the unique derivation looks like, and it has range only $F$.
+
+# Irreducible polynomial over a field divides any polynomial with common root
+
+- Let $p(x) \in K[x]$ be an irreducible polynomial over a field $K$. Let $p$ it share a common root $\alpha$ with another polynomial $q(x) \in K[x]$. Then we claim
+  that $p(x)$ divides $q(x)$.
+- Consider the GCD $g \equiv gcd(p, q)$. Since $p, q$ share a root $\alpha$, we have that $(x - \alpha)$ divides $g$.  Thus $g$ is a non-constant polynomial.
+- Further, we have $g | p$ since $g$ is GCD. But $p$ is irreducible, it cannot be written as product of smaller polynomials, and thus $g = p$.
+- Now, we have $g | q$, but since $g = p$, we have $g | q$. This implies $p | q$ for any $q$ that shares a root with $p$.
 
 # Galois extension
 
@@ -210,8 +494,6 @@ $$
 - Then $\alpha$ is some element that is generated by the roots 
 
 - [Borcherds lecture](https://www.youtube.com/watch?v=g87CBjYqHWk&list=PL8yHsr3EFj53Zxu3iRGMYL_89GDMvdkgt&index=8)   
-
-
 
 
 # Separability of field extension as diagonalizability
@@ -1286,7 +1568,10 @@ e----------d
 
 
 
-# Separable field extensions
+# Separable Polynomials and extensions
+
+
+#### Separable polynomial
 
 - I didn't really study galois theory over char. $p$ all that well the first time I studied it, so let's review.
 - Let $J \subseteq K$ be an inclusion of fields, so $K$ is a field extension of $J$.
@@ -1294,20 +1579,132 @@ e----------d
 - Said differently, the polynomial $f$ has no repeated roots in any extension of $J$.
 - Said differently, the polynomial $f$ has distinct roots in its splitting field over $J$. The roots as separable since we can separate
   all the roots from each other --- they are all distinct.
-- Said differently, the polynomial derivative $f'$ of $f$ is not the zero polynomial.
-- So, consider the field of rational functions $F_p(X)$, which are rational functions in $X$ over $F_p$.
-  Here, the function $g(Y) = Y^p - X \in K(X)$ has derivative zero, and is thus inseparable.
-- An element $\alpha \in K$ is separable over $J$ iff the minimal polynomial of $\alpha$ over $J$ (ie, a poynomial $a \in J[x]$ such that
-  $\alpha$ is a root of $a$) is separable.
-- $K$ is a separable extension of $J$ if every element of $K$ is separable over $J$.
-- An extension of char. 0 is separable, and any finite extension of a finite field is separable.
+- Said differently, the polynomial derivative $f'$ of $f$ is not the zero polynomial. 
+
+
+#### Proof that $p$ is not separable iff $p, p'$ share a root
+
+##### Forward: $p$ is not separable implies $p, p'$ do not share a root.
+- Let $p$ have a repeated root $\alpha \in \overline K$. Thus $p(x) \equiv (x -\alpha)^2 g(x)$ in $\overline K$.
+- Computing $p'$ by product rule, we see that it is $p'(x) = 2(x- \alpha)g(x) + (x - \alpha)^2 g'(x)$ which can be written as 
+  $p'(x) = (x - \alpha)(2g(x)+ g'(x)$.
+- This shows that $p'(x)$ has $(x - \alpha)$ as a root.
+
+##### Backward:$p, p'$ share a root implies $p$ is not separable
+
+- Let $\alpha \in \overline K$ be such that $p(\alpha) = p'(\alpha) = 0$.
+- Write $p(x) \equiv \prod_i (x - r_i)$ for roots $r_i \in \overline K$.
+- Let $\alpha = r_1$ [WLOG].
+- We know by product rule of calculus that $p'(x) \equiv \sum_i \prod_{j \neq i} (x - r_i)$.
+- Computing $p'(\alpha) = p'(r_1)$, only the first term survives, which is $\prod_{j \neq 1}(r_i - r_j)$ [all other terms have an $(x - r_1)$ term which vanishes.
+- For this to vanish, we must have some $j$ such  that $r_i = r_j$.
+- This implies that $p$ has a repeated root $r_i, r_j$ and is thus not separable.
+
+
+#### Proof that $p$ is separable iff $gcd(p, p') = 1$
+
+##### Forward: $p$ is separable implies $gcd(p, p') = 1$ 
+- Let $d(x) = gcd(p, p')$.
+- Suppose that it is not a unit, and not a constant (ie, a real polynomial).
+- Then $d(x)$  has a root $\alpha \in \overline K$ (by previous)
+- Since $d$ divides $p, p'$, this means that in $\overline K$, $p(\alpha) = p'(\alpha) = 0$ since $d(\alpha) = 0$ and $d | p, p'$.
+- This implies that $\alpha$ is a repeated root of $p(x)$ since it vanishes at both $p$ and its derivative!
+- This contradicts $p$ is separable.
+- Thus $d(x)$ must be a unit, and $p$, $p'$ are relatively prime.
+
+##### Backward: $gcd(p, p') = 1$ implies $p$ is separable
+- Since $gcd(p, p') = 1$, there are polynomials $k, l$ such that $pk + p'l = 1$.
+- Suppose $p$ is not separable. Thus it has a repeated root $\alpha$. This means that $p$ and $p'$ vanish at $\alpha$. Thus $(x - \alpha)$ divides $p, p$'.
+- Thus means that $(x - \alpha)$ divides $1$, by the eqn $pk + p'l = 1$. This is absurd, and thus $p$ is separable.
+
+#### Separable extension
+
+- For all elements $\alpha \in L$ where $L/K$, there is a polynomial $f_\alpha \in K[x]$ such that
+  $f_\alpha(\alpha) = 0$ is **separable**.
+- Thus, all elements have separable polynomials that they are roots of.
+
+#### Separable extension is transitive
+- Claim: If $R/Q$ and $Q/P$ are separable field extensions, then $R/P$ is separable.
+- TODO!
+
+#### All Polynomials over character 0 is separable
+
+- Let $L/K$ and $char(K) = 0$. Then we claim that $L$ is separable.
+- Let $f$ be an irreducible polynomial in $K[x]$. (the minimal polynomial of some element in $L$)
+- Recall that a polynomial $f \in K[x]$ is irreducible over a field $K$ iff it cannot be written as the product of two non-constant polynomials.
+- We wish to show that $f$ is separable (has no repeated roots).
+- For contradiction, suppose that $f$ has a repeated root $r$ in the algebraic closure.
+  so $f(x) \equiv (x - r)^2 g(x)$ for $r \in \overline K[x]$, $g(x) \in \overline K[x]$.
+- Thus, $f(x)$ and $f'(x)$ *share a common factor* in $\overline K[x]$.
+- But the GCD algorithm works in $K[x]$, thus $f(x)$ and $f'(x)$ share a common factor in $K[x]$ [SID: I find this dubious!]
+- Hence, this means that $gcd(f, f') \in K[x]$ is not a constant polynomial.
+- If $gcd(f, f') \neq f$, then $f$ can be factored, which contradicts its irreducibility.
+- Thus, $gcd(f, f') = f$ [to prevent contradiction].
+- However, $f'$ has smaller degree than $f$. Thus the only way it can be divided by its GCD ($f$) which has larger degree than it is if $f'(x) = 0$.
+- This means (in characteristic zero) that $f(x)$ is linear, and thus cannot have repeated roots!
+- That this means that $f(x)$ is zero can be seen by computing te derivative. Suppose $f(x) \equiv \sum_{i=0}^n a_i x^i$ with $a_n \neq 0$.
+  Then $f'(x) = \sum_{i=1}^n i a_i x^{i-1}$. Since $a_n \neq 0$, $n a_n \neq 0$, and thus the derivative of an $n$th degree polynomial is $(n-1)$ degree.
+
+#### All Polynomials over character 0 is separable, alternative proof.
+- Let $f$ be an irreducible polynomial in $K[x]$ (the minimal polynomial of some element in $L$). We claim that $f$ is separable.
+- The key lemma is to show that if $g$ is ANY polynomial which shares a root $r$ with $f$, then $f | g$.
+- Idea: since $f(r) = g(r) = 0$, this means that $(x - r)$ divides $gcd(f, g)$. Thus, $gcd(f, g)$ is non-constant.
+- Further, $gcd(f, g) | f$ since the gcd divides both its factors.
+- But since $gcd(f, g)$ divides $f$ while $f$ is irreducible, we must have $gcd(f, g)$ equals $f$.
+- Since $gcd(f, g) = f$ divides $g$, we have $f | g$.
+- Now, going back to our claim, let $f$ be some irreducible in $K[x]$. Suppose for contradiction that $f$ is not separable. Then $f, f'$ share a common root.
+  By the above lemma, this implies that $f$ divides $f'$. But this is absurd, since $deg(f) > deg(f')$.
+- Hence, no irreducible polynomial in $f$ can share a root with its derivative, which implies $f$ is always separable.
+- This breaks down for character $p$ since $f'$ can simply "die out". 
+
+
+
+#### All finite field extensions over character 0 is separable
+
+- Can write any finite field extension $L/K$ as $L = K(\alpha_1, \dots, \alpha_n)$. This is the same as $K(\alpha_1)(\alpha_2)\dots(\alpha_n)$.
+- Since separability of field extensions is transitive, and at each step, we add an element with separable minimal polynomial (all polynomials over char. 0 are separable),
+  the full extension is separable.
+
+#### All field extensions over character $p$ is separable
+
+- Consider $F_{p^m} \subseteq F_{p^n}$.
+- build the "Fermat's little theorem" polynomial $x^{p^n} - x = f(x)$.
+- All elements of $F_{p^n}$ satisfy this, thus $f(x)$ has $p^n$ roots, which means all of its roots are distinct.
+- Alternatively, see that $f'(x) = p^n x^{p^n - 1} - 1 = 0 - 1 = -1$ so $f(x)$ and $f'(x)$ don't share a commmon root.
+
+
+#### Purely inseparable extensions
+
+- $K \subseteq L$ of char. p. Then the field $L$ is purely inseparable iff
+  any $\alpha \in L$ is  a root of $x^{p^n} - k$ for some $k \in K$, with
+  $n \geq 1$.
+- Over the algebraic closure, this can be written as $x^{p^n} - (k^{1/p^n})^{p^n}$ which over finite fields
+  factorizes as $(x - \sqrt{a}{p^n})^{p^n}$ by [freshman's dream](https://en.wikipedia.org/wiki/Freshman%27s_dream).
+- Thus, over the algebraic closure, this has many copies of one root, which is "as far as possible" from being separable.
+
+
+#### Breaking down extension into separable + purely inseparable
+
+- Given any $K \subseteq L$ algebraic, can break it down into $K \subseteq K^{sep} \subseteq L$.
+- The extension $K^{sep}/K$ contains all elements of $L$ which have separable polynomials. Can show that this is a field.
+- We can show that $L/K^{sep}$ will be purely inseparable.
+
 
 #### Example of inseparable extension
+- Let $L \equiv F_p(t)$, which are rational functions in $t$ over $F_p$, and $K \equiv F_p(t^p)$ which are rational functions in $t^p$.
+- Clearly, $K \subseteq L$, and the extension $L/K$ is of degree $p$, because $t \in L$ is a root of $X^p - t^p \in F_p(t^p) = K$.
+- See that $X^p - t^p$ is irreducible over $K = F_p(t^p)$.
+- Over $L = F_p(t)$, $X^p - t^p$ factorizes as $(X - t)^p$ by [freshman's dream](https://en.wikipedia.org/wiki/Freshman%27s_dream), with all roots the same.
+- Thus, we have an element whose minimal polynomial is not separable.
+  Here, the function $g(Y) = Y^p - X \in K(X)$ has derivative zero, and is thus inseparable.
+- In some sense, the failure is because of freshman's dream, where $X^p - t^p \equiv (X - t)^p$.
+- Reference: [Borcherds, separable extension](https://www.youtube.com/watch?v=YvHFJi1d5N4&list=PL8yHsr3EFj53Zxu3iRGMYL_89GDMvdkgt&index=7)
 
 #### Primitive element theorem / Theorem of the primitive element
 - Let $J \subseteq K$ be a field extesion. We say $\alpha \in K$ is primitive for the extension $K/J$ (the extension) if $K = J(\alpha)$.
 - If $K/J$ is a finite separable extension, then for some $\alpha \in J$, we have $K = J(\alpha)$.
 - Recall that $J(\alpha) \simeq J[x]/minpoly(x)$.
+- TODO!
 
 #### Tensor product of field extensions
 

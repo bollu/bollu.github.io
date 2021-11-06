@@ -5,6 +5,11 @@
 <link>https://bollu.github.io/</link>
 <description>A universe of Sorts</description>
   <item>
+    <title> Normal field extensions </title>
+    <guid>https://bollu.github.io/normal-field-extensions.html</guid>
+    <link>https://bollu.github.io/normal-field-extensions.html</link>
+  </item>
+  <item>
     <title> Eisenstein Theorem for checking irreducibility </title>
     <guid>https://bollu.github.io/eisenstein-theorem-for-checking-irreducibility.html</guid>
     <link>https://bollu.github.io/eisenstein-theorem-for-checking-irreducibility.html</link>
@@ -50,14 +55,24 @@
     <link>https://bollu.github.io/separable-extension-is-contained-in-galois-extension.html</link>
   </item>
   <item>
-    <title> Extension of field by separable element is separable  [WIP ] </title>
-    <guid>https://bollu.github.io/extension-of-field-by-separable-element-is-separable-wip.html</guid>
-    <link>https://bollu.github.io/extension-of-field-by-separable-element-is-separable-wip.html</link>
+    <title> Primitive element theorem </title>
+    <guid>https://bollu.github.io/primitive-element-theorem.html</guid>
+    <link>https://bollu.github.io/primitive-element-theorem.html</link>
   </item>
   <item>
-    <title> Primitive element theorem without galois groups  [WIP ] </title>
-    <guid>https://bollu.github.io/primitive-element-theorem-without-galois-groups-wip.html</guid>
-    <link>https://bollu.github.io/primitive-element-theorem-without-galois-groups-wip.html</link>
+    <title> Separable extension via embeddings into alg. closure </title>
+    <guid>https://bollu.github.io/separable-extension-via-embeddings-into-alg-closure.html</guid>
+    <link>https://bollu.github.io/separable-extension-via-embeddings-into-alg-closure.html</link>
+  </item>
+  <item>
+    <title> Separable extensions via derivation </title>
+    <guid>https://bollu.github.io/separable-extensions-via-derivation.html</guid>
+    <link>https://bollu.github.io/separable-extensions-via-derivation.html</link>
+  </item>
+  <item>
+    <title> Irreducible polynomial over a field divides any polynomial with common root </title>
+    <guid>https://bollu.github.io/irreducible-polynomial-over-a-field-divides-any-polynomial-with-common-root.html</guid>
+    <link>https://bollu.github.io/irreducible-polynomial-over-a-field-divides-any-polynomial-with-common-root.html</link>
   </item>
   <item>
     <title> Galois extension </title>
@@ -280,9 +295,9 @@
     <link>https://bollu.github.io/yoneda-preserves-limits.html</link>
   </item>
   <item>
-    <title> Separable field extensions </title>
-    <guid>https://bollu.github.io/separable-field-extensions.html</guid>
-    <link>https://bollu.github.io/separable-field-extensions.html</link>
+    <title> Separable Polynomials and extensions </title>
+    <guid>https://bollu.github.io/separable-polynomials-and-extensions.html</guid>
+    <link>https://bollu.github.io/separable-polynomials-and-extensions.html</link>
   </item>
   <item>
     <title> Limits of a functor category are computed pointwise. </title>
