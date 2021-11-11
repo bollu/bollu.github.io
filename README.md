@@ -6,6 +6,431 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+# Write thin to write well
+
+- Set column width to be absurdly low which forces your writing to get better (?!)
+- https://breckyunits.com/write-thin-to-write-fast.html
+
+# Schubert calculus, according to Schubert
+
+- https://arxiv.org/pdf/math/0608784.pdf
+
+# Discrete probability
+
+- The textbook discrete probability actually manages to teach "discrete probability" as a unified subject, laying out _all the notation_ clearly,
+  something that I literally have never seen before! This is me making notes of the notation.
+
+# Toric Varieties
+
+- https://www.youtube.com/watch?v=Sjp-99Xyiic&list=PL8yHsr3EFj53j51FG6wCbQKjBgpjKa5PX&index=22
+
+# `fd` for `find`
+
+- `fd` seems to be much, much faster at `find` than, well, `find`.
+
+# Thu Morse sequence for sharing
+
+- Suppose A goes first at picking object from a collection of objects, then B.
+- B has an inherent disatvantage, since they went second.
+- So rather than repeating and allowing A to go third and B to go fourth (ie, we run `ABAB`), we should instead run `AB BA`,
+  since giving `B` the third turn "evens out the disatvantage".
+- Now once we're done with 4 elements, what do we do? Do we re-run `A B B A` again? No, this would be argued as unfair by `B`. So we flip this
+  to get the full sequence as `ABBA BAAB`.
+- What next? you guessed it... flip: `ABBA BAAB|BAAB ABBA`
+- And so on. Write the recurrence down `:)`
+- [Reference](https://www.youtube.com/watch?v=prh72BLNjIk)
+
+
+# Projective spaces and grassmanians in AG
+
+#### Grassmanian 
+- $G(m, V)$: $m$ dimensional subspaces of $V$.
+- $G(m, n)$: $m$ dimensional subspaces of $V = k^n$.
+- $G(m+1, n+1)$ is the space of $m$ planes $\mathbb P^m$ in $\mathbb P^n$. Can projectivize $(n+1)$ eqns by sending $(x_0, x_1, \dots, x_n) \in k^{n+1}$ to
+  $[x_0 : x_1 : \dots : x_n] \in \mathbb P^n$.
+- Duality: $G(m, V) ≃ G(dim(V)-m, V^\star)$. We map the subspace $W \subseteq V$ to the annihilator of $W$ in $V^\star$: That is, we map $W$ to the set of
+  all linear functionals that vanish on $W$ [ie, whose kernel is $W$].
+- The above implies $G(1, V) = G(n-1, V)$. $G(1, V)$ is just projective space $\mathbb P^1$.
+  $n-1$ subspaces are cut out by linear equations, $c_0 x_0 + \dots c_{n-1} x_{n-1} + c_n = 0$.
+
+#### G(2, 4)
+
+- These are lines in $\mathbb P^3$. This will give us two pairs of points of the form $(x_0, y_0, z_0, w_0)$ and $(x_1, y_1, z_1, w_1)$.
+  That is, we're considering "lines" between "points" (or "vectors") in $\mathbb R^3$. Exactly what we need to solve stabbing line problems
+  for computer graphics :) 
+- Start by taking a 2D plane. The line will pass through a point in the 2D plane. This gives us two degrees of freedom.
+- Then take a direction in ordinary Euclidean $\mathbb R^3$ (or $S^2$ to be precise). This gives us two degrees of freedom.
+- Can also be said to be a 2-dim. subspace of a 4-dim. vector space.
+- In total, $G(2, 4)$ should therefore have four degrees of freedom.
+- Take $W \subseteq V$  where $V \simeq k^4$, and $W$ is 2-dimensional subspace.
+- $W$ is spanned by two vectors $v_1, v_2$. So I can record it as a $2x1$ matrix: 
+   $\begin{bmatrix} a_{11} & a_{12} & a_{13} & a_{14} \\ a_{21} & a_{22} & a_{23} & a_{24} \end{bmatrix}$. Vector $v_i$ has coordinates $a_i$.
+- If I had taken another basis $(v_1', v_2')$, there would be an invertible matrix $B \in K^{2 \times 2}$ ($det(B) \neq 0$)
+  that sends $(v_1, v_2)$ to $(v_1', v_2')$. Vice Versa, any invertible matrix $B$ gives us a new basis.
+- So the redundancy in our choice of parametrization of subspaces (via basis vectors) is captured entirely by the space of $B$s.
+- Key idea: compute $2 \times 2$ minors of the  $2 \times 4$ matrix $(v_1, v_2)$.
+- This is going to be $(a_{11} a_{22} - a_{12} a_{21}, \dots, a_{13} a_{24} - a_{14} a_{23}) \in K^6$.
+- Note here that we are computing $2$ minors of a rectangluar matrix, where we take all possible $2 \times 2$ submatrices and calculate their
+  determinant.
+- In this case, we must pick both rows, and we have $\comb{4}{2} = 6$ choices of columns, thus we live in $K^6$.
+- We represent this map as $m: K^{2 \times 4} \to K^6$ which sends $m((a_{ij})) \equiv (a_{11} a_{22} - a_{12} a_{21}, \dots, a_{13} a_{24} - a_{14} a_{23})$
+  which maps a matrix to its vector of minors.
+- The great advantage of this is that we have $m(B \cdot (a_{ij})) = det(B) \cdot m((a_{ij}))$, since the minor by definition takes a determinant of submatrices,
+  and determinant is multiplicative. 
+- Thus, we have converted a _matrix_ redundancy of $B$ in $a_{ij}$ into a  **scalar** redundancy (of $det(B)$) in $m(a_{ij})$ .
+- We know how to handle scalar redundancies: Live in projective space!
+- Therefore, we have a well defined map $G(2, 4) \to \mathbb P^5$. Given a subspace $W \in G(2, 4)$, compute a basis $v_1, v_2 \in K^4$ for $W$, 
+  then compute the minor of the matrix $m((v_1, v_2)) \in K^6$, and send this to $P^5$.
+
+#### $G(2, 4)$, projectively
+- These are lines in $\mathbb P^3$.
+- So take two points in $P^3$, call these $[a_0 : a_1 : a_2 : a_3]$ and $[b_0 : b_1 : b_2 : b_3]$. Again, this gives us a matrix:
+
+$$
+\begin{bmatrix}
+a_0 &: a_1 &: a_2 &: a_3 \\
+b_0 &: b_1 &: b_2 &: b_3 \\
+\end{bmatrix}
+$$
+
+- We define $S_{ij} \equiv a_i b_j - a_j b_i$ which is the minor with columns $(i, j)$.
+- Then we compress the above matrix as $(S_{01} : S_{02} : S_{03} : S_{12} : S_{13} : S_{23}) \in \mathbb P^5$.  See that $S_{ii} = 0$ and $S_{ji} = - S_{ij}$.
+  So we choose as many $S$s as "useful".
+- See that if we change $a$ or $b$ by a constant, then all the $S_{ij}$ change by the constant, and thus the point itself in $\mathbb P^5$ does not change.
+- We can also change $b$ by adding some scaled version of $a$. This is like adding a multiple of the second row to the first row when taking determinants.
+  But this does not change determinants!
+- Thus, the actual plucker coordinates are invariant under which two points $a, b$ we choose to parametrize the line in $\mathbb P^3$.
+-  This gives us a well defined map from lines in $\mathbb P^3$ to points in $\mathbb P^5$. 
+- This is not an onto map; lines in $\mathbb P^3$ have dimension 4 (need $3 + 1$ coefficiens, $ax + by + cz + d$),
+  while $\mathbb P^5$ has dimension $5$.
+- So heuristically, we are missing "one equation" to cut $\mathbb P^5$ with to get the image of lines in $\mathbb P^3$ in $\mathbb P^5$.
+- This is the famous Plucker relation:
+
+$$
+S_{02} S_{13} = S_{01} S_{23}  + S_{03} S_{12}
+$$
+
+- It suffices to prove the relationship for the "standard matrix":
+
+$$
+\begin{bmatrix}
+1 &: 0 &: a &: b \\
+0 &: 1 &: c &: d \\
+\end{bmatrix}
+$$
+
+- In this case, we get c (-b) = 1(ad - bc) + d (-a)
+
+- In general, we get _plucker relations_:
+
+$$
+S_{i_1 \dots i_k}S_{j_1 \dots j_k} = \sum S_{i_1' \dots i_k'} S_{j_1' j_k'}.
+$$
+
+- Where we indexes $i_1', \dots, i_k', j_1', \dots, j_k'$ are obtained from $i_1, \dots, i_k, j_1, \dots, j_k$ via
+  
+
+
+
+
+#### Observations of $G(2, 4)$
+
+- Suppose $m(v_1, v_2) = (a_{ij})$ has non-vanishing first minor. Let $B$ be the inverse of the first minor matrix.
+  So $B \equiv \begin{bmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{bmatrix}$. Set $(v_1', v_2') \equiv B (v_1, v_2)$.
+- Then $m(v_1', v_2') = \begin{bmatrix} 1 & 0 & y_{11} & y_{12} \\ 0 & 1 & y_{21} & y_{22} \end{bmatrix}$.
+- So the first $2 \times 2$ block is identity. Further, the $y_{ij}$ are unique.
+-  As we vary $y_{ij}$, we get we get different 2 dimensional subspaces in $V$. Thus, locally, the grassmanian
+   looks like $A^4$. This gives us an affine chart!
+- We can recover grassmanian from the $\mathbb P^5$ embedding. Let $p_0, \dots, p_5$ be the coordinate functions on $\mathbb P^5$ ($p$ for plucker).
+- The equation $p_0 p_5 - p_1 p_4 + p_2 p_3$ vanishes on the grassmanian. We can show that the zero set of the equation is *exactly* the grassmanian.
+
+- [Computation AG: Grassmanians](https://www.youtube.com/watch?v=EPUl-J4_4sk&list=PL5ErEZ81Tyqc1RixHj65XA32ejrS2eEFK&index=14)
+
+
+#### Computing cohomology of $G(2, 5)$
+
+- Take all points of the following form: 
+
+$$
+\begin{bmatrix}
+&1 &:0 &:* &:* \\
+&0 &:1 &:* &:* 
+\end{bmatrix}
+$$
+
+- Let's look at the first column: it is $\begin{bmatrix} 1 \\ 0 \end{bmatrix}$. Why not $\begin{bmatrix} 1 \\ 1 \end{bmatrix}$? Well, I can always
+  cancel the second row by subtracting a scaled version of the first row! (this doesn't change the determinants). Thus, if we have a $1$ somewhere,
+  the "complement" must be a $0$.
+- Next, we can have something like:
+
+$$
+\begin{bmatrix}
+&1 &:* &:0 &:* \\
+&0 &:0 &:1 &:* 
+\end{bmatrix}
+$$
+
+- Here, at the second second column $\begin{bmatrix} * \\ 0 \end{bmatrix}$, if we didn't have a $0$, then we could have standardized it and put it into
+  the form of $\begin{bmatrix} 0 \\ 1 \end{bmatrix}$ which makes it like the first case! Thus,we _must_ have a $0$ to get a case different from the previous.
+
+- Continuing, we get:
+
+$$
+\begin{bmatrix}
+&1 &:* &:* &:0 \\
+&0 &:0 &:0 &:1 
+\end{bmatrix}
+$$
+
+$$
+\begin{bmatrix}
+&0 &:1 &:0 &:* \\
+&0 &:0 &:1 &:*
+\end{bmatrix}
+$$
+
+$$
+\begin{bmatrix}
+&0 &:1 &:* &:0 \\
+&0 &:0 &:0 &:1 
+\end{bmatrix}
+$$
+
+$$
+\begin{bmatrix}
+&0 &:0 &:1 &:0 \\
+&0 &:0 &:0 &:1 
+\end{bmatrix}
+$$
+
+- If we count the number of $\star$s, which is the number of degrees of freedom, we see that $1$ of them (the last one) has zero stars ($A^0$),
+  $1$ of them has 1 star ($A^1$), two of them have 2 stars ($A^2$), one of them has 3 stars, and one of them as 4 stars.
+- This lets us read off the cohomology of the grassmanian: we know the cellular decomposition. Ie, we know the number of $n$ cells for different dimensions.
+- Alternatively, we can see that over a finite field $k$, we have $k^0 + k^1 + 2k^2 + k^3 + k^4$ points. On the other hand, $\mathbb P^4$ has
+  $k^0 + k^1 + k^2 + k^3 + k^4$ points. Thus the grassmanian is different from projective space!
+- [Borcherds](https://www.youtube.com/watch?v=bKB4Qu8ETNE&list=PL8yHsr3EFj53j51FG6wCbQKjBgpjKa5PX&index=19)
+
+
+#### General Grassmanian
+
+- https://www.youtube.com/watch?v=YxIneYIL3Qg&list=PL5ErEZ81Tyqc1RixHj65XA32ejrS2eEFK&index=15
+
+# SMT Modulo oracles
+
+```
+#!/usr/bin/env python3
+# Implementing Algorithm 1 from the tech report: https://www2.eecs.berkeley.edu/Pubs/TechRpts/2021/EECS-2021-10.pdf
+# paper (seems very different from tech report): https://arxiv.org/pdf/2107.13477
+# Advanced tutorial (Z3): https://ece.uwaterloo.ca/~agurfink/stqam/z3py-advanced
+# Reference manual (Z3): https://z3prover.github.io/api/html/namespacez3py.html#ab8fb082f1c350596ec57ea4a4cd852fd
+from z3 import *
+
+def smt(e): 
+    s = Solver()
+    s.add([e])
+    return s
+
+# https://stackoverflow.com/a/12600208/5305365 
+def z3_to_py(v):
+    if is_bool(v):
+        return is_true(v)
+    if is_int_value(v):
+        return v.as_long()
+    raise RuntimeError("unknown z3 value to be coerced |%s|" % (v, ))
+
+#thetai: uninterpreted function
+#Ii: oracle function
+#rho: expression
+#model: SMT model
+def consistent(thetai, Ii, rho, model): 
+    alpha_total = True 
+    # for app in applications of thetai in rho:
+    for app in rho.children():
+        if is_app(app) and app.decl() == thetai: 
+                model_val = model.eval(app)
+                arg_vals_in_model = [z3_to_py(model.eval(arg)) for arg in app.children()]
+                oracle_val = Ii(*arg_vals_in_model)
+                model_app_val = model.eval(thetai(*app.children()))
+
+                # current constraint
+                concrete_app = thetai(*arg_vals_in_model)
+                alpha_new = concrete_app == oracle_val
+                alpha_total = And(alpha_total, alpha_new)
+                # print("oracle_val: %s | appval: %s ~= %s | not-equal? %s" % (oracle_val, model_app_val, z3_to_py(model_app_val), oracle_val != z3_to_py(model_app_val)))
+                if oracle_val != z3_to_py(model_app_val):
+
+                    # TODO: consider And(alpha_total, alpha_new)
+                    # print("early returning")
+                    return False, alpha_new
+                # alphacur = 
+                # print("app: %s | modelval: %s(%s) = %s | oracleval: %s " % (app, appval , arg_vals_in_model, model_val, oracle_val))
+        is_consistent, alpha_new = consistent(thetai, Ii, app, model)
+        alpha_total = And(alpha_total, alpha_new)
+        if not is_consistent:
+            return False, alpha_new
+    return True, alpha_total
+
+    # for app in rho:
+    #     inputs = evaluate(app, model)
+    #     response = call_oracle(Ii, inputs)
+    #     if response != evaluate(thetai(inputs), model):
+    #         return False, alphanew
+    # return True, alphanew
+
+def check(xs, thetas, rho, Is):
+    alpha = True
+    while True:
+        success = True
+        s = smt(And(rho,  alpha)) 
+        if s.check() == unsat:
+            return (False, alpha)
+        else:
+            model = s.model()
+            for i in range(len(thetas)):
+                is_consistent, alphanew = consistent(thetas[i], Is[i], rho, model)
+                print("is_consistent: %s | alphanew: %s" % (is_consistent, alphanew))
+                alpha = And(alpha, alphanew)
+                if not is_consistent:
+                    success = False
+                    break   
+            if success:
+                return (True, model)
+
+
+def isPrime(x):
+    if x < 2: return False
+    if x == 2: return True
+    for d in range(2, x//2 + 1):
+        if x % d == 0:
+            return False
+    return True
+# U = uninterpreted
+isPrimeU = Function('isPrime', IntSort(), BoolSort())
+x = Int('x')
+y = Int('y')
+z = Int('z')
+query = And(x * y * z == 76, isPrimeU(x) == True, isPrimeU(y) == True, isPrimeU(z) == True) 
+
+print("****OUTPUT****\n")
+success, out = check([x, y, z], [isPrimeU], query, [isPrime])
+print("success: %s\nout:%s" % (success, out))
+
+# expr = isPrimeU(x)
+# print(expr)
+# 
+# s = Solver()
+# s.add([query])
+# out = s.check()
+# m = s.model()
+# print("out: %s | model: %s" % (out, m))
+# 
+
+
+print("****OUTPUT TWO****\n")
+
+queryFalse = And(x * y * z == 100, isPrimeU(x) == True, isPrimeU(y) == True, isPrimeU(z) == True) 
+success, out = check([x, y, z], [isPrimeU], queryFalse, [isPrime])
+print("success: %s\nout:%s" % (success, out))
+
+
+
+print("****OUTPUT THREE****\n")
+queryPositive = And(x * y * z == 385, x >= 2, y >= 2, z >= 2, isPrimeU(x) == True, isPrimeU(y) == True, isPrimeU(z) == True) 
+success, out = check([x, y, z], [isPrimeU], queryPositive, [isPrime])
+print("success: %s\nout:%s" % (success, out))
+```
+
+# Mnemonic for why `eta` is unit:
+
+- Remember that given an adjunction $F \vdash G$, the unit of the adjunction is $\eta: 1 \to GF$.
+- We use the symbol `eta` because it's `yunit`, and `eta` is `y` in `greek` (which is why the vim digraph for `eta` is `C-k y*`)
+- $\eta$ is `unit`, since when you flip it, you get $\mu$, which is $\mu$-ltiplication (multiplication). Hence $\eta$ is the unit for the multiplication
+  to form a monoidal structure for the monad.
+
+# Fundamental theorem of galois theory
+
+- Let $K \subseteq M$ is a finite galois extension (normal + separable), then there a 1:1 correspondence between intermediate fields $L$
+  and subgroups of the galois group $G = Gal(M/K)$.
+- Recall that a finite extension has finitely many subfields iff it can be written as an extension $K(\theta)/K$. This is the primitive element theorem.
+- We send $L \mapsto Gal(M/L)$, the subgroup of $Gal(M/K)$ that fixes $L$ pointwise.
+- We send $H$ to $fix(H)$, the subfield of $K$ that is fixed pointwise. 
+
+#### $H =  Gal(M/Fix(H))$
+- It is clear that $H \subseteq Gal(M/Fix(H))$, by definition, since every element of $H$ fixes $Fix(H)$ pointwise.
+- To show equality, we simply need to show that they are the same size, in terms of cardinality.
+- So we will show that $|H| = |Gal(M/Fix(H))|$..
+
+#### $L =  Fix(Gal(L/K))$
+- It is clear that $L \subseteq Fix(Gal(M/L)))$, by definition, since every element of $Gal(M/L)$ fixes $L$ pointwise.
+- To show equality, we simply need to show that they are the same size.
+- Here, we measure size using $[M:L]$. This means that as $L$ becomes larger, the "size" actually becomes smaller!
+- However, this is the "correct" notion of size, since we will have the size of $L$ to be equal to $Gal(L/K)$.
+- As $L$ grows larger, it has fewer automorphisms.
+- So, we shall show that $[M:L] = [M:Fix(Gal(L/K))]$.
+
+#### Proof Strategy
+
+- Rather than show that the "round trip" equalities are correct, we will show that the intermediates match in terms of size.
+- We will show that the map $H \to Fix(H)$ is such that $|H| = [M:H]$.
+- Similarly, we will show that the map $L \mapsto Gal(L/K)$ is such that $[M:K] = |L|$.
+- This on composing $Gal$ and $Fix$ show both sides shows equality.
+
+#### Part 1: $H \to Fix(H)$ preserves size
+
+- Consider the map which sends $H \mapsto Fix(H)$. We need to show that $|H| = [M:Fix(H)]$.
+- Consider the extension $M/Fix(H)$. Since $M/K$ is separable, so in $M/Fix(H)$ [polynomials separable over $K$ remain separable over super-field $Fix(H)$]
+- Since the extension is separable, we have a $\theta \in M$ such that $M = Fix(H)(\theta)$ by the primitive element theorem.
+- The galois group of $M/Fix(H) = Fix(H)(\theta)/Fix(H)$ must fix $Fix(H)$ entirely. Thus we are trying to extend the function $\id: Fix(H) \to \Fix(H)$
+  to field automorphisms $\sigma: M \to M$.
+- Since $M/K$ is normal, so is $M/Fix(H)$, since $M/K$ asserts that automorphisms $\sigma: M \to \overline K$ that fix $K$ stay within $M$.
+  This implies that automorphisms $\tau: M \to \overline K$ that fix $Fix(H)$ stay within $M$.
+- Thus, the number of field automorphisms $\sigma: M \to \overline M$ that fix $Fix(H)$ is equal to the number of field automorphisms $M \to M$
+  that fix $Fix(H)$.
+- The latter is equal to the field of the separable extension $[M:Fix(H)]$, since the only choice we have is where we choose to send $\theta$,
+  and there are $[M:Fix(H)]$ choices.
+- The latter is also equal to the size of the galois group
+
+#### Part 2: $L$ to $Gal(M/L)$ preserves size
+
+- We wish to show that $[M:L] = |Gal(M/L)|$
+- Key idea: Start by writing $M = L(\alpha)$ since $M$ is separable by primitive element theorem.
+  Let $\alpha$ have minimal polynomial $p(x)$. Then $deg(p(x))$ equals $[M:L]$ equals number of roots of $p(x)$ since the field is separable.
+- Next, any automorphism $\sigma: M \to M$ which fixes $L$  is uniquely determined by where it sends $\alpha$. Further, such an automorphism $\sigma$
+  must send $\alpha$ to some other root of $p(x)$ [by virtue of being a field map that fixes $L$,  $0 = \sigma(0) = \sigma(p(\alpha)) = p(\sigma(\alpha))$]. 
+- There are exactly number of roots of $p$ (= $[M:L]$) many choices. Each gives us one automorphism. Thus $|Gal(M/L)| = [M:L]$.
+
+# Counter-intuitive linearity of expectation [WIP]
+
+- I like the example of "10 diners check 10 hats. After dinner they are given the hats back at random."
+  Each diner has a 1/10 chance of getting their own hat back, so by linearity of expectation, the expected number of diners who get the correct hat is 1.
+
+- Finding the expected value is super easy. But calculating any of the individual probabilities (other than the 8, 9 or 10 correct hats cases) is really annoying and difficult! 
+
+
+- Imagine you have 10 dots scattered on a plane. Prove it's always possible to cover all dots with disks
+  of unit radius, without overlap between the disks.
+   (This isn't as trivial as it sounds, in fact there are configurations of 45 points that cannot be covered by disjoint unit disks.)
+
+- Proof: Consider a repeating honeycomb pattern of infinitely many disks. Such a pattern covers pi / (2 sqrt(3)) ~= 90.69% of the plane, and the disks are clearly disjoint. If we throw such a pattern randomly on the plane, any dot has a 0.9069 chance of being covered, so the expectation value of the total number of dots being covered is 9.069. This is larger than 9, so there must be a packing which covers all 10 dots. 
+
+
+# Metis
+
+> So insofar as Athena is a goddess of war, what really do we mean by that? Note that her most famous weapon is not her sword but her shield Aegis, and Aegis has a gorgon's head on it, so that anyone who attacks her is in serious danger of being turned to stone. She's always described as being calm and majestic, neither of which adjectives anyone ever applied to Ares....
+
+> Let's face it, Randy, we've all known guys like Ares. The pattern of human behavior that caused the internal mental representation known as Ares to appear in the minds of the ancient Greeks is very much with us today, in the form of terrorists, serial killers, riots, pogroms, and agressive tinhorn dictators who turn out to be military incompetents. And yet for all their stupidity and incompetence, people like that can conquer and control large chunks of the world if they are not resisted....
+
+> Who is going to fight them off, Randy?
+
+> Sometimes it might be other Ares-worshippers, as when Iran and Iraq went to war and no one cared who won. But if Ares-worshippers aren't going to end up running the whole world, someone needs to do violence to them. This isn't very nice, but it's a fact: civilization requires an Aegis. And the only way to fight the bastards off in the end is through intelligence. Cunning. Metis.
+
+# Tooling for performance benchmarking
+
+- Optick and Tracy and flame graphs
+- https://github.com/wolfpld/tracy
+- https://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html
+- Hotspot:  https://www.kdab.com/hotspot-video/amp/
+
 
 # Normal field extensions
 
@@ -458,6 +883,13 @@ D'(f(\alpha)) \equiv f^D(\alpha) - f'(\alpha) \frac{\pi^D(\alpha)}{pi'(\alpha)}
 - Let $L/K$ be a finite extension, and let $F/K$ be an intermediate separable extension. So $K \subseteq F \subseteq L$ and $F/K$ is separable.
 - Then we claim that every derivation $D: F \to L$ that sends $K$ to $K$ has values in $F$. (ie, it's range is only $F$, not all of $L$).
 - Pick $\alpha \in F$, so $\alpha$ is separable over $K$. We know what the unique derivation looks like, and it has range only $F$.
+
+
+#### Payoff: An extension $L = K(\alpha_1, \dots, \alpha_n)$ is separable over $K$ iff $\alpha_i$ are separable
+
+- Recursively lift the derivations up from $K_0 \equiv K$ to $K_{i+1} \equiv K_i(\alpha_i)$. If the lifts all succeed,
+  then we have a separable extension. If the unique lifts fail, then the extension is not separable.
+- The lift can only succeed to uniquely lift iff the final extension $L$ is separable.
 
 # Irreducible polynomial over a field divides any polynomial with common root
 
@@ -1482,11 +1914,13 @@ https://www.youtube.com/watch?v=uanrlbRbuEs&list=PLBY4G2o7DhF38OEvEImfR2heX7Szmq
 - 5e8 operations is 1
 - take every (mask, submask). The bits of the pair can be `1 1`, `1 0`, and `0 0`. So the pairs of all mask, submask will be `3^n`
 
+```cpp
 for(int m = N; m >= 0; m--) {
   for(int s = m; s = (s- 1) & m; ) {
     // get all submasks.
   }
 }
+```
 
 - let `s` be a submask of `m`.
   [for arbitrary bits `abc` with the `1` shown being the rightmost 1, followed by all zeroes.]
@@ -36314,6 +36748,13 @@ things on architecture I wish to read and/or have read:
 
 - This place is not a place of honor... no highly esteemed deed is commemorated
   here... nothing valued is here. Design to ward off people for nuclear waste.
+
+- [When is the revolution in architecture coming](https://www.currentaffairs.org/2021/04/when-is-the-revolution-in-architecture-coming)
+
+> Beauty is kind of “objective” in this sense, in that something either does or
+> doesn’t give you pleasure.
+- [Antoni Gaudi](https://en.wikipedia.org/wiki/Antoni_Gaud%C3%AD)
+
 
 - [we forbit what we value most](https://www.strongtowns.org/journal/2017/11/20/we-forbid-what-we-value-most)
 
