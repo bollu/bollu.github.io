@@ -1,0 +1,71 @@
+\section{Codeforces 1567d: Expression Evaluation Error}
+\begin{itemize}
+\item Let us study the meaning of carrying.
+\item Suppose we have 1 digit
+numbers $x, y$ with single digits $x_0, y_0$. Let $z = x + y$.
+What is $z_0, z_1$? If $x_0 + y_0 < 10$, then $z_1 = 0; z_0 = x_0 + y_0$.
+Otherwise, we have $z_1 = 1; z_0 = x_0 + y_0 - 10$.
+
+\item This works because the value of the number $z$ is $x + y$, while
+the value in digits is $10z_1 + z_0$, which in the first
+case becomes $10 \cdot 0 + (x_0 + y_0) = x + y$, and in the second
+case becomes $10 \cdot 1 + (x_0 + y_0 - 10) = x + y$.  The point
+of doing this is that when $x_0 + y_0 \geq 10$, we have
+$0 \leq x_0 + y_0 - 10 \leq 9$.
+
+\item Now in the above question, we have a \emph{perturbation}, where we add \emph{as if} we have only digits $[0, 1, \dots, 9]$, but we live in
+base 11. Thus, this means that if $x_0 + y_0 \geq 10$, we set $z_1 = 1; z_0 = x_0 + y_0 - 10$. Now the value of $z$ (in base 11) is $11 \cdot z_1 + z_0$ which equals $11 + x_0 + y_0 - 10$ which is $x_0 + y_0 + 1$. So, carrying, or having a digit in a higher place is very valuable in this adding system.
+
+\item This brings us to the key idea: Suppose we have to create sum $s$ from $n$ numbers. If $n$ equals $1$, then we are done and we simply create a list of length 1: $[s]$.
+\item Otherwise, we try to find the greatest power of 10 $10^k$ that we can
+create from $s$ such that we still have enough leftover
+to fill up $(n-1)$ slots. So we maximize $k$ such that $(s - 10^k) \geq (n-1)$.
+\item This produces a number for us on the list, $10^k$. We recurse
+ and produce the next number on $s' \equiv s - 10^k$ , $n' \equiv n - 1$.
+
+
+\item For a correctness proof, suppose the optimal set of numbers is $\mathcal O$. Order these by descending order (so it matches with our algorithm), and label the numbers $o_1 \geq o_2 \geq \dots$. Let our
+sequence be $g_1 \geq g_2 \dots$ (with $g$ for greedy). Let
+the two sequences agree upto some $i$. So $i$ is the leftmost
+index such that $o_i \neq g_i$.
+\item Now, at this stage, the total sum is some $s$, and we produce $g_i \equiv 10^k$ such that either (a) $10^{k+1} > s$, or that (b) $s - 10^k < n-1$. Let's deal with (a) first. So we have that $g_i = 10^k$ such
+that $g_i = 10^k < s$ and $10^{k+1} > s$.
+\item We must have $o_i \geq g_i$. If not, then we will have that $o_i < g_i$, and since the sequences are decreasing, $\sum_{j \geq i} o_j < \sum_{j \geq i} g_j$ which contradicts the optimality of $\mathcal O$.
+
+
+\item Thus, we use a greedy algorithm and write:
+
+\begin{minted}{cpp}
+vector<int> f(int sum, int n) {
+    assert(sum >= n);
+    vector<int> outs;
+    while (n > 0) {
+        if (n == 1) {
+            // have used all numbers save 1.
+            outs.push_back(sum); break;
+        }
+        int pow10 = 1;
+        assert(pow10 <= sum);
+        while (1) {
+            const int nextpow10 = pow10 * 10;
+            if (!(nextpow10 <= sum)) { break; }
+            if (!(sum - nextpow10 >= n-1)) { break; }
+            pow10 = nextpow10;
+        }
+        assert(pow10 <= sum);
+        assert(sum - pow10 >= n-1);
+        // assert(pow10 * 10 > sum);
+        // [untrue; we may quit because we need to produce many numbers.
+        // eg: sum = 10, n = 10. We will have pow10 = 1]
+        outs.push_back(pow10);
+        sum -= pow10;
+        n--;
+    }
+    return outs;
+}
+
+\end{minted}
+
+\end{itemize}
+
+\newpage

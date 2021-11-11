@@ -2,7 +2,7 @@
 
 \documentclass[14pt]{report}
 \usepackage{bbm}
-\usepackage{bbding} % for flower. 
+\usepackage{bbding} % for flower.
 \usepackage{physics}
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
@@ -17,6 +17,8 @@
 \usepackage{mathtools}
 
 \usepackage{xargs}
+
+
 
 \usepackage{hyperref}
 \hypersetup{
@@ -55,6 +57,9 @@
 \begin{document}
 \maketitle
 \tableofcontents
+
+\chapter{Codeforces Problems}
+
 \section{Codeforces 1389C: woodcutters}
 Problem link is \url{https://codeforces.com/problemset/problem/1389/C}.
 \begin{itemize}
@@ -101,6 +106,8 @@ Problem link is \url{https://codeforces.com/problemset/problem/1389/C}.
     \end{itemize}
 \end{itemize}
 
+\newpage
+
 \section{Codeforces  1175 C: Electrification}
 
 sliding window argument.
@@ -108,6 +115,7 @@ sliding window argument.
 I will proof this by a simple contradiction argument Assume that at least one of the N nearest neighbours of x does not belong to a continuous window of size N containing x. Let us assume this nearest neighbour is Aj. Without loss of generality, assume Aj<x (same proof works for Aj>x). As the window is not continuous as per our assumption, there must exist some element Ak between Aj and x which is not a nearest neighbour of x. But distance of Ak from x is clearly less than distance of Aj from x. So if Aj is a nearest neighbour, Ak must also be a nearest neighbour. That contradicts our assumption.
 
 
+\newpage
 
 
 \section{Codeforces 190D: Non-Secret Cypher}
@@ -127,6 +135,9 @@ algo's running time is $O(n)$, because each of pointers makes $\leq N$
 steps.
 \end{quote}
 
+\newpage
+
+
 \section{Codeforces 1389C:}
 \begin{itemize}
 \item It's safe to look for a longest satisfying match with DP, and if the
@@ -145,7 +156,7 @@ steps.
                 There are no longer solutions that can compete. So we can must
                 only worry about shorter solutions
             \item Amongst the second largest solutions, we must worry about the second largest solution being $8, 7, 6, \dots$.
-            \item Since we only decrement by $1$, our "mutated" largest solutoin will be $8$. This is as large as the 
+            \item Since we only decrement by $1$, our "mutated" largest solutoin will be $8$. This is as large as the
                 maximum second-largest solution.
             \item So we do not lost any second-best optima, since we mutate the first best optima to drop by $1$, which makes it
                 the best-in-class second best optima.
@@ -153,7 +164,12 @@ steps.
 \end{itemize}
 
 \include{./problems/676c/main.tex}
+\include{./problems/1567c/main.tex}
+\include{./problems/1567d/main.tex}
 \include{./problems/binary-search/main.tex}
+
+
+\newpage
 
 \section{Codeforces 1546D}
 
@@ -249,7 +265,7 @@ for the tiles.
 
 \section{Codeforces  ?: Minimise sum of absolute differences while preserving total}
 
-Given a number $S$ create an array of non-negative ($\geq 0$) integers $a[i]$ of size $n$ such that $\sum_{0 \leq i < n} a[i] = S$, 
+Given a number $S$ create an array of non-negative ($\geq 0$) integers $a[i]$ of size $n$ such that $\sum_{0 \leq i < n} a[i] = S$,
 which minimises $\delta \equiv \sum_{i > j} | a[i] - a[j]|$.
 
 
@@ -257,7 +273,7 @@ which minimises $\delta \equiv \sum_{i > j} | a[i] - a[j]|$.
 % https://web.mit.edu/sp.268/www/nim.pdf
 % https://www.youtube.com/watch?v=YV_oWBi1_ck&list=PLxYr6TaF_SDV5r6rmI0LDxuO48FPFb6Rk&index=3
 \start{Definition: Normal rule} player with no moves left \emph{wins}.
-\start{Definition: P position} player with no moves left \emph{loses}. 
+\start{Definition: P position} player with no moves left \emph{loses}.
 
 \start{Definition: P position} position that is winning for \emph{previous} player (last player who made a move).
 \start{Definition: N position} position that is winning for \emph{next} player (player whose turn it is / player who will be making a move).
