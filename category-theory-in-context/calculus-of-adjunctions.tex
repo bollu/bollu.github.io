@@ -1,0 +1,249 @@
+% https://github.com/cohomolo-gy/cats-in-context/blob/master/chapter-2/Chapter%202%20Solutions.tex
+
+\documentclass[14pt]{article}
+\usepackage{classicthesis}
+
+\usepackage{bbm}
+\usepackage{bbding} % for flower. 
+\usepackage{physics}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{listing}
+\usepackage{minted}
+\usepackage{cancel}
+\usepackage{color}% or xcolor
+\usepackage{quiver}
+\usepackage{changepage}
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+\usepackage{mathtools}
+%\usepackage{minted}
+%\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\R}{\ensuremath{\mathbb R}}
+\newcommand{\coT}{\ensuremath{T^*}}
+\newcommand{\boldX}{\ensuremath{\mathbf{X}}}
+\newcommand{\boldY}{\ensuremath{\mathbf{Y}}}
+
+
+\newcommand{\cat}[1]{\mathsf{#1}}
+\newcommand{\functor}[3]{#1 : \cat{#2} \to \cat{#3}}
+\newcommand{\functordef}{\functor{F}{C}{D}}
+\newcommand{\cc}{\cat{C}}
+\newcommand{\cC}{\cat{C}}
+\renewcommand{\dd}{\cat{D}}
+\newcommand{\ee}{\cat{E}}
+\newcommand{\ccat}{\cat{Cat}}
+\newcommand{\cCat}{\cat{Cat}}
+\newcommand{\cset}{\cat{Set}}
+\newcommand{\cSet}{\cat{Set}}
+\newcommand{\cFin}{\cat{Fin}}
+\newcommand{\cCAT}{\cat{CAT}}
+\newcommand{\cTop}{\cat{Top}}
+\newcommand{\ctop}{\cat{Top}}
+\newcommand{\cgrp}{\cat{Grp}}
+\newcommand{\cGrp}{\cat{Grp}}
+\newcommand{\cCone}{\cat{Cone}}
+
+\newcommand{\subcat}[2]{\bm{ \mathsf{#1}}_{\bm{ \mathsf{#2}}}}
+\renewcommand{\op}{\text{op}}
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\mono}{\rightarrowtail}
+\newcommand{\epi}{\twoheadrightarrow}
+\newcommand{\bg}{\cat{BG}}
+\newcommand{\bgg}{\cat{BG'}}
+\newcommand{\nt}{\Rightarrow}
+%\newcommand{\ant}[2]{\alpha : F \nt G} 
+%\newcommand{\bnt}[2]{\beta : F \nt G} 
+%\newcommand{\anti}[2]{\alpha : F \cong G} 
+%\newcommand{\bnti}[2]{\beta : F \cong G} 
+\newcommand{\zero}{\mathbbm{0}}
+\newcommand{\one}{\mathbbm{1}}
+\newcommand{\two}{\mathbbm{2}}
+\newcommand{\three}{\mathbbm{3}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\Id}{\operatorname{id}}
+\newcommand{\colim}{\operatorname{colim}}
+
+
+
+\newcommand{\G}{\ensuremath{\mathcal{G}}}
+% \newcommand{\braket}[2]{\ensuremath{\left\langle #1 \vert #2 \right\rangle}}
+
+
+\def\qed{$\Box$}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+ 
+% \newcommand{\proof}[1][]{\emph{Proof #1}\textbf{:} }
+\newcommand*{\start}[1]{\leavevmode\newline \textbf{#1} }
+\newcommand*{\question}[1]{\leavevmode\newline \par\noindent\rule{\textwidth}{0.4pt} \textbf{Question: #1.}}
+\newcommand*{\proof}[1]{\leavevmode\newline \textbf{Proof #1}}
+\newcommand*{\answer}{\leavevmode\newline \textbf{Answer} }
+
+\newcommand{\X}{\ensuremath{\mathfrak{X}}}
+\newcommand{\comma}{\downarrow}
+
+
+% \newcommand{\hom}{\ensuremath{\operatorname{Hom}}}
+\newcommand{\Hom}{\ensuremath{\operatorname{Hom}}}
+
+\title{Category theory in context: 4.4 --- Calculus of Adjunctions}
+\author{Siddharth Bhat}
+\date{Monsoon, second year of the plague}
+
+
+\begin{document}
+\maketitle
+
+\section{4.4.1}
+
+If $F, F'$ are both left adjoint to $G$, then $F \simeq F'$. Moreover, there is a unique
+iso $\theta: F \simeq F'$ commuting with units and counits of adjunctions:
+
+% https://q.uiver.app/?q=WzAsNixbMCwwLCIxX0MiXSxbMSwwLCJHRiJdLFsxLDEsIkdGJyJdLFsyLDAsIkZHIl0sWzIsMSwiRidHIl0sWzMsMCwiMV9EIl0sWzAsMSwiXFxldGEiXSxbMSwyLCJHXFx0aGV0YSJdLFswLDIsIlxcZXRhJyIsMl0sWzMsNSwiXFxlcHNpbG9uIl0sWzMsNCwiXFx0aGV0YSBHIiwyXSxbNCw1LCJcXGVwc2lsb24nIiwyXV0=
+\[\begin{tikzcd}
+    {1_C} & GF & FG & {1_D} \\
+    & {GF'} & {F'G}
+    \arrow["\eta", from=1-1, to=1-2]
+    \arrow["G\theta", from=1-2, to=2-2]
+    \arrow["{\eta'}"', from=1-1, to=2-2]
+    \arrow["\epsilon", from=1-3, to=1-4]
+    \arrow["{\theta G}"', from=1-3, to=2-3]
+    \arrow["{\epsilon'}"', from=2-3, to=1-4]
+\end{tikzcd}\]
+
+
+Let's consider the data we need to define for an iso $\theta: F \Rightarrow F'$. Drawing out the naturality square, we need the arrows:
+
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJGYyJdLFsxLDAsIkYnYyJdLFswLDEsIkZjJyJdLFsxLDEsIkYnYyciXSxbMCwyLCJGZiJdLFsxLDMsIkYnZiJdLFswLDEsIlxcdGhldGFfYyIsMV0sWzIsMywiXFx0aGV0YV97Yyd9IiwxXV0=
+\[\begin{tikzcd}
+    Fc & {F'c} \\
+    {Fc'} & {F'c'}
+    \arrow["Ff", from=1-1, to=2-1]
+    \arrow["{F'f}", from=1-2, to=2-2]
+    \arrow["{\theta_c}"{description}, from=1-1, to=1-2]
+    \arrow["{\theta_{c'}}"{description}, from=2-1, to=2-2]
+\end{tikzcd}\]
+
+By adjunction, defining a commutative diagram with $Fc \rightarrow d$ is the same as defining a commutative
+diagram with $c \rightarrow Gd$:
+
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJjIl0sWzEsMCwiR0YnYyJdLFswLDEsImMnIl0sWzEsMSwiR0YnYyciXSxbMCwyLCJmIiwyXSxbMSwzLCJHRidmIl0sWzAsMSwiXFx0aGV0YV9jXlxcIyJdLFsyLDMsIlxcdGhldGFeXFwjX3tjJ30iLDJdXQ==
+\[\begin{tikzcd}
+    c & {GF'c} \\
+    {c'} & {GF'c'}
+    \arrow["f"', from=1-1, to=2-1]
+    \arrow["{GF'f}", from=1-2, to=2-2]
+    \arrow["{\theta_c^\#}", from=1-1, to=1-2]
+    \arrow["{\theta^\#_{c'}}"', from=2-1, to=2-2]
+\end{tikzcd}\]
+
+We define $\theta^\# \equiv \eta': 1 \to G F'$, since the types match. Using this, we compute a formula for $\theta$ as the
+transpose of $\theta^\#$. [TODO: how did we compute this in the first place?]
+
+$$
+\theta \equiv F \xRightarrow{F \eta'} FGF' \xRightarrow{\epsilon F'} F'
+$$
+
+Exchanging the roles of $F$ with $F'$, $\eta$ with $\eta'$, and $\epsilon$ with $\epsilon'$,
+this also computes a formula for $\theta'$ given by:
+
+$$
+\theta' \equiv F' \xRightarrow{F' \eta} F'GF \xRightarrow{\epsilon' F} F
+$$
+
+The hope is that $\theta$ and $\theta'$ are inverse natural transforms. We need to check that $\theta' \circ \theta = 1_F$. 
+We claim that it suffices to check that $GF (\theta' \circ \theta) \circ \eta  = \eta$. [TODO: why does this suffice?]
+
+Writing out $G (\theta' \circ \theta) \circ \eta$, which is equal to $G \theta' \circ G \theta \circ \eta$:
+
+\begin{align*}
+&1 \xRightarrow{\eta} GF {\color{red} \xRightarrow{G \theta}} GF' { \color{blue} \xRightarrow{G \theta'}} GF \\
+&1 \xRightarrow{\eta} GF { \color{red} \xRightarrow{GF \eta'} GF GF' \xRightarrow{G \epsilon F'}} G F' 
+{\color{blue} \xRightarrow{G F' \eta} G F' G F \xRightarrow{G \epsilon' F}} GF \\
+\end{align*}
+
+We wish to swap $\eta$ with $GF\eta'$ (at the first two terms)
+to bring the $\eta$ and $\epsilon$ close together (at the first three terms) so we can use the triangle identities.
+To do this, we consider the commutative square, where we transport the morphism $c \xrightarrow{\eta'_c} GF' c$
+along $\eta: 1_Cx \to GFx$ to give:
+
+% https://q.uiver.app/?q=WzAsOSxbMCwxLCJjIl0sWzAsMywiR0YnYyJdLFsxLDEsIjFfQyhjKSJdLFsxLDMsIjFfQyhHRidjKSJdLFszLDEsIkdGKGMpIl0sWzMsMywiR0YoR0YnYykiXSxbMSwwLCIxX0MoeCkiXSxbMywwLCJHRih4KSJdLFsyLDIsIlxcZXRhflxcdGV4dHR0e25hdHVyYWx9Il0sWzAsMSwiXFxldGEnX2MiXSxbMiwzLCIxX0NcXGV0YSdfYyIsMl0sWzIsNCwiXFxldGFfe2N9Il0sWzMsNSwiXFxldGFfe0dGJ2N9IiwyXSxbNCw1LCJHRlxcZXRhJ19jIl0sWzYsNywiXFxldGFfeCJdXQ==
+\[\begin{tikzcd}
+    & {1_C(x)} && {GF(x)} \\
+    c & {1_C(c)} && {GF(c)} \\
+    && {\eta~\texttt{natural}} \\
+    {GF'c} & {1_C(GF'c)} && {GF(GF'c)}
+    \arrow["{\eta'_c}", from=2-1, to=4-1]
+    \arrow["{1_C\eta'_c}"', from=2-2, to=4-2]
+    \arrow["{\eta_{c}}", from=2-2, to=2-4]
+    \arrow["{\eta_{GF'c}}"', from=4-2, to=4-4]
+    \arrow["{GF\eta'_c}", from=2-4, to=4-4]
+    \arrow["{\eta_x}", from=1-2, to=1-4]
+\end{tikzcd}\]
+
+\begin{itemize}
+\item See that this square contains $1 \xRightarrow{\eta} GF \xRightarrow{GF\eta'} GFGF'$, by following right and top. The commutativity
+\item of the square witnesses that this is equal to $1 \xRightarrow{\eta'} GF' \xRightarrow{\eta_{GF'}} GFGF'$.
+\item See that $\eta_{GF'}$ equals $\eta GF'$ since $\eta GF'(x) \equiv \eta_{GF'} GF'x$, which is the same as $\eta_{GF'}(GF'x)$.
+\item So, in total, the commutativity of this naturality square allows us to rewrite the segment
+  $1 \xRightarrow{\eta} GF' {\color{red} \xRightarrow{GF \eta'} GFGF'}$ with 
+  $1 \xRightarrow{\eta'} GF' \xRightarrow{\eta GF'} GF GF'$.
+\end{itemize}
+
+This gives us the diagram:
+\begin{align*}
+&1 {\color{ForestGreen} \xRightarrow{\eta} GF \xRightarrow{GF \eta'} } GF GF' \xRightarrow{G \epsilon F'} G F' 
+ \xRightarrow{G F' \eta} G F' G F \xRightarrow{G \epsilon' F} GF \\
+&1 { \color{ForestGreen} \xRightarrow{\eta'} GF' \xRightarrow{\eta GF'}} GF GF' \xRightarrow{G \epsilon F'} G F' 
+\xRightarrow{G F' \eta} G F' G F \xRightarrow{G \epsilon' F} GF \\
+\end{align*}
+
+This is regrouped using $G \epsilon \circ \eta G = 1_G$ into:
+
+\begin{align*}
+&1 \xRightarrow{\eta'} GF' \xRightarrow{\eta GF'}  GF GF' \xRightarrow{G \epsilon F'} G F'  
+  \xRightarrow{G F' \eta} G F' G F \xRightarrow{G \epsilon' F} GF \\
+&1 \xRightarrow{\eta'} GF' { \color{ForestGreen} \xRightarrow{\eta GF'}  GF GF' \xRightarrow{G \epsilon F'} G F' }  
+  \xRightarrow{G F' \eta} G F' G F \xRightarrow{G \epsilon' F} GF \\
+&1 \xRightarrow{G\eta'} GF' { \color{ForestGreen} \xRightarrow{(\eta G; G \epsilon) F'}} G F' 
+  \xRightarrow{G F' \eta} G F' G F \xRightarrow{G \epsilon' F} GF \\
+&1 \xRightarrow{G\eta'} GF' 
+  \xRightarrow{G F' \eta} G F' G F \xRightarrow{G \epsilon' F} GF \\
+\end{align*}
+\section{4.4.2}
+\section{4.4.3}
+\section{Exercises}
+\end{document}                                              

@@ -47,15 +47,6 @@
 \newcommand{\Q}{\ensuremath{\mathbb{Q}}}
 \newcommand{\R}{\ensuremath{\mathbb R}}
 \newcommand{\coT}{\ensuremath{T^*}}
-\newcommand{\Lie}{\ensuremath{\mathfrak{L}}}
-\newcommand{\Vectorfield}{\ensuremath{\mathfrak{X}}}
-\newcommand{\pushforward}[1]{\ensuremath{{#1}_{\star}}}
-\newcommand{\pullback}[1]{\ensuremath{{#1}^{\star}}}
-\newcommand{\vectorfield}{\ensuremath{\mathfrak{X}}}
-
-\newcommand{\pushfwd}[1]{\pushforward{#1}}
-\newcommand{\pf}[1]{\pushfwd{#1}}
-
 \newcommand{\boldX}{\ensuremath{\mathbf{X}}}
 \newcommand{\boldY}{\ensuremath{\mathbf{Y}}}
 
@@ -71,6 +62,7 @@
 \newcommand{\cCat}{\cat{Cat}}
 \newcommand{\cset}{\cat{Set}}
 \newcommand{\cSet}{\cat{Set}}
+\newcommand{\cFin}{\cat{Fin}}
 \newcommand{\cCAT}{\cat{CAT}}
 \newcommand{\cTop}{\cat{Top}}
 \newcommand{\ctop}{\cat{Top}}
@@ -96,6 +88,7 @@
 \newcommand{\three}{\mathbbm{3}}
 \newcommand{\id}{\operatorname{id}}
 \newcommand{\Id}{\operatorname{id}}
+\newcommand{\colim}{\operatorname{colim}}
 
 
 
@@ -2656,7 +2649,45 @@ Thus the cone $S$ factors.
 
 See that 3.2.1 talks about $Hom(X, \lim F)$ which we are rewriting as $\lim Hom(X, F)$!
 
-Limit of THE free monoid on one generator (as a category) is the set of fixpoints.
+
+\start{Writing Pullback as product-equalizer:}
+
+\begin{itemize}
+\item We wish to compute the pullback as product followed by equalizer. We start with the diagram
+category $D$:
+% https://q.uiver.app/?q=WzAsMyxbMCwxLCIxIl0sWzEsMCwiMiJdLFsxLDEsIjMiXSxbMCwyLCJmIiwyXSxbMSwyLCJnIiwyXV0=
+\[\begin{tikzcd}
+	& 2 \\
+	1 & 3
+	\arrow["f"', from=2-1, to=2-2]
+	\arrow["g"', from=1-2, to=2-2]
+\end{tikzcd}\]
+
+\item Let the image of the diagram in $C$ be given by $F: D \to C$:
+
+% https://q.uiver.app/?q=WzAsMyxbMSwxLCJDOkozIl0sWzAsMSwiQTpKMSJdLFsxLDAsIkI6SjIiXSxbMSwwLCJwOkpmIiwyXSxbMiwwLCJxOkpnIl1d
+\[\begin{tikzcd}
+	& {B:F2} \\
+	{A:F1} & {C:F3}
+	\arrow["{p:Ff}"', from=2-1, to=2-2]
+	\arrow["{q:Fg}", from=1-2, to=2-2]
+\end{tikzcd}\]
+
+\item First I have a product of all $\pi_{j \in ob(J)} Fj$ which is going to be $A \times B \times C$.
+\item Next we equalize the arrows based on the limit relations:
+
+% https://q.uiver.app/?q=WzAsOCxbMywyLCJDOkozIl0sWzIsMiwiQTpKMSJdLFszLDEsIkI6SjIiXSxbMCwxLCIoYSxiLGMpIl0sWzIsMF0sWzAsMiwiKGEsIGIsIGMpIl0sWzEsMiwiKGMsIGMpIl0sWzEsMSwiKHBhLCBxYikiXSxbMSwwLCJwOkpmIiwyXSxbMiwwLCJxOkpnIl0sWzUsNiwiY29kb20ocCwgcSkiLDJdLFszLDcsImltKHAsIHEpIiwyXV0=
+\[\begin{tikzcd}
+	&& {} \\
+	{(a,b,c)} & {(pa, qb)} && {B:J2} \\
+	{(a, b, c)} & {(c, c)} & {A:J1} & {C:J3}
+	\arrow["{p:Jf}"', from=3-3, to=3-4]
+	\arrow["{q:Jg}", from=2-4, to=3-4]
+	\arrow["{codom(p, q)}"', from=3-1, to=3-2]
+	\arrow["{im(p, q)}"', from=2-1, to=2-2]
+\end{tikzcd}\]
+
+\end{itemize}
 
 
 \subsection{Exercises}
@@ -2901,4 +2932,154 @@ on no features of $J$.
 \item Thus, the section $S$ is equivalent to the cones $\sigma: \{*\} \nt F$.
 \item The set of all such cones $\{*\} \nt F$ is isomorphic to the set of sections $C \to \int F$.c
 \end{itemize}
+
+\section{Preservation, reflection, and creation of limits and colimits}
+
+\subsection{Musing}
+
+\subsubsection{Precise definition of creation of limits}
+
+Riehl's definition is: For a particular diagram $K: J \to C$ and a functor $F: C \to D$, F creates $K$-limits when given a limit cone $\eta: \Delta t \nt FK$ there is SOME $t' \in D$ and an iso $h: t' \to t$, and we have that SOME element $\kappa in F^{-1}(\eta h)$ is a limit cone over K AND ALSO  "$F$ reflects $K$-limits".
+
+\subsection{Exercises}
+
+\question{3.3.i.i: For any diagram $K: J \to C$ and functor $F: C \to D$, define a canonical map
+  $\colim FK \to F \colim K$ assuming both colimits exist}
+
+\begin{itemize}
+	\item $\colim K$ is a cocone with base $K$ in $C$.
+	\item Functors preserve commutative diagrams, so $F \colim K$ is a cocone with base $FK$ in $D$.
+	\item $\colim FK$ is the universal cocone with base $FK$ in $D$.
+	\item Thus, the cocone $F \colim K$ factors through $\colim FK$, giving us a map $\colim FK \to F \colim K$ \qed.
+\end{itemize}
+
+
+\question{3.3.i.ii: For any diagram $K: J \to C$ and functor $F: C \to D$, show that $F$ preserves
+  colimit $K$ when the map 
+  $\colim FK \to F \colim K$ is an iso}
+
+\begin{itemize}
+	\item Suppose the factorization map is an iso. This means that $\colim FK \sim F \colim K$.
+	\item Thus, $F \colim K$ is a universal cocone in $D$.
+	\item It is the image of the universal cocone $\colim K$ in $D$.
+	\item So $F$ preserves the colimit $\colim K$.
+\end{itemize}
+
+\question{3.3.ii: Full faithful functor reflects limits and colimits.}
+\begin{itemize}
+	\item We do limits. Argue colimits by duality.
+	\item Let $F: C \to D$ be full and faithful. Let $K: J \to C$ be a diagram.
+	\item Consider a cone over $K$ with summit $s \in C$.
+	\item Let the image of this cone $FK$ with summit $Fs \in D$ be a limit. In other words, $Fs$ is the summit
+		of a universal cone with base $FK$ in $D$.
+	\item We clain that the cone with apex $s$ is a limit. Idea: to factorize any other cone,
+	push the other cone forward via $F$, factorize in $D$, and then pull data back to $C$. This will work
+	because the functor $F$ is full an faithful. [Do we need fullness? Or only faithfulness?]
+\end{itemize}
+
+\question{3.3.iii: Equivalence of categories preserves, reflects, creates limits and colimits.}
+\begin{itemize}
+\item Why this ought to be true: equivalent categories can't be told apart categorically. Thus, two
+      categories that are equivalence must preserve, reflect, create.
+\end{itemize}
+
+\question{3.3.iv: Prove that $F: C \to D$ creates limits for a particular class of diagrams given...}
+\begin{itemize}
+\item Given (i) $C$ has those limits and $F$ preserves them.
+\item Given (ii) $F: C \to D$ reflects those isomorphisms.
+\item We are given a limit for $FK$.
+\item To create this limit,
+    We must establish the existence of a limit for $K$, as well that $F$ reflects and preserves limits of $K$.
+\item We already know that $F$ preserves these limits. We must show that (i) $F$ creates limits of $FK$,
+    and (ii) $F$ reflects limits of $FK$.
+\item To creatte this limit,
+     Let the limit for $FK$ have apex $t \in D$. We must establish an apex $a \in C$ such that $Fa = t$.
+\item Since $C$ has the limit $K$, let $s \in C$ be the summit for the limit of $K$. 
+\item Since $F$ preserves limits, $F(s) \in D$ is the limit for the limit of $FK$.
+\item $t$ is a limit for $FK$, so $Fs \sim t$ (limits are universal, so their apices are iso.)
+\item $F$ reflects isos, so we can reflect the iso $Fs \sim t$ into $s \sim a$ for some $a \in F^{-1}(t)$.
+\item since $s \sim a$, a a limit for $K$ (as $s$ is a limit for $K$) such that $Fs = t$. Thus, $F$ 
+      has created the limit $t$. \qed.
+\item Next, to show that $F$ reflects limits, let $s \in C$ such that $Fs$ is the apex of a limit for $FK$.
+     We must show that $s$ is the apex of a limit in $C$. Let $a \in C$ be the apex of the limit in $C$ (Since $C$ has the limit). We wish to show $s \sim a$.
+\item Since $F$ preserves limits, we have that $Fa$ is the apex of a limit. So is $Fs$, so $Fa \sim Fs$.
+\item Since $F$ reflects isos, we have $a \sim s$. Thus done. \qed.
+\end{itemize}
+
+\question{3.3.v: Forgetful functors fail to preserve coproducts}
+
+\begin{itemize}
+\item Pointed sets are isomorphic to the slice category over $\mathbb 1 \equiv \{ * \}$ (the one-element set).
+ The value of $[* \mapsto x]$ is the basepoint.
+\item Since the coproduct is not a connected colimit (the diagram category $(\bullet ~ \bullet)$ is disconnect),
+   the forgetful functor will not create colimits.
+ \item Thus, we will not preserve coproducts [SID: no, that's dodgy! creation is in the opposite direction to preservation!]
+ \item To see that the forgetful functor does not preserve coproducts, recall that the coproduct in $\cSet_*$
+  takes the disjoint union and then smashes the basepoint. So it's
+  $(A, a) \sqcup (B, b) \equiv ((A \cup B) / (a \sim b), a)$.
+  However, the coproduct in set is just disjoint union. This gives us different cardinalities!
+ \item $\texttt{Forget}((\{a, b\}, a) \sqcup (\{x, y \}, x))$ equals
+    $\texttt{Forget}(\{b, y, a\sim x\}, a)) = \{b, y, a \sim x \}$ which has cardinality $3$.
+ \item On the other hand,
+    $\texttt{Forget}((\{a, b\}, a)) \sqcup \texttt{Forget}((\{x, y\}, x))$ equals
+   $\{a, b\} \sqcup \{x, y\} = \{a, b, x, y\}$ which has cardinality $4$.
+\end{itemize}
+
+\section{The Representable Nature of Limits and Colimits}
+\section{Complete and Cocomplete Categories}
+
+\subsection{Exercises}
+
+\question{3.5.i} Describe the colimit of a diagram $J: BG \to \cSet$ in group theory terms.
+
+\begin{itemize}
+    \item Let $BG$ have unique object $\bullet$ and arrows group elements $g \in G$.
+    \item We see that the colimit $\colim J$ has a single set since $BG$ has a single object. Call this set $S \equiv J(\bullet)$.
+    \item For a given group element $g \in G$, the corresponding arrow $g: \bullet \to \bullet$ which maps $g: s \mapsto t$ add a reation
+        $s \sim t$.
+    \item In total if we consider all arrows of $G$, this glues $s$ to every element in its orbit $Orb(s)$.
+    \item Thus, the colimit becomes the orbit of the set $S$ under the action of $G$ (where the action is given by $J$)
+\end{itemize}
+
+\question{3.5.ii}  Prove that the colimit of any small functor $F: C \to \cSet$ is isomorphic to the set $\pi_0(\int F)$ of connected
+ components of the category of elements of $F$. What is the colimit cone?
+
+ \begin{itemize}
+     \item Consider an element $x \in F(c)$ for some $c \in C$. This element will be glued to all other elements $y \in F(d)$ for some $d \in C$
+         such that either there is an arrow $f: c \to d$ such that $(Ff)(x) = y$ or an arrow $g: d \to c$ such that $(Fg)(y) = x$.
+     \item This is equivalent to the equivalence relation that glues the element $x$ to all elements which are reachable from $x$ or can reach $x$ by
+         following arrows. So this is the connected component of $\int F$.
+ \end{itemize}
+
+ \question{3.5.iii}  Prove that category of directed graphs is complete and cocomplete
+ \begin{itemize}
+     \item Let the graph be $G \equiv (V, E)$.
+     \item Let's define a topological space $T \equiv (X, \tau)$.
+         Create a topology based on closures. Define $X \equiv V$.
+     \item Say that $x \in cl(y)$ iff there is a path $x \to_* y$. This defines are reflexive and transitive relation which fulfils the Kurotawski closure axioms.
+     \item Furthermore, one can recover the graph from this construction by  ???
+ \end{itemize}
+
+ \question{3.5.iv}  For a small category $J$, define a functor $i_0: J \to J \times \two$ so that the pushout ..., with the functor $s: \one to J$ picking
+ out the summit of the cone.
+
+
+ \question{3.5.v} Describe limits and colimits in the poset of natural numbers given by the divisibility relation $x < y$ iff $x$ divides $y$.
+ \begin{itemize}
+         \item We have an arrow $x \to y$ iff $x < y$ so iff $x$ divides $y$. 
+         \item The limit of numbers is a number $L$ such that we have arrows $L \to y_i$, so we have $L < y_i$. Thus, $L$ is their greatest common divisor.
+         \item The colimit of numbers is a number $C$ such that we have arrows $y_i \to C$, so we have $y_i < C$. Thus, $C$ is their lowest common multiple.
+ \end{itemize}
+
+ \question{3.5.vi} Define a contavariant functor $F: \cFin^{op}_{mono} \to \cTop$ from the category of finite sets and injections to the
+ category of topological spaces, which sends a set with $n$ elements to the space $PConf_n(X)$. Explain why this functor does not induce
+ a similar functor sending an n-element set to the space $Conf_n(X)$.
+
+ \question{3.5.vii} Define a fiber space to a morphism in $\cTop$: $p: E \to B$. A map of fiber spaces is a commutative square.
+  Thus the category of fiber spaces is isomorphic to the category of diagrams $\two \to \cTop$. Now consider the non-full subcategory
+  $\cTop/B \subset (\two \to \cTop)$
+ \begin{itemize}
+ 	\item A
+ \end{itemize}
+
 \end{document}                                              
