@@ -338,6 +338,64 @@ The pleasant proof by yoneda:
 which establishes a natural bijection $E(FF'c, e) \simeq C(c, G'Gd)$, which means $FF' \vdash G'G$
 by the Hom-set definition of Yoneda.
 
-\section{4.4.3}
+\section{4.4.5}
+
+Any equivalence $F: C \leftrightarrow D: G$ with $\eta: 1_C \simeq GF$ and $\epsilon: FG \simeq 1_D$
+can be promoted into an adjoint equivalence. This promotion involves defining $\epsilon'$, where the natural isos ($\eta, \epsilon'$) 
+now obey the triangle inequalities.
+
+\subsection{Proof by unit/counit}
+
+\begin{itemize}
+  \item If it really were an adjunction, then $G \epsilon \circ \eta G = 1_G$. 
+  \item since we don't have an adjunction, measure the defect via $\gamma: G \Rightarrow{\eta G }  GFG \Rightarrow{G \epsilon} G$
+  \item Define $\epsilon' \equiv FG \Rightarrow{F \gamma^{-1}} FG \Rightarrow{\epsilon} 1_G$
+\end{itemize}
+
+We will show that the following diagram commutes:
+
+% https://q.uiver.app/?q=WzAsOCxbMCwxLCJHIl0sWzEsMSwiR0ZHIl0sWzIsMSwiR0ZHIl0sWzMsMSwiRyJdLFswLDAsIkciXSxbMSwwLCJHRkciXSxbMywwLCJHIl0sWzEsMiwiRyJdLFswLDEsIlxcZXRhIEciXSxbMSwyLCJHRlxcZ2FtbWFeey0xfSJdLFsyLDMsIkcgXFxlcHNpbG9uIl0sWzQsNSwiXFxldGEgRyJdLFs1LDYsIkcgXFxlcHNpbG9uJyJdLFswLDcsIlxcZ2FtbWFeey0xfSIsMl0sWzcsMywiXFxnYW1tYSIsMl0sWzcsMiwiXFxldGEgRyJdXQ==
+\[\begin{tikzcd}
+	G & GFG && G \\
+	G & GFG & GFG & G \\
+	& G
+	\arrow["{\eta G}", from=2-1, to=2-2]
+	\arrow["{GF\gamma^{-1}}", from=2-2, to=2-3]
+	\arrow["{G \epsilon}", from=2-3, to=2-4]
+	\arrow["{\eta G}", from=1-1, to=1-2]
+	\arrow["{G \epsilon'}", from=1-2, to=1-4]
+	\arrow["{\gamma^{-1}}"', from=2-1, to=3-2]
+	\arrow["\gamma"', from=3-2, to=2-4]
+	\arrow["{\eta G}", from=3-2, to=2-3]
+\end{tikzcd}\]
+
+\begin{itemize}
+  \item The top row is $G \Rightarrow{\eta G} GFG \Rightarrow{G \epsilon'} G$
+  \item The bottom is $G \Rightarrow{\gamma^{-1}} G \Rightarrow{\gamma} G = 1_G$.
+  \item Thus, if the diagram commutes, then top equals bottom, or $G \epsilon' \circ \eta G = 1_G$, implying one of the triangle identities hold.
+  \item The triangle to the right commutes by the definition of $\gamma$; $\gamma = G \epsilon \circ \eta G$.
+  \item The "triangle" to the left (which actually contains 4 elements) commutes because of \emph{naturality} of $eta$. To see this, redraw
+        the triangle as a commutative square:
+  % https://q.uiver.app/?q=WzAsOSxbMSwxLCIxX0cgR3giXSxbMCwxLCJHeCJdLFswLDMsIkd4Il0sWzEsMywiMV9HIEd4Il0sWzEsMCwiMV9HeCJdLFszLDAsIkdGeCJdLFszLDEsIkdGeCJdLFszLDMsIkdGeCJdLFsyLDIsIlxcZXRhIH5cXHRleHR0dHtuYXR1cmFsfSJdLFsxLDIsIlxcZ2FtbWFeey0xfSIsMl0sWzAsMywiMV9HXFxnYW1tYV57LTF9IiwyXSxbNCw1LCJcXGV0YV94Il0sWzAsNiwiXFxldGFfeCJdLFs2LDcsIkdGXFxnYW1tYV57LTF9Il0sWzMsNywiXFxldGFfe0d4fSIsMl1d
+\[\begin{tikzcd}
+	& {1_Gx} && GFx \\
+	Gx & {1_G Gx} && GFx \\
+	&& {\eta ~\texttt{natural}} \\
+	Gx & {1_G Gx} && GFx
+	\arrow["{\gamma^{-1}}"', from=2-1, to=4-1]
+	\arrow["{1_G\gamma^{-1}}"', from=2-2, to=4-2]
+	\arrow["{\eta_x}", from=1-2, to=1-4]
+	\arrow["{\eta_x}", from=2-2, to=2-4]
+	\arrow["{GF\gamma^{-1}}", from=2-4, to=4-4]
+	\arrow["{\eta_{Gx}}"', from=4-2, to=4-4]
+\end{tikzcd}\]
+\end{itemize}
+
+
+\subsection{Example of equivalence that is not adjoint equivalence}
+\begin{itemize}
+  \item Intuition: Pick an automorphism of a category, with $aut: C \to C$ on one side, and $aut^{-1}: C \to C$ on the other. These two should
+         witness an equivalence, but they need not be adjoint.
+\end{itemize}
 \section{Exercises}
 \end{document}
