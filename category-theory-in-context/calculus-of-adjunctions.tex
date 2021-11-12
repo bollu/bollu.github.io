@@ -4,7 +4,7 @@
 \usepackage{classicthesis}
 
 \usepackage{bbm}
-\usepackage{bbding} % for flower. 
+\usepackage{bbding} % for flower.
 \usepackage{physics}
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
@@ -78,10 +78,10 @@
 \newcommand{\bg}{\cat{BG}}
 \newcommand{\bgg}{\cat{BG'}}
 \newcommand{\nt}{\Rightarrow}
-%\newcommand{\ant}[2]{\alpha : F \nt G} 
-%\newcommand{\bnt}[2]{\beta : F \nt G} 
-%\newcommand{\anti}[2]{\alpha : F \cong G} 
-%\newcommand{\bnti}[2]{\beta : F \cong G} 
+%\newcommand{\ant}[2]{\alpha : F \nt G}
+%\newcommand{\bnt}[2]{\beta : F \nt G}
+%\newcommand{\anti}[2]{\alpha : F \cong G}
+%\newcommand{\bnti}[2]{\beta : F \cong G}
 \newcommand{\zero}{\mathbbm{0}}
 \newcommand{\one}{\mathbbm{1}}
 \newcommand{\two}{\mathbbm{2}}
@@ -105,7 +105,7 @@
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{example}[theorem]{Example}
 \newtheorem{exercise}[theorem]{Exercise}
- 
+
 % \newcommand{\proof}[1][]{\emph{Proof #1}\textbf{:} }
 \newcommand*{\start}[1]{\leavevmode\newline \textbf{#1} }
 \newcommand*{\question}[1]{\leavevmode\newline \par\noindent\rule{\textwidth}{0.4pt} \textbf{Question: #1.}}
@@ -127,7 +127,7 @@
 \begin{document}
 \maketitle
 
-\section{4.4.1}
+\section{Proposition 4.4.1}
 
 If $F, F'$ are both left adjoint to $G$, then $F \simeq F'$. Moreover, there is a unique
 iso $\theta: F \simeq F'$ commuting with units and counits of adjunctions:
@@ -144,6 +144,8 @@ iso $\theta: F \simeq F'$ commuting with units and counits of adjunctions:
     \arrow["{\epsilon'}"', from=2-3, to=1-4]
 \end{tikzcd}\]
 
+
+\subsection{Proof by unit/counit}
 
 Let's consider the data we need to define for an iso $\theta: F \Rightarrow F'$. Drawing out the naturality square, we need the arrows:
 
@@ -184,14 +186,14 @@ $$
 \theta' \equiv F' \xRightarrow{F' \eta} F'GF \xRightarrow{\epsilon' F} F
 $$
 
-The hope is that $\theta$ and $\theta'$ are inverse natural transforms. We need to check that $\theta' \circ \theta = 1_F$. 
+The hope is that $\theta$ and $\theta'$ are inverse natural transforms. We need to check that $\theta' \circ \theta = 1_F$.
 We claim that it suffices to check that $GF (\theta' \circ \theta) \circ \eta  = \eta$. [TODO: why does this suffice?]
 
 Writing out $G (\theta' \circ \theta) \circ \eta$, which is equal to $G \theta' \circ G \theta \circ \eta$:
 
 \begin{align*}
 &1 \xRightarrow{\eta} GF {\color{red} \xRightarrow{G \theta}} GF' { \color{blue} \xRightarrow{G \theta'}} GF \\
-&1 \xRightarrow{\eta} GF { \color{red} \xRightarrow{GF \eta'} GF GF' \xRightarrow{G \epsilon F'}} G F' 
+&1 \xRightarrow{\eta} GF { \color{red} \xRightarrow{GF \eta'} GF GF' \xRightarrow{G \epsilon F'}} G F'
 {\color{blue} \xRightarrow{G F' \eta} G F' G F \xRightarrow{G \epsilon' F}} GF \\
 \end{align*}
 
@@ -219,31 +221,92 @@ along $\eta: 1_Cx \to GFx$ to give:
 \item of the square witnesses that this is equal to $1 \xRightarrow{\eta'} GF' \xRightarrow{\eta_{GF'}} GFGF'$.
 \item See that $\eta_{GF'}$ equals $\eta GF'$ since $\eta GF'(x) \equiv \eta_{GF'} GF'x$, which is the same as $\eta_{GF'}(GF'x)$.
 \item So, in total, the commutativity of this naturality square allows us to rewrite the segment
-  $1 \xRightarrow{\eta} GF' {\color{red} \xRightarrow{GF \eta'} GFGF'}$ with 
+  $1 \xRightarrow{\eta} GF' {\color{red} \xRightarrow{GF \eta'} GFGF'}$ with
   $1 \xRightarrow{\eta'} GF' \xRightarrow{\eta GF'} GF GF'$.
 \end{itemize}
 
 This gives us the diagram:
 \begin{align*}
-&1 {\color{ForestGreen} \xRightarrow{\eta} GF \xRightarrow{GF \eta'} } GF GF' \xRightarrow{G \epsilon F'} G F' 
+&1 {\color{ForestGreen} \xRightarrow{\eta} GF \xRightarrow{GF \eta'} } GF GF' \xRightarrow{G \epsilon F'} G F'
  \xRightarrow{G F' \eta} G F' G F \xRightarrow{G \epsilon' F} GF \\
-&1 { \color{ForestGreen} \xRightarrow{\eta'} GF' \xRightarrow{\eta GF'}} GF GF' \xRightarrow{G \epsilon F'} G F' 
+&1 { \color{ForestGreen} \xRightarrow{\eta'} GF' \xRightarrow{\eta GF'}} GF GF' \xRightarrow{G \epsilon F'} G F'
 \xRightarrow{G F' \eta} G F' G F \xRightarrow{G \epsilon' F} GF \\
 \end{align*}
 
 This is regrouped using $G \epsilon \circ \eta G = 1_G$ into:
 
 \begin{align*}
-&1 \xRightarrow{\eta'} GF' \xRightarrow{\eta GF'}  GF GF' \xRightarrow{G \epsilon F'} G F'  
+&1 \xRightarrow{\eta'} GF' \xRightarrow{\eta GF'}  GF GF' \xRightarrow{G \epsilon F'} G F'
   \xRightarrow{G F' \eta} G F' G F \xRightarrow{G \epsilon' F} GF \\
-&1 \xRightarrow{\eta'} GF' { \color{ForestGreen} \xRightarrow{\eta GF'}  GF GF' \xRightarrow{G \epsilon F'} G F' }  
+&1 \xRightarrow{\eta'} GF' { \color{ForestGreen} \xRightarrow{\eta GF'}  GF GF' \xRightarrow{G \epsilon F'} G F' }
   \xRightarrow{G F' \eta} G F' G F \xRightarrow{G \epsilon' F} GF \\
-&1 \xRightarrow{G\eta'} GF' { \color{ForestGreen} \xRightarrow{(\eta G; G \epsilon) F'}} G F' 
+&1 \xRightarrow{\eta'} GF' { \color{ForestGreen} \xRightarrow{(\eta G; G \epsilon) F'}} G F'
   \xRightarrow{G F' \eta} G F' G F \xRightarrow{G \epsilon' F} GF \\
-&1 \xRightarrow{G\eta'} GF' 
+&1 \xRightarrow{\eta'} GF'
   \xRightarrow{G F' \eta} G F' G F \xRightarrow{G \epsilon' F} GF \\
 \end{align*}
-\section{4.4.2}
+
+Next, we use the naturality of $\eta$ to swap $eta'$ with $GF' \eta$:
+
+\begin{align*}
+&1 \xRightarrow{\eta'} GF'
+  \xRightarrow{G F' \eta} G F' G F \xRightarrow{G \epsilon' F} GF \\
+&{ \color{ForestGreen} 1 \xRightarrow{\eta'} GF' \xRightarrow{G F' \eta} } G F' G F \xRightarrow{G \epsilon' F} GF \\
+&{ \color{ForestGreen} 1 \xRightarrow{\eta} GF \xRightarrow{\eta' G F} } G F' G F \xRightarrow{G \epsilon' F} GF \\
+\end{align*}
+
+Finally, we use the identity $G \epsilon ' \circ \eta' G = 1_G$ to reduce the equation:
+
+\begin{align*}
+&1 \xRightarrow{\eta} GF  \xRightarrow{\eta' G F} G F' G F \xRightarrow{G \epsilon' F} GF \\
+&1 \xRightarrow{\eta} GF { \color{ForestGreen}  \xRightarrow{\eta' G F} G F' G F \xRightarrow{G \epsilon' F} } GF \\
+&1 \xRightarrow{\eta} GF  { \color{ForestGreen} \xRightarrow{(\eta' G; G \epsilon) F} } GF \\
+&1 \xRightarrow{\eta} GF \\
+\end{align*}
+
+\subsection{Proof by Yoneda}
+\begin{itemize}
+    \item Since $F \vdash G$, we have that $D(Fc, d) \simeq C(c, Gd)$.
+    \item Similarly, since $F' \vdash G$, we have $C(c, Gd) \simeq D(F'c, d)$.
+    \item Together, this gives $D(Fc, d) \simeq D(F'c, d)$, natural in both $c$ and $d$.
+    \item This implies that $D(Fc, -) \simeq D(F'c, -)$, natural in $c$, or by Yoneda, that $Fc \simeq F'c$, natural in $c$.
+    \item The naturality in $c$ allows us to deduce that $F \simeq F'$.
+    \item We can identify the morphism which sends $Fc$ to $F'c$ by choosing $d = Fc$. This will start at $D(Fc, d=Fc)$ and ends at $D(F'c, d=Fc)$.
+\end{itemize}
+
+We compute $\theta_c$ by contemplating the diagram below, and setting $d=Fc$ to arrive at a morphism from $1_{Fc} \in D(Fc, d=Fc)$ to
+$\theta'_c \in D(F'c, d=Fc)$: [TODO: fill in the $?$]
+% https://q.uiver.app/?q=WzAsOSxbMCwwLCJEKEZjLCBkKSJdLFswLDEsImY6IEZjIFxcdG8gZCJdLFsxLDAsIkMoYywgR2QpIl0sWzIsMCwiRChGJ2MsIGQpIl0sWzEsMSwiYyBcXHhyaWdodGFycm93e1xcZXRhX2N9IEdGYyBcXHhyaWdodGFycm93e0dmfSBHZCJdLFsxLDIsImc6IGMgXFx0byBHZCJdLFsyLDIsIkYnYyBcXHhyaWdodGFycm93e0YnZ30gRidHZCBcXHhyaWdodGFycm93e1xcZXBzaWxvbidfZH0gZCJdLFswLDMsIjFfe0ZjfSBcXGluIEQoRmMsIEZjKSJdLFsyLDMsIj8iXSxbMCwyXSxbMSw0LCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzIsM10sWzUsNiwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFs3LDhdXQ==
+\[\begin{tikzcd}
+    {D(Fc, d)} & {C(c, Gd)} & {D(F'c, d)} \\
+    {f: Fc \to d} & {c \xrightarrow{\eta_c} GFc \xrightarrow{Gf} Gd} \\
+    & {g: c \to Gd} & {F'c \xrightarrow{F'g} F'Gd \xrightarrow{\epsilon'_d} d} \\
+    {1_{Fc} \in D(Fc, Fc)} && {?}
+    \arrow[from=1-1, to=1-2]
+    \arrow[maps to, from=2-1, to=2-2]
+    \arrow[from=1-2, to=1-3]
+    \arrow[maps to, from=3-2, to=3-3]
+    \arrow[from=4-1, to=4-3]
+\end{tikzcd}\]
+
+\section{Proposition 4.4.4}
+
+Given adjunctions $F \vdash G$ and $F' \vdash G'$, their composite $FF'$ is left adjoint to the composite $GG'$:
+
+% https://q.uiver.app/?q=WzAsNixbMCwwLCJDIl0sWzEsMCwiRCJdLFsyLDAsIkUiXSxbNCwwLCJDIl0sWzUsMCwiRSJdLFszLDAsIlxccmlnaHRzcXVpZ2Fycm93Il0sWzAsMSwiRiIsMCx7Im9mZnNldCI6LTJ9XSxbMSwwLCJHIiwwLHsib2Zmc2V0IjotMn1dLFsyLDEsIkcnIiwwLHsib2Zmc2V0IjotMn1dLFsxLDIsIkYnIiwwLHsib2Zmc2V0IjotMn1dLFszLDQsIkZGJyIsMCx7Im9mZnNldCI6LTJ9XSxbNCwzLCJHJ0ciLDAseyJvZmZzZXQiOi0yfV0sWzYsNywiIiwwLHsibGV2ZWwiOjEsInN0eWxlIjp7Im5hbWUiOiJhZGp1bmN0aW9uIn19XSxbOSw4LCIiLDAseyJsZXZlbCI6MSwic3R5bGUiOnsibmFtZSI6ImFkanVuY3Rpb24ifX1dLFsxMCwxMSwiIiwwLHsibGV2ZWwiOjEsInN0eWxlIjp7Im5hbWUiOiJhZGp1bmN0aW9uIn19XV0=
+\[\begin{tikzcd}
+	C & D & E & \rightsquigarrow & C & E
+	\arrow[""{name=0, anchor=center, inner sep=0}, "F", shift left=2, from=1-1, to=1-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "G", shift left=2, from=1-2, to=1-1]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "{G'}", shift left=2, from=1-3, to=1-2]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "{F'}", shift left=2, from=1-2, to=1-3]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "{FF'}", shift left=2, from=1-5, to=1-6]
+	\arrow[""{name=5, anchor=center, inner sep=0}, "{G'G}", shift left=2, from=1-6, to=1-5]
+	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=0, to=1]
+	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=3, to=2]
+	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=4, to=5]
+\end{tikzcd}\]
+
 \section{4.4.3}
 \section{Exercises}
-\end{document}                                              
+\end{document}
