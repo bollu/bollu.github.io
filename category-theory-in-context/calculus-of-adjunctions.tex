@@ -310,15 +310,29 @@ Given adjunctions $F \vdash G$ and $F' \vdash G'$, their composite $FF'$ is left
 \subsection{Proof by unit/counit}
 
 
-I dare not perform the ``entertaining'' diagram chase.
+\begin{itemize}
+\item The only ``reasonable'' definition of $\overline \eta: 1_C \Rightarrow GG'F'F$ is given by:
+
+\begin{align*}
+  & \overline \eta \equiv 1_c \xRightarrow{\eta} GF \xRightarrow{G\eta'F} GG'FF' \\
+\end{align*}
+
+\item A point to note: morally, the reason we build $G \eta' F$ is for the types to work; $\eta': 1_D \rightarrow G'F'$.
+To mutate $GF$, it is the only type valid choice among ($\eta' GF$, $G \eta' F$, and $GF \eta'$).
+
+\item Similarly, the only reasonable definition of $\overline \epsilon: F' F G G' \Rightarrow 1_E$
+is given by the other expression as in the text.
+
+\item I dare not perform the ``entertaining'' diagram chase.
+\end{itemize}
 
 \subsection{Proof by Yoneda}
 
 The pleasant proof by yoneda:
 
 \begin{align*}
-  &E(F'Fc, e) \simeq D(F'c, Gd) \quad ($F \vdash G$) \\
-  &D(F'c, d) \simeq C(c, G'Gd) \quad ($F' \vdash G'$) \\
+  &E(F'Fc, e) \simeq D(F'c, Gd) \quad (F \vdash G) \\
+  &D(F'c, d) \simeq C(c, G'Gd) \quad (F' \vdash G')
 \end{align*}
 
 which establishes a natural bijection $E(FF'c, e) \simeq C(c, G'Gd)$, which means $FF' \vdash G'G$
