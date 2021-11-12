@@ -338,13 +338,13 @@ The pleasant proof by yoneda:
 which establishes a natural bijection $E(FF'c, e) \simeq C(c, G'Gd)$, which means $FF' \vdash G'G$
 by the Hom-set definition of Yoneda.
 
-\section{4.4.5}
+\section{4.4.5: Promoting equivalence to adjoint equivalence}
 
 Any equivalence $F: C \leftrightarrow D: G$ with $\eta: 1_C \simeq GF$ and $\epsilon: FG \simeq 1_D$
 can be promoted into an adjoint equivalence. This promotion involves defining $\epsilon'$, where the natural isos ($\eta, \epsilon'$) 
 now obey the triangle inequalities.
 
-\subsection{Proof by unit/counit}
+\subsection{Proof by unit/counit: (a) $G \epsilon \circ \eta' G = 1_G$}
 
 \begin{itemize}
   \item If it really were an adjunction, then $G \epsilon \circ \eta G = 1_G$. 
@@ -389,8 +389,32 @@ We will show that the following diagram commutes:
 	\arrow["{GF\gamma^{-1}}", from=2-4, to=4-4]
 	\arrow["{\eta_{Gx}}"', from=4-2, to=4-4]
 \end{tikzcd}\]
+
+This gives us the commutativity of the left part of the digram:
+
+% https://q.uiver.app/?q=WzAsNyxbMCwxLCJHIl0sWzEsMSwiR0ZHIl0sWzIsMSwiR0ZHIl0sWzAsMCwiRyJdLFsxLDAsIkdGRyJdLFszLDAsIkciXSxbMSwyLCJHIl0sWzAsMSwiXFxldGEgRyJdLFsxLDIsIkdGXFxnYW1tYV57LTF9Il0sWzMsNCwiXFxldGEgRyJdLFswLDYsIlxcZ2FtbWFeey0xfSIsMl0sWzYsMiwiXFxldGEgRyJdLFs0LDUsIkcgXFxlcHNpbG9uJyJdXQ==
+\[\begin{tikzcd}
+	G & GFG && G \\
+	G & GFG & GFG \\
+	& G
+	\arrow["{\eta G}", from=2-1, to=2-2]
+	\arrow["{GF\gamma^{-1}}", from=2-2, to=2-3]
+	\arrow["{\eta G}", from=1-1, to=1-2]
+	\arrow["{\gamma^{-1}}"', from=2-1, to=3-2]
+	\arrow["{\eta G}", from=3-2, to=2-3]
+	\arrow["{G \epsilon'}", from=1-2, to=1-4]
+\end{tikzcd}\]
+
+\item together, we now have the left and right triangle commute, and thus the whole diagram commutes, which validates one of the triangle identities.
 \end{itemize}
 
+\subsection{Proof by unit/counit: (b) $\epsilon' F \circ F \eta = 1_F$}
+
+\begin{itemize}
+  \item This is proven by showing that $\epsilon' F \circ F \eta$ is idempotent, since an idempotent invertible map is identity. This follows from 
+      $s^2 = s$ implies $s^2 s^{-1} = s s^{-1}$ or $s = id$.
+    \item 
+\end{itemize}
 
 \subsection{Example of equivalence that is not adjoint equivalence}
 \begin{itemize}
