@@ -300,12 +300,29 @@ Given adjunctions $F \vdash G$ and $F' \vdash G'$, their composite $FF'$ is left
 	\arrow[""{name=1, anchor=center, inner sep=0}, "G", shift left=2, from=1-2, to=1-1]
 	\arrow[""{name=2, anchor=center, inner sep=0}, "{G'}", shift left=2, from=1-3, to=1-2]
 	\arrow[""{name=3, anchor=center, inner sep=0}, "{F'}", shift left=2, from=1-2, to=1-3]
-	\arrow[""{name=4, anchor=center, inner sep=0}, "{FF'}", shift left=2, from=1-5, to=1-6]
-	\arrow[""{name=5, anchor=center, inner sep=0}, "{G'G}", shift left=2, from=1-6, to=1-5]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "{F'F}", shift left=2, from=1-5, to=1-6]
+	\arrow[""{name=5, anchor=center, inner sep=0}, "{GG'}", shift left=2, from=1-6, to=1-5]
 	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=0, to=1]
 	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=3, to=2]
 	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=4, to=5]
 \end{tikzcd}\]
+
+\subsection{Proof by unit/counit}
+
+
+I dare not perform the ``entertaining'' diagram chase.
+
+\subsection{Proof by Yoneda}
+
+The pleasant proof by yoneda:
+
+\begin{align*}
+  &E(F'Fc, e) \simeq D(F'c, Gd) \quad ($F \vdash G$) \\
+  &D(F'c, d) \simeq C(c, G'Gd) \quad ($F' \vdash G'$) \\
+\end{align*}
+
+which establishes a natural bijection $E(FF'c, e) \simeq C(c, G'Gd)$, which means $FF' \vdash G'G$
+by the Hom-set definition of Yoneda.
 
 \section{4.4.3}
 \section{Exercises}
