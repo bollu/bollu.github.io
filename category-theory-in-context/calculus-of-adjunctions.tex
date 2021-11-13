@@ -490,7 +490,57 @@ Stare at the large diagram:
          witness an equivalence, but they need not be adjoint.
 \end{itemize}
 
-\section{}
+\section{4.4.6: Adjunction raises to adjunction of diagrams}
+
+\begin{itemize}
+  \item Suppose $F \vdash G$ where $F: C \to D: G$.
+  \item Then we claim that there exists an adjunction between $(J \to C)$ and $(J \to D)$, given by:
+  % https://q.uiver.app/?q=WzAsNCxbMCwyLCIoSiBcXHRvIEMpIl0sWzEsMiwiKEogXFx0byBEKSJdLFswLDAsIkMiXSxbMSwwLCJEIl0sWzAsMSwiRiBcXGNpcmMgLSIsMCx7ImN1cnZlIjotMn1dLFsxLDAsIkcgXFxjaXJjIC0iLDAseyJjdXJ2ZSI6LTJ9XSxbMiwzLCJGIiwwLHsiY3VydmUiOi0xfV0sWzMsMiwiRyIsMCx7ImN1cnZlIjotMX1dXQ==
+\[\begin{tikzcd}
+	C & D \\
+	\\
+	{(J \to C)} & {(J \to D)}
+	\arrow["{F \circ -}", curve={height=-12pt}, from=3-1, to=3-2]
+	\arrow["{G \circ -}", curve={height=-12pt}, from=3-2, to=3-1]
+	\arrow["F", curve={height=-6pt}, from=1-1, to=1-2]
+	\arrow["G", curve={height=-6pt}, from=1-2, to=1-1]
+\end{tikzcd}\]
+\end{itemize}
+
+\subsection{Yoneda based proof}
+
+\begin{itemize}
+    \item What does it mean to have such an adjunction?
+    \item It means that we have a natural identification of hom-sets $Hom_{J \to D}(F_* d_C ,d_D)$
+        (where $d_K: J \to K$ is for digram in category $K$ indexed by $J$) with the hom set $Hom_{J \to C}(d_C, G_* d_D)$.
+    \item Consider any $\alpha \in Hom_{J \to D}(F_* d_C, d_D)$. We must build a $\alpha^\sharp \in Hom_{J \to C}(d_C, G_* d_D)$ that is natural in $d_C, d_D$.
+    \item  What is the data involved in $\alpha^\sharp$? Well, it's a commutative square:
+      % https://q.uiver.app/?q=WzAsNyxbMiwwLCJkX0MgaiJdLFsyLDEsImRfQyBrIl0sWzAsMCwiaiJdLFswLDEsImsiXSxbNCwwLCJHZF9EaiJdLFs0LDEsIkcgZF9EayJdLFszLDFdLFswLDEsImRfQ2EiLDJdLFsyLDMsImEiXSxbMCw0LCJcXGFscGhhXlxcc2hhcnBfaiIsMl0sWzEsNSwiXFxhbHBoYV5cXHNoYXJwX3trfSIsMl0sWzQsNSwiR2RfRGEiXV0=
+\[\begin{tikzcd}
+	j && {d_C j} && {Gd_Dj} \\
+	k && {d_C k} & {} & {G d_Dk}
+	\arrow["{d_Ca}"', from=1-3, to=2-3]
+	\arrow["a", from=1-1, to=2-1]
+	\arrow["{\alpha^\sharp_j}"', from=1-3, to=1-5]
+	\arrow["{\alpha^\sharp_{k}}"', from=2-3, to=2-5]
+	\arrow["{Gd_Da}", from=1-5, to=2-5]
+\end{tikzcd}\]
+  \item But by the adjointness of $F \vdash G$, the above square commutes iff the square below commutes:
+
+% https://q.uiver.app/?q=WzAsNyxbMSwwLCJGZF9DIGoiXSxbMSwxLCJGZF9DIGsiXSxbMCwwLCJqIl0sWzAsMSwiayJdLFszLDAsImRfRGoiXSxbMywxLCJkX0RrIl0sWzIsMV0sWzAsMSwiRmRfQ2EiLDJdLFsyLDMsImEiXSxbMCw0LCIoXFxhbHBoYV5cXHNoYXJwX2opXlxcZmxhdCIsMl0sWzEsNSwiKFxcYWxwaGFeXFxzaGFycF97a30pXlxcZmxhdCIsMl0sWzQsNSwiZF9EYSJdXQ==
+\[\begin{tikzcd}
+	j & {Fd_C j} && {d_Dj} \\
+	k & {Fd_C k} & {} & {d_Dk}
+	\arrow["{Fd_Ca}"', from=1-2, to=2-2]
+	\arrow["a", from=1-1, to=2-1]
+	\arrow["{(\alpha^\sharp_j)^\flat}"', from=1-2, to=1-4]
+	\arrow["{(\alpha^\sharp_{k})^\flat}"', from=2-2, to=2-4]
+	\arrow["{d_Da}", from=1-4, to=2-4]
+\end{tikzcd}\]
+\item We can choose $(\alpha^\sharp)^\flat_j \equiv \alpha_j$, since $\alpha$ witneses the commutativity of exactly this diagram!
+\item This means that the map which links the Hom-sets is the transpose map, which transposes a natural transformation pointwise: 
+    $(\alpha^\sharp)_x \equiv (\alpha_x)^\sharp$.
+\end{itemize}
 
 \section{Exercises}
 \end{document}
