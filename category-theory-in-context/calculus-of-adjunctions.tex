@@ -510,7 +510,7 @@ Stare at the large diagram:
 \end{tikzcd}\]
 \end{itemize}
 
-\subsection{Yoneda based proof}
+\subsection{Yoneda based proof (Exercise 4.4.iii)}
 
 \begin{itemize}
     \item What does it mean to have such an adjunction?
@@ -543,6 +543,22 @@ Stare at the large diagram:
 \item We can choose $(\alpha^\sharp)^\flat_j \equiv \alpha_j$, since $\alpha$ witneses the commutativity of exactly this diagram!
 \item This means that the map which links the Hom-sets is the transpose map, which transposes a natural transformation pointwise: 
     $(\alpha^\sharp)_x \equiv (\alpha_x)^\sharp$.
+\end{itemize}
+
+\subsection{unit-counit based proof (Exercise 4.4.ii}
+
+\begin{itemize}
+  \item Denote as $F_*: (J \to C) \to (J \to D)$. (Notational note: you fall
+    forward and down toward the star, so pushforward is lower star; you look up
+    and fall back to look at the stars, so pull back is upper star). This is a push forward
+    since it's like pushing forward a curve $[0, 1] \to C$ via a map $F: C \to D$.
+  \item Similarly, denote as $G_*: (J \to D) \to (J \to C)$.
+  \item We must create a natural transformation $\overline \eta: 1_{C^J} \to G_* F_* 1_{C^J}$
+  \item This means that to any diagram $D: C^J$, we must associate a natural transformation $\overline \eta_D: D \to GFD$.
+  \item This can be written componentwise as $(\overline \eta_D)_j: Dj \to GFDj$.
+  \item This can be written more clearly as $(\overline \eta_D)_j: Dj \to GFDj$.
+  \item This can be given by the component of $\eta: 1_C \to GF$ along $Dj$, which is $\eta_{Dj}: Dj \to GF(Dj)$.
+  \item So we define $(\overline \eta_D)_j \equiv \eta_{Dj}$.
 \end{itemize}
 
 \section{Exercises}
