@@ -421,5 +421,53 @@ This gives us the commutativity of the left part of the digram:
   \item Intuition: Pick an automorphism of a category, with $aut: C \to C$ on one side, and $aut^{-1}: C \to C$ on the other. These two should
          witness an equivalence, but they need not be adjoint.
 \end{itemize}
+
+Stare at the large diagram:
+
+
+% https://q.uiver.app/?q=WzAsMTEsWzAsMSwiRiJdLFsxLDEsIkZHRiJdLFsyLDEsIkYiXSxbMiwyLCJGR0YiXSxbMiwzLCJGIl0sWzAsMCwiRiJdLFszLDAsIkYiXSxbMywzLCJGIl0sWzAsMiwiRiBHRiJdLFsxLDMsIkZHRiJdLFsxLDIsIkZHRkdGIl0sWzAsMSwiRlxcZXRhIl0sWzEsMiwiXFxlcHNpbG9uJ19GIl0sWzIsMywiRiBcXGV0YSJdLFszLDQsIlxcZXBzaWxvbidfRiJdLFs1LDYsIlxcZXBzaWxvbicgRiBcXGNpcmMgRiBcXGV0YSJdLFs2LDcsIlxcZXBzaWxvbidGIFxcY2lyYyBGIFxcZXRhIl0sWzAsOCwiRiBcXGV0YSIsMl0sWzgsOSwiIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs5LDQsIlxcZXBzaWxvbidfRiIsMl0sWzgsOSwiIiwxLHsib2Zmc2V0IjoxLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzgsMTAsIkZcXGV0YV97R0Z9Il0sWzEwLDksIkZHXFxlcHNpbG9uJ19GIl0sWzEsMTAsIkZHRlxcZXRhIl0sWzEwLDMsIlxcZXBzaWxvbidfe0ZHRn0iXV0=
+\[\begin{tikzcd}
+	F &&& F \\
+	F & FGF & F \\
+	{F GF} & FGFGF & FGF \\
+	& FGF & F & F
+	\arrow["F\eta", from=2-1, to=2-2]
+	\arrow["{\epsilon'_F}", from=2-2, to=2-3]
+	\arrow["{F \eta}", from=2-3, to=3-3]
+	\arrow["{\epsilon'_F}", from=3-3, to=4-3]
+	\arrow["{\epsilon' F \circ F \eta}", from=1-1, to=1-4]
+	\arrow["{\epsilon'F \circ F \eta}", from=1-4, to=4-4]
+	\arrow["{F \eta}"', from=2-1, to=3-1]
+	\arrow[no head, from=3-1, to=4-2]
+	\arrow["{\epsilon'_F}"', from=4-2, to=4-3]
+	\arrow[shift right=1, no head, from=3-1, to=4-2]
+	\arrow["{F\eta_{GF}}", from=3-1, to=3-2]
+	\arrow["{FG\epsilon'_F}", from=3-2, to=4-2]
+	\arrow["FGF\eta", from=2-2, to=3-2]
+	\arrow["{\epsilon'_{FGF}}", from=3-2, to=3-3]
+\end{tikzcd}\]
+
+\begin{itemize}
+    \item Throughout this diagram, we use the equivalence between $\alpha K$
+      and $\alpha_K$ for functor $K: X \to Y$ and natural transformation
+      $\alpha: L \Rightarrow M$ for $L, M: Y \to Z$ (this makes $\alpha K / \alpha_K: X \to Z$.
+    \item The top and right witness $(\epsilon' F \circ F \eta)^2$. The bottom witnesses $(\epsilon' F \circ F \eta)$. The commutativity of the whole
+      square witnesses idempotence.
+    \item The top left square commutes due to the naturality of $F \eta$:
+
+% https://q.uiver.app/?q=WzAsOCxbMSwxLCJGKDFfRngpIl0sWzIsMSwiRihHRngpIl0sWzEsMiwiRiAoIEdGIHgpIl0sWzIsMiwiRihHRkdGeCkiXSxbMCwyLCJcXGV0YV94Il0sWzAsMSwieCJdLFsxLDAsIkYoMV9GKSBcXHNpbWVxIEYiXSxbMiwwLCJGKEdGKSJdLFswLDEsIkZcXGV0YV94Il0sWzAsMiwiRiBcXGV0YSIsMl0sWzIsMywiRlxcZXRhX3tHRnh9Il0sWzEsMywiRkdGXFxldGEiXSxbNSw0XSxbNiw3LCJGXFxldGEiLDJdXQ==
+\[\begin{tikzcd}
+	& {F(1_F) \simeq F} & {F(GF)} \\
+	x & {F(1_Fx)} & {F(GFx)} \\
+	{\eta_x} & {F ( GF x)} & {F(GFGFx)}
+	\arrow["{F\eta_x}", from=2-2, to=2-3]
+	\arrow["{F \eta}"', from=2-2, to=3-2]
+	\arrow["{F\eta_{GFx}}", from=3-2, to=3-3]
+	\arrow["FGF\eta", from=2-3, to=3-3]
+	\arrow[from=2-1, to=3-1]
+	\arrow["F\eta"', from=1-2, to=1-3]
+\end{tikzcd}\]
+\end{itemize}
+
 \section{Exercises}
 \end{document}
