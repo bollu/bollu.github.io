@@ -416,12 +416,6 @@ This gives us the commutativity of the left part of the digram:
     \item 
 \end{itemize}
 
-\subsection{Example of equivalence that is not adjoint equivalence}
-\begin{itemize}
-  \item Intuition: Pick an automorphism of a category, with $aut: C \to C$ on one side, and $aut^{-1}: C \to C$ on the other. These two should
-         witness an equivalence, but they need not be adjoint.
-\end{itemize}
-
 Stare at the large diagram:
 
 
@@ -476,6 +470,27 @@ Stare at the large diagram:
 \item Since every sub-square in our diagram commutes, the whole diagram commutes, and therefore we have shown the idempotence of $\epsilon' F \circ F \eta$,
     which implies it's equal to the identity.
 \end{itemize}
+
+\subsection{Yoneda based proof}
+
+\begin{itemize}
+  \item If $\eta_c: 1_C \simeq GF$ is one of the natural isos of an equivalence of categories $F: C \leftrightarrow D: G$, then we define
+    the function:
+    $$
+    \begin{matrix}
+      & D(Fc, d) &\xrightarrow{G} &C(GFc, Gd) &\xrightarrow{ - \circ \eta_c} &C(c, Gd) \\
+      & f: Fc \to d &\overset{G}{\mapsto}  &Gf: GFc \to Gd &\overset{- \circ \eta_c}{\mapsto} &(Gf: GFc \to Gd) \circ (\eta_c: c \to GFc) : c \to G d
+    \end{matrix}
+    $$
+\end{itemize}
+
+\subsection{Example of equivalence that is not adjoint equivalence}
+\begin{itemize}
+  \item Intuition: Pick an automorphism of a category, with $aut: C \to C$ on one side, and $aut^{-1}: C \to C$ on the other. These two should
+         witness an equivalence, but they need not be adjoint.
+\end{itemize}
+
+\section{}
 
 \section{Exercises}
 \end{document}
