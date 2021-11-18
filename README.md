@@ -6,23 +6,328 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
-# Write thin to write well
 
-- Set column width to be absurdly low which forces your writing to get better (?!)
-- https://breckyunits.com/write-thin-to-write-fast.html
-
-# Schubert calculus, according to Schubert
-
-- https://arxiv.org/pdf/math/0608784.pdf
-
-# Discrete probability
+# Discrete probability [WIP]
 
 - The textbook discrete probability actually manages to teach "discrete probability" as a unified subject, laying out _all the notation_ clearly,
   something that I literally have never seen before! This is me making notes of the notation.
 
-# Toric Varieties
+# Why the zero set of a continuous function must be a closed set
 
-- https://www.youtube.com/watch?v=Sjp-99Xyiic&list=PL8yHsr3EFj53j51FG6wCbQKjBgpjKa5PX&index=22
+- Consider the set of points $Z = f^{-1}(0)$ for some function $f: X \to \mathbb R$.
+- Suppose we can talk about sequences or limits in $X$.
+- Thus, if $f$ is continuous, then we must have $f(\lim x_i) = \lim f(x_i)$.
+- Now consider a limit point $l$ of the set $Z$ with sequence $l_i$ (that is, $\lim l_i = l$). Then we have
+  $f(l) = f(\lim l_i) = \lim f(l_i) = \lim 0 = 0$. Thus, $f(l) = 0$.
+- This means that the set $Z$ contains $l$, since $Z$ contains all pre-images of zero. Thus, the set $Z$ is closed.
+- This implies that the zero set of a continuous function must be a closed set.
+- This also motivates zariski; we want a topology that captures polynomial behaviour. Well, then the closed sets _must_ be the zero
+  sets of polynomials!  
+
+# Derivatives in diffgeo
+
+- A function of the form $f: \mathbb R^i \to \mathbb R^o$ has derivative specified by an $(o \times i)$ matrix, one which says
+  how each output varies with each input.
+- Now consider a vector field $V$ on the surface of the sphere, and another vector field $D$. Why is $W \equiv \del_D V$
+  another vector field? Aren't we differentiating a thing with 3 coordinates with another thing with 3 coordinates?
+- Well, suppose we consider the previous function $f: \mathbb R^i \to \mathbb R^o$, and we then consider a curve $c: (-1, 1) \to \mathbb R^i$.
+  Then the combined function $(f \circ c): (-1, 1) \to \mathbb R^o$ needs only $o$ numbers to specify the derivative, since there's only one
+  parameter to the curve (time).
+- So what's going on in the above example? Well, though the full function we're defining is from $\mathbb R^i$ to $\mathbb R^o$, composing
+  with $c$ "limits our attention" to a 1D input slice. In this 1D input slice, the output is also a vector.
+- This should be intuitive, since for example, we draw a circle parameterized by arc length, and then draw its tangents as vectors, and then
+  _we draw the normal as vectors_ to the tangents! Why does _that_ work? In both cases (position -> vel, vel -> accel) we have a single parameter,
+  time. So in both cases, we get vector fields!
+- That's somehow magical, that the derivative of a thing needs the same "degrees of freedom" as the thing in itself. Or is it magical? Well, we're
+  used to it working for functions from $\mathbb R$ to $\mathbb R$. It's a little disconcerting to see it work for functions from $\mathbb R$
+  to $\mathbb R^n$.
+- But how does this make sense in the case of diffgeo? We start with a manifold $M$. We take some curve $c: (-1, 1) \to M$. It's derivative
+  must live as $c': (-1, 1) \to TM$. Now what about $c''$? According to our earlier explanation, this too should be a vector! Well... it is and it isn't,
+  right? but how? I don't understand this well.
+- Looping back to the original question, $W \equiv \del_D V$ is a vector field because the value of $W(p)$ is defined as taking $D(p) \in T_p M$,
+  treating it as a curve $d_p: [-1, 1] \to M$ such that $d_p(0) = p$ and $d_p'(0) = D(p)$, and then finally taking $V()
+
+
+# Computer graphics with the grassmanian
+
+
+- http://www.realtimerendering.com/resources/RTNews/html/rtnv11n1.html#art3
+
+```py
+EPSILON = 1e-3
+
+
+def mkhomo(v, f):
+    assert len(v) == 3
+    return tuple(*v, f)
+
+def ishomo(v): return len(v) == 4
+
+def null(xs):
+    for x in xs:
+        if xs != 0: return True
+    return False
+
+def dot(xs, ys):
+    out = 0
+    assert len(xs) == len(ys)
+    for i in range(len(xs)): out += xs[i] * ys[i]
+    return out
+
+def mulfv(f, v): return tuple([f*v for v in vs])
+
+def sub(p, q):
+    assert len(p) == len(q)
+    return tuple([p[i] - q[i] for i in range(len(p))])
+
+def cross(p, q):
+    assert len(p) == 3
+    assert len(q) == 3
+    # i = j x k
+    # j = k x i
+    # k = i x j
+    i = 0; j = 1; k = 2
+    def skew(a, b): return p[a] * q[b] - p[b] * q[a]
+    return (skew(j, k), skew(k, i), skew(i, j))
+
+#   @ L = {U:V}, with 3-tuples U and V, with U.V = 0, and with U non-null.
+def line(u, v):
+    assert len(u) == 3
+    assert len(v) == 3
+    assert dot(u, v) == 0
+    assert not null(u)
+    return (u, v)
+#   @ L = {P-Q:PxQ}, for P and Q distinct points on L, and line is directed Q->P.
+def line_from_points(p, q):
+    assert p != q
+    return line(p - q, cross(p, q))
+#   @ L = {U:UxQ}, for U the direction of L and Q a point on L.
+def line_from_dir_point(dir, point):
+    return 
+
+#   @ L = {qP-pQ:PxQ}, for (P:p) and (Q:q) distinct homogeneous points on L.
+def line_from_homo_points(ph, qh):
+    q = qh[3]; Q = qh[:3]
+    p = ph[3]; P = ph[:3]
+
+    return (sub(mulfv(q, P), mulfv(p, Q)), cross(P, Q))
+#   @ L = {ExF:fE-eF}, for [E:e] and [F:f] distinct planes containing L.
+def line_from_homo_planes(eh, fh):
+    e = eh[3]; E = eh[:3]
+    f = fh[3]; F = fh[:3]
+    return (cross(e, f), sub(mulfv(f, E), mulfv(e, F)))
+
+# return scale factor such that w = kv
+def solve_scale(v, w):
+    assert len(v) == len(w)
+    f = w[0] / v[0]
+    for i in range(len(v)):
+        if abs(v[i] * f - w[i]) > EPSILON:
+            return None
+    return f
+
+#   @ {U1:V1} =? s{U2:V2} tests if L1 = {U1:V1} equals L2 = {U2:V2}.
+def line_equals(uv1, uv2)
+    (u1, v1) = uv1
+    (u2, v2) = uv2
+    f = solve_scale(u1, v1)
+    g = solve_scale(u2, v2)
+    if not f or not g: return False
+    return abs(f - g) < EPSILON
+
+#   @ s > 0 if L1 and L2 have same orientation.
+#   @ (V.V)/(U.U) is the minimum squared distance of L from the origin.
+def distsq_from_origin(l):
+    (u, v) = l
+    return dot(v, v) / dot(u, u)
+
+#   @ (VxU:U.U) is the point of L closest to the origin.
+def point_closest_to_origin(l):
+    (u, v) = l
+    return mkhomo(cross(v, u), dot(u, u)) # homogeneous
+#   @ [UxV:V.V] is the plane through L perpendicular to its origin plane, for
+#         non-null V.
+#   @ (VxN-Un:U.N) is the point where L intersects plane [N:n] not parallel to L.
+#   @ [UxP-Vw:V.P] is the plane containing L and point (P:w) not on L.
+#   @ [UxN:V.N] is the plane containing L and direction N not parallel to L.
+#   Let N, N1, N2 be unit vectors along the coordinate axes, with U.N non-zero.
+#   @ (VxN:U.N) is a point on L if N is not perpendicular to U.
+#   @ U and this point both satisfy a plane equation [E:e] if the plane
+#         contains L.
+#   @ Represent L as U and this point to transform by non-perspective
+#         homogeneous matrix.
+#   @ Represent L as two points to transform by perspective homogeneous matrix.
+#   @ [UxN1:V.N1] and [UxN2:V.N2] are distinct planes containing L.
+#   @ P satisfies both these plane equations if L contains P.
+#   @ Pnt(t) = (VxU+tU:U.U) parameterizes points on L.
+#   @ Pln(t) = (1-t^2)[UxN1:V.N1]+2t[UxN2:V.N2] parameterizes planes through L.
+#   @ U1.V2 + U2.V1 =? 0 tests if L1 = {U1:V1} and L2 = {U2:V2} are coplanar
+#         (intersect).
+#   @ Sum positive if right-handed screw takes one into the other; negative
+#         if left-handed.
+#   @ U1xU2 =? 0 tests if lines are parallel.
+#   Let N be a unit vector along a coordinate axis, with (U1xU2).N non-zero.
+#   @ ((V1.N)U2-(V2.N)U1-(V1.U2)N:(U1xU2).N) is the point of intersection, if
+#         any.
+#   @ [U1xU2:V1.U2] is the common plane for non-parallel lines.
+#   Let N, N1, N2 be unit vectors along the coordinate axes, with U1.N non-zero.
+#   @ [(U1.N)V2-(U2.N)V1:(V1xV2).N] is the common plane for parallel distinct
+#         lines.
+#   @ [U1xN1:V1.N1] is the common plane for equal lines through origin.
+```
+
+```py
+# Notes
+
+#   [Px Qx] row x
+#   [Py Qy] row y
+#   [Pz Qz] row z
+#   [Pw Qw] row w
+# Make all possible determinants of pairs of rows. Only six combinations are
+# independent; these are the Plücker coordinates. See geometry yet? Probably not.
+# But set the w's to 1, and look again.
+```
+
+
+# Building stuff with Docker
+- create `Dockerfile`, write `docker build .`.
+- File contains shell stuff to run in `RUN <cmd>` lines. `<cmd>` can have newlines with backslash ala shell script.
+- `docker run <image/layer sha> <command>` to run something at an image SHA (ie, not in a running container). Useful to debug.
+  protip: `docker run <sha-of-layer-before-error> /bin/bash` to get a shell.
+- `docker exec <container-sha> <command>` to run something in a container.
+
+
+
+# Lie derivative versus covariant derivative
+
+<img src="./static/lie-bracket-versus-covariant-derivative.png"/>
+
+- Lie derivative cares about all flow lines, covariant derivative cares about a single flow line.
+- The black vector field is X
+- The red vector field $Y$ such that $L_X Y = 0$. See that the length of the red vectors are compressed as we go towards the right,
+  since the lie derivative measures how our "rectangles fail to commute". Thus, for the rectangle to commute, we first (a)
+  need a rectangle, meaning we need to care about at least two flows in $X$, and (b) the *flows* (plural) of $X$ force the vector field $Y$
+  to shrink.
+- The blue vector field $Z$ is such that $\del_X Z = 0$. See that this only cares about a single line. Thus to conserve the vectors,
+  it needs the support of a metric (ie, to keep perpendiculars perpendicular).
+
+
+- [Reference question](https://math.stackexchange.com/questions/2145617/lie-vs-covariant-derivative-visual-motivation)
+
+
+
+# The Tor functor
+
+Let $A$ be a commutative ring, $P$ an $A$-module. The functors $\DeclareMathOperator \Tor {Tor}  \Tor_i^A(-, P)$ are defined in such a way that
+
+- $\Tor_0^A(-,P) = - \otimes_A P$
+
+- For any short exact sequence of $A$-modules $0 \to L \to M \to N \to 0$, you get a long exact sequence
+
+$$
+\dots \to \Tor_{n+1}^A(L,P) \to \Tor_{n+1}^A(M,P) \to \Tor_{n+1}^A(N,P)
+\to \Tor_n^A(L,P) \to \Tor_n^A(M,P) \to \Tor_n^A(N,P)
+\to \dots
+$$
+
+which, on the right side, stops at
+
+$$
+\dots \to \Tor_1^A(L,P) \to \Tor_1^A(M,P) \to \Tor_1^A(N,P)
+\to L \otimes_A P \to M \otimes_A P \to N \otimes_A P \to 0
+$$
+
+
+```
+23:44 <bollu> isekaijin can you describe the existence proof of Tor? :)
+23:45 <isekaijin> A projective resolution is a chain complex of projective A-modules “... -> P_{n+1} -> P_n -> ... -> P_1 -> P_0 -> 0” that is chain-homotopic to “0 -> P -> 0”.
+23:45 <isekaijin> And you need the axiom of choice to show that it exists in general.
+23:45 <isekaijin> Now, projective A-modules behave much more nicely w.r.t. the tensor product than arbitrary A-modules.
+23:46 <isekaijin> In particular, projective modules are flat, so tensoring with a projective module *is* exact.
+23:47 <isekaijin> So to compute Tor_i(M,P), you tensor M with the projective resolution, and then take its homology.
+23:47 <isekaijin> To show that this is well-defined, you need to show that Tor_i(M,P) does not depend on the chosen projective resolution of P.
+23:48 <Plazma> bollu: just use the axiom of choice like everyone else
+23:48 <bollu> why do you need to take homology?
+23:48 <isekaijin> That's just the definition of Tor.
+23:49 <isekaijin> Okay, to show that Tor does not depend on the chosen projective resolution, you use the fact that any two chain-homotopic chains have the same homology.
+23:49 <bollu> right
+23:49 <isekaijin> Which is a nice cute exercise in homological algebra that I am too busy to do right now.
+23:49 <bollu> whose proof I have seen in hatcher
+23:49 <bollu> :)
+23:49 <isekaijin> Oh, great.
+23:49 <bollu> thanks, the big picture is really useful
+```
+
+# Sum of quadratic errors
+
+- Consider the function $(x - a)^2 + (x - b)^2$
+- Minimum error is at $2(x - a) + 2(x - b)$, or at `(a + b)/2`.
+- As we move away towards either end-point, the _error always increases_!
+- So the "reduction in error" by moving towards `b` from `(a + b)/2` is ALWAYS DOMINATED by the "increase in error"
+  by moving towards `a` from `(a + b)/2`.
+
+# Hip-Hop and Shakespeare
+
+- For whatver reason, it appears like iambie pentameter allows one to rap shakespeaker sonnets to 80bmp / 150bpm.
+- [TedX talk by  Akala](https://www.youtube.com/watch?v=DSbtkLA3GrY)
+
+
+# Write thin to write well
+
+- Set column width to be absurdly low which forces your writing to get better (?!)
+- That is, when you write, say in vim or emacs, you put one clause per line.
+  Then when you are done, you can use pandoc or something similar to convert
+  what you wrote into standard prose. But the artificial line breaks, which
+  results in thin lines, make it easier to edit, and also easier to comprehend
+  diffs if you use git to track changes.
+
+
+- The vast majority on book typography agrees on 66 characters per line in
+  one-column layouts and 45 characters per line in multi-column layouts as
+  being the optimal numbers for reading. The text-block should also be placed
+  assymetrically on the page, with the margins in size order being
+  `inner<top<outer<bottom`. The line height should be set at 120% of the highest
+  character hight for normal book typefaces, but should be increased for
+  typewriter typefaces and can be decreased slightly with shorter lines. A
+  small set of typefaces are economic without losing readability, and if you
+  use them you can increase these numbers slightly. But any more than 80
+  characters and anything less than 40 characters is suboptimal for texts that
+  are longer than a paragraph or so.
+- If you adhere to these very simple principles, you will have avoided like 95% of the typographic choices that can make texts hard or slow to read.
+
+- Try 36 letters per column. 
+
+```
+Also see VimPencil 
+set wrap linebreak nolist
+call plug#begin('~/.vim/plugged')
+Plug 'junegunn/goyo.vim'
+call plug#end()
+
+"Goyo settings
+let g:goyo_width = 60
+let g:goyo_height = 999
+let g:goyo_margin_top = 0
+let g:goyo_margin_bottom = 0
+```
+
+- [Write thin to write fast](https://breckyunits.com/write-thin-to-write-fast.html)
+
+# Hidden symmetries of alg varieties
+
+- Given equations in $A$, can find solutions in any $B$ such that we have $\phi: A \to B$
+- Can translate topological ideas to geometry.
+- Fundamental theorem of riemann: fundamental group with finitely many covering becomes algebraic (?!)
+- So we can look at finite quotients of the fundamental group.
+- As variety, we take line minus one point. This can be made by considering $xy - 1 = 0$ in $R[x, y]$ and then projecting solutions to $R[x]$.
+- If we look at complex solutions, then we get $\mathbb C - \{0 \} = C^\times$.
+- The largest covering space is $\mathbb C \xrightarrow{\exp} \mathbb C^\times$. The fiber above $1 \in C^\times$ (which is the basepont) is $2 \pi i$.
+- Finite coverings are $C^\times \xrightarrow{z \mapsto z^n} C^\times$. The subsitute for the fundamental group is the projective (inverse) limit
+  of these groups.
+- The symmetry of $Gal(\overline{\mathbb Q} / \mathbb Q)$ acts on this fundamental group.
+- One can get not just fundamental group, but any finite coefficients! 
+- Category of coverings is equivalent to category of sets with action of fundamental group.
+- [Abel Prize: Pierre Delinge](https://www.youtube.com/watch?v=9WavaUED5i8)
 
 # `fd` for `find`
 
@@ -40,6 +345,10 @@
 - And so on. Write the recurrence down `:)`
 - [Reference](https://www.youtube.com/watch?v=prh72BLNjIk)
 
+# Elemenetry and power sum symmetric polynomials
+
+- [Borcherds video on newton identites](https://www.youtube.com/watch?v=JG1F1G0S_bo)
+- [Terry tao calls the power sum symmetric polynomials as 'moments'](https://mathoverflow.net/questions/402051/distribution-of-some-sums-modulo-p/402109#402109)
 
 # Projective spaces and grassmanians in AG
 
@@ -1825,11 +2134,56 @@ https://www.youtube.com/watch?v=dUOmU-0t2Nc&list=PLIljB45xT85DWUiFYYGqJVtfnkUFWk
 
 https://www.youtube.com/watch?v=drOldszOT7I&list=PLIljB45xT85DWUiFYYGqJVtfnkUFWkKtP&index=34
 
+# Second fundamental form
+- Let $z = f(x, y)$ be a (local) parametrization of the surface. Taylor expand $f$. we get:
+- $f(x + dx, y + dy) = f(x, y) + dx^T a + dy^T b + dx^T L dx + 2 dx^T M dy + dy^T N dy$.
+- We must get such a taylor expansion since our output is 1D (a real number), inputs are $dx, dy$ which are 3D vectors, and the infinitesimals
+  must be linear/tensorial. These are the only possible contractions we can make.
+- So, the second degree part can be written as:
+
+$$
+\begin{bmatrix} x & y\end{bmatrix}
+\begin{bmatrix} L & M \\ M & N\end{bmatrix}
+\begin{bmatrix} x \\ y\end{bmatrix}
+$$
+
+- the matrix in the middle, or the quadratic form $II \equiv dx^T L dx + 2 dx^T M dy + dy^T N dy$ is the second fundamental form.
+
+#### Classical geometry
+- Let $z = f(x, y)$ be a (local) parametrization of the surface.
+- At each point $p ≡ (u, v)$ on the surface within the local parametrization,
+  we get tangent vectors $r_u(p) ≡ (\partial_x f(x, y)_p, r_v(p) ≡ (\partial_y f(x, y))_p$ which span the tangent space at $p$
+- These define a unique normal vector $n(p) ≡ r_u(p) × r_v(p)$ at each point on the surface. This gives us a normal field.
+- The coefficient of the second fundamental form project the second derivative of the function $f$ onto the normals. So they tell us
+  how much the function is escaping the surface (ie, is moving along the normal to the surface) in second order.
+- Recall that this is pointless to do for first order, since on a circle, tangent is perpendicular to normal, so any dot product
+  of first order information with normal will be zero.
+- Alternatively, first order information lies on tangent plane, and the normal
+  is explicitly constructed as perpendicular to tangent plane, so any dot product of first order info with normal is zero.
+- We can only really get meaningful info by dotting with normal at second order.
+- So we get that $L(p) = (\partial_x \partial_x f(x, y))(p) \cdot N(p)$, $M(p) = (\partial_x \partial_y f(x, y))(p)$, and $N(p) = (\partial_y \partial_y f(x, y))(p)$,
+  where we define $L, M, N$ via second fundamental form
+
+#### Proof of equivalence between 2nd fundamental form and geometry
+
 # Shape operator [WIP]
 
-https://www.youtube.com/watch?v=uanrlbRbuEs&list=PLBY4G2o7DhF38OEvEImfR2heX7Szmq5Gs&index=35
 
-# Theorem Egregium (Integrating curvature in 2D) [WIP]
+
+#### Principal curvature
+- take a point $p$. Consider the normal to the surface at the point, $N(p)$.
+- Take any normal plane: a plane $Q_p$ which contains $N(p)$. This plane (which is normal to the surface, since it contains the normal)
+  intersecs the surface $S$ at a curve (intuitively, since a plane in 3D is defined by 1 eqn, intersection
+  with plane imposes 1 equation on the surface, cutting it down to 1D).
+- The curvature of this curve (normal plane $Q_p$ intersection surface $S$) at point $p$ is the normal curvature of the normal plane $Q_p$.
+- The maximum and minimum such normal curvatures at a point (max, min taken across all possible normal planes $Q_p$) are the principal curvatures.
+
+#### Shape operator has principal curvatures as eigenvalues
+
+- https://math.stackexchange.com/questions/36517/shape-operator-and-principal-curvature
+- https://math.stackexchange.com/questions/3665865/why-are-the-eigenvalues-of-the-shape-operator-the-principle-curvatures
+
+# Theorem Egregium / Gauss's theorem (Integrating curvature in 2D) [WIP]
 
 - Let $S$ be a 2 dimensional surface.
 - Gauss Rodriguez map map: $N: S \to S^2$. The derivative of this map goes from $dN: T_p S \to T_p S^2$.
@@ -1847,6 +2201,7 @@ https://www.youtube.com/watch?v=uanrlbRbuEs&list=PLBY4G2o7DhF38OEvEImfR2heX7Szmq
   the fact that if we integrate the curvature of a closed curve, we get $2 \pi$. [area of a circle]. This is by green's theorem.
 
 # Integrating Curvature in 1D [WIP]
+
 - All curves are parametrized by _arc length_ to avoid weird artefacts by time parametrization.
 - So $r(s)$ is a function from length of the curve to $\mathbb R^3$.
 - The (unit?) tangent to a curve is given by $T(s) \equiv dr/ds = r'(s)$.
@@ -8201,11 +8556,13 @@ is well-defined.
 
 # Demoscene tools
 
+- [Leviathan](https://github.com/bollu/Leviathan-2.0): framework for 4k demos.
 - [WaveSabre](https://github.com/bollu/WaveSabre). [Talk at DemoBit](https://youtu.be/JjFyHI1b_Tw?t=7246)
 - [aDDIct](https://conspiracy.hu/release/tool/) --- This not helpful as it contains no sources.
 - [bonzomatic](https://github.com/bollu/Bonzomatic) --- useful for livecoding shaders.
 - [Buzz DAW](https://en.wikipedia.org/wiki/Jeskola_Buzz)
 - [Supercollider](https://supercollider.github.io/)
+- [sointu / 4klang: minimal synth](https://github.com/vsariola/sointu)
 
 
 # Binaural Beat
@@ -37644,6 +38001,11 @@ speak slower than you want to.
 
 # Favourite Demoscenes
 
+- [Engage by Logicoma](https://www.youtube.com/watch?v=r7IIawcFXHA)
 - [Number One / Another one by fairlight](https://www.youtube.com/watch?v=TaEoAJw_0Zc)
-- [Clean Slate](https://www.youtube.com/watch?v=O3T1-nadehU)
-
+- [Clean Slate by Conspiracy](https://www.youtube.com/watch?v=O3T1-nadehU)
+- [Ziphead by Fairlight & Carillon](https://www.youtube.com/watch?v=rJYVDuEOLLQ)
+- [Sokia by CNCD/Fairlight](https://www.youtube.com/watch?v=ilHnGKGPsy8)
+- [Surge Response by approximate](https://www.youtube.com/watch?v=I4C7RtiqL_0)
+- [Zetsubo by Prismbeings](https://www.youtube.com/watch?v=ncdA3t_vzF8)
+- [Absolute territory by Prismbeings](https://www.youtube.com/watch?v=9r8pxIogxZ0)
