@@ -6,11 +6,640 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+# Projections onto convex sets
+
+- https://en.wikipedia.org/wiki/Projections_onto_convex_sets
+
+
+# BGFS algorithm for unconstrained nonlinear optimization
+
+- https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm
+
+# LM algorithm for nonlinear least squares
+
+- https://en.wikipedia.org/wiki/Levenberg%E2%80%93Marquardt_algorithm
+
+# Stuff I learnt in 2021
+
+#### Academia
+
+- Minimal setup: st + mtm
+- CGO'22 paper acceptance
+- Working with Lean4, sending them PRs
+
+##### Guitar
+- Guitar
+
+#### Code
+
+
+- Immer paper.
+- [bollu/ward](https://github.com/bollu/ward)
+- [bollu/lz](https://github.com/bollu/lz)
+- [bollu/rasterizer](https://github.com/bollu/rasterizer)
+- [Liam O connor thesis]()
+- [Dan and art explan an old trick]()
+- [bollu/soundsynth](https://github.com/bollu/soundsynth)
+- [bollu/GAP-lean]()
+- Counting immutable beans
+- Sealing pointer equality
+- Fuzzing book
+- [opencompl/lean-gap](https://github.com/opencompl/lean-gap)
+- [opencompl/lean-mlir](https://github.com/opencompl/lean-gap)
+- Algorithms on strings
+- Cox, Little, Oshea: a second read
+- Serees: Permutation group algorithms
+- tidy data
+- Statics for psychologists
+- Jackknife
+- Triples, algebras, cohomology
+- normalization by evaluation
+- bidirectional typing
+- Category theory in context
+- Keenan crane: replusive curves
+- Geometric anatomy of theoretical physics
+- discrete Algebraic topology
+- Vector bundles and K theory
+- Computing in the monster
+- Group representations for probability and statistics
+- Portal group: geometric unity
+- cubicaltt lectures by faviona
+- Player of games
+- Djikstra monads (A second read)
+- Do carmo (A second read)
+- Tabled typeclass resolution
+- Wrote my master thesis
+- [bollu/mlir-hoopl-rete](https://github.com/bollu/mlir-hoopl-rete)
+- [bollu/CASette](https://github.com/bollu/CASette)
+- [bollu/edtr](https://github.com/bollu/edtr)
+- Smt modulo oracles
+- SICM (unfinished)
+- fractions
+- demand analysis
+- [bollu/pwncollege](https://github.com/bollu/pwncollege)
+- discrete riemann roch (unfinished)
+- Plucker coordinates
+
+
+#### DnD
+
+- continuum
+- blightburg
+- microscope
+
+# The tyranny of structurelessness
+
+- [THE TYRANNY of STRUCTURELESSNESS by Jo Freeman aka Joreen](https://www.jofreeman.com/joreen/tyranny.htm)
+
+> "Elitist" is probably the most abused word in the women's liberation movement.
+> It is used as frequently, and for the same reasons, as "pinko" was used in the
+> fifties. It is rarely used correctly. Within the movement it commonly refers to
+> individuals, though the personal characteristics and activities of those to
+> whom it is directed may differ widely: An individual, as an individual can
+> never be an elitist, because the only proper application of the term "elite" is
+> to groups. Any individual, regardless of how well-known that person may be, can
+> never be an elite.
+
+> The inevitably elitist and exclusive nature of informal communication
+> networks of friends is neither a new phenomenon characteristic of the women's
+> movement nor a phenomenon new to women. Such informal relationships have
+> excluded women for centuries from participating in integrated groups of which
+> they were a part. In any profession or organization these networks have
+> created the "locker room" mentality and the "old school" ties which have
+> effectively prevented women as a group (as well as some men individually)
+> from having equal access to the sources of power or social reward.
+
+> Although this dissection of the process of elite formation within small groups
+> has been critical in perspective, it is not made in the belief that these
+> informal structures are inevitably bad -- merely inevitable. All groups create
+> informal structures as a result of interaction patterns among the members of
+> the group. Such informal structures can do very useful things But only
+> Unstructured groups are totally governed by them. When informal elites are
+> combined with a myth of "structurelessness," there can be no attempt to put
+> limits on the use of power. It becomes capricious.
+
+
+# Simple Sabotage Field Manual
+
+- (1) Insist on doing everything through "channels." Never permit short-cuts to
+  be taken in order to expedite decisions.
+- (2) Make "speeches." Talk as frequently as possible and at great length.
+  Illustrate your "points" by long anecdotes and accounts of personal
+  experiences. Never hesitate to make a few appropriate "patriotic" comments.
+- (3) When possible, refer all matters to committees, for "further study and
+  consideration." Attempt to make the committees as large as possible - never
+  less than five.
+- (4) Bring up irrelevant issues as frequently as possible.
+- (5) Haggle over precise wordings of communications, minutes, resolutions.
+- (6) Refer back to matters decided upon at the last meeting and attempt to
+  re-open the question of the advisability of that decision.
+- (7) Advocate "caution". Be "reasonable" and urge your fellow-conferees to be
+  "reasonable" and avoid haste which might result in embarrassments or
+  difficulties later on.
+- (8) Be worried about the propriety of any decision — raise the question of
+  whether such action as is contemplated lies within the jurisdiction of the
+  group or whether it might conflict with the policy of some higher echelon.
+
+
+
+
+# Counting permutations with #MAXSAT
+
+Using #MAXSAT, you can count permutations, weird. Build a complete bipartite
+graph K(n,n), and then connect left to source, right to sink with unit
+capacity. Each solution to the flow problem is an assignment / permutation.
+
+
+
+# Coloring `cat` output with `supercat`
+- use `spc -e 'error, red' ` to color all occurrences of string `error` with `red`.
+- I use this in [lean-mlir]() to get colored output.
+
+# Reader monoid needs a hopf algebra?!
+- 5.1, eg (iii)
+- We actually get a free comonoid in a CCC.
+- having a splittable random supply in like having a markov category with a comonoid in it.
+
+# Monads mnemonic
+
+- multiplication is $\mu$ because Mu.
+- return is $\eta$ because return is unit is Yeta.
+
+# Card stacking
+
+> It's not about the idea, it's about the execution
+-  The idea is indeed pedestrain: Let's stack cards!
+- The execution is awesome.
+- [Link to homepage of insane card stacker](https://www.cardstacker.com/)
+
+
+# Representation theory for particle physics
+
+- [References](https://math.ucr.edu/~huerta/guts/node1.html)
+
+
+# SSH into google cloud
+- Setup firewall rules that enable all SSH
+- Add SSH key into `metadata` of project.
+- ssh `<ssh-key-username>@<external-ip>` ought to just work.
+
+
+
+# Comma & Semicolon in index notation
+
+> A comma before an index indicates partial differentiation with respect to that index. 
+> A semicolon indicates covariate differentiation.
+
+- Thus, the divergence may be written as `v_i,i`
+
+# Spin groups
+
+- Spin group is a 2 to 1 cover of $SO(n)$.
+- We claim that for 3 dimensions, $Spin(3) \simeq SU(2)$. So we should have a 2 to 1 homomorphism $\rho: SU(2) \to SO(3)$.
+- We want to write the group in some computational way. Let's use the adjoint action (how the lie group acts on its own lie algebra).
+- What is the lie algebra $su(2)$? It's trace-free hermitian. 
+- Why? Physicist: $UU^\dagger = I$ expanded by epsilon gives us $(I + i \epsilon H)(I - i \epsilon H) = I$, which gives $H =  H^\dagger$.
+- Also the determinant condition gives us $det(1 + i \epsilon H) = 1$ which means $1 + tr(i \epsilon H) = 1$, or $tr(H) = 0$.
+- The adjoint action is $SU(2) \to Aut(H)$ given by $U \mapsto \lambda x. ad_U x$ which is $\lambda x. U X U^{-1}$.
+  By unitarry, this is $U \mapsto \lambda x. U X U^{\dagger}$.
+- $SO(3)$ acts on $\mathbb R^3$. The trick is to take $\mathbb R^3$ and compare it to the lie algebra $su(2)$
+  which has 3 dimensions, spanned by pauli matrices. 
+- **Conjecture:** There is an isomorphism $\mathbb R^3 \simeq H$ as an inner product space for a custom inner product
+  $\langle, \rangle$ on $H$.
+- [Reference](https://www.youtube.com/watch?v=Way8FfcMpf0&list=PLPH7f_7ZlzxTi6kS4vCmv4ZKm9u8g5yic&index=27)
+
+# How to write in biblical style?
+
+- I'd like to write in the style of the bible!
+
+# Undefined behaviour is like compactification
+- We compactify something like $\mathbb N$ into $\mathbb N^\infty$.
+- What does Stone Cech give us?
+- Read abstract stone duality!
+
+
+# God of areppo
+
+
+> One day, a farmer named Arepo built a temple at the edge of his field. It was a humble thing, with stone walls and a thatch roof. At the center of the room Arepo stacked some stones to make a cairn. Two days later, a god moved into Arepo's temple.
+> 
+> "I hope you are a harvest god," Arepo said, as he set upon the altar two stalks of wheat which he burned. "It would be nice."
+> 
+> He looked down upon the ash that now colored the stone. "I know this isn't much of a sacrifice, but I hope this pleases you. It'd be nice to think there is a god looking after me."
+> 
+> The next day, he left a pair of figs. The day after that, he spent ten minutes in silent prayer. On the third day, the god spoke up.
+> 
+> "You should go to a temple in the city," said a hollow voice. Arepo cocked his head at the otherworldly sound, because it was strangely familiar. The god's voice was not unlike the rustling of wheat, or the little squeaks of fieldmice that run through the grass. "Go to a real temple. Find a real god to bless you, for I am not much myself, but perhaps I may put in a good word?"
+> 
+> The god plucked a stone from the floor and sighed, "Forgive me, I meant not to be rude. I appreciate your temple, and find it cozy and warm. I appreciate your worship, and your offerings, but alas it shall come to naught."
+> 
+> "Already I have received more than I had expected," Arepo said, "Tell me, with whom do I treat? What are you the patron god of?"
+> 
+> The god let the stone he held fall to the floor, "I am of the fallen leaves, and the worms that churn beneath he ground. I am the boundary of the forest and the field, and the first hint of frost before the snow falls," the god paused to touch Arepo's altar, "And the skin of an apple as it yields beneath your teeth. I am the god of a dozen different nothings, scraps that lead to rot, and momentary glimpses." He turned his gaze to Arepo, "I am a change in the air, before the winds blow."
+> 
+> The god shook his head, "I should not have come, for you cannot worship me. Save your prayers for the things beyond your control, good farmer," the god turned away, "You should pray to a greater thing than I,"
+> 
+> Arepo reached out to stay the entity, and laid his hand upon the god's willowy shoulder. "Please, stay."
+> 
+> The god turned his black eyes upon Arepo, but found only stedfast devotion. "This is your temple, I would be honored if you would stay." The god lowered himself to the floor. Arepo joined him. The two said nothing more for a great long while, until Arepo's fellow came calling.
+> 
+> The god watched his worshiper depart, as the man's warmth radiated across the entity's skin.
+> 
+> Next morning, Arepo said a prayer before his morning work. Later, he and the god contemplated the trees. Days passed, and then weeks. In this time the god had come to enjoy the familiarity of Arepo's presence. And then, there came a menacing presence. A terrible compulsion came upon the god, and he bid the air change, for a storm was coming. Terrified, the little god went to meet the god of storms to plead for gentleness, but it was no use.
+> 
+> Arepo's fields became flooded, as the winds tore the tiles from his roof and set his olive tree to cinder. Next day, Arepo and his fellows walked among the wheat, salvaging what they could. At the field's edge, the little temple was ruined. After his work was done for the day, Arepo gathered up the stones and pieced them back together. "Please do not labor," said the god, "I could not protect you from the god of storms, and so I am unworthy of your temple."
+> 
+> "I'm afraid I don't have an offering today," Arepo said, "But I think I can rebuild your temple tomorrow, how about that?"
+> 
+> The god watched Arepo retire, and then sat miserably amongst the ruined stones of his little temple.
+> 
+> Arepo made good on his promise, and did indeed rebuild the god's temple. But now it bore layered walls of stone, and a sturdy roof of woven twigs. Watching the man work, Arepo's neighbors chuckled as they passed by, but their children were kinder, for they left gifts of fruit and flowers.
+> 
+> The following year was not so kind, as the goddess of harvest withdrew her bounty. The little god went to her and passionately pleaded for mercy, but she dismissed him. Arepo's fields sprouted thin and brittle, and everywhere there were hungry people with haunted eyes that searched in vain for the kindness of the gods.
+> 
+> Arepo entered the temple and looked upon the wilted flowers and the shriveled fruit. He murmured a prayer.
+> 
+> "I could not help you," said the god. "I am only a burden to you,"
+> 
+> "You are my friend," said Arepo.
+> 
+> "You cannot eat friendship!" The god retorted.
+> 
+> "No, but I can give it." Arepo replied.
+> 
+> And so the man set his hand upon the altar and spent the evening lost in contemplation with his god.
+> 
+> But the god knew there was another god who would soon visit, and later that year came the god of war. Arepo's god did what he could. He went out to meet the hateful visage of the armored god, but like the others, war ignored the little god's pleas. And so Arepo's god returned to his temple to wait for his friend. After a worrying amount of time, Arepo came stumbling back, his hand pressed to his gut, anointing the holy site with his blood.
+> 
+> Behind him, his fields burned.
+> 
+> "I am so sorry, Arepo," said the god, "My friend. My only friend."
+> 
+> "Shush," said Arepo, tasting his own blood. He propped himself up against the temple that he made, "Tell me, my friend, what sort of god are you?"
+> 
+> The god reached out to his friend and lowered him to the cool soil, "I'm of the falling leaves," the god said, as he conjured an image of them. "And the worms that churn beneath the earth. The boundary of the forest and the field. The first hint of frost before the first snow. The skin of an apple as it yields beneath your teeth."
+> 
+> Arepo smiled as the god spoke. "I am the god of a dozen different nothings, the god of the petals in bloom that lead to rot, and of momentary glimpses, and a change in the air-" the god looked down upon his friend, "Before the winds blow everything away."
+> 
+> "Beautiful," Arepo said, his blood now staining the stones; seeping into the very foundations of his temple. "All of them, beautiful,"
+> 
+> "When the storm came, I could not save your wheat."
+> 
+> "Yes," Arepo said.
+> 
+> "When the harvest failed, I could not feed you."
+> 
+> "Yes,"
+> 
+> Tears blurred the god's eyes, "When war came, I could not protect you."
+> 
+> "My friend, think not yourself useless, for you are the god of something very useful,"
+> 
+> "What?"
+> 
+> "You are my god. The god of Arepo."
+> 
+> And with that, Arepo the sower lay his head down upon the stone and returned home to his god. At the archway, the god of war appeared. The entity looked less imposing now, for his armor had fallen onto the blackened fields, revealing a gaunt and scarred form.
+> 
+> Dark eyes flashed out from within the temple, 'Are you happy with your work?' They seemed to say. The god of war bowed his head, as the god of Arepo felt the presence of the greater pantheon appear upon the blackened fields.
+> 
+> "They come to pay homage to the farmer," war said, and as the many gods assembled near the archway the god of war took up his sword to dig into the earth beneath Arepo's altar. The goddess of the harvest took Arepo's body and blessed it, before the god of storms lay the farmer in his grave.
+> 
+> "Who are these beings, these men," said war, "Who would pray to a god that cannot grant wishes nor bless upon them good fortune? Who would maintain a temple and bring offerings for nothing in return? Who would share their company and meditate with such a fruitless deity?"
+> 
+> The god rose, went to the archway; "What wonderful, foolish, virtuous, hopeless creatures, humans are."
+> 
+> The god of Arepo watched the gods file out, only to be replaced by others who came to pay their respects to the humble farmer. At length only the god of storms lingered. The god of Arepo looked to him, asked; "Why do you linger? What was this man to you?"
+> 
+> "He asked not, but gave." And with that, the grey entity departed.
+> 
+> The god of Arepo then sat alone. Oft did he remain isolated; huddled in his home as the world around him healed from the trauma of war. Years passed, he had no idea how many, but one day the god was stirred from his recollections by a group of children as they came to lay fresh flowers at the temple door.
+> 
+> And so the god painted the sunset with yellow leaves, and enticed the worms to dance in their soil. He flourished the boundary between the forest and the field with blossoms and berries, and christened the air with a crisp chill before the winter came. And come the spring, he ripened the apples with crisp red freckles that break beneath sinking teeth, and a dozen other nothings, in memory of a man who once praised his work with his dying breath.
+> 
+> "Hello," said a voice.
+> 
+> The god turned to find a young man at the archway, "Forgive me, I hope I am not intruding."
+> 
+> "Hello, please come in."
+> 
+> The man smiled as he entered, enchanted the the god's melodic voice. "I heard tell of your temple, and so I have come from many miles away. Might I ask, what are you the god of?"
+> 
+> The god of Arepo smiled warmly as he set his hand upon his altar, "I am the god of every humble beauty in the world."
+> -by Chris Sawyer
+
+
+# Classification of lie algebras, dynkin diagrams
+
+#### Classification of complex lie algebras
+- $L$ is a complex vector space with a lie bracket $[., .]$.
+- For example, if $G$ is a complex Lie group. For a complex manifold, the transition functions are holomorphic.
+
+#### Theorem (Leri)
+
+- Every finite dimensional complex Lie algebra $(L, [.,.])$ can be decomposed as $L = R \osum_s (L_1 \dots \osum L_n)$, where $\osum$
+  is direct sum, $\osum_s$ is the semidirect sum.
+-  $R$ is a solvable lie algebra. 
+- To define solvable, define $R_0 = R$, $R_1 = [R_0, R_0]$, $R_2 = [R_1, R_1]$, that is, $R_2 = [[R, R], [R, R]]$.
+- We have that $R_{i+1}$ is a strict subset of $R_i$.
+- If this sequence eventually stabilizes, ie, there is an $n$ such that $R_n = \{ 0 \}$, then $R$ is solvable.
+- In the decomposition of $L$, the $R$ is the solvable part.
+- We have $L_1$, \dots, $L_n$ which are simple. This means that $L_i$ is non-abelian, and $L_i$ contains no non-trivial
+  ideals. An ideal of a lie algebra is a subvevtor space $I \subseteq L$ such that $[I, L] \subseteq I$. (It's like a ring ideal, except with lie bracket).
+- The direct sum $L_1 \osum L_2$ of lie algebras is the direct sum of vector spaces with lie bracket in the bigger space given by
+  $[L_1, L_2] = 0$.
+- The semidirect sum $R \osum_s L_2$ as a vector space is $R \osum L_2$. The lie bracket is given by 
+  $[R, L_2] \subseteq R$, so $R$ is an ideal. (This looks like internal semidirect product).
+
+#### Remarks
+- It is very hard to classify solvable Lie algebras.
+- A lie algebra that has no solvable part, ie can be written as $L = L_1 \dots \osum L_n$ is called as **semi-simple**.
+- It is possible to classify the simple Lie algebras.
+- We focus on the simple/semi-simple Lie algebras. Simple Lie algebras are the independent building blocks we classify.
+
+#### Adjoint Map
+- Let $(L, [., .])$ be a complex lie algebra. Let $h \in L$ be an element of the lie algebra.
+- Define $ad(h): L \to L$ as $ad(h)(l) \equiv [h, l]$. Can be written as $ad(h) \equiv [h, -]$. This is the adjoint map wrt $h \in L$.
+
+#### Killing form
+- $K: L \times L \to \mathbb C$ is a bilinear map, defined as $K(a, b) \equiv tr(ad(a) \circ ad(b))$.
+- See that $ad(a) \circ ad(b): L \to L$. the trace will be complex because $L$ is complex.
+- Since $L$ is finite dimensional vector space, $tr$ is cyclic. So $tr(ad(a) \circ ad(b)) = tr(ad(b) \circ ad(a))$. This means
+  that $K(a, b) = K(b, a)$, or that the killing form is symmetric!
+- **Cartan criterion:** $L$ is semi-simple iff the killing form $K$ is non-degenerate. That is, $K(a, b) = 0$ implies $b = 0$.
+
+#### Calculation wrt basis: $ad$ map.
+- Consider for actual calculation the components of $ad(h)$ and $K$ with respect to a basis $E_1, \dots, E_{dim L}$.
+- Write down a dual basis $\epsilon^1, \epsilon^{dim L}$.
+- $ad(E_i)^j_k \equiv \epsilon^j (ad(E_i)(E_k))$. 
+- We know that $ad(E_i)(E_k) = [E_i, E_k]$ by definition.
+- We write $[E_i, E_k] = C^m_{ik} E_m$ where the $C^m_{ik}$ are the structure constants.
+- This gives us $ad(E_i)^j_k = \epsilon^j (C^m_{ik} E_m)$
+- Pull out structure coefficient to get $ad(E_i)^j_k = C^m_{ik} \epsilon^j (E_m)
+- Use the fact that $E_m$ and $\epsilon_j$ are dual to get $ad(E_i)^j_k = C^m_{ik} \delta^j_m$
+- Contract over repeated index $m$ to get $m=j$: $ad(E_i)^j_k = C^j_{ik}$
+- This makes sense, since the $ad$ map is just a fancy way to write the bracket in coordinate free fashion.
+
+#### Calculation wrt basis: Killing form.
+- $K(E_i, E_j) = tr(ad(E_i) \circ ad(E_j))$
+- Plug in $ad$ to become $K(E_i, E_j) = tr(C^l_{im} C^m_{jk})$ [see that the thing inside the trace is a matrix]
+- Execute trace by setting $l = k = o$. This gives us: $K(E_i, E_j) = C^o_{im} C^m_{jo}$. This is also easy to calculate from
+  structure coefficients.
+- Iff this matrix is non-degenerate, then the lie-algebra is semi-simple. 
+
+#### $ad$ is anti-symmetric with respect to the killing form.
+- Recall that $\phi$ is called as an anti-symmetric map wrt a non-degenerate bilinear form $B$ iff
+  $B(\phi(v), w) = - B(v, \phi(w))$.
+- Fact: $ad(h)$ is anti-symmetric wrt killing form. For killing form to be non-degenerate we need $L$ to be semisimple. 
+
+#### Key Definition for classification: Cartan subalgebra
+- If $(L, [.,.])$ is a lie algebra, then the cartan subalgebra denoted by $H$ ($C$ is already taken for structure coeff.)
+  is a vector space, and is a maximal subalgebra of $L$ such that there exists a basis $h_1, \dots, h_m$ of $H$
+  that can be extended to a basis of $L$: $h_1, \dots, h_m, e_1, \dots, e_{dim(L)-m}$ such that the extension vectors
+  are eigenvectors for any $ad(h)$ for $h \in H$.
+- This means that $ad(h)(e_\alpha) = \lambda_\alpha(h) e_\alpha$. 
+- This can be written as $[h, e_\alpha] = \lambda_\alpha(h) e_\alpha$.
+- Does this exist?
+
+#### Existence of cartan subalgebra
+- **Thm** Any finite dimensional lie algebra possesses a cartan subalgebra.
+- If $L$ is simple, then $H$ is _abelian_. That is, $[H, H] = 0$.
+- Thus, the $ad(h)$ are simultaneously diagonalized by the $e_\alpha$ since they all commute.
+
+#### Analysis of Cartan subalgebra.
+- $ad(h)(e_\alpha) = \lambda_\alpha(h) e_\alpha$. 
+- $[h, e_\alpha] = \lambda_\alpha(h) e_\alpha$.
+- Since the LHS is linear in $h$, the RHS must also be linear in $H$. But in the RHS, it is only $\lambda_\alpha(h)$ that depends
+  on $h$.
+- This means that $\lambda_\alpha: H \to \mathbb C$ is a _linear map_!
+- This is to say that $\lambda_\alpha \in H^*$ is an element of the dual space!
+- The elements $\lambda_1, \lambda_2, \lambda_{dim L - m}$ are called the _roots_ of the Lie algebra. 
+- This is called as $\Phi \equiv \{ \lambda_1, \dots, \lambda_{dim L - m} \}$, the _root set_ of the Lie algebra.
+
+#### Root set is closed under negation
+
+- We found that $ad(h)$ is antisymmetric with respect to killing form.
+- Thus, if $\lambda \in \phi$ is a root, $-\lambda$ is also a root (somehow).
+
+#### Root set is not linearly independent
+- We can show that $\Phi$ is not LI.
+
+#### Fundamental roots
+- Subset of roots $\Pi \subseteq \Phi$ such that $\Pi$ is linearly independent. 
+- Let the elements of $\Pi$ be called $\pi_1, \dots, \pi_r$.
+- We are saying that $\forall \lambda \in \Phi, \exists n_1, \dots, n_f \in \mathbb N, \exists \epsilon \in \{ -1, +1 \}$
+  such that $\lambda = \epsilon \sum_{i=1}^f n_i \pi_i$.
+- That is, we can generate the $\lambda$ as natural number combinations of $\pi_i$, upto an overall global sign factor.  
+- Fact: such a set of fundamental roots can always be found.
+
+
+#### complex span of fundamental roots is the dual of the cartan subalgebra
+- In symbols, this is $span_{\mathbb C}(\Pi) = H^*$.
+- They are not a basis of $H^*$ because they are not $\mathbb C$ independent (?)
+- $\Pi$ is not unique, since it's a basis.
+
+#### Defn: $H_{\mathbb R}^*$
+
+- Real span of fundamental roots: $span_{\mathbb R}(\Pi)$.
+- We have that $\Phi = span_{\pm \mathbb N}(\Pi)$.
+- Thus $\Phi$ is contained in $span_{\mathbb R}(\Pi)$, which is contained in $span_{\mathbb C}(\Pi)$.
+
+#### Defn: Killing form on $H^*$
+- We restrict $K: L \times L \to \mathbb C$ to $K_H: H \times H \to \mathbb C$.
+- What we want is $K^*: H^* \times H^* \to \mathbb C$.
+- Define $i: H \to H^*$ given by $i(h) = K(h, \cdot)$.
+- $i$ is invertible if $K$ is non-degenerate.
+- $K^*(\mu, \nu) \equiv K(i^{-1}(\mu), i^{-1}(\nu))$.
+
+#### $K^*$ on $H^*_{\mathbb R}$
+- The restricted action of $K^*$ on $H^*_{\mathbb R}$ will always spit out real numbers.
+- Also, $K^*(\alpha, \alpha) \geq 0$ and equal to zero iff $\alpha = 0$.
+- See that $K$ was non-degenerate, but $K^*_{\mathbb R}$ is a real, bona fide inner product!
+- This means we can calculate length and angles of fundamental roots.
+
+
+#### Recovering $\Phi$ from $\Pi$
+- How to recover all roots from fundamental roots?
+- For any $\lambda \in Phi$, define the Weyl transformation $s_\lambda: H^\star_R \to H^\star_R$
+- The map is given by $s_\lambda(\mu) = \mu - 2 \frac{K^*(\lambda, mu)}{K^*(\lambda, \lambda)} \lambda$.
+- This is linear in $\mu$, but not in $\lambda$.
+- Such $s_\lambda$ are called as weyl transformations.
+- Define a $W$ group generated by the $s_\lambda$. This is called as the Weyl group.
+
+#### Theorem: Weyl group is generated by fundamental roots
+- It's enough to create $s_\Pi$ to generate $W$.
+
+#### Theorem: Roots are prouced by action of Weyl group on fundamental roots
+- Any $\lambda \in \Phi$ can be produced by the action of some $w \in W$ on some $\pi \in \Pi$. 
+- So $\forall \lambda \in \Phi, \exists \pi \in Pi, \exists w \in W$ such that $\lambda = w(\pi)$.
+- This means we can create all roots from fundamental roots: first produce the weyl group, then find the action
+  of the weyl group on the fundamental roots to find all roots.
+- The Weyl group is closed on the set of roots, so $W(\Phi) \subseteq \Phi$.
+
+#### Showdown
+
+- Consider $S_{\pi_i}(\pi_j)$ for $\pi_i, \pi_j \in \Pi$.  
+
+
+
+
+# Weird free group construction from adjoint functor theorem
+
+
+- We wish to construct the free group on a set $S$. Call the free group $\Gamma S$.
+- Call the forgetful functor from groups to sets as $U$.
+- The defining property of the free group is that if we are given a mapping $\phi: S \to UG$, a map which
+  tells us where the generators go, there is a unique map $\Gamma \phi: \Gamma S \to G$ which maps the generators of the free
+  group via a group homomorphism into $G$. Further, there is a bijection between $\phi$ and $\Gamma \phi$.
+- Written differently, there is a bijection $\hom_\texttt{Set}(S, UG) \simeq \hom_\texttt{Group}(\Gamma S, G)$.
+  This is the condition for an adjunction.
+- The idea to construct $\Gamma S$ is roughly, to take all possible maps $f_i: S \to UG$ for all groups $G$,
+  take the product of all such maps,
+  and define $\Gamma S \equiv im(\pi_i f_i)$. The details follow.
+- First off, we can't take all groups, that's too large. So we need to cut down the size somehow. We do this by considering groups
+  with at most $|S|$ generators, since that's all the image of the maps $f_i$ can be anyway. We're only interested in the image 
+  at the end, so we can cut down the groups we consider to be set-sized.
+- Next, we need to somehow control for isomorphisms. So we first take _isomorphism classes_ of groups with at most $|S|$ generators.
+  Call this set of groups $\mathcal G$
+  We then construct all possible maps $f_i: S \to UG$ for all possible maps $f$, for all possible $G \in \mathcal G$. 
+- This lets us construct the product map $f : S \to \prod_{G \in \mathcal G} UG$ given by $f(s) \equiv \prod_{G \in \mathcal G} f_i(s)$.
+- Now we define the free group $\gamma S \equiv im(f)$. Why does this work?
+- Well, we check the universal property. Suppose we have some map $h: S \to UH$. This must induce a map $\Gamma h: \Gamma S \to H$.
+- We can cut down the map, by writing the map as $h_{im}: S \to im(h)$. This maps into some subset of $UH$, from which we can generate
+  a group $H_{im} \subseteq H$.
+- First off, there must be some index $k$ such that $f_k = h_{im}$, since the set of maps $\{ f_i \}$ covers all possible maps from $S$
+  into groups with those many generators.
+- This implies we can project the group $\Gamma S$ at the $k$th index to get a map from $\Gamma S$ into $H_{im}$.
+- We can then inject $H_{im}$ into $H$, giving us the desired map!
+
+# bashupload
+
+```
+curl bashupload.com -T your_file.txt
+```
+
+# 4editor
+
+- I've started using 4ed, and it's quite a pleasure to use! It's geared
+  for C/C++/Rust development.
+- I have my own keybinds setup, naturally.
+
+#### Commonly used keybinds which are "strange"
+- find file in other panel: `Alt+O`
+- toggle panel: `Control+Comma`
+- Goto definition: `Control+w
+- Build: `Alt+B`
+- quick swap buffers: `Alt+\`
+- exit: `Ctrl+Shift+\`
+# When are the catalan numbers odd
+
+- The catalan numbers $C_n$ count the number of binary trees on $n$ nodes.
+- For every binary tree, label the nodes in some standard ordering (eg. BFS). 
+- Pick the lex smallest _unbalanced_ node (node with different left and right subtree sizes).
+- The operation that swaps the left and right subtrees of the lex smallest unbalanced node is an involution.
+- This operation only fails when we have a complete binary tree, so the number of nodes is $n = 2^r - 1$, so we pair such a complete binary tree to itself.
+- This breaks the set $C_n$ into an even number of trees (pairs of unbalanced trees) and a potential "loner tree" (paired with itself) which is the
+  complete binary tree.
+- Thus $C_n$ is odd iff $n = 2^r - 1$, which allows for us to have a complete binary tree, which is not paired by the involution.
+- [Reference](https://mathoverflow.net/a/409029)
 
 # Discrete probability [WIP]
 
 - The textbook discrete probability actually manages to teach "discrete probability" as a unified subject, laying out _all the notation_ clearly,
   something that I literally have never seen before! This is me making notes of the notation.
+
+
+# Geodesic equation, Extrinsic
+
+- The geodesic on a sphere must be a great circle. If it's not, so say we pick a circle at some fixed azimuth,
+  then all the velocities point towards the center at this azimuth, not at the center of the sphere! But
+  towards the center of the sphere is the real normal plane. So we get a deviation from the normal.
+
+#### How do we know if a path is straight?
+- Velocity remains constant on a straight line.
+- So it has zero acceleration.
+- If we think of a curved spiral climbing a hill (or a spiral staircase), the acceleration vector will point upward (to allow us to climb the hill)
+  and will the curved inward into the spiral (to allow us to turn as we spiral).
+- On the other hand, if we think of walking straight along an undulating plane, the acceleration with be positive/negative depending
+  on whether the terrian goes upward or downward, but we won't have any left/right motion _in the plane_.
+- If the acceleration is always along the normal vectors, then we have a geodesic.
+
+#### Geodesic curve
+- Curve with zero tangential acceleration when we walk along the curve with constant speed.
+- Start with the $(u, v)$ plane, and map it to $R(u, v) \equiv (R_x, R_y, R_z)$.  Denote the curve as $c: I \to \mathbb R^3$  such that $c$ always
+  lies on $R$. Said differently, we have $c: I \to UV$, which we then map to $\mathbb R^3$ via $R$. 
+- So for example, $R(u, v) = (\cos(u), \sin(u)\cos(v), \sin(u)\sin(v))$ and $c(\lambda) = (\lambda, \lambda)$. Which is to say,
+  $c(\lambda) = (\cos(\lambda), \sin(\lambda)\cos(\lambda), \sin(\lambda)\sin(\lambda))$.
+- Recall that $e_u \equiv \partial_u R, e_v \equiv \partial_v R \in \mathbb R^3$ are the basis of the tangent plane at $R_{u, v}$.
+- Similarly, $\partial_\lambda c$ gives us the tangent vector along $c$ on the surface.
+- Write out:
+
+\begin{align*}
+&\frac{dc}{d \lambda} = \frac{du}{d\lambda}\frac{dR}{du} + \frac{dv}{d\lambda}\frac{dR}{dv}
+&\frac{d}{d\lambda}(\frac{dc}{d \lambda})\\
+&=\frac{d}{d\lambda}(\frac{du}{d\lambda}\frac{dR}{du} + \frac{dv}{d\lambda}\frac{dR}{dv}) \\
+&=\frac{d}{d\lambda}(\frac{du}{d\lambda}\frac{dR}{du}) + \frac{d}{d\lambda}(\frac{dv}{d\lambda}\frac{dR}{dv}) \\
+&= \frac{d^2 u}{d\lambda^2}\frac{dR}{du} + (\frac{du}{d\lambda} \frac{d}{d\lambda} \frac{dR}{du})
+  \frac{d^2 v}{d\lambda^2}\frac{dR}{dv} + (\frac{dv}{d\lambda} \frac{d}{d\lambda} \frac{dR}{dv})
+\end{align*}
+
+- How to calculate $\frac{d}{d\lambda} \frac{dR}{ddu}$? Use chain rule, again!
+- $\frac{d}{d\lambda} = \frac{du}{d \lambda}\frac{\partial}{\partial u} + \frac{dv}{d \lambda}\frac{\partial}{\partial v}$
+
+#### Geodesic curve with notational abuse
+- Denote by $R(u, v)$ the surface, and by $R(\lambda)$ the equation of the curve. So for example, $R(u, v) = (\cos(u), \sin(u)\cos(v), \sin(u)\sin(v))$
+  while $R(\lambda) = R(\lambda, \lambda) = (\cos(\lambda), \sin(\lambda)\cos(\lambda), \sin(\lambda)\sin(\lambda))$.
+
+- [EigenChris videos](https://www.youtube.com/watch?v=1CuTNveXJRc)
+
+# Connections, take 2
+
+- I asked a [math.se question](https://math.stackexchange.com/questions/4309198/on-which-tangent-bundles-of-mathbb-r2-does-position-velocity-acceleration) 
+  about position, velocity, acceleration that recieved a great answer by `peek-a-boo`. Let me try and provide an exposition of his answer.
+- Imagein a base manifold $M$, say a circle.
+- Now imagine a vector bundle over this, say 2D spaces lying above each point on the circle. Call this $(E, \pi, M)$
+- What is a connection? Roughly speaking, it seems to be a device to convert elements of $TM$ into elements of $TE$.
+- We imagine the base manifold (circle) as horizontal, and the bundle $E$ as vertical. We imagine $TM$ as vectors lying horizontal
+  on the circle, and we imagine $TE$ as vectors lying horizontal above the bundle. So something like:
+
+<img src="./static/connection-vector-bundle-geometry.png"/>
+
+
+- So the connection has type $C: E \times TM \to TE$. Consider a point $m \in M$ in the base manifold.
+- Now think of the fiber $E_m \subseteq E$ over $x$.
+- Now think of any point $e \in E_m$ in the fiber of $m$.
+- This gives us a map $C_e: T_e M \to T_e E$, which tells us to imagine a particle $e \in E$ following its brother in $m \in M$.
+  If we know the velocity $\dot m \in T_m M$, we can find the velocity of the sibling upstrairs with $C_e(\dot m)$. 
+- In some sense, this is really like path lifting, except we're performing "velocity lifting". Given a point in the base manifold and
+  a point somewhere upstairs in the cover (fiber), we are told how to "develop" the path upstairs given information about how to "develop"
+  the path downstairs. 
+- I use "develop" to mean "knowing derivatives".
+
+
+#### Differentiating vector fields along a curve
+
+- Given all of this, suppose we have a curve $c: I to M$ and a vector field over the curve $v: I \to E$ such that
+  the vector field lies correctly over the curve; $\pi \circ v = c$. We want to differentiate $v$, _such that we get another $v': TI \to E$_.
+- That's the crucial bit, $v$ and $v'$ have the same type, and this is achieved through the connection. So a vector field and its derivative are _both_
+  vector fields over the curve.
+- How do we do this? We have the tangent mapping $Tv: TI \mapsto TE$. 
+- We kill off the component given by pushing forward the tangent vector $Tc(i): TI$ at the bundle location $v(i)$ via the connection.
+  This kills of the effect of the curving of the curve when measuring the change in the vector field $v$.
+-  We build $[z(t_i: TI) \equiv Tv(ti) - C_{v(i)}(Tc(i))]: TI \to TE$.
+- We now have a map from $I$ to $TE$, but we want a map to $E$. What do?
+- Well, we can check that the vector field we have created is a vertical vector field, which means that it lies entirely within the fiber.
+  Said differently, we check that it pushes forward to the zero vector under projection, so $TM: TE \to TM$ will be zero for the image of $w$.
+- This means that $z$ lies entirely "inside" each fiber, or it lies entirely in the tangent to the vector space $\pi^{-1}(m)$ (ie, it lives
+  in $T\pi^{-1}(m)$), instead of living in the full tangent bundle $E_m$ where it has access to the horizontal components.
+- But for a vector space, the tangent space is canonically isomorphic to the vector space itself! (parallelogram law/can move vectors around/...).
+  Thus, we can bring down the image of $w$ from $TE$ down to $E$!
+- This means we now have a map $z: TI \to E$.
+- But we want a $w: I to E$. See that the place where we needed a $TI$ was to produce 
+# Dropping into tty on manjaro/GRUB
+
+- Acces grub by holding down `<ESC>`
+-  add a suffix `rw 3` on the GRUB config line that loads `linux ...`
+
 
 # Why the zero set of a continuous function must be a closed set
 
@@ -195,6 +824,13 @@ def point_closest_to_origin(l):
 - `docker run <image/layer sha> <command>` to run something at an image SHA (ie, not in a running container). Useful to debug.
   protip: `docker run <sha-of-layer-before-error> /bin/bash` to get a shell.
 - `docker exec <container-sha> <command>` to run something in a container.
+- to delete an image: `docker image ls`, `docker rmi -f <image-sha>`
+- docker prune all unused stuff: `docker system prune -a`
+- `docker login` to login
+- `docker build -t siddudruid/coolname .` to name a docker image.
+- `docker push siddudruid/coolname` to push to docker hub.
+- `docker pull siddudruid/coolname` to pull from docker hub.
+
 
 
 
@@ -351,6 +987,12 @@ let g:goyo_margin_bottom = 0
 - [Terry tao calls the power sum symmetric polynomials as 'moments'](https://mathoverflow.net/questions/402051/distribution-of-some-sums-modulo-p/402109#402109)
 
 # Projective spaces and grassmanians in AG
+
+#### Projective space
+- Projective space is the space of all lines through $\mathbb R^n$.
+- Algebraically constructed as $(V - \{ 0 \})/ \mathbb R^\times$.
+- We exclude the origin to remove "degenerate lines", since the subspace spanned by $\{0\}$ when acted on with $\mathbb R^\times$
+  is just $\{ 0 \}$, which is zero dimensional.
 
 #### Grassmanian 
 - $G(m, V)$: $m$ dimensional subspaces of $V$.
@@ -739,6 +1381,7 @@ print("success: %s\nout:%s" % (success, out))
 - https://github.com/wolfpld/tracy
 - https://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html
 - Hotspot:  https://www.kdab.com/hotspot-video/amp/
+- `perf stat -x` apparently gives CSV?
 
 
 # Normal field extensions
@@ -2183,6 +2826,12 @@ $$
 - https://math.stackexchange.com/questions/36517/shape-operator-and-principal-curvature
 - https://math.stackexchange.com/questions/3665865/why-are-the-eigenvalues-of-the-shape-operator-the-principle-curvatures
 
+#### Shape operator in index notation
+
+- Let $X$ be tangent vectors at point $p$, $N$ be normal to surface at point $P$. The shape operator $S_{ij}$
+  is determined by the equation:
+- $\partial_i \mathbf N = -S_{ji} \mathbf X_b$
+
 # Theorem Egregium / Gauss's theorem (Integrating curvature in 2D) [WIP]
 
 - Let $S$ be a 2 dimensional surface.
@@ -2823,9 +3472,13 @@ For any integer $n $ there is an irrep $R_n: SU(2) \to GL(n, \mathbb C)$. Also, 
 - Such an object must contain its own space of functions; $L \simeq [L \to L]$.
 - This is impossible for cardinality constraints.
 - Key idea: restrict to _continuous_ functions! $L \simeq [L \xrightarrow{\texttt{cont}} L]$.
-- Solutions exist! Eg. space of continuous $[\mathbb Q \to \mathbb Q]$ is equinumerous to $\mathbb Q$.
-- For continuity, we need a _topology_.
-- What's the right one? That's worth a turing award! The Scott topology.
+- Solutions exist! Eg. space of continuous $[\mathbb N \to \mathbb N]$ with appropriate topology is like
+  space of "eventually stabilizing sequences", which is equinumerous to $\mathbb N$, since sequences that eventually
+  become stable have information $\cup_{i=0}^\infty \mathbb N^i$. This has the same cardinality as $\mathbb N$.
+- For continuity in general, we need a _topology_.
+- OK, now that we know this is what we need, how do we exhibit a space $L \simeq [L \to L]$? One invokes the hammer of [domain theory](http://www.cs.nott.ac.uk/~pszgmh/domains.html)
+- Now that we have the space $L$, what's the right topology on it? That's worth
+  a turing award! [The Scott topology](https://en.wikipedia.org/wiki/Scott_continuity)
 
 
 
@@ -8724,17 +9377,14 @@ https://mathoverflow.net/a/111198/123769
 https://arxiv.org/pdf/0911.2121.pdf
 
 
-# Dupin indicatrix (TODO)
 
-- Hicks notes on diffgeo
+# Weingarten map
 
-# Rodrigues curvature formula (TODO)
+- Let $S \subseteq \mathbb R^3$ be an extrinsic manifold
+- Let $U \subseteq \mathbb R^2$ be the domain for a parametrization $x: U \to S$.
+- The gauss map $N$ is the map which sets each point $p \in S$ to the normal plane at $p$.
+- The weingarten map is the map $dN$ which can be identified with  
 
-- Hicks notes on diffgeo (TODO)
-
-# Weingarten map (TODO)
-
-- Hicks notes on diffgeo
 
 # When maps cannot be lifted to the universal cover
 
@@ -37421,7 +38071,42 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
-> The threat is greater than the execution.
+> Bott also used to say that a cocyle was "something that hovers over a space
+> and when it sees a cycle, pounces on it and spits out a number".
+
+> I'm not complaining here, quite the opposite: this story is really quite
+> exciting and the work mentioned is both real and fascinating. We are
+> essentially back to the days when Newton tried to explain the nature of
+> gravity looking at Kepler's laws trying various options and separating what
+> works from what doesn't. I'm only saying that the famous "physicists'
+> intuition", which is so overrated, is actually just the benevolence of
+> Nature. Why should the Nature be so benevolent to us remains a mystery and I
+> know neither a physicist, nor a mathematician, who could shed any light on
+> that. The best explanation so far is contained in Einstein's words "God is
+> subtle, but not malicious", or, in a slightly less enigmatic form, "Nature
+> conceals her mystery by means of her essential grandeur, not by her cunning".
+
+
+
+> Whoever is meek to the cruel ones, is cruel to the meek.
+
+> Treat everybody the same v/s treat everybody fairly.
+
+> "Everyone must choose one of two pains: The pain of discipline or the pain of regret.”
+
+> “We have two lives, and the second begins when we realize we only have one.”
+> -- Confucius
+
+
+
+>  "Think of yourself as dead. You have lived your life. Now, take what's left
+>  and live it properly." - Marcus Aurelius
+
+
+> It is only when a mosquito sits on your testicles do you learn that some
+> problems must be solved without violence.
+
+> The threat is greater than the execution. ~ GM Danya
 
 > No guest should be admitted without a date of departure ~ Violet, Downton Abbey
 
@@ -37873,6 +38558,28 @@ Plan: finish cardistry bootcamp, learn card control from 52kards.
 
 
 # Big list of Hacker news 
+
+> The road to hell is paved with good intentions
+> I am a coloured South African(an ethnic group that was previously disadvantaged due to apartheid era racial policies) we in South Africa have Affirmative action policies called Black Economic Empower(BEE) (Its open to all previously advantaged racial groups ie Black, Coloured, Indian they just call it BEE) that has led to mass corruption and cronyism.
+> >Start with crony capitalism, which in South Africa goes by the euphemism “black economic empowerment”. The idea behind it seemed laudable enough—to right a historical wrong. Under apartheid, the country produced white titans of industry such as the Oppenheimer family (owners of DeBeers), while making it hard for black South Africans to own businesses. The ANC(Ruling political party) felt it only fair that there should be black billionaires, too. To give them a leg-up it insisted that mining companies should hand at least 26% of their shares to the “historically disadvantaged”. Mining companies (as well as banks and insurers) did so willingly, diluting existing shareholdings when they transferred stakes to the likes of Cyril Ramaphosa, now the president, along with Patrice Motsepe, his brother-in-law, and Bridgette Radebe, his sister-in-law.[1]
+> I and alot of South Africans could stomach a one-off payment or one-off percentage equity stake in firms(in South Africa the government instituted a policy that South African Corporate firms would sell shares preferential)to disadvantaged groups but after these shares were sold, the government wanted to continuously repeat it.
+> >If these handouts had been a one-off tax, their harm would by now have been forgotten. But once the new black shareholders had sold their holdings, the government drafted regulations to repeat the process. And so capital investment in mines fell by 45% between 2010 and 2018, with output falling by 10% and employment by 50,000—a tenth of direct employment in the industry in 2010.[1]
+> When the government gives support not based on merit and competence but gender, race, religion or ethnicity you undermine industrial policy(Instead of support based on a person's potential ability or ability to do things)With affirmative action you end up institutionalising incompetence.
+> >Black Economic Empowerment, a policy that incentivises firms to give equity to black investors or business to black-owned suppliers, has created a new generation of Randlords with more political acumen than entrepreneurial talent. “Cadre deployment”, whereby ANC party(Ruling political party) members get jobs on the basis of factional fealty rather than merit, has degraded the state. These appointees steer contracts towards chosen “tenderpreneurs”, who in turn donate to the party. By 2007 Kgalema Motlanthe, a party grandee, said: “This rot is across the board...Almost every project is conceived because it offers opportunities for certain people to make money.”[2]
+> Many South African feel that our counrty has become "a cappuccino society, A vast, huge, black majority at the bottom with a layer of white cream and a few chocolate sprinklings at the top of it" referring to the small black elite who have gained great riches from the post-apartheid years - from a failed attempt to rebalance the wealth among the many.
+> Yes, I acknowledge the present-day inequities that racist, sexist, etc policies can cause, but if a Government was serious about addressing historical inequalities then you need to invest in education and skills development. Affirmative action never works in the long term, instead of making people competent and self-reliant,it makes them dependent on handouts.
+> Contrast Taiwan and Malaysia's Industrial Policies and Outcomes
+> Taiwan's has currently a healthy semiconductor industry with many successful and impressive firms ie TSMC, etc.
+> And Malaysia with its affirmative action laws favouring certain ethnicities that ultimately undermined their industrial policies. The corruption and shenanigans that result from affirmative action policies happened in South Africa also happened in Malaysia and undermined their long term industrial goals.
+> Appropriating a quote from Deng Xiaoping "It doesn't matter whether a cat is black or white, as long as it catches mice." This is taken to mean that as long as the economy works, it is a good economy.
+> Affirmative action is equality of outcome. Do people think they have godly powers that can guarantee certain outcomes or results? There is an inherent risk of failure in all ventures and endeavours.
+> A correct criticism of capitalism is when it does not provide equal opportunity and so we should always strive to provide equal opportunity, but people confuse that with the equal outcome when, equal outcome can only be enforced through violence because different people, free people make different choices and when they make different choices they have different outcomes if you don't let them suffer the consequences of bad choices or reap the rewards from good choices then you have to use force or violence to get a prefered outcome
+> If people are really serious about freedom and equality then you should want not just the freedom to succeed, but also the freedom to fail.
+> [1]https://www.economist.com/leaders/2021/07/24/end-of-the-line...
+> [2]https://www.economist.com/middle-east-and-africa/2021/07/24/...
+
+
+
 
 > Strongest words ought to start and begin a sentences. A re-phrasing I made:
  "Thus, we know that `pr-ty` lives in UNIV because of correctness of `synth`" into
