@@ -6,6 +6,271 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+
+# Birkhoff Von Neumann theorem
+
+- By Frobenius Konig theorem, $A$ must have block structure:
+
+```
+   r
+s [B|C]
+  --+---
+  [0|D]
+```
+- Where $r + s = n + 1$
+
+- The column sum of $B$ is $1$ for all $j$. So $B^i_j 1^j = 1$
+- The row sum of $B$ is less than or equal to $1$ for all $j$. So $B^i_j 1_i \leq 1$
+- From the first sum, we get the total sum as $\sum_{i, j} B[i][j] = sk$
+- From the second sum, we get the total sum as $\sum_{i, j} B[i][j] \leq (n-r)k
+- In total, we get $(n-r)k \leq sk$ which implies $s + r \leq n$ which is a contradiction because $s + r = n + 1$.
+
+#### Proof 1 of BVN (Constructive)
+
+- Let's take a `3x3` doubly stochastic matrix:
+
+```
+[#0.4  0.3  0.3]
+[0.5   #0.2 0.3]
+[0.1   0.5  #0.4]
+```
+
+- By some earlier lemma, since permanant is greater than zero, the graph has a perfect matching.
+- Suppose we know how to find a perfect matching, which we know exists. Use flows (or hungarian?)
+- Take the identity matching as the perfect matching (`1-1`, `2-2`, `3-3`).
+- Take the minimum of the matches, `min(0.4, 0.2, 0.4) = 0.2`. So we write the original matrix as:
+
+```
+0.2 [1 0 0]    [0.2 0.3 0.3]
+    [0 1 0] +  [0.5 0   0.3]
+    [0 0 1]    [0.1 0.5 0.4]   
+```
+
+- Second matrix has row/col sums of `0.8`. Rescale by dividing by `0.8` to get another doubly stochastic matrix.
+- Then done by induction on the number of zeroes amongst the matrix entries.
+
+```
+[0.2 0.3 0.3]    
+[0.5 0   0.3]    
+[0.1 0.5 0.4]    
+```
+
+- (2) Take the matching given by:
+
+```
+[#0.2  0.3   0.3]    
+[0.5   0    #0.3]    
+[0.1  #0.5   0.4]    
+```
+
+- (2) This can be written as:
+
+```
+   [1 0 0]   [0    0.3   0.3]
+0.2[0 0 1] + [0.5  0     0.1] 
+   [0 1 0]   [0.1  0.3   0.4]
+```
+
+- And so on.
+
+##### Nice method to find permutation that makes progress
+- `NxN` doubly stochastic. We must have a permutation that forms a perfect matching. How to find it?
+- If all elements are `0/1`, then it's already a permutation.
+- Otherwise, find a row which has an element `a` between `0/1`. Then this means that the same row will have ANOTHER element `b` betwene `0/1`.
+- Then the column of this element `b` will have another element `c` between `0/1`. Keep doing this until you find a loop.
+- Then find the minimum of these elements, call it $\epsilon$. 
+- Subtract $\epsilon$ at the element that had value $\epsilon$. Then add epislon to the element that was in the same row(column). Then
+  continue, subtract $\epsilon$ for the pair of this.
+
+
+
+# Latin Square
+
+- A latin square of order $N$ is an $N \times N$ array in which each row and column is
+  a permutation of $\{ a_1, a_2, \dots, a_n \}$.
+- Example latin square (to show that these exist):
+
+```
+[1 2 3 4]
+[2 3 4 1]
+[3 4 1 2]
+[4 1 2 3]
+```
+
+- A $k \times n$ ($k < n$) latin rectangle is a $k \times n$ matrix 
+  with elements $\{ a_1, a_2, \dots, a_n \}$ such that
+  in each row and column, no element is repeated.
+- Can we always complete a Latin rectangle into a Latin square? (YES!)
+
+#### Lemma
+
+- Let $A$ be a $k \times n$ latin rectangle with $k \leq n - 1$.
+- We can always augment $A$ into a $(k + 1) \times n$ latin rectangle.
+- If we thnk of it as a set system, then we can think of each column as telling us the
+  missing sets. Example:
+
+```
+[1   2   3   4]
+[4   1   2   3] 
+{2} {3} {1} {1}
+{3} {4} {4} {2}
+```
+
+- Let's think of the subsets as a 0/1 matrix, encoded as:
+
+```
+[0 1 1 0] {2, 3}
+[0 0 1 1] {3, 4}
+[1 0 0 1] {1, 4}
+[1 1 0 0] {1, 2}
+```
+
+- It's clear that each row will have sum $2$, since each set has 2 elements.
+- We claim that each column also has sum $2$.
+- For example, the first column has column sum $2$. This is because in the original
+  matrix, $1$ is missing in two columns.
+- We can computea perfect matching on the permutation matrix, that tells us how to extend
+  the latin square with no overlaps.
+
+# Assignment Problem
+
+- Let $A$ be an $n \times n$ non-negative matrix.
+- A permutation $\sigma$ of $[1, \dots, n]$ is called a **simple assignment** if $A[i][\sigma(i)]$ is positive
+  for all $i$.
+- A permutation $\sigma$ is called as an **optimal assignment** if $\sum_i A[i][\sigma(i)]$ is
+  **minimized** over all permutations in $S_n$. (weird? Don't we usually take max?)
+- Matrix $A[p][j]$ is the cost of assigining person $p$ the job $j$. Want to minimize cost.
+
+#### 4x4 example
+
+- Let the cost be:
+
+```
+[10 12 19 11]
+[5  10 07 08]
+[12 14 13 11]
+[8  15 11  9]
+```
+
+- First find some numbers $u[i]$ and $v[i]$ (these correspond to dual variables in the LP) such that $a[i][j] \leq u[i] + v[j]$ for all $i, j$
+
+```
+     v[1] v[2] v[3] v[4]
+u[1] [10  12  19   11]
+u[2] [5   10  07   08]
+u[3] [12  14  13   11]
+u[4] [8   15  11    9]
+```
+
+- We can start by setting $u[r] = 0$, $v[c] = \min[r](a[r][c])$.
+  (Can also take $v[c] = 0$ but this is inefficient)
+- Circle those positions where equality holds. This becomes:
+
+```
+     v[1] v[2] v[3] v[4]
+u[1] [10  12   19    11]
+u[2] [5#  10#  07#   08#]
+u[3] [12  14   13    11]
+u[4] [8   15   11     9]
+```
+
+- Since $a[i][j] \leq u[i] + v[j]$, this implies that $a[i][\sigma(i)] \geq u[i] + v[\sigma(i)]$.
+- This means $\sum a[i][\sigma(i)] \geq \sum_i u[i] + v[\sigma(i)] = \sum_i u[i] + v[i]$ (the summation can be rearranged).
+- Now think of the bipartite graph where these circled positions correspond to $1$, the rest correspond to $0$s.
+  If we have a perfect matching amongst the circled positions, then that is the solution (??)
+- If the circled positions DO NOT have a perfect matching, then by Fobenius Konig, we can write the matrix as:
+
+```
+    s  n-s
+n-r[B | C]
+r  [X | D]
+
+r + s = n + 1
+```
+
+- where in $X$, no entry is circled, because entries that are circled correspond to zeroes (conceptually?)
+- We add $1$ to $u[\geq (n-r)]$s D. We subtract $1$ for $v[\geq s]$. That is:
+
+```
+    -1
+   B C
++1 X D
+```
+
+- Nothing happens to $B$. 
+- in $C$, $v$ goes down, so that keeps the inequality correct.
+- In $X$, there are no circles, which means everything was a strict ineuality, so we can afford to add 1s.
+- In $D$, $u$ goes up by $1$, $v$ goes down by $1$, thus total no change? [I don't follow].
+- The net change is going to be $+1(r) - 1 (n - s) = r + s - n = (n+1) - n = 1$.
+- The nonconstructive part is decomposing the matrix into $[B; C, X, D]$.
+
+#### Hungarian algorithm
+
+- Take minimum in each row, subtract.
+- Take minimumin each col, subtract.
+
+
+# Interpolating homotopy: analogue of barycentric coordinatese can a
+
+- If we have kp + (1-k) q and a contractible space X which contracts to point
+  c, where image of p is x and imagine of q is y, then send the above point to
+  theta(x, 2k) : k <= 1/2 and theta (y, 1-2(k - 1/2))or theta (y, 2-2k)
+
+This interpolates p---q to x--c--y by using bary coordinates to interpolate along homotopy. 
+
+# Example where MIP shows extra power over IP
+
+- God tells us chess board is draw. Can't verify
+- If two Gods, can make one God play against the other. So if one says draw, other says win, can have them play and find out who is lying!
+- Hence, MIP has more power than IP? (Intuitively at least).
+
+# Lazy reversible computation?
+- Lazy programs are hard to analyze because we need to reason abot them backwards.
+- Suppose we limit ourselves to reversible programs. Does it then become easy?
+
+# Theorem coverage as an analogue to code coverage
+- Theorem coverage: how many lines of code are covered by correctness theorems? 
+
+# Lazy GPU programming
+
+- All laziness is a program analysis problem, where we need to strictify.
+- Lazy vectorization is a program analysis problem where we need to find
+  "strict blocks/ strict chains". Something like "largest block of values that
+  can be forced at once". Seems coinductive? 
+- Efficiency of lazy program is that of clairvoyant call by value, so we need to know how to force.
+- In the PRAM model, efficiency of parallel lazy program is that of clairvoyanl
+  call by parallel or something. We need to know how to run in parallel, such
+  that if one diverges, then all diverges. This means it's safe to run
+  together! 
+- What is parallel STG?
+- PRAM: try to parallelize writes as much as possible
+- PSTG: try to parallelize forcing as much as possible
+- `Reads (free) ~ forces (conflicts in ||)`
+- `Write (conflict in ||) ~ create new data (free)`
+- What are equivalents of common pram models?
+- Force is Boolean: either returns or does not return
+- We need a finer version. Something like returns in k cycles or does not return? 
+- Old forced values: forced values with T; wait = Infinity; Old unobserved value = forced values with Twait = -1
+- Think of call by push value, but can allocate forces and call "tick" which ticks the clock. The Twait is clocked wrt this tick. 
+- Tick controls live ranges. Maybe obviates GC. 
+- Tick 1 is expected to be known/forced.
+- Optimize in space-time? Looking up a recurrence versus computing a
+  recurrence. One is zero space infinite time, other is zero time infinite
+  space.
+- Another way to think about it: application says how many people need to ask for thunk to get value. Unused values say infinity, used values say zero
+- Maybe think of these as deadlines for the compiler to meet? So it's telling
+  the compiler to guarantee access in a certain number of ticks. This gives
+  control over (abstract) time, like imperative gives control over abstract
+  space?
+- TARDIS autodiff is key example. As is fib list. Maybe frac.
+- Thinking about design in the data constructor side: 
+- Twait = 0 in data structure means is present at compile time. Twait = 1 is strict. Twait = infty is function pointer. What is Twait = 2? Mu 
+- Can fuse kernels for all computations in the same parallel force. If one of
+  them gets stuck, all of them get stuck. So parallel force is a syntactic way
+  to ask for kernel fusion. 
+- Can we use UB to express things like "this list will be finite, thus map can be safely parallelised" or something? 
+- Have quantitative: `0,1,fin,inf`?
+
 # Projections onto convex sets
 
 - https://en.wikipedia.org/wiki/Projections_onto_convex_sets
@@ -18,6 +283,13 @@
 # LM algorithm for nonlinear least squares
 
 - https://en.wikipedia.org/wiki/Levenberg%E2%80%93Marquardt_algorithm
+
+
+
+# Backward dataflow and continuations
+- Forward dataflow deals with facts _thus far_.
+- Backward dataflow deals with facts about _the future_, or the _rest of the program_.
+  Thus, in a real sense, backward dataflow concerns itself with _continuations_!
 
 # Stuff I learnt in 2021
 
@@ -981,10 +1253,110 @@ let g:goyo_margin_bottom = 0
 - And so on. Write the recurrence down `:)`
 - [Reference](https://www.youtube.com/watch?v=prh72BLNjIk)
 
-# Elemenetry and power sum symmetric polynomials
+# Elementary and power sum symmetric polynomials
 
 - [Borcherds video on newton identites](https://www.youtube.com/watch?v=JG1F1G0S_bo)
 - [Terry tao calls the power sum symmetric polynomials as 'moments'](https://mathoverflow.net/questions/402051/distribution-of-some-sums-modulo-p/402109#402109)
+
+- Let us have $n$ variables $x[1], x[2], \dots, x[n]$.
+- Let $e_k$ be the elementary symmetric polynomial that is all products of all $k$ subsets of $x[:]$.
+- Let $p_k$ be the power sum symmetric polynomial that is of the form $p_k = \sum_i x[i]^k$.
+
+#### Speedy proof when $k = n$ / no. of vars equals largest $k$ (of $e[k]$) we are expanding:
+- Let $P(x) = e[n] x^0 + e[n-1]x^1 + \dots + e[1]x^{n-1} + e[0]x^n$. That is, $P(x) = \sum_i e[n-i] x^{i}
+- Let $r[1], r[2], \dots, r[n]$ be the roots. Then we have $P(r[j]) = \sum_i e[n-i] r[j]^{i} = 0$.
+- Adding over all  $r[j]$, we find that:
+
+$$
+\begin{aligned}
+&\sum_{j=1}^k P(r[j]) = \sum_j 0 = 0\\
+&\sum_j \sum_i e[n-i] r[j]^{i}  = 0 \\
+&\sum_j \sum_i e[n-i] r[j]^{i}  = 0 \\
+&\sum_j \e[n] \cdot 1 + \sum_j \sum_{i>0}^k e[n-1] r[j]^i  = 0 \\
+k e[n] + &\sum_{i=1}^k e[i] P[n-i] = 0
+\end{aligned}
+$$
+
+Concretely worked out in the case where $n = k = 4$:
+
+$$
+\begin{aligned}
+&P(x) = 1 \cdot x^4 + e_1 x^3 + e_2 x^2 + e_3 x + e_4 \\
+&\texttt{roots: } r_1, r_2, r_3, r_4\\
+&P(x) = (x - r_1)(x - r_2)(x - r_3)(x - r_4)\\
+&e_0 = 1 \\
+&e_1 = r_1 + r_2 + r_3 + r_4 \\
+&e_2 = r_1r_2 + r_1r_3 + r_1r_4 + r_2r_3 + r_2r_4 + r_3r_4 \\
+&e_3 = r_1r_2r_3 + r_1r_2r_4 + r_2r_3r_4 \\
+&e_4 = r_1r_2r_3r_4\\
+\end{aligned}
+$$
+
+- Expanding $P(r_j)$:
+$$
+\begin{aligned}
+P(r_1) &= r_1^4 + e_1r_1^3 + e_2r_1^2 + e_3 r_1 + e_4 = 0 \\
+P(r_2) &= r_2^4 + e_1r_2^3 + e_2r_1^2 + e_3 r_1 + e_4 = 0 \\
+P(r_3) &= r_3^4 + e_1r_3^3 + e_2r_1^2 + e_3 r_1 + e_4 = 0 \\
+P(r_4) &= r_4^4 + e_1r_4^3 + e_2r_1^2 + e_3 r_1 + e_4 = 0 \\
+\end{aligned}
+$$
+
+- Adding all of these up:
+$$
+\begin{aligned}
+&P(r_1) + P(r_2) + P(r_3) + P(r_4) \\
+&=(r_1^4 + r_2^4 + r_3^4 + r_4^4)
+&+ e_1(r_1^3 + r_2^3 + r_3^3 + r_2^3) 
+&+ e_2(r_1^2 + r_2^2 + r_3^2 + r_4^2) 
+&+ e_3(r_1 + r_2 + r_3 + r_4)
+&+ 4 e_4 \\
+&= 1 \cdot P_4 e_1 P_3 + e_2 P_2 + e_3 P_1 + 4 e_4 \\
+&= e_0 P_4 + e_1 P_3 + e_2 P_2 + e_3 P_1 + 4 e_4 \\
+&= 0 \\
+\end{aligned}
+$$
+
+
+
+#### Proof by cute notation
+
+- Denote by the tuple $(a[1], a[2], \dots, a[n])$ with $a[i] \geq a[i+1]$ the sum $\sum x[i]^a[i]$.
+- For example, with three variables $x, y, z$, we have:
+- $(1) = x + y + z$
+- $(1, 1) = xy + yz + xz$
+- $(2) = x^2 + y^2 + z^2$
+- $(2, 1) = x^2y + y^2z + z^2x$
+- $(1, 1, 1) = xyz$.
+- $(1, 1, 1, 1) = 0$, because we don't have four variables!
+  We would need to write something like $xyzw$, but we don't have a $w$, so this is zero.
+- In this notation, the elementary symmetric functions are $(1)$, $(1, 1)$, $(1, 1, 1)$ and so on.
+- The power sums are $(1)$, $(2)$, $(3)$, and so on.
+- See that $(2)(1) = (x^2 + y^2 + z^2)(x + y + z) = x^3 + y^3 + z^3 + x^2y + x^2z + y^2x + y^2z + z^2x + z^2y = (3) + (2, 1)$.
+- That is, the product of powers gives us a larger power, plus some change (in elementary symmetric).
+- How do we simplify $(2, 1)$? We want terms of the form only of $(k)$ [power sum]$ or $(1, 1, \dots, 1)$ [elementary].
+- We need to simplify $(2, 1)$.
+- Let's consider $(1)(1, 1)$. This is $(x + y + z)(xy + yz + xz)$. This will have terms of the form $xyz$ (ie, $(1, 1, 1)$). These occur with multiplicity $3$,
+  since $xyz$ can occur as $(x)(yz)$, $(y)(xz)$, and $(z)(xy)$. This will also have terms of the form $x^2y$ (ie, $(2, 1)$).
+- Put together, we get that $(1)(1, 1) = (2, 1) + 3 (1, 1, 1)$.
+- This tells us that $(2, 1) = (1)(1, 1) - 3(1, 1, 1)$.
+- Plugging back in, we find that $(2)(1) = (3) + (1)(1, 1) - 3 (1, 1, 1)$. That is, $p[3] - p[2]s[1] + p[1]s[2] - 3s[3] = 0$.
+
+In general, we will find:
+
+$$
+(k-1)(1) = (k) + (k-1, 1) \\
+(k-2)(1, 1) = (k-1, 1) + (k-2, 1, 1) \\
+(k-3)(1, 1, 1) = (k-2, 1, 1) + (k-3, 1, 1, 1) \\
+(k-4)(1, 1, 1, 1) = (k-3, 1, 1, 1) + (k-4, 1, 1, 1, 1) \\
+$$
+
+- In general, we have:
+
+```
+(k-i)(replicate 1 i) = (k-i+1, replicate 1 [i-1]) + (k-i , replicate 1 i)
+```
+
 
 # Projective spaces and grassmanians in AG
 
@@ -38070,6 +38442,8 @@ let g:conjure#mapping#eval_motion = "E"
 - eval last definition: `C-c C-c`
 
 # Big list of quotes
+
+> you can be dead right. (Being right has a time and a place)
 
 > Bott also used to say that a cocyle was "something that hovers over a space
 > and when it sees a cycle, pounces on it and spits out a number".
