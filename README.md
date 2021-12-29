@@ -6,6 +6,7 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+# Cayley hamilton for 2x2 matrices in sage via AG
 
 # Birkhoff Von Neumann theorem
 
@@ -1277,7 +1278,7 @@ k e[n] + &\sum_{i=1}^k e[i] P[n-i] = 0
 \end{aligned}
 $$
 
-Concretely worked out in the case where $n = k = 4$:
+#### Concretely worked out in the case where $n = k = 4$:
 
 $$
 \begin{aligned}
@@ -1317,6 +1318,19 @@ $$
 \end{aligned}
 $$
 
+
+#### When $k > n$ (where $n$ is number of variables):
+
+- We have the identity $k e_k + \sum_{i=0}^{k-1} e_i p_{k-i} = 0$.
+  (when $i = k$, we get $p_{k-i} = p_0 = 1$, this gives us the $k e_i = k e_k$ term).
+- When $k > n$, this means that $e_k = 0$.
+- Further, when $k > n$, this means that $s_i$ when $i > n$ is zero.
+- This collapses the identity to $\sum_{i=0}^{k-1} e_i p_{k-i} = 0$ (we lose $e_k)$,
+  which further collapses to $\sum_{i=0}^n e_i p_{k-1} = 0$ (we lose terms where $k - 1 > n$)
+- Proof idea: We add ($k-n$) roots into $f$ to bring it to case where $k = n$. Then we set these new roots to $0$ to get the identity
+  $\sum_{i=0}^n s_i p_{k-i} = 0$.
+
+#### When $k < n$ (where $n$ is number of variables):
 
 
 #### Proof by cute notation
