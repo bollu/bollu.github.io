@@ -9,3 +9,5 @@ set(CMAKE_CXX_FLAGS "-O3 -g -Wall")
 
 add_executable(builder builder.cpp utf8.c duktape/duktape.c)
 set_target_properties(builder PROPERTIES CXX_STANDARD 14)
+
+install(TARGETS builder DESTINATION bin)
