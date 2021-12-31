@@ -13,7 +13,5 @@ stdenv.mkDerivation {
 	in [ builder ];
 	name = "bollu.github.io";
 	src = ./.;
-
-
 	buildPhase = "builder";
 }

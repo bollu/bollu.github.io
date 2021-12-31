@@ -4,7 +4,6 @@ with pkgs;
 
 
 stdenv.mkDerivation {
-
 	name = "builder";
 	src = ./.;
 	nativeBuildInputs = [ cmake ninja ];
@@ -14,7 +13,6 @@ stdenv.mkDerivation {
 # this combines configure and build into one phase, less than wholly cool
 
 	cmakeFlags = "-G Ninja";
-
 	postPatch = ''
 		set -e
 		sed -i --debug "s@const char CONFIG_KATEX_PATH.*@const char CONFIG_KATEX_PATH\[\]=\"${katexPath}\";@" builder.cpp
