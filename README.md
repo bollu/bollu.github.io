@@ -58,8 +58,12 @@ into a PhD!
 
 #### Lean implementation details
 
-- [Counting immutable beans]()
-- [Sealing pointer equalitya]()
+I read the papers by the Lean researchers on the special features of the language.
+
+- [Counting immutable beans](https://arxiv.org/pdf/1908.05647.pdf) describes an optimization
+  that they perform in their IR (lambdarc) that optimizes memory usage by exploiting linear types.
+- [Sealing pointer equality](https://arxiv.org/pdf/2003.01685.pdf) describes how to use dependent types
+  to hide pointer manipulation in a referentially transparent fashion.
 
 #### Writing a dependently typed language
 
@@ -77,8 +81,8 @@ The tutorials that helped me the most were:
   similar to type check a dependently typed language.
 - [`cubicaltt` lectures by faviona](https://www.youtube.com/watch?v=6cLUwAiQU6Q), which get the point of
   cubical type theory across very well.
-- []()
-- [Bidirectional type checking by Pfenning]() These lecture notes explain bidirectional typing
+- [Bidirectional type checking by Pfenning](https://www.cs.cmu.edu/~fp/courses/15312-f04/handouts/15-bidirectional.pdf)
+  These lecture notes explain bidirectional typing
   well, and provide an intuition for which types should be checked and which should be inferred when performing
   bidirectional typing.
 
@@ -98,6 +102,7 @@ As I was working on the paper, I realised that I didn't truly understand why we 
 to report performance numbers, or why averaging over ten runs was "sufficient" (sufficient for what?).
 
 This led me on a quest to learn statistics correctly. My big takeaways were:
+
 - Frequentist type statistics via null hypotheses are hard to interpret and may not be well suited for performance benchmarking.
 - The High Performance Computing community does not use bayesian statistics, so using it would flag one's paper as "weird".
 - The best solution is to probably report all raw data, and summarize it via reasonable summary statistics like median, which
@@ -135,6 +140,8 @@ The data frames in R feels *designed* to me, unlike their python counterpart in 
 
 I realised that I should probably learn languages that are used by domain experts, and not poor approximations
 of domain expertise in Python. 
+
+##### Tidyverse
 
 This also got me interested to learn about the [tidyverse](https://www.tidyverse.org/), a collection of packages
 which define a notion of "tidy data", which is a precise philosophy of how data should be formatted when
@@ -185,9 +192,13 @@ This is being developed in Python, as it's meant to be a way to expose the guts 
 pipeline to domain experts who need not be too familiar with how compilers work. 
 
 
-I wished to convince him to make the data structures immutable by default. Unfortunately, python's
+##### Python and immutable data structures
+
+I wished to convince Mathieu to make the data structures immutable by default. Unfortunately, python's
 support for immutable style programming is pretty poor, and I never could get libraries like
 [pyrsistent](https://github.com/tobgu/pyrsistent) to work well. 
+
+##### Immer
 
 On a happier note, this made me search for what the cutting was in embedding immutable
 data structures in a mutable language, which led me to [Immer: Persistence for the masses](https://public.sinusoid.es/misc/immer/immer-icfp17.pdf).
@@ -208,11 +219,16 @@ I've always wanted to become a part of the [demoscene](), but I felt that I didn
 graphics pipeline or the audio synthesis pipeline well enough. I decided to fix these glaring
 gaps in my knowledge. 
 
+##### Rasterization
+
 I've been implementing [`bollu/rasterizer`](https://github.com/bollu/rasterizer), which 
 follows the [`tinyrenderer`](https://github.com/ssloy/tinyrenderer/wiki/Lesson-0:-getting-started) series
 of tutorials to implement a from-scratch, by-hand software rasterizer. I already knew
 all the math involved, so it was quite rewarding to quickly put together code that applied math I already knew
 to make pretty pictures.
+
+##### Audio synthesis
+
 
 Similarly, on the audio synthesis side, I wrote 
 [`bollu/soundsynth`](https://github.com/bollu/soundsynth) to learn fundamental synthesis algorithms.
@@ -223,6 +239,7 @@ I find [FM synthesis](https://github.com/bollu/soundsynth/blob/master/fm-paper.p
 I've been told that audio engineers can perform FM sound synthesis "by ear", and I'd love to have an intuition for 
 frequency space that's so strong that I can intuit how to FM synthesize a sound. Regardless, the idea is very neat for sure.
 
+##### Plucker coordinates
 
 I also have long wanted to understand
 [Plucker coordinates](https://en.wikipedia.org/wiki/Pl%C3%BCcker_coordinates), since I'd read that they are useful
@@ -241,6 +258,8 @@ showing that the sheafification functor exists by invoking an adjoint functor th
 But I'd never systematically studied any of this, and if I'm being honest, I hadn't even understood
 the statement of the Yoneda lemma properly.
 
+##### Thoughts on the textbook
+
 Working through the book from the ground-up was super useful, since I was forced to solve
 exercises and think about limits, adjoints, and so forth. I've
 [uploaded my solutions upto Chapter 4](https://github.com/bollu/notes/blob/master/category-theory-in-context/main.pdf).
@@ -250,12 +269,15 @@ on the 'Calculus of Adjunctions' made so little sense to me that I
 [rewrote it](https://github.com/bollu/notes/blob/master/category-theory-in-context/calculus-of-adjunctions.pdf)
 with proofs that I could actually grok/believe.
 
+##### Curios
+
 
 Regardless, it's been a fun read so far. I was also pointed to some other interesting content along
 the way, like [Lawvere theories](https://bartoszmilewski.com/2017/08/26/lawvere-theories/)
 and the [cohomology associated to a monad](http://www.tac.mta.ca/tac/reprints/articles/2/tr2abs.html).
 
 ## Computational mathematics
+
 
 A Postdoc at our lab, [Andres Goens](https://scholar.google.de/citations?user=vjVhbJoAAAAJ&hl=en) 
 comes from a pure math background. While we were discussing potential research ideas (since I'm still
@@ -264,6 +286,8 @@ mentioned that we could provide a formal semantics for the
 [GAP programming language](https://www.gap-system.org/) in Lean.
 This project is definitely up my alley, since it involves computational math (yay), Lean (yay),
 and formal verification (yay). 
+
+##### Learning GAP
 
 I decided I needed to know some fundamental algorithms of computational group theory, so I skimmed
 the book
@@ -281,6 +305,8 @@ I felt many of the theorems (such as the [hilbert basis theorem](https://en.wiki
 'in my bones'. Alas, I couldn't proceed more than the second chapter since other life things took priorty.
 Perhaps I'll actually finish this book next year `:)`.
 
+##### Cardistry
+
 
 For something completely different, I got interested in Cardistry and shuffling thanks to Youtube.
 I started learning interesting shuffles like the [riffle shuffle](https://mathworld.wolfram.com/RiffleShuffle.html),
@@ -288,6 +314,8 @@ and soon got interested in the mathematics involved. I would up reading some of
 the book [Group representations for probability and statistics](https://jdc.math.uwo.ca/M9140a-2012-summer/Diaconis.pdf)
 by Persi Diaconis, a magician turned mathematician who publishes quite a bit on permutation groups, shuffling, and the like.
 
+
+###### Symmetric group
 
 I really enjoyed learning the detailed theory of the representation theory of the symmetric group, which I
 had read patchily before while studying
@@ -318,6 +346,8 @@ is vey elegant, and involves a fundamental decomposition of regular grammar
  via the [Myhill Nerode theorem](https://en.wikipedia.org/wiki/Myhill%E2%80%93Nerode_theorem).
 You can find [my string algorithm implementations here](https://github.com/bollu/notes/tree/master/strings/impl).
 
+
+##### Hardness of codeforces problems
 
 Another thing I kept getting tripped up by was the fact that problems that were rated "easy" on codeforces
 tended to have _intuitive_ solutions, but with _non-trivial_ watertight proofs. An example of this
@@ -385,6 +415,8 @@ an extremely supportive advisor
 
 ## Odds and ends
 
+##### The portal group
+
 I joined the [portal group](https://theportal.group/) on discord, which consist of folks
 who follow Eric Weinstein's philosophy, broadly speaking. The discod is a strange mileu. I hung
 around because there were folks who knew a *lot* of math and physics. I would up
@@ -394,6 +426,8 @@ ramps up like a cliff towards the end, because it feels like he stops proving th
 state results. Regardless, I learnt a lot from it. I think my favourite takeaway was the
 [Serre Swann theorem](https://en.wikipedia.org/wiki/Serre%E2%80%93Swan_theorem) which makes
 very precise the idea that "projective modules are like vector bundles".
+
+##### Differential geometry, again
 
 Similarly, I would up realizing that my differential geometry was in fact quite weak, in terms
 of computing things in coordinates. So I wound up re-reading
@@ -420,7 +454,8 @@ the varied interessts I have, so it'll be interesting as to how this pans out. H
 decided to place all my bets on the Lean ecosystem, and I plan on spending most of 2022 writing
 Lean code almost always (or perhaps even always). I wish to understand all parts of the Lean compiler,
 from the frontend with its advanced macro system, to the middle end with its dependent typing,
-to the back-end [which I do understand now].
+to the back-end. In short, I want to become an expert on the Lean4 compiler `:)`. Let's see how
+far along I get!
 
 
 # Cayley hamilton for 2x2 matrices in sage via AG

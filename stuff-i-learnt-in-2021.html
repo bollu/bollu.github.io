@@ -38,12 +38,13 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
  <span class='centered'>This, honestly, made me feel a lot better, since I'd begun to feel this way even  <i><span class='centered'>before </i> launching 
  <span class='centered'>into a PhD!  
  <h4><a id=lean-implementation-details href='#lean-implementation-details'> § </a><span class='centered'> Lean implementation details </h4> 
- <ul><li><span class='centered'><span class='centered'>  <a href=><span class='centered'>Counting immutable beans </a></li><li><span class='centered'><span class='centered'>  <a href=><span class='centered'>Sealing pointer equalitya </a></li></ul> 
+ <span class='centered'>I read the papers by the Lean researchers on the special features of the language.  
+ <ul><li><span class='centered'><span class='centered'>  <a href=https://arxiv.org/pdf/1908.05647.pdf><span class='centered'>Counting immutable beans </a> describes an optimization <span class='centered'>that they perform in their IR (lambdarc) that optimizes memory usage by exploiting linear types. </li><li><span class='centered'><span class='centered'>  <a href=https://arxiv.org/pdf/2003.01685.pdf><span class='centered'>Sealing pointer equality </a> describes how to use dependent types <span class='centered'>to hide pointer manipulation in a referentially transparent fashion. </li></ul> 
  <h4><a id=writing-a-dependently-typed-language href='#writing-a-dependently-typed-language'> § </a><span class='centered'> Writing a dependently typed language </h4> 
  <span class='centered'>I felt I had to know how to write a dependently typed language if I wanted to be successful 
  <span class='centered'>at working on the Lean theorem prover. So I wrote one, it's at   <a href=git@github.com:bollu/minitt.git><span class='centered'><code class='inline'>bollu/minitt</code></a>. 
  <span class='centered'>The tutorials that helped me the most were:  
- <ul><li><span class='centered'><span class='centered'>  <a href=https://davidchristiansen.dk/tutorials/nbe/><span class='centered'>David Christiansen's tutorial on normalization by evaluation </a>, where <span class='centered'>he builds a full blown, small dependently typed language type checker.  </li><li><span class='centered'><span class='centered'>  <a href=https://www.youtube.com/watch?v=atKqqiXslyo><span class='centered'>Normalization by evaluation by F. Faviona </a> which explains <span class='centered'>why we need this algorithm to implement dependently typed languages, and other cute examples <span class='centered'>of normal forms in mathematics. For example, to check if two lists are equivalent upto permutation, <span class='centered'>we can first sort the two lists, and then check for real equality. So we are reducing a problem <span class='centered'>of "equivalence" to a problem of "reduction to sorted order" followed by "equality". We do something <span class='centered'>similar to type check a dependently typed language. </li><li><span class='centered'><span class='centered'>  <a href=https://www.youtube.com/watch?v=6cLUwAiQU6Q><span class='centered'><code class='inline'>cubicaltt</code> lectures by faviona </a>, which get the point of <span class='centered'>cubical type theory across very well. </li><li><span class='centered'><span class='centered'>  [ ]() </li><li><span class='centered'><span class='centered'>  <a href=><span class='centered'>Bidirectional type checking by Pfenning </a> These lecture notes explain bidirectional typing <span class='centered'>well, and provide an intuition for which types should be checked and which should be inferred when performing <span class='centered'>bidirectional typing. </li></ul> 
+ <ul><li><span class='centered'><span class='centered'>  <a href=https://davidchristiansen.dk/tutorials/nbe/><span class='centered'>David Christiansen's tutorial on normalization by evaluation </a>, where <span class='centered'>he builds a full blown, small dependently typed language type checker.  </li><li><span class='centered'><span class='centered'>  <a href=https://www.youtube.com/watch?v=atKqqiXslyo><span class='centered'>Normalization by evaluation by F. Faviona </a> which explains <span class='centered'>why we need this algorithm to implement dependently typed languages, and other cute examples <span class='centered'>of normal forms in mathematics. For example, to check if two lists are equivalent upto permutation, <span class='centered'>we can first sort the two lists, and then check for real equality. So we are reducing a problem <span class='centered'>of "equivalence" to a problem of "reduction to sorted order" followed by "equality". We do something <span class='centered'>similar to type check a dependently typed language. </li><li><span class='centered'><span class='centered'>  <a href=https://www.youtube.com/watch?v=6cLUwAiQU6Q><span class='centered'><code class='inline'>cubicaltt</code> lectures by faviona </a>, which get the point of <span class='centered'>cubical type theory across very well. </li><li><span class='centered'><span class='centered'>  <a href=https://www.cs.cmu.edu/~fp/courses/15312-f04/handouts/15-bidirectional.pdf><span class='centered'>Bidirectional type checking by Pfenning </a><span class='centered'>These lecture notes explain bidirectional typing <span class='centered'>well, and provide an intuition for which types should be checked and which should be inferred when performing <span class='centered'>bidirectional typing. </li></ul> 
  <h4><a id=paper-acceptance href='#paper-acceptance'> § </a><span class='centered'> Paper acceptance </h4> 
  <span class='centered'>Our research about writing a custom backend for Lean4 was accepted at CGO'22. I was very touched at how 
  <span class='centered'>nice the programming languages community is. For example, Leonaro De Moura and Sebastian Ullrich, the maintainers 
@@ -52,7 +53,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
  <h3><a id=statistics href='#statistics'> § </a><span class='centered'> Statistics </h3> 
  <span class='centered'>As I was working on the paper, I realised that I didn't truly understand why we were taking the median of the runtimes 
  <span class='centered'>to report performance numbers, or why averaging over ten runs was "sufficient" (sufficient for what?).  
- <span class='centered'>This led me on a quest to learn statistics correctly. My big takeaways were: 
+ <span class='centered'>This led me on a quest to learn statistics correctly. My big takeaways were:  
  <ul><li><span class='centered'><span class='centered'> Frequentist type statistics via null hypotheses are hard to interpret and may not be well suited for performance benchmarking. </li><li><span class='centered'><span class='centered'> The High Performance Computing community does not use bayesian statistics, so using it would flag one's paper as "weird". </li><li><span class='centered'><span class='centered'> The best solution is to probably report all raw data, and summarize it via reasonable summary statistics like median, which <span class='centered'>is robust to outliers. </li></ul> 
  <span class='centered'>I must admit, I find the entire situation very unsatisfactory. I would love it if researchers in High performance 
  <span class='centered'>computing wrote good reference material on how to bencharmk well. Regardless, here are some of the neat 
@@ -76,6 +77,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
  <span class='centered'>The data frames in R feels  <i><span class='centered'>designed </i> to me, unlike their python counterpart in  <a href=https://pandas.pydata.org/><span class='centered'><code class='inline'>pandas</code></a>.  
  <span class='centered'>I realised that I should probably learn languages that are used by domain experts, and not poor approximations 
  <span class='centered'>of domain expertise in Python.   
+ <h4><a id=tidyverse href='#tidyverse'> § </a><span class='centered'> Tidyverse </h4> 
  <span class='centered'>This also got me interested to learn about the  <a href=https://www.tidyverse.org/><span class='centered'>tidyverse </a>, a collection of packages 
  <span class='centered'>which define a notion of "tidy data", which is a precise philosophy of how data should be formatted when 
  <span class='centered'>working on data science (roughly speaking, it's a dataset analogy of  [3rd normal form from database theory ]https://en.wikipedia.org/wiki/Third <i><span class='centered'>normal </i>form).  
@@ -110,9 +112,11 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
  <span class='centered'>a new compiler framework based on MLIR called  <a href=https://github.com/xdslproject/xdsl><span class='centered'>XDSL </a>.  
  <span class='centered'>This is being developed in Python, as it's meant to be a way to expose the guts of the compilation 
  <span class='centered'>pipeline to domain experts who need not be too familiar with how compilers work.   
- <span class='centered'>I wished to convince him to make the data structures immutable by default. Unfortunately, python's 
+ <h4><a id=python-and-immutable-data-structures href='#python-and-immutable-data-structures'> § </a><span class='centered'> Python and immutable data structures </h4> 
+ <span class='centered'>I wished to convince Mathieu to make the data structures immutable by default. Unfortunately, python's 
  <span class='centered'>support for immutable style programming is pretty poor, and I never could get libraries like 
  <span class='centered'><a href=https://github.com/tobgu/pyrsistent><span class='centered'>pyrsistent </a> to work well.   
+ <h4><a id=immer href='#immer'> § </a><span class='centered'> Immer </h4> 
  <span class='centered'>On a happier note, this made me search for what the cutting was in embedding immutable 
  <span class='centered'>data structures in a mutable language, which led me to  <a href=https://public.sinusoid.es/misc/immer/immer-icfp17.pdf><span class='centered'>Immer: Persistence for the masses </a>. 
  <span class='centered'>It advocates to use  <a href=https://dl.acm.org/doi/abs/10.1145/2858949.2784739><span class='centered'>RRB trees </a> and describes how to design an API 
@@ -127,11 +131,13 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
  <span class='centered'>I've always wanted to become a part of the  <a href=><span class='centered'>demoscene </a>, but I felt that I didn't understand the 
  <span class='centered'>graphics pipeline or the audio synthesis pipeline well enough. I decided to fix these glaring 
  <span class='centered'>gaps in my knowledge.   
+ <h4><a id=rasterization href='#rasterization'> § </a><span class='centered'> Rasterization </h4> 
  <span class='centered'>I've been implementing  <a href=https://github.com/bollu/rasterizer><span class='centered'><code class='inline'>bollu/rasterizer</code></a>, which  
  <span class='centered'>follows the  <a href=https://github.com/ssloy/tinyrenderer/wiki/Lesson-0:-getting-started><span class='centered'><code class='inline'>tinyrenderer</code></a> series 
  <span class='centered'>of tutorials to implement a from-scratch, by-hand software rasterizer. I already knew 
  <span class='centered'>all the math involved, so it was quite rewarding to quickly put together code that applied math I already knew 
  <span class='centered'>to make pretty pictures.  
+ <h4><a id=audio-synthesis href='#audio-synthesis'> § </a><span class='centered'> Audio synthesis </h4> 
  <span class='centered'>Similarly, on the audio synthesis side, I wrote  
  <span class='centered'><a href=https://github.com/bollu/soundsynth><span class='centered'><code class='inline'>bollu/soundsynth</code></a> to learn fundamental synthesis algorithms. 
  <span class='centered'>I followed  <a href=https://blog.demofox.org/><span class='centered'>demofox's series of audio synththesis tutorials </a> as well as 
@@ -140,6 +146,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
  <span class='centered'>I find  <a href=https://github.com/bollu/soundsynth/blob/master/fm-paper.pdf><span class='centered'>FM synthesis </a> very counter-intuitive to reason about. 
  <span class='centered'>I've been told that audio engineers can perform FM sound synthesis "by ear", and I'd love to have an intuition for  
  <span class='centered'>frequency space that's so strong that I can intuit how to FM synthesize a sound. Regardless, the idea is very neat for sure.  
+ <h4><a id=plucker-coordinates href='#plucker-coordinates'> § </a><span class='centered'> Plucker coordinates </h4> 
  <span class='centered'>I also have long wanted to understand 
  <span class='centered'><a href=https://en.wikipedia.org/wiki/Pl%C3%BCcker_coordinates><span class='centered'>Plucker coordinates </a>, since I'd read that they are useful 
  <span class='centered'>for graphics programming. I eventually plonked down, studied them, and 
@@ -153,6 +160,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
  <span class='centered'>showing that the sheafification functor exists by invoking an adjoint functor theorem, and so on.  
  <span class='centered'>But I'd never systematically studied any of this, and if I'm being honest, I hadn't even understood 
  <span class='centered'>the statement of the Yoneda lemma properly.  
+ <h4><a id=thoughts-on-the-textbook href='#thoughts-on-the-textbook'> § </a><span class='centered'> Thoughts on the textbook </h4> 
  <span class='centered'>Working through the book from the ground-up was super useful, since I was forced to solve 
  <span class='centered'>exercises and think about limits, adjoints, and so forth. I've 
  <span class='centered'><a href=https://github.com/bollu/notes/blob/master/category-theory-in-context/main.pdf><span class='centered'>uploaded my solutions upto Chapter 4 </a>.  
@@ -160,6 +168,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
  <span class='centered'>on the 'Calculus of Adjunctions' made so little sense to me that I 
  <span class='centered'><a href=https://github.com/bollu/notes/blob/master/category-theory-in-context/calculus-of-adjunctions.pdf><span class='centered'>rewrote it </a>
  <span class='centered'>with proofs that I could actually grok/believe.  
+ <h4><a id=curios href='#curios'> § </a><span class='centered'> Curios </h4> 
  <span class='centered'>Regardless, it's been a fun read so far. I was also pointed to some other interesting content along 
  <span class='centered'>the way, like  <a href=https://bartoszmilewski.com/2017/08/26/lawvere-theories/><span class='centered'>Lawvere theories </a>
  <span class='centered'>and the  <a href=http://www.tac.mta.ca/tac/reprints/articles/2/tr2abs.html><span class='centered'>cohomology associated to a monad </a>.  
@@ -171,6 +180,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
  <span class='centered'><a href=https://www.gap-system.org/><span class='centered'>GAP programming language </a> in Lean. 
  <span class='centered'>This project is definitely up my alley, since it involves computational math (yay), Lean (yay), 
  <span class='centered'>and formal verification (yay).   
+ <h4><a id=learning-gap href='#learning-gap'> § </a><span class='centered'> Learning GAP </h4> 
  <span class='centered'>I decided I needed to know some fundamental algorithms of computational group theory, so I skimmed 
  <span class='centered'>the book 
  <span class='centered'><a href=https://doc.lagout.org/science/0_Computer%20Science/2_Algorithms/Permutation%20Group%20Algorithms%20%5BSeress%202003-03-17%5D.pdf><span class='centered'>Permutation group algorithms by Serees </a>
@@ -184,11 +194,13 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
  <span class='centered'>I felt many of the theorems (such as the  <a href=https://en.wikipedia.org/wiki/Hilbert%27s_basis_theorem><span class='centered'>hilbert basis theorem </a>)  
  <span class='centered'>'in my bones'. Alas, I couldn't proceed more than the second chapter since other life things took priorty. 
  <span class='centered'>Perhaps I'll actually finish this book next year  <code class='inline'>:)</code>.  
+ <h4><a id=cardistry href='#cardistry'> § </a><span class='centered'> Cardistry </h4> 
  <span class='centered'>For something completely different, I got interested in Cardistry and shuffling thanks to Youtube. 
  <span class='centered'>I started learning interesting shuffles like the  <a href=https://mathworld.wolfram.com/RiffleShuffle.html><span class='centered'>riffle shuffle </a>, 
  <span class='centered'>and soon got interested in the mathematics involved. I would up reading some of  
  <span class='centered'>the book  <a href=https://jdc.math.uwo.ca/M9140a-2012-summer/Diaconis.pdf><span class='centered'>Group representations for probability and statistics </a>
  <span class='centered'>by Persi Diaconis, a magician turned mathematician who publishes quite a bit on permutation groups, shuffling, and the like.  
+ <h4><a id=symmetric-group href='#symmetric-group'> § </a><span class='centered'> Symmetric group </h4> 
  <span class='centered'>I really enjoyed learning the detailed theory of the representation theory of the symmetric group, which I 
  <span class='centered'>had read patchily before while studying 
  <span class='centered'><a href=http://people.cs.uchicago.edu/~risi/research/symmetric.html><span class='centered'>Fourier analysis on the symmetric group </a>. 
@@ -206,6 +218,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
  <span class='centered'>is vey elegant, and involves a fundamental decomposition of regular grammar 
  <span class='centered'> via the  <a href=https://en.wikipedia.org/wiki/Myhill%E2%80%93Nerode_theorem><span class='centered'>Myhill Nerode theorem </a>. 
  <span class='centered'>You can find  <a href=https://github.com/bollu/notes/tree/master/strings/impl><span class='centered'>my string algorithm implementations here </a>.  
+ <h4><a id=hardness-of-codeforces-problems href='#hardness-of-codeforces-problems'> § </a><span class='centered'> Hardness of codeforces problems </h4> 
  <span class='centered'>Another thing I kept getting tripped up by was the fact that problems that were rated "easy" on codeforces 
  <span class='centered'>tended to have  <i><span class='centered'>intuitive </i> solutions, but with  <i><span class='centered'>non-trivial </i> watertight proofs. An example of this 
  <span class='centered'>was the question  <a href=https://codeforces.com/contest/545/problem/C><span class='centered'>545C </a> on codeforces, where the 
@@ -253,6 +266,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
  <span class='centered'>I have (the lack of a priority queue, for example). It's great to have the feeling that I have 
  <span class='centered'>an extremely supportive advisor   
  <h3><a id=odds-and-ends href='#odds-and-ends'> § </a><span class='centered'> Odds and ends </h3> 
+ <h4><a id=the-portal-group href='#the-portal-group'> § </a><span class='centered'> The portal group </h4> 
  <span class='centered'>I joined the  <a href=https://theportal.group/><span class='centered'>portal group </a> on discord, which consist of folks 
  <span class='centered'>who follow Eric Weinstein's philosophy, broadly speaking. The discod is a strange mileu. I hung 
  <span class='centered'>around because there were folks who knew a  <i><span class='centered'>lot </i> of math and physics. I would up 
@@ -262,6 +276,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
  <span class='centered'>state results. Regardless, I learnt a lot from it. I think my favourite takeaway was the 
  <span class='centered'><a href=https://en.wikipedia.org/wiki/Serre%E2%80%93Swan_theorem><span class='centered'>Serre Swann theorem </a> which makes 
  <span class='centered'>very precise the idea that "projective modules are like vector bundles".  
+ <h4><a id=differential-geometry-again href='#differential-geometry-again'> § </a><span class='centered'> Differential geometry, again </h4> 
  <span class='centered'>Similarly, I would up realizing that my differential geometry was in fact quite weak, in terms 
  <span class='centered'>of computing things in coordinates. So I wound up re-reading 
  <span class='centered'><a href=http://www2.ing.unipi.it/griff/files/dC.pdf><span class='centered'>Do carmo: differential geometry of curves and surfaces </a>, and I implemented 
@@ -280,5 +295,6 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
  <span class='centered'>decided to place all my bets on the Lean ecosystem, and I plan on spending most of 2022 writing 
  <span class='centered'>Lean code almost always (or perhaps even always). I wish to understand all parts of the Lean compiler, 
  <span class='centered'>from the frontend with its advanced macro system, to the middle end with its dependent typing, 
- <span class='centered'>to the back-end  [which I do understand now ].  
+ <span class='centered'>to the back-end. In short, I want to become an expert on the Lean4 compiler  <code class='inline'>:)</code>. Let's see how 
+ <span class='centered'>far along I get!  
  <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>
