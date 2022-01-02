@@ -637,13 +637,12 @@ r + s = n + 1
 - Take minimumin each col, subtract.
 
 
-# Interpolating homotopy: analogue of barycentric coordinatese can a
+# Interpolating homotopies
 
 - If we have kp + (1-k) q and a contractible space X which contracts to point
   c, where image of p is x and imagine of q is y, then send the above point to
   theta(x, 2k) : k <= 1/2 and theta (y, 1-2(k - 1/2))or theta (y, 2-2k)
-
-This interpolates p---q to x--c--y by using bary coordinates to interpolate along homotopy. 
+- This interpolates p---q to x--c--y by using bary coordinates to interpolate along homotopy. 
 
 # Example where MIP shows extra power over IP
 
@@ -698,19 +697,18 @@ This interpolates p---q to x--c--y by using bary coordinates to interpolate alon
 - Can we use UB to express things like "this list will be finite, thus map can be safely parallelised" or something? 
 - Have quantitative: `0,1,fin,inf`?
 
-# Projections onto convex sets
+# Projections onto convex sets [WIP]
 
 - `https://en.wikipedia.org/wiki/Projections_onto_convex_sets`
 
 
-# BGFS algorithm for unconstrained nonlinear optimization
+# BGFS algorithm for unconstrained nonlinear optimization [WIP]
 
 - `https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm`
 
-# LM algorithm for nonlinear least squares
+# LM algorithm for nonlinear least squares [WIP]
 
 - `https://en.wikipedia.org/wiki/Levenberg%E2%80%93Marquardt_algorithm`
-
 
 
 # Backward dataflow and continuations
@@ -774,7 +772,6 @@ This interpolates p---q to x--c--y by using bary coordinates to interpolate alon
 
 
 
-
 # Counting permutations with #MAXSAT
 
 Using #MAXSAT, you can count permutations, weird. Build a complete bipartite
@@ -787,7 +784,7 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 - use `spc -e 'error, red' ` to color all occurrences of string `error` with `red`.
 - I use this in [lean-mlir]() to get colored output.
 
-# Reader monoid needs a hopf algebra?!
+# Reader monoid needs a hopf algebra?! [WIP]
 - 5.1, eg (iii)
 - We actually get a free comonoid in a CCC.
 - having a splittable random supply in like having a markov category with a comonoid in it.
@@ -805,7 +802,7 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 - [Link to homepage of insane card stacker](https://www.cardstacker.com/)
 
 
-# Representation theory for particle physics
+# Representation theory for particle physics [WIP]
 
 - [References](https://math.ucr.edu/~huerta/guts/node1.html)
 
@@ -844,11 +841,11 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 
 - I'd like to write in the style of the bible!
 
-# Undefined behaviour is like compactification
+# Undefined behaviour is like compactification [WIP]
+
 - We compactify something like $\mathbb N$ into $\mathbb N^\infty$.
 - What does Stone Cech give us?
 - Read abstract stone duality!
-
 
 # God of areppo
 
