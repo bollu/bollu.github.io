@@ -969,8 +969,8 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 
 #### Theorem (Leri)
 
-- Every finite dimensional complex Lie algebra $(L, [.,.])$ can be decomposed as $L = R \osum_s (L_1 \dots \osum L_n)$, where $\osum$
-  is direct sum, $\osum_s$ is the semidirect sum.
+- Every finite dimensional complex Lie algebra $(L, [.,.])$ can be decomposed as $L = R \oplus_s (L_1 \dots \oplus L_n)$, where $\oplus$
+  is direct sum, $\oplus_s$ is the semidirect sum.
 -  $R$ is a solvable lie algebra. 
 - To define solvable, define $R_0 = R$, $R_1 = [R_0, R_0]$, $R_2 = [R_1, R_1]$, that is, $R_2 = [[R, R], [R, R]]$.
 - We have that $R_{i+1}$ is a strict subset of $R_i$.
@@ -978,14 +978,14 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 - In the decomposition of $L$, the $R$ is the solvable part.
 - We have $L_1$, \dots, $L_n$ which are simple. This means that $L_i$ is non-abelian, and $L_i$ contains no non-trivial
   ideals. An ideal of a lie algebra is a subvevtor space $I \subseteq L$ such that $[I, L] \subseteq I$. (It's like a ring ideal, except with lie bracket).
-- The direct sum $L_1 \osum L_2$ of lie algebras is the direct sum of vector spaces with lie bracket in the bigger space given by
+- The direct sum $L_1 \oplus L_2$ of lie algebras is the direct sum of vector spaces with lie bracket in the bigger space given by
   $[L_1, L_2] = 0$.
-- The semidirect sum $R \osum_s L_2$ as a vector space is $R \osum L_2$. The lie bracket is given by 
+- The semidirect sum $R \oplus_s L_2$ as a vector space is $R \oplus L_2$. The lie bracket is given by 
   $[R, L_2] \subseteq R$, so $R$ is an ideal. (This looks like internal semidirect product).
 
 #### Remarks
 - It is very hard to classify solvable Lie algebras.
-- A lie algebra that has no solvable part, ie can be written as $L = L_1 \dots \osum L_n$ is called as **semi-simple**.
+- A lie algebra that has no solvable part, ie can be written as $L = L_1 \dots \oplus L_n$ is called as **semi-simple**.
 - It is possible to classify the simple Lie algebras.
 - We focus on the simple/semi-simple Lie algebras. Simple Lie algebras are the independent building blocks we classify.
 
@@ -1282,7 +1282,7 @@ $$
 
 - A function of the form $f: \mathbb R^i \to \mathbb R^o$ has derivative specified by an $(o \times i)$ matrix, one which says
   how each output varies with each input.
-- Now consider a vector field $V$ on the surface of the sphere, and another vector field $D$. Why is $W \equiv \del_D V$
+- Now consider a vector field $V$ on the surface of the sphere, and another vector field $D$. Why is $W \equiv \nabla_D V$
   another vector field? Aren't we differentiating a thing with 3 coordinates with another thing with 3 coordinates?
 - Well, suppose we consider the previous function $f: \mathbb R^i \to \mathbb R^o$, and we then consider a curve $c: (-1, 1) \to \mathbb R^i$.
   Then the combined function $(f \circ c): (-1, 1) \to \mathbb R^o$ needs only $o$ numbers to specify the derivative, since there's only one
@@ -1298,7 +1298,7 @@ $$
 - But how does this make sense in the case of diffgeo? We start with a manifold $M$. We take some curve $c: (-1, 1) \to M$. It's derivative
   must live as $c': (-1, 1) \to TM$. Now what about $c''$? According to our earlier explanation, this too should be a vector! Well... it is and it isn't,
   right? but how? I don't understand this well.
-- Looping back to the original question, $W \equiv \del_D V$ is a vector field because the value of $W(p)$ is defined as taking $D(p) \in T_p M$,
+- Looping back to the original question, $W \equiv \nabla_D V$ is a vector field because the value of $W(p)$ is defined as taking $D(p) \in T_p M$,
   treating it as a curve $d_p: [-1, 1] \to M$ such that $d_p(0) = p$ and $d_p'(0) = D(p)$, and then finally taking $V()$.
 
 
@@ -1329,7 +1329,7 @@ $$
   since the lie derivative measures how our "rectangles fail to commute". Thus, for the rectangle to commute, we first (a)
   need a rectangle, meaning we need to care about at least two flows in $X$, and (b) the *flows* (plural) of $X$ force the vector field $Y$
   to shrink.
-- The blue vector field $Z$ is such that $\del_X Z = 0$. See that this only cares about a single line. Thus to conserve the vectors,
+- The blue vector field $Z$ is such that $\nabla_X Z = 0$. See that this only cares about a single line. Thus to conserve the vectors,
   it needs the support of a metric (ie, to keep perpendiculars perpendicular).
 
 
@@ -1339,22 +1339,21 @@ $$
 
 # The Tor functor
 
-Let $A$ be a commutative ring, $P$ an $A$-module. The functors $\DeclareMathOperator \Tor {Tor}  \Tor_i^A(-, P)$ are defined in such a way that
+Let $A$ be a commutative ring, $P$ an $A$-module. The functors $Tor_i^A(-, P)$ are defined in such a way that
 
-- $\Tor_0^A(-,P) = - \otimes_A P$
-
-- For any short exact sequence of $A$-modules $0 \to L \to M \to N \to 0$, you get a long exact sequence
+- $Tor_0^A(-,P) = - \otimes_A P$
+- For any short exact sequence of $A$-modules $0 \to L \to M \to N \to 0$, you get a long exact sequence.
 
 $$
-\dots \to \Tor_{n+1}^A(L,P) \to \Tor_{n+1}^A(M,P) \to \Tor_{n+1}^A(N,P)
-\to \Tor_n^A(L,P) \to \Tor_n^A(M,P) \to \Tor_n^A(N,P)
+\dots \to Tor_{n+1}^A(L,P) \to Tor_{n+1}^A(M,P) \to Tor_{n+1}^A(N,P)
+\to Tor_n^A(L,P) \to Tor_n^A(M,P) \to Tor_n^A(N,P)
 \to \dots
 $$
 
 which, on the right side, stops at
 
 $$
-\dots \to \Tor_1^A(L,P) \to \Tor_1^A(M,P) \to \Tor_1^A(N,P)
+\dots \to Tor_1^A(L,P) \to Tor_1^A(M,P) \to Tor_1^A(N,P)
 \to L \otimes_A P \to M \otimes_A P \to N \otimes_A P \to 0
 $$
 
@@ -1486,7 +1485,7 @@ $$
 &\sum_{j=1}^k P(r[j]) = \sum_j 0 = 0\\
 &\sum_j \sum_i e[n-i] r[j]^{i}  = 0 \\
 &\sum_j \sum_i e[n-i] r[j]^{i}  = 0 \\
-&\sum_j \e[n] \cdot 1 + \sum_j \sum_{i>0}^k e[n-1] r[j]^i  = 0 \\
+&\sum_j e[n] \cdot 1 + \sum_j \sum_{i>0}^k e[n-1] r[j]^i  = 0 \\
 k e[n] + &\sum_{i=1}^k e[i] P[n-i] = 0
 \end{aligned}
 $$
@@ -1624,7 +1623,7 @@ $$
 - This is going to be $(a_{11} a_{22} - a_{12} a_{21}, \dots, a_{13} a_{24} - a_{14} a_{23}) \in K^6$.
 - Note here that we are computing $2$ minors of a rectangluar matrix, where we take all possible $2 \times 2$ submatrices and calculate their
   determinant.
-- In this case, we must pick both rows, and we have $\comb{4}{2} = 6$ choices of columns, thus we live in $K^6$.
+- In this case, we must pick both rows, and we have $\binom{4}{2} = 6$ choices of columns, thus we live in $K^6$.
 - We represent this map as $m: K^{2 \times 4} \to K^6$ which sends $m((a_{ij})) \equiv (a_{11} a_{22} - a_{12} a_{21}, \dots, a_{13} a_{24} - a_{14} a_{23})$
   which maps a matrix to its vector of minors.
 - The great advantage of this is that we have $m(B \cdot (a_{ij})) = det(B) \cdot m((a_{ij}))$, since the minor by definition takes a determinant of submatrices,
@@ -1758,135 +1757,6 @@ $$
 - [Borcherds](https://www.youtube.com/watch?v=bKB4Qu8ETNE&list=PL8yHsr3EFj53j51FG6wCbQKjBgpjKa5PX&index=19)
 
 
-#### General Grassmanian
-
-- https://www.youtube.com/watch?v=YxIneYIL3Qg&list=PL5ErEZ81Tyqc1RixHj65XA32ejrS2eEFK&index=15
-
-# SMT Modulo oracles
-
-```
-#!/usr/bin/env python3
-# Implementing Algorithm 1 from the tech report: https://www2.eecs.berkeley.edu/Pubs/TechRpts/2021/EECS-2021-10.pdf
-# paper (seems very different from tech report): https://arxiv.org/pdf/2107.13477
-# Advanced tutorial (Z3): https://ece.uwaterloo.ca/~agurfink/stqam/z3py-advanced
-# Reference manual (Z3): https://z3prover.github.io/api/html/namespacez3py.html#ab8fb082f1c350596ec57ea4a4cd852fd
-from z3 import *
-
-def smt(e): 
-    s = Solver()
-    s.add([e])
-    return s
-
-# https://stackoverflow.com/a/12600208/5305365 
-def z3_to_py(v):
-    if is_bool(v):
-        return is_true(v)
-    if is_int_value(v):
-        return v.as_long()
-    raise RuntimeError("unknown z3 value to be coerced |%s|" % (v, ))
-
-#thetai: uninterpreted function
-#Ii: oracle function
-#rho: expression
-#model: SMT model
-def consistent(thetai, Ii, rho, model): 
-    alpha_total = True 
-    # for app in applications of thetai in rho:
-    for app in rho.children():
-        if is_app(app) and app.decl() == thetai: 
-                model_val = model.eval(app)
-                arg_vals_in_model = [z3_to_py(model.eval(arg)) for arg in app.children()]
-                oracle_val = Ii(*arg_vals_in_model)
-                model_app_val = model.eval(thetai(*app.children()))
-
-                # current constraint
-                concrete_app = thetai(*arg_vals_in_model)
-                alpha_new = concrete_app == oracle_val
-                alpha_total = And(alpha_total, alpha_new)
-                # print("oracle_val: %s | appval: %s ~= %s | not-equal? %s" % (oracle_val, model_app_val, z3_to_py(model_app_val), oracle_val != z3_to_py(model_app_val)))
-                if oracle_val != z3_to_py(model_app_val):
-
-                    # TODO: consider And(alpha_total, alpha_new)
-                    # print("early returning")
-                    return False, alpha_new
-                # alphacur = 
-                # print("app: %s | modelval: %s(%s) = %s | oracleval: %s " % (app, appval , arg_vals_in_model, model_val, oracle_val))
-        is_consistent, alpha_new = consistent(thetai, Ii, app, model)
-        alpha_total = And(alpha_total, alpha_new)
-        if not is_consistent:
-            return False, alpha_new
-    return True, alpha_total
-
-    # for app in rho:
-    #     inputs = evaluate(app, model)
-    #     response = call_oracle(Ii, inputs)
-    #     if response != evaluate(thetai(inputs), model):
-    #         return False, alphanew
-    # return True, alphanew
-
-def check(xs, thetas, rho, Is):
-    alpha = True
-    while True:
-        success = True
-        s = smt(And(rho,  alpha)) 
-        if s.check() == unsat:
-            return (False, alpha)
-        else:
-            model = s.model()
-            for i in range(len(thetas)):
-                is_consistent, alphanew = consistent(thetas[i], Is[i], rho, model)
-                print("is_consistent: %s | alphanew: %s" % (is_consistent, alphanew))
-                alpha = And(alpha, alphanew)
-                if not is_consistent:
-                    success = False
-                    break   
-            if success:
-                return (True, model)
-
-
-def isPrime(x):
-    if x < 2: return False
-    if x == 2: return True
-    for d in range(2, x//2 + 1):
-        if x % d == 0:
-            return False
-    return True
-# U = uninterpreted
-isPrimeU = Function('isPrime', IntSort(), BoolSort())
-x = Int('x')
-y = Int('y')
-z = Int('z')
-query = And(x * y * z == 76, isPrimeU(x) == True, isPrimeU(y) == True, isPrimeU(z) == True) 
-
-print("****OUTPUT****\n")
-success, out = check([x, y, z], [isPrimeU], query, [isPrime])
-print("success: %s\nout:%s" % (success, out))
-
-# expr = isPrimeU(x)
-# print(expr)
-# 
-# s = Solver()
-# s.add([query])
-# out = s.check()
-# m = s.model()
-# print("out: %s | model: %s" % (out, m))
-# 
-
-
-print("****OUTPUT TWO****\n")
-
-queryFalse = And(x * y * z == 100, isPrimeU(x) == True, isPrimeU(y) == True, isPrimeU(z) == True) 
-success, out = check([x, y, z], [isPrimeU], queryFalse, [isPrime])
-print("success: %s\nout:%s" % (success, out))
-
-
-
-print("****OUTPUT THREE****\n")
-queryPositive = And(x * y * z == 385, x >= 2, y >= 2, z >= 2, isPrimeU(x) == True, isPrimeU(y) == True, isPrimeU(z) == True) 
-success, out = check([x, y, z], [isPrimeU], queryPositive, [isPrime])
-print("success: %s\nout:%s" % (success, out))
-```
-
 # Mnemonic for why `eta` is unit:
 
 - Remember that given an adjunction $F \vdash G$, the unit of the adjunction is $\eta: 1 \to GF$.
@@ -1927,7 +1797,8 @@ print("success: %s\nout:%s" % (success, out))
 - Consider the map which sends $H \mapsto Fix(H)$. We need to show that $|H| = [M:Fix(H)]$.
 - Consider the extension $M/Fix(H)$. Since $M/K$ is separable, so in $M/Fix(H)$ [polynomials separable over $K$ remain separable over super-field $Fix(H)$]
 - Since the extension is separable, we have a $\theta \in M$ such that $M = Fix(H)(\theta)$ by the primitive element theorem.
-- The galois group of $M/Fix(H) = Fix(H)(\theta)/Fix(H)$ must fix $Fix(H)$ entirely. Thus we are trying to extend the function $\id: Fix(H) \to \Fix(H)$
+- The galois group of $M/Fix(H) = Fix(H)(\theta)/Fix(H)$ must fix $Fix(H)$ entirely.
+  Thus we are trying to extend the function $id: Fix(H) \to Fix(H)$
   to field automorphisms $\sigma: M \to M$.
 - Since $M/K$ is normal, so is $M/Fix(H)$, since $M/K$ asserts that automorphisms $\sigma: M \to \overline K$ that fix $K$ stay within $M$.
   This implies that automorphisms $\tau: M \to \overline K$ that fix $Fix(H)$ stay within $M$.
@@ -1942,7 +1813,8 @@ print("success: %s\nout:%s" % (success, out))
 - We wish to show that $[M:L] = |Gal(M/L)|$
 - Key idea: Start by writing $M = L(\alpha)$ since $M$ is separable by primitive element theorem.
   Let $\alpha$ have minimal polynomial $p(x)$. Then $deg(p(x))$ equals $[M:L]$ equals number of roots of $p(x)$ since the field is separable.
-- Next, any automorphism $\sigma: M \to M$ which fixes $L$  is uniquely determined by where it sends $\alpha$. Further, such an automorphism $\sigma$
+- Next, any automorphism 
+  $\sigma: M \to M$ which fixes $L$  is uniquely determined by where it sends $\alpha$. Further, such an automorphism $\sigma$
   must send $\alpha$ to some other root of $p(x)$ [by virtue of being a field map that fixes $L$,  $0 = \sigma(0) = \sigma(p(\alpha)) = p(\sigma(\alpha))$]. 
 - There are exactly number of roots of $p$ (= $[M:L]$) many choices. Each gives us one automorphism. Thus $|Gal(M/L)| = [M:L]$.
 
@@ -21150,6 +21022,8 @@ We have two spaces, and a rooted DAG that connects to two spaces:
 - A DAG where each node is a diff. The root note in the DAG is the empty diff.
 
 # Mutorch
+
+Minimal reverse mode AD implementation.
 
 ```py
 #!/usr/bin/env python3

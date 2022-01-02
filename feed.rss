@@ -5,6 +5,281 @@
 <link>https://bollu.github.io/</link>
 <description>A universe of Sorts</description>
   <item>
+    <title> Stuff I learnt in 2021 </title>
+    <guid>https://bollu.github.io/stuff-i-learnt-in-2021.html</guid>
+    <link>https://bollu.github.io/stuff-i-learnt-in-2021.html</link>
+  </item>
+  <item>
+    <title> Cayley hamilton for 2x2 matrices in sage via AG </title>
+    <guid>https://bollu.github.io/cayley-hamilton-for-2x2-matrices-in-sage-via-ag.html</guid>
+    <link>https://bollu.github.io/cayley-hamilton-for-2x2-matrices-in-sage-via-ag.html</link>
+  </item>
+  <item>
+    <title> LispWorks config </title>
+    <guid>https://bollu.github.io/lispworks-config.html</guid>
+    <link>https://bollu.github.io/lispworks-config.html</link>
+  </item>
+  <item>
+    <title> Birkhoff Von Neumann theorem </title>
+    <guid>https://bollu.github.io/birkhoff-von-neumann-theorem.html</guid>
+    <link>https://bollu.github.io/birkhoff-von-neumann-theorem.html</link>
+  </item>
+  <item>
+    <title> Latin Square </title>
+    <guid>https://bollu.github.io/latin-square.html</guid>
+    <link>https://bollu.github.io/latin-square.html</link>
+  </item>
+  <item>
+    <title> Assignment Problem </title>
+    <guid>https://bollu.github.io/assignment-problem.html</guid>
+    <link>https://bollu.github.io/assignment-problem.html</link>
+  </item>
+  <item>
+    <title> Interpolating homotopy: analogue of barycentric coordinatese can a </title>
+    <guid>https://bollu.github.io/interpolating-homotopy-analogue-of-barycentric-coordinatese-can-a.html</guid>
+    <link>https://bollu.github.io/interpolating-homotopy-analogue-of-barycentric-coordinatese-can-a.html</link>
+  </item>
+  <item>
+    <title> Example where MIP shows extra power over IP </title>
+    <guid>https://bollu.github.io/example-where-mip-shows-extra-power-over-ip.html</guid>
+    <link>https://bollu.github.io/example-where-mip-shows-extra-power-over-ip.html</link>
+  </item>
+  <item>
+    <title> Lazy reversible computation? </title>
+    <guid>https://bollu.github.io/lazy-reversible-computation.html</guid>
+    <link>https://bollu.github.io/lazy-reversible-computation.html</link>
+  </item>
+  <item>
+    <title> Theorem coverage as an analogue to code coverage </title>
+    <guid>https://bollu.github.io/theorem-coverage-as-an-analogue-to-code-coverage.html</guid>
+    <link>https://bollu.github.io/theorem-coverage-as-an-analogue-to-code-coverage.html</link>
+  </item>
+  <item>
+    <title> Lazy GPU programming </title>
+    <guid>https://bollu.github.io/lazy-gpu-programming.html</guid>
+    <link>https://bollu.github.io/lazy-gpu-programming.html</link>
+  </item>
+  <item>
+    <title> Projections onto convex sets </title>
+    <guid>https://bollu.github.io/projections-onto-convex-sets.html</guid>
+    <link>https://bollu.github.io/projections-onto-convex-sets.html</link>
+  </item>
+  <item>
+    <title> BGFS algorithm for unconstrained nonlinear optimization </title>
+    <guid>https://bollu.github.io/bgfs-algorithm-for-unconstrained-nonlinear-optimization.html</guid>
+    <link>https://bollu.github.io/bgfs-algorithm-for-unconstrained-nonlinear-optimization.html</link>
+  </item>
+  <item>
+    <title> LM algorithm for nonlinear least squares </title>
+    <guid>https://bollu.github.io/lm-algorithm-for-nonlinear-least-squares.html</guid>
+    <link>https://bollu.github.io/lm-algorithm-for-nonlinear-least-squares.html</link>
+  </item>
+  <item>
+    <title> Backward dataflow and continuations </title>
+    <guid>https://bollu.github.io/backward-dataflow-and-continuations.html</guid>
+    <link>https://bollu.github.io/backward-dataflow-and-continuations.html</link>
+  </item>
+  <item>
+    <title> The tyranny of structurelessness </title>
+    <guid>https://bollu.github.io/the-tyranny-of-structurelessness.html</guid>
+    <link>https://bollu.github.io/the-tyranny-of-structurelessness.html</link>
+  </item>
+  <item>
+    <title> Simple Sabotage Field Manual </title>
+    <guid>https://bollu.github.io/simple-sabotage-field-manual.html</guid>
+    <link>https://bollu.github.io/simple-sabotage-field-manual.html</link>
+  </item>
+  <item>
+    <title> Counting permutations with #MAXSAT </title>
+    <guid>https://bollu.github.io/counting-permutations-with-maxsat.html</guid>
+    <link>https://bollu.github.io/counting-permutations-with-maxsat.html</link>
+  </item>
+  <item>
+    <title> Coloring  cat output with  supercat</title>
+    <guid>https://bollu.github.io/coloring-cat-output-with-supercat.html</guid>
+    <link>https://bollu.github.io/coloring-cat-output-with-supercat.html</link>
+  </item>
+  <item>
+    <title> Reader monoid needs a hopf algebra?! </title>
+    <guid>https://bollu.github.io/reader-monoid-needs-a-hopf-algebra.html</guid>
+    <link>https://bollu.github.io/reader-monoid-needs-a-hopf-algebra.html</link>
+  </item>
+  <item>
+    <title> Monads mnemonic </title>
+    <guid>https://bollu.github.io/monads-mnemonic.html</guid>
+    <link>https://bollu.github.io/monads-mnemonic.html</link>
+  </item>
+  <item>
+    <title> Card stacking </title>
+    <guid>https://bollu.github.io/card-stacking.html</guid>
+    <link>https://bollu.github.io/card-stacking.html</link>
+  </item>
+  <item>
+    <title> Representation theory for particle physics </title>
+    <guid>https://bollu.github.io/representation-theory-for-particle-physics.html</guid>
+    <link>https://bollu.github.io/representation-theory-for-particle-physics.html</link>
+  </item>
+  <item>
+    <title> SSH into google cloud </title>
+    <guid>https://bollu.github.io/ssh-into-google-cloud.html</guid>
+    <link>https://bollu.github.io/ssh-into-google-cloud.html</link>
+  </item>
+  <item>
+    <title> Comma & Semicolon in index notation </title>
+    <guid>https://bollu.github.io/comma-semicolon-in-index-notation.html</guid>
+    <link>https://bollu.github.io/comma-semicolon-in-index-notation.html</link>
+  </item>
+  <item>
+    <title> Spin groups </title>
+    <guid>https://bollu.github.io/spin-groups.html</guid>
+    <link>https://bollu.github.io/spin-groups.html</link>
+  </item>
+  <item>
+    <title> How to write in biblical style? </title>
+    <guid>https://bollu.github.io/how-to-write-in-biblical-style.html</guid>
+    <link>https://bollu.github.io/how-to-write-in-biblical-style.html</link>
+  </item>
+  <item>
+    <title> Undefined behaviour is like compactification </title>
+    <guid>https://bollu.github.io/undefined-behaviour-is-like-compactification.html</guid>
+    <link>https://bollu.github.io/undefined-behaviour-is-like-compactification.html</link>
+  </item>
+  <item>
+    <title> God of areppo </title>
+    <guid>https://bollu.github.io/god-of-areppo.html</guid>
+    <link>https://bollu.github.io/god-of-areppo.html</link>
+  </item>
+  <item>
+    <title> Classification of lie algebras, dynkin diagrams </title>
+    <guid>https://bollu.github.io/classification-of-lie-algebras-dynkin-diagrams.html</guid>
+    <link>https://bollu.github.io/classification-of-lie-algebras-dynkin-diagrams.html</link>
+  </item>
+  <item>
+    <title> Weird free group construction from adjoint functor theorem </title>
+    <guid>https://bollu.github.io/weird-free-group-construction-from-adjoint-functor-theorem.html</guid>
+    <link>https://bollu.github.io/weird-free-group-construction-from-adjoint-functor-theorem.html</link>
+  </item>
+  <item>
+    <title> bashupload </title>
+    <guid>https://bollu.github.io/bashupload.html</guid>
+    <link>https://bollu.github.io/bashupload.html</link>
+  </item>
+  <item>
+    <title> When are the catalan numbers odd </title>
+    <guid>https://bollu.github.io/when-are-the-catalan-numbers-odd.html</guid>
+    <link>https://bollu.github.io/when-are-the-catalan-numbers-odd.html</link>
+  </item>
+  <item>
+    <title> Discrete probability  [WIP ] </title>
+    <guid>https://bollu.github.io/discrete-probability-wip.html</guid>
+    <link>https://bollu.github.io/discrete-probability-wip.html</link>
+  </item>
+  <item>
+    <title> Geodesic equation, Extrinsic </title>
+    <guid>https://bollu.github.io/geodesic-equation-extrinsic.html</guid>
+    <link>https://bollu.github.io/geodesic-equation-extrinsic.html</link>
+  </item>
+  <item>
+    <title> Connections, take 2 </title>
+    <guid>https://bollu.github.io/connections-take-2.html</guid>
+    <link>https://bollu.github.io/connections-take-2.html</link>
+  </item>
+  <item>
+    <title> Dropping into tty on manjaro/GRUB </title>
+    <guid>https://bollu.github.io/dropping-into-tty-on-manjarogrub.html</guid>
+    <link>https://bollu.github.io/dropping-into-tty-on-manjarogrub.html</link>
+  </item>
+  <item>
+    <title> Why the zero set of a continuous function must be a closed set </title>
+    <guid>https://bollu.github.io/why-the-zero-set-of-a-continuous-function-must-be-a-closed-set.html</guid>
+    <link>https://bollu.github.io/why-the-zero-set-of-a-continuous-function-must-be-a-closed-set.html</link>
+  </item>
+  <item>
+    <title> Derivatives in diffgeo </title>
+    <guid>https://bollu.github.io/derivatives-in-diffgeo.html</guid>
+    <link>https://bollu.github.io/derivatives-in-diffgeo.html</link>
+  </item>
+  <item>
+    <title> Building stuff with Docker </title>
+    <guid>https://bollu.github.io/building-stuff-with-docker.html</guid>
+    <link>https://bollu.github.io/building-stuff-with-docker.html</link>
+  </item>
+  <item>
+    <title> Lie derivative versus covariant derivative </title>
+    <guid>https://bollu.github.io/lie-derivative-versus-covariant-derivative.html</guid>
+    <link>https://bollu.github.io/lie-derivative-versus-covariant-derivative.html</link>
+  </item>
+  <item>
+    <title> The Tor functor </title>
+    <guid>https://bollu.github.io/the-tor-functor.html</guid>
+    <link>https://bollu.github.io/the-tor-functor.html</link>
+  </item>
+  <item>
+    <title> Sum of quadratic errors </title>
+    <guid>https://bollu.github.io/sum-of-quadratic-errors.html</guid>
+    <link>https://bollu.github.io/sum-of-quadratic-errors.html</link>
+  </item>
+  <item>
+    <title> Hip-Hop and Shakespeare </title>
+    <guid>https://bollu.github.io/hip-hop-and-shakespeare.html</guid>
+    <link>https://bollu.github.io/hip-hop-and-shakespeare.html</link>
+  </item>
+  <item>
+    <title> Write thin to write well </title>
+    <guid>https://bollu.github.io/write-thin-to-write-well.html</guid>
+    <link>https://bollu.github.io/write-thin-to-write-well.html</link>
+  </item>
+  <item>
+    <title> Hidden symmetries of alg varieties </title>
+    <guid>https://bollu.github.io/hidden-symmetries-of-alg-varieties.html</guid>
+    <link>https://bollu.github.io/hidden-symmetries-of-alg-varieties.html</link>
+  </item>
+  <item>
+    <title>  fd for  find</title>
+    <guid>https://bollu.github.io/fd-for-find.html</guid>
+    <link>https://bollu.github.io/fd-for-find.html</link>
+  </item>
+  <item>
+    <title> Thu Morse sequence for sharing </title>
+    <guid>https://bollu.github.io/thu-morse-sequence-for-sharing.html</guid>
+    <link>https://bollu.github.io/thu-morse-sequence-for-sharing.html</link>
+  </item>
+  <item>
+    <title> Elementary and power sum symmetric polynomials </title>
+    <guid>https://bollu.github.io/elementary-and-power-sum-symmetric-polynomials.html</guid>
+    <link>https://bollu.github.io/elementary-and-power-sum-symmetric-polynomials.html</link>
+  </item>
+  <item>
+    <title> Projective spaces and grassmanians in AG </title>
+    <guid>https://bollu.github.io/projective-spaces-and-grassmanians-in-ag.html</guid>
+    <link>https://bollu.github.io/projective-spaces-and-grassmanians-in-ag.html</link>
+  </item>
+  <item>
+    <title> Mnemonic for why  eta is unit: </title>
+    <guid>https://bollu.github.io/mnemonic-for-why-eta-is-unit.html</guid>
+    <link>https://bollu.github.io/mnemonic-for-why-eta-is-unit.html</link>
+  </item>
+  <item>
+    <title> Fundamental theorem of galois theory </title>
+    <guid>https://bollu.github.io/fundamental-theorem-of-galois-theory.html</guid>
+    <link>https://bollu.github.io/fundamental-theorem-of-galois-theory.html</link>
+  </item>
+  <item>
+    <title> Counter-intuitive linearity of expectation  [WIP ] </title>
+    <guid>https://bollu.github.io/counter-intuitive-linearity-of-expectation-wip.html</guid>
+    <link>https://bollu.github.io/counter-intuitive-linearity-of-expectation-wip.html</link>
+  </item>
+  <item>
+    <title> Metis </title>
+    <guid>https://bollu.github.io/metis.html</guid>
+    <link>https://bollu.github.io/metis.html</link>
+  </item>
+  <item>
+    <title> Tooling for performance benchmarking </title>
+    <guid>https://bollu.github.io/tooling-for-performance-benchmarking.html</guid>
+    <link>https://bollu.github.io/tooling-for-performance-benchmarking.html</link>
+  </item>
+  <item>
     <title> Normal field extensions </title>
     <guid>https://bollu.github.io/normal-field-extensions.html</guid>
     <link>https://bollu.github.io/normal-field-extensions.html</link>
@@ -260,14 +535,19 @@
     <link>https://bollu.github.io/gauss-normals-fundamental-forms-wip.html</link>
   </item>
   <item>
+    <title> Second fundamental form </title>
+    <guid>https://bollu.github.io/second-fundamental-form.html</guid>
+    <link>https://bollu.github.io/second-fundamental-form.html</link>
+  </item>
+  <item>
     <title> Shape operator  [WIP ] </title>
     <guid>https://bollu.github.io/shape-operator-wip.html</guid>
     <link>https://bollu.github.io/shape-operator-wip.html</link>
   </item>
   <item>
-    <title> Theorem Egregium (Integrating curvature in 2D)  [WIP ] </title>
-    <guid>https://bollu.github.io/theorem-egregium-integrating-curvature-in-2d-wip.html</guid>
-    <link>https://bollu.github.io/theorem-egregium-integrating-curvature-in-2d-wip.html</link>
+    <title> Theorem Egregium / Gauss &apos; s theorem (Integrating curvature in 2D)  [WIP ] </title>
+    <guid>https://bollu.github.io/theorem-egregium-gausss-theorem-integrating-curvature-in-2d-wip.html</guid>
+    <link>https://bollu.github.io/theorem-egregium-gausss-theorem-integrating-curvature-in-2d-wip.html</link>
   </item>
   <item>
     <title> Integrating Curvature in 1D  [WIP ] </title>
@@ -1085,19 +1365,9 @@
     <link>https://bollu.github.io/cartans-spiral-staircase-todo.html</link>
   </item>
   <item>
-    <title> Dupin indicatrix (TODO) </title>
-    <guid>https://bollu.github.io/dupin-indicatrix-todo.html</guid>
-    <link>https://bollu.github.io/dupin-indicatrix-todo.html</link>
-  </item>
-  <item>
-    <title> Rodrigues curvature formula (TODO) </title>
-    <guid>https://bollu.github.io/rodrigues-curvature-formula-todo.html</guid>
-    <link>https://bollu.github.io/rodrigues-curvature-formula-todo.html</link>
-  </item>
-  <item>
-    <title> Weingarten map (TODO) </title>
-    <guid>https://bollu.github.io/weingarten-map-todo.html</guid>
-    <link>https://bollu.github.io/weingarten-map-todo.html</link>
+    <title> Weingarten map </title>
+    <guid>https://bollu.github.io/weingarten-map.html</guid>
+    <link>https://bollu.github.io/weingarten-map.html</link>
   </item>
   <item>
     <title> When maps cannot be lifted to the universal cover </title>

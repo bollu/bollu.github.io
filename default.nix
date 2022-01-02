@@ -8,7 +8,7 @@ stdenv.mkDerivation {
 			katexPath = ./katex/katex.min.js; 
 			prismPath = ./prism/prism.js;
 			inputPath = ./README.md;
-			outputPath = ./.;
+			outputPath = /var/bollu.github.io/.;
 		};
 	in [ builder ];
 	name = "bollu.github.io";

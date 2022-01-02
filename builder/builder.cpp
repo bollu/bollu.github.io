@@ -183,7 +183,7 @@ private:
 const L LOC_FIRST = L(0, 1, 1);
 
 std::ostream &operator<<(std::ostream &o, const L &l) {
-  return cout << ":" << l.line << ":" << l.col;
+  return o << ":" << l.line << ":" << l.col;
 }
 
 // half open [...)
@@ -195,7 +195,7 @@ struct Span {
 };
 
 std::ostream &operator<<(std::ostream &o, const Span &s) {
-  return cout << s.begin << " - " << s.end;
+  return o << s.begin << " - " << s.end;
 }
 
 void print_loc(L l, const char *data) {
@@ -204,7 +204,7 @@ void print_loc(L l, const char *data) {
     printf("\n%4lld>EOF", l.line);
     return;
   }
-  cerr << "\n===\n";
+  cout << "\n===\n";
   int i = l.si;
   for (; i >= 1 && data[i - 1] != '\n'; i--) {
   }
@@ -213,21 +213,21 @@ void print_loc(L l, const char *data) {
   string squiggle;
   for (; data[i] != '\0' && data[i] != '\n'; ++i) {
     squiggle += i == l.si ? '^' : ' ';
-    cerr << data[i];
+    cout << data[i];
   }
   printf("\n%4lld>%s\n", l.line, squiggle.c_str());
 }
 
 void vprintferr(L loc, const char *raw_input, const char *fmt, va_list args) {
 
-  cerr << "===\n";
+  cout << "===\n";
   print_loc(loc, raw_input);
-  cerr << "\n---\n";
+  cout << "\n---\n";
   char *outstr = nullptr;
   vasprintf(&outstr, fmt, args);
   assert(outstr);
-  cerr << outstr;
-  cerr << "\n===\n";
+  cout << outstr;
+  cout << "\n===\n";
   free(outstr);
 }
 
@@ -248,7 +248,7 @@ struct T {
 };
 
 std::ostream &operator<<(std::ostream &o, const T &t) {
-  return cout << t.ty << "[" << t.span << "]";
+  return o << t.ty << "[" << t.span << "]";
 }
 
 // TLink for link information.
@@ -1594,12 +1594,12 @@ const char html_postamble[] = "</container>"
                               "</html>";
 
 #define CONFIG_WEBSITE_RSS_DESCRIPTION "A universe of Sorts"
-const char CONFIG_KATEX_PATH[] = "/home/bollu/blog/katex/katex.min.js";
-const char CONFIG_PRISM_PATH[] = "/home/bollu/blog/prism/prism.js";
+const char CONFIG_KATEX_PATH[] = "/var/bollu.github.io/katex/katex.min.js";
+const char CONFIG_PRISM_PATH[] = "/var/bollu.github.io/prism/prism.js";
 const char CONFIG_WEBSITE_URL_NO_TRAILING_SLASH[] =
     "https://bollu.github.io";
-const char CONFIG_INPUT_MARKDOWN_PATH[] = "/home/bollu/blog/README.md";
-const char CONFIG_OUTPUT_DIRECTORY_NO_TRAINING_SLASH[] = "/home/bollu/blog";
+const char CONFIG_INPUT_MARKDOWN_PATH[] = "/var/bollu.github.io/README.md";
+const char CONFIG_OUTPUT_DIRECTORY_NO_TRAINING_SLASH[] = "/var/bollu.github.io";
 
 static const ll MAX_OUTPUT_BUF_LEN = (ll)1e9L;
 
@@ -1862,7 +1862,7 @@ int main(int argc, char **argv) {
 
   vector<T *> ts;
   tokenize(raw_input, nread, ts);
-  cerr << "===Done tokenizing; Emitting HTML...===\n";
+  cout << "===Done tokenizing; Emitting HTML...===\n";
 
   // index of the latest <h1> tag.
   ll ix_h1 = 0;
@@ -1873,7 +1873,7 @@ int main(int argc, char **argv) {
     while (ix_h1 < (ll)ts.size() && !is_h1(ts[ix_h1])) {
       ix_h1++;
     }
-    cerr << "===Writing index.html===\n";
+    cout << "===Writing index.html===\n";
     // [0, ix_h1) stays in index.html
 
     char *index_html_buf = (char *)calloc(MAX_OUTPUT_BUF_LEN, sizeof(char));
@@ -1894,7 +1894,7 @@ int main(int argc, char **argv) {
             CONFIG_OUTPUT_DIRECTORY_NO_TRAINING_SLASH);
     FILE *f = fopen(index_html_path, "wb");
     if (f == nullptr) {
-      fprintf(stderr, "===unable to open HTML file: |%s|===", index_html_path);
+      fprintf(stdout, "===unable to open HTML file: |%s|===", index_html_path);
       return 1;
     }
     assert(f != nullptr);
@@ -1916,7 +1916,7 @@ int main(int argc, char **argv) {
     const char *url = mkHeadingURL(raw_input, heading);
 
     // TODO: find some easy way to print WTF is the data in the heading.
-    cerr << "===Writing [" << url << ".html]===\n";
+    cout << "===Writing [" << url << ".html]===\n";
 
     char *outbuf = (char *)calloc(MAX_OUTPUT_BUF_LEN, sizeof(char));
     ll outlen = 0;
@@ -1934,7 +1934,7 @@ int main(int argc, char **argv) {
 
     FILE *f = fopen(html_path, "wb");
     if (f == nullptr) {
-      fprintf(stderr, "===unable to open HTML file: |%s|===", html_path);
+      fprintf(stdout, "===unable to open HTML file: |%s|===", html_path);
       return 1;
     }
     assert(f != nullptr);
@@ -1948,7 +1948,7 @@ int main(int argc, char **argv) {
           CONFIG_OUTPUT_DIRECTORY_NO_TRAINING_SLASH);
   FILE *frss = fopen(rss_feed_path, "wb");
   if (frss == nullptr) {
-    fprintf(stderr, "===unable to open RSS file: |%s|===\n", rss_feed_path);
+    fprintf(stdout, "===unable to open RSS file: |%s|===\n", rss_feed_path);
     return 1;
   }
 

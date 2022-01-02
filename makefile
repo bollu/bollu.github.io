@@ -2,7 +2,7 @@
 
 all: build serve
 build: clean
-	make -C ~/blog/builder/build;
+	make -C ./builder/build;
 	LSAN_OPTIONS=detect_leaks=0 ./builder/build/builder 
 
 serve:
