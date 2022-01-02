@@ -449,7 +449,7 @@ s [B|C]
 - The column sum of $B$ is $1$ for all $j$. So $B^i_j 1^j = 1$
 - The row sum of $B$ is less than or equal to $1$ for all $j$. So $B^i_j 1_i \leq 1$
 - From the first sum, we get the total sum as $\sum_{i, j} B[i][j] = sk$
-- From the second sum, we get the total sum as $\sum_{i, j} B[i][j] \leq (n-r)k
+- From the second sum, we get the total sum as $\sum_{i, j} B[i][j] \leq (n-r)k$.
 - In total, we get $(n-r)k \leq sk$ which implies $s + r \leq n$ which is a contradiction because $s + r = n + 1$.
 
 #### Proof 1 of BVN (Constructive)
@@ -700,20 +700,21 @@ This interpolates p---q to x--c--y by using bary coordinates to interpolate alon
 
 # Projections onto convex sets
 
-- https://en.wikipedia.org/wiki/Projections_onto_convex_sets
+- `https://en.wikipedia.org/wiki/Projections_onto_convex_sets`
 
 
 # BGFS algorithm for unconstrained nonlinear optimization
 
-- https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm
+- `https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm`
 
 # LM algorithm for nonlinear least squares
 
-- https://en.wikipedia.org/wiki/Levenberg%E2%80%93Marquardt_algorithm
+- `https://en.wikipedia.org/wiki/Levenberg%E2%80%93Marquardt_algorithm`
 
 
 
 # Backward dataflow and continuations
+
 - Forward dataflow deals with facts _thus far_.
 - Backward dataflow deals with facts about _the future_, or the _rest of the program_.
   Thus, in a real sense, backward dataflow concerns itself with _continuations_!
@@ -1006,7 +1007,7 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 - We know that $ad(E_i)(E_k) = [E_i, E_k]$ by definition.
 - We write $[E_i, E_k] = C^m_{ik} E_m$ where the $C^m_{ik}$ are the structure constants.
 - This gives us $ad(E_i)^j_k = \epsilon^j (C^m_{ik} E_m)$
-- Pull out structure coefficient to get $ad(E_i)^j_k = C^m_{ik} \epsilon^j (E_m)
+- Pull out structure coefficient to get $ad(E_i)^j_k = C^m_{ik} \epsilon^j (E_m)$
 - Use the fact that $E_m$ and $\epsilon_j$ are dual to get $ad(E_i)^j_k = C^m_{ik} \delta^j_m$
 - Contract over repeated index $m$ to get $m=j$: $ad(E_i)^j_k = C^j_{ik}$
 - This makes sense, since the $ad$ map is just a fancy way to write the bracket in coordinate free fashion.
@@ -1149,19 +1150,8 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 curl bashupload.com -T your_file.txt
 ```
 
-# 4editor
+- Super useful if one wants to quickly send a file from/to a server.
 
-- I've started using 4ed, and it's quite a pleasure to use! It's geared
-  for C/C++/Rust development.
-- I have my own keybinds setup, naturally.
-
-#### Commonly used keybinds which are "strange"
-- find file in other panel: `Alt+O`
-- toggle panel: `Control+Comma`
-- Goto definition: `Control+w
-- Build: `Alt+B`
-- quick swap buffers: `Alt+\`
-- exit: `Ctrl+Shift+\`
 # When are the catalan numbers odd
 
 - The catalan numbers $C_n$ count the number of binary trees on $n$ nodes.
@@ -1205,14 +1195,16 @@ curl bashupload.com -T your_file.txt
 - Similarly, $\partial_\lambda c$ gives us the tangent vector along $c$ on the surface.
 - Write out:
 
-\begin{align*}
+$$
+\begin{aligned}
 &\frac{dc}{d \lambda} = \frac{du}{d\lambda}\frac{dR}{du} + \frac{dv}{d\lambda}\frac{dR}{dv}
 &\frac{d}{d\lambda}(\frac{dc}{d \lambda})\\
 &=\frac{d}{d\lambda}(\frac{du}{d\lambda}\frac{dR}{du} + \frac{dv}{d\lambda}\frac{dR}{dv}) \\
 &=\frac{d}{d\lambda}(\frac{du}{d\lambda}\frac{dR}{du}) + \frac{d}{d\lambda}(\frac{dv}{d\lambda}\frac{dR}{dv}) \\
 &= \frac{d^2 u}{d\lambda^2}\frac{dR}{du} + (\frac{du}{d\lambda} \frac{d}{d\lambda} \frac{dR}{du})
   \frac{d^2 v}{d\lambda^2}\frac{dR}{dv} + (\frac{dv}{d\lambda} \frac{d}{d\lambda} \frac{dR}{dv})
-\end{align*}
+\end{aligned}
+$$
 
 - How to calculate $\frac{d}{d\lambda} \frac{dR}{ddu}$? Use chain rule, again!
 - $\frac{d}{d\lambda} = \frac{du}{d \lambda}\frac{\partial}{\partial u} + \frac{dv}{d \lambda}\frac{\partial}{\partial v}$
@@ -1265,7 +1257,9 @@ curl bashupload.com -T your_file.txt
 - But for a vector space, the tangent space is canonically isomorphic to the vector space itself! (parallelogram law/can move vectors around/...).
   Thus, we can bring down the image of $w$ from $TE$ down to $E$!
 - This means we now have a map $z: TI \to E$.
-- But we want a $w: I to E$. See that the place where we needed a $TI$ was to produce 
+- But we want a $w: I \to E$. See that the place where we needed a $TI$ was to produce 
+
+
 # Dropping into tty on manjaro/GRUB
 
 - Acces grub by holding down `<ESC>`
@@ -1305,151 +1299,11 @@ curl bashupload.com -T your_file.txt
   must live as $c': (-1, 1) \to TM$. Now what about $c''$? According to our earlier explanation, this too should be a vector! Well... it is and it isn't,
   right? but how? I don't understand this well.
 - Looping back to the original question, $W \equiv \del_D V$ is a vector field because the value of $W(p)$ is defined as taking $D(p) \in T_p M$,
-  treating it as a curve $d_p: [-1, 1] \to M$ such that $d_p(0) = p$ and $d_p'(0) = D(p)$, and then finally taking $V()
-
-
-# Computer graphics with the grassmanian
-
-
-- http://www.realtimerendering.com/resources/RTNews/html/rtnv11n1.html#art3
-
-```py
-EPSILON = 1e-3
-
-
-def mkhomo(v, f):
-    assert len(v) == 3
-    return tuple(*v, f)
-
-def ishomo(v): return len(v) == 4
-
-def null(xs):
-    for x in xs:
-        if xs != 0: return True
-    return False
-
-def dot(xs, ys):
-    out = 0
-    assert len(xs) == len(ys)
-    for i in range(len(xs)): out += xs[i] * ys[i]
-    return out
-
-def mulfv(f, v): return tuple([f*v for v in vs])
-
-def sub(p, q):
-    assert len(p) == len(q)
-    return tuple([p[i] - q[i] for i in range(len(p))])
-
-def cross(p, q):
-    assert len(p) == 3
-    assert len(q) == 3
-    # i = j x k
-    # j = k x i
-    # k = i x j
-    i = 0; j = 1; k = 2
-    def skew(a, b): return p[a] * q[b] - p[b] * q[a]
-    return (skew(j, k), skew(k, i), skew(i, j))
-
-#   @ L = {U:V}, with 3-tuples U and V, with U.V = 0, and with U non-null.
-def line(u, v):
-    assert len(u) == 3
-    assert len(v) == 3
-    assert dot(u, v) == 0
-    assert not null(u)
-    return (u, v)
-#   @ L = {P-Q:PxQ}, for P and Q distinct points on L, and line is directed Q->P.
-def line_from_points(p, q):
-    assert p != q
-    return line(p - q, cross(p, q))
-#   @ L = {U:UxQ}, for U the direction of L and Q a point on L.
-def line_from_dir_point(dir, point):
-    return 
-
-#   @ L = {qP-pQ:PxQ}, for (P:p) and (Q:q) distinct homogeneous points on L.
-def line_from_homo_points(ph, qh):
-    q = qh[3]; Q = qh[:3]
-    p = ph[3]; P = ph[:3]
-
-    return (sub(mulfv(q, P), mulfv(p, Q)), cross(P, Q))
-#   @ L = {ExF:fE-eF}, for [E:e] and [F:f] distinct planes containing L.
-def line_from_homo_planes(eh, fh):
-    e = eh[3]; E = eh[:3]
-    f = fh[3]; F = fh[:3]
-    return (cross(e, f), sub(mulfv(f, E), mulfv(e, F)))
-
-# return scale factor such that w = kv
-def solve_scale(v, w):
-    assert len(v) == len(w)
-    f = w[0] / v[0]
-    for i in range(len(v)):
-        if abs(v[i] * f - w[i]) > EPSILON:
-            return None
-    return f
-
-#   @ {U1:V1} =? s{U2:V2} tests if L1 = {U1:V1} equals L2 = {U2:V2}.
-def line_equals(uv1, uv2)
-    (u1, v1) = uv1
-    (u2, v2) = uv2
-    f = solve_scale(u1, v1)
-    g = solve_scale(u2, v2)
-    if not f or not g: return False
-    return abs(f - g) < EPSILON
-
-#   @ s > 0 if L1 and L2 have same orientation.
-#   @ (V.V)/(U.U) is the minimum squared distance of L from the origin.
-def distsq_from_origin(l):
-    (u, v) = l
-    return dot(v, v) / dot(u, u)
-
-#   @ (VxU:U.U) is the point of L closest to the origin.
-def point_closest_to_origin(l):
-    (u, v) = l
-    return mkhomo(cross(v, u), dot(u, u)) # homogeneous
-#   @ [UxV:V.V] is the plane through L perpendicular to its origin plane, for
-#         non-null V.
-#   @ (VxN-Un:U.N) is the point where L intersects plane [N:n] not parallel to L.
-#   @ [UxP-Vw:V.P] is the plane containing L and point (P:w) not on L.
-#   @ [UxN:V.N] is the plane containing L and direction N not parallel to L.
-#   Let N, N1, N2 be unit vectors along the coordinate axes, with U.N non-zero.
-#   @ (VxN:U.N) is a point on L if N is not perpendicular to U.
-#   @ U and this point both satisfy a plane equation [E:e] if the plane
-#         contains L.
-#   @ Represent L as U and this point to transform by non-perspective
-#         homogeneous matrix.
-#   @ Represent L as two points to transform by perspective homogeneous matrix.
-#   @ [UxN1:V.N1] and [UxN2:V.N2] are distinct planes containing L.
-#   @ P satisfies both these plane equations if L contains P.
-#   @ Pnt(t) = (VxU+tU:U.U) parameterizes points on L.
-#   @ Pln(t) = (1-t^2)[UxN1:V.N1]+2t[UxN2:V.N2] parameterizes planes through L.
-#   @ U1.V2 + U2.V1 =? 0 tests if L1 = {U1:V1} and L2 = {U2:V2} are coplanar
-#         (intersect).
-#   @ Sum positive if right-handed screw takes one into the other; negative
-#         if left-handed.
-#   @ U1xU2 =? 0 tests if lines are parallel.
-#   Let N be a unit vector along a coordinate axis, with (U1xU2).N non-zero.
-#   @ ((V1.N)U2-(V2.N)U1-(V1.U2)N:(U1xU2).N) is the point of intersection, if
-#         any.
-#   @ [U1xU2:V1.U2] is the common plane for non-parallel lines.
-#   Let N, N1, N2 be unit vectors along the coordinate axes, with U1.N non-zero.
-#   @ [(U1.N)V2-(U2.N)V1:(V1xV2).N] is the common plane for parallel distinct
-#         lines.
-#   @ [U1xN1:V1.N1] is the common plane for equal lines through origin.
-```
-
-```py
-# Notes
-
-#   [Px Qx] row x
-#   [Py Qy] row y
-#   [Pz Qz] row z
-#   [Pw Qw] row w
-# Make all possible determinants of pairs of rows. Only six combinations are
-# independent; these are the Plücker coordinates. See geometry yet? Probably not.
-# But set the w's to 1, and look again.
-```
+  treating it as a curve $d_p: [-1, 1] \to M$ such that $d_p(0) = p$ and $d_p'(0) = D(p)$, and then finally taking $V()$.
 
 
 # Building stuff with Docker
+
 - create `Dockerfile`, write `docker build .`.
 - File contains shell stuff to run in `RUN <cmd>` lines. `<cmd>` can have newlines with backslash ala shell script.
 - `docker run <image/layer sha> <command>` to run something at an image SHA (ie, not in a running container). Useful to debug.
@@ -1622,7 +1476,8 @@ let g:goyo_margin_bottom = 0
 - Let $p_k$ be the power sum symmetric polynomial that is of the form $p_k = \sum_i x[i]^k$.
 
 #### Speedy proof when $k = n$ / no. of vars equals largest $k$ (of $e[k]$) we are expanding:
-- Let $P(x) = e[n] x^0 + e[n-1]x^1 + \dots + e[1]x^{n-1} + e[0]x^n$. That is, $P(x) = \sum_i e[n-i] x^{i}
+
+- Let $P(x) = e[n] x^0 + e[n-1]x^1 + \dots + e[1]x^{n-1} + e[0]x^n$. That is, $P(x) = \sum_i e[n-i] x^{i}$
 - Let $r[1], r[2], \dots, r[n]$ be the roots. Then we have $P(r[j]) = \sum_i e[n-i] r[j]^{i} = 0$.
 - Adding over all  $r[j]$, we find that:
 
@@ -1652,6 +1507,7 @@ $$
 $$
 
 - Expanding $P(r_j)$:
+
 $$
 \begin{aligned}
 P(r_1) &= r_1^4 + e_1r_1^3 + e_2r_1^2 + e_3 r_1 + e_4 = 0 \\
@@ -1662,6 +1518,7 @@ P(r_4) &= r_4^4 + e_1r_4^3 + e_2r_1^2 + e_3 r_1 + e_4 = 0 \\
 $$
 
 - Adding all of these up:
+
 $$
 \begin{aligned}
 &P(r_1) + P(r_2) + P(r_3) + P(r_4) \\
@@ -1706,7 +1563,7 @@ $$
 - The power sums are $(1)$, $(2)$, $(3)$, and so on.
 - See that $(2)(1) = (x^2 + y^2 + z^2)(x + y + z) = x^3 + y^3 + z^3 + x^2y + x^2z + y^2x + y^2z + z^2x + z^2y = (3) + (2, 1)$.
 - That is, the product of powers gives us a larger power, plus some change (in elementary symmetric).
-- How do we simplify $(2, 1)$? We want terms of the form only of $(k)$ [power sum]$ or $(1, 1, \dots, 1)$ [elementary].
+- How do we simplify $(2, 1)$? We want terms of the form only of $(k)$ [power sum] or $(1, 1, \dots, 1)$ [elementary].
 - We need to simplify $(2, 1)$.
 - Let's consider $(1)(1, 1)$. This is $(x + y + z)(xy + yz + xz)$. This will have terms of the form $xyz$ (ie, $(1, 1, 1)$). These occur with multiplicity $3$,
   since $xyz$ can occur as $(x)(yz)$, $(y)(xz)$, and $(z)(xy)$. This will also have terms of the form $x^2y$ (ie, $(2, 1)$).
@@ -1821,11 +1678,6 @@ $$
 $$
 S_{i_1 \dots i_k}S_{j_1 \dots j_k} = \sum S_{i_1' \dots i_k'} S_{j_1' j_k'}.
 $$
-
-- Where we indexes $i_1', \dots, i_k', j_1', \dots, j_k'$ are obtained from $i_1, \dots, i_k, j_1, \dots, j_k$ via
-  
-
-
 
 
 #### Observations of $G(2, 4)$
@@ -39462,3 +39314,5 @@ speak slower than you want to.
 - [Surge Response by approximate](https://www.youtube.com/watch?v=I4C7RtiqL_0)
 - [Zetsubo by Prismbeings](https://www.youtube.com/watch?v=ncdA3t_vzF8)
 - [Absolute territory by Prismbeings](https://www.youtube.com/watch?v=9r8pxIogxZ0)
+
+
