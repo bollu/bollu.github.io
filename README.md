@@ -145,8 +145,7 @@ of domain expertise in Python.
 
 This also got me interested to learn about the [tidyverse](https://www.tidyverse.org/), a collection of packages
 which define a notion of "tidy data", which is a precise philosophy of how data should be formatted when
-working on data science (roughly speaking, it's a dataset analogy of [3rd normal form from database theory]https://en.wikipedia.org/wiki/Third_normal_form).
-
+working on data science (roughly speaking, it's a dataset analogy of [3rd normal form from database theory](https://en.wikipedia.org/wiki/Third_normal_form).
 
 In particular, I really enjoyed the [tidy data](https://vita.had.co.nz/papers/tidy-data.pdf) paper which
 defines tidy data, explains how to tidy untidy data, and advocates for using tidy data as an intermediate
@@ -165,6 +164,9 @@ this meant that we could read the sources of each chapter and get a clear idea o
 I enjoy reading code, but I felt that the other lab members thought this was too verbose. It did make judging the length of
 a particular section hard, since it was unclear how much of the section was pure implementation detail, and how much was conceptual.
 
+
+##### Ideas learnt
+
 Overall, I learnt some interesting ideas like [delta debugging](https://en.wikipedia.org/wiki/Delta_debugging),
 [concolic fuzzing](https://www.fuzzingbook.org/html/ConcolicFuzzer.html), and overall, how to *design*
 a fuzzing library (for example, this section on [grammar fuzzing](https://www.fuzzingbook.org/html/GeneratorGrammarFuzzer.html#Synopsis)
@@ -176,7 +178,10 @@ that would have been much harder in some other setting, but this also meant that
 showcased (eg. [tracking information flow](https://www.fuzzingbook.org/html/InformationFlow.html) 
 by using the fact that python is dynamically typed) would be much harder to put into practice in a less flexible language.
 
-Finally, the coolest thing I learnt from the book was [STADS: software testing as species discovery](https://arxiv.org/pdf/1803.02130.pdf),
+
+##### Software bugs are real bugs?
+
+The coolest thing I learnt from the book was [STADS: software testing as species discovery](https://arxiv.org/pdf/1803.02130.pdf),
 which models the problem of "how many bugs exist in the program?" as "how many bugs exist in this forest?". It turns
 out that ecologists have good models for approximating the **total number of species in a habitat** from the
 **number of known species in a habitat**. The paper then proceeds to argue that this analogy is sensible,
@@ -359,6 +364,30 @@ I finally did arrive at a much longer proof. This made me realize that competiti
 I began documenting formal proofs to these problems. Here's a link to [my competitive programming notes](https://github.com/bollu/notes/blob/master/competitive-programming/main.pdf),
 which attempts to formally state and prove the correctness of these questions.
 
+
+## Discrete differential geometry
+
+I love the research of [Keenan Crane](https://www.cs.cmu.edu/~kmcrane/), who works on bridging old school
+differential geometry with computational techniques. All of his papers are lucid, full of beautiful figures
+and crazy ideas. 
+
+##### Replusive curves
+
+Chris Yu, Henrik Schumacherm, and Keenan have a new paper on [Repulsive Curves](http://www.cs.cmu.edu/~kmcrane/Projects/RepulsiveCurves/RepulsiveCurves.pdf)
+is really neat. It allows one to create curves that minimize a repulsive force, and can be subject to other arbitrary
+constraints. The actual algorithm design leads one to think about all sorts of things like fractional calculus. To be honest,
+I find it insane that fractional calculus finds a practical use. Definitely a cool read.
+
+##### SAGE implementation
+
+- I have a [work in progress PR](https://github.com/bollu/SAGE/tree/u/gh-bollu%2Fjan-17-2021-discrete-diffgeo-homology) that
+  implements Keenan Crane's [Geodesics in Heat](https://arxiv.org/abs/1204.6216) algorithms
+  within SAGE. Unfortunately, the problem was this implementing this requires heavy sparse numerical linear algebra,
+  something that sage did not have at the time I attempted this.
+- This led to me [opening an issue about sparse Cholesky decomposition](https://trac.sagemath.org/ticket/13674)
+  on the SAGE issue tracker.
+- Happily, the issue was fixed late this year by SAGE pulling in `cvxopt` as a dependency!
+- I can get back to this now in 2022, since there's enough support within SAGE now to actually succeed!
 
 
 ## Writing a text editor (dropped)
