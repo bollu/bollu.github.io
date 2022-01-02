@@ -6,7 +6,433 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+
+# Stuff I learnt in 2021
+
+I spent this year focusing on fundamentals, and attempting to prepare
+myself for topics I'll need during my PhD. This involved learning things
+about dependent typing, compiling functional programs, working with the
+[MLIR compiler toolchain](https://mlir.llvm.org/), and reading about
+the [GAP system for computational discrete algebra](https://www.gap-system.org/).
+
+
+## Guitar
+
+I've been meaning to pick up an instrument. I'd learnt the piano as a kid,
+but I'd soured on the experience as it felt like I was learning a lot of music
+theory and practising to clear the [Royal school of music exams](https://in.abrsm.org/en/).
+I'd learnt a little bit of playing the guitar while I was an inten at [Tweag.io](https://tweag.io/); my
+AirBnB host had a guitar which he let me borrow to play with. I was eager to pick it back up.
+
+Unfortunately, I wasn't able to play as consistenly as I had hoped I would. I can now play more chords,
+but actually switching between them continues to be a challenge. I also find pressing down on barre chords
+surprisingly hard. I've been told something about getting lighter strings, but I'm unsure about that.
+
+
+I was also excited about learning the guitar well enough to play it while a friend sings along.
+This seems to require a **lot** more practice than I currently have, as the bottleneck is whether
+one can smoothly switch between chords.
+
+
+## Starting my PhD: Research on Lean4
+
+I'm excited by proof assistants, and I'd like to work on them for my PhD. So the first order
+of business was to get an idea of the internals of Lean4, and to decide what exactly I would
+be working on. This made me read the papers written by the Lean team over the last couple years
+about their runtime, as well as made me learn how to implement dependently typed languages.
+
+During this process, I also had calls with some of the faculty at the University of Edinburgh
+to pick a co-advisor. I enjoyed reading
+[Liam O connor's thesis: Type Systems for Systems Types](http://unsworks.unsw.edu.au/fapi/datastream/unsworks:61747/SOURCE02?view=true)
+The thesis had a very raw, heartfelt epilogue:
+
+> If you will permit some vain pontification on the last page of my thesis,
+> I would like to reflect on this undertaking, and on the dramatic effect it
+> has had on my thinking. My once-co-supervisor Toby Murray said that
+> all graduate students enter into a valley of despair where they no longer believe in
+> the value of their work. Certainly I am no counter-example. I do not even know if I
+> successfully found my way out of it
+
+This, honestly, made me feel a lot better, since I'd begun to feel this way even *before* launching
+into a PhD!
+
+#### Lean implementation details
+
+- [Counting immutable beans]()
+- [Sealing pointer equalitya]()
+
+#### Writing a dependently typed language
+
+I felt I had to know how to write a dependently typed language if I wanted to be successful
+at working on the Lean theorem prover. So I wrote one, it's at  [`bollu/minitt`](git@github.com:bollu/minitt.git).
+The tutorials that helped me the most were:
+
+- [David Christiansen's tutorial on normalization by evaluation](https://davidchristiansen.dk/tutorials/nbe/), where
+  he builds a full blown, small dependently typed language type checker. 
+- [Normalization by evaluation by F. Faviona](https://www.youtube.com/watch?v=atKqqiXslyo) which explains
+  why we need this algorithm to implement dependently typed languages, and other cute examples
+  of normal forms in mathematics. For example, to check if two lists are equivalent upto permutation,
+  we can first sort the two lists, and then check for real equality. So we are reducing a problem
+  of "equivalence" to a problem of "reduction to sorted order" followed by "equality". We do something
+  similar to type check a dependently typed language.
+- [`cubicaltt` lectures by faviona](https://www.youtube.com/watch?v=6cLUwAiQU6Q), which get the point of
+  cubical type theory across very well.
+- []()
+- [Bidirectional type checking by Pfenning]() These lecture notes explain bidirectional typing
+  well, and provide an intuition for which types should be checked and which should be inferred when performing
+  bidirectional typing.
+
+#### Paper acceptance
+
+Our research about writing a custom backend for Lean4 was accepted at CGO'22. I was very touched at how
+nice the programming languages community is. For example, Leonaro De Moura and Sebastian Ullrich, the maintainers
+of Lean4 provided a lot of constructive feedback. I definitely did not expect this to happen. I feel like
+I don't understand academia as a community, to be honest, and I'd like to understand how it's organized.
+
+
+
+
+## Statistics
+
+As I was working on the paper, I realised that I didn't truly understand why we were taking the median of the runtimes
+to report performance numbers, or why averaging over ten runs was "sufficient" (sufficient for what?).
+
+This led me on a quest to learn statistics correctly. My big takeaways were:
+- Frequentist type statistics via null hypotheses are hard to interpret and may not be well suited for performance benchmarking.
+- The High Performance Computing community does not use bayesian statistics, so using it would flag one's paper as "weird".
+- The best solution is to probably report all raw data, and summarize it via reasonable summary statistics like median, which
+  is robust to outliers.
+
+I must admit, I find the entire situation very unsatisfactory. I would love it if researchers in High performance
+computing wrote good reference material on how to bencharmk well. Regardless, here are some of the neat
+things I wound up reading in this quest:
+
+##### Learning statistics with R
+
+[Learning statistics with R](htps://learningstatisticswithr.com/book/). This is a neat book which explains
+statistics and the `R` programming language. I knew basically nothing of statistics and had never used `R`, so working
+through the book was a blast. I was able to blaze through the first half of the book, since it's a lot of introductory
+programming and introductory math. I had to take a while to digest the ideas of p-values and hypothesis testing. I'm still not
+100% confident I really understand what the hell a p value is doing. Regardless, the book was a really nice read, and
+it made me realize just how well the R language is designed.
+
+
+##### Jackknife
+
+The [Jackknife paper "Bootstrap methods: another look at the jackknife"](http://jeti.uni-freiburg.de/studenten_seminar/stud_sem_SS_09/EfronBootstrap.pdf)
+which introduces the technique of bootstrapping: drawing many samples from a small dataset to eventually infer summary statistics. I was impressed
+by the paper for three reasons. For one, it was quite easy to read as a non-statistician, and I could follow the gist of what was going on
+in the proofs. Secondly, I enjoyed how amenable it is to implementation, which makes it widely used in software. Finally, I think it's
+a great piece of marketing: labelling it a "Jacknife", and describing how to bootstrap is a rough-and-ready method that will save you
+in the jungles of statistical wilderness makes for a great title.
+
+
+
+## R language and tidy data
+
+Due to the R lannguage quest, I was exposed to the idea of a data frame in a *coherent* way.
+The data frames in R feels *designed* to me, unlike their python counterpart in [`pandas`](https://pandas.pydata.org/).
+
+I realised that I should probably learn languages that are used by domain experts, and not poor approximations
+of domain expertise in Python. 
+
+This also got me interested to learn about the [tidyverse](https://www.tidyverse.org/), a collection of packages
+which define a notion of "tidy data", which is a precise philosophy of how data should be formatted when
+working on data science (roughly speaking, it's a dataset analogy of [3rd normal form from database theory]https://en.wikipedia.org/wiki/Third_normal_form).
+
+
+In particular, I really enjoyed the [tidy data](https://vita.had.co.nz/papers/tidy-data.pdf) paper which
+defines tidy data, explains how to tidy untidy data, and advocates for using tidy data as an intermediate
+representation for data analysis.
+
+
+
+## Starting a reading group: Fuzzing
+
+I felt like I was missing out on hanging with folks from my research lab, so I decided
+to start a reading group. We picked [the fuzzing book](https://www.fuzzingbook.org/)
+as the book to read, since it seemed an easy and interesting read.
+
+I broadly enjoyed the book. Since it was written in a [literate programming style](https://en.wikipedia.org/wiki/Literate_programming),
+this meant that we could read the sources of each chapter and get a clear idea of how the associated topic was to be implemented.
+I enjoy reading code, but I felt that the other lab members thought this was too verbose. It did make judging the length of
+a particular section hard, since it was unclear how much of the section was pure implementation detail, and how much was conceptual.
+
+Overall, I learnt some interesting ideas like [delta debugging](https://en.wikipedia.org/wiki/Delta_debugging),
+[concolic fuzzing](https://www.fuzzingbook.org/html/ConcolicFuzzer.html), and overall, how to *design*
+a fuzzing library (for example, this section on [grammar fuzzing](https://www.fuzzingbook.org/html/GeneratorGrammarFuzzer.html#Synopsis)
+provides a convenient class hierarchy one could choose to follow).
+
+I also really enjoyed the book's many (ab)uses of python's
+runtime monkey-patching capabilities for fuzzing. This meant that the book could easily explain concepts
+that would have been much harder in some other setting, but this also meant that some of the techniques
+showcased (eg. [tracking information flow](https://www.fuzzingbook.org/html/InformationFlow.html) 
+by using the fact that python is dynamically typed) would be much harder to put into practice in a less flexible language.
+
+Finally, the coolest thing I learnt from the book was [STADS: software testing as species discovery](https://arxiv.org/pdf/1803.02130.pdf),
+which models the problem of "how many bugs exist in the program?" as "how many bugs exist in this forest?". It turns
+out that ecologists have good models for approximating the **total number of species in a habitat** from the
+**number of known species in a habitat**. The paper then proceeds to argue that this analogy is sensible,
+and then implements this within [AFL: american fuzzy lop](https://lcamtuf.coredump.cx/afl/). Definitely the
+most fun idea in the book by far.
+
+
+## Persistent data structures for compilers
+
+My friend and fellow PhD student [Mathieu Fehr](https://github.com/math-fehr) is developing
+a new compiler framework based on MLIR called [XDSL](https://github.com/xdslproject/xdsl). 
+This is being developed in Python, as it's meant to be a way to expose the guts of the compilation
+pipeline to domain experts who need not be too familiar with how compilers work. 
+
+
+I wished to convince him to make the data structures immutable by default. Unfortunately, python's
+support for immutable style programming is pretty poor, and I never could get libraries like
+[pyrsistent](https://github.com/tobgu/pyrsistent) to work well. 
+
+On a happier note, this made me search for what the cutting was in embedding immutable
+data structures in a mutable language, which led me to [Immer: Persistence for the masses](https://public.sinusoid.es/misc/immer/immer-icfp17.pdf).
+It advocates to use [RRB trees](https://dl.acm.org/doi/abs/10.1145/2858949.2784739) and describes how to design an API
+that makes it convenient to use within a language like C++. I haven't read the RRB trees paper, but I have been using Immer
+and I'm liking it so far.
+
+## `WARD` for quick blackboarding
+
+I hang out with my friends to discuss math, and the one thing I was sorely missing was the lack of a shared
+blackboard. I wanted a tool that would let me quickly sketch pictures, with some undo/redo, but most importantly,
+be **fast**. I found no such tool on Linux, so I wrote my own: [bollu/ward](https://github.com/bollu/ward). I was great
+fun to write a tool to scratch a personal itch. I should do this more often.
+
+## Becoming a Demoscener
+
+I've always wanted to become a part of the [demoscene](), but I felt that I didn't understand the
+graphics pipeline or the audio synthesis pipeline well enough. I decided to fix these glaring
+gaps in my knowledge. 
+
+I've been implementing [`bollu/rasterizer`](https://github.com/bollu/rasterizer), which 
+follows the [`tinyrenderer`](https://github.com/ssloy/tinyrenderer/wiki/Lesson-0:-getting-started) series
+of tutorials to implement a from-scratch, by-hand software rasterizer. I already knew
+all the math involved, so it was quite rewarding to quickly put together code that applied math I already knew
+to make pretty pictures.
+
+Similarly, on the audio synthesis side, I wrote 
+[`bollu/soundsynth`](https://github.com/bollu/soundsynth) to learn fundamental synthesis algorithms.
+I followed [demofox's series of audio synththesis tutorials](https://blog.demofox.org/) as well as
+the very pleasant and gently paced textbook [TODO}(). I particularly enjoyed the ideas
+in [karlplus strong string synthesis](https://en.wikipedia.org/wiki/Karplus%E2%80%93Strong_string_synthesis).
+I find [FM synthesis](https://github.com/bollu/soundsynth/blob/master/fm-paper.pdf) very counter-intuitive to reason about.
+I've been told that audio engineers can perform FM sound synthesis "by ear", and I'd love to have an intuition for 
+frequency space that's so strong that I can intuit how to FM synthesize a sound. Regardless, the idea is very neat for sure.
+
+
+I also have long wanted to understand
+[Plucker coordinates](https://en.wikipedia.org/wiki/Pl%C3%BCcker_coordinates), since I'd read that they are useful
+for graphics programming. I eventually plonked down, studied them, and
+[wrote down an expository note](https://github.com/bollu/notes/blob/master/diffgeo/grassmanian-plucker.ipynb)
+about them in a way that makes sense to me. I now feel I have a better handle on Projective space, Grassmanians, and schemes!
+
+
+## Category theory
+
+A friend started a category theory reading group, so we've spent the year working
+through 
+[Emily Riehl's "Category theory in Context"](https://math.jhu.edu/~eriehl/context.pdf).
+I'd seen categorical ideas before, like colimits to define a germ, "right adjoints preserve limits",
+showing that the sheafification functor exists by invoking an adjoint functor theorem, and so on. 
+But I'd never systematically studied any of this, and if I'm being honest, I hadn't even understood
+the statement of the Yoneda lemma properly.
+
+Working through the book from the ground-up was super useful, since I was forced to solve
+exercises and think about limits, adjoints, and so forth. I've
+[uploaded my solutions upto Chapter 4](https://github.com/bollu/notes/blob/master/category-theory-in-context/main.pdf).
+
+I felt the textbook gets a little rough around the edges at the chapter on adjunctions. The section
+on the 'Calculus of Adjunctions' made so little sense to me that I
+[rewrote it](https://github.com/bollu/notes/blob/master/category-theory-in-context/calculus-of-adjunctions.pdf)
+with proofs that I could actually grok/believe.
+
+
+Regardless, it's been a fun read so far. I was also pointed to some other interesting content along
+the way, like [Lawvere theories](https://bartoszmilewski.com/2017/08/26/lawvere-theories/)
+and the [cohomology associated to a monad](http://www.tac.mta.ca/tac/reprints/articles/2/tr2abs.html).
+
+## Computational mathematics
+
+A Postdoc at our lab, [Andres Goens](https://scholar.google.de/citations?user=vjVhbJoAAAAJ&hl=en) 
+comes from a pure math background. While we were discussing potential research ideas (since I'm still
+trying to formulate my plan for PhD), he
+mentioned that we could provide a formal semantics for the
+[GAP programming language](https://www.gap-system.org/) in Lean.
+This project is definitely up my alley, since it involves computational math (yay), Lean (yay),
+and formal verification (yay). 
+
+I decided I needed to know some fundamental algorithms of computational group theory, so I skimmed
+the book
+[Permutation group algorithms by Serees](https://doc.lagout.org/science/0_Computer%20Science/2_Algorithms/Permutation%20Group%20Algorithms%20%5BSeress%202003-03-17%5D.pdf)
+which explains the fundamental algorithms behind manipulating finite groups computationally, such
+as the [Todd Coxeter coset enumeration algorithm](https://math.berkeley.edu/~kmill/notes/todd_coxeter.html)
+and the [Schrier Sims group decomposition algorithm](https://en.wikipedia.org/wiki/Schreier%E2%80%93Sims_algorithm).
+I loved the ideas involved, and implemented these at [`bollu/CASette`](https://github.com/bollu/CASette).
+
+
+I'd also half-read the textbook 'Cox, Little, OShea: Computational Algebraic Geometry' which I picked
+up again since I felt like I ought to revisit it after I had seen more algebraic geometry, and also
+because I wanted to be better informed about computational mathematics. I felt like this time around,
+I felt many of the theorems (such as the [hilbert basis theorem](https://en.wikipedia.org/wiki/Hilbert%27s_basis_theorem)) 
+'in my bones'. Alas, I couldn't proceed more than the second chapter since other life things took priorty.
+Perhaps I'll actually finish this book next year `:)`.
+
+
+For something completely different, I got interested in Cardistry and shuffling thanks to Youtube.
+I started learning interesting shuffles like the [riffle shuffle](https://mathworld.wolfram.com/RiffleShuffle.html),
+and soon got interested in the mathematics involved. I would up reading some of 
+the book [Group representations for probability and statistics](https://jdc.math.uwo.ca/M9140a-2012-summer/Diaconis.pdf)
+by Persi Diaconis, a magician turned mathematician who publishes quite a bit on permutation groups, shuffling, and the like.
+
+
+I really enjoyed learning the detailed theory of the representation theory of the symmetric group, which I
+had read patchily before while studying
+[Fourier analysis on the symmetric group](http://people.cs.uchicago.edu/~risi/research/symmetric.html).
+A lot of the theory
+still feels like magic to me; in particular, [Specht modules](https://en.wikipedia.org/wiki/Specht_module) are so
+'magic' that I would find it hard to reconstruct them from memory.
+
+## Competitive peogramming
+
+I need more practice at competitive programming. In fact, I'm [downright atrocious](https://codeforces.com/profile/bollu),
+as I'm rated "pupil" on codeforces. If I had to debug, it's a combination of several factors:
+
+
+- I get discouraged if I can't solve a problem I think I "ought to be able to solve".
+- I consider myself good at math and programming, and thus being bad at problem solving makes me feel 
+  bad about myself.
+- I tend to overthink problems, and I enjoy using heavy algorithmic machinery, when in reality, all that's called for
+  is a sequence of several observations.
+- Codeforces' scoring system needs one to be *fast* at solving problems and implementing them precisely. I don't enjoy
+  the time pressure. I'd like a scoring system based on harder problems, but less emphasis on time-to-solve. 
+
+To get better, I've been studying more algorithms (because it's fun). I took the
+[coursera course on string algorithms](https://www.coursera.org/learn/algorithms-on-strings) and 
+read the textbook [algorithms on strings](https://www.cambridge.org/core/books/algorithms-on-strings/19049704C876795D95D8882C73257C70).
+I loved the ideas of [building a prefix automata in linear time](https://codeforces.com/blog/entry/20861). The algorithm
+is vey elegant, and involves a fundamental decomposition of regular grammar
+ via the [Myhill Nerode theorem](https://en.wikipedia.org/wiki/Myhill%E2%80%93Nerode_theorem).
+You can find [my string algorithm implementations here](https://github.com/bollu/notes/tree/master/strings/impl).
+
+
+Another thing I kept getting tripped up by was the fact that problems that were rated "easy" on codeforces
+tended to have _intuitive_ solutions, but with _non-trivial_ watertight proofs. An example of this
+was the question [545C](https://codeforces.com/contest/545/problem/C) on codeforces, where the
+tutorial gives a [sketch of a exchange argument](https://codeforces.com/blog/entry/17982). Unfortunately,
+filling in all the gaps in the exchange argument is [quite complicated](https://gist.github.com/bollu/6b9d7d4b23cc4dd74d6a0fc2b66f452c).
+I finally did arrive at a much longer proof. This made me realize that competitive programming sometimes calls for
+"leaps" that are in fact quite hard to justify. This kept happening as I solved problems. To recitfy the state of affairs,
+I began documenting formal proofs to these problems. Here's a link to [my competitive programming notes](https://github.com/bollu/notes/blob/master/competitive-programming/main.pdf),
+which attempts to formally state and prove the correctness of these questions.
+
+
+
+## Writing a text editor (dropped)
+
+I started writing a text editor, because earlier tools that I'd written for myself
+such as `ward` for blackboarding, and my custom blog generator all worked really well for me,
+as they fit to my idiosyncracies. I tried writing a terminal based editor
+at [`bollu/edtr`](https://github.com/bollu/edtr) following the [`kilo` tutorial](https://viewsourcecode.org/snaptoken/kilo/).
+Unfortunately, building a text editor is hard work, especially if one wants modern convenienes like
+auto-complete.
+
+I've postponed this project as one I shall undertake during the dark night of the soul every PhD student
+encounters when writing their thesis. I plan to write a minimal lazily evaluated language, and great
+tooling around that language as a means to while away time. But this is for future me!
+
+## DnD
+
+My partner got me into playing dungeons and dragons this year. I had a lot of fun
+role-playing, and I plan to keep it up.
+
+#### Nomic
+
+[Nomic](https://en.wikipedia.org/wiki/Nomic)
+is a neat game about changing the rules of the game. It takes a particular
+type of person to enjoy it, I find, but if you have the type of people who
+enjoy C++ template language lawyering, you'll definitely have a blast!
+
+#### Continuum
+
+I found [the continuum RPG](https://en.wikipedia.org/wiki/Continuum_(role-playing_game)),
+a game about time travel 
+very unique, due to the massive amount of lore that surrounds it,
+and game mechanics which revolve around creating time paradoxes to deal damage
+to those stuck in it. It appears to have a reputation of being a game
+that everybody loves but nobody plays.
+
+#### Microscope
+
+Microscope is a [game about storytelling](https://www.lamemage.com/microscope/). I unfortunately
+was never able to host it properly because I was busy, and when I wasn't busy, I was unsure
+of my abilities as dungeon master `:)` But it definitely is a game I'd be stoked to play.
+I'm thnking of running it early 2022 with my group of friends.
+
+#### Preparing for PhD
+
+I was at home this year, wrapping up my master's thesis, and attempting to
+accept the PhD position I was offered by [Dr. Tobias Grosser](https://grosser.science/) at the University of Edinburgh.
+I've worked with Tobias for, I suppose, four years now, and he's an incredible advisor. We understand
+each other really well, and he totally gets the type of things I enjoy, and the failure modes
+I have (the lack of a priority queue, for example). It's great to have the feeling that I have
+an extremely supportive advisor 
+
+
+
+## Odds and ends
+
+I joined the [portal group](https://theportal.group/) on discord, which consist of folks
+who follow Eric Weinstein's philosophy, broadly speaking. The discod is a strange mileu. I hung
+around because there were folks who knew a *lot* of math and physics. I would up
+watching the [geometric anatomy of theoretical physics](https://www.youtube.com/playlist?list=PLPH7f_7ZlzxTi6kS4vCmv4ZKm9u8g5yic)
+lectures on YouTube by Fredrick Schuller. The lectures are great expository material, though the hardness
+ramps up like a cliff towards the end, because it feels like he stops proving things and beings to simply
+state results. Regardless, I learnt a lot from it. I think my favourite takeaway was the
+[Serre Swann theorem](https://en.wikipedia.org/wiki/Serre%E2%80%93Swan_theorem) which makes
+very precise the idea that "projective modules are like vector bundles".
+
+Similarly, I would up realizing that my differential geometry was in fact quite weak, in terms
+of computing things in coordinates. So I wound up re-reading
+[Do carmo: differential geometry of curves and surfaces](http://www2.ing.unipi.it/griff/files/dC.pdf), and I implemented
+the coordinate based computations in Jupyter notebooks. For example,
+here is a [Jupyter notebook that calculates covariant derivatives explicitly](https://github.com/bollu/notes/blob/master/diffgeo/geodesics.ipynb).
+I found that this forced me to understand what was "really going on". I now know slogans like:
+
+> The Covariant Derivative is the projection of the global derivative onto the tangent space.
+> The Christoffel Symbols measure the second dervative(acceleration) along the tangent space.
+
+
+I got interested in the work of [Elizaboth Polgreen](https://polgreen.github.io/). In particular,
+I found the idea of being able to extend an SMT solver with arbitrary black-box functions pretty great.
+I read their [technical report on SMT modulo oracles](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2021/EECS-2021-10.pdf)
+and [implemented the algorithm](https://github.com/bollu/notes/blob/master/smt-modulo-oracles.ipynb).
+
+
+## What I want for next year
+
+I wish to learn how to focus on one thing. I'm told that the point of a PhD is to become a world
+expert on one topic. I don't have a good answer of what I wish to become a world expert on. I like
+the varied interessts I have, so it'll be interesting as to how this pans out. However, I have
+decided to place all my bets on the Lean ecosystem, and I plan on spending most of 2022 writing
+Lean code almost always (or perhaps even always). I wish to understand all parts of the Lean compiler,
+from the frontend with its advanced macro system, to the middle end with its dependent typing,
+to the back-end [which I do understand now].
+
+
 # Cayley hamilton for 2x2 matrices in sage via AG
+
+- I want to 'implement' the zariski based proof for cayley hamilton in SAGE and show
+  that it works by checking the computations scheme-theoretically.
+
+# LispWorks config
+
+- Looks like all emacs keybindings just work
+- https://www.nicklevine.org/declarative/lectures/additional/key-binds.html
+
 
 # Birkhoff Von Neumann theorem
 
@@ -291,74 +717,6 @@ This interpolates p---q to x--c--y by using bary coordinates to interpolate alon
 - Forward dataflow deals with facts _thus far_.
 - Backward dataflow deals with facts about _the future_, or the _rest of the program_.
   Thus, in a real sense, backward dataflow concerns itself with _continuations_!
-
-# Stuff I learnt in 2021
-
-#### Academia
-
-- Minimal setup: st + mtm
-- CGO'22 paper acceptance
-- Working with Lean4, sending them PRs
-
-##### Guitar
-- Guitar
-
-#### Code
-
-
-- Immer paper.
-- [bollu/ward](https://github.com/bollu/ward)
-- [bollu/lz](https://github.com/bollu/lz)
-- [bollu/rasterizer](https://github.com/bollu/rasterizer)
-- [Liam O connor thesis]()
-- [Dan and art explan an old trick]()
-- [bollu/soundsynth](https://github.com/bollu/soundsynth)
-- [bollu/GAP-lean]()
-- Counting immutable beans
-- Sealing pointer equality
-- Fuzzing book
-- [opencompl/lean-gap](https://github.com/opencompl/lean-gap)
-- [opencompl/lean-mlir](https://github.com/opencompl/lean-gap)
-- Algorithms on strings
-- Cox, Little, Oshea: a second read
-- Serees: Permutation group algorithms
-- tidy data
-- Statics for psychologists
-- Jackknife
-- Triples, algebras, cohomology
-- normalization by evaluation
-- bidirectional typing
-- Category theory in context
-- Keenan crane: replusive curves
-- Geometric anatomy of theoretical physics
-- discrete Algebraic topology
-- Vector bundles and K theory
-- Computing in the monster
-- Group representations for probability and statistics
-- Portal group: geometric unity
-- cubicaltt lectures by faviona
-- Player of games
-- Djikstra monads (A second read)
-- Do carmo (A second read)
-- Tabled typeclass resolution
-- Wrote my master thesis
-- [bollu/mlir-hoopl-rete](https://github.com/bollu/mlir-hoopl-rete)
-- [bollu/CASette](https://github.com/bollu/CASette)
-- [bollu/edtr](https://github.com/bollu/edtr)
-- Smt modulo oracles
-- SICM (unfinished)
-- fractions
-- demand analysis
-- [bollu/pwncollege](https://github.com/bollu/pwncollege)
-- discrete riemann roch (unfinished)
-- Plucker coordinates
-
-
-#### DnD
-
-- continuum
-- blightburg
-- microscope
 
 # The tyranny of structurelessness
 
