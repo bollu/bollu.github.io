@@ -39046,6 +39046,64 @@ Plan: finish cardistry bootcamp, learn card control from 52kards.
 
 
 
+
+##### Entertaining footgun: `let` bindings
+
+```lisp
+(defgeneric errormsg (x))
+(let* (x (errormsg 12)) x)
+```
+
+The above silently compiles, with an SBCL error:
+
+```
+; caught STYLE-WARNING:
+;   The variable ERRORMSG is defined but never used.
+```
+
+This should clue you in that something terrible has happened.
+The correct form of the `let*` requires ONE outer paren
+group to denote bindings, and ANOTHER paren for each key-value
+pair.
+
+So this should have been written:
+
+```
+(let* ( ;; <- OPEN pairs of bindings
+   (x (errormsg 12))
+   ) ... ;; <- CLOSE bindings
+```
+
+But has been written as:
+
+```
+(let* (
+   x
+   (errormsg 12)
+  ) ...)
+```
+
+This gets interpreted as:
+
+```
+(let* (
+   (x nil) ;; notice the `nil` introduction
+   (errormsg 12)
+   ) ...)
+```
+
+The takeaway appears to be that SBCL warnings ought to be
+treated as errors.
+
+
+##### ASDF: treat warnings as errors:
+
+```
+;; 23:49 <@jackdaniel> bollu: I don't know whether this is documented
+(setf asdf:*compile-file-warnings-behaviour* :error)
+```
+
+
 ##### Toys
 
 > Special variables (Mutable globals) should be surrounded by asterisks. These are called earmuffs.
