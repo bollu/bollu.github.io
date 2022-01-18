@@ -7,6 +7,66 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
 
+# Projections onto convex sets
+
+- https://en.wikipedia.org/wiki/Projections_onto_convex_sets
+
+
+# BGFS algorithm for unconstrained nonlinear optimization
+
+- https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm
+
+# LM algorithm for nonlinear least squares
+
+- https://en.wikipedia.org/wiki/Levenberg%E2%80%93Marquardt_algorithm
+
+
+
+# Backward dataflow and continuations
+- Forward dataflow deals with facts _thus far_.
+- Backward dataflow deals with facts about _the future_, or the _rest of the program_.
+  Thus, in a real sense, backward dataflow concerns itself with _continuations_!
+
+
+
+# Coordinate compression without the fuss
+
+If we have a `set<int>` that represents our set of uncompressed values, we can
+quickly compress it with a `vector<int>` and `lower_bound` without having to
+create an `std::map`!
+
+```cpp
+set<int> ss; // input set to compress
+vector<int> index(ss.begin(), ss.end()); 
+int uncompressed = ...; // 
+int compressed = int(lower_bound(index.begin(), index.end(), key) - index.begin());
+assert(xs[compressed] == uncompressed);
+```
+
+# Hilbert polynomial and dimension
+
+- Think of non Cohen Macaulay ring (plane with line perpendicular to it). Here the dimension varies per point.
+- Let $R$ be a graded ring. Let $R^0$ be noetherian. $R$ is finitely generated as an algebra over $R^0$.
+  This implies by hilbert basis theorem that $R$ is noetherian (finitely generated as a module over $R^0$).
+- Suppose $M$ is a graded module over $R$, and $M$ is finitely generated as a module over $R$.
+- How fast does $M_n$ grow? We need some notion of size.
+- Define the size of $M_n$ as $\lambda(M_n)$.Suppose $R$ is a field. Then $M_n$ is a vector space. We define
+  $\lambda(M_n)$ to be the dimension of $M_n$ as a vector space over $R$.
+- What about taking dimension of tangent space? Doesn't work for cusps! (singular points). Can be used to define
+  singular points.
+- TODO: show that at $y^2 = x^3$, we have dimension two (we expect dimension one)
+
+# Cost of looping over all multiples of $i$ for $i$ in $1$ to $N$
+
+- Intuitively, when I think of "looping over $i$ and all its multiples", I seem to have a gut
+  feeling that its cost is $N$. Of course, it is not. It is $N/i$.
+- Thus, the correct total cost becomes $\sum_{i=1}^N N/i$ (versus the false cost of $\sum_{i=1}^N N = N^2$.
+- The correct total cost is a harmonic series $N\cdot \sum_{i=1}^N1/i \simeq N \log N$.
+- This is useful for number theory problems like [1627D](https://codeforces.com/contest/1627/problem/D)
+
+
+
+
 # Stuff I learnt in 2021
 
 I spent this year focusing on fundamentals, and attempting to prepare
@@ -39056,9 +39116,9 @@ Plan: finish cardistry bootcamp, learn card control from 52kards.
 
 The above silently compiles, with an SBCL error:
 
-```
-; caught STYLE-WARNING:
-;   The variable ERRORMSG is defined but never used.
+```lisp
+;; caught STYLE-WARNING:
+;;   The variable ERRORMSG is defined but never used.
 ```
 
 This should clue you in that something terrible has happened.
@@ -39068,7 +39128,7 @@ pair.
 
 So this should have been written:
 
-```
+```lisp
 (let* ( ;; <- OPEN pairs of bindings
    (x (errormsg 12))
    ) ... ;; <- CLOSE bindings
@@ -39076,29 +39136,29 @@ So this should have been written:
 
 But has been written as:
 
-```
+```lisp
 (let* (
    x
    (errormsg 12)
-  ) ...)
+  ) ... )
 ```
 
 This gets interpreted as:
 
-```
+```lisp
 (let* (
    (x nil) ;; notice the `nil` introduction
    (errormsg 12)
-   ) ...)
+   ) ... )
 ```
 
-The takeaway appears to be that SBCL warnings ought to be
-treated as errors.
+The takeaway appears to be that `SBCL` warnings
+ought to be treated as errors.
 
 
 ##### ASDF: treat warnings as errors:
 
-```
+```lisp
 ;; 23:49 <@jackdaniel> bollu: I don't know whether this is documented
 (setf asdf:*compile-file-warnings-behaviour* :error)
 ```
