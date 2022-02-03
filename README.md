@@ -6,6 +6,55 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+# Wilson's theorem
+
+- We get $p \equiv 1$  (mod $4$) implies $((p-1)/2)!$ is a square root of -1.
+- It turns that this is because from Wilson's theorem, $(p-1)! = -1$.
+- Pick $p = 13$. Then in the calculation of $(p-1)!$, we can pair off $6$ with $-6=7$, $5$ with $-5=8$ and so on.
+- So we get $(p-1)/2 \times (p-1)/2 = (p-1)!$.
+- This means that $(p-1)/2 = \sqrt{-1}$.
+- The condition $(p-1)/2$ is even is the same as saying that $p-1$ is congruent to $0$ mod $4$,
+  or that $p$ is congruent to $1$ mod $4$.
+- It's really nice to be able to see where this condition comes from!
+
+# General enough special cases
+
+- Also, I feel thanks to thinking about combinatorial objects for a while
+  I've gained some kind of "confidence", where I check a special
+  case which I am confident generalizes well.
+
+```
+void editor_state_backspace_char(EditorState& s) {
+    assert(s.loc.line <= s.contents.size());
+    if (s.loc.line == s.contents.size()) { return; }
+    std::string& curline = s.contents[s.loc.line];
+    assert(s.loc.col <= curline.size());
+    if (s.loc.col == 0) { return; }
+    // think about what happens with [s.loc.col=1]. Rest will work.
+    std::string tafter(curline.begin() + s.loc.col, curline.end());
+    curline.resize(s.loc.col - 1); // need to remove col[0], so resize to length 0.
+    curline += tafter;
+    s.loc.col--;
+}
+```
+# XOR and AND relationship
+
+-  `a xor b = a + b - 2 (a & b)`
+
+# Geometry of complex integrals
+
+- integral f(z) dz is work in real part, flux in imaginary part.
+- https://www.youtube.com/watch?v=EyBDtUtyshk
+
+# Green's functions
+- Can solve $L y(x) = f(x)$.
+- $f(x)$ is called as the forcing operator.
+- $L$ is a linear diffeential operator. That is, it's a differential operator lik $\partial_x$ or $\partial_t \partial_t$. 
+  See that $\partial_t \partial_t$ is linear, because
+  $\partial_t \partial_t \alpha f + \beta g = \alpha (\partial_t \partial_t f) + \beta (\partial_t \partial_t g)$
+- 
+- https://www.youtube.com/watch?v=ism2SfZgFJg
+
 # CP trick: writing exact counting as counting less than
 
 - If we can solve for number of elements `<= k`, say given by `leq(k)` where `k` is an integer,
@@ -36,7 +85,7 @@
   which is equal to the usual $n!/a!b!c!$ by cancelling and setting $c = n - a - b$.
 - Generalization is immediate.
 
-# Fundamental theorem of homological algebra [WIP]
+# Fundamental theorem of homological algebra [TODO]
 - Let $M$ be an $R$ module.
 - A resolution of $M$ is an exact chain complex `... -> M2 -> M1 -> M0 -> M -> 0`
 - A projective resolution of `P*` of `M` is a resolution such that all the `P*` are projective.
@@ -84,7 +133,7 @@ P1---   P0 -> M -> 0
 
 ## Chain homotopy classes of chain maps
 
-# Projective modules in terms of universal property [TODO]
+# Projective modules in terms of universal property
 
 ## (1): Universal property / Defn
 
@@ -224,20 +273,6 @@ E ->>B <--       g~
   The module $P$ is a vector bundle that only takes values over one of the points.
   Since the bundle different dimensions over the two points (1 versus 0), it is projective but not free.
 - It is projective since it's like a vector bundle. It's not free because it doesn't have constant dimension.
-## Torsion and projective modules
-
-- Consider the exact sequence $0 \to Tor(M) \to M \to M/Tor(M)$. 
-- Define $Tor(M)$ to be the submodule of $M$ consisting of torsion elements. That is, those elements 
-  such that there is an $r \in R-\{0\}$ such that $r \cdot m = 0$. Formally, it is $\{ m \mid \exists r \in R, r \neq 0, rm = 0 \}$.
-- We claim that the above exact sequence splits. That is, there is a non-canonical map $M/Tor(M) \to M$ such that
-  the round-trip $M/Tor(M) \to M \to M/Tor(M)$ is the identity.
-
-##### $M/Tor(M)$ is torsion free
-
-##### $M/Tor(M)$ is free
-
-##### The spliting $M/Tor(M) \to M$ is injective
-
 
 #### References
 - [video](https://www.youtube.com/watch?v=odva24Ro-44&list=PL2Rb_pWJf9JqgIR6RR3VFF2FwKCyaUUZn&index=37)
@@ -496,7 +531,7 @@ int centroid(int v, int p) {
   given by $i(z) = 3z$. We also have the quotient map $f: Z \to Z/3Z$. We want to factor $f = qi$ where
   $q: Q \to Z/3Z$. This is given by $q(x) = $
 
-# Proof that $Spec(R)$ is a sheaf [WIP]
+# Proof that $Spec(R)$ is a sheaf [TODO]
 
 - Give topology for $Spec(R)$ by defining the base as $D(f)$ --- sets where $f \in R$ does not vanish.
 - Note that the base is closed under intersection: $D(f) \cap D(g) = D(fg)$.
@@ -1346,16 +1381,16 @@ r + s = n + 1
 - Can we use UB to express things like "this list will be finite, thus map can be safely parallelised" or something? 
 - Have quantitative: `0,1,fin,inf`?
 
-# Projections onto convex sets [WIP]
+# Projections onto convex sets [TODO]
 
 - `https://en.wikipedia.org/wiki/Projections_onto_convex_sets`
 
 
-# BGFS algorithm for unconstrained nonlinear optimization [WIP]
+# BGFS algorithm for unconstrained nonlinear optimization [TODO]
 
 - `https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm`
 
-# LM algorithm for nonlinear least squares [WIP]
+# LM algorithm for nonlinear least squares [TODO]
 
 - `https://en.wikipedia.org/wiki/Levenberg%E2%80%93Marquardt_algorithm`
 
@@ -1433,7 +1468,7 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 - use `spc -e 'error, red' ` to color all occurrences of string `error` with `red`.
 - I use this in [lean-mlir]() to get colored output.
 
-# Reader monoid needs a hopf algebra?! [WIP]
+# Reader monoid needs a hopf algebra?! [TODO]
 - 5.1, eg (iii)
 - We actually get a free comonoid in a CCC.
 - having a splittable random supply in like having a markov category with a comonoid in it.
@@ -1451,7 +1486,7 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 - [Link to homepage of insane card stacker](https://www.cardstacker.com/)
 
 
-# Representation theory for particle physics [WIP]
+# Representation theory for particle physics [TODO]
 
 - [References](https://math.ucr.edu/~huerta/guts/node1.html)
 
@@ -1490,7 +1525,7 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 
 - I'd like to write in the style of the bible!
 
-# Undefined behaviour is like compactification [WIP]
+# Undefined behaviour is like compactification [TODO]
 
 - We compactify something like $\mathbb N$ into $\mathbb N^\infty$.
 - What does Stone Cech give us?
@@ -1810,7 +1845,7 @@ curl bashupload.com -T your_file.txt
 - Thus $C_n$ is odd iff $n = 2^r - 1$, which allows for us to have a complete binary tree, which is not paired by the involution.
 - [Reference](https://mathoverflow.net/a/409029)
 
-# Discrete probability [WIP]
+# Discrete probability [TODO]
 
 - The textbook discrete probability actually manages to teach "discrete probability" as a unified subject, laying out _all the notation_ clearly,
   something that I literally have never seen before! This is me making notes of the notation.
@@ -2464,7 +2499,7 @@ $$
   must send $\alpha$ to some other root of $p(x)$ [by virtue of being a field map that fixes $L$,  $0 = \sigma(0) = \sigma(p(\alpha)) = p(\sigma(\alpha))$]. 
 - There are exactly number of roots of $p$ (= $[M:L]$) many choices. Each gives us one automorphism. Thus $|Gal(M/L)| = [M:L]$.
 
-# Counter-intuitive linearity of expectation [WIP]
+# Counter-intuitive linearity of expectation [TODO]
 
 - I like the example of "10 diners check 10 hats. After dinner they are given the hats back at random."
   Each diner has a 1/10 chance of getting their own hat back, so by linearity of expectation, the expected number of diners who get the correct hat is 1.
@@ -2699,7 +2734,7 @@ $$
 - This is how we get "ladder operators" which raise and lower the state. If we have a state $x$ with some eigenvalue $\lambda$, the operator like $N$
   gives us an "excited state" from $x$ which eigenvalue $\kappa + \lambda$.
 
-# Deriving pratt parsing by analyzing recursive descent [WIP]
+# Deriving pratt parsing by analyzing recursive descent [TODO]
 
 
 # Level set of a continuous function must be closed
@@ -3342,7 +3377,7 @@ MX17004 2010-05-27 33.2 18.2
 
 - [Reference: This week's finds 184 by baez](https://math.ucr.edu/home/baez/week184.html)
 
-# McKay's proof of Cauchy's theorem for groups [WIP]
+# McKay's proof of Cauchy's theorem for groups [TODO]
 
 - In a group, if $gh = 1$ then $hg = 1$. Prove this by writing $hg = hg (h h^{-1}) = h(gh)h^{-1} = h \cdot 1 \cdot h^{-1} = 1$.
 - We can interpret this as follows: in the multiplication table of a group, firstly, each row contains exactly one $1$.
@@ -3353,7 +3388,7 @@ MX17004 2010-05-27 33.2 18.2
 - [Reference](http://www.cs.toronto.edu/~yuvalf/McKay%20Another%20Proof%20of%20Cauchy's%20Group%20Theorem.pdf)
 
 
-# Odds versus probability [WIP]
+# Odds versus probability [TODO]
 
 - https://www.youtube.com/watch?v=lG4VkPoG3ko
 - https://www.youtube.com/watch?v=HZGCoVF3YvM
@@ -3631,7 +3666,7 @@ $$
 
 
 
-# Filtered Colimits [WIP]
+# Filtered Colimits [TODO]
 
 - [Reference](https://math.stackexchange.com/questions/3695933/motivation-for-filtered-categories-limits?noredirect=1&lq=1)
 
@@ -3744,7 +3779,7 @@ def permutation(draw, n):
 - Proof: suppose for contradiction that there do exist `k, l` such that `kx + ly = 1`. Modulo `x`, this means that `ly = 1` which is absurd,
   and similarly modulo `x` it means `kx = 1` which is also absurd.
 
-# Integral elements of a ring form a ring [WIP]
+# Integral elements of a ring form a ring [TODO]
 
 - An integral element of a field $L$ (imagine $\mathbb C$)
   relative to an integral domain $A$ (imagine $\mathbb Z$) is the root of a monic polynomial in $A$.
@@ -3762,13 +3797,13 @@ def permutation(draw, n):
 - If we punch two holes, that causes $V - E + F$ to go down by two. But we can glue the two edges together. 
   This gluing gives us a handle, so each hole/genus reduces the euler characteristic by two!
 
-# Siefert Algorithm [WIP]
+# Siefert Algorithm [TODO]
 
 - Algorithm to find surface that a knot bounds.
 - If we find a surface, then the genus of the boundary is one minus the genus of the surface.
 - Compute genus via classification of surfaces.
 
-# Cap product [WIP]
+# Cap product [TODO]
 - https://www.youtube.com/watch?v=oxthuLI8PQk
 
 - We need an ordered simplex, so there is a total ordering on the vertices. This is to split a chain apart at number $k$.
@@ -3781,7 +3816,7 @@ def permutation(draw, n):
 - Cap product will be nonzero if the chain *must* always intersect the cochain.
 - This is why it's also called as the intersection product, since it somehow counts intersections.
 
-# Cup product [WIP]
+# Cup product [TODO]
 
 - We need an ordered simplex, so there is a total ordering on the vertices. This is to split a chain apart at number $k$.
 - Can always multiply functions together. This takes a $k$ chain $\xi$ and an $l$ chain $\eta$ and produces $\xi \cup \eta$ which is a $k + l$
@@ -3816,7 +3851,7 @@ def permutation(draw, n):
 - Given a limit, compute the value as taking product of all objects, and taking only those tuples which obey the relations
   the relation $f(a) = b$ for all arrows $f \in Hom(X, Y)$.
 
-# Classification of compact 2-manifolds [WIP]
+# Classification of compact 2-manifolds [TODO]
 
 - Oriented compact 2-surfaces: sphere, torus, 2 holed torus, etc.
 - have euler characteristic $V - E + F $ as $2 - 2g$
@@ -3872,7 +3907,7 @@ def permutation(draw, n):
 
 https://www.youtube.com/watch?v=dUOmU-0t2Nc&list=PLIljB45xT85DWUiFYYGqJVtfnkUFWkKtP&index=27
 
-# Gauss, normals, fundamental forms [WIP]
+# Gauss, normals, fundamental forms [TODO]
 
 - consider a parametrization $r: u, v \to \mathbb R^3$
 - at a point $p = r(u, v)$ on the surface, the tangent vectors are $r_u \equiv \partial_u r$ and similarly $r_v \equiv \partial_v r$.
@@ -3923,7 +3958,7 @@ $$
 
 #### Proof of equivalence between 2nd fundamental form and geometry
 
-# Shape operator [WIP]
+# Shape operator [TODO]
 
 
 
@@ -3946,7 +3981,7 @@ $$
   is determined by the equation:
 - $\partial_i \mathbf N = -S_{ji} \mathbf X_b$
 
-# Theorem Egregium / Gauss's theorem (Integrating curvature in 2D) [WIP]
+# Theorem Egregium / Gauss's theorem (Integrating curvature in 2D) [TODO]
 
 - Let $S$ be a 2 dimensional surface.
 - Gauss Rodriguez map map: $N: S \to S^2$. The derivative of this map goes from $dN: T_p S \to T_p S^2$.
@@ -3963,7 +3998,7 @@ $$
 - In particular if the surface is homeomorphic to a sphere, then we get the total area of the sphere, $4 \pi$.. This is the 2D analogue of
   the fact that if we integrate the curvature of a closed curve, we get $2 \pi$. [area of a circle]. This is by green's theorem.
 
-# Integrating Curvature in 1D [WIP]
+# Integrating Curvature in 1D [TODO]
 
 - All curves are parametrized by _arc length_ to avoid weird artefacts by time parametrization.
 - So $r(s)$ is a function from length of the curve to $\mathbb R^3$.
@@ -3971,7 +4006,7 @@ $$
 - The curvature is given by $\kappa(s) \equiv |dr^2/ds^2|$.
 - The unit normal is given by $\hat N(s) r''(s) / \kappa(s)$.
 - We wish to consider the total curvature, given by $\int_0^L \kappa(s) ds$ where $L$ is the total length of a closed curve on the plane.
-- WIP: how to prove that this will be a multiple of $2 \pi$?
+- TODO: how to prove that this will be a multiple of $2 \pi$?
 
 
 # Fundamental theorem of symmetric polynomials
@@ -4498,7 +4533,7 @@ int f(vector<int> &xs) {
   This happens for example at `ATLEAST1:`, where we have one element so we know that `best >= 1`, but we don't have two elements to initialize
   the DP array.
 
-# Representation theory of $SU(2)$ [WIP]
+# Representation theory of $SU(2)$ [TODO]
 
 - `2x2` unitary matrices, so $AA^\dagger = I$.
 - Lie algebra is $su(2)$, which are of the form $A^\dagger = -A$, and $Tr(A) = 0$.
@@ -5298,18 +5333,18 @@ def rhsIV():
 
 - [From IMO math](https://www.imomath.com/index.php?options=237&lmm=1)
 
-# Expected number of turns to generate all numbers `1..N` (WIP)
+# Expected number of turns to generate all numbers `1..N` (TODO)
 
 - Supposedly, asymptotically `N log N`
 
 #### For $N=1$, the expected number of turns is $1$.
 
-# Diameter in single DFS (WIP)
+# Diameter in single DFS (TODO)
 
 - [Gist by pedu](https://gist.github.com/anurudhp/1ecf14f1211c71cd5c99537fad13fecd)
 
 
-# Min cost flow (WIP)
+# Min cost flow (TODO)
 
 
 - Problem statement: Find a maximal flow with minimum cost.
@@ -7525,7 +7560,7 @@ y = [#]
   and its action $A_y \equiv \dots$ has a lot of exercise.
 
 - Anyone can participate in $x$'s exercise regime. In particular, $A_x(y) = id(y) = y$ since $y$ doesn't tire out from the exercise regime of $x$.
-- On the other side, it's hard to take part in $y$'s exercise regime and not get wiped out. If we consider $A_y(x)$, we're going to get zero
+- On the other side, it's hard to take part in $y$'s exercise regime and not get TODOed out. If we consider $A_y(x)$, we're going to get zero
   because by tableaux, there are swaps in $A_y$ that leave $x$ invariant, which causes sign cancellations. But intuitively, $A_y(x)$ is asking $x$
   to participate in $y$'s exercise regmine, which it's not strong enough to do, and so it dies.
 
@@ -8657,7 +8692,7 @@ Recall that the number of irreps is upper bounded by the number of conjugacy cla
 from character theory: (1) the characters of irreps are orthogonal in the space of class functions, and
 (2) the dimension of the space of class functions is is equal to the number of conjugacy classes, since there
 are those many degrees of freedom for a class function --- it must take on a different value per conjugacy class
-[WIP: finish my character theory notes]. In our case, we have found one irrep per conjugacy class, since
+[TODO: finish my character theory notes]. In our case, we have found one irrep per conjugacy class, since
 conjugacy classes of $S_n$ is determined by cycle type, and the shape of a diagram encodes the cycle type of
 a permutation. If we show that the irreps of different shapes/diagrams are inequivalent, we are done.
 
@@ -39187,6 +39222,17 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
+> If Alice uses abstract algebra to solve problem and Bob uses concrete calculation, Alice's result is more generalizable than Bob's,
+> while Bob's method is more generalizable than Alice's.
+> This is one reason why combining the two approaches is so valuable.
+> You can start with something you know will work but may not unlock a great mystery, and then look for patterns that clue you in to a wider story.
+
+> "There are two kinds of scientific progress:
+> the methodical experimentation and categorization which gradually extend the boundaries of knowledge,
+> and the revolutionary leap of genius which redefines and transcends those boundaries.
+> Acknowledging our debt to the former, we yearn nonetheless for the latter"
+
+
 > you can be dead right. (Being right has a time and a place)
 
 > Bott also used to say that a cocyle was "something that hovers over a space
@@ -39629,9 +39675,10 @@ Plan: finish cardistry bootcamp, learn card control from 52kards.
 - SLIME Restart: [`M-x slime-restart-inferior-lisp`](https://stackoverflow.com/questions/3725595/reset-state-in-common-lisp),
     or call [`(progn (unload-feature 'your-lib) (load-library "your-lib"))`](https://emacs.stackexchange.com/a/26606/28600)
 - [SLIME force re-evaluation of `defvar`, use `M-x slime-eval-defun` (`C-M-x`)](https://emacs.stackexchange.com/questions/2298/how-do-i-force-re-evaluation-of-a-defvar).
-
-
-
+- [Serepeum library for exhaustiveness checking](https://github.com/ruricolist/serapeum/)
+- [Alexandria `destructuring-case` for pattern matching](https://alexandria.common-lisp.dev/draft/alexandria.html#Data-and-Control-Flow)
+- [Sycamore for purely functional data structures](https://github.com/ndantam/sycamore)
+- [Screamer for logic programming](https://github.com/nikodemus/screamer)
 
 ##### Entertaining footgun: `let` bindings
 

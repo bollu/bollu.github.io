@@ -1,6 +1,6 @@
 # Builder
 
-- Rewrite using [immer](https://github.com/arximboldi/immer) for functional data structures.
+- [Look at gtmetrix for metrics](https://gtmetrix.com/reports/pixel-druid.com/V6g2J0rV/)
 - Consider using `git blame` to date articles by time of creation and last updated.
 - Add the shit tons of latex shortcuts I want.
 - Make list requirements more flexible. allowed `-aa\n\n-bb`
@@ -27,6 +27,7 @@ if ((window.innerHeight - document.documentElement.clientHeight) >0) {
 
 # Features
 
+- [ ] Spell check for page
 - [ ] Add syntax highlighting when displaying errors.
 - [ ] Add a link back at the end of the page to the main page / Add "go back" link.
 - [ ] Client side search with [elasticlunr.js](https://github.com/weixsong/elasticlunr.js/)

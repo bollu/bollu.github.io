@@ -1500,16 +1500,16 @@ const char html_preamble[] =
     "html,body { text-size-adjust: none; -webkit-text-size-adjust: none; "
     "-moz-text-size-adjust: none; -ms-text-size-adjust: none; } "
     "body {"
-    " background: linear-gradient(to right, #1565C0 1%, #FFFFFF 1%, #FFFFFF 99%, #E91E63 99%); "
+    " background: linear-gradient(to right, #1565C0 0%, #1565C0 50%, #E91E63 50%,   #E91E63 99%); "
     // " background: linear-gradient(to right, #1565C0 1%, #EFEFEF 1%, #EFEFEF 99%, #E91E63 99%); "
     // " background: linear-gradient(to right, #1565C0 50%, #C2185B 50%);"
     " color: #000000; " // tufte
-    " font-family: 'Blog Serif', sans-serif; "
-    " font-size: 18px; line-height: 1.4em; "
+    " font-family: 'Blog Serif', serif; "
+    " font-size: 14px; "
     " margin-top: 0px; " // by default, there is a margin.
     " max-width: 100%; overflow-x: hidden; }"
     "\n"
-    "h1, h2, h3, h4, h5 { font-family: 'Blog Sans' }"
+    "h1, h2, h3, h4, h5 { font-family: 'Blog Mono', monospace; }"
     // img as a block. width: 100% makes it responsive with no fiddling
     // https://stackoverflow.com/questions/15458650/make-an-image-responsive-the-simplest-way
     "img { display:block; width: 100%; max-width: 800px; height: auto }"
