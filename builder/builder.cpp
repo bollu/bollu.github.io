@@ -2,7 +2,7 @@
 // TODO: RSS feed.
 // Font to try: Iosevka
 #include "duktape/duktape.h"
-#include "utf8.h"
+// #include "utf8.h"
 #include <fstream>
 #include <iostream>
 #include <stdarg.h>
@@ -10,12 +10,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <string>
-#include <sys/resource.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-#include <sys/wait.h>
+// #include <sys/resource.h>
+// #include <sys/wait.h>
 #include <tuple>
-#include <unistd.h>
+// #include <unistd.h>
 #include <unordered_map>
 #include <utility>
 #include <vector>
@@ -223,8 +223,8 @@ void vprintferr(L loc, const char *raw_input, const char *fmt, va_list args) {
   cout << "===\n";
   print_loc(loc, raw_input);
   cout << "\n---\n";
-  char *outstr = nullptr;
-  vasprintf(&outstr, fmt, args);
+  char *outstr = (char *)malloc(sizeof(char) * 1e5);
+  vsprintf(outstr, fmt, args);
   assert(outstr);
   cout << outstr;
   cout << "\n===\n";
@@ -982,11 +982,12 @@ void tokenize(const char *s, const ll len, vector<T *> &ts) {
 }
 
 void vduk_debug_print_stack(duk_context *ctx, const char *fmt, va_list args) {
-  char *outstr = nullptr;
-  vasprintf(&outstr, fmt, args);
+  char *outstr = (char*)malloc(sizeof(char)*1e5);
+  vsprintf(outstr, fmt, args);
   assert(outstr);
 
   printf("\nvvv%svvv\n", outstr);
+  free(outstr);
   printf("[TOP OF STACK]\n");
   const int len = duk_get_top(ctx);
   for (int i = 1; i <= len; ++i) {
@@ -1067,7 +1068,7 @@ GIVE char *pygmentize(duk_context *prism_ctx, KEEP const char *raw_input,
 
 enum class LatexType { LatexTypeBlock, LatexTypeInline };
 
-GIVE char *compileLatex(duk_context *katex_ctx, KEEP const char *raw_input,
+std::pair<bool, GIVE char *> compileLatex(duk_context *katex_ctx, KEEP const char *raw_input,
                         const Span span, const LatexType ty) {
 
   // TODO: fixup inline v/s block math. Code is here:
@@ -1110,10 +1111,11 @@ GIVE char *compileLatex(duk_context *katex_ctx, KEEP const char *raw_input,
     //   -2         -1
     char *out = strdup(duk_to_string(katex_ctx, -1));
     duk_pop(katex_ctx);
-    return out;
+    return {true, out};
   } else {
     printferr(span.begin, raw_input, "%s", duk_to_string(katex_ctx, -1));
-    assert(false && "unable to compile katex");
+    return {false, nullptr};
+    // assert(false && "unable to compile katex");
   }
 }
 
@@ -1230,16 +1232,16 @@ GIVE const char *mkHeadingURL(KEEP const char *raw_input,
   return url;
 }
 
-void toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
+bool toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
             const char *raw_input, const T *const t, ll &outlen, char *outs) {
   assert(t != nullptr);
   switch (t->ty) {
   case TT::Undefined: {
     assert(false && "Should not have received undefined");
-    return;
+    return false;
   }
   case TT::Comment: {
-    return;
+    return true;
   }
 
   case TT::HTML:
@@ -1247,12 +1249,12 @@ void toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
     strncpy(outs + outlen, raw_input + t->span.begin.si, t->span.nchars());
     outlen += t->span.nchars();
     outs[outlen] = ' '; outlen++;
-    return;
+    return true;
   }
 
   case TT::LineBreak: {
     outs[outlen] = ' '; outlen++;
-    return;
+    return true;
   }
 
   case TT::CodeBlock: {
@@ -1276,7 +1278,7 @@ void toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
 
     strcpy(outs + outlen, close);
     outlen += strlen(close);
-    return;
+    return true;
   }
 
   case TT::LatexInline:
@@ -1294,10 +1296,12 @@ void toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
       assert(false && "expected latex inline or latex block");
     }
 
-    char *outcompile =
-        compileLatex(katex_ctx, raw_input, span,
+    char *outcompile;
+    bool success;
+    tie(success, outcompile) = compileLatex(katex_ctx, raw_input, span,
                      t->ty == TT::LatexBlock ? LatexType::LatexTypeBlock
                                              : LatexType::LatexTypeInline);
+    if (!success) { return false; }
     strcpy(outs + outlen, outcompile);
     outlen += strlen(outcompile);
 
@@ -1310,7 +1314,7 @@ void toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
     } else {
       assert(false && "expected latex inline or latex block");
     }
-    return;
+    return true;
   }
 
   case TT::List: {
@@ -1332,7 +1336,7 @@ void toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
     }
     strcpy(outs + outlen, closeul);
     outlen += strlen(closeul);
-    return;
+    return true;
   }
 
   case TT::TListNumbered: {
@@ -1354,7 +1358,7 @@ void toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
     }
     strcpy(outs + outlen, closeul);
     outlen += strlen(closeul);
-    return;
+    return true;
   }
 
   case TT::Link: {
@@ -1363,7 +1367,7 @@ void toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
     outlen += sprintf(outs + outlen, "<a href=%s>", link->link);
     toHTML(katex_ctx, prism_ctx, raw_input, link->text, outlen, outs);
     outlen += sprintf(outs + outlen, "</a>");
-    return;
+    return true;
   }
 
   case TT::InlineGroup: {
@@ -1372,7 +1376,7 @@ void toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
     for (T *t : group->items) {
       toHTML(katex_ctx, prism_ctx, raw_input, t, outlen, outs);
     }
-    return;
+    return true;
   }
 
   case TT::CodeInline: {
@@ -1388,7 +1392,7 @@ void toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
 
     strcpy(outs + outlen, close);
     outlen += strlen(close);
-    return;
+    return true;
   }
 
   case TT::Heading: {
@@ -1404,7 +1408,7 @@ void toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
     outlen += sprintf(outs + outlen, "</h%d>", min(4, 1 + theading->hnum));
 
     free((char *)link);
-    return;
+    return true;
   }
 
   case TT::Italic: {
@@ -1412,7 +1416,7 @@ void toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
     outlen += sprintf(outs + outlen, "<i>");
     toHTML(katex_ctx, prism_ctx, raw_input, tcur->item, outlen, outs);
     outlen += sprintf(outs + outlen, "</i>");
-    return;
+    return true;
   }
 
   case TT::Bold: {
@@ -1420,7 +1424,7 @@ void toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
     outlen += sprintf(outs + outlen, "<b>");
     toHTML(katex_ctx, prism_ctx, raw_input, tcur->item, outlen, outs);
     outlen += sprintf(outs + outlen, "</b>");
-    return;
+    return true;
   }
 
   case TT::Quote: {
@@ -1431,7 +1435,7 @@ void toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
       toHTML(katex_ctx, prism_ctx, raw_input, it, outlen, outs);
     }
     outlen += sprintf(outs + outlen, "</blockquote>");
-    return;
+    return true;
   }
   };
   assert(false && "unreachabe");
@@ -1504,12 +1508,12 @@ const char html_preamble[] =
     // " background: linear-gradient(to right, #1565C0 1%, #EFEFEF 1%, #EFEFEF 99%, #E91E63 99%); "
     // " background: linear-gradient(to right, #1565C0 50%, #C2185B 50%);"
     " color: #000000; " // tufte
-    " font-family: 'Blog Serif', serif; "
+    " font-family: Tahoma, 'Blog Serif', serif; "
     " font-size: 14px; "
     " margin-top: 0px; " // by default, there is a margin.
     " max-width: 100%; overflow-x: hidden; }"
     "\n"
-    "h1, h2, h3, h4, h5 { font-family: 'Blog Mono', monospace; }"
+    "h1, h2, h3, h4, h5 { font-family: Tahoma, 'Blog Mono', monospace; }"
     // img as a block. width: 100% makes it responsive with no fiddling
     // https://stackoverflow.com/questions/15458650/make-an-image-responsive-the-simplest-way
     "img { display:block; width: 100%; max-width: 800px; height: auto }"
@@ -1594,12 +1598,17 @@ const char html_postamble[] = "</container>"
                               "</html>";
 
 #define CONFIG_WEBSITE_RSS_DESCRIPTION "A universe of Sorts"
-const char CONFIG_KATEX_PATH[] = "/var/bollu.github.io/katex/katex.min.js";
-const char CONFIG_PRISM_PATH[] = "/var/bollu.github.io/prism/prism.js";
-const char CONFIG_WEBSITE_URL_NO_TRAILING_SLASH[] =
-    "https://bollu.github.io";
-const char CONFIG_INPUT_MARKDOWN_PATH[] = "/var/bollu.github.io/README.md";
-const char CONFIG_OUTPUT_DIRECTORY_NO_TRAINING_SLASH[] = "/var/bollu.github.io";
+#define BLOG_ROOT_FOLDER_TRAILING_SLASH "C:\\Users\\bollu\\blog\\" 
+
+// defaults based on blog structure.
+#define CONFIG_KATEX_PATH                                                      \
+BLOG_ROOT_FOLDER_TRAILING_SLASH##"katex\\katex.min.js "
+#define CONFIG_PRISM_PATH                                                      \
+  BLOG_ROOT_FOLDER_TRAILING_SLASH##"prism\\prism.js"
+#define CONFIG_WEBSITE_URL_NO_TRAILING_SLASH "https://bollu.github.io"
+#define CONFIG_INPUT_MARKDOWN_PATH                                             \
+  BLOG_ROOT_FOLDER_TRAILING_SLASH##"README.md"
+#define OUTPUT_DIR_TRAILING_SLASH BLOG_ROOT_FOLDER_TRAILING_SLASH
 
 static const ll MAX_OUTPUT_BUF_LEN = (ll)1e9L;
 
@@ -1761,6 +1770,8 @@ int main(int argc, char **argv) {
   {
     FILE *fkatex = fopen(CONFIG_KATEX_PATH, "rb");
     if (fkatex == nullptr) {
+      fprintf(stderr, "ERROR: unable to find katex.min.js at |%s|\n",
+              CONFIG_KATEX_PATH);
       assert(false && "unable to open katex.min.js");
     }
 
@@ -1803,7 +1814,9 @@ int main(int argc, char **argv) {
   {
     FILE *fprism = fopen(CONFIG_PRISM_PATH, "rb");
     if (fprism == nullptr) {
-      assert(false && "unable to open prism.min.js");
+      fprintf(stderr, "ERROR: unable to find prism at path |%s|\n",
+              CONFIG_PRISM_PATH);
+      assert(false && "unable to open prism.js");
     }
 
     fseek(fprism, 0, SEEK_END);
@@ -1890,8 +1903,8 @@ int main(int argc, char **argv) {
     outlen += sprintf(index_html_buf + outlen, "%s", html_postamble);
 
     char index_html_path[1024];
-    sprintf(index_html_path, "%s/index.html",
-            CONFIG_OUTPUT_DIRECTORY_NO_TRAINING_SLASH);
+    sprintf(index_html_path, "%s\\index.html",
+            OUTPUT_DIR_TRAILING_SLASH);
     FILE *f = fopen(index_html_path, "wb");
     if (f == nullptr) {
       fprintf(stdout, "===unable to open HTML file: |%s|===", index_html_path);
@@ -1921,15 +1934,22 @@ int main(int argc, char **argv) {
     char *outbuf = (char *)calloc(MAX_OUTPUT_BUF_LEN, sizeof(char));
     ll outlen = 0;
     outlen += sprintf(outbuf + outlen, "%s", html_preamble);
+    bool success = true;
     for (int i = ix_start; i < ix_h1; ++i) {
-      toHTML(katex_ctx, prism_ctx, raw_input, ts[i], outlen, outbuf);
+      success |= toHTML(katex_ctx, prism_ctx, raw_input, ts[i], outlen, outbuf);
     }
+
+    if (!success) {
+      fprintf(stdout, "===compile failed. exiting\n===");
+      exit(1);
+    }
+
     outlen += sprintf(outbuf + outlen, utterances_preamble);
     outlen += sprintf(outbuf + outlen, "%s", html_postamble);
 
     // [ix_start, ix_h1) contains the new article
     char html_path[1024];
-    sprintf(html_path, "%s/%s.html", CONFIG_OUTPUT_DIRECTORY_NO_TRAINING_SLASH,
+    sprintf(html_path, "%s\\%s.html", OUTPUT_DIR_TRAILING_SLASH,
             url);
 
     FILE *f = fopen(html_path, "wb");
@@ -1944,8 +1964,8 @@ int main(int argc, char **argv) {
 
   // === write out RSS ===
   char rss_feed_path[1024];
-  sprintf(rss_feed_path, "%s/feed.rss",
-          CONFIG_OUTPUT_DIRECTORY_NO_TRAINING_SLASH);
+  sprintf(rss_feed_path, "%s\\feed.rss",
+          OUTPUT_DIR_TRAILING_SLASH);
   FILE *frss = fopen(rss_feed_path, "wb");
   if (frss == nullptr) {
     fprintf(stdout, "===unable to open RSS file: |%s|===\n", rss_feed_path);
