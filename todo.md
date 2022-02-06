@@ -1,5 +1,25 @@
 - [2d radiosity for soft shadows in smol renderers](https://github.com/schmelczerandras/sdf-2d/blob/main/src/graphics/rendering/shaders/shading-fs.glsl#L48)
 - [2d radiosity calculations](https://vimeo.com/diwi)
+- [Tree edit distance](http://www.grantjenks.com/wiki/_media/ideas:simple_fast_algorithms_for_the_editing_distance_between_tree_and_related_problems.pdf)
+- All the math you missed but you need for grad school book.
+- Could a neuroscientist understand a microprocessor
+- [The salvation of doug: microbiologist vs geniticist](http://www2.biology.ualberta.ca/locke.hp/dougandbill.htm)
+- Could a neuroscientist understand a microprocessor?
+- Can a biologist fix a radio? What I learnt while studying apoptosis: `https://www.cell.com/cancer-cell/pdf/S1535-6108(02)00133-2.pdf`
+- Reciprocity Laws: From Euler to Eisenstein
+- [Course on alg. topology](https://www.youtube.com/watch?v=odva24Ro-44&list=PL2Rb_pWJf9JqgIR6RR3VFF2FwKCyaUUZn&index=37)
+- [Intro to algebraic number thory via fermat's last theorem](https://www.youtube.com/watch?v=1f0-pc9zYPQ&list=PLSibAQEfLnTwq2-zCB-t9v2WvnnVKd0wn)
+- [Trachtenberg system for fast mental calculation](https://en.wikipedia.org/wiki/Trachtenberg_system)
+- [Functional analysis youtube lectures](https://www.youtube.com/watch?v=nE67uQPfRbI&list=PLyqSpQzTE6M8mjwWBz0vXpmJQwR46JIdS)
+- [Graph theory and additive combinatorics](https://www.youtube.com/watch?v=NpMv0Nqmy3c&list=PLUl4u3cNGP62qauV_CpT1zKaGG_Vj5igX&index=5)
+- [Combinatorial optimization youtube lectures](https://www.youtube.com/watch?v=vD4R93U5_xs&list=PLXsmhnDvpjORcTRFMVF3aUgyYlHsxfhNL&index=33)
+- Barton Zwiebach: A first course in string theory.
+- [GDBStub: GDB API](https://docs.rs/gdbstub/latest/gdbstub/index.html)
+- [The little book of semaphores](https://greenteapress.com/wp/semaphores/)
+- [ITMO algorithms and data structures: has advanced algorithms!](https://www.youtube.com/watch?v=oWgLjhM-6XE&list=PLrS21S1jm43igE57Ye_edwds_iL7ZOAG4)
+- [AM GM inequality: moments](https://www.youtube.com/watch?v=XJ3643WhKjY)
+- What would a visual editor like ableton for APL look like?
+>>>>>>> e8f8ace824107d51a5cd10c799ec07261027b4be
 - [Choices of representations for names](https://jesper.sikanda.be/posts/1001-syntax-representations.html)
 - [Computational geometry video lectures by Philipp Kindermann](https://www.youtube.com/c/PhilippKindermann/playlists)
 - [Largest list of CP topics ever](https://codeforces.com/blog/entry/95106)

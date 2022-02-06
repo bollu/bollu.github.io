@@ -7,6 +7,626 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
 
+# Wilson's theorem
+
+- We get $p \equiv 1$  (mod $4$) implies $((p-1)/2)!$ is a square root of -1.
+- It turns that this is because from Wilson's theorem, $(p-1)! = -1$.
+- Pick $p = 13$. Then in the calculation of $(p-1)!$, we can pair off $6$ with $-6=7$, $5$ with $-5=8$ and so on.
+- So we get $(p-1)/2 \times (p-1)/2 = (p-1)!$.
+- This means that $(p-1)/2 = \sqrt{-1}$.
+- The condition $(p-1)/2$ is even is the same as saying that $p-1$ is congruent to $0$ mod $4$,
+  or that $p$ is congruent to $1$ mod $4$.
+- It's really nice to be able to see where this condition comes from!
+
+# General enough special cases
+
+- Also, I feel thanks to thinking about combinatorial objects for a while
+  I've gained some kind of "confidence", where I check a special
+  case which I am confident generalizes well.
+
+```
+void editor_state_backspace_char(EditorState& s) {
+    assert(s.loc.line <= s.contents.size());
+    if (s.loc.line == s.contents.size()) { return; }
+    std::string& curline = s.contents[s.loc.line];
+    assert(s.loc.col <= curline.size());
+    if (s.loc.col == 0) { return; }
+    // think about what happens with [s.loc.col=1]. Rest will work.
+    std::string tafter(curline.begin() + s.loc.col, curline.end());
+    curline.resize(s.loc.col - 1); // need to remove col[0], so resize to length 0.
+    curline += tafter;
+    s.loc.col--;
+}
+```
+# XOR and AND relationship
+
+-  `a xor b = a + b - 2 (a & b)`
+
+# Geometry of complex integrals
+
+- integral f(z) dz is work in real part, flux in imaginary part.
+- https://www.youtube.com/watch?v=EyBDtUtyshk
+
+# Green's functions
+- Can solve $L y(x) = f(x)$.
+- $f(x)$ is called as the forcing operator.
+- $L$ is a linear diffeential operator. That is, it's a differential operator lik $\partial_x$ or $\partial_t \partial_t$. 
+  See that $\partial_t \partial_t$ is linear, because
+  $\partial_t \partial_t \alpha f + \beta g = \alpha (\partial_t \partial_t f) + \beta (\partial_t \partial_t g)$
+- 
+- https://www.youtube.com/watch?v=ism2SfZgFJg
+
+# CP trick: writing exact counting as counting less than
+
+- If we can solve for number of elements `<= k`, say given by `leq(k)` where `k` is an integer,
+  then we can also solve for number of elements `= k`, given by `eq(k) := leq(k) - leq(k - 1)`.
+- While simple, this is hugely benificial in many situations because `<=k` can be implement as some kind of
+  prefix sum data structure plus binary search, which is much less error prone to hack up than exact equality.
+
+# CP trick: Heavy Light Decomposition euler tour tree
+
+- To implement HLD, first define heavy edge to be edge to heaviest vertex.
+- To use segment tree over HLD paths, create a "skewed" DFS where each node visits
+  heavy node first, and writes vertices into an array by order of discovery time (left paren time).
+- When implementing HLD, we can use this segment tree array of the HLD tree as an euler tour of the tree.
+- We maintain intervals so it'll be `[left paren time, right paren time]`. We find
+  right paren time based on when we exit the DFS. The time we exit the DFS is the rightmost time
+  that lives within this subtree.
+
+
+# Counting with repetitions via pure binomial coefficients
+
+- If we want to place $n$ things where $a$ of them are of kind `a`, $b$ are of kind `b`, $c$
+  of them are kind $c$.
+  the usual formula is $n!/(a!b!c!)$.
+- An alternative way to count this is to think of it as first picking $a$ slots from $n$, and then 
+  picking $b$ slots from the leftover $(n - a)$ elements, and finally picking $c$ slots from $(n - a - b)$.
+  This becomes $\binom{n}{a}\binom{n-a}{b}\binom{n - a - b}{c}$.
+- This is equal to $n!/a!(n -a)! \cdot (n-a)!/n!(n - a - b)! \cdot (n - a - b)! / c!0!$,
+  which is equal to the usual $n!/a!b!c!$ by cancelling and setting $c = n - a - b$.
+- Generalization is immediate.
+
+# Fundamental theorem of homological algebra [TODO]
+- Let $M$ be an $R$ module.
+- A resolution of $M$ is an exact chain complex `... -> M2 -> M1 -> M0 -> M -> 0`
+- A projective resolution of `P*` of `M` is a resolution such that all the `P*` are projective.
+
+#### Fundamental theorem
+- 1. Every `R` module has projective resolution.
+- 2. Let `P*` be a chain complex of proj. R modules. Let `Q*` be a chain complex with
+     vanishing homology in degree greater than zero. Let `[P*, Q*]` be the group of chain homotopoloy classes
+     of chain maps from `P*` to `Q*`.  We are told that this set is in bijection with maps
+    `[H0(P*), H0(Q*)]`. That is, the map takes `f*` to `H0[f*]` is a bijection.
+
+#### Corollary: two projective resolutions are chain homotopy equivalent
+- Let `P1 -> P0 -> M` and `... -> Q1 -> Q0 -> M` be two projective resolutions.
+- `H0(P*)` has an epi mono factorization `P0 ->> H0(P*)` and `H0(P*) ~= M`. 
+
+
+
+#### Proof of existence of projective resolution
+- Starting with `M` there always exists a free module `P0` that is epi onto `M`, given by taking the free
+  module of all elements of `M`. So we get `P0 -> M -> 0`.
+- Next, we take the kernel, which gives us:
+
+```
+     ker e
+        |
+        |   e
+        vP0 -> M -> 0
+```
+
+- The next `P1` must be projective, and it must project onto `ker e` for homology to vanish. So we 
+  choose the free module generated by elements of `ker e` to be `P1`!
+
+
+```
+    ker e
+    ^   |
+    |   v  e
+P1---   P0 -> M -> 0
+```
+
+
+- Composing these two maps gives us `P1 -> P0 -> M`. Iterate until your heart desires.
+
+
+## Chain homotopy classes of chain maps
+
+# Projective modules in terms of universal property
+
+## (1): Universal property / Defn
+
+- $P$ is projective iff for every epimorphism $e: E \to B$, and every morphism $f: P \to B$,
+  there exists a lift $\tilde{f}: P \to E$.
+
+
+```
+     e
+   E ->> B
+   ^   ^
+  f~\  | f
+     \ |
+       P
+```
+
+
+## Thm: every free module is projective
+- Let $P$ be a free module. Suppose we have an epimorphism $e: M \to N$ and a morphism $f: P \to N$.
+  We must create $\tilde f: M \to N$
+- Let $P$ have basis $\{ p_i \}$. A morphism from a free module is determined by the action on the basis.
+  Thus, we simply need to define $\tilde f(p_i)$.
+- For each $f(p_i): N$, there is a pre-image $m_i \in M$ such that $e(m_i): N = f(p_i): N$.
+- Thus, define $\tilde{f}(p_i) = m_i$. This choice is **not canonical** since there could be **many such $m_i$**.
+- Regardless, we have succeeded in showing that every free module is projective by lifting $f: P \to N$ to a map
+  $\tilde f: M \to N$.
+
+
+## (1 => 2): Projective as splitting of exact sequences
+- $P$ is projective iff every exact sequence $0 \to N \to M \xrightarrow{\pi} P \to 0$ splits.
+- That is, we have a section $s: P \to M$ such that $\pi \circ s = id_P$.
+
+- **PROOF (1 => 2):** Suppose $P$ solves the lifting problem. We wish to show that this implies that exact sequence splits. 
+- Take the exact sequence:
+
+
+```
+            pi
+0 -> N -> M -> P -> 0
+               ^
+               | idP
+               P
+```
+- This lifts into a map $P \to M$ such that the composition is the identity:
+
+```
+            pi
+0 -> N -> M -> P -> 0
+          ^   ^
+       idP~\  | idP
+            \ |
+             P
+```
+
+- This gives us the section `s = idP~` such that `pi . s = idP` from the commutativity of the above diagram.
+
+
+
+## (2 => 3): Projective as direct summand of free module
+- $P$ is projective iff it is the direct summand of a free module. So there is a another module $N$ such that $P \oplus N \equiv R^n$.
+- We can always pick a surjective epi $\pi: F \to P$, where $F$ is the free module over all elements of $P$.
+- We get our ses $0 \to ker(\pi) \to F \to P \to 0$. We know this splits because as shown above, projective splits
+  exact sequences where $P$ is the surjective image.
+- Since the sequence splits, the middle term $F$ is a direct sum of the other two terms. Thus $F \simeq \ker \pi \oplus P$.  
+
+#### Splitting lemma
+
+- If an exact sequence splits, then middle term is direct sum of outer terms.
+
+## (3 => 1): Direct summand of free module implies lifting
+
+- Let's start with the diagram:
+
+```
+  e
+E ->>B
+     ^
+    f|
+     P
+```
+
+- We know that $P$ is the direct summand of a free module, so we can write a `P(+)Q` which is free:
+
+```
+  e
+E ->>B
+     ^
+    f| 
+     P <<-- P(+)Q
+         pi
+```
+
+- We create a new arrow `f~ = f . pi` which has type `f~: P(+)Q -> B`. Since this is a map from a free module into `B`,
+  it can be lited to `E`. The diagram with `f~` looks as follows:
+
+```
+  e
+E ->>B <--
+     ^    \f~
+    f|     \
+     P <<-- P(+)Q
+         pi
+```
+
+- After lifting `f~` to `E` as `g~`, we have a map `g~: P(+)Q -> E`. 
+
+```
+--------g~--------
+|                |
+v e              |
+E ->>B <--       g~
+     ^    \f~    |
+    f|     \     |
+     P <<-- P(+)Q
+         pi
+```
+
+
+- From this, I create the map `g: P -> E` given by `g(p) = g~((p, 0))`. Thus, we win!
+
+## Non example of projective module
+
+- `Z/pZ` is not projective.
+- We have the exact sequence `0 -> Z -(xp)-> Z -> Z/kZ -> 0` of multiplication by `p`.
+- This sequence does not split, because `Z` (middle) is not a direct summand of `Z` (left) and `Z/kZ` (right),
+  because direct summands are submodules of the larger module. But `Z/pZ` cannot be a submodule of `Z` because `Z/pZ`
+  is torsion while `Z` is torsion free.
+
+## Example of module that is projective but not free
+
+- Let $R \equiv F_2 \times F_2$ be a ring.
+- The module $P \equiv F_2 \times \{0\}$ is projective but not free.
+- It's projective because it along with the other module $Q \equiv \{0\} \times F_2$ is isomorphic to $R$.
+  ($P \oplus Q = R$).
+- It's not free because any $R^n$ will have $4^n$ elements, while $P$ has only two element.
+- Geometrically, we have two points, one for each $F_2$.
+  The module $P$ is a vector bundle that only takes values over one of the points.
+  Since the bundle different dimensions over the two points (1 versus 0), it is projective but not free.
+- It is projective since it's like a vector bundle. It's not free because it doesn't have constant dimension.
+
+#### References
+- [video](https://www.youtube.com/watch?v=odva24Ro-44&list=PL2Rb_pWJf9JqgIR6RR3VFF2FwKCyaUUZn&index=37)
+
+
+# How ideals recover factorization [TODO]
+
+- consider $Z[-5]$. Here, we have the equation that $2 \times 3 = (1 + \sqrt{-5})(1 - \sqrt{-5})$.
+- Why are $2, 3, (1 + \sqrt 5), (1 - \sqrt 5)$ prime?
+- we can enumerate numbers upto a given absolute value.
+  Since the absolute value is a norm and is multiplicative, we only need to check for prime factorization
+  of a given number $n$ in terms
+  of primes $p$ with smaller absolute value (ie, $|p| < |n|$).
+- If we list numbers in $Z[-\sqrt{5}]$ upto norm square $6$ (because $6$ is the norm square of $1 - \sqrt{5}$), we get:
+
+
+This was generated from the python code:
+
+```py
+class algnum:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+    def __add__(self, other):
+        return algnum(self.a + other.a, self.b + other.b)
+    def __mul__(self, other):
+        # (a + b \sqrt(-5)) (a' + b' \sqrt(-5))
+        # aa' + ab' sqrt(-5) + ba' sqrt(-5) + bb' (- 5)
+        # aa' - 5 bb' + sqrt(-5)(+ab' +ba')
+        return (self.a * other.b - 5 * self.b * other.b,
+                self.a * other.b + self.b * other.a)
+    def __str__(self):
+        if self.b == 0:
+            return str(self.a)
+        if self.a == 0:
+            return f"{self.b}sqrt(-5)"
+        return f"[{self.a}, {self.b} sqrt(-5)]"
+
+    def normsq(self):
+        # (a + b \sqrt(-5))(a - b \sqrt(-5)) 
+        # = a^2 - (-5) b^2 
+        # = a^2 + 5 b^2
+        return self.a * self.a + 5 * self.b * self.b
+    def is_zero(self):
+        return self.a == 0 and self.b == 0
+    def is_one(self):
+        return self.a == 1 and self.b == 0
+
+    def is_minus_one(self):
+        return self.a == -1 and self.b == 0
+
+
+
+    __repr__ = __str__
+
+nums = [algnum(a, b) for a in range(-10, 10) for b in range(-10, 10)]
+
+def divisor_candidates(p):
+    return [n for n in nums if n.normsq() < p.normsq() \
+                  and not n.is_zero() \
+                  and not n.is_one() \
+                  and not n.is_minus_one()]
+
+# recursive.
+print("normsq of 2: ", algnum(2, 0).normsq());
+print("normsq of 3: ", algnum(3, 0).normsq());
+print("normsq of 1 + sqrt(-5):" , algnum(1, 1).normsq());
+print("potential divisors of 2: ", divisor_candidates(algnum(2, 0)))
+# candidates must be real. Only real candidate is 2.
+print("potential divisors of 3: ", divisor_candidates(algnum(3, 0)))
+# Candidate must be mixed.
+print("potential divisors of (1 + sqrt(-5)): ", divisor_candidates(algnum(1, 1)))
+print("potential divisors of (1 - sqrt(-5)): ", divisor_candidates(algnum(1, -1)))
+```
+
+#### Recovering unique factorization of ideals
+- In the above ring, define $p_1 \equiv (2, 1 + \sqrt(-5))$.
+- Define $p_2 \equiv (2, 1 - \sqrt(-5))$.
+- Define $p_3 \equiv (3, 1 + \sqrt(-5))$.
+- Define $p_4 \equiv (3, 1 - \sqrt(-5))$.
+- We claim that $p_1 p_2 = (2)$, $p_3 p_4 = (3)$, $p_1 p_3 = (1 + \sqrt(-5))$, $p_2 p_4 = (1 - \sqrt{-5})$.
+- This shows that the ideals that we had above are the products of "prime ideals".
+- We recover prime factorization at the _ideal level_, which we had lost at the _number level_. 
+
+- [Video lectures: Intro to algebraic number thory via fermat's last theorem](https://www.youtube.com/watch?v=1f0-pc9zYPQ&list=PLSibAQEfLnTwq2-zCB-t9v2WvnnVKd0wn)
+
+# Centroid of a tree
+
+- Do not confuse with **Center of a tree**, which is a node $v$ that minimizes the distance to all other nodes:
+  $max_{w \in V} d(v, w)$. This can be found by taking the node that is the middle of a diameter.
+- The centroid of a tree is a node such that no child has over `floor(n/2)` of the vertices
+  in the tree.
+
+## Algorithm to find centroid of a tree
+
+- Root tree arbitrarily at $r$
+- Compute subtree sizes with respect to this root $r$.
+- Start from root. If all children of root $r$ have size **less than or equal to** `floor(n/2)`, we are done. Root is centroid.
+- If not, some child $c$ [for child, contradiction] has size **strictly greater than** `floor(n/2)`.
+- The total tree has $n$ vertices. $c$ as a subtree has **greater than**
+  `floor(n/2)`
+  vertices. Thus the rest of the tree
+  (ie, the part under $r$ that excludes $c$) has **strictly less than** `floor(n/2)` vertices.
+- Let us in our imagination reroot the tree at this child $c$. The childen of $c$ continue to have the 
+  same subtree size. The old node $r$, as a subtree of the new root $c$, has size strictly ness than `floor(n/2)` vertices.
+- Now we recurse, and proceed to analyze `c`. 
+- This analysis shows us that once we descend from `r -> c`, we **do not** need to analyze the edge `c -> r` if we make `c` the
+  new candidate centroid. 
+
+```cpp
+int sz[N]; // subtree sizes
+vector<int> es[N]; // adjacency list
+int go_sizes(int v, int p) {
+  sz[v] = 1;
+  for (int w : es[v]) { 
+    if (w == p) { continue; }
+    go_sizes(w, v);
+    sz[node] += sz[i];
+  }
+}
+
+int centroid(int v, int p) {
+  for (int w : es[v]) {
+    if (w != p && sz[w] > N/2)
+      return centroid(w, v);
+  }
+  return v;
+}
+
+int main() {
+  ...
+  go_sizes(1, 1);
+  centroid(1, 1);
+};
+```
+
+- Note that one **does not need** to write the code as follows:
+
+```cpp
+int centroid(int v, int p) {
+  for (int w : es[v]) {
+    int wsz = 0;
+    if (w == p) {
+      // size of parent = total - our size
+      wsz = n - sz[v]; 
+    } else {
+      wsz = sz[w];
+    }
+    assert(wsz);
+    if (wsz > N/2) {
+      return centroid(w, v);
+    }
+  }
+  return v;
+}
+```
+
+- This is because we have already established that if `p` descends into `v`, then the subtree `p` [rooted at `v`] must have less than `n/2`
+  elements, since the subtree `v` [rooted at `p`] has more than `n/2` elements.
+
+## Alternate definition of centroid
+- Let the centroid of a tree $T$ be a vertex $v$, such that when $v$ is removed and the graph splits into components
+  $T_v[1], T_v[2], \dots, T_v[n]$, then the value $\tau(v) = \max(|T_v[1]|, |T_v[2]|, \dots, |T_v[n]|)$ is minimized.
+- That is, it is the vertex that on removal induces subtrees, such that the size of the largest component is smallest
+  amongst all nodes.
+
+
+#### Existence of centroid
+
+#### Equivalence to size definition
+
+
+## Centroid decomposition
+
+- If we find the centroids of the subtrees that hang from the centroid, then we decompose the graph
+  into a **centroid decomposition**.
+
+# Path query to subtree query
+
+- Model question: [CSES counting paths](https://cses.fi/problemset/task/1136)
+- We have a static tree, and we wish to perform updates on paths, and a final query.
+- We can uniquely represent a path in a tree with an initial and final node. There are $O(n^2)$ paths
+  in a tree, so we need to be "smart" when we try to perform path updates.
+
+
+
+
+# Pavel: bridges, articulation points for UNDIRECTED graphs
+
+- Two vertices are 2-edge connected if there are 2 paths between them. The two paths cannot share ANU edges.
+- Every bridge must occur as a DFS tree edge, because DFS connects all components together.
+- More generally, every spanning tree contains all bridge edges.
+- Now we check if each edge is a bridge or not.
+- To check, we see what happens when we remove the edge $(u, v)$. If the edge is not a bridge, then the subtree
+   of $v$ must connect to the rest of the graph.
+- Because we run DFS, the subtree rooted at $v$ **must go upwards**, it cannot go cross. On an undirected graph, DFS
+  only gives us tree edges and back edges.
+- This means that if the subtree rooted at $v$ is connected to the rest of the graph, it must have a backedge that is "above" $u$,
+  and points to an ancestor of $u$.
+- Instead of creating a set of back edges for each vertex $v$, we take the *highest* /*topmost* back edge, since it's a safe
+  approximation to throw away the other back-edges if all we care about is to check whether there is a backedge that goes higher than $u$.
+- To find the components, push every node into a list. When we find an edge that is a bridge, take the sublist from the vertex $v$ to the end of the list.
+  This is going to be one connected component. We discover islands in "reverse order", where we find the farthest island from the root first and so on.
+
+#### Vertex connectivity
+
+- The problem is that vertex connectivity is not an equivalence relation on vertices!
+- So we define it as an equivalence relation on *edges*.
+- More subtle, we cannot "directly" condense. We need to build a bipartite graph, with components on one side
+  and articultion points on the other side.
+
+
+# Segtree: range update, point query [TODO]
+
+- To support this, impelement queries normally.
+- To implement point query, start at the leaf and then walk upward to the root, collecting
+  all the update values.
+
+
+# Monadic functor
+
+- A fuctor $U: D \to C$ is monadic iff it has a left adjoint $F: C \to D$ and
+  the adjunction is monadic.
+- An adjunction $C : F \vdash U: D$ is monadic if the induced "comparison functor" from $D$ to the
+  category of algebras (eilenberg-moore category) $C^T$ is an **equivalence of categories**.
+- That is, the functor $\phi: D \to C^T$ is an equivalence of categories.
+- Some notes: We have $D \to C^T$ and not the other way around since the full order is
+  $C_T \to D \to C^T$: Kleisli, to $D$, to Eilenberg moore. We go from "more semantics" to
+  "less semantics" --- such induced functors cannot "add structure" (by increasing the amount of semantics),
+  but they can "embed" more semantics into less semantics. Thus, there is a comparison functor from $D$
+  to $C^T$.
+- Eilenberg-moore is written $C^T$ since the category consists of $T$-algebras, where $T$ is the induced
+  monad $T: C \to D \to C$. It's $C^T$ because a $T$ algebra consists of arrows $\{ Tc \to c : c \in C \}$
+  with some laws. If one wished to be cute, the could think of this as "$T \to C$".
+- The monad $T$ is $C \to C$ and not $D \to D$ because, well, let's pick a concrete example: `Mon`.
+  The monad on the set side takes a set $S$ to the set of words on $S$, written $S^\star$. The 
+  other alleged "monad" takes a monoid $M$ to the free monoid on the element of $M$. We've lost structure.
+
+
+# Injective module
+
+- An injective module is a generalization of the properties of $\mathbb Q$ as an abelian group ($\mathbb Z$ module.)
+- In particular, given any injective group homomorphism $f: X \to Y$ and a morphism $q_X: X \to \mathbb Q$,
+  then we induce a group homomorphism $q_Y: Y \to \mathbb Q$, where $X, Y$ are abelian groups.
+- We can think of this injection $f: X \to Y$ as identifying a _submodule_ (subgroup)$X$ of $Y$.
+- Suppose we wish to define the value of $q_Y$ at some $y \in Y$. If $y$ is in the subgroup $X$
+  then define $q_y(y) \equiv q_x(y)$. 
+- For anything outside the subgroup $X$, we define the value of $q_y$ to be $0$.
+- **Non-example of injective module:** See that this does not work if we replace $\mathbb Q$ with $\mathbb Z$.
+- Consider the injective map $Z \to Z$ given by $i(x) \equiv 3x$
+  Consider the quotient map $f: Z \to Z/3Z$. We cannot factor the map $f$ through $i$ as $f = ci$ [$c$ for contradiction].
+  since any map  $c: Z \to Z/3Z$ is determined by where $c$ sends the identity. But in this case, 
+  the value of $c(i(x)) = c(3x) = 3xc(1)) = 0$. Thus, $\mathbb Z$ is not an injective abelian group,
+  since we were unable to factor the homomorphism $Z \to Z/3Z$ along the injective $3 \times: Z \to Z$.
+- **Where does non-example break on Q?** Let's have the same situation, where we have an injection $i: Z \to Q$
+  given by $i(z) = 3z$. We also have the quotient map $f: Z \to Z/3Z$. We want to factor $f = qi$ where
+  $q: Q \to Z/3Z$. This is given by $q(x) = $
+
+# Proof that $Spec(R)$ is a sheaf [TODO]
+
+- Give topology for $Spec(R)$ by defining the base as $D(f)$ --- sets where $f \in R$ does not vanish.
+- Note that the base is closed under intersection: $D(f) \cap D(g) = D(fg)$.
+- To check sheaf conditions, suffices to check on the base.
+- To the set $D(f)$, we associate the locally ringed space $f^{-1}(R)$. That is, we localize $R$
+  at the multiplicative monoid $S \equiv \{ f^k \}$.
+- We need to show that if $D(f) = \cup D(f_i)$, and given solutions within each $D(f_i)$, we need to create
+  a unique solution in $D(f)$.
+
+#### Reduction 1: Replace $R$ by $R[f^{-1}]$
+- We localize at $f$. This allows us to assume that $D(f) = Spec(R)$ [ideal blows up as it contains unit],
+  and that $f = 1$ [localization makes $f$ into a unit, can rescale?]
+- So we now have that $\{ D(f_i) \}$ cover the spectrum $Spec(R)$. This means that for each point $\mathfrak p$,
+  there is some $f_i$ such that $f_i \not \equiv_\mathfrak p 0$. This means that $f_i \not \in \mathfrak p$.
+- Look at ideal $I \equiv (f_1, f_2, \dots, f_n)$. For every prime (maximal) ideal $mathfrak p$ , there is some $f_i$
+  such that $f_i \not in \mathfrak p$. This means that the ideal $I$ is not contained in any maximal ideal, or that $I = R$.
+- This immediately means that $1 \in R: = \sum_i f_i a_i \in I$ for arbitrary $a_i \in R$.
+- Recall that in a ring, the sums are all finite, so we can write $1$ as a sum of FINITE number of $f_i$, since only a finite
+  number of terms in the above expression will be nonzero. [$Spec(R)$ is quasi-compact!]
+- This is a partition of unity of $Spec(R)$.
+
+#### Separability
+- Given $r \in R = O(Spec(R))$, if $r$ is zero in all $D(f_i)$, then $r = 0$ in $R$.
+- $R$ being zero in each $D(f_i)$ means that $r = 0$ in $R[f_i^{-1}]$. This means that $f_i^{n_i} r = 0$, because
+  something is zero on localization iff it is killed by the multiplicative set that we are localizing at.
+- On the other hand, we also know that $a_1 f_1 + \dots + a_n f_n  = 1$ since $D(f_i)$ cover $R$.
+- We can replace $f_i$ by $f_i^{n_i}$, since $D(f_i) = D(f_i^{n_i})$. So if the $D(f_i)$ cover $R$, then so too do $D(f_i^{n_i})$.
+
+
+#### Check sheaf conditions
+- Suppose $r_i/f_i^{n_i} \in R[f_i^{-1}]$ is equal to $r_j/f_j^{n_j}$
+
+
+#### References
+- [Borcherds](https://www.youtube.com/watch?v=AYDq0qY34HU&list=PL8yHsr3EFj50Un2NpfPySgXctRQK7CLG-&index=9)
+
+
+# Projections onto convex sets
+
+- [Link](https://en.wikipedia.org/wiki/Projections_onto_convex_sets
+
+
+# BGFS algorithm for unconstrained nonlinear optimization
+
+- [Link](https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm)
+
+# LM algorithm for nonlinear least squares
+
+- [Link](https://en.wikipedia.org/wiki/Levenberg%E2%80%93Marquardt_algorithm)
+
+
+# Backward dataflow and continuations
+- Forward dataflow deals with facts _thus far_.
+- Backward dataflow deals with facts about _the future_, or the _rest of the program_.
+  Thus, in a real sense, backward dataflow concerns itself with _continuations_!
+
+
+# Coordinate compression with `set` and `vector`
+
+If we have a `std::set<T>` that represents our set of uncompressed values, we can
+quickly compress it with a `std::vector<T>` and `lower_bound` without having to
+create an `std::map<T, int>` that holds the index!
+
+```cpp
+set<int> ss; // input set to compress
+vector<int> index(ss.begin(), ss.end()); 
+int uncompressed = ...; // 
+int compressed = int(lower_bound(index.begin(), index.end(), key) - index.begin());
+assert(xs[compressed] == uncompressed);
+```
+
+# Hilbert polynomial and dimension
+
+- Think of non Cohen Macaulay ring (plane with line perpendicular to it). Here the dimension varies per point.
+- Let $R$ be a graded ring. Let $R^0$ be noetherian. $R$ is finitely generated as an algebra over $R^0$.
+  This implies by hilbert basis theorem that $R$ is noetherian (finitely generated as a module over $R^0$).
+- Suppose $M$ is a graded module over $R$, and $M$ is finitely generated as a module over $R$.
+- How fast does $M_n$ grow? We need some notion of size.
+- Define the size of $M_n$ as $\lambda(M_n)$.Suppose $R$ is a field. Then $M_n$ is a vector space. We define
+  $\lambda(M_n)$ to be the dimension of $M_n$ as a vector space over $R$.
+- What about taking dimension of tangent space? Doesn't work for cusps! (singular points). Can be used to define
+  singular points.
+- TODO: show that at $y^2 = x^3$, we have dimension two (we expect dimension one)
+
+# Cost of looping over all multiples of $i$ for $i$ in $1$ to $N$
+
+- Intuitively, when I think of "looping over $i$ and all its multiples", I seem to have a gut
+  feeling that its cost is $N$. Of course, it is not. It is $N/i$.
+- Thus, the correct total cost becomes $\sum_{i=1}^N N/i$ (versus the false cost of $\sum_{i=1}^N N = N^2$.
+- The correct total cost is a harmonic series $N\cdot \sum_{i=1}^N1/i \simeq N \log N$.
+- This is useful for number theory problems like [1627D](https://codeforces.com/contest/1627/problem/D)
+
+
+
+
 # Stuff I learnt in 2021
 
 I spent this year focusing on fundamentals, and attempting to prepare
@@ -761,16 +1381,16 @@ r + s = n + 1
 - Can we use UB to express things like "this list will be finite, thus map can be safely parallelised" or something? 
 - Have quantitative: `0,1,fin,inf`?
 
-# Projections onto convex sets [WIP]
+# Projections onto convex sets [TODO]
 
 - `https://en.wikipedia.org/wiki/Projections_onto_convex_sets`
 
 
-# BGFS algorithm for unconstrained nonlinear optimization [WIP]
+# BGFS algorithm for unconstrained nonlinear optimization [TODO]
 
 - `https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm`
 
-# LM algorithm for nonlinear least squares [WIP]
+# LM algorithm for nonlinear least squares [TODO]
 
 - `https://en.wikipedia.org/wiki/Levenberg%E2%80%93Marquardt_algorithm`
 
@@ -848,7 +1468,7 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 - use `spc -e 'error, red' ` to color all occurrences of string `error` with `red`.
 - I use this in [lean-mlir]() to get colored output.
 
-# Reader monoid needs a hopf algebra?! [WIP]
+# Reader monoid needs a hopf algebra?! [TODO]
 - 5.1, eg (iii)
 - We actually get a free comonoid in a CCC.
 - having a splittable random supply in like having a markov category with a comonoid in it.
@@ -866,7 +1486,7 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 - [Link to homepage of insane card stacker](https://www.cardstacker.com/)
 
 
-# Representation theory for particle physics [WIP]
+# Representation theory for particle physics [TODO]
 
 - [References](https://math.ucr.edu/~huerta/guts/node1.html)
 
@@ -905,7 +1525,7 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 
 - I'd like to write in the style of the bible!
 
-# Undefined behaviour is like compactification [WIP]
+# Undefined behaviour is like compactification [TODO]
 
 - We compactify something like $\mathbb N$ into $\mathbb N^\infty$.
 - What does Stone Cech give us?
@@ -1225,7 +1845,7 @@ curl bashupload.com -T your_file.txt
 - Thus $C_n$ is odd iff $n = 2^r - 1$, which allows for us to have a complete binary tree, which is not paired by the involution.
 - [Reference](https://mathoverflow.net/a/409029)
 
-# Discrete probability [WIP]
+# Discrete probability [TODO]
 
 - The textbook discrete probability actually manages to teach "discrete probability" as a unified subject, laying out _all the notation_ clearly,
   something that I literally have never seen before! This is me making notes of the notation.
@@ -1879,7 +2499,7 @@ $$
   must send $\alpha$ to some other root of $p(x)$ [by virtue of being a field map that fixes $L$,  $0 = \sigma(0) = \sigma(p(\alpha)) = p(\sigma(\alpha))$]. 
 - There are exactly number of roots of $p$ (= $[M:L]$) many choices. Each gives us one automorphism. Thus $|Gal(M/L)| = [M:L]$.
 
-# Counter-intuitive linearity of expectation [WIP]
+# Counter-intuitive linearity of expectation [TODO]
 
 - I like the example of "10 diners check 10 hats. After dinner they are given the hats back at random."
   Each diner has a 1/10 chance of getting their own hat back, so by linearity of expectation, the expected number of diners who get the correct hat is 1.
@@ -2114,7 +2734,7 @@ $$
 - This is how we get "ladder operators" which raise and lower the state. If we have a state $x$ with some eigenvalue $\lambda$, the operator like $N$
   gives us an "excited state" from $x$ which eigenvalue $\kappa + \lambda$.
 
-# Deriving pratt parsing by analyzing recursive descent [WIP]
+# Deriving pratt parsing by analyzing recursive descent [TODO]
 
 
 # Level set of a continuous function must be closed
@@ -2757,7 +3377,7 @@ MX17004 2010-05-27 33.2 18.2
 
 - [Reference: This week's finds 184 by baez](https://math.ucr.edu/home/baez/week184.html)
 
-# McKay's proof of Cauchy's theorem for groups [WIP]
+# McKay's proof of Cauchy's theorem for groups [TODO]
 
 - In a group, if $gh = 1$ then $hg = 1$. Prove this by writing $hg = hg (h h^{-1}) = h(gh)h^{-1} = h \cdot 1 \cdot h^{-1} = 1$.
 - We can interpret this as follows: in the multiplication table of a group, firstly, each row contains exactly one $1$.
@@ -2768,7 +3388,7 @@ MX17004 2010-05-27 33.2 18.2
 - [Reference](http://www.cs.toronto.edu/~yuvalf/McKay%20Another%20Proof%20of%20Cauchy's%20Group%20Theorem.pdf)
 
 
-# Odds versus probability [WIP]
+# Odds versus probability [TODO]
 
 - https://www.youtube.com/watch?v=lG4VkPoG3ko
 - https://www.youtube.com/watch?v=HZGCoVF3YvM
@@ -3046,7 +3666,7 @@ $$
 
 
 
-# Filtered Colimits [WIP]
+# Filtered Colimits [TODO]
 
 - [Reference](https://math.stackexchange.com/questions/3695933/motivation-for-filtered-categories-limits?noredirect=1&lq=1)
 
@@ -3159,7 +3779,7 @@ def permutation(draw, n):
 - Proof: suppose for contradiction that there do exist `k, l` such that `kx + ly = 1`. Modulo `x`, this means that `ly = 1` which is absurd,
   and similarly modulo `x` it means `kx = 1` which is also absurd.
 
-# Integral elements of a ring form a ring [WIP]
+# Integral elements of a ring form a ring [TODO]
 
 - An integral element of a field $L$ (imagine $\mathbb C$)
   relative to an integral domain $A$ (imagine $\mathbb Z$) is the root of a monic polynomial in $A$.
@@ -3177,13 +3797,13 @@ def permutation(draw, n):
 - If we punch two holes, that causes $V - E + F$ to go down by two. But we can glue the two edges together. 
   This gluing gives us a handle, so each hole/genus reduces the euler characteristic by two!
 
-# Siefert Algorithm [WIP]
+# Siefert Algorithm [TODO]
 
 - Algorithm to find surface that a knot bounds.
 - If we find a surface, then the genus of the boundary is one minus the genus of the surface.
 - Compute genus via classification of surfaces.
 
-# Cap product [WIP]
+# Cap product [TODO]
 - https://www.youtube.com/watch?v=oxthuLI8PQk
 
 - We need an ordered simplex, so there is a total ordering on the vertices. This is to split a chain apart at number $k$.
@@ -3196,7 +3816,7 @@ def permutation(draw, n):
 - Cap product will be nonzero if the chain *must* always intersect the cochain.
 - This is why it's also called as the intersection product, since it somehow counts intersections.
 
-# Cup product [WIP]
+# Cup product [TODO]
 
 - We need an ordered simplex, so there is a total ordering on the vertices. This is to split a chain apart at number $k$.
 - Can always multiply functions together. This takes a $k$ chain $\xi$ and an $l$ chain $\eta$ and produces $\xi \cup \eta$ which is a $k + l$
@@ -3231,7 +3851,7 @@ def permutation(draw, n):
 - Given a limit, compute the value as taking product of all objects, and taking only those tuples which obey the relations
   the relation $f(a) = b$ for all arrows $f \in Hom(X, Y)$.
 
-# Classification of compact 2-manifolds [WIP]
+# Classification of compact 2-manifolds [TODO]
 
 - Oriented compact 2-surfaces: sphere, torus, 2 holed torus, etc.
 - have euler characteristic $V - E + F $ as $2 - 2g$
@@ -3287,7 +3907,7 @@ def permutation(draw, n):
 
 https://www.youtube.com/watch?v=dUOmU-0t2Nc&list=PLIljB45xT85DWUiFYYGqJVtfnkUFWkKtP&index=27
 
-# Gauss, normals, fundamental forms [WIP]
+# Gauss, normals, fundamental forms [TODO]
 
 - consider a parametrization $r: u, v \to \mathbb R^3$
 - at a point $p = r(u, v)$ on the surface, the tangent vectors are $r_u \equiv \partial_u r$ and similarly $r_v \equiv \partial_v r$.
@@ -3338,7 +3958,7 @@ $$
 
 #### Proof of equivalence between 2nd fundamental form and geometry
 
-# Shape operator [WIP]
+# Shape operator [TODO]
 
 
 
@@ -3361,7 +3981,7 @@ $$
   is determined by the equation:
 - $\partial_i \mathbf N = -S_{ji} \mathbf X_b$
 
-# Theorem Egregium / Gauss's theorem (Integrating curvature in 2D) [WIP]
+# Theorem Egregium / Gauss's theorem (Integrating curvature in 2D) [TODO]
 
 - Let $S$ be a 2 dimensional surface.
 - Gauss Rodriguez map map: $N: S \to S^2$. The derivative of this map goes from $dN: T_p S \to T_p S^2$.
@@ -3378,7 +3998,7 @@ $$
 - In particular if the surface is homeomorphic to a sphere, then we get the total area of the sphere, $4 \pi$.. This is the 2D analogue of
   the fact that if we integrate the curvature of a closed curve, we get $2 \pi$. [area of a circle]. This is by green's theorem.
 
-# Integrating Curvature in 1D [WIP]
+# Integrating Curvature in 1D [TODO]
 
 - All curves are parametrized by _arc length_ to avoid weird artefacts by time parametrization.
 - So $r(s)$ is a function from length of the curve to $\mathbb R^3$.
@@ -3386,7 +4006,7 @@ $$
 - The curvature is given by $\kappa(s) \equiv |dr^2/ds^2|$.
 - The unit normal is given by $\hat N(s) r''(s) / \kappa(s)$.
 - We wish to consider the total curvature, given by $\int_0^L \kappa(s) ds$ where $L$ is the total length of a closed curve on the plane.
-- WIP: how to prove that this will be a multiple of $2 \pi$?
+- TODO: how to prove that this will be a multiple of $2 \pi$?
 
 
 # Fundamental theorem of symmetric polynomials
@@ -3913,7 +4533,7 @@ int f(vector<int> &xs) {
   This happens for example at `ATLEAST1:`, where we have one element so we know that `best >= 1`, but we don't have two elements to initialize
   the DP array.
 
-# Representation theory of $SU(2)$ [WIP]
+# Representation theory of $SU(2)$ [TODO]
 
 - `2x2` unitary matrices, so $AA^\dagger = I$.
 - Lie algebra is $su(2)$, which are of the form $A^\dagger = -A$, and $Tr(A) = 0$.
@@ -4713,18 +5333,18 @@ def rhsIV():
 
 - [From IMO math](https://www.imomath.com/index.php?options=237&lmm=1)
 
-# Expected number of turns to generate all numbers `1..N` (WIP)
+# Expected number of turns to generate all numbers `1..N` (TODO)
 
 - Supposedly, asymptotically `N log N`
 
 #### For $N=1$, the expected number of turns is $1$.
 
-# Diameter in single DFS (WIP)
+# Diameter in single DFS (TODO)
 
 - [Gist by pedu](https://gist.github.com/anurudhp/1ecf14f1211c71cd5c99537fad13fecd)
 
 
-# Min cost flow (WIP)
+# Min cost flow (TODO)
 
 
 - Problem statement: Find a maximal flow with minimum cost.
@@ -6940,7 +7560,7 @@ y = [#]
   and its action $A_y \equiv \dots$ has a lot of exercise.
 
 - Anyone can participate in $x$'s exercise regime. In particular, $A_x(y) = id(y) = y$ since $y$ doesn't tire out from the exercise regime of $x$.
-- On the other side, it's hard to take part in $y$'s exercise regime and not get wiped out. If we consider $A_y(x)$, we're going to get zero
+- On the other side, it's hard to take part in $y$'s exercise regime and not get TODOed out. If we consider $A_y(x)$, we're going to get zero
   because by tableaux, there are swaps in $A_y$ that leave $x$ invariant, which causes sign cancellations. But intuitively, $A_y(x)$ is asking $x$
   to participate in $y$'s exercise regmine, which it's not strong enough to do, and so it dies.
 
@@ -8072,7 +8692,7 @@ Recall that the number of irreps is upper bounded by the number of conjugacy cla
 from character theory: (1) the characters of irreps are orthogonal in the space of class functions, and
 (2) the dimension of the space of class functions is is equal to the number of conjugacy classes, since there
 are those many degrees of freedom for a class function --- it must take on a different value per conjugacy class
-[WIP: finish my character theory notes]. In our case, we have found one irrep per conjugacy class, since
+[TODO: finish my character theory notes]. In our case, we have found one irrep per conjugacy class, since
 conjugacy classes of $S_n$ is determined by cycle type, and the shape of a diagram encodes the cycle type of
 a permutation. If we show that the irreps of different shapes/diagrams are inequivalent, we are done.
 
@@ -38602,6 +39222,17 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
+> If Alice uses abstract algebra to solve problem and Bob uses concrete calculation, Alice's result is more generalizable than Bob's,
+> while Bob's method is more generalizable than Alice's.
+> This is one reason why combining the two approaches is so valuable.
+> You can start with something you know will work but may not unlock a great mystery, and then look for patterns that clue you in to a wider story.
+
+> "There are two kinds of scientific progress:
+> the methodical experimentation and categorization which gradually extend the boundaries of knowledge,
+> and the revolutionary leap of genius which redefines and transcends those boundaries.
+> Acknowledging our debt to the former, we yearn nonetheless for the latter"
+
+
 > you can be dead right. (Being right has a time and a place)
 
 > Bott also used to say that a cocyle was "something that hovers over a space
@@ -39014,6 +39645,7 @@ Plan: finish cardistry bootcamp, learn card control from 52kards.
 
 # Common Lisp Cheat Sheet
 
+- [Peter Norvig's common lisp guide](https://www.cs.umd.edu/~nau/cmsc421/norvig-lisp-style.pdf)
 - To make a runnable file, add `;; #!/usr/bin/env sbcl --script` to the top.
 - To change package, use ", set package"
 - Good starting kit:
@@ -39045,9 +39677,10 @@ Plan: finish cardistry bootcamp, learn card control from 52kards.
 - SLIME Restart: [`M-x slime-restart-inferior-lisp`](https://stackoverflow.com/questions/3725595/reset-state-in-common-lisp),
     or call [`(progn (unload-feature 'your-lib) (load-library "your-lib"))`](https://emacs.stackexchange.com/a/26606/28600)
 - [SLIME force re-evaluation of `defvar`, use `M-x slime-eval-defun` (`C-M-x`)](https://emacs.stackexchange.com/questions/2298/how-do-i-force-re-evaluation-of-a-defvar).
-
-
-
+- [Serepeum library for exhaustiveness checking](https://github.com/ruricolist/serapeum/)
+- [Alexandria `destructuring-case` for pattern matching](https://alexandria.common-lisp.dev/draft/alexandria.html#Data-and-Control-Flow)
+- [Sycamore for purely functional data structures](https://github.com/ndantam/sycamore)
+- [Screamer for logic programming](https://github.com/nikodemus/screamer)
 
 ##### Entertaining footgun: `let` bindings
 
@@ -39058,9 +39691,9 @@ Plan: finish cardistry bootcamp, learn card control from 52kards.
 
 The above silently compiles, with an SBCL error:
 
-```
-; caught STYLE-WARNING:
-;   The variable ERRORMSG is defined but never used.
+```lisp
+;; caught STYLE-WARNING:
+;;   The variable ERRORMSG is defined but never used.
 ```
 
 This should clue you in that something terrible has happened.
@@ -39070,7 +39703,7 @@ pair.
 
 So this should have been written:
 
-```
+```lisp
 (let* ( ;; <- OPEN pairs of bindings
    (x (errormsg 12))
    ) ... ;; <- CLOSE bindings
@@ -39078,29 +39711,29 @@ So this should have been written:
 
 But has been written as:
 
-```
+```lisp
 (let* (
    x
    (errormsg 12)
-  ) ...)
+  ) ... )
 ```
 
 This gets interpreted as:
 
-```
+```lisp
 (let* (
    (x nil) ;; notice the `nil` introduction
    (errormsg 12)
-   ) ...)
+   ) ... )
 ```
 
-The takeaway appears to be that SBCL warnings ought to be
-treated as errors.
+The takeaway appears to be that `SBCL` warnings
+ought to be treated as errors.
 
 
 ##### ASDF: treat warnings as errors:
 
-```
+```lisp
 ;; 23:49 <@jackdaniel> bollu: I don't know whether this is documented
 (setf asdf:*compile-file-warnings-behaviour* :error)
 ```
