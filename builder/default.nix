@@ -7,7 +7,7 @@ with pkgs;
 stdenv.mkDerivation {
 	name = "builder";
 	src = ./.;
-	nativeBuildInputs = [ cmake ninja ];
+	nativeBuildInputs = [ cmake ninja python3 ];
 # 	buildPhase = ''
 # 		mkdir build; cd build; cmake -G Ninja ../.; ninja
 # 	'';
