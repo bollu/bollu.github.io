@@ -1,3 +1,5 @@
+- [2d radiosity for soft shadows in smol renderers](https://github.com/schmelczerandras/sdf-2d/blob/main/src/graphics/rendering/shaders/shading-fs.glsl#L48)
+- [2d radiosity calculations](https://vimeo.com/diwi)
 - [Choices of representations for names](https://jesper.sikanda.be/posts/1001-syntax-representations.html)
 - [Computational geometry video lectures by Philipp Kindermann](https://www.youtube.com/c/PhilippKindermann/playlists)
 - [Largest list of CP topics ever](https://codeforces.com/blog/entry/95106)
