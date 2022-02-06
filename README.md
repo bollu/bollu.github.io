@@ -38844,6 +38844,8 @@ let g:conjure#mapping#eval_motion = "E"
 - Open the error window with `:copen`.
 - Thanks to `vim-unimpaired`, going next/previous is as easy as `[q` and `]q`
   (`q` for `quickfix`).
+- Can create stupid mapping: `nnoremap / :grep   %<Left><Left><Left>`, which switches `/` based search
+  to always become `grep` based search.
 
 ##### sed matching syntax
 
