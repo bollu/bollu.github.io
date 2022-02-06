@@ -6,6 +6,46 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+# Interleaved dataflow analysis and rewriting
+
+```
+fact: {} -> PROPAGATE
+x = 1
+fact: {x: 1}
+y = 2 
+fact: {x: 1, y: 2}
+~z = x + y~~
+{x: 1, y : 2, z: 3} -> REWRITE + PROPAGATE
+z = 3
+
+-- :( rewrite, propagate. --
+
+fact: {} -> PROPAGATE
+x = 1
+fact: {x: 1}
+y = 2 
+fact: {x: 1, y: 2}
+~z = x + y~~
+{x: 1, y : 2} -> REWRITE
+z = 3 <- NEW statement from the REWRITE; 
+fact: {x: 1, y: 2, z: 3} 
+
+x = 2 * 10 ; (x = 20; x is EVEN)
+y = 2 * z; (y = UNK; y is EVEN)
+
+-> if (y %2 == 0) { T } else { E }
+T -> analysis 
+```
+
+
+
+# Central variable as `focal`
+
+- The NLTK code which [breaks down a word into syllables](https://www.nltk.org/_modules/nltk/tokenize/sonority_sequencing.html)
+  inspects trigrams. 
+- It names the variables of the trigrams `prev`, `focal`, and `next`.
+- I find the name `focal` very evocative for what we are currently focused on! It is free of the implications
+  of a word like `current`.
 
 # Stuff I learnt in 2021
 
@@ -430,17 +470,6 @@ Microscope is a [game about storytelling](https://www.lamemage.com/microscope/).
 was never able to host it properly because I was busy, and when I wasn't busy, I was unsure
 of my abilities as dungeon master `:)` But it definitely is a game I'd be stoked to play.
 I'm thnking of running it early 2022 with my group of friends.
-
-#### Preparing for PhD
-
-I was at home this year, wrapping up my master's thesis, and attempting to
-accept the PhD position I was offered by [Dr. Tobias Grosser](https://grosser.science/) at the University of Edinburgh.
-I've worked with Tobias for, I suppose, four years now, and he's an incredible advisor. We understand
-each other really well, and he totally gets the type of things I enjoy, and the failure modes
-I have (the lack of a priority queue, for example). It's great to have the feeling that I have
-an extremely supportive advisor 
-
-
 
 ## Odds and ends
 
