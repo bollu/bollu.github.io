@@ -23,17 +23,19 @@
 #undef NDEBUG
 #include <assert.h>
 
-#define CONFIG_WEBSITE_RSS_DESCRIPTION "A universe of Sorts"
+#if  defined(_WIN32) || defined(WIN32) // my build config on windows
 #define BLOG_ROOT_FOLDER_TRAILING_SLASH "C:\\Users\\bollu\\blog\\" 
+#else  // unix
+#define BLOG_ROOT_FOLDER_TRAILING_SLASH "/home/siddu_druid/blog/"
+#endif
 
-// defaults based on blog structure.
-#define CONFIG_KATEX_PATH                                                      \
-BLOG_ROOT_FOLDER_TRAILING_SLASH##"katex\\katex.min.js "
-#define CONFIG_PRISM_PATH                                                      \
-  BLOG_ROOT_FOLDER_TRAILING_SLASH##"prism\\prism.js"
+
+#define CONFIG_WEBSITE_RSS_DESCRIPTION "A universe of Sorts"
 #define CONFIG_WEBSITE_URL_NO_TRAILING_SLASH "https://bollu.github.io"
-#define CONFIG_INPUT_MARKDOWN_PATH                                             \
-  BLOG_ROOT_FOLDER_TRAILING_SLASH##"README.md"
+
+#define CONFIG_INPUT_MARKDOWN_PATH  (BLOG_ROOT_FOLDER_TRAILING_SLASH "README.md")
+#define CONFIG_KATEX_PATH  (BLOG_ROOT_FOLDER_TRAILING_SLASH "katex/katex.min.js")
+#define CONFIG_PRISM_PATH (BLOG_ROOT_FOLDER_TRAILING_SLASH "prism/prism.js")
 #define OUTPUT_DIR_TRAILING_SLASH BLOG_ROOT_FOLDER_TRAILING_SLASH
 
 
@@ -1086,6 +1088,7 @@ GIVE char *pygmentize(duk_context *prism_ctx, KEEP const char *raw_input,
 
 enum class LatexType { LatexTypeBlock, LatexTypeInline };
 
+duk_context *load_katex();
 std::pair<bool, GIVE char *> compileLatex(duk_context *katex_ctx, KEEP const char *raw_input,
                         const Span span, const LatexType ty) {
 
@@ -1136,8 +1139,10 @@ std::pair<bool, GIVE char *> compileLatex(duk_context *katex_ctx, KEEP const cha
     //    -2      -1
     printferr(span.begin, raw_input, "%s", duk_to_string(katex_ctx, -1));
     duk_pop(katex_ctx);
-    assert(false && "unable to compile katex");
+    // reload katex context.
+    katex_ctx = load_katex(); 
     return {false, nullptr};
+    assert(false && "unable to compile katex");
   }
 }
 
@@ -1271,6 +1276,7 @@ duk_context *load_katex() {
 
     const ll nread = fread(js, 1, len, fkatex);
     assert(nread == len);
+    fclose(fkatex);
     duk_context *katex_ctx = duk_create_heap_default();
 
     duk_push_string(katex_ctx, "katex.min.js");
@@ -1367,8 +1373,6 @@ bool toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
                      t->ty == TT::LatexBlock ? LatexType::LatexTypeBlock
                                              : LatexType::LatexTypeInline);
     if (!success) { 
-        assert(false && "failed build");
-        katex_ctx = load_katex();
         return false;
     }
     strcpy(outs + outlen, outcompile);
@@ -1845,6 +1849,7 @@ int main(int argc, char **argv) {
 
     const ll nread = fread(js, 1, len, fprism);
     assert(nread == len);
+    fclose(fprism);
     prism_ctx = duk_create_heap_default();
 
     duk_push_string(prism_ctx, "prism.min.js");
@@ -1922,7 +1927,7 @@ int main(int argc, char **argv) {
     outlen += sprintf(index_html_buf + outlen, "%s", html_postamble);
 
     char index_html_path[1024];
-    sprintf(index_html_path, "%s\\index.html", OUTPUT_DIR_TRAILING_SLASH);
+    sprintf(index_html_path, "%sindex.html", OUTPUT_DIR_TRAILING_SLASH);
     FILE *f = fopen(index_html_path, "wb");
     if (f == nullptr) {
       fprintf(stdout, "===unable to open HTML file: |%s|===", index_html_path);
@@ -1968,7 +1973,7 @@ int main(int argc, char **argv) {
 
     // [ix_start, ix_h1) contains the new article
     char html_path[1024];
-    sprintf(html_path, "%s\\%s.html", OUTPUT_DIR_TRAILING_SLASH, url);
+    sprintf(html_path, "%s%s.html", OUTPUT_DIR_TRAILING_SLASH, url);
 
     FILE *f = fopen(html_path, "wb");
     if (f == nullptr) {
@@ -1982,7 +1987,7 @@ int main(int argc, char **argv) {
 
   // === write out RSS ===
   char rss_feed_path[1024];
-  sprintf(rss_feed_path, "%s\\feed.rss",
+  sprintf(rss_feed_path, "%sfeed.rss",
           OUTPUT_DIR_TRAILING_SLASH);
   FILE *frss = fopen(rss_feed_path, "wb");
   if (frss == nullptr) {
