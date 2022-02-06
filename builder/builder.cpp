@@ -23,12 +23,27 @@
 #undef NDEBUG
 #include <assert.h>
 
-#define GIVE
-#define TAKE
-#define KEEP
+#define CONFIG_WEBSITE_RSS_DESCRIPTION "A universe of Sorts"
+#define BLOG_ROOT_FOLDER_TRAILING_SLASH "C:\\Users\\bollu\\blog\\" 
+
+// defaults based on blog structure.
+#define CONFIG_KATEX_PATH                                                      \
+BLOG_ROOT_FOLDER_TRAILING_SLASH##"katex\\katex.min.js "
+#define CONFIG_PRISM_PATH                                                      \
+  BLOG_ROOT_FOLDER_TRAILING_SLASH##"prism\\prism.js"
+#define CONFIG_WEBSITE_URL_NO_TRAILING_SLASH "https://bollu.github.io"
+#define CONFIG_INPUT_MARKDOWN_PATH                                             \
+  BLOG_ROOT_FOLDER_TRAILING_SLASH##"README.md"
+#define OUTPUT_DIR_TRAILING_SLASH BLOG_ROOT_FOLDER_TRAILING_SLASH
+
 
 static const int LONG_LATEX_BLOCK_SIZE = 30;
 static const int LONG_CODE_BLOCK_SIZE = 60;
+
+
+#define GIVE
+#define TAKE
+#define KEEP
 
 using namespace std;
 
@@ -853,6 +868,7 @@ T *tokenizeBlock(const char *s, const ll len, const L lbegin) {
 
     const int LANG_NAME_SIZE = 20;
     char *langname = (char *)calloc(LANG_NAME_SIZE, sizeof(char));
+    assert(langname && "unable to allocate memory");
     ll langlen = 0;
     while (s[lcur.si] != '\n' && langlen < LANG_NAME_SIZE - 1) {
       langname[langlen++] = s[lcur.si];
@@ -1016,6 +1032,7 @@ GIVE char *pygmentize(duk_context *prism_ctx, KEEP const char *raw_input,
                       KEEP const char *lang, const Span span) {
 
   char *input = (char *)calloc(sizeof(char), span.nchars() + 1);
+  assert(input && "unable to allocate memory for pygmentize");
   for (ll i = 0; i < span.nchars(); ++i) {
     input[i] = raw_input[span.begin.si + i];
   }
@@ -1064,6 +1081,7 @@ GIVE char *pygmentize(duk_context *prism_ctx, KEEP const char *raw_input,
     printferr(span.begin, raw_input, "%s", duk_to_string(prism_ctx, -1));
     assert(false && "unable to syntax highlight");
   }
+  assert(false && "unable to syntax highlight");
 };
 
 enum class LatexType { LatexTypeBlock, LatexTypeInline };
@@ -1079,6 +1097,7 @@ std::pair<bool, GIVE char *> compileLatex(duk_context *katex_ctx, KEEP const cha
   // [katex(-1)|]
 
   char *input = (char *)calloc(span.nchars() + 2, sizeof(char));
+  assert(input && "unable t allocate memory for compileLatex");
   for (ll i = 0; i < span.nchars(); ++i) {
     input[i] = raw_input[span.begin.si + i];
   }
@@ -1093,8 +1112,7 @@ std::pair<bool, GIVE char *> compileLatex(duk_context *katex_ctx, KEEP const cha
   // [katex(-4)| "renderToString"(-3)|"<input string>"(-2)|Object(-1)]
 
   duk_push_boolean(katex_ctx, ty == LatexType::LatexTypeBlock);
-  // [katex(-5)| "renderToString"(-4)|"<input
-  // string>"(-3)|Object(-2)|true/false(-1)]
+  // [katex(-5)| "renderToString"(-4)|"<input string>"(-3)|Object(-2)|true/false(-1)]
 
   const int OPTIONS_IDX = -2;
   duk_bool_t rc = duk_put_prop_string(katex_ctx, OPTIONS_IDX, "displayMode");
@@ -1108,14 +1126,18 @@ std::pair<bool, GIVE char *> compileLatex(duk_context *katex_ctx, KEEP const cha
   if (duk_pcall_prop(katex_ctx, KATEX_IDX, 2) == DUK_EXEC_SUCCESS) {
     // stack: call
     // [katex| out_string]
-    //   -2         -1
+    //       -2         -1
     char *out = strdup(duk_to_string(katex_ctx, -1));
     duk_pop(katex_ctx);
     return {true, out};
   } else {
+    // https://github.com/svaarala/duktape/issues/848
+    // [katex| err_string]
+    //    -2      -1
     printferr(span.begin, raw_input, "%s", duk_to_string(katex_ctx, -1));
+    duk_pop(katex_ctx);
+    assert(false && "unable to compile katex");
     return {false, nullptr};
-    // assert(false && "unable to compile katex");
   }
 }
 
@@ -1178,7 +1200,7 @@ void inlineTokenToPlaintext(const char *raw_input, const T *t, char *outs,
 // unique, add "-1", "-2", "-3",... to make it unique
 GIVE const char *mkHeadingURL(KEEP const char *raw_input,
                               KEEP THeading *heading) {
-  const int BUFSIZE = (1 << 14);
+  const int BUFSIZE = (1 << 10);
   char plaintext[BUFSIZE];
   for (int i = 0; i < BUFSIZE; ++i)
     plaintext[i] = 0;
@@ -1198,6 +1220,7 @@ GIVE const char *mkHeadingURL(KEEP const char *raw_input,
   assert(ptend - ptbegin >= 0);
 
   char *url = (char *)calloc(ptlen + 2, sizeof(char));
+  assert(url && "unable to allocate memory for making heading URL");
   ll url_ix = 0;
 
   bool seenalnum = true;
@@ -1231,6 +1254,48 @@ GIVE const char *mkHeadingURL(KEEP const char *raw_input,
   // TODO: strip trailing `-` in URL.
   return url;
 }
+
+
+duk_context *load_katex() {
+    FILE *fkatex = fopen(CONFIG_KATEX_PATH, "rb");
+    if (fkatex == nullptr) {
+      fprintf(stderr, "ERROR: unable to find katex.min.js at |%s|\n",
+              CONFIG_KATEX_PATH);
+      assert(false && "unable to open katex.min.js");
+    }
+
+    fseek(fkatex, 0, SEEK_END);
+    const ll len = ftell(fkatex);
+    fseek(fkatex, 0, SEEK_SET);
+    char *js = (char *)calloc(sizeof(char), len + 10);
+
+    const ll nread = fread(js, 1, len, fkatex);
+    assert(nread == len);
+    duk_context *katex_ctx = duk_create_heap_default();
+
+    duk_push_string(katex_ctx, "katex.min.js");
+    // compile katex
+    if (duk_pcompile_lstring_filename(katex_ctx, 0, js, len) != 0) {
+      fprintf(stderr, "===katex.min.js compliation failed===\n%s\n===\n",
+              duk_safe_to_string(katex_ctx, -1));
+      assert(false && "unable to compile katex.min.js");
+    }
+
+    // run katex to get the global.katex object
+    if (duk_pcall(katex_ctx, 0) != 0) {
+      fprintf(stderr, "===katex.min.js execution failed===\n%s\n===\n",
+              duk_safe_to_string(katex_ctx, -1));
+      assert(false && "unable to execute katex.min.js");
+    }
+
+    if (duk_peval_string(katex_ctx, "katex") != 0) {
+      fprintf(stderr,
+              "====katex.min.js: unable to grab katex object===\n%s\n===\n",
+              duk_safe_to_string(katex_ctx, -1));
+      assert(false && "unable to find the katex object");
+    }
+    return katex_ctx;
+  }
 
 bool toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
             const char *raw_input, const T *const t, ll &outlen, char *outs) {
@@ -1301,7 +1366,11 @@ bool toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
     tie(success, outcompile) = compileLatex(katex_ctx, raw_input, span,
                      t->ty == TT::LatexBlock ? LatexType::LatexTypeBlock
                                              : LatexType::LatexTypeInline);
-    if (!success) { return false; }
+    if (!success) { 
+        assert(false && "failed build");
+        katex_ctx = load_katex();
+        return false;
+    }
     strcpy(outs + outlen, outcompile);
     outlen += strlen(outcompile);
 
@@ -1437,6 +1506,8 @@ bool toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
     outlen += sprintf(outs + outlen, "</blockquote>");
     return true;
   }
+  default:
+    assert(false && "unhandled token type in toHTML");
   };
   assert(false && "unreachabe");
 }
@@ -1597,19 +1668,6 @@ const char html_postamble[] = "</container>"
                               "</body>"
                               "</html>";
 
-#define CONFIG_WEBSITE_RSS_DESCRIPTION "A universe of Sorts"
-#define BLOG_ROOT_FOLDER_TRAILING_SLASH "C:\\Users\\bollu\\blog\\" 
-
-// defaults based on blog structure.
-#define CONFIG_KATEX_PATH                                                      \
-BLOG_ROOT_FOLDER_TRAILING_SLASH##"katex\\katex.min.js "
-#define CONFIG_PRISM_PATH                                                      \
-  BLOG_ROOT_FOLDER_TRAILING_SLASH##"prism\\prism.js"
-#define CONFIG_WEBSITE_URL_NO_TRAILING_SLASH "https://bollu.github.io"
-#define CONFIG_INPUT_MARKDOWN_PATH                                             \
-  BLOG_ROOT_FOLDER_TRAILING_SLASH##"README.md"
-#define OUTPUT_DIR_TRAILING_SLASH BLOG_ROOT_FOLDER_TRAILING_SLASH
-
 static const ll MAX_OUTPUT_BUF_LEN = (ll)1e9L;
 
 char raw_input[MAX_CHARS];
@@ -1766,47 +1824,8 @@ int main(int argc, char **argv) {
 
   // 1. Initialize Duck context for katex
   // --------------------------
-  duk_context *katex_ctx = nullptr;
-  {
-    FILE *fkatex = fopen(CONFIG_KATEX_PATH, "rb");
-    if (fkatex == nullptr) {
-      fprintf(stderr, "ERROR: unable to find katex.min.js at |%s|\n",
-              CONFIG_KATEX_PATH);
-      assert(false && "unable to open katex.min.js");
-    }
-
-    fseek(fkatex, 0, SEEK_END);
-    const ll len = ftell(fkatex);
-    fseek(fkatex, 0, SEEK_SET);
-    char *js = (char *)calloc(sizeof(char), len + 10);
-
-    const ll nread = fread(js, 1, len, fkatex);
-    assert(nread == len);
-    katex_ctx = duk_create_heap_default();
-
-    duk_push_string(katex_ctx, "katex.min.js");
-    // compile katex
-    if (duk_pcompile_lstring_filename(katex_ctx, 0, js, len) != 0) {
-      fprintf(stderr, "===katex.min.js compliation failed===\n%s\n===\n",
-              duk_safe_to_string(katex_ctx, -1));
-      assert(false && "unable to compile katex.min.js");
-    }
-
-    // run katex to get the global.katex object
-    if (duk_pcall(katex_ctx, 0) != 0) {
-      fprintf(stderr, "===katex.min.js execution failed===\n%s\n===\n",
-              duk_safe_to_string(katex_ctx, -1));
-      assert(false && "unable to execute katex.min.js");
-    }
-
-    if (duk_peval_string(katex_ctx, "katex") != 0) {
-      fprintf(stderr,
-              "====katex.min.js: unable to grab katex object===\n%s\n===\n",
-              duk_safe_to_string(katex_ctx, -1));
-      assert(false && "unable to find the katex object");
-    }
-  }
-  assert(katex_ctx != nullptr && "Unable to setup duck context");
+  duk_context *katex_ctx = load_katex();
+  assert(katex_ctx != nullptr && "Unable to setup katex context");
 
   // 1. Initialize Duck context for prismjs
   // --------------------------
@@ -1903,8 +1922,7 @@ int main(int argc, char **argv) {
     outlen += sprintf(index_html_buf + outlen, "%s", html_postamble);
 
     char index_html_path[1024];
-    sprintf(index_html_path, "%s\\index.html",
-            OUTPUT_DIR_TRAILING_SLASH);
+    sprintf(index_html_path, "%s\\index.html", OUTPUT_DIR_TRAILING_SLASH);
     FILE *f = fopen(index_html_path, "wb");
     if (f == nullptr) {
       fprintf(stdout, "===unable to open HTML file: |%s|===", index_html_path);
@@ -1936,12 +1954,13 @@ int main(int argc, char **argv) {
     outlen += sprintf(outbuf + outlen, "%s", html_preamble);
     bool success = true;
     for (int i = ix_start; i < ix_h1; ++i) {
-      success |= toHTML(katex_ctx, prism_ctx, raw_input, ts[i], outlen, outbuf);
+      success &= toHTML(katex_ctx, prism_ctx, raw_input, ts[i], outlen, outbuf);
     }
 
     if (!success) {
-      fprintf(stdout, "===compile failed. exiting\n===");
-      exit(1);
+      fprintf(stdout, "===ERROR: compile [%s] failed. skipping. ", url);
+      assert(false && "failed compilation");
+      continue;
     }
 
     outlen += sprintf(outbuf + outlen, utterances_preamble);
@@ -1949,8 +1968,7 @@ int main(int argc, char **argv) {
 
     // [ix_start, ix_h1) contains the new article
     char html_path[1024];
-    sprintf(html_path, "%s\\%s.html", OUTPUT_DIR_TRAILING_SLASH,
-            url);
+    sprintf(html_path, "%s\\%s.html", OUTPUT_DIR_TRAILING_SLASH, url);
 
     FILE *f = fopen(html_path, "wb");
     if (f == nullptr) {
