@@ -6,13 +6,123 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+# Orthogonal Factorization Systems
+
+- For a category $C$, a factorization system consists of sets of morphisms $(E, M)$ such that:
+- $E, M$ contain all isos.
+- $E, M$ are closed under composition.
+- every morphism in $C$ can be factored as $M \circ E$
+- The factorization is _functorial_:
+- [Reference: Riehl on factorization systems](https://math.jhu.edu/~eriehl/factorization.pdf)
+
+# Orthogonal morphisms
+
+Two morphisms `e: a -> b` and `m: x -> y` are orthogonal iff for any `(f, g)` such
+that the square commutes:
+
+```
+a --e--> b
+|        |
+f        g
+|        |
+v        v
+x --m--> y
+```
+
+then there exists a UNIQUE diagonal `d: b -> x` such that the the triangles
+commute: (`f = d . e`) and (`m . d = g`):
+
+```
+a --e--> b
+|       / |
+f      / g
+|   /!d  |
+v /      v
+x --m--> y
+```
+
+
+# Locally Presentable Category
+
+- A category is locally presentable iff it has a set $S$ of objects such that
+  every object is a colimit over these objects. This definition is correct upto
+  size issues.
+- A locally presentable category is a reflective localization $C \to Psh(S)$ of a category
+  of presheaves over $S$. Since $Psh(S)$ is the free cocompletion, and localization imposes
+  relations, this lets us write a category in terms of generators and relations.
+
+- Formally, $C$ :
+- 1. is locally small
+- 2. has all small colimits
+- 3. `<TECHNICAL SIZE CONDITIONS; TALK TO OHAD>`
+
+#### Localization
+
+- Let $W$
+
+
+#### Reflective localization
+
+#### Accessible Reflective localization
+
+
+
+
+# Remez Algorithm
+
+- [link](https://en.wikipedia.org/wiki/Remez_algorithm)
+
+# Permission bits reference
+
+- I always forget the precise encoding of permissions, so I mkae a cheat sheet to
+  remember what's what. It's `read,write,execute` which have values `2^2, 2^1, 2^0`.
+
+```
++-----+---+--------------------------+
+| rwx | 7 | Read, write and execute  |
+| rw- | 6 | Read, write              |
+| r-x | 5 | Read, and execute        |
+| r-- | 4 | Read,                    |
+| -wx | 3 | Write and execute        |
+| -w- | 2 | Write                    |
+| --x | 1 | Execute                  |
+| --- | 0 | no permissions           |
++------------------------------------+
+```
+
+```
++------------+------+-------+
+| Permission | Octal| Field |
++------------+------+-------+
+| rwx------  | 0700 | User  |
+| ---rwx---  | 0070 | Group |
+| ------rwx  | 0007 | Other |
++------------+------+-------+
+```
+
+# Papers on Computational Group Theory
+
+- A practical model for computation with matrix groups.
+- A data structure for a uniform approach to computations with finite groups.
+- A fast implementatoin of the monster group.
+
+# Kan Extensions: Key idea
+
+- The key insight is to notice that when we map from $C \to E$ via $K$, then the $K(x)$ object that we get
+  whose comma we form with $K \downarrow Kx$ also has an arrow $Kx \to Kx$ via the identity arrow.
+  Thus we can think of $K \downarrow Kx$ as looking like `(<stuff> -> Kx) -> Kx`. So it's really the `Kx`
+  in the `<stuff> -> Kx` that controls the situation.
+
+
+
 # Interleaved dataflow analysis and rewriting
+
 
 ```
 fact: {} -> PROPAGATE
 x = 1
 fact: {x: 1}
-y = 2 
+y = 2
 fact: {x: 1, y: 2}
 ~z = x + y~~
 {x: 1, y : 2, z: 3} -> REWRITE + PROPAGATE
@@ -23,18 +133,18 @@ z = 3
 fact: {} -> PROPAGATE
 x = 1
 fact: {x: 1}
-y = 2 
+y = 2
 fact: {x: 1, y: 2}
 ~z = x + y~~
 {x: 1, y : 2} -> REWRITE
-z = 3 <- NEW statement from the REWRITE; 
-fact: {x: 1, y: 2, z: 3} 
+z = 3 <- NEW statement from the REWRITE;
+fact: {x: 1, y: 2, z: 3}
 
 x = 2 * 10 ; (x = 20; x is EVEN)
 y = 2 * z; (y = UNK; y is EVEN)
 
 -> if (y %2 == 0) { T } else { E }
-T -> analysis 
+T -> analysis
 ```
 
 
@@ -42,7 +152,7 @@ T -> analysis
 # Central variable as `focal`
 
 - The NLTK code which [breaks down a word into syllables](https://www.nltk.org/_modules/nltk/tokenize/sonority_sequencing.html)
-  inspects trigrams. 
+  inspects trigrams.
 - It names the variables of the trigrams `prev`, `focal`, and `next`.
 - I find the name `focal` very evocative for what we are currently focused on! It is free of the implications
   of a word like `current`.
@@ -90,10 +200,10 @@ void editor_state_backspace_char(EditorState& s) {
 # Green's functions
 - Can solve $L y(x) = f(x)$.
 - $f(x)$ is called as the forcing operator.
-- $L$ is a linear diffeential operator. That is, it's a differential operator lik $\partial_x$ or $\partial_t \partial_t$. 
+- $L$ is a linear diffeential operator. That is, it's a differential operator lik $\partial_x$ or $\partial_t \partial_t$.
   See that $\partial_t \partial_t$ is linear, because
   $\partial_t \partial_t \alpha f + \beta g = \alpha (\partial_t \partial_t f) + \beta (\partial_t \partial_t g)$
-- 
+-
 - https://www.youtube.com/watch?v=ism2SfZgFJg
 
 # CP trick: writing exact counting as counting less than
@@ -119,7 +229,7 @@ void editor_state_backspace_char(EditorState& s) {
 - If we want to place $n$ things where $a$ of them are of kind `a`, $b$ are of kind `b`, $c$
   of them are kind $c$.
   the usual formula is $n!/(a!b!c!)$.
-- An alternative way to count this is to think of it as first picking $a$ slots from $n$, and then 
+- An alternative way to count this is to think of it as first picking $a$ slots from $n$, and then
   picking $b$ slots from the leftover $(n - a)$ elements, and finally picking $c$ slots from $(n - a - b)$.
   This becomes $\binom{n}{a}\binom{n-a}{b}\binom{n - a - b}{c}$.
 - This is equal to $n!/a!(n -a)! \cdot (n-a)!/n!(n - a - b)! \cdot (n - a - b)! / c!0!$,
@@ -140,7 +250,7 @@ void editor_state_backspace_char(EditorState& s) {
 
 #### Corollary: two projective resolutions are chain homotopy equivalent
 - Let `P1 -> P0 -> M` and `... -> Q1 -> Q0 -> M` be two projective resolutions.
-- `H0(P*)` has an epi mono factorization `P0 ->> H0(P*)` and `H0(P*) ~= M`. 
+- `H0(P*)` has an epi mono factorization `P0 ->> H0(P*)` and `H0(P*) ~= M`.
 
 
 
@@ -156,7 +266,7 @@ void editor_state_backspace_char(EditorState& s) {
         vP0 -> M -> 0
 ```
 
-- The next `P1` must be projective, and it must project onto `ker e` for homology to vanish. So we 
+- The next `P1` must be projective, and it must project onto `ker e` for homology to vanish. So we
   choose the free module generated by elements of `ker e` to be `P1`!
 
 
@@ -206,7 +316,7 @@ P1---   P0 -> M -> 0
 - $P$ is projective iff every exact sequence $0 \to N \to M \xrightarrow{\pi} P \to 0$ splits.
 - That is, we have a section $s: P \to M$ such that $\pi \circ s = id_P$.
 
-- **PROOF (1 => 2):** Suppose $P$ solves the lifting problem. We wish to show that this implies that exact sequence splits. 
+- **PROOF (1 => 2):** Suppose $P$ solves the lifting problem. We wish to show that this implies that exact sequence splits.
 - Take the exact sequence:
 
 
@@ -237,7 +347,7 @@ P1---   P0 -> M -> 0
 - We can always pick a surjective epi $\pi: F \to P$, where $F$ is the free module over all elements of $P$.
 - We get our ses $0 \to ker(\pi) \to F \to P \to 0$. We know this splits because as shown above, projective splits
   exact sequences where $P$ is the surjective image.
-- Since the sequence splits, the middle term $F$ is a direct sum of the other two terms. Thus $F \simeq \ker \pi \oplus P$.  
+- Since the sequence splits, the middle term $F$ is a direct sum of the other two terms. Thus $F \simeq \ker \pi \oplus P$.
 
 #### Splitting lemma
 
@@ -261,7 +371,7 @@ E ->>B
   e
 E ->>B
      ^
-    f| 
+    f|
      P <<-- P(+)Q
          pi
 ```
@@ -278,7 +388,7 @@ E ->>B <--
          pi
 ```
 
-- After lifting `f~` to `E` as `g~`, we have a map `g~: P(+)Q -> E`. 
+- After lifting `f~` to `E` as `g~`, we have a map `g~: P(+)Q -> E`.
 
 ```
 --------g~--------
@@ -352,8 +462,8 @@ class algnum:
         return f"[{self.a}, {self.b} sqrt(-5)]"
 
     def normsq(self):
-        # (a + b \sqrt(-5))(a - b \sqrt(-5)) 
-        # = a^2 - (-5) b^2 
+        # (a + b \sqrt(-5))(a - b \sqrt(-5))
+        # = a^2 - (-5) b^2
         # = a^2 + 5 b^2
         return self.a * self.a + 5 * self.b * self.b
     def is_zero(self):
@@ -395,7 +505,7 @@ print("potential divisors of (1 - sqrt(-5)): ", divisor_candidates(algnum(1, -1)
 - Define $p_4 \equiv (3, 1 - \sqrt(-5))$.
 - We claim that $p_1 p_2 = (2)$, $p_3 p_4 = (3)$, $p_1 p_3 = (1 + \sqrt(-5))$, $p_2 p_4 = (1 - \sqrt{-5})$.
 - This shows that the ideals that we had above are the products of "prime ideals".
-- We recover prime factorization at the _ideal level_, which we had lost at the _number level_. 
+- We recover prime factorization at the _ideal level_, which we had lost at the _number level_.
 
 - [Video lectures: Intro to algebraic number thory via fermat's last theorem](https://www.youtube.com/watch?v=1f0-pc9zYPQ&list=PLSibAQEfLnTwq2-zCB-t9v2WvnnVKd0wn)
 
@@ -416,18 +526,18 @@ print("potential divisors of (1 - sqrt(-5)): ", divisor_candidates(algnum(1, -1)
   `floor(n/2)`
   vertices. Thus the rest of the tree
   (ie, the part under $r$ that excludes $c$) has **strictly less than** `floor(n/2)` vertices.
-- Let us in our imagination reroot the tree at this child $c$. The childen of $c$ continue to have the 
+- Let us in our imagination reroot the tree at this child $c$. The childen of $c$ continue to have the
   same subtree size. The old node $r$, as a subtree of the new root $c$, has size strictly ness than `floor(n/2)` vertices.
-- Now we recurse, and proceed to analyze `c`. 
+- Now we recurse, and proceed to analyze `c`.
 - This analysis shows us that once we descend from `r -> c`, we **do not** need to analyze the edge `c -> r` if we make `c` the
-  new candidate centroid. 
+  new candidate centroid.
 
 ```cpp
 int sz[N]; // subtree sizes
 vector<int> es[N]; // adjacency list
 int go_sizes(int v, int p) {
   sz[v] = 1;
-  for (int w : es[v]) { 
+  for (int w : es[v]) {
     if (w == p) { continue; }
     go_sizes(w, v);
     sz[node] += sz[i];
@@ -457,7 +567,7 @@ int centroid(int v, int p) {
     int wsz = 0;
     if (w == p) {
       // size of parent = total - our size
-      wsz = n - sz[v]; 
+      wsz = n - sz[v];
     } else {
       wsz = sz[w];
     }
@@ -548,7 +658,7 @@ int centroid(int v, int p) {
   monad $T: C \to D \to C$. It's $C^T$ because a $T$ algebra consists of arrows $\{ Tc \to c : c \in C \}$
   with some laws. If one wished to be cute, the could think of this as "$T \to C$".
 - The monad $T$ is $C \to C$ and not $D \to D$ because, well, let's pick a concrete example: `Mon`.
-  The monad on the set side takes a set $S$ to the set of words on $S$, written $S^\star$. The 
+  The monad on the set side takes a set $S$ to the set of words on $S$, written $S^\star$. The
   other alleged "monad" takes a monoid $M$ to the free monoid on the element of $M$. We've lost structure.
 
 
@@ -559,12 +669,12 @@ int centroid(int v, int p) {
   then we induce a group homomorphism $q_Y: Y \to \mathbb Q$, where $X, Y$ are abelian groups.
 - We can think of this injection $f: X \to Y$ as identifying a _submodule_ (subgroup)$X$ of $Y$.
 - Suppose we wish to define the value of $q_Y$ at some $y \in Y$. If $y$ is in the subgroup $X$
-  then define $q_y(y) \equiv q_x(y)$. 
+  then define $q_y(y) \equiv q_x(y)$.
 - For anything outside the subgroup $X$, we define the value of $q_y$ to be $0$.
 - **Non-example of injective module:** See that this does not work if we replace $\mathbb Q$ with $\mathbb Z$.
 - Consider the injective map $Z \to Z$ given by $i(x) \equiv 3x$
   Consider the quotient map $f: Z \to Z/3Z$. We cannot factor the map $f$ through $i$ as $f = ci$ [$c$ for contradiction].
-  since any map  $c: Z \to Z/3Z$ is determined by where $c$ sends the identity. But in this case, 
+  since any map  $c: Z \to Z/3Z$ is determined by where $c$ sends the identity. But in this case,
   the value of $c(i(x)) = c(3x) = 3xc(1)) = 0$. Thus, $\mathbb Z$ is not an injective abelian group,
   since we were unable to factor the homomorphism $Z \to Z/3Z$ along the injective $3 \times: Z \to Z$.
 - **Where does non-example break on Q?** Let's have the same situation, where we have an injection $i: Z \to Q$
@@ -637,8 +747,8 @@ create an `std::map<T, int>` that holds the index!
 
 ```cpp
 set<int> ss; // input set to compress
-vector<int> index(ss.begin(), ss.end()); 
-int uncompressed = ...; // 
+vector<int> index(ss.begin(), ss.end());
+int uncompressed = ...; //
 int compressed = int(lower_bound(index.begin(), index.end(), key) - index.begin());
 assert(xs[compressed] == uncompressed);
 ```
@@ -732,7 +842,7 @@ at working on the Lean theorem prover. So I wrote one, it's at  [`bollu/minitt`]
 The tutorials that helped me the most were:
 
 - [David Christiansen's tutorial on normalization by evaluation](https://davidchristiansen.dk/tutorials/nbe/), where
-  he builds a full blown, small dependently typed language type checker. 
+  he builds a full blown, small dependently typed language type checker.
 - [Normalization by evaluation by F. Faviona](https://www.youtube.com/watch?v=atKqqiXslyo) which explains
   why we need this algorithm to implement dependently typed languages, and other cute examples
   of normal forms in mathematics. For example, to check if two lists are equivalent upto permutation,
@@ -799,7 +909,7 @@ Due to the R lannguage quest, I was exposed to the idea of a data frame in a *co
 The data frames in R feels *designed* to me, unlike their python counterpart in [`pandas`](https://pandas.pydata.org/).
 
 I realised that I should probably learn languages that are used by domain experts, and not poor approximations
-of domain expertise in Python. 
+of domain expertise in Python.
 
 ##### Tidyverse
 
@@ -835,7 +945,7 @@ provides a convenient class hierarchy one could choose to follow).
 I also really enjoyed the book's many (ab)uses of python's
 runtime monkey-patching capabilities for fuzzing. This meant that the book could easily explain concepts
 that would have been much harder in some other setting, but this also meant that some of the techniques
-showcased (eg. [tracking information flow](https://www.fuzzingbook.org/html/InformationFlow.html) 
+showcased (eg. [tracking information flow](https://www.fuzzingbook.org/html/InformationFlow.html)
 by using the fact that python is dynamically typed) would be much harder to put into practice in a less flexible language.
 
 
@@ -852,16 +962,16 @@ most fun idea in the book by far.
 ## Persistent data structures for compilers
 
 My friend and fellow PhD student [Mathieu Fehr](https://github.com/math-fehr) is developing
-a new compiler framework based on MLIR called [XDSL](https://github.com/xdslproject/xdsl). 
+a new compiler framework based on MLIR called [XDSL](https://github.com/xdslproject/xdsl).
 This is being developed in Python, as it's meant to be a way to expose the guts of the compilation
-pipeline to domain experts who need not be too familiar with how compilers work. 
+pipeline to domain experts who need not be too familiar with how compilers work.
 
 
 ##### Python and immutable data structures
 
 I wished to convince Mathieu to make the data structures immutable by default. Unfortunately, python's
 support for immutable style programming is pretty poor, and I never could get libraries like
-[pyrsistent](https://github.com/tobgu/pyrsistent) to work well. 
+[pyrsistent](https://github.com/tobgu/pyrsistent) to work well.
 
 ##### Immer
 
@@ -882,11 +992,11 @@ fun to write a tool to scratch a personal itch. I should do this more often.
 
 I've always wanted to become a part of the [demoscene](), but I felt that I didn't understand the
 graphics pipeline or the audio synthesis pipeline well enough. I decided to fix these glaring
-gaps in my knowledge. 
+gaps in my knowledge.
 
 ##### Rasterization
 
-I've been implementing [`bollu/rasterizer`](https://github.com/bollu/rasterizer), which 
+I've been implementing [`bollu/rasterizer`](https://github.com/bollu/rasterizer), which
 follows the [`tinyrenderer`](https://github.com/ssloy/tinyrenderer/wiki/Lesson-0:-getting-started) series
 of tutorials to implement a from-scratch, by-hand software rasterizer. I already knew
 all the math involved, so it was quite rewarding to quickly put together code that applied math I already knew
@@ -895,13 +1005,13 @@ to make pretty pictures.
 ##### Audio synthesis
 
 
-Similarly, on the audio synthesis side, I wrote 
+Similarly, on the audio synthesis side, I wrote
 [`bollu/soundsynth`](https://github.com/bollu/soundsynth) to learn fundamental synthesis algorithms.
 I followed [demofox's series of audio synththesis tutorials](https://blog.demofox.org/) as well as
 the very pleasant and gently paced textbook [TODO}(). I particularly enjoyed the ideas
 in [karlplus strong string synthesis](https://en.wikipedia.org/wiki/Karplus%E2%80%93Strong_string_synthesis).
 I find [FM synthesis](https://github.com/bollu/soundsynth/blob/master/fm-paper.pdf) very counter-intuitive to reason about.
-I've been told that audio engineers can perform FM sound synthesis "by ear", and I'd love to have an intuition for 
+I've been told that audio engineers can perform FM sound synthesis "by ear", and I'd love to have an intuition for
 frequency space that's so strong that I can intuit how to FM synthesize a sound. Regardless, the idea is very neat for sure.
 
 ##### Plucker coordinates
@@ -916,10 +1026,10 @@ about them in a way that makes sense to me. I now feel I have a better handle on
 ## Category theory
 
 A friend started a category theory reading group, so we've spent the year working
-through 
+through
 [Emily Riehl's "Category theory in Context"](https://math.jhu.edu/~eriehl/context.pdf).
 I'd seen categorical ideas before, like colimits to define a germ, "right adjoints preserve limits",
-showing that the sheafification functor exists by invoking an adjoint functor theorem, and so on. 
+showing that the sheafification functor exists by invoking an adjoint functor theorem, and so on.
 But I'd never systematically studied any of this, and if I'm being honest, I hadn't even understood
 the statement of the Yoneda lemma properly.
 
@@ -944,13 +1054,13 @@ and the [cohomology associated to a monad](http://www.tac.mta.ca/tac/reprints/ar
 ## Computational mathematics
 
 
-A Postdoc at our lab, [Andres Goens](https://scholar.google.de/citations?user=vjVhbJoAAAAJ&hl=en) 
+A Postdoc at our lab, [Andres Goens](https://scholar.google.de/citations?user=vjVhbJoAAAAJ&hl=en)
 comes from a pure math background. While we were discussing potential research ideas (since I'm still
 trying to formulate my plan for PhD), he
 mentioned that we could provide a formal semantics for the
 [GAP programming language](https://www.gap-system.org/) in Lean.
 This project is definitely up my alley, since it involves computational math (yay), Lean (yay),
-and formal verification (yay). 
+and formal verification (yay).
 
 ##### Learning GAP
 
@@ -966,7 +1076,7 @@ I loved the ideas involved, and implemented these at [`bollu/CASette`](https://g
 I'd also half-read the textbook 'Cox, Little, OShea: Computational Algebraic Geometry' which I picked
 up again since I felt like I ought to revisit it after I had seen more algebraic geometry, and also
 because I wanted to be better informed about computational mathematics. I felt like this time around,
-I felt many of the theorems (such as the [hilbert basis theorem](https://en.wikipedia.org/wiki/Hilbert%27s_basis_theorem)) 
+I felt many of the theorems (such as the [hilbert basis theorem](https://en.wikipedia.org/wiki/Hilbert%27s_basis_theorem))
 'in my bones'. Alas, I couldn't proceed more than the second chapter since other life things took priorty.
 Perhaps I'll actually finish this book next year `:)`.
 
@@ -975,7 +1085,7 @@ Perhaps I'll actually finish this book next year `:)`.
 
 For something completely different, I got interested in Cardistry and shuffling thanks to Youtube.
 I started learning interesting shuffles like the [riffle shuffle](https://mathworld.wolfram.com/RiffleShuffle.html),
-and soon got interested in the mathematics involved. I would up reading some of 
+and soon got interested in the mathematics involved. I would up reading some of
 the book [Group representations for probability and statistics](https://jdc.math.uwo.ca/M9140a-2012-summer/Diaconis.pdf)
 by Persi Diaconis, a magician turned mathematician who publishes quite a bit on permutation groups, shuffling, and the like.
 
@@ -996,15 +1106,15 @@ as I'm rated "pupil" on codeforces. If I had to debug, it's a combination of sev
 
 
 - I get discouraged if I can't solve a problem I think I "ought to be able to solve".
-- I consider myself good at math and programming, and thus being bad at problem solving makes me feel 
+- I consider myself good at math and programming, and thus being bad at problem solving makes me feel
   bad about myself.
 - I tend to overthink problems, and I enjoy using heavy algorithmic machinery, when in reality, all that's called for
   is a sequence of several observations.
 - Codeforces' scoring system needs one to be *fast* at solving problems and implementing them precisely. I don't enjoy
-  the time pressure. I'd like a scoring system based on harder problems, but less emphasis on time-to-solve. 
+  the time pressure. I'd like a scoring system based on harder problems, but less emphasis on time-to-solve.
 
 To get better, I've been studying more algorithms (because it's fun). I took the
-[coursera course on string algorithms](https://www.coursera.org/learn/algorithms-on-strings) and 
+[coursera course on string algorithms](https://www.coursera.org/learn/algorithms-on-strings) and
 read the textbook [algorithms on strings](https://www.cambridge.org/core/books/algorithms-on-strings/19049704C876795D95D8882C73257C70).
 I loved the ideas of [building a prefix automata in linear time](https://codeforces.com/blog/entry/20861). The algorithm
 is vey elegant, and involves a fundamental decomposition of regular grammar
@@ -1029,7 +1139,7 @@ which attempts to formally state and prove the correctness of these questions.
 
 I love the research of [Keenan Crane](https://www.cs.cmu.edu/~kmcrane/), who works on bridging old school
 differential geometry with computational techniques. All of his papers are lucid, full of beautiful figures
-and crazy ideas. 
+and crazy ideas.
 
 ##### Replusive curves
 
@@ -1078,7 +1188,7 @@ enjoy C++ template language lawyering, you'll definitely have a blast!
 #### Continuum
 
 I found [the continuum RPG](https://en.wikipedia.org/wiki/Continuum_(role-playing_game)),
-a game about time travel 
+a game about time travel
 very unique, due to the massive amount of lore that surrounds it,
 and game mechanics which revolve around creating time paradoxes to deal damage
 to those stuck in it. It appears to have a reputation of being a game
@@ -1183,31 +1293,31 @@ s [B|C]
 ```
 0.2 [1 0 0]    [0.2 0.3 0.3]
     [0 1 0] +  [0.5 0   0.3]
-    [0 0 1]    [0.1 0.5 0.4]   
+    [0 0 1]    [0.1 0.5 0.4]
 ```
 
 - Second matrix has row/col sums of `0.8`. Rescale by dividing by `0.8` to get another doubly stochastic matrix.
 - Then done by induction on the number of zeroes amongst the matrix entries.
 
 ```
-[0.2 0.3 0.3]    
-[0.5 0   0.3]    
-[0.1 0.5 0.4]    
+[0.2 0.3 0.3]
+[0.5 0   0.3]
+[0.1 0.5 0.4]
 ```
 
 - (2) Take the matching given by:
 
 ```
-[#0.2  0.3   0.3]    
-[0.5   0    #0.3]    
-[0.1  #0.5   0.4]    
+[#0.2  0.3   0.3]
+[0.5   0    #0.3]
+[0.1  #0.5   0.4]
 ```
 
 - (2) This can be written as:
 
 ```
    [1 0 0]   [0    0.3   0.3]
-0.2[0 0 1] + [0.5  0     0.1] 
+0.2[0 0 1] + [0.5  0     0.1]
    [0 1 0]   [0.1  0.3   0.4]
 ```
 
@@ -1218,7 +1328,7 @@ s [B|C]
 - If all elements are `0/1`, then it's already a permutation.
 - Otherwise, find a row which has an element `a` between `0/1`. Then this means that the same row will have ANOTHER element `b` betwene `0/1`.
 - Then the column of this element `b` will have another element `c` between `0/1`. Keep doing this until you find a loop.
-- Then find the minimum of these elements, call it $\epsilon$. 
+- Then find the minimum of these elements, call it $\epsilon$.
 - Subtract $\epsilon$ at the element that had value $\epsilon$. Then add epislon to the element that was in the same row(column). Then
   continue, subtract $\epsilon$ for the pair of this.
 
@@ -1237,7 +1347,7 @@ s [B|C]
 [4 1 2 3]
 ```
 
-- A $k \times n$ ($k < n$) latin rectangle is a $k \times n$ matrix 
+- A $k \times n$ ($k < n$) latin rectangle is a $k \times n$ matrix
   with elements $\{ a_1, a_2, \dots, a_n \}$ such that
   in each row and column, no element is repeated.
 - Can we always complete a Latin rectangle into a Latin square? (YES!)
@@ -1251,7 +1361,7 @@ s [B|C]
 
 ```
 [1   2   3   4]
-[4   1   2   3] 
+[4   1   2   3]
 {2} {3} {1} {1}
 {3} {4} {4} {2}
 ```
@@ -1337,7 +1447,7 @@ r + s = n + 1
 +1 X D
 ```
 
-- Nothing happens to $B$. 
+- Nothing happens to $B$.
 - in $C$, $v$ goes down, so that keeps the inequality correct.
 - In $X$, there are no circles, which means everything was a strict ineuality, so we can afford to add 1s.
 - In $D$, $u$ goes up by $1$, $v$ goes down by $1$, thus total no change? [I don't follow].
@@ -1355,7 +1465,7 @@ r + s = n + 1
 - If we have kp + (1-k) q and a contractible space X which contracts to point
   c, where image of p is x and imagine of q is y, then send the above point to
   theta(x, 2k) : k <= 1/2 and theta (y, 1-2(k - 1/2))or theta (y, 2-2k)
-- This interpolates p---q to x--c--y by using bary coordinates to interpolate along homotopy. 
+- This interpolates p---q to x--c--y by using bary coordinates to interpolate along homotopy.
 
 # Example where MIP shows extra power over IP
 
@@ -1368,19 +1478,19 @@ r + s = n + 1
 - Suppose we limit ourselves to reversible programs. Does it then become easy?
 
 # Theorem coverage as an analogue to code coverage
-- Theorem coverage: how many lines of code are covered by correctness theorems? 
+- Theorem coverage: how many lines of code are covered by correctness theorems?
 
 # Lazy GPU programming
 
 - All laziness is a program analysis problem, where we need to strictify.
 - Lazy vectorization is a program analysis problem where we need to find
   "strict blocks/ strict chains". Something like "largest block of values that
-  can be forced at once". Seems coinductive? 
+  can be forced at once". Seems coinductive?
 - Efficiency of lazy program is that of clairvoyant call by value, so we need to know how to force.
 - In the PRAM model, efficiency of parallel lazy program is that of clairvoyanl
   call by parallel or something. We need to know how to run in parallel, such
   that if one diverges, then all diverges. This means it's safe to run
-  together! 
+  together!
 - What is parallel STG?
 - PRAM: try to parallelize writes as much as possible
 - PSTG: try to parallelize forcing as much as possible
@@ -1388,10 +1498,10 @@ r + s = n + 1
 - `Write (conflict in ||) ~ create new data (free)`
 - What are equivalents of common pram models?
 - Force is Boolean: either returns or does not return
-- We need a finer version. Something like returns in k cycles or does not return? 
+- We need a finer version. Something like returns in k cycles or does not return?
 - Old forced values: forced values with T; wait = Infinity; Old unobserved value = forced values with Twait = -1
-- Think of call by push value, but can allocate forces and call "tick" which ticks the clock. The Twait is clocked wrt this tick. 
-- Tick controls live ranges. Maybe obviates GC. 
+- Think of call by push value, but can allocate forces and call "tick" which ticks the clock. The Twait is clocked wrt this tick.
+- Tick controls live ranges. Maybe obviates GC.
 - Tick 1 is expected to be known/forced.
 - Optimize in space-time? Looking up a recurrence versus computing a
   recurrence. One is zero space infinite time, other is zero time infinite
@@ -1402,12 +1512,12 @@ r + s = n + 1
   control over (abstract) time, like imperative gives control over abstract
   space?
 - TARDIS autodiff is key example. As is fib list. Maybe frac.
-- Thinking about design in the data constructor side: 
-- Twait = 0 in data structure means is present at compile time. Twait = 1 is strict. Twait = infty is function pointer. What is Twait = 2? Mu 
+- Thinking about design in the data constructor side:
+- Twait = 0 in data structure means is present at compile time. Twait = 1 is strict. Twait = infty is function pointer. What is Twait = 2? Mu
 - Can fuse kernels for all computations in the same parallel force. If one of
   them gets stuck, all of them get stuck. So parallel force is a syntactic way
-  to ask for kernel fusion. 
-- Can we use UB to express things like "this list will be finite, thus map can be safely parallelised" or something? 
+  to ask for kernel fusion.
+- Can we use UB to express things like "this list will be finite, thus map can be safely parallelised" or something?
 - Have quantitative: `0,1,fin,inf`?
 
 # Projections onto convex sets [TODO]
@@ -1529,7 +1639,7 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 
 # Comma & Semicolon in index notation
 
-> A comma before an index indicates partial differentiation with respect to that index. 
+> A comma before an index indicates partial differentiation with respect to that index.
 > A semicolon indicates covariate differentiation.
 
 - Thus, the divergence may be written as `v_i,i`
@@ -1539,13 +1649,13 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 - Spin group is a 2 to 1 cover of $SO(n)$.
 - We claim that for 3 dimensions, $Spin(3) \simeq SU(2)$. So we should have a 2 to 1 homomorphism $\rho: SU(2) \to SO(3)$.
 - We want to write the group in some computational way. Let's use the adjoint action (how the lie group acts on its own lie algebra).
-- What is the lie algebra $su(2)$? It's trace-free hermitian. 
+- What is the lie algebra $su(2)$? It's trace-free hermitian.
 - Why? Physicist: $UU^\dagger = I$ expanded by epsilon gives us $(I + i \epsilon H)(I - i \epsilon H) = I$, which gives $H =  H^\dagger$.
 - Also the determinant condition gives us $det(1 + i \epsilon H) = 1$ which means $1 + tr(i \epsilon H) = 1$, or $tr(H) = 0$.
 - The adjoint action is $SU(2) \to Aut(H)$ given by $U \mapsto \lambda x. ad_U x$ which is $\lambda x. U X U^{-1}$.
   By unitarry, this is $U \mapsto \lambda x. U X U^{\dagger}$.
 - $SO(3)$ acts on $\mathbb R^3$. The trick is to take $\mathbb R^3$ and compare it to the lie algebra $su(2)$
-  which has 3 dimensions, spanned by pauli matrices. 
+  which has 3 dimensions, spanned by pauli matrices.
 - **Conjecture:** There is an isomorphism $\mathbb R^3 \simeq H$ as an inner product space for a custom inner product
   $\langle, \rangle$ on $H$.
 - [Reference](https://www.youtube.com/watch?v=Way8FfcMpf0&list=PLPH7f_7ZlzxTi6kS4vCmv4ZKm9u8g5yic&index=27)
@@ -1564,109 +1674,109 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 
 
 > One day, a farmer named Arepo built a temple at the edge of his field. It was a humble thing, with stone walls and a thatch roof. At the center of the room Arepo stacked some stones to make a cairn. Two days later, a god moved into Arepo's temple.
-> 
+>
 > "I hope you are a harvest god," Arepo said, as he set upon the altar two stalks of wheat which he burned. "It would be nice."
-> 
+>
 > He looked down upon the ash that now colored the stone. "I know this isn't much of a sacrifice, but I hope this pleases you. It'd be nice to think there is a god looking after me."
-> 
+>
 > The next day, he left a pair of figs. The day after that, he spent ten minutes in silent prayer. On the third day, the god spoke up.
-> 
+>
 > "You should go to a temple in the city," said a hollow voice. Arepo cocked his head at the otherworldly sound, because it was strangely familiar. The god's voice was not unlike the rustling of wheat, or the little squeaks of fieldmice that run through the grass. "Go to a real temple. Find a real god to bless you, for I am not much myself, but perhaps I may put in a good word?"
-> 
+>
 > The god plucked a stone from the floor and sighed, "Forgive me, I meant not to be rude. I appreciate your temple, and find it cozy and warm. I appreciate your worship, and your offerings, but alas it shall come to naught."
-> 
+>
 > "Already I have received more than I had expected," Arepo said, "Tell me, with whom do I treat? What are you the patron god of?"
-> 
+>
 > The god let the stone he held fall to the floor, "I am of the fallen leaves, and the worms that churn beneath he ground. I am the boundary of the forest and the field, and the first hint of frost before the snow falls," the god paused to touch Arepo's altar, "And the skin of an apple as it yields beneath your teeth. I am the god of a dozen different nothings, scraps that lead to rot, and momentary glimpses." He turned his gaze to Arepo, "I am a change in the air, before the winds blow."
-> 
+>
 > The god shook his head, "I should not have come, for you cannot worship me. Save your prayers for the things beyond your control, good farmer," the god turned away, "You should pray to a greater thing than I,"
-> 
+>
 > Arepo reached out to stay the entity, and laid his hand upon the god's willowy shoulder. "Please, stay."
-> 
+>
 > The god turned his black eyes upon Arepo, but found only stedfast devotion. "This is your temple, I would be honored if you would stay." The god lowered himself to the floor. Arepo joined him. The two said nothing more for a great long while, until Arepo's fellow came calling.
-> 
+>
 > The god watched his worshiper depart, as the man's warmth radiated across the entity's skin.
-> 
+>
 > Next morning, Arepo said a prayer before his morning work. Later, he and the god contemplated the trees. Days passed, and then weeks. In this time the god had come to enjoy the familiarity of Arepo's presence. And then, there came a menacing presence. A terrible compulsion came upon the god, and he bid the air change, for a storm was coming. Terrified, the little god went to meet the god of storms to plead for gentleness, but it was no use.
-> 
+>
 > Arepo's fields became flooded, as the winds tore the tiles from his roof and set his olive tree to cinder. Next day, Arepo and his fellows walked among the wheat, salvaging what they could. At the field's edge, the little temple was ruined. After his work was done for the day, Arepo gathered up the stones and pieced them back together. "Please do not labor," said the god, "I could not protect you from the god of storms, and so I am unworthy of your temple."
-> 
+>
 > "I'm afraid I don't have an offering today," Arepo said, "But I think I can rebuild your temple tomorrow, how about that?"
-> 
+>
 > The god watched Arepo retire, and then sat miserably amongst the ruined stones of his little temple.
-> 
+>
 > Arepo made good on his promise, and did indeed rebuild the god's temple. But now it bore layered walls of stone, and a sturdy roof of woven twigs. Watching the man work, Arepo's neighbors chuckled as they passed by, but their children were kinder, for they left gifts of fruit and flowers.
-> 
+>
 > The following year was not so kind, as the goddess of harvest withdrew her bounty. The little god went to her and passionately pleaded for mercy, but she dismissed him. Arepo's fields sprouted thin and brittle, and everywhere there were hungry people with haunted eyes that searched in vain for the kindness of the gods.
-> 
+>
 > Arepo entered the temple and looked upon the wilted flowers and the shriveled fruit. He murmured a prayer.
-> 
+>
 > "I could not help you," said the god. "I am only a burden to you,"
-> 
+>
 > "You are my friend," said Arepo.
-> 
+>
 > "You cannot eat friendship!" The god retorted.
-> 
+>
 > "No, but I can give it." Arepo replied.
-> 
+>
 > And so the man set his hand upon the altar and spent the evening lost in contemplation with his god.
-> 
+>
 > But the god knew there was another god who would soon visit, and later that year came the god of war. Arepo's god did what he could. He went out to meet the hateful visage of the armored god, but like the others, war ignored the little god's pleas. And so Arepo's god returned to his temple to wait for his friend. After a worrying amount of time, Arepo came stumbling back, his hand pressed to his gut, anointing the holy site with his blood.
-> 
+>
 > Behind him, his fields burned.
-> 
+>
 > "I am so sorry, Arepo," said the god, "My friend. My only friend."
-> 
+>
 > "Shush," said Arepo, tasting his own blood. He propped himself up against the temple that he made, "Tell me, my friend, what sort of god are you?"
-> 
+>
 > The god reached out to his friend and lowered him to the cool soil, "I'm of the falling leaves," the god said, as he conjured an image of them. "And the worms that churn beneath the earth. The boundary of the forest and the field. The first hint of frost before the first snow. The skin of an apple as it yields beneath your teeth."
-> 
+>
 > Arepo smiled as the god spoke. "I am the god of a dozen different nothings, the god of the petals in bloom that lead to rot, and of momentary glimpses, and a change in the air-" the god looked down upon his friend, "Before the winds blow everything away."
-> 
+>
 > "Beautiful," Arepo said, his blood now staining the stones; seeping into the very foundations of his temple. "All of them, beautiful,"
-> 
+>
 > "When the storm came, I could not save your wheat."
-> 
+>
 > "Yes," Arepo said.
-> 
+>
 > "When the harvest failed, I could not feed you."
-> 
+>
 > "Yes,"
-> 
+>
 > Tears blurred the god's eyes, "When war came, I could not protect you."
-> 
+>
 > "My friend, think not yourself useless, for you are the god of something very useful,"
-> 
+>
 > "What?"
-> 
+>
 > "You are my god. The god of Arepo."
-> 
+>
 > And with that, Arepo the sower lay his head down upon the stone and returned home to his god. At the archway, the god of war appeared. The entity looked less imposing now, for his armor had fallen onto the blackened fields, revealing a gaunt and scarred form.
-> 
+>
 > Dark eyes flashed out from within the temple, 'Are you happy with your work?' They seemed to say. The god of war bowed his head, as the god of Arepo felt the presence of the greater pantheon appear upon the blackened fields.
-> 
+>
 > "They come to pay homage to the farmer," war said, and as the many gods assembled near the archway the god of war took up his sword to dig into the earth beneath Arepo's altar. The goddess of the harvest took Arepo's body and blessed it, before the god of storms lay the farmer in his grave.
-> 
+>
 > "Who are these beings, these men," said war, "Who would pray to a god that cannot grant wishes nor bless upon them good fortune? Who would maintain a temple and bring offerings for nothing in return? Who would share their company and meditate with such a fruitless deity?"
-> 
+>
 > The god rose, went to the archway; "What wonderful, foolish, virtuous, hopeless creatures, humans are."
-> 
+>
 > The god of Arepo watched the gods file out, only to be replaced by others who came to pay their respects to the humble farmer. At length only the god of storms lingered. The god of Arepo looked to him, asked; "Why do you linger? What was this man to you?"
-> 
+>
 > "He asked not, but gave." And with that, the grey entity departed.
-> 
+>
 > The god of Arepo then sat alone. Oft did he remain isolated; huddled in his home as the world around him healed from the trauma of war. Years passed, he had no idea how many, but one day the god was stirred from his recollections by a group of children as they came to lay fresh flowers at the temple door.
-> 
+>
 > And so the god painted the sunset with yellow leaves, and enticed the worms to dance in their soil. He flourished the boundary between the forest and the field with blossoms and berries, and christened the air with a crisp chill before the winter came. And come the spring, he ripened the apples with crisp red freckles that break beneath sinking teeth, and a dozen other nothings, in memory of a man who once praised his work with his dying breath.
-> 
+>
 > "Hello," said a voice.
-> 
+>
 > The god turned to find a young man at the archway, "Forgive me, I hope I am not intruding."
-> 
+>
 > "Hello, please come in."
-> 
+>
 > The man smiled as he entered, enchanted the the god's melodic voice. "I heard tell of your temple, and so I have come from many miles away. Might I ask, what are you the god of?"
-> 
+>
 > The god of Arepo smiled warmly as he set his hand upon his altar, "I am the god of every humble beauty in the world."
 > -by Chris Sawyer
 
@@ -1681,7 +1791,7 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 
 - Every finite dimensional complex Lie algebra $(L, [.,.])$ can be decomposed as $L = R \oplus_s (L_1 \dots \oplus L_n)$, where $\oplus$
   is direct sum, $\oplus_s$ is the semidirect sum.
--  $R$ is a solvable lie algebra. 
+-  $R$ is a solvable lie algebra.
 - To define solvable, define $R_0 = R$, $R_1 = [R_0, R_0]$, $R_2 = [R_1, R_1]$, that is, $R_2 = [[R, R], [R, R]]$.
 - We have that $R_{i+1}$ is a strict subset of $R_i$.
 - If this sequence eventually stabilizes, ie, there is an $n$ such that $R_n = \{ 0 \}$, then $R$ is solvable.
@@ -1690,7 +1800,7 @@ capacity. Each solution to the flow problem is an assignment / permutation.
   ideals. An ideal of a lie algebra is a subvevtor space $I \subseteq L$ such that $[I, L] \subseteq I$. (It's like a ring ideal, except with lie bracket).
 - The direct sum $L_1 \oplus L_2$ of lie algebras is the direct sum of vector spaces with lie bracket in the bigger space given by
   $[L_1, L_2] = 0$.
-- The semidirect sum $R \oplus_s L_2$ as a vector space is $R \oplus L_2$. The lie bracket is given by 
+- The semidirect sum $R \oplus_s L_2$ as a vector space is $R \oplus L_2$. The lie bracket is given by
   $[R, L_2] \subseteq R$, so $R$ is an ideal. (This looks like internal semidirect product).
 
 #### Remarks
@@ -1713,7 +1823,7 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 #### Calculation wrt basis: $ad$ map.
 - Consider for actual calculation the components of $ad(h)$ and $K$ with respect to a basis $E_1, \dots, E_{dim L}$.
 - Write down a dual basis $\epsilon^1, \epsilon^{dim L}$.
-- $ad(E_i)^j_k \equiv \epsilon^j (ad(E_i)(E_k))$. 
+- $ad(E_i)^j_k \equiv \epsilon^j (ad(E_i)(E_k))$.
 - We know that $ad(E_i)(E_k) = [E_i, E_k]$ by definition.
 - We write $[E_i, E_k] = C^m_{ik} E_m$ where the $C^m_{ik}$ are the structure constants.
 - This gives us $ad(E_i)^j_k = \epsilon^j (C^m_{ik} E_m)$
@@ -1727,19 +1837,19 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 - Plug in $ad$ to become $K(E_i, E_j) = tr(C^l_{im} C^m_{jk})$ [see that the thing inside the trace is a matrix]
 - Execute trace by setting $l = k = o$. This gives us: $K(E_i, E_j) = C^o_{im} C^m_{jo}$. This is also easy to calculate from
   structure coefficients.
-- Iff this matrix is non-degenerate, then the lie-algebra is semi-simple. 
+- Iff this matrix is non-degenerate, then the lie-algebra is semi-simple.
 
 #### $ad$ is anti-symmetric with respect to the killing form.
 - Recall that $\phi$ is called as an anti-symmetric map wrt a non-degenerate bilinear form $B$ iff
   $B(\phi(v), w) = - B(v, \phi(w))$.
-- Fact: $ad(h)$ is anti-symmetric wrt killing form. For killing form to be non-degenerate we need $L$ to be semisimple. 
+- Fact: $ad(h)$ is anti-symmetric wrt killing form. For killing form to be non-degenerate we need $L$ to be semisimple.
 
 #### Key Definition for classification: Cartan subalgebra
 - If $(L, [.,.])$ is a lie algebra, then the cartan subalgebra denoted by $H$ ($C$ is already taken for structure coeff.)
   is a vector space, and is a maximal subalgebra of $L$ such that there exists a basis $h_1, \dots, h_m$ of $H$
   that can be extended to a basis of $L$: $h_1, \dots, h_m, e_1, \dots, e_{dim(L)-m}$ such that the extension vectors
   are eigenvectors for any $ad(h)$ for $h \in H$.
-- This means that $ad(h)(e_\alpha) = \lambda_\alpha(h) e_\alpha$. 
+- This means that $ad(h)(e_\alpha) = \lambda_\alpha(h) e_\alpha$.
 - This can be written as $[h, e_\alpha] = \lambda_\alpha(h) e_\alpha$.
 - Does this exist?
 
@@ -1749,13 +1859,13 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 - Thus, the $ad(h)$ are simultaneously diagonalized by the $e_\alpha$ since they all commute.
 
 #### Analysis of Cartan subalgebra.
-- $ad(h)(e_\alpha) = \lambda_\alpha(h) e_\alpha$. 
+- $ad(h)(e_\alpha) = \lambda_\alpha(h) e_\alpha$.
 - $[h, e_\alpha] = \lambda_\alpha(h) e_\alpha$.
 - Since the LHS is linear in $h$, the RHS must also be linear in $H$. But in the RHS, it is only $\lambda_\alpha(h)$ that depends
   on $h$.
 - This means that $\lambda_\alpha: H \to \mathbb C$ is a _linear map_!
 - This is to say that $\lambda_\alpha \in H^*$ is an element of the dual space!
-- The elements $\lambda_1, \lambda_2, \lambda_{dim L - m}$ are called the _roots_ of the Lie algebra. 
+- The elements $\lambda_1, \lambda_2, \lambda_{dim L - m}$ are called the _roots_ of the Lie algebra.
 - This is called as $\Phi \equiv \{ \lambda_1, \dots, \lambda_{dim L - m} \}$, the _root set_ of the Lie algebra.
 
 #### Root set is closed under negation
@@ -1767,11 +1877,11 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 - We can show that $\Phi$ is not LI.
 
 #### Fundamental roots
-- Subset of roots $\Pi \subseteq \Phi$ such that $\Pi$ is linearly independent. 
+- Subset of roots $\Pi \subseteq \Phi$ such that $\Pi$ is linearly independent.
 - Let the elements of $\Pi$ be called $\pi_1, \dots, \pi_r$.
 - We are saying that $\forall \lambda \in \Phi, \exists n_1, \dots, n_f \in \mathbb N, \exists \epsilon \in \{ -1, +1 \}$
   such that $\lambda = \epsilon \sum_{i=1}^f n_i \pi_i$.
-- That is, we can generate the $\lambda$ as natural number combinations of $\pi_i$, upto an overall global sign factor.  
+- That is, we can generate the $\lambda$ as natural number combinations of $\pi_i$, upto an overall global sign factor.
 - Fact: such a set of fundamental roots can always be found.
 
 
@@ -1812,7 +1922,7 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 - It's enough to create $s_\Pi$ to generate $W$.
 
 #### Theorem: Roots are prouced by action of Weyl group on fundamental roots
-- Any $\lambda \in \Phi$ can be produced by the action of some $w \in W$ on some $\pi \in \Pi$. 
+- Any $\lambda \in \Phi$ can be produced by the action of some $w \in W$ on some $\pi \in \Pi$.
 - So $\forall \lambda \in \Phi, \exists \pi \in Pi, \exists w \in W$ such that $\lambda = w(\pi)$.
 - This means we can create all roots from fundamental roots: first produce the weyl group, then find the action
   of the weyl group on the fundamental roots to find all roots.
@@ -1820,7 +1930,7 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 
 #### Showdown
 
-- Consider $S_{\pi_i}(\pi_j)$ for $\pi_i, \pi_j \in \Pi$.  
+- Consider $S_{\pi_i}(\pi_j)$ for $\pi_i, \pi_j \in \Pi$.
 
 
 
@@ -1839,11 +1949,11 @@ capacity. Each solution to the flow problem is an assignment / permutation.
   take the product of all such maps,
   and define $\Gamma S \equiv im(\pi_i f_i)$. The details follow.
 - First off, we can't take all groups, that's too large. So we need to cut down the size somehow. We do this by considering groups
-  with at most $|S|$ generators, since that's all the image of the maps $f_i$ can be anyway. We're only interested in the image 
+  with at most $|S|$ generators, since that's all the image of the maps $f_i$ can be anyway. We're only interested in the image
   at the end, so we can cut down the groups we consider to be set-sized.
 - Next, we need to somehow control for isomorphisms. So we first take _isomorphism classes_ of groups with at most $|S|$ generators.
   Call this set of groups $\mathcal G$
-  We then construct all possible maps $f_i: S \to UG$ for all possible maps $f$, for all possible $G \in \mathcal G$. 
+  We then construct all possible maps $f_i: S \to UG$ for all possible maps $f$, for all possible $G \in \mathcal G$.
 - This lets us construct the product map $f : S \to \prod_{G \in \mathcal G} UG$ given by $f(s) \equiv \prod_{G \in \mathcal G} f_i(s)$.
 - Now we define the free group $\gamma S \equiv im(f)$. Why does this work?
 - Well, we check the universal property. Suppose we have some map $h: S \to UH$. This must induce a map $\Gamma h: \Gamma S \to H$.
@@ -1865,7 +1975,7 @@ curl bashupload.com -T your_file.txt
 # When are the catalan numbers odd
 
 - The catalan numbers $C_n$ count the number of binary trees on $n$ nodes.
-- For every binary tree, label the nodes in some standard ordering (eg. BFS). 
+- For every binary tree, label the nodes in some standard ordering (eg. BFS).
 - Pick the lex smallest _unbalanced_ node (node with different left and right subtree sizes).
 - The operation that swaps the left and right subtrees of the lex smallest unbalanced node is an involution.
 - This operation only fails when we have a complete binary tree, so the number of nodes is $n = 2^r - 1$, so we pair such a complete binary tree to itself.
@@ -1898,7 +2008,7 @@ curl bashupload.com -T your_file.txt
 #### Geodesic curve
 - Curve with zero tangential acceleration when we walk along the curve with constant speed.
 - Start with the $(u, v)$ plane, and map it to $R(u, v) \equiv (R_x, R_y, R_z)$.  Denote the curve as $c: I \to \mathbb R^3$  such that $c$ always
-  lies on $R$. Said differently, we have $c: I \to UV$, which we then map to $\mathbb R^3$ via $R$. 
+  lies on $R$. Said differently, we have $c: I \to UV$, which we then map to $\mathbb R^3$ via $R$.
 - So for example, $R(u, v) = (\cos(u), \sin(u)\cos(v), \sin(u)\sin(v))$ and $c(\lambda) = (\lambda, \lambda)$. Which is to say,
   $c(\lambda) = (\cos(\lambda), \sin(\lambda)\cos(\lambda), \sin(\lambda)\sin(\lambda))$.
 - Recall that $e_u \equiv \partial_u R, e_v \equiv \partial_v R \in \mathbb R^3$ are the basis of the tangent plane at $R_{u, v}$.
@@ -1927,7 +2037,7 @@ $$
 
 # Connections, take 2
 
-- I asked a [math.se question](https://math.stackexchange.com/questions/4309198/on-which-tangent-bundles-of-mathbb-r2-does-position-velocity-acceleration) 
+- I asked a [math.se question](https://math.stackexchange.com/questions/4309198/on-which-tangent-bundles-of-mathbb-r2-does-position-velocity-acceleration)
   about position, velocity, acceleration that recieved a great answer by `peek-a-boo`. Let me try and provide an exposition of his answer.
 - Imagein a base manifold $M$, say a circle.
 - Now imagine a vector bundle over this, say 2D spaces lying above each point on the circle. Call this $(E, \pi, M)$
@@ -1942,10 +2052,10 @@ $$
 - Now think of the fiber $E_m \subseteq E$ over $x$.
 - Now think of any point $e \in E_m$ in the fiber of $m$.
 - This gives us a map $C_e: T_e M \to T_e E$, which tells us to imagine a particle $e \in E$ following its brother in $m \in M$.
-  If we know the velocity $\dot m \in T_m M$, we can find the velocity of the sibling upstrairs with $C_e(\dot m)$. 
+  If we know the velocity $\dot m \in T_m M$, we can find the velocity of the sibling upstrairs with $C_e(\dot m)$.
 - In some sense, this is really like path lifting, except we're performing "velocity lifting". Given a point in the base manifold and
   a point somewhere upstairs in the cover (fiber), we are told how to "develop" the path upstairs given information about how to "develop"
-  the path downstairs. 
+  the path downstairs.
 - I use "develop" to mean "knowing derivatives".
 
 
@@ -1955,7 +2065,7 @@ $$
   the vector field lies correctly over the curve; $\pi \circ v = c$. We want to differentiate $v$, _such that we get another $v': TI \to E$_.
 - That's the crucial bit, $v$ and $v'$ have the same type, and this is achieved through the connection. So a vector field and its derivative are _both_
   vector fields over the curve.
-- How do we do this? We have the tangent mapping $Tv: TI \mapsto TE$. 
+- How do we do this? We have the tangent mapping $Tv: TI \mapsto TE$.
 - We kill off the component given by pushing forward the tangent vector $Tc(i): TI$ at the bundle location $v(i)$ via the connection.
   This kills of the effect of the curving of the curve when measuring the change in the vector field $v$.
 -  We build $[z(t_i: TI) \equiv Tv(ti) - C_{v(i)}(Tc(i))]: TI \to TE$.
@@ -1967,7 +2077,7 @@ $$
 - But for a vector space, the tangent space is canonically isomorphic to the vector space itself! (parallelogram law/can move vectors around/...).
   Thus, we can bring down the image of $w$ from $TE$ down to $E$!
 - This means we now have a map $z: TI \to E$.
-- But we want a $w: I \to E$. See that the place where we needed a $TI$ was to produce 
+- But we want a $w: I \to E$. See that the place where we needed a $TI$ was to produce
 
 
 # Dropping into tty on manjaro/GRUB
@@ -1986,7 +2096,7 @@ $$
 - This means that the set $Z$ contains $l$, since $Z$ contains all pre-images of zero. Thus, the set $Z$ is closed.
 - This implies that the zero set of a continuous function must be a closed set.
 - This also motivates zariski; we want a topology that captures polynomial behaviour. Well, then the closed sets _must_ be the zero
-  sets of polynomials!  
+  sets of polynomials!
 
 # Derivatives in diffgeo
 
@@ -2125,10 +2235,10 @@ $$
   are longer than a paragraph or so.
 - If you adhere to these very simple principles, you will have avoided like 95% of the typographic choices that can make texts hard or slow to read.
 
-- Try 36 letters per column. 
+- Try 36 letters per column.
 
 ```
-Also see VimPencil 
+Also see VimPencil
 set wrap linebreak nolist
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/goyo.vim'
@@ -2155,7 +2265,7 @@ let g:goyo_margin_bottom = 0
 - Finite coverings are $C^\times \xrightarrow{z \mapsto z^n} C^\times$. The subsitute for the fundamental group is the projective (inverse) limit
   of these groups.
 - The symmetry of $Gal(\overline{\mathbb Q} / \mathbb Q)$ acts on this fundamental group.
-- One can get not just fundamental group, but any finite coefficients! 
+- One can get not just fundamental group, but any finite coefficients!
 - Category of coverings is equivalent to category of sets with action of fundamental group.
 - [Abel Prize: Pierre Delinge](https://www.youtube.com/watch?v=9WavaUED5i8)
 
@@ -2232,8 +2342,8 @@ $$
 \begin{aligned}
 &P(r_1) + P(r_2) + P(r_3) + P(r_4) \\
 &=(r_1^4 + r_2^4 + r_3^4 + r_4^4)
-&+ e_1(r_1^3 + r_2^3 + r_3^3 + r_2^3) 
-&+ e_2(r_1^2 + r_2^2 + r_3^2 + r_4^2) 
+&+ e_1(r_1^3 + r_2^3 + r_3^3 + r_2^3)
+&+ e_2(r_1^2 + r_2^2 + r_3^2 + r_4^2)
 &+ e_3(r_1 + r_2 + r_3 + r_4)
 &+ 4 e_4 \\
 &= 1 \cdot P_4 e_1 P_3 + e_2 P_2 + e_3 P_1 + 4 e_4 \\
@@ -2304,7 +2414,7 @@ $$
 - We exclude the origin to remove "degenerate lines", since the subspace spanned by $\{0\}$ when acted on with $\mathbb R^\times$
   is just $\{ 0 \}$, which is zero dimensional.
 
-#### Grassmanian 
+#### Grassmanian
 - $G(m, V)$: $m$ dimensional subspaces of $V$.
 - $G(m, n)$: $m$ dimensional subspaces of $V = k^n$.
 - $G(m+1, n+1)$ is the space of $m$ planes $\mathbb P^m$ in $\mathbb P^n$. Can projectivize $(n+1)$ eqns by sending $(x_0, x_1, \dots, x_n) \in k^{n+1}$ to
@@ -2318,13 +2428,13 @@ $$
 
 - These are lines in $\mathbb P^3$. This will give us two pairs of points of the form $(x_0, y_0, z_0, w_0)$ and $(x_1, y_1, z_1, w_1)$.
   That is, we're considering "lines" between "points" (or "vectors") in $\mathbb R^3$. Exactly what we need to solve stabbing line problems
-  for computer graphics :) 
+  for computer graphics :)
 - Start by taking a 2D plane. The line will pass through a point in the 2D plane. This gives us two degrees of freedom.
 - Then take a direction in ordinary Euclidean $\mathbb R^3$ (or $S^2$ to be precise). This gives us two degrees of freedom.
 - Can also be said to be a 2-dim. subspace of a 4-dim. vector space.
 - In total, $G(2, 4)$ should therefore have four degrees of freedom.
 - Take $W \subseteq V$  where $V \simeq k^4$, and $W$ is 2-dimensional subspace.
-- $W$ is spanned by two vectors $v_1, v_2$. So I can record it as a $2x1$ matrix: 
+- $W$ is spanned by two vectors $v_1, v_2$. So I can record it as a $2x1$ matrix:
    $\begin{bmatrix} a_{11} & a_{12} & a_{13} & a_{14} \\ a_{21} & a_{22} & a_{23} & a_{24} \end{bmatrix}$. Vector $v_i$ has coordinates $a_i$.
 - If I had taken another basis $(v_1', v_2')$, there would be an invertible matrix $B \in K^{2 \times 2}$ ($det(B) \neq 0$)
   that sends $(v_1, v_2)$ to $(v_1', v_2')$. Vice Versa, any invertible matrix $B$ gives us a new basis.
@@ -2337,10 +2447,10 @@ $$
 - We represent this map as $m: K^{2 \times 4} \to K^6$ which sends $m((a_{ij})) \equiv (a_{11} a_{22} - a_{12} a_{21}, \dots, a_{13} a_{24} - a_{14} a_{23})$
   which maps a matrix to its vector of minors.
 - The great advantage of this is that we have $m(B \cdot (a_{ij})) = det(B) \cdot m((a_{ij}))$, since the minor by definition takes a determinant of submatrices,
-  and determinant is multiplicative. 
+  and determinant is multiplicative.
 - Thus, we have converted a _matrix_ redundancy of $B$ in $a_{ij}$ into a  **scalar** redundancy (of $det(B)$) in $m(a_{ij})$ .
 - We know how to handle scalar redundancies: Live in projective space!
-- Therefore, we have a well defined map $G(2, 4) \to \mathbb P^5$. Given a subspace $W \in G(2, 4)$, compute a basis $v_1, v_2 \in K^4$ for $W$, 
+- Therefore, we have a well defined map $G(2, 4) \to \mathbb P^5$. Given a subspace $W \in G(2, 4)$, compute a basis $v_1, v_2 \in K^4$ for $W$,
   then compute the minor of the matrix $m((v_1, v_2)) \in K^6$, and send this to $P^5$.
 
 #### $G(2, 4)$, projectively
@@ -2361,7 +2471,7 @@ $$
 - We can also change $b$ by adding some scaled version of $a$. This is like adding a multiple of the second row to the first row when taking determinants.
   But this does not change determinants!
 - Thus, the actual plucker coordinates are invariant under which two points $a, b$ we choose to parametrize the line in $\mathbb P^3$.
--  This gives us a well defined map from lines in $\mathbb P^3$ to points in $\mathbb P^5$. 
+-  This gives us a well defined map from lines in $\mathbb P^3$ to points in $\mathbb P^5$.
 - This is not an onto map; lines in $\mathbb P^3$ have dimension 4 (need $3 + 1$ coefficiens, $ax + by + cz + d$),
   while $\mathbb P^5$ has dimension $5$.
 - So heuristically, we are missing "one equation" to cut $\mathbb P^5$ with to get the image of lines in $\mathbb P^3$ in $\mathbb P^5$.
@@ -2405,12 +2515,12 @@ $$
 
 #### Computing cohomology of $G(2, 5)$
 
-- Take all points of the following form: 
+- Take all points of the following form:
 
 $$
 \begin{bmatrix}
 &1 &:0 &:* &:* \\
-&0 &:1 &:* &:* 
+&0 &:1 &:* &:*
 \end{bmatrix}
 $$
 
@@ -2422,7 +2532,7 @@ $$
 $$
 \begin{bmatrix}
 &1 &:* &:0 &:* \\
-&0 &:0 &:1 &:* 
+&0 &:0 &:1 &:*
 \end{bmatrix}
 $$
 
@@ -2434,7 +2544,7 @@ $$
 $$
 \begin{bmatrix}
 &1 &:* &:* &:0 \\
-&0 &:0 &:0 &:1 
+&0 &:0 &:0 &:1
 \end{bmatrix}
 $$
 
@@ -2448,14 +2558,14 @@ $$
 $$
 \begin{bmatrix}
 &0 &:1 &:* &:0 \\
-&0 &:0 &:0 &:1 
+&0 &:0 &:0 &:1
 \end{bmatrix}
 $$
 
 $$
 \begin{bmatrix}
 &0 &:0 &:1 &:0 \\
-&0 &:0 &:0 &:1 
+&0 &:0 &:0 &:1
 \end{bmatrix}
 $$
 
@@ -2480,7 +2590,7 @@ $$
   and subgroups of the galois group $G = Gal(M/K)$.
 - Recall that a finite extension has finitely many subfields iff it can be written as an extension $K(\theta)/K$. This is the primitive element theorem.
 - We send $L \mapsto Gal(M/L)$, the subgroup of $Gal(M/K)$ that fixes $L$ pointwise.
-- We send $H$ to $fix(H)$, the subfield of $K$ that is fixed pointwise. 
+- We send $H$ to $fix(H)$, the subfield of $K$ that is fixed pointwise.
 
 #### $H =  Gal(M/Fix(H))$
 - It is clear that $H \subseteq Gal(M/Fix(H))$, by definition, since every element of $H$ fixes $Fix(H)$ pointwise.
@@ -2523,9 +2633,9 @@ $$
 - We wish to show that $[M:L] = |Gal(M/L)|$
 - Key idea: Start by writing $M = L(\alpha)$ since $M$ is separable by primitive element theorem.
   Let $\alpha$ have minimal polynomial $p(x)$. Then $deg(p(x))$ equals $[M:L]$ equals number of roots of $p(x)$ since the field is separable.
-- Next, any automorphism 
+- Next, any automorphism
   $\sigma: M \to M$ which fixes $L$  is uniquely determined by where it sends $\alpha$. Further, such an automorphism $\sigma$
-  must send $\alpha$ to some other root of $p(x)$ [by virtue of being a field map that fixes $L$,  $0 = \sigma(0) = \sigma(p(\alpha)) = p(\sigma(\alpha))$]. 
+  must send $\alpha$ to some other root of $p(x)$ [by virtue of being a field map that fixes $L$,  $0 = \sigma(0) = \sigma(p(\alpha)) = p(\sigma(\alpha))$].
 - There are exactly number of roots of $p$ (= $[M:L]$) many choices. Each gives us one automorphism. Thus $|Gal(M/L)| = [M:L]$.
 
 # Counter-intuitive linearity of expectation [TODO]
@@ -2533,14 +2643,14 @@ $$
 - I like the example of "10 diners check 10 hats. After dinner they are given the hats back at random."
   Each diner has a 1/10 chance of getting their own hat back, so by linearity of expectation, the expected number of diners who get the correct hat is 1.
 
-- Finding the expected value is super easy. But calculating any of the individual probabilities (other than the 8, 9 or 10 correct hats cases) is really annoying and difficult! 
+- Finding the expected value is super easy. But calculating any of the individual probabilities (other than the 8, 9 or 10 correct hats cases) is really annoying and difficult!
 
 
 - Imagine you have 10 dots scattered on a plane. Prove it's always possible to cover all dots with disks
   of unit radius, without overlap between the disks.
    (This isn't as trivial as it sounds, in fact there are configurations of 45 points that cannot be covered by disjoint unit disks.)
 
-- Proof: Consider a repeating honeycomb pattern of infinitely many disks. Such a pattern covers pi / (2 sqrt(3)) ~= 90.69% of the plane, and the disks are clearly disjoint. If we throw such a pattern randomly on the plane, any dot has a 0.9069 chance of being covered, so the expectation value of the total number of dots being covered is 9.069. This is larger than 9, so there must be a packing which covers all 10 dots. 
+- Proof: Consider a repeating honeycomb pattern of infinitely many disks. Such a pattern covers pi / (2 sqrt(3)) ~= 90.69% of the plane, and the disks are clearly disjoint. If we throw such a pattern randomly on the plane, any dot has a 0.9069 chance of being covered, so the expectation value of the total number of dots being covered is 9.069. This is larger than 9, so there must be a packing which covers all 10 dots.
 
 
 # Metis
@@ -2568,7 +2678,7 @@ $$
 
 - (1) For an extension $L/K$, if a polynomial $p(x) \in K[x]$ and has a root $\alpha \in L$ has _all_ its roots in $L$. So $p(x)$
   splits into linear factors $p(x) = (x - l_1)(x - l_2) \cdot (x - l_n)$ for $l_i \in L$.
-- (2) [equivalent] $L$ is the splitting field over $K$ of some _set_ of polynomials. 
+- (2) [equivalent] $L$ is the splitting field over $K$ of some _set_ of polynomials.
 - (3) [equivalent] Consider $K \subseteq L \subseteq \overline K$. Then any automorphism of $\overline K/K$ (ie, aut that fixes $K$ pointwise)
   maps $L$ to $L$ [fixes $L$ as a set, NOT pointwise].
 - Eq: $Q(2^{1/3})$ is not normal
@@ -2586,12 +2696,12 @@ $$
 - An aut $\sigma: \overline K \to \overline K$ that fixes $K$ acts trivially on polynomials in $K[x]$.
 - $L$ is the set of all roots of polynomials $\{ minpoly(\alpha) \in K[x] : \alpha \in L \}$.
 - Since $\sigma$ fixes $K[x]$, it also cannot change the set of roots of the polynomials. Thus the set $\{ minpoly(\alpha) \in K[x] : \alpha \in L \}$
-  remains invariant under $\sigma$. ($\sigma$ cannot add elements into $L$). It can at most permute the roots of $L$. 
+  remains invariant under $\sigma$. ($\sigma$ cannot add elements into $L$). It can at most permute the roots of $L$.
 
 #### (3) implies (1)
 
 - (3) says that any automorphism $\sigma$ of $\overline K/K$ fixes $L$ as a set.
-- We wish to show that if $p$ has a root $\alpha \in L$, $L$ has all roots of $p$. 
+- We wish to show that if $p$ has a root $\alpha \in L$, $L$ has all roots of $p$.
 - we claim that for any root $\beta \in L$, there is an automorphism $\tau: \overline K/K$ such that $\tau(\alpha) = \beta$.
 - Consider the tower of extensions $K \subseteq K(\alpha) \subseteq \overline K$ and $K \subseteq K(\beta) \subseteq \overline K$.
   Both $K(\alpha)$ and $K(\beta)$ look like $K[x] / p$ because $p$ is the minimal polynomial for _both_ $\alpha$ and $\beta$.
@@ -2613,19 +2723,19 @@ $$
 
 - Let us have a  degree 2 extension $K \subseteq L$
 - So we have some $p(x) = x^2 + bx + c \in K[x]$, $L = K(\alpha)$ for $\alpha$ a root of $p$.
-- We know that $\alpha + \beta = b$ for $\alpha \in L, b \in K$. Thus $\beta = b - \alpha \in L$. 
+- We know that $\alpha + \beta = b$ for $\alpha \in L, b \in K$. Thus $\beta = b - \alpha \in L$.
 - Thus, the extension is normal since $L$ contains all the roots ($\alpha, \beta$) of $p$ as soon as it contained one of them.
 
 
 #### Is normality of extensions transitivte?
 
-- Consider $K \subseteq L \subseteq M$. If $K \subseteq L$ is normal, $L \subseteq M$ is normal, then is $K \subseteq M$ normal? 
+- Consider $K \subseteq L \subseteq M$. If $K \subseteq L$ is normal, $L \subseteq M$ is normal, then is $K \subseteq M$ normal?
 - Answer: NO!
 - Counter-example: $Q \subseteq Q(2^{1/2}) \subseteq Q(2^{1/4})$.
 - Each of the two pieces are normal since they are degree two. But the full tower is not normal, because $Q(2^{1/4})/Q$ has minimial polynomial $x^4 - 2$.
 - On the other hand, $Q(2^{1/4})/Q(2^{1/2})$ has a minimal polynomial $x^2 - \sqrt{2} \in Q[2^{1/2}]$.
 - So, normality is not transitive!
-- Another way of looking at it: We want to show that $\sigma(M) \subseteq M$ where $\sigma: aut(\overline K/K)$. Since $L/K$ is normal, and $\sigma$ is an  
+- Another way of looking at it: We want to show that $\sigma(M) \subseteq M$ where $\sigma: aut(\overline K/K)$. Since $L/K$ is normal, and $\sigma$ is an
   autormophism of $L/K$, we have $\sigma(L) \subseteq L$ [by normal]. Since $M/L$ is normal, we must have $\sigma(M) \subseteq M$. Therefore, we are done?
 - NO! The problem is that $\sigma$ is not a legal automorphism of $M/L$, since $\sigma$ fixes $L$ as a *set* ($\sigma L \subseteq L$),
   and not *pointwise* ($\sigma(l) = l$ for all $l \in L$.)
@@ -2636,7 +2746,7 @@ $$
 - If $p$ divides all coefficients except for the highest one ($a_n$), $a_0$ is $p$-squarefree ($p^2$ does not divide $a_0$), then $p(x)$ is irreducible.
 - That is, $p | a0, p | a_1$, upto $p | a_{n-1}$, $p \not | a_n$, and finally $p^2 \not | a_0$.
 - Then we must show that $p(x)$ is irreducible.
-- Suppose for contradiction that $p(x) = q(x)r(x)$ where $q(x) = (b_0 + b_1 x+ \dots + b_k x^k)$ and $r(x) = (c_0 + c_1 x + \dots c_l x^l)$ (such that $k + l \geq n$, 
+- Suppose for contradiction that $p(x) = q(x)r(x)$ where $q(x) = (b_0 + b_1 x+ \dots + b_k x^k)$ and $r(x) = (c_0 + c_1 x + \dots c_l x^l)$ (such that $k + l \geq n$,
   and $k > 0, l > 0$).
 - See that $a_0 = b_0 c_0$. Since $p | a_0$, $p$ must divide one of $b_0, c_0$. Since $p^2$ **does not divide** $a_0$, $p$ cannot divide **both** $b_0, c_0$.
   WLOG, suppose $p$ divides $b_0$, and $p$ **does not divide** $c_0$.
@@ -2644,7 +2754,7 @@ $$
    in $\sum_{i + j = n} b_i c_j$ is not divisible by $p$.
 - Now, we know that $p$ divides $b_0$, $p$ does not divide $c_0$. We will use this as a "domino" to show that $p$ divides $b_1$, $b_2$, and so on, all the way upto $b_k$.
   But this will imply that the final term $a_n$ will also be divisible by $p$, leading to contradiction.
-- To show the domino effect, start with the coefficient of $x$, which is $a_1 = b_0 c_1 + b_1 c_0$. Since $a_1$ is divisible by $p$, $b_0$ is divisible by $p$, and $c_0$ is 
+- To show the domino effect, start with the coefficient of $x$, which is $a_1 = b_0 c_1 + b_1 c_0$. Since $a_1$ is divisible by $p$, $b_0$ is divisible by $p$, and $c_0$ is
   **not** divisible by $p$, the whole equation reduces to $b_1 c_0 \equiv_p 0$, or $b_1 \equiv_p 0$ [since $c_0$ is a unit modulo $p$].
 - Thus, we have now "domino"'d to show that $p$ divides **both** $b_0, b_1$.
 - For induction, suppose $p$ divides everything $b_0, b_1, \dots, b_r$. We must show that $p$ divides $b_{r+1}$.
@@ -2658,7 +2768,7 @@ $$
 
 # Gauss Lemma for polynomials
 
-- Let $z(x) \in Z[X]$ such that $z(x) = p(x) q(x)$ where $p(x), q(x) \in Q[X]$. Then we claim that there exists 
+- Let $z(x) \in Z[X]$ such that $z(x) = p(x) q(x)$ where $p(x), q(x) \in Q[X]$. Then we claim that there exists
   $p'(x), q'(x) \in Z[x]$ such that $z(x) = p'(x) q'(x)$.
 - For example, suppose $p(x) = a_0 / b_0 + a_1 x / b_1$ and $q(x) = c_0 / d_0 + c_1 x / d_1$, such that $p(x)q(x) \in \mathbb Z[x]$ and these
   fractions are in lowest form. So, $b_i \not | a_i$ and $d_i \not | c_i$.
@@ -2725,14 +2835,14 @@ $$
   $f(x) = \begin{cases} T & x \in U \\ \bot & \text{otherwise} \end{cases}$
   is continuous.
 - A function $f: X \to Y$ is continuous iff every function $f \circ s$ is continuous for every continuous $s: Y \to S$. That is, a function is continuous iff
-  the pullback of every indicator is an indicator. 
+  the pullback of every indicator is an indicator.
 - A topological space is said to be *sequential* iff every *sequentially open set* is open.
 - A set $K \subseteq X$ is sequentially open iff whenever a sequence $x_n$ has a limit point in $K$, then there is some $M$ such that $x_{\geq M}$ lies in $K$. [TODO: check]
-- Now consider $\mathbb N_\infty$, the one point compactification of the naturals. Here, we add a point called $\infty$ to $\mathbb N$, and declare 
+- Now consider $\mathbb N_\infty$, the one point compactification of the naturals. Here, we add a point called $\infty$ to $\mathbb N$, and declare
   that sets which have a divergent sequences and $\infty$ in them are open.
 - More abstractly, we declare all sets that are complements of closed and bounded sets with
   infinity in them as open. So a set $U \subseteq \mathbb N_{\infty}$ is bounded iff there exists a closed bounded
-  $C \subseteq \mathbb N$ such that $U = \mathbb N / C \cup \{ infty \}$. 
+  $C \subseteq \mathbb N$ such that $U = \mathbb N / C \cup \{ infty \}$.
 - A function $x: \mathbb N_\infty to X$ is continuous [wrt above topology] iff the sequence $x_n$ converges to the limit $x_\infty$.
 - See that we use functions out of $\mathbb N_\infty$ [covariant] instead of functions into $S$ [contravariant].
 - Now say a function $f: X \to Y$ is sequentially continuous iff for every continuous $x: \mathbb N_\infty \to X$, the composition $f \circ x: \mathbb N_\infty \to Y$
@@ -2775,7 +2885,7 @@ $$
 - Hence, $\lim s_i \in L$.
 - This explains why we build Zariski the way we do: the level sets of functions
   must be closed. Since we wish to study polynomials, we build our topology out of the
-  level sets of polynomials. 
+  level sets of polynomials.
 
 
 # HPNDUF - Hard problems need design up front!
@@ -2788,7 +2898,7 @@ $$
 - Consider some separable extension $L/K$.
 - By primitive element, can be written as $L = K(\alpha)$
 - Since $L$ is separable, the minimal polynomial of $\alpha$, $p(x) \in K[x]$ is separable, and so splits into linear factors.
-- Build the splitting field $M$ of $p(x)$. This will contain $L$, as $L = K(\alpha) \subseteq K(\alpha, \beta, \gamma, \dots)$ 
+- Build the splitting field $M$ of $p(x)$. This will contain $L$, as $L = K(\alpha) \subseteq K(\alpha, \beta, \gamma, \dots)$
   where $\alpha, \beta, \gamma, \dots$ are the roots of $p(x)$.
 - This is normal (since it is the splitting field of a polynomial).
 - This is separable, since it is generated by separable elements $\alpha$, $\beta$, $\gamma$, and so on.
@@ -2805,7 +2915,7 @@ $$
 - If $k$ is a finite field, then $E$ is a finite extension and $E^\times$ is a cyclic group. The generator of $E^\times$ is the primitive element.
 - So suppose $k$ is an infinite field. Let $E/k$ have many intermediate fields.
 - Pick non-zero $\alpha, \beta \in E$. As $c$ varies in $k$, the extension $k(\alpha + c\beta)$ varies amongst the extensions of $E$.
-- Since $E$ only has finitely many extensions while $k$ is infinite, pigeonhole tells us that there are two $c_1 \neq c_2$ in $E$ such that 
+- Since $E$ only has finitely many extensions while $k$ is infinite, pigeonhole tells us that there are two $c_1 \neq c_2$ in $E$ such that
   $k(\alpha + c_1 \beta) = k(\alpha + c_2 \beta)$.
 - Define $L \equiv k(\alpha + c_1 \beta)$. We claim that $L = E$, which shows that $\alpha + c_1 \beta$ is a primitive element for $E$.
 - Since $k(\alpha + c_2 \beta) = k(\alpha + c_1 \beta) = L$, this implies that $\alpha + c_2 \beta \in L$.
@@ -2819,11 +2929,11 @@ $$
 - Let $E = k(\alpha)$ be a simple field (field generated by a primitive element). We need to show that $E/k$ only has finitely many subfields.
 - Let $a_k(x) \in k[x]$ be the minimal polynomial for $\alpha$ in $k$. By definition, $a$ is irreducible.
 - For any intermediate field $k \subseteq F \subseteq E$, define $a_F(x) \in F[x]$ to be the minimal polynomial of $\alpha$ in $F$.
-- Since $a_k$ is also a member of $F[x]$ and $a_k, a_F$ share a common root $\alpha$ and $a_F$ is irreducible in $F$, this means that $a_F$ divides $a_k$. 
+- Since $a_k$ is also a member of $F[x]$ and $a_k, a_F$ share a common root $\alpha$ and $a_F$ is irreducible in $F$, this means that $a_F$ divides $a_k$.
 - Proof sketch that irreducible polynomial divides any polynomial it shares a root with (Also written in another blog post):
   The GCD $gcd(a_F, a_k) \in F[x]$ must be non constant since $a_F, a_k$ share a root). But the irreducible polynomial $a_F$
   cannot have a smaller polynomial ($gcd(a_F, a_k)$) as divisor. Thus the GCD itself is the irreducible polynomial $a_F$. This implies that $a_F$ divides $a_k$
-  since GCD must divide $a_k$. 
+  since GCD must divide $a_k$.
 - Since $a_k$ is a polynomial, it only has finitely many divisors (upto rescaling, which does not give us new intermediate fields).
 - Thus, there are only finitely many intermediate fields if a field is primitive.
 
@@ -2833,7 +2943,7 @@ $$
 
 - Let $F = F_p(t, u)$ where $t, u$ are independent variables. This has finite degree since it has a vector space basis $\{ t^iu^j \}$.
 - Let $\alpha, \beta$ be roots of $x^p - t$ and $x^p - u$. Define $L \equiv F(\alpha, \beta)$.
-- Consider intermediate subfields $F_\lambda \equiv  F(\alpha + \lambda \beta)$ for $\lambda \in F$. 
+- Consider intermediate subfields $F_\lambda \equiv  F(\alpha + \lambda \beta)$ for $\lambda \in F$.
 - Suppose $\lambda \neq \mu$ for two elements in $F$. We want to show that $F_\lambda \neq F_\mu$. This gives us infinitely many subfields as $F$ has infinitely
   many elements. TODO
 - [Reference](https://www.mathcounterexamples.net/a-finite-extension-that-contains-infinitely-many-subfields/)
@@ -2847,8 +2957,8 @@ $$
 - Let $g$ be the minimal polynomial for $\alpha$, and $h$ the minimal polynomial for $\beta$. Since the field is separable, $g, h$ have unique roots.
 - Let the unique roots of $g$ be $\alpha_i$ such that $\alpha = \alpha_1$, and similarly let the unique roots of $h$ be $\beta_i$ such that $\beta = beta_1$.
 - Now consider the equations $\alpha_1 + f_{i, j} \beta_1 = \alpha_i + f_{i, j} \beta_j$ for $i \in [1, deg(g)]$ and $j \in [1, deg(h)]$.
-- Rearranging, we get $(\alpha_1 - \alpha_j) = f_{i, j} (\beta_j - \beta_1)$. Since $\beta_j \neq \beta_1$ and $\alpha_1 \neq \alpha_j$, this shows that there 
-  is a unique $f_{i, j} \equiv (\alpha_1 - \alpha_j)/(\beta_j - \beta_1)$ that solves the above equation. 
+- Rearranging, we get $(\alpha_1 - \alpha_j) = f_{i, j} (\beta_j - \beta_1)$. Since $\beta_j \neq \beta_1$ and $\alpha_1 \neq \alpha_j$, this shows that there
+  is a unique $f_{i, j} \equiv (\alpha_1 - \alpha_j)/(\beta_j - \beta_1)$ that solves the above equation.
 - Since the extension $F$ is infinite, we can pick a $f_*$ which avoids the finite number of $f_{i, j}$.
 - Thus, once we choose such an $f_*$, let $\theta \equiv a_1 + f b_1$. Such a $\theta$ can never be equal to $\alpha_i + f \beta_j$ for _any_ $f$, since the only choices of $f$
   that make $\alpha_1 + f \beta_1 = \alpha_i + f \beta_j$ true are the $f_{i, j}$, and $f_*$ was chosen to be different from these!
@@ -2902,10 +3012,10 @@ $$
 
 ##### Separability is transitive
 - Given a tower $K \subseteq L \subseteq M \subseteq \overline K$, we fix an embedding $\kappa: K \to \overline K$. If both $L/K$ and $M/L$ are
-  finite and separable, then $\kappa$ extends into $\lambda: L \to \overline K$ through $L/K$ in $[L:K]$ ways, and then again 
+  finite and separable, then $\kappa$ extends into $\lambda: L \to \overline K$ through $L/K$ in $[L:K]$ ways, and then again
   as $\mu: L \to \overline K$ in $[M:L]$ ways.
 - This together means that we have $[L:K] \cdot [M:L] = [M:K]$ ways to extend $\kappa$ into $\mu$, which is the maximum possible.
-- Thus, $M/K$ is separable.  
+- Thus, $M/K$ is separable.
 
 ##### Separable by polynomial implies separable by embeddings
 - Let every $\alpha \in L$ have minimal polynomial that is separable (ie, has distinct roots).
@@ -2915,11 +3025,11 @@ $$
   is multiplicative, we have that $[L:K] = [K_1:K_0][K_2:K_1]\dots[K_{n-1}:K_n$.
 - We build $\sigma'$ inductively as $\sigma'_i: K \to K_i$ with $\sigma'_0 \equiv \sigma$.
 - Then at step $i$, $\sigma'_{i+1}: K \to K(i+1)$ which is $\sigma'_{i+1}: K \to K_i(\alpha_{i+1})$ has $[K_{i+1}:K_i]$ choices, since $\alpha_{i+1}$ is separable over
-  $K_i$ since its minimal polynomial is separable. 
+  $K_i$ since its minimal polynomial is separable.
 - This means that in toto, we have the correct $[L:K]$ number of choices for $\sigma_n: K \to K_n = L$, which is what it means to be separable by embeddings.
 
-##### Separable by embeddings implies separable by polynomial  
-- Let $L/K$ be separable in terms of embeddings. Consider some element $\alpha \in L$, let its minimal polynomial be $p(x)$. 
+##### Separable by embeddings implies separable by polynomial
+- Let $L/K$ be separable in terms of embeddings. Consider some element $\alpha \in L$, let its minimal polynomial be $p(x)$.
 - Write $L = K(\alpha)(\beta_1, \dots, \beta_n)$. Since degree is multiplicative, we have $[L:K] = [K(\alpha):K][K(\alpha, \beta_i):K(\alpha)]$.
 - So given an embedding $\sigma: K \to \overline K$,we must be able to extend it in $[L:K]$ ways.
 - Since $\sigma$ must send $\alpha$ to a root of $\alpha$, and we need the total to be $[L:K]$, we must have that $p(x)$ has no repeated roots.
@@ -2931,7 +3041,7 @@ $$
 
 - Let $L = K(\alpha_1, \dots, \alpha_n)$ be separable, so there are $[L: K]$ ways to extend a map $\kappa: K \to \overline K$ into $\lambda: L \to \overline L$.
 - Since we have shown that separable by polyomial implies separable by embedding, we write $L = K(\alpha_1)(\alpha_2)\dots(\alpha_n)$. Each step is separable
-  by the arguments given above in terms of counting automorphisms by where they send $\alpha_i$. Thus, the full $L$ is separable. 
+  by the arguments given above in terms of counting automorphisms by where they send $\alpha_i$. Thus, the full $L$ is separable.
 
 ##### References
 - https://math.stackexchange.com/questions/2227777/compositum-of-separable-extension
@@ -2950,7 +3060,7 @@ $$
 - For a derivation $D: R \to R$ with ring of constants $C$, the associated derivation $(.)^D: R[x] \to R[x]$ has ring of constants $C[x]$.
 - **Key thm:** Let $L/K$ be a field extension and let $D: K \to K$ be a derivation. $D$ extends uniquely to $D_L$ iff $L$ is separable over $K$.
 
-#### If $\alpha$ separable, then derivation over $K$ lifts uniquely to $K(\alpha)$ 
+#### If $\alpha$ separable, then derivation over $K$ lifts uniquely to $K(\alpha)$
 
 - Let $D: K \to K$ be a derivation.
 - Let $\alpha \in L$ be separable over $K$ with minimal polynomial $\pi(X) \in K[X]$.
@@ -2959,7 +3069,7 @@ $$
 
 \begin{aligned}
 D'(f(\alpha)) \equiv f^D(\alpha) - f'(\alpha) \frac{\pi^D(\alpha)}{pi'(\alpha)}
-\end{aligned} 
+\end{aligned}
 
 - To prove this, we start by assuming $D$ has an extension, and then showing that it must agree with $D'$. This tells us why it __must__ look this way.
 - Then, after doing this, we start with $D'$ and show that it is well defined and obeys the derivation conditions. This tells us why it's __well-defined__.
@@ -2986,13 +3096,13 @@ D'(f(\alpha)) \equiv f^D(\alpha) - f'(\alpha) \frac{\pi^D(\alpha)}{pi'(\alpha)}
 - Since $\pi(\alpha) = \pi'(\alpha) = 0$, we get that $f'(\alpha) = g'(\alpha) + 0$ by evaluating previous equation at $\alpha$.
 - This shows that $Z: K(\alpha) \to K(\alpha)$ is well defined.
 - See that the derivation $Z$ kills $K$ since $K = K \alpha^0$. But we see that $Z(\alpha) = 1$, so $Z$ extends the zero derivation on $K$ while not being zero itself.
-- We needed separability for the derivation to be well-defined.  
+- We needed separability for the derivation to be well-defined.
 
 
 ##### Part 2.b: Inseparable extension can be written as extension by inseparable element
 
 - Above, we showed that if we have $K(\alpha)/K$ where $\alpha$ inseparable, then derivations cannot be uniquely lifted.
-- We want to show that if we have $L/K$ inseparable, then derivation cannot be uniquely lifted. But this is not the same! 
+- We want to show that if we have $L/K$ inseparable, then derivation cannot be uniquely lifted. But this is not the same!
 - $L/K$ inseparable implies that there is some $\alpha \in L$ which is inseparable, NOT that $L = K(\alpha)/K$ is inseparable!
 - So we either need to find some element $\alpha$ such that $L = K(\alpha)$ [not always possible], or find some field $F$ such that $L = F(\alpha)$ and
   $\alpha$ is inseparable over $F$.
@@ -3036,7 +3146,7 @@ D'(f(\alpha)) \equiv f^D(\alpha) - f'(\alpha) \frac{\pi^D(\alpha)}{pi'(\alpha)}
 1. $M$ is normal and separable (over $K$).
 2. $deg(M/K) = |G|$. We will show that $|G| \leq deg(M/K)$. So $M$ is "symmetric as possible" --- have the largest possible galois group
 3. $K = M^G$ [The fixed poits of $M$ under $G$]. This is useful for examples.
-4. $M$ is the splitting field of a separable polynomial over $K$. Recall that a polynomial is separable over $K$ if it has distinct roots in 
+4. $M$ is the splitting field of a separable polynomial over $K$. Recall that a polynomial is separable over $K$ if it has distinct roots in
    the algebraic closure of $K$. Thus, the number of roots is equal to the degree.
 5. $K \subseteq L \subseteq M$ and $1 \subseteq H \subseteq G$: There is a 1-1 correspondece between $L \mapsto Gal(M/L)$ [NOT $L/K$!],
    and the other way round, to go from $H$ to $M^H$. This is a 1-1 correspondence. $L$ is in the denominator because we want to fix $L$ when we go back.
@@ -3053,9 +3163,9 @@ D'(f(\alpha)) \equiv f^D(\alpha) - f'(\alpha) \frac{\pi^D(\alpha)}{pi'(\alpha)}
   Normality is trivial for linear polynomials, if $M$ contains one root it
   contains all of the roots (the only one).
 - Let $q \in K[x]$ have a root $\alpha \in M$. If $\alpha \in K$, then divide by $(x - \alpha)$ and use induction. So suppose $\alpha \not \in K$.
-- Then $\alpha$ is some element that is generated by the roots 
+- Then $\alpha$ is some element that is generated by the roots
 
-- [Borcherds lecture](https://www.youtube.com/watch?v=g87CBjYqHWk&list=PL8yHsr3EFj53Zxu3iRGMYL_89GDMvdkgt&index=8)   
+- [Borcherds lecture](https://www.youtube.com/watch?v=g87CBjYqHWk&list=PL8yHsr3EFj53Zxu3iRGMYL_89GDMvdkgt&index=8)
 
 
 # Separability of field extension as diagonalizability
@@ -3087,7 +3197,7 @@ D'(f(\alpha)) \equiv f^D(\alpha) - f'(\alpha) \frac{\pi^D(\alpha)}{pi'(\alpha)}
 - However, they are clearly correlated. Eg. if $x = 1$, then $y$ must be zero.
 - If $Y = aX+b$ the $corr(X, Y) = sgn(a)$.
 
-# Hypothesis Testing 
+# Hypothesis Testing
 
 #### Mnemonic for type I versus type II errors
 
@@ -3114,11 +3224,11 @@ D'(f(\alpha)) \equiv f^D(\alpha) - f'(\alpha) \frac{\pi^D(\alpha)}{pi'(\alpha)}
 - The scientific /statistical process is the Judiciary which is attempting to keep the structure of "innocent until proven guilty" for $H_0$.
 - We run experiments, and we find out how likely it is that $H_0$ is guilty based on our experiments.
 - We calculate an error $\alpha$, which is the probably we screw up the fundamental truth of the court: we must not send an innocent man to the gulag.
-  Thus, $\alpha$ it the probability that $H_0$ is innocent (ie, true) but we reject it (to the gulag). 
+  Thus, $\alpha$ it the probability that $H_0$ is innocent (ie, true) but we reject it (to the gulag).
 
 #### P value, Neyman interpretation
 - Now, suppose we wish to send $H_0$ to the gulag, because we're soviet union
-  like that. What's the probability we're wrong in doing so? (That is, what is the probability that us sending $H_0$ is innocent and we are 
+  like that. What's the probability we're wrong in doing so? (That is, what is the probability that us sending $H_0$ is innocent and we are
   condemning them incorrectly to a life in the gulag)? that's the $p$ value. We estimate this based on our expeiment, of course.
 - Remember, we **can never speak** of the "probability of $H_0$ being true/false", because $H_0$ _is true_ or _is false_ [frequentist]. There is no
   probability.
@@ -3128,7 +3238,7 @@ D'(f(\alpha)) \equiv f^D(\alpha) - f'(\alpha) \frac{\pi^D(\alpha)}{pi'(\alpha)}
 - The critical region of the test corresponds to those values of the test statistic
   that would lead us to reject null hypothesis (and send it to the gulag).
 - Thus, the critical region is also sometimes called the "rejection region",
-  since we reject $H_0$ from society if the test statistic lies in this region. 
+  since we reject $H_0$ from society if the test statistic lies in this region.
 - The rejection region is usually corresponds to the tails of the sampling distribution.
 - The reason for that is that a good critical region almost always corresponds
   to those values of the test statistic that are least likely to be observed if
@@ -3172,7 +3282,7 @@ def reduce(inp: str, test: str -> bool):
     ix = 0
     found_failure = False
     skiplen = len(inp) / n
-  
+
     while ix < len(inp):
       inp_noix = inp[:ix] +inp[ix+skiplen:]
       if not self.test(inp_noix):
@@ -3181,11 +3291,11 @@ def reduce(inp: str, test: str -> bool):
           found_failure = True; break
       else:
         ix += skiplen
-  
+
     if not found_failure:
       if n == len(inp): break
       n = min(n * 2, len(inp)) # double
-  
+
   return inp
 ```
 
@@ -3210,7 +3320,7 @@ def reduce(inp: str, test: str -> bool):
 > study. Fixed variables should come first, followed by measured variables, each ordered so that
 > related variables are contiguous. Rows can then be ordered by the first variable, breaking
 > ties with the second and subsequent (fixed) variables. This is the convention adopted by all
-> tabular displays in this paper. 
+> tabular displays in this paper.
 
 
 #### Messy 1: Column headers are values, not variable names
@@ -3283,7 +3393,7 @@ MX17004 2010-05-27 33.2 18.2
 - The element column is not a variable; it stores the names of variables.
 
 
-#### Multiple types in one table: 
+#### Multiple types in one table:
 
 
 #### data manipulation, relationship to `dplyr`:
@@ -3338,7 +3448,7 @@ MX17004 2010-05-27 33.2 18.2
 - Use subclause to indicate that sentence is unfinished. Eg: the bug in our compiler has been fixed (bad!).
   The reader may see "the bug in our compiler..." and conclude something crazy.
   Ratther, we should write "While there was a bug in our compiler, we fixed it ...". The `While` makes it
-  clear 
+  clear
 
 
 # LCS DP: The speedup is from filtration
@@ -3351,7 +3461,7 @@ MX17004 2010-05-27 33.2 18.2
   containing all pairs of subsequences $(s \in 2^n, t \in 2^m)$ where `maxix(s) \leq i` and `maxix(t) \leq j`.
 - These filters of the filtration nest into one another, so $F_{i, j} \subseteq F_{i', j'}$ iff $i \leq i'$ and $j \leq j'$.
 - Key idea 2: The value of `max LCS(filter)` is (a) monotonic, and (b) can be computed efficiently from the values of lower filtration.
-  So we have a monotone map from the space of filters to the solution space, and this monotone map is efficiently computable, given the 
+  So we have a monotone map from the space of filters to the solution space, and this monotone map is efficiently computable, given the
   values of filters below this in the filtration.
 - This gives us a recurrence, where we start from the bottom filter and proceed to build upward.
 - See that this really has _nothing_ to do with recursion. It has to do with _problem decomposition_.
@@ -3372,12 +3482,12 @@ MX17004 2010-05-27 33.2 18.2
 
 
 
-# F1 or Fun : The field with one element 
+# F1 or Fun : The field with one element
 
 - Many combinatorial phenomena can be recovered as the "limit" of geometric phenomena over the "field with one element",
   a mathematical mirage.
 
-#### Cardinality ~ Lines 
+#### Cardinality ~ Lines
 
 - Consider projective space of dimension $n$ over $F_p$. How many lines are there?
 - Note that for each non-zero vector, we get a 'direction'. So there are $p^n - 1$ potential directions.
@@ -3413,7 +3523,7 @@ MX17004 2010-05-27 33.2 18.2
 - Also, when $g \neq h$ (ie, we are off the main diagonal of the multiplication table), each $gh = 1$ has a "cyclic permutation solution" $hg = 1$.
 - If the group as even order, then there are even number of $1$s on the main diagonal.
 - Thus, the number of solutions to $x^2 = 2$ for $x \in G$ is even, since each solution has another paired with it.
-- Let's generalize from pairs to 
+- Let's generalize from pairs to
 - [Reference](http://www.cs.toronto.edu/~yuvalf/McKay%20Another%20Proof%20of%20Cauchy's%20Group%20Theorem.pdf)
 
 
@@ -3453,12 +3563,12 @@ MX17004 2010-05-27 33.2 18.2
 # Convergence in distribution is very weak
 
 - consider $X \sim N(0, 1)$. Also consider $-X$ which will be identically distributed (by symmetry of $-$ and $N$).
-- So we have that $-X \sim N(0, 1)$. 
+- So we have that $-X \sim N(0, 1)$.
 - But this tells us nothing about $X$ and $-x$! so this type of "convergence of distribution" is very weak.
 - Strongest notion of convergence (#2): Almost surely. $T_n \xrightarrow{a.s} T$ iff $P(\{ \omega : T_n(\omega) \to T(\omega) \}) = 1$.
   Consider a snowball left out in the sun. In a couple hours, It'll have a random shape, random volume, and so on. But the ball itself
   is a definite thing --- the $\omega$. Almost sure says that for almost all of the balls, $T_n$ converges to $T$.
-- #2 notion of convergence: Convergence in probability. 
+- #2 notion of convergence: Convergence in probability.
   $T_n \xrightarrow{P} T$ iff $P(|T_n - T| \geq \epsilon) \xrightarrow{n \to \infty} 0$ for all
   $\epsilon > 0$. This allows us to squeeze $\epsilon$ probability under the rug.
 - Convergence in $L^p$: $T_n \xrightarrow{L^p} T$ iff $E[|T_n - T|^p] \xrightarrow{n \to \infty} 0$. Eg. think of convergence in variance of a gaussian.
@@ -3477,7 +3587,7 @@ MX17004 2010-05-27 33.2 18.2
 - Convergence in $L^p$ implies convergence in probability and convergence in $L^q$ for all $q \leq p$. Also, the limits (which are RVs) are almost
   surely equal.
 - If $T$ converges in probability, it also converges in distribution (meaning the two sequences will have the same DISTRIBUTION, not same RV).
-- All of almost surely, probabilistic convergence, convergence in distribution (not $L^p$) 
+- All of almost surely, probabilistic convergence, convergence in distribution (not $L^p$)
   map properly by continuous fns. $T_n \to T$ implies $f(T_n) \to f(T)$.
 - almost surely implies P implies distribution convergence.
 
@@ -3500,9 +3610,9 @@ MX17004 2010-05-27 33.2 18.2
 #### Centralizer
 
 - The centralizer of a subset $S$ of a group $G$ is largest subgroup of $G$ which is the center of $S$.
-  It's defined as $C_G(S) \equiv \{ g \in G : \forall s \in S, gs = sg \}$. This can be 
+  It's defined as $C_G(S) \equiv \{ g \in G : \forall s \in S, gs = sg \}$. This can be
   written as $C_G(S) \equiv \{ g \in G : \forall s \in S, gsg^{-1} = s \}$.
-- 
+-
 
 #### Conjucacy classes and the class equation
 
@@ -3529,7 +3639,7 @@ MX17004 2010-05-27 33.2 18.2
 
 #### Center of $p$ group
 
-- Let $G$ be a $p$-group. We know that $|G| = |Z(G)| + \sum_{g_i} |Orb(g_i)|$, where we are considering orbits under 
+- Let $G$ be a $p$-group. We know that $|G| = |Z(G)| + \sum_{g_i} |Orb(g_i)|$, where we are considering orbits under
   group conjugation.
 - See that $|Orb(g_i)| = |G|/|Stab(g_i)|$. The quantity on the right must be a power of $p$ (since the numerator is $p^N$). The quantity
   must be more than $1$, since the element $g_i$ is not in the center (and thus is conjugated non-trivially by _some_ element of the group).
@@ -3545,7 +3655,7 @@ MX17004 2010-05-27 33.2 18.2
 - *Case 1:* If $p$ divides $o$, then there is a power of $g$ with order $p$ (Let $o' \equiv o/p$. Consider $g^{o'}$; this has order $p$).
 - *Case 2:* If $p$ does not divide $o$. Then $p$ divides the order of the
   quotient $G' \equiv G / C_g$. Thus by induction, we have an element $h C_g \in G / C_g$ of order $p$.
-- Let $o$ be the order of $h$ in $G$. Then we have that that $(h C_g)^o =  h^o C_g = e C_g$, where the last equality follows from the assumption that 
+- Let $o$ be the order of $h$ in $G$. Then we have that that $(h C_g)^o =  h^o C_g = e C_g$, where the last equality follows from the assumption that
   $o$ is the order of $h$. Thus we can raise $h C_g$ to $o$ get the identity in $G/C_g$. This implies $p$ (the order of $h G/C_g$)
   must divide $o$ (the order of $h$).
 - Thus, by an argument similar to the previous, there is some power of $h$ with order $p$. (Let $o' \equiv o/p$. Consider $h^{o'}$' this has order $p$)
@@ -3561,7 +3671,7 @@ MX17004 2010-05-27 33.2 18.2
 #### Subgroups of p-group
 
 - Let $G$ be a finite $p$ group. So $|G| = p^N$. Then  $G$ has a normal subgroup of size $p^l$ for all $l \leq N$.
-- Proof by induction on $l$. 
+- Proof by induction on $l$.
 - For $l = 0$, we have the normal subgroup $\{ e \}$.
 - Assume this holds for $k$. We need to show it's true for $l \equiv k + 1$.
 - So we have a normal subgroup $N_k$ of size $p^k$. We need to establish a subgroup $N_l$ of size $p^{k+1}$.
@@ -3637,7 +3747,7 @@ I've always wanted a proof I can remember, and I think I've found one.
 Combining the above, we find that $|Stab(S)| \leq |S|$. So the stabilizer of
 size $|S| = p^k$ it is in some sense "maximal": it has the largest size a
 stabilizer could have!
-  
+
 
 
 # Fuzzing book
@@ -3677,7 +3787,7 @@ stabilizer could have!
   the number of equivalent mutants) is by means of Chao's estimator:
 
 $$
-hat M \equiv 
+hat M \equiv
 \begin{cases}
 M(n) + k_1^2 / (2 k_2) & \text{if } k_2 > 0 \\
 M(n) + k_1(k_1 - 1)/2 & \text{otherwise} \\
@@ -3722,7 +3832,7 @@ $$
 Similarly, for the next round, we choose to swap `w` with `z` as follows:
 
 ```
-1. {w,  x,  z}, [y] 
+1. {w,  x,  z}, [y]
 2. {w, x,  [z}, y] (grow array)
 2. {x,  z, [w}, y]  (swap w <-> x)
 2. {x, z}, [w, y] (shrinking set)
@@ -3731,7 +3841,7 @@ Similarly, for the next round, we choose to swap `w` with `z` as follows:
 For the next round, we swap `z` with `z` (ie, no change!)
 
 ```
-2. {x,  z}, [w, y] 
+2. {x,  z}, [w, y]
 3. {x, [z}, w, y] (grow array)
 3. {x, [z}, w, y] (swap z<->z)
 3. {x},[z, w, y] (shrink set)
@@ -3741,7 +3851,7 @@ Finally, we swap `x` with `x`:
 
 
 ```
-3. {x},  [z, w, y] 
+3. {x},  [z, w, y]
 4. {[x}, z, w, y] (grow array)
 3. {x}, [z, w, y] (swap x<->x)
 3. {}[x, z, w, y] (shrink set)
@@ -3788,7 +3898,7 @@ def permutation(draw, n):
   is generated by the leading terms of the generators.
 
 - for a basis $F$, we should consider $r(i, j) \equiv rem_F(S(f_i, f_j))$. If $r(i, j) \neq 0$, then make $F' \equiv F \cup \{ S(f_i, f_j \}$.
-- Repeat till we find that 
+- Repeat till we find that
 
 
 
@@ -3823,7 +3933,7 @@ def permutation(draw, n):
 # "Cheap" proof of euler characteristic
 
 - If we punch a hole in a sphere, we create an edge with no vertex or face. This causes $V - E + F$ to go down by 1.
-- If we punch two holes, that causes $V - E + F$ to go down by two. But we can glue the two edges together. 
+- If we punch two holes, that causes $V - E + F$ to go down by two. But we can glue the two edges together.
   This gluing gives us a handle, so each hole/genus reduces the euler characteristic by two!
 
 # Siefert Algorithm [TODO]
@@ -3860,7 +3970,7 @@ def permutation(draw, n):
 - The space $S^1 \times S^1$ have the same homology as $S^2 \cap S^1 \cap S^1$. Both have equal homology/cohomology.
 - However, we will find that it will be zero on the torus and non-zero on other side.
 - The cup product measures how the two generators are locally product like. So if we pick two generators on the torus, we can find a triangle
-  which gives non-zero 
+  which gives non-zero
 
 
 # Colimits examples with small diagram categories
@@ -3940,7 +4050,7 @@ https://www.youtube.com/watch?v=dUOmU-0t2Nc&list=PLIljB45xT85DWUiFYYGqJVtfnkUFWk
 
 - consider a parametrization $r: u, v \to \mathbb R^3$
 - at a point $p = r(u, v)$ on the surface, the tangent vectors are $r_u \equiv \partial_u r$ and similarly $r_v \equiv \partial_v r$.
-- Let $k = xr_u + y r_v$. Then $k \cdot k$ is the **first fundamental form**. Computed as 
+- Let $k = xr_u + y r_v$. Then $k \cdot k$ is the **first fundamental form**. Computed as
   $k= (xr_u + y r+v) \cdot (x r_u + y r_v)$. Write this as $E x^2 + 2F x y + G y^2$.  These numbers depend on the point $(u, v)$,
   or equally, depend on the point $p = r(u, v)$.
 - Further, we also have a normal vector to the tangent plane.$N(p)$ is the unit normal pointing outwards. We can describe it in terms
@@ -4022,7 +4132,7 @@ $$
 - To show that this normal curvature view really is curvature, let's compute $dN_p$ for a normal paraboloid. Wildberger says that
   all surfaces are like normal paraboloids upto second order.
 - This fits with one of our views of curvature of a curve: one way was one over the osculating circle, the other was $k \cdot ds = d \theta$
-- We had a formula like $\int k ds$ was a change in angle. Similarly, in our case, we see that if we consider $\int \int k(s) darea(s)$, we 
+- We had a formula like $\int k ds$ was a change in angle. Similarly, in our case, we see that if we consider $\int \int k(s) darea(s)$, we
   get the area of the image of $N$, because infinitesimally is the ratio of areas.
 - In particular if the surface is homeomorphic to a sphere, then we get the total area of the sphere, $4 \pi$.. This is the 2D analogue of
   the fact that if we integrate the curvature of a closed curve, we get $2 \pi$. [area of a circle]. This is by green's theorem.
@@ -4055,7 +4165,7 @@ $$
 - Now, suppose we have a leading monomial $x^5y^9$. Actually, this is incorrect! If we have a monomial $x^5y^9$, then we will also have a monomial
   $x^9y^5$, which is lex larger than $x^5y^9$. Thus, in any leading monomial, we will have the powers be in non-increasing (decreasing order).
 - OK, we have leading monomial $x^9 y ^5$. We wish to write this in terms of elementary symmetric polynomials. We could try and write this
-  by using the leading term $x$ in $s_1$ and leading term $xy$ in $s_2$. 
+  by using the leading term $x$ in $s_1$ and leading term $xy$ in $s_2$.
 - This means we need to solve $x^9y^5 = x^k (xy)^l$, or $9 = k + l$ and $5 = l$. This tells us that we should choose $l = 5$ and $k = 9 - 5 = 4$.
   If we do this, then our combination of symmetric polynomials will kill the leading term of $p(x)$. Any new terms we introduce will be smaller than the
   leading term, which we can write as elementary symmetric polynomials by induction!
@@ -4067,14 +4177,14 @@ $$
 - Let's write it in terms of $s_1, s_2, s_3$. So we want to write it  as product of  $(x)^p$, $(xy)^q$, and $(xyz)^r$. Their product is
   $x^{p+q+r}y^{q+r}z^r$.
 - This gives us the system of equations $x^{p+q+r}y^{q+r}z^r = x^ay^bz^c$. This means (1) $r = c$, (2) $q+r = b$ or $q = b - c$, and (3) $p + q + r = a$
-  or $p = a - q - r = a - (b - c) - c = a - b$. 
+  or $p = a - q - r = a - (b - c) - c = a - b$.
 
 #### General situation
 
-- think of the monomial $x^ay^bz^c$ as a vector $[a, b, c]$. Then the leading terms of the 
+- think of the monomial $x^ay^bz^c$ as a vector $[a, b, c]$. Then the leading terms of the
   symmetric polynomials correspond to $[1, 0, 0]$, $[1, 1, 0]$, and $[1, 1, 1$].
 - When we take powers of symmetric polynomials, we scale their exponent vector by that power.
-  So for example, the leading term of $s_2^9$ is $x^9y^9$ which is $[9, 9] = 9[1, 1]$. 
+  So for example, the leading term of $s_2^9$ is $x^9y^9$ which is $[9, 9] = 9[1, 1]$.
 - When we multiply symmetric polynomials, we add their exponent vectors. For example, the leading term of $s_1 s_2$ is $x(x+y) = x^2 y = [2, 1]$. This is
   equal to $[1, 0] + [1, 1]$
 - Thus, we wish to write the vector $[a, b, c]$ as a linear combination of vectors $[1, 0, 0]$, $[1, 1, 0]$, and $[1, 1, 1]$. This is solving the equation:
@@ -4113,8 +4223,8 @@ for(int m = N; m >= 0; m--) {
 - Let `x` be the index of the rightmost 1 in `s` (`x` marks the spot).
   So `s` is of the form `s[n]s[n-1]...s[x]s[x-1]...s[0]` where
   `s[x]=1` and `s[x-1]=s[x-2]=...=s[0]=0`. So we can write `s = s[n]s[n-1]...;x:1;00..0`
-- Now `t` is of the form `t = t[n]t[n-1]...;x:0;00..0`. 
-- Any number `c < s` must have for all indeces `i > x` such that `s[i] = 0` implies `c[i] = 0`. 
+- Now `t` is of the form `t = t[n]t[n-1]...;x:0;00..0`.
+- Any number `c < s` must have for all indeces `i > x` such that `s[i] = 0` implies `c[i] = 0`.
 - If `c` is such that for some index `i > x` where `s[i]=1` we have `c[i]=0`, then such a number will be less that `t`
   since `t[i]=s[i]=1`.
 - Thus, for all indexes `i > x` we have `c[i]=s[i]`.
@@ -4126,7 +4236,7 @@ for(int m = N; m >= 0; m--) {
 - Euler graph is a graph with an euleian circuit, so we pass through every edge exactly once and return to the
   node we started from.
 - Alternatively, every node has even degree. Consider the cycle as starting at some vertex `v`. To pass through all edges
-  adjacent to `v` must mean that every time we leave `v` on a previously unused `v->_` we must return back to `v` via a unique edge `_->v`. 
+  adjacent to `v` must mean that every time we leave `v` on a previously unused `v->_` we must return back to `v` via a unique edge `_->v`.
   This allows us to pair edges together uniquely, giving us an even number of edges at `v`.
 - This argument works at any generic `v`, since we can think of a cycle as starting from any vertex.
 - Thus, every vertex of `G` has even degree.
@@ -4141,7 +4251,7 @@ for(int m = N; m >= 0; m--) {
 
 - Consider a graph embedding. Since the graph is eulerian, we get a path/closed curve
   `p: S^1 -> R^2` that traverses the graph along its euler tour.
-- If the closed curve `p` has self-intersections, remove them by gently "spreading" `p`. 
+- If the closed curve `p` has self-intersections, remove them by gently "spreading" `p`.
 - This gives us two regions on the sphere, one inside the curve and one outside the curve (by jordan curve theorem).
 
 
@@ -4195,14 +4305,14 @@ e----------d
 - Said differently, the polynomial $f$ has no repeated roots in any extension of $J$.
 - Said differently, the polynomial $f$ has distinct roots in its splitting field over $J$. The roots as separable since we can separate
   all the roots from each other --- they are all distinct.
-- Said differently, the polynomial derivative $f'$ of $f$ is not the zero polynomial. 
+- Said differently, the polynomial derivative $f'$ of $f$ is not the zero polynomial.
 
 
 #### Proof that $p$ is not separable iff $p, p'$ share a root
 
 ##### Forward: $p$ is not separable implies $p, p'$ do not share a root.
 - Let $p$ have a repeated root $\alpha \in \overline K$. Thus $p(x) \equiv (x -\alpha)^2 g(x)$ in $\overline K$.
-- Computing $p'$ by product rule, we see that it is $p'(x) = 2(x- \alpha)g(x) + (x - \alpha)^2 g'(x)$ which can be written as 
+- Computing $p'$ by product rule, we see that it is $p'(x) = 2(x- \alpha)g(x) + (x - \alpha)^2 g'(x)$ which can be written as
   $p'(x) = (x - \alpha)(2g(x)+ g'(x)$.
 - This shows that $p'(x)$ has $(x - \alpha)$ as a root.
 
@@ -4219,7 +4329,7 @@ e----------d
 
 #### Proof that $p$ is separable iff $gcd(p, p') = 1$
 
-##### Forward: $p$ is separable implies $gcd(p, p') = 1$ 
+##### Forward: $p$ is separable implies $gcd(p, p') = 1$
 - Let $d(x) = gcd(p, p')$.
 - Suppose that it is not a unit, and not a constant (ie, a real polynomial).
 - Then $d(x)$  has a root $\alpha \in \overline K$ (by previous)
@@ -4271,7 +4381,7 @@ e----------d
 - Now, going back to our claim, let $f$ be some irreducible in $K[x]$. Suppose for contradiction that $f$ is not separable. Then $f, f'$ share a common root.
   By the above lemma, this implies that $f$ divides $f'$. But this is absurd, since $deg(f) > deg(f')$.
 - Hence, no irreducible polynomial in $f$ can share a root with its derivative, which implies $f$ is always separable.
-- This breaks down for character $p$ since $f'$ can simply "die out". 
+- This breaks down for character $p$ since $f'$ can simply "die out".
 
 
 
@@ -4359,7 +4469,7 @@ e----------d
 
 - Now, the limit $ob(D)$ can be interpreted as a limit of $ob(D): J \to Y \times Y \times \cdots \times Y$.
 - By the universal property of the product, limits over product categories can be
-  computed _pointwise_. So if we have a diagram $E: K \to X \times Y$, then $l \equiv \lim E$ can be calculated by 
+  computed _pointwise_. So if we have a diagram $E: K \to X \times Y$, then $l \equiv \lim E$ can be calculated by
   calculating $l_x \equiv \lim (\pi_1 \circ E : K \to X)$, then $l_y \equiv \lim (\pi_2 \circ E : K \to Y)$,
   and then setting $l \equiv (l_x, l_y) \in X \times Y$.
 - Thus, we split the morphism $ob(D): J \to Y \times Y \times \cdots \times Y$ into the individial tuple
@@ -4404,13 +4514,13 @@ F =α=> H <=β= G
 #### This extends to `[X, Y]`
 
 - We now believe that given $D: J \to [X, Y]$, we know that we can compute $ob(D): J \to [ob(X), Y]$ pointwise.
-- Formally, we define  $[\lim ob(D)](x)$ to be equal to $\lim (ev_x \circ D : J \to Y)$. 
+- Formally, we define  $[\lim ob(D)](x)$ to be equal to $\lim (ev_x \circ D : J \to Y)$.
 - We define the action of $\lim D$ (which is a functor from $X$ to $Y$) on objects of $X$ to be equal to the action of
   $\lim ob(D)$ on objects of $X$, which is given by the above equation.
 - So what about the action of $\lim D$ on the _morphisms_ of $X$? it's a functor from $X$ to $Y$, so it should send
   morphisms to morphisms!
 - Now, let's suppose we have a morphism $x \xrightarrow{a} x'$ in $X$. How do we compute the the action of $D$ on the morphism $a$?
-- Well, first off, what's $D(a)$ a morphism between? It must be between $D(x)$ and $D(x')$. 
+- Well, first off, what's $D(a)$ a morphism between? It must be between $D(x)$ and $D(x')$.
 - What is $D(x)$? We know that $D(x) \equiv \lim (ev_x \circ D: J \to Y)$. Similarly, we know that $D(x') \equiv \lim ev_x' \circ D: J \to Y)$.
 
 # `a + b = (a or b) + (a and b)`
@@ -4433,7 +4543,7 @@ F =α=> H <=β= G
 
 # Thoughtful discussion on the limits of safe spaces
 
-> (2) You cannot make all valuable, positive, motivated people feel safe. It's really sad, but there are fundamental incompatibilities in the kind of safety that different people need (even before we get to what makes them productive--you can't even make everyone feel comfortable!). I think this discussion has demonstrated amazing attempts by people at understanding and incorporating different perspectives, but at the end of it all, some people are going to have to be triaged out, or will have to accept some lack of safety. Two examples: (a) people with low self-esteem tend to find confrontational environments unsafe emotionally, but many neurodivergent people tend to find environments that require high social awareness unsafe emotionally. You can ameliorate this contradiction somewhat with careful guidelines, but fundamentally the problem cannot be solved: the neurodivergent simply cannot do what the emotionally fragile require of them, so one or the other or both is going to have a bad time. There is nothing wicked about either of these people! But they're not compatible. (b) people of a category that has faced systematic discrimination often do not feel safe with "free speech" that is allowed to get anywhere near sounding like discrimination against them (for very good reason!), but people who have exposure to thought-policing with severe consequences for disobedience often do not feel safe with anything less than very broad construal of "free speech". This one's even harder, because both sides can have really deep emotionally salient reasons for their perspective, and yet they are incompatible. There is nothing wicked about either of these people! But different types of wickedness have been done to them or are reasonably feared by them, rendering them incompatible with 
+> (2) You cannot make all valuable, positive, motivated people feel safe. It's really sad, but there are fundamental incompatibilities in the kind of safety that different people need (even before we get to what makes them productive--you can't even make everyone feel comfortable!). I think this discussion has demonstrated amazing attempts by people at understanding and incorporating different perspectives, but at the end of it all, some people are going to have to be triaged out, or will have to accept some lack of safety. Two examples: (a) people with low self-esteem tend to find confrontational environments unsafe emotionally, but many neurodivergent people tend to find environments that require high social awareness unsafe emotionally. You can ameliorate this contradiction somewhat with careful guidelines, but fundamentally the problem cannot be solved: the neurodivergent simply cannot do what the emotionally fragile require of them, so one or the other or both is going to have a bad time. There is nothing wicked about either of these people! But they're not compatible. (b) people of a category that has faced systematic discrimination often do not feel safe with "free speech" that is allowed to get anywhere near sounding like discrimination against them (for very good reason!), but people who have exposure to thought-policing with severe consequences for disobedience often do not feel safe with anything less than very broad construal of "free speech". This one's even harder, because both sides can have really deep emotionally salient reasons for their perspective, and yet they are incompatible. There is nothing wicked about either of these people! But different types of wickedness have been done to them or are reasonably feared by them, rendering them incompatible with
 each other.
 
 
@@ -4462,7 +4572,7 @@ each other.
   v
 ```
 
-  - Next, we can _zoom_ the real line by multiplication: So given a number, I can scale the entire real line by this number. 
+  - Next, we can _zoom_ the real line by multiplication: So given a number, I can scale the entire real line by this number.
     This group of zoom operations is $Z \simeq (\mathbb R, \times 1)$.I'll show this by stacking copies of the real line next to each other:
 
 ```
@@ -4479,10 +4589,10 @@ Z---[z=1]---[z=1/2]--[z=1/4]----...
 - So we show the group `Z` on the horizontal axis, which zooms the real line. We "attach" a copy of `P` to each element `z` of `Z`,
   appropriately scaled.
 
-- How should I write the pan-and-zoom operation as a single unit? I'll denote by `(z, p)` the operation of panning by `p` and then 
+- How should I write the pan-and-zoom operation as a single unit? I'll denote by `(z, p)` the operation of panning by `p` and then
   zooming by `z`. Why not the other order? Well, if I zoom first by `z` and then pan by `p`, the pan `p` gets "disturbed" by the zoom,
   since the pan would like to talk about the _initial_ state of the world, but we now need to pan with respect to the world _after_ zooming.
-  So we prefer the order where we can pan first (with no zoom interfering with our affairs), and then zoom. 
+  So we prefer the order where we can pan first (with no zoom interfering with our affairs), and then zoom.
 - How do these combine? If we have `(1, p) . (1, p')` we get `(1, p + p')` since combining pans at zoom level `1x` is like
   us not having zooming. Similarly, combining `(z, 0) . (z', 0)` is `(zz', 0)`, since zooming by `z` with no pan followed by `z'` is the same
   as zooming in one shot by `zz'`.
@@ -4494,7 +4604,7 @@ Z---[z=1]---[z=1/2]--[z=1/4]----...
 - It's hopefully clear that if we "squish" the `P`s, (ie, quotient by `P`) down towards the `Z`, we'll still have a fully functioning `Z` group.
 - On the other hand, if we attempt to "squish" the `Z`s(ie, quotient by `Z`) down towards a single `P`, we'll be left with _incompatible_ copies
   of `P`, each at different scales! This tells us that we _can_ quotient by `P` (so `P` is normal), but _not_ by `Z` (so `Z` is not normal).
-- So, this is sort of like a vector bundle `P -> Z |x P -> Z` where the fibers are `P` and the base space is `Z`. We can remove the fibers 
+- So, this is sort of like a vector bundle `P -> Z |x P -> Z` where the fibers are `P` and the base space is `Z`. We can remove the fibers
   to recover the base space. You can't delete the base space, since there's no way to make the fibers "compatible".
 
 
@@ -4528,7 +4638,7 @@ int f(vector<int> &xs) {
 ```
 
 - The "problem" is to deal with the degenrate cases where the array has only length 0, length 1, or length 2 when the DP conditions don't
-  kick in. How does one implement these neatly? 
+  kick in. How does one implement these neatly?
 
 - The insight is to see that at each location in the program, we have a _lower bound_ on the best DP value we can achieve. For example,
   at the beginning, we know that `best >= 0`. When we enter into the loop of `r`, we know that we have at least one element, so `best >= 1`,
@@ -4594,16 +4704,16 @@ For any integer $n $ there is an irrep $R_n: SU(2) \to GL(n, \mathbb C)$. Also, 
 - Define $Av$ (for averaging) of $v_1 \otimes v_2 \dots v_n$ to be $1/n! \sum_{\sigma \in S_n} v_{\sigma(1)} \otimes v_{\sigma(2)} \dots v_{\sigma(n)}$.
   In other words, it symmetrizes an input tensor.
 - Define $Sym^n (V) = Im(Av: V^{\otimes n} \to V^{\otimes n})$. We claim that $Sym^n(V)$ is a suprep of $V$.
-  We do this by first showing that $Av$ is a morphism of representations, and then by showing that the image of a 
+  We do this by first showing that $Av$ is a morphism of representations, and then by showing that the image of a
   morphism is a sub-representation.
 
 #### Weight space decomposition
 
 - $SU(2)$ contains a subgroup isomorphic to $U(1)$. Call this subgroup $T$, which is of the form
    $\begin{bmatrix} e^{i \theta} & 0 \\ 0 & e^{-i \theta} \end{bmatrix}$.
-- 
+-
 
-- [Reference](https://www.youtube.com/watch?v=bS-UhmV5DaE&list=PLN_4R2IuNuuRgJb00X2J53Iq9qe7k1nyr&index=26) 
+- [Reference](https://www.youtube.com/watch?v=bS-UhmV5DaE&list=PLN_4R2IuNuuRgJb00X2J53Iq9qe7k1nyr&index=26)
 
 # Why quaternions work better
 
@@ -4615,10 +4725,10 @@ For any integer $n $ there is an irrep $R_n: SU(2) \to GL(n, \mathbb C)$. Also, 
   Concatenate this loop with itself (make another trip from the south pole to the north pole) to get a full loop around
   the sphere, which can be shrunk into nothing as $\pi_1(S^2)$ is trivial. So $ns^2 = e$, where $ns$ is the north-south path in $S^2$
   which is a loop in $SO(3)$).
-- Key idea: deloop the space! How? find univesal cover. Lucikly, universal cover of $SO(3)$ is $SU(2)$ / quaternions, just as 
+- Key idea: deloop the space! How? find univesal cover. Lucikly, universal cover of $SO(3)$ is $SU(2)$ / quaternions, just as
   universal cover of $SO(1)$ is $\mathbb R$.
 - Universal cover also explains why $SU(2)$ is a _double_ cover. Since $\pi_1(SO(3))$ is $\mathbb Z/2Z$, we need to deloop "once"
-  to get the delooped space. 
+  to get the delooped space.
 - No more redundancy now! Just store a bloch sphere representation, or a quaternion (store $SU(2)$).
   Just like we can just store a real number for angle
   and add it.
@@ -4705,9 +4815,9 @@ B---D
 #### 1D 1D DP [TODO]
 
 - https://robert1003.github.io/2020/02/29/dp-opt-knuth.html
-- Suppose we have a dp $dp[r] = \min_{0 \leq l \leq r} f(l, r)$. That is, we need to find row minima for 
+- Suppose we have a dp $dp[r] = \min_{0 \leq l \leq r} f(l, r)$. That is, we need to find row minima for
   each row $r$ in a 2D matrix.
-- Now assume that $f(l, r)$ has ascending row minima 
+- Now assume that $f(l, r)$ has ascending row minima
 
 # Fixpoint as decorator
 
@@ -4820,7 +4930,7 @@ int lcs_len(const vector<int> &xs, const vector<int> &ys) {
 - What's this funny inverse? Well, the idea is this. We _really_ have that $(gf)(gx) \equiv g(f(x))$, as the group must act
   in an _invariant_ way on the function space and the domain space. So to definethe expression of $(gf)(x')$, we  think of it
   as $(gf)(x') = (gf)(g(g^{-1}x')) = f(g^{-1}x')$.
-- Define the weight of a coloring $h \in Y$, (ie $h: X \to C$) to be the monomial given by the product of colors; 
+- Define the weight of a coloring $h \in Y$, (ie $h: X \to C$) to be the monomial given by the product of colors;
   $wt(h) \equiv \prod_{x \in X} h(x)$. The weight $wt(h)$ is a monomial in the commutative ring $R[c_1, c_2, \dots, c_n]$.
 - **Statement of Polyma Enumeration:**
   The weight enumerator for the action $G$ on $Y \equiv (X \to C)$ is equal to the cycle index polynomial $Z(G, X)$ with $z_i$ replaced
@@ -4843,7 +4953,7 @@ $$
 - Said differently, all elements in the same cycle of $g$ have the same color.
 - Thus for each cycle of length $l$, We must color all of the $l$ elements (of $X$) with the same color.
 - We can color distinct cycles independent of each other.
-- Thus the weight of a cycle of length $1$ is given by $(c_1 + c_2 + \dots + c_n)$, since we can color the single element with 
+- Thus the weight of a cycle of length $1$ is given by $(c_1 + c_2 + \dots + c_n)$, since we can color the single element with
   _either_ $c_1$ _or_ $c_2$ and so on upto $c_n$.
 - The weight of a cycle of length $2$ is given by $(c_1^2 + c_2^2 + \dots + c_n^2)$, since we can color the _two_ elements in the cycle
   with _either_ $c_1$ _or_ $c_2$ and so on upto $c_i$.
@@ -4902,7 +5012,7 @@ $$
 - Since $[o]$ is the orbit of $x$, we replace $Orb(G, x)$ with $o$, giving $y = |G| \sum_{[o] \in G/X} \sum_{x \in [o]} w(x)/|[o]|$.
 - Since the weight is constant on orbits, we replace $w(x)$ by $w(o)$ giving $y = |G| \sum_{[o] \in G/X} \sum_{x \in [o]} w(o)/|[o]|$.
 - We pull the inner terms out giving $y = |G| \sum_{[o] \in X/G} w(o)/|[o]| \sum_{x \in [o]} 1$.
-- Since $\sum_{x \in [o]} 1 = |o|$, we get $|G| \sum_{[o] \in X/G} w(o)/|[o]| |[o]|$ which simplies to $y = |G| \sum_{[o] \in X/G} w(o)$. 
+- Since $\sum_{x \in [o]} 1 = |o|$, we get $|G| \sum_{[o] \in X/G} w(o)/|[o]| |[o]|$ which simplies to $y = |G| \sum_{[o] \in X/G} w(o)$.
 - We are done, since we have shown that $\sum_{g \in G} \sum_{x \in Fix(g)} w(x) = |G| \sum_{[o] \in X/G} w(o)$.
 
 - The full derivation is:
@@ -4954,7 +5064,7 @@ e     r     r^2   r^3
   where $P[\cdot]$ is the **power sum symmetric polynomial** for the cycle-type partition $cyc(g)$.
 - Recall the definition of power sum symmetric polynomial. First, for a natural number $k \in \mathbb N$,
   we define $P[k](\vec x) \equiv x_1^k + x_2^k + \dots + x_n^k$.
-- Next, for a partition $\lambda$, we define $P[\lambda](\vec x)$ to be the product over the parts of the partition: 
+- Next, for a partition $\lambda$, we define $P[\lambda](\vec x)$ to be the product over the parts of the partition:
   $P[\lambda_1](\vec x) \cdot P[\lambda_2](\vec x) \cdot \dots \cdot P[\lambda_l](\vec x)$.
 
 #### Cycle index polynomial of dihedral group
@@ -4963,7 +5073,7 @@ e     r     r^2   r^3
 - More formally, the dihedral group $D_4$ acts on the set of labelled squares $X$.
 
 ```
-a b 
+a b
 d c
 ```
 - 1. For the identity $e$, the cycle is $(a)(b)(c)(d)$. The cycle partition is $(1, 1, 1, 1)$.
@@ -4991,7 +5101,7 @@ d c
 - The $L_0$ norm of the partition will be $1 + 1 + \dots 1$ ($l$ times), which is equal to $N$. Thus, $|\lambda|_0 = l$.
 - So the $L_0$ norm of a partition is the *number of parts* of the partition.
 - The $L_1$ norm of the partition will be $|\lambda_1| + |\lambda_2| + \dots + |\lambda_l|$  which equals $N$.
-- So the $L_1$ norm of a partition is the number it is partitoining. Thus, $|\lambda|_1 = N$. 
+- So the $L_1$ norm of a partition is the number it is partitoining. Thus, $|\lambda|_1 = N$.
 
 
 #### Elementary Symmetric Polynomials (integer)
@@ -5104,7 +5214,7 @@ $$
 - If I therefore create a state with longest string `p:c`, this state `p:c` has a longest string longer than `q->link`.
 - Thus, it is proper to attach `q->link` to the newly created state.
 
- 
+
 # Simpson's Paradox
 
 - The example which made simpson's paradox click for me was the *extreme* case.
@@ -5128,19 +5238,19 @@ $$
 - Define $x \in A^\star$ to have a **disginguishing extension** from $y \in A^\star$
   iff there exists a $s \in A^\star$ such that either (a) $xs \in L \land ys \not \in L$, or
   $xs \not \in L \land ys \in L$
-- Said differently, given $x$ and $y$, there suffix $s$ which 
+- Said differently, given $x$ and $y$, there suffix $s$ which
   can distinguish $x$ and $y$ using the membership oracle for $L$.
 - Now define $x \sim_L y$ ($x$ is indistinguishable from $y$) iff there **is no distinguishing extension**
   between $x$ and $y$ with respect to $L$.
 - See that this is an equivalence relation:
 - *(1) Reflexivity*: $x$ cannot be distinguished from $x$ (using $L$),
   because any suffix $s$ cannot produce different
-  outputs for $x$ and $x$. 
+  outputs for $x$ and $x$.
 - *(2) Symmetry*: If $x$ cannot be disguished from $y$ (using $L$),
   then $y$ cannot be distinguished from $x$ (using $L$).
 - *(3) Transitivity*: If $x$ cannot be distinguished from $y$ (using $L$)
    and $y$ cannot be distinguished from $z$ (using $L$),
-   then $x$ cannot be distinguished from $z$ (using $L$). Intuition: 
+   then $x$ cannot be distinguished from $z$ (using $L$). Intuition:
    What about $y$ in this situation? It can't be indistinguishable from both $x$ and $z$.
 - *Proof of Transitivity:* Suppose for contradiction $x$ can be distinguished from $z$.
   There there is a suffix $s$ such that
@@ -5149,7 +5259,7 @@ $$
   distinguish $x$ from $y$ contradicting assumption that $x$ is indistinguishable from $y$.
 - Hence, being indistinguishable is an equivalence relation, denoted by $x \sim y$.
 - Myhill nerode says that the minimal DFA for a language $L$ has as many states as there are
-  equivalence classes for $\sim_L$. 
+  equivalence classes for $\sim_L$.
 
 #### Given DFA $D$ of language $L$ over $A$: $\sim_D$ implies $\sim_L$
 
@@ -5169,7 +5279,7 @@ $$
  $\sim_L$ has finitely many equivalence classes.
 - We will design DFA (called $D$)for $L$ with as many
   states as equivalence classes.
-- The start state of $D$ is the equivalence class of the empty string with respect to $\sim_L$. 
+- The start state of $D$ is the equivalence class of the empty string with respect to $\sim_L$.
 - At an equivalence class/state $T$, given character $c \in A$, we move to $T \diamond c$ (extend $T$
   by $c$).
 - Formally, $\delta(T, c) \equiv T \diamond c$, where $T \diamond c \equiv \{ tc : t \in T \}$
@@ -5192,7 +5302,7 @@ $$
 - Suppose a DFA $D$ recongizes $L$ and has fewer than $|A/\sim_L|$ states.
 - Let $x_1, x_2, \dots x_n$ be strings from different equivalence classes of $L$.
 - Push these strings through $D$. Some two strings $x_i, x_j$ must land on the state state $d \in D$
-  of $D$ (by pigeonhole). 
+  of $D$ (by pigeonhole).
 - We must have $x_i$ and $x_j$ distinguishable, since they come from different equivalence classes.
   So the DFA must accept one and reject the other.
 - But the DFA can't tell the difference between $x_i$ and $x_j$ since they landed on the same state!
@@ -5318,7 +5428,7 @@ def rhsIII():
     sx = 0; sy = 0
     ndraws = 10
 
-    # once again, expectation purifies randomness. So within the context of expecattion, we can 
+    # once again, expectation purifies randomness. So within the context of expecattion, we can
     # replace `x2` with `x1` with `x1`
     for _ in range(ndraws):
         x1 = random.choice("abcde"),  # draw a random chit
@@ -5338,7 +5448,7 @@ def rhsIV():
     sx = 0; sy = 0
     ndraws = 10
 
-    # once again, expectation purifies randomness. So within the context of expecattion, we can 
+    # once again, expectation purifies randomness. So within the context of expecattion, we can
     # replace `x2` with `x1` with `x1`
     for _ in range(ndraws):
         x1 = random.choice("abcde"),  # draw a random chit
@@ -5354,8 +5464,8 @@ def rhsIV():
 - [Dedekind MacNiellie](https://en.wikipedia.org/wiki/Dedekind%E2%80%93MacNeille_completion)
 
 
-  
-# Good and bad combinatorics: intro to counting 
+
+# Good and bad combinatorics: intro to counting
 
 > Elements of sets are the only objects that we are allowed to count.
 
@@ -5387,7 +5497,7 @@ def rhsIV():
 - Recall that min cost circulation asks to compute a circulation with minimum cost [no maximality constraint].
 
 - Given a flow network $(V, E, s, t, C)$ ($C$ is capacity fn), create a new cost function $c: V \to \mathbb R$ which assigns cost zero
-  to all edges in the flow networ. Also add a new edge $t \to s$ which has infinite capacity, cost $-1$. 
+  to all edges in the flow networ. Also add a new edge $t \to s$ which has infinite capacity, cost $-1$.
 - A circulation with cost lower than zero will have to use the $t \to s$ edge. To get minimum cost, it must send as much flow through
   this edge as possible. For it to be a circulation, the full flow in the network must be zero. So suppose we send $f$ units of flow
   back from $t$ to $s$. Then we must send $f$ units of flow from $s$ to $t$ for it to be a circulation. Incrasing $f$ (max flow)
@@ -5404,7 +5514,7 @@ def rhsIV():
 
 - Which is best cycle to push flow around to reduce cost? The min cost cycle may not be best, since it may have very little capacity.
 - A negative cycle with max capacity may not have good cost.
-- Correct: `total cost/number of edges` --- that is, the mean cost. 
+- Correct: `total cost/number of edges` --- that is, the mean cost.
 
 
 #### shortest path as circulation.
@@ -5460,7 +5570,7 @@ repl:
 run:
     clj -X dg/run
 
-test: 
+test:
     clj -Atest
 ```
 
@@ -5496,7 +5606,7 @@ test:
 
 #### Monic
 
-- We know that `right` is monic. Is it cancellable if we run it before or after? 
+- We know that `right` is monic. Is it cancellable if we run it before or after?
 - We should run it after --- that way, if `right(f(a[:]))` equals `right(g(a[:]))` for all `a[:]`,
   we know that the sequences are `(0, f1, f2, ...)` which equals `(0, g1, g2, ...)` which implies `(f1, f2, ...)` equals `(g1, g2, ...)`.
   So we can conclude that `f = g` from `right . f = right . g`.
@@ -5523,7 +5633,7 @@ test:
   the "right answer".
 - Regardless, it's very interesting how when playing the guitar, people (and you) literally don't notice!
 - As long as you keep the rhythm up, it "sounds fine".
-- So, if there's a hard chord change to be done, stagger it! play two beats with all strings open. 
+- So, if there's a hard chord change to be done, stagger it! play two beats with all strings open.
   Then hold down a single finger for a beat. Then another finger for the next beat. And so on, till perhaps
   at the final beat, we make the "complete/correct" chord.
 - It's interesting, since it adds a sort of design challenge: what is the best sequence of strings to play to "musically"
@@ -5532,12 +5642,12 @@ test:
   one by one, without worrying about getting it right, as long as I allow the rhythm-beat to march forward :)
 - This lends itself particularly well to the style where we mute the guitar every even beat (1 MUTE 2 MUTE) to create a
   percurssive effect. It allows one to hear the chord being "layered" up, finger by finger.
-- It also mutes  the "open string" sound by the time we get the first finger on, so it helps create  
+- It also mutes  the "open string" sound by the time we get the first finger on, so it helps create
 - TL;DR: **strumming hand >>> chord hand**. Focus on the strumming! It's okay to screw up on chords `:)`
 
 # Sparse table
 
-- Given an array `as :: Semilattice a => [a]`, find semilattice join of any range `[lft..rt]` in `O(1)` time, given 
+- Given an array `as :: Semilattice a => [a]`, find semilattice join of any range `[lft..rt]` in `O(1)` time, given
    `O(n log n)` preprocessing.
 - Core idea: store results of queries `[lft..l+2^k)`. So the code:
 
@@ -5549,7 +5659,7 @@ for(int len = 1; len < NBITS; ++len) {
     const int midix = i + 1 << (len-1);
     if (midix >= n) { break; }
     // mins [l..l+N) = min mins[l..l+N/2) mins[l+N/2..l+N]
-    mins[i][l] = min(mins[i][len-1], mins[i + midix][len-1]); 
+    mins[i][l] = min(mins[i][len-1], mins[i + midix][len-1]);
   }
 }
 ```
@@ -5568,7 +5678,7 @@ for(int len = 1; len < NBITS; ++len) {
                 [--)
 ```
 
-- The key is to notice that so far, we've only used associatvity of the lattice operation, not idempotence! We can 
+- The key is to notice that so far, we've only used associatvity of the lattice operation, not idempotence! We can
   exploit idempotence by not caring about *overlaps*.
 
 
@@ -5754,12 +5864,12 @@ s[0..i] = p[0]p[1]...p[L-1]p[L]|s[L+1]...s[i+1-L-1]|p[0]p[1]...p[L-1]
           ^^^^^^^^^^^^^^^^^                         ^^^^^^^^^^^^^^^^^
 ```
 
-- where we have a border of `p[0]...p[L-1]`. 
+- where we have a border of `p[0]...p[L-1]`.
 - There maybe a longer border, involving other terms of `s[0..i]`. But we know that the border is *at least* `pr(i) >= pr(i+1)-1`.
 - Upon re-arranging, we see that `pr(i+1) <= pr(i) + 1`.
 - This tells us that the border can *increase* by at most 1 (it can *drop* to zero, no lower bound!). So we have: `0 <= pr(i+1) <= pr(i) + 1`.
-- So if we think of borders of `s[0..i+1]`, we know that the longest border can be of length of border `pr(i) + 1`. All other borders will be of length 
-  `<= pr(i)`, so these other borders will be borders of `s[0..i]`! 
+- So if we think of borders of `s[0..i+1]`, we know that the longest border can be of length of border `pr(i) + 1`. All other borders will be of length
+  `<= pr(i)`, so these other borders will be borders of `s[0..i]`!
 - Thus, to move from `s[0..i]` to `s[0..(i+1)]`, we simply need to be able to find the *longest* border of `s[0..(i+1)]`. All other borders will come from
   `s[0..i]`.
 
@@ -5790,7 +5900,7 @@ ab34ab----ab34ab
 ```
 
 - This shows that given the longest border `123456` of`s[0:N]` which has length `L`,
-  any other border of `s[0:N]`(such as `ab`) is also a border of `s[0:L]`. 
+  any other border of `s[0:N]`(such as `ab`) is also a border of `s[0:L]`.
 - Generalizing, given the longest border of `s[0..n]` of length `L`,  any smaller border of `s[0:N]`
   is a border of `s[0:L]`.
 
@@ -5851,8 +5961,8 @@ finding that it looks like:
 
 ```
 --  --   --  --
-  --       -- 
-      ---    
+  --       --
+      ---
 ```
 
 and so on. Isn't this so cool? Borders of a string are a fractal-like object!
@@ -5864,7 +5974,7 @@ and so on. Isn't this so cool? Borders of a string are a fractal-like object!
 - path is a sequence of vertices connected by edges.
 - walk is a simple path or a path with no loops.
 - djikstra's solves shortest walk, not shortest path, since it can't hangle paths with negative cycles!
-- Bellman ford solves shortest path, since it reports when the question of "shortest path" does not have a 
+- Bellman ford solves shortest path, since it reports when the question of "shortest path" does not have a
   sensible answer (ie, the set of paths ordered by length is not well founded).
 
 
@@ -5912,11 +6022,11 @@ Using the value of $w_8$, the above two relations, the values $p_o(w_4^k) = [p_o
 and $p_e(w_4^k) = [p_e(1), p_e(w_4), p_e(w_4^2), p_e(w_4^3)]$, we evaluate $p$ at powers of $w_8$ ( $[p(w_8^k)]$ )  as:
 
 - $p(w_8^k) = p_e((w_8^k)^2) + w_8^k p_o((w_8^k)^2) = p_e(w_4^k) + w_8^k p_o(w_4^k)$.
-- $p(w_8^0) = p_e((w_8^0)  + w_8^0 p_o(w_8^0) = p_e(1) + p_o(1)$ 
-- $p(w_8^1) = p_e(w_8^2)  + w_8^1 p_o(w_8^2) = p_e(w_4^1) + w_8 p_o(w_4^1)$ 
-- $p(w_8^2) = p_e(w_8^4)  + w_8^2 p_o(w_8^4) = p_e(w_4^2) + w_8^2 p_o(w_4^2)$ 
-- $p(w_8^3) = p_e(w_8^6)  + w_8^3 p_o(w_8^6) = p_e(w_4^3) + w_8^3 p_o(w_4^3)$ 
-- $p(w_8^4) = p_e(w_8^8)  + w_8^4 p_o(w_8^8) = p_e(w_4^4) + w_8^4 p_o(w_4^4) = p_e(1) - p_o(1)$ 
+- $p(w_8^0) = p_e((w_8^0)  + w_8^0 p_o(w_8^0) = p_e(1) + p_o(1)$
+- $p(w_8^1) = p_e(w_8^2)  + w_8^1 p_o(w_8^2) = p_e(w_4^1) + w_8 p_o(w_4^1)$
+- $p(w_8^2) = p_e(w_8^4)  + w_8^2 p_o(w_8^4) = p_e(w_4^2) + w_8^2 p_o(w_4^2)$
+- $p(w_8^3) = p_e(w_8^6)  + w_8^3 p_o(w_8^6) = p_e(w_4^3) + w_8^3 p_o(w_4^3)$
+- $p(w_8^4) = p_e(w_8^8)  + w_8^4 p_o(w_8^8) = p_e(w_4^4) + w_8^4 p_o(w_4^4) = p_e(1) - p_o(1)$
 
 
 
@@ -5973,7 +6083,7 @@ Consider the tree:
 
 # Continuum TTRPG
 
-> Events don't conspire. People do. Events *can't* conspire, and people *can*. 
+> Events don't conspire. People do. Events *can't* conspire, and people *can*.
 > Causality is not a renewable resource.
 > If a time machine could be constructed, it would be married to the
 > trend of instant gratification.
@@ -5984,10 +6094,10 @@ Consider the tree:
 
 #### As/As not
 
-> At this moment, anything is possible. 
+> At this moment, anything is possible.
 
 
-> Causality is only one principle and psycohology essentially 
+> Causality is only one principle and psycohology essentially
 > cannot be exhausted by causal methods only.
 
 #### Blending in with levellers
@@ -6026,7 +6136,7 @@ Consider the tree:
 - Transportation: train, plane, car, truck, bicycle, bus, boat, ship, tire, gasoline, engine, (train) ticket.
 
 - Location: city, house, apartment, street/road, airport, train station,
-  bridge, hotel, restaurant, farm, court, school, office, 
+  bridge, hotel, restaurant, farm, court, school, office,
   room, town, university, club, bar, park, camp, store/shop,
   theater, library, hospital, church, market, country
   (USA, France, etc.), building, ground, space (outer space), bank.
@@ -6049,7 +6159,7 @@ Consider the tree:
   race (ethnicity), sex (the act), sex (gender), murder,
   prison, technology, energy, war, peace, attack,
   election, magazine, newspaper, poison, gun, sport,
-  race (sport), exercise, ball, game, price, 
+  race (sport), exercise, ball, game, price,
   contract, drug, sign, science, God
 
 - Art: band, song, instrument (musical), music, movie, art
@@ -6061,7 +6171,7 @@ Consider the tree:
   seed, knife, spoon, fork, plate, cup, breakfast,
   lunch, dinner, sugar, salt, bottle
 
-- Home: table, chair, bed, dream, window, door, 
+- Home: table, chair, bed, dream, window, door,
   bedroom, kitchen, bathroom, pencil, pen, photograph,
   soap, book, page, key, paint, letter, note, wall,
   paper, floor, ceiling, roof, pool, lock, telephone,
@@ -6111,8 +6221,8 @@ Consider the tree:
   speak/say, eat, drink, kill, die, smile, laugh, cry, buy, pay, sell,
   shoot(a gun), learn, jump, smell, hear(a sound), listen(music), taste, touch,
   see (a bird), watch (TV), kiss, burn, melt, dig, explode,
-  sit, stand, love, pass by, cut, fight, lie down, dance, 
-  sleep, wake up, sing, count, marry, pray, win, lose, 
+  sit, stand, love, pass by, cut, fight, lie down, dance,
+  sleep, wake up, sing, count, marry, pray, win, lose,
   mix/stir, bend, wash, cook, open, close, write, call, turn,
   build, teach, grow, draw, feed, catch, throw, clean, find, fall,
   push, pull, carry, break, wear, hang, shake, sign, beat, lift
@@ -6174,7 +6284,7 @@ The intuition for Jensen's is typically presented as:
 |  \  *  /
 |   \   /
 |    -@-
-| 
+|
 +--x----->
 ```
 
@@ -6193,7 +6303,7 @@ The intuition for Jensen's is typically presented as:
 - One way to think about labellings is that we track the "entire history" of the object.
 - it's hard to count unlabelled objects. it's easier to count labelled objects.
 - for example, suppose we have graphs $g = (v, e)$ and $h = (v', e')$. an isomorphism of these as unlabelled graphs
-  is a bijection function $f: v \rightarrow v'$ such that $s e t$ if and only if $f(s) e f(t)$. 
+  is a bijection function $f: v \rightarrow v'$ such that $s e t$ if and only if $f(s) e f(t)$.
 - there could be many such $f$, or no such $f$. it's hard to find out!
 - Now let's suppose the graphs have labellings, so we have labels $l: V \rightarrow [|V|]$ and $l': V' \rightarrow [|V'|]$
   where $[n] \equiv \{1, 2, \dots, n\}$.
@@ -6205,7 +6315,7 @@ a:1 -- b:2
 c:2 -- d:1
 ```
 
-are isomorphic since I can send `a -> d` and `b -> c`. 
+are isomorphic since I can send `a -> d` and `b -> c`.
 
 - On the other hand, the graph:
 
@@ -6272,11 +6382,11 @@ A
 
 - By triangle inequality, $OA + OB \geq AB$, hence $L_1 = \delta_x + \delta_y \geq L_2$
 
-# Z algorithm 
+# Z algorithm
 
 - The `Z` algorithm, for a given string $s$, computes a function $Z: [len(s)] \rightarrow [len(s)]$.
 - $Z[i]$ is the length of the longest common prefix between $S$ and $S[i:]$.
-- So, $S[0] = S[i]$, $S[1] = S[i+1]$, $S[2] = S[i+2]$, and so on till 
+- So, $S[0] = S[i]$, $S[1] = S[i+1]$, $S[2] = S[i+2]$, and so on till
   $S[Z[i]] = S[i + Z[i]]$, and then $S[Z[i]+1] \neq S[i + Z[i] + 1]$.
 
 
@@ -6303,7 +6413,7 @@ vector<int> calcz(std::string s) {
  z[0] = 0;
  for(int i = 1; i < s.size(); ++i) {
    z[i] = 0;
-   while(i + z[i] < n && s[i+z[i]] == s[z[i]]) { 
+   while(i + z[i] < n && s[i+z[i]] == s[z[i]]) {
      z[i]++;
    }
  }
@@ -6313,7 +6423,7 @@ vector<int> calcz(std::string s) {
 ```
 
 
-#### Implementation 
+#### Implementation
 
 ```cpp
 vector<int> myz(std::string s) {
@@ -6351,7 +6461,7 @@ vector<int> myz(std::string s) {
 
 - A positive integer $n$ is represented as a partition $\lambda \equiv (k_1, k_2, \dots)$ where
   $\sum_i k_i = n$ and $k_1 \leq k_2, \dots$.
-  Such a $\lambda$ always contains at most $O(\sqrt n)$ distinct numbers. 
+  Such a $\lambda$ always contains at most $O(\sqrt n)$ distinct numbers.
 - Intuition: suppose we want to have the maximum number of distinct numbers.
   Since we are tied down by the constraint $\sum k_i = n$, we must try to choose
   the $k_i$ as small as possible. But we know that even $\sum_{i=1}^p i = p(p+1)/2 \sim O(p^2)$. Now if $O(p^2) = n$, then the sum can only run upto $\sqrt p$.
@@ -6383,7 +6493,7 @@ $$
 - Rather, it is that if there is a divisor $l$ (for large) which is larger than $\sqrt n$, there will be another divisor $s$ which is smaller than $\sqrt n$.
 - Proof: Suppose $l \div n$, $l \geq \sqrt n$. So there exists an $s$ such that $ls = n$, or $s = n / l$.
 - Since $l \geq \sqrt n$, $n / l \leq  n / \sqrt n = \sqrt n$. Thus $s \leq \sqrt n$.
-- So if we wish to find *some* factor of $n$, we can simply search within the range $\sqrt n$. 
+- So if we wish to find *some* factor of $n$, we can simply search within the range $\sqrt n$.
 - If $n$ has no factors in the range $\sqrt n$, then $n$ must be prime, for if $n$ did have a larger factor,
   $n$ would also have a smaller factor we would have found.
 
@@ -6400,7 +6510,7 @@ P(n) \equiv |\{ p \text{ prime } : 2 \leq p \leq n \}| \sim \frac{n}{\log n}
 $$
 
 - Consider sieving. In the beginning, everything is potentially prime.
-- When we remove the multiples of a prime `p`, we decrease the density of potential primes. 
+- When we remove the multiples of a prime `p`, we decrease the density of potential primes.
 - As we remove `1/p` of the remaining potential primes
   (eg. removing `2` drops density of potential primes by half. Sieving by `3` *reduces* the density by one-third).
 - See that the reduction is *additive* not *multiplicative*. That is, upon removing the `5`, we lose `1/5` of our potential primes,
@@ -6413,7 +6523,7 @@ $$
 - We consider the effect of the primes in the interval $A \equiv [x, x+dx]$  on the interval $B \equiv [x^2, (x+dx)^2]$
 - Each prime $p$ in interval $A$ decreases the density of primes in interval $B$ by subtracting $f(x^2)/p$, since we lose those many primes.
   Since each number in $[x, x+dx]$ is basically $x$, we approximate this subtraction to $f(x^2)/x$.
-- In interval $A$, there are $f(x)dx$ primes. 
+- In interval $A$, there are $f(x)dx$ primes.
 
 $$
 \begin{aligned}
@@ -6473,11 +6583,11 @@ This "proves" the prime number theorem.
 # Sum of absolute differences of an array
 
 - We are given an array `a[:]` and we are asked to compute the sum of differences $\sum_{i=1}^n \sum_{j=i+1}^n |a[i] - a[j]|$.
-- To compute this efficiently, first sort `a[:]` into a sorted array `s[:]`. For simplicity, say we have `N = 4`. 
+- To compute this efficiently, first sort `a[:]` into a sorted array `s[:]`. For simplicity, say we have `N = 4`.
 - Now see that if we write down the values for `N=4`, we will see:
 
 ```
-D = 
+D =
 |s[1] - s[2]| + |s[1] - s[3]| + |s[1] - s[4]| +
 |s[2] - s[3]| + |s[2] - s[4]| +
 |s[3] - s[4]|
@@ -6486,14 +6596,14 @@ D =
 - `i < j` implies `s[i] < s[j]` as `s` is sorted. So each of the terms `(s[i] - s[j]|)` is negative. We thus flip the terms, giving:
 
 ```
-D = 
+D =
 (s[2] - s[1]) + (s[3] - s[1]) + (s[4] - s[1]) +
 (s[3] - s[2]) + (s[4] - s[2]) +
 (s[4] - s[3])
 ```
 
 - Note that `s[1]` is always negative, so it will have coefficient `-4` on grouping.
-- See that `s[2]` was positive in the grouping `(1, 2)`, and was negative in the groupings `(2, 3)` and `(2, 4)`. 
+- See that `s[2]` was positive in the grouping `(1, 2)`, and was negative in the groupings `(2, 3)` and `(2, 4)`.
   So `2` will have a coefficient `+1*(2-1) -1*(4 - 2)`.
 - Similarly, `s[3]` was positive in the grouping `(1, 3)` and `(2, 3)` and was negative in the grouping `(3, 4)`.
 - In general, `s[i]` will be positive when paired with `[1, 2, ..i-1, i)` and negative when paired with `(i, i+1, i+2, \dots n]`.
@@ -6505,7 +6615,7 @@ D =
 - assume WLOG $l< r$. Then, Let $g \equiv gcd(l, r)$. Claim: $g \leq r - l$.
 - Proof: we have $g \div r$ an $g \div l$ by definition, hence we must have $g \div (r - l)$, and $g$, $(r-l)$ are nonnegative.
   So  $g \leq (r - l)$.
-- Intuition: the gcd represents the common roots of $l, r$ in Zariski land. That is, if $l, r$ are zero at a prime 
+- Intuition: the gcd represents the common roots of $l, r$ in Zariski land. That is, if $l, r$ are zero at a prime
   then so is $r - l$.
 - So, the GCD equally well represents the common roots of $l$ and $(r - l)$.
 - Now, if a number $x$ vanishes at a subset of the places where $y$ vanishes, we have $x < y$ (the prime factorization of $y$ contains all the prime factors of $x$).
@@ -6542,8 +6652,8 @@ long lcm(long x,long y) {return x/gcd(x,y)*y;}
 
 - Once we find the centroid of a tree, we see that all of its subtrees has size less than `ceil(n/2)`.
 - We can now recurse, and find sizes of centroids of these subtrees.
-- These subtrees are disjoint, so we will take at most `O(n)` to compute sizes and whatnot. 
-- We can do this `log(n)` many steps since we're halving the size of the subtree each time. 
+- These subtrees are disjoint, so we will take at most `O(n)` to compute sizes and whatnot.
+- We can do this `log(n)` many steps since we're halving the size of the subtree each time.
 - In total, this implies that we can recursively find centroids to arrive at a "centroid decomposition" of a tree.
 - Note that the centroid decomposition of the tree constructs a new tree, which is different from the original tree, sorta how the dominator tree
   is a different tree from the original tree.
@@ -6557,14 +6667,14 @@ long lcm(long x,long y) {return x/gcd(x,y)*y;}
 
 - Let $D$ be the diameter of length $L$.
 - Let $c$ be the center. We claim that $c$ lies on $D$. If so, we are done.
-- If not, then there is a path from $c$ to some vertex $v$ in $D$. Let WLOG the endpoints of the diameter be $s$ and $e$, and such that 
+- If not, then there is a path from $c$ to some vertex $v$ in $D$. Let WLOG the endpoints of the diameter be $s$ and $e$, and such that
   $v$ is further from $s$ than $e$. That is: $d(s, v) \geq s(v, e)$. In a picture:
 
 ```
 s----------v---e
            |
            n
-           | 
+           |
          n-c--n
            |
            n
@@ -6588,7 +6698,7 @@ where the large scale structure is dominated by $d(s, v)$, which is all that mat
 - Hence, we have $d(n, v) \leq d(v, e) \leq d(v, s)$, where the second inequality comes from the assumption of $s$ and $e$.
   So $s$ is the node that is furthest from $v$ amongst all nodes in the graph.
 - But now notice that $d(c, s) = d(c, v) + d(v, s)$, and this is the longest distance from $c$ to any other node. This implies that $d(c, s) > d(v, s)$ as $d(c, v) > 0$.
-- This contradicts the minimality of the eccentricity of $c$: the longest distance from $c$ to 
+- This contradicts the minimality of the eccentricity of $c$: the longest distance from $c$ to
 
 
 #### Claim: center is median of any diameter
@@ -6610,14 +6720,14 @@ median (the center) invariant.
 # Image unshredding as hamiltonian path
 
 This was a cool use of [hamiltonian path](https://github.com/robinhouston/image-unshredding) that I saw on hacker news
-recently. 
+recently.
 
 - The problem is this: given an image where the columns are created by shuffling columns of an original image, we must recreate
   the original image.
 - The reduction: treat each column as a vertex, connect columns that are close to each other in similarity.
 - Hamiltonian path will visit each vertex exactly once (ie, pick each column exactly once).
 
-I think this example is striking enough that I'll never forget that in a hamiltonian path, we can visit 
+I think this example is striking enough that I'll never forget that in a hamiltonian path, we can visit
 vertices exactly one, (in contrast to an euler tour, we must visit each edge exactly once).
 
 
@@ -6653,7 +6763,7 @@ $$
 \end{aligned}
 $$
 
-- This tells us that the line $ol$ is perpendicular to the direction $x$, which is the direction of the line $L$. Hence, the 
+- This tells us that the line $ol$ is perpendicular to the direction $x$, which is the direction of the line $L$. Hence, the
   line $(ol)$ from the point $o$ to the line $L$ with minimum distance is orthogonal to the line $L$ itself.
 
 #### Line-Line distance
@@ -6706,7 +6816,7 @@ int l = r = 0;
 while (r < n) {
  assert(l <= r);
  if (extend_window) { r++; }
- else { 
+ else {
     l--; //contract window
  }
 }
@@ -6724,7 +6834,7 @@ for(int c = 'a'; c <= 'b'; ++c) {
     // window: [l, r)
     int l = 0, r = 0;
     // number of illegal letters changed. <= k
-    int changed = 0; 
+    int changed = 0;
     while(r < n) {
         assert(changed <= k);
         assert(l <= r);
@@ -6734,7 +6844,7 @@ for(int c = 'a'; c <= 'b'; ++c) {
             if (changed == k) {
                 // cannot extend, contract from left.
                 if (s[l] != c) { changed--; }
-                l++; 
+                l++;
             } else {
                 // extend, spending a change.
                 r++;
@@ -6763,7 +6873,7 @@ for(int c = 'a'; c <= 'b'; ++c) {
         if (s[r] != c) { changed++; }
         // maintain invariants: must have changed <= k,
         // and at the end of a loop trip, we must have l <= r.
-        while(changed > k && l < r) { 
+        while(changed > k && l < r) {
             if (s[l] != c) { changed--; }
             l++;
         }
@@ -6781,7 +6891,7 @@ for(int c = 'a'; c <= 'b'; ++c) {
 
 # Kawaii implementation of `x = min(x, y)`
 
- 
+
 ```cpp
 template <typename T>
 inline void Mn(T &x, T y) { x > y && (x = y); }
@@ -6798,10 +6908,10 @@ to mean `x = min(x, 10)`. This a nice pattern!
 - [Link to problem](https://cses.fi/problemset/task/2413/) I found the problem interesting, as I found the DP states un-obvious.
 - I eventually performed a DP on the the number of possible towers in y-axis `[0, h)` where we keep track of whether
   the last layer has a `2x1` tile or two `1x1` tiles.
-- Importantly, this means that the decision of "closing" a section to create a new section is left to the 
+- Importantly, this means that the decision of "closing" a section to create a new section is left to the
   *next* DP state.
 - This is weirdly reminisecent of some kind of topological phenomena, where we
-  use intervals of the form `[l, l+1)` to cover a space. 
+  use intervals of the form `[l, l+1)` to cover a space.
 - It seems to help me to look at this kind of DP as first creating the
   combinatorial objects, and then switching
   it over to counting the number of such objects created.
@@ -6823,7 +6933,7 @@ of elements from $S$.
   as an input.
 - What about $s[4]$? If we had $[1 \leq 2 \leq 3]$ so far, then see that we can represent all numbers upto $6$.
   If we have $[1 \leq 2 \leq 4]$ so far, then we can represent all numbers upto $7$. Is it always true that given a "satisfactory"
-  sorted array $A$ (to be defined recursively), we can always build numbers upto $\sum A$? 
+  sorted array $A$ (to be defined recursively), we can always build numbers upto $\sum A$?
 - The answer is yes. Suppose the array $A$ can represent numbers upto $\sum A$. Let's now append $r \equiv sum(A)+1$ into $A$. ($r$ for result).
   Define `B := append(A, r)`. We claim we can represent numbers $[1 \dots (r+\sum A)]$ using numbers from $B$.
   By induction hypothesis on `A`. We can represent $[1 \dots \sum A ]$ from $A$. We've added $r = \sum A + 1$ to this array.
@@ -6942,7 +7052,7 @@ are independent, but `X, Y` determine `Z` so it's not 3-way independent.
   to support corecursion will likely be ultimately needed in order to support
   moving these particular C loops into Cogent. Fortunately, Isabelle also
   supports corecursive shallow embeddings, providing us with a direct
-  translation target. 
+  translation target.
 - Future work: Property based testing,
   Concurrency, Recursion+Non-termination+Coinduction, Richer type system
   (refinement types), Data layout /Data description
@@ -6979,7 +7089,7 @@ If we have a range:
 ```
 
 - The `<` values are less than bound, `=` values are equal to bound, and `>` values are greater than bound, then
-  `lower_bound` and `upper_bound` return iterators to represent the `=` range `[L, R]` in half-open form. 
+  `lower_bound` and `upper_bound` return iterators to represent the `=` range `[L, R]` in half-open form.
 - So we will have `[lower_bound, upper_bound) = [L, R]`. This matches the C++ API where everything uses half-open intervals.
 
 ```
@@ -7018,7 +7128,7 @@ iterators towards the left, and `upperbound` shifts iterators to right.
 
 I love books that impart menetal models of how a domain expert thinks about their field. This was
 something I loved in particular about [TiHKAL](https://en.wikipedia.org/wiki/TiHKAL) which describes
-reaction mechanisms. I'd love references to other books that do the same. 
+reaction mechanisms. I'd love references to other books that do the same.
 
 
 # Subarrays ~= prefixes
@@ -7029,7 +7139,7 @@ as finding a subarray `[l..r]` where the sum of elements modulo `n` is zero.
 This is CSES' [subarray divisibiity](https://cses.fi/problemset/task/1662/) problem:
 
 ```cpp
- 
+
 int main() {
     int n;
     cin >> n;
@@ -7037,13 +7147,13 @@ int main() {
     for (int i = 0; i < n; ++i) {
         cin >> xs[i]; xs[i] = xs[i] % n; if (xs[i] < 0) { xs[i] += n; }
     }
- 
+
     ll count = 0; // number of subarrays with sum = 0 (mod n)
     ll cursum = 0; //  current sum [0..i]
     // number of subarrays [0..r] (for some r) such that Σa[i] = count.
     map<ll, ll> partial_sum_count;
     partial_sum_count[0] = 1;
- 
+
     for (int i = 0; i < n; ++i) {
         // current sum [0..i]
         cursum = (cursum + xs[i]) % n;
@@ -7061,9 +7171,9 @@ int main() {
         // partial sum [0..i] = cursum
         partial_sum_count[cursum]++;
     }
- 
+
     cout << count << "\n";
- 
+
     return 0;
 }
 ```
@@ -7071,8 +7181,8 @@ int main() {
 # Operations with modular fractions
 
 - Quick note on why it's legal to perform regular arithmetic operations  on fractions $a/b$ as operations on $ab^{-1}$ where $ab^{-1} \in \mathbb Z/pZ$.
-- The idea is that we wish to show that the map $a/b \mapsto ab^{-1}$ is a ring homomorphism $\phi: \mathbb Q \to \mathbb Z/p \mathbb Z$. 
-- The proof: (i) the map $Z \rightarrow Z/pZ$ is a ring homormophism, (ii)  map from an integral domain to a field always factors through the field of fractions of the domain, we 
+- The idea is that we wish to show that the map $a/b \mapsto ab^{-1}$ is a ring homomorphism $\phi: \mathbb Q \to \mathbb Z/p \mathbb Z$.
+- The proof: (i) the map $Z \rightarrow Z/pZ$ is a ring homormophism, (ii)  map from an integral domain to a field always factors through the field of fractions of the domain, we
   get a map $\phi: \mathbb Q \rightarrow \mathbb Z/ p \mathbb Z$. So from abstract nonsense, we see that $\phi$ will be a well defined ring.hom.
 - More down to earth: let's check addition multiplication, and multiplicative inverse. All else should work automagically.
 - For addition, we wish to show that $\phi(a/b + c/d) = \phi(a/b) + \phi(c/d)$. Perform the calculation:
@@ -7108,7 +7218,7 @@ int main() {
 &= \phi(a/b)^{-1}
 \end{aligned}
 
-Thus, we can simply represent terms $a/b$ in terms of $ab^{-1}$ and perform arithmetic as usual. 
+Thus, we can simply represent terms $a/b$ in terms of $ab^{-1}$ and perform arithmetic as usual.
 
 
 # Modular inverse calculation
@@ -7116,7 +7226,7 @@ Thus, we can simply represent terms $a/b$ in terms of $ab^{-1}$ and perform arit
 - Easy way to calculate $a^{-1}$ mod $p$ is to use $a^{p-2}$. We know that $a^{p - 1} \equiv 1$ from Lagrane's theorem,
   so $a^{p-2} \cdot a \equiv 1$, or $a^{-1} \equiv a^{p-2}$. This can be done fairly quickly with repeated exponentiation.
 
-- Another way to do this is to use extended eucliean division. Suppose $ a \not \equiv 0$ (mod p). 
+- Another way to do this is to use extended eucliean division. Suppose $ a \not \equiv 0$ (mod p).
   Then we can find numbers $\alpha, \beta$ such that $a \alpha + p \beta = gcd(a, p) = 1$.
   If we look at the whole equation (mod $p$), we find that $a \alpha \equiv 1$ (mod $p$), or $\alpha$ is the modular
   inverse of $a$.
@@ -7125,7 +7235,7 @@ Thus, we can simply represent terms $a/b$ in terms of $ab^{-1}$ and perform arit
 pair<int, int> euc(int x, int y) {
   if (x < y) { return euc(y, x); }
   // x > y
-  if (x % y == 0) { return {0, 1}; } 
+  if (x % y == 0) { return {0, 1}; }
   int a, b; std::tie(a, b) = euc(y, x%y);
   // ay + b(x%y) = gcd(y, x%y) = gcd(x, y)
   // ay + b(x - y(x//y)) = gcd(y, x%y) = gcd(x, y)
@@ -7140,7 +7250,7 @@ pair<int, int> euc(int x, int y) {
 
 # The number of pairs `(a,b)` such that `ab≤x` is `O(xlogx)`
 
-Fix a given `a`. `ab ≤ x` implies that `b ≤ x/a`, or there are only `x/a` possible values for `b`. 
+Fix a given `a`. `ab ≤ x` implies that `b ≤ x/a`, or there are only `x/a` possible values for `b`.
 If we now consider all possible values for `a` from `1` upto `x`, we get:
 
 $$
@@ -7153,7 +7263,7 @@ $$
 \end{aligned}
 $$
 
-To show that the harmonic numbers are upper bounded by $\log$, 
+To show that the harmonic numbers are upper bounded by $\log$,
 can integrate: $\sum_{i=1}^n 1/i \leq \int_0^n 1/i = \log n$
 
 #### Relationship to Euler Mascheroni constant
@@ -7173,13 +7283,13 @@ consider the two functions:
   For example, to DP on subsequences, we don't care about how we got to a given subsequence. We only care about
   the final result that we computed for that subsequence. This lets us "extend" knowledge about a subsequence.
   So we go from `2^n` (subsets), to `2` followed by `2` followed by `2` followed by `2`, since at each stage,
-  we forget how we got there and collate information. 
+  we forget how we got there and collate information.
 
 - In this light, the recursive sub-computation is the "path dependent" part since it tries a path. The path independence
   states that it's safe to cache the results of the sub-computation, since all that matters is the final state (inputs).
 
 
-# Binary search to find rightmost index which does not possess some property 
+# Binary search to find rightmost index which does not possess some property
 
 ```cpp
 // p for predicate/property
@@ -7200,7 +7310,7 @@ else {
     }
   }
 }
-// postcondition: 
+// postcondition:
 // ans is largest index such that
 // has_some_poperty(ans) = 0
 ```
@@ -7211,7 +7321,7 @@ else {
 
 
 - **Claim 2: (Maximality)**: At loop iteration `i`: `p(ans[i] + 2k[i]) = 1`. We cannot improve our solution
-  by using previous jump lengths. 
+  by using previous jump lengths.
 
 This implies optimality once the loop ends. At the end of the loop we have `i = -1`.
 So:
@@ -7228,7 +7338,7 @@ p(ans[-1] + 2k[-1]) = 1
 - Suppose claim 2 is true till index `i`: `p(ans[i] + 2k[i]) = 1`.
 - To prove: induction hypothesis holds at index `(i-1)`.
 - Case analysis based on loop body at `i`: `p(ans[i] + k[i]) = 0 or 1`
-- (a) `p(ans[i] + k[i]) = 0`. We update  `ans[i-1] = ans[i] + k[i]`. 
+- (a) `p(ans[i] + k[i]) = 0`. We update  `ans[i-1] = ans[i] + k[i]`.
 - We wish to show that the loop invariant holds at `i-1`: `p(ans[i-1]+2k[i-1]) == 1`.
 
 $$
@@ -7248,7 +7358,7 @@ $$
 
 - We've shown that the induction hypothesis hold at index $(i-1)$ in case (a) where we update the value of $ans[i]$.
 
-- (b) If `p(ans[i] + k[i]) = 1`, then we update `ans[i-1] = ans[i]`. 
+- (b) If `p(ans[i] + k[i]) = 1`, then we update `ans[i-1] = ans[i]`.
 - We wish to show that the loop invariant holds at `i-1`: `p(ans[i-1]+2k[i-1]) ==1`.
 
 $$
@@ -7410,7 +7520,7 @@ int lca(int u, int v) {
 // find rightmost i such that xs[i] <= y and dp[i+1] > y.
 int tallest(vector<long> &xs, int y) {
     // [l, r)
-    int l = 0, r = dp.size(); 
+    int l = 0, r = dp.size();
     // precondition: l < r
     while(1) {
         if (l + 1 == r) { return l; }
@@ -7419,7 +7529,7 @@ int tallest(vector<long> &xs, int y) {
         // should this be (xs[m] > y) or (xs[m] >= y)?
         if (xs[m] > y) {
             r = m; // will decrease interval floor division.
-        } else { 
+        } else {
             // r > (l+1)
             // so m := (l+r/2) > (2l+1)/2 > l.
             l = m;
@@ -7429,7 +7539,7 @@ int tallest(vector<long> &xs, int y) {
 ```
 
 - Firt see that if we can find such an `i`, then in the extreme case where the array does not have a
-  greater element, we would like the find the *rightmost* `i` that fulfils the condition that `xs[i] <= y`. 
+  greater element, we would like the find the *rightmost* `i` that fulfils the condition that `xs[i] <= y`.
   So in our imagination, we right pad the array with an infinitely large value.
 - We wish to know whether the `if` condition should have `xs[m] > y` or `xs[m] >= y` before it decides to shrink the search range.
 - Intuitively, we wish to move the search range rightwards. So if we have `xs[m] == y`, we must move `l` towards `m` to move the search range rightwards.
@@ -7441,7 +7551,7 @@ int tallest(vector<long> &xs, int y) {
 // find i such that xs[i] <= y and dp[i+1] > y.
 int tallest(vector<long> &xs, int y) {
     // [l, r)
-    int l = 0, r = dp.size(); 
+    int l = 0, r = dp.size();
     // precondition: l < r
     while(1) {
         if (l + 1 == r) { return l; }
@@ -7451,7 +7561,7 @@ int tallest(vector<long> &xs, int y) {
         if (xs[m] > y) {
             // move interval towards `l` for smaller values.
             r = m; // will decrease interval floor division.
-        } else if (xs[m] < y) { 
+        } else if (xs[m] < y) {
             // move interval towards `r` for larger values.
             // r > (l+1)
             // so m := (l+r/2) > (2l+1)/2 > l.
@@ -7487,15 +7597,15 @@ int tallest(vector<long> &xs, int y) {
 - Claim: `O[100$] >= G[100$]`. Since `O` is optimal, it won't take *more* than greedy since that's wasteful, so as a Corollary `O[100$] = G[100$]`.
 - Suppose for contradiction that `O[100$] < G[100$]`. Then there is a `100$` to be made up by `O`, which `G` fulfils by using a `[100$]` coin.
 - We know by probing that if we stick to coins less than `[100$]`, `O` can have at most `4x[20$] + 1x[10$] + 1x[5$] + 4x[1$]` coins.
-- See that we can't add any more of `[1$], [5$], [10$], [20$]`. For example, suppose we try and use another `[1$]` coin. This means we have 
+- See that we can't add any more of `[1$], [5$], [10$], [20$]`. For example, suppose we try and use another `[1$]` coin. This means we have
   `4x[20$] + 1x[10$] + 1x[5$] + 5x[1$]`. From probing, we know we should change `5x[1$] → 1x[5$]`. This changes the sum to
   `4x[20$] + 1x[10$] + 2x[5$]`. From probing, we know `2x[5$] → 1x[10$]`. The sum becomes `4x[20$] + 2x[10$]`. Again from probing,
   we know to be optimal and use less coins, we should change `2x[10$] → 1x[20$]`. This makes the sum `5x[20$]`.
   This too should be changed to `1x[100$]`, a fact we learnt from probing.
   But this contradicts the assumption that we want to use only coins smaller than `[100$]`.
-  So if we are using coins smaller than `[100$]`, the maximum value we can represent is given by 
+  So if we are using coins smaller than `[100$]`, the maximum value we can represent is given by
  `4x[20$] + 1x[10$] + 1x[5$] + 4x[1$]` .
-- The maximum value `4x[20$] + 1x[10$] + 1x[5$] + 4x[1$]`  adds up to `99$`, which is one shy of `100$`. So, it is impossible for us to represent a value of a 100 dollars 
+- The maximum value `4x[20$] + 1x[10$] + 1x[5$] + 4x[1$]`  adds up to `99$`, which is one shy of `100$`. So, it is impossible for us to represent a value of a 100 dollars
   using coins of value less than `[100$]` **in an optimal fashion**. Thus, `O[100$] = G[100$]`, as it is best to take as many coins as possible.
 - Repeat the argument for smaller denominations.
 
@@ -7516,7 +7626,7 @@ $$
 \end{aligned}
 $$
 
-- From orbit stabilizer, we know that $|Orb(x)||Stab(x)| = |G|$. 
+- From orbit stabilizer, we know that $|Orb(x)||Stab(x)| = |G|$.
 - Since $|Orb(x)$ is the total cardinality of the orbit, each element in the orbit contributes $1/|Orb(x)|$ towards cardinality of the full orbit.
 - Thus, the sum over an orbit $\sum_{x \in Orb(x)} 1/|Orb(x)|$ will be 1.
 - Suppose a group action has two orbits, $O_1$ and $O_2$. I can write the sum $\sum_{x \in g} 1/|Orb(x)|$ as:
@@ -7580,7 +7690,7 @@ y = [#]
     [#]
     [#]
 ```
-    
+
 
 - Consider `x = [* * *]`. It's very wide/fat, so it doesn't like much exercise, which
   is why it's columns stabilizer $C_x =\{ e\}$ is trivial. Thus, the action $A_x \equiv id$.
@@ -7619,7 +7729,7 @@ y = [#]
 > Our toddlers speak of plants and animals as if they were people, extending to
 > them self and intention and compassion—until we teach them not to. We quickly
 > retrain them and make them forget. When we tell them that the tree is not a
-> who,  but an  it,  we make that maple an object; 
+> who,  but an  it,  we make that maple an object;
 
 > We don’t know their names or their faces, but our fingers rest right where
 > theirs had been and we know what they too were doing one morning in April
@@ -7715,7 +7825,7 @@ $$
 - $W$ is non-empty since $J_0 \neq J$. Thus, consider $w \equiv \min(W)$, which is possible since $J$ is well-ordered, thus the subset $W$ has a minimum element.
 - $w$ is the smallest element that is not in $J_0$. So all elements smaller than $w$ are in $J_0$. This, $S(w) \subseteq J_0$. This implies $w \in J_0$ as $J_0$ is inductive.
 - This is contradiction, as we start with $w$ is the smallest element not in $J_0$, and then concluded that $w$ is in $J_0$.
-- Thus, the set $W \equiv J_0 - J$ must be empty, or $J_0 = J$. 
+- Thus, the set $W \equiv J_0 - J$ must be empty, or $J_0 = J$.
 
 # Thoughts on playing Em-Bm
 
@@ -7812,7 +7922,7 @@ the "supplementary exercises" in Munkres, chapter 1.
 - Let $b < b'$. We must have (a)  $g(b) < g(b')$, or (b) $g(b) = g(b')$, or (c) $g(b) > g(b')$.
 - If $g(b) < g(b')$ we are done.
 - Suppose for contradiction $g(b) \geq g(b')$ then we must have $f(g(b)) \geq f(g(b'))$ since $f$ is monotone. Since $f, g$ are inverses
-  we get $b \geq b'$. This contradicts the assumption $b < b'$. 
+  we get $b \geq b'$. This contradicts the assumption $b < b'$.
 - This doesn't work for partial orders because we may get $b$ and $b'$ as _incomparable_.
 
 
@@ -7823,7 +7933,7 @@ the "supplementary exercises" in Munkres, chapter 1.
 - Formal defn of  Von-Neumann ordinal $o$: (1) every element $x \in o$ will be a subset of $o$, since $x$
   is itself a set `{ ordinal < x }`, which is a subset of `{ ordinal < o }`. (2) the set $o$
   is well ordered by set membership, since two such ordinals will always be comparable, and one must
-  contain the other. 
+  contain the other.
 - For example of Von Neumann ordinals, consider `0 = {}`, `1 = {0}`, `2 = {0, 1}`, `3 = {0, 1, 2}`.
   We can order `3` based on membership: `0 ∈ 1, 2` so `0 < 1, 2`. `1 ∈ 2` hence `1 < 2`. This totally orders `3`
   based on set membership. Next, also see that a **member** of `3`, such as `2`, is in face `2 = {0, 1}`, which is a subset of `3`.
@@ -7872,17 +7982,17 @@ acts as a place to do mathematics safely, while still having access to the "set 
 
 #### Alternative definition of cardinality using rank
 
-- Recall that we wanted to define cardinality as the equivalence class of 
+- Recall that we wanted to define cardinality as the equivalence class of
   of equinumerous sets, but this ran into set theoretic issues.
 - A fix [(by Dana Scott)](https://en.wikipedia.org/wiki/Scott%27s_trick) is for a set $A$, consider the least rank $\kappa$
   where some set in bijection with $A$ appears. Then we define the cardinality
   of $A$ to be the equivalence classes of sets in $V_\kappa$ that are in
   bijection with $A$. This gives us the cardinals without needing us to
-  consider all sets. This works even without well ordering. 
+  consider all sets. This works even without well ordering.
 - I don't actually understand why this works. In my mind, the set `{0}` and `{{0}}` both have the same size, but `{0}` lives in `V1` while `{{0}}`
   lives in `V2`, so they won't have the same cardinality? Actually, I think I do understand: for the set `{{0}}`, the set `{0}` which is in bijection
-  with `{{0}}` occurs at rank `1`, so the cardinality of `{{0}}` is given by the equivalence class in `V1`: `[{0}]`. 
-- The key part seems to be "find the **smallest** rank". I have no idea how one would formalize this. 
+  with `{{0}}` occurs at rank `1`, so the cardinality of `{{0}}` is given by the equivalence class in `V1`: `[{0}]`.
+- The key part seems to be "find the **smallest** rank". I have no idea how one would formalize this.
 
 
 #### Weak and strong limits
@@ -7899,7 +8009,7 @@ acts as a place to do mathematics safely, while still having access to the "set 
 # Musing about Specht modules
 
 If we generalize, to each point $x$, we are creating a group of orthogonal
-matrices $O_x$ (like $C_t$), such that 
+matrices $O_x$ (like $C_t$), such that
 - All points in the orbit have (the same/similar, unsure?) $C_t$
 - For points outside the orbit, we evaluate to zero.
 
@@ -7943,7 +8053,7 @@ p | q
   |
 ```
 
-- Here, $c, d$ have as group $O_c = O_d = \{I, X\}$, reflection about the $X$ axis. Check that all the axioms are satisfied: elements 
+- Here, $c, d$ have as group $O_c = O_d = \{I, X\}$, reflection about the $X$ axis. Check that all the axioms are satisfied: elements
   in the orbits $O_c, O_d, O_p, O_q$ evaluate to $\pm A_c c, \pm A_p p$. While elements not the orbit become zero.
 - Thus, it seems like the Specht module attempts to construct "reflections" that somehow represent $S_n$. Is this why it is related
   to Coxeter theory?
@@ -8172,7 +8282,7 @@ Now, we wish to prove that:
 
 
 ```
-for all a b, c, 
+for all a b, c,
   a + (b + c) = (a + b) + c
 ```
 
@@ -8217,7 +8327,7 @@ to prove that `(a + (b + n)) = ((a + b) + n)` and to then stick a `S _` on it, g
 -- i=0 -------------------------------> i=1
 ```
 
-- The bottom horizontal line is the first to `comp`, given as `(suc (addA a b n @ i))` 
+- The bottom horizontal line is the first to `comp`, given as `(suc (addA a b n @ i))`
 
 And in cubical code, it's written as:
 
@@ -8265,10 +8375,10 @@ between $G/H$ and $G/K$ are the intertwining maps $\phi: G/H \rightarrow G/K$
 which commute with the action of $G$: $(g \times ) \circ \phi = \phi \circ (g \times )$.
 
 
-We first work out what it means to have such an intertwining map. Suppose we pick 
+We first work out what it means to have such an intertwining map. Suppose we pick
 a coset of $H$, which is an element of the coset space $\alpha H \in G/H$ for some $\alpha \in G$.
 Now the intertwining condition says that $\phi(g \alpha H) = g \phi(\alpha H)$. If we pick
-$\alpha = e$, then we get $\phi(g H) = g \phi(H)$. Thus, the intertwining map 
+$\alpha = e$, then we get $\phi(g H) = g \phi(H)$. Thus, the intertwining map
 is entirely determined by where it sends $H$, ie, the image $\phi(H)$.
 
 
@@ -8297,10 +8407,10 @@ f1 : nat -> nat -> nat = \(b: nat) -> \(c : nat) ->  b
 -- | function from nat, nat -> nat defined by case analaysis
 f2 : nat -> nat -> nat =
   split
-    zero -> split@(nat -> nat) with 
+    zero -> split@(nat -> nat) with
                 zero -> zero
                 suc b' -> zero
-    suc a' -> split@(nat -> nat) with 
+    suc a' -> split@(nat -> nat) with
                 zero -> a'
                 suc b' -> b'
 ```
@@ -8317,10 +8427,10 @@ g1 (b : nat) (c : nat) : nat = b
 -- | cannot split on parameters, can only split on fn.
 -- g2 (x : nat) (y : nat) : nat =
 --   split
---     zero -> split@(nat -> nat) with 
+--     zero -> split@(nat -> nat) with
 --                 zero -> zero
 --                 suc b' -> zero
---     suc a' -> split@(nat -> nat) with 
+--     suc a' -> split@(nat -> nat) with
 --                 zero -> a'
 --                 suc b' -> b'
 ```
@@ -8333,7 +8443,7 @@ g1 (b : nat) (c : nat) : nat = b
 - The functor $F: Set^\partial \rightarrow Set^*$
   sends sets to set-with-basepoint. To be very precise about basepoint considerations,
   since this is where the non-inversion will lie, let us say that for a set $X$, we add a basepoint $\{X \}$.
-  So, the functor $F$ sends a set $X$ to the set `a = {X} in (X U {a}, a)`, which 
+  So, the functor $F$ sends a set $X$ to the set `a = {X} in (X U {a}, a)`, which
   expanded out is $(X \cup \{ \{ X \} \}, \{ X \})$. The functor $F$ sends a partial function
   $f: A \rightharpoonup B$ to based function by defining $F(f): F(A) \rightarrow F(B)$
   which sends undefined values $a$ to $\{B\} \in F(B)$, and is forced by definition sends the basepoint $\{ A \} \in F(A)$ to $\{ B \} \in F(B)$.
@@ -8363,7 +8473,7 @@ Thus, we should come up with a weaker notion of equality : Adjoints!
 # Madoka Magica: plot thoughts
 
 - I wonder whether incubator ~ Kyubey ~ kyubii ~ nine-tails.
-- Homura is such a tragic character. 
+- Homura is such a tragic character.
 
 
 # Chain rule functorially
@@ -8373,7 +8483,7 @@ Thus, we should come up with a weaker notion of equality : Adjoints!
   are based smooth functions between these opens: smooth functions $f: U \rightarrow V$
   such that $f(a) = b$.
 - The second category is $M$
- whose objects are natural numbers and morphisms $n \to m$ are matrices of 
+ whose objects are natural numbers and morphisms $n \to m$ are matrices of
  dimension $n \times m$.
 - Define a functor $d: Euc \to M$ which
   sends subsets to the dimension of the space they live in: $U \subseteq \mathbb R^n, a) \to n$,
@@ -8384,7 +8494,7 @@ Thus, we should come up with a weaker notion of equality : Adjoints!
 
 Let's think through the functoriality. It says that if we have two arrows which can be composed,
 $(f, a)$ and $(g, f(a))$ -- note that it has to be $(g, f(a))$ because only compatible basepoint
-functions can be composed. 
+functions can be composed.
 
 
 I feel like we shouldn't use natural numbers for $M$, but we should rather use real vector spaces.
@@ -8466,14 +8576,14 @@ The langrange multipler procedure is nice since it does not break the symmetry b
 
 #### $A[\lambda][t]$, and its image
 
-Define 
+Define
 
 $$
 A[\lambda][t](x) \equiv \sum_{\pi \in C[t]} sgn(\pi) \pi(x).
 $$
 
 That is, $A[\lambda][t]$ creates a signed linear combination of $x$ by creating signed orbits of $x$ under the
-column stablizier of $t$. 
+column stablizier of $t$.
 
 
 First consider
@@ -8484,12 +8594,12 @@ $$
 
 We claim that $A[\lambda][t]$ is
 a projection operator which projects onto the subspace spanned by $A[\lambda][t](t)$. To show this,
-let's consider the action of $A[\lambda][t]$ on some other tabloid $s$. 
+let's consider the action of $A[\lambda][t]$ on some other tabloid $s$.
 
 
 There is a predicate we are
 interested in that determines whether $A[\lambda][t](x)$ is $0$ or $\pm t$: If $t$ has two elements $a, b$
-that are in the same column of $t$, which are in the same row of $x$. If such elements $a, b$ exist, then 
+that are in the same column of $t$, which are in the same row of $x$. If such elements $a, b$ exist, then
 the action of $\texttt{swap}(a, b)$ is trivial on $x$, as tabloids are invariant under row permutations. Furthermore,
 $\texttt{swap}(a, b)$ is in the column stabilizer $C[t]$, since $a, b$ are in the same column of $t$. Exploiting
 this, we write the group $C[t]$ as cosets of the subgroup $H \equiv \{ id, \texttt{swap}(a, b) \}$. Now the magic
@@ -8558,7 +8668,7 @@ We impose the "canonical" inner product on the space of vectors spanned by tablo
 by making all non-equal basis tabloids orthogonal:
 
 $$
-\langle \{t\} | \{t'\} \rangle \equiv 
+\langle \{t\} | \{t'\} \rangle \equiv
 \begin{cases}
 1 & \{t \} \simeq \{ t' \} \\
 0 & \text{otherwise}
@@ -8593,14 +8703,14 @@ $$
 
 - Define the subspace spanned by $\{ A[\lambda][t] : t \in \texttt{tabloid}(\lambda) \}$ as $S[\lambda]$ (for Specht).
   Thus, the $A[\lambda][t]$ span $S[\lambda]$.
-- $S[\lambda]$ is invariant under $S[n]$, since the action of $\pi \in S[n]$ on $A[\lambda][t]$ 
+- $S[\lambda]$ is invariant under $S[n]$, since the action of $\pi \in S[n]$ on $A[\lambda][t]$
   sends $A[\lambda][t]$ to $A[\lambda][\pi(t)]$. Also, the full space $M[\lambda]$ is invariant under $S[n]$ by construction.
 - The orbit of any $A[\lambda][t]$ under $S_n$ gives us the full set $\{ A[\lambda][t'] : t' \in \texttt{tabloid}$, since we can produce
    $A[t']$ from $A[t]$ by the action that permutes $t$ into $t'$.
 - For all invariant subspace $U$, $U$ is either disjoint from $S[\lambda]$ or $U$ contains $S[\lambda]$. So it is impossible
   to reduce $S[\lambda]$ into a smaller invariant subspace $U$.
 - Consider some invariant subsepace $U$. If it is disjoint from $S[\lambda]$, then we are done.
-- Otherwise, assume there is some $x \in S[\lambda] \cap U$. 
+- Otherwise, assume there is some $x \in S[\lambda] \cap U$.
 - As $x \in S[\lambda]$ and $S[\lambda]$ is spanned by $\{ A[\lambda][t](t) : t \in \texttt{tabloid} \}$, there must be some $t'$ along which $x$ has a component:
   $\langle x | A[\lambda][t'](t') \rangle \neq 0$.
 - Since $A[\lambda][t']$ is symmetric, I can write the above as $\langle A[\lambda][t'](x) | t' \rangle \neq 0$.
@@ -8632,11 +8742,11 @@ that if $W$ contains a single vector from $S$, then it contains all of $S$: $W \
 - Suppose that $x \in W \cap S$. Since $S$ is spanned the various $\mathcal O h$, there must be some $O \in \mathcal O$
   such that $\langle x | O h \rangle \neq 0$.
 - Since $O$ is orthogonal, we can shift the rotation towards $x$ by rotating the entire frame by $O^{-1}$,
-  giving us $\langle O^{-1} x | h \rangle \neq 0$. 
+  giving us $\langle O^{-1} x | h \rangle \neq 0$.
 - Since $h$ is an eigenvector, we replace $h$ by $H h$ giving us $\langle O^{-1} x | H h \rangle \neq 0$.
 - Since $H$ is hermitian, I rewrite the above as $\langle H O^{-1} x | h \rangle \neq 0$.
 - Since $x \in W$ and $W$ is invariant under $\mathcal O$ and $H$, we have that $H O^{-1} x \in W$.
-- Also, since the image of $H$ lies entirely along $h$, we have that $H O^{-1} x = \alpha_x h$. 
+- Also, since the image of $H$ lies entirely along $h$, we have that $H O^{-1} x = \alpha_x h$.
   Combining with $\langle H O^{-1} x | h \rangle \neq 0$ gives us $\langle \alpha_x h | h \rangle \neq 0$,
   or $\alpha \neq 0$.
 - Thus, the **non-zero** vector $\alpha_x h \in W$ (non-zero as $\alpha_x \neq 0$). Hence, the vector $h \in W$.
@@ -8708,7 +8818,7 @@ $$
 &=sgn(h) hy + sgn(h)(-1) hp y \\
 &=sgn(h) hy - sgn(h) hp y \\
 &=sgn(h) hy - sgn(h) hy \\
-&=0 
+&=0
 \end{aligned}
 $$
 
@@ -8726,7 +8836,7 @@ conjugacy classes of $S_n$ is determined by cycle type, and the shape of a diagr
 a permutation. If we show that the irreps of different shapes/diagrams are inequivalent, we are done.
 
 
-#### Characterizing Maps $S[\lambda]$ to $S[\mu]$ 
+#### Characterizing Maps $S[\lambda]$ to $S[\mu]$
 
 
 
@@ -8745,11 +8855,11 @@ then $\lambda \trianglerighteq \mu$. Let's consider the extreme cases with 3 ele
 #
 ```
 
-- Let $l$ be a $\lambda$ tableau, $m$ be a $\mu$ tableau. 
+- Let $l$ be a $\lambda$ tableau, $m$ be a $\mu$ tableau.
 - Let's consider $A[l](m)$ and $A[m](l)$.
 - For $A_l(m)$ to be non-zero, we need a way to send elements of $m$ in the same column (`#; #; #`) to correct rows in $l$ (`* * *`)But see that $l$
   has only one row, and $m$ has no choice: it must send all its elements in all columns to that single row of $l$. Thus, the $C_l$ [WRONG]
-  don't hinder us from doing the only thing we possibly can. 
+  don't hinder us from doing the only thing we possibly can.
 - For $A_m(l)$ to be non-zero, we need a way to send elements of $l$ in the same column, of which there are three columns, `*`, `*`, `*`, to different rows of
   $m$. But if $l$ were feeling stubborn, it could say that it wants each of its `*`'s to end up in the first row of $m$. $m$ will be overcrowded, so this
   leads to the map becoming zero.
@@ -8799,7 +8909,7 @@ Now let's look at the action of the `A` operator `A: Tableaux -> GL(V(Tabloid(mu
 we see that the `A` operator uses _tableaux_ and not _tabloids_ (because we
 need to know which elements are in the same column).
 Recall that the action of `A(t)` on a tabloid `x` is to sum up linear combinations of $sgn(\pi)\pi(x)$,
-where $\pi$ is from the column stabilizer of `t`. 
+where $\pi$ is from the column stabilizer of `t`.
 
 $$
 A(t)(x) \equiv \sum_{\pi \in \texttt{col-stab}(t)} sgn(\pi) \pi(x)
@@ -8814,7 +8924,7 @@ So let's find the action! The tableaux `[1 2][3]`, ie:
 
 has as column stabilizers the identity permutation, and the
 permutation `(1 3)` obtained by swapping the elements of the columns `[1..][3]`
-Thus, the action of `A([1 2][3])` on a tabloid `{k l}{m}` 
+Thus, the action of `A([1 2][3])` on a tabloid `{k l}{m}`
 is the signed linear combination of the action
 of the identity and the swap on `{k l}{m}`:
 
@@ -8822,13 +8932,13 @@ $$A([1 2][3])(\{ k l \}\{m \}) = 1 \cdot \{k l\}\{m\} + (-1) \cdot {m l}{k} $$
 
 
 Recall that the basis of the Specht module is given by `A([t])({t})`, where we have the tableaux `t`
-act on its own tabloid. In the case where `t = [1 2][3]` we get the output 
+act on its own tabloid. In the case where `t = [1 2][3]` we get the output
 
 ```
 A([1 2][3])({1 2}{3}) = {1 2}{3} - {3 1}{2}
 ```
 
-Similarly, we tabulate all of the actions of `A(x)({x})` below, where we 
+Similarly, we tabulate all of the actions of `A(x)({x})` below, where we
 pick the equivalence class representative of tabloids as the tabloid whose
 row entries are in ascending order.
 
@@ -8841,7 +8951,7 @@ A([1 2][3])({1 2}{3})
 ```
 
 ```
-A([2 1][3])({2 1}{3}) 
+A([2 1][3])({2 1}{3})
   = A([2 1][3])({2 1}{3})
   = A([2 1][3])({1 2}{3})
   = (id - (2, 3))({1 2}{3})
@@ -8850,27 +8960,27 @@ A([2 1][3])({2 1}{3})
 
 
 ```
-A([1 3][2])({1 3}{2}) 
+A([1 3][2])({1 3}{2})
   = (id - (1, 2))({1 3}{2})
   = {1 3}{2} - {2 3}{1}
 ```
 
 ```
-A([3 1][2])({3 1}{2}) 
+A([3 1][2])({3 1}{2})
   = (id - (3, 2))({3 1}{2})
   = (id - (3, 2))({1 3}{2})
   = {1 3}{2} - {1 2}{3}
 ```
 
 ```
-A([1 2][3])({1 2}{3}) 
+A([1 2][3])({1 2}{3})
   = (id - (1, 3))({1 2}{3})
   = {1 2}{3} - {3 2}{1}
   = {1 2}{3} - {2 3}{1}
 ```
 
 ```
-A([2 1][3])({2 1}{3}) 
+A([2 1][3])({2 1}{3})
   = (id - (2, 3))({2 1}{3})
   = (id - (2, 3))({1, 2}{3})
   = {1 2}{3} - {1 3}{2}
@@ -8882,15 +8992,15 @@ in ascending order of the element of their final row, we find that `A(x)(x)` gav
 ```
 A([1 2][3])({1 2}{3})
   = {1 2}{3} - {1 3}{2} = c - b
-A([2 1][3])({2 1}{3}) 
+A([2 1][3])({2 1}{3})
   = {1 2}{3} - {1 3}{2} = c - b
-A([1 3][2])({1 3}{2}) 
+A([1 3][2])({1 3}{2})
   = {1 3}{2} - {2 3}{1} = b - a
-A([3 1][2])({3 1}{2}) 
+A([3 1][2])({3 1}{2})
   = {1 3}{2} - {1 2}{3} = b - c = -(c-b)
-A([1 2][3])({1 2}{3}) 
+A([1 2][3])({1 2}{3})
   = {1 2}{3} - {2 3}{1} = c - a
-A([2 1][3])({2 1}{3}) 
+A([2 1][3])({2 1}{3})
   = {1 2}{3} - {1 3}{2} = c - b
 ```
 
@@ -8910,7 +9020,7 @@ is indeed an irreducible representation.
 There are 6 tabloids of shape `(1, 1, 1)`, given by the permutations of the numbers `{1, 2, 3}`.
 If we write them down, they're going to be (a) `{1}{2}{3}`, (b) `{1}{3}{2}`, (c) `{2}{1}{3}`,
 (d) `{2}{3}{1}`, (e) `{3}{1}{2}`, (f)`{3}{2}{1}`. This gives us a 6 dimensional vector
-space spanned by these basis vectors. 
+space spanned by these basis vectors.
 
 
 Let's now find out the value of `A([1][2][3])({1}{2}{3})` recall that we need to act
@@ -8926,13 +9036,13 @@ on `{1}{2}{3}` with all column stabilizers of `A([1][2][3])`.
 I claim that the different `A_t` and `A_s` for `{t} = {s}` differ only by sign [Why?
 Because we can reorder the elments of `t` and `s` to suffer a sign]. Thus, we can
 directly define `A_{t}` on the *tabloids*, by defining it as first sorting the rows of `t`
-and then using `A_t`. 
+and then using `A_t`.
 
 
 # Even and odd functions through representation theory
 
 Consider the action of $\mathbb Z/ 2\mathbb Z$ on the space of functions $\mathbb R \to \mathbb R$.
-given by $\phi(0)(f) = f$, and $phi(1)(f) = \lambda x. f(-x)$. How do we write this in terms of irreps? 
+given by $\phi(0)(f) = f$, and $phi(1)(f) = \lambda x. f(-x)$. How do we write this in terms of irreps?
 
 - On the even functions, since $e(x) = e(-x)$ for $e$ even, we have that,
   $\phi(0)(e) = e$ and $\phi(1)(e) = e$ [since $e(-x) = e(x)$], or $\phi(x)(e) = id(e)$,   hence the action
@@ -8942,7 +9052,7 @@ given by $\phi(0)(f) = f$, and $phi(1)(f) = \lambda x. f(-x)$. How do we write t
   is the sign representation!
 
 Since the even and odd functions span the space of all functions, as we can write any function $f$ as the
-sum of an even part $e_f(x) \equiv [f(x) + f(-x)]/2$ and an odd part $o_f(x) \equiv [f(x) - f(-x)]/2$. So, 
+sum of an even part $e_f(x) \equiv [f(x) + f(-x)]/2$ and an odd part $o_f(x) \equiv [f(x) - f(-x)]/2$. So,
 we have described the action of $\phi$ in terms of subspaces which span the space, so we've found the irrep decomposition.
 
 # Greg egan: Orthogonal
@@ -8961,15 +9071,15 @@ to reading the book:
 > remnants of that rock will eventually form themselves spontaneously into a
 > spyglass, which lies on the ground until we come along to retrieve it.  So if
 > you follow the history of the matter that makes up the spyglass far enough in
-> both directions, it's clear that it's not committed to either side's rdes.' 
-> 
+> both directions, it's clear that it's not committed to either side's rdes.'
+>
 > 'Swap the roles of Esilio and the Surveyor,' he replied, 'then tell the same
 > story again. If something from Esilio takes the place of the spyglass, it must
 > be with us already. We must have been carrying it, or the things that will
 > become it, from the very start. Because according to Esilio's arrow of time
 > we've already visited the planet, and it's almost certain that something
 > remained with us when we departed.'
- 
+
 
 > 'Tell us one thing that you're sure won't happen,' he challenged her.  She
 > said, 'Two objects in thermal contact will not maintain different
@@ -9036,7 +9146,7 @@ to reading the book:
 > footprints had crowded everything else out of his mind. Those disappearing
 > marks 198 in the sand might be unsettling, but if he could ignore them and
 > walk wherever he pleased then they were not the shackles he'd taken them to
-> be.  
+> be.
 
 
 > 'What happens if there are footprints that no one gets around to
@@ -9069,7 +9179,7 @@ to reading the book:
 
 > 'You already dug twelve holes!' he observed.
 > 'And I thought you were messing around with Agata all morning.'
-> Azelio made a noncommittal sound. 
+> Azelio made a noncommittal sound.
 > 'My plan is to dig up all these plants at the end of the trial and take
 > them back to the Peerless for my colleagues to analyse,' Azelio mused.  'So I
 > guess that's when I'll see the transition between cultivated and truly
@@ -9094,7 +9204,7 @@ to reading the book:
 > impossible act of solving in the finest detail the equations that Agata
 > was yet to discover, revealing exactly which sequences of events
 > were consistent with the laws of physics all the way around the
-> cosmos. 
+> cosmos.
 
 
 > Ramiro's left arm had grown tired from holding the plant in place over the
@@ -9117,7 +9227,7 @@ to reading the book:
 > clung to the roots. In Esilio's terms, this soil had spent at least a few
 > stints packed tightly around the plant; if he could have seen the
 > action in reverse, it would have involved nothing stranger than a
-> clump of sand finally coming loose. 
+> clump of sand finally coming loose.
 
 > But as she moved the broom across the floor, duly concentrating the dust
 > ahead of it, other dust began to appear behind it - some of it falling from
@@ -9157,7 +9267,7 @@ to reading the book:
 > whatever happens has to be consistent with everything, including
 > our motives. Ramiro said, 'It can't force our hand, but there could still be an
 > accident.' 'That's true. But if we saw such a crater, we wouldn't even go near it
-> with the explosive.' 
+> with the explosive.'
 
 > He ran a hand over his face. 'If the plants can't
 > bring their arrow to Esilio, why should a bomb do any better?'
@@ -9166,7 +9276,7 @@ to reading the book:
 > will rely on anything like that.'
 > 'But in Esilian time,' Ramiro protested, 'all the soil we're supposedly going to make with this bomb has to mesh perfectly with a
 > backwards explOSion in such a way that it forms a solid rock. How
-> likely is that?' 
+> likely is that?'
 > How likely are the alternatives?' Agata countered. 'How likely is
 > it that the explOSive will fail to detonate? How likely is it that we'll
 > allow it to explode in an existing crater instead - just to pander to
@@ -9249,7 +9359,7 @@ to reading the book:
 
 
 > What would her own generation be famous for? Rendering
-> the creation of new knowledge impossible. 
+> the creation of new knowledge impossible.
 
 > 'I'm where I need to be.' 'In the administrative sense, or the teleological?'
 
@@ -9293,7 +9403,7 @@ to reading the book:
 > we don't know the cause of the disruption, that doesn't mean that every cause
 > we can imagine will coexist. If you want history to unfold a certain way,
 > forget about wave mechanics. What matters now are the usual things: who we are,
-> what we do, and a certain amount of dumb luck.' 
+> what we do, and a certain amount of dumb luck.'
 
 > Azelio put the diagram down. 'So if there's a meteor coming, how
 > do I stop it? Or avoid it?'
@@ -9305,7 +9415,7 @@ to reading the book:
 > trying to kill your family, you don't protect them by moving your
 > own tympanum to match the threats being shouted through the
 > door. Or do you really believe in safety through reverse ventriloquism?'
-> Agata wrapped her arms around her head in frustration. 'We don't 
+> Agata wrapped her arms around her head in frustration. 'We don't
 > know that there's a murderer at the door! We don't know that there's a
 > meteor on its way!'
 
@@ -9355,7 +9465,7 @@ is the universal cone.
 
 This establishes that limit is right adjoint to diag. From this, can we get a cheap proof
 that right adjoints preserve limits ? Suppose `L: C -> D`, `R: D -> C` are adjoint `L |- R`.
-Now, consider limits in `D`. This can be considered by taking the category `(J -> D)`. 
+Now, consider limits in `D`. This can be considered by taking the category `(J -> D)`.
 We get an adjunction `const: D -> (J -> D) |- lim: (J -> D) -> C`.
 
 ```text
@@ -9394,7 +9504,7 @@ The above statement, fully elaborated with all the types looks as follows:
 
 ```
 lim :: (J -> K) -> K
-Hom(a: C, {lim (F: J -> C)}:C ): Set ~= 
+Hom(a: C, {lim (F: J -> C)}:C ): Set ~=
 lim (\j. Hom(a, F(j)): J -> Set): Set
 ```
 
@@ -9402,7 +9512,7 @@ Furthermore, we also know from the Yoneda embedding, that `x ~= Hom(x, -)` for a
 Given these two facts, we can speedily derive that a right adjoint preserves limits:
 
 ```
-Hom_C(a:C , R(lim F: J -> D)): Set 
+Hom_C(a:C , R(lim F: J -> D)): Set
 = Hom_D(L(a), lim F: J -> D) [Adjunction]
 ~= {lim (\j. Hom_D(L(a), F(j)): J -> Set}: Set [Hom lim = lim Hom]
 ~= {lim (\j. Hom_C(a, R(F(j)))): J -> Set}: Set [Adjunction inside lim]
@@ -9424,7 +9534,7 @@ Let's start with `Hom(a, lim F: J -> C): Set`. An element of this
 is a morhism `arr: a -> lim F` from `a` to the apex
 of the limit cone `lim F`. We need to translate this into a `lim(\j. Hom(a, F(j)): J -> Set): Set`,
 which is a family of morphisms from each `a` to each `{ F(j) : j in J}`. This is obtained
-by composing the projection maps `pi(j): lim F -> F(j)` with `arr: a -> lim F` to 
+by composing the projection maps `pi(j): lim F -> F(j)` with `arr: a -> lim F` to
 get `pi(j) . arr : a -> F(j)` which lives in `Hom(a, F(j))`. We get the limit by considering
 the family of these maps, as the Limit in `Set` is just a product with coherence conditions,
 and an element of the limit is a tuple/family with coherence conditions.
@@ -9442,7 +9552,7 @@ Thus, the two sets are equivalent, and hence `Hom(a, -)` preserves limits (almos
 
 # Limit/Colimit/Cone/Cocone: the arrows are consistent!
 
-I sometimes wonder if a product is a limit or a colimit (not really, because 
+I sometimes wonder if a product is a limit or a colimit (not really, because
 I remember that limits are product + equalizers, but it makes for a nice story
 nonetheless). I realised that the arrows of a cone/co-cone are always consistent.
 Since a cone has arrows _out_ of the apex, the universal cone is given by arrows _into_ the apex
@@ -9481,7 +9591,7 @@ not representable (proof by haskell intuition).
 {-# LANGUAGE InstanceSigs #-}
 type Hom a b = a -> b
 type Nat f g = forall x. f x -> g x
-class Representable f where 
+class Representable f where
     type Rep f :: * -- the representing object o whose Hom(o, -) ~= f
     -- tabulate :: Nat (Hom (Rep f)) f
     -- tabulate :: forall x. Hom (Rep f) x -> f x
@@ -9522,9 +9632,9 @@ that are sums tend not to.
   the image of $J$ is always a hom-set. That is, $dgrm(j \in J) = Hom(c_j, -) \in [C, Set]$.
 - Furthermore, since $P$ is a colimit, we have arrows of the form $dgrm(j) = Hom(c_j, -) \rightarrow P$.
 - Recall that such an arrow is a natural transformation between $Hom(c_j, -)$ and $P$.
-- Also recall that by the Yoneda lemma, such natural transformations $Hom(c_j, -) \rightarrow P$ are in natural bijection 
+- Also recall that by the Yoneda lemma, such natural transformations $Hom(c_j, -) \rightarrow P$ are in natural bijection
   with elements in $P(c_j)$. So at some point, we'll probably need to pick elements $P(c_j)$. =
-- We're not done yet, this is what one part of  what it means to be a colimit; we also need all the diagrams to commute! 
+- We're not done yet, this is what one part of  what it means to be a colimit; we also need all the diagrams to commute!
 - (1) the embedding natural transformations $Hom(c_j, -) \rightarrow P$ arrows
   commute with image of the arrows in $J$, of the form $Hom(c_j, -) \rightarrow Hom(c_{j'}, -)$.
 - (2) that $P$ is the universal object in $[C, Set]$ such that
@@ -9535,8 +9645,8 @@ that are sums tend not to.
 - The idea, once, again, goes back to (a) Yoneda, and (b) Grothendeick.
 - It appears that to be able to pick out such embedding arrows for the co-cone
   $Hom(c_j, -) \rightarrow P$, we need elements $P(c_j)$.
-- Soo let's build a category that does exactly that; This new category called as a _Grothendieck construction_. 
-- Given a category $C$ and a presheaf $P: C \rightarrow Set$, this new category called $el(P)$ 
+- Soo let's build a category that does exactly that; This new category called as a _Grothendieck construction_.
+- Given a category $C$ and a presheaf $P: C \rightarrow Set$, this new category called $el(P)$
   has as objects pairs of the form $(c \in C, u \in P(c))$.
 - So we have a pair of an abstract object $c \in C$, and an element of its set $u \in P(c)$, as $P(c) \in Set$, as $P$ is a presheaf, thus has the type
   $P: C \rightarrow Set$.
@@ -9550,7 +9660,7 @@ Picture speaks a thousand words:
 C | c -a→ d
 Set | P(c) -P(a)→ P(d)
 Set | u ∈ P(c) -P(a)→ d ∋ P(a)(u)
-el P | (c∈C, u∈P(c)) 
+el P | (c∈C, u∈P(c))
 el P | (c∈C, u∈P(c)) -el a→ (d∈C, P(a)(u)∈P(d))
 ```
 
@@ -9568,13 +9678,13 @@ el P | (c∈C, u∈P(c)) -el a→ (d∈C, P(a)(u)∈P(d))
   given by applying Yoneda to $u \in P(c)$.
 - Thus, we can at least form a cocone. Whether the arrows of the "base" of
   the cocone commute with the apex-pointing arrows, and whether this is universal is to be checked next.
-- Given some other cocone $Q \in [C, Set]$, with co-cone morphisms $\sigma_j: Hom(c_j, -) \rightarrow Q$, we need to 
+- Given some other cocone $Q \in [C, Set]$, with co-cone morphisms $\sigma_j: Hom(c_j, -) \rightarrow Q$, we need to
   create a natural transformation $\theta: P \rightarrow Q$. Let's do this pointwise.
 - For some $c \in C$, we need to build a map $\theta_c: P(c) \rightarrow Q(c)$. Since the domain and codomain are pointwise,
   let's pick some element $x \in P(c)$.
 - See that this can be seen as an element $(c \in C, x \in P(c)$ which is an element of the category $el(P)$.
 - But, recall that this was our index category $el(P)$.
-  Thus, there is going to be an arrow $dgrm((c \in C, x \in P(c)) = Hom(c, -) \xrightarrow{q(c,x)} Q$ since $Q$ is a cocone. 
+  Thus, there is going to be an arrow $dgrm((c \in C, x \in P(c)) = Hom(c, -) \xrightarrow{q(c,x)} Q$ since $Q$ is a cocone.
 - But since $q(c, x) \in [Hom(c, -), Q]$, it's an element of $Q(c)$. We have thus found a way to map $P(c)$ into $Q(c)$
   by "pulling back" into the index category and then "pushing forward" via Yoneda. [What the fuck is actually happening here?]
 
@@ -9592,16 +9702,16 @@ Hom(-, x) >------->P
    v               ^
    |arrow:        /
    | \h -> f.h   / μ
-   v            /        
-Hom(-, y)>-----* 
+   v            /
+Hom(-, y)>-----*
 ```
 
-- Consider the functor $J: el(P) \to [C^{op}, Set]$ which sends each natural transformation $\eta:Hom(-, x) \Rightarrow P$ to 
+- Consider the functor $J: el(P) \to [C^{op}, Set]$ which sends each natural transformation $\eta:Hom(-, x) \Rightarrow P$ to
   just $J(\eta: Hom(-, x) \Rightarrow P) \equiv Hom(-, x)$ (ie, forget the mapping, just keep the domain of the natural transformation.
 - We claim that $P$ is the cocone of the functor $J$. So we must have mappings from each $Hom(c, -)$ into $P$.
 - These mappings from $Hom(c, -)$ into $P$ are given by "un-forgetting" the data we forgot when mapping $\eta:Hom(-, c) \Rightarrow P \mapsto Hom(-, c)$.
   These commute by the construction of $el(P)$.
-- (Are these the only choices of maps? Maybe there are others, not just the ones we "un-forgot"!) 
+- (Are these the only choices of maps? Maybe there are others, not just the ones we "un-forgot"!)
 - Next we need to check that $P$ is universal. Consider some other $Q: C^{op} \Rightarrow Set$. We must show a map $\alpha: P \Rightarrow Q$
   (ie, the cocone $Q$ factorizes through $P$, or $P$ is initial cocone.).
 - Let's do this pointwise. So we want to define a family $\alpha_k: P(k) \Rightarrow Q(k)$.
@@ -9648,7 +9758,7 @@ type NOTFALSE a = NOT (FALSE a)
 lemNotFalse :: NOTFALSE (LEM a)
 -- lemNotFalse :: (LEM a -> Void) -> Void
 -- lemNotFalse :: (Either a (a -> Void) -> Void) -> Void
-lemNotFalse f = f $ Right $ \a -> f (Left a) 
+lemNotFalse f = f $ Right $ \a -> f (Left a)
 
 lemFalseExplodes :: FALSE (LEM a) -> anything
 -- lemFalseExplodes :: LEM a -> Void
@@ -9758,7 +9868,7 @@ idyo' a = \k -> k a
 
 specializing to `id` recovers usual continuations.
 
-In total, Yoneda tells us that from every enriched continuation 
+In total, Yoneda tells us that from every enriched continuation
 `ContF a g = Nat (Hom a) g = forall x. (a -> x) -> g x`,
 we can recover a `g a`. Hence, there is a bijection between `g a` and
 `ContF a g`
@@ -9800,7 +9910,7 @@ induce on $V$ (pick a basis). Then, we build an "averaged" inner product
 given by $\langle v | w \rangle \equiv \sum_{h \in G} [ f(h)(v) | f(h)(w) ]$.
 Intuitively, this inner product is invariant because on considering $\langle f(g)(v) | f(g)(w) \rangle$,
 the definition will contain $[f(h)(f(g)(v)) | f(h)(f(g) w)] = [f(hg)(v) | f(hg)(w)]$,
-which is a re-indexing of the original sum. 
+which is a re-indexing of the original sum.
 Hence, the representation $f$ preserves this inner product,
 and we can thus study only unitary representations (which are much simpler).
 From now on, we assume all representations are unitary.
@@ -9822,7 +9932,7 @@ is given by $\eta: V \rightarrow W$ if the natural diagram commutes:
 ```
 V --f--→ V
 |        |
-η        η 
+η        η
 ↓        ↓
 W --f'-→ W
 ```
@@ -9836,7 +9946,7 @@ zero map or a **scalar multiple** of the identity map. This is stronger than
 saying that the equivariant map is a diagonal matrix; scalar multiple of
 identity implies that all dimensions are scaled uniformly.
 
-The main idea of the proof is to show that the kernel and image of the 
+The main idea of the proof is to show that the kernel and image of the
 intertwining map is an irreducible subspace of $f, f'$ retrospectively. Since
 the maps are irreducible, we must have the the intertwining is either the zero
 map, or a map into the full group. This forces the map to be zero or a scalar
@@ -9943,7 +10053,7 @@ Thus, different characters are all orthogonal.
 we impose an inner product relation on the space of class functions (complex valued functions
 constant on conjugacy classes) $G \rightarrow \mathbb C^\times$, given by
 $\langle f | f' \rangle \equiv 1/|G| \sum_{g \in G} f(g) \overline{f'(g)}$
-where $\overline{f'(g)}$ is the complex conjugate. 
+where $\overline{f'(g)}$ is the complex conjugate.
 
 Using the Schur orthogonality relations, we immediately deduce that the inner product
 of two irreducible characters can be viewed as the schur orthogonality applied to their
@@ -9970,11 +10080,11 @@ subrepresentations. This makes the idea of classifying irreps a reasonable task.
 ##### Character of the regular representation
 
 **Theorem:** The character $r_G$ of the regular representation is given by $r_G(1) = |G|$,
-$r_G(s) = 0$ for $s \neq 1$. 
+$r_G(s) = 0$ for $s \neq 1$.
 
 - The matrix for the identity element is the identity matrix, and the size
   of the matrix is the size of the vector space, which is $|G|$ since
-  there's a basis vector for each element of $G$. Thus, $r_G(1) = |G|$. 
+  there's a basis vector for each element of $G$. Thus, $r_G(1) = |G|$.
 - For any other element $g \in G$, the regular representation will be a permutation matrix
   with no fixed points. Thus, the diagonal of the matrix is all zeros, and hence $r_G(g) = 0$.
 
@@ -10078,7 +10188,7 @@ is a cofibration if $A \xrightarrow{i} B$ is a cofibration.
 
 
 Reference: [F. Faviona, more on HITs](https://www.youtube.com/watch?v=zn0nAXtoMtU)
- 
+
 # Emily Riehl Contrability as uniqueness
 
 - untyped lambda calc/simply typed is topology of computation.
@@ -10101,7 +10211,7 @@ notions of chain morphisms with singular homology. We want to know when spaces h
 A reasonable idea is to prove that when the map between spaces is homotopic to identity, the chain complex
 is identical. During the course of the proof, we feel the need for a notion of "chain equivalence", and thus we
 we are led to define the notion of [chain homotopy](https://en.wikipedia.org/wiki/Homotopy_category_of_chain_complexes), and
-more generally, the homotopy category of chain complexes. 
+more generally, the homotopy category of chain complexes.
 
 Next, we want the long exact sequence of homology connecting a space to its
 quotient. To get here, we first consider relative homology, connecting a space
@@ -10145,7 +10255,7 @@ Also see this answer on [HEP versus good pair](https://math.stackexchange.com/qu
 
 #### good pair + Excision => relative equals quotient homology
 
-Let $(X, A)$ be a good pair. Consider the projection map which kills $A$, 
+Let $(X, A)$ be a good pair. Consider the projection map which kills $A$,
 the map $\pi: (X, A) \rightarrow (X/A, [A])$ as a map of good pairs.
 (Note that $(X/A, [A])$ is also a good pair). We claim this induces isomorphisms
 $\pi^*: H_n(X, A) \rightarrow H_n(X/A, [A])$.
@@ -10156,7 +10266,7 @@ $\pi^*: H_n(X, A) \rightarrow H_n(X/A, [A])$.
 
 - [Reference NBE video for cubicaltt](https://www.youtube.com/watch?v=atKqqiXslyo&list=PL0OBHndHAAZrGQEkOZGyJu7S7KudAJ8M9&index=6)
 
-  
+
 # Legal Systems very different from ours
 
 # Lefschetz fixed point theorem (TODO)
@@ -10208,7 +10318,7 @@ each open $U$, we have a ball $B(x, r)$ that sits inside it since $U$ is open.
 Find the largest such radius, we can do so since $\{x\}$ is the closed subset of a compact set.
 This gives us a function $f$ that maps a point $x$ to the largest radius of ball
 that can fit in _some_ open cover around it. This function $f$ is a continuous function (why?)
-on a compact set, and thus has a minimum. So, for all points $x \in X$, if you give a 
+on a compact set, and thus has a minimum. So, for all points $x \in X$, if you give a
 ball of radius $\min f$, I can find some open cover around it.
 
 #### Lebesgue number lemma, Version 2:
@@ -10311,17 +10421,17 @@ This gives $||v_j - b|| \leq (n-1)l/n$, hence the edge length decreases by a fac
 Take two maps $f, g: X \rightarrow Y$ which are homotopic. We wish
 to show that if $f$ is homotopic to $g$, then we will get the same
 induced singular homology groups from $f$ and $g$. The idea is to take a chain
-$c[n] \in C[n]$, then study the image $f\sharp(c[n])$ and $g\sharp(c[n])$. Since $f$ 
+$c[n] \in C[n]$, then study the image $f\sharp(c[n])$ and $g\sharp(c[n])$. Since $f$
 and $g$ are homotopic, we can build a "prism" that connects $f\sharp(c[n])$ and $g\sharp(c[n])$
 by means of a prism operator, that sends a chain $c \in C[n]$
 to the prism $p(c)$ produced by the chain which lives in $D[n+1]$. Next, we compute the
 boundary of this prism, $\partial p(c)$. This boundary will contain a top portion,
-which is $f\sharp(c)$, a bottom portion which is $g\sharp(c)$, and the boundary edges 
+which is $f\sharp(c)$, a bottom portion which is $g\sharp(c)$, and the boundary edges
 of the prism itself, which is the same as taking the prism of the boundary edges
 $p(\partial c)$.  This gives the equation $\partial(p(c)) = p(\partial c) + g\sharp(c) - f\sharp(c)$.
 Rearranging, this gives $g\sharp(c) - f\sharp(c) = \partial p(c) - p(\partial c)$. To inspect
 homology, we wish to check that $f\sharp, g\sharp$ agree on elements of $\ker(\partial[n])/im(\partial[n+1])$.
-So, we set $c \in \ker(\partial[n])$. This kills of $p(\partial c)$. Further, since we 
+So, we set $c \in \ker(\partial[n])$. This kills of $p(\partial c)$. Further, since we
 quotient by $\partial[n+1]$, the $\partial(p[c])$ also dies off. This means that
 $g\sharp(c) - f\sharp(c) = 0$ when interpreted as an element of $H[Y][n]$. Philosophically,
 living in $\ker(\partial[n])$ kills $- \circ \partial$, and quotienting
@@ -10344,7 +10454,7 @@ as $p(t, i) \equiv H(t, l(i))$. We see that $p(0, i) = H(0, l(i)) = f(l(i)) = m$
 So, we get a "prism" whose endpoints are $m = f \circ l$ and $n = g \circ l$.
 
 
-# Singular homology: induced homomorphism 
+# Singular homology: induced homomorphism
 
 The space of chains $C[i]$ of a topological space $X$
 is defined as all functions $\Delta^i \rightarrow X$.
@@ -10411,7 +10521,7 @@ is well-defined.
 
 > For example, at a sample rate of 10kHz, one sample delay is equal to the
 > sample time of 0.0001 seconds. ... A signal at 1000Hz has a period of 0.001
-> seconds and a one sample time delay is 1/10 of the period, or 36°. 
+> seconds and a one sample time delay is 1/10 of the period, or 36°.
 
 I understand the math upto this point. 0.001 seconds -> 360 degrees, so 0.0001
 seconds -> 36 degrees. Thus, a sample delay of 0.0001 seconds corresponds to 36
@@ -10421,7 +10531,7 @@ What's the next bit? I don't understand this:
 
 >  The larger phase difference results in a lower amplitude and the higher
 >  frequency signal is attenuated more than the lower frequency signal. The
->  effect is that of a low-pass filter. 
+>  effect is that of a low-pass filter.
 
 1. Why does a large phase shift result in a lower amplitude?
 2. Why is the higher frequence signal attenuated (= weakened, as far as I understand) more?
@@ -10466,7 +10576,7 @@ more than `1/2` of the circle), we will  ????
 As I am reading `BasicSynth`, I learnt that:
 
 > Each half-step between notes in the
-> musical scale represents a frequency ratio of $2^{1/12} \simeq 1.059$. 
+> musical scale represents a frequency ratio of $2^{1/12} \simeq 1.059$.
 
 The $(\cdot)^{1/12}$ is reasonable, because an octave contains 12 semitones.
 The base $2$ is quite mysterious! I wanted to know why this is.
@@ -10523,7 +10633,7 @@ by wherever the functor sends the identity element.
 
 # Spectral norm of Hermitian matrix equals largest eigenvalue (TODO)
 
-Define $||A|| \equiv \max \{ ||Ax|| : ||x|| = 1 \}$. Let $A$ be 
+Define $||A|| \equiv \max \{ ||Ax|| : ||x|| = 1 \}$. Let $A$ be
 hermitian. We wish to show that $||A||$ is equal to the largest eigenvalue.
 The proof idea is to consider the eigenvectors $v[i]$ with eigenvalue $\lambda[i]$
 with largest eigenvalue $v^\star$ of eigenvalue $\lambda^*$ and claim that
@@ -10561,7 +10671,7 @@ https://arxiv.org/pdf/0911.2121.pdf
 - Let $S \subseteq \mathbb R^3$ be an extrinsic manifold
 - Let $U \subseteq \mathbb R^2$ be the domain for a parametrization $x: U \to S$.
 - The gauss map $N$ is the map which sets each point $p \in S$ to the normal plane at $p$.
-- The weingarten map is the map $dN$ which can be identified with  
+- The weingarten map is the map $dN$ which can be identified with
 
 
 # When maps cannot be lifted to the universal cover
@@ -10586,7 +10696,7 @@ is some sort of portion of $J$ that leaves out a finite part of the bottom of $J
 #### Nets
 
 Let $X$ be a topological space. a net is a function $f$ from a directed set $J$ into $X$.
-We usually write this as $(x_j)$. 
+We usually write this as $(x_j)$.
 
 #### Net eventually in a subset $A$
 
@@ -10607,7 +10717,7 @@ Let $x[:]$ be a net that is eventually in $A$. We will show that such a net is a
 frequently in $A$. As the net is eventually in $A$, there exists an $e \in I$ (for eventually), such that
 for all $i$, $e \leq i \implies x[i] \in A$. Now, given an index $f$ (for frequently),
 we must establish an index which $u$ such that $f \leq u \land x[u] \in A$.
-Pick $u$ as the upper bound of $e$ and $f$ which exists as the set $I$ is directed. 
+Pick $u$ as the upper bound of $e$ and $f$ which exists as the set $I$ is directed.
 Hence, $e \leq u \land f \leq u$. We have that $e \leq u \implies x[u] \in A$.
 Thus we have an index $u$ such that $f \leq u \land x[u] \in A$.
 
@@ -10630,7 +10740,7 @@ Since the net is eventually in $X - A$, this means that
 there is an index $e$ (for eventually) such that for all $i$ such that $e \leq i$ we have
 $x[i] \in X - A$, or $x[i] \not \in A$.  Thus, if we pick $e$ as the
 frequent index, we can have no index $u$ such that $e \leq u \land x[u] \in A$,
-since all indexes above $e$ are not in $A$. 
+since all indexes above $e$ are not in $A$.
 
 
 #### Convergence of a net
@@ -10689,7 +10799,7 @@ indexes, there exists a higher index that is in the nbhd).
 #### Tychonoff's theorem
 
 Let $\{ X_\alpha : \alpha \in \Lambda \}$ is a collection of compact
-topological spaces. Let $X \equiv \prod_{\alpha \in \Lambda} X_\alpha$ be the 
+topological spaces. Let $X \equiv \prod_{\alpha \in \Lambda} X_\alpha$ be the
 product space. Let $\Phi: D \rightarrow X$ be a universal net for $X$.
 For each $\lambda \in \Lambda$, the push forward net $\pi_\lambda \circ \Phi: D \rightarrow X_\lambda$
 is a universal net. Thus, it converges to some $x_\lambda \in X_\lambda$.
@@ -10709,7 +10819,7 @@ limit point.
 
 #### Compact implies limit compact
 
-We will prove the contrapositive. That is, let $X$ be a compact set. 
+We will prove the contrapositive. That is, let $X$ be a compact set.
 If $A \subseteq X$, does not have any limit point, then $A$ is finite.
 If $A$ does not have any limit point, then $A$ vacuously contains all of its limit
 points. Thus, $A$ is closed. Since $A$ is a closed subset of a compact set $X$, $A$ itself
@@ -10746,7 +10856,7 @@ We wish to show that compact iff closed and bounded in $\mathbb R$.
   Hence closed and bounded implies compact.
 - Let $S$ be compact. We wish to show that $S$ is closed and bounded. Cover $S$ with open balls of increasing
   radii. This is an open cover; Extract a finite subcover. From the finite subcover, pick the largest open ball
-  $I$. $S$ is entirely contained in $I$, and is thus bounded. (3) $S$ is closed, as it is a compact subset of a 
+  $I$. $S$ is entirely contained in $I$, and is thus bounded. (3) $S$ is closed, as it is a compact subset of a
   Haussdorff space. Hence, we are done.
 
 #### (1) Closed intervals are compact in the topology of a complete total order.
@@ -10762,7 +10872,7 @@ M \equiv \{ m \in [l, r] : [l, m] \text{ has finite cover} \}
 $$
 
 - **CLAIM 1:** $lub(M) \in M$.
-- Pick an open $lub(M) \in V \in \{ U_i \}$. 
+- Pick an open $lub(M) \in V \in \{ U_i \}$.
 - As $V$ is open, there is some $(c \in V) < (lub(M) \in V)$.
 - if $c \in M$: the finite cover of $[l, c]$ along with $V$ give a finite cover for $lub(M)$. Thus $lub(M) \in M$.
 - if $c \not \in M$, then $c < lub(M)$ and $c$ is an upper bound for $M$, which is absurd.
@@ -10795,12 +10905,12 @@ itself becomes closed.
 - Let $S$ be a compact subset of a haussdorf space $X$.
 - For any point $q \not \in S$, we need to show the existence of an open set $q \in Q$ such that $S \cap Q = \emptyset$.
 - For each point $s \in S$, use Haussdorf to find separating sets $s \in O(s; q)$, $q \in O(q; s)$ such that $O(s; q) \cap Q(q; s) = \emptyset$.
-- See that the sets $\{ O(s; q) : s \in S \}$ are a cover of $S$. 
-- Extract a finite subcover of this, say $\{ O(s_i; q) : s \in S \}$. 
-- Use this finite subcover to separate $q$ from $S$. 
-- Now, pick the open set $Q \equiv \cap \{ O(q; s_i) \}$, which is open since it's a finite intersection. 
-- See that this $Q$ separates $q$ from $S$. 
-- We have that $Q \cap O(s_i, q) = \emptyset$ for each $O(s_i, q)$. 
+- See that the sets $\{ O(s; q) : s \in S \}$ are a cover of $S$.
+- Extract a finite subcover of this, say $\{ O(s_i; q) : s \in S \}$.
+- Use this finite subcover to separate $q$ from $S$.
+- Now, pick the open set $Q \equiv \cap \{ O(q; s_i) \}$, which is open since it's a finite intersection.
+- See that this $Q$ separates $q$ from $S$.
+- We have that $Q \cap O(s_i, q) = \emptyset$ for each $O(s_i, q)$.
 - Thus,$Q \cap (\cup O(s_i; q)) = \emptyset$, and thus $Q \cap S = \emptyset$ as $S \subseteq \cup O(s_i; q)$.
 - if $q \not \in S$, we have an open $Q$ that separates $q$ from $S$,
   thus $q$ is NOT A LIMIT --- not every open nbhd of $Q$ has non-empty intersection with $S$.
@@ -10834,7 +10944,7 @@ These are the best generalizations of finite topological spaces.
 I should study them for better intuition + comptutability properties.
 This is a topology where the intersection of all families of open sets
 is open, not just finite intersections. The minimal neighbourhood of a point $V(x)$
-is the intersection of all opens containing $x$. 
+is the intersection of all opens containing $x$.
 
 - [Alexandrov Topology](https://en.wikipedia.org/wiki/Alexandrov_topology)
 - [Paper on the systematic study of Alexandrov spaces](http://emis.impa.br/EMIS/journals/AMUC/_vol-68/_no_1/_arenas/arenas.pdf)
@@ -10902,7 +11012,7 @@ That is $P \times_S X \simeq \pi_X^{-1}(s_*)$, which is the fibre of $X$ over
 the special point $s_p = \pi(p)$. This explains the name.
 
 
-- [Notes on scheme theory](https://www.math.purdue.edu/~arapura/preprints/schemesgalois4.pdf)	
+- [Notes on scheme theory](https://www.math.purdue.edu/~arapura/preprints/schemesgalois4.pdf)
 
 
 
@@ -10915,7 +11025,7 @@ with a map $f: B' \rightarrow B$. So we have the data:
        E
      pi|
        v
-B'-f-> B 
+B'-f-> B
 ```
 
 Given this, we would like to pullback the bundle $E$ along $f$ to get a new
@@ -10948,7 +11058,7 @@ $$
 
 This has codomain $E'$. To check, if  $(b', \sigma(f(b'))$ is in $E'$,
 we need $f(b') = \pi(\sigma(f(b'))$. But this is true since $\sigma$
-is a section, and thus $\pi(\sigma(f(b')) = f(b')$. 
+is a section, and thus $\pi(\sigma(f(b')) = f(b')$.
 
 Moreover, we need to check that $\sigma'$ is indeed a section of $B'$. For this,
 we need to check that $\pi'(\sigma'(b')) = b'$. Chasing definitions, we find
@@ -10964,7 +11074,7 @@ $$
 
 Hence we are done, we have indeed produced a legitimate section.
 
-#### Fiber products of Spec of affine scheme 
+#### Fiber products of Spec of affine scheme
 
 Let $R, A, B$ be rings. consider $A \otimes_R B$. What is $Spec(A \otimes_R B)$, in terms of
 $Spec(A)$, $Spec(B)$, and whatever data you like about $R$? (Say I give you both $R$ and $Spec(R)$).
@@ -10992,7 +11102,7 @@ $$
 &x_p |- Y \equiv (x_p \cdot Y[1], x_p \cdot Y_2, x_p \cdot Y_3) \\
 & ((a \partial_x + b \partial_y+ c \partial_z ) \cdot (xy^2 + 4z),
    (a \partial_x+ b \partial_y+ c \partial_z) \cdot (y^2 - x),
-   (a \partial_x+ b \partial_y+ c \partial_z) \cdot (x + z^3)) 
+   (a \partial_x+ b \partial_y+ c \partial_z) \cdot (x + z^3))
 &= (ay^2 + 2bxy + 4, -a + 2by, a + 3cz^2)
 \end{aligned}
 $$
@@ -11018,12 +11128,12 @@ $$
 \begin{aligned}
 &x_p |- (fY) \equiv (x_p \cdot fY[1], x_p \cdot fY_2, x_p \cdot fY_3) \\
 &= ((a \partial_x|_{p_x} + b \partial_y|_{p_y} + c \partial_z|_{p_z} ) \cdot (fY[1]), \dots, \dots)
-&= ((a Y[1] \partial_x|_{p_x} f + af \partial_x|_{p_x} Y[1] + 
-     b Y[1] \partial_y|_{p_y} f + b f \partial_y|_{p_y} Y[1] 
+&= ((a Y[1] \partial_x|_{p_x} f + af \partial_x|_{p_x} Y[1] +
+     b Y[1] \partial_y|_{p_y} f + b f \partial_y|_{p_y} Y[1]
      c Y[2] \partial_z|_{p_z} f + c f \partial_y|_{p_z} Y[2], \dots, \dots) \\
-&= ((fa \partial_x Y[1] + fb\partial_y Y[2] + fc \partial_z Y[3]) Y +  (Y[1] a \partial_x + Y[2] b \partial_y + Y[3] c \partial_z) \cdot f, 
+&= ((fa \partial_x Y[1] + fb\partial_y Y[2] + fc \partial_z Y[3]) Y +  (Y[1] a \partial_x + Y[2] b \partial_y + Y[3] c \partial_z) \cdot f,
     \dots, \dots) \\
-&= (fx_p) |- Y + (Y(p) 
+&= (fx_p) |- Y + (Y(p)
 \end{aligned}
 $$
 
@@ -11044,7 +11154,7 @@ $$
 \end{aligned}
 $$
 
-Realy, we only need to  know $Y$ **along** $\sigma$  to compute the derivative, no more. 
+Realy, we only need to  know $Y$ **along** $\sigma$  to compute the derivative, no more.
 So it's enough to have (1) a curve $\sigma$ that is compatible with $x_p$, and (2)
 knowledge of the vector field $Y$ along $\sigma$.
 
@@ -11053,13 +11163,13 @@ knowledge of the vector field $Y$ along $\sigma$.
 
 Say that a curve $\sigma$ is tangent to a vector $t_p$ if $\sigma(0) = p$ and $\sigma'(0) = t$.
 Then a vector field $Y$ defined a along $\sigma$ is **parallel along** $t$ iff $t_p |- Y = 0$.
-Intuitively, this means that the vector field does not change in the direction of $t_p$, so it keeps 
+Intuitively, this means that the vector field does not change in the direction of $t_p$, so it keeps
 its value constant along $t_p$. It is as if the values of $Y(0)$ have been transported "parallely"/
 "with no distortion" along the tangent $t_p$.
 
 #### Parallel vector fields
 
-Let $\sigma$ be a $C^\infty$ curve.     
+Let $\sigma$ be a $C^\infty$ curve.
 
 
 # Clackety sounds: `bucklespring`
@@ -11072,7 +11182,7 @@ in college in the time of the plague, I feel like I was sorely missing this sort
 # Submersions and immersions
 
 Who in the world decided their names? I remember which is which based on the sound. "Submersion"
-is "surjective", "immersion" is "injective". But really, the naming makes no sense. I can intuitively 
+is "surjective", "immersion" is "injective". But really, the naming makes no sense. I can intuitively
 submerge a ring (a 1D object) into the ocean (a 3D object). so if anything, I'd expect submersions
 to be locally injective. You can only submerge $X$ into $Y$ if $Y$ is "larger" than $X$. The definition
 asks for the precise opposite!
@@ -11088,14 +11198,14 @@ $m \in M$, we have the fiber $\{ m \} \times G$ over $m$. We now consider the ke
 of the map $\pi^*: T_{m, g} M \times G \rightarrow T_m M$. What are the elements here?
 We know that $T(M \times G) \simeq TM \oplus TG \simeq TM \oplus \mathfrak g$ where $\mathfrak g$
 is the Lie algebra of the lie group $G$. So we know that $\pi^*$ maps $T_p M \oplus \mathfrak g \mapsto T_p M$.
-Thus the kernel of $\pi^*$ is going to be $\mathfrak g$. 
+Thus the kernel of $\pi^*$ is going to be $\mathfrak g$.
 This is called as the "vertical subspace" $V_p P \equiv ker(\pi^*) \subseteq T_p P$.
 
 Now, we have a choice in how we pick $H_p P$ for each point $p \in P$ such that $H_p P \oplus V_p P = T_p P$.
 This choice of $H_p P$ is the connection. We claim that this choice is equally well encoded by a lie-algebra
 valued one form, $\omega : TP \rightarrow \mathfrak g$. That is, $\omega: TM \times TG \rightarrow \mathfrak g$,
 which is $\omega: TM \times \mathfrak g \rightarrow \mathfrak g$. Intuitively, this tells us how much of the component
-along $\mathfrak g$ is not covered by the $H_p P$. 
+along $\mathfrak g$ is not covered by the $H_p P$.
 
 
 The idea is that since $V_p P \oplus H_p p = T_p P$, given any vector $t_p \in T_p P$, I can compute
@@ -11104,7 +11214,7 @@ However, I know that $V_p P$ is the same as $\mathfrak g$. Thus, I spit out the 
 element of $\mathfrak g$. This tells me how much of $V_p$ is *not* stolen away by $H_p P$ in the decomposition.
 
 So we have the map $\pi_h: T_p P \rightarrow V_p P$ given by $pi_h(t_p) \equiv t_p - H_p(t_p)$. The kernel
-of this map is $H_p P = ker(\pi_h)$. 
+of this map is $H_p P = ker(\pi_h)$.
 
 #### Generalizing to Non-trivial bundles
 
@@ -11141,7 +11251,7 @@ NOTE TO SELF: there should be a more direct proof that uses the fact that the fi
 > The drums are made from human skin; you can see why each set is called a
 > family.
 
-> 'Absolutely not.  Common misconception that; that fun is relaxing.  
+> 'Absolutely not.  Common misconception that; that fun is relaxing.
 
 > As the adage said; falling never killed anybody; it was when you stopped…
 
@@ -11171,7 +11281,7 @@ NOTE TO SELF: there should be a more direct proof that uses the fact that the fi
 > meaning.
 
 > There seemed little point in telling the creature when; the Dra’Azon called
-> every time “now” even though their language used tenses. 
+> every time “now” even though their language used tenses.
 
 
 > We are water falling, itinerant and vague, ever seeking the lowest level,
@@ -11187,7 +11297,7 @@ NOTE TO SELF: there should be a more direct proof that uses the fact that the fi
 > cultures.
 
 
-> And if we tamper with our inheritance, so what? What is more ours to tamper with? 
+> And if we tamper with our inheritance, so what? What is more ours to tamper with?
 
 > It was a young, unstable sort of bitterness, a kind of fake, something she
 > assumed for a while, like a child trying on adult clothes. She luxuriated in
@@ -11199,7 +11309,7 @@ NOTE TO SELF: there should be a more direct proof that uses the fact that the fi
 > name.
 
 
-> The voice sounded like congealing fat being poured into a jug; 
+> The voice sounded like congealing fat being poured into a jug;
 
 > It would have helped if the Culture had used some sort of emblem or logo;
 > but, pointlessly unhelpful and unrealistic to the last, the Culture refused
@@ -11236,7 +11346,7 @@ NOTE TO SELF: there should be a more direct proof that uses the fact that the fi
 > breakdown of law and morality, and the confusion and chaos normally
 > surrounding Final Events, could the game be carried out in anything remotely
 > resembling part of the civilized galaxy; which, believe it or not, the
-> Players like to think they’re part of. 
+> Players like to think they’re part of.
 
 
 
@@ -11294,7 +11404,7 @@ $f|_A$ and $f|_B$ are continous.
 This is clear from how restrictions work. Pick $i: A \rightarrow X$ to be the
 function that embeds $A$ with the subspace topology into $X$. This is continuous by
 the definition of the subspace topology. Now define $f|_A : A \rightarrow Y \equiv f \circ i$.
-which is continous since it is the composition of continuous functions. 
+which is continous since it is the composition of continuous functions.
 
 #### Backward: restrictions continuous implies $f$ continuous.
 
@@ -11329,9 +11439,9 @@ right).
 # Seeing the semidirect product of the dihedral group.
 
 Think of rigid motions of a hexagon. Let's focus on a single edge.
-See that the movement of this edge determines everything else. 
+See that the movement of this edge determines everything else.
 So let's see where this edge can go to. There are six different
-locations it can go to, by "rotating". Not only that, but we can 
+locations it can go to, by "rotating". Not only that, but we can
 also "flip" the edge (by flipping the entire hexagon!) This means
 we have two types of transformations we can perform on this single
 edge, that determines everything else: (1) rotating it, moving it to another
@@ -11346,7 +11456,7 @@ one asks is how to write the result of performing one move after another?
 In fact, there is a subtlety here. What do we mean by "rotate by an angle"? How do
 we determine "clockwise" and "anti-clockwise"? There are two choices:
 - 1. Define these "from the top view", as viewing the hexagon as the face of a clock.
-- 2. Define this "from the view of the edge", as rotating in the direction of the edge. 
+- 2. Define this "from the view of the edge", as rotating in the direction of the edge.
 
 
 # Animating rotations with quaternion curves
@@ -11354,7 +11464,7 @@ we determine "clockwise" and "anti-clockwise"? There are two choices:
 - [Reference: classic paper](http://graphics.cs.cmu.edu/nsp/course/15-464/Fall05/assignments/p245-shoemake.pdf)
 - [Comp.graphics usenet FAQ](http://www.faqs.org/faqs/graphics/algorithms-faq/)
 
-# Mnemonic for hom-tensor and left-right adjoints 
+# Mnemonic for hom-tensor and left-right adjoints
 
 - Remember the phrase `tensor-hom` adjunction, thus tensor is left adjoint.
 - Remember that the type of an adjunction is `(f x -> y) -> (x -> g y)` and here,
@@ -11409,7 +11519,7 @@ We also have a map $-/\sim : F \rightarrow T$
 
 For this diagram to commute, we need the fibers of $(f \circ f_F): R^{MxN} \rightarrow O$ to take constant values for each $o \in O$.
 Unwrapping that condition implies that $f$ is bilinear. So, the condition
-$f_T(x \otimes y) = f(x, y)$ uniquely determines $f_T(x \otimes y)$ if $f(x, y)$ is bilinear. 
+$f_T(x \otimes y) = f(x, y)$ uniquely determines $f_T(x \otimes y)$ if $f(x, y)$ is bilinear.
 If not, the map $f_T$ is ill-defined, as we cannot "kan extend" $f_F$ along $f_T$.
 
 
@@ -11421,11 +11531,11 @@ by open neighbourhoods. This also means that the space obeys the Urhyson lemma, 
 continuous functions that take value $0$ at some point and $1$ at some other point. We will use this
 to argue about zero sets of functions.
 
-- We will first show a strong nullstellensatz like theorem, showing that every maximal ideal $m$ of 
+- We will first show a strong nullstellensatz like theorem, showing that every maximal ideal $m$ of
    the ring of continuous functions $C(x)$ is in bijection with the set of functions that vanish at a point, $V(x)$.
 
 - Let $C(X)$ be the ring of all continuous real valued functions on $X$. For each $x \in X$, define
-  $I(x) \subseteq C(X)$ to be the set of functions that vanish at $x$. 
+  $I(x) \subseteq C(X)$ to be the set of functions that vanish at $x$.
   This is a maximal ideal, because it is the kernel of the evaluation map $f \mapsto f(x)$.
 
 - Given some maximal ideal $m \subseteq C(X)$, we will show that there is some point $p \in X$ such that
@@ -11447,12 +11557,12 @@ to argue about zero sets of functions.
    (not just ones in $m$) that vanish at $x$. But $m$ is maximal, and hence $m = I(x)$. This tells us that
    every maximal ideal $m$ corresponds to some vanishing set $I(x)$.
 
-- We will next show that every vanishing set $I(x)$ is distinct. We already know that it is maximal. This gives us an 
+- We will next show that every vanishing set $I(x)$ is distinct. We already know that it is maximal. This gives us an
    injection. Let $I(p), I(q)$ be two vanishing sets for distinct points. Let $z_p$ be the function constructed from
    Urhyson's lemma that is zero at $p$ at nonzero at $q$. Thus, we have $z_p \in I(p)$ and $z_p \not \in I(q)$. Hence,
    $I(p) \neq I(q)$. This shows that the maximal ideals $I(p), I(q)$ will be distinct.
 
-- We have thus established a **bijection** / **nullstellensatz** between zero sets maximal ideals $V(m)$ and 
+- We have thus established a **bijection** / **nullstellensatz** between zero sets maximal ideals $V(m)$ and
    functions that vanish at a point $I(p)$.
 
 
@@ -11463,15 +11573,15 @@ to argue about zero sets of functions.
    Thus, we have shown that the maximal spectrum of the ring allows us to recover the topology of the underlying space!
 
 
-- We wish to show that the open set $D_{top}(f)$ form a base for the topology on $X$. So consider an open set 
+- We wish to show that the open set $D_{top}(f)$ form a base for the topology on $X$. So consider an open set
    $U \subseteq X$. Now think of $U^c$ which is closed. We build the function $d(x, U)$ such that $d(x, U)(x) = 1$
    and $d(x, U)(U^c) = 0$ by invoking Urhyson. Therefore, $x \in D_{top}(d(x, U)) \subseteq U$. So the set $U$ can be
    covered with $\{ D_{top}(d(x, U)): x \in U \}$, which means the sets $D(d(x, U))$ form a base of the topology on $X$.
 
 - We wish to show that the open sets $D_{spec}(f)$ form a base for the topology on $maxSpec(C(X))$. Let $U$ be a
-   closed  set in $maxSpec(C(X))$. 
+   closed  set in $maxSpec(C(X))$.
 
--  We wish to show that the open set $D_{spec}(f)$ have homeomorphisms $D_{top}(f)$. This completes the isomorphism into a 
+-  We wish to show that the open set $D_{spec}(f)$ have homeomorphisms $D_{top}(f)$. This completes the isomorphism into a
    homeomorphism, and we have thus completed the proof that we can recover the topology from the spectrum.
 
 - Consider the function $zero: X \rightarrow mSpec(C(X))$  sending the point $x$ to the kernel of the evaluation map at $x$.
@@ -11483,7 +11593,7 @@ to argue about zero sets of functions.
    maps to what we would expect; it trades the algebraic definition of "does not vanish" to the geometric one,
    while describing the exact same phenomena.
 
-# Urhyson's lemma 
+# Urhyson's lemma
 
 We don't know any continuous functions on compact Haussdorf spaces; Let $X$ be a topological space. What functions
 $X \rightarrow \mathbb R$ are continuous? We only have the constant functions!
@@ -11517,7 +11627,7 @@ exists a set $U \subseteq X$ that is open such that $C \subseteq U \subseteq \ov
 closed-(open-closed)-open.
 
 - Consider $C$ and $O^c$. These are two closed sets. Since $C$ is contained in $O$,
-  $C$ does not meet $O^c$ ($C \subseteq O$, we have $C \cap O^c = \emptyset$). 
+  $C$ does not meet $O^c$ ($C \subseteq O$, we have $C \cap O^c = \emptyset$).
 - By normality, we have two opens $P, Q$ such that $C \subseteq P$, $O^c \subseteq Q$, and $P \cap Q = \emptyset$.
 - So we have $C \subseteq P$, and $P \subseteq Q^c$. This gives us $C \subseteq P \subseteq Q^c \subseteq O$.
 - We have $\overline{P} \subseteq Q^c$ as $P \subseteq Q^c$ and $Q^c$ is closed, and thus contains all of its limit points.
@@ -11532,13 +11642,13 @@ closed-(open-closed)-open.
 - Suppose we succeeded. Then $[0, p) \subseteq [0, 1]$ is open in the subspace topology.
 - Define $U_p \equiv f^{-1}([0, p)) \subseteq X$. Each of these $U_p$ are included in one another as we make $p$
   larger.
-- In fact, we have 
+- In fact, we have
 
 $$U_p = f^{-1}([0, p)) \subseteq f^{-1}([0, p]) \subseteq f^{-1}([0, q)) \subseteq f^{-1}([0, q]])$$
 
 - We have that $\overline{U_p} = f^{-1}([0, p]) \subseteq U_q = f^{-1}([0, q))$ for $p < q$.
 - If we now think of the original sets, we needed $f(A) = 0$, $f(B) = 1$. So we must have that $A \subseteq f^{-1}([0, p))$
-  for all $p > 0$. 
+  for all $p > 0$.
 - Similarly, we have that $U_p \subseteq B^c$ for $p < 1$, as till $p$ reache $1$, we cannot get to $B$.
 - This gives us $A \subseteq U_p \subseteq B^c$.
 - This is the only properties we will use to reconstruct $f$!
@@ -11569,14 +11679,14 @@ See that we don't even need normality! (Time: 29:30 in video)
 - For $p \in P$, We claim $x \not \in U_p \implies f(x) \geq p$. If $x \not \in U_p$,
   then $p$ is in the set of points we take a $sup$ over. Hence, we have that $f(x) \geq p$
   since $f(x)$ is the $sup$.
-- The contrapositive is that $f(x) < p \implies x \in U_p$. 
-- To show $f: X \rightarrow [0, 1]$ is continuous, it suffices to show that preimages of open 
+- The contrapositive is that $f(x) < p \implies x \in U_p$.
+- To show $f: X \rightarrow [0, 1]$ is continuous, it suffices to show that preimages of open
   sets are open for a basis. We know a basis consisting of intervals $\{ (p, q) : p, q \in P \}$.
   We need to show that $f^{-1}((r_0, s_0))$ is open for $r_0, s_0 \in P$ with $0 < r_0 < s_0 < 1$.
   [The cases where $r_0 = 0$ or $s_0 = 1$ are easy modifications].
 - Choose a $x \in f^{-1}((r_0, s_0))$. Since $P$ is dense, we can find $r_x, s_x$ such that
   $r_0 < r_x < x < s_x < s_0$.
-- We claim that $x \in \overline{U_{r_x}}^c \cap U_{s_x}$. $\overline{U_{r_x}}^c$ is open as it is 
+- We claim that $x \in \overline{U_{r_x}}^c \cap U_{s_x}$. $\overline{U_{r_x}}^c$ is open as it is
   the complement of a closed set. Hence, we have shown that $x$ is in this open nbhd.
 - Since $f(x) < U_s$, we must have $x \in U_s$ by our contrapositive.
 - We claim that $x \not \in \overline{U_r}$. Proof by contradiction; suppose $x \in \overline{U_r}$,
@@ -11665,7 +11775,7 @@ A boolean ring is one where for every element $r \in R$, we have $r^2 = r$. We f
 study boolean rings abstactly and collect their properties. Secondly,
 we show an isomorphism between complete lattices and boolean rings.
 Thirdly, we use the topology from $Spec$ to import a topology on complete lattices,
-which will be Haussdorf and completely disconnected. 
+which will be Haussdorf and completely disconnected.
 
 #### In a boolean ring, all prime ideals are maximal.
 
@@ -11721,8 +11831,8 @@ $$
 $$
 
 Recall that intersecting vanishing sets is the same as building an ideal containing all those functions.
-So we have an ideal $I \equiv (f_{11}, f_{12}, \dots, f_{21}, \dots, f_{ij})$. 
-Saying that the intersection of all $V(f_{ij})$ is empty is saying that $I = R$. 
+So we have an ideal $I \equiv (f_{11}, f_{12}, \dots, f_{21}, \dots, f_{ij})$.
+Saying that the intersection of all $V(f_{ij})$ is empty is saying that $I = R$.
 This is by strong nullstellensatz, which states that every maximal ideal (and hence, every ideal which is contained in some maximal ideal)
 must have some solution. The only way to not have a solution (ie, to vanish nowhere) is to generate the entire ring.
 Thus, we must have that $I \equiv (f_{ij}) = R$, and hence $1 \in R$ implies $1 \in I = (f_{ij})$.
@@ -11765,7 +11875,7 @@ or in terms of and (multiplication) and xor(addition) as $h \equiv f \lor g \equ
 To re-ring-theory this, write $h = f + g + fg = f + g(1 - f)$. See that (1) if $f$ vanishes ($f = 0$)
 then $h = g$, (2) if $g$ vanishes ($g = 0$) then $h = f$ which is as expected. If neither
 $f$ nor $g$ vanish at $p$, then in this case, we must have $(1 - f)$ vanishes at $p$, since $f(1 - f) = f - f^2 = 0 \in p$.
-Hence $f$ or $f^2$ belong to the prime ideal, and hence one of them must vanish. If $f$ 
+Hence $f$ or $f^2$ belong to the prime ideal, and hence one of them must vanish. If $f$
 does not vanish, then $(1 - f)$ vanishes, and hence $h = f$ does not vanish. So,
 $h$ does not vanish when either $f$ or $g$ do not vanish, which means that $D(f) \cup D(g) = D(h) = D(f + g + fg)$.
 Iterate for $n$.
@@ -11811,7 +11921,7 @@ axioms of a commutative ring, and is boolean because $a^2 = a \land a = a$.
 #### Boolean rings $B$ are boolean lattices of the clopen sets of the spectra $BRing(Clopen(Spec(B)))$
 
 Take a boolean ring $B$, build its spectra $Spec(B)$. Take the set of all clopens. We have
-seen that this is exactly the sets $D(f)$. Let us show that $D(fg) = D(f) \cap D(g)$ and 
+seen that this is exactly the sets $D(f)$. Let us show that $D(fg) = D(f) \cap D(g)$ and
 $D(f + g) = D(f) \oplus D(g)$ where $\oplus$ is the exclusive or of the sets. This induces
 a map from the ring operations to the lattice operations.
 
@@ -11823,7 +11933,7 @@ We know that for two elements $l, m$ we have that $lm = l \land m$. From the pre
 argument, we know that $D(lm) = D(l) \cap D(m)$. This gies $D(l \land m) =  D(lm) = D(l) \cap D(m)$,
 a lattie homomorphism. we get $D(l \lor m) = D(l) \cup D(m)$ by complementing; Since
 every set is clopen, we can complement a clopen set $D(l)$ to get some clopen set $D(l)^c$.
-But every clopen set can be written as $D(l')$ for some $l'$. 
+But every clopen set can be written as $D(l')$ for some $l'$.
 
 
 
@@ -11900,7 +12010,7 @@ $$
 $$
 
 So, $\phi$ really is a homomorphism from the external description (given in terms of the conjugation)
-and the internal description (given in terms of the multiplication). 
+and the internal description (given in terms of the multiplication).
 
 We can also go the other direction, to start from the internal definition and get to the conjugation.
 Let $g \equiv nk$ and $g' \equiv n'k'$. We want to multiply them, and show that the multiplication
@@ -11986,22 +12096,22 @@ $$
 Where $i$ is for inclusion, $\pi$ is for projection. This is an exact sequence, since it's of the form
 kernel-ring-quotient. We have three natural choices to tensor with: $\mathbb Z, \mathbb 2Z, \mathbb Z/\mathbb 2Z$.
 By analogy with fields, tensoring with the base ring $\mathbb Z$ is unlikely to produce anything of interest.
-$\mathbb 2Z$ maybe more interesting, but see that the map $1 \in \mathbb Z \mapsto 2 \in 2 \mathbb Z$ gives us an 
+$\mathbb 2Z$ maybe more interesting, but see that the map $1 \in \mathbb Z \mapsto 2 \in 2 \mathbb Z$ gives us an
 isomorphism between the two rings. That leaves us with the final and most interesting element (the one with torsion),
 $\mathbb Z / \mathbb 2Z$. So let's tensor by this element:
 
 $$
 \mathbb Z/2\mathbb Z \otimes  2\mathbb Z \xrightarrow{i'}
-\mathbb Z/2\mathbb Z \otimes  \mathbb Z \xrightarrow{\pi'} 
+\mathbb Z/2\mathbb Z \otimes  \mathbb Z \xrightarrow{\pi'}
 \mathbb Z/2\mathbb Z \otimes  \mathbb Z / \mathbb 2Z
 $$
 
 - See that $\mathbb Z/2\mathbb Z \otimes 2 \mathbb Z$ has elements of the form $(0, *) = 0$,
-  We might imagine that the full ring collapses since 
+  We might imagine that the full ring collapses since
   $1 \otimes 2k) = 2(1 \otimes k) = 2 \otimes k = 0$ (since $2 = 0$ in $\mathbb Z/2\mathbb Z$). But this in fact
   incorrect! Think of the element $1 \otimes 2$. We *cannot* factorize this as $2(1 \otimes 1)$ since $1 \not \in 2 \mathbb Z$.
-  So we have the element $1 \otimes 2 \in \mathbb Z/2\mathbb Z / \times 2 \mathbb Z$. 
-- See that $\mathbb Z/2\mathbb Z \otimes \mathbb Z \simeq \mathbb Z/2\mathbb Z$: 
+  So we have the element $1 \otimes 2 \in \mathbb Z/2\mathbb Z / \times 2 \mathbb Z$.
+- See that $\mathbb Z/2\mathbb Z \otimes \mathbb Z \simeq \mathbb Z/2\mathbb Z$:
   Factorize $(k, l) = l(k, 1) = (kl, 1) \simeq \mathbb Z/2 \mathbb Z$.
 - Similarly, see that $\mathbb Z/2\mathbb Z \otimes \mathbb Z/2\mathbb Z  \simeq \mathbb Z/2\mathbb Z$.
   Elements $0 \otimes 0, 0 \otimes 1, 1 \otimes 0 \simeq 0$ and $1 \otimes 1 \simeq 1$.
@@ -12012,7 +12122,7 @@ $$
   all elements of the form $\alpha n + \beta m$ is divisible by $gcd(n, m)$. Hence, all multiples of $gcd(n, m)$ are sent
   to zero, and the rest of the action follows from this. So we effectively map into $\mathbb Z/ gcd(m, n) \mathbb Z$
 - In fact, we can use the above along with (1) write finitely generated abelian groups as direct sum of cyclic groups,
-  (2) tensor distributes over direct sum. This lets us decompose tensor products of all finitely generated 
+  (2) tensor distributes over direct sum. This lets us decompose tensor products of all finitely generated
   abelian groups into cyclics.
 - This gives us another heuristic argument for why $\mathbb Z \times \mathbb Z/2\mathbb Z \simeq \mathbb Z/2 \mathbb Z$.
   We should think of $\mathbb Z$ as $\mathbb Z/\mathbb \infty Z$, since we have "no torsion" or "torsion at infinity".
@@ -12046,7 +12156,7 @@ So finally, we have the exact sequence:
 
 $$
 \mathbb Z/2\mathbb Z \otimes  2\mathbb Z \xrightarrow{i'}
-\mathbb Z/2\mathbb Z \otimes  \mathbb Z \xrightarrow{\pi'} 
+\mathbb Z/2\mathbb Z \otimes  \mathbb Z \xrightarrow{\pi'}
 \mathbb Z/2\mathbb Z \otimes  \mathbb Z / \mathbb 2Z \rightarrow 0
 $$
 
@@ -12071,7 +12181,7 @@ $$
 
 - First, to see that $\pi'$ is surjective, consider the basis element $r \otimes c \in R \otimes C$.
   Since $\pi$ is surjective, there is some element $b \in B$ such that $\pi(b) = c$. So the element
-  $r \otimes b \in B$ maps to $r \otimes c$ by $\pi'$; $\pi'(r \otimes b) = r \otimes \pi(b) = r \otimes c$ 
+  $r \otimes b \in B$ maps to $r \otimes c$ by $\pi'$; $\pi'(r \otimes b) = r \otimes \pi(b) = r \otimes c$
   (by definition of $\pi$, and choice of $b$). This proves that $B \xrightarrow{\pi'} R \otimes C \rightarrow 0$
   is exact.
 
@@ -12090,7 +12200,7 @@ $$
 $$
 So we have that any element in $i'(r \otimes a) \in im(i')$ is in the kernel of $\pi'$.
 
-Next, let's show $ker(\pi') \subseteq im(i')$. This is the "hard part" of the proof. So let's 
+Next, let's show $ker(\pi') \subseteq im(i')$. This is the "hard part" of the proof. So let's
 try a different route. I claim that if $im(i') = ker(\pi')$ iff $coker(i') = R \otimes C$. This
 follows because:
 
@@ -12166,7 +12276,7 @@ written as $kn = n'k$. So:
 - When commuting, the element that *gets changed/twisted* in the normal subgroup.
   This is because the normal subgroup has the requisite constraint on it to be
   twistable.
-- The element that remains invariant is the actor. 
+- The element that remains invariant is the actor.
 
 In the case of translations and rotations, it's the translations that are normal.
 This can be seen either by noticing that they are abelian, and are thus normal, while
@@ -12177,7 +12287,7 @@ versus rotate-translate.
 <img src="./static/semidirect-product/rotate-translate.png"/>
 - First rotating by $r$ and then translating by $t$ along the x-axis
   has the same effect as first translating by $t'$ at 45 degrees to the x-axis,
-  and then rotating by the **same** r. 
+  and then rotating by the **same** r.
 
 - This begs the question, is there some other
   translation `t''` and some other rotation `r''` such that `t''; r''` (`t''` first, `r''` next)
@@ -12197,7 +12307,7 @@ versus rotate-translate.
 
 #### Fiber bundles
 
-In the case of a bundle, we have a sequence of maps $F \rightarrow E \rightarrow B$ where 
+In the case of a bundle, we have a sequence of maps $F \rightarrow E \rightarrow B$ where
 $F$ is the fiber space (like the tangent space at the identity $T_eM$). $E$ is the total space (the bundle $TM$),
 and $B$ is the base space (the manifold $M$). We require that the inverse of the projection
 $\pi^{-1}: B \rightarrow E$ locally splits as product $\pi^{-1}(U) \simeq U \times F$.
@@ -12213,13 +12323,13 @@ $$
 $$
 
 - We imagine this as a bundle, with base space $M=K$, bundle $TM=N \ltimes K$,
-  and fiber space (like, tangent space at the identity, say) $T_e M =  N$. 
+  and fiber space (like, tangent space at the identity, say) $T_e M =  N$.
 
 - Furthermore, this exact sequence splits; So there is a map $s: K \rightarrow N \ltimes K$
   ($s$ for "section/split") such that $\forall k, \pi(s(k)) = k$. To see that this is true,
   define $s(k) \equiv (e, k)$. Since all actions of $K$  fix the identity $e \in N$, we have
   $s(k)s(k') = (e, k) (e, k') = (e, kk') = s(kk')$ so this is a valid map. To see that $\pi$
-  is its inverse, just act $\pi$; $\pi(s(k)) = \pi(e, k) = k$. 
+  is its inverse, just act $\pi$; $\pi(s(k)) = \pi(e, k) = k$.
 
 
 #### Viewing the semidirect product space as a G-bundle
@@ -12251,13 +12361,13 @@ that this bundle is a principal $G$-bundle.
 - [Ref: Geometrical anatomy of theoretical physics, lecture 19, principal bundles](https://www.youtube.com/watch?v=vYAXjTGr_eM&list=PLPH7f_7ZlzxTi6kS4vCmv4ZKm9u8g5yic&index=19)
 
 
-#### Relationship to gauges 
+#### Relationship to gauges
 
 **NOTE**: this was written before I knew what a G-bundle is. This is perhaps
 easier to read, but less useful in hindsight.
 
 Let $X$ be the space of *all* states. Let $O$ be a group action whose orbits identify
-equivalent states. So the space of "physical states" or "states that describe the same 
+equivalent states. So the space of "physical states" or "states that describe the same
 physical scenario" is the orbit of $X$ under $O$, or $X/O$.
 Now, the physical space $X/O$ is acted upon by some
 group $G$.  If we want to "undo the quotienting" to have $G$ act on all of $X$, then we need to construct $G \ltimes O$.
@@ -12291,17 +12401,17 @@ We need to lift this action of `H` the `H`-orbits. This is precisely the data a
 connection gives us (why?) I guess the intuition is that the orbits of $X$ are like
 the tangent spaces where $X \rightarrow X/O$ is the projection from the bundle
 into the base space, and the $G$ is a curve that tells us what the "next point" we want to
-travel to from the current point. The connection allows us to "lift" this to 
+travel to from the current point. The connection allows us to "lift" this to
 "next tangent vector". That's quite beautiful.
 
 We want the final picture to be:
 
 ```
-*1| #1 | @1  X          #2| @2|                    
-*2| #2 | @2    --G-->   #1|   |   
-*3| #3 | @3             #3|   | 
-  | |  |                  |   | 
-  | v  |                  |   |  
+*1| #1 | @1  X          #2| @2|
+*2| #2 | @2    --G-->   #1|   |
+*3| #3 | @3             #3|   |
+  | |  |                  |   |
+  | v  |                  |   |
 * | #  | @ [X/H] --G--> # | @ | *
 ```
 
@@ -12338,7 +12448,7 @@ $$
 
 - Hence, the image of $n$ is entirely in the kernel of $\pi$. But the kernel of $\pi$ is isomorphic to $N$,
   and hence the image of $n$ is isomorphic to $N$. So we've managed to decompose an element of $G$ into a $K$
-  part and an $N$ part. 
+  part and an $N$ part.
 - Write $G$ as $N \ltimes K$, by the map $\phi: G \rightarrow N \ltimes K; \phi(g) = (n(g), k(g))$.
   Let's discover the composition law.
 
@@ -12444,7 +12554,7 @@ But this can't be, because $(42, 42) \not \in V$.
 
 #### $\mathbb Z$
 
-The set $\mathbb Z$ is not an algebraic variety. Suppose it is, and is the zero set 
+The set $\mathbb Z$ is not an algebraic variety. Suppose it is, and is the zero set
 of a collection of polynomials $\{ f_i \}$. Then for some $f_i$, they must vanish on at least
 all of $\mathbb Z$, and maybe more. This means that $f_i(z) = 0$ for all $z \in \mathbb Z$. But a
 degree $n$ polynomial can have at most $n$ roots, unless it is the zero polynomial.
@@ -12484,7 +12594,7 @@ $$
 $$
 
 is exact. But exactness is a local property, so it suffices to check against each $(R_f)_m$ for
-all maximal ideals $m$. Since $(R_f)_m = (R_m)_f$ (localizations commute), let's reason about $(R_m)_f$. 
+all maximal ideals $m$. Since $(R_f)_m = (R_m)_f$ (localizations commute), let's reason about $(R_m)_f$.
 We know that $R_m$ is a local ring as $m$ is prime (it is maximal), and thus $R_m$ has only a single
 ideal $m$. Since $f \in m$ for all maximal ideal $m$ (since $f$ lives in the intersection of all prime
 ideals), localizing at $f$ in $R_m$ blows up the only remaining ideal, collapsing us the ring to give
@@ -12634,7 +12744,7 @@ $$
 Using this, Consider the matrix $P_A \equiv xI - A$ which lives in $End(V)[x]$,
 and its corresponding determinant $p_A(x) \equiv det(P_A) = det(xI - A)$.
 
-We have that 
+We have that
 
 $$
 P_A adj(P_A) = det(P_A) I \\
@@ -12671,7 +12781,7 @@ $$
 $$
 
 The expression $A[i, k] det(A'[k, i])$ is the determinant of $A$ when expanded along the row $i$ using
-the [Laplace expansion](https://en.wikipedia.org/wiki/Laplace_expansion). 
+the [Laplace expansion](https://en.wikipedia.org/wiki/Laplace_expansion).
 
 Next, let's compute $D[i, j]$ when $i \neq j$:
 
@@ -12716,7 +12826,7 @@ $$
 But $Z$ has a repeated row: $A[j, :] = A[i, :]$ and $i \neq j$. Hence, $det(Z) = 0$.
 So, $D[i, j] = 0$ when $i \neq j$.
 
-Hence, this means that $A adj(A) = det(A) I$. 
+Hence, this means that $A adj(A) = det(A) I$.
 
 - We can rapidly derive other properties from this reuation. For example, $det(A adj(A)) = det(det(A) I) = det(A)^n$,
   and hence $det(A) det(adj(A)) = det(A)^n$, or $det(adj(A)) = det(A)^{n-1}$.
@@ -12785,9 +12895,9 @@ the coefficients $c[i][j]$. Next, expand the wedge:
 $$
 \begin{aligned}
 & v[1] \wedge v[2] \wedge v[3] \\
-&= (c[1][1]b[1] + c[1][2]b[2] + c[1][3]b[3]) \wedge 
-   (c[2][1]b[1] + c[2][2]b[2] + c[2][3]b[3]) \wedge 
-   (c[3][1]b[1] + c[3][2]b[2] + c[3][3]b[3]) 
+&= (c[1][1]b[1] + c[1][2]b[2] + c[1][3]b[3]) \wedge
+   (c[2][1]b[1] + c[2][2]b[2] + c[2][3]b[3]) \wedge
+   (c[3][1]b[1] + c[3][2]b[2] + c[3][3]b[3])
 \end{aligned}
 $$
 
@@ -12799,9 +12909,9 @@ Let's identify the $(\cdot)$ and see what remains:
 $$
 \begin{aligned}
 & v[1] \wedge v[2] \wedge v[3] \\
-&= c[1][1]b[1] \wedge (c[2][1]b[1] + c[2][2]b[2] + c[2][3]b[3]) \wedge (c[3][1]b[1] + c[3][2]b[2] + c[3][3]b[3]) 
- + c[1][2]b[2] \wedge(c[2][1]b[1] + c[2][2]b[2] + c[2][3]b[3])  \wedge(c[3][1]b[1] + c[3][2]b[2] + c[3][3]b[3]) 
- + c[1][3]b[2] \wedge(c[2][1]b[1] + c[2][2]b[2] + c[2][3]b[3])  \wedge(c[3][1]b[1] + c[3][2]b[2] + c[3][3]b[3]) 
+&= c[1][1]b[1] \wedge (c[2][1]b[1] + c[2][2]b[2] + c[2][3]b[3]) \wedge (c[3][1]b[1] + c[3][2]b[2] + c[3][3]b[3])
+ + c[1][2]b[2] \wedge(c[2][1]b[1] + c[2][2]b[2] + c[2][3]b[3])  \wedge(c[3][1]b[1] + c[3][2]b[2] + c[3][3]b[3])
+ + c[1][3]b[2] \wedge(c[2][1]b[1] + c[2][2]b[2] + c[2][3]b[3])  \wedge(c[3][1]b[1] + c[3][2]b[2] + c[3][3]b[3])
 \end{aligned}
 $$
 
@@ -12813,9 +12923,9 @@ contain $b[3]$ in the brackets of $c[1][3]b[3]$. This leaves us with:
 $$
 \begin{aligned}
 & v[1] \wedge v[2] \wedge v[3] \\
-&= c[1][1]b[1] \wedge (c[2][2]b[2] + c[2][3]b[3]) \wedge (c[3][2]b[2] + c[3][3]b[3]) 
- + c[1][2]b[2] \wedge(c[2][1]b[1] + c[2][3]b[3])  \wedge(c[3][1]b[1] +  c[3][3]b[3]) 
- + c[1][3]b[2] \wedge(c[2][1]b[1] + c[2][2]b[2] )  \wedge(c[3][1]b[1] + c[3][2]b[2]) 
+&= c[1][1]b[1] \wedge (c[2][2]b[2] + c[2][3]b[3]) \wedge (c[3][2]b[2] + c[3][3]b[3])
+ + c[1][2]b[2] \wedge(c[2][1]b[1] + c[2][3]b[3])  \wedge(c[3][1]b[1] +  c[3][3]b[3])
+ + c[1][3]b[2] \wedge(c[2][1]b[1] + c[2][2]b[2] )  \wedge(c[3][1]b[1] + c[3][2]b[2])
 \end{aligned}
 $$
 
@@ -12903,7 +13013,7 @@ x = [p q]
 And thus we compute `x^2` to be:
 
 ```
-x^2 
+x^2
 = [p q][p q]
   [r s][r s]
 = [p^2 + qr; pq + qs]
@@ -12933,7 +13043,7 @@ needs zariski like arguments to be handled.
 
 #### Cramer's rules
 
-We can get cramer's rule using some handwavy manipulation 
+We can get cramer's rule using some handwavy manipulation
 [or rigorizing the manipulation using geometric algebra](https://arxiv.org/pdf/1205.5935.pdf).
 
 Say we have a system of equations:
@@ -12941,7 +13051,7 @@ Say we have a system of equations:
 $$
 \begin{aligned}
 a[1] x + b[1] y = c[1] \\
-a[2] x + b[2] y = c[2] 
+a[2] x + b[2] y = c[2]
 \end{aligned}
 $$
 
@@ -12961,11 +13071,11 @@ y = \frac{\vec a \wedge \vec c}{\vec a \wedge \vec b} \\
 y =
 \frac{\begin{vmatrix}
 a[1] & a[2] \\
-c[1] & c[2] 
+c[1] & c[2]
 \end{vmatrix}}{
 \begin{vmatrix}
 a[1] & b[1] \\
-a[2] & b[2] 
+a[2] & b[2]
 \end{vmatrix}
 }
 \end{aligned}
@@ -12986,7 +13096,7 @@ Which is exactly cramer's rule.
 # Nakayama's lemma
 
 I read the statement as $IM = M \implies M = 0$, when $I$ is in the jacobson radical.
-1. Essentially, it tells us that if a module $M$ "lives by the $I$", then it also "dies by the $I$". 
+1. Essentially, it tells us that if a module $M$ "lives by the $I$", then it also "dies by the $I$".
 2. Alternatively, we factor the equation as $M(I - 1) = 0$. Since our ideal $I$
    is a member of the jacobson radical, $(1 - I)$ is "morally" a unit and thus $M = 0$.
    This is of course completely bogus, but cute nontheless.
@@ -13028,7 +13138,7 @@ $$
 #### 1. Vector fields over the sphere is not free
 
 - 1. Given two bundles $E, F$ over any manifold $M$, a module isomorphism
-  $f: \mathfrak X(E) \rightarrow \mathfrak X(F)$ of vector fields as 
+  $f: \mathfrak X(E) \rightarrow \mathfrak X(F)$ of vector fields as
   $C^\infty(M)$ modules is induced by a smooth isomorphism of vector bundles $F: E \rightarrow F$.
 - 2. The module $\mathfrak X(M)$ is finitely generated as a $C^\infty$ module over $M$.
 - Now, assume that $\mathfrak X(S^2)$ is a free module, so we get that
@@ -13066,7 +13176,7 @@ his writing style. Here's a big list of my favourite quotes:
 > His madness held no affinity to any sort recorded in even the latest and most
 > exhaustive of treatises, and was conjoined to a mental force which would have
 > made him a genius or a leader had it not been twisted into strange and
-> grotesque forms. 
+> grotesque forms.
 
 
 > seething vortex of time
@@ -13117,14 +13227,14 @@ his writing style. Here's a big list of my favourite quotes:
 > was as if the workmanship were that of another planet.
 
 
-> intricate arabesques roused into a kind of ophidian animation. 
+> intricate arabesques roused into a kind of ophidian animation.
 
 > never was an organic brain nearer to utter annihilation in the chaos that
 > transcends form and force and symmetry.
 
 
 > away outside the galaxy and possibly beyond the last curved rim of
-> space. 
+> space.
 
 
 > It was like the drone of some loathsome, gigantic insect ponderously shaped
@@ -13145,7 +13255,7 @@ his writing style. Here's a big list of my favourite quotes:
 > As before, the sides of the road showed a bruising indicative of the
 > blasphemously stupendous bulk of the horror
 
-> The dogs slavered and crouched close to the feet of the fear-numbed family. 
+> The dogs slavered and crouched close to the feet of the fear-numbed family.
 
 > an added element of furtiveness in the clouded brain which subtly transformed
 > him from an object to a subject of fear
@@ -13181,7 +13291,7 @@ his writing style. Here's a big list of my favourite quotes:
 
 >  everywhere were those hectic and prismatic variants of some diseased,
 >  underlying primary tone without a place among the known tints of earth.
-> 
+>
 > In her raving there was not a single specific noun, but only verbs and
 > pronouns..
 
@@ -13198,7 +13308,7 @@ his writing style. Here's a big list of my favourite quotes:
 
 > No traveler has ever escaped a sense of strangeness in those deep ravines, and
 > artists shiver as they paint thick woods whose mystery is as much of the
-> spirits as of the eye. 
+> spirits as of the eye.
 
 
 > We live on a placid island of ignorance in the midst of black seas of infinity,
@@ -13216,7 +13326,7 @@ his writing style. Here's a big list of my favourite quotes:
 > garden-girdled Babylon
 
 > iridescent flecks and striations resembled nothing familiar to geology or
-> mineralogy. 
+> mineralogy.
 
 
 
@@ -13234,9 +13344,9 @@ his writing style. Here's a big list of my favourite quotes:
 # Hairy ball theorem from Sperner's Lemma (TODO)
 
 - Let $\Delta$ be an n-dimensional simplex with vertices $v_0, v_1, \dots, v_n$.
-- Let $\Delta_i$ be the face opposite to vertex $v_i$. That is, $\Delta_i$ is the face with all vertices except $v_i$. 
+- Let $\Delta_i$ be the face opposite to vertex $v_i$. That is, $\Delta_i$ is the face with all vertices except $v_i$.
 - The boundary $\partial \Delta$ is the union of all the $n+1$ faces of $\Delta_i$ (i is from $0$ to $n$).
-- Let $\Delta$ be subdivided into smaller simplicies forming a simplciial complex $S$. 
+- Let $\Delta$ be subdivided into smaller simplicies forming a simplciial complex $S$.
 - **Sperner's lemma**: Let the vertices of $S$ be labelled by $\phi: S \rightarrow \Delta$ (that is,
    it maps all vertices of the simplicial complex $S$ to one of the vertices of the simplex $\Delta$),
    such that $v \in \Delta_i  \implies \phi(v) \neq i$. Then there is at least one $n$-dimensional simplices
@@ -13281,7 +13391,7 @@ his writing style. Here's a big list of my favourite quotes:
 #### Proof of hairy ball by sperner's lemma [TODO]
 
 
-#### Why hairy ball is interesting: Projective modules 
+#### Why hairy ball is interesting: Projective modules
 
 The reason I care about the hairy ball theorem has to do with vector fields.
 The idea is to first think of smooth vector fields over a smooth manifold.
@@ -13308,7 +13418,7 @@ field pointing "rightwards" (analogous to $\hat x$) and "upwards" (analogous $\h
 these *will not be valid smooth vector fields*, because they don't vanish! So,
 we will be forced to take more than two vector fields. But when we do that,
 we will lose uniqueness of representation. However, all is not lost.
-The [Serre Swan theorem](https://en.wikipedia.org/wiki/Serre%E2%80%93Swan_theorem) 
+The [Serre Swan theorem](https://en.wikipedia.org/wiki/Serre%E2%80%93Swan_theorem)
 tells us that any such module of vector fields will be a *projective* module.
 The sphere gives us a module that is not free. I'm not sure how to show that it's projective.
 
@@ -13357,14 +13467,14 @@ Has four pieces of data:
 1. Special symbols, names of variables.
 2. Syntactic rules.
 3. Deduction rules: Construct new closed formulas from old closed formula.
-4. Axioms: collection of closed formulas. 
+4. Axioms: collection of closed formulas.
 
 Anything that is obtainable from these deduction rules is called a theorem.
 First order logic have symbols: `∀, ∃, ⇒, !(not)` and so on. First order theory is
 inconsistent if there a closed formula $A$ such that both $A$ and $!A$ is a
 theorem.
 
-- Free variables describe subsets. 
+- Free variables describe subsets.
   Eg: `∃ n: n^2 = m` describes the set `{ m : ∃ n: n^2 = m }`.
 - It's possible to construct subsets (formulae with one free variable) whose
   membership is undedicable. So you can prove that it is impossible to say
@@ -13375,7 +13485,7 @@ theorem.
 
 Tries to reason about trees of deduction. Show that proofs correspond to
 combinatorial objects. Show that inconsistency corresponds to an infinite
-decreasing sequence that never terminates. Then he says that it is 
+decreasing sequence that never terminates. Then he says that it is
 "self evident" that this cannot happen. But it is not self evident!
 
 #### What would inconsistency of FOL mean for mathematicians?
@@ -13399,10 +13509,10 @@ decreasing sequence that never terminates. Then he says that it is
 
 - Formalize a problem.
 - Construct creative solution.
-- Submit proof to a "reliable" verifier. If the verifier terminates, we are 
+- Submit proof to a "reliable" verifier. If the verifier terminates, we are
   done. If the verifier does not terminate, we need to look for other proofs that
   can terminate.
-- our abstract thinking cancels out by normalisation :P 
+- our abstract thinking cancels out by normalisation :P
 
 
 #### Summary
@@ -13415,7 +13525,7 @@ decreasing sequence that never terminates. Then he says that it is
 - [Talk 3: Univalent foundations --- New Foundations of Mathematics](https://www.youtube.com/watch?v=E9RiR9AcXeE)
 
 
-- Was uncertain about future when working on 2-categories and higher 
+- Was uncertain about future when working on 2-categories and higher
   math. No way to ground oneself by doing "computations" (numerical experiments).
   To make it worse, the existing foundations of set theory is bad for these
   types of objects.
@@ -13464,10 +13574,10 @@ decreasing sequence that never terminates. Then he says that it is
 - If we have a map $a: 1 -> A$, we regard this as an element of A: `E |- a : A`.
 - A fibration is a family of objects. This is a dependent type `x : A |- E(x): Type`.
   `E(x)` is the fiber  of `p: E -> A` at a variable element `x : A`.
-- A section of a fibration gives an element of the fibration. We write this as 
+- A section of a fibration gives an element of the fibration. We write this as
   `x : A |- s(x) : E(x)`. `s(x)` denotes the value of `s: A -> E` of a variable
    element `x : A`. (Inhabitance is being able to take the section of a fiber bundle?!)
-- change of parameters / homomorphism is substitution. 
+- change of parameters / homomorphism is substitution.
 
 ```
 y : B |- E(y) : Type
@@ -13509,7 +13619,7 @@ y : B |- \sum{x : f^{-1}(y)}E(x): Type
 - Path object for $A$ is obtained by factorial diagonal map `diag: a -> (a, a)` as an anodyne
   map `r: A -> PA` followed by a fibration `(s, t) : PA -> A x A`.
 
-- A homotopy `h: f ~ g` between two maps `f, g : A -> B` is a map`h: A -> PB` 
+- A homotopy `h: f ~ g` between two maps `f, g : A -> B` is a map`h: A -> PB`
   such that `sh = f` and `th = g`. homotopy is a congruence.
 - `x: A, y : A |- Id_A(x, y) : Type` called the identity type of A.
 - An element `p: Id_A(x, y)` is a proof that `x =A y`.
@@ -13541,7 +13651,7 @@ First we need a lemma:
 \end{aligned}
 
 - But since $x^{\beta}$ occurs on the right hand side, there must a term on the left hand side which is $x^{\beta}$ with non-zero
-  coefficient. So we must have some $\alpha_*, j_*$ such that $x^{\alpha_*[j_*] + \alpha_*} \sim x^\beta$, or 
+  coefficient. So we must have some $\alpha_*, j_*$ such that $x^{\alpha_*[j_*] + \alpha_*} \sim x^\beta$, or
   $\alpha_* + \alpha_*[j_*] = \beta$, or $\alpha_* \leq \beta$, which means that $x^\beta$ lies in the ideal as it can be generated
   by scaling $x^\alpha_* \in I$.
 
@@ -13561,13 +13671,13 @@ First we need a lemma:
 - Suppose $I \subseteq K[x_1, \dots, x_n, y]$ is a monomial ideal. We must find a generating set for $I$.
 - Let $J$ be the ideal generated by the ideal $I$ where we set $y$ to $1$. One way to think about this is to write $J \simeq I/(y-1)$.
 - Alternatively, being very explcit, we define $J \equiv \{ x^\alpha : \exists k, x^\alpha y^k \in I\}$. That is,
-  $J$ consists of all $x^\alpha$ such that for some $k$, $x^\alpha y^k \in I$. 
+  $J$ consists of all $x^\alpha$ such that for some $k$, $x^\alpha y^k \in I$.
 - Philosophically, $J$ is the projection of $I$ onto the $\{ x_i \}$.
 - Our inductive hypothesis says that $I$ is finite generated by $I \equiv \langle x^{\alpha(1)}, \dots, x^{\alpha(n)} \rangle$.
 - For each $i \in [1, n]$, we know that we have $x^{\alpha(i)}y^{m(i)} \in I$ for some $m(i)$. Let $M \equiv \max_i m(i)$ be the largest
-  of all $m_i$. 
-- Now consider the slices of $J$ at $y^k$. That is, we wish to generate $y^k \cdot I$ for all $k \in [0, m]$. 
-  Define $J_k \equiv \langle y^k x^{\alpha(i)} \rangle$. 
+  of all $m_i$.
+- Now consider the slices of $J$ at $y^k$. That is, we wish to generate $y^k \cdot I$ for all $k \in [0, m]$.
+  Define $J_k \equiv \langle y^k x^{\alpha(i)} \rangle$.
 - By our induction hypothesis, each of the $J_k$ is finitely generated.
 - Thus, the full $J$ is generated by the  collection of all generators for each $J_k$ for $0 \leq k \leq M$. To compute $M$,
   we finitely generated $I$.
@@ -13590,7 +13700,7 @@ First we need a lemma:
   generators of $I$.
 - We must always have $\langle LT(f_1), \dots LT(f_s) \rangle \subseteq LT(I)$
   by the definition of $LT(I)$ which contains _all_ leading   terms.
-- However, $LT(I)$ can be larger. 
+- However, $LT(I)$ can be larger.
 - A generating set for $I$ given by $I \equiv \langle f_1, f_2, \dots, f_s \rangle$
   is a Grober basis iff it is true that $LT(I)$ equals  $\langle LT(f_1), LT(f_2), \dots, LT(f_s) \rangle$.
 
@@ -13602,7 +13712,7 @@ First we need a lemma:
   This is always possible since $(LT(I))$ is a monomial ideal, which is finitely generated by Dickinson's Lemma.
 - We claim that $I = (g_1, g_2, \dots, g_t)$.
 - Since each $g_i \in I$, it is clear that $(g_1, \dots, g_t) \subseteq I$.
-- Conversely, let $f \in I$ be a polynomial. 
+- Conversely, let $f \in I$ be a polynomial.
 - Divide $f$ by $g_1, \dots, g_t$ to get $f = \sum_i a_i g_i + r$ where no term
   of $r \in K[x_1, \dots, x_n]$ is divisible by any of $LT(g_1), \dots, LT(g_t)$. We claim that $r = 0$.
 - See that $r = f - \sum_i a_i g_i$. We have $r \in I$, since $f \in I$ and the $g_i$ live in $I$.
@@ -13625,19 +13735,19 @@ First we need a lemma:
 - Consider the map $p(z) = z^2 : \mathbb C^\times \rightarrow \mathbb C^\times$. This is a
   2-to-1 map. We can try to define an inverse regardless.
 - We do define a "square root" if we want. Cut out a half-line $[0, -infty)$
-  called $B$ for branch cuts. We get two functions on 
+  called $B$ for branch cuts. We get two functions on
   $q_+, q_-: \mathbb C - B  \rightarrow \mathbb C^\times$, such that $p(q_+(z)) = z$.
   Here, we have $q_- = - q_+$.
 - The point of taking the branch cut is to preserve simply connectedness. $\mathbb C^\times$
-  is not simply connected, while $\mathbb C/B$ is simply connected! 
+  is not simply connected, while $\mathbb C/B$ is simply connected!
   (This seems so crucial, why has no one told me this before?!)
 - Eg 2: exponential. Pick $exp: \mathbb C \rightarrow \mathbb C^\times$. This is
   surjective, and infinite to 1. $e^{z + 2 \pi n} = e^{iz}$.
-- Again, on $\mathbb C / B$, we have $q_n \equiv \log + 2 \pi i n$, such that 
-  $exp(q_n(z)) = z$.                                                        
+- Again, on $\mathbb C / B$, we have $q_n \equiv \log + 2 \pi i n$, such that
+  $exp(q_n(z)) = z$.
 - A covering map is, roughly speaking, something like the above. It's a map that's
-  n-to-1, which has n local inverse defined on simply connected subsets of 
-  the target. 
+  n-to-1, which has n local inverse defined on simply connected subsets of
+  the target.
 - So if we have $p: Y \rightarrow X$, we have $q: U \rightarrow Y$ (for $U \subseteq X$)
   such that $p(q(z)) = z, \forall z \in U$.
 
@@ -13648,7 +13758,7 @@ First we need a lemma:
   if there is a discrete set $F$ and a homeomorphism $h: p^{-1}(U) \rightarrow U \times F$
   such that $p|_{p^{-1}(U)}(y) = fst(h)$ or $p|_{p^{-1}(U)} = pr_1 \circ h$.
 - [Alternative definition](https://www.math.wisc.edu/~maxim/751f14w6.pdf)
-  A subset $U \subset X$ is called as **evenly covered/elementary nbhd** if 
+  A subset $U \subset X$ is called as **evenly covered/elementary nbhd** if
   $p^{-1}(U) = \sqcup \alpha V_\alpha$ where the $V_\alpha$ are disjoint and open, and
   $p|_{V_\alpha} : V_\alpha \rightarrow U$ is a homeomorphism for all $\alpha$.
 - An elementary neighbourhood is the region where we have the local inverses
@@ -13657,7 +13767,7 @@ First we need a lemma:
   and then along $h^{-1}$ sending $h^{-1}(x, i) \in p^{-1}(U)$.
 - We say $p$ is a covering map if $X$ is covered by elementary neighbourhoods.
 - We say $V \subseteq Y$ is an elementary sheet if it is path connected and $p(V)$
-  is an elementary neighbourhood. 
+  is an elementary neighbourhood.
 - So, consider $p(x) = e^{ix}: \mathbb R \rightarrow S^1$.  If we cut the space
   at $(0, 0)$, then we will have elementary neighbourhood $S^1 - \{(0, 0)\}$
   and elementary sheets $(2 \pi k,  2 \pi+1)$.
@@ -13671,7 +13781,7 @@ First we need a lemma:
 
 #### Path lifting and Monodromy
 
-- Monodromy is behaviour that's induced in the covering space, on moving in a loop in a base. 
+- Monodromy is behaviour that's induced in the covering space, on moving in a loop in a base.
 - Etymology: Mono --- single, drome --- running. So running in a single loop /
   running around a single time.
 - Holonomy is a type of monodromy that occurs due to parallel transport in a loop, **to detect curvature**
@@ -13693,7 +13803,7 @@ First we need a lemma:
 **Theorem**:Suppose $p: y \rightarrow X$ is a covering map. Let $\delta: [0, 1] \rightarrow X$
 be a path such that $\delta(0) = x$, and let $y \in p^{-1}(x)$ [$y$ is in the fiber of $x$].
 Then there is a **unique** path $\gamma: [0,1] \rightarrow Y$ which "lifts" $\delta$.
-That is, $\delta(p(y)) = \gamma(y)$, such that $\gamma(0) = Y$. 
+That is, $\delta(p(y)) = \gamma(y)$, such that $\gamma(0) = Y$.
 
 
 > Slogan: Paths can be lifted. Given how to begin the lift, can be extended all the way.
@@ -13723,12 +13833,12 @@ That is, $\delta(p(y)) = \gamma(y)$, such that $\gamma(0) = Y$.
 
 #### 7.03: Path lifting: uniqueness
 
-If we have a space $X$ and a covering space $Y$, for a path $gamma$ that 
+If we have a space $X$ and a covering space $Y$, for a path $gamma$ that
 starts at $x$, we can find a path $\gamma'$ which starts at $y \in p^{-1}(x)$
 and projects down to $\gamma$: $\gamma(t) = p(\gamma'(t))$. We want to show
 that this path lift is **unique**
 
-##### Lemma                                               
+##### Lemma
 
 Let $p: Y \rightarrow X$ be a covering space. Let $T$ be a connected space
 Let $F: T \rightarrow X$ be a continuous map (for us, $T \simeq [0, 1]$).
@@ -13740,7 +13850,7 @@ We will show that $F_1 = F_2$ iff the lifts are equal for some $t \in $T.
 
 <img src="./static/cw/path-lifting-uniqueness-setup.png"/>
 
-- We just need to show that if $F_1$ and $F_2$ agree somewhere in $Y$, they agree 
+- We just need to show that if $F_1$ and $F_2$ agree somewhere in $Y$, they agree
   everywhere. It is clear that if they agree everywhere, they must agree somewhere.
 - To show this, pick the set $S$ where $F_1, F_2$ agree in $Y$: $S \equiv \{ t \in T : F_1(t) = F_2(t) \}$.
 - We will show that $S$ is open and closed. Since $T$ is connected, $S$ must
@@ -13751,10 +13861,10 @@ We will show that $F_1 = F_2$ iff the lifts are equal for some $t \in $T.
   must be disconnected. Since $T$ is connected, we cannot allow that to happen,
   hence $S = \emptyset$ or $S = T$.)
 - Let $t \ in T$. Let $U$ be an evenly covered neighbourhood/elementary neighbourhood of $F(t)$ downstairs (in $X$).
-  Then we have $p^{-1}(U) = \sqcup_\alpha V_\alpha$ such that $p|_V{\alpha}: V_\alpha \rightarrow U$ 
+  Then we have $p^{-1}(U) = \sqcup_\alpha V_\alpha$ such that $p|_V{\alpha}: V_\alpha \rightarrow U$
   is a local homeomorphism.
 - Since $F_1, F_2$ are continuous, we will have opens
-  $V_1, V_2$ in $V_\alpha$, which contain $F_1(t), F_2(t)$ upstairs 
+  $V_1, V_2$ in $V_\alpha$, which contain $F_1(t), F_2(t)$ upstairs
   (mirrroring $U$ containing $F(t)$ downstairs).
 - The pre-images of $V_1$, $V_2$ along $F_1, F_2$ give us open sets $t \in T_1, T_2 \subseteq T$.
 - Define $T* = T_1 \cap T_2$.  If $F_1(t) \neq F_2(t)$, then $V_1 \neq V_2$
@@ -13783,7 +13893,7 @@ We will show that $F_1 = F_2$ iff the lifts are equal for some $t \in $T.
 
 Suppose $p: Y \rightarrow X$ is a covering map and $\gamma_s$ is a homotopy
 of paths rel. endpoints ($\gamma_s(0)$ and $\gamma_s(1)$ are independent of $s$ /
-endpoints are fixed throughout the homotopy). Then there exists for each 
+endpoints are fixed throughout the homotopy). Then there exists for each
 lift $\gamma'_0 : [0, 1] \rightarrow Y$ of $\gamma_0:[0,1] \rightarrow X$
 (ie, $p \circ \gamma'_0 = gamma_0$), a completion
 of the lifted homotopy $\gamma'_s: [0, 1] \rightarrow Y$ (ie, $p \circ gamma'_s = gamma_s$).
@@ -13792,7 +13902,7 @@ independent of $s$.
 
 > Slogan: homotopy lifted at 0 can be lifted for all time
 
-- Let $H: [0, 1] \times [0, 1] \rightarrow X$ be the homotopy in $X$ such that 
+- Let $H: [0, 1] \times [0, 1] \rightarrow X$ be the homotopy in $X$ such that
   $H(s, t) = \gamma_s(t)$. Subdivide the square into rectangles $R_{ij}$  such that
   $H(R_{ij})$ is contained in $U_{ij}$ for some elementary neighbourhood $U_{ij}$.
   We build $H': [0, 1] \times [0, 1] \rightarrow Y$ by building local inverses
@@ -13813,7 +13923,7 @@ I sometimes forget which is which. I now remember this as folows:
 - First, these work on based spaces so we always need to think of based points.
 - Wedge is a sum, so it's going to be some type of union. It needs to identify
   things, so it better be $A \cup B / \sim$ where $\sim$ identifies based points.
-- Smash is a product, so it's going to be some type of product. It needs to 
+- Smash is a product, so it's going to be some type of product. It needs to
   identify things, so it better be $A \times B / \sim$, where $\sim$ crushes together
   anything that has a based point. So $(*, a), (a, *), (*, *)$ are all crushed.
 - If we don't remember the "sum" and "product" bit, and only remember "wedge"
@@ -13838,7 +13948,7 @@ for which this map is continuous.
   classes) is open iff $q^{-1}(U)$ is open in $X$.
 - Even more explicitly, $V \subseteq X/\sim$ is open iff $U_V \equiv \{ x \in U : [x] \in V \}$
   is open in $X$.
-- Even more explicitly, we can write $U \equiv \cup_{v \in V} v$, because the elements of 
+- Even more explicitly, we can write $U \equiv \cup_{v \in V} v$, because the elements of
   $v$ are equivalence classes.
 
 #### Claim: quotient topology is a topology
@@ -13854,7 +13964,7 @@ for which this map is continuous.
 - Define $s: X/A \rightarrow X$ as a section of $q$, given by $s([a]) \equiv a, s([x]) \equiv x$.
   This is a section of $q$ since $q \circ s = id_{X/A}$ (That is, $s$ maps entirely within the fibers of $q$).
 - Consider $s_t : H_t \circ s : X/A \rightarrow X$. That is, lift from $X/A$ to $X$ using $s$ and then perform $H_t$ on $X$.
-  We claim that The map $(H_1 \circ s)$ is the homotopy inverse of $q$. 
+  We claim that The map $(H_1 \circ s)$ is the homotopy inverse of $q$.
 - (1a) $(H_1 \circ s) \circ q : X \rightarrow X$ is equal to $H_1$, as $H_1(s(q(A))) = H_1(s([a])) = H_1(a) = a  = H_1(A)$, and $H_1(s(q(x))) = H_1(s([x])) = H_1(x)$.
 - (1b) So we have $(H_1 \circ s) \circ q = H_1 \simeq H_0 = id_X$, as $H_0 = id_X$ is from defn, and $H_1 \simeq H_0$ is from homotopy. So we are done
   in this direction.
@@ -13896,9 +14006,9 @@ $\partial e \times [0, 1] \cup (e \times \{ 0 \})$.
 If $X$ is obtained from $A$ by attaching one $k$-cell, then $(X, A)$ has HEP.
 
 
-Given a homotopy $h_t: A \times [0, 1] \rightarrow Y$ and a new homotopy 
-$F_0: X \rightarrow Y$ such that $F_0|A = h_t$, we want to complete $F$ 
-such that $F_t|A = h_t$. 
+Given a homotopy $h_t: A \times [0, 1] \rightarrow Y$ and a new homotopy
+$F_0: X \rightarrow Y$ such that $F_0|A = h_t$, we want to complete $F$
+such that $F_t|A = h_t$.
 
 The only part I don't know where to define $F$ on is the new added $e$ portion.
 So I need to construct $H$ on $e \times [0, 1]$. Use the previous map to get to
@@ -13919,7 +14029,7 @@ Induction on lemma. base case is empty set.
 - The idea to find a contractible subcomplex is to put a partial order on the
   set of *all* contractible cell complexes by inclusion.
 - Pick a maximal element with respect to this partial order.
-- Claim: maximal element must contain all zero cells. Suppose not. Then I 
+- Claim: maximal element must contain all zero cells. Suppose not. Then I
   can add the new zero cell into the maximal element (why does it remain contractible? Fishy!)
 
 
@@ -13927,7 +14037,7 @@ Induction on lemma. base case is empty set.
 
 We like stable homotopy groups
 because of the [Freudenthal suspension theorem](https://en.wikipedia.org/wiki/Freudenthal_suspension_theorem)
-which tells us that homotopy groups stabilise after many suspensions. 
+which tells us that homotopy groups stabilise after many suspensions.
 
 The basic idea seems to be something like a tensor-hom adjunction. We have
 the loop spaces which are like $S^1 \rightarrow X$ and the suspension which
@@ -13955,16 +14065,16 @@ This gives us the adjunction between suspension and looping.
 
 - A space is simply connected iff fundamental group at all points is trivial.
 - We usually don't want to talk about basepoint, so we assume that the space
-  is path-connected. This means we can move the basepoint around, or not 
+  is path-connected. This means we can move the basepoint around, or not
   take about the basepoint.
 - So, a path-connected space is simply connected iff the fundamental group is
   trivial.
 
 #### Simply connected => all paths between two points are homotopic.
 
-If $x, y$ are two points, then there is a single unique homotopy class of 
+If $x, y$ are two points, then there is a single unique homotopy class of
 points from $x$ to $y$. Consider two paths from $x$ to $y$ called $\alpha, \beta$.
-Since $\beta^{-1} \circ \alpha \in \pi_1(x, x) = 1$, we have that 
+Since $\beta^{-1} \circ \alpha \in \pi_1(x, x) = 1$, we have that
 $\beta^{-1} \circ \alpha \simeq \epsilon_x$. [ie, path is homotopic to trivial
 path]. compose by $\beta$ on the left: This becomes $\alpha \simeq \beta$.
 
@@ -13978,12 +14088,12 @@ path]. compose by $\beta$ on the left: This becomes $\alpha \simeq \beta$.
 - To be finitely generated as a vector space over $K$ from a generating
   set $S$ means that we take elements of the form $\sum_i k_i s_i$, or abbreviated,
   elements of the form $\sum KS$
-- To be finitely generated as a $K$ algebra from a generating set $S$, 
-  we take elements of the form 
+- To be finitely generated as a $K$ algebra from a generating set $S$,
+  we take elements of the form
   $\sum_i k_i s_i + \sum_{ij} k_{ij} s_i s_j + \dots$. To abbreviate, elements
   of the form $\sum C + CS + CS^2 + CS^3 \dots = C/(1-S)$.
 
-As a trivial example, consider $K[X]$. This is not finitely generated as a 
+As a trivial example, consider $K[X]$. This is not finitely generated as a
 vector space since it doesn't have a finite basis: the obvious choice of
 generating set $\{ 1, X, X^2, \dots \}$ is not finite. It *is* finitely
 generated as a $K$-algebra with generating set $\{ X \}$.
@@ -13997,7 +14107,7 @@ For every maximal ideal $m \subset k[T_1, \dots, T_n]$ there is a unique
 $a \in k^n$ such that $ m = I(\{ a \})$. This says that any maximal ideal
 is the ideal of some point.
 
-#### Weak Nullstellensatz: implication 1 (Solutions) 
+#### Weak Nullstellensatz: implication 1 (Solutions)
 every ideal, since it is contained in a maximal ideal, will have zeroes.
 Zeroes will always exist in all ideas upto the maximal ideal.
 
@@ -14017,7 +14127,7 @@ $1 = sum_i f_i c_i$.
 #### Strong Nullstellensatz: On the Tin
 
 
-For every ideal $J$, we have that $I(V(J)) = |_0^\infty\sqrt J$. I am adopting 
+For every ideal $J$, we have that $I(V(J)) = |_0^\infty\sqrt J$. I am adopting
 the radical (heh) notation $|_0^\infty \sqrt x$ for the radical, because this matches
 my intuition of what the radical is doing: it's taking *all roots*, not just *square roots*.
 For example, $\sqrt{(8)} = (2)$ in $\mathbb Z$.
@@ -14025,33 +14135,33 @@ For example, $\sqrt{(8)} = (2)$ in $\mathbb Z$.
 
 #### Strong Nullstellensatz: Implication 1 (solutions)
 
-Let $J = (f_1, \dots, f_m)$. If $g$ is zero on $V(J)$ , then $g \in \sqrt J$. 
+Let $J = (f_1, \dots, f_m)$. If $g$ is zero on $V(J)$ , then $g \in \sqrt J$.
 Unwrapping this, $\exist r \in \mathbb N, \exists c_i \in \mathbb C[X_1, \dots,  X_n], \sum_i f_i c_i = g^r$.
 
 
 
 #### Weak Nullstellensatz: Proof
 
-- Let $m$ be a maximal ideal. 
+- Let $m$ be a maximal ideal.
 - Let $K$ be the quotient ring  $K \equiv \mathbb C[X_1, \dots, X_n] / m$.
-- See that $K$ is a field because it is a ring quotiented by a maximal ideal. 
+- See that $K$ is a field because it is a ring quotiented by a maximal ideal.
 - Consider the map $\alpha: \mathbb C[X_1, \dots, X_n] \rightarrow K$, or $\alpha : \mathbb C [X_1, \dots, X_n] \rightarrow \mathbb C[X_1, \dots, X_n] / m$ by sending
   elements into the quotient.
 - We will show that $\alpha$ is an evaluation map, and $K = \mathbb C$. So we will get a function
   that evaluates polynomials at a given point, which will have a single point as a solution.
-- Core idea: See that $\alpha(\mathbb C) = \mathbb C \subset K$. Hence $K$ is a field that contains 
+- Core idea: See that $\alpha(\mathbb C) = \mathbb C \subset K$. Hence $K$ is a field that contains
   $\mathbb C$. But $\mathbb C$ is algebraically closed, hence $K = C$.
 - First see that $\mathbb C \subset K$, or that $\alpha$ preserves $\mathbb C$ [ie, $\alpha(\mathbb C) = \mathbb C$].
   note that no complex number can be in $m$.
-  If we had a complex number $z$ in $m$, then we would need to have $1 = 1/z \cdot z$ in $m$ 
+  If we had a complex number $z$ in $m$, then we would need to have $1 = 1/z \cdot z$ in $m$
   (since an ideal is closed under multiplication by the full ring), which means $1 \in m$, due to which
   we get $m$ is the full ring. This can't be the case because $m$ is a proper maximal ideal.
 - Hence, we have $\mathbb C \subseteq K$ or $K = \mathbb C$.
 - Thus the map we have is $\alpha: \mathbb C[X_1, X_2, \dots, X_n] \rightarrow \mathbb C$.
 - Define $z_i = \alpha(X_i)$. Now we get that $\alpha(\sum_{ij} a_{ij} X_i^j) = \sum_{ij} a_{ij} z_i^j$. That is,
-   we have an evaluation map that sends $X_i \mapsto z_i$. 
+   we have an evaluation map that sends $X_i \mapsto z_i$.
 - CLAIM: The kernel of an evaluation map $\alpha$ is of the form $(X_1 - z_1, \dots, X_n - z_n)$.
-- PROOF OF CLAIM:TODO 
+- PROOF OF CLAIM:TODO
 - The kernel is also $m$. Hence, $m = (X_1 - z_1, \dots, X_n - z_n)$, and point that corresponds to the
   maximal ideal is $(z_1, z_2, \dots, z_n)$.
 
@@ -14061,15 +14171,15 @@ Unwrapping this, $\exist r \in \mathbb N, \exists c_i \in \mathbb C[X_1, \dots, 
 We use the [Rabinowitsch trick](https://en.wikipedia.org/wiki/Rabinowitsch_trick).
 - Suppose that wherever $f_1, \dots, f_m$ simultaneously vanish, then so does $g$. [that is, $g \in I(V(J))$
   where $J = (f_1, \dots, f_m)$].
-- Then the polynomials $f_1, \dots, f_m, 1 - Yg$ have no common zeros where $Y$ is a new 
-  variable into the ring. 
+- Then the polynomials $f_1, \dots, f_m, 1 - Yg$ have no common zeros where $Y$ is a new
+  variable into the ring.
 - Core idea of why they can't have common zeros: Contradiction. assume that $1 - Yg$, and all the $f_i$
   vanish at some point.
   Then we need $1 - Yg = 0$ which mean $Y = 1/g$, so $g$ cannot vanish, so $g \neq 0$.
   However, since all the $f_i$ vanish, $g$ also vanishes as $g \in (V(J))$. This is contradiction.
 - Now by weak Nullstellensatz, the ideal $J = (f_1, \dots, f_m, (1-Y)g)$ cannot be contained
   in a maximal ideal (for then they would simultaneously vanish). Thus, $J = R$ and $1 \in J$.
-- This means there are coefficients $c_i(Y, \vec x) \mathbb C[X_1, \dots , X_n, Y]$ such that 
+- This means there are coefficients $c_i(Y, \vec x) \mathbb C[X_1, \dots , X_n, Y]$ such that
 
 $$
 1 = c_0(Y, \vec x) (1 - Yg(\vec x)) \sum_{i=1}^m c_i(Y, \vec x) f_i(\vec x)
@@ -14082,7 +14192,7 @@ $1 = \sum_{i=1}^m c_i (Y, \vec x) f_i(\vec x) $
 since $Y = 1/g$, we can write $c_i(Y=1/g, \vec x) = n_i(\vec x)/g^r_i(\vec x)$.  By clearing denominators, we get:
 
 $$
-1 = \sum{i=1}^m n_i(\vec x) f_i(\vec x)/ g^R(\vec x) 
+1 = \sum{i=1}^m n_i(\vec x) f_i(\vec x)/ g^R(\vec x)
 $$
 
 This means that $ g^R(\vec x) = \sum_{i=1}^m n_i(\vec x) f_i(\vec x)$
@@ -14092,12 +14202,12 @@ This means that $ g^R(\vec x) = \sum_{i=1}^m n_i(\vec x) f_i(\vec x)$
 - We have $g \in I(V(J))$.
 - We want to show that $g \in \sqrt{J}$ in $R$.
 - This is the  same as showing that $g \in \sqrt{0}$ in $R/J$. ($J \mapsto 0$ in the quotient ring).
-- If $g$ is nilpotent in $R/J$, then the $(R/J)_g$ becomes the trivial ring $\{ 0 \}$. 
+- If $g$ is nilpotent in $R/J$, then the $(R/J)_g$ becomes the trivial ring $\{ 0 \}$.
   [Intuitively, if $g$ is nilpotent and a unit, then we will have $g^n = 0$, that is  unit raised to some
    power is 0, from which we can derive $1 = 0$].
 - Localising at $g$ is the same as computing $R[Y]/(1 - Yg, J)$.
 - But we have that $V(1 - Yg, J) = \emptyset$. Weak Nullstellensatz implies that $(1 - Yg, J) = (1)$.
-- This means that $R[Y]/(1 - Yg,J) = R[Y]/(1) = \{ 0 \}$. Thus, $(R/J)_g$ has $g$ as nilpotent, 
+- This means that $R[Y]/(1 - Yg,J) = R[Y]/(1) = \{ 0 \}$. Thus, $(R/J)_g$ has $g$ as nilpotent,
   or $g \in \sqrt J$ in $R$.
 
 #### Relationship between strong and weak
@@ -14112,7 +14222,7 @@ what functions vanish at a *point*.
   set of prime ideals $p$ such that $J \xrightarrow{R/p} 0$. So $J \subset p$. This means that
   $V(J) = \{ p \text{prime ideal in } R, J \subseteq p \}$.
 - $I(V(J))$ is the set of functions that vanish over every point in $V(J)$. The functions that vanish
-  at $p \in V(J)$ are the elements of $p$. So the functions that vanish over all points is 
+  at $p \in V(J)$ are the elements of $p$. So the functions that vanish over all points is
   $I(V(J)) = \cap V(J)$.
 - Unwrapping, this means that $I(V(J))$ is the intersection of all ideals in $V(J)$, which is the intersection
   of all primes that contains $J$, which is the radical of $J$.
@@ -14127,7 +14237,7 @@ points such as $(x)$ or $(y)$ which don't exist in variety-land. This is really 
 
 # Screen recording for kakoune pull request
 
-I wanted to show what keys I was pressing to demonstate the change I was 
+I wanted to show what keys I was pressing to demonstate the change I was
 proposing. So I used:
 - `SimpleScreenRecorder` to record my screen.
 - `screenkey` to show the keystrokes I press.
@@ -14181,7 +14291,7 @@ Conway came up with his notation for wallpaper groups/orbifolds. There are only
 four types of features.
 
 -  The hemisphere orbifold is `*`. (group of order 2). `*` denotes the effect on
-   the orbifold. `*` really means: what is left out of a sphere when I cut out a 
+   the orbifold. `*` really means: what is left out of a sphere when I cut out a
    hemispherical hole. `*` is the name for a disk, because a hemisphere is a disk
    topologically. It has metrical information as well, but we're not going to
    speak about it, because all we need is the topological information.
@@ -14226,10 +14336,10 @@ because the orbifold is a type of divided manifold.
 
 Now, see that we started with positive euler characteristic (2), and we divide
 it by some `n` (the order of the group). So we end up with a positive euler characteric.
-By a sort of limiting argument, the euler characteristic of the wallpaper groups, 
+By a sort of limiting argument, the euler characteristic of the wallpaper groups,
 which are infinite, is zero. However, see that we must get to the zero by starting
 with two dollars and buying things off the menu! If we try and figure out what
-all the possible ways are to start with 2 dollars and buy things till we are 
+all the possible ways are to start with 2 dollars and buy things till we are
 left with exactly 0 dollars, we get that there are 17 possible ways of buying
 things on the menu! Thus, this the reason for there being 17 wallpaper groups.
 
@@ -14268,7 +14378,7 @@ $$
 
 - Here, we have the rotation $r_2$ act non-trivially on the translation $t_1$.
 - We need the translation to be normal, since we are messing with the translation
-  by a rotation. 
+  by a rotation.
 - We want the translations to be closed under this messing about by the rotation action;
   The action of a rotation on a translation should give us another translation.
   Thus, the translations $(t_1, id)$ ought to be normal in the full group $(t_2, r_2)$.
@@ -14283,7 +14393,7 @@ Another mnemonic for the semidirect product:
 
 # Non orthogonal projections
 
-Consider the matrix 
+Consider the matrix
 
 $$
 P = \begin{bmatrix} 1 & 1 \\ 0 & 0 \end{bmatrix}
@@ -14291,8 +14401,8 @@ $$
 - $P^2 = P$, so it's a projection. It projects the vector `[x;y]` to the
   vector `[x+y;0]`. Clearly, applying it twice will result in 0. `[x; y]`,
   1. `[x+y; 0]`, 2. `[x+y; 0]`.
-- It projects the value `(x+y)`onto the `x` axis,and kills the `y` axis. 
-- It's **not** a projection onto the coordinate axis. 
+- It projects the value `(x+y)`onto the `x` axis,and kills the `y` axis.
+- It's **not** a projection onto the coordinate axis.
 
 
 # Why did maxwell choose his EM wave to be light?
@@ -14301,9 +14411,9 @@ $$
 - dalton/thompson atomic model that had particles: protons, neutrons, electron
 - Knew electricity and magnetism as fields
 - Maxwell wrote down laws, said that the wave solution to his laws was light. (why?)
-- Michaelson morly proved speed of light was constant, matched maxwell prediction 
+- Michaelson morly proved speed of light was constant, matched maxwell prediction
 - Einstein found photo electric effect. Posited “light particle” (photon). [why light?]
-- De Broglie 
+- De Broglie
 - [who connected photon to EM wave through gauge?]
 - Weyl created U(1) symmetry for Maxwell’s equations / photon
 - Yang-mills wrote down how photon occurs as particle associated to EM field
@@ -14320,7 +14430,7 @@ Apparently, the correct way to do this, in a way that's not `O(n^2)` is to
 use the `io.StringIO` module. The API is:
 
 - `x = io.StringIO()`: create a string buffer
-- `x.write(stuff_to_append)`: append into string buffer with correct `realloc()` 
+- `x.write(stuff_to_append)`: append into string buffer with correct `realloc()`
    doubling semantics for `O(1)` amortized per character
 - `out = x.getvalue()`: pull data out of `StringIO`.
 - `x.close()`: tell the `StringIO` that we are done and it can free its buffer.
@@ -14357,7 +14467,7 @@ concatenation. So can we understand yoneda from this model?
 - what does it *mean* to have an element `a` in `Hom(X, X)`? It means that there's
   an arrow from `X` to `X` in the category. But this also means that we have
   a map from `Hom(X, X)` *to* `Hom(X, X)`, given by composing with `a`! That is,
-  we have a map `- . a :: Hom(X, X) -> Hom(X, X)`. 
+  we have a map `- . a :: Hom(X, X) -> Hom(X, X)`.
 
 <img src="./static/yoneda/hom-x-x-2.png"/>
 
@@ -14377,7 +14487,7 @@ concatenation. So can we understand yoneda from this model?
 
 <img src="./static/yoneda/hom-x-y-1.png"/>
 
-- In `Hom(X, Y)` we will have as elements all the arrows from `X` to `Y`. 
+- In `Hom(X, Y)` we will have as elements all the arrows from `X` to `Y`.
   Let's say there's some arrow `h: X -> Y`. Then, we will find this arrow `h` in `Hom(X, Y)`
   as the image of `idX` under `-.h` . So really, for *any* arrow, we can find
   what element it maps to as long as know (a) `idX` and (b) `-.h`.
@@ -14388,13 +14498,13 @@ concatenation. So can we understand yoneda from this model?
  and arrows. So we have a functor `F` that takes these sets to other sets,
  and takes these objects to other objects.
 
-         
+
 # Right Kan extensions as extending the domain of a functor
 
 #### First over functions (fake category fluff)
 
 Given a function $g: C \rightarrow E$ and an embedding $j: C \rightarrow D$,
-then the Right Kan extension of $g$ along $j$, denoted $g/j$ is a new function 
+then the Right Kan extension of $g$ along $j$, denoted $g/j$ is a new function
 $g/j: D \rightarrow E$.
 So we are extending the *domain* of $g$, along the extender $j$. Informally,
 we write the new function as $g/j$ because:
@@ -14409,7 +14519,7 @@ D--g/j--->E
 ```
 ```
 foo(j(c)) = g(c)
-foo = (g/j)(c) 
+foo = (g/j)(c)
 g/j(j(c)) = g(c)
 ```
 
@@ -14461,7 +14571,7 @@ than a 1 categorical construct.
 # Non standard inner products and unitarity of representations
 
 
-I stumbled across [this questions about non-standard inner products](https://math.stackexchange.com/questions/4021023/visualization-of-length-and-orthogonality-under-non-standard-inner-product). Can I use this to visualize the weyl 
+I stumbled across [this questions about non-standard inner products](https://math.stackexchange.com/questions/4021023/visualization-of-length-and-orthogonality-under-non-standard-inner-product). Can I use this to visualize the weyl
 averaging trick in represention theory?
 
 # take at most 4 letters from 15 letters.
@@ -14476,11 +14586,11 @@ pick 4 letters from 15 + 4 dummy = 19 letters.
 
 
 I find it nice how I used to never look for the combinatorial meaning behind
-massaging the algebra, but I do now.            
+massaging the algebra, but I do now.
 
 # Flat functions
 
-Define 
+Define
 
 $$
 f(x) \equiv
@@ -14514,7 +14624,7 @@ $$
 \end{aligned}
 $$
 
-- So we can write higher derivatives too as $poly(1/x)$ times $exp(-1/x)$ which also decays 
+- So we can write higher derivatives too as $poly(1/x)$ times $exp(-1/x)$ which also decays
   rapidly to $0$.
 
 - Philosophically, what's going on is that a non-zero polynomial can only have a finite number of zeroes.
@@ -14525,7 +14635,7 @@ $$
 
 # Hopf Algebras and combinatorics
 
-> Started from algebraic topology in the 40s. In late 70s, Rota 
+> Started from algebraic topology in the 40s. In late 70s, Rota
 > figured out that many combinatorial objects have the structure of a Hopf
 > algebra.
 
@@ -14547,7 +14657,7 @@ $S: A \rightarrow A$ (co-inverse/antipode). Best explained by examples!
 
 #### Eg 1: Group algebra: $A = kG$
 
-$G$ is a group, $kG$ is a group algebra. $\delta(g) \equiv g \otimes g$, 
+$G$ is a group, $kG$ is a group algebra. $\delta(g) \equiv g \otimes g$,
 $\epsilon(g) = 1$, $s(g) = g^{-1}$.
 
 
@@ -14588,14 +14698,14 @@ We first see that the multiplication rule is:
 
 $$
 \begin{bmatrix}
-1 & a \\ 
+1 & a \\
 0 & b
 \end{bmatrix}
 \begin{bmatrix}
-1 & p \\ 
+1 & p \\
 0 & q
 \end{bmatrix}
-= 
+=
 \begin{bmatrix}
 1 &  p + bq \\
 0 & bq
@@ -14615,16 +14725,16 @@ The first of these I shall call _diagonal_ and denote with $D$:
 
 $$
 \begin{bmatrix}
-1 & 0 \\ 
+1 & 0 \\
 0 & b
 \end{bmatrix}
 \begin{bmatrix}
-1 & 0 \\ 
+1 & 0 \\
 0 & q
 \end{bmatrix}
-= 
+=
 \begin{bmatrix}
-1 & 0 \\ 
+1 & 0 \\
 0 & bq
 \end{bmatrix}
 $$
@@ -14641,21 +14751,21 @@ Informally, the $D$ matrices are responsible for scaling the $y$-axis.
 
 ##### Shear transforms
 
-Next, we have the other subgroup of matrices, which I shall call _shear_ 
+Next, we have the other subgroup of matrices, which I shall call _shear_
 and denote by $S$:
 
 $$
 \begin{bmatrix}
-1 & a \\ 
+1 & a \\
 0 & 1
 \end{bmatrix}
 \begin{bmatrix}
-1 & p \\ 
+1 & p \\
 0 & 1
 \end{bmatrix}
-= 
+=
 \begin{bmatrix}
-1 & (a+p) \\ 
+1 & (a+p) \\
 0 & 1
 \end{bmatrix}
 $$
@@ -14665,7 +14775,7 @@ $$
 
 These are isomorphic to $\mathbb R^+$, since the only degree of freedom is
 their top-right entry, which gets added on matrix multiplication. These
-matrices transform a vector $(x, y)$ into $(x + \delta y, y)$. 
+matrices transform a vector $(x, y)$ into $(x + \delta y, y)$.
 
 <img src="./static/semidirect-product/shear-composition.png"/>
 
@@ -14677,7 +14787,7 @@ we can write any transform of the form
 $$
 T \equiv
 \begin{bmatrix}
-1 & a \\ 
+1 & a \\
 0 & b
 \end{bmatrix}
 $$
@@ -14689,14 +14799,14 @@ We need to check whether the subgroup $D$ or the subgroup $S$ is normal.
 For this, take two arbitrary elements:
 
 $$
-[d] \equiv 
+[d] \equiv
 \begin{bmatrix}
-1 & 0 \\ 
+1 & 0 \\
 0 & d
 \end{bmatrix}; ~~~
-[s] \equiv 
+[s] \equiv
 \begin{bmatrix}
-1 & s \\ 
+1 & s \\
 0 & 1
 \end{bmatrix}
 $$
@@ -14715,7 +14825,7 @@ $$
 \end{aligned}
 $$
 
-This doesn't leave us with another diagonal transform. 
+This doesn't leave us with another diagonal transform.
 
 <img src="./static/semidirect-product/sinv-d-s.png" />
 
@@ -14788,7 +14898,7 @@ product with a twist".
 
 ##### Where to go from here
 
-In some sense, one can view 
+In some sense, one can view
 [all semidirect products as notationally the same as this example](http://bollu.github.io/the-cutest-way-to-write-semidirect-products.html)
 so this example provides good intuition for the general case.
 
@@ -14846,7 +14956,7 @@ is "different" from its components, since for one it has cardinality $\mathbb N$
 For another, all subgroups of the prufer group are themselves infinite. The idea
 is to see that:
 - Every subgroup of the prufer group is finite.
-- By Lagrange, `|prufer|/|subgroup| = |quotient|`. But this gives us something like 
+- By Lagrange, `|prufer|/|subgroup| = |quotient|`. But this gives us something like
   `infinite/finite = infinite`.
 
 To see that every subgroup $H$ of the prufer group is finite, pick an element $o$ outside of
@@ -14897,7 +15007,7 @@ $n \in \mathbb N$.  Here, the "problem" is that we can also find projection maps
 allow us to "chop off" a given string, which makes this example not-so-great.
 However, this example is useful as it lets us **contrast** the finite and infinite
 string case. Here, we see that in the final limit $A*$, we will have all
-strings of _finite_ length.  (In the infinite strings case, which is an 
+strings of _finite_ length.  (In the infinite strings case, which is an
 inverse limit, we will have all strings of _infinite_ length)
 
 ##### Vector Spaces over $\mathbb R$
@@ -14960,7 +15070,7 @@ $\mathbb{Z}/7\mathbb{Z}$ into $\mathbb{Z}/49\mathbb{Z}$: The naive map
 that sends the "digit i" to the "digit i" fails, because:
 
 - in $\mathbb{Z}/7\mathbb{Z}$ we have that $2 \times 4 \equiv 1$.
-- in $\mathbb{Z}/49\mathbb{Z}$ $2 \times 4 \equiv 8$. 
+- in $\mathbb{Z}/49\mathbb{Z}$ $2 \times 4 \equiv 8$.
 
 So $\phi(2) \times \phi(7) \neq \phi(2 \times 7) = \phi(4)$. Hece, we
 **don't have injections**, we **only have projections**.
@@ -14985,7 +15095,7 @@ $$
 But we only care about "adjacent consistency", since that generates the other
 consistency conditions; So we are left with:
 
-  
+
 $$
 \{ (P_0, P_1, P_2, \dots) \in \prod_{i=0}^n \Pi_n : P_a = \texttt{proj}_{a \leftarrow b}(P_b) \forall a +1 = b  \}.
 $$
@@ -15056,7 +15166,7 @@ elements.  This, cateogrically speaking, a **inverse limit** is a **limit**
 <!-- - [Grab me a coffee](https://ko-fi.com/bollu) -->
 # LEAN 4 overfrom from LEAN together 2021
 - add `unsafe` keyword.
-- allow people to provide unsafe version of any opaque function if the 
+- allow people to provide unsafe version of any opaque function if the
   type is inhabited. Type inhabited => proofs are fine. (Do we need to assume UIP for this to work?)
 - mimalloc, custom allocator.
 - counting immutable beans for optimising refcounting. (related work: Perceus: Grabage free refcounting with reuse.)
@@ -15093,7 +15203,7 @@ elements.  This, cateogrically speaking, a **inverse limit** is a **limit**
 # Hololive subculture
 
 - hololive artists
-- 
+-
 
 # RSK correspondence for permutations
 
@@ -15119,7 +15229,7 @@ a valid Standard tableau corresponding to the partition above is:
 
 ```
 1 3 4 6
-2 5 
+2 5
 7 9
 8
 ```
@@ -15143,7 +15253,7 @@ such that $ins(T', x) = T$? Yes we can, and this process is called deletion.
 
 ##### Misoncentions about deletion
 
-Deletion does not mean that we lose the _value_ at $(i, j)$. Rather, we 
+Deletion does not mean that we lose the _value_ at $(i, j)$. Rather, we
 _change the shape_ of the tableau to lose the _cell_ $(i, j)$. consider
 the tableau:
 
@@ -15199,17 +15309,17 @@ the formal arguments in terms of partial orders to be precise.
 At each point $(i, p(i))$, imagine a rectangle with $(i, p(i))$ as the lower left
 corner. Next, shine a flashlight from the point $(0, 0)$ towards the upper right
 quadrant; the boundary that is cast by the rectangles are called as the
-shadow lines. 
+shadow lines.
 
 Formally, we consider a dominance relationship where $(x, y) \lhd (p, q) \equiv x \leq p \land y \leq q$.
-Then, we get the "points on the shadow lines" by considering the Hasse diagram 
+Then, we get the "points on the shadow lines" by considering the Hasse diagram
 of the points $(i, p(i))$ under the relationship $\lhd$. Each level of
 the hasse diagram becomes one of the shadow lines.  The collection of all of
 these shadow lines is called as the _first order shadow lines_.
 
 Next, for each anti-chain, pick the element with the smallest $x$-coordinate.
 These points _will form a chain_. This chain will be first row of
-the permutation tableau $P$. 
+the permutation tableau $P$.
 
 Funnily enough, it is also one of the longest increasing subsequences of the
 sequence $i \mapsto p(i)$ because the length of the longest chain (the longest increasing
@@ -15293,30 +15403,30 @@ https://hackage.haskell.org/package/contravariant-1.5.3/docs/Data-Functor-Contra
 
 > When I was doing my PhD, I faced questions similar to yours. It emerged from my
 > encounter of HOL4 for completing a project after having used Coq for another.
-> 
+>
 > Given your question is on the meaning of a word, I would like to refer to a
 > philosophical doctrine on how words acquire their meaning in a system of signs.
 > Using that doctrine, I put forward  how I came to an answer for myself!
-> 
+>
 > So turns out that a text can be perceived as a construct made around elemental
 > "oppositions". Accordingly, textual constructs only produce meaning through
 > their interplay of DIFFERENCES (mostly emergingin in form of binary contrasts)
 > inside a system of distinct signs. This doctrine was first introduced by
 > Ferdinand Saussure on which J. Derrida drew for introducing his notion of
 > difference.
-> 
+>
 > Considering the above explanation, instead of hard wiring the words
 > "specification" and "implementation" to predetermined functionality or
 > referents, we can perceive them in a contrasting interplay whose connection is
 > established via the proof game. The "specification" is something used by a
-> "proof" to demonstrate "the correctness " of an "implementation ". 
-> 
+> "proof" to demonstrate "the correctness " of an "implementation ".
+>
 > Now going for the Saussurian doctrine, there is no problem for an _expression_
 > to be specification for an implementation,  but itself being an implementation
 > for something else. Therefore, I would definitely hesitate to say it is
 > meaningless (or even misguiding) to use the word specification in the context
-> of formal verification. 
-> 
+> of formal verification.
+>
 > Hopefully that was useful!
 
 
@@ -15424,12 +15534,12 @@ I found this insightful:
 This makes sense from the information theoretic perspective; I'd never meditated
 on this difference, though.
 
-I'd seen things like: 
+I'd seen things like:
 
 > `P(sunrise | rooster-crow) = large` even though rooster crowing does not *cause*
-> the sunrise to happen. 
+> the sunrise to happen.
 
-but I'd never seen/actively contemplated an example of `P(A|B)` where they 
+but I'd never seen/actively contemplated an example of `P(A|B)` where they
 are temporally reversed/ambiguous.
 
 # Hook length formula
@@ -15441,9 +15551,9 @@ for a given partition $\lambda$ of $n$. Recall the definitions:
   such that the assignment is (a) weakly increasing in the rows, and
   (b) strictly increasing in the columns. It is strictly increasing in the columns
   because gravity acts downwards.
-- Formally, a partition is written as $\lambda \equiv [\lambda_1, \lambda_2, \dots, \lambda_m]$, 
+- Formally, a partition is written as $\lambda \equiv [\lambda_1, \lambda_2, \dots, \lambda_m]$,
   where $\lambda_i \geq 0$ and $\sum_i \lambda_i = n$, and that they
-  are weakly decreasing ($\lambda_1 \geq \lambda_2 \geq \dots$). 
+  are weakly decreasing ($\lambda_1 \geq \lambda_2 \geq \dots$).
 - Formally, to define the tableaux, we first define the diagram $dg(\lambda) \equiv \{ (i, j) : 1 \leq j \leq \lambda[i] \}$
   which are the "locations" of the cells when visualizing $\lambda$ as a Ferrers diagram.
 - Finally, the actual assignment of the numbers to the tableaux is given by a bijection
@@ -15549,7 +15659,7 @@ $$
 #### The relationship to representation theory
 
 The RSK correspondence gives us a bijection between the permutation group $S_n$
-and pairs of standard young tableaux: 
+and pairs of standard young tableaux:
 
 $$
 RSK \equiv \bigcup_{\lambda \in \texttt{partition}(n)} SYT(\lambda) \times SYT(\lambda)
@@ -15640,7 +15750,7 @@ $g$ will always be ahead of/not fall behind $f$.
 
 <img src='./static/majorization-fixed-length.png'>
 
-#### Majorization and step 
+#### Majorization and step
 
 We can show that if $(b) \prec (a)$ , then we can get from $(b)$ to $(a)$
 in a finite number of discrete steps, that "borrow" from higherlocations in $b$
@@ -15648,7 +15758,7 @@ and "give" to lower locations. Formally, define a step operator $S(l, r)$ where
 $l < r$ such that:
 
 $$
-S(l, r)(b)[k] = 
+S(l, r)(b)[k] =
 \begin{cases}
  b[l]+1 & k = l \\
  b[r]-1 & k = r \\
@@ -15680,7 +15790,7 @@ $$
 
 # Rearrangement inequality
 
-If $a[i]$ is a non-decreasing sequence: $a[1] \leq a[2] \leq \dots a[n]$, and 
+If $a[i]$ is a non-decreasing sequence: $a[1] \leq a[2] \leq \dots a[n]$, and
 similarly $b[i]$ is a non-decreasing sequence: $b[1] \leq b[2] \leq b[n]$ then
 we have that:
 
@@ -15688,12 +15798,12 @@ $$
 \sum_i a[i] b[i] \geq \sum_i a[\sigma[i] b[i]
 $$
 
-for any permutation $\sigma \in S_n$. 
+for any permutation $\sigma \in S_n$.
 
 > insight: the greedy strategy is the best. Think of $b[n]$ as the max. number of times
 > we are allowed to pick some $a[i]$.
 > It is best to be greedy and pick the value $\max_i a[i]$  $b[n]$ number of times.
-> $\max_i a[i] = a[n]$. Thus having $a[n]b[n]$ will beat all others.  
+> $\max_i a[i] = a[n]$. Thus having $a[n]b[n]$ will beat all others.
 
 #### Proof
 
@@ -15764,7 +15874,7 @@ We can write this as:
 ```
    *A
  b/ |
-C*  | 
+C*  |
  a\ | c
    *B
 ```
@@ -15825,7 +15935,7 @@ c||
 
 Where we get $a - b = c$, and $c < a + b$. These are the extremes when the triangle has
 zero thickness. In general, because the points are spread out, when we
-project everything on the $AB=c$ line, we will get less-than(`<=`) 
+project everything on the $AB=c$ line, we will get less-than(`<=`)
 instead of equals (`=`).
 
 # The Heather subculture
@@ -15838,9 +15948,9 @@ instead of equals (`=`).
 Let $H$ be a subgroup of $G$. Define $H_g \equiv \{ g h g^{-1} : h \in H \}$.
 
 - We will always have $e \in H_g$ since $geg^{-1} = e \in H_g$.
-- Pick $k_1 k_2 \in H_g$. This gives us $k_i = gh_ig^{-1}$. So, 
+- Pick $k_1 k_2 \in H_g$. This gives us $k_i = gh_ig^{-1}$. So,
   $k_1 k_2 = g h_1 g^{-1} g h_2 g^{-1} = g (h_1 h_2) g^{-1} \in H_g$.
-- Thus, the conjugates of a subgroup is going to be another subgroup 
+- Thus, the conjugates of a subgroup is going to be another subgroup
   that has nontrivial intersection with the original subgroup.
 - For inverse, send $k = ghg^{-1}$ to $k^{-1} = g h^{-1} g^{-1}$.
 
@@ -15916,7 +16026,7 @@ Let us write elements of $g$ as acting on the vector space $V_S$, which is
 a complex vector space spanned by basis vector $\{ v_s : s \in S \}$. Let
 this representation of $G$ be called $\rho$.
 
-Now see that the right hand side is equal to 
+Now see that the right hand side is equal to
 
 $$
 \begin{aligned}
@@ -15944,7 +16054,7 @@ $\rho$, given by the inner product of their characters $\chi_1 \cdot \chi_\rho$.
 let $s* in S$ whose orbit we wish to inspect. Build
 the subspace spanned by the vector $v[s*] \equiv \sum_{g \in G} \rho(g) v[s]$.
 This is invariant under $G$ and is 1-dimensional. Hence, it corresponds
-to a 1D subrepresentation for all the elements in the orbit of $s*$. 
+to a 1D subrepresentation for all the elements in the orbit of $s*$.
 (TODO: why is it the **trivial** representation?)
 
 
@@ -16030,7 +16140,7 @@ configuration space of image 2 are valid, and vice versa.
 
 # Books for contest math
 
-A personal list of books I wish to study this year, to get better at 
+A personal list of books I wish to study this year, to get better at
 "problem solving". This is ranked in order of difficulty
 I wish to spend this year learning nuts and bolts type things.
 
@@ -16039,7 +16149,7 @@ I wish to spend this year learning nuts and bolts type things.
 - The art and craft of problem solving
 - Basics of Olympiad Inequalities: Samin Riasat --- quickly covers the big 12.
 - [Evan chen: A Brief Introduction to Olympiad Inequalities ](https://web.evanchen.cc/handouts/Ineq/en.pdf)
-- Pham Kim Hung: Secrets in Inequalities 
+- Pham Kim Hung: Secrets in Inequalities
 - Edwin Beckenback: Introduction to Inequalities
 - Nicholas D. Kazarinoff : Geometric inequalities
 - Introduction to Functional Equations: Theory and problem-solving strategies for mathematical competitions and beyond
@@ -16060,7 +16170,7 @@ I wish to spend this year learning nuts and bolts type things.
 
 # Analysing simple games
 
-I found the clear articulation of these ideas quite nice. 
+I found the clear articulation of these ideas quite nice.
 
 1. In a game with symmetry, a symmetric move can be blocked or prevented **only**
    by the previous move an opponent has **just made**.
@@ -16151,7 +16261,7 @@ Here's a list of contemporaries I would not have guessed:
 - Rembrandt sketched Shah jahan
 - Greek ambassador in the Ashoka court
 - "Bhaeatha's kingdom" for Bharat as known by the Chinese
-- Aurangzeb had rockets when fighting his brother 
+- Aurangzeb had rockets when fighting his brother
 - Aurangzeb had a French physician (Francois bernier)
 - Picasso was against the Korean war (1950) and painted about it.
 
@@ -16165,7 +16275,7 @@ Here's a list of contemporaries I would not have guessed:
 
 #### f any function
 
-- we count $O^I$        
+- we count $O^I$
 
 #### f injective
 
@@ -16176,7 +16286,7 @@ Here's a list of contemporaries I would not have guessed:
 - For each element $o \in O$, pick some subset $I_o \subseteq I$. We need the
   subsets $I_o$ to be disjoint, and all $I_o$ to be non-empty.
 - We can permute the fibers $I_o$, so we can place them by weakly decreasing order of size.
-- Then this is the same as counting partitions of $I$ into $O$ subsets, given by 
+- Then this is the same as counting partitions of $I$ into $O$ subsets, given by
   $S(n, x)$/${n\brace m}$ (stirling numbers of the second kind).
 
 
@@ -16184,7 +16294,7 @@ Here's a list of contemporaries I would not have guessed:
 
 - For each element $o \in O$, pick some subset $I_o \subseteq I$. We need the subsets $I_o$ to be disjoint,
   and all $I_o$ to be non-empty.
-- We get partway there by counting **compositions** of $I$: the number of ways to 
+- We get partway there by counting **compositions** of $I$: the number of ways to
   split $|I|$ into $(a_1, a_2, \dots, a_k)$ such that each $(a_i > 0)$ and $\sum_i a_i = |I|$.
   Note that ordering matters here, since we write a **tuple** $(a_1, a_2, \dots a_k)$.
 - For example, the compositions of $3$ are $(1, 1, 1)$, $(1, 2)$ and $(2, 1)$.
@@ -16215,7 +16325,7 @@ Count number of ways to form a necklace with $\{1, 2, \dots, n\}$
 - Method 2: A cycle is an equivalence class of elements $(a,b,c,d,e)$ along with
  all of its cyclic shifts ($(b,c,d,e,a)$, $(c,d,e,a,b)$, $(d,e,a,b,c)$, $(e,a,b,c,d)$).
   We are to count the number of equivalence classes. First pick a canonical element
-  of each equivalence class of the form $(1, p, q, r, s)$. 
+  of each equivalence class of the form $(1, p, q, r, s)$.
 
 
 # Decomposition of projective space
@@ -16244,7 +16354,7 @@ We can _define_ $\mathbb P^2$ to be an object such that:
 
 #### The points at infinity
 This will give us a copy of $\mathbb R^2$, along with "extra points" for parallel
-lines. 
+lines.
 
 - Consider two parallel lines $y = mx + 0$ and $y = mx + 1$. These don't traditionally
   meet, so let's create a point at infinty for them, called $P_m(0, 1)$.
@@ -16301,7 +16411,7 @@ knows no bounds, indeed.
 
 There are two ways of using linear maps in the context of physics. One is
 as a thing that acts on the _space_. The other is a thing that acts on the
-_coordinates_. 
+_coordinates_.
 
 So when we talk about transformations in tensor analysis, we're talking
 about _coordinate transformatios_, not _space transformations_.
@@ -16314,7 +16424,7 @@ about _coordinate transformatios_, not _space transformations_.
   allowing a contraction with `A*`.
 
 
-# Schur's lemma 
+# Schur's lemma
 
 #### Statement
 
@@ -16458,10 +16568,10 @@ It was a very interesting converstaion.
   learn it as a kid.
 - His feeling is that the art of wood carving is not respected, and it makes
   much more sense to go learn how to use a CNC .
-- We spoke about how the traditional style of woodcarving provided more 
+- We spoke about how the traditional style of woodcarving provided more
   control, and led to better construction. He said that consumers don't care,
   and resent him for the extra time.
-- He oft repeated how he was poor; He wakes up in the morning, takes care 
+- He oft repeated how he was poor; He wakes up in the morning, takes care
   of his cows, then begins carving. He might stay up late if there's an urgent
   order.
 - None of his children learnt woodcarving either. They seem to be learning
@@ -16472,7 +16582,7 @@ It was a very interesting converstaion.
   paraphranelia for idols. It turns out that temples only provide "blessings",
   and no payment.
 - When carving beds for gods, one must arrange the bed to be along the natural
-  direction of the tree. The feed of the god must be in the direction of the 
+  direction of the tree. The feed of the god must be in the direction of the
   roots, and the head must be towards the sky. Otherwise, the god will not
   accept the tree.
 - Towards this, there are many interesting principles of how to learn the
@@ -16538,7 +16648,7 @@ is represented by $[D_1]$.
 
 #### Partial ordering of divisors
 
-We say that $D_1 < D_2$ if for all $v$, $D_1(v) < D_2(v)$. 
+We say that $D_1 < D_2$ if for all $v$, $D_1(v) < D_2(v)$.
 
 #### Effective divisors
 
@@ -16565,7 +16675,7 @@ the picard group.
 
 - Subgroup of picard group of degree 0.
 - That is, all equivalence class elements of degree 0.
-- This is well defined because all linearly equivalent divisors (divisors that can be 
+- This is well defined because all linearly equivalent divisors (divisors that can be
   gotten by lending/borrowing) all have the same degree (total money). This is because
   lending/borrowing does not change the total amount of money in the market,
   only redistributes it.
@@ -16671,10 +16781,10 @@ the total degree zero.
 
 #### Principal divisors: $Prin(G) \equiv div(M(G))$.
 
-- Divisors of the form `div(s)` are called as **Principal divisors**. They are a 
+- Divisors of the form `div(s)` are called as **Principal divisors**. They are a
   subgroup of the degree 0 divisors.
 
-- Moreover, if $D'$ is obtainable from $D$ by a series of lending and borrowing 
+- Moreover, if $D'$ is obtainable from $D$ by a series of lending and borrowing
   moves, then $D' - D \in Prin(G)$.
 - This means that linear equivalence is a coset of the principal divisors: $[D] = D + Prin(G)$.
 
@@ -16720,13 +16830,13 @@ Clearly, this is some sort of linear inequality. So, we expect polytopes
 to show up! Since $x$ is an integer point, we want integer points in polytopes.
 
 #### Kernel of laplacian in connected graph: all 1s vector
-                                                    
+
 - first of all, see that lending by everyone in $V$ has no effect:
   everyone lends to all their neighbours, and all their neighbours lend to them,
   having zero net effect.
 
 - Stated in terms of the firing script, this means that $s_1 + s_2 + \dots s_n$
-  is in the kernel of $div$: the firing script creates a zero divisor. If we 
+  is in the kernel of $div$: the firing script creates a zero divisor. If we
   choose a basis, this is the all 1s vector.
 
 - In terms of the laplacian, this is stating that the all ones vector is in
@@ -16748,7 +16858,7 @@ Suppose we have a script $s: V \rightarrow \mathbb Z$ such that $div(s) = 0$.
 We build reduced laplacians to relate the jacobian (degree zero elements of divisor class group)
 and the laplacian.
 
-Fix a vertex $q \in V$. Define $\tilde{V} \equiv V /\{q\}$. A configuration 
+Fix a vertex $q \in V$. Define $\tilde{V} \equiv V /\{q\}$. A configuration
 on $G$ with respect to $q$ is an element of the subgroup
 
 $$
@@ -16773,7 +16883,7 @@ Here are the steps to convert such an intuition to a real algorithm:
 2. Pick some benelovent vertex $q \in V$. Call $q$ the source. Let $V' = V/q$ be the non
    source vertices.
 3. Let $q$ lend so much money to the non-source-vertices, such that the non-source-vertices,
-   sharing amongst themselves, are out of debt. 
+   sharing amongst themselves, are out of debt.
 4. Now only $q$ is in debt from this giving. $q$ makes no lending or borrowing moves.
    The non-source-vertices must get $q$ out of debt. Find a $S \subseteq V'$ such that if
    everyone in $S$ lends, then no one in $S$ go into debt. Make the corresponding set-lending
@@ -16799,11 +16909,11 @@ that $S$ stays out of debt. Now, if $q \geq 0$, then we win, from what we know
 of $q$-reduced configurations.
 
 
-  
+
 #### 4: Acylic orientations
 #### Orientations
 
-An orientation of a graph makes each edge directed. We think of edges now as 
+An orientation of a graph makes each edge directed. We think of edges now as
 tuples $e \equiv (u, v)$ as an edge from $u$ to $v$. We denote $e^- = u$ and
 $e^+ = v$ to be the source and sink vertices of the orientation.
 
@@ -16812,7 +16922,7 @@ $e^+ = v$ to be the source and sink vertices of the orientation.
 
 An orientation is acyclic if there are no cycles. Every acylic orientation
 must have at least one sink and a source. It must have **at least one source**.
-Assume the acyclic orientation does not have any sources. 
+Assume the acyclic orientation does not have any sources.
 
 #### Acylic orientation has at least one source
 
@@ -16828,7 +16938,7 @@ Thus all acyclic orientations have at least one source.
 
 #### Indegree sequence of an acyclic orientation.
 
-If $O$ is an orientation, define 
+If $O$ is an orientation, define
 
 $$
 indeg_O(u) \equiv |\{ e \in O : e^+ = u \}|
@@ -16848,7 +16958,7 @@ v   v
 b   c
 ```
 
-- This has indegrees  $(a=0, b=1,c=1)$. 
+- This has indegrees  $(a=0, b=1,c=1)$.
 
 Now consider $H$:
 
@@ -16868,7 +16978,7 @@ c
 
 OK, the above is not what the book claims. The book claims that two orientations
 $O_G$, $O'_G$ **of the same graph** are equal if their indegree sequences
-are equal. 
+are equal.
 
 This is believeable, because if the orientations point differently, their
 indegrees will change.
@@ -16879,10 +16989,10 @@ indegrees will change.
 - Theorem is immediate with only one vertex. Assume holds for $n$. Now we have
   a graph with $(n+1)$ vertices. Find source in acyclic orientation $O_G$. This has
   no incoming edges, so has indegree zero. This must be the same in $O'_G$ since
-  $O_G$ and $O'_G$ have the same indegree sequence. 
+  $O_G$ and $O'_G$ have the same indegree sequence.
 
 - Now remove the sources that are structurally equal. We get a graph of $H$ of
-  (n-1) vertices, and we get $O_H$ and $O'_H$ by removing the sources 
+  (n-1) vertices, and we get $O_H$ and $O'_H$ by removing the sources
   from $O_G, O_G'$. Since $O_G = O_G'$ we must have that $O_H = O_H'$ since removing
   the same source from both graphs modifes the orientations the same way. Recurse
   into $O_H, O_H'$.
@@ -16900,12 +17010,12 @@ $$
 #### The rank function
 
 In one sense, the “degree of winnability” of the dollar game is measured by the size
-of complete linear systems: $D$ is “more winnable” than $D'$ if 
+of complete linear systems: $D$ is “more winnable” than $D'$ if
 $[D]_{\geq 0} > [D']_{\geq 0}$. Instead of measuring $[D]_{\geq 0}$, we choose to
 define another function, the rank, that measures "stability/robustness of winnability"
 
 - Fist, $r(D) \equiv -1$ if $D$ is unwinnable: $r(D) \equiv 0$ iff $[D]_{\geq 0} = \emptyset$
-- Next, $r(D) = 1$ if $D$ is barely winnable.  That is, $D$ is winnable, but 
+- Next, $r(D) = 1$ if $D$ is barely winnable.  That is, $D$ is winnable, but
   there is *some* vertex $v$ such that $D - v$ is unwinnable. That is, $r(D)$
   is barely winnable if the ability to win at $D$ can be destroyed by a single
   vertex losing a dollar.
@@ -16931,7 +17041,7 @@ Won't prove this here, depends on other results (if $deg(D) \geq g$, then $D$ is
 
 
 
-                                                
+
 #### Canonical divisor
 
 For any orientation $O$, define $O_{rev}$ to be the reversed orientation. Now
@@ -16961,9 +17071,9 @@ I am a topologist, a domain theorist to be more precise. I had the
 privilege to meet many founders of this relatively young field of
 mathematics. Domain theory is a denotational semantics (there are
 others) of lambda calculus. For reading, there is the old testament and
-the new testament, as I call it. The old testament is 
+the new testament, as I call it. The old testament is
 "A compendium of continuous lattices"
-ISBN 3-540-10111-X                                          
+ISBN 3-540-10111-X
 ISBN 0-387-10111-X
 The new testament is
 "Continuous lattices and domains"
@@ -17003,7 +17113,7 @@ non-emptyness of the nested intersections, which again is guaranteed by
 the two topological properties "Hausfdorff" and "compactness" of the
 closed real interval.
 
-A treasure trove of smart little Haskell programs is 
+A treasure trove of smart little Haskell programs is
 [Martín Escardó's so-called Barbados notes, number 46 in `https://www.cs.bham.ac.uk/~mhe/papers/index.html`](https://www.cs.bham.ac.uk/~mhe/papers/index.html)
 
 
@@ -17043,7 +17153,7 @@ Olaf Klinke remarked:
 
 > A beautiful example of topological groups: Their topology is completely
 > determined by the neighbourhoods of the identity element. If the
-> identity element is isolated, the entire group is discrete. 
+> identity element is isolated, the entire group is discrete.
 
 I found this very interesting, because he's vieweing this from the
 "topology of computation" lens, where the existence of `null` means that
@@ -17066,7 +17176,7 @@ the situation.
 
 ```
 4  c♣
-2  h♡ 
+2  h♡
 7  d♢
 3  c♣
 4  h♡
@@ -17126,7 +17236,7 @@ A  h♡
 
 # Conversation with Alok about how I read
 
-Alok Debnath, a friend of mine claims he understood "how I read" based on 
+Alok Debnath, a friend of mine claims he understood "how I read" based on
 reading infinite jest and setting me experiments that allowed him to observe
 how I read.
 
@@ -17137,7 +17247,7 @@ In his words:
 
 
 He said that he never understood what the fuck I was doing until he read
-Infinite Jest by David Foster Wallace (a phenomenal book, I loved it and recommended it to him, 
+Infinite Jest by David Foster Wallace (a phenomenal book, I loved it and recommended it to him,
 which were enough recommendations to get him to read it, it seems).
 
 #### Infinite jest
@@ -17171,7 +17281,7 @@ might do (3).
 > you are uniquely adaptive to reading style, based on very little information.
 > This is a good thing when there is a unique, singular style to the entire
 > article, it is easy to templatize and then retrofit into how you want to get
-> that information. 
+> that information.
 
 #### His take on my take on why SEP is trash
 
@@ -17309,7 +17419,7 @@ I plan on summarizing my current thoughts on chess at different stages of ELO
 on Lichess.  This should be fun to look back on. Currently, I found that the
 thing that helps me the *most* when it comes to winning is this simple kernel:
 
-> Attack. 
+> Attack.
 
 With the somewhat useful addendum:
 
@@ -17320,9 +17430,9 @@ weak `f` pawn, get my Queen out early (people at my ELO rating don't really know
 how to punish an early roaming queen. I don't know either!), at just attack.
 
 If there's an attack on your pieces, *don't defend, counter-attack*. Of course,
-there are situations where one _must_ defend. Only defend then. 
+there are situations where one _must_ defend. Only defend then.
 
-Getting into this frame of reference stopped me from languishing at ~800 ELO. 
+Getting into this frame of reference stopped me from languishing at ~800 ELO.
 I used to
 - get anxious about the *game* and the prospect of conflict.
 - get anxious about the clock.
@@ -17351,7 +17461,7 @@ sources of "structural" questions of graphs and answers for these questions.
 > other node v ?
 
 > Q. Can I orient the edges of a bridge-less undirected bipartite graph with even
-> no. of nodes such that all the nodes are in a cycle ?  
+> no. of nodes such that all the nodes are in a cycle ?
 
 
 # Combinations notation in bijective combinatorics
@@ -17390,19 +17500,19 @@ An interesting theory for why this is good is if we want to treat this 4-bit
 data as 1-bit data, we want the subarray `[400]`. It's easier to *directly*
 acess in little endian as just `data[0]`, instead of in big endian where
 it would be `data[3]`. So, storing stuff backwards makes it easier to chop off
-the LSBs data, since that's the _suffix_. 
+the LSBs data, since that's the _suffix_.
 
 # Expectiles
 
 
 Mean is a minimiser of $L_2$ norm: it minimizes the loss of penalizing your
 'prediction' of (many instances of) a random quantity. You can assume that the
-instances will be revealed after you have made the prediction. 
+instances will be revealed after you have made the prediction.
 
 If your prediction is over/larger by $e$ you will be penalized by $e^2$.
 If your prediction is lower by $e$
 then also the penalty is $e^2$. This makes mean symmetric. It punishes
-overestimates the same way as underestimates.  
+overestimates the same way as underestimates.
 
 
 Now, if you were to be punished by absolute value $|e|$ as opposed to $e^2$ then median would be your best
@@ -17411,7 +17521,7 @@ prediction.
 Lets denote the error by $e_+$ if the error is an over-estimate and
 $e_-$ if its under. Both $e++$ and $e_-$ are non-negative. Now if the penalties were to
 be $e_+ + a e+-$ that would have led to the different quantiles depending on
-the values of $a > 0$. Note $a \neq 1$ introduces the asymmetry.  
+the values of $a > 0$. Note $a \neq 1$ introduces the asymmetry.
 
 If you were to do introduce a similar asymmetric treatment of $e_+^2$ and
 $e_-^2$ that would have given rise to expectiles.
@@ -17431,7 +17541,7 @@ First break into SCC's. Each SCC represents equivalence: since there is a
 path from every variable to every other variable, they must take on the
 exact same value. Hence if $x$ and $\lnot x$ are in the same SCC, we don't
 have a solution, because this means that $\texttt{true} = \texttt{false}$
-or $\texttt{false} = \texttt{true}$. 
+or $\texttt{false} = \texttt{true}$.
 
 Let's say we find SCC's where this does not happen. Now, zoom out and think of
 the condensation DAG. We want to assign true/false to each node in the SCC DAG.
@@ -17457,7 +17567,7 @@ assignment is _inconsistent_.
 # Strongly Connected Components via Kosaraju's algorithm
 
 We know that a directed graph can be written as two-levels, a top-level dag,
-with each node in the DAG being a condensation of the original graph. So 
+with each node in the DAG being a condensation of the original graph. So
 we wish to discover the DAG, and then each condensation. We wish to
 view Kosaraju's algorithm as a "stronger topological sort" that works
 for general graphs, and not just DAGs.
@@ -17503,7 +17613,7 @@ I learnt this from Benjamin Pierce's  "Category theory for computer scientists":
 # Articulation points
 
 I find DFS fascinating, and honestly insane for how much structral
-information of the graph it manages to retain. 
+information of the graph it manages to retain.
 
 > A vertex $v$ is an articulation point of a graph $G$ if the removal
 > of $v$ disconnects the induced subgraph.
@@ -17512,7 +17622,7 @@ information of the graph it manages to retain.
 
 We first solve the super easy case with the root, and then try to see
 if we can treat other cases like the root node case, then we're good.
-Here, we are given an graph $G$, and we are thinking about a DFS tree 
+Here, we are given an graph $G$, and we are thinking about a DFS tree
 $T_G$ of the graph $G$.
 
 #### Thinking about the root
@@ -17534,7 +17644,7 @@ remove $v$, then $w$ would be disconnected from the rest of the graph.
 > Alternate phrasing: When all cycles in the subtree of $w$ are within the
 > subtree of $v$. This means that the backedges cannot go above $v$.
 > If $w$ could build a cycle that goes above $v$, then $v$ would not be an
-> articulation point, because it'll be involved in some cycle 
+> articulation point, because it'll be involved in some cycle
 > $v \mapsto  w \mapsto \mapsto p \mapsto v$, which gives us an alternative path
 > to reach $w$ even if $v$ is removed.
 
@@ -17542,7 +17652,7 @@ remove $v$, then $w$ would be disconnected from the rest of the graph.
 One way to imagine this maybe to imagine $v$ as the new root, and the other
 stuff that's above $v$ to be to the left of $w$. That way, if we could go to $w$,
 we get a cross edge from the "new root"(v) and the "other section" (the part
-that's connected by a cross edge). If we prevent the existence of these 
+that's connected by a cross edge). If we prevent the existence of these
 "fake cross edges", we're golden, and $v$ is then an articulation point.
 
 #### Tactic 2 - Structurally / Characterization
@@ -17596,7 +17706,7 @@ We look at pictures and try to figure out how to do this.
 #### DFS for articulation vertices - undirected:
 
 <img src="./static/articulation-vertex-undirected.png"/>
-                                                                                                                        
+
 - The connectivity of a graph is the smallest number of vertices that need to
   be deleted to disconnect the graph.
 - If the graph has an articulation vertex, the connectivity is 1. More robust
@@ -17612,13 +17722,13 @@ We look at pictures and try to figure out how to do this.
 
 #### Articulation vertices on the DFS tree - undirected
 
-- If we think of only the DFS tree for a moment of an undirected graph 
+- If we think of only the DFS tree for a moment of an undirected graph
   and ignore all other edges, then
   all interneal non-leaf vertices become articulation vertices, because they
   disconnect the graph into two parts: the part below them (for concreteness,
-  think of a child leaf), and the root component. 
+  think of a child leaf), and the root component.
 
-- Blowing up a leaf has no effect, since it does not connect two *components*, 
+- Blowing up a leaf has no effect, since it does not connect two *components*,
   a leaf only connects itself to the main tree.
 
 
@@ -17635,7 +17745,7 @@ We look at pictures and try to figure out how to do this.
   cable from `x` to `y` ensures that none of the nodes on the path `[x..y]`
   can be articulation vertices.
 
-- So, to find articulation vertices, we need to see how far back 
+- So, to find articulation vertices, we need to see how far back
   the security cables go.
 
 ```cpp
@@ -17648,7 +17758,7 @@ void process_edge(int x, int y) {
   //     BACK
   //     |
   // x --*
-  if (dfsedge[x][y].type == BACK && (parent[y] != x)) { 
+  if (dfsedge[x][y].type == BACK && (parent[y] != x)) {
      if(entry_time[y] < entry_time[anc[x]]) {
        anc[x] = y;
      }
@@ -17705,8 +17815,8 @@ void mkroot(int newroot, int prevroot) {
 
 I've always disliked the "clocks" that are used in special relativity,
 because a clock attempts to measure something absolute, rather than something
-relative. So, we should rather use hour glasses. In an hour glass, we can 
-only measure *intervals* of time. 
+relative. So, we should rather use hour glasses. In an hour glass, we can
+only measure *intervals* of time.
 
 <br/>
 
@@ -17719,9 +17829,9 @@ we keep dripping down, once the photon at the funnel has reached the bottom.
 
 This is *exactly* what the two mirror photon clock does --- it bounces a photon
 between two mirrors. We can look at this as us "flipping" the hourglass
-once the photon reaches the bottom of the hourglass. 
+once the photon reaches the bottom of the hourglass.
 
-# Euler tours 
+# Euler tours
 
 #### Tucker's proof: undirected graph with all even degree has an euler tour
 
@@ -17735,7 +17845,7 @@ the even condition is used.
    edge between two cycles if they share a common vertex.
 
 It's super clear why we need all vertices to be even degree; You can't pair
-up vertices otherwise! 
+up vertices otherwise!
 
 #### References
 - [Video on euler tour](https://www.youtube.com/watch?v=8MpoO2zA2l4)
@@ -17806,7 +17916,7 @@ $$
 -3 = -4 + 1 = \dots 1 1 0 0 + \dots 0 0 0 1 = \dots 1 1 0 1
 $$
 
-Which once again agrees with the 2's complement definition. 
+Which once again agrees with the 2's complement definition.
 
 #### $x \& (-x)$ for powers of 2:
 
@@ -17829,9 +17939,9 @@ in signed world, we want the answer to be `-1`. If in unsigned world
 we want the answer to be 255.
 
 ```
-0 - 1 
+0 - 1
 = b0000000 - b00000001
-= b11111111 
+= b11111111
 =unsigned= 255
 ```
 
@@ -17877,7 +17987,7 @@ us the diameter (the distance from $v$ to $w$)
 
 #### Proof by intuition/picture:
 
-- first imagine the tree lying flat on the table. 
+- first imagine the tree lying flat on the table.
 
 <img src="./static/diameter/tree.png" />
 
@@ -17887,7 +17997,7 @@ us the diameter (the distance from $v$ to $w$)
 <img src="./static/diameter/tree-dfs-1.png" />
 
 - Pick one of the lowest nodes (we pick $g$). Now hold the entire tree from
-  this lowest node, and once again allow gravity to act. 
+  this lowest node, and once again allow gravity to act.
 
 <img src="./static/diameter/tree-dfs-2.png" />
 
@@ -17934,7 +18044,7 @@ the single vertex with the $n$ colors we have.
 
 
 
-# Structure theory of finite endo-functions 
+# Structure theory of finite endo-functions
 
 We study functions $f: V \rightarrow V$ and their properties by thinking of them as a
 graph with vertex set $V$ and directed edges $(v, f(v))$. This gives us insight into
@@ -17951,7 +18061,7 @@ root. The root of the tree lies in a cycle.
 
 If we have a tree, we can keep walking backwards using edges from the root towards
 the leaves. Now this leaf does not have an incoming edge. This means that this leaf
-is not in the image of $f$. Hence $f$ cannot be surjective. 
+is not in the image of $f$. Hence $f$ cannot be surjective.
 
 #### Rooted Trees: a single cycle
 
@@ -17981,9 +18091,9 @@ we must have that $A^|V| = 0$.
 - Let $A^n = 0$.
 - Now, we know that $(I - A)^{-1} = I + A + A^2 + \dots$
   which will terminate as a finite sum, with $(I - A)^{-1} = I + A + A^2 + \dots + A^{n-1}$.
-- But note that $(I + A + A^2 + \dots A^{n-1})[i][j]$ will count number of paths from 
+- But note that $(I + A + A^2 + \dots A^{n-1})[i][j]$ will count number of paths from
   $i$ to $j$ with $0$ edges, $1$ edge, $2$ edges, etc. so we will get the _total_ number of
-  paths from $i$ to $j$!. 
+  paths from $i$ to $j$!.
 
 
 # Set partitions
@@ -18005,7 +18115,7 @@ $$
 - For the $n$th element, I either build a new equivalence class $\{ n \}$
   and then make $k-1$ equivalence classes from $\{1\dots (n-1)\}$.
 - Alternatively, I have $k$ equivalence classes from $\{1 \dots (n-1)\}$, say $P[1], P[2], \dots, P[k]$
-  I decide into which $P[i]$ the $n$ should go, which gives me $k$ choices. 
+  I decide into which $P[i]$ the $n$ should go, which gives me $k$ choices.
 - Initial conditions: $S(0, 0) = 1$, $S(0, k \neq 0) = S(n \neq 0, 0) = 0$.
 
 #### Stirling numbers and surjections
@@ -18033,7 +18143,7 @@ Delta(4):
 +--+--+
 |  |  |
 +--+--+--+
-|  |  |  | 
+|  |  |  |
 +--+--+--+--+
 ```
 
@@ -18045,11 +18155,11 @@ We define $r(n, k)$ to be the number of legal rook placements on a board $\Delta
 with $k$ free rows. That is, we have $(n-k)$ rooks to place on the board $\Delta(n)$,
 with one on each row, such that no rook attacks another rook.
 
-- Boundary condition: $r(0, 0) = 0$ 0 free rows on a $\Delta(0)$ board counts as 
+- Boundary condition: $r(0, 0) = 0$ 0 free rows on a $\Delta(0)$ board counts as
   one configuration.
 - Recurrence: $r(n, k) \equiv r(n-1, k-1) + k r(n-1, k)$
 
--  $r(n-1, k-1)$ term: 
+-  $r(n-1, k-1)$ term:
    We don't place a rook on the bottom row. This means we have used up a free row,
    and need to place rooks with $(k-1)$ free rows on an $(n-1)$ board:
 
@@ -18065,7 +18175,7 @@ with one on each row, such that no rook attacks another rook.
 +--+--+--+--+
 ```
 
-- $k r(n-1, k)$: We fill out $\Delta(n-1)$ with rooks such that we have 
+- $k r(n-1, k)$: We fill out $\Delta(n-1)$ with rooks such that we have
   $k$ free rows. Then, we add the final row. Note that since we have rooks,
   $k$ free rows is equivalent to $k$ free columns! Now, we can't leave the final row
   free, since we have already exhausted our $k$ free rows in the recursion. We have $k$
@@ -18136,7 +18246,7 @@ The recurrence for partitions is:
 $$P(n, k) = P(n-1, k-1) + P(n-k, k)$$
 
 The idea is to consider a partition $p[1], p[2], \dots, p[k]$ of $n$ based on the final element:
-- if $p[k] = 1$, then we get a smaller partition by removing the $k$th part, giving us a partition of $(n-1)$  
+- if $p[k] = 1$, then we get a smaller partition by removing the $k$th part, giving us a partition of $(n-1)$
   as $[p[1], p[2], \dots, p[k-1]]$. Here the number decreases from $n \mapsto (n-1)$ and the number of parts
   decreases from $k \mapsto (k-1)$.
 - if $p[k] \neq 1$ (that is, $p[k] > 1$), then we get a partition of $n-k$ by knocking off a $1$ from *each* partition, giving us
@@ -18157,7 +18267,7 @@ repeatedly, and we want $k$ such elements.
 #### The usual proof: stars and bars
 
 The usual proof involves creating $k$ "stars" ($\star$) which need to be placed in $n$
-buckets. These buckets are created by having $(n-1)$ "bars" ($|$). For example, if we 
+buckets. These buckets are created by having $(n-1)$ "bars" ($|$). For example, if we
 wish to consider all $k=3$ element multisets of the letter $n=4$: $\{w, x, y, z\}$:
 
 $$
@@ -18171,7 +18281,7 @@ $$
 
 #### Direct bijection.
 
-To build a direct bijection, map a $k$ multiset of $n$ into a $k$ **subset** of $n+k-1$, which 
+To build a direct bijection, map a $k$ multiset of $n$ into a $k$ **subset** of $n+k-1$, which
 is counted by $\binom{n+k-1}{k}$.
 
 
@@ -18181,12 +18291,12 @@ is counted by $\binom{n+k-1}{k}$.
   $M[i] + i < M[i+1] + (i+1)$.
 - This gives us the set $M' = \{ 1+0, 1+1, 2+2, 3+3, 3+4 \} = \{ 1, 2, 3, 6, 7 \}$.
 - See that this process is reversible. Given some set, say $N = \{ 4, 3, 2, 6, 7, 8 \}$, order in ascending order to get
-  $N' = [2, 3, 4, 6, 8]$ and then subtract $i$ from $N'[i]$ to get $[2-0, 3-1, 4-2, 6-3, 7-4, 8-5] = [2, 2, 2, 3, 3, 3]$. 
+  $N' = [2, 3, 4, 6, 8]$ and then subtract $i$ from $N'[i]$ to get $[2-0, 3-1, 4-2, 6-3, 7-4, 8-5] = [2, 2, 2, 3, 3, 3]$.
 
 
 I found this very elegant, because it "de-multisets" the multiset by adding just enough to make each element unique,
 and then simply counts the unique subset. Very slick! We need to add $k-1$ to the final index, and the largest number
-we can have is $n$ so we need $n + (k-1)$ values. We need a size $k$ multiset, making us need $\binom{n+(k-1)}{k}$. 
+we can have is $n$ so we need $n + (k-1)$ values. We need a size $k$ multiset, making us need $\binom{n+(k-1)}{k}$.
 
 - Reference: Bijective Combinatorics
 
@@ -18220,7 +18330,7 @@ dfs(vs, adj):
 #### Complexity
 
 We call `dfs-visit` once per vertex $V$. Per vertex, we pay `adj(v)` per
-vertex `v`. In total, we visit `|E|`. 
+vertex `v`. In total, we visit `|E|`.
 
 #### Shortest paths?
 
@@ -18254,7 +18364,7 @@ A ----> B
   ----> C
 ```
 
-`A -> C` is a forward edge! 
+`A -> C` is a forward edge!
 If we made the above undirected, then we will have `A -> B` tree edge and `B -> C`
 back-edge.
 
@@ -18271,7 +18381,7 @@ $G$ has a cycle iff $G$'s DFS has a back-edge.
 ```
   tree
 A -...-> X
-^         |       
+^         |
 ---back---*
 ```
 
@@ -18285,17 +18395,17 @@ assume `v[0]` is the first vertex in the cycle visited by the DFS.
 Keep labeling based on how DFS visits then as `v[1], v[2], ... v[k]`.
 The we claim the edge `v[k] -> v[0]` will be a backedge.
 
-- We know that when we're recursing on `v[0]`, we will visit `v[1]` before we 
+- We know that when we're recursing on `v[0]`, we will visit `v[1]` before we
   finish `v[0]`.
 - Similarly, `v[i]` will be visited before `v[i-1]`.
-- Chaining, we will finish `v[k]` before we finish `v[0]`. 
+- Chaining, we will finish `v[k]` before we finish `v[0]`.
 - In terms of balanced parens, it's like `{0 (k; k) 0}`.
 - So, when we look at the edge `v[k] -> v[0]`, we have not yet finished `v[0]`.
   Thus, we get a backedge.
 
 #### Topological sort
 
-Given a DAG, order vertices so that all edges point from lower order to 
+Given a DAG, order vertices so that all edges point from lower order to
 higher order. The algorithm is to run DFS and output the reverse order of
 finishing time of vertices. Why does this work?
 
@@ -18313,9 +18423,9 @@ the bracketing `{u (v; v) u}` so we're good: we finish `v` before we finish `u`.
 
 ##### Case 2: `v` starts before `u`
 
-We have the bracketing `(v ... {u`. If we were to finish `u` before finishing `v`, then 
+We have the bracketing `(v ... {u`. If we were to finish `u` before finishing `v`, then
 `v` is an ancestor of `u`, and this gives the bracketing
-`(v .. {u .. u} .. v)` and thus the edge $(u, v)$ is a back-edge. But this is 
+`(v .. {u .. u} .. v)` and thus the edge $(u, v)$ is a back-edge. But this is
 impossible because the graph cannot have cycles! Thus, we will still have that
 `v` finishes beofre `u`, giving the bracketing `(v v) .. {u u}`.
 
@@ -18325,7 +18435,7 @@ impossible because the graph cannot have cycles! Thus, we will still have that
 
 # Tournaments
 
-- Tournament graph: either $U$ beats $V$, so we have $U \rightarrow V$ or we have $V$ beats $U$ so we 
+- Tournament graph: either $U$ beats $V$, so we have $U \rightarrow V$ or we have $V$ beats $U$ so we
   have the edges $V \rightarrow U$ for every $U, V$
 
 [image at 49:00 from video math for comp sci lecture 10]
@@ -18352,7 +18462,7 @@ create a bigger path that includes $v$.
 
 ##### Case 1
 If $v \rightarrow v_1$ then we will get a path $v v_1 \dots v_n$.
-                         
+
 ##### Case 2
 If $v_1 \rightarrow v$, then it is harder! Now what do we do?
 Ideally we want to plug $v$ somewhere in the sequence $v_1 v_2 \dots v_n$.
@@ -18376,11 +18486,11 @@ is no longer the smallest index!
 Either a chicken $u$ pecks a chicken $v$ then $u \rightarrow v$ or the other
 direction, $v \rightarrow u$. We say that $u$ *virtually* pecks $v$ if there's
 a patch of pecking for $u$ to peck $v$.
-                                                                            
+
 > The chicken king is the chicken that virtually pecks all other chickens.
 
 We can have multiple king chickens. We want to find at least one chicken king.
-We may want to show that the vertex with the most number of outgoing edges  
+We may want to show that the vertex with the most number of outgoing edges
 is going to be a king.
 
 #### Theorem: chicken with highest out degree is the king
@@ -18394,7 +18504,7 @@ that $v \rightarrow u$. In the other case, we have that $\not u \rightarrow w \x
 # Matching problems (TODO)
 
 Given a graph $G = (V, E)$ a matching is a collection of edges of $G$ where every
-node has degree 1. 
+node has degree 1.
 
 #### Perfect matching
 
@@ -18409,7 +18519,7 @@ The weight of a matching is the sum of the weights on the edges of $M$. In this
 context, we usually always ask for a **perfect matching**. Otherwise, one can
 trivially *not match anyone* to get a min-weight matching of weight 0.
 So the definition of a min-weight matching for the graph $G$ is a perfect
-matching with minimum weight. 
+matching with minimum weight.
 
 We don't see these in `6.042`. Will have to read flows/hungarian to study this.
 
@@ -18444,7 +18554,7 @@ symmetry. If mergatoid is matched to alex, then we must have Robin matched
 to Bobby
 
 - Alex and Bobby are not rogue, because Bobby  likes Robin more than Alex.
-- Alex and Robin are the rogue, because (1) Robin prefers Alex over Bobby, and 
+- Alex and Robin are the rogue, because (1) Robin prefers Alex over Bobby, and
   (2) Alex prefers Robin over Mergatoid.
 
 Hence, we found a rogue couple. So $M$ was not stable.
@@ -18481,7 +18591,7 @@ The ritual takes place over several days.
 
 #### Termination, terminates quickly: N^2 + 1 days
 
-Proof by contradiction. suppose TMA does not terminate in $N^2+1$ days. 
+Proof by contradiction. suppose TMA does not terminate in $N^2+1$ days.
 
 **Claim** If we don't  terminate on a day, then that's because a girl had
 two or more boys under her balcony. Thus, at least one boy crosses the girl
@@ -18493,7 +18603,7 @@ would have crossed out all girls.
 - `P` is that if a girl $G$ every rejected a boy $B$ then she has a suitor who
   she prefers to $B$.
 
-- To prove that this is indeed an invariant, induction on time. 
+- To prove that this is indeed an invariant, induction on time.
   At the beginning, no girl has rejected any boy, so it's vacuously true.
 
 - Assume `P` holds at the end of day $d$. At the end of day $d+1$, there's two cases.
@@ -18520,11 +18630,11 @@ not married. (If there is no boy who is not married then everyone is married).
 > the highest value is allowed to be put into the mutex, and all of the others
 > are rejected. Thus, if there is a girl who has multiple writes, she will
 > only allow one of the writes to happen, and permanently disallow the other writes.
-> Thus, the other writes have to move to other girls. 
+> Thus, the other writes have to move to other girls.
 
 #### No rogue couples
 
-Contradiction: assume that there is a pair that are not married, call them bob and gail. 
+Contradiction: assume that there is a pair that are not married, call them bob and gail.
 We need to show that they will not go rogue. Since bob and gail are not
 married, either (1) gail rejected bob, or (2) gail did not reject bob because
 bob never serenaded her. If bob had serenaded her *and* was not rejected, then they
@@ -18533,7 +18643,7 @@ would have been married!.
 
 - (1) If gail rejected bob, then gail has marries someone she likes better than bob
   since she's rejected bob. Thus, gail and bob can't be a rogue couple because she
-  likes her spouse more than bob. 
+  likes her spouse more than bob.
 
 - (2) bob never serenaded gail. This means that he married someone who he prefers
   more than gail, cause he never reached gail.
@@ -18554,7 +18664,7 @@ would have been married!.
 - A person's **optimal mate** is their most favourite in the realm of possibility. Their
   **pessimal mate** is their least favourite in the realm of possibility.
 
-#### Theorem: No two boys can have the same optimal mate. 
+#### Theorem: No two boys can have the same optimal mate.
 
 Assume two boys do have the same optimal mate. Say $(b^\star, g)$ and $(b, g)$. WLOG
 let $g$ prefer $b^\star$ over $b$. Now, there exists some "stable matching" where
@@ -18575,7 +18685,7 @@ up not marrying Nicole. This means he must have crossed off Nicole in some day (
 
 Note that he must have **gotten to Nicole**, because no girls he prefers over nicole
 would have led to a stable marriage, and would thus not be an output generated
-by the algorithm. This, all girls he prefers above nicole must reject him 
+by the algorithm. This, all girls he prefers above nicole must reject him
 at *some* step of the algorithm till he reaches Nicole.
 
 We assume that in this instance of the algorithm, he does not get Nicole, thus
@@ -18662,7 +18772,7 @@ of $A^T$ is in $\mathbb R^m$.
 
 We want a basis for each of those spaces, and what are their dimensions?
 - The dimension of the column space is the rank $r$.
-- The dimension of the row space is also the rank $r$. 
+- The dimension of the row space is also the rank $r$.
 - The dimension of the nullspace is $n - r$.
 - Similarly, the left nullspace must be $m - r$.
 
@@ -18686,7 +18796,7 @@ The basis will be the special solutions. Lives in $\mathbb R^n$
 #### Basis for left null space
 
 It has vectors $y$ such that $A^T y = 0$. We can equally write this as
-$y^T A = 0$. Can we infer what the basis for the left null space is 
+$y^T A = 0$. Can we infer what the basis for the left null space is
 from the process that took us from $A$ to $R$? If we perform gauss-jordan,
 so we compute the reduced row echelon form of $[A_{m\times n} I_{m \times m}]$,
 we're going to get $[R E]$ where $E$ is whatever the identity matrix became.
@@ -18741,7 +18851,7 @@ as a *value*.
 - `space`: remove multiple cursors
 - `Alt+i <key>`: select `<object>` of some type. Example: `Alt+i w`: select word.  `Alt+i s`: select sentence.
 - `Shift-c`: create multiple cursor in line below
-- `X`: select line. 
+- `X`: select line.
 
 
 # Assembly IDE
@@ -18796,7 +18906,7 @@ $$
 
 #### Properties of flow
 
-- $f(X, X) = 0$. $f(a, a) = 0$ because self loops are not allowed. for two 
+- $f(X, X) = 0$. $f(a, a) = 0$ because self loops are not allowed. for two
  different vertices, we're going to get $f(a, b) + f(b, a) = 0$ by skew symmetry.
  In general, $f(X, Y) = -f(Y, X)$.
 - $f(X \cup Y, Z) = f(X, Z) \cup f(Y, Z)$ if $X \cap Y = \emptyset$.
@@ -18867,7 +18977,7 @@ how to find these min-cuts. That's what we'll need to figure out.
 
 #### Residual network
 
-Network that points us to locations with leftover capacity where we can 
+Network that points us to locations with leftover capacity where we can
 push flow. $G_f(V, E_f)$ contains all those edges that have positive (greater than zero)
 residual capacity. Edges in $E_f$ admit more flow. If $(v, u) \not \in E$, then
 $c(v, u) = 0$, but $f(v, u) = -f(u, v)$. So we will have extra edges in the
@@ -18908,7 +19018,7 @@ operations and divide by $k$. This **defines the amortized cost** (Weak definiti
 
 $$
 \begin{aligned}
-\sum \texttt{amortized-cost}(op[i]) \geq \sum \texttt{real-cost}(op[i]) 
+\sum \texttt{amortized-cost}(op[i]) \geq \sum \texttt{real-cost}(op[i])
 \end{aligned}
 $$
 
@@ -18921,9 +19031,9 @@ $$
 - `O(log n)` to insert  (amortized)
 - `O(0)` to delete? (amortized) We can bound the deletion cost by the insertion cost,
   because we can't delete more items than we have inserted! We can bound the
-  **delete cost** by the **insert cost**. 
+  **delete cost** by the **insert cost**.
 
-- `c` creation time, `i` insertions, `d` deletions. 
+- `c` creation time, `i` insertions, `d` deletions.
 - Let $n^\star$ be the largest size of the tree we've encountered in this
   sequence of operations. This way, we are really bounding the worst case.
 - The real cost is $(c  + i \log n^\star + d \log n^\star)$. Let's try to show
@@ -18974,11 +19084,11 @@ in the cache from the insert.
 
 ##### Better bounds: removing the star
 
-We want to say that we pay $\log(n)$ for insert and delete 
+We want to say that we pay $\log(n)$ for insert and delete
 where $n$ is the size of the tree when we perform the insert or delete.
 
 Per insert, we pull in two gold coins worth $\log(n)$ from the reservoir
-into the cache. When we delete, we use the $\log(n)$ in the cache from 
+into the cache. When we delete, we use the $\log(n)$ in the cache from
 the money that was withdrawn when we created that element. See that the $n$
 changes as the size of the data structure changes.
 
@@ -18994,7 +19104,7 @@ changes as the size of the data structure changes.
 
 - So by the time we double, half of the elements have coins, other half don't.
   At the end, I'm going to have $n/2$ coins. The amortized cost of **doubling**
-  is going to be $O(n) - cn/2$ which is going to be zero if $c$ is large. since I 
+  is going to be $O(n) - cn/2$ which is going to be zero if $c$ is large. since I
   will have $cn/2$ coins in my cache of gold.
 
 - Insert costs $O(1 + c) = O(c)$ since we need to pull out those many coins from
@@ -19016,7 +19126,7 @@ into the gold cache, and it keeps it "for itself" for future-itself.
 After we double the table, the table is half-full, we need to perform $n/2$
 insertions to get the table to be full. When we double the array next time,
 we charge the doubling to the insertions since the last doubling!
-There are $n/2$ items since the last doubling (I had `2` items, I doubled to `4` items, 
+There are $n/2$ items since the last doubling (I had `2` items, I doubled to `4` items,
 so there are `n/2` new items. Now I want to double and add `4` more items).
 I have a cost of `O(n)` for the doubling. So I can charge `O(1)` cost to
 all the new items since the last doubling. Note that I only charge once; after
@@ -19035,7 +19145,7 @@ $$
 \texttt{amortized(op)} = \texttt{real(op)} + \phi(\texttt{after(op)})  - \phi(\texttt{before(op)})
 $$
 
-Adding up all the amortized costs, the sum telescopes, giving us 
+Adding up all the amortized costs, the sum telescopes, giving us
 
 $$
 \texttt{amortized(total)} = \texttt{real(total)} + \phi(\texttt{end}) - \phi(\texttt{begin})
@@ -19058,17 +19168,17 @@ to cost 1 + the number of trailing ones. We want to make this **constant**.
 
 - Rather, we can define $\phi$ to be the total number of 1 bits. Whenever I increment,
   at maximum, I can add one `1`. If a number has `t` trailing bits, then on incrementing,
-  I destroy `t` one bits, and add a single one-bit. eg: `0110 + 1 = 1000`. 
+  I destroy `t` one bits, and add a single one-bit. eg: `0110 + 1 = 1000`.
 
 - The amortized cost is: `1 + t` (actual cost). The change
   in potential is: `t - 1` [lost `t` 1s, gained `1` one]. So the amortized cost is
-  total cost - change in potential, which is `1 + t - (t - 1) = 2`, a constant. 
+  total cost - change in potential, which is `1 + t - (t - 1) = 2`, a constant.
 
 
 
 # Shelly Kegan: death --- Suicide and rationality (TODO)
 
-How does the fact that we will die affect the way we live? previous 
+How does the fact that we will die affect the way we live? previous
 chapter! The fact our mortality raises the question of whether or not
 we should put an end to our life. It's the extra feature --- the variability
 of death, the fact that we can control how long we live, and thus we face
@@ -19076,12 +19186,12 @@ the possibility of ending our life earlier than it would otherwise. Under what
 circumstances is it a good thing to do?
 
 You must be either crazy or immoral is the knee jerk. The very first thing
-to do is to distinguish questions of rationality from morality. 
+to do is to distinguish questions of rationality from morality.
 
 #### Rationality of suicide
 
 1. When if ever would it be true that you are better off dead?
-2. Assume that the answer to the first question is "under circumstance X, 
+2. Assume that the answer to the first question is "under circumstance X,
 
    you would be better off dead", can you trust your judgement that this is one
    of those cases X?
@@ -19115,12 +19225,12 @@ that you are alive gave you some positive value. Fantastic continer theories:
 doesn't matter how bad the contents get, even so the grand total is still
 positive. What's so incredible about life itself? They argue that being
 alive itself is valuable. But most people don't really mean life, they mean
-life as a person. For example, they would not agree that being alive as a 
+life as a person. For example, they would not agree that being alive as a
 blade of grass is a "good life".
 
 
 What about a life where the person's functioning has decayed, but they can still
-feel pain? In that case perhaps, their life's quality can degrade. 
+feel pain? In that case perhaps, their life's quality can degrade.
 
 We can probably find sympathy with the perspective that here on out, their
 life is going to be net negative; someone who has terminal cancer and is in
@@ -19158,7 +19268,7 @@ and after. Call this the two state requirement.
 > the problem with dogmas is that they do not allow revision. The moment someone
 > has a better idea you have to shut it down. ~ Sam
 
-> Free speech elevates error correction of dogmas above dogmas. So 
+> Free speech elevates error correction of dogmas above dogmas. So
 > Free speech must be on the pinnacle in the hierarchy of values ~ Peterson
 
 > The only problem with the religion is the dogmatism. I've got no problem
@@ -19167,7 +19277,7 @@ and after. Call this the two state requirement.
 > What is the phenomenology of spiritual experience? That phenomenology is
 > real! This phenomenology seems to confirm the dogma.
 
-> The core element of tribal alliance is independent of the religious 
+> The core element of tribal alliance is independent of the religious
 > substrate? Religion can allow clearly good people who are not captured
 > by tribalism are able to perform atrocities. This suffering is not from a
 > "ape like" urge. If you buy the claim that quran is the perfect word, then
@@ -19179,7 +19289,7 @@ and after. Call this the two state requirement.
 > then ~ Sam
 > Don't forget that the christians *used their christian faith* as an argument
 > against slavery ~Petersen
-> Well then it's unfortunate that they were on the losing side of an argument. 
+> Well then it's unfortunate that they were on the losing side of an argument.
 > If only the bible had said "don't keep slaves" imagine how much easier their
 > movement would have been ~Sam.
 
@@ -19187,16 +19297,16 @@ and after. Call this the two state requirement.
 > there are many ways of interpreting it. For example, consider a movie with
 > a twist at the end. The twist changes the emaning of the entire movie. So while
 > the bible may contain, sentence by sentence, things that are "just wrong"
-> from a modern lens, perhaps it's not so when viewed holistically. 
+> from a modern lens, perhaps it's not so when viewed holistically.
 > Everything in a narraitve is conditioned on the entire text. While you
 > may argue that some sentences in the bible are so horrific that it's impossible
 > to use context to massage them, you have to give the devil his due. The
-> Christian bible is a narrative. 
+> Christian bible is a narrative.
 
 > OK, what does this do to Moses' laws of war and doctrines?
 
 
-> the notion of revelation and prophecy destroys a whole bunch of 
+> the notion of revelation and prophecy destroys a whole bunch of
 > soceity. I've read to the end of the book, it's scary to the end as well!
 
 > there is an idea in the bible, that things are always going to be falling
@@ -19220,7 +19330,7 @@ and after. Call this the two state requirement.
 > hell. Why not go all the way?
 
 > Literal versus metaphorical truth. There are some truths that are literally
-> false but if you behave as if they were true you come out ahead. 
+> false but if you behave as if they were true you come out ahead.
 
 > Imagine a universe where every possible mind is tuned to the worst possible
 > experience that they can. If anything is bad, that's bad. If the word bad
@@ -19233,7 +19343,7 @@ and after. Call this the two state requirement.
 > Jordan disagrees that this is a factual claim.
 
 
-> Why did people do the worst things 
+> Why did people do the worst things
 
 - [Sam harris and jordan peterson: Vancouver 1](https://www.youtube.com/watch?v=jey_CzIOfYE)
 
@@ -19252,8 +19362,8 @@ int binsearch(int l, int r, int val, int *xs) {
   int mid = (l+r)/2;
   // l <= mid < r
   if (xs[mid] == val) {
-    return mid; 
-  } else if (xs[mid] < val) { 
+    return mid;
+  } else if (xs[mid] < val) {
     // go to higher range, this is too small.
     // have already considered mid.
     // l <= mid => l < mid+1
@@ -19279,7 +19389,7 @@ int binsearch(int l, int r, int val, int *xs) {
   // [l, l+1) = { l }
   if (r == l + 1) { return l; }
   int mid = (l+r)/2;
-  if (xs[mid] <= val) { 
+  if (xs[mid] <= val) {
     return binsearch(l, mid, val, xs);
   } else {
     return binsearch(mid, r, val, xs);
@@ -19291,7 +19401,7 @@ int binsearch(int l, int r, int val, int *xs) {
 - Furthermore, if `r = l + 1` we end the recursion.
 - Thus, we are guaranteed that we will have that `r >= l + 2`.
 - Hence, `mid = (l+r)/2` will be larger than `l` as `r >= l + 1`. We see this from the algebra `m = (l + r) >= (l + l + 2)/2 >= l + 1`.
-- So we have `l < l+1 <= mid < r`. This establishes a "gap" `l < mid < r`, which is possible since all the smallest non-trivial interval `[l, r)` we 
+- So we have `l < l+1 <= mid < r`. This establishes a "gap" `l < mid < r`, which is possible since all the smallest non-trivial interval `[l, r)` we
   consider will be `[l, l+1, l+2)` (recall that `r=l+1` is the base case).
 - Thus, we have that: `l` is to the left of `mid=l+1` is to the left of `r>=l+2`.
 - So, the intervals `[l, mid)` and `[mid, r)` will be smaller, as we cleanly "separate" out `l`, `mid`, and `r`.
@@ -19368,7 +19478,7 @@ about these three
 - The orders `0th,1st,2nd,..(n-1)th`
 - The array values `xs[0],xs[1],xs[2],..xs[n]`
 
-and it's unlclear to me how the two arrays `order2ix` and `ix2order` 
+and it's unlclear to me how the two arrays `order2ix` and `ix2order`
 relate to each other.
 
 #### `compressed`/`decompressed`:
@@ -19388,27 +19498,27 @@ I feel this convention is superior, because it's intuitive to me at a glance
 as to what `compressed`/`decompressed` do and why they should be inverses.  I feel
 it also matches **the deep reason** for why kth order statistic exists: it
 lets us perform universe reduction, to go from a large space of a total order
-to a small space `[0..(n-1)]`. 
+to a small space `[0..(n-1)]`.
 
-Furthermore, the very **name** implies that 
+Furthermore, the very **name** implies that
 `compressed` is the compressed version of _something_ (the original array `xs`)
-and that `decompressed` is the decompressed version of _something_ 
+and that `decompressed` is the decompressed version of _something_
 (the compressed universe `[0..(n-1)]`). This makes it clear how they're reated
 to the original array linguistically, which I quite like.
 
-  
+
 # Remembering Eulerian and Hamiltonian cycles
 
-I used to keep forgetting the difference. Here's how I remember it now. 
+I used to keep forgetting the difference. Here's how I remember it now.
 We know that an _euler tour_ always exists for a tree. Indeed, it's
-a [handy data structure](https://en.wikipedia.org/wiki/Euler_tour_technique) 
+a [handy data structure](https://en.wikipedia.org/wiki/Euler_tour_technique)
 that can be used to convet LCA (lowest common ancestor) into RMQ(range minimum query).
 
 So, the "Euler tour" must exist for a tree. See that when we perform a tour
 on the tree, we **definitely** walk a vertex twice (once when entering, once when
 exiting). It seems like we walk the (undirected) edges twice as well.
 However, if we consider the edges as **directed edges**, then we're only walking
-the edges once. 
+the edges once.
 
 - So an euler tour must correspond to a tour where we walk over each edge
   exactly once.
@@ -19443,7 +19553,7 @@ so I'm watching Erik Demaine's lectures and taking down notes here.
 F(1) = F(2) = 1; F(n) = F(n-1) + F(n-2)
 ```
 
-##### Naive: 
+##### Naive:
 
 ```py
 fib(n):
@@ -19461,7 +19571,7 @@ ratio. Alternate, `T(n) >= 2T(n-2) ~ 2^(n/2)`
 ```py
 memo = {}
 fib(n):
-  # vvv 
+  # vvv
   if n in memo: return memo[n]
   if n <= 2: f = 1
   else f = fib(n-1) + fib(n-2)
@@ -19483,14 +19593,14 @@ fib(n):
   help us solve the actual problem. So, `DP = recursion + memo`.
 - `Running time = number of different subproblems x time per subproblem`.
   When we measure **time per subproblem**, we ignore recursive calls!
-  (don't count recursions). 
+  (don't count recursions).
 
 ##### Bottom up DP algorithm
 
 ```py
 fib = {}
  -- | some thought for the loop
-for k in range(1, n+1): 
+for k in range(1, n+1):
   if k <= 2: f = 1
   else: f = fib[k-1] + fib[k-2]
   fib[k] = f
@@ -19538,7 +19648,7 @@ s   |    w
 ```
 
 ```
-δ(s, w) 
+δ(s, w)
   δ(s, a)
      δ(s, b)
        δ(s, s)
@@ -19598,7 +19708,7 @@ $$
 1. Define subproblems; analysis - number of subproblems
 2. Guess (part of solution); analysis - number of choices for the guess
 3. Relate subproblem solutions [with a recurrence]; analysis - time per subproblem (ignoring recursion)
-4. Build an algorithm: [recursion/memo, or tabling]; check recurrence is acyclic 
+4. Build an algorithm: [recursion/memo, or tabling]; check recurrence is acyclic
 5. solve original problem;  total time: total time across all subproblems (ignoring recursion).
    In simple cases, total time = number of subproblems x time per subproblem.
 6. Check that the original problem actually gets solved!
@@ -19608,7 +19718,7 @@ $$
 1. subproblems: `F(1)...F(n)`
 2. guess: nothing
 3. relate: `F(n) = F(n-1) + F(n-2)`; `O(1)` time
-4. F(n). constant time to find 
+4. F(n). constant time to find
 
 #### Recap: Shortest path
 1. subproblems: $\delta_k(s, v)$. $V^2$ subproblems.
@@ -19697,7 +19807,7 @@ dp[i][j] = min{
     dp[i][k] + dp[k][j] + cost of (A[i:k] * A[k:j])
 }
 ```
-- Time is polynomial. `O(n)` time for subproblem ignoring recursions. 
+- Time is polynomial. `O(n)` time for subproblem ignoring recursions.
   We have `O(n^2)` subproblems (substrings). So the running time is `O(n^3)`.
 - Topological order: in general, if we have prefixes, we go left to right.
   have suffixes, we go right to left. If we have substrings, we
@@ -19705,8 +19815,8 @@ dp[i][j] = min{
   we get substrings with smaller lengths.
 
 #### Edit distance
-Given two strngs `x` and `y`. Find the cheapest way to convert `x` into `y`. 
-We allow _character edits_ to turn `x` into `y`: We can (1) insert a character 
+Given two strngs `x` and `y`. Find the cheapest way to convert `x` into `y`.
+We allow _character edits_ to turn `x` into `y`: We can (1) insert a character
 anywhere in `x`, (2) delete a character anywhere in `x`, (3) edit any character in `x`.
 We have custom costs for each insert and delete.
 
@@ -19716,7 +19826,7 @@ We have custom costs for each insert and delete.
   characters are equal, `∞` otherwise.
 - We will look at suffixes of `x` and `y` at the subproblem. Subproblem is
   edit distance on `x[i:]` AND `y[j:]`. Number of subproblems is $O(|x| |y|)$.
-- We need to guess! Not so obvious. Look at the first characters. What can I 
+- We need to guess! Not so obvious. Look at the first characters. What can I
   do with the first character of `x`? (1) I can replace the first characters.
   (2) I can insert the character `y[j]` into `x`.
   (3) I can delete the character `x[i]`. So we have:
@@ -19766,7 +19876,7 @@ dp[i][s] = max(dp[i+1][s], dp[i+1][s-s[i]] + v[i])
 ```
 
 To be polynomial in the input, it would have to be $\theta(n \log S)$ because
-$S$ is given as a number. It would not be $nS$; $S$ is exponential in the 
+$S$ is given as a number. It would not be $nS$; $S$ is exponential in the
 input encoding $\log S$.
 
 
@@ -19789,7 +19899,7 @@ $$
 
 A second kind of guessing. Guessing usually which subproblem to use to solve
 a bigger subproblem. Another way of guessing is to add more subproblems to guess
-or remember more features of the solution. 
+or remember more features of the solution.
 
 ##### Mapping to knapsack
 
@@ -19809,10 +19919,10 @@ how hard is to transition from note `p` (p for pitch) with finger `f` to note
 - Subproblems: prefixes? suffixes? substrings? Suffixes are kind of fine. How to
   play notes `n[i:]`.
 - Guess: Which finger to put on note `i`?
-- Recurrence: 
+- Recurrence:
 
 ```py
-dp[i] = min({ 
+dp[i] = min({
    for f in fingers:
       dp[i+1] + d(i, f, i+1, ?) # WRONG: don't know ?
 })
@@ -19828,7 +19938,7 @@ dp[i][f] = min({
 }
 ```
 
-- Topological order: 
+- Topological order:
 
 ```py
 for i reversed(range(n)):
@@ -19851,7 +19961,7 @@ a piano.
 #### Tetris
 
 We know the entire sequence of pieces that's going to fall. For each, we must
-drop the piece from the top. Also, full rows don't clear. 
+drop the piece from the top. Also, full rows don't clear.
 The width of the board is small. The board is initially emoty.
 Can you survive?
 
@@ -19919,7 +20029,7 @@ turboventilator
 def L(i, j): # closed interval
   if i > j: return 0 # no letters
   if i == j: return 1 # single letter palindrome
-  if x[i] == x[j]: 
+  if x[i] == x[j]:
     return 2 + l(i+1, j-1)
   return max(L(i+1, j), L(i, j-1))
 ```
@@ -19936,7 +20046,7 @@ of a node is distance from the root. This minimizes expected search cost.
 ##### Enumeration
 
 
-We have exponentially many trees. 
+We have exponentially many trees.
 
 ##### Greedy soltution / Why doesn't greedy work?
 
@@ -19959,7 +20069,7 @@ optimal:
 -------
          3|w=8
     2|w=10    4|w=9
-1|w=1         
+1|w=1
 ```
 
 ##### DP
@@ -19972,7 +20082,7 @@ optimal:
 def e(i, j):
   if i == j: return w[i]
   # | WRONG
-  return min([e(i, r-1) + e(r+1, j) + w[r] 
+  return min([e(i, r-1) + e(r+1, j) + w[r]
               for k in range(i, j+1)])
 ```
 
@@ -19994,7 +20104,7 @@ Can only pick coins from the outside.
 
 First player can always not lose in the game.  What the first player does
 is compute `v[1] + v[3] + ... v[n-1]` versus `v[2] + v[4] + ...` which is even.
-If the odd values win, the he picks `v[1]`. P2 can pick `v[2]` or `v[n]`. 
+If the odd values win, the he picks `v[1]`. P2 can pick `v[2]` or `v[n]`.
 P1 can pick either `v[3]` or `v[n-1]` depending on if P2 picked `v[2]` or `v[n]`.
 
 - We now want to **maximize** the amount of money.
@@ -20025,7 +20135,7 @@ v(i, j) = max([  min(v(i+1, j-1), v(i+2, j)) + v[i],
 I had a hard time remembering which is which, so here's how I do it now.
 First, I think of it from a probabilistic lens, where one of them is the
 mean, and the other is variance of a gaussian distribution as shown above.
-We don't yet know whether accuracy is the mean or the variance. 
+We don't yet know whether accuracy is the mean or the variance.
 
 Next, recall that it's linguistically correct to say:
 
@@ -20127,7 +20237,7 @@ the _adverserial_ side of things allowing weak people to survive.
 # Multiplicative weights algorithm (TODO)
 
 # How to fairly compare groups
-                                                                                              
+
 > Why is this a key argument? It’s really quite simple. Let’s say I have two
 > groups, A and B. Group A has 10 people, group B has 2. Each of the 12 people
 > gets randomly assigned a number between 1 and 100 (with replacement). Then I
@@ -20176,16 +20286,16 @@ being in a patriarchial family.
 Start with Rudolf Rocker.
 
 > Anarchism is not a fixed social system with fixed answers, but a trend
-> in mankind that drives for free unhindered unfolding 
+> in mankind that drives for free unhindered unfolding
 
 These derive from the Enlightenment. Thus institutions that constrain
-such development are illegitimate unless they can justify themselves. Adam 
+such development are illegitimate unless they can justify themselves. Adam
 Smith extolls the wonder of division of labour. Deeper into the book,
 he argues that in any civilized society, the government must not allow division of labour
 for it makes a human as stupid as they can be.
 
 Anarchism seeks to identify structures of domination, authority, etc that constrain
-human development. It then challenges them to justify themselves. If you 
+human development. It then challenges them to justify themselves. If you
 cannot meet the challenge, the structure should be dismantled and reconstructed
 from below.
 
@@ -20204,14 +20314,14 @@ in the sense of complicated networks of social, political prejudices determines
 the way we functions and structures our life. What is ideology?
 
 Donald Rumsfield, gulf war, spoke about known knows (saddam is a dictator),
-known unknowns ('WMD that saddam surely had'), and unknown unknowns 
+known unknowns ('WMD that saddam surely had'), and unknown unknowns
 ('even worse WMD that saddam may have').
 
 What about unknown knowns? Things we don't know that we know? This is ideology.
 The texture into which we are embedded.
 
-European trinity: France (revolutionary, political), 
-German (conservative, poets, thinkers), 
+European trinity: France (revolutionary, political),
+German (conservative, poets, thinkers),
 Anglo saxon (liberal, economy).
 
 Bohr had a horsheshoe above his house. 'Do you believe in it? Aren't you a scientist?'
@@ -20223,7 +20333,7 @@ and whatnot. However, there is a lot more that is tacit.
 
 'Interpassivity': we transpose onto the other our passive reaction. Others are
 passive for us. Canned laughter on TV. Literally, the TV set laughs for you.
-You feel relief as if you have laughed. 
+You feel relief as if you have laughed.
 
 Similarly it's not that we believe. We need someone else to believe for us.
 For example, santa Claus. The parent's don't believe, they do it to not let down
@@ -20231,18 +20341,18 @@ the kids. The kids don't believe, they pretend for presents and to not let
 down the parents. The whole system of belief functions.
 
 The first person to do this politically is the isareli prime minister
-Golda Meir. When asked 'do you believe in god'. Her answer was 'no. I believe in 
+Golda Meir. When asked 'do you believe in god'. Her answer was 'no. I believe in
 jewish people, and they believe in God'. But atheism is ~70% of israel.
 
 
-When different cultures are thrown together (globalism) we should break the 
+When different cultures are thrown together (globalism) we should break the
 spell of liberalism: we cannot understand each other, we don't even
 understand ourselves. I don't want to understand all cultures. We need a code
 of discretion. How do we sincerely politely ignore each other? We need proper
 distance to treat others in a non-racist, kind manner.
 
 He upholds that we don't even miss anything deep in this way. Do I really understand
-you? Do I really understand myself? 
+you? Do I really understand myself?
 
 > We are the stories we are telling ourselves about ourselves. The basic
 > freedom is to tell your side of the story.
@@ -20273,12 +20383,12 @@ always offers you some bribery.
 
 
 When hitler finishes giving a talk, the people clap. In a communist speech,
-at the end of the speech, the speaker claps with the people. This is a 
+at the end of the speech, the speaker claps with the people. This is a
 crystallization of the difference between fascism and communism.
 
 
 'Nice to meet you, how are you?' is a sincere lie. From the very beginning
-we entered into language, we enter into requiring one for whom we can 
+we entered into language, we enter into requiring one for whom we can
 create appearances.
 
 - [Zizek interview at BBC](https://www.youtube.com/watch?v=xN2ZGSX0cIE)
@@ -20286,7 +20396,7 @@ create appearances.
 > The light at the end of the tunnel is an oncoming train
 
 Embracing hopelessness means to accept that there are no easy solutions. We should
-accept the hopelessness and start a paradigm shift.  Our tragedy is death. 
+accept the hopelessness and start a paradigm shift.  Our tragedy is death.
 Something will have to change fundamentally. We do not yet have the formula of
 what to do. We can now only get ready for a global crisis.
 
@@ -20363,7 +20473,7 @@ Zizek:
   burden of freedom of choice.
 - Never presume that your sufferring is in itself a proof of authenticity.
   Renunciation of pleasure can turn into the pleasure of renunciation.
-- 
+-
 
 # Poverty: Who's to blame?
 
@@ -20539,7 +20649,7 @@ original array, treated as a poset with ground set $P \equiv \{ (val, ix) : \tex
 with the ordering $(a_1, a_2) < (b_1, b_2) \iff a_1 < b_1 \land a_2 < b_2$.
 
 So we have this hasse diagram, which interestingly is going to be a tree.
-this need not always be the case! consider the divisiblity poset with the 
+this need not always be the case! consider the divisiblity poset with the
 elements $3, 5, 15$.
 
 Then the answer is to print the parent of each node in the tree as the parent
@@ -20571,11 +20681,11 @@ can sometimes be irreversably damaging.
 # Sciences of the artificial
 
 > A bridge under its usual conditions of service, behaves simply as a
-> relatively smooth level surface. Only when it has been overloaded do we 
+> relatively smooth level surface. Only when it has been overloaded do we
 > learn the physical properties of the  materials from which it is built.
 
 > Ohm's law was suggested to its discovered by its analogy with some simple
-> hydraulic phenomena. 
+> hydraulic phenomena.
 
 Why simulation is useful:
 
@@ -20592,7 +20702,7 @@ Why simulation is useful:
 > The focal concern of Economics is allocation of scarce resources.
 
 > We can use a theory (say a theory of profit-loss) either positively,
-> as an explaiation, or normatively, as a way to guide how we should run a 
+> as an explaiation, or normatively, as a way to guide how we should run a
 > firm.
 
 
@@ -20612,7 +20722,7 @@ on going to the left, appending a `1` on going to the right doesn't make a great
 deal of sense. On the other hand, we can choose to number them as follows:
 
 - Consider the root to have value `1`
-- Every time we go right, we add `1/2^{height}`. When we go left, we subtract `1/2^{height}`. 
+- Every time we go right, we add `1/2^{height}`. When we go left, we subtract `1/2^{height}`.
 - This gives us the numbers:
 
 ```
@@ -20622,7 +20732,7 @@ deal of sense. On the other hand, we can choose to number them as follows:
 ```
 
 - This also makes intuitive why to find the node to replace `1.5` when we delete
-  it is to go to the left child `1.25` and then travel as much to the right as 
+  it is to go to the left child `1.25` and then travel as much to the right as
   possible. That path corresponds to:
 
 $$
@@ -20633,7 +20743,7 @@ $$
 \end{aligned}
 $$
 
-- So in the limit, the rightmost leaf of the left child of the parent 
+- So in the limit, the rightmost leaf of the left child of the parent
   *has the same value* as the parent itself. In the non-limit, we get as close as
   possible.
 
@@ -20641,7 +20751,7 @@ $$
   three shrink. Thus, it's easier to "escape" away to the fringes of the space,
   rather than retrace your step. Recall that random walks in hyperbolic space
   almost surely move away from the point of origin. It feels to me like this
-  explains why. If going towards the root / decreasing heighttakes distance 
+  explains why. If going towards the root / decreasing heighttakes distance
   $d$, going deeper into the tree / increasing the height
   needs distance $d/2$. So a particle would "tend to" travel the shorter distance.
 
@@ -20709,14 +20819,14 @@ the two elements is a legal element.
 
 
 We may think of this process as gradually "trapping" the median between the
-extremes, using the fact that that any point $y \in [l, r]$ minimizes 
+extremes, using the fact that that any point $y \in [l, r]$ minimizes
 $|y - l| + |y - r|$!
 
 
 
 - [Taken from `math.se`](https://math.stackexchange.com/questions/113270/the-median-minimizes-the-sum-of-absolute-deviations-the-ell-1-norm)
 
-  
+
 
 
 # LISP quine
@@ -20725,10 +20835,10 @@ I learnt how to synthesize a LISP quine using MiniKanren. It's quite magical,
 I don't understand it yet.
 
 ```lisp
-((lambda (x)            
-   `(,x (quote ,x)))    
- (quote                 
-   (lambda (x)          
+((lambda (x)
+   `(,x (quote ,x)))
+ (quote
+   (lambda (x)
      `(,x (quote ,x)))))
 
 ```
@@ -20749,7 +20859,7 @@ theorems/algebraic structures:
 - [`cs.stackexchange`: Finding longest chain in poset in sub-quadratic time](https://cs.stackexchange.com/questions/67847/finding-longest-chain-in-poset-in-subquadratic-time)
 
 
-Naively, the solution goes as follows, which can be tested against 
+Naively, the solution goes as follows, which can be tested against
 [CSES' movie festival question](https://cses.fi/problemset/task/1629)
 
 ```cpp
@@ -20851,7 +20961,7 @@ concat_fopen (char *s1, char *s2, char *mode)
   strcpy (str, s1);
   strcat (str, s2);
   return fopen (str, mode);
-  // str is freed here.                                
+  // str is freed here.
 }
 
 ```
@@ -20938,7 +21048,7 @@ struct {
 I found this video very helpful, since I was indeed confused about the two
 meanings of impredicativity that I had seen floating around. One used by haskellers,
 which was that you can't instantiate a type variable `a` with a  (`forall t`).
-Impredicative in Coq means having `(Type : Type)`. 
+Impredicative in Coq means having `(Type : Type)`.
 
 - polymorphic types:
 
@@ -20972,7 +21082,7 @@ runST :: (forall s. ST s a) -> a -- LEGAL
 runST :: forall a, (forall s, ST s a) -> a -- LEGAL
 st :: forall s. ST s Int
 runST st -- YES
-runST $ st -- NO 
+runST $ st -- NO
 ```
 
 - Expanding out the example:
@@ -20998,7 +21108,7 @@ foo = \xs -> (reverse xs, and xs)
 - Start with `xs :: α` where `α` is a type variable.
 - Typecheck `reverse xs`. We need to instantiate `reverse`. With what type?
   **that's what we need to figure out!**
-- (1) Instantiate: Use variable `β`. So we have that our occurence of `reverse` has type 
+- (1) Instantiate: Use variable `β`. So we have that our occurence of `reverse` has type
   `reverse :: [β] -> [β]`.
 - (2) Constrain: We know that `xs :: α` and `reverse` expects an input argument of
    type `[β]`, so we set `α ~ [β]` due to the call `reverse xs`.
@@ -21011,9 +21121,9 @@ foo = \xs -> (reverse xs, and xs)
 #### Where does this fail for polytypes?
 
 - The above works because `α` and `Β` only stand for **monotypes**.
-- Our constraints are **equality constraints**, which can be solved by 
+- Our constraints are **equality constraints**, which can be solved by
   **Robinson unification**
-- And we have only **one solution** (principal solution) 
+- And we have only **one solution** (principal solution)
 - When trying to instantiate reverse, how do we instantiate it?
 - Constraints become subsumption constraints
 - Solving is harder
@@ -21033,11 +21143,11 @@ foo = \xs -> (reverse xs, and xs)
 
 - Assume we want to figure out `filter g ids`.
 - start with `filter :: ∀ p, (p -> Bool) -> [p] -> Bool`
-- Instatiate `filter` with **instantiation variables** `κ` to get 
+- Instatiate `filter` with **instantiation variables** `κ` to get
   `(κ -> Bool) -> [κ] -> Bool`
 - Take a "quick look" at `e1, e2` to see if we know that `κ` should be
 - We get from `filter g ids` that `κ := (∀ a, a -> a)`.
-- Substitute for `κ`  (1) the type that "quick look" learnt, if any, and 
+- Substitute for `κ`  (1) the type that "quick look" learnt, if any, and
   (2) A **monomorphic** unification variable otherwise.
 - Typecheck against the type. In this case, we learnt that `κ := (∀ a, a -> a)`,
   so we replace `κ` with `(∀ a, a -> a)`.
@@ -21047,7 +21157,7 @@ foo = \xs -> (reverse xs, and xs)
 
 Replace the idea of:
 - instantate function with unficiation variables, with the idea.
-- instantiate function with a quick look at the calling context. 
+- instantiate function with a quick look at the calling context.
 - We don't need fully saturated calls. We take a look at whatever we can see!
 - Everything else is completely unchanged.
 
@@ -21067,8 +21177,8 @@ Replace the idea of:
 <img src=static/retro-glitch.jpg />
 
 - There's something great about the juxtaposition of the classic Christian scene
-  with the glitch aesthetic. I'm unable to articulate _what_ it is that I so 
-  thoroughly enjoy about this image. 
+  with the glitch aesthetic. I'm unable to articulate _what_ it is that I so
+  thoroughly enjoy about this image.
 
 - Fuck me, it turns out this is fascist art, goes by the genre of `fashwave`.
   Pretty much everything else in this genre is trash, this is the sole 'cool looking'
@@ -21095,7 +21205,7 @@ Replace the idea of:
        A
        ...
 
-   B        C  
+   B        C
 [1/2A]     [1/2A]
        D
        1A
@@ -21104,75 +21214,75 @@ Replace the idea of:
 # Nix weirdness on small machines
 
 ```
-floobits@pixel-druid:~$ nix-env -iA nixpkgs.hello                                                                                    
-+ nix-env -iA nixpkgs.hello                                                                                                          
-installing 'hello-2.10'                                                                                                              
-these paths will be fetched (0.04 MiB download, 0.20 MiB unpacked):                                                                  
-  /nix/store/w9yy7v61ipb5rx6i35zq1mvc2iqfmps1-hello-2.10                                                                             
-copying path '/nix/store/w9yy7v61ipb5rx6i35zq1mvc2iqfmps1-hello-2.10' from 'https://cache.nixos.org'...                              
-error: unable to fork: Cannot allocate memory                                                                                        
-floobits@pixel-druid:~$ gdb --args nix-env -iA nixpkgs.hello                                                                         
-+ gdb --args nix-env -iA nixpkgs.hello                                                                                               
-GNU gdb (Ubuntu 7.11.1-0ubuntu1~16.5) 7.11.1                                                                                         
-Copyright (C) 2016 Free Software Foundation, Inc.                                                                                    
-License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>                                                        
-This is free software: you are free to change and redistribute it.                                                                   
-There is NO WARRANTY, to the extent permitted by law.  Type "show copying"                                                           
-and "show warranty" for details.                                                                                                     
-This GDB was configured as "x86_64-linux-gnu".                                                                                       
-Type "show configuration" for configuration details.                                                                                 
-For bug reporting instructions, please see:                                                                                          
-<http://www.gnu.org/software/gdb/bugs/>.                                                                                             
-Find the GDB manual and other documentation resources online at:                                                                     
-<http://www.gnu.org/software/gdb/documentation/>.                                                                                    
-For help, type "help".                                                                                                               
-Type "apropos word" to search for commands related to "word"...                                                                      
-Reading symbols from nix-env...(no debugging symbols found)...done.                                                                  
-(gdb) run                                                                                                                            
-Starting program: /nix/store/d6axkgf0jq41jb537fnsg44080c4rd52-user-environment/bin/nix-env -iA nixpkgs.hello                         
+floobits@pixel-druid:~$ nix-env -iA nixpkgs.hello
++ nix-env -iA nixpkgs.hello
+installing 'hello-2.10'
+these paths will be fetched (0.04 MiB download, 0.20 MiB unpacked):
+  /nix/store/w9yy7v61ipb5rx6i35zq1mvc2iqfmps1-hello-2.10
+copying path '/nix/store/w9yy7v61ipb5rx6i35zq1mvc2iqfmps1-hello-2.10' from 'https://cache.nixos.org'...
+error: unable to fork: Cannot allocate memory
+floobits@pixel-druid:~$ gdb --args nix-env -iA nixpkgs.hello
++ gdb --args nix-env -iA nixpkgs.hello
+GNU gdb (Ubuntu 7.11.1-0ubuntu1~16.5) 7.11.1
+Copyright (C) 2016 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from nix-env...(no debugging symbols found)...done.
+(gdb) run
+Starting program: /nix/store/d6axkgf0jq41jb537fnsg44080c4rd52-user-environment/bin/nix-env -iA nixpkgs.hello
 warning: File "/nix/store/danv012gh0aakh8xnk2b35vahklz72mk-gcc-9.2.0-lib/lib/libstdc++.so.6.0.27-gdb.py" auto-loading has been declin
-ed by your `auto-load safe-path' set to "$debugdir:$datadir/auto-load".                                                              
-To enable execution of this file add                                                                                                 
-        add-auto-load-safe-path /nix/store/danv012gh0aakh8xnk2b35vahklz72mk-gcc-9.2.0-lib/lib/libstdc++.so.6.0.27-gdb.py             
-line to your configuration file "/home/floobits/.gdbinit".                                                                           
-To completely disable this security protection add                                                                                   
-        set auto-load safe-path /                                                                                                    
-line to your configuration file "/home/floobits/.gdbinit".                                                                           
-For more information about this security protection see the                                                                          
-"Auto-loading safe path" section in the GDB manual.  E.g., run from the shell:                                                       
-        info "(gdb)Auto-loading safe path"                                                                                           
+ed by your `auto-load safe-path' set to "$debugdir:$datadir/auto-load".
+To enable execution of this file add
+        add-auto-load-safe-path /nix/store/danv012gh0aakh8xnk2b35vahklz72mk-gcc-9.2.0-lib/lib/libstdc++.so.6.0.27-gdb.py
+line to your configuration file "/home/floobits/.gdbinit".
+To completely disable this security protection add
+        set auto-load safe-path /
+line to your configuration file "/home/floobits/.gdbinit".
+For more information about this security protection see the
+"Auto-loading safe path" section in the GDB manual.  E.g., run from the shell:
+        info "(gdb)Auto-loading safe path"
 warning: File "/nix/store/xg6ilb9g9zhi2zg1dpi4zcp288rhnvns-glibc-2.30/lib/libthread_db-1.0.so" auto-loading has been declined by your
- `auto-load safe-path' set to "$debugdir:$datadir/auto-load".                                                                        
-warning: Unable to find libthread_db matching inferior's thread library, thread debugging will not be available.                     
-^[[A[New LWP 21466]                                                                                                                  
-GC Warning: Failed to expand heap by 128045056 bytes                                                                                 
-installing 'hello-2.10'                                                                                                              
-building '/nix/store/k3kz3cwyqdwi5bmwcbl1fzv2b2wkqrl6-user-environment.drv'...                                                       
-created 43 symlinks in user environment                                                                                              
-[LWP 21466 exited]                                                                                                                   
-[Inferior 1 (process 21462) exited normally]                                                                                         
-(gdb) run                                                                                                                            
+ `auto-load safe-path' set to "$debugdir:$datadir/auto-load".
+warning: Unable to find libthread_db matching inferior's thread library, thread debugging will not be available.
+^[[A[New LWP 21466]
+GC Warning: Failed to expand heap by 128045056 bytes
+installing 'hello-2.10'
+building '/nix/store/k3kz3cwyqdwi5bmwcbl1fzv2b2wkqrl6-user-environment.drv'...
+created 43 symlinks in user environment
+[LWP 21466 exited]
+[Inferior 1 (process 21462) exited normally]
+(gdb) run
 ```
 
 ### All nix subcommands are just symlinks
 
 ```
-floobits@pixel-druid:~/idfk/nix-master$ ls -al /nix/store/4vz8sh9ngx34ivi0bw5hlycxdhvy5hvz-nix-2.3.7/bin/                            
-total 1784                                                                                                                           
-dr-xr-xr-x 2 floobits bollu    4096 Jan  1  1970 .                                                                                   
-dr-xr-xr-x 9 floobits bollu    4096 Jan  1  1970 ..                                                                                  
--r-xr-xr-x 1 floobits bollu 1816768 Jan  1  1970 nix                                                                                 
-lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-build -> nix                                                                    
-lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-channel -> nix                                                                  
-lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-collect-garbage -> nix                                                          
-lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-copy-closure -> nix                                                             
-lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-daemon -> nix                                                                   
-lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-env -> nix                                                                      
-lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-hash -> nix                                                                     
-lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-instantiate -> nix                                                              
-lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-prefetch-url -> nix                                                             
-lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-shell -> nix                                                                    
-lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-store -> nix                                                                    
+floobits@pixel-druid:~/idfk/nix-master$ ls -al /nix/store/4vz8sh9ngx34ivi0bw5hlycxdhvy5hvz-nix-2.3.7/bin/
+total 1784
+dr-xr-xr-x 2 floobits bollu    4096 Jan  1  1970 .
+dr-xr-xr-x 9 floobits bollu    4096 Jan  1  1970 ..
+-r-xr-xr-x 1 floobits bollu 1816768 Jan  1  1970 nix
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-build -> nix
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-channel -> nix
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-collect-garbage -> nix
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-copy-closure -> nix
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-daemon -> nix
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-env -> nix
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-hash -> nix
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-instantiate -> nix
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-prefetch-url -> nix
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-shell -> nix
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-store -> nix
 ```
 
 It seems the way this works is that the `nix` tool figures out from what
@@ -21211,14 +21321,14 @@ projective geometry is of the from $[a : b : c] \simeq (b/a, c/a)$. A projective
 equation is of the form $px + qy + rz = 0$ for coefficients $p, q, r \in \mathbb C$.
 
 - if we have a fixed point $[a : b : c]$, we can trade this to get a
-  line $ax + by + cz = 0$. 
+  line $ax + by + cz = 0$.
 - If we have a line $ax + by + cz = 0$, we can trade this to get a point $[a:b:c]$.
 - The reason we need projectivity is because this correspondence is only well
   defined upto scaling: the line $x + 2y + 3$ is the same as the line $2x + 3y + 6$.
 - In using our dictionary, we would get $[1:2:3]$, $[2:4:6]$. Luckily for us,
   projectivity, these two points are the same! $(2/1, 3/1) = (4/2, 6/2)$.
 - The "projective" condition allows us to set points and lines on equal footing:
-  lines can be scaled, as can points in this setting. 
+  lines can be scaled, as can points in this setting.
 
 # Preventing the collapse of civilization
 
@@ -21270,7 +21380,7 @@ attempting to fix it.
 
 #### Defn: Sample space
 
-set of all possible outcomes / things that could happen. 
+set of all possible outcomes / things that could happen.
 
 #### Defn: Outcome / Sample point / atomic event
 
@@ -21322,7 +21432,7 @@ Note that not all 3-tuples correspond to sample points. For example,
 
 ## Constructing the sample space: tree method
 
-We build a decision tree. 
+We build a decision tree.
 
 #### where is the prize?
 
@@ -21356,7 +21466,7 @@ We build a decision tree.
 
 ```
 (prize 1
-   (choice 1 
+   (choice 1
       (reveal 2)
       (reveal 3))
    (choice 2
@@ -21386,9 +21496,9 @@ We build a decision tree.
 
 ```
 (prize 1
-   (choice 1 
-loss  (reveal 2)  
-loss  (reveal 3)) 
+   (choice 1
+loss  (reveal 2)
+loss  (reveal 3))
    (choice 2
 win   (reveal 3))
    (choice 3)
@@ -21429,7 +21539,7 @@ that outcome happening in an experiment.
 
 - Carol put the prize uniformly randomly. Probability 1/3.
 - No matter where the prize is, the player picks each box with probability 1/3.
-- No matter where the prize is, the box that carol reveals will be picked 
+- No matter where the prize is, the box that carol reveals will be picked
   uniformly randomly. Probability 1/2.
 
 #### Assigning probabilities to each edge
@@ -21488,7 +21598,7 @@ An event is a *subset* of the sample space.
 
 #### Probability of an event
 
-The probability that an event $E$ occurs is the sum of the probabilities of the 
+The probability that an event $E$ occurs is the sum of the probabilities of the
 sample points of the event: $P(E) \equiv \sum_{e \in E} P(e)$.
 
 
@@ -21579,7 +21689,7 @@ $$
 P(A \cap B) = P(B) P(A|B)
 $$
 
-follows from the definition by rearranging. 
+follows from the definition by rearranging.
 
 #### General Product Rule
 
@@ -21598,13 +21708,13 @@ Tree method:
 
 ```
 (W1
-  (W2) 
-   (L2 
+  (W2)
+   (L2
       (W3
       L3)))
 (L1
-  (W2) 
-   (L2 
+  (W2)
+   (L2
       (W3
       L3)))
 (L1)
@@ -21631,13 +21741,13 @@ $A/S = (A \cap B)/B$.
 
 #### Independence and intersection
 
-If $A$ is independent of $B$ then $P(A\cap B) = P(A) P(B)$. 
+If $A$ is independent of $B$ then $P(A\cap B) = P(A) P(B)$.
 
 $$
 \begin{aligned}
 P(A) = P(A|B) \text{(given)} \\
-P(A) = P(A \cap B) / P(B) \text{(defn of computing $P(A|B)$)} \\ 
-P(A) P(B) = P(A \cap B) \text{(rearrange)} \\ 
+P(A) = P(A \cap B) / P(B) \text{(defn of computing $P(A|B)$)} \\
+P(A) P(B) = P(A \cap B) \text{(rearrange)} \\
 \end{aligned}
 $$
 
@@ -21667,7 +21777,7 @@ about any of the rest of the events tells us anything about the $i$th event.
 
 #### Random variables
 
-A random variable $R$ is a function from the sample space $S$ to $\mathbb R$. We can 
+A random variable $R$ is a function from the sample space $S$ to $\mathbb R$. We can
 create equivalence classes of the fibers of $R$. Each of this is an event,
 since it's a subset of the sample space. Thus, $P(R = x)$ = $P(R^{-1}(x)) = \sum_{w: R(w) = x} P(w)$
 
@@ -21707,7 +21817,7 @@ for each edge incident on it. Thus, the total potential is $\sum_v \texttt{degre
 This gives the equality $\sum_i \texttt{degree}(v) = 2|E|$.
 
 Thus, if each of the degrees are odd, considering modulo 2, the LHS becomes
-$\sum_v 1 = |V|$ and the RHS becomes $0$. Thus we have that $|V| = 0$ (mod 2), or 
+$\sum_v 1 = |V|$ and the RHS becomes $0$. Thus we have that $|V| = 0$ (mod 2), or
 the number of vertices remains even.
 
 I learnt of this nice way of thinking about it in terms of potentials when
@@ -21751,7 +21861,7 @@ Minimal reverse mode AD implementation.
 # GIVEN: dt/dy
 # TO FIND: dt/dx
 # dt/dx = dt/dy * dy/dx
-# dt/dloss 
+# dt/dloss
 # t = loss
 # dt/dloss = dloss/dloss = 1
 
@@ -21765,7 +21875,7 @@ Minimal reverse mode AD implementation.
 # total gradient of x3: df/dx3 + dg/dx3
 
 # l = r cos(theta)
-# dl = dr cos(theta) + rsin(theta) dtheta 
+# dl = dr cos(theta) + rsin(theta) dtheta
 # dl/dtheta = dr/dtheta cos(theta) + rsin(theta) dtheta/dtheta
 # dl/dtheta =   0       * .......  + rsin(theta) * 1
 
@@ -21773,14 +21883,14 @@ Minimal reverse mode AD implementation.
 # dl/dr = cos(theta) +      .............*0
 
 # REVERSE MODE: [CoTangent space] --- objects of the form df
-# total gradient of y1: dy1 = (df/dx1)dx1 + (df/dx2)dx2  + (df/dx3)dx3 
+# total gradient of y1: dy1 = (df/dx1)dx1 + (df/dx2)dx2  + (df/dx3)dx3
 # total gradient of y2: dy2 = (dg/dx1)dx1 + (dg/dx2)dx2  + (dg/dx3)dx3
 # HALLUCINATED T:
 #    y1 = f(x1, x2, x3)
 #    GIVEN:   dt/dy1 [output]
 #    TO FIND: dt/dx1, dt/dx2, dt/dx3 [inputs]
-#    SOLN:    dt/dxi = dt/dy * dy/dxi 
-#                    = dt/dy * df/dxi 
+#    SOLN:    dt/dxi = dt/dy * dy/dxi
+#                    = dt/dy * df/dxi
 import pudb
 
 class Expr:
@@ -21823,7 +21933,7 @@ class Mul(Expr):
 
     #         -------- input1
     #   S    /
-    #  ---> v 
+    #  ---> v
     #  <--output *
     #      ^
     #       \_________ input2
@@ -21832,9 +21942,9 @@ class Mul(Expr):
     # - output = input1 + input2
     # - how much sensitivity does input1 have to S?
     # - the same (S), because "sensitivity" is linear [a conjecture/axiom]
-    # output = f(input1, input2); f(input1, input2) = input1 + input2 
+    # output = f(input1, input2); f(input1, input2) = input1 + input2
     def backprop(self, dt_output):
-        # dt/dinput1 = dt/doutput * ddoutput/dinput1 = 
+        # dt/dinput1 = dt/doutput * ddoutput/dinput1 =
         #            = dt/doutput * d(f(input1, input2))/dinput1
         #            = dt/doutput * d(input1 * input2)/dinput1
         #            = dt/doutput * input2
@@ -21844,7 +21954,7 @@ class Mul(Expr):
 # a = ...   ^
 # b = ...   ^
 # c = a + b ^
-# 
+#
 class Add(Expr):
     def __init__(self, lhs, rhs):
         self.lhs = lhs
@@ -21857,7 +21967,7 @@ class Add(Expr):
 
     #         -------- input1
     #   S    /
-    #  ---> v 
+    #  ---> v
     #  <--output
     #      ^
     #       \_________ input2
@@ -21866,9 +21976,9 @@ class Add(Expr):
     # - output = input1 + input2
     # - how much sensitivity does input1 have to S?
     # - the same (S), because "sensitivity" is linear [a conjecture/axiom]
-    # output = f(input1, input2); f(input1, input2) = input1 + input2 
+    # output = f(input1, input2); f(input1, input2) = input1 + input2
     def backprop(self, dt_output):
-        # dt/dinput1 = dt/doutput * ddoutput/dinput1 = 
+        # dt/dinput1 = dt/doutput * ddoutput/dinput1 =
         #            = dt/doutput * d(f(input1, input2))/dinput1
         #            = dt/doutput * d(input1 + input2)/dinput1
         #            = dt/doutput * 1
@@ -21886,7 +21996,7 @@ class Max(Expr):
         return self.__str__()
 
     def backprop(self, dt_output):
-        # dt/dinput1 = dt/doutput * doutput/dinput 1 
+        # dt/dinput1 = dt/doutput * doutput/dinput 1
         #            = dt/doutput *d max(input1, input2)/dinput1
         #            = |dt/doutput *d input1/dinput1 [if input1 > input2] = 1
         #            = |dt/doutput *d input2/dinput1 [if input2 > input1] = 0
@@ -21905,8 +22015,8 @@ print("z0: %s" % z0)
 z1 = Add(z0, y)
 print("z1: %s" % z1)
 
-# z1 = x*x+y 
-# dz1/dx = 2x 
+# z1 = x*x+y
+# dz1/dx = 2x
 # dz1/dy = 1
 # dz1/dp = 0
 # z1.clear_grad()
@@ -21948,7 +22058,7 @@ def smith_normal_form(xs, ys):
     # to eliminate.
     for vi in range(NVARS):
         ri = row_for_var(xs, vi)
-        if ri is None: 
+        if ri is None:
             return (f"unable to find non-zero row for variable: {vi}")
         print(f"-eliminating variable({vi}) using row ({ri}:{xs[ri]})")
         # eliminate all other rows using this row
@@ -21984,7 +22094,7 @@ def smith_normal_form(xs, ys):
         if lhs != ys[r]:
             print(f"-solution vector sols:{sols} cannot satisfy row xs[{r}] = ys[{r}]:{xs[r]} = {ys[i]}")
             return None
-        
+
 
     return sols
 
@@ -21993,7 +22103,7 @@ def smith_normal_form(xs, ys):
 # x + y = 10
 # x - y = 2
 xs = np.asarray([[1, 1], [1, -1]])
-ys = np.asarray([10, 2]) 
+ys = np.asarray([10, 2])
 print("## CONSISTENT ##")
 out = smith_normal_form(xs,ys)
 print("xs:\n%s\n\nys:\n%s\n\nsoln:\n%s" % (xs, ys, out,))
@@ -22005,7 +22115,7 @@ print("xs:\n%s\n\nys:\n%s\n\nsoln:\n%s" % (xs, ys, out,))
 # x - y = 2
 # x + 2y = 14
 xs = np.asarray([[1, 1], [1, -1], [1, 2]])
-ys = np.asarray([10, 2, 14]) 
+ys = np.asarray([10, 2, 14])
 print("## CONSISTENT OVER DETERMINED ##")
 out = smith_normal_form(xs,ys)
 print("xs:\n%s\n\nys:\n%s\n\nsoln:\n%s" % (xs, ys, out,))
@@ -22015,19 +22125,19 @@ print("xs:\n%s\n\nys:\n%s\n\nsoln:\n%s" % (xs, ys, out,))
 # x + y + z = 11
 # x - y + z = 3
 xs = np.asarray([[1, 1], [1, -1], [1, 2]])
-ys = np.asarray([10, 2, 14]) 
+ys = np.asarray([10, 2, 14])
 print("## CONSISTENT UNDER DETERMINED ##")
 out = smith_normal_form(xs,ys)
 print("xs:\n%s\n\nys:\n%s\n\nsoln:\n%s" % (xs, ys, out,))
 
 
 # inconsistent system
-# x = 6, y = 4 
+# x = 6, y = 4
 # x + y = 10
 # x - y = 2
 # x + 2y = 1 <- INCONSTENT
 xs = np.asarray([[1, 1], [1, -1], [1, 2]])
-ys = np.asarray([10, 2, 1]) 
+ys = np.asarray([10, 2, 1])
 print("## INCONSISTENT (OVER DETERMINED) ##")
 out = smith_normal_form(xs,ys)
 
@@ -22035,7 +22145,7 @@ out = smith_normal_form(xs,ys)
 # x + y = 10
 # x - y = 2
 xs = np.asarray([[1, -1], [1, 2], [1, 1]])
-ys = np.asarray([10, 2, 1]) 
+ys = np.asarray([10, 2, 1])
 print("## INCONSISTENT (OVER DETERMINED) ##")
 out = smith_normal_form(xs,ys)
 
@@ -22045,7 +22155,7 @@ out = smith_normal_form(xs,ys)
 # x + y = 1
 # x - y = 0
 xs = np.asarray([[1, 1], [1, -1]])
-ys = np.asarray([1, 0]) 
+ys = np.asarray([1, 0])
 print("## INCONSISTENT (SOLVABLE OVER Q NOT Z) ##")
 out = smith_normal_form(xs,ys)
 ```
@@ -22127,7 +22237,7 @@ under the strict interpretation.
 #### Analysing the example: The non-strict interpretation:
 
 In the non-strict world, we try to evaluate `K(1, loopy)` since we are asked the result
-of it by the `case` expression. However, we do not try to evaluate `loopy`, since 
+of it by the `case` expression. However, we do not try to evaluate `loopy`, since
 no one has asked what it's value is!
 
 Now, we know that
@@ -22136,7 +22246,7 @@ Now, we know that
 kCombinator x y = x
 ```
 
-Therefore, 
+Therefore,
 
 ```hs
 kCombinator one loopy = one
@@ -22162,7 +22272,7 @@ main = case kCombinator one loopy of -- force K to be evaluated with a `case`
 Here, we force `kret` (which has value `one`) to be evaluated with `case kret of...`.
 since `one = 1`, `i` is bound to the value `1`.
 Once `i` is returned, we print it out with `printPrimInt(primx)`.
- 
+
 The output of the program under non-strict interpretation is for it to print out `1`.
 
 #### Where does the difference come from?
@@ -22326,7 +22436,7 @@ Therefore, GHC opts to manage its own call stack on the heap. The generated
 code looks as you would imagine: we maintain a stack of function pointers +
 auxiliary data ( stack saved values), and we push and pop over this "stack".
 When we run out of space, we `<find correct way to use mmap>` to increase our
-"stack" size. 
+"stack" size.
 
 I've played around with this value a little bit, and have found that the modern
 stack size is quite large: IIRC, It allowed me to allocate ~`26 GB`. I believe
@@ -22440,7 +22550,7 @@ function call at the end of most functions in the source code, so in theory, we
 _are_ using the call stack, right? The answer is no. It's thanks to a neat
 optimisation technique called _tail call elimination_. The observation is that
 _after the call_, there is no more code to execute in the caller. So, by
-playing some stack tricks, one can convert a _call_ to a _jump_. 
+playing some stack tricks, one can convert a _call_ to a _jump_.
 
 Remember, a _`call`_ instruction uses the stack to setup a stack frame, under
 the assumption that we will _`ret`_ at some point.  But, clearly, under our
@@ -22466,7 +22576,7 @@ is interest, please do e-mail me at `siddu.druid@gmail.com`.
 # Exact sequence of pointed sets
 
 This was a shower thought. I don't even if these form an abelian category.
-Let's assume we have pointed sets, where every set has a distinguished 
+Let's assume we have pointed sets, where every set has a distinguished
 element $*$. $p$ will be analogous to the zero of an abelian
 group. We will also allow multi-functions, where a function can have
 multiple outputs. Now let's consider two sets, $A, B$ along with their
@@ -22628,14 +22738,14 @@ Suppose it is $x_1^{n_1} x_2^{n_2} \dots$. We subtract:
 
 $$
 \begin{aligned}
-P \equiv 
+P \equiv
 &(x_1 + x_2 \dots)^{n_1 - n_2} \\
 &\times  (x_1 x_2 + x_1 x_2 \dots)^{n_2 - n_3} \\
 &\times  (x_1 x_2 x_3 + x_1 x_2 x_4 \dots)^{n_3 - n_4} \\
 \end{aligned}
 $$
 
-This kills of the biggest monomial in $f$. If $f$ is symmetric, 
+This kills of the biggest monomial in $f$. If $f$ is symmetric,
 Then we can order the term we choose such that $n_1 \geq n_2 \geq n_3 \dots$.
 We need this to keep the terms $(n_1 - n_2), (n_2 - n_3), \dots$ to be positive.
 So we have now killed off the largest term of $f$.  Keep doing this to kill of $f$ completely.
@@ -22676,7 +22786,7 @@ So this ring is not a polynomial ring. This is a first-order Syzygy. Things can 
 #### Second order Syzygy
 
 Take $Z/3Z$ act on $\mathbb C^2$. Let $s$ be the generator of $Z/3Z$. We define
-the action as $s(x, y) = (\omega x, \omega y)$ where $\omega$ is the cube root of unity. 
+the action as $s(x, y) = (\omega x, \omega y)$ where $\omega$ is the cube root of unity.
 We have $x^ay^b$ is invariant if $(a + b)$ is divisible by $3$, since we will just get $\omega^3 = 1$.
 
 So the ring is generated by the monomials $(z_0, z_1, z_2, z_3) \equiv (x^3, x^2y, xy^2, y^3)$.
@@ -22699,7 +22809,7 @@ $$
 & z_2 p_1 + z_0 p_2 \\
 &= z_2 (z_0 z_2 - z_1^2) + z_0 (z_1 z_3 - z_2^2) \\
 &= (z_0 z_2^2 - z_2 z_1^2) + (z_0  z_1 z_3 - z_0 z_2^2) \\
-&= z_0 z_1 z_3 - z_2 z_1^2 \\ 
+&= z_0 z_1 z_3 - z_2 z_1^2 \\
 &= z_1(z_0 z_3 - z_1 z_2) \\
 &= z_1 p_3
 \end{aligned}
@@ -22765,7 +22875,7 @@ I found it very quotable. I'm posting some quotes below.
 - On 'applied institutes':
 
 > The worst thing with institutes explicitly devoted to applied science is that
-> they tend to become institutes of second-rate theory. 
+> they tend to become institutes of second-rate theory.
 
 - On the artificial divide between theory and applied sections of university:
 
@@ -22833,7 +22943,7 @@ need to stare at random things like `0x7f7d6ab2c0c0`, like so:
 ```
 mkClosure_capture0_args0 (0x7f079ae2a0c0:) -> 0x556b95a23350:
 mkClosure_capture0_args0 (0x7f079ae2a0e0:) -> 0x556b95a3f3e0:
-mkClosure_capture0_args2 (0x7f079ae2a000:, 
+mkClosure_capture0_args2 (0x7f079ae2a000:,
   0x556b95a23350:, 0x556b95a3f3e0:) -> 0x556b95a232e0:
 evalClosure (0x556b95a232e0:)
   ⋮evalClosure (0x556b95a23350:)
@@ -22876,13 +22986,13 @@ char *getPronouncableNum(size_t N) {
 which gives me the much more pleasant output:
 
 ```
-mkClosure_capture0_args0 (0x7fbf49b6d0c0:cisi-jece-xecu-yu) 
+mkClosure_capture0_args0 (0x7fbf49b6d0c0:cisi-jece-xecu-yu)
   -> 0x561c5f11f9d0:suje-zoni-ciho-ko
-mkClosure_capture0_args0 (0x7fbf49b6d0e0:qosi-jece-xecu-yu) 
+mkClosure_capture0_args0 (0x7fbf49b6d0e0:qosi-jece-xecu-yu)
   -> 0x561c5f12f1b0:leda-guni-ciho-ko
-mkClosure_capture0_args2 (0x7fbf49b6d000:ziqi-jece-xecu-yu, 
-  0x561c5f11f9d0:suje-zoni-ciho-ko, 
-  0x561c5f12f1b0:leda-guni-ciho-ko) 
+mkClosure_capture0_args2 (0x7fbf49b6d000:ziqi-jece-xecu-yu,
+  0x561c5f11f9d0:suje-zoni-ciho-ko,
+  0x561c5f12f1b0:leda-guni-ciho-ko)
     -> 0x561c5f11f960:kuhe-zoni-ciho-ko
 evalClosure (0x561c5f11f960:kuhe-zoni-ciho-ko)
   ⋮evalClosure (0x561c5f11f9d0:suje-zoni-ciho-ko)
@@ -22911,7 +23021,7 @@ shared, which means the numbers are themselves close.
 # The grassmanian, handwavily
 
 The grassmanian is a manifold consisting of, roughly, $k$ dimensional subspaces
-of an $n$ dimensional vector space. 
+of an $n$ dimensional vector space.
 
 Here, I'll record derivations of how we represent grassmanians, the exponential
 map, logarithm map, and the parallel transport with "physicist style"
@@ -22928,7 +23038,7 @@ reasoning for intuition, so I'm going to do all the derivations in that style.
 Let us have $Y = GXG^{-1}$ with all of these as matrices. Let's say that $G$
 is very close to the identity: $G = I + E$ with $E^2 = 0$ ($E$ for epsilon).
 Note that now, $G^{-1} = (I + E)^{-1}$, which by abuse of notation
-can be written as $1/(I + E)$, which by taylor expansion is equal to 
+can be written as $1/(I + E)$, which by taylor expansion is equal to
 $I - E + E^2 - E^3 + \dots$. Since $E$ is nilpotent, we truncate at $E^2$
 leaving us with $(I - E)$ as the inverse of $(I+E)$. We can check that this is correct, by computing:
 
@@ -22949,7 +23059,7 @@ $$
 &Y = (I + E)X(I + E)^{-1} \\
 &Y = (I + E)X(I - E) \\
 &Y = IXI -IXE + EXI - EXE \\
-&Y = X - XE + EX - EXE 
+&Y = X - XE + EX - EXE
 \end{aligned}
 $$
 
@@ -23027,14 +23137,14 @@ int main() {
     duk_context *ctx = duk_create_heap_default();
     duk_push_string(ctx, "katex.min.js"); // for error message
     if (duk_pcompile_string_filename(ctx, 0, js) != 0) {
-        fprintf(stderr, "===katex.min.js compliation failed===\n%s\n===\n", 
+        fprintf(stderr, "===katex.min.js compliation failed===\n%s\n===\n",
                 duk_safe_to_string(ctx, -1));
         assert(false && "unable to compile katex.min.js");
     } else {
         fprintf(stderr, "===katex.min.js successfully complied===\n");
 
         duk_print_stack(ctx, "Stack afer compilation", __LINE__);
-        duk_call(ctx, 0);   
+        duk_call(ctx, 0);
         printf("program result: %s\n", duk_safe_to_string(ctx, -1));
 
     }
@@ -23061,7 +23171,7 @@ int main() {
         printf("unable to katex: %s\n", duk_to_string(ctx, -1));
         assert(false && "unable to katex input");
     }
- 
+
     return 0;
 }
 ```
@@ -23093,9 +23203,9 @@ to represent all possible user types as a single NaN.
 #include <limits>
 using namespace std;
 // https://en.wikipedia.org/wiki/NaN
-union PunDouble { 
+union PunDouble {
     double d;
-    struct { 
+    struct {
         uint64_t m      : 51;
         uint32_t qnan: 1;
         uint32_t e      : 11;
@@ -23119,22 +23229,22 @@ union PunInt {
 using namespace std;
 struct Box {
 
-    inline bool is_int() const { 
+    inline bool is_int() const {
         auto pd = PunDouble(d);
         return pd.bits.e == 0b11111111111 && pd.bits.qnan == 1;
     }
     inline bool isdouble() const {
         auto pd = PunDouble(d);
-        return (pd.bits.e != 0b11111111111) || (pd.bits.qnan == 0); 
+        return (pd.bits.e != 0b11111111111) || (pd.bits.qnan == 0);
     }
-    int32_t get_int() const { 
+    int32_t get_int() const {
         assert(is_int());
         uint64_t m = PunDouble(d).bits.m; return PunInt(m).i;
     }
     double get_double() const { assert(isdouble()); return d; }
     Box operator +(const Box &other) const;
 
-    static Box mk_int(int32_t i) { 
+    static Box mk_int(int32_t i) {
         return Box(PunDouble(1, 0b11111111111, PunInt(i).bits).d);
     }
     static Box mk_double(double d) { return Box(d); }
@@ -23145,11 +23255,11 @@ struct Box {
 
 // = 64 bits
 Box Box::operator + (const Box &other) const {
-    if (isdouble()) { 
+    if (isdouble()) {
         assert(other.isdouble());
         return Box::mk_double(d + other.d);
     }
-    else { 
+    else {
         assert(is_int());
         assert(other.is_int());
         return Box::mk_int(get_int() + other.get_int());
@@ -23162,7 +23272,7 @@ ostream &operator << (ostream &o, const Box &b) {
 }
 
 int32_t randint() { return (rand() %2?1:-1) * (rand() % 100); }
-                    
+
 int32_t main() {
 
     // generate random integers, check that addition checks out
@@ -23221,7 +23331,7 @@ for all the languages I use, so I'm building a list:
 
 # Using Gurobi
 
-I've been trying to learn how to use Gurobi, the industrial strength 
+I've been trying to learn how to use Gurobi, the industrial strength
 solver for linear and quadratic equation systems.
 
 - [compile the C+ bindings](https://stackoverflow.com/questions/46779850/cannot-compile-gurobi-examples-in-version-7-5-1)
@@ -23311,11 +23421,11 @@ computation is slightly more involved. Its advantage is that it ignores
 ordering of the objects, which is what you desire.
 
 In this case, we represent each color as the polynomial 1 + x + x^2, here the
-power of x represents the number of instances you are taking of that color. 
+power of x represents the number of instances you are taking of that color.
 
 So, if you take (1 + x + x^2)^4, you have found the number of ways to arrange
 four colors, for different numbers of slots. If you take coefficient of x^2
-from that polynomial, you get the answer to your question 
+from that polynomial, you get the answer to your question
 
 Why does this set of shady manipulations not work?
 
@@ -23349,7 +23459,7 @@ by `2`. This gives:
 = (20)
 ```
 
-so we get the answer as `answer = 20/2! = 10`. 
+so we get the answer as `answer = 20/2! = 10`.
 
 # This is not a place of honor
 
@@ -23411,7 +23521,7 @@ we will finally be left with the images as the orbits. All other elements
 would have been ``smashed together''.
 
 On the right hand side, we are averaging the group over space. Yes,
-but how does one perform averaging? One needs to have a measure! 
+but how does one perform averaging? One needs to have a measure!
 
 #### A rephrasing in terms of integrators
 
@@ -23540,16 +23650,16 @@ trivial cokernel, but globally, we will have non-trivial cokernel.
 
 $$
 \begin{aligned}
-0  
-\rightarrow 2\pi i \mathbb Z 
-\xrightarrow{\alpha: \texttt{incl}} \mathfrak O 
-\xrightarrow{\beta:exp(\cdot)} \mathfrak O^* 
+0
+\rightarrow 2\pi i \mathbb Z
+\xrightarrow{\alpha: \texttt{incl}} \mathfrak O
+\xrightarrow{\beta:exp(\cdot)} \mathfrak O^*
 \rightarrow 0
 \end{aligned}
 $$
 
-- $\mathfrak O$ is the sheaf of the additive group of holomorphic functions. 
-  $\mathfrak O^*$ is the sheaf of the group of non-zero holomorphic functions. 
+- $\mathfrak O$ is the sheaf of the additive group of holomorphic functions.
+  $\mathfrak O^*$ is the sheaf of the group of non-zero holomorphic functions.
 - $\alpha$, which embeds $2\pi n \in 2\pi i \mathbb Z$ as a constant function $f_n(\cdot) \equiv  2 \pi i n$ is
   injective.
 - $\beta(\alpha(n)) = e^{2 \pi i n} = 1$. So we have that the composition of the two maps $\beta \circ \alpha$ is
@@ -23559,11 +23669,11 @@ $$
   that $\beta$ is surjective. Pick any $g \in \mathfrak O^*_p$. We have an open neighbourhood $U_g$
   where $g \neq 0$, since continuous functions are locally invertible.
   Take the logarithm of $g$ to pull back $g \in O^*_p$ to $\log g \in O_p$.
-  Thus, $\beta: O \rightarrow O^p$ is surjective at each local point $p$, since every element 
+  Thus, $\beta: O \rightarrow O^p$ is surjective at each local point $p$, since every element
   has a preimage.
 - On the other hand, the function $h(z) \equiv z$ cannot be in $O^*$ If it were,
   then there exists a homolorphic function called $l \in O$ [for $\log$] such that
-  $\exp(l(z)) = h(z) = z$ everywhere on the complex plane. 
+  $\exp(l(z)) = h(z) = z$ everywhere on the complex plane.
 - Assume such a function exists. Then it must be the case that
   $d/dz exp(l(z)) = d/dz(z) = 1$. Thus, $exp(l(z)) l'(z) = z l'(z) = 1$
   [use the fact that $exp(l(z)) = z$]. This means that $l'(z) = 1/z$.
@@ -23585,7 +23695,7 @@ $$
   allow for transforming bras to kets and vice versa. On the other hand,
   it does not allow for dirac delta as bras and kets.
 - The document [The role of rigged hilbert spaces in QM](https://arxiv.org/pdf/quant-ph/0502053.pdf)
-  provides a gentle introduction on how to add in dirac deltas. 
+  provides a gentle introduction on how to add in dirac deltas.
 - Rigged hilbert spaces (by Gelfand) combine the theory of distributions
   (by Schwartz), developed to make dirac deltas formal, and the theory of
   hilbert spaces (by Von Neumann) developed to make quantum mechanics formal.
@@ -23621,7 +23731,7 @@ from discretizing a grid, can we recover a global sense of orientation?
 
 - Yes. Start with some corner. Such a corner vertex will have degree 2. Now,
   walk "along the edge", by going from a vertex of degree 2 to an neighbour
-  of degree 2. If we finally reach a vertex that has unexplored 
+  of degree 2. If we finally reach a vertex that has unexplored
   neighbours of degree 3 or 4, pick the neighbour of degree 3. This will give
   us "some edge" of the original rectangle.
 
@@ -23689,21 +23799,21 @@ $$
 
 # Extended euclidian algorithm
 
-#### Original definition 
+#### Original definition
 
 I feel like I only understand the extended euclidian algorithm algebraically,
 so I've been trying to understand it from other perspectives. Note that
 we want to find $gcd(p, p')$. WLOG, we assume that $p > p'$.
 We now find a coefficient $d$ such that $p = d p' + r$ where $0  \leq r < p'$.
 At this stage, we need to repeat the algorithm to find $gcd(p', r)$. We
-stop with the base case $gcd(p', 0) = p'$. 
+stop with the base case $gcd(p', 0) = p'$.
 
 #### My choice of notation
 
 I dislike the differentiation that occurs between $p$, $p'$, and $r$
 in the notation. I will notate this as $gcd(p_0, p_1)$. WLOG, assume
 that $p_0 > p_1$. We now find a coefficient $d_0$ such that $p_0 = p_1 d_1 + p_2$
-such that $0 \leq p_2 < p_1$. At this stage, we recurse to find 
+such that $0 \leq p_2 < p_1$. At this stage, we recurse to find
 $gcd(p_1, p_2)$. We stop with the base case $gcd(p_{n-1}, p_n) = p_n$ iff
 $p_{n-1} = d_n p_n + 0$. That is, when we have $p_{n+1} = 0$, we stop
 with the process, taking the gcd to be $p_n$.
@@ -23717,9 +23827,9 @@ strive to have "matching" inputs and output so we can iterate maps. This
 leads us to the natural generalization:
 
 $$
-\begin{bmatrix} p_0 \\ p_1 \end{bmatrix} = 
+\begin{bmatrix} p_0 \\ p_1 \end{bmatrix} =
 \begin{bmatrix}
-d_1  & 1 \\ 1 & 0 
+d_1  & 1 \\ 1 & 0
 \end{bmatrix}
 \begin{bmatrix} p_1 \\ p_2 \end{bmatrix}
 $$
@@ -23739,7 +23849,7 @@ And so on, all the way to $g = \omega_0 p_0 + \omega_1 p_1$.
 - We can begin with the general case:
 
 $$
-g = 
+g =
 \begin{bmatrix} \omega' & \omega'' \end{bmatrix}
 \begin{bmatrix} p' \\ p'' \end{bmatrix}
 $$
@@ -23747,9 +23857,9 @@ $$
 - We have the relationship:
 
 $$
-\begin{bmatrix} p \\ p' \end{bmatrix} = 
+\begin{bmatrix} p \\ p' \end{bmatrix} =
 \begin{bmatrix}
-d'  & 1 \\ 1 & 0 
+d'  & 1 \\ 1 & 0
 \end{bmatrix}
 \begin{bmatrix} p' \\ p'' \end{bmatrix}
 $$
@@ -23758,9 +23868,9 @@ $$
 
 
 $$
-\begin{bmatrix} p' \\ p'' \end{bmatrix} = 
+\begin{bmatrix} p' \\ p'' \end{bmatrix} =
 \begin{bmatrix}
-0  & 1 \\ 1 & - d' 
+0  & 1 \\ 1 & - d'
 \end{bmatrix}
 \begin{bmatrix} p \\ p' \end{bmatrix}
 $$
@@ -23769,16 +23879,16 @@ $$
 
 $$
 \begin{aligned}
-&g = 
+&g =
 \begin{bmatrix} \omega' & \omega'' \end{bmatrix}
 \begin{bmatrix} p' \\ p'' \end{bmatrix} \\
-&g = 
+&g =
 \begin{bmatrix} \omega' & \omega'' \end{bmatrix}
 \begin{bmatrix}
-0  & 1 \\ 1 & - d' 
+0  & 1 \\ 1 & - d'
 \end{bmatrix}
 \begin{bmatrix} p \\ p' \end{bmatrix} \\
-&g = 
+&g =
 \begin{bmatrix} \omega'' & \omega - d' \omega'  \end{bmatrix}
 \begin{bmatrix} p \\ p' \end{bmatrix} \\
 
@@ -23795,7 +23905,7 @@ $$
 # In a PID, all prime ideals are maximal, geometrically
 
 Assume $R$ is Noetherian.
- 
+
 - By [Krull's principal ideal theorem](https://en.wikipedia.org/wiki/Krull%27s_principal_ideal_theorem),
   we have that given a principal ideal $I = (\alpha)$, all minimal prime
   ideals $\mathfrak p$ above $I$ has height at most 1.
@@ -23808,7 +23918,7 @@ Assume $R$ is Noetherian.
 - In our case, we have that $R$ is a PID. We are trying to show that all prime
   ideals are maximal. Consider a prime ideal $\mathfrak p \subseteq R$.
   It is a principal ideal since $R$ is a PID. It is also
-  a minimal prime ideal since it contains itself. Thus by Krull's PID 
+  a minimal prime ideal since it contains itself. Thus by Krull's PID
   theorem, has height at most one.
 - If the prime ideal is the zero ideal ($\mathfrak p = 0$),
   then it has height zero.
@@ -23843,7 +23953,7 @@ ideals are maximal.
 I learnt of this characterization from benedict gross's lectures, [lecture 31](https://www.youtube.com/watch?v=l1OWAasmBLI&list=PLelIK3uylPMGzHBuR3hLMHrYfMqWWsmx5&index=31).
 
 We usually define a number $p \in R$ as prime iff the ideal generated by
-$p$, $(p)$ is prime. Formally, for all $a, b \in R$, if 
+$p$, $(p)$ is prime. Formally, for all $a, b \in R$, if
 $ab \in (p)$ then $a \in (p)$ or $b \in (p)$.
 
 This can be thought of as saying that among all principal ideals, the
@@ -23854,7 +23964,7 @@ ideal $(p)$ is maximal: no other principal ideal $(a)$ contains it.
 - So we are saying that if $(p) \subseteq (a)$ then either $(p) = (a)$
 - Since $(p) \subseteq (a)$ we can write $p = ar$. Since $(p)$ is prime,
   and $ar = p \in (p)$, we have that either $a \in (p) \lor r \in (p)$.
-- Case 1: If $a \in (p)$ then we get $(a) \subseteq (p)$. 
+- Case 1: If $a \in (p)$ then we get $(a) \subseteq (p)$.
   This gives $(a) \subseteq (p) \subseteq (a)$,
   or $(a) = (p)$.
 - Case 2: Hence, we assume $a \not \in (p)$, and $r \in (p)$.
@@ -23866,12 +23976,12 @@ ideal $(p)$ is maximal: no other principal ideal $(a)$ contains it.
 # Axiom of Choice and Zorn's Lemma
 
 I have not seen this "style" of proof before of AoC/Zorn's lemma
-by thinking of partial functions $(A \rightarrow B)$ as monotone functions                                 
+by thinking of partial functions $(A \rightarrow B)$ as monotone functions
 on $(A \cup \bot \rightarrow B)$.
 
 #### Zorn's Lemma implies Axiom of Choice
 
-If we are given Zorn's lemma and the set $A_i$, to build a choice 
+If we are given Zorn's lemma and the set $A_i$, to build a choice
 function, we consider the collection of functions $(f: \prod_i A_i \rightarrow \rightarrow A_i \cup \bot)$
 such that either $f(A_i) = \bot$ or $f(A_i) \in A_i$. This can be endowed with
 a partial order / join semilattice structure using the "flat" lattice, where
@@ -23879,14 +23989,14 @@ $\bot < x$ for all $x$, and $\bot \sqcup x = x$.
 
 For every chain of functions, we have a least upper bound, since a chain
 of functions is basically a collection of functions $f_i$ where each function
-$f_{i+1}$ is "more defined" than $f_i$. 
+$f_{i+1}$ is "more defined" than $f_i$.
 
 Hence we can always get a maximal element $F$, which has a value defined
 at _each_ $F(A_i)$. Otherwise, if we have $F(A_i) = \bot$, the element
 is not maximal, since it is dominated by a larger function which is defined
 at $A_i$.
 
-Hence, we've constructed a choice function by applying Zorn's Lemma. 
+Hence, we've constructed a choice function by applying Zorn's Lemma.
 Thus, Zorn's Lemma implies Axiom of Choice.
 
 
@@ -23906,17 +24016,17 @@ This is supposedly equivalent to the definition:
 
 - Let $R$ be a local ring with unique maximal ideal $M$.
 - Let $u \in R - M$. [$u$ for unit].
-- If $u$ is a unit, we are done. 
-- Otherwise, consider the ideal generated by $u$, $(u)$. 
-- $(u)$ must live in some maximal ideal. Since 
-- $M$ is the only maximal ideal, we have that $u \in (u) \subseteq M$. 
+- If $u$ is a unit, we are done.
+- Otherwise, consider the ideal generated by $u$, $(u)$.
+- $(u)$ must live in some maximal ideal. Since
+- $M$ is the only maximal ideal, we have that $u \in (u) \subseteq M$.
 - This is a contradiction, since $u$ cannot be both in $M$ and $R - M$.
 - Hence all elements $u \in R - M$ are units.
 
 ##### All units are in $(R - M)$:
 
 - Let $u$ a unit.
-- We cannot have $u \in M$ since $M$ is a maximal ideal, $M \neq R$. 
+- We cannot have $u \in M$ since $M$ is a maximal ideal, $M \neq R$.
 - If $u \in M$ then $u^{-1} u = 1 \in M$, hence $M = R$.
 - Contradiction.
 
@@ -23924,9 +24034,9 @@ This is supposedly equivalent to the definition:
 
 - Let $R$ have a unique maximal ideal $M$.
 - We have already shown that all invertible elements are in $R - M$.
-- Hence if $x + y$ is invertible, it belongs to $R - M$. 
-- We must have either $x$ or $y$ invertible. 
-- Suppose not: $x, y \in M$ while $x + y \not \in M$. 
+- Hence if $x + y$ is invertible, it belongs to $R - M$.
+- We must have either $x$ or $y$ invertible.
+- Suppose not: $x, y \in M$ while $x + y \not \in M$.
 - This is impossible because $M$ is an ideal and is thus closed under addition.
 - So, we must have that if $x + y$ is invertible then either $x$ or $y$ is invertible.
 
@@ -23953,7 +24063,7 @@ This is supposedly equivalent to the definition:
 #### System of equations
 
 Consider a set of polynomials $\{F_1, F_2, \dots F_m\}$ subset $K[T_1, \dots, T_n]$.
-A system of equations $X$ for unknowns $T$ is the tuple 
+A system of equations $X$ for unknowns $T$ is the tuple
 $(K[T_1, \dots, T_n], \{ F_1, F_2, \dots F_m \} \subset K[T_1, \dots, T_n])$.
 We abbreviate this to $(K[\mathbf T], \mathbf F)$ where the bolded version
 implies that these are vectors of values.
@@ -23973,7 +24083,7 @@ Alternatively/equivalently, [we need $L$ to be a $K$-algebra](https://math.stack
 
 
 Let us consider the single-variable case with $K[T]$. This naturally
-extends to the multivariate case. 
+extends to the multivariate case.
 Using $\phi$, we can map $f \in K[T]$ to $\phi(f) \in L[T]$ by taking
 $f = \sum_i k_i T^i$ to $\phi(f) = \sum_i \phi(k_i) T^i$. This clearly extends
 to the multivariate case. Thus, we can interpret solutions $l \in L$ to an equation
@@ -23994,7 +24104,7 @@ $Sol(X, L) = Sol(Y, L)$.
 #### Biggest system of equations
 
 For a given system of equations $X \equiv (K[\mathbf T], \mathbf F)$ over the ring $K$,
-we can generate the largest system of equations that still has the same solution: 
+we can generate the largest system of equations that still has the same solution:
 generate the ideal $\mathbf F' = (\mathbf F)$, and consider the system
 of equations $X' \equiv (K[\mathbf T], \mathbf F' = (\mathbf F) )$.
 
@@ -24026,7 +24136,7 @@ This ring $K[V]$ is called as the **coordinate ring of the variety $V$**.
 
 We can consider the ith coordinate function as one that takes $K[T_1, \dots, T_n]$ to $T_i$
 So we have $\phi_i \equiv T_i \in K[T_1, \dots, T_n]$ which defines a function
-$\phi_i: K^n \rightarrow K$ which extracts the $i$th coordinate. 
+$\phi_i: K^n \rightarrow K$ which extracts the $i$th coordinate.
 
 Now the quotienting from the variety to build $K[V]$, the coordinate ring
 of the variety $V$ will make sure to "modulo out" the coordinates that
@@ -24077,12 +24187,12 @@ $$
 \begin{aligned}
 &eval[l\star](f) = \sum_i a_i (l\star)^i \\
 &= \sum_i a_i \phi(T)^i \\
-&\text{Since $\phi$ is ring homomorphism:} \\ 
-&= \sum_i a_i \phi(T^i)  \\ 
-&\text{Since $\phi$ is $k$-algebra homomorphism:} \\ 
-&= \phi(\sum_i a_i T^i)  \\ 
+&\text{Since $\phi$ is ring homomorphism:} \\
+&= \sum_i a_i \phi(T^i)  \\
+&\text{Since $\phi$ is $k$-algebra homomorphism:} \\
+&= \phi(\sum_i a_i T^i)  \\
 &= \phi(f) \\
-\text{Since $f \in ker(\phi)$:} \\ 
+\text{Since $f \in ker(\phi)$:} \\
 &= 0
 \end{aligned}
 $$
@@ -24118,7 +24228,7 @@ of points in $L^n$. These points are solutions to the system $X$.
 # Perspectives on Yoneda
 
 We can try to gain intuition for Yoneda by considering a finite category
-where we view arrows as directed paths. 
+where we view arrows as directed paths.
 
 The "interpretation" of a path is taken by going from edges to labels and then
 concatenating all edge labels. We "interpret" the label `id_x` as `""` (the
@@ -24174,7 +24284,7 @@ Now pick the magic `x = o` and `o2x = o2o = id_o`. This gives:
 x = o, y ∈ C
 o2x = id_o
 
-∀ y ∈ C, 
+∀ y ∈ C,
   p ∈ Hom(o, y),
   G[p](ηo(id_o)) = ηy(id_o . p')
   G[p](ηo(id_o)) = ηy(p') [By identity arrow]
@@ -24263,24 +24373,24 @@ $I \equiv (l, r)$: $l \leq f(I) \leq f(r)$ But the full function $f(x)$ is unbou
 
 #### Holomorphic function with holomorphic square root.
 
-Our old enemy, monodromy shows up here. 
+Our old enemy, monodromy shows up here.
 Consider the identity function $f(z) = z$. Let's analyze its square root
 on the unit circle. $f(e^{i \theta}) = e^{i \theta/2}$. This can only be defined
 continuously for _half_ the circle. As we go from $\theta: 0 \rightarrow 2 \pi$,
 our $z$ goes from $0 \rightarrow 0$, while $f(z)$ goes $0 \rightarrow -1$. This
 gives us a discontinuity at $0$.
-                                                                
+
 #### Formalisms
 
 - **Sections of a presheaf $F$ over an open set $U$:**
   For each open set $U \subseteq X$, we have a set $F(U)$, which are generally sets of functions.
   The elements of $F(U)$ are called as the **Sections of $F$ over $U$**.
-  More formally, we have a function $F: \tau \rightarrow (\tau \rightarrow R)$ 
+  More formally, we have a function $F: \tau \rightarrow (\tau \rightarrow R)$
   $(\tau \rightarrow R)$ is the space of functions over $\tau$.
 - **Restriction Map:** For each inclusion $U \hookrightarrow V$, ($U \subseteq V$)
   we have a restriction map $Res(V, U): F(V) \rightarrow F(U)$.
 - **Identity Restriction:** The map $Res(U, U)$ is the identity map.
-- **Restrictions Compose:** If we have $U \subseteq V \subseteq W$, we must have 
+- **Restrictions Compose:** If we have $U \subseteq V \subseteq W$, we must have
   $Res(W, U) = Res(W, V) \circ Res(V, U)$.
 - **Germ:** A germ of a point $p$ is any section over any open set $U$ containing $p$.
   That is, the set of all germs of $p$ is formally $Germs(p) \equiv \{ F(U_p) : U_p \subseteq X, p \in U, U \text{ open} \}$.
@@ -24306,7 +24416,7 @@ gives us a discontinuity at $0$.
 
 # Connectedness in terms of continuity
 
-This was a shower thought. 
+This was a shower thought.
 
 - We usually define a topological space $X$ as connected
   iff there are disjoint open sets $U, V$ such that $U \cup V = X$. Since
@@ -24320,7 +24430,7 @@ This was a shower thought.
   continuously with both colors.
 
 This is equivalent to the original definition by setting $U = f^{-1}(red)$
-and $V = f^{-1}(blue)$: 
+and $V = f^{-1}(blue)$:
 
 - Pre-images of a function must be disjoint. Hence, $U \cap V = \emptyset$.
 - Preimages of $red$ and $blue$ must be open sets since $\{red\}$ and $\{blue\}$
@@ -24339,7 +24449,7 @@ there should be a point of "breakage" where we suddenly switch colors.
 
 #### A characterization of limits
 
-The theorem that characterizes limits is this: 
+The theorem that characterizes limits is this:
 > A category has Finite Limits iff it has all finite products and equalizers.
 > limits have maps *out* of them.
 
@@ -24358,7 +24468,7 @@ The theorem that characterizes limits is this:
 #### Limits are things you get maps *out* of.
 
 - product has projections going out of it.
-- `gcd` is less than the things that build it: 
+- `gcd` is less than the things that build it:
   `gdb(a, b) -> a, b` since `gcd(a, b) < a` and `gcd(a, b) < b`.
 - single point set can be mapped out of.
 - `type Limit f = forall a. f a`
@@ -24388,7 +24498,7 @@ projectIn = MkCoLimit
 # Finite topologies and DFS numbering
 
 In this great math overflow question on
-[How to think about non hausdorff topologies in the finite case](https://mathoverflow.net/questions/44109/how-should-one-think-about-non-hausdorff-topologies/44135#44135), there's an answer that encourages us 
+[How to think about non hausdorff topologies in the finite case](https://mathoverflow.net/questions/44109/how-should-one-think-about-non-hausdorff-topologies/44135#44135), there's an answer that encourages us
 to think of them as preorders, which are basically graphs. I wanted to understand
 this perspective, as well as connect it to DFS numbers, since they provide a
 nice way to embed these topologies into $\mathbb R$.
@@ -24427,7 +24537,7 @@ draw an arrow iff $Closure(x) \subseteq Closure(y)$. That is, we have an injecti
 from the closure of $x$ into the closure of $y$, and the arrow represents
 the injection. Alternatively, we can think of
 this as ordering the elements $x$ by "information". A point $x$ has less information
-than point $y$ if its closure has fewer points.                         
+than point $y$ if its closure has fewer points.
 
 ### T0 in terms of closure:
 - $X$ is $T_0$ iff for points $p, q \in X$, we have an open set $O$ which contains
@@ -24445,10 +24555,10 @@ than point $y$ if its closure has fewer points.
   $U_p, U_q$ are open neighbourhoods of $p, q$ which do not contain the "other point".
   Formally, we need $p \in U_p$ and $q \not \in U_p$, and similarly $q \in U_q$ and $p \not \in U_q$.
   That is, $U_p$ and $U_q$ can split $p, q$ apart, but $U_p$ and $U_q$ need not
-  be disjoint. 
+  be disjoint.
 - **Example** of $T_1$ is the zariski/co-finite topology on $\mathbb Z$, where
   the open sets are complements of finite sets. Given two integers $p, q$, use the
-  open sets as the complements of the closed finite sets $U_p = \{q\}^C = \mathbb Z - q$, 
+  open sets as the complements of the closed finite sets $U_p = \{q\}^C = \mathbb Z - q$,
   and $U_q = \{p\}^C = \mathbb Z - p$. These separate $p$ and $q$,
   but have _huge_ intersection: $U_p \cap U_q = Z - \{ p, q\}$.
 - **Closure definition:** $X$ is $T_1$ iff $c(\{x\}) = \{x\}$.
@@ -24466,12 +24576,12 @@ than point $y$ if its closure has fewer points.
 ### Relationship between DFS and closure when the topology is $T0$
 
 If the topology is $T0$, then we know that the relation will be a poset,
-and hence the graph will be a DAG. Thus, whenever we have $x \rightarrow y$, we 
-will get 
+and hence the graph will be a DAG. Thus, whenever we have $x \rightarrow y$, we
+will get
 
 ### DFS: the T0 case
 ### DFS: the back edges
-    
+
 # Categorical definition of products in painful detail
 
 I feel like I have incorrectly understood, then un-understood, and re-understood
@@ -24491,7 +24601,7 @@ the product is unique up to unique isomorphism.
 
 Let's choose the category to be the category of sets. Let's try and figure out
 what a product of the sets $a = \{ \alpha, \beta \}$ and $b = \{ \gamma, \delta \}$
-is going to be. 
+is going to be.
 
 
 #### Non-example 1: product as $\{ 1 \}$
@@ -24504,7 +24614,7 @@ p{1}--->{ γ }
   |     { δ }
   |
 πa|
-  v 
+  v
 { α , β }
 ```
 
@@ -24518,13 +24628,13 @@ q{2}-+  { γ }
   |  +->{ δ }
   |
 πa|
-  v 
+  v
 { α , β }
 ```
 
 There is a single, unique map which takes $q$ to $p$, which is the function $f: 2 \mapsto 1$.
 See that $\pi'_b(2) = \delta$, while $\pi_b(f(2)) = \pi_b(1) = \gamma$. Hence
-the universal property can never be satisfied. 
+the universal property can never be satisfied.
 
 Thus $(\{ 1 \}, 1 \mapsto \alpha, 1 \mapsto \gamma)$ is not a
 product of $\{ \alpha, \beta \}$ and $\{ \gamma, \delta \}$ as it is
@@ -24597,12 +24707,12 @@ $$
 
 That is, we build $f(x)$ such that on composing with $\pi_a$ and $\pi_b$, we will
 get the right answer. For example, if $\pi'_a(x) = \alpha$, then we know that
-we should map $x$ to an element  $y \in p$ such that $\pi(y) = \alpha$. So 
+we should map $x$ to an element  $y \in p$ such that $\pi(y) = \alpha$. So
 we need $y = 1 \lor y = 2$. Then looking at $\pi'_b(x)$ allows us to pick a
 **unique** y. There is zero choice in the
 construction of $f$. We need _exactly_ 4 elements to cover all possible ways
 in which $q$ could map into $a$ and $b$ through $\pi'_a, \pi'_b$ such that
-we cover all possibilities with no redundancy. 
+we cover all possibilities with no redundancy.
 
 This choice of product is _goldilocks_: it does not have too few elements such
 that some elements are not representable; it also does not have too many
@@ -24610,21 +24720,21 @@ elements such that some elements are redundant.
 
 #### Non uniqueness: product as $\{10, 20, 30, 40\}$
 
-Note that instead of using $p = \{1, 2, 3 4\}$, I could have used 
+Note that instead of using $p = \{1, 2, 3 4\}$, I could have used
 $p = \{10, 20, 30, 40 \}$
-and nothing would have changed. 
+and nothing would have changed.
 I have never depended on using the _values_ $1, 2, 3, 4$.
 Rather, I've only used them as \emph{labels}.
 
 #### Non uniqueness: product as  $\{ (\alpha,  \gamma), (\alpha, \delta), (\beta, \gamma), (\beta, \delta) \}$
 
-Indeed, our usual idea of product also satisfies the product, since it is 
+Indeed, our usual idea of product also satisfies the product, since it is
 in unique isomorphism to the set $\{1, 2, 3, 4\}$ we had considered previously.
 But this might be strange: Why is it that the categorical definition of product
-allows for so many other "spurious" products? Clearly this product of tuples 
+allows for so many other "spurious" products? Clearly this product of tuples
 is the **best** one, is it not?
 
-Of course not! Inside the category of sets, anything with the same cardinality 
+Of course not! Inside the category of sets, anything with the same cardinality
 is isomorphic. So nothing inside the category can distinguish between the
 sets $\{1, 2, 3, 4\}$ and  $\{ (\alpha,  \gamma), (\alpha, \delta), (\beta, \gamma), (\beta, \delta) \}$.
 Hence, the _usual product_ we are so used to dealing with is not privileged.
@@ -24641,7 +24751,7 @@ the individual sets!
 Since we are specifying the data of $(p, \pi_a, \pi_b)$, we can simply think of
 elements of $p$ as being "pre-evaluated", as $(x \in p, \pi_a(x), \pi_b(x))$.
 So in our case, we can simplify the previous situation with $(p = \{ 10, 20, 30, 40 \}, \pi_a, \pi_b)$
-by writing the set as 
+by writing the set as
 $p = \{ (10, \alpha, \gamma), (20, \alpha, \delta), (30, \beta, \gamma), (40, \beta, \delta) \}$.
 This tells us "at a glance" that every element of $a \times b$ is represented,
 as well as what element it is represented by.
@@ -24663,7 +24773,7 @@ as well as what element it is represented by.
           |   |
           |   v
 +---------ppppp--------+
-| πa      |   ^     πb |  
+| πa      |   ^     πb |
 v      ∃!p2q  |        v
 a         |   |        b
 ^         |  ∃!q2p     ^
@@ -24779,7 +24889,7 @@ So we have three possible rotations of the string `011`:
 
 - So we can count the above 7 strings with equivalence class representatives.
   These representatives are those strings that are the lex smallest in their
-  cyclic shifts. (Why are cyclic shifts _so important_?) 
+  cyclic shifts. (Why are cyclic shifts _so important_?)
 
 ```
 Cyclic subshifts of strings:
@@ -24836,7 +24946,7 @@ if I counted its equivalence class as having size `4`.
 - We are then using the fact that the orbits of an action when `p` is prime
   has size either `1` or `p`, since the size of the orbit divides the
   size of the group `Z/pZ`, which is `p`, a prime. The divisors of
-  `p` are only `1` and `p`. Therefore, the size of the orbit is either `1` 
+  `p` are only `1` and `p`. Therefore, the size of the orbit is either `1`
   or `p`.
 
 - Only necklaces that have identical elements like `000` and `111` have
@@ -24895,10 +25005,10 @@ $$
 $$
 
 So we get the relation that time elapsed for observer (2) is related
-to observer (1) as $t' = (1 + v/c) t$. 
+to observer (1) as $t' = (1 + v/c) t$.
 
 - This checks out: Assume our observer is moving leftward at $v = c$. He will
-  then see the photon move rightward at $x' = 2ct$. So if his time slows down 
+  then see the photon move rightward at $x' = 2ct$. So if his time slows down
   to have $t' = 2t$, we will have that $x/t' = 2ct/2t = c$.
 
 - However, this forumla allows us to go faster than the speed of light with
@@ -24921,21 +25031,21 @@ to observer (1) as $t' = (1 + v/c) t$.
 
 ### What's the issue?
 
-The issue is the equation $x' = vt + ct$. 
+The issue is the equation $x' = vt + ct$.
 - It is true that _as per observer (1) standing at the origin_, the distance
   between observer (2) and the photon is $vt + ct$.
-- It is _not_ true that observer(2) sees the distance between them and 
+- It is _not_ true that observer(2) sees the distance between them and
   the photon  as $vt + ct$.
 - Intuitively, this equation of $x' = vt + ct$ completely ignores length
   contraction, and hence cannot be right.
-- Alternatively, the equation of $x' = vt + ct$ imposes galilean relativity, 
+- Alternatively, the equation of $x' = vt + ct$ imposes galilean relativity,
   where I am attempting to naively connect reference frames, which cannot be
   correct.
 
 
 #  [The geometry and dynamics of magnetic monopoles](#the-geometry-and-dynamics-of-magnetic-monopoles)
 
-I found this cool document written by Sir Atiyah, called as 
+I found this cool document written by Sir Atiyah, called as
 ["The geometry and dynamics of magnetic monopoles"](https://www.jstor.org/stable/j.ctt7zv206)
 which contains
 a nice exposition of electromagnetism from the differential viewpoint.
@@ -24944,7 +25054,7 @@ I'll record what I read here.
 
 # Sanskrit and Sumerian
 
-#### Sanskrit's precursors 
+#### Sanskrit's precursors
 
 The oldest known sanskrit text that has been found is the Rig Veda. Eveyrthing
 after is the study of sanskit proper. This is quite problematic because the
@@ -24970,21 +25080,21 @@ Rig Veda was written to anything before it.
 
 Studies in non-vedic sanskrit is known to be the "true" proto-Indo-Europoean (PIE)
 language. The conjecture is that this Indo European language ought to be
-able to cover middle greek, hittite, and sanskit. 
+able to cover middle greek, hittite, and sanskit.
 
 ##### Prakrit and its relationship to this story
 
 Prakrit evolved as a vernacular of Sanskrit in the north pahadi region. Hindi
-as we know toady evolved from Hindusthani, which came from languages in 
+as we know toady evolved from Hindusthani, which came from languages in
 northern india. Languages like Marathi, Marvadi, Gujurathi, etc. came a lot
 before Hindi did.
 
 ##### TLDR on Sanskrit v/s Hindi
 
-There is a huge gap of time between Sanskit, Prakrit, Pali, and Hindi. 
-Hindi evolved around the 1600s due to the Mughals who used to speak a 
+There is a huge gap of time between Sanskit, Prakrit, Pali, and Hindi.
+Hindi evolved around the 1600s due to the Mughals who used to speak a
 vernacular of Hindusthani. Kabir also wrote in Hindusthani. There was also
-some Farsi and Urdu mixed in. 
+some Farsi and Urdu mixed in.
 
 > Hindi is more of a political exploit than an actual language ~ Alok 2020
 
@@ -24992,7 +25102,7 @@ some Farsi and Urdu mixed in.
 ##### The relationship to Sumerian
 
 We don't know what the relationship to sumerian is. Social expectations that
-was setup is sumerian has become more stringent in Sanskrit. 
+was setup is sumerian has become more stringent in Sanskrit.
 
 
 # Writing Cuneiform
@@ -25022,7 +25132,7 @@ We have three components:
 I've wanted to read the code of hammurabi since it was name dropped in
 [Snow Crash by Neal Stephenson](https://en.wikipedia.org/wiki/Snow_Crash).
 I finally got around to it. Here's some excerpts I found fascinating. The
-numbers are according to 
+numbers are according to
 [this translation of the Code of Hammurabi](http://www.general-intelligence.com/library/hr.pdf).
 Some helpful hints were found from the
 [Avalon ancient law codes page of the Yale law school](https://avalon.law.yale.edu/ancient/).
@@ -25085,7 +25195,7 @@ Some helpful hints were found from the
   [ An eye for an eye ].  (**Commentary**: Fascinating that 'eye for an eye' comes from the code).
 
 - (202). If any one strike the body of a man higher in rank than he,he shall
-  receive sixty blows with an ox-whip in public. 
+  receive sixty blows with an ox-whip in public.
   (**Commentary**: Neat how one can glean the existence of a social hierarchy
   from a law code. I wonder how this hierarchy was defined.)
 
@@ -25111,7 +25221,7 @@ Some helpful hints were found from the
   beable to keep his land in order, he shall observe the words which I have
   written in this inscription (**Commentary**: This advice for future kings is
   interesting, and appears to imply that the rules and all the prices in the
-  rules ought to be immutable. I really do wonder how they dealt with their 
+  rules ought to be immutable. I really do wonder how they dealt with their
   society changing, new inventions, and inflation)
 
 - [Taken from this introduction to the code of hammurabi from Yale](https://avalon.law.yale.edu/ancient/hammint.asp):
@@ -25140,7 +25250,7 @@ of $y = g'(p, q)$ in a way that satisfies $h$.
 In the simplest possible case, assume the relationship between $y$ and $p$
 is a linear one, given implicitly. So we have $h(y; p) = \alpha y + \beta p + \gamma = 0$.
 Solving for $h(y,p) = 0$, one arrives at: $y = -1/\alpha (\beta p + \gamma)$.
-- Note that the solution exists iff $\alpha \neq 0$. 
+- Note that the solution exists iff $\alpha \neq 0$.
 - Also note that the the existence of the solution is equivalent to asking that
   $\partial h / \partial y = \alpha \neq 0$.
 
@@ -25161,8 +25271,8 @@ a relation, not a function.
 #### Assuming that a solution for $h(y, p)$ exists
 
 Let us say we wish to solve $h(y; p) = y^3 + p^2 - 3 yp - 7 = 0$. Let's assume
-that we have a solution $y = sol(p)$ around the point $(y=3, p=4)$. Then we 
-must have: $sol(p)^3 + p^2 - 3 sol(p) p - 7 = 0$. Differentiating by $p$, 
+that we have a solution $y = sol(p)$ around the point $(y=3, p=4)$. Then we
+must have: $sol(p)^3 + p^2 - 3 sol(p) p - 7 = 0$. Differentiating by $p$,
 we get: $3 sol(p)^2 sol'(p) + 2p - 3 sol'(p) p - 3 sol(p) = 0$. This gives
 us the condition on the derivative:
 
@@ -25213,7 +25323,7 @@ $\partial h / \partial y$.
 
 One perspective we can adopt is that of Newton's method. Recall that Newton's
 method allows us to find $x^*$ for a fixed $y^*$ such that $y^* = f(x^*)$. It follows
-the exact same process! 
+the exact same process!
 
 - We start with some $x[1]$.
 - We then find the tangent $f'(x[1])$.
@@ -25226,23 +25336,23 @@ the exact same process!
 
 
 - Let $F(x, y) \neq 0$, point $p$ be the point where we wish to implicitize.
-- To apply implicit fn theorem, take $\partial_y|_pF(x, y) \neq 0$. 
+- To apply implicit fn theorem, take $\partial_y|_pF(x, y) \neq 0$.
   Say WLOG that $\partial_y|_p F(x, y) > 0$,
   since $F$ is assumed to be continuously differentiable.
 - Since $\partial_y F$ is continuous and positive at $p$,
   it's positive in a nbhd of $p$ by continuity.
 - Consider $F(p_x, y)$ as a single variable function of $y$. Its derivative with
   respect to $y$ is positive; it's an increasing function in terms of $y$.
-- Since $F(x_0, y_0)$ and is an increasing function of $y_0$, we must have 
+- Since $F(x_0, y_0)$ and is an increasing function of $y_0$, we must have
   two $y$ values $y_-, y_+$ such that $F(p_x, y_+)$ is positive, and $F(p_x, y_-)$
   is negative.
-- Since $F$ is zero and continuous, we have that for all $x$ near $x_0$, that 
- $F(x_0, y_+) > 0 \implies F(x, y_+) > 0$ and $F(x_0, y_-) < 0 \implies F(x, y_-) < 0$. 
- We have released $x_0$ into a wild $x$ in the neighbourhood! 
+- Since $F$ is zero and continuous, we have that for all $x$ near $x_0$, that
+ $F(x_0, y_+) > 0 \implies F(x, y_+) > 0$ and $F(x_0, y_-) < 0 \implies F(x, y_-) < 0$.
+ We have released $x_0$ into a wild $x$ in the neighbourhood!
 - Now pick some $x_*$ near $x$. Since we have that $F(x_*, y_+) > 0$ and $F(x_*, y_-) < 0$,
   there exists a **unique** $y_*$ (by MEAN VALUE THEOREM) that $F(x_*, y_*) = 0$
-- Since the $y_*$ is unique, we found a function: $x_* \xmapsto{f} y_*$. 
-- We are not done. We need to prove the formula for $f'(x)$ where $f$ is the 
+- Since the $y_*$ is unique, we found a function: $x_* \xmapsto{f} y_*$.
+- We are not done. We need to prove the formula for $f'(x)$ where $f$ is the
   implicit mapping.
 - $F(x, f(x)) = 0$ by defn of $f(x)$. Apply chain rule!
 
@@ -25270,11 +25380,11 @@ $$
 
 - We are given a function $F(x, y)$. We wish to find a formula $y = g(x)$ such that
  $F(x, g(x)) = 0$.
-- The idea is to consider a function $f(x, y) = (x, F(x, y))$. 
+- The idea is to consider a function $f(x, y) = (x, F(x, y))$.
 - Since this is invertible, we get a local inverse function $g$ such that $g(f(x, y)) = (x, y)$.
   That is, $g(x, F(x,y)) = (x, y)$.
-- Now, for a given $x$, set  $y := snd(g(x, 0))$. This gives us a $(x, y)$ such that 
-  $g(x, F(x,y)=0) = (x, y)$. That is, we get a $y$ such that $F(x, y) = 0$ and 
+- Now, for a given $x$, set  $y := snd(g(x, 0))$. This gives us a $(x, y)$ such that
+  $g(x, F(x,y)=0) = (x, y)$. That is, we get a $y$ such that $F(x, y) = 0$ and
   this a bijection from $x$ to $y$ since $g$ is a bijection.
 
 #### Idea of proof of inverse function theorem (from newton iterates)
@@ -25377,7 +25487,7 @@ by intuition. Since most of it is geometric, it's easy to convey intuition.
 We can convert any group into a graph by using the cayley graph of the group.
 We characterize hyperbolic space as a space where we can build 'thin triangles'.
 We also think of hyperbolic space as where geodesics from a given point
-diverge (in terms of angle) exponentially fast. 
+diverge (in terms of angle) exponentially fast.
 
 The choice of generators for the cayley graph gives different graphs. We can
 assign a **unique** geometric object by considering cayley graphs upto quasi
@@ -25393,10 +25503,10 @@ So this property does not depend on the generating set.
 ### Isoperimetric Inequality
 
 If we have a finitely presented group $G = \langle S | R \rangle$, and $w$
-is a word in the free group $Free(S)$, if $[[w]] = 1$, we will have 
+is a word in the free group $Free(S)$, if $[[w]] = 1$, we will have
 
 $$
-w = \prod_{i=1}^n u_i r_i^{\pm 1} u_i' 
+w = \prod_{i=1}^n u_i r_i^{\pm 1} u_i'
 $$
 
 This follows almost by definition. Since we have quotiented by $r$ we can have
@@ -25424,7 +25534,7 @@ length of the word is the perimeter to the area, and this gives us a form
 of the isoperimetric inequality. Formally, $f$ is a Dehn function if for all
 words $w \in F(S)$ such that $[[w]] = e$, we have $A(w) \leq f(|w|)$. depending
 on the growth of $f$, we say that $G$ has linear, quadratic, exponential etc.
-Dehn function. 
+Dehn function.
 
 ##### Geometric content of Area
 
@@ -25443,7 +25553,7 @@ is the number of faces.
 
 ### Hyperbolic iff Linear Isopermetric Inequality is satisfied
 A finitely presented group is hyperbolic if and of if its cayley grah
-satisfies the linear isoperimetric inequality. 
+satisfies the linear isoperimetric inequality.
 
 ### Deciding if elements are conjugate to each other
 
@@ -25462,7 +25572,7 @@ satisfies the linear isoperimetric inequality.
 
 Consider a solution to the problem of finding an $x$ such that $xgx^{-1} = h$.
 We claim that due to the hyperbolicity of the space, such an $x$ cannot be
-"too long". 
+"too long".
 
 
 
@@ -25516,7 +25626,7 @@ of this which I'm condensing here for future reference.
 - Conversely, every germ $(f, z)$ is determined by some function element $(f, \Omega)$
   since we needed $f$ to be analytic around some open neighbourhood of $z$: Call
   this neighbourhood $\Omega$.
-- Let $D \subseteq \mathbb C$ be an open set. The set of all germs $\{ f_z : z \in D \}$ 
+- Let $D \subseteq \mathbb C$ be an open set. The set of all germs $\{ f_z : z \in D \}$
   is called as a _sheaf_ over $D$. If we are considering analytic $f$ then
   this will be known as the _sheaf of germs of analytic functions over $D$_. This
   sheaf will be denoted as $Sh(D)$.
@@ -25558,7 +25668,7 @@ $\{ f_i: G_i \rightarrow H_i \}$:
     G3 → G2 → G1 → 0
     |    |    |
     f    g    h
-    ↓    ↓    ↓  
+    ↓    ↓    ↓
 0 → H3 → H2 → H1
       ∂    ∂
 ```
@@ -25574,7 +25684,7 @@ we tell where the geometry goes ("this edge goes there"), and the algebra
 is "dragged along for the ride". This gives us the diagram:
 
 ```
-    G3--∂-→G2--∂-→G1 
+    G3--∂-→G2--∂-→G1
     |      |      |
     f3     f2     f1
     ↓      ↓      ↓
@@ -25588,16 +25698,16 @@ images!
     Ker(f3)----→Ker(f2)--→Ker(f1)
        |         |          |
        ↓         ↓          ↓
-       G3--∂----→G2----∂---→G1--→ 0 
+       G3--∂----→G2----∂---→G1--→ 0
        |         |          |
        f3        f2         f1
-       ↓         ↓          ↓  
+       ↓         ↓          ↓
     Im(f3)--∂--→Im(f2)--∂-→Im(f1)
 ```
 
 ```
 F → E → V → {0}
-{0} → {e} → {v} → {0} 
+{0} → {e} → {v} → {0}
 ```
 
 The _Snake Lemma_ gives us a mapping $d: Ker(f1) \rightarrow Im(f3)$ such that
@@ -25619,13 +25729,13 @@ this long exact sequence is saatisfied:
 
 # Kernel, cokernel, image
 
-Consider a linear map $T: X \rightarrow Y$. we want to solve for $\{ x : T(x) = y0 \}$. 
+Consider a linear map $T: X \rightarrow Y$. we want to solve for $\{ x : T(x) = y0 \}$.
 - If we have an $x0$ such that $T(x0) = y0$, then see that $T(x0 + Ker(T)) = T(x0) + T(Ker(T)) = y0 + 0 = y0$.
   So the kernel gives us our degrees of freedom: how much can we change around without
   changing the solution.
-- Now consider the cokernel: $Coker(T) = Y / Im(T)$. If we want to find 
+- Now consider the cokernel: $Coker(T) = Y / Im(T)$. If we want to find
   a solution $\{ x : T(x) = y0 \}$. If we have $y0 \neq 0 \in Coker(T)$, then
-  the solution set is empty. The cokernel tells us the _obstruction_ to a 
+  the solution set is empty. The cokernel tells us the _obstruction_ to a
   solution.
 
 # The commutator subgroup
@@ -25637,10 +25747,10 @@ $[G, G]$.
 
 - We need to consider generation. Consider the free group on 4 letters
   $G = \langle a, b, c, d \rangle$. Now $[a, b] \cdot [c, d]$ has no
-  expression in terms of $[\alpha, \beta]$. 
+  expression in terms of $[\alpha, \beta]$.
 
 - In general, the elements of the commutator subgroup will be products
-  of commutators. 
+  of commutators.
 
 - It measures the degree of non-abelian-ness of the group. $G/[G, G]$ is
   the largest quotient of $G$ that is abelian. Alternatively, $[G, G]$
@@ -25685,7 +25795,7 @@ $$
   $a, b \in PSL(2, 5)$ such that $p^2 = q^3 = (pq)^5 = I$. We can link this
   to the presentation of A5 which requires precisely those relations.
 
-- For an element of order 3, we pick `q(z) = 1/(1-z)`. 
+- For an element of order 3, we pick `q(z) = 1/(1-z)`.
 
 $$
 \begin{aligned}
@@ -25706,7 +25816,7 @@ $$
 - For a function of order $5$, we have to use the structure of the finite field
   somehow. We can consider the function `r(z) = 1 + z`. On repeating this 5
   times, we wil get `5 + z = z`. However, it is hard to connect `r(z) = 1 + z`
-  to the  previous choice of `q(z) = 1/(1-z)`. 
+  to the  previous choice of `q(z) = 1/(1-z)`.
 
 - We use the same idea for `r(z)`, and pick `r(z) = z - 1`. This will allow
   us to accumulate `-1`s till we hit a `-5 = 0`.
@@ -25749,12 +25859,12 @@ version here, because the proof involves certain ad-hoc choices which I want
 to make sure I can find off-hand in the future.
 We'll show that `[A5, A5] = A5`, thereby proving that `A5` not solvable.
 This is useful for Galois theory, where we want to show tha `A5` cannot be
-built as extensions of smaller cyclic groups. 
+built as extensions of smaller cyclic groups.
 
 ### Notation
 
 I'll be using non-standard notation: `(12);(34)` means 'perform `(12)` then perform `(34)`'.
-I find this notation makes permutation composition intuitive for me. The `;` 
+I find this notation makes permutation composition intuitive for me. The `;`
 is evocative of C-style languages, where we are ending a statement. I will
 be consistently using $[g, h] \equiv ghg^{-1}h^{-1}$ to denote the commutator.
 
@@ -25793,7 +25903,7 @@ of transpositions we can do is `(12)(23)(34)(45)`. So, in `A5`, we have:
 - So, from the transpositions of the form `(ij)(kl)` where `{i, j}` and
   `{k, l}` intersect, we get the 3-cycles.
 
-- Finally, we can have the transpositions of the form `(12)(23)(34)(45)`. 
+- Finally, we can have the transpositions of the form `(12)(23)(34)(45)`.
   It must be of this form, or some permutation of this form. Otherwise,
   we would have repeated elements, since these transpositions are packed
   "as close as possible". These generate the 5-cycles.
@@ -25804,7 +25914,7 @@ We claim that we can write any element of $A5$ in terms of 3-cycles.
 
 - The disjoint transpositions of the type `(34)(12)` can be written as
   `(34)(23)(23)(12)`, because `(23)(23) = e`. This can be further
-  broken down into `((34)(23)) ((23)(12))` which is two 2-cycles: 
+  broken down into `((34)(23)) ((23)(12))` which is two 2-cycles:
   `(234); (123)`.
 
 - The non-disjoint transpositions of the type `(32)(21)` _are_ 3-cycles:
@@ -25865,7 +25975,7 @@ these 3-cycles, and are therefore elements of the commutator subgroup.
   g   h    g^-1   h^-1
 ```
 
-                                                
+
 So we are left with `(32);(21);(32);(21)`. This is the _square_ of what
 we really wanted, `C = (32);(21)`. However, since `C` is a 3-cycle, we know
 that $C = C^{-2}$. So, we can start with $C^{-1}$, use our trick to generate
@@ -25874,7 +25984,7 @@ that we can generate 3-cycles from commutators of `A5`.
 
 ### Alternate viewpoint on above proof
 
-We have a 3-cycle `s = (a b c)`. We first first a square root `t` such 
+We have a 3-cycle `s = (a b c)`. We first first a square root `t` such
 that `t*t=s`. To do this, we make `t` have the cycles of `s` spread out
 in gaps of 2:
 
@@ -25937,24 +26047,24 @@ need to exhibit how to write as the product of commutators, which we have
 now shown.
 
 
-### Solvable implies simple  
+### Solvable implies simple
 
 We can consider the other definition of simple. Let there be a
 chain of normal subgroups $G = N[0] \leq N[1] \leq N[1] \leq \dots \leq N[m] = e$,
-such that each quotient $N[i] / N[i+1]$ is abelian. Then, if $G$ is 
+such that each quotient $N[i] / N[i+1]$ is abelian. Then, if $G$ is
 simple, this chain can only be $G = N[0] \leq N[1] = e$.
 
 - If we want the quotient $G/N$ to be abelian, then we need the commutator
   subgroup $[G, G]$ to be a a subset of $N$.
 
 - In our case, $[A_5, A_5] = A_5$. So if we want to remove the non-abelian-ness
-  of A5, we need to quotient by the _whole_ of $A5$. 
+  of A5, we need to quotient by the _whole_ of $A5$.
 
 - This means that any such chain will immediately collapse to $e$.
 
 - So, it's impossible to build $A5$ using 'cycling components' starting from $\{e\}$.
   Viewed from the field theoretic perspective, this means that it's impossible
-  to reach a polynomial whose splitting field has galois group A5 by simply 
+  to reach a polynomial whose splitting field has galois group A5 by simply
   appending cycles.
 
 ### Nagging doubt: Did we depend on our numbering of cycles?
@@ -25978,7 +26088,7 @@ written for the 3-cycle `C = (123)` will break down for `D = (321)`. Fear not!
 
 - Given two 3-cycles `C=(abc)` and `D=(pqr)`, at least one of `a, b, c` must
   be equal to one of `p, q, r`. Since each `a, b, c` is unique, and each
-  `p, q, r` is unique, for them to not overlap, we would need 6 elements. 
+  `p, q, r` is unique, for them to not overlap, we would need 6 elements.
   But we only have 5, so there must be some overlap:
 
 ```
@@ -25995,7 +26105,7 @@ the difficult part of the proof, since we need to show that all 3-cycles are
 conjugate _in A5_. We will write `s` as two distinct transpositions, which will
 guarantee that it belongs to `A5`.
 
-                    
+
 - Case 1: `(abx)` and `(pqx)` have a single element `x` in common:
 
 ```
@@ -26035,7 +26145,7 @@ C = (axy) -conj s-> (yxp) = D
 - When we want to write a solution using nth roots, we can only add the
   nth roots of unity, a "cyclic" component. So, any element we can reach
   by using nth roots ought to be able to be written down as an extension of
-  cyclic elements. 
+  cyclic elements.
 
 ### SAGE code to play around with commutators of `A5`:
 
@@ -26078,7 +26188,7 @@ a 4-cycle. We will then show how to write this 4-cycle as two
 3-cycles.
 
 ```
-s = (12)(34) 
+s = (12)(34)
 ```
 
 Note that if we choose `t = (abcd)`, then `t*t` will exchange the first
@@ -26120,7 +26230,7 @@ this, we will build an element with the elements of `s` written with
 gaps of `2`:
 
 ```
-t = (1 _ _ _ _) 
+t = (1 _ _ _ _)
   = (1 _ 2 _ _)  [+2 index]
   = (1 _ 2 _ 3)  [+2 index, wrap]
   = (1 4 2 _ 3)  [+2 index, wrap]
@@ -26128,12 +26238,12 @@ t = (1 _ _ _ _)
 ```
 
 It should be clear how `t*t = s`: When we take `s = t*t`, the resulting permutation `s`
-will move an element `j = t[i]` to `k = t[i+2]`. But we have built `t` such 
+will move an element `j = t[i]` to `k = t[i+2]`. But we have built `t` such
 that `t[i+2] = s[i+1]`. So we will move the element according to how `s` pleases:
 
 ```
 t = (1 4 2 5 3)
-t*t = 1 -> (4 skip) -> 2 
+t*t = 1 -> (4 skip) -> 2
       2 -> (5 skip) -> 3
       3 -> (1 skip) -> 4
       3 -> (2 skip) -> 5
@@ -26145,7 +26255,7 @@ We will now use `t*t` to write the commutator:
 
 ```
 s = t*t
-  = (35)(52)(24)(41);(35)(52)(24)(41)  
+  = (35)(52)(24)(41);(35)(52)(24)(41)
   =
   =
   =
@@ -26218,12 +26328,12 @@ We plot the function here:
 #### Recovering single valued-ness
 
 Now, the question is, can we somehow automatically recover single
-valued-ness? kind of, by stipulating that for any given curve $c: [0, 1] \rightarrow \mathbb C$, 
-the function $arg \circ c: [0, 1] \rightarrow \mathbb R$ is _continuous_. 
+valued-ness? kind of, by stipulating that for any given curve $c: [0, 1] \rightarrow \mathbb C$,
+the function $arg \circ c: [0, 1] \rightarrow \mathbb R$ is _continuous_.
 
 Let's try to investigate what happens if we move from `right` towards `bot`,
 arbitrarily stipulating ("picking a branch") that `arg(right) = 0` as a sort
-of basepoint.  
+of basepoint.
 
 <img src="./static/arg-multi-value-branch-lower.png">
 
@@ -26293,7 +26403,7 @@ giving us:
 - If we evaluate the function `f` on the path `p`, we get `out: Time -> Val`, `out = [0, 1, 2, 3, 4, 5, 6, 7, 0]`.
 - We have a "jump" from `7` to `0` in `out` as we cross from `h` to `a`. This is a
   discontinuity in `out` at time `7`.
-- We want to fix this, so we make the function `f` multi-valued. 
+- We want to fix this, so we make the function `f` multi-valued.
 
 <img src=./static/discrete-multi-valued-assign-multi-value.png>
 
@@ -26331,7 +26441,7 @@ But there was a vagueness in this `choose_best_value`. So we redefine it:
 ```
 path: Time -> Spoke
 f': (Time -> Spoke) -> Time -> Val
-f'(path, tcur) = 
+f'(path, tcur) =
   argmax (\v -> |v - path[tcur-1]| + |v - path[tcur+1|)
          f(path[tcur])
 
@@ -26340,11 +26450,11 @@ out = f'(path)
 ```
 
 - The function `f'` that defines the value of the path has full
-  access to the path itself!                                                      
+  access to the path itself!
 - At time `tcur`, it attempts to pick the value in `f(path[tcur])` which
   makes the discontinuity as small as possible. It picks a value `v` from the
-  possible values of `f(path[tcur])`. This `v` minimises the 
-  of the distances from the previous time point (`|v - path[tcur-1]`), 
+  possible values of `f(path[tcur])`. This `v` minimises the
+  of the distances from the previous time point (`|v - path[tcur-1]`),
   and the distance from the next time point (`|v - path[tcur + 1]`).
 - This provides a rigorous definition of what it means to "pick a value in the branch".
   This can clearly be extended to the continuous domain.
@@ -26360,7 +26470,7 @@ I really liked this bijection.
 (15, 9, 9, 5, 5, 5, 3, 3, 3, 1, 1, 1, 1) [all odd]
 =
 (15, 9x2, 5x3, 3x3, 1x4) [group]
-= 
+=
 (15x1, 9x2, 5x(2+1), 3x(2+1), 1x4) [expand base-2]
 =
 (15, 18, [10, 5], [6, 3], 4) [all unique]
@@ -26384,7 +26494,7 @@ substrings `t1`, `t2`, ..., `tn`, such that:
 For example, given the word `banana`, the lyndon factorization is:
 
 ```
-b; an; an; a; 
+b; an; an; a;
 ```
 
 We can define a notation for writing permutation as:
@@ -26400,7 +26510,7 @@ If we treat it as a string `723145`,
 the duval algorithm provides the decomposition:
 
 ```
-7; 23; 145; 
+7; 23; 145;
 ```
 
 So, we can treat the duval algorithm as a way to recover the permutation given
@@ -26441,11 +26551,11 @@ analogy:
 
 $$|\mathbb R^\mathbb Q| = (2^{\aleph_0})^{\aleph_0} = 2^{\aleph_0 \cdot \aleph_0} = 2^\aleph_0 = |R|$$
 
-- We've won! We have a space $\mathbb R$ whose space of _continuous_ 
+- We've won! We have a space $\mathbb R$ whose space of _continuous_
    functions $\mathbb R \rightarrow \mathbb R$ is isomorphic to $\mathbb R$.
 - We bravely posit: all functions computed by lambda-calculus are continuous!
    Very well. This leaves us two questions to answer to answer: (1) over what space?
-   (2) with what topology? The answers are (1) a space of partial orders 
+   (2) with what topology? The answers are (1) a space of partial orders
    (2) with the [Scott topology](https://en.wikipedia.org/wiki/Scott_continuity)
 
 
@@ -26461,7 +26571,7 @@ $$|\mathbb R^\mathbb Q| = (2^{\aleph_0})^{\aleph_0} = 2^{\aleph_0 \cdot \aleph_0
 
 - The presentation of a domain is quite messy. The nicest axiomatization of
   domains that I know of is in terms of [information systems](https://en.wikipedia.org/wiki/Scott_information_system).
-  One can find an introduction to these in the excellent book 
+  One can find an introduction to these in the excellent book
   ['Introduction to Order Theory' by Davey and Priestly](https://www.cambridge.org/core/books/introduction-to-lattices-and-order/946458CB6638AF86D85BA00F5787F4F4)
 
 
@@ -26469,7 +26579,7 @@ $$|\mathbb R^\mathbb Q| = (2^{\aleph_0})^{\aleph_0} = 2^{\aleph_0 \cdot \aleph_0
 
 ### CPOs
 
-- Given a partial order $(P, \leq)$. assume we have a subset $Q \subseteq P$. 
+- Given a partial order $(P, \leq)$. assume we have a subset $Q \subseteq P$.
   A least upper bound $u$ of $Q$ is an element that is the smallest element in $P$
   which is larger than every element in $Q$.
 
@@ -26512,7 +26622,7 @@ A_1 = \{ 1\}, A_2 = \{1, 2\}, A_3 = \{1, 2, 3\}, \dots, A_n = \{1, 2, 3, \dots, 
 $$
 
 The union of all $A_i$ is $\mathbb N$.
-Each of these sets is finite. 
+Each of these sets is finite.
 Hence $f(\{1 \}) = \{1 \}$, $f(\{1, 2 \}) = \{1, 2\}$ and so on. Therefore:
 
 $$
@@ -26528,7 +26638,7 @@ $$
   to always exist, we need `P` to be a CCPO. So, the definition of continuous
   only works for CCPOs.
 - The composition of continuous functions of chain-complete partially
-  ordered sets is continuous. 
+  ordered sets is continuous.
 
 ### Fixpoints of continuous functions
 
@@ -26567,7 +26677,7 @@ $$
 \end{aligned}
 $$
 
-Which is then  expressed as: 
+Which is then  expressed as:
 $$
 \begin{aligned}
 &asum[n] \equiv \sum_{0 \leq i \leq n} a[i]  \\
@@ -26597,7 +26707,7 @@ best = max_elevations [1, 2, 3, -2, -1, -4, 4, 6]
 ```
 
 `lowest_heights` keeps track of the sea level, while the
-`elevations` computes the elevation from the lowest height. 
+`elevations` computes the elevation from the lowest height.
 The maximum sum subarray will correspond to treating the elements of the array
 as deltas, where we are trying to find the highest elevation. since elevation
 is an integral (sum) of the deltas in height.
@@ -26643,8 +26753,8 @@ defined as the resultant of a polynomial and its derivative. This makes far more
 sense:
 
 - If a polynomial has a repeated root $r$, then its factorization will
-  be of the form $p(x) = (x - r)^2 q(x)$. The derivative of the polynomial 
-  will have an $(x-r)$ term that can be factored out. 
+  be of the form $p(x) = (x - r)^2 q(x)$. The derivative of the polynomial
+  will have an $(x-r)$ term that can be factored out.
 
 - On the contrary, if a polynomial only has a root of degree 1, then the
   factorization will be $p(x) = (x - r) q(x)$, where $q(x)$ is not divisible by $(x-r)$.
@@ -26659,9 +26769,9 @@ I was trying to learn how elimination theory works: Given a variety
 $V = \{ (x, y) : Z(x, y) = 0 \}$, how does one find a rational parametrization
 $(p(t), q(t))$ such that  $Z(p(t), q(t)) = 0$, and $p(t), q(t)$ are
 rational functions? That is, how do we find a rational parametrization of the
-locus of a polynomial $Z(x, y)$? The answer is: use resultants! 
+locus of a polynomial $Z(x, y)$? The answer is: use resultants!
 
-- We have two univariate polynomials $p(a; x), p(b; x)$, where the notation 
+- We have two univariate polynomials $p(a; x), p(b; x)$, where the notation
   $p(a; x)$ means that we have a polynomial $p(a; x) \equiv \sum_i a[i] x^i$.
   The resultant isa polynomial $Res(a; b)$ which is equal to $0$ when
   $p(a; x)$ and $p(b; x)$ share a common root.
@@ -26674,7 +26784,7 @@ locus of a polynomial $Z(x, y)$? The answer is: use resultants!
   are constants, then we get a polynomial $Res(x)$ that tracks whether $p(a; x, y)$
   and $q(a; x, y)$ share a root.
 
-- We can treat the implicit equation above as two equations, $x - p(t) = 0$, 
+- We can treat the implicit equation above as two equations, $x - p(t) = 0$,
   $y - q(t) = 0$. We can apply the method of resultants to project out $t$
   from the equations.
 
@@ -26698,7 +26808,7 @@ a_2 & a_1 & a_0 & 0 \\
 b_2 & b_1 & b_0 & 0\\
 0 & b_2 & b_1 & b_0\\
 \end{bmatrix}
-\begin{bmatrix}                                             
+\begin{bmatrix}
 1 \\ x \\ x^2 \\ x^3
 \end{bmatrix}
 = 0 \\
@@ -26719,7 +26829,7 @@ we have that $a_2 \alpha^2 + a_1 \alpha + a_0 = 0$, and $b_2 \alpha^2 + b_1 \alp
   $Qv = 0$, then we need $|Q| = 0$.
 
 - **Sufficiency**: Since $|Q| = 0$, there is some vector $v = (w, x, y, z)$
-  such that $Qv = 0$. 
+  such that $Qv = 0$.
   We need to show that this $v$ is non-trivial. If the polynomials $p(a;x)$,
   $q(b;x)$ are not equal, then we have that the rows which have coefficients
   from $p$ and $q$ are linearly independent. So, the pair of rows $(1, 3)$,
@@ -26757,7 +26867,7 @@ of the solution we are looking for!
 - [CMU lectures on Math Fundamentals for Robotics](http://www.cs.cmu.edu/~me/811/notes/)
 
 
-                                                    
+
 # Polynomial root finding using QR decomposition
 
 1. For a polynomial $p(x)$, build the companion matrix $P(x)$.
@@ -26779,7 +26889,7 @@ of the solution we are looking for!
 If $x$ is a number and $\hat x$ is its approximation, then the are two notions of
 error:
 1. absolute errror: $|x - \hat x|$.
-2. relative error: $|x - \hat x|/|x|$. 
+2. relative error: $|x - \hat x|/|x|$.
 
 Since the relative error is invariant under scaling $(x \mapsto \alpha x)$, we
 will mostly be interested in relative error.
@@ -26802,7 +26912,7 @@ This definition is seriously problematic. Consider the numbers:
 - $y = 0.9951$, $y_1 = 1.0$, $y_2 = 1.0$, $y_3 = 0.9950$
 
 Here, $y$ has correct one and three significant digits relative to $x$,
-but incorrect 2 significant digits, since the truncation at $x_2$ and $y_2$ 
+but incorrect 2 significant digits, since the truncation at $x_2$ and $y_2$
 do not agree even to the first significant digit.
 
 ### Correct Significant digits --- the correct definition
@@ -26823,16 +26933,16 @@ this emulation is too expensive to be useful.
 
 ### Backward, Forward errors
 
-Let $y = f(x)$, where $f: \mathbb R \rightarrow \mathbb R$. Let us compute $\hat y$ as an approximation to 
+Let $y = f(x)$, where $f: \mathbb R \rightarrow \mathbb R$. Let us compute $\hat y$ as an approximation to
 $y$, in an arithmetic of precision $u$. How do we measure the quality of $\hat y$?
 
 1. In many cases, we maybe happy with an $\hat y$ such that the relative error between
    $y$ and $\hat y$ is equal to $u$: we did the best we can with the precision
-   that was given. This is the **forward error**. 
-2. An alternative question we can ask is, for what $\delta x$ do we have that 
-   $\hat y = f(x + \delta x)$. That is, how far away from the input do we 
+   that was given. This is the **forward error**.
+2. An alternative question we can ask is, for what $\delta x$ do we have that
+   $\hat y = f(x + \delta x)$. That is, how far away from the input do we
    need to stray, to get a matching output? There maybe many such $\delta x$,
-   so we ask for $\min |\delta x|$. We can divide this error by $x$ as a 
+   so we ask for $\min |\delta x|$. We can divide this error by $x$ as a
    normalization factor. This is the **backward error**.
 
 <img src="./static/forward-backward-error.png">
@@ -26850,7 +26960,7 @@ There are two reasons we prefer backward error.
 ### Backward stable
 
 A method for computing $y = f(x)$ is called **backward stable**
-if it produces a $\hat y$ with small backward error. That is, we need a 
+if it produces a $\hat y$ with small backward error. That is, we need a
 small $\delta x$ such that $\hat y = f(x + \delta x)$.
 
 ### Mixed forward-backward error
@@ -26865,7 +26975,7 @@ $$
 
 Another type of error we can consider is that of the form:
 
-$$                                                                              
+$$
 \hat y + \delta y = f(x + \Delta x)
 $$
 
@@ -26910,7 +27020,7 @@ of the function $f$, not any particular algorithm.
 ##### Example: $\log x$
 
 If $f(x) = \log x$, then $c(x) = |(x (\log x)') / \log x| = |1/\log x|$. This
-quantity is very large for $x \simeq 1$. So, a small change in $x$ can 
+quantity is very large for $x \simeq 1$. So, a small change in $x$ can
 produce a drastic change in $\log x$ around $1$.
 
 - Note the the _absolute_ change is quite small: $\log(x + \delta x) \simeq \log x + \delta x/x$.
@@ -26930,7 +27040,7 @@ $$
 ### Forward stable
 
 If a method produces answers with forward errors of similar magnitude to those
-produced by a backward stable method, then it is called forward stable. 
+produced by a backward stable method, then it is called forward stable.
 **Backward stability implies forward stability, but not vice-versa** (TODO: why?)
 
 ### Cancellation
@@ -26953,7 +27063,7 @@ int main() {
            "one_sub_c: %20.16f\n"
            "denom:     %20.16f\n"
            "yhat:      %20.16f\n",
-            x, c, one_sub_c, denom, yhat); 
+            x, c, one_sub_c, denom, yhat);
 }
 ```
 
@@ -26984,7 +27094,7 @@ $$
 $$
 
 That is, subtracting values close to each other (in this case, $1$ and $x$)
-converts **error order of magnitude** into **value order of magnitude**. 
+converts **error order of magnitude** into **value order of magnitude**.
 Alternatively, it brings earlier errors into promience as values.
 
 ### Analysis of subtraction
@@ -27005,7 +27115,7 @@ $$
 $$
 
 This quantity will be large when $|a - b| \ll |a| + |b|$: that is, when
-there is heavy cancellation in the subtraction to compute $x$. 
+there is heavy cancellation in the subtraction to compute $x$.
 
 ### Underflow
 
@@ -27048,7 +27158,7 @@ $x$ is close to $0$, $e^x$ is close to 1, and $e^x - 1$ will magnify the
 error in $e^x$.
 
 ```cpp
-double f(double x) { 
+double f(double x) {
    const double y = pow(M_E, x);
    return y == 1 ? 1 : (y - 1) / log(y);
 }
@@ -27121,7 +27231,7 @@ $$
 
 The principal branch of a complex function is a way to select one branch
 of a complex-function, which tends to be multi-valued. A classical example
-is the argument function, where $\arg(r e^{i \theta} = \theta$. 
+is the argument function, where $\arg(r e^{i \theta} = \theta$.
 However, this is ambiguous: we can map $\theta \mapsto \theta + 2 \pi$
 and still have the same complex number. So, we need to fix some standard.
 We usually pick the "branch" where $0 \leq \theta < 2 \pi$.
@@ -27159,7 +27269,7 @@ The a function $\alpha: P \times P \rightarrow K$
 can be written as the elements of the $P \times P$ matrix.
 Then this convolution-like operator $\star$ is simply matrix multiplication.
 
-We have three natural functions: 
+We have three natural functions:
 
 (1) The characteristic function, which is the identity for $\star$:
 
@@ -27202,10 +27312,10 @@ $$
 $$
 
 We have managed to find $f$ in terms of $g$, when previously we had $g$
-in terms of $f$. 
+in terms of $f$.
 
 
-**TODO**: we are usually interested in a _fixed_ $[x, z]$. What happens if we 
+**TODO**: we are usually interested in a _fixed_ $[x, z]$. What happens if we
 make this implicit? We may get nice notation for all of this!
 
 ### Sums as mobius inversion
@@ -27220,7 +27330,7 @@ by setting up mobius inversion on the usual partial order for the natural
 numbers. For simplicity, I'll show the example on $[0, 1, 2, 3, 4]$. The example
 immediately generalizes.
 
-- We have the partial (well, total) order $P$: $0 < 1 < 2 < 3 < 4$. 
+- We have the partial (well, total) order $P$: $0 < 1 < 2 < 3 < 4$.
 - We are given a function $f(\cdot)$ we wish to integrate. We define an
   auxiliary function $fi([x, y]) = f(y)$ which evaluates $f$ on the right
   endpoint.
@@ -27279,11 +27389,11 @@ Immediately, we can see that this operator is linear:
 
 $$
 \begin{aligned}
-&\delta(f + g) 
+&\delta(f + g)
   &= (f+g)(x+1) - (f+g)(x)  \\
   &= (f(x+1) - f(x)) + (g(x+1)-g(x))  \\
   &= (\delta f) + (\delta g)  \\
-&\delta(\alpha f)(x) 
+&\delta(\alpha f)(x)
   &= (\alpha f)(x+1) - (\alpha f)(x) \\
   &= \alpha \cdot (f(x+1) - f(x))   \\
   &= \alpha (\delta f)
@@ -27343,7 +27453,7 @@ $$
   & = x*2 = 2x(1) \\
 &\delta(x^{(3)})  \\
   &= (x+1)(x-1+1)(x-2+1) - x(x-1)(x-2) \\
-  &= (x+1)(x)(x-1) - x(x-1)(x-2) \\ 
+  &= (x+1)(x)(x-1) - x(x-1)(x-2) \\
   &= x(x-1)((x+1) - (x-2)) = 3x(x-1) = 3x^{(2)} \\
 \end{aligned}
 $$
@@ -27369,7 +27479,7 @@ $$
 \begin{aligned}
 &\sum_{a \leq i < b} (\delta f)(i)  \\
 &= [f(a+1) - f(a)] + [f(a+2) - f(a+1)] + [f(a+3)-f(a+2)] + \cdots + [f(b) - f(b-1)] \\
-&= f(b) - f(a) \quad \text{(The sum telescopes)} 
+&= f(b) - f(a) \quad \text{(The sum telescopes)}
 \end{aligned}
 $$
 
@@ -27379,7 +27489,7 @@ this to some use:
 ### Gauss' famous formula from discrete calculus
 
 Let's begin by deriving the closed form for $[1\cdot(k-1)]$ naturals:
-                                                
+
 $$
 \sum_{0 \leq i < n} i = \sum_{0 \leq i < n} i^{(1)} = i^{(2)}/2 \big|_{0}^n = n(n-1)/2
 $$
@@ -27437,13 +27547,13 @@ discrete case, we get $\sum_{i=1}^n 1/x \equiv H_n$, the sum of the
 first $n$ harmonic numbers. This explains _why_ the harmonic numbers
 keep showing up in different places across discrete math --- We're often
 trying to integrate some kind of $1/x$ quantity.
-This also may tell us that $H_n$ and $2^n$ are somewhat "weak inverses" of each other. 
+This also may tell us that $H_n$ and $2^n$ are somewhat "weak inverses" of each other.
 I haven't thought about this weak inverse thing too much.
 
 ### Stirling numbers of the first kind for convering between polynomials and falling factorials
 
-We can express $x^{(n)} = \sum_{k=0}^n [n, k] x^k$ where $[n, k]$ 
-are the (yet to be defined) unsigned stirling numbers of the first kind. 
+We can express $x^{(n)} = \sum_{k=0}^n [n, k] x^k$ where $[n, k]$
+are the (yet to be defined) unsigned stirling numbers of the first kind.
 (aside: I wonder if this can be derived from some kind of mobius inversion).
 
 We begin my in fact _defining_ the stirling numbers of the first kind, $[n, k]$
@@ -27464,10 +27574,10 @@ The answer is:
 
 There is a more evocative definition, which goes like this:
 
-> $[n, i]$ counts the number of ways to seat $n$ people at $i$ 
+> $[n, i]$ counts the number of ways to seat $n$ people at $i$
 > circular tables, such that no table is left empty.
 
-For example, in the case of the permutations of the set $\{1, 2, 3\}$, 
+For example, in the case of the permutations of the set $\{1, 2, 3\}$,
 we have the permutations:
 
 $$
@@ -27544,13 +27654,13 @@ $$
 # Permutahedron
 
 The permutahedron over $n$ letters is a polytope which is defined as the convex
-hull of all permutations of the point $(1, 2, \dots, n)$. 
+hull of all permutations of the point $(1, 2, \dots, n)$.
 For example, the permutahedron over 3 letters is the convex hull of the
 points $(1, 2, 3), (1, 3, 2), (2, 1, 3), (2, 3, 1), (3, 1, 2), (3, 2, 1)$.
 
 
 Here, we show that it can be embedded in $(d-1)$ dimensionl space, and that each point
-$perm((1, 2, \dots n))$ is indeed a vertex of the convex hull. 
+$perm((1, 2, \dots n))$ is indeed a vertex of the convex hull.
 
 An example of a situation where a point is _not_ in the vertex of a convex hull
 is `convexhull(1, 2, 3) = [1, 3]`. Note that `2` was used to generate the
@@ -27583,8 +27693,8 @@ two or more vertices.
 Let us be working with permutations of `[1, 2, ..., N]`. Pick point `P`. Assume
 `P` is in the convex sum of some `{ Xi }`.
 
-Let `index(N, P)` be the index of number `N` in `P`. For example, if 
-`P = [2, 3, 1]`, then 
+Let `index(N, P)` be the index of number `N` in `P`. For example, if
+`P = [2, 3, 1]`, then
 
 ```
 index(2, P) = 0 (assuming 0-based indexing)
@@ -27605,10 +27715,10 @@ value.
 
 So, we can now ignore dimension `index(N, P)`, since _all the vertices_ `X_i`
 involved in the convex combination and `P` have `index(N, P) = N`. If we
-project out this dimension, we are left with permutation of `(1..N-1)`. 
+project out this dimension, we are left with permutation of `(1..N-1)`.
 
 Repeat the same process. We will need to have all `X_i` to have their value at
-`index(N-1, P)` to be `N-1`. 
+`index(N-1, P)` to be `N-1`.
 
 Keep doing this till we get that the dimensions of all points in `Xi` and `P`
 are equal. But all the points in `{ Xi }` are distinct since they are
@@ -27652,8 +27762,8 @@ existed before.
 - If you have a line with rational slope $p/q$ and you want to draw a
   "discretized line" by connecting integer points in ZxZ, you can describe this
   discretized line as starting from $(0, 0)$, making moves $x$ (move up 1 unit
-  along $x$-axis), $y$ (move up 1 unit along $y$-axis), finally reaching the point 
-  $(p, q)$. For example, to reach the point $(2, 3)$, you can make the moves 
+  along $x$-axis), $y$ (move up 1 unit along $y$-axis), finally reaching the point
+  $(p, q)$. For example, to reach the point $(2, 3)$, you can make the moves
   $[x, x, x, y, y]$.
 
 - A christoffel word is a word $w \in \{x, y \}^\star$ such that it hugs a line of
@@ -27683,7 +27793,7 @@ existed before.
 - We can then check that each word in the lyndon decomposition is a Christoffel
   word. If it is, then your sequence of moves describes a "good  discrete
   convex hull", since as described above, a christoffel word "hugs the line"
-  well. 
+  well.
 
 
 ### Bonus: slick characterization of line drawing
@@ -27709,7 +27819,7 @@ to increment `y`. So, at first glance, we may believe we should consider
   moving along `0 -x -> 0 -x-> 0 -x-> ...`. This is unlike what happens if we choose
   `Z/0Z` (which is not a well-defined idea).
 2. Consider `x=1,y=1`. We should use `Z/2Z`, so we keep going `0 -x-> 1 -y-> 0 -> ...`
-  which will cause is to flip `x -> y -> x -> y -> ...`. 
+  which will cause is to flip `x -> y -> x -> y -> ...`.
 
 
 In some sense, we are making sure that we can "start" with an `x` and see where that takes us.
@@ -27718,12 +27828,12 @@ In the `Z/1Z` case, we realise that we can keep taking `x`s. In the
 
 Let's try to show this formally, where `k` is the smallest number
 such that `kp >= q`. We'll also have concrete examples where
-`p=2, q=7`. For the example, `k=4` since `kp = 4*2 = 8 > 7`. 
+`p=2, q=7`. For the example, `k=4` since `kp = 4*2 = 8 > 7`.
 If we work in `Z/yZ = Z/7Z`, we will get the numbers:
 
 
 ```
-Z:    0, p, 2p, ... (k-1)p, [q] kp 
+Z:    0, p, 2p, ... (k-1)p, [q] kp
 Z/qZ: 0, p, 2p, ... (k-1)p, [q] (kp % q)
 Z/7z: 0, 2,  4, ...      6, [7] (8 % 7 = 1)
 ```
@@ -27733,7 +27843,7 @@ But notice that we are inserting `x` _between_ numbers. So we will get:
 ```
 Z:    0 -x-> p -x-> 2p, ... (k-1)p -y-> (k+1)p
 Z/qZ: 0 -x-> p -x-> 2p, ... (k-1)p -y-> ((k+1)p % y)
-Z/7z: 0 -x-> 2 -x->  4, ...      6 -y-> (8      % 7 = 1) 
+Z/7z: 0 -x-> 2 -x->  4, ...      6 -y-> (8      % 7 = 1)
          ^                            ^
       x since [0 < 2]              y since [6 > 1]
 ```
@@ -27755,7 +27865,7 @@ to `Z/(p+q)Z`. We should look at this as creating space for another gap.
 
 ```
 Z:        0, p, 2p, ... (k-1)p, [q] kp,  [q+p  ], (k+1)p
-Z/(p+q)Z: 0, p, 2p, ... (k-1)p, [q] kp,  [q+p  ], (k+1)p % (p+q)    
+Z/(p+q)Z: 0, p, 2p, ... (k-1)p, [q] kp,  [q+p  ], (k+1)p % (p+q)
 Z/9z: 0, 2,  4, ...          6, [7]  8,  [7+2=9], (10    %    9=1)
 ```
 
@@ -27784,7 +27894,7 @@ along `y`.
 
 # Geometric proof of `e^x >= 1+x`, `e^(-x) >= 1-x`
 
-Let's concentrate on the `e^x >= 1 + x` part. 
+Let's concentrate on the `e^x >= 1 + x` part.
 
 1. The tangent of `e^x` at `x = 0` is `1 + x`, since the taylor series
    of `e^x` truncated upto `x` is `1 + x`.
@@ -27816,7 +27926,7 @@ for(int i = 0; i < N; ++i) {
 }
 ```
 
-- 2. **(SELECT)** Reindex into `ys`, index straight into `xs`. 
+- 2. **(SELECT)** Reindex into `ys`, index straight into `xs`.
   We name the reindexing array `ss` (`ss` for _selects_).
 
 ```cpp
@@ -27834,10 +27944,10 @@ is the number of elements that are:
 2. equal to `e` but occur before `e`.
 
 This ensures that rank is a _permutation_: that is, every element `e` is given
-a _unique_ index. 
+a _unique_ index.
 
 ```cpp
-int rank(const int *xs, int i) { 
+int rank(const int *xs, int i) {
     int cnt = 0;
     for (int j = 0; j < N; ++j) {
         if (xs[j] < xs[i] || (xs[j] == xs[i] && j < i)) cnt += 1;
@@ -27860,7 +27970,7 @@ sorting the tuples  `(xs[i], i)` using lex ordering. So if two indeces
 We could have also defined rank as:
 
 ```cpp
-int rank(int *xs, int i) { 
+int rank(int *xs, int i) {
     int cnt = 0;
     for (int j = 0; j < i; ++j) {
         if (xs[j] <= xs[i]) cnt += 1
@@ -27903,7 +28013,7 @@ This gives us necessary and sufficient conditions on how to find an `ss`:
 #### How to invert a permutation?
 
 How does one invert a permutation? We have a permutation `rs[i]` that maps
-`i` to `rs[i]`. We want to find a new permutation `ss[i]` such that 
+`i` to `rs[i]`. We want to find a new permutation `ss[i]` such that
 
 ```
 rs[ss[i]] = i
@@ -27913,7 +28023,7 @@ Equivalently:
 
 ```
 // ss[i] is an index 'k'...
-ss[i] = k 
+ss[i] = k
 // 'k' is the location of 'i' in rs.
 rs[k] = i
 ```
@@ -27958,14 +28068,14 @@ Blichfeldt’s theorem.
 
 #### Blichfeldt's theorem
 
-This theorem allows us to prove that a set 
+This theorem allows us to prove that a set
 of large-enough-size in any lattice will have two points such that their
 difference lies in the lattice. Formally, we have:
 
-1. A lattice $L(B) \equiv \{ Bx : x \in \mathbb Z^n \}$ for some basis 
+1. A lattice $L(B) \equiv \{ Bx : x \in \mathbb Z^n \}$ for some basis
    $B \in \mathbb R^n$. The lattice $L$ is spanned by integer linear
    combinations of rows of $B$.
-2. A body $S \subseteq R^n$ which **need not be convex!**, which 
+2. A body $S \subseteq R^n$ which **need not be convex!**, which
    has volume greater than $\det(B)$. Recall that for a lattice $L(B)$,
    the volume of a fundamental unit / fundamental parallelopiped is $det(B)$.
 
@@ -28005,7 +28115,7 @@ Formally:
 $$Vol(T) = 1/2^n Vol(S) > 1/2^n (2^n det(B)) = det(B)$$
 
 We can apply Blichfeldt's theorem to get our hands on two points $x_1, x_2 \in T$
-such that $x_1 - x_2 \in L$. 
+such that $x_1 - x_2 \in L$.
 
 $$
 \begin{aligned}
@@ -28028,7 +28138,7 @@ $$
 We aim to get the $O(n)$ algorithm for burrows wheeler, by starting from the
 naive $O(n^2)$ implementation and then slowly chipping away to get to the
 fastest algorithm
-                 
+
 ### String rotations
 
 Given a string $s$ of length $n$, we can index it as $s[0]$, $s[1]$, upto
@@ -28094,7 +28204,7 @@ lrot [] = []; lrot (a:as) = as ++ [a]
 
 lrots :: [a] -> [[a]]; lrots as = take (length as) (iterate lrot as)
 
-main =  putStrLn $ intercalate "\n"  
+main =  putStrLn $ intercalate "\n"
   (zipWith (\s i -> s <> "  " <> show i)
            (lrots "here-there") [0,1..])
 ```
@@ -28117,7 +28227,7 @@ therehere-  9
 we produce this by chainging the above definition of `main` to:
 
 ```
-main =  putStrLn $ intercalate "\n"  
+main =  putStrLn $ intercalate "\n"
   (zipWith (\s i -> s <> "  " <> show i)
            -- | extra `sort` here
            (sort $ lrots "here-there") [0,1..])
@@ -28193,7 +28303,7 @@ recreate' n = hdsort . consCol . (id &&& recreate' (n-1))
 
 hdsort :: Ord a => [[a]] -> [[a]]
 hdsort = let cmp (x:xs) (y:ys) = compare x y
-         in sortBy cmp 
+         in sortBy cmp
 
 consCol :: ([a], [[a]]) -> [[a]]
 consCol = uncurry (zipWith (:))
@@ -28365,7 +28475,7 @@ for current letter. Can find next letter using BWT matix.
 - Suppose we have a book with many words.
 - The book will have many occurrences of the word `the`.
 - In the BWT, we will have many strings of the form `e.......th`
-   to reflect substrings that have a `the`. 
+   to reflect substrings that have a `the`.
 - This will give us many occurences of `h` in the last column!.
 
 
@@ -28420,8 +28530,8 @@ then we will have:
 
 
 ```
-==)(== A 
------------- Not A  
+==)(== A
+------------ Not A
 ============ Not (Not A)
 ```
 in words:
@@ -28461,7 +28571,7 @@ $$
 $$
 
 Alternatively, we can use the fact that in regular boolean algebra:
-                    
+
 $$a \Rightarrow b = \lnot a \lor b$$
 
 to derive $A -> B$:
@@ -28483,7 +28593,7 @@ We'll show that `a -> b` is true/top/the full real line if and only if
 
 1. $a \leq b$ (given)
 2. Since $a \leq b$, $\lnot a \geq \lnot b$, since $\lnot$ reverses inclusion order.
-3. $x \geq y$ implies that $x \lor p \geq y \lor p$ for all p, since $p$ is 
+3. $x \geq y$ implies that $x \lor p \geq y \lor p$ for all p, since $p$ is
    on both sides.
 4. Specializing to $x = \lnot a$, $y = \lnot b$, $p = b$ gives us
    $\lnot a \lor b \geq \lnot b \lor b$
@@ -28547,7 +28657,7 @@ edit distance, we only ever move forwards on solving the problem. we _do not_
 store the results of the overlapping computations, though we could. Rather,
 the goal of this implementation is to capture the traversal pattern necessary
 for edit distance into a `Cursor`, and to view the edit distance problem from
-the point of view of this `Cursor`. 
+the point of view of this `Cursor`.
 
 The problem setting is that we have a source string, a destination
 string, and we wish to perform operations that convert the source
@@ -28557,7 +28667,7 @@ string into the destination string. The operations allowed are to:
 - Remove a character from the source.
 - Replace a character in the source with a character from the destination.
 
-We want to minimise the number of operations to be used. 
+We want to minimise the number of operations to be used.
 Let's see how we model this.
 
 
@@ -28578,9 +28688,9 @@ movescost :: [Move] -> Int; movescost = length
 ```
 
 We model this as us having a `Cursor` which contains  list `[a]` and information
-about where we are in the list as an `Ix`. 
+about where we are in the list as an `Ix`.
 This is the same as a `Zipper` for a list, except that in this case, we only
-allow ourselves to walk forward. 
+allow ourselves to walk forward.
 
 ```hs
 data Cursor a = Cursor Ix [a]
@@ -28619,7 +28729,7 @@ edit (cdone -> True) (cdone -> True) = []
    has not, then remove characters from the source string.
 
 ```hs
-edit a@(cdone -> False) b@(cdone -> True) = 
+edit a@(cdone -> False) b@(cdone -> True) =
   (RemoveFromSrc (cix a)):edit (incr a) b
 ```
 
@@ -28627,27 +28737,27 @@ edit a@(cdone -> False) b@(cdone -> True) =
    still has characters, insert characters from the destination string.
 
 ```hs
-edit a@(cdone -> True) b@(cdone -> False) = 
+edit a@(cdone -> True) b@(cdone -> False) =
   (InsertFromDest (cix b)):edit a (incr b)
 ```
 
 - 4. Otherwise, we have characters remaining in both strings. Try the
-   options of (1) replacing a source character with a destination 
+   options of (1) replacing a source character with a destination
    character (2) removing a character from the source and continuing,
    and (3) if the current characters match, then keep the match and try
    to combine characters that come later in the string. We pick the
    best out of these using the `argmin` combinator.
 
 ```hs
-edit a b =  
-  let nomatch = argmin movescost 
+edit a b =
+  let nomatch = argmin movescost
                 (ReplaceSrcWithDest (cix a) (cix b):edit (incr a) (incr b))
-                (RemoveFromSrc (cix a):edit (incr a) b) 
+                (RemoveFromSrc (cix a):edit (incr a) b)
   in case cval a == cval b of
       True -> argmin movescost nomatch (edit (incr a) (incr b))
-      False -> nomatch 
+      False -> nomatch
 ```
-      
+
 The helper used for finding minimum according to a cost model.
 
 ```hs
@@ -28669,7 +28779,7 @@ a society, but tend to be hazy on how this state of affairs came to be.
 
 # Best practices for array indexing
 
-These are rules I'm going to follow when I solve problems on 
+These are rules I'm going to follow when I solve problems on
 [codeforces](https://codeforces.com/). I've arrived at these rules by repeatedly
 noticing the kinds of mistakes I make and attempting to adopt conventions
 to eliminate these.
@@ -28719,14 +28829,14 @@ for(int i = begin; i != past-the-end; ++i) {
 There is a strong difference in qualia between `i < n` and `i != n`. The former
 makes on aware of when the loop runs; the latter of when the loop quits.
 
-I wish to be cognizant of the precisely when a loop quits. 
+I wish to be cognizant of the precisely when a loop quits.
 On writing `i != past-the-end`, I know that we quit as soon as we
 **get past the end**. This feels much clearer than being aware that the loops
 runs as long as `i < n`.
 
 #### half-open indexing: length <-> index
 
-The first advantage of these conventions is that 
+The first advantage of these conventions is that
 `[begin, past-the-end)` is the same as `[begin, begin+length)`. I've found this
 to be of great help to flit between length-based-thoughts and
 indexing-based-thoughts.
@@ -28777,8 +28887,8 @@ quickly derive the bounds of the second array from the first array.
 #### half-open indexing: uniformly generate power-of-2 intervals.
 
 If we want intervals of length $2^n$: `1, 2, 4, 8, ...` which is common if one
-is building data structures such as segment trees and fenwick trees, 
-in a half-open representation, this literally becomes `[a, a+1)`, 
+is building data structures such as segment trees and fenwick trees,
+in a half-open representation, this literally becomes `[a, a+1)`,
 `[a, a+2)`, `[a, a+4)` and so on. On the other hand, if one wants
 to use closed interval based indexing, one needs to generate the
 series $2^n - 1$, which is `[a, a+0]`, `[a, a+3]`, `[a, a+7]` which is
@@ -28836,7 +28946,7 @@ the fragment-name-union-rule.
 
 I learnt of this counter-intutive fact first from this
 [usenix article no SQL](https://www.usenix.org/legacy/publications/login/2011-10/openpdfs/Burd.pdf).
-On checking up, it seems to actually be true. 
+On checking up, it seems to actually be true.
 
 [Jeff Dean's keynote at LADIS 2009](https://research.cs.cornell.edu/ladis2009/talks/dean-keynote-ladis2009.pdf) report these numbers:
 
@@ -28878,8 +28988,8 @@ So, my understanding of the experiment is:
 - [Einstein-de Hass effect on Wikipedia](https://en.m.wikipedia.org/wiki/Einstein%E2%80%93de_Haas_effect)
 
 
-	
-	
+
+
 # Rank-select as adjunction
 
 We will introduce two operations `rank`, `select`, --- these are used to
@@ -28974,14 +29084,14 @@ legal colors $C'_v$ for $v$, such that:
 - The size of the set $C'_v$ attempts to be smaller than the current set of colorings $C_v$. [convergence]
 
 We describe the transition function next. But first, we need an alternate
-lens on the transitions of $X$ that is amenable to massaging. 
+lens on the transitions of $X$ that is amenable to massaging.
 
 #### Equivalent description of the transitions of $X$:
 
 1. Choosing a color uniformly at random from the set of valid colors
    for a vertex.
-2. Choosing colors from $C$ without replacement until we get a color 
-   that is a valid color. 
+2. Choosing colors from $C$ without replacement until we get a color
+   that is a valid color.
 
 We claim that (1) and (2) have the same probability distribution.
 
@@ -29005,7 +29115,7 @@ def process(S, T):
   if s in T: return s # |T|/|S| prob. to enter `if`.
   else:
     # (1 - |T|/|S|) to enter `else`
-    Snext = S.remove(s); return process(Snext, T) 
+    Snext = S.remove(s); return process(Snext, T)
 ```
 
 
@@ -29036,7 +29146,7 @@ def indicator(t0, S, T):
     return t0 == s # 1/|T| prob. for t0 == x
   else:
     #  (1 - |T|/|S|) to reach else branch.
-    Snext = S.remove(s); return process(Snext, T) 
+    Snext = S.remove(s); return process(Snext, T)
 
 ```
 
@@ -29054,9 +29164,9 @@ We assume for induction that `P(t0, |S|-1, T) = 1/|T|`. On substitution into `[i
 we get:
 
 ```
-P(t0, S, T) 
+P(t0, S, T)
 = 1/|S| + (1 - |T|/|S|) * P(t0, |S|-1, T) [induction]
-= 1/|S| + (1 - |T|/|S|) * 1/|T| 
+= 1/|S| + (1 - |T|/|S|) * 1/|T|
 = 1/|S| + (1/|T| - 1/|S|)s
 = 1/|T|
 ```
@@ -29130,9 +29240,9 @@ Using this, we can analyze `indicator `as:
 
 ```
 P(indicator(t0, S, T) = True)
- = P(s in T) * P(t0 == s |s in T) + 
+ = P(s in T) * P(t0 == s |s in T) +
     P(s not in T) * P(indicator(t0, S.remove(s), T) | s not in T)
- = |T|/|S| * 1/|T| + 
+ = |T|/|S| * 1/|T| +
     (|S|-|T|)/|S| * P(indicator(t0, S.remove(s), T))
  = 1/|S| + (|S|-|T|)/|S| * 1/|T| [by induction]
  = 1/|T|
@@ -29149,7 +29259,7 @@ Clearly, $x[0] \in w[0]$.
 
 
 By induction we assume that $x[n-1] \in w[n-1]$. We must now calculate a
-$w[n], x[n]$ such that (1) $x[n] \in w[n]$, (2) $x[n]$'s proposal is symmetric. 
+$w[n], x[n]$ such that (1) $x[n] \in w[n]$, (2) $x[n]$'s proposal is symmetric.
 (3) $w[n]$'s proposal is symmetric.
 
 ##### Occluded set $O$
@@ -29165,13 +29275,13 @@ $$O \equiv  \{ c \in C : (v, \alpha) \in E, c \in w[n-1](\alpha) \}$$
 
 Define $A \subset C$ (for allowed) to be $C - O$. Note that $A$ is
 an **under-approxmation**, since `O` was an _over-approximation_. That is:
-- Any color in `A` is definitely a legal color for `v` in `x[n]`.  
+- Any color in `A` is definitely a legal color for `v` in `x[n]`.
 - There are colors which are legal for `v` in `x[n]` that is not in `A`.
 
 ##### S: the sequence of states for transition
 
 Now, we pick elements of $C$ in sequence till we get an element of `A`.
-call this sequence $S$. 
+call this sequence $S$.
 
 We will at worst pick $\Delta + 1$ elements for $S$, since the max-degree
 of the graph is $\Delta$.
@@ -29180,17 +29290,17 @@ of the graph is $\Delta$.
 
 Let $i$ be the first index in $S$ where we get a color that is _truly legal_
 for $v$ in $x[n]$. Note that such an index will always exist: We pick
-elements into $S$ till we get an element in $A$, and elements of $A$ are 
+elements into $S$ till we get an element in $A$, and elements of $A$ are
 always legal. However, there can be elements which are not in $A$ that
 are still legal for $v$ in $x[n]$, since $A$ is an under-approximation.
 
 - We assign $x[n](v) = i$. So, `x` only cares about `S[:i]`.
 - We assign  $w[n](v) = A$. So, `W` cares about the entire sequence.
 
-By the lemma proven, we know that this process of picking colors `C` 
+By the lemma proven, we know that this process of picking colors `C`
 in a sequence till we get a color that is legal for $v$ at index $i$
-is the same as picking uniformly at random from the set of colors that are legal for 
-$v$. 
+is the same as picking uniformly at random from the set of colors that are legal for
+$v$.
 
 
 #### An example
@@ -29206,15 +29316,15 @@ O = {1, 2}
 A = {3, 4, 5}
 S = [2, 1, 3]
 
-X | p:1 -- q:2 
+X | p:1 -- q:2
 W | p:{1, 2} -- q:{1, 2, 3}
 ```
 
 If we analyze `S = [2, 1, 3]` we notice that:
 
 ```
-2: invalid for W(p:[1, 2]), invalid for X(p:2)    
-1: invalid for W, valid for X  
+2: invalid for W(p:[1, 2]), invalid for X(p:2)
+1: invalid for W, valid for X
 3: valid for W, valid for X
 ```
 
@@ -29236,9 +29346,9 @@ Note that $B$ is an **under-approximation**. `v` might have
 more colors that are blocked than what `w` sees.
 
 $$B \equiv \{ c \in C : (v, \alpha) \in E, w[n-1](\alpha) = \{c\} \}$$
-       
+
 Rather than sampling colors from `C` till we get an element of `A`, we can
-sample colors from `C/B`. We know that the colors in `B` can **never** be used 
+sample colors from `C/B`. We know that the colors in `B` can **never** be used
 by $X$, since the colors in `B` are those that we know are blocked **for sure**.
 
 This is used in the theoretical analysis of the paper.
@@ -29272,15 +29382,15 @@ occluded v2cs v0 = concat [v2cs w | (v, w) <- es, v == v0]
 
 -- | definitely allowed from Ws point of view
 allowed :: (V -> [C]) -> (V -> [C])
-allowed v2cs = cs \\ occluded v2cs 
+allowed v2cs = cs \\ occluded v2cs
 
 -- | perturb the color function to another function
 perturb :: (V -> [C]) -> Rand (V -> [C])
-perturb v2cs = do $ 
+perturb v2cs = do $
   randv <- uniform_rand vs
   randc_for_v <- uniform_rand (allowed v2cs v)
   return $ \v -> if v == randv then randc_for_v else v2cs v
-  
+
 
 -- | check if we are done
 terminated :: (V -> [C]) -> Bool
@@ -29289,8 +29399,8 @@ terminated v2cs = all [length (v2cs v) == 1 | v <- vs]
 -- | generate chain
 chain :: (V -> [C]) -> Rand [V -> [C]]
 chain f = do
-  if terminated f 
-  then [] else do 
+  if terminated f
+  then [] else do
     f;' <- perturb f; fs <- chain f'; return (f:fs)
 
 -- | return a sample
@@ -29350,8 +29460,8 @@ a software engineer. An answer by `kolanos` read:
 > ... Typos will be easily spotted as they just won't "sound right". It will be
 > like listening to a familiar song and then hitting an off note in the melody.
 > **And this includes code**. Also, because code is no longer represented
-> visually as blocks, 
-> you'll find you're **building an increasingly detailed memory model of your code**.  
+> visually as blocks,
+> you'll find you're **building an increasingly detailed memory model of your code**.
 > Sighted people do this, too, but they tend to visualize in their mind. When
 > you abandon this two dimensional representation,
 > **your non-visual mental map suffers no spatial limits**. You'll be amazed
@@ -29396,7 +29506,7 @@ It seems that festival is the best(?) TTS engine for linux. One should
 ### Setting up SVOX pico2wave
 
 - Ubuntu package: `sudo apt install libttspico-utils`
-- Run instructions: 
+- Run instructions:
 
 ```
 #!/bin/bash
@@ -29422,13 +29532,13 @@ to consider our entire arm + cup we are holding as a system for this to work.
 
 If one does not have recursive calls, one can eliminate the need to push
 return addresses on a call stack by writing self-modifying code ---
-I leant of this from TAOCP, volume 1. 
+I leant of this from TAOCP, volume 1.
 Knuth shows this off once he introduces `MIXAL`, his fantasy
 aseembly language in which TAOCP programs are written.
 
 I'll explain the usual way one performs call-return, then explain the nifty
 self-modifying-code way. I think this is the cleanest, most accessible
-example of self-modifying-code that I know. 
+example of self-modifying-code that I know.
 
 #### The traditional solution for `call/ret`
 
@@ -29509,8 +29619,8 @@ We can't have recursion, or more generally "re-entrance": consider a call chain 
 
 # Adjunctions as advice
 
-An adjunction `F |- U` allows us to go from `F a -> x` to `a -> U x`. We 
-can look at this as shifting the "before-advice" from the _input_ to an 
+An adjunction `F |- U` allows us to go from `F a -> x` to `a -> U x`. We
+can look at this as shifting the "before-advice" from the _input_ to an
 "after advice" of the _output_, where I'm using
 <!-- [advice in the CLOS/LISP sense](https://en.wikipedia.org/wiki/Advice_(programming)) -->
 
@@ -29530,10 +29640,10 @@ us the object back. We can prove that if `U(F(x)) = x` and `U, F` are functors,
 then we have a function `fwd: (f a -> x) -> (a -> u x)` as:
 
 ```
-f      :: (f a -> x) 
+f      :: (f a -> x)
 fmap   :: (p   -> q) -> (u p     -> u q)
 fmap   :: (p   -> q) -> (u ( p ) -> u q)
-fmap f :: (f a -> x) -> (u (f a) -> u x) 
+fmap f :: (f a -> x) -> (u (f a) -> u x)
 fmap f :: (f a -> x) -> (a       -> u x) [using u (f a) = a]
 ```
 
@@ -29551,13 +29661,13 @@ fmap f :: (f a -> x) -> (a       -> u x) [using u (f a) = a]
 If we consider a language like [`Janus`](https://en.wikipedia.org/wiki/Janus_(time-reversible_computing_programming_language)
 where every program is reversible, we can then get a group structure on
 programs with the identity program not computing anything at all, the inverse
-performing the reverse operation. 
+performing the reverse operation.
 
 Alternatively, one can use the trick from quantum mechanics of using anciliary
-qubits to build reversible classical gates. 
+qubits to build reversible classical gates.
 
 The question is, do either of these approaches allow for better-than-STOKE
-exploration of the program space? Ie, can we somehow exploit the 
+exploration of the program space? Ie, can we somehow exploit the
 discrete group structure (in the case of Janus) or the Lie group structure
 of the unitary group (as in the QM case) to find programs in far quicker ways?
 
@@ -29577,8 +29687,8 @@ What did I gain?
    KaTeX or any client side processing, _nor_ the need to fetch images, which looks like this:
 
 $$
-h(x) \equiv 
-\begin{cases} 
+h(x) \equiv
+\begin{cases}
 \int_{i=0}^\infty f(x) g(x) dx & x > 0 \\
 \sum_{i=0}^\infty f(x) + g(x) & \text{otherwise}
 \end{cases}
@@ -29587,22 +29697,22 @@ $$
 #### Why?
 
 My blog is a [single 9000 line markdown file](https://github.com/bollu/bollu.github.io/blob/master/README.md),
-rendered as a _single HTML page_, so I 
-_need it to compile fast, render fast, render beautiful_. 
+rendered as a _single HTML page_, so I
+_need it to compile fast, render fast, render beautiful_.
 Existing tools compromise on one or the other.
 
 #### No seriously, why a single markdown file?
 
-I need a single file to edit, so I can rapidly jot down new ideas. This is 
-the essence of why I'm able to log most of what I study: 
+I need a single file to edit, so I can rapidly jot down new ideas. This is
+the essence of why I'm able to log most of what I study:
 _because it's seamless_.
 
 Far more importantly, it provides **spatio-temporal locality**. I add things
 in chronological order to tbe blog, as I learn thing. If I need to recall
-something I had studied, go to that location in the blog 
-_based on a sense of when_. 
+something I had studied, go to that location in the blog
+_based on a sense of when_.
 
-When I do get to a location I want, the scrollbar gives me a sense of 
+When I do get to a location I want, the scrollbar gives me a sense of
 _where I am_ in the file.  this is important to me, since it hepls me reason
 spatially about what i know and what I've learnt. It's someting I love about
 books, and deeply miss when navigtaing the web.I'm determined to keep this
@@ -29641,7 +29751,7 @@ I got quite a bit "for free" as I wrote this, fixing mild annoyances
 and larger pain points around using github + markdown for publishing on
 the web:
 
-- I really don't want tables, but I do want the ability to write vertical bars 
+- I really don't want tables, but I do want the ability to write vertical bars
   `|` freely in my text. Unfortunately, github _insists_ that those are tables,
    and completely wrecks rendering.
 
@@ -29820,7 +29930,7 @@ Now, the idea is this:
 - For subpersets $S \subsetneq Sup$, $|act_{Sup}(H) = Comb(|Sup|, |S)$ -- polynomial.
 
 We can show that this exponential/polynomial behaviour happens in general
-for $S \subseteq X$. 
+for $S \subseteq X$.
 
 # Symplectic version of classical mechanics
 
@@ -29831,7 +29941,7 @@ anywhere.  Most of them start by using the inteior product $i_X \omega$ without
 ever showing where the thing came from. This is my personal interpretation of
 how the symplectic version of classical mecanics comes to be.
 
-If we have a non-degenerate, closed 
+If we have a non-degenerate, closed
 two-form $\omega: T_pM \times T_pM \rightarrow \mathbb R$.
 
 Now, given a hamiltonian $H: M \rightarrow \mathbb R$, we can construct a
@@ -29859,7 +29969,7 @@ $$
 &\omega2^{-1} \circ dH  = X_H\\
 &dH = \omega2(X_H) \\
 &\int dH  = \int \omega2(X_H)  \\
-&H = \int \omega2(X_H) 
+&H = \int \omega2(X_H)
 \end{aligned}
 $$
 
@@ -29933,13 +30043,13 @@ rules:
 2. We define `ReflI` as `i[Int ReflI Int]i`
 3. The product of two relations `[A R B]`, `[X S Y]` is called as `RxS`,
    and is defined as: `(a,x)[AxX RxS BxY](b,y)` iff: `∀ abxy, a[A R B]b ∧ x[X S Y]y`.
-4. The list space of a `[A R B]` is called `[A* [A R B] B*]`, 
+4. The list space of a `[A R B]` is called `[A* [A R B] B*]`,
    and is defined as: `la[A* [A R B] B*]lb` iff:
    `∀ la lb, |la| = |lb| ∧ (∀ i, la[i][A R B]lb[i])`
 5. The function space of two relations`[A R B]`, `[X S Y]` is called `[A->X R->S B->Y]`,
    and is defined as: `f[A->X R->S B->Y]g` iff: `∀ a b, a[A R B]b => f(a)[X S Y]g(b)`.
 6. The type family space of two relations is a function that takes
-   a relation `[A R B]` and produces a new relation: 
+   a relation `[A R B]` and produces a new relation:
    `g[FA | [A R B] | FB]h`. The relation takes as parameter a relation `[A R B]`
     for each choice.
 7. The space of relations of `∀X.F(X)` is a relation defined by:
@@ -29954,7 +30064,7 @@ derived from the above rules.
 
 #### Parametricity for lists when the relation is a function:
 
-The list space of a `[A R B]` is called `[A* [A R B] B*]`, 
+The list space of a `[A R B]` is called `[A* [A R B] B*]`,
 and is defined as: `la[A* [A R B] B*]lb` iff:
 - `∀ la lb, |la| = |lb| ∧ (∀ i, la[i][A R B]lb[i])`
 
@@ -30218,7 +30328,7 @@ even though the _algorithm does not_.
 ```
 
 - The question is that on a root-to-leaf bpath, how many such triangles do
-  we need to visit. Since we repeatedly divide the nodes in half 
+  we need to visit. Since we repeatedly divide the nodes in half
   _with respect to height_ until the little triangle has number of nodes less
   than $B$, the height is going to be $O(\log B)$ since it's still a binary tree.
 - total height in $O(\log N)$.
@@ -30380,7 +30490,7 @@ If $s_x(\phi(q_y)) = \phi(t_y(q_y))$ then we say that $t_y$ covers $s_x$ relativ
 We imagine the $t_y$ lying above $s_x$, being projected down by $\phi$.
 
 If a fixed $\phi$, for all $s_x \in S_X$ there exists a $t_y \in S_Y$ such that
-$t$ covers $s$ relative to $\phi$, then we say that $\phi:$ is a 
+$t$ covers $s$ relative to $\phi$, then we say that $\phi:$ is a
 _relation of automata_.
 
 - If $\phi: Q_Y \rightarrow Q_X$ is surjective,
@@ -30395,7 +30505,7 @@ _relation of automata_.
 We note that for a given covering $\phi$, if $s_x$ is covered by $t_y$
 and $p_x$ is covered by $q_y$, then $s_x \circ t_x$ is covered by $t_y \circ q_y$.
 
-Thus, to check if $X$ is covered by $Y$, we simply need to check if 
+Thus, to check if $X$ is covered by $Y$, we simply need to check if
 __some generating subset of $X$ is covered by $Y$__.
 
 #### Checking coverings of representations
@@ -30467,7 +30577,7 @@ such that $b \subseteq sa$, where $s(a) \equiv \{ s(a_i) : a_i \in a\}$. We can
 define an equivalence relation $a \sim b \iff a \leq b \land b \leq a$.
 
 ##### Note
-$ b \leq a \implies |b| \leq |a|$, since 
+$ b \leq a \implies |b| \leq |a|$, since
 $b \leq a$ means that $b \subseteq s(a)$. Note that $s$ is actually a
 function $s: Q \rightarrow Q$, and a function mapped over a set can only
 ever decrease the number of elements in a set, since a function can only
@@ -30774,8 +30884,8 @@ We can imagine the scenario as follows:
 ```
 ^
 | (1, 0)->(1, 1)->(1, 2)->(1, 3) ...
-| (0, 0)->(0, 1)->(0, 2)->(0, 3) .... 
-(i, j) --> 
+| (0, 0)->(0, 1)->(0, 2)->(0, 3) ....
+(i, j) -->
 ```
 
 
@@ -31113,7 +31223,7 @@ write the evolution of the system recursively:
 $x_{t+1} = a \rightarrow x_t$.
 
 However, to understand the final state $x_{t+1}$, we need to essentially
-"run the recursion", which does not permit us to 
+"run the recursion", which does not permit us to
 _understand the experiment_.
 
 What we really need is the ability to "unroll" the loop. To quote:
@@ -31353,7 +31463,7 @@ $$
 0 \rightarrow I \cap J \rightarrow I \oplus J \rightarrow I + J \rightarrow 0
 $$
 
-The product ideal $IJ$ plays no role, since it's not possible to define a 
+The product ideal $IJ$ plays no role, since it's not possible to define a
 product of modules _in general_ (just as it is not possible to define
 a product of vector spaces). Thus, the exact sequence better involve
 module related operations.  We can now recover CRT:
@@ -33072,16 +33182,16 @@ levels of precision.
 - The closed sets of the topology are $\{ V(I) : I \text{is an ideal of } R \}$,
   where the function $V: \text{Ideals of } R \rightarrow 2^{\text{Prime ideals of } R}$
   each ideal to the set of prime ideals that contain it. Formally,
-  $V(I) = \{ p \in Spec(R) : I \subseteq p \}$. 
+  $V(I) = \{ p \in Spec(R) : I \subseteq p \}$.
 - We can think of this differently, by seeing that we can rewrite the condition
   as  $V(I) = \{ P \in Spec(R) : I \xrightarrow{P} 0 \}$: On rewriting using the prime ideal $P$, we send the ideal $I$ to $0$.
 - Thus, the closed sets of $Spec(R)$ are precisely the 'zeroes of polynomials' / 'zeroes of ideals'.
-- To make the analogy precise, note that in the polynomial case, we imposed a 
+- To make the analogy precise, note that in the polynomial case, we imposed a
   topology on $\mathbb R$ by saying that the closed sets were $V(p_i) = \{ x \in \mathbb R : p(x) = 0 \}$
-  for some polynomial $p \in \mathbb R[x]$. 
+  for some polynomial $p \in \mathbb R[x]$.
 - Here, we are saying that the closed sets are $V(I) = \{ x \in Spec(R) : I(x) = 0 \}$
   for some ideal $I \in R$. so we are looking at  ideals as functions
-  from the prime ideal to the reduction of the ideal. That is, $I(P) = I/P$. 
+  from the prime ideal to the reduction of the ideal. That is, $I(P) = I/P$.
 
 #### $Spec(\mathbb Z)$ from this perspective
 
@@ -33100,8 +33210,8 @@ $$
 
 So in our minds eye, we need to imagine a space of prime ideals (points), which
 are testing with all ideals (polynomials). Given a set of prime ideals (a tentative locus, say a circle),
-the set of prime ideals is closed if it occurs as the zero of some collection of ideas 
-(if the locus occurs as the zero of some collection of polynomials). 
+the set of prime ideals is closed if it occurs as the zero of some collection of ideas
+(if the locus occurs as the zero of some collection of polynomials).
 
 
 #### Nilpotents of a scheme
@@ -33111,7 +33221,7 @@ the set of prime ideals is closed if it occurs as the zero of some collection of
   the same ($\{ 1 \}$).
 
 - If we now move to the scheme setting, we get two different schemes: $R_g \equiv \mathbb R[X] / (x - 1) \simeq \mathbb R$,
-  and $R_g \equiv R[X] / (x - 1)^2$. 
+  and $R_g \equiv R[X] / (x - 1)^2$.
 
 - In the ring $R_g$, we have an element $(x-1)$
   such that $(x-1)^2 = 0$, which is a nilpotent. This "picks up" on the repeated
@@ -33358,14 +33468,14 @@ a - (a \& (-a)) = \langle x 1 0^r \rangle - \langle 1 0^r \rangle = \langle x 0 
 $$
 
 That is, we successfully strip off the trailing $1$.
-Armed with the theory, our implemtation becomes: 
+Armed with the theory, our implemtation becomes:
 
 ```cpp
 #define LSB(x) x&(-x)
 int a[N];
 int q(int i) {
     int s = 0;
-    while (i > 0) { 
+    while (i > 0) {
         s += a[i];
         i -= LSB(i); // strip off trailing 1.
     }
@@ -33566,8 +33676,8 @@ of the form $f(x) g(y) : xy = n$ is the same as summing over $f(y) g(x) : yx = n
 
 ### Existence of inverse
 
-We can show that an inverse exists by showing that a formula for it exists; The 
-idea is to construct one by induction. 
+We can show that an inverse exists by showing that a formula for it exists; The
+idea is to construct one by induction.
 
 Clearly, for a given function $f$, we need the inverse $f^{-1}$ to be such that
 $(f \star f^{-1})(n) = id_\star$. Hence:
@@ -33588,7 +33698,7 @@ $$
 &(f \star f^{-1})(n) = id_\star(1) = 0 \\
 &\sum_{d \vert n} f(d) f^{-1}(n/d) = 0 \\
 &f(1) f^{-1}(n) + \sum_{d \vert n, d < n} f(d) f^{-1}(n/d) = 0 \\
-&f^{-1}(n) = -\frac{\sum_{d \vert n, d < n} f(d) f^{-1}(n/d)}{f(1)} 
+&f^{-1}(n) = -\frac{\sum_{d \vert n, d < n} f(d) f^{-1}(n/d)}{f(1)}
 \end{aligned}
 $$
 
@@ -33807,7 +33917,7 @@ aspects of the code:
 - How does one create a multi-dimensional array easily?
 - What are some interesting programs one can run with this mini-interpreter?
 
-I'd be really glad to know the details. Please leave 
+I'd be really glad to know the details. Please leave
 [an issue or a pull request against the repo](https://github.com/bollu/bollu.github.io/issues/new).
 
 I'm going write a dissection of the code once I fully understand it, since I
@@ -33868,7 +33978,7 @@ while on the other hand,
 
 $$
 \begin{aligned}
-\lim_{n \rightarrow \infty} a_{2n} - a_n 
+\lim_{n \rightarrow \infty} a_{2n} - a_n
 = \log(2n) - \log(n)
 = \log(2) + \log(n) - \log(n)
 = \log 2 \neq 0
@@ -34029,8 +34139,8 @@ and one that isn't (Euler)
 
 Notice that since leapfrog attempts to keep energy conserved, the orbits stay
 as orbits! On the other hand, the euler integrator quickly spirals out, since
-we lose energy during the integration. Note that this is 
-_not an issue of numerical precision_: The euler integrator is ineherently 
+we lose energy during the integration. Note that this is
+_not an issue of numerical precision_: The euler integrator is ineherently
 such that over long timescales, it will lose energy. On the other hand, the
 leapfrog integrator will _always remain stable_, even with very large timesteps
 and low precision.
@@ -34400,7 +34510,7 @@ try to find algebraic objects that allow us to "detect" these holes.
 
 - A $k$-dimensional simplex is the convex hull of $k+1$
   linearly independent points $(u_i \in \mathbb R^{k+1})$
-  in $k+1$ dimensional space.  
+  in $k+1$ dimensional space.
 
 $$S_k \equiv \left \{ \sum \theta_i u_i ~\mid~ \theta_i \geq 0, ~ \sum_i \theta_i = 1 \right \} $$
 
@@ -34923,7 +35033,7 @@ I also really loved Paris as a city. My AirBnb host was a charming artist who
 suggest spots for me around the city, which I really appreciated. Getting
 around was disorienting for the first week or so, due to the fact that I could
 not (and still do not) really understand how to decide in which direction to
-walk inside the subways to find a particular line 
+walk inside the subways to find a particular line
 _going in a particular direction_.
 
 The city has some great spots for quiet work, though! In particular, the
@@ -34962,9 +35072,9 @@ including:
   unlike Adam's thesis, where they define the denotational semantics in terms
   of measure theory, which is then approximated by sampling.
 - [Riemann Manifold Langevin and Hamiltonian Monte Carlo](https://pdfs.semanticscholar.org/16c5/06c5bb253f7528ddcc80c72673fabf584f32.pdf)
-  which describes how to perform Hamiltonian Monte Carlo on the 
-  _information geometry_ manifold.  So, for example, if we are trying to sample 
-  from gaussians, we sample from a 2D Riemannian manifold with parameters mean 
+  which describes how to perform Hamiltonian Monte Carlo on the
+  _information geometry_ manifold.  So, for example, if we are trying to sample
+  from gaussians, we sample from a 2D Riemannian manifold with parameters mean
   and varince, and metric as the [Fisher information metric](https://en.wikipedia.org/wiki/Fisher_information_metric).
   This is philosophically the "correct" manifold to sample from, since it
   represents the intrinsic geometry of the space we want to sample from.
@@ -35128,9 +35238,9 @@ a myriad of applications for computer graphics.
   equation for a short time. The intuition is that we should think of the heat
   equation as describing the evolution of particles that are performing random
   walks. Now, if we simulate this system for a short while and then look at the
-  distribution, particles that reach a particular location on the graph 
-  _must have taken the shortest path_, since any longer path would not have 
-  allowed particles to reach there. Thus, the distribution of particles at 
+  distribution, particles that reach a particular location on the graph
+  _must have taken the shortest path_, since any longer path would not have
+  allowed particles to reach there. Thus, the distribution of particles at
   time `dt` does truly represent distances from a given point.  The paper
   explores this analogy to find accurate geodesics on complex computational
   grids. This is aided by the use of differential geometry, appropriately
@@ -35197,7 +35307,7 @@ the proofs -- perhaps I missed a bunch.
 This led me to learn Lie theory to some degree, since that was the natural
 setting for many of the proofs. I finally saw _why_ anyone gives a shit about
 the tangent space at the identity: because it's _easier to compute!_ For a
-flavour of this, 
+flavour of this,
 [consider this question on `math.se` by me that asks about computing tangent spaces of $O(n)$](https://math.stackexchange.com/questions/3389983/explicit-description-of-tangent-spaces-of-on).
 
 #### AIRCS workshop
@@ -35945,7 +36055,7 @@ Most people believe that topology is about some notion of "nearness" or
 "closeness", which has been abstracted out from our usual notion of
 continuity that we have from a metric space. Here, I make the claim that
 topology is really about _computation_, and more specifically, _decidability_.
-These are not new ideas. I learnt of this from a monograph 
+These are not new ideas. I learnt of this from a monograph
 [Synthetic topology of data types and classical spaces. Martın Escardo](https://www.cs.bham.ac.uk/~mhe/papers/entcs87.pdf).
 This does not seem very well known, so I decided to write about it.
 
@@ -36016,7 +36126,7 @@ def decide_number_in_open_1_2(f):
     if f(1) == 0: while f(i) == 0: i += 1
     # (1.99...9<NOT9>) | look for the <NOT9>
     # If the number is 1.99..., do not terminate.
-    if f(1) == 9:  while f(i) == 9: i += 1 
+    if f(1) == 9:  while f(i) == 9: i += 1
     else: return
     return
   # if the number is not 1.abcd, do not terminate
@@ -36523,7 +36633,7 @@ we could have gotten a `0` from `R` for all strings.
 
 We can then go on to phrase this whole rewriting setup in the language of
 ideals from ring theory, and that is the language in which it is most
-often described. I've gone into more depth on that perspective here: 
+often described. I've gone into more depth on that perspective here:
 ["What is a grobner basis? polynomial factorization as rewrite systems"](#what-the-hell-is-a-grobner-basis-ideals-as-rewrite-systems).
 
 Now that we have a handle on what a grobner basis is, let's go on to solve
@@ -36977,7 +37087,7 @@ which seems to imply that we need to use hyperbolic geometry for this.
 
 - [Idea from this amazing post on `math.se`](https://math.stackexchange.com/questions/53852/is-there-a-way-of-working-with-the-zariski-topology-in-terms-of-convergence-limi)
 
-# Vivado toolchain craziness 
+# Vivado toolchain craziness
 
 I found this file as I was cleaning up some old code, for a project to implement
 a [fast K/V store on an FPGA](https://github.com/AakashKT/CuckooHashingHLS),
@@ -37326,7 +37436,7 @@ embeddings generated from `word2vec` do one of the following things:
 2. They invoke the `gensim` implementation, which is _transliterated_ from the
    C source to the extent that the variables names are the same.
 
-Indeed, the `gensim` implementation is the 
+Indeed, the `gensim` implementation is the
 __only one that I know of which is faithful to the C implementation__.
 
 ### The C implementation
@@ -37417,8 +37527,8 @@ and more often than not, _a word whose vector has not been trained much at all_.
 If this vector actually had a value, then it could move the actually important
 focus word randomly.
 
-The solution is to set all negative samples to zero, so that 
-_only vectors that have occurred somewhat frequently_ will affect the representation 
+The solution is to set all negative samples to zero, so that
+_only vectors that have occurred somewhat frequently_ will affect the representation
 of another vector.
 
 It's quite ingenious, really, and until this, I'd never really thought of
@@ -37470,7 +37580,7 @@ I'll make this an append-only log to add to the section as I understand more.
   since the error diverges to infinity
 
 - Hence, we need an integrator that guarantees that the energy of out system is
-  conserved.  Enter the leapfrog integrator. This integrator is also 
+  conserved.  Enter the leapfrog integrator. This integrator is also
   _time reversible_ -- We can run it forward for `n` steps, and then run it
   backward for `n` steps to arrive at the same state.  Now I finally know how
   Braid was implemented, something that bugged the hell out of 9th grade me
@@ -38639,7 +38749,7 @@ emacs.
 - [reference `emacs.se`](https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half-page-on-c-v-and-m-v)
 - [reference `emacswiki`](https://www.emacswiki.org/emacs/HalfScrolling)
 
-There is no inbuilt functionality to scroll half a page. The canonical 
+There is no inbuilt functionality to scroll half a page. The canonical
 reference points to this:
 
 ```lisp
@@ -38731,7 +38841,7 @@ So there's a fundamental problem. He continues:
 > engine, that would allow it to find good approximations for buffer positions
 > corresponding to given screen coordinates, then augment the algorithms to
 > generate and use this additional data.  edesign the display code to use a
-> model that is entirely different from the current simple 2D canvas. 
+> model that is entirely different from the current simple 2D canvas.
 
 
 ##### emacs' single threading causes pauses on auto-complete/company
@@ -38815,7 +38925,7 @@ Things in Coq that I keep forgetting, and are hard to lookup.
 ```
 instantiate
 ```
-	
+
 #### Rename an expression with an identifier throughout the proof
 
 ```
@@ -38837,7 +38947,7 @@ The key to good writing for those who read a lot is to expand their
 active vocabulary to match their passive vocabulary.
 
 - A useful exercise is to look for synonyms during speech; This way,
-  one forces an enlargening of active vocabulary. 
+  one forces an enlargening of active vocabulary.
 
 - Moulding one's inner mologoue to reach the ideal 'Voice' might also be
   benificial; However, there is a tendency that speech is not the same as
@@ -38850,12 +38960,12 @@ active vocabulary to match their passive vocabulary.
 
 Should one use punctuation, or shoud not? How much should one use punctuation?
 What range of punctuation should one use --- from the common`,` and `.`, all the
-way up to `:`, `;`, and `---`. 
+way up to `:`, `;`, and `---`.
 
-There appear to be three distinct schools of thought. 
+There appear to be three distinct schools of thought.
 
 - The first school of thought is prescriptive;
-  They hold the belief that one must use _as much_ punctuation as is necessary to 
+  They hold the belief that one must use _as much_ punctuation as is necessary to
   accurately transcribe cadence.
 
 - The second school are the moderates. Too much of
@@ -38875,7 +38985,7 @@ There appear to be three distinct schools of thought.
 - [Literary devices](https://literarydevices.net/)
 
 I couldn't really find a good "grammar book", so I decided
-to simply poll friends every time I came across a word that I 
+to simply poll friends every time I came across a word that I
 didn't know. Assumes knowledge of `noun`, `pronoun`,
 `verb`, `adjective`.
 
@@ -38908,7 +39018,7 @@ hunspell -l -t -i utf-8 yourfile.tex
 ```
 
 
-# Architecture Cheat Sheet 
+# Architecture Cheat Sheet
 
 I have an interest in architecture and how it might relate to software.
 While the two are quite different, I feel that a deep look at both could
@@ -38920,7 +39030,7 @@ things on architecture I wish to read and/or have read:
 - The sciences of the artifical.
 - The timeless way of building.
 - Eisenman
-- [Why you hate contemporary architecture](https://www.currentaffairs.org/2017/10/why-you-hate-contemporary-architecture): 
+- [Why you hate contemporary architecture](https://www.currentaffairs.org/2017/10/why-you-hate-contemporary-architecture):
   An article that provides points of view and a broad set of link on further
   reading to how architecture reached the 'contemporary', almost
   'uncomfortable' style it has today. Some choice quotes:
@@ -38929,7 +39039,7 @@ things on architecture I wish to read and/or have read:
 > the most concerned with beauty for beauty’s sake; the more time is spent
 > elegantly decorating a cathedral, the more it serves its intended function of
 > celebrating God’s glory, whereas the more time is spent decorating an office
-> building, the less money will be left over for the developer. 
+> building, the less money will be left over for the developer.
 
 - The Geography of Nowhere: The Rise and Decline of America's Man-Made Landscape
 
@@ -38945,7 +39055,7 @@ things on architecture I wish to read and/or have read:
 
 - [we forbit what we value most](https://www.strongtowns.org/journal/2017/11/20/we-forbid-what-we-value-most)
 
-# Recipes Cheat Sheet 
+# Recipes Cheat Sheet
 
 #### A Simple Stew
 
@@ -38981,7 +39091,7 @@ things on architecture I wish to read and/or have read:
 
 
 - A few methi seeds (pungent, deep scent)
-- some coriander seeds (mild herbal scent) 
+- some coriander seeds (mild herbal scent)
 - Chopped up red chilis (heat, spice, color)
 - Chopped up green chilis (spice)
 - Chopped up green chilis (spice)
@@ -39001,14 +39111,14 @@ grated coconut and blend all of it. It turns into a thick red paste.
 
 
 - Heat up oil.
-- Fry **sesame seeds, cumin seeds, curry leaves, a tiny cinnamon stick** first. 
-- Once fried, add in **garlic** to taste. 
-- After garlic has fried as well, saute **onions** till golden. 
+- Fry **sesame seeds, cumin seeds, curry leaves, a tiny cinnamon stick** first.
+- Once fried, add in **garlic** to taste.
+- After garlic has fried as well, saute **onions** till golden.
 - Finely chop **tomatoes** and add it to the sauteed onions. Cover with a lid
 - till the tomatoes release all their water.
 - Now that we have a solid flavour base, pour in water to cook the breadfruit.
 - Add in the **chopped breadfruit** --- chop the breadfruit in thin slices
-- along the center; the center has interesting texture we wish to maximize. 
+- along the center; the center has interesting texture we wish to maximize.
 - Add in the **[General coconut based thickening agent](#general-coconut-based-thickening-agent)**.
 - Also add salt to taste.
 - Cover with a lid. Allow breadfruit, water, and thickening agent to come to a boil.
@@ -39041,7 +39151,7 @@ grated coconut and blend all of it. It turns into a thick red paste.
 - Salt
 - Blend
 - Add tamarind and water
-- Blend 
+- Blend
 
 #### Regular dosa batter:
 
@@ -39072,7 +39182,7 @@ Comes from miners digging under the walls. Learnt this from
 > In pretty much all of history you will find a random British person, perhaps
 > Scotsman involved in a war
 
-                                                                                       
+
 ##### decephalized
 
 > We need to clone decephalized humans and livestock.  With thousands of
@@ -39161,7 +39271,7 @@ an actress or other female performer playing a lively, flirtatious role in a pla
 
 Let there be light
 
-##### eudaimonia 
+##### eudaimonia
 
 happiness as a result of fulfilling one's purpose (eudaimonia)
 
@@ -39207,7 +39317,7 @@ happiness as a result of fulfilling one's purpose (eudaimonia)
 > one who blows on ashes to bring them to flame
 
 
-# Clojure Sheat Sheet 
+# Clojure Sheat Sheet
 
 ### Neovim/Conjure/Coc-Conjure
 
@@ -39243,7 +39353,7 @@ let g:conjure#mapping#eval_motion = "E"
 - Go back inside file: `C-u C-SPC`
 - Go back across files: `C-x C-SPC`
 - Switch to REPL: `C-c C-z`
-- Eval buffer: `C-c C-k` 
+- Eval buffer: `C-c C-k`
 - Docs: `C-c C-d C-d`
 - Goto symbol: `M.`
 - Eval last sexp: `C-c C-e` / `C-x C-e`
@@ -39375,7 +39485,7 @@ let g:conjure#mapping#eval_motion = "E"
 > "There is a special providence that protects idiots, drunkards, children, and
 > the United States of America." ~ Otto van bismarck
 
-> "Never believe anything in politics until it has been officially denied" 
+> "Never believe anything in politics until it has been officially denied"
 > ~ Otto von Bismarck
 
 
@@ -39388,7 +39498,7 @@ let g:conjure#mapping#eval_motion = "E"
 > It is interesting to see where people insist proximity to a subject makes one
 > informed, and where they insist it makes them biased. It is interesting that
 > they think it’s their call to make. [in the context of 'as a male, you don't
-> get a say about toxic masculinity' v/s other 'viewpoints'] 
+> get a say about toxic masculinity' v/s other 'viewpoints']
 > ~ [medium article link](https://medium.com/@jencoates/i-am-a-transwoman-i-am-in-the-closet-i-am-not-coming-out-4c2dd1907e42)
 
 
@@ -39397,11 +39507,11 @@ let g:conjure#mapping#eval_motion = "E"
 
 
 > the first sign of civilization in an ancient culture was a femur
-> that had been broken and then healed ~ Margaret Mead 
+> that had been broken and then healed ~ Margaret Mead
 
 > The mistake of many adults is confusing serious with solemn.
 
-> I hate greek drama. You know, where everything happens off-stage. 
+> I hate greek drama. You know, where everything happens off-stage.
 > ~Downton abbey, s02e01
 
 > you have to speculate to accumulate
@@ -39465,7 +39575,7 @@ let g:conjure#mapping#eval_motion = "E"
 > good enough for me.”
 > https://www.quantamagazine.org/a-path-less-taken-to-the-peak-of-the-math-world-20170627/
 
-> "you're such a dick!". 
+> "you're such a dick!".
 > "I'm moby goddamn dick, and you're swimming in my water".
 
 > When people thought the earth was flat, they were wrong. When people thought
@@ -39497,10 +39607,10 @@ let g:conjure#mapping#eval_motion = "E"
 ### Using `:grep` and friends
 
 ```
-:grep <grep-invocation> 
+:grep <grep-invocation>
 ```
 
-- This will populate the error window. 
+- This will populate the error window.
 - Open the error window with `:copen`.
 - Thanks to `vim-unimpaired`, going next/previous is as easy as `[q` and `]q`
   (`q` for `quickfix`).
@@ -39515,9 +39625,9 @@ let g:conjure#mapping#eval_motion = "E"
 ##### vim motion mnemonics
 
 - f<char> - (f)ind a character forward in a line and move to it
-    - T<char> - find a character backward in a line and move un(t)il it
+- T<char> - find a character backward in a line and move un(t)il it
 - t<char> - find a character forward in a line and move un(t)il it (one character before)
-    - F<char> - (f)ind a character backward in a line and move to it
+- F<char> - (f)ind a character backward in a line and move to it
 
 
 ##### vim unimpaired for loclist movement
@@ -39567,9 +39677,13 @@ which end you wish edit: press c]i} to perform the edit you describe.
 
 Plan: finish cardistry bootcamp, learn card control from 52kards.
 
-
 - [False riffle shuffle by 52kards](https://www.youtube.com/watch?v=sLIS4c2dUwc)
 - [Push off second deal](https://www.youtube.com/watch?v=i5JlED3erBY)
+
+#### Card Spring
+
+- The key insight is to bend the deck such that there is no gap between the deck and the
+  palm of our hand. This will provide enough force on the cards to allow them to be sprung forth.
 
 #### Next
 
@@ -39592,7 +39706,7 @@ Plan: finish cardistry bootcamp, learn card control from 52kards.
 
 #### Learnt
 
-- [How to get started?](https://www.youtube.com/watch?v=g8mbn7TLATA) 
+- [How to get started?](https://www.youtube.com/watch?v=g8mbn7TLATA)
    1. Basic grips (School of Cardistrys youtube channel and start from their first video "grips) 2. Cuts 3. Flourishes
 
 - [Basics: grips](https://www.youtube.com/watch?v=bt0RumRuwGQ)
@@ -39600,7 +39714,7 @@ Plan: finish cardistry bootcamp, learn card control from 52kards.
 1.  Dealer's  / Mechanic's grip (thumb left, index top, others right)
 2. Straddle Grip (pinky bottom, index top, thumb left, others right)
 3. Biddle Grip
-4. End Grip (two index fingers opposing each other) 
+4. End Grip (two index fingers opposing each other)
 5. "Z" Grip
 
 
@@ -39812,7 +39926,7 @@ ought to be treated as errors.
 - Within goal: Information: `C-c C-;`.
 
 
-# Big list of Hacker news 
+# Big list of Hacker news
 
 > The road to hell is paved with good intentions
 > I am a coloured South African(an ethnic group that was previously disadvantaged due to apartheid era racial policies) we in South Africa have Affirmative action policies called Black Economic Empower(BEE) (Its open to all previously advantaged racial groups ie Black, Coloured, Indian they just call it BEE) that has led to mass corruption and cronyism.
@@ -39905,7 +40019,7 @@ ought to be treated as errors.
 > hire the best doctors, because they can save the most lives. A society should
 > delegate its most important responsibilities to its smartest/most-knowledgable
 > members, because they can best lead society through worldly challenges.
-> 
+>
 > Which is not to say that Social Justice isn't important. It is vital. But you
 > don't get to it by hiring the wrong people in the wrong roles. A meritocracy
 > excels at producing wealth - Universal Basic Income, Universal Healthcare,
@@ -39958,7 +40072,7 @@ speak slower than you want to.
 > remember nothing else on microtactical phrasing when you're up there, remember
 > that most people do not naturally include enough transition words when speaking
 > informally, which tends to make speeches loose narrative cohesion. Throw in a
-> few more than you would ordinarily think to do. 
+> few more than you would ordinarily think to do.
 
 
 # Favourite Demoscenes
