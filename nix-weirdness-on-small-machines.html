@@ -8,72 +8,72 @@ a:active { color: #1a73e8; text-decoration: none; }
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
 pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=nix-weirdness-on-small-machines href='#nix-weirdness-on-small-machines'> § </a><span class='centered'> Nix weirdness on small machines </h2> 
- <pre><code>floobits@pixel-druid:~$ nix-env -iA nixpkgs.hello                                                                                    
-+ nix-env -iA nixpkgs.hello                                                                                                          
-installing 'hello-2.10'                                                                                                              
-these paths will be fetched (0.04 MiB download, 0.20 MiB unpacked):                                                                  
-  /nix/store/w9yy7v61ipb5rx6i35zq1mvc2iqfmps1-hello-2.10                                                                             
-copying path '/nix/store/w9yy7v61ipb5rx6i35zq1mvc2iqfmps1-hello-2.10' from 'https://cache.nixos.org'...                              
-error: unable to fork: Cannot allocate memory                                                                                        
-floobits@pixel-druid:~$ gdb --args nix-env -iA nixpkgs.hello                                                                         
-+ gdb --args nix-env -iA nixpkgs.hello                                                                                               
-GNU gdb (Ubuntu 7.11.1-0ubuntu1~16.5) 7.11.1                                                                                         
-Copyright (C) 2016 Free Software Foundation, Inc.                                                                                    
-License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>                                                        
-This is free software: you are free to change and redistribute it.                                                                   
-There is NO WARRANTY, to the extent permitted by law.  Type "show copying"                                                           
-and "show warranty" for details.                                                                                                     
-This GDB was configured as "x86_64-linux-gnu".                                                                                       
-Type "show configuration" for configuration details.                                                                                 
-For bug reporting instructions, please see:                                                                                          
-<http://www.gnu.org/software/gdb/bugs/>.                                                                                             
-Find the GDB manual and other documentation resources online at:                                                                     
-<http://www.gnu.org/software/gdb/documentation/>.                                                                                    
-For help, type "help".                                                                                                               
-Type "apropos word" to search for commands related to "word"...                                                                      
-Reading symbols from nix-env...(no debugging symbols found)...done.                                                                  
-(gdb) run                                                                                                                            
-Starting program: /nix/store/d6axkgf0jq41jb537fnsg44080c4rd52-user-environment/bin/nix-env -iA nixpkgs.hello                         
+ <pre><code>floobits@pixel-druid:~$ nix-env -iA nixpkgs.hello
++ nix-env -iA nixpkgs.hello
+installing 'hello-2.10'
+these paths will be fetched (0.04 MiB download, 0.20 MiB unpacked):
+  /nix/store/w9yy7v61ipb5rx6i35zq1mvc2iqfmps1-hello-2.10
+copying path '/nix/store/w9yy7v61ipb5rx6i35zq1mvc2iqfmps1-hello-2.10' from 'https://cache.nixos.org'...
+error: unable to fork: Cannot allocate memory
+floobits@pixel-druid:~$ gdb --args nix-env -iA nixpkgs.hello
++ gdb --args nix-env -iA nixpkgs.hello
+GNU gdb (Ubuntu 7.11.1-0ubuntu1~16.5) 7.11.1
+Copyright (C) 2016 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from nix-env...(no debugging symbols found)...done.
+(gdb) run
+Starting program: /nix/store/d6axkgf0jq41jb537fnsg44080c4rd52-user-environment/bin/nix-env -iA nixpkgs.hello
 warning: File "/nix/store/danv012gh0aakh8xnk2b35vahklz72mk-gcc-9.2.0-lib/lib/libstdc++.so.6.0.27-gdb.py" auto-loading has been declin
-ed by your `auto-load safe-path' set to "$debugdir:$datadir/auto-load".                                                              
-To enable execution of this file add                                                                                                 
-        add-auto-load-safe-path /nix/store/danv012gh0aakh8xnk2b35vahklz72mk-gcc-9.2.0-lib/lib/libstdc++.so.6.0.27-gdb.py             
-line to your configuration file "/home/floobits/.gdbinit".                                                                           
-To completely disable this security protection add                                                                                   
-        set auto-load safe-path /                                                                                                    
-line to your configuration file "/home/floobits/.gdbinit".                                                                           
-For more information about this security protection see the                                                                          
-"Auto-loading safe path" section in the GDB manual.  E.g., run from the shell:                                                       
-        info "(gdb)Auto-loading safe path"                                                                                           
+ed by your `auto-load safe-path' set to "$debugdir:$datadir/auto-load".
+To enable execution of this file add
+        add-auto-load-safe-path /nix/store/danv012gh0aakh8xnk2b35vahklz72mk-gcc-9.2.0-lib/lib/libstdc++.so.6.0.27-gdb.py
+line to your configuration file "/home/floobits/.gdbinit".
+To completely disable this security protection add
+        set auto-load safe-path /
+line to your configuration file "/home/floobits/.gdbinit".
+For more information about this security protection see the
+"Auto-loading safe path" section in the GDB manual.  E.g., run from the shell:
+        info "(gdb)Auto-loading safe path"
 warning: File "/nix/store/xg6ilb9g9zhi2zg1dpi4zcp288rhnvns-glibc-2.30/lib/libthread_db-1.0.so" auto-loading has been declined by your
- `auto-load safe-path' set to "$debugdir:$datadir/auto-load".                                                                        
-warning: Unable to find libthread_db matching inferior's thread library, thread debugging will not be available.                     
-^[[A[New LWP 21466]                                                                                                                  
-GC Warning: Failed to expand heap by 128045056 bytes                                                                                 
-installing 'hello-2.10'                                                                                                              
-building '/nix/store/k3kz3cwyqdwi5bmwcbl1fzv2b2wkqrl6-user-environment.drv'...                                                       
-created 43 symlinks in user environment                                                                                              
-[LWP 21466 exited]                                                                                                                   
-[Inferior 1 (process 21462) exited normally]                                                                                         
-(gdb) run                                                                                                                            
+ `auto-load safe-path' set to "$debugdir:$datadir/auto-load".
+warning: Unable to find libthread_db matching inferior's thread library, thread debugging will not be available.
+^[[A[New LWP 21466]
+GC Warning: Failed to expand heap by 128045056 bytes
+installing 'hello-2.10'
+building '/nix/store/k3kz3cwyqdwi5bmwcbl1fzv2b2wkqrl6-user-environment.drv'...
+created 43 symlinks in user environment
+[LWP 21466 exited]
+[Inferior 1 (process 21462) exited normally]
+(gdb) run
 </code></pre> 
  <h4><a id=all-nix-subcommands-are-just-symlinks href='#all-nix-subcommands-are-just-symlinks'> § </a><span class='centered'> All nix subcommands are just symlinks </h4> 
- <pre><code>floobits@pixel-druid:~/idfk/nix-master$ ls -al /nix/store/4vz8sh9ngx34ivi0bw5hlycxdhvy5hvz-nix-2.3.7/bin/                            
-total 1784                                                                                                                           
-dr-xr-xr-x 2 floobits bollu    4096 Jan  1  1970 .                                                                                   
-dr-xr-xr-x 9 floobits bollu    4096 Jan  1  1970 ..                                                                                  
--r-xr-xr-x 1 floobits bollu 1816768 Jan  1  1970 nix                                                                                 
-lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-build -> nix                                                                    
-lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-channel -> nix                                                                  
-lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-collect-garbage -> nix                                                          
-lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-copy-closure -> nix                                                             
-lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-daemon -> nix                                                                   
-lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-env -> nix                                                                      
-lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-hash -> nix                                                                     
-lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-instantiate -> nix                                                              
-lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-prefetch-url -> nix                                                             
-lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-shell -> nix                                                                    
-lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-store -> nix                                                                    
+ <pre><code>floobits@pixel-druid:~/idfk/nix-master$ ls -al /nix/store/4vz8sh9ngx34ivi0bw5hlycxdhvy5hvz-nix-2.3.7/bin/
+total 1784
+dr-xr-xr-x 2 floobits bollu    4096 Jan  1  1970 .
+dr-xr-xr-x 9 floobits bollu    4096 Jan  1  1970 ..
+-r-xr-xr-x 1 floobits bollu 1816768 Jan  1  1970 nix
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-build -> nix
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-channel -> nix
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-collect-garbage -> nix
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-copy-closure -> nix
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-daemon -> nix
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-env -> nix
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-hash -> nix
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-instantiate -> nix
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-prefetch-url -> nix
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-shell -> nix
+lrwxrwxrwx 1 floobits bollu       3 Jan  1  1970 nix-store -> nix
 </code></pre> 
  <span class='centered'>It seems the way this works is that the  <code class='inline'>nix</code> tool figures out from what 
  <span class='centered'><i><span class='centered'>symlink </i> it's being invoked to decide what to do. God, that's ugly? brilliant? 

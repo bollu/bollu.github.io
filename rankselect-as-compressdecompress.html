@@ -52,7 +52,7 @@ vector<span class="token operator">&lt;</span><span class="token keyword">int</s
  <span class='centered'>disconnected from the original array  <code class='inline'>xs</code>. So I feel like I'm trying to reason 
  <span class='centered'>about these three  
  <ul><li><span class='centered'><span class='centered'> The indexes  <code class='inline'>0, 1,..,n</code></li><li><span class='centered'><span class='centered'> The orders  <code class='inline'>0th,1st,2nd,..(n-1)th</code></li><li><span class='centered'><span class='centered'> The array values  <code class='inline'>xs[0],xs[1],xs[2],..xs[n]</code></li></ul> 
- <span class='centered'>and it's unlclear to me how the two arrays  <code class='inline'>order2ix</code> and  <code class='inline'>ix2order</code>  
+ <span class='centered'>and it's unlclear to me how the two arrays  <code class='inline'>order2ix</code> and  <code class='inline'>ix2order</code>
  <span class='centered'>relate to each other.  
  <h4><a id=compresseddecompressed href='#compresseddecompressed'> § </a><span class='centered'>  <code class='inline'>compressed</code>/ <code class='inline'>decompressed</code>: </h4> 
  <span class='centered'>Now for the new convention that I hope works better:  <code class='inline'>compressed</code>/ <code class='inline'>decompressed</code>:  
@@ -66,10 +66,10 @@ vector<span class="token operator">&lt;</span><span class="token keyword">int</s
  <span class='centered'>as to what  <code class='inline'>compressed</code>/ <code class='inline'>decompressed</code> do and why they should be inverses.  I feel 
  <span class='centered'>it also matches  <i><span class='centered'><i><span class='centered'>the deep reason </i></i> for why kth order statistic exists: it 
  <span class='centered'>lets us perform universe reduction, to go from a large space of a total order 
- <span class='centered'>to a small space  <code class='inline'>[0..(n-1)]</code>.   
- <span class='centered'>Furthermore, the very  <i><span class='centered'><i><span class='centered'>name </i></i> implies that  
+ <span class='centered'>to a small space  <code class='inline'>[0..(n-1)]</code>.  
+ <span class='centered'>Furthermore, the very  <i><span class='centered'><i><span class='centered'>name </i></i> implies that 
  <span class='centered'><code class='inline'>compressed</code> is the compressed version of  <i><span class='centered'>something </i> (the original array  <code class='inline'>xs</code>) 
- <span class='centered'>and that  <code class='inline'>decompressed</code> is the decompressed version of  <i><span class='centered'>something </i>  
+ <span class='centered'>and that  <code class='inline'>decompressed</code> is the decompressed version of  <i><span class='centered'>something </i>
  <span class='centered'>(the compressed universe  <code class='inline'>[0..(n-1)]</code>). This makes it clear how they're reated 
  <span class='centered'>to the original array linguistically, which I quite like.  
  <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

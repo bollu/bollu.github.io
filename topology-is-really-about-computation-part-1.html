@@ -12,7 +12,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
  <span class='centered'>"closeness", which has been abstracted out from our usual notion of 
  <span class='centered'>continuity that we have from a metric space. Here, I make the claim that 
  <span class='centered'>topology is really about  <i><span class='centered'>computation </i>, and more specifically,  <i><span class='centered'>decidability </i>. 
- <span class='centered'>These are not new ideas. I learnt of this from a monograph  
+ <span class='centered'>These are not new ideas. I learnt of this from a monograph 
  <span class='centered'><a href=https://www.cs.bham.ac.uk/~mhe/papers/entcs87.pdf><span class='centered'>Synthetic topology of data types and classical spaces. Martın Escardo </a>. 
  <span class='centered'>This does not seem very well known, so I decided to write about it.  
  <span class='centered'>The idea is this: We have turing machines which can compute things. We then 
@@ -69,7 +69,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
     <span class="token keyword">if</span> f<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span> <span class="token keyword">while</span> f<span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span> i <span class="token operator">+=</span> <span class="token number">1</span>
     <span class="token comment"># (1.99...9&lt;NOT9>) | look for the &lt;NOT9></span>
     <span class="token comment"># If the number is 1.99..., do not terminate.</span>
-    <span class="token keyword">if</span> f<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">9</span><span class="token punctuation">:</span>  <span class="token keyword">while</span> f<span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">9</span><span class="token punctuation">:</span> i <span class="token operator">+=</span> <span class="token number">1</span> 
+    <span class="token keyword">if</span> f<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">9</span><span class="token punctuation">:</span>  <span class="token keyword">while</span> f<span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">9</span><span class="token punctuation">:</span> i <span class="token operator">+=</span> <span class="token number">1</span>
     <span class="token keyword">else</span><span class="token punctuation">:</span> <span class="token keyword">return</span>
     <span class="token keyword">return</span>
   <span class="token comment"># if the number is not 1.abcd, do not terminate</span>

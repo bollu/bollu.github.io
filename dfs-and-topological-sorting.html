@@ -28,7 +28,7 @@ dfs<span class="token operator">-</span>visit<span class="token punctuation">(</
 </code></pre> 
  <h4><a id=complexity href='#complexity'> § </a><span class='centered'> Complexity </h4> 
  <span class='centered'>We call  <code class='inline'>dfs-visit</code> once per vertex  <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span></span></span></span>. Per vertex, we pay  <code class='inline'>adj(v)</code> per 
- <span class='centered'>vertex  <code class='inline'>v</code>. In total, we visit  <code class='inline'>|E|</code>.   
+ <span class='centered'>vertex  <code class='inline'>v</code>. In total, we visit  <code class='inline'>|E|</code>.  
  <h4><a id=shortest-paths href='#shortest-paths'> § </a><span class='centered'> Shortest paths? </h4> 
  <span class='centered'>DFS  <i><span class='centered'><i><span class='centered'>does not take the shortest path </i></i> to get to a node. If you want shortest 
  <span class='centered'>paths (in an unweighted graph), use BFS.  
@@ -42,7 +42,7 @@ dfs<span class="token operator">-</span>visit<span class="token punctuation">(</
  <pre><code>A ----> B
   ----> C
 </code></pre> 
- <span class='centered'><code class='inline'>A -> C</code> is a forward edge!  
+ <span class='centered'><code class='inline'>A -> C</code> is a forward edge! 
  <span class='centered'>If we made the above undirected, then we will have  <code class='inline'>A -> B</code> tree edge and  <code class='inline'>B -> C</code>
  <span class='centered'>back-edge.  
  <ul><li><span class='centered'><span class='centered'> Back-edges: can exist in an undirected graph as shown above;  <code class='inline'>B -> C</code> is a back edge. </li><li><span class='centered'><span class='centered'> Cross-edges: once again, cross edges can only come up from "wrongly directed" <span class='centered'>edges. But we don't have directions in an undirected graph. </li></ul> 
@@ -51,7 +51,7 @@ dfs<span class="token operator">-</span>visit<span class="token punctuation">(</
  <h4><a id=proof-dfs-has-a-back-edge-g-has-a-cycle href='#proof-dfs-has-a-back-edge-g-has-a-cycle'> § </a><span class='centered'> Proof: DFS has a back edge =>  <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">G</span></span></span></span></span> has a cycle </h4> 
  <pre><code>  tree
 A -...-> X
-^         |       
+^         |
 ---back---*
 </code></pre> 
  <span class='centered'>By definition,  <code class='inline'>A -> X</code> is connected using tree edges, and a back edge 
@@ -61,9 +61,9 @@ A -...-> X
  <span class='centered'>assume  <code class='inline'>v[0]</code> is the first vertex in the cycle visited by the DFS. 
  <span class='centered'>Keep labeling based on how DFS visits then as  <code class='inline'>v[1], v[2], ... v[k]</code>. 
  <span class='centered'>The we claim the edge  <code class='inline'>v[k] -> v[0]</code> will be a backedge.  
- <ul><li><span class='centered'><span class='centered'> We know that when we're recursing on  <code class='inline'>v[0]</code>, we will visit  <code class='inline'>v[1]</code> before we  <span class='centered'>finish  <code class='inline'>v[0]</code>. </li><li><span class='centered'><span class='centered'> Similarly,  <code class='inline'>v[i]</code> will be visited before  <code class='inline'>v[i-1]</code>. </li><li><span class='centered'><span class='centered'> Chaining, we will finish  <code class='inline'>v[k]</code> before we finish  <code class='inline'>v[0]</code>.  </li><li><span class='centered'><span class='centered'> In terms of balanced parens, it's like  <code class='inline'>{0 (k; k) 0}</code>. </li><li><span class='centered'><span class='centered'> So, when we look at the edge  <code class='inline'>v[k] -> v[0]</code>, we have not yet finished  <code class='inline'>v[0]</code>. <span class='centered'>Thus, we get a backedge. </li></ul> 
+ <ul><li><span class='centered'><span class='centered'> We know that when we're recursing on  <code class='inline'>v[0]</code>, we will visit  <code class='inline'>v[1]</code> before we <span class='centered'>finish  <code class='inline'>v[0]</code>. </li><li><span class='centered'><span class='centered'> Similarly,  <code class='inline'>v[i]</code> will be visited before  <code class='inline'>v[i-1]</code>. </li><li><span class='centered'><span class='centered'> Chaining, we will finish  <code class='inline'>v[k]</code> before we finish  <code class='inline'>v[0]</code>. </li><li><span class='centered'><span class='centered'> In terms of balanced parens, it's like  <code class='inline'>{0 (k; k) 0}</code>. </li><li><span class='centered'><span class='centered'> So, when we look at the edge  <code class='inline'>v[k] -> v[0]</code>, we have not yet finished  <code class='inline'>v[0]</code>. <span class='centered'>Thus, we get a backedge. </li></ul> 
  <h4><a id=topological-sort href='#topological-sort'> § </a><span class='centered'> Topological sort </h4> 
- <span class='centered'>Given a DAG, order vertices so that all edges point from lower order to  
+ <span class='centered'>Given a DAG, order vertices so that all edges point from lower order to 
  <span class='centered'>higher order. The algorithm is to run DFS and output the reverse order of 
  <span class='centered'>finishing time of vertices. Why does this work?  
  <h4><a id=proof-that-topological-sort-works href='#proof-that-topological-sort-works'> § </a><span class='centered'> Proof that topological sort works </h4> 
@@ -75,9 +75,9 @@ A -...-> X
  <span class='centered'>is an edge.  So, we will have 
  <span class='centered'>the bracketing  <code class='inline'>{u (v; v) u}</code> so we're good: we finish  <code class='inline'>v</code> before we finish  <code class='inline'>u</code>.  
  <h4><a id=case-2-v-starts-before-u href='#case-2-v-starts-before-u'> § </a><span class='centered'> Case 2:  <code class='inline'>v</code> starts before  <code class='inline'>u</code></h4> 
- <span class='centered'>We have the bracketing  <code class='inline'>(v ... {u</code>. If we were to finish  <code class='inline'>u</code> before finishing  <code class='inline'>v</code>, then  
+ <span class='centered'>We have the bracketing  <code class='inline'>(v ... {u</code>. If we were to finish  <code class='inline'>u</code> before finishing  <code class='inline'>v</code>, then 
  <span class='centered'><code class='inline'>v</code> is an ancestor of  <code class='inline'>u</code>, and this gives the bracketing 
- <span class='centered'><code class='inline'>(v .. {u .. u} .. v)</code> and thus the edge  <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>u</mi><mo separator="true">,</mo><mi>v</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(u, v)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mclose">)</span></span></span></span></span> is a back-edge. But this is  
+ <span class='centered'><code class='inline'>(v .. {u .. u} .. v)</code> and thus the edge  <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>u</mi><mo separator="true">,</mo><mi>v</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(u, v)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mclose">)</span></span></span></span></span> is a back-edge. But this is 
  <span class='centered'>impossible because the graph cannot have cycles! Thus, we will still have that 
  <span class='centered'><code class='inline'>v</code> finishes beofre  <code class='inline'>u</code>, giving the bracketing  <code class='inline'>(v v) .. {u u}</code>.  
  <ul><li><span class='centered'><span class='centered'>  <a href=https://www.youtube.com/watch?v=AfSk24UTFS8><span class='centered'>MIT introduction to algorithms: Lecture 14, DFS and topological sorting </a></li></ul> 

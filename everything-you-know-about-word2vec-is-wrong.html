@@ -26,7 +26,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
  <span class='centered'>and is  <i><span class='centered'>drastically different </i>. Most serious users of word embeddings, who use 
  <span class='centered'>embeddings generated from  <code class='inline'>word2vec</code> do one of the following things:  
  <ol><li><span class='centered'><span class='centered'> They invoke the original C implementation directly. </li><li><span class='centered'><span class='centered'> They invoke the  <code class='inline'>gensim</code> implementation, which is  <i><span class='centered'>transliterated </i> from the <span class='centered'>C source to the extent that the variables names are the same. </li></ol> 
- <span class='centered'>Indeed, the  <code class='inline'>gensim</code> implementation is the  
+ <span class='centered'>Indeed, the  <code class='inline'>gensim</code> implementation is the 
  <span class='centered'><i><span class='centered'><i><span class='centered'>only one that I know of which is faithful to the C implementation </i></i>.  
  <h4><a id=the-c-implementation href='#the-c-implementation'> § </a><span class='centered'> The C implementation </h4> 
  <span class='centered'>The C implementation in fact maintains  <i><span class='centered'>two vectors for each word </i>, one where 
@@ -95,8 +95,8 @@ https<span class="token operator">:</span><span class="token comment">//github.c
  <span class='centered'>and more often than not,  <i><span class='centered'>a word whose vector has not been trained much at all </i>. 
  <span class='centered'>If this vector actually had a value, then it could move the actually important 
  <span class='centered'>focus word randomly.  
- <span class='centered'>The solution is to set all negative samples to zero, so that  
- <span class='centered'><i><span class='centered'>only vectors that have occurred somewhat frequently </i> will affect the representation  
+ <span class='centered'>The solution is to set all negative samples to zero, so that 
+ <span class='centered'><i><span class='centered'>only vectors that have occurred somewhat frequently </i> will affect the representation 
  <span class='centered'>of another vector.  
  <span class='centered'>It's quite ingenious, really, and until this, I'd never really thought of 
  <span class='centered'>how important initialization strategies really are.  

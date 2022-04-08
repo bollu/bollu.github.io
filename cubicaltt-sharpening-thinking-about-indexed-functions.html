@@ -14,10 +14,10 @@ f1 : nat -> nat -> nat = \(b: nat) -> \(c : nat) ->  b
  <pre><code>-- | function from nat, nat -> nat defined by case analaysis
 f2 : nat -> nat -> nat =
   split
-    zero -> split@(nat -> nat) with 
+    zero -> split@(nat -> nat) with
                 zero -> zero
                 suc b' -> zero
-    suc a' -> split@(nat -> nat) with 
+    suc a' -> split@(nat -> nat) with
                 zero -> a'
                 suc b' -> b'
 </code></pre> 
@@ -28,10 +28,10 @@ g1 (b : nat) (c : nat) : nat = b
 -- | cannot split on parameters, can only split on fn.
 -- g2 (x : nat) (y : nat) : nat =
 --   split
---     zero -> split@(nat -> nat) with 
+--     zero -> split@(nat -> nat) with
 --                 zero -> zero
 --                 suc b' -> zero
---     suc a' -> split@(nat -> nat) with 
+--     suc a' -> split@(nat -> nat) with
 --                 zero -> a'
 --                 suc b' -> b'
 </code></pre> 

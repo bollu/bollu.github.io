@@ -9,7 +9,7 @@ blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
 pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=perspectives-on-yoneda href='#perspectives-on-yoneda'> § </a><span class='centered'> Perspectives on Yoneda </h2> 
  <span class='centered'>We can try to gain intuition for Yoneda by considering a finite category 
- <span class='centered'>where we view arrows as directed paths.   
+ <span class='centered'>where we view arrows as directed paths.  
  <span class='centered'>The "interpretation" of a path is taken by going from edges to labels and then 
  <span class='centered'>concatenating all edge labels. We "interpret" the label  <code class='inline'>id_x</code> as  <code class='inline'>""</code> (the 
  <span class='centered'>empty string), and we "interpret" all other arrows  <code class='inline'>a</code> as some unique string 
@@ -49,7 +49,7 @@ G[x] -G[p] --> G[y]
  <pre><code>x = o, y ∈ C
 o2x = id_o
 
-∀ y ∈ C, 
+∀ y ∈ C,
   p ∈ Hom(o, y),
   G[p](ηo(id_o)) = ηy(id_o . p')
   G[p](ηo(id_o)) = ηy(p') [By identity arrow]

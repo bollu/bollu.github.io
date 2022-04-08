@@ -65,12 +65,12 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
  <span class='centered'>under the strict interpretation.  
  <h4><a id=analysing-the-example-the-non-strict-interpretation href='#analysing-the-example-the-non-strict-interpretation'> § </a><span class='centered'> Analysing the example: The non-strict interpretation: </h4> 
  <span class='centered'>In the non-strict world, we try to evaluate  <code class='inline'>K(1, loopy)</code> since we are asked the result 
- <span class='centered'>of it by the  <code class='inline'>case</code> expression. However, we do not try to evaluate  <code class='inline'>loopy</code>, since  
+ <span class='centered'>of it by the  <code class='inline'>case</code> expression. However, we do not try to evaluate  <code class='inline'>loopy</code>, since 
  <span class='centered'>no one has asked what it's value is!  
  <span class='centered'>Now, we know that  
  <pre><code><span class="token hvariable">kCombinator</span> <span class="token hvariable">x</span> <span class="token hvariable">y</span> <span class="token operator">=</span> <span class="token hvariable">x</span>
 </code></pre> 
- <span class='centered'>Therefore,   
+ <span class='centered'>Therefore,  
  <pre><code><span class="token hvariable">kCombinator</span> <span class="token hvariable">one</span> <span class="token hvariable">loopy</span> <span class="token operator">=</span> <span class="token hvariable">one</span>
 </code></pre> 
  <span class='centered'>regardless of what value  <code class='inline'>loopy</code> held.  
@@ -86,8 +86,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
 </code></pre> 
  <span class='centered'>Here, we force  <code class='inline'>kret</code> (which has value  <code class='inline'>one</code>) to be evaluated with  <code class='inline'>case kret of...</code>. 
  <span class='centered'>since  <code class='inline'>one = 1</code>,  <code class='inline'>i</code> is bound to the value  <code class='inline'>1</code>. 
- <span class='centered'>Once  <code class='inline'>i</code> is returned, we print it out with  <code class='inline'>printPrimInt(primx)</code>. 
- <span class='centered'>  
+ <span class='centered'>Once  <code class='inline'>i</code> is returned, we print it out with  <code class='inline'>printPrimInt(primx)</code>.  
  <span class='centered'>The output of the program under non-strict interpretation is for it to print out  <code class='inline'>1</code>.  
  <h4><a id=where-does-the-difference-come-from href='#where-does-the-difference-come-from'> § </a><span class='centered'> Where does the difference come from? </h4> 
  <span class='centered'>Clearly, there is a divide: strict evaluation tells us that this program should 
@@ -200,7 +199,7 @@ int main() {
  <span class='centered'>code looks as you would imagine: we maintain a stack of function pointers + 
  <span class='centered'>auxiliary data ( stack saved values), and we push and pop over this "stack". 
  <span class='centered'>When we run out of space, we  <code class='inline'><find correct way to use mmap></code> to increase our 
- <span class='centered'>"stack" size.   
+ <span class='centered'>"stack" size.  
  <span class='centered'>I've played around with this value a little bit, and have found that the modern 
  <span class='centered'>stack size is quite large: IIRC, It allowed me to allocate ~ <code class='inline'>26 GB</code>. I believe 
  <span class='centered'>that the amount it lets you allocate is tied directly to the amount of physical 
@@ -299,7 +298,7 @@ int main() {
  <span class='centered'><i><span class='centered'>are </i> using the call stack, right? The answer is no. It's thanks to a neat 
  <span class='centered'>optimisation technique called  <i><span class='centered'>tail call elimination </i>. The observation is that 
  <span class='centered'><i><span class='centered'>after the call </i>, there is no more code to execute in the caller. So, by 
- <span class='centered'>playing some stack tricks, one can convert a  <i><span class='centered'>call </i> to a  <i><span class='centered'>jump </i>.   
+ <span class='centered'>playing some stack tricks, one can convert a  <i><span class='centered'>call </i> to a  <i><span class='centered'>jump </i>.  
  <span class='centered'>Remember, a  <i><span class='centered'><code class='inline'>call</code></i> instruction uses the stack to setup a stack frame, under 
  <span class='centered'>the assumption that we will  <i><span class='centered'><code class='inline'>ret</code></i> at some point.  But, clearly, under our 
  <span class='centered'>compilation model, we will never  <code class='inline'>ret</code>, simply call more functions. So, we 

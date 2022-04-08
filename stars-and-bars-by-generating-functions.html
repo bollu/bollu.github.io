@@ -36,10 +36,10 @@ kc km ky kk
  <span class='centered'>computation is slightly more involved. Its advantage is that it ignores 
  <span class='centered'>ordering of the objects, which is what you desire.  
  <span class='centered'>In this case, we represent each color as the polynomial 1 + x + x^2, here the 
- <span class='centered'>power of x represents the number of instances you are taking of that color.   
+ <span class='centered'>power of x represents the number of instances you are taking of that color.  
  <span class='centered'>So, if you take (1 + x + x^2)^4, you have found the number of ways to arrange 
  <span class='centered'>four colors, for different numbers of slots. If you take coefficient of x^2 
- <span class='centered'>from that polynomial, you get the answer to your question   
+ <span class='centered'>from that polynomial, you get the answer to your question  
  <span class='centered'>Why does this set of shady manipulations not work?  
  <pre><code>answer = coeff. of x^2 in (1 + x + x^2)^4
 [We can add higher powers, won't change coeff of x^2]
@@ -64,5 +64,5 @@ answer = coeff. of x^2 in ... + (1/(1-x)^4)''(0) x^2/2 + ...
 = (20/(1-0)^6)
 = (20)
 </code></pre> 
- <span class='centered'>so we get the answer as  <code class='inline'>answer = 20/2! = 10</code>.   
+ <span class='centered'>so we get the answer as  <code class='inline'>answer = 20/2! = 10</code>.  
  <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

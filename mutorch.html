@@ -24,7 +24,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
 <span class="token comment"># GIVEN: dt/dy</span>
 <span class="token comment"># TO FIND: dt/dx</span>
 <span class="token comment"># dt/dx = dt/dy * dy/dx</span>
-<span class="token comment"># dt/dloss </span>
+<span class="token comment"># dt/dloss</span>
 <span class="token comment"># t = loss</span>
 <span class="token comment"># dt/dloss = dloss/dloss = 1</span>
 
@@ -38,7 +38,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
 <span class="token comment"># total gradient of x3: df/dx3 + dg/dx3</span>
 
 <span class="token comment"># l = r cos(theta)</span>
-<span class="token comment"># dl = dr cos(theta) + rsin(theta) dtheta </span>
+<span class="token comment"># dl = dr cos(theta) + rsin(theta) dtheta</span>
 <span class="token comment"># dl/dtheta = dr/dtheta cos(theta) + rsin(theta) dtheta/dtheta</span>
 <span class="token comment"># dl/dtheta =   0       * .......  + rsin(theta) * 1</span>
 
@@ -46,14 +46,14 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
 <span class="token comment"># dl/dr = cos(theta) +      .............*0</span>
 
 <span class="token comment"># REVERSE MODE: [CoTangent space] --- objects of the form df</span>
-<span class="token comment"># total gradient of y1: dy1 = (df/dx1)dx1 + (df/dx2)dx2  + (df/dx3)dx3 </span>
+<span class="token comment"># total gradient of y1: dy1 = (df/dx1)dx1 + (df/dx2)dx2  + (df/dx3)dx3</span>
 <span class="token comment"># total gradient of y2: dy2 = (dg/dx1)dx1 + (dg/dx2)dx2  + (dg/dx3)dx3</span>
 <span class="token comment"># HALLUCINATED T:</span>
 <span class="token comment">#    y1 = f(x1, x2, x3)</span>
 <span class="token comment">#    GIVEN:   dt/dy1 [output]</span>
 <span class="token comment">#    TO FIND: dt/dx1, dt/dx2, dt/dx3 [inputs]</span>
-<span class="token comment">#    SOLN:    dt/dxi = dt/dy * dy/dxi </span>
-<span class="token comment">#                    = dt/dy * df/dxi </span>
+<span class="token comment">#    SOLN:    dt/dxi = dt/dy * dy/dxi</span>
+<span class="token comment">#                    = dt/dy * df/dxi</span>
 <span class="token keyword">import</span> pudb
 
 <span class="token keyword">class</span> <span class="token class-name">Expr</span><span class="token punctuation">:</span>
@@ -96,7 +96,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
 
     <span class="token comment">#         -------- input1</span>
     <span class="token comment">#   S    /</span>
-    <span class="token comment">#  ---> v </span>
+    <span class="token comment">#  ---> v</span>
     <span class="token comment">#  &lt;--output *</span>
     <span class="token comment">#      ^</span>
     <span class="token comment">#       \_________ input2</span>
@@ -105,9 +105,9 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
     <span class="token comment"># - output = input1 + input2</span>
     <span class="token comment"># - how much sensitivity does input1 have to S?</span>
     <span class="token comment"># - the same (S), because "sensitivity" is linear [a conjecture/axiom]</span>
-    <span class="token comment"># output = f(input1, input2); f(input1, input2) = input1 + input2 </span>
+    <span class="token comment"># output = f(input1, input2); f(input1, input2) = input1 + input2</span>
     <span class="token keyword">def</span> <span class="token function">backprop</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> dt_output<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token comment"># dt/dinput1 = dt/doutput * ddoutput/dinput1 = </span>
+        <span class="token comment"># dt/dinput1 = dt/doutput * ddoutput/dinput1 =</span>
         <span class="token comment">#            = dt/doutput * d(f(input1, input2))/dinput1</span>
         <span class="token comment">#            = dt/doutput * d(input1 * input2)/dinput1</span>
         <span class="token comment">#            = dt/doutput * input2</span>
@@ -117,7 +117,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
 <span class="token comment"># a = ...   ^</span>
 <span class="token comment"># b = ...   ^</span>
 <span class="token comment"># c = a + b ^</span>
-<span class="token comment"># </span>
+<span class="token comment">#</span>
 <span class="token keyword">class</span> <span class="token class-name">Add</span><span class="token punctuation">(</span>Expr<span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> lhs<span class="token punctuation">,</span> rhs<span class="token punctuation">)</span><span class="token punctuation">:</span>
         self<span class="token punctuation">.</span>lhs <span class="token operator">=</span> lhs
@@ -130,7 +130,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
 
     <span class="token comment">#         -------- input1</span>
     <span class="token comment">#   S    /</span>
-    <span class="token comment">#  ---> v </span>
+    <span class="token comment">#  ---> v</span>
     <span class="token comment">#  &lt;--output</span>
     <span class="token comment">#      ^</span>
     <span class="token comment">#       \_________ input2</span>
@@ -139,9 +139,9 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
     <span class="token comment"># - output = input1 + input2</span>
     <span class="token comment"># - how much sensitivity does input1 have to S?</span>
     <span class="token comment"># - the same (S), because "sensitivity" is linear [a conjecture/axiom]</span>
-    <span class="token comment"># output = f(input1, input2); f(input1, input2) = input1 + input2 </span>
+    <span class="token comment"># output = f(input1, input2); f(input1, input2) = input1 + input2</span>
     <span class="token keyword">def</span> <span class="token function">backprop</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> dt_output<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token comment"># dt/dinput1 = dt/doutput * ddoutput/dinput1 = </span>
+        <span class="token comment"># dt/dinput1 = dt/doutput * ddoutput/dinput1 =</span>
         <span class="token comment">#            = dt/doutput * d(f(input1, input2))/dinput1</span>
         <span class="token comment">#            = dt/doutput * d(input1 + input2)/dinput1</span>
         <span class="token comment">#            = dt/doutput * 1</span>
@@ -159,7 +159,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
         <span class="token keyword">return</span> self<span class="token punctuation">.</span>__str__<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
     <span class="token keyword">def</span> <span class="token function">backprop</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> dt_output<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token comment"># dt/dinput1 = dt/doutput * doutput/dinput 1 </span>
+        <span class="token comment"># dt/dinput1 = dt/doutput * doutput/dinput 1</span>
         <span class="token comment">#            = dt/doutput *d max(input1, input2)/dinput1</span>
         <span class="token comment">#            = |dt/doutput *d input1/dinput1 [if input1 > input2] = 1</span>
         <span class="token comment">#            = |dt/doutput *d input2/dinput1 [if input2 > input1] = 0</span>
@@ -178,8 +178,8 @@ z0 <span class="token operator">=</span> Mul<span class="token punctuation">(</s
 z1 <span class="token operator">=</span> Add<span class="token punctuation">(</span>z0<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"z1: %s"</span> <span class="token operator">%</span> z1<span class="token punctuation">)</span>
 
-<span class="token comment"># z1 = x*x+y </span>
-<span class="token comment"># dz1/dx = 2x </span>
+<span class="token comment"># z1 = x*x+y</span>
+<span class="token comment"># dz1/dx = 2x</span>
 <span class="token comment"># dz1/dy = 1</span>
 <span class="token comment"># dz1/dp = 0</span>
 <span class="token comment"># z1.clear_grad()</span>

@@ -8,7 +8,7 @@ a:active { color: #1a73e8; text-decoration: none; }
 blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
 pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
 pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=best-practices-for-array-indexing href='#best-practices-for-array-indexing'> § </a><span class='centered'> Best practices for array indexing </h2> 
- <span class='centered'>These are rules I'm going to follow when I solve problems on  
+ <span class='centered'>These are rules I'm going to follow when I solve problems on 
  <span class='centered'><a href=https://codeforces.com/><span class='centered'>codeforces </a>. I've arrived at these rules by repeatedly 
  <span class='centered'>noticing the kinds of mistakes I make and attempting to adopt conventions 
  <span class='centered'>to eliminate these.  
@@ -40,12 +40,12 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
  <h4><a id=the-rationale-for-banning-relational-operators href='#the-rationale-for-banning-relational-operators'> § </a><span class='centered'> The rationale for banning relational operators </h4> 
  <span class='centered'>There is a strong difference in qualia between  <code class='inline'>i < n</code> and  <code class='inline'>i != n</code>. The former 
  <span class='centered'>makes on aware of when the loop runs; the latter of when the loop quits.  
- <span class='centered'>I wish to be cognizant of the precisely when a loop quits.  
+ <span class='centered'>I wish to be cognizant of the precisely when a loop quits. 
  <span class='centered'>On writing  <code class='inline'>i != past-the-end</code>, I know that we quit as soon as we 
  <span class='centered'><i><span class='centered'><i><span class='centered'>get past the end </i></i>. This feels much clearer than being aware that the loops 
  <span class='centered'>runs as long as  <code class='inline'>i < n</code>.  
  <h4><a id=half-open-indexing-length-index href='#half-open-indexing-length-index'> § </a><span class='centered'> half-open indexing: length <-> index </h4> 
- <span class='centered'>The first advantage of these conventions is that  
+ <span class='centered'>The first advantage of these conventions is that 
  <span class='centered'><code class='inline'>[begin, past-the-end)</code> is the same as  <code class='inline'>[begin, begin+length)</code>. I've found this 
  <span class='centered'>to be of great help to flit between length-based-thoughts and 
  <span class='centered'>indexing-based-thoughts.  
@@ -73,8 +73,8 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
  <span class='centered'>quickly derive the bounds of the second array from the first array.  
  <h4><a id=half-open-indexing-uniformly-generate-power-of-2-intervals href='#half-open-indexing-uniformly-generate-power-of-2-intervals'> § </a><span class='centered'> half-open indexing: uniformly generate power-of-2 intervals. </h4> 
  <span class='centered'>If we want intervals of length  <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">2^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span></span>:  <code class='inline'>1, 2, 4, 8, ...</code> which is common if one 
- <span class='centered'>is building data structures such as segment trees and fenwick trees,  
- <span class='centered'>in a half-open representation, this literally becomes  <code class='inline'>[a, a+1)</code>,  
+ <span class='centered'>is building data structures such as segment trees and fenwick trees, 
+ <span class='centered'>in a half-open representation, this literally becomes  <code class='inline'>[a, a+1)</code>, 
  <span class='centered'><code class='inline'>[a, a+2)</code>,  <code class='inline'>[a, a+4)</code> and so on. On the other hand, if one wants 
  <span class='centered'>to use closed interval based indexing, one needs to generate the 
  <span class='centered'>series  <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mi>n</mi></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^n - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.747722em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span>, which is  <code class='inline'>[a, a+0]</code>,  <code class='inline'>[a, a+3]</code>,  <code class='inline'>[a, a+7]</code> which is 

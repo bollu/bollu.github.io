@@ -86,7 +86,7 @@ idyo' ::  a -> (forall x. (a -> x) -> x)
 idyo' a = \k -> k a
 </code></pre> 
  <span class='centered'>specializing to  <code class='inline'>id</code> recovers usual continuations.  
- <span class='centered'>In total, Yoneda tells us that from every enriched continuation  
+ <span class='centered'>In total, Yoneda tells us that from every enriched continuation 
  <span class='centered'><code class='inline'>ContF a g = Nat (Hom a) g = forall x. (a -> x) -> g x</code>, 
  <span class='centered'>we can recover a  <code class='inline'>g a</code>. Hence, there is a bijection between  <code class='inline'>g a</code> and 
  <span class='centered'><code class='inline'>ContF a g</code> 

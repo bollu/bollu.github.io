@@ -16,7 +16,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
    ys<span class="token punctuation">[</span>rs<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> xs<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
 <span class="token punctuation">}</span>
 </code></pre> 
- <ul><li><span class='centered'><span class='centered'> 2.  <i><span class='centered'><i><span class='centered'>(SELECT) </i></i> Reindex into  <code class='inline'>ys</code>, index straight into  <code class='inline'>xs</code>.  <span class='centered'>We name the reindexing array  <code class='inline'>ss</code> ( <code class='inline'>ss</code> for  <i><span class='centered'>selects </i>). </li></ul> 
+ <ul><li><span class='centered'><span class='centered'> 2.  <i><span class='centered'><i><span class='centered'>(SELECT) </i></i> Reindex into  <code class='inline'>ys</code>, index straight into  <code class='inline'>xs</code>. <span class='centered'>We name the reindexing array  <code class='inline'>ss</code> ( <code class='inline'>ss</code> for  <i><span class='centered'>selects </i>). </li></ul> 
  <pre><code><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> N<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
    ys<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> xs<span class="token punctuation">[</span>ss<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span>
 <span class="token punctuation">}</span>
@@ -26,8 +26,8 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
  <span class='centered'>is the number of elements that are:  
  <ol><li><span class='centered'><span class='centered'> less than  <code class='inline'>e</code>. </li><li><span class='centered'><span class='centered'> equal to  <code class='inline'>e</code> but occur before  <code class='inline'>e</code>. </li></ol> 
  <span class='centered'>This ensures that rank is a  <i><span class='centered'>permutation </i>: that is, every element  <code class='inline'>e</code> is given 
- <span class='centered'>a  <i><span class='centered'>unique </i> index.   
- <pre><code><span class="token keyword">int</span> <span class="token function">rank</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">int</span> <span class="token operator">*</span>xs<span class="token punctuation">,</span> <span class="token keyword">int</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+ <span class='centered'>a  <i><span class='centered'>unique </i> index.  
+ <pre><code><span class="token keyword">int</span> <span class="token function">rank</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">int</span> <span class="token operator">*</span>xs<span class="token punctuation">,</span> <span class="token keyword">int</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">int</span> cnt <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
     <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> N<span class="token punctuation">;</span> <span class="token operator">++</span>j<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span>xs<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> xs<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token punctuation">(</span>xs<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> xs<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> j <span class="token operator">&lt;</span> i<span class="token punctuation">)</span><span class="token punctuation">)</span> cnt <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">;</span>
@@ -45,7 +45,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
  <span class='centered'><code class='inline'>i, j</code> have the same value, then we sort on the index.  
  <h4><a id=rank-alternative-2 href='#rank-alternative-2'> § </a><span class='centered'> Rank: Alternative 2 </h4>
  <span class='centered'>We could have also defined rank as:  
- <pre><code><span class="token keyword">int</span> <span class="token function">rank</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>xs<span class="token punctuation">,</span> <span class="token keyword">int</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+ <pre><code><span class="token keyword">int</span> <span class="token function">rank</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>xs<span class="token punctuation">,</span> <span class="token keyword">int</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">int</span> cnt <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
     <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> i<span class="token punctuation">;</span> <span class="token operator">++</span>j<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span>xs<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> xs<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> cnt <span class="token operator">+=</span> <span class="token number">1</span>
@@ -71,12 +71,12 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
  <span class='centered'><code class='inline'>ss</code> must be a permutation that is an inverse permutation to  <code class='inline'>rs</code>.  
  <h4><a id=how-to-invert-a-permutation href='#how-to-invert-a-permutation'> § </a><span class='centered'> How to invert a permutation? </h4> 
  <span class='centered'>How does one invert a permutation? We have a permutation  <code class='inline'>rs[i]</code> that maps 
- <span class='centered'><code class='inline'>i</code> to  <code class='inline'>rs[i]</code>. We want to find a new permutation  <code class='inline'>ss[i]</code> such that   
+ <span class='centered'><code class='inline'>i</code> to  <code class='inline'>rs[i]</code>. We want to find a new permutation  <code class='inline'>ss[i]</code> such that  
  <pre><code>rs[ss[i]] = i
 </code></pre> 
  <span class='centered'>Equivalently:  
  <pre><code>// ss[i] is an index 'k'...
-ss[i] = k 
+ss[i] = k
 // 'k' is the location of 'i' in rs.
 rs[k] = i
 </code></pre> 

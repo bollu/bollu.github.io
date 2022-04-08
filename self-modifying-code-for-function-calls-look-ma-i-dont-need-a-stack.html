@@ -10,12 +10,12 @@ pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: 
 pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack href='#self-modifying-code-for-function-calls-look-ma-i-dont-need-a-stack'> § </a><span class='centered'> Self modifying code for function calls: Look ma, I don't need a stack! </h2> 
  <span class='centered'>If one does not have recursive calls, one can eliminate the need to push 
  <span class='centered'>return addresses on a call stack by writing self-modifying code --- 
- <span class='centered'>I leant of this from TAOCP, volume 1.  
+ <span class='centered'>I leant of this from TAOCP, volume 1. 
  <span class='centered'>Knuth shows this off once he introduces  <code class='inline'>MIXAL</code>, his fantasy 
  <span class='centered'>aseembly language in which TAOCP programs are written.  
  <span class='centered'>I'll explain the usual way one performs call-return, then explain the nifty 
  <span class='centered'>self-modifying-code way. I think this is the cleanest, most accessible 
- <span class='centered'>example of self-modifying-code that I know.   
+ <span class='centered'>example of self-modifying-code that I know.  
  <h4><a id=the-traditional-solution-for-callret href='#the-traditional-solution-for-callret'> § </a><span class='centered'> The traditional solution for  <code class='inline'>call/ret</code></h4> 
  <span class='centered'>We wish to have function  <code class='inline'>f</code> call function  <code class='inline'>g</code>. For  <code class='inline'>g</code> to be able to 
  <span class='centered'>return control to  <code class='inline'>f</code>,  <code class='inline'>f</code> pushes a return address into the call stack, 

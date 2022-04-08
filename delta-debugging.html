@@ -17,7 +17,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
     ix = 0
     found_failure = False
     skiplen = len(inp) / n
-  
+
     while ix < len(inp):
       inp_noix = inp[:ix] +inp[ix+skiplen:]
       if not self.test(inp_noix):
@@ -26,11 +26,11 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
           found_failure = True; break
       else:
         ix += skiplen
-  
+
     if not found_failure:
       if n == len(inp): break
       n = min(n * 2, len(inp)) # double
-  
+
   return inp
 </code></pre> 
  <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

@@ -18,7 +18,7 @@ add (m : nat) : nat -> nat = split
 </code></pre> 
  <span class='centered'>Since  <code class='inline'>add</code> is recursive on the right, we can simplify (by computation) values such as  <code class='inline'>add x (S y)</code> to  <code class='inline'>S (add x y)</code>. This will be important when reasoning about induction later.  
  <span class='centered'>Now, we wish to prove that:  
- <pre><code>for all a b, c, 
+ <pre><code>for all a b, c,
   a + (b + c) = (a + b) + c
 </code></pre> 
  <span class='centered'>we prove this by induction on  <code class='inline'>c</code>. Let's consider the base case and the inductive case:  
@@ -51,7 +51,7 @@ add (m : nat) : nat -> nat = split
 -- j=0
 -- i=0 -------------------------------> i=1
 </code></pre> 
- <ul><li><span class='centered'><span class='centered'> The bottom horizontal line is the first to  <code class='inline'>comp</code>, given as  <code class='inline'>(suc (addA a b n @ i))</code>  </li></ul> 
+ <ul><li><span class='centered'><span class='centered'> The bottom horizontal line is the first to  <code class='inline'>comp</code>, given as  <code class='inline'>(suc (addA a b n @ i))</code></li></ul> 
  <span class='centered'>And in cubical code, it's written as:  
  <ul><li><span class='centered'><span class='centered'> The left and right vertical lines are the second inputs to comp. </li><li><span class='centered'><span class='centered'> The left vertical line is given by  <code class='inline'><j> suc (add a (add b n)</code></li><li><span class='centered'><span class='centered'> The right vertical line is given by  <code class='inline'> <j> suc (add (add a b) n)</code>. </li></ul> 
  <span class='centered'>In total, the implementation is:  

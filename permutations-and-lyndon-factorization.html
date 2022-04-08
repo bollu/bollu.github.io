@@ -12,7 +12,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
  <span class='centered'>substrings  <code class='inline'>t1</code>,  <code class='inline'>t2</code>, ...,  <code class='inline'>tn</code>, such that:  
  <ul><li><span class='centered'><span class='centered'> each  <code class='inline'>ti</code> is a simple word. That is, it is lexicographically smaller than all <span class='centered'>of its cyclic shifts. </li><li><span class='centered'><span class='centered'> the words are in non-increasing order:  <code class='inline'>t1 >= t2 >= t3 ... >= tn</code>. </li></ul> 
  <span class='centered'>For example, given the word  <code class='inline'>banana</code>, the lyndon factorization is:  
- <pre><code>b; an; an; a; 
+ <pre><code>b; an; an; a;
 </code></pre> 
  <span class='centered'>We can define a notation for writing permutation as: 
  <ul><li><span class='centered'><span class='centered'> Each term in a cycle is written in  <i><span class='centered'>ascending </i> order. </li><li><span class='centered'><span class='centered'> Cycles are written in  <i><span class='centered'>descending </i> order of the first element. </li><li><span class='centered'><span class='centered'> Single element are ignored. </li></ul> 
@@ -20,7 +20,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
 </code></pre> 
  <span class='centered'>If we treat it as a string  <code class='inline'>723145</code>, 
  <span class='centered'>the duval algorithm provides the decomposition:  
- <pre><code>7; 23; 145; 
+ <pre><code>7; 23; 145;
 </code></pre> 
  <span class='centered'>So, we can treat the duval algorithm as a way to recover the permutation given 
  <span class='centered'>the raw string. It's a nice way to  <i><span class='centered'>remember </i> the definition of lyndon 

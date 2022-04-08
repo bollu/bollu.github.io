@@ -14,7 +14,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
 <span class="token keyword">while</span> <span class="token punctuation">(</span>r <span class="token operator">&lt;</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
  <span class="token function">assert</span><span class="token punctuation">(</span>l <span class="token operator">&lt;=</span> r<span class="token punctuation">)</span><span class="token punctuation">;</span>
  <span class="token keyword">if</span> <span class="token punctuation">(</span>extend_window<span class="token punctuation">)</span> <span class="token punctuation">{</span> r<span class="token operator">++</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
- <span class="token keyword">else</span> <span class="token punctuation">{</span> 
+ <span class="token keyword">else</span> <span class="token punctuation">{</span>
     l<span class="token operator">--</span><span class="token punctuation">;</span> <span class="token comment">//contract window</span>
  <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
@@ -28,7 +28,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
     <span class="token comment">// window: [l, r)</span>
     <span class="token keyword">int</span> l <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> r <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
     <span class="token comment">// number of illegal letters changed. &lt;= k</span>
-    <span class="token keyword">int</span> changed <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> 
+    <span class="token keyword">int</span> changed <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
     <span class="token keyword">while</span><span class="token punctuation">(</span>r <span class="token operator">&lt;</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token function">assert</span><span class="token punctuation">(</span>changed <span class="token operator">&lt;=</span> k<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token function">assert</span><span class="token punctuation">(</span>l <span class="token operator">&lt;=</span> r<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -38,7 +38,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
             <span class="token keyword">if</span> <span class="token punctuation">(</span>changed <span class="token operator">==</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
                 <span class="token comment">// cannot extend, contract from left.</span>
                 <span class="token keyword">if</span> <span class="token punctuation">(</span>s<span class="token punctuation">[</span>l<span class="token punctuation">]</span> <span class="token operator">!=</span> c<span class="token punctuation">)</span> <span class="token punctuation">{</span> changed<span class="token operator">--</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
-                l<span class="token operator">++</span><span class="token punctuation">;</span> 
+                l<span class="token operator">++</span><span class="token punctuation">;</span>
             <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
                 <span class="token comment">// extend, spending a change.</span>
                 r<span class="token operator">++</span><span class="token punctuation">;</span>
@@ -64,7 +64,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
         <span class="token keyword">if</span> <span class="token punctuation">(</span>s<span class="token punctuation">[</span>r<span class="token punctuation">]</span> <span class="token operator">!=</span> c<span class="token punctuation">)</span> <span class="token punctuation">{</span> changed<span class="token operator">++</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
         <span class="token comment">// maintain invariants: must have changed &lt;= k,</span>
         <span class="token comment">// and at the end of a loop trip, we must have l &lt;= r.</span>
-        <span class="token keyword">while</span><span class="token punctuation">(</span>changed <span class="token operator">></span> k <span class="token operator">&amp;&amp;</span> l <span class="token operator">&lt;</span> r<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+        <span class="token keyword">while</span><span class="token punctuation">(</span>changed <span class="token operator">></span> k <span class="token operator">&amp;&amp;</span> l <span class="token operator">&lt;</span> r<span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token keyword">if</span> <span class="token punctuation">(</span>s<span class="token punctuation">[</span>l<span class="token punctuation">]</span> <span class="token operator">!=</span> c<span class="token punctuation">)</span> <span class="token punctuation">{</span> changed<span class="token operator">--</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
             l<span class="token operator">++</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>

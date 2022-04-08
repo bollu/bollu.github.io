@@ -12,7 +12,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
  <span class='centered'>For example, to find all subarrays  <code class='inline'>[l..r]</code> whose sum of elements divides  <code class='inline'>n</code>, we can think of this 
  <span class='centered'>as finding a subarray  <code class='inline'>[l..r]</code> where the sum of elements modulo  <code class='inline'>n</code> is zero. 
  <span class='centered'>This is CSES'  <a href=https://cses.fi/problemset/task/1662/><span class='centered'>subarray divisibiity </a> problem:  
- <pre><code> 
+ <pre><code>
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">int</span> n<span class="token punctuation">;</span>
     cin <span class="token operator">>></span> n<span class="token punctuation">;</span>
@@ -20,13 +20,13 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
     <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         cin <span class="token operator">>></span> xs<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span> xs<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> xs<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">%</span> n<span class="token punctuation">;</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>xs<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> xs<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+=</span> n<span class="token punctuation">;</span> <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
- 
+
     ll count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// number of subarrays with sum = 0 (mod n)</span>
     ll cursum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//  current sum [0..i]</span>
     <span class="token comment">// number of subarrays [0..r] (for some r) such that Σa[i] = count.</span>
     map<span class="token operator">&lt;</span>ll<span class="token punctuation">,</span> ll<span class="token operator">></span> partial_sum_count<span class="token punctuation">;</span>
     partial_sum_count<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
- 
+
     <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token comment">// current sum [0..i]</span>
         cursum <span class="token operator">=</span> <span class="token punctuation">(</span>cursum <span class="token operator">+</span> xs<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">%</span> n<span class="token punctuation">;</span>
@@ -44,9 +44,9 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
         <span class="token comment">// partial sum [0..i] = cursum</span>
         partial_sum_count<span class="token punctuation">[</span>cursum<span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
- 
+
     cout <span class="token operator">&lt;&lt;</span> count <span class="token operator">&lt;&lt;</span> <span class="token string">"\n"</span><span class="token punctuation">;</span>
- 
+
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre> 

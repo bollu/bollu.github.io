@@ -17,12 +17,12 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
 </code></pre> 
  <span class='centered'>The above statement, fully elaborated with all the types looks as follows:  
  <pre><code>lim :: (J -> K) -> K
-Hom(a: C, {lim (F: J -> C)}:C ): Set ~= 
+Hom(a: C, {lim (F: J -> C)}:C ): Set ~=
 lim (\j. Hom(a, F(j)): J -> Set): Set
 </code></pre> 
  <span class='centered'>Furthermore, we also know from the Yoneda embedding, that  <code class='inline'>x ~= Hom(x, -)</code> for all  <code class='inline'>x</code>. 
  <span class='centered'>Given these two facts, we can speedily derive that a right adjoint preserves limits:  
- <pre><code>Hom_C(a:C , R(lim F: J -> D)): Set 
+ <pre><code>Hom_C(a:C , R(lim F: J -> D)): Set
 = Hom_D(L(a), lim F: J -> D) [Adjunction]
 ~= {lim (\j. Hom_D(L(a), F(j)): J -> Set}: Set [Hom lim = lim Hom]
 ~= {lim (\j. Hom_C(a, R(F(j)))): J -> Set}: Set [Adjunction inside lim]
@@ -37,7 +37,7 @@ lim (\j. Hom(a, F(j)): J -> Set): Set
  <span class='centered'>is a morhism  <code class='inline'>arr: a -> lim F</code> from  <code class='inline'>a</code> to the apex 
  <span class='centered'>of the limit cone  <code class='inline'>lim F</code>. We need to translate this into a  <code class='inline'>lim(\j. Hom(a, F(j)): J -> Set): Set</code>, 
  <span class='centered'>which is a family of morphisms from each  <code class='inline'>a</code> to each  <code class='inline'>{ F(j) : j in J}</code>. This is obtained 
- <span class='centered'>by composing the projection maps  <code class='inline'>pi(j): lim F -> F(j)</code> with  <code class='inline'>arr: a -> lim F</code> to  
+ <span class='centered'>by composing the projection maps  <code class='inline'>pi(j): lim F -> F(j)</code> with  <code class='inline'>arr: a -> lim F</code> to 
  <span class='centered'>get  <code class='inline'>pi(j) . arr : a -> F(j)</code> which lives in  <code class='inline'>Hom(a, F(j))</code>. We get the limit by considering 
  <span class='centered'>the family of these maps, as the Limit in  <code class='inline'>Set</code> is just a product with coherence conditions, 
  <span class='centered'>and an element of the limit is a tuple/family with coherence conditions.  

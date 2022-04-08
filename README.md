@@ -203,8 +203,7 @@ void editor_state_backspace_char(EditorState& s) {
 - $L$ is a linear diffeential operator. That is, it's a differential operator lik $\partial_x$ or $\partial_t \partial_t$.
   See that $\partial_t \partial_t$ is linear, because
   $\partial_t \partial_t \alpha f + \beta g = \alpha (\partial_t \partial_t f) + \beta (\partial_t \partial_t g)$
--
-- https://www.youtube.com/watch?v=ism2SfZgFJg
+- [Video reference](https://www.youtube.com/watch?v=ism2SfZgFJg)
 
 # CP trick: writing exact counting as counting less than
 
@@ -1674,7 +1673,6 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 
 
 > One day, a farmer named Arepo built a temple at the edge of his field. It was a humble thing, with stone walls and a thatch roof. At the center of the room Arepo stacked some stones to make a cairn. Two days later, a god moved into Arepo's temple.
->
 > "I hope you are a harvest god," Arepo said, as he set upon the altar two stalks of wheat which he burned. "It would be nice."
 >
 > He looked down upon the ash that now colored the stone. "I know this isn't much of a sacrifice, but I hope this pleases you. It'd be nice to think there is a god looking after me."

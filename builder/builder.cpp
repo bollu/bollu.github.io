@@ -26,7 +26,7 @@
 #if  defined(_WIN32) || defined(WIN32) // my build config on windows
 #define BLOG_ROOT_FOLDER_TRAILING_SLASH "C:\\Users\\bollu\\blog\\" 
 #else  // unix
-#define BLOG_ROOT_FOLDER_TRAILING_SLASH "/home/siddu_druid/blog/"
+#define BLOG_ROOT_FOLDER_TRAILING_SLASH "/home/bollu/blog/"
 #endif
 
 
@@ -277,9 +277,11 @@ struct TLink : public T {
   const char *link;
 };
 
-Span mkTokensSpan(const vector<T *> &items) {
+Span mkTokensSpan(L startloc, const vector<T *> &items) {
+  if (items.size() == 0) { return Span(startloc, startloc); };
   assert(items.size() > 0);
   Span s = items[0]->span;
+  assert(s.begin.si >= startloc.si);
   for (int i = 1; i < (int)items.size(); ++i) {
     Span next = items[i]->span;
 
@@ -294,13 +296,13 @@ Span mkTokensSpan(const vector<T *> &items) {
 
 struct TList : public T {
   vector<T *> items;
-  TList(vector<T *> items) : T(TT::List, mkTokensSpan(items)), items(items){};
+  TList(L begin, vector<T *> items) : T(TT::List, mkTokensSpan(begin, items)), items(items){};
 };
 
 struct TListNumbered : public T {
   vector<T *> items;
-  TListNumbered(vector<T *> items)
-      : T(TT::TListNumbered, mkTokensSpan(items)), items(items){};
+  TListNumbered(L begin, vector<T *> items)
+      : T(TT::TListNumbered, mkTokensSpan(begin, items)), items(items){};
 };
 
 struct TCodeBlock : public T {
@@ -310,8 +312,8 @@ struct TCodeBlock : public T {
 };
 
 struct TInlineGroup : public T {
-  TInlineGroup(vector<T *> items)
-      : T(TT::InlineGroup, mkTokensSpan(items)), items(items) {}
+  TInlineGroup(L begin, vector<T *> items)
+      : T(TT::InlineGroup, mkTokensSpan(begin, items)), items(items) {}
   vector<T *> items;
 };
 
@@ -517,7 +519,7 @@ T *tokenizeLineFragment(const char *s, const ll len, const L lbegin) {
 
     assert(s[lcur.si] == delim);
     lcur = lcur.next(delim);
-    return new TItalic(Span(lbegin, lcur), new TInlineGroup(toks));
+    return new TItalic(Span(lbegin, lcur), new TInlineGroup(lbegin, toks));
   } else {
     logger.print(cerr);
     cerr << "tokenizeLineFragment:raw(" << lbegin << ")\n";
@@ -551,7 +553,7 @@ T *tokenizeInlineLine(const char *s, const ll len, const L lbegin) {
     lcur = t->span.end;
     toks.push_back(t);
   }
-  return new TInlineGroup(toks);
+  return new TInlineGroup(lbegin, toks);
 };
 
 // tokenize those strings that can only occur "inside" an inline context,
@@ -610,7 +612,7 @@ T *tokenizeLink(const char *s, const ll len, const L opensq) {
   // TODO: change `tokenize` to `tokenizeInline` when the time is right.
   // std::tie(newline, text) = tokenize(s, closesq.si - opensq.si, opensq,
   // false); text =
-  T *text = new TInlineGroup(toks);
+  T *text = new TInlineGroup(opensq, toks);
   return new TLink(Span(opensq, closeround), text, link);
 }
 
@@ -662,7 +664,7 @@ T *tokenizeHyphenListItem(const char *s, const ll len, const L lhyphen) {
       }
     }
   }
-  return new TInlineGroup(toks);
+  return new TInlineGroup(lhyphen, toks);
 }
 
 // return if s[lbegin...] = <number>"."
@@ -742,7 +744,7 @@ T *tokenizeNumberedListItem(const char *s, const ll len, const L lhyphen,
       }
     }
   }
-  return new TInlineGroup(toks);
+  return new TInlineGroup(lhyphen, toks);
 }
 
 // quotes.
@@ -940,7 +942,7 @@ T *tokenizeBlock(const char *s, const ll len, const L lbegin) {
       }
       break;
     }
-    return new TList(toks);
+    return new TList(lbegin, toks);
   } else if ((lcur.si == 0 || s[lcur.si - 1] == '\n') &&
              isNumberedListBegin(s, len, lcur)) {
 
@@ -961,7 +963,7 @@ T *tokenizeBlock(const char *s, const ll len, const L lbegin) {
       }
       break;
     }
-    return new TListNumbered(toks);
+    return new TListNumbered(lbegin, toks);
   } else if (s[lcur.si] == '>') {
     return tokenizeQuoteItem(s, len, lcur);
   } else {

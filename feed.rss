@@ -5,6 +5,51 @@
 <link>https://bollu.github.io/</link>
 <description>A universe of Sorts</description>
   <item>
+    <title> Orthogonal Factorization Systems </title>
+    <guid>https://bollu.github.io/orthogonal-factorization-systems.html</guid>
+    <link>https://bollu.github.io/orthogonal-factorization-systems.html</link>
+  </item>
+  <item>
+    <title> Orthogonal morphisms </title>
+    <guid>https://bollu.github.io/orthogonal-morphisms.html</guid>
+    <link>https://bollu.github.io/orthogonal-morphisms.html</link>
+  </item>
+  <item>
+    <title> Locally Presentable Category </title>
+    <guid>https://bollu.github.io/locally-presentable-category.html</guid>
+    <link>https://bollu.github.io/locally-presentable-category.html</link>
+  </item>
+  <item>
+    <title> Remez Algorithm </title>
+    <guid>https://bollu.github.io/remez-algorithm.html</guid>
+    <link>https://bollu.github.io/remez-algorithm.html</link>
+  </item>
+  <item>
+    <title> Permission bits reference </title>
+    <guid>https://bollu.github.io/permission-bits-reference.html</guid>
+    <link>https://bollu.github.io/permission-bits-reference.html</link>
+  </item>
+  <item>
+    <title> Papers on Computational Group Theory </title>
+    <guid>https://bollu.github.io/papers-on-computational-group-theory.html</guid>
+    <link>https://bollu.github.io/papers-on-computational-group-theory.html</link>
+  </item>
+  <item>
+    <title> Kan Extensions: Key idea </title>
+    <guid>https://bollu.github.io/kan-extensions-key-idea.html</guid>
+    <link>https://bollu.github.io/kan-extensions-key-idea.html</link>
+  </item>
+  <item>
+    <title> Interleaved dataflow analysis and rewriting </title>
+    <guid>https://bollu.github.io/interleaved-dataflow-analysis-and-rewriting.html</guid>
+    <link>https://bollu.github.io/interleaved-dataflow-analysis-and-rewriting.html</link>
+  </item>
+  <item>
+    <title> Central variable as  focal</title>
+    <guid>https://bollu.github.io/central-variable-as-focal.html</guid>
+    <link>https://bollu.github.io/central-variable-as-focal.html</link>
+  </item>
+  <item>
     <title> Wilson &apos; s theorem </title>
     <guid>https://bollu.github.io/wilsons-theorem.html</guid>
     <link>https://bollu.github.io/wilsons-theorem.html</link>
@@ -490,7 +535,7 @@
     <link>https://bollu.github.io/example-of-covariance-zero-and-yet-correlated.html</link>
   </item>
   <item>
-    <title> Hypothesis Testing  </title>
+    <title> Hypothesis Testing </title>
     <guid>https://bollu.github.io/hypothesis-testing.html</guid>
     <link>https://bollu.github.io/hypothesis-testing.html</link>
   </item>
@@ -530,7 +575,7 @@
     <link>https://bollu.github.io/poisson-distribution.html</link>
   </item>
   <item>
-    <title> F1 or Fun : The field with one element  </title>
+    <title> F1 or Fun : The field with one element </title>
     <guid>https://bollu.github.io/f1-or-fun-the-field-with-one-element.html</guid>
     <link>https://bollu.github.io/f1-or-fun-the-field-with-one-element.html</link>
   </item>
@@ -830,7 +875,7 @@
     <link>https://bollu.github.io/dedekind-macniellie.html</link>
   </item>
   <item>
-    <title> Good and bad combinatorics: intro to counting  </title>
+    <title> Good and bad combinatorics: intro to counting </title>
     <guid>https://bollu.github.io/good-and-bad-combinatorics-intro-to-counting.html</guid>
     <link>https://bollu.github.io/good-and-bad-combinatorics-intro-to-counting.html</link>
   </item>
@@ -970,7 +1015,7 @@
     <link>https://bollu.github.io/l1-norm-is-greater-than-or-equal-to-l2-norm.html</link>
   </item>
   <item>
-    <title> Z algorithm  </title>
+    <title> Z algorithm </title>
     <guid>https://bollu.github.io/z-algorithm.html</guid>
     <link>https://bollu.github.io/z-algorithm.html</link>
   </item>
@@ -1105,7 +1150,7 @@
     <link>https://bollu.github.io/dp-as-path-independence.html</link>
   </item>
   <item>
-    <title> Binary search to find rightmost index which does not possess some property  </title>
+    <title> Binary search to find rightmost index which does not possess some property </title>
     <guid>https://bollu.github.io/binary-search-to-find-rightmost-index-which-does-not-possess-some-property.html</guid>
     <link>https://bollu.github.io/binary-search-to-find-rightmost-index-which-does-not-possess-some-property.html</link>
   </item>
@@ -1410,7 +1455,7 @@
     <link>https://bollu.github.io/homotopic-maps-produce-same-singular-homology-intuition.html</link>
   </item>
   <item>
-    <title> Singular homology: induced homomorphism  </title>
+    <title> Singular homology: induced homomorphism </title>
     <guid>https://bollu.github.io/singular-homology-induced-homomorphism.html</guid>
     <link>https://bollu.github.io/singular-homology-induced-homomorphism.html</link>
   </item>
@@ -1580,7 +1625,7 @@
     <link>https://bollu.github.io/animating-rotations-with-quaternion-curves.html</link>
   </item>
   <item>
-    <title> Mnemonic for hom-tensor and left-right adjoints  </title>
+    <title> Mnemonic for hom-tensor and left-right adjoints </title>
     <guid>https://bollu.github.io/mnemonic-for-hom-tensor-and-left-right-adjoints.html</guid>
     <link>https://bollu.github.io/mnemonic-for-hom-tensor-and-left-right-adjoints.html</link>
   </item>
@@ -1595,7 +1640,7 @@
     <link>https://bollu.github.io/recovering-topology-from-sheaf-of-functions-proof-from-atiyah-macdonald.html</link>
   </item>
   <item>
-    <title> Urhyson &apos; s lemma  </title>
+    <title> Urhyson &apos; s lemma </title>
     <guid>https://bollu.github.io/urhysons-lemma.html</guid>
     <link>https://bollu.github.io/urhysons-lemma.html</link>
   </item>
@@ -2035,7 +2080,7 @@
     <link>https://bollu.github.io/tensor-hom-adjunction.html</link>
   </item>
   <item>
-    <title> Schur &apos; s lemma  </title>
+    <title> Schur &apos; s lemma </title>
     <guid>https://bollu.github.io/schurs-lemma.html</guid>
     <link>https://bollu.github.io/schurs-lemma.html</link>
   </item>
@@ -2180,7 +2225,7 @@
     <link>https://bollu.github.io/bouncing-light-clock-is-an-hourglass.html</link>
   </item>
   <item>
-    <title> Euler tours  </title>
+    <title> Euler tours </title>
     <guid>https://bollu.github.io/euler-tours.html</guid>
     <link>https://bollu.github.io/euler-tours.html</link>
   </item>
@@ -2215,7 +2260,7 @@
     <link>https://bollu.github.io/the-chromatic-polynomial-todo.html</link>
   </item>
   <item>
-    <title> Structure theory of finite endo-functions  </title>
+    <title> Structure theory of finite endo-functions </title>
     <guid>https://bollu.github.io/structure-theory-of-finite-endo-functions.html</guid>
     <link>https://bollu.github.io/structure-theory-of-finite-endo-functions.html</link>
   </item>
@@ -3365,7 +3410,7 @@
     <link>https://bollu.github.io/topology-as-an-object-telling-us-what-zero-locus-is-closed.html</link>
   </item>
   <item>
-    <title> Vivado toolchain craziness  </title>
+    <title> Vivado toolchain craziness </title>
     <guid>https://bollu.github.io/vivado-toolchain-craziness.html</guid>
     <link>https://bollu.github.io/vivado-toolchain-craziness.html</link>
   </item>
@@ -3555,12 +3600,12 @@
     <link>https://bollu.github.io/latex-cheat-sheet.html</link>
   </item>
   <item>
-    <title> Architecture Cheat Sheet  </title>
+    <title> Architecture Cheat Sheet </title>
     <guid>https://bollu.github.io/architecture-cheat-sheet.html</guid>
     <link>https://bollu.github.io/architecture-cheat-sheet.html</link>
   </item>
   <item>
-    <title> Recipes Cheat Sheet  </title>
+    <title> Recipes Cheat Sheet </title>
     <guid>https://bollu.github.io/recipes-cheat-sheet.html</guid>
     <link>https://bollu.github.io/recipes-cheat-sheet.html</link>
   </item>
@@ -3575,7 +3620,7 @@
     <link>https://bollu.github.io/words-cheat-sheet.html</link>
   </item>
   <item>
-    <title> Clojure Sheat Sheet  </title>
+    <title> Clojure Sheat Sheet </title>
     <guid>https://bollu.github.io/clojure-sheat-sheet.html</guid>
     <link>https://bollu.github.io/clojure-sheat-sheet.html</link>
   </item>
@@ -3630,7 +3675,7 @@
     <link>https://bollu.github.io/agda-cheat-sheet.html</link>
   </item>
   <item>
-    <title> Big list of Hacker news  </title>
+    <title> Big list of Hacker news </title>
     <guid>https://bollu.github.io/big-list-of-hacker-news.html</guid>
     <link>https://bollu.github.io/big-list-of-hacker-news.html</link>
   </item>

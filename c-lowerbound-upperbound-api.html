@@ -21,7 +21,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
         |     |
         L     R
 </code></pre> 
- <ul><li><span class='centered'><span class='centered'> The  <code class='inline'><</code> values are less than bound,  <code class='inline'>=</code> values are equal to bound, and  <code class='inline'>></code> values are greater than bound, then <span class='centered'><code class='inline'>lower_bound</code> and  <code class='inline'>upper_bound</code> return iterators to represent the  <code class='inline'>=</code> range  <code class='inline'>[L, R]</code> in half-open form.  </li><li><span class='centered'><span class='centered'> So we will have  <code class='inline'>[lower_bound, upper_bound) = [L, R]</code>. This matches the C++ API where everything uses half-open intervals. </li></ul> 
+ <ul><li><span class='centered'><span class='centered'> The  <code class='inline'><</code> values are less than bound,  <code class='inline'>=</code> values are equal to bound, and  <code class='inline'>></code> values are greater than bound, then <span class='centered'><code class='inline'>lower_bound</code> and  <code class='inline'>upper_bound</code> return iterators to represent the  <code class='inline'>=</code> range  <code class='inline'>[L, R]</code> in half-open form. </li><li><span class='centered'><span class='centered'> So we will have  <code class='inline'>[lower_bound, upper_bound) = [L, R]</code>. This matches the C++ API where everything uses half-open intervals. </li></ul> 
  <pre><code><<<<<<< ======= >>>>>>>>
         L     R |
         lower   upper
