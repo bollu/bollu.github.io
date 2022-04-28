@@ -6,6 +6,288 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+# Logical relations
+
+- Key idea is to consider relations $R_\tau$ between closed terms of types $\tau_l$ and $\tau_r$. That is, we have 
+  have a relation $R_\tau \subseteq \{ (t_l, t_r): (\cdot \vdash t_l : \tau_l), (\cdot \vdash t_r : \tau_r)$.
+- We write a relation between two closed terms $\tau_L$ and $\tau_R$ as: $R_{\tau} \equiv (\cdot \vdash \tau_L) \times (\cdot \vdash \tau_R)$.
+- A morphism of relations $f: R_\sigma to R_\tau$ is given by two functions $f_l: \sigma_l \to \tau_l$ and $f_r: \sigma_r \to \tau_r$
+  such that $aR_\sigma b \implies f_l(a) R_\tau f_r(b)$.
+
+#### Logical relations for function spaces
+
+- Given this, we can build up logical relations for more complex cases like function types and quantified types.
+  For example, given logical relations $R_\sigma$ and $R_\tau$, we build $R_{\sigma \to \tau}$ to be the relation between
+  types $(\cdot \vdash \sigma_l \to \tau_l) \times (\cdot \vdash \sigma_r \to \tau_r)$, and given by the formula:
+
+$$
+(f_l: \sigma_l \to \tau_l, f_r: \sigma_r \to \tau_r) : R_{\sigma \to \tau} \equiv \forall (x_l : \sigma_l , x_r : \sigma_r) \in R_\sigma, (f_l(x_l), f_r(x_r)) \in R_\tau
+$$
+
+- This satisfies the universal property of functions in the category of logical relations, ie, there is an adjunction
+  between $R_{\rho \to \sigma} \to R_{\tau}$ and $R_{\rho} \to R_{\sigma \to \tau}$.
+- Next, we can interpret a base type like `bool` by the logical relation that encodes equality on that type.
+  so $R_{\texttt{bool}} : (\cdot \vdash \texttt{bool}) \times (\cdot \vdash \texttt{bool})$ and is given by:
+
+#### Logical relations for data types
+
+$$
+R_{\texttt{bool}} \equiv \{ (\texttt{true, true}), (\texttt{false, false}) \}
+$$
+
+#### Logical relations for parametric types
+
+- for a type of the form $\tau(\alpha)$ that is parametric in $\alpha$, suppose we have a family
+  of relations $R_{\tau \alpha} \subseteq  \{ (\cdot \vdash \tau_l(\alpha_l) \times (\cdot \vdash \tau_r(\alpha_r) \}_{R_\alpha}$
+  which vary in $R_\alpha$.
+- Then we define the logical relation for the type
+  $R_{\forall \alpha, \tau(\alpha)} \subseteq (\cdot \vdash \forall \alpha \tau_l(\alpha)) \times (\cdot \vdash \forall \alpha \tau_r(\alpha))$ as:
+
+$$
+R_{\forall \alpha, \tau (\alpha)} \equiv 
+\{ (f_l : \forall \alpha, \tau_l(\alpha), f_r: \forall \alpha, \tau_r(\alpha)) 
+\mid 
+\forall R_\alpha, (f_l(\alpha_l), f_r(\alpha_r)) \in R_{\tau(\alpha)} 
+\}
+$$
+
+#### Proving things using logical relations
+
+- For $f: \forall \alpha, \alpha \to \texttt{bool}$,  we have that $f @\texttt{unit} (()) = f @ \texttt{bool}(\texttt{true})$
+  That is, the function value at `() : unit` determines the value of the function also at `true: bool` (and more generally, everwhere).
+
+- To prove this, we first invoke that **by soundness**, we have that $(f, f) \in R_{\forall \alpha. \alpha \to \texttt{bool}}$. On
+  unwrapping this, this means that:
+
+$$
+\forall R_\alpha, \forall (x_l, x_r) \in R_\alpha, ((f(x_l), f(x_r)) \in R_{\texttt{bool}})
+$$
+
+- Plugging in $R_{\texttt{bool}}$, this gives us an equality:
+
+
+$$
+\forall R_\alpha, \forall (x_l, x_r) \in R_\alpha, (f(x_l) =  f(x_r))
+$$
+
+- We now choose $R_\alpha \subseteq (\cdot \vdash \texttt{unit}) \times (\cdot \vdash \texttt{bool})$, with the singleton element $\{ ((), \texttt{true}) \}$.
+
+
+- [Jon Talk](https://www.youtube.com/watch?v=AEthjg2k718)
+
+##### $(x/p)$ is $x^{(p-1)/2}$
+
+- Since $x$ is coprime to $p$, we have that  $1 \equiv x^{p-1}$
+- This can be written as $1^2 - x^{({p-1}/2)^2} = 0$. [$(p-1)$ is even when $p>2$].
+- That is, $(1 - x^{(p-1)/2})(1 + x^{(p-1)/2}) = 0$.
+- Since we are in an integral domain (really a field), this means that $x^{(p-1)/2} \equiv \pm 1 (\mod p)$.
+
+
+# Pointless topology: Frames
+
+- A frame is a lattice with arbitrary joins, finite meets, with distributive law: $A \cap \cup_i B_i = \cup_i A \cap B_i$.
+- A map of frames is a lattice map between frames.
+- A category of locales is the opposite category of frames.
+
+
+### Thm: Any locale has a smallest dense sublocale
+- For example, $\mathbb R$ has $\mathbb Q$.
+
+### Sober spaces
+- A space is sober iff every irreducible closed subset is the closure of a single point.
+- A sober space is one whose lattice of open subsets determine the topology of the space.
+
+# Introduction to substructural logics: Ch1
+
+#### Terminology
+
+
+#### Logic as talking about strings
+
+- The book gives a new (to me) interpretation of rules like $X \vdash A$.
+  It says that this can be read as "the string $X$ is of type $A$", where type is some
+  chomskian/grammarian sense of the word "type".
+- This means that we think of $X ; Y$ as "concatenate $X$ and $Y$".
+- This allows one to think of $X \vdash A \to B$ as the statement "$X$ when concatenated with a string of type $A$
+  produces a string of type $B$".
+- This is interesting, because we can have judgements like $X \vdash A$ and $X \vdash B$ with no problem, we're asserting
+  that the string $X$ is of type $A$, $B$. Which, sure, I guess we can have words that are both nouns and verbs, for example.
+- Under this guise, the statement $X \vdash A \land B$ just says that "$X$ is both a noun and a verb".
+- Further, if I say $X \vdash A$ and $Y \vdash B$, then one wants to ask "what is type of $X; Y$ ? we want to say
+  "it is the type $A$ next to $B$", which is given by $A \circ B$ (or, $A \otimes B$ in modern notation).
+- This is cool, since it gives a nice way to conceptualize the difference between conjunction and tensoring.
+
+
+#### Tensor versus conjunction as vector spaces
+
+- What I got most out of this was the difference between what they call fusion
+  (what we now call tensoring in linear logic) and conjunction.
+- Key idea: Let's suppose we're living in some huge vector space, and the statement
+  $X \vdash A$ should be read as "the vector $X$ lives in the subspace $A$ of the large vector space.
+- Then, the rule $X \vdsh A$, $X vdash B$ entails $X \vdash A \land B$ means:
+  if $X$ lives in subspace $A$ and $X$ lives in subspace $B$, then $X$ lives in the intersection $A \cap B$.
+- On the other hand, the rule $X \vash A$, $Y \vdash B$ entails $X ; Y \vdash A \circ B$ means:
+  if $X$ lives in subspace $A$, $Y$ lives in subspace $B$, then the vector $X \otimes Y$ lives in subspace $A \otimes B$.
+- See that in the case of the conjunction, we are talking about **the same** $X$, just choosing to restrict where it lives ($A \cap B$)
+- See that in the case of tensor product, we have **two** elements $X$ and $Y$,
+  which live in two different subspaces $A$ and $B$.
+
+
+#### Cut and admissibility
+
+- Cut is the theorem that lets you have lemmas.
+- It says that if $X \vdash A$, and $Y(A) \vdash B$ then $Y(X) \vdash B$.
+- I don't understand what this means in terms of the interpretation of "left hand side as values, right hand side as types",
+  or under "left side is strings, right side is types".
+  The rule $Y(A) \vdash B$ is, at best, some kind of unholy dependently typed nonsense under this interpretation.
+- A theory is **cut-admissible** if the axioms let you prove cut.
+- In general, a theory is admissible to some axiom $A$ if the axioms of the theory allows one to prove $A$.
+
+
+# Integrating against ultrafilers
+
+- Let $X$ be a set.
+- Recall that a filter on $X$ is a collection of subsets $\Omega$ of $X$ that are
+  closed under supersets and intersections (union comes for free by closure under supersets).
+- Recall that an ultrafilter $\Omega$ on $X$ is a maximal filter. That is, we cannot add any more elements into the filter.
+- Equivalently $\Omega$ is an ultrafilter if, for any $A \subseteq X$, either $A \in \Omega$ or $(X - A) \in \Omega$.
+- Intuitively, we are considering the set of subsets of $X$ that contains a single $x \in X$.
+- We can also say that ultrafilters correspond to lattice homomorphisms $2^X \to 2$.
+- A lemma will show that this is equivalent to the following: Whenever $X$ is
+  expressed as the disjoint union of three subsets $S_1, S_2, S_3 \subseteq X$, then one of
+  then will be in $\Omega$ (there exists some $i$ such that $S_i\in \Omega$).
+
+#### Lemma: Three picking equivalent to ultrafilter
+
+#### Integration by ultrafilter
+
+- Let $B$ a finite set, $X$ a set, $\Omega$ an ultrafilter on $X$.
+- Given $f: X \to B$, we wish to define $\int_X f d\Omega$.
+- See that the fibers of $f$ partition $X$ into disjoint subsets $f^{-1}(b_1), f^{-1}(b_2), \dots, f^{-1}(b_N)$.
+- The ultrafilter $X$ picks out one of these subsets, say $f^{-1}(b_i)$ ($i$ for "integration").
+- Then we define the integral to be $b_i$.
+
+#### What does this integral mean?
+- We think of $\Omega$ as a probability measure. Subsets in $\Omega$ have measure 1, subsets outside have measure 0.
+- Since we want to think of $\Omega$ as some kind of probability measure, we
+  want that $\int_X 1 \d \Omega = 1$, as would happen when we integrate a probability measure $\int d \mu = 1$.
+- Next, if two functions $f, g$ are equal almost everywhere (ie, the set of points where they agree is in $\Omega$),
+  then their integral should be the same.
+
+
+
+# wegli: Neat tool for semantically grepping C++
+
+- https://github.com/googleprojectzero/weggli
+
+
+# Mostowski Collapse
+
+- Let $V$ be a set, let $U$ be a universe and let $R$ be a well founded relation on $V$.
+- Recall that a relation is well-founded iff every non-empty subset contains a minimal element.
+  Thus, we can perform transfinite induction on $V$.
+- A function $\pi_R: V \to U$ defined via well founded induction as $\pi_R(x) \equiv \{ \pi(y): y \in V \land yRx \}$
+  is called as the mostowski function on $R$. (We suppress $\pi_R$ to $\pi$ henceforth).
+- The image $\pi''V \equiv \{ \pi(x) : x \in V \}$ is called as the Mostowski collapse of $R$.
+- Consider the well founded relation $R \subseteq N \times N$ such that $xRy$ iff $y = x + 1$
+
+
+#### Image of collapse is transitive
+- Let $U$ be a universe, let $(V, <)$ be a well founded relation on $V$.
+- Let $\pi: V \to U$ be the mostowski function on $V$.
+- Suppose $a \in b \in \pi[V]$. We must show that $a \in \pi[V]$.
+- Since $b \in \pi[V]$, there is a $v_b \in V$ such that $\pi(v_b) = b$.
+- By the definition of the Mostowski function, $b = \pi(v_b) = \{ \pi(v) : v \in V \land (v < v_b) \}$
+- Since $a \in b$, this implies that there exists a $v_a < v_b$ such that $\pi(v_a) = a$.
+- This implies that $a$ is in the image of $\pi[V]$: $a \in \pi[V]$.
+- Thus, the set $\pi[V]$ is transitive: for any $b \in \pi[V]$ and $a \in b$, we have shown that $a \in \pi[V]$.
+
+#### Image of collapse is order embedding if $R$ is extensional
+- We already know that $\pi[V]$ is transitive from above.
+- We assume that $R$ is extentional. That is:  $\forall a, aRx = aRy \iff x = y$. [ie, the fibers $R^{-1}(-)$ are distinct].
+- We want to show that $v_1 < v_2 \iff \pi(v_1) \in \pi(v_2)$.
+
+##### Forward: $v_1 < v_2 \implies \pi(v_1) \in \pi(v_2)$:
+- $v_1 < v_2$, then $\pi(v_2) = \{ \pi(x): x < v_2 \}$. This implies that $\pi(v_1) \in \pi(v_2)$.
+
+##### Backward: $\pi(v_1) \in \pi(v_2) \implies v_1 < v_2$:
+- Let $\pi(v_1) < \pi(v_2)$.
+- By the definition of the Mostowski function, we have that $\pi(v_2) = \{ \pi(v'): v' < v_2 \}$
+- Thus, there is some $v'$ such that $\pi(v') = \pi(v_1)$.
+- We wish to show that $v' = v_1$, or that the collapse function is injective.
+
+##### Collapse is injective:
+- We will suppose that the collapse is not injective and derive a contradiction.
+- Suppose there are two elements $v_1, v_2$ such that $v_1 \neq v_2$ but $\pi(v_1) = \pi(v_2)$.
+- WLOG, suppose $v_1 < v_2$: the relation is well-founded, and thus the set $\{v_1, v_2\}$ ought to have a minimal element, and $v_1 \neq v_2$.
+- We must have $\pi(v_1) \subsetneq \pi(v_2)$, 
+
+
+
+
+
+- [Reference: book of proofs](https://www.bookofproofs.org/branches/mostowski-function-and-collapse/)
+
+# Spaces that have same homotopy groups but not the same homotopy type
+
+- Two spaces have the same homotopy type iff there are functions $f: X \to Y$ and $g: Y \to X$
+  such that $f \circ g$ and $g \circ f$ are homotopic to the identity.
+- Now consider two spaces: (1) the point, (2) the topologists's sine curve with two ends attached (the warsaw circle).
+- See that the second space can have no non-trivial fundamental group, as it's impossible to loop around the sine curve.
+- So the warsaw circle has all trivial $\pi_j$, just like the point.
+- See that the map $W \to \{ \star \}$ must send every point in the warsaw circle to the point $\star$.
+- See that the map backward can send $\star$ somewhere, so we are picking a point on $W$.
+- The composite smooshes all of $W$ to a single point. For this to be homotopic to the identity is to say that the space is contractible.
+
+# Fundamental group functor does not preserve epis
+
+- Epis in the category of topological spaces are continuous functions that have dense image.
+- Take a circle $S^1$ and pinch it in the middle to get $S^1 \lor S^1$. this map is an epi: $f: S^1 \to S^1 \lor S^1$.
+- See that this does not induce an epi $\pi(Z) \to \pi_(Z) \star \pi_1(Z)$.
+- Maybe even more simply, the map $f: [0, 1] \to S^1$ is an epi 
+- Thus, fundamental group functor does not preserve epis.
+
+# Epi in topological spaces
+
+
+- Epis in the category of topological spaces are continuous functions that have dense image.
+- Proof: TODO
+
+# Permutation models
+
+- These are used to show create models of `ZF + not(Choice)`.
+- Key idea: if we just have ZF without atoms, then a set has no non-trivial `∈` preserving permutations.
+- Key idea: if we have atoms, then we can permute the atoms to find non-trivial automorphisms of our model.
+- Key idea: in ZF + atoms, the `ordinal`s come from the ZF fragment, where they live in the kernel [ie the universe formed by repeated application
+  of powerset to the emptyset]. Thus, the "order theory" of ZF + atoms is controlled by the ZF fragment.
+- Crucially, this means that the notion of "well ordered" [ie, in bijection with ordinal] is determined by the ZF fragment.
+- Now suppose (for CONTRADICTION) that `A` is well ordered.
+  This means that we Now suppose we have an injection `f: ordinal -> A` where `A` is our set of atoms.
+- Since `A` possesses non-trivial structure preserving
+  automorphisms, so too must `ordinal`, since `ordinal` is a subset of `A`. But this violates the fact that `ordinal` cannot posses
+  a non-trivial automorphism.
+- Thus, we have contradiction. Ths means that `A` cannot be well-ordered, ie, there cannot be an injection `f: ordinal -> A`.
+
+# Almost universal class
+
+- A universal class is one that contains all subsets as elements. 
+- A class is almost universal if every subset of $L$ is a a subset of some element of $L$. But note that $L$ does not need to have all subsets as elements.
+- $L$ is almost universal if for any subset $A \subset L$ (where $A$ is a set), there is some $B \in L$ such that $A \subseteq B$,
+  but $A$ in itself need not be in $L$.
+
+# Godel operations
+
+- A finite collection of operations that is used to create all constructible sets from ordinals.
+- Recall $V$, the von neumann universe, which we build by iterating powersets starting from $\emptyset$.
+  That is, $f(V) = \mathcal P(V) \cup \mathcal P (\mathcal P(V))$
+- We construct $L$ sort of like $V$, but we build it by not taking $P(V)$ fully, but only taking subsets
+  that are carved out by using subsets via first order formulas used to filter the previous stage.
+- This makes sure that the resulting sets are independent of the peculiarities of the surrounding model, by
+  sticking to FOL filtered formulas.
+
+
+
+
 # Orthogonal Factorization Systems
 
 - For a category $C$, a factorization system consists of sets of morphisms $(E, M)$ such that:
@@ -236,6 +518,7 @@ void editor_state_backspace_char(EditorState& s) {
 - Generalization is immediate.
 
 # Fundamental theorem of homological algebra [TODO]
+
 - Let $M$ be an $R$ module.
 - A resolution of $M$ is an exact chain complex `... -> M2 -> M1 -> M0 -> M -> 0`
 - A projective resolution of `P*` of `M` is a resolution such that all the `P*` are projective.
@@ -25572,6 +25855,31 @@ Consider a solution to the problem of finding an $x$ such that $xgx^{-1} = h$.
 We claim that due to the hyperbolicity of the space, such an $x$ cannot be
 "too long".
 
+### Key intuition for hyperbolicity allows us to control word length
+
+- Suppose we are interested to find a $g$ such that $ghg^{-1} = e$
+- We can think of this as a case where $h$ is the base edge of a triangle, $e$ is the opposite vertex,
+  and $g, g^{-1}$ are the other two sides:
+
+```
+    e
+   / \
+  g  g^{-1}
+ /     \
++---h---+
+```
+
+- If the space is euclidea, then $g$ and $g^{-1}$ can be as long as they want to be while $h$ stays the same.
+  The angles $gh, hg^{-1}$ will become larger, and the angle $gg^{-1}$ will become smaller as the length $g$
+  increases.
+- In a hyperbolic space, because the angle sum is less than 180, if we move $e$ too far away, the $h$ will "bend" to
+  maintain the angle sum to be less than 180. But this means that we have distorted the $h$!
+  There is a bound to how long we can make $g$ before we start distorting $h$. This bound on $g$ is exponential
+  in the length of $h$.
+- Alternatively, in a CAT-0 space, the base of the triangle cannot be too far
+  away from the centroid. So we can't have $e$ be moved too far away, because if $g$
+  gets too large.
+
 
 
 
@@ -40072,6 +40380,16 @@ speak slower than you want to.
 > informally, which tends to make speeches loose narrative cohesion. Throw in a
 > few more than you would ordinarily think to do.
 
+# Hair in a bun with stick
+
+- Start with stick like `<---`, such that stick is below hair.
+- Twist stick 90 degrees, taking a twist of the hair along with it, such that it is now vertical (`|`).
+- Twist stick 90 degrees further, this time **scraping the scalp** to go "under" with the tip, such that it is now `--->`.
+- Tie the loose end of the hair that you were holding once more under the stick.
+- Push the stick further into the scalp to the left.
+- Voila, hair-in-a-stick.
+
+- [Reference Video](https://www.youtube.com/watch?v=5EX6_5lY6Yk)
 
 # Favourite Demoscenes
 

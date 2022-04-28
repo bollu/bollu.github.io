@@ -5,6 +5,66 @@
 <link>https://bollu.github.io/</link>
 <description>A universe of Sorts</description>
   <item>
+    <title> Logical relations </title>
+    <guid>https://bollu.github.io/logical-relations.html</guid>
+    <link>https://bollu.github.io/logical-relations.html</link>
+  </item>
+  <item>
+    <title> Pointless topology: Frames </title>
+    <guid>https://bollu.github.io/pointless-topology-frames.html</guid>
+    <link>https://bollu.github.io/pointless-topology-frames.html</link>
+  </item>
+  <item>
+    <title> Introduction to substructural logics: Ch1 </title>
+    <guid>https://bollu.github.io/introduction-to-substructural-logics-ch1.html</guid>
+    <link>https://bollu.github.io/introduction-to-substructural-logics-ch1.html</link>
+  </item>
+  <item>
+    <title> Integrating against ultrafilers </title>
+    <guid>https://bollu.github.io/integrating-against-ultrafilers.html</guid>
+    <link>https://bollu.github.io/integrating-against-ultrafilers.html</link>
+  </item>
+  <item>
+    <title> wegli: Neat tool for semantically grepping C++ </title>
+    <guid>https://bollu.github.io/wegli-neat-tool-for-semantically-grepping-c.html</guid>
+    <link>https://bollu.github.io/wegli-neat-tool-for-semantically-grepping-c.html</link>
+  </item>
+  <item>
+    <title> Mostowski Collapse </title>
+    <guid>https://bollu.github.io/mostowski-collapse.html</guid>
+    <link>https://bollu.github.io/mostowski-collapse.html</link>
+  </item>
+  <item>
+    <title> Spaces that have same homotopy groups but not the same homotopy type </title>
+    <guid>https://bollu.github.io/spaces-that-have-same-homotopy-groups-but-not-the-same-homotopy-type.html</guid>
+    <link>https://bollu.github.io/spaces-that-have-same-homotopy-groups-but-not-the-same-homotopy-type.html</link>
+  </item>
+  <item>
+    <title> Fundamental group functor does not preserve epis </title>
+    <guid>https://bollu.github.io/fundamental-group-functor-does-not-preserve-epis.html</guid>
+    <link>https://bollu.github.io/fundamental-group-functor-does-not-preserve-epis.html</link>
+  </item>
+  <item>
+    <title> Epi in topological spaces </title>
+    <guid>https://bollu.github.io/epi-in-topological-spaces.html</guid>
+    <link>https://bollu.github.io/epi-in-topological-spaces.html</link>
+  </item>
+  <item>
+    <title> Permutation models </title>
+    <guid>https://bollu.github.io/permutation-models.html</guid>
+    <link>https://bollu.github.io/permutation-models.html</link>
+  </item>
+  <item>
+    <title> Almost universal class </title>
+    <guid>https://bollu.github.io/almost-universal-class.html</guid>
+    <link>https://bollu.github.io/almost-universal-class.html</link>
+  </item>
+  <item>
+    <title> Godel operations </title>
+    <guid>https://bollu.github.io/godel-operations.html</guid>
+    <link>https://bollu.github.io/godel-operations.html</link>
+  </item>
+  <item>
     <title> Orthogonal Factorization Systems </title>
     <guid>https://bollu.github.io/orthogonal-factorization-systems.html</guid>
     <link>https://bollu.github.io/orthogonal-factorization-systems.html</link>
@@ -3678,6 +3738,11 @@
     <title> Big list of Hacker news </title>
     <guid>https://bollu.github.io/big-list-of-hacker-news.html</guid>
     <link>https://bollu.github.io/big-list-of-hacker-news.html</link>
+  </item>
+  <item>
+    <title> Hair in a bun with stick </title>
+    <guid>https://bollu.github.io/hair-in-a-bun-with-stick.html</guid>
+    <link>https://bollu.github.io/hair-in-a-bun-with-stick.html</link>
   </item>
   <item>
     <title> Favourite Demoscenes </title>
