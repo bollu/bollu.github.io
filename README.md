@@ -6,7 +6,19 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
-# Logical relations
+# Logical Predicates (OPLSS '12)
+
+- $R_\tau(e)$ has three conditions:
+- (1) $e$ has type $\tau$
+- (2) $e$ has the property of interest ($e$ strongly normalizes / has normal form)
+- (3) The set $R\tau$ is closed under eliminators!
+- My intuition for (3) is that expressions are "freely built" under constructors. On the other hand, it is eliminators
+  that perform computation, so we need $R_\tau$ to be closed under "computation" or "elimination"
+- [Video](https://www.youtube.com/watch?v=h5kDxde6PTc)
+
+
+
+# Logical Relations (Sterling)
 
 - Key idea is to consider relations $R_\tau$ between closed terms of types $\tau_l$ and $\tau_r$. That is, we have 
   have a relation $R_\tau \subseteq \{ (t_l, t_r): (\cdot \vdash t_l : \tau_l), (\cdot \vdash t_r : \tau_r)$.
