@@ -6,6 +6,215 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+# Sheaves in geometry and logic 1.2: Pullbacks
+- Pullbacks are fiber bundles.
+- Pullbacks for presheaves are constructed pointwise.
+- The pullback of $f$ along itself in set is going to be the set of $(x, y)$ such that $f(x) = f(y)$.
+- The pullback of $f: X \to Y$ along itself in an arbitrary category is an object $P$ together parallel pair of arrows `P -k,k'-> X` called the kernel pair.
+- $f$ is monic iff both arrows in the kernel pair are identity `X -> X`.
+- Thus, any functor preserving pullbacks preserves monics, (because it preserves pullback squares, it sends the kernel pair with
+  both arrows identity to another kernel pair with both arrows identity. This means that the image of the arrow is
+  again a monic).
+- The pullback of a monic along any arrow is monic.
+- The pullback of an epi along any arrow is epi in set, but not necessarily always!
+
+# Sheaves in geometry and logic 1.3: Characteristic functions of subobjects
+
+
+```
+    !
+ S --> 1
+ v     |
+ |     | true
+ v     v
+ X---->2
+  phi(S)
+```
+
+- `true: 1 -> 2` is the unique monic such that `true(1) = 1` (where `2 = {0, 1}`)
+- For all monic `m: S -> X` , there must be a unique `phi(S): X -> 2` such that the diagram is a pullback.
+- Then `1 -true-> 2` is called as the subobject classifier. See that `1` is also determined (it is terminal object).
+  So the only "choice" is in what `2` is and what the morphism `1 -true-> 2` is.
+- The definition says that every monic is the pullback of some universal monic `true`.
+
+### Subobject category
+
+- Define an equivalence relation between two monics `m, m': S, S' -> X` where `m ~ m'` 
+  iff there is an iso `i: S -> S''` such that the triangle commutes:
+
+  ```
+  S --i--> S'
+   \      /
+   m\    /m'
+     v  v
+      X
+  ```
+
+- $Sub_C(X)$ is the set of all subobjects of $X$.
+- to make the idea more concrete, let `C = Set` and let `X = {1, 2}`. This has subobjects
+  `[{}], [{1}], [{2}], [{1, 2}]`. 
+- To be clear, these are given by the map `m0: {} -> {1, 2}` (trivial), `m1: {*} -> {1, 2}` where `m1(*) = 1`,
+  `m2: {*} -> {1, 2}` where `m2(*) = 2`, and finally `m3: {1, 2} -> {1, 2}` given by `id`.
+- The category $C$ is well powered when $Sub_C(X)$ is a small set for all $X$. That is, the class of
+  subobjects for all $X$ is set-sized.
+- Now given any arrow $f: Y \to X$, then pulllback of a monic $m: S -> X$ along $f$ is another monic $m': S' \to Y$.
+  (recall that pullback of monic along any arrow is monic).
+- This means that we can contemplate a functor $Sub_C: C^{op} \to \texttt{Set}$ which sends an object $C$
+  to its set of subobjects, and a morphism $f: Y \to X$ to the pullback of the subobjects of $X$ along $f$.
+- If this functor is representable, that is, 
+
+
+
+
+#### $G$ bundles
+
+- If $E \to X$ is a bundle, it is a $G$-bundle if $E$ has a $G$ action such that $\pi(e) = \pi(e')$ iff there
+  is a unique $g$ such that $ge = e'$. That is, the base space is the quotient of $E$ under the group,
+  and the group is "just enough" to quotient --- we don't have redundancy, so we get a unique $g$.
+- Now define the space $GBund(X)$ to be the set of all $G$ bundles over $X$.
+- See that if we have a morphism $f: Y \to X$, we can pull back a $G$ bundle $E \to X$ to get a new bundle $E' \to Y$.
+- Thus we can contemplate the functor `GBund: Space^op -> Set` which sends a space to the set of bundles over it.
+- A bundle `V -> B` is said to be a classifying bundle if any bundle `E -> X` can be obtained as a pullback of the
+  universal bundle `V -> B` along a unique morphism `X -> B`.
+- in the case of the orthogonal group `Ok`, let `V` be the steifel manifold. Consider the quotient `V/Ok`, which
+  is the grassmanian. So the bundle `V -> Gr` is a `G` bundle. Now, some alg. topology tells us that is in fact the universal
+  bundle for `Ok`.
+- The key idea is that this universal bundle `V -> B` represents the functor that sends a space to its set of bundles,
+  This is because any bundle `E -> X` is uniquely determined by a pullback `X -> B`! So the base space `B` determines
+  every bundle. We can recover the bundle `V -> B` by seeing what we get along the identity `B -> B`.
+
+
+#### Sieves / Subobject classifiers of presheaves
+
+- Let `P: C^op -> Set` be a functor.
+- `Q: C^op -> Set` is a subfunctor of `P` iff `Q(c) ⊂ P(c)` for all `c ∈ C`
+  and that `Qf` is a restriction of `Pf`.
+- The inclusion `Q -> P` is a monic arrow in `[C^op, Set]`. So each subfunctor is a subobject.
+- Conversely, all subobjects are given by subfunctors. If `θ: R -> P` is a monic natural transformation
+  (ie, monic arrow) in the functor category `[C^op, Set]`, then each `θC: RC -> PC` is an injection (remember that `RC, PC`
+  live in `Set`, so it's alright to call it an injection)
+- For each `C`, let `QC` be the image of `θC`. So `(QC = θC(RC)) ⊂ PC`.
+- This `Q` is manifestly a subfunctor.
+- For an arbitrary presheaf `C^ = [C^op, Set]`, suppose there is a subobject classifier `O`.
+- Then this `O` must at the very least classify yonedas (ie, must classify `yC = Hom(-, C): [C^op, Set]`.
+- Recall that `Sub_C(X)` was the functor that sent `X ∈ C` to the set of subobjects of `X`, and that
+  the category `C` had a subobject classifier `O` iff `Sub_C(X)` is represented by the subobject classifier `O`.
+  Thus we must have that `Sub_C(X) ~= Hom(X, O)`.
+- Let `y(C) = Hom(-, C)`. Thus we have the isos `Sub_C^(yC) = Hom_C^(yC, O) =[yoneda] O(C)`.
+- This means that the subobject classifier `O: C^op -> Set`, if it exists, must be defined
+  on objects as `O(C) = Sub_C^(yC)`. This means we need to build the set of all subfunctors of `Hom(-, C)`.
+
+###### Sieves
+
+- for an object `c`, a sieve on `c` is a set `S` of arrows with codomain `c` such that `f ∈ S` and
+  for all arrows `fh` which can be defined, we have `fh ∈ S`.
+- If we think of paths `f` as things allowed to get through `c`, this means that some path to some
+  other `b` (via a `h`) followed by an allowed path to `c` (via `f` is allowed).
+  So if `b -f-> c` is allowed, so is `a -h-> b -f-> c`.
+- If `C` is a monoid, then a sieve is just a right ideal
+- For a partial order, a sieve on `c` is a set of elements that is downward closed/smaller closed.
+  If `b <f= c` is in the sieve, then so too is any element `a` such that `a <h= b <f= c`. 
+- So a sieve is a smaller closed subset: if a small object passes the sieve, then so does anything smaller!
+- Let `Q ⊂ Hom(-, c) = yc` be a subfunctor. Then define the set `S_Q = { f | f: a -> c and f ∈ Q(a) }`.
+- Another way of writing it maybe to say that we take `S_q = { f ∈ Hom(a, c) | f ∈ Q(a) }`.
+- This is a sieve because `fh` is pulling back `f: a -> c` along `h: z -> a`, and the action on the hom functor will pull back
+  the set `Hom(a, c)` to `Hom(z, c)`, which will maintain sieveiness, as if `f ∈ Hom(a, c)` then `fh ∈ Hom(z, c)`.
+- This means that a sieve on `c` is the same as a subfunctor on `yc = Hom(c, -)`.
+- this makes us propose a subobject classifier on `[C^op, Set]` to be defined as `O(c) = set of sieves of Hom(c, -)`.
+
+
+# Common Lisp Debugging: Clouseau
+
+- Install the `clouseau` package to get GUI visualizations of common lisp code.
+- Use `(ql:quickload 'clouseau)` to use the package, and then use 
+  `(clouseau:inspect (make-condition 'uiop:subprocess-error :code 42))` to inspect a variable.
+
+# Drawabox: Lines
+
+#### Superimposed liens
+
+- Step 1: Draw a line with a ruler
+- Step 2: keep the pen at the beginning of the line
+- Step 3: Follow the line confidently, try to end at the endpoint of the line.
+
+#### Ghosting lines
+
+- Step 1: Draw two endpoints
+- Step 2: Mimic drawing a line [ghosting].
+- Step 3: confidently draw a line. LIFT THE PEN UP to stop the pen, don't slow down!
+
+# Common Lisp Beauty: paths
+
+```
+; Evaluation aborted on #<UNDEFINED-FUNCTION PATHNAME-TU[E {10034448F3}>
+CL-USER> (pathname-type "/home/siddu_druid/**/*.mlir")
+"mlir"
+CL-USER> (pathname-type "/home/siddu_druid/**/foo")
+NIL
+CL-USER> (pathname "/home/siddu_druid/**/foo")
+#P"/home/siddu_druid/**/foo"
+CL-USER> (pathname-directory "/home/siddu_druid/**/foo")
+(:ABSOLUTE "home" "siddu_druid" :WILD-INFERIORS)
+CL-USER> (pathname-directory "/home/siddu_druid/**/foo/**/bar")
+(:ABSOLUTE "home" "siddu_druid" :WILD-INFERIORS "foo" :WILD-INFERIORS)
+CL-USER> (pathname-tu[ey "/home/siddu_druid/**/foo/**/bar")
+; in: PATHNAME-TU[EY "/home/siddu_druid/**/foo/**/bar"
+;     (PATHNAME-TU[EY "/home/siddu_druid/**/foo/**/bar")
+; 
+; caught STYLE-WARNING:
+;   undefined function: COMMON-LISP-USER::PATHNAME-TU[EY
+; 
+; compilation unit finished
+;   Undefined function:
+;     PATHNAME-TU[EY
+;   caught 1 STYLE-WARNING condition
+; Debugger entered on #<UNDEFINED-FUNCTION PATHNAME-TU[EY {10038F92C3}>
+[1] CL-USER> 
+; Evaluation aborted on #<UNDEFINED-FUNCTION PATHNAME-TU[EY {10038F92C3}>
+CL-USER> (pathname-type "/home/siddu_druid/**/foo/**/bar")
+NIL
+CL-USER> (pathname-type "/home/siddu_druid/**/foo/**/bar.ty")
+"ty"
+CL-USER> (pathname-name "/home/siddu_druid/**/foo/**/bar.ty")
+"bar"
+CL-USER> (pathname-name "/home/siddu_druid/**/foo/**/*.ty")
+:WILD
+CL-USER> (pathname-name "/home/siddu_druid/**/foo/**/*.ty"); Evaluation aborted on #<UNDEFINED-FUNCTION PATHNAME-TU[E {10034448F3}>
+CL-USER> (pathname-type "/home/siddu_druid/**/*.mlir")
+"mlir"
+CL-USER> (pathname-type "/home/siddu_druid/**/foo")
+NIL
+CL-USER> (pathname "/home/siddu_druid/**/foo")
+#P"/home/siddu_druid/**/foo"
+CL-USER> (pathname-directory "/home/siddu_druid/**/foo")
+(:ABSOLUTE "home" "siddu_druid" :WILD-INFERIORS)
+CL-USER> (pathname-directory "/home/siddu_druid/**/foo/**/bar")
+(:ABSOLUTE "home" "siddu_druid" :WILD-INFERIORS "foo" :WILD-INFERIORS)
+CL-USER> (pathname-tu[ey "/home/siddu_druid/**/foo/**/bar")
+; in: PATHNAME-TU[EY "/home/siddu_druid/**/foo/**/bar"
+;     (PATHNAME-TU[EY "/home/siddu_druid/**/foo/**/bar")
+; 
+; caught STYLE-WARNING:
+;   undefined function: COMMON-LISP-USER::PATHNAME-TU[EY
+; 
+; compilation unit finished
+;   Undefined function:
+;     PATHNAME-TU[EY
+;   caught 1 STYLE-WARNING condition
+; Debugger entered on #<UNDEFINED-FUNCTION PATHNAME-TU[EY {10038F92C3}>
+[1] CL-USER> 
+; Evaluation aborted on #<UNDEFINED-FUNCTION PATHNAME-TU[EY {10038F92C3}>
+CL-USER> (pathname-type "/home/siddu_druid/**/foo/**/bar")
+NIL
+CL-USER> (pathname-type "/home/siddu_druid/**/foo/**/bar.ty")
+"ty"
+CL-USER> (pathname-name "/home/siddu_druid/**/foo/**/bar.ty")
+"bar"
+CL-USER> (pathname-name "/home/siddu_druid/**/foo/**/*.ty")
+:WILD
+CL-USER> (pathname-name "/home/siddu_druid/**/foo/**/*.ty")
+```
+
 # Logical Predicates (OPLSS '12)
 
 - $R_\tau(e)$ has three conditions:
