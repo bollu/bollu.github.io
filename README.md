@@ -6,6 +6,109 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+# Coreflection
+
+- A right adjoint to an inclusion functor is a coreflector.
+
+#### Torsion Abelain Group -> Abelian Group
+
+- If we consider the inclusion of abelian groups with torsion into the
+  category of abelian groups, this is an inclusoin functor.
+- This has right adjoint the functor that sends every abelian group into
+  its torsion subgroup.
+- See that this coreflector somehow extracts a subobject out of the larger object.
+-
+#### Group -> Monoid
+- inclusion: send groups to monoids.
+- coreflection: send monoid to its group of units. (extract subobject).
+
+#### Contrast: Reflective subcategory
+
+- To contrast, we say a category is reflective if the inclusion $i$ has a _left_ adjoint
+  $T$.
+- In this case, usually the inclusion has more _structure_, and we the reflector
+  $T$ manages to _complete_ the larger category to shove it into the subcategory.
+- Eg 1: The subcategory of complete metric spaces embeds into the category of
+  metric spaces. The reflector $T$ builds the completion.
+- Eg 2: The subcategory of sheaves embeds into the category of presheaves. The
+  reflector is sheafification.
+
+#### General Contrast
+
+- $T$ (the left adjoint to $i$) adds more structure. Eg: completion, sheafification.
+- This is sensible because it's the left adjoint, so is kind of "free".
+- $R$ (the right adjoint to $i$) deletes structure / pulls out substructure.
+  Eg: pulling out torsion subgroup, pulling out group of units.
+- This is sensible because it's the right adjoint, and so is kind of "forgetful",
+  in that it is choosing to forget some global data.
+
+#### Example from Sheaves
+- This came up in the context of group actions in Sheaves in geometry and logic.
+- Suppose $G$ is a topological group. Consider the category of $G$ sets,
+  call it $BG$.
+- If we remove the topology on $G$ to become the discrete topology, we get
+  a group called $G^\delta$. This has a category of $G^\delta$ sets,
+  called $BG^\delta$.
+   
+# Better `man` Pages via `info`
+
+- I recently learnt about `info`, and it provides so much more quality than `man`!
+- `info` pages about things like `sed` and `awk` are actually useful.
+
+
+# The Zen of juggling three balls
+
+- Hold one ball in the left hand `A`, two in the right hand `B, C`.
+  This initial configuration is denoted `[A;;B,C]`. 
+- throw `B` from the right hand to the left hand. This configuration is denoted 
+  by `[A;B←;C]` where the `B←` is in the middle since it is in-flight, and has `←`
+  since that's the direction its travelling.
+- When the ball `B` is close enough to the left hand that it can be caught, *throw*
+  ball `A`. Thus the configuration is now `[;(A→)(B←);C]`.
+- Now catch ball `B`, which makes the configuration `[B;A→;C]`.
+- With the right hand, throw `C` (to anticipate catching `A`). This makes the
+  configuration `[B;(A→)(C←);]`
+- Now catch the ball `A`, which makes the configuration `[B;C←;A]`.
+- See that this is a relabelling of the state right after the initial state. Loop back!
+
+### The Zen
+- The key idea is to think of it as (1) "throw (B)" (2) "throw (A), catch (B)", (3) "throw (C), catch (A)", and so on.
+- The cadence starts with a "throw", and then settles into "throw, catch", "throw catch", "throw, catch", ...
+- This cadence allows us to actually succeed in the act of juggling. It fuses the hard parts
+  of actually freeing a hand and accurately catching the ball. One can then focus attention
+  on the other side and solve the same problem again.
+
+# Example of lattice that is not distributive
+
+- Take a 2D vector space, and take the lattice of subspaces of the vector space.
+- Take three subspaces; `a = x`, `b = y`, `c = x + y`.
+- Then see that `c /\ (a \/ b) = c`, while `c /\ a = c /\ b = 0`,
+  so `(c /\ a) \/ (c /\ b) = 0`.
+
+# Patat
+
+- Make slides that render in the terminal!
+- https://github.com/bollu/patat
+
+# Common Lisp LOOP Macro
+
+#### Loop with index:
+
+```
+(loop for x in xs for i from 0 do ...)
+```
+
+#### Nested loop appending
+
+```
+(loop for x in `(1 2 3 4) append
+      (loop for y in `(,x ,x) collect (* y y))
+```
+
+# Mitchell-Bénabou language
+
+- https://ncatlab.org/nlab/show/Mitchell-B%C3%A9nabou+language
+
 # Sheaves in geometry and logic 1.2: Pullbacks
 - Pullbacks are fiber bundles.
 - Pullbacks for presheaves are constructed pointwise.
