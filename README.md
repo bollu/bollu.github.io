@@ -6,6 +6,588 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+
+# Category where coproducts of computable things is not computable
+
+- Modular lattices are an algebraic variety.
+- Consider the category of modular latties.
+- The free modular lattice on 2 elements and on 3 elements has dediable equality, by virtue of being finite. 
+- The free modular lattice on 5 elements does not have decidable equality.
+- The coproduct of free modular lattice on 2 and 3 generators is the free modular
+  lattice on 5 generators, because $F(2 \cup 3) = F(2) \sqcup F(3)$  (where $2, 3$ are two and three element sets),
+  because free is left adjoint to forgetful, and the left adjoint $F$ preserve colimits! 
+
+# Homotopy continuation
+
+
+- [Rigorous arithmetic with approximate roots of polynomials --- CAG L16](https://www.youtube.com/watch?v=XC_tfjjBPLc&list=PL5ErEZ81Tyqc1RixHj65XA32ejrS2eEFK&index=38)
+
+# Relationship between linearity and contradiction
+
+- https://xorshammer.com/2021/04/08/but-why-is-proof-by-contradiction-non-constructive/
+
+# Monads from Riehl
+
+- I'm having some trouble enmeshing my haskell intuition for monads with the rigor, so this
+- A category is said to be monadi 
+  is an expository note to bridge the gap.
+
+#### What is a monad
+- A monad is an endofunctor `T: C -> C` equipped with two natural transformations:
+- (1) `return/eta: idC => T` [yeeta, since we are yeeting into the monad.]
+- (2) `join/mu: T^2 => T`, such that two laws are obeyed:
+
+- First law: `mu, T` commutation:
+
+```
+T^3(x) --T(@mu@x)--> T^2@x
+|                   |
+mu@(T@x)          mu@x
+|                   |
+v                   v
+T^2(x)---mu@x-----> T(x)
+```
+
+- Second law: `mu, eta` cancellation:
+
+
+```
+(Tx) --eta@(T@x)--> T^2(x)
+|EQ                 |
+|                   |
+T@(eta@x)         mu@x
+|                   |
+v                 EQv
+T^2(x)---mu@x---> T(x)
+```
+
+- `mu .  eta T = mu . T eta = 1`
+
+
+
+#### Monad from adjunction
+
+- Any adjunction between a Free functor `F: L -> H` and a forgetfUl/Underlying functor `U: H -> L`
+  `F |- U` gives a monad. The categories are named `L, H` for `lo, high` in terms of the amount of
+  structure they have. We go from low structure to high structure by the free functor.
+- The monad on `L` is given by `T := UF`.
+- Recall that an adjunction gives us `pullback: (F l -> h) -> (l -> U h)` and `pushfwd: (l -> U h) -> (F l -> h)`.
+  The first is termed pullback since it takes a function living in the high space and pulls it back to the low space.
+- This lets us start with `(F l -> F l)`, peel a `F` from the left via `pullback`
+  to create  (l -> U (F l))`. That is we have `return: l -> T l`.
+- In the other direction, we are able to start with `(U h -> U h)`, peel a `U` from the right via `pushforward` to
+  create `(F U h -> h)`. This allows us to create the counit as `T^2 l = F U F U l = F (U F) U l -> F U l = T l`.
+
+#### Algebra for a monad $C^T$.
+
+- Any monad, given by `(T: C -> C, return: 1C => T, join: T^2  => T)` has a category of `T`-algebras associated to it.
+- The objects of `T-alg` are morphisms `f: Tc -> c`.
+- The morphisms of `T-alg` between `f: Tc -> c` and `g: Td -> d` are commuting squares, determined by an `arr: c -> d`
+
+```
+Tc -T arr-> Td
+|           |
+f           g
+|           |
+v           v
+c   -arr->  d
+```
+
+- The notation for the category as $C^T$ makes some sense, since it consists of objects of the form `Tc -> c` which matches
+  somewhat with the function notation. We should have written $C^{TC}$ but maybe that's too unweildy.
+
+
+#### Factoring of forgetful functor of adjunction
+
+- Any adjunction `(F: L -> H, U:  H -> L)` with associated monad `T` allows us to factor `U: H -> L` as:
+
+```
+H -Stx-> L^T -forget-> L
+```
+
+- So we write elements of `H` in terms of syntax/"algebra over `L`". We then forget the algebra structure to keep only the low form.
+- The way to think about this is that any object in the image of `U` in fact has a (forgotten) algebra structure, which is why
+  we can first go to `L^T` and then forget the algebraic structure to go back to `L`. It might be that this transition from `H` to `L^T` 
+  is very lossy. This means that the algebra is unable to encode what is happening in `H` very well.
+
+#### Monadic adjunction
+
+- Let us consider an adjunction `(F: L -> H, U: H -> L)` with monad `T`. Factor `U` via `L^T` as:
+
+```
+H -Stx-> L^T -forget-> L
+```
+
+- The adjunction is said to be monadic if in the factoring of `U` via `L^T`, it happens
+   that `H ~= L^T`. That is, `Stx` is an equivalence between `H` and `L^T`.
+- The way to think about this is that any object in the image of `U` in fact has a (forgotten) algebra structure, and
+  this algebra structure actually correctly represents everything that was happening in `H`.
+- Another way to say **the adjunction `F: L -> H: U` is monadic** is to say that is that
+   **`F` is monadic over `U`**. We imagine the higher category `H` and the free functor `F` lying over `L` and `U`.
+- **Warning**: This is a STRONGER condition than saying that `UF` is a monad. `UF` is ALWAYS a monad for ANY adjunction.
+  This says that `H ~= L^T`, via the factoring `H -Stx-> L^T -forget-> L`.
+- We sometimes simply say that **`U` is monadic**, to imply that there exists an `F` such that `UF` is an adjunction
+  and that `U ~= L^T`.
+
+#### Category of models for an algebraic theory
+
+- A functor is finitary if it preserves filtered colimits.
+- In particular, a monad `T : L -> L` is finitary if it preserves filtered colimits in C.
+- If a right adjoint is finitary, then so is its monad because its left adjoint preserves all colimits.
+  Thus, their composite preserves filtered colimits.
+- A category `H` is a **category of models for an algebraic theory** if there
+  is a finitary monadic functor `U : H -> Set`.
+
+#### Limits and colimits in categories of algebras
+
+
+- We say that `H` is monadic over `L` iff the adjunction `F: L -> H: U` such that the monad `T: L -> L := UF` 
+  gives rise to an equivalence of categories `H ~= L^T`. 
+
+## Riehl: Limits and colimits in categories of algebras
+
+Here, we learn theorems about limits and colimits in `L^T`.
+
+#### Lemma 5.6.1: If `U` is monadic over `F`, then `U` reflects isos
+
+- That is, if for some `f: h -> h'`, if Uf: Uh -> Uh'` is an iso, then so is `f`.
+- Since the adjunction `F |- U` is a monadic adjunction (`U` is monadic over `F`), we know that `H ~= L^T`, and `U` equals
+  the forgetful functor `(H = L^T) -> L`. 
+- Write the arrow `f: h -> h'` as an arrow in `L^T` via the commuting square datum 
+  determined by `g: h -> h'`:
+
+```
+Tl-Tg->Tl'
+|      |  
+a      a'
+|      |
+v      v
+l--g-->l'
+```
+
+- Since we assume that `U(Tg)` is iso, this means that `g` is iso. This means that there exists a `g'`
+  which is the inverse of `g`. But this means that the diagram below commutes:
+
+
+```
+Tl<-Tg'-Tl'
+|      |  
+a      a'
+|      |
+v      v
+l<-g'--l'
+```
+
+- For a proof, we see that `a' . Tg = g . a'`. Composing by `g'` on left, giving: `g' . a' . Tg = a'`. 
+  Composing by `Tg'` on the right, we get: `g'. a' = a' . Tg'`. That's the statement of the above square.
+- This means we have created an inverse `Tg'`, which reflects `g'` into `L^T`.
+
+
+#### Corollary 5.6.2: Bijective continuous functions in CHaus are isos
+
+- When we forget to `Set`, we see that bijections are the isos. Thus, in `CHaus` (compact haussdorff spaces)
+  which is monadic over `Set`, we have that the arrows that forget to become isos in set, ie, continuous
+  bijections are also isos.
+
+#### Corollary 5.6.4: Any bĳective homomorphism arising from a monadic adjunction which forgets to `Set` will be iso
+
+- Follow the exact same proof.
+
+#### Thm 5.6.5.i A monadic functor `U: H -> L` creates any limits that `L` has.
+
+- Since the equivalence `H ~= L^T` creates all limits/colimits, it suffices to show the result for `U^T: L^T -> L`.
+- Consider a diagram `D: J -> C^T` with image spanned by `(T(D[j]) -f[j]-> D[j])`. 
+- Consider the forgotten diagram `U^TD: J -> C` with image spanned by `D[j]`.  Create the limit cone 
+  `P` (for product, since product is limit) with morphisms `pi[j]: P -> D[j]`. We know this limit exists since we assume that L`
+  has this limit that `U^T` needs to create.
+- We can reinterpret the diagram `D: J -> C^T` as a natural transformation between two functors `Top, Bot: J -> C`.
+  These functors are `Top(j) := T(D[j])`,
+  `Bottom(j) := D[j]`.
+- The the natural transformation is given by `eta: Top => Bottom`, 
+  with defn `eta(j) := D[j]-f[j]-> D[j]` where `f[j]` is given by the image of `(T(D[j]) -f[j]-> D[j])`.
+- So we see that `eta: Top => Bot` can also be written as `eta: TD => D` since `Top ~= TD` and `Bot ~= D`.
+- Now consider the composition of natural transformations `Const(TL) =Tpi=> TD =gamma=> D` all in `J -> C`.
+  This gives us a cone with summit `TL`. 
+- This cone with summit `TL` factors through `L` via the unique morphism `lambda: TL -> L`.
+  We wish to show that `(TL -lambda-> L)` is a `T`-algebra, and is the limit of `D`.
+- Diagram chase. Ugh.
+
+#### Corollary 5.6.6: The inclusion of a reflective subcategory creates all limits
+- The inclusion of a reflective subcategory is monadic.
+- This lets us create all limits by the above proposition.
+
+#### Corollary 5.6.7: Any category monadic over `Set` is complete
+- `Set` has all limits.
+- The forgetful functor `U: H -> L` creates all limits that `L=Set` has.
+- Thus `H` has all limits, ie. is complete.
+
+#### Corollary 5.6.9: `Set` is cocomplete
+
+- The contravariant power set functor `P: Set^op -> Set` is monadic.
+- `Set` has all limits, and `P` creates all limits.
+- Thus all limits of `Set^op` exist, ie, all colimits of `Set` exist.
+
+#### Category of models for alg. theory is complete
+
+TODO
+
+#### Category of algebras has coproducts
+
+- We show how to construct the free product of monoids via haskell. The same principle
+  generalizes for any algebraic theory:
+
+```hs
+import Control.Monad(join)
+
+-- |(a*|b*)* ~~simplify~~> (a|b)*
+eval :: Monoid a => Monoid b => [Either [a] [b]] -> [Either a b]
+eval = map (either (Left . mconcat) (Right . mconcat))
+
+-- | a*|b* -> (a|b)* with no simplification
+transpose :: Either [a] [b] -> [Either a b]
+transpose = either (map Left) (map Right)
+
+-- | (a*|b*)* -> (a|b)* with no simplification
+flatten :: [Either [a] [b]] -> [Either a b]
+flatten = join . map transpose
+
+
+-- force: eval = flatten | via coequallizer
+```
+
+#### If $T: C \to C$ is finitary and $C$ is complete and cocomplete, then so is $C^T$   
+
+- We have already seen that if $C$ is complete then so is $C^T$
+- We have also seen that $C^T$ contains coproducs
+- So is we show that $C^T$ has coequalizers, then we get cocomplete, since any colimit can be
+  expressed as coproduct-coequalizer.
+- To show that all coequalizers exists is to show that there is an adjoint to
+  the functor `const: [C^T] -> [J -> C^T]` where `J := [a -f,g-> b]`
+  is the diagram category for coequalizers.
+- Recall that the adjoint sends a diagram `[J -> C^T]` to the nadir that is the coequalizer in `C^T`.
+- See that the constant functor trivially  preserves limits.
+- To show that it possesses an adjunction, we apply an **adjoint functor theorem** (fuck me).
+  In particular, we apply the general adjoint functor theorem, so we must show that the solution
+  set condition is satisfied.
+- Recall that the solution set condition for $F: C \to D$ requires that for each $d \in D$,
+  the comma category $const(d) \downarrow F$ admit weakly initial objects.
+- Unwrapping that definition: For each $d \in D$, there is a solution set.
+  Tht is, there exists a small set $I$
+  and a family of objects $c_I$ and a family of morphisms $f_I: d \to F(c_i)$ such that
+  any morphism $d \to F(c)$ in $D$ can be factored via some $f_i$ as $d \xrightarrow{f_I} F(c_i) \xrightarrow{g} F(c) = d \to F(c)$.
+- To apply the theorem, we must produce a solution set for every object in `[J -> C^T]`, that is,
+  for each parallel pair of morphisms $f, g: (A, \alpha) \to (B, \beta)$.
+- We will produce a solution set with a single element by creating a fork $(Q, u)$ such that any other fork
+  factors through this fork (perhaps non uniquely!) So we create:
+
+$$
+(A, \alpha) \xrightarrow{f, g} (B, \beta) \xrightarrow{q} (Q, u)
+$$
+
+- If we know how to create coequalizers in $C^T$, then this would be easy: we literally just create a coequalizer.
+- Instead, we create some "approximation" of the coequalizer with $(Q, u)$.
+- To start with, we define $q_0: B \to Q_0$ in $C$ of the pair $(A \xrightarrow{f, g} B$).
+- If $Tq_0$ would be the coequalizer of $Tf, Tg$ then we are done.
+  But this is unlikely, since a monad need not preserve coequalizers.
+- Instead, we simply calculate the coequalizer of $Tf, Tg$ and call this $q_1: B \to Q_1=TQ_0$.
+- Repeat inductively to form a directed limit (colimit). 
+- Monad preserves filtered colimits, since in $UF$, $F$ the left adjoint preserves all colimits, and $U$
+  the right adjoint preserves colimits since it simply forgets the data in  
+
+# Combinatorial Cauchy Schwarz
+
+#### Version 1
+
+- Suppose you have r pigeons and n holes, and want to minimize the number of pairs of pigeons in the same hole.
+- This can easily be seen as equivalent to minimizing the sum of the squares of the number of pigeons in each hole:
+  $\min_{h: i > j} (h[i] - h[j])^2$ where $h[i]$ is the hole of the $i$th pigeon.
+- Classical cauchy schwarz: $x_1^2 + x_2^2 + x_3^2 \geq 1/2(x_1 + x_2 + x_3)^2$
+- Discrete cauchy schwarz: On placing a natural number of pigeons in each hole, The number of pairs of pigeons in the
+  same hole is minimized iff pigeons are distributed as evenly as possible.
+- Pigeonhole principle: When $r = m + 1$, the best split possible is $(2, 1, 1, \dots)$. 
+
+#### Version 2
+
+- I recently learned about a nice formulation of this connection from a version of the Cauchy–Schwarz
+  inequality stated in Bateman's and Katz's article.
+- Proposition: Let $X$ and $Y$ both be finite sets and let `f:X→Y` be a function.
+- $|ker f| \cdot |Y| \geq |X|^2$. (Where `ker f` is the kernel of `f`, given as the equalizer of `X*X-f*f-> X`.
+    More explicitly, it is the subset of `X*X`  `ker(f) := { (x, x') : f(x) = f(x') }`).
+- Equality holds if and only if every fiber has the same number of elements.
+- This is the same as the version 1, when we consider $f$ to be the function $h$ which assigns pigeons to holes.
+  Every fiber having the same number of elements is the same as asking for the pigeons to be evenly distributed.
+- Compare: $|ker(f)| \cdot |Y| \geq |X|^2$ with $(x_1^2 + x_2^2 + x_3^2) \cdot n \geq (x_1 + x_2 + x_3)^2$. Cardinality replaces
+  the action of adding things up, and $|X|^2$ is the right hand side, $|ker(f)|$ is the left hand side, which is the sum of squares
+  
+
+# Bezout's theorem 
+
+- [On Bezout's theorem Mc coy](https://sites.math.washington.edu/~morrow/336_19/papers19/Dathan.pdf)
+- Let $k$ be algebraically closed.
+- Let $R \equiv k[x, y, z]$ be ring.
+- We wish to detect number of intersections betweeen $f, j \in k[x, y, z]$ counted upto multiplicity.
+- For any point $a \in k$, denote $R_a$ to be the localization of $R$ at the multiplicative subset $D_a \equiv \{ f \in R: f(a) \neq \}$
+  ($D$ for does not vanish)$.
+- So $R_a \equiv D_a^{-1}(R)$, which concentrates attention around point a$.
+
+#### Intersection multiplicity $i[f \cap g](a)$
+- Define the intersection multiplicyt of $f, g$ at $a$ by notation $i[f \cap g](a)$.
+- Defined as $i[f \cap g](a) \equiv dim_k(R_a/(f, g)_a)$. 
+- That is, we localize the ring at $a$ and quotient by the ideal generated by $f, g$,
+  and then count the dimension of this space as a $k$ vector space.
+
+####  $f(a) \neq 0$ or $g(a) \neq 0$ implies $i[f \cap g](a) \equiv 0$
+- WLOG, suppose $f(a) \neq 0$. Then localization at $a$ makes $f$ into a unit. The ideal $(f, g)_a \equiv R_a$ since the ideal
+  explodes due to the presence of the local unit $f_a$. Thus, $R_a/(f, g)_a \equiv 0$.
+
+#### $f(a) = 0$ and $g(a) = 0$ implies $i[f \cap g](a) \neq 0$.
+- If both vanish, then $(f, g)_a$ is a real ideal of $R_a$.  
+
+
+#### Examples
+- $x-0$ and $y-0$ at $(0, 0)$ have multiplicity $D_{(0, 0)}^{-1}(k[x, y]/(x, y))$ which is just $k$, which has dimension $1$.
+  So they intersect with dimension $1$.
+- $x-1$ and $y-1$ at $(0, 0)$ have multiplicity $D_{(0, 0)}^{-1}(k[x, y]/(x - 1, y - 1))$. The ideal $(x - 1, y - 1)$ blows up because $x - 1 \in D_{(0, 0)}$,
+  and thus the quotient is $0$, making the dimension $0$.
+- $x^2-y$ and $x^3-y$ at $(0, 0)$ gives quotient ring $k[x, y]/(x^2-y, x^3-y)$, which is the same as $k[x, y]/(x^2 - y, x^3 - y, 0)$, which is equal 
+  to $k[x,y]/(x^2, x^3, y)$, which ix $k[x]/(x^2)$. This is the subring of the form $\{ a + bx : a,b \in k \}$ which has dimension $2$ as a $k$ 
+  vector space. So this machinery actually manages to captures the degree 2 intersection between $y=x^2$ and $y=x^3$ at $(0, 0)$.
+
+##### Intersection cycle ($f \cap g$)
+- Define $f \cap g \equiv \sum_{a \in \texttt{space}} i[f \cap g](a) \cdot a.$
+- It's a generating function with intersection multiplicity as coefficients hanging on the clothesline of points.
+
+#### Intersection number $\hash(f \cap g)$
+- Given by $\hash(f \cap g) \equiv \sum_{a \in \texttt{space}} i[f \cap g](a)$. This is the count of number of intersections.
+
+#### Lemma: $f \cap g = g \cap f$
+- Mental note: replace $f \cap g$ with "ideal $(f, g)$" and stuff makes sense.
+- Follow immediately since $(f, g) = (g, f)$ and the definition of $i[f \cap g](a) = R_a/(f, g)_a$ which is equal
+  to $R_a/(g, f)_a = i[g \cap f](a)$
+
+#### Lemma: $f \cap (g + fh) = f \cap g$
+- $(f, g + fh) \equiv (f, g)$.
+
+#### $f \cap gh \equiv f \cap g + f \cap h$
+- Heuristic: if $f(a)$ and $gh(a)$ vanish, then either $f(a), g(a)$ vanish or $f(a), h(a)$ vanish, which can be counted by
+  $f \cap g + f \cap h$
+
+#### Lemma: if $f, g$ are nonconstant and linear then $\hash(f \cap g) = 1.
+- Recall that we are stating this within the context of $k[x, y, z]$. 
+- So $f, g$ are homogeneous linear polynomials $f(x, y, z) = ax + by$, $g(x, y, z) = cx + dy$.
+- Sketch: if they have a real solution, then they will meet at unique intersection by linear algebra.
+- if they do not have a unique solution, then they are parallel, and will meet at point at infinity which exists
+  because we have access to projective solutions.
+
+##### Lemma: homogeneous polynomial $g \in k[p, q]$ factorizes as $\alpha_0 p^t \prod_{i=1}{n-t}(p - \alpha_i q)$: $\alpha_0 \neq 0$ and $t > 0$
+- Key idea: see that if it were $g \in k[p]$, then it would factorize as $p^t \prod_i (p - \alpha_i)$
+- To live in $k[p, q]$, convert from $g(p, q) \in k[p, q]$ to $g(p/q, q/q) \in k[(p/q)]$, which is the same
+  as $g(t, 1) \in k[t]$.
+- Since we are homogeneous, we know that $g(\lambda p, \lambda q) = \lambda^{deg(g)} g(p, q)$. This lets us
+  make the above transform:
+
+- $g(p/q, q/q) = g(p/q, 1) = (p/q)^k \prod_{i : i +k = n} (p/q - \alpha_i)$.
+- $g(p/q, q/q) = g(p/q, 1) = (p/q)^k \prod_{i : i + k = n} (p - \alpha_i q)/q$.
+- $g(p/q, q/q) = g(p/q, 1) = p^k/q^k \cdot (1/q^{n-k}) \cdot \prod_{i : i + k = n} (p - \alpha_i q)$.
+- $g(p/q, q/q) = g(p/q, 1) = p^k / q^n \prod_{i : i + k = n} (p - \alpha_i q)$.
+- $g(p, q) = q^n \cdot g(p/q, 1) = q^n \cdot p^k / q^n \prod_{i : i + k = n} (p - \alpha_i q)$.
+- $g(p, q) = q^n \cdot g(p/q, 1) =  p^k \prod_{i : i + k = n} (p - \alpha_i q)$.
+- This proves the decomposition that $g(p, q) = q^k \prod_i (p - \alpha_i q)$.
+
+
+##### Lemma: homogeneous polynomial $g \in k[p, q]$ factorizes as $\alpha_0 q^t \prod_{i=1}{n-t}(p - \alpha_i q)$ with $t > 0$.
+- This is different from the previous step, since we are pulling out a factor of $q^t$ this time!
+- We cannot argue "by symmetry" since the other terms are $(p - \alpha_i q)$. If it really were symmetry, then we should
+  have $(q - \alpha_i p)$ which we don't.
+- So this new lemma is in fact DIFFERENT from the old lemma!
+
+- Key idea: see that if it were $g \in k[p]$, then it would factorize as $p^t \prod_i (p - \alpha_i)$
+- To live in $k[p, q]$, convert from $g(p, q) \in k[p, q]$ to $g(p/q, q/q) \in k[(p/q)]$, which is the same
+  as $g(t, 1) \in k[t]$.
+- Since we are homogeneous, we know that $g(\lambda p, \lambda q) = \lambda^{deg(g)} g(p, q)$. This lets us
+  make the above transform:
+
+- $g(p/q, q/q) = g(p/q, 1) = (p/q)^k \prod_{i : i +k = n} (p/q - \alpha_i)$.
+- $g(p/q, q/q) = g(p/q, 1) = (p/q)^k \prod_{i : i + k = n} (p - \alpha_i q)/q$.
+- $g(p/q, q/q) = g(p/q, 1) = p^k/q^k \cdot (1/q^{n-k}) \cdot \prod_{i : i + k = n} (p - \alpha_i q)$.
+- $g(p/q, q/q) = g(p/q, 1) = p^k / q^n \prod_{i : i + k = n} (p - \alpha_i q)$.
+- $g(p, q) = q^n \cdot g(p/q, 1) = q^n \cdot p^k / q^n \prod_{i : i + k = n} (p - \alpha_i q)$.
+- $g(p, q) = q^n \cdot g(p/q, 1) =  p^k \prod_{i : i + k = n} (p - \alpha_i q)$.
+- This proves the decomposition that $g(p, q) = q^k \prod_i (p - \alpha_i q)$.
+
+## Lemma: $f \in k[x, y, z]$ and $g \in [y, z]$ homogeneous have $def(f) deg(g)$ number of solutions
+- This is the base case for an induction on the degree of $x$ in $g$. here, the degree of $x$ in $g$ is zero.
+- to compute $i[f(x, y, z) \cap g(y, z)]$, we write it as $i[f(x, y, z) \cap z^k \prod_{i : i + k = n} (y - \alpha_i z)]$
+- This becomes $i[f(x, y, z) \cap y^k] + \sum_i i[f(x, y, y) \cap  (y - \alpha_i z)]$.
+- Intersecting with $y^k$ gives us $k$ times the intersection of $y$ with $f(x, y, z)$, so we have
+  the eqn $i[f(x, y, z) \cap z^k] = k i[f(x, y, z) \cap z]$.
+- The full eqn becomes $k i[f(x, y, z) \cap z] + \sum_i i[f(x, y, z) \cap  (y - \alpha_i z)]$.
+
+
+
+##### Solving for $i[f(x, y, z) \cap z]$
+
+- Let's deal with the first part.
+- See that $i[f(x, y, z) \cap z]$ equals $i[f(x, y, 0) \cap z]$, because we want a common intersection, thus can impose
+  $z = 0$ on $f(x, y, z)$.
+- We now write $f(x, y, 0) = \mu y^t \prod_j (x - \beta_j y)$. 
+
+##### Solving for $i[f(x, y, z) \cap (y - \alpha_i z)]$
+- Here, we must impose the equation $y = \alpha_i z$. 
+- Thus we are solving for $f(x, z, \alpha_i z)$. Once again, we have an equation of two variables, $x$ and $z$.
+- Expand $f(x, z, \alpha_i z) = \eta_i z^{l_i} \prod_{j=1}{m - l_i}(x - \gamma_{ij} z)$
+- This makes the cycles to be $l_i (z \cap (y - \alpha_i z)) + \sum_j (x - \gamma_{ij} z) \cap (y - \alpha_i z)$.
+- The cycle $(z \cap (y - \alpha_i z))$ corresponds to setting $z = 0, y - \alpha_i z = 0$, which sets $y=z=0$. 
+  So this is the point $[x:0:0]$.
+- The other cycle is $(x - \gamma_{ij} z) \cap (y - \alpha_i z)$, which is solved by $(\gamma_{ij} z : \alpha_i z : z)$.
+- In total, we see that we have a solution for every cycle.
+
+#### Inductive step
+
+- Let $deg(f)$ denote total degree of $f$, $deg_x(f)$ denote $x$ degree.
+- Let $\deg_x(f) \gep deg_x(g)$.
+- We treat $f, g$ as polynomials in a single variable $x$, ie, elements $(k[y, z])[x]$.
+- We want to factorize $f$ as $f = Qg + R$. But to do this, we need to enlarge the coefficient ring $k[y, z]$
+  into the coefficient *field* $k(y, z)$ so the euclidean algorithm can work. 
+- So we perform long division to get polynomials $Q, R \in (k(y, z)[x]$ such that $f = Qg + R$.
+- Since $f, g$ are coprime, we must have $R$ nonzero. Now these $Q, R$ are rational *functions* since they live in $k(y, z)$.
+- Take common denominator of $Q, R$ and call this $h \in k[y, z]$ (ie, it is the polynomial denominator).
+- Then $hf = (hQ)g + (hR)$ which is $hf = qg + r$ where $q \equiv hQ \in k[y, z]$ and $r \equiv hR \in k[y, z]$.
+  So we have managed to create polynomials $q, r$ such that $hf = qg + r$.
+- Let $c = gcd(g, r)$. $c$ divides $g$ and $r$, thus it divides $qg + r$, ie, it divides $hf$.
+- Dividing through by $c$, we get $h'f = qg' + r'$, where $h = h'c$, $g = g'c, $r = r'c$.
+- We assume (can be shown) that these are all homogeneous.
+- Furthermore, we started with $gcd(g, f) = 1$. Since $g'$ divides $g$, we have $gcd(g', f) = 1$.
+- $c$ cannot divide $f$, since $c = gcd(g, r)$, and $g, f$ cannot share nontrivial common divisors. Thus, $gcd(c, f) = 1$.
+- We have some more GCDs to check, at the end of which we write the intersection equation:
+
+$$
+f \cap g = ()
+$4
+
+- [Borcherds Video](https://www.youtube.com/watch?v=UJssbO-e2yw)
+- [On Bezout's Theorem: Dathan Ault-McCoy](https://sites.math.washington.edu/~morrow/336_19/papers19/Dathan.pdf)
+
+# Example for invariant theory
+
+- Consider $p(z, w) = p_1 z^2 + p_2 zw + p_3 w^2$ --- binary forms of degree two.
+- The group $SL(2, Z)$ acts on these by substituting $(z, w) \mapsto PSL(2, Z) (z, w)$.
+- We can write the effect on the coefficents explicitly: $(p_1', p_2', p_3') = M (p_1, p_2, p_3)$.
+- So we have a representation of $SL(2, Z)$.
+- An example 
+
+- [IAS lecture](https://www.youtube.com/watch?v=3jksqrYuvuk)
+
+# Counterexample to fundamental theorem of calculus?
+
+- Integral of `1/x^2` from `[-1, 1]` should equal `-1/x` evaluated at `(-1, 1)` which gives `-1/1 - (-(-1)/1)`, that is, `-1 - 1 = -2`.
+- But this is absurd since $1/x^2$ is always positive in $[-1, 1]$.
+- What's going wrong?
+
+# Why a sentinel of `-1` is sensible
+
+- See that when we have an array, we usually index it with an array index of `0 <= i < len`.
+- If `len = 0`, then the only "acceptable" `i` is `-1`, since it's the greatest integer that is less that `len=0`.
+
+# Data structure to maintain mex
+
+#### offline
+
+- Key idea: maintain a set of numbers that we have not seen, and maintain
+  set of numbers we have seen. Update the set of unseen numbers on queries.
+  The mex is the smallest number of this set.
+
+#### online
+
+- Key idea: exploit cofinality. Decompose set of numbers we have not seen into two parts:
+ a finitary part that we maintain, and the rest of the infinite part marked by an `int` that tells
+ us where the infinite part begins.
+
+```cpp
+set<int> unseen;
+map<int, int> freq;
+// unseen as a data structure maintains
+// information about [0..largest_ever_seen]
+int largest_ever_seen; 
+
+
+void init() {
+    unseen.insert(0);
+}
+
+void mex_insert(int k) {
+    freq[k]++;
+    for(int i = largest_ever_seen+1; i <= k; ++i) {
+        unseen.insert(i);
+    }
+    unseen.erase(k);
+    largest_ever_seen = max(largest_ever_seen, k);
+}
+
+void mex_delete(int k) {
+    assert(freq[k] >= 1);
+    freq[k]--;
+    if (freq[k] == 0) {
+        unseen.insert(k);
+    }
+}
+
+int mex_mex() {
+    assert(!unseen.empty());
+    return *unseen.begin();
+}
+```
+
+# Scatted algebraic number theory ideas: Ramification
+
+- I've  had Pollion on math IRC explain ramification to me.
+
+```
+15:17 <Pollion> Take your favorite dedekind domain.
+15:17 <bollu> mmhm
+15:17 <Pollion> For instance, consider K a number field
+15:17 <Pollion> and O_K the ring of integers.
+15:17 <Pollion> Then take a prime p in Z.
+15:18 <Pollion> Since Z \subset O_K, p can be considered as an element of O_K, right ?
+15:18 <bollu> yes
+15:18 <Pollion> Ok. p is prime in Z, meaning that the ideal (p) = pZ is a prime ideal of Z.
+15:18 <bollu> yep
+15:18 <Pollion> Consider now this ideal, but in O_K
+15:18 <bollu> right
+15:19 <Pollion> ie the ideal pO_K
+15:19 <bollu> yes
+15:19 <Pollion> It may not be prime anymore
+15:19 <bollu> mmhm
+15:19 <Pollion> So it factors as a product of prime ideals *of O_K*
+15:20 <Pollion> pO_K = P_1^e_1....P_r^e_r
+15:20 <Pollion> where P_i are distinct prime ideals of O_K.
+15:20 <bollu> yes
+15:20 <Pollion> You say that p ramifies in O_K (or in K) when there is some e_i which is > 1
+15:21 <Pollion> Example
+15:21 <Pollion> Take Z[i], the ring of Gauss integers.
+15:22 <Pollion> It is the ring of integers of the field Q(i).
+15:22 <Pollion> Take the prime 2 in Z.
+15:23 <bollu> (2) = (1 + i) (1 - i) in Z[i] ?
+15:23 <Pollion> Yes.
+15:23 <Pollion> But in fact
+15:23 <Pollion> The ideal (1-i) = (1+i) (as ideals)
+15:23 <Pollion> So (2) = (1+i)^2
+15:23 <Pollion> And you can prove that (1+i) is a prime ideal in Z[i]
+15:23 <bollu> is it because (1 - i)i = i + 1 = 1 + i?
+15:24 <Pollion> Yes
+15:24 <bollu> very cool
+15:24 <Pollion> Therefore, (2) ramifies in Z[i].
+15:24 <bollu> is it prime because the quotient Z[i]/(1 - i) ~= Z is an integral domain? [the quotient tells us to make 1 - i = 0, or to set i = ]
+15:24 <Pollion> But you can also prove that primes that ramify are not really common
+15:24 <bollu> it = (1 - i)
+15:25 <Pollion> In fact, 2 is the *only* prime that ramifies in Z[i]
+15:25 <Pollion> More generally, you only have a finite number of primes that ramify
+15:25 <bollu> in any O_K?
+```
+
+
+
+
 # Interleaved dataflow analysis and rewriting
 
 ```
