@@ -108,6 +108,26 @@
 # Mitchell-Bénabou language
 
 - https://ncatlab.org/nlab/show/Mitchell-B%C3%A9nabou+language
+# `unsafePerformIO` in Lean4:
+
+
+- First do the obvious thing, actually do the IO:
+
+```
+unsafe def unsafePerformIO [Inhabited a] (io: IO a): a :=
+  match unsafeIO io with
+  | Except.ok a    =>  a
+  | Except.error e => panic! "expected io computation to never fail"
+```
+
+- Then wrap a "safe" operation by the unsafe call.
+
+```
+@[implementedBy unsafePerformIO]
+def performIO [Inhabited a] (io: IO a): a := Inhabited.default
+```
+
+
 
 # Sheaves in geometry and logic 1.2: Pullbacks
 - Pullbacks are fiber bundles.
@@ -40244,6 +40264,7 @@ let g:conjure#mapping#eval_motion = "E"
 - Open the error window with `:copen`.
 - Thanks to `vim-unimpaired`, going next/previous is as easy as `[q` and `]q`
   (`q` for `quickfix`).
+- To open quickfix ist, use `:copen`. To close, use `:cclose`. To go next/prev, it's `:cn` and `:cp`.
 - Can create stupid mapping: `nnoremap / :grep   %<Left><Left><Left>`, which switches `/` based search
   to always become `grep` based search.
 
