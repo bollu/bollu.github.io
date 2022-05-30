@@ -27,8 +27,8 @@ if ((window.innerHeight - document.documentElement.clientHeight) >0) {
 
 # Features
 
-- [ ] Spell check for page
 - [ ] Add syntax highlighting when displaying errors.
+- [ ] Spell check for page
 - [ ] Add a link back at the end of the page to the main page / Add "go back" link.
 - [ ] Client side search with [elasticlunr.js](https://github.com/weixsong/elasticlunr.js/)
 - [ ] Mimic link structure as in [`viewsourcecode.org`](https://viewsourcecode.org/snaptoken/kilo/08.appendices.html#)

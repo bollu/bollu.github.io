@@ -15,19 +15,19 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
 1. {w,  x,  z}, [y] (shrinking set)
 </code></pre> 
  <span class='centered'>Similarly, for the next round, we choose to swap  <code class='inline'>w</code> with  <code class='inline'>z</code> as follows:  
- <pre><code>1. {w,  x,  z}, [y] 
+ <pre><code>1. {w,  x,  z}, [y]
 2. {w, x,  [z}, y] (grow array)
 2. {x,  z, [w}, y]  (swap w <-> x)
 2. {x, z}, [w, y] (shrinking set)
 </code></pre> 
  <span class='centered'>For the next round, we swap  <code class='inline'>z</code> with  <code class='inline'>z</code> (ie, no change!)  
- <pre><code>2. {x,  z}, [w, y] 
+ <pre><code>2. {x,  z}, [w, y]
 3. {x, [z}, w, y] (grow array)
 3. {x, [z}, w, y] (swap z<->z)
 3. {x},[z, w, y] (shrink set)
 </code></pre> 
  <span class='centered'>Finally, we swap  <code class='inline'>x</code> with  <code class='inline'>x</code>:  
- <pre><code>3. {x},  [z, w, y] 
+ <pre><code>3. {x},  [z, w, y]
 4. {[x}, z, w, y] (grow array)
 3. {x}, [z, w, y] (swap x<->x)
 3. {}[x, z, w, y] (shrink set)

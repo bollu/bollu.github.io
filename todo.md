@@ -1,3 +1,8 @@
+- Call by push value in SSA?
+- Language where `fix` is overloadablwe by a typeclass! So we can only perform recursion in contexts
+  where we allow it. Also allows us to write DSLs in a way that it knows about recursion.
+- BCW calculus is linear time! But it's not if we allow recursion. Can we fix this?
+- [Categorical meaning of inductive types and induction](https://homepages.inf.ed.ac.uk/wadler/papers/free-rectypes/free-rectypes.txt)
 - [2d radiosity for soft shadows in smol renderers](https://github.com/schmelczerandras/sdf-2d/blob/main/src/graphics/rendering/shaders/shading-fs.glsl#L48)
 - [2d radiosity calculations](https://vimeo.com/diwi)
 - [Tree edit distance](http://www.grantjenks.com/wiki/_media/ideas:simple_fast_algorithms_for_the_editing_distance_between_tree_and_related_problems.pdf)
