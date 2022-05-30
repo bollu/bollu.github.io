@@ -6,6 +6,10 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+# Fungrim
+
+- https://fredrikj.net/math/fungrim2022.pdf
+- They want to integrate with mathlib to have formal definitions.
 
 # Category where coproducts of computable things is not computable
 
