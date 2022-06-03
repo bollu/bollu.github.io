@@ -692,6 +692,84 @@ int mex_mex() {
 # Mitchell-Bénabou language
 
 - https://ncatlab.org/nlab/show/Mitchell-B%C3%A9nabou+language
+# Hyperdoctrine
+- A hyperdoctrine equips a category with some kind of logic `L`.
+- It's a functor `P: T^op -> C` for some higher category `C`, whose objects are categories 
+  whose internal logic corresponds to `L`.
+- In the classical case, `L` is propositional logic, and `C` is the 2-category of posets.
+  We send `A ∈ T` to the poset of subobjects `Sub_T(A)`.
+- We ask that for every morphism `f: A -> B`, the morphism `P(f)` has left and right adjoints.
+- These left and right adjoints mimic existential / universal quantifiers.
+- If we have maps between cartesian closed categories, then the functor `f*` obeys frobenius
+  reciprocity if it preserves exponentials: `f*(a^b) ~iso~ f*(a)^f*(b)`.
+
+# Why is product in Rel not cartesian product?
+
+#### Monoidal category
+- Intuitively, category can be equipped with $\otimes, I$ that makes it a monoid.
+
+#### Cartesian Monoidal category
+- A category where the monoidal structure is given by the categorical product (universal property...).
+
+
+#### Fox's theorem: Any Symmetric Monoidal Category with Comonoid is Cartesian.
+
+- Let `C` be symmetric monoidal under $(I, \otimes)$.
+
+- A monoid has signature `e: () -> C` and `.: C x C -> C`.
+- A comonoidal structure flips this, and gives us `copy: C -> C x C`, and `delete: C -> ()`.
+- Fox's theorem tells us that if the category is symmetric monoidal, and has morphisms $copy: C \to C \otimes C$,
+  and $delete: C \to I$ which obey some obvious conditions, then the monoidal product is the categorical product.
+
+#### Rel doesn't have the correct cartesian product
+- This is because the naive product on Rel produces a monoidal structure on Rel.
+- However, this does not validate the `delete` rule, because we can have a relation that does not relate a set to _anything_
+  in the image. Thus, `A -R-> B -!-> 1` need not be the same as `A -!-> 1` if `R` does not relate `A` to ANYTHING.
+- Similarly, it does not validate the `copy` rule, because first relating and then copying is not the same
+  as relating to two different copies, because `Rel` represents nondeterminisim.
+
+#### Locally Caretesian Categories
+
+- A category is locally cartesian if each of the slice categories are cartesian.
+- That is, all $n$-ary categorical products (including $0$-ary) exist in the slice category of each object.
+- MLTT corresponds to [locally cartesian categories](https://www.math.mcgill.ca/rags/LCCC/LCCC.pdf)
+
+# `simp` in Lean4
+
+- `Lean/Elab/Tactic/Simp.lean`:
+
+```
+"simp " (config)? (discharger)? ("only ")? ("[" simpLemma,* "]")? (location)?
+@[builtinTactic Lean.Parser.Tactic.simp] def evalSimp : Tactic := fun stx => do
+  let { ctx, fvarIdToLemmaId, dischargeWrapper } ← withMainContext <| mkSimpContext stx (eraseLocal := false)
+  -- trace[Meta.debug] "Lemmas {← toMessageData ctx.simpLemmas.post}"
+  let loc := expandOptLocation stx[5]
+  match loc with
+  | Location.targets hUserNames simplifyTarget =>
+    withMainContext do
+      let fvarIds ← hUserNames.mapM fun hUserName => return (← getLocalDeclFromUserName hUserName).fvarId
+      go ctx dischargeWrapper fvarIds simplifyTarget fvarIdToLemmaId
+  | Location.wildcard =>
+    withMainContext do
+      go ctx dischargeWrapper (← getNondepPropHyps (← getMainGoal)) (simplifyTarget := true) fvarIdToLemmaId
+where
+  go (ctx : Simp.Context) (dischargeWrapper : Simp.DischargeWrapper) (fvarIdsToSimp : Array FVarId) (simplifyTarget : Bool) (fvarIdToLemmaId : FVarIdToLemmaId) : TacticM Unit := do
+    let mvarId ← getMainGoal
+    let result? ← dischargeWrapper.with fun discharge? => return (← simpGoal mvarId ctx (simplifyTarget := simplifyTarget) (discharge? := discharge?) (fvarIdsToSimp := fvarIdsToSimp) (fvarIdToLemmaId := fvarIdToLemmaId)).map (·.2)
+    match result? with
+    | none => replaceMainGoal []
+    | some mvarId => replaceMainGoal [mvarId]
+```
+
+
+# Big list of Lean4 TODOS
+
+- Hoogle for Lean4.
+- show source in `doc-gen4`.
+- mutual `structure` definitions.
+- Make Lean4 goals go to line number when pressing `<Enter>`
+- Convert lean book into `Jupyter` notebook?
+
 # `unsafePerformIO` in Lean4:
 
 
@@ -710,6 +788,13 @@ unsafe def unsafePerformIO [Inhabited a] (io: IO a): a :=
 @[implementedBy unsafePerformIO]
 def performIO [Inhabited a] (io: IO a): a := Inhabited.default
 ```
+
+# Big List of Lean4 FAQ
+
+- `FVar`: free variables
+- `BVar`: bound variables
+- `MVar`: metavariables [variables for unification].
+- `Lean.Elab.Tactic.*`: tactic front-end code that glues to `Lean.Meta.Tactic.*`.
 
 
 
