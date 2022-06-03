@@ -1,3 +1,4 @@
+- [Markov Junior](https://github.com/mxgmn/MarkovJunior)
 - Call by push value in SSA?
 - Language where `fix` is overloadablwe by a typeclass! So we can only perform recursion in contexts
   where we allow it. Also allows us to write DSLs in a way that it knows about recursion.
