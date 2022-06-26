@@ -6,6 +6,486 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+# Coends
+
+- Dual of an end
+- A cowedge is defined by injections into the co-end of all diagonal elements.
+
+```
+p(a, a)   p(b, b)
+  \          /
+  π[a]      π[b]
+   \        /
+    v      v
+     \int^x p(x, x)
+```
+
+- It's a universal cowedge, so every cowedge `c` other must factor.
+
+```
+p(a, a)   p(b, b)
+  \   \  /    /
+  π[a]  c   π[b]
+  \     |    /
+   \    ∃!  /
+    \   |  /
+    v   v  v
+     \int^x p(x, x)
+```
+
+- Now we have the cowedge condition. For every morphism `h: b -> a`, and for every cowedge `c`, the following
+  must hold:
+
+```
+   [p b a]
+  /      \
+[p a a]   [p b b]
+  \      /
+      c
+```
+
+- By curry howard, `type coend p = exists a. p a a`
+
+
+```
+data Coend p where
+  MkCoend :: p a a -> Coend p
+```
+
+```
+type End (p :: * -> * -> *) = forall x. p x x
+```
+
+- A functor is continuous if it preserves limits.
+- Recall that `Hom` functor preserves limits.
+
+```
+-- Hom(\int^x p(x, x), r) ~= \int_x (Hom(p x x, r)) 
+type Hom a b = a -> b
+```
+
+- `Set(\int^x p(x, r), s)` is asking for a function `Coend p -> r`.
+- But e claim this  is the same as having `forall a. (p a a -> r)`.
+- So we can write `Set(\int^x p(x, x), r) ~= \int_x Set(p(x, x), r)`.
+
+```
+-- | \int_x Set(p(x, x), r)
+-- | \int_x Hom(p(x, x), r)
+-- | \int_x RHS(x,x)
+       where RHS a b = Hom(p(a, b), r)
+type RHS p r a b = Hom (p a b) r -- rhs of the above expression
+```
+
+
+The isomorphisms are witnessed below, reminiscent of building a continuation
+
+```
+-- fwd :: (Coend p -> r) -> End (RHS p r)
+-- fwd :: (Coend p -> r) -> (forall x. (RHS r) x x)
+-- fwd :: (Coend p -> r) -> (forall x. Hom (p x x) r)
+-- fwd :: (Coend p -> r) -> (forall x. (p x x) -> r)
+fwd :: Profunctor p => (Coend p -> r) -> (forall x. (p x x) -> r)
+fwd coendp2r  pxx = coendp2r (MkCoend pxx)
+```
+
+- The backward iso, reminiscent of just applying a continuation.
+
+```
+-- bwd :: End (RHS p r)             -> (Coend p -> r) 
+-- bwd :: (forall x. (RHS r) x x)   -> (Coend p -> r) 
+-- bwd :: (forall x. Hom (p x x) r) -> (Coend p -> r) 
+-- bwd :: (forall x. (p x x) -> r)  -> (Coend p -> r) 
+bwd :: Profunctor p => (forall x. (p x x) -> r) -> Coend p -> r
+bwd pxx2r (MkCoend paa) = pxx2r paa
+```
+
+- Ninja coyoneda lemma: `\int^x C(x, a) * f(x) ~= f(a)`
+- Witnessed by the following:
+
+```hs
+-- ninja coyoneda lemma:
+-- \int^x C(x, a) * f(x) ~= f(a)
+-- the profunctor is \int^x NinjaLHS[f, a](x, y)
+--   where
+newtype NinjaLHS g b y z = MkNinjaLHS (y -> b, g z)
+```
+
+
+
+- Forward iso:
+
+```hs
+-- ninjaFwd :: Functor f => Coend (NinjaLHS f a) -> f a
+ninjaFwd :: Functor g => Coend (NinjaLHS g r) -> g r
+ninjaFwd (MkCoend (MkNinjaLHS (x2r, gx))) = fmap x2r gx
+```
+
+- Backward iso:
+
+```hs
+-- ninjaBwd :: Functor f => g r -> (Coend (NinjaLHS g r))
+-- ninjaBwd :: Functor f => g r -> (∃ x. (NinjaLHS g r x x))
+-- ninjaBwd :: Functor f => g r -> (∃ x. (NinjaLHS (x -> r, g x))
+ninjaBwd :: Functor g => g r -> Coend (NinjaLHS g r)
+ninjaBwd gr = MkCoend (MkNinjaLHS (x2r, gx)) where
+   x2r = id -- choose x = r, then x2r = r2r 
+   gx = gr -- choose x = r
+```
+
+#### Ninja Coyoneda for containers
+
+
+- The type of `NinjaLHS`, when specialized to `NinjaLHS g b r r` becomes `(r -> b, g r)`.
+- This is sorta the way you can get a `Functor` instance on any `g`, by essentially accumulating
+  the changes into the `(r -> b)`. I learnt this trick from some kmett library, but I'm not
+  sure what the original reference is.
+
+- Start with `NinjaLHS`:
+
+```hs
+-- ninja coyoneda lemma:
+-- \int^x C(x, a) * f(x) ~= f(a)
+-- the profunctor is \int^x NinjaLHS[f, a](x, y)
+--   where
+newtype NinjaLHS g b y z = MkNinjaLHS (y -> b, g z)
+```
+
+- Specialize by taking the diagonal:
+
+```hs
+-- newtype NinjaLHS' g i o = MkNinjaLHS' (i -> o, g i)
+newtype NinjaLHS' g i o = MkNinjaLHS' (NinjaLHS g o i i)
+```
+
+- Write a smart constructor to lift values into `NinjaLHS'`:
+
+```
+mkNinjaLHS' :: g i -> NinjaLHS' g i i
+mkNinjaLHS' gi = MkNinjaLHS' (MkNinjaLHS (id, gi))
+```
+
+- Implement functor instance for `NinjaLHS' g i`:
+
+```
+-- convert any storage of shape `g`, input type `i` into a functor
+instance Functor (NinjaLHS' g i) where
+  -- f:: (o -> o') -> NinjaLHS' g i o -> NinjaLHS' g i o'
+  fmap o2o' (MkNinjaLHS' (MkNinjaLHS (i2o, gi))) = 
+    MkNinjaLHS' $ MkNinjaLHS (\i -> o2o' (i2o i), gi)
+```
+
+See that to be able to extract out values, we need `g` to be a functor:
+
+```
+extract :: Functor g => NinjaLHS' g i o -> g o
+extract (MkNinjaLHS' (MkNinjaLHS (i2o, gi))) = fmap i2o gi
+```
+
+
+# Natural Transformations as ends
+- [Bartosz: Natural transformations as ends](https://www.youtube.com/watch?v=DseY4qIGZV4&list=PLbgaMIhjbmEn64WVX4B08B4h2rOtueWIL&index=13)
+- Ends generalize the notion of product/limit. It's sort of like an infinite product plus the wedge condition.
+- $\int_X p x x$ is the notation for ends, where $p$ is a profunctor.
+- Remember `dimap :: (a' -> a) -> (b -> b') -> p a b -> p a' b'`. Think of this as:
+
+```
+-----p a' b'-------
+a' -> [a -> b] -> b'
+       --pab---
+```
+
+- The set of natural transformations is an end.
+- Haskell: `type Nat f g = forall x. f x -> g x`.
+- We can think of this as the "diagonal" of some end `p x x` for some profunctor `p` we need to cook up.
+- `type p f g a b = f a -> g b`. Is `p f g` a profunctor?
+
+```
+dimap :: (a' -> a) -> (b -> b') -> (f a -> g b) -> (f a' -> g b')
+dimap a'2a b2b' fa2gb = \fa' -> 
+  let fa = fmap a'2a fa'
+  let gb = fa2gb fa
+  let gb' - fmap b2b' gb
+  in gb'
+dimap a'2a b2b' fa2gb = (@fmap g b2b')  . fa2gb  . (@fmap f a'2a)
+```
+
+- Clearly, from the above implementation, we have a profunctor.
+- So we have a profunctor `P(a, b) = C(Fa, Gb)`.
+- In haskell, the end is `End p = forall a. p a a`.
+- In our notation, it's `\int_x C(Fx, Gx)`.
+- Recall the wedge condition. For a profunctor `p: Cop x C -> C`, and any morphism `k: a -> b` for `a, b ∈ C`,
+  the following diagram commutes for the end `\int_X p(X,X)`:
+
+```
+ (p x x, p y y, p z z, ... infinite product)
+\int_x p(x,x)
+ /[πa]  [πb]\
+v            v
+p(a,a)       p(b,b)
+ \            /
+[p(id, k)]  [p(k,id)]
+   \        /
+    v      v
+     p a b
+```
+
+- If we replace `p x x` with with our concrete `p a b = C(fa, gb)`, we get:
+
+```
+    (forall x. f x -> g x)
+    /               \
+  [@ a]            [@ b]
+   v                v
+ τa:(f a -> g a)     τb:(f b -> g b)
+   \                  /
+dimap id(a) k τa    dimap k id(b) τb
+   \                 /
+    \               τb.(@fmap f k): (f a-> g b) 
+     \              /
+     \           COMMUTES?
+     \            /
+    (@fmap g k).τa(f a -> g b)
+    
+```
+
+- This says that `gk . τa = τb . fk`
+- But this is a naturality condition for `τ`!
+- So every end corresponds to a natural transformation, and `τ` lives in `[C, D](f, g)`.
+- This shows us that the set of natural transformations can be seen as an end (?)
+- I can write `\int_a D(fa, ga) ~= [C, D](f, g)`
+
+#### Invoking Yoneda
+
+- Now, yoneda tells us that `[C, Set](C(a, -), f(-)) ~= f(a)`.
+- Now I write the above in terms of ends as `\int_x Set(C(a, (x)), f(x)) ~= f(a)`.
+- So we can write this as a "point-full" notation!
+- In haskell, this would be `forall x. (a -> x) -> f x ~= f a`.
+
+# Ends and diagonals
+
+- [Bartosz: Wedges](https://www.youtube.com/watch?v=TAPxt26YyEI)
+- Let's think of `Cop x C`, and an element on the diagonal `(a, a)`, and a function `f: a -> b`.
+- Using the morphism `(id, f)`, I can go from `(a, a)` to `(a, b)`.
+- If we have `(b, b)`, I can once again use `f` to go fo `(a, b)`.
+- So we have maps:
+
+```
+     b,b
+    / |
+   /  |
+  /   |
+ /    v
+a,a-->a,b
+```
+
+- This tells us that if we have something defined on the diagonal for a profunctor `p a a`, we can "extrapolate"
+  to get data everywhere!
+- How do we get the information about the diagonal? Well, I'm going to create a product of all the diagonal elements of the profunctor.
+- so we need a limit `L`, along with maps `L -> p c c` for each `c`. This kind of infinite product is called a wedge (not yet,  but soon).
+- The terminal object in the category of wedges is the end.
+- But our cone is "under-determined". We need more data at the bottom of the cone for things to cohere.
+- suppose at the bottom of the cone, we want to go from `p a a` to `p b b`. for this, I need morphisms `(f: b -> a, g: a -> b)` to lift
+  into the profunctor with `dimap`.
+- We might want to impose this as coherence condition. But the problem is that
+  there are categories where we don't have arrows going both ways (eg. partial orders).
+- So instead, we need a different coherence condition. If we had a morphism from `a -> b`, then we can get from `p a a --(id, f)-->p a b`.
+  Or, I can go from `p b b --(f, id)-->p a b`. The wedge condition says that these commute. So we need `p id f . pi_1 = p f id . pi_2`
+
+#### Relationship to haskell
+
+- How would we define this wedge condition in haskell? 
+- Because of parametricity, haskell gives us naturality for free.
+- How do we define an infinite product? By propositions as types, this is the same as providing `∀x.`.
+- `End p = forall a. p a a`
+- We can define a cone with apex `A` of a diagram `D: J -> C` as a natural transformation `cone(A): Const(A) => D`. What's the version for a profunctor?
+- Suppose we have a profunctor diagram `P: J^op x J -> C`. Then we have a constant profunctor `Const(c) = \j j' -> c`.
+  Then the wedge condition  (analogue of the cone condition) is to ask that we need a **dinatural transformation** `cone': Const(A) => P`.
+- NOTE: a dinatural transformation is STRICTLY WEAKER than a natural transformation from `J^opxJ -> C`.
+- Suppose we have transformation that is natural in both components. That is to say, it is a natural transfrmation
+  of functors of the type `[J^op x J -> C]`. This means that we have naturality arrows `α(a,b): p(a,b) -> q(a,b)`. Then the following must commute, for any `f: a -> b` by
+  naturality of `α`:
+
+```
+      p(b,a)
+    /    |
+[p(f,id)]|
+  /      |
+p(a,a)  [α(b,a)]
+ |       |
+[α(a,a)] |
+ |       |
+ |    q(b,a)
+ |     /
+ |  [q(f,id)]
+ |   /
+q(a,a)
+```
+
+- Similarly, other side must commute:
+
+
+```
+      p b a
+    /   |  \
+[p f id]|   [p id f]
+  /     |     \
+p a a  [α b a] p b b
+ |      |        |
+[α a a] |      [α b b]
+ |      |        |
+ |    q b a      |
+ |     /   \     |
+ |  [q f id]\    |
+ |   /  [q id f] |
+ |  /          \ |
+q a a         q b b
+```
+
+- I can join the two sides back together into a `q a b` by using `[q id f]` and `[q f id]`. The bottom square
+  commutes because we are applying `[q f id]` and `[q id f]` in two different orders. By functoriality,
+  this is true because to `q(f.id, id.f) = q(f,f) = q(id.f, f.id)`.
+
+
+```
+      p b a
+    /   |  \
+[p f id]|   [p id f]
+  /     |     \
+p a a  [α b a] p b b
+ |      |        |
+[α a a] |      [α b b]
+ |      |        |
+ |    q b a      |
+ |     /   \     |
+ |  [q f id]\    |
+ |   /  [q id f] |
+ |  /          \ |
+q a a         q b b
+  \             /
+ [q id f]      /
+    \        [q f id]
+     \      /
+     q a b
+```
+
+- If we erase the central node `[q b a]` and keep the boundary conditions, we arrive at a diagram:
+
+```
+      p b a
+    /      \
+[p f id]    [p id f]
+  /           \
+p a a          p b b
+ |               |
+[α a a]        [α b b]
+ |               |
+ |               |
+ |               |
+ |               |
+ |               |
+ |               |
+q a a         q b b
+  \             /
+ [q id f]      /
+    \        [q f id]
+     \      /
+     q a b
+```
+
+- Any transformation `α` that obeys the above diagram is called as a *dinatural transformation*.
+- From the above, we have proven that any honest natural transformation is a dinatural transformation, since the
+  natural transformation obeys the diagram with the middle node.
+- In this diagram, see that we only ever use `α a a` and `α b b`.
+- So for well behavedness, we only need to check a dinatural transformation at the diagonal. (diagonal natural transformation?)
+- so really, all I need are the diagonal maps whoch I will call `α' k = α a a`.
+- Now, a wedge is a dinatural transformation from constant functor to this new thingie.
+
+
+# Parabolic dynamics and renormalization
+
+- [Video](https://www.youtube.com/watch?v=Z77mTqj_Wnk)
+
+# Quantifiers as adjoints
+
+- Consider `S(x, y) ⊂ X × Y`, as a relation that tells us when `(x, y)` is true.
+- We can then interpret `∀x, S(x, y)` to be a subset of `Y`, that has all the elements
+  such that this predicate holds. ie, the set `{ y : Y | ∀ x, S(x, y) }`.
+- Similarly, we can interpret `∃x, S(x, y)` to be a subset of `Y` given by
+   `{ y : Y | ∃ x, S(x, y) }`.
+- We will show that these are adjoints to the projection `π: X × Y → Y`.
+- Treat `P(S)` to be the boolean algebra of all subsets of `S`, and similarly `P(Y)`.
+- Then we can view `P(S)` and `P(Y)` to be categories, and we have the functor `π: P(S) → P(Y)`.
+- Recall that in this boolean algebra and arrow `a → b` denotes a subset relation `a ⊆ b`.
+
+#### A first try: direct image, find right adjoint
+
+- Suppose we want to analyze when `π T ⊆ Z`, with the hopes of getting some condition when `T ⊆ ? Z` where `?`
+  is some to-be-defined adjoint to `π`.
+- See that `π T ⊆ Z` then means `∀ (x, y) ∈ T, y ∈ Z`.
+
+
+```
+     T
+   t t t
+   t t t
+    |
+    v
+---tttt---- π(T)
+-zzzzzzzzz--Z
+```
+
+- Suppose we build the set `Q(Z) ≡ { (x, y) ∈ S : y ∈ Z }`. That is to say, `Q ≡ π⁻¹(Z)`. (`Q` for inverse of `P`).
+- Then, it's clear that we have `π T ⊂ Z` implies that `T ⊆ Q(Z)` [almost by definition].
+- However, see that this `Q(Z)` construction goes in the wrong direction; we want a functor
+  from `P(S)` to `P(Y)`, which projects out a variable via `∃ / ∀`. We seem to have built
+  a functor in the other direction, from `P(Y)` to `P(S)`.
+- Thus, what we must actually do is to reverse the arrow `π: S ⊆ X × Y → Y`, and rather we
+  must analyze `π⁻¹` itself, because its adjoints will have the right type.
+- However, now that we've gotten this far, let's also analyze left adjoints to `π`.
+
+#### Direct image, left adjoint
+- Suppose that `Z ⊆ π T`. This means that for every `y ∈ Z`, there is some `x_y` such that  `(x_y, y) ∈ T`
+
+```
+     T
+   t t t
+   t t t
+    |
+    v
+---tttt---- π(T)
+----zz--------Z
+```
+
+- I want to find an operation `?` such that `? Z ⊆ T.
+- One intuitive operation that comes to mind to unproject, while still reminaing a subset,
+  is to use `π⁻¹(Z) ∩ T`. This would by construction have that `π⁻¹(Z) ∩ T ⊆ T`.
+- Is this an adjoint? we'll need to check the equation `:)`.
+
+#### Inverse image, left adjoint.
+
+- Suppose we consider `π⁻¹ = π* : P(Y) → P(S)`.
+- Now, imagine we have `π*(Z) ⊆ T`.
+
+```
+    S
+    -
+    -   
+   tttt
+   tztt
+   tztt T
+   tztt
+    ^^
+    || π*(Z)
+----zz-------Z
+```
+
+- In this case, we can say that for each `z ∈ Z`, for all `x ∈ X` such that `(x, z) ∈ S`, we had `(x, z) ∈ T`.
+- Consider the set `∀ T ≡ { y ∈ T: ∀ x, (x, y) ∈ S => (x, y) ∈ T}`.
+- Thus, we can say that `π*(Z) ⊂ T` iff `Z ⊂ ∀ T`.
+- Intuitively, `T ⊂ π*(π(T))`, so it must be "hard" for the inverse image of a set `Z` (`π*(Z)`) to
+  be contained in the set `T`, because inverse images cannot shrink the size.
+- Furthermore, it is the right adjoint to `π*(Z)` because the ???
+
 # Fungrim
 
 - https://fredrikj.net/math/fungrim2022.pdf
@@ -2545,6 +3025,35 @@ far along I get!
 
 - I want to 'implement' the zariski based proof for cayley hamilton in SAGE and show
   that it works by checking the computations scheme-theoretically.
+- Let's work through the proof by hand. Take a 2x2 matrix `[a, b; c, d]`. 
+- The charpoly is `|[a-l; b; c; d-l]| = 0`, which is `p(l) = (a-l)(d-l) - bc = 0`
+- This simplified is `p(l) = l^2 - (a + d) l + ad - bc = 0`.
+- Now, let's plug in `l = [a; b; c; d]` to get the matrix eqn
+- `[a;b;c;d]^2 - (a + d)[a;b;c;d] + [ad - bc; 0; 0; ad - bc] = 0`.
+- The square is going to be `[a^2 +]`
+- Let `X` be the set of `(a, b, c, d)` such that the matrices `[a;b;c;d]` satisfy their only charpoly.
+- Consider the subset `U` of the set `(a, b, c, d)` such that the matrix `[a;b;c;d]` has distinct eigenvalues.
+- For any matrix with distinct eigenvalues, it is easy to show that they satisfy their charpoly.
+- First see that diagonal matrices satisfy their charpoly by direct computation: `[a;0;0;b]` has eigenvalues `(a, b)`.
+  Charpoly is `l^2 - l(a + b) + ab`. Plugging in the matrix, we get `[a^2;0;0;b^2] - [a(a+b);0;0;b(a+b)] + [ab;0;0;ab]` which cancels out to `0`.
+- Then note that similar matrices have equal charpoly, so start with `|(λI - VAV')| = 0`. rewrite as `(VλIV' - VAV') = 0`, which is `V(λI - A)V' = 0`,
+  which is the same `λI - A = 0`.
+- Thus, this means that a matrix with distinct eigenvalues, which is similar to a diagonal matrix (by change of basis), has a charpoly that satisfies cayley hamilton.
+- Thus, the set of matrices with distinct eigenvalues, `U` is a subset of `X`.
+
+- However, it is not sufficient to show that the system of equations has an infinite set of solutions.
+- For example, `xy = 0` has infinite solutions `(x=0, y=k)` and `(x=l, y=0)`, but that does not mean that it is identically zero.
+- This is in stark contrast to the 1D case, where a polynomial `p(x) = 0` having infinite zeroes means that it must be the zero polynomial.
+- Thus, we are forced to look deeper into the structure of solution sets of polynomials, and we need to come up with the notion of  irreducibility.
+- See that the space `K^4` is irreducible, where `K` is the field from which we draw coefficients for our matrix.
+
+- Next, we note that `X` is a closed subset of `k^4` since it's defined by the zero set of the polynomial equations.
+- We note that `U` is an open subset of `k^4` since it's defined as the **non-zero set** of the discriminant of the charpoly! (ie, we want non-repeated roots)
+- Also note that `U` is trivially non-empty, since it has eg. all the diagonal matrices with distinct eigenvalues.
+- So we have a closed subset `X` of `k^4`, with a non-empty open subset `U` inside it.
+- But now, note that the closure of `U` must lie in `X`, since `X` is a closed set, and the closure `U` of the subset of a closed set must lie in `X`.
+- Then see that since the space is irreducible, the closure of `U` (an open) must be the whole space.
+- This means that all matrices satisfy cayley hamilton!
 
 # LispWorks config
 
@@ -40679,6 +41188,8 @@ let g:conjure#mapping#eval_motion = "E"
 - eval last definition: `C-c C-c`
 
 # Big list of quotes
+
+> Love is not a craving, love is a yearning. ~ Contrapoints.
 
 > If Alice uses abstract algebra to solve problem and Bob uses concrete calculation, Alice's result is more generalizable than Bob's,
 > while Bob's method is more generalizable than Alice's.
