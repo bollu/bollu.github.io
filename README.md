@@ -6,6 +6,15 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+# How should relative changes be measured
+
+- by Leo Tornqvist, Pentti Vartia and Yrjo O. Vartia
+- https://www.etla.fi/wp-content/uploads/dp681.pdf
+
+# Logic of bunched implications
+
+http://www.lsv.fr/~demri/OHearnPym99.pdf
+
 # Coends
 
 - Dual of an end
@@ -130,6 +139,23 @@ ninjaBwd :: Functor g => g r -> Coend (NinjaLHS g r)
 ninjaBwd gr = MkCoend (MkNinjaLHS (x2r, gx)) where
    x2r = id -- choose x = r, then x2r = r2r 
    gx = gr -- choose x = r
+```
+
+- We can prove the ninja coyoneda via coend calculus plus yoneda embedding,
+  by using the fact that yoneda is full and faithful.
+- So instead of showing LHS ~= RHS in the ninja coyoneda, we will show that `Hom(LHS, -) ~= Hom(RHS, -)`.
+
+- We compute as:
+
+```
+Set(\int^x C(x, a) * f(x), s) ~? Set(f(a), x)
+[continuity:]
+\int_x Set(C(x, a) * f(x), s) ~? Set(f(a), x)
+[currying:]
+\int_x Set(C(x, a), Set(f(x) s)) ~? Set(f(a), x)
+[ninja yoneda on Set(f(-), s):]
+Set(f(a) s)) ~? Set(f(a), x)
+Set(f(a) s)) ~= Set(f(a), x)
 ```
 
 #### Ninja Coyoneda for containers
@@ -456,7 +482,7 @@ q a a         q b b
 ----zz--------Z
 ```
 
-- I want to find an operation `?` such that `? Z ⊆ T.
+- I want to find an operation `?` such that `? Z ⊆ T`.
 - One intuitive operation that comes to mind to unproject, while still reminaing a subset,
   is to use `π⁻¹(Z) ∩ T`. This would by construction have that `π⁻¹(Z) ∩ T ⊆ T`.
 - Is this an adjoint? we'll need to check the equation `:)`.
@@ -558,7 +584,7 @@ T^2(x)---mu@x---> T(x)
 - Recall that an adjunction gives us `pullback: (F l -> h) -> (l -> U h)` and `pushfwd: (l -> U h) -> (F l -> h)`.
   The first is termed pullback since it takes a function living in the high space and pulls it back to the low space.
 - This lets us start with `(F l -> F l)`, peel a `F` from the left via `pullback`
-  to create  (l -> U (F l))`. That is we have `return: l -> T l`.
+  to create  `(l -> U (F l))`. That is we have `return: l -> T l`.
 - In the other direction, we are able to start with `(U h -> U h)`, peel a `U` from the right via `pushforward` to
   create `(F U h -> h)`. This allows us to create the counit as `T^2 l = F U F U l = F (U F) U l -> F U l = T l`.
 
@@ -634,7 +660,7 @@ Here, we learn theorems about limits and colimits in `L^T`.
 
 #### Lemma 5.6.1: If `U` is monadic over `F`, then `U` reflects isos
 
-- That is, if for some `f: h -> h'`, if Uf: Uh -> Uh'` is an iso, then so is `f`.
+- That is, if for some `f: h -> h'`, if `Uf: Uh -> Uh'` is an iso, then so is `f`.
 - Since the adjunction `F |- U` is a monadic adjunction (`U` is monadic over `F`), we know that `H ~= L^T`, and `U` equals
   the forgetful functor `(H = L^T) -> L`. 
 - Write the arrow `f: h -> h'` as an arrow in `L^T` via the commuting square datum 
@@ -682,7 +708,7 @@ l<-g'--l'
 - Since the equivalence `H ~= L^T` creates all limits/colimits, it suffices to show the result for `U^T: L^T -> L`.
 - Consider a diagram `D: J -> C^T` with image spanned by `(T(D[j]) -f[j]-> D[j])`. 
 - Consider the forgotten diagram `U^TD: J -> C` with image spanned by `D[j]`.  Create the limit cone 
-  `P` (for product, since product is limit) with morphisms `pi[j]: P -> D[j]`. We know this limit exists since we assume that L`
+  `P` (for product, since product is limit) with morphisms `pi[j]: P -> D[j]`. We know this limit exists since we assume that `L`
   has this limit that `U^T` needs to create.
 - We can reinterpret the diagram `D: J -> C^T` as a natural transformation between two functors `Top, Bot: J -> C`.
   These functors are `Top(j) := T(D[j])`,
@@ -801,8 +827,7 @@ $$
 - This is the same as the version 1, when we consider $f$ to be the function $h$ which assigns pigeons to holes.
   Every fiber having the same number of elements is the same as asking for the pigeons to be evenly distributed.
 - Compare: $|ker(f)| \cdot |Y| \geq |X|^2$ with $(x_1^2 + x_2^2 + x_3^2) \cdot n \geq (x_1 + x_2 + x_3)^2$. Cardinality replaces
-  the action of adding things up, and $|X|^2$ is the right hand side, $|ker(f)|$ is the left hand side, which is the sum of squares
-  
+  the action of adding things up, and $|X|^2$ is the right hand side, $|ker(f)|$ is the left hand side, which is the sum of squares.
 
 # Bezout's theorem 
 
@@ -811,8 +836,8 @@ $$
 - Let $R \equiv k[x, y, z]$ be ring.
 - We wish to detect number of intersections betweeen $f, j \in k[x, y, z]$ counted upto multiplicity.
 - For any point $a \in k$, denote $R_a$ to be the localization of $R$ at the multiplicative subset $D_a \equiv \{ f \in R: f(a) \neq \}$
-  ($D$ for does not vanish)$.
-- So $R_a \equiv D_a^{-1}(R)$, which concentrates attention around point a$.
+  ($D$ for does not vanish).
+- So $R_a \equiv D_a^{-1}(R)$, which concentrates attention around point $a$.
 
 #### Intersection multiplicity $i[f \cap g](a)$
 - Define the intersection multiplicyt of $f, g$ at $a$ by notation $i[f \cap g](a)$.
@@ -856,7 +881,7 @@ $$
 - Heuristic: if $f(a)$ and $gh(a)$ vanish, then either $f(a), g(a)$ vanish or $f(a), h(a)$ vanish, which can be counted by
   $f \cap g + f \cap h$
 
-#### Lemma: if $f, g$ are nonconstant and linear then $\hash(f \cap g) = 1.
+#### Lemma: if $f, g$ are nonconstant and linear then $\hash(f \cap g) = 1$.
 - Recall that we are stating this within the context of $k[x, y, z]$. 
 - So $f, g$ are homogeneous linear polynomials $f(x, y, z) = ax + by$, $g(x, y, z) = cx + dy$.
 - Sketch: if they have a real solution, then they will meet at unique intersection by linear algebra.
@@ -939,7 +964,7 @@ $$
 - Then $hf = (hQ)g + (hR)$ which is $hf = qg + r$ where $q \equiv hQ \in k[y, z]$ and $r \equiv hR \in k[y, z]$.
   So we have managed to create polynomials $q, r$ such that $hf = qg + r$.
 - Let $c = gcd(g, r)$. $c$ divides $g$ and $r$, thus it divides $qg + r$, ie, it divides $hf$.
-- Dividing through by $c$, we get $h'f = qg' + r'$, where $h = h'c$, $g = g'c, $r = r'c$.
+- Dividing through by $c$, we get $h'f = qg' + r'$, where $h = h'c$, $g = g'c$, $r = r'c$.
 - We assume (can be shown) that these are all homogeneous.
 - Furthermore, we started with $gcd(g, f) = 1$. Since $g'$ divides $g$, we have $gcd(g', f) = 1$.
 - $c$ cannot divide $f$, since $c = gcd(g, r)$, and $g, f$ cannot share nontrivial common divisors. Thus, $gcd(c, f) = 1$.
@@ -947,7 +972,7 @@ $$
 
 $$
 f \cap g = ()
-$4
+$$
 
 - [Borcherds Video](https://www.youtube.com/watch?v=UJssbO-e2yw)
 - [On Bezout's Theorem: Dathan Ault-McCoy](https://sites.math.washington.edu/~morrow/336_19/papers19/Dathan.pdf)
@@ -1081,7 +1106,7 @@ int mex_mex() {
 - This has right adjoint the functor that sends every abelian group into
   its torsion subgroup.
 - See that this coreflector somehow extracts a subobject out of the larger object.
--
+
 #### Group -> Monoid
 - inclusion: send groups to monoids.
 - coreflection: send monoid to its group of units. (extract subobject).
@@ -1113,7 +1138,8 @@ int mex_mex() {
 - If we remove the topology on $G$ to become the discrete topology, we get
   a group called $G^\delta$. This has a category of $G^\delta$ sets,
   called $BG^\delta$.
-   
+
+
 # Better `man` Pages via `info`
 
 - I recently learnt about `info`, and it provides so much more quality than `man`!
@@ -1171,8 +1197,10 @@ int mex_mex() {
 
 # Mitchell-Bénabou language
 
-- https://ncatlab.org/nlab/show/Mitchell-B%C3%A9nabou+language
+- [Link](https://ncatlab.org/nlab/show/Mitchell-B%C3%A9nabou+language)
+
 # Hyperdoctrine
+
 - A hyperdoctrine equips a category with some kind of logic `L`.
 - It's a functor `P: T^op -> C` for some higher category `C`, whose objects are categories 
   whose internal logic corresponds to `L`.
@@ -1314,13 +1342,13 @@ def performIO [Inhabited a] (io: IO a): a := Inhabited.default
 - Define an equivalence relation between two monics `m, m': S, S' -> X` where `m ~ m'` 
   iff there is an iso `i: S -> S''` such that the triangle commutes:
 
-  ```
+```
   S --i--> S'
    \      /
    m\    /m'
      v  v
       X
-  ```
+```
 
 - $Sub_C(X)$ is the set of all subobjects of $X$.
 - to make the idea more concrete, let `C = Set` and let `X = {1, 2}`. This has subobjects
@@ -40486,6 +40514,7 @@ For example: "More people have been to Berlin than I have."
 
 # Emacs Cheat Sheet
 
+- `M-,`: go back
 - `M-q`: `fill-paragraph`: make stuff 80 column, at least in text.  so this is not that bad.
 - `C-u C-space`: go back to where you were in the file.
 - `C-x r t`: `string-rectangle`. insert new text in a rectangle
@@ -40493,6 +40522,7 @@ For example: "More people have been to Berlin than I have."
 - `C-x r k`: delete column of text. For `kill`.
 - `C-x space`: `rectangle-mark-mode` to select rectangles. `C-space` to lay down mark.
    I bind it to `C-x r r`.
+- `C-x tab` (`indent-rigidly`): move the indent of a region left or right with arrow keys.
 
 #### Org
 - `C-c C-c`: org-capture into code snippet.
