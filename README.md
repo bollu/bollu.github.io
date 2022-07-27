@@ -6,6 +6,14 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+# Different types of arguments in Lean4:
+- `(x: T)` regular argument
+- `[S: Functor f]` typeclass argument / argument resolved by typeclass resolution
+- `{x: T}`: Maximally implicit argument, to be inferred.
+- `⦃x: T⦄`: Non-maximally-inserted implicit argument. It is instantiated if it can be deduced from context,
+    and remains uninstantiated (ie, no metavariable is introduced) otherwise.
+
+In Coq people shun away from this binder. I'm not sure why, I guess there are issues with it at a larger scale. We could get rid of it. For the paper it's utterly irrelevant in my opinion
 
 # Big list of lean tactics
 - `split` allows one to deal with the cases of a match pattern. This also allows one to case on an `if` condition.
@@ -71,10 +79,6 @@
 - The workaround is to work with an equivalence class of terms. 
 - Define equivalence as `t|X ~= t(X/Y)|Y`.
 - Arrows are equivalence classes of terms.
-
-
-
-
 
 #### Reference
 - [Hyperdoctrines and why you should care about them](https://www.youtube.com/watch?v=VvSTE9oqRag)
