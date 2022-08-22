@@ -6,6 +6,496 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+# You could have invented Sequents
+
+- Key idea: define a notation called `Γ => Δ` iff the conjunction of sentences
+  in gamma implies the disjunction of terms in delta.
+- Why would anybody do this? isn't this weird?
+- It's because we first note what we need to think about consequence, validity, and unsatisfiability.
+- `d1` is a consequence of `Γ`  iff `g1 /\ g2 .. /\ gn => d1`
+- `d1` is valid iff `empty => d1`, or written differently, `0 => {d1}`.
+- `Γ` is unsatisfiable iff `g1 /\ ... /\ gn => False`, or written differently, `Γ => 0`
+- Thus, see that on the RHS, we need a set with 0 or 1 inhabitant. We can think of this as `Maybe`, smooshed
+  together with `\/`, since we want the empty set to represent `False`.
+- Recall that haskell teaches us to replace failure with a list of successes!
+- Thus we should use `Γ => Δ` where on the RHS, we have a list that is smooshed together by or (`\/`)!
+- Great, we have successfully invented sequents.
+
+
+# Fibrational category theory, sec 1.1, sec 1.2
+
+- Key idea: can define a notion of a bundle `p: E → B`
+- The idea is that we want to generalize pullbacks into fibres. 
+- A functor `p: E \to B` is called as a fibration if for each morphism `f: b → b'` 
+  downstairs, and an element `e' ∈ E` such that `π(e') = b'`, then we have a lift 
+  of the morphism `f` into `f♮`, such that this morphism has a property called
+  *cartesianity*.
+- Given:
+
+```
+        e'
+        |
+
+b ----> b'
+```
+
+
+- We want:
+
+```
+  
+e===f♮=>e'
+|       |
+|π      |π
+v       v
+b --f-->b'
+```
+
+- Furthermore, to ensure that this is really a pullback, we ask for the condition that 
+  TODO
+
+#### Omega sets
+
+- A set with some sort of "denotation by natural numbers" for each element of the set.
+- More formally, an omega set is a tuple `(S, E: S → 2^N)` such that `E(s) ≠ ∅`.
+  The numbers `E(s)` are to be thought of as the denotation for the element `s`.
+- A morphism of omega sets `(S, E) → (S', E')` is a function `f: S → S'`, and
+  a partial function `realiser(f): N → N` such that for all `s ∈ S`, `realiser(f)(E(s)) ⊂ E'(f(s))`.
+  That is, for every denotation `d ∈ E(s)`, we have that the realiser `realiser(f)` maps `d` into
+  the denotation of `f(s)`, so we must have that `d' = realiser(f(d))` lives in `E'(f(s))`.
+
+#### PERs
+- This is a partial equivalence relation, so we only need symmetry and transitivity.
+- We consider partial equivalence relations (PERs) over `N`.
+- Let `R` be a PER. We think of those elements that are reflexively related (ie, `xRx`) as 
+  "in the domain" of the `PER`.
+- Thus we define `domain(R) = { x | xRx }`.
+- In this way, `R` is a real equivalence relation on `domain(R)`.
+- We write `N/R` or `domain(R)/R` for the equivalence classes induced by `R` on `N`.
+- The category of PERs has as objects these PERs.
+- Intuitively, these give us subsets of the naturals ...
+
+
+# Split and Cloven Fibrations
+
+- A fibration is cloven if for every arrow downstairs, there is a chosen cartesian 
+  arrow upstairs. So we have a *function* that computes the cartesian arrow upstairs
+  for an arrow downstairs. This is different from the regular definition where
+  we just know that there *exists* something upstairs.
+- Note that given a fibration, we can always cleave the fibration using choice.
+- Recall the definition of cartesian. For a functor `p: E → B`, for every arrow
+  downstairs `u: I → J ∈ B` and every object `Y ∈ E` lying above `J` (ie, `p(Y) = J`),
+  there is a cartesian lift of `u` given by `X → Y` for some `X` lying above `I`. (`p(X) = I`).
+- Having made such a choice, every map `u: I → J` in `B` gives a functor `u*: E_J → E_I` from the the fiber `E_J` over `J`
+  to the fiber `E_I` over `I`. (Direction changes, pullback)
+- Recall that `E_J` is a subcategory of `E` where the objects are `p^{-1}(J)`, and the morphisms
+  are `p^{-1}(id_J)`. 
+- Implement the map `u*` as `u*(y)` as that object given by lifting the map `u: I → J` along `Y`.
+  This is well-defined since we have a clevage to pick a unique `u*(Y)`!
+
+```
+defn
+u*(Y)-->Y
+        |
+        v
+I -u--->J
+```
+
+- For morphisms, suppose we are given an arrow `f: Y → Y'` in `E_J`. Then we use the cartesianity of the
+  lifted morphism to give us the lift. Mediatate on the below diagram:
+
+# Simple Type Theory via Fibrations
+
+- Objects are contexts, so sequence of `(term:type)`
+- Morphisms between contents `Γ = (v1:s1, v2:s2)` and `Δ = (w1:t1, w2:t2)`
+  are terms `M1, M2` such that we have `Γ |- M1 : t1` and `Γ |- M2 : t2`.
+- More cleaned up, for a context `Γ`, and a context `Δ` with sequence of types `(_:t1, _:t2, ..., _:tn)`,
+  a morphism is a sequence of terms `Γ|- M1: t1`, `Γ|- M2:t2`, ..., `Γ|-Mn:tn`.
+- For concreteness, let us suppose `Δ = (w1:t1, w2: t2)`
+- The identity morphism is `Δ -(d1, d2)-> Δ`, since we have `d1 := w1:t1, w2:t2|-w1:t1` and `d2 := w1:t1, w2:t2|-w2:t2`.
+  Thus, starting from `Δ` on the context, we can derive terms of types `t1, t2`, which are given by the derivations `d1, d2`.
+- Let us meditate on composition `Γ -(d1, d2)-> Δ -(d1', d2')-> Θ`. First off, let us write this more explicitly as:
+
+```
+Γ
+
+(d1 := Γ|-M1:s1, d2 := Γ|-M2:s2)
+
+Δ := (x1:s1, x2:s2)
+
+
+(d'1 := Δ|-N1:t1, d2 := Δ|-N2:t2)
+
+Θ := (_:t1, _:t2)
+```
+
+- See that have `(x1:s1, x2:s2)|- N1 : t1`
+- If we substitute `N1[x1 := M1, x2 := M2]`,
+  then under context `Γ`, we know that `M1:s1`, and `M2:s2`, so they have the
+  correct types to be substituted for `x1` and `x2`. Thus, in context `Γ`, `N1[x1 := M1, x2 := M2]`
+  has the same type it used to have `(t1)`.
+- Thus we have that `Γ |- N1[x1 := M1, x2 := M2] : t1`.
+- This gives us the composite of the section of the morhphisms, by telling us how to compose `d'1` with `d1`.
+- Do the same for `d2`.
+- What the hell is going on anyway?
+- Given any well typed term in a context, `Γ|-M:t`, we can think of this as a morphism `Γ --M--> (Δ:=M:t)`.
+- This relative point of view (ala grothendieck) lets us extend to larger contexts.
+- The empty context is the terminal object, since there is precisely one morphism, consisting of the
+  empty sequence `()`. Can be written as `Γ-()-> 0`.
+- The categorical product of contexts is given by sequencing (see that this needs exchange),
+  and the projections are the "obvious" rules: `Γ <--Γ-- (Γ;Δ)---Δ--> Δ`.
+
+
+
+# Realisability models
+
+
+For closed terms `u`, and type `𝜏` we are going to define `u ⊩ 𝜏` (read “u is a
+realiser of 𝜏”). Let's say that we have PCF's type: `ℕ` and `σ → τ`.
+
+1. `u ⊩ ℕ `if u reduces to a natural number literal
+2. `f ⊩ σ → τ` if for all `s⊩σ`, `f s ⊩ τ`.
+
+
+Some immediate observations:
+- This definition is by induction on the types, and assumes little from the terms (it's a logical relation).
+- This is “really what we mean” by `x : 𝜏` (except non-termination, not modelled here): realisability has explanatory power.
+- This relation is usually undecidable.
+- It is strongly related to parametricity (in parametricity we associate a binary relation to types, in realisability we associate a (unary) predicate). 4/10
+- From this point of view, typing is a (usually decidable) modular approximation of realisability.
+- For instance, consider `if x then 1 else (\y -> y)`. It isn't well-typed.
+- However, if we add `let x = True in if x then 1 else (λy. y)` it becomes a realiser of `ℕ` [because upon reduction, it produces an `N`, even
+  though it is not "well-typed".
+
+- Typing and realisability are related by a lemma sometimes referred as adequacy.
+
+Take the rule for λ (simplified):
+
+```
+x:X, y:Y ⊢ z : Z
+-----------------------
+x:X ⊢ λ(y: Y). z : Y → Z
+```
+
+You interpret it as a statement
+
+```
+∀ v⊩A, (∀ w ⊩ B, u[x\v, y\w] ⊩ C) ⟹  \lambda y.u[x\v] ⊩ C
+```
+
+- Then, you prove this statement. 7/10
+
+Once you've done so for each rule, you can conclude (very easy induction) that
+if ⊢ u : A, then u ⊩ A. This gives type safety, since realisers are practically
+defined as verifying type safety.
+
+What you've gained along the way is that this proof is an open induction. 8/10
+
+In standard combinatorial proofs of type safety, the induction hypothesis may depend on every case. Adding a form in your language may require redoing the entire proof. Here the various case in the adequacy lemma will remain true. So you can just prove the new cases. 9/10
+
+
+There are many variants of realisability. Tuned for logic, with models instead
+of terms, … My favourite is Krivine's realisability with both terms and stacks,
+and magic happening when they interact. But this is another story and shall be
+told another time. 10/10
+
+# Naming left closed, right open with start/stop
+
+Call the variables `startPos` and `stopPos`. Since it's called stop,
+it's a little more intuitive that it's exclusive!
+
+# Nested vs mutual inductive types:
+
+```
+inductive m1
+| mk: m2 -> m1
+
+inductive m2
+| mk: m1 -> m2
+```
+
+```
+inductive n1: Type := 
+| mk: n2 n1 -> n1
+
+inductive n2 (a: Type): Type :=
+| nil: n2 a
+| cons: a -> n2 a -> n2 a
+
+```
+# MiniSketch
+
+https://github.com/sipa/minisketch
+
+# Finger trees data structure
+
+https://dl.acm.org/doi/abs/10.1145/3406088.3409026
+
+# HAMT data structure
+
+https://en.m.wikipedia.org/wiki/Hash_array_mapped_trie
+
+# Embedding HOL in Lean
+
+```
+inductive Sets where
+| bool: Sets
+| ind: Nat -> Sets
+| fn: Sets -> Sets -> Sets
+
+def Sets.denote: Sets -> Type 
+| bool => Prop
+| ind => nat
+| fn i o => i.denote -> o.denote
+
+def ifProp (p: Prop) (t: a) (e: a) : a := by 
+  match Classical.lem p with 
+  | Or.inl _ => t 
+  | Or.inr _ => e
+
+def Model := Σ (s: Sets), s.denote
+```
+
+# Module system for separate compilation
+
+- https://github.com/leanprover/lean4/issues/416
+- https://www.cs.utah.edu/plt/publications/macromod.pdf
+- https://raw.githubusercontent.com/alhassy/next-700-module-systems/master/phd-defence.pdf
+- https://raw.githubusercontent.com/alhassy/next-700-module-systems/master/thesis.pdf
+
+# Second order arithmetic
+
+- First order arithmetic has variables that range over numbers
+- Second order arithmetic has variables that range over sets of numbers
+- [Ref: Jeremy Avigad on forcing](https://www.andrew.cmu.edu/user/avigad/Papers/forcing.pdf)
+- Axiomatic second-order arithmetic is often termed “analysis” because, by
+  coding real numbers and continuous functions as sets of natural numbers, one
+  can develop a workable theory of real analysis in this axiomatic framework.
+
+# Lean4 Dev Meeting
+
+- Mathport uses matli4 to move tactics.
+- Mathlib4 has syntax definitions ofr every single tactic that exists in `mathlib`.
+- These only exist as syntax so far. We need to port this.
+- The goal for this week is to have as many as possible knocked off.
+
+
+#### Macro
+- A tactic that expands to another tactic.
+- Example: `_` tactic. This expands into `({})`, which shows you the current state.
+- `macro_rules` need a piece of `Syntax`, and it expands into another tactic. 
+
+```
+-- | do the iff.rfl as well.
+macro_rules | `(tactic| rfl => `(tactic| exact Iff.rfl)
+```
+
+- Closed syntax categories: `syntax rcasesPatLo := ...`.
+- Open syntax categories: `syntax X`.
+
+#### How to collate info?
+- Use `macro` to define syntax + macro
+- Use `elab` to define syntax + elaborator together.
+- Add command to list all places where something was extended.
+- Add information into docstrings.
+- `match_target`. 
+
+#### `Mapsto` arrow
+
+- `(x: α) \mapsto e`: maybe annoying to parse.
+- \lamnda (x: \alpha) \mapsto e`: easy to parse, but mathematicians don't know what lambda is.
+
+#### `ext` tactic
+
+- implemented as a macro tactic, which uses an `elab` tactic.
+
+#### `colGt`
+- `syntax "ext" 
+- Lean4 is whitespace sensitive, like python. `colGt` says that we can have the following
+    syntax on a column that is greater than the current line.
+
+```
+ext
+  x -- parsed as part of `x`.
+  y -- parsed as part of `y`.
+z -- is not parsed as part of `x y`.
+```
+- If in parens, we don't need colGt, because we want to allow something like:
+
+```
+ext (x
+ y) -- should parse.
+```
+#### `ppSpace`
+
+- Used when pretty printing a tactic.
+
+#### Scoped syntax
+- `scoped syntax "ext_or_skip: .. `.
+- This declares a syntax that is valid only for the current section/namespace.
+- Trailing percent `ext_proof%` is an indicator that it is a term macro / term elaboration.
+- Protected: identifier cannot appear without prefixing namespaces.
+
+#### Trivia
+- `{..}` pattern matches on a struct.
+
+
+#### Tactic development: `Trace`
+- Create a new file `Mathlib/Tactic/Trace.lean`
+- Move the syntax line from `./Mathlib/Mathport/Syntax.lean`  into `Mathib/Tactic/Trace.lean`.
+- On adding a file, add it to `Mathlib.lean`. So we add `import Mathlib.Tactic.Trace`
+- We also want to re-import the syntax into `Mathlib/Mathport/Syntax.lean`.
+- We have now moved `trace` into its own file and hooked into the build system and extension.
+- The first thing to do is to find out what the tactic even does.
+- Go to [`trace`](https://leanprover-community.github.io/mathlib_docs/tactics.html#trace) at the mathlib docs.
+
+```
+-- Tactic.lean
+import Lean
+open Lean Meta Elab
+
+syntax (name := trace) "trace " term : tactic
+
+elab "foo" : tactic => do
+  -- `TacticM Unit` expected
+  logInfo "hi" 
+
+```
+
+```
+open Lean Meta Elab Tactic ~=
+open Lean
+open Lean.Meta
+open Lean.Elab
+open Lean.Elab.Tactic
+```
+- TacticM is a `MonadRef`, which is aware of source spans to report the errors.
+  so we can write:
+
+```
+elab "foo" : tactic => do
+  logInfo "hi"
+```
+
+- We can use `withRef` to control the current source span where errors
+  are reported.
+
+```
+elab tk:"foo" val:term : tactic => do
+  withRef tk (logInfo val)
+```
+
+- We want to evaluate the `val:term`, because otherwise, it literally prints the syntax
+  tree for things like `(2 + (by trivial))`.
+- Use `elabTerm` to elaborate the syntax into a term.
+- set_option `trace.Elab.definition true in ...` which printso ut the declarations that are being
+  sent to the kernel.
+- `elab` is `syntax` + `elab_rules` together, just like `macro` is `syntax` + `macro_rules` together.
+- Create a test file `test/trace.lean`. Import the tactic, and write some examples.
+- Recompile, and check that the test works.
+- How do we check that our port works?
+
+
+#### Reducible
+
+> To clarify, @[reducible] marks the definition as reducible for typeclass
+> inference specifically. By default typeclass inference avoids reducing because
+> it would make the search very expensive.
+
+
+# Categorical model of dependent types
+
+- [Motivation for variants of categorical models of dependent types](https://proofassistants.stackexchange.com/questions/1086/what-are-the-motivations-for-different-variants-of-categorical-models-of-depende)
+- [Seminal paper: Locally cartesian closed categories and type theory](https://www.math.mcgill.ca/~rags/LCCC/LCCC.pdf)
+- A closed type is interpreted as an object.
+- A term is interpreted as a morphism.
+- A dependent type upon $X$ is interpreted as an object of the slice category $C/X$.
+-  A dependent type of the form `x: A |- B(x) is a type` corresponds to morphisms `f: B -> A`, 
+    whose fiber over  `x: A` is the type `f^{-1}(x) = B(x)`.
+- The dependent sum $\Sigma_{x : A} B(x)$ is given by an object in $Set/A$, the set $\cup_{a \in A} B_a$.
+  The morphism is the morphism from $B_a \to A$ which sends an elements of $B_{a_1}$ to $a_1$, $,B_{a_2}$ to $a_2$ and so forth.
+  The fibers of the map give us the disjoint union decomposition.
+- The dependent product $\Pi_{x: A} A(x)$ is given by an object in $Set/A$, the set $ 
+- We can describe both dependent sum and product as arising as adjoints to the functor $Set \to Set/A$ given
+  by $X \mapsto (X \times A \to A)$.
+- Recalling that dependent types are interpreted by display maps, substitution
+  of a term tt into a dependent type BB is interpreted by pullback of the
+  display map interpreting BB along the morphism interpreting tt.
+- [Reference](https://ncatlab.org/nlab/show/categorical+model+of+dependent+types)
+
+#### Key ideas
+
+- [Intro to categorical logic](https://www.andrew.cmu.edu/user/jonasf/80-514-814/notes.pdf)
+- Contexts are objects of the category `C`
+- Context morphisms are morphisms `f: Γ → Δ`
+- Types are morphisms `σ: X → Γ` for arbitrary `X`
+- Terms are sections of `σ: X → Γ`, so they are functions `s: Γ → X` such that `σ . s = id(Γ)`
+- Substitution is pullback
+
+#### Why is substitution pullback?
+
+- Suppose we have a function $f: X \to Y$, and we have a predicate $P \subseteq Y$.
+- The predicate can be seen as a mono $P_Y \xrightarrow{py} Y$, which maps the subset where $P$ is true into $Y$.
+- now, the subset $P_X \equiv P_Y(f(x))$, ie, the subset $P_X \equiv \{ x : f(x) \in P_Y \}$ is another subset $P_X \subseteq X$.
+- See that $P_X$ is a pullback of $P$ along $f$:
+
+```
+P_X -univ-> P_Y
+|            |
+px            py
+|            |
+v            v
+X -----f---> Y
+```
+
+- This is true because we can think of $Q_X \equiv \{ x \in X, y \in P_Y: f(x) = py(y) \}}$.
+- If we imagine a bundle, at each point $y \in Y$, there is the presence/absence of a fiber $py^{-1}(y)$
+  since $py$ is monic.
+- When pulling back the bundle, each point $x \in X$ either inherits this fiber or not depending
+  on whether $f(x)$ has a fiber above it.
+- Thus, the pullback is also monic, as each fiber of $px$ either has a strand or it does not, depending
+  on whether $py$ has a strand or not.
+- This means that $px(x)$ has a unique element precisely when $f(x)$ does.
+- This means that $px$ is monic, and represents the subset that is given by $P_Y(f(x))$.
+
+#### Isn't substitution composition?
+
+- If instead we think of a subset as a function $P_Y: Y \to \Omega$ where $\OmegaS is the subobject classifier,
+  we then get that $P_X$ is the composite $P_X \equiv P_Y \circ f$.
+- Similarly, if we have a "regular function" $f: X \to Y$, and we want to substitute $s(a)$ ($s: A \to X$ for
+  substitution) into $f(x)$ to get $f(s(a))$, then this is just computing $f \circ s$.
+
+#### Using this to do simply typed lambda calculus
+
+- [Introduction to categories and categorical logic](http://www.cs.ox.ac.uk/people/bob.coecke/AbrNikos.pdf)
+- Judgement of the form `A1, A2, A3 |- A` becomes a morphism `A1xA2xA3 → A`.
+- Stuff above the inference line will be arguments, stuff below the line will be the return value.
+- Eg, the identity judgement:
+
+```
+Γ,A |- A
+```
+
+becomes the function `snd: ΓxA → A`.
+
+#### Display maps
+
+- [Reference: Substitution on nlah](https://ncatlab.org/nlab/show/substitution)
+- To to dependent types in a category, we can use [display maps](https://ncatlab.org/nlab/show/display+map).
+- The display map of a morphism $p: B \to A$ represents $x:A |- B(x): Type$. The intuition is that $B(x)$
+  is the fiber of the map $p$ over $x:A$.
+- For any category $C$, a class of morphisms $D$ are called display maps iff all pullbacks of $D$ exist and
+  belong to $D$. Often, $D$ is also closed under composition.
+- Said differently, $D$ is closed under all pullbacks, as well as composition.
+- A category with displays is _well rooted_ if the category has a terminal object $1$, and all maps into $1$
+  are display maps (ie, they can always be pulled back along any morphism)$. 
+- This then implies that binary products exist (?? HOW?)
+
+
+#### Categories with families
+
+- [Lectures notes on categorical logic](https://staff.math.su.se/palmgren/lecturenotesTT.pdf)
+
 # How should relative changes be measured
 
 - by Leo Tornqvist, Pentti Vartia and Yrjo O. Vartia
