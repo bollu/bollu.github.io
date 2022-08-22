@@ -1,3 +1,6 @@
+- Computation and Logic: George S Boolos
+- Mathematical Methods of Classical Mechanics
+- [Low level code improvements and loop optimisations made simple](http://www.cs.fsu.edu/~engelen/cr.html)
 - [Cellular Sheaves of Lattices and the Tarski Laplacian](https://arxiv.org/pdf/2007.04099.pdf)
 - How to draw a straight line. (blog on linkages)
 - [Probabilistic numerics: Unified theory of integration via learners](https://www.probabilistic-numerics.org/assets/ProbabilisticNumerics.pdf)
