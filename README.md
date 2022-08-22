@@ -1001,6 +1001,83 @@ q a a         q b b
 - Intuitively, `T ⊂ π*(π(T))`, so it must be "hard" for the inverse image of a set `Z` (`π*(Z)`) to
   be contained in the set `T`, because inverse images cannot shrink the size.
 - Furthermore, it is the right adjoint to `π*(Z)` because the ???
+# Different types of arguments in Lean4:
+- `(x: T)` regular argument
+- `[S: Functor f]` typeclass argument / argument resolved by typeclass resolution
+- `{x: T}`: Maximally implicit argument, to be inferred.
+- `⦃x: T⦄`: Non-maximally-inserted implicit argument. It is instantiated if it can be deduced from context,
+    and remains uninstantiated (ie, no metavariable is introduced) otherwise.
+
+In Coq people shun away from this binder. I'm not sure why, I guess there are issues with it at a larger scale. We could get rid of it. For the paper it's utterly irrelevant in my opinion
+
+# Big list of lean tactics
+- `split` allows one to deal with the cases of a match pattern. This also allows one to case on an `if` condition.
+- `cases H: inductive with | cons1 => sorry | cons2 => sorry` is used to perform case analysis on an inductive type.
+- `cases H; case cons1 => { ... }; case cons2 => { ... }` is the same , but with slightly different syntax.
+- `rewrite [rule] (at H)?` performs the rewrite with rule. But generally, prefer `simp [rule] (at H)`, because `simp`
+   first runs the rewrite, and then performs reduction. But if `simp` does not manage to perform a rewrite, it
+   does not perform reduction, which can lead to weird cases like starting with `let H = x = true in match x | true => 1, false => 2`.
+   On running `rewrite [H]`, we get `match true | true => 1, false => 2`. And now if we run `simp`, it performs no reduction.
+   On the other hand, if we had run `simp [H]`, it would rewrite to `match true | true => 1 | false => 2` and then also
+   perform reduction to give `1`.
+
+# Hyperdoctrine
+- A hyperdoctrine equips a category with some kind of logic `L`.
+- It's a functor `P: T^op -> C` for some higher category `C`, whose objects are categories 
+  whose internal logic corresponds to `L`.
+- In the classical case, `L` is propositional logic, and `C` is the 2-category of posets.
+  We send `A ∈ T` to the poset of subobjects `Sub_T(A)`.
+- We ask that for every morphism `f: A -> B`, the morphism `P(f)` has left and right adjoints.
+- These left and right adjoints mimic existential / universal quantifiers.
+- If we have maps between cartesian closed categories, then the functor `f*` obeys frobenius
+  reciprocity if it preserves exponentials: `f*(a^b) ~iso~ f*(a)^f*(b)`.
+#### Algebra of logic
+
+- Lindenbaum algebras : Propositional logic :: Hyperdoctrines : Predicate logic
+- Work in a first order language, with a mild type system.
+- Types and terms form a category $B$ (for base.
+- Interpretations are functors which map $B$ to algebras.
+
+#### Syntax
+- `e | X`. `e` is untyped. `X` is typed.
+- `e` is a sequence of symbols. `X` is a set of variables, which intuitively are the free variable.
+- Every variable that has a free occurence in the untyped part should also occur in the typed pat.
+- eg. `R x[1] x[2] | { x[1], x[2] }`
+- Not every variable in the typing part needs to occur in the untyped part.
+- eg. `R x[1] x[2] | { x[1], x[2], x[3] }`. (dummy variable `x[3]`).
+- Variables: `x[1], ...`
+- constants: `c[1], ...`
+- Separators: `|, {, }, ()`.
+- `c[i] | {}` is a unary term.
+- `x[i] | {x[i]}` is a unary term.
+- If `t |X` is `n`ary and `s | Y` is m-ary, then `ts | X U Y` is a `n+m`ary term.
+- if `t|X` is n-ary and `y` is a variable, then `t | X U {y}` is a `n-ary` term.
+
+#### Formulas.
+
+- if `R` is a n-ary predicate and `t|X` is a n-ary term, then `Rt|X` is a formula.
+- if `phi|X` is a formula and `x ∈ X`, then `∀x, phi | X - {x}` is a formula.
+
+#### A category of types and terms.
+- Find a natural way to view terms in our language as arrows in our category.
+- `s | Y`. `Y` tells us `card(Y)` name shaped gaps. `s` is a `len(s)` name shaped things.
+- `s:codomain`, `Y: domain`.
+- Question: when should composition be defined? the types have to match for `t|X . s|Y`.
+- So we should have `card(X) = len(s)`.
+- We want the composition to be substitution. `t|X . s|Y = t[X/s]|Y`.
+- eg. `x3|{x3, x4}  . x1a3 | {x1, x2} = x1|{x1, x2}`. (substitute `x3` by `x1`, and `x4` by `x2`.)
+- eg. `x3 x4|{x3, x4}  . x1a3 | {x1, x2} = x1 a3|{x1, x2}`. (substitute `x3` by `x1`, and `x4` by `x2`.)
+
+#### Problem: we don't have identity arrows!
+- Left identities `x1 x2 | {x1, x2}` is not a right identity! 
+- But in a category, we want two sided identity.
+- The workaround is to work with an equivalence class of terms. 
+- Define equivalence as `t|X ~= t(X/Y)|Y`.
+- Arrows are equivalence classes of terms.
+
+#### Reference
+- [Hyperdoctrines and why you should care about them](https://www.youtube.com/watch?v=VvSTE9oqRag)
+
 
 # Fungrim
 
@@ -1687,6 +1764,7 @@ int mex_mex() {
 
 # Mitchell-Bénabou language
 
+<<<<<<< HEAD
 - [Link](https://ncatlab.org/nlab/show/Mitchell-B%C3%A9nabou+language)
 
 # Hyperdoctrine
@@ -1700,6 +1778,9 @@ int mex_mex() {
 - These left and right adjoints mimic existential / universal quantifiers.
 - If we have maps between cartesian closed categories, then the functor `f*` obeys frobenius
   reciprocity if it preserves exponentials: `f*(a^b) ~iso~ f*(a)^f*(b)`.
+=======
+- https://ncatlab.org/nlab/show/Mitchell-B%C3%A9nabou+language
+>>>>>>> origin/master
 
 # Why is product in Rel not cartesian product?
 

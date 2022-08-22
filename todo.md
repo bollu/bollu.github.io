@@ -4,6 +4,7 @@
 - [Cellular Sheaves of Lattices and the Tarski Laplacian](https://arxiv.org/pdf/2007.04099.pdf)
 - How to draw a straight line. (blog on linkages)
 - [Probabilistic numerics: Unified theory of integration via learners](https://www.probabilistic-numerics.org/assets/ProbabilisticNumerics.pdf)
+- [Notes on realisability](http://www.andrej.com/zapiski/MGS-2022/notes-on-realizability.pdf)
 - [Markov Junior](https://github.com/mxgmn/MarkovJunior)
 - Call by push value in SSA?
 - Language where `fix` is overloadablwe by a typeclass! So we can only perform recursion in contexts
