@@ -6,6 +6,599 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+# Why cut elimination?
+
+- Morally spekaing, gives control over the formulae that occur in a proof.
+- If we can conclude that `(X -> Y; Y -> Z)|(X -> Z)`, then the proof of `X ->
+  Z` could be arbitrarily complex, since `Y` might be something crazy.
+- If we have `cut`, we know that such arbitrarily crazy things cannot happen, as the `cut` rule is the
+  only rule where we are forced to synthesize something "out of thin air".
+- [An introduction to the complexity and combinatorics of cut elimination](https://www.ams.org/journals/bull/1997-34-02/S0273-0979-97-00715-5/S0273-0979-97-00715-5.pdf)
+- [Reference](https://mathoverflow.net/questions/8632/cut-elimination)
+
+# Forcing to add a function
+
+- Let $M$ be a countable transitive model of ZFC.
+- We will add a new function $c: \aleph_0^M \to \{0, 1\}^M$ into $M$ by creating $M[G]$.
+- Let $P$ be the set of all finite partial functions from $\aleph_0$ to $\{0, 1\}$ in $M$.
+- Let $G$ be a generic maximal ideal of $P$. That is, $G$ intersects every dense set of $M$.
+- Also, since it is a maximal ideal, taking the full union $\cup G \equiv c$ will give us a well defined total function.
+- It will be well defined since no two elements of $G$ disagree, and it will be total because if it were not, we could extend $G$,
+  contradicting the maximality of $G$.
+- Great, so if we can construct $M[G]$, we will also have $c = \cup G \in M[G]$.
+- But how do we know that $c$ is new? Ie, how do we know that $c \not in M$?
+- Well, consider for any function $h \in M$, the subset of $P$ that disagrees with $h$. That is, the subset
+  $D_h \equiv \{ p \in P : \exists i, p(i) \neq h(i) \}$.
+- See that $D_h$ is dense in $M$: Suppose $p \in P$, and $p$ is well-defined on some subset $S$. Either $p$ disagrees with $h$ on $S$,
+  that is, there is some $s \in S$ such that $p(s) \neq h(s)$, in which case $p \in D_h$ and we are done.
+- On the other hand, maybe $h|S = p$ (that is, $h$ restricted to $S$ fully agrees with $p$). Then we pick some point $s' \not in S$
+  and extend $p$ into $p'$ to disagree with $h$ at $s'$. So define $p'(s') \equiv h(s') + 1$ or something. Now we have $p \leq p'$ and $p' \in D_h$.
+- Since $D_h$ is generic, we have that $G \cap D_h \neq \emptyset$, thus $f$ disagrees with $h$ at some point!
+- Thinking intuitively, it would be a CRAZY coincidence for it to agree with a function $h$ fully in $M$. If we build it "randomly",
+  or "generically", one _would_ expect it to disagree with stuff in $M$ at some point in the construction!.
+- Cool, we've now seen how to enlarge the universe to add a _single_ function of interest.
+- [Reference](https://math.stackexchange.com/questions/1311667/what-are-some-simple-example-of-forcing-in-set-theory)
+
+# Diaconescu's theorem
+
+- Choice implies LEM
+- Let $P$ be a proposition. Build the sets $T, F$ as:
+- $T \equiv {x \in \{0, 1\} : (x = 1) \lor P}$, and $F \equiv x \in \{ 0, 1 \} : (x = 0) \lor P \}$.
+- Note that if we had LEM, we could case split on $P$ via LEM and show that $x \equiv \{ 1 \}$ if $P$, and $x \equiv \{ 0, 1\}$ if
+  $\not P$.
+- However, we don't have LEM. So let's invoke Choice on the set $B \equiv \{T, F \}$. This means we get a choice function
+  $c: B \to \cup c B$ such that $c(T) \in T$ and $c(F) \in F$. 
+- By the definition of the two sets, this means that $(c(T) = 1 \lor P)$, and $(c(F) = 0 \lor P)$.
+- This can be written as the logical formula $(c(T) = 1 \lor P) \land (c(F) = 0 \lor P)$.
+- This is the same as $(c(T) \neq c(F)) \lor P$.
+- Now see that since $P \implies (U = V)$ (by extensionality), we have that $P \implies (f(U) = f(V))$.
+- See that contraposition is available purely intuitionistically: (`(p -> q) -> (q -> false) -> p -> false`).
+- Therefore, by contraposition $(f(U) \neq f(V)) \implies \lnot P$.
+- This means we have $P \lor \lnot P$!
+
+# Forcing machinery
+
+- Let $M$ be a countable mode of ZFC (exists by lowenheim skolem).
+- Let $\Omega \equiv \{0, 1\}$ ($\Omega$ for subobject classifier).
+- Take $P$ to be the set of partial functions from $\aleph_2 \times \aleph_0 \to \Omega$ with finite support
+- Note that elements of $P$ can be thought of as finite lists, where we know the values where they are 0, where they are 1.
+- Also note that elements of $P$ can be arranged in an obvious partial order.
+
+#### Ideal of a post
+- We define an ideal $I \subseteq P$ to be a set of elements which are pairwise compatible (all pairs of elements have a union),
+  and is downward closed (all elements with less information is present in the ideal).
+- More formally, for any $i \in I$ and $p \in P$, if $p \leq i$, then $p \in I$. So $P \leq I \implies P \in I$.
+- For every $i, i' \in I$, there is some $j \in I$ such that $i, i' \leq j$ ($I$ is a directed set).
+
+#### Maximal ideal
+
+- A maximal ideal $I_\star \subseteq P$ is an ideal such that for any $p \in P$, either $p$ is incompatible with $I_\star$,
+  or $p$ is in $I_\star$.
+
+#### Density in a poset
+
+- A subset $D$ of a poset $P$ is dense iff for any $p \in P$, there is some $d \in D$ such that $d \geq p$. 
+  Intuitively, at any point in the poset, it is possible to "add more information" to reach $D$.
+
+#### Generic Ideals
+- We say that an ideal $G$ is generic iff $G \cap D \neq \emptyset$ for all dense $D \subseteq P$.
+- For any countable model $M$, and a poset $P$ over it, 
+  We claim that for any $p \in P$, a generic ideal $G_p$ which contains $p$ ($p \in G$) exists.
+
+#### Proof: Generic ideal always exists
+- We wish to find a generic ideal that contains a special $p_\star \in P$.
+- Let $D_1, D_2, \dots$ be an enumeration of the dense subsets of $P$ that are members of the countable model $M$.
+- We can perform such an enumeration because $M$ is countable, and thus only has countable many sets.
+- We will create a new sequence $\{q_i\}$ which hits each $\{D_i\}$.
+- Start with $q_0 \equiv p_star$.
+- Since $D_1$ is dense, there is some $d_1 \in D_1$ such that $d_1 \geq q_0$. Set $q_1 \equiv d_1$.
+- This gives us a sequence $\{q_i\}$.
+- Build an ideal $I^\star_p \equiv \{ p \in P : \exists i, p \leq q_i \}$. That is, we build the union of all the lower
+  sets of $q_i$. So this can also be written as $I^\star_p \equiv \cup_i \downarrow q_i$, where $\downarrow(p) \equiv \{ p' : p' \leq p \}$, the down set of $p$.
+- $I^\star_p$ is downward closed by construction, and is directed because for any two elements $a, b \in I$, there is some $q_i, q_j$
+  such that $a \in \downarrow q_i$, $b \in downarrow q_j$, and WLOG, if $q_i \leq q_j$, then $a, b \leq q_j$, thereby making
+  the set directed.
+
+
+#### Separative poset
+- $P$ is separative iff $p \leq q \leq p$ implies $p = q$.
+
+#### Generic ideal of separative poset is not in the model
+
+- Claim: if $G$ is a generic ideal of $P \subseteq M$, then $G$ is not in $M$.
+- Let $H \subseteq P$, $H \in M$. Consider the set $D_H \equiv \{ p \in P : \exists h \in H, \texttt{incompatible}(p, h) \}$.
+- Intuitively, $D_H$ is the set of all elements of $P$ which are incompatible with some element of $H$.
+- We must have $D_H$ \in $M$  by `comprehension(M)`, since $M$ is a model of $ZFC$ ahd $D_H$ is a susbet of $P$.
+- To see that $D_H$ is dense, for any element $p \in P$, we need to find an element $d \in D$ such that $p \leq d$.
+  See that $d \in D$ iff there exists some $h \in H$, such that `incompatible(d, h)`.
+- Since $D_H$ is dense, we have that $G \cap D_H \neq \emptyset$, This gives us some element $g \in G$ such that `incompatible(g, p)`
+  for some $p \in H \subseteq P$. 
+- TODO: this makes no sense!
+
+#### Definition of forcing
+
+- An element $p \in P$ forces the sentence $\phi(\vec \tau)$ iff $\phi^{M[G]}(\vec \tau^G)$ is true for **every generic ideal**
+  $G$ such that $p \in G$. For every formula $\phi$, forcing tells us for which pairs of $p, \vec \tau$ it is the case that
+  $\phi^{M[G]}(\vec \tau^G)$ is true. It is written as $p \Vdash \phi(\vec \tau)$.
+- Written differently, we say that  $p \in P$ forces $phi(\vec \tau)$, iff for any $G \subseteq P$, $p \in G \implies \phi^G(\vec \tau^G)$ is true.
+- That is to say, we can decide the truth of $\phi^G(\vec \tau^G)$ by looking at the presence/absence of $p$ in $G$.
+- See that for a fixed $\phi$, forcing gives us a relation $\subseteq P \times M^k$.
+- What we want to show is this that this forcing relation, for each $\phi$, is definable in $M$.
+- This will show that the collection of $p$ that force a $\phi$ is in $M$ (project the first components of $P \times M^k$.
+
+#### Fundamental theorem of forcing
+
+- For every formula $\phi$, for every generic ideal $G$ over $P$:
+- 1. Definability: there is a set $F(\alpha, \phi) \in M$ such that $p \Vdash \phi(\vec \tau)$ ($p$ forces $\tau$) if and only if
+  $(p, \vec \tau) \in F(\alpha, \phi)$. That is, the forcing relation is definable in $M$
+- 2. Completeness: $\phi^{M[G]}(\vec \tau^G)$ is true iff there is a $g \in G$ such that $g \Vdash \phi(\vec \tau)$.
+  That is, any true sentence in $M[G]$ must have a witnessing $p \in G$ which forces it, for any generic ideal $G$.
+- 3. Coherence/Stability: If $p \Vdash \phi$, for all $q \geq p$, we have $q \Vdash \phi$. Truth once forced cannot be unforced,
+  truth is inflationary, truth is stable, etc.
+- The FTF (fundamental theorem of forcing) is an algorithm on the ZFC syntax. It takes a formula $\phi$, and produces a ZFC
+  proof of (1), (2), (3).
+
+#### Architecture of FTF                                  
+
+- TODO, here I Am!
+
+#### Net to capture generic ideal
+- If $G$ is a generic ideal of $P$, and $G \subseteq (Z \in M)$, then there is a $p \in G$, such that all $q$ such that $p \leq q$ are in $Z$.
+  That is, $\forall G, \exists p \in G, \forall q \in G, p \leq q \implies q \in Z$.
+- Proof: Since $Z \in M$, the complement $Z^C \equiv P - Z \in M$.
+- QUESTION: How can $Z \in M$ if $G$ is a proper class relative to $M$, and $G$ is a subset of $M$? Isn't a superset of a proper
+  class a proper class?
+
+
+#### Names and name creation
+- Let $N$ (for names) be defined transifinitely, where $N_0 \equiv \emptyset$, $N_{i+1} \equiv \mathcal{P}(P \times N_i) \cap M$,
+  and take the union in the usual way at the limit ordinal.
+- Intuitively, names let us create "hypothetical sets", which are realised into real sets for each subset $S \subseteq P$.
+  We keep those elements which are tagged by $s \in S$, and we remove those sets which are not.
+
+#### Forcing equality
+
+- Suppose we want `t_G = t'_G`.
+- Then we build the set `{ q ∈ P | ∀ (s, q) ∈ t, ∃ (s', r) ∈ t' such that (r, s, s') ∈ FORCE_EQUALS }`
+- However, we ask for the condition that `r >= q` for reasons I don't understand.
+
+
+# Partial Evaluation, Chapter 3
+
+
+#### Bootstrapping and self-application
+
+- Suppose we have a high-level compiler in the language `S`, from `S` to `T`. I will denote that as `h : S(S → T)`.
+  where the compiler is `h` (for high), written in language `S`, from `S` to `T`.
+- We also have a low-level compiler written in `T` from `S` to `T`, denoted by
+  `l : T(S → T)`, where the compiler is `l` for low.
+- Suppose the two versions agree, so `[h]_S = [l]_T`.
+- Suppose we extend `h` to `h'`, to compile the language `S'` to `T`. `h'` is also written in `S`, so we have `h': S(S'→ T)`.
+- Now we can use `t` on `h'` to recieve an `S'` compiler `l' : T(S' → T)`.
+- TODO
+
+# Partial Evaluation, Chapter 1
+
+- `out = [[p]](i, i')`, then `p1 = [[mix]](p, i); out = [[p1]](i')`.
+- Alternatively, can write as `[[p]](i, i') = [[ [[mix]](p, i) ]](i')`
+- Let `S` be the source language (Early Rust). Let `T` be the target language (assembly). Let `L`
+  be the language that the interpreter for `S` is implemented in (OCaml).
+- See that we have the equation `out = [source]_S (in)`, or `out = [interp]_L (source, in).`
+- That's the equation for the interpreter.
+- a compiler produces a target program, so we have `target = [compiler]_L(source)`. Running
+  the target and source programs should have the same effect, so `[target]_T(in) = [source]_S(in)`.
+- Written differently, this is `[ [compiler]_L(source) ]_T(in) = [source]_S(in)`.
+
+##### First futamura projection                          
+
+- `out = [source]_S (in)`
+- `out = [int](source, in)`
+- `out = [[mix](int, source)](in)`
+- But by definition of `target`, we have `out = target(in)`
+- Thus, we see that `target = [mix](int, source)`. We get the *compiled output program/target program* by partially
+  applying the interpreter to the source program. 
+
+##### Second futamura projection
+
+- Start with `target = [mix](int, source)`.
+- Now partially apply, `target = [mix(mix, int)](source)`.
+- But we know that `target = compiler(source)`. So we must have `[mix(mix, int)] = compiler`.
+- A compiler is obtained by partially applying the partial applier against the interpreter. Thus, when
+  fed an input, it partially evaluates the interpreter against any input, giving us a compiler.
+
+#### Third futamura projection
+
+- consider `cogen = [mix(mix, mix)]`, applied to an interpreter.
+- Let `comp = cogen(interp) = ([mix](mix, mix))(interp) = mix(mix, interp)`
+- Apply `comp(source)`. This gives us `comp(source) = mix(mix, interp)(source) = mix(interp, source) = target`.
+- Thus, we have create a compiler generator, which takes an interpreter and produces a compiler.
+
+# Diagonal lemma for monotone functions
+
+- Statement: For a monotone function $f: P \times P \to Q$, we have the equality
+  $f(\sqcup_s s, \sqcup_t t) = f(\sqcup_x (x, x))$
+- Since $\sqcup_x (x, x) \sqleq \sqcup_{s, t} (s, t)$, by monotonicity of $f$, we have that
+  $f(\sqcup_x (x, x)) \sqleq f(\sqcup{s, t} (s, t))$.
+- On the other hand, note that for each $(s_\star, t_\star)$, we have that
+  $(s_\star, t_\star)  \leq \sqcup (s_\star \sqcup t_\star, t_star \sqcup t_\star) = (s_\star, s_star) \sqcup (t_\star, t_\star)$.
+  Thus each element on the RHS is dominated by some element on the LHS.
+- So we must have equality of LHS and RHS.
+
+#### Proving that powering is continuous
+
+- We wish to prove that $f^n$ is continuous, given that $f$ and $(\circ)$ is continuous. 
+- Proof by induction. $n = 0$ is immediate. For case $n+1$:
+
+$$
+\begin{align*}
+&(\sqcup_f f)^{n+1} \\
+&= (\sqcup_f f) \circ (\sqcup_g g)^n \\
+&= \sqcup_g ((\sqcup_f f) \circ g^n) \\
+&= \sqcup_g \sqcup_f (f \circ g^n) \\
+&= \sqcup_f (f \circ f^n) \\
+&= \sqcup_f (f^{n+1}) \\
+\end{align*}
+$$
+
+- See that we used the diagonal lemma to convert the union over $f, g$ into a union over $f$.
+
+# Cantor Schroder Bernstein via fixpoint
+
+- Given two injections $f: S \to T, $g: T \to S$, we want to create a bijection.
+- Suppose we have $S = T = N$, and $f(n) = g(n) = n + 1$.
+- If $f$ were surjective, we are done, for then $f$ is the bijection.
+- In this case, $f$ is not surjective, because $T-f(S) = {0}$. So $0$ has no preimage under $f$.
+- We will create a new function $f'$ by perturbing $f$, such that it does map some element in $X$ to $0$ [which is currently missed].
+- Start with $f' \equiv f$. This means that $f'$ misses $0$.
+- We can "force" a pre-image for $0$. How? Consider $g(0) = 1$, and set $f'(g(0)) \equiv 0$, or $f'(1) \equiv 0$.
+- Whoops, but we have now "lost" a preimage for $f(1) = 2$, as now $2$ is not in the image of $f'$.
+- Let's repeat the same process and fix it the same way. $f'(g(2)) \equiv 2$, or $f'(3) \equiv 2$.
+- Now we have lost a pre-image for $f(3)$. Well, we just repeat the construction. For how long?
+- Well, this is where we invoke the glory of a fixpoint theorem!
+- See that we definitely need to reverse the arrows for $(T-f(S))$. If we start with a set $Y \subseteq T$ that
+  we will reverse the arrows to, we will then need to reverse the arrows for $Y \cup F(G(Y))$.
+- Thus, the set that we need to fiddle in $f'$ is $Y \mapsto (T-f(S))\cup F(G(Y))$.
+
+
+# Maximal Ideals of Boolean Algebras are Truth Values
+
+##### Boolean algebras
+- Has meet, join, complement, 1, 0 with usual laws
+
+##### Atomic boolean algebras
+- Consider $2^S$ where $S$ is finite. Then the elements of the form `{s} ∈ 2^S` are said
+  to be atoms because if `x ⊂ {s}` then `x = 0` or `x = {s}`.
+  
+##### Atomless boolean algebras
+- Let $S$ be an infinite set, and let $I$ be a collection of its finite subsets. Then $I$ is an ideal
+  (downward closed subset which has all joins), because the union of two finite sets is finite, and the
+  subset of any finite set is finite.
+- The quotient $T = 2^S/I$ will be an *atomless* boolean algebra.
+- Note that the quotient kills all finite subsets.
+- So for any non-zero $x \in T$, then it must be an equivalence class with some infinite subset. 
+  If we take $k, k'$ to be non-empty disjoint subsets of $x$, then neither is equivalent to $x$ or to $\emptyset$,
+  because they differ at infinitely many locations from each. Thus, $x$ is not an atom.
+- Furthermore, the boolean algebra is not complete, because, if we have $k_1, k_2, \dots$ be a countable collection
+  of countably infinite subsets of $S$ (for example, if $S \equiv \mathbb N$, then we could take $k_i$ to be the 
+  set of numbers with $i$ bits as 1 in their binary representation), then this collection has no least upper bound.
+- Suppose $u$ is an upper bound. Then $u$ differs from each $k_i$ in only finitely many locations.
+- Now build $e_i \in u \cap k_i$, and consider the set $c \equiv u / \{ e_i \}$. That is, we remove one element from $u$
+  from the intersection with each $k_i$. This new $c \subseteq u$, and $c$ is still an upper bound, since it differs 
+  from each of the $k_i$ at finitely many locations. Thus, this algebra is not complete.
+
+##### Or, how to embed a poset into a boolean algebra.
+
+- Every poset $P$ can be embedded into a complete atomic boolean algebra $2^P$
+  by sending $p \mapsto \{ x : x \leq p \}$ (the ideal of $p$).
+- Alternatively, that's just $Hom(-, p)$. God bless yoneda embedding.
+- We can thus consider a ring map from $2^p \to 2$, which gives us a maximal ideal of $2^P$ (ideal is maximal because
+  quotient is field).
+- This assigns to us consistent truth values of $p$.
+- In this way, maximal ideals of posets completed to rings correspond to truth values.
+- Dualize the story via Grothendieck/Geometry to talk about filters :)
+
+# Crash course on DCPO: formalizing lambda calculus
+
+In lambda calculus, we often see functions of the form $\lambda x \rightarrow x(x)$. We would
+like a way to associate a "natural" mathematical object to such a function. The
+most obvious choice for lambda calculus is to try to create a set $V$ of values
+which contains its own function space: $(V  \rightarrow V) \subseteq V$. This
+seems to ask for a set whose cardinality is such that $|V|^|V| = |V|$, which is
+only possible if $|V| = 1$, ie $V$ is the trivial set $\{ * \}$.
+However, we know that lambda calculus has at least two types of functions:
+functions that terminate and those that don't terminate. Hence the trivial set
+is *not* a valid solution.
+
+However, there is a way out. The crucial insight is one that I shall explain by
+analogy:
+
+- We can see that the cardinality of $\mathbb R$ is different from the cardinality
+   of the space of functions over it, $\mathbb R \rightarrow \mathbb R$.
+- However, "the set of all functions" isn't really something mathematicians consider.
+   One would most likely consider "the set of all _continuous_ functions" $\mathbb R \rightarrow \mathbb R$.
+-  Now note that a function that is continuous over the reals is [determined by its values at the rationals](https://math.stackexchange.com/questions/379899/why-is-every-continuous-function-on-the-reals-determined-by-its-value-on-rationa).
+   So, rather than giving me a continus function $f: \mathbb R \rightarrow \mathbb R$, you can
+   give me a continuous function $f': \mathbb Q \rightarrow \mathbb R$ which I can Cauchy-complete,
+   to get a function $\texttt{completion}(f') : \mathbb R \rightarrow \mathbb R = f$.
+-  Now, [cardinality considerations](https://math.stackexchange.com/a/271641/261373)
+   tell us that:
+
+$$|\mathbb R^\mathbb Q| = (2^{\aleph_0})^{\aleph_0} = 2^{\aleph_0 \cdot \aleph_0} = 2^\aleph_0 = |R|$$
+
+- We've won! We have a space $\mathbb R$ whose space of _continuous_
+   functions $\mathbb R \rightarrow \mathbb R$ is isomorphic to $\mathbb R$.
+- We bravely posit: all functions computed by lambda-calculus are continuous!
+   Very well. This leaves us two questions to answer to answer: (1) over what space?
+   (2) with what topology? The answers are (1) a space of partial orders
+   (2) with the [Scott topology](https://en.wikipedia.org/wiki/Scott_continuity)
+
+
+
+### Difference between DCPO theory and Domain theory
+
+- A DCPO (directed-complete partial order) is an algebraic structure that can
+  be satisfied by some partial orders. This definition ports 'continuity'
+  to partial orders.
+
+- A domain is an algebraic structure of even greater generality than a DCPO.
+  This attempts to capture the fundamental notion of 'finitely approximable'.
+
+- The presentation of a domain is quite messy. The nicest axiomatization of
+  domains that I know of is in terms of [information systems](https://en.wikipedia.org/wiki/Scott_information_system).
+  One can find an introduction to these in the excellent book
+  ['Introduction to Order Theory' by Davey and Priestly](https://www.cambridge.org/core/books/introduction-to-lattices-and-order/946458CB6638AF86D85BA00F5787F4F4)
+
+
+### Computation as fixpoints of continuous functions
+
+### Posets, (least) upper bounds
+
+- A partial order $(P, \leq)$ is a set equipped with a reflexive, transitive, relation $\leq$ such that
+  $x \leq y$ and $y \leq x$ implies $x = y$.
+- A subset $D \subseteq P$ is said to have an *upper bound* $u_D \in P$ iff for all $d \in D$, it is true that $d \leq u_D$.
+- An upper bound is essentially a cone over the subset $D$ in the category $P$.
+- A subset $D \subseteq P$ has a *least upper bound* $l_D$ iff (1) $l_D$ is an upper bound of $D$, and (2) 
+  for every upper bound $u_D$, it is true that $l_D \leq u_D$
+- Least upper bounds are unique, since they are essentially limits of the set $D$ when $D$ is taken as a thin category
+
+### Directed Sets
+
+- A subset $D \subseteq P$ is said to be *directed* iff for every *finite* subset $S \subseteq D$,
+  $S$ has a upper bound $d_S $ in $D$. That is, the set $D$ is closed under the upper bound of all of its
+  subsets.
+- Topologically, we can think of it as being *closure*, since the upper bound is sort of a "limit point" of the subset,
+  and we are saying that $D$ has all of its limit points.
+- Categorically, this means that $D \subseteq P$ taken as a subcategory of $P$ has cones over all finite
+  subsets. (See that we *do not* ask for limits/least upper bounds over all finite subsets, only cones/upper bounds).
+- We can think of the condition as saying that the information in $D$ is internally consistent: for any two facts,
+  there is a third fact that "covers" them both.
+- slogan: internal consistency begets an external infinite approximation.
+- QUESTION: why not ask for countable limits as well?
+- QUESTION: why upper bounds in $D$? why not external upper bounds in $P$?
+- QUESTION: why only upper bounds in $D$? why not least upper bounds in $D$?
+- ANSWER: I think the point is that as long as we ask for upper bounds, we can pushforward via a function $f$,
+  since the image of a directed set will be directed.
+
+### Directed Complete Partial Order (`DCPO`)
+
+- A poset is said to be directed complete iff every directed set $D \subseteq P$ has a least upper bound in $P$.
+- Compare to chain complete, `CCPO`, where every chain has a LUB.
+- QUESTION: why not postulate that the least upper bound must be in $D$?
+- In a DCPO, for a directed set $D$, denote the upper bound by $\cup D$.
+
+### Monotonicity and Continuity
+
+- A function $f: P \to Q$ between posets is said to be monotone iff $p \leq p'$ implies that $f(p) \leq f(p')$. 
+- A function $f: P \to Q$ is continuous, iff for every directed set $D \subseteq P$, it is true that $f(\cup D) = \cup f(D)$.
+- This has the subtle claim that the image of a directed set is directed.
+-   
+
+### Monotone map
+
+- A function from $P$ to $Q$ is said to be monotone if $p \leq p' \implies f(p) \leq f(p')$.
+- Composition of monotone functions is monotone.
+- The image of a chain wrt a monotone function is a chain.
+- A monotone function **need not preserve least upper bounds**. Consider:
+
+$$
+f: 2^{\mathbb N} \rightarrow 2^{\mathbb N}
+f(S) \equiv
+\begin{cases}
+S & \text{$S$} is finite \\
+S U \{ 0 \} &\text{$S$ is infinite}
+\end{cases}
+$$
+
+This does not preserve least-upper-bounds. Consider the sequence of elements:
+
+$$
+A_1 = \{ 1\}, A_2 = \{1, 2\}, A_3 = \{1, 2, 3\}, \dots, A_n = \{1, 2, 3, \dots, n \}
+$$
+
+The union of all $A_i$ is $\mathbb N$.
+Each of these sets is finite.
+Hence $f(\{1 \}) = \{1 \}$, $f(\{1, 2 \}) = \{1, 2\}$ and so on. Therefore:
+
+$$
+f(\sqcup A_i) = f(\mathbb  N) = \mathbb N \cup \{ 0 \}\\
+\sqcup f(A_i) = \sqcup A_i = \mathbb N
+$$
+
+### Continuous function
+
+- A function is continous if it is monotone and preserves all LUBs. This is
+  only sensible as a definition on ccpos, because the equation defining it is:
+  `lub . f  = f . lub`, where `lub: chain(P) \rightarrow P`. However, for `lub`
+  to always exist, we need `P` to be a CCPO. So, the definition of continuous
+  only works for CCPOs.
+- The composition of continuous functions of chain-complete partially
+  ordered sets is continuous.
+
+### Fixpoints of continuous functions
+
+The least fixed point of a continous function $f: D \rightarrow D$ is:
+
+$$\texttt{FIX}(f) \equiv \texttt{lub}(\{ f^n(\bot) : n \geq 0 \})$$
+
+
+### $\leq$ as implication
+
+We can think of $b \leq a$ as $b \implies a$. That is, $b$ has more information
+than $a$, and hence implies $a$.
+
+### References
+
+- Semantics with Applications: Hanne Riis Nielson, Flemming Nielson.
+- [Lecture notes on denotational semantics: Part 2 of the computer science Tripos](https://www.cl.cam.ac.uk/~gw104/dens.pdf)
+- [Outline of a mathematical theory of computation](https://ropas.snu.ac.kr/~kwang/520/readings/sco70.pdf)
+- [Domain theory and measure theory: Video](https://www.youtube.com/watch?v=UJrnhhRi2IE)
+
+
+
+
+# Resolution algorithm for propositional logic
+- Resolution is refutation complete: will find a disproof if one exists for propositional logic
+-  Key idea is the resolution rule:
+
+```
+F \/ l; G \/ not(l)
+-------------------
+  F \/ G
+```
+
+- See that this allows us to reduce the number of occurrences of `l`. If we keep doing this, we get the empty set
+  with `\/` as the monoidal operation, forcing us to conclude `False`.
+
+# Completeness for first order logic
+- This requires soundness to have been established before.
+- We work with sequent calculus, where `Γ => Δ` means that `g1 /\ g1 /\ ... /\ gn => d1 \/ d2 \/ .. \/ dn`.
+- First prove that `Γ => Δ` is derivable iff `Γ U ~Δ => 0` is derivable.
+- By soundness, this means that `Γ U ~Δ` is inconsistent.
+- Thus, see that `Γ => Δ` is derivable ifff `Γ U ~Δ` is inconsistent.
+- contraposing, `Γ => Δ` is NOT derivable ifff `Γ U ~Δ` is Consistent.
+- Thus, the set `CONSISTENT := { Γ=>Δ |  Γ=>Δ has a model}` is equal
+  to the set `{ Γ=>Δ | Γ U ~Δ is inconsistent}`, which (by soundness)
+  is the same as `{ Γ=>Δ | ΓU~Δ is not derivable}`.
+- We want to show that `CONSISTENT` is a satisfiable set (obeys conditions `(S0)`...`(S8)`),
+  which will allow us to produce models for all `Φ ∈ CONSISTENT` (by taking the closure `Φ#` and building the term model,
+  where taking the closure needs the ambient `CONSISTENT` set to obey satisfiability).
+- Thus, this shows that every element of `consistent` (proofs of sequent calculus) in fact has a model, and thus we are complete.
+
+
+# Compactness theorem of first order logic
+
+- Define a theory to be a set of sentences.
+- Compactness states that if a theory `T` is such that every finite subset `Tfin ⊂ T` of the theory 
+  has a model, then `T` itself has a model.
+
+#### Proof Sketch
+- Let `L` be a language.
+- We study `CONSISTENT := { T ⊂ 2^L : T has a model }` to be the set of
+  all theories of `L` which is consistent.
+- (1.a) We analyze `CONSISTENT` and see that it has properties
+  satisfcation (`(S0)` ... `(S8)`).
+- (1.b) We show that if `K` is a set of theories which has satisfaction, then
+  so does `PROFINITE(K) := { T ∈ K : ∀ Tfin ⊂ T, Tfin has a model }`.
+- (2.a) We analyze, for a model `M`, the set `TRUTHS := { T : T is true for M }`.
+  We see that it has properties of called closures (`(C0)`, ..., `(C8)`).
+- (3) We show that if `Δ` has `(C0)`, ... `(C8)`, then `Δ` has a model (the *term* model).
+- (4) Show that if `Γ` is a theory, then `Γ#` is the *closure* of the theory,
+  such that `Γ#` obeys `(C0)`...`(C8)` and `(Γ ⊂ Γ#)`.
+- (5) Show that if `Γ ∈ S` where `S` has satisfaction, then one can build a `Γ ⊂ Γ# ∈ S` where `Γ#` is closed.
+- (6) To prove compactness, take a theory `Δ ∈ PROFINITE(CONSISTENT)`.
+      Since `CONSISTENT` has satisfaction, and `PROFINITE` preserves satisfaction,
+      `PROFINITE(CONSISTENT)` has satisfaction. Now apply (5) to build the closure `Δ#`.
+      Use (3) to build the term model `M(Δ#)`, a model for `Δ#`, which is also a model for `Δ`.
+
+#### Proof sketch sketch
+
+- 0. Define a property called "satisfaction" which is possessed by the set of consistent theories.
+- 1. See that the profinite completion of a satisfaction set also obeys satisfcation.
+- 2. Define a property called closure on a theory, where a closed theory possesses a term model.
+- 3. Show that every theory in a satisfaction set also has a closure in the satisfaction set.
+- 4. Take `Γ ∈ PROF(CONSISTENT)`, a theory `Γ` which is profinite,
+     which we wish to build a model for. Create `Γ#`, the closure, such that `Γ ⊂ Γ#`.
+     See that `Γ#` has a model (the term model `MΓ`), and that this is also a model for `Γ`, and thus `Γ` is consistent.
+
+#### Non algorithmic proof sketch
+- See that given a `S` which obeys `(S1)`...`(S8)`, `PROFINITE(S)` has **finite character**.
+- A family `F` has finite character is defined to be: `A ∈ F` iff all subsets of `A` belong to `F`.
+- Show that for any `Γ ∈ S*`, there is a maximal `Γ# ∈ S*` which contains `Γ`. 
+  This follows by Zorn on `S*`. Let the partial order by the subset ordering on `S*(Γ) := { Δ ∈ S* | Γ ⊂ Δ }`.
+  See that every chain has a maximal element, by the finite character property. Thus, `S*(Γ)` has a maximal element, call it `Γ#`.
+- Show that this `Γ#` obeys `(C0)`...`(C8)` [closure properties] This will rely on `S*` having `(S1)`..`(S8)`.
+  Thus, `Γ#` possesses a model (the term model).
+- This means that `Γ` also possees a term model.
+     
+#### Algorithmic proof: details
+- TODO
+
+
+# WIP: Tarski's undefinability theorem
+
+Read George S Boolos, computability and logic till chapter 18 =)
+
+
+# WIP: Conservative extension to type theory
+
+- Reference: https://proofassistants.stackexchange.com/questions/857/whats-conservativity-in-terms-of-type-theory-and-how-is-it-useful
+
+
+# First order logic: Semantics
+- $M \models F$ can be reads as $M$ models $F$, or $M$ makes true $F$ ($M$ for model, $F$ for formula).
+
+#### Defining models for quantification
+
+- We wish to define $M \models \forall x, F(x)$
+- A first shot might be $M \models \exists x, F(x)$ iff for every closed term $t$, $M \models F(t)$.
+- However, see that intuitively, $\exists x$ ranges over the _denotational space_, while closed terms range over
+  the _image of syntax in the denotation_.
+- For example, consider the language of nautrals, which we can interpret over naturals, nonnegative rationals, and reals.
+  So let us think of the formula $(F \equiv \exists t, t + t = 1)$. If we only allow $t$ to take on closed terms, then
+  see that since the closed terms of naturals are natural numbers, this will be false! But really, when interpreted
+  over the integers, we want the formula to be true, since there is the real number $1/2$ which witnesses
+  the truth of $(\exists t, t + t = 1)$. Thus, it is insufficient to range over closed terms, since the "image"
+  of the closed terms in $\mathbb R$ is going to be $\mathbb N$, but in fact, we have "more in $\mathbb R$"
+  than just the closed terms which are unreachable.
+- So the correct notion of $M \models \exists x, F(x)$ is to take $M$, extend with a constant symbol $c$, evaluate it to some $m \in M$,
+  and call this $M^c_m$. Then, we say that $M \models \exists x, F(x)$ iff there exists an $m \in M$ such that $M^c_m \models F(c)$.
+- See that this allows access to denotations, without needing a syntactic closed term.
+- his fells close to the notion of **adequacy**, when the operational and denotational semantics
+  agree.[HackMD notes by Alexander Kurz](https://hackmd.io/@alexhkurz/Hkf6BTL6P#Adequacy)
+
+# full abstraction in semantics (TODO)
+
+- Observational equivalence: same results when run, $\sim_O$
+- Denotational equivalence: same denotation.
+- Full abstraction: the two equivalences coincide: observationally equivalent iff denotationally equivalent.
+- I thought full abstraction meant that everything in the denotational side has a program that realises it!
+
+#### Parallel `or` and PCF
+
+  For example, I thought that the problem will `por` in PCF was that it wasnt't possible to implement in the language.
+- However, this is totally wrong.
+- The reason `por` is a problem is that one can write a _real programs_ in PCF of type `(bool -> bool -> bool) -> num`,
+  call these `f, g`, such that `[[f]](por) != [[g]](por)`, even though both of these have the same operational semantics!
+  (both `f`, `g` diverge on all inputs).
+- [SEP reference](https://plato.stanford.edu/entries/games-abstraction/#ProgEquiFullAbst)
+
+#### Relationship between full abstraction and adequacy
+- Adequacy: $O(e) = v$ iff $[[e]] = [[v]]$. This says that the denotation agress on observations.
+- See that this is silent on _divergence_.
+
+##### Theorem relating full abstraction and adequacy
+- Suppose that $O(e) = v \implies [[e]] = [[v]]$.  When is the converse true? ($[[e]] = [[v]] \implies O(e) = v$?)
+- It is true iff we have that $e =_M e'$ iff $e =_O e'$.
+
+
+#### Full abstraction between languages
+- say two languages $L, M$ have a translation $f: L \to M$ and have the same observables $O$.
+- Then the translation $f$ is fully abstract iff $l \sim_O l' \iff f(l) \sim_O f(l')$
+- See that $L$ cannot be more expressive than $M$ if there is a full abstract translation from $L$ into $M$.
+
+- [HackMD notes by Alexander Kurz](https://hackmd.io/@alexhkurz/Hkf6BTL6P#Adequacy)
+
+
 # You could have invented Sequents
 
 - Key idea: define a notation called `Γ => Δ` iff the conjunction of sentences
@@ -76,7 +669,7 @@ b --f-->b'
 - Intuitively, these give us subsets of the naturals ...
 
 
-# Split and Cloven Fibrations
+#### Cloven Fibrations
 
 - A fibration is cloven if for every arrow downstairs, there is a chosen cartesian 
   arrow upstairs. So we have a *function* that computes the cartesian arrow upstairs
@@ -103,6 +696,12 @@ I -u--->J
 
 - For morphisms, suppose we are given an arrow `f: Y → Y'` in `E_J`. Then we use the cartesianity of the
   lifted morphism to give us the lift. Mediatate on the below diagram:
+
+####  Split Fibrations
+
+- A fibration is split if the cartesian lift of identity is identity, and the cartesian lift
+  of compositions is the composition of the lifs (ie, the lifting is functorial).
+
 
 # Simple Type Theory via Fibrations
 
@@ -191,7 +790,10 @@ defined as verifying type safety.
 
 What you've gained along the way is that this proof is an open induction. 8/10
 
-In standard combinatorial proofs of type safety, the induction hypothesis may depend on every case. Adding a form in your language may require redoing the entire proof. Here the various case in the adequacy lemma will remain true. So you can just prove the new cases. 9/10
+In standard combinatorial proofs of type safety, the induction hypothesis may
+depend on every case. Adding a form in your language may require redoing the
+entire proof. Here the various case in the adequacy lemma will remain true. So
+you can just prove the new cases. 9/10
 
 
 There are many variants of realisability. Tuned for logic, with models instead
@@ -10359,6 +10961,12 @@ the "supplementary exercises" in Munkres, chapter 1.
   This is motivated from the "equivalence class of all equinumerous sets", but
   sidesteps set theoretic issues. For this to work, we need well ordering. Otherwise,
   there could a set with no ordering that is in bijection with it.
+
+#### Definition of Cardinal
+- Said differently, an ordinal is a cardinal if it cannot be put in bijection with any smaller ordinal.
+- Thus, all natural numbers are cardinals, $\omega$ is a cardinal, $\omega + 1$ is NOT a cardinal (can be put in bijection with $\omega$),
+- We can think of $\aleph_0$ as a **countably infinite** queue where each person in the queue has to wait for **finitely** many people to exit.
+- We can think of $\aleph_1$ as a **uncountably infinite** queue where each person in the queue has to wait for **countably** many people to exit.
 
 
 
@@ -28949,143 +29557,6 @@ decomposition if nothng else.
 I wanted to record this fact for myself, so that I have reason to come back
 to it as I learn more preorder theory. Perhaps there are certain graph theoretic
 phenomena that make more sense when looked at from a preorder point of view.
-
-# Crash course on DCPO: formalizing lambda calculus
-
-In lambda calculus, we often see functions of the form $\lambda x \rightarrow x(x)$. We would
-like a way to associate a "natural" mathematical object to such a function. The
-most obvious choice for lambda calculus is to try to create a set $V$ of values
-which contains its own function space: $(V  \rightarrow V) \subseteq V$. This
-seems to ask for a set whose cardinality is such that $|V|^|V| = |V|$, which is
-only possible if $|V| = 1$, ie $V$ is the trivial set $\{ * \}$.
-However, we know that lambda calculus has at least two types of functions:
-functions that terminate and those that don't terminate. Hence the trivial set
-is *not* a valid solution.
-
-However, there is a way out. The crucial insight is one that I shall explain by
-analogy:
-
-- We can see that the cardinality of $\mathbb R$ is different from the cardinality
-   of the space of functions over it, $\mathbb R \rightarrow \mathbb R$.
-- However, "the set of all functions" isn't really something mathematicians consider.
-   One would most likely consider "the set of all _continuous_ functions" $\mathbb R \rightarrow \mathbb R$.
--  Now note that a function that is continuous over the reals is [determined by its values at the rationals](https://math.stackexchange.com/questions/379899/why-is-every-continuous-function-on-the-reals-determined-by-its-value-on-rationa).
-   So, rather than giving me a continus function $f: \mathbb R \rightarrow \mathbb R$, you can
-   give me a continuous function $f': \mathbb Q \rightarrow \mathbb R$ which I can Cauchy-complete,
-   to get a function $\texttt{completion}(f') : \mathbb R \rightarrow \mathbb R = f$.
--  Now, [cardinality considerations](https://math.stackexchange.com/a/271641/261373)
-   tell us that:
-
-$$|\mathbb R^\mathbb Q| = (2^{\aleph_0})^{\aleph_0} = 2^{\aleph_0 \cdot \aleph_0} = 2^\aleph_0 = |R|$$
-
-- We've won! We have a space $\mathbb R$ whose space of _continuous_
-   functions $\mathbb R \rightarrow \mathbb R$ is isomorphic to $\mathbb R$.
-- We bravely posit: all functions computed by lambda-calculus are continuous!
-   Very well. This leaves us two questions to answer to answer: (1) over what space?
-   (2) with what topology? The answers are (1) a space of partial orders
-   (2) with the [Scott topology](https://en.wikipedia.org/wiki/Scott_continuity)
-
-
-
-### Difference between DCPO theory and Domain theory
-
-- A DCPO (directed-complete partial order) is an algebraic structure that can
-  be satisfied by some partial orders. This definition ports 'continuity'
-  to partial orders.
-
-- A domain is an algebraic structure of even greater generality than a DCPO.
-  This attempts to capture the fundamental notion of 'finitely approximable'.
-
-- The presentation of a domain is quite messy. The nicest axiomatization of
-  domains that I know of is in terms of [information systems](https://en.wikipedia.org/wiki/Scott_information_system).
-  One can find an introduction to these in the excellent book
-  ['Introduction to Order Theory' by Davey and Priestly](https://www.cambridge.org/core/books/introduction-to-lattices-and-order/946458CB6638AF86D85BA00F5787F4F4)
-
-
-### Computation as fixpoints of continuous functions
-
-### CPOs
-
-- Given a partial order $(P, \leq)$. assume we have a subset $Q \subseteq P$.
-  A least upper bound $u$ of $Q$ is an element that is the smallest element in $P$
-  which is larger than every element in $Q$.
-
-- A subset $Q$ of $P$ is called as a chain if its elements can be put into order.
-  That is, there is a labelling of elements of $Q$ into $q1, q2, \dots, qn$ such
-  that $q1 \leq q2 \leq \dots \leq qn$.
-
-### CCPOs
-
-- A partially ordered set is called as a _chain complete partial order_ if
-  each chain has a least upper bound.
-
-- This is different from a lattice, where each _subset_ has a least upper bound.
-
-- Every ccpo has a minimal element given by $completion(\emptyset) = \bot$.
-
-- TODO: example of ccpo that is not a lattice
-
-
-### Monotone map
-
-- A function from $P$ to $Q$ is said to be monotone if $p \leq p' \implies f(p) \leq f(p')$.
-- Composition of monotone functions is monotone.
-- The image of a chain wrt a monotone function is a chain.
-- A monotone function **need not preserve least upper bounds**. Consider:
-
-$$
-f: 2^{\mathbb N} \rightarrow 2^{\mathbb N}
-f(S) \equiv
-\begin{cases}
-S & \text{$S$} is finite \\
-S U \{ 0 \} &\text{$S$ is infinite}
-\end{cases}
-$$
-
-This does not preserve least-upper-bounds. Consider the sequence of elements:
-
-$$
-A_1 = \{ 1\}, A_2 = \{1, 2\}, A_3 = \{1, 2, 3\}, \dots, A_n = \{1, 2, 3, \dots, n \}
-$$
-
-The union of all $A_i$ is $\mathbb N$.
-Each of these sets is finite.
-Hence $f(\{1 \}) = \{1 \}$, $f(\{1, 2 \}) = \{1, 2\}$ and so on. Therefore:
-
-$$
-f(\sqcup A_i) = f(\mathbb  N) = \mathbb N \cup \{ 0 \}\\
-\sqcup f(A_i) = \sqcup A_i = \mathbb N
-$$
-
-### Continuous function
-
-- A function is continous if it is monotone and preserves all LUBs. This is
-  only sensible as a definition on ccpos, because the equation defining it is:
-  `lub . f  = f . lub`, where `lub: chain(P) \rightarrow P`. However, for `lub`
-  to always exist, we need `P` to be a CCPO. So, the definition of continuous
-  only works for CCPOs.
-- The composition of continuous functions of chain-complete partially
-  ordered sets is continuous.
-
-### Fixpoints of continuous functions
-
-The least fixed point of a continous function $f: D \rightarrow D$ is:
-
-$$\texttt{FIX}(f) \equiv \texttt{lub}(\{ f^n(\bot) : n \geq 0 \})$$
-
-
-### $\leq$ as implication
-
-We can think of $b \leq a$ as $b \implies a$. That is, $b$ has more information
-than $a$, and hence implies $a$.
-
-### References
-
-- Semantics with Applications: Hanne Riis Nielson, Flemming Nielson.
-- [Lecture notes on denotational semantics: Part 2 of the computer science Tripos](https://www.cl.cam.ac.uk/~gw104/dens.pdf)
-- [Outline of a mathematical theory of computation](https://ropas.snu.ac.kr/~kwang/520/readings/sco70.pdf)
-- [Domain theory and measure theory: Video](https://www.youtube.com/watch?v=UJrnhhRi2IE)
-
 
 
 # Parallelisable version of maximum sum subarray
