@@ -6,6 +6,80 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+
+# Ultraproducts in Logic [WIP]
+
+# Pivot tables are indexed categories [WIP]
+
+# Kleene Tree [WIP]
+
+http://math.andrej.com/wp-content/uploads/2006/05/kleene-tree.pdf
+
+# Compactness theorem as compactness of stone spaces [WIP]
+
+- https://math.stackexchange.com/a/864/261373
+
+
+# Setting up windows box on google cloud
+- https://cloud.google.com/compute/docs/connect/windows-ssh
+
+
+
+# The constructible universe L
+
+- When building **von neumann universe**, we take *all* subsets from previous state; $V(0) = \emptyset$, $V(n + 1) = 2^{V(n)}$,
+  $V(\lim \alpha) = \cup_{\beta < \alpha} V(\beta)$.
+- To build $L$ (the definable universe), first we need the notion of definability.
+- For a set $X$, the set $Def(X)$ is the set of all $Y \subseteq X$ such that $Y$ is logically definable in the structure $(X, \in)$ (That is, we are given access to FOL and $\in$)
+  from parameters in $X$ (that is, we can have free variables of elements of $X$).
+- We can now build the constructible universe by iteratively constructing definable sets of the previous level.
+- Can talk about definability in terms of [godel operations](https://en.wikipedia.org/wiki/G%C3%B6del_operation), which has
+  ordered & unordered pairing, cartesian product, set difference, taking the domain of a binary relation, automorphisms of an ordered triple.
+  These give us a "constructive" description of what we can do using 
+  definability. [See also: constructible universe at nLab](https://ncatlab.org/nlab/show/constructible+universe)
+- https://en.wikipedia.org/wiki/Constructible_universe
+
+#### Godel Normal Form theorem
+
+- Theorem which says that constructible sets are those that can be built from godel operations.
+
+
+# Scrivano for note taking
+- Pretty good app for linux that has the apple iPad note taking vibe going on!
+- Nice for math notes.
+
+# Godel completeness theorem
+
+- If a formula is true (holds in every model), then it is derivable from the
+  logic.
+-  theory is syntactically consistent if one cannot derive both $s$ and $\lnot s$ from the deduction rules.
+- Henkin's model existence theorem says that if a theory is syntactically consistent, then it has a model, for a 1st order theory
+  with well orderable language.
+
+#### Relationship to compactness
+
+- Compactness and completeness are closely related.
+- Compactness: If $\phi$ is a logical consequence of at most countably infinite $\Gamma$, then $\phi$ is a logical consequence of some
+  finite subset of gamma.
+- Completeness => compactness, since a derivation tree is a finite object, and must thus only use a finite number of rules.
+- For compactness => completeness, suppose that `Γ |= φ`. We wish to show `Γ |- φ`.
+- Compactness implies that `γ1, γ2, ... γn |= φ` where `{ γ1, ..., γn } ⊂ Γ`.
+- That is the same as proving that `|= γ1 -> (γ2 -> (... (γn → φ)))`
+
+#### Henkin model (term model)
+- [References](https://en.wikipedia.org/wiki/G%C3%B6del%27s_completeness_theorem)
+
+
+# Uniform proofs, focused proofs, polarization, logic programming
+
+- Focusing and synthetic rules: http://requestforlogic.blogspot.com/2010/09/focusing-and-synthetic-rules.html
+- girard statement about proofs as time; https://mathoverflow.net/a/179258/123769
+- https://en.wikipedia.org/wiki/Focused_proof
+- Polarity in type theory: https://existentialtype.wordpress.com/?s=polarity
+- PhD thesis of Noam Zeilberger, polarity: http://www.cs.cmu.edu/~noam/thesis.pdf
+
+
+
 # Why cut elimination?
 
 - Morally spekaing, gives control over the formulae that occur in a proof.
@@ -13,6 +87,20 @@
   Z` could be arbitrarily complex, since `Y` might be something crazy.
 - If we have `cut`, we know that such arbitrarily crazy things cannot happen, as the `cut` rule is the
   only rule where we are forced to synthesize something "out of thin air".
+- [Example of use of cut](https://mathoverflow.net/questions/8632/cut-elimination/64769#64769)
+
+#### Cut implies consistency of first order logic (FOL)
+- suppose we have cut for FOL
+- If FOL is inconsistent, then there would be a proof of `False` starting from no premises.
+- To be more formal, one could write `|- False` or `True |- False`.
+- Written in terms of sequent calculus, this would be `[] |- []` (recall that the LHS is interpreted with `AND`, RHS with `OR`.
+- But by cut, this would mean that the proof of `[] |- []` would involve only the the symbols in `Sym([]) U ([])` which is the empty set!
+- Since there is no trivial proof of `False` with zero symbols, and all other derivation rules need symbols, there cannot be a proof of `False`!
+- To repeat: a proof of `True |- False` or `[] |- []` could be `cut`-eliminated so it is *forced* to contain only the sumbols in `Sym([]) U Sym([]) = EMPTYSET`.
+  This is absurd, and thus there is no proof of `True |- False`, which implies that the theory is consistent (assuming soundness).
+
+#### References
+
 - [An introduction to the complexity and combinatorics of cut elimination](https://www.ams.org/journals/bull/1997-34-02/S0273-0979-97-00715-5/S0273-0979-97-00715-5.pdf)
 - [Reference](https://mathoverflow.net/questions/8632/cut-elimination)
 
@@ -145,10 +233,74 @@
 #### Net to capture generic ideal
 - If $G$ is a generic ideal of $P$, and $G \subseteq (Z \in M)$, then there is a $p \in G$, such that all $q$ such that $p \leq q$ are in $Z$.
   That is, $\forall G, \exists p \in G, \forall q \in G, p \leq q \implies q \in Z$.
-- Proof: Since $Z \in M$, the complement $Z^C \equiv P - Z \in M$.
 - QUESTION: How can $Z \in M$ if $G$ is a proper class relative to $M$, and $G$ is a subset of $M$? Isn't a superset of a proper
   class a proper class?
+- Recalling that `(p, q) ∈ P` are compatible iff `∃r ∈ P, p ≤ r ∧ q ≤ r`. If no such `r` exists, then `(p, q)` are incompatible.
+- Suppose we take some `(p, q) ∈ P`. We can have `(1) p  ≤ q`, `(2) q  ≤ p`, `(3) (p, r) compatible`, `(4) (p, r) incompatible`. 
+  Consider:
 
+```
+ 
+ 
+a   r
+ \ / \
+  p   d  e
+   \ /   |
+    c----*
+```
+- If `q=a` then `p <= q`
+- If `q=c` then `q <= p`.
+- If `q=d` then `∃r, (p <= r, q <= r)` compatible.
+- If `q=e`, then `(p, e)` incompatible.
+- We wish to show that there is a $p \in G$ such that all its extensions lie in $Z$.
+- That is to say, all of the extensions of $p \in G$ do not lie in $Z^c$.
+#### Proof of net lemma
+
+- To prove: If $G$ is a generic ideal of $P$, and $G \subseteq (Z \in M)$, then
+  there is a $p \in G$, such that all $q$ such that $p \leq q$ are in $Z$. That
+  is, $\forall G, \exists p \in G, \forall q \in G, p \leq q \implies q \in Z$.
+
+- Let $D$ be the set of elements in $p$ that is incompatible with every element in $Z^c$:
+  $D \equiv \{ p \in P: \forall q \in Z^c, p \perp q \}$
+- If $D$ were dense in $P$, then an element $r \in G \cap D$ would be the
+  element we are looking for, where all the extensions of $r$ is in $G$.
+- Let's try to show that $D$ is dense. Let $p \in P$ be arbitrary. We need to find a 
+  $d \in D$ such that $p \leq d$.
+- If $p \perp q$ for every $q \in Z^c$, then we are done, since $p \in D$, and thus $p \leq p \in D$.
+- On the other hand, suppose there is a $q$ such that $p \not \perp p$. That is, there is an $r$
+  such that $p \leq r, q \leq r$.                                                                                      
+- Now what? Now we make an observation: See that we can freely add $\uparrow Z^c = \{ r : \exists q \in Z^c, q \leq r \}$
+  into $D$, because (1) if we consider $G \cap (D \cup Z^c)$, then $G \cap Z^c = \emptyset$.
+  (2) $G \cap \uparrow Z^c$ could have an element $\uparrow r \in \uparrow Z^c, \in G$. But this cannot happen,
+  because this means that $\exists q \in Z^c, q \leq \uparrow r$. But since $G$ is downward closed and $r \in G$, this means that $q \in G$,
+  which is a contradiction as $q \in Z^c$ which has empty intersection with $G$.
+- TLDR: We can fatten up any set with $Z^c$, while not changing the result of $G \cap - $!
+- So we build $D' \equiv D \cup \uparrow Z^c$, which is to say, $D' \equiv \{ (p \in P: \forall q \in Z^c, p \perp q) \} \cup \{ r \in P : (\exists q \in Z^c, q \leq r)\}$.
+- We claim that $D'$ is dense. Suppose we have some $p \in P$. (1) $p \perp q$ for all $q \in Z^c$, and thus $p \leq p \in D'$ and we are done.
+  Otherwise, assume that there is some $q$ such that $p \not \perp q$. then there is an $r \in P$, such that $p \leq r, q \leq r$.
+  This gives us an $r \in D'$ such that $p \leq r \in D'$ and we are done.
+
+
+#### Simpler proof of net lemma (Unverified)
+- Let $D \equiv \{ p \in P : \forall q \in Z^c, p \not \leq q \}$.
+- Let's now pick a concrete $p \in P$, and try to show that $D$ is dense. so we need to find a $d \in D$ such that $p \leq d$.
+- *Easy case:* If $p$ has no extensions in $Z^c$, then $p \in D$ by defn of $D$;
+   we are done since $p \leq (p \in D)$, ahd thus density is fulfilled.
+- *Hard case:* Suppose $p$ does have an extension $q \in Z^c$, what then? How do I find an element of $d \in D$
+  such that $p \leq d$? ($d$ for extension)?
+- *Hard case:* See that we will be using $D$ to consider $r \in (G \cap D)$ to find an element $r$ whose every extension
+  lies in $Z$. So suppose we add $q \in Z^c, p \leq q$ into $D$ (ie, $D' \equiv D \cup \{q\}$).
+- While $q \in D$, we will still have that $q \not \in G \cap D$,
+  because $q$ lies in $Z^c$, which has zero intersection with $G \subseteq Z$!
+- Thus, we can throw $Z^c$ in $D$ "for free" to fatten $D$ up to make it
+  more dense, while knowing that $G$ will cull this $Z^c$ portion.
+- So define $D' \equiv \{ p \in P : \forall q \in Z^c, p \not \leq q\} \cup Z^c$
+- We claim that $D'$ is dense.
+- Suppose $p \in P$. If for all $q \in Z^c$, $p \not \leq q$, then $p \in D'$.
+  Otherwise, suppose $p \leq q \in Z^c$. Then we have $p \leq (q \in Z^c \subseteq D'$. Thus $D'$ is dense.
+- Let $r \in G \cap D$. Then we cannot have $r$ come from the portion of $Z^c$, since $G \cap Z^c = \emptyset$.
+  This means that $r$ came from the first part of the set $D'$,
+  where no extension of $p$ lies in $Z^c$. Thus we are done.
 
 #### Names and name creation
 - Let $N$ (for names) be defined transifinitely, where $N_0 \equiv \emptyset$, $N_{i+1} \equiv \mathcal{P}(P \times N_i) \cap M$,
@@ -158,9 +310,14 @@
 
 #### Forcing equality
 
-- Suppose we want `t_G = t'_G`.
-- Then we build the set `{ q ∈ P | ∀ (s, q) ∈ t, ∃ (s', r) ∈ t' such that (r, s, s') ∈ FORCE_EQUALS }`
-- However, we ask for the condition that `r >= q` for reasons I don't understand.
+- Start by defining a net $Z^= \equiv \{ q \in P : \text{for all $(s, q) \in \tau_1$ there is a $(s', r) \in \tau_2$ with $r \geq q$ such that $r ||- s = s'$ \}$.
+- Note that $Z^=$ only checks of $\tau_1$ is a subset or equal to $\tau_2$.
+- We assume we have all the machinery now (poset, generic ideal, names, net lemma).
+- Suppose we want to check if `p ||= t_G = t'_G`.
+- This happens if for every extension $q$ of $p$ (ie, $q \geq p$), every $(q, n : P) \in t$ [yes the same $q$] is equal to 
+  some element $(r, n' : P) \in t'$, such that $r \geq q$, and $(r, n, n') \in F(x=y)$, where $F(x=y)$ is the set of
+  forcing conditions for $x=y$. We need this to also happen vice versa.
+- Why do we need $q \geq p \geq r$? I don't follow!
 
 
 # Partial Evaluation, Chapter 3
@@ -6446,14 +6603,13 @@ MX17004 2010-05-27 33.2 18.2
 # Writing rebuttals, Tobias style
 
 - Writing rebuttals, key take-aways:
-- Make your headings for all reviewers a sentence
+- Make your headings for reviewers who are seeing your rebuttal projected on a screen to defend your paper.
 - Don't write in Q?A style
 - Write as a paragraph, where we write the strong answer first, and then point back to the question.
 - Use subclause to indicate that sentence is unfinished. Eg: the bug in our compiler has been fixed (bad!).
   The reader may see "the bug in our compiler..." and conclude something crazy.
   Ratther, we should write "While there was a bug in our compiler, we fixed it ...". The `While` makes it
   clear
-
 
 # LCS DP: The speedup is from filtration
 
@@ -42261,6 +42417,8 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
+> How can Alice communicate all of math to Bob? Mail him some chalk and wait!
+
 > Love is not a craving, love is a yearning. ~ Contrapoints.
 
 > If Alice uses abstract algebra to solve problem and Bob uses concrete calculation, Alice's result is more generalizable than Bob's,
@@ -42573,15 +42731,35 @@ which end you wish edit: press c]i} to perform the edit you describe.
 > Therefore, all you need is a [monad](https://en.wikipedia.org/wiki/Monad_(philosophy))
 > to change the immutable into the mutable --- Thus, embrace the Leibniz.
 
-# Cardistry
+# Big list of Breakdance
+
+##### Week 1 moves
+
+- hustle step
+- [Indian step](https://www.youtube.com/watch?v=enFnW4LWYw4)
+- [kick out]()
+- [C-C](https://www.youtube.com/watch?v=QgQ75yoQ0QA)
+- [Breaking made simple](https://www.youtube.com/watch?v=8kmU3XFcnUY)
 
 
-#### Currently learning
 
-Plan: finish cardistry bootcamp, learn card control from 52kards.
+# Big list of Cardistry
 
-- [False riffle shuffle by 52kards](https://www.youtube.com/watch?v=sLIS4c2dUwc)
-- [Push off second deal](https://www.youtube.com/watch?v=i5JlED3erBY)
+#### Current Trick
+
+- [Spring cards to show off](https://www.youtube.com/watch?v=avoKr-mvfzI).
+- Shuffle with charlier cut.
+- peel top card off with [angel](https://www.youtube.com/watch?v=fRH4MyB4RVs) to display card, put card back.
+- [Hindu Shffle: control](https://www.youtube.com/watch?v=P_C1clIaOX4) to shuffle the deck.
+- Peel top card off with the [Chinese deal](https://www.youtube.com/watch?v=kppssPG7etM)
+- Show that it's the same card!
+- Put card back with [flirt flourish](https://www.youtube.com/watch?v=tFb7gCgsqcQ)
+
+##### Flirt Flourish
+- [Flourish: Flirt](https://www.youtube.com/watch?v=tFb7gCgsqcQ)
+- hold top card between index and middle finger, flip middle and index, then land card back on top of packet.
+- Can be used to switch top two cards, by peeling the top card with your pinky and putting the top card in.
+
 
 #### Card Spring
 
@@ -42590,6 +42768,9 @@ Plan: finish cardistry bootcamp, learn card control from 52kards.
 
 #### Next
 
+- [Push off second deal](https://www.youtube.com/watch?v=i5JlED3erBY)
+- [Bow to Stern: Show card being put in the middle that ends up at the top](https://www.youtube.com/watch?v=NCUfHRvCJj0)
+- [False riffle shuffle by 52kards](https://www.youtube.com/watch?v=sLIS4c2dUwc)
 - [Straddle pass control by Champion Magic](https://www.youtube.com/watch?v=Hp-lpNJAo5Q)
 - [Card control chris ramsay](https://www.youtube.com/watch?v=NCUfHRvCJj0)
 - [Riffle shuffle from 52kards](https://www.youtube.com/watch?v=uW8zMwJF5ys)
@@ -42597,7 +42778,6 @@ Plan: finish cardistry bootcamp, learn card control from 52kards.
 - [Basic passes: control top card, prereq for color change](https://www.youtube.com/watch?v=yM-m6j2WuL4)
 - [Bertram color change](https://www.youtube.com/watch?v=omcbLkcQkBk)
 - [Tenkai palm](https://www.youtube.com/watch?v=fsy1FA2n1RY)
-- [Flourish: Flirt](https://www.youtube.com/watch?v=tFb7gCgsqcQ)
 - [Ekatarina list of tutorials](https://www.youtube.com/watch?v=XGCCqdr6r08&list=PLUCOIt3_dATNX4A4W4pBMr7MERO64-aBL)
 - [Hot shot sandwhich: magic trick](https://www.youtube.com/watch?v=RJjzc1w7u5I)
 - [Chris Ramsay list of tutorials](https://www.youtube.com/watch?v=vM1_u-A4zgk&list=PLNZrOW6NuocraONXJjyPrDcGnHJt5dUJV)
@@ -42632,8 +42812,10 @@ Plan: finish cardistry bootcamp, learn card control from 52kards.
   Cut, pick it up, slide, hold. Dealer's grip little finger is useful to keep the non-picked-up part of deck from sliding!
 - Basic Cardistry: Thumb cut
 - [Chinese deal](https://www.youtube.com/watch?v=FYGY-Z2qQVY)
-- [Hindu Shffle: control](https://www.youtube.com/watch?v=P_C1clIaOX4)
+- [Overhand Shuffle control](https://www.youtube.com/watch?v=P_C1clIaOX4)
 - [Basic Cardistry: Revolution Cut](https://www.youtube.com/watch?v=4modjrvBopw)
+
+#### Card control
 
 #### Long term
 - [Cardistry bootcamp](https://www.youtube.com/watch?v=bt0RumRuwGQ&list=PLIYzPFCPrDTDGSbF0Epp7_ZGCCSsUVM1d)
@@ -42828,6 +43010,31 @@ ought to be treated as errors.
 - Within goal: Deduce type: `C-c C-d`.
 - Within goal: Information: `C-c C-;`.
 
+# Don't Try
+
+  ROLL THE DICE
+  -------------
+
+  If you’re going to try, go all the way.
+  Otherwise, don’t even start.
+  If you’re going to try, go all the way.
+  This could mean losing girlfriends, wives, relatives, jobs and maybe even your mind.
+  It could mean not eating for three or four days.
+  It could mean freezing on a park bench.
+  It could mean jail.
+
+  It could mean derision, mockery, isolation.
+  Isolation is the gift.
+  All the others are a test of your endurance, of how much you really want to do it.
+  And, you’ll do it, despite rejection and the worst odds.
+  And it will be better than anything else you can imagine.
+  If you’re going to try, go all the way.
+  There is no other feeling like that.
+  You will be alone with the gods, and the nights will flame with fire.
+  DO IT. DO IT. DO IT. All the way
+  You will ride life straight to perfect laughter. It’s the only good fight there is.
+
+
 
 # Big list of Hacker news
 
@@ -42987,6 +43194,17 @@ speak slower than you want to.
 - Voila, hair-in-a-stick.
 
 - [Reference Video](https://www.youtube.com/watch?v=5EX6_5lY6Yk)
+
+# Big list of shuffle dancing
+- [Blue book: Shuffle dancing](https://lyz-code.github.io/blue-book/dancing/shuffle_basics/)
+
+- Running man
+- Charleston
+- Backward Charleston
+- T step
+
+#### Cutting Shapes
+#### Jumpstyle
 
 # Favourite Demoscenes
 
