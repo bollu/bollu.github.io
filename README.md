@@ -24,6 +24,27 @@ http://math.andrej.com/wp-content/uploads/2006/05/kleene-tree.pdf
 - https://cloud.google.com/compute/docs/connect/windows-ssh
 
 
+# Contradiction from non-positive occurence
+
+We wish to show that allow non-positive occurences of the inductive type
+in its constructor can lead to contradiction. Proof as haskell file below:
+
+```hs
+{-# LANGUAGE GADTs #-}
+
+data Void where
+
+data F where
+  FnSpace :: (F -> Void) -> F
+
+contra :: F -> Void
+contra f@(FnSpace fn) = fn f
+
+
+inhab :: F
+inhab = FnSpace contra
+```
+
 
 # The constructible universe L
 
