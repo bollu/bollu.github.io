@@ -6,6 +6,29 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+# Post's Problem [WIP]
+
+# Turing degree
+
+- [Lectures on turing degree](https://pi.math.cornell.edu/~shore/papers/pdf/SingLect2NS.pdf)
+- A set $X$ is turing reducible to $Y$ iff oracle access to membership in $Y$ provides
+  decidable membership for $X$. (imagine $Y$ as hovering above $X$, as we are given oracle access to $Y$). This is written as $X \leq_T Y$.
+- Two sets are turing equivalent iff $X \leq_T Y$ and $Y \leq_T X$, also written as $X \equiv_T Y$
+- Clealy, $\equiv_T$ is an equivalence relation.
+- A **turing degree** is an equivalence class of $\equiv_T$.
+- Said differently, it is a maximal strongly connected component of the $\leq_T$ graph.
+- Turing degrees have a partial order, where $[X] \leq [Y]$ iff $X \leq Y$ (note that the precise representatives of each class do not matter).
+- A set is **recursively enumerable in $A$** if it is the domain of some partial function recursive in $A$ (ie, can write a partial function that semidecides membership
+  in $S$ given oracle access to $A$.)
+- The jump of a set $A$, written $A'$, is the set of programs $p$ (treated as natural numbers such that $A' \equiv { p | eval^A(p)(p) \downarrow }$, where $\downarrow$ means converges.
+  That is, it's the set of natural numbers $p$ such that when the $p$th program in the enumeration of programs with oracle access to $A$, when evaluated on $p$, converge.
+- There is a unique turing degree containing all the computable sets [what does this mean? how is this (computably) a subset of the naturals?],
+  called $0$ since $0 \leq_T Y$ for all $Y$. That is, oracle access to decision procedure for $0$ gives a decision procedure for $Y$
+- $0'$ is the degree of the halting problem.
+- The first jump is taken relative to $A \equiv \phi$.
+-  The join of two sets is given by $A \osum B \equiv \{ 2n : n \in A \} \cup \{ 2m + 1 : m \in B \}$. Claim that the turing degree of $A \osum B$ is a LUB of the turing
+  degrees of $A, B$.
+- Cutland, N. Computability. Cambridge University 
 
 # Ultraproducts in Logic [WIP]
 
@@ -23,6 +46,17 @@ http://math.andrej.com/wp-content/uploads/2006/05/kleene-tree.pdf
 # Setting up windows box on google cloud
 - https://cloud.google.com/compute/docs/connect/windows-ssh
 
+# 
+
+# Proof that there is a TM whose halting is independent of ZFC
+
+- Start by assuming that ZFC is consistent.
+- Consider a TM which enumerates proofs in ZFC (ie, sequents if we want to use sequent calculus),
+ looking for a sequent that proves the inoncsistency of ZFC.
+- If this TM halts, then it has proven inconsistency of ZFC, which contradicts our hypothesis.
+- If it does not halt, then this means that we have proven the consistency of
+  ZFC in ZFC, which contradicts Godel's incompleteness theorem.
+- Thus, it is independent of ZFC whether TM M halts or not.
 
 # Contradiction from non-positive occurence
 
@@ -2968,6 +3002,16 @@ $$
 ### Sober spaces
 - A space is sober iff every irreducible closed subset is the closure of a single point.
 - A sober space is one whose lattice of open subsets determine the topology of the space.
+- A space $X$ is sober iff for every topological embedding $f: X \to X'$ that adds more points to $X$,
+  if the inverse image map $f: O(X') \to O(X)$ is an isomorphism, then $f$ is a homeomorphism.
+  [Source: martin escardo twitter](https://twitter.com/EscardoMartin/status/1573417458178093056?s=20&t=9dbWTcOVpbLhOB1LG8BSDQ)
+  This means we can't add more points to $X$ without changing its topology. it has as many points as it could.
+- Equivalently: Every complete prime filter of open sets is the open nbhd filter of a unique point.
+- $F \subseteq O(X)$ is a completely prime filter iff (1) $F$ is closed under all finite intersections   (including empty),
+  (2) if the union of some family $O_i$ is in $F$, then some $O$ is already in $F$ (prime).
+- This tries to specify a point by open sets.
+- Joke: A sober space is one where what you see is there, and you don't see double.
+  What you see is there: every completely prime filter is the nbhd of some point. You don't see double: the pt is unique.
 
 # Introduction to substructural logics: Ch1
 
@@ -42771,7 +42815,8 @@ which end you wish edit: press c]i} to perform the edit you describe.
 - [Spring cards to show off](https://www.youtube.com/watch?v=avoKr-mvfzI).
 - Shuffle with charlier cut.
 - peel top card off with [angel](https://www.youtube.com/watch?v=fRH4MyB4RVs) to display card, put card back.
-- [Hindu Shffle: control](https://www.youtube.com/watch?v=P_C1clIaOX4) to shuffle the deck.
+- [Overhand shuffle control](https://www.youtube.com/watch?v=VkE8fNFBUw8) to shuffle 
+  (Learn [Hindu Shffle: control](https://www.youtube.com/watch?v=P_C1clIaOX4) eventually).
 - Peel top card off with the [Chinese deal](https://www.youtube.com/watch?v=kppssPG7etM)
 - Show that it's the same card!
 - Put card back with [flirt flourish](https://www.youtube.com/watch?v=tFb7gCgsqcQ)
