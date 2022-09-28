@@ -6,6 +6,92 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+
+# Left and right adjoints to inverse image
+
+#### The story in set
+
+- Suppose $f: A \to B$ is a morphism of sets.
+- Then there is an associated morphism $f^*: 2^B \to 2^A$, the inverse image.
+- We get two associated morphisms, $\forall_f, \exists_f: 2^A \to 2^B$, which perform universal and existential
+  quantification "relative to $f$".
+- The idea is this: think of $A$ as being fibered over $B$ by $f$. Then $\forall_f(S \subseteq A)$
+  gives the set of $b \in B$ such that the fiber of $b$ lies entirely in $A$. That is, $f^*(b) = f^{-1}(b) \subseteq A$.
+- In pictures, Suppose the `@` mark the subset $S$ of $A$, while the `-` is outside the subset. We draw $A$ as being
+   fibered over $B \equiv \{b_1, b_2, b_3\}$. 
+
+```
+-   @  @
+-   -  @
+-   -  @
+|   |  |
+v   v  v
+b1 b2 b3
+```
+
+- Then, $\forall_f(A)$ will give us $b_3$, because it's only $b_3$ whose entire fiber lies in $A$.
+- Dually, $\exists_f(A)$ will give us $\{ b_2, b_3 \}$, because _some portion_ of the fiber lies in $A$.
+
+#### The story in general
+
+- Suppose we have a presheaf category $\hat C$. Take a morphism $(c \xrightarrow{f} c')$
+
+
+
+
+# Paredit via adjoints
+
+- We posit that text editor movements ought to be endofunctions, and complementary keybinds
+  ought to be adjoints to each other.
+- With this in mind, what is the correct category for `paredit`, and what are the adjunctions?
+- Suppose we wish to build a theory of `Sexp`s. Then let's consider the category of rooted trees,
+  where the root is the currently selected sexp, where the morphisms are inclusion maps of trees.
+- What are the operations? They are going to be endofunctions in this category. For example, moving up to the
+  parent, moving to the left and right sibling, etc.
+- Hopf algebras and rooted trees (https://personal.math.ubc.ca/~thomas/TeXthings/HopfAlgebras-1.1.pdf)
+
+# Hopf Algebras [TODO]
+
+- I wish to study hopf algebras sometime, unclear when!
+
+
+# Less than versus Less than or equals over Z
+
+-  If we have a theorem whose hypotheses and goal are of the form `a <= b - 1` for `a, b` integers,
+   is it always safe to replace these with `a < b`? Shockingly, no!
+- Consider the theorem: `(a <= n - 1) => (2a <= 2n - 2)`.
+- When we lose the information to `. < .`, it becomes `(a < n) => (2a < 2n - 1)`.
+- But this can't be proved, because the best we can do is `(a < n) => 2a < 2n`!
+- The key reason is that even though `(a < n) <-> (a <= n - 1)` is an equivalence, we can't
+  always rewrite with an equivalence under an inequality! 
+- Said differently, `a <= n - 1` is equivalent to `a < n`, but once we start performing *algebra*
+  on these, we start seeing the difference.
+- This came up in the context of delinearization. I was trying to prove that if `i < N` and `j < M`, then `iM + j < NM`.
+- This proof, while state in terms of `<`, actually needs us to go through `<=`:
+- `i <= (N - !)`, so `iM <= NM - M`, so `iM + j <= (NM - M) + (M - 1)`, which means `iM + j <= M - 1`, or `iM < M`.
+
+# Allegories and Categories
+
+- An allegory is a category enriched over posets, where each morphism $r: A \to B$
+  has a converse $r': B \to A$.
+
+# Partial function as span
+
+- A partial function $f: D \subseteq X \to Y$ is a span of $Y \leftarrow D \hookrightarrow X$.
+  What a slick definition!
+- See that if $Y = 1$, then a partial function $X \to 1$ carries only the data of $D \hookrightarrow X$, giving us
+  subobjects.
+
+
+# Solid State Chemistry OCW
+
+- I watch this when I have dinner for lulz.
+
+## Lecture 1
+
+- 
+- [Youtube link](https://www.youtube.com/watch?v=Ao41FrJFgvQ&list=PLUl4u3cNGP63z5HAguqleEbsICfHgDPaG)
+
 # Post's Problem [WIP]
 
 # Turing degree
@@ -26,7 +112,7 @@
   called $0$ since $0 \leq_T Y$ for all $Y$. That is, oracle access to decision procedure for $0$ gives a decision procedure for $Y$
 - $0'$ is the degree of the halting problem.
 - The first jump is taken relative to $A \equiv \phi$.
--  The join of two sets is given by $A \osum B \equiv \{ 2n : n \in A \} \cup \{ 2m + 1 : m \in B \}$. Claim that the turing degree of $A \osum B$ is a LUB of the turing
+-  The join of two sets is given by $A \oplus B \equiv \{ 2n : n \in A \} \cup \{ 2m + 1 : m \in B \}$. Claim that the turing degree of $A \oplus B$ is a LUB of the turing
   degrees of $A, B$.
 - Cutland, N. Computability. Cambridge University 
 
@@ -92,7 +178,7 @@ inhab = FnSpace contra
   ordered & unordered pairing, cartesian product, set difference, taking the domain of a binary relation, automorphisms of an ordered triple.
   These give us a "constructive" description of what we can do using 
   definability. [See also: constructible universe at nLab](https://ncatlab.org/nlab/show/constructible+universe)
-- https://en.wikipedia.org/wiki/Constructible_universe
+- [Computable universe](https://en.wikipedia.org/wiki/Constructible_universe)
 
 #### Godel Normal Form theorem
 
@@ -129,7 +215,7 @@ inhab = FnSpace contra
 
 - Focusing and synthetic rules: http://requestforlogic.blogspot.com/2010/09/focusing-and-synthetic-rules.html
 - girard statement about proofs as time; https://mathoverflow.net/a/179258/123769
-- https://en.wikipedia.org/wiki/Focused_proof
+- [Focused proof](https://en.wikipedia.org/wiki/Focused_proof)
 - Polarity in type theory: https://existentialtype.wordpress.com/?s=polarity
 - PhD thesis of Noam Zeilberger, polarity: http://www.cs.cmu.edu/~noam/thesis.pdf
 
@@ -138,8 +224,8 @@ inhab = FnSpace contra
 # Why cut elimination?
 
 - Morally spekaing, gives control over the formulae that occur in a proof.
-- If we can conclude that `(X -> Y; Y -> Z)|(X -> Z)`, then the proof of `X ->
-  Z` could be arbitrarily complex, since `Y` might be something crazy.
+- If we can conclude that `(X -> Y; Y -> Z)|(X -> Z)`, then the proof of `X -> Z` 
+  could be arbitrarily complex, since `Y` might be something crazy.
 - If we have `cut`, we know that such arbitrarily crazy things cannot happen, as the `cut` rule is the
   only rule where we are forced to synthesize something "out of thin air".
 - [Example of use of cut](https://mathoverflow.net/questions/8632/cut-elimination/64769#64769)
@@ -309,6 +395,8 @@ a   r
 - If `q=e`, then `(p, e)` incompatible.
 - We wish to show that there is a $p \in G$ such that all its extensions lie in $Z$.
 - That is to say, all of the extensions of $p \in G$ do not lie in $Z^c$.
+
+
 #### Proof of net lemma
 
 - To prove: If $G$ is a generic ideal of $P$, and $G \subseteq (Z \in M)$, then
@@ -365,7 +453,7 @@ a   r
 
 #### Forcing equality
 
-- Start by defining a net $Z^= \equiv \{ q \in P : \text{for all $(s, q) \in \tau_1$ there is a $(s', r) \in \tau_2$ with $r \geq q$ such that $r ||- s = s'$ \}$.
+- Start by defining a net $Z^= \equiv \{ q \in P : \text{for all $(s, q) \in \tau_1$ there is a $(s', r) \in \tau_2$ with $r \geq q$ such that $r \models s = s'$} \}$.
 - Note that $Z^=$ only checks of $\tau_1$ is a subset or equal to $\tau_2$.
 - We assume we have all the machinery now (poset, generic ideal, names, net lemma).
 - Suppose we want to check if `p ||= t_G = t'_G`.
@@ -429,8 +517,8 @@ a   r
 
 - Statement: For a monotone function $f: P \times P \to Q$, we have the equality
   $f(\sqcup_s s, \sqcup_t t) = f(\sqcup_x (x, x))$
-- Since $\sqcup_x (x, x) \sqleq \sqcup_{s, t} (s, t)$, by monotonicity of $f$, we have that
-  $f(\sqcup_x (x, x)) \sqleq f(\sqcup{s, t} (s, t))$.
+- Since $\sqcup_x (x, x) \sqsubseteq \sqcup_{s, t} (s, t)$, by monotonicity of $f$, we have that
+  $f(\sqcup_x (x, x)) \sqsubseteq f(\sqcup{s, t} (s, t))$.
 - On the other hand, note that for each $(s_\star, t_\star)$, we have that
   $(s_\star, t_\star)  \leq \sqcup (s_\star \sqcup t_\star, t_star \sqcup t_\star) = (s_\star, s_star) \sqcup (t_\star, t_\star)$.
   Thus each element on the RHS is dominated by some element on the LHS.
@@ -442,21 +530,21 @@ a   r
 - Proof by induction. $n = 0$ is immediate. For case $n+1$:
 
 $$
-\begin{align*}
+\begin{aligned}
 &(\sqcup_f f)^{n+1} \\
 &= (\sqcup_f f) \circ (\sqcup_g g)^n \\
 &= \sqcup_g ((\sqcup_f f) \circ g^n) \\
 &= \sqcup_g \sqcup_f (f \circ g^n) \\
 &= \sqcup_f (f \circ f^n) \\
 &= \sqcup_f (f^{n+1}) \\
-\end{align*}
+\end{aligned}
 $$
 
 - See that we used the diagonal lemma to convert the union over $f, g$ into a union over $f$.
 
 # Cantor Schroder Bernstein via fixpoint
 
-- Given two injections $f: S \to T, $g: T \to S$, we want to create a bijection.
+- Given two injections $f: S \to T$, $g: T \to S$, we want to create a bijection.
 - Suppose we have $S = T = N$, and $f(n) = g(n) = n + 1$.
 - If $f$ were surjective, we are done, for then $f$ is the bijection.
 - In this case, $f$ is not surjective, because $T-f(S) = {0}$. So $0$ has no preimage under $f$.
@@ -477,9 +565,11 @@ $$
 ##### Boolean algebras
 - Has meet, join, complement, 1, 0 with usual laws
 
+
 ##### Atomic boolean algebras
 - Consider $2^S$ where $S$ is finite. Then the elements of the form `{s} ∈ 2^S` are said
   to be atoms because if `x ⊂ {s}` then `x = 0` or `x = {s}`.
+
   
 ##### Atomless boolean algebras
 - Let $S$ be an infinite set, and let $I$ be a collection of its finite subsets. Then $I$ is an ideal
@@ -741,8 +831,10 @@ F \/ l; G \/ not(l)
 - Show that this `Γ#` obeys `(C0)`...`(C8)` [closure properties] This will rely on `S*` having `(S1)`..`(S8)`.
   Thus, `Γ#` possesses a model (the term model).
 - This means that `Γ` also possees a term model.
-     
+
+
 #### Algorithmic proof: details
+
 - TODO
 
 
@@ -1037,17 +1129,17 @@ inductive n2 (a: Type): Type :=
 | cons: a -> n2 a -> n2 a
 
 ```
-# MiniSketch
+# MiniSketch [TODO]
 
 https://github.com/sipa/minisketch
 
-# Finger trees data structure
+# Finger trees data structure [TODO]
 
 https://dl.acm.org/doi/abs/10.1145/3406088.3409026
 
-# HAMT data structure
+# HAMT data structure [TODO]
 
-https://en.m.wikipedia.org/wiki/Hash_array_mapped_trie
+- [HAMT wiki link](https://en.m.wikipedia.org/wiki/Hash_array_mapped_trie)
 
 # Embedding HOL in Lean
 
@@ -1117,14 +1209,15 @@ macro_rules | `(tactic| rfl => `(tactic| exact Iff.rfl)
 #### `Mapsto` arrow
 
 - `(x: α) \mapsto e`: maybe annoying to parse.
-- \lamnda (x: \alpha) \mapsto e`: easy to parse, but mathematicians don't know what lambda is.
+- `\lambda (x: \alpha) \mapsto e`: easy to parse, but mathematicians don't know what lambda is.
 
 #### `ext` tactic
 
 - implemented as a macro tactic, which uses an `elab` tactic.
 
 #### `colGt`
-- `syntax "ext" 
+
+- `syntax "ext"`
 - Lean4 is whitespace sensitive, like python. `colGt` says that we can have the following
     syntax on a column that is greater than the current line.
 
@@ -1202,7 +1295,7 @@ elab tk:"foo" val:term : tactic => do
 - We want to evaluate the `val:term`, because otherwise, it literally prints the syntax
   tree for things like `(2 + (by trivial))`.
 - Use `elabTerm` to elaborate the syntax into a term.
-- set_option `trace.Elab.definition true in ...` which printso ut the declarations that are being
+- `set_option trace.Elab.definition true in ...` which printso ut the declarations that are being
   sent to the kernel.
 - `elab` is `syntax` + `elab_rules` together, just like `macro` is `syntax` + `macro_rules` together.
 - Create a test file `test/trace.lean`. Import the tactic, and write some examples.
@@ -1229,7 +1322,7 @@ elab tk:"foo" val:term : tactic => do
 - The dependent sum $\Sigma_{x : A} B(x)$ is given by an object in $Set/A$, the set $\cup_{a \in A} B_a$.
   The morphism is the morphism from $B_a \to A$ which sends an elements of $B_{a_1}$ to $a_1$, $,B_{a_2}$ to $a_2$ and so forth.
   The fibers of the map give us the disjoint union decomposition.
-- The dependent product $\Pi_{x: A} A(x)$ is given by an object in $Set/A$, the set $ 
+- The dependent product $\Pi_{x: A} A(x)$ is given by an object in $Set/A$.
 - We can describe both dependent sum and product as arising as adjoints to the functor $Set \to Set/A$ given
   by $X \mapsto (X \times A \to A)$.
 - Recalling that dependent types are interpreted by display maps, substitution
@@ -1274,7 +1367,7 @@ X -----f---> Y
 
 #### Isn't substitution composition?
 
-- If instead we think of a subset as a function $P_Y: Y \to \Omega$ where $\OmegaS is the subobject classifier,
+- If instead we think of a subset as a function $P_Y: Y \to \Omega$ where $\Omega$ is the subobject classifier,
   we then get that $P_X$ is the composite $P_X \equiv P_Y \circ f$.
 - Similarly, if we have a "regular function" $f: X \to Y$, and we want to substitute $s(a)$ ($s: A \to X$ for
   substitution) into $f(x)$ to get $f(s(a))$, then this is just computing $f \circ s$.
@@ -1302,7 +1395,7 @@ becomes the function `snd: ΓxA → A`.
   belong to $D$. Often, $D$ is also closed under composition.
 - Said differently, $D$ is closed under all pullbacks, as well as composition.
 - A category with displays is _well rooted_ if the category has a terminal object $1$, and all maps into $1$
-  are display maps (ie, they can always be pulled back along any morphism)$. 
+  are display maps (ie, they can always be pulled back along any morphism). 
 - This then implies that binary products exist (?? HOW?)
 
 
@@ -1815,6 +1908,8 @@ q a a         q b b
 - Intuitively, `T ⊂ π*(π(T))`, so it must be "hard" for the inverse image of a set `Z` (`π*(Z)`) to
   be contained in the set `T`, because inverse images cannot shrink the size.
 - Furthermore, it is the right adjoint to `π*(Z)` because the ???
+
+
 # Different types of arguments in Lean4:
 - `(x: T)` regular argument
 - `[S: Functor f]` typeclass argument / argument resolved by typeclass resolution
@@ -1845,6 +1940,8 @@ In Coq people shun away from this binder. I'm not sure why, I guess there are is
 - These left and right adjoints mimic existential / universal quantifiers.
 - If we have maps between cartesian closed categories, then the functor `f*` obeys frobenius
   reciprocity if it preserves exponentials: `f*(a^b) ~iso~ f*(a)^f*(b)`.
+
+
 #### Algebra of logic
 
 - Lindenbaum algebras : Propositional logic :: Hyperdoctrines : Predicate logic
@@ -2247,8 +2344,8 @@ $$
 - Define $f \cap g \equiv \sum_{a \in \texttt{space}} i[f \cap g](a) \cdot a.$
 - It's a generating function with intersection multiplicity as coefficients hanging on the clothesline of points.
 
-#### Intersection number $\hash(f \cap g)$
-- Given by $\hash(f \cap g) \equiv \sum_{a \in \texttt{space}} i[f \cap g](a)$. This is the count of number of intersections.
+#### Intersection number $\#(f \cap g)$
+- Given by $\#(f \cap g) \equiv \sum_{a \in \texttt{space}} i[f \cap g](a)$. This is the count of number of intersections.
 
 #### Lemma: $f \cap g = g \cap f$
 - Mental note: replace $f \cap g$ with "ideal $(f, g)$" and stuff makes sense.
@@ -2262,7 +2359,7 @@ $$
 - Heuristic: if $f(a)$ and $gh(a)$ vanish, then either $f(a), g(a)$ vanish or $f(a), h(a)$ vanish, which can be counted by
   $f \cap g + f \cap h$
 
-#### Lemma: if $f, g$ are nonconstant and linear then $\hash(f \cap g) = 1$.
+#### Lemma: if $f, g$ are nonconstant and linear then $\#(f \cap g) = 1$.
 - Recall that we are stating this within the context of $k[x, y, z]$. 
 - So $f, g$ are homogeneous linear polynomials $f(x, y, z) = ax + by$, $g(x, y, z) = cx + dy$.
 - Sketch: if they have a real solution, then they will meet at unique intersection by linear algebra.
@@ -2578,7 +2675,6 @@ int mex_mex() {
 
 # Mitchell-Bénabou language
 
-<<<<<<< HEAD
 - [Link](https://ncatlab.org/nlab/show/Mitchell-B%C3%A9nabou+language)
 
 # Hyperdoctrine
@@ -2592,9 +2688,7 @@ int mex_mex() {
 - These left and right adjoints mimic existential / universal quantifiers.
 - If we have maps between cartesian closed categories, then the functor `f*` obeys frobenius
   reciprocity if it preserves exponentials: `f*(a^b) ~iso~ f*(a)^f*(b)`.
-=======
 - https://ncatlab.org/nlab/show/Mitchell-B%C3%A9nabou+language
->>>>>>> origin/master
 
 # Why is product in Rel not cartesian product?
 
@@ -3042,7 +3136,7 @@ $$
   $X \vdash A$ should be read as "the vector $X$ lives in the subspace $A$ of the large vector space.
 - Then, the rule $X \vdsh A$, $X vdash B$ entails $X \vdash A \land B$ means:
   if $X$ lives in subspace $A$ and $X$ lives in subspace $B$, then $X$ lives in the intersection $A \cap B$.
-- On the other hand, the rule $X \vash A$, $Y \vdash B$ entails $X ; Y \vdash A \circ B$ means:
+- On the other hand, the rule $X \vdash A$, $Y \vdash B$ entails $X ; Y \vdash A \circ B$ means:
   if $X$ lives in subspace $A$, $Y$ lives in subspace $B$, then the vector $X \otimes Y$ lives in subspace $A \otimes B$.
 - See that in the case of the conjunction, we are talking about **the same** $X$, just choosing to restrict where it lives ($A \cap B$)
 - See that in the case of tensor product, we have **two** elements $X$ and $Y$,
@@ -3086,7 +3180,7 @@ $$
 #### What does this integral mean?
 - We think of $\Omega$ as a probability measure. Subsets in $\Omega$ have measure 1, subsets outside have measure 0.
 - Since we want to think of $\Omega$ as some kind of probability measure, we
-  want that $\int_X 1 \d \Omega = 1$, as would happen when we integrate a probability measure $\int d \mu = 1$.
+  want that $\int_X 1 d \Omega = 1$, as would happen when we integrate a probability measure $\int d \mu = 1$.
 - Next, if two functions $f, g$ are equal almost everywhere (ie, the set of points where they agree is in $\Omega$),
   then their integral should be the same.
 
@@ -42482,6 +42576,8 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
+- Pirates of the caribbean: Take what you can, give nothing back.
+
 > How can Alice communicate all of math to Bob? Mail him some chalk and wait!
 
 > Love is not a craving, love is a yearning. ~ Contrapoints.
@@ -43282,5 +43378,6 @@ speak slower than you want to.
 - [Surge Response by approximate](https://www.youtube.com/watch?v=I4C7RtiqL_0)
 - [Zetsubo by Prismbeings](https://www.youtube.com/watch?v=ncdA3t_vzF8)
 - [Absolute territory by Prismbeings](https://www.youtube.com/watch?v=9r8pxIogxZ0)
+
 
 
