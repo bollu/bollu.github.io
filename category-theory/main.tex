@@ -1,0 +1,139 @@
+% https://github.com/cohomolo-gy/cats-in-context/blob/master/chapter-2/Chapter%202%20Solutions.tex
+
+\documentclass[14pt]{report}
+\usepackage{classicthesis}
+
+\usepackage{bbm}
+\usepackage{bbding} % for flower. 
+\usepackage{physics}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{listing}
+\usepackage{minted}
+\usepackage{cancel}
+\usepackage{color}% or xcolor
+\usepackage{quiver}
+\usepackage{changepage}
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+\usepackage{enumitem}
+\usepackage{mathtools}
+%\usepackage{minted}
+%\newminted{fortran}{fontsize=\footnotesize}
+
+\usepackage{xargs}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\usepackage{epsfig}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\R}{\ensuremath{\mathbb R}}
+\newcommand{\coT}{\ensuremath{T^*}}
+\newcommand{\boldX}{\ensuremath{\mathbf{X}}}
+\newcommand{\boldY}{\ensuremath{\mathbf{Y}}}
+
+
+\newcommand{\cat}[1]{\mathsf{#1}}
+\newcommand{\functor}[3]{#1 : \cat{#2} \to \cat{#3}}
+\newcommand{\functordef}{\functor{F}{C}{D}}
+\newcommand{\cc}{\cat{C}}
+\newcommand{\cC}{\cat{C}}
+\renewcommand{\dd}{\cat{D}}
+\newcommand{\ee}{\cat{E}}
+\newcommand{\ccat}{\cat{Cat}}
+\newcommand{\cCat}{\cat{Cat}}
+\newcommand{\cset}{\cat{Set}}
+\newcommand{\cSet}{\cat{Set}}
+\newcommand{\cFin}{\cat{Fin}}
+\newcommand{\cCAT}{\cat{CAT}}
+\newcommand{\cTop}{\cat{Top}}
+\newcommand{\ctop}{\cat{Top}}
+\newcommand{\cgrp}{\cat{Grp}}
+\newcommand{\cGrp}{\cat{Grp}}
+\newcommand{\cCone}{\cat{Cone}}
+
+\newcommand{\subcat}[2]{\bm{ \mathsf{#1}}_{\bm{ \mathsf{#2}}}}
+\renewcommand{\op}{\text{op}}
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\mono}{\rightarrowtail}
+\newcommand{\epi}{\twoheadrightarrow}
+\newcommand{\bg}{\cat{BG}}
+\newcommand{\bgg}{\cat{BG'}}
+\newcommand{\nt}{\Rightarrow}
+%\newcommand{\ant}[2]{\alpha : F \nt G} 
+%\newcommand{\bnt}[2]{\beta : F \nt G} 
+%\newcommand{\anti}[2]{\alpha : F \cong G} 
+%\newcommand{\bnti}[2]{\beta : F \cong G} 
+\newcommand{\zero}{\mathbbm{0}}
+\newcommand{\one}{\mathbbm{1}}
+\newcommand{\two}{\mathbbm{2}}
+\newcommand{\three}{\mathbbm{3}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\Id}{\operatorname{id}}
+\newcommand{\colim}{\operatorname{colim}}
+
+
+
+\newcommand{\G}{\ensuremath{\mathcal{G}}}
+% \newcommand{\braket}[2]{\ensuremath{\left\langle #1 \vert #2 \right\rangle}}
+
+
+\def\qed{$\Box$}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+ 
+% \newcommand{\proof}[1][]{\emph{Proof #1}\textbf{:} }
+\newcommand*{\start}[1]{\leavevmode\newline \textbf{#1} }
+\newcommand*{\question}[1]{\leavevmode\newline \par\noindent\rule{\textwidth}{0.4pt} \textbf{Question: #1.}}
+\newcommand*{\proof}[1]{\leavevmode\newline \textbf{Proof #1}}
+\newcommand*{\answer}{\leavevmode\newline \textbf{Answer} }
+
+\newcommand{\X}{\ensuremath{\mathfrak{X}}}
+\newcommand{\comma}{\downarrow}
+
+
+% \newcommand{\hom}{\ensuremath{\operatorname{Hom}}}
+\newcommand{\Hom}{\ensuremath{\operatorname{Hom}}}
+\newcommand{\FinSet}{\texttt{FinSet}}
+
+\title{Category theory}
+\author{Siddharth Bhat}
+\date{Oct 2022}
+
+
+\begin{document}
+\maketitle
+\tableofcontents
+\chapter{Sheaves in Geometry and Logic: Chapter 1}
+\begin{question}
+    Q1: Show that $\N \to \FinSet$ has no subobject classifier.
+\end{question}
+\begin{answer}
+\end{answer}
+\chapter{Bart Jacobs: Chapter 1}
+\section{1.1: Fibered categories}
+\end{document}                                              
