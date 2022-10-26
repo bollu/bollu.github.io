@@ -6,8 +6,309 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+# Motivation for modal logic
 
-# Left and right adjoints to inverse image
+- `possibly A -> necessarily (possibly A -> B) -> necessarily B`
+- this weakens the precondition `A -> (A -> B) -> B` by needing only `possible A`
+  and strengthens the postcondition by spitting out `necessarily B`.
+- Key idea 1: if A is true in no world `w`, then `possibly A` that we have is false, and from this we derive explosion.
+- Key idea 2: if A is true in some world `wa`, then suppose we are in some arbitrary world `wr`. 
+- Since `A` is true in `wa`, we have `possibly A`.
+- Since `necessarily (possibly A -> B)` is true in all worlds, we have `(possibly A -> B)`.
+- Since we have both `possibly A`, and `possibly A -> B`, we derive `B` in `wr`.
+- Since `wr` was arbitrary, we then have `necessarily B` since `B` holds in any arbitrary worlds.
+
+#### Use of this for Kant
+- experience of objects is possible.
+- it is necessarily the case that if experience is possible, then I must have some way to unite experience.
+- thus, necessarily we have unity of experience.
+
+#### Use of this for descartes
+- it is possible for me to be certain of something (ie, I think therefore I am) 
+- it is neecessarily the case that if I can be certain of something, I have clear and distinct perception.
+- Therefore, it is necessary that I have clear and distinct perception.
+
+# Scones
+
+- take $C$ a category. There is a global sections functor $\Gamma: C -> Set$ given by $Hom(1, -)$.
+- take the pullback $C \xrightarrow{\Gamma} Set \xleftarrow{cod} Set^{\to}$.
+
+- From any type theory $T$, we build $syn(T)$, where objects are the types, and morphisms are terms with
+  free variables. (ie, $A \to B$ is a term of type $B$ involving a free variable of type $A$)
+- whatever structure $T$ had will be visible in $syn(T)$. eg: if $T$ has products, then $syn(T)$ will have products.
+  moreover, $syn(T)$ will be the initial such category. For any other $C$ with the appropriate structure, there will a functor $syn(T) \to C$.
+- To use this to prove properties of $T$, we'll need to cook up a special $C$, so that $syn(T) \to C$ can tell us something.
+  Further, this $C$ must somehow depend on $T$ to explore properties of $T$, so let's call it $C(T)$.
+- We must use the uniqueness of the morphism $syn(T)$ to $C(T)$ (ie, the initiality of $syn(T)$), because that's what makes
+  this thing universal.
+- 
+- [An introduction to fibrations, topos theory, the effective topos and modest sets](http://www.lfcs.inf.ed.ac.uk/reports/92/ECS-LFCS-92-208/)
+- [Scones, logical relations, parametricity](https://golem.ph.utexas.edu/category/2013/04/scones_logical_relations_and_p.html)
+
+
+# Presheaf models of type theory
+- Let $C$ be any category.  
+- Contexts are presheaves $\Gamma: C^op \to Set$. Morphisms are natural transformations of presheaves.
+- an element of a context $Elem(\Gamma)$ is a global element / grothendieck construction / object in the category of elements of contexts:
+  $\Sigma{I:Ob(C)} \Gamma(I) 
+- A type in the context, $\Gamma \vdash T$ is a presheaf over the category of elements $\alpha \in T(I, \rho)$.
+- A term $\Gamma \vdash t: T$ is $t: (I: Ob(C)) -> (\rho: \Gamma(I)) -> T(I, \rho)$.
+- substitution is a natural transformation $\sigma: \Gamma \to \Delta$.
+
+
+- [A presheaf model of dependent type theory by Alexis Laouar](https://perso.crans.org/alaouar/rapportm1.pdf)
+- [Ref: Cubical type theory with several universes in nuprl](https://www.youtube.com/watch?v=ioa-f_nCNuE)
+
+# Weighted limits via collages
+
+#### Collage of a profunctor.
+- more explicitly, for `P : C -|-> D`, define `Collage(P)` as the category where `Obj(Collage(P)) = Obj(D) + Obj(C)`, `Collage(P)(inl x, inl y) = D(x,y)`, `Collage(P)(inr x, inr y) = C(x,y)`, `Collage(P)(inl x, inr y) = P(x,y)`, `Collage(P)(inr x, inl y) = 0`
+- It is the categorification of a cograph. A graph is where we take the product `A \times B` and then take a subset of it where `f(x) = y` (equalizer).
+- A cograph is where we take the union `A \cup B` and then impose a quotient `f(x) ~ y` (coequalizer).
+- When we categorify this, we don't coequalize, but we setup arrows that capture the morphisms.
+
+#### Quick intro to enriched (pro)functors.
+
+- In an enriched category, we replace hom sets by hom objects which live in some suitable category $V$.
+- The category must be monoidal, so we can define composition as $\circ: hom(y, z) \otimes hom(x, y) \to hom(x, z)$.
+
+#### Weighted Limits via collages
+
+- Let `1` be the terminal enriched category, having 1 object `*` and `Hom(*,*) = I`, and `I` is the unit of the monoidal structure `(V, (x), I)` of the enrichment.
+- A weighted cone over `D : J -> C` with weight `W : J -|-> 1` (where `I` is the terminal enriched category over `V`),
+  is a functor `G` from the collage of `W: J -|-> 1` to `C` that agrees with `F` on the copy of `J` in the collage.
+  So, `G: Col(W) -> C`, or `G: J+* -> C` where `G(J) = D`.
+- Unravelling this, construct the category `Col(W) = J+*` with the morphisms in `J`, morphism `I: * -> *`, and a bunch of arrow `J -> *`. So we are adding an "enriched point",
+  with an arrow `I: * -> *`.
+- What does a weighted cone `G: Col(W) -> C` have that doesn't just come from `F: J -> C`?  Well, it has an object `X` (for apeX) to be the image of `(inr *): J+*`,
+  and it has the collage maps `W(inl j -> inr *) -> C(j -> X)` for all `j` in `Obj(J)`, and these maps commute with the base maps of `F`.
+  So far, this looks like a cone. However, note that the collage maps are enriched maps!
+-  The natural transformations can only choose to move where `*` goes, since that's the only freedom two functors `G, G:':J+* -> C` have,
+   since they must agree with `F` on `J`: `G(J) = G'(J) = F(J)`.
+   This is akin to moving the nadir, plus commutation conditions to ensure that this is indeed a cone morphism.
+
+- Maps of these weighted cones are natural transformations that are identity on the copy of `J`
+- Terminal means what it usually does. A terminal weighted cone is a weighted limit.
+15:51 <xplat> *C(X,F(j))
+- How does this look in our ordinary Set-enriched world?  a `W`-weighted cone has its ape`X` and for each `j` in `J`
+  it has a `W(*,j)`-tuple of arrows `x_j,k : X -> F(j)` in `C` and for each `g : j -> j'` we have equations `x_j,k . F(g) = x_j',W(*,g)(k)`
+15:57 <xplat> both correct
+15:57 <xplat> wait, no
+15:58 <xplat> first correct
+15:58 <xplat> maps of weighted cones are natural transformations `eta : F => F' : Collage(W) -> C` that are identity on the copy of J in Collage(W)
+16:04 <xplat> in the `Set`-enriched world, a map of `W`-weighted cones is a map `f : X -> X'` in `C` and for each `j` in `Obj(J)` and `k` in `W(*,j)` we have equations `x_j,k = x'_j,k . f`
+16:08 <xplat> so you can take a simple example, the second power.  For this example, `J = 1`, `W(*,*) = 2`, `F` picks out some object `c`, so each weighted cone consists of `X` and `x_*,0 : X -> c` and `x_*,1 : X -> c` and no equations
+16:09 <xplat> what does the terminal weighted cone look like in this example?
+
+
+#### Weighted limit via `nlab`
+
+- Let $K$ be a small category, which is the diagram.
+- Suppose $F: K \to \mathsf{Set}$.
+- See that cones of $F$ corresond to natural transformations $[K, \mathsf{Set}](\Delta(p), F)$ for $p \in \mathsf{Set}$.
+- See that the limit represents cones: $\mathsf{Set}(p, \texttt{Lim} F) \simeq [K, \mathsf{Set}](\Delta(p), F)$, natural in $p$
+- Generalizing this to arbitrary category $C$, we can write 
+
+- [Ref: nlab](https://ncatlab.org/nlab/show/weighted+limit)
+
+# Disjoint Coproduct
+
+- One says that a coproduct $X+Y$ is disjoint iff the intersection of $X$ with $Y$ in $X+Y$ is empty.
+- The intersection of $A, B$ over $X$ is defined as the pullback of the diagram (in fact, cospan) $A \rightarrow X \leftarrow B$.
+- Thus, in this case,  we say that $X, Y$ are disjoint iff the pullback of $X \rightarrow X+Y \leftarrow Y$ is the initial object.
+
+- [Disjoint coproduct](https://ncatlab.org/nlab/show/disjoint+coproduct)
+
+
+
+# Universal coproduct / stable under pullback
+
+
+- [Ref](https://math.stackexchange.com/questions/788525/a-few-questions-concerning-universal-colimits-and-dense-generating-sets)
+
+# Leibniz Equality in Lean4
+
+```
+@[simp, reducible]
+abbrev Leibniz {A: Type} (x y: A) := ∀ (P: A -> Prop), P x -> P y
+
+theorem Leibniz_refl {A: Type}: ∀ (x: A), Leibniz x x := fun _A _P Px => Px
+theorem Leibniz_trans {A: Type}: ∀ (x y z: A), Leibniz x y -> Leibniz y z  -> Leibniz x z := 
+        fun _x _y _z Lxy Lyz P Px => Lyz P (Lxy P Px) 
+
+theorem Leibniz_sym {A: Type}: ∀ (x y: A), Leibniz x y -> Leibniz y x :=
+  fun x y  Lxy P Py =>
+      let prop (a: A) := P a -> P x
+      let proofPropX : prop x := id 
+      let proofPropY: prop y := Lxy prop proofPropX
+      proofPropY Py
+
+theorem defeq_implies_Leibniz (x y: A) (EQ: x = y):
+  Leibniz x y := fun P Px => EQ ▸ Px
+
+theorem Leibniz_implies_defeq (x y: A) (LEQ: Leibniz x y):
+  x = y := LEQ (fun a => x = a) rfl
+```
+
+# Strong normalization of STLC
+
+- Recall that in the category Hask, objects are types, morphisms are functions/expressions.
+- Recall that in the category of contexts, objects are contexts, morphisms are substitutions.
+- A local predicate $L$ will relate to an object (type/context) a collection of morphisms 
+    (type → expressions of that type, typing context → substitutions of the variables of the typing context where the
+    expressions have the type as per the context).
+- Consider STLC with the typing rules:
+
+```
+------
+Γ⊢():Unit
+```
+
+```
+Γ ⊢ (f:A→B); Γ ⊢ (x:A)
+----------------
+Γ⊢ f@x:B
+```
+
+```
+Γ,(a:A) ⊢ (body:B)
+----------------
+Γ ⊢  (λa.body:A→B)
+```
+
+- Define the logical prediate `Ltype: Type → Set(Expression)`, by induction on the rules:
+
+```
+--------------------------
+  () ∈ LType(Unit)
+```
+
+
+```
+f ∈ LType(A→B); x∈LType(A)
+--------------------------
+  f @ x ∈ LType(B)
+```
+
+```
+body ∈ LType(B); (∀ aval∈ Ltype(A), body[a/aval] ∈ Ltype(B))
+--------------------------
+  λa.body ∈ LType(A→B)
+```
+
+- It is clear that `x ∈ LType(T)` implies that `x` is strongly normalizing.
+- When we try to prove that `Γ ⊢  x : T` implies  `x ∈ LType(T)`, we get stuck on the 
+  case of the lambda, because it's impossible to prove that a well typed term
+  `(λa.body):A→B` is such that upon substitution, `body[a/aval]` will be strongly normalizing.
+
+- So we control the context as well, and create another relatoin `LCtx(Γ)`. For a given context
+  `Γ: Var → Type`, we say that a substitution `γ: Var → Expr` is in `LCtx(Γ)` iff `dom(γ) = dom(Γ)`,
+  and that for all `x∈ dom(Γ)`, that `γ(x) : Γ(x)` and `γ(x) ∈ LType(Γ(x))`. Maybe written with a little abuse of notation,
+  this means that if `(x:T)∈ Γ`, then `γ(x):T`, and `γ(x)∈ LType(T)`. That is, `γ` is a set of assignments
+  for the typing context `Γ` where each assignment is strongly normalizing.
+
+# Subobject classifiers of $N \to FinSet$, or precosheaf of $FinSet$
+
+#### Subobject classifier in $S^2$
+
+- Start with $Set^2$. This has as objects $X_0 \to X_1$. The subobjects are of the form:
+
+```
+   f
+S0 -> S1
+v     v
+|i    |i'
+v     v
+X0 -> X1
+   g
+```
+
+- we can identify $i(S_0)$ with a subset $T_0$ of $X_0$, and $i'(S_1)$ with a subset $T_1$ of $X_1$.
+- The diagram commuting implies that $g(i(S_0)) = i'(f(S_0))$. This means that $g(T_0) = i'(f(S_0))$, or that $g(T_0) \in im(i') = T_1$.
+- Thus, we have that $g(T_0) \subseteq T_1$.
+- We define the subobject classifier as having values $T, \triangleright T, \triangleright^\infty T$, where $T$ is interpreted as "is a subobject" (is true),
+  and $\triangleright$ is interpreted as "delay" (ie, will be a subobject in the next timestep).
+- An element $s \in S_0 \subset X_0$ will be classified as $T$.
+- An element $s \not in X_0, s \in X_1$ will be classified as $\triangleright T$, since it lands in $X$ in one timestep.
+- An element $s \not in X_0, s \not \in X_1$ will be classified as $\triangleright^\infty T$, since it lands in $X$ after
+  infinite timesteps (ie, never).
+- We can alternatively think of $\triangleright^\infty \sim \triangleright^2$, since it takes "two timesteps", but the second
+  timestep is never materialized.
+
+#### Proof that this is the subobject classifier
+
+- We formally define the subobject classifier as $\Omega_0 \xrightarrow{\omega_0} \Omega_1$, where
+  $\Omega_0 \equiv \{ T, \triangleright T, \triangleright^\infty T \}$, $\omega_1 \equiv \{T, \triangleright T \}$.
+- The map is $\texttt{force}_0$, $T \mapsto T$, $\triangleright T \mapsto T$,
+  $\trianglright^\infty T \mapsto \triangleright^\infty T$.
+- Informally, the map can be said to be given by $\texttt{force} \equiv (T \mapsto T, \triangleright^{n+1} T \mapsto \triangleright^n T)$.
+- We call it "force" since it forces a layer of delay.
+- We define the bijection between subobjects $(S \xhookrightarrow{f} X)$ and classification maps $(X \xrightarrow{\xi[f]} \Omega$
+  as follows: Let $i$ be the least $i$ index such that $f(S_i) \in X_i$. Then have $\xi[f]_0 = \triangleright^i T$. See that
+  by the square, this determines $\xi[f]_{i}$ for all larger $i$:
+
+```
+X0 ---Χ[f]0--> Ω0
+|               |
+f0            force0
+v               v
+X1 - Χ[f]1- -> Ο1
+   [to be determined]
+```
+
+- We have the obvious 
+
+
+#### Why $N \to FinSet$ does not have subobject classifier
+
+- The objects in this category are sequences of sets $(X_0 \to X_1 \to X_2 \to \dots)$.
+- We claim this category 
+
+
+# Dimensions versus units
+- `gram/kg` is dimensionless because it's length/length, but it indeed has units `g/kg`, since it's
+  the conversion ratio between grams versus kilograms.
+
+
+# HoTTesT: Identity types
+
+- [lecture](https://www.youtube.com/watch?v=oMKl7pBRg1E&list=PLtIZ5qxwSNnzpNqfXzJjlHI9yCAzRzKtx&index=8).
+- We already have judgemental equality. (computational equality: beta eta alpha equality).
+- We will next introduce propositional equality.
+- Proving an equality => constructing a term of the type of equalities.
+- We can prove many judgemental equalities (eg. `add x 0 =judgement= x`), but not all the ones we want
+  (eg. `add 0 x =judgement= x`).
+- We can't because we need to do induction on `x`.
+- When we use natural number elimination / induction, we must produce a term of a type.
+- What type?!
+- Type constructors internalize structure. Eg. at a meta level, we can talk about contexts `x:A, y:B(x), z:C(x,y)`.
+- But internally, we will need to be able to talk about contents, we can use sigma types! `Σ(x:A) Σ(y: Bx) Σ z:C(x, y)`
+  lets us internalize contexts!
+- Similarly, we can think about dependent terms  as `meta` functions. Example, `x:A,y:B(x) |-  c(x,y): C(x, y)`.
+  We can think of this as a function that takes an `x` and a `y` and produce a `c(x,y)`. See that pi types
+  internalize this notion! `c: (x:A) -> (y: B(x)) -> C(x,y)`.
+- Bool, Nat, etc. are internalizing the usual booleans, naturals, etc.
+- The universe type internalizes the judement `A is a type` via `A: Type`.
+- The identity type internalizes the meta notion of judgemental equality (how? Doesn't it prove strictly more?)
+
+
+
+#### Identity Type
+
+- $=$-formation: A type `a: A`, `b: B`, then we have a type `a =A b type`.
+- `=`-intro: `a:A| r_a: a =A a`. (`r` = reflexivity).
+- `=`-elim: `x: A, y: A, z: x =A y |- D(x, y, z) type`, and given `x:A |- d: D(x, x, r_x)`, then we have  `ind=(d, x, y, z): D(x, y, z)`
+
+
+# Philosophy of History
+
+- Chronology: is time linear? cyclical?
+- causality: distinction between routine activites and distinctive activities, geographic determinism
+- neutrality: do the victors write the history, and the defeated get no say? Or do the defeated reinvent themselves, and tell
+  their story, while the victors lie complacent?
+- 
+
+# Left and right adjoints to inverse image [TODO]
 
 #### The story in set
 
@@ -36,6 +337,17 @@ b1 b2 b3
 
 - Suppose we have a presheaf category $\hat C$. Take a morphism $(c \xrightarrow{f} c')$
 
+#### The story in slice categories
+
+- If we have $f: A \to B$ in `Set`, then we have $f^*: Set/B \to Set/A$, which
+  sends a morphism $(K \xrightarrow{g} B)$ to $(K \xrightarrow{g} B \xrightarrow{f^{-1}} A)$.
+- This also motivates the presheaves story, as $Set/B \simeq Set^B$.
+- Recall that any morphism $K \xrightarrow{h} B \in Set/B$ can be equally seen as a morphism $b \mapsto h^{-1}(b) \in Set^B$.
+  This is the mapping between slice and exponential.
+- We can think of $(K \xrightarrow{h} B) \in Set/B$ as a collection $\{ h_b \equiv h^{-1}(b) \subseteq B \}$.
+  This is the fibrational viewpoint.
+- Then the functor $f^*(\{ h_b : b \in B\}) \equiv \{ h_{f(a)} : a \in A\}.
+- TODO
 
 
 
@@ -445,6 +757,12 @@ a   r
   This means that $r$ came from the first part of the set $D'$,
   where no extension of $p$ lies in $Z^c$. Thus we are done.
 
+#### Intuition for Net definition
+- A net $Z \subseteq P$ could be defined in two ways: (A) $\forall p \in P, \exists z \in Z, p \leq Z$,
+  or (B) $\forall z \in Z, \exists p \in P, z \leq p$.
+- It can't be (B), because (B) has a trivial solution $Z = \emptyset$!
+- It should be (A), because (A) forces $Z$ to be "non-trivial", since I can test it against all $p \in P$.
+
 #### Names and name creation
 - Let $N$ (for names) be defined transifinitely, where $N_0 \equiv \emptyset$, $N_{i+1} \equiv \mathcal{P}(P \times N_i) \cap M$,
   and take the union in the usual way at the limit ordinal.
@@ -453,15 +771,51 @@ a   r
 
 #### Forcing equality
 
-- Start by defining a net $Z^= \equiv \{ q \in P : \text{for all $(s, q) \in \tau_1$ there is a $(s', r) \in \tau_2$ with $r \geq q$ such that $r \models s = s'$} \}$.
-- Note that $Z^=$ only checks of $\tau_1$ is a subset or equal to $\tau_2$.
-- We assume we have all the machinery now (poset, generic ideal, names, net lemma).
-- Suppose we want to check if `p ||= t_G = t'_G`.
-- This happens if for every extension $q$ of $p$ (ie, $q \geq p$), every $(q, n : P) \in t$ [yes the same $q$] is equal to 
-  some element $(r, n' : P) \in t'$, such that $r \geq q$, and $(r, n, n') \in F(x=y)$, where $F(x=y)$ is the set of
-  forcing conditions for $x=y$. We need this to also happen vice versa.
-- Why do we need $q \geq p \geq r$? I don't follow!
+###### Step 1: Defining the forcing tuple set $F^{x=y}$.
 
+- to decide equality of $\tau, \tau'$, it is very sensitive to $G$ because elements can appear/disappear based on $G$.
+- We want all triplets $(p, \tau, \tau')$ where $\tau, \tau' \in \textttt{NamedSet}(M)$such that
+  $p$ forces $\tau^G = \tau'^G$.
+- Recall that $p$ forces $\tau^G = \tau'^G$ means: $\tau^G = \tau'^G **if and only if** $p \in G$.
+- Thus, $p$ must be such that it is **NECESSARILY POSSIBLY TRUE** that every element $\sigma^G \in \tau^G$ must also be such that $\sigma^G \in \tau'^G$,
+  and also vice verse: every $\sigma'^G \in \tau'^G% must be such that $\sigma'^G \in \tau^G$.
+- Let us prove the forward direction, where we want to force $\sigma \in \tau$ implies $\sigma \in tau'$.
+- Whenever $q \geq p$,  and $(\sigma, q) \in \tau$, there must be an $r \geq q$ such that $(\sigma^G \in \tau')$.
+- We might be tempted to say that $r$ implies $(sigma^G \in \tau'^G)$ iff $(\sigma, r) \in \tau'$, but this is too strong.
+  There could be many different collapses that allowed for $\sigma, r \in \tau'$. That is, we could have some $\xi^G \in \tau^G$,
+  and $r$ forces $\xi^G = \sigma^G$.
+- Now it looks like we need to define equality in terms of equality. We just perform induction on name rank,
+  because to have $\sigma \in \tau$, the name rank of $\sigma$ must be lower than $\tau$ because we built
+  the name rank universe by induction.
+- So we define the condition on tripets $(p, \tau, \tau')$ of name rank less than $\alpha$ to be that
+  for ALL $(\sigma, q) \in tau$ where $q \geq p$, there is
+  $(\xi, r) \in \tau'$ such that $r \geq q$ and
+  $(r, \sigma, \xi) \in F^{x=y}_{max(nr(\sigma), nr(\xi))}$,
+- So we define the relation $F^{x=y}$ by name rank induction.
+
+##### Step 2: defining the net
+- Next, we need to define the net $Z$.
+- Let $Z^{=} \equiv \{ q \in P: \forall (\sigma, q) \in \tau, \exists (\xi, r) \in tau', r \geq q \land (r \models \sigma = \xi)$ \}.
+- Question: What is the meaning of the $\models$ symbol in this context?
+- SID: I guess $r \models \sigma = \xi$ is syntactic sugar for $(r, \sigma, \xi) \in F^{x=y}$.
+- See that $Z^{=}$ is the set of all $q$ for which $\tau$ is possibly a subset or equal to $\tau'$.
+- By the inductive hypothesis of name rank, FTF holds for $\sigma, \xi$ and it follows that $Z^{=} \in M$ 
+  [I have no fucking idea what this means].
+
+#### Step 4: The equivalence of net, modality, relativized inclusion:
+
+- $\tau^G \subseteq \tau'^G$ implies 
+- $G \subseteq Z^{=}$ implies 
+- $\exists p \in G, \forall q \geq p, q \in Z^{=}$ implies 
+- $\tau^G \subseteq \tau'^G$
+
+Therefore, all these conditions are equivalent.
+
+- We will show that $\tau^G \subseteq \tau'^G$ implies that $G \subseteq Z^{=}$. This by the net lemma will implu that
+  there is a $p \in G$ such that all larger elements will be trapped in the net $Z^{=}$.
+- Then we will prove that if there is such a $p \in G$ which traps elements in the net, then we have $\tau^G = \tau'^G$.
+
+##### 
 
 # Partial Evaluation, Chapter 3
 
@@ -1005,6 +1359,21 @@ I -u--->J
 
 - A fibration is split if the cartesian lift of identity is identity, and the cartesian lift
   of compositions is the composition of the lifs (ie, the lifting is functorial).
+- In a cloven fibration, this is going to only be equal upto iso.
+- Example of a non-split fibration: Set-arrow, because pullbacks in set are not associative.
+ Thus, the (A x B) x C != A x (B x C).
+- Being split has mathemaitcal content, because it's not possible to globally fix a functor
+  being non-split.
+
+##### Pseudofunctors
+- A functor where all the equalities are isos. `f(a . b) ~= f a . f b`. `f(id) ~= id`.
+
+##### Split Indexed Category
+- 
+
+##### Lemma about pulling stuff back into the fiber
+
+- `E(X, Y) != disjoint union (u: πX -> πY) E_{πX} (X, u*(Y))`
 
 
 # Simple Type Theory via Fibrations
@@ -1920,6 +2289,7 @@ q a a         q b b
 In Coq people shun away from this binder. I'm not sure why, I guess there are issues with it at a larger scale. We could get rid of it. For the paper it's utterly irrelevant in my opinion
 
 # Big list of lean tactics
+- `conv <pattern> => ...`: rewrite in pattern. example: `conv in x + 1 => rw ...`
 - `split` allows one to deal with the cases of a match pattern. This also allows one to case on an `if` condition.
 - `cases H: inductive with | cons1 => sorry | cons2 => sorry` is used to perform case analysis on an inductive type.
 - `cases H; case cons1 => { ... }; case cons2 => { ... }` is the same , but with slightly different syntax.
@@ -42906,7 +43276,11 @@ which end you wish edit: press c]i} to perform the edit you describe.
 
 # Big list of Cardistry
 
-#### Current Trick
+## Current Practice
+
+- [Snap Change](https://www.youtube.com/watch?v=zhoafsPWaQo&list=PLNZrOW6NuocraONXJjyPrDcGnHJt5dUJV&index=4)
+
+## Current Polish
 
 - [Spring cards to show off](https://www.youtube.com/watch?v=avoKr-mvfzI).
 - Shuffle with charlier cut.
@@ -42917,10 +43291,26 @@ which end you wish edit: press c]i} to perform the edit you describe.
 - Show that it's the same card!
 - Put card back with [flirt flourish](https://www.youtube.com/watch?v=tFb7gCgsqcQ)
 
+## Future
+
+##### [Bow to Stern: Single card sticking out: Chris Ramsay](https://www.youtube.com/watch?v=NCUfHRvCJj0)
+- Something called the "plunger principle"?
+
+##### [Tenkai palm](https://www.youtube.com/watch?v=sMLOjQTaKtg): pluck card out of air.
+
+##### [Bertram change card color change](https://www.youtube.com/watch?v=omcbLkcQkBk)
+- convincer: one card is two
+- Tenkai palm is a prereq.
+
+
+
 ##### Flirt Flourish
 - [Flourish: Flirt](https://www.youtube.com/watch?v=tFb7gCgsqcQ)
 - hold top card between index and middle finger, flip middle and index, then land card back on top of packet.
 - Can be used to switch top two cards, by peeling the top card with your pinky and putting the top card in.
+
+##### [3pac flourish](https://www.youtube.com/watch?v=AgsIfxtVjkk)
+
 
 
 #### Card Spring
@@ -42930,6 +43320,7 @@ which end you wish edit: press c]i} to perform the edit you describe.
 
 #### Next
 
+- [Chris Ramsay: collection of all tutorials](https://www.youtube.com/watch?v=vM1_u-A4zgk&list=PLNZrOW6NuocraONXJjyPrDcGnHJt5dUJV)
 - [Push off second deal](https://www.youtube.com/watch?v=i5JlED3erBY)
 - [Bow to Stern: Show card being put in the middle that ends up at the top](https://www.youtube.com/watch?v=NCUfHRvCJj0)
 - [False riffle shuffle by 52kards](https://www.youtube.com/watch?v=sLIS4c2dUwc)
