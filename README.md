@@ -6,6 +6,81 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+# Any model of lean must have all inductives
+
+- Or, lean knows about the sizes of types.
+- See that the below proof script shows that 
+
+```lean
+inductive one: Type
+| o1
+
+inductive two: Type
+| t1 | t2
+
+theorem one_neq_two: one ≠ two :=
+have h1 : ∀ x y : one, x = y := by
+  intros x y; cases x; cases y; rfl
+have h2 : two.t1 ≠ two.t2 :=
+  by intro h; cases h
+λ h => by
+rw [h] at h1
+exact h2 (h1 two.t1 two.t2)
+```
+
+
+# Index over the past, fiber over the future
+
+- indexed view corresponds to `check`
+- fibered corresponds to `infer`: given a term, tell me the type of the term?
+- Some talk by conor at topos.
+
+# Kripke style logical relations (TODO)
+
+- https://www.pls-lab.org/en/Kripke_logical_relations
+
+# Impredicativity
+
+> **Predicative**: found or base something on. "the theory of structure on which later chemistry was predicated"
+
+
+# Type formers need not be injective
+
+```lean
+abbrev Powerset (X: Type) := X -> Prop -- the powerset of a type is the collection of all subsets.
+```
+
+# There cannot be a type of size the universe:
+
+```lean
+axiom CODE : Type -- assume we have CODEs for types...
+axiom decode : CODE -> Type -- and a decoding...
+axiom decode_surjective: ∀ (t: Type), { code: CODE // decode code = t } -- which is surjective on types.
+abbrev Powerset (X: Type) := X -> Prop -- the powerset of a type is the collection of all subsets.
+
+abbrev codedU := Σ (code: CODE), decode code -- create the set of all values that are reachable by decoding the codes...
+abbrev UcodedU := Powerset codedU -- build its powerset...
+noncomputable def codedUcodedU: { code_UcodedU : CODE //  decode code_UcodedU = UcodedU } := by { -- encode this...
+  apply decode_surjective;
+}
+noncomputable def cantor (UcodedU: Powerset codedU): codedU := -- use the fact that the UcodedU has a code....
+    ⟨ codedUcodedU.val, by { have H := codedUcodedU.property; simp[H]; exact UcodedU } ⟩
+-- Now run cantor diagonalization.
+```
+
+# The dependently typed expression problem
+
+Dependently typed programming is like the expression problem.
+We can either write Ohad/OOP, where we have data and proofs (behaviour)
+next to each other. Or we can write in Xavier/functional style, where
+the data is separate from the proofs (behaviour).
+
+# Rotation distance as a metric on binary trees
+
+- Define the rotation distance to be min. number of rotations to get from tree config. A to tree config. B
+- 
+- [Ref: wiki](https://en.wikipedia.org/wiki/Rotation_distance)
+
 # Motivation for modal logic
 
 - `possibly A -> necessarily (possibly A -> B) -> necessarily B`
@@ -41,7 +116,7 @@
   Further, this $C$ must somehow depend on $T$ to explore properties of $T$, so let's call it $C(T)$.
 - We must use the uniqueness of the morphism $syn(T)$ to $C(T)$ (ie, the initiality of $syn(T)$), because that's what makes
   this thing universal.
-- 
+
 - [An introduction to fibrations, topos theory, the effective topos and modest sets](http://www.lfcs.inf.ed.ac.uk/reports/92/ECS-LFCS-92-208/)
 - [Scones, logical relations, parametricity](https://golem.ph.utexas.edu/category/2013/04/scones_logical_relations_and_p.html)
 
@@ -306,7 +381,7 @@ X1 - Χ[f]1- -> Ο1
 - causality: distinction between routine activites and distinctive activities, geographic determinism
 - neutrality: do the victors write the history, and the defeated get no say? Or do the defeated reinvent themselves, and tell
   their story, while the victors lie complacent?
-- 
+ 
 
 # Left and right adjoints to inverse image [TODO]
 
@@ -365,7 +440,6 @@ b1 b2 b3
 # Hopf Algebras [TODO]
 
 - I wish to study hopf algebras sometime, unclear when!
-
 
 # Less than versus Less than or equals over Z
 
