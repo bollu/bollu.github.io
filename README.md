@@ -2353,6 +2353,202 @@ q a a         q b b
 - Furthermore, it is the right adjoint to `π*(Z)` because the ???
 
 
+# TLDP pages for bash conditionals 
+- [The TLDP pages](https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html) have a large list of all
+  possible bash conditionals
+
+# Remainder, Modulo
+
+- remainder takes the sign of the first operand.
+- modulo takes the sign of the second operand.
+
+# Parameters cannot be changed *anywhere*, not just in return location
+
+```
+inductive List (a: Type): Type where
+| Good: List a
+| Good2: List a -> List a
+| Bad: List b -> List a
+        ^^^^^^^ -- not allowed!
+```
+
+- In hindsight, this makes sense, as the parameter really is a trick
+  to represent, well, *parametric* polymorphism.
+  
+
+
+# Cut elimination
+
+https://academic.oup.com/book/42130/chapter/356165209
+
+# LCNF
+
+- `let x := v in e ~= (\x -> e) v
+
+```lean
+let x : Nat := 2
+let xarr : Vec Int x := Nil
+let 2arr : Vec Int 2 := Nil
+in rfl : xarr = 2arr
+```
+
+```lean
+(\x ->
+   let xarr : Vec Int x := Nil
+   let 2arr : Vec Int 2 := Nil
+   in rfl : xarr = 2arr) 2
+      ^^^^^^^^^^^^^^^^^ <---- (ill-typed under CIC)
+```
+
+
+```lean
+Erased a ~ Erased b
+(\x ->
+   let xarr : Vec Int (Erased x) := Nil
+   let 2arr : Vec Int (Erased 2) := Nil
+   in rfl : xarr = 2arr) 2
+      ^^^^^^^^^^^^^^^^^ <---- (ill-typed under CIC)
+```
+
+#### Erased
+
+
+```
+match x with
+  | F1 f1 => h f1
+  | F2 f2 => h f2
+```
+
+
+
+- Design an ill-typed type system to allow *only* the types
+  of errors that occur when floating let/join points?
+
+
+```
+def tupleN (n: Nat) (t: Type) := 
+  match n with
+  | 0 => Unit
+  | n+1 => t * (tupleN n t)
+
+def foo n := Vec Int n
+ 
+Any ~ t
+def f (n: Nat): (tupleN n t) := ...
+def f (n: Nat): Any := ...
+```
+
+# Predicative v/s Impredicative: On Universes in Type Theory
+
+
+#### Tarski formulation of univereses
+
+- `U` is a code for types.
+- We have a decoding function `T: U → Type`.
+
+```
+U type
+
+a ∈ U
+-----
+T(a) type
+```
+
+- Universes bump up levels when we quantify over them?
+- Impredicative universes are closed under quantification over types of that same universe.
+
+
+> Q. Given a definition, give me an algorithm that says when the definition needs predicativity
+> A. perform type + universe inference on the definition. If we get a constraint
+>    of the form Type lower = Type higher where lower < higher, then the definition
+>    needs impredicativity.
+
+
+
+# Testing infra in Lean4
+
+- to run tests in parallel, `cd build/stage1/ && CTEST_PARALLEL_LEVEL=20 ctest`.
+
+
+# Autocompletion in Lean4
+
+- for C++, use `compiledb` to generate a `compile_commands.json`
+- for lean, setup a lean toolchain override for the correct `stage0`:
+
+```
+$ elan toolchain add my-lean-copy /path/to/my-lean-copy/build/stage0
+$ elan override my-lean-copy
+```
+
+# Inductive types 
+
+#### Coq
+
+##### Expressive Power
+- Bare Inductives
+- Nested inductives: The constructor of the nesting cannot be a mutual 
+   [So we can have `T := ... List T`, but not `T := ... Mutual1 T where Mutual1T := Mutual2 T and Mutual2 T := Mutual1 T`]
+- Mutual inductives: All parameters of inductives in the mutual group must be the same.
+- Nested Mutual inductives: Not supported, something like:
+
+```
+T
+| .. U (T) 
+
+U
+| .. T 
+```
+
+does not work due to the presence of `U(T)`.
+
+##### Computational content
+- Bare inductives: primitive recursion principle `fix`, kernel has support for `fix` reduction (iota)
+- Nested inductives: primitive recursion principle using `fix` and `match`.
+  Kernel has support for `fix` reduction, and `match` is also known by the
+  kernel.
+- Mutual inductives: generates 'simple' recursion principles for each element of the mutual.
+  Need to use the `scheme` command to get the full recursion principle. 
+  Primitive recursion principle using `fix` and `match`.
+  
+
+#### Lean
+
+##### Expressive Power
+- Bare inductives
+- Nested inductives: works perfectly!
+
+```
+mutual
+inductive U1 (S: Type): Type := 
+| mk: U2 S → U1 S
+| inhabitant: U1 S
+
+inductive U2 (S: Type): Type := 
+| mk: U1 S → U2 S
+| inhabitant: U2 S
+end
+
+inductive T
+| mk: U1 T → T
+```
+- Mutual inductives: All parameters of inductives types in the mutual group must be the same.
+
+##### Computational content
+
+
+# Parameter verus Index
+
+- Parameters are fixed for all constructors, indexes can vary amongst constructors.
+- Parameters represent parametric polymorphism, and one does not gain information on them during pattern matching.
+- Indexes rep
+- Coq calls indexes "non-uniform".
+
+# HNF versus WHNF
+
+#### Head normal form
+- a data constructor applied to arguments which are in normal form
+- a lambda abstraction whose body is in normal form
+
 # Different types of arguments in Lean4:
 - `(x: T)` regular argument
 - `[S: Functor f]` typeclass argument / argument resolved by typeclass resolution
@@ -2432,7 +2628,6 @@ In Coq people shun away from this binder. I'm not sure why, I guess there are is
 
 #### Reference
 - [Hyperdoctrines and why you should care about them](https://www.youtube.com/watch?v=VvSTE9oqRag)
-
 
 # Fungrim
 
@@ -42316,6 +42511,7 @@ For example: "More people have been to Berlin than I have."
 # Emacs Cheat Sheet
 
 - `M-,`: go back
+- `M-\`: `delete-horizontal-space`. when ranting about how `C-<backspace>` kills too much, just use `M-\` instead!
 - `M-q`: `fill-paragraph`: make stuff 80 column, at least in text.  so this is not that bad.
 - `C-u C-space`: go back to where you were in the file.
 - `C-x r t`: `string-rectangle`. insert new text in a rectangle

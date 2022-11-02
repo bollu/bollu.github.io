@@ -4,6 +4,9 @@
 - [Cellular Sheaves of Lattices and the Tarski Laplacian](https://arxiv.org/pdf/2007.04099.pdf)
 - How to draw a straight line. (blog on linkages)
 - [Probabilistic numerics: Unified theory of integration via learners](https://www.probabilistic-numerics.org/assets/ProbabilisticNumerics.pdf)
+- [Substitutions, jumps, and algebraic effects](http://www.cs.ox.ac.uk/people/samuel.staton/papers/lics2014-substitution.pdf)
+- [Static program analysis textbook](https://cs.au.dk/%7Eamoeller/spa/spa.pdf)
+- [Cursed computer science content](https://suricrasia.online/iceberg/)
 - [Notes on realisability](http://www.andrej.com/zapiski/MGS-2022/notes-on-realizability.pdf)
 - [Markov Junior](https://github.com/mxgmn/MarkovJunior)
 - Call by push value in SSA?
