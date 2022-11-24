@@ -6,6 +6,100 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+# Lean4 mutual inductives
+
+- casesOn
+- recOn
+- well founded induction
+- accessibility relation
+
+
+# Stuff I learnt in 2022
+
+- Fibered categories.
+- Lean metaprogramming.
+- CMake.
+- Axiom K and why it's necessary for dependently typed elaboration.
+- Mario's thesis, models of dependently typed programming languages.
+- Equality saturation and its implementation [TODO].
+- Case trees, recursors, distinctions between them.
+- Tiny separation logic implementation.
+- Decision procedure for ...
+- Book on SMT solvers
+- Book on fuzing
+
+
+
+# Automatically building a JIT compiler
+
+- [Building the fastest Lua interpreter.. automatically!](https://sillycross.github.io/2022/11/22/2022-11-22/)
+
+# Model theory
+
+- [Refs](https://www.youtube.com/watch?v=t5NTBa75CoM&list=PLoWHl5YajIf5ZwhGrgiZkM_9X_UGCkbm7)
+
+#### Lecture 1
+- `F_p^alg` is also the union /coliimit of all fields of char. p.
+
+# Mathematical logic: real closed fields
+
+- [References](https://www.youtube.com/watch?v=qk7ozJ3Sbik)
+
+# Sturm's theorem
+
+- [Sturm's theorem](https://en.wikipedia.org/wiki/Sturm%27s_theorem)
+
+
+# CMake `configure_file`
+
+- [Reference](https://cmake.org/cmake/help/latest/command/configure_file.html)
+
+
+# List symbols in a file
+
+Use `nm` to list all symbols in a file.
+
+# Axiom K versus UIP
+- UIP: all proofs of equality are equal: `(p q: Eq A a a'): Eq (Eq A a a') p q`
+- Axiom K: all proofs of equality are equal to refl: `(p: Eq A a a): Eq (Eq A a a) p (refl A a)`
+
+#### Where is K used in pattern matching
+
+- `K` can be proven by depenedent pattern matching on the identity type!
+
+```
+K : (p : x = x) -> p = refl
+K refl = refl
+```
+
+> In fact, Conor McBride showed in his thesis ("Dependently typed functional
+> programs and their proofs (2000)") that K is the only thing that dependent
+> pattern matching really adds to dependent type theory. 
+
+> Indexed type definitions could be interpreted as non-indexed definitions with
+> extra equality proofs in constructors that set the indices. In Agda, what
+> ultimately matters is the method for unifying indices in dependent pattern
+> matching, so _≡_ can be seen as a wrapper for whatever notion of equality
+> stems from pattern matching. But pattern matching is ultimately reducible to
+> applications of either Axiom K or Axiom J. So, even in the context of Agda,
+> you should just look at the bare-bones refl/Axiom J definition of equality to
+> see where the extra equalities come from.
+
+- [What is axiom K](https://stackoverflow.com/questions/39239363/what-is-axiom-k)
+- [Pattern matching without K](https://stackoverflow.com/questions/39264130/is-agda-without-k-less-powerful?noredirect=1&lq=1)
+
+
+# Linear vs uniqueness types
+- A function `A -o B` which is linear in `A` guarantees that the function *consumes* A
+- A function `Unique<A> -> B` guarantees that the function holds the *only reference* to `A`.
+
+# Better shell history with atuin
+
+- Improves `C-r` history UI.
+
+# Better git diff with delta
+- Improves `git diff` ui
+
 # Any model of lean must have all inductives
 
 - Or, lean knows about the sizes of types.
@@ -125,7 +219,7 @@ the data is separate from the proofs (behaviour).
 - Let $C$ be any category.  
 - Contexts are presheaves $\Gamma: C^op \to Set$. Morphisms are natural transformations of presheaves.
 - an element of a context $Elem(\Gamma)$ is a global element / grothendieck construction / object in the category of elements of contexts:
-  $\Sigma{I:Ob(C)} \Gamma(I) 
+  $\Sigma{I:Ob(C)} \Gamma(I)$
 - A type in the context, $\Gamma \vdash T$ is a presheaf over the category of elements $\alpha \in T(I, \rho)$.
 - A term $\Gamma \vdash t: T$ is $t: (I: Ob(C)) -> (\rho: \Gamma(I)) -> T(I, \rho)$.
 - substitution is a natural transformation $\sigma: \Gamma \to \Delta$.
@@ -164,8 +258,11 @@ the data is separate from the proofs (behaviour).
 
 - Maps of these weighted cones are natural transformations that are identity on the copy of `J`
 - Terminal means what it usually does. A terminal weighted cone is a weighted limit.
+
+
+```
 15:51 <xplat> *C(X,F(j))
-- How does this look in our ordinary Set-enriched world?  a `W`-weighted cone has its ape`X` and for each `j` in `J`
+How does this look in our ordinary Set-enriched world?  a `W`-weighted cone has its ape`X` and for each `j` in `J`
   it has a `W(*,j)`-tuple of arrows `x_j,k : X -> F(j)` in `C` and for each `g : j -> j'` we have equations `x_j,k . F(g) = x_j',W(*,g)(k)`
 15:57 <xplat> both correct
 15:57 <xplat> wait, no
@@ -174,7 +271,7 @@ the data is separate from the proofs (behaviour).
 16:04 <xplat> in the `Set`-enriched world, a map of `W`-weighted cones is a map `f : X -> X'` in `C` and for each `j` in `Obj(J)` and `k` in `W(*,j)` we have equations `x_j,k = x'_j,k . f`
 16:08 <xplat> so you can take a simple example, the second power.  For this example, `J = 1`, `W(*,*) = 2`, `F` picks out some object `c`, so each weighted cone consists of `X` and `x_*,0 : X -> c` and `x_*,1 : X -> c` and no equations
 16:09 <xplat> what does the terminal weighted cone look like in this example?
-
+```
 
 #### Weighted limit via `nlab`
 
@@ -379,9 +476,8 @@ X1 - Χ[f]1- -> Ο1
 
 - Chronology: is time linear? cyclical?
 - causality: distinction between routine activites and distinctive activities, geographic determinism
-- neutrality: do the victors write the history, and the defeated get no say? Or do the defeated reinvent themselves, and tell
-  their story, while the victors lie complacent?
- 
+- neutrality: do the victors write the history, and the defeated get no say? Or do the defeated reinvent themselves, and tell their story, while the victors lie complacent?
+
 
 # Left and right adjoints to inverse image [TODO]
 
@@ -421,7 +517,7 @@ b1 b2 b3
   This is the mapping between slice and exponential.
 - We can think of $(K \xrightarrow{h} B) \in Set/B$ as a collection $\{ h_b \equiv h^{-1}(b) \subseteq B \}$.
   This is the fibrational viewpoint.
-- Then the functor $f^*(\{ h_b : b \in B\}) \equiv \{ h_{f(a)} : a \in A\}.
+- Then the functor $f^*(\{ h_b : b \in B\}) \equiv \{ h_{f(a)} : a \in A\}$.
 - TODO
 
 
@@ -850,7 +946,7 @@ a   r
 - to decide equality of $\tau, \tau'$, it is very sensitive to $G$ because elements can appear/disappear based on $G$.
 - We want all triplets $(p, \tau, \tau')$ where $\tau, \tau' \in \textttt{NamedSet}(M)$such that
   $p$ forces $\tau^G = \tau'^G$.
-- Recall that $p$ forces $\tau^G = \tau'^G$ means: $\tau^G = \tau'^G **if and only if** $p \in G$.
+- Recall that $p$ forces $\tau^G = \tau'^G$ means: $\tau^G = \tau'^G$ **if and only if** $p \in G$.
 - Thus, $p$ must be such that it is **NECESSARILY POSSIBLY TRUE** that every element $\sigma^G \in \tau^G$ must also be such that $\sigma^G \in \tau'^G$,
   and also vice verse: every $\sigma'^G \in \tau'^G% must be such that $\sigma'^G \in \tau^G$.
 - Let us prove the forward direction, where we want to force $\sigma \in \tau$ implies $\sigma \in tau'$.
@@ -43216,6 +43312,10 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
+- When leaving a party, Brahms is reported to have said ‘If there is anyone
+  here whom I have not offended tonight, I beg their
+
+
 - Pirates of the caribbean: Take what you can, give nothing back.
 
 > How can Alice communicate all of math to Bob? Mail him some chalk and wait!
@@ -44028,6 +44128,27 @@ speak slower than you want to.
 
 #### Cutting Shapes
 #### Jumpstyle
+
+# Big list of tmux
+
+- `C-b d`: detach from session (have tmux running in the background)
+- `C-b ,`: rename
+- `C-b n/p`: next/previous window movement.
+- `C-b c`: create new window.            
+- `C-b %/"`: create pane; deete process to cose pane.
+- `C-b (/)`: move pane eft or rigt
+- `C-b o`: oter pane
+- `C-b space`: maximise pane
+- `C-b x`: cose pane
+- `C-b !`: mae pane into window.
+- `C-b [`: copy mode.
+- `:ist-eys` to see a eys.
+
+
+#### Session movement
+- `tmux list-sessions` / `C-b s`: show all sessions.
+- `C-b (/)`: move between sessions
+
 
 # Favourite Demoscenes
 
