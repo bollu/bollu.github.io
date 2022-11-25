@@ -1,3 +1,6 @@
+- An automatic partial evaluator for full prolog
+- Caviness and Johnson: Quantifier Elimination and Cylindrical Algebraic Decomposition
+- Handbook of theoretical computer science
 - Symbolic logic and mechanical theorem proving
 - Marker: Model theory ---  an introduction
 - Kroening Strichman: Decision Procedures

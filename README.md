@@ -6,6 +6,10 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+# GNU Binutils
+
+- `nm` to list all symbols in an object file.
+
 # Lean4 mutual inductives
 
 - casesOn
