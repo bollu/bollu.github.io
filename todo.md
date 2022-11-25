@@ -1,3 +1,25 @@
+- Symbolic logic and mechanical theorem proving
+- Marker: Model theory ---  an introduction
+- Kroening Strichman: Decision Procedures
+- Bordeaux, Hamadi, Kohli: Tractability
+- Jaulin, Kieffer, Didrit, Walter: Applied Interval Analysis
+- Slonneger: Formal syntax and semantics of programming languages
+- Temporal verification of reactive systems
+- Border, Gradel : The classical decision problem
+- Smullyan: First order logic
+- Bonacina, Stickel: Automated reasoning and mathematics
+- Poizat: A course in model theory
+- Proof Theory and Logical Complexity
+- Sparse evaluation graphs.
+- Fuse partial evaluator.
+- [Algorithms for Modular Elliptic Curves](http://homepages.warwick.ac.uk/~masgaj/book/fulltext/index.html)
+- Mike Urbach: SiFive; Nocolai Hahnle: AMD, Stephen Neundorffer: AMD
+- [Language oriented programming](https://en.wikipedia.org/wiki/Language-oriented_programming)
+- Finite element method.
+- Send lp patch to jeff niu
+- Semantic Domains and Denotational Semantics
+- W types
+- [Anti-unification](https://en.wikipedia.org/wiki/Anti-unification_(computer_science))
 - Computation and Logic: George S Boolos
 - Mathematical Methods of Classical Mechanics
 - [Low level code improvements and loop optimisations made simple](http://www.cs.fsu.edu/~engelen/cr.html)
