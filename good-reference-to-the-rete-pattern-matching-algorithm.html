@@ -1,0 +1,37 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='alternate' type='application/rss+xml' href='feed.rss' title='A universe of sorts'/><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Sans'; src: url('/static/Exo2-Regular.ttf');}@font-face {font-family: 'Blog Serif'; src: url('/static/Revans-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background: linear-gradient(to right, #1565C0 0%, #1565C0 50%, #E91E63 50%,   #E91E63 99%);  color: #000000;  font-family: Tahoma, 'Blog Serif', serif;  font-size: 14px;  margin-top: 0px;  max-width: 100%; overflow-x: hidden; }
+h1, h2, h3, h4, h5 { font-family: Tahoma, 'Blog Mono', monospace; }img { display:block; width: 100%; max-width: 800px; height: auto }.container { overflow-x: auto; overflow-y: hidden;  max-width: 80ex; text-align: justify;              margin-top: 0px; height: 100%; min-height: 100%;             padding-left: 50px; padding-right: 50px; background: #FFFFFF;}@media (max-width: 480px) {   .container { margin-left: 1%; margin-right: 1%; }  body { font-size: 30px; }  } @media (max-width: 1024px) {  .container { margin-left: 1%; margin-right: 1%; }  body { font-size: 30px; }}@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: 20%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
+pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=good-reference-to-the-rete-pattern-matching-algorithm href='#good-reference-to-the-rete-pattern-matching-algorithm'> § </a><span class='centered'> Good reference to the Rete pattern matching algorithm </h2> 
+ <span class='centered'>The  <a href=https://en.wikipedia.org/wiki/Rete_algorithm><span class='centered'>Rete pattern matching algorithm </a>
+ <span class='centered'>is an algorithm that allows matching a huge number of rules with a huge database 
+ <span class='centered'>of "facts".  
+ <span class='centered'>MLIR ("multi-language intermediate representation") is a new technology that 
+ <span class='centered'>hopes to centralize much of the research and development of various compilers 
+ <span class='centered'>into a single authoritative source. The major claim-to-fame is that it allows 
+ <span class='centered'>one to mix various "dialects" (much as Racket does). So, to a first order 
+ <span class='centered'>approximation, MLIR is "JSON for compiler intermediate representations".  
+ <span class='centered'>What MLIR gets right is  <i><span class='centered'>tooling </i>. They take the experience that the LLVM project 
+ <span class='centered'>has mined for the last decade and a half, and bake many of the good stuff that 
+ <span class='centered'>came with LLVM right in. For example, MLIR comes in-built with a pretty printer, 
+ <span class='centered'>a notion of types, a notion of "attributes", SSA, enforced provenance 
+ <span class='centered'>tracking of code (so one can  <i><span class='centered'>always </i> know what the original source code was 
+ <span class='centered'>that led to some assembly). Sound engineering might see MLIR succeed where 
+ <span class='centered'>many others failed.  
+ <span class='centered'>I was reminded of Rete since the MLIR folks are trying to solve the pattern 
+ <span class='centered'>matching problem in general for their  <a href=https://mlir.llvm.org/docs/GenericDAGRewriter/><span class='centered'>Generic DAG Rewriter </a>.  
+ <span class='centered'>They currently just use a worklist based algorithm. I'm trying to understand 
+ <span class='centered'>if Rete can be used instead. Rete is famous for being hard to understand, 
+ <span class='centered'>so I began a quest to look for good sources to implement it. I found a great 
+ <span class='centered'><a href=http://reports-archive.adm.cs.cmu.edu/anon/1995/CMU-CS-95-113.pdf><span class='centered'>PhD thesis written by Robert B. Doorenboos </a>, 
+ <span class='centered'>which quips:  
+ <blockquote><span class='centered'> Since the Rete match algorithm provides the starting point for much of the work in this thesis, <span class='centered'> this chapter describes Rete. Unfortunately, most of the descriptions of Rete in the literature <span class='centered'> are not particularly lucid,1 which is perhaps why Rete has acquired \a reputation for extreme <span class='centered'> differentialculty."(Perlin, 1990b) To remedy this situation, this chapter describes Rete in a tutorial <span class='centered'> style, rather than just briey reviewing it and referring the reader to the literature for a full <span class='centered'> description. We will first give an overview of Rete, and then discuss the principle data structures <span class='centered'> and procedures commonly used to implement it. High-level pseudocode will be given for many <span class='centered'> of the structures and procedures, so that this chapter may serve as a guide to readers who want <span class='centered'> to implement rete (or some variant) in their own systems. </blockquote> 
+ <span class='centered'>I now have a reference to an accessible description of this stuff. I might 
+ <span class='centered'>implement Rete to understand it, so that it's part of my toolkit if I ever 
+ <span class='centered'>need it.  
+ <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

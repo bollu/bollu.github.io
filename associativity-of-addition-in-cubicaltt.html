@@ -1,0 +1,74 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='alternate' type='application/rss+xml' href='feed.rss' title='A universe of sorts'/><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Sans'; src: url('/static/Exo2-Regular.ttf');}@font-face {font-family: 'Blog Serif'; src: url('/static/Revans-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background: linear-gradient(to right, #1565C0 0%, #1565C0 50%, #E91E63 50%,   #E91E63 99%);  color: #000000;  font-family: Tahoma, 'Blog Serif', serif;  font-size: 14px;  margin-top: 0px;  max-width: 100%; overflow-x: hidden; }
+h1, h2, h3, h4, h5 { font-family: Tahoma, 'Blog Mono', monospace; }img { display:block; width: 100%; max-width: 800px; height: auto }.container { overflow-x: auto; overflow-y: hidden;  max-width: 80ex; text-align: justify;              margin-top: 0px; height: 100%; min-height: 100%;             padding-left: 50px; padding-right: 50px; background: #FFFFFF;}@media (max-width: 480px) {   .container { margin-left: 1%; margin-right: 1%; }  body { font-size: 30px; }  } @media (max-width: 1024px) {  .container { margin-left: 1%; margin-right: 1%; }  body { font-size: 30px; }}@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: 20%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
+pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=associativity-of-addition-in-cubicaltt href='#associativity-of-addition-in-cubicaltt'> § </a><span class='centered'> Associativity of addition in cubicaltt </h2> 
+ <span class='centered'>Let's first understand what we need to prove. we're trying to prove that addition is associative. addition is defined as follows:  
+ <pre><code>data nat = zero | suc (n : nat)
+
+-- recursive on right argument
+add (m : nat) : nat -> nat = split
+  zero -> m
+  suc n -> suc (add m n)
+</code></pre> 
+ <span class='centered'>Since  <code class='inline'>add</code> is recursive on the right, we can simplify (by computation) values such as  <code class='inline'>add x (S y)</code> to  <code class='inline'>S (add x y)</code>. This will be important when reasoning about induction later.  
+ <span class='centered'>Now, we wish to prove that:  
+ <pre><code>for all a b, c,
+  a + (b + c) = (a + b) + c
+</code></pre> 
+ <span class='centered'>we prove this by induction on  <code class='inline'>c</code>. Let's consider the base case and the inductive case:  
+ <pre><code>-- BASE CASE:
+-- a + (b + 0) = (a + b) + 0
+-- [computation]: a + (b) = (a + b)
+</code></pre> 
+ <span class='centered'>By computation on the base case, we simplify  <code class='inline'>(b+0)</code> to  <code class='inline'>b</code>, and we similary simplify  <code class='inline'>(a + b) + 0</code> to  <code class='inline'>(a + b)</code>. So we're really asked to prove  <code class='inline'>add a b  = add a b</code> which is trivial (by reflexivity).  
+ <span class='centered'>Next, let's think of the inductive case, where we suppose  <code class='inline'>c = S n</code>
+ <span class='centered'>and then simplify what we have to prove to a normal form:  
+ <pre><code>-- INDUCTIVE HYPOTHESIS: let c = S n:
+-- a + (b + S n) = (a + b) + S n
+-- =[computation]: a + (S (b + n)) = (a + b) + S n
+-- =[computation]: S (a + (b + n)) = (a + b) + S n
+-- =[computation]: S (a + (b + n)) = S ((a + b) + n)
+</code></pre> 
+ <span class='centered'>We see that after simplification by computation, we need to prove that 
+ <span class='centered'><code class='inline'>S (a + (b + n)) = S ((a + b) + n</code>. The core idea is to use associativity 
+ <span class='centered'>to prove that  <code class='inline'>(a + (b + n)) = ((a + b) + n)</code> and to then stick a  <code class='inline'>S _</code> on it, giving  <code class='inline'>S (a + (b + n)) = S ((a + b) + n)</code>. In a cubical diagram, this looks like:  
+ <pre><code>-- j=1
+--  ^  S(a+(b+n)) - -- -- -- -- -- - S((a+b) + n)
+--  |  ^                                 ^
+--  |  |                            <j> suc (add (add a b) n)
+--  |  |                                 |
+--  |<j> suc(add a (add b n))            |
+--  |  |                                 |
+--  |  |                                 |
+--  |  S(a+(b+n)) ---------------------> S((a+b)+n)
+--  |           suc (add A a b n @ i)
+-- j=0
+-- i=0 -------------------------------> i=1
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'> The bottom horizontal line is the first to  <code class='inline'>comp</code>, given as  <code class='inline'>(suc (addA a b n @ i))</code></li></ul> 
+ <span class='centered'>And in cubical code, it's written as:  
+ <ul><li><span class='centered'><span class='centered'> The left and right vertical lines are the second inputs to comp. </li><li><span class='centered'><span class='centered'> The left vertical line is given by  <code class='inline'><j> suc (add a (add b n)</code></li><li><span class='centered'><span class='centered'> The right vertical line is given by  <code class='inline'> <j> suc (add (add a b) n)</code>. </li></ul> 
+ <span class='centered'>In total, the implementation is:  
+ <pre><code>addA (a b: nat) :
+  (c: nat) -> Path nat (add a (add b c))
+                       (add (add a b) c) = split
+  zero -> <i> add a  b
+  suc n -> <i> comp (<i> nat) (suc (addA a b n @ i))
+                [ (i = 0) -> <j> suc (add a (add b n))
+		        , (i = 1) -> <j> suc (add (add a b) n)]
+
+</code></pre> 
+ <span class='centered'><i><span class='centered'><i><span class='centered'>EDIT: </i></i> I now realise that we do not need to use  <code class='inline'>comp</code> since both the left and right edges of the square are constant. We can implement the above as:  
+ <pre><code>addA (a b: nat):
+  (c: nat) -> Path nat (add a (add b c))
+                       (add (add a b) c) = split
+  zero -> <i> add a  b
+  suc n -> <i> (suc (addA a b n @ i))
+</code></pre> 
+ <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

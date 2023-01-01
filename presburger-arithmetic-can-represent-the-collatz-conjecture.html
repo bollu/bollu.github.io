@@ -1,0 +1,60 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='alternate' type='application/rss+xml' href='feed.rss' title='A universe of sorts'/><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Sans'; src: url('/static/Exo2-Regular.ttf');}@font-face {font-family: 'Blog Serif'; src: url('/static/Revans-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background: linear-gradient(to right, #1565C0 0%, #1565C0 50%, #E91E63 50%,   #E91E63 99%);  color: #000000;  font-family: Tahoma, 'Blog Serif', serif;  font-size: 14px;  margin-top: 0px;  max-width: 100%; overflow-x: hidden; }
+h1, h2, h3, h4, h5 { font-family: Tahoma, 'Blog Mono', monospace; }img { display:block; width: 100%; max-width: 800px; height: auto }.container { overflow-x: auto; overflow-y: hidden;  max-width: 80ex; text-align: justify;              margin-top: 0px; height: 100%; min-height: 100%;             padding-left: 50px; padding-right: 50px; background: #FFFFFF;}@media (max-width: 480px) {   .container { margin-left: 1%; margin-right: 1%; }  body { font-size: 30px; }  } @media (max-width: 1024px) {  .container { margin-left: 1%; margin-right: 1%; }  body { font-size: 30px; }}@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: 20%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
+pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=presburger-arithmetic-can-represent-the-collatz-conjecture href='#presburger-arithmetic-can-represent-the-collatz-conjecture'> § </a><span class='centered'> Presburger arithmetic can represent the Collatz Conjecture </h2> 
+ <span class='centered'>An observation I had: the function  
+ <pre><code>f(x) = x/2      if (x % 2 == 0)
+f(x) = 3x + 1   otherwise
+</code></pre> 
+ <span class='centered'>is a Presburger function, so by building better approximations to the 
+ <span class='centered'>transitive closure of a presburger function, one could get better answers 
+ <span class='centered'>to the Collatz conjecture. Unfortunately, ISL (the integer set library) of today 
+ <span class='centered'>is not great against the formidable foe.  
+ <span class='centered'>The code:  
+ <pre><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;isl/set.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;isl/version.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;isl/map.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;isl/aff.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;isl/local_space.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;isl/constraint.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;isl/space.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    isl_ctx <span class="token operator">*</span>ctx <span class="token operator">=</span> <span class="token function">isl_ctx_alloc</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>s <span class="token operator">=</span> <span class="token string">"{ [x] -> [x / 2] : x >= 1 and x % 2 = 0; [x] -> [3 * x + 1] : x % 2 = 1}"</span><span class="token punctuation">;</span>
+
+    isl_map <span class="token operator">*</span>m <span class="token operator">=</span> <span class="token function">isl_map_read_from_str</span><span class="token punctuation">(</span>ctx<span class="token punctuation">,</span> s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">isl_map_dump</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">int</span> b <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    isl_map <span class="token operator">*</span>p <span class="token operator">=</span> <span class="token function">isl_map_transitive_closure</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span> <span class="token operator">&amp;</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    p <span class="token operator">=</span> <span class="token function">isl_map_coalesce</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"exact: %d\n"</span><span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"map:\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">isl_map_dump</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"map's range:\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">isl_set_dump</span><span class="token punctuation">(</span><span class="token function">isl_set_coalesce</span><span class="token punctuation">(</span><span class="token function">isl_map_range</span><span class="token punctuation">(</span><span class="token function">isl_map_copy</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// print("map's range intersect 1: %d\n");</span>
+
+
+<span class="token punctuation">}</span>
+
+</code></pre> 
+ <span class='centered'>Produces the somewhat disappointing, and yet expected output:  
+ <pre><code>$ g++ isl.c -lisl -Lisl-0.20/.libs -o isl -I/usr/local/include/ && ./isl
+{ [x] -> [o0] : (2o0 = x and x > 0) or (exists (e0 = floor((1 + x)/2): o0 = 1 + 3x and 2e0 = 1 + x)) }
+exact: 0
+map:
+{ [x] -> [o0] : (o0 < x and o0 > 0) or (exists (e0 = floor((x)/2), e1 = floor((2 + o0)/6), e2, e3, e4 = floor((-x + o0 + e2 - e3)/4): 2e0 = x and 6e1 = 2 + o0 and x >= 2 and 4e4 >= -3 - x + o0 + e2 - e3 and 4e4 >= 4 - x + o0 - 2e2 + 2e3 and 4e4 <= -x + o0 + e2 - e3)) or (exists (e0 = floor((x)/2), e1, e2, e3 = floor((-x + o0 + e1 - e2)/4): 2e0 = -1 + x and o0 > 0 and 4e3 >= -3 - x + o0 + e1 - e2 and 4e3 >= 3 - x + o0 - 2e1 + 2e2 and 4e3 <= -x + o0 + e1 - e2)) or (exists (e0 = floor((x)/2), e1, e2, e3 = floor((-x + o0 + e1 - e2)/4): 2e0 = x and x >= 2 and o0 > 0 and 4e3 >= -3 - x + o0 + e1 - e2 and 4e3 >= 3 - x + o0 - 2e1 + 2e2 and 4e3 <= -x + o0 + e1 - e2)) or (exists (e0 = floor((x)/2), e1 = floor((2 + o0)/6): 2e0 = -1 + x and 6e1 = 2 + o0 and o0 < x)) or (exists (e0 = floor((x)/2), e1 = floor((2 + o0)/6): 2e0 = x and 6e1 = 2 + o0 and x >= 2 and o0 <= -2 + x)) or (exists (e0 = floor((x)/2), e1 = floor((2 + o0)/6), e2, e3, e4 = floor((-x + o0 + e2 - e3)/4): 2e0 = -1 + x and 6e1 = 2 + o0 and 4e4 >= -3 - x + o0 + e2 - e3 and 4e4 >= 3 - x + o0 - 2e2 + 2e3 and 4e4 <= -x + o0 + e2 - e3)) }
+map's range:
+{ [i0] : i0 > 0 or exists (e0 = floor((2 + i0)/6): 6e0 = 2 + i0) }
+</code></pre> 
+ <span class='centered'>I've yet to check that the image contains a  <code class='inline'>1</code> for every choice of  <code class='inline'>x</code>.  
+ <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

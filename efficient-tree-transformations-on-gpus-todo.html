@@ -1,0 +1,794 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='alternate' type='application/rss+xml' href='feed.rss' title='A universe of sorts'/><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Sans'; src: url('/static/Exo2-Regular.ttf');}@font-face {font-family: 'Blog Serif'; src: url('/static/Revans-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background: linear-gradient(to right, #1565C0 0%, #1565C0 50%, #E91E63 50%,   #E91E63 99%);  color: #000000;  font-family: Tahoma, 'Blog Serif', serif;  font-size: 14px;  margin-top: 0px;  max-width: 100%; overflow-x: hidden; }
+h1, h2, h3, h4, h5 { font-family: Tahoma, 'Blog Mono', monospace; }img { display:block; width: 100%; max-width: 800px; height: auto }.container { overflow-x: auto; overflow-y: hidden;  max-width: 80ex; text-align: justify;              margin-top: 0px; height: 100%; min-height: 100%;             padding-left: 50px; padding-right: 50px; background: #FFFFFF;}@media (max-width: 480px) {   .container { margin-left: 1%; margin-right: 1%; }  body { font-size: 30px; }  } @media (max-width: 1024px) {  .container { margin-left: 1%; margin-right: 1%; }  body { font-size: 30px; }}@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: 20%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
+pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=efficient-tree-transformations-on-gpus-todo href='#efficient-tree-transformations-on-gpus-todo'> § </a><span class='centered'> Efficient tree transformations on GPUs (TODO) </h2> 
+ <span class='centered'>All material lifted straight from  <a href=https://scholarworks.iu.edu/dspace/handle/2022/24749><span class='centered'>Aaron Hsu's PhD thesis </a>. I'll be converting 
+ <span class='centered'>APL notation to C++-like notation.  
+ <h4><a id=tree-repsentation-as-multi-dimensional-ragged-nested-arrays href='#tree-repsentation-as-multi-dimensional-ragged-nested-arrays'> § </a><span class='centered'> Tree repsentation as multi-dimensional ragged nested arrays </h4> 
+ <span class='centered'>We're interested in this tree: 
+ <pre><code>      ∘
+┌──┬──┴────┐
+a  b       c
+│ ┌┴┐  ┌───┼───┐
+p q r  s   t   u
+  │    │   |
+  │   ┌┴┐ ┌┴┐
+  v   w x y z
+</code></pre> 
+ <span class='centered'>I'll be writing APL commands in front of a  <code class='inline'>$</code> to mimic bash, and I'll 
+ <span class='centered'>write some arrays as multi-line. To run them, collapse them into a single 
+ <span class='centered'>line. The  <code class='inline'>ast</code> object is represented in memory as: 
+ <pre><code>$ ast ← ('∘'
+           ('a' ('p'))
+           ('b'
+             ('q' ('v'))
+             ('r'))
+           ('c'
+             ('s' ('w' 'x'))
+             ('t' ('y' 'z'))
+             ('u')))
+$ ]disp ast
+┌→┬──┬────────┬───────────────────┐
+│∘│ap│┌→┬──┬─┐│┌→┬──────┬──────┬─┐│
+│ │  ││b│qv│r│││c│┌→┬──┐│┌→┬──┐│u││
+│ │  │└─┴─→┴─┘││ ││s│wx│││t│yz││ ││
+│ │  │        ││ │└─┴─→┘│└─┴─→┘│ ││
+│ │  │        │└─┴─────→┴─────→┴─┘│
+└─┴─→┴───────→┴──────────────────→┘
+</code></pre> 
+ <span class='centered'>Here's how read the array representation. Look at the top level of the tree. 
+ <span class='centered'>we have a root node with three children:  
+ <pre><code>      ∘
+┌──┬──┴────┐
+a  b       c
+
+┌→┬──┬────────┬─────────────┐
+│∘│  │        │             │
+│ │ a│   b    │     c       │
+│ │  │        │             │
+└─┴─→┴───────→┴────────────→┘
+</code></pre> 
+ <span class='centered'>With the first  <code class='inline'>∘</code> being the root node, and the three adjacent cells 
+ <span class='centered'>being the children.  
+ <span class='centered'>Next, we look at how  <code class='inline'>x</code> is represented. This is predictably recursive. Let's 
+ <span class='centered'>see the subtree under  <code class='inline'>x</code>:  
+ <pre><code>      ∘
+┌──┬──┴────┐
+a  b       c
+│
+p
+
+┌→┬──┬────────┬─────────────┐
+│∘│ap│        │             │
+│ │  │  b     │   c         │
+│ │  │        │             │
+└─┴─→┴───────→┴────────────→┘
+
+</code></pre> 
+ <span class='centered'>Similarly for  <code class='inline'>y</code>:  
+ <pre><code>      ∘
+┌──┬──┴────┐
+a  b       c
+│ ┌┴┐
+p q r
+
+┌→┬──┬────────┬─────────────┐
+│∘│ap│┌→┬──┬─┐│             │
+│ │  ││b│q │r││   c         │
+│ │  │└─┴─→┴─┘│             │
+└─┴─→┴───────→┴────────────→┘
+</code></pre> 
+ <span class='centered'>And so on, leading to the final representation:  
+ <pre><code>      ∘
+┌──┬──┴────┐
+a  b       c
+│ ┌┴┐  ┌───┼───┐
+p q r  s   t   u
+  │    │   |
+  │   ┌┴┐ ┌┴┐
+  v   w x y z
+┌→┬──┬────────┬───────────────────┐
+│∘│ap│┌→┬──┬─┐│┌→┬──────┬──────┬─┐│
+│ │  ││b│qv│r│││c│┌→┬──┐│┌→┬──┐│u││
+│ │  │└─┴─→┴─┘││ ││s│wx│││t│yz││ ││
+│ │  │        ││ │└─┴─→┘│└─┴─→┘│ ││
+│ │  │        │└─┴─────→┴─────→┴─┘│
+└─┴─→┴───────→┴──────────────────→┘
+</code></pre> 
+ <span class='centered'>Note that for this representation to work, we need to be able to:  
+ <ul><li><span class='centered'><span class='centered'> nest arrays inside arrays. </li><li><span class='centered'><span class='centered'> have subarrays of different sizes (ragged arrays) </li><li><span class='centered'><span class='centered'> of different  <i><span class='centered'>nesting depths </i> --- so it's really not even an array? </li></ul> 
+ <span class='centered'>I don't understand the memory layout of this, to be honest. I feel like to 
+ <span class='centered'>represent this in memory would still rely on pointer-chasing, since we need 
+ <span class='centered'>to box all the arrays. This is possibly optimised by APL to not be too bad.  
+ <h4><a id=the-depth-vector-representation href='#the-depth-vector-representation'> § </a><span class='centered'> The depth vector representation </h4> 
+ <pre><code>      ∘             0
+┌──┬──┴────┐
+a  b       c        1
+│ ┌┴┐  ┌───┼───┐
+p q r  s   t   u    2
+  │    │   |
+  │   ┌┴┐ ┌┴┐
+  v   w x y z       3
+</code></pre> 
+ <span class='centered'>If we visit this tree and record depths in pre-order  <code class='inline'>(node left right)</code>, we 
+ <span class='centered'>arrive at the list:  
+ <pre><code>(∘:0
+  (a:1 (p:2)) (b:1 (q:2 (v:3)) (r:2))
+  (c:1 (s:2 (w:3 x:3)) (t:2 (y:3 z:3)) (u:2)))
+</code></pre> 
+ <span class='centered'>formatted as:  
+ <pre><code>(∘:0
+  (a:1
+    (p:2))
+  (b:1
+    (q:2 (v:3))
+    (r:2)
+  )
+  (c:1 (s:2 (w:3 x:3))
+       (t:2 (y:3 z:3))
+       (u:2))
+)
+</code></pre> 
+ <span class='centered'>This linearlized is the list:  
+ <pre><code>    (∘ a p b q v r c s w x t y z u)
+d ← (0 1 2 1 2 3 2 1 2 3 3 2 3 3 2)
+
+      ∘             0
+┌──┬──┴────┐
+a  b       c        1
+│ ┌┴┐  ┌───┼───┐
+p q r  s   t   u    2
+  │    │   |
+  │   ┌┴┐ ┌┴┐
+  v   w x y z       3
+</code></pre> 
+ <span class='centered'>To convert the  <code class='inline'>ast</code> object into a depth vector representation, we can 
+ <span class='centered'>use the following call:  
+ <pre><code>$ ast ← ('∘' ('a' ('p')) ('b' ('q' ('v')) ('r')) ('c' ('s' ('w' 'x')) ('t' ('y' 'z')) ('u')))
+$ d ← ∊0{(⊢,(⍺+1)∇⊣)/⌽⍺,1↓⍵}ast
+0 1 2 1 2 3 2 1 2 3 3 2 3 3 2
+</code></pre> 
+ <span class='centered'>Let's break this down:  
+ <span class='centered'>TODO  
+ <h4><a id=inverted-tables href='#inverted-tables'> § </a><span class='centered'> Inverted tables </h4> 
+ <span class='centered'>We represent data associated with our nodes as follows:  
+ <pre><code>$ data ← ⍪ ¨d(15⍴'T')(↑15⍴⊂'n.')
+$ ]disp data
+┌→┬─┬──┐
+│0│T│n.│
+│1│T│n.│
+│2│T│n.│
+│1│T│n.│
+│2│T│n.│
+│3│T│n.│
+│2│T│n.│
+│1│T│n.│
+│2│T│n.│
+│3│T│n.│
+│4│T│n.│
+│2│T│n.│
+│3│T│n.│
+│4│T│n.│
+│2↓T↓n.↓
+└→┴→┴─→┘
+</code></pre> 
+ <span class='centered'>This is the same thing as a 
+ <span class='centered'><a href=https://en.wikipedia.org/wiki/AoS_and_SoA#Structure_of_Arrays><span class='centered'>structure of arrays (SOA) representation </a>, 
+ <span class='centered'>where each array of information (eg, the depth at  <code class='inline'>data[1]</code>, the  <code class='inline'>T</code>
+ <span class='centered'>information at  <code class='inline'>data[2]</code>) are each  <i><span class='centered'>arrays </i> which can be accessed well on SIMD 
+ <span class='centered'>instructions.  
+ <h4><a id=ast-representation href='#ast-representation'> § </a><span class='centered'> AST representation </h4> 
+ <span class='centered'>TODO  
+ <h4><a id=path-matrices href='#path-matrices'> § </a><span class='centered'> Path matrices </h4> 
+ <span class='centered'>We want information of how to go up and down the tree in ideally constant time. 
+ <span class='centered'>We store this information in what is known as a  <i><span class='centered'>path matrix </i>.  
+ <span class='centered'>For our recurring example, the path matrix is:  
+ <pre><code>∘ a p b q v r c s w x t y z u | preorder traversal
+──────────────────────────────────────────────────
+∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ ∘ | depth=0
+- a a b b b b c c c c c c c c | depth=1
+- - p - q q r - s s s t t t u | depth=2
+- - - - - v - - - w x - y z - | depth=3
+
+      ∘             0
+┌──┬──┴────┐
+a  b       c        1
+│ ┌┴┐  ┌───┼───┐
+p q r  s   t   u    2
+  │    │   |
+  │   ┌┴┐ ┌┴┐
+  v   w x y z       3
+</code></pre> 
+ <span class='centered'>To efficiently compute this, we first replace every value in 
+ <span class='centered'>our tree with its preorder traversal visit time. This changes 
+ <span class='centered'>the tree to:  
+ <pre><code>              ∘:0                               0
+┌──────────┬──┴─────────────────┐
+a:1        b:3                 c:7              1
+│      ┌───┴───┐     ┌──────────┼───────┐
+p:2    q:4     r:6   s:8        t:11    u:14    2
+       │             │          │
+       │          ┌──┴──┐     ┌─┴───┐
+       v:5        w:9   x:10  y:12  z:13        3
+</code></pre> 
+ <span class='centered'>The values we store in the tree are the integers. The old labels 
+ <span class='centered'>are represented for clarity.  
+ <span class='centered'>The path matrix for this tree is:  
+ <pre><code>0  1  2  3  4  5  6  7  8  9 10 11 12 13 14  | preorder traversal
+────────────────────────────────────────────────────────────
+0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  | depth=0
+-  1  1  3  3  3  3  7  7  7  7  7  7  7  7  | depth=1
+-  -  2  -  4  4  6  -  8  8  8 11 11 11 14  | depth=2
+-  -  -  -  -  5  -  -  -  9 10  - 12 13  -  | depth=3
+
+              ∘:0                               0
+┌──────────┬──┴─────────────────┐
+a:1        b:3                 c:7              1
+│      ┌───┴───┐     ┌──────────┼───────┐
+p:2    q:4     r:6   s:8        t:11    u:14    2
+       │             │          │
+       │          ┌──┴──┐     ┌─┴───┐
+       v:5        w:9   x:10  y:12  z:13        3
+</code></pre> 
+ <h4><a id=rendering-the-depth-information-in-2d href='#rendering-the-depth-information-in-2d'> § </a><span class='centered'> Rendering the depth information in 2D </h4> 
+ <span class='centered'>We use the incantation:  
+ <pre><code>$ d ← (0 1 2 1 2 3 2 1 2 3 3 2 3 3 2)
+$ ((⍳≢d)@(d,¨⍳≢d)) ((⌈/d) (≢d))⍴'-'
+0 - - - - - - - - -  -  -  -  -  -
+- 1 - 3 - - - 7 - -  -  -  -  -  -
+- - 2 - 4 - 6 - 8 -  - 11  -  - 14
+- - - - - 5 - - - 9  -  - 12  -  -
+- - - - - - - - - - 10  -  - 13  -
+</code></pre> 
+ <span class='centered'>Let's break this down (the symbol  <code class='inline'> </code> means a lamp, for commenting/illumination)  
+ <pre><code>$ ⍳ 3 ⍝ iota: make a list of n elements:.
+1 2 3
+</code></pre> 
+ <pre><code>$ d
+0 1 2 1 2 3 2 1 2 3 4 2 3 4 2
+
+$ ≢d ⍝ tally: ≢`. count no. of elements in d:
+15
+</code></pre> 
+ <pre><code>⍳≢d  ⍝ list of elements of len (no. of elements in d).
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+</code></pre> 
+ <pre><code>$ ]disp (1 2 3),(4 5 6) ⍝ ,:concatenate
+┌→────┬─────┐
+│1 2 3│4 5 6│
+└~───→┴~───→┘
+</code></pre> 
+ <pre><code>]disp (1 2 3) ,¨ (4 5 6)
+┌→──┬───┬───┐
+│1 4│2 5│3 6│
+└~─→┴~─→┴~─→┘
+</code></pre> 
+ <span class='centered'>The use of  <code class='inline'>¨</code> needs some explanation.  <code class='inline'>¨</code> is a higher order function which 
+ <span class='centered'>takes a function and makes it a mapped version of the original function. 
+ <span class='centered'>So,  <code class='inline'>,¨</code> is a function which attemps to map the concatenation operator. 
+ <span class='centered'>Now, given two arrays  <code class='inline'>(1 2 3)</code>
+ <span class='centered'>and  <code class='inline'>(4 5 6)</code>,  <code class='inline'>(1 2 3) ,¨ 4 5 6</code> attemps to run  <code class='inline'>,</code> on each pair 
+ <span class='centered'><code class='inline'>1 and 4</code>,  <code class='inline'>2 and 5</code>,  <code class='inline'>3 and 6</code>. This gives us tuples  <code class='inline'>((1 4) (2 5) (3 6))</code>. 
+ <span class='centered'>So, for our purposes,  <code class='inline'>zip ← ,¨</code>.  
+ <pre><code>]disp (d,¨⍳≢d) ⍝ zip d with [1..len d].
+┌→──┬───┬───┬───┬───┬───┬───┬───┬───┬───┬────┬────┬────┬────┬────┐
+│0 0│1 1│2 2│1 3│2 4│3 5│2 6│1 7│2 8│3 9│4 10│2 11│3 12│4 13│2 14│
+└~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~──→┴~──→┴~──→┴~──→┴~──→┘
+</code></pre> 
+ <pre><code>$ ((⌈/d) (≢d))⍴'-' ⍝ array of dim (max val in d) x (no. of elem in d)
+---------------
+---------------
+---------------
+---------------
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'>  <code class='inline'>⌈</code> is the maximum operator and  <code class='inline'>/</code> is the fold operator, so <span class='centered'><code class='inline'>⌈/d</code> finds the maximum in  <code class='inline'>d</code>. Recall that  <code class='inline'>(≢d)</code> find the no. of <span class='centered'>elements in  <code class='inline'>d</code>.  <code class='inline'>⍴</code> reshapes an array to the desired size. We pass it <span class='centered'>a  <code class='inline'>1x1</code> array containing only  <code class='inline'>-</code>, which gets reshaped into a <span class='centered'><code class='inline'>(⌈/d) x (≢d)</code> sizes array of  <code class='inline'>-</code> symbols. </li></ul> 
+ <span class='centered'>TODO: explain @ and its use  
+ <h4><a id=creating-the-path-matrix href='#creating-the-path-matrix'> § </a><span class='centered'> Creating the path matrix </h4> 
+ <pre><code>$ ⎕IO ← 0 ⍝ (inform APL that we wish to use 0-indexing.)
+$ d ← (0 1 2 1 2 3 2 1 2 3 3 2 3 3 2)
+$ PM ← ⌈\((⍳≢d)@(d,¨⍳≢d))(((⌈/d+1)(≢d))⍴0)
+
+0 0 0 0 0 0 0 0 0 0  0  0  0  0  0
+0 1 1 3 3 3 3 7 7 7  7  7  7  7  7
+0 0 2 2 4 4 6 6 8 8  8 11 11 11 14
+0 0 0 0 0 5 5 5 5 9 10 10 12 13 13
+
+      0               0
+┌──┬──┴───────┐
+1  3          7       1
+│ ┌┴┐  ┌──────┼───┐
+2 4 6  8     11   14  2
+  │    │      |
+  │   ┌┴─┐   ┌┴──┐
+  5   9  10  12  13   3
+</code></pre> 
+ <span class='centered'>The incantation can be broken down into:  
+ <ul><li><span class='centered'><span class='centered'>  <code class='inline'>(((⌈/d+1)(≢d))⍴0)</code> is used to create a  <code class='inline'>max(d+1)x|d|</code> dimension array of zeros. <span class='centered'>Here, the rows define depths, and the columns correspond to tree nodes <span class='centered'>which for us are their preorder indexes. </li></ul> 
+ <pre><code>$ grid←(⌈/d+1) (≢d) ⍴ 0
+$ grid
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'>  <code class='inline'>((d ,¨ ⍳≢d))</code> creates an array of pairs  <code class='inline'>(depth, preindex)</code>. We will use <span class='centered'>this to fill index  <code class='inline'>(d, pi)</code> with the value  <code class='inline'>pi</code>. </li></ul> 
+ <pre><code>$ writeixs ← (d,¨⍳≢d)
+$ ]disp writeixs
+┌→──┬───┬───┬───┬───┬───┬───┬───┬───┬───┬────┬────┬────┬────┬────┐
+│0 0│1 1│2 2│1 3│2 4│3 5│2 6│1 7│2 8│3 9│3 10│2 11│3 12│3 13│2 14│
+└~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~──→┴~──→┴~──→┴~──→┴~──→┘
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'>  <code class='inline'>ixgrid ← ((⍳≢d)@writeixs) grid</code> rewrites at index  <code class='inline'>writeixs[i]</code> the value ( <code class='inline'>(i≢d)[i]</code>). </li></ul> 
+ <pre><code>$ ixgrid ← ((⍳≢d)@writeixs) grid
+$ ixgrid
+0 0 0 0 0 0 0 0 0 0  0  0  0  0  0
+0 1 0 3 0 0 0 7 0 0  0  0  0  0  0
+0 0 2 0 4 0 6 0 8 0  0 11  0  0 14
+0 0 0 0 0 5 0 0 0 9 10  0 12 13  0
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'> Finally,  <code class='inline'>⌈</code> is the maximum operator, and  <code class='inline'>\</code> is the  <a href=><span class='centered'>prefix scan </a> operator, <span class='centered'>so  <code class='inline'>⌈\ixgrid</code> creates a prefix scan of the above grid to give us our <span class='centered'>final path matrix: </li></ul> 
+ <pre><code>$ PM ← ⌈\ixgrid
+$ PM
+0 0 0 0 0 0 0 0 0 0  0  0  0  0  0
+0 1 1 3 3 3 3 7 7 7  7  7  7  7  7
+0 0 2 2 4 4 6 6 8 8  8 11 11 11 14
+0 0 0 0 0 5 5 5 5 9 10 10 12 13 13
+</code></pre> 
+ <h4><a id=using-the-path-matrix-distance-of-a-node-from-every-other-node href='#using-the-path-matrix-distance-of-a-node-from-every-other-node'> § </a><span class='centered'> Using the path matrix:  distance of a node from every other node. </h4> 
+ <span class='centered'>Note that the maximum distance between two nodes is to climb 
+ <span class='centered'>all the way to the top node, and then climb down:  
+ <pre><code>dmax ← depth(a) + depth(b)
+</code></pre> 
+ <span class='centered'>If we know the lowest common ancestor of two nodes, 
+ <span class='centered'>then the distance of one node to another is:  
+ <pre><code>dcorrect ← dist(a, lca(a, b)) + dist(b, lca(a, b))
+</code></pre> 
+ <span class='centered'>So, we can compute the depth as:  
+ <pre><code>dcorrect ← dist(a, lca(a, b)) + dist(lca(a, b), b)
+ = dist(a, lca(a, b)) + depth(lca(a, b)) +
+   dist(b, lca(a, b)) + depth(lca(a, b)) +
+   -2 * depth(lca(a, b))
+ = depth(a) +
+   depth(b) +
+   -2 * depth (lca(a, b))
+</code></pre> 
+ <span class='centered'>[TODO: picture ] 
+ <span class='centered'>[TODO: finish writing this ]  
+ <h4><a id=parent-vector-representation href='#parent-vector-representation'> § </a><span class='centered'> Parent vector representation </h4> 
+ <span class='centered'>A parent vector is a vector of length  <code class='inline'>n</code> where  <code class='inline'>Parent[i]</code> denotes an 
+ <span class='centered'>index into  <code class='inline'>Parent</code>. Hence, the following condition will return 1 
+ <span class='centered'>if V is a parent vector.  
+ <span class='centered'>For example, for our given example, here is the parent vector:  
+ <pre><code>d ← (0  1  2  1  2  3  2  1  2  3  3  2  3  3  2) │ depths
+    (∘  a  p  b  q  v  r  c  s  w  x  t  y  z  u) │ values
+p ← (∘  ∘  a  ∘  b  q  b  ∘  c  s  s  c  t  t  c) │ parents
+    (0  1  2  3  4  5  6  7  8  9 10 11 12 13 14) | indexes
+P ← (0  0  1  0  3  4  3  0  7  8  8  7 11 11  7) │ parent indices
+
+
+
+              ∘:0                               0
+┌──────────┬──┴─────────────────┐
+a:1        b:3                 c:7              1
+│      ┌───┴───┐     ┌──────────┼───────┐
+p:2    q:4     r:6   s:8        t:11    u:14    2
+       │             │          │
+       │          ┌──┴──┐     ┌─┴───┐
+       v:5        w:9   x:10  y:12  z:13        3
+</code></pre> 
+ <span class='centered'>The condition a parent vector must satisfy is:  
+ <pre><code>∧/V ∊(⍳≢V) ⍝ [All elements of V belong in the list [1..len(V)] ]
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'>  <code class='inline'>V ∊ (⍳≢V)</code> will be a list of whether each element in v belongs ( <code class='inline'>∊</code>) to the list <span class='centered'><code class='inline'>(⍳≢V) = [1..len(V)]</code></li><li><span class='centered'><span class='centered'> Recall that  <code class='inline'>/</code> is for reduction, and  <code class='inline'>∧/</code> is a boolean  <code class='inline'>AND</code> reduction. <span class='centered'>Hence, we compute whether each element of the vector  <code class='inline'>V</code> is in the range  <code class='inline'>[1..len(V)]</code>. </li><li><span class='centered'><span class='centered'> We add the constraint that root notes that don't have a parent simply <span class='centered'>point to themselves. This allows us to free ourselves from requiring <span class='centered'>some kind of  <code class='inline'>nullptr</code> check. </li></ul> 
+ <span class='centered'>The root node (parent of all elements) can be found using the fixpoint operator ( <code class='inline'>⍨</code>):  
+ <pre><code>I←{(⊂⍵)⌷⍺} ⍝ index into the left hand side param using right hand side param
+I⍣≡⍨p ⍝ compute the fixpoint of the I operator using ⍨ and apply it to p
+</code></pre> 
+ <h4><a id=converting-from-depth-vector-to-parent-vector-take-1 href='#converting-from-depth-vector-to-parent-vector-take-1'> § </a><span class='centered'> Converting from depth vector to parent vector, Take 1 </h4> 
+ <span class='centered'>As usual, let's consider our example:  
+ <pre><code>d ← (0  1  2  1  2  3  2  1  2  3  3  2  3  3  2) │ depths
+    (∘  a  p  b  q  v  r  c  s  w  x  t  y  z  u) │ values
+p ← (∘  ∘  a  ∘  b  q  b  ∘  c  s  s  c  t  t  c) │ parents
+    (0  1  2  3  4  5  6  7  8  9 10 11 12 13 14) | indexes
+P ← (0  0  1  0  3  4  3  0  7  8  8  7 11 11  7) │ parent indices
+
+
+
+              ∘:0                               0
+┌──────────┬──┴─────────────────┐
+a:1        b:3                 c:7              1
+│      ┌───┴───┐     ┌──────────┼───────┐
+p:2    q:4     r:6   s:8        t:11    u:14    2
+       │             │          │
+       │          ┌──┴──┐     ┌─┴───┐
+       v:5        w:9   x:10  y:12  z:13        3
+</code></pre> 
+ <span class='centered'>Note that the depth vector already encodes parent-child information. 
+ <ul><li><span class='centered'><span class='centered'> The parent of node  <code class='inline'>i</code> is a node  <code class='inline'>j</code> such that  <code class='inline'>d[j] = d[i] - 1</code> and <span class='centered'><code class='inline'>j</code> is the closest index to the left of  <code class='inline'>i</code> such that this happens. </li></ul> 
+ <span class='centered'>For example, to compute the parent of  <code class='inline'>t:11</code>, notice that it's at depth  <code class='inline'>2</code>. 
+ <span class='centered'>So we should find all the nodes from  <code class='inline'>d[0..11]</code> which have depths equal to 
+ <span class='centered'><code class='inline'>2</code>, and then pick the rightmost one. This translates to the expression:  
+ <pre><code>$ d ← (0  1  2  1  2  3  2  1  2  3  3  2  3  3  2)
+$ t ← 11   ⍝ target node
+$ ixs ← ⍳t   ⍝ array indexes upto this node
+  0 1 2 3 4 5 6 7 8 9 10
+$ d[ixs]   ⍝ depths of nodes to the left of the given node t
+  0 1 2 1 2 3 2 1 2 3 3
+$ d[ixs]  = d[t]-1  ⍝ boolean vector of nodes whose depth is that of t's parent
+  0 1 0 1 0 0 0 1 0 0 0
+$ eqds ← ⍸ (d[ixs] = d[t]-1)  ⍝ array indexes of nodes whose depth is that of t's parent
+  1 3 7
+$ ⌽ eqds ⍝ reverse of array indexes to extract `7`
+  7 3 1
+$ ⊃ ⌽ eqds ⍝ first of the reverse of the array indexes to extract `7`
+  7
+$ (⌽⍸(d[⍳t] = d[t]-1))[0]  ⍝ APL style one-liner of the above
+</code></pre> 
+ <span class='centered'>While this is intuitive, this does not scale: It does not permit us to find 
+ <span class='centered'>the parent of all the nodes  <i><span class='centered'>at once </i> --- ie, it is not parallelisable 
+ <span class='centered'>over choices of  <code class='inline'>t</code>.  
+ <h4><a id=converting-from-depth-vector-to-parent-vector-take-2-or-scan-idiom href='#converting-from-depth-vector-to-parent-vector-take-2-or-scan-idiom'> § </a><span class='centered'> Converting from depth vector to parent vector, Take 2 (Or scan idiom) </h4> 
+ <span class='centered'>Imagine we have a list of  <code class='inline'>0</code>s and  <code class='inline'>1</code>s, and we want to find the  <i><span class='centered'>index </i> of 
+ <span class='centered'>the rightmost  <code class='inline'>1</code> value. For example, given:  
+ <pre><code>       0 1 2 3 4 5 6 7 8 9 10 11 12
+$ a ← (0 0 1 0 0 0 1 0 1 0  0  0  0)
+</code></pre> 
+ <span class='centered'>we want the answer to be  <code class='inline'>f a = 8</code>. We saw an implementation in terms of 
+ <span class='centered'><code class='inline'>f←{(⌽⍸⍵)[0]}</code> in Take 1. 
+ <span class='centered'>(recall that  <code class='inline'>⍵</code> is the symbol for the right-hand-side argument of a function).  
+ <span class='centered'>We're going to perform the same operation slightly differently. Let's consider 
+ <span class='centered'>the series of transformations:  
+ <pre><code>⍝      0 1 2 3 4 5 6 7 8 9 10 11 12
+$ a ← (0 0 1 0 0 0 1 0 1 0  0  0  0) ⍝ original array
+
+$ ⌽a  ⍝ reverse of a
+  0 0 0 0 1 0 1 0 0 0 1 0 0
+
+$ ∨\ ⌽a ⍝ prefix scan(\) using the OR(∨) operator. Turn all
+        ⍝ entries after the first 1 into a 1
+  0 0 0 0 1 1 1 1 1 1 1 1 1
+
+$ +/ (∨\ ⌽a)  ⍝ sum over the previous list, counting number of 1s
+  9
+
+$ ¯1 +  (+/ (∨\ ⌽a))  ⍝ subtract 1 from the previous number
+  8
+</code></pre> 
+ <span class='centered'>Why the hell does this work? Well, here's the proof:  
+ <ul><li><span class='centered'><span class='centered'> On running  <code class='inline'>⌽a</code>, we reverse the  <code class='inline'>a</code>. The last 1 of  <code class='inline'>a</code> at index  <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span></span><span class='centered'>becomes the first  <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span> of  <code class='inline'>⌽a</code> at index  <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>i</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>≡</mo><mi>n</mi><mo>−</mo><mi>i</mi></mrow><annotation encoding="application/x-tex">i&#x27; \equiv n-i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≡</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span></span>. </li><li><span class='centered'><span class='centered'> On running   <code class='inline'>∨\ ⌽a</code>, numbers including and after the first 1 <span class='centered'>become  <code class='inline'>1</code>. That is, all indexes  <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi><mo>≥</mo><msup><mi>i</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow><annotation encoding="application/x-tex">j \geq i&#x27;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span></span> have 1 in them. </li><li><span class='centered'><span class='centered'> On running  <code class='inline'>+/ (∨\ ⌽a)</code>, we sum up all 1s. This will give us  <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><msup><mi>i</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n-i&#x27;+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.835222em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span> 1s. <span class='centered'>That is,  <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><msup><mi>i</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>+</mo><mn>1</mn><mo>=</mo><mi>n</mi><mo>−</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mi>i</mi><mo stretchy="false">)</mo><mo>+</mo><mn>1</mn><mo>=</mo><mi>i</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n-i&#x27;+1 = n-(n-i)+1 =i+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.835222em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">i</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span>. </li><li><span class='centered'><span class='centered'> We subtract a  <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span> to correctly find the  <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span></span> from  <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">i+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span>. </li></ul> 
+ <span class='centered'>This technique will work for  <i><span class='centered'><i><span class='centered'>every row of a matrix </i></i>. This is paramount, 
+ <span class='centered'>since we can now repeat this for the depth vector we were previously 
+ <span class='centered'>interested in for each row, and thereby compute the parent index!  
+ <h4><a id=converting-from-depth-vector-to-parent-vector-take-3-full-matrix href='#converting-from-depth-vector-to-parent-vector-take-3-full-matrix'> § </a><span class='centered'> Converting from depth vector to parent vector, Take 3 (full matrix) </h4> 
+ <span class='centered'>We want to extend the previous method we hit upon to compute the parents 
+ <span class='centered'>of all nodes in parallel. To perform this, we need to run the moral 
+ <span class='centered'>equivalent of the following:  
+ <pre><code>$ ⎕IO ← 0 ⍝ 0 indexing
+$ d ← (0  1  2  1  2  3  2  1  2  3  3  2  3  3  2) ⍝ depth vector
+$ t ← 11 ⍝ node we are interested in
+$ a←d[⍳t]=d[t]-1  ⍝ boolean vector of nodes whose depth is that of t's parent
+  0 1 0 1 0 0 0 1 0 0 0
+$ ¯1 +  (+/ (∨\ ⌽a)) ⍝ index of last 0 of boolean vector
+7
+</code></pre> 
+ <span class='centered'>for  <i><span class='centered'>every single choice of t </i>. To perform this, we can build a 2D matrix 
+ <span class='centered'>of  <code class='inline'>d[⍳t]=d[t]-1</code> where  <code class='inline'>t</code> ranges over  <code class='inline'>[0..len(d)-1]</code> (ie, it ranges 
+ <span class='centered'>over all the nodes in the graph).  
+ <span class='centered'>We begin by using:  
+ <pre><code>$ ⎕IO ← 0 ⋄ d ← (0  1  2  1  2  3  2  1  2  3  3  2  3  3  2) ⍝ depths
+$ ]display ltdepth ← d ∘.> d ⍝ find `d[i] > d[j]` for all i, j.
+┌→────────────────────────────┐
+↓0 0 0 0 0 0 0 0 0 0 0 0 0 0 0│
+│1 0 0 0 0 0 0 0 0 0 0 0 0 0 0│
+│1 1 0 1 0 0 0 1 0 0 0 0 0 0 0│
+│1 0 0 0 0 0 0 0 0 0 0 0 0 0 0│
+│1 1 0 1 0 0 0 1 0 0 0 0 0 0 0│
+│1 1 1 1 1 0 1 1 1 0 0 1 0 0 1│
+│1 1 0 1 0 0 0 1 0 0 0 0 0 0 0│
+│1 0 0 0 0 0 0 0 0 0 0 0 0 0 0│
+│1 1 0 1 0 0 0 1 0 0 0 0 0 0 0│
+│1 1 1 1 1 0 1 1 1 0 0 1 0 0 1│
+│1 1 1 1 1 0 1 1 1 0 0 1 0 0 1│
+│1 1 0 1 0 0 0 1 0 0 0 0 0 0 0│
+│1 1 1 1 1 0 1 1 1 0 0 1 0 0 1│
+│1 1 1 1 1 0 1 1 1 0 0 1 0 0 1│
+│1 1 0 1 0 0 0 1 0 0 0 0 0 0 0│
+└~────────────────────────────┘
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'> Note that  <code class='inline'>gt[i][j] = 1</code> iff  <code class='inline'>d[j] < d[i]</code>. So, for a given row ( <code class='inline'>i = fixed</code>), the  <code class='inline'>1s</code><span class='centered'>nodes that are at lower depth (ie, potential parents). </li></ul> 
+ <ul><li><span class='centered'><span class='centered'> If we mask this to only have those indeces where  <code class='inline'>j <= i</code>, then the <span class='centered'>last one in each row will be such that  <code class='inline'>d[last 1] = d[i] - 1</code>. Why? Because <span class='centered'>the node that is closest to us with a depth less than us  <i><span class='centered'>must </i> be our parent, <span class='centered'>in the preorder traversal. </li></ul> 
+ <pre><code>$ ⎕IO ← 0 ⋄ d ← (0  1  2  1  2  3  2  1  2  3  3  2  3  3  2) ⍝ depths
+$ ]display left ←  (⍳3) ∘.> (⍳3) ⍝ find `i > j` for all i, j.
+┌→────┐
+↓0 0 0│
+│1 0 0│
+│1 1 0│
+└~────┘
+</code></pre> 
+ <span class='centered'>Combining the three techniques, we can arrive at:  
+ <pre><code>$ ⎕IO ← 0 ⋄ d ← (0  1  2  1  2  3  2  1  2  3  3  2  3  3  2) ⍝ depths
+$ ltdepth ← d ∘.> d ⍝ find `d[i] > d[j]` for all i, j.
+$ preds ←  (⍳≢d) ∘.> (⍳≢d) ⍝ predecessors: find `i > j` for all i, j.
+$ pred_higher ←  ltdepth ∧ left   ⍝ predecessors tht are higher in the tree
+$  parents_take_3 ← ¯1 +  +/∨\⌽pred_higher  ⍝ previous idiom for finding last 1.
+¯1 0 1 0 3 4 3 0 7 8 8 7 11 11 7
+</code></pre> 
+ <span class='centered'>For comparison, the actual value is:  
+ <pre><code>    (0   1  2  3  4  5  6  7  8  9 10 11 12 13 14)  | indexes
+d ← (0   1  2  1  2  3  2  1  2  3  3  2  3  3  2)  │ depths
+P ← (0   0  1  0  3  4  3  0  7  8  8  7 11 11  7)  │ parent indices
+    (¯1  0  1  0  3  4  3  0  7  8  8  7 11 11  7) | parents, take 3
+
+              ∘:0                               0
+┌──────────┬──┴─────────────────┐
+a:1        b:3                 c:7              1
+│      ┌───┴───┐     ┌──────────┼───────┐
+p:2    q:4     r:6   s:8        t:11    u:14    2
+       │             │          │
+       │          ┌──┴──┐     ┌─┴───┐
+       v:5        w:9   x:10  y:12  z:13        3
+</code></pre>
+ <span class='centered'>We have an off-by-one error for the  <code class='inline'>0</code> node! That's easily fixed, we simply 
+ <span class='centered'>perform a maximum with  <code class='inline'>0</code> to move  <code class='inline'>¯1 -> 0</code>:  
+ <pre><code>$  parents_take_3 ← 0⌈  ¯1 +  +/∨\⌽pred_higher
+0 0 1 0 3 4 3 0 7 8 8 7 11 11 7
+</code></pre> 
+ <span class='centered'>So, that's our function:  
+ <pre><code>parents_take_3 ← 0⌈  ¯1 +  +/∨\⌽ ((d∘.>d) ∧ (⍳≢d)∘.>(⍳≢d))
+0 0 1 0 3 4 3 0 7 8 8 7 11 11 7
+</code></pre> 
+ <span class='centered'>Note that the time complexity for this is dominated by having to calculate 
+ <span class='centered'>the outer products, which even given infinite parallelism, take  <span class='latexinline'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></span> time. 
+ <span class='centered'>We will slowly chip away at this, to be far better.  
+ <h4><a id=converting-from-depth-vector-to-parent-vector-take-4-log-critial-depth href='#converting-from-depth-vector-to-parent-vector-take-4-log-critial-depth'> § </a><span class='centered'> Converting from depth vector to parent vector, Take 4 (log critial depth) </h4>
+ <span class='centered'>We will use the Key( <code class='inline'>⌸</code>) operator which allows us to create key value pairs.  
+ <pre><code>$ d ← 0 1 2 1 2 3 2 1 2 3 3 2 3 3 2
+$ ]disp (⍳≢d) ,¨ d ⍝ zip d with indexes
+┌→──┬───┬───┬───┬───┬───┬───┬───┬───┬───┬────┬────┬────┬────┬────┐
+│0 0│1 1│2 2│3 1│4 2│5 3│6 2│7 1│8 2│9 3│10 3│11 2│12 3│13 3│14 2│
+└~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~─→┴~──→┴~──→┴~──→┴~──→┴~──→┘
+</code></pre> 
+ <pre><code>$ d ← 0 1 2 1 2 3 2 1 2 3 3 2 3 3 2
+$ ]display b ← {⍺ ⍵}⌸d  ⍝ each row i has tuple (i, js): d[js] = i
+┌→──────────────────┐
+↓   ┌→┐             │
+│ 0 │0│             │
+│   └~┘             │
+│   ┌→────┐         │
+│ 1 │1 3 7│         │
+│   └~────┘         │
+│   ┌→────────────┐ │
+│ 2 │2 4 6 8 11 14│ │
+│   └~────────────┘ │
+│   ┌→───────────┐  │
+│ 3 │5 9 10 12 13│  │
+│   └~───────────┘  │
+└∊──────────────────┘
+</code></pre> 
+ <span class='centered'>In fact, it allows us to apply an arbitrary function to combine keys and values. 
+ <span class='centered'>We will use a function that simply returns all the values for each key.  
+ <pre><code>$ d ← 0 1 2 1 2 3 2 1 2 3 3 2 3 3 2
+$ ]display b ← {⍵}⌸d ⍝ each row i contains values j such that d[j] = i.
+┌→──────────────┐
+↓0 0  0  0  0  0│
+│1 3  7  0  0  0│
+│2 4  6  8 11 14│
+│5 9 10 12 13  0│
+└~──────────────┘
+</code></pre> 
+ <span class='centered'>Our first try doesn't quite work: it winds up trying to create a numeric matrix, 
+ <span class='centered'>which means that we can't have different rows of different sizes. So, the 
+ <span class='centered'>information that  <i><span class='centered'>only </i> index  <code class='inline'>0</code> is such that  <code class='inline'>d[0] = 0</code> is lost. What we 
+ <span class='centered'>can to is to wrap the keys to arrive at:  
+ <pre><code>$ d ← 0 1 2 1 2 3 2 1 2 3 3 2 3 3 2
+$ ]display b ← {⊂⍵}⌸d ⍝ d[b[i]] = i
+┌→───────────────────────────────────────────┐
+│ ┌→┐ ┌→────┐ ┌→────────────┐ ┌→───────────┐ │
+│ │0│ │1 3 7│ │2 4 6 8 11 14│ │5 9 10 12 13│ │
+│ └~┘ └~────┘ └~────────────┘ └~───────────┘ │
+└∊───────────────────────────────────────────┘
+</code></pre>
+ <span class='centered'>Consider the groups  <code class='inline'>b[2] = (2 4 6 8 11 14)</code> and  <code class='inline'>b[3] = (5 9 10 12 13)</code>. All of  <code class='inline'>3</code>'s parents 
+ <span class='centered'>are present in  <code class='inline'>2</code>. Every element in  <code class='inline'>3</code> fits at some location in  <code class='inline'>2</code>. Here is what 
+ <span class='centered'>the fit would look like:  
+ <pre><code>b[2]  2 4 _ 6 8 _  _ 11 __ __ 14   (nodes of depth 2)
+b[3]      5     9  10   12 13      (leaf nodes)
+          4     8   8   11 11      (parents: predecessor of b[3] in b[2])
+
+              ∘:0                               0
+┌──────────┬──┴─────────────────┐
+a:1        b:3                 c:7              1
+│      ┌───┴───┐     ┌──────────┼───────┐
+p:2    q:4     r:6   s:8        t:11    u:14    2
+       │             │          │
+       │          ┌──┴──┐     ┌─┴───┐
+       v:5        w:9   x:10  y:12  z:13        3
+</code></pre> 
+ <span class='centered'>We use the Interval Index( <code class='inline'>⍸</code>) operator to solve the problem of finding the 
+ <span class='centered'>parent / where we should sqeeze a node from  <code class='inline'>b[3]</code> into  <code class='inline'>b[2]</code>
+ <span class='centered'>(This is formally known as the 
+ <span class='centered'><a href=https://en.wikipedia.org/wiki/Predecessor_problem><span class='centered'>predecessor problem </a>)  
+ <pre><code>⍝ left[a[i]] is closest number < right[i]
+⍝ left[a[i]] is the predecessor of right[i] in left[i].
+$ a ← (1 10 100 1000) ⍸ (1 2000 300 50 2 )
+0 3 2 1 0
+</code></pre> 
+ <span class='centered'>Now, we can use the technology of predecessor to find parents 
+ <span class='centered'>of depth 3 nodes among the depth 2 nodes:  
+ <pre><code>$ depth2 ← 2 4 6 8 11 14
+$ depth3 ← 5 9 10 12 13 ⍝ parents (from chart): 4 8 8 11 11
+$ depth3parentixs ← depth2 ⍸ depth3
+$ depth3parents  ← depth2[depth3parentixs]
+4 8 8 11 11
+
+              ∘:0                               0
+┌──────────┬──┴─────────────────┐
+a:1        b:3                 c:7              1
+│      ┌───┴───┐     ┌──────────┼───────┐
+p:2    q:4     r:6   s:8        t:11    u:14    2
+       │             │          │
+       │          ┌──┴──┐     ┌─┴───┐
+       v:5        w:9   x:10  y:12  z:13        3
+</code></pre> 
+ <span class='centered'>We need to know one-more APL-ism: the  <code class='inline'>2-scan</code>. When we write 
+ <span class='centered'>a usual scan operation, we have:  
+ <pre><code>$ ⍳5
+1 2 3 4 5
+</code></pre>
+ <pre><code>$ +/⍳5 ⍝ reduce
+15
+</code></pre> 
+ <pre><code>$ 2+/⍳5 ⍝ apply + to _pairs_ (2 = pairs)
+3 5 7 9 ⍝ (1+2) (2+3) (3+4) (4+5)
+</code></pre> 
+ <pre><code>$ 3+/⍳5 ⍝  apply + to 3-tuples
+6 9 12 ⍝ (1+2+3) (2+3+4) (3+4+5)
+</code></pre> 
+ <span class='centered'>We begin by assuming the parent of  <code class='inline'>i</code> is  <code class='inline'>i</code> by using  <code class='inline'>p←⍳≢d</code>.  
+ <pre><code>$ d ← (0 1 2 1 2 3 2 1 2 3 3 2 3 3 2)
+$ d2nodes ← {⊂⍵}⌸d
+┌→┬─────┬─────────────┬─────────────┐
+│1│2 4 8│3 5 7 9 12 15│6 10 11 13 14│
+└→┴~───→┴~───────────→┴~───────────→┘
+$ p←⍳≢d
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+</code></pre> 
+ <span class='centered'>Now comes the biggie: 
+ <pre><code>$ findparent ← {parentixs ← ⍺⍸⍵ ⋄ p[⍵]←⍺[parentixs]}
+</code></pre>
+ <ul><li><span class='centered'><span class='centered'>  <code class='inline'>⍺</code> is the list of parent nodes. </li><li><span class='centered'><span class='centered'>  <code class='inline'>⍵</code> is the list of current child nodes. </li><li><span class='centered'><span class='centered'> We first find the indexes of our parent nodes by using <span class='centered'>the  <code class='inline'>pix ← parent ⍸ child</code> idiom. </li><li><span class='centered'><span class='centered'> Then, we find the actual parents by indexing into <span class='centered'>the parent list:  <code class='inline'>pix[parentixs]</code>. </li><li><span class='centered'><span class='centered'> We write these into the parents of the child using: <span class='centered'><code class='inline'>p[children] ← parent[parent ⍸ child]</code></li></ul> 
+ <span class='centered'>This finally culminates in: 
+ <pre><code>$ d←0 1 2 1 2 3 2 1 2 3 3 2 3 3 2
+$ p←⍳≢d ⋄ d2nodes←{⊂⍵}⌸d ⋄ findp←{pix ← ⍺⍸⍵ ⋄ p[⍵]←⍺[pix]} ⋄ 2findp/d2nodes ⋄ p
+0 0 1 0 3 4 3 0 7 8 8 7 11 11 7
+
+
+    (0   1  2  3  4  5  6  7  8  9 10 11 12 13 14)  | indexes
+d ← (0   1  2  1  2  3  2  1  2  3  3  2  3  3  2)  │ depths
+P ← (0   0  1  0  3  4  3  0  7  8  8  7 11 11  7)  │ parent indices
+              ∘:0                               0
+┌──────────┬──┴─────────────────┐
+a:1        b:3                 c:7              1
+│      ┌───┴───┐     ┌──────────┼───────┐
+p:2    q:4     r:6   s:8        t:11    u:14    2
+       │             │          │
+       │          ┌──┴──┐     ┌─┴───┐
+       v:5        w:9   x:10  y:12  z:13        3
+</code></pre> 
+ <span class='centered'>Which can be further golfed to: 
+ <pre><code>$ p⊣2{p[⍵]←⍺[⍺⍸⍵]}⌿⊢∘⊂⌸d⊣p←⍳≢d
+0 0 1 0 3 4 3 0 7 8 8 7 11 11 7
+</code></pre> 
+ <span class='centered'>The total time complexity of this method assuming infinite parallelism is as follows: 
+ <pre><code>$ p←⍳≢d ⋄ d2nodes←{⊂⍵}⌸d ⋄ findp←{pix ← ⍺⍸⍵ ⋄ p[⍵]←⍺[pix]} ⋄ 2findp/d2nodes ⋄ p
+</code></pre>
+ <ul><li><span class='centered'><span class='centered'>  <code class='inline'>(p←⍳≢d)</code> can be filled in  <code class='inline'>O(1)</code> time. </li><li><span class='centered'><span class='centered'>  <code class='inline'>(d2nodes←{⊂⍵}⌸d)</code> is searching for keys in a small integer domain, so this is  <code class='inline'>O(#nodes)</code> using <span class='centered'>radix sort as far as I know. However, the thesis mentions that this can be done in <span class='centered'><code class='inline'>O(log(|#nodes|))</code>. I'm not sure how, I need to learn this. </li><li><span class='centered'><span class='centered'> For each call of  <code class='inline'>findp</code>, the call  <code class='inline'>(pix ← ⍺⍸⍵)</code> can be implemented using binary search <span class='centered'>leading to a logarthmic complexity in the size of  <code class='inline'>⍺</code> (since we are looking up <span class='centered'>for predecessors of  <code class='inline'>⍵</code> in  <code class='inline'>⍺</code>). </li><li><span class='centered'><span class='centered'> The time complexity of the fold  <code class='inline'>2findp/d2nodes</code> can be done entirely in parallel <span class='centered'>since all the writes into the  <code class='inline'>p</code> vector are independent: we only write the <span class='centered'>parent of the current node we are looking at. </li></ul> 
+ <h4><a id=34-computing-nearest-parent-by-predicate href='#34-computing-nearest-parent-by-predicate'> § </a><span class='centered'> 3.4: Computing nearest Parent by predicate </h4> 
+ <span class='centered'>I'm going to simplify the original presentation by quite a bit.  
+ <pre><code>     a b c d e f g h i  | names
+     0 1 2 3 4 5 6 7 8  | indexes
+P ← (0 0 1 2 0 4 5 6 7) | parents
+X ← (0 1 0 0 1 1 0 0 0) | marked nodes
+
+     a:0
+┌────┴───┐
+b:1(X)   e:4(X)
+|        |
+c:2      f:5(X)
+|        |
+d:3      g:6
+         │
+         h:7
+         |
+         i:8
+</code></pre> 
+ <span class='centered'>We want to find nodes marked as  <code class='inline'>X</code> that are the closest parents to a 
+ <span class='centered'>given node. The  <code class='inline'>X</code> vector is a boolean vector that has a  <code class='inline'>1</code> at 
+ <span class='centered'>the index of each  <code class='inline'>X</code> node:  <code class='inline'>(b, e, f)</code>. So, the indexes  <code class='inline'>(1, 4, 5)</code>
+ <span class='centered'>are  <code class='inline'>1</code> in the  <code class='inline'>X</code> vector.  
+ <span class='centered'>The output we want is the vector:  
+ <pre><code>      0 1 2 3 4 5 6 7 8  | indexes
+      a b c d e f g h i  | names
+PX ← (0 0 1 1 0 4 5 5 5) | closest X parent index
+      a a b b a e f f f  | closest X parent name
+
+    a:0
+┌────┴───┐
+b:1(X)   e:4(X)
+|        |
+c:2      f:5(X)
+|        |
+d:3      g:6
+         │
+         h:7
+         |
+         i:8
+</code></pre> 
+ <span class='centered'>The incantation is:  
+ <pre><code>$ I←{(⊂⍵)⌷⍺} ⍝ index LHS by RHS | (100 101 102 103)[(3 1 2)] := 103 101 102
+$ PX ← P I@{X[⍵]≠1} ⍣ ≡ P
+0 0 1 1 0 4 5 5 5
+</code></pre> 
+ <span class='centered'>TODO. At any rate, since this does not require any writes and purely reads, 
+ <span class='centered'>and nor does it need any synchronization, this is fairly straightforward 
+ <span class='centered'>to implement on the GPU.  
+ <h4><a id=35-lifting-subtrees-to-the-root href='#35-lifting-subtrees-to-the-root'> § </a><span class='centered'> 3.5: Lifting subtrees to the root </h4> 
+ <span class='centered'>Once we have marked our  <code class='inline'>X</code> nodes, we now wish to lift entire subtrees of  <code class='inline'>X</code>
+ <span class='centered'>up to the root. 
+ <ul><li><span class='centered'><span class='centered'>  This pass displays how to lift subtrees and add new nodes to replace the subtree's original nodes. </li><li><span class='centered'><span class='centered'> Luckily, there are no  <i><span class='centered'>sibling </i> relationships that need to be maintained since <span class='centered'>we are uprooting an entire subtree. </li><li><span class='centered'><span class='centered'> There are no  <i><span class='centered'>ordering constraints </i> on how the subtrees should be arranged at <span class='centered'>the top. </li><li><span class='centered'><span class='centered'> Hence, we can simply add new nodes to the  <i><span class='centered'>end </i> of the tree (in terms of the preorder traversal). <span class='centered'>Adding to the middle of the tree will be discussed later. </li></ul> 
+ <span class='centered'>There is some good advice in the thesis: 
+ <blockquote><span class='centered'> When using APL primitives this way, it may be good to map <span class='centered'> their names and definitions to the domain of trees. For example, <span class='centered'> the primitive  <code class='inline'>⍸Predicate</code> is read as "the nodes where  <code class='inline'>Predicate</code> holds" <span class='centered'> and not as "the indexes where  <code class='inline'>Predicate</code> is 1". </blockquote> 
+ <span class='centered'>For example, given the tree:  
+ <pre><code>      0 1 2 3 4 5  | indexes
+      a b c d e f  | names
+P  ← (0 0 1 0 3 4) | parents
+X  ← (0 1 0 1 1 0) | X nodes
+PX ← (0 0 1 0 3 4) | closest X parent index
+
+    a:0
+┌────┴───┐
+b:1(X)   d:3(X)
+|        |
+c:2      e:4(X)
+         |
+         f:5
+</code></pre> 
+ <span class='centered'>we want the transformed tree to be:  
+ <pre><code>    a:0
+┌────┴───┐
+bp:1(X)   ep:4(X)
+---------
+b:1(X)
+|
+c:2
+---------
+e:4
+|
+fp:5
+---------
+f:5(X)
+|
+g:6
+</code></pre> 
+ <span class='centered'>We first look for nodes that need to be lifted.  There are: 
+ <ul><li><span class='centered'><span class='centered'> Non-root nodes (ie, nodes whose parents are not themselves:  <code class='inline'>p≠(⍳≢p)</code>) </li><li><span class='centered'><span class='centered'> Which have the property  <code class='inline'>X</code>. </li></ul> 
+ <pre><code>nodes←⍸(X ∧ p≠(⍳≢p))  ⍝ ⍸:pick indexes.
+</code></pre> 
+ <h4><a id=36-wrapping-expressions href='#36-wrapping-expressions'> § </a><span class='centered'> 3.6: Wrapping Expressions </h4>
+ <h4><a id=37-lifting-guard-test-exprsessions href='#37-lifting-guard-test-exprsessions'> § </a><span class='centered'> 3.7: Lifting Guard Test Exprsessions </h4>
+ <h4><a id=38-couting-rank-of-index-operators href='#38-couting-rank-of-index-operators'> § </a><span class='centered'> 3.8: Couting rank of index operators </h4>
+ <h4><a id=39-flattening-expressions href='#39-flattening-expressions'> § </a><span class='centered'> 3.9: Flattening Expressions </h4>
+ <h4><a id=310-associating-frame-slots-and-variables href='#310-associating-frame-slots-and-variables'> § </a><span class='centered'> 3.10: Associating Frame slots and variables </h4>
+ <h4><a id=311-placing-frames-into-a-lexical-stack href='#311-placing-frames-into-a-lexical-stack'> § </a><span class='centered'> 3.11: Placing frames into a lexical stack </h4>
+ <h4><a id=312-recording-exported-names href='#312-recording-exported-names'> § </a><span class='centered'> 3.12: Recording Exported names </h4>
+ <h4><a id=313-lexical-resolution href='#313-lexical-resolution'> § </a><span class='centered'> 3.13: Lexical Resolution </h4> 
+ <h4><a id=521-traversal-idioms href='#521-traversal-idioms'> § </a><span class='centered'> 5.2.1 Traversal Idioms </h4>
+ <h4><a id=522-edge-mutation-idioms href='#522-edge-mutation-idioms'> § </a><span class='centered'> 5.2.2 Edge Mutation Idioms </h4>
+ <h4><a id=523-node-mutation-idioms href='#523-node-mutation-idioms'> § </a><span class='centered'> 5.2.3 Node Mutation Idioms </h4> 
+ <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

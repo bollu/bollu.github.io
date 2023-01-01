@@ -6,31 +6,552 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
-# GNU Binutils
+# Stuff I learnt in 2022
+
+2022 was a weird year for me. I moved from India to Edinburgh to pursue
+my PhD, and a lot of the year was (and still is) getting used to
+what it even means to be a PhD student. Here's a run down of the
+things I learnt this year, and what the experience of doing this was.
+
+#### Semantics of MLIR in Lean
+
+The first project I took up was to define the semantics of [MLIR](https://mlir.llvm.org/),
+a new compiler infrastructure in the [Lean4](https://leanprover-community.github.io/) proof
+assistant, titled boringly as [`opencompl/lean-mlir`](https://github.com/opencompl/lean-mlir).
+
+While working on the project, I did a bunch of useful things:
+
+- I helped write the [Lean metaprogramming.book](https://github.com/arthurpaulino/lean4-metaprogramming-book),
+  an open-source book on using Lean's powerful metaprogramming facilities.
+- I read through [Mario Carneiro's thesis, models of dependently typed programming languages](https://github.com/digama0/lean-type-theory)
+  which explains Lean's metatheory and a proof of consistency of Lean. I quite liked this thesis, since it provides
+  a very readable set-theoretic semantics for Lean!
+
+#### Lean OSS work
+
+I also began contributing to the proof assistant itself.
+In particular, I've been slowly chipping away at adding [LLVM support](https://github.com/leanprover/lean4/pull/1837),
+which got merged on the 31st, right before new years! The hardest part was learning a huge amount
+about low-level linkers, loaders, and other cross platform shenanigans. The sources I leaned against
+most were:
+
+- The [CMake manual](https://cmake.org/documentation/), which actually makes CMake sensible. I quite like CMake now,
+  since I actually understand its semantics.
+- [Linkers and Loaders](http://14.99.188.242:8080/jspui/bitstream/123456789/12311/1/LinkerLoader.mca.pdf), to learn
+  a ton of the arcane details of how precisely loading works.
+- The [GNU binutils](https://www.gnu.org/software/binutils/), which were a lifesaver in debugging weird linker visibility issues.
+
+
+#### Partial Evaluation
+
+I was also interested in improving the performance of the code generator, and was frustrated that we in compilers
+kept rediscovering basic optimisation techniques over an over again. Partial Evaluation seemed like a powerful
+technique to prevent this waste, and I thus began reading the literature on partial evaluation. The best
+book I found was called [Partial evaluation and automatic program generation](https://www.itu.dk/people/sestoft/pebook/jonesgomardsestoft-a4.pdf),
+and I [implemented the algorithms from the book](https://github.com/bollu/halfred). However, I haven't had the time
+to integrate these back into lean proper. Plans for next year!
+
+
+#### Adjoint School And Category Theory
+
+I wanted to learn more category theory, since I felt it was important as a type theorist in training
+to be fluent with category theory.
+
+- I was reading [Categorical logic](https://link.liverpool.ac.uk/portal/Categorical-logic-and-type-theory-Bart/zctzUzjlvJk/)
+  by Bart Jacobs, which describes how to reason about type theory using the
+  machinery of [fibered categories](https://en.wikipedia.org/wiki/Fibred_category).
+- I attended [Adjoint School](https://adjointschool.com/), a summer school for applied category theorists, which was
+  a blast. I learnt a lot from it, and read a bunch of papers from it!
+- I loved the paper [Opinion Dynamics on Discourse Sheaves](https://arxiv.org/abs/2005.12798), which describes how to setup
+  a 'discourse sheaf', a sheaf structure on a graph which models private versus public opinions. The punchline is that harmonic
+  functions lead to 'harmonious' discourse amongst participants in the model!
+- Ohad pointed me to [Probabilistic models via quasi borel spaces](https://arxiv.org/abs/1701.02547), which builds
+  quasi-borel spaces, which is a closed cartesian category where one can interpret simply typed lambda calculus.
+  This gives a nice denotational footing to probabilistic programming.
+
+But to be honest, what I really took away from this was that I *don't enjoy*
+category theory as much as I enjoy geometry. Thus, I'm going to try to align
+next year such that I get to read more geometric concepts!
+
+#### Logic
+
+I wanted to learn logic and model theory, so I read George Boolos'
+book ["Computability and Logic"](https://www.cambridge.org/core/books/computability-and-logic/440B4178B7CBF1C241694233716AB271).
+My two favourite theorems were:
+
+- The [Compactness theorem](https://en.wikipedia.org/wiki/Compactness_theorem), which points to the finiteness of
+  the proof system we use, and how this impacts the logic itself.
+- The [Lowenheim Skolem](https://en.wikipedia.org/wiki/L%C3%B6wenheim%E2%80%93Skolem_theorem) theorem, which shows that
+   first order logic cannot control the size of its models.
+
+I also wanted to learn what forcing was about, so I tried
+to read through the literature:
+
+- I began by reading [Jech: Axiom of Choice](https://link.springer.com/chapter/10.1007/978-3-642-41422-0_37#Abs1), which
+  was far too terse to grok, so I switched to reading the next lecture notes.
+- [Independence of CH: an intuitive explanation](https://arxiv.org/pdf/2208.13731.pdf) was a readable account of the 
+   machinery of forcing! I wanted to get the account of forcing from the point of view of topi, for which I started reading
+   the next book.
+- [Sheaves in geometry and logic](https://link.springer.com/book/10.1007/978-1-4612-0927-0) is a textbook on topos theory, which
+  provide an account of forcing by building an object called a [cohen topos](https://toddtoddtodd.net/T%20Schmid%20-%20Toposes,%20Sets,%20and%20Cohen%20Forcing,%20an%20Overview.pdf). I didn't manage to get through enough of the book to really understand what the
+  chapter on the cohen topos was doing, but I did get the vague idea. We seem
+  to build a topos, and then use the internal logic of the topos to mimic the
+  model we are building. The machinery of topos theory allows us to easily
+  control the internal logic, thereby adding the axioms to ZF.
+
+#### Frex
+
+[Ohad Kammar](https://twitter.com/aleph_kappa?lang=en) is a senior research fellow here at Edinburgh who I really enjoy
+talking to. He told me about a project he works on, `frex`, which stands for
+"free extensions". The TL;DR is that they wish to study how to write down simplifiers / computer algebra systems
+in a principled fashion. Their paper [Partially static data as free extensions of algebras](https://www.cl.cam.ac.uk/~jdy22/papers/partially-static-data-as-free-extension-of-algebras.pdf) is a super readable account of their ideas. I quite enjoyed re-implementing
+the basic version in Haskell. I wish to implement their more recent, more complex dependently-typed version of the
+theory in Lean.
+
+#### Ideas in type theory and proof assistants
+
+Since I'm here at Edinburgh, I keep getting stray recommendations on things to read.
+A big shout-out to
+[Andres Goens](https://github.com/goens),
+[Chris Hughes](https://github.com/ChrisHughes24), 
+[Jesse Sigal](https://github.com/jasigal),
+[Justus Mathiessen](https://www.inf.ed.ac.uk/people/staff/Justus_Matthiesen.html),
+[Leonardo De Moura](https://leodemoura.github.io/about.html),
+[Li-yao Xia](https://poisson.chat/), 
+[Mario Carneiro](https://github.com/digama0),
+[Ohad Kammar](https://twitter.com/aleph_kappa?lang=en), and 
+[Sebastien Michelland](https://github.com/lephe/) for many of these pointers.
+
+- [On Universes in Type Theory](http://www2.math.uu.se/~palmgren/universe.pdf) describes the difference between russel and tarski
+  style universes.
+- [Case trees](https://hackage.haskell.org/package/idris-1.1.0/docs/Idris-Core-CaseTree.html) are a data structure which are used
+   in Coq and Idris to manage dependent pattern matching.
+- [primitive recursors](https://leanprover.github.io/theorem_proving_in_lean/inductive_types.html?highlight=recursor#defining-the-natural-numbers) in Lean
+- [congruence closure in intensional type theories](https://arxiv.org/abs/1701.04391) describes how to extend the naive
+  congruence closure algorithm in the presence of definitional equalities between types.
+- Difference between [match+fix, as introduced by Theirrey Coquand in 'Pattern Matching with Dependent Types'](https://wonks.github.io/type-theory-reading-group/papers/proc92-coquand.pdf) ,  `termination_by`, and primitive recursion.
+- The idea of full abstraction, which asks the question of when operational and denotational semantics agree,
+  first studied by [Gordon Plotkin for PCF](https://pdf.sciencedirectassets.com/271538/1-s2.0-S0304397500X0240X/1-s2.0-0304397577900445/main.pdf)
+- [Andrej Nauer's notes on realizability](https://github.com/andrejbauer/notes-on-realizability), which very cleanly describes
+  the theory of realisability models, where one studies mathematical objects equipped with computational structure. this naturally
+  segues into discussions of models of computation and so forth.
+- [I am not a number, I am a free variable](https://www.semanticscholar.org/paper/Functional-pearl%3A-i-am-not-a-number--i-am-a-free-McBride-McKinna/833cf29aa614fa26348a505f3b9a3832e1d47dd4) describes "locally nameless", a technique to manage names when implementing proof assistants.
+- Higher order unification is necessary when implementing the elaborator for a proof assistant. Unfortunately,
+  [the full problem is also undecidable](https://www.ps.uni-saarland.de/Publications/documents/SpiesForster_2019_UndecidabilityHOU.pdf)
+- Luckily for us, [Miller found a fragment called 'pattern unification'](https://github.com/Saizan/miller), where unification is indeed
+  decidable. The key idea is to add a 'linearity' constraint which ensures that variables are not repeated into the pattern match, which
+  makes even higher-order patterns decidable.
+- The [Beluga Proof Assistant](https://beluga-lang.readthedocs.io/en/latest/) is a proof assistant whose logic allows one to reify
+  contexts. This means that one can write shallow embeddings of programming languages, have all the nice power of the proof assistant,
+  while still reasoning about binders! I found the way in which Beluga makes
+  such invasive changes to the metatheory in order to allow reasoning about
+  binders to be very enlightening.
+- The [HOL light](https://www.cl.cam.ac.uk/~jrh13/hol-light/tutorial.pdf) proof assistant and [Isabelle/HOL](https://isabelle.in.tum.de/)
+  are both based on higher order logic, and alternate, untyped foundations for
+  proof assistants. I feel it's important for me to know the various ideas
+  folks have tried in building proof assistants, and I was glad to have been
+  pointed to Isabelle and HOL. I want to spend some time this year (2023) to
+  learn Isabelle and HOL well enough that I can prove something like strong
+  normalization of STLC in them.
+- [Fitch style modal logics](https://arxiv.org/pdf/1710.08326.pdf) are a systematic way to build type theories with
+  modalities in them. These are typically used to create type theories that can reason about resources, such as 
+  concurrent access or security properties. The paper provides a unified account of how to build such type theories, and
+  how to prove the usual slew of results about them.
+- [Minimal implementation of separation logic: Separation Logic for Sequential Programs](http://www.chargueraud.org/research/2020/seq_seplogic/seq_seplogic.pdf) explains how to write a small separation logic framework embedded in a dependently typed progrmaming language.
+  I [translated the original from Coq to Lean](https://github.com/bollu/slf/blob/main/Separation.lean#L1934), and the whole thing clocks in at
+  around 2000 LoC, which is not too shabby to bootstrap a full 21st century
+  theory of reasoning about parallelism!
+- [Telescopic Mappings in Typed Lambda Calculus](https://pdf.sciencedirectassets.com/272575/1-s2.0-S0890540100X02428/1-s2.0-089054019190066B/main.pdf) builds the theory of telescopes, which is the basic notation that's used when describing binders in dependent type theory.
+  I had no idea that this had to be developed; I shudder to think how ugly notation was before this paper! I can't help but 
+  feel that this paper did for dependent type theory what einstein summation convention did for tensor calculus: provide compact
+  notation for the uninteresting bits to allow us to to talk about the interesting bits well.
+- When talking to Leonardo, I learnt that the hardest part of implementing a homotopical theorem prover
+  was the elaboration of pattern matching. [Pattern matching without K](https://jesper.sikanda.be/files/pattern-matching-without-K.pdf)
+  explains how to do this, and also made clear for me at what step
+  [UIP](https://ncatlab.org/nlab/show/uniqueness+of+identity+proofs) is used
+  during pattern matching --- when refining on indexes of a type.
+- [The garden of forking paths to reason about lazy programs](https://arxiv.org/abs/2103.07543) describes how to use
+  [Clairvoyant call by value](https://www.cs.nott.ac.uk/~pszgmh/clairvoyant.pdf) to reason about laziness in a convenient fashion.
+
+
+#### Computational group theory
+
+I was confused about what I should pick for my PhD topic, and I briefly flirted with the idea
+of working on computational group theory. I genuinely loved a bunch of the papers in this space,
+but alas, I couldn't see myself seriously working on these, due to the lack of a clear and focused
+problem that I coulf work on. I did read some cool papers regardless:
+
+- [A practical model for computing with matrix groups](https://www.sciencedirect.com/science/article/pii/S074771711400056X)
+  describes algorithms that form the crux of computational matrix group theory.
+- [A data structure for a uniform approach to computations with finite groups](https://dl.acm.org/doi/abs/10.1145/1145768.1145811)
+  provides a data structure that unifies algorithms for the two ways of representing groups computationally: (1) as subgroups
+  of the symmetric group, which is given as a [strong generating set](https://en.wikipedia.org/wiki/Strong_generating_set),
+  and (2) as matrices. These two approaches are radically different under the hood, but the paper provides a unified API to
+  deal with both.
+- [Computing in the monster](https://webspace.maths.qmul.ac.uk/r.a.wilson/pubs_files/MDurham.pdf) describes
+  how to perform computations in the monster group, a group that's so large that naively trying to write down elements would
+  take two gigabytes of memory. 
+
+#### Automated theorem proving
+
+I wound up reading a little on how to implement automated theorem provers (SAT/SMT solvers).
+This space is huge, and I only got a cursory glance at it from the [Decision procedures book](https://www.decision-procedures.org/).
+Even so, it was neat to learn the core ideas: 
+
+- [The DPLL algorithm for solving SAT](https://en.wikipedia.org/wiki/DPLL_algorithm)
+- [The CDCL strategy for refining SMT queries](https://en.wikipedia.org/wiki/Conflict-driven_clause_learning)
+- [The Nelson Oppen algorithm for mixing convex theories](https://web.stanford.edu/class/cs357/lecture11.pdf)
+- The [First Order Resolution](https://logic4free.informatik.uni-kiel.de/llocs/Resolution_(first-order_logic))
+  rule, which exploits
+  [refutation-completeness](https://cs.stackexchange.com/a/9096/122524) to
+  build a SAT solver,
+- The [Superposition Calculus](https://en.wikipedia.org/wiki/Superposition_calculus) for fast SAT solving, based on an extension
+  of resolution.
+
+#### Common Lisp
+
+I got turned off of writing scripts in Python because writing parallel
+processing is a pain, so I did the obvious thing: picked up common lisp!
+- I mostly learnt lisp by reading [practical common lisp](https://gigamonkeys.com/book/) and hanging out on `##lisp` on libera IRC.
+- I absolutely *loved* the REPL driven development enabled by
+  [`emacs`+`slime`](https://slime.common-lisp.dev/), and this has definitely
+  set a gold standard for how programming language interaction ought to feel like.
+- I was floored by some of the comon lisp projects I saw, such as [cepl](https://github.com/cbaggers/cepl), the code-eval-play loop
+  for rapid shader development! His [videos are super cool](https://www.youtube.com/playlist?list=PL2VAYZE_4wRKKr5pJzfYD1w4tKCXARs5y),
+  and I highly recommend them to anyone who wants to get a flavour of LISP.
+- I'd like to work through [Let over Lambda](https://letoverlambda.com/), a book that explains all sorts of macro shenanigans!
+
+
+#### Non fiction and fiction
+
+I wound up reading a bunch of sci-fi this year, since I wanted to work my way through
+the Nebula award winners. My favourites were:
+
+- All Clear by Connie  Willis paints a great picture of the blitz during WW2. It feels surreal to have
+  visited london and edinburgh and glasgow and all the other places that are name dropped in the book,
+  it felt visceral.
+- The [Annihilation series](https://en.wikipedia.org/wiki/Annihilation_(VanderMeer_novel)), which has
+  the creepiest vibes in a book I've ever read.
+- [Accelerando](https://en.wikipedia.org/wiki/Accelerando), which had a really neat take on a resolution of the Fermi Paradox,
+  and just an overall fun tone.
+- [The book of all skies](https://www.gregegan.net/ALLSKIES/AllSkies.html) by
+  Greg egan, which as usual explores a neat universe, this time with some kind
+  of monodromy.
+- Honorary mention to [Perfect State by Brandon Sanderson](https://www.goodreads.com/book/show/25188109-perfect-state), a cute novella
+  with a really neat twist at the end I didn't see coming.
+
+As usual, I was reading some more sciencey things, this time on chemistry and nanotechnology,
+which were the books
+[Ignition! An informal history of rocket liquid propellants](https://www.amazon.co.uk/Ignition-Informal-Propellants-University-Classics/dp/0813595835),
+[Inventing Temperature](https://global.oup.com/academic/product/inventing-temperature-9780195337389?cc=gb&lang=en&), and
+[Engines of creation](https://en.wikipedia.org/wiki/Engines_of_Creation).
+
+
+#### Looking Back
+
+When I started writing this blog post, I felt that I hadn't learnt as much as I
+did in [2019](https://bollu.github.io/stuff-i-learnt-in-2019.html). However, I
+now see that I've learnt a bunch of things, just in a small domain (proof
+assistants / type theory / logic). To be honest, this makes me kind of sad; I
+miss learning different things, and I feel like I haven't gotten closer towards
+some of my life goals of things I want to learn --- the standard model of
+particle physics, the proof of resolution of singularities, and other such
+goals. I'm going to try to make sure 2023 is more diverse in what I read,
+to make sure I'm happy and sane, while continuing to become an expert in proof assistants `:)`. With that said,
+I'd like to set concrete goals for 2023:
+
+- Learn enough QFT to know what the hell renormalization is.
+- Learn enough QED to be able to explain what a feynmann path integral is.
+- Get good enough at juggling to be able to juggle three balls consistenty.
+- Write [my own proof kernel](https://github.com/bollu/qoc) for Lean.
+- Implement and write the paper about elaboration of mutual inductives for
+  Lean, and start thinking about coinductives.
+- Continue working on Lean's LLVM backend, and make Lean the fastest functional
+  programming language in the block.
+- Learn to cook a proper three course meal consistently.
+- Get good enough at [djembe](https://en.wikipedia.org/wiki/Djembe) to play
+  [kuku](https://afrodrumming.com/djembe-rhythm-kuku/) consistently.
+- Get good enough at the guitar to strum Snow and Can't Stop well enough.
+- Build a routine for shuffle dancing, so that I can dance consistently to a song.
+- Learn to rock climb well enough that I can do V4's consistently.
+
+That looks like an ambitious list, and I'm glad it is. I'd like my years to be full of
+interesting challenges and neat things I can point to at the end of year! With that said, happy new year!
+
+
+# You don't know jack about data races
+
+#### Toy example
+
+- Consider a function `void incr() { global += 1; }`.
+- On running this on multiple thread, the final value of `incr` can be too low.
+- It can even be a constant! Thread 1 reads the value of `global(0)`, gets suspended, then writes `global = 0 + 1`
+  at the end of the execution!
+- It can even be *larger* than correect. If a 128 bit number is stored as two
+  64 bit registers, data races could cause the high and low parts to desync,
+  causing the final count to be off. Assume we have two decimal bits `lo, hi`.
+  If we have `08` (`hi=0, lo=8`) and both threads try to update, one thread
+  wants to write `09` and the other thread which writes after this wants to
+  write `10`. An interleaving can cause `19`, which is way larger than `10`.
+
+
+#### Rules of Racy Programs
+
+- Sequentual consistency: A program is executed by interleaving steps from each thread.
+  Logically the computer executes a step from one thread, then picks another
+  thread, or possibly the same one, executes its next step, and so on.
+- Real machines sometimes have non-sequentially consistent semantics, due to assignments
+  being visible to threads out of order. (QUESTION: This is at the C level. But if we view it at
+  the hardware level, it's still sequentially consistent?)
+- All modern languages promise sequential consistency for programs **without data races**.
+- What is a data race?
+- Two memory operations **conflict** if they access the same location and at least one of them is a write.
+- Two **conflicting data operations** form a **data race** if they are from different threads and
+  can be executed "at the same time". But wen is tis possible? Clearly, this depends on the semantics
+  of parallel computation, which we are trying to define in the first place!
+- We break this circularity by considering only **sequentially consistent** executions.
+- Two **conflicting data operations** form a **data race** iff (definition)
+  one executes immediately after the other in that execution’s interleaving.
+- Now we can say that a program is data-race-free if none of its sequentially
+  consistent executions has a data race.
+- We define this in terms of **conflicting data operations** to exclude synchronization
+  operations on mutexes. Synchronization operations do not constitute a data race even if they appear
+  next to each other in the interleaving.
+- Thus, the programming model is:
+
+1. Write code such that data races are impossible, assuming that the
+   implementation follows sequential consistency rules.
+2. The implementation then guarantees sequential consistency for such code.
+
+#### Counter-intuitive implications
+
+- Consider an example where the initial state is that `x,y` are false.
+
+```
+P1: if(x) { y = true; }
+P2: if(y) { x = true; }
+```
+
+- There is no sequentially consistent set of executions where both assignments are executed.
+
+
+#### Higher Level
+
+- [Article](https://www.cs.helsinki.fi/group/nodes/kurssit/rio/papers/adve_boehm_2012.pdf)
+
+
+
+# Training a custom model for Lean4
+
+- Bert: 111m (0.1BN)
+- Gato : 1.2 BN
+- GPT 2: 1.5 billion
+- DALL-e: 12 billion
+- Codex: 12 billion
+- GPT 3: 172 BN
+- Leela zero: 2 GB --- 0.5 million
+- Jax
+- [GPT 3 on CS-2](https://www.youtube.com/watch?v=paAF8eaEqsM)
+- [Zero algorithm](https://arxiv.org/pdf/1910.02054.pdf)
+- composer versus deepspeed versus fairscale
+- linformer for lean4? can attend to the entire file? 10^6 attention from 10^3, a
+  million. That's number of lines in mathlib. But how do we generate correct proofs of weird looking
+  compilers statements? what do we start with?
+
+# Stratified synthetsis
+
+> The key to our results is stratified
+> synthesis, where we use a set of instructions whose semantics
+> are known to synthesize the semantics of additional instruc-
+> tions whose semantics are unknown. As the set of formally
+> described instructions increases, the synthesis vocabulary
+> expands, making it possible to synthesize the semantics of
+> increasingly complex instructions
+
+- [Paper reference](https://dl.acm.org/doi/pdf/10.1145/2908080.2908121)
+
+
+# Libtpu
+- [XLA operation set](https://www.tensorflow.org/xla/operation_semantics)
+- [Reference](https://github.com/tensorflow/tensorflow/blob/6957c7befa1db02b7f5f4ecc98e44d6470a7f992/tensorflow/compiler/xla/python/tpu_driver/client/libtpu.h#L118)
+
+
+# Mutual recursion elaboration in Lean
+
+Lean has four backends for elaborating mutual definitions.
+
+-   Lean, given a mutual def block, can compile to (1) partial, which is
+    just an opaque blob in the kernel, (2) primitive recursion on an
+    inductive type via `recOn`, (3) well founded induction via `WF`,
+    and (4) `brecOn` + `casesOn`, which allows us to split the recursion
+    into the pattern matching part (casesOn) and the recursion part
+    (brecOn).
+
+-   (2) `recOn` is primitive recursion, and is synthesized by the
+    kernel for every inductive declaration. It is often complicated to
+    elaborate pattern matching syntax into a primitive recursor, and is
+    a research question for the mathematically correct, complete
+    solution which handles all cases. This is the lowest level of
+    recursion in Lean, and supports good definitional equality. However,
+    the code generator does not currently generate code for `recOn` of
+    mutal inductives, and thus cannot be executed. When working with
+    objects that live in `Type`, it is a good idea to use `recOn` right
+    now, since (a) it reduces correctly, and (b) has no computational
+    content.
+
+-   (3) `WF` is well founded recursion on a terminating metric, which
+    allows one to express functions more easily than primitive
+    recursion. Currently, mutual recursion elaborates into `WF`. The
+    drawback is that it has poor definitional equality, and thus breaks
+    a lot of convenient reasoning. It has support in the code generator,
+    since the code generator supports evaluating `recOn` of non-mutual
+    definitions (which `WF` is).
+
+-   As an example of where `WF` is more convenient than `recOn`, think
+    of ackermann in first order logic. It's not primitive recursive, but
+    does terminate by well founded induction on the lexicographic metric
+    of the naturals. Another example is the hydra tree, which is a crazy
+    game which is known to be finite, but any proof system that can
+    prove the game is finite has at least as much proof strength as PA
+    (Kirby and Paris).
+
+-   (4) `brec` + `casesOn` which is used to elaborate inductive
+    predicates. `brec` is bounded recursion, which allows using
+    $k$-inductoin: using inductive hypothesis upto $k$ children behind
+    you. Useful for encoding things like fibonacci, where for a
+    $S(S(n))$ depends on $S(n)$ and $n$ (2-induction). This way of
+    elaborating mutual inductives splits the matching part (`casesOn`)
+    from the indction part (`brecOn`), and is thus more convenient to
+    elaborate into than a lower level `recOn`. There are some bugs
+    luring in the lean elaborator for inductive predicates, so this is
+    not fully figured out.
+
+-   Coq gets away with this stuff, because coq has `fix` + `match` in
+    the kernel, and they have guardedness checks *in the kernel* which
+    checks that the fix is structurally decreasing or whatever. This is
+    complicated, and has led to many soundness bugs in the kernel. Thus,
+    Lean wishes to avoid this.
+
+-   Thus, in an ideal world, we would improve the elaborator to
+    elaborate everything into `rec`, and would teach the code generator
+    how to code generate mutual `rec`.
+
+#### Simp Bottlenecks
+
+Benchmarking simp with perf showed us that the bottleneck in one example
+was in `congr`, which recursively calls `simp` and `dsimp` (dsimp is a
+variant of simp which preserves definitional equality). This needs to be
+investigated further.
+
+Another bottleneck could be that simp processes bottom-up. This can lead
+to quadratic behaviour on certain tests. For example, consider:
+
+```
+(not (and A  B) = (or (not A) (not B)
+```
+
+We denote the currently processed node with square brackets `[.]` If we
+proceed top-down, see that we would need a quadratic number of steps,
+because we need a linear number of steps to reach the top from the
+bottom, where we push down the `not`. We must repeat this till fixpoint.
+
+```
+(not (and (and  a   b )  c ))
+(not (and (and  a   b ) [c]))
+(not (and (and  a  [b])  c))
+(not (and (and [a]  b)   c))
+(not (and [and  a   b]   c))
+(not [and (and  a   b)   c])
+[not (and (and  a   b)   c]
+;; TRANSFORM=> 
+(or (not  (and a b) (not c))
+;; ...
+```
+
+#### Simp lemma generation
+
+If we define functions in a mutual def block, and we tag these functions
+as `simp`, then simp must generate simp lemmas. If we have a definition
+of the form:
+
+```
+inductive X where
+| X1 | X2 .. | Xn
+
+def foo: X -> X -> Bool
+| X1, _ => True
+| _, X2 => False
+```
+
+the theorems will be:
+
+```
+theorem foo.simp1 (x x': X) (h: x = X1): foo x x' = True.
+theorem foo.simp2 (x x': X) (h: x /= X1) (h': x' = X2): foo x x' = False.
+```
+
+This could be very expensive in case we have complicated mutual
+definitions, since Lean can blow up if we have many inductives.
+
+
+# Subject reduction in Lean
+
+Not exactly. Subject reduction is the property that if you replace a subterm of
+a term with a defeq one (especially if the subterm is the result of reduction),
+the resulting big term remains typecheckable. This fails in lean because if you
+reduce some of the identities in @id A (@id B (@id C t)) you can deduce
+transitivity of defeq, so by applying one of the counterexamples to
+transitivity you get a term such that reducing the internal identity functions
+results in another term that doesn't typecheck
+
+
+```
+variables {A : Type} {R : A → A → Prop} (x : A) (h : acc R x)
+
+def my_rec : ∀ x : A, acc R x → ℕ := @acc.rec A R (λ _, ℕ) (λ _ _ _, 1)
+def inv {x : A} (h : acc R x) : acc R x := acc.intro x (λ y h', acc.inv h h')
+example : inv h = h := rfl -- ok
+#reduce my_rec x (inv h) -- 1
+#reduce my_rec x h -- acc.rec _ h
+
+-- failure of transitivity
+#check (rfl : my_rec x (inv h) = 1) -- ok
+#check (rfl : inv h = h) -- ok
+#check (rfl : my_rec x (inv h) = my_rec x h) -- ok
+#check (rfl : my_rec x h = 1) -- fail
+
+-- failure of SR:
+#check @id (my_rec x h = 1) (@id (my_rec x (inv h) = 1) rfl) -- ok
+#check @id (my_rec x h = 1) (@id (1 = 1) rfl) -- fail
+
+-- fooling tactics into producing type incorrect terms:
+def T (X : 1 = my_rec x h → Type) :
+  X (@id (1 = my_rec x (inv h)) rfl) = X (@id (1 = my_rec x (inv h)) rfl) :=
+by { dsimp, refl }
+-- kernel failed to type check declaration 'T' this is usually due to a buggy tactic or a bug in the builtin elaborator
+-- elaborated type:
+--   ∀ {A : Type} {R : A → A → Prop} (x : A) (h : acc R x) (X : 1 = my_rec x h → Type), X _ = X _
+-- elaborated value:
+--   λ {A : Type} {R : A → A → Prop} (x : A) (h : acc R x) (X : 1 = my_rec x h → Type), id (eq.refl (X rfl))
+-- nested exception message:
+-- type mismatch at application
+--   X rfl
+-- term
+--   rfl
+-- has type
+--   1 = 1
+-- but is expected to have type
+--   1 = my_rec x h
+```
+
+
+# Big list of GNU Binutils
 
 - `nm` to list all symbols in an object file.
 
-# Lean4 mutual inductives
+#### ld
+- [trace-symbol](https://sourceware.org/binutils/docs/ld/Options.html#index-symbol-tracing) to trace symbol information.
 
-- casesOn
-- recOn
-- well founded induction
-- accessibility relation
-
-
-# Stuff I learnt in 2022
-
-- Fibered categories.
-- Lean metaprogramming.
-- CMake.
-- Axiom K and why it's necessary for dependently typed elaboration.
-- Mario's thesis, models of dependently typed programming languages.
-- Equality saturation and its implementation [TODO].
-- Case trees, recursors, distinctions between them.
-- Tiny separation logic implementation.
-- Decision procedure for ...
-- Book on SMT solvers
-- Book on fuzing
 
 
 
@@ -109,7 +630,7 @@ K refl = refl
 - Or, lean knows about the sizes of types.
 - See that the below proof script shows that 
 
-```lean
+```
 inductive one: Type
 | o1
 
@@ -144,13 +665,13 @@ exact h2 (h1 two.t1 two.t2)
 
 # Type formers need not be injective
 
-```lean
+```
 abbrev Powerset (X: Type) := X -> Prop -- the powerset of a type is the collection of all subsets.
 ```
 
 # There cannot be a type of size the universe:
 
-```lean
+```
 axiom CODE : Type -- assume we have CODEs for types...
 axiom decode : CODE -> Type -- and a decoding...
 axiom decode_surjective: ∀ (t: Type), { code: CODE // decode code = t } -- which is surjective on types.
@@ -525,7 +1046,6 @@ b1 b2 b3
 - TODO
 
 
-
 # Paredit via adjoints
 
 - We posit that text editor movements ought to be endofunctions, and complementary keybinds
@@ -537,9 +1057,6 @@ b1 b2 b3
   parent, moving to the left and right sibling, etc.
 - Hopf algebras and rooted trees (https://personal.math.ubc.ca/~thomas/TeXthings/HopfAlgebras-1.1.pdf)
 
-# Hopf Algebras [TODO]
-
-- I wish to study hopf algebras sometime, unclear when!
 
 # Less than versus Less than or equals over Z
 
@@ -568,15 +1085,6 @@ b1 b2 b3
 - See that if $Y = 1$, then a partial function $X \to 1$ carries only the data of $D \hookrightarrow X$, giving us
   subobjects.
 
-
-# Solid State Chemistry OCW
-
-- I watch this when I have dinner for lulz.
-
-## Lecture 1
-
-- 
-- [Youtube link](https://www.youtube.com/watch?v=Ao41FrJFgvQ&list=PLUl4u3cNGP63z5HAguqleEbsICfHgDPaG)
 
 # Post's Problem [WIP]
 
@@ -617,8 +1125,6 @@ http://math.andrej.com/wp-content/uploads/2006/05/kleene-tree.pdf
 
 # Setting up windows box on google cloud
 - https://cloud.google.com/compute/docs/connect/windows-ssh
-
-# 
 
 # Proof that there is a TM whose halting is independent of ZFC
 
@@ -951,8 +1457,10 @@ a   r
 - We want all triplets $(p, \tau, \tau')$ where $\tau, \tau' \in \textttt{NamedSet}(M)$such that
   $p$ forces $\tau^G = \tau'^G$.
 - Recall that $p$ forces $\tau^G = \tau'^G$ means: $\tau^G = \tau'^G$ **if and only if** $p \in G$.
-- Thus, $p$ must be such that it is **NECESSARILY POSSIBLY TRUE** that every element $\sigma^G \in \tau^G$ must also be such that $\sigma^G \in \tau'^G$,
-  and also vice verse: every $\sigma'^G \in \tau'^G% must be such that $\sigma'^G \in \tau^G$.
+- Thus, $p$ must be such that it is **NECESSARILY POSSIBLY TRUE** that every
+  element $\sigma^G \in \tau^G$ must also be such that $\sigma^G \in \tau'^G$,
+  and also vice verss: every $\sigma'^G \in \tau'^G$ must be such that
+  $\sigma'^G \in \tau^G$.
 - Let us prove the forward direction, where we want to force $\sigma \in \tau$ implies $\sigma \in tau'$.
 - Whenever $q \geq p$,  and $(\sigma, q) \in \tau$, there must be an $r \geq q$ such that $(\sigma^G \in \tau')$.
 - We might be tempted to say that $r$ implies $(sigma^G \in \tau'^G)$ iff $(\sigma, r) \in \tau'$, but this is too strong.
@@ -2472,27 +2980,22 @@ inductive List (a: Type): Type where
         ^^^^^^^ -- not allowed!
 ```
 
-- In hindsight, this makes sense, as the parameter really is a trick
-  to represent, well, *parametric* polymorphism.
-  
+- In hindsight, this makes sense, as the parameter really is a trick to
+  represent, well, *parametric* polymorphism.
 
-
-# Cut elimination
-
-https://academic.oup.com/book/42130/chapter/356165209
 
 # LCNF
 
-- `let x := v in e ~= (\x -> e) v
+- `let x := v in e ~= (\x -> e) v`
 
-```lean
+```
 let x : Nat := 2
 let xarr : Vec Int x := Nil
 let 2arr : Vec Int 2 := Nil
 in rfl : xarr = 2arr
 ```
 
-```lean
+```
 (\x ->
    let xarr : Vec Int x := Nil
    let 2arr : Vec Int 2 := Nil
@@ -2501,7 +3004,7 @@ in rfl : xarr = 2arr
 ```
 
 
-```lean
+```
 Erased a ~ Erased b
 (\x ->
    let xarr : Vec Int (Erased x) := Nil
@@ -2604,12 +3107,10 @@ does not work due to the presence of `U(T)`.
 ##### Computational content
 - Bare inductives: primitive recursion principle `fix`, kernel has support for `fix` reduction (iota)
 - Nested inductives: primitive recursion principle using `fix` and `match`.
-  Kernel has support for `fix` reduction, and `match` is also known by the
-  kernel.
+  Kernel has support for `fix` reduction, and `match` is also known by the kernel.
 - Mutual inductives: generates 'simple' recursion principles for each element of the mutual.
-  Need to use the `scheme` command to get the full recursion principle. 
-  Primitive recursion principle using `fix` and `match`.
-  
+- Need to use the `scheme` command to get the full recursion principle. 
+- Primitive recursion principle using `fix` and `match`.
 
 #### Lean
 
@@ -43316,9 +43817,10 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
-- When leaving a party, Brahms is reported to have said ‘If there is anyone
-  here whom I have not offended tonight, I beg their
+- A simulation of a hurricane is not a real hurricane, but a simulation of a chess game *is* a real chess game.
 
+- When leaving a party, Brahms is reported to have said ‘If there is anyone
+  here whom I have not offended tonight, I beg their pardon.
 
 - Pirates of the caribbean: Take what you can, give nothing back.
 

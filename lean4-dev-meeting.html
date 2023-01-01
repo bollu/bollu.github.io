@@ -1,0 +1,71 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='alternate' type='application/rss+xml' href='feed.rss' title='A universe of sorts'/><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Sans'; src: url('/static/Exo2-Regular.ttf');}@font-face {font-family: 'Blog Serif'; src: url('/static/Revans-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background: linear-gradient(to right, #1565C0 0%, #1565C0 50%, #E91E63 50%,   #E91E63 99%);  color: #000000;  font-family: Tahoma, 'Blog Serif', serif;  font-size: 14px;  margin-top: 0px;  max-width: 100%; overflow-x: hidden; }
+h1, h2, h3, h4, h5 { font-family: Tahoma, 'Blog Mono', monospace; }img { display:block; width: 100%; max-width: 800px; height: auto }.container { overflow-x: auto; overflow-y: hidden;  max-width: 80ex; text-align: justify;              margin-top: 0px; height: 100%; min-height: 100%;             padding-left: 50px; padding-right: 50px; background: #FFFFFF;}@media (max-width: 480px) {   .container { margin-left: 1%; margin-right: 1%; }  body { font-size: 30px; }  } @media (max-width: 1024px) {  .container { margin-left: 1%; margin-right: 1%; }  body { font-size: 30px; }}@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: 20%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
+pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=lean4-dev-meeting href='#lean4-dev-meeting'> § </a><span class='centered'> Lean4 Dev Meeting </h2> 
+ <ul><li><span class='centered'><span class='centered'> Mathport uses matli4 to move tactics. </li><li><span class='centered'><span class='centered'> Mathlib4 has syntax definitions ofr every single tactic that exists in  <code class='inline'>mathlib</code>. </li><li><span class='centered'><span class='centered'> These only exist as syntax so far. We need to port this. </li><li><span class='centered'><span class='centered'> The goal for this week is to have as many as possible knocked off. </li></ul> 
+ <h4><a id=macro href='#macro'> § </a><span class='centered'> Macro </h4>
+ <ul><li><span class='centered'><span class='centered'> A tactic that expands to another tactic. </li><li><span class='centered'><span class='centered'> Example:  <code class='inline'>_</code> tactic. This expands into  <code class='inline'>({})</code>, which shows you the current state. </li><li><span class='centered'><span class='centered'>  <code class='inline'>macro_rules</code> need a piece of  <code class='inline'>Syntax</code>, and it expands into another tactic.  </li></ul> 
+ <pre><code>-- | do the iff.rfl as well.
+macro_rules | `(tactic| rfl => `(tactic| exact Iff.rfl)
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'> Closed syntax categories:  <code class='inline'>syntax rcasesPatLo := ...</code>. </li><li><span class='centered'><span class='centered'> Open syntax categories:  <code class='inline'>syntax X</code>. </li></ul> 
+ <h4><a id=how-to-collate-info href='#how-to-collate-info'> § </a><span class='centered'> How to collate info? </h4>
+ <ul><li><span class='centered'><span class='centered'> Use  <code class='inline'>macro</code> to define syntax + macro </li><li><span class='centered'><span class='centered'> Use  <code class='inline'>elab</code> to define syntax + elaborator together. </li><li><span class='centered'><span class='centered'> Add command to list all places where something was extended. </li><li><span class='centered'><span class='centered'> Add information into docstrings. </li><li><span class='centered'><span class='centered'>  <code class='inline'>match_target</code>.  </li></ul> 
+ <h4><a id=mapsto-arrow href='#mapsto-arrow'> § </a><span class='centered'>  <code class='inline'>Mapsto</code> arrow </h4> 
+ <ul><li><span class='centered'><span class='centered'>  <code class='inline'>(x: α) \mapsto e</code>: maybe annoying to parse. </li><li><span class='centered'><span class='centered'>  <code class='inline'>\lambda (x: \alpha) \mapsto e</code>: easy to parse, but mathematicians don't know what lambda is. </li></ul> 
+ <h4><a id=ext-tactic href='#ext-tactic'> § </a><span class='centered'>  <code class='inline'>ext</code> tactic </h4> 
+ <ul><li><span class='centered'><span class='centered'> implemented as a macro tactic, which uses an  <code class='inline'>elab</code> tactic. </li></ul> 
+ <h4><a id=colgt href='#colgt'> § </a><span class='centered'>  <code class='inline'>colGt</code></h4> 
+ <ul><li><span class='centered'><span class='centered'>  <code class='inline'>syntax "ext"</code></li><li><span class='centered'><span class='centered'> Lean4 is whitespace sensitive, like python.  <code class='inline'>colGt</code> says that we can have the following <span class='centered'>syntax on a column that is greater than the current line. </li></ul> 
+ <pre><code>ext
+  x -- parsed as part of `x`.
+  y -- parsed as part of `y`.
+z -- is not parsed as part of `x y`.
+</code></pre>
+ <ul><li><span class='centered'><span class='centered'> If in parens, we don't need colGt, because we want to allow something like: </li></ul> 
+ <pre><code>ext (x
+ y) -- should parse.
+</code></pre>
+ <h4><a id=ppspace href='#ppspace'> § </a><span class='centered'>  <code class='inline'>ppSpace</code></h4> 
+ <ul><li><span class='centered'><span class='centered'> Used when pretty printing a tactic. </li></ul> 
+ <h4><a id=scoped-syntax href='#scoped-syntax'> § </a><span class='centered'> Scoped syntax </h4>
+ <ul><li><span class='centered'><span class='centered'>  <code class='inline'>scoped syntax "ext_or_skip: .. </code>. </li><li><span class='centered'><span class='centered'> This declares a syntax that is valid only for the current section/namespace. </li><li><span class='centered'><span class='centered'> Trailing percent  <code class='inline'>ext_proof%</code> is an indicator that it is a term macro / term elaboration. </li><li><span class='centered'><span class='centered'> Protected: identifier cannot appear without prefixing namespaces. </li></ul> 
+ <h4><a id=trivia href='#trivia'> § </a><span class='centered'> Trivia </h4>
+ <ul><li><span class='centered'><span class='centered'>  <code class='inline'>{..}</code> pattern matches on a struct. </li></ul> 
+ <h4><a id=tactic-development-trace href='#tactic-development-trace'> § </a><span class='centered'> Tactic development:  <code class='inline'>Trace</code></h4>
+ <ul><li><span class='centered'><span class='centered'> Create a new file  <code class='inline'>Mathlib/Tactic/Trace.lean</code></li><li><span class='centered'><span class='centered'> Move the syntax line from  <code class='inline'>./Mathlib/Mathport/Syntax.lean</code>  into  <code class='inline'>Mathib/Tactic/Trace.lean</code>. </li><li><span class='centered'><span class='centered'> On adding a file, add it to  <code class='inline'>Mathlib.lean</code>. So we add  <code class='inline'>import Mathlib.Tactic.Trace</code></li><li><span class='centered'><span class='centered'> We also want to re-import the syntax into  <code class='inline'>Mathlib/Mathport/Syntax.lean</code>. </li><li><span class='centered'><span class='centered'> We have now moved  <code class='inline'>trace</code> into its own file and hooked into the build system and extension. </li><li><span class='centered'><span class='centered'> The first thing to do is to find out what the tactic even does. </li><li><span class='centered'><span class='centered'> Go to  <a href=https://leanprover-community.github.io/mathlib_docs/tactics.html#trace><span class='centered'><code class='inline'>trace</code></a> at the mathlib docs. </li></ul> 
+ <pre><code>-- Tactic.lean
+import Lean
+open Lean Meta Elab
+
+syntax (name := trace) "trace " term : tactic
+
+elab "foo" : tactic => do
+  -- `TacticM Unit` expected
+  logInfo "hi" 
+
+</code></pre> 
+ <pre><code>open Lean Meta Elab Tactic ~=
+open Lean
+open Lean.Meta
+open Lean.Elab
+open Lean.Elab.Tactic
+</code></pre>
+ <ul><li><span class='centered'><span class='centered'> TacticM is a  <code class='inline'>MonadRef</code>, which is aware of source spans to report the errors. <span class='centered'>so we can write: </li></ul> 
+ <pre><code>elab "foo" : tactic => do
+  logInfo "hi"
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'> We can use  <code class='inline'>withRef</code> to control the current source span where errors <span class='centered'>are reported. </li></ul> 
+ <pre><code>elab tk:"foo" val:term : tactic => do
+  withRef tk (logInfo val)
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'> We want to evaluate the  <code class='inline'>val:term</code>, because otherwise, it literally prints the syntax <span class='centered'>tree for things like  <code class='inline'>(2 + (by trivial))</code>. </li><li><span class='centered'><span class='centered'> Use  <code class='inline'>elabTerm</code> to elaborate the syntax into a term. </li><li><span class='centered'><span class='centered'>  <code class='inline'>set_option trace.Elab.definition true in ...</code> which printso ut the declarations that are being <span class='centered'>sent to the kernel. </li><li><span class='centered'><span class='centered'>  <code class='inline'>elab</code> is  <code class='inline'>syntax</code> +  <code class='inline'>elab_rules</code> together, just like  <code class='inline'>macro</code> is  <code class='inline'>syntax</code> +  <code class='inline'>macro_rules</code> together. </li><li><span class='centered'><span class='centered'> Create a test file  <code class='inline'>test/trace.lean</code>. Import the tactic, and write some examples. </li><li><span class='centered'><span class='centered'> Recompile, and check that the test works. </li><li><span class='centered'><span class='centered'> How do we check that our port works? </li></ul> 
+ <h4><a id=reducible href='#reducible'> § </a><span class='centered'> Reducible </h4> 
+ <blockquote><span class='centered'> To clarify, @ [reducible ] marks the definition as reducible for typeclass <span class='centered'> inference specifically. By default typeclass inference avoids reducing because <span class='centered'> it would make the search very expensive. </blockquote> 
+ <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

@@ -5,9 +5,699 @@
 <link>https://bollu.github.io/</link>
 <description>A universe of Sorts</description>
   <item>
-    <title> Logical relations </title>
-    <guid>https://bollu.github.io/logical-relations.html</guid>
-    <link>https://bollu.github.io/logical-relations.html</link>
+    <title> Stuff I learnt in 2022 </title>
+    <guid>https://bollu.github.io/stuff-i-learnt-in-2022.html</guid>
+    <link>https://bollu.github.io/stuff-i-learnt-in-2022.html</link>
+  </item>
+  <item>
+    <title> You don &apos; t know jack about data races </title>
+    <guid>https://bollu.github.io/you-dont-know-jack-about-data-races.html</guid>
+    <link>https://bollu.github.io/you-dont-know-jack-about-data-races.html</link>
+  </item>
+  <item>
+    <title> Training a custom model for Lean4 </title>
+    <guid>https://bollu.github.io/training-a-custom-model-for-lean4.html</guid>
+    <link>https://bollu.github.io/training-a-custom-model-for-lean4.html</link>
+  </item>
+  <item>
+    <title> Stratified synthetsis </title>
+    <guid>https://bollu.github.io/stratified-synthetsis.html</guid>
+    <link>https://bollu.github.io/stratified-synthetsis.html</link>
+  </item>
+  <item>
+    <title> Libtpu </title>
+    <guid>https://bollu.github.io/libtpu.html</guid>
+    <link>https://bollu.github.io/libtpu.html</link>
+  </item>
+  <item>
+    <title> Mutual recursion elaboration in Lean </title>
+    <guid>https://bollu.github.io/mutual-recursion-elaboration-in-lean.html</guid>
+    <link>https://bollu.github.io/mutual-recursion-elaboration-in-lean.html</link>
+  </item>
+  <item>
+    <title> Subject reduction in Lean </title>
+    <guid>https://bollu.github.io/subject-reduction-in-lean.html</guid>
+    <link>https://bollu.github.io/subject-reduction-in-lean.html</link>
+  </item>
+  <item>
+    <title> Big list of GNU Binutils </title>
+    <guid>https://bollu.github.io/big-list-of-gnu-binutils.html</guid>
+    <link>https://bollu.github.io/big-list-of-gnu-binutils.html</link>
+  </item>
+  <item>
+    <title> Automatically building a JIT compiler </title>
+    <guid>https://bollu.github.io/automatically-building-a-jit-compiler.html</guid>
+    <link>https://bollu.github.io/automatically-building-a-jit-compiler.html</link>
+  </item>
+  <item>
+    <title> Model theory </title>
+    <guid>https://bollu.github.io/model-theory.html</guid>
+    <link>https://bollu.github.io/model-theory.html</link>
+  </item>
+  <item>
+    <title> Mathematical logic: real closed fields </title>
+    <guid>https://bollu.github.io/mathematical-logic-real-closed-fields.html</guid>
+    <link>https://bollu.github.io/mathematical-logic-real-closed-fields.html</link>
+  </item>
+  <item>
+    <title> Sturm &apos; s theorem </title>
+    <guid>https://bollu.github.io/sturms-theorem.html</guid>
+    <link>https://bollu.github.io/sturms-theorem.html</link>
+  </item>
+  <item>
+    <title> CMake  configure_file</title>
+    <guid>https://bollu.github.io/cmake-configurefile.html</guid>
+    <link>https://bollu.github.io/cmake-configurefile.html</link>
+  </item>
+  <item>
+    <title> List symbols in a file </title>
+    <guid>https://bollu.github.io/list-symbols-in-a-file.html</guid>
+    <link>https://bollu.github.io/list-symbols-in-a-file.html</link>
+  </item>
+  <item>
+    <title> Axiom K versus UIP </title>
+    <guid>https://bollu.github.io/axiom-k-versus-uip.html</guid>
+    <link>https://bollu.github.io/axiom-k-versus-uip.html</link>
+  </item>
+  <item>
+    <title> Linear vs uniqueness types </title>
+    <guid>https://bollu.github.io/linear-vs-uniqueness-types.html</guid>
+    <link>https://bollu.github.io/linear-vs-uniqueness-types.html</link>
+  </item>
+  <item>
+    <title> Better shell history with atuin </title>
+    <guid>https://bollu.github.io/better-shell-history-with-atuin.html</guid>
+    <link>https://bollu.github.io/better-shell-history-with-atuin.html</link>
+  </item>
+  <item>
+    <title> Better git diff with delta </title>
+    <guid>https://bollu.github.io/better-git-diff-with-delta.html</guid>
+    <link>https://bollu.github.io/better-git-diff-with-delta.html</link>
+  </item>
+  <item>
+    <title> Any model of lean must have all inductives </title>
+    <guid>https://bollu.github.io/any-model-of-lean-must-have-all-inductives.html</guid>
+    <link>https://bollu.github.io/any-model-of-lean-must-have-all-inductives.html</link>
+  </item>
+  <item>
+    <title> Index over the past, fiber over the future </title>
+    <guid>https://bollu.github.io/index-over-the-past-fiber-over-the-future.html</guid>
+    <link>https://bollu.github.io/index-over-the-past-fiber-over-the-future.html</link>
+  </item>
+  <item>
+    <title> Kripke style logical relations (TODO) </title>
+    <guid>https://bollu.github.io/kripke-style-logical-relations-todo.html</guid>
+    <link>https://bollu.github.io/kripke-style-logical-relations-todo.html</link>
+  </item>
+  <item>
+    <title> Impredicativity </title>
+    <guid>https://bollu.github.io/impredicativity.html</guid>
+    <link>https://bollu.github.io/impredicativity.html</link>
+  </item>
+  <item>
+    <title> Type formers need not be injective </title>
+    <guid>https://bollu.github.io/type-formers-need-not-be-injective.html</guid>
+    <link>https://bollu.github.io/type-formers-need-not-be-injective.html</link>
+  </item>
+  <item>
+    <title> There cannot be a type of size the universe: </title>
+    <guid>https://bollu.github.io/there-cannot-be-a-type-of-size-the-universe.html</guid>
+    <link>https://bollu.github.io/there-cannot-be-a-type-of-size-the-universe.html</link>
+  </item>
+  <item>
+    <title> The dependently typed expression problem </title>
+    <guid>https://bollu.github.io/the-dependently-typed-expression-problem.html</guid>
+    <link>https://bollu.github.io/the-dependently-typed-expression-problem.html</link>
+  </item>
+  <item>
+    <title> Rotation distance as a metric on binary trees </title>
+    <guid>https://bollu.github.io/rotation-distance-as-a-metric-on-binary-trees.html</guid>
+    <link>https://bollu.github.io/rotation-distance-as-a-metric-on-binary-trees.html</link>
+  </item>
+  <item>
+    <title> Motivation for modal logic </title>
+    <guid>https://bollu.github.io/motivation-for-modal-logic.html</guid>
+    <link>https://bollu.github.io/motivation-for-modal-logic.html</link>
+  </item>
+  <item>
+    <title> Scones </title>
+    <guid>https://bollu.github.io/scones.html</guid>
+    <link>https://bollu.github.io/scones.html</link>
+  </item>
+  <item>
+    <title> Presheaf models of type theory </title>
+    <guid>https://bollu.github.io/presheaf-models-of-type-theory.html</guid>
+    <link>https://bollu.github.io/presheaf-models-of-type-theory.html</link>
+  </item>
+  <item>
+    <title> Weighted limits via collages </title>
+    <guid>https://bollu.github.io/weighted-limits-via-collages.html</guid>
+    <link>https://bollu.github.io/weighted-limits-via-collages.html</link>
+  </item>
+  <item>
+    <title> Disjoint Coproduct </title>
+    <guid>https://bollu.github.io/disjoint-coproduct.html</guid>
+    <link>https://bollu.github.io/disjoint-coproduct.html</link>
+  </item>
+  <item>
+    <title> Universal coproduct / stable under pullback </title>
+    <guid>https://bollu.github.io/universal-coproduct-stable-under-pullback.html</guid>
+    <link>https://bollu.github.io/universal-coproduct-stable-under-pullback.html</link>
+  </item>
+  <item>
+    <title> Leibniz Equality in Lean4 </title>
+    <guid>https://bollu.github.io/leibniz-equality-in-lean4.html</guid>
+    <link>https://bollu.github.io/leibniz-equality-in-lean4.html</link>
+  </item>
+  <item>
+    <title> Strong normalization of STLC </title>
+    <guid>https://bollu.github.io/strong-normalization-of-stlc.html</guid>
+    <link>https://bollu.github.io/strong-normalization-of-stlc.html</link>
+  </item>
+  <item>
+    <title> Subobject classifiers of  N \to FinSet, or precosheaf of  FinSet</title>
+    <guid>https://bollu.github.io/subobject-classifiers-of-n-to-finset-or-precosheaf-of-finset.html</guid>
+    <link>https://bollu.github.io/subobject-classifiers-of-n-to-finset-or-precosheaf-of-finset.html</link>
+  </item>
+  <item>
+    <title> Dimensions versus units </title>
+    <guid>https://bollu.github.io/dimensions-versus-units.html</guid>
+    <link>https://bollu.github.io/dimensions-versus-units.html</link>
+  </item>
+  <item>
+    <title> HoTTesT: Identity types </title>
+    <guid>https://bollu.github.io/hottest-identity-types.html</guid>
+    <link>https://bollu.github.io/hottest-identity-types.html</link>
+  </item>
+  <item>
+    <title> Philosophy of History </title>
+    <guid>https://bollu.github.io/philosophy-of-history.html</guid>
+    <link>https://bollu.github.io/philosophy-of-history.html</link>
+  </item>
+  <item>
+    <title> Left and right adjoints to inverse image  [TODO ] </title>
+    <guid>https://bollu.github.io/left-and-right-adjoints-to-inverse-image-todo.html</guid>
+    <link>https://bollu.github.io/left-and-right-adjoints-to-inverse-image-todo.html</link>
+  </item>
+  <item>
+    <title> Paredit via adjoints </title>
+    <guid>https://bollu.github.io/paredit-via-adjoints.html</guid>
+    <link>https://bollu.github.io/paredit-via-adjoints.html</link>
+  </item>
+  <item>
+    <title> Less than versus Less than or equals over Z </title>
+    <guid>https://bollu.github.io/less-than-versus-less-than-or-equals-over-z.html</guid>
+    <link>https://bollu.github.io/less-than-versus-less-than-or-equals-over-z.html</link>
+  </item>
+  <item>
+    <title> Allegories and Categories </title>
+    <guid>https://bollu.github.io/allegories-and-categories.html</guid>
+    <link>https://bollu.github.io/allegories-and-categories.html</link>
+  </item>
+  <item>
+    <title> Partial function as span </title>
+    <guid>https://bollu.github.io/partial-function-as-span.html</guid>
+    <link>https://bollu.github.io/partial-function-as-span.html</link>
+  </item>
+  <item>
+    <title> Post &apos; s Problem  [WIP ] </title>
+    <guid>https://bollu.github.io/posts-problem-wip.html</guid>
+    <link>https://bollu.github.io/posts-problem-wip.html</link>
+  </item>
+  <item>
+    <title> Turing degree </title>
+    <guid>https://bollu.github.io/turing-degree.html</guid>
+    <link>https://bollu.github.io/turing-degree.html</link>
+  </item>
+  <item>
+    <title> Ultraproducts in Logic  [WIP ] </title>
+    <guid>https://bollu.github.io/ultraproducts-in-logic-wip.html</guid>
+    <link>https://bollu.github.io/ultraproducts-in-logic-wip.html</link>
+  </item>
+  <item>
+    <title> Pivot tables are indexed categories  [WIP ] </title>
+    <guid>https://bollu.github.io/pivot-tables-are-indexed-categories-wip.html</guid>
+    <link>https://bollu.github.io/pivot-tables-are-indexed-categories-wip.html</link>
+  </item>
+  <item>
+    <title> Kleene Tree  [WIP ] </title>
+    <guid>https://bollu.github.io/kleene-tree-wip.html</guid>
+    <link>https://bollu.github.io/kleene-tree-wip.html</link>
+  </item>
+  <item>
+    <title> Compactness theorem as compactness of stone spaces  [WIP ] </title>
+    <guid>https://bollu.github.io/compactness-theorem-as-compactness-of-stone-spaces-wip.html</guid>
+    <link>https://bollu.github.io/compactness-theorem-as-compactness-of-stone-spaces-wip.html</link>
+  </item>
+  <item>
+    <title> Setting up windows box on google cloud </title>
+    <guid>https://bollu.github.io/setting-up-windows-box-on-google-cloud.html</guid>
+    <link>https://bollu.github.io/setting-up-windows-box-on-google-cloud.html</link>
+  </item>
+  <item>
+    <title> Proof that there is a TM whose halting is independent of ZFC </title>
+    <guid>https://bollu.github.io/proof-that-there-is-a-tm-whose-halting-is-independent-of-zfc.html</guid>
+    <link>https://bollu.github.io/proof-that-there-is-a-tm-whose-halting-is-independent-of-zfc.html</link>
+  </item>
+  <item>
+    <title> Contradiction from non-positive occurence </title>
+    <guid>https://bollu.github.io/contradiction-from-non-positive-occurence.html</guid>
+    <link>https://bollu.github.io/contradiction-from-non-positive-occurence.html</link>
+  </item>
+  <item>
+    <title> The constructible universe L </title>
+    <guid>https://bollu.github.io/the-constructible-universe-l.html</guid>
+    <link>https://bollu.github.io/the-constructible-universe-l.html</link>
+  </item>
+  <item>
+    <title> Scrivano for note taking </title>
+    <guid>https://bollu.github.io/scrivano-for-note-taking.html</guid>
+    <link>https://bollu.github.io/scrivano-for-note-taking.html</link>
+  </item>
+  <item>
+    <title> Godel completeness theorem </title>
+    <guid>https://bollu.github.io/godel-completeness-theorem.html</guid>
+    <link>https://bollu.github.io/godel-completeness-theorem.html</link>
+  </item>
+  <item>
+    <title> Uniform proofs, focused proofs, polarization, logic programming </title>
+    <guid>https://bollu.github.io/uniform-proofs-focused-proofs-polarization-logic-programming.html</guid>
+    <link>https://bollu.github.io/uniform-proofs-focused-proofs-polarization-logic-programming.html</link>
+  </item>
+  <item>
+    <title> Why cut elimination? </title>
+    <guid>https://bollu.github.io/why-cut-elimination.html</guid>
+    <link>https://bollu.github.io/why-cut-elimination.html</link>
+  </item>
+  <item>
+    <title> Forcing to add a function </title>
+    <guid>https://bollu.github.io/forcing-to-add-a-function.html</guid>
+    <link>https://bollu.github.io/forcing-to-add-a-function.html</link>
+  </item>
+  <item>
+    <title> Diaconescu &apos; s theorem </title>
+    <guid>https://bollu.github.io/diaconescus-theorem.html</guid>
+    <link>https://bollu.github.io/diaconescus-theorem.html</link>
+  </item>
+  <item>
+    <title> Forcing machinery </title>
+    <guid>https://bollu.github.io/forcing-machinery.html</guid>
+    <link>https://bollu.github.io/forcing-machinery.html</link>
+  </item>
+  <item>
+    <title> Partial Evaluation, Chapter 3 </title>
+    <guid>https://bollu.github.io/partial-evaluation-chapter-3.html</guid>
+    <link>https://bollu.github.io/partial-evaluation-chapter-3.html</link>
+  </item>
+  <item>
+    <title> Partial Evaluation, Chapter 1 </title>
+    <guid>https://bollu.github.io/partial-evaluation-chapter-1.html</guid>
+    <link>https://bollu.github.io/partial-evaluation-chapter-1.html</link>
+  </item>
+  <item>
+    <title> Diagonal lemma for monotone functions </title>
+    <guid>https://bollu.github.io/diagonal-lemma-for-monotone-functions.html</guid>
+    <link>https://bollu.github.io/diagonal-lemma-for-monotone-functions.html</link>
+  </item>
+  <item>
+    <title> Cantor Schroder Bernstein via fixpoint </title>
+    <guid>https://bollu.github.io/cantor-schroder-bernstein-via-fixpoint.html</guid>
+    <link>https://bollu.github.io/cantor-schroder-bernstein-via-fixpoint.html</link>
+  </item>
+  <item>
+    <title> Maximal Ideals of Boolean Algebras are Truth Values </title>
+    <guid>https://bollu.github.io/maximal-ideals-of-boolean-algebras-are-truth-values.html</guid>
+    <link>https://bollu.github.io/maximal-ideals-of-boolean-algebras-are-truth-values.html</link>
+  </item>
+  <item>
+    <title> Crash course on DCPO: formalizing lambda calculus </title>
+    <guid>https://bollu.github.io/crash-course-on-dcpo-formalizing-lambda-calculus.html</guid>
+    <link>https://bollu.github.io/crash-course-on-dcpo-formalizing-lambda-calculus.html</link>
+  </item>
+  <item>
+    <title> Resolution algorithm for propositional logic </title>
+    <guid>https://bollu.github.io/resolution-algorithm-for-propositional-logic.html</guid>
+    <link>https://bollu.github.io/resolution-algorithm-for-propositional-logic.html</link>
+  </item>
+  <item>
+    <title> Completeness for first order logic </title>
+    <guid>https://bollu.github.io/completeness-for-first-order-logic.html</guid>
+    <link>https://bollu.github.io/completeness-for-first-order-logic.html</link>
+  </item>
+  <item>
+    <title> Compactness theorem of first order logic </title>
+    <guid>https://bollu.github.io/compactness-theorem-of-first-order-logic.html</guid>
+    <link>https://bollu.github.io/compactness-theorem-of-first-order-logic.html</link>
+  </item>
+  <item>
+    <title> WIP: Tarski &apos; s undefinability theorem </title>
+    <guid>https://bollu.github.io/wip-tarskis-undefinability-theorem.html</guid>
+    <link>https://bollu.github.io/wip-tarskis-undefinability-theorem.html</link>
+  </item>
+  <item>
+    <title> WIP: Conservative extension to type theory </title>
+    <guid>https://bollu.github.io/wip-conservative-extension-to-type-theory.html</guid>
+    <link>https://bollu.github.io/wip-conservative-extension-to-type-theory.html</link>
+  </item>
+  <item>
+    <title> First order logic: Semantics </title>
+    <guid>https://bollu.github.io/first-order-logic-semantics.html</guid>
+    <link>https://bollu.github.io/first-order-logic-semantics.html</link>
+  </item>
+  <item>
+    <title> full abstraction in semantics (TODO) </title>
+    <guid>https://bollu.github.io/full-abstraction-in-semantics-todo.html</guid>
+    <link>https://bollu.github.io/full-abstraction-in-semantics-todo.html</link>
+  </item>
+  <item>
+    <title> You could have invented Sequents </title>
+    <guid>https://bollu.github.io/you-could-have-invented-sequents.html</guid>
+    <link>https://bollu.github.io/you-could-have-invented-sequents.html</link>
+  </item>
+  <item>
+    <title> Fibrational category theory, sec 1.1, sec 1.2 </title>
+    <guid>https://bollu.github.io/fibrational-category-theory-sec-11-sec-12.html</guid>
+    <link>https://bollu.github.io/fibrational-category-theory-sec-11-sec-12.html</link>
+  </item>
+  <item>
+    <title> Simple Type Theory via Fibrations </title>
+    <guid>https://bollu.github.io/simple-type-theory-via-fibrations.html</guid>
+    <link>https://bollu.github.io/simple-type-theory-via-fibrations.html</link>
+  </item>
+  <item>
+    <title> Realisability models </title>
+    <guid>https://bollu.github.io/realisability-models.html</guid>
+    <link>https://bollu.github.io/realisability-models.html</link>
+  </item>
+  <item>
+    <title> Naming left closed, right open with start/stop </title>
+    <guid>https://bollu.github.io/naming-left-closed-right-open-with-startstop.html</guid>
+    <link>https://bollu.github.io/naming-left-closed-right-open-with-startstop.html</link>
+  </item>
+  <item>
+    <title> Nested vs mutual inductive types: </title>
+    <guid>https://bollu.github.io/nested-vs-mutual-inductive-types.html</guid>
+    <link>https://bollu.github.io/nested-vs-mutual-inductive-types.html</link>
+  </item>
+  <item>
+    <title> MiniSketch  [TODO ] </title>
+    <guid>https://bollu.github.io/minisketch-todo.html</guid>
+    <link>https://bollu.github.io/minisketch-todo.html</link>
+  </item>
+  <item>
+    <title> Finger trees data structure  [TODO ] </title>
+    <guid>https://bollu.github.io/finger-trees-data-structure-todo.html</guid>
+    <link>https://bollu.github.io/finger-trees-data-structure-todo.html</link>
+  </item>
+  <item>
+    <title> HAMT data structure  [TODO ] </title>
+    <guid>https://bollu.github.io/hamt-data-structure-todo.html</guid>
+    <link>https://bollu.github.io/hamt-data-structure-todo.html</link>
+  </item>
+  <item>
+    <title> Embedding HOL in Lean </title>
+    <guid>https://bollu.github.io/embedding-hol-in-lean.html</guid>
+    <link>https://bollu.github.io/embedding-hol-in-lean.html</link>
+  </item>
+  <item>
+    <title> Module system for separate compilation </title>
+    <guid>https://bollu.github.io/module-system-for-separate-compilation.html</guid>
+    <link>https://bollu.github.io/module-system-for-separate-compilation.html</link>
+  </item>
+  <item>
+    <title> Second order arithmetic </title>
+    <guid>https://bollu.github.io/second-order-arithmetic.html</guid>
+    <link>https://bollu.github.io/second-order-arithmetic.html</link>
+  </item>
+  <item>
+    <title> Lean4 Dev Meeting </title>
+    <guid>https://bollu.github.io/lean4-dev-meeting.html</guid>
+    <link>https://bollu.github.io/lean4-dev-meeting.html</link>
+  </item>
+  <item>
+    <title> Categorical model of dependent types </title>
+    <guid>https://bollu.github.io/categorical-model-of-dependent-types.html</guid>
+    <link>https://bollu.github.io/categorical-model-of-dependent-types.html</link>
+  </item>
+  <item>
+    <title> How should relative changes be measured </title>
+    <guid>https://bollu.github.io/how-should-relative-changes-be-measured.html</guid>
+    <link>https://bollu.github.io/how-should-relative-changes-be-measured.html</link>
+  </item>
+  <item>
+    <title> Logic of bunched implications </title>
+    <guid>https://bollu.github.io/logic-of-bunched-implications.html</guid>
+    <link>https://bollu.github.io/logic-of-bunched-implications.html</link>
+  </item>
+  <item>
+    <title> Coends </title>
+    <guid>https://bollu.github.io/coends.html</guid>
+    <link>https://bollu.github.io/coends.html</link>
+  </item>
+  <item>
+    <title> Natural Transformations as ends </title>
+    <guid>https://bollu.github.io/natural-transformations-as-ends.html</guid>
+    <link>https://bollu.github.io/natural-transformations-as-ends.html</link>
+  </item>
+  <item>
+    <title> Ends and diagonals </title>
+    <guid>https://bollu.github.io/ends-and-diagonals.html</guid>
+    <link>https://bollu.github.io/ends-and-diagonals.html</link>
+  </item>
+  <item>
+    <title> Parabolic dynamics and renormalization </title>
+    <guid>https://bollu.github.io/parabolic-dynamics-and-renormalization.html</guid>
+    <link>https://bollu.github.io/parabolic-dynamics-and-renormalization.html</link>
+  </item>
+  <item>
+    <title> Quantifiers as adjoints </title>
+    <guid>https://bollu.github.io/quantifiers-as-adjoints.html</guid>
+    <link>https://bollu.github.io/quantifiers-as-adjoints.html</link>
+  </item>
+  <item>
+    <title> TLDP pages for bash conditionals  </title>
+    <guid>https://bollu.github.io/tldp-pages-for-bash-conditionals.html</guid>
+    <link>https://bollu.github.io/tldp-pages-for-bash-conditionals.html</link>
+  </item>
+  <item>
+    <title> Remainder, Modulo </title>
+    <guid>https://bollu.github.io/remainder-modulo.html</guid>
+    <link>https://bollu.github.io/remainder-modulo.html</link>
+  </item>
+  <item>
+    <title> Parameters cannot be changed  anywhere , not just in return location </title>
+    <guid>https://bollu.github.io/paramete-not-just-in-return-location.html</guid>
+    <link>https://bollu.github.io/paramete-not-just-in-return-location.html</link>
+  </item>
+  <item>
+    <title> LCNF </title>
+    <guid>https://bollu.github.io/lcnf.html</guid>
+    <link>https://bollu.github.io/lcnf.html</link>
+  </item>
+  <item>
+    <title> Predicative v/s Impredicative: On Universes in Type Theory </title>
+    <guid>https://bollu.github.io/predicative-vs-impredicative-on-universes-in-type-theory.html</guid>
+    <link>https://bollu.github.io/predicative-vs-impredicative-on-universes-in-type-theory.html</link>
+  </item>
+  <item>
+    <title> Testing infra in Lean4 </title>
+    <guid>https://bollu.github.io/testing-infra-in-lean4.html</guid>
+    <link>https://bollu.github.io/testing-infra-in-lean4.html</link>
+  </item>
+  <item>
+    <title> Autocompletion in Lean4 </title>
+    <guid>https://bollu.github.io/autocompletion-in-lean4.html</guid>
+    <link>https://bollu.github.io/autocompletion-in-lean4.html</link>
+  </item>
+  <item>
+    <title> Inductive types  </title>
+    <guid>https://bollu.github.io/inductive-types.html</guid>
+    <link>https://bollu.github.io/inductive-types.html</link>
+  </item>
+  <item>
+    <title> Parameter verus Index </title>
+    <guid>https://bollu.github.io/parameter-verus-index.html</guid>
+    <link>https://bollu.github.io/parameter-verus-index.html</link>
+  </item>
+  <item>
+    <title> HNF versus WHNF </title>
+    <guid>https://bollu.github.io/hnf-versus-whnf.html</guid>
+    <link>https://bollu.github.io/hnf-versus-whnf.html</link>
+  </item>
+  <item>
+    <title> Different types of arguments in Lean4: </title>
+    <guid>https://bollu.github.io/different-types-of-arguments-in-lean4.html</guid>
+    <link>https://bollu.github.io/different-types-of-arguments-in-lean4.html</link>
+  </item>
+  <item>
+    <title> Big list of lean tactics </title>
+    <guid>https://bollu.github.io/big-list-of-lean-tactics.html</guid>
+    <link>https://bollu.github.io/big-list-of-lean-tactics.html</link>
+  </item>
+  <item>
+    <title> Hyperdoctrine </title>
+    <guid>https://bollu.github.io/hyperdoctrine.html</guid>
+    <link>https://bollu.github.io/hyperdoctrine.html</link>
+  </item>
+  <item>
+    <title> Fungrim </title>
+    <guid>https://bollu.github.io/fungrim.html</guid>
+    <link>https://bollu.github.io/fungrim.html</link>
+  </item>
+  <item>
+    <title> Category where coproducts of computable things is not computable </title>
+    <guid>https://bollu.github.io/category-where-coproducts-of-computable-things-is-not-computable.html</guid>
+    <link>https://bollu.github.io/category-where-coproducts-of-computable-things-is-not-computable.html</link>
+  </item>
+  <item>
+    <title> Homotopy continuation </title>
+    <guid>https://bollu.github.io/homotopy-continuation.html</guid>
+    <link>https://bollu.github.io/homotopy-continuation.html</link>
+  </item>
+  <item>
+    <title> Relationship between linearity and contradiction </title>
+    <guid>https://bollu.github.io/relationship-between-linearity-and-contradiction.html</guid>
+    <link>https://bollu.github.io/relationship-between-linearity-and-contradiction.html</link>
+  </item>
+  <item>
+    <title> Monads from Riehl </title>
+    <guid>https://bollu.github.io/monads-from-riehl.html</guid>
+    <link>https://bollu.github.io/monads-from-riehl.html</link>
+  </item>
+  <item>
+    <title> Combinatorial Cauchy Schwarz </title>
+    <guid>https://bollu.github.io/combinatorial-cauchy-schwarz.html</guid>
+    <link>https://bollu.github.io/combinatorial-cauchy-schwarz.html</link>
+  </item>
+  <item>
+    <title> Bezout &apos; s theorem  </title>
+    <guid>https://bollu.github.io/bezouts-theorem.html</guid>
+    <link>https://bollu.github.io/bezouts-theorem.html</link>
+  </item>
+  <item>
+    <title> Example for invariant theory </title>
+    <guid>https://bollu.github.io/example-for-invariant-theory.html</guid>
+    <link>https://bollu.github.io/example-for-invariant-theory.html</link>
+  </item>
+  <item>
+    <title> Counterexample to fundamental theorem of calculus? </title>
+    <guid>https://bollu.github.io/counterexample-to-fundamental-theorem-of-calculus.html</guid>
+    <link>https://bollu.github.io/counterexample-to-fundamental-theorem-of-calculus.html</link>
+  </item>
+  <item>
+    <title> Why a sentinel of  -1 is sensible </title>
+    <guid>https://bollu.github.io/why-a-sentinel-of-1-is-sensible.html</guid>
+    <link>https://bollu.github.io/why-a-sentinel-of-1-is-sensible.html</link>
+  </item>
+  <item>
+    <title> Data structure to maintain mex </title>
+    <guid>https://bollu.github.io/data-structure-to-maintain-mex.html</guid>
+    <link>https://bollu.github.io/data-structure-to-maintain-mex.html</link>
+  </item>
+  <item>
+    <title> Scatted algebraic number theory ideas: Ramification </title>
+    <guid>https://bollu.github.io/scatted-algebraic-number-theory-ideas-ramification.html</guid>
+    <link>https://bollu.github.io/scatted-algebraic-number-theory-ideas-ramification.html</link>
+  </item>
+  <item>
+    <title> Coreflection </title>
+    <guid>https://bollu.github.io/coreflection.html</guid>
+    <link>https://bollu.github.io/coreflection.html</link>
+  </item>
+  <item>
+    <title> Better  man Pages via  info</title>
+    <guid>https://bollu.github.io/better-man-pages-via-info.html</guid>
+    <link>https://bollu.github.io/better-man-pages-via-info.html</link>
+  </item>
+  <item>
+    <title> The Zen of juggling three balls </title>
+    <guid>https://bollu.github.io/the-zen-of-juggling-three-balls.html</guid>
+    <link>https://bollu.github.io/the-zen-of-juggling-three-balls.html</link>
+  </item>
+  <item>
+    <title> Example of lattice that is not distributive </title>
+    <guid>https://bollu.github.io/example-of-lattice-that-is-not-distributive.html</guid>
+    <link>https://bollu.github.io/example-of-lattice-that-is-not-distributive.html</link>
+  </item>
+  <item>
+    <title> Patat </title>
+    <guid>https://bollu.github.io/patat.html</guid>
+    <link>https://bollu.github.io/patat.html</link>
+  </item>
+  <item>
+    <title> Common Lisp LOOP Macro </title>
+    <guid>https://bollu.github.io/common-lisp-loop-macro.html</guid>
+    <link>https://bollu.github.io/common-lisp-loop-macro.html</link>
+  </item>
+  <item>
+    <title> Mitchell-Bénabou language </title>
+    <guid>https://bollu.github.io/mitchell-bnabou-language.html</guid>
+    <link>https://bollu.github.io/mitchell-bnabou-language.html</link>
+  </item>
+  <item>
+    <title> Hyperdoctrine </title>
+    <guid>https://bollu.github.io/hyperdoctrine.html</guid>
+    <link>https://bollu.github.io/hyperdoctrine.html</link>
+  </item>
+  <item>
+    <title> Why is product in Rel not cartesian product? </title>
+    <guid>https://bollu.github.io/why-is-product-in-rel-not-cartesian-product.html</guid>
+    <link>https://bollu.github.io/why-is-product-in-rel-not-cartesian-product.html</link>
+  </item>
+  <item>
+    <title>  simp in Lean4 </title>
+    <guid>https://bollu.github.io/simp-in-lean4.html</guid>
+    <link>https://bollu.github.io/simp-in-lean4.html</link>
+  </item>
+  <item>
+    <title> Big list of Lean4 TODOS </title>
+    <guid>https://bollu.github.io/big-list-of-lean4-todos.html</guid>
+    <link>https://bollu.github.io/big-list-of-lean4-todos.html</link>
+  </item>
+  <item>
+    <title>  unsafePerformIO in Lean4: </title>
+    <guid>https://bollu.github.io/unsafeperformio-in-lean4.html</guid>
+    <link>https://bollu.github.io/unsafeperformio-in-lean4.html</link>
+  </item>
+  <item>
+    <title> Big List of Lean4 FAQ </title>
+    <guid>https://bollu.github.io/big-list-of-lean4-faq.html</guid>
+    <link>https://bollu.github.io/big-list-of-lean4-faq.html</link>
+  </item>
+  <item>
+    <title> Sheaves in geometry and logic 1.2: Pullbacks </title>
+    <guid>https://bollu.github.io/sheaves-in-geometry-and-logic-12-pullbacks.html</guid>
+    <link>https://bollu.github.io/sheaves-in-geometry-and-logic-12-pullbacks.html</link>
+  </item>
+  <item>
+    <title> Sheaves in geometry and logic 1.3: Characteristic functions of subobjects </title>
+    <guid>https://bollu.github.io/sheaves-in-geometry-and-logic-13-characteristic-functions-of-subobjects.html</guid>
+    <link>https://bollu.github.io/sheaves-in-geometry-and-logic-13-characteristic-functions-of-subobjects.html</link>
+  </item>
+  <item>
+    <title> Common Lisp Debugging: Clouseau </title>
+    <guid>https://bollu.github.io/common-lisp-debugging-clouseau.html</guid>
+    <link>https://bollu.github.io/common-lisp-debugging-clouseau.html</link>
+  </item>
+  <item>
+    <title> Drawabox: Lines </title>
+    <guid>https://bollu.github.io/drawabox-lines.html</guid>
+    <link>https://bollu.github.io/drawabox-lines.html</link>
+  </item>
+  <item>
+    <title> Common Lisp Beauty: paths </title>
+    <guid>https://bollu.github.io/common-lisp-beauty-paths.html</guid>
+    <link>https://bollu.github.io/common-lisp-beauty-paths.html</link>
+  </item>
+  <item>
+    <title> Logical Predicates (OPLSS  &apos; 12) </title>
+    <guid>https://bollu.github.io/logical-predicates-oplss-12.html</guid>
+    <link>https://bollu.github.io/logical-predicates-oplss-12.html</link>
+  </item>
+  <item>
+    <title> Logical Relations (Sterling) </title>
+    <guid>https://bollu.github.io/logical-relations-sterling.html</guid>
+    <link>https://bollu.github.io/logical-relations-sterling.html</link>
   </item>
   <item>
     <title> Pointless topology: Frames </title>
@@ -2990,11 +3680,6 @@
     <link>https://bollu.github.io/graphs-are-preorders.html</link>
   </item>
   <item>
-    <title> Crash course on DCPO: formalizing lambda calculus </title>
-    <guid>https://bollu.github.io/crash-course-on-dcpo-formalizing-lambda-calculus.html</guid>
-    <link>https://bollu.github.io/crash-course-on-dcpo-formalizing-lambda-calculus.html</link>
-  </item>
-  <item>
     <title> Parallelisable version of maximum sum subarray </title>
     <guid>https://bollu.github.io/parallelisable-version-of-maximum-sum-subarray.html</guid>
     <link>https://bollu.github.io/parallelisable-version-of-maximum-sum-subarray.html</link>
@@ -3710,9 +4395,14 @@
     <link>https://bollu.github.io/big-list-of-shitposting.html</link>
   </item>
   <item>
-    <title> Cardistry </title>
-    <guid>https://bollu.github.io/cardistry.html</guid>
-    <link>https://bollu.github.io/cardistry.html</link>
+    <title> Big list of Breakdance </title>
+    <guid>https://bollu.github.io/big-list-of-breakdance.html</guid>
+    <link>https://bollu.github.io/big-list-of-breakdance.html</link>
+  </item>
+  <item>
+    <title> Big list of Cardistry </title>
+    <guid>https://bollu.github.io/big-list-of-cardistry.html</guid>
+    <link>https://bollu.github.io/big-list-of-cardistry.html</link>
   </item>
   <item>
     <title> Poems to memorize </title>
@@ -3735,6 +4425,11 @@
     <link>https://bollu.github.io/agda-cheat-sheet.html</link>
   </item>
   <item>
+    <title> Don &apos; t Try </title>
+    <guid>https://bollu.github.io/dont-try.html</guid>
+    <link>https://bollu.github.io/dont-try.html</link>
+  </item>
+  <item>
     <title> Big list of Hacker news </title>
     <guid>https://bollu.github.io/big-list-of-hacker-news.html</guid>
     <link>https://bollu.github.io/big-list-of-hacker-news.html</link>
@@ -3743,6 +4438,16 @@
     <title> Hair in a bun with stick </title>
     <guid>https://bollu.github.io/hair-in-a-bun-with-stick.html</guid>
     <link>https://bollu.github.io/hair-in-a-bun-with-stick.html</link>
+  </item>
+  <item>
+    <title> Big list of shuffle dancing </title>
+    <guid>https://bollu.github.io/big-list-of-shuffle-dancing.html</guid>
+    <link>https://bollu.github.io/big-list-of-shuffle-dancing.html</link>
+  </item>
+  <item>
+    <title> Big list of tmux </title>
+    <guid>https://bollu.github.io/big-list-of-tmux.html</guid>
+    <link>https://bollu.github.io/big-list-of-tmux.html</link>
   </item>
   <item>
     <title> Favourite Demoscenes </title>

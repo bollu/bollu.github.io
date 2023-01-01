@@ -1,3 +1,15 @@
+- [Olin Shivers: CFA dude with epic rants and anti acknowledgements page](https://www.ccs.neu.edu/home/shivers/rants/msoft.html)
+- [Chronicles of OPT development: training log of large language model](https://github.com/facebookresearch/metaseq/blob/main/projects/OPT/chronicles/README.md)
+- Every Spider Web Has a Simple Flat Twist Tessellation 
+- Reverse compilation techniques.
+- [Johnson–Lindenstrauss lemma: Exponential compression of vectors](https://en.wikipedia.org/wiki/Johnson%E2%80%93Lindenstrauss_lemma)
+- [Lock Convoys](https://davekilian.com/lock-convoys.html)
+- The Art of Multiprocessor Programming
+- [Linkers from scratch](https://www.airs.com/blog/archives/38)
+- [Linker Scripts](https://users.informatik.haw-hamburg.de/~krabat/FH-Labor/gnupro/5_GNUPro_Utilities/c_Using_LD/ldLinker_scripts.html)
+- Carus Mathematical Monographs Series
+- Continued Fractions by Khinchin
+- Verification of temporal reactive systems
 - An automatic partial evaluator for full prolog
 - Caviness and Johnson: Quantifier Elimination and Cylindrical Algebraic Decomposition
 - Handbook of theoretical computer science
