@@ -5,6 +5,11 @@
 <link>https://bollu.github.io/</link>
 <description>A universe of Sorts</description>
   <item>
+    <title> Lax Milgram theorem </title>
+    <guid>https://bollu.github.io/lax-milgram-theorem.html</guid>
+    <link>https://bollu.github.io/lax-milgram-theorem.html</link>
+  </item>
+  <item>
     <title> Stuff I learnt in 2022 </title>
     <guid>https://bollu.github.io/stuff-i-learnt-in-2022.html</guid>
     <link>https://bollu.github.io/stuff-i-learnt-in-2022.html</link>
@@ -475,7 +480,7 @@
     <link>https://bollu.github.io/quantifiers-as-adjoints.html</link>
   </item>
   <item>
-    <title> TLDP pages for bash conditionals  </title>
+    <title> TLDP pages for bash conditionals </title>
     <guid>https://bollu.github.io/tldp-pages-for-bash-conditionals.html</guid>
     <link>https://bollu.github.io/tldp-pages-for-bash-conditionals.html</link>
   </item>
@@ -510,7 +515,7 @@
     <link>https://bollu.github.io/autocompletion-in-lean4.html</link>
   </item>
   <item>
-    <title> Inductive types  </title>
+    <title> Inductive types </title>
     <guid>https://bollu.github.io/inductive-types.html</guid>
     <link>https://bollu.github.io/inductive-types.html</link>
   </item>
@@ -570,7 +575,7 @@
     <link>https://bollu.github.io/combinatorial-cauchy-schwarz.html</link>
   </item>
   <item>
-    <title> Bezout &apos; s theorem  </title>
+    <title> Bezout &apos; s theorem </title>
     <guid>https://bollu.github.io/bezouts-theorem.html</guid>
     <link>https://bollu.github.io/bezouts-theorem.html</link>
   </item>

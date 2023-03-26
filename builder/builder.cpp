@@ -24,9 +24,9 @@
 #include <assert.h>
 
 #if  defined(_WIN32) || defined(WIN32) // my build config on windows
-#define BLOG_ROOT_FOLDER_TRAILING_SLASH "C:\\Users\\bollu\\blog\\" 
+#define BLOG_ROOT_FOLDER_TRAILING_SLASH "C:\\Users\\bollu\\blog\\"
 #else  // unix
-#define BLOG_ROOT_FOLDER_TRAILING_SLASH "/home/bollu/blog/"
+#define BLOG_ROOT_FOLDER_TRAILING_SLASH "/home/bollu/blog/out/"
 #endif
 
 
@@ -447,7 +447,7 @@ T *tokenizeLineFragment(const char *s, const ll len, const L lbegin) {
     }
 
     return new T(TT::LatexInline, Span(lbegin, lcur));
-  } 
+  }
   /*
   else if (lbegin.si < len - 1 &&
              (s[lbegin.si] == '*' || s[lbegin.si] == '_') &&
@@ -1142,7 +1142,7 @@ std::pair<bool, GIVE char *> compileLatex(duk_context *katex_ctx, KEEP const cha
     printferr(span.begin, raw_input, "%s", duk_to_string(katex_ctx, -1));
     duk_pop(katex_ctx);
     // reload katex context.
-    katex_ctx = load_katex(); 
+    katex_ctx = load_katex();
     return {false, nullptr};
     assert(false && "unable to compile katex");
   }
@@ -1374,7 +1374,7 @@ bool toHTML(duk_context *katex_ctx, duk_context *prism_ctx,
     tie(success, outcompile) = compileLatex(katex_ctx, raw_input, span,
                      t->ty == TT::LatexBlock ? LatexType::LatexTypeBlock
                                              : LatexType::LatexTypeInline);
-    if (!success) { 
+    if (!success) {
         return false;
     }
     strcpy(outs + outlen, outcompile);

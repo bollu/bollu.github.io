@@ -6,6 +6,8 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+# Lax Milgram theorem
+
 # Stuff I learnt in 2022
 
 2022 was a weird year for me. I moved from India to Edinburgh to pursue
@@ -89,7 +91,7 @@ to read through the literature:
 
 - I began by reading [Jech: Axiom of Choice](https://link.springer.com/chapter/10.1007/978-3-642-41422-0_37#Abs1), which
   was far too terse to grok, so I switched to reading the next lecture notes.
-- [Independence of CH: an intuitive explanation](https://arxiv.org/pdf/2208.13731.pdf) was a readable account of the 
+- [Independence of CH: an intuitive explanation](https://arxiv.org/pdf/2208.13731.pdf) was a readable account of the
    machinery of forcing! I wanted to get the account of forcing from the point of view of topi, for which I started reading
    the next book.
 - [Sheaves in geometry and logic](https://link.springer.com/book/10.1007/978-1-4612-0927-0) is a textbook on topos theory, which
@@ -113,13 +115,13 @@ theory in Lean.
 Since I'm here at Edinburgh, I keep getting stray recommendations on things to read.
 A big shout-out to
 [Andres Goens](https://github.com/goens),
-[Chris Hughes](https://github.com/ChrisHughes24), 
+[Chris Hughes](https://github.com/ChrisHughes24),
 [Jesse Sigal](https://github.com/jasigal),
 [Justus Mathiessen](https://www.inf.ed.ac.uk/people/staff/Justus_Matthiesen.html),
 [Leonardo De Moura](https://leodemoura.github.io/about.html),
-[Li-yao Xia](https://poisson.chat/), 
+[Li-yao Xia](https://poisson.chat/),
 [Mario Carneiro](https://github.com/digama0),
-[Ohad Kammar](https://twitter.com/aleph_kappa?lang=en), and 
+[Ohad Kammar](https://twitter.com/aleph_kappa?lang=en), and
 [Sebastien Michelland](https://github.com/lephe/) for many of these pointers.
 
 - [On Universes in Type Theory](http://www2.math.uu.se/~palmgren/universe.pdf) describes the difference between russel and tarski
@@ -154,7 +156,7 @@ A big shout-out to
   learn Isabelle and HOL well enough that I can prove something like strong
   normalization of STLC in them.
 - [Fitch style modal logics](https://arxiv.org/pdf/1710.08326.pdf) are a systematic way to build type theories with
-  modalities in them. These are typically used to create type theories that can reason about resources, such as 
+  modalities in them. These are typically used to create type theories that can reason about resources, such as
   concurrent access or security properties. The paper provides a unified account of how to build such type theories, and
   how to prove the usual slew of results about them.
 - [Minimal implementation of separation logic: Separation Logic for Sequential Programs](http://www.chargueraud.org/research/2020/seq_seplogic/seq_seplogic.pdf) explains how to write a small separation logic framework embedded in a dependently typed progrmaming language.
@@ -162,7 +164,7 @@ A big shout-out to
   around 2000 LoC, which is not too shabby to bootstrap a full 21st century
   theory of reasoning about parallelism!
 - [Telescopic Mappings in Typed Lambda Calculus](https://pdf.sciencedirectassets.com/272575/1-s2.0-S0890540100X02428/1-s2.0-089054019190066B/main.pdf) builds the theory of telescopes, which is the basic notation that's used when describing binders in dependent type theory.
-  I had no idea that this had to be developed; I shudder to think how ugly notation was before this paper! I can't help but 
+  I had no idea that this had to be developed; I shudder to think how ugly notation was before this paper! I can't help but
   feel that this paper did for dependent type theory what einstein summation convention did for tensor calculus: provide compact
   notation for the uninteresting bits to allow us to to talk about the interesting bits well.
 - When talking to Leonardo, I learnt that the hardest part of implementing a homotopical theorem prover
@@ -190,13 +192,13 @@ problem that I coulf work on. I did read some cool papers regardless:
   deal with both.
 - [Computing in the monster](https://webspace.maths.qmul.ac.uk/r.a.wilson/pubs_files/MDurham.pdf) describes
   how to perform computations in the monster group, a group that's so large that naively trying to write down elements would
-  take two gigabytes of memory. 
+  take two gigabytes of memory.
 
 #### Automated theorem proving
 
 I wound up reading a little on how to implement automated theorem provers (SAT/SMT solvers).
 This space is huge, and I only got a cursory glance at it from the [Decision procedures book](https://www.decision-procedures.org/).
-Even so, it was neat to learn the core ideas: 
+Even so, it was neat to learn the core ideas:
 
 - [The DPLL algorithm for solving SAT](https://en.wikipedia.org/wiki/DPLL_algorithm)
 - [The CDCL strategy for refining SMT queries](https://en.wikipedia.org/wiki/Conflict-driven_clause_learning)
@@ -463,7 +465,7 @@ bottom, where we push down the `not`. We must repeat this till fixpoint.
 (not (and [and  a   b]   c))
 (not [and (and  a   b)   c])
 [not (and (and  a   b)   c]
-;; TRANSFORM=> 
+;; TRANSFORM=>
 (or (not  (and a b) (not c))
 ;; ...
 ```
@@ -599,7 +601,7 @@ K refl = refl
 
 > In fact, Conor McBride showed in his thesis ("Dependently typed functional
 > programs and their proofs (2000)") that K is the only thing that dependent
-> pattern matching really adds to dependent type theory. 
+> pattern matching really adds to dependent type theory.
 
 > Indexed type definitions could be interpreted as non-indexed definitions with
 > extra equality proofs in constructors that set the indices. In Agda, what
@@ -628,7 +630,7 @@ K refl = refl
 # Any model of lean must have all inductives
 
 - Or, lean knows about the sizes of types.
-- See that the below proof script shows that 
+- See that the below proof script shows that
 
 ```
 inductive one: Type
@@ -697,7 +699,7 @@ the data is separate from the proofs (behaviour).
 # Rotation distance as a metric on binary trees
 
 - Define the rotation distance to be min. number of rotations to get from tree config. A to tree config. B
-- 
+-
 - [Ref: wiki](https://en.wikipedia.org/wiki/Rotation_distance)
 
 # Motivation for modal logic
@@ -706,7 +708,7 @@ the data is separate from the proofs (behaviour).
 - this weakens the precondition `A -> (A -> B) -> B` by needing only `possible A`
   and strengthens the postcondition by spitting out `necessarily B`.
 - Key idea 1: if A is true in no world `w`, then `possibly A` that we have is false, and from this we derive explosion.
-- Key idea 2: if A is true in some world `wa`, then suppose we are in some arbitrary world `wr`. 
+- Key idea 2: if A is true in some world `wa`, then suppose we are in some arbitrary world `wr`.
 - Since `A` is true in `wa`, we have `possibly A`.
 - Since `necessarily (possibly A -> B)` is true in all worlds, we have `(possibly A -> B)`.
 - Since we have both `possibly A`, and `possibly A -> B`, we derive `B` in `wr`.
@@ -718,7 +720,7 @@ the data is separate from the proofs (behaviour).
 - thus, necessarily we have unity of experience.
 
 #### Use of this for descartes
-- it is possible for me to be certain of something (ie, I think therefore I am) 
+- it is possible for me to be certain of something (ie, I think therefore I am)
 - it is neecessarily the case that if I can be certain of something, I have clear and distinct perception.
 - Therefore, it is necessary that I have clear and distinct perception.
 
@@ -741,7 +743,7 @@ the data is separate from the proofs (behaviour).
 
 
 # Presheaf models of type theory
-- Let $C$ be any category.  
+- Let $C$ be any category.
 - Contexts are presheaves $\Gamma: C^op \to Set$. Morphisms are natural transformations of presheaves.
 - an element of a context $Elem(\Gamma)$ is a global element / grothendieck construction / object in the category of elements of contexts:
   $\Sigma{I:Ob(C)} \Gamma(I)$
@@ -804,7 +806,7 @@ How does this look in our ordinary Set-enriched world?  a `W`-weighted cone has 
 - Suppose $F: K \to \mathsf{Set}$.
 - See that cones of $F$ corresond to natural transformations $[K, \mathsf{Set}](\Delta(p), F)$ for $p \in \mathsf{Set}$.
 - See that the limit represents cones: $\mathsf{Set}(p, \texttt{Lim} F) \simeq [K, \mathsf{Set}](\Delta(p), F)$, natural in $p$
-- Generalizing this to arbitrary category $C$, we can write 
+- Generalizing this to arbitrary category $C$, we can write
 
 - [Ref: nlab](https://ncatlab.org/nlab/show/weighted+limit)
 
@@ -830,13 +832,13 @@ How does this look in our ordinary Set-enriched world?  a `W`-weighted cone has 
 abbrev Leibniz {A: Type} (x y: A) := ∀ (P: A -> Prop), P x -> P y
 
 theorem Leibniz_refl {A: Type}: ∀ (x: A), Leibniz x x := fun _A _P Px => Px
-theorem Leibniz_trans {A: Type}: ∀ (x y z: A), Leibniz x y -> Leibniz y z  -> Leibniz x z := 
-        fun _x _y _z Lxy Lyz P Px => Lyz P (Lxy P Px) 
+theorem Leibniz_trans {A: Type}: ∀ (x y z: A), Leibniz x y -> Leibniz y z  -> Leibniz x z :=
+        fun _x _y _z Lxy Lyz P Px => Lyz P (Lxy P Px)
 
 theorem Leibniz_sym {A: Type}: ∀ (x y: A), Leibniz x y -> Leibniz y x :=
   fun x y  Lxy P Py =>
       let prop (a: A) := P a -> P x
-      let proofPropX : prop x := id 
+      let proofPropX : prop x := id
       let proofPropY: prop y := Lxy prop proofPropX
       proofPropY Py
 
@@ -851,7 +853,7 @@ theorem Leibniz_implies_defeq (x y: A) (LEQ: Leibniz x y):
 
 - Recall that in the category Hask, objects are types, morphisms are functions/expressions.
 - Recall that in the category of contexts, objects are contexts, morphisms are substitutions.
-- A local predicate $L$ will relate to an object (type/context) a collection of morphisms 
+- A local predicate $L$ will relate to an object (type/context) a collection of morphisms
     (type → expressions of that type, typing context → substitutions of the variables of the typing context where the
     expressions have the type as per the context).
 - Consider STLC with the typing rules:
@@ -894,7 +896,7 @@ body ∈ LType(B); (∀ aval∈ Ltype(A), body[a/aval] ∈ Ltype(B))
 ```
 
 - It is clear that `x ∈ LType(T)` implies that `x` is strongly normalizing.
-- When we try to prove that `Γ ⊢  x : T` implies  `x ∈ LType(T)`, we get stuck on the 
+- When we try to prove that `Γ ⊢  x : T` implies  `x ∈ LType(T)`, we get stuck on the
   case of the lambda, because it's impossible to prove that a well typed term
   `(λa.body):A→B` is such that upon substitution, `body[a/aval]` will be strongly normalizing.
 
@@ -953,13 +955,13 @@ X1 - Χ[f]1- -> Ο1
    [to be determined]
 ```
 
-- We have the obvious 
+- We have the obvious
 
 
 #### Why $N \to FinSet$ does not have subobject classifier
 
 - The objects in this category are sequences of sets $(X_0 \to X_1 \to X_2 \to \dots)$.
-- We claim this category 
+- We claim this category
 
 
 # Dimensions versus units
@@ -1015,7 +1017,7 @@ X1 - Χ[f]1- -> Ο1
 - The idea is this: think of $A$ as being fibered over $B$ by $f$. Then $\forall_f(S \subseteq A)$
   gives the set of $b \in B$ such that the fiber of $b$ lies entirely in $A$. That is, $f^*(b) = f^{-1}(b) \subseteq A$.
 - In pictures, Suppose the `@` mark the subset $S$ of $A$, while the `-` is outside the subset. We draw $A$ as being
-   fibered over $B \equiv \{b_1, b_2, b_3\}$. 
+   fibered over $B \equiv \{b_1, b_2, b_3\}$.
 
 ```
 -   @  @
@@ -1066,7 +1068,7 @@ b1 b2 b3
 - When we lose the information to `. < .`, it becomes `(a < n) => (2a < 2n - 1)`.
 - But this can't be proved, because the best we can do is `(a < n) => 2a < 2n`!
 - The key reason is that even though `(a < n) <-> (a <= n - 1)` is an equivalence, we can't
-  always rewrite with an equivalence under an inequality! 
+  always rewrite with an equivalence under an inequality!
 - Said differently, `a <= n - 1` is equivalent to `a < n`, but once we start performing *algebra*
   on these, we start seeing the difference.
 - This came up in the context of delinearization. I was trying to prove that if `i < N` and `j < M`, then `iM + j < NM`.
@@ -1108,7 +1110,7 @@ b1 b2 b3
 - The first jump is taken relative to $A \equiv \phi$.
 -  The join of two sets is given by $A \oplus B \equiv \{ 2n : n \in A \} \cup \{ 2m + 1 : m \in B \}$. Claim that the turing degree of $A \oplus B$ is a LUB of the turing
   degrees of $A, B$.
-- Cutland, N. Computability. Cambridge University 
+- Cutland, N. Computability. Cambridge University
 
 # Ultraproducts in Logic [WIP]
 
@@ -1168,7 +1170,7 @@ inhab = FnSpace contra
 - We can now build the constructible universe by iteratively constructing definable sets of the previous level.
 - Can talk about definability in terms of [godel operations](https://en.wikipedia.org/wiki/G%C3%B6del_operation), which has
   ordered & unordered pairing, cartesian product, set difference, taking the domain of a binary relation, automorphisms of an ordered triple.
-  These give us a "constructive" description of what we can do using 
+  These give us a "constructive" description of what we can do using
   definability. [See also: constructible universe at nLab](https://ncatlab.org/nlab/show/constructible+universe)
 - [Computable universe](https://en.wikipedia.org/wiki/Constructible_universe)
 
@@ -1216,7 +1218,7 @@ inhab = FnSpace contra
 # Why cut elimination?
 
 - Morally spekaing, gives control over the formulae that occur in a proof.
-- If we can conclude that `(X -> Y; Y -> Z)|(X -> Z)`, then the proof of `X -> Z` 
+- If we can conclude that `(X -> Y; Y -> Z)|(X -> Z)`, then the proof of `X -> Z`
   could be arbitrarily complex, since `Y` might be something crazy.
 - If we have `cut`, we know that such arbitrarily crazy things cannot happen, as the `cut` rule is the
   only rule where we are forced to synthesize something "out of thin air".
@@ -1268,7 +1270,7 @@ inhab = FnSpace contra
 - Note that if we had LEM, we could case split on $P$ via LEM and show that $x \equiv \{ 1 \}$ if $P$, and $x \equiv \{ 0, 1\}$ if
   $\not P$.
 - However, we don't have LEM. So let's invoke Choice on the set $B \equiv \{T, F \}$. This means we get a choice function
-  $c: B \to \cup c B$ such that $c(T) \in T$ and $c(F) \in F$. 
+  $c: B \to \cup c B$ such that $c(T) \in T$ and $c(F) \in F$.
 - By the definition of the two sets, this means that $(c(T) = 1 \lor P)$, and $(c(F) = 0 \lor P)$.
 - This can be written as the logical formula $(c(T) = 1 \lor P) \land (c(F) = 0 \lor P)$.
 - This is the same as $(c(T) \neq c(F)) \lor P$.
@@ -1298,12 +1300,12 @@ inhab = FnSpace contra
 
 #### Density in a poset
 
-- A subset $D$ of a poset $P$ is dense iff for any $p \in P$, there is some $d \in D$ such that $d \geq p$. 
+- A subset $D$ of a poset $P$ is dense iff for any $p \in P$, there is some $d \in D$ such that $d \geq p$.
   Intuitively, at any point in the poset, it is possible to "add more information" to reach $D$.
 
 #### Generic Ideals
 - We say that an ideal $G$ is generic iff $G \cap D \neq \emptyset$ for all dense $D \subseteq P$.
-- For any countable model $M$, and a poset $P$ over it, 
+- For any countable model $M$, and a poset $P$ over it,
   We claim that for any $p \in P$, a generic ideal $G_p$ which contains $p$ ($p \in G$) exists.
 
 #### Proof: Generic ideal always exists
@@ -1333,7 +1335,7 @@ inhab = FnSpace contra
 - To see that $D_H$ is dense, for any element $p \in P$, we need to find an element $d \in D$ such that $p \leq d$.
   See that $d \in D$ iff there exists some $h \in H$, such that `incompatible(d, h)`.
 - Since $D_H$ is dense, we have that $G \cap D_H \neq \emptyset$, This gives us some element $g \in G$ such that `incompatible(g, p)`
-  for some $p \in H \subseteq P$. 
+  for some $p \in H \subseteq P$.
 - TODO: this makes no sense!
 
 #### Definition of forcing
@@ -1359,7 +1361,7 @@ inhab = FnSpace contra
 - The FTF (fundamental theorem of forcing) is an algorithm on the ZFC syntax. It takes a formula $\phi$, and produces a ZFC
   proof of (1), (2), (3).
 
-#### Architecture of FTF                                  
+#### Architecture of FTF
 
 - TODO, here I Am!
 
@@ -1369,12 +1371,12 @@ inhab = FnSpace contra
 - QUESTION: How can $Z \in M$ if $G$ is a proper class relative to $M$, and $G$ is a subset of $M$? Isn't a superset of a proper
   class a proper class?
 - Recalling that `(p, q) ∈ P` are compatible iff `∃r ∈ P, p ≤ r ∧ q ≤ r`. If no such `r` exists, then `(p, q)` are incompatible.
-- Suppose we take some `(p, q) ∈ P`. We can have `(1) p  ≤ q`, `(2) q  ≤ p`, `(3) (p, r) compatible`, `(4) (p, r) incompatible`. 
+- Suppose we take some `(p, q) ∈ P`. We can have `(1) p  ≤ q`, `(2) q  ≤ p`, `(3) (p, r) compatible`, `(4) (p, r) incompatible`.
   Consider:
 
 ```
- 
- 
+
+
 a   r
  \ / \
   p   d  e
@@ -1399,11 +1401,11 @@ a   r
   $D \equiv \{ p \in P: \forall q \in Z^c, p \perp q \}$
 - If $D$ were dense in $P$, then an element $r \in G \cap D$ would be the
   element we are looking for, where all the extensions of $r$ is in $G$.
-- Let's try to show that $D$ is dense. Let $p \in P$ be arbitrary. We need to find a 
+- Let's try to show that $D$ is dense. Let $p \in P$ be arbitrary. We need to find a
   $d \in D$ such that $p \leq d$.
 - If $p \perp q$ for every $q \in Z^c$, then we are done, since $p \in D$, and thus $p \leq p \in D$.
 - On the other hand, suppose there is a $q$ such that $p \not \perp p$. That is, there is an $r$
-  such that $p \leq r, q \leq r$.                                                                                      
+  such that $p \leq r, q \leq r$.
 - Now what? Now we make an observation: See that we can freely add $\uparrow Z^c = \{ r : \exists q \in Z^c, q \leq r \}$
   into $D$, because (1) if we consider $G \cap (D \cup Z^c)$, then $G \cap Z^c = \emptyset$.
   (2) $G \cap \uparrow Z^c$ could have an element $\uparrow r \in \uparrow Z^c, \in G$. But this cannot happen,
@@ -1481,14 +1483,14 @@ a   r
 - Question: What is the meaning of the $\models$ symbol in this context?
 - SID: I guess $r \models \sigma = \xi$ is syntactic sugar for $(r, \sigma, \xi) \in F^{x=y}$.
 - See that $Z^{=}$ is the set of all $q$ for which $\tau$ is possibly a subset or equal to $\tau'$.
-- By the inductive hypothesis of name rank, FTF holds for $\sigma, \xi$ and it follows that $Z^{=} \in M$ 
+- By the inductive hypothesis of name rank, FTF holds for $\sigma, \xi$ and it follows that $Z^{=} \in M$
   [I have no fucking idea what this means].
 
 #### Step 4: The equivalence of net, modality, relativized inclusion:
 
-- $\tau^G \subseteq \tau'^G$ implies 
-- $G \subseteq Z^{=}$ implies 
-- $\exists p \in G, \forall q \geq p, q \in Z^{=}$ implies 
+- $\tau^G \subseteq \tau'^G$ implies
+- $G \subseteq Z^{=}$ implies
+- $\exists p \in G, \forall q \geq p, q \in Z^{=}$ implies
 - $\tau^G \subseteq \tau'^G$
 
 Therefore, all these conditions are equivalent.
@@ -1497,7 +1499,7 @@ Therefore, all these conditions are equivalent.
   there is a $p \in G$ such that all larger elements will be trapped in the net $Z^{=}$.
 - Then we will prove that if there is such a $p \in G$ which traps elements in the net, then we have $\tau^G = \tau'^G$.
 
-##### 
+#####
 
 # Partial Evaluation, Chapter 3
 
@@ -1525,14 +1527,14 @@ Therefore, all these conditions are equivalent.
   the target and source programs should have the same effect, so `[target]_T(in) = [source]_S(in)`.
 - Written differently, this is `[ [compiler]_L(source) ]_T(in) = [source]_S(in)`.
 
-##### First futamura projection                          
+##### First futamura projection
 
 - `out = [source]_S (in)`
 - `out = [int](source, in)`
 - `out = [[mix](int, source)](in)`
 - But by definition of `target`, we have `out = target(in)`
 - Thus, we see that `target = [mix](int, source)`. We get the *compiled output program/target program* by partially
-  applying the interpreter to the source program. 
+  applying the interpreter to the source program.
 
 ##### Second futamura projection
 
@@ -1562,7 +1564,7 @@ Therefore, all these conditions are equivalent.
 
 #### Proving that powering is continuous
 
-- We wish to prove that $f^n$ is continuous, given that $f$ and $(\circ)$ is continuous. 
+- We wish to prove that $f^n$ is continuous, given that $f$ and $(\circ)$ is continuous.
 - Proof by induction. $n = 0$ is immediate. For case $n+1$:
 
 $$
@@ -1606,22 +1608,22 @@ $$
 - Consider $2^S$ where $S$ is finite. Then the elements of the form `{s} ∈ 2^S` are said
   to be atoms because if `x ⊂ {s}` then `x = 0` or `x = {s}`.
 
-  
+
 ##### Atomless boolean algebras
 - Let $S$ be an infinite set, and let $I$ be a collection of its finite subsets. Then $I$ is an ideal
   (downward closed subset which has all joins), because the union of two finite sets is finite, and the
   subset of any finite set is finite.
 - The quotient $T = 2^S/I$ will be an *atomless* boolean algebra.
 - Note that the quotient kills all finite subsets.
-- So for any non-zero $x \in T$, then it must be an equivalence class with some infinite subset. 
+- So for any non-zero $x \in T$, then it must be an equivalence class with some infinite subset.
   If we take $k, k'$ to be non-empty disjoint subsets of $x$, then neither is equivalent to $x$ or to $\emptyset$,
   because they differ at infinitely many locations from each. Thus, $x$ is not an atom.
 - Furthermore, the boolean algebra is not complete, because, if we have $k_1, k_2, \dots$ be a countable collection
-  of countably infinite subsets of $S$ (for example, if $S \equiv \mathbb N$, then we could take $k_i$ to be the 
+  of countably infinite subsets of $S$ (for example, if $S \equiv \mathbb N$, then we could take $k_i$ to be the
   set of numbers with $i$ bits as 1 in their binary representation), then this collection has no least upper bound.
 - Suppose $u$ is an upper bound. Then $u$ differs from each $k_i$ in only finitely many locations.
 - Now build $e_i \in u \cap k_i$, and consider the set $c \equiv u / \{ e_i \}$. That is, we remove one element from $u$
-  from the intersection with each $k_i$. This new $c \subseteq u$, and $c$ is still an upper bound, since it differs 
+  from the intersection with each $k_i$. This new $c \subseteq u$, and $c$ is still an upper bound, since it differs
   from each of the $k_i$ at finitely many locations. Thus, this algebra is not complete.
 
 ##### Or, how to embed a poset into a boolean algebra.
@@ -1695,7 +1697,7 @@ $$|\mathbb R^\mathbb Q| = (2^{\aleph_0})^{\aleph_0} = 2^{\aleph_0 \cdot \aleph_0
   $x \leq y$ and $y \leq x$ implies $x = y$.
 - A subset $D \subseteq P$ is said to have an *upper bound* $u_D \in P$ iff for all $d \in D$, it is true that $d \leq u_D$.
 - An upper bound is essentially a cone over the subset $D$ in the category $P$.
-- A subset $D \subseteq P$ has a *least upper bound* $l_D$ iff (1) $l_D$ is an upper bound of $D$, and (2) 
+- A subset $D \subseteq P$ has a *least upper bound* $l_D$ iff (1) $l_D$ is an upper bound of $D$, and (2)
   for every upper bound $u_D$, it is true that $l_D \leq u_D$
 - Least upper bounds are unique, since they are essentially limits of the set $D$ when $D$ is taken as a thin category
 
@@ -1726,10 +1728,10 @@ $$|\mathbb R^\mathbb Q| = (2^{\aleph_0})^{\aleph_0} = 2^{\aleph_0 \cdot \aleph_0
 
 ### Monotonicity and Continuity
 
-- A function $f: P \to Q$ between posets is said to be monotone iff $p \leq p'$ implies that $f(p) \leq f(p')$. 
+- A function $f: P \to Q$ between posets is said to be monotone iff $p \leq p'$ implies that $f(p) \leq f(p')$.
 - A function $f: P \to Q$ is continuous, iff for every directed set $D \subseteq P$, it is true that $f(\cup D) = \cup f(D)$.
 - This has the subtle claim that the image of a directed set is directed.
--   
+-
 
 ### Monotone map
 
@@ -1826,7 +1828,7 @@ F \/ l; G \/ not(l)
 # Compactness theorem of first order logic
 
 - Define a theory to be a set of sentences.
-- Compactness states that if a theory `T` is such that every finite subset `Tfin ⊂ T` of the theory 
+- Compactness states that if a theory `T` is such that every finite subset `Tfin ⊂ T` of the theory
   has a model, then `T` itself has a model.
 
 #### Proof Sketch
@@ -1861,7 +1863,7 @@ F \/ l; G \/ not(l)
 #### Non algorithmic proof sketch
 - See that given a `S` which obeys `(S1)`...`(S8)`, `PROFINITE(S)` has **finite character**.
 - A family `F` has finite character is defined to be: `A ∈ F` iff all subsets of `A` belong to `F`.
-- Show that for any `Γ ∈ S*`, there is a maximal `Γ# ∈ S*` which contains `Γ`. 
+- Show that for any `Γ ∈ S*`, there is a maximal `Γ# ∈ S*` which contains `Γ`.
   This follows by Zorn on `S*`. Let the partial order by the subset ordering on `S*(Γ) := { Δ ∈ S* | Γ ⊂ Δ }`.
   See that every chain has a maximal element, by the finite character property. Thus, `S*(Γ)` has a maximal element, call it `Γ#`.
 - Show that this `Γ#` obeys `(C0)`...`(C8)` [closure properties] This will rely on `S*` having `(S1)`..`(S8)`.
@@ -1958,9 +1960,9 @@ Read George S Boolos, computability and logic till chapter 18 =)
 # Fibrational category theory, sec 1.1, sec 1.2
 
 - Key idea: can define a notion of a bundle `p: E → B`
-- The idea is that we want to generalize pullbacks into fibres. 
-- A functor `p: E \to B` is called as a fibration if for each morphism `f: b → b'` 
-  downstairs, and an element `e' ∈ E` such that `π(e') = b'`, then we have a lift 
+- The idea is that we want to generalize pullbacks into fibres.
+- A functor `p: E \to B` is called as a fibration if for each morphism `f: b → b'`
+  downstairs, and an element `e' ∈ E` such that `π(e') = b'`, then we have a lift
   of the morphism `f` into `f♮`, such that this morphism has a property called
   *cartesianity*.
 - Given:
@@ -1976,7 +1978,7 @@ b ----> b'
 - We want:
 
 ```
-  
+
 e===f♮=>e'
 |       |
 |π      |π
@@ -1984,7 +1986,7 @@ v       v
 b --f-->b'
 ```
 
-- Furthermore, to ensure that this is really a pullback, we ask for the condition that 
+- Furthermore, to ensure that this is really a pullback, we ask for the condition that
   TODO
 
 #### Omega sets
@@ -2000,7 +2002,7 @@ b --f-->b'
 #### PERs
 - This is a partial equivalence relation, so we only need symmetry and transitivity.
 - We consider partial equivalence relations (PERs) over `N`.
-- Let `R` be a PER. We think of those elements that are reflexively related (ie, `xRx`) as 
+- Let `R` be a PER. We think of those elements that are reflexively related (ie, `xRx`) as
   "in the domain" of the `PER`.
 - Thus we define `domain(R) = { x | xRx }`.
 - In this way, `R` is a real equivalence relation on `domain(R)`.
@@ -2011,7 +2013,7 @@ b --f-->b'
 
 #### Cloven Fibrations
 
-- A fibration is cloven if for every arrow downstairs, there is a chosen cartesian 
+- A fibration is cloven if for every arrow downstairs, there is a chosen cartesian
   arrow upstairs. So we have a *function* that computes the cartesian arrow upstairs
   for an arrow downstairs. This is different from the regular definition where
   we just know that there *exists* something upstairs.
@@ -2022,7 +2024,7 @@ b --f-->b'
 - Having made such a choice, every map `u: I → J` in `B` gives a functor `u*: E_J → E_I` from the the fiber `E_J` over `J`
   to the fiber `E_I` over `I`. (Direction changes, pullback)
 - Recall that `E_J` is a subcategory of `E` where the objects are `p^{-1}(J)`, and the morphisms
-  are `p^{-1}(id_J)`. 
+  are `p^{-1}(id_J)`.
 - Implement the map `u*` as `u*(y)` as that object given by lifting the map `u: I → J` along `Y`.
   This is well-defined since we have a clevage to pick a unique `u*(Y)`!
 
@@ -2051,7 +2053,7 @@ I -u--->J
 - A functor where all the equalities are isos. `f(a . b) ~= f a . f b`. `f(id) ~= id`.
 
 ##### Split Indexed Category
-- 
+-
 
 ##### Lemma about pulling stuff back into the fiber
 
@@ -2172,7 +2174,7 @@ inductive m2
 ```
 
 ```
-inductive n1: Type := 
+inductive n1: Type :=
 | mk: n2 n1 -> n1
 
 inductive n2 (a: Type): Type :=
@@ -2200,14 +2202,14 @@ inductive Sets where
 | ind: Nat -> Sets
 | fn: Sets -> Sets -> Sets
 
-def Sets.denote: Sets -> Type 
+def Sets.denote: Sets -> Type
 | bool => Prop
 | ind => nat
 | fn i o => i.denote -> o.denote
 
-def ifProp (p: Prop) (t: a) (e: a) : a := by 
-  match Classical.lem p with 
-  | Or.inl _ => t 
+def ifProp (p: Prop) (t: a) (e: a) : a := by
+  match Classical.lem p with
+  | Or.inl _ => t
   | Or.inr _ => e
 
 def Model := Σ (s: Sets), s.denote
@@ -2240,7 +2242,7 @@ def Model := Σ (s: Sets), s.denote
 #### Macro
 - A tactic that expands to another tactic.
 - Example: `_` tactic. This expands into `({})`, which shows you the current state.
-- `macro_rules` need a piece of `Syntax`, and it expands into another tactic. 
+- `macro_rules` need a piece of `Syntax`, and it expands into another tactic.
 
 ```
 -- | do the iff.rfl as well.
@@ -2255,7 +2257,7 @@ macro_rules | `(tactic| rfl => `(tactic| exact Iff.rfl)
 - Use `elab` to define syntax + elaborator together.
 - Add command to list all places where something was extended.
 - Add information into docstrings.
-- `match_target`. 
+- `match_target`.
 
 #### `Mapsto` arrow
 
@@ -2316,7 +2318,7 @@ syntax (name := trace) "trace " term : tactic
 
 elab "foo" : tactic => do
   -- `TacticM Unit` expected
-  logInfo "hi" 
+  logInfo "hi"
 
 ```
 
@@ -2368,7 +2370,7 @@ elab tk:"foo" val:term : tactic => do
 - A closed type is interpreted as an object.
 - A term is interpreted as a morphism.
 - A dependent type upon $X$ is interpreted as an object of the slice category $C/X$.
--  A dependent type of the form `x: A |- B(x) is a type` corresponds to morphisms `f: B -> A`, 
+-  A dependent type of the form `x: A |- B(x) is a type` corresponds to morphisms `f: B -> A`,
     whose fiber over  `x: A` is the type `f^{-1}(x) = B(x)`.
 - The dependent sum $\Sigma_{x : A} B(x)$ is given by an object in $Set/A$, the set $\cup_{a \in A} B_a$.
   The morphism is the morphism from $B_a \to A$ which sends an elements of $B_{a_1}$ to $a_1$, $,B_{a_2}$ to $a_2$ and so forth.
@@ -2446,7 +2448,7 @@ becomes the function `snd: ΓxA → A`.
   belong to $D$. Often, $D$ is also closed under composition.
 - Said differently, $D$ is closed under all pullbacks, as well as composition.
 - A category with displays is _well rooted_ if the category has a terminal object $1$, and all maps into $1$
-  are display maps (ie, they can always be pulled back along any morphism). 
+  are display maps (ie, they can always be pulled back along any morphism).
 - This then implies that binary products exist (?? HOW?)
 
 
@@ -2517,7 +2519,7 @@ type End (p :: * -> * -> *) = forall x. p x x
 - Recall that `Hom` functor preserves limits.
 
 ```
--- Hom(\int^x p(x, x), r) ~= \int_x (Hom(p x x, r)) 
+-- Hom(\int^x p(x, x), r) ~= \int_x (Hom(p x x, r))
 type Hom a b = a -> b
 ```
 
@@ -2548,10 +2550,10 @@ fwd coendp2r  pxx = coendp2r (MkCoend pxx)
 - The backward iso, reminiscent of just applying a continuation.
 
 ```
--- bwd :: End (RHS p r)             -> (Coend p -> r) 
--- bwd :: (forall x. (RHS r) x x)   -> (Coend p -> r) 
--- bwd :: (forall x. Hom (p x x) r) -> (Coend p -> r) 
--- bwd :: (forall x. (p x x) -> r)  -> (Coend p -> r) 
+-- bwd :: End (RHS p r)             -> (Coend p -> r)
+-- bwd :: (forall x. (RHS r) x x)   -> (Coend p -> r)
+-- bwd :: (forall x. Hom (p x x) r) -> (Coend p -> r)
+-- bwd :: (forall x. (p x x) -> r)  -> (Coend p -> r)
 bwd :: Profunctor p => (forall x. (p x x) -> r) -> Coend p -> r
 bwd pxx2r (MkCoend paa) = pxx2r paa
 ```
@@ -2585,7 +2587,7 @@ ninjaFwd (MkCoend (MkNinjaLHS (x2r, gx))) = fmap x2r gx
 -- ninjaBwd :: Functor f => g r -> (∃ x. (NinjaLHS (x -> r, g x))
 ninjaBwd :: Functor g => g r -> Coend (NinjaLHS g r)
 ninjaBwd gr = MkCoend (MkNinjaLHS (x2r, gx)) where
-   x2r = id -- choose x = r, then x2r = r2r 
+   x2r = id -- choose x = r, then x2r = r2r
    gx = gr -- choose x = r
 ```
 
@@ -2644,7 +2646,7 @@ mkNinjaLHS' gi = MkNinjaLHS' (MkNinjaLHS (id, gi))
 -- convert any storage of shape `g`, input type `i` into a functor
 instance Functor (NinjaLHS' g i) where
   -- f:: (o -> o') -> NinjaLHS' g i o -> NinjaLHS' g i o'
-  fmap o2o' (MkNinjaLHS' (MkNinjaLHS (i2o, gi))) = 
+  fmap o2o' (MkNinjaLHS' (MkNinjaLHS (i2o, gi))) =
     MkNinjaLHS' $ MkNinjaLHS (\i -> o2o' (i2o i), gi)
 ```
 
@@ -2675,7 +2677,7 @@ a' -> [a -> b] -> b'
 
 ```
 dimap :: (a' -> a) -> (b -> b') -> (f a -> g b) -> (f a' -> g b')
-dimap a'2a b2b' fa2gb = \fa' -> 
+dimap a'2a b2b' fa2gb = \fa' ->
   let fa = fmap a'2a fa'
   let gb = fa2gb fa
   let gb' - fmap b2b' gb
@@ -2714,12 +2716,12 @@ p(a,a)       p(b,b)
    \                  /
 dimap id(a) k τa    dimap k id(b) τb
    \                 /
-    \               τb.(@fmap f k): (f a-> g b) 
+    \               τb.(@fmap f k): (f a-> g b)
      \              /
      \           COMMUTES?
      \            /
     (@fmap g k).τa(f a -> g b)
-    
+
 ```
 
 - This says that `gk . τa = τb . fk`
@@ -2767,7 +2769,7 @@ a,a-->a,b
 
 #### Relationship to haskell
 
-- How would we define this wedge condition in haskell? 
+- How would we define this wedge condition in haskell?
 - Because of parametricity, haskell gives us naturality for free.
 - How do we define an infinite product? By propositions as types, this is the same as providing `∀x.`.
 - `End p = forall a. p a a`
@@ -2943,7 +2945,7 @@ q a a         q b b
 ```
     S
     -
-    -   
+    -
    tttt
    tztt
    tztt T
@@ -2961,7 +2963,7 @@ q a a         q b b
 - Furthermore, it is the right adjoint to `π*(Z)` because the ???
 
 
-# TLDP pages for bash conditionals 
+# TLDP pages for bash conditionals
 - [The TLDP pages](https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html) have a large list of all
   possible bash conditionals
 
@@ -3029,13 +3031,13 @@ match x with
 
 
 ```
-def tupleN (n: Nat) (t: Type) := 
+def tupleN (n: Nat) (t: Type) :=
   match n with
   | 0 => Unit
   | n+1 => t * (tupleN n t)
 
 def foo n := Vec Int n
- 
+
 Any ~ t
 def f (n: Nat): (tupleN n t) := ...
 def f (n: Nat): Any := ...
@@ -3083,23 +3085,23 @@ $ elan toolchain add my-lean-copy /path/to/my-lean-copy/build/stage0
 $ elan override my-lean-copy
 ```
 
-# Inductive types 
+# Inductive types
 
 #### Coq
 
 ##### Expressive Power
 - Bare Inductives
-- Nested inductives: The constructor of the nesting cannot be a mutual 
+- Nested inductives: The constructor of the nesting cannot be a mutual
    [So we can have `T := ... List T`, but not `T := ... Mutual1 T where Mutual1T := Mutual2 T and Mutual2 T := Mutual1 T`]
 - Mutual inductives: All parameters of inductives in the mutual group must be the same.
 - Nested Mutual inductives: Not supported, something like:
 
 ```
 T
-| .. U (T) 
+| .. U (T)
 
 U
-| .. T 
+| .. T
 ```
 
 does not work due to the presence of `U(T)`.
@@ -3109,7 +3111,7 @@ does not work due to the presence of `U(T)`.
 - Nested inductives: primitive recursion principle using `fix` and `match`.
   Kernel has support for `fix` reduction, and `match` is also known by the kernel.
 - Mutual inductives: generates 'simple' recursion principles for each element of the mutual.
-- Need to use the `scheme` command to get the full recursion principle. 
+- Need to use the `scheme` command to get the full recursion principle.
 - Primitive recursion principle using `fix` and `match`.
 
 #### Lean
@@ -3120,11 +3122,11 @@ does not work due to the presence of `U(T)`.
 
 ```
 mutual
-inductive U1 (S: Type): Type := 
+inductive U1 (S: Type): Type :=
 | mk: U2 S → U1 S
 | inhabitant: U1 S
 
-inductive U2 (S: Type): Type := 
+inductive U2 (S: Type): Type :=
 | mk: U1 S → U2 S
 | inhabitant: U2 S
 end
@@ -3173,7 +3175,7 @@ In Coq people shun away from this binder. I'm not sure why, I guess there are is
 
 # Hyperdoctrine
 - A hyperdoctrine equips a category with some kind of logic `L`.
-- It's a functor `P: T^op -> C` for some higher category `C`, whose objects are categories 
+- It's a functor `P: T^op -> C` for some higher category `C`, whose objects are categories
   whose internal logic corresponds to `L`.
 - In the classical case, `L` is propositional logic, and `C` is the 2-category of posets.
   We send `A ∈ T` to the poset of subobjects `Sub_T(A)`.
@@ -3221,9 +3223,9 @@ In Coq people shun away from this binder. I'm not sure why, I guess there are is
 - eg. `x3 x4|{x3, x4}  . x1a3 | {x1, x2} = x1 a3|{x1, x2}`. (substitute `x3` by `x1`, and `x4` by `x2`.)
 
 #### Problem: we don't have identity arrows!
-- Left identities `x1 x2 | {x1, x2}` is not a right identity! 
+- Left identities `x1 x2 | {x1, x2}` is not a right identity!
 - But in a category, we want two sided identity.
-- The workaround is to work with an equivalence class of terms. 
+- The workaround is to work with an equivalence class of terms.
 - Define equivalence as `t|X ~= t(X/Y)|Y`.
 - Arrows are equivalence classes of terms.
 
@@ -3239,11 +3241,11 @@ In Coq people shun away from this binder. I'm not sure why, I guess there are is
 
 - Modular lattices are an algebraic variety.
 - Consider the category of modular latties.
-- The free modular lattice on 2 elements and on 3 elements has dediable equality, by virtue of being finite. 
+- The free modular lattice on 2 elements and on 3 elements has dediable equality, by virtue of being finite.
 - The free modular lattice on 5 elements does not have decidable equality.
 - The coproduct of free modular lattice on 2 and 3 generators is the free modular
   lattice on 5 generators, because $F(2 \cup 3) = F(2) \sqcup F(3)$  (where $2, 3$ are two and three element sets),
-  because free is left adjoint to forgetful, and the left adjoint $F$ preserve colimits! 
+  because free is left adjoint to forgetful, and the left adjoint $F$ preserve colimits!
 
 # Homotopy continuation
 
@@ -3257,7 +3259,7 @@ In Coq people shun away from this binder. I'm not sure why, I guess there are is
 # Monads from Riehl
 
 - I'm having some trouble enmeshing my haskell intuition for monads with the rigor, so this
-- A category is said to be monadi 
+- A category is said to be monadi
   is an expository note to bridge the gap.
 
 #### What is a monad
@@ -3335,7 +3337,7 @@ H -Stx-> L^T -forget-> L
 
 - So we write elements of `H` in terms of syntax/"algebra over `L`". We then forget the algebra structure to keep only the low form.
 - The way to think about this is that any object in the image of `U` in fact has a (forgotten) algebra structure, which is why
-  we can first go to `L^T` and then forget the algebraic structure to go back to `L`. It might be that this transition from `H` to `L^T` 
+  we can first go to `L^T` and then forget the algebraic structure to go back to `L`. It might be that this transition from `H` to `L^T`
   is very lossy. This means that the algebra is unable to encode what is happening in `H` very well.
 
 #### Monadic adjunction
@@ -3369,8 +3371,8 @@ H -Stx-> L^T -forget-> L
 #### Limits and colimits in categories of algebras
 
 
-- We say that `H` is monadic over `L` iff the adjunction `F: L -> H: U` such that the monad `T: L -> L := UF` 
-  gives rise to an equivalence of categories `H ~= L^T`. 
+- We say that `H` is monadic over `L` iff the adjunction `F: L -> H: U` such that the monad `T: L -> L := UF`
+  gives rise to an equivalence of categories `H ~= L^T`.
 
 ## Riehl: Limits and colimits in categories of algebras
 
@@ -3380,13 +3382,13 @@ Here, we learn theorems about limits and colimits in `L^T`.
 
 - That is, if for some `f: h -> h'`, if `Uf: Uh -> Uh'` is an iso, then so is `f`.
 - Since the adjunction `F |- U` is a monadic adjunction (`U` is monadic over `F`), we know that `H ~= L^T`, and `U` equals
-  the forgetful functor `(H = L^T) -> L`. 
-- Write the arrow `f: h -> h'` as an arrow in `L^T` via the commuting square datum 
+  the forgetful functor `(H = L^T) -> L`.
+- Write the arrow `f: h -> h'` as an arrow in `L^T` via the commuting square datum
   determined by `g: h -> h'`:
 
 ```
 Tl-Tg->Tl'
-|      |  
+|      |
 a      a'
 |      |
 v      v
@@ -3399,14 +3401,14 @@ l--g-->l'
 
 ```
 Tl<-Tg'-Tl'
-|      |  
+|      |
 a      a'
 |      |
 v      v
 l<-g'--l'
 ```
 
-- For a proof, we see that `a' . Tg = g . a'`. Composing by `g'` on left, giving: `g' . a' . Tg = a'`. 
+- For a proof, we see that `a' . Tg = g . a'`. Composing by `g'` on left, giving: `g' . a' . Tg = a'`.
   Composing by `Tg'` on the right, we get: `g'. a' = a' . Tg'`. That's the statement of the above square.
 - This means we have created an inverse `Tg'`, which reflects `g'` into `L^T`.
 
@@ -3424,18 +3426,18 @@ l<-g'--l'
 #### Thm 5.6.5.i A monadic functor `U: H -> L` creates any limits that `L` has.
 
 - Since the equivalence `H ~= L^T` creates all limits/colimits, it suffices to show the result for `U^T: L^T -> L`.
-- Consider a diagram `D: J -> C^T` with image spanned by `(T(D[j]) -f[j]-> D[j])`. 
-- Consider the forgotten diagram `U^TD: J -> C` with image spanned by `D[j]`.  Create the limit cone 
+- Consider a diagram `D: J -> C^T` with image spanned by `(T(D[j]) -f[j]-> D[j])`.
+- Consider the forgotten diagram `U^TD: J -> C` with image spanned by `D[j]`.  Create the limit cone
   `P` (for product, since product is limit) with morphisms `pi[j]: P -> D[j]`. We know this limit exists since we assume that `L`
   has this limit that `U^T` needs to create.
 - We can reinterpret the diagram `D: J -> C^T` as a natural transformation between two functors `Top, Bot: J -> C`.
   These functors are `Top(j) := T(D[j])`,
   `Bottom(j) := D[j]`.
-- The the natural transformation is given by `eta: Top => Bottom`, 
+- The the natural transformation is given by `eta: Top => Bottom`,
   with defn `eta(j) := D[j]-f[j]-> D[j]` where `f[j]` is given by the image of `(T(D[j]) -f[j]-> D[j])`.
 - So we see that `eta: Top => Bot` can also be written as `eta: TD => D` since `Top ~= TD` and `Bot ~= D`.
 - Now consider the composition of natural transformations `Const(TL) =Tpi=> TD =gamma=> D` all in `J -> C`.
-  This gives us a cone with summit `TL`. 
+  This gives us a cone with summit `TL`.
 - This cone with summit `TL` factors through `L` via the unique morphism `lambda: TL -> L`.
   We wish to show that `(TL -lambda-> L)` is a `T`-algebra, and is the limit of `D`.
 - Diagram chase. Ugh.
@@ -3483,7 +3485,7 @@ flatten = join . map transpose
 -- force: eval = flatten | via coequallizer
 ```
 
-#### If $T: C \to C$ is finitary and $C$ is complete and cocomplete, then so is $C^T$   
+#### If $T: C \to C$ is finitary and $C$ is complete and cocomplete, then so is $C^T$
 
 - We have already seen that if $C$ is complete then so is $C^T$
 - We have also seen that $C^T$ contains coproducs
@@ -3518,9 +3520,9 @@ $$
 - If $Tq_0$ would be the coequalizer of $Tf, Tg$ then we are done.
   But this is unlikely, since a monad need not preserve coequalizers.
 - Instead, we simply calculate the coequalizer of $Tf, Tg$ and call this $q_1: B \to Q_1=TQ_0$.
-- Repeat inductively to form a directed limit (colimit). 
+- Repeat inductively to form a directed limit (colimit).
 - Monad preserves filtered colimits, since in $UF$, $F$ the left adjoint preserves all colimits, and $U$
-  the right adjoint preserves colimits since it simply forgets the data in  
+  the right adjoint preserves colimits since it simply forgets the data in
 
 # Combinatorial Cauchy Schwarz
 
@@ -3532,7 +3534,7 @@ $$
 - Classical cauchy schwarz: $x_1^2 + x_2^2 + x_3^2 \geq 1/2(x_1 + x_2 + x_3)^2$
 - Discrete cauchy schwarz: On placing a natural number of pigeons in each hole, The number of pairs of pigeons in the
   same hole is minimized iff pigeons are distributed as evenly as possible.
-- Pigeonhole principle: When $r = m + 1$, the best split possible is $(2, 1, 1, \dots)$. 
+- Pigeonhole principle: When $r = m + 1$, the best split possible is $(2, 1, 1, \dots)$.
 
 #### Version 2
 
@@ -3547,7 +3549,7 @@ $$
 - Compare: $|ker(f)| \cdot |Y| \geq |X|^2$ with $(x_1^2 + x_2^2 + x_3^2) \cdot n \geq (x_1 + x_2 + x_3)^2$. Cardinality replaces
   the action of adding things up, and $|X|^2$ is the right hand side, $|ker(f)|$ is the left hand side, which is the sum of squares.
 
-# Bezout's theorem 
+# Bezout's theorem
 
 - [On Bezout's theorem Mc coy](https://sites.math.washington.edu/~morrow/336_19/papers19/Dathan.pdf)
 - Let $k$ be algebraically closed.
@@ -3559,7 +3561,7 @@ $$
 
 #### Intersection multiplicity $i[f \cap g](a)$
 - Define the intersection multiplicyt of $f, g$ at $a$ by notation $i[f \cap g](a)$.
-- Defined as $i[f \cap g](a) \equiv dim_k(R_a/(f, g)_a)$. 
+- Defined as $i[f \cap g](a) \equiv dim_k(R_a/(f, g)_a)$.
 - That is, we localize the ring at $a$ and quotient by the ideal generated by $f, g$,
   and then count the dimension of this space as a $k$ vector space.
 
@@ -3568,7 +3570,7 @@ $$
   explodes due to the presence of the local unit $f_a$. Thus, $R_a/(f, g)_a \equiv 0$.
 
 #### $f(a) = 0$ and $g(a) = 0$ implies $i[f \cap g](a) \neq 0$.
-- If both vanish, then $(f, g)_a$ is a real ideal of $R_a$.  
+- If both vanish, then $(f, g)_a$ is a real ideal of $R_a$.
 
 
 #### Examples
@@ -3576,8 +3578,8 @@ $$
   So they intersect with dimension $1$.
 - $x-1$ and $y-1$ at $(0, 0)$ have multiplicity $D_{(0, 0)}^{-1}(k[x, y]/(x - 1, y - 1))$. The ideal $(x - 1, y - 1)$ blows up because $x - 1 \in D_{(0, 0)}$,
   and thus the quotient is $0$, making the dimension $0$.
-- $x^2-y$ and $x^3-y$ at $(0, 0)$ gives quotient ring $k[x, y]/(x^2-y, x^3-y)$, which is the same as $k[x, y]/(x^2 - y, x^3 - y, 0)$, which is equal 
-  to $k[x,y]/(x^2, x^3, y)$, which ix $k[x]/(x^2)$. This is the subring of the form $\{ a + bx : a,b \in k \}$ which has dimension $2$ as a $k$ 
+- $x^2-y$ and $x^3-y$ at $(0, 0)$ gives quotient ring $k[x, y]/(x^2-y, x^3-y)$, which is the same as $k[x, y]/(x^2 - y, x^3 - y, 0)$, which is equal
+  to $k[x,y]/(x^2, x^3, y)$, which ix $k[x]/(x^2)$. This is the subring of the form $\{ a + bx : a,b \in k \}$ which has dimension $2$ as a $k$
   vector space. So this machinery actually manages to captures the degree 2 intersection between $y=x^2$ and $y=x^3$ at $(0, 0)$.
 
 ##### Intersection cycle ($f \cap g$)
@@ -3600,7 +3602,7 @@ $$
   $f \cap g + f \cap h$
 
 #### Lemma: if $f, g$ are nonconstant and linear then $\#(f \cap g) = 1$.
-- Recall that we are stating this within the context of $k[x, y, z]$. 
+- Recall that we are stating this within the context of $k[x, y, z]$.
 - So $f, g$ are homogeneous linear polynomials $f(x, y, z) = ax + by$, $g(x, y, z) = cx + dy$.
 - Sketch: if they have a real solution, then they will meet at unique intersection by linear algebra.
 - if they do not have a unique solution, then they are parallel, and will meet at point at infinity which exists
@@ -3657,14 +3659,14 @@ $$
 - Let's deal with the first part.
 - See that $i[f(x, y, z) \cap z]$ equals $i[f(x, y, 0) \cap z]$, because we want a common intersection, thus can impose
   $z = 0$ on $f(x, y, z)$.
-- We now write $f(x, y, 0) = \mu y^t \prod_j (x - \beta_j y)$. 
+- We now write $f(x, y, 0) = \mu y^t \prod_j (x - \beta_j y)$.
 
 ##### Solving for $i[f(x, y, z) \cap (y - \alpha_i z)]$
-- Here, we must impose the equation $y = \alpha_i z$. 
+- Here, we must impose the equation $y = \alpha_i z$.
 - Thus we are solving for $f(x, z, \alpha_i z)$. Once again, we have an equation of two variables, $x$ and $z$.
 - Expand $f(x, z, \alpha_i z) = \eta_i z^{l_i} \prod_{j=1}{m - l_i}(x - \gamma_{ij} z)$
 - This makes the cycles to be $l_i (z \cap (y - \alpha_i z)) + \sum_j (x - \gamma_{ij} z) \cap (y - \alpha_i z)$.
-- The cycle $(z \cap (y - \alpha_i z))$ corresponds to setting $z = 0, y - \alpha_i z = 0$, which sets $y=z=0$. 
+- The cycle $(z \cap (y - \alpha_i z))$ corresponds to setting $z = 0, y - \alpha_i z = 0$, which sets $y=z=0$.
   So this is the point $[x:0:0]$.
 - The other cycle is $(x - \gamma_{ij} z) \cap (y - \alpha_i z)$, which is solved by $(\gamma_{ij} z : \alpha_i z : z)$.
 - In total, we see that we have a solution for every cycle.
@@ -3675,7 +3677,7 @@ $$
 - Let $\deg_x(f) \gep deg_x(g)$.
 - We treat $f, g$ as polynomials in a single variable $x$, ie, elements $(k[y, z])[x]$.
 - We want to factorize $f$ as $f = Qg + R$. But to do this, we need to enlarge the coefficient ring $k[y, z]$
-  into the coefficient *field* $k(y, z)$ so the euclidean algorithm can work. 
+  into the coefficient *field* $k(y, z)$ so the euclidean algorithm can work.
 - So we perform long division to get polynomials $Q, R \in (k(y, z)[x]$ such that $f = Qg + R$.
 - Since $f, g$ are coprime, we must have $R$ nonzero. Now these $Q, R$ are rational *functions* since they live in $k(y, z)$.
 - Take common denominator of $Q, R$ and call this $h \in k[y, z]$ (ie, it is the polynomial denominator).
@@ -3701,7 +3703,7 @@ $$
 - The group $SL(2, Z)$ acts on these by substituting $(z, w) \mapsto PSL(2, Z) (z, w)$.
 - We can write the effect on the coefficents explicitly: $(p_1', p_2', p_3') = M (p_1, p_2, p_3)$.
 - So we have a representation of $SL(2, Z)$.
-- An example 
+- An example
 
 - [IAS lecture](https://www.youtube.com/watch?v=3jksqrYuvuk)
 
@@ -3735,7 +3737,7 @@ set<int> unseen;
 map<int, int> freq;
 // unseen as a data structure maintains
 // information about [0..largest_ever_seen]
-int largest_ever_seen; 
+int largest_ever_seen;
 
 
 void init() {
@@ -3867,8 +3869,8 @@ int mex_mex() {
 # The Zen of juggling three balls
 
 - Hold one ball in the left hand `A`, two in the right hand `B, C`.
-  This initial configuration is denoted `[A;;B,C]`. 
-- throw `B` from the right hand to the left hand. This configuration is denoted 
+  This initial configuration is denoted `[A;;B,C]`.
+- throw `B` from the right hand to the left hand. This configuration is denoted
   by `[A;B←;C]` where the `B←` is in the middle since it is in-flight, and has `←`
   since that's the direction its travelling.
 - When the ball `B` is close enough to the left hand that it can be caught, *throw*
@@ -3920,7 +3922,7 @@ int mex_mex() {
 # Hyperdoctrine
 
 - A hyperdoctrine equips a category with some kind of logic `L`.
-- It's a functor `P: T^op -> C` for some higher category `C`, whose objects are categories 
+- It's a functor `P: T^op -> C` for some higher category `C`, whose objects are categories
   whose internal logic corresponds to `L`.
 - In the classical case, `L` is propositional logic, and `C` is the 2-category of posets.
   We send `A ∈ T` to the poset of subobjects `Sub_T(A)`.
@@ -4058,7 +4060,7 @@ def performIO [Inhabited a] (io: IO a): a := Inhabited.default
 
 ### Subobject category
 
-- Define an equivalence relation between two monics `m, m': S, S' -> X` where `m ~ m'` 
+- Define an equivalence relation between two monics `m, m': S, S' -> X` where `m ~ m'`
   iff there is an iso `i: S -> S''` such that the triangle commutes:
 
 ```
@@ -4071,7 +4073,7 @@ def performIO [Inhabited a] (io: IO a): a := Inhabited.default
 
 - $Sub_C(X)$ is the set of all subobjects of $X$.
 - to make the idea more concrete, let `C = Set` and let `X = {1, 2}`. This has subobjects
-  `[{}], [{1}], [{2}], [{1, 2}]`. 
+  `[{}], [{1}], [{2}], [{1, 2}]`.
 - To be clear, these are given by the map `m0: {} -> {1, 2}` (trivial), `m1: {*} -> {1, 2}` where `m1(*) = 1`,
   `m2: {*} -> {1, 2}` where `m2(*) = 2`, and finally `m3: {1, 2} -> {1, 2}` given by `id`.
 - The category $C$ is well powered when $Sub_C(X)$ is a small set for all $X$. That is, the class of
@@ -4080,7 +4082,7 @@ def performIO [Inhabited a] (io: IO a): a := Inhabited.default
   (recall that pullback of monic along any arrow is monic).
 - This means that we can contemplate a functor $Sub_C: C^{op} \to \texttt{Set}$ which sends an object $C$
   to its set of subobjects, and a morphism $f: Y \to X$ to the pullback of the subobjects of $X$ along $f$.
-- If this functor is representable, that is, 
+- If this functor is representable, that is,
 
 
 
@@ -4132,7 +4134,7 @@ def performIO [Inhabited a] (io: IO a): a := Inhabited.default
   So if `b -f-> c` is allowed, so is `a -h-> b -f-> c`.
 - If `C` is a monoid, then a sieve is just a right ideal
 - For a partial order, a sieve on `c` is a set of elements that is downward closed/smaller closed.
-  If `b <f= c` is in the sieve, then so too is any element `a` such that `a <h= b <f= c`. 
+  If `b <f= c` is in the sieve, then so too is any element `a` such that `a <h= b <f= c`.
 - So a sieve is a smaller closed subset: if a small object passes the sieve, then so does anything smaller!
 - Let `Q ⊂ Hom(-, c) = yc` be a subfunctor. Then define the set `S_Q = { f | f: a -> c and f ∈ Q(a) }`.
 - Another way of writing it maybe to say that we take `S_q = { f ∈ Hom(a, c) | f ∈ Q(a) }`.
@@ -4145,7 +4147,7 @@ def performIO [Inhabited a] (io: IO a): a := Inhabited.default
 # Common Lisp Debugging: Clouseau
 
 - Install the `clouseau` package to get GUI visualizations of common lisp code.
-- Use `(ql:quickload 'clouseau)` to use the package, and then use 
+- Use `(ql:quickload 'clouseau)` to use the package, and then use
   `(clouseau:inspect (make-condition 'uiop:subprocess-error :code 42))` to inspect a variable.
 
 # Drawabox: Lines
@@ -4179,16 +4181,16 @@ CL-USER> (pathname-directory "/home/siddu_druid/**/foo/**/bar")
 CL-USER> (pathname-tu[ey "/home/siddu_druid/**/foo/**/bar")
 ; in: PATHNAME-TU[EY "/home/siddu_druid/**/foo/**/bar"
 ;     (PATHNAME-TU[EY "/home/siddu_druid/**/foo/**/bar")
-; 
+;
 ; caught STYLE-WARNING:
 ;   undefined function: COMMON-LISP-USER::PATHNAME-TU[EY
-; 
+;
 ; compilation unit finished
 ;   Undefined function:
 ;     PATHNAME-TU[EY
 ;   caught 1 STYLE-WARNING condition
 ; Debugger entered on #<UNDEFINED-FUNCTION PATHNAME-TU[EY {10038F92C3}>
-[1] CL-USER> 
+[1] CL-USER>
 ; Evaluation aborted on #<UNDEFINED-FUNCTION PATHNAME-TU[EY {10038F92C3}>
 CL-USER> (pathname-type "/home/siddu_druid/**/foo/**/bar")
 NIL
@@ -4212,16 +4214,16 @@ CL-USER> (pathname-directory "/home/siddu_druid/**/foo/**/bar")
 CL-USER> (pathname-tu[ey "/home/siddu_druid/**/foo/**/bar")
 ; in: PATHNAME-TU[EY "/home/siddu_druid/**/foo/**/bar"
 ;     (PATHNAME-TU[EY "/home/siddu_druid/**/foo/**/bar")
-; 
+;
 ; caught STYLE-WARNING:
 ;   undefined function: COMMON-LISP-USER::PATHNAME-TU[EY
-; 
+;
 ; compilation unit finished
 ;   Undefined function:
 ;     PATHNAME-TU[EY
 ;   caught 1 STYLE-WARNING condition
 ; Debugger entered on #<UNDEFINED-FUNCTION PATHNAME-TU[EY {10038F92C3}>
-[1] CL-USER> 
+[1] CL-USER>
 ; Evaluation aborted on #<UNDEFINED-FUNCTION PATHNAME-TU[EY {10038F92C3}>
 CL-USER> (pathname-type "/home/siddu_druid/**/foo/**/bar")
 NIL
@@ -4248,7 +4250,7 @@ CL-USER> (pathname-name "/home/siddu_druid/**/foo/**/*.ty")
 
 # Logical Relations (Sterling)
 
-- Key idea is to consider relations $R_\tau$ between closed terms of types $\tau_l$ and $\tau_r$. That is, we have 
+- Key idea is to consider relations $R_\tau$ between closed terms of types $\tau_l$ and $\tau_r$. That is, we have
   have a relation $R_\tau \subseteq \{ (t_l, t_r): (\cdot \vdash t_l : \tau_l), (\cdot \vdash t_r : \tau_r)$.
 - We write a relation between two closed terms $\tau_L$ and $\tau_R$ as: $R_{\tau} \equiv (\cdot \vdash \tau_L) \times (\cdot \vdash \tau_R)$.
 - A morphism of relations $f: R_\sigma to R_\tau$ is given by two functions $f_l: \sigma_l \to \tau_l$ and $f_r: \sigma_r \to \tau_r$
@@ -4284,10 +4286,10 @@ $$
   $R_{\forall \alpha, \tau(\alpha)} \subseteq (\cdot \vdash \forall \alpha \tau_l(\alpha)) \times (\cdot \vdash \forall \alpha \tau_r(\alpha))$ as:
 
 $$
-R_{\forall \alpha, \tau (\alpha)} \equiv 
-\{ (f_l : \forall \alpha, \tau_l(\alpha), f_r: \forall \alpha, \tau_r(\alpha)) 
-\mid 
-\forall R_\alpha, (f_l(\alpha_l), f_r(\alpha_r)) \in R_{\tau(\alpha)} 
+R_{\forall \alpha, \tau (\alpha)} \equiv
+\{ (f_l : \forall \alpha, \tau_l(\alpha), f_r: \forall \alpha, \tau_r(\alpha))
+\mid
+\forall R_\alpha, (f_l(\alpha_l), f_r(\alpha_r)) \in R_{\tau(\alpha)}
 \}
 $$
 
@@ -4470,7 +4472,7 @@ $$
 - We will suppose that the collapse is not injective and derive a contradiction.
 - Suppose there are two elements $v_1, v_2$ such that $v_1 \neq v_2$ but $\pi(v_1) = \pi(v_2)$.
 - WLOG, suppose $v_1 < v_2$: the relation is well-founded, and thus the set $\{v_1, v_2\}$ ought to have a minimal element, and $v_1 \neq v_2$.
-- We must have $\pi(v_1) \subsetneq \pi(v_2)$, 
+- We must have $\pi(v_1) \subsetneq \pi(v_2)$,
 
 
 
@@ -4494,7 +4496,7 @@ $$
 - Epis in the category of topological spaces are continuous functions that have dense image.
 - Take a circle $S^1$ and pinch it in the middle to get $S^1 \lor S^1$. this map is an epi: $f: S^1 \to S^1 \lor S^1$.
 - See that this does not induce an epi $\pi(Z) \to \pi_(Z) \star \pi_1(Z)$.
-- Maybe even more simply, the map $f: [0, 1] \to S^1$ is an epi 
+- Maybe even more simply, the map $f: [0, 1] \to S^1$ is an epi
 - Thus, fundamental group functor does not preserve epis.
 
 # Epi in topological spaces
@@ -4520,7 +4522,7 @@ $$
 
 # Almost universal class
 
-- A universal class is one that contains all subsets as elements. 
+- A universal class is one that contains all subsets as elements.
 - A class is almost universal if every subset of $L$ is a a subset of some element of $L$. But note that $L$ does not need to have all subsets as elements.
 - $L$ is almost universal if for any subset $A \subset L$ (where $A$ is a set), there is some $B \in L$ such that $A \subseteq B$,
   but $A$ in itself need not be in $L$.
@@ -5782,7 +5784,7 @@ far along I get!
 
 - I want to 'implement' the zariski based proof for cayley hamilton in SAGE and show
   that it works by checking the computations scheme-theoretically.
-- Let's work through the proof by hand. Take a 2x2 matrix `[a, b; c, d]`. 
+- Let's work through the proof by hand. Take a 2x2 matrix `[a, b; c, d]`.
 - The charpoly is `|[a-l; b; c; d-l]| = 0`, which is `p(l) = (a-l)(d-l) - bc = 0`
 - This simplified is `p(l) = l^2 - (a + d) l + ad - bc = 0`.
 - Now, let's plug in `l = [a; b; c; d]` to get the matrix eqn
@@ -44161,7 +44163,7 @@ which end you wish edit: press c]i} to perform the edit you describe.
 - [Spring cards to show off](https://www.youtube.com/watch?v=avoKr-mvfzI).
 - Shuffle with charlier cut.
 - peel top card off with [angel](https://www.youtube.com/watch?v=fRH4MyB4RVs) to display card, put card back.
-- [Overhand shuffle control](https://www.youtube.com/watch?v=VkE8fNFBUw8) to shuffle 
+- [Overhand shuffle control](https://www.youtube.com/watch?v=VkE8fNFBUw8) to shuffle
   (Learn [Hindu Shffle: control](https://www.youtube.com/watch?v=P_C1clIaOX4) eventually).
 - Peel top card off with the [Chinese deal](https://www.youtube.com/watch?v=kppssPG7etM)
 - Show that it's the same card!
@@ -44640,7 +44642,7 @@ speak slower than you want to.
 - `C-b d`: detach from session (have tmux running in the background)
 - `C-b ,`: rename
 - `C-b n/p`: next/previous window movement.
-- `C-b c`: create new window.            
+- `C-b c`: create new window.
 - `C-b %/"`: create pane; deete process to cose pane.
 - `C-b (/)`: move pane eft or rigt
 - `C-b o`: oter pane
