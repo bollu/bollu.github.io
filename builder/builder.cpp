@@ -26,7 +26,7 @@
 #if  defined(_WIN32) || defined(WIN32) // my build config on windows
 #define BLOG_ROOT_FOLDER_TRAILING_SLASH "C:\\Users\\bollu\\blog\\"
 #else  // unix
-#define BLOG_ROOT_FOLDER_TRAILING_SLASH "/home/bollu/blog/out/"
+#define BLOG_ROOT_FOLDER_TRAILING_SLASH "/home/bollu/blog/"
 #endif
 
 
@@ -36,7 +36,7 @@
 #define CONFIG_INPUT_MARKDOWN_PATH  (BLOG_ROOT_FOLDER_TRAILING_SLASH "README.md")
 #define CONFIG_KATEX_PATH  (BLOG_ROOT_FOLDER_TRAILING_SLASH "katex/katex.min.js")
 #define CONFIG_PRISM_PATH (BLOG_ROOT_FOLDER_TRAILING_SLASH "prism/prism.js")
-#define OUTPUT_DIR_TRAILING_SLASH BLOG_ROOT_FOLDER_TRAILING_SLASH
+#define OUTPUT_DIR_TRAILING_SLASH BLOG_ROOT_FOLDER_TRAILING_SLASH "/out/"
 
 
 static const int LONG_LATEX_BLOCK_SIZE = 30;
@@ -1584,20 +1584,25 @@ const char html_preamble[] =
     // " background: linear-gradient(to right, #1565C0 0%, #1565C0 50%, #E91E63 50%,   #E91E63 99%); "
     // " background: linear-gradient(to right, #1565C0 1%, #EFEFEF 1%, #EFEFEF 99%, #E91E63 99%); "
     // " background: linear-gradient(to right, #1565C0 50%, #C2185B 50%);"
+    " line-height: 1.5em; "
     " color: #000000; " // tufte
-    " font-family: Tahoma, 'Blog Serif', serif; "
-    " font-size: 14px; "
+    " font-family: serif; "
+    " font-size: 12px; "
     " margin-top: 0px; " // by default, there is a margin.
     " max-width: 100%; overflow-x: hidden; }"
     "\n"
-    "h1, h2, h3, h4, h5 { font-family: Tahoma, 'Blog Mono', monospace; }"
+    "h1, h2, h3, h4, h5 { font-family: 'Blog Mono', monospace; }"
+    "h1, h2 { column-span: all; }"
     // img as a block. width: 100% makes it responsive with no fiddling
     // https://stackoverflow.com/questions/15458650/make-an-image-responsive-the-simplest-way
     "img { display:block; width: 100%; max-width: 800px; height: auto }"
     // container
-    ".container { overflow-x: auto; overflow-y: hidden;  max-width: 80ex; text-align: justify; "
+    ".container { overflow-x: auto; overflow-y: hidden; "
     "             margin-top: 0px; height: 100%; min-height: 100%;"
-    "             padding-left: 50px; padding-right: 50px; background: #FFFFFF;"
+    "             max-width: 100%; "
+    "             font-size: 18px; line-height: 1.5em; "
+    "             column-count: auto; column-width: 25em; column-fill: auto; "
+    "             padding-left: 30px; padding-right: 30px; background: #FFFFFF;"
     "}"
     "@media (max-width: 480px) { "
     "  .container { margin-left: 1%; margin-right: " "1%; }"
@@ -1608,7 +1613,7 @@ const char html_preamble[] =
     "  body { font-size: 30px; }"
     "}"
     // desktop
-    "@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: 20%; } }"
+    "@media (min-width: 1024px) { .container { margin-left: 1%; margin-right: 1%; } }"
     // class for image <div>
     ".image { }"
     "\n"

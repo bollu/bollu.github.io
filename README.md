@@ -1,5 +1,6 @@
+<h2> A Universe of Sorts
 <img style="float:left;display:inline-block;padding-right: 16px; width: 48px" src="./static/banner.png">
-<h2> A Universe of Sorts </h2>
+</h2>
 <h3> Siddharth Bhat </h3>
 
 - [Leave me your thoughts](https://www.admonymous.co/bollu) / [Chat with me](https://calendly.com/bollu/) / Email me:  <a href='mailto:siddu.druid@gmail.com'> `siddu.druid@gmail.com` </a>

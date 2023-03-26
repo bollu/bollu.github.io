@@ -1,5 +1,5 @@
-<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='alternate' type='application/rss+xml' href='feed.rss' title='A universe of sorts'/><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Sans'; src: url('/static/Exo2-Regular.ttf');}@font-face {font-family: 'Blog Serif'; src: url('/static/Revans-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { background: linear-gradient(to right, #1565C0 0%, #1565C0 50%, #E91E63 50%,   #E91E63 99%);  color: #000000;  font-family: Tahoma, 'Blog Serif', serif;  font-size: 14px;  margin-top: 0px;  max-width: 100%; overflow-x: hidden; }
-h1, h2, h3, h4, h5 { font-family: Tahoma, 'Blog Mono', monospace; }img { display:block; width: 100%; max-width: 800px; height: auto }.container { overflow-x: auto; overflow-y: hidden;  max-width: 80ex; text-align: justify;              margin-top: 0px; height: 100%; min-height: 100%;             padding-left: 50px; padding-right: 50px; background: #FFFFFF;}@media (max-width: 480px) {   .container { margin-left: 1%; margin-right: 1%; }  body { font-size: 30px; }  } @media (max-width: 1024px) {  .container { margin-left: 1%; margin-right: 1%; }  body { font-size: 30px; }}@media (min-width: 1024px) { .container { margin-left: 25%; margin-right: 20%; } }.image { }
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='alternate' type='application/rss+xml' href='feed.rss' title='A universe of sorts'/><link rel='stylesheet' href='katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Sans'; src: url('/static/Exo2-Regular.ttf');}@font-face {font-family: 'Blog Serif'; src: url('/static/Revans-Regular.ttf');}html { font-size: 100%; }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { line-height: 1.5em;  color: #000000;  font-family: serif;  font-size: 12px;  margin-top: 0px;  max-width: 100%; overflow-x: hidden; }
+h1, h2, h3, h4, h5 { font-family: 'Blog Mono', monospace; }h1, h2 { column-span: all; }img { display:block; width: 100%; max-width: 800px; height: auto }.container { overflow-x: auto; overflow-y: hidden;              margin-top: 0px; height: 100%; min-height: 100%;             max-width: 100%;              font-size: 18px; line-height: 1.5em;              column-count: auto; column-width: 25em; column-fill: auto;              padding-left: 30px; padding-right: 30px; background: #FFFFFF;}@media (max-width: 480px) {   .container { margin-left: 1%; margin-right: 1%; }  body { font-size: 30px; }  } @media (max-width: 1024px) {  .container { margin-left: 1%; margin-right: 1%; }  body { font-size: 30px; }}@media (min-width: 1024px) { .container { margin-left: 1%; margin-right: 1%; } }.image { }
 a:hover { color: #1a73e8; text-decoration: underline;  }
 a { color: #1a73e8; text-decoration: none; }
 a:visited { color: #1a73e8; text-decoration: none; }
@@ -40,7 +40,7 @@ pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: n
  <pre><code>type End (p :: * -> * -> *) = forall x. p x x
 </code></pre> 
  <ul><li><span class='centered'><span class='centered'> A functor is continuous if it preserves limits. </li><li><span class='centered'><span class='centered'> Recall that  <code class='inline'>Hom</code> functor preserves limits. </li></ul> 
- <pre><code>-- Hom(\int^x p(x, x), r) ~= \int_x (Hom(p x x, r)) 
+ <pre><code>-- Hom(\int^x p(x, x), r) ~= \int_x (Hom(p x x, r))
 type Hom a b = a -> b
 </code></pre> 
  <ul><li><span class='centered'><span class='centered'>  <code class='inline'>Set(\int^x p(x, r), s)</code> is asking for a function  <code class='inline'>Coend p -> r</code>. </li><li><span class='centered'><span class='centered'> But e claim this  is the same as having  <code class='inline'>forall a. (p a a -> r)</code>. </li><li><span class='centered'><span class='centered'> So we can write  <code class='inline'>Set(\int^x p(x, x), r) ~= \int_x Set(p(x, x), r)</code>. </li></ul> 
@@ -59,10 +59,10 @@ fwd :: Profunctor p => (Coend p -> r) -> (forall x. (p x x) -> r)
 fwd coendp2r  pxx = coendp2r (MkCoend pxx)
 </code></pre> 
  <ul><li><span class='centered'><span class='centered'> The backward iso, reminiscent of just applying a continuation. </li></ul> 
- <pre><code>-- bwd :: End (RHS p r)             -> (Coend p -> r) 
--- bwd :: (forall x. (RHS r) x x)   -> (Coend p -> r) 
--- bwd :: (forall x. Hom (p x x) r) -> (Coend p -> r) 
--- bwd :: (forall x. (p x x) -> r)  -> (Coend p -> r) 
+ <pre><code>-- bwd :: End (RHS p r)             -> (Coend p -> r)
+-- bwd :: (forall x. (RHS r) x x)   -> (Coend p -> r)
+-- bwd :: (forall x. Hom (p x x) r) -> (Coend p -> r)
+-- bwd :: (forall x. (p x x) -> r)  -> (Coend p -> r)
 bwd :: Profunctor p => (forall x. (p x x) -> r) -> Coend p -> r
 bwd pxx2r (MkCoend paa) = pxx2r paa
 </code></pre> 
@@ -84,7 +84,7 @@ bwd pxx2r (MkCoend paa) = pxx2r paa
 <span class="token comment">-- ninjaBwd :: Functor f => g r -> (∃ x. (NinjaLHS (x -> r, g x))</span>
 <span class="token hvariable">ninjaBwd</span> <span class="token operator">::</span> <span class="token constant">Functor</span> <span class="token hvariable">g</span> <span class="token operator">=></span> <span class="token hvariable">g</span> <span class="token hvariable">r</span> <span class="token operator">-></span> <span class="token constant">Coend</span> <span class="token punctuation">(</span><span class="token constant">NinjaLHS</span> <span class="token hvariable">g</span> <span class="token hvariable">r</span><span class="token punctuation">)</span>
 <span class="token hvariable">ninjaBwd</span> <span class="token hvariable">gr</span> <span class="token operator">=</span> <span class="token constant">MkCoend</span> <span class="token punctuation">(</span><span class="token constant">MkNinjaLHS</span> <span class="token punctuation">(</span><span class="token hvariable">x2r</span><span class="token punctuation">,</span> <span class="token hvariable">gx</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">where</span>
-   <span class="token hvariable">x2r</span> <span class="token operator">=</span> <span class="token builtin">id</span> <span class="token comment">-- choose x = r, then x2r = r2r </span>
+   <span class="token hvariable">x2r</span> <span class="token operator">=</span> <span class="token builtin">id</span> <span class="token comment">-- choose x = r, then x2r = r2r</span>
    <span class="token hvariable">gx</span> <span class="token operator">=</span> <span class="token hvariable">gr</span> <span class="token comment">-- choose x = r</span>
 </code></pre> 
  <ul><li><span class='centered'><span class='centered'> We can prove the ninja coyoneda via coend calculus plus yoneda embedding, <span class='centered'>by using the fact that yoneda is full and faithful. </li><li><span class='centered'><span class='centered'> So instead of showing LHS ~= RHS in the ninja coyoneda, we will show that  <code class='inline'>Hom(LHS, -) ~= Hom(RHS, -)</code>. </li></ul> 
@@ -119,7 +119,7 @@ mkNinjaLHS' gi = MkNinjaLHS' (MkNinjaLHS (id, gi))
  <pre><code>-- convert any storage of shape `g`, input type `i` into a functor
 instance Functor (NinjaLHS' g i) where
   -- f:: (o -> o') -> NinjaLHS' g i o -> NinjaLHS' g i o'
-  fmap o2o' (MkNinjaLHS' (MkNinjaLHS (i2o, gi))) = 
+  fmap o2o' (MkNinjaLHS' (MkNinjaLHS (i2o, gi))) =
     MkNinjaLHS' $ MkNinjaLHS (\i -> o2o' (i2o i), gi)
 </code></pre> 
  <span class='centered'>See that to be able to extract out values, we need  <code class='inline'>g</code> to be a functor:  

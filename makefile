@@ -3,10 +3,10 @@
 all: build serve
 build: clean
 	make -C ./builder/build;
-	LSAN_OPTIONS=detect_leaks=0 ./builder/build/builder 
+	LSAN_OPTIONS=detect_leaks=0 ./builder/build/builder
 
 serve:
-	python3 -m http.server
+	cd out && python3 -m http.server
 
 clean:
 	find . -name '*.html' ! -name 'chat.html'  -delete
