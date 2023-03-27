@@ -1,6 +1,9 @@
+- [Sturm's theorem](https://en.wikipedia.org/wiki/Sturm%27s_theorem)
+- [Representation theory for particle pReferenceshysics](https://math.ucr.edu/~huerta/guts/node1.html)
+- [Building the fastest Lua interpreter.. automatically!](https://sillycross.github.io/2022/11/22/2022-11-22/)
 - [Olin Shivers: CFA dude with epic rants and anti acknowledgements page](https://www.ccs.neu.edu/home/shivers/rants/msoft.html)
 - [Chronicles of OPT development: training log of large language model](https://github.com/facebookresearch/metaseq/blob/main/projects/OPT/chronicles/README.md)
-- Every Spider Web Has a Simple Flat Twist Tessellation 
+- Every Spider Web Has a Simple Flat Twist Tessellation
 - Reverse compilation techniques.
 - [Johnson–Lindenstrauss lemma: Exponential compression of vectors](https://en.wikipedia.org/wiki/Johnson%E2%80%93Lindenstrauss_lemma)
 - [Lock Convoys](https://davekilian.com/lock-convoys.html)
@@ -98,7 +101,7 @@
 - [Doran Zeilberger: mathematician, combinatorial algorithms hypergeometric functions, ultrafinist](https://sites.math.rutgers.edu/~zeilberg/OPINIONS.html)
 - [Invite physicists to write new oblique strategies](https://en.wikipedia.org/wiki/Oblique_Strategies)
 - [Confidence intervals explained via discretization: confidence sets](https://justindomke.wordpress.com/2021/10/11/confidence-games-1-2/)
-- Algorithmic and Computer Methods for Three-Manifolds: By fomenko! 
+- Algorithmic and Computer Methods for Three-Manifolds: By fomenko!
 - All of Statistics: A Concise Course in Statistical Inference
 - Geometric numerical integration.
 - [An invitation to morse theory](https://www3.nd.edu/~lnicolae/Morse2nd.pdf)
@@ -228,7 +231,7 @@
 > "fuck it, if machines can play chess, they can weave" and then invented the
 > mechanical loom
 - [Higher dimensional rewriting](http://hdra.gforge.inria.fr/)
-- Threshold concept: 
+- Threshold concept:
 > “A threshold concept can be considered as akin to a portal, opening up a
 > new and previously inaccessible way of thinking about something. It
 > represents a transformed way of understanding, or interpreting, or viewing
@@ -330,7 +333,7 @@
 - Example of left-inverse that is not a right inverse: `parse` and `print`.
   `parse(print(e)) = e` can be achieved easily by printing into a legal parseable format.
    On the other hand, `print(parse(s)) = s` is much harder, since for example,
-   `print(parse("1+2")) = "1 + 2"`, while `"1+2" != "1 + 2"`. 
+   `print(parse("1+2")) = "1 + 2"`, while `"1+2" != "1 + 2"`.
 - Pollack-inconsistency:To make these issues concrete we introduce the notion
    of Pollack-consistency. This property is
   related to a system being able to correctly parse formulas that it printed
@@ -409,7 +412,7 @@ Source https://www.physicsforums.com/threads/why-a-pde-is-an-infinite-dimensiona
    ensuring that term equality once again coincides with semantic equality.
    This is the key idea embodied in what is variously called polarized type
    theory, focalization, or call-by-push-value.
-- Damas–Milner type inference [Damas and Milner 1982] allows only prefix polymorphism. This is a 
+- Damas–Milner type inference [Damas and Milner 1982] allows only prefix polymorphism. This is a
   nice way to describe the difference between `∀ a (∀ b, a -> b -> a)` versus
   `∀ a a -> (∀ b. b -> a)`. . This restriction is called prefix or prenex
   polymorphism.  In their terminology, types contain no quantifiers at all;
@@ -522,8 +525,8 @@ Source https://www.physicsforums.com/threads/why-a-pde-is-an-infinite-dimensiona
 >  compiled WAM-based system using the same host language. To help placing our
 >  design on the fairly rich map of Prolog systems, we discuss similarities to
 >  existing Prolog abstract machines, with emphasis on separating necessary
->  commonalities from arbitrary implementation choices. 
-- Multidimensional Real Analysis I: J. J. Duistermaat. Gives the 
+>  commonalities from arbitrary implementation choices.
+- Multidimensional Real Analysis I: J. J. Duistermaat. Gives the
   extrinsic definition of a manifold.
 - Read everything by [Ken Perlin](https://mrl.cs.nyu.edu/~perlin/)
 - Spanier's algebraic topology.
@@ -561,7 +564,7 @@ Source https://www.physicsforums.com/threads/why-a-pde-is-an-infinite-dimensiona
 > from saying the obvious, overtime it becomes impossible to see the
 > obvious.... those who control your words control your mind."
 - [Advanced Determinant calculus](https://arxiv.org/abs/math/9902004)
-- Computing in the monster. In Group, Combinatorics & Geometry, Durham 2001, 327–337. World Scientific Publishing, 2003. 
+- Computing in the monster. In Group, Combinatorics & Geometry, Durham 2001, 327–337. World Scientific Publishing, 2003.
 - [The monster and black box groups](https://arxiv.org/abs/1310.5016)
 - [MSR how to write papers](https://www.microsoft.com/en-us/research/academic-program/write-great-research-paper/#!other-resources)
 - [Mermaid live editor](https://mermaid-js.github.io/mermaid-live-editor)
@@ -600,7 +603,7 @@ Source https://www.physicsforums.com/threads/why-a-pde-is-an-infinite-dimensiona
 > variety of institutions that can do a variety of tasks relatively well. It
 > produces 50 to 100 that do research extremely well and lead the world in this
 > dimension. It produces other schools, to cite the work of Raj Chetty and
-> coauthors, that generate a lot of mobility.  
+> coauthors, that generate a lot of mobility.
 > This is not a mess that a social planner would have designed necessarily, but
 > the different parts work well.
 
@@ -616,7 +619,7 @@ Source https://www.physicsforums.com/threads/why-a-pde-is-an-infinite-dimensiona
 > ?!  a dubious move or move that is probably an inaccuracy
 
 - Remembering White's queenside and kingside:
-> from White's left (the queenside) to right (the kingside). 
+> from White's left (the queenside) to right (the kingside).
 > "queen on her own color", "white on right".
 > Casting kingside is `O-O` because 2pieces are swapped.
 > Castling queenside is `O-O-O` because the queen is in the "middle".
@@ -794,7 +797,7 @@ Some Highlights
 > be Coloured with the Colour that allows them to be admissible in court, and the
 > USNO doesn't provide that.  It's not just a question of accuracy - we all know
 > perfectly well that the USNO's numbers are good.  It's a question of where the
-> numbers came from. 
+> numbers came from.
 
 - [HoTT lecture videos](https://scs.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=%2207756bb0-b872-4a4a-95b1-b77ad206dab3%22)
 - [Comp.graphics usenet FAQ](http://www.faqs.org/faqs/graphics/algorithms-faq/)
@@ -929,11 +932,11 @@ Some Highlights
 - Fractional Calculus: An Introduction for Physicists
 - Electromagnetic Theory and Computation: A Topological Approach
 - [Gauge theory and the topology of 4-manifolds](https://www.worldcat.org/title/gauge-theory-and-the-topology-of-four-manifolds/oclc/37806030)
-- A history of gale shapely for selecting doctors: 
+- A history of gale shapely for selecting doctors:
   https://thesheriffofsodium.com/2020/02/10/the-match-part-3-on-proposals-and-the-fight-for-a-student-optimal-match/
 - Being and Event: Dude who claims to use ZFC to
   "identify the relationship of being to history, Nature, the State, and God"?
-- Read quotes of camus, kierkegaard, nietcheze, derrida, lovecraft, 
+- Read quotes of camus, kierkegaard, nietcheze, derrida, lovecraft,
 - A Mathematical Introduction to String Theory
 - Fundamental Algorithms for Permutation Groups
 - Topological data structures for surfaces.
@@ -949,7 +952,7 @@ Some Highlights
 - https://almostsuremath.com/: great blog on probability
 - Apparently, a LOT of complex analysis can be performed if one knows martingales!
   Examples include "Proof of Liouville’s theorem from Brownian motion",
-  "Brownian Motion in Complex Analysis". 
+  "Brownian Motion in Complex Analysis".
 - Seems to be a connection between elliptic/parabolic PDEs (heat equation)
   and brownian motion, which is also ofc explained in keenan's geodesics in heat.
   [Here is an MO link](https://mathoverflow.net/questions/115032/non-rigorous-reasoning-in-rigorous-mathematics/115075#115075)
@@ -1025,7 +1028,7 @@ Some Highlights
 - Method of types
 - Lazy Depth-First Search and Linear Graph Algorithms in Haskell
 - [MAA problem books](https://www.maa.org/sites/default/files/pdf/pubs/books/Problems_book_list.pdf): Series of books
-  about problem solving!    
+  about problem solving!
 - The Cauchy Schwarz master class: inequalities and how to use cauchy schwarz
 - [A shorter model theory](https://www.amazon.in/Shorter-Model-Theory-Wilfrid-Hodges/dp/0521587131): Short book on model theory.
 - [On the complexity of linear arithmetic with divisibility](https://www.cs.ox.ac.uk/people/james.worrell/LICS-main.pdf): Useful for presburger results.
@@ -1082,12 +1085,12 @@ Some Highlights
 - [zhihu: chinese reddit](https://www.zhihu.com/)
 - [Makepad: sexy rust editor that runs in the web with wasm](https://makepad.nl/)
 - [Olympiad combinatorics](https://artofproblemsolving.com/community/c6h601134)
-- [Evan Cheng's list of books](https://web.evanchen.cc/recommend.html): Has good sources for 
+- [Evan Cheng's list of books](https://web.evanchen.cc/recommend.html): Has good sources for
   algebraic geometry and differential geometry.
 - [Yufei Zhao: olympiad training](https://yufeizhao.com/olympiad/)
 - Dirac general theory of relativity: a good description of torsion as being intrinsic.
   Learnt from [this answer on mathoverflow](https://mathoverflow.net/a/376498) which goes on to say:
-  
+
 > I will try to help with the title question. I think that the real motivation
 > for the Levi-Civita connection comes from looking at surfaces in Euclidean
 > 3-space. Differentate one tangent vector field Y along another X by first
@@ -1101,8 +1104,8 @@ Some Highlights
 > lectures.  I have to agree that there is something missing in the textbook
 > discussions of torsion. I have not found an intuitive understanding of
 > torsion.
-  
-  
+
+
 - [`aerc`: email client for CLI](https://aerc-mail.org/)
 - [Graphs, Dioids and Semirings: Provides algebraic descriptions of most graph algorithms](https://www.springer.com/gp/book/9780387754499)
 - [cutter: IDE for reverse engineering](https://cutter.re/)
@@ -1134,7 +1137,7 @@ Some Highlights
 - Advanced data structres by Peter Brass: Describes both the usual things, and
   exotic okasaki structures, interval trees, ukkonen's in detail.
 - [Oriented matroids](https://en.wikipedia.org/wiki/Oriented_matroid) as the theory of simplex?
-- https://github.com/ssloy/tinyrenderer 
+- https://github.com/ssloy/tinyrenderer
 - [Combinatorial commutative algebra](Combinatorial Commutative Algebra)
 - [Applied finite group actions](https://www.springer.com/gp/book/9783540659419)
 - [How does the C debugger work](https://blog.0x972.info/?d=2014/11/13/10/40/50-how-does-a-debugger-work)
@@ -1173,7 +1176,7 @@ Some Highlights
 - [CSES problem set](https://cses.fi/problemset/). Problem set for competitive programming
 - [The generalized distributive law: general version of FFT, viterbi, ...](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.125.8954&rep=rep1&type=pdf)
 - algebraic geometry through toric ideals: https://www.youtube.com/watch?v=-AkCtGY7Kc8&list=PLnkl-SmACpdhIZnHAecRG36du2Oc2jiTs&index=1
-- [CadQuery](https://github.com/CadQuery/cadquery): open source python based 
+- [CadQuery](https://github.com/CadQuery/cadquery): open source python based
   3D modelling / 3D printing / parametric CAD tool. Supposedly better than
   OpenSCAD.
 - Free Culture, Lawrence Lessig
@@ -1181,7 +1184,7 @@ Some Highlights
 - A visual introduction to Differential Forms and Calculus on Manifolds
 - A general relativity workbook:  Supposedly is like Abel's theorem in problems and solutions,
   where it gives you exercises to work through.
-- Gentle introduction to general relativity that answers all the 'why's: 
+- Gentle introduction to general relativity that answers all the 'why's:
   A Most Incomprehensible Thing: Notes Towards a Very Gentle Introduction to the Mathematics of Relativity Kindle Edition
 - A primer on domains and measure theory: https://www.youtube.com/watch?v=UJrnhhRi2IE
 - Fisher Yates and Sattolo's algorithm (generate permutation with one cycle) https://danluu.com/sattolo/
@@ -1203,7 +1206,7 @@ Some Highlights
 - The entire Landscape series from Macfarlane:
   (1) Mountains of the Mind (a history and first-person account of mountain climbing),
   (2)The Wild Places (a history and exploration of the 'wild' landscapes of the British Isles),
-  (3) The Old Ways (a history and exploration of the ancient paths of the world) are 
+  (3) The Old Ways (a history and exploration of the ancient paths of the world) are
   all really excellent (and can be read in any order). He's a fabulous writer,
   kind of like a Kapuściński for the natural world.
 - OpenSCAD: 3D modelling CAD 3D printing tool for mathematically and programatically
@@ -1231,14 +1234,14 @@ Some Highlights
   which also led me to http://phrontistery.info/isms.html
 - Video lectures on computational AG: http://swc.math.arizona.edu/oldaws/06Notes.html
 - Algebraic function fields and codes: Covers some version of Riemann Roch in chapter 1!
-  Seems to build a decent amount of algebraic number theory to then perform 
-  coding theory. Is very cool.          
+  Seems to build a decent amount of algebraic number theory to then perform
+  coding theory. Is very cool.
 - Street fighting mathematics: How to do mathematics: https://www.cs.cmu.edu/~odonnell/toolkit13/how-to-do-math-and-tcs.pdf
 - Books on writing: (1) On Writing by Stephen King, (2) Anatomy of Story by
   John Truby (3) The Art of Dramatic Writing by Lajos Egri,
   (4) Bird by Bird by Anne Lamott, (5) Theory of Prose by Shklovsky,
   (6) Morphology of the Folk Tale by Propp, (7) Narrative Discourse by Genette,
-  and (8) Structural Semantics by Greimas, (9) Building Great Sentences 
+  and (8) Structural Semantics by Greimas, (9) Building Great Sentences
 - Stream fusion to completeness: https://arxiv.org/pdf/1612.06668.pdf
 - PhD qualifying exams, large list: https://math.stackexchange.com/questions/267554/on-ph-d-qualifying-exams/270467#270467
 - Mishchenko/Fomenko - "A Course of Differential Geometry and Topology". It
@@ -1250,16 +1253,16 @@ Some Highlights
   very easily and their explanations are very down to Earth.
 - Stoker, differential geometry: Very concrete first few chapter, then does
   abstract manifolds next few chapters, finally ends up at relativity.
-- Ergodic theory explanation for burnside: 
+- Ergodic theory explanation for burnside:
    https://mathoverflow.net/questions/50033/intuitive-explanation-of-burnsides-lemma
 - Geometry: A metric approach with models by Richard S Millman: https://math.stackexchange.com/a/615095/261373
-- Invitation to ergodic theory by CE Silva. Contains a first chapter on 
+- Invitation to ergodic theory by CE Silva. Contains a first chapter on
   Lebesgue measure, so no difficulties of "not knowing measure".
 - All the good tutorials on competitive programming in
   codeforces: https://codeforces.com/blog/entry/57282
-- Computataional algebraic number theory: 
+- Computataional algebraic number theory:
   A Course in Computational Algebraic Number Theory by Henri Cohen
-- Algorithms to compute the primary decompositions of ideals: 
+- Algorithms to compute the primary decompositions of ideals:
   (1) Localization and Primary Decomposition of Polynomial ideals
   (2) Eisenbud-Huneke-Vasconcelos
 - [Zhegalkin polynomials: Think edward told me about to compute toric varieties](https://en.wikipedia.org/wiki/Zhegalkin_polynomial)
@@ -1333,7 +1336,7 @@ Some Highlights
 > says. "It will just make your own heart rate go up."
 > Traditionally, the Inuit saw yelling at a small child as demeaning. It's as if
 > the adult is having a tantrum; it's basically stooping to the level of the
-> child, Briggs documented. 
+> child, Briggs documented.
 - [Vicious circles](https://twitter.com/sigfpe/status/1286298055306706944/photo/1) --- contains
   stories of sets, quines, and recursion theory. Contains theorems on how to
   formally derive quines.
@@ -1378,7 +1381,7 @@ Some Highlights
 
 - [Classical Algebraic Geometry: a modern view](http://www.math.lsa.umich.edu/~idolga/CAG.pdf)
   Tome of classical AG.
-- [From Tao's article on gauges](https://terrytao.wordpress.com/2008/09/27/what-is-a-gauge/): 
+- [From Tao's article on gauges](https://terrytao.wordpress.com/2008/09/27/what-is-a-gauge/):
     (i) Quivers. This theory basically concerns connections on vector bundles over
      (usually finite) directed graphs. One novel feature, over manifolds, is
      that the dimension of the “bundle” may change over different points. The
@@ -1391,7 +1394,7 @@ Some Highlights
 - [if everything is political, nothing works](https://pjmedia.com/news-and-politics/sarah-hoyt/2019/01/20/when-everything-is-political-nothing-works-n63221)
 - [Science is politics; it is not _politics_](https://publicseminar.org/2017/06/not-everything-political-is-politics/)
 - [Kaliedoscopes: optics through applicatives](https://chrispenner.ca/posts/kaleidoscopes)
-- [UPenn linguistics course](https://www.ling.upenn.edu/courses/Fall_2003/ling001/schedule.html). Has 
+- [UPenn linguistics course](https://www.ling.upenn.edu/courses/Fall_2003/ling001/schedule.html). Has
   lecture notes.
 - [Three dimensional geometry and topology](https://www.amazon.com/Three-Dimensional-Geometry-Topology-Vol-1/dp/0691083045)
 > Most of it is readable to undergraduates. Its target audience, though, is
@@ -1440,7 +1443,7 @@ Some Highlights
 >  management of hospitals, schools, and other agencies in question.  In these
 >  essays, I will show that the institutionalization of values leads inevitably
 >  to physical pollution, social polarization, and psychological impotence:
->  three dimensions in a process of global degradation and modernized misery." 
+>  three dimensions in a process of global degradation and modernized misery."
 - [Tools for Convivality](https://en.wikipedia.org/wiki/Tools_for_Conviviality)
 > Radical monopoly is a concept defined by philosopher and author Ivan Illich
 > in his 1973 book, "Tools for Conviviality," and revisited in his later work,
@@ -1460,7 +1463,7 @@ Some Highlights
 > heat, and therefore it's so general as to be applied arbitrarily to anything
 > you don't like. However, being able to think about the consequences of a new
 > radical monopoly might have on some aspect of human experience is useful for
-> anticipating policy options in response to dynamic technology development. 
+> anticipating policy options in response to dynamic technology development.
 - [Handbook of geometry for competitive programmers](https://vlecomte.github.io/cp-geo.pdf)
 - Andrew Marr: A history of the world.
 - [Great animations of sphere eversion, setup with scrolling and webGL](https://rreusser.github.io/explorations/sphere-eversion/)
@@ -1518,7 +1521,7 @@ Some Highlights
 - [Bill Mollison: permaculture/Permaculture One](https://en.wikipedia.org/wiki/Bill_Mollison)
 - Algebraic geometry with a lot of geometry: Fulton's Algebraic Curves; Griffiths,Harris's text on Complex Algebraic Geometry
 - Engineering applications of noncommutative harmonic analysis.
-- SnoB / representation theory of Sn / fourier transform on Sn: 
+- SnoB / representation theory of Sn / fourier transform on Sn:
   (i) [his thesis](https://people.cs.uchicago.edu/~risi/papers/KondorThesis.pdf)
   (ii) [link to his library](http://www.gatsby.ucl.ac.uk/~risi/SnOB/SnOB/SnOB.pdf)
   (iii) [link to mini course](http://www.gatsby.ucl.ac.uk/~risi/courses/mini08/mini08.html)
@@ -1567,7 +1570,7 @@ Some Highlights
 - Deltas
 - Dataflow: notice that arrow desugaring is bad, make this faster!
 - Finish implementation of live range reordering ()
-- Upstream change to `gensim-data` changing the order of downloading 
+- Upstream change to `gensim-data` changing the order of downloading
   and then trying to pull data locally.
 - Structure theorem for PID
 - Propogators (Renissance of the propogator paper - ekmett).
@@ -1599,7 +1602,7 @@ Some Highlights
 - Directly solve system of recurrences we get from loops. (Loat-purrs has been
   installed, use it to compute closed forms)
 - Reverse mode automatic differentiation
-- Andrej Bauer blog posts 
+- Andrej Bauer blog posts
 - Toric ideals
 - Noncommutative rational series with applications
 - [Normaliz: Can solve hilbert basis.](https://github.com/Normaliz/Normaliz/)
@@ -1721,7 +1724,7 @@ Some Highlights
 - Take birkhoff polytope; is a polytope, can build discrete diff geo
   around it. consider tangent spaces. now perform DHMC on this space?
   Problem is that the "interesting" points are vertices, so we may
-  not gain much. However, what happens if we tesselate the space 
+  not gain much. However, what happens if we tesselate the space
   with birkhoff polytopes? Perhaps likely we get something? it's
   unclear, but very interesting for sure.
 - VC dimension as matroid?
@@ -1793,11 +1796,11 @@ Some Highlights
 - [Mathematics of tensegrity: Frameworks, tensegrities, and symmetry. Understanding stable structures](http://pi.math.cornell.edu/~web7510/framework.pdf)
 - [Spinors: A gentle introduction](http://www.weylmann.com/spinor.pdf)
 - Separation logic through a new lens: Lensifies separation logic.
-- The derivative operator: paper by ken iverson that generalizes derivative to jacobian, curl, whatnot. 
+- The derivative operator: paper by ken iverson that generalizes derivative to jacobian, curl, whatnot.
 - [Combinatorial manifolds / tropical style manifold](https://en.wikipedia.org/wiki/Piecewise_linear_manifold)
 - Noncommutative rational series with applications [They work with coefficients in an arbitrary semiring, which can be like watching paint]
 - [Evolution of eusociality](https://en.wikipedia.org/wiki/Evolution_of_eusociality)
-- Financial Shenanigans by Howard M Schiit. 
+- Financial Shenanigans by Howard M Schiit.
 - lying for money, The Match King, The Smartest Guys in the Room, Bad Blood, Billion Dollar Whale
 - [Great works in programming languages](https://www.cis.upenn.edu/~bcpierce/courses/670Fall04/GreatWorksInPL.shtml)
 - Divided power structure: is a way of making expressions of the form x^n/n! (taylor series-like-objects) meaningful even when we don't have access to n! (n factorial).

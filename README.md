@@ -9,6 +9,160 @@
 
 # Lax Milgram theorem
 
+# Nonexistence of solutions for ODE and PDE
+
+- ODE system, no bc: always solution by picard liendolf
+- ODE system, with boundary cond:,  can have no solution. Eg. $f'(x) = 0$, with
+  boundary conditoin $f(a) = 0, f(b) = 1$.
+- PDE system, no bc: can still create no solutions!
+- PDE system, with boundary cond: can have no solution because ODE is PDE.
+
+#### Example 1 of PDE with no solutions
+
+- Take a vector field on $\mathbb R^2$ with $V(x, y) = (-y, x)$. This vector field
+  has concentric spirals.
+- consider this vector field as a PDE, so we are looking for a function $f$ such that $\grad f = V$.
+- No such potential function can exist, because this vector field allow us to extract work.
+- Suppose such a potential exists. Then if I travel in a circle, according to the potential, net work
+  is zero. But if I evaluate the integral, I will get work done. Thus, no soln exists!
+- In general, asking **if a differential form is exact** is literally asking for a PDE to be solved!
+- In this case, the form is also **closed**, since it's a 2D form on a 2D surface. This is an example
+  of a closed form that is not exact.
+- It's nice to see PDE theory and diffgeo connect
+
+#### Example 2: use second axis as time
+
+- Consider a PDE on a square $[0, 1]\times [0, 1]$. We will think of the first axis as space
+  where the function is defined and the second axis as time where the function is perturbed.
+- We start by saying $\partial f / \partial x = t$. So the function at $t=0$ is constant, and at $t=1$ is linear.
+- Next, we say that $\partial f / partial t = 0$. This means that the function is not allowed to evolve through time.
+- This is nonsensical, becase at $t=1$, we expect a constant function to have become a linear function, but along the time axis,
+   we say that no point in space can change.
+- Thus, this DE has no solutions!
+- We can use the extra dimensions available in a PDE to create "conflicting" data along different time axes.
+
+# Baire Category Theorem
+
+- Dense set: set whose closure is full space
+- Baire Category theorem: Intersection of countably many
+  dense sets is dense (countable interesction of chonk is chonk)
+
+#### Proof
+- Let $D[i]$ be family of dense sets.
+- Denote $C(\cdot)$ for the closure of a set.
+- Let $p \in W$, we need to show that $p \in C(\cap_i D[i])$.
+- So for any $\epsilon$, we need to show that there is a point $w$ (for witness)
+  that is $\epsilon$ close to $p$ in $\cap_i D[i]$.
+- So we need to show that $w$ is in each of the $D[i]$.
+- We will create a sequence of points that will converge to $w$
+
+```py
+def find_witness(Ds, p, eps):
+ """returns a point 'w' such that `w ∈ Ds[i] ∀i` and that `|p - w| < eps`."""
+ seq = []
+ cur = D[0].get_close_pt(p, eps/3)) # cur is 'eps/3' close to p.
+ d_scale = 1 # current distance is eps / 3^d
+ yield cur
+ # loop invariant: 'cur' is eps/3^d from p
+ for k in range(1, infty):
+   for i in range(0, k):
+     d += 1
+	 # 1. next is closer to to point than 'cur' is by (1/3)
+     next = D[i].get_close_pt(cur, eps/3**d)
+	 # 2. (cur, next) distance is a monotonic decreasing function of 'd',
+	 #      so d(cur, next) > d(next, next')
+	 # Proof:
+	 # - dist(cur, next) <= dist(cur, p) + dist(p, next)
+	 # - dist(cur, next) <= eps/3**(d) + eps/3**(d+1) <= 4 eps / 3**d
+	 # - this dist(cur, next) is monotone decreasing in d, and thus
+	 #   sequence is cauchy.
+	 yield cur
+	 cur = next
+```
+
+
+#### Corollary 1: Space cannot be union of non chonk
+
+- A nowhere dense set is a set whose closure is empty.
+- A meagre set/ a set of first category
+  is a set which can be written as a countable union of
+  nowhere dense sets.
+- A non meagre set/a set of second category is
+  a set which cannot be written in this way
+- Baire Category: A complete metric space is non-meagre / second
+  category in itself.
+
+
+##### Proof of Corollary 1
+
+- By contradiction, assume that $X$ is the union of nowhere dense sets $N_i$.
+- complement the set $N_i$ to get $D_i \equiv X - N_i$.
+- We claim that the sets $D_i$ are dense.
+- By baire category theorem, $\cap D_i$ is dense.
+- But this means that $(\cap D_i)^C$ is nowhere dense, that is, $\cup D_i^C = \cup C_i$ is nowhere dense.
+- If $\cup C_i$ is nowhere dense, then $(\cup C_i) \neq X$.
+
+
+
+#### Corollary 2: One of union is chonk
+- Baire Category, stmt 2: If $X$ is the union of a countable family
+    of closed subsets, then at least one of the closed subsets
+    contains an open set
+
+
+##### Proof of Corollary 2
+
+- TODO
+
+#### Abstract Use: Swap Quantifiers
+
+- Let $D$ be an enumerable set and $X$ a complete metric space.
+- We have some statement $\forall x \in X, \exists  d \in D, P_d(x)$.
+- We get a uniform statement: $\exists d \in D, \forall x \in X, P_d(x)$
+- To do this, we first define $F_d \equiv \{ x \in X : P_d(x) \}$ (filter $x$ by $P_d$).
+- If we are lucky, then each of the $F_d$ are closed. Since $d \in D$ is enumerable,
+  and we have that $X = \cup_d F_d$, we apply baire category.
+- Baire category tells us that there is a $\mathcal d \in D$ such that $F_{\mathcal d}$ has
+  non empty interior.
+- By using $int(F_D) \neq \emptyset$, we prove that $F_D = X$, which gives us the uniform statement.
+
+#### Application : Vanishing derivative pointwise implies fn is polynomial
+
+- Let $P$ be infinitely differentiable, such that for each $x \in \mathbb R$,
+  there is a number $n(x) \in \mathbb N$ such that
+  $\partial^{n(w)} P /\partial x^{n(w)}|_w = 0$.
+- This is again a case where we switch a pointwise fact --- is locally like a poly as nth order
+  derivative vanishes, into a global fact --- is actually a polynomial.
+- Let us try the above proof sketch.
+- Define $F_d \equiv \{ v \in [0, 1] : (\partial^d f / partial x^d)(v) = 0 \}$
+- Clearly, $\cup F_d \equiv [0, 1]$.
+- By baire category, one of the $F_d$ has an open set inside it.
+- This means that for some open set, there is some natural $D$ such that the $D$th derivative vanishes.
+- From this, it is "clear" that $f$ is a polynomial?
+
+#### Application : the reals are uncountable.
+
+- Assume $[0, 1]$ is countable.
+- So $[0, 1] = \cup_i  \{x[i]\}$ for a countable number of points $x[i]$.
+- See that each of the sets $\{x[i]\}$.
+- But we know that a nonempty set $X$ is not a countable union of nowhere dense sets.
+
+
+# libOpenGL, libVDSO and Nix
+
+
+- openGL is bother userspace / user facing (provides APIs) and drivers
+  (talks to GPU hardware)
+- Nix thinks openGL is impure becuase openGL needs to be loaded based
+  on *target hardware*, which is fundamentally unknown at *host build machine*.
+- Contrast this situatino to VDSO, which is a library the kernel secretly
+  links/loads into any executable to provide access to syscalls.
+- This is *also* a fundamentally target side infra, which the host
+  build cannot know about, but this impurity is "purified" for Nix
+  because userspace doesn't need to worry about loading VDSO!
+- If it were the case that the kernel also links in
+
+
 # Stuff I learnt in 2022
 
 2022 was a weird year for me. I moved from India to Edinburgh to pursue
@@ -374,10 +528,6 @@ P2: if(y) { x = true; }
 - [Paper reference](https://dl.acm.org/doi/pdf/10.1145/2908080.2908121)
 
 
-# Libtpu
-- [XLA operation set](https://www.tensorflow.org/xla/operation_semantics)
-- [Reference](https://github.com/tensorflow/tensorflow/blob/6957c7befa1db02b7f5f4ecc98e44d6470a7f992/tensorflow/compiler/xla/python/tpu_driver/client/libtpu.h#L118)
-
 
 # Mutual recursion elaboration in Lean
 
@@ -553,37 +703,10 @@ by { dsimp, refl }
 - `nm` to list all symbols in an object file.
 
 #### ld
+
 - [trace-symbol](https://sourceware.org/binutils/docs/ld/Options.html#index-symbol-tracing) to trace symbol information.
 
-
-
-
-# Automatically building a JIT compiler
-
-- [Building the fastest Lua interpreter.. automatically!](https://sillycross.github.io/2022/11/22/2022-11-22/)
-
-# Model theory
-
-- [Refs](https://www.youtube.com/watch?v=t5NTBa75CoM&list=PLoWHl5YajIf5ZwhGrgiZkM_9X_UGCkbm7)
-
-#### Lecture 1
-- `F_p^alg` is also the union /coliimit of all fields of char. p.
-
-# Mathematical logic: real closed fields
-
-- [References](https://www.youtube.com/watch?v=qk7ozJ3Sbik)
-
-# Sturm's theorem
-
-- [Sturm's theorem](https://en.wikipedia.org/wiki/Sturm%27s_theorem)
-
-
-# CMake `configure_file`
-
-- [Reference](https://cmake.org/cmake/help/latest/command/configure_file.html)
-
-
-# List symbols in a file
+#### List symbols in a file
 
 Use `nm` to list all symbols in a file.
 
@@ -621,13 +744,6 @@ K refl = refl
 - A function `A -o B` which is linear in `A` guarantees that the function *consumes* A
 - A function `Unique<A> -> B` guarantees that the function holds the *only reference* to `A`.
 
-# Better shell history with atuin
-
-- Improves `C-r` history UI.
-
-# Better git diff with delta
-- Improves `git diff` ui
-
 # Any model of lean must have all inductives
 
 - Or, lean knows about the sizes of types.
@@ -657,13 +773,7 @@ exact h2 (h1 two.t1 two.t2)
 - fibered corresponds to `infer`: given a term, tell me the type of the term?
 - Some talk by conor at topos.
 
-# Kripke style logical relations (TODO)
 
-- https://www.pls-lab.org/en/Kripke_logical_relations
-
-# Impredicativity
-
-> **Predicative**: found or base something on. "the theory of structure on which later chemistry was predicated"
 
 
 # Type formers need not be injective
@@ -672,7 +782,11 @@ exact h2 (h1 two.t1 two.t2)
 abbrev Powerset (X: Type) := X -> Prop -- the powerset of a type is the collection of all subsets.
 ```
 
-# There cannot be a type of size the universe:
+- This shows that we can create type formers which are not injective.
+- This means that inductives are indeed special, for us to be able to have that, eg, `cons a as = cons b bs` implies
+  that `a = b /\ b = bs`.
+
+# There cannot be a type of size the universe
 
 ```
 axiom CODE : Type -- assume we have CODEs for types...
@@ -696,12 +810,6 @@ Dependently typed programming is like the expression problem.
 We can either write Ohad/OOP, where we have data and proofs (behaviour)
 next to each other. Or we can write in Xavier/functional style, where
 the data is separate from the proofs (behaviour).
-
-# Rotation distance as a metric on binary trees
-
-- Define the rotation distance to be min. number of rotations to get from tree config. A to tree config. B
--
-- [Ref: wiki](https://en.wikipedia.org/wiki/Rotation_distance)
 
 # Motivation for modal logic
 
@@ -820,11 +928,6 @@ How does this look in our ordinary Set-enriched world?  a `W`-weighted cone has 
 - [Disjoint coproduct](https://ncatlab.org/nlab/show/disjoint+coproduct)
 
 
-
-# Universal coproduct / stable under pullback
-
-
-- [Ref](https://math.stackexchange.com/questions/788525/a-few-questions-concerning-universal-colimits-and-dense-generating-sets)
 
 # Leibniz Equality in Lean4
 
@@ -1007,7 +1110,7 @@ X1 - Χ[f]1- -> Ο1
 - neutrality: do the victors write the history, and the defeated get no say? Or do the defeated reinvent themselves, and tell their story, while the victors lie complacent?
 
 
-# Left and right adjoints to inverse image [TODO]
+# Left and right adjoints to inverse image
 
 #### The story in set
 
@@ -1089,8 +1192,6 @@ b1 b2 b3
   subobjects.
 
 
-# Post's Problem [WIP]
-
 # Turing degree
 
 - [Lectures on turing degree](https://pi.math.cornell.edu/~shore/papers/pdf/SingLect2NS.pdf)
@@ -1113,21 +1214,6 @@ b1 b2 b3
   degrees of $A, B$.
 - Cutland, N. Computability. Cambridge University
 
-# Ultraproducts in Logic [WIP]
-
-# Pivot tables are indexed categories [WIP]
-
-# Kleene Tree [WIP]
-
-http://math.andrej.com/wp-content/uploads/2006/05/kleene-tree.pdf
-
-# Compactness theorem as compactness of stone spaces [WIP]
-
-- https://math.stackexchange.com/a/864/261373
-
-
-# Setting up windows box on google cloud
-- https://cloud.google.com/compute/docs/connect/windows-ssh
 
 # Proof that there is a TM whose halting is independent of ZFC
 
@@ -1179,10 +1265,6 @@ inhab = FnSpace contra
 
 - Theorem which says that constructible sets are those that can be built from godel operations.
 
-
-# Scrivano for note taking
-- Pretty good app for linux that has the apple iPad note taking vibe going on!
-- Nice for math notes.
 
 # Godel completeness theorem
 
@@ -1877,15 +1959,6 @@ F \/ l; G \/ not(l)
 - TODO
 
 
-# WIP: Tarski's undefinability theorem
-
-Read George S Boolos, computability and logic till chapter 18 =)
-
-
-# WIP: Conservative extension to type theory
-
-- Reference: https://proofassistants.stackexchange.com/questions/857/whats-conservativity-in-terms-of-type-theory-and-how-is-it-useful
-
 
 # First order logic: Semantics
 - $M \models F$ can be reads as $M$ models $F$, or $M$ makes true $F$ ($M$ for model, $F$ for formula).
@@ -1909,7 +1982,7 @@ Read George S Boolos, computability and logic till chapter 18 =)
 - his fells close to the notion of **adequacy**, when the operational and denotational semantics
   agree.[HackMD notes by Alexander Kurz](https://hackmd.io/@alexhkurz/Hkf6BTL6P#Adequacy)
 
-# full abstraction in semantics (TODO)
+# full abstraction in semantics
 
 - Observational equivalence: same results when run, $\sim_O$
 - Denotational equivalence: same denotation.
@@ -2183,17 +2256,6 @@ inductive n2 (a: Type): Type :=
 | cons: a -> n2 a -> n2 a
 
 ```
-# MiniSketch [TODO]
-
-https://github.com/sipa/minisketch
-
-# Finger trees data structure [TODO]
-
-https://dl.acm.org/doi/abs/10.1145/3406088.3409026
-
-# HAMT data structure [TODO]
-
-- [HAMT wiki link](https://en.m.wikipedia.org/wiki/Hash_array_mapped_trie)
 
 # Embedding HOL in Lean
 
@@ -2456,15 +2518,6 @@ becomes the function `snd: ΓxA → A`.
 #### Categories with families
 
 - [Lectures notes on categorical logic](https://staff.math.su.se/palmgren/lecturenotesTT.pdf)
-
-# How should relative changes be measured
-
-- by Leo Tornqvist, Pentti Vartia and Yrjo O. Vartia
-- https://www.etla.fi/wp-content/uploads/dp681.pdf
-
-# Logic of bunched implications
-
-http://www.lsv.fr/~demri/OHearnPym99.pdf
 
 # Coends
 
@@ -5170,12 +5223,6 @@ int centroid(int v, int p) {
   and articultion points on the other side.
 
 
-# Segtree: range update, point query [TODO]
-
-- To support this, impelement queries normally.
-- To implement point query, start at the leaf and then walk upward to the root, collecting
-  all the update values.
-
 
 # Monadic functor
 
@@ -6084,19 +6131,6 @@ r + s = n + 1
 - Can we use UB to express things like "this list will be finite, thus map can be safely parallelised" or something?
 - Have quantitative: `0,1,fin,inf`?
 
-# Projections onto convex sets [TODO]
-
-- `https://en.wikipedia.org/wiki/Projections_onto_convex_sets`
-
-
-# BGFS algorithm for unconstrained nonlinear optimization [TODO]
-
-- `https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm`
-
-# LM algorithm for nonlinear least squares [TODO]
-
-- `https://en.wikipedia.org/wiki/Levenberg%E2%80%93Marquardt_algorithm`
-
 
 # Backward dataflow and continuations
 
@@ -6171,7 +6205,7 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 - use `spc -e 'error, red' ` to color all occurrences of string `error` with `red`.
 - I use this in [lean-mlir]() to get colored output.
 
-# Reader monoid needs a hopf algebra?! [TODO]
+# Reader monoid needs a hopf algebra?!
 - 5.1, eg (iii)
 - We actually get a free comonoid in a CCC.
 - having a splittable random supply in like having a markov category with a comonoid in it.
@@ -6188,10 +6222,6 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 - The execution is awesome.
 - [Link to homepage of insane card stacker](https://www.cardstacker.com/)
 
-
-# Representation theory for particle physics [TODO]
-
-- [References](https://math.ucr.edu/~huerta/guts/node1.html)
 
 
 # SSH into google cloud
@@ -6546,11 +6576,6 @@ curl bashupload.com -T your_file.txt
   complete binary tree.
 - Thus $C_n$ is odd iff $n = 2^r - 1$, which allows for us to have a complete binary tree, which is not paired by the involution.
 - [Reference](https://mathoverflow.net/a/409029)
-
-# Discrete probability [TODO]
-
-- The textbook discrete probability actually manages to teach "discrete probability" as a unified subject, laying out _all the notation_ clearly,
-  something that I literally have never seen before! This is me making notes of the notation.
 
 
 # Geodesic equation, Extrinsic
@@ -8089,12 +8114,6 @@ MX17004 2010-05-27 33.2 18.2
 - [Reference](http://www.cs.toronto.edu/~yuvalf/McKay%20Another%20Proof%20of%20Cauchy's%20Group%20Theorem.pdf)
 
 
-# Odds versus probability [TODO]
-
-- https://www.youtube.com/watch?v=lG4VkPoG3ko
-- https://www.youtube.com/watch?v=HZGCoVF3YvM
-
-
 # ncdu for disk space measurement
 
 - I've started to use `ncdu` to get a quick look at disk space instead of `baobab`. It's quite handy
@@ -8360,16 +8379,6 @@ $$
   killed exactly twice. $\hat M$ estimates the the true numbe of mutants.
 - If $T$ is the total mutants generated, then $T - M(n)$ represents **immortal** mutants.
 - $\hat M$ is the  is the mutants that the testset can detect given an infinite amount of time.
-
-
-
-
-
-
-
-# Filtered Colimits [TODO]
-
-- [Reference](https://math.stackexchange.com/questions/3695933/motivation-for-filtered-categories-limits?noredirect=1&lq=1)
 
 
 # Fisher Yates
@@ -8659,7 +8668,6 @@ $$
 
 #### Proof of equivalence between 2nd fundamental form and geometry
 
-# Shape operator [TODO]
 
 
 
@@ -10021,28 +10029,8 @@ def rhsIV():
 ```
 
 
-# Dedekind MacNiellie
-
-- [Dedekind MacNiellie](https://en.wikipedia.org/wiki/Dedekind%E2%80%93MacNeille_completion)
-
-
-
-# Good and bad combinatorics: intro to counting
-
-> Elements of sets are the only objects that we are allowed to count.
-
-
-- [From IMO math](https://www.imomath.com/index.php?options=237&lmm=1)
-
-# Expected number of turns to generate all numbers `1..N` (TODO)
-
-- Supposedly, asymptotically `N log N`
 
 #### For $N=1$, the expected number of turns is $1$.
-
-# Diameter in single DFS (TODO)
-
-- [Gist by pedu](https://gist.github.com/anurudhp/1ecf14f1211c71cd5c99537fad13fecd)
 
 
 # Min cost flow (TODO)
@@ -14009,13 +13997,6 @@ to reading the book:
 
 # Simplicial approximation: maps can be approximated by simplicial maps (TODO)
 
-# Excision (TODO)
-
-
-
-# Marshall: Andrej (TODO)
-
-- [Marshall-lang](https://github.com/andrejbauer/marshall.git)
 
 
 # Limit is right adjoint to diagonal
@@ -14830,14 +14811,8 @@ $\pi^*: H_n(X, A) \rightarrow H_n(X/A, [A])$.
 
 
 
-# Normaliztion by evaluation (TODO)
-
-- [Reference NBE video for cubicaltt](https://www.youtube.com/watch?v=atKqqiXslyo&list=PL0OBHndHAAZrGQEkOZGyJu7S7KudAJ8M9&index=6)
-
 
 # Legal Systems very different from ours
-
-# Lefschetz fixed point theorem (TODO)
 
 # Shrinking wedge of circles / Hawaiian earring (TODO)
 
@@ -15212,27 +15187,6 @@ $||Av^\star|| = \lambda^*$ is maximal.
 <img src="./static/penrose-triangle.png"/>
 
 - [I should just reach Cech Cohomology for this!](https://en.wikipedia.org/wiki/%C4%8Cech_cohomology)
-
-
-# Bicycle wheel proof of Gauss Bonnet (TODO)
-
-https://personal.psu.edu/mxl48/Bicycle_papers_files/gauss-bonnet.bicycle.pdf
-
-
-# What is Levi Cevita trying to describe (TODO)
-
-https://mathoverflow.net/questions/376486/what-is-the-levi-civita-connection-trying-to-describe/376533
-
-
-# Torsion as giving monodromy of path lifts (TODO)
-
-https://mathoverflow.net/a/111198/123769
-
-# Cartan's spiral staircase (TODO)
-
-https://arxiv.org/pdf/0911.2121.pdf
-
-
 
 # Weingarten map
 
