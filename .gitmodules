@@ -1,0 +1,3 @@
+[submodule "captainslog"]
+	path = captainslog
+	url = git@github.com:bollu/captainslog.git

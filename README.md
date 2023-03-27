@@ -9,6 +9,12 @@
 
 # Lax Milgram theorem
 
+- The theorem states that given a system $B(u, -) = f(-)$, where $B$
+  is a linear, bounded, coercive operator, then a unique solution exists
+  and this solution depends continuously on $f$.
+- This is useful to solve elliptic equation problems, for which one can find
+  some kind of inner product $B(., .)$ that represents "energy".
+
 # Nonexistence of solutions for ODE and PDE
 
 - ODE system, no bc: always solution by picard liendolf
