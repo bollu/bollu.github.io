@@ -6,6 +6,183 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+# Reynolds: Polymorphism is not set theoretic
+
+# Godel's dialectica interpretation
+
+# Why NuPRL and Realisability makes it hard to communicate math
+
+- [Superb answer by jon sterling](https://proofassistants.stackexchange.com/questions/1012/can-mathematical-formalizations-in-nuprl-be-trusted-as-correct-in-the-greater-ma/1046#1046)
+
+
+> To me the difficulty with relating Nuprl to mathematics is basically one of
+> methodology. As Andrej says, Nuprl's Computational Type Theory is based on
+> "truth in one model"; as a result, there are many things that are true in
+> this specific model that are false in the category of sets, false in many
+> categories of presheaves, and false in many categories of sheaves. This is
+> not the fault of (e.g.) realizability semantics, but rather the fault of
+> confounding syntax and semantics. Both are important, but semantics benefits
+> from multiplicity --- and the multiplicity of semantics is embodied in
+> syntax. We can therefore expect strange results if we say that syntax is just
+> a way to speak about one single example of semantics.
+
+
+> So my aim is not to say "realizability is bad" --- realizability is clearly
+> very good. But I think it is bad on balance to base a proof assistant on one
+> single model (bad in ways that COULD NOT have been anticipated [clarification:
+> by that community] in the early 1980s when this was going on!) because it
+> limits the applicability of your results.
+
+> Because Nuprl incorporates axioms that are not true in ordinary math, nor in
+> the relative ordinary math of topoi, we cannot take a Nuprl proof about groups
+> and use it as evidence to a "proper mathematician" for the truth of that
+> statement about groups in a way that applies to that mathematician's work. This
+> limits the ability to communicate and re-use results, but that is to me the
+> entire point of mathematics.
+
+> I want to end by saying that my perspective on mathematics is not the only one.
+> Nuprl is much inspired by the ideas of L.E.J. Brouwer who took a very different
+> viewpoint --- a proof in Brouwer's style about groups also does not necessarily
+> lead to evidence that a mathematician would accept for the truth of that
+> statement about groups. But Brouwer's perspective was that all the
+> mathematicians were wrong, and that only he was right. If that was actually so,
+> then one could not blame him for doing his proofs in a way that was not
+> backward compatible.
+
+> Therefore, the question that Nuprl raises is nothing less than: is mainstream
+> mathematics wrong? Back when I was building tools based on Nuprl, I believed
+> that normal mathematics was wrong. I no longer believe that though.
+
+# Lean does not allow nested inductive families
+
+
+- The checker is defined in terms of reduction to plain inductives, although
+  the reduction itself is not performed before going to the kernel (it was in
+  lean 3 but this lead to performance issues).
+- The recursor for the type is basically "whatever the analogous mutual
+  inductive would have".
+
+```
+inductive Const : Type _ | mk
+inductive Const1 (t: Type _) : Type _ | mk : Const1 t
+inductive E : Const → Type
+| mk : {c : Const} → (args : Const1 (E c)) → E Const.mk
+-- (kernel) invalid nested inductive datatype 'Const1',
+-- nested inductive datatypes parameters cannot contain local variables.
+```
+
+# Lean `isDefEq` is undecidable
+
+- Written down in Mario's thesis.
+
+# Lean subject reduction is broken
+
+- It only happens if one quotients a proposition
+- It probably also happens because the implementation of `isDefEq`
+  is a heuristic, because `isDefEq` is undecidable.
+
+
+# Weakly implicit arguments in Lean
+
+```lean
+
+variables {α : Type} (f : α → α)
+def injective {α Β: Type} (f: α → β) : Prop := 
+  ∀ {{x y}}, f x = f y → x = y -- NOTE: weakly implicit
+def injective2 {α β : Type} (f : α → β) : Prop :=
+    ∀ {x y}, f x = f y → x = y -- NOTE: implicit
+
+def foo (h: injective f) : false := sorry
+example (h: injective f) : false := 
+begin
+  have := @foo,
+  unfold injective2 at *,
+  exact this f h
+end
+
+
+def bar (h : injective2 f) : false := sorry
+example (h : injective2 f) : false :=
+begin
+  have := @bar,
+  unfold injective2 at *,
+  exact this f h
+end
+```
+
+The error becomes:
+
+```
+type mismatch at application
+  this f h
+term
+  h
+has type
+  f ?m_1 = f ?m_2 → ?m_1 = ?m_2
+but is expected to have type
+  ∀ {x y : α}, f x = f y → x = y
+```
+
+# Big list of elf file munging / linker / ABI
+
+- `nm`: list symbols in file.
+- Useful tools are available at [binutils](https://www.gnu.org/software/binutils/)
+- `readelf -a <file>`: see everything in an ELF file.
+- `ldd <file>`: see shared libraries used by an ELF file.
+- `file <file>`: shows filetype info of a given fuile.
+- `objdump <file>`
+
+#### `objdump` versus `readelf`:
+
+
+- Both programs are capabale of displaying the contents of ELF format files,
+  so why does the `binutils` project have two file dumpers ?
+
+- The reason is that objdump sees an ELF file through a BFD filter of the
+  world; if BFD has a bug where, say, it disagrees about a machine constant
+  in e_flags, then the odds are good that it will remain internally
+  consistent.  The linker sees it the BFD way, objdump sees it the BFD way,
+  GAS sees it the BFD way.  There was need for a tool to go find out what
+  the file actually says.
+
+- This is why the readelf program does not link against the BFD library - it
+  exists as an independent program to help verify the correct working of BFD.
+
+- `readelf` is arch. independent, `objdump` needs the appropriate toolchain.
+
+
+
+- [Stack overflow reference for difference between objdump and readelf](https://stackoverflow.com/a/8979687/5305365)
+
+
+# Regular epi and regular category
+
+- A regular epi `c->d` means that there is a kind of relation on `c` (concreteley,
+  an object `R` and two morphisms `f: R -> c` and `g: R -> c`) such that `d` is `c` module `R`, i.e. the quotient of `c` by `R`
+- A regular category is one where every arrow has a (regular epi-mono) factorization.
+
+# Focal point
+
+- The focal point of a space is a point whose only open nbhd is the whole space.
+- In the sierpiski space `(), bottom`, the `bottom` is the focal point.
+- In a local ring, the focal point is given by the maximal ideal (in the prime spectrum, ofc).
+- Given any topological space $T$, consider the cone: (ie, take product with $[0, 1]$ and smash all the $\{0\} \times *$ together).
+- Given any topological space $T$, now build the scone: take the product with the sierpinski space, and smash everything with the closed point.
+  Then, the apex of the cone / the closed point becomes a focal point for the topological space. This can be seen as a
+  "one point focalization".
+
+
+# Operational versus Denotational semantics
+
+
+> I think if you tell people that denotational semantics is just model theory for
+> programming languages you've got most of the way there.
+
+> Another consequence of this perspective is that you *must* care about
+> nonstandard models, even if you think you don't! When you prove something by
+> natural number induction, you are precisely constructing a non-standard model
+> of Nat in Prop.
+
 
 # Left and right adjoints to inverse image
 
@@ -31891,11 +32068,11 @@ for current letter. Can find next letter using BWT matix.
 - Richard Bird: Pearls of functional algorithm design
 - [Algorithms on strings UCSD](https://www.coursera.org/learn/algorithms-on-strings/lecture/C0opC/inverting-burrows-wheeler-transform)
 
-# Intuitionstic logic as a Heytig algebra
+# Intuitionstic logic as a Heyting algebra
 
-_open sets_ form a Heytig Algebra, which is a lattice plus an implication
+_open sets_ form a Heyting Algebra, which is a lattice plus an implication
 operator. So it's stronger than a lattice, but weaker than a boolean algebra.
-Formally, a Heytig algebra over a set $X$ is a collection $(L, \lor, \land, \Rightarrow)$
+Formally, a Heyting algebra over a set $X$ is a collection $(L, \lor, \land, \Rightarrow)$
 where $(X, \lor, \land)$ form a lattice, and $\Rightarrow$ obeys the axiom
 
 $$
@@ -31903,7 +32080,7 @@ $$
 $$
 
 In any topological space $(U, \tau)$ ($U$ for universe set)
-the open sets of that space form a Heytig algebra.
+the open sets of that space form a Heyting algebra.
 Here, set-union and set-intersection become the lattice join and lattice meet.
 We define a "weak complement" denoted by $\lnot$ which is defined as:
 
@@ -42772,7 +42949,13 @@ let g:conjure#mapping#eval_motion = "E"
 
 # Big list of quotes
 
-- Pirates of the caribbean: Take what you can, give nothing back.
+> If it's worth doing, it's worth overdoing.
+
+> We treated science like it’s a weak-link problem where progress depends on
+> the quality of our worst work. But science is a strong-link problem: progress
+> depends on the quality of our best work.
+
+> Pirates of the caribbean: Take what you can, give nothing back.
 
 > How can Alice communicate all of math to Bob? Mail him some chalk and wait!
 
