@@ -1,3 +1,9 @@
+- [Pattern matching with dependent types by Coquand](https://github.com/wonks/type-theory-reading-group/blob/master/papers/proc92-coquand.pdf)
+- [Geometric numerical integration](https://link.springer.com/book/10.1007/3-540-30666-8)
+- [Suspended Reason](https://suspendedreason.github.io/)
+- [The seeeds of science](https://www.theseedsofscience.org/)
+- [Works in progress](https://www.worksinprogress.co/about/)
+- Rust spotify visualizer
 - Computation and Logic: George S Boolos
 - Mathematical Methods of Classical Mechanics
 - [Low level code improvements and loop optimisations made simple](http://www.cs.fsu.edu/~engelen/cr.html)
