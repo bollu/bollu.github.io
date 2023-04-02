@@ -7,6 +7,7 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
+
 # Lax Milgram theorem
 
 - The theorem states that given a system $B(u, -) = f(-)$, where $B$
@@ -14,6 +15,197 @@
   and this solution depends continuously on $f$.
 - This is useful to solve elliptic equation problems, for which one can find
   some kind of inner product $B(., .)$ that represents "energy".
+
+# L2 norm is smaller than L1 norm
+
+- intuitively, l2 error will fail to reduce small values.
+- but l1 error will reduce all values equally.
+- thus, l1 norm is larger than l2 norm.
+
+# Example of unbounded linear operator
+
+#### Differentiation
+
+- Simplest example is differentiation.
+- Let $C^0[0, 1]$ be continuous functions on interval, and $C^1[0, 1]$ be differentiable functions on the interval.
+- We equip both spaces with sup norm / infty norm.
+- Consider the differentiation operator $\partial : C^1[0, 1] \to C[0, 1]$.
+- Since every differentiable function is continuous, we have that $C^[0, 1] \subseteq C[0, 1]$
+- Clearly differentiation is linear (well known).
+- To see that the operator is not bounded, consider the sequence of functions $f_n(x) \equiv sin(2\pi nx)$.
+- We have that $||f_n||_\infty = 1$ for ann $n$, while the ||\partial_x f_n||_\infty \to \infty$, so clearly, there
+  is no constant $M$ such that $||\partial f_n(x)|| \leq M ||f_n(x)||$. Thus, the operator is unbounded.
+- Note that in this definition, the space $C^1[0, 1]$ is *not* closed, as there are sequences of differentiable
+  functions that coverge to non differentiable functions. Proof: polynomials which are differentiable functoins
+  are dense in the full space of continuous functions.
+- Thus, in the case of an unbounded operator, we consider $L : U \to X$ where
+  $U$ is some subspace of $X$, not ncessarily closed!
+- If we ask for an everywhere defined operator, then constructing such
+  operators $L : X \to X$ needs choice.
+
+#### Nonconstructive example
+
+- Regard $\mathbb R$ as a normed vector space over $\mathbb Q$. [Cannot call this a banach space, since a banach
+  space needs base field $\mathbb R$]
+- Find an algebraic basis $B$ containing the numbers $1$ and $\pi$ and whatever else we need.
+- define a function $f: \mathbb R \to \mathbb R$ such that $f(\pi) = 0$, and $f(1) = 1$, and extend everywhere else
+  by linearity.
+- Now let $p_i \in \mathbb Q$ be a sequence of rationals that converge to $\pi$. Then $f(p_i) = 0$, and thus $\lim_i f(p_i) = 0$,
+  while $f(\lim_i p_i) = f(\pi) = 1$. This shows that $f$ is not continuous, but is linear.
+
+
+# Direct sum of topological vector spaces
+
+- In vector spaces, direct sum (also direct product) needs projection functors $\pi_1, \pi2_: V \to X, Y$
+  such that $X \times Y = V$.
+- In topological vector spaces, these projections also need to be *continuous* which is a massive
+  thing to ask for.
+
+#### Direct sum need not be closed.
+
+- Let $X$ be a Hilbert space with schrauder basis (topological basis) $e[i]$
+- Consider subspaces spanned by the basis $A[k] \equiv e[2k]$, and $B[k] \equiv e[2k] + e[2k+1]/(k+1)$.
+  So $A \equiv span(A[k])$, $B \equiv span(B[k])$.
+- Clearly, $A, B$ are subspaces, $A, B$ are closed.
+- See that the closure of $A + B$ is the full space, since it contains the hamel basis $e[i]$.
+- However, also see that the vector $z \equiv  sum_k e[2k]/(k+1)$ is not in $A + B$.
+  If we tried writing it as $a + b$, then we woulnd need $b \equiv \sum_k B[k]$. But this sum does not converge.
+- This means that $(A + B)$ is not closed. If it were closed, it would contain the full space (because it's dense).
+- Thus, we have an example of the direct sum of two closed subspaces which is not closed, because it is dense.
+
+# Subspaces need not have complement
+
+- Clearly, one can have open subspaces that cannot be complemented. For example,
+  the subspace of polynomials in $C[0, 1]$ is dense, and thus has no complement, as a complemented
+  subspace must be closed.
+
+#### Closed subspace need not have complement
+
+- Apparently, in $l^\infty$, the subspace $c_0$ of sequences that converge to
+  zero does not have a complement.
+- Proof is given in a paper "projecting $m$ onto $c_0$"
+
+#### Lemma: countable set $I$ has uncountable family of countable subsets $S$ which are almost disjoint
+
+- Let $I$ be countable.
+- We must prove that (1) there exists a $S \subset 2^I$ that is uncountable, such that (2) every set $K \in S$ is countable, and
+  (3) every two sets $K, L \in S$ have finite intersection $K \cap L$.
+- Proof: let $I$ be rationals in $(0, 1)$. For each irrational  $r \in (0, 1)$ create a set
+   $S_r$ to be the set of sequences of rationals that converge to $r$.
+- TODO: why is each $S_r$ countable?
+
+#### Proof of theorem
+
+- Suppose that there is a continuous projection of $l^\infty$ into $c_0$,
+- Then we must have $l^\infty = c_0 \osum R$ for some closed subspace $R$.
+- Since $l^\infty / c_0$ is isomorphic to $R$.
+- TODO
+
+# $L^\infty$ is HUGE
+
+- Key insight: if we take any space like $L^1$ or $L^2$ or something, the terms need to eventually vanish.
+- This is a small subspace $c_0$ of $L^\infty$, which is the subspace of sequences that eventually vanish.
+
+#### Continuous functions are dense in $L^1$
+#### Continuous functions are dense in $L^2$
+#### Continuous functions is NOT dense in $L^\infty$
+
+# Banach space that does not admit Schrauder basis
+
+- Schrauder basis is a basis where we can get all elements uniquely by taking countable sequence of
+  elements from the basis.
+- Apparently, every banach space that obeys the approximation property has countable basis.
+- An example of a banach space without this properly was given in
+  "a counterexample to the approximation problem in banach spaces" by Per Enflo.
+- Thus, in no argument can we say "assume we have a (schrauder) basis..."
+
+
+
+# Open mapping theorem
+
+- Given a surjective continuous linear map $f: X \to Y$, image of open unit ball is open.
+- Immediate corollary: image of open set is open (translate/scale open unit
+  ball around by linearity) to cover any open set with nbhds.
+
+#### Quick intuition
+- Intuition 1: If the map $f$ we bijective, then thm is reasonably believeable given
+  bounded/continuous inverse theorem, since $f^{-1}$ would be continuous, and thus would
+  map open sets to open sets, which would mean that $f$ does the same.
+- In more detail: suppose $f^{-1}$ exists and is continuous. Then $f(U) = V$
+  implies $(f^{-1})^{-1}(U) = V$. Since $f^{-1}$ is continuous, the iverse image of an
+  open set ($U$) is open, and thus $V$ is open.
+
+#### Why surjective
+- Consider the embedding $f : x \mapsto (x, x)$ from $\mathbb R$ to $\mathbb R^2$.
+- The full space $\R$ is open in the domain of $f$, but is not open in $\mathbb R^2$,
+  since any epsilon ball around any point in the diagonal $(x, x)$ would leak out of the diagonal.
+- Thus, not every continuous linear map maps open sets to open sets.
+
+#### Proof
+
+- TODO
+
+# Closed graph theorem
+
+- the graph of a function from a banach space to another banach space is a
+  closed subset iff the function is continuous.
+- Formally, given $f:X \to Y$, the set $G \equiv  { (x, f(x)) }$ is closed
+  in $X \times Y$ iff $f$ is continuous.
+
+#### Proof: Continuous implies closed
+
+- We must show that every limit point of the graph G is in G.
+
+- Let $(p, q)$ be a limit point. Since everything in metric spaces is equivalent
+  to the sequential definition, this means that $(p, q) = \lim (x_i, f(x_i))$.
+
+- Limits in product spaces are computed pointwise, so $(p, q) = (\lim x_i, \lim f(x_i))$
+
+- Thus, $p = lim xi$ from above. Now we calculate:
+
+- $q = \lim f(x_i) = f (\lim xi) = f(p)$ where we use the continuity of $f$ to
+  push the limit inside.
+- Thus, $(p, q) = (p, f(p))$ which is an element of $G$.
+- So an arbitrary limit point $(p, q) \in G$ is an element of $G$, and thus G
+  is closed. Qed.
+
+
+#### Proof: closed implies continuous
+
+
+- Suppose G as defined above is a closed set. We must show that f is
+  continuous, ie, $f$ preserves limits.
+
+- Let $x_i$ be a sequence. We must show that $f(\lim x_i) = \lim f (x_i)$.
+
+- Consider $(x_i, f(x_i))$ as a sequence in $G$. Let the limit of this sequence
+  be $(p, q)$. Since G is closed, $(p, q)$ in G. By defn of $G$, $q = f(p)$.
+
+- Now we compute that
+
+$$
+\lim (x_i, f(x_i)) = (p, q)
+(\lim x_i, lim f (x_i)) = (p, q)
+\lim x_i = p, \lim f(x_i) = q
+$$
+
+- But since $q = f(p)$ (by defn of $G$), we have that
+  $lim f(x_i) = q = f(p) = f(\lim x_i)$ which proves continuity.
+
+# Bounded inverse theorem
+
+- Theorem: Every bijective bounded linear operator has bounded inverse.
+- Equivaently: Every bijective continuous linear operator has continuous inverse.
+- Proof: quick corollary of open mapping. Let $L: X \to Y$ be
+  bijective bounded linear operator.
+- Assuming open mapping, we know that $T$ maps opens $U$
+  to open sets. Recall that bounded iff continuous. Thus, we can show
+  that $T \equiv L^{-1} : Y \to X$ is continuous to show that $L$ is bounded.
+- We need to show that inverse images of open sets under $T$ is open.
+  Specifically that $T^{-1}(U \subseteq X)$ is open for $U$ open
+- Since $V \equiv L(U)$ is open as $U$ is open and $L$ is an open map, this means that
+  $V \equiv T^{-1}(U)$ is open, as $L = T^{-1}$. Hence done.
+
 
 # Nonexistence of solutions for ODE and PDE
 
