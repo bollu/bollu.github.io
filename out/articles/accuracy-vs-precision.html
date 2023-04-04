@@ -1,0 +1,27 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='alternate' type='application/rss+xml' href='feed.rss' title='A universe of sorts'/><link rel='stylesheet' href='/katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='/prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Sans'; src: url('/static/Exo2-Regular.ttf');}@font-face {font-family: 'Blog Serif'; src: url('/static/Revans-Regular.ttf');}html { font-size: 100%; min-height: 100% }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { min-height: 100vh;  line-height: 1.5em;  color: #000000;  font-family: serif;  font-size: 12px;  margin-top: 0px;  max-width: 100%; overflow-x: hidden; }
+h1, h2, h3, h4, h5 { font-family: 'Blog Mono', monospace; }h1, h2 { column-span: all; }img { display:block; width: 100%; max-width: 800px; height: auto }.container { overflow-x: auto; overflow-y: hidden;              margin-top: 0px; height: 100%; min-height: 100%;             max-width: 100%;              font-size: 18px; line-height: 1.5em;              column-count: auto; column-width: 25em; column-fill: auto;              padding-left: 30px; padding-right: 30px; background: #FFFFFF;}@media (max-width: 480px) {   .container { margin-left: 1%; margin-right: 1%; }  body { font-size: 30px; }  } @media (max-width: 1024px) {  .container { margin-left: 1%; margin-right: 1%; }  body { font-size: 30px; }}@media (min-width: 1024px) { .container { margin-left: 1%; margin-right: 1%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
+pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=articles/accuracy-vs-precision href='#articles/accuracy-vs-precision'> § </a><span class='centered'> Accuracy vs precision </h2> 
+ <span class='centered'><img src="./static/accuracy-vs-precision.png"/>  
+ <span class='centered'>I had a hard time remembering which is which, so here's how I do it now. 
+ <span class='centered'>First, I think of it from a probabilistic lens, where one of them is the 
+ <span class='centered'>mean, and the other is variance of a gaussian distribution as shown above. 
+ <span class='centered'>We don't yet know whether accuracy is the mean or the variance.  
+ <span class='centered'>Next, recall that it's linguistically correct to say:  
+ <blockquote><span class='centered'> you're precisely wrong </blockquote> 
+ <span class='centered'>but not  
+ <blockquote><span class='centered'> you're accurately wrong. </blockquote> 
+ <span class='centered'>Thus, we can be precise about something wrong. That is, we can 
+ <span class='centered'>be very "precise" about "hitting the wrong target". So, precision ought 
+ <span class='centered'>not care about the  <i><span class='centered'>true value </i>, just about  <i><span class='centered'>how well we hit something </i>. 
+ <span class='centered'>This is exactly what the variance attempts to capture: how "spread out" 
+ <span class='centered'>we are, or "how well we hit the mean".  
+ <span class='centered'>The accuracy itself is the distance between the mean of our distribution and 
+ <span class='centered'>the true reference value we want to hit.  
+ <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

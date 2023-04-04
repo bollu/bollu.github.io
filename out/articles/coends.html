@@ -1,0 +1,129 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='alternate' type='application/rss+xml' href='feed.rss' title='A universe of sorts'/><link rel='stylesheet' href='/katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='/prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Sans'; src: url('/static/Exo2-Regular.ttf');}@font-face {font-family: 'Blog Serif'; src: url('/static/Revans-Regular.ttf');}html { font-size: 100%; min-height: 100% }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { min-height: 100vh;  line-height: 1.5em;  color: #000000;  font-family: serif;  font-size: 12px;  margin-top: 0px;  max-width: 100%; overflow-x: hidden; }
+h1, h2, h3, h4, h5 { font-family: 'Blog Mono', monospace; }h1, h2 { column-span: all; }img { display:block; width: 100%; max-width: 800px; height: auto }.container { overflow-x: auto; overflow-y: hidden;              margin-top: 0px; height: 100%; min-height: 100%;             max-width: 100%;              font-size: 18px; line-height: 1.5em;              column-count: auto; column-width: 25em; column-fill: auto;              padding-left: 30px; padding-right: 30px; background: #FFFFFF;}@media (max-width: 480px) {   .container { margin-left: 1%; margin-right: 1%; }  body { font-size: 30px; }  } @media (max-width: 1024px) {  .container { margin-left: 1%; margin-right: 1%; }  body { font-size: 30px; }}@media (min-width: 1024px) { .container { margin-left: 1%; margin-right: 1%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
+pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=articles/coends href='#articles/coends'> § </a><span class='centered'> Coends </h2> 
+ <ul><li><span class='centered'><span class='centered'> Dual of an end </li><li><span class='centered'><span class='centered'> A cowedge is defined by injections into the co-end of all diagonal elements. </li></ul> 
+ <pre><code>p(a, a)   p(b, b)
+  \          /
+  π[a]      π[b]
+   \        /
+    v      v
+     \int^x p(x, x)
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'> It's a universal cowedge, so every cowedge  <code class='inline'>c</code> other must factor. </li></ul> 
+ <pre><code>p(a, a)   p(b, b)
+  \   \  /    /
+  π[a]  c   π[b]
+  \     |    /
+   \    ∃!  /
+    \   |  /
+    v   v  v
+     \int^x p(x, x)
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'> Now we have the cowedge condition. For every morphism  <code class='inline'>h: b -> a</code>, and for every cowedge  <code class='inline'>c</code>, the following <span class='centered'>must hold: </li></ul> 
+ <pre><code>   [p b a]
+  /      \
+[p a a]   [p b b]
+  \      /
+      c
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'> By curry howard,  <code class='inline'>type coend p = exists a. p a a</code></li></ul> 
+ <pre><code>data Coend p where
+  MkCoend :: p a a -> Coend p
+</code></pre> 
+ <pre><code>type End (p :: * -> * -> *) = forall x. p x x
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'> A functor is continuous if it preserves limits. </li><li><span class='centered'><span class='centered'> Recall that  <code class='inline'>Hom</code> functor preserves limits. </li></ul> 
+ <pre><code>-- Hom(\int^x p(x, x), r) ~= \int_x (Hom(p x x, r))
+type Hom a b = a -> b
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'>  <code class='inline'>Set(\int^x p(x, r), s)</code> is asking for a function  <code class='inline'>Coend p -> r</code>. </li><li><span class='centered'><span class='centered'> But e claim this  is the same as having  <code class='inline'>forall a. (p a a -> r)</code>. </li><li><span class='centered'><span class='centered'> So we can write  <code class='inline'>Set(\int^x p(x, x), r) ~= \int_x Set(p(x, x), r)</code>. </li></ul> 
+ <pre><code>-- | \int_x Set(p(x, x), r)
+-- | \int_x Hom(p(x, x), r)
+-- | \int_x RHS(x,x)
+       where RHS a b = Hom(p(a, b), r)
+type RHS p r a b = Hom (p a b) r -- rhs of the above expression
+</code></pre> 
+ <span class='centered'>The isomorphisms are witnessed below, reminiscent of building a continuation  
+ <pre><code>-- fwd :: (Coend p -> r) -> End (RHS p r)
+-- fwd :: (Coend p -> r) -> (forall x. (RHS r) x x)
+-- fwd :: (Coend p -> r) -> (forall x. Hom (p x x) r)
+-- fwd :: (Coend p -> r) -> (forall x. (p x x) -> r)
+fwd :: Profunctor p => (Coend p -> r) -> (forall x. (p x x) -> r)
+fwd coendp2r  pxx = coendp2r (MkCoend pxx)
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'> The backward iso, reminiscent of just applying a continuation. </li></ul> 
+ <pre><code>-- bwd :: End (RHS p r)             -> (Coend p -> r)
+-- bwd :: (forall x. (RHS r) x x)   -> (Coend p -> r)
+-- bwd :: (forall x. Hom (p x x) r) -> (Coend p -> r)
+-- bwd :: (forall x. (p x x) -> r)  -> (Coend p -> r)
+bwd :: Profunctor p => (forall x. (p x x) -> r) -> Coend p -> r
+bwd pxx2r (MkCoend paa) = pxx2r paa
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'> Ninja coyoneda lemma:  <code class='inline'>\int^x C(x, a) * f(x) ~= f(a)</code></li><li><span class='centered'><span class='centered'> Witnessed by the following: </li></ul> 
+ <pre><code><span class="token comment">-- ninja coyoneda lemma:</span>
+<span class="token comment">-- \int^x C(x, a) * f(x) ~= f(a)</span>
+<span class="token comment">-- the profunctor is \int^x NinjaLHS[f, a](x, y)</span>
+<span class="token comment">--   where</span>
+<span class="token keyword">newtype</span> <span class="token constant">NinjaLHS</span> <span class="token hvariable">g</span> <span class="token hvariable">b</span> <span class="token hvariable">y</span> <span class="token hvariable">z</span> <span class="token operator">=</span> <span class="token constant">MkNinjaLHS</span> <span class="token punctuation">(</span><span class="token hvariable">y</span> <span class="token operator">-></span> <span class="token hvariable">b</span><span class="token punctuation">,</span> <span class="token hvariable">g</span> <span class="token hvariable">z</span><span class="token punctuation">)</span>
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'> Forward iso: </li></ul> 
+ <pre><code><span class="token comment">-- ninjaFwd :: Functor f => Coend (NinjaLHS f a) -> f a</span>
+<span class="token hvariable">ninjaFwd</span> <span class="token operator">::</span> <span class="token constant">Functor</span> <span class="token hvariable">g</span> <span class="token operator">=></span> <span class="token constant">Coend</span> <span class="token punctuation">(</span><span class="token constant">NinjaLHS</span> <span class="token hvariable">g</span> <span class="token hvariable">r</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token hvariable">g</span> <span class="token hvariable">r</span>
+<span class="token hvariable">ninjaFwd</span> <span class="token punctuation">(</span><span class="token constant">MkCoend</span> <span class="token punctuation">(</span><span class="token constant">MkNinjaLHS</span> <span class="token punctuation">(</span><span class="token hvariable">x2r</span><span class="token punctuation">,</span> <span class="token hvariable">gx</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token builtin">fmap</span> <span class="token hvariable">x2r</span> <span class="token hvariable">gx</span>
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'> Backward iso: </li></ul> 
+ <pre><code><span class="token comment">-- ninjaBwd :: Functor f => g r -> (Coend (NinjaLHS g r))</span>
+<span class="token comment">-- ninjaBwd :: Functor f => g r -> (∃ x. (NinjaLHS g r x x))</span>
+<span class="token comment">-- ninjaBwd :: Functor f => g r -> (∃ x. (NinjaLHS (x -> r, g x))</span>
+<span class="token hvariable">ninjaBwd</span> <span class="token operator">::</span> <span class="token constant">Functor</span> <span class="token hvariable">g</span> <span class="token operator">=></span> <span class="token hvariable">g</span> <span class="token hvariable">r</span> <span class="token operator">-></span> <span class="token constant">Coend</span> <span class="token punctuation">(</span><span class="token constant">NinjaLHS</span> <span class="token hvariable">g</span> <span class="token hvariable">r</span><span class="token punctuation">)</span>
+<span class="token hvariable">ninjaBwd</span> <span class="token hvariable">gr</span> <span class="token operator">=</span> <span class="token constant">MkCoend</span> <span class="token punctuation">(</span><span class="token constant">MkNinjaLHS</span> <span class="token punctuation">(</span><span class="token hvariable">x2r</span><span class="token punctuation">,</span> <span class="token hvariable">gx</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">where</span>
+   <span class="token hvariable">x2r</span> <span class="token operator">=</span> <span class="token builtin">id</span> <span class="token comment">-- choose x = r, then x2r = r2r</span>
+   <span class="token hvariable">gx</span> <span class="token operator">=</span> <span class="token hvariable">gr</span> <span class="token comment">-- choose x = r</span>
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'> We can prove the ninja coyoneda via coend calculus plus yoneda embedding, <span class='centered'>by using the fact that yoneda is full and faithful. </li><li><span class='centered'><span class='centered'> So instead of showing LHS ~= RHS in the ninja coyoneda, we will show that  <code class='inline'>Hom(LHS, -) ~= Hom(RHS, -)</code>. </li></ul> 
+ <ul><li><span class='centered'><span class='centered'> We compute as: </li></ul> 
+ <pre><code>Set(\int^x C(x, a) * f(x), s) ~? Set(f(a), x)
+[continuity:]
+\int_x Set(C(x, a) * f(x), s) ~? Set(f(a), x)
+[currying:]
+\int_x Set(C(x, a), Set(f(x) s)) ~? Set(f(a), x)
+[ninja yoneda on Set(f(-), s):]
+Set(f(a) s)) ~? Set(f(a), x)
+Set(f(a) s)) ~= Set(f(a), x)
+</code></pre> 
+ <h4><a id=articles/ninja-coyoneda-for-containers href='#articles/ninja-coyoneda-for-containers'> § </a><span class='centered'> Ninja Coyoneda for containers </h4> 
+ <ul><li><span class='centered'><span class='centered'> The type of  <code class='inline'>NinjaLHS</code>, when specialized to  <code class='inline'>NinjaLHS g b r r</code> becomes  <code class='inline'>(r -> b, g r)</code>. </li><li><span class='centered'><span class='centered'> This is sorta the way you can get a  <code class='inline'>Functor</code> instance on any  <code class='inline'>g</code>, by essentially accumulating <span class='centered'>the changes into the  <code class='inline'>(r -> b)</code>. I learnt this trick from some kmett library, but I'm not <span class='centered'>sure what the original reference is. </li></ul> 
+ <ul><li><span class='centered'><span class='centered'> Start with  <code class='inline'>NinjaLHS</code>: </li></ul> 
+ <pre><code><span class="token comment">-- ninja coyoneda lemma:</span>
+<span class="token comment">-- \int^x C(x, a) * f(x) ~= f(a)</span>
+<span class="token comment">-- the profunctor is \int^x NinjaLHS[f, a](x, y)</span>
+<span class="token comment">--   where</span>
+<span class="token keyword">newtype</span> <span class="token constant">NinjaLHS</span> <span class="token hvariable">g</span> <span class="token hvariable">b</span> <span class="token hvariable">y</span> <span class="token hvariable">z</span> <span class="token operator">=</span> <span class="token constant">MkNinjaLHS</span> <span class="token punctuation">(</span><span class="token hvariable">y</span> <span class="token operator">-></span> <span class="token hvariable">b</span><span class="token punctuation">,</span> <span class="token hvariable">g</span> <span class="token hvariable">z</span><span class="token punctuation">)</span>
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'> Specialize by taking the diagonal: </li></ul> 
+ <pre><code><span class="token comment">-- newtype NinjaLHS' g i o = MkNinjaLHS' (i -> o, g i)</span>
+<span class="token keyword">newtype</span> <span class="token constant">NinjaLHS</span>' <span class="token hvariable">g</span> <span class="token hvariable">i</span> <span class="token hvariable">o</span> <span class="token operator">=</span> <span class="token constant">MkNinjaLHS</span>' <span class="token punctuation">(</span><span class="token constant">NinjaLHS</span> <span class="token hvariable">g</span> <span class="token hvariable">o</span> <span class="token hvariable">i</span> <span class="token hvariable">i</span><span class="token punctuation">)</span>
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'> Write a smart constructor to lift values into  <code class='inline'>NinjaLHS'</code>: </li></ul> 
+ <pre><code>mkNinjaLHS' :: g i -> NinjaLHS' g i i
+mkNinjaLHS' gi = MkNinjaLHS' (MkNinjaLHS (id, gi))
+</code></pre> 
+ <ul><li><span class='centered'><span class='centered'> Implement functor instance for  <code class='inline'>NinjaLHS' g i</code>: </li></ul> 
+ <pre><code>-- convert any storage of shape `g`, input type `i` into a functor
+instance Functor (NinjaLHS' g i) where
+  -- f:: (o -> o') -> NinjaLHS' g i o -> NinjaLHS' g i o'
+  fmap o2o' (MkNinjaLHS' (MkNinjaLHS (i2o, gi))) =
+    MkNinjaLHS' $ MkNinjaLHS (\i -> o2o' (i2o i), gi)
+</code></pre> 
+ <span class='centered'>See that to be able to extract out values, we need  <code class='inline'>g</code> to be a functor:  
+ <pre><code>extract :: Functor g => NinjaLHS' g i o -> g o
+extract (MkNinjaLHS' (MkNinjaLHS (i2o, gi))) = fmap i2o gi
+</code></pre> 
+ <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>
