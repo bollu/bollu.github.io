@@ -7,9 +7,66 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
-# Reynolds: Polymorphism is not set theoretic
+# Lax Milgram theorem
 
-# Godel's dialectica interpretation
+- The theorem states that given a system $B(u, -) = f(-)$, where $B$
+  is a linear, bounded, coercive operator, then a unique solution exists
+  and this solution depends continuously on $f$.
+- This is useful to solve elliptic equation problems, for which one can find
+  some kind of inner product $B(., .)$ that represents "energy".
+
+# Why L2 needs a quotient upto almost everywhere
+
+- We want a norm to have the property that $|x| = 0$ if and only if $x = 0$.
+- But in a function space, we can have nonzero functions taht have measure zero. eg. the function
+  that is $1$ on $\mathbb Q$ and zero everywhere else.
+- Thus, such functions are $f \neq 0$ such that $|f| = 0$.
+- To prevent this and to allow the L2 norm to really be a norm, we quotient by
+  the closed subspace of functions such that $|f| = 0$.
+- This has the side effect such that $f = g$ iff $|(f - g)| = 0$, or that functions agree
+  almost everywhere.
+
+# Repulsive curves
+
+#### Gradient depends on norm
+
+- consider a function $f: \mathbb R^n \to \mathbb R$ and an energy $e: (\mathbb R^n \to \mathbb R) \to \mathbb R$.
+- We want to optimize $df/dt = - grad e(f)$.
+- however, what even is $grad$?
+- Recall that $de$ is the differential which at a point $f$ on the space $\mathbb R^n \to \mathbb R$, in a tangent direction $u \in \mathbb R^n \to \mathbb R$,
+  computes  $de|_f(u) \equiv \lim_{\epsilon \to 0} (e(f + \epsilon u) - e(f))/\epsilon$.
+- Now the gradient is given by $\langle grad(e), u \rangle_X \equiv de(u)$. So the gradient is the unique vector such that the inner product with the
+  gradient produces the value of the contangent evaluated in that direction.
+- Said differently, $\langle grad(e), -\rangle = de(-)$. This is a Reisez like representation theorem.
+- Note that asking for an inner product means we need a hilbert space.
+- One choice of inner product is given by $L^2$, where $\langle u, v \rangle_{L^2} \equiv \int \langle u(x), v(x) \rangle dx$.
+- More generaly, we can use a Sobolev space, where we define the inner product given by
+  $\langle u, v\rangle_{H^1} \equiv \langle \grad u, \grad v\rangle_{L^2}$,
+  which can also be written as $\langle \Del u, v\rangle_{L^2}$.
+- Similarly, for the sobolev space $H^2$, we would use $\langle u, v\rangle_{H^2} \equiv \langle \Del u, \Del v\rangle_{L^2}$. which is equal
+  to $\langle \Del^2 u, v \rangle_{L^2}$.
+- In general, we can write our inner product as something like $\langle Au, v\rangle_{L^2}$.
+
+#### Solving heat equation with finite differences
+
+- Solving $df/dt = \Del f = d^2 f / dx^2$.
+
+> If we try to solve this equation using, say, explicit
+> finite differences with grid spacing h, we will need a time step of size O(h 2)
+> to remain stable—significantly slowing down computation as the grid is refined
+
+
+#### Different norm is good for different situations
+
+- TODO
+
+#### Tangent point energy
+
+- Key intuition: want energy that is small for points that are "close by" in terms of $t$ on the knot,
+  want energy that repels points on the knot that are far away in terms of $t$ by close by in terms of $f(t)$.
+- TODO
+
+
 
 # Why NuPRL and Realisability makes it hard to communicate math
 
@@ -167,14 +224,16 @@ but is expected to have type
 - The focal point of a space is a point whose only open nbhd is the whole space.
 - In the sierpiski space `(), bottom`, the `bottom` is the focal point.
 - In a local ring, the focal point is given by the maximal ideal (in the prime spectrum, ofc).
-- Given any topological space $T$, consider the cone: (ie, take product with $[0, 1]$ and smash all the $\{0\} \times *$ together).
-- Given any topological space $T$, now build the scone: take the product with the sierpinski space, and smash everything with the closed point.
-  Then, the apex of the cone / the closed point becomes a focal point for the topological space. This can be seen as a
+- Given any topological space $T$, consider the cone: (ie, take product with
+  $[0, 1]$ and smash all the $\{0\} \times *$ together).
+- Given any topological space $T$, now build the scone: take the product with
+  the sierpinski space, and smash everything with the closed point. Then, the
+  apex of the cone / the closed point becomes a focal point for the topological
+  space. This can be seen as a
   "one point focalization".
 
 
 # Operational versus Denotational semantics
-
 
 > I think if you tell people that denotational semantics is just model theory for
 > programming languages you've got most of the way there.
@@ -183,55 +242,6 @@ but is expected to have type
 > nonstandard models, even if you think you don't! When you prove something by
 > natural number induction, you are precisely constructing a non-standard model
 > of Nat in Prop.
-
-# Lax Milgram theorem
-
-- The theorem states that given a system $B(u, -) = f(-)$, where $B$
-  is a linear, bounded, coercive operator, then a unique solution exists
-  and this solution depends continuously on $f$.
-- This is useful to solve elliptic equation problems, for which one can find
-  some kind of inner product $B(., .)$ that represents "energy".
-
-# Repulsive curves
-
-#### Gradient depends on norm
-
-- consider a function $f: \mathbb R^n \to \mathbb R$ and an energy $e: (\mathbb R^n \to \mathbb R) \to \mathbb R$.
-- We want to optimize $df/dt = - grad e(f)$.
-- however, what even is $grad$?
-- Recall that $de$ is the differential which at a point $f$ on the space $\mathbb R^n \to \mathbb R$, in a tangent direction $u \in \mathbb R^n \to \mathbb R$,
-  computes  $de|_f(u) \equiv \lim_{\epsilon \to 0} (e(f + \epsilon u) - e(f))/\epsilon$.
-- Now the gradient is given by $\langle grad(e), u \rangle_X \equiv de(u)$. So the gradient is the unique vector such that the inner product with the
-  gradient produces the value of the contangent evaluated in that direction.
-- Said differently, $\langle grad(e), -\rangle = de(-)$. This is a Reisez like representation theorem.
-- Note that asking for an inner product means we need a hilbert space.
-- One choice of inner product is given by $L^2$, where $\langle u, v \rangle_{L^2} \equiv \int \langle u(x), v(x) \rangle dx$.
-- More generaly, we can use a Sobolev space, where we define the inner product given by
-  $\langle u, v\rangle_{H^1} \equiv \langle \grad u, \grad v\rangle_{L^2}$,
-  which can also be written as $\langle \Del u, v\rangle_{L^2}$.
-- Similarly, for the sobolev space $H^2$, we would use $\langle u, v\rangle_{H^2} \equiv \langle \Del u, \Del v\rangle_{L^2}$. which is equal
-  to $\langle \Del^2 u, v \rangle_{L^2}$.
-- In general, we can write our inner product as something like $\langle Au, v\rangle_{L^2}$.
-
-#### Solving heat equation with finite differences
-
-- Solving $df/dt = \Del f = d^2 f / dx^2$.
-
-> If we try to solve this equation using, say, explicit
-> finite differences with grid spacing h, we will need a time step of size O(h 2)
-> to remain stable—significantly slowing down computation as the grid is refined
-
-
-#### Different norm is good for different situations
-
-- TODO
-
-#### Tangent point energy
-
-- Key intuition: want energy that is small for points that are "close by" in terms of $t$ on the knot,
-  want energy that repels points on the knot that are far away in terms of $t$ by close by in terms of $f(t)$.
-- TODO
-
 
 
 # Minimising L2 norm with total constraint
