@@ -7,7 +7,6 @@
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 
-
 # Lax Milgram theorem
 
 - The theorem states that given a system $B(u, -) = f(-)$, where $B$
@@ -16,7 +15,71 @@
 - This is useful to solve elliptic equation problems, for which one can find
   some kind of inner product $B(., .)$ that represents "energy".
 
-# L2 norm is smaller than L1 norm
+
+
+# Minimising L2 norm with total constraint
+
+- Suppose we are trying to minimize $x^2 + y^2$ subject to $x + y = 10$.
+- We can think of $(x, y)$ as two points located symmetrically about $5$, suppose
+  it is $x = (5 + \epsilon)$ and $y = (5 - \epsilon)$.
+- See that the function $f(k) = k^2$ is such that the output becomes larger as we go to the
+  right / increase the argument than the rate at which the output becomes smaller
+  as we go to the left / decrease the argument.
+- This is clear by computing $\partial_k f = 2k$, which means that if $k_r > k_l$ (right/left), then
+  $\partial_{k_r} f = 2 k_r$, while $\partial_{k_l} f = 2 k_l$, so if we step to the
+  left and the right by $\epsilon$, keeping the total the same, the sum will change by
+  $(2 k_r - 2 k_l) \epsilon > 0$.
+- Said differently, because the function is convex / $f''(x) > 0$, this means that
+  $\partial_k|_r f > \partial_k|_l f$, and thus we can trade the loss of the total
+  from moving to the left (a $- \partial_k|_l \epsilon$ for the gain of the total
+  from moving to the right (a $+ \partial_k|_r \epsilon$).
+
+- Picture:
+
+```
+          * dx=1.2
+         /|---->
+        - |
+       /  |
+     --   |
+*---/     |
+-dx=0.8   |
+  <-|     |
+    |    x=0.6
+   x=0.4
+```
+
+- We gain more by moving rightwards (in terms of $f(r+dx) \simeq f(r) + f'(r) dx = f(r) + 2f(r)dx$ than we lose by
+  moving leftward (in terms of $f(l-dx) \simeq f(l) - f'(l) dx = f(l) - 2f(l) dx$. Since $f(r) > f(l)$, the total
+  we gain is still net positive.
+- Said differently again, we gain faster by moving from a point that is rightwards, than the rate at which
+  we lose  from a point that is leftwards.
+- Said differently again, the elevation gain is larger towards the right, so a small motion rightwards gains
+  us more elevation than a small motion leftwards loses elevation.
+
+#### How does this relate to convexity?
+
+- What is the geometric intution for this being related to "below a line"?
+
+# Bounding L2 norm by L1 norm and vice versa
+
+- We can bound a function along the x-axis (in its domain) or along the
+  y axis (in its range).
+
+#### Bounded domain
+- If a function's norm is well defined in a bounded domain, then it has not increased
+  too rapidly.
+- Intuitively, with L2 norm, large numbers become larger, thus it is "harder" for a function
+  to stay finite.
+- Thus, in bounded domain, L2 is a subset of L1.
+
+#### Bounded range
+
+- If a bounded function's norm is well defined on an unbounded domain, then it has
+  vanished to zero sufficiently quickly.
+- Intuitively, with L2 norm, smaller numbers becomes smaller, thus L2 allows functions
+  to decay faster (eg. $|1/n|_1 = \sum_k 1/k = \infty$ versus $|1/n|_2 = \sqrt{\sum_k 1/k^2 < \infty}$.
+- Thus, in bounded range, L1 is a subset of L2, because L2 allows more functions to decay to zero.
 
 - intuitively, l2 error will fail to reduce small values.
 - but l1 error will reduce all values equally.
