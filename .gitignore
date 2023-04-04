@@ -1,3 +1,5 @@
+out/
+1-build-log.txt
 themes
 public
 sublime-*

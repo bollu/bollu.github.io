@@ -36,7 +36,9 @@
 #define CONFIG_INPUT_MARKDOWN_PATH  (BLOG_ROOT_FOLDER_TRAILING_SLASH "README.md")
 #define CONFIG_KATEX_PATH  (BLOG_ROOT_FOLDER_TRAILING_SLASH "katex/katex.min.js")
 #define CONFIG_PRISM_PATH (BLOG_ROOT_FOLDER_TRAILING_SLASH "prism/prism.js")
-#define OUTPUT_DIR_TRAILING_SLASH BLOG_ROOT_FOLDER_TRAILING_SLASH "/out/"
+#define OUTPUT_ROOT_DIR_TRAILING_SLASH BLOG_ROOT_FOLDER_TRAILING_SLASH "out/"
+#define OUTPUT_ARTICLES_URL_TRAILING_SLASH "articles/"
+#define OUTPUT_ARTICLES_DIR_TRAILING_SLASH OUTPUT_ROOT_DIR_TRAILING_SLASH OUTPUT_ARTICLES_URL_TRAILING_SLASH
 
 
 static const int LONG_LATEX_BLOCK_SIZE = 30;
@@ -1226,9 +1228,14 @@ GIVE const char *mkHeadingURL(KEEP const char *raw_input,
   }
   assert(ptend - ptbegin >= 0);
 
-  char *url = (char *)calloc(ptlen + 2, sizeof(char));
+
+
+  char *url = (char *)calloc(strlen(OUTPUT_ROOT_DIR_TRAILING_SLASH) + ptlen + 2, sizeof(char));
   assert(url && "unable to allocate memory for making heading URL");
-  ll url_ix = 0;
+
+  sprintf(url, "%s", OUTPUT_ARTICLES_URL_TRAILING_SLASH);
+  ll url_ix = strlen(url);
+
 
   bool seenalnum = true;
   for (ll i = ptbegin; i != ptend; ++i) { // heading index
@@ -1529,14 +1536,14 @@ const char html_preamble[] =
     // ===RSS===
     "<link rel='alternate' type='application/rss+xml' href='feed.rss' title='" "A universe of sorts'" "/>"
     // ===KateX===
-    "<link rel='stylesheet' href='katex/katex.min.css'"
+    "<link rel='stylesheet' href='/katex/katex.min.css'"
     "    "
     "integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/"
     "bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'"
     "    crossorigin='anonymous'>"
     "<!-- The loading of KaTeX is deferred to speed up page rendering -->"
     // ===Prismjs===
-    "<link rel='stylesheet' href='prism/prism.css'>"
+    "<link rel='stylesheet' href='/prism/prism.css'>"
     //
     // "<script defer src='katex/katex.min.js'"
     // "
@@ -1577,13 +1584,14 @@ const char html_preamble[] =
     "@font-face {font-family: 'Blog Serif'; src: "
     "url('/static/Revans-Regular.ttf');}"
     // body
-    "html { font-size: 100%; }"
+    "html { font-size: 100%; min-height: 100% }"
     "html,body { text-size-adjust: none; -webkit-text-size-adjust: none; "
     "-moz-text-size-adjust: none; -ms-text-size-adjust: none; } "
     "body {"
     // " background: linear-gradient(to right, #1565C0 0%, #1565C0 50%, #E91E63 50%,   #E91E63 99%); "
     // " background: linear-gradient(to right, #1565C0 1%, #EFEFEF 1%, #EFEFEF 99%, #E91E63 99%); "
     // " background: linear-gradient(to right, #1565C0 50%, #C2185B 50%);"
+    " min-height: 100vh; " // https://stackoverflow.com/questions/3740722/min-height-does-not-work-with-body
     " line-height: 1.5em; "
     " color: #000000; " // tufte
     " font-family: serif; "
@@ -1934,7 +1942,7 @@ int main(int argc, char **argv) {
     outlen += sprintf(index_html_buf + outlen, "%s", html_postamble);
 
     char index_html_path[1024];
-    sprintf(index_html_path, "%sindex.html", OUTPUT_DIR_TRAILING_SLASH);
+    sprintf(index_html_path, "%sindex.html", OUTPUT_ROOT_DIR_TRAILING_SLASH);
     FILE *f = fopen(index_html_path, "wb");
     if (f == nullptr) {
       fprintf(stdout, "===unable to open HTML file: |%s|===", index_html_path);
@@ -1944,6 +1952,12 @@ int main(int argc, char **argv) {
     fwrite(index_html_buf, 1, strlen(index_html_buf), f);
     fclose(f);
   }
+
+  // create path for index.html
+  // if (mkdir("OUTPUT_ARTICLES_DIR_TRAILING_SLASH", S_IRWXU | S_IRWXG | S_IRWXO) == -1) {
+  //         printf("Error: %s\n", strerror(errno));
+  // }
+
 
   // ===write out all of the other .html files===
   while (ix_h1 < (ll)ts.size()) {
@@ -1980,7 +1994,8 @@ int main(int argc, char **argv) {
 
     // [ix_start, ix_h1) contains the new article
     char html_path[1024];
-    sprintf(html_path, "%s%s.html", OUTPUT_DIR_TRAILING_SLASH, url);
+
+    sprintf(html_path, "%s%s.html", OUTPUT_ROOT_DIR_TRAILING_SLASH, url);
 
     FILE *f = fopen(html_path, "wb");
     if (f == nullptr) {
@@ -1995,7 +2010,7 @@ int main(int argc, char **argv) {
   // === write out RSS ===
   char rss_feed_path[1024];
   sprintf(rss_feed_path, "%sfeed.rss",
-          OUTPUT_DIR_TRAILING_SLASH);
+          OUTPUT_ROOT_DIR_TRAILING_SLASH);
   FILE *frss = fopen(rss_feed_path, "wb");
   if (frss == nullptr) {
     fprintf(stdout, "===unable to open RSS file: |%s|===\n", rss_feed_path);

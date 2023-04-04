@@ -1,5 +1,5 @@
 <h2> A Universe of Sorts
-<img style="float:left;display:inline-block;padding-right: 16px; width: 48px" src="./static/banner.png">
+<img style="float:left;display:inline-block;padding-right: 16px; width: 48px" src="/static/banner.png">
 </h2>
 <h3> Siddharth Bhat </h3>
 
@@ -14,6 +14,46 @@
   and this solution depends continuously on $f$.
 - This is useful to solve elliptic equation problems, for which one can find
   some kind of inner product $B(., .)$ that represents "energy".
+
+# Repulsive curves
+
+#### Gradient depends on norm
+
+- consider a function $f: \mathbb R^n \to \mathbb R$ and an energy $e: (\mathbb R^n \to \mathbb R) \to \mathbb R$.
+- We want to optimize $df/dt = - grad e(f)$.
+- however, what even is $grad$?
+- Recall that $de$ is the differential which at a point $f$ on the space $\mathbb R^n \to \mathbb R$, in a tangent direction $u \in \mathbb R^n \to \mathbb R$,
+  computes  $de|_f(u) \equiv \lim_{\epsilon \to 0} (e(f + \epsilon u) - e(f))/\epsilon$.
+- Now the gradient is given by $\langle grad(e), u \rangle_X \equiv de(u)$. So the gradient is the unique vector such that the inner product with the
+  gradient produces the value of the contangent evaluated in that direction.
+- Said differently, $\langle grad(e), -\rangle = de(-)$. This is a Reisez like representation theorem.
+- Note that asking for an inner product means we need a hilbert space.
+- One choice of inner product is given by $L^2$, where $\langle u, v \rangle_{L^2} \equiv \int \langle u(x), v(x) \rangle dx$.
+- More generaly, we can use a Sobolev space, where we define the inner product given by
+  $\langle u, v\rangle_{H^1} \equiv \langle \grad u, \grad v\rangle_{L^2}$,
+  which can also be written as $\langle \Del u, v\rangle_{L^2}$.
+- Similarly, for the sobolev space $H^2$, we would use $\langle u, v\rangle_{H^2} \equiv \langle \Del u, \Del v\rangle_{L^2}$. which is equal
+  to $\langle \Del^2 u, v \rangle_{L^2}$.
+- In general, we can write our inner product as something like $\langle Au, v\rangle_{L^2}$.
+
+#### Solving heat equation with finite differences
+
+- Solving $df/dt = \Del f = d^2 f / dx^2$.
+
+> If we try to solve this equation using, say, explicit
+> finite differences with grid spacing h, we will need a time step of size O(h 2)
+> to remain stable—significantly slowing down computation as the grid is refined
+
+
+#### Different norm is good for different situations
+
+- TODO
+
+#### Tangent point energy
+
+- Key intuition: want energy that is small for points that are "close by" in terms of $t$ on the knot,
+  want energy that repels points on the knot that are far away in terms of $t$ by close by in terms of $f(t)$.
+- TODO
 
 
 
@@ -96,7 +136,7 @@
 - Since every differentiable function is continuous, we have that $C^[0, 1] \subseteq C[0, 1]$
 - Clearly differentiation is linear (well known).
 - To see that the operator is not bounded, consider the sequence of functions $f_n(x) \equiv sin(2\pi nx)$.
-- We have that $||f_n||_\infty = 1$ for ann $n$, while the ||\partial_x f_n||_\infty \to \infty$, so clearly, there
+- We have that $||f_n||_\infty = 1$ for ann $n$, while the $||\partial_x f_n||_\infty \to \infty$, so clearly, there
   is no constant $M$ such that $||\partial f_n(x)|| \leq M ||f_n(x)||$. Thus, the operator is unbounded.
 - Note that in this definition, the space $C^1[0, 1]$ is *not* closed, as there are sequences of differentiable
   functions that coverge to non differentiable functions. Proof: polynomials which are differentiable functoins
