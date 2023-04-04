@@ -38,7 +38,7 @@ f corresponding to [a, b]:
 
   |
 1 |   x=========x
-  |    
+  |
 0 *===o---------o======>
       a         b
 ```
@@ -59,7 +59,7 @@ f corresponding to [a, b]:
 
   |
 1 |   x=========x
-  |    
+  |
 0 *===o---------o======>
       a         b
 
@@ -75,7 +75,7 @@ x < a:
     f(x-ε)=0    f(x)=0
   |   |          |
 1 |   |          |    x=========x
-  |   |          |     
+  |   |          |
 0 *===|==========|====o---------o======>
       |          |    a         b
      x-ε         x
@@ -87,14 +87,14 @@ x < a:
 ```
 x = a:
 
-    f(a-ε)=0   
+    f(a-ε)=0
       |   f(a)=1
   |   |    |
 1 |   |    x=========x
-  |   |     
+  |   |
 0 *===|====o---------o======>
       |         a         b
-     x-ε    
+     x-ε
 
 δ[f](a) = lim[ε → 0+]  f(a) - f(a - ε) = 1 - 0 = 1
 ```
@@ -107,7 +107,7 @@ Case 3: a < x <= b [notice the <= !]
              |  f(x) = 1
   |          |  |
 1 |       x==|==|====x
-  |        
+  |
 0 *=======o---------o======>
           a         b
 
@@ -117,7 +117,7 @@ Case 3: a < x <= b [notice the <= !]
 ```
 Case 4: b < x
 
-            
+
                         f(x-ε) = 0
 1 |        x========x   |   f(x) = 0
   |                     |   |
@@ -147,10 +147,10 @@ I can then choose
         a     b
 
 f2
-    
-  |             
+
+  |
 1 |             o==============o
-  |                  
+  |
 0 *=============x--------------x=========>
                 a              b
 - δ[f2](x <= a) = 0
@@ -172,7 +172,7 @@ f2
 1 |             o========|=====o
   |                            |
 0 *=============x--------------x=========>
-    
+
 δ[f2](x = b) = f2(b) - f2(b-ε) = 0 - 1 = -1
 ```
 
@@ -193,7 +193,7 @@ f(b) - lim[ε->0+] f(b-ε)
 f3:
 
 1 |             o=============x
-  |                            
+  |
 0 *=============x-------------o=========>
 
 - δ[f3](x <= a) = 0
@@ -210,7 +210,7 @@ f3:
 f4:
 
 1 |             x=============o
-  |                            
+  |
 0 *=============o-------------x=========>
 
 - δ[f4](x < a) = 0
@@ -252,7 +252,7 @@ TODO: add image from barvinok
 - where `I` is the actual _interval_ associated with `f`.
 - `χ0` is the "zero dimensional euler characteristic. It returns `1` if it sees a point, and `0` if it sees an empty set
 - we replace `f(x)` with `χ0(I∩{x})`. See that it does the same thing:
-- `f(x)` returns 1 if `x` is in the interval `I` which corresponds to `f`. 
+- `f(x)` returns 1 if `x` is in the interval `I` which corresponds to `f`.
 - `χ0(I∩{x})` returns `1` if `II∩{x}` contans a single point. That is, if `x ∈ I`. Which is the same as what `f` does.
 
 #### Convex, concave and euler characteristic

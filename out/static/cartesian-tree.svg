@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="432px" height="414px" viewBox="0 0 432 414" enable-background="new 0 0 432 414" xml:space="preserve">
+<line fill="none" stroke="#000000" stroke-dasharray="3" x1="360" y1="180" x2="360" y2="378"/>
+<line fill="none" stroke="#000000" stroke-dasharray="3" x1="360" y1="144" x2="360" y2="36"/>
+<line fill="none" stroke="#000000" stroke-dasharray="3" x1="324" y1="189" x2="324" y2="324"/>
+<line fill="none" stroke="#000000" stroke-dasharray="3" x1="324" y1="153" x2="324" y2="171"/>
+<line fill="none" stroke="#000000" stroke-dasharray="3" x1="324" y1="135" x2="324" y2="36"/>
+<line fill="none" stroke="#000000" stroke-dasharray="3" x1="288" y1="306" x2="288" y2="378"/>
+<line fill="none" stroke="#000000" stroke-dasharray="3" x1="288" y1="198" x2="288" y2="288"/>
+<line fill="none" stroke="#000000" stroke-dasharray="3" x1="288" y1="126" x2="288" y2="36"/>
+<line fill="none" stroke="#000000" stroke-dasharray="3" x1="288" y1="153" x2="288" y2="180"/>
+<line fill="none" stroke="#000000" stroke-dasharray="3" x1="252" y1="207" x2="252" y2="270"/>
+<line fill="none" stroke="#000000" stroke-dasharray="3" x1="252" y1="144" x2="252" y2="189"/>
+<line fill="none" stroke="#000000" stroke-dasharray="3" x1="252" y1="117" x2="252" y2="36"/>
+<line fill="none" stroke="#000000" stroke-dasharray="3" x1="216" y1="252" x2="216" y2="324"/>
+<line fill="none" stroke="#000000" stroke-dasharray="3" x1="216" y1="216" x2="216" y2="234"/>
+<line fill="none" stroke="#000000" stroke-dasharray="3" x1="216" y1="135" x2="216" y2="198"/>
+<line fill="none" stroke="#000000" stroke-dasharray="3" x1="216" y1="117" x2="216" y2="36"/>
+<line fill="none" stroke="#000000" stroke-dasharray="3" x1="180" y1="108" x2="180" y2="36"/>
+<line fill="none" stroke="#000000" stroke-dasharray="3" x1="180" y1="126" x2="180" y2="216"/>
+<line fill="none" stroke="#000000" stroke-dasharray="3" x1="108" y1="126" x2="108" y2="36"/>
+<line fill="none" stroke="#000000" stroke-dasharray="3" x1="108" y1="144" x2="108" y2="216"/>
+<line fill="none" stroke="#000000" stroke-dasharray="3" x1="396" y1="162" x2="396" y2="36"/>
+<line fill="none" stroke="#000000" stroke-dasharray="3" x1="144" y1="108" x2="144" y2="36"/>
+<line fill="none" stroke="#000000" stroke-dasharray="3" x1="72" y1="162" x2="72" y2="36"/>
+<line fill="none" stroke="#000000" stroke-dasharray="3" x1="36" y1="216" x2="36" y2="36"/>
+<line fill="none" stroke="#E4BC96" stroke-width="4" x1="252" y1="270" x2="324" y2="324"/>
+<polyline fill="none" stroke="#E4BC96" stroke-width="4" points="288,378 324,324 360,378 "/>
+<polyline fill="none" stroke="#E4BC96" stroke-width="4" points="72,162 144,108 396,162 180,216 252,270 216,324 "/>
+<polyline fill="none" stroke="#E4BC96" stroke-width="4" points="36,216 72,162 108,216 "/>
+<circle fill="#FFFFF5" stroke="#8B5C29" stroke-width="2" cx="144" cy="108" r="18"/>
+<circle fill="#FFFFF5" stroke="#8B5C29" stroke-width="2" cx="72" cy="161.999" r="18"/>
+<circle fill="#FFFFF5" stroke="#8B5C29" stroke-width="2" cx="396" cy="161.999" r="18"/>
+<circle fill="#FFFFF5" stroke="#8B5C29" stroke-width="2" cx="180" cy="216" r="18"/>
+<circle fill="#FFFFF5" stroke="#8B5C29" stroke-width="2" cx="108" cy="216" r="18"/>
+<circle fill="#FFFFF5" stroke="#8B5C29" stroke-width="2" cx="36" cy="216" r="18"/>
+<circle fill="#FFFFF5" stroke="#8B5C29" stroke-width="2" cx="252" cy="270" r="18"/>
+<circle fill="#FFFFF5" stroke="#8B5C29" stroke-width="2" cx="216" cy="324" r="18"/>
+<circle fill="#FFFFF5" stroke="#8B5C29" stroke-width="2" cx="324" cy="324" r="18"/>
+<circle fill="#FFFFF5" stroke="#8B5C29" stroke-width="2" cx="288" cy="378" r="18"/>
+<circle fill="#FFFFF5" stroke="#8B5C29" stroke-width="2" cx="360" cy="378" r="18"/>
+<rect x="18" y="18" fill="#FAFFFF" stroke="#0060B6" stroke-width="2" width="396" height="36"/>
+<text transform="matrix(1 0 0 1 30.75 43)" font-family="Liberation Serif" font-style="normal" font-size="21">9</text>
+<text transform="matrix(1 0 0 1 30.75 223)" font-family="Liberation Serif" font-style="normal" font-size="21">9</text>
+<text transform="matrix(1 0 0 1 66.75 43)" font-family="Liberation Serif" font-style="normal" font-size="21">3</text>
+<text transform="matrix(1 0 0 1 66.75 169)" font-family="Liberation Serif" font-style="normal" font-size="21">3</text>
+<text transform="matrix(1 0 0 1 102.75 43)" font-family="Liberation Serif" font-style="normal" font-size="21">7</text>
+<text transform="matrix(1 0 0 1 102.75 223)" font-family="Liberation Serif" font-style="normal" font-size="21">7</text>
+<text transform="matrix(1 0 0 1 138.75 43)" font-family="Liberation Serif" font-style="normal" font-size="21">1</text>
+<text transform="matrix(1 0 0 1 138.75 115)" font-family="Liberation Serif" font-style="normal" font-size="21">1</text>
+<text transform="matrix(1 0 0 1 174.75 43)" font-family="Liberation Serif" font-style="normal" font-size="21">8</text>
+<text transform="matrix(1 0 0 1 174.75 223)" font-family="Liberation Serif" font-style="normal" font-size="21">8</text>
+<text transform="matrix(1 0 0 1 205.5 43)" font-family="Liberation Serif" font-style="normal" font-size="21">12</text>
+<text transform="matrix(1 0 0 1 205.5 331)" font-family="Liberation Serif" font-style="normal" font-size="21">12</text>
+<text transform="matrix(1 0 0 1 241.5 43)" font-family="Liberation Serif" font-style="normal" font-size="21">10</text>
+<text transform="matrix(1 0 0 1 241.5 277)" font-family="Liberation Serif" font-style="normal" font-size="21">10</text>
+<text transform="matrix(1 0 0 1 277.5 43)" font-family="Liberation Serif" font-style="normal" font-size="21">20</text>
+<text transform="matrix(1 0 0 1 313.5 43)" font-family="Liberation Serif" font-style="normal" font-size="21">15</text>
+<text transform="matrix(1 0 0 1 313.5 331)" font-family="Liberation Serif" font-style="normal" font-size="21">15</text>
+<text transform="matrix(1 0 0 1 349.5 43)" font-family="Liberation Serif" font-style="normal" font-size="21">18</text>
+<text transform="matrix(1 0 0 1 277.5 385)" font-family="Liberation Serif" font-style="normal" font-size="21">20</text>
+<text transform="matrix(1 0 0 1 349.5 385)" font-family="Liberation Serif" font-style="normal" font-size="21">18</text>
+<text transform="matrix(1 0 0 1 390.75 43)" font-family="Liberation Serif" font-style="normal" font-size="21">5</text>
+<text transform="matrix(1 0 0 1 390.75 169)" font-family="Liberation Serif" font-style="normal" font-size="21">5</text>
+<line fill="none" stroke="#0060B6" stroke-width="2" x1="54" y1="18" x2="54" y2="54"/>
+<line fill="none" stroke="#0060B6" stroke-width="2" x1="90" y1="18" x2="90" y2="54"/>
+<line fill="none" stroke="#0060B6" stroke-width="2" x1="126" y1="18" x2="126" y2="54"/>
+<line fill="none" stroke="#0060B6" stroke-width="2" x1="162" y1="18" x2="162" y2="54"/>
+<line fill="none" stroke="#0060B6" stroke-width="2" x1="198" y1="18" x2="198" y2="54"/>
+<line fill="none" stroke="#0060B6" stroke-width="2" x1="234" y1="18" x2="234" y2="54"/>
+<line fill="none" stroke="#0060B6" stroke-width="2" x1="270" y1="18" x2="270" y2="54"/>
+<line fill="none" stroke="#0060B6" stroke-width="2" x1="306" y1="18" x2="306" y2="54"/>
+<line fill="none" stroke="#0060B6" stroke-width="2" x1="342" y1="18" x2="342" y2="54"/>
+<line fill="none" stroke="#0060B6" stroke-width="2" x1="378" y1="18" x2="378" y2="54"/>
+<rect fill="none" width="432" height="414"/>
+</svg>

@@ -1,12 +1,14 @@
 .PHONY: all build serve clean
 
 all: build serve
-build: clean
+build:
 	make -C ./builder/build;
-	LSAN_OPTIONS=detect_leaks=0 ./builder/build/builder 
+	rm -rf docs/
+	mkdir -p docs/articles/
+	cp -r static docs/
+	cp -r katex docs/
+	cp -r prism docs/
+	LSAN_OPTIONS=detect_leaks=0 ./builder/build/builder | tee 1-build-log.txt
 
 serve:
-	python3 -m http.server
-
-clean:
-	find . -name '*.html' ! -name 'chat.html'  -delete
+	cd out && python3 -m http.server

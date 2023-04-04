@@ -2,12 +2,11 @@
 set -o xtrace
 set -e
 
+make build
 
-rm -rf docs/
-hugo -d docs
+git checkout github-pages
+git add -f out/
+git commit -m "github page upload"
 
-ssh root@pixel-druid.com "rm -rf /var/www/"
-rsync -r --progress -avz ./docs/* root@www.pixel-druid.com:/var/www
-
-git add docs/
-git commit -m "docs build."
+ssh root@pixel-druid.com "rm -rf /var/blog/"
+rsync -r --progress -avz ./ root@www.pixel-druid.com:/var/blog
