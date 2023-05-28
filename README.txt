@@ -6,17 +6,79 @@
 - [Leave me your thoughts](https://www.admonymous.co/bollu) / [Chat with me](https://calendly.com/bollu/) / Email me:  <a href='mailto:siddu.druid@gmail.com'> `siddu.druid@gmail.com` </a>
 - [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
+- **It's useful to finish things.**
+
+# The conceit of self loathing
+
+>  Self-contempt is defined as the conceit of thinking "I am inferior" and
+>  involves a sharp sense of one’s baseness and inadequacy vis-a`-vis others.
+>  There is even an excessive variety of it called "self-abasement"
+>  which is a conceit wherein, asserts that one is inferior even to inferior
+>  persons.
+
+> Conceit, as it is generally understood, is waving one’s flag or banner highest
+> over others and drawing attention to oneself. Even if one
+> is asserting one’s inferiority, one is still engaged in a display of
+> self-advertisement.
+
+> "I am," "I shall be," "I might be," and "would that I
+> might be." These four possibilities describe how I conceive of myself at present,
+> how I might be in the future, how I might imagine myself either in doubt or
+> speculation, and how I might plan to be.
+
+
+# Inverse scattering transform
+
+- Useful to solve nonlinear PDE
+- classical example is the shock wave equation / burges equation: $u_x + u u_t = 0$
+- [References](https://en.wikipedia.org/wiki/Inverse_scattering_transform)
+
+### KdV equation
+
+- Equation for shallow waves.
+- Example of nonlinear PDE that can be solved exactly.
+- The geometry of the KDv equation describes this on a circle
+
+
+# Tensegrity
+
+
+- [Video](https://www.youtube.com/watch?v=PuUPnAkcNog&list=PLUl4u3cNGP62xuxL4CQpy8uo2MeM4a3YD&index=23)
+- Generalization of linkage
+- Three kinds of edges: bar (fixed length), cables (length can decrease but not increase), and
+  struts (length can increase but not decrease).
+- Can write linear program that gives us our constraints.
+- Dual of the LP gives us equilibrium conditions.
+
+
+# Numerical PDEs
+
+- local error
+- global error.
+- consistency
+- stability
+- consistent + unstable: toy example?
+- inconsistent + stable: identity matrix. does not track the PDE, but is totes stable.
+
+#### method of lines
+- for parabolic PDEs
+- timelike dimension: independent variable appears in a first derivative,
+  but in no higher derivatives.
+- first discretize over space.
+- then discretize over time.
+- lax richtmeyer stability, obtained by von neumann analysis.
+
 
 # Differentiating through sampling from a random normal distribution
 
-- Credits to [Edward Eriksson) for teaching me this. 
+- Credits to [Edward Eriksson) for teaching me this.
 - The key idea is that since we can write the normal distribution with parameters
   mean $\mu$ and variance $\sigma$ as a function of the standard normal distribution.
-  We then get to believe that the standard 
+  We then get to believe that the standard
 
-- $y = f(\sigma z)$ where $z \sim N(0, 1)$. 
+- $y = f(\sigma z)$ where $z \sim N(0, 1)$.
 - Then, by treating $z$ as a constant, we see that $dy/d\sigma = f'(\sigma z) \cdot z$ by chain rule.
-- That is, we treat $z$ as "constant", and minimize the $\sigma$. 
+- That is, we treat $z$ as "constant", and minimize the $\sigma$.
 - My belief in this remains open until I can read a textbook,
   but I have it on good authority that this is correct.
 - How does this relate to the VAE optimisation? It's the same trick, where we claim that
