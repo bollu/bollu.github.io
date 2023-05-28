@@ -1,0 +1,197 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='alternate' type='application/rss+xml' href='feed.rss' title='A universe of sorts'/><link rel='stylesheet' href='/katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='/prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Sans'; src: url('/static/Exo2-Regular.ttf');}@font-face {font-family: 'Blog Serif'; src: url('/static/Revans-Regular.ttf');}html { font-size: 100%; min-height: 100% }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { min-height: 100vh;  line-height: 1.5em;  color: #000000;  font-family: serif;  font-size: 12px;  margin-top: 0px;  max-width: 100%; overflow-x: hidden; }
+h1, h2, h3, h4, h5 { font-family: 'Blog Mono', monospace; }h1, h2 { column-span: all; }img { display:block; width: 100%; max-width: 800px; height: auto }.container { overflow-x: auto; overflow-y: hidden;              margin-top: 0px; height: 100%; min-height: 100%;             max-width: 100%;              font-size: 18px; line-height: 1.5em;              column-count: auto; column-width: 25em; column-fill: auto;              padding-left: 30px; padding-right: 30px; background: #FFFFFF;}@media (max-width: 480px) {   .container { margin-left: 1%; margin-right: 1%; }  body { font-size: 30px; }  } @media (max-width: 1024px) {  .container { margin-left: 1%; margin-right: 1%; }  body { font-size: 30px; }}@media (min-width: 1024px) { .container { margin-left: 1%; margin-right: 1%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
+pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=articles/mutorch href='#articles/mutorch'> § </a><span class='centered'> Mutorch </h2> 
+ <span class='centered'>Minimal reverse mode AD implementation.  
+ <pre><code><span class="token comment">#!/usr/bin/env python3</span>
+
+<span class="token comment"># x2, w1, w2 are Leaf variables</span>
+<span class="token comment"># x1 = f(w1, w2)</span>
+<span class="token comment"># y = g(x1, x2)</span>
+<span class="token comment"># loss = h(y)</span>
+
+
+<span class="token comment"># BACKPROP [reverse mode AD]</span>
+<span class="token comment"># ==========================</span>
+<span class="token comment"># t is a hallucinated variable.</span>
+<span class="token comment"># y = f(x)</span>
+<span class="token comment"># GIVEN: dt/dy</span>
+<span class="token comment"># TO FIND: dt/dx</span>
+<span class="token comment"># dt/dx = dt/dy * dy/dx</span>
+<span class="token comment"># dt/dloss</span>
+<span class="token comment"># t = loss</span>
+<span class="token comment"># dt/dloss = dloss/dloss = 1</span>
+
+
+<span class="token comment"># y1 = f(x1, x2, x3)</span>
+<span class="token comment"># y2 = g(x1, x2, x3)</span>
+
+<span class="token comment"># FORWARD MODE: [Tangent space] ---- objects of the does nothing at all :$\texttt{form (partial f/partial x)</span>
+<span class="token comment"># total gradient of x1: df/dx1 + dg/dx1</span>
+<span class="token comment"># total gradient of x2: df/dx2 + dg/dx2</span>
+<span class="token comment"># total gradient of x3: df/dx3 + dg/dx3</span>
+
+<span class="token comment"># l = r cos(theta)</span>
+<span class="token comment"># dl = dr cos(theta) + rsin(theta) dtheta</span>
+<span class="token comment"># dl/dtheta = dr/dtheta cos(theta) + rsin(theta) dtheta/dtheta</span>
+<span class="token comment"># dl/dtheta =   0       * .......  + rsin(theta) * 1</span>
+
+<span class="token comment"># dl/dr = dr/dr cos(theta) + rsin(theta) dtheta/dr</span>
+<span class="token comment"># dl/dr = cos(theta) +      .............*0</span>
+
+<span class="token comment"># REVERSE MODE: [CoTangent space] --- objects of the form df</span>
+<span class="token comment"># total gradient of y1: dy1 = (df/dx1)dx1 + (df/dx2)dx2  + (df/dx3)dx3</span>
+<span class="token comment"># total gradient of y2: dy2 = (dg/dx1)dx1 + (dg/dx2)dx2  + (dg/dx3)dx3</span>
+<span class="token comment"># HALLUCINATED T:</span>
+<span class="token comment">#    y1 = f(x1, x2, x3)</span>
+<span class="token comment">#    GIVEN:   dt/dy1 [output]</span>
+<span class="token comment">#    TO FIND: dt/dx1, dt/dx2, dt/dx3 [inputs]</span>
+<span class="token comment">#    SOLN:    dt/dxi = dt/dy * dy/dxi</span>
+<span class="token comment">#                    = dt/dy * df/dxi</span>
+<span class="token keyword">import</span> pudb
+
+<span class="token keyword">class</span> <span class="token class-name">Expr</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__mul__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> other<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> Mul<span class="token punctuation">(</span>self<span class="token punctuation">,</span> other<span class="token punctuation">)</span>
+    <span class="token keyword">def</span> <span class="token function">__add__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> other<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> Add<span class="token punctuation">(</span>self<span class="token punctuation">,</span> other<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">clear_grad</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Var</span><span class="token punctuation">(</span>Expr<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">,</span> val<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>name <span class="token operator">=</span> name
+        self<span class="token punctuation">.</span>val <span class="token operator">=</span> val
+        self<span class="token punctuation">.</span>_grad <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">def</span> <span class="token function">__str__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">"(var-%s | %s)"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>self<span class="token punctuation">.</span>name<span class="token punctuation">,</span> self<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+    <span class="token keyword">def</span> <span class="token function">__repr__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>__str__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">clear_grad</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>_grad <span class="token operator">=</span> <span class="token number">0</span>
+
+    <span class="token keyword">def</span> <span class="token function">backprop</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> dt_doutput<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>_grad <span class="token operator">+=</span> dt_doutput
+
+    <span class="token keyword">def</span> <span class="token function">grad</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>_grad
+
+<span class="token keyword">class</span> <span class="token class-name">Mul</span><span class="token punctuation">(</span>Expr<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> lhs<span class="token punctuation">,</span> rhs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>lhs <span class="token operator">=</span> lhs
+        self<span class="token punctuation">.</span>rhs <span class="token operator">=</span> rhs
+        self<span class="token punctuation">.</span>val <span class="token operator">=</span> self<span class="token punctuation">.</span>lhs<span class="token punctuation">.</span>val <span class="token operator">*</span> self<span class="token punctuation">.</span>rhs<span class="token punctuation">.</span>val
+    <span class="token keyword">def</span> <span class="token function">__str__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">"(* %s %s | %s)"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>self<span class="token punctuation">.</span>lhs<span class="token punctuation">,</span> self<span class="token punctuation">.</span>rhs<span class="token punctuation">,</span> self<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+    <span class="token keyword">def</span> <span class="token function">__repr__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>__str__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment">#         -------- input1</span>
+    <span class="token comment">#   S    /</span>
+    <span class="token comment">#  ---> v</span>
+    <span class="token comment">#  &lt;--output *</span>
+    <span class="token comment">#      ^</span>
+    <span class="token comment">#       \_________ input2</span>
+    <span class="token comment"># think in terms of sensitivity.</span>
+    <span class="token comment"># - output has S sensitivity to something,</span>
+    <span class="token comment"># - output = input1 + input2</span>
+    <span class="token comment"># - how much sensitivity does input1 have to S?</span>
+    <span class="token comment"># - the same (S), because "sensitivity" is linear [a conjecture/axiom]</span>
+    <span class="token comment"># output = f(input1, input2); f(input1, input2) = input1 + input2</span>
+    <span class="token keyword">def</span> <span class="token function">backprop</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> dt_output<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># dt/dinput1 = dt/doutput * ddoutput/dinput1 =</span>
+        <span class="token comment">#            = dt/doutput * d(f(input1, input2))/dinput1</span>
+        <span class="token comment">#            = dt/doutput * d(input1 * input2)/dinput1</span>
+        <span class="token comment">#            = dt/doutput * input2</span>
+        self<span class="token punctuation">.</span>lhs<span class="token punctuation">.</span>backprop<span class="token punctuation">(</span>dt_output <span class="token operator">*</span> self<span class="token punctuation">.</span>rhs<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>rhs<span class="token punctuation">.</span>backprop<span class="token punctuation">(</span>dt_output <span class="token operator">*</span> self<span class="token punctuation">.</span>lhs<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+
+<span class="token comment"># a = ...   ^</span>
+<span class="token comment"># b = ...   ^</span>
+<span class="token comment"># c = a + b ^</span>
+<span class="token comment">#</span>
+<span class="token keyword">class</span> <span class="token class-name">Add</span><span class="token punctuation">(</span>Expr<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> lhs<span class="token punctuation">,</span> rhs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>lhs <span class="token operator">=</span> lhs
+        self<span class="token punctuation">.</span>rhs <span class="token operator">=</span> rhs
+        self<span class="token punctuation">.</span>val <span class="token operator">=</span> self<span class="token punctuation">.</span>lhs<span class="token punctuation">.</span>val <span class="token operator">+</span> self<span class="token punctuation">.</span>rhs<span class="token punctuation">.</span>val
+    <span class="token keyword">def</span> <span class="token function">__str__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">"(+ %s %s | %s)"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>self<span class="token punctuation">.</span>lhs<span class="token punctuation">,</span> self<span class="token punctuation">.</span>rhs<span class="token punctuation">,</span> self<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+    <span class="token keyword">def</span> <span class="token function">__repr__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>__str__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment">#         -------- input1</span>
+    <span class="token comment">#   S    /</span>
+    <span class="token comment">#  ---> v</span>
+    <span class="token comment">#  &lt;--output</span>
+    <span class="token comment">#      ^</span>
+    <span class="token comment">#       \_________ input2</span>
+    <span class="token comment"># think in terms of sensitivity.</span>
+    <span class="token comment"># - output has S sensitivity to something,</span>
+    <span class="token comment"># - output = input1 + input2</span>
+    <span class="token comment"># - how much sensitivity does input1 have to S?</span>
+    <span class="token comment"># - the same (S), because "sensitivity" is linear [a conjecture/axiom]</span>
+    <span class="token comment"># output = f(input1, input2); f(input1, input2) = input1 + input2</span>
+    <span class="token keyword">def</span> <span class="token function">backprop</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> dt_output<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># dt/dinput1 = dt/doutput * ddoutput/dinput1 =</span>
+        <span class="token comment">#            = dt/doutput * d(f(input1, input2))/dinput1</span>
+        <span class="token comment">#            = dt/doutput * d(input1 + input2)/dinput1</span>
+        <span class="token comment">#            = dt/doutput * 1</span>
+        self<span class="token punctuation">.</span>lhs<span class="token punctuation">.</span>backprop<span class="token punctuation">(</span>dt_output <span class="token operator">*</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>rhs<span class="token punctuation">.</span>backprop<span class="token punctuation">(</span>dt_output <span class="token operator">*</span> <span class="token number">1</span><span class="token punctuation">)</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Max</span><span class="token punctuation">(</span>Expr<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> lhs<span class="token punctuation">,</span> rhs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>lhs <span class="token operator">=</span> lhs
+        self<span class="token punctuation">.</span>rhs <span class="token operator">=</span> rhs
+        self<span class="token punctuation">.</span>val <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>lhs<span class="token punctuation">.</span>val<span class="token punctuation">,</span> self<span class="token punctuation">.</span>rhs<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+    <span class="token keyword">def</span> <span class="token function">__str__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">"(max %s %s | %s)"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>self<span class="token punctuation">.</span>lhs<span class="token punctuation">,</span> self<span class="token punctuation">.</span>rhs<span class="token punctuation">,</span> self<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+    <span class="token keyword">def</span> <span class="token function">__repr__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>__str__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">backprop</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> dt_output<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># dt/dinput1 = dt/doutput * doutput/dinput 1</span>
+        <span class="token comment">#            = dt/doutput *d max(input1, input2)/dinput1</span>
+        <span class="token comment">#            = |dt/doutput *d input1/dinput1 [if input1 > input2] = 1</span>
+        <span class="token comment">#            = |dt/doutput *d input2/dinput1 [if input2 > input1] = 0</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>val <span class="token operator">==</span> self<span class="token punctuation">.</span>lhs<span class="token punctuation">.</span>val<span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>lhs<span class="token punctuation">.</span>backprop<span class="token punctuation">(</span>dt_output <span class="token operator">*</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>rhs<span class="token punctuation">.</span>backprop<span class="token punctuation">(</span>dt_output <span class="token operator">*</span> <span class="token number">1</span><span class="token punctuation">)</span>
+
+x <span class="token operator">=</span> Var<span class="token punctuation">(</span><span class="token string">"x"</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"x: %s"</span> <span class="token operator">%</span> x<span class="token punctuation">)</span>
+y <span class="token operator">=</span> Var<span class="token punctuation">(</span><span class="token string">"y"</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span>
+p <span class="token operator">=</span> Var<span class="token punctuation">(</span><span class="token string">"p"</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"y: %s"</span> <span class="token operator">%</span> y<span class="token punctuation">)</span>
+z0 <span class="token operator">=</span> Mul<span class="token punctuation">(</span>x<span class="token punctuation">,</span> x<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"z0: %s"</span> <span class="token operator">%</span> z0<span class="token punctuation">)</span>
+z1 <span class="token operator">=</span> Add<span class="token punctuation">(</span>z0<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"z1: %s"</span> <span class="token operator">%</span> z1<span class="token punctuation">)</span>
+
+<span class="token comment"># z1 = x*x+y</span>
+<span class="token comment"># dz1/dx = 2x</span>
+<span class="token comment"># dz1/dy = 1</span>
+<span class="token comment"># dz1/dp = 0</span>
+<span class="token comment"># z1.clear_grad()</span>
+z1<span class="token punctuation">.</span>backprop<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment">#t = z1</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"dz/dx: %s"</span> <span class="token operator">%</span> x<span class="token punctuation">.</span>grad<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"dz/dy: %s"</span> <span class="token operator">%</span> y<span class="token punctuation">.</span>grad<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"dz/dp: %s"</span> <span class="token operator">%</span> p<span class="token punctuation">.</span>grad<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+x<span class="token punctuation">.</span>clear_grad<span class="token punctuation">(</span><span class="token punctuation">)</span>
+y<span class="token punctuation">.</span>clear_grad<span class="token punctuation">(</span><span class="token punctuation">)</span>
+z1<span class="token punctuation">.</span>backprop<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment">#t = z1</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"dz/dx: %s"</span> <span class="token operator">%</span> x<span class="token punctuation">.</span>grad<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"dz/dy: %s"</span> <span class="token operator">%</span> y<span class="token punctuation">.</span>grad<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre> 
+ <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

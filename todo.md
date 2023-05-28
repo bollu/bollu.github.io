@@ -1,5 +1,12 @@
+- [A research codebase manifesto: how google brain organises research repos](moderndescartes.com/essays/research_code/)
+- [Giving Personality to procedural animations](https://www.youtube.com/watch?v=KPoeNZZ6H4s&t=1s)
+- van Oosten, Realizability
+- [Uses of topoi in logic](https://mathoverflow.net/a/445538/123769)
+- [Why LLM fine tuning needs reinfocement learning](https://gist.github.com/yoavg/6bff0fecd65950898eba1bb321cfbd81)
+- [Nutrition science has failed](https://metarationality.com/nutrition)
+- [Lilian Weng](https://lilianweng.github.io/)
 - [Sturm's theorem](https://en.wikipedia.org/wiki/Sturm%27s_theorem)
-- [Representation theory for particle pReferenceshysics](https://math.ucr.edu/~huerta/guts/node1.html)
+- [Representation theory for particle physics](https://math.ucr.edu/~huerta/guts/node1.html)
 - [Building the fastest Lua interpreter.. automatically!](https://sillycross.github.io/2022/11/22/2022-11-22/)
 - [Olin Shivers: CFA dude with epic rants and anti acknowledgements page](https://www.ccs.neu.edu/home/shivers/rants/msoft.html)
 - [Chronicles of OPT development: training log of large language model](https://github.com/facebookresearch/metaseq/blob/main/projects/OPT/chronicles/README.md)

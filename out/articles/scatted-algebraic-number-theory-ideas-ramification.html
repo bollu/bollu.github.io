@@ -1,0 +1,53 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='alternate' type='application/rss+xml' href='feed.rss' title='A universe of sorts'/><link rel='stylesheet' href='/katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='/prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Sans'; src: url('/static/Exo2-Regular.ttf');}@font-face {font-family: 'Blog Serif'; src: url('/static/Revans-Regular.ttf');}html { font-size: 100%; min-height: 100% }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { min-height: 100vh;  line-height: 1.5em;  color: #000000;  font-family: serif;  font-size: 12px;  margin-top: 0px;  max-width: 100%; overflow-x: hidden; }
+h1, h2, h3, h4, h5 { font-family: 'Blog Mono', monospace; }h1, h2 { column-span: all; }img { display:block; width: 100%; max-width: 800px; height: auto }.container { overflow-x: auto; overflow-y: hidden;              margin-top: 0px; height: 100%; min-height: 100%;             max-width: 100%;              font-size: 18px; line-height: 1.5em;              column-count: auto; column-width: 25em; column-fill: auto;              padding-left: 30px; padding-right: 30px; background: #FFFFFF;}@media (max-width: 480px) {   .container { margin-left: 1%; margin-right: 1%; }  body { font-size: 30px; }  } @media (max-width: 1024px) {  .container { margin-left: 1%; margin-right: 1%; }  body { font-size: 30px; }}@media (min-width: 1024px) { .container { margin-left: 1%; margin-right: 1%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
+pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=articles/scatted-algebraic-number-theory-ideas-ramification href='#articles/scatted-algebraic-number-theory-ideas-ramification'> § </a><span class='centered'> Scatted algebraic number theory ideas: Ramification </h2> 
+ <ul><li><span class='centered'><span class='centered'> I've  had Pollion on math IRC explain ramification to me. </li></ul> 
+ <pre><code>15:17 <Pollion> Take your favorite dedekind domain.
+15:17 <bollu> mmhm
+15:17 <Pollion> For instance, consider K a number field
+15:17 <Pollion> and O_K the ring of integers.
+15:17 <Pollion> Then take a prime p in Z.
+15:18 <Pollion> Since Z \subset O_K, p can be considered as an element of O_K, right ?
+15:18 <bollu> yes
+15:18 <Pollion> Ok. p is prime in Z, meaning that the ideal (p) = pZ is a prime ideal of Z.
+15:18 <bollu> yep
+15:18 <Pollion> Consider now this ideal, but in O_K
+15:18 <bollu> right
+15:19 <Pollion> ie the ideal pO_K
+15:19 <bollu> yes
+15:19 <Pollion> It may not be prime anymore
+15:19 <bollu> mmhm
+15:19 <Pollion> So it factors as a product of prime ideals *of O_K*
+15:20 <Pollion> pO_K = P_1^e_1....P_r^e_r
+15:20 <Pollion> where P_i are distinct prime ideals of O_K.
+15:20 <bollu> yes
+15:20 <Pollion> You say that p ramifies in O_K (or in K) when there is some e_i which is > 1
+15:21 <Pollion> Example
+15:21 <Pollion> Take Z[i], the ring of Gauss integers.
+15:22 <Pollion> It is the ring of integers of the field Q(i).
+15:22 <Pollion> Take the prime 2 in Z.
+15:23 <bollu> (2) = (1 + i) (1 - i) in Z[i] ?
+15:23 <Pollion> Yes.
+15:23 <Pollion> But in fact
+15:23 <Pollion> The ideal (1-i) = (1+i) (as ideals)
+15:23 <Pollion> So (2) = (1+i)^2
+15:23 <Pollion> And you can prove that (1+i) is a prime ideal in Z[i]
+15:23 <bollu> is it because (1 - i)i = i + 1 = 1 + i?
+15:24 <Pollion> Yes
+15:24 <bollu> very cool
+15:24 <Pollion> Therefore, (2) ramifies in Z[i].
+15:24 <bollu> is it prime because the quotient Z[i]/(1 - i) ~= Z is an integral domain? [the quotient tells us to make 1 - i = 0, or to set i = ]
+15:24 <Pollion> But you can also prove that primes that ramify are not really common
+15:24 <bollu> it = (1 - i)
+15:25 <Pollion> In fact, 2 is the *only* prime that ramifies in Z[i]
+15:25 <Pollion> More generally, you only have a finite number of primes that ramify
+15:25 <bollu> in any O_K?
+</code></pre> 
+ <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>

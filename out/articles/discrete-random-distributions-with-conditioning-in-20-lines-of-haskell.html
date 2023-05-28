@@ -1,0 +1,72 @@
+<!DOCTYPE html><meta charset='UTF-8'><html><head><link rel='alternate' type='application/rss+xml' href='feed.rss' title='A universe of sorts'/><link rel='stylesheet' href='/katex/katex.min.css'    integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X'    crossorigin='anonymous'><!-- The loading of KaTeX is deferred to speed up page rendering --><link rel='stylesheet' href='/prism/prism.css'><title> A Universe of Sorts </title><style>@font-face {font-family: 'Blog Mono'; src: url('/static/iosevka-fixed-extended.ttf');}@font-face {font-family: 'Blog Sans'; src: url('/static/Exo2-Regular.ttf');}@font-face {font-family: 'Blog Serif'; src: url('/static/Revans-Regular.ttf');}html { font-size: 100%; min-height: 100% }html,body { text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; } body { min-height: 100vh;  line-height: 1.5em;  color: #000000;  font-family: serif;  font-size: 12px;  margin-top: 0px;  max-width: 100%; overflow-x: hidden; }
+h1, h2, h3, h4, h5 { font-family: 'Blog Mono', monospace; }h1, h2 { column-span: all; }img { display:block; width: 100%; max-width: 800px; height: auto }.container { overflow-x: auto; overflow-y: hidden;              margin-top: 0px; height: 100%; min-height: 100%;             max-width: 100%;              font-size: 18px; line-height: 1.5em;              column-count: auto; column-width: 25em; column-fill: auto;              padding-left: 30px; padding-right: 30px; background: #FFFFFF;}@media (max-width: 480px) {   .container { margin-left: 1%; margin-right: 1%; }  body { font-size: 30px; }  } @media (max-width: 1024px) {  .container { margin-left: 1%; margin-right: 1%; }  body { font-size: 30px; }}@media (min-width: 1024px) { .container { margin-left: 1%; margin-right: 1%; } }.image { }
+a:hover { color: #1a73e8; text-decoration: underline;  }
+a { color: #1a73e8; text-decoration: none; }
+a:visited { color: #1a73e8; text-decoration: none; }
+a:active { color: #1a73e8; text-decoration: none; }
+
+blockquote { margin-left: 0px; margin-right: 0px; } pre, .latexblock, blockquote { border-left-color:#BBB;  border-left-style: solid;      border-left-width: 5px; }pre, blockquote { padding-left: 10px; }
+pre { font-family: 'Blog Mono', monospace; font-size: 90%;  }pre {  overflow-x: auto; }.latexblock, blockquote, pre { margin-top: 10px; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px; background-color: #FFFFFF; }.latexblock { line-height: 1em }
+pre, kbd, samp, tt{ font-family:'Blog Mono',monospace; }.inline { white-space: nowrap; background:#efefef; }ul, ol { list-style-position: inside; padding-left: 0; }ul { list-style-type: disclosure-closed; }</style></head><body><div class='container'><h2><a id=articles/discrete-random-distributions-with-conditioning-in-20-lines-of-haskell href='#articles/discrete-random-distributions-with-conditioning-in-20-lines-of-haskell'> § </a><span class='centered'> Discrete random distributions with conditioning in 20 lines of haskell </h2> 
+ <pre><code><span class="token keyword">newtype</span> <span class="token constant">D</span> <span class="token hvariable">a</span> <span class="token operator">=</span> <span class="token constant">D</span> <span class="token punctuation">{</span> <span class="token hvariable">unD</span> <span class="token operator">::</span> <span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token hvariable">a</span><span class="token punctuation">,</span> <span class="token constant">Double</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token punctuation">}</span> <span class="token keyword">deriving</span><span class="token punctuation">(</span><span class="token constant">Eq</span><span class="token punctuation">,</span> <span class="token constant">Show</span><span class="token punctuation">,</span> <span class="token constant">Ord</span><span class="token punctuation">)</span>
+
+<span class="token keyword">instance</span> <span class="token constant">Functor</span> <span class="token constant">D</span> <span class="token keyword">where</span>
+    <span class="token comment">-- fmap :: (a -> b) -> D a -> D b</span>
+    <span class="token builtin">fmap</span> <span class="token hvariable">f</span> <span class="token punctuation">(</span><span class="token constant">D</span> <span class="token hvariable">xs</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token constant">D</span> <span class="token operator">$</span> <span class="token builtin">fmap</span> <span class="token punctuation">(</span><span class="token operator">\</span><span class="token punctuation">(</span><span class="token hvariable">a</span><span class="token punctuation">,</span> <span class="token hvariable">d</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token punctuation">(</span><span class="token hvariable">f</span> <span class="token hvariable">a</span><span class="token punctuation">,</span> <span class="token hvariable">d</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token hvariable">xs</span>
+
+<span class="token keyword">instance</span> <span class="token constant">Monad</span> <span class="token constant">D</span> <span class="token keyword">where</span>
+    <span class="token builtin">return</span> <span class="token hvariable">x</span> <span class="token operator">=</span> <span class="token constant">D</span> <span class="token operator">$</span> <span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token hvariable">x</span><span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+    <span class="token comment">-- f :: a -> (D b)</span>
+    <span class="token punctuation">(</span><span class="token constant">D</span> <span class="token hvariable">as</span><span class="token punctuation">)</span> <span class="token operator">>>=</span> <span class="token hvariable">f</span> <span class="token operator">=</span> <span class="token constant">D</span> <span class="token operator">$</span> <span class="token keyword">do</span> <span class="token comment">-- list monad</span>
+                      <span class="token punctuation">(</span><span class="token hvariable">a</span><span class="token punctuation">,</span> <span class="token hvariable">p</span><span class="token punctuation">)</span> <span class="token operator">&lt;-</span> <span class="token hvariable">as</span>
+                      <span class="token punctuation">(</span><span class="token hvariable">b</span><span class="token punctuation">,</span> <span class="token hvariable">p2</span><span class="token punctuation">)</span> <span class="token operator">&lt;-</span> <span class="token hvariable">unD</span> <span class="token punctuation">(</span><span class="token hvariable">f</span> <span class="token hvariable">a</span><span class="token punctuation">)</span>
+                      <span class="token builtin">return</span> <span class="token operator">$</span> <span class="token punctuation">(</span><span class="token hvariable">b</span><span class="token punctuation">,</span> <span class="token hvariable">p</span> <span class="token operator">*</span> <span class="token hvariable">p2</span><span class="token punctuation">)</span>
+
+<span class="token comment">-- [(a, 0.5), (b, 0.5)]</span>
+<span class="token comment">-- [(a, 0.3), (a, 0.2), (b, 0.1), (b, 0.4)]</span>
+<span class="token comment">--</span>
+<span class="token keyword">instance</span> <span class="token constant">Applicative</span> <span class="token constant">D</span> <span class="token keyword">where</span>
+    <span class="token hvariable">pure</span> <span class="token operator">=</span> <span class="token builtin">return</span>
+    <span class="token hvariable">ff</span> <span class="token operator">&lt;*></span> <span class="token hvariable">fa</span> <span class="token operator">=</span> <span class="token keyword">do</span>
+        <span class="token hvariable">f</span> <span class="token operator">&lt;-</span> <span class="token hvariable">ff</span>
+        <span class="token hvariable">a</span> <span class="token operator">&lt;-</span> <span class="token hvariable">fa</span>
+        <span class="token builtin">return</span> <span class="token operator">$</span> <span class="token hvariable">f</span>  <span class="token hvariable">a</span>
+
+<span class="token hvariable">condition</span> <span class="token operator">::</span> <span class="token constant">Bool</span> <span class="token operator">-></span> <span class="token constant">D</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token hvariable">condition</span> <span class="token constant">True</span> <span class="token operator">=</span> <span class="token constant">D</span> <span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+<span class="token hvariable">condition</span> <span class="token constant">False</span> <span class="token operator">=</span> <span class="token constant">D</span> <span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0.0</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+
+
+<span class="token hvariable">dice</span> <span class="token operator">::</span> <span class="token constant">D</span> <span class="token constant">Int</span>
+<span class="token hvariable">dice</span> <span class="token operator">=</span> <span class="token keyword">let</span> <span class="token hvariable">p</span> <span class="token operator">=</span> <span class="token number">1.0</span> <span class="token operator">/</span> <span class="token number">6</span> <span class="token keyword">in</span> <span class="token constant">D</span> <span class="token operator">$</span> <span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token hvariable">x</span><span class="token punctuation">,</span> <span class="token hvariable">p</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token hvariable">x</span> <span class="token operator">&lt;-</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token operator">..</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+
+
+<span class="token hvariable">dice_hard</span> <span class="token operator">::</span> <span class="token constant">D</span> <span class="token constant">Int</span>
+<span class="token hvariable">dice_hard</span> <span class="token operator">=</span> <span class="token keyword">do</span>
+    <span class="token hvariable">x</span> <span class="token operator">&lt;-</span> <span class="token hvariable">dice</span>
+    <span class="token hvariable">condition</span> <span class="token operator">$</span> <span class="token hvariable">x</span> <span class="token operator">></span> <span class="token number">3</span>
+    <span class="token builtin">return</span> <span class="token operator">$</span> <span class="token hvariable">x</span>
+
+
+<span class="token hvariable">main</span> <span class="token operator">::</span> <span class="token constant">IO</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token hvariable">main</span> <span class="token operator">=</span> <span class="token keyword">do</span>
+    <span class="token builtin">print</span> <span class="token hvariable">dice</span>
+    <span class="token builtin">print</span> <span class="token hvariable">dice_hard</span>
+</code></pre> 
+ <span class='centered'>This gives the output:  
+ <pre><code>D {unD = [(1,0.16666666666666666),
+          (2,0.16666666666666666),
+          (3,0.16666666666666666),
+          (4,0.16666666666666666),
+          (5,0.16666666666666666),
+          (6,0.16666666666666666)]}
+
+D {unD = [(1,0.0),
+          (2,0.0),
+          (3,0.0),
+          (4,0.16666666666666666),
+          (5,0.16666666666666666),
+          (6,0.16666666666666666)]}
+</code></pre> 
+ <span class='centered'>Notice that  <code class='inline'>D a ~= WriterT (Product Float) []</code>!  
+ <script src="https://utteranc.es/client.js"        repo="bollu/bollu.github.io"        issue-term="pathname"        label="question"        theme="github-light"        crossorigin="anonymous"        async></script></container></body></html>
