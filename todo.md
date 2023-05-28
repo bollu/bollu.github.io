@@ -5,6 +5,11 @@
 - [Why LLM fine tuning needs reinfocement learning](https://gist.github.com/yoavg/6bff0fecd65950898eba1bb321cfbd81)
 - [Nutrition science has failed](https://metarationality.com/nutrition)
 - [Lilian Weng](https://lilianweng.github.io/)
+- [Pattern matching with dependent types by Coquand](https://github.com/wonks/type-theory-reading-group/blob/master/papers/proc92-coquand.pdf)
+- [Geometric numerical integration](https://link.springer.com/book/10.1007/3-540-30666-8)
+- [Suspended Reason](https://suspendedreason.github.io/)
+- [The seeeds of science](https://www.theseedsofscience.org/)
+- [Works in progress](https://www.worksinprogress.co/about/)
 - [Sturm's theorem](https://en.wikipedia.org/wiki/Sturm%27s_theorem)
 - [Representation theory for particle physics](https://math.ucr.edu/~huerta/guts/node1.html)
 - [Building the fastest Lua interpreter.. automatically!](https://sillycross.github.io/2022/11/22/2022-11-22/)
@@ -45,6 +50,7 @@
 - Semantic Domains and Denotational Semantics
 - W types
 - [Anti-unification](https://en.wikipedia.org/wiki/Anti-unification_(computer_science))
+>>>>>>> origin/master
 - Computation and Logic: George S Boolos
 - Mathematical Methods of Classical Mechanics
 - [Low level code improvements and loop optimisations made simple](http://www.cs.fsu.edu/~engelen/cr.html)
