@@ -44,6 +44,8 @@
 static const int LONG_LATEX_BLOCK_SIZE = 30;
 static const int LONG_CODE_BLOCK_SIZE = 60;
 
+// TODO: make this incremental, allow graceful failure
+// TOOD: if an article does not compile, convert to plaintext.
 
 #define GIVE
 #define TAKE
@@ -53,6 +55,7 @@ using namespace std;
 
 using ll = long long;
 static const ll MAX_CHARS = 1e9;
+
 
 // indent for logging to tell which function is calling what.
 struct Logger {

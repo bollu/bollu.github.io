@@ -1,3 +1,4 @@
+- [rsync.net: Good cloud file storage](https://rsync.net/products/rclone.html)
 - [A research codebase manifesto: how google brain organises research repos](moderndescartes.com/essays/research_code/)
 - [Giving Personality to procedural animations](https://www.youtube.com/watch?v=KPoeNZZ6H4s&t=1s)
 - van Oosten, Realizability

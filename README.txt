@@ -11,7 +11,7 @@
 # The conceit of self loathing
 
 >  Self-contempt is defined as the conceit of thinking "I am inferior" and
->  involves a sharp sense of one’s baseness and inadequacy vis-a`-vis others.
+>  involves a sharp sense of one’s baseness and inadequacy vis-a-vis others.
 >  There is even an excessive variety of it called "self-abasement"
 >  which is a conceit wherein, asserts that one is inferior even to inferior
 >  persons.
@@ -38,219 +38,6 @@
 - Equation for shallow waves.
 - Example of nonlinear PDE that can be solved exactly.
 - The geometry of the KDv equation describes this on a circle
-
-
-# Tensegrity
-
-
-- [Video](https://www.youtube.com/watch?v=PuUPnAkcNog&list=PLUl4u3cNGP62xuxL4CQpy8uo2MeM4a3YD&index=23)
-- Generalization of linkage
-- Three kinds of edges: bar (fixed length), cables (length can decrease but not increase), and
-  struts (length can increase but not decrease).
-- Can write linear program that gives us our constraints.
-- Dual of the LP gives us equilibrium conditions.
-
-
-# Numerical PDEs
-
-- local error
-- global error.
-- consistency
-- stability
-- consistent + unstable: toy example?
-- inconsistent + stable: identity matrix. does not track the PDE, but is totes stable.
-
-#### method of lines
-- for parabolic PDEs
-- timelike dimension: independent variable appears in a first derivative,
-  but in no higher derivatives.
-- first discretize over space.
-- then discretize over time.
-- lax richtmeyer stability, obtained by von neumann analysis.
-
-
-# Differentiating through sampling from a random normal distribution
-
-- Credits to [Edward Eriksson) for teaching me this.
-- The key idea is that since we can write the normal distribution with parameters
-  mean $\mu$ and variance $\sigma$ as a function of the standard normal distribution.
-  We then get to believe that the standard
-
-- $y = f(\sigma z)$ where $z \sim N(0, 1)$.
-- Then, by treating $z$ as a constant, we see that $dy/d\sigma = f'(\sigma z) \cdot z$ by chain rule.
-- That is, we treat $z$ as "constant", and minimize the $\sigma$.
-- My belief in this remains open until I can read a textbook,
-  but I have it on good authority that this is correct.
-- How does this relate to the VAE optimisation? It's the same trick, where we claim that
-  $sample(N(0, 1))$ can be held constant during backprop, as if the internal structure of the $sample$
-  function did not matter. Amazing.
-
-
-```py
-#!/usr/bin/env python3
-import numpy as np
-
-sigma = 1.0
-
-# # function we are minimising over
-# def f (x): return - x*x
-# # derivative of function we are minimising over
-# def fprime(x): return -2*x
-
-# function we are minimising over
-def f (x): return np.sin(x + 0.1)
-
-# derivative of function we are minimising over
-def fprime(x): return np.cos(x + 0.1)
-
-# f(sigma z) = f'(sigma z) z.
-# \partial_\sigma E[f(X_\sigma)] = E[\partial_\sigma f(X_\sigma)]
-for i in range(1000):
-    z = np.random.normal(0, 1)
-    # sample from normal distribution with mean 0 and standard deviation sigma
-    sz = sigma * z
-    # evaluate function at x
-    fx = f(sz)
-    gradfx = fprime(sz)
-
-    # update sigma
-    # z2 = np.random.normal(0, 1)
-    dsigma = gradfx * z
-
-    print("z = %5.2f | f = %6.2f | df = %6.2f | sigma = %6.2f | dsigma = %6.2f" %
-        (z, fx, gradfx, sigma, dsigma))
-    sigma = sigma - 0.01 * dsigma
-```
-
-
-# BOSCC Vectorization
-
-- Branch on superword conditional codes.
-
-# Autodiff
-- Activity analysis
-
-# Vector Bundles and K theory, 1.1
-
-- We define a sphere (in 3D) by all points with distance $1$ from the original. Call this $M$.
-- The tangent plane $T_p M \equiv \{ v | v \perp p \}$.
-- Define $TM \equiv \cup_{x \in M} T_M$
-- We have a projection map $p$ from $TM \to M$ which sends the point $(x, v)$ to $x$.
-- for a point $x \in X$, we define $U(x)$ to be the hemisphere with apex $x$. This is the portion of the sphere
-  on one side of the hyperplane that is perpendicular to $x$.
-- We want a map $p^{-1}(U(x))$ to $U(x) \times p^{-1}(x)$. The right hand is the same as $U(x) \times T_x M \times \{ x \}$,
-  which is the same as $U(x) \times T_x M$.
-- for a given $(y, v) \in TM$, that is, for a given $v \in T_y M$, we map it to $U(x) \times T_x M$ by sending $y \mapsto y \in U(x)$,
-  and by orthogonally projecting the vector $v \in T_y M$ onto the tangent plane $T_x M$.
-- Intuitively, we keep the point $y$ the same, and map the tangent plane $T_y$ to its orthogonal projection onto $T_x$.
-- Since we know the basepoint $y$, it is clear that we can reconstruct the projection operator from $T_y$ to $T_x$, and that this
-  operator is linear and surjective, and thus invertible.
-- This shows us that what we have is really a fiber bundle, since we can locally straighten  the $p^{-1}(U(x))$ into the trivial bundle.
-- Proof?
-
-# Equicontinuity, Arzela Ascoli
-- A sequence/family of functions are said to be equicontinuous if they vary equally in a given nbhd
-- Necessary for Arzela Ascoli
-- A subset of $C(X)$, space of continuous functions on a compact Hausdorff
-  space $X$ is compact iff if it is closed, bounded, and equicontinuous.
-- Corollay: a sequence of $C(X)$ is uniformly convergent iff it is equicontinuous.
-- Thus, an equicontinious family converges pointwise, and moreover, since it is uniform convergence, the limit will also be
-  continuous.
-
-#### Uniform boundedness Principle
-
-> The uniform boundedness principle states that a pointwise bounded family of
-> continuous linear operators between Banach spaces is equicontinuous.
-
-#### Equicontinuity of metric spaces
-
-- Let $X, Y$ be metric space.
-- The family $F$ is equicontinuous at a point $p \in X$ if for all $\epsilon > 0$,
-  there is a $\delta > 0$ such that $d(f(p), f(x)) < \epsilon$ for all $f \in F$
-  and all $d(p, x) < \delta$.
-- Thus, for a given $\epsilon$, there is a uniform choice of $\delta$ that works for all *functions*.
-- It's like uniform continutity, except the uniformity is enforced acrorss the _functions_ $f_i$, not on the
-  points on the domain.
-- The family $F$ is pointwise equicontinuous iff it is equicontinuous at each point $p$.
-
-
-
-# Sobolev Embedding Theorem [WIP]
-
-- Intuitive Statement: Bound on norm of derivatives gives bound on function norm
-- Intuition: On a closed compact set, function can only grow as much as the derivative lets it grow.
-
-
-# Hahn Banach Theorem [WIP]
-
-
-# Method of Characteristics [WIP]
-
-
-# Eikonal Equation [WIP]
-
-#### 1D
-#### nD
-
-- Since everything is determined by 1D parametrization (curves)
-- $|\grad \phi(r)| = 1/v(r)$
-- $r$ is position in space.
-- $v(r)$ is the speed of light at position $r$.
-- $\phi(r)$ represents the travel time of a wavefront to reach $r$.
-- So, the gradient of the travel time is
-
-#### References
-- [Video on eikonal equation](https://www.youtube.com/watch?v=G1LOsvGGQos)
-
-
-
-# Practical example of semidirect product
-
-```
--- | represents a string with indexes into it.
-type IndexedString = (String , [Nat])
-```
-
-- If we combine the strings together as `t = s1 + s2`, how do the indexes of `s1, s2` change to become an index of `t`?
-
-```
-instance Semigroup IndexedString where
-  (IndexedString s1 ixs1) <> (IndexedString s2 ixs2) =
-    (s1 <> s2, ix1 <> ((+) (length s1)) <$>  ixs2)
-```
-- See that we "twist" the indexes of the second by the length of the string.
-  Because we are sticking the "origin" of the second to the "tip" of the first,
-  we need to change the indexes to point to the "new" origin.
-- One can check that this is going to be a semidirect product.
-- In general, if we have data, pointers into the data, and ways to combine the data,
-  then the bundled up abstraction of (data+pointers into data) should have a semidirect
-  structure.
-
-# Algebraic graph calculus
-- http://gabarro.org/ccn/algebraic_graph_calculus.html
-- The gradient corresponds to the incidence matrix, which takes values on
-  vertices and spits out values on edges.
-
-# Change of basis from triangle x y to barycentric
-
-- If we have $\int_T f(x, y)dx dy$ for a triangle $T$, we would often like to change to
-  barycentric coordinates to compute $\int_{p=0}0^1 \int_{q=0}^p f(p, q) dp dq$. But what is the relationship
-  between these two integrals?
-- Note that when we parametrize $p, q$ by as $\{ (p, q) : p \in [0, 1], q \in [0, p] \}$, we are
-  drawing a right triangle whose base is on the $x$ axis.
-
-# Lean4 access metam and so forth
-
-```lean4
-#eval show Lean.MetaM _ from do
-  return 0
-```
-
-# Harmonic function
-
-- Solve Poisson's equation (wave equation) : `Δ f = 0`
-- is a vector field $V = ∇f$ arose from a potential, then it
-  satisfies $∇ x(∇f) = 0$ (by the exact sequence).
 
 
 # Differentiating through sampling from a random normal distribution
@@ -425,17 +212,16 @@ instance Semigroup IndexedString where
 
 # Lean4 access metam and so forth
 
-```lean4
+```
 #eval show Lean.MetaM _ from do
   return 0
 ```
 
 # Harmonic function
 
-- Solve Poisson's equation (wave equation) : `Δ f = 0`
+- Solve Poisson's equation (wave equation) : `Δ f = 0`.
 - is a vector field $V = ∇f$ arose from a potential, then it
   satisfies $∇ x(∇f) = 0$ (by the exact sequence).
-
 
 # Lax Milgram theorem
 
@@ -572,8 +358,7 @@ inductive E : Const → Type
 
 # Weakly implicit arguments in Lean
 
-```lean
-
+```
 variables {α : Type} (f : α → α)
 def injective {α Β: Type} (f: α → β) : Prop := 
   ∀ {{x y}}, f x = f y → x = y -- NOTE: weakly implicit
@@ -625,21 +410,15 @@ but is expected to have type
 
 - Both programs are capabale of displaying the contents of ELF format files,
   so why does the `binutils` project have two file dumpers ?
-
 - The reason is that objdump sees an ELF file through a BFD filter of the
   world; if BFD has a bug where, say, it disagrees about a machine constant
-  in e_flags, then the odds are good that it will remain internally
+  in `e_flags`, then the odds are good that it will remain internally
   consistent.  The linker sees it the BFD way, objdump sees it the BFD way,
   GAS sees it the BFD way.  There was need for a tool to go find out what
   the file actually says.
-
 - This is why the readelf program does not link against the BFD library - it
   exists as an independent program to help verify the correct working of BFD.
-
 - `readelf` is arch. independent, `objdump` needs the appropriate toolchain.
-
-
-
 - [Stack overflow reference for difference between objdump and readelf](https://stackoverflow.com/a/8979687/5305365)
 
 
@@ -44702,7 +44481,6 @@ let g:conjure#mapping#eval_motion = "E"
   here whom I have not offended tonight, I beg their pardon.
 
 - Pirates of the caribbean: Take what you can, give nothing back.
->>>>>>> origin/master
 
 > How can Alice communicate all of math to Bob? Mail him some chalk and wait!
 

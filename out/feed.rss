@@ -5,14 +5,144 @@
 <link>https://bollu.github.io/</link>
 <description>A universe of Sorts</description>
   <item>
+    <title> The conceit of self loathing </title>
+    <guid>https://bollu.github.io/articles/the-conceit-of-self-loathing.html</guid>
+    <link>https://bollu.github.io/articles/the-conceit-of-self-loathing.html</link>
+  </item>
+  <item>
+    <title> Inverse scattering transform </title>
+    <guid>https://bollu.github.io/articles/inverse-scattering-transform.html</guid>
+    <link>https://bollu.github.io/articles/inverse-scattering-transform.html</link>
+  </item>
+  <item>
+    <title> Differentiating through sampling from a random normal distribution </title>
+    <guid>https://bollu.github.io/articles/differentiating-through-sampling-from-a-random-normal-distribution.html</guid>
+    <link>https://bollu.github.io/articles/differentiating-through-sampling-from-a-random-normal-distribution.html</link>
+  </item>
+  <item>
+    <title> BOSCC Vectorization </title>
+    <guid>https://bollu.github.io/articles/boscc-vectorization.html</guid>
+    <link>https://bollu.github.io/articles/boscc-vectorization.html</link>
+  </item>
+  <item>
+    <title> Autodiff </title>
+    <guid>https://bollu.github.io/articles/autodiff.html</guid>
+    <link>https://bollu.github.io/articles/autodiff.html</link>
+  </item>
+  <item>
+    <title> Vector Bundles and K theory, 1.1 </title>
+    <guid>https://bollu.github.io/articles/vector-bundles-and-k-theory-11.html</guid>
+    <link>https://bollu.github.io/articles/vector-bundles-and-k-theory-11.html</link>
+  </item>
+  <item>
+    <title> Equicontinuity, Arzela Ascoli </title>
+    <guid>https://bollu.github.io/articles/equicontinuity-arzela-ascoli.html</guid>
+    <link>https://bollu.github.io/articles/equicontinuity-arzela-ascoli.html</link>
+  </item>
+  <item>
+    <title> Sobolev Embedding Theorem  [WIP ] </title>
+    <guid>https://bollu.github.io/articles/sobolev-embedding-theorem-wip.html</guid>
+    <link>https://bollu.github.io/articles/sobolev-embedding-theorem-wip.html</link>
+  </item>
+  <item>
+    <title> Hahn Banach Theorem  [WIP ] </title>
+    <guid>https://bollu.github.io/articles/hahn-banach-theorem-wip.html</guid>
+    <link>https://bollu.github.io/articles/hahn-banach-theorem-wip.html</link>
+  </item>
+  <item>
+    <title> Method of Characteristics  [WIP ] </title>
+    <guid>https://bollu.github.io/articles/method-of-characteristics-wip.html</guid>
+    <link>https://bollu.github.io/articles/method-of-characteristics-wip.html</link>
+  </item>
+  <item>
+    <title> Eikonal Equation  [WIP ] </title>
+    <guid>https://bollu.github.io/articles/eikonal-equation-wip.html</guid>
+    <link>https://bollu.github.io/articles/eikonal-equation-wip.html</link>
+  </item>
+  <item>
+    <title> Practical example of semidirect product </title>
+    <guid>https://bollu.github.io/articles/practical-example-of-semidirect-product.html</guid>
+    <link>https://bollu.github.io/articles/practical-example-of-semidirect-product.html</link>
+  </item>
+  <item>
+    <title> Algebraic graph calculus </title>
+    <guid>https://bollu.github.io/articles/algebraic-graph-calculus.html</guid>
+    <link>https://bollu.github.io/articles/algebraic-graph-calculus.html</link>
+  </item>
+  <item>
+    <title> Change of basis from triangle x y to barycentric </title>
+    <guid>https://bollu.github.io/articles/change-of-basis-from-triangle-x-y-to-barycentric.html</guid>
+    <link>https://bollu.github.io/articles/change-of-basis-from-triangle-x-y-to-barycentric.html</link>
+  </item>
+  <item>
+    <title> Lean4 access metam and so forth </title>
+    <guid>https://bollu.github.io/articles/lean4-access-metam-and-so-forth.html</guid>
+    <link>https://bollu.github.io/articles/lean4-access-metam-and-so-forth.html</link>
+  </item>
+  <item>
+    <title> Harmonic function </title>
+    <guid>https://bollu.github.io/articles/harmonic-function.html</guid>
+    <link>https://bollu.github.io/articles/harmonic-function.html</link>
+  </item>
+  <item>
     <title> Lax Milgram theorem </title>
     <guid>https://bollu.github.io/articles/lax-milgram-theorem.html</guid>
     <link>https://bollu.github.io/articles/lax-milgram-theorem.html</link>
   </item>
   <item>
+    <title> Why L2 needs a quotient upto almost everywhere </title>
+    <guid>https://bollu.github.io/articles/why-l2-needs-a-quotient-upto-almost-everywhere.html</guid>
+    <link>https://bollu.github.io/articles/why-l2-needs-a-quotient-upto-almost-everywhere.html</link>
+  </item>
+  <item>
     <title> Repulsive curves </title>
     <guid>https://bollu.github.io/articles/repulsive-curves.html</guid>
     <link>https://bollu.github.io/articles/repulsive-curves.html</link>
+  </item>
+  <item>
+    <title> Why NuPRL and Realisability makes it hard to communicate math </title>
+    <guid>https://bollu.github.io/articles/why-nuprl-and-realisability-makes-it-hard-to-communicate-math.html</guid>
+    <link>https://bollu.github.io/articles/why-nuprl-and-realisability-makes-it-hard-to-communicate-math.html</link>
+  </item>
+  <item>
+    <title> Lean does not allow nested inductive families </title>
+    <guid>https://bollu.github.io/articles/lean-does-not-allow-nested-inductive-families.html</guid>
+    <link>https://bollu.github.io/articles/lean-does-not-allow-nested-inductive-families.html</link>
+  </item>
+  <item>
+    <title> Lean  isDefEq is undecidable </title>
+    <guid>https://bollu.github.io/articles/lean-isdefeq-is-undecidable.html</guid>
+    <link>https://bollu.github.io/articles/lean-isdefeq-is-undecidable.html</link>
+  </item>
+  <item>
+    <title> Lean subject reduction is broken </title>
+    <guid>https://bollu.github.io/articles/lean-subject-reduction-is-broken.html</guid>
+    <link>https://bollu.github.io/articles/lean-subject-reduction-is-broken.html</link>
+  </item>
+  <item>
+    <title> Weakly implicit arguments in Lean </title>
+    <guid>https://bollu.github.io/articles/weakly-implicit-arguments-in-lean.html</guid>
+    <link>https://bollu.github.io/articles/weakly-implicit-arguments-in-lean.html</link>
+  </item>
+  <item>
+    <title> Big list of elf file munging / linker / ABI </title>
+    <guid>https://bollu.github.io/articles/big-list-of-elf-file-munging-linker-abi.html</guid>
+    <link>https://bollu.github.io/articles/big-list-of-elf-file-munging-linker-abi.html</link>
+  </item>
+  <item>
+    <title> Regular epi and regular category </title>
+    <guid>https://bollu.github.io/articles/regular-epi-and-regular-category.html</guid>
+    <link>https://bollu.github.io/articles/regular-epi-and-regular-category.html</link>
+  </item>
+  <item>
+    <title> Focal point </title>
+    <guid>https://bollu.github.io/articles/focal-point.html</guid>
+    <link>https://bollu.github.io/articles/focal-point.html</link>
+  </item>
+  <item>
+    <title> Operational versus Denotational semantics </title>
+    <guid>https://bollu.github.io/articles/operational-versus-denotational-semantics.html</guid>
+    <link>https://bollu.github.io/articles/operational-versus-denotational-semantics.html</link>
   </item>
   <item>
     <title> Minimising L2 norm with total constraint </title>
@@ -198,11 +328,6 @@
     <title> HoTTesT: Identity types </title>
     <guid>https://bollu.github.io/articles/hottest-identity-types.html</guid>
     <link>https://bollu.github.io/articles/hottest-identity-types.html</link>
-  </item>
-  <item>
-    <title> Philosophy of History </title>
-    <guid>https://bollu.github.io/articles/philosophy-of-history.html</guid>
-    <link>https://bollu.github.io/articles/philosophy-of-history.html</link>
   </item>
   <item>
     <title> Left and right adjoints to inverse image </title>
@@ -3580,9 +3705,9 @@
     <link>https://bollu.github.io/articles/burrows-wheeler.html</link>
   </item>
   <item>
-    <title> Intuitionstic logic as a Heytig algebra </title>
-    <guid>https://bollu.github.io/articles/intuitionstic-logic-as-a-heytig-algebra.html</guid>
-    <link>https://bollu.github.io/articles/intuitionstic-logic-as-a-heytig-algebra.html</link>
+    <title> Intuitionstic logic as a Heyting algebra </title>
+    <guid>https://bollu.github.io/articles/intuitionstic-logic-as-a-heyting-algebra.html</guid>
+    <link>https://bollu.github.io/articles/intuitionstic-logic-as-a-heyting-algebra.html</link>
   </item>
   <item>
     <title> Edit distance </title>
