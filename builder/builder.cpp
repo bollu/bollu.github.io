@@ -23,11 +23,15 @@
 #undef NDEBUG
 #include <assert.h>
 
-#if  defined(_WIN32) || defined(WIN32) // my build config on windows
-#define BLOG_ROOT_FOLDER_TRAILING_SLASH "C:\\Users\\bollu\\blog\\"
-#else  // unix
-#define BLOG_ROOT_FOLDER_TRAILING_SLASH "/home/bollu/blog/"
+#ifndef BLOG_ROOT_FOLDER_TRAILING_SLASH // path configured from cmake.
+  #error "expected command line option 'BLOG_ROOT_FOLDER_TRAILING_SLASH'"
 #endif
+// #if  defined(_WIN32) || defined(WIN32) // my build config on windows
+// #define BLOG_ROOT_FOLDER_TRAILING_SLASH "C:\\Users\\bollu\\blog\\"
+// #else  // unix
+// #define BLOG_ROOT_FOLDER_TRAILING_SLASH "/home/bollu/blog/"
+// #endif
+// #endif
 
 
 #define CONFIG_WEBSITE_RSS_DESCRIPTION "A universe of Sorts"
