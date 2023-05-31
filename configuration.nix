@@ -34,7 +34,7 @@
    environment.systemPackages = with pkgs; [ neovim git tmux emacs-nox 
    cowsay fzf sbcl
    wget aria2 nix-tree exa fd procs sd dust ripgrep bottom
-   delta stack ghc
+   delta stack ncdu wireguard-tools
      ];
 	security.acme = {
 		acceptTerms = true;
@@ -67,6 +67,9 @@
 				addSSL = true;
 				enableACME = true;
 			};
+                        # Username jellyfin, no password (leave password field blank)
+                        # jellyfin config folder: /var/lib/jellyfin
+                        # jellyfin data folder: 
 			"jellyfin.pixel-druid.com" = {
 				locations."/".proxyPass = "http://127.0.0.1:8096";
 				enableACME = true;
@@ -83,6 +86,20 @@
   services.jellyfin.enable = true;
   services.jellyfin.openFirewall = true;
   services.shellinabox.enable = true;
+
+  systemd.services.rclone = {
+    description = "service to run the rclone mount for premiumize";
+    wantedBy = ["multi-user.target"];
+    path = [ pkgs.rclone ];
+    script = ''
+    rclone --allow-other --dir-perms=0777 --file-perms=0555 --config /root/.config/rclone/rclone.conf mount premiumize: /root/Movies/premiumize
+    '';
+    serviceConfig = {
+      type = "simple";
+      Restart = "on-failure";
+    };
+  };
+  
   # services.openvpn.servers = { vpn = { config = ''/root/openvpn/vpn.conf''; };
   nixpkgs.config.permittedInsecurePackages = [
     "openssl-1.0.2u"
