@@ -8,6 +8,40 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Heine Borel
+
+- Theorem: closed bounded subset of $\R^n$ is compact
+- We will prove it for $\R$ and leave the obvious generalization to the reader.
+- Key idea: recall that for metric spaces, compactness and sequential compactness are equivalent,
+  so the proof must follow some ideas from Bolzano Weirstrass (sequence in closed bounded set has
+  convergent subsequence).
+- Recall that *that* proof goes by bisection, so let's try to bisect some stuff!
+- Also recall why this fails in infinite dimensions: you can bisect repeatedly in "all directions" and
+  get volume (measure) to zero, without actually controlling the cardinality. There is no theorem that says
+  "measure 0 = single point". So, the proof must rely on finite dimension and "trapping" a point.
+- Take an interval, say $[0, 1]$ and take a cover $\mathcal C$. We want to extract a finite subcover.
+- For now, suppose that the cover is made up only of open balls $B(x, \epsilon)$. We can always reduce
+  a cover to a cover of open balls --- For each point $p \in X$ which is covered by $U_p$,
+  take an open ball $B_p \equiv B(p, \epsilon_p) \subseteq U$. A finite subcover of the open balls $\{ B_p \}$ tells us which $U_p$ to pick from the original cover.
+- Thus, we shall now assume that $C$ is only made up of epsilon balls of the form $C \equiv \{ B(p, \epsilon_p) \}$.
+- If $C$ has a finite subcover, we are done.
+- Suppose $C$ has no finite subcover. We will show that this leads to a contradiction.
+- Since we have no finite subcover, it must be the case that at $I_0$, there are an infinite number of balls $\{ B \}$.
+  Call this cover of infinite balls $C_0$.
+- Now, let the interval $I_1$ be whichever of $[0, 1/2]$ or $[1/2, 1]$ that has infinitely many balls from $C_0$.
+  One of the two intervals must have infinite many balls from $C_0$, for otherwise $C_0$ would be finite, a contradiction.
+  Let $C_1$ be the cover of $I_1$ by taking balls from $C_0$ that lie in $I_1$.
+- Repeat the above for $I_1$. This gives us a sequence of nested intervals $\dots \subset I_2 \subset I_1 \subset I_0$,
+  as well as nested covers $\dots \subset C_2 \subset C_1 \subset C_0$.
+- For each $i$, pick any epsilon ball $B_i(p_i, \epsilon_i) \in C_i$.
+  This gives us a sequence of centers of balls $\{ p_i \}$. These centers must
+  have a coverging subsequence $\{ q_i \}$ (by bolzano weirstrass) which converges to a limit point $L$.
+- Take the ball $B_L \equiv (L, \epsilon_L) \in C$ which covers the limit point $L$.
+- Since the sequence $\{ q_i \}$ is cauchy, for $\epsilon_L$, there must exist a natural $N$ such that for all 
+  $n \geq N$, the points $\{ q_n : n \geq N \} \subseteq B_L$.
+- Thus, we only have finitely many points, $q_{\leq n}$ to cover. Cover each of these by their own ball.
+- We have thus successfully found a covering for the full sequence!
+
 # The conceit of self loathing
 
 >  Self-contempt is defined as the conceit of thinking "I am inferior" and
