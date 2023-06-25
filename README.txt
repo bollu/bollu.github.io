@@ -8,6 +8,90 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Precision, Recall, and all that.
+
+- Setting: we have some theorem goal $g$, a dataset of mathematical lemmas $D$, a set of actually useful
+  lemmas $A$, and a set of predicted lemmas $P$.
+- We want to provide a good measure of how "good" $P$
+  is with respect to the ground truth $A$.
+- We begin by defining *precision*, which is the fraction of $P$ that was correct: $|P \cap A|/|P|$. 
+  Probabilistically, this can be seen as `P(actual|predicted)`.
+- Simlarly, we define *recall* as the fraction of `A` that was correctly predicted: $|P \cap A|/|A|$.
+  Probabilistically, this is `P(predicted|actual)`.
+- Let us now change the setting a little bit, where we swap the set $P$ for a \emph{sequence} over the
+  full universe of lemmas $A$.
+- We can get a set by truncating $P$ at some threshold.
+  So we will define `precision@k` to be the precision of the set $P[:k]$.
+- We note that recall as a function of k, `recall@k` is non-decreasing. As we see more predictions, we can
+  only get more actually useful things. See that recall has a fixed denominator (the size
+  of the number of actually useful things).
+- Since `recall@k` is non-decreasing, we can build an inverse, `k@recall(r)`. For a given level of recall `r`,
+  we map to the smallest $k$ (smallest number of items we need to take from the ranking) to get that level of recall.
+- This lets us define a precision-recall function, where `precision@recall(r) = precision@k(k@recall(r))`.
+
+#### Precision, Recall formulae
+
+- Suppose for a given goal $g$, we have 3 correct premises `a, b, c`. The universe has premises `a, b, c, x, y, z`.
+  Our model predicts premises in the ranking `x, a, y, b, c, z`. Then we summarize this as follows:
+
+```
+Rank | Val | Prec | Rec
+1    |  x  | 0    | 0/3
+2    |  a  | 1/2  | 1/3
+3    |  y  | 1/3  | 1/3
+4    |  b  | 2/4  | 2/3
+5    |  c  | 3/4  | 3/3
+5    |  z  | 3/5  | 3/3
+```
+
+- Note that recall is monotonically non-decreasing, while precisoin both increases (`0 -> 1/2`) and
+  decreases (`3/4 -> 3/5`).
+- We introduce an auxiliary function delta, $\delta(i) \equiv \text{lemma at i is correct}$.
+  This lets us write the above quantities as follows:
+- Let $s(n) \equiv \sum_{i=0}^n \delta(i)$. 
+- The total number of correct elements is $s(N)$ where $N$ is the total number of correct premises.
+- The precision at $k$ is given by $p(k) \equiv s(k)/k$. The recall at $k$ is given by $r(k) \equiv s(k)/s(N)$.
+- Now note that the discrete difference $dr(k) = r(k) - r(k-1)$, which equals $(s(k)-s(k-1)/s(N)$, which is $\delta(k)/s(N)$.
+
+#### Mean Average Precision
+- The best the `precision@recall` function can be is a flat line with `precision=1` for all levels of recall.
+- Deviation from this tells us how much worse our model is from the best model.
+- So, let's compute the area under the `precision@recall` curve. This is going to be the average precision,
+  $ap \equiv \int_{r=0}^1 p(r) dr$.
+- Recall that the "best" precision will always have `p(r) = 1`. Thus the theoretical maximum of this value
+  we can have is $ap = \int_{r=0}^1 1 dr = 1$. This gives us a good scale, where $0 \leq ap \leq 1$.
+- We use recall as a way to "standardize" across the size of the dataset by the recall.
+- Let's change of variables into $k$. So we want to change $r$ into $r(k)$.
+- This will change the bounds of integration.
+- The lower limit is given by $0 = r(l)$ which solves for $l = 0$.
+- The upper lmit is $1 = r(u)$ which solves for $u = N$ (the size of the dataset).
+- This also changes $dr$ to $dr(k)dk$.
+- In the discrete case, we set $dk = 1$, and $dr(k)` becomes $r(k) - r(k-1)$.
+  This is $\Sigma_{i=0}^k \delta(i)/s(N) - \Sigma_{i=0}^{k-1} \delta(i))/s(N)$ which evaluates to $\delta(k)/s(N)$.
+- This gives us the discrete calulation of $ap$ to be $ap \equiv \Sigma_{k=1}^N p(k) \delta(k)/s(N)$.
+- This recovers the
+  [formula from wikipedia](https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval)#Average_precision).
+
+
+##### Mean Average precision at K.
+
+- I believe this to be an incoherent concept; Recall that we chose to define average precision
+  as the _area under the precision recall curve_.  This is a sensible quantity, because it's a normalized
+  value (recall is between $0$ and $1$). We got the expression in terms of $k$ _via a change of variables_.
+  We **did not** start at $k$! We started from $r$ and got to $k$.
+- We can try to hack the expression for $ap$ to artifically create $ap@K$. Let's try.
+- First, to go from $k$ to $r$, we find a number $r_k$ such that the recall at $r(k) = r_k$
+- Next, we calculate $ap@K \equiv \int_0^{r_K} p(r) dr$.
+- We must now find we must find new lower and upper bounds in terms of $k$. 
+- The lower bounds needs us to find  `0  = r(l)` or `l = 0`.
+- The upper bound needs us to find `r_K = r(u)`, or `u = K`.
+- We will next have to calculate $dr(k) dk$. Previously, we set $dk = 1$, and we calculated $dr(k) \equiv r(k) - r(k-1)$.
+  This will give us $dr(k) \equiv \delta(k)/s(N)$. But note that $s(N)$ will count _all_ documents, not just limited to the top-K.
+  So let's used $s(K)$ instead --- a hack!
+- Combining these, we get the formula to be $ap@K \equiv \int_{0}^K p(r(k)) dr(k) = \Sigma_{k=0}^K p(k) \delta(k) / s(K)$.
+- `ap@K` feels very unprincipled, and I don't feel that this carries mathematical weight.
+- Is there an alternative derivatio that sheds light on why this formula makes sense?
+
 # Heine Borel
 
 - Theorem: closed bounded subset of $\R^n$ is compact
