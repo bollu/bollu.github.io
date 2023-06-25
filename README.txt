@@ -54,6 +54,7 @@ Rank | Val | Prec | Rec
 - Now note that the discrete difference $dr(k) = r(k) - r(k-1)$, which equals $(s(k)-s(k-1)/s(N)$, which is $\delta(k)/s(N)$.
 
 #### Mean Average Precision
+
 - The best the `precision@recall` function can be is a flat line with `precision=1` for all levels of recall.
 - Deviation from this tells us how much worse our model is from the best model.
 - So, let's compute the area under the `precision@recall` curve. This is going to be the average precision,
@@ -66,11 +67,9 @@ Rank | Val | Prec | Rec
 - The lower limit is given by $0 = r(l)$ which solves for $l = 0$.
 - The upper lmit is $1 = r(u)$ which solves for $u = N$ (the size of the dataset).
 - This also changes $dr$ to $dr(k)dk$.
-- In the discrete case, we set $dk = 1$, and $dr(k)` becomes $r(k) - r(k-1)$.
+- In the discrete case, we set $dk = 1$, and $dr(k)$ becomes $r(k) - r(k-1)$.
   This is $\Sigma_{i=0}^k \delta(i)/s(N) - \Sigma_{i=0}^{k-1} \delta(i))/s(N)$ which evaluates to $\delta(k)/s(N)$.
 - This gives us the discrete calulation of $ap$ to be $ap \equiv \Sigma_{k=1}^N p(k) \delta(k)/s(N)$.
-- This recovers the
-  [formula from wikipedia](https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval)#Average_precision).
 
 
 ##### Mean Average precision at K.
@@ -91,6 +90,29 @@ Rank | Val | Prec | Rec
 - Combining these, we get the formula to be $ap@K \equiv \int_{0}^K p(r(k)) dr(k) = \Sigma_{k=0}^K p(k) \delta(k) / s(K)$.
 - `ap@K` feels very unprincipled, and I don't feel that this carries mathematical weight.
 - Is there an alternative derivatio that sheds light on why this formula makes sense?
+
+#### R-precision
+
+- Recall that the recall is a nondecreasing function of $k$. The precision can vary any way it wants with respect to $k$.
+- We will try to find a point where precision equals recall. 
+- Consider the equation $p(K) = r(K)$. Using our previous formulation, this reduces to
+  $s(K)/K = s(K)/s(N)$. This of course gives us $K = s(N)$.
+- So, at the index $K$ which is equal to the total number of correct lemmas, we will have the precision equal the recall.
+- This value is called as the *R* precision: the precision $p(K)$ at the first index $K$ such that $r(K) = 1$.
+- Empirically, this value $R$ correlates well with mean average precision.
+
+
+#### $F_1$ Score
+
+- A sensible derivation is offered by Van Rijsbergen in his PhD thesis.
+- First, a quick and dirty definition: $F_1$ is the harmonic mean of precision and recall.
+- This gives us `2/(1/p + 1/r)`, which works out to `2/[(tp + fp)/tp + (tp + fn)/tp]`.
+- This simplifies to `2tp/(2tp + fp + fn)`.
+- Now consider the quantity `E := 1 - F`. Think of `E` as `error`. This works out to `(fp + fn)/(2tp + fp + fn)`.
+- See that this quantity works out the symmetric difference of the $A$actual and $P$redicted set divided by the 
+  sum of the sizes of the $A$ctual and $P$redicted set! $A \Delta P \equiv fp + fn$, and $|A| = tp + fn$, and
+  $|P| = tp + fp$. 
+- Thus, the full expression for $E$ becomes $E \equiv (|A| \Delta |P|) / [|A| + |P|]$ which is a genuinely sensible quantity!
 
 # Heine Borel
 
@@ -2346,7 +2368,7 @@ a   r
 ###### Step 1: Defining the forcing tuple set $F^{x=y}$.
 
 - to decide equality of $\tau, \tau'$, it is very sensitive to $G$ because elements can appear/disappear based on $G$.
-- We want all triplets $(p, \tau, \tau')$ where $\tau, \tau' \in \textttt{NamedSet}(M)$such that
+- We want all triplets $(p, \tau, \tau')$ where $\tau, \tau' \in \texttt{NamedSet}(M)$such that
   $p$ forces $\tau^G = \tau'^G$.
 - Recall that $p$ forces $\tau^G = \tau'^G$ means: $\tau^G = \tau'^G$ **if and only if** $p \in G$.
 - Thus, $p$ must be such that it is **NECESSARILY POSSIBLY TRUE** that every
@@ -2389,7 +2411,6 @@ Therefore, all these conditions are equivalent.
   there is a $p \in G$ such that all larger elements will be trapped in the net $Z^{=}$.
 - Then we will prove that if there is such a $p \in G$ which traps elements in the net, then we have $\tau^G = \tau'^G$.
 
-#####
 
 # Partial Evaluation, Chapter 3
 
