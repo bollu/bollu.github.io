@@ -8,6 +8,103 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Using LLL to discover minimal polynomial for floating point number
+
+- Explain by example. Let floating point number $f = 1.4142$.
+- Clearly, this has a minpoly of $10000x - 14142 = 0$ with coefficients in $Z[x]$.
+- However, we know that the correct minpoly is $x^2 - 2 = 0$.
+- What's the difference in these two cases? Well, the correct minpoly has "small" coefficients.
+- How do we find such a minpoly using LLL?
+- Key idea: Build vectors (in our case) of the form $b_0 \equiv (1, 0, 0, 1000)$,
+  $b_1 \equiv (0, 1, 0, 1000f)$, and $b_2 \equiv (1000f^2)$.
+  Then LLL, on trying to find a shorter basis for these, will try very hard to make the third
+  component smaller. It will do this by changing the basis vectors to $b'_0 \equiv b_0, b'_1 \equiv b_1$,
+  and $b'_2 \equiv b_2 - 2b_0 = (-1, 0, 1, 1000(f^2 - 2)$. Since $f^2 - 2 \sim 0$, the length of $b'_2$
+  is much smaller than $b_2$, granting us a shorter basis!
+- In general, given some rational number $\theta$, we build `n` basis vectors `v_i` of dimension `n+1`
+  of the form `v_i[i] = 1`, `v_i[n] = 1000(θ^i)`, and `v_i[-] = 0` otherwise.
+- LLLing on these vectors `v_i` will attempt to find an integer relation on the last
+  coefficient, which will be the minpoly.
+
+# Total Boundedness in a metric space
+
+- A set $A$ is totally bounded iff for any $\epsilon$, there exists a
+  **finite** $\epsilon$ net $N_\epsilon$.
+
+#### Totally bounded implies bounded
+
+- Let $S$ be a totally bounded set. We want to establish a uniform bound $M$.
+- Pick some $\epsilon$. We then get a finite number of points $N$ such that any point in $x$ is $\epsilon$ away from $N$.
+- Any two points in $N$ can be at most $N\epsilon$ apart. 
+- Thus the total distance between any two points $s, t \in S$.
+- Let $s, t$ be closest to points $n, n' \in N$.
+- Thus $d(s, t) \leq d(s, n) + d(n, n') + d(n', t)$ all of which is bounded by
+  $\epsilon + N\epsilon + \epsilon$ which is less than $(N + 3) \epsilon$.
+- Thus we have established a bound of $(N + 3) \epsilon$.
+
+#### For $\mathbb R$, bounded implies totally bounded
+
+- Say set $S$ is bounded by distance $M$. 
+- Trap $S$ inside an interval of side length $M$, WLOG suppose interval is from $[0, M]$.
+- For any adverserial $\epsilon$, pick points at $[0, \epsilon, 2\epsilon, \dots, M]$.
+  These points are the epsilon net which contain $M$:$S \subseteq M \subseteq N_\epsilon$
+- The net only needs $M/\epsilon$ points which is finite. 
+- See that this holds more generally for any $\mathbb R^n$ where we trap in a
+  hypercube and sprinkle points.
+
+#### In infinite dimensions, bounded need not be totally bounded.
+
+- Classic example, sphere in $l^2$. It's clearly bounded by a constant $2$.
+- we claim this is not totally bounded.
+- Note that any two vectors $e_i, e_j$ have distance $\sqrt(2)$.
+- Note that we have an infinite number of basis vectors $e_1, e_2, \dots$.
+- Suppose it is totally bounded. Pick $\epsilon = \sqrt(2)/9999$ as an adversary. We get a finite
+  neighborhood set $N_1$. 
+- Thus, some point in $n \in N_1$ must have an infinite number of basis vectors trapped in it.
+- so there must be two basis vectors in it, $e_i, e_j$ such that $e_i \neq e_j$.
+- We must have that $d(e_i, e_j) < d(e_i,  n) + d(n, e_j)$ by triangle inequality.
+- This gives us $\sqrt(2) < \sqrt(2)/9999 + \sqrt(2) / 9999$ which is a contradiction.
+- Thus, the sphere is not totally bounded.
+
+#### compact => closed + totally bounded in infinite dim also
+
+- Let $S$ be a compact set.
+- it is closed by the usual argument.
+- We claim $S$ is totally bounded.
+- Let adversary pick $\epsilon$.
+- We must establish a finite number of points $N_\epsilon$ such that any point in $S$
+  is in an $\epsilon$ neighbourhood of some $n \in N_\epsilon$.
+- Reread that. that's literally compactness.
+- Pick an open cover $O$ consisting of an $\epsilon$ ball for each point $s \in S$.
+- Extract a finite subcover from this.
+- This finite subcover is the finite $\epsilon$ net.
+- Thus done. Compact is totally bounded.
+
+#### closed + totally bounded => sequentially compact in infinite dim also
+
+- Let $S$ be a closed and totally bounded set.
+- We wish to show that it is sequentially compact.
+- Let $x_i$ be a sequence in $S$.
+- Perform the classical Bonzalo Weirstrass bisection construction.
+- Since $S$ is totally bounded, we can pick any $\epsilon$ and get a finite epsilon net.
+- We claim that a closed subset of a totally bounded set is also totally bounded.
+
+```py
+def mk_cauchy_sequence(S):
+  k = 1
+  while True:
+    s = choose(S)
+    yield s
+    Nk = finite_epsilon_net(S=S, epsilon=1/2^k)
+    # n ∈ Nk such that n has an infinite number of points from $S$ in 
+    # the epsilon ball around $n$.
+    n = hilbert-epsilon-choose(|{ n ∈ N : S ∩ Ball(n, epsilon) }| = infty)
+    S = Ball(n, epsilon) # restrict to ball that has the inif
+    k += 1
+```
+
+
+
 # Holonomic v/s non holonomic constraints
 
 - A set of constraints such that the system under consideration becomes $TM$ where $M$ is the position space
