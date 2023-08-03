@@ -8,6 +8,47 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Holonomic v/s non holonomic constraints
+
+- A set of constraints such that the system under consideration becomes $TM$ where $M$ is the position space
+  and $T_p M$ is the allowed velocities at position $p$ is a holonomic system
+- A set of constraints such that the system under consideration *cannot* be thought of as $TM$ where $M$
+  is the allowed positions. So we are imposing some artifical restrictions on the velocity of the system.
+- Another restriction one often imposes is that constraint forces do no work.
+- Under these assumptions, D'alambert's principle holds: the physical
+  trajectory of the system is a constrained optimization problem: optimize the
+  action functional of the free system restricted to paths lying on the
+  constraint submanifold.
+- [Reference: SYMPLECTIC GEOMETRY AND HAMILTONIAN SYSTEMS by E Lerman](https://faculty.math.illinois.edu/~lerman/467/v3.pdf)
+
+# The Plenoptic Function
+
+- What can we see because of light?
+- Key idea: at each point $(x, y, z)$, we should be able to know, for all wavelenghts $\lambda$, the intensity
+  of the wavelength in all directions $(\theta, \phi)$. Even more generally, this can vary with time $t$.
+- Intuition: we should be able to reproduce at all points in spacetime, what happens if one builds a camera!
+- This function $P(\theta, \phi, \lambda, t, x, y, z)$ is called as the *plenoptic function*.
+- Notice that when one builds a pinhole camera, what one is doing is to, in fact, use the pencil
+  of rays at that point to capture an image! Thus, the plenoptic function contains *all possible*
+  pinhole images at all positions.
+- The key conjecture of the paper "The plenoptic function and the elements of early vision" is that the
+  visual cortex is extracting local changes / derivatives of the plenoptic function.
+
+## Crash Course Radiometry
+- Irradiance at a point: density of radiant flux (power) per unit surface area.
+- Radiance at a point in a direction: density of radiant flux (power) per unit surface area per unit solid angle.
+
+## Light field rendering
+- See that if we restrict to only radiance of light at a fixed time $t_0$, then we have $(x, y, z, \theta, \phi)$,
+  a 5 dimensional function.
+- Also note that if there is no obstruction, then the radiance does not change along lines. So we can quotient
+  $(x, y, z)$ to get a lower dimensional 4D field, given by
+  $(\texttt{pos}_\theta, \texttt{pos}_\phi, \texttt{look}_\theta, \texttt{look}_phi)$.
+- This 4D field is called as a light field.
+- Alternatively, we can parametrize these by $(x_1, y_1)$ and $(x_2, y_2)$, and the paper canonically
+  calls these as $(u, v, s, t)$. This coordinate system they call a _light slab_, and represents light starting
+  from the point $(u, v)$ at the first plane and ending at $(s, t)$ at the second plane.
+
 # Precision, Recall, and all that.
 
 - Setting: we have some theorem goal $g$, a dataset of mathematical lemmas $D$, a set of actually useful
@@ -961,7 +1002,8 @@ def find_witness(Ds, p, eps):
   and we have that $X = \cup_d F_d$, we apply baire category.
 - Baire category tells us that there is a $\mathcal d \in D$ such that $F_{\mathcal d}$ has
   non empty interior.
-- By using $int(F_D) \neq \emptyset$, we prove that $F_D = X$, which gives us the uniform statement.
+- By setup the situation such that if 
+  $int(F_D) \neq \emptyset$, then $F_D = X$, which gives us the uniform statement.
 
 #### Application : Vanishing derivative pointwise implies fn is polynomial
 
@@ -971,8 +1013,10 @@ def find_witness(Ds, p, eps):
 - This is again a case where we switch a pointwise fact --- is locally like a poly as nth order
   derivative vanishes, into a global fact --- is actually a polynomial.
 - Let us try the above proof sketch.
+- Proof by contradiction, assuming $P$ is not a polynomial.
+- Define $X \equiv \{ x : \forall x \in (a, b), \text{P|_{(a, b)} is not a polynomial} \}$
 - Define $F_d \equiv \{ v \in [0, 1] : (\partial^d f / partial x^d)(v) = 0 \}$
-- Clearly, $\cup F_d \equiv [0, 1]$.
+- Clearly, $\cup F_d \equiv [0, 1]$, and each of th $F_d$ are closed (zero set of fn).
 - By baire category, one of the $F_d$ has an open set inside it.
 - This means that for some open set, there is some natural $D$ such that the $D$th derivative vanishes.
 - From this, it is "clear" that $f$ is a polynomial?
@@ -983,6 +1027,13 @@ def find_witness(Ds, p, eps):
 - So $[0, 1] = \cup_i  \{x[i]\}$ for a countable number of points $x[i]$.
 - See that each of the sets $\{x[i]\}$.
 - But we know that a nonempty set $X$ is not a countable union of nowhere dense sets.
+
+#### Application: Uniform boundedness
+
+- Let $X$ be a banach space, $Y$ a normed vector space, $B(X, Y)$ be all bounded linear operators
+  from $X$ to $Y$. Let $F$ be a collection of bounded linear operators from $X$ to $Y$.
+  If $\forall x_0 \in X, \sup_{T \in F} ||T(x_0)||_Y < \infty$ (set of operators is pointwise bounded), then 
+  $sup_{T \in F} ||T||< \infty$ (set of operators is uniformly bounded)
 
 
 # libOpenGL, libVDSO and Nix
