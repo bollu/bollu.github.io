@@ -8,6 +8,300 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+
+# Uniform Boundedness Principle / Banach Steinhauss
+
+- Consider a set of bounded linear operators $\mathcal F$. If $\mathcal F$ is pointwise bounded,
+  that is, $sup_{T \in \mathcal F}\{ ||T(p)|| \}$ exists for all $p \in X$, then 
+  the family is norm-bounded: $\sup_{T \in \mathcal F} \{ ||T|| \}$ exists.
+
+## Proof 1: Based on an ingenious inequality
+
+- Reference: A really simple elementary proof of the uniform boundedness theorem by Alan D Sokal
+
+##### Ingenious Inequality, Version 1
+- Let $T: X \to Y$ be a bounded linear operator. Then for any $r \geq 0$ we have 
+  $\sup_{ ||x|| \leq r } ||Tx|| \geq ||T||r$.
+- Proof: recall that $||T|| \equiv \sup_{||x|| = 1} ||Tx||$.
+- Now see that $\sup_{ ||x|| \leq r } ||Tx|| \geq \sup_{ ||x|| = r } ||Tx||$.
+- This can be rewritten as $r \sup_{ ||x|| = r } || T(x/r) ||$, but this $r \sup_{ ||\hat x|| = 1 } T(\hat x) = r ||T||$.
+
+#### Ingenious Inequality, Version 2
+- Let $T: X \to Y$ be a bounded linear operator, let $p \in X$ be any basepoint. 
+  Then for any $r \geq 0$ we have $\sup_{ y' \in B(p, r) } ||Ty'|| \geq ||T||r$.
+- We rewrite the optimization problem as $\sup_{ ||x|| \leq r } ||T(p + x)||.
+- First, consider:  $\max{||T(p + x)||, ||T(p - x)||} \geq 1/2 [||T(p + x)|| + ||T(p - x)|| \geq ||T(x)||.
+- The last inequality follows from $||\alpha|| + ||\beta|| = ||\alpha|| + ||-\beta|| \leq ||\alpha + (-\beta)||$, that is,
+  triangle inequality.
+- Now we see that:
+
+$$
+\begin{aligned}
+&\sup_{||x|| \leq r} ||T(p + x)|| = \sup_{||x|| \leq r} \max(||T(p + x)||, ||T(p - x)||)
+&\sup_{||x|| \leq r} \max(||T(p + x)||, ||T(p - x)||) \geq \sup_{||x|| \leq r} ||T(x)||
+&\sup_{||x|| \leq r} ||T(x)|| = ||T||r
+\end{aligned}
+$$
+
+- and thus we get the bound that $||\sup_{||x|| \leq r} ||T(p + x) \geq ||T||r$.
+
+#### Proof of theorem
+
+- Suppose for contradiction that $\sup_{T \in \mathcal F} ||T|| = \infty$, which it is indeed
+  pointwise bounded (for all $p$ $\sup_{T \in \mathcal F} ||Tp||$ is bounded).
+- Then choose a sequence $T[n]$ such that $||T[n]|| \geq 4^n$. This is possible since the set is unbounded.
+- Next, create a sequence of points, such that $x[0] = 0$, and $||x[n] - x[n - 1]|| \leq 3^{-n}$ (that is,
+  $x[n]$ is a $3^{-n}$ radius ball around $x[n-1]$.
+- See that this sequence is cauchy, and thus converges. In particular, let the limit be $L$.
+  Then we can show that $||L - x[n]|| \leq 3^{-n}(1 - 1/3)) =  2/3  3^{-n}$.
+- Also see that we have the bound $||T_n L || \geq 2/3 3^{-n} 4^n = 2/3 (4/3)^n$.
+- Thus, $\lim_{n \to \infty} ||T_n L|| \to \infty$.
+- But this contradicts the pointwise boundedness of $\mathcal F$ at the point $L$.  Hence proved.
+
+
+
+## Proof 2 using Baire category
+- Suppose that for every $x \in X$, $\sup_{T \in \mathcal F} ||T(x)|| < \infty$.
+- We want to show that $\sup_{T \in \mathcal F} ||T|| < \infty$.
+- For every integer $n \in \mathbb N$, we build the subset
+  $X_n \equiv \{ x \in X : \sup_{T \in \matcal F} ||T(x)|| \leq n \}$.
+- Since for every $l \in X$, there is *some* $n_l$ such that $||T(l)|| < n_l$ (by assumption, $\mathcal F$ is pointwise
+  bounded), we know that the sets $X_n$ cover $X$.
+- Furthermore, each $X_n$ is closed: A cauchy sequence of points such that $||T x_n|| \leq k$  will converge to a limit $L$
+  such that $||T L|| \leq k$.
+- Thus, by the baire category theorem, there is a ball $B(p, r) \subseteq X_m$ for some $m \in \mathbb N$, $r > 0$.
+- Now this means that the set $B(p, r)$ is norm bounded as $\leq m$.
+- But this is a linear space, once we trap one ball we trap them all. By rescaling and translation, we can move the 
+  norm boundedness of $B(p, r)$ into the norm boundedness of $B(origin, 1)$ at which point we have proven that $||T(x)|| \leq infty||$.
+- Now let $||u|| \leq 1$ and $T \in \mathcal F$. Calculate:
+
+$$
+\begin{aligned}
+&||Tu|| \\
+& = 1/r ||T (p + r u) - T(p)|| \\
+& \text{(triangle inequality:)} \\
+& \leq 1/r (||T(p + ru)|| + || T(p)||
+& \text{($p + ru, p \in B(p, r))}  \\
+& \leq 1/r (m + m)
+\end{aligned}
+$$
+
+- This bound of $2m/r$ does not in any way depend on $T$ or $u$, then $\sup_{T \in \mathcal F} ||T|| < \infty$,
+  which establishes the bound.
+
+
+# Coercive operator
+
+- This is called as the lax milgram theorem, but in lawrence and narici, it's a fucking lemma (lol).
+- Suppose there is an operator $A : X \to Y$ whose norm is bounded *below*: That is, there exists a $k$ 
+  such that for all $x$, $k||x|| \leq ||Ax||$.
+- Intuitively, this forces $A$ to "spread vectors" out, making it one-one.
+- Intuitively, this makes the inverse bounded, because the inequality "flips direction" when we consider the inverse operator.
+- See that we do not require $A$ to be bounded! We will still get a bounded inverse operator.
+
+#### Step 1: $A$ is one to one
+
+- Suppose $At = 0$. We will show that this implies $t = 0$.
+- $k ||t || \leq ||At||$. That is, $k ||t|| \leq 0$. Since $k > 0$, this implies $||t|| = 0$ or $t = 0$.
+
+#### Step 2: $A^{-1}$ is bounded
+
+- Define $A^{-1}(y) \equiv x$ when $Ax = y$.
+- Since $k ||x|| \leq ||Ax||$, we write $Ax = y$, and thus $x = A^{-1} y$.
+- This gives us $k || A^{-1} y || \leq y$.
+- This means that $||A^{-1} y|| \leq (1/k) y$, thereby establishing the boundedness of $A$.
+- Thus, $A$ is a bounded linear operator.
+
+
+#### Claim: This is in fact sufficient: Every invertible operator $A$ with bounded inverse has such a lower bound $k$.
+
+- Reverse the proof: take the bound of $A^{-1}$ to be $k$ and show that this lower bounds $A$.
+
+- We can thus define $A^{-1} : Range(A) \to X$
+
+# It suffices to check for weak convergence on a spanning set.
+
+- Theorem: suppose $x[i]$ is a bounded sequence in $X$. Then, to check that $x[i] \to_w L$,
+  it suffices to check on a spanning set $A \subseteq X$ such that $closure(span(A)) = X$.
+- Proof: first, it easily suffices for linear combinations by triangle inequality.
+- Next, to show it suffices for closures, we wish to show that $h(x[n]) \to h(L)$ given that $g(x[n]) \to g(x)$
+  for all $g \in span(A)$.
+- Let $h = \lim_j g[j]$ for some $g[j] \in X^\star$.
+- Let us bound $|h(x[n]) - h(L)|$. 
+- This is equal to $|h(x[n]) - g[j](x[n]) + g[j](x[n]) + g[j](L) - g[j](L) - h(L)$
+- Rearranging: $|(h(x[n]) - g[j](x[n])) + (g[j](x[n])  - g[j](L)) + (g[j](L) - h(L))|$.
+- We bound each pair: $|h(x[n]) - g[j](x[n])|$ can be made arbitrary because $g[j] \to h$, and thus they are bounded
+  pointwise since these are bounded linear functionals.
+- $|g[j](x[n])  - g[j](L)$ can be made arbitrarily small because we know that $x[n] \to_w L$ on the set $A$.
+- The third term $|g[j](L) - h(L))|$ can be made arbitrarily small because $g[j] \to h$ and these are bounded linear
+  functionals.
+- Thus we have shown that we can make stuff arbitrarily small, and we are done!
+
+
+# Sequence that converges weakly but not strongly in $l^p$.
+
+- Consider the sequence $e_1 = (1, 0, \dots)$, $e_2 \equiv (0, 1, \dots)$, and
+  in general $e_i[j] = \delta_i^j$.
+- Recall that to check weak convergence, it suffices to check on a basis of the dual space.
+- We check on the basis $\pi_j (x) \mapsto x[j]$. 
+- Clearly, on such a basis, we see that $\lim_{n \to \infty} e_n[j] \to 0$, because after $n > j$,
+  the sequence will be forever zero.
+- However, see that this sequence does not strongly converge, since the basis vectors $e_i$ cannot be cauchy,
+  since $||e_i - e_j|| = \sqrt(2)$ when $i \neq j$.
+- The intuition is that weak convergence can only see converge "in a finite subspace", since we are
+  considering what happens with bounded linear functionals.
+- Thus, a sequence can appear to converge when restricting attention to any finite region of space, but cannot
+  strongly converge.
+
+
+
+
+# Axioms for definite integration
+
+- [Pete Clark](https://math.stackexchange.com/a/56522/261373)'s notes on honors calculus
+  provides a handy axiomatization of what properties the definite integral ought to satisfy.
+- 1. If $f = C$ is a constant function, then $\int_a^b C = C (b - a)$.
+- 2. If $f_1(x) \leq f_2(x)$ for all $x \in [a, b]$, then $\int_a^b f_1(x) \leq \int_a^b f_2(x)$.
+- 3. If $a \leq c \leq b$, then $\int_a^b f = \int_a^c f + \int_c^b f$.
+
+#### Proof of fundamental theorem of calculus from the above axiomatization
+
+- Let $f$ be any integrable function over $[a, b]$. For $x \in [a, b]$, we define $F(x) \equiv \int_a^x f$. Then:
+- (a) The function $F : [a, b] \to \mathbb R$ is continuous at every $c \in [a, b]$.
+- (b) if $f$ is continuous at $c$, then $F$ is differentiable at $c$ and $F'(c) = f(c)$.
+- (c) if $f$ is continuous and $F$ is any antiderivative of $f$, that is, $F'(x) = f(x)$, then 
+  $\int_a^b f = F(b) - F(a)$.
+- Proof:
+- First, by coninuity of $f$ and compactness of $[a, b]$, there exists a $M \in \mathbb R$ such that $|f(x)| \leq M$
+  for all $x \in [a, b]$. If $M = 0$, then $f(x) = 0$ and thus from axiom 2 $F = 0$ and everything holds.
+- Thus we assume that $M > 0$. For all $\epsilon > 0$, we take $\delta = \epsilon / M$.
+- By the third axiom, we see that $F(x) - F(c) = \int_a^x f - \int_a^c F = \int_c^x f$.
+- TODO.
+
+# Quotient spaces of Banach space
+
+- We will see why it is important for a subspace $M$ of a banach space $X$ 
+  to be closed for $X/M$ to be banach.
+- The algberaic properties of $+$ and $\cdot$ will go through for any subspace $M$ since they
+  in no way depend on norm.
+- The norm on $X/M$ will correctly interact with rescaling and triangle inequality also 
+  for any subspace $M$.
+- However, to show that the norm is non-degenerate ($||x|| = 0$ iff $x = 0$) needs $M$ to be closed.
+
+
+#### Norm on $X/M$
+
+- We define the norm on $X/M$ as $||\overline{x}|| \equiv \inf_{m \in M} ||x + m||$.
+  This is abbreviated to $||x + M||$.
+
+#### Lemma: Norm on $X/M$ interacts correctly with rescaling
+- ||\alpha \overline{x}|| = \inf_{m \in M} ||\alpha x + m||$.
+- But we can replace $m \mapsto \alpha m$, giving $\inf_{m \in M} || \alpha x + \alpha m||$, 
+  which equals $\inf_{m \in M} \alpha  ||x + M|| = \alpha || \overline{x}||$.
+- Thus, scalar product correctly rescales with norm.
+
+#### Lemma: Norm on $X/M$ obeys triangle ineq
+
+- The LHS is ||\overline{x} + \overline{y}|| = \inf_{m \in M} ||x + y + m||$.
+- The RHS is ||\overline{x}|| + ||\overline{y}|| = \inf{k \in M} || x + k|| + \inf_{l \in M} ||y + l||$.
+- We need to somehow "split" the $m$ in the LHS into $k$ and $l$.
+- We do this sequentually. There must be a sequence of elements $k[i]$ such that 
+  $||\overline{x}|| \leq ||x + k[i]||$ such that $||x + k[i]|| \to ||\overline{x}||$.
+- Similarly, there must be a sequence of elements $l[i]$ such that 
+  $||\overline{y}|| \leq ||y + l[i]||$ such that $||y + l[i]|| \to ||\overline{y}||$.
+- Now, we see that $||overline{x} + \overline y|| \leq ||x + y + k[i] + l[i]||$.
+- By triangle inequality, this is going to be $||\overline{x} + \overline{y}|| \leq ||x + k[i]|| + ||y + l[i]||$.
+- Since this holds pointwise, it also holds in the limit, proving triangle inequality..
+
+#### Theorem: proving that norm of zero is zero
+
+- It is clear that $|| \overline 0|| = \inf_{m \in M} || 0 + m|| = || 0 + 0 || = 0$.
+
+#### Theorem: proving that norm is nondegenerate.
+
+- Suppose $||\overline{x}|| = 0$. We want to show that $\overline{x} = 0$, or $x \in M$.
+- This means that $\inf_{m \in M} ||x + m|| = 0$.
+- Thus there are a sequence of elements $m[i]$ such that ||x + m[i]|| \to 0$.
+- This implies that $x + m[i] \tendsto 0$, since this is happening using the norm of the underlying space.
+- This means that $m[i] \to -x$. 
+- Now, we need to use the fact that $M$ is closed, to say that $-x \in M$, to get that $x \in M$.
+- This gives us that $\overline{x} = 0$.
+
+
+# Reisez Lemma
+
+- Let $M$ be a closed proper subspace of a normed linear space $X$. Then for all $0 < \alpha < 1$,
+  there exists a $p \in X$ (dependent on $\alpha$), such that $d(M, p) \geq \alpha$. 
+  That is, $\forall m \in M, d(m, p) \geq \alpha$.
+- This is easy to establish for say $\mathbb R^2$. pick a unit orthogonal vector, it will be at least 
+  $1$ unit apart (or more) by pythogoras.
+- This lemma provides a convenient substitute for orthogonality.
+
+#### Proof via Hahn Banach
+- Hahn banach is also a substitute for orthogonality.
+- Pick a point $z \not in M$. Thus, $d(z, M) > 0$. Note that $d(-, M)$ is:
+- (a) a sublinear function on $X$.
+- (b) vanishes on $M$.
+- (c) equals the projection onto $\mathbb R z \simeq \mathbb R$ on $M + \mathbb Rz$.
+- By Hahn Banach, the portion of it that is linear extends to a linear
+  functional on all of $M + \mathbb Rz$, and is dominated above by $d(-, M)$.
+- Now, normalize the bounded linear functional so obtained to get a functional $f$ such that $|f| = 1$.
+  Note that noramalization does not change the fact that $f(M) = 0$.
+- Next, we build an "approximate normer" $z'$. This is an element $z'$ of unit norm such that 
+  $|f(z')| \sim |\f||$. Such an element exists by definition of norm: $||f|| = \sup_{||x|| = 1} |f(x)|$.
+  See that since $|z'| = 1$, we must surely have that $|f(z)| \leq ||f||$, thus $|f(z') \leq 1$.
+  We claim that $|f(z')| = 1 - \epsilon$. (This is clear by clear and distinct perception since $f$ "behaves differently"
+  along $Y$). This must happen, for if not, then $f(z') = 1$ for all $|z'| = 1$. This is patently untrue since $f(Y) = 0$,
+  thus the unit vector along $Y$ must vanish at the very least.
+- Now, consider $f(z' - m) = f(z') - f(m) = (1 - \epsilon) - 0 = 1 - \epsilon$.
+- Next, estimate $|f(z' - m)| = |1 - \epsilon| = 1 - \epsilon.
+- This gives $1 - \epsilon = |f(z' - m)| \geq |f| |z' - m| = |z' - m|$.
+- The first inequality follows from the defn of norm $|f| = \sup_k |f(k)|/|k|$, and thus $|f| < |f(k)|/|k|$, or $|f(k)| > |f||k|$.
+- The second inequality follows from the fact that $|f| = 1$.
+- [Reference](https://www.math.ucla.edu/~jmanaker/Expository/RieszLemma.html)
+
+#### What about $\alpha > 1$?
+
+- $\alpha > 1$ does not even hold in $\mathbb R^2$. If I pick $\alpha = 5$, there is no unit vector
+  that is $5$ units away from the $x$-axis. A vector is at most $1$ unit away from the $x$ axis.
+
+#### What about $\alpha = 1$?
+
+- Apparently, this case holds for any reflexive space (double dual equals original space).
+- To show counterexample, we need a non-reflexive space. consider $\l_\infty$, space of sequences
+  under max norm.
+- Alternatively, pick $C[0, 1]$ under max norm.
+- We begin by picking a subspace $X \equiv \{ f \in C[0, 1] : f(0) = 0 \}$. So $f$ is continuous and $f(0) = 0$.
+- Let $M$ be the subspace of $X$ such that $\int_0^1 f(x) dx = 0$.
+- We want to show that there exists **no function** $p \in X$ such that (a) $||p|| = 1$,
+  (that is, $\sup_{x \in [0, 1] p(x) = 1$ and (b) $d(p, m) \geq 1$ for all $m \in M$.
+
+#### Pedestrian proof when $\alpha = 1$.
+- If $d(p, m) \geq 1$, then we must have $d(p, 0) \geq 1$. This means that $\int_0^1 (p(x) - 0) \geq 1$,
+  or that $\int_0^1 p(x) \geq 1$.
+- Intuitively, since $p \in X$, we know that $p(0) = 0$, and since $p$ is continuous, it must "spend some time"
+  around $0$, thereby losing some of the integral. Furthermore, since we know that $||p|| = 1$, the maximum
+  integral any such function can attain is $1$.
+- Since $p$ is continuous and $p(0) = 0$ (as $p \in X$), pick $\epsilon = 0.5$. Then there exists a $\delta$
+  such that for all $0 \leq x < \delta$, we have that $p(x) < \epsilon = 0.5$. Thus, we can upper bound
+  the integral of $p(x)$ over $[0, 1]$ by $\delta \times 0.5 + (1 - \delta) \times 1$. Ie, we surround
+  $p$ by two rectangles, one of height $0.5$, one of height $1$, since we have the bounds.
+  Since $\delta > 0$, we can see that $\int_0^1 p(x) dx < 1$ from the above estimate.
+- Thus, this means that $d(p, m) < 1$, thereby violating the claim that we can find such a $p$ such that
+  $d(0, p) \geq 1$. Hence proved!
+
+#### Slightly more sophisticated proof when $\alpha = 1$.
+- The same setup. We consider the integral operator $F: X \to \mathbb R$, defined as $F(f) \equiv \int_0^1 f(x) dx$.
+- We note that $M = ker(f)$.
+- We note that $||F|| \geq 1$. (In fact, $||F|| = 1$, since the function is maximized by being evaluated
+  on $one(x) = 1$ which lies on the unit sphere).
+- We note that $d(f, M) = |F(f)|/||F||$. That is, the distance of a point to the kernel of an operator $F$
+  is the norm of $F(x)$ rescaled by the norm of $F$.
+- We need an estimate on $|F(f)|$. By the above argument, we know that $|F(f)| < 1$ by continuity of $f$,
+  $f(0) = 0$, and that $f(x) < 1$ for all $x$ (as $||f||  = 1$).
+- Combine the two estimates to see tha $d(f, M) = (<1)/(>1)$, which is indeed less than $1$. Done.
+
+
 # Using LLL to discover minimal polynomial for floating point number
 
 - Explain by example. Let floating point number $f = 1.4142$.
