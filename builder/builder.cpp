@@ -235,7 +235,7 @@ void print_span(FILE *f, Span span, const char *data) {
     fprintf(f, "\n%4lld>EOF", l.line);
     return;
   }
-  fprintf(f, "\nvvvraw filevvv\n");
+  fprintf(f, "\nvv..raw file ..vv\n");
   {
     int i = l.si;
     for (; i >= 1 && data[i - 1] != '\n'; i--) {
@@ -252,7 +252,7 @@ void print_span(FILE *f, Span span, const char *data) {
   }
 
   if (l.line == m.line)  {
-    fprintf(f, "^^^raw file^^^\n");
+    fprintf(f, "^^..raw file..^^\n");
     fflush(f);
     return;
   }
@@ -267,7 +267,7 @@ void print_span(FILE *f, Span span, const char *data) {
   }
   fputc('\n', f);
   fprintf(f, "%4lld>%s\n", m.line, squiggle.c_str());
-  fprintf(f, "^^^raw file^^^\n");
+  fprintf(f, "^^..raw file..^^\n");
   fflush(f);
 }
 
@@ -483,7 +483,7 @@ T *tokenizeLineFragment(const char *s, const ll len, const L lbegin) {
     lcur = strconsume(lcur, s, "`", "unclosed inline code block `...`");
 
     if (lbegin.line != lcur.line) {
-      printf_err_loc(lbegin, s,
+      printf_err_span(Span(lbegin, lcur), s,
                 "inline code block `...` not allowed to "
                 "be on two different lines. "
                 "Found on lines: (%d:%d---%d:%d)",
@@ -508,45 +508,7 @@ T *tokenizeLineFragment(const char *s, const ll len, const L lbegin) {
 
     return new T(TT::LatexInline, Span(lbegin, lcur));
   }
-  /*
-  else if (lbegin.si < len - 1 &&
-             (s[lbegin.si] == '*' || s[lbegin.si] == '_') &&
-             s[lbegin.si + 1] == s[lbegin.si]) {
-    logger.print(cerr);
-    cerr << "tokenizeLineFragment:bold(" << lbegin << ")\n";
-    logger.print(cerr);
-    const char c = s[lbegin.si];
-    const char delim[3] = {c, c, 0};
 
-    L lcur = lbegin.next(delim);
-    vector<T *> toks;
-    while (1) {
-      T *t = tokenizeLineFragment(s, len, lcur);
-      toks.push_back(t);
-      lcur = t->span.end;
-      if (lcur.si == len) {
-        printf_err_loc(lbegin, s, "unmatched bold demiliter: |%s|.", delim);
-        assert(false && "unmatched bold delimiter");
-      }
-
-      assert(lcur.si < len);
-
-      if (s[lcur.si] == '\n') {
-        printf_err_loc(lbegin, s, "bold emphasis spread across multiple lines!");
-        assert(false && "bold spread across multiple lines");
-      }
-
-      if (strpeek(s + lcur.si, delim)) {
-        break;
-      }
-    }
-
-    assert(strpeek(s + lcur.si, delim));
-    lcur = lcur.next(delim);
-    return new TBold(Span(lbegin, lcur), new TInlineGroup(toks));
-
-  }
-  */
   // This ordering is important; bold MUST be checked first.
   else if (s[lbegin.si] == '*' || s[lbegin.si] == '_') {
     logger.print(cerr);
@@ -561,14 +523,14 @@ T *tokenizeLineFragment(const char *s, const ll len, const L lbegin) {
 
       lcur = t->span.end;
       if (lcur.si == len) {
-        printf_err_loc(lbegin, s, "unmatched italic demiliter: |%c|.", delim);
+        printf_err_span(Span(lbegin, lcur), s, "unmatched italic demiliter: |%c|.", delim);
         assert(false && "unmatched italic delimiter");
       }
 
       assert(lcur.si < len);
 
       if (s[lcur.si] == '\n') {
-        printf_err_loc(lbegin, s, "italic emphasis spread across multiple lines!");
+        printf_err_span(Span(lbegin, lcur), s, "italic emphasis spread across multiple lines!");
         assert(false && "italic spread across multiple lines");
       }
 
@@ -698,24 +660,20 @@ T *tokenizeHyphenListItem(const char *s, const ll len, const L lhyphen) {
 
       // decide if we continue the hyphen.
       if (s[lcur.si] != ' ' && s[lcur.si] != '\n' && s[lcur.si] != '-') {
-        printf_err_loc(lcur, s,
+        printf_err_span(Span(lhyphen, lcur), s,
                   "ERROR: list hyphen must either have (1) new aligned text, "
-                  "(2) two newlines, (3) a new list hyphen.");
-        printf_err_loc(
-            lhyphen, s,
-            "ERROR: incorrectly terminated list hyphen (started here)...");
+                  "(2) two newlines, (3) a new list hyphen.\n"
+                  "ERROR: incorrectly terminated list hyphen (started here)...");
         assert(false && "incorrectly terminated list hyphen");
       } else if (s[lcur.si] == '\n' || s[lcur.si] == '-') {
         break;
       } else {
         lcur = consumeIntraLineWhitespace(s, lcur);
         if (s[lcur.si] == '\n') {
-          printf_err_loc(lcur, s,
+          printf_err_span(Span(lhyphen, lcur), s,
                     "ERROR: list hyphen has incorrect white space ending in a "
-                    "newline after it");
-          printf_err_loc(
-              lhyphen, s,
-              "ERROR: incorrectly terminated list hyphen (started here)...");
+                    "newline after it.\n"
+                    "ERROR: incorrectly terminated list hyphen (started here)...");
           assert(false && "incorrect whitespace-like-line after list hyphen");
         }
 
@@ -755,6 +713,9 @@ T *tokenizeNumberedListItem(const char *s, const ll len, const L lhyphen,
   char curitem[7];
   sprintf(curitem, "%lld.", curnum);
   if (!strpeek(s + lhyphen.si, curitem)) {
+    // this is err_loc on purpose, not err_span,
+    // as we know the precise location where the
+    // error happens!
     printf_err_loc(lhyphen, s, "Expected list item to start with number: |%lld|",
               curnum);
     assert(false && "list item not respecting numbering.");
@@ -778,24 +739,20 @@ T *tokenizeNumberedListItem(const char *s, const ll len, const L lhyphen,
       // decide if we continue the hyphen.
       if (s[lcur.si] != ' ' && s[lcur.si] != '\n' &&
           !isNumberedListBegin(s, len, lcur)) {
-        printf_err_loc(lcur, s,
+        printf_err_span(Span(lhyphen, lcur), s,
                   "ERROR: list hyphen must either have (1) new aligned text, "
-                  "(2) two newlines, (3) a new numbered list beginning.");
-        printf_err_loc(
-            lhyphen, s,
-            "ERROR: incorrectly terminated list hyphen (started here)...");
+                  "(2) two newlines, (3) a new numbered list beginning.\n"
+                  "ERROR: incorrectly terminated list hyphen (started here)...");
         assert(false && "incorrectly terminated list hyphen");
       } else if (s[lcur.si] == '\n' || isNumberedListBegin(s, len, lcur)) {
         break;
       } else {
         lcur = consumeIntraLineWhitespace(s, lcur);
         if (s[lcur.si] == '\n') {
-          printf_err_loc(lcur, s,
+          printf_err_span(Span(lhyphen, lcur), s,
                     "ERROR: list hyphen has incorrect white space ending in a "
-                    "newline after it");
-          printf_err_loc(
-              lhyphen, s,
-              "ERROR: incorrectly terminated list hyphen (started here)...");
+                    "newline after it.\n"
+                    "ERROR: incorrectly terminated list hyphen (started here)...");
           assert(false && "incorrect whitespace-like-line after list hyphen");
         }
 
@@ -894,17 +851,16 @@ T *tokenizeBlock(const char *s, const ll len, const L lbegin) {
 
     // we need to have $$\n
     if (lcur.si < len && s[lcur.si] != '\n') {
-      printf_err_loc(lcur, s,
+      printf_err_span(Span(lbegin, lcur), s,
                 "incorrectly terminated $$."
                 "must have newline following.");
       assert(false && "incorrectly terminated $$");
     }
 
     if (lcur.line - lbegin.line > LONG_LATEX_BLOCK_SIZE) {
-      printf_err_loc(
-          lbegin, s,
+      printf_err_span(
+          Span(lbegin, lcur), s,
           "WARNING: latex block is very long! Perhaps block is overflowing?");
-      printf_err_loc(lcur, s, "latex block ends here");
       assert(false && "very large latex block");
     }
     return new T(TT::LatexBlock, Span(lbegin, lcur));
@@ -926,8 +882,11 @@ T *tokenizeBlock(const char *s, const ll len, const L lbegin) {
     Logger logger;
     logger.print(cerr);
     cerr << "tokenizeBlock->Code(" << lbegin << ")\n";
+    cerr << "LLLL\n";
 
     lcur = lcur.next("```");
+
+    cerr << "XXXX\n";
 
 
     const int LANG_NAME_SIZE = 20;
@@ -938,10 +897,10 @@ T *tokenizeBlock(const char *s, const ll len, const L lbegin) {
       langname[langlen++] = s[lcur.si];
       lcur = lcur.next(s[lcur.si]);
     }
-
     // error out if the language name is too long.
     if (langlen == LANG_NAME_SIZE - 1) {
-      printf_err_loc(lbegin, s, "``` has too long a language name: |%s|", langname);
+      printf_err_span(Span(lbegin, lcur), s,
+        "``` has too long a language name: |%s|", langname);
       assert(false && "too long a language name");
     }
 
@@ -955,20 +914,19 @@ T *tokenizeBlock(const char *s, const ll len, const L lbegin) {
 
     // we need to have ```\n
     if (lcur.si < len && s[lcur.si] != '\n') {
-      printf_err_loc(lcur, s,
+      printf_err_span(Span(lbegin, lcur), s,
                 "incorrectly terminated ```."
                 "must have newline following ```.");
       assert(false && "incorrectly terminated code block.");
     }
 
     if (lcur.line - lbegin.line > LONG_CODE_BLOCK_SIZE) {
-      printf_err_loc(
-          lbegin, s,
+      printf_err_span(
+          Span(lbegin, lcur), s,
           "WARNING: code block is very long! Perhaps block is overflowing?");
       // TODO: convert this to an assert.
       // assert(false && "very large code block");
     }
-
     return new TCodeBlock(Span(lbegin, lcur), langname);
   } else if (strpeek(s + lcur.si, "#")) {
 
@@ -1199,7 +1157,7 @@ std::pair<bool, GIVE char *> compileLatex(duk_context *katex_ctx, KEEP const cha
     // https://github.com/svaarala/duktape/issues/848
     // [katex| err_string]
     //    -2      -1
-    printf_err_loc(span.begin, raw_input, "%s", duk_to_string(katex_ctx, -1));
+    printf_err_span(span, raw_input, "%s", duk_to_string(katex_ctx, -1));
     duk_pop(katex_ctx);
     // reload katex context.
     katex_ctx = load_katex();
@@ -1250,7 +1208,7 @@ void inlineTokenToPlaintext(const char *raw_input, const T *t, char *outs,
     TLink *link = (TLink *)t;
     inlineTokenToPlaintext(raw_input, link->text, outs, outlen);
   } else {
-    printf_err_loc(t->span.end, raw_input, "unexpected token in heading!");
+    printf_err_span(t->span, raw_input, "unexpected token in heading!");
     assert(false && "unexpected token in heading.");
   }
 }
@@ -1652,7 +1610,7 @@ const char html_preamble[] =
     " min-height: 100vh; " // https://stackoverflow.com/questions/3740722/min-height-does-not-work-with-body
     " line-height: 1.5em; "
     " color: #000000; " // tufte
-    " font-family: serif; "
+    " font-family: Blog Serif; "
     " font-size: 12px; "
     " margin-top: 0px; " // by default, there is a margin.
     " max-width: 100%; overflow-x: hidden; }"
@@ -1667,7 +1625,6 @@ const char html_preamble[] =
     "             margin-top: 0px; height: 100%; min-height: 100%;"
     "             max-width: 100%; "
     "             font-size: 18px; line-height: 1.5em; "
-    "             column-count: auto; column-width: 25em; column-fill: auto; "
     "             padding-left: 30px; padding-right: 30px; background: #FFFFFF;"
     "}"
     "@media (max-width: 480px) { "
@@ -1843,7 +1800,7 @@ struct RSS {
       // at the end of raw text, write a space.
       writeEscapedCharacter(' ', out);
     } else {
-      printf_err_loc(t->span.begin, raw_input,
+      printf_err_span(t->span, raw_input,
                 "unknown type of token type in a heading: |%d|", t->ty);
       std::cerr << "unknown token of type: |" << t->ty << "|\n";
       assert(false && "unknown type of heading to convert in RSS title");
