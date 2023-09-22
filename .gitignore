@@ -7,7 +7,6 @@ tags
 temp_*
 blogcache.txt
 static/favicon-*.png
-static/favicon.ico
 builder/.clangd
 result
 builder/result

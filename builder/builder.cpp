@@ -12,10 +12,10 @@
 #include <string>
 #include <sys/stat.h>
 #include <sys/types.h>
-// #include <sys/resource.h>
-// #include <sys/wait.h>
 #include <tuple>
-// #include <unistd.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 #include <unordered_map>
 #include <utility>
 #include <vector>
@@ -1549,6 +1549,8 @@ const char html_preamble[] =
     "<meta charset='UTF-8'>"
     "<html>"
     "<head>"
+    // ===viewport===
+    "<meta name='viewport' content='width=device-width, initial-scale=1'>"
     // ===RSS===
     "<link rel='alternate' type='application/rss+xml' href='feed.rss' title='" "A universe of sorts'" "/>"
     // ===KateX===
@@ -1933,6 +1935,21 @@ int main(int argc, char **argv) {
 
   // index of the latest <h1> tag.
   ll ix_h1 = 0;
+  
+  // ===make output directories===
+
+  struct stat st = {0};
+  if (stat(OUTPUT_ROOT_DIR_TRAILING_SLASH, &st) == -1) {
+      mkdir(OUTPUT_ROOT_DIR_TRAILING_SLASH, 0700);
+  }
+  if (stat(OUTPUT_ARTICLES_DIR_TRAILING_SLASH, &st) == -1) {
+      if(mkdir(OUTPUT_ARTICLES_DIR_TRAILING_SLASH, 0700) == -1) {
+        printf("Error making directory |%s| %s\n", 
+          OUTPUT_ARTICLES_DIR_TRAILING_SLASH,
+          strerror(errno));
+      };
+  }
+
 
   // ===write out index.html===
   {
@@ -2011,7 +2028,7 @@ int main(int argc, char **argv) {
     char html_path[1024];
 
     sprintf(html_path, "%s%s.html", OUTPUT_ROOT_DIR_TRAILING_SLASH, url);
-
+    fprintf(stdout, "....writing to |%s|\n", html_path);
     FILE *f = fopen(html_path, "wb");
     if (f == nullptr) {
       fprintf(stdout, "===unable to open HTML file: |%s|===", html_path);
