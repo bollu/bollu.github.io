@@ -11,3 +11,4 @@ static/favicon.ico
 builder/.clangd
 result
 builder/result
+out/*

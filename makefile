@@ -3,6 +3,8 @@
 all: build serve
 build:
 	make -C ./builder/build;
+	rm -rf out
+	mkdir -p out
 	LSAN_OPTIONS=detect_leaks=0 ./builder/build/builder | tee 1-build-log.txt
 	cp -r prism/* katex/* static/* out/
 
