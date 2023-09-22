@@ -12,7 +12,7 @@
 # Uniform Boundedness Principle / Banach Steinhauss
 
 - Consider a set of bounded linear operators $\mathcal F$. If $\mathcal F$ is pointwise bounded,
-  that is, $sup_{T \in \mathcal F}\{ ||T(p)|| \}$ exists for all $p \in X$, then 
+  that is, $sup_{T \in \mathcal F}\{ ||T(p)|| \}$ exists for all $p \in X$, then
   the family is norm-bounded: $\sup_{T \in \mathcal F} \{ ||T|| \}$ exists.
 
 ## Proof 1: Based on an ingenious inequality
@@ -20,17 +20,19 @@
 - Reference: A really simple elementary proof of the uniform boundedness theorem by Alan D Sokal
 
 ##### Ingenious Inequality, Version 1
-- Let $T: X \to Y$ be a bounded linear operator. Then for any $r \geq 0$ we have 
+
+- Let $T: X \to Y$ be a bounded linear operator. Then for any $r \geq 0$ we have
   $\sup_{ ||x|| \leq r } ||Tx|| \geq ||T||r$.
 - Proof: recall that $||T|| \equiv \sup_{||x|| = 1} ||Tx||$.
 - Now see that $\sup_{ ||x|| \leq r } ||Tx|| \geq \sup_{ ||x|| = r } ||Tx||$.
 - This can be rewritten as $r \sup_{ ||x|| = r } || T(x/r) ||$, but this $r \sup_{ ||\hat x|| = 1 } T(\hat x) = r ||T||$.
 
 #### Ingenious Inequality, Version 2
-- Let $T: X \to Y$ be a bounded linear operator, let $p \in X$ be any basepoint. 
+
+- Let $T: X \to Y$ be a bounded linear operator, let $p \in X$ be any basepoint.
   Then for any $r \geq 0$ we have $\sup_{ y' \in B(p, r) } ||Ty'|| \geq ||T||r$.
-- We rewrite the optimization problem as $\sup_{ ||x|| \leq r } ||T(p + x)||.
-- First, consider:  $\max{||T(p + x)||, ||T(p - x)||} \geq 1/2 [||T(p + x)|| + ||T(p - x)|| \geq ||T(x)||.
+- We rewrite the optimization problem as $\sup_{ ||x|| \leq r } ||T(p + x)||$.
+- First, consider:  $\max{||T(p + x)||, ||T(p - x)||} \geq 1/2 [||T(p + x)|| + ||T(p - x)|| \geq ||T(x)||$.
 - The last inequality follows from $||\alpha|| + ||\beta|| = ||\alpha|| + ||-\beta|| \leq ||\alpha + (-\beta)||$, that is,
   triangle inequality.
 - Now we see that:
@@ -64,14 +66,14 @@ $$
 - Suppose that for every $x \in X$, $\sup_{T \in \mathcal F} ||T(x)|| < \infty$.
 - We want to show that $\sup_{T \in \mathcal F} ||T|| < \infty$.
 - For every integer $n \in \mathbb N$, we build the subset
-  $X_n \equiv \{ x \in X : \sup_{T \in \matcal F} ||T(x)|| \leq n \}$.
+  $X_n \equiv \{ x \in X : \sup_{T \in \mathcal F} ||T(x)|| \leq n \}$.
 - Since for every $l \in X$, there is *some* $n_l$ such that $||T(l)|| < n_l$ (by assumption, $\mathcal F$ is pointwise
   bounded), we know that the sets $X_n$ cover $X$.
 - Furthermore, each $X_n$ is closed: A cauchy sequence of points such that $||T x_n|| \leq k$  will converge to a limit $L$
   such that $||T L|| \leq k$.
 - Thus, by the baire category theorem, there is a ball $B(p, r) \subseteq X_m$ for some $m \in \mathbb N$, $r > 0$.
 - Now this means that the set $B(p, r)$ is norm bounded as $\leq m$.
-- But this is a linear space, once we trap one ball we trap them all. By rescaling and translation, we can move the 
+- But this is a linear space, once we trap one ball we trap them all. By rescaling and translation, we can move the
   norm boundedness of $B(p, r)$ into the norm boundedness of $B(origin, 1)$ at which point we have proven that $||T(x)|| \leq infty||$.
 - Now let $||u|| \leq 1$ and $T \in \mathcal F$. Calculate:
 
@@ -81,7 +83,7 @@ $$
 & = 1/r ||T (p + r u) - T(p)|| \\
 & \text{(triangle inequality:)} \\
 & \leq 1/r (||T(p + ru)|| + || T(p)||
-& \text{($p + ru, p \in B(p, r))}  \\
+& \text{($p + ru, p \in B(p, r)$)}  \\
 & \leq 1/r (m + m)
 \end{aligned}
 $$
@@ -93,7 +95,7 @@ $$
 # Coercive operator
 
 - This is called as the lax milgram theorem, but in lawrence and narici, it's a fucking lemma (lol).
-- Suppose there is an operator $A : X \to Y$ whose norm is bounded *below*: That is, there exists a $k$ 
+- Suppose there is an operator $A : X \to Y$ whose norm is bounded *below*: That is, there exists a $k$
   such that for all $x$, $k||x|| \leq ||Ax||$.
 - Intuitively, this forces $A$ to "spread vectors" out, making it one-one.
 - Intuitively, this makes the inverse bounded, because the inequality "flips direction" when we consider the inverse operator.
@@ -127,7 +129,7 @@ $$
 - Next, to show it suffices for closures, we wish to show that $h(x[n]) \to h(L)$ given that $g(x[n]) \to g(x)$
   for all $g \in span(A)$.
 - Let $h = \lim_j g[j]$ for some $g[j] \in X^\star$.
-- Let us bound $|h(x[n]) - h(L)|$. 
+- Let us bound $|h(x[n]) - h(L)|$.
 - This is equal to $|h(x[n]) - g[j](x[n]) + g[j](x[n]) + g[j](L) - g[j](L) - h(L)$
 - Rearranging: $|(h(x[n]) - g[j](x[n])) + (g[j](x[n])  - g[j](L)) + (g[j](L) - h(L))|$.
 - We bound each pair: $|h(x[n]) - g[j](x[n])|$ can be made arbitrary because $g[j] \to h$, and thus they are bounded
@@ -143,7 +145,7 @@ $$
 - Consider the sequence $e_1 = (1, 0, \dots)$, $e_2 \equiv (0, 1, \dots)$, and
   in general $e_i[j] = \delta_i^j$.
 - Recall that to check weak convergence, it suffices to check on a basis of the dual space.
-- We check on the basis $\pi_j (x) \mapsto x[j]$. 
+- We check on the basis $\pi_j (x) \mapsto x[j]$.
 - Clearly, on such a basis, we see that $\lim_{n \to \infty} e_n[j] \to 0$, because after $n > j$,
   the sequence will be forever zero.
 - However, see that this sequence does not strongly converge, since the basis vectors $e_i$ cannot be cauchy,
@@ -169,7 +171,7 @@ $$
 - Let $f$ be any integrable function over $[a, b]$. For $x \in [a, b]$, we define $F(x) \equiv \int_a^x f$. Then:
 - (a) The function $F : [a, b] \to \mathbb R$ is continuous at every $c \in [a, b]$.
 - (b) if $f$ is continuous at $c$, then $F$ is differentiable at $c$ and $F'(c) = f(c)$.
-- (c) if $f$ is continuous and $F$ is any antiderivative of $f$, that is, $F'(x) = f(x)$, then 
+- (c) if $f$ is continuous and $F$ is any antiderivative of $f$, that is, $F'(x) = f(x)$, then
   $\int_a^b f = F(b) - F(a)$.
 - Proof:
 - First, by coninuity of $f$ and compactness of $[a, b]$, there exists a $M \in \mathbb R$ such that $|f(x)| \leq M$
@@ -180,11 +182,11 @@ $$
 
 # Quotient spaces of Banach space
 
-- We will see why it is important for a subspace $M$ of a banach space $X$ 
+- We will see why it is important for a subspace $M$ of a banach space $X$
   to be closed for $X/M$ to be banach.
 - The algberaic properties of $+$ and $\cdot$ will go through for any subspace $M$ since they
   in no way depend on norm.
-- The norm on $X/M$ will correctly interact with rescaling and triangle inequality also 
+- The norm on $X/M$ will correctly interact with rescaling and triangle inequality also
   for any subspace $M$.
 - However, to show that the norm is non-degenerate ($||x|| = 0$ iff $x = 0$) needs $M$ to be closed.
 
@@ -195,19 +197,19 @@ $$
   This is abbreviated to $||x + M||$.
 
 #### Lemma: Norm on $X/M$ interacts correctly with rescaling
-- ||\alpha \overline{x}|| = \inf_{m \in M} ||\alpha x + m||$.
-- But we can replace $m \mapsto \alpha m$, giving $\inf_{m \in M} || \alpha x + \alpha m||$, 
+- $||\alpha \overline{x}|| = \inf_{m \in M} ||\alpha x + m||$.
+- But we can replace $m \mapsto \alpha m$, giving $\inf_{m \in M} || \alpha x + \alpha m||$,
   which equals $\inf_{m \in M} \alpha  ||x + M|| = \alpha || \overline{x}||$.
 - Thus, scalar product correctly rescales with norm.
 
 #### Lemma: Norm on $X/M$ obeys triangle ineq
 
-- The LHS is ||\overline{x} + \overline{y}|| = \inf_{m \in M} ||x + y + m||$.
-- The RHS is ||\overline{x}|| + ||\overline{y}|| = \inf{k \in M} || x + k|| + \inf_{l \in M} ||y + l||$.
+- The LHS is $||\overline{x} + \overline{y}|| = \inf_{m \in M} ||x + y + m||$.
+- The RHS is $||\overline{x}|| + ||\overline{y}|| = \inf{k \in M} || x + k|| + \inf_{l \in M} ||y + l||$.
 - We need to somehow "split" the $m$ in the LHS into $k$ and $l$.
-- We do this sequentually. There must be a sequence of elements $k[i]$ such that 
+- We do this sequentually. There must be a sequence of elements $k[i]$ such that
   $||\overline{x}|| \leq ||x + k[i]||$ such that $||x + k[i]|| \to ||\overline{x}||$.
-- Similarly, there must be a sequence of elements $l[i]$ such that 
+- Similarly, there must be a sequence of elements $l[i]$ such that
   $||\overline{y}|| \leq ||y + l[i]||$ such that $||y + l[i]|| \to ||\overline{y}||$.
 - Now, we see that $||overline{x} + \overline y|| \leq ||x + y + k[i] + l[i]||$.
 - By triangle inequality, this is going to be $||\overline{x} + \overline{y}|| \leq ||x + k[i]|| + ||y + l[i]||$.
@@ -221,9 +223,9 @@ $$
 
 - Suppose $||\overline{x}|| = 0$. We want to show that $\overline{x} = 0$, or $x \in M$.
 - This means that $\inf_{m \in M} ||x + m|| = 0$.
-- Thus there are a sequence of elements $m[i]$ such that ||x + m[i]|| \to 0$.
-- This implies that $x + m[i] \tendsto 0$, since this is happening using the norm of the underlying space.
-- This means that $m[i] \to -x$. 
+- Thus there are a sequence of elements $m[i]$ such that $||x + m[i]|| \to 0$.
+- This implies that $x + m[i] \rightarrow 0$, since this is happening using the norm of the underlying space.
+- This means that $m[i] \to -x$.
 - Now, we need to use the fact that $M$ is closed, to say that $-x \in M$, to get that $x \in M$.
 - This gives us that $\overline{x} = 0$.
 
@@ -231,9 +233,9 @@ $$
 # Reisez Lemma
 
 - Let $M$ be a closed proper subspace of a normed linear space $X$. Then for all $0 < \alpha < 1$,
-  there exists a $p \in X$ (dependent on $\alpha$), such that $d(M, p) \geq \alpha$. 
+  there exists a $p \in X$ (dependent on $\alpha$), such that $d(M, p) \geq \alpha$.
   That is, $\forall m \in M, d(m, p) \geq \alpha$.
-- This is easy to establish for say $\mathbb R^2$. pick a unit orthogonal vector, it will be at least 
+- This is easy to establish for say $\mathbb R^2$. pick a unit orthogonal vector, it will be at least
   $1$ unit apart (or more) by pythogoras.
 - This lemma provides a convenient substitute for orthogonality.
 
@@ -247,14 +249,14 @@ $$
   functional on all of $M + \mathbb Rz$, and is dominated above by $d(-, M)$.
 - Now, normalize the bounded linear functional so obtained to get a functional $f$ such that $|f| = 1$.
   Note that noramalization does not change the fact that $f(M) = 0$.
-- Next, we build an "approximate normer" $z'$. This is an element $z'$ of unit norm such that 
-  $|f(z')| \sim |\f||$. Such an element exists by definition of norm: $||f|| = \sup_{||x|| = 1} |f(x)|$.
+- Next, we build an "approximate normer" $z'$. This is an element $z'$ of unit norm such that
+  $|f(z')| \sim |f|$. Such an element exists by definition of norm: $||f|| = \sup_{||x|| = 1} |f(x)|$.
   See that since $|z'| = 1$, we must surely have that $|f(z)| \leq ||f||$, thus $|f(z') \leq 1$.
   We claim that $|f(z')| = 1 - \epsilon$. (This is clear by clear and distinct perception since $f$ "behaves differently"
   along $Y$). This must happen, for if not, then $f(z') = 1$ for all $|z'| = 1$. This is patently untrue since $f(Y) = 0$,
   thus the unit vector along $Y$ must vanish at the very least.
 - Now, consider $f(z' - m) = f(z') - f(m) = (1 - \epsilon) - 0 = 1 - \epsilon$.
-- Next, estimate $|f(z' - m)| = |1 - \epsilon| = 1 - \epsilon.
+- Next, estimate $|f(z' - m)| = |1 - \epsilon| = 1 - \epsilon$.
 - This gives $1 - \epsilon = |f(z' - m)| \geq |f| |z' - m| = |z' - m|$.
 - The first inequality follows from the defn of norm $|f| = \sup_k |f(k)|/|k|$, and thus $|f| < |f(k)|/|k|$, or $|f(k)| > |f||k|$.
 - The second inequality follows from the fact that $|f| = 1$.
@@ -268,13 +270,14 @@ $$
 #### What about $\alpha = 1$?
 
 - Apparently, this case holds for any reflexive space (double dual equals original space).
-- To show counterexample, we need a non-reflexive space. consider $\l_\infty$, space of sequences
+- To show counterexample, we need a non-reflexive space.
+   consider $l_\infty$, space of sequences
   under max norm.
 - Alternatively, pick $C[0, 1]$ under max norm.
 - We begin by picking a subspace $X \equiv \{ f \in C[0, 1] : f(0) = 0 \}$. So $f$ is continuous and $f(0) = 0$.
 - Let $M$ be the subspace of $X$ such that $\int_0^1 f(x) dx = 0$.
 - We want to show that there exists **no function** $p \in X$ such that (a) $||p|| = 1$,
-  (that is, $\sup_{x \in [0, 1] p(x) = 1$ and (b) $d(p, m) \geq 1$ for all $m \in M$.
+  (that is, $\sup_{x \in [0, 1]} p(x) = 1$ and (b) $d(p, m) \geq 1$ for all $m \in M$.
 
 #### Pedestrian proof when $\alpha = 1$.
 - If $d(p, m) \geq 1$, then we must have $d(p, 0) \geq 1$. This means that $\int_0^1 (p(x) - 0) \geq 1$,
@@ -329,7 +332,7 @@ $$
 
 - Let $S$ be a totally bounded set. We want to establish a uniform bound $M$.
 - Pick some $\epsilon$. We then get a finite number of points $N$ such that any point in $x$ is $\epsilon$ away from $N$.
-- Any two points in $N$ can be at most $N\epsilon$ apart. 
+- Any two points in $N$ can be at most $N\epsilon$ apart.
 - Thus the total distance between any two points $s, t \in S$.
 - Let $s, t$ be closest to points $n, n' \in N$.
 - Thus $d(s, t) \leq d(s, n) + d(n, n') + d(n', t)$ all of which is bounded by
@@ -338,11 +341,11 @@ $$
 
 #### For $\mathbb R$, bounded implies totally bounded
 
-- Say set $S$ is bounded by distance $M$. 
+- Say set $S$ is bounded by distance $M$.
 - Trap $S$ inside an interval of side length $M$, WLOG suppose interval is from $[0, M]$.
 - For any adverserial $\epsilon$, pick points at $[0, \epsilon, 2\epsilon, \dots, M]$.
   These points are the epsilon net which contain $M$:$S \subseteq M \subseteq N_\epsilon$
-- The net only needs $M/\epsilon$ points which is finite. 
+- The net only needs $M/\epsilon$ points which is finite.
 - See that this holds more generally for any $\mathbb R^n$ where we trap in a
   hypercube and sprinkle points.
 
@@ -353,7 +356,7 @@ $$
 - Note that any two vectors $e_i, e_j$ have distance $\sqrt(2)$.
 - Note that we have an infinite number of basis vectors $e_1, e_2, \dots$.
 - Suppose it is totally bounded. Pick $\epsilon = \sqrt(2)/9999$ as an adversary. We get a finite
-  neighborhood set $N_1$. 
+  neighborhood set $N_1$.
 - Thus, some point in $n \in N_1$ must have an infinite number of basis vectors trapped in it.
 - so there must be two basis vectors in it, $e_i, e_j$ such that $e_i \neq e_j$.
 - We must have that $d(e_i, e_j) < d(e_i,  n) + d(n, e_j)$ by triangle inequality.
@@ -390,7 +393,7 @@ def mk_cauchy_sequence(S):
     s = choose(S)
     yield s
     Nk = finite_epsilon_net(S=S, epsilon=1/2^k)
-    # n ∈ Nk such that n has an infinite number of points from $S$ in 
+    # n ∈ Nk such that n has an infinite number of points from $S$ in
     # the epsilon ball around $n$.
     n = hilbert-epsilon-choose(|{ n ∈ N : S ∩ Ball(n, epsilon) }| = infty)
     S = Ball(n, epsilon) # restrict to ball that has the inif
@@ -446,7 +449,7 @@ def mk_cauchy_sequence(S):
   lemmas $A$, and a set of predicted lemmas $P$.
 - We want to provide a good measure of how "good" $P$
   is with respect to the ground truth $A$.
-- We begin by defining *precision*, which is the fraction of $P$ that was correct: $|P \cap A|/|P|$. 
+- We begin by defining *precision*, which is the fraction of $P$ that was correct: $|P \cap A|/|P|$.
   Probabilistically, this can be seen as `P(actual|predicted)`.
 - Simlarly, we define *recall* as the fraction of `A` that was correctly predicted: $|P \cap A|/|A|$.
   Probabilistically, this is `P(predicted|actual)`.
@@ -480,7 +483,7 @@ Rank | Val | Prec | Rec
   decreases (`3/4 -> 3/5`).
 - We introduce an auxiliary function delta, $\delta(i) \equiv \text{lemma at i is correct}$.
   This lets us write the above quantities as follows:
-- Let $s(n) \equiv \sum_{i=0}^n \delta(i)$. 
+- Let $s(n) \equiv \sum_{i=0}^n \delta(i)$.
 - The total number of correct elements is $s(N)$ where $N$ is the total number of correct premises.
 - The precision at $k$ is given by $p(k) \equiv s(k)/k$. The recall at $k$ is given by $r(k) \equiv s(k)/s(N)$.
 - Now note that the discrete difference $dr(k) = r(k) - r(k-1)$, which equals $(s(k)-s(k-1)/s(N)$, which is $\delta(k)/s(N)$.
@@ -513,7 +516,7 @@ Rank | Val | Prec | Rec
 - We can try to hack the expression for $ap$ to artifically create $ap@K$. Let's try.
 - First, to go from $k$ to $r$, we find a number $r_k$ such that the recall at $r(k) = r_k$
 - Next, we calculate $ap@K \equiv \int_0^{r_K} p(r) dr$.
-- We must now find we must find new lower and upper bounds in terms of $k$. 
+- We must now find we must find new lower and upper bounds in terms of $k$.
 - The lower bounds needs us to find  `0  = r(l)` or `l = 0`.
 - The upper bound needs us to find `r_K = r(u)`, or `u = K`.
 - We will next have to calculate $dr(k) dk$. Previously, we set $dk = 1$, and we calculated $dr(k) \equiv r(k) - r(k-1)$.
@@ -526,7 +529,7 @@ Rank | Val | Prec | Rec
 #### R-precision
 
 - Recall that the recall is a nondecreasing function of $k$. The precision can vary any way it wants with respect to $k$.
-- We will try to find a point where precision equals recall. 
+- We will try to find a point where precision equals recall.
 - Consider the equation $p(K) = r(K)$. Using our previous formulation, this reduces to
   $s(K)/K = s(K)/s(N)$. This of course gives us $K = s(N)$.
 - So, at the index $K$ which is equal to the total number of correct lemmas, we will have the precision equal the recall.
@@ -541,9 +544,9 @@ Rank | Val | Prec | Rec
 - This gives us `2/(1/p + 1/r)`, which works out to `2/[(tp + fp)/tp + (tp + fn)/tp]`.
 - This simplifies to `2tp/(2tp + fp + fn)`.
 - Now consider the quantity `E := 1 - F`. Think of `E` as `error`. This works out to `(fp + fn)/(2tp + fp + fn)`.
-- See that this quantity works out the symmetric difference of the $A$actual and $P$redicted set divided by the 
+- See that this quantity works out the symmetric difference of the $A$actual and $P$redicted set divided by the
   sum of the sizes of the $A$ctual and $P$redicted set! $A \Delta P \equiv fp + fn$, and $|A| = tp + fn$, and
-  $|P| = tp + fp$. 
+  $|P| = tp + fp$.
 - Thus, the full expression for $E$ becomes $E \equiv (|A| \Delta |P|) / [|A| + |P|]$ which is a genuinely sensible quantity!
 
 # Heine Borel
@@ -575,7 +578,7 @@ Rank | Val | Prec | Rec
   This gives us a sequence of centers of balls $\{ p_i \}$. These centers must
   have a coverging subsequence $\{ q_i \}$ (by bolzano weirstrass) which converges to a limit point $L$.
 - Take the ball $B_L \equiv (L, \epsilon_L) \in C$ which covers the limit point $L$.
-- Since the sequence $\{ q_i \}$ is cauchy, for $\epsilon_L$, there must exist a natural $N$ such that for all 
+- Since the sequence $\{ q_i \}$ is cauchy, for $\epsilon_L$, there must exist a natural $N$ such that for all
   $n \geq N$, the points $\{ q_n : n \geq N \} \subseteq B_L$.
 - Thus, we only have finitely many points, $q_{\leq n}$ to cover. Cover each of these by their own ball.
 - We have thus successfully found a covering for the full sequence!
@@ -614,14 +617,14 @@ Rank | Val | Prec | Rec
 
 # Differentiating through sampling from a random normal distribution
 
-- Credits to [Edward Eriksson) for teaching me this. 
+- Credits to [Edward Eriksson) for teaching me this.
 - The key idea is that since we can write the normal distribution with parameters
   mean $\mu$ and variance $\sigma$ as a function of the standard normal distribution.
-  We then get to believe that the standard 
+  We then get to believe that the standard
 
-- $y = f(\sigma z)$ where $z \sim N(0, 1)$. 
+- $y = f(\sigma z)$ where $z \sim N(0, 1)$.
 - Then, by treating $z$ as a constant, we see that $dy/d\sigma = f'(\sigma z) \cdot z$ by chain rule.
-- That is, we treat $z$ as "constant", and minimize the $\sigma$. 
+- That is, we treat $z$ as "constant", and minimize the $\sigma$.
 - My belief in this remains open until I can read a textbook,
   but I have it on good authority that this is correct.
 - How does this relate to the VAE optimisation? It's the same trick, where we claim that
@@ -736,7 +739,7 @@ for i in range(1000):
 #### nD
 
 - Since everything is determined by 1D parametrization (curves)
-- $|\grad \phi(r)| = 1/v(r)$
+- $|\nabla \phi(r)| = 1/v(r)$
 - $r$ is position in space.
 - $v(r)$ is the speed of light at position $r$.
 - $\phi(r)$ represents the travel time of a wavefront to reach $r$.
@@ -819,25 +822,25 @@ instance Semigroup IndexedString where
 #### Gradient depends on norm
 
 - consider a function $f: \mathbb R^n \to \mathbb R$ and an energy $e: (\mathbb R^n \to \mathbb R) \to \mathbb R$.
-- We want to optimize $df/dt = - grad e(f)$.
-- however, what even is $grad$?
+- We want to optimize $df/dt = - \nabla e(f)$.
+- however, what even is $\nabla$?
 - Recall that $de$ is the differential which at a point $f$ on the space $\mathbb R^n \to \mathbb R$, in a tangent direction $u \in \mathbb R^n \to \mathbb R$,
   computes  $de|_f(u) \equiv \lim_{\epsilon \to 0} (e(f + \epsilon u) - e(f))/\epsilon$.
 - Now the gradient is given by $\langle grad(e), u \rangle_X \equiv de(u)$. So the gradient is the unique vector such that the inner product with the
   gradient produces the value of the contangent evaluated in that direction.
-- Said differently, $\langle grad(e), -\rangle = de(-)$. This is a Reisez like representation theorem.
+- Said differently, $\langle nabla(e), -\rangle = de(-)$. This is a Reisez like representation theorem.
 - Note that asking for an inner product means we need a hilbert space.
 - One choice of inner product is given by $L^2$, where $\langle u, v \rangle_{L^2} \equiv \int \langle u(x), v(x) \rangle dx$.
 - More generaly, we can use a Sobolev space, where we define the inner product given by
-  $\langle u, v\rangle_{H^1} \equiv \langle \grad u, \grad v\rangle_{L^2}$,
-  which can also be written as $\langle \Del u, v\rangle_{L^2}$.
-- Similarly, for the sobolev space $H^2$, we would use $\langle u, v\rangle_{H^2} \equiv \langle \Del u, \Del v\rangle_{L^2}$. which is equal
-  to $\langle \Del^2 u, v \rangle_{L^2}$.
+  $\langle u, v\rangle_{H^1} \equiv \langle \nabla u, \nabla v\rangle_{L^2}$,
+  which can also be written as $\langle \nabla u, v\rangle_{L^2}$.
+- Similarly, for the sobolev space $H^2$, we would use $\langle u, v\rangle_{H^2} \equiv \langle \nabla u, \nabla v\rangle_{L^2}$. which is equal
+  to $\langle \nabla^2 u, v \rangle_{L^2}$.
 - In general, we can write our inner product as something like $\langle Au, v\rangle_{L^2}$.
 
 #### Solving heat equation with finite differences
 
-- Solving $df/dt = \Del f = d^2 f / dx^2$.
+- Solving $df/dt = \nabla f = d^2 f / dx^2$.
 
 > If we try to solve this equation using, say, explicit
 > finite differences with grid spacing h, we will need a time step of size O(h 2)
@@ -917,28 +920,18 @@ inductive E : Const → Type
 -- nested inductive datatypes parameters cannot contain local variables.
 ```
 
-# Lean `isDefEq` is undecidable
-
-- Written down in Mario's thesis.
-
-# Lean subject reduction is broken
-
-- It only happens if one quotients a proposition
-- It probably also happens because the implementation of `isDefEq`
-  is a heuristic, because `isDefEq` is undecidable.
-
 
 # Weakly implicit arguments in Lean
 
 ```
 variables {α : Type} (f : α → α)
-def injective {α Β: Type} (f: α → β) : Prop := 
+def injective {α Β: Type} (f: α → β) : Prop :=
   ∀ {{x y}}, f x = f y → x = y -- NOTE: weakly implicit
 def injective2 {α β : Type} (f : α → β) : Prop :=
     ∀ {x y}, f x = f y → x = y -- NOTE: implicit
 
 def foo (h: injective f) : false := sorry
-example (h: injective f) : false := 
+example (h: injective f) : false :=
 begin
   have := @foo,
   unfold injective2 at *,
@@ -1168,7 +1161,7 @@ but is expected to have type
 #### Proof of theorem
 
 - Suppose that there is a continuous projection of $l^\infty$ into $c_0$,
-- Then we must have $l^\infty = c_0 \osum R$ for some closed subspace $R$.
+- Then we must have $l^\infty = c_0 \oplus R$ for some closed subspace $R$.
 - Since $l^\infty / c_0$ is isomorphic to $R$.
 - TODO
 
@@ -1290,7 +1283,8 @@ $$
 
 - Take a vector field on $\mathbb R^2$ with $V(x, y) = (-y, x)$. This vector field
   has concentric spirals.
-- consider this vector field as a PDE, so we are looking for a function $f$ such that $\grad f = V$.
+- consider this vector field as a PDE, so we are looking for a function $f$
+  such that $\del f = V$.
 - No such potential function can exist, because this vector field allow us to extract work.
 - Suppose such a potential exists. Then if I travel in a circle, according to the potential, net work
   is zero. But if I evaluate the integral, I will get work done. Thus, no soln exists!
@@ -1393,7 +1387,7 @@ def find_witness(Ds, p, eps):
   and we have that $X = \cup_d F_d$, we apply baire category.
 - Baire category tells us that there is a $\mathcal d \in D$ such that $F_{\mathcal d}$ has
   non empty interior.
-- By setup the situation such that if 
+- By setup the situation such that if
   $int(F_D) \neq \emptyset$, then $F_D = X$, which gives us the uniform statement.
 
 #### Application : Vanishing derivative pointwise implies fn is polynomial
@@ -1405,7 +1399,7 @@ def find_witness(Ds, p, eps):
   derivative vanishes, into a global fact --- is actually a polynomial.
 - Let us try the above proof sketch.
 - Proof by contradiction, assuming $P$ is not a polynomial.
-- Define $X \equiv \{ x : \forall x \in (a, b), \text{P|_{(a, b)} is not a polynomial} \}$
+- Define $X \equiv \{ x : \forall x \in (a, b), P|_{(a, b)}~\text{is not a polynomial} \}$
 - Define $F_d \equiv \{ v \in [0, 1] : (\partial^d f / partial x^d)(v) = 0 \}$
 - Clearly, $\cup F_d \equiv [0, 1]$, and each of th $F_d$ are closed (zero set of fn).
 - By baire category, one of the $F_d$ has an open set inside it.
@@ -1423,7 +1417,7 @@ def find_witness(Ds, p, eps):
 
 - Let $X$ be a banach space, $Y$ a normed vector space, $B(X, Y)$ be all bounded linear operators
   from $X$ to $Y$. Let $F$ be a collection of bounded linear operators from $X$ to $Y$.
-  If $\forall x_0 \in X, \sup_{T \in F} ||T(x_0)||_Y < \infty$ (set of operators is pointwise bounded), then 
+  If $\forall x_0 \in X, \sup_{T \in F} ||T(x_0)||_Y < \infty$ (set of operators is pointwise bounded), then
   $sup_{T \in F} ||T||< \infty$ (set of operators is uniformly bounded)
 
 
@@ -2322,7 +2316,7 @@ X0 -> X1
 - We formally define the subobject classifier as $\Omega_0 \xrightarrow{\omega_0} \Omega_1$, where
   $\Omega_0 \equiv \{ T, \triangleright T, \triangleright^\infty T \}$, $\omega_1 \equiv \{T, \triangleright T \}$.
 - The map is $\texttt{force}_0$, $T \mapsto T$, $\triangleright T \mapsto T$,
-  $\trianglright^\infty T \mapsto \triangleright^\infty T$.
+  $\triangleright^\infty T \mapsto \triangleright^\infty T$.
 - Informally, the map can be said to be given by $\texttt{force} \equiv (T \mapsto T, \triangleright^{n+1} T \mapsto \triangleright^n T)$.
 - We call it "force" since it forces a layer of delay.
 - We define the bijection between subobjects $(S \xhookrightarrow{f} X)$ and classification maps $(X \xrightarrow{\xi[f]} \Omega$
@@ -3741,7 +3735,7 @@ v            v
 X -----f---> Y
 ```
 
-- This is true because we can think of $Q_X \equiv \{ x \in X, y \in P_Y: f(x) = py(y) \}}$.
+- This is true because we can think of $Q_X \equiv \{ x \in X, y \in P_Y: f(x) = py(y) \}$.
 - If we imagine a bundle, at each point $y \in Y$, there is the presence/absence of a fiber $py^{-1}(y)$
   since $py$ is monic.
 - When pulling back the bundle, each point $x \in X$ either inherits this fiber or not depending
@@ -4998,7 +4992,7 @@ $$
 #### Inductive step
 
 - Let $deg(f)$ denote total degree of $f$, $deg_x(f)$ denote $x$ degree.
-- Let $\deg_x(f) \gep deg_x(g)$.
+- Let $\deg_x(f) \geq deg_x(g)$.
 - We treat $f, g$ as polynomials in a single variable $x$, ie, elements $(k[y, z])[x]$.
 - We want to factorize $f$ as $f = Qg + R$. But to do this, we need to enlarge the coefficient ring $k[y, z]$
   into the coefficient *field* $k(y, z)$ so the euclidean algorithm can work.
@@ -5488,9 +5482,10 @@ def performIO [Inhabited a] (io: IO a): a := Inhabited.default
 - Step 2: Mimic drawing a line [ghosting].
 - Step 3: confidently draw a line. LIFT THE PEN UP to stop the pen, don't slow down!
 
+
 # Common Lisp Beauty: paths
 
-```
+```lisp
 ; Evaluation aborted on #<UNDEFINED-FUNCTION PATHNAME-TU[E {10034448F3}>
 CL-USER> (pathname-type "/home/siddu_druid/**/*.mlir")
 "mlir"
@@ -5700,7 +5695,7 @@ $$
   (what we now call tensoring in linear logic) and conjunction.
 - Key idea: Let's suppose we're living in some huge vector space, and the statement
   $X \vdash A$ should be read as "the vector $X$ lives in the subspace $A$ of the large vector space.
-- Then, the rule $X \vdsh A$, $X vdash B$ entails $X \vdash A \land B$ means:
+- Then, the rule $X \vdash A$, $X vdash B$ entails $X \vdash A \land B$ means:
   if $X$ lives in subspace $A$ and $X$ lives in subspace $B$, then $X$ lives in the intersection $A \cap B$.
 - On the other hand, the rule $X \vdash A$, $Y \vdash B$ entails $X ; Y \vdash A \circ B$ means:
   if $X$ lives in subspace $A$, $Y$ lives in subspace $B$, then the vector $X \otimes Y$ lives in subspace $A \otimes B$.
@@ -8811,8 +8806,8 @@ $$
 
 ##### Interlude: finite extension with infinitely many subfields
 
-- Let $K = F_p(t, u)$ where $t, u$ are independent variables. This is an infinite field extension of $F_p$, since each of the 
-  $t^i$ are independent. 
+- Let $K = F_p(t, u)$ where $t, u$ are independent variables. This is an infinite field extension of $F_p$, since each of the
+  $t^i$ are independent.
 - Recall that the equation $t^p \equiv t (mod p)$ does not help here, as that only tells us that upon evaluation,
   the polynomials agree at all points. However, they are still two different polynomials / rational functions.
 - Consider the subfield $k \equiv F_p(t^p, u^p)$. This too is an infinite field extension of $F_p$.
@@ -8836,7 +8831,7 @@ $$
 - This is a contradiction, since thus now means that $C = K$, where $C = k(t^p + \beta u^p)$,
   which makes $t^p + \beta u^p$ a primitive element, somthing that we saw is impossible.
 - The key idea is that the extension is generated by a *minimal* polynomial $X^p - 1$, which *factorizes* as $(X - 1)^p$.
-  We lose the connection between minimality and irreducibility, which makes the extension inseparable, since the 
+  We lose the connection between minimality and irreducibility, which makes the extension inseparable, since the
   minimal polynomial now has repeated roots.
 - [Reference](https://www.mathcounterexamples.net/a-finite-extension-that-contains-infinitely-many-subfields/)
 
