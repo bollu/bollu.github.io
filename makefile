@@ -6,7 +6,7 @@ build:
 	rm -rf out
 	mkdir -p out
 	LSAN_OPTIONS=detect_leaks=0 ./builder/build/builder | tee 1-build-log.txt
-	cp -r prism/* katex/* static/* out/
+	cp -r prism/* katex/* static/* todo.md resume out/
 
 serve:
 	cd out && python3 -m http.server
