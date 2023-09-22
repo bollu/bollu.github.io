@@ -4,7 +4,7 @@
 <h3> Siddharth Bhat </h3>
 
 - [Leave me your thoughts](https://www.admonymous.co/bollu) / [Chat with me](https://calendly.com/bollu/) / Email me:  <a href='mailto:siddu.druid@gmail.com'> `siddu.druid@gmail.com` </a>
-- [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.html)
+- [Github](http://github.com/bollu) / [Math.se](https://math.stackexchange.com/users/261373/siddharth-bhat) /  [Resume](resume/main.pdf) / [Link hoard](todo.md)
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
