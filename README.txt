@@ -8,6 +8,204 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# How to prove `noConfusion`
+
+Suppose we take a type 
+
+```
+inductive Eg 
+| A | B
+```
+
+- how do we show that `Eg.A <> Eg.B` from first principles? (using only recursors?)
+- This is the same as showing `Eg.A = Eg.B -> False`.
+
+- First, some gadgets: congruence of function arguments:
+
+```lean
+-- path induction
+def fun_functional (f : A → B) (x y : A) (EQ : x = y) : f x = f y := 
+   Eq.recOn EQ (motive := fun k K_EQ_X => f x = f k) rfl
+```
+
+- Principle of explosion
+
+```lean
+def false_elim (f : False) : α := False.rec f (motive := fun _ => α) 
+```
+
+- Key idea: create a type by using the recursors of `x, y` such that 
+  when `x = y` we have True and when `x <> y` we have False. 
+- Then, when given a proof that Eg.A = Eg.B`, we can go through the cases
+  and we want to produce false, we can use `Eq.rec` on this type, and produce 
+  the inhabitant `True.intro` for the cases when they are equal. Then, path
+  induction / the recursor for equality will give us an inhabitant of `False`,
+  by promoting this to hold "in general".
+
+```lean
+abbrev Eg.noConfusionType' (x y : Eg) : Prop := 
+  x.casesOn (motive := fun _ => Prop)
+    (y.casesOn (motive := fun _ => Prop) True False)
+    (y.casesOn (motive := fun _ => Prop) False True)
+```
+
+- We show that this type is inhabited when `x = x`.
+
+```lean
+abbrev Eg.noConfusionType'_inhabitant_rfl : Eg.noConfusionType' x x :=  
+   x.casesOn True.intro True.intro
+```
+
+- We show that if `x <> y`, then an inhabitant of `Eg.noConfusionType' x y` produces `False`.
+
+```lean
+abbrev Eg.def2 (x y : Eg) (NEQ: x ≠ y) (NC: Eg.noConfusionType' x y) : False :=  
+  match H : x with 
+  | .A => 
+     match K : y with 
+     | .A => NEQ rfl 
+     | .B => NC
+  | .B => match K :  y with 
+      | .A => NC 
+      | .B => NEQ rfl
+```
+
+- How to translate the above into a raw formula?
+
+```lean
+  Eg.rec (motive := fun x_1 =>
+    ∀ (NEQ : x_1 ≠ y) (NC : Eg.noConfusionType' x_1 y), x = x_1 → (fun x NEQ NC => False) x_1 NEQ NC)
+    (fun NEQ NC H =>
+      Eg.rec (motive := fun x =>
+        ∀ (NEQ : Eg.A ≠ x) (NC : Eg.noConfusionType' Eg.A x), y = x → (fun y NEQ NC => False) x NEQ NC)
+        (fun NEQ NC K => NEQ (Eq.refl Eg.A)) (fun NEQ NC K => NC) y NEQ NC (Eq.refl y))
+    (fun NEQ NC H =>
+      Eg.rec (motive := fun x =>
+        ∀ (NEQ : Eg.B ≠ x) (NC : Eg.noConfusionType' Eg.B x), y = x → (fun y NEQ NC => False) x NEQ NC)
+        (fun NEQ NC K => NC) (fun NEQ NC K => NEQ (Eq.refl Eg.B)) y NEQ NC (Eq.refl y))
+    x NEQ NC (Eq.refl x)
+```
+
+
+# Origami box pleating
+
+- Box pleating: subdivide paper into grid, then create into grid.
+- To creases into model, use the [Elias stretch](https://abrashiorigami.com/how-to-collapse-box-pleated-crease-pattern/)
+- We get 3 types of creases: hinge, ridge, axial
+- red for ridge, blue for hinge.
+- hinge: what we cut along to dissect the model along hinges.
+- ridge creases: creases that are diagonal / angle bisector of the polygons (in 
+  box pleating, is always square).
+- BPstudio (box-pleating studio) is the tool used to make box pleating.
+
+#### Minimum grid size computatation
+
+- (sum of lengths of tree edges * 2)/4
+- for an edge flap, it takes `2 * edgelen` of perimeter when unfolded.
+- for a river, it also takes `2 * riverlen` of permiter when unfolded.
+- in total, we take `sum (2 * len)` over all  edges/rivers of perimeter.
+- perimeter is `4 * square-side-len`. 
+- So we get that `square-side-len` equals (sum of lengths of tree edges * 2)/4.
+
+
+
+#### Axial box pleating
+
+- In the folded model, pick an imaginary line on which only *valley creases* lie
+- also, all the hinge creases are perpendicular to this imaginary line.
+- A model is axial box pleated if there is an axis such that all hinge creases are 
+  orthogonal to this imaginary line
+
+
+#### Axial plus i creases
+
+- Only creases can be referred to as 'axial plus i'.
+- The 'plus i' gives us how much higher we need to go. 
+- the ridges are the creases that allow go between 'axial plus i' to 'axial plus (i + 1)'.
+- This gives us 3 types of creases: (1) hinges, which are orthogonal to the axis,
+  (2) ridges, which connect 'axial plus i' creases, and the family of 'axial plus i' creases.
+
+```
+                  (Ridge)
+(axial+1)---|--------/----------
+            |       /
+(axial+0)---|------/-------------
+         (Hinge)
+``` 
+
+- If there is only one axis, then it is uni-axial.
+
+
+# Vibes of Weiner Processes
+
+- Caveat Emptor: This is totally non-rigorous, and it taken from physics / computer graphics.
+- The actual formalism requires quite a lot of machinery to setup the right measure space
+  and topology to talk about convergence of processes to produce brownian motion.
+
+#### Information definition of weiner process / brownian motion
+
+- (Continuity) For each time $t$, associate a random variable $W_t$ that is almost surely continuous in $t$.
+- (Independent Increments) For any two times $s, t$ ($s \leq t$, then "random increment" $W_t - W_s$ is independent
+  of any past state $W_p$ (for all $0 \leq p \leq s$)
+- (Gaussian Incremenets) Each increment $W_t - W_s ~ N(0, t - s)$. That is, it is a normal distribution with mean 0,
+  variance $(t - s)$.
+
+#### Simulating Weiner process: Donsker's theorem
+
+- Consider IID sequences $X_1, \dots X_n$.
+- Define a continuous function $W[n](t) \equiv 1/\sqrt{n} \sum_{i=1}^{\texttt{floor}(tn)} X_i$ for $t \in [0, 1]$.
+- **Donsker's theorem**: As $n \to \infty$, $W_n$ converges ()
+
+
+#### Ito's Lemma
+
+
+
+#### Motivation 1: Use SDE to solve PDE
+#### Motivation 2: Use PDE to solve SDE
+
+
+
+
+# Forward versus backward euler
+
+- Suppose we have a vector field $X$, initial point $x_0$, and we want to plot
+  trajectories.
+- We survey two classical algorithms, forward versus backward euler.
+- [Reference](https://geometrycollective.github.io/monte-carlo/slides/Lecture11-StochasticDifferentialEquations-CMUMonteCarloFA23.pdf)
+
+#### Forward euler
+
+- $p$ is current "known" point, $q$ is next unknown point, $X(.)$ is the known vector field.
+- $p + \epsilon X(p) \sim q$.
+- This gives us the equation motion.
+
+###### Stability analysis of Forward euler
+
+- Suppse we have a 1D system, with $X(q) = aq$. (ie, exponential growth).
+- Then, $p + \epsilon X(p) \sim q$ simplifies to $p + \epsilon a p \sim q$, or $p (1 + \epsilon a) \sim q$.
+- If we relabel $p_{i+1} \equiv q, p_i \equiv p$, then we get: $p_{i + 1} \equiv p_{i} (1 + \epsilon a)$.
+- Repeatedly applying, we get $p_n = (1 + \epsilon a)^n p_0$.
+- This $\{ p_n \}$ sequence converges if $|1 + \epsilon a| < 1$.
+- If $a > 0$, then it is impossible for this to be stable, because $\epsilon > 0$ (by defn), and therefore $(1 + \epsilon a) > 1$.
+- If $a < 0$, then the exponential is damped, and the solver will converge if $\epsilon < 1/|a|$. That is,
+  we step with size smaller than the exponential growth rate. 
+
+#### Backward euler
+
+- $(q - \epsilon X(q)) \sim p$.
+- This requires us to solve for $q$. This is generally a nonlinar equation in $q$ due to the presence of $X(q)$,
+  but this can be solved by using any black-box *equation* solver. 
+
+###### Stability analysis of Backward euler
+
+- Suppse we have a 1D system, with $X(q) = aq$. (ie, exponential growth).
+- Then, $q - \epsilon X(q) \sim p$ simplifies to $q - \epsilon a q \sim p$, or $q (1 - \epsilon a) \sim p$.
+- If we relabel $p_{i+1} \equiv q, p_i \equiv p$, then we get: $\equiv p_{i} \equiv p_{i + 1} (1 - \epsilon a)$.
+- Repeatedly applying, we get $p_0 = (1 - \epsilon a)^n p_n$.
+- Rearranging, we get $p_n = p_0 / (1 - \epsilon a)^n$.
+- See that in this case, if $a < 0$, we will *always be stable*, because then the denominator will be of the form $1/v$ where $v > 1$.
+- So, backward euler is *unconditionally stable* in the case of exponential decay.
 
 # Uniform Boundedness Principle / Banach Steinhauss
 
@@ -6027,7 +6225,7 @@ T -> analysis
   I've gained some kind of "confidence", where I check a special
   case which I am confident generalizes well.
 
-```
+```cpp
 void editor_state_backspace_char(EditorState& s) {
     assert(s.loc.line <= s.contents.size());
     if (s.loc.line == s.contents.size()) { return; }
@@ -6041,6 +6239,8 @@ void editor_state_backspace_char(EditorState& s) {
     s.loc.col--;
 }
 ```
+
+
 # XOR and AND relationship
 
 -  `a xor b = a + b - 2 (a & b)`
