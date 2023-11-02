@@ -8,6 +8,31 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Crash Course on Prosody
+
+- Syllable: Smallest unit.
+- Feet: Sequence of syllables.
+- Line: Sequence of feet. Used to be called `verse`, which now stands for a poem in general.
+- Stanza: Sequence of lines. 
+- Iamb: a feet which is or ["da", "DUM"] or `[x, /]` as is written in notation.
+- Iambinc pentameter: a sequence of 5 iambs. `x/| x/| x/| x/| x/|`.
+
+
+/     x  |x  /|x  / |   x  /   | /   /
+earth has not a-ny-thing to show more fair
+/    x     x  /  x  /    x   x     /    /
+dull would he be of soul who could pass by
+x|/     x| /     x  x | x   /  x  /
+A sight so touch-ing in its maj-es-ty
+
+#### Iamb Substitutions
+
+- `x/` to `/`: defective foot or bare stress: BEGINNING.
+- `x/` to `/x`: trochee (badger) . BEGINNING or AFTER PAUSE.
+- `x/` to `//`: spondee (duck soup). ANYWHERE.
+- `x/x/` to `xx//`: double iamb. ANYWHERE.
+- `x/` to `xx/`: anapest. [UNCOMMON]
+
 # How to prove `noConfusion`
 
 Suppose we take a type 
@@ -1405,7 +1430,57 @@ but is expected to have type
 
 #### Proof
 
-- TODO
+- Reference: [The Open Mapping Theorem And Related Theorems by Anton R Schep](https://people.math.sc.edu/schep/Openmapping.pdf)
+
+#### Ingenious Lemma about Norms
+
+- Notation: If we have two norms $N$ and $M$ on a space $X$, we denote $B_N(x, r)$ and respectively $B_M$
+  to be the open ball of radius $r$ at point $x$ under norm $N$.
+- We will show that if (a) the identity map $(X, N) \to (X, M)$ is continuous, and
+  (b) $B_M(0, 1) \subseteq \overline{B_N(0, r)}^M$, that is, the closure
+  of the ball $B_N(0, r)$ in the $M$ norm, **then**  $B_M(0, 1) \subseteq B_N(0, (1 + \mu)r)$ 
+  for any $\mu > 0$.
+- Inutition: completing under norm $M$ of the open ball on $N$ will continue to trap the ball of $M$
+  at the cost of an infinitesimal radius bump.
+- Proof: 
+- From the hypothesis, we see that every point in $B_M(0, 1)$ is $\epsilon$ close to $B_N(0, r)$ under
+  completion with respect to $M$.
+- Thus, we get the inclusion that $B_M(0, 1) \subseteq B_N(0, r) + \alpha B_M(0, 1)$ for **any $\alpha > 0$**.
+- We solve the equation $1/(1 - \alpha) = (1 + \mu)$. We can find such a $\beta < 1$, since $\mu > 0$.
+  We pick whatever $\alpha$ we get from this equation to be our $\alpha$.
+- We had the equation  $B_M(0, 1) \subseteq B_N(0, r) + \alpha B_M(0, 1)$.
+- Proof by notation: rewrite as $B_M(0, 1) (1 - \alpha) \subseteq B_N (0, r)$
+- This means that $B_M(0, 1) \subseteq 1/(1 - \alpha) B_N(0, r)$, which by definition means that
+  $B_M(0, 1) \subseteq (1 + \mu) (B_N(0, r)$. This gives us what we wanted!
+- The geometric picture to keep in mind: $B_M(0, 1)$ can be trapped inside a $B_N(0, r)$ followed by a "small"
+  $B_M(0, 1)$. But by rewriting this "small" $B_M(0, 1)$ itself as a rescaling of $B_N(0, r)$, we can write
+  the full thing as a union of rapidly decreasing balls of the form $B_N(0, r_1), B_N(0, r_2), \dots$.
+- All of these will be trapped in $B_N(0, r_1 + r_2 + \dots)$.
+- In the above argument, where did we use the continuity of $I$?
+
+##### Lemma implies bounded inverse theorem
+- Let $T: X \to Y$ be a one-to-one  bounded operator. Then the inverse $T^{-1} : Y \to X$ is also bounded.
+- Define a new norm on $Y$ given by $||y||_T \equiv ||T^{-1}(y)||_X$.
+- Then this is a norm on $Y$, and we have that $||y||_Y \leq ||T|| ||y||_T$.
+- This means that sets measured with $T$ norm are larger than when measured in $Y$ norm.
+- This is because ||T(T^{-1}(y)||_Y \leq ||T|| ||T^{-1}(y)||_X$ by the defn of operator norm.
+  Now see that the RHS equals $||T|| ||y_T||$ and we get the desired inequality.
+- Thus, the identity map $I : (Y, ||\cdot||_T) \to (Y, ||\cdot||_Y)$ is bounded, since a set that is
+  bounded in the $||\cdot||_T$ norm will be *smaller* in the $||\cdot||_Y$ norm, and will thus
+  continue to be bouned.
+- Moreover, since $T$ is continuous, we can check that $(Y, ||\cdot||_T)$ is also a banach space,
+  since a series will converge in $||\cdot||_T$ iff its preimage converges in $X$.
+- By the above lemma, this means that the two norms $||\cdot||_Y$ and $||\cdot||_T$ are equivalent.
+- So, we get the reverse inclusion, where the norm $||y||_T$ \leq K ||y||_Y$.
+- But that just means that $||T^{-1}(y)|| \leq K ||y||_Y$, or that the operator $T^{-1}$ is bounded!
+
+##### Open Mapping Theorem
+- Let $T: X \to Y$ be a surjective bounded operator. Then we claim that it's an open map.
+- Factorize the map into $T' : X/ket(T) \to Y$ be a bijection, and the projection $\pi : X \to X /ker(T)$
+  will be an open map.
+- Let $U \subseteq Y$ be some open set. Since $\pi$ is an open map, we have that $\pi(U)$ is open.
+- The latter map is a 
+
 
 # Closed graph theorem
 
@@ -1453,6 +1528,39 @@ $$
 
 - But since $q = f(p)$ (by defn of $G$), we have that
   $lim f(x_i) = q = f(p) = f(\lim x_i)$ which proves continuity.
+
+### Where this fails: topological spaces
+
+- The graph of the identity function $I : X \to X$, $\Delta \equiv \{ (x, x) \in X \} \subset X \times X$
+  is closed iff space is hausdorff.
+- We call the set $\Delta$ the diagonal.
+
+#### Closed implies Hausdorff
+
+- Suppose the diagonal set $\Delta$ is closed.
+- To show that the space is hausdorff, take two points $p, q \in X$.
+- We must create two open sets $O_p, O_q$ which are disjoint, such that $p \in O_p$ and $q \in O_q$.
+- Since $(p, q)$ is off the diagonal ($p \neq q$), it belongs to the open set $X \times X - \Delta$.
+- Thus, there must be some basic open set $O_p \times O_q$ such that $(p, q) \in O_p \times O_q$.
+- Furthermore, the set $O_p \times O_q$ misses the diagonal.
+- Recall that the product topology is generated by basic open sets, so we know that this $O_p, O_q$
+  are open in $p$.
+- We must have that $O_p$ is disjoint from $O_q$, since the set $O_p \times O_q$ misses the diagonal.
+- Otherwise, we would have a $c \in O_p, O_q$ ($c$ for contradiction), or that $(c, c) \in O_p \times O_q$,
+  contradicting the fact that it misses the diagonal.
+
+#### Hausdorff implies closed
+
+- Suppose space is hausdorff. Now we need to show that the diagonal is closed.
+- That is, we need to show that every limit point is included in the set.
+- Consider some point $(p, q) \not \in S$. We will show that such a point cannot be a limit point.
+- Since $(p, q) \not \in S$, we have that $p \neq q$.
+- Since the space $X$ is hausdorff, there will be open sets $O_p, O_q$ such that they contain $p, q$
+  respectively but are disjoint.
+- This means that $O_p \times O_q$ is an open set in $X \times X$ which contains $p, q$, but is disjoint
+  from $\Delta$. This means that $(p, q)$ is not a limit point.
+- Thus, no point $(p, q)$ that is outside of $\DeltaS is a limit point, which means that $\Delta$
+  contains all its limit points, and is thus closed.
 
 # Bounded inverse theorem
 
@@ -17235,6 +17343,10 @@ element of $\mathfrak g$. This tells me how much of $V_p$ is *not* stolen away b
 
 So we have the map $\pi_h: T_p P \rightarrow V_p P$ given by $pi_h(t_p) \equiv t_p - H_p(t_p)$. The kernel
 of this map is $H_p P = ker(\pi_h)$.
+
+#### Accessing the tangent space from the Ehrsmann Connection
+
+- https://mathoverflow.net/a/94139/123769
 
 #### Generalizing to Non-trivial bundles
 
