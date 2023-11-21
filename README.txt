@@ -8,6 +8,125 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Lecture on spectral sequences
+
+- Exact couples in alg top: https://www.maths.ed.ac.uk/~v1ranick/papers/massey6.pdf
+- https://www.youtube.com/watch?v=HcolzXhwJWs&list=PLwKdCQGFDsilSxtnDfgP4tJ8SE1So1ecS
+
+
+# Roots and Weights
+- [Symmetries, Fields, and Particles](https://www.damtp.cam.ac.uk/user/examples/3P2.pdf)
+- Let $G$ be a matrix lie group and $V = L(G)$ be its lie algebra.
+- The adjoint representation, $Ad : G \to Aut(V)$ is the group representation of $G$ given by conjugating
+  elements of $V$ by $G$: $(Ad~g)(X) \equiv GXG^{-1}$.
+- $V(G)$ is closed under conjugation by $G$, because it holds at the identity, then perform the usual exponentiation trick.
+- Clearly, this is a group action, because $(Ad~gh)(X) = ghXh^{-1}g^{1}$, 
+  which equals $g(Ad h)(X)g^{-1}$, which is $(Ad g \circ Ad h)(X)$.
+- The representation $ad: L(G) \to Aut(L(G))$ is a **lie algebra** representation, given by $(ad X)(Y) \equiv [X, Y]$.
+- $ad$ is closed because $L(G)$ is a lie algebra, and is closed under brackets.
+- It's closed under vector space operations, because lie bracket commutes correctly with vector space operations.
+  $[X + X', Y] = [X, Y] + [X', Y]$ and $[kX, Y] = k[X, Y$].
+- Finally, $ad$ commutes correctly with brackets (via jacobi identity): $ad X([Y, Y']) = [ ad X(Y), ad X(Y')]$.
+  Prove by acting on both sides with $Z \in L(G)$.
+
+### Roots and weights for $L(G)$
+- Let $L(G)$ be semisimple. A cartan subalgebra is a sub lie algebra $H$ of $L(G)$ such that:
+- (a) $H$ is a maximal abelian subalgebra of $L(G)$
+- (b) the adjoint lie algebra representation $(ad H)$ is completely reducible.
+
+Different Cartan subalgebras are related by conjugation by $G$, so it is essentially unique.
+
+### Rank of $G$
+
+- Let $H$ be a cartan subalgebra of $L(G)$. Then the dimension of $H$ is the rank of $G$, denoted by $k$.
+- One can find a basis for $L(G)$, where the basis has a simeltaneous eigenbasis for $H$ (since
+  all matrices in $H$ commute). These simultaneous eigenvalues of $
+
+# Concrete description of spinors
+
+- Consider how in physical space, $|\uparrow\rangle$ and $\downarrow\rangle$ in physical space are 180 degrees away
+  (pointing up or down), but in the qubit state space, they are orthogonal. So there is an "angle doubling",
+  where 180 degrees in physical space is 90 degrees in state space. How to encode this?
+- Idea: some matrices can be written as a product of two vectors, as `[x y] [a b]^T`. Do the same to a vector!
+- Take a vector `[x, y, z]`. Convert to a pauli matrix. `[z  x-yi; x+yi z]`. This can be written as `[s1 s2] [-s2 s1]^T`.
+- Just as we can rotate a 3D vector with a rotation matrix, we can rotate a pauli vector with `2x2` matrices:
+
+$$
+\begin{bmatrix}
+\cos \theta/2 & i \sin \theta/2 \\
+i \sin \theta/2 & \cos \theta/2
+\end{bmatrix}
+\begin{bmatrix}
+z & x - yi \\
+x+yi & -z
+\end{bmatrix}
+\begin{bmatrix}
+\cos \theta/2 & i \sin \theta/2 \\
+i \sin \theta/2 & \cos \theta/2
+\end{bmatrix}^\dagger
+$$
+
+- But this can be written as:
+
+$$
+\begin{bmatrix}
+\cos \theta/2 & i \sin \theta/2 \\
+i \sin \theta/2 & \cos \theta/2
+\end{bmatrix}
+\begin{bmatrix}
+s_1 \\ s_2 
+\end{bmatrix}
+\begin{bmatrix}
+-s_2 & s_1 
+\end{bmatrix}
+\begin{bmatrix}
+\cos \theta/2 & i \sin \theta/2 \\
+i \sin \theta/2 & \cos \theta/2
+\end{bmatrix}^\dagger
+$$
+
+- So a spinor is like a "rank 1/2 object", between scalars and vectors.
+  We can combine two spinors to get a vector. 
+- Pauli spinors are associated with 3D space (what was explained now).
+- Weyl spinors are associated with 4D spacetime.
+
+##### Clifford algebras
+
+- Geometric algebra, nuff said.
+- Spinors arise for free in a geometric algebra.
+- For example, the spin up state is $1/2(1 + e_z)$ where $e_z$ is the basis $z$ vector.
+  The spin down state is $1/2(e_x + e_x e_y)$.
+- Apparently, we can say that "spinors are elements of minimal left ideals in clifford algebras".
+
+#### References
+
+- [Spinors for beginners by eigenchris](https://www.youtube.com/watch?v=j5soqexrwqY)
+
+#### Spinorial tensors
+
+- For tensors, we need only co and contravariant indeces.
+- For spinors, they have chirality as well, so we get `{left, right} x {co, contra}`.
+- This notation for denoting chirality based on dots is the [Van der waerden notation](https://en.wikipedia.org/wiki/Van_der_Waerden_notation).
+
+# Latin prefixes for words
+
+- `in`: in. Greek: `endo`
+- `ex`: out of. Greek: `ecto`.
+- `con`: with (e.g. construction -- to build with, compose -- to put with).
+  Greek: `syn` (e.g. synthesis -- composition)
+- `ob`: against. (e.g. obstructrion).
+- `circum`: around. Greek: `peri`.
+- `de`: from (e.g. denature, detract). Greek: `?`
+- `re`: again e.g. redo): Greek: `?`
+- `super`: above. Greek: `hyper`.
+- `sub`: below. Greek: `hypo`.
+- `per`: for (perceive -- take for). Greek: `para`.
+- `ab`: from (abstain -- hold from, abstract -- pull from / draw from). Greek: `?`
+- `ad`: to (administer -- to minister / rule, access -- ad; cess -- ). Greek: `?`
+- `pre`: before (e.g. preposition). Greek: `?`
+- `post`: after (e.g. postposition). Greek: `?`
+- Anything without these in maths is probably greek. 
+
 # Crash Course on Prosody
 
 - Syllable: Smallest unit.
@@ -32,6 +151,49 @@ A sight so touch-ing in its maj-es-ty
 - `x/` to `//`: spondee (duck soup). ANYWHERE.
 - `x/x/` to `xx//`: double iamb. ANYWHERE.
 - `x/` to `xx/`: anapest. [UNCOMMON]
+
+# What the hell is a nix flake?
+
+
+I finally found a coherent explanation [on reddit](https://www.reddit.com/r/NixOS/comments/131fvqs/comment/ji0f3gl/?utm_source=share&utm_medium=web2x&context=3), inlined here:
+
+> The basic idea of flakes isn't that complicated, but it does require a little
+> bit of basic understanding of the nix programming language. A flake.nix file is
+> an attribute set with two attributes called inputs and outputs. The inputs
+> attribute describes the other flakes that you would like to use; things like
+> nixpkgs or home-manager. You have to give it the url where the code for that
+> other flake is, and usually people use GitHub. The outputs attribute is a
+> function, which is where we really start getting into the nix programming
+> language. Nix will go and fetch all the inputs, load up their flake.nix files,
+> and it will call your outputs function with all of their outputs as arguments.
+> The outputs of a flake are just whatever its outputs function returns, which
+> can be basically anything the flake wants it to be. Finally, nix records
+> exactly which revision was fetched from GitHub in flake.lock so that the
+> versions of all your inputs are pinned to the same thing until you manually
+> update the lock file.
+
+
+> Now, I said that the outputs of a flake can be basically anything you want, but
+> by convention, there's a schema that most flakes adhere to. For instance,
+> flakes often include outputs like packages.x86_64-linux.foo as the derivation
+> for the foo package for x86_64-linux. But it's important to understand that
+> this is a convention, which the nix CLI uses by default for a lot of commands.
+> The reason I consider this important to understand is because people often
+> assume flakes are some complicated thing, and that therefore flakes somehow
+> change the fundamentals of how nix works and how we use it. They don't. All the
+> flakes feature does is look at the inputs you need, fetch them, and call your
+> outputs function. It's truly that simple. Pretty much everything else that
+> comes up when using flakes is actually just traditional nix, and not
+> flakes-related at all.
+
+
+> The only other significant difference from traditional nix is "purity". Flakes
+> disallow a lot of "impure" ideas, like depending on config files or environment
+> variables that aren't a part of the flake's source directory or its inputs'.
+> This makes it so that a derivation / system / etc. is reproducible no matter
+> what context you're evaluating the flake from.
+
+
 
 # How to prove `noConfusion`
 
@@ -7826,10 +7988,6 @@ capacity. Each solution to the flow problem is an assignment / permutation.
 - **Conjecture:** There is an isomorphism $\mathbb R^3 \simeq H$ as an inner product space for a custom inner product
   $\langle, \rangle$ on $H$.
 - [Reference](https://www.youtube.com/watch?v=Way8FfcMpf0&list=PLPH7f_7ZlzxTi6kS4vCmv4ZKm9u8g5yic&index=27)
-
-# How to write in biblical style?
-
-- I'd like to write in the style of the bible!
 
 # Undefined behaviour is like compactification [TODO]
 
