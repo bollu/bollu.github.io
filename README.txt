@@ -13,34 +13,61 @@
 - Exact couples in alg top: https://www.maths.ed.ac.uk/~v1ranick/papers/massey6.pdf
 - https://www.youtube.com/watch?v=HcolzXhwJWs&list=PLwKdCQGFDsilSxtnDfgP4tJ8SE1So1ecS
 
+# Canonical bundle over RP2 is not trivial
 
-# Roots and Weights
-- [Symmetries, Fields, and Particles](https://www.damtp.cam.ac.uk/user/examples/3P2.pdf)
-- Let $G$ be a matrix lie group and $V = L(G)$ be its lie algebra.
-- The adjoint representation, $Ad : G \to Aut(V)$ is the group representation of $G$ given by conjugating
-  elements of $V$ by $G$: $(Ad~g)(X) \equiv GXG^{-1}$.
-- $V(G)$ is closed under conjugation by $G$, because it holds at the identity, then perform the usual exponentiation trick.
-- Clearly, this is a group action, because $(Ad~gh)(X) = ghXh^{-1}g^{1}$, 
-  which equals $g(Ad h)(X)g^{-1}$, which is $(Ad g \circ Ad h)(X)$.
-- The representation $ad: L(G) \to Aut(L(G))$ is a **lie algebra** representation, given by $(ad X)(Y) \equiv [X, Y]$.
-- $ad$ is closed because $L(G)$ is a lie algebra, and is closed under brackets.
-- It's closed under vector space operations, because lie bracket commutes correctly with vector space operations.
-  $[X + X', Y] = [X, Y] + [X', Y]$ and $[kX, Y] = k[X, Y$].
-- Finally, $ad$ commutes correctly with brackets (via jacobi identity): $ad X([Y, Y']) = [ ad X(Y), ad X(Y')]$.
-  Prove by acting on both sides with $Z \in L(G)$.
+- Recall that `RP2` can be defined as the set of all lines in `R3`.
+- The trivial bundle is the bundle `RP2xR -> RP2`. We shall call it `T`.
+- The canonical bundle `L` is defined as follows: It is a subspace of `RP2xR3`, which has elements
+  `{ (l, v) : l ∈ v }`. That is, it is all lines, and elements on these lines.
 
-### Roots and weights for $L(G)$
-- Let $L(G)$ be semisimple. A cartan subalgebra is a sub lie algebra $H$ of $L(G)$ such that:
-- (a) $H$ is a maximal abelian subalgebra of $L(G)$
-- (b) the adjoint lie algebra representation $(ad H)$ is completely reducible.
+#### Intuition: Canonical bundle is not trivial
 
-Different Cartan subalgebras are related by conjugation by $G$, so it is essentially unique.
+- One might try to construct an isomorphism from the trivial bundle `T` to the canonical bundle `L`
+  by sending `(l ∈ RP2, t ∈ R)` to `(l, tv_l)` where `v_l` is the unit vector along `l`, or the intersection of `l` with the
+  upper hemisphere of `S2`.
+- Think of `RP2` as the upper hemisphere. See that on the equator, we only need *half* of the equator, since the
+  "other half" is already given by the first half of the equator.
+- Unfortunately, this does not work for the following subtle reason.
+- Let us use the above """isomorphism""" to consider what happens to the trivial section
+  `RP2 x {1}` (ie, the scalar field that is `1` everywhere on `RP2`.
+- We will assign to each line, the unit vector along that line.
+- On the equator, for the "front half", we will get unit vectors emenating from the origin into the boundary.
+- For the "back half", we will get unit vectors *pointing towards the origin of the sphere*.
+- But for all points "just above" the sphere, we will have unit vectors emenating out from the sphere.
+- So, it will be discontinuous at the "back half" of the equator!
 
-### Rank of $G$
+#### Formal proof: Canonical bundle is not trivial
 
-- Let $H$ be a cartan subalgebra of $L(G)$. Then the dimension of $H$ is the rank of $G$, denoted by $k$.
-- One can find a basis for $L(G)$, where the basis has a simeltaneous eigenbasis for $H$ (since
-  all matrices in $H$ commute). These simultaneous eigenvalues of $
+- Consider a section of `s` of `L`, the canonical line bundle.
+- `s : (l : RP2) → l` is  a function that sends a line `l ∈ RP2` to a point on the line `v ∈ l`.
+- This can be seen as a map that sends, for points in the upper hemisphere, `s(l ∈ RP2) = ((λ(l) x) ∈ l)` for some function
+  `λ: RP2 → R`, where `x` is the intersection of `l` with the upper hemisphere. `λ` must be continuous in `l`.
+- We will create a new function `s' : S2 → R3`, such that the map `s'(x ∈ S2) = s(l)` for all points `x`, where `l` is the
+  line that contains `x`. So `s'(x)` is going to be a point on `l`, where `l` is the line that contains `x`.
+- We will write `s'(x ∈ S2) = λ'(x) x` for some function `λ': S2 → R`.
+- We now calculuate what `λ'` is like.
+- We must have that `s'(x) = s'(-x)`, since both `x` and `-x` lie on the same line `l`, and thus
+  `s'(x) = s(l) = s'(-x)`.
+- Let us now calculate this in terms of `λ'`.
+- We see that `s'(x) = λ'(x)x`, and `s'(-x) = λ'(-x)(-x) = -λ'(x) x`.
+- But since `s'(x) = s'(-x)`, we must have that `λ'(x) x = - λ'(x) x`, or `λ'(x) = - λ'(-x)`.
+- Intuitively, the line `l` is determined only by the positive vector, but the
+  function `λ` is given as input the vector on the sphere. Thus, on input `-x`,
+  it must rescale the vector *negatively*, to push the vector in the positive direction! (as `s` needs us to do).
+- So this means that we have a continuous odd function `λ' : S2 → R`, such that `λ'(x) = - λ'(-x).`
+- By the intermediate value theorem, this function must vanish.
+- Said differently, take a curve `c : [0, 1] → S2` on the sphere connecting `x` to `-x`.
+  Then `λ' . c : [0, 1] → R` gives us a continous function which is positive at `0` and negative at `1`, and thus
+  must have crossed `0` at some point by the intermediate value theorem.
+- This means that the vector field `s` must have vanished at some point, since there is a point where `λ'` equals `0`,
+  which means there is a point where `s'` vanishes (on S2), which means there is a line where `s` vanishes (on `RP2`).
+- Thus, there cannot exist a canonical line bundle on `RP2`, which means that the canonical line bundle is not trivial.
+
+- Now see that we need 
+- Now `RP2` is this vector field restricted to the top hemisphere.
+- If `λ` is zero somewhere, then we are done.
+- We will show that `λ` must be zero somewhere.
+- consider the scalar field on `S^2` that sends `x` to `λ(x)`. 
 
 # Concrete description of spinors
 
@@ -107,6 +134,34 @@ $$
 - For tensors, we need only co and contravariant indeces.
 - For spinors, they have chirality as well, so we get `{left, right} x {co, contra}`.
 - This notation for denoting chirality based on dots is the [Van der waerden notation](https://en.wikipedia.org/wiki/Van_der_Waerden_notation).
+
+# Paracompact spaces
+
+- A space is paracompact iff every open cover $\{ U_\alpha \}$
+  has a locally finite refinement $\{ V_\beta \}$.
+- That is, every $V_i$ has some $U_i$ such that $V_i \subseteq U_i$,
+  and the set of covers $\{ V_\beta \}$ is locally finite.
+- Locally finite cover $V_\beta$: every point $x \in X$ only has finitely many $V_i$ such that $x \in V_i$.
+  Said differently, $|\{ V_i : x \in V_i \}|$ is finite.
+
+#### Hausdorff Paracompact spaces admit partition of unity
+- one liner: take locally finite refinement and bash with Urhyson lemma.
+
+#### Compact Implies Paracompact
+- Take the open cover $U$, build the finite subcover $V$.
+- This is clearly a refinement, because it only has sets from $U$, and it is 
+  clearly locally finite, because there is literally only a finite number of sets in $V$.
+
+#### compact space that is not paracompact
+
+- Stone space, or infinite product of $\{0, 1\}$ in the product topology.
+- Recall that the open sets here differ from the "full cover" at only a finite number of indexes.
+- Suppose that a point $p_i$, which is $1$ at index $i$ and zero everywhere else, does not have infinite cover.
+- intuition: so all but a finitely many collection of covers can choose to cover $p_i$.
+- But this must happen for each $i$, so there must be soe cover that avoids $p_i$ for all $i$.
+- This is impossible?
+- Oh god, this proof needs baire category to "push around" an infinite intersection of dense subsets.
+
 
 # Latin prefixes for words
 
