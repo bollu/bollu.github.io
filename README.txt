@@ -8,10 +8,40 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
-# Lecture on spectral sequences
+# Why FOL models must be nonempty
 
-- Exact couples in alg top: https://www.maths.ed.ac.uk/~v1ranick/papers/massey6.pdf
-- https://www.youtube.com/watch?v=HcolzXhwJWs&list=PLwKdCQGFDsilSxtnDfgP4tJ8SE1So1ecS
+- We ask for nonemptiness to ensure rules like `(forall x. x = x)` is equialent to `exists x. x != x`. 
+- 
+
+# Concrete calculation of hopf fibration
+
+- Take any point `(a, b, c, d) ∈ S3`.
+- This determines a quaternion a + bi + cj + dk`.
+- Let the rotation determined by a quaternion `q` be written as `R_q`.
+- Recall that this determines a rotation of 3 space `(b, c, d)` and angle $2 cos^{-1}(a)$.
+- Let $P_0$ be any point on `S2`, say `(1, 0, 0)`.
+- Then, the hopf fibration `h : S3 → S2` sends `p ∈ S3 → R_p(P_0) ∈ R3`.
+- Now, see that there are many points in `S3` which have image `(1, 0, 0)`.
+- For example, one can check that all points `(cos t, sin t, 0, 0)`.
+- We can show that for any point `p ∈ S2`, the inverse image `h^{-1}(p) ∈ S3` will be a unit circle in `S^3`.
+- The full fibration will therefore be `S1 → S3 -h→ S2`, since each of the fibers of `h` is a circle (`S1`).
+
+#### Rendering
+
+- For a given point on `p ∈ S2`, we can render $h^{-1}(p) \subseteq S^3$
+  as a set of points in `R3` via stereographic projection, which furthermore preserves circles (sends circles to circles).
+- The map sends a point $(w, x, y, z)$ to the point $(x/(1-w), y/(1-w), z/(1-w))$. The only singularity is at $w=1$ which we
+  conveniently ignore.
+- See that this map sends circles to circles. Suppose we have the locus of points `(w, x, y, z)` where `w^2 + x^2 + y^2 + z^2 = 1`.
+- Then the length of the sterographic projection vector is `(x^2 + y^2 + z^2)/(1-w)^2`, which is `1-w^2/(1-w)^2 ??
+  SOMETHING IS WRONG!
+- Recall the intuition for the sterographic projection, wrt `S2` and `R3`.
+- For a point `p ∈ S2`, draw a line `l`, from the north pole `(0, 0, 1)`
+  to the point `p`. The projection is the point of intersection of `l` with the `xy` plane.
+- Same thing a dimension up.
+
+#### References
+- An Elementary Introduction to the Hopf Fibration, by David W Lyons.
 
 # Canonical bundle over RP2 is not trivial
 
@@ -3667,6 +3697,7 @@ than $a$, and hence implies $a$.
 
 
 # Resolution algorithm for propositional logic
+
 - Resolution is refutation complete: will find a disproof if one exists for propositional logic
 -  Key idea is the resolution rule:
 
@@ -3678,6 +3709,29 @@ F \/ l; G \/ not(l)
 
 - See that this allows us to reduce the number of occurrences of `l`. If we keep doing this, we get the empty set
   with `\/` as the monoidal operation, forcing us to conclude `False`.
+
+#### Termination
+
+- At each step, we introduce a new clause, but the clause has one fewer literal.
+- So we decrease on the number of literals this clause can resolve with.
+
+#### Soundness
+- First node that the resolution rule is sound, in that it only infers correct clauses.
+- See that we need to prove only one rule: `(X | A) & (!X | B) = (A & B)`, which can be proven by e.g. truth table.
+- So if resolution finds a contradiction, the original set of cluases did have a contradiction.
+
+### Completeness
+
+- We need to show that if resolution did not find a contradiction, then a model exists
+  (the set of clauses was consistent)
+- Suppose resolution saturates, and did not find a contradiction.
+- Then we claim that in this saturated set, every literal `L` either occurs as all positive, or all negative, or does not occur.
+- If this is true, then clearly we have a model: for every +ve literal, assign true, for every pure -ve literal, assign false, for
+  a literal that does not occur, assign it whichever.
+- Suppose the claim is not true. Then a literal L occurs in some clause C as +ve, and in another clause C' as negative.
+- This means that C, C' can be resolved to get a new clause!
+- But this cannot be, since we assumed that the set of clauses was saturated.
+
 
 # Completeness for first order logic
 - This requires soundness to have been established before.
@@ -8502,6 +8556,7 @@ $$
 - File contains shell stuff to run in `RUN <cmd>` lines. `<cmd>` can have newlines with backslash ala shell script.
 - `docker run <image/layer sha> <command>` to run something at an image SHA (ie, not in a running container). Useful to debug.
   protip: `docker run <sha-of-layer-before-error> /bin/bash` to get a shell.
+- `docker run -it <sha-of-build-success-or-failure>` to ssh into the container interactively.
 - `docker exec <container-sha> <command>` to run something in a container.
 - to delete an image: `docker image ls`, `docker rmi -f <image-sha>`
 - docker prune all unused stuff: `docker system prune -a`
@@ -46449,6 +46504,10 @@ speak slower than you want to.
 - `tmux list-sessions` / `C-b s`: show all sessions.
 - `C-b (/)`: move between sessions
 
+# Big list of new words
+
+- Hermeneutics: Derives from hermes who gave language to humans. 
+  the study of interpretation, particularly of philosophical, wisdom literature, and biblical texts.
 
 # Favourite Demoscenes
 
@@ -46461,6 +46520,3 @@ speak slower than you want to.
 - [Zetsubo by Prismbeings](https://www.youtube.com/watch?v=ncdA3t_vzF8)
 - [Absolute territory by Prismbeings](https://www.youtube.com/watch?v=9r8pxIogxZ0)
 - [Decompress of Empty](https://www.youtube.com/watch?v=_-0d7B9RNxw&list=PL_lmHTgqbbe9HKVe_25kjqe8kzB-6eGYJ&index=2)
-
-
-
