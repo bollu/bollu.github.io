@@ -8,10 +8,28 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# DPLL
+
+- DPLL algorithm is a decision procedure for propositional logic.
+- Keeps a set of clauses, brute forces them by case splitting on literals, and optimizes existing clauses with heuristics:
+- **Unit propoagation**: For a literal `L`, If we have a clause `{L}` (a unit clause), we set `L` to true,
+  since for the clause to be true, `L` should be true.
+- **Pure literal elimination**: If a literal `L` occurs as only +ve in the entire formula, then we can assign it to be true and
+  clear it from the other clauses.
+- Now, for any clause where `L` occurs in the +ve can be eliminated, since the clauses are ORd together, the clause is true.
+- For any clause where `L` occurs in the -ve (ie, `!L` occurs), remove the `!L` and make a smaller clause.
+
+- If we derive an empty clause, then we have derived `False` as one of the conjunct clauses, and thus we have UNSAT.
+- If we manage to clear all clauses, ie, our *set* of clauses is empty, then we have found a satisfying assignment, and we terminate.
+- Optimization 2: Pure literal elimination
+
+#### Cleanup optimization - Subsumption:
+
+- Clause `{A, B}` subsumes a clause `{A, B, C}`, so delete larger clauses that are subsumed by smaller clauses.
+
 # Why FOL models must be nonempty
 
-- We ask for nonemptiness to ensure rules like `(forall x. x = x)` is equialent to `exists x. x != x`. 
-- 
+- We ask for nonemptiness to ensure rules like `(forall x. x = x)` is equialent to `exists x. x != x`.
 
 # Concrete calculation of hopf fibration
 
