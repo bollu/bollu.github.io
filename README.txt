@@ -8,6 +8,113 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+
+# Resolution is Refutation Complete
+
+- Constructive proof.
+- We take soundness for granted since it easy by induction on the proof length.
+- We prove this by induction on number of literals in the full clausal set. So for a clausal set `{{A, B}, {C, D}}` our induction measure is 4.
+
+#### One literal
+
+- If we have 1 literal, then our clause set looks like `{{A}}` which cannot be UNSAT. Thus, we trivially will find a contradiction if one exists.
+
+#### `n+1` literals
+
+- Suppose there is assignment that makes the formula UNSAT.
+- Then we wish to show that resolution will find `False`.
+- Since we have `n+1` literals, there must be at least one clause `C` that has two literals.
+- Let `L` be one of the literals in clause `C`. Suppose `L` occurs as a +ve literal (mutatis mutandis for -ve occurrence.) Write `C := C' U { L }`,
+  and write the full set of clauses `S` as `S := S' U { C }`.
+- Note that `S'` cannot be empty, as we know that `S` is `UNSAT`. 
+- If `L` does not occur in negative position in any other literal, it can be eliminated from the problem, and we have reduced the number of literals.
+  Use IH to get a resolution contradiction proof of the reduced problem, which is a resolution proof of the original problem.
+- Since `S := S' U { C }` is UNSAT, this means that `S' /\ C`, or `S' /\ (C \/ L)` is false. This is to say that `(S' /\ C) \/ (S' /\ L)` is false, which means that
+  *both* `(S' /\ C)` as well as `(S' /\ L)` is false.   
+- So, by IH, there must be resolution proofs for both `S' U {C}` as well as `S' U {{L}}`. 
+- Now, see that we can "percolate" the 
+
+# Fagin's theorem
+
+- Consider sublanguages of all languages that encode models via the standard model encoding.
+- Which of these languages can be recognized by NP?
+- Crazy theorem: the ones that are exactly describable by *monadic second order logic*.
+- Subtlety: we first *fix* the formula, and we then solve the problem if a model (encoded as a string) makes the formula true
+- Sketch of MSO can be accepted by NP: First see that MSO can be figured out by NP: Make the guess for the relation, then do the usual thing of testing a fixed formula.
+   We need as many loops as there are quantifiers in the formula. But since the formula is fixed, this is $n^k$ where $n$ is the size of the model / size of the input string.
+   So we are done.
+
+#### Hard part: every NP model property can be figured out by MSO
+
+- Key idea: we want to run cook-levin, but we don't have booleans.
+- Note that the largest numbers we will ever need to do cook levin are at most $n^k$ for some fixed $k$ (running time of NP machine).
+- Use MSO to pick a total order on the model.
+- On a finite model, a total order is an ordinal!
+- From this, get integers `[0...n)`. Example: `0` is the smallest integer. so it is given by the least element in the ordering, so `exists x, forall y, x <= y`.
+- Successor is given by "next" element in the ordering. `succ(x)` is the element `y` such that `x < y` and there is no `z` such that `x < y < z`.
+- OK, but we need `n^k`.
+- Get `n^k` by building tuples `MxMx..xM` and imposing lex ordering! lex ordering can also be expressed as a FOL formula.
+- Done, we have arithmetic upto `n^k`.
+- Sweet, now run cook-levin inside the model using our arithmetic. sugoi!
+
+
+# EF (Ehrenfeucht–Fraïssé) games
+
+- Games used to show that two structures are rank-q equivalent in FOL via game semantics.
+- We make a restriction: we assume that the theory contains no function symbols. Recall that function symbols can be encoded via relations, so no
+  expressive power is lost, merely annoynance is thwarted.
+- If we had function symbols also, then we would need to perform induction on function call nesting depth as well as quantifier depth, and our completion of the substructre
+  would need to complete by function symbols also.
+
+- One direction is easy: if two models are rank `q` equivalent, then they are also game-round-q equivalent.
+
+### Game equivalence implies rank equivalence
+
+- We prove by contrapositive. Assume the two models are rank-k disequivalent (so there is a formula of that rank that distinguishes the models),
+  we will show that the models are game-k disequivalent (so there is a winning strategy for spoiler.)
+
+#### Example 0: Rank 0 equivalence
+
+- Suppose we have a theory with no constant symbols. Then, at rank 0, it's impossible to tell them apart, because we cannot write *any* propositional equations about them!
+- So suppose a theory $T$ does have a constant symbol `c`. Now suppose we have two model `M, M'` which are not rank-0 equivalent. This means that some propositional formula,
+  involving `c`, can tell the two models apart. Call the formula `f`. Then it must be the case that WLOG, `M |= f` and `M' !|= f`.
+- Now, from the view of the game, this means that we play a round 0 game, and build an *empty* partial isomorphism between the two models `M, M'`. What do we compare?
+- Fear not, we must *generate* the substructure from the empty partial iso, which will be the submodel of `M` (say `C` for contradiction) which only has the symbol `c`,
+  and similarly `M'` has submodel `C'` which has only `c'`. 
+- Now, the formula `f`, when evaluated on the submodel `C` will be true, and when evaluated on `C'` will be false!
+- Thus, game-0 equivalence iff rank-0 equivalence.
+
+
+#### Example 1: Existential Rank 1 equivalence
+
+- Suppose the two models are rank-1 disequivalent, and this formula that shows their disequivalence is an existential formula. Let the formula be `f := exists x, f'`.
+  Suppose WLOG that `M |= f` and `M' !|= f`.
+- What does this mean? This means that there is some element `m` in `M` such that `M |= f'(m)`. It also means that for *all*  `m'` in `M'`, `M' !|= f'(m')`. 
+- So, for the spoiler to win, it needs to pick a submodel `C` of `M` that contains `m`, since any submodel `C'` of `M'` *will not* be able to
+  model `f'`!
+- that's exactly what the spoiler does: it pick `m` in `M`. Now whatever `m'` duplicator chooses, the formula `exists x, f'` can tell them apart: the formula is true in `C'`
+  and will be false in all choices of `C'` that duplicator can make!
+- Note that in this case, spoiler chose an element `m` in `M`.
+
+
+#### Example 2: Universal Rank 1 equivalence
+
+- Suppose the two models are rank-1 disequivalent, and this formula that shows their disequivalence is a universal formula. Let the formula be `f := forall x, f'`.
+  Suppose WLOG that `M |= f` and `M' !|= f`.
+- What does this mean? This means that for every element `m` in `M`, it is true that `M |= f'(m)`. It also means that there is *some* element `m'` in `M'` such that 
+  `M' !|= f'(m')`.
+- So, now, spoiler chooses `m'`. This way, spoiler ensures that it gets a submodel `C'` where `C' !|= forall x, f'` since we have `m'` in `c'` such that `C' |= f'(m')`.
+- Duplicator cannot win, since for any submodel `C` of `M` it chooses, it must be the case that `C' |= forall m, f'`, since for every element `m` in `M` (and thus `m` in `C`),
+  we have that `M |= f'(m)`, and thus `C |= f'(m)`. 
+- Note that in this case, spoiler chose an element `m'` in `M`'.
+
+
+#### Full Proof Sketch
+- See that spoiler really needs the ability to pick from both `M` and `M'` to corner duplicator.
+- Clearly, one can see how to generalize this to an induction. So perform the induction, replacing the level 1
+  case with an inductive case.
+- Note that the spoiler needs to be able to choose elements from either set to be able to correctly.
+
 # DPLL
 
 - DPLL algorithm is a decision procedure for propositional logic.
