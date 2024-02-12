@@ -8,6 +8,9 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+# Building an ELF by hand
+
+- Blog post posted over at repo:
 
 # Resolution is Refutation Complete
 
@@ -26,13 +29,19 @@
 - Since we have `n+1` literals, there must be at least one clause `C` that has two literals.
 - Let `L` be one of the literals in clause `C`. Suppose `L` occurs as a +ve literal (mutatis mutandis for -ve occurrence.) Write `C := C' U { L }`,
   and write the full set of clauses `S` as `S := S' U { C }`.
-- Note that `S'` cannot be empty, as we know that `S` is `UNSAT`. 
+- Note that `S'` cannot be empty, as we know that `S` is `UNSAT`.
 - If `L` does not occur in negative position in any other literal, it can be eliminated from the problem, and we have reduced the number of literals.
   Use IH to get a resolution contradiction proof of the reduced problem, which is a resolution proof of the original problem.
 - Since `S := S' U { C }` is UNSAT, this means that `S' /\ C`, or `S' /\ (C \/ L)` is false. This is to say that `(S' /\ C) \/ (S' /\ L)` is false, which means that
-  *both* `(S' /\ C)` as well as `(S' /\ L)` is false.   
-- So, by IH, there must be resolution proofs for both `S' U {C}` as well as `S' U {{L}}`. 
-- Now, see that we can "percolate" the 
+  *both* `(S' /\ C)` as well as `(S' /\ L)` is false.
+- So, by IH, there must be resolution proofs for both `S' U {C}` as well as `S' U {{L}}`.
+- Now, consider the resolution DAG for `S' U {C}`. If `{C}` is not used in the final derivation of the contradiction, we have a resolution proof using only `S'`.
+  We can reuse the same resolution proof for `S' /\ (C \/ L)`, so we are done!
+- By the exac same argument, we can disregard the case where in the resolution proof in `S' U {{L}}`, `L` was not used.
+- So now, we have two resolution dags, one with `S', {C} |- ... |- False`, and one with `S', {L} |- ... |- False`.
+- Recall that we finall want a resolution proof for the clause `{C, L}`. So what we do is we "percolate" the resolution proof of `S', {c}` with `L`, giving us 
+  a resolution DAG of the form `S', {C, L} |- ... |- L`. We then "graft" this tree onto the one with `S', {L} |- ... |- False` to get the full
+  resolution proof for `S', {C, L} |- ... |- False`!
 
 # Fagin's theorem
 
@@ -22940,6 +22949,53 @@ _coordinates_.
 
 So when we talk about transformations in tensor analysis, we're talking
 about _coordinate transformatios_, not _space transformations_.
+
+Suppose I implement a double ended queue using two pointers:
+
+```
+struct Queue {int *memory, *start, *end; }
+void queue_init(int size) {
+  memory = malloc(sizeof(int) * size);
+  start = end = memory + (size - 1) / 2;
+}
+void queue_push_start(int x) { *start = x; start--; }
+void queue_push_end(int x) { end++; *end = x; }
+int queue_head() { return *start; }
+int queue_tail() { return *end; }
+void queue_deque_head() { start++; }
+void queue_deque_tail() { tail--; }
+```
+
+See that the state of the queue is technically three numbers, `{ memory, start, end }` (Pointers are just numbers after all). But this is *coordinate dependent*, as `start` and `end` are relative to the location of `memory`. Now suppose I have a procedure to reallocate the queue size:
+
+```
+void queue_realloc(Queue *q, int new_size) {
+   int start_offset = q->memory - q->start; 
+   int end_offset = q->memory - q->end;
+   int *oldmem = q->memory;
+   q->memory = realloc(q->memory, new_size);
+   memcpy(q->memory, oldmem + q->start, sizeof(int) * (end_offset - start_offset);
+   q->start = q->memory + start_offset;
+   q->end = q->memory - end_offset;
+}
+```
+Notice that when I do this, the values of `start` and `end` can be completely different!
+
+However, see that the *length* of the queue, given by `(end - start)` is *invariant*: It hasn't changed!
+
+----
+
+In the exact same way, a "tensor" is a collection of numbers that describes something physical with respect to a particular coordinate system (the pointers `start` and `end` with respect to the `memory` coordinate system). "tensor calculus" is a bunch of rules that tell you how the numbers change when one changes coordinate systems (ie, how the pointers `start` and `end` change when the pointer `memory` changes). Some quantities that are computed from tensors are "physical", like the length of the queue, as they are *invariant* under transformations. 
+
+Tensor calculus gives a principled way to make sure that the final answers we calculate are "invariant" / "physical" / "real". The actual locations of `start` and `end` don't matter, as `(end - start)` will always be the length of the list!
+
+----
+
+Physicists (and people who write memory allocators) need such elaborate tracking, to keep track of what is "real" and what is "coordinate dependent", since a lot of physics involves crazy coordinate systems (https://en.wikipedia.org/wiki/Schwarzschild_metric#History), and having ways to know what things are real and what are artefacts of one's coordinate system is invaluable. For a real example, consider the case of singularities of the Schwarzschild  solution to GR, where we initially thought there were two singularities, but it later turned out there was only one "real" singularity, and the other singularity was due to a poor choice of coordinate system:
+
+> Although there was general consensus that the singularity at r = 0 was a 'genuine' physical singularity, the nature of
+> the singularity at r = rs remained unclear. 
+> In 1921 Paul Painlevé and in 1922 Allvar Gullstrand independently produced a metric, a spherically symmetric solution of Einstein's equations, which we now know is coordinate transformation of the Schwarzschild metric, Gullstrand–Painlevé coordinates, in which there was no singularity at r = rs. They, however, did not recognize that their solutions were just coordinate transform
 
 # Tensor Hom adjunction
 
