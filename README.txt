@@ -8,6 +8,248 @@
 - <a type="application/rss+xml" href="feed.rss"> RSS feed </a>
 - **It's useful to finish things.**
 
+
+# FOL + Fixpoint + Counting does not capture P
+
+- I learnt this proof from Anuj Dawar's course in "logic and complexity, lent 2024".
+- [Reference handout](https://www.cl.cam.ac.uk/teaching/2324/L15/notes5.pdf)
+
+## The Language
+
+- We add a new quantifier for bounded quantification over integers
+- We add new terms that are given by `#φ` which counts the number of elements that satisfy phi.
+- We add addition and multiplication operators on number terms.
+- We continue to have the fixpoint operator to take a fixpont of a positive predicate of a relation symbol.
+
+## Game 1: k tuple pebble game
+
+## Game 2: cops and robbers game
+
+Game proceeds as follows:
+- Cops announce where they are moving to on the graph. Can move to arbitrary vertices.
+  (cops have helicopters)
+- The cops lack secure crypto, so the robber learns of their new planned locations as they form the plan,
+  and decides on a new vertex to move based on this information.
+- Robber has a motorbike, so all the robber needs is *some* path from her current position to her new position
+  that is free of cops (who are still their their current positions)
+- Robber moves to her new position and chills there.
+- Police then move with their (slow) helicopters to their committed position, and play continues.
+- Robber wins if robber can play the game infinitely without being caught.
+- Cops win if they can trap the robber into a configuration such that 
+
+In code:
+
+```py
+def do_cops_win (robber_cur_pos : Vec2, 
+  cops_cur_pos : List[Vec2], 
+  graph : Graph,
+  robber_stragy,
+   cop_strategy):
+   while True:
+     # cops make strategy.
+     cops_new_pos = cop_strategy (cops_cur_pos) # cops don't know where robber is?
+     # insecure channel, robber learns of this and plots strategy
+     robber_new_pos = robber_strategy(graph,
+       cops_cur_pos, # robber knows where the cops currently are
+       cops_new_pos, # robber also wknows where the cops plan to be (insecure channel)
+       robber_cur_pos)
+     # robber tries to go to new position. If an avoiding path does not exist,
+     # robber is trapped.
+     if not avoiding_path_exists(robber_cur_pos, cops_cur_pos, robber_new_pos):
+        return "cops win"
+     # robber successfully makes it.
+     robber_cur_pos = robber_new_pos
+     # cops slowly make their way to their new position.
+     cops_cur_pos = cops_new_pos
+```
+  
+
+### Warmup:`n+1` cops needed for `nxn`grid.
+
+Proof by picture. Consider a `3x3` grid, cells denoted by `o`:
+
+
+```
+  XYZ
+1|ooo
+2|ooo
+3|ooo
+```
+
+Cops will occupy the first column and the first cell of the first row:
+
+```
+  XYZ
+1|cco
+2|coo
+3|coo
+```
+
+This forces the robber to live in the rest of the grid, and crucially, cuts of access
+to the top left position  `1X`. So in the next round, the cops will take the cop at `1X`
+and move her to `2Y`. The inaccessible cell is marked with `-`, where the cops have a 
+guarantee that the robber cannot be:
+
+```
+  XYZ
+1|-co
+2|cco
+3|coo
+```
+
+Now note that the cell `2Y`is similarly inaccessible, and thus also becomes `-`in the next turn.
+
+```
+  XYZ
+1|-co
+2|-co
+3|cco
+```
+
+Now we see that `3X`is unreachable, so we can take the cop at `3X` and move her to `3Z` to make `3Y`
+inaccessible:
+
+
+```
+  XYZ
+1|-co
+2|-co
+3|-cc
+```
+
+Repeat:
+
+```
+  XYZ
+1|-co
+2|-cc
+3|--c
+```
+
+Victory for the cops:
+
+```
+  XYZ
+1|-cc
+2|--c
+3|--c
+```
+
+
+- In general the cops have a winning strategy if the can "sweep" the graph, and
+  maintain some territory that they expand in each turn.
+- Note that the for nxn grid, the **max-cut** (NOT min-cut) is `n`,
+  and any smaller graph that we get after removing cut edges will have at most `n`edges.
+  So we can use `n` cops to repeatedly cut of access. There's probably a `log(2n)`
+  number of rounds strategy by subdivision that cuts of access by halving each round,
+  either horizontally or vertically.
+
+## Toroidal graphs
+
+- what you get if you cut a torus into squares.
+- Create an `nxn`grid, and connect vertices `(i, j) → ((i+1) % n, j)`
+  and similarly connect `(i, j) → (i, (j+1)%n)`. This gives a torus.
+- We claim that for the cops and robbers game, $k$ cops does not suffice to win.
+
+
+#### Robber can win on a toroidal graph with $k$ cops.
+- For simplicitly, once again, let $k = 4$.
+- Suppose the cops are on a set $X$ of $k$ vertices.
+- We want to show that $G - X$ ha a connected component with 
+  at least half the vertices of $G$.
+- Let's consider one possible configuration where they are in a row:
+
+````
+  WXYZ
+1|oooo
+2|CCCC
+3|oooo
+4|oooo
+````
+
+- See that this does not cut off access, since we can move from `(-, 1)` to `(-, 4)` as
+  the top and bottom edges are glued. So this is useless for the cops.
+
+- Now let's try and consider a configuration where all the cops are on distinct columns:
+
+````
+  WXYZ
+1|Cooo
+2|oCoo
+3|ooCo
+4|oooC
+````
+
+- In this case too, the graph is connected, and has a large connected component.
+- The only way the cops can cut of a region is to encircle it:
+
+````
+  WXYZ
+1|oooo
+2|oCCo
+3|oCCo
+4|oooo
+````
+
+- In this case, the outside has `kˆ2 - k`vertices, which is larger that `kˆ2/2`:
+  `kˆ2 - k = k(k -1) > k * k/2`.
+
+
+
+## Linear system of equations over F2
+
+- We will claim that system of linear equations over F2 (integers mod 2)
+  cannot be solved by FPC (first order fixpoint + counting).
+- The problem can clearly be solved in polytime by gaussian elimination.
+
+#### Encoding in unordered structure
+- consider structures over the domain `x1, ..., xn` and `e1...em`.
+- `xi` are variables, `ei` are equations.
+- unary relation `E0(ei)` if RHS of `ei` is 0.
+- unary relation `E1(ei)` if RHS of `ei` is 1.
+- `M(xi, ej)` if `xi in ej`. 
+- Note that this suffices, since any linear equation over F2 can be written as `x1 + ... xn = 0/1`.
+- See that this problem is equivalent to XOR-SAT.
+- See that we can negate variables by writing `not(xi) = 1 + xi`.
+- Let `Solv(F2)` be the class of structures representing solvable systems.
+
+
+#### Constructing the system of equations
+- Let $G$ be a toroidal graph.
+- Define $E_G$, the system of equations next, based on $G$. 
+- For each edge, we get two variables $x[e, 0], x[e, 1]$ for each edge $e$.
+- For each vertex $v \in V$, let $e[v, 1], e[v, 2], e[v, 3], e[v, 4]$ be the edges incident on $v$.
+- We make 16 equations: $x[e[v, 1], i] + x[e[v, 2], j] + x[e[v, 3], k] + x[e[v, 4], l] = (i + j + k + l)$
+  for $i, j, k,  l \in \{ 0, 1\}$.
+- Intuitively, we pick a bitstring $\vec b$, and we write the equation $\sum_j x[e[v, j], \vec b[j]] = \texttt{parity}(\vec b)$. 
+- First see that this system is satisfiable by setting $x[-, i]$ to $i$, since the RHS is given by addint $i + j + k + l$,
+  so will the lhs! 
+$$
+\begin{aligned}
+&x[e[v, 1], i] + x[e[v, 2], j] + x[e[v, 3], k] + x[e[v, 4], l] =_? (i + j + k + l) \\
+&= i + j + k + l =_? i + j + k + l 
+\end{aligned}
+$$
+
+- We make another version of the equation system, $\tilde E_G$, which is the same system, except for a fixed vertex $c$ (for contradition),
+  we change the parity of the equation to be $\sum_j x[e[c, j], \vec b[j]] = \lnot\texttt{parity(\vec b)}$.
+- See that we perturb $16$ equations, for all possible choices of $b$ for a fixed $c$.
+- See that this set of equations is unsatisfiable. Add up all equations that only have variables of the form $x[e, 0]$.
+- The sum of all left hand sides will be double counting each variable, since we make an equation for each vertex,
+  but we have a variable per edge. So the LHS will be zero.
+- However, see that due to our perturbation, the RHS must be 1, since we changed the parity (TODO: make this more rigorous / proof by example).
+- Now we show that for each $k$, there is a large enough $G$ such that $E_G \equiv{C[k]}  E_{\tilde G}$. 
+-  This means that FPC cannot distinguish between the cases where the solution is true and false.
+- Thus the problem `Solv(Z2)`cannot be solved by FPC.
+
+#### Putting the pieces together
+
+- Suppose that $G$ is the above toroidal graph such that the robber has a winning strategy for the $2k$
+  cops and robbers game played on $G$.
+- We can use this to construct a winning strategy for the duplication in the $k$ pebble bijection game on $E_G$ and $E_{\tilde{G}}$.
+ 
+
+
 # Building an ELF by hand
 
 - Blog post posted over at repo:
